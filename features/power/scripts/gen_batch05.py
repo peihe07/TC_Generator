@@ -32,6 +32,67 @@ SIM = "A LIN and CAN simulation tool is connected"
 START_ID = 158
 BATCH = "batch_005_startup_display"
 
+REASONING = {
+    'SWE-PM-066':
+        '驗證目標：SOS 與 Assist 通話是否被視為「電話通話轉為 active」。關鍵情境條件：HU 處於會對通話 active 起反應之狀態，分別置入 SOS 與 Assist 通話。為什麼這樣切：原文並列二個通話類別，依 §5.7 各自成條 ——二者為不同之通話來源，故障可只存在其一。刻意略過：通話 active 之後續行為由 Power State 一系（`SWE-PM-037` / `038`）承接（§8.2.1）。**重疊登記（R-P196）**：與 `SWE-PM-067` 相似度 0.60，二者為同族之通話類別條文（SOS/Assist vs Projection），非重複。',
+    'SWE-PM-067':
+        '驗證目標：Projection device 通話是否被視為「電話通話轉為 active」。關鍵情境條件：已配對之 projection device 發起通話。為什麼這樣切：單一通話類別，一條即足。刻意略過：後續行為由他 leaf 承接（§8.2.1）。**重疊登記（R-P196）**：與 `SWE-PM-066` 相似度 0.60，見該 leaf。',
+    'SWE-PM-068':
+        '驗證目標：來電所致之 IDLE → FULL OPERATION 是否略過尚未顯示之免責畫面。關鍵情境條件：HU 於 IDLE，免責畫面尚未顯示過，發生來電。為什麼這樣切：單一觸發、單一結果，一條即足。刻意略過：免責畫面之補顯時機由 `SWE-PM-070` / `115` 承接（§8.2.1）。**重疊登記（A-PW137）**：本 leaf 與 `SWE-PM-114` 之 `source_anchor` **完全相同**（`4941876`）；依 §8.2.2 不得代 RD 合併，二者各自產出（DR-PW12）。',
+    'SWE-PM-069':
+        '驗證目標：來電結束且畫面停於電話主畫面或投射通話 UI 時，是否退回 IDLE。關鍵情境條件：二種畫面狀態之一，通話由 active 轉 inactive。為什麼這樣切：原文之 `phone main screen or phone projection call UI` 為 OR 並列，依 §5.7 各自成條 —— 只測其一時另一畫面之失效無法判讀。刻意略過：其他畫面狀態下之行為原文未載，未推定。',
+    'SWE-PM-070':
+        '驗證目標：為通話而略過之免責畫面，是否於下次進入 FULL OPERATION 時補顯。關鍵情境條件：來電使 HU 離開 IDLE，通話結束後回到 IDLE，再次進入 FULL OPERATION。為什麼這樣切：本條為跨二個時點之單一規則，一條涵蓋（略過與補顯以二個 ER 承接）。刻意略過：略過本身之規則由 `SWE-PM-068` 承接（§8.2.1）。**重疊登記（A-PW137）**：與 `SWE-PM-115` 之錨點完全相同（`4941878`）。',
+    'SWE-PM-074':
+        '驗證目標：Body OFF 進入 Standby 時若有 FOTA 更新，HU 是否轉入 Timed 顯示彈窗。關鍵情境條件：Radio、TBM 或 ROV 三者之一有可用更新。為什麼這樣切：原文之 `Radio, TBM, or ROV` 為 OR 並列，依 §5.7 各自成條 ——三個更新來源不同，故障可只存在其一。刻意略過：`See HMI for pop-up details` 為交叉參照，彈窗內容依 §8.4.2 不測；`see CFTS057` 為外部文件。此二項於 25 包反向涵蓋透鏡 1 列為「無對應」，已裁為交叉參照而非缺口（25 §6.3）。',
+    'SWE-PM-075':
+        '驗證目標：因 FOTA 彈窗而進入 Timed 後，三個離開條件是否各自使 HU 轉回 Standby。關鍵情境條件：1 分鐘無互動 / 彈窗被關閉 / `$ACCDlyAct$` 由 active 轉 inactive。為什麼這樣切：原文以項目符號並列三個條件，依 §8.2.2 各拆一條 ——三者可獨立失效，合併後無法判別是哪一個條件沒生效。刻意略過：`CFTS009-1809` 所指之進入條件由 `SWE-PM-074` 承接（§8.2.1）。',
+    'SWE-PM-076':
+        '驗證目標：長按電源鍵之 radio reset、其 log 保存與重置範圍，及韌體安裝中之例外。關鍵情境條件：`$ICSPowerButton$` 連續按住 10 秒；分別為未安裝韌體與安裝中。為什麼這樣切：四個錨點載三個可獨立失效之事實 ——重置與 log、重置涵蓋二個處理器、安裝中不重置，依 §8.2.2 各拆一條。刻意略過：log 之內容與格式未載於原文，只驗其產生。',
+    'SWE-PM-093':
+        '驗證目標：駕駛門關閉所觸發之開機動畫、其略過條件、取消條件與再播放間隔。關鍵情境條件：SLEEP / STANDBY / PARTIAL OPERATION 三模式之一；`$Door_Ajar_Status$` 轉 CLOSED；`$DriverDoorOnOffSts$` 為 DOOR_OFF；播放中之模式變更或 IGN_START。為什麼這樣切：三個起始模式為 OR 並列（依 §5.7 各自成條），加上略過、取消（模式變更與 IGN_START 二支）、門開啟時之略過、再播放間隔，共七條。**補測同步（R-P191）**：其中「模式變更至 TIMED MODE 取消動畫」與「門開啟時之模式變更略過動畫」二支為 25 包 G113 分桶所攔下之真缺口，已依 R-P118(d) 補測；本 reasoning 於同一步更新（25 §6.2）。刻意略過：動畫內容依 HMI / PDO 定義，不在本條範圍（§8.4.2）。**變體登載（A-PW138 / R-P188）**：本 leaf 之二錨點（`4941301` §1.3.5、`4941941` §1.9.8）內文逐字相同而屬性相異五欄，`source_clause` 因而含同一段落二次；二者之 ECU 皆含 LTM、Radio 皆涵蓋本專案，適用性未變，**未合併亦未拆分**，裁定於 27 包。',
+    'SWE-PM-094':
+        '驗證目標：開機動畫是否與 Splash screen、免責畫面分開呈現。關鍵情境條件：HU 走一次會播放動畫之開機流程。為什麼這樣切：單一呈現規則，一條即足。刻意略過：三個畫面之個別內容不在本條範圍；其顯示時機由 `SWE-PM-104` 承接（§8.2.1）。',
+    'SWE-PM-095':
+        '驗證目標：`LTM_OperationalModeSts.Info` 離開 SNA 後之狀態圖恢復，且不顯示 splash screen。關鍵情境條件：訊號由 SNA 轉為其他值。為什麼這樣切：單一恢復行為，一條即足；「避免顯示 splash screen」為同一步之第二個可觀察結果。刻意略過：進入 SNA 之處置由 `SWE-PM-039` 承接（§8.2.1）。',
+    'SWE-PM-097':
+        '驗證目標：DID `Startup Animation Selection` 為 Fiat Latam 時之 logo 覆蓋規則。關鍵情境條件：HU 帶已設定之車輛品牌，DID 設為 Fiat Latam。為什麼這樣切：單一覆蓋規則，一條即足；前提保留一個已設定之品牌以驗 regardless。刻意略過：Fiat Latam logo 之圖檔內容不在本條範圍。**重疊登記（A-PW137 / R-P186）**：本 leaf 與 `SWE-PM-056` 之 `source_anchor` **完全相同**（`4941680`），`source_clause` 逐字一致。依 §8.2.2「TC 作者不得代 RD 合併需求單位」，二者各自產出以維持追溯；其重複係 RD 之決定（DR-PW12）。',
+    'SWE-PM-098':
+        '驗證目標：`Welcome Onboard Sound` 設為 Always 時，開機動畫是否伴隨同時起始之開機音。關鍵情境條件：`$Themed_Sound$` 為 Fiat Latam，設定為 Always。為什麼這樣切：單一設定值、單一結果，一條即足。刻意略過：Once a Day 與 Never 由 `SWE-PM-099` / `100` 承接（§8.2.1）。**重疊登記（R-P196）**：與 `SWE-PM-100` 相似度 0.88 —— 二者為同一設定之不同值（Always vs Never），結果相反，非重複。',
+    'SWE-PM-099':
+        '驗證目標：Once a Day 設定下之當日首次播放，及「新的一天」之判定。關鍵情境條件：當日尚未播放 / 已播放且客戶選定日期發生變更。為什麼這樣切：原文為二層 —— 播放規則與「新的一天」之定義，後者明列三個成因（手動調整、跨越午夜、時區或日光節約自動調整），依 §8.2.2 各拆一條，共四條。**補測同步（R-P191）**：跨越午夜與時區／DST 二支為 25 包反向涵蓋透鏡 1 所攔下之缺口，已補測；本 reasoning 於同一步更新（25 §6.2）。刻意略過：`CFTS009-2299` 為本 leaf 自身之編號引用，非外部委出。',
+    'SWE-PM-100':
+        '驗證目標：`Welcome Onboard Sound` 設為 Never 時，開機動畫是否不伴隨開機音。關鍵情境條件：`$Themed_Sound$` 為 Fiat Latam，設定為 Never。為什麼這樣切：單一設定值、單一否定結果，一條即足。刻意略過：其餘二設定值由 `SWE-PM-098` / `099` 承接（§8.2.1）。**重疊登記（R-P196）**：與 `SWE-PM-098` 相似度 0.88，見該 leaf。',
+    'SWE-PM-101':
+        '驗證目標：`SDARS_Presence` 與 `Audio_Brand` 四種組合下之 logo 呈現。關鍵情境條件：二訊號各二值之四種組合。為什麼這樣切：原文逐條明列四個組合及其互斥結果，依 §8.2.2 各拆一條。刻意略過：logo 圖檔本身之外觀不在本條範圍。**重疊登記（A-PW137 / R-P186）**：本 leaf 與 `SWE-PM-054` 之 `source_anchor` **完全相同**（`4941673`–`4941676`）。依 §8.2.2 不得代 RD 合併，各自產出（DR-PW12）。',
+    'SWE-PM-102':
+        '驗證目標：Klipsch Splash Screen 之二條設定路徑。關鍵情境條件：`$VC_VEH_LINE$` 為 DT；`$VC_MODEL_YEAR$` 等於或大於 2025。為什麼這樣切：二句之依據訊號與年式條件皆不同，依 §5.7 各自成條。**適用性（R-P193）**：本條限 `$VC_VEH_LINE$ = DT`，本專案車型值無可賴來源，已開 DR-PW13。**重疊登記（A-PW137 / R-P186）**：與 `SWE-PM-055` 之錨點完全相同（`4941678`）。',
+    'SWE-PM-103':
+        '驗證目標：該點火工作條件下之音訊關閉、畫面限制、ICS 可用性與 DTV 關閉。關鍵情境條件：Ignition On 一系之點火工作條件。為什麼這樣切：四個斷言分為二組可獨立失效之面向（音訊與畫面 / ICS 與 DTV），依 §8.2.2 拆為二條，各以二個 ER 承接。**列舉缺口登記（R-P192 / G131）**：原文以逗號列舉五個點火工作條件（Ignition On、Pre_Start、Start、Cranking、On Engine On），**本 leaf 之二條僅取其中二值，`Pre_Start` / `Start` / `Cranking` 三值未測**。此為逗號型「只取其一」，G113 依定義看不見；已依 R-P192 量測並登記，**是否補測待 27 包裁定，執行層未自行補**。',
+    'SWE-PM-104':
+        '驗證目標：每個 bus cycle 首次進入 Timed 或 Full Operation 時之 splash 與免責畫面顯示。關鍵情境條件：新 bus cycle；目標模式為 Timed 或 Full Operation；來源模式為 Idle、Standby 或 Partial Operation。為什麼這樣切：第一個錨點之目標模式為 OR 二支，第二個錨點之來源模式為 OR 三支，依 §5.7 共五條 —— 各支之失效彼此獨立。刻意略過：畫面內容不在本條範圍；暫時略過之例外由 `SWE-PM-105` 承接（§8.2.1）。',
+    'SWE-PM-105':
+        '驗證目標：七類事件下免責與 splash 畫面之暫時略過，及其於同一 bus cycle 之補顯義務。關鍵情境條件：來電／去電／通話中、氣候彈窗、倒車顯影、SOS 與 Assist 通話、FOTA 彈窗。為什麼這樣切：原文以逗號列舉多個例外類別，依 §8.2.2 逐類各拆一條（七條），另一條驗補顯義務，共八條。**補測同步（R-P191）**：初版僅寫通話中與倒車顯影二類，25 包 G113 分桶攔下 FOTA 支之真缺口後補測其餘五類；本 reasoning 於同一步更新（25 §6.2）。刻意略過：`See HMI logic and Flow "Startup" requirements for details` 為交叉參照（§8.4.2），25 包透鏡 1 已裁為非缺口。',
+    'SWE-PM-106':
+        '驗證目標：`$Ecall_Button_Variant$` 為 SOS 時之免責畫面用字。關鍵情境條件：HU 設定為某一免責畫面變體。為什麼這樣切：單一設定值、單一結果，一條即足。刻意略過：「下列各變體」之清單不在本錨點內（§8.4.2）。**重疊登記（R-P196）**：與 `SWE-PM-107` 相似度 0.78 —— 二者為同一參數之二值（SOS / Help），非重複。',
+    'SWE-PM-107':
+        '驗證目標：`$Ecall_Button_Variant$` 為 Help 時是否以 Help 取代 SOS 用字。關鍵情境條件：HU 設定為某一免責畫面變體。為什麼這樣切：單一設定值、單一取代結果，一條即足。刻意略過：變體清單不在本錨點內。**重疊登記（R-P196）**：與 `SWE-PM-106` 相似度 0.78，見該 leaf。',
+    'SWE-PM-108':
+        '驗證目標：非 Maserati 品牌下，核心免責畫面是否每 30 個點火循環才顯示一次。關鍵情境條件：`$VC_VEH_BRAND$` 為 Maserati 以外之值；連續多個點火循環。為什麼這樣切：單一頻率規則，一條即足；首次顯示與其後之間隔以二個 ER 承接。**適用性（R-P193）**：本條之條件為「非 Maserati」，**本專案品牌值無可賴來源** —— 已開 DR-PW13，未自行推定本專案是否落入該分支。刻意略過：Maserati 品牌之行為原文未載，未推定。',
+    'SWE-PM-109':
+        '驗證目標：GDPR 市場且 TBM 存在時之 GDPR 非 Maserati 開機流程。關鍵情境條件：非 Maserati、`$TBM_Present$` 為 Present、`$Country_Code$` 標記為需 Geolocation 加 SOS 彈窗。為什麼這樣切：三條件之 AND 組合為單一路徑，一條即足。**適用性（R-P193）**：品牌與國別條件皆無可賴來源，併入 DR-PW13。刻意略過：HMI 流程之畫面序列為外部文件（§8.4.2）。**重疊登記（R-P196）**：與 `SWE-PM-110` 相似度 0.88 —— 二者為互補之條件分支（GDPR vs 非 GDPR），結果不同，非重複。',
+    'SWE-PM-110':
+        '驗證目標：TBM 不存在或國別未標記時之非 GDPR 非 Maserati 開機流程。關鍵情境條件：非 Maserati，且 `$TBM_Present$` 為 Not Present 或 `$Country_Code$` 未標記。為什麼這樣切：原文之括號內為 OR 並列二條件，依 §5.7 各自成條。**補測同步（R-P191）**：25 包 G113 曾就右支之標記名稱標為缺口，查證後為前提措詞未逐字引該標記名（非缺 TC），已補齊措詞（25 §6.2）。**適用性（R-P193）**：同 `SWE-PM-109`，併入 DR-PW13。**重疊登記（R-P196）**：與 `SWE-PM-109` 相似度 0.88，見該 leaf。',
+    'SWE-PM-111':
+        '驗證目標：非 7 吋螢幕且不需 SOS／Geolocation 時，免責畫面是否加入 ADAS 文字。關鍵情境條件：螢幕非 7 吋；非 Maserati；TBM 不存在或國別不需 SOS 或 Geolocation。為什麼這樣切：括號內為 OR 並列二條件，依 §5.7 各自成條。**適用性（R-P193）**：螢幕尺寸、品牌與國別條件皆無可賴來源，併入 DR-PW13；**7 吋螢幕之行為原文明文排除**，未推定。刻意略過：ADAS 文字之內容為 HMI 所有（§8.4.2）。',
+    'SWE-PM-113':
+        '驗證目標：需 geolocation 與 SOS 之市場，免責或彈窗是否加入 ADAS 與 SOS。關鍵情境條件：螢幕非 7 吋；非 Maserati；TBM 存在；國別需 geolocation 與 SOS。為什麼這樣切：四條件之 AND 組合為單一路徑，一條即足。刻意略過：`See HMI for different startup conditions` 為交叉參照 ——「加在彈窗或加在免責畫面」之判別委由 HMI，故 ER 寫「二者之一」而不逕指其一（§8.4.2）。**適用性（R-P193）**：同 `SWE-PM-111`，併入 DR-PW13。',
+    'SWE-PM-114':
+        '驗證目標：來電所致之 IDLE → FULL OPERATION 是否略過尚未顯示之免責畫面。關鍵情境條件：HU 於 IDLE，免責畫面尚未顯示過，發生來電。為什麼這樣切：單一觸發、單一結果，一條即足。**重疊登記（A-PW137 / R-P186）**：本 leaf 與 `SWE-PM-068` 之 `source_anchor` **完全相同**（`4941876`），`source_clause` 逐字一致。依 §8.2.2 不得代 RD 合併需求單位，二者各自產出以維持追溯（DR-PW12）。',
+    'SWE-PM-115':
+        '驗證目標：為通話而略過之免責畫面，是否於下次進入 FULL OPERATION 時補顯。關鍵情境條件：來電使 HU 離開 IDLE，通話結束後回 IDLE，再次進入 FULL OPERATION。為什麼這樣切：跨二時點之單一規則，一條涵蓋。**重疊登記（A-PW137 / R-P186）**：與 `SWE-PM-070` 之錨點完全相同（`4941878`）；依 §8.2.2 各自產出（DR-PW12）。',
+}
+
 # 與他 leaf 共用**全部**錨點者 —— `source_clause` 逐字相同（見上繳 §五）。
 DUP_NOTE = {
     "SWE-PM-097": "SWE-PM-056",
@@ -678,8 +739,16 @@ def numbered(items: list[str]) -> str:
     return "\n".join(f"{i}. {s}" for i, s in enumerate(items, 1))
 
 
+# **本批之 leaf 全集**（R-P181(e) / R-P177(b)：逐一列出，不以區間表述）。
+# 其derivation 為 25 包當時之 G121 對帳表：Power State 未產出且未受阻斷者 10、
+# Startup Display 未產出者 20 扣除撞上 DR-PW9 之 `SWE-PM-112`，共 29。
+# **此處凍結為明列**——對帳表於本批產出後即將該 29 leaf 標為「已產出」，
+# 若仍自表推導則回傳空集（26 包重跑時實測發現，已於上繳登記）。
+INCLUDE = sorted(TCS)
+
+
 def main() -> None:
-    include, _ = scope()
+    include = INCLUDE
     missing = [x for x in include if x not in TCS]
     extra = [x for x in TCS if x not in include]
     assert not missing and not extra, (missing, extra)
@@ -701,7 +770,7 @@ def main() -> None:
             "section": "、".join(secs),
             "source_anchor": ",".join(anchors),
             "source_clause": "\n".join("\n".join(bodies[a]) for a in anchors),
-            "reasoning": NOTES.get(leaf, ""),
+            "reasoning": REASONING[leaf],
         })
         for idx, (title, pre, data, proc, er, prio, reason) in enumerate(TCS[leaf], 1):
             tcs.append({

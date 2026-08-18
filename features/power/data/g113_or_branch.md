@@ -266,9 +266,9 @@
 
 | 組 | 支 | 分支文字 | 獨有實詞 | 未見於任何 TC | 判定 |
 |---|---|---|---|---|---|
-| 1 | 1 | including manual time adjustments from the user, the tim | `includ`、`manual`、`midnight`、`pass`、`user` | `includ`、`midnight`、`pass`、`user` | **部分未覆蓋** |
-| 1 | 2 | automatic adjustments due to time zones | `automatic`、`due`、`zon` | `automatic`、`due`、`zon` | **未覆蓋** |
-| 1 | 3 | Daylight Savings Time | `daylight`、`saving` | `daylight`、`saving` | **未覆蓋** |
+| 1 | 1 | including manual time adjustments from the user, the tim | `includ`、`manual`、`midnight`、`pass`、`user` | `includ`、`user` | **部分未覆蓋** |
+| 1 | 2 | automatic adjustments due to time zones | `automatic`、`due`、`zon` | — | 已覆蓋 |
+| 1 | 3 | Daylight Savings Time | `daylight`、`saving` | — | 已覆蓋 |
 
 ### `SWE-PM-104` —— 分支 5
 
@@ -308,4 +308,15 @@
 | 1 | 1 | See HMI for different statup conditions to determine whe | `condition`、`determine`、`different`、`hmi`、`pop-up`、`see` | `condition`、`determine`、`different`、`hmi`、`see`、`statup` | **部分未覆蓋** |
 | 1 | 2 | add geolocation | — | — | 無獨有實詞 —— 不判 |
 
-**合計分支 46，未覆蓋 **17**。**
+**合計分支 46，未覆蓋 **15**。**
+
+## 批次 `batch_006_branding_theme`
+
+### `SWE-PM-078` —— 分支 2
+
+| 組 | 支 | 分支文字 | 獨有實詞 | 未見於任何 TC | 判定 |
+|---|---|---|---|---|---|
+| 1 | 1 | If $VC_SpecialPKG$ = [none] | `none`、`vc_specialpkg$` | — | 已覆蓋 |
+| 1 | 2 | indicates a value that is not supported by the HU, the d | `bas`、`default`、`hu`、`indicat`、`signal`、`support` | `indicat` | **部分未覆蓋** |
+
+**合計分支 2，未覆蓋 **1**。**

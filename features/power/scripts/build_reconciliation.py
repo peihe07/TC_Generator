@@ -41,6 +41,9 @@ BLOCKING_DR = {
     **{f"SWE-PM-{i:03d}": ["DR-PW6"] for i in range(1, 10)},
     "SWE-PM-008": ["DR-PW6", "DR-PW11"],
     "SWE-PM-010": ["DR-PW11"],
+    # R-P185（26 包）：DR-PW9 之阻斷欄修訂後明載「阻斷 `SWE-PM-112` 之 TC 撰寫」。
+    # 25 包時該欄未承接立條意旨，執行層以保守解自行排除；本包起為明文阻斷。
+    "SWE-PM-112": ["DR-PW9"],
     BLANK_LEAF: ["DR-PW1"],
 }
 # **不阻斷者**（影響內容或範圍歸屬，不阻斷撰寫）。一併列出以免誤讀為「無 DR」。
@@ -48,7 +51,6 @@ ADVISORY_DR = {
     "SWE-PM-003": ["DR-PW5"],
     "SWE-PM-007": ["DR-PW7"],
     "SWE-PM-038": ["DR-PW10"],
-    "SWE-PM-112": ["DR-PW9"],
 }
 ADVISORY_DR.setdefault("SWE-PM-008", []).append("DR-PW7")
 

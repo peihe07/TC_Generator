@@ -80,6 +80,20 @@
 | Radio | 是 | allSys, noSys | allSys | **否** | `4941735` 獨有 {nosys} |
 | State | 否 | New | Under Review | **否** | `4941735` 獨有 {new}；`4941736` 獨有 {under review} |
 
+## `SWE-PM-093` 之二錨點（R-P188 / A-PW138）
+
+### `4941301` vs `4941941` —— **正規化後仍相異：ECU、EE Architecture、Model Year、Radio、State**
+
+| 屬性 | 多值 | `4941301` | `4941941` | 集合相同 | 差集 |
+|---|---|---|---|---|---|
+| Artifact Type | 否 | Subsystem Functional Requirement | Subsystem Functional Requirement | 是 | — |
+| ECU | 是 | ETM, LTM, RRM | ETM, LTM | **否** | `4941301` 獨有 {rrm} |
+| EE Architecture | 是 | Atlantis High, PowerNet, CUSW, Atlantis Mid | All | **否** | `4941301` 獨有 {atlantis high, atlantis mid, cusw, powernet}；`4941941` 獨有 {all} |
+| Market | 是 | All | All | 是 | — |
+| Model Year | 否 | Default | 2024, 2025, 2022, 2023 | **否** | `4941301` 獨有 {default}；`4941941` 獨有 {2022, 2023, 2024, 2025} |
+| Radio | 是 | allSys | R1H, R1L-R, R1M, R1L | **否** | `4941301` 獨有 {allsys}；`4941941` 獨有 {r1h, r1l, r1l-r, r1m} |
+| State | 否 | New | Under Review | **否** | `4941301` 獨有 {new}；`4941941` 獨有 {under review} |
+
 ## 彙總
 
 | 對 | 正規化後 | 相異欄 |
@@ -90,3 +104,4 @@
 | `4941727` vs `4941728` | **相異** | Model Year |
 | `4941729` vs `4941730` | **相異** | Model Year、Radio、State |
 | `4941735` vs `4941736` | **相異** | Model Year、Radio、State |
+| `4941301` vs `4941941` | **相異** | ECU、EE Architecture、Model Year、Radio、State |

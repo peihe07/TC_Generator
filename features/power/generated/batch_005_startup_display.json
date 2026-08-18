@@ -11,203 +11,203 @@
    "section": "1.9.4",
    "source_anchor": "4941873",
    "source_clause": "The HU shall consider SOS and Assist calls as Phone calls becoming active.",
-   "reasoning": ""
+   "reasoning": "驗證目標：SOS 與 Assist 通話是否被視為「電話通話轉為 active」。關鍵情境條件：HU 處於會對通話 active 起反應之狀態，分別置入 SOS 與 Assist 通話。為什麼這樣切：原文並列二個通話類別，依 §5.7 各自成條 ——二者為不同之通話來源，故障可只存在其一。刻意略過：通話 active 之後續行為由 Power State 一系（`SWE-PM-037` / `038`）承接（§8.2.1）。**重疊登記（R-P196）**：與 `SWE-PM-067` 相似度 0.60，二者為同族之通話類別條文（SOS/Assist vs Projection），非重複。"
   },
   {
    "parent": "SWE-PM-067",
    "section": "1.9.4",
    "source_anchor": "4941874",
    "source_clause": "The HU shall consider Projection device calls as Phone calls becoming active.",
-   "reasoning": ""
+   "reasoning": "驗證目標：Projection device 通話是否被視為「電話通話轉為 active」。關鍵情境條件：已配對之 projection device 發起通話。為什麼這樣切：單一通話類別，一條即足。刻意略過：後續行為由他 leaf 承接（§8.2.1）。**重疊登記（R-P196）**：與 `SWE-PM-066` 相似度 0.60，見該 leaf。"
   },
   {
    "parent": "SWE-PM-068",
    "section": "1.9.4",
    "source_anchor": "4941876",
    "source_clause": "IF the HU transitions from IDLE to FULL OPERATION due to an incoming phone call, THEN the HU shall bypass the disclaimer screen if it has not yet been shown.",
-   "reasoning": ""
+   "reasoning": "驗證目標：來電所致之 IDLE → FULL OPERATION 是否略過尚未顯示之免責畫面。關鍵情境條件：HU 於 IDLE，免責畫面尚未顯示過，發生來電。為什麼這樣切：單一觸發、單一結果，一條即足。刻意略過：免責畫面之補顯時機由 `SWE-PM-070` / `115` 承接（§8.2.1）。**重疊登記（A-PW137）**：本 leaf 與 `SWE-PM-114` 之 `source_anchor` **完全相同**（`4941876`）；依 §8.2.2 不得代 RD 合併，二者各自產出（DR-PW12）。"
   },
   {
    "parent": "SWE-PM-069",
    "section": "1.9.4",
    "source_anchor": "4941877",
    "source_clause": "IF the HU transitions from IDLE to FULL OPERATION due to an incoming phone call AND the phone call becomes inactive AND the HU display is on the phone main screen or phone projection call UI, THEN the HU shall transition back to IDLE.",
-   "reasoning": ""
+   "reasoning": "驗證目標：來電結束且畫面停於電話主畫面或投射通話 UI 時，是否退回 IDLE。關鍵情境條件：二種畫面狀態之一，通話由 active 轉 inactive。為什麼這樣切：原文之 `phone main screen or phone projection call UI` 為 OR 並列，依 §5.7 各自成條 —— 只測其一時另一畫面之失效無法判讀。刻意略過：其他畫面狀態下之行為原文未載，未推定。"
   },
   {
    "parent": "SWE-PM-070",
    "section": "1.9.4",
    "source_anchor": "4941878",
    "source_clause": "IF the HU transitions from IDLE to FULL OPERATION due to an incoming phone call, the HU shall bypass the disclaimer.  THEN if the HU returns to IDLE when the phone call becomes inactive, the HU shall show the disclaimer at the next transition to FULL OPERATION.",
-   "reasoning": ""
+   "reasoning": "驗證目標：為通話而略過之免責畫面，是否於下次進入 FULL OPERATION 時補顯。關鍵情境條件：來電使 HU 離開 IDLE，通話結束後回到 IDLE，再次進入 FULL OPERATION。為什麼這樣切：本條為跨二個時點之單一規則，一條涵蓋（略過與補顯以二個 ER 承接）。刻意略過：略過本身之規則由 `SWE-PM-068` 承接（§8.2.1）。**重疊登記（A-PW137）**：與 `SWE-PM-115` 之錨點完全相同（`4941878`）。"
   },
   {
    "parent": "SWE-PM-074",
    "section": "1.9.10",
    "source_anchor": "4941976",
    "source_clause": "If there is a FOTA update available for the Radio, TBM, or ROV (see CFTS057) when the vehicle enters Body OFF mode and the HU transitions to Standby mode, the HU shall then transition to Timed mode to display the FOTA update available pop-up. See HMI for pop-up details.",
-   "reasoning": ""
+   "reasoning": "驗證目標：Body OFF 進入 Standby 時若有 FOTA 更新，HU 是否轉入 Timed 顯示彈窗。關鍵情境條件：Radio、TBM 或 ROV 三者之一有可用更新。為什麼這樣切：原文之 `Radio, TBM, or ROV` 為 OR 並列，依 §5.7 各自成條 ——三個更新來源不同，故障可只存在其一。刻意略過：`See HMI for pop-up details` 為交叉參照，彈窗內容依 §8.4.2 不測；`see CFTS057` 為外部文件。此二項於 25 包反向涵蓋透鏡 1 列為「無對應」，已裁為交叉參照而非缺口（25 §6.3）。"
   },
   {
    "parent": "SWE-PM-075",
    "section": "1.9.10",
    "source_anchor": "4941977",
    "source_clause": "If the HU Transitions to Timed mode due to the condition described in CFTS009-1809, the HU shall transition to Standby mode after: -1 minute has passed without the user interacting with the pop-up -The FOTA pop up is dismissed -$ACCDlyAct$ transitions from active to inactive",
-   "reasoning": ""
+   "reasoning": "驗證目標：因 FOTA 彈窗而進入 Timed 後，三個離開條件是否各自使 HU 轉回 Standby。關鍵情境條件：1 分鐘無互動 / 彈窗被關閉 / `$ACCDlyAct$` 由 active 轉 inactive。為什麼這樣切：原文以項目符號並列三個條件，依 §8.2.2 各拆一條 ——三者可獨立失效，合併後無法判別是哪一個條件沒生效。刻意略過：`CFTS009-1809` 所指之進入條件由 `SWE-PM-074` 承接（§8.2.1）。"
   },
   {
    "parent": "SWE-PM-076",
    "section": "1.9.3",
    "source_anchor": "4941858,4941860,4941861,4941867",
    "source_clause": "When the HU Receives $ICSPowerButton$ = [Pressed] for 10 seconds consecutively, the HU shall perform a radio reset\nAt the time of the reset the HU shall collect and save logs\nthe HU shall reset both the main CPU and the CAN micro at the time of the reset\nIf the HU is currently installing a firmware image the HU shall not reset due to a power button reset.",
-   "reasoning": ""
+   "reasoning": "驗證目標：長按電源鍵之 radio reset、其 log 保存與重置範圍，及韌體安裝中之例外。關鍵情境條件：`$ICSPowerButton$` 連續按住 10 秒；分別為未安裝韌體與安裝中。為什麼這樣切：四個錨點載三個可獨立失效之事實 ——重置與 log、重置涵蓋二個處理器、安裝中不重置，依 §8.2.2 各拆一條。刻意略過：log 之內容與格式未載於原文，只驗其產生。"
   },
   {
    "parent": "SWE-PM-093",
    "section": "1.3.5、1.9.8",
    "source_anchor": "4941301,4941941",
    "source_clause": "While HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.\nWhile HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.",
-   "reasoning": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。"
+   "reasoning": "驗證目標：駕駛門關閉所觸發之開機動畫、其略過條件、取消條件與再播放間隔。關鍵情境條件：SLEEP / STANDBY / PARTIAL OPERATION 三模式之一；`$Door_Ajar_Status$` 轉 CLOSED；`$DriverDoorOnOffSts$` 為 DOOR_OFF；播放中之模式變更或 IGN_START。為什麼這樣切：三個起始模式為 OR 並列（依 §5.7 各自成條），加上略過、取消（模式變更與 IGN_START 二支）、門開啟時之略過、再播放間隔，共七條。**補測同步（R-P191）**：其中「模式變更至 TIMED MODE 取消動畫」與「門開啟時之模式變更略過動畫」二支為 25 包 G113 分桶所攔下之真缺口，已依 R-P118(d) 補測；本 reasoning 於同一步更新（25 §6.2）。刻意略過：動畫內容依 HMI / PDO 定義，不在本條範圍（§8.4.2）。**變體登載（A-PW138 / R-P188）**：本 leaf 之二錨點（`4941301` §1.3.5、`4941941` §1.9.8）內文逐字相同而屬性相異五欄，`source_clause` 因而含同一段落二次；二者之 ECU 皆含 LTM、Radio 皆涵蓋本專案，適用性未變，**未合併亦未拆分**，裁定於 27 包。"
   },
   {
    "parent": "SWE-PM-094",
    "section": "1.9.8",
    "source_anchor": "4941942",
    "source_clause": "The HU shall display the startup animation separately from the Splash screen and disclaimer screen.",
-   "reasoning": ""
+   "reasoning": "驗證目標：開機動畫是否與 Splash screen、免責畫面分開呈現。關鍵情境條件：HU 走一次會播放動畫之開機流程。為什麼這樣切：單一呈現規則，一條即足。刻意略過：三個畫面之個別內容不在本條範圍；其顯示時機由 `SWE-PM-104` 承接（§8.2.1）。"
   },
   {
    "parent": "SWE-PM-095",
    "section": "1.7.1.1.1",
    "source_anchor": "4941784",
    "source_clause": "As soon as signal LTM_OperationalModeSts.Info becomes different from \"SNA\" value again, TLM has still to behave following the state diagram, considering the updated value of LTM_OperationalModeSts.Info signal and avoiding the possible visualization of the splash screen",
-   "reasoning": ""
+   "reasoning": "驗證目標：`LTM_OperationalModeSts.Info` 離開 SNA 後之狀態圖恢復，且不顯示 splash screen。關鍵情境條件：訊號由 SNA 轉為其他值。為什麼這樣切：單一恢復行為，一條即足；「避免顯示 splash screen」為同一步之第二個可觀察結果。刻意略過：進入 SNA 之處置由 `SWE-PM-039` 承接（§8.2.1）。"
   },
   {
    "parent": "SWE-PM-097",
    "section": "1.6.2.1.16",
    "source_anchor": "4941680",
    "source_clause": "If DID \"Startup Animation Selection\" = [Fiat Latam] then the HU shall replace the vehicle brand logo with the Fiat Latam Logo regardless of the value of $VC_Veh_Brand$",
-   "reasoning": "**本 leaf 之 `source_anchor` 與 `SWE-PM-056` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-056` 承擔，**呈請裁定於 26 包**。"
+   "reasoning": "驗證目標：DID `Startup Animation Selection` 為 Fiat Latam 時之 logo 覆蓋規則。關鍵情境條件：HU 帶已設定之車輛品牌，DID 設為 Fiat Latam。為什麼這樣切：單一覆蓋規則，一條即足；前提保留一個已設定之品牌以驗 regardless。刻意略過：Fiat Latam logo 之圖檔內容不在本條範圍。**重疊登記（A-PW137 / R-P186）**：本 leaf 與 `SWE-PM-056` 之 `source_anchor` **完全相同**（`4941680`），`source_clause` 逐字一致。依 §8.2.2「TC 作者不得代 RD 合併需求單位」，二者各自產出以維持追溯；其重複係 RD 之決定（DR-PW12）。"
   },
   {
    "parent": "SWE-PM-098",
    "section": "1.9.8",
    "source_anchor": "4941943",
    "source_clause": "If $Themed_Sound$ = [Fiat Latam] and the \"Welcome Onboard Sound\" setting is set to \"Always\", the HU startup animation shall be accompanied by a startup sound that begins at the same time.",
-   "reasoning": ""
+   "reasoning": "驗證目標：`Welcome Onboard Sound` 設為 Always 時，開機動畫是否伴隨同時起始之開機音。關鍵情境條件：`$Themed_Sound$` 為 Fiat Latam，設定為 Always。為什麼這樣切：單一設定值、單一結果，一條即足。刻意略過：Once a Day 與 Never 由 `SWE-PM-099` / `100` 承接（§8.2.1）。**重疊登記（R-P196）**：與 `SWE-PM-100` 相似度 0.88 —— 二者為同一設定之不同值（Always vs Never），結果相反，非重複。"
   },
   {
    "parent": "SWE-PM-099",
    "section": "1.9.8",
    "source_anchor": "4941944,4941945",
    "source_clause": "If $Themed_Sound$ = [Fiat Latam] AND the \"Welcome Onboard Sound\" setting is set to \"Once a Day\" AND the HU has not yet played the startup sound yet that day, the HU startup animation shall be accompanied by a startup sound that begins at the same time.\nFor the purposes of CFTS009-2299, the HU shall consider it a new \"day\" to allow the sound to be played any time the customer selected date changes; including manual time adjustments from the user, the time passing midnight, or automatic adjustments due to time zones or Daylight Savings Time.",
-   "reasoning": ""
+   "reasoning": "驗證目標：Once a Day 設定下之當日首次播放，及「新的一天」之判定。關鍵情境條件：當日尚未播放 / 已播放且客戶選定日期發生變更。為什麼這樣切：原文為二層 —— 播放規則與「新的一天」之定義，後者明列三個成因（手動調整、跨越午夜、時區或日光節約自動調整），依 §8.2.2 各拆一條，共四條。**補測同步（R-P191）**：跨越午夜與時區／DST 二支為 25 包反向涵蓋透鏡 1 所攔下之缺口，已補測；本 reasoning 於同一步更新（25 §6.2）。刻意略過：`CFTS009-2299` 為本 leaf 自身之編號引用，非外部委出。"
   },
   {
    "parent": "SWE-PM-100",
    "section": "1.9.8",
    "source_anchor": "4941947",
    "source_clause": "If $Themed_Sound$ = [Fiat Latam] AND the \"Welcome Onboard Sound\" setting is set to \"Never\", the HU startup animation shall not be accompanied by a startup sound that begins at the same time.",
-   "reasoning": ""
+   "reasoning": "驗證目標：`Welcome Onboard Sound` 設為 Never 時，開機動畫是否不伴隨開機音。關鍵情境條件：`$Themed_Sound$` 為 Fiat Latam，設定為 Never。為什麼這樣切：單一設定值、單一否定結果，一條即足。刻意略過：其餘二設定值由 `SWE-PM-098` / `099` 承接（§8.2.1）。**重疊登記（R-P196）**：與 `SWE-PM-098` 相似度 0.88，見該 leaf。"
   },
   {
    "parent": "SWE-PM-101",
    "section": "1.6.2.1.16",
    "source_anchor": "4941673,4941674,4941675,4941676",
    "source_clause": "- IF SDARS_Presence == \"Absent\" AND Audio_Brand == \"No Audio Brand\"THEN TLM has to show the vehicle brand logo only, that depends on Brand_Configuration_2 parameter value;\n- IF SDARS_Presence == \"Absent\" AND Audio_Brand == \"Beats Brand White\"THEN TLM has to show the Beats Brand White logo in addition to the vehicle brand logo;\n- IF SDARS_Presence == \"Present\" AND Audio_Brand == \"No Audio Brand\"THEN TLM has to show the Sirius logo in addition to the vehicle brand logo;\n- IF SDARS_Presence == \"Present\" AND Audio_Brand == \"Beats Brand White\"THEN TLM has to show both the Sirius and the Beats logos in addition to the vehicle brand logo.",
-   "reasoning": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。"
+   "reasoning": "驗證目標：`SDARS_Presence` 與 `Audio_Brand` 四種組合下之 logo 呈現。關鍵情境條件：二訊號各二值之四種組合。為什麼這樣切：原文逐條明列四個組合及其互斥結果，依 §8.2.2 各拆一條。刻意略過：logo 圖檔本身之外觀不在本條範圍。**重疊登記（A-PW137 / R-P186）**：本 leaf 與 `SWE-PM-054` 之 `source_anchor` **完全相同**（`4941673`–`4941676`）。依 §8.2.2 不得代 RD 合併，各自產出（DR-PW12）。"
   },
   {
    "parent": "SWE-PM-102",
    "section": "1.6.2.1.16",
    "source_anchor": "4941678",
    "source_clause": "The ETM shall use $VC_SpecialPKG_IC$ = [Tungsten (147)] to display the Klipsch Splash Screen if $VC_MODEL_YEAR$ =    [2025] and $VC_VEH_LINE$ = [DT].      The ETM shall use $SplashScreen_Type$ = [Klipsch (7)]  to display the Klipsch Splash Screen if $VC_MODEL_YEAR$ > [2025] and $VC_VEH_LINE$ = [DT].",
-   "reasoning": "**本 leaf 之 `source_anchor` 與 `SWE-PM-055` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-055` 承擔，**呈請裁定於 26 包**。"
+   "reasoning": "驗證目標：Klipsch Splash Screen 之二條設定路徑。關鍵情境條件：`$VC_VEH_LINE$` 為 DT；`$VC_MODEL_YEAR$` 等於或大於 2025。為什麼這樣切：二句之依據訊號與年式條件皆不同，依 §5.7 各自成條。**適用性（R-P193）**：本條限 `$VC_VEH_LINE$ = DT`，本專案車型值無可賴來源，已開 DR-PW13。**重疊登記（A-PW137 / R-P186）**：與 `SWE-PM-055` 之錨點完全相同（`4941678`）。"
   },
   {
    "parent": "SWE-PM-103",
    "section": "1.6.2.1.2",
    "source_anchor": "4941364,4941365",
    "source_clause": "In the following \"Ignition Working Conditions\": Ignition On, Ignition Pre_Start, Ignition Start, Ignition Cranking, Ignition On Engine On,\nThis status is related to TLM audio is OFF. TLM shall allow only Splash Screen visualization on its display.  ICS functionalities are available.  DTV shall be OFF.",
-   "reasoning": ""
+   "reasoning": "驗證目標：該點火工作條件下之音訊關閉、畫面限制、ICS 可用性與 DTV 關閉。關鍵情境條件：Ignition On 一系之點火工作條件。為什麼這樣切：四個斷言分為二組可獨立失效之面向（音訊與畫面 / ICS 與 DTV），依 §8.2.2 拆為二條，各以二個 ER 承接。**列舉缺口登記（R-P192 / G131）**：原文以逗號列舉五個點火工作條件（Ignition On、Pre_Start、Start、Cranking、On Engine On），**本 leaf 之二條僅取其中二值，`Pre_Start` / `Start` / `Cranking` 三值未測**。此為逗號型「只取其一」，G113 依定義看不見；已依 R-P192 量測並登記，**是否補測待 27 包裁定，執行層未自行補**。"
   },
   {
    "parent": "SWE-PM-104",
    "section": "1.9.9",
    "source_anchor": "4941950,4941952",
    "source_clause": "The splash screen and disclaimer screen shall be shown the first time each bus cycle the HU transitions to Timed or Full Operation modes.\nIf the disclaimer screen needs to be shown it shall be shown the first time each bus cycle the HU transitions from Idle, Standby, or Partial Operation to Timed or Full Operation modes.",
-   "reasoning": ""
+   "reasoning": "驗證目標：每個 bus cycle 首次進入 Timed 或 Full Operation 時之 splash 與免責畫面顯示。關鍵情境條件：新 bus cycle；目標模式為 Timed 或 Full Operation；來源模式為 Idle、Standby 或 Partial Operation。為什麼這樣切：第一個錨點之目標模式為 OR 二支，第二個錨點之來源模式為 OR 三支，依 §5.7 共五條 —— 各支之失效彼此獨立。刻意略過：畫面內容不在本條範圍；暫時略過之例外由 `SWE-PM-105` 承接（§8.2.1）。"
   },
   {
    "parent": "SWE-PM-105",
    "section": "1.9.9",
    "source_anchor": "4941951",
    "source_clause": "The disclaimer and splash screen can be temporarily skipped for incoming/outgoing/ongoing calls, climate pop-ups, backup camera, SOS and Assist calls, and FOTA pop ups, but must be displayed at the next transition to Timed or Full Operation modes during that bus cycle. See HMI logic and Flow \"Startup\" requirements for details.",
-   "reasoning": ""
+   "reasoning": "驗證目標：七類事件下免責與 splash 畫面之暫時略過，及其於同一 bus cycle 之補顯義務。關鍵情境條件：來電／去電／通話中、氣候彈窗、倒車顯影、SOS 與 Assist 通話、FOTA 彈窗。為什麼這樣切：原文以逗號列舉多個例外類別，依 §8.2.2 逐類各拆一條（七條），另一條驗補顯義務，共八條。**補測同步（R-P191）**：初版僅寫通話中與倒車顯影二類，25 包 G113 分桶攔下 FOTA 支之真缺口後補測其餘五類；本 reasoning 於同一步更新（25 §6.2）。刻意略過：`See HMI logic and Flow \"Startup\" requirements for details` 為交叉參照（§8.4.2），25 包透鏡 1 已裁為非缺口。"
   },
   {
    "parent": "SWE-PM-106",
    "section": "1.9.9",
    "source_anchor": "4941955",
    "source_clause": "For all variations of the disclaimer screen and geolocation pop up listed below, if the configuration parameter $Ecall_Button_Variant$ = [SOS] the HU shall use the SOS text for the disclaimer.",
-   "reasoning": ""
+   "reasoning": "驗證目標：`$Ecall_Button_Variant$` 為 SOS 時之免責畫面用字。關鍵情境條件：HU 設定為某一免責畫面變體。為什麼這樣切：單一設定值、單一結果，一條即足。刻意略過：「下列各變體」之清單不在本錨點內（§8.4.2）。**重疊登記（R-P196）**：與 `SWE-PM-107` 相似度 0.78 —— 二者為同一參數之二值（SOS / Help），非重複。"
   },
   {
    "parent": "SWE-PM-107",
    "section": "1.9.9",
    "source_anchor": "4941956",
    "source_clause": "For all variations of the disclaimer screen and geolocation pop up listed below, if the configuration parameter $Ecall_Button_Variant$ = [Help] the HU shall replace the \"SOS\" text with the \"Help\" version of the disclaimer.",
-   "reasoning": ""
+   "reasoning": "驗證目標：`$Ecall_Button_Variant$` 為 Help 時是否以 Help 取代 SOS 用字。關鍵情境條件：HU 設定為某一免責畫面變體。為什麼這樣切：單一設定值、單一取代結果，一條即足。刻意略過：變體清單不在本錨點內。**重疊登記（R-P196）**：與 `SWE-PM-106` 相似度 0.78，見該 leaf。"
   },
   {
    "parent": "SWE-PM-108",
    "section": "1.9.9",
    "source_anchor": "4941958",
    "source_clause": "If $VC_VEH_BRAND$ <> [Maserati] the R1 Head Unit shall only show the core disclaimer screen once every 30 ignition cycles",
-   "reasoning": ""
+   "reasoning": "驗證目標：非 Maserati 品牌下，核心免責畫面是否每 30 個點火循環才顯示一次。關鍵情境條件：`$VC_VEH_BRAND$` 為 Maserati 以外之值；連續多個點火循環。為什麼這樣切：單一頻率規則，一條即足；首次顯示與其後之間隔以二個 ER 承接。**適用性（R-P193）**：本條之條件為「非 Maserati」，**本專案品牌值無可賴來源** —— 已開 DR-PW13，未自行推定本專案是否落入該分支。刻意略過：Maserati 品牌之行為原文未載，未推定。"
   },
   {
    "parent": "SWE-PM-109",
    "section": "1.9.9",
    "source_anchor": "4941962",
    "source_clause": "If $VC_VEH_BRAND$ <> [Maserati] AND $TBM_Present$ = [Present]  AND $Country_Code$ is marked as \"Countries which need the combined Geolocation plus SOS Popup\" (see market configuration table) then the HU shall follow the GDPR Non-Maserati startup flow in the HMI.",
-   "reasoning": ""
+   "reasoning": "驗證目標：GDPR 市場且 TBM 存在時之 GDPR 非 Maserati 開機流程。關鍵情境條件：非 Maserati、`$TBM_Present$` 為 Present、`$Country_Code$` 標記為需 Geolocation 加 SOS 彈窗。為什麼這樣切：三條件之 AND 組合為單一路徑，一條即足。**適用性（R-P193）**：品牌與國別條件皆無可賴來源，併入 DR-PW13。刻意略過：HMI 流程之畫面序列為外部文件（§8.4.2）。**重疊登記（R-P196）**：與 `SWE-PM-110` 相似度 0.88 —— 二者為互補之條件分支（GDPR vs 非 GDPR），結果不同，非重複。"
   },
   {
    "parent": "SWE-PM-110",
    "section": "1.9.9",
    "source_anchor": "4941963",
    "source_clause": "If  $VC_VEH_BRAND$ <> [Maserati] AND ($TBM_Present$ = [Not Present] OR $Country_Code$ is not marked as \"Countries which need the combined Geolocation plus SOS Popup\" in the Market Configuration Table), the HU shall follow the Non-GDPR/Non-Maserati Startup flow in the HMI.",
-   "reasoning": ""
+   "reasoning": "驗證目標：TBM 不存在或國別未標記時之非 GDPR 非 Maserati 開機流程。關鍵情境條件：非 Maserati，且 `$TBM_Present$` 為 Not Present 或 `$Country_Code$` 未標記。為什麼這樣切：原文之括號內為 OR 並列二條件，依 §5.7 各自成條。**補測同步（R-P191）**：25 包 G113 曾就右支之標記名稱標為缺口，查證後為前提措詞未逐字引該標記名（非缺 TC），已補齊措詞（25 §6.2）。**適用性（R-P193）**：同 `SWE-PM-109`，併入 DR-PW13。**重疊登記（R-P196）**：與 `SWE-PM-109` 相似度 0.88，見該 leaf。"
   },
   {
    "parent": "SWE-PM-111",
    "section": "1.9.9",
    "source_anchor": "4941964",
    "source_clause": "For all screen sizes except 7 inch If $VC_VEH_BRAND$ <> [Maserati] AND ($TBM_Present$ = [Not Present] OR$Country_Code$  does not require SOS or Geolocation) then the HU shall add the ADAS text to the disclaimer",
-   "reasoning": ""
+   "reasoning": "驗證目標：非 7 吋螢幕且不需 SOS／Geolocation 時，免責畫面是否加入 ADAS 文字。關鍵情境條件：螢幕非 7 吋；非 Maserati；TBM 不存在或國別不需 SOS 或 Geolocation。為什麼這樣切：括號內為 OR 並列二條件，依 §5.7 各自成條。**適用性（R-P193）**：螢幕尺寸、品牌與國別條件皆無可賴來源，併入 DR-PW13；**7 吋螢幕之行為原文明文排除**，未推定。刻意略過：ADAS 文字之內容為 HMI 所有（§8.4.2）。"
   },
   {
    "parent": "SWE-PM-113",
    "section": "1.9.9",
    "source_anchor": "4941968",
    "source_clause": "For all screen sizes except 7 inch If $VC_VEH_BRAND$ <> [Maserati] AND $TBM_Present$ = [Present]  AND $Country_Code$ requires geolocation and SOS in the disclaimer then the HU shall add the ADAS and SOS to the geolocation pop-up or disclaimer. See HMI for different statup conditions to determine when to add geolocation + SOS Pop-up or add geolocation and SOS text to Disclaimer.",
-   "reasoning": ""
+   "reasoning": "驗證目標：需 geolocation 與 SOS 之市場，免責或彈窗是否加入 ADAS 與 SOS。關鍵情境條件：螢幕非 7 吋；非 Maserati；TBM 存在；國別需 geolocation 與 SOS。為什麼這樣切：四條件之 AND 組合為單一路徑，一條即足。刻意略過：`See HMI for different startup conditions` 為交叉參照 ——「加在彈窗或加在免責畫面」之判別委由 HMI，故 ER 寫「二者之一」而不逕指其一（§8.4.2）。**適用性（R-P193）**：同 `SWE-PM-111`，併入 DR-PW13。"
   },
   {
    "parent": "SWE-PM-114",
    "section": "1.9.4",
    "source_anchor": "4941876",
    "source_clause": "IF the HU transitions from IDLE to FULL OPERATION due to an incoming phone call, THEN the HU shall bypass the disclaimer screen if it has not yet been shown.",
-   "reasoning": "**本 leaf 之 `source_anchor` 與 `SWE-PM-068` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-068` 承擔，**呈請裁定於 26 包**。"
+   "reasoning": "驗證目標：來電所致之 IDLE → FULL OPERATION 是否略過尚未顯示之免責畫面。關鍵情境條件：HU 於 IDLE，免責畫面尚未顯示過，發生來電。為什麼這樣切：單一觸發、單一結果，一條即足。**重疊登記（A-PW137 / R-P186）**：本 leaf 與 `SWE-PM-068` 之 `source_anchor` **完全相同**（`4941876`），`source_clause` 逐字一致。依 §8.2.2 不得代 RD 合併需求單位，二者各自產出以維持追溯（DR-PW12）。"
   },
   {
    "parent": "SWE-PM-115",
    "section": "1.9.4",
    "source_anchor": "4941878",
    "source_clause": "IF the HU transitions from IDLE to FULL OPERATION due to an incoming phone call, the HU shall bypass the disclaimer.  THEN if the HU returns to IDLE when the phone call becomes inactive, the HU shall show the disclaimer at the next transition to FULL OPERATION.",
-   "reasoning": "**本 leaf 之 `source_anchor` 與 `SWE-PM-070` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-070` 承擔，**呈請裁定於 26 包**。"
+   "reasoning": "驗證目標：為通話而略過之免責畫面，是否於下次進入 FULL OPERATION 時補顯。關鍵情境條件：來電使 HU 離開 IDLE，通話結束後回 IDLE，再次進入 FULL OPERATION。為什麼這樣切：跨二時點之單一規則，一條涵蓋。**重疊登記（A-PW137 / R-P186）**：與 `SWE-PM-070` 之錨點完全相同（`4941878`）；依 §8.2.2 各自產出（DR-PW12）。"
   }
  ],
  "tcs": [

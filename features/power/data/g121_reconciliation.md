@@ -23,8 +23,8 @@
 | Test Set | leaf | 已產出 | 未產出 | 其中受阻斷 | 未產出且未阻斷 |
 |---|---|---|---|---|---|
 | Power State | 63 | 53 | 10 | 10 | **0** |
-| Startup Display | 24 | 23 | 1 | 0 | **1** |
-| Branding and Theme | 16 | 0 | 16 | 0 | **16** |
+| Startup Display | 24 | 23 | 1 | 1 | **0** |
+| Branding and Theme | 16 | 16 | 0 | 0 | **0** |
 | Timeout Settings | 8 | 8 | 0 | 0 | **0** |
 | Power Down | 3 | 3 | 0 | 0 | **0** |
 
@@ -32,25 +32,8 @@
 
 | leaf | Test Set | 諮詢性 DR |
 |---|---|---|
-| `SWE-PM-077` | Branding and Theme | — |
-| `SWE-PM-078` | Branding and Theme | — |
-| `SWE-PM-079` | Branding and Theme | — |
-| `SWE-PM-080` | Branding and Theme | — |
-| `SWE-PM-081` | Branding and Theme | — |
-| `SWE-PM-082` | Branding and Theme | — |
-| `SWE-PM-083` | Branding and Theme | — |
-| `SWE-PM-084` | Branding and Theme | — |
-| `SWE-PM-085` | Branding and Theme | — |
-| `SWE-PM-086` | Branding and Theme | — |
-| `SWE-PM-087` | Branding and Theme | — |
-| `SWE-PM-088` | Branding and Theme | — |
-| `SWE-PM-090` | Branding and Theme | — |
-| `SWE-PM-091` | Branding and Theme | — |
-| `SWE-PM-092` | Branding and Theme | — |
-| `SWE-PM-096` | Branding and Theme | — |
-| `SWE-PM-112` | Startup Display | DR-PW9 |
 
-**合計 17 leaf。**
+**合計 0 leaf。**
 
 ## 4. 未產出且受阻斷之 leaf
 
@@ -67,3 +50,4 @@
 | `SWE-PM-009` | Power State | **DR-PW6** |
 | `SWE-PM-010` | Power State | **DR-PW11** |
 | `SWE-PM-089` | （留空 —— R-P141） | **DR-PW1** |
+| `SWE-PM-112` | Startup Display | **DR-PW9** |

@@ -75,26 +75,26 @@ SWE-PM-073	Power Down	001	11	—	—
 SWE-PM-074	Startup Display	005	3	—	—
 SWE-PM-075	Startup Display	005	3	—	—
 SWE-PM-076	Power State	005	3	—	—
-SWE-PM-077	Branding and Theme	未產出	0	—	—
-SWE-PM-078	Branding and Theme	未產出	0	—	—
-SWE-PM-079	Branding and Theme	未產出	0	—	—
-SWE-PM-080	Branding and Theme	未產出	0	—	—
-SWE-PM-081	Branding and Theme	未產出	0	—	—
-SWE-PM-082	Branding and Theme	未產出	0	—	—
-SWE-PM-083	Branding and Theme	未產出	0	—	—
-SWE-PM-084	Branding and Theme	未產出	0	—	—
-SWE-PM-085	Branding and Theme	未產出	0	—	—
-SWE-PM-086	Branding and Theme	未產出	0	—	—
-SWE-PM-087	Branding and Theme	未產出	0	—	—
-SWE-PM-088	Branding and Theme	未產出	0	—	—
+SWE-PM-077	Branding and Theme	006	1	—	—
+SWE-PM-078	Branding and Theme	006	2	—	—
+SWE-PM-079	Branding and Theme	006	1	—	—
+SWE-PM-080	Branding and Theme	006	2	—	—
+SWE-PM-081	Branding and Theme	006	3	—	—
+SWE-PM-082	Branding and Theme	006	3	—	—
+SWE-PM-083	Branding and Theme	006	3	—	—
+SWE-PM-084	Branding and Theme	006	2	—	—
+SWE-PM-085	Branding and Theme	006	2	—	—
+SWE-PM-086	Branding and Theme	006	2	—	—
+SWE-PM-087	Branding and Theme	006	2	—	—
+SWE-PM-088	Branding and Theme	006	1	—	—
 SWE-PM-089	（留空 —— R-P141）	未產出	0	DR-PW1	—
-SWE-PM-090	Branding and Theme	未產出	0	—	—
-SWE-PM-091	Branding and Theme	未產出	0	—	—
-SWE-PM-092	Branding and Theme	未產出	0	—	—
+SWE-PM-090	Branding and Theme	006	2	—	—
+SWE-PM-091	Branding and Theme	006	1	—	—
+SWE-PM-092	Branding and Theme	006	1	—	—
 SWE-PM-093	Startup Display	005	9	—	—
 SWE-PM-094	Startup Display	005	1	—	—
 SWE-PM-095	Power State	005	1	—	—
-SWE-PM-096	Branding and Theme	未產出	0	—	—
+SWE-PM-096	Branding and Theme	006	6	—	—
 SWE-PM-097	Startup Display	005	1	—	—
 SWE-PM-098	Startup Display	005	1	—	—
 SWE-PM-099	Startup Display	005	4	—	—
@@ -110,7 +110,7 @@ SWE-PM-108	Startup Display	005	1	—	—
 SWE-PM-109	Startup Display	005	1	—	—
 SWE-PM-110	Startup Display	005	2	—	—
 SWE-PM-111	Startup Display	005	2	—	—
-SWE-PM-112	Startup Display	未產出	0	—	DR-PW9
+SWE-PM-112	Startup Display	未產出	0	DR-PW9	—
 SWE-PM-113	Startup Display	005	1	—	—
 SWE-PM-114	Power State	005	1	—	—
 SWE-PM-115	Power State	005	1	—	—

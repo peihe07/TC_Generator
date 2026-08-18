@@ -34,6 +34,10 @@ MULTIVALUE = ["ECU", "EE Architecture", "Radio", "Market"]
 # `SWE-PM-025` 之三對（23 §四所列，錨點編號自原始檔查得）
 PAIRS_025 = [("4941569", "4941572"), ("4941570", "4941573"), ("4941571", "4941574")]
 
+# R-P188（26 包）：`SWE-PM-093` 之二錨點內文逐字相同而屬性相異（A-PW138）。
+# 上繳其**全部屬性逐欄原值**與集合正規化後之差集；**不合併亦不拆分**。
+PAIRS_093 = [("4941301", "4941941")]
+
 
 def as_set(value: str) -> frozenset[str]:
     """去空白、統一大小寫、以逗號切分 —— 次序不具語義（R-P173(a)）。"""
@@ -94,7 +98,8 @@ def render(groups: list[tuple[str, list[tuple[str, str]]]], attrs: dict) -> str:
 def main() -> None:
     attrs = anchor_attributes()
     groups = [("`SWE-PM-025` 三對（R-P167 / 23 §四）", PAIRS_025),
-              ("R-P135 三對（`SWE-PM-038`）", PAIRS_135)]
+              ("R-P135 三對（`SWE-PM-038`）", PAIRS_135),
+              ("`SWE-PM-093` 之二錨點（R-P188 / A-PW138）", PAIRS_093)]
     (DATA / "g117_multivalue_sets.md").write_text(render(groups, attrs),
                                                   encoding="utf-8")
     print(f"wrote {(DATA / 'g117_multivalue_sets.md').relative_to(ROOT)}")

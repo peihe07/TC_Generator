@@ -507,6 +507,59 @@ TCS: dict[str, list[tuple]] = {
     ],
 }
 
+REASONING = {
+    'SWE-PM-033':
+        '驗證目標：Partial Operation 下點火轉為 Ignition Pre Off 或 Ignition Off 時之 Standby 轉換。關鍵情境條件：`TLM_Status.Info` 與 `$Telematic_Power$` 讀 Partial Operation，`LTM_OperationalModeSts` 轉入二值之一。為什麼這樣切：原文以 `OR` 並列二個觸發值，依 §5.7 各自成條 —— 只測其一時，另一值之失效無法判讀（G113 之 OR 分支要求）。刻意略過：Standby 狀態本身之行為由 `SWE-PM-044` 一系承接（§8.2.1）。',
+    'SWE-PM-034':
+        '驗證目標：Partial Operation 下前面板按鍵觸發之防盜啟動與 Splash Screen 顯示。關鍵情境條件：`Front_Panel_OnOff.Req` 由 `Not_Pressed` 轉 `Pressed`。為什麼這樣切：單一觸發、二個並存之後果（設 `Antitheft_Activation.Req` 與顯示畫面），以二個 ER 承接而非拆條 —— 二者同時發生，拆條會造出不存在之時序。刻意略過：`Splash Screen logo visualization` 之 logo 內容屬他章（§8.2.1）；`Response_Wait_Time` 之數值未載於原文，故只驗「持續該時長」而不造容差值。',
+    'SWE-PM-035':
+        '驗證目標：防盜成功後，依 `Auto_SwitchOn_Setting.Req` 之三種行為分支之去向。關鍵情境條件：`Antitheft_Result.Info` 為 `Successfully`，`Auto_SwitchOn_Setting.Req` 分別為 `Active` / `Not_Active` / `Recall_Last`。為什麼這樣切：原文明列 Behaviour 1–3，其中 Behaviour 3 再依 `VPLastStatus` 分二支，依 §8.2.2 共四條 —— 各分支之終態不同（Full-Operation / Idle），互斥不可合併。刻意略過：Splash Screen 之 logo 內容屬他章；`Response_Wait_Time` 之數值未載，不造容差值。',
+    'SWE-PM-036':
+        '驗證目標：Timed 下收到 Remote Start 啟動時之旗標設定與 Partial Operation 轉換。關鍵情境條件：`STATUS_BH_BCM2.RemStActvSts` 由 `Remote Start Not Active` 轉 `Remote Start Active`。為什麼這樣切：單一觸發、單一路徑，一條即足；`RemStartFail` / `VPLastStatus` 之設定與狀態轉換以二個 ER 承接，二者為同一步之後果。刻意略過：Remote Start 失敗路徑屬 `SWE-PM-037`（§8.2.1）。',
+    'SWE-PM-037':
+        '驗證目標：Timed 下通話結束且 `RemStartFail` 為真時之旗標清除與 Standby 轉換。關鍵情境條件：`RemStartFail` 讀 `True`，`PhoneCall.Info` 轉為 `not Active`。為什麼這樣切：單一條件組合、單一結果，一條即足。刻意略過：`RemStartFail` 為假時之路徑不在本錨點原文內，未推定其行為。',
+    'SWE-PM-039':
+        '驗證目標：`SNA` 值之等同處置、Timeout1 之 PROXI 取值，及 Timed 下之選單保證範圍。關鍵情境條件：`LTM_OperationalModeSts.Info` 為 `SNA`；`SwitchOff_Timeout_Setting.Req` 為 `00 min` 或 LTM High Radio 之 `Auto_SwitchOn_Setting.Req == Active`。為什麼這樣切：本 leaf 之四個錨點載三個獨立規則，且第二個規則之觸發為 `or` 並列，依 §5.7 拆為二條，合計四條 —— 三規則彼此無先後依賴，可獨立失效。刻意略過：`TLM Operative state management` 與 TLM HMI documents 為外部章節，依 §8.4.2 不測本規格未擁有者，故第一條只驗「行為等同於 Ignition Pre Off 或 Off 事件」。',
+    'SWE-PM-040':
+        '驗證目標：正常關機進入 Suspend to RAM 時之 8 日計時器與低功耗模式。關鍵情境條件：Suspend to RAM 被允許，HU 走正常關機序列。為什麼這樣切：單一序列、二個並存後果（起計時器、進低功耗），以二個 ER 承接。刻意略過：Suspend to RAM 不被允許時之路徑未載於原文，未推定；8 日之計時精度不在本條驗證範圍，只驗其啟動。',
+    'SWE-PM-041':
+        '驗證目標：TLM OFF with Network on 狀態下之功能不可用，與進入該狀態時之防盜旗標清除。關鍵情境條件：Ignition Pre Off 或 Ignition Off 之點火工作條件。為什麼這樣切：二個可獨立失效之事實（功能可用性、進入動作），依 §8.2.2 各拆一條。刻意略過：原文之點火工作條件僅列 Pre Off 與 Off 二值，二條各取其一以兼顧；FPDM / AMP / ICS / DTV 之個別功能細節屬各該功能規格（§8.4.2）。**重疊登記（R-P196）**：本 leaf 與 `SWE-PM-042` 之 `source_clause` 相似度達 1.00（實詞集合相同），二者實質差別僅在 `Network on` 與 `Network off` 一字 ——該差別為停用詞所遮蔽，故相似度失真。依 §8.2.2 不代 RD 合併。',
+    'SWE-PM-042':
+        '驗證目標：TLM OFF with Network off 狀態下之功能不可用，與進入該狀態時之防盜旗標清除。關鍵情境條件：Ignition Pre Off 或 Ignition Off 之點火工作條件。為什麼這樣切：與 `SWE-PM-041` 同構，二個可獨立失效之事實各拆一條。刻意略過：同 `SWE-PM-041`。**重疊登記（R-P196）**：與 `SWE-PM-041` 相似度 1.00，差別為 Network on / off，見該 leaf 之 reasoning。',
+    'SWE-PM-043':
+        '驗證目標：Standby 模式下背光之關閉常態，及需顯示 HMI 畫面時之例外。關鍵情境條件：HU 於 Standby；分別為無 HMI 畫面需求與有需求。為什麼這樣切：原文為「常態 + except 例外」之二分結構，依 §5.7 各自成條 —— 只測常態時，例外分支之失效（該亮不亮）無法判讀。刻意略過：何種情況會「需要顯示 HMI 畫面」未載於本錨點，故第二條以「請求顯示」建構，不推定其觸發來源。',
+    'SWE-PM-044':
+        '驗證目標：Standby 或 Sleep 下，前面板鍵與空調面板鍵觸發之防盜啟動與 Splash Screen。關鍵情境條件：Engineering Line 停用；狀態為 Standby 或 Sleep；二個按鍵之一由 Not_Pressed 轉 Pressed。為什麼這樣切：二個觸發訊號（不同硬體來源，依 §5.7 與 R-P184 之同一理由）乘以 OR 之二個狀態，共四條 —— 故障可只存在於其中一條路徑。刻意略過：`For Splash Screen logo, refer to TLM HMI Specification` 為交叉參照，依 §8.4.2 不測外部文件所擁有者。',
+    'SWE-PM-045':
+        '驗證目標：防盜失敗後之旗標復歸，與留在原狀態（Standby 或 Sleep）之行為。關鍵情境條件：`Antitheft_Result.Info` 為 `Not_Successfully`，原狀態分別為 Standby 與 Sleep。為什麼這樣切：原文之 `(Standby OR Sleep)` 為 OR 並列，依 §5.7 各自成條。刻意略過：`Timeout1` 之數值未載於原文，故 ER 寫「至多 Timeout1」而**不造容差值**（比照 R-P97 之處置）。**重疊登記（R-P196）**：本 leaf 與 `SWE-PM-047` 相似度 0.76、與 `SWE-PM-027` 0.78、與 `SWE-PM-052` 0.63 —— 皆為「防盜失敗留在原狀態」之同族條文而狀態不同，非重複。',
+    'SWE-PM-046':
+        '驗證目標：後視鏡頭 PROXI 存在且致能為真時，防盜尚未成功仍應提供影音。關鍵情境條件：`Rear_View_Camera` PROXI 為 `Present`、`Rear_Camera_Enable.Info` 為 `True`；`Antitheft_Result.Info` 分別為 `In_Progress` 與 `Not_Successfully`。為什麼這樣切：原文以 `or` 並列二個防盜狀態，依 §5.7 各自成條 ——本條之要旨正是「即使防盜未成功也要出影像」，只測其一無法證明該例外對二狀態皆成立。刻意略過：`Refer to VF551` 之影像可用性需求為外部文件（§8.4.2）。',
+    'SWE-PM-047':
+        '驗證目標：防盜失敗後之旗標復歸與留在原狀態，並顯示防盜畫面。關鍵情境條件：原狀態分別為 Standby 與 Sleep。為什麼這樣切：`(Standby OR Sleep)` 之 OR 並列，依 §5.7 各自成條。刻意略過：`see VF210` 之畫面內容為外部文件（§8.4.2）。**重疊登記（R-P196）**：與 `SWE-PM-045` 相似度 0.76 —— 二者之差別在 `045` 帶 `Timeout1` 上限而本條帶 VF210 之畫面參照；與 `SWE-PM-049`（0.75）、`SWE-PM-052`（0.83）為同族而狀態不同。',
+    'SWE-PM-048':
+        '驗證目標：`LTM_OperationalModeSts.Info` 轉換後之防盜成功處理，依三種行為分支之去向，以及出廠預設值。關鍵情境條件：轉換已發生；`Auto_SwitchOn_Setting.Req` 為三值之一；Behaviour 3 下 `VPLastStatus` 為 ON / OFF。為什麼這樣切：三個行為分支中第三者再分二支，加上原文明列之 `Default:` 一項，依 §8.2.2 共五條 —— 各分支終態互斥，預設值另為一個可獨立驗證之事實。刻意略過：本 leaf 與 `SWE-PM-035` 同為「防盜成功後三行為」，差別在本條之前提為 `LTM_OperationalModeSts.Info` 轉換之後且無 Splash Screen 等待；二者非重複。',
+    'SWE-PM-049':
+        '驗證目標：防盜失敗時於 Idle 之封鎖行為。關鍵情境條件：`TLM_Status.Info` 讀 Idle，`Antitheft_Result.Info` 為 `Not_Successfully`。為什麼這樣切：單一狀態、單一結果，一條即足（原文未含 OR 並列之狀態）。刻意略過：`see VF210 for blocked meaning` —— 「封鎖」之精確語義由外部文件定義，本條只驗其停留於 Idle 而不驗封鎖之實作細節（§8.4.2）。',
+    'SWE-PM-050':
+        '驗證目標：ELSE 分支下 `VPLastStatus` 置 Off 與 Idle 轉換。關鍵情境條件：前一條款之條件未成立。為什麼這樣切：單一分支、單一結果，一條即足。刻意略過：**本 leaf 之錨點原文以 `ELSE` 起首，其前件不在本 leaf 之 `source_anchor` 內** ——故前提只能寫成「前一條款之條件未成立」，執行層**未推定前件內容**；該前件屬相鄰 leaf，依 §8.2.1 由其承擔。此點已於 25 包上繳 §4.5 登記。',
+    'SWE-PM-051':
+        '驗證目標：防盜成功後之旗標復歸、`VPLastStatus` 置 On 與 Full-Operation 轉換。關鍵情境條件：TLM 正在執行防盜檢查，`Antitheft_Result.Info` 轉為 `Successfully`。為什麼這樣切：單一結果路徑，一條即足；三個設定為同一步之後果，以二個 ER 承接。刻意略過：本條無 `Auto_SwitchOn_Setting.Req` 之分支（與 `035` / `048` 不同），原文未載該條件，未推定。',
+    'SWE-PM-052':
+        '驗證目標：防盜失敗時留在原 Partial Operation 狀態。關鍵情境條件：`TLM_Status.Info` 讀 Partial Operation。為什麼這樣切：單一狀態、單一結果，一條即足。刻意略過：`see VF210` 之畫面內容為外部文件（§8.4.2）。**重疊登記（R-P196）**：與 `SWE-PM-047`（0.83）、`SWE-PM-027`（0.84）、`SWE-PM-049`（0.75）、`SWE-PM-045`（0.63）為「防盜失敗留在原狀態」之同族條文，差別在狀態名，非重複。',
+    'SWE-PM-053':
+        '驗證目標：品牌 logo 畫面是否以 `Brand_Configuration_2` PROXI 參數為來源。關鍵情境條件：TLM 帶一個已設定之品牌參數，進入品牌 logo 畫面。為什麼這樣切：單一讀取行為，一條即足。刻意略過：參數值與 logo 圖檔之對應表不在原文內（§8.4.2）。**適用性（R-P193）**：本條之參數即 `SWE-PM-014` / `026` 所用之 `Brand_Configuration_2`，而**本專案之品牌值無可賴來源** —— 已依 R-P193(c) 開 DR-PW13，未自行推定。',
+    'SWE-PM-054':
+        '驗證目標：`SDARS_Presence` 與 `Audio_Brand` 四種組合下之 logo 呈現。關鍵情境條件：二訊號各二值之四種組合。為什麼這樣切：原文逐條明列四個組合及其不同結果，依 §8.2.2 各拆一條 ——組合間之結果互斥（僅品牌 logo / 加 Beats / 加 Sirius / 二者皆加）。刻意略過：logo 圖檔本身之外觀不在本條驗證範圍。**重疊登記（R-P196 / A-PW137）**：本 leaf 與 `SWE-PM-101` 之 `source_anchor` **完全相同**（`4941673`–`4941676`）；依 §8.2.2 不得代 RD 合併，二者各自產出，其重複追溯係 RD 之決定（DR-PW12）。',
+    'SWE-PM-055':
+        '驗證目標：Klipsch Splash Screen 之二條設定路徑。關鍵情境條件：`$VC_VEH_LINE$` 為 DT；`$VC_MODEL_YEAR$` 等於 2025 或大於 2025。為什麼這樣切：原文之二句分別以 `$VC_SpecialPKG_IC$` 與 `$SplashScreen_Type$` 為依據，且年式條件不同（= 2025 / > 2025），依 §5.7 各自成條。刻意略過：Klipsch 畫面之內容不在本條範圍。**適用性（R-P193）**：本條限 `$VC_VEH_LINE$ = DT`，**本專案之車型值無可賴來源**，與品牌問題同屬 DR-PW13 之範圍。**重疊登記（A-PW137）**：與 `SWE-PM-102` 之錨點完全相同（`4941678`）。',
+    'SWE-PM-056':
+        '驗證目標：DID `Startup Animation Selection` 為 Fiat Latam 時之 logo 覆蓋規則。關鍵情境條件：HU 帶一個已設定之車輛品牌，DID 設為 Fiat Latam。為什麼這樣切：單一覆蓋規則，一條即足；其要旨為「不論 `$VC_Veh_Brand$` 為何」，故前提刻意保留一個已設定之品牌以驗該 regardless。刻意略過：Fiat Latam logo 之圖檔內容不在本條範圍。**重疊登記（A-PW137）**：與 `SWE-PM-097` 之錨點完全相同（`4941680`）。',
+    'SWE-PM-058':
+        '驗證目標：出廠預設之 `SwitchOff_Timeout_Setting.Req` 與 LTM High Radio 下之 Timeout1。關鍵情境條件：TLM 帶出廠設定，且機型為 LTM High Radio。為什麼這樣切：單一組預設值之讀取，一條即足。刻意略過：非 LTM High Radio 之預設值未載於原文括號外，未推定。**適用性（R-P193）**：本條之 `LTM High Radio` 為機型條件；本專案為 LTM（見素材檔名 `R1LR`），惟 High / Low 之別無可賴來源，併入 DR-PW13。',
+    'SWE-PM-059':
+        '驗證目標：Standby 下收到 Network Sleep 請求時之 Sleep 轉換與 Shutdown_Time 起算，以及 boot 未結束時之等待。關鍵情境條件：boot 已完成 / 未結束二種前提。為什麼這樣切：原文之第二句為第一句之例外條件，二者之可觀察行為不同（立即轉換 vs 等待後轉換），依 §5.7 各自成條。刻意略過：`Shutdown_Time` 之數值未載，只驗其起算而不造容差值。',
+}
+
 NOTES = {
     "SWE-PM-050": "本 leaf 之錨點原文以 `ELSE` 起首，其**前件不在本 leaf 之錨點內** ——"
                   "前提僅能寫成「前一條款之條件未成立」。已列為觀察，見上繳 §五。",
@@ -549,7 +602,8 @@ def main() -> None:
             "section": "、".join(secs),
             "source_anchor": ",".join(anchors),
             "source_clause": "\n".join("\n".join(bodies[a]) for a in anchors),
-            "reasoning": NOTES.get(leaf, ""),
+            "reasoning": REASONING[leaf] + (
+                ("\n\n" + NOTES[leaf]) if leaf in NOTES else ""),
         })
         for idx, (title, pre, data, proc, er, prio, reason) in enumerate(TCS[leaf], 1):
             tcs.append({
