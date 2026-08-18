@@ -258,7 +258,7 @@
    "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. The TLM accepts the selection without reverting it\n3. Auto_SwitchOn_Setting.Req reads \"Active\" and Timeout1 reads \"00 minutes\"",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.3.1.2",
    "priority": "P1",
-   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "design_method": "決策表 (Decision Table Testing)",
    "split_flag": true,
    "split_reason": "本條驗 Auto_SwitchOn_Setting.Req = \"Active\" 之選擇與其 Timeout1 條件",
    "functional_safety": "NA",

@@ -52,6 +52,15 @@
     "load",
     "main"
   ],
+  "audit_duplicate_predicates.py": [
+    "BARE_WORD_RE",
+    "DATA",
+    "ROOT",
+    "SCRIPTS",
+    "SKIP",
+    "collect_patterns",
+    "main"
+  ],
   "audit_gate_representativeness.py": [
     "DATA",
     "ROOT",
@@ -101,13 +110,9 @@
   ],
   "audit_row4_sources.py": [
     "DATA",
-    "PROC_COND_RE",
     "ROOT",
-    "data_conditions",
     "load",
-    "main",
-    "proc_conditions",
-    "total_conditions"
+    "main"
   ],
   "audit_row_predicates.py": [
     "CANON",
@@ -382,6 +387,14 @@
     "GENERATED",
     "ROOT",
     "main"
+  ],
+  "build_row4_sample_40.py": [
+    "DATA",
+    "ROOT",
+    "SEED",
+    "fence",
+    "main",
+    "pre_lines"
   ],
   "build_swepm025_triggers.py": [
     "DATA",
@@ -722,6 +735,12 @@
     "self_test",
     "sha"
   ],
+  "recheck_two_features.py": [
+    "DATA",
+    "ROOT",
+    "load",
+    "main"
+  ],
   "rejudge_axis.py": [
     "BOUNDARY_RE",
     "DATA",
@@ -746,6 +765,7 @@
     "GENERATED",
     "NO_TRANSITION_RE",
     "POSITIVE_RE",
+    "PROC_COND_RE",
     "ROOT",
     "ROW1_RE",
     "ROW2_RE",
@@ -756,13 +776,16 @@
     "STEP_RE",
     "_G154_ROW4",
     "_G154_ROW9",
+    "data_conditions",
     "fields",
     "g154",
     "load",
     "main",
+    "proc_conditions",
     "propose",
     "self_test",
-    "substantive_conditions"
+    "substantive_conditions",
+    "total_conditions"
   ],
   "rejudge_priority.py": [
     "BENCH_RE",

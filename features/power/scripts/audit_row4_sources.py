@@ -34,35 +34,16 @@ ROOT = Path(__file__).resolve().parents[3]
 DATA = ROOT / "features/power/data"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from rejudge_design_method import propose, substantive_conditions, STEP_RE  # noqa: E402
-
-# `test_procedure` 中「設定／施加某具名參數之值」之步驟。
-# 措詞取自語料實測，非自擬。
-PROC_COND_RE = re.compile(
-    r"\bSet\b.{0,60}?\bto\b|\bSelect\b\s*\"[^\"]+\"\s*for\b|"
-    r"\bSend\b.{0,50}?\bsignal|\bApply\b\s+the\b|\bKeep\b.{0,40}?\bat\b|"
-    r"\bHold\b.{0,40}?\bat\b", re.I)
+from rejudge_design_method import (propose, substantive_conditions, STEP_RE,  # noqa: E402
+                                   PROC_COND_RE, proc_conditions,
+                                   data_conditions, total_conditions)
 
 
-def proc_conditions(proc: str) -> list[str]:
-    out = []
-    for ln in proc.split("\n"):
-        if STEP_RE.match(ln) and PROC_COND_RE.search(ln):
-            out.append(" ".join(ln.split()))
-    return out
 
 
-def data_conditions(data: str) -> list[str]:
-    if str(data).strip().upper() in ("", "NA"):
-        return []
-    return [" ".join(ln.split()) for ln in str(data).split("\n") if ln.strip()]
 
 
-def total_conditions(tc: dict) -> tuple[int, list[str]]:
-    pre_n = substantive_conditions(tc["pre_conditions"])
-    pc = proc_conditions(tc["test_procedure"])
-    dc = data_conditions(tc.get("input_test_data", ""))
-    return pre_n + len(pc) + len(dc), pc + dc
+
 
 
 def load() -> list[dict]:

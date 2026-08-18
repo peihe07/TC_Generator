@@ -169,10 +169,14 @@ def propose(tc: dict) -> tuple[int | None, str, str]:
         return -1, "**矛盾（正向與明示不轉換同時命中）**", f"{pos.group(0)} ／ {neg.group(0)}"
     if pos:
         return 3, "State Transition", pos.group(0)
-    # 第 4 列（R-P236(b)）：代理判準 —— 實質條件 ≥ 2。**僅為提案，須人工確認**。
-    k = substantive_conditions(pre)
+    # 第 4 列（R-P236(b) / **R-P267 擴充、R-P272 改值**）：
+    # 條件欄逐字為 `Multiple conditions → outcome`，**未限定條件之所在欄位**；
+    # 舊代理判準只數 `pre_conditions`，致 `…-026` 之第二條件
+    # （`Select "Not_Active" for …`，在 `test_procedure`）漏計 —— 系統性低估。
+    # 擴充後條件來源為 `pre_conditions` ＋ `test_procedure` ＋ `input_test_data`。
+    k, _extra = total_conditions(tc)
     if k >= 2:
-        return 4, "Decision Table（**代理判準之提案，須人工確認**）", f"實質條件 {k} 項"
+        return 4, "Decision Table（**代理判準之提案，須人工確認**）", f"總條件 {k} 項"
     # 第 5 列：輸入之等價類切分。
     m = ROW5_RE.search(f"{data}\n{pre}")
     if m:
@@ -345,6 +349,39 @@ def substantive_conditions(pre: str) -> int:
             continue
         n += 1
     return n
+
+
+# ── 第 4 列之條件來源（R-P267 擴充；原置於 `audit_row4_sources`，
+# 40 包因循環匯入而移入本檔 —— 其為第 4 列之判準，歸屬本即應在此）──
+#
+# 條件欄逐字 `Multiple conditions → outcome` **未限定條件之所在欄位**。
+# `test_procedure` 之條件＝**設定或施加某具名參數之值**之步驟；
+# 措詞取自語料實測（R-P250）：`Set … to`(37) / `Select "…" for`(12) /
+# `Send … signal`(41) / `Apply …`(6) / `Keep … at`(4) / `Hold … at`。
+PROC_COND_RE = re.compile(
+    r"\bSet\b.{0,60}?\bto\b|\bSelect\b\s*\"[^\"]+\"\s*for\b|"
+    r"\bSend\b.{0,50}?\bsignal|\bApply\b\s+the\b|\bKeep\b.{0,40}?\bat\b|"
+    r"\bHold\b.{0,40}?\bat\b", re.I)
+
+
+def proc_conditions(proc: str) -> list[str]:
+    """`test_procedure` 中設定／施加具名參數之值之步驟。"""
+    return [" ".join(ln.split()) for ln in proc.split("\n")
+            if STEP_RE.match(ln) and PROC_COND_RE.search(ln)]
+
+
+def data_conditions(data: str) -> list[str]:
+    """`input_test_data` 之每一列（非 `NA`）為一個參數取值。"""
+    if str(data).strip().upper() in ("", "NA"):
+        return []
+    return [" ".join(ln.split()) for ln in str(data).split("\n") if ln.strip()]
+
+
+def total_conditions(tc: dict) -> tuple[int, list[str]]:
+    """三個來源之條件總數與其（procedure / data 部分之）逐字。"""
+    pc = proc_conditions(tc["test_procedure"])
+    dc = data_conditions(tc.get("input_test_data", ""))
+    return substantive_conditions(tc["pre_conditions"]) + len(pc) + len(dc), pc + dc
 
 
 if __name__ == "__main__":
