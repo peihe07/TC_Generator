@@ -654,7 +654,7 @@ TCS = {
                  "The swap is accepted",
                  "Each Profile is linked to the seat position recorded for "
                  "the other Profile in step 1"),
-        remarks="§7 之列舉配對：反向為 `NR1L-UserProfiles-104`（同一座椅位置"
+        remarks="§7 之列舉配對：反向為 `NR1L-UserProfiles-105`（同一座椅位置"
                 "不得連上第二個 profile）。條文之後半「**永遠只有一個** Driver "
                 "Profile per memory seat position」為全稱，"
                 "**只驗互換成功不足以證之** —— 故另立反向。",
@@ -664,7 +664,9 @@ TCS = {
             "為什麼這樣切：條文有兩個斷言（可互換／每位置恆只有一個），"
             "**後者為全稱且為限制**，其失效形態與前者相反 ——"
             "併於一條則失敗時分不出是哪一個沒生效（§7）。"
-            "反向由 `NR1L-UserProfiles-104` 承擔。"),
+            "反向由 `NR1L-UserProfiles-105` 承擔"
+            "（**36 包自檢更正：原寫 `104`，而 `104` 是 4.6.3 之 `016`，"
+            "與本條無關 —— tc_id 於寫 remarks 時尚未指派**）。"),
         kw=["swap", "memory seat", "Driver Profile", "link"],
     ),
 
@@ -1055,8 +1057,12 @@ EXTRAS = [
         spec=dict(
             title="Selecting another Profile switches and shows its welcome popup",
             design=STATE,
+            # **37 包作業 4**：ER3 之 `applicable welcome popup` 是否出現，
+            # 取決於 5.3.1 之 `(if turned on for that Profile)` ——
+            # 未指定則結果不可重現（§2），故固定為「已開啟」。
             pre=steps("The large welcome popup is displayed for Driver "
                       "Profile A and lists Driver Profile B",
+                      "The welcome popup is turned on for Driver Profile B",
                       "The vehicle is stationary"),
             data="NA",
             proc=steps("Read and record the active Profile shown on the "

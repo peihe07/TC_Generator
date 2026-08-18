@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "條文首句 `Editing a Profile is **only** available for the active Profile` 為**全稱限制**。其反向由 `SWE1-HMI-PROF-022` 承擔 —— 該 leaf 驗「選取另一個 profile 會 switch system to that Profile」，即「不進入編輯」之另一面。",
+   "remarks": "條文首句 `Editing a Profile is **only** available for the active Profile` 為**全稱限制**。其反向由 `SWE1-HMI-PROF-022` 之 **ER3 後半**承擔 ——該句逐字為 `the “Edit Profile” tab is not opened`（36 包 Y-1 所補）。**在該句補上之前，該 `only` 無人驗** ——`SWE1-HMI-PROF-022` 原本只斷言切換發生。",
    "split_flag": false,
    "split_reason": ""
   }

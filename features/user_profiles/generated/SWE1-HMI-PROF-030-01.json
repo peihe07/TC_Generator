@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "Unless it is linked by default, manually linking a Profile to a memory seat can only be done through the \"Edit Profile\" screen.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：5.7（PRACC13）首句之正向 —— 經 Edit Profile 畫面可將profile 連結至記憶座椅。關鍵情境條件：A 尚未連座椅且有空位，使連結之效果可觀察。為什麼這樣切：條文之限制詞為 `only`，**其反向由 `NR1L-UserProfiles-133` 承擔**；兩條並存才擋得住一個允許自他處連結之實作（§7）。",
+ "reasoning": "驗證目標：5.7（PRACC13）首句之正向 —— 經 Edit Profile 畫面可將profile 連結至記憶座椅。關鍵情境條件：A 尚未連座椅且有空位，使連結之效果可觀察。為什麼這樣切：條文之限制詞為 `only`，**其反向由 `NR1L-UserProfiles-134` 承擔**；兩條並存才擋得住一個允許自他處連結之實作（§7）。",
  "keywords": [
   "Edit Profile",
   "link",
@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "§7 之列舉配對：反向為 `NR1L-UserProfiles-133`（自 Edit Profile 以外之途徑連結不成立）。條文之 `can **only** be done through the Edit Profile screen` 為**全稱限制** —— **只驗此處連得成，不足以證「只能」**。`(unless it is linked by default)` 為適用條件，以 pre-condition 之「A 尚未連任何座椅」排除預設連結之情形。",
+   "remarks": "§7 之列舉配對：反向為 `NR1L-UserProfiles-134`（自 Edit Profile 以外之途徑連結不成立）。**（36 包自檢更正：原寫 `133`，而 `133` 是 5.10.1 之 `034-03`，與本條無關 —— 我在寫 remarks 時 tc_id 尚未指派。）**條文之 `can **only** be done through the Edit Profile screen` 為**全稱限制** —— **只驗此處連得成，不足以證「只能」**。`(unless it is linked by default)` 為適用條件，以 pre-condition 之「A 尚未連任何座椅」排除預設連結之情形。",
    "split_flag": false,
    "split_reason": ""
   }

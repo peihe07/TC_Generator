@@ -36,7 +36,7 @@
    "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "**本條之核心斷言為「數目上限」** —— 最多五個 Driver Profile，外加一個 Valet Mode Profile（`021-01` 之 description）。ER1（四個時按鈕在）與 ER2（第五個建得起來）為其邊界對；**ER3 之其餘三項（按鈕不在／圖示與字串不在／PU0584 顯示）為情境確認，非本條之受測對象** ——其各自之驗證屬 `SWE1-HMI-PROF-021-02`（`NR1L-UserProfiles-115`）與 `SWE1-HMI-PROF-021-03`（`NR1L-UserProfiles-116`）。**三條之重疊為共用觀察點**（37 包裁定），非越界。",
    "split_flag": false,
    "split_reason": ""
   }

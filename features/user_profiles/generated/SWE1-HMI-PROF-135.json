@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "PVALEX2.) Valet Mode cannot be deactivated while the vehicle is in motion. If Profile section is attempted to be accessed while in Valet Mode while the vehicle is in motion, the user will see a popup (Pop-up ID PU0394).",
  "must_carry_injected": [],
- "reasoning": "驗證目標：14.2（PVALEX2）—— 行車中不得停用 Valet Mode；行車中嘗試進入 Profile 區時顯示 PU0394。關鍵情境條件：受測動作為行進中之停用嘗試，屬不被允許之操作（§12 首匹配 → 負向測試）。為什麼這樣切：ER3 併驗「Valet Mode 仍啟用」——只驗 popup 出現，一個顯示 popup 卻仍解除之實作會通過（§7）。**本條之失效後果為行進中 Valet 可被解除** —— R-U5 之 rubric 無安全帶，依 D-UP16-01 就近判 P0，見上繳 19 §7。",
+ "reasoning": "驗證目標：14.2（PVALEX2）—— 行車中不得停用 Valet Mode；行車中嘗試進入 Profile 區時顯示 PU0394。關鍵情境條件：受測動作為行進中之停用嘗試，屬不被允許之操作（§12 首匹配 → 負向測試）。為什麼這樣切：ER3 併驗「Valet Mode 仍啟用」——只驗 popup 出現，一個顯示 popup 卻仍解除之實作會通過（§7）。**本條之失效後果為行進中 Valet 可被解除** —— **判級依據（21 輪 K-1 之連帶，36 輪補正）**：依 **canon §10.2 之 safety** 直接成立 P0 —— R-U5 之核心五類為**例示非窮盡**（D-UP16-01 附二），**不需迂迴經 tie-break**。（原記「R-U5 之 rubric 無安全帶，依 D-UP16-01 就近判」——該說法於 21 輪已作廢，當時改了 `089`／`116` 而**漏了本條**。）",
  "keywords": [
   "Valet Mode",
   "in motion",

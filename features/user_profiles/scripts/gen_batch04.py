@@ -315,20 +315,36 @@ TCS = {
     "SWE1-HMI-PROF-022": dict(
         title="Selecting another Profile switches to it and highlights it",
         design=STATE,
+        # **35／37 包 X-1 之連帶**：切換後 5.3.1 之 welcome popup 會出現與否
+        # 取決於該 profile 之設定。**未指定則結果不可重現**（§2），
+        # 故 pre-condition 固定為「已開啟」—— 其顯示本身由
+        # `SWE1-HMI-PROF-023` 驗，本條只需其狀態確定。
         pre=steps("Two Driver Profiles exist and Driver Profile A is active",
+                  "The welcome popup is turned on for Driver Profile B",
                   "The vehicle is stationary"),
         data="NA",
         proc=steps("Open the “All Profiles” tab and record which Profile is "
                    "highlighted",
                    "Select the username of Driver Profile B",
-                   "Read the tab and check that Driver Profile B is active "
-                   "and highlighted"),
+                   "Read the screen and check that Driver Profile B is "
+                   "highlighted and no editing screen opened"),
+        # **Y-1（36 包）—— 採 (a)**：5.4 之 `Editing … is **only** available
+        # for the active Profile` 其反向原稱由本 leaf 承擔，
+        # **而原 ER3 只斷言「切換發生了」，未斷言「沒有進入編輯」** ——
+        # 一個既切換、又順手開啟 B 之 Edit Profile 分頁之實作，兩條都會過。
+        # 「選取另一個 profile」之兩個必然結果（切換／不進入編輯）**同一觸發**，
+        # 依 §5.7 併於同一條，**不必另造 TC**。
         er=steps("Driver Profile A is highlighted and recorded as the active "
                  "Profile",
                  "Driver Profile B is selected",
                  "Driver Profile B is the active Profile and is highlighted "
-                 "instead of the Profile recorded in step 1"),
-        remarks="條文之選取對象為 `Profile username **or** avatar` ——"
+                 "instead of the Profile recorded in step 1, and the "
+                 "“Edit Profile” tab is not opened"),
+        remarks="**Y-1（36 包）**：ER3 併驗「Edit Profile 分頁未開啟」——"
+                "該句承載 5.4 之 `Editing … is **only** available for the "
+                "active Profile` 之反向。**選取非現用 profile 之兩個必然結果"
+                "（切換發生／不進入編輯）為同一觸發，依 §5.7 併於本條。**"
+                "條文之選取對象為 `Profile username **or** avatar` ——"
                 "本 TC 取 username 一側；avatar 一側之觸發相同而**入口不同**，"
                 "條文以 or 並列，**未另切 leaf**，故不另生成（§8.2.1）。"
                 "**ER3 併驗「不再是步驟 1 所記者」** —— 只驗 B 被 highlight，"
@@ -381,6 +397,7 @@ TCS = {
         design=FUNCTIONAL,
         pre=steps("Two Driver Profiles exist and the last used tab of Driver "
                   "Profile B is the “Edit Profile” tab",
+                  "The welcome popup is turned on for Driver Profile B",
                   "Driver Profile A is active and the vehicle is stationary"),
         data="NA",
         proc=steps("Open the “All Profiles” tab and select Driver Profile B",
@@ -407,6 +424,7 @@ TCS = {
         title="Selecting another Profile blocked while one is loading",
         design=NEGATIVE,
         pre=steps("Three Driver Profiles exist on the vehicle",
+                  "The welcome popup is turned on for Driver Profile B",
                   "Driver Profile A is active and the vehicle is stationary"),
         data="NA",
         proc=steps("Open the “All Profiles” tab and select Driver Profile B",
@@ -444,9 +462,11 @@ TCS = {
                  "The “Edit Profile” tab is displayed"),
         remarks="條文首句 `Editing a Profile is **only** available for the "
                 "active Profile` 為**全稱限制**。"
-                "其反向由 `SWE1-HMI-PROF-022` 承擔 —— 該 leaf 驗"
-                "「選取另一個 profile 會 switch system to that Profile」，"
-                "即「不進入編輯」之另一面。",
+                "其反向由 `SWE1-HMI-PROF-022` 之 **ER3 後半**承擔 ——"
+                "該句逐字為 `the “Edit Profile” tab is not opened`"
+                "（36 包 Y-1 所補）。"
+                "**在該句補上之前，該 `only` 無人驗** ——"
+                "`SWE1-HMI-PROF-022` 原本只斷言切換發生。",
         reasoning=(
             "驗證目標：5.4（PRACC10）後半 —— 於 All Profiles 分頁按下**已作用中且"
             "已 highlight** 之 profile，進入 “Edit Profile” 分頁。"
@@ -615,8 +635,10 @@ TCS = {
         er=steps("The “Edit Profile” screen is displayed",
                  "The link is accepted",
                  "The memory seat position is linked to Driver Profile A"),
-        remarks="§7 之列舉配對：反向為 `NR1L-UserProfiles-133`"
+        remarks="§7 之列舉配對：反向為 `NR1L-UserProfiles-134`"
                 "（自 Edit Profile 以外之途徑連結不成立）。"
+                "**（36 包自檢更正：原寫 `133`，而 `133` 是 5.10.1 之 "
+                "`034-03`，與本條無關 —— 我在寫 remarks 時 tc_id 尚未指派。）**"
                 "條文之 `can **only** be done through the Edit Profile screen` "
                 "為**全稱限制** —— **只驗此處連得成，不足以證「只能」**。"
                 "`(unless it is linked by default)` 為適用條件，"
@@ -626,7 +648,7 @@ TCS = {
             "profile 連結至記憶座椅。"
             "關鍵情境條件：A 尚未連座椅且有空位，使連結之效果可觀察。"
             "為什麼這樣切：條文之限制詞為 `only`，**其反向由 "
-            "`NR1L-UserProfiles-133` 承擔**；兩條並存才擋得住"
+            "`NR1L-UserProfiles-134` 承擔**；兩條並存才擋得住"
             "一個允許自他處連結之實作（§7）。"),
         kw=["Edit Profile", "link", "memory seat", "only"],
     ),

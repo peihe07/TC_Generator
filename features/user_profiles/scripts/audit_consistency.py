@@ -456,6 +456,70 @@ def x1_unhandled_popup(rows) -> list:
     return hits
 
 
+# ── Y-1（36 包）—— §7 配對之宣稱，其被指者是否真是配對之另一半
+#
+# `TC-121`（5.4）稱其 `only` 之反向「由 `SWE1-HMI-PROF-022` 承擔」，
+# **而該 leaf 之 ER 只斷言「切換發生了」，未斷言「沒有進入編輯」** ——
+# 一個既切換、又順手開啟編輯分頁之實作，兩條都會過。**該 `only` 無人驗。**
+#
+# 這是 **A-UP12 之同型**：委派指得到（D-2 過），**但被指者沒有那句話**。
+#
+# ## 本掃描之機械判準：**配對之兩條須屬同一 leaf 群**
+#
+# 「被指者之 ER 有沒有那句反向斷言」是語意，機械判不了。
+# 但 §7 之配對有一個可測之必要條件：**正反兩條驗的是同一條條文之兩面**，
+# 故其 `req_id` 之**基號**應相同（`030-01` ↔ `030-01-neg`、
+# `010-01` ↔ `010-02`、`111` ↔ `111-neg`）。
+#
+# **這個判準抓得到本輪之兩處指錯**：
+#   `096`（`009`）稱其反向為 `104`，而 `104` 之 leaf 是 `016`（4.6.3）——
+#   正確者為 `105`（`009-neg`）
+#   `127`（`030-01`）稱其反向為 `133`，而 `133` 之 leaf 是 `034-03` ——
+#   正確者為 `134`（`030-01-neg`）
+# **兩處都是我在 tc_id 尚未指派時寫下的號碼。**
+#
+# 跨 leaf 群之配對**不一定是錯的**（`121` → `022` 即為跨節之正當委派），
+# 故列**待判**而非紅。
+PAIR_CLAIM = re.compile(
+    r"[^。；\n]*(?:正向為|反向為|反向由|對造)[^。；\n]*")
+PAIR_ID = re.compile(r"NR1L-UserProfiles-(\d{3})|SWE1-HMI-PROF-([0-9]{3}(?:-[0-9]{2})?)")
+
+
+def _leaf_base(req: str) -> str:
+    """`SWE1-HMI-PROF-030-01-neg` → `030`；用於判定是否同一 leaf 群。"""
+    m = re.search(r"PROF-(\d{3})", req or "")
+    return m.group(1) if m else ""
+
+
+def y1_pair_claims(rows) -> list:
+    # **被指者一律對全語料解析**，不限傳入之 rows ——
+    # 否則掃描一個子集時，指向子集外之 TC 會被靜靜略過（即本掃描要抓的形狀）。
+    idx_tc = {}
+    try:
+        for _s, _t in tcs():
+            idx_tc[_t["tc_id"][-3:]] = _t
+    except Exception:
+        pass
+    for _sec, t in rows:
+        idx_tc.setdefault(t["tc_id"][-3:], t)
+    hits = []
+    for sec, t in rows:
+        base = _leaf_base(t.get("req_id", ""))
+        for fld in ("reasoning", "remarks"):
+            for m in PAIR_CLAIM.finditer(str(t.get(fld, "")) or ""):
+                snt = " ".join(m.group(0).split())
+                for g in PAIR_ID.finditer(snt):
+                    num, leaf = g.group(1), g.group(2)
+                    tgt = idx_tc.get(num) if num else None
+                    tgt_base = _leaf_base(tgt["req_id"]) if tgt else (
+                        _leaf_base("PROF-" + leaf) if leaf else "")
+                    if not tgt_base:
+                        continue
+                    if tgt_base != base:
+                        hits.append((t["tc_id"], sec, snt[:60], tgt_base, base))
+    return hits
+
+
 def tcs() -> list:
     out = []
     for p in sorted((FEATURE / "generated").glob("*.json")):
@@ -611,6 +675,18 @@ SELF_CASES = [
          test_procedure="1. Open the tab\n2. Read the screen",
          input_test_data="NA"), True),
 
+    # ---- Y-1：§7 配對之宣稱（36 包）
+    ("**TC-096 之原形**：反向宣稱指向他 leaf 群（`009` → `016`）→ **須列入待判**",
+     "y1",
+     _tc(req_id="SWE1-HMI-PROF-009", tc_id="NR1L-UserProfiles-096",
+         remarks="§7 之列舉配對：反向為 `NR1L-UserProfiles-104`"), True),
+    ("其更正後之形：指向同一 leaf 群（`009` → `009-neg`）→ **不得列入**", "y1",
+     _tc(req_id="SWE1-HMI-PROF-009", tc_id="NR1L-UserProfiles-096",
+         remarks="§7 之列舉配對：反向為 `NR1L-UserProfiles-105`"), False),
+    ("**護欄**：無配對宣稱之 remarks → **不得列入**", "y1",
+     _tc(req_id="SWE1-HMI-PROF-009", tc_id="NR1L-UserProfiles-096",
+         remarks="座椅鍵編號為測試設置（J-12）"), False),
+
     # ---- X-1：跨節 popup 之未處理（35 包）
     ("**TC-128 之原形**：存座椅到他人所連之座椅而未提 PU0588 → **須列入待判**",
      "x1",
@@ -731,7 +807,8 @@ SELF_CASES = [
 SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b,
          "q1": q1_unquoted, "t1": t1_step_refs,
          "u2": u2_unused_record, "v1": v1_timing,
-         "w1": w1_perfect_pre, "x1": x1_unhandled_popup}
+         "w1": w1_perfect_pre, "x1": x1_unhandled_popup,
+         "y1": y1_pair_claims}
 
 
 def self_test() -> int:
@@ -778,6 +855,11 @@ if __name__ == "__main__":
     print(f"\n## K-4a —— design_method ↔ 實際形態：{len(b)} 處待判\n")
     for tid, sec, key, want in b:
         print(f"  {tid} ({sec}) {key} —— 缺 {want}")
+
+    y1 = y1_pair_claims(rows)
+    print(f"\n## Y-1 —— §7 配對之宣稱指向他 leaf 群：{len(y1)} 處待判\n")
+    for tid, sec, snt, tb, b in y1:
+        print(f"  {tid} ({sec}) 本 leaf 群 {b} → 所指者屬 {tb}：「{snt}」")
 
     x1 = x1_unhandled_popup(rows)
     print(f"\n## X-1 —— 動作會觸發他節之 popup 而 procedure 未處理："

@@ -208,6 +208,19 @@ TCS = {
             "specific to your profile and are not shared across the "
             "vehicle” are not present; and “Max Profiles reached. "
             "Delete to create a new one.” (PU0584) is displayed"),
+        # **37 包作業 4（裁定：維持現狀，不改 ER）**：本條之 ER3 與
+        # `SWE1-HMI-PROF-021-02`／`-03` 之斷言重疊。分析層裁為
+        # **共用觀察點而非越界**（§5.7 允許同一觸發之多個結果併於一條）。
+        # 惟須具名何者為主，故補 remarks。
+        remarks="**本條之核心斷言為「數目上限」** —— 最多五個 Driver Profile，"
+                "外加一個 Valet Mode Profile（`021-01` 之 description）。"
+                "ER1（四個時按鈕在）與 ER2（第五個建得起來）為其邊界對；"
+                "**ER3 之其餘三項（按鈕不在／圖示與字串不在／PU0584 顯示）"
+                "為情境確認，非本條之受測對象** ——"
+                "其各自之驗證屬 `SWE1-HMI-PROF-021-02`"
+                "（`NR1L-UserProfiles-115`）與 `SWE1-HMI-PROF-021-03`"
+                "（`NR1L-UserProfiles-116`）。"
+                "**三條之重疊為共用觀察點**（37 包裁定），非越界。",
         reasoning=(
             "驗證目標：5.2（PRACC8）之上限 —— 五個 Driver Profile 為邊界，"
             "達到時 Add New Profile 按鈕與 PRACC7.2 之圖示字串消失並改顯 PU0584。"

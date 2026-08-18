@@ -25,7 +25,7 @@
    "test_group": "User Profiles",
    "test_set": "Profile List",
    "test_item": "Screen stays on All Profiles after switching Profile",
-   "pre_conditions": "1. Two Driver Profiles exist and the last used tab of Driver Profile B is the “Edit Profile” tab\n2. Driver Profile A is active and the vehicle is stationary",
+   "pre_conditions": "1. Two Driver Profiles exist and the last used tab of Driver Profile B is the “Edit Profile” tab\n2. The welcome popup is turned on for Driver Profile B\n3. Driver Profile A is active and the vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and select Driver Profile B\n2. Read the screen and check that the “All Profiles” tab is shown",
    "expected_result": "1. Driver Profile B is the active Profile\n2. The “All Profiles” tab is still shown",
