@@ -51,10 +51,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 FEATURE = Path(__file__).resolve().parent.parent
 LEDGER = FEATURE / "data" / "pending_judgements.tsv"
-ROUND = 42
+ROUND = 45
 
 # 各掃描之立案輪（見各該 docstring 之包號）
 SCAN_ROUND = {"Q-1": 25, "U-1": 31, "V-1": 32, "W-1": 33, "Y-1": 36,
+              "AB-1": 45,
               "X-1": 35, "K-4a": 21, "Z-1": 38, "K-3": 21, "T-1": 30,
               "U-2": 31}
 # 各批之生成輪
@@ -72,6 +73,7 @@ def scans():
         "Y-1": A.y1_pair_claims(rows), "X-1": A.x1_unhandled_popup(rows),
         "W-1": A.w1_perfect_pre(rows), "V-1": A.v1_timing(rows),
         "U-1": A.u1_multi_trigger(rows), "Q-1": A.q1_unquoted(rows),
+        "AB-1": A.ab1_compare_ends(rows),
         "K-4a": A.k4a(rows), "Z-1": A.z1_ru56_scope(rows), "K-3": A.k3(rows),
         "T-1": A.t1_step_refs(rows), "U-2": A.u2_unused_record(rows),
     }

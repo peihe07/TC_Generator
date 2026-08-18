@@ -1,5 +1,29 @@
 # RD Queries — User Profiles (FW036) — for upstream despatch
 
+
+<!-- fingerprint:begin -->
+## 語料指紋（G-F，45 包）—— 標記輪次：**45**
+
+> **本表是本檔之保鮮期。** 引用本檔前先跑：`stamp_static_doc.py --verify <本檔>`；
+> **不符即「已過期，拒絕採信」**，須重出後再引。
+> 指紋之範圍為**全欄**（保守）—— 誤判過期只是多重出一次，誤判新鮮則是拿舊資料下判斷。
+
+| tc_id | digest |
+|---|---|
+| `NR1L-UserProfiles-017` | `6b4a62612255` |
+| `NR1L-UserProfiles-020` | `a9e1265287c4` |
+| `NR1L-UserProfiles-057` | `ba4460649b81` |
+| `NR1L-UserProfiles-058` | `63ab6afdd115` |
+| `NR1L-UserProfiles-059` | `6828f798a73d` |
+| `NR1L-UserProfiles-060` | `7fd59e8962f7` |
+| `NR1L-UserProfiles-061` | `d6c8ad3818d4` |
+| `NR1L-UserProfiles-062` | `e1e1333848ca` |
+| `NR1L-UserProfiles-063` | `bd5493966dc1` |
+| `NR1L-UserProfiles-074` | `62751c9dc2bb` |
+| `NR1L-UserProfiles-077` | `a68dc2c03602` |
+
+<!-- fingerprint:end -->
+
 > **Version 2 — 2026-08-18.** Supersedes `26_rd_queries.md` (version 1,
 > 2026-08-18), which was withdrawn before despatch.
 > Changes in this version: appendix leaf count corrected (X-1); unproven

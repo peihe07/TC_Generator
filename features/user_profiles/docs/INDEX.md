@@ -51,6 +51,8 @@
 | 41 | 2026-08-18 | **X-1 十六條修正、動詞詞表、第六批（全覆蓋）、寫回設計草案** | [handoff/41_batch06.md](handoff/41_batch06.md) | [upstream/41_batch06_and_writeback_design.md](upstream/41_batch06_and_writeback_design.md)、[upstream/41_review_pack_33a.md](upstream/41_review_pack_33a.md)、[upstream/41_review_pack_33b.md](upstream/41_review_pack_33b.md) | —（本包無裁決條文；**A-UP09 落槌 RESOLVED**，D-UP41-01 記入） | —（無新開） | **X-1 修正 20 條**（下放包點名 16 ＋ 另四條 pre-condition 早已明定 popup 開啟者），集中於 `popup_guard.py` 一張表，X-1 待判 22 → **0**。**順帶抓出 PU0588 兩處誤報**（`004` 明寫不按存取鍵、`130` 只涉一個 profile）——補其成立條件為「跨 profile」，並發現原 `TC-128` 案例是簡化形而把成立條件簡化掉了。**動詞同義表**（`data/verb_synonyms.tsv` 41 列 ＋ `audit_verbs.py` 三項閘）：VB-2 把「詞表說 activate 會觸發 PU0580」拿去問掃描本身；**本輪立刻抓到第六批之 `Continue` 未登記**。**RD #8 依 §四逕行修正**：五條之確認步驟改為「於每一個確認 popup PU0626/PU_0129 按 Yes」，三種讀法下皆不假失敗，驗證目標未變。**第六批 33 條**（`157`–`189`，ch7 10 ＋ ch8 23）—— **leaf 覆蓋 180 / 180，全覆蓋達成**；ch8 沿用同節多 leaf 併寫，由此看出 8.4 與 8.8.1 是同一句話之兩處出現、`073-03` 之空格必須放在第十二個位置。**寫回設計草案**（未執行）：欄位對映 16 寫／不寫逐欄具名、edits 直給不經 `diff_cells`、DV 三段接點，**五項未決**（T:Z 車型欄為唯一無安全預設者）。**本輪未執行任何 git** |
 | 42 | 2026-08-18 | **寫回程式、待判時效（G-A）、枚舉對照（G-B）、覆蓋率之讀法** | [handoff/42_writeback.md](handoff/42_writeback.md) | [upstream/42_writeback_impl.md](upstream/42_writeback_impl.md) | —（本包無裁決條文） | —（無新開；**未決 1 之提出屬 Pei**） | **未決 2–5 處置**：Q／AB 依 **Comfort 交付件實測**留空（非依其 yaml 宣告），輸出與台帳沿用 Comfort 形式（`output/` ＋ `DELIVERY.sha256`，**尚無 ENTRY**），換行 LF 並寫成 WB-6 之可測形式。**另發現 O／AA 兩欄同形**：`feature.yaml` 宣告 `NEW`／`PeiPYHsu` 而 Comfort 交付件實測為空，**兩 feature 皆然** —— 一併參數化預設不寫（署錯名不可補）。**`write_back.py`**：`build_edits` 直給 2646 格不經 `diff_cells`，六項寫回後檢查，**7/7 方向性案例**；`--write` 受未決 1 之閘拒絕且**無 `--force`**。**`row_order` 預設改為 `req_id`**（Comfort 96 §1 之 Pei 裁定），與我 41 輪草案不同，已具名待確認。**G-A**：43 條待判全數逐條判定並登記於 `data/pending_judgements.tsv`，判準之形改為「未結案之命中」，以 digest 守之（`audit_pending.py`，5/5）。**G-B**：`audit_enums.py`（7/7）＋ `data/enum_vocab.tsv` —— `STATE_VALUES` 對照取自 **spec 側**（候選 12 個），`UI_LOCATORS` 取自**語料側**（跨節 6 個）。**覆蓋率是分母的性質**寫入 profile §1 與 `framework.md` §4.2（含四處留白清單）。**本輪未生成、未改任何 TC；未產出任何交付件。本輪未執行任何 git** |
 | 43 | 2026-08-18 | **宣告與生效之分離（G-C）、掃描存活之讀法（G-D／G-E）、T:Z 實測、寫回實跑探針** | [handoff/43_yaml_and_dryrun.md](handoff/43_yaml_and_dryrun.md) | [upstream/43_yaml_and_writeback_dryrun.md](upstream/43_yaml_and_writeback_dryrun.md) | —（本包無裁決條文） | **N-XF02 跨 feature note 新開**（comfort 之 yaml 宣告交付件不帶之兩值；comfort 一個檔都沒動） | **更正一處**：我 41／42 輪稱「T:Z 不填則 WB-5 會紅」**兩層皆錯** —— WB-5 只驗 R／P 欄，且母本該區 DV 自帶 `allowBlank="1"`；42 輪自我測試之第 ① 案本就是綠的，**結論與自己跑過的測試相矛盾而未對起來**。**作業 4 實測**：Comfort 交付件 T:Z **466 資料列逐列為空**，其 `write_back.py` 之 `NEVER_WRITE` 明列該七欄 —— **留空既有先例亦有表單許可，未決 1 不再擋交付**。**G-C**：`feature.yaml` 之 `write_back` 改為 `{value, applied, why}`，`write_back.py` 只讀 `applied: true` 者，並新增 **WB-0** 由程式驗其一致（兩條方向性案例）。**G-D／G-E** 寫入 profile §7.1／§7.2；§5 更新（封鎖已解除、不得呼叫 `diff_cells`、列序 `req_id`）。**作業 5 實跑探針**（`--probe`，產物落 scratchpad、受「不得落 `output/`」之閘）：三段接點 —— 寫回前二閘違規 0、封裝 2646 格、寫回後六項全綠。`write_back.py` 自我測試 **10/10**。**本輪未生成、未改任何 TC；未產出交付件；未執行任何 git** |
+| 44 | 2026-08-18 | **AA-1：review pack 之時效；三項常規；T:Z 定為留空** | [handoff/44_pack_refresh.md](handoff/44_pack_refresh.md) | [upstream/44_pack_refresh.md](upstream/44_pack_refresh.md) ＋ [24a](upstream/44_review_pack_24a.md)／[24b](upstream/44_review_pack_24b.md)／[33a](upstream/44_review_pack_33a.md)／[33b](upstream/44_review_pack_33b.md) | —（本包無裁決條文） | **AA-1**（分析層於覆核時實測發現：pack 與語料不同步）| **pack 加語料指紋 ＋ `--verify` 過期檢查**（不符即拒絕採信；**無指紋者一律判過期**），4/4 方向性案例。**變動清單**：自原產生輪次以來僅 **5 條**有變動，全在 `24a`（`139`–`143`，來源唯一 —— 41 輪 RD #8 之處置）；`24b`／`33a`／`33b` 共 44 條**一字未動**。41 輪之 `popup_guard` 20 條不影響任何 pack（其動 `001`–`134`，pack 覆蓋 `135`–`189`）。**變動清單不用 git 取得** —— 舊值就在那份檔案裡，`--changes` 逐欄比對報到欄位層級。四份重出並帶指紋（`--verify` 皆 0 不符）；舊四份**加警語保留不刪**（記錄分析層當時讀到的是什麼）。**§二之 7 條逐條確認**：`144`／`145` 整條無變動，`140` 之依據欄（pre／reasoning）未變 → **三項觀察全部有效**；`139`–`143` 之 procedure／remarks 須以新 pack 重讀。**三項常規**寫入 profile §5.1（`why` 必填）／§7.3（「會轉紅」須指名案例）／§7.4（先查他 feature **交付件**）／§7.5（pack 時效）。**`vehicle_columns` 定為留空**，yaml 之 `why` 具名三項實測依據 —— **擋交付者現為 0**。**本輪未生成、未改任何 TC；未寫入他 feature；未執行任何 git** |
+| 45 | 2026-08-18 | **AB-1 修正與全批自檢、靜態轉錄之指紋、上繳格式** | [handoff/45_fingerprints.md](handoff/45_fingerprints.md) | [upstream/45_fingerprints.md](upstream/45_fingerprints.md) ＋ [45_review_pack_24b](upstream/45_review_pack_24b.md)（重出） | —（本包無裁決條文） | **AB-1**（分析層覆核 `TC-154` 時發現：ER 未指明所讀者，其斷言恆真）| **`TC-154` 修正**：步驟 4／ER4 指名所讀者為**新建 profile**，ER 斷言其與步驟 1 所記者**相同**（carry-over），非「未改變」。**全批自檢命中 16 處**，逐條判定入登記表 —— 其中 **`TC-148` 為同型而未被點名者，一併修正**：同一句英文在 6.4 是**恆真**（該比兩個 profile）、在 6.1 是**歧義**（該比同一 profile 之兩時點）。**掃描只並排兩端不硬判** —— 16 條中 14 條之判別力在「中間那個事件」，那是句型看不見的。`audit_consistency` 方向性案例 48 → **52**；`audit_pending` 抑制 43 → **59**。**G-F**：新閘 `stamp_static_doc.py`（5/5），`27_rd_queries_v2`／`28_provenance4`／`34_provenance5` 加指紋（範圍取**全欄**，保守 —— 誤判過期只是重出一次，誤判新鮮是拿舊資料下判斷）；`26_rd_queries` **不標**（已 WITHDRAWN，標了反而像現行版）。**G-G 在建立當輪即抓到真陽性**：AB-1 之修正使 `44_review_pack_24b` 過期（`148`／`154`），**已於同輪重出**為 `45_review_pack_24b`。**G-H**：他 feature 先例須先確認**母本同一**（欄位字母與 DV 隨 revision 變動），寫入 profile §7.4。閘 16 → **17 支**，13 支自我測試全過；lint 189/0。**本輪未產出交付件；未寫入他 feature；未執行任何 git** |
 
 ---
 
@@ -72,6 +74,35 @@
   `Outline Number` 169/169 一致。候選被引集合 135 條已落檔。
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
+
+### 第四十五輪已完成（2026-08-18）—— **AB-1 與靜態轉錄之指紋**
+
+- **AB-1**：`TC-154` 之 ER4 未指明所讀者而恆真 —— 已改為指名新建 profile
+  並斷言其與步驟 1 所記者**相同**（carry-over）。
+- **全批自檢 16 處逐條判定**；其中 **`TC-148` 為同型而未被點名者，一併修正**
+  （同一句英文在 6.4 是恆真、在 6.1 是歧義）。掃描**只並排兩端，不硬判**。
+- **G-F**：新閘 `stamp_static_doc.py`；RD 查詢單與各批出處對照加指紋，
+  範圍取**全欄**（保守）；已 WITHDRAWN 者不標。
+- **G-G**：上繳附四份 pack 之 `--verify` —— **建立當輪即抓到真陽性**
+  （AB-1 之修正使 `44_review_pack_24b` 過期），已於同輪重出。
+- **G-H**：他 feature 之先例須先確認**母本同一**（profile §7.4）。
+- 閘 16 → **17 支**。
+
+### 第四十四輪已完成（2026-08-18）—— **AA-1：review pack 之時效**
+
+- **`build_review_pack.py` 加語料指紋與 `--verify`**：指紋不符即
+  「pack 已過期，**拒絕採信**」；**無指紋表者一律判過期**。4/4 方向性案例。
+  與 `audit_pending` 之 digest **方向相反**（那個防「改了不重判」，
+  這個防「判了舊的」）。
+- **變動清單**：四份舊 pack 自其產生以來共 **5 條**有變動，全在 `24a`
+  （`139`–`143`，來源唯一：41 輪 RD #8 之處置）；其餘 44 條一字未動。
+  **不用 git —— 舊值就在那份檔案裡**（`--changes` 逐欄比對）。
+- **四份重出**（`44_review_pack_24a/24b/33a/33b`，共 55 條，`--verify` 皆綠）；
+  舊四份**加警語保留不刪**。
+- **44 包 §二之 7 條覆核結果經確認全部有效**（`140` 之依據欄未變、
+  `144`／`145` 整條未變）。
+- **三項常規**寫入 profile §5.1／§7.3／§7.4，另加 §7.5（pack 時效）。
+- **`vehicle_columns` 定為留空**（三項實測依據）—— **擋交付者現為 0**。
 
 ### 第四十三輪已完成（2026-08-18）—— **宣告與生效之分離、寫回實跑探針**
 

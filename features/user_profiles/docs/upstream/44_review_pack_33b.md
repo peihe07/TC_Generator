@@ -1,16 +1,38 @@
 # 覆核用全文 ＋ ER 出處對照 — 第六批 後半（`174`–`189`）
 
-> **⚠ 本檔已於 44 輪重出取代 → `44_review_pack_33b.md`。**
-> 本檔為靜態轉錄，**不隨重生成更新**；其產生後語料有變動 **0 條**。
-> 本檔無語料指紋，`build_review_pack.py --verify` 一律判其過期 ——
-> **不得以本檔作覆核依據**。原文以下保留不刪（記錄分析層當時讀到的是什麼）。
-
 - 產出層：執行層｜2026-08-18｜**供分析層逐條覆核**
-- 本檔 **16 條**；另半在 `41_review_pack_33a.md`
+- 本檔 **16 條**；另半在 `44_review_pack_33a.md`
 - 由 `scripts/build_review_pack.py` 產生，不經人手轉錄
+- **本檔取代 `41_review_pack_33b.md`**（AA-1，44 包）——該檔無語料指紋，`--verify` 一律判過期
 
 > 讀法：先讀「spec 原文」與「037 description」，再讀 ER ——
 > 「這句話對不對」是本檔要問的；「這句話有沒有來源」見 §0 之出處對照。
+
+## 0.0 語料指紋（AA-1，44 包）—— 產生輪次：**44**
+
+> **本表是本 pack 之保鮮期。** 覆核前先跑：
+> `python3 scripts/build_review_pack.py --verify <本檔>` ——
+> **不符即「pack 已過期，拒絕採信」**，須重出後再讀。
+> 指紋之範圍即本 pack 所轉錄之每一個欄位（含 spec 原文、037 description、reasoning）。
+
+| tc_id | digest |
+|---|---|
+| `NR1L-UserProfiles-174` | `42069a956cd7` |
+| `NR1L-UserProfiles-175` | `4ece24c1f39d` |
+| `NR1L-UserProfiles-176` | `597d256d9582` |
+| `NR1L-UserProfiles-177` | `e61be46633a0` |
+| `NR1L-UserProfiles-178` | `755d74c8d69f` |
+| `NR1L-UserProfiles-179` | `d07d99598c01` |
+| `NR1L-UserProfiles-180` | `266ff2894022` |
+| `NR1L-UserProfiles-181` | `d12aad10186b` |
+| `NR1L-UserProfiles-182` | `51da38dbd00e` |
+| `NR1L-UserProfiles-183` | `e3cd36b3f0a4` |
+| `NR1L-UserProfiles-184` | `26624dab8817` |
+| `NR1L-UserProfiles-185` | `cc7a882e42fe` |
+| `NR1L-UserProfiles-186` | `22c8cc1cec1b` |
+| `NR1L-UserProfiles-187` | `85d9d20d5cf6` |
+| `NR1L-UserProfiles-188` | `e3b27fbf3204` |
+| `NR1L-UserProfiles-189` | `54d8cd94d88a` |
 
 ## 0. ER 出處對照
 

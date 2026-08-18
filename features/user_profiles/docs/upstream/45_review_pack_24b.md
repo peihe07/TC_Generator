@@ -1,16 +1,33 @@
 # 覆核用全文 ＋ ER 出處對照 — 第五批 後半（`146`–`156`）
 
-> **⚠ 本檔已於 44 輪重出取代 → `44_review_pack_24b.md`。**
-> 本檔為靜態轉錄，**不隨重生成更新**；其產生後語料有變動 **0 條**。
-> 本檔無語料指紋，`build_review_pack.py --verify` 一律判其過期 ——
-> **不得以本檔作覆核依據**。原文以下保留不刪（記錄分析層當時讀到的是什麼）。
-
 - 產出層：執行層｜2026-08-18｜**供分析層逐條覆核**
-- 本檔 **11 條**；另半在 `40_review_pack_24a.md`
-- 格式同 21／23／29／34／35 輪；**本輪起由 `scripts/build_review_pack.py` 產生，不再手打轉錄**
+- 本檔 **11 條**；另半在 `44_review_pack_24a.md`
+- 由 `scripts/build_review_pack.py` 產生，不經人手轉錄
+- **本檔取代 `44_review_pack_24b.md`**（AA-1，44 包）——該檔無語料指紋，`--verify` 一律判過期
 
 > 讀法：先讀「spec 原文」與「037 description」，再讀 ER ——
 > 「這句話對不對」是本檔要問的；「這句話有沒有來源」見 §0 之出處對照。
+
+## 0.0 語料指紋（AA-1，44 包）—— 產生輪次：**44**
+
+> **本表是本 pack 之保鮮期。** 覆核前先跑：
+> `python3 scripts/build_review_pack.py --verify <本檔>` ——
+> **不符即「pack 已過期，拒絕採信」**，須重出後再讀。
+> 指紋之範圍即本 pack 所轉錄之每一個欄位（含 spec 原文、037 description、reasoning）。
+
+| tc_id | digest |
+|---|---|
+| `NR1L-UserProfiles-146` | `d1c8b027e53c` |
+| `NR1L-UserProfiles-147` | `faa4aabf3ec3` |
+| `NR1L-UserProfiles-148` | `aaab1ed1b11c` |
+| `NR1L-UserProfiles-149` | `d67aac9b77a0` |
+| `NR1L-UserProfiles-150` | `9f900f1b2d92` |
+| `NR1L-UserProfiles-151` | `f3c4c3fb46ec` |
+| `NR1L-UserProfiles-152` | `84130e92c452` |
+| `NR1L-UserProfiles-153` | `073d818df7eb` |
+| `NR1L-UserProfiles-154` | `4e07e5f42f7a` |
+| `NR1L-UserProfiles-155` | `308151c8497a` |
+| `NR1L-UserProfiles-156` | `a2f661b2b1b7` |
 
 ## 0. ER 出處對照
 
@@ -97,14 +114,14 @@
 | tc_title / test_item | R1 High keeps preferences and begins Tutorials after avatar |
 | pre_conditions | 1. The vehicle is an R1 High variant<br>2. A New Profile Setup is in progress at the avatar step<br>3. The vehicle is stationary |
 | input_test_data | NA |
-| test_procedure | 1. Record the current preferences of the active Driver Profile<br>2. Choose an avatar and press Save & Continue<br>3. Read the screen shown after the avatar step<br>4. Read the preferences and compare them with those recorded in step 1 |
-| expected_result | 1. The current preferences are recorded<br>2. The avatar is chosen and the avatar step ends<br>3. Tutorials begin and no Connected Personal Account login is launched<br>4. The preferences are unchanged from those recorded in step 1 |
+| test_procedure | 1. Record the current preferences of the active Driver Profile<br>2. Choose an avatar and press Save & Continue<br>3. Read the screen shown after the avatar step<br>4. Read the preferences of the active Driver Profile and compare them with step 1 |
+| expected_result | 1. The current preferences are recorded<br>2. The avatar is chosen and the avatar step ends<br>3. Tutorials begin and no Connected Personal Account login is launched<br>4. The preferences of the active Driver Profile are unchanged from those recorded in step 1 |
 | specification_reference | Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.1 |
 | design_method | 情境 / 用例 (Scenario / Use Case Testing) |
 | priority | **P1** — R1 High 之流程分歧本身 —— 誤啟 CPA 即為錯誤變體行為 |
 | remarks | **變體 axis `r1h-cpa-6.1`**：本條為 R1 High 側。base 側（`Is CPA present?` 為是時啟動 CPA 登入）**在 037 內無 leaf** —— 它只出現於 PDF p9 之流程圖，依 R-U56 不造，已於 `audit_variant_pairs.AXES` 由 `pending` 改為具名不配（述詞 `no-other-side-leaf` 實測）。條文尚有 `it will be accessible from the Edit Profile screen only` 一句 —— 該全稱之**反向**（他處不得進入 CPA）本條不涵蓋，其入口清單不可窮舉，已記為 ch11 之覆蓋事項（`SWE1-HMI-PROF-110` 為其正向）。 |
 
-**reasoning**：驗證目標：6.1（NOPR0）—— R1 High 上 CPA 不啟動；選完 avatar 後保留現有偏好並進入 Tutorials。關鍵情境條件：車型須為 R1 High —— 本條之全部內容皆以此為前提。為什麼這樣切：`design_method` 取情境／用例 ——本條驗的是**一段流程之走向**（avatar → 不進 CPA → 進 Tutorials），非單一畫面之功能點。**ER4 之偏好比對不可省**：條文說的是 `keep current preferences`，一個「跳過 CPA 但把偏好重設為預設」之實作，只驗 Tutorials 有沒有開會通過（§8.3）。
+**reasoning**：驗證目標：6.1（NOPR0）—— R1 High 上 CPA 不啟動；選完 avatar 後保留現有偏好並進入 Tutorials。關鍵情境條件：車型須為 R1 High —— 本條之全部內容皆以此為前提。為什麼這樣切：`design_method` 取情境／用例 ——本條驗的是**一段流程之走向**（avatar → 不進 CPA → 進 Tutorials），非單一畫面之功能點。**AB-1（45 包）之連帶**：ER4 之兩端**皆為現用 profile 之偏好**（設定前後兩個時點），故指名之 —— 與 `TC-154` 不同：那一條之兩端是**兩個不同的 profile**。**本條之兩端同物不是恆真**：其間之事件（avatar 步驟）在 base 變體上正是 CPA 會介入之處。**ER4 之偏好比對不可省**：條文說的是 `keep current preferences`，一個「跳過 CPA 但把偏好重設為預設」之實作，只驗 Tutorials 有沒有開會通過（§8.3）。
 
 ---
 
@@ -241,14 +258,14 @@
 | tc_title / test_item | Get Started starts setup and carries over preferences |
 | pre_conditions | 1. The active Driver Profile is a default Profile<br>2. The Welcome popup with the Get Started button is displayed<br>3. The vehicle is stationary |
 | input_test_data | NA |
-| test_procedure | 1. Record the current preferences of the active Driver Profile<br>2. Press Get Started on the Welcome popup<br>3. Read the screen and check that the New Profile Setup started<br>4. Read the preferences and compare them with those recorded in step 1 |
-| expected_result | 1. The current preferences are recorded<br>2. The New Profile Setup is initiated<br>3. The first step of the New Profile Setup is displayed and no confirmation popup appeared<br>4. The preferences are unchanged from those recorded in step 1 |
+| test_procedure | 1. Record the current preferences of the active Driver Profile<br>2. Press Get Started on the Welcome popup<br>3. Read the screen and check that the New Profile Setup started<br>4. Complete the setup and read the preferences of the new Driver Profile |
+| expected_result | 1. The current preferences are recorded<br>2. The New Profile Setup is initiated<br>3. The first step of the New Profile Setup is displayed and no confirmation popup appeared<br>4. The preferences of the new Driver Profile are the same as those recorded in step 1 |
 | specification_reference | Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.4 |
 | design_method | 情境 / 用例 (Scenario / Use Case Testing) |
 | priority | **P1** — Get Started 起始設定並沿用現有偏好 |
-| remarks | **三個斷言各有其失效方式**：起始設定（ER2／ER3 前半）、**無確認 popup**（ER3 後半，條文之 `without a popup to confirm`）、**偏好沿用**（ER4）。缺任一者，條文之一部分即無人驗。設定流程本身之各步驟屬 ch8（`SWE1-HMI-PROF-066` 以下），本條只驗其**被起始**與偏好之沿用。 |
+| remarks | **AB-1（45 包）**：步驟 4 與 ER4 原寫「讀偏好，與步驟 1 所記者**未改變**」而**未指明所讀者為誰之偏好** —— 若讀成「現用之預設 profile 之偏好沒被動到」，該斷言**在任何實作下皆真**，**包括一個起始設定但完全不帶入偏好之實作**（§7 之 false pass）。現指明所讀者為**設定流程所建之新 profile**，且 ER4 斷言其與步驟 1 所記者**相同**（carry-over 成立），非「未改變」。**三個斷言各有其失效方式**：起始設定（ER2／ER3 前半）、**無確認 popup**（ER3 後半，條文之 `without a popup to confirm`）、**偏好沿用**（ER4）。缺任一者，條文之一部分即無人驗。設定流程本身之各步驟屬 ch8（`SWE1-HMI-PROF-066` 以下），本條只驗其**被起始**與偏好之沿用。 |
 
-**reasoning**：驗證目標：6.4（NOPR3）—— 按 Get Started 起始 New Profile Setup，沿用現用 profile 之全部偏好，且不出現確認 popup。關鍵情境條件：現用者為預設 profile（Get Started 只在其上出現），且偏好須先記錄。為什麼這樣切：`design_method` 取情境／用例 ——本條跨 popup 與設定流程兩個畫面族。**ER3 之缺席斷言不可省**：條文特別標明「不出現確認 popup」，那是與 6.3.1 之詢問行為刻意對比之設計。
+**reasoning**：驗證目標：6.4（NOPR3）—— 按 Get Started 起始 New Profile Setup，沿用現用 profile 之全部偏好，且不出現確認 popup。關鍵情境條件：現用者為預設 profile（Get Started 只在其上出現），且偏好須先記錄。為什麼這樣切：`design_method` 取情境／用例 ——本條跨 popup 與設定流程兩個畫面族。**ER3 之缺席斷言不可省**：條文特別標明「不出現確認 popup」，那是與 6.3.1 之詢問行為刻意對比之設計。**ER4 之兩端各屬何物須明指（AB-1）**：一端為**步驟 1 所記之現用 profile 之偏好**，另一端為**新建 profile 之偏好** ——**兩端同物則恆真**，而條文所要者正是兩端不同物而值相同。
 
 ---
 

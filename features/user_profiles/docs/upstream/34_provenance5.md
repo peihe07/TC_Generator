@@ -1,5 +1,44 @@
 # 第四批之 ER 出處對照（34 包作業 2）
 
+
+<!-- fingerprint:begin -->
+## 語料指紋（G-F，45 包）—— 標記輪次：**45**
+
+> **本表是本檔之保鮮期。** 引用本檔前先跑：`stamp_static_doc.py --verify <本檔>`；
+> **不符即「已過期，拒絕採信」**，須重出後再引。
+> 指紋之範圍為**全欄**（保守）—— 誤判過期只是多重出一次，誤判新鮮則是拿舊資料下判斷。
+
+| tc_id | digest |
+|---|---|
+| `NR1L-UserProfiles-109` | `5001d93fc00b` |
+| `NR1L-UserProfiles-110` | `244b5c0e96a8` |
+| `NR1L-UserProfiles-111` | `d4fd3ed6fe04` |
+| `NR1L-UserProfiles-112` | `4b288de853cb` |
+| `NR1L-UserProfiles-113` | `ab3ea2662859` |
+| `NR1L-UserProfiles-114` | `905b90a86ac5` |
+| `NR1L-UserProfiles-115` | `f4ccfa61ccf1` |
+| `NR1L-UserProfiles-116` | `59692a4b908f` |
+| `NR1L-UserProfiles-117` | `87b64a59a03a` |
+| `NR1L-UserProfiles-118` | `fb5b60cbdd89` |
+| `NR1L-UserProfiles-119` | `aedc519d862b` |
+| `NR1L-UserProfiles-120` | `196b7ddca802` |
+| `NR1L-UserProfiles-121` | `02ca8753f347` |
+| `NR1L-UserProfiles-122` | `686f1db2d9af` |
+| `NR1L-UserProfiles-123` | `a7236c2aef4c` |
+| `NR1L-UserProfiles-124` | `3a22a53f76f4` |
+| `NR1L-UserProfiles-125` | `d9e6b9b89848` |
+| `NR1L-UserProfiles-126` | `f0530e103d27` |
+| `NR1L-UserProfiles-127` | `e50f5f385a9e` |
+| `NR1L-UserProfiles-128` | `aa375703cc4f` |
+| `NR1L-UserProfiles-129` | `1b315bff0af8` |
+| `NR1L-UserProfiles-130` | `e16051d03b74` |
+| `NR1L-UserProfiles-131` | `d37694640fe0` |
+| `NR1L-UserProfiles-132` | `ed138895ca58` |
+| `NR1L-UserProfiles-133` | `df2975bb2266` |
+| `NR1L-UserProfiles-134` | `477d04ade265` |
+
+<!-- fingerprint:end -->
+
 - 產出層：執行層｜2026-08-18｜對象：分析層
 - 範圍：`NR1L-UserProfiles-109` ～ `134`（**26 條**）
 - 對照對象：`expected_result` 與 `pre_conditions` 之字面值，及各條之**變體／配置範圍層級**

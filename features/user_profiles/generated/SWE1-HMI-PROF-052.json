@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "NOPR3.) Pressing “Get Started” will initiate the New Profile Setup (but carry-over all current preferences linked to the active Profile, without a popup to confirm).",
  "must_carry_injected": [],
- "reasoning": "驗證目標：6.4（NOPR3）—— 按 Get Started 起始 New Profile Setup，沿用現用 profile 之全部偏好，且不出現確認 popup。關鍵情境條件：現用者為預設 profile（Get Started 只在其上出現），且偏好須先記錄。為什麼這樣切：`design_method` 取情境／用例 ——本條跨 popup 與設定流程兩個畫面族。**ER3 之缺席斷言不可省**：條文特別標明「不出現確認 popup」，那是與 6.3.1 之詢問行為刻意對比之設計。",
+ "reasoning": "驗證目標：6.4（NOPR3）—— 按 Get Started 起始 New Profile Setup，沿用現用 profile 之全部偏好，且不出現確認 popup。關鍵情境條件：現用者為預設 profile（Get Started 只在其上出現），且偏好須先記錄。為什麼這樣切：`design_method` 取情境／用例 ——本條跨 popup 與設定流程兩個畫面族。**ER3 之缺席斷言不可省**：條文特別標明「不出現確認 popup」，那是與 6.3.1 之詢問行為刻意對比之設計。**ER4 之兩端各屬何物須明指（AB-1）**：一端為**步驟 1 所記之現用 profile 之偏好**，另一端為**新建 profile 之偏好** ——**兩端同物則恆真**，而條文所要者正是兩端不同物而值相同。",
  "keywords": [
   "Get Started",
   "New Profile Setup",
@@ -27,15 +27,15 @@
    "test_item": "Get Started starts setup and carries over preferences",
    "pre_conditions": "1. The active Driver Profile is a default Profile\n2. The Welcome popup with the Get Started button is displayed\n3. The vehicle is stationary",
    "input_test_data": "NA",
-   "test_procedure": "1. Record the current preferences of the active Driver Profile\n2. Press Get Started on the Welcome popup\n3. Read the screen and check that the New Profile Setup started\n4. Read the preferences and compare them with those recorded in step 1",
-   "expected_result": "1. The current preferences are recorded\n2. The New Profile Setup is initiated\n3. The first step of the New Profile Setup is displayed and no confirmation popup appeared\n4. The preferences are unchanged from those recorded in step 1",
+   "test_procedure": "1. Record the current preferences of the active Driver Profile\n2. Press Get Started on the Welcome popup\n3. Read the screen and check that the New Profile Setup started\n4. Complete the setup and read the preferences of the new Driver Profile",
+   "expected_result": "1. The current preferences are recorded\n2. The New Profile Setup is initiated\n3. The first step of the New Profile Setup is displayed and no confirmation popup appeared\n4. The preferences of the new Driver Profile are the same as those recorded in step 1",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.4",
    "priority": "P1",
    "priority_basis": "Get Started 起始設定並沿用現有偏好",
    "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "**三個斷言各有其失效方式**：起始設定（ER2／ER3 前半）、**無確認 popup**（ER3 後半，條文之 `without a popup to confirm`）、**偏好沿用**（ER4）。缺任一者，條文之一部分即無人驗。設定流程本身之各步驟屬 ch8（`SWE1-HMI-PROF-066` 以下），本條只驗其**被起始**與偏好之沿用。",
+   "remarks": "**AB-1（45 包）**：步驟 4 與 ER4 原寫「讀偏好，與步驟 1 所記者**未改變**」而**未指明所讀者為誰之偏好** —— 若讀成「現用之預設 profile 之偏好沒被動到」，該斷言**在任何實作下皆真**，**包括一個起始設定但完全不帶入偏好之實作**（§7 之 false pass）。現指明所讀者為**設定流程所建之新 profile**，且 ER4 斷言其與步驟 1 所記者**相同**（carry-over 成立），非「未改變」。**三個斷言各有其失效方式**：起始設定（ER2／ER3 前半）、**無確認 popup**（ER3 後半，條文之 `without a popup to confirm`）、**偏好沿用**（ER4）。缺任一者，條文之一部分即無人驗。設定流程本身之各步驟屬 ch8（`SWE1-HMI-PROF-066` 以下），本條只驗其**被起始**與偏好之沿用。",
    "split_flag": false,
    "split_reason": ""
   }

@@ -17,6 +17,8 @@
 # 42 輪之全量判定：43 條全部判為「不成立」。
 # 其意義**不是**「這五支掃描沒有用」，而是「它們縮小之範圍已被讀完一次」——
 # 其後之價值全在 digest：**改動即回列**。
+# 45 輪：AB-1（ER 與前步紀錄之比對，兩端並排）16 條入表。
+# 其中 `148`／`154` 為本輪修正後之形 —— 修正前之判定不適用（digest 已變）。
 scan	tc_id	verdict	disposition	digest	carried_at_42	reason
 Y-1	NR1L-UserProfiles-121	不成立	judged-closed	af9b72bc9497	7	跨節委派而**已具名被指者之 ER 序號**（`SWE1-HMI-PROF-022` 之 ER3 後半）並附其逐字句 —— 36 輪已據此修正 TC-117，此為修正後之形
 W-1	NR1L-UserProfiles-005	不成立	judged-closed	d908427fdf17	10	`No default Profile has been customized or deleted` 是**起始狀態之否定陳述**，本條 ER 斷言的是 6.2.1 之「不必先客製化」，兩者不同
@@ -61,3 +63,19 @@ Q-1	NR1L-UserProfiles-129	不成立	judged-closed	3d7100f690b3	9	ER 逐字沿用
 Q-1	NR1L-UserProfiles-131	不成立	judged-closed	b0014c440ca8	9	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
 Q-1	NR1L-UserProfiles-139	不成立	judged-closed	b44f5b25407a	3	`all Profiles are cleared and the default Profiles are restored` 為 5.13.1 之**適用條件**，改寫會使該條件之範圍改變
 Q-1	NR1L-UserProfiles-146	不成立	judged-closed	00c240142772	3	`the Core HMI Logic and Flow truncation rules` 為**外部文件之專名**，改寫即失其指涉
+AB-1	NR1L-UserProfiles-004	不成立	judged-closed	21a70014029e	1	兩端皆為**同一組三個位置**（步驟 2 所設 vs 步驟 5 所讀），中間事件為 key cycle —— 判別力在該事件：不存者 key-on 後即不符
+AB-1	NR1L-UserProfiles-045	不成立	judged-closed	c66e9467a8e5	1	兩端皆為現用 profile 之偏好（Valet 前 vs 退出後），中間事件為 Valet 之進出；ER2 另以「**not** those recorded in step 1」作反向對照，故非恆真
+AB-1	NR1L-UserProfiles-084	不成立	judged-closed	74642a8a4e2c	1	兩端同物而中間事件為 key cycle（4.3 之本體即跨 key cycle 之保留）
+AB-1	NR1L-UserProfiles-085	不成立	judged-closed	7ed088e8a7a2	1	**主詞已指名** `Driver Profile B's own value` —— 兩端不同物，且同句另以 differs 斷言其不等於步驟 1 所記者
+AB-1	NR1L-UserProfiles-086	不成立	judged-closed	9e49c07140dd	1	同 `085`，觸發途徑為記憶座椅鍵
+AB-1	NR1L-UserProfiles-087	不成立	judged-closed	d8d95c45110c	1	同 `085`，觸發途徑為 key fob
+AB-1	NR1L-UserProfiles-088	不成立	judged-closed	80af61cc1d12	1	兩端皆為 A 之偏好，中間事件為「切到 B 再切回 A」—— 4.3.1 所驗者即該切換前之保存
+AB-1	NR1L-UserProfiles-101	不成立	judged-closed	42f519253157	1	兩端皆為狀態列圖示，中間事件為切換 profile，且 ER 為 **differs**（要求它變），非 unchanged
+AB-1	NR1L-UserProfiles-129	不成立	judged-closed	3d7100f690b3	1	兩端皆為座椅位置，中間事件為行車中之移動嘗試 —— 不動才是斷言
+AB-1	NR1L-UserProfiles-130	不成立	judged-closed	37293d20ce67	1	**主詞已指名** `The seat position stored for Driver Profile B` —— 兩端為「所存之值」與「所讀之新位置」，不同物
+AB-1	NR1L-UserProfiles-137	不成立	judged-closed	2455d19292d1	1	兩端皆為 profile 順序，中間事件為編輯記憶座椅連結 —— 5.12.2 所驗者即該編輯不改順序
+AB-1	NR1L-UserProfiles-144	不成立	judged-closed	cf3ab6abf2c4	1	ER 為 **differs**（拖曳後順序須變），兩端同物而斷言其不等 —— 恆真之反面
+AB-1	NR1L-UserProfiles-148	不成立	judged-closed	3ac322e67342	1	**45 輪已修正**：兩端指名為現用 Driver Profile 之偏好（設定前後兩時點）；中間事件為 avatar 步驟，於 base 變體上正是 CPA 介入之處，故非恆真
+AB-1	NR1L-UserProfiles-154	不成立	judged-closed	fcc0dd89d007	1	**45 輪已修正（AB-1 之標的）**：兩端改為**兩個不同的 profile** —— A 端為新建 profile 之偏好，B 端為步驟 1 所記之現用 profile 之偏好；ER 斷言其**相同**（carry-over 成立），非「未改變」
+AB-1	NR1L-UserProfiles-184	不成立	judged-closed	93ffe6a9ccda	1	**兩端已各自指名**：A 端 `The new Profile's preferences`、B 端步驟 1 之 `Driver Profile A` —— 不同物
+AB-1	NR1L-UserProfiles-187	不成立	judged-closed	ef7f89d7de77	1	同 `101`：兩端皆為狀態列圖示而 ER 為 differs，中間事件為完成新增設定

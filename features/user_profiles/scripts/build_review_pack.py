@@ -16,6 +16,8 @@ Usage:
     python3 scripts/build_review_pack.py 135 145 > out.md
 """
 
+import argparse
+import hashlib
 import json
 import re
 import sys
@@ -82,7 +84,117 @@ def provenance(rows: list) -> list:
     return out
 
 
+# ── AA-1（44 包 §一）—— pack 之時效 ────────────────────────────────
+#
+# `24a`／`24b` 產於 40 輪，而 41 輪之 RD #8 處置與 `popup_guard` 之 20 條修正
+# 都在其後。**review pack 是靜態轉錄，不隨重生成更新** ——
+# 分析層讀到 `TC-142` 之 `Press Yes on popup PU_0129`，
+# 而語料早已是 `Press Yes on each confirmation popup PU0626/PU_0129`。
+#
+# **這是覆核依據之正確性問題**：對一份已被修好的內容開缺陷單，
+# 或把已修的版本當成未修而放過 —— 兩個方向都會發生。
+#
+# ## 指紋之範圍 ＝ **pack 實際轉錄的東西**
+#
+# 不取 `audit_pending` 之六欄（那是為待判掃描而定的），
+# 而取 **pack 自己印出來的每一個欄位**：若 pack 印的沒變，它就沒過期；
+# 若 pack 沒印的變了（例如 `keywords`），它不影響覆核。
+# **兩支工具之 digest 範圍不同，是因為它們防的是不同的事。**
+
+DIGEST_FIELDS = [k for _lbl, k in FIELDS] + [
+    "priority", "priority_basis", "remarks"]
+FP_LINE = re.compile(r"^\| `(NR1L-UserProfiles-\d{3})` \| `([0-9a-f]{12})` \|",
+                     re.M)
+FP_ROUND = re.compile(r"產生輪次：\*\*(\d+)\*\*")
+
+
+def pack_digest(d: dict, t: dict) -> str:
+    blob = "␟".join(" ".join(str(t.get(k, "")).split())
+                    for k in DIGEST_FIELDS)
+    blob += "␟" + " ".join(str(d.get("reasoning", "")).split())
+    blob += "␟" + " ".join(str(d.get("source_clause", "")).split())
+    blob += "␟" + " ".join(str(d.get("leaf_desc_037", "")).split())
+    return hashlib.sha1(blob.encode("utf-8")).hexdigest()[:12]
+
+
+def current_digests(lo: int, hi: int) -> dict:
+    return {t["tc_id"]: pack_digest(d, t) for d, t in records(lo, hi)}
+
+
+def verify_pack(path: Path) -> tuple:
+    """回傳 (違規清單, 相符數)。**不符即『pack 已過期，拒絕採信』。**"""
+    txt = path.read_text(encoding="utf-8")
+    stated = dict(FP_LINE.findall(txt))
+    bad = []
+    if not stated:
+        return ([f"AA-1 `{path.name}` **無語料指紋** —— 產於指紋機制之前，"
+                 f"一律視為過期，**拒絕採信**"], 0)
+    ids = sorted(stated)
+    lo, hi = int(ids[0][-3:]), int(ids[-1][-3:])
+    now = current_digests(lo, hi)
+    for tid, dg in sorted(stated.items()):
+        cur = now.get(tid)
+        if cur is None:
+            bad.append(f"AA-1 {tid}: 已不在語料內")
+        elif cur != dg:
+            bad.append(f"AA-1 {tid}: pack 之指紋 `{dg}` 與現況 `{cur}` 不符 "
+                       f"—— **該條已變動，pack 之轉錄不得採信**")
+    for tid in sorted(now):
+        if tid not in stated:
+            bad.append(f"AA-1 {tid}: 在語料內而 pack 未載")
+    return (bad, len(stated) - len(bad))
+
+
+# ── 變動清單 —— **逐欄比對，不只報「變了」** ──────────────────────
+BLOCK = re.compile(r"^### (NR1L-UserProfiles-\d{3}) —.*?(?=^### |\Z)",
+                   re.M | re.S)
+ROW = re.compile(r"^\| ([^|]+?) \| (.*) \|$", re.M)
+REASONING = re.compile(r"^\*\*reasoning\*\*：(.*)$", re.M)
+
+
+def changes(path: Path) -> list:
+    """舊 pack 之逐條逐欄 vs 現況。**不用 git —— 舊值就在那份檔案裡。**"""
+    txt = path.read_text(encoding="utf-8")
+    cur = {}
+    ids = re.findall(r"^### (NR1L-UserProfiles-(\d{3})) —", txt, re.M)
+    if not ids:
+        return []
+    lo, hi = int(ids[0][1]), int(ids[-1][1])
+    for d, t in records(lo, hi):
+        cur[t["tc_id"]] = (d, t)
+    out = []
+    for m in BLOCK.finditer(txt):
+        tid = m.group(1)
+        block = m.group(0)
+        old = {lbl.strip(): val.strip() for lbl, val in ROW.findall(block)}
+        rm = REASONING.search(block)
+        if rm:
+            old["reasoning"] = rm.group(1).strip()
+        if tid not in cur:
+            out.append((tid, ["**已不在語料內**"]))
+            continue
+        d, t = cur[tid]
+        diff = []
+        for label, key in FIELDS:
+            o = old.get(label)
+            n = _cell(t[key])
+            if o is not None and o != n:
+                diff.append(label)
+        if old.get("priority") is not None and \
+                old["priority"] != f"**{t['priority']}** — {t['priority_basis']}":
+            diff.append("priority")
+        if old.get("remarks") is not None and old["remarks"] != _cell(t["remarks"]):
+            diff.append("remarks")
+        if old.get("reasoning") is not None and \
+                old["reasoning"] != " ".join(str(d["reasoning"]).split()):
+            diff.append("reasoning")
+        if diff:
+            out.append((tid, diff))
+    return out
+
+
 BATCH = "第五批"
+SUPERSEDES = ""
 
 
 def emit(lo: int, hi: int, title: str, other: str) -> None:
@@ -96,9 +208,25 @@ def emit(lo: int, hi: int, title: str, other: str) -> None:
           f"（`{lo:03d}`–`{hi:03d}`）\n")
     print(f"- 產出層：執行層｜2026-08-18｜**供分析層逐條覆核**")
     print(f"- 本檔 **{len(rows)} 條**；另半在 `{other}`")
-    print(f"- 由 `scripts/build_review_pack.py` 產生，不經人手轉錄\n")
+    print(f"- 由 `scripts/build_review_pack.py` 產生，不經人手轉錄")
+    if SUPERSEDES:
+        print(f"- **本檔取代 `{SUPERSEDES}`**（AA-1，44 包）——"
+              f"該檔無語料指紋，`--verify` 一律判過期")
+    print()
     print("> 讀法：先讀「spec 原文」與「037 description」，再讀 ER ——")
     print("> 「這句話對不對」是本檔要問的；「這句話有沒有來源」見 §0 之出處對照。\n")
+
+    print(f"## 0.0 語料指紋（AA-1，44 包）—— 產生輪次：**{ROUND}**\n")
+    print("> **本表是本 pack 之保鮮期。** 覆核前先跑：")
+    print("> `python3 scripts/build_review_pack.py --verify <本檔>` ——")
+    print("> **不符即「pack 已過期，拒絕採信」**，須重出後再讀。")
+    print("> 指紋之範圍即本 pack 所轉錄之每一個欄位"
+          "（含 spec 原文、037 description、reasoning）。\n")
+    print("| tc_id | digest |")
+    print("|---|---|")
+    for d, t in rows:
+        print(f"| `{t['tc_id']}` | `{pack_digest(d, t)}` |")
+    print()
 
     print("## 0. ER 出處對照\n")
     print("| 項 | 數 |")
@@ -135,8 +263,85 @@ def emit(lo: int, hi: int, title: str, other: str) -> None:
         print("---\n")
 
 
+ROUND = 44
+
+
+def self_test() -> int:
+    """方向性案例 —— **過期檢查若不會紅，它就只是一張表。**"""
+    import tempfile
+    ok, cases = True, []
+
+    def case(name, fn, expect_red):
+        nonlocal ok
+        cases.append(name)
+        bad = fn()
+        good = bool(bad) == expect_red
+        ok &= good
+        print(f"  {'PASS' if good else '**FAIL**'} — {name}: "
+              f"{'紅' if bad else '綠'}，期望 {'紅' if expect_red else '綠'}")
+        for b in bad[:2]:
+            print(f"      └ {b}")
+
+    with tempfile.TemporaryDirectory() as td:
+        fresh = Path(td) / "fresh.md"
+        import contextlib, io
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            emit(135, 140, "測試", "—")
+        fresh.write_text(buf.getvalue(), encoding="utf-8")
+
+        case("**剛產生之 pack → 綠**", lambda: verify_pack(fresh)[0], False)
+
+        # 注入：指紋被改一個字元（＝語料變動之等價形態）
+        tampered = Path(td) / "tampered.md"
+        txt = fresh.read_text(encoding="utf-8")
+        m = FP_LINE.search(txt)
+        old = m.group(2)
+        tampered.write_text(
+            txt.replace(f"`{old}`", "`000000000000`", 1), encoding="utf-8")
+        case("**注入：某條之指紋與語料不符 → 紅（拒絕採信）**",
+             lambda: verify_pack(tampered)[0], True)
+
+        # 注入：整段指紋表被移除（＝指紋機制之前產生者）
+        nofp = Path(td) / "nofp.md"
+        nofp.write_text(FP_LINE.sub("", txt), encoding="utf-8")
+        case("**注入：無指紋表之舊 pack → 紅（一律視為過期）**",
+             lambda: verify_pack(nofp)[0], True)
+
+        # 護欄：`changes()` 對剛產生者須為空
+        case("**護欄**：`changes()` 對剛產生之 pack → 無變動",
+             lambda: changes(fresh), False)
+
+    n = len(cases)
+    print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "
+          f"{'PASS' if ok else 'FAIL'}")
+    return 0 if ok else 1
+
+
 if __name__ == "__main__":
-    if len(sys.argv) > 5:
-        globals()['BATCH'] = sys.argv[5]
-    lo, hi = int(sys.argv[1]), int(sys.argv[2])
-    emit(lo, hi, sys.argv[3], sys.argv[4])
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("args", nargs="*")
+    ap.add_argument("--verify", default=None, help="檢查某份 pack 是否過期")
+    ap.add_argument("--changes", default=None,
+                    help="列出某份舊 pack 自其產生以來有變動之條目")
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args()
+    if a.self_test:
+        sys.exit(self_test())
+    if a.verify:
+        bad, okn = verify_pack(Path(a.verify))
+        print(f"{Path(a.verify).name}：相符 {okn} 條，不符 {len(bad)} 條")
+        for b in bad:
+            print(f"  {b}")
+        sys.exit(1 if bad else 0)
+    if a.changes:
+        ch = changes(Path(a.changes))
+        print(f"{Path(a.changes).name}：有變動 {len(ch)} 條")
+        for tid, flds in ch:
+            print(f"  {tid} — {'／'.join(flds)}")
+        sys.exit(0)
+    if len(a.args) > 4:
+        globals()['BATCH'] = a.args[4]
+    if len(a.args) > 5:
+        globals()['SUPERSEDES'] = a.args[5]
+    emit(int(a.args[0]), int(a.args[1]), a.args[2], a.args[3])

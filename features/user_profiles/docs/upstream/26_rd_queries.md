@@ -6,6 +6,11 @@
 > and it identified the source document by filename only, without the
 > `CR24798 (October 03 2023)` Source ID namespace that 037 cites.
 > **Do not send this file.**
+>
+> **G-F（45 包）之處置：本檔不標指紋。**
+> 指紋標的是「仍供人據以判斷之文件」；本檔已 WITHDRAWN 且從未寄出，
+> 標了指紋反而會使它看起來像一份可用之現行文件。
+> 其現行版為 `27_rd_queries_v2.md`（已標指紋）。
 
 # RD Queries — User Profiles (FW036) — for upstream despatch
 

@@ -1,16 +1,33 @@
 # 覆核用全文 ＋ ER 出處對照 — 第五批 前半（`135`–`145`）
 
-> **⚠ 本檔已於 44 輪重出取代 → `44_review_pack_24a.md`。**
-> 本檔為靜態轉錄，**不隨重生成更新**；其產生後語料有變動 **5 條（`139`–`143`，RD #8 之處置）**。
-> 本檔無語料指紋，`build_review_pack.py --verify` 一律判其過期 ——
-> **不得以本檔作覆核依據**。原文以下保留不刪（記錄分析層當時讀到的是什麼）。
-
 - 產出層：執行層｜2026-08-18｜**供分析層逐條覆核**
-- 本檔 **11 條**；另半在 `40_review_pack_24b.md`
-- 格式同 21／23／29／34／35 輪；**本輪起由 `scripts/build_review_pack.py` 產生，不再手打轉錄**
+- 本檔 **11 條**；另半在 `44_review_pack_24b.md`
+- 由 `scripts/build_review_pack.py` 產生，不經人手轉錄
+- **本檔取代 `40_review_pack_24a.md`**（AA-1，44 包）——該檔無語料指紋，`--verify` 一律判過期
 
 > 讀法：先讀「spec 原文」與「037 description」，再讀 ER ——
 > 「這句話對不對」是本檔要問的；「這句話有沒有來源」見 §0 之出處對照。
+
+## 0.0 語料指紋（AA-1，44 包）—— 產生輪次：**44**
+
+> **本表是本 pack 之保鮮期。** 覆核前先跑：
+> `python3 scripts/build_review_pack.py --verify <本檔>` ——
+> **不符即「pack 已過期，拒絕採信」**，須重出後再讀。
+> 指紋之範圍即本 pack 所轉錄之每一個欄位（含 spec 原文、037 description、reasoning）。
+
+| tc_id | digest |
+|---|---|
+| `NR1L-UserProfiles-135` | `dcfaa3e38c16` |
+| `NR1L-UserProfiles-136` | `0011ec5d1d9a` |
+| `NR1L-UserProfiles-137` | `3124ae530738` |
+| `NR1L-UserProfiles-138` | `b68bf11414e3` |
+| `NR1L-UserProfiles-139` | `b4e94adced40` |
+| `NR1L-UserProfiles-140` | `ce7c1d2e1213` |
+| `NR1L-UserProfiles-141` | `bc9a4e380685` |
+| `NR1L-UserProfiles-142` | `cbc421ff2ec9` |
+| `NR1L-UserProfiles-143` | `1a922483286f` |
+| `NR1L-UserProfiles-144` | `7620f3da7141` |
+| `NR1L-UserProfiles-145` | `8e7243731ff7` |
 
 ## 0. ER 出處對照
 
@@ -141,12 +158,12 @@
 | tc_title / test_item | Clearing all Profiles returns Defaults to default order |
 | pre_conditions | 1. The vehicle is equipped with memory seats<br>2. Two custom Driver Profiles exist on the vehicle<br>3. The vehicle is stationary |
 | input_test_data | NA |
-| test_procedure | 1. Open the settings and select Clear Personal Data<br>2. Press Yes on popup PU0626 to confirm the clearing<br>3. Open the “All Profiles” tab and read the order of the default Profiles |
+| test_procedure | 1. Open the settings and select Clear Personal Data<br>2. Press Yes on each confirmation popup PU0626/PU_0129<br>3. Open the “All Profiles” tab and read the order of the default Profiles |
 | expected_result | 1. The Clear Personal Data setting is selected<br>2. All Profiles are cleared and the default Profiles are restored<br>3. The default Profiles are ordered by their memory seat link, from the left |
 | specification_reference | Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.12.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2 |
 | design_method | 情境 / 用例 (Scenario / Use Case Testing) |
 | priority | **P2** — 全清後回到預設順序；清除流程之後續狀態 |
-| remarks | ER3 之「default order」其內容不在 5.13.1（該節只寫`return to default order`），故**併列 5.12.1** 於引用欄，並將其內容（依記憶座椅連結）逐字寫入 ER —— 否則本條無從判定。PU0626 為 5.13.2 之確認 popup，本條之 procedure 須處理它，**故一併列 5.13.2**（X-1 之同型處置）。**PU0626 與 PU_0129 之關係條文未定** —— 本條取 PU0626（條文把「執行清除並確認」綁在該 id）；已登記 RD #8，依 §8.4.1 不推定。清除後之**現用 profile 落點**屬 `SWE1-HMI-PROF-041-01`／`SWE1-HMI-PROF-041-02`，本條只驗**順序**。 |
+| remarks | ER3 之「default order」其內容不在 5.13.1（該節只寫`return to default order`），故**併列 5.12.1** 於引用欄，並將其內容（依記憶座椅連結）逐字寫入 ER —— 否則本條無從判定。PU0626 為 5.13.2 之確認 popup，本條之 procedure 須處理它，**故一併列 5.13.2**（X-1 之同型處置）。**PU0626 與 PU_0129 之關係條文未定**（RD #8）。**41 包 §四授權逕行修正**：步驟改為「於**每一個**確認 popup PU0626/PU_0129 按 Yes」—— 兩者若為同一個，該步驟即按一次；若為兩段確認，該步驟即按兩次。**兩種讀法下本條都不會假失敗**，且驗證目標未變（§四之界線）。清除後之**現用 profile 落點**屬 `SWE1-HMI-PROF-041-01`／`SWE1-HMI-PROF-041-02`，本條只驗**順序**。 |
 
 **reasoning**：驗證目標：5.13.1（ALLPR2.1）—— 全部 profile 被清除且預設者回復後，回到預設順序。關鍵情境條件：須先存在自訂 profile 且其順序已偏離預設，否則「回到」無從觀察。為什麼這樣切：`design_method` 取情境／用例 ——本條走的是一條**跨節之流程**（5.13.2 之清除 → 5.13.1 之順序 →5.12.1 之順序內容），非單一功能點。
 
@@ -165,12 +182,12 @@
 | tc_title / test_item | Active Profile after clearing follows the active memory seat |
 | pre_conditions | 1. The vehicle is equipped with memory seats<br>2. Memory seat 2 is the currently active seat position<br>3. Two custom Driver Profiles exist on the vehicle<br>4. The vehicle is stationary |
 | input_test_data | NA |
-| test_procedure | 1. Open the settings and select Clear Personal Data<br>2. Press Yes on popup PU0626 to confirm the clearing<br>3. Read the status bar and check which Driver Profile is active |
+| test_procedure | 1. Open the settings and select Clear Personal Data<br>2. Press Yes on each confirmation popup PU0626/PU_0129<br>3. Read the status bar and check which Driver Profile is active |
 | expected_result | 1. The Clear Personal Data setting is selected<br>2. The custom Profiles are deleted and the defaults are restored<br>3. Driver 2 is the active Driver Profile |
 | specification_reference | Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2 |
 | design_method | 功能測試 (Functional based ; no specific technique) |
 | priority | **P1** — 清除個人資料後之新現用 profile —— **資料刪除為不可逆**，落點錯即需重建全部設定 |
-| remarks | **取 memory seat 2 而非 1**：條文之例即為 seat 2 → Driver 2，且**一個永遠落到 Driver 1 之實作**（即 `041-02` 之無座椅行為）在 seat 1 之設置下與正確實作不可分辨。**PU0626 與 PU_0129 之關係條文未定** —— 本條取 PU0626（條文把「執行清除並確認」綁在該 id）；已登記 RD #8，依 §8.4.1 不推定。編號出自 5.13.2 之條文（`if memory seat 2 is active, go to Driver 2`），非測試設置。 |
+| remarks | **取 memory seat 2 而非 1**：條文之例即為 seat 2 → Driver 2，且**一個永遠落到 Driver 1 之實作**（即 `041-02` 之無座椅行為）在 seat 1 之設置下與正確實作不可分辨。**PU0626 與 PU_0129 之關係條文未定**（RD #8）。**41 包 §四授權逕行修正**：步驟改為「於**每一個**確認 popup PU0626/PU_0129 按 Yes」—— 兩者若為同一個，該步驟即按一次；若為兩段確認，該步驟即按兩次。**兩種讀法下本條都不會假失敗**，且驗證目標未變（§四之界線）。編號出自 5.13.2 之條文（`if memory seat 2 is active, go to Driver 2`），非測試設置。 |
 
 **reasoning**：驗證目標：5.13.2 —— 清除個人資料後，新的現用 profile 與**當前之記憶座椅位置**對應。關鍵情境條件：車輛須有記憶座椅，且其當前位置**不是第一個**，落點方具判別力。為什麼這樣切：037 對 5.13.2 切四個 leaf；本 leaf 之單位為**有座椅時之落點**，無座椅之落點屬 `SWE1-HMI-PROF-041-02`。
 
@@ -189,12 +206,12 @@
 | tc_title / test_item | Active Profile defaults to Driver 1 without memory seats |
 | pre_conditions | 1. The vehicle is not equipped with memory seats<br>2. Two custom Driver Profiles exist on the vehicle<br>3. The vehicle is stationary |
 | input_test_data | NA |
-| test_procedure | 1. Open the settings and select Clear Personal Data<br>2. Press Yes on popup PU0626 to confirm the clearing<br>3. Read the status bar and check which Driver Profile is active |
+| test_procedure | 1. Open the settings and select Clear Personal Data<br>2. Press Yes on each confirmation popup PU0626/PU_0129<br>3. Read the status bar and check which Driver Profile is active |
 | expected_result | 1. The Clear Personal Data setting is selected<br>2. The custom Profiles are deleted and the defaults are restored<br>3. Driver 1 is the active Driver Profile |
 | specification_reference | Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2 |
 | design_method | 功能測試 (Functional based ; no specific technique) |
 | priority | **P1** — 無記憶座椅車型之落點；同上之另一分支 |
-| remarks | 與 `SWE1-HMI-PROF-041-01` 之差別只在**車型**（有無記憶座椅），而該差別為**條文自己切出之兩個分支**，非我方之變體對造：兩者之預期結果不同，且各有 037 之 leaf。**PU0626 與 PU_0129 之關係條文未定** —— 本條取 PU0626（條文把「執行清除並確認」綁在該 id）；已登記 RD #8，依 §8.4.1 不推定。編號 1 出自 5.13.2 之條文（`Driver 1 should be the new active profile`）。 |
+| remarks | 與 `SWE1-HMI-PROF-041-01` 之差別只在**車型**（有無記憶座椅），而該差別為**條文自己切出之兩個分支**，非我方之變體對造：兩者之預期結果不同，且各有 037 之 leaf。**PU0626 與 PU_0129 之關係條文未定**（RD #8）。**41 包 §四授權逕行修正**：步驟改為「於**每一個**確認 popup PU0626/PU_0129 按 Yes」—— 兩者若為同一個，該步驟即按一次；若為兩段確認，該步驟即按兩次。**兩種讀法下本條都不會假失敗**，且驗證目標未變（§四之界線）。編號 1 出自 5.13.2 之條文（`Driver 1 should be the new active profile`）。 |
 
 **reasoning**：驗證目標：5.13.2 —— 無記憶座椅之車輛，清除後之現用 profile 為 Driver 1。關鍵情境條件：車輛**無**記憶座椅 —— 這是本分支之成立條件本身。為什麼這樣切：與 `041-01` 同節不同分支；併為一條則兩個互斥之車型條件會落在同一個 pre-condition 內。
 
@@ -213,12 +230,12 @@
 | tc_title / test_item | PU1089 on confirmation and PU1090 on successful clearing |
 | pre_conditions | 1. Two custom Driver Profiles exist on the vehicle<br>2. The vehicle is stationary |
 | input_test_data | NA |
-| test_procedure | 1. Open the settings and select Clear Personal Data<br>2. Press Yes on popup PU_0129 and read the popup shown<br>3. Wait until the clearing ends and read the popup shown |
+| test_procedure | 1. Open the settings and select Clear Personal Data<br>2. Press Yes on each confirmation popup PU0626/PU_0129 and read the popup shown<br>3. Wait until the clearing ends and read the popup shown |
 | expected_result | 1. The Clear Personal Data setting is selected<br>2. PU1089 is displayed<br>3. PU1090 is displayed once the data have been cleared |
 | specification_reference | Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2 |
 | design_method | 功能測試 (Functional based ; no specific technique) |
 | priority | **P2** — 清除流程之進度與完成 popup；流程可見性 |
-| remarks | **PU1089／PU1090 之內文不寫**（R-U27 同型）—— spec 只給 id，未給文字；ER 只斷言其顯示與時機。**保留歧義（§8.4.1）**：5.13.2 之確認 popup 同時寫了 PU0626（`confirming from popup PU0626`）與 PU_0129（`pressing Yes/Ok in pop-up PU_0129`），**兩者之關係條文未定義**。本條之步驟 2 取 PU_0129 ——因條文把「按 Yes/Ok 觸發 PU1089」這件事綁在 PU_0129 上。**該歧義已登記為 RD #8，不逕行合併判定。** |
+| remarks | **PU1089／PU1090 之內文不寫**（R-U27 同型）—— spec 只給 id，未給文字；ER 只斷言其顯示與時機。**RD #8 —— 41 包 §四授權逕行修正**：5.13.2 之確認 popup 同時寫了 PU0626（`confirming from popup PU0626`）與 PU_0129（`pressing Yes/Ok in pop-up PU_0129`），**兩者之關係條文未定義**。本條之步驟 2 取 PU_0129 ——因條文把「按 Yes/Ok 觸發 PU1089」這件事綁在 PU_0129 上。**本條之步驟 2 改為「於每一個確認 popup PU0626/PU_0129 按 Yes」** ——兩者若為同一個即按一次，若為兩段確認即按兩次；**兩種讀法下皆不假失敗**。RD #8 仍照送（上游知情），但不作為修正之前提。 |
 
 **reasoning**：驗證目標：5.13.2 —— 清除流程之進度 popup（PU1089）與完成 popup（PU1090）。關鍵情境條件：須有可清之自訂資料，否則「完成」之時點不可觀察。為什麼這樣切：本 leaf 之單位為**成功路徑之兩個 popup**；失敗路徑之 PU1091 屬 `SWE1-HMI-PROF-041-04`，其成立條件（HU／TBM 不回報完成）與本條互斥。
 
@@ -237,7 +254,7 @@
 | tc_title / test_item | PU1091 shown when clearing is not confirmed complete |
 | pre_conditions | 1. Two custom Driver Profiles exist on the vehicle<br>2. The vehicle is equipped with a Telematics Box Module<br>3. The vehicle is stationary |
 | input_test_data | Fault injected: the Telematics Box Module withholds its completion report for the data clearing |
-| test_procedure | 1. Open the settings and select Clear Personal Data<br>2. Press Yes on popup PU_0129 to confirm the clearing<br>3. Suppress the completion report of the Telematics Box Module<br>4. Read the screen and check which popup is displayed |
+| test_procedure | 1. Open the settings and select Clear Personal Data<br>2. Press Yes on each confirmation popup PU0626/PU_0129<br>3. Suppress the completion report of the Telematics Box Module<br>4. Read the screen and check which popup is displayed |
 | expected_result | 1. The Clear Personal Data setting is selected<br>2. PU1089 is displayed<br>3. The Telematics Box Module does not report complete data clearing<br>4. PU1091 is displayed |
 | specification_reference | Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2 |
 | design_method | 基礎故障注入 (Fault Injection Lite) |

@@ -589,6 +589,48 @@ def z1_ru56_scope(rows) -> list:
     return hits
 
 
+# ── AB-1（45 包）—— ER 之「與前步紀錄比對」，其兩端各屬何物
+#
+# `TC-154`（6.4）之 ER4 原為 `The preferences are unchanged from those
+# recorded in step 1`，而 6.4 所要者是**新建之 profile 繼承現用者之偏好**。
+# 未指明所讀者為誰之偏好時，該句可讀成「現用 profile 之偏好沒被動到」——
+# **那在任何實作下皆真，包括一個起始設定但完全不帶入偏好之實作**（§7 之 false pass）。
+#
+# ## 兩種失效形態
+#
+# | 形態 | 例 |
+# |---|---|
+# | **兩端同物而其間無可改變之事件** → 恆真 | `TC-154` 之原形 |
+# | **兩端未指名** → 歧義（讀者不知道在比什麼） | `TC-148` 之原形 |
+#
+# **兩端同物本身不是缺陷** —— `TC-084`（跨 key cycle 之保留）、
+# `TC-137`（編輯連結後順序不變）之兩端都是同一個東西，
+# 其判別力來自**中間那個事件**。故本掃描**只把兩端並排列出，不硬判**：
+# 「中間那個事件改不改得動它」要讀條文才知道。
+AB1_CMP = re.compile(
+    r"\b(unchanged from|remains the same|is the same as|are the same as|"
+    r"differs from|match(?:es)? those|match(?:es)? the value|matches the)\b",
+    re.I)
+AB1_STEP = re.compile(r"\bstep (\d+)\b", re.I)
+
+
+def ab1_compare_ends(rows) -> list:
+    hits = []
+    for sec, t in rows:
+        er = [x for x in str(t["expected_result"]).splitlines() if x.strip()]
+        proc = [x for x in str(t["test_procedure"]).splitlines() if x.strip()]
+        for ln in er:
+            m, sm = AB1_CMP.search(ln), AB1_STEP.search(ln)
+            if not (m and sm):
+                continue
+            subj = re.sub(r"^\s*\d+\.\s*", "", ln[:m.start()]).strip()
+            n = int(sm.group(1))
+            step = re.sub(r"^\s*\d+\.\s*", "", proc[n - 1]) if \
+                0 < n <= len(proc) else "**該步驟不存在**"
+            hits.append((t["tc_id"], sec, subj[:60], f"step {n}: {step[:60]}"))
+    return sorted(hits)
+
+
 def tcs() -> list:
     out = []
     for p in sorted((FEATURE / "generated").glob("*.json")):
@@ -769,6 +811,34 @@ SELF_CASES = [
      _tc(req_id="SWE1-HMI-PROF-009", tc_id="NR1L-UserProfiles-096",
          remarks="座椅鍵編號為測試設置（J-12）"), False),
 
+    # ---- AB-1：比對兩端（45 包）
+    ("**TC-154 之原形**：ER 比對而未指明所讀者為誰之偏好 → **須列入待判**",
+     "ab1",
+     _tc(test_procedure="1. Record the current preferences of the active "
+                        "Driver Profile\n2. Press Get Started\n"
+                        "3. Read the screen\n"
+                        "4. Read the preferences and compare them with step 1",
+         expected_result="1. The current preferences are recorded\n2. ok\n"
+                         "3. ok\n"
+                         "4. The preferences are unchanged from those "
+                         "recorded in step 1"), True),
+    ("其修正後之形：兩端各已指名 → **仍列入待判**（本掃描不硬判，只並排）",
+     "ab1",
+     _tc(test_procedure="1. Record the current preferences of the active "
+                        "Driver Profile\n2. Press Get Started\n"
+                        "3. Read the screen\n"
+                        "4. Complete the setup and read the preferences of "
+                        "the new Driver Profile",
+         expected_result="1. The current preferences are recorded\n2. ok\n"
+                         "3. ok\n"
+                         "4. The preferences of the new Driver Profile are "
+                         "the same as those recorded in step 1"), True),
+    ("**護欄**：ER 無「與前步比對」之句 → **不得列入**", "ab1",
+     _tc(expected_result="1. The tab is displayed\n2. The icon is shown"),
+     False),
+    ("**護欄**：有比對語而無 step 互參（非回溯比對）→ **不得列入**", "ab1",
+     _tc(expected_result="1. The value differs from the default"), False),
+
     # ---- X-1：跨節 popup 之未處理（35 包）
     # **本案例補過一次（41 輪，隨 PU0588 之成立條件而改）。**
     # 原案例之 `pre_conditions` 用預設值（只提 B），而 `TC-128` 之真實形態
@@ -921,7 +991,8 @@ SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b,
          "q1": q1_unquoted, "t1": t1_step_refs,
          "u2": u2_unused_record, "v1": v1_timing,
          "w1": w1_perfect_pre, "x1": x1_unhandled_popup,
-         "y1": y1_pair_claims, "z1": z1_ru56_scope}
+         "y1": y1_pair_claims, "z1": z1_ru56_scope,
+         "ab1": ab1_compare_ends}
 
 
 def self_test() -> int:
@@ -1016,6 +1087,13 @@ if __name__ == "__main__":
     print(f"\n## Q-1 —— 引號外之逐字引用（≥{NGRAM} 詞）：{len(q)} 處待判\n")
     for tid, sec, g in q:
         print(f"  {tid} ({sec}) 「{g[:70]}」")
+
+    ab = ab1_compare_ends(rows)
+    print(f"\n## AB-1 —— ER 與前步紀錄之比對，兩端並排：{len(ab)} 處待判\n")
+    for tid, sec, subj, step in ab:
+        print(f"  {tid} ({sec})")
+        print(f"      A 端（ER 之主詞）：{subj}")
+        print(f"      B 端（{step}）")
 
     c = k4b(rows)
     print(f"\n## K-4b —— priority ↔ priority_basis 之措辭：{len(c)} 處待判\n")

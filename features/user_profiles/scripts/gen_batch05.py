@@ -564,14 +564,14 @@ TCS = {
                    "Profile",
                    "Choose an avatar and press Save & Continue",
                    "Read the screen shown after the avatar step",
-                   "Read the preferences and compare them with those "
-                   "recorded in step 1"),
+                   "Read the preferences of the active Driver Profile and "
+                   "compare them with step 1"),
         er=steps("The current preferences are recorded",
                  "The avatar is chosen and the avatar step ends",
                  "Tutorials begin and no Connected Personal Account login "
                  "is launched",
-                 "The preferences are unchanged from those recorded in "
-                 "step 1"),
+                 "The preferences of the active Driver Profile are "
+                 "unchanged from those recorded in step 1"),
         remarks="**變體 axis `r1h-cpa-6.1`**：本條為 R1 High 側。"
                 "base 側（`Is CPA present?` 為是時啟動 CPA 登入）"
                 "**在 037 內無 leaf** —— 它只出現於 PDF p9 之流程圖，"
@@ -588,6 +588,11 @@ TCS = {
             "為什麼這樣切：`design_method` 取情境／用例 ——"
             "本條驗的是**一段流程之走向**（avatar → 不進 CPA → 進 Tutorials），"
             "非單一畫面之功能點。"
+            "**AB-1（45 包）之連帶**：ER4 之兩端**皆為現用 profile 之偏好**"
+            "（設定前後兩個時點），故指名之 —— 與 `TC-154` 不同："
+            "那一條之兩端是**兩個不同的 profile**。"
+            "**本條之兩端同物不是恆真**：其間之事件（avatar 步驟）"
+            "在 base 變體上正是 CPA 會介入之處。"
             "**ER4 之偏好比對不可省**：條文說的是 `keep current preferences`，"
             "一個「跳過 CPA 但把偏好重設為預設」之實作，"
             "只驗 Tutorials 有沒有開會通過（§8.3）。"),
@@ -778,15 +783,22 @@ TCS = {
                    "Press Get Started on the Welcome popup",
                    "Read the screen and check that the New Profile Setup "
                    "started",
-                   "Read the preferences and compare them with those "
-                   "recorded in step 1"),
+                   "Complete the setup and read the preferences of the new "
+                   "Driver Profile"),
         er=steps("The current preferences are recorded",
                  "The New Profile Setup is initiated",
                  "The first step of the New Profile Setup is displayed and "
                  "no confirmation popup appeared",
-                 "The preferences are unchanged from those recorded in "
-                 "step 1"),
-        remarks="**三個斷言各有其失效方式**：起始設定（ER2／ER3 前半）、"
+                 "The preferences of the new Driver Profile are the same as "
+                 "those recorded in step 1"),
+        remarks="**AB-1（45 包）**：步驟 4 與 ER4 原寫「讀偏好，與步驟 1 所記者"
+                "**未改變**」而**未指明所讀者為誰之偏好** —— 若讀成「現用之"
+                "預設 profile 之偏好沒被動到」，該斷言**在任何實作下皆真**，"
+                "**包括一個起始設定但完全不帶入偏好之實作**（§7 之 false pass）。"
+                "現指明所讀者為**設定流程所建之新 profile**，"
+                "且 ER4 斷言其與步驟 1 所記者**相同**（carry-over 成立），"
+                "非「未改變」。"
+                "**三個斷言各有其失效方式**：起始設定（ER2／ER3 前半）、"
                 "**無確認 popup**（ER3 後半，條文之 `without a popup to "
                 "confirm`）、**偏好沿用**（ER4）。"
                 "缺任一者，條文之一部分即無人驗。"
@@ -800,7 +812,10 @@ TCS = {
             "為什麼這樣切：`design_method` 取情境／用例 ——"
             "本條跨 popup 與設定流程兩個畫面族。"
             "**ER3 之缺席斷言不可省**：條文特別標明「不出現確認 popup」，"
-            "那是與 6.3.1 之詢問行為刻意對比之設計。"),
+            "那是與 6.3.1 之詢問行為刻意對比之設計。"
+            "**ER4 之兩端各屬何物須明指（AB-1）**：一端為**步驟 1 所記之"
+            "現用 profile 之偏好**，另一端為**新建 profile 之偏好** ——"
+            "**兩端同物則恆真**，而條文所要者正是兩端不同物而值相同。"),
         kw=["Get Started", "New Profile Setup", "carry over", "preferences"],
     ),
 

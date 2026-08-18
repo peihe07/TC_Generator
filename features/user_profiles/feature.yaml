@@ -118,9 +118,18 @@ write_back:
   vehicle_columns:
     value: null
     applied: false
-    why: "未決 1。43 輪實測：Comfort 交付件之 T:Z 七欄**逐列為空**（466 列），
-      且母本該區之 DV 自帶 allowBlank=1 —— **留空為表單自身所允許**。
-      故留空有先例亦有依據；填值方須依據。"
+    # **44 包：本項不再是未決，是決定。** applied:false 於此不是「還沒想好」，
+    # 而是「經實測後選擇留空」—— 兩者在 yaml 裡長得一樣，故此註記不可省。
+    why: "**定為留空（44 包作業 3）。** 依據三項，皆為實測：
+      (1) Comfort 交付件 …_Comfort_20260817_rowsort.xlsx 之 T:Z 七欄
+          **466 資料列逐列為空**（43 輪唯讀量測）；
+      (2) 其 scripts/write_back.py 之 NEVER_WRITE 常數**逐字列有 T U V W X Y Z**
+          —— 該七欄從未被寫是明寫的決定，不是遺漏；
+      (3) 母本該區之 DV 為 sqref=T10:Z1411 且自帶 allowBlank=1
+          —— **留空為表單自身所允許**。
+      另：本 feature 189 條 TC 無一條之 pre-condition 提及車型，
+      即使取得逐車型之依據亦無從逐條對應（42 輪 §7-3）。
+      **填值方須依據；欲改填值時改 applied 與 value 即生效，不改程式。**"
   row_order:
     value: "req_id"
     applied: true
