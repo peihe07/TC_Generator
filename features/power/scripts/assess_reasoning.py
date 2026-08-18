@@ -17,6 +17,15 @@ G129 之門檻係以批次一至三為校準語料，**而該語料本身未經�
     依 §10.4 之明文判為**未涵蓋**
   - 第 4 項為 optional，**不計入涵蓋率之分母**
 
+**口徑（R-P219，30 包明載）** —— 本閘同時產出二個數，二者不得混用：
+
+  - **單項率**：某一項之涵蓋（如「第 2 項 33 / 33」）—— 27 包所載者即此
+  - **齊備率**：第 1 ＋ 2 ＋ 3 三項**同時**成立（29 包所載之 25 / 33 即此）
+
+27 包之 33 / 33 與 29 包之 25 / 33 **並非矛盾，係口徑不同**：
+前者為第 2 項單項（補寫後確為 33 / 33，本包複驗仍然），
+後者為三項齊備。往後引用本閘之數字須標明其為單項率抑或齊備率。
+
 用法：
     python features/power/scripts/assess_reasoning.py
 """
@@ -96,7 +105,18 @@ def main() -> None:
            f"{sum(r['i3'] == '有依據' for r in rs)} / {len(rs)} | "
            f"{sum(r['i3'] == '有依據' for r in rs)/len(rs)*100:.0f}% |\n",
            f"| 4 刻意略過（optional）| {sum(r['i4'] for r in rs)} / {len(rs)} | — |\n",
-           f"\n**三項皆涵蓋者 {len(ok)} / {len(rs)}；需補寫 {len(need)}。**\n",
+           f"\n### 二個口徑（R-P219）\n\n"
+           f"- **單項率** —— 第 2 項「關鍵情境條件」**{sum(r['i2'] for r in rs)} / {len(rs)}**"
+           f"（27 包所載之 33 / 33 即此口徑，本包複驗仍然）\n"
+           f"- **齊備率** —— 第 1 ＋ 2 ＋ 3 三項**同時**成立"
+           f"**{len(ok)} / {len(rs)}**（29 包所載之 25 / 33 即此口徑）\n"
+           f"\n**二數並非矛盾，係口徑不同；引用時須標明。**\n"
+           f"\n未達齊備者 **{len(need)}** 份，其所缺**全為第 3 項**"
+           f"（判為「空語」）—— 該判定係取**首個** `為什麼這樣切：` 段落"
+           f"（原有之「單一行為，不拆」，依 R-P203(c) 不得刪改），"
+           f"而 27 包所補之實質依據位於其後且於 `**` 處截斷。"
+           f"**內容非缺漏；放寬判定式之方向對執行層有利，依 R-P187 未自行修改，"
+           f"27 包已呈請裁定，至今未裁。**\n",
            "\n## 逐份明細\n\n| leaf | 批 | 字數 | 1 目標 | 2 情境 | 3 切法 | 4 略過 |\n"
            "|---|---|---|---|---|---|---|\n"]
     for r in rs:
@@ -106,7 +126,11 @@ def main() -> None:
                    f"{'✓' if r['i4'] else '—'} |\n")
     (DATA / "g137_reasoning_assessment.md").write_text("".join(out), encoding="utf-8")
     print(f"wrote {(DATA / 'g137_reasoning_assessment.md').relative_to(ROOT)}")
-    print(f"  母體 {len(rs)} 份；三項皆涵蓋 {len(ok)}；**需補寫 {len(need)}**")
+    print(f"  母體 {len(rs)} 份")
+    print(f"  **單項率**：1 驗證目標 {sum(r['i1'] for r in rs)} / {len(rs)}、"
+          f"2 關鍵情境條件 {sum(r['i2'] for r in rs)} / {len(rs)}、"
+          f"3 為什麼這樣切（有依據）{sum(r['i3'] == '有依據' for r in rs)} / {len(rs)}")
+    print(f"  **齊備率（第 1+2+3 同時成立）**：{len(ok)} / {len(rs)}；未達 {len(need)}")
     print(f"  第 2 項（關鍵情境條件）涵蓋 {sum(r['i2'] for r in rs)} / {len(rs)}")
     print(f"  第 3 項判為空語 {sum(r['i3'] == '空語' for r in rs)}、"
           f"缺 {sum(r['i3'] == '缺' for r in rs)}")

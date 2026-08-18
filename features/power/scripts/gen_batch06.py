@@ -136,16 +136,26 @@ REASONING = {
   "依 §5.7 之不同輸入值拆為二條 —— 只測其一無法判別 HU 是否真的在跟隨該訊號。"
   "刻意略過：`Theme Mode` 之另二值由 `SWE-PM-091` / `SWE-PM-092` 承接（§8.2.1）。",
  "SWE-PM-091":
-  "驗證目標：`Theme Mode` 設為 `Day` 時是否固定採用 Day theme。"
+  "驗證目標：`Theme Mode` 設為 `Day` 時是否採用 Day theme。"
   "關鍵情境條件：`Theme Mode` = `Day`。"
-  "為什麼這樣切：單一固定行為，一條即足；"
-  "為驗其「固定」，前提刻意置於 `$Day_Night_Mode$` 指向夜間之情境。"
+  "為什麼這樣切：單一行為，一條即足 —— clause 僅載「設為 Day 則用 Day theme」，無其他分支。"
+  "**R-P211(b) 處置（29 包）**：原版以注入 `$Day_Night_Mode$` 驗「設定覆蓋訊號」，"
+  "而本 leaf 之 clause **未載任何覆蓋機制、亦未提該訊號** —— 判為 (b) 真陽性（§8.4.2），"
+  "**已移除該注入**，改為僅驗 clause 所載之行為。"
+  "原「為驗其固定性而置於相反訊號值之情境」之設計隨之取消 ——"
+  "**不得以「為驗證需要」為由保留無依據之注入**。"
+    "**涵蓋缺口登記（R-P216(b)，30 包）**：移除注入後，「`Theme Mode` 設為 `Day`/`Night` 時能否無視 `$Day_Night_Mode$`」**無任何 TC 涵蓋**。已逐詞掃描確認 clause 無 `regardless` / `override` / `irrespective` / 優先序一類措詞，故屬 **(b) clause 未載該機制** ——**已開 DR-PW15 登記，未使其靜默消失**；若上游確認該機制存在，須補測。"
   "刻意略過：`Auto` 與 `Night` 由 `SWE-PM-090` / `SWE-PM-092` 承接（§8.2.1）。",
  "SWE-PM-092":
-  "驗證目標：`Theme Mode` 設為 `Night` 時是否固定採用 Night theme。"
+  "驗證目標：`Theme Mode` 設為 `Night` 時是否採用 Night theme。"
   "關鍵情境條件：`Theme Mode` = `Night`。"
-  "為什麼這樣切：單一固定行為，一條即足；"
-  "前提刻意置於 `$Day_Night_Mode$` 指向日間之情境以驗其「固定」。"
+  "為什麼這樣切：單一行為，一條即足 —— clause 僅載「設為 Night 則用 Night theme」，無其他分支。"
+  "**R-P211(b) 處置（29 包）**：原版以注入 `$Day_Night_Mode$` 驗「設定覆蓋訊號」，"
+  "而本 leaf 之 clause **未載任何覆蓋機制、亦未提該訊號** —— 判為 (b) 真陽性（§8.4.2），"
+  "**已移除該注入**，改為僅驗 clause 所載之行為。"
+  "原「為驗其固定性而置於相反訊號值之情境」之設計隨之取消 ——"
+  "**不得以「為驗證需要」為由保留無依據之注入**。"
+    "**涵蓋缺口登記（R-P216(b)，30 包）**：移除注入後，「`Theme Mode` 設為 `Day`/`Night` 時能否無視 `$Day_Night_Mode$`」**無任何 TC 涵蓋**。已逐詞掃描確認 clause 無 `regardless` / `override` / `irrespective` / 優先序一類措詞，故屬 **(b) clause 未載該機制** ——**已開 DR-PW15 登記，未使其靜默消失**；若上游確認該機制存在，須補測。"
   "刻意略過：`Auto` 與 `Day` 由 `SWE-PM-090` / `SWE-PM-091` 承接（§8.2.1）。",
  "SWE-PM-096":
   "驗證目標：Ignition On 時之季節變更判定，及其對開機動畫之影響。"
@@ -399,24 +409,28 @@ TCS: dict[str, list[tuple]] = {
    "P0", "本條驗 Auto 跟隨夜間值"),
  ],
  "SWE-PM-091": [
-  ("The day theme mode keeps the Day theme regardless of the day night signal",
+  # R-P211(b)（29 包）：原版注入 `$Day_Night_Mode$` 以驗「設定覆蓋訊號」，
+  # 而本 leaf 之 clause **未載任何覆蓋機制、亦未提該訊號** —— 判為真陽性（§8.4.2），
+  # 已**移除該注入**，改為僅驗 clause 所載之行為。
+  ("The day theme mode uses the Day theme",
    [SIM, 'The "Theme Mode" setting reads "Day"'],
-   '$Day_Night_Mode$: the value indicating night',
-   ["Send the value listed in Input Test Data",
-    "Read the applied theme to check whether the setting overrides the signal"],
-   ["The HU accepts the signal value",
+   "NA",
+   ["Bring the HU to the theme presentation",
+    "Read the applied theme to check which theme the HU uses"],
+   ["The theme presentation is reached",
     "The HU uses the Day theme"],
-   "P0", "本條驗 Day 設定之固定性"),
+   "P0", "本條驗 Theme Mode 設為 Day 之結果"),
  ],
  "SWE-PM-092": [
-  ("The night theme mode keeps the Night theme regardless of the day night signal",
+  # R-P211(b)（29 包）：同 `SWE-PM-091`，注入已移除。
+  ("The night theme mode uses the Night theme",
    [SIM, 'The "Theme Mode" setting reads "Night"'],
-   '$Day_Night_Mode$: the value indicating day',
-   ["Send the value listed in Input Test Data",
-    "Read the applied theme to check whether the setting overrides the signal"],
-   ["The HU accepts the signal value",
+   "NA",
+   ["Bring the HU to the theme presentation",
+    "Read the applied theme to check which theme the HU uses"],
+   ["The theme presentation is reached",
     "The HU uses the Night theme"],
-   "P0", "本條驗 Night 設定之固定性"),
+   "P0", "本條驗 Theme Mode 設為 Night 之結果"),
  ],
  "SWE-PM-096": [
   ("The season changes to Summer at the December date",

@@ -67,7 +67,7 @@
    "section": "1.6.2.1.15",
    "source_anchor": "4941552,4941553,4941554,4941555,4941556,4941557",
    "source_clause": "IF TLM_Status.Info and $Telematic_Power$ == \"Idle\"AND signal Front_Panel_OnOff.Req has a transition from “Not_Pressed” value to “Pressed” valueTHEN\nIF PROXI parameter Rear_View_Camera == \"Present\" AND Rear_Camera_Enable.Info == True THEN TLM ignores this transition ELSE\nTLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time AND TLM has to set VPLastStatus to “ON” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and then it passes to TLM Full-Operation state.\nIF TLM_Status.Info and $Telematic_Power$ == \"Idle\"AND signal CLIMATIC_PANEL.Radio_Btn0 has a transition from “Not_Pressed” value to “Pressed” valueTHEN\nIF PROXI parameter Rear_View_Camera == \"Present\" AND Rear_Camera_Enable.Info == True THEN TLM ignores this transition ELSE\nTLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time AND TLM has to set VPLastStatus to “ON” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and then it passes to TLM Full-Operation state.",
-   "reasoning": "驗證目標：Idle 下二個開機鍵之按下，於後視攝影機啟用時被忽略、否則顯示 Splash Screen 並轉 Full-Operation。為什麼這樣切：二鍵為不同觸發（§5.7），其下 IF / ELSE 為兩個互斥分支，共四條。刻意略過：`4941554` 所引之「Splash Screen logo visualization」章節屬他 leaf，依 §8.2.1 本條僅驗其顯示與時長。\n\n**關鍵情境條件（§10.4-2 補寫，27 包）**：TLM 於 Idle，分別按下二個開機鍵；`Rear_Camera_Enable.Info` 分別為 `False` 與 `Rear_View_Camera` 為 `Present` 且該訊號為 `True`。"
+   "reasoning": "驗證目標：Idle 下二個開機鍵之按下，於後視攝影機啟用時被忽略、否則顯示 Splash Screen 並轉 Full-Operation。為什麼這樣切：二鍵為不同觸發（§5.7），其下 IF / ELSE 為兩個互斥分支，共四條。刻意略過：`4941554` 所引之「Splash Screen logo visualization」章節屬他 leaf，依 §8.2.1 本條僅驗其顯示與時長。\n\n**關鍵情境條件（§10.4-2 補寫，27 包）**：TLM 於 Idle，分別按下二個開機鍵；`Rear_Camera_Enable.Info` 分別為 `False` 與 `Rear_View_Camera` 為 `Present` 且該訊號為 `True`。\n\n**R-P210 (b) 型處置（29 包）**：`076` / `078` 之前提 `Rear_Camera_Enable.Info reads \"False\"` 之 `False` 未見於 clause（clause 載 `== True`）。（i）**選擇依據 —— clause 之 ELSE 分支即該條件不成立**；該訊號為布林，`False` 為 `True` 之唯一否定值。（ii）**行為隨該值而異，而本條所驗即該二分支**（忽略 vs 顯示 Splash Screen），二側皆已成條。"
   },
   {
    "parent": "SWE-PM-020",
@@ -123,21 +123,21 @@
    "section": "1.6.2.1.15",
    "source_anchor": "4941579,4941642",
    "source_clause": "IF Antitheft_Result.Info == \"Not_Successfully\", THEN TLM has to set Antitheft_Activation.Req back to \"False\" value, showing proper HMI Antitheft screens if needed, for a maximum time equal to Timeout1.\nIF Antitheft_Result.Info == \"Not_Successfully\", THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and to stay in the original state (Partial Operation),  showing proper HMI Antitheft screens, if needed (see VF210).",
-   "reasoning": "驗證目標：防盜失敗後之請求復歸與畫面時限，及其於 Partial Operation 下之停留。為什麼這樣切：`4941579` 與 `4941642` 為二個錨點，前者載最長 Timeout1 之畫面時限、後者載停留於原狀態（Partial Operation），二者之可觀察結果不同，各拆一條。\n\n**關鍵情境條件（§10.4-2 補寫，27 包）**：`Antitheft_Activation.Req` 為 `True`、TLM 於 Partial Operation，`Antitheft_Result.Info` 送入 `Not_Successfully`。"
+   "reasoning": "驗證目標：防盜失敗後之請求復歸與畫面時限，及其於 Partial Operation 下之停留。為什麼這樣切：`4941579` 與 `4941642` 為二個錨點，前者載最長 Timeout1 之畫面時限、後者載停留於原狀態（Partial Operation），二者之可觀察結果不同，各拆一條。\n\n**關鍵情境條件（§10.4-2 補寫，27 包）**：`Antitheft_Activation.Req` 為 `True`、TLM 於 Partial Operation，`Antitheft_Result.Info` 送入 `Not_Successfully`。\n\n**R-P210 (b) 型處置（29 包）**：前提 `Antitheft_Activation.Req reads \"True\"` 之 `True` 未見於本 leaf 之 clause（clause 載 `set … back to \"False\"`）。（i）**選擇依據 —— clause 之「set 　back to `False`」蘊含其先前為 `True`**；其被設為 `True` 之時點另見 `SWE-PM-034` / `044` 之 clause（防盜啟動）。（ii）**行為隨該值而異**：若起始已為 `False`，「set back to False」無可觀察變化，該前提為本條可判讀之必要條件，非任意選定。"
   },
   {
    "parent": "SWE-PM-028",
    "section": "1.6.2.1.15",
    "source_anchor": "4941580,4941581,4941582",
    "source_clause": "IF Antitheft_Result.Info == \"Successfully\" THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and following logic must be guaranteed:\nIF SwitchOff_Timeout_Setting.Req == 00 min or ( If Auto_SwitchOn_Setting.Req ==\"Active \", when  Timeout1 == 00 MIN\" for LTM High Radio): THENTLM has to set Timeout1 to the value specified by PROXI parameter “Switch_Off_Time” (for example 20 minutes if Switch_Off_Time == 20 minutes), only for this case,  restoring it to \"00 minutes\" at next Ignition On event.\nAND TLM has to set TLM_Status.Info and $Telematic_Power$ to \"Timed\" value and it passes to TLM Timed state.",
-   "reasoning": "驗證目標：防盜成功後之請求復歸、Timeout1 之暫時取值與其復歸、以及狀態轉換。為什麼這樣切：三者為獨立部分失效，依 §8.2.2 各拆一條。\n\n**補測同步（R-P191，26 包）**：23 包 G113 另攔下本 leaf 之 LTM High OR 分支並補測（A-PW125）。上開「三者各拆一條」之敘述未含該軸，於此補記。**重疊登記（R-P196）**：本 leaf 與 `SWE-PM-029` 之 `source_clause` 相似度 0.85（錨點不同），內容近乎重複；依 §8.2.2 不代 RD 合併，二者各自成條。\n\n**關鍵情境條件（§10.4-2 補寫，27 包）**：`Antitheft_Activation.Req` 為 `True`、`SwitchOff_Timeout_Setting.Req` 為 `00 min`，bench 含 LTM High Radio，`Antitheft_Result.Info` 送入 `Successfully`。"
+   "reasoning": "驗證目標：防盜成功後之請求復歸、Timeout1 之暫時取值與其復歸、以及狀態轉換。為什麼這樣切：三者為獨立部分失效，依 §8.2.2 各拆一條。\n\n**補測同步（R-P191，26 包）**：23 包 G113 另攔下本 leaf 之 LTM High OR 分支並補測（A-PW125）。上開「三者各拆一條」之敘述未含該軸，於此補記。**重疊登記（R-P196）**：本 leaf 與 `SWE-PM-029` 之 `source_clause` 相似度 0.85（錨點不同），內容近乎重複；依 §8.2.2 不代 RD 合併，二者各自成條。\n\n**關鍵情境條件（§10.4-2 補寫，27 包）**：`Antitheft_Activation.Req` 為 `True`、`SwitchOff_Timeout_Setting.Req` 為 `00 min`，bench 含 LTM High Radio，`Antitheft_Result.Info` 送入 `Successfully`。\n\n**R-P210 (b) 型處置（29 包）**：`True` 未見於 clause。（i）（ii）同 `SWE-PM-027` —— 「set back to `False`」蘊含起始為 `True`，且該前提為可判讀之必要條件。"
   },
   {
    "parent": "SWE-PM-029",
    "section": "1.6.2.1.15",
    "source_anchor": "4941586,4941587,4941588,4941589",
    "source_clause": "IF Antitheft_Result.Info == \"Successfully\" THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and following logic must be guaranteed:\nIF SwitchOff_Timeout_Setting.Req == 00 min  THENTLM has to set Timeout1 to the value specified by PROXI parameter “Switch_Off_Time” (for example 20 minutes if Switch_Off_Time == 20 minutes), only for this case,  restoring it to \"00 minutes\" at next Ignition On event.\nIF SwitchOff_Timeout_Setting.Req == 00 min  THEN TLM has to set Timeout1 to the value specified by $PwrAccDelayAct$ (for example 10  minutes if $PwrAccDelayAct$ == 10 minutes), only for this case,  restoring it to \"00 minutes\" at next Ignition  On event.\nAND TLM has to set TLM_Status.Info and $Telematic_Power$ to \"Timed\" value and it passes to TLM Timed state.",
-   "reasoning": "驗證目標：同 `SWE-PM-028` 之防盜成功邏輯，惟本 leaf 之 Timeout1 取值另有 `$PwrAccDelayAct$` 一支。為什麼這樣切：`4941587`（取自 `Switch_Off_Time`）與 `4941588`（取自 `$PwrAccDelayAct$`）為二個不同來源，各拆一條；請求復歸與狀態轉換另各一條。\n\n**關鍵情境條件（§10.4-2 補寫，27 包）**：同 `SWE-PM-028` 之前提，另以 `$PwrAccDelayAct$` 為 10 分鐘、`Switch_Off_Time` 為 20 分鐘，以區別 Timeout1 之二個取值來源。"
+   "reasoning": "驗證目標：同 `SWE-PM-028` 之防盜成功邏輯，惟本 leaf 之 Timeout1 取值另有 `$PwrAccDelayAct$` 一支。為什麼這樣切：`4941587`（取自 `Switch_Off_Time`）與 `4941588`（取自 `$PwrAccDelayAct$`）為二個不同來源，各拆一條；請求復歸與狀態轉換另各一條。\n\n**關鍵情境條件（§10.4-2 補寫，27 包）**：同 `SWE-PM-028` 之前提，另以 `$PwrAccDelayAct$` 為 10 分鐘、`Switch_Off_Time` 為 20 分鐘，以區別 Timeout1 之二個取值來源。\n\n**R-P210 (b) 型處置（29 包）**：`True` 未見於 clause。（i）（ii）同 `SWE-PM-027`。"
   },
   {
    "parent": "SWE-PM-030",
@@ -151,7 +151,7 @@
    "section": "1.6.2.1.15",
    "source_anchor": "4941615",
    "source_clause": "IF Rear_View_Camera PROXI parameter == \"Present\", according to the value of Rear_Camera_Enable.Info, TLM shall show or not rear view camera images regardless of TLM_Status.Info and $Telematic_Power$ value.",
-   "reasoning": "驗證目標：後視影像之顯示與 TLM_Status.Info 無關。單一行為，以「訊號 False 與 True 兩段」於同一條內對照，因其為同一行為之兩個取值而非兩個行為。\n\n**關鍵情境條件（§10.4-2 補寫，27 包）**：`Rear_View_Camera` 為 `Present`、TLM 於 Standby，`Rear_Camera_Enable.Info` 依序送 `False` 與 `True`。"
+   "reasoning": "驗證目標：後視影像之顯示與 TLM_Status.Info 無關。單一行為，以「訊號 False 與 True 兩段」於同一條內對照，因其為同一行為之兩個取值而非兩個行為。\n\n**關鍵情境條件（§10.4-2 補寫，27 包）**：`Rear_View_Camera` 為 `Present`、TLM 於 Standby，`Rear_Camera_Enable.Info` 依序送 `False` 與 `True`。\n\n**R-P210 (b) 型處置（29 包）**：`110` 之前提 `The TLM is in Standby state` 之 `Standby` 未見於本 leaf 之 clause。（i）**選擇依據 —— 測試可執行性**：需一個具體狀態方能執行，`Standby` 為 §E 之既有狀態。（ii）**行為不隨狀態而異 —— clause 逐字載 `regardless of TLM_Status.Info and $Telematic_Power$ value`**，即該行為之狀態無關性為規格明文。故任一狀態皆可，**其他狀態不需另立 TC**。此為本批 (b) 型中依據最強者。"
   },
   {
    "parent": "SWE-PM-032",

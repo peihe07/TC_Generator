@@ -74,7 +74,7 @@
    "section": "1.9.8",
    "source_anchor": "4941942",
    "source_clause": "The HU shall display the startup animation separately from the Splash screen and disclaimer screen.",
-   "reasoning": "驗證目標：開機動畫是否與 Splash screen、免責畫面分開呈現。關鍵情境條件：HU 走一次會播放動畫之開機流程。為什麼這樣切：單一呈現規則，一條即足。刻意略過：三個畫面之個別內容不在本條範圍；其顯示時機由 `SWE-PM-104` 承接（§8.2.1）。"
+   "reasoning": "驗證目標：開機動畫是否與 Splash screen、免責畫面分開呈現。關鍵情境條件：HU 走一次會播放動畫之開機流程。為什麼這樣切：單一呈現規則，一條即足。刻意略過：三個畫面之個別內容不在本條範圍；其顯示時機由 `SWE-PM-104` 承接（§8.2.1）。\n\n**R-P210 (b) 型處置（29 包）—— 本 leaf 為唯一無法完整說明者，標為待查**。`187` 之前提 `The HU is in STANDBY MODE` 之 `STANDBY MODE` **未見於本 leaf 之 clause**（該 clause 完全未提任何模式）。（i）**選擇依據 —— 他 leaf 之明文**：開機動畫之播放條件由 `SWE-PM-093` 之 clause 定義（`SLEEP MODE`、`STANDBY MODE` 或 `PARTIAL OPERATION MODE` 之一，加車門關閉），`STANDBY MODE` 為其所列三者之一。（ii）**無法說明** —— 本 leaf 所驗為「動畫與 Splash / 免責畫面**分開呈現**」，該呈現關係是否隨起始模式而異，**clause 一字未載，執行層亦無查證來源**。若其隨模式而異，則另二模式（`SLEEP` / `PARTIAL OPERATION`）未被涵蓋。**依 R-P210 標為待查並列入 DR 候選（DR-PW14），未以「已通過 R-P204」結案。**"
   },
   {
    "parent": "SWE-PM-095",

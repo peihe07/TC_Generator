@@ -30,7 +30,13 @@ Urgency 回報。
 
 | DR-PW13 | **撤回（26 包）** | 原擬詢問本專案之品牌 / 車型 / 螢幕尺寸 / 機型適用性值。**其中品牌一項已由 R-P197 直接裁定為 `Jeep`，該條明令「不開 DR」**，故本 DR 於開立同包內撤回，不送上游。**未被 R-P197 涵蓋之三項**（`$VC_VEH_LINE$` 之 `DT` / `M240`、螢幕尺寸之 `7 inch`、機型之 `LTM High Radio`）**改登記於 A-PW141 待裁**，不另開 DR。 | 無 —— 相關 TC 已產出，各該 leaf 之 `reasoning` 已載其處理 | R-P193、**R-P197** |
 
-**本表現存 live 項：DR-PW1（High）、DR-PW5（High）、DR-PW8（High）、**DR-PW9（High）**、**DR-PW11（High）**、DR-PW3（Medium）、DR-PW6（Medium）、**DR-PW10（Medium）**、**DR-PW12（Medium）**、DR-PW7（Low）。**
+| DR-PW14 | **Medium（live）** | **`SWE-PM-094`（CFTS009 §1.9.8 / `4941942`）之「開機動畫與 Splash / 免責畫面分開呈現」是否隨 HU 起始模式而異？** 其 clause 逐字為 `The HU shall display the startup animation separately from the Splash screen and disclaimer screen.` —— **完全未提任何模式**。而開機動畫之播放條件由 `SWE-PM-093`（`4941301` / `4941941`）定義為 `SLEEP MODE`、`STANDBY MODE` 或 `PARTIAL OPERATION MODE` 三者之一加車門關閉。本專案之 TC（`NR1L-PowerManagement-187`）取 `STANDBY MODE` 為起始模式 ——**該選擇之依據為他 leaf 之明文，而「分開呈現」之關係是否隨模式而異，規格一字未載**。請上游確認：（a）該呈現關係於三個模式下是否一致？（b）若否，另二模式是否須各立 TC？ | **不阻斷** —— 該條已產出並依 R-P210 標為待查；**若答案為「隨模式而異」，須補測 `SLEEP` 與 `PARTIAL OPERATION` 二模式** | A-PW152、**R-P210** |
+
+| DR-PW15 | **Medium（live）** | **`Theme Mode` 設定與 `$Day_Night_Mode$` 訊號衝突時之行為未定義。** CFTS009 §1.9.17 三條之 clause 逐字為：`SWE-PM-090` `If the "Theme Mode" setting is set to "Auto" the HU shall use the $Day_Night_Mode$ to determine which of the themes to show`；`SWE-PM-091` `If the "Theme Mode" setting is set to "Day" the HU shall use the Day theme`；`SWE-PM-092` 同構之 Night 版。**即：`Auto` 時明文跟隨訊號，而 `Day` / `Night` 時是否無視該訊號，規格一字未載** ——無 `regardless` / `override` / `irrespective` / 優先序一類措詞（已逐詞掃描確認）。請上游確認：`Theme Mode` 設為 `Day` 而 `$Day_Night_Mode$` 指向夜間時，HU 應採何主題？ | **不阻斷** —— `NR1L-PowerManagement-257` / `258` 已依 R-P211 改為僅驗 clause 所載之行為。**惟「設定能否覆蓋訊號」因而無任何 TC 涵蓋** —— 此即 R-P216 所指之「合規修正所留下之涵蓋缺口」，本 DR 即其登記；**若上游確認該覆蓋機制存在，須補測二條** | A-PW157、**R-P211**、**R-P216** |
+
+**本表現存 live 項：DR-PW1（High）、DR-PW5（High）、DR-PW8（High）、**DR-PW9（High）**、**DR-PW11（High）**、DR-PW3（Medium）、DR-PW6（Medium）、**DR-PW10（Medium）**、**DR-PW12（Medium）**、**DR-PW14（Medium）**、**DR-PW15（Medium）**、DR-PW7（Low）。**
+30 包新增 **DR-PW15**（R-P216(b) —— 合規修正所留下之涵蓋缺口）。
+29 包新增 **DR-PW14**（R-P210(b) —— `SWE-PM-094` 之起始模式無法說明其 (ii)）。
 26 包曾開 **DR-PW13** 而於同包內**撤回** —— R-P197 直接裁定本專案品牌為 `Jeep` 並明令不開 DR。
 25 包新增 **DR-PW12**（A-PW137 —— 五對 leaf 共用錨點）。
 22 包新增 **DR-PW10**（R-P153）與 **DR-PW11**（R-P144 之首次真實命中）。

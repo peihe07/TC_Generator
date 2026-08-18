@@ -102,14 +102,14 @@
    "section": "1.9.17",
    "source_anchor": "4942105",
    "source_clause": "If the \"Theme Mode\" setting is set to \"Day\" the HU shall use the Day theme",
-   "reasoning": "驗證目標：`Theme Mode` 設為 `Day` 時是否固定採用 Day theme。關鍵情境條件：`Theme Mode` = `Day`。為什麼這樣切：單一固定行為，一條即足；為驗其「固定」，前提刻意置於 `$Day_Night_Mode$` 指向夜間之情境。刻意略過：`Auto` 與 `Night` 由 `SWE-PM-090` / `SWE-PM-092` 承接（§8.2.1）。"
+   "reasoning": "驗證目標：`Theme Mode` 設為 `Day` 時是否採用 Day theme。關鍵情境條件：`Theme Mode` = `Day`。為什麼這樣切：單一行為，一條即足 —— clause 僅載「設為 Day 則用 Day theme」，無其他分支。**R-P211(b) 處置（29 包）**：原版以注入 `$Day_Night_Mode$` 驗「設定覆蓋訊號」，而本 leaf 之 clause **未載任何覆蓋機制、亦未提該訊號** —— 判為 (b) 真陽性（§8.4.2），**已移除該注入**，改為僅驗 clause 所載之行為。原「為驗其固定性而置於相反訊號值之情境」之設計隨之取消 ——**不得以「為驗證需要」為由保留無依據之注入**。**涵蓋缺口登記（R-P216(b)，30 包）**：移除注入後，「`Theme Mode` 設為 `Day`/`Night` 時能否無視 `$Day_Night_Mode$`」**無任何 TC 涵蓋**。已逐詞掃描確認 clause 無 `regardless` / `override` / `irrespective` / 優先序一類措詞，故屬 **(b) clause 未載該機制** ——**已開 DR-PW15 登記，未使其靜默消失**；若上游確認該機制存在，須補測。刻意略過：`Auto` 與 `Night` 由 `SWE-PM-090` / `SWE-PM-092` 承接（§8.2.1）。"
   },
   {
    "parent": "SWE-PM-092",
    "section": "1.9.17",
    "source_anchor": "4942107",
    "source_clause": "If the \"Theme Mode\" setting is set to \"Night\" the HU shall use the Night theme",
-   "reasoning": "驗證目標：`Theme Mode` 設為 `Night` 時是否固定採用 Night theme。關鍵情境條件：`Theme Mode` = `Night`。為什麼這樣切：單一固定行為，一條即足；前提刻意置於 `$Day_Night_Mode$` 指向日間之情境以驗其「固定」。刻意略過：`Auto` 與 `Day` 由 `SWE-PM-090` / `SWE-PM-091` 承接（§8.2.1）。"
+   "reasoning": "驗證目標：`Theme Mode` 設為 `Night` 時是否採用 Night theme。關鍵情境條件：`Theme Mode` = `Night`。為什麼這樣切：單一行為，一條即足 —— clause 僅載「設為 Night 則用 Night theme」，無其他分支。**R-P211(b) 處置（29 包）**：原版以注入 `$Day_Night_Mode$` 驗「設定覆蓋訊號」，而本 leaf 之 clause **未載任何覆蓋機制、亦未提該訊號** —— 判為 (b) 真陽性（§8.4.2），**已移除該注入**，改為僅驗 clause 所載之行為。原「為驗其固定性而置於相反訊號值之情境」之設計隨之取消 ——**不得以「為驗證需要」為由保留無依據之注入**。**涵蓋缺口登記（R-P216(b)，30 包）**：移除注入後，「`Theme Mode` 設為 `Day`/`Night` 時能否無視 `$Day_Night_Mode$`」**無任何 TC 涵蓋**。已逐詞掃描確認 clause 無 `regardless` / `override` / `irrespective` / 優先序一類措詞，故屬 **(b) clause 未載該機制** ——**已開 DR-PW15 登記，未使其靜默消失**；若上游確認該機制存在，須補測。刻意略過：`Auto` 與 `Day` 由 `SWE-PM-090` / `SWE-PM-091` 承接（§8.2.1）。"
   },
   {
    "parent": "SWE-PM-096",
@@ -799,25 +799,25 @@
   {
    "req_id": "SWE-PM-091",
    "tc_id": "NR1L-PowerManagement-257",
-   "tc_title": "The day theme mode keeps the Day theme regardless of the day night signal",
+   "tc_title": "The day theme mode uses the Day theme",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
-   "test_item": "The day theme mode keeps the Day theme regardless of the day night signal",
+   "test_item": "The day theme mode uses the Day theme",
    "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The \"Theme Mode\" setting reads \"Day\"",
-   "input_test_data": "$Day_Night_Mode$: the value indicating night",
-   "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the applied theme to check whether the setting overrides the signal",
-   "expected_result": "1. The HU accepts the signal value\n2. The HU uses the Day theme",
+   "input_test_data": "NA",
+   "test_procedure": "1. Bring the HU to the theme presentation\n2. Read the applied theme to check which theme the HU uses",
+   "expected_result": "1. The theme presentation is reached\n2. The HU uses the Day theme",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.17",
    "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
    "split_flag": false,
-   "split_reason": "本條驗 Day 設定之固定性",
+   "split_reason": "本條驗 Theme Mode 設為 Day 之結果",
    "functional_safety": "NA",
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
     "axis": "behaviour",
-    "delta": "本條驗 Day 設定之固定性"
+    "delta": "本條驗 Theme Mode 設為 Day 之結果"
    },
    "reasoning_note": "",
    "split_index": 1
@@ -825,25 +825,25 @@
   {
    "req_id": "SWE-PM-092",
    "tc_id": "NR1L-PowerManagement-258",
-   "tc_title": "The night theme mode keeps the Night theme regardless of the day night signal",
+   "tc_title": "The night theme mode uses the Night theme",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
-   "test_item": "The night theme mode keeps the Night theme regardless of the day night signal",
+   "test_item": "The night theme mode uses the Night theme",
    "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The \"Theme Mode\" setting reads \"Night\"",
-   "input_test_data": "$Day_Night_Mode$: the value indicating day",
-   "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the applied theme to check whether the setting overrides the signal",
-   "expected_result": "1. The HU accepts the signal value\n2. The HU uses the Night theme",
+   "input_test_data": "NA",
+   "test_procedure": "1. Bring the HU to the theme presentation\n2. Read the applied theme to check which theme the HU uses",
+   "expected_result": "1. The theme presentation is reached\n2. The HU uses the Night theme",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.17",
    "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
    "split_flag": false,
-   "split_reason": "本條驗 Night 設定之固定性",
+   "split_reason": "本條驗 Theme Mode 設為 Night 之結果",
    "functional_safety": "NA",
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
     "axis": "behaviour",
-    "delta": "本條驗 Night 設定之固定性"
+    "delta": "本條驗 Theme Mode 設為 Night 之結果"
    },
    "reasoning_note": "",
    "split_index": 1

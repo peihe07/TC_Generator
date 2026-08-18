@@ -38,6 +38,8 @@
 | 26 | 2026-08-18 | 裁定積案、數字標註機制與末批 | [handoff/26_final_batch.md](handoff/26_final_batch.md) | [upstream/26_final_batch.md](upstream/26_final_batch.md) | R-P183 ~ R-P197 | A-PW139 ~ A-PW142 | **PASS —— Phase 4 產出面完成**：末批 16 leaf / 34 條，最終對帳 103 ＋ 11 ＋ 1 = **115** 相符；**批次四、五之 leaf `reasoning` 54 份補寫完畢**並補設 **G129**（103/103，fixture 四案如期）；G131 測得逗號列舉型缺口 **6 項未補待裁**；G133 重疊對 27；**§J 自檢於執行中失效一次**（§A 由 14 增為 15），已停並回報後以 15 條續行 |
 | 27 | 2026-08-18 | 已知缺口補測、下放包凍結與實測訂正 | [handoff/27_gap_closure.md](handoff/27_gap_closure.md) | [upstream/27_gap_closure.md](upstream/27_gap_closure.md) | R-P198 ~ R-P203（**R-P198 為 26 包遺落者，依原編號補入**）| A-PW143 ~ A-PW147（A-PW139 訂正）| **PASS —— 六個已知缺口全數補測**（G134）；**G82 擴充至 `pre_conditions` / `input_test_data`**（G135，fixture 五案如期，現況觸發 25 項待裁）；A-PW139 之 §8.4.2 判定**撤回**（空白變體，經獨立重掃確認）；批次一至三 `reasoning` 重評 —— 第 2 項 **3 / 33 → 33 / 33**，補寫 31 份，**G129 門檻 20 → 130**；tc_id 全域重編 **001–264** |
 | 28 | 2026-08-18 | pre_conditions 依據判準與追認 | [handoff/28_precondition_basis.md](handoff/28_precondition_basis.md) | [upstream/28_precondition_basis.md](upstream/28_precondition_basis.md) | R-P204 ~ R-P209 | A-PW148 ~ A-PW151 | **PASS —— G82 之 14 項逐項判定全為 (a) 非越界**，無 TC 需修正；G138 / G139 各以四案 fixture 證明 (a) 不觸發 / (b) 觸發、測試選用值排除而規格閾值仍觸發；**擴充欄觸發 25 → 2**；**批次層閘門分流缺陷之歷史影響經回查為零**（rule 集合交集為空）；R-P203 加註 **G141 UNCHANGED** |
+| 29 | 2026-08-18 | 造值判準補洞與 Day_Night_Mode 裁定 | [handoff/29_fabricated_state.md](handoff/29_fabricated_state.md) | [upstream/29_fabricated_state.md](upstream/29_fabricated_state.md) | R-P210 ~ R-P214 | A-PW152 ~ A-PW155 | **PASS —— 264 條 `pre_conditions` 全掃**（G142：(a) 244 / **(b) 20**，逐條載選擇依據與行為是否隨狀態而異）；`SWE-PM-094` 唯一無法說明，標待查並**開 DR-PW14**；**`$Day_Night_Mode$` 判為真陽性，注入已移除**（擴充欄觸發 2 → 0）；**G145 閘門觸發數自動彙整**（批次層四項皆 0）；R-P204 加註 **G144 UNCHANGED** |
+| 30 | 2026-08-18 | 台帳重複閘、涵蓋缺口登記與兩項複核 | [handoff/30_ledger_dup.md](handoff/30_ledger_dup.md) | [upstream/30_ledger_dup.md](upstream/30_ledger_dup.md) | R-P215 ~ R-P220 | A-PW156 ~ A-PW159 | **PASS —— G146 台帳重複閘補設**（四項重複皆 0，fixture 五案如期）；**20 項 (b) 型六欄逐項表已附供複核**（R-P217）；`091`/`092` 之涵蓋缺口判 **(b)** 並**開 DR-PW15**（未靜默消失）；G137 之 25/33 與 27 包之 33/33 查明為**口徑不同**（齊備率 vs 單項率），已明載；**R-P220 之重跑比對當場揭出二項產物陳舊** |
 
 ---
 
@@ -104,10 +106,14 @@ PASS：G0–G16、G13b、G18、G19、G20、**G21、G22、G23、G27**
 **leaf `reasoning`**：G129 **103 / 103**，門檻經 R-P203 重校為 **130 字**（26 包為 20）。
 G137 重評批次一至三之 33 份 —— 「關鍵情境條件」由 **3 / 33** 補至 **33 / 33**。
 
-**寫回仍未開放** —— 26 包之阻斷條件（六個缺口、ELSE 分支）已於 27 包解除；
-28 包之 R-P204 判定結果為 **14 項全屬 (a) 非越界、(b) 為 0**，該項阻斷亦解除。
-**現行待裁項見 `RULINGS.md` §待裁** —— G82 擴充後尚餘 **2 項**
-（`SWE-PM-091` / `092` 之 `$Day_Night_Mode$`，clause 未載該訊號）。
+**寫回仍未開放** —— 26 / 28 / 29 包之阻斷條件均已解除；
+30 包之阻斷條件為 **R-P217 之複核結果**（20 項 (b) 型逐項表已附上繳供分析層複核）
+與 **R-P216 之處置**（已判 (b) 並開 DR-PW15）。
+**現行待裁項見 `RULINGS.md` §待裁** —— 另含 `SWE-PM-064` 之 Timed 判斷（R-P218，裁定於 31 包）。
+
+**台帳完整性**：G146 自 30 包起為常設閘門 —— `RULINGS.md` 條號 220、
+`ANOMALIES.md` 列 159、`DATA_REQUESTS.md` 列 15、`docs/INDEX.md` 輪次 30，
+**重複皆 0**（無斷點檢查與之併行，不取代）。
 
 **閘門現況**：G129 **103 / 103**（門檻 130）、G137 **25 / 33**（§10.4 四項齊備）——
 **二者判準不同，依 R-P209 不得合稱「完整」**。
