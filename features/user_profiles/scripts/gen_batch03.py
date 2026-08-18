@@ -763,14 +763,18 @@ TCS = {
         pre=steps("The status bar is at its default configuration",
                   "Two Driver Profiles exist with different avatars"),
         data="NA",
-        proc=steps("Read the status bar and check that a Profile button is "
-                   "present",
+        # **T-1（30 包）**：步驟 1 原為 `check that a Profile button is present`
+        # —— 它只查按鈕在不在，**沒有讀也沒有記錄圖示**，
+        # 而 ER3 卻以「步驟 1 所讀之圖示」為比較基準。**該基準不存在。**
+        # §5.6：記錄步驟與比較步驟須成對。改為記錄式（同批 `103` 之作法）。
+        proc=steps("Read the status bar and record the Profile button icon",
                    "Activate the other Driver Profile",
                    "Read the status bar button and check that its icon "
                    "changed with the active Profile"),
-        er=steps("A Profile button is present in the status bar",
+        er=steps("A Profile button is present in the status bar and its icon "
+                 "is recorded",
                  "The other Driver Profile is active",
-                 "The Profile button icon differs from the icon read in "
+                 "The Profile button icon differs from the icon recorded in "
                  "step 1"),
         remarks="條文之括號句（狀態列可被客製以移除該按鈕）為**另一觸發**，"
                 "其行為由 `SWE1-HMI-PROF-016`（4.6.3）承擔；本條驗預設狀態。"

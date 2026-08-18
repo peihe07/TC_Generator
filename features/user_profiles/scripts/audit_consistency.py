@@ -182,6 +182,58 @@ def q1_unquoted(rows) -> list:
     return hits
 
 
+# ── T-1（30 包）—— ER 引用之步驟須確有**該物**之記錄或讀取
+#
+# `TC-101` 之 ER3 寫 `differs from the icon **read in step 1**`，
+# 而步驟 1 為 `Read the status bar and **check that a Profile button is
+# present**` —— **它讀的是「按鈕在不在」，不是圖示**。
+# 測試者執行到步驟 3 會卡住：手上沒有可比對的紀錄。
+#
+# ## 判準改過一次（R-U37）—— **v1 只查動詞，抓不到本案**
+#
+# v1 為「該步驟有無 record／read 之動詞」。**`TC-101` 之步驟 1 有 `Read`**，
+# 故 v1 判它綠 —— **而它正是本包點名要抓的那一條**。
+# 動詞在不代表讀的是同一個東西。
+#
+# v2 改抓**被比較之物**（`the <X> recorded/read in step N` 之 X）：
+#   - X 為**具體物**（`icon`／`order`／`page`）→ 該步驟須提到 X
+#   - X 為**泛稱或功能詞**（`value`／`those`／`as`）→ 退回查動詞
+# 泛稱之退回是必要的：`the values recorded in step 1` 之步驟 1 寫的是
+# `record the two **preferences**` —— **泛稱與具名本就不會字面相同**，
+# 對它們要求字面相符會製造一批假紅。
+STEP_REF = re.compile(
+    r"(?:the\s+)?([A-Za-z][A-Za-z ]{0,28}?)\s+(?:recorded|read|noted)\s+"
+    r"(?:in\s+)?steps?\s+(\d+)", re.I)
+GENERIC_OBJ = {"value", "values", "one", "ones", "them", "it", "as",
+               "those", "these", "that", "this", "same", "both", "all", "any"}
+RECORD_ACT = re.compile(r"\b(record|records|note|notes|read|reads)\b", re.I)
+
+
+def _sing(w: str) -> str:
+    return w[:-1] if w.endswith("s") and len(w) > 3 else w
+
+
+def t1_step_refs(rows) -> list:
+    """ER 引用之步驟未建立該基準線者（§5.6：記錄步驟與比較步驟須成對）。"""
+    bad = []
+    for sec, t in rows:
+        proc = [x for x in str(t.get("test_procedure", "")).splitlines()
+                if x.strip()]
+        for m in STEP_REF.finditer(str(t.get("expected_result", ""))):
+            obj = m.group(1).split()[-1].lower()
+            i = int(m.group(2))
+            line = proc[i - 1] if 1 <= i <= len(proc) else "**該步驟不存在**"
+            if obj in GENERIC_OBJ:
+                ok = bool(RECORD_ACT.search(line))
+                why = "該步驟無記錄／讀取之動作"
+            else:
+                ok = _sing(obj) in line.lower()
+                why = f"該步驟未提及被比較之物「{obj}」"
+            if not ok:
+                bad.append((t["tc_id"], sec, i, obj, why, line.strip()[:70]))
+    return bad
+
+
 def tcs() -> list:
     out = []
     for p in sorted((FEATURE / "generated").glob("*.json")):
@@ -331,6 +383,33 @@ SELF_CASES = [
          test_procedure="1. Open the tab\n2. Read the screen",
          input_test_data="NA"), True),
 
+    # ---- T-1：ER 引用之步驟須確有該物之記錄（30 包）
+    ("**TC-101 之原形**：ER 比對「步驟 1 所讀之 icon」而該步驟只查按鈕在否 → **須紅**",
+     "t1",
+     _tc(test_procedure="1. Read the status bar and check that a Profile "
+                        "button is present\n2. Activate the other Profile\n"
+                        "3. Read the button and check the icon",
+         expected_result="1. A Profile button is present\n2. The other "
+                         "Profile is active\n3. The icon differs from the "
+                         "icon read in step 1"), True),
+    ("**其修正後之形**：步驟 1 記錄 icon → **須綠**", "t1",
+     _tc(test_procedure="1. Read the status bar and record the Profile "
+                        "button icon\n2. Activate the other Profile\n"
+                        "3. Read the button and check the icon",
+         expected_result="1. The Profile button icon is recorded\n2. The "
+                         "other Profile is active\n3. The icon differs from "
+                         "the icon recorded in step 1"), False),
+    ("**護欄**：泛稱 `values` 而步驟記的是 `preferences` → **須綠**（不得要求字面相符）",
+     "t1",
+     _tc(test_procedure="1. Activate Driver Profile A and record the two "
+                        "preferences\n2. Read them and check",
+         expected_result="1. The preferences are recorded\n2. They match "
+                         "the values recorded in step 1"), False),
+    ("引用之步驟根本不存在 → **須紅**", "t1",
+     _tc(test_procedure="1. Read the screen\n2. Check the icon",
+         expected_result="1. a\n2. The icon differs from the icon read in "
+                         "step 5"), True),
+
     # ---- Q-1：引號外之逐字引用（25 包）
     ("**TC-075 之原形**：散文中內嵌之逐字顯示文字**未**加引號 → **須紅**", "q1",
      _tc(expected_result="1. The page is displayed\n2. The line reads 8.4inch "
@@ -356,7 +435,7 @@ SELF_CASES = [
 ]
 
 SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b,
-         "q1": q1_unquoted}
+         "q1": q1_unquoted, "t1": t1_step_refs}
 
 
 def self_test() -> int:
@@ -403,6 +482,11 @@ if __name__ == "__main__":
     print(f"\n## K-4a —— design_method ↔ 實際形態：{len(b)} 處待判\n")
     for tid, sec, key, want in b:
         print(f"  {tid} ({sec}) {key} —— 缺 {want}")
+
+    tr = t1_step_refs(rows)
+    print(f"\n## T-1 —— ER 引用之步驟未建立基準線：{len(tr)} 處\n")
+    for tid, sec, i, obj, why, line in tr:
+        print(f"  {tid} ({sec}) 步驟 {i} —— {why} → 「{line}」")
 
     q = q1_unquoted(rows)
     print(f"\n## Q-1 —— 引號外之逐字引用（≥{NGRAM} 詞）：{len(q)} 處待判\n")

@@ -396,15 +396,34 @@ def gate_corpus(tcs: list) -> list:
         mc = " ".join(m["text"] for m in _B.must_carry_for(own))
         pool = _norm(body + " " + mc)
         er_raw = str(t.get("expected_result", ""))
-        for lit in QUOTED_RE.findall(er_raw):
-            if _norm(lit) in pool:
-                continue
-            if lit.strip() in UI_LOCATORS:
-                continue
-            if tid in LITERAL_EXTRA_SOURCES:
-                continue
-            out.append(f"G18 {tid}: ER 之字面值 「{lit[:48]}」 "
-                       f"溯不到被引之節（{', '.join(cited)}）亦不在 must_carry")
+        # ── G18 之欄位範圍（S-1，29 包）—— **擴及 `pre_conditions`，但只擴引號內**
+        #
+        # 28 輪之出處對照抓到 `NR1L-UserProfiles-100` 之 `“Driver 2”`
+        # 溯不到 4.5.4（該節寫的是 `default Driver 1-2 Profiles`）——
+        # **而 G18 當時只掃 ER，結構上看不見它。**
+        #
+        # 界線沿 R-3（28 包）：
+        #   **引號內之字面值** → 溯源，與 ER 同標準
+        #   **非引號之設置描述**（`The vehicle is stationary`、
+        #   `A Driver Profile is active`）→ **不掃**
+        # 全掃 pre-condition 會把每一句測試設置都判成「溯不到源」——
+        # 那些本來就不是條文來的，**判它們紅是判準錯**。
+        #
+        # **只擴引號內，不擴未加引號之數值／狀態值**（那三段仍只掃 ER）：
+        # pre-condition 之數字多為測試設置（`Two Driver Profiles`、
+        # `2 memory seat buttons`），其登記機制（`TEST_SETUP_NUMERALS`）
+        # 是為 ER 而設，貿然擴會產生一批只為轉綠而生的登記。
+        for field, raw in (("ER", er_raw),
+                           ("pre_conditions", str(t.get("pre_conditions", "")))):
+            for lit in QUOTED_RE.findall(raw):
+                if _norm(lit) in pool:
+                    continue
+                if lit.strip() in UI_LOCATORS:
+                    continue
+                if tid in LITERAL_EXTRA_SOURCES:
+                    continue
+                out.append(f"G18 {tid}: {field} 之字面值 「{lit[:48]}」 "
+                           f"溯不到被引之節（{', '.join(cited)}）亦不在 must_carry")
 
         # J-10（19 包）—— 擴及**未加引號**之字面值。
         # 掃描前先移除：行首編號、`step N` 之互參、引號內（上面已查過）。
@@ -813,6 +832,44 @@ def self_test() -> int:
                                "for R1 H]，故本 TC 排除該變體"),
                 False, "G19")
 
+    print("\n## G18 之 pre_conditions 擴掃（S-1，29 包）\n")
+
+    # **紅向即 `TC-100` 於 28 輪修正前之原形**：4.5.4 寫的是
+    # `default Driver 1-2 Profiles`，`Driver 2` 單獨出現在 4.5.1。
+    corpus_case("G18 注入：pre 之 `“Driver 2”` 引 4.5.4（該節無此字面值）→ 紅",
+                _ok_tc(req_id="SWE1-HMI-PROF-012",
+                       specification_reference=f"{stem2}_4.5.4",
+                       pre_conditions="1. The vehicle has 2 memory seat "
+                                      "buttons with default “Driver 2” Profiles",
+                       expected_result="1. a\n2. b"),
+                True, "G18")
+    # **綠向即其修正後之形**：改用**本節自己的寫法**，不去引 4.5.1（S-2 之判例）
+    corpus_case("G18 範圍：pre 改用本節寫法 `“Driver 1-2”` → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-012",
+                       specification_reference=f"{stem2}_4.5.4",
+                       pre_conditions="1. The vehicle has the default "
+                                      "“Driver 1-2” Profiles",
+                       expected_result="1. a\n2. b"),
+                False, "G18")
+    # **護欄** —— 非引號之設置描述**不得**因本次擴掃而轉紅。
+    # 若這條倒了，代表擴掃溢出到「凡 pre-condition 皆須溯源」，
+    # 那會把每一句測試設置都判紅（S-1 明文禁止之情形）。
+    corpus_case("**護欄**：pre 之非引號設置描述（stationary／active／two Profiles）→ 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-012",
+                       specification_reference=f"{stem2}_4.5.4",
+                       pre_conditions="1. Two Driver Profiles exist on the "
+                                      "vehicle\n2. The vehicle is stationary\n"
+                                      "3. A Driver Profile is active",
+                       expected_result="1. a\n2. b"),
+                False, "G18")
+    # 綠向：pre 之 UI 定位詞經登記表溯源（語料中 7 條為此形）
+    corpus_case("G18 範圍：pre 之 `“Edit Profile”` 由 `UI_LOCATORS` 溯源 → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-012",
+                       specification_reference=f"{stem2}_4.5.4",
+                       pre_conditions="1. The “Edit Profile” tab is available",
+                       expected_result="1. a\n2. b"),
+                False, "G18")
+
     print("\n## G20 —— remarks ↔ specification_reference（A-2，25 包）\n")
 
     # **紅向即 P-3 之原形**（`TC-072` 於 24 包修正前之 remarks）
@@ -883,7 +940,7 @@ def self_test() -> int:
         for b in bad:
             print(f"      └ {b}")
 
-    n = 1 + len(cases) + len(scope) + 22 + 5 + 4   # +5 G19（22 包）／+4 G20（25 包）
+    n = 1 + len(cases) + len(scope) + 22 + 5 + 4 + 4   # +5 G19（22）／+4 G20（25）／+4 G18-pre（29）
     print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "
           f"{'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1
