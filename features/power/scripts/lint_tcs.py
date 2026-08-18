@@ -138,7 +138,10 @@ COLUMN_HEADER_KEYWORD = {
     "author": "Test Case Author", "remarks": "Remarks",
 }
 PROFILE_EXEMPTS_BRACKETS = PROFILE_PATH.exists()
-LONG_FIELDS = ("pre_conditions", "input_test_data", "test_procedure", "expected_result")
+# R-P131（18 包）：`remarks` 補入。A-PW88 —— 該欄原不在任何格式閘門之視野內，
+# 致 17 包 G92（`015` 之 DR-PW8 標記）之 PASS 為判準空洞。
+LONG_FIELDS = ("pre_conditions", "input_test_data", "test_procedure",
+               "expected_result", "remarks")
 SIGNAL_BRACKET_RE = re.compile(r"\[[0-9A-Fa-f]+h\]")      # [1h] / [0h] — 訊號值
 # 行首之 source-class 標記（§3.2）為既有慣例 —— Comfort 之已交付 TC 即以
 # `1. [spec-derived] …` 書寫。§11 之方括號禁令不及於此，故先行剝除再檢查。
@@ -731,7 +734,17 @@ def check_s6_er_restatement(tcs: list[dict]) -> list[dict]:
         if len(steps) != len(ers):
             continue
         for i, (p_line, e_line) in enumerate(zip(steps, ers), 1):
-            pw, ew = _er_words(p_line), _er_words(e_line)
+            # R-P133（19 包）：末步之比對須先剝除 R-P101 所強制之驗證意圖子句。
+            # A-PW92 —— G77 要求末步指名所檢查者，ER 述及同一標的時其實詞
+            # 必然多已見於該步驟；**該重疊為 R-P101 之產物，非撰寫者之複述**。
+            # 剝除者恰為本專案自己強制加入之文字，故非放寬判準。
+            # 非末步之 ER 行不適用，仍以完整步驟比對。
+            cmp_line = p_line
+            if i == len(steps):
+                m = FINAL_STEP_INTENT_RE.search(p_line)
+                if m:
+                    cmp_line = p_line[:m.start()]
+            pw, ew = _er_words(cmp_line), _er_words(e_line)
             if not ew:
                 continue
             overlap = len(ew & pw) / len(ew)
@@ -1431,6 +1444,21 @@ def self_test(blacklist: dict, fingerprints: dict) -> int:
         ok = (len(got) == 0) if want == 0 else (len(got) >= want)
         failures += not ok
         print(f"\n  [{'PASS' if ok else '**FAIL**'}] G82 {label}")
+        print(f"          期望 {'0' if want == 0 else f'≥{want}'} 項；實際 {len(got)} 項")
+        for f in got[:2]:
+            print(f"          → {f['detail'][:80]}")
+
+    # G96 / R-P131 —— `remarks` 已入 LONG_FIELDS，§11 之規則及於該欄。
+    for label, remarks, want in [
+            ("應 PASS —— remarks 無句點、無方括號",
+             "DR-PW8 (High) —— 待 voltage out of range 之門檻值", 0),
+            ("應 FAIL —— remarks 以句點結尾", "待門檻值。", 1),
+            ("應 FAIL —— remarks 以方括號標 UI 標籤", "見 [Power] 分頁", 1)]:
+        got = check_s11_formatting([make_tc(1, "SWE-PM-071", "Power Down",
+                                            remarks=remarks)])
+        ok = (len(got) == 0) if want == 0 else (len(got) >= want)
+        failures += not ok
+        print(f"\n  [{'PASS' if ok else '**FAIL**'}] G96 {label}")
         print(f"          期望 {'0' if want == 0 else f'≥{want}'} 項；實際 {len(got)} 項")
         for f in got[:2]:
             print(f"          → {f['detail'][:80]}")

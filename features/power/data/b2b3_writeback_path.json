@@ -71,5 +71,51 @@
     ],
     "d_overlap_changed_count": 15
   },
+  "g95": [
+    {
+      "case": "正常：dry-run 寫回後（不得改動）",
+      "same": true,
+      "changed": []
+    },
+    {
+      "case": "弄壞：刪去一個 `<mergeCell>`（於 `sheet1.xml`）",
+      "untested": false,
+      "same": false,
+      "changed": [
+        "merges"
+      ]
+    },
+    {
+      "case": "弄壞：改動 `<conditionalFormatting>` sqref（於 `sheet6.xml`）",
+      "untested": false,
+      "same": false,
+      "changed": [
+        "cf"
+      ]
+    },
+    {
+      "case": "弄壞：抹去一條 `<dataValidation>`（於 `sheet5.xml`）",
+      "untested": false,
+      "same": false,
+      "changed": [
+        "dv"
+      ]
+    },
+    {
+      "case": "弄壞：改動一個 `<col>` 寬度（於 `sheet1.xml`）",
+      "untested": false,
+      "same": false,
+      "changed": [
+        "cols"
+      ]
+    },
+    {
+      "case": "弄壞：改動 `<pane>` topLeftCell —— **未實測**",
+      "untested": true,
+      "why": "本工作簿之十個分頁皆無 <pane 元素",
+      "same": null,
+      "changed": []
+    }
+  ],
   "tc_count": 17
 }

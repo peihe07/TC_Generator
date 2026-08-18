@@ -400,7 +400,7 @@
       "split_flag": true,
       "split_reason": "本條驗回復條件之第一分支：voltage out of range（`010` 驗第二分支之 10 秒逾時）",
       "functional_safety": "NA",
-      "remarks": "DR-PW8（High）：`4942354` 未載 voltage out of range 之電壓門檻值；本條在取得該門檻前不可實際執行。",
+      "remarks": "DR-PW8 (High) —— `4942354` 未載 voltage out of range 之電壓門檻值；本條在取得該門檻前不可實際執行",
       "distinguishing_axis": {
         "axis": "behaviour",
         "delta": "本條驗回復條件之第一分支：voltage out of range（`010` 驗第二分支之 10 秒逾時）"

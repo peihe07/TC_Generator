@@ -133,6 +133,17 @@ def analyse(batch: dict, threshold: float) -> dict:
                           "covered": score >= threshold,
                           "residual": residual})
 
+        # R-P127 —— 殘差詞分桶（機械可判者先分，其餘留待人工）
+        all_tc_words: set[str] = set()
+        for v in tc_words.values():
+            all_tc_words |= v
+        buckets = {"已由他條涵蓋": [], "候選（須人工判 措詞差異 / 真缺口）": []}
+        for x in items:
+            for w in x["residual"]:
+                key = ("已由他條涵蓋" if w in all_tc_words
+                       else "候選（須人工判 措詞差異 / 真缺口）")
+                buckets[key].append((x["n"], w))
+
         # 透鏡 2
         spec_named = named(clause)
         missing = sorted(t for t in spec_named if t not in tc_named)
@@ -145,6 +156,8 @@ def analyse(batch: dict, threshold: float) -> dict:
             "n_uncovered": sum(1 for x in items if not x["covered"]),
             "spec_named": sorted(spec_named),
             "named_missing": missing,
+            "buckets": {k: sorted(v) for k, v in buckets.items()},
+            "n_residual": sum(len(x["residual"]) for x in items),
         }
     return result
 
@@ -167,6 +180,11 @@ def render(res: dict, threshold: float, label: str) -> str:
                        f"{'、'.join('`'+w+'`' for w in x['residual']) or '（無）'} |\n")
         out.append(f"\n**透鏡 2 —— `source_clause` 之具名標的未見於任何 TC 者**："
                    f"{'、'.join('`'+t+'`' for t in r['named_missing']) or '（無）'}\n")
+        out.append(f"\n**R-P127 殘差詞分桶**（合計 {r['n_residual']}）：\n\n"
+                   "| 桶 | 計數 | 例（前 12）|\n|---|---|---|\n")
+        for k, v in r["buckets"].items():
+            ex = "、".join(f"`{w}`(#{n})" for n, w in v[:12]) or "（無）"
+            out.append(f"| {k} | **{len(v)}** | {ex} |\n")
     out.append(f"\n**合計**：行為項 **{tot}**，已覆蓋 **{cov}**，"
                f"無對應 **{tot - cov}**。\n")
     return "".join(out)
@@ -198,7 +216,8 @@ def main() -> None:
                           f"驗證條件 —— 修補前（`b1_before16.json`，"
                           f"{len(prev['tcs'])} 條 TC，R-P117 之三項缺口尚存）"))
 
-    path = DATA / "reverse_coverage_batch1.md"
+    stem = batch_path.stem.replace("batch_", "").replace("_", "-")
+    path = DATA / f"reverse_coverage_{stem}.md"
     path.write_text("".join(out), encoding="utf-8")
     print(f"wrote {path.relative_to(ROOT)} — {path.stat().st_size} bytes\n")
     for parent, r in current.items():
@@ -211,6 +230,10 @@ def main() -> None:
                 print(f"   殘差 #{x['n']} ({x['score']:.2f}) 缺 {x['residual']} "
                       f"| {x['text'][:52]}")
         print(f"   透鏡2 未見標的：{r['named_missing']}")
+        for k, v in r["buckets"].items():
+            print(f"   分桶 {k}: {len(v)}")
+            if k.startswith("候選"):
+                print(f"      {sorted(set(w for _, w in v))}")
 
 
 if __name__ == "__main__":

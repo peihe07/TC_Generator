@@ -43,6 +43,10 @@ from dryrun_write_back import (FIRST_DATA_ROW, HEADER_ROW,  # noqa: E402
 
 EXISTING_ROWS = 5          # 合成之「他人既有列」
 
+NS_MAIN = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+NS_X14 = "{http://schemas.microsoft.com/office/spreadsheetml/2009/9/main}"
+NS_XM = "{http://schemas.microsoft.com/office/excel/2006/main}"
+
 
 def clone_zip(src: Path, out: Path, *, drop=None, mutate=None) -> None:
     """位元組複製，可選擇丟掉一個 member 或改寫一個 member（供刻意弄壞）。"""
@@ -54,6 +58,91 @@ def clone_zip(src: Path, out: Path, *, drop=None, mutate=None) -> None:
             if mutate and info.filename == mutate[0]:
                 data = mutate[1](data)
             zout.writestr(info, data)
+
+
+# ---------------------------------------------------------------- G95
+
+
+def sheet_structure(path: Path) -> dict:
+    """G95 / R-P130 —— **目標分頁內**之結構屬性快照。
+
+    `verify_structure()` 之允許相異清單涵蓋目標分頁，故該分頁內之
+    `<mergeCell>` / `<conditionalFormatting>` 變動**不會被它攔下**
+    （17 §七(乙)7）。本函式補該缺口，涵蓋五類：
+    合併儲存格、條件式格式、DV（含 x14）、欄寬、凍結窗格。
+    """
+    import xml.etree.ElementTree as ET
+    snap: dict[str, list] = {"merges": [], "cf": [], "dv": [],
+                             "cols": [], "panes": []}
+    with zipfile.ZipFile(path) as z:
+        for member in sorted(m for m in z.namelist()
+                             if m.startswith("xl/worksheets/sheet")):
+            root = ET.fromstring(z.read(member))
+            snap["merges"] += [(member, x.get("ref"))
+                               for x in root.iter(NS_MAIN + "mergeCell")]
+            snap["cf"] += [(member, x.get("sqref"),
+                            tuple(r.get("type") for r in x.iter(NS_MAIN + "cfRule")))
+                           for x in root.iter(NS_MAIN + "conditionalFormatting")]
+            for dv in root.iter(NS_MAIN + "dataValidation"):
+                snap["dv"].append((member, "main", dv.get("sqref"), dv.get("type")))
+            for dv in root.iter(NS_X14 + "dataValidation"):
+                sq = dv.find(NS_XM + "sqref")
+                snap["dv"].append((member, "x14",
+                                   (sq.text if sq is not None else ""), dv.get("type")))
+            snap["cols"] += [(member, c.get("min"), c.get("max"), c.get("width"))
+                             for c in root.iter(NS_MAIN + "col")]
+            snap["panes"] += [(member, p.get("topLeftCell"), p.get("state"),
+                               p.get("xSplit"), p.get("ySplit"))
+                              for p in root.iter(NS_MAIN + "pane")]
+    return snap
+
+
+def g95(src: Path, out_ok: Path) -> list[dict]:
+    """正常寫回不得改動五類屬性；刻意改動其一須被偵出。"""
+    base = sheet_structure(src)
+    cases = [{"case": "正常：dry-run 寫回後（不得改動）",
+              "same": sheet_structure(out_ok) == base,
+              "changed": [k for k in base
+                          if sheet_structure(out_ok)[k] != base[k]]}]
+
+    # **每一類屬性須改在確實含有該屬性之分頁上** ——
+    # 首次實作時一律改於 `_target_sheet()`（首個含 DV 之分頁 = sheet5），
+    # 而條件式格式與凍結窗格位於資料分頁 sheet6，致該二案未觸發而誤判為
+    # 「本閘攔不住」。此為 fixture 建構之誤，非閘門之弱點（見上繳 §三）。
+    breaks = [
+        (b"<mergeCell ", "弄壞：刪去一個 `<mergeCell>`",
+         lambda b: re.sub(rb"<mergeCell [^>]*/>", b"", b, count=1)),
+        (b"<conditionalFormatting", "弄壞：改動 `<conditionalFormatting>` sqref",
+         lambda b: re.sub(rb'(<conditionalFormatting sqref=")[^"]*(")',
+                          rb"\g<1>ZZ1:ZZ2\g<2>", b, count=1)),
+        (b"<dataValidation", "弄壞：抹去一條 `<dataValidation>`",
+         lambda b: re.sub(rb"<dataValidation[ >].*?</dataValidation>", b"",
+                          b, count=1, flags=re.S)),
+        (b"<col ", "弄壞：改動一個 `<col>` 寬度",
+         lambda b: re.sub(rb'(<col [^>]*width=")[^"]*(")', rb"\g<1>99\g<2>",
+                          b, count=1)),
+        (b"<pane ", "弄壞：改動 `<pane>` topLeftCell",
+         lambda b: re.sub(rb'(<pane [^>]*topLeftCell=")[^"]*(")', rb"\g<1>Z99\g<2>",
+                          b, count=1)),
+    ]
+    for i, (marker, label, mut) in enumerate(breaks):
+        try:
+            target = _sheet_containing(src, marker)
+        except RuntimeError:
+            # 本工作簿無此屬性 —— 依 R-P119(c) 之標準標「未實測」而非 PASS。
+            cases.append({"case": f"{label} —— **未實測**",
+                          "untested": True,
+                          "why": f"本工作簿之十個分頁皆無 {marker.decode().strip()} 元素",
+                          "same": None, "changed": []})
+            continue
+        broken = SANDBOX / f"g95_{i}.xlsx"
+        clone_zip(src, broken, mutate=(target, mut))
+        snap = sheet_structure(broken)
+        cases.append({"case": f"{label}（於 `{target.rsplit('/', 1)[-1]}`）",
+                      "untested": False,
+                      "same": snap == base,
+                      "changed": [k for k in base if snap[k] != base[k]]})
+    return cases
 
 
 # ---------------------------------------------------------------- G89
@@ -98,6 +187,15 @@ def _droppable(src: Path) -> str:
                  if n.startswith("xl/") and "worksheets" not in n
                  and not n.endswith(".rels") and n != "xl/workbook.xml"]
     return names[-1]
+
+
+def _sheet_containing(src: Path, marker: bytes) -> str:
+    """回傳首個含該標記之分頁 XML —— 各屬性所在之分頁不同，須逐類尋找。"""
+    with zipfile.ZipFile(src) as z:
+        for n in sorted(z.namelist()):
+            if n.startswith("xl/worksheets/sheet") and marker in z.read(n):
+                return n
+    raise RuntimeError(f"找不到含 {marker!r} 之分頁")
 
 
 def _target_sheet(src: Path) -> str:
@@ -212,10 +310,11 @@ def main() -> None:
     patched = {_target_sheet(src)}
     cases = g89(src, patched)
     boundary = g90(src, cfg, tcs)
+    struct = g95(src, SANDBOX / "g90_append.xlsx")
 
     result = {"src_sha256_before": src_before, "src_sha256_after": sha256(src),
               "src_untouched": src_before == sha256(src),
-              "g89": cases, "g90": boundary, "tc_count": len(tcs)}
+              "g89": cases, "g90": boundary, "g95": struct, "tc_count": len(tcs)}
     (DATA / "b2b3_writeback_path.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -238,6 +337,15 @@ def main() -> None:
     print(f"  (d) 刻意自 r{boundary['d_overlap_start_row']} 起（重疊）→ "
           f"既有列被改動 {boundary['d_overlap_changed_count']} 格："
           f"{boundary['d_overlap_detected']}")
+    print("\nG95 —— 目標分頁內之結構屬性（merges / cf / DV / cols / panes）")
+    for c in struct:
+        if c.get("untested"):
+            print(f"  [未實測] {c['case']} —— {c['why']}")
+            continue
+        expect = "須相同" if c["case"].startswith("正常") else "須偵出差異"
+        ok = c["same"] if expect == "須相同" else not c["same"]
+        print(f"  [{'PASS' if ok else '**FAIL**'}] {c['case']}（{expect}）"
+              f" → same={c['same']} 差異類別={c['changed']}")
 
 
 if __name__ == "__main__":

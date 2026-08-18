@@ -20,6 +20,13 @@ TC：001, 002, 003, 004
 
 **透鏡 2 —— `source_clause` 之具名標的未見於任何 TC 者**：（無）
 
+**R-P127 殘差詞分桶**（合計 10）：
+
+| 桶 | 計數 | 例（前 12）|
+|---|---|---|
+| 已由他條涵蓋 | **2** | `standby`(#1)、`statu`(#1) |
+| 候選（須人工判 措詞差異 / 真缺口） | **8** | `cas`(#1)、`follow`(#1)、`nor`(#1)、`only`(#1)、`pas`(#1)、`requir`(#1)、`these`(#1)、`timing`(#1) |
+
 ### SWE-PM-072 —— 行為項 3，已覆蓋 2，無對應 **1**
 
 TC：005, 006
@@ -31,6 +38,13 @@ TC：005, 006
 | 3 | TLM must buffer the events and process them as soon as possible, depending on  | 006 | 0.60 | 已覆蓋 | `depend`、`proces`、`them`、`timing` |
 
 **透鏡 2 —— `source_clause` 之具名標的未見於任何 TC 者**：`TLM_Status.Info`
+
+**R-P127 殘差詞分桶**（合計 13）：
+
+| 桶 | 計數 | 例（前 12）|
+|---|---|---|
+| 已由他條涵蓋 | **0** | （無） |
+| 候選（須人工判 措詞差異 / 真缺口） | **13** | `accord`(#1)、`behave`(#1)、`describ`(#1)、`occurr`(#1)、`par`(#1)、`proces`(#1)、`recogniz`(#1)、`sett`(#2)、`tlm_status.info`(#2)、`depend`(#3)、`proces`(#3)、`them`(#3) |
 
 ### SWE-PM-073 —— 行為項 15，已覆蓋 13，無對應 **2**
 
@@ -56,6 +70,13 @@ TC：007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017
 
 **透鏡 2 —— `source_clause` 之具名標的未見於任何 TC 者**：（無）
 
+**R-P127 殘差詞分桶**（合計 39）：
+
+| 桶 | 計數 | 例（前 12）|
+|---|---|---|
+| 已由他條涵蓋 | **7** | `under`(#5)、`recover`(#7)、`acn`(#8)、`off-tim`(#9)、`acn`(#13)、`range`(#15)、`voltage`(#15) |
+| 候選（須人工判 措詞差異 / 真缺口） | **32** | `immediately`(#1)、`receiv`(#1)、`reduce`(#1)、`greater`(#2)、`fault`(#5)、`miss`(#5)、`used`(#5)、`do`(#7)、`on-go`(#7)、`case`(#8)、`not-ecall`(#8)、`transfer`(#8) |
+
 **合計**：行為項 **20**，已覆蓋 **17**，無對應 **3**。
 
 ---
@@ -75,6 +96,13 @@ TC：001, 002, 003, 004
 
 **透鏡 2 —— `source_clause` 之具名標的未見於任何 TC 者**：（無）
 
+**R-P127 殘差詞分桶**（合計 10）：
+
+| 桶 | 計數 | 例（前 12）|
+|---|---|---|
+| 已由他條涵蓋 | **2** | `standby`(#1)、`statu`(#1) |
+| 候選（須人工判 措詞差異 / 真缺口） | **8** | `cas`(#1)、`follow`(#1)、`nor`(#1)、`only`(#1)、`pas`(#1)、`requir`(#1)、`these`(#1)、`timing`(#1) |
+
 ### SWE-PM-072 —— 行為項 3，已覆蓋 2，無對應 **1**
 
 TC：005, 006
@@ -86,6 +114,13 @@ TC：005, 006
 | 3 | TLM must buffer the events and process them as soon as possible, depending on  | 006 | 0.60 | 已覆蓋 | `depend`、`proces`、`them`、`timing` |
 
 **透鏡 2 —— `source_clause` 之具名標的未見於任何 TC 者**：`TLM_Status.Info`
+
+**R-P127 殘差詞分桶**（合計 13）：
+
+| 桶 | 計數 | 例（前 12）|
+|---|---|---|
+| 已由他條涵蓋 | **0** | （無） |
+| 候選（須人工判 措詞差異 / 真缺口） | **13** | `accord`(#1)、`behave`(#1)、`describ`(#1)、`occurr`(#1)、`par`(#1)、`proces`(#1)、`recogniz`(#1)、`sett`(#2)、`tlm_status.info`(#2)、`depend`(#3)、`proces`(#3)、`them`(#3) |
 
 ### SWE-PM-073 —— 行為項 15，已覆蓋 11，無對應 **4**
 
@@ -110,5 +145,12 @@ TC：007, 008, 009, 010
 | 15 | until either voltage out of range conditions are satisfied or shall go back to | 010 | 0.43 | **無對應** | `back`、`becom`、`behavior`、`either`、`go`、`range`、`satisfi`、`voltage` |
 
 **透鏡 2 —— `source_clause` 之具名標的未見於任何 TC 者**：`BODY OFF-TIMED`
+
+**R-P127 殘差詞分桶**（合計 48）：
+
+| 桶 | 計數 | 例（前 12）|
+|---|---|---|
+| 已由他條涵蓋 | **1** | `resum`(#6) |
+| 候選（須人工判 措詞差異 / 真缺口） | **47** | `alert`(#1)、`beep`(#1)、`immediately`(#1)、`receiv`(#1)、`reduce`(#1)、`greater`(#2)、`fault`(#5)、`miss`(#5)、`under`(#5)、`used`(#5)、`do`(#7)、`on-go`(#7) |
 
 **合計**：行為項 **20**，已覆蓋 **15**，無對應 **5**。
