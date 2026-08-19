@@ -42,6 +42,13 @@ DATA = ROOT / "features/power/data"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 # 11 個功能族。鍵為族名，值為其詞彙（同族詞歸一）。
+#
+# **43 包之擴充（R-P289(a)）**：功能數 0 之 4 條經實讀，**皆非真無功能**，
+# 而是本分類未涵蓋其所操作之對象 —— 即 R-P289(a) 之第二分支。逐項補入：
+#   `boot` / `boot sequence`          → 電源狀態（開機為電源狀態之一環）
+#   `TLM_Status`（**不強制點號**）      → 電源狀態（`…-006` 為 `TLM_Status transitions`）
+#   `HMI interaction`                 → 實體控制（人機互動之操作）
+#   `user selectable parameter`       → 設定與選單
 FEATURES: dict[str, re.Pattern] = {
     "音訊輸出": re.compile(
         r"\baudio\b|\bvolume\b|AUD_LVL|\bspeaker\b|\bmute[ds]?\b|\bchime", re.I),
@@ -58,12 +65,13 @@ FEATURES: dict[str, re.Pattern] = {
     "電源狀態": re.compile(
         r"\bBODY (?:ON|OFF)|\bStandby\b|\bSleep\b|\bTimed\b|\bIdle\b|"
         r"\bFull-Operation\b|\bPartial Operation\b|\bignition\b|"
-        r"\bpower (?:state|down|up)\b|TLM_Status\.", re.I),
+        r"\bpower (?:state|down|up)\b|TLM_Status|\bboot\b", re.I),
     "設定與選單": re.compile(
         r"\bmenu\b|\bsetting\b|\bsettings\b|PROXI|Timeout\d*|"
-        r"_Setting\.|_Timeout_", re.I),
+        r"_Setting\.|_Timeout_|\buser selectable parameter\b", re.I),
     "實體控制": re.compile(
-        r"\bfront panel\b|\bpanel\b|\bbutton\b|Front_Panel_|CLIMATIC_PANEL", re.I),
+        r"\bfront panel\b|\bpanel\b|\bbutton\b|Front_Panel_|CLIMATIC_PANEL|"
+        r"\bHMI interaction\b", re.I),
     "HVAC": re.compile(r"\bHVAC\b", re.I),
     "ICS 模組": re.compile(r"\bICS\b", re.I),
 }

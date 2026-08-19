@@ -17,7 +17,7 @@
 | 防盜 | `\bantitheft\b|Antitheft_` |
 | 電源狀態 | `\bBODY (?:ON|OFF)|\bStandby\b|\bSleep\b|\bTimed\b|\bIdle\b|\bFull-Oper` |
 | 設定與選單 | `\bmenu\b|\bsetting\b|\bsettings\b|PROXI|Timeout\d*|_Setting\.|_Timeout` |
-| 實體控制 | `\bfront panel\b|\bpanel\b|\bbutton\b|Front_Panel_|CLIMATIC_PANEL` |
+| 實體控制 | `\bfront panel\b|\bpanel\b|\bbutton\b|Front_Panel_|CLIMATIC_PANEL|\bHMI` |
 | HVAC | `\bHVAC\b` |
 | ICS 模組 | `\bICS\b` |
 
@@ -25,9 +25,9 @@
 
 | 功能數 | 條數 |
 |---|---|
-| 0 | 50 |
-| 1 | 124 |
-| 2 | 68 |
+| 0 | 45 |
+| 1 | 126 |
+| 2 | 71 |
 | 3 | 20 |
 | 4 | 2 |
 

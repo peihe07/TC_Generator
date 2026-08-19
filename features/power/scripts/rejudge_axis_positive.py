@@ -66,6 +66,18 @@ INPUT_DATA_RE = re.compile(
     # `reads` 與 `is at` 同屬賦值動詞族；`OBSERVE_RE` 已排除 `Read …` 之祈使句，
     # 故可安全納入（初版為避免該祈使句而排除之，屬過度收窄）。
     r"(?:[\w.$]*[_.$][\w.$]*|\"[^\"]+\")\s+(?:is at|is equal to|reads)\s*[\"“\[]?[\w.$\- ]+|"
+    # `is set to` 與 `is at` 同屬賦值動詞族（45 包補；語料形態：
+    # `The HU clock **is set to** the day before the Summer start date`）
+    r"\bis set to\b|"
+    # **情境型／事件型輸入**（R-P299(a)，45 包）——
+    # 非數值、非訊號名之施加項。語料形態實測：
+    #   `Press the VR button with a **short/long** press`（操作方式）
+    #   `**Accept / Decline** the … popup as the user`（使用者回應）
+    #   `**Dismiss / Leave** the FOTA pop-up`（同上）
+    #   `A climate pop-up **at the moment of the transition**`（分析層所舉之例）
+    r"\b(?:short|long) press\b|"
+    r"\b(?:Accept|Decline|Dismiss|Leave)\b.{0,40}?\bpop-?\s?up\b|"
+    r"\bat the moment of\b|"
     r"[\w.$]+\s*=\s*\S", re.M)
 # **事件之時點**（R-P283(a)）。語料形態實測：
 # `The boot of the TLM has been completed` vs `is not ended`、
@@ -82,14 +94,21 @@ TIMING_RE = re.compile(
 # `TLM_Status.Info reads …`、`RemStartFail is at "False"`（並存狀態，R-P283(3)）、
 # `VPLastStatus reads "On"`、`A non-Ecall non-ACN call is active`。
 # **含 §E 之狀態名** —— 其為系統狀態而非硬體配置，故歸本值而非 `mode`。
+#
+# **45 包之擴充（R-P299(a)）**：語料實測另有三形態未被涵蓋 ——
+#   `TLM_Display.GUI is in / is on a screen other than …`（顯示子系統之狀態）
+#   `The HU is (not) currently installing a firmware image`（進行中之作業）
+#   `The HU has (not yet / already) played the startup sound that day`（已發生與否）
 TRIGGER_STATE_RE = re.compile(
     r"\bignition working condition\b|\bIgnition (?:On|Off|Pre_?Start|Pre Off)\b|"
     r"TLM_Status\.Info|\$Telematic_Power\$|STATUS_[A-Z]+\.|"
-    r"[\w.]+\.(?:Req|Info|Sts)\b|\bworking condition\b|"
+    r"[\w.]+\.(?:Req|Info|Sts|GUI)\b|\bworking condition\b|"
     r"\bis in\b.{0,30}?\b(?:state|mode|Operation|Standby|Sleep|Idle|Timed)\b|"
     r"\bBODY (?:ON|OFF-TIMED|OFF)\b|\bFull-Operation\b|\bPartial Operation\b|"
     r"\b(?:RemStartFail|VPLastStatus|MaxCallTimeout)\b|"
-    r"\bcall is (?:active|still active)\b|\bis already active\b", re.I)
+    r"\bcall is (?:active|still active)\b|\bis already active\b|"
+    r"\bis (?:not )?(?:currently )?installing\b|"
+    r"\bhas (?:not yet|already) \w+", re.I)
 # **硬體／bench 之配置**（R-P283(a)）。語料形態實測：
 # `An LTM Radio is present in the bench configuration`、
 # `A Radio other than LTM or ETM is present in …`、
@@ -120,13 +139,21 @@ def diff_lines(a: dict, b: dict) -> list[str]:
     **排除觀察步驟**（`Read …` / `Check …` 之祈使句）——
     其為讀取結果之手段，非二條之區分條件；
     比照 40 包 R-P271(a) 之「型乙 觀察媒介不另計」。
-    不排除者，`Read the parameters offered …` 之類會被誤判為參數取值。
+
+    **v1 → v2 之訂正（43 包）**：v1 只取「`a` 有而 `b` 無」之行（**單向差集**），
+    故**一方為另一方之嚴格超集時，差異顯示為空**。
+    實例：`…-067` 與 `…-069` 僅差 `…-069` 多一行
+    `4. Rear_View_Camera reads "Present" and the Rear Camera is not active`；
+    該行在對照條而不在本條，v1 遂判其相異行為空而歸「無對應」，
+    並被誤分入 R-P288 之「僅 ER 相異」10 條。
+    **v2 改為對稱差**（`rejudge_axis.diff_text` 本即用 `ta ^ tb`，本檔未沿用之）。
     """
     out = []
     for f in FIELDS:
         la = [norm(x) for x in str(a.get(f, "")).split("\n") if x.strip()]
         lb = [norm(x) for x in str(b.get(f, "")).split("\n") if x.strip()]
         out += [x for x in la if x not in lb and not OBSERVE_RE.search(x)]
+        out += [x for x in lb if x not in la and not OBSERVE_RE.search(x)]
     return out
 
 
@@ -139,11 +166,32 @@ def propose(tc: dict, peers: list[dict]) -> tuple[str | None, str]:
         return "none", f"與 `{same[0]['tc_id']}` 四欄逐字全同（須併設 `duplicate_of`）"
     ref = min(others, key=lambda p: len(" ".join(diff_lines(tc, p))))
     lines = diff_lines(tc, ref)
-    text = "\n".join(lines)
+    data_lines = set(data_only_lines(tc, ref))
+
+    # **R-P298（45 包）**：`input_test_data` **依定義即「餵入測試之資料」**（R-P283(a)），
+    # 故其內容**不驅動** `boundary` / `timing` / `trigger_state` / `mode` 之判定 ——
+    # 值之文字含狀態名（`An Ignition On after the date passes March, 20th`）
+    # 或含時間單位，不使其軸成為 `trigger_state` 或 `timing`；
+    # 此與 R-P283(1)「參數之單位為分鐘不等於其軸為時序」為同一理據。
+    frame = "\n".join(x for x in lines if x not in data_lines)
+
     for axis, pat in ORDER:
-        if (m := pat.search(text)):
-            return axis, f"對照 `{ref['tc_id'][-3:]}`，相異行命中 {axis}：`{m.group(0)[:52]}`"
-    # **R-P283(c)：末項不得為預設落點** —— 五者皆未命中者標「無對應」並停。
+        if axis == "input_data":
+            continue                      # 末項另行處理，見下
+        if not (m := pat.search(frame)):
+            continue
+        # **R-P298(b)**：`timing` 另須「二條之相對位置標記相異」。
+        if axis == "timing" and not timing_applies(tc, ref):
+            continue
+        return axis, f"對照 `{ref['tc_id'][-3:]}`，相異行命中 {axis}：`{m.group(0)[:52]}`"
+
+    # `input_data` —— 其正向判準讀**全部**相異行（含 `input_test_data`）
+    if (m := INPUT_DATA_RE.search("\n".join(lines))):
+        return "input_data", (f"對照 `{ref['tc_id'][-3:]}`，"
+                              f"相異行命中 input_data：`{m.group(0)[:52]}`")
+    if data_lines and set(lines) <= data_lines:
+        return "input_data", (f"對照 `{ref['tc_id'][-3:]}`，"
+                              f"相異行**僅出自 `input_test_data`**：`{lines[0][:46]}`")
     return "**無對應**", (f"對照 `{ref['tc_id'][-3:]}`，五個正向判準皆未命中；"
                           f"相異行：{' ／ '.join(x[:40] for x in lines[:2]) or '（無）'}")
 
@@ -155,17 +203,23 @@ def self_test() -> int:
     by_leaf: dict[str, list[dict]] = collections.defaultdict(list)
     for t in tcs:
         by_leaf[BASE.match(t["req_id"]).group(1)].append(t)
+    # **⚠ 45 包重編**：44 包之合併使 `tc_id` 重新連號（264 → 260），
+    # 本表原以舊號為鍵，重編後已指向**不同之 TC** ——
+    # 其失敗為重新編號之產物，非謂詞缺陷。依 `data/merge_44.md` 之對照表更新。
     CASES = [
-        ("018", "input_data", "R-P283(1)：差在所配置之 PROXI 參數值（20 vs 60 分），執行序列相同"),
-        ("019", "input_data", "同上"),
-        ("021", "mode", "R-P283(2)：差在 bench 所裝之 Radio 型別，係硬體配置變體"),
-        ("022", "mode", "同上"),
-        ("038", "trigger_state", "R-P283(3)：觸發相同，差在 `RemStartFail` 之並存狀態"),
-        ("039", "trigger_state", "同上"),
-        ("053", "trigger_state", "R-P283(4)：差在點火 working condition（`Pre_Start` vs `On`）"),
-        ("052", "trigger_state", "同上"),
-        ("160", "timing", "R-P283(5)：同一請求送於 boot 完成前與後"),
-        ("161", "timing", "同上"),
+        ("017", "input_data", "R-P283(1)（舊 018）：差在所配置之 PROXI 參數值（20 vs 60 分），執行序列相同"),
+        ("018", "input_data", "同上（舊 019）"),
+        ("020", "mode", "R-P283(2)（舊 021）：差在 bench 所裝之 Radio 型別，係硬體配置變體"),
+        ("021", "mode", "同上（舊 022）"),
+        ("037", "trigger_state", "R-P283(3)（舊 038）：觸發相同，差在 `RemStartFail` 之並存狀態"),
+        ("038", "trigger_state", "同上（舊 039）"),
+        ("052", "trigger_state", "R-P283(4)（舊 053）：差在點火 working condition（`Pre_Start` vs `On`）"),
+        ("051", "trigger_state", "同上（舊 052）"),
+        ("157", "timing", "R-P283(5)（舊 160）：同一請求送於 boot 完成前與後"),
+        ("158", "timing", "同上（舊 161）"),
+        # **R-P298（45 包）**：季節組之相異僅在**哪一個日期**，相對位置相同 → `input_data`
+        ("255", "input_data", "R-P298（舊 259）：差為 December 21st 對 March 20th，事件結構相同"),
+        ("256", "input_data", "同上（舊 260）"),
     ]
     failures = 0
     print("R-P283 之五例（分析層給定）—— 正向判準之驗證\n")
@@ -235,6 +289,54 @@ def main() -> None:
 
 # 觀察步驟之祈使句 —— 其為讀取手段，非區分條件（見 `diff_lines` 之註解）。
 OBSERVE_RE = re.compile(r"^\s*\d+\.\s*(?:Read|Check|Observe|Verify|Confirm)\b", re.I)
+
+
+# ── `timing` 之相對位置標記（R-P298(b)，45 包）──
+#
+# **訂正之緣由**：舊 `TIMING_RE` 只問「相異行中有無時間類詞」，
+# 故 `the day before the **Summer** start date` 對 `… **Fall** start date`
+# 亦命中 —— 二者之**相對位置相同**（皆為「某日之前一日」），
+# 所異者僅為**哪一個日期**。
+# R-P283(1) 已裁「參數之單位為分鐘不等於其軸為時序」；
+# **同理，值之單位為日期亦不等於其軸為時序**（R-P298）。
+#
+# `timing` 之正確語義為**事件發生之相對位置不同**
+# （如 `boot … has been completed` 對 `is not ended`）。
+# 故判準改為：**二條各自之相對位置標記須相異**。
+POS_RE = re.compile(
+    r"\bbefore\b|\bafter\b|\bduring\b|\buntil\b|\bonce\b|"
+    r"\bas soon as\b|\bhas been completed\b|\bis not ended\b|"
+    r"\bstill completing\b|\bexpir(?:es|ed|ation)\b|\bto the end of\b|"
+    r"\belapse[ds]?\b|\bwithin\b", re.I)
+
+
+def own_lines(a: dict, b: dict) -> list[str]:
+    """`a` 有而 `b` 無之行（單向，供逐條取其自身之標記）。"""
+    out = []
+    for f in FIELDS:
+        la = [norm(x) for x in str(a.get(f, "")).split("\n") if x.strip()]
+        lb = [norm(x) for x in str(b.get(f, "")).split("\n") if x.strip()]
+        out += [x for x in la if x not in lb and not OBSERVE_RE.search(x)]
+    return out
+
+
+def position_markers(a: dict, b: dict) -> set[str]:
+    """`a` 相對於 `b` 之相對位置標記集合（小寫）。"""
+    return {m.group(0).lower() for ln in own_lines(a, b)
+            for m in POS_RE.finditer(ln)}
+
+
+def timing_applies(a: dict, b: dict) -> bool:
+    """`timing` 僅於**二條之相對位置標記相異**時成立（R-P298(b)）。"""
+    ma, mb = position_markers(a, b), position_markers(b, a)
+    return bool(ma or mb) and ma != mb
+
+
+def data_only_lines(a: dict, b: dict) -> list[str]:
+    """二條之相異行中，**出自 `input_test_data` 者**（雙向）。"""
+    la = [norm(x) for x in str(a.get("input_test_data", "")).split("\n") if x.strip()]
+    lb = [norm(x) for x in str(b.get("input_test_data", "")).split("\n") if x.strip()]
+    return [x for x in la if x not in lb] + [x for x in lb if x not in la]
 
 
 if __name__ == "__main__":

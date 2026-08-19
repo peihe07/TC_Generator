@@ -185,7 +185,7 @@
  "tcs": [
   {
    "req_id": "SWE-PM-033",
-   "tc_id": "NR1L-PowerManagement-112",
+   "tc_id": "NR1L-PowerManagement-109",
    "tc_title": "Ignition Pre Off from Partial Operation passes the TLM to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -211,7 +211,7 @@
   },
   {
    "req_id": "SWE-PM-033",
-   "tc_id": "NR1L-PowerManagement-113",
+   "tc_id": "NR1L-PowerManagement-110",
    "tc_title": "Ignition Off from Partial Operation passes the TLM to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -237,7 +237,7 @@
   },
   {
    "req_id": "SWE-PM-034",
-   "tc_id": "NR1L-PowerManagement-114",
+   "tc_id": "NR1L-PowerManagement-111",
    "tc_title": "Front panel press in Partial Operation arms the antitheft and shows the Splash Screen",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -259,7 +259,7 @@
   },
   {
    "req_id": "SWE-PM-035",
-   "tc_id": "NR1L-PowerManagement-115",
+   "tc_id": "NR1L-PowerManagement-112",
    "tc_title": "Antitheft success with auto switch on active passes the TLM to Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -285,7 +285,7 @@
   },
   {
    "req_id": "SWE-PM-035",
-   "tc_id": "NR1L-PowerManagement-116",
+   "tc_id": "NR1L-PowerManagement-113",
    "tc_title": "Antitheft success with auto switch on not active passes the TLM to Idle",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -311,7 +311,7 @@
   },
   {
    "req_id": "SWE-PM-035",
-   "tc_id": "NR1L-PowerManagement-117",
+   "tc_id": "NR1L-PowerManagement-114",
    "tc_title": "Antitheft success with recall last and last status on passes the TLM to Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -337,7 +337,7 @@
   },
   {
    "req_id": "SWE-PM-035",
-   "tc_id": "NR1L-PowerManagement-118",
+   "tc_id": "NR1L-PowerManagement-115",
    "tc_title": "Antitheft success with recall last and last status off passes the TLM to Idle",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -363,7 +363,7 @@
   },
   {
    "req_id": "SWE-PM-036",
-   "tc_id": "NR1L-PowerManagement-119",
+   "tc_id": "NR1L-PowerManagement-116",
    "tc_title": "Remote start from Timed passes the TLM to Partial Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -385,7 +385,7 @@
   },
   {
    "req_id": "SWE-PM-037",
-   "tc_id": "NR1L-PowerManagement-120",
+   "tc_id": "NR1L-PowerManagement-117",
    "tc_title": "Call end in Timed with a failed remote start passes the TLM to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -407,7 +407,7 @@
   },
   {
    "req_id": "SWE-PM-039",
-   "tc_id": "NR1L-PowerManagement-121",
+   "tc_id": "NR1L-PowerManagement-118",
    "tc_title": "An SNA operational mode is handled as an ignition off event",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -433,7 +433,7 @@
   },
   {
    "req_id": "SWE-PM-039",
-   "tc_id": "NR1L-PowerManagement-122",
+   "tc_id": "NR1L-PowerManagement-119",
    "tc_title": "A zero switch off timeout loads Timeout1 from the PROXI value",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -459,7 +459,7 @@
   },
   {
    "req_id": "SWE-PM-039",
-   "tc_id": "NR1L-PowerManagement-123",
+   "tc_id": "NR1L-PowerManagement-120",
    "tc_title": "Auto switch on active on LTM High Radio loads Timeout1 from the PROXI value",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -485,7 +485,7 @@
   },
   {
    "req_id": "SWE-PM-039",
-   "tc_id": "NR1L-PowerManagement-124",
+   "tc_id": "NR1L-PowerManagement-121",
    "tc_title": "Only TLM menu items are guaranteed in the Timed status",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -511,7 +511,7 @@
   },
   {
    "req_id": "SWE-PM-040",
-   "tc_id": "NR1L-PowerManagement-125",
+   "tc_id": "NR1L-PowerManagement-122",
    "tc_title": "A normal power down into Suspend to RAM starts the 8 day timer",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -533,7 +533,7 @@
   },
   {
    "req_id": "SWE-PM-041",
-   "tc_id": "NR1L-PowerManagement-126",
+   "tc_id": "NR1L-PowerManagement-123",
    "tc_title": "No TLM function is available in the TLM off with network on status",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -559,7 +559,7 @@
   },
   {
    "req_id": "SWE-PM-041",
-   "tc_id": "NR1L-PowerManagement-127",
+   "tc_id": "NR1L-PowerManagement-124",
    "tc_title": "Entering the TLM off with network on status clears the antitheft request",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -585,7 +585,7 @@
   },
   {
    "req_id": "SWE-PM-042",
-   "tc_id": "NR1L-PowerManagement-128",
+   "tc_id": "NR1L-PowerManagement-125",
    "tc_title": "No TLM function is available in the TLM off with network off status",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -611,7 +611,7 @@
   },
   {
    "req_id": "SWE-PM-042",
-   "tc_id": "NR1L-PowerManagement-129",
+   "tc_id": "NR1L-PowerManagement-126",
    "tc_title": "Entering the TLM off with network off status clears the antitheft request",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -637,7 +637,7 @@
   },
   {
    "req_id": "SWE-PM-043",
-   "tc_id": "NR1L-PowerManagement-130",
+   "tc_id": "NR1L-PowerManagement-127",
    "tc_title": "The backlight stays off during Standby mode",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -663,7 +663,7 @@
   },
   {
    "req_id": "SWE-PM-043",
-   "tc_id": "NR1L-PowerManagement-131",
+   "tc_id": "NR1L-PowerManagement-128",
    "tc_title": "The backlight is allowed during Standby when an HMI screen is required",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -689,7 +689,7 @@
   },
   {
    "req_id": "SWE-PM-044",
-   "tc_id": "NR1L-PowerManagement-132",
+   "tc_id": "NR1L-PowerManagement-129",
    "tc_title": "Front panel press in Standby arms the antitheft and shows the Splash Screen",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -715,7 +715,7 @@
   },
   {
    "req_id": "SWE-PM-044",
-   "tc_id": "NR1L-PowerManagement-133",
+   "tc_id": "NR1L-PowerManagement-130",
    "tc_title": "Front panel press in Sleep arms the antitheft and shows the Splash Screen",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -741,7 +741,7 @@
   },
   {
    "req_id": "SWE-PM-044",
-   "tc_id": "NR1L-PowerManagement-134",
+   "tc_id": "NR1L-PowerManagement-131",
    "tc_title": "Climatic panel press in Standby arms the antitheft and shows the Splash Screen",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -767,7 +767,7 @@
   },
   {
    "req_id": "SWE-PM-044",
-   "tc_id": "NR1L-PowerManagement-135",
+   "tc_id": "NR1L-PowerManagement-132",
    "tc_title": "Climatic panel press in Sleep arms the antitheft and shows the Splash Screen",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -793,7 +793,7 @@
   },
   {
    "req_id": "SWE-PM-045",
-   "tc_id": "NR1L-PowerManagement-136",
+   "tc_id": "NR1L-PowerManagement-133",
    "tc_title": "A failed antitheft keeps the TLM in the original Standby state",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -819,7 +819,7 @@
   },
   {
    "req_id": "SWE-PM-045",
-   "tc_id": "NR1L-PowerManagement-137",
+   "tc_id": "NR1L-PowerManagement-134",
    "tc_title": "A failed antitheft keeps the TLM in the original Sleep state",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -845,7 +845,7 @@
   },
   {
    "req_id": "SWE-PM-046",
-   "tc_id": "NR1L-PowerManagement-138",
+   "tc_id": "NR1L-PowerManagement-135",
    "tc_title": "Rear view camera is provided while the antitheft is still in progress",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -871,7 +871,7 @@
   },
   {
    "req_id": "SWE-PM-046",
-   "tc_id": "NR1L-PowerManagement-139",
+   "tc_id": "NR1L-PowerManagement-136",
    "tc_title": "Rear view camera is provided after an unsuccessful antitheft",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -897,7 +897,7 @@
   },
   {
    "req_id": "SWE-PM-047",
-   "tc_id": "NR1L-PowerManagement-140",
+   "tc_id": "NR1L-PowerManagement-137",
    "tc_title": "A failed antitheft keeps the TLM in Standby and shows the antitheft screens",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -923,7 +923,7 @@
   },
   {
    "req_id": "SWE-PM-047",
-   "tc_id": "NR1L-PowerManagement-141",
+   "tc_id": "NR1L-PowerManagement-138",
    "tc_title": "A failed antitheft keeps the TLM in Sleep and shows the antitheft screens",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -949,7 +949,7 @@
   },
   {
    "req_id": "SWE-PM-048",
-   "tc_id": "NR1L-PowerManagement-142",
+   "tc_id": "NR1L-PowerManagement-139",
    "tc_title": "Antitheft success with auto switch on active reaches Full-Operation after the mode transition",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -975,7 +975,7 @@
   },
   {
    "req_id": "SWE-PM-048",
-   "tc_id": "NR1L-PowerManagement-143",
+   "tc_id": "NR1L-PowerManagement-140",
    "tc_title": "Antitheft success with auto switch on not active reaches Idle after the mode transition",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1001,7 +1001,7 @@
   },
   {
    "req_id": "SWE-PM-048",
-   "tc_id": "NR1L-PowerManagement-144",
+   "tc_id": "NR1L-PowerManagement-141",
    "tc_title": "Recall last with last status on reaches Full-Operation after the mode transition",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1027,7 +1027,7 @@
   },
   {
    "req_id": "SWE-PM-048",
-   "tc_id": "NR1L-PowerManagement-145",
+   "tc_id": "NR1L-PowerManagement-142",
    "tc_title": "Recall last with last status off reaches Idle after the mode transition",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1053,7 +1053,7 @@
   },
   {
    "req_id": "SWE-PM-048",
-   "tc_id": "NR1L-PowerManagement-146",
+   "tc_id": "NR1L-PowerManagement-143",
    "tc_title": "The ex-factory default selects recall last with the last status on",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1079,7 +1079,7 @@
   },
   {
    "req_id": "SWE-PM-049",
-   "tc_id": "NR1L-PowerManagement-147",
+   "tc_id": "NR1L-PowerManagement-144",
    "tc_title": "A failed antitheft keeps the TLM blocked in Idle",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1101,7 +1101,7 @@
   },
   {
    "req_id": "SWE-PM-050",
-   "tc_id": "NR1L-PowerManagement-148",
+   "tc_id": "NR1L-PowerManagement-145",
    "tc_title": "The else branch stores the last status off and passes the TLM to Idle",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1123,7 +1123,7 @@
   },
   {
    "req_id": "SWE-PM-051",
-   "tc_id": "NR1L-PowerManagement-149",
+   "tc_id": "NR1L-PowerManagement-146",
    "tc_title": "Antitheft success stores the last status on and passes the TLM to Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1145,7 +1145,7 @@
   },
   {
    "req_id": "SWE-PM-052",
-   "tc_id": "NR1L-PowerManagement-150",
+   "tc_id": "NR1L-PowerManagement-147",
    "tc_title": "A failed antitheft keeps the TLM in the original Partial Operation state",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1167,7 +1167,7 @@
   },
   {
    "req_id": "SWE-PM-053",
-   "tc_id": "NR1L-PowerManagement-151",
+   "tc_id": "NR1L-PowerManagement-148",
    "tc_title": "The vehicle brand logo screen follows the brand configuration parameter",
    "test_group": "Power Management",
    "test_set": "Startup Display",
@@ -1189,7 +1189,7 @@
   },
   {
    "req_id": "SWE-PM-054",
-   "tc_id": "NR1L-PowerManagement-152",
+   "tc_id": "NR1L-PowerManagement-149",
    "tc_title": "No audio brand without SDARS shows the vehicle brand logo only",
    "test_group": "Power Management",
    "test_set": "Startup Display",
@@ -1215,7 +1215,7 @@
   },
   {
    "req_id": "SWE-PM-054",
-   "tc_id": "NR1L-PowerManagement-153",
+   "tc_id": "NR1L-PowerManagement-150",
    "tc_title": "Beats brand white without SDARS adds the Beats logo",
    "test_group": "Power Management",
    "test_set": "Startup Display",
@@ -1241,7 +1241,7 @@
   },
   {
    "req_id": "SWE-PM-054",
-   "tc_id": "NR1L-PowerManagement-154",
+   "tc_id": "NR1L-PowerManagement-151",
    "tc_title": "SDARS present without audio brand adds the Sirius logo",
    "test_group": "Power Management",
    "test_set": "Startup Display",
@@ -1267,7 +1267,7 @@
   },
   {
    "req_id": "SWE-PM-054",
-   "tc_id": "NR1L-PowerManagement-155",
+   "tc_id": "NR1L-PowerManagement-152",
    "tc_title": "SDARS present with beats brand white adds both logos",
    "test_group": "Power Management",
    "test_set": "Startup Display",
@@ -1293,7 +1293,7 @@
   },
   {
    "req_id": "SWE-PM-055",
-   "tc_id": "NR1L-PowerManagement-156",
+   "tc_id": "NR1L-PowerManagement-153",
    "tc_title": "The special package drives the Klipsch Splash Screen on the 2025 model year",
    "test_group": "Power Management",
    "test_set": "Startup Display",
@@ -1319,7 +1319,7 @@
   },
   {
    "req_id": "SWE-PM-055",
-   "tc_id": "NR1L-PowerManagement-157",
+   "tc_id": "NR1L-PowerManagement-154",
    "tc_title": "The splash screen type drives the Klipsch Splash Screen after the 2025 model year",
    "test_group": "Power Management",
    "test_set": "Startup Display",
@@ -1345,7 +1345,7 @@
   },
   {
    "req_id": "SWE-PM-056",
-   "tc_id": "NR1L-PowerManagement-158",
+   "tc_id": "NR1L-PowerManagement-155",
    "tc_title": "The Fiat Latam startup animation replaces the vehicle brand logo",
    "test_group": "Power Management",
    "test_set": "Startup Display",
@@ -1367,7 +1367,7 @@
   },
   {
    "req_id": "SWE-PM-058",
-   "tc_id": "NR1L-PowerManagement-159",
+   "tc_id": "NR1L-PowerManagement-156",
    "tc_title": "The ex-factory default sets a zero switch off timeout",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1389,7 +1389,7 @@
   },
   {
    "req_id": "SWE-PM-059",
-   "tc_id": "NR1L-PowerManagement-160",
+   "tc_id": "NR1L-PowerManagement-157",
    "tc_title": "A network sleep request in Standby passes the TLM to Sleep",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1415,7 +1415,7 @@
   },
   {
    "req_id": "SWE-PM-059",
-   "tc_id": "NR1L-PowerManagement-161",
+   "tc_id": "NR1L-PowerManagement-158",
    "tc_title": "A network sleep request during boot is served only after the boot ends",
    "test_group": "Power Management",
    "test_set": "Power State",

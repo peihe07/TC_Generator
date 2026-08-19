@@ -164,7 +164,7 @@
  "tcs": [
   {
    "req_id": "SWE-PM-011",
-   "tc_id": "NR1L-PowerManagement-044",
+   "tc_id": "NR1L-PowerManagement-043",
    "tc_title": "VR button press in IDLE mode transitions the HU to Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -190,7 +190,7 @@
   },
   {
    "req_id": "SWE-PM-011",
-   "tc_id": "NR1L-PowerManagement-045",
+   "tc_id": "NR1L-PowerManagement-044",
    "tc_title": "CarPlay requesting audio and video keeps audio unmuted and screen on",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -216,7 +216,7 @@
   },
   {
    "req_id": "SWE-PM-011",
-   "tc_id": "NR1L-PowerManagement-046",
+   "tc_id": "NR1L-PowerManagement-045",
    "tc_title": "CarPlay requesting audio only activates the Screen OFF function",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -242,7 +242,7 @@
   },
   {
    "req_id": "SWE-PM-011",
-   "tc_id": "NR1L-PowerManagement-047",
+   "tc_id": "NR1L-PowerManagement-046",
    "tc_title": "CarPlay requesting video only mutes the audio and keeps the screen on",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -268,7 +268,7 @@
   },
   {
    "req_id": "SWE-PM-011",
-   "tc_id": "NR1L-PowerManagement-048",
+   "tc_id": "NR1L-PowerManagement-047",
    "tc_title": "CarPlay requesting neither audio nor video returns the HU to IDLE",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -294,7 +294,7 @@
   },
   {
    "req_id": "SWE-PM-011",
-   "tc_id": "NR1L-PowerManagement-049",
+   "tc_id": "NR1L-PowerManagement-048",
    "tc_title": "VR button long press in IDLE mode transitions the HU to Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -320,7 +320,7 @@
   },
   {
    "req_id": "SWE-PM-012",
-   "tc_id": "NR1L-PowerManagement-050",
+   "tc_id": "NR1L-PowerManagement-049",
    "tc_title": "User settings are restored after a battery reconnection",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -346,7 +346,7 @@
   },
   {
    "req_id": "SWE-PM-012",
-   "tc_id": "NR1L-PowerManagement-051",
+   "tc_id": "NR1L-PowerManagement-050",
    "tc_title": "TLM starts from Sleep state after leaving INIT",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -372,7 +372,7 @@
   },
   {
    "req_id": "SWE-PM-013",
-   "tc_id": "NR1L-PowerManagement-052",
+   "tc_id": "NR1L-PowerManagement-051",
    "tc_title": "Remote Start Active reports Partial_Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -398,7 +398,7 @@
   },
   {
    "req_id": "SWE-PM-013",
-   "tc_id": "NR1L-PowerManagement-053",
+   "tc_id": "NR1L-PowerManagement-052",
    "tc_title": "Remote Start Active reports Partial_Operation in Ignition Pre_Start",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -424,7 +424,7 @@
   },
   {
    "req_id": "SWE-PM-013",
-   "tc_id": "NR1L-PowerManagement-054",
+   "tc_id": "NR1L-PowerManagement-053",
    "tc_title": "Remote Start Active reports Partial_Operation in Ignition Cranking",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -450,7 +450,7 @@
   },
   {
    "req_id": "SWE-PM-013",
-   "tc_id": "NR1L-PowerManagement-055",
+   "tc_id": "NR1L-PowerManagement-054",
    "tc_title": "Remote Start Active reports Partial_Operation in Ignition On Engine On",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -476,7 +476,7 @@
   },
   {
    "req_id": "SWE-PM-013",
-   "tc_id": "NR1L-PowerManagement-056",
+   "tc_id": "NR1L-PowerManagement-055",
    "tc_title": "AMP, ICS and DTV are off while chime audio stays active",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -498,11 +498,11 @@
     "delta": "本條驗 Partial Operation 之各模組電源與音訊"
    },
    "reasoning_note": "",
-   "split_index": 2
+   "split_index": 5
   },
   {
    "req_id": "SWE-PM-013",
-   "tc_id": "NR1L-PowerManagement-057",
+   "tc_id": "NR1L-PowerManagement-056",
    "tc_title": "HMI interaction is disabled except for status changes",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -524,11 +524,11 @@
     "delta": "本條驗 HMI 互動之限制與其例外"
    },
    "reasoning_note": "",
-   "split_index": 3
+   "split_index": 6
   },
   {
    "req_id": "SWE-PM-014",
-   "tc_id": "NR1L-PowerManagement-058",
+   "tc_id": "NR1L-PowerManagement-057",
    "tc_title": "Remote Start ends at ignition off: RemStartFail is set true",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -554,7 +554,7 @@
   },
   {
    "req_id": "SWE-PM-014",
-   "tc_id": "NR1L-PowerManagement-059",
+   "tc_id": "NR1L-PowerManagement-058",
    "tc_title": "RemStartFail is cleared when the call is not active",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -580,7 +580,7 @@
   },
   {
    "req_id": "SWE-PM-014",
-   "tc_id": "NR1L-PowerManagement-060",
+   "tc_id": "NR1L-PowerManagement-059",
    "tc_title": "Behaviour 1 with no active call passes the TLM to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -606,7 +606,7 @@
   },
   {
    "req_id": "SWE-PM-014",
-   "tc_id": "NR1L-PowerManagement-061",
+   "tc_id": "NR1L-PowerManagement-060",
    "tc_title": "Behaviour 1 with an active call passes the TLM to Timed",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -632,7 +632,7 @@
   },
   {
    "req_id": "SWE-PM-014",
-   "tc_id": "NR1L-PowerManagement-062",
+   "tc_id": "NR1L-PowerManagement-061",
    "tc_title": "Behaviour 2 on a Jeep with the driver door open passes to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -658,7 +658,7 @@
   },
   {
    "req_id": "SWE-PM-014",
-   "tc_id": "NR1L-PowerManagement-063",
+   "tc_id": "NR1L-PowerManagement-062",
    "tc_title": "Behaviour 2 otherwise passes to Timed keeping the active source",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -668,7 +668,7 @@
    "test_procedure": "1. Let LTM_OperationalModeSts.Info transition occur\n2. Read TLM_Status.Info, $Telematic_Power$ and the active source to check the transition to Timed",
    "expected_result": "1. The TLM registers the LTM_OperationalModeSts.Info transition\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the current active source is maintained",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
-   "priority": "P3",
+   "priority": "P0",
    "design_method": "決策表 (Decision Table Testing)",
    "split_flag": true,
    "split_reason": "本條驗 Behaviour 2 之 ELSE 分支",
@@ -684,7 +684,7 @@
   },
   {
    "req_id": "SWE-PM-014",
-   "tc_id": "NR1L-PowerManagement-064",
+   "tc_id": "NR1L-PowerManagement-063",
    "tc_title": "Behaviour 1 reached through Auto_SwitchOn_Setting.Req on LTM High",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -710,7 +710,7 @@
   },
   {
    "req_id": "SWE-PM-014",
-   "tc_id": "NR1L-PowerManagement-065",
+   "tc_id": "NR1L-PowerManagement-064",
    "tc_title": "Behaviour 2 reached through Auto_SwitchOn_Setting.Req on LTM High",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -720,7 +720,7 @@
    "test_procedure": "1. Let LTM_OperationalModeSts.Info transition occur\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Timed",
    "expected_result": "1. The TLM registers the LTM_OperationalModeSts.Info transition\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the current active source is maintained",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
-   "priority": "P3",
+   "priority": "P0",
    "design_method": "決策表 (Decision Table Testing)",
    "split_flag": true,
    "split_reason": "本條驗 Behaviour 2 之 LTM High 形態（`066` 驗 SwitchOff_Timeout_Setting.Req 形態）",
@@ -736,7 +736,7 @@
   },
   {
    "req_id": "SWE-PM-014",
-   "tc_id": "NR1L-PowerManagement-066",
+   "tc_id": "NR1L-PowerManagement-065",
    "tc_title": "Remote Start ends at ignition pre off: RemStartFail is set true",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -762,7 +762,7 @@
   },
   {
    "req_id": "SWE-PM-015",
-   "tc_id": "NR1L-PowerManagement-067",
+   "tc_id": "NR1L-PowerManagement-066",
    "tc_title": "Front_Panel_OnOff.Req press with no active call passes the TLM to Idle",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -788,7 +788,7 @@
   },
   {
    "req_id": "SWE-PM-015",
-   "tc_id": "NR1L-PowerManagement-068",
+   "tc_id": "NR1L-PowerManagement-067",
    "tc_title": "CLIMATIC_PANEL.Radio_Btn0 press with no active call passes the TLM to Idle",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -814,7 +814,7 @@
   },
   {
    "req_id": "SWE-PM-015",
-   "tc_id": "NR1L-PowerManagement-069",
+   "tc_id": "NR1L-PowerManagement-068",
    "tc_title": "Front_Panel_OnOff.Req press with the rear camera not active passes the TLM to Idle",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -840,7 +840,7 @@
   },
   {
    "req_id": "SWE-PM-015",
-   "tc_id": "NR1L-PowerManagement-070",
+   "tc_id": "NR1L-PowerManagement-069",
    "tc_title": "CLIMATIC_PANEL.Radio_Btn0 press with the rear camera not active passes the TLM to Idle",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -866,7 +866,7 @@
   },
   {
    "req_id": "SWE-PM-016",
-   "tc_id": "NR1L-PowerManagement-071",
+   "tc_id": "NR1L-PowerManagement-070",
    "tc_title": "Rear camera activation keeps the TLM in Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -888,7 +888,7 @@
   },
   {
    "req_id": "SWE-PM-017",
-   "tc_id": "NR1L-PowerManagement-072",
+   "tc_id": "NR1L-PowerManagement-071",
    "tc_title": "Rear camera deactivation restores the last active source",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -910,7 +910,7 @@
   },
   {
    "req_id": "SWE-PM-018",
-   "tc_id": "NR1L-PowerManagement-073",
+   "tc_id": "NR1L-PowerManagement-072",
    "tc_title": "Ignition off in Idle passes the TLM to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -936,7 +936,7 @@
   },
   {
    "req_id": "SWE-PM-018",
-   "tc_id": "NR1L-PowerManagement-074",
+   "tc_id": "NR1L-PowerManagement-073",
    "tc_title": "Ignition pre off in Idle passes the TLM to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -962,7 +962,7 @@
   },
   {
    "req_id": "SWE-PM-019",
-   "tc_id": "NR1L-PowerManagement-075",
+   "tc_id": "NR1L-PowerManagement-074",
    "tc_title": "Front_Panel_OnOff.Req press is ignored while the rear camera is enabled",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -988,7 +988,7 @@
   },
   {
    "req_id": "SWE-PM-019",
-   "tc_id": "NR1L-PowerManagement-076",
+   "tc_id": "NR1L-PowerManagement-075",
    "tc_title": "Front_Panel_OnOff.Req press otherwise shows the Splash Screen and enters Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1014,7 +1014,7 @@
   },
   {
    "req_id": "SWE-PM-019",
-   "tc_id": "NR1L-PowerManagement-077",
+   "tc_id": "NR1L-PowerManagement-076",
    "tc_title": "CLIMATIC_PANEL.Radio_Btn0 press is ignored while the rear camera is enabled",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1040,7 +1040,7 @@
   },
   {
    "req_id": "SWE-PM-019",
-   "tc_id": "NR1L-PowerManagement-078",
+   "tc_id": "NR1L-PowerManagement-077",
    "tc_title": "CLIMATIC_PANEL.Radio_Btn0 press otherwise shows the Splash Screen and enters Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1066,7 +1066,7 @@
   },
   {
    "req_id": "SWE-PM-020",
-   "tc_id": "NR1L-PowerManagement-079",
+   "tc_id": "NR1L-PowerManagement-078",
    "tc_title": "Incoming call in Idle passes the TLM to Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1092,7 +1092,7 @@
   },
   {
    "req_id": "SWE-PM-020",
-   "tc_id": "NR1L-PowerManagement-080",
+   "tc_id": "NR1L-PowerManagement-079",
    "tc_title": "Call ending on the Phone Main Screen returns the TLM to Idle",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1118,7 +1118,7 @@
   },
   {
    "req_id": "SWE-PM-020",
-   "tc_id": "NR1L-PowerManagement-081",
+   "tc_id": "NR1L-PowerManagement-080",
    "tc_title": "Call ending on another screen keeps the TLM in Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1144,7 +1144,7 @@
   },
   {
    "req_id": "SWE-PM-021",
-   "tc_id": "NR1L-PowerManagement-082",
+   "tc_id": "NR1L-PowerManagement-081",
    "tc_title": "Rear camera enable in Idle keeps Idle with video only",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1166,7 +1166,7 @@
   },
   {
    "req_id": "SWE-PM-022",
-   "tc_id": "NR1L-PowerManagement-083",
+   "tc_id": "NR1L-PowerManagement-082",
    "tc_title": "Logistic mode on passes the TLM to Logistic Idle",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1188,7 +1188,7 @@
   },
   {
    "req_id": "SWE-PM-023",
-   "tc_id": "NR1L-PowerManagement-084",
+   "tc_id": "NR1L-PowerManagement-083",
    "tc_title": "Leaving Ignition Off in Timed passes the TLM to Full-Operation",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1210,7 +1210,7 @@
   },
   {
    "req_id": "SWE-PM-024",
-   "tc_id": "NR1L-PowerManagement-085",
+   "tc_id": "NR1L-PowerManagement-084",
    "tc_title": "Remote Start not active on leaving Ignition Off clears RemStartFail",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1232,7 +1232,7 @@
   },
   {
    "req_id": "SWE-PM-025",
-   "tc_id": "NR1L-PowerManagement-086",
+   "tc_id": "NR1L-PowerManagement-085",
    "tc_title": "Front_Panel_OnOff.Req press in Timed with an active call shows a popup",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1258,7 +1258,7 @@
   },
   {
    "req_id": "SWE-PM-025",
-   "tc_id": "NR1L-PowerManagement-087",
+   "tc_id": "NR1L-PowerManagement-086",
    "tc_title": "Accepting the Front_Panel_OnOff.Req popup passes the TLM to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1284,7 +1284,7 @@
   },
   {
    "req_id": "SWE-PM-025",
-   "tc_id": "NR1L-PowerManagement-088",
+   "tc_id": "NR1L-PowerManagement-087",
    "tc_title": "Declining the Front_Panel_OnOff.Req popup keeps the TLM in Timed",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1310,7 +1310,7 @@
   },
   {
    "req_id": "SWE-PM-025",
-   "tc_id": "NR1L-PowerManagement-089",
+   "tc_id": "NR1L-PowerManagement-088",
    "tc_title": "Front_Panel_OnOff.Req press in Timed with no active call passes to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1336,7 +1336,7 @@
   },
   {
    "req_id": "SWE-PM-025",
-   "tc_id": "NR1L-PowerManagement-090",
+   "tc_id": "NR1L-PowerManagement-089",
    "tc_title": "CLIMATIC_PANEL.Radio_Btn0 press in Timed with an active call shows a popup",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1362,7 +1362,7 @@
   },
   {
    "req_id": "SWE-PM-025",
-   "tc_id": "NR1L-PowerManagement-091",
+   "tc_id": "NR1L-PowerManagement-090",
    "tc_title": "Accepting the CLIMATIC_PANEL.Radio_Btn0 popup passes the TLM to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1388,7 +1388,7 @@
   },
   {
    "req_id": "SWE-PM-025",
-   "tc_id": "NR1L-PowerManagement-092",
+   "tc_id": "NR1L-PowerManagement-091",
    "tc_title": "Declining the CLIMATIC_PANEL.Radio_Btn0 popup keeps the TLM in Timed",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1414,7 +1414,7 @@
   },
   {
    "req_id": "SWE-PM-025",
-   "tc_id": "NR1L-PowerManagement-093",
+   "tc_id": "NR1L-PowerManagement-092",
    "tc_title": "CLIMATIC_PANEL.Radio_Btn0 press in Timed with no active call passes to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1440,7 +1440,7 @@
   },
   {
    "req_id": "SWE-PM-026",
-   "tc_id": "NR1L-PowerManagement-094",
+   "tc_id": "NR1L-PowerManagement-093",
    "tc_title": "Door open on a Jeep from Full-Operation passes the TLM to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1466,7 +1466,7 @@
   },
   {
    "req_id": "SWE-PM-026",
-   "tc_id": "NR1L-PowerManagement-095",
+   "tc_id": "NR1L-PowerManagement-094",
    "tc_title": "Door open with an active call keeps the TLM in Timed",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1476,7 +1476,7 @@
    "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read TLM_Status.Info to check that Timed state is kept",
    "expected_result": "1. The TLM registers the door signal without a bus error\n2. TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
-   "priority": "P3",
+   "priority": "P0",
    "design_method": "決策表 (Decision Table Testing)",
    "split_flag": true,
    "split_reason": "本條驗通話中之門開啟分支，**並承擔 OR 之右支 `STATUS_BH_BCM1.PsngrDoorSts`**（R-P202 —— 使該涵蓋自附帶轉為設計）",
@@ -1492,7 +1492,7 @@
   },
   {
    "req_id": "SWE-PM-026",
-   "tc_id": "NR1L-PowerManagement-096",
+   "tc_id": "NR1L-PowerManagement-095",
    "tc_title": "Door open with Standby as the previous state keeps the TLM in Timed",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1518,7 +1518,7 @@
   },
   {
    "req_id": "SWE-PM-026",
-   "tc_id": "NR1L-PowerManagement-097",
+   "tc_id": "NR1L-PowerManagement-096",
    "tc_title": "A non Jeep brand does not take the door transition to Standby",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1544,7 +1544,7 @@
   },
   {
    "req_id": "SWE-PM-027",
-   "tc_id": "NR1L-PowerManagement-098",
+   "tc_id": "NR1L-PowerManagement-097",
    "tc_title": "Antitheft failure clears the activation request within Timeout1",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1570,7 +1570,7 @@
   },
   {
    "req_id": "SWE-PM-027",
-   "tc_id": "NR1L-PowerManagement-099",
+   "tc_id": "NR1L-PowerManagement-098",
    "tc_title": "Antitheft failure in Partial Operation keeps the original state",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1596,15 +1596,15 @@
   },
   {
    "req_id": "SWE-PM-028",
-   "tc_id": "NR1L-PowerManagement-100",
+   "tc_id": "NR1L-PowerManagement-099",
    "tc_title": "Antitheft success clears the activation request",
    "test_group": "Power Management",
    "test_set": "Power State",
    "test_item": "Antitheft success clears the activation request",
    "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Antitheft_Activation.Req reads \"True\"",
    "input_test_data": "Antitheft_Result.Info = \"Successfully\"",
-   "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read Antitheft_Activation.Req to check that it is set back",
-   "expected_result": "1. The TLM accepts the signal without a bus error\n2. Antitheft_Activation.Req reads \"False\"",
+   "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read Antitheft_Activation.Req to check that it is set back\n3. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Timed",
+   "expected_result": "1. The TLM accepts the signal without a bus error\n2. Antitheft_Activation.Req reads \"False\"\n3. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the TLM passes to TLM Timed state",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
    "design_method": "決策表 (Decision Table Testing)",
@@ -1617,12 +1617,12 @@
     "axis": "trigger_state",
     "delta": "本條驗防盜成功後之請求復歸"
    },
-   "reasoning_note": "",
+   "reasoning_note": "**合併（R-P294 / §5.7，44 包）**：本條由臨時號 `…-100` 與 `…-102` 合併而成。二者之 `pre_conditions` / `input_test_data` 逐字全同，`test_procedure` 之**施加步驟逐字相同**（`1. Send the signal listed in Input Test Data…`），僅觀察步驟與 ER 相異 —— 依 §5.7「一個觸發、多個必然後果歸同一條」，其觀察之差異為同一觸發之不同後果，以多 ER 承接。",
    "split_index": 1
   },
   {
    "req_id": "SWE-PM-028",
-   "tc_id": "NR1L-PowerManagement-101",
+   "tc_id": "NR1L-PowerManagement-100",
    "tc_title": "Antitheft success with a zero timeout takes Timeout1 from PROXI",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1648,33 +1648,7 @@
   },
   {
    "req_id": "SWE-PM-028",
-   "tc_id": "NR1L-PowerManagement-102",
-   "tc_title": "Antitheft success passes the TLM to Timed state",
-   "test_group": "Power Management",
-   "test_set": "Power State",
-   "test_item": "Antitheft success passes the TLM to Timed state",
-   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Antitheft_Activation.Req reads \"True\"",
-   "input_test_data": "Antitheft_Result.Info = \"Successfully\"",
-   "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Timed",
-   "expected_result": "1. The TLM accepts the signal without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the TLM passes to TLM Timed state",
-   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
-   "priority": "P0",
-   "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
-   "split_reason": "本條驗防盜成功後之狀態轉換",
-   "functional_safety": "NA",
-   "estimated_test_time": "",
-   "remarks": "",
-   "distinguishing_axis": {
-    "axis": "trigger_state",
-    "delta": "本條驗防盜成功後之狀態轉換"
-   },
-   "reasoning_note": "",
-   "split_index": 3
-  },
-  {
-   "req_id": "SWE-PM-028",
-   "tc_id": "NR1L-PowerManagement-103",
+   "tc_id": "NR1L-PowerManagement-101",
    "tc_title": "Antitheft success on LTM High takes Timeout1 from PROXI",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1696,19 +1670,19 @@
     "delta": "本條驗 LTM High 形態之 Timeout1 取值（`100` 之對應條驗 SwitchOff_Timeout_Setting.Req 形態）"
    },
    "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。",
-   "split_index": 4
+   "split_index": 3
   },
   {
    "req_id": "SWE-PM-029",
-   "tc_id": "NR1L-PowerManagement-104",
+   "tc_id": "NR1L-PowerManagement-102",
    "tc_title": "Antitheft success clears the activation request on this variant",
    "test_group": "Power Management",
    "test_set": "Power State",
    "test_item": "Antitheft success clears the activation request on this variant",
    "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Antitheft_Activation.Req reads \"True\"",
    "input_test_data": "Antitheft_Result.Info = \"Successfully\"",
-   "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read Antitheft_Activation.Req to check that it is set back",
-   "expected_result": "1. The TLM accepts the signal without a bus error\n2. Antitheft_Activation.Req reads \"False\"",
+   "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read Antitheft_Activation.Req to check that it is set back\n3. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Timed",
+   "expected_result": "1. The TLM accepts the signal without a bus error\n2. Antitheft_Activation.Req reads \"False\"\n3. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the TLM passes to TLM Timed state",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
    "design_method": "決策表 (Decision Table Testing)",
@@ -1721,12 +1695,12 @@
     "axis": "trigger_state",
     "delta": "本條驗本變體之請求復歸"
    },
-   "reasoning_note": "",
+   "reasoning_note": "**合併（R-P294 / §5.7，44 包）**：本條由臨時號 `…-104` 與 `…-107` 合併而成。二者之 `pre_conditions` / `input_test_data` 逐字全同，`test_procedure` 之**施加步驟逐字相同**（`1. Send the signal listed in Input Test Data…`），僅觀察步驟與 ER 相異 —— 依 §5.7「一個觸發、多個必然後果歸同一條」，其觀察之差異為同一觸發之不同後果，以多 ER 承接。",
    "split_index": 1
   },
   {
    "req_id": "SWE-PM-029",
-   "tc_id": "NR1L-PowerManagement-105",
+   "tc_id": "NR1L-PowerManagement-103",
    "tc_title": "Timeout1 follows Switch_Off_Time when the setting is zero",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1752,7 +1726,7 @@
   },
   {
    "req_id": "SWE-PM-029",
-   "tc_id": "NR1L-PowerManagement-106",
+   "tc_id": "NR1L-PowerManagement-104",
    "tc_title": "Timeout1 follows PwrAccDelayAct when the setting is zero",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1777,34 +1751,8 @@
    "split_index": 3
   },
   {
-   "req_id": "SWE-PM-029",
-   "tc_id": "NR1L-PowerManagement-107",
-   "tc_title": "Antitheft success on this variant passes the TLM to Timed",
-   "test_group": "Power Management",
-   "test_set": "Power State",
-   "test_item": "Antitheft success on this variant passes the TLM to Timed",
-   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Antitheft_Activation.Req reads \"True\"",
-   "input_test_data": "Antitheft_Result.Info = \"Successfully\"",
-   "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Timed",
-   "expected_result": "1. The TLM accepts the signal without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the TLM passes to TLM Timed state",
-   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
-   "priority": "P0",
-   "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
-   "split_reason": "本條驗本變體之狀態轉換",
-   "functional_safety": "NA",
-   "estimated_test_time": "",
-   "remarks": "",
-   "distinguishing_axis": {
-    "axis": "trigger_state",
-    "delta": "本條驗本變體之狀態轉換"
-   },
-   "reasoning_note": "",
-   "split_index": 4
-  },
-  {
    "req_id": "SWE-PM-030",
-   "tc_id": "NR1L-PowerManagement-108",
+   "tc_id": "NR1L-PowerManagement-105",
    "tc_title": "Splash Screen is shown for the configured wait time",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1830,7 +1778,7 @@
   },
   {
    "req_id": "SWE-PM-030",
-   "tc_id": "NR1L-PowerManagement-109",
+   "tc_id": "NR1L-PowerManagement-106",
    "tc_title": "Splash Screen is shown for the Recall_Last branch",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1856,7 +1804,7 @@
   },
   {
    "req_id": "SWE-PM-031",
-   "tc_id": "NR1L-PowerManagement-110",
+   "tc_id": "NR1L-PowerManagement-107",
    "tc_title": "Rear view camera images follow the enable signal in any state",
    "test_group": "Power Management",
    "test_set": "Power State",
@@ -1878,7 +1826,7 @@
   },
   {
    "req_id": "SWE-PM-032",
-   "tc_id": "NR1L-PowerManagement-111",
+   "tc_id": "NR1L-PowerManagement-108",
    "tc_title": "Remote Start from Standby passes the TLM to Partial Operation",
    "test_group": "Power Management",
    "test_set": "Power State",

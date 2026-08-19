@@ -6,6 +6,17 @@
     "ROOT",
     "main"
   ],
+  "apply_merge_44.py": [
+    "BASE",
+    "DATA",
+    "GEN",
+    "OBSERVE",
+    "PAIRS",
+    "ROOT",
+    "main",
+    "renumber",
+    "steps"
+  ],
   "apply_tier1_edits.py": [
     "BASE",
     "DATA",
@@ -450,6 +461,13 @@
     "RULED_MULTI",
     "main",
     "test_set_of"
+  ],
+  "build_unmapped_sample_43.py": [
+    "DATA",
+    "ROOT",
+    "SEED",
+    "fence",
+    "main"
   ],
   "build_vcvm.py": [
     "DATA",
@@ -929,6 +947,19 @@
     "main",
     "run",
     "self_test"
+  ],
+  "verify_er_only_distinct.py": [
+    "ACT_FIELDS",
+    "BASE",
+    "DATA",
+    "ROOT",
+    "THREE",
+    "act_sig",
+    "main",
+    "run",
+    "run_actual",
+    "self_test",
+    "three_sig"
   ],
   "verify_gates.py": [
     "DATA",

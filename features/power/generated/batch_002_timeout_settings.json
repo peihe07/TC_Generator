@@ -65,7 +65,7 @@
  "tcs": [
   {
    "req_id": "SWE-PM-057",
-   "tc_id": "NR1L-PowerManagement-018",
+   "tc_id": "NR1L-PowerManagement-017",
    "tc_title": "Timeout1 options follow PROXI \"Switch_Off_Time\" set to 20 minutes",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -91,7 +91,7 @@
   },
   {
    "req_id": "SWE-PM-057",
-   "tc_id": "NR1L-PowerManagement-019",
+   "tc_id": "NR1L-PowerManagement-018",
    "tc_title": "Timeout1 options follow PROXI \"Switch_Off_Time\" set to 60 minutes",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -117,7 +117,7 @@
   },
   {
    "req_id": "SWE-PM-057",
-   "tc_id": "NR1L-PowerManagement-020",
+   "tc_id": "NR1L-PowerManagement-019",
    "tc_title": "Timeout1 options follow PROXI \"Switch_Off_Time\" set to 180 minutes",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -143,7 +143,7 @@
   },
   {
    "req_id": "SWE-PM-060",
-   "tc_id": "NR1L-PowerManagement-021",
+   "tc_id": "NR1L-PowerManagement-020",
    "tc_title": "LTM or ETM Radio offers one timeout parameter",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -169,7 +169,7 @@
   },
   {
    "req_id": "SWE-PM-060",
-   "tc_id": "NR1L-PowerManagement-022",
+   "tc_id": "NR1L-PowerManagement-021",
    "tc_title": "Radio other than LTM or ETM offers two timeout parameters",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -195,7 +195,7 @@
   },
   {
    "req_id": "SWE-PM-061",
-   "tc_id": "NR1L-PowerManagement-023",
+   "tc_id": "NR1L-PowerManagement-022",
    "tc_title": "Timeout settings are selectable in Full-Operation status",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -221,7 +221,7 @@
   },
   {
    "req_id": "SWE-PM-061",
-   "tc_id": "NR1L-PowerManagement-024",
+   "tc_id": "NR1L-PowerManagement-023",
    "tc_title": "Timeout settings are not selectable outside Full-Operation status",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -247,7 +247,7 @@
   },
   {
    "req_id": "SWE-PM-062",
-   "tc_id": "NR1L-PowerManagement-025",
+   "tc_id": "NR1L-PowerManagement-024",
    "tc_title": "Auto_SwitchOn_Setting.Req can be set to Active",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -273,7 +273,7 @@
   },
   {
    "req_id": "SWE-PM-062",
-   "tc_id": "NR1L-PowerManagement-026",
+   "tc_id": "NR1L-PowerManagement-025",
    "tc_title": "Auto_SwitchOn_Setting.Req can be set to Not_Active",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -299,7 +299,7 @@
   },
   {
    "req_id": "SWE-PM-062",
-   "tc_id": "NR1L-PowerManagement-027",
+   "tc_id": "NR1L-PowerManagement-026",
    "tc_title": "Auto_SwitchOn_Setting.Req can be set to Recall_Last",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -325,7 +325,7 @@
   },
   {
    "req_id": "SWE-PM-063",
-   "tc_id": "NR1L-PowerManagement-028",
+   "tc_id": "NR1L-PowerManagement-027",
    "tc_title": "Bluetooth calls can be made and received in Timed state",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -347,7 +347,7 @@
   },
   {
    "req_id": "SWE-PM-064",
-   "tc_id": "NR1L-PowerManagement-029",
+   "tc_id": "NR1L-PowerManagement-028",
    "tc_title": "MaxCallTimeout starts on ignition off with Timeout1 at 00 min",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -373,7 +373,7 @@
   },
   {
    "req_id": "SWE-PM-064",
-   "tc_id": "NR1L-PowerManagement-030",
+   "tc_id": "NR1L-PowerManagement-029",
    "tc_title": "MaxCallTimeout starts at Timeout1 expiry with the call still active",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -399,7 +399,7 @@
   },
   {
    "req_id": "SWE-PM-065",
-   "tc_id": "NR1L-PowerManagement-031",
+   "tc_id": "NR1L-PowerManagement-030",
    "tc_title": "Call ends before Timeout1 expiry: previous source is restored",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -425,7 +425,7 @@
   },
   {
    "req_id": "SWE-PM-065",
-   "tc_id": "NR1L-PowerManagement-032",
+   "tc_id": "NR1L-PowerManagement-031",
    "tc_title": "Further calls are still managed within Timeout1",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -451,7 +451,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-033",
+   "tc_id": "NR1L-PowerManagement-032",
    "tc_title": "Case 1 with RemStartFail true: TLM stops and passes to Standby",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -477,7 +477,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-034",
+   "tc_id": "NR1L-PowerManagement-033",
    "tc_title": "Case 1 with RemStartFail false: previous source is restored",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -503,7 +503,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-035",
+   "tc_id": "NR1L-PowerManagement-034",
    "tc_title": "Case 2: MaxCallTimeout starts at Timeout1 expiry and the TLM stays Timed",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -529,7 +529,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-036",
+   "tc_id": "NR1L-PowerManagement-035",
    "tc_title": "Case 2 exit on call end: TLM_Status.Info passes to Standby",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -555,7 +555,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-037",
+   "tc_id": "NR1L-PowerManagement-036",
    "tc_title": "Case 2 exit with RemStartFail cleared on MaxCallTimeout expiry",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -581,7 +581,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-038",
+   "tc_id": "NR1L-PowerManagement-037",
    "tc_title": "Case 3: call already ended at Timeout1 expiry",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -607,7 +607,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-039",
+   "tc_id": "NR1L-PowerManagement-038",
    "tc_title": "Case 3 with RemStartFail cleared at Timeout1 expiry",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -633,7 +633,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-040",
+   "tc_id": "NR1L-PowerManagement-039",
    "tc_title": "Case 4: ignition off with Timeout1 at 00 min enters Timed state",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -659,7 +659,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-041",
+   "tc_id": "NR1L-PowerManagement-040",
    "tc_title": "Case 4 exit: TLM passes to Standby when the call ends",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -685,7 +685,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-042",
+   "tc_id": "NR1L-PowerManagement-041",
    "tc_title": "Case 4 exit with RemStartFail cleared on MaxCallTimeout expiry",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
@@ -711,7 +711,7 @@
   },
   {
    "req_id": "SWE-PM-038",
-   "tc_id": "NR1L-PowerManagement-043",
+   "tc_id": "NR1L-PowerManagement-042",
    "tc_title": "Case 4 with ignition pre off: TLM enters Timed state",
    "test_group": "Power Management",
    "test_set": "Timeout Settings",
