@@ -18,7 +18,7 @@
    "section": "1.9.15.1",
    "source_anchor": "4942014",
    "source_clause": "If $VC_SpecialPKG$ = [none] or indicates a value that is not supported by the HU, the default theme based on the $VC_VEH_BRAND$ signal shall be used. See the latest version of [PDO Theme Configuration] for the default value definition.",
-   "reasoning": "驗證目標：`$VC_SpecialPKG$` 為 `none` 或不受支援時，是否回落至以 `$VC_VEH_BRAND$` 為準之預設主題。關鍵情境條件：分別送入 `none` 與一個 HU 不支援之值。為什麼這樣切：原文以 `or` 並列二個觸發條件（`none` / 不受支援），依 §5.7 各自成條，二條；此亦為 G113 之 OR 分支要求。刻意略過：預設值之具體定義委由 [PDO Theme Configuration]，不在本條可驗範圍。"
+   "reasoning": "驗證目標：`$VC_SpecialPKG$` 為 `none` 或不受支援時，是否回落至以 `$VC_VEH_BRAND$` 為準之預設主題。關鍵情境條件：分別送入 `none` 與一個 HU 不支援之值。為什麼這樣切：原文以 `or` 並列二個觸發條件（`none` / 不受支援），依 §5.7 各自成條，二條；此亦為 G113 之 OR 分支要求。刻意略過：預設值之具體定義委由 [PDO Theme Configuration]，不在本條可驗範圍。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 1 支全數裁決 —— 已由他條涵蓋 1。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-079",

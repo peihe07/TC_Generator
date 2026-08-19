@@ -46,7 +46,7 @@
    "section": "1.9.10",
    "source_anchor": "4941976",
    "source_clause": "If there is a FOTA update available for the Radio, TBM, or ROV (see CFTS057) when the vehicle enters Body OFF mode and the HU transitions to Standby mode, the HU shall then transition to Timed mode to display the FOTA update available pop-up. See HMI for pop-up details.",
-   "reasoning": "驗證目標：Body OFF 進入 Standby 時若有 FOTA 更新，HU 是否轉入 Timed 顯示彈窗。關鍵情境條件：Radio、TBM 或 ROV 三者之一有可用更新。為什麼這樣切：原文之 `Radio, TBM, or ROV` 為 OR 並列，依 §5.7 各自成條 ——三個更新來源不同，故障可只存在其一。刻意略過：`See HMI for pop-up details` 為交叉參照，彈窗內容依 §8.4.2 不測；`see CFTS057` 為外部文件。此二項於 25 包反向涵蓋透鏡 1 列為「無對應」，已裁為交叉參照而非缺口（25 §6.3）。"
+   "reasoning": "驗證目標：Body OFF 進入 Standby 時若有 FOTA 更新，HU 是否轉入 Timed 顯示彈窗。關鍵情境條件：Radio、TBM 或 ROV 三者之一有可用更新。為什麼這樣切：原文之 `Radio, TBM, or ROV` 為 OR 並列，依 §5.7 各自成條 ——三個更新來源不同，故障可只存在其一。刻意略過：`See HMI for pop-up details` 為交叉參照，彈窗內容依 §8.4.2 不測；`see CFTS057` 為外部文件。此二項於 25 包反向涵蓋透鏡 1 列為「無對應」，已裁為交叉參照而非缺口（25 §6.3）。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 1 支全數裁決 —— 已由他條涵蓋 1。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-075",
@@ -67,7 +67,7 @@
    "section": "1.3.5、1.9.8",
    "source_anchor": "4941301,4941941",
    "source_clause": "While HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.\nWhile HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.",
-   "reasoning": "驗證目標：駕駛門關閉所觸發之開機動畫、其略過條件、取消條件與再播放間隔。關鍵情境條件：SLEEP / STANDBY / PARTIAL OPERATION 三模式之一；`$Door_Ajar_Status$` 轉 CLOSED；`$DriverDoorOnOffSts$` 為 DOOR_OFF；播放中之模式變更或 IGN_START。為什麼這樣切：三個起始模式為 OR 並列（依 §5.7 各自成條），加上略過、取消（模式變更與 IGN_START 二支）、門開啟時之略過、再播放間隔，共七條。**補測同步（R-P191）**：其中「模式變更至 TIMED MODE 取消動畫」與「門開啟時之模式變更略過動畫」二支為 25 包 G113 分桶所攔下之真缺口，已依 R-P118(d) 補測；本 reasoning 於同一步更新（25 §6.2）。刻意略過：動畫內容依 HMI / PDO 定義，不在本條範圍（§8.4.2）。**變體登載（A-PW138 / R-P188）**：本 leaf 之二錨點（`4941301` §1.3.5、`4941941` §1.9.8）內文逐字相同而屬性相異五欄，`source_clause` 因而含同一段落二次；二者之 ECU 皆含 LTM、Radio 皆涵蓋本專案，適用性未變，**未合併亦未拆分**，裁定於 27 包。"
+   "reasoning": "驗證目標：駕駛門關閉所觸發之開機動畫、其略過條件、取消條件與再播放間隔。關鍵情境條件：SLEEP / STANDBY / PARTIAL OPERATION 三模式之一；`$Door_Ajar_Status$` 轉 CLOSED；`$DriverDoorOnOffSts$` 為 DOOR_OFF；播放中之模式變更或 IGN_START。為什麼這樣切：三個起始模式為 OR 並列（依 §5.7 各自成條），加上略過、取消（模式變更與 IGN_START 二支）、門開啟時之略過、再播放間隔，共七條。**補測同步（R-P191）**：其中「模式變更至 TIMED MODE 取消動畫」與「門開啟時之模式變更略過動畫」二支為 25 包 G113 分桶所攔下之真缺口，已依 R-P118(d) 補測；本 reasoning 於同一步更新（25 §6.2）。刻意略過：動畫內容依 HMI / PDO 定義，不在本條範圍（§8.4.2）。**變體登載（A-PW138 / R-P188）**：本 leaf 之二錨點（`4941301` §1.3.5、`4941941` §1.9.8）內文逐字相同而屬性相異五欄，`source_clause` 因而含同一段落二次；二者之 ECU 皆含 LTM、Radio 皆涵蓋本專案，適用性未變，**未合併亦未拆分**，裁定於 27 包。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 8 支全數裁決 —— 已由他條涵蓋 8。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-094",
@@ -102,7 +102,7 @@
    "section": "1.9.8",
    "source_anchor": "4941944,4941945",
    "source_clause": "If $Themed_Sound$ = [Fiat Latam] AND the \"Welcome Onboard Sound\" setting is set to \"Once a Day\" AND the HU has not yet played the startup sound yet that day, the HU startup animation shall be accompanied by a startup sound that begins at the same time.\nFor the purposes of CFTS009-2299, the HU shall consider it a new \"day\" to allow the sound to be played any time the customer selected date changes; including manual time adjustments from the user, the time passing midnight, or automatic adjustments due to time zones or Daylight Savings Time.",
-   "reasoning": "驗證目標：Once a Day 設定下之當日首次播放，及「新的一天」之判定。關鍵情境條件：當日尚未播放 / 已播放且客戶選定日期發生變更。為什麼這樣切：原文為二層 —— 播放規則與「新的一天」之定義，後者明列三個成因（手動調整、跨越午夜、時區或日光節約自動調整），依 §8.2.2 各拆一條，共四條。**補測同步（R-P191）**：跨越午夜與時區／DST 二支為 25 包反向涵蓋透鏡 1 所攔下之缺口，已補測；本 reasoning 於同一步更新（25 §6.2）。刻意略過：`CFTS009-2299` 為本 leaf 自身之編號引用，非外部委出。"
+   "reasoning": "驗證目標：Once a Day 設定下之當日首次播放，及「新的一天」之判定。關鍵情境條件：當日尚未播放 / 已播放且客戶選定日期發生變更。為什麼這樣切：原文為二層 —— 播放規則與「新的一天」之定義，後者明列三個成因（手動調整、跨越午夜、時區或日光節約自動調整），依 §8.2.2 各拆一條，共四條。**補測同步（R-P191）**：跨越午夜與時區／DST 二支為 25 包反向涵蓋透鏡 1 所攔下之缺口，已補測；本 reasoning 於同一步更新（25 §6.2）。刻意略過：`CFTS009-2299` 為本 leaf 自身之編號引用，非外部委出。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 1 支全數裁決 —— 已由他條涵蓋 1。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-100",
@@ -137,14 +137,14 @@
    "section": "1.9.9",
    "source_anchor": "4941950,4941952",
    "source_clause": "The splash screen and disclaimer screen shall be shown the first time each bus cycle the HU transitions to Timed or Full Operation modes.\nIf the disclaimer screen needs to be shown it shall be shown the first time each bus cycle the HU transitions from Idle, Standby, or Partial Operation to Timed or Full Operation modes.",
-   "reasoning": "驗證目標：每個 bus cycle 首次進入 Timed 或 Full Operation 時之 splash 與免責畫面顯示。關鍵情境條件：新 bus cycle；目標模式為 Timed 或 Full Operation；來源模式為 Idle、Standby 或 Partial Operation。為什麼這樣切：第一個錨點之目標模式為 OR 二支，第二個錨點之來源模式為 OR 三支，依 §5.7 共五條 —— 各支之失效彼此獨立。刻意略過：畫面內容不在本條範圍；暫時略過之例外由 `SWE-PM-105` 承接（§8.2.1）。"
+   "reasoning": "驗證目標：每個 bus cycle 首次進入 Timed 或 Full Operation 時之 splash 與免責畫面顯示。關鍵情境條件：新 bus cycle；目標模式為 Timed 或 Full Operation；來源模式為 Idle、Standby 或 Partial Operation。為什麼這樣切：第一個錨點之目標模式為 OR 二支，第二個錨點之來源模式為 OR 三支，依 §5.7 共五條 —— 各支之失效彼此獨立。刻意略過：畫面內容不在本條範圍；暫時略過之例外由 `SWE-PM-105` 承接（§8.2.1）。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 2 支全數裁決 —— 已由他條涵蓋 2。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-105",
    "section": "1.9.9",
    "source_anchor": "4941951",
    "source_clause": "The disclaimer and splash screen can be temporarily skipped for incoming/outgoing/ongoing calls, climate pop-ups, backup camera, SOS and Assist calls, and FOTA pop ups, but must be displayed at the next transition to Timed or Full Operation modes during that bus cycle. See HMI logic and Flow \"Startup\" requirements for details.",
-   "reasoning": "驗證目標：七類事件下免責與 splash 畫面之暫時略過，及其於同一 bus cycle 之補顯義務。關鍵情境條件：來電／去電／通話中、氣候彈窗、倒車顯影、SOS 與 Assist 通話、FOTA 彈窗。為什麼這樣切：原文以逗號列舉多個例外類別，依 §8.2.2 逐類各拆一條（七條），另一條驗補顯義務，共八條。**補測同步（R-P191）**：初版僅寫通話中與倒車顯影二類，25 包 G113 分桶攔下 FOTA 支之真缺口後補測其餘五類；本 reasoning 於同一步更新（25 §6.2）。刻意略過：`See HMI logic and Flow \"Startup\" requirements for details` 為交叉參照（§8.4.2），25 包透鏡 1 已裁為非缺口。"
+   "reasoning": "驗證目標：七類事件下免責與 splash 畫面之暫時略過，及其於同一 bus cycle 之補顯義務。關鍵情境條件：來電／去電／通話中、氣候彈窗、倒車顯影、SOS 與 Assist 通話、FOTA 彈窗。為什麼這樣切：原文以逗號列舉多個例外類別，依 §8.2.2 逐類各拆一條（七條），另一條驗補顯義務，共八條。**補測同步（R-P191）**：初版僅寫通話中與倒車顯影二類，25 包 G113 分桶攔下 FOTA 支之真缺口後補測其餘五類；本 reasoning 於同一步更新（25 §6.2）。刻意略過：`See HMI logic and Flow \"Startup\" requirements for details` 為交叉參照（§8.4.2），25 包透鏡 1 已裁為非缺口。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 2 支全數裁決 —— 已由他條涵蓋 2。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-106",
@@ -193,7 +193,7 @@
    "section": "1.9.9",
    "source_anchor": "4941968",
    "source_clause": "For all screen sizes except 7 inch If $VC_VEH_BRAND$ <> [Maserati] AND $TBM_Present$ = [Present]  AND $Country_Code$ requires geolocation and SOS in the disclaimer then the HU shall add the ADAS and SOS to the geolocation pop-up or disclaimer. See HMI for different statup conditions to determine when to add geolocation + SOS Pop-up or add geolocation and SOS text to Disclaimer.",
-   "reasoning": "驗證目標：需 geolocation 與 SOS 之市場，免責或彈窗是否加入 ADAS 與 SOS。關鍵情境條件：螢幕非 7 吋；非 Maserati；TBM 存在；國別需 geolocation 與 SOS。為什麼這樣切：四條件之 AND 組合為單一路徑，一條即足。刻意略過：`See HMI for different startup conditions` 為交叉參照 ——「加在彈窗或加在免責畫面」之判別委由 HMI，故 ER 寫「二者之一」而不逕指其一（§8.4.2）。**適用性（R-P193）**：同 `SWE-PM-111`，併入 DR-PW13。"
+   "reasoning": "驗證目標：需 geolocation 與 SOS 之市場，免責或彈窗是否加入 ADAS 與 SOS。關鍵情境條件：螢幕非 7 吋；非 Maserati；TBM 存在；國別需 geolocation 與 SOS。為什麼這樣切：四條件之 AND 組合為單一路徑，一條即足。刻意略過：`See HMI for different startup conditions` 為交叉參照 ——「加在彈窗或加在免責畫面」之判別委由 HMI，故 ER 寫「二者之一」而不逕指其一（§8.4.2）。**適用性（R-P193）**：同 `SWE-PM-111`，併入 DR-PW13。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 1 支全數裁決 —— 規格未定義該支 1。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-114",

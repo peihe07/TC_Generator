@@ -320,3 +320,15 @@
 | 1 | 2 | indicates a value that is not supported by the HU, the d | `bas`、`default`、`hu`、`indicat`、`signal`、`support` | `indicat` | **部分未覆蓋** |
 
 **合計分支 2，未覆蓋 **1**。**
+
+## 批次 `batch_007_power_state_c`
+
+### `SWE-PM-009` —— 分支 3
+
+| 組 | 支 | 分支文字 | 獨有實詞 | 未見於任何 TC | 判定 |
+|---|---|---|---|---|---|
+| 1 | 1 | IF the voltage exceeds the higher | `exceed`、`higher` | `exceed`、`higher` | **未覆蓋** |
+| 1 | 2 | the lower voltage threshold for a certain time | `certain`、`lower`、`threshold`、`time` | `certain`、`lower`、`threshold` | **部分未覆蓋** |
+| 1 | 3 | also at every battery disconnection event | `also`、`battery`、`disconnection`、`event` | `also`、`event` | **部分未覆蓋** |
+
+**合計分支 3，未覆蓋 **3**。**

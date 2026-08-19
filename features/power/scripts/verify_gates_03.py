@@ -37,6 +37,8 @@ LEDGER = {
     "eb3eb0861363fc1d85c6127564355a7414ecd37eac0800336bb0d2e9b2911a26": "CFTS009 規格本文",
     "47c402a01b1a2e3a537797843b968ad621fc2bbc6f7a416a33dfe490247ea505": "CFTS010 規格本文",
     "cb6bf7d81030abc8ce47a444b4cf90b6bf527816fde7887b9e9b872c22338ae4": "SYS3 SYSAD",
+    "a29fe63963192b804e20ed2fc6278dc9c434cbbb36b26bd77627cc0ea92949bb": "WrapperResource O829（49 包 R-P319 登記）",
+    "dede965f228429c6e95aa7f7c4de08f0a52f1fd28b12ef10da3fc6db8638a9cc": "WrapperResource O1584（49 包 R-P319 登記）",
 }
 
 PM_RE = re.compile(r"Sys-RA-PM-\d{4}")

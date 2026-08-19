@@ -673,6 +673,14 @@
     "numbered",
     "scope"
   ],
+  "gen_batch07.py": [
+    "BENCH",
+    "GEN",
+    "ROOT",
+    "SPEC",
+    "START",
+    "main"
+  ],
   "lint_tcs.py": [
     "ANCHOR_ID_RE",
     "BAD_BRACKET_RE",
@@ -891,6 +899,16 @@
     "PREFIX",
     "ROOT",
     "main"
+  ],
+  "rerun_wrapper_convert.py": [
+    "DERIVED",
+    "IN",
+    "PAIRS",
+    "ROOT",
+    "SANDBOX",
+    "WMF_SIG",
+    "main",
+    "read_ole_streams"
   ],
   "reverse_coverage.py": [
     "DATA",

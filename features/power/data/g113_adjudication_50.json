@@ -1,0 +1,1526 @@
+[
+ {
+  "batch": "batch_001_power_down",
+  "leaf": "SWE-PM-071",
+  "group": 1,
+  "branch": 1,
+  "text": "shown on TLM display (only if TLM has not to pass to Standby status",
+  "missing": [
+   "only",
+   "pas"
+  ],
+  "marks": {
+   "only": null,
+   "pas": null
+  },
+  "substantive": [
+   "only",
+   "pas"
+  ]
+ },
+ {
+  "batch": "batch_001_power_down",
+  "leaf": "SWE-PM-073",
+  "group": 1,
+  "branch": 2,
+  "text": "BODY OFF-TIMED mode, when TLM receives STATUS_LIN.Batt_ST_Crit=[1h], the TLM shall mimimize current withdraw while keeping only the display on",
+  "missing": [
+   "mimimize",
+   "only",
+   "receiv",
+   "withdraw"
+  ],
+  "marks": {
+   "mimimize": null,
+   "only": null,
+   "receiv": null,
+   "withdraw": null
+  },
+  "substantive": [
+   "mimimize",
+   "only",
+   "receiv",
+   "withdraw"
+  ]
+ },
+ {
+  "batch": "batch_001_power_down",
+  "leaf": "SWE-PM-073",
+  "group": 2,
+  "branch": 1,
+  "text": "Unless defined otherwise, TLM shall stay in this state until either voltage out of range conditions are satisfied",
+  "missing": [
+   "defin",
+   "either",
+   "otherwise",
+   "satisfi",
+   "thi",
+   "unles"
+  ],
+  "marks": {
+   "defin": null,
+   "either": null,
+   "otherwise": null,
+   "satisfi": null,
+   "thi": null,
+   "unles": null
+  },
+  "substantive": [
+   "defin",
+   "either",
+   "otherwise",
+   "satisfi",
+   "thi",
+   "unles"
+  ]
+ },
+ {
+  "batch": "batch_001_power_down",
+  "leaf": "SWE-PM-073",
+  "group": 2,
+  "branch": 2,
+  "text": "shall go back to normal behavior 10 seconds after STATUS_LIN.Batt_ST_Crit becomes [0h]",
+  "missing": [
+   "back",
+   "becom",
+   "behavior",
+   "go"
+  ],
+  "marks": {
+   "back": null,
+   "becom": null,
+   "behavior": null,
+   "go": null
+  },
+  "substantive": [
+   "back",
+   "becom",
+   "behavior",
+   "go"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 1,
+  "branch": 1,
+  "text": "the user can select SwitchOff_Timeout_Setting.Req to \"00 min",
+  "missing": [
+   "user"
+  ],
+  "marks": {
+   "user": null
+  },
+  "substantive": [
+   "user"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 2,
+  "branch": 1,
+  "text": "so Timeout1 is equal to \"00 min",
+  "missing": [
+   "equal"
+  ],
+  "marks": {
+   "equal": null
+  },
+  "substantive": [
+   "equal"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 2,
+  "branch": 2,
+  "text": "20 minutes\" respectively.",
+  "missing": [
+   "respectively."
+  ],
+  "marks": {
+   "respectively.": null
+  },
+  "substantive": [
+   "respectively."
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 3,
+  "branch": 1,
+  "text": "the user can select SwitchOff_Timeout_Setting.Req to \"00 min",
+  "missing": [
+   "user"
+  ],
+  "marks": {
+   "user": null
+  },
+  "substantive": [
+   "user"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 4,
+  "branch": 1,
+  "text": "so Timeout1 is equal to \"00 min",
+  "missing": [
+   "equal"
+  ],
+  "marks": {
+   "equal": null
+  },
+  "substantive": [
+   "equal"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 4,
+  "branch": 2,
+  "text": "60 minutes\" respectively.",
+  "missing": [
+   "respectively."
+  ],
+  "marks": {
+   "respectively.": null
+  },
+  "substantive": [
+   "respectively."
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 5,
+  "branch": 1,
+  "text": "the user can select SwitchOff_Timeout_Setting.Req to \"00 min",
+  "missing": [
+   "user"
+  ],
+  "marks": {
+   "user": null
+  },
+  "substantive": [
+   "user"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 6,
+  "branch": 1,
+  "text": "so Timeout1 is equal to \"00 min",
+  "missing": [
+   "equal"
+  ],
+  "marks": {
+   "equal": null
+  },
+  "substantive": [
+   "equal"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 6,
+  "branch": 2,
+  "text": "180 minutes\" respectively.",
+  "missing": [
+   "respectively."
+  ],
+  "marks": {
+   "respectively.": null
+  },
+  "substantive": [
+   "respectively."
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 7,
+  "branch": 1,
+  "text": "For the case of LTM High Radio not present, the user can select SwitchOff_Timeout_Setting.Req value equal to \"00 minutes",
+  "missing": [
+   "case",
+   "present",
+   "user"
+  ],
+  "marks": {
+   "case": null,
+   "present": null,
+   "user": null
+  },
+  "substantive": [
+   "case",
+   "present",
+   "user"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 7,
+  "branch": 2,
+  "text": "equal to the value specified by PROXI parameter \"Switch_Off_Time",
+  "missing": [
+   "specifi"
+  ],
+  "marks": {
+   "specifi": null
+  },
+  "substantive": [
+   "specifi"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 8,
+  "branch": 1,
+  "text": "So, user can set SwitchOff_Timeout_Setting.Req to \"00 minutes",
+  "missing": [
+   "user"
+  ],
+  "marks": {
+   "user": null
+  },
+  "substantive": [
+   "user"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 8,
+  "branch": 2,
+  "text": "to \"20 minutes\" IF PROXI parameter \"Switch_Off_Time\" is equal to \"20 minutes\".",
+  "missing": [
+   "equal"
+  ],
+  "marks": {
+   "equal": null
+  },
+  "substantive": [
+   "equal"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 9,
+  "branch": 1,
+  "text": "the user can select SwitchOff_Timeout_Setting.Req to \"00 min",
+  "missing": [
+   "user"
+  ],
+  "marks": {
+   "user": null
+  },
+  "substantive": [
+   "user"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 10,
+  "branch": 1,
+  "text": "so Timeout1 is equal to \"00 min",
+  "missing": [
+   "equal"
+  ],
+  "marks": {
+   "equal": null
+  },
+  "substantive": [
+   "equal"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 10,
+  "branch": 2,
+  "text": "20 minutes\" respectively.",
+  "missing": [
+   "respectively."
+  ],
+  "marks": {
+   "respectively.": null
+  },
+  "substantive": [
+   "respectively."
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 11,
+  "branch": 1,
+  "text": "the user can select SwitchOff_Timeout_Setting.Req to \"00 min",
+  "missing": [
+   "user"
+  ],
+  "marks": {
+   "user": null
+  },
+  "substantive": [
+   "user"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 12,
+  "branch": 1,
+  "text": "so Timeout1 is equal to \"00 min",
+  "missing": [
+   "equal"
+  ],
+  "marks": {
+   "equal": null
+  },
+  "substantive": [
+   "equal"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 12,
+  "branch": 2,
+  "text": "60 minutes\" respectively.",
+  "missing": [
+   "respectively."
+  ],
+  "marks": {
+   "respectively.": null
+  },
+  "substantive": [
+   "respectively."
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 13,
+  "branch": 1,
+  "text": "the user can select SwitchOff_Timeout_Setting.Req to \"00 min",
+  "missing": [
+   "user"
+  ],
+  "marks": {
+   "user": null
+  },
+  "substantive": [
+   "user"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 14,
+  "branch": 1,
+  "text": "so Timeout1 is equal to \"00 min",
+  "missing": [
+   "equal"
+  ],
+  "marks": {
+   "equal": null
+  },
+  "substantive": [
+   "equal"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-057",
+  "group": 14,
+  "branch": 2,
+  "text": "180 minutes\" respectively",
+  "missing": [
+   "respectively"
+  ],
+  "marks": {
+   "respectively": null
+  },
+  "substantive": [
+   "respectively"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-063",
+  "group": 1,
+  "branch": 1,
+  "text": "to receive one",
+  "missing": [
+   "one"
+  ],
+  "marks": {
+   "one": null
+  },
+  "substantive": [
+   "one"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-063",
+  "group": 1,
+  "branch": 2,
+  "text": "more bluetooth phone calls according to following logics that depend on Timeout1",
+  "missing": [
+   "accord",
+   "depend",
+   "follow",
+   "logic",
+   "more",
+   "timeout1"
+  ],
+  "marks": {
+   "accord": null,
+   "depend": null,
+   "follow": null,
+   "logic": null,
+   "more": null,
+   "timeout1": null
+  },
+  "substantive": [
+   "accord",
+   "depend",
+   "follow",
+   "logic",
+   "more",
+   "timeout1"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-065",
+  "group": 1,
+  "branch": 1,
+  "text": "TLM has to restore the active source managed by TLM before the call (for example entertainment features like DAB Tuner, rather than USB",
+  "missing": [
+   "entertainment",
+   "example",
+   "featur",
+   "like",
+   "rather",
+   "restore",
+   "usb"
+  ],
+  "marks": {
+   "entertainment": null,
+   "example": null,
+   "featur": null,
+   "like": null,
+   "rather": null,
+   "restore": null,
+   "usb": null
+  },
+  "substantive": [
+   "entertainment",
+   "example",
+   "featur",
+   "like",
+   "rather",
+   "restore",
+   "usb"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-065",
+  "group": 1,
+  "branch": 2,
+  "text": "BT streaming audio) staying still in Timed state.",
+  "missing": [
+   "bt",
+   "state.",
+   "stay",
+   "stream"
+  ],
+  "marks": {
+   "bt": null,
+   "state.": "標點變體 —— 去尾標點得 `state`，見於 TC",
+   "stay": null,
+   "stream": null
+  },
+  "substantive": [
+   "bt",
+   "stay",
+   "stream"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-038",
+  "group": 1,
+  "branch": 1,
+  "text": "ELSE TLM has to restore the active source managed by TLM before the call (for example entertainment features like DAB Tuner, rather than USB",
+  "missing": [
+   "else",
+   "entertainment",
+   "example",
+   "featur",
+   "like",
+   "rather",
+   "usb"
+  ],
+  "marks": {
+   "else": null,
+   "entertainment": null,
+   "example": null,
+   "featur": null,
+   "like": null,
+   "rather": null,
+   "usb": null
+  },
+  "substantive": [
+   "else",
+   "entertainment",
+   "example",
+   "featur",
+   "like",
+   "rather",
+   "usb"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-038",
+  "group": 1,
+  "branch": 2,
+  "text": "BT streaming audio) staying still in Timed state.",
+  "missing": [
+   "bt",
+   "state."
+  ],
+  "marks": {
+   "bt": null,
+   "state.": "標點變體 —— 去尾標點得 `state`，見於 TC"
+  },
+  "substantive": [
+   "bt"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-038",
+  "group": 2,
+  "branch": 2,
+  "text": "at maximum until MaxCallTimeout expiration.",
+  "missing": [
+   "expiration.",
+   "maximum"
+  ],
+  "marks": {
+   "expiration.": "標點變體 —— 去尾標點得 `expiration`，見於 TC",
+   "maximum": null
+  },
+  "substantive": [
+   "maximum"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-038",
+  "group": 5,
+  "branch": 2,
+  "text": "to \"Ignition Off\"THENTLM has to pass in Timed state starting MaxCallTimeout counter.",
+  "missing": [
+   "counter.",
+   "pas",
+   "thentlm"
+  ],
+  "marks": {
+   "counter.": "標點變體 —— 去尾標點得 `counter`，見於 TC",
+   "pas": null,
+   "thentlm": "黏連產物 —— 可切為 `then + tlm`"
+  },
+  "substantive": [
+   "pas"
+  ]
+ },
+ {
+  "batch": "batch_002_timeout_settings",
+  "leaf": "SWE-PM-038",
+  "group": 6,
+  "branch": 2,
+  "text": "at maximum until MaxCallTimeout expires.",
+  "missing": [
+   "expires.",
+   "maximum"
+  ],
+  "marks": {
+   "expires.": null,
+   "maximum": null
+  },
+  "substantive": [
+   "expires.",
+   "maximum"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-011",
+  "group": 1,
+  "branch": 1,
+  "text": "If the CarPlay Device does not request audio control",
+  "missing": [
+   "doe"
+  ],
+  "marks": {
+   "doe": null
+  },
+  "substantive": [
+   "doe"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-014",
+  "group": 1,
+  "branch": 1,
+  "text": "IF LTM_OperationalModeSts.Info is equal to \"Ignition Pre Off",
+  "missing": [
+   "equal"
+  ],
+  "marks": {
+   "equal": null
+  },
+  "substantive": [
+   "equal"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-014",
+  "group": 2,
+  "branch": 1,
+  "text": "it passes to TLM Timed state.In this case, TLM has to stay in this state until Phone_Call.Info becomes equal to \"Not_Active",
+  "missing": [
+   "case",
+   "equal",
+   "state.in",
+   "thi"
+  ],
+  "marks": {
+   "case": null,
+   "equal": null,
+   "state.in": "黏連產物 —— 可切為 `state + .in`",
+   "thi": null
+  },
+  "substantive": [
+   "case",
+   "equal",
+   "thi"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-014",
+  "group": 2,
+  "branch": 2,
+  "text": "at maximum until MaxCallTimeout expiration",
+  "missing": [
+   "expiration",
+   "maxcalltimeout",
+   "maximum"
+  ],
+  "marks": {
+   "expiration": null,
+   "maxcalltimeout": null,
+   "maximum": null
+  },
+  "substantive": [
+   "expiration",
+   "maxcalltimeout",
+   "maximum"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-014",
+  "group": 3,
+  "branch": 1,
+  "text": "“Phone call management in Timed state” .ELSE IF LTM_OperationalModeSts.Info is not equal to \"Ignition Pre Off",
+  "missing": [
+   "else",
+   "equal",
+   "management",
+   "phone"
+  ],
+  "marks": {
+   "else": null,
+   "equal": null,
+   "management": null,
+   "phone": null
+  },
+  "substantive": [
+   "else",
+   "equal",
+   "management",
+   "phone"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-014",
+  "group": 4,
+  "branch": 2,
+  "text": "to \"Ignition Off\" valueAND STATUS_BH_BCM2.RemStActvSts is equal to \"Remote Start Not Active",
+  "missing": [
+   "equal",
+   "valueand"
+  ],
+  "marks": {
+   "equal": null,
+   "valueand": "黏連產物 —— 可切為 `value + and`"
+  },
+  "substantive": [
+   "equal"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-014",
+  "group": 6,
+  "branch": 1,
+  "text": "In this case, TLM has to stay in this state until Phone_Call.Info becomes equal to \"Not_Active",
+  "missing": [
+   "case",
+   "equal",
+   "thi"
+  ],
+  "marks": {
+   "case": null,
+   "equal": null,
+   "thi": null
+  },
+  "substantive": [
+   "case",
+   "equal",
+   "thi"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-014",
+  "group": 6,
+  "branch": 2,
+  "text": "at maximum until MaxCallTimeout expiration",
+  "missing": [
+   "expiration",
+   "maxcalltimeout",
+   "maximum"
+  ],
+  "marks": {
+   "expiration": null,
+   "maxcalltimeout": null,
+   "maximum": null
+  },
+  "substantive": [
+   "expiration",
+   "maxcalltimeout",
+   "maximum"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-018",
+  "group": 1,
+  "branch": 1,
+  "text": "signal LTM_OperationalModeSts has a transition to \"Ignition Pre Off",
+  "missing": [
+   "signal"
+  ],
+  "marks": {
+   "signal": null
+  },
+  "substantive": [
+   "signal"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-018",
+  "group": 1,
+  "branch": 2,
+  "text": "to \"Ignition Off\" valueTHENTLM has to set TLM_Status.Info",
+  "missing": [
+   "set",
+   "valuethentlm"
+  ],
+  "marks": {
+   "set": null,
+   "valuethentlm": null
+  },
+  "substantive": [
+   "set",
+   "valuethentlm"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-025",
+  "group": 1,
+  "branch": 1,
+  "text": "Front_Panel_OnOff.Req has a transition from “Not_Pressed” value to “Pressed” valueTHENIF Phone_Call.Info == ActiveTHEN TLM shall show a popup to the user, asking whether to transfer the call in order to turn off TLM",
+  "missing": [
+   "activethen",
+   "off",
+   "order",
+   "turn",
+   "value",
+   "valuethenif"
+  ],
+  "marks": {
+   "activethen": "黏連產物 —— 可切為 `active + then`",
+   "off": null,
+   "order": null,
+   "turn": null,
+   "value": null,
+   "valuethenif": null
+  },
+  "substantive": [
+   "off",
+   "order",
+   "turn",
+   "value",
+   "valuethenif"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-025",
+  "group": 1,
+  "branch": 2,
+  "text": "not (refer to TLM HMI Specification",
+  "missing": [
+   "hmi",
+   "refer",
+   "specification"
+  ],
+  "marks": {
+   "hmi": null,
+   "refer": null,
+   "specification": null
+  },
+  "substantive": [
+   "hmi",
+   "refer",
+   "specification"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-025",
+  "group": 2,
+  "branch": 1,
+  "text": "CLIMATIC_PANEL.Radio_Btn0 has a transition from “Not_Pressed” value to “Pressed” valueTHENIF Phone_Call.Info == ActiveTHEN TLM shall show a popup to the user, asking whether to transfer the call in order to turn off TLM",
+  "missing": [
+   "activethen",
+   "off",
+   "order",
+   "turn",
+   "value",
+   "valuethenif"
+  ],
+  "marks": {
+   "activethen": "黏連產物 —— 可切為 `active + then`",
+   "off": null,
+   "order": null,
+   "turn": null,
+   "value": null,
+   "valuethenif": null
+  },
+  "substantive": [
+   "off",
+   "order",
+   "turn",
+   "value",
+   "valuethenif"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-025",
+  "group": 2,
+  "branch": 2,
+  "text": "not (refer to TLM HMI Specification",
+  "missing": [
+   "hmi",
+   "refer",
+   "specification"
+  ],
+  "marks": {
+   "hmi": null,
+   "refer": null,
+   "specification": null
+  },
+  "substantive": [
+   "hmi",
+   "refer",
+   "specification"
+  ]
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-026",
+  "group": 2,
+  "branch": 2,
+  "text": "IF previous internal state TLM_Status.Info == StandbyTHEN TLM shall stay in Timed state",
+  "missing": [
+   "standbythen"
+  ],
+  "marks": {
+   "standbythen": "黏連產物 —— 可切為 `standby + then`"
+  },
+  "substantive": []
+ },
+ {
+  "batch": "batch_003_power_state_a",
+  "leaf": "SWE-PM-031",
+  "group": 1,
+  "branch": 1,
+  "text": "IF Rear_View_Camera PROXI parameter == \"Present\", according to the value of Rear_Camera_Enable.Info, TLM shall show",
+  "missing": [
+   "accord",
+   "parameter",
+   "proxi",
+   "show",
+   "value"
+  ],
+  "marks": {
+   "accord": null,
+   "parameter": null,
+   "proxi": null,
+   "show": null,
+   "value": null
+  },
+  "substantive": [
+   "accord",
+   "parameter",
+   "proxi",
+   "show",
+   "value"
+  ]
+ },
+ {
+  "batch": "batch_004_power_state_b",
+  "leaf": "SWE-PM-033",
+  "group": 1,
+  "branch": 1,
+  "text": "signal LTM_OperationalModeSts has a transition to \"Ignition Pre Off",
+  "missing": [
+   "signal"
+  ],
+  "marks": {
+   "signal": null
+  },
+  "substantive": [
+   "signal"
+  ]
+ },
+ {
+  "batch": "batch_004_power_state_b",
+  "leaf": "SWE-PM-033",
+  "group": 1,
+  "branch": 2,
+  "text": "to \"Ignition Off\" valueTHEN",
+  "missing": [
+   "valuethen"
+  ],
+  "marks": {
+   "valuethen": null
+  },
+  "substantive": [
+   "valuethen"
+  ]
+ },
+ {
+  "batch": "batch_004_power_state_b",
+  "leaf": "SWE-PM-039",
+  "group": 1,
+  "branch": 1,
+  "text": "TLM has to behave as an Ignition Pre Off",
+  "missing": [
+   "behave"
+  ],
+  "marks": {
+   "behave": null
+  },
+  "substantive": [
+   "behave"
+  ]
+ },
+ {
+  "batch": "batch_004_power_state_b",
+  "leaf": "SWE-PM-039",
+  "group": 1,
+  "branch": 2,
+  "text": "Ignition Off event occurs, according to par",
+  "missing": [
+   "accord",
+   "occur",
+   "par"
+  ],
+  "marks": {
+   "accord": null,
+   "occur": null,
+   "par": null
+  },
+  "substantive": [
+   "accord",
+   "occur",
+   "par"
+  ]
+ },
+ {
+  "batch": "batch_004_power_state_b",
+  "leaf": "SWE-PM-045",
+  "group": 1,
+  "branch": 2,
+  "text": "Sleep), showing proper HMI Antitheft screens if needed, for a maximum time equal to Timeout1",
+  "missing": [
+   "equal",
+   "maximum",
+   "need",
+   "show",
+   "time"
+  ],
+  "marks": {
+   "equal": null,
+   "maximum": null,
+   "need": null,
+   "show": null,
+   "time": null
+  },
+  "substantive": [
+   "equal",
+   "maximum",
+   "need",
+   "show",
+   "time"
+  ]
+ },
+ {
+  "batch": "batch_004_power_state_b",
+  "leaf": "SWE-PM-046",
+  "group": 1,
+  "branch": 1,
+  "text": "Rear_Camera_Enable.Info == \"True\" THENeven IF Antitheft_Result.Info is still equal to \"In_Progress",
+  "missing": [
+   "equal",
+   "theneven"
+  ],
+  "marks": {
+   "equal": null,
+   "theneven": "黏連產物 —— 可切為 `then + even`"
+  },
+  "substantive": [
+   "equal"
+  ]
+ },
+ {
+  "batch": "batch_004_power_state_b",
+  "leaf": "SWE-PM-046",
+  "group": 1,
+  "branch": 2,
+  "text": "Not_Successfully\", TLM shall provide audio",
+  "missing": [
+   "provide"
+  ],
+  "marks": {
+   "provide": null
+  },
+  "substantive": [
+   "provide"
+  ]
+ },
+ {
+  "batch": "batch_004_power_state_b",
+  "leaf": "SWE-PM-047",
+  "group": 1,
+  "branch": 2,
+  "text": "Sleep),  showing proper HMI Antitheft screens, if needed (see VF210",
+  "missing": [
+   "see",
+   "vf210"
+  ],
+  "marks": {
+   "see": null,
+   "vf210": null
+  },
+  "substantive": [
+   "see",
+   "vf210"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-074",
+  "group": 1,
+  "branch": 2,
+  "text": "ROV (see CFTS057) when the vehicle enters Body OFF mode",
+  "missing": [
+   "cfts057",
+   "see"
+  ],
+  "marks": {
+   "cfts057": null,
+   "see": null
+  },
+  "substantive": [
+   "cfts057",
+   "see"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-093",
+  "group": 2,
+  "branch": 5,
+  "text": "to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation",
+  "missing": [
+   "ajar"
+  ],
+  "marks": {
+   "ajar": null
+  },
+  "substantive": [
+   "ajar"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-093",
+  "group": 3,
+  "branch": 1,
+  "text": "HU changes mode (due to ignition event",
+  "missing": [
+   "due"
+  ],
+  "marks": {
+   "due": null
+  },
+  "substantive": [
+   "due"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-093",
+  "group": 4,
+  "branch": 1,
+  "text": "Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle",
+  "missing": [
+   "once"
+  ],
+  "marks": {
+   "once": null
+  },
+  "substantive": [
+   "once"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-093",
+  "group": 4,
+  "branch": 2,
+  "text": "at least 30 minutes passed from last time the start-up animation was played ;whichever is greater",
+  "missing": [
+   "last",
+   "least",
+   "pass"
+  ],
+  "marks": {
+   "last": null,
+   "least": null,
+   "pass": null
+  },
+  "substantive": [
+   "last",
+   "least",
+   "pass"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-093",
+  "group": 6,
+  "branch": 5,
+  "text": "to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation",
+  "missing": [
+   "ajar"
+  ],
+  "marks": {
+   "ajar": null
+  },
+  "substantive": [
+   "ajar"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-093",
+  "group": 7,
+  "branch": 1,
+  "text": "HU changes mode (due to ignition event",
+  "missing": [
+   "due"
+  ],
+  "marks": {
+   "due": null
+  },
+  "substantive": [
+   "due"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-093",
+  "group": 8,
+  "branch": 1,
+  "text": "Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle",
+  "missing": [
+   "once"
+  ],
+  "marks": {
+   "once": null
+  },
+  "substantive": [
+   "once"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-093",
+  "group": 8,
+  "branch": 2,
+  "text": "at least 30 minutes passed from last time the start-up animation was played ;whichever is greater",
+  "missing": [
+   "last",
+   "least",
+   "pass"
+  ],
+  "marks": {
+   "last": null,
+   "least": null,
+   "pass": null
+  },
+  "substantive": [
+   "last",
+   "least",
+   "pass"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-099",
+  "group": 1,
+  "branch": 1,
+  "text": "including manual time adjustments from the user, the time passing midnight",
+  "missing": [
+   "includ",
+   "user"
+  ],
+  "marks": {
+   "includ": null,
+   "user": null
+  },
+  "substantive": [
+   "includ",
+   "user"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-104",
+  "group": 1,
+  "branch": 2,
+  "text": "Full Operation modes.",
+  "missing": [
+   "modes."
+  ],
+  "marks": {
+   "modes.": null
+  },
+  "substantive": [
+   "modes."
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-104",
+  "group": 2,
+  "branch": 3,
+  "text": "Full Operation modes",
+  "missing": [
+   "mod"
+  ],
+  "marks": {
+   "mod": null
+  },
+  "substantive": [
+   "mod"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-105",
+  "group": 1,
+  "branch": 1,
+  "text": "FOTA pop ups, but must be displayed at the next transition to Timed",
+  "missing": [
+   "but",
+   "ups"
+  ],
+  "marks": {
+   "but": null,
+   "ups": null
+  },
+  "substantive": [
+   "but",
+   "ups"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-105",
+  "group": 1,
+  "branch": 2,
+  "text": "Full Operation modes during that bus cycle",
+  "missing": [
+   "dur",
+   "mod"
+  ],
+  "marks": {
+   "dur": null,
+   "mod": null
+  },
+  "substantive": [
+   "dur",
+   "mod"
+  ]
+ },
+ {
+  "batch": "batch_005_startup_display",
+  "leaf": "SWE-PM-113",
+  "group": 1,
+  "branch": 1,
+  "text": "See HMI for different statup conditions to determine when to add geolocation + SOS Pop-up",
+  "missing": [
+   "condition",
+   "determine",
+   "different",
+   "hmi",
+   "see",
+   "statup"
+  ],
+  "marks": {
+   "condition": null,
+   "determine": null,
+   "different": null,
+   "hmi": null,
+   "see": null,
+   "statup": null
+  },
+  "substantive": [
+   "condition",
+   "determine",
+   "different",
+   "hmi",
+   "see",
+   "statup"
+  ]
+ },
+ {
+  "batch": "batch_006_branding_theme",
+  "leaf": "SWE-PM-078",
+  "group": 1,
+  "branch": 2,
+  "text": "indicates a value that is not supported by the HU, the default theme based on the $VC_VEH_BRAND$ signal shall be used",
+  "missing": [
+   "indicat"
+  ],
+  "marks": {
+   "indicat": null
+  },
+  "substantive": [
+   "indicat"
+  ]
+ },
+ {
+  "batch": "batch_007_power_state_c",
+  "leaf": "SWE-PM-009",
+  "group": 1,
+  "branch": 1,
+  "text": "IF the voltage exceeds the higher",
+  "missing": [
+   "exceed",
+   "higher"
+  ],
+  "marks": {
+   "exceed": null,
+   "higher": null
+  },
+  "substantive": [
+   "exceed",
+   "higher"
+  ]
+ },
+ {
+  "batch": "batch_007_power_state_c",
+  "leaf": "SWE-PM-009",
+  "group": 1,
+  "branch": 2,
+  "text": "the lower voltage threshold for a certain time",
+  "missing": [
+   "certain",
+   "lower",
+   "threshold"
+  ],
+  "marks": {
+   "certain": null,
+   "lower": null,
+   "threshold": null
+  },
+  "substantive": [
+   "certain",
+   "lower",
+   "threshold"
+  ]
+ },
+ {
+  "batch": "batch_007_power_state_c",
+  "leaf": "SWE-PM-009",
+  "group": 1,
+  "branch": 3,
+  "text": "also at every battery disconnection event",
+  "missing": [
+   "also",
+   "event"
+  ],
+  "marks": {
+   "also": null,
+   "event": null
+  },
+  "substantive": [
+   "also",
+   "event"
+  ]
+ }
+]

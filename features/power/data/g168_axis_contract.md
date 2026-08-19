@@ -14,11 +14,11 @@
 
 | axis | 條數 |
 |---|---|
-| `input_data` | 90 |
-| `trigger_state` | 69 |
-| `mode` | 42 |
-| `None` | 40 |
-| `timing` | 18 |
+| `trigger_state` | 87 |
+| `input_data` | 87 |
+| `None` | 42 |
+| `mode` | 39 |
+| `timing` | 20 |
 | `boundary` | 5 |
 
 ## 三、C5 同 leaf 內 `delta` 逐字相同 —— **0** 組

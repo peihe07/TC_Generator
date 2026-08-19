@@ -11,7 +11,7 @@
    "section": "1.6.2.1.15",
    "source_anchor": "4941634,4941635",
    "source_clause": "IF TLM_Status.Info and $Telematic_Power$ == \"Partial Operation\"AND signal LTM_OperationalModeSts has a transition to \"Ignition Pre Off\" OR to \"Ignition Off\" valueTHEN\nTLM has to set TLM_Status.Info and $Telematic_Power$ to \"Standby\" value and it passes to TLM Standby state.",
-   "reasoning": "驗證目標：Partial Operation 下點火轉為 Ignition Pre Off 或 Ignition Off 時之 Standby 轉換。關鍵情境條件：`TLM_Status.Info` 與 `$Telematic_Power$` 讀 Partial Operation，`LTM_OperationalModeSts` 轉入二值之一。為什麼這樣切：原文以 `OR` 並列二個觸發值，依 §5.7 各自成條 —— 只測其一時，另一值之失效無法判讀（G113 之 OR 分支要求）。刻意略過：Standby 狀態本身之行為由 `SWE-PM-044` 一系承接（§8.2.1）。"
+   "reasoning": "驗證目標：Partial Operation 下點火轉為 Ignition Pre Off 或 Ignition Off 時之 Standby 轉換。關鍵情境條件：`TLM_Status.Info` 與 `$Telematic_Power$` 讀 Partial Operation，`LTM_OperationalModeSts` 轉入二值之一。為什麼這樣切：原文以 `OR` 並列二個觸發值，依 §5.7 各自成條 —— 只測其一時，另一值之失效無法判讀（G113 之 OR 分支要求）。刻意略過：Standby 狀態本身之行為由 `SWE-PM-044` 一系承接（§8.2.1）。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 2 支全數裁決 —— 已由他條涵蓋 2。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-034",
@@ -46,7 +46,7 @@
    "section": "1.7.1.1.1",
    "source_anchor": "4941768,4941773,4941774,4941775",
    "source_clause": "In the following \"Ignition Working Conditions\": Ignition Off Ignition On Ignition On Engine On\nIF TLM receives signal LTM_OperationalModeSts.Info equal to \"SNA\" value  THEN TLM has to behave as an Ignition Pre Off or Ignition Off event occurs, according to par. \"TLM Operative state management\".\nIF TLM_Status.Info was equal to \"Full-Operation\" AND SwitchOff_Timeout_Setting.Req was equal to \"00 min\" or (Auto_SwitchOn_Setting.Req == Active for LTM High Radio), then TLM has to set Timeout1 to the \"Switch_Off_Time\" PROXI value.\nIF TLM passes to Timed status due to this two conditions, THEN only TLM menu items (not related to vehicle setup) must be guaranteed. See TLM HMI documents for TLM items.",
-   "reasoning": "驗證目標：`SNA` 值之等同處置、Timeout1 之 PROXI 取值，及 Timed 下之選單保證範圍。關鍵情境條件：`LTM_OperationalModeSts.Info` 為 `SNA`；`SwitchOff_Timeout_Setting.Req` 為 `00 min` 或 LTM High Radio 之 `Auto_SwitchOn_Setting.Req == Active`。為什麼這樣切：本 leaf 之四個錨點載三個獨立規則，且第二個規則之觸發為 `or` 並列，依 §5.7 拆為二條，合計四條 —— 三規則彼此無先後依賴，可獨立失效。刻意略過：`TLM Operative state management` 與 TLM HMI documents 為外部章節，依 §8.4.2 不測本規格未擁有者，故第一條只驗「行為等同於 Ignition Pre Off 或 Off 事件」。"
+   "reasoning": "驗證目標：`SNA` 值之等同處置、Timeout1 之 PROXI 取值，及 Timed 下之選單保證範圍。關鍵情境條件：`LTM_OperationalModeSts.Info` 為 `SNA`；`SwitchOff_Timeout_Setting.Req` 為 `00 min` 或 LTM High Radio 之 `Auto_SwitchOn_Setting.Req == Active`。為什麼這樣切：本 leaf 之四個錨點載三個獨立規則，且第二個規則之觸發為 `or` 並列，依 §5.7 拆為二條，合計四條 —— 三規則彼此無先後依賴，可獨立失效。刻意略過：`TLM Operative state management` 與 TLM HMI documents 為外部章節，依 §8.4.2 不測本規格未擁有者，故第一條只驗「行為等同於 Ignition Pre Off 或 Off 事件」。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 2 支全數裁決 —— 已由他條涵蓋 2。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-040",
@@ -88,21 +88,21 @@
    "section": "1.6.2.1.15",
    "source_anchor": "4941585",
    "source_clause": "IF Antitheft_Result.Info == \"Not_Successfully\", THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and to stay in the original state (Standby OR Sleep), showing proper HMI Antitheft screens if needed, for a maximum time equal to Timeout1.",
-   "reasoning": "驗證目標：防盜失敗後之旗標復歸，與留在原狀態（Standby 或 Sleep）之行為。關鍵情境條件：`Antitheft_Result.Info` 為 `Not_Successfully`，原狀態分別為 Standby 與 Sleep。為什麼這樣切：原文之 `(Standby OR Sleep)` 為 OR 並列，依 §5.7 各自成條。刻意略過：`Timeout1` 之數值未載於原文，故 ER 寫「至多 Timeout1」而**不造容差值**（比照 R-P97 之處置）。**重疊登記（R-P196）**：本 leaf 與 `SWE-PM-047` 相似度 0.76、與 `SWE-PM-027` 0.78、與 `SWE-PM-052` 0.63 —— 皆為「防盜失敗留在原狀態」之同族條文而狀態不同，非重複。"
+   "reasoning": "驗證目標：防盜失敗後之旗標復歸，與留在原狀態（Standby 或 Sleep）之行為。關鍵情境條件：`Antitheft_Result.Info` 為 `Not_Successfully`，原狀態分別為 Standby 與 Sleep。為什麼這樣切：原文之 `(Standby OR Sleep)` 為 OR 並列，依 §5.7 各自成條。刻意略過：`Timeout1` 之數值未載於原文，故 ER 寫「至多 Timeout1」而**不造容差值**（比照 R-P97 之處置）。**重疊登記（R-P196）**：本 leaf 與 `SWE-PM-047` 相似度 0.76、與 `SWE-PM-027` 0.78、與 `SWE-PM-052` 0.63 —— 皆為「防盜失敗留在原狀態」之同族條文而狀態不同，非重複。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 1 支全數裁決 —— 已由他條涵蓋 1。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-046",
    "section": "1.6.2.1.15",
    "source_anchor": "4941601",
    "source_clause": "IF Rear_View_Camera PROXI parameter == \"Present\" AND Rear_Camera_Enable.Info == \"True\" THENeven IF Antitheft_Result.Info is still equal to \"In_Progress\" or \"Not_Successfully\", TLM shall provide audio and video for rear view camera component, as soon as the images are available on TLM and as long as Rear_Camera_Enable.Info == \"True\".Refer to VF551 for details about video availability requirements on TLM screen",
-   "reasoning": "驗證目標：後視鏡頭 PROXI 存在且致能為真時，防盜尚未成功仍應提供影音。關鍵情境條件：`Rear_View_Camera` PROXI 為 `Present`、`Rear_Camera_Enable.Info` 為 `True`；`Antitheft_Result.Info` 分別為 `In_Progress` 與 `Not_Successfully`。為什麼這樣切：原文以 `or` 並列二個防盜狀態，依 §5.7 各自成條 ——本條之要旨正是「即使防盜未成功也要出影像」，只測其一無法證明該例外對二狀態皆成立。刻意略過：`Refer to VF551` 之影像可用性需求為外部文件（§8.4.2）。"
+   "reasoning": "驗證目標：後視鏡頭 PROXI 存在且致能為真時，防盜尚未成功仍應提供影音。關鍵情境條件：`Rear_View_Camera` PROXI 為 `Present`、`Rear_Camera_Enable.Info` 為 `True`；`Antitheft_Result.Info` 分別為 `In_Progress` 與 `Not_Successfully`。為什麼這樣切：原文以 `or` 並列二個防盜狀態，依 §5.7 各自成條 ——本條之要旨正是「即使防盜未成功也要出影像」，只測其一無法證明該例外對二狀態皆成立。刻意略過：`Refer to VF551` 之影像可用性需求為外部文件（§8.4.2）。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 2 支全數裁決 —— 已由他條涵蓋 2。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-047",
    "section": "1.6.2.1.15",
    "source_anchor": "4941602",
    "source_clause": "IF Antitheft_Result.Info == \"Not_Successfully\", THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and to stay in the original state (Standby OR Sleep),  showing proper HMI Antitheft screens, if needed (see VF210).",
-   "reasoning": "驗證目標：防盜失敗後之旗標復歸與留在原狀態，並顯示防盜畫面。關鍵情境條件：原狀態分別為 Standby 與 Sleep。為什麼這樣切：`(Standby OR Sleep)` 之 OR 並列，依 §5.7 各自成條。刻意略過：`see VF210` 之畫面內容為外部文件（§8.4.2）。**重疊登記（R-P196）**：與 `SWE-PM-045` 相似度 0.76 —— 二者之差別在 `045` 帶 `Timeout1` 上限而本條帶 VF210 之畫面參照；與 `SWE-PM-049`（0.75）、`SWE-PM-052`（0.83）為同族而狀態不同。"
+   "reasoning": "驗證目標：防盜失敗後之旗標復歸與留在原狀態，並顯示防盜畫面。關鍵情境條件：原狀態分別為 Standby 與 Sleep。為什麼這樣切：`(Standby OR Sleep)` 之 OR 並列，依 §5.7 各自成條。刻意略過：`see VF210` 之畫面內容為外部文件（§8.4.2）。**重疊登記（R-P196）**：與 `SWE-PM-045` 相似度 0.76 —— 二者之差別在 `045` 帶 `Timeout1` 上限而本條帶 VF210 之畫面參照；與 `SWE-PM-049`（0.75）、`SWE-PM-052`（0.83）為同族而狀態不同。\n\n**G113 裁決（50 包 R-P325）**：本 leaf 之 OR 未覆蓋分支 1 支全數裁決 —— 規格未定義該支 1。逐支理由見 `data/g113_adjudication_50.md`。"
   },
   {
    "parent": "SWE-PM-048",

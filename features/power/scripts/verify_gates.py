@@ -30,6 +30,8 @@ LEDGER = {
     "eb3eb0861363fc1d85c6127564355a7414ecd37eac0800336bb0d2e9b2911a26": "CFTS009 規格本文",
     "47c402a01b1a2e3a537797843b968ad621fc2bbc6f7a416a33dfe490247ea505": "CFTS010 規格本文",
     "cb6bf7d81030abc8ce47a444b4cf90b6bf527816fde7887b9e9b872c22338ae4": "SYS3 SYSAD",
+    "a29fe63963192b804e20ed2fc6278dc9c434cbbb36b26bd77627cc0ea92949bb": "WrapperResource O829（49 包 R-P319 登記）",
+    "dede965f228429c6e95aa7f7c4de08f0a52f1fd28b12ef10da3fc6db8638a9cc": "WrapperResource O1584（49 包 R-P319 登記）",
 }
 
 # §C rule 4：037 Source Requirement ID 之兩域 token（區分大小寫）
@@ -51,10 +53,16 @@ def find(pattern: str) -> Path:
 
 
 def gate0() -> bool:
-    """G0 素材身分前置閘：七份原始檔 SHA256 全數登記。"""
+    """G0 素材身分前置閘：七份原始檔 SHA256 全數登記。
+
+    50 包訂正：**只掃檔案，跳過目錄** —— 49 包依 R-P319 新建之
+    `inputs/derived/`（衍生物）使本函式拋 `IsADirectoryError` 而完全不產出結果。
+    衍生物非原始素材，本閘之標的不含之。
+    **判準（`not missing and not extra`）一字未動。**
+    """
     seen = {}
     for f in sorted(IN.iterdir()):
-        if f.name.startswith("."):
+        if f.name.startswith(".") or f.is_dir():
             continue
         seen[hashlib.sha256(f.read_bytes()).hexdigest()] = f.name
     missing = set(LEDGER) - set(seen)
