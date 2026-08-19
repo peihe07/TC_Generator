@@ -1,14 +1,9 @@
 # 覆核用全文 ＋ ER 出處對照 — 第六批 後半（`174`–`189`）
 
-> **⚠ 本檔已於 47 輪重出取代 → `47_review_pack_33b.md`。**
-> 其產生後語料有變動 **1 條**（`189` 之 `reasoning` —— AC-1 之修正，刪去編輯殘留）；
-> `build_review_pack.py --verify` 已於本輪實測判其過期。
-> **不得以本檔作覆核依據**。原文以下保留不刪。
-
 - 產出層：執行層｜2026-08-18｜**供分析層逐條覆核**
 - 本檔 **16 條**；另半在 `44_review_pack_33a.md`
 - 由 `scripts/build_review_pack.py` 產生，不經人手轉錄
-- **本檔取代 `41_review_pack_33b.md`**（AA-1，44 包）——該檔無語料指紋，`--verify` 一律判過期
+- **本檔取代 `44_review_pack_33b.md`**（AA-1，44 包）——該檔無語料指紋，`--verify` 一律判過期
 
 > 讀法：先讀「spec 原文」與「037 description」，再讀 ER ——
 > 「這句話對不對」是本檔要問的；「這句話有沒有來源」見 §0 之出處對照。
@@ -37,7 +32,7 @@
 | `NR1L-UserProfiles-186` | `22c8cc1cec1b` |
 | `NR1L-UserProfiles-187` | `85d9d20d5cf6` |
 | `NR1L-UserProfiles-188` | `e3b27fbf3204` |
-| `NR1L-UserProfiles-189` | `54d8cd94d88a` |
+| `NR1L-UserProfiles-189` | `fbeb005e8255` |
 
 ## 0. ER 出處對照
 
@@ -443,7 +438,7 @@
 | priority | **P2** — 返回鍵之上一步與選擇之保留 |
 | remarks | **輸入動作留在 procedure 而非 pre-condition**（W-1）：ER4 所斷言者正是該輸入之保留，若把它寫成 pre-condition 之完成式，「保留」與「一開始就在那裡」不可分辨。`(until canceled)` 之取消側未驗 —— 條文未說取消後選擇何時清除，依 §8.4.1 不推定。`(if applicable)` 為適用條件：第一步無前一步，故本條自第二步（username）發起。 |
 
-**reasoning**：驗證目標：8.12（NEWPR11）—— 設定流程中之返回鍵回到上一步，並保留已做之選擇。關鍵情境條件：上一步須已有輸入且已記錄。為什麼這樣切：`design_method` 取狀態轉換 ——`design_method` 取功能測試而非狀態轉換：所驗者為**值之保留**，畫面之來回不是系統狀態之遷移（K-4a）。
+**reasoning**：驗證目標：8.12（NEWPR11）—— 設定流程中之返回鍵回到上一步，並保留已做之選擇。關鍵情境條件：上一步須已有輸入且已記錄。為什麼這樣切：`design_method` 取功能測試而非狀態轉換：所驗者為**值之保留**，畫面之來回不是系統狀態之遷移（K-4a）。
 
 ---
 

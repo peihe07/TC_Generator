@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "NEWPR11.) In the New Profile setup Process, the back arrow will take the user to the previous step (if applicable) and store any selections for when they go to that step again (until canceled)",
  "must_carry_injected": [],
- "reasoning": "驗證目標：8.12（NEWPR11）—— 設定流程中之返回鍵回到上一步，並保留已做之選擇。關鍵情境條件：上一步須已有輸入且已記錄。為什麼這樣切：`design_method` 取狀態轉換 ——`design_method` 取功能測試而非狀態轉換：所驗者為**值之保留**，畫面之來回不是系統狀態之遷移（K-4a）。",
+ "reasoning": "驗證目標：8.12（NEWPR11）—— 設定流程中之返回鍵回到上一步，並保留已做之選擇。關鍵情境條件：上一步須已有輸入且已記錄。為什麼這樣切：`design_method` 取功能測試而非狀態轉換：所驗者為**值之保留**，畫面之來回不是系統狀態之遷移（K-4a）。",
  "keywords": [
   "back arrow",
   "previous step",

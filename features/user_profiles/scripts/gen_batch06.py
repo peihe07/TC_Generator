@@ -425,8 +425,8 @@ TCS = {
         remarks="**變體 axis `r1h-cpa-8.1`**：本條為 R1 High 側。"
                 "base 側（`Is CPA present?` 為是 → 啟動 CPA 登入）"
                 "**在 037 內無 leaf**，只見於 PDF p12 之流程圖，依 R-U56 不造；"
-                "已於 `audit_variant_pairs.AXES` 由 `pending` 改為具名不配"
-                "（述詞 `no-other-side-leaf` 實測）—— 同 `SWE1-HMI-PROF-046`。"
+                "其不造之判定已於變體覆寫之登記表逐條實測 —— "
+                "同 `SWE1-HMI-PROF-046`。"
                 "**ER4 之缺席斷言不可省**：只驗 Tutorials 有沒有開，"
                 "一個**先開 CPA 再開 Tutorials** 之實作會通過（§8.3）。"
                 "條文之 `accessible from the Edit Profile screen only` 一句，"
@@ -1095,8 +1095,11 @@ TCS = {
             "驗證目標：8.12（NEWPR11）—— 設定流程中之返回鍵回到上一步，"
             "並保留已做之選擇。"
             "關鍵情境條件：上一步須已有輸入且已記錄。"
-            "為什麼這樣切：`design_method` 取狀態轉換 ——"
-            "`design_method` 取功能測試而非狀態轉換："
+            # **AC-1（47 包）**：此處原殘留一句「`design_method` 取狀態轉換 ——」，
+            # 係 41 輪改判時只替換了後半句而未刪前半。**欄位本身填功能測試、
+            # 後半之理由亦正確，錯的只有那句殘留** —— 但同一欄內先稱取 A、
+            # 再稱取 B 而非 A，讀者無從判斷哪一句是現行者。
+            "為什麼這樣切：`design_method` 取功能測試而非狀態轉換："
             "所驗者為**值之保留**，畫面之來回不是系統狀態之遷移（K-4a）。"),
         kw=["back arrow", "previous step", "selections", "retained"],
     ),

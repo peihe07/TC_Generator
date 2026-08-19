@@ -212,7 +212,7 @@ TCS = {
                  "PU1087 is displayed",
                  "PU1088 is displayed and the setting under test is back to "
                  "its default value"),
-        remarks="**本批唯一帶上游未決事項生成者（R-U27）**：DR #4 所缺為 "
+        remarks="**本批唯一在上游素材未齊之情形下生成者（R-U27）**：DR #4 所缺為 "
                 "`PU1087`／`PU1088` 之 popup **內文**，而其**觸發條件**已載於 "
                 "spec（p6）。故本 TC 之 ER 只斷言該二 popup **顯示**，"
                 "**不寫其上之文字** —— 不得以鄰近 PU id 推定內容（§8.4.1）。"

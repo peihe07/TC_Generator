@@ -54,8 +54,25 @@
 | 44 | 2026-08-18 | **AA-1：review pack 之時效；三項常規；T:Z 定為留空** | [handoff/44_pack_refresh.md](handoff/44_pack_refresh.md) | [upstream/44_pack_refresh.md](upstream/44_pack_refresh.md) ＋ [24a](upstream/44_review_pack_24a.md)／[24b](upstream/44_review_pack_24b.md)／[33a](upstream/44_review_pack_33a.md)／[33b](upstream/44_review_pack_33b.md) | —（本包無裁決條文） | **AA-1**（分析層於覆核時實測發現：pack 與語料不同步）| **pack 加語料指紋 ＋ `--verify` 過期檢查**（不符即拒絕採信；**無指紋者一律判過期**），4/4 方向性案例。**變動清單**：自原產生輪次以來僅 **5 條**有變動，全在 `24a`（`139`–`143`，來源唯一 —— 41 輪 RD #8 之處置）；`24b`／`33a`／`33b` 共 44 條**一字未動**。41 輪之 `popup_guard` 20 條不影響任何 pack（其動 `001`–`134`，pack 覆蓋 `135`–`189`）。**變動清單不用 git 取得** —— 舊值就在那份檔案裡，`--changes` 逐欄比對報到欄位層級。四份重出並帶指紋（`--verify` 皆 0 不符）；舊四份**加警語保留不刪**（記錄分析層當時讀到的是什麼）。**§二之 7 條逐條確認**：`144`／`145` 整條無變動，`140` 之依據欄（pre／reasoning）未變 → **三項觀察全部有效**；`139`–`143` 之 procedure／remarks 須以新 pack 重讀。**三項常規**寫入 profile §5.1（`why` 必填）／§7.3（「會轉紅」須指名案例）／§7.4（先查他 feature **交付件**）／§7.5（pack 時效）。**`vehicle_columns` 定為留空**，yaml 之 `why` 具名三項實測依據 —— **擋交付者現為 0**。**本輪未生成、未改任何 TC；未寫入他 feature；未執行任何 git** |
 | 45 | 2026-08-18 | **AB-1 修正與全批自檢、靜態轉錄之指紋、上繳格式** | [handoff/45_fingerprints.md](handoff/45_fingerprints.md) | [upstream/45_fingerprints.md](upstream/45_fingerprints.md) ＋ [45_review_pack_24b](upstream/45_review_pack_24b.md)（重出） | —（本包無裁決條文） | **AB-1**（分析層覆核 `TC-154` 時發現：ER 未指明所讀者，其斷言恆真）| **`TC-154` 修正**：步驟 4／ER4 指名所讀者為**新建 profile**，ER 斷言其與步驟 1 所記者**相同**（carry-over），非「未改變」。**全批自檢命中 16 處**，逐條判定入登記表 —— 其中 **`TC-148` 為同型而未被點名者，一併修正**：同一句英文在 6.4 是**恆真**（該比兩個 profile）、在 6.1 是**歧義**（該比同一 profile 之兩時點）。**掃描只並排兩端不硬判** —— 16 條中 14 條之判別力在「中間那個事件」，那是句型看不見的。`audit_consistency` 方向性案例 48 → **52**；`audit_pending` 抑制 43 → **59**。**G-F**：新閘 `stamp_static_doc.py`（5/5），`27_rd_queries_v2`／`28_provenance4`／`34_provenance5` 加指紋（範圍取**全欄**，保守 —— 誤判過期只是重出一次，誤判新鮮是拿舊資料下判斷）；`26_rd_queries` **不標**（已 WITHDRAWN，標了反而像現行版）。**G-G 在建立當輪即抓到真陽性**：AB-1 之修正使 `44_review_pack_24b` 過期（`148`／`154`），**已於同輪重出**為 `45_review_pack_24b`。**G-H**：他 feature 先例須先確認**母本同一**（欄位字母與 DV 隨 revision 變動），寫入 profile §7.4。閘 16 → **17 支**，13 支自我測試全過；lint 189/0。**本輪未產出交付件；未寫入他 feature；未執行任何 git** |
 | 46 | 2026-08-18 | **45 輪作業之完成回報；AB-1 修正之第二條；指紋現況** | [handoff/46_review_note.md](handoff/46_review_note.md) | [upstream/46_note.md](upstream/46_note.md)（**另立，不併入 45** —— 具名理由：不改已交出之靜態文件）| —（本包無裁決條文；**本包無新作業**）| —（無新開）| 45 輪四項作業**已於 45 輪完成**，本輪僅回報現況（語料 189／180-180、lint 0、17 支閘自我測試全過）。**指出 46 包只點名了一條**：AB-1 之修正實動 **2 條** —— `TC-154`（已點名）與 **`TC-148`（未點名，係自檢之產物）**；附其逐字差異（僅「指名所讀者」兩行，斷言方向未變），**不代覆核方認定免重讀**。**G-G 附件**：四份現行 pack `--verify` 皆 0 不符；**本輪起一併附三份靜態轉錄之 `--verify`**（補 45 輪自陳之缺口）。profile §7.5.1 收斂**重出（產出方之義務）vs 重讀（覆核方之判斷）**之分工。**獨立判斷**：覆核趨勢表所量者為「已知型之缺陷」—— 11 件中 8 件當場變成掃描，第五六批是在那些掃描存在下寫出的；表上另缺第二批，未擅自填。建議覆核表之「讀畢」欄改記**所讀之 pack 檔名**。**本輪未執行任何 git** |
+| 47 | 2026-08-19 | **AC-1：欄內自相矛盾之修正與自檢** | [handoff/47_review_batch06b.md](handoff/47_review_batch06b.md) | [upstream/47_review_fixes6.md](upstream/47_review_fixes6.md) ＋ [47_review_pack_33b](upstream/47_review_pack_33b.md)（重出）| —（本包無裁決條文）| —（無新開）| **`TC-189` 之 `reasoning` 前半殘留已刪** —— 成因為 41 輪 K-4a 改判時**只替換後半句而未刪前半**（欄位與後半理由皆正確）。**新掃描 AC-1**：AC1-a（同欄 `design_method` ≥2 次）／AC1-b（「取 Y 而非 X」而 X 於同欄他處被肯定），掃 `reasoning`／`remarks` 兩欄，**全批命中 0**；四個方向性案例（含 `TC-189` 原形為紅向），`audit_consistency` 52 → **56**。**盲區具名**：同義改寫抓不到（本次靠殘留與現行句同詞）、只掃中文句式、`priority_basis` 未納（照包字面執行，未擅自擴大）。**連帶**：`TC-189` 之變動使 `44_review_pack_33b` 過期 → **同輪重出**為 `47_review_pack_33b`（第三次同型）。**INDEX 立「現行 pack 一覽」節**（§1.9）—— 六份被取代者已不易辨認。全閘重跑：**17 支自我測試全過**，語料 189／違規 0。**本輪未執行任何 git** |
+| 48 | 2026-08-19 | **產出交付件（ENTRY 001，189 條）** | [handoff/48_delivery_build.md](handoff/48_delivery_build.md) | [upstream/48_delivery_build.md](upstream/48_delivery_build.md) ＋ [48_delivery_note.md](upstream/48_delivery_note.md) ＋ [48_review_pack_24b](upstream/48_review_pack_24b.md)／[33a](upstream/48_review_pack_33a.md)（重出）| —（本包無裁決條文）| —（無新開）| **產出 `output/…_UserProfiles_20260819_full.xlsx`**（189 條，row 10–198，列序依 Requirement ID，T:Z 留空），`DELIVERY.sha256` **ENTRY 001**，`shasum -c` **OK**（其 WARNING 已查明為空白分隔行，Comfort 同格式有 32 個）。**八項自檢逐項附實測輸出，全綠**：189 列無重無跳、列序遞增、必填 2457 格空值 0、多行 564 格含 CR 0、emoji 0、方括號僅 `[username]`×6（G19 通過）、行尾句點 0/1804 行、zip members 48=48 與 x14 節點 1=1、涵蓋檢查三欄皆含寫入列。**交付欄位淨化**：5670 格命中 **0**；修正三處（`148`／`167` 之 `pending`、`082` 之「未決」）。**自抓一個判準錯**：`\b` 對中文不成立，故語料側掃描漏掉 `082` —— 已 grep 全部 17 支閘確認無其他同型（0 命中）。**產出閘之判準改一次**（非拿掉）：由「值是不是 `None`」改為「`feature.yaml` 三項是否已決定且 `why` 非空」，`write_back` 自我測試 10 → **12**。**未刪 remarks 之六類內部指涉**（§節號 59、掃描代號 59 等），具名上報請裁示。**未送客戶目錄 —— 屬 Pei。本輪未執行任何 git** |
 
 ---
+
+## 1.9 現行 review pack 一覽（隨每次重出更新）
+
+**覆核一律以本表所列者為準**；其餘同名檔皆已被取代並帶警語。
+讀前先跑 `python3 scripts/build_review_pack.py --verify <檔>`。
+
+| 範圍 | 現行檔 | 產生輪次 |
+|---|---|---|
+| `135`–`145` | [`44_review_pack_24a.md`](upstream/44_review_pack_24a.md) | 44 |
+| `146`–`156` | [`48_review_pack_24b.md`](upstream/48_review_pack_24b.md) | 48 |
+| `157`–`173` | [`48_review_pack_33a.md`](upstream/48_review_pack_33a.md) | 48 |
+| `174`–`189` | [`47_review_pack_33b.md`](upstream/47_review_pack_33b.md) | 47 |
+
+**已被取代者**（不得作覆核依據）：`40_24a`／`40_24b`／`41_33a`／`41_33b`／
+`44_24b`／`44_33b`／`45_24b`／`44_33a`。
 
 ## 2. 現況
 
@@ -75,6 +92,29 @@
   `Outline Number` 169/169 一致。候選被引集合 135 條已落檔。
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
+
+### 第四十八輪已完成（2026-08-19）—— **交付件產出（ENTRY 001）**
+
+- **`output/…_UserProfiles_20260819_full.xlsx`**：189 條、row 10–198、
+  列序依 Requirement ID、T:Z 七欄留空；`DELIVERY.sha256` **ENTRY 001**、
+  `shasum -c` **OK**。**未送客戶目錄（屬 Pei）**。
+- **八項交付前自檢逐項附實測輸出，全綠**；**交付欄位淨化 5670 格命中 0**
+  （修正三處）。
+- **自抓一個判準錯**：`\b` 對中文不成立 —— 語料側掃描因此漏掉 `TC-082`，
+  在掃產出檔時才浮出。已確認 17 支閘無其他同型。
+- **產出閘之判準改一次而非拿掉**：由「值是不是 `None`」改為
+  「`feature.yaml` 三項是否已決定且 `why` 非空」——
+  42 輪把一個「狀態」寫成了「值的形狀」，狀態改了閘沒跟著動。
+- **remarks 之六類內部指涉未刪**，具名上報請裁示（§2.3）。
+
+### 第四十七輪已完成（2026-08-19）—— **AC-1：欄內自相矛盾**
+
+- **`TC-189` 之 `reasoning` 前半殘留已刪**（41 輪改判時只替換後半句）。
+- **新掃描 AC-1**（欄內矛盾）：兩條判準、四個方向性案例，**全批命中 0**；
+  `audit_consistency` 52 → **56**。**盲區三項具名**，其中
+  「同義改寫抓不到」意謂**其召回率無法估計** —— 0 處不等於欄內矛盾已清。
+- **連帶重出** `47_review_pack_33b.md`（第三次「修正 → pack 過期 → 同輪重出」）。
+- **INDEX §1.9「現行 pack 一覽」**新立。
 
 ### 第四十六輪（2026-08-18）—— **無新作業；一項須分析層決定之事項**
 

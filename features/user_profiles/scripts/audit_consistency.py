@@ -631,11 +631,72 @@ def ab1_compare_ends(rows) -> list:
     return sorted(hits)
 
 
+# ── AC-1（47 包）—— **欄內**自相矛盾
+#
+# `TC-189` 之 reasoning 原為：
+#   「為什麼這樣切：`design_method` **取狀態轉換** ——
+#     `design_method` **取功能測試而非狀態轉換**：所驗者為值之保留……」
+# 前半為 41 輪改判時之編輯殘留：**只替換了後半句而未刪前半**。
+# 欄位本身填功能測試、後半之理由亦正確 —— 錯的只有那句殘留，
+# **但同一欄內先稱取 A、再稱取 B 而非 A，讀者無從判斷哪一句是現行者。**
+#
+# ## 它與 K-4a／K-4b 之分界
+#
+# K-4a 比「`design_method` 欄 vs procedure 之形態」，
+# K-4b 比「`priority` 欄 vs `priority_basis` 之措辭」——
+# **兩者比的都是欄位與欄位之間**。欄內自相矛盾對它們是不可見的。
+# C-2（18 輪）是跨欄之同形；**本條是其欄內版本**。
+#
+# ## 兩條判準（47 包指定）
+#
+# | # | 形態 | 為何可測 |
+# |---|---|---|
+# | AC1-a | 同欄內 `design_method` 出現 **≥ 2 次** | 一個欄位不需要說兩次自己取了什麼方法 |
+# | AC1-b | 「取／為 Y **而非／不是** X」，而 **X 於同欄他處以肯定形式再現** | 被否定者又被肯定，即矛盾本身 |
+#
+# ## 盲區（R-G11）
+#
+# 1. **同義改寫者抓不到**：「取狀態轉換」vs「屬狀態遷移之驗證」——
+#    AC1-b 以逐字比對認「被否定者」，改寫過的說法比不到。
+# 2. **只掃中文之「取／為 … 而非 …」句式**。英文欄位（ER／procedure）
+#    之欄內矛盾不在本掃描射程內 —— 那類由 §6 之行數對應與 T-1／AB-1 承擔。
+# 3. **只掃 `reasoning` 與 `remarks` 兩欄**（47 包所指定者）。
+AC1_NEG = re.compile(
+    r"(?:取|為)\s*`?([^\s，。：、（）「」`]{2,12})`?\s*(?:而非|不是)\s*"
+    r"`?([^\s，。：、（）「」`]{2,12})")
+AC1_AFFIRM = "(?:取|為)\s*`?"
+
+
+def ac1_intra_field(rows) -> list:
+    hits = []
+    for sec, t in rows:
+        for fld, txt in (("reasoning", t.get("_reasoning", "")),
+                         ("remarks", t.get("remarks", ""))):
+            txt = str(txt or "")
+            if not txt:
+                continue
+            n = txt.count("design_method")
+            if n >= 2:
+                hits.append((t["tc_id"], sec, fld,
+                             f"AC1-a `design_method` 於同欄出現 {n} 次"))
+            for m in AC1_NEG.finditer(txt):
+                rejected = m.group(2)
+                rest = txt[:m.start()] + txt[m.end():]
+                if re.search(AC1_AFFIRM + re.escape(rejected), rest):
+                    hits.append((t["tc_id"], sec, fld,
+                                 f"AC1-b 「{m.group(0)[:40]}」而被否定之 "
+                                 f"「{rejected}」於同欄他處以肯定形式再現"))
+    return sorted(hits)
+
+
 def tcs() -> list:
     out = []
     for p in sorted((FEATURE / "generated").glob("*.json")):
         d = json.loads(p.read_text(encoding="utf-8"))
         for t in d["tcs"]:
+            # AC-1 掃 `reasoning`，而該欄在 leaf 檔之頂層 —— 帶進來，
+            # 使掃描函式之簽章與其他掃描一致（皆吃 (sec, tc)）。
+            t = {**t, "_reasoning": d.get("reasoning", "")}
             out.append((d["outline"], t))
     return sorted(out, key=lambda x: x[1]["tc_id"])
 
@@ -810,6 +871,22 @@ SELF_CASES = [
     ("**護欄**：無配對宣稱之 remarks → **不得列入**", "y1",
      _tc(req_id="SWE1-HMI-PROF-009", tc_id="NR1L-UserProfiles-096",
          remarks="座椅鍵編號為測試設置（J-12）"), False),
+
+    # ---- AC-1：欄內自相矛盾（47 包）
+    ("**TC-189 之原形**：同欄先稱取狀態轉換、再稱取功能測試而非狀態轉換 "
+     "→ **須列入待判**", "ac1",
+     _tc(_reasoning="為什麼這樣切：`design_method` 取狀態轉換 ——"
+                    "`design_method` 取功能測試而非狀態轉換：所驗者為值之保留"),
+     True),
+    ("其修正後之形（刪去前半殘留）→ **不得列入**", "ac1",
+     _tc(_reasoning="為什麼這樣切：`design_method` 取功能測試而非狀態轉換："
+                    "所驗者為值之保留"), False),
+    ("**護欄**：正當之「取 A 而非 B」而 B 未於他處被肯定 → **不得列入**",
+     "ac1",
+     _tc(_reasoning="`design_method` 取狀態轉換而非功能測試：本條驗一次遷移"),
+     False),
+    ("**護欄**：remarks 提及 `design_method` 一次 → **不得列入**", "ac1",
+     _tc(remarks="`design_method` 取負向測試，因步驟 2 為非法操作"), False),
 
     # ---- AB-1：比對兩端（45 包）
     ("**TC-154 之原形**：ER 比對而未指明所讀者為誰之偏好 → **須列入待判**",
@@ -992,7 +1069,7 @@ SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b,
          "u2": u2_unused_record, "v1": v1_timing,
          "w1": w1_perfect_pre, "x1": x1_unhandled_popup,
          "y1": y1_pair_claims, "z1": z1_ru56_scope,
-         "ab1": ab1_compare_ends}
+         "ab1": ab1_compare_ends, "ac1": ac1_intra_field}
 
 
 def self_test() -> int:
@@ -1087,6 +1164,11 @@ if __name__ == "__main__":
     print(f"\n## Q-1 —— 引號外之逐字引用（≥{NGRAM} 詞）：{len(q)} 處待判\n")
     for tid, sec, g in q:
         print(f"  {tid} ({sec}) 「{g[:70]}」")
+
+    ac = ac1_intra_field(rows)
+    print(f"\n## AC-1 —— 欄內自相矛盾（reasoning／remarks）：{len(ac)} 處待判\n")
+    for tid, sec, fld, msg in ac:
+        print(f"  {tid} ({sec}) {fld} —— {msg}")
 
     ab = ab1_compare_ends(rows)
     print(f"\n## AB-1 —— ER 與前步紀錄之比對，兩端並排：{len(ab)} 處待判\n")

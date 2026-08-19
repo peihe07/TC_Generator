@@ -1,14 +1,9 @@
 # 覆核用全文 ＋ ER 出處對照 — 第五批 後半（`146`–`156`）
 
-> **⚠ 本檔已於 48 輪重出取代 → `48_review_pack_24b.md`。**
-> 其產生後語料有變動 **1 條（`148` 之 remarks —— 交付欄位淨化，刪去內部登記表字樣）**；
-> `build_review_pack.py --verify` 已於本輪實測判其過期。
-> **不得以本檔作覆核依據**。原文以下保留不刪。
-
 - 產出層：執行層｜2026-08-18｜**供分析層逐條覆核**
-- 本檔 **11 條**；另半在 `44_review_pack_24a.md`
+- 本檔 **11 條**；另半在 `48_review_pack_33a.md`
 - 由 `scripts/build_review_pack.py` 產生，不經人手轉錄
-- **本檔取代 `44_review_pack_24b.md`**（AA-1，44 包）——該檔無語料指紋，`--verify` 一律判過期
+- **本檔取代 `45_review_pack_24b.md`**（AA-1，44 包）——該檔無語料指紋，`--verify` 一律判過期
 
 > 讀法：先讀「spec 原文」與「037 description」，再讀 ER ——
 > 「這句話對不對」是本檔要問的；「這句話有沒有來源」見 §0 之出處對照。
@@ -24,7 +19,7 @@
 |---|---|
 | `NR1L-UserProfiles-146` | `d1c8b027e53c` |
 | `NR1L-UserProfiles-147` | `faa4aabf3ec3` |
-| `NR1L-UserProfiles-148` | `aaab1ed1b11c` |
+| `NR1L-UserProfiles-148` | `e362f61726f3` |
 | `NR1L-UserProfiles-149` | `d67aac9b77a0` |
 | `NR1L-UserProfiles-150` | `9f900f1b2d92` |
 | `NR1L-UserProfiles-151` | `f3c4c3fb46ec` |
@@ -124,7 +119,7 @@
 | specification_reference | Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.1 |
 | design_method | 情境 / 用例 (Scenario / Use Case Testing) |
 | priority | **P1** — R1 High 之流程分歧本身 —— 誤啟 CPA 即為錯誤變體行為 |
-| remarks | **變體 axis `r1h-cpa-6.1`**：本條為 R1 High 側。base 側（`Is CPA present?` 為是時啟動 CPA 登入）**在 037 內無 leaf** —— 它只出現於 PDF p9 之流程圖，依 R-U56 不造，已於 `audit_variant_pairs.AXES` 由 `pending` 改為具名不配（述詞 `no-other-side-leaf` 實測）。條文尚有 `it will be accessible from the Edit Profile screen only` 一句 —— 該全稱之**反向**（他處不得進入 CPA）本條不涵蓋，其入口清單不可窮舉，已記為 ch11 之覆蓋事項（`SWE1-HMI-PROF-110` 為其正向）。 |
+| remarks | **變體 axis `r1h-cpa-6.1`**：本條為 R1 High 側。base 側（`Is CPA present?` 為是時啟動 CPA 登入）**在 037 內無 leaf** —— 它只出現於 PDF p9 之流程圖，依 R-U56 不造 —— 其不造之判定已於變體覆寫之登記表逐條實測。條文尚有 `it will be accessible from the Edit Profile screen only` 一句 —— 該全稱之**反向**（他處不得進入 CPA）本條不涵蓋，其入口清單不可窮舉，已記為 ch11 之覆蓋事項（`SWE1-HMI-PROF-110` 為其正向）。 |
 
 **reasoning**：驗證目標：6.1（NOPR0）—— R1 High 上 CPA 不啟動；選完 avatar 後保留現有偏好並進入 Tutorials。關鍵情境條件：車型須為 R1 High —— 本條之全部內容皆以此為前提。為什麼這樣切：`design_method` 取情境／用例 ——本條驗的是**一段流程之走向**（avatar → 不進 CPA → 進 Tutorials），非單一畫面之功能點。**AB-1（45 包）之連帶**：ER4 之兩端**皆為現用 profile 之偏好**（設定前後兩個時點），故指名之 —— 與 `TC-154` 不同：那一條之兩端是**兩個不同的 profile**。**本條之兩端同物不是恆真**：其間之事件（avatar 步驟）在 base 變體上正是 CPA 會介入之處。**ER4 之偏好比對不可省**：條文說的是 `keep current preferences`，一個「跳過 CPA 但把偏好重設為預設」之實作，只驗 Tutorials 有沒有開會通過（§8.3）。
 

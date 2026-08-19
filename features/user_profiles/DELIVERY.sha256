@@ -27,3 +27,22 @@
 # 台帳之記錄單位是「一次 `--write` 的輸出」，探針不是。
 #
 # 第一個 ENTRY 於未決 1 得依據後產生。
+
+# ── ENTRY 001 — 2026-08-19 — 第一次寫回：全語料 189 條
+#
+#   type : produced
+#   來源 : inputs/…_SWQT_20260817_ext.xlsx（6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2）
+#   內容 : row 10–198，共 **189 列 = 189 條 TC**，無留空列
+#   列序 : 依 Requirement or Design ID（leaf id）遞增 —— Comfort 96 §1 之同型
+#   欄   : 寫 14 欄（D F G H I J K L M N P R S AH）；
+#          O／AA／Q／AB 與 T:Z 七欄**留空**，其依據見 feature.yaml 之 why 欄
+#   閘   : verify_dv_integrity 四項全綠（zip members 48=48、x14 節點 1=1、
+#          sqref R10:R1411 不變、legacy 4=4）；WB-0／WB-5／WB-6 全綠；
+#          寫回前 lint_tcs 189/0 與全部 audit 綠
+#   交付 : **未交付**。本 ENTRY 只記「產出過什麼」；
+#          送客戶目錄屬 Pei（Tier 3）
+#   餘   : 12 條（163–165、174–182）之覆核未完，其修正於下次重寫回落地
+#          —— 版本以 ENTRY 區分，不以「最終版」名之
+#   size : 229859 bytes
+#
+6ca2438ae5fe03391e5e790685b9287658444785eb584c645fe17c522c34ae43  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_UserProfiles_20260819_full.xlsx

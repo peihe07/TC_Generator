@@ -245,13 +245,42 @@ def verify(src: Path, out: Path, n_rows: int, *, params=None) -> list:
 
 # ─────────────────────────────────────────────── 產出（受未決 1 之閘）
 
+def decision_gate() -> list:
+    """產出之前置閘 —— **問「決定過了嗎」，不問「值是不是空的」**。
+
+    ## 判準改過一次（48 包）
+
+    v1 為「`vehicle_columns is None` 即拒絕產出」。該判準寫於 42 輪，
+    當時 T:Z 確實未決。**44 輪已將其定為留空**（Comfort 交付件 466 列全空、
+    其 `NEVER_WRITE` 明列該七欄、母本該區 DV 自帶 `allowBlank="1"`）——
+    **而 v1 分不出「還沒決定」與「決定了留空」**：兩者之 value 都是 `None`。
+
+    v2 改問 `feature.yaml`：該項須存在、須有明確之 `applied`、
+    且 **`why` 不得空白**（G-C 之必填要求）。
+    **「決定了留空」與「還沒想好」在 yaml 裡長得一樣，只有 `why` 分得開** ——
+    本閘即讀那一欄。
+
+    **仍然沒有 `--force`。** 可以用旗標關掉的閘不是閘。
+    """
+    import yaml
+    d = yaml.safe_load((FEATURE / "feature.yaml").read_text(encoding="utf-8"))
+    wb = (d or {}).get("write_back", {})
+    bad = []
+    for key in ("vehicle_columns", "author_value", "tc_ref_id_value"):
+        v = wb.get(key)
+        if not isinstance(v, dict) or "applied" not in v:
+            bad.append(f"WB-G `{key}` 未以 {{value, applied, why}} 之形記於 "
+                       f"feature.yaml —— **尚未決定，不得產出**")
+        elif not str(v.get("why") or "").strip():
+            bad.append(f"WB-G `{key}` 之 `why` 空白 —— "
+                       f"**「決定了不做」與「還沒想好」無從分辨**（G-C）")
+    return bad
+
+
 def write(out: Path, *, vehicle_columns=None, **kw) -> Path:
-    if vehicle_columns is None:
-        raise SystemExit(
-            "拒絕產出：**未決 1（T:Z 七個車型欄）尚無依據**。\n"
-            "  填了是編造，不填則該七欄不在 DV 涵蓋內而 WB-5 會紅。\n"
-            "  依 42 包 §一，該項送 Pei；得依據後以 --vehicle-columns 給定。\n"
-            "  本閘無 --force —— 可以用旗標關掉的閘不是閘。")
+    gate = decision_gate()
+    if gate:
+        raise SystemExit("拒絕產出：\n  " + "\n  ".join(gate))
     if sha256(SRC) != SRC_SHA:
         raise SystemExit(f"來源母本之 SHA 不符：{sha256(SRC)[:16]}…")
     tcs = records()
@@ -424,16 +453,41 @@ def self_test() -> int:
     case("**注入：多行欄位以 CRLF 寫入 → 紅**（未決 5 之 LF 自裁）",
          lambda: verify(SRC, out5, 1), True)
 
-    # ⑥ 產出之閘 —— `--write` 而未給 vehicle_columns
-    def refuses():
+    # ⑥ 產出之閘（v2，48 包）—— 問「決定過了嗎」，不問「值是不是空的」
+    case("**產出閘：`feature.yaml` 三項皆已決定且具名 `why` → 綠**",
+         decision_gate, False)
+
+    def undecided():
+        import yaml as _y
+        orig = _y.safe_load
+        def fake(txt):
+            d = orig(txt)
+            if isinstance(d, dict) and "write_back" in d:
+                d["write_back"]["vehicle_columns"]["why"] = "   "
+            return d
+        _y.safe_load = fake
         try:
-            write(scratch / "must_not_exist.xlsx")
-        except SystemExit as e:
-            return [str(e).splitlines()[0]]
-        return []
-    case("**未決 1 之閘：`--write` 未給 `vehicle_columns` → 拒絕產出**",
-         refuses, True)
-    assert not (scratch / "must_not_exist.xlsx").exists()
+            return decision_gate()
+        finally:
+            _y.safe_load = orig
+    case("**注入：`vehicle_columns` 之 `why` 被清空 → 拒絕產出**"
+         "（『決定了留空』與『還沒想好』無從分辨）", undecided, True)
+
+    def not_a_mapping():
+        import yaml as _y
+        orig = _y.safe_load
+        def fake(txt):
+            d = orig(txt)
+            if isinstance(d, dict) and "write_back" in d:
+                d["write_back"]["vehicle_columns"] = None   # 42 輪之舊式純量
+            return d
+        _y.safe_load = fake
+        try:
+            return decision_gate()
+        finally:
+            _y.safe_load = orig
+    case("**注入：`vehicle_columns` 退回舊式純量（無 applied）→ 拒絕產出**",
+         not_a_mapping, True)
 
     # ⑦ 護欄 —— 列序兩種皆為全排列且不重不漏
     def order_total():

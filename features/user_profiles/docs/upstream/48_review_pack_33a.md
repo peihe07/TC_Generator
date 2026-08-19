@@ -1,14 +1,9 @@
 # 覆核用全文 ＋ ER 出處對照 — 第六批 前半（`157`–`173`）
 
-> **⚠ 本檔已於 48 輪重出取代 → `48_review_pack_33a.md`。**
-> 其產生後語料有變動 **1 條（`167` 之 remarks —— 同上）**；
-> `build_review_pack.py --verify` 已於本輪實測判其過期。
-> **不得以本檔作覆核依據**。原文以下保留不刪。
-
 - 產出層：執行層｜2026-08-18｜**供分析層逐條覆核**
-- 本檔 **17 條**；另半在 `44_review_pack_33b.md`
+- 本檔 **17 條**；另半在 `48_review_pack_24b.md`
 - 由 `scripts/build_review_pack.py` 產生，不經人手轉錄
-- **本檔取代 `41_review_pack_33a.md`**（AA-1，44 包）——該檔無語料指紋，`--verify` 一律判過期
+- **本檔取代 `44_review_pack_33a.md`**（AA-1，44 包）——該檔無語料指紋，`--verify` 一律判過期
 
 > 讀法：先讀「spec 原文」與「037 description」，再讀 ER ——
 > 「這句話對不對」是本檔要問的；「這句話有沒有來源」見 §0 之出處對照。
@@ -32,7 +27,7 @@
 | `NR1L-UserProfiles-164` | `da177ac5f34b` |
 | `NR1L-UserProfiles-165` | `d52e510c8128` |
 | `NR1L-UserProfiles-166` | `758cb5dfdf95` |
-| `NR1L-UserProfiles-167` | `64b06b800b26` |
+| `NR1L-UserProfiles-167` | `c1857723e2bd` |
 | `NR1L-UserProfiles-168` | `ad393e6f05f1` |
 | `NR1L-UserProfiles-169` | `1b9f5f9f5eaa` |
 | `NR1L-UserProfiles-170` | `c417cc548e08` |
@@ -318,7 +313,7 @@
 | specification_reference | Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.1 |
 | design_method | 情境 / 用例 (Scenario / Use Case Testing) |
 | priority | **P1** — R1 High 之流程分歧 —— 誤啟 CPA 即為錯誤變體行為 |
-| remarks | **變體 axis `r1h-cpa-8.1`**：本條為 R1 High 側。base 側（`Is CPA present?` 為是 → 啟動 CPA 登入）**在 037 內無 leaf**，只見於 PDF p12 之流程圖，依 R-U56 不造；已於 `audit_variant_pairs.AXES` 由 `pending` 改為具名不配（述詞 `no-other-side-leaf` 實測）—— 同 `SWE1-HMI-PROF-046`。**ER4 之缺席斷言不可省**：只驗 Tutorials 有沒有開，一個**先開 CPA 再開 Tutorials** 之實作會通過（§8.3）。條文之 `accessible from the Edit Profile screen only` 一句，其正向屬 `SWE1-HMI-PROF-110`（11.3.1），本條不涵蓋其全稱反向。 |
+| remarks | **變體 axis `r1h-cpa-8.1`**：本條為 R1 High 側。base 側（`Is CPA present?` 為是 → 啟動 CPA 登入）**在 037 內無 leaf**，只見於 PDF p12 之流程圖，依 R-U56 不造；其不造之判定已於變體覆寫之登記表逐條實測 —— 同 `SWE1-HMI-PROF-046`。**ER4 之缺席斷言不可省**：只驗 Tutorials 有沒有開，一個**先開 CPA 再開 Tutorials** 之實作會通過（§8.3）。條文之 `accessible from the Edit Profile screen only` 一句，其正向屬 `SWE1-HMI-PROF-110`（11.3.1），本條不涵蓋其全稱反向。 |
 
 **reasoning**：驗證目標：8.1（NEWPR0）—— R1 High 上，第 4 步之後依偏好請求並進入 Tutorials，CPA 不啟動。關鍵情境條件：車型須為 R1 High。為什麼這樣切：`design_method` 取情境／用例 ——本條驗的是設定流程末段之**走向**，跨偏好選擇與 Tutorials 兩處。
 

@@ -13,7 +13,7 @@
 | `NR1L-UserProfiles-079` | `8752c1fc896a` |
 | `NR1L-UserProfiles-080` | `35111d1f2926` |
 | `NR1L-UserProfiles-081` | `df759a89839d` |
-| `NR1L-UserProfiles-082` | `075e3994b2c3` |
+| `NR1L-UserProfiles-082` | `a36c22f4b4b1` |
 | `NR1L-UserProfiles-083` | `11bd8d87309a` |
 | `NR1L-UserProfiles-084` | `6b9ef4ec996d` |
 | `NR1L-UserProfiles-085` | `893116fe909d` |

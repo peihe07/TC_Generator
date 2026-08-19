@@ -35,7 +35,7 @@
    "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "**變體 axis `r1h-cpa-8.1`**：本條為 R1 High 側。base 側（`Is CPA present?` 為是 → 啟動 CPA 登入）**在 037 內無 leaf**，只見於 PDF p12 之流程圖，依 R-U56 不造；已於 `audit_variant_pairs.AXES` 由 `pending` 改為具名不配（述詞 `no-other-side-leaf` 實測）—— 同 `SWE1-HMI-PROF-046`。**ER4 之缺席斷言不可省**：只驗 Tutorials 有沒有開，一個**先開 CPA 再開 Tutorials** 之實作會通過（§8.3）。條文之 `accessible from the Edit Profile screen only` 一句，其正向屬 `SWE1-HMI-PROF-110`（11.3.1），本條不涵蓋其全稱反向。",
+   "remarks": "**變體 axis `r1h-cpa-8.1`**：本條為 R1 High 側。base 側（`Is CPA present?` 為是 → 啟動 CPA 登入）**在 037 內無 leaf**，只見於 PDF p12 之流程圖，依 R-U56 不造；其不造之判定已於變體覆寫之登記表逐條實測 —— 同 `SWE1-HMI-PROF-046`。**ER4 之缺席斷言不可省**：只驗 Tutorials 有沒有開，一個**先開 CPA 再開 Tutorials** 之實作會通過（§8.3）。條文之 `accessible from the Edit Profile screen only` 一句，其正向屬 `SWE1-HMI-PROF-110`（11.3.1），本條不涵蓋其全稱反向。",
    "split_flag": false,
    "split_reason": ""
   }

@@ -45,7 +45,7 @@ V-1	NR1L-UserProfiles-171	不成立	judged-closed	2378c77a4634	2	`before saving/
 V-1	NR1L-UserProfiles-172	不成立	judged-closed	7389c9f64986	2	`before saving/completing setup` 陳述的是**不必先選**（自動 highlight 之目的），非時序要求；本條之 procedure 不依賴該順序
 U-1	NR1L-UserProfiles-002	不成立	judged-closed	8afda289a1bd	12	PU1088 之兩個觸發皆為「回復預設之確認」，本條 pre-condition 已固定其一（4.1.1 之現用 profile 側），ER 綁得住
 U-1	NR1L-UserProfiles-031	不成立	judged-closed	238dcb4ba4d5	12	PU0588 之兩句觸發同為「存到他人所連之座椅」，9.6 與 5.10.1 為同一行為之兩處記載，分支唯一
-U-1	NR1L-UserProfiles-082	不成立	judged-closed	0369ab81261d	12	同 `002` —— 4.1.1 之另一個 leaf，pre-condition 同樣固定了分支
+U-1	NR1L-UserProfiles-082	不成立	judged-closed	63ba8d36e0a2	12	同 `002` —— 4.1.1 之另一個 leaf，pre-condition 同樣固定了分支　**48 輪重判**：digest 因交付淨化（「上游未決事項」改為「上游素材未齊」）而變，**受比對之 procedure／ER 兩欄未動**，原判定不變。
 U-1	NR1L-UserProfiles-128	不成立	judged-closed	19c117a75d97	9	本條 procedure **明寫於 PU0588 選 No**（35 輪 X-1 所補），分支已由該步驟綁定
 U-1	NR1L-UserProfiles-131	不成立	judged-closed	b0014c440ca8	9	pre-condition 固定「現用者非該座椅之連結者」，即 PU0588 兩個觸發中之一側
 U-1	NR1L-UserProfiles-132	不成立	judged-closed	0c63543dd2f7	9	同 `131`，另加「現用 profile 原無座椅」之分支條件
@@ -75,7 +75,7 @@ AB-1	NR1L-UserProfiles-129	不成立	judged-closed	3d7100f690b3	1	兩端皆為�
 AB-1	NR1L-UserProfiles-130	不成立	judged-closed	37293d20ce67	1	**主詞已指名** `The seat position stored for Driver Profile B` —— 兩端為「所存之值」與「所讀之新位置」，不同物
 AB-1	NR1L-UserProfiles-137	不成立	judged-closed	2455d19292d1	1	兩端皆為 profile 順序，中間事件為編輯記憶座椅連結 —— 5.12.2 所驗者即該編輯不改順序
 AB-1	NR1L-UserProfiles-144	不成立	judged-closed	cf3ab6abf2c4	1	ER 為 **differs**（拖曳後順序須變），兩端同物而斷言其不等 —— 恆真之反面
-AB-1	NR1L-UserProfiles-148	不成立	judged-closed	3ac322e67342	1	**45 輪已修正**：兩端指名為現用 Driver Profile 之偏好（設定前後兩時點）；中間事件為 avatar 步驟，於 base 變體上正是 CPA 介入之處，故非恆真
+AB-1	NR1L-UserProfiles-148	不成立	judged-closed	2b09770bbb9c	1	**45 輪已修正**：兩端指名為現用 Driver Profile 之偏好（設定前後兩時點）；中間事件為 avatar 步驟，於 base 變體上正是 CPA 介入之處，故非恆真　**48 輪重判**：digest 因 remarks 之交付淨化（刪去內部登記表字樣）而變，**受比對之 procedure／ER 兩欄未動**，故原判定不變。
 AB-1	NR1L-UserProfiles-154	不成立	judged-closed	fcc0dd89d007	1	**45 輪已修正（AB-1 之標的）**：兩端改為**兩個不同的 profile** —— A 端為新建 profile 之偏好，B 端為步驟 1 所記之現用 profile 之偏好；ER 斷言其**相同**（carry-over 成立），非「未改變」
 AB-1	NR1L-UserProfiles-184	不成立	judged-closed	93ffe6a9ccda	1	**兩端已各自指名**：A 端 `The new Profile's preferences`、B 端步驟 1 之 `Driver Profile A` —— 不同物
 AB-1	NR1L-UserProfiles-187	不成立	judged-closed	ef7f89d7de77	1	同 `101`：兩端皆為狀態列圖示而 ER 為 differs，中間事件為完成新增設定
