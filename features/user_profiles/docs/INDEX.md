@@ -57,6 +57,8 @@
 | 47 | 2026-08-19 | **AC-1：欄內自相矛盾之修正與自檢** | [handoff/47_review_batch06b.md](handoff/47_review_batch06b.md) | [upstream/47_review_fixes6.md](upstream/47_review_fixes6.md) ＋ [47_review_pack_33b](upstream/47_review_pack_33b.md)（重出）| —（本包無裁決條文）| —（無新開）| **`TC-189` 之 `reasoning` 前半殘留已刪** —— 成因為 41 輪 K-4a 改判時**只替換後半句而未刪前半**（欄位與後半理由皆正確）。**新掃描 AC-1**：AC1-a（同欄 `design_method` ≥2 次）／AC1-b（「取 Y 而非 X」而 X 於同欄他處被肯定），掃 `reasoning`／`remarks` 兩欄，**全批命中 0**；四個方向性案例（含 `TC-189` 原形為紅向），`audit_consistency` 52 → **56**。**盲區具名**：同義改寫抓不到（本次靠殘留與現行句同詞）、只掃中文句式、`priority_basis` 未納（照包字面執行，未擅自擴大）。**連帶**：`TC-189` 之變動使 `44_review_pack_33b` 過期 → **同輪重出**為 `47_review_pack_33b`（第三次同型）。**INDEX 立「現行 pack 一覽」節**（§1.9）—— 六份被取代者已不易辨認。全閘重跑：**17 支自我測試全過**，語料 189／違規 0。**本輪未執行任何 git** |
 | 48 | 2026-08-19 | **產出交付件（ENTRY 001，189 條）** | [handoff/48_delivery_build.md](handoff/48_delivery_build.md) | [upstream/48_delivery_build.md](upstream/48_delivery_build.md) ＋ [48_delivery_note.md](upstream/48_delivery_note.md) ＋ [48_review_pack_24b](upstream/48_review_pack_24b.md)／[33a](upstream/48_review_pack_33a.md)（重出）| —（本包無裁決條文）| —（無新開）| **產出 `output/…_UserProfiles_20260819_full.xlsx`**（189 條，row 10–198，列序依 Requirement ID，T:Z 留空），`DELIVERY.sha256` **ENTRY 001**，`shasum -c` **OK**（其 WARNING 已查明為空白分隔行，Comfort 同格式有 32 個）。**八項自檢逐項附實測輸出，全綠**：189 列無重無跳、列序遞增、必填 2457 格空值 0、多行 564 格含 CR 0、emoji 0、方括號僅 `[username]`×6（G19 通過）、行尾句點 0/1804 行、zip members 48=48 與 x14 節點 1=1、涵蓋檢查三欄皆含寫入列。**交付欄位淨化**：5670 格命中 **0**；修正三處（`148`／`167` 之 `pending`、`082` 之「未決」）。**自抓一個判準錯**：`\b` 對中文不成立，故語料側掃描漏掉 `082` —— 已 grep 全部 17 支閘確認無其他同型（0 命中）。**產出閘之判準改一次**（非拿掉）：由「值是不是 `None`」改為「`feature.yaml` 三項是否已決定且 `why` 非空」，`write_back` 自我測試 10 → **12**。**未刪 remarks 之六類內部指涉**（§節號 59、掃描代號 59 等），具名上報請裁示。**未送客戶目錄 —— 屬 Pei。本輪未執行任何 git** |
 | 49 | 2026-08-19 | **G-I（`\b` 不適用於中文）、Comfort remarks 之先例查證、判例** | [handoff/49_remarks_scope.md](handoff/49_remarks_scope.md) | [upstream/49_remarks_scope.md](upstream/49_remarks_scope.md) | —（本包無裁決條文）| —（無新開）| **更正**：48 輪「已 grep 17 支確認無其他同型」之**證據當時無效** —— 該 grep 找「`\b` 緊鄰 CJK」，而出事形態是 `\b(…|待判|未決)\b`（`\b` 緊鄰 `(`）。以正確判準重查 17 支：**仍 0 命中，結論不變**。**G-I 落地為第 18 支閘** `audit_delivery_fields.py`（DF-1 交付 14 欄之內部字樣；**DF-2 對每個中文詞造「夾在中文裡」之探針實測**），7/7，其紅向案例即 48 輪之漏網形態（`TC-082` 之「上游未決事項」）。記入 profile §7.4.1。**作業 2（唯讀查 Comfort 交付件）**：466 列中 **remarks 非空僅 7 條（1.5%）**，六類內部指涉**皆 0**（一處 `N0` 誤報已具名 —— 那是 spec 之需求編號），且**全為英文**；其語料側亦僅 7/465 —— **非寫回時剝除，本來就幾乎不寫**。**且用途不同**：Comfort 只在「未涵蓋／不可判定」時寫，我方 143 條寫的是每條設計理由。→ **先例不成立**，備成本估計（110 條含指涉、393 句中 175 句、需譯 143 條）並列**甲維持／乙另出版／丙依 Comfort 收斂**三選項送 Pei，本層建議**丙**並具名其代價。**判例記入 profile §5.1：`why` 不是註解，它是狀態。****本輪未重生成、未重寫回**（G-J）；交付件 ENTRY 001 未動。18 支閘全綠。**本輪未執行任何 git** |
+| 52 | 2026-08-19 | **上游素材、Table EDPR1 之比對、缺件清單收斂** | [handoff/52_upstream_materials.md](handoff/52_upstream_materials.md) | [upstream/52_upstream_materials.md](upstream/52_upstream_materials.md) | —（本包無裁決條文）| **A-UP14 新開**（`PU1089`／`1090`／`1091` 之角色在兩份上游文件間**整體錯開一位**）| **Pop Up List 入 `inputs/` 並列入 BASELINE**（`shasum -c` 8/8 OK）—— **它不是新到的檔**：repo 內原有兩份（comfort/inputs 之 SHA `b0827f02` 即 R-U9 之候選），身分以內容確認（原始字串 1341／正規化 1339、無 1087-1088、1089-1091 在，逐項重現 52 包之量測）。**Tutorials PDF 不在檔案系統**（全 repo 0 命中）→ **3.1 未做**，因其 `specification_reference` 之節次無法查證，寫了會同時違反 G11／R-U1／G18。**3.3 落在 52 包未列之第三分支**：p14 之 Table EDPR1 **含 `"Tutorials"`（第 9 列）而我方 ER 已列之** → 既非 defect 亦非 anomaly。**第 4 項已解**：Pop Up List 之 `Description` 欄確有逐步對映（`PU0585`／`0586`／`0587`／**`0612` 明寫 `Step 4`**）；本輪不改 TC，依 G-J 與餘 3 條之覆核一併落地。**RD #8 已由證據解答**（`PU0626` 為有 Profiles 之車輛、`PU0129` 為 Core 通用者 —— 五條寫法正確無須改）。`DATA_REQUESTS.md` 改為單一清單（§0 操作面四項→**三項**，歷史記載原文保留）。**51 包之 remarks 三分類量測至今未執行**，而它是 Pei 裁定之前置，具名等候指示。**本輪語料與交付件皆未動；未執行任何 git** |
+| 53 | 2026-08-19 | **close-out：ENTRY 002 ＋ 全域同步（最後一個作業輪次）** | [handoff/53_closeout.md](handoff/53_closeout.md) | [upstream/53_closeout.md](upstream/53_closeout.md) ＋ [53_review_pack_33a](upstream/53_review_pack_33a.md)（重出）| —（本包無新裁決條文）| —（無新開）| **remarks 全刪**：`AH` 由必寫欄移入條件欄（`feature.yaml` 之 `remarks_column.applied`），交付件 189 列實測 0 非空，**語料一字未刪**，且 WB-0 守之 —— **裁定因此可檢驗亦可撤回**。51 包標 `[SUPERSEDED by 53]` 內容不改。**ENTRY 002 產出**：`TC-167` 之 ER4 由 `Tutorials begin` 改為 Video Bank 之標題與副標（可觀察形式）；A-UP14 依我方 spec 生成不改 TC（**判定在我方讀法下自洽**，無逕行修正之標的）；八項自檢全綠、兩個 ENTRY `shasum -c` 皆 OK。**一項未做具名**：`TC-167` 之引用欄未併列 Tutorials L&F —— 該 PDF 重查仍不在 repo，以 `INTR3` 充作節次等於造無法對照之引用；字串限制已寫入 `LITERAL_EXTRA_SOURCES`。**交付說明擴充**為 28 留白 ＋ `INTR2.)` ＋ 缺件 3 項 ＋ 覆蓋率讀法 ＋ A-UP14 ＋ AH 留空之說明。**canon 同步**：`FEATURE_ONBOARDING.md` 新增 §9 —— R-G1～R-G12 ＋ **G-A～G-M**（每項附其代價之實例）；新增 **G-L**（沒有路徑的「到齊」不算到齊）與 **G-M**（先查他 feature 之 `inputs/`）。**§4.3 選具名缺口而非加閘**：補句表是人工判讀之產物，重算式的閘只會是一支永遠綠的閘（G-D）。`PLAYBOOK.md` §6 狀態板全部更新（P0–P7 ＋ 覆核 ＋ open items ＋ 收尾數字）。**餘 3 條之覆核結果本輪未收到**，若有 defect 須另起 ENTRY 003。**本輪未執行任何 git（清單備於上繳 §7）** |
 
 ---
 
@@ -69,11 +71,11 @@
 |---|---|---|
 | `135`–`145` | [`44_review_pack_24a.md`](upstream/44_review_pack_24a.md) | 44 |
 | `146`–`156` | [`48_review_pack_24b.md`](upstream/48_review_pack_24b.md) | 48 |
-| `157`–`173` | [`48_review_pack_33a.md`](upstream/48_review_pack_33a.md) | 48 |
+| `157`–`173` | [`53_review_pack_33a.md`](upstream/53_review_pack_33a.md) | 53 |
 | `174`–`189` | [`47_review_pack_33b.md`](upstream/47_review_pack_33b.md) | 47 |
 
 **已被取代者**（不得作覆核依據）：`40_24a`／`40_24b`／`41_33a`／`41_33b`／
-`44_24b`／`44_33b`／`45_24b`／`44_33a`。
+`44_24b`／`44_33b`／`45_24b`／`44_33a`／`48_33a`。
 
 ## 2. 現況
 
@@ -93,6 +95,34 @@
   `Outline Number` 169/169 一致。候選被引集合 135 條已落檔。
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
+
+### 第五十三輪已完成（2026-08-19）—— **close-out：本 feature 之最後一個作業輪次**
+
+- **remarks 全刪**（Pei 裁）：`AH` 移入條件欄，交付件 189 列實測 0 非空，
+  **語料一字未刪**，WB-0 守之 —— 要恢復只需改一個布林值。
+- **ENTRY 002**：`TC-167` 之 ER4 補可觀察形式；A-UP14 依我方 spec 生成不改 TC；
+  八項自檢全綠，兩個 ENTRY `shasum -c` 皆 OK。
+- **canon 同步**：`FEATURE_ONBOARDING.md` **§9** —— R-G1～R-G12 ＋ G-A～G-M，
+  每項附**其代價之實例**；新增 **G-L**（沒有路徑的「到齊」不算到齊）、
+  **G-M**（先查他 feature 之 `inputs/`）。
+- **§4.3 選具名缺口**：`data/*.tsv` 與 PDF 之一致性無法以重算式的閘涵蓋
+  （補句表是人工判讀之產物），**加一支永遠綠的閘比留一個誠實的缺口更糟**。
+- `PLAYBOOK.md` §6 狀態板結案；四份現行 pack 與三份靜態轉錄 `--verify` 全綠。
+- **餘 Pei**：交付、git（清單備妥）、`R-U17`、RD v2＋#8＋A-UP14 之寄出。
+
+### 第五十二輪已完成（2026-08-19）—— **上游素材與兩份文件之矛盾**
+
+- **Pop Up List 入 `inputs/`**（BASELINE 8/8 OK）—— 它原就在 repo 裡三份之一；
+  身分以**內容**確認（1341 raw／1339 normalised，逐項重現 52 包之量測）。
+- **Tutorials PDF 不在檔案系統**（全 repo 0 命中）→ **3.1 未做**，
+  因節次無法查證，硬寫會違反 G11／R-U1／G18。
+- **3.3**：p14 之 Table EDPR1 **含 `Tutorials` 且我方 ER 已列** ——
+  落在 52 包未列之第三分支（既非 defect 亦非 anomaly）。
+- **第 4 項已解**：Pop Up List 確有逐步對映（`PU0612` 明寫 `Step 4`）。
+  **卡了五十輪的東西，一直在 `features/comfort/inputs/` 裡。**
+- **A-UP14 新開**：`PU1089`／`1090`／`1091` 之角色兩份文件**整體錯開一位**，
+  `TC-142`／`143` 有假失敗風險 —— **登記不裁決**（52 包 §3.3 之原則）。
+- **RD #8 已由證據解答**；`DATA_REQUESTS.md` 改為單一清單。
 
 ### 第四十九輪已完成（2026-08-19）—— **G-I 與 remarks 之先例查證**
 

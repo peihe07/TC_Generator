@@ -420,9 +420,18 @@ TCS = {
                  "The prompt to choose current or default preferences is "
                  "displayed",
                  "The choice is accepted",
-                 "Tutorials begin and no Connected Personal Account login is "
-                 "launched"),
-        remarks="**變體 axis `r1h-cpa-8.1`**：本條為 R1 High 側。"
+                 "The Video Bank titled “Tutorials” with the subtitle "
+                 "“Learn about new features” is displayed, and no Connected "
+                 "Personal Account login is launched"),
+        remarks="**ER4 之可觀察形式（53 包 §二.1）**：原寫 `Tutorials begin`，"
+                "**而「開始」不是可觀察之狀態** —— 測試員無從判定它發生了沒有。"
+                "現依 Tutorials L&F `INTR3.)` 補其畫面形式（Video Bank 之標題與副標）。"
+                "**不驗影片內容、播放控制、影片支數** —— 那些是 Tutorials 自身之需求，"
+                "依 §8.4.2 不屬本 feature。"
+                "**字串之出處限制**：該兩個字面值出自 52 包 §3.1 之逐字引述，"
+                "**Tutorials L&F 之 PDF 不在本 repo**（53 輪重查仍 0 命中），"
+                "故引用欄未併列該文件。"
+                "**變體 axis `r1h-cpa-8.1`**：本條為 R1 High 側。"
                 "base 側（`Is CPA present?` 為是 → 啟動 CPA 登入）"
                 "**在 037 內無 leaf**，只見於 PDF p12 之流程圖，依 R-U56 不造；"
                 "其不造之判定已於變體覆寫之登記表逐條實測 —— "

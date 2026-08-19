@@ -188,6 +188,16 @@ LITERAL_EXTRA_SOURCES = {
     "NR1L-UserProfiles-044": "PDF p17 之表級註記（R1 High Only）",
     # Table EDPR1 之列項出自 PDF p14 之 must_carry（補句表）
     "NR1L-UserProfiles-017": "PDF p14 之 Table EDPR1（must_carry）",
+    # 53 包 §二.1 —— `TC-167` 之 ER4 補可觀察形式。
+    # 其副標 `Learn about new features` 出自 **Tutorials HMI Logic and Flow
+    # `INTR3.)`**，而**該 PDF 不在本 repo**（52／53 兩輪各查一次，全 repo 0 命中）；
+    # 字串為 52 包 §3.1 之逐字引述。
+    # **故其 `specification_reference` 未併列該文件** ——
+    # G11 要求 `<stem>_<節次>` 之形，而節次只能自該 PDF 讀得；
+    # 以 `INTR3` 充作節次等於造一個無法對照之引用（R-U1）。
+    # 檔案到位後之修法見 53 上繳 §2.2（一行）。
+    "NR1L-UserProfiles-167": "Tutorials HMI L&F `INTR3.)`（**檔案未在 repo**，"
+                             "字串為 52 包 §3.1 之逐字引述）",
 }
 
 # **UI 定位詞**之來源登記。

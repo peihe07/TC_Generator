@@ -134,12 +134,53 @@ Remarks = reason + anomaly id.
 
 ## 6. Status board — User_Profiles
 
-- [ ] P0 intake complete; INTAKE.md reviewed; missing files: ____
-- [ ] P1 recon complete; workbook_state: ____; leaves: ____; targets: ____
-- [ ] P2 DECISIONS signed (date: ____)
-- [ ] P3 framework Part N + profile approved
-- [ ] P4 data artifacts built
-- [ ] P5 pilot batch ____ reviewed; verdict: ____; corrections: ____
-- [ ] P6 all batches generated; lint green; placeholders: ____
-- [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: ____
-- Open PENDING rulings: ____
+**最後更新：53 輪 close-out（2026-08-19）。本 feature 之作業輪次至此結束。**
+
+- [x] **P0** intake complete；missing files：**3 項**（`PU1087`/`PU1088` 內文、
+      RD #5、RD #6）—— 皆不擋執行，替代作法見 `DELIVERY_NOTE.md` §4.1
+- [x] **P1** recon complete；workbook_state **BLANK**；leaves **180**；
+      targets 180 / 180
+- [x] **P2** DECISIONS signed（D-UP11-01 ～ D-UP41-01）
+- [x] **P3** framework Part + profile approved（`docs/runtime/profiles/FW036_R1L_UserProfiles_Profile.md`）
+- [x] **P4** data artifacts built（`outline_map.json` 169 節、`spec_popup_ids.tsv` 32、
+      補句表、`verb_synonyms.tsv`、`enum_vocab.tsv`、`pending_judgements.tsv`）
+- [x] **P5** pilot 16 條 reviewed；其後各批逐批覆核
+- [x] **P6** all batches generated：**189 條，leaf 180 / 180**；
+      lint green；placeholder **0**
+- [x] **P7 寫回完成** → `DELIVERY.sha256` **ENTRY 001／002**；
+      **未 tag、未送客戶目錄、RD 未寄 —— 三者皆屬 Pei**
+
+### 6.1 覆核
+
+| pack | 範圍 | 已讀 | 現行檔 |
+|---|---|---|---|
+| 24a | 135–145 | 11 / 11 | `44_review_pack_24a.md` |
+| 24b | 146–156 | 11 / 11 | `48_review_pack_24b.md` |
+| 33a | 157–173 | 16 / 17 | **`53_review_pack_33a.md`** |
+| 33b | 174–189 | 14 / 16 | `47_review_pack_33b.md` |
+
+**186 / 189**；餘 3 條（`165`／`181`／`182`）—— 53 輪執行期間未收到其覆核結果。
+
+### 6.2 Open items
+
+| 項 | 屬誰 |
+|---|---|
+| **交付**（送客戶目錄）| **Pei** |
+| **git**（指令清單見 53 上繳 §7）| **Pei** |
+| `R-U17`（刪 `inputs/` 之 spec 副本）| **Pei** |
+| RD v2 ＋ #8 ＋ **A-UP14** 之寄出 | **Pei** |
+| **A-UP14** 之裁決（兩份上游對三個 popup id 之角色記載不一致）| **上游** |
+| `A-UP09` | RESOLVED（41 輪）|
+| `A-UP11`／`A-UP13` | 見 `ANOMALIES.md` |
+| Open PENDING rulings | **無** |
+
+### 6.3 收尾之數字
+
+| 項 | 值 |
+|---|---|
+| TC | **189** ／ leaf **180 / 180** |
+| 優先級 | P0×38 P1×66 P2×71 P3×14 |
+| 閘 | **18 支**（自我測試案例合計 200+）|
+| 產出 | **ENTRY 001／002**，皆未交付 |
+| 缺件 | **3 項**，皆不擋執行 |
+| 已具名之留白 | **28 條** ＋ `INTR2.)` ＋ A-UP14 |

@@ -1,5 +1,69 @@
 # DATA REQUESTS — User Profiles (FW036)
 
+> **本檔自 52 輪起以 §0 之單一清單為操作面**（52 包 §五）。
+> §1 以下之各節為**歷史記載，原文保留不刪** —— 它們記著每一項當時的量測與判斷。
+
+## 0. 單一清單（現行）
+
+**四項。** 每項附：卡住哪幾條 TC／替代作法／答覆會改變什麼。
+
+| # | 項 | 狀態 | 卡住之 TC | 替代作法（現行） | 答覆會改變什麼 |
+|---|---|---|---|---|---|
+| 1 | `PU1087`／`PU1088` 之內文 | **缺**（52 輪確認為真缺口）| `TC-002`／`TC-082`（4.1.1）| 兩條之 ER 只斷言**觸發條件與顯示**，不寫內文（R-U27）；**兩條現在即可執行** | 得內文後可加「popup 文字為 X」之斷言；**不得內文亦不影響現有判定** |
+| 2 | R1 High 之 label 覆寫是否及於 ch9 全章（RD #5）| **缺**，查詢單已備未寄 | `TC-017`／`TC-074`（9.1）成對；`TC-020`／`TC-077` 為缺席斷言 | 兩種讀法**各造一條**（§7 之列舉配對），故現況兩面俱到 | 依 R-U57 **不回頭改已生成者**；只影響其後之批次（已無其後批次）|
+| 3 | 「有 app 之區域 × 不支援 connected profile 功能」是否可佈署（RD #6）| **缺**，查詢單已備未寄 | `TC-077`（9.2）| ER 為**缺席斷言**（該按鈕不顯示），其判定不依賴該組合是否存在 | 若不可佈署，`TC-077` 之 remarks 須記其為「不可佈署之條文條件」；**斷言本身不變** |
+| 4 | Pop Up List 之逐步對映（`8.3`）| **已解**（52 輪實測）| `TC-169`（8.3）| —— | **已可具名 popup id**：`PU0585`（Enter a Username）／`PU0586`（Select an Avatar）／`PU0612`（Step 4 之偏好詢問）／`PU0587`（設定中取消之確認）。**惟本輪不改 TC** —— 見 52 上繳 §4.2 |
+
+### 0.1 新開：`PU1089`／`PU1090`／`PU1091` 之對應與 spec 不一致（A-UP14）
+
+**52 輪實測（Pop Up List 之 Description 欄逐字）**：
+
+| id | Pop Up List | 本 feature 之 spec `5.13.2` |
+|---|---|---|
+| `PU1089` | *Displayed if HU or TBM do not confirm complete default restoring*（**失敗**，且其字串為 `Settings Restore failed`）| 使用者確認清除時顯示（**進行中**）|
+| `PU1090` | *Displayed when users confirm data clearing by pressing Yes/Ok in pop-up PU_0129*（**進行中**）| 清除成功後顯示（**完成**）|
+| `PU1091` | *Displayed when data have been successfully cleared*（**完成**）| HU／TBM 未確認完成時顯示（**失敗**）|
+
+**三個 id 之角色在兩份文件間整體錯開一位。**
+
+- **卡住之 TC**：`TC-142`（`041-03`，斷言 PU1089 進行中／PU1090 完成）、
+  `TC-143`（`041-04`，斷言 PU1091 失敗）
+- **替代作法**：**本輪不改**。依 52 包 §3.3 之原則
+  「兩份 spec 記載不一致 → 登記 anomaly 並列入 RD，**不自行裁決何者為準**」
+- **答覆會改變什麼**：若以 Pop Up List 為準，該兩條之三個 id **全部要改**；
+  若以本 feature 之 spec 為準，則 Pop Up List 該三列須更正。
+  **在裁定之前，該兩條有假失敗之風險** —— 已於 §0.2 具名
+
+### 0.2 已由本輪證據解答者：RD #8
+
+**52 輪實測**：`PU0626` 與 `PU_0129` 是**兩個不同的 popup**，各自對應一種車輛配置：
+
+| id | Module | Description（逐字節錄）|
+|---|---|---|
+| `PU0129` | Settings | *Displayed when the user selects yes to Clear Personal Data*（Core HMI 之通用者）|
+| `PU0626` | Settings | *New "Clear Personal Data" popup **for vehicles with Profiles**. Clearing Personal Data will also delete all Profiles from the vehicle* |
+
+即 RD #8 三種讀法中之第三種（**兩個配置各用其一**）。
+
+**我方現行寫法（「於**每一個**確認 popup `PU0626`/`PU_0129` 按 Yes」）在該讀法下正確**
+—— 有 Profiles 之車輛出現 `PU0626`，其餘出現 `PU0129`，執行者按其車上出現者。
+**RD #8 是否結案由分析層定**；本層只提出證據，不自行關閉。
+
+### 0.3 選配（非缺件）—— 車型 ↔ 變體條件對照
+
+T:Z 七欄已依 Comfort 先例定為留空，**交付不需要它**。
+若日後有人要求填 T:Z，所需之文件類別為 **Market Config Table**
+（Tutorials L&F 之 Assumptions 頁所指）。最小充分形式為 **7 × 5**：
+七個專案（`HDCC27`／`DT27`／`VF(ProMaster)637`／`Commander(598)`／
+`Regengade(5210)`／`Toro(2261)`／`Fastack(376)`）×
+（是否搭載 User Profiles／R1 High 或 Low／螢幕尺寸／有無記憶座椅／有無連網）。
+**給不了整份表，回覆該三十五格亦足。**
+
+---
+
+# 歷史記載（原文保留）
+
+
 Files Pei can supply that unblock or upgrade generation. Drop into
 `features/user_profiles/inputs/`; each landing closes or advances the linked
 anomaly. Ordered by when a batch actually needs it. Names are verbatim from

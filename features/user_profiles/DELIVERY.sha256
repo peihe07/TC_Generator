@@ -46,3 +46,24 @@
 #   size : 229859 bytes
 #
 6ca2438ae5fe03391e5e790685b9287658444785eb584c645fe17c522c34ae43  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_UserProfiles_20260819_full.xlsx
+
+# ── ENTRY 002 — 2026-08-19 — 第二次寫回：remarks 全刪 ＋ TC-167 之 ER4
+#
+#   type : produced
+#   來源 : inputs/…_SWQT_20260817_ext.xlsx（6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2）
+#   內容 : row 10–198，共 **189 列 = 189 條 TC**，無留空列
+#   對 ENTRY 001 之差異（兩項，皆為 53 包所指示）：
+#     一、**AH（remarks）欄 189 列全部清空** —— Pei 裁示（53 包 §一）。
+#         其對外載體改為 output/DELIVERY_NOTE.md 之留白清單。
+#     二、**TC-167（8.1）之 ER4** 由「Tutorials begin …」改為
+#         「Video Bank 標題 “Tutorials”、副標 “Learn about new features” 顯示」
+#         —— 「開始」不是可觀察之狀態。
+#   未改 : A-UP14 之三個 popup id 依我方 spec 生成（53 包 §二.2），
+#          差異登記於 ANOMALIES.md 與 DATA_REQUESTS.md §0.1
+#   欄   : 寫 13 欄（D F G H I J K L M N P R S）；
+#          **O／AA／AH 與 Q／AB 及 T:Z 七欄留空**，依據見 feature.yaml 之 why
+#   閘   : 八項交付前自檢全綠（見 53 上繳 §3）；18 支閘全綠
+#   交付 : **未交付**。送客戶目錄屬 Pei（Tier 3）
+#   size : 202475 bytes
+#
+91e1de077568d87a25c7195c903894e20c880926b1bfb9d5cf129f2d409365e1  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_UserProfiles_20260819_noremarks.xlsx

@@ -1,5 +1,47 @@
 # 交付說明 — FW036 User Profiles 測試用例（189 條）
 
+
+<!-- fingerprint:begin -->
+## 語料指紋（G-F，45 包）—— 標記輪次：**45**
+
+> **本表是本檔之保鮮期。** 引用本檔前先跑：`stamp_static_doc.py --verify <本檔>`；
+> **不符即「已過期，拒絕採信」**，須重出後再引。
+> 指紋之範圍為**全欄**（保守）—— 誤判過期只是多重出一次，誤判新鮮則是拿舊資料下判斷。
+
+| tc_id | digest |
+|---|---|
+| `NR1L-UserProfiles-002` | `9ac76f9f742c` |
+| `NR1L-UserProfiles-082` | `a36c22f4b4b1` |
+| `NR1L-UserProfiles-095` | `8dab76c9afdb` |
+| `NR1L-UserProfiles-102` | `1f251cf01cf3` |
+| `NR1L-UserProfiles-111` | `d4fd3ed6fe04` |
+| `NR1L-UserProfiles-127` | `e50f5f385a9e` |
+| `NR1L-UserProfiles-129` | `1b315bff0af8` |
+| `NR1L-UserProfiles-134` | `477d04ade265` |
+| `NR1L-UserProfiles-136` | `0011ec5d1d9a` |
+| `NR1L-UserProfiles-138` | `b68bf11414e3` |
+| `NR1L-UserProfiles-139` | `b4e94adced40` |
+| `NR1L-UserProfiles-140` | `ce7c1d2e1213` |
+| `NR1L-UserProfiles-141` | `bc9a4e380685` |
+| `NR1L-UserProfiles-142` | `cbc421ff2ec9` |
+| `NR1L-UserProfiles-143` | `1a922483286f` |
+| `NR1L-UserProfiles-146` | `d1c8b027e53c` |
+| `NR1L-UserProfiles-151` | `f3c4c3fb46ec` |
+| `NR1L-UserProfiles-159` | `80f2cfc3ebfe` |
+| `NR1L-UserProfiles-164` | `da177ac5f34b` |
+| `NR1L-UserProfiles-166` | `758cb5dfdf95` |
+| `NR1L-UserProfiles-169` | `1b9f5f9f5eaa` |
+| `NR1L-UserProfiles-170` | `c417cc548e08` |
+| `NR1L-UserProfiles-174` | `42069a956cd7` |
+| `NR1L-UserProfiles-177` | `e61be46633a0` |
+| `NR1L-UserProfiles-182` | `51da38dbd00e` |
+| `NR1L-UserProfiles-183` | `e3cd36b3f0a4` |
+| `NR1L-UserProfiles-184` | `26624dab8817` |
+| `NR1L-UserProfiles-188` | `e3b27fbf3204` |
+| `NR1L-UserProfiles-189` | `fbeb005e8255` |
+
+<!-- fingerprint:end -->
+
 - 產出層：執行層｜2026-08-19
 - 產出件：`FM-WI-FSM-036-A01 …_SWQT_UserProfiles_20260819_full.xlsx`
 - 台帳：`DELIVERY.sha256` **ENTRY 001**（`type: produced`）
@@ -61,6 +103,17 @@
 
 **合計 24 條帶留白聲明**（全語料 189 條之 12%）。
 
+### 3.0 上游文件所述而本次未涵蓋者（52 輪補入）
+
+以下由**被引用之外部規範**所述，而 `FM-WI-FSM-037-A03` 未為其產出需求項，
+**本次交付未涵蓋**：
+
+| 出處 | 內容 | 本次之狀態 |
+|---|---|---|
+| Tutorials HMI Logic and Flow `INTR2.)` | 下載既有 profile 時 Tutorials 不顯示 | **未涵蓋** —— 037 未為其產出需求項 |
+
+**列此不是為了聲明免責，是為了讓看的人自己判斷要不要補。**
+
 ### 3.1 三類留白之分別
 
 | 類 | 意思 | 例 |
@@ -71,6 +124,22 @@
 
 **第三類最值得注意**：它不是寫得不夠好，是**可測性之上界**。
 
+## 3.5 上游文件之記載不一致（A-UP14）
+
+**兩份上游文件對三個 popup id 之角色記載不同，本次交付依本 feature 之
+spec（`Personal Account HMI Logic and Flow` §5.13.2）生成：**
+
+| id | 本交付件所依據者（我方 spec）| Pop Up List HMI R1 SR24 Post 2A（Dec 15, 2023）|
+|---|---|---|
+| `PU1089` | 使用者確認清除時顯示（進行中）| `Displayed if HU or TBM do not confirm complete default restoring`（失敗）|
+| `PU1090` | 清除成功後顯示（完成）| `Displayed when users confirm data clearing …`（進行中）|
+| `PU1091` | HU／TBM 未確認完成時顯示（失敗）| `Displayed when data have been succesfully cleared`（完成）|
+
+**三者之角色整體錯開一位。** 受影響者為 `NR1L-UserProfiles-142`／`143`。
+
+**本次未自行裁決何者為準** —— 已列入查詢。
+**若以 Pop Up List 為準，該兩條之三個 id 須對調。**
+
 ## 4. 外部文件依賴
 
 以下三處之規則權威在本 spec 之外，ER 只驗其形態，不代其判定內容：
@@ -80,6 +149,16 @@
 | `NR1L-UserProfiles-146`（5.15.1）| 截斷規則在 **Core HMI Logic and Flow** |
 | `NR1L-UserProfiles-169`（8.3）| 設定流程各步驟之 popup 對映在 **HMI Pop Up List** |
 | `NR1L-UserProfiles-082`（4.1.1）| `PU1087`／`PU1088` 之 popup **內文**不在現有 Pop Up List（其**觸發條件**已載於 spec，故本條仍可判定）|
+
+## 4.1 尚缺之上游素材（3 項）
+
+| # | 缺什麼 | 卡住哪幾條 | 我方之替代作法 |
+|---|---|---|---|
+| 1 | `PU1087`／`PU1088` 之 popup **內文** | `NR1L-UserProfiles-002`／`082`（4.1.1）| 兩條之 ER 只斷言**觸發條件與顯示**，不寫內文 —— **兩條現在即可執行**；得內文後可再加一句文字斷言 |
+| 2 | R1 High 之 label 覆寫是否及於整個 Editing 章 | `017`／`074`（9.1）、`020`／`077`（9.2）| **兩種讀法各造一條**（`017` 用 Connected Account、`074` 用 Stellantis Account）；`020`／`077` 為缺席斷言，其判定不依 label |
+| 3 | 「有 app 之區域 × 不支援 connected profile 功能」之車輛組合是否可佈署 | `077`（9.2）| ER 為**缺席斷言**（該按鈕不顯示），其判定不依賴該組合是否存在 |
+
+**三項皆不擋執行** —— 各條之替代作法已如上。
 
 ## 5. 欄位之填寫範圍
 
@@ -95,6 +174,7 @@
 | `Q`（預估測試時間）／`AB`（Test Version） | 同上；且我方未估過，**不編** |
 | `T:Z`（七個車型） | 同上（466 列全空），且母本該區之資料驗證自帶 `allowBlank`。**本 feature 189 條之 pre-condition 無一條提及車型** —— 其適用車型須由更上層決定 |
 | `AC`–`AG` | 執行階段之欄位，交付時應為空 |
+| `AH`（Remarks）| **本次交付全欄留空**（客戶端決定）。各條之設計理由與其限制**改由本說明之第 3 節承載** —— 該節逐條列出「哪一條不保證什麼」|
 
 ## 6. 尚未完成者
 

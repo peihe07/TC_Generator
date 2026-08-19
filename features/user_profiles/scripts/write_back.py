@@ -66,19 +66,25 @@ COLS = {
     "I": "test_item", "J": "pre_conditions", "K": "input_test_data",
     "L": "test_procedure", "M": "expected_result",
     "N": "specification_reference", "P": "priority", "R": "design_method",
-    "S": "functional_safety", "AH": "remarks",
+    "S": "functional_safety",
 }
 # 一律不寫。**逐欄之理由見上繳 42 §2.2** —— 此處只留一句最要緊的：
 # B 帶母本自己的序號公式（shared formula），寫入即破壞其共用主格。
 NEVER_WRITE = ["B", "C", "E", "Q", "T", "U", "V", "W", "X", "Y", "Z",
                "AB", "AC", "AD", "AE", "AF", "AG"]
 # 條件寫入 —— 其值由參數給定，未給定即不寫
+# 條件寫入 —— 其值由 `feature.yaml` 之 `applied` 決定，未生效即該欄留空。
+# **`AH`（remarks）自 53 輪起在此**：Pei 裁示交付件全刪（53 包 §一）。
+# 它與 `O`／`AA` 不同之處在於**其值來自語料而非常數**，
+# 故其 yaml 項只帶 `applied`，`value` 恆為 null。
 OPTIONAL = {"O": "tc_ref_id_value", "AA": "author_value"}
+FROM_CORPUS = {"AH": ("remarks_column", "remarks")}
 
 LEAF_KEY = re.compile(r"SWE1-HMI-PROF-(\d+)(?:-(\d+))?(?:-([a-z]+))?$")
 
 # `applied: false` 之項目所對應之欄 —— WB-0 據此驗「宣告未生效者確實沒被寫」
-APPLIED_COL = {"author_value": "AA", "tc_ref_id_value": "O"}
+APPLIED_COL = {"author_value": "AA", "tc_ref_id_value": "O",
+               "remarks_column": "AH"}
 
 
 def yaml_params() -> dict:
@@ -96,7 +102,7 @@ def yaml_params() -> dict:
     wb = (d or {}).get("write_back", {})
     out = {}
     for k in ("author_value", "tc_ref_id_value", "vehicle_columns",
-              "row_order"):
+              "row_order", "remarks_column"):
         v = wb.get(k)
         if isinstance(v, dict):
             out[k] = v.get("value") if v.get("applied") else None
@@ -142,13 +148,15 @@ def order(tcs: list, row_order: str) -> list:
 
 
 def build_edits(tcs: list, *, vehicle_columns=None, author_value=None,
-                tc_ref_id_value=None, row_order="req_id") -> dict:
+                tc_ref_id_value=None, row_order="req_id",
+                remarks_column=None) -> dict:
     """`{(row, col_idx): value}` —— **不經 `diff_cells`**。"""
     plan = order(tcs, row_order)
     if FIRST_ROW + len(plan) - 1 > CAPACITY_LAST_ROW:
         raise SystemExit(f"{len(plan)} 條超出範本容量（末列 "
                          f"{CAPACITY_LAST_ROW}）")
-    opts = {"tc_ref_id_value": tc_ref_id_value, "author_value": author_value}
+    opts = {"tc_ref_id_value": tc_ref_id_value, "author_value": author_value,
+            "remarks_column": remarks_column}
     edits = {}
     for i, tc in enumerate(plan):
         r = FIRST_ROW + i
@@ -157,6 +165,9 @@ def build_edits(tcs: list, *, vehicle_columns=None, author_value=None,
         for col, key in OPTIONAL.items():
             if opts[key] is not None:
                 edits[(r, col_to_idx(col))] = opts[key]
+        for col, (key, field) in FROM_CORPUS.items():
+            if opts.get(key):
+                edits[(r, col_to_idx(col))] = tc.get(field, "")
         for col, val in (vehicle_columns or {}).items():
             edits[(r, col_to_idx(col))] = val
     return edits
@@ -266,7 +277,8 @@ def decision_gate() -> list:
     d = yaml.safe_load((FEATURE / "feature.yaml").read_text(encoding="utf-8"))
     wb = (d or {}).get("write_back", {})
     bad = []
-    for key in ("vehicle_columns", "author_value", "tc_ref_id_value"):
+    for key in ("vehicle_columns", "author_value", "tc_ref_id_value",
+                "remarks_column"):
         v = wb.get(key)
         if not isinstance(v, dict) or "applied" not in v:
             bad.append(f"WB-G `{key}` 未以 {{value, applied, why}} 之形記於 "
@@ -290,7 +302,8 @@ def write(out: Path, *, vehicle_columns=None, **kw) -> Path:
     splice(SRC, tmp, edits)
     bad = verify(SRC, tmp, len(tcs),
                  params={"author_value": kw.get("author_value"),
-                         "tc_ref_id_value": kw.get("tc_ref_id_value")})
+                         "tc_ref_id_value": kw.get("tc_ref_id_value"),
+                         "remarks_column": kw.get("remarks_column")})
     if bad:
         tmp.unlink()
         for b in bad:
@@ -353,6 +366,7 @@ def probe(out: Path, *, src: Path = None, row_order=None) -> int:
     edits = build_edits(tcs, vehicle_columns=prm["vehicle_columns"],
                         author_value=prm["author_value"],
                         tc_ref_id_value=prm["tc_ref_id_value"],
+                        remarks_column=prm["remarks_column"],
                         row_order=ro)
     out.parent.mkdir(parents=True, exist_ok=True)
     splice(src, out, edits)

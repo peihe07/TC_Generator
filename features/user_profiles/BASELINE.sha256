@@ -62,3 +62,19 @@
 # **三者皆非 build_outline_map.py 所能產出**，重建成本為 07／08 兩輪之工作量。
 # `.gitignore` 之例外依 R-U13「先裁後改」由 R-U45 授權後方加。
 a70f21817c2d93c49429a4bcc23f2e39b769f901669c9581efacc46e0a8cfa98  data/outline_map.json
+
+# ── 52 輪：Pop Up List（DR #4 之權威文件；R-U9 之候選，本輪確認採用）
+#
+# **它不是新到的檔** —— repo 內原已有兩份：
+#   features/comfort/inputs/…（SHA b0827f02…，即 R-U9 所指名之候選）
+#   docs/test/Player/SPEC/…（SHA fdc8196a…，位元組不同而 PU 內容相同）
+# 本輪之複本逐位元組取自前者（`cmp` 相同）。
+#
+# **身分以內容確認，不以檔名**：52 包所載之量測（全三分頁、原始字串相異
+# 1341 個 PU id、無 PU1087／PU1088、PU1089–1091 在）於本複本上逐項重現
+# —— 原始字串 1341、正規化後 1339（差 2 為 `PU_0129` 之類之異寫）。
+#
+# **R-U9 之單一來源要求未達成**：該條要求「採用後移入 spec-index/」，
+# 而移動 comfort 之檔屬寫入他 feature（R-U24／R-U30 禁止）。
+# 現況為三份並存，已具名上報（52 上繳 §1.3）。
+b0827f02c1a0a69b266fd92287557326b4e565942616dc49cca31672e4afa30b  inputs/Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx

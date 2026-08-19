@@ -130,6 +130,16 @@ write_back:
       另：本 feature 189 條 TC 無一條之 pre-condition 提及車型，
       即使取得逐車型之依據亦無從逐條對應（42 輪 §7-3）。
       **填值方須依據；欲改填值時改 applied 與 value 即生效，不改程式。**"
+  remarks_column:
+    value: null
+    applied: false
+    # **53 包 §一：Pei 裁示全刪。** applied:false 於此是**裁定**，不是待決。
+    why: "Pei 於 53 輪裁示交付件之 remarks 全刪。分析層已陳其代價
+      （24 條未涵蓋聲明、TC-176／TC-140／TC-155 之設置理由），Pei 未改口。
+      **資訊不消失**：reasoning 欄不交付而仍在語料，四份 review pack 仍在，
+      而對外之唯一載體為 docs/upstream/48_delivery_note.md 之留白清單
+      （53 輪已擴充為 28 條留白 ＋ INTR2 ＋ 缺件 3 項 ＋ A-UP14）。
+      欲恢復時改 applied 即生效，不改程式。"
   row_order:
     value: "req_id"
     applied: true

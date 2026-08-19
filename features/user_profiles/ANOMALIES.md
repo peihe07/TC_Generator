@@ -393,6 +393,40 @@ None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-UPnn]`.
 
 ---
 
+## A-UP14 — `PU1089`／`PU1090`／`PU1091` 之角色，兩份文件整體錯開一位（**OPEN**，52 輪）
+
+**兩份文件皆為上游權威，本層不裁決何者為準**（52 包 §3.3 之原則）。
+
+**實測（52 輪，唯讀）** —— Pop Up List（`inputs/Pop Up List HMI R1 SR24 Post 2A
+(Dec 15, 2023).xlsx`，SHA `b0827f02…`）之 `Description` 欄逐字：
+
+| id | Pop Up List | 本 feature 之 spec `5.13.2`（PDF p8）|
+|---|---|---|
+| `PU1089` | `Displayed if HU or TBM do not confirm complete default restoring`（**失敗**）| 使用者確認清除時顯示（**進行中**）|
+| `PU1090` | `Displayed when users confirm data clearing by pressing Yes/Ok in pop-up PU_0129`（**進行中**）| 清除成功後顯示（**完成**）|
+| `PU1091` | `Displayed when data have been succesfully cleared`（**完成**）| HU／TBM 未確認完成時顯示（**失敗**）|
+
+**三個角色（進行中／完成／失敗）在兩份文件間整體錯開一位。**
+
+**另一項不一致，方向不同**：Pop Up List 之 `PU1089` 字串為
+`Settings Restore failed / Some settings may have not been restored`
+—— 其文義屬**回復預設設定**（4.1.1 之 `Restore Settings to Default`），
+**不是清除個人資料**。即：Pop Up List 可能把該 id 指給了另一個功能，
+**也可能是我方 spec 借用了不屬於它的 id**。**兩種可能本層都不排除。**
+
+**受影響**：`TC-142`（`SWE1-HMI-PROF-041-03`）與 `TC-143`（`041-04`）
+之三個 id 斷言。**在裁定前，該兩條有假失敗之風險。**
+
+**處置**：登記為 anomaly ＋ 列入 `DATA_REQUESTS.md` §0.1，**不改 TC**。
+理由：改任一邊都是本層在兩份上游文件之間做裁決，而 52 包 §3.3 明文禁止。
+
+**若需在裁定前降低風險**，可考慮之作法（**未執行，僅列出**）：
+將該兩條之 ER 由「`PU1089` 顯示」改寫為「進行中之 popup 顯示」＋
+remarks 具名兩份文件之 id 分歧 —— 但那會使 ER 失去 id 級之精確度，
+**是否值得由分析層定**。
+
+---
+
 ## N-XF02 — comfort 之 `feature.yaml` 宣告了交付件不帶的兩個值（跨 feature note，R-U30）
 
 **本項不是本 feature 之異常，是同一個形態在他 feature 之出現。**
