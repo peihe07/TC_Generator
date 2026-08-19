@@ -24,7 +24,7 @@
    "tc_title": "Avatar shown next to the Save button on 7 inch screens",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Avatar shown next to the Save button on 7 inch screens",
+   "test_item": "Avatar shown next to the Save button on 7 inch screens\n(Verifies that a 7-inch screen shows the avatar next to a button reading Save)",
    "pre_conditions": "1. The vehicle screen is 7 inches\n2. A New Profile Setup is at the avatar step\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Choose an avatar\n2. Read the screen and check the avatar position and the button text",

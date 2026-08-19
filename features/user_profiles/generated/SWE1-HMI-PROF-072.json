@@ -24,7 +24,7 @@
    "tc_title": "Connected vehicles offer create new or download existing",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Connected vehicles offer create new or download existing",
+   "test_item": "Connected vehicles offer create new or download existing\n(Verifies that the first setup step on a connected vehicle offers to create a new Profile or download an existing one)",
    "pre_conditions": "1. The vehicle is equipped with connectivity\n2. A New Profile Setup is in progress at its first step\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Read the first step of the New Profile Setup\n2. Read the screen and check the options offered",

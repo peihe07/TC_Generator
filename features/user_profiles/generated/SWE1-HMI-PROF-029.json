@@ -24,7 +24,7 @@
    "tc_title": "Add New greyed out and blocked while the vehicle moves",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Add New greyed out and blocked while the vehicle moves",
+   "test_item": "Add New greyed out and blocked while the vehicle moves\n(Verifies that Add New is greyed out in motion and that selecting it bonks and reports the function unavailable)",
    "pre_conditions": "1. Fewer than five Driver Profiles exist on the vehicle\n2. The “All Profiles” tab is open",
    "input_test_data": "NA",
    "test_procedure": "1. Read the “Add New” text and record whether it is selectable\n2. Bring the vehicle into motion\n3. Select the greyed-out “Add New” text and check that a bonk tone and a message are given",

@@ -24,7 +24,7 @@
    "tc_title": "Lock symbol shown with the Profile icon in Valet Mode",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Lock symbol shown with the Profile icon in Valet Mode",
+   "test_item": "Lock symbol shown with the Profile icon in Valet Mode\n(Verifies that Valet Mode is indicated in the status bar by a lock symbol combined with the Profile icon)",
    "pre_conditions": "1. Valet Mode is not active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Read the Profile icon in the status bar\n2. Activate Valet Mode\n3. Read the status bar and check that the lock symbol is combined with the Profile icon",

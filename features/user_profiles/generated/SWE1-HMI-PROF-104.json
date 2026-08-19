@@ -30,7 +30,7 @@
    "tc_title": "More Settings opens My Profile without a back button",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "More Settings opens My Profile without a back button",
+   "test_item": "More Settings opens My Profile without a back button\n(Verifies that More Settings opens the My Profile settings area and offers no back button to the Profile section)",
    "pre_conditions": "1. A Driver Profile is active\n2. The Profile section is reachable from the vehicle menu",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Profile section and press the vehicle “More Settings” button\n2. Read the page and check that the “My Profile” Settings section is displayed",

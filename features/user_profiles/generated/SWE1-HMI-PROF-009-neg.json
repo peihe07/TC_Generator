@@ -24,7 +24,7 @@
    "tc_title": "Second Profile refused on an occupied memory seat position",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Second Profile refused on an occupied memory seat position",
+   "test_item": "Second Profile refused on an occupied memory seat position\n(Verifies that each memory seat position holds exactly one Driver Profile)",
    "pre_conditions": "1. Two Driver Profiles exist and Driver Profile A is linked to memory seat position 1\n2. Driver Profile B is linked to another seat position",
    "input_test_data": "NA",
    "test_procedure": "1. Read and record which Profile holds memory seat position 1\n2. Attempt to link Driver Profile B to memory seat position 1 as well\n3. Read the seat links and check that position 1 still holds exactly one Profile",

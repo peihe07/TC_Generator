@@ -24,7 +24,7 @@
    "tc_title": "Welcome popup at vehicle entry prompts to customize",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "Welcome popup at vehicle entry prompts to customize",
+   "test_item": "Welcome popup at vehicle entry prompts to customize\n(Verifies that a Welcome popup appears at vehicle entry and prompts the user to customize the default Profile)",
    "pre_conditions": "1. Only the default Driver Profiles exist on the vehicle\n2. The Welcome popup setting is on for the active Profile\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Switch the ignition on and read the screen\n2. Read the popup and check the prompt to customize the Profile",

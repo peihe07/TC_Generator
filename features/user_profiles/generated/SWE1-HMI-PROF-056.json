@@ -24,7 +24,7 @@
    "tc_title": "Welcome popup shown at ignition on and on activation",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Welcome popup shown at ignition on and on activation",
+   "test_item": "Welcome popup shown at ignition on and on activation\n(Verifies that a welcome popup is displayed at ignition on and each time a Profile is activated)",
    "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The Welcome popup setting is on for both Profiles\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Switch the ignition on and read the screen\n2. Activate Driver Profile B and read the screen",

@@ -35,7 +35,7 @@
    "tc_title": "App Store update applies to every user with it installed",
    "test_group": "User Profiles",
    "test_set": "Connected Account",
-   "test_item": "App Store update applies to every user with it installed",
+   "test_item": "App Store update applies to every user with it installed\n(Verifies that updating an App Store app applies to every Profile that has it installed locally)",
    "pre_conditions": "1. Two Driver Profiles exist, each with its own Connected Account\n2. The same App Store app is installed locally for both Profiles\n3. An update for that app is available\n4. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile A and record the app version\n2. Update the app from Driver Profile A\n3. Activate Driver Profile B\n4. Read the app version and check that it matches the updated version",

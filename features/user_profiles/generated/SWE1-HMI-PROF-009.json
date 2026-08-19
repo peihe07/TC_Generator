@@ -24,7 +24,7 @@
    "tc_title": "Memory seat preferences swapped between Driver Profiles",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Memory seat preferences swapped between Driver Profiles",
+   "test_item": "Memory seat preferences swapped between Driver Profiles\n(Verifies that memory seat preferences can be swapped between Driver Profiles)",
    "pre_conditions": "1. Two Driver Profiles exist, each linked to its own memory seat position\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Read and record which Profile is linked to each memory seat position\n2. Swap the memory seat preferences between the two Profiles\n3. Read the links and check that each Profile now holds the other's seat position",

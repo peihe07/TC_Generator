@@ -24,7 +24,7 @@
    "tc_title": "Key fob detection overrides the last known Profile at key-on",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Key fob detection overrides the last known Profile at key-on",
+   "test_item": "Key fob detection overrides the last known Profile at key-on\n(Verifies that a detected key fob overrides the last known Profile at the start of a key cycle)",
    "pre_conditions": "1. Two Driver Profiles exist and Driver Profile B was the last active one\n2. A key fob associated with Driver Profile A is available",
    "input_test_data": "NA",
    "test_procedure": "1. Switch the ignition off\n2. Present the key fob for Driver Profile A and switch on\n3. Read the active Profile and check that it is Driver Profile A rather than the last known one",

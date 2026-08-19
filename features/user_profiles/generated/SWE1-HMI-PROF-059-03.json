@@ -24,7 +24,7 @@
    "tc_title": "Selecting another Profile switches and shows its welcome popup",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Selecting another Profile switches and shows its welcome popup",
+   "test_item": "Selecting another Profile switches and shows its welcome popup\n(Verifies that selecting another Profile on the welcome popup switches to it and shows its own welcome popup)",
    "pre_conditions": "1. The large welcome popup is displayed for Driver Profile A and lists Driver Profile B\n2. The welcome popup is turned on for Driver Profile B\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Read and record the active Profile shown on the large welcome popup\n2. Select Driver Profile B from the list on the popup\n3. Read the screen and check that Driver Profile B is active with its own welcome popup",

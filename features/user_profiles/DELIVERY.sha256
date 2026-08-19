@@ -67,3 +67,21 @@
 #   size : 202475 bytes
 #
 91e1de077568d87a25c7195c903894e20c880926b1bfb9d5cf129f2d409365e1  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_UserProfiles_20260819_noremarks.xlsx
+
+# ── ENTRY 003 — 2026-08-19 — 第三次寫回：Test Item 之兩段結構
+#
+#   type : produced
+#   來源 : inputs/…_SWQT_20260817_ext.xlsx（6372fb6be02f48dc…）
+#   內容 : row 10–198，共 **189 列 = 189 條 TC**，無留空列
+#   對 ENTRY 002 之差異（一項）：
+#     **I 欄（Test Item）改為兩段** —— 首段 tc_title（形態不變）、
+#     第二段括號內一句「本條在測什麼」（55 包 §一，Pei 確認之規格）。
+#     第二段之來源為各條 reasoning 之「驗證目標」句改寫為英文，
+#     逐條落於 data/test_item_part2.tsv（以 tc_id 為鍵，189 列）。
+#   未改 : remarks 仍全空（ENTRY 002 之裁定）；A-UP14 仍依我方 spec 生成
+#   閘   : 九項交付前自檢全綠（**新增第 i 項：Test Item 兩段**）；
+#          TI-1／TI-2／TI-3 首跑對 ENTRY 002 之現況 **189 列全紅**，修正後 0
+#   交付 : **未交付**。送客戶目錄屬 Pei（Tier 3）
+#   size : 206116 bytes
+#
+1e4dbf2a828d9177c6ccacdfe62e92f62414f7afdc603cb9932706510c1eb677  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_UserProfiles_20260819_testitem.xlsx

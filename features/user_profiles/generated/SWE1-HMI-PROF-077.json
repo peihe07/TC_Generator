@@ -24,7 +24,7 @@
    "tc_title": "At least ten avatars are offered initially",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "At least ten avatars are offered initially",
+   "test_item": "At least ten avatars are offered initially\n(Verifies that at least ten avatars are offered when none is in use)",
    "pre_conditions": "1. A New Profile Setup is at the avatar step\n2. No avatar is in use by another Driver Profile\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the avatar selection screen and count the avatars offered\n2. Read the count and check whether it reaches ten",

@@ -24,7 +24,7 @@
    "tc_title": "New Profile gets no memory seat when seats are outnumbered",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "New Profile gets no memory seat when seats are outnumbered",
+   "test_item": "New Profile gets no memory seat when seats are outnumbered\n(Verifies that a new Profile is linked to no seat once the Profile count exceeds the memory seat count)",
    "pre_conditions": "1. The vehicle has 3 memory seats and each is linked to a Driver Profile\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Create one more Driver Profile\n2. Open the “All Profiles” tab\n3. Read the area under the new Profile avatar and check its memory seat status",

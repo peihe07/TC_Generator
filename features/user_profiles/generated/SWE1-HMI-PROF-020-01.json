@@ -24,7 +24,7 @@
    "tc_title": "Profile-specific settings icon and string always on All Profiles",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Profile-specific settings icon and string always on All Profiles",
+   "test_item": "Profile-specific settings icon and string always on All Profiles\n(Verifies that the profile-specific settings icon and its string are always present on the All Profiles tab)",
    "pre_conditions": "1. The vehicle screen is larger than 7 inches\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab\n2. Read the screen and check the icon and its string",

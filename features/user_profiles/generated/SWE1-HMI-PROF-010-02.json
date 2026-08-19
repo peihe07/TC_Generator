@@ -24,7 +24,7 @@
    "tc_title": "Default Profile created when no Profile can take the seat",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Default Profile created when no Profile can take the seat",
+   "test_item": "Default Profile created when no Profile can take the seat\n(Verifies that a default Profile is created or restored for a seat position when no Profile is available to take it)",
    "pre_conditions": "1. One Driver Profile exists and it is linked to a memory seat position\n2. No other Driver Profile is available on the vehicle",
    "input_test_data": "NA",
    "test_procedure": "1. Delete the Profile linked to the memory seat position\n2. Open the “All Profiles” tab\n3. Read the Profile list and check that a default Profile for that seat position is present",

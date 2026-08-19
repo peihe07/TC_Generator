@@ -23,7 +23,7 @@
    "tc_title": "Previous Profile unlinked when the active Profile had none",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Previous Profile unlinked when the active Profile had none",
+   "test_item": "Previous Profile unlinked when the active Profile had none\n(Verifies that an unlinked active Profile takes over the seat and leaves the previous holder without a link)",
    "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Profile A is active and is not linked to any memory seat\n3. Profile B is linked to memory seat 2\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab\n2. Select memory seat 2 for Profile A\n3. Read the memory seat status of both Profiles and check that Profile B is no longer linked",

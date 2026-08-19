@@ -24,7 +24,7 @@
    "tc_title": "Default Profile no longer default after it is customized",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "Default Profile no longer default after it is customized",
+   "test_item": "Default Profile no longer default after it is customized\n(Verifies that a default Profile stays on the vehicle until it is customized or deleted)",
    "pre_conditions": "1. The vehicle is on its default Profiles with no custom Profile set up\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and record the default Profiles present\n2. Customize one default Profile with a username and an avatar\n3. Read the Profile list and check that the customized one is no longer listed as a default",

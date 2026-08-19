@@ -24,7 +24,7 @@
    "tc_title": "Username and avatar hidden left of the 8.4-inch edit list",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Username and avatar hidden left of the 8.4-inch edit list",
+   "test_item": "Username and avatar hidden left of the 8.4-inch edit list\n(Verifies that an 8.4-inch screen shows the username and avatar in the Edit Username line instead of left of the list)",
    "pre_conditions": "1. The vehicle has an 8.4-inch screen\n2. A Driver Profile with a username is active",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the screen and check that no username or avatar is shown left of the list",

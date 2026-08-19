@@ -24,7 +24,7 @@
    "tc_title": "Seat preferences swapped when the active Profile was linked",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Seat preferences swapped when the active Profile was linked",
+   "test_item": "Seat preferences swapped when the active Profile was linked\n(Verifies that a linked active Profile and the previous holder exchange their memory seat positions)",
    "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Profile A is active and linked to memory seat 1\n3. Profile B is linked to memory seat 2\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab\n2. Select memory seat 2 for Profile A\n3. Read the memory seat status of both Profiles and check that the two preferences are swapped",

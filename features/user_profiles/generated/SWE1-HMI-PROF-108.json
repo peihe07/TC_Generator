@@ -24,7 +24,7 @@
    "tc_title": "Driver Profile info page shows the intro text and examples",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Driver Profile info page shows the intro text and examples",
+   "test_item": "Driver Profile info page shows the intro text and examples\n(Verifies that the Driver Profile information page shows the introductory text and the examples that follow it)",
    "pre_conditions": "1. The vehicle is equipped with Navigation\n2. The vehicle is not an R1 High variant\n3. A Driver Profile is active\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Driver Profile info page\n2. Read the page and check that the intro text and the applicable examples are shown",

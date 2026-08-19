@@ -24,7 +24,7 @@
    "tc_title": "Small welcome popup shows username, avatar and options",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Small welcome popup shows username, avatar and options",
+   "test_item": "Small welcome popup shows username, avatar and options\n(Verifies that the small welcome popup shows the active Profile's username and avatar with switch and close options)",
    "pre_conditions": "1. The active Driver Profile has a username and an avatar\n2. The small welcome popup version applies to this vehicle\n3. The Welcome popup setting is on for that Profile\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Switch the ignition on and read the popup shown\n2. Read the popup and check the username, the avatar and the options",

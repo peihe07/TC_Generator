@@ -24,7 +24,7 @@
    "tc_title": "Add New button and icon hidden at the maximum Profile count",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Add New button and icon hidden at the maximum Profile count",
+   "test_item": "Add New button and icon hidden at the maximum Profile count\n(Verifies that the add entry and the profile-specific icon and string are hidden at the five-Profile maximum)",
    "pre_conditions": "1. Five Driver Profiles exist on the vehicle\n2. The vehicle screen is larger than 7 inches",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab\n2. Read the screen and check that the Add New Profile button and the icon are absent",

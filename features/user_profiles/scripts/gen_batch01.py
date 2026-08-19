@@ -30,7 +30,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_batch_context as B
-import popup_guard                                  # noqa: E402                      # noqa: E402
+import popup_guard                                  # noqa: E402
+import test_item_part2                              # noqa: E402                      # noqa: E402
 from gen_pilot import (steps, FUNCTIONAL, STATE, BVA, SCENARIO,   # noqa: E402
                        NEGATIVE)
 
@@ -942,7 +943,10 @@ def _rec(req_id, ctx, spec, refs, prio, why, n) -> dict:
         "tc_title": spec["title"],
         "test_group": ctx["test_group"],
         "test_set": ctx["test_set"],
-        "test_item": spec["title"],          # R-U6
+        # R-U6 ＋ **55 包 §一**：`test_item` 為兩段 ——
+        # 首段即 `tc_title`（形態不變），第二段為「本條在測什麼」之一句。
+        "test_item": test_item_part2.compose(B.TC_ID_FMT.format(n=n),
+                                             spec["title"]),
         "pre_conditions": spec["pre"],
         "input_test_data": spec["data"],
         "test_procedure": spec["proc"],

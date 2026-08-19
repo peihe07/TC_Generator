@@ -24,7 +24,7 @@
    "tc_title": "Pressing elsewhere cancels the Valet PIN entry",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Pressing elsewhere cancels the Valet PIN entry",
+   "test_item": "Pressing elsewhere cancels the Valet PIN entry\n(Verifies that pressing elsewhere on the screen during PIN entry cancels the entry)",
    "pre_conditions": "1. Valet Mode is not active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Start the Valet Mode activation so that the PIN entry is displayed\n2. Press another portion of the screen outside the PIN entry\n3. Read the screen and check that the PIN entry is cancelled",

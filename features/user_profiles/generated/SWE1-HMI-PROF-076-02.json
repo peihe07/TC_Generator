@@ -24,7 +24,7 @@
    "tc_title": "Avatar shown above the Save & Continue button on 8.4 inch",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Avatar shown above the Save & Continue button on 8.4 inch",
+   "test_item": "Avatar shown above the Save & Continue button on 8.4 inch\n(Verifies that a screen of 8.4 inches or larger shows the avatar above a button reading Save & Continue)",
    "pre_conditions": "1. The vehicle screen is 8.4 inches or larger\n2. A New Profile Setup is at the avatar step\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Choose an avatar\n2. Read the screen and check the avatar position and the button text",

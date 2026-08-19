@@ -24,7 +24,7 @@
    "tc_title": "Valet Mode button greyed out while the vehicle is in motion",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Valet Mode button greyed out while the vehicle is in motion",
+   "test_item": "Valet Mode button greyed out while the vehicle is in motion\n(Verifies that the Valet Mode button is greyed out in motion and that pressing it shows PU0091)",
    "pre_conditions": "1. Valet Mode is not active\n2. The vehicle is stationary on a test track and can be brought into motion",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and read the Valet Mode button\n2. Bring the vehicle into motion\n3. Read the Valet Mode button and press it\n4. Read the screen and check that the unavailability popup is displayed",

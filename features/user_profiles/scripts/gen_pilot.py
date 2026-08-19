@@ -28,7 +28,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_batch_context as B
-import popup_guard                                  # noqa: E402                      # noqa: E402
+import popup_guard                                  # noqa: E402
+import test_item_part2                              # noqa: E402                      # noqa: E402
 
 FEATURE = Path(__file__).resolve().parent.parent
 OUT = FEATURE / "generated"
@@ -734,8 +735,9 @@ def build() -> list:
             "tc_title": spec["title"],
             "test_group": ctx["test_group"],
             "test_set": ctx["test_set"],
-            # R-U6：BLANK 綁定 —— Test Item = 標準 §4.3 tc_title
-            "test_item": spec["title"],
+            # R-U6 ＋ **55 包 §一**：兩段（首段 tc_title、第二段一句說明）
+            "test_item": test_item_part2.compose(B.TC_ID_FMT.format(n=n),
+                                                 spec["title"]),
             "pre_conditions": spec["pre"],
             "input_test_data": spec["data"],
             "test_procedure": spec["proc"],

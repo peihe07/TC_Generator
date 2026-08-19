@@ -24,7 +24,7 @@
    "tc_title": "Welcome popup clears as soon as the vehicle moves",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Welcome popup clears as soon as the vehicle moves",
+   "test_item": "Welcome popup clears as soon as the vehicle moves\n(Verifies that the welcome popup clears as soon as the vehicle starts moving)",
    "pre_conditions": "1. The welcome popup of the active Profile is displayed\n2. The vehicle is stationary\n3. The vehicle can be brought into motion on the test site",
    "input_test_data": "NA",
    "test_procedure": "1. Bring the vehicle into motion\n2. Read the screen and check whether the popup is displayed",

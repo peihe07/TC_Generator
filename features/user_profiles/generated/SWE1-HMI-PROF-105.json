@@ -24,7 +24,7 @@
    "tc_title": "Edit Profile tab shows at most six lines per page",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Edit Profile tab shows at most six lines per page",
+   "test_item": "Edit Profile tab shows at most six lines per page\n(Verifies that the Edit Profile tab shows at most six lines of information on one page)",
    "pre_conditions": "1. A Driver Profile is active with all optional items available\n2. The vehicle is stationary",
    "input_test_data": "Line count per page: 6 (limit)",
    "test_procedure": "1. Open the “Edit Profile” tab\n2. Count the information lines shown and check that no more than six are on the page",

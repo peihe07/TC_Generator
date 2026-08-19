@@ -24,7 +24,7 @@
    "tc_title": "Valet welcome popup indicates Valet Mode with an exit button",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Valet welcome popup indicates Valet Mode with an exit button",
+   "test_item": "Valet welcome popup indicates Valet Mode with an exit button\n(Verifies that the Valet welcome popup states that the vehicle is in Valet Mode and offers a deactivate button)",
    "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Trigger the welcome popup\n2. Read the popup and check its Valet indication and button\n3. Press the “Exit Valet Mode” button and check that the PIN entry for deactivation is displayed",

@@ -24,7 +24,7 @@
    "tc_title": "PU0841 shown when Tutorials are not complete",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "PU0841 shown when Tutorials are not complete",
+   "test_item": "PU0841 shown when Tutorials are not complete\n(Verifies that PU0841 appears for a Profile with incomplete Tutorials and that X on it shows PU0611)",
    "pre_conditions": "1. The active Driver Profile has not completed the Tutorials\n2. The active Driver Profile has not chosen to exit the Tutorials\n3. The Welcome popup setting is on for that Profile\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Switch the ignition on and read the popup shown\n2. Press X on the popup and read the popup shown",

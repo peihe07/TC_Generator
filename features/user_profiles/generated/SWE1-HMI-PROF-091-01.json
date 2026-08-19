@@ -31,7 +31,7 @@
    "tc_title": "Restricted Profile action interrupted when vehicle starts moving",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Restricted Profile action interrupted when vehicle starts moving",
+   "test_item": "Restricted Profile action interrupted when vehicle starts moving\n(Verifies that a restricted action in progress is interrupted when the vehicle starts moving and the previous page returns)",
    "pre_conditions": "1. A Driver Profile is active and the Edit Profile tab is available\n2. The vehicle is stationary on a test track and can be brought into motion",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Edit Profile tab and start editing the Profile username\n2. Bring the vehicle into motion\n3. Read the screen and check that the previous available page is displayed",

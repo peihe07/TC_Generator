@@ -24,7 +24,7 @@
    "tc_title": "One default Profile per memory seat button",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "One default Profile per memory seat button",
+   "test_item": "One default Profile per memory seat button\n(Verifies that each memory seat position has its own default Driver Profile)",
    "pre_conditions": "1. The vehicle has 2 memory seat buttons\n2. No custom Driver Profile is set up on the vehicle",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab\n2. Read the seat links and check that each button has its own default Profile",

@@ -24,7 +24,7 @@
    "tc_title": "Special characters are not accepted in a username",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Special characters are not accepted in a username",
+   "test_item": "Special characters are not accepted in a username\n(Verifies that letters and digits are accepted in a username while special characters are refused)",
    "pre_conditions": "1. A New Profile Setup is at the username step\n2. The username field is empty\n3. The vehicle is stationary",
    "input_test_data": "Characters typed: letters, digits, then a special character",
    "test_procedure": "1. Type letters and digits into the username field\n2. Attempt to type a special character\n3. Read the field and check which characters are shown",

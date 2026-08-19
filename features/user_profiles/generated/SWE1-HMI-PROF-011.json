@@ -24,7 +24,7 @@
    "tc_title": "Newly assigned Profile becomes active after the linked one is deleted",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Newly assigned Profile becomes active after the linked one is deleted",
+   "test_item": "Newly assigned Profile becomes active after the linked one is deleted\n(Verifies that the Profile now assigned to the seat becomes active after the linked Profile is deleted)",
    "pre_conditions": "1. Two Driver Profiles exist and Driver Profile A is linked to the current memory seat position\n2. Driver Profile A is the active Profile",
    "input_test_data": "NA",
    "test_procedure": "1. Delete Driver Profile A\n2. Read and record which Profile now holds the seat position\n3. Read the active Profile and check that it is the Profile recorded in step 2",

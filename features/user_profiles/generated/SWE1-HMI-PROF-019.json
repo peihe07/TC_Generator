@@ -24,7 +24,7 @@
    "tc_title": "All Profiles tab shows every user and the three options",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "All Profiles tab shows every user and the three options",
+   "test_item": "All Profiles tab shows every user and the three options\n(Verifies that the All Profiles tab shows every Profile with the active one enlarged and offers the three entry points)",
    "pre_conditions": "1. Three Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab\n2. Read the user list and check that every Profile is shown\n3. Read the screen and check the three options offered",

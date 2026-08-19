@@ -29,7 +29,13 @@ import lint_tcs as L                                  # noqa: E402
 
 FEATURE = Path(__file__).resolve().parent.parent
 FIELDS = [
-    ("tc_title / test_item", "tc_title"),
+    # **55 包起 `test_item` 為兩段**（首段 tc_title、第二段一句說明），
+    # 兩者不再等同，故 pack 印出**整個 `test_item`** ——
+    # 否則覆核者看不到實際交付的那一欄。
+    # 第二段之**英文措辭本身未經第二人讀過**（其中文來源已讀過），
+    # 這正是它須進 pack 之理由。
+    ("test_item（兩段）", "test_item"),
+    ("tc_title（＝ test_item 首段）", "tc_title"),
     ("pre_conditions", "pre_conditions"),
     ("input_test_data", "input_test_data"),
     ("test_procedure", "test_procedure"),

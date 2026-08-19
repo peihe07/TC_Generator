@@ -24,7 +24,7 @@
    "tc_title": "Previous Profile restored after Valet Mode is exited",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Previous Profile restored after Valet Mode is exited",
+   "test_item": "Previous Profile restored after Valet Mode is exited\n(Verifies that the previous Driver Profile becomes active again after Valet Mode is exited)",
    "pre_conditions": "1. Driver Profile A is active and Valet Mode is not active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Record the active Profile\n2. Activate Valet Mode\n3. Deactivate Valet Mode\n4. Read the active Profile and check that it matches the one recorded in step 1",

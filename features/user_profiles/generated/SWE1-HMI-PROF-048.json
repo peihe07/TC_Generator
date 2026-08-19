@@ -24,7 +24,7 @@
    "tc_title": "Default Profiles remain after a new Profile is created",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "Default Profiles remain after a new Profile is created",
+   "test_item": "Default Profiles remain after a new Profile is created\n(Verifies that a new Profile can be created without customizing the defaults and that the default Profiles remain)",
    "pre_conditions": "1. The vehicle carries its default Profiles, including Driver 1\n2. No default Profile has been customized or deleted",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Profile List and record the default Profiles present\n2. Create a new Driver Profile without customizing any default Profile\n3. Open the Profile List and check that the default Profiles recorded in step 1 are still present",

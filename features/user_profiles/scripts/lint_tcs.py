@@ -286,8 +286,13 @@ def gate_tc(tc: dict) -> list:
         out.append(f"G2 {tid}: tc_id 不合 NR1L-UserProfiles-NNN")
 
     title = str(tc.get("tc_title", ""))
-    if str(tc.get("test_item", "")) != title:
-        out.append(f"G3 {tid}: test_item 與 tc_title 不同（R-U6）")
+    # **判準改過一次（55 包 §一）。** v1 為 `test_item == tc_title`（R-U6）。
+    # canon §4.3 之標題逐字為 `Test Item / tc_title — three acceptable shapes`，
+    # 即 canon 把兩者視為同一物 —— **而 Comfort 與 Home 之交付件皆為兩段式**
+    # （55 輪唯讀實測）。規則只存在於產物，不存在於文字。
+    # v2：`test_item` 之**首行**須等於 `tc_title`；第二段由 TI-1～TI-3 管。
+    if str(tc.get("test_item", "")).splitlines()[:1] != [title]:
+        out.append(f"G3 {tid}: test_item 之首行與 tc_title 不同（R-U6）")
     n = len(title.split())
     if not 2 <= n <= 14:
         out.append(f"G3 {tid}: tc_title {n} 字，須 2–14（§4.3）")

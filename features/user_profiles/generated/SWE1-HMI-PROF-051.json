@@ -24,7 +24,7 @@
    "tc_title": "Don’t Show me Again turns the popup off for that Profile",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "Don’t Show me Again turns the popup off for that Profile",
+   "test_item": "Don’t Show me Again turns the popup off for that Profile\n(Verifies that Don't Show me Again turns the Welcome popup setting off for that Profile only)",
    "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The Welcome popup setting is on for both Profiles\n3. The Welcome popup of Driver Profile A is displayed\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press X on the Welcome popup and read the popup shown\n2. Select Don’t Show me Again and read the Welcome popup setting\n3. Activate Driver Profile B and read the screen\n4. Activate Driver Profile A again and read the screen",

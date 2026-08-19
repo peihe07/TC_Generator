@@ -24,7 +24,7 @@
    "tc_title": "Valet Mode activates only from the All Profiles tab",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Valet Mode activates only from the All Profiles tab",
+   "test_item": "Valet Mode activates only from the All Profiles tab\n(Verifies that Valet Mode can be activated only from the button on the All Profiles tab)",
    "pre_conditions": "1. Valet Mode is not active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab and read the option list\n2. Open the vehicle settings and read the option list\n3. Open the “All Profiles” tab and check that the Valet Mode button is present there",

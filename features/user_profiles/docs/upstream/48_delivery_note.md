@@ -10,35 +10,35 @@
 
 | tc_id | digest |
 |---|---|
-| `NR1L-UserProfiles-002` | `9ac76f9f742c` |
-| `NR1L-UserProfiles-082` | `a36c22f4b4b1` |
-| `NR1L-UserProfiles-095` | `8dab76c9afdb` |
-| `NR1L-UserProfiles-102` | `1f251cf01cf3` |
-| `NR1L-UserProfiles-111` | `d4fd3ed6fe04` |
-| `NR1L-UserProfiles-127` | `e50f5f385a9e` |
-| `NR1L-UserProfiles-129` | `1b315bff0af8` |
-| `NR1L-UserProfiles-134` | `477d04ade265` |
-| `NR1L-UserProfiles-136` | `0011ec5d1d9a` |
-| `NR1L-UserProfiles-138` | `b68bf11414e3` |
-| `NR1L-UserProfiles-139` | `b4e94adced40` |
-| `NR1L-UserProfiles-140` | `ce7c1d2e1213` |
-| `NR1L-UserProfiles-141` | `bc9a4e380685` |
-| `NR1L-UserProfiles-142` | `cbc421ff2ec9` |
-| `NR1L-UserProfiles-143` | `1a922483286f` |
-| `NR1L-UserProfiles-146` | `d1c8b027e53c` |
-| `NR1L-UserProfiles-151` | `f3c4c3fb46ec` |
-| `NR1L-UserProfiles-159` | `80f2cfc3ebfe` |
-| `NR1L-UserProfiles-164` | `da177ac5f34b` |
-| `NR1L-UserProfiles-166` | `758cb5dfdf95` |
-| `NR1L-UserProfiles-169` | `1b9f5f9f5eaa` |
-| `NR1L-UserProfiles-170` | `c417cc548e08` |
-| `NR1L-UserProfiles-174` | `42069a956cd7` |
-| `NR1L-UserProfiles-177` | `e61be46633a0` |
-| `NR1L-UserProfiles-182` | `51da38dbd00e` |
-| `NR1L-UserProfiles-183` | `e3cd36b3f0a4` |
-| `NR1L-UserProfiles-184` | `26624dab8817` |
-| `NR1L-UserProfiles-188` | `e3b27fbf3204` |
-| `NR1L-UserProfiles-189` | `fbeb005e8255` |
+| `NR1L-UserProfiles-002` | `b17373bfa1d8` |
+| `NR1L-UserProfiles-082` | `86015249c520` |
+| `NR1L-UserProfiles-095` | `c74a25a1f87f` |
+| `NR1L-UserProfiles-102` | `71d78163e9e9` |
+| `NR1L-UserProfiles-111` | `1f51bdce1512` |
+| `NR1L-UserProfiles-127` | `72254e0cd918` |
+| `NR1L-UserProfiles-129` | `400feaf338ba` |
+| `NR1L-UserProfiles-134` | `d1e2c09a8ebc` |
+| `NR1L-UserProfiles-136` | `0ba44da21fdf` |
+| `NR1L-UserProfiles-138` | `80e9556a005f` |
+| `NR1L-UserProfiles-139` | `3da1c235a5f3` |
+| `NR1L-UserProfiles-140` | `ca695b23e00e` |
+| `NR1L-UserProfiles-141` | `5f15fa169130` |
+| `NR1L-UserProfiles-142` | `b009a125c144` |
+| `NR1L-UserProfiles-143` | `5812b68ab2f5` |
+| `NR1L-UserProfiles-146` | `714938c69c06` |
+| `NR1L-UserProfiles-151` | `99f0a22e2300` |
+| `NR1L-UserProfiles-159` | `9293cac60f25` |
+| `NR1L-UserProfiles-164` | `29f9fed053e1` |
+| `NR1L-UserProfiles-166` | `d48013b1cb5a` |
+| `NR1L-UserProfiles-169` | `95450acc350b` |
+| `NR1L-UserProfiles-170` | `f4863fae6d48` |
+| `NR1L-UserProfiles-174` | `b16341dadc63` |
+| `NR1L-UserProfiles-177` | `0deeabcd3e5c` |
+| `NR1L-UserProfiles-182` | `b8ca7fa9eb6e` |
+| `NR1L-UserProfiles-183` | `04729475b4a1` |
+| `NR1L-UserProfiles-184` | `33d29aeab199` |
+| `NR1L-UserProfiles-188` | `472f204aef45` |
+| `NR1L-UserProfiles-189` | `43673ed3cb84` |
 
 <!-- fingerprint:end -->
 
@@ -174,6 +174,7 @@ spec（`Personal Account HMI Logic and Flow` §5.13.2）生成：**
 | `Q`（預估測試時間）／`AB`（Test Version） | 同上；且我方未估過，**不編** |
 | `T:Z`（七個車型） | 同上（466 列全空），且母本該區之資料驗證自帶 `allowBlank`。**本 feature 189 條之 pre-condition 無一條提及車型** —— 其適用車型須由更上層決定 |
 | `AC`–`AG` | 執行階段之欄位，交付時應為空 |
+| `I`（Test Item）| **兩段**：首行為測試項目標題，括號內一句說明**本條在測什麼** |
 | `AH`（Remarks）| **本次交付全欄留空**（客戶端決定）。各條之設計理由與其限制**改由本說明之第 3 節承載** —— 該節逐條列出「哪一條不保證什麼」|
 
 ## 6. 尚未完成者

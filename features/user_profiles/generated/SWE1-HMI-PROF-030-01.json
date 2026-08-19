@@ -24,7 +24,7 @@
    "tc_title": "Memory seat linked to a Profile from the Edit Profile screen",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Memory seat linked to a Profile from the Edit Profile screen",
+   "test_item": "Memory seat linked to a Profile from the Edit Profile screen\n(Verifies that a Profile can be linked to a memory seat through the Edit Profile screen)",
    "pre_conditions": "1. Driver Profile A is active and has no memory seat linked\n2. At least one memory seat position is unlinked",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” screen for Driver Profile A\n2. Link the unlinked memory seat position to Driver Profile A\n3. Read the seat links and check that the position is linked to Driver Profile A",

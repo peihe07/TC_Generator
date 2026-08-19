@@ -24,7 +24,7 @@
    "tc_title": "Profile button icon shows the active customized Profile",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Profile button icon shows the active customized Profile",
+   "test_item": "Profile button icon shows the active customized Profile\n(Verifies that the status bar icon identifies the logged-in Profile and shows the first username character on a plain avatar)",
    "pre_conditions": "1. A customized Driver Profile is active\n2. The avatar of that Profile is a plain colour with no picture",
    "input_test_data": "NA",
    "test_procedure": "1. Read the status bar Profile button\n2. Read the button icon and check that it carries the first character of the username",

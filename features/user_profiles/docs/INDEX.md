@@ -59,6 +59,7 @@
 | 49 | 2026-08-19 | **G-I（`\b` 不適用於中文）、Comfort remarks 之先例查證、判例** | [handoff/49_remarks_scope.md](handoff/49_remarks_scope.md) | [upstream/49_remarks_scope.md](upstream/49_remarks_scope.md) | —（本包無裁決條文）| —（無新開）| **更正**：48 輪「已 grep 17 支確認無其他同型」之**證據當時無效** —— 該 grep 找「`\b` 緊鄰 CJK」，而出事形態是 `\b(…|待判|未決)\b`（`\b` 緊鄰 `(`）。以正確判準重查 17 支：**仍 0 命中，結論不變**。**G-I 落地為第 18 支閘** `audit_delivery_fields.py`（DF-1 交付 14 欄之內部字樣；**DF-2 對每個中文詞造「夾在中文裡」之探針實測**），7/7，其紅向案例即 48 輪之漏網形態（`TC-082` 之「上游未決事項」）。記入 profile §7.4.1。**作業 2（唯讀查 Comfort 交付件）**：466 列中 **remarks 非空僅 7 條（1.5%）**，六類內部指涉**皆 0**（一處 `N0` 誤報已具名 —— 那是 spec 之需求編號），且**全為英文**；其語料側亦僅 7/465 —— **非寫回時剝除，本來就幾乎不寫**。**且用途不同**：Comfort 只在「未涵蓋／不可判定」時寫，我方 143 條寫的是每條設計理由。→ **先例不成立**，備成本估計（110 條含指涉、393 句中 175 句、需譯 143 條）並列**甲維持／乙另出版／丙依 Comfort 收斂**三選項送 Pei，本層建議**丙**並具名其代價。**判例記入 profile §5.1：`why` 不是註解，它是狀態。****本輪未重生成、未重寫回**（G-J）；交付件 ENTRY 001 未動。18 支閘全綠。**本輪未執行任何 git** |
 | 52 | 2026-08-19 | **上游素材、Table EDPR1 之比對、缺件清單收斂** | [handoff/52_upstream_materials.md](handoff/52_upstream_materials.md) | [upstream/52_upstream_materials.md](upstream/52_upstream_materials.md) | —（本包無裁決條文）| **A-UP14 新開**（`PU1089`／`1090`／`1091` 之角色在兩份上游文件間**整體錯開一位**）| **Pop Up List 入 `inputs/` 並列入 BASELINE**（`shasum -c` 8/8 OK）—— **它不是新到的檔**：repo 內原有兩份（comfort/inputs 之 SHA `b0827f02` 即 R-U9 之候選），身分以內容確認（原始字串 1341／正規化 1339、無 1087-1088、1089-1091 在，逐項重現 52 包之量測）。**Tutorials PDF 不在檔案系統**（全 repo 0 命中）→ **3.1 未做**，因其 `specification_reference` 之節次無法查證，寫了會同時違反 G11／R-U1／G18。**3.3 落在 52 包未列之第三分支**：p14 之 Table EDPR1 **含 `"Tutorials"`（第 9 列）而我方 ER 已列之** → 既非 defect 亦非 anomaly。**第 4 項已解**：Pop Up List 之 `Description` 欄確有逐步對映（`PU0585`／`0586`／`0587`／**`0612` 明寫 `Step 4`**）；本輪不改 TC，依 G-J 與餘 3 條之覆核一併落地。**RD #8 已由證據解答**（`PU0626` 為有 Profiles 之車輛、`PU0129` 為 Core 通用者 —— 五條寫法正確無須改）。`DATA_REQUESTS.md` 改為單一清單（§0 操作面四項→**三項**，歷史記載原文保留）。**51 包之 remarks 三分類量測至今未執行**，而它是 Pei 裁定之前置，具名等候指示。**本輪語料與交付件皆未動；未執行任何 git** |
 | 53 | 2026-08-19 | **close-out：ENTRY 002 ＋ 全域同步（最後一個作業輪次）** | [handoff/53_closeout.md](handoff/53_closeout.md) | [upstream/53_closeout.md](upstream/53_closeout.md) ＋ [53_review_pack_33a](upstream/53_review_pack_33a.md)（重出）| —（本包無新裁決條文）| —（無新開）| **remarks 全刪**：`AH` 由必寫欄移入條件欄（`feature.yaml` 之 `remarks_column.applied`），交付件 189 列實測 0 非空，**語料一字未刪**，且 WB-0 守之 —— **裁定因此可檢驗亦可撤回**。51 包標 `[SUPERSEDED by 53]` 內容不改。**ENTRY 002 產出**：`TC-167` 之 ER4 由 `Tutorials begin` 改為 Video Bank 之標題與副標（可觀察形式）；A-UP14 依我方 spec 生成不改 TC（**判定在我方讀法下自洽**，無逕行修正之標的）；八項自檢全綠、兩個 ENTRY `shasum -c` 皆 OK。**一項未做具名**：`TC-167` 之引用欄未併列 Tutorials L&F —— 該 PDF 重查仍不在 repo，以 `INTR3` 充作節次等於造無法對照之引用；字串限制已寫入 `LITERAL_EXTRA_SOURCES`。**交付說明擴充**為 28 留白 ＋ `INTR2.)` ＋ 缺件 3 項 ＋ 覆蓋率讀法 ＋ A-UP14 ＋ AH 留空之說明。**canon 同步**：`FEATURE_ONBOARDING.md` 新增 §9 —— R-G1～R-G12 ＋ **G-A～G-M**（每項附其代價之實例）；新增 **G-L**（沒有路徑的「到齊」不算到齊）與 **G-M**（先查他 feature 之 `inputs/`）。**§4.3 選具名缺口而非加閘**：補句表是人工判讀之產物，重算式的閘只會是一支永遠綠的閘（G-D）。`PLAYBOOK.md` §6 狀態板全部更新（P0–P7 ＋ 覆核 ＋ open items ＋ 收尾數字）。**餘 3 條之覆核結果本輪未收到**，若有 defect 須另起 ENTRY 003。**本輪未執行任何 git（清單備於上繳 §7）** |
+| 55 | 2026-08-19 | **Test Item 兩段：規格、TI 閘、ENTRY 003** | [handoff/55_test_item_two_parts.md](handoff/55_test_item_two_parts.md) | [upstream/55_test_item_two_parts.md](upstream/55_test_item_two_parts.md) ＋ 四份 pack 重出 | —（本包無裁決條文；規格由 Pei 確認）| —（無新開）| **TI-1／TI-2／TI-3 立閘，首跑對 ENTRY 002 之現況 189 列全紅**（輸出已貼），修正後 0；方向性案例 16/16（含「第二段僅一詞」「與首段逐字相同」之範圍向）。189 條之 `Test Item` 改為兩段，第二段落 `data/test_item_part2.tsv`（**以 `tc_id` 為鍵** —— 首版誤用 `req_id` 會把 §7 之配對造者併成一條）；`G3` 判準由 `test_item == tc_title` 改為**比首行**。**§三 唯讀量測**：Comfort 465/466、Home 180/201 **皆有第二段**，**本 feature 為唯一漏者**，而三份之形態各不相同（Comfort 第一段為 spec 條文、Home 為需求敘述、我方為 tc_title）。**Comfort 之第二段 459/465 可由「最末步 -> 最末 ER」逐字重算**，我方之來源（reasoning 驗證目標句）**不可重算** —— 具名此缺口。**事後查證**：該規格**不在 repo 任何文字內**，且 canon §4.3 反而把 Test Item 與 tc_title 視為同一物 —— **不是「規則在檔而未執行」，是規則只存在於產物**。**ENTRY 003 產出**，九項自檢全綠（**新增第 i 項：Test Item 兩段**），三個 ENTRY `shasum -c` 皆 OK。四份 pack 因原本只印 `tc_title` 而全部重出 —— **第二段之英文措辭是唯一沒有第二人讀過的交付內容**。**`TC-165` 之覆核未收到、`TC-167` 之 Tutorials 引用仍缺**（PDF 仍不在 `inputs/`）。**本輪未執行任何 git** |
 
 ---
 
@@ -69,13 +70,13 @@
 
 | 範圍 | 現行檔 | 產生輪次 |
 |---|---|---|
-| `135`–`145` | [`44_review_pack_24a.md`](upstream/44_review_pack_24a.md) | 44 |
-| `146`–`156` | [`48_review_pack_24b.md`](upstream/48_review_pack_24b.md) | 48 |
-| `157`–`173` | [`53_review_pack_33a.md`](upstream/53_review_pack_33a.md) | 53 |
-| `174`–`189` | [`47_review_pack_33b.md`](upstream/47_review_pack_33b.md) | 47 |
+| `135`–`145` | [`55_review_pack_24a.md`](upstream/55_review_pack_24a.md) | 55 |
+| `146`–`156` | [`55_review_pack_24b.md`](upstream/55_review_pack_24b.md) | 55 |
+| `157`–`173` | [`55_review_pack_33a.md`](upstream/55_review_pack_33a.md) | 55 |
+| `174`–`189` | [`55_review_pack_33b.md`](upstream/55_review_pack_33b.md) | 55 |
 
 **已被取代者**（不得作覆核依據）：`40_24a`／`40_24b`／`41_33a`／`41_33b`／
-`44_24b`／`44_33b`／`45_24b`／`44_33a`／`48_33a`。
+`44_24b`／`44_33b`／`45_24b`／`44_33a`／`48_33a`／**`44_24a`／`48_24b`／`53_33a`／`47_33b`**（55 輪：pack 原只印 `tc_title`，而 `test_item` 已成兩段）。
 
 ## 2. 現況
 
@@ -95,6 +96,17 @@
   `Outline Number` 169/169 一致。候選被引集合 135 條已落檔。
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
+
+### 第五十五輪已完成（2026-08-19）—— **Test Item 之兩段結構**
+
+- **TI 閘首跑對 ENTRY 002 之現況 189 列全紅**（輸出見上繳 §2.1），修正後 0；16/16。
+- 189 條之 `Test Item` 改為兩段；第二段來源為 `reasoning` 之驗證目標句，
+  落 `data/test_item_part2.tsv`（**以 `tc_id` 為鍵**）。
+- **唯讀量測**：Comfort 與 Home 之交付件**皆有第二段**，本 feature 為唯一漏者；
+  **而該規格不在 repo 任何文字內** —— canon §4.3 反而把兩者視為同一物。
+  **不是「規則在檔而未執行」，是規則只存在於產物。**
+- **ENTRY 003**：九項自檢全綠（新增 Test Item 一項）；四份 pack 全部重出
+  （原只印 `tc_title`）—— **第二段之英文措辭是唯一沒有第二人讀過的交付內容**。
 
 ### 第五十三輪已完成（2026-08-19）—— **close-out：本 feature 之最後一個作業輪次**
 

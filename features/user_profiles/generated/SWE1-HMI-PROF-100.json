@@ -24,7 +24,7 @@
    "tc_title": "Welcome popup size defaults to small and can be turned off",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Welcome popup size defaults to small and can be turned off",
+   "test_item": "Welcome popup size defaults to small and can be turned off\n(Verifies that the welcome popup size defaults to small and that setting it off suppresses the popup)",
    "pre_conditions": "1. A newly created Driver Profile exists and has not had its Welcome Popup size changed\n2. The vehicle is stationary",
    "input_test_data": "Welcome Popup size setting: default → Off",
    "test_procedure": "1. Open the “Edit Profile” tab and read the Welcome Popup size setting\n2. Set the Welcome Popup size to Off\n3. Activate another Profile and then reactivate this Profile\n4. Read the screen and check that no welcome popup is shown",

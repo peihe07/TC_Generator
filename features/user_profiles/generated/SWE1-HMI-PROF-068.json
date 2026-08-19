@@ -24,7 +24,7 @@
    "tc_title": "Pressing another button during setup asks to discard",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Pressing another button during setup asks to discard",
+   "test_item": "Pressing another button during setup asks to discard\n(Verifies that pressing another button during setup is treated as cancel and asks whether to discard it)",
    "pre_conditions": "1. A New Profile Setup is in progress at the username step\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press a button on the status bar during the setup\n2. Read the screen and check which popup is displayed",

@@ -24,7 +24,7 @@
    "tc_title": "Clearing all Profiles returns Defaults to default order",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Clearing all Profiles returns Defaults to default order",
+   "test_item": "Clearing all Profiles returns Defaults to default order\n(Verifies that the default order returns once all Profiles are cleared and the defaults are restored)",
    "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Two custom Driver Profiles exist on the vehicle\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the settings and select Clear Personal Data\n2. Press Yes on each confirmation popup PU0626/PU_0129\n3. Open the “All Profiles” tab and read the order of the default Profiles",

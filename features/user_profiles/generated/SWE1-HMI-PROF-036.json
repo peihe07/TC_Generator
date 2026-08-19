@@ -24,7 +24,7 @@
    "tc_title": "Profile order defaults to the order of creation",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Profile order defaults to the order of creation",
+   "test_item": "Profile order defaults to the order of creation\n(Verifies that Profiles are ordered by the sequence in which they were added, with the defaults on the left)",
    "pre_conditions": "1. Only the default Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Create a new Driver Profile named Alex\n2. Create a second new Driver Profile named Bea\n3. Open the “All Profiles” tab and read the order of the Profiles",

@@ -24,7 +24,7 @@
    "tc_title": "Saving a seat position does not link it to the active Profile",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Saving a seat position does not link it to the active Profile",
+   "test_item": "Saving a seat position does not link it to the active Profile\n(Verifies that saving a seat position does not link that position to the active Profile by itself)",
    "pre_conditions": "1. Driver Profile A is active and has no memory seat linked\n2. A memory seat position is linked to Driver Profile B",
    "input_test_data": "NA",
    "test_procedure": "1. Change the seat position\n2. Save the position to the memory seat linked to Driver Profile B\n3. Select No on PU0588\n4. Read the seat links and check that Driver Profile A still has none",

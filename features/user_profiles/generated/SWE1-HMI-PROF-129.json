@@ -24,7 +24,7 @@
    "tc_title": "Go button greyed out until four digits are entered",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Go button greyed out until four digits are entered",
+   "test_item": "Go button greyed out until four digits are entered\n(Verifies that the Go button stays greyed out below four digits and that pressing it bonks and shows the popup)",
    "pre_conditions": "1. The Valet Mode PIN entry popup is displayed\n2. The vehicle is stationary",
    "input_test_data": "PIN digits entered: 3, then 4",
    "test_procedure": "1. Enter three digits and read the Go button\n2. Press the Go button while it is greyed out\n3. Read the screen and check the tone and the popup\n4. Enter a fourth digit and read the Go button",

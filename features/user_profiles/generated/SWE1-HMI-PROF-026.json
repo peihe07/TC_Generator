@@ -24,7 +24,7 @@
    "tc_title": "Pressing the active Profile opens the Edit Profile tab",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Pressing the active Profile opens the Edit Profile tab",
+   "test_item": "Pressing the active Profile opens the Edit Profile tab\n(Verifies that pressing the already highlighted active Profile opens the Edit Profile tab)",
    "pre_conditions": "1. Driver Profile A is active and highlighted on the “All Profiles” tab\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the avatar of the active Driver Profile\n2. Read the screen and check which tab is shown",

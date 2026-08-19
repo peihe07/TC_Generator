@@ -24,7 +24,7 @@
    "tc_title": "Changed preferences saved before the next Profile loads",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Changed preferences saved before the next Profile loads",
+   "test_item": "Changed preferences saved before the next Profile loads\n(Verifies that changed preferences are saved before the next Profile loads within one key cycle)",
    "pre_conditions": "1. Two Driver Profiles exist, each with a recorded value of the preference under test\n2. The two recorded values are different from each other\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "Preference under test: Cluster Home screen (3.1)",
    "test_procedure": "1. Activate Driver Profile A and change the preference to a new value, then record it\n2. Activate Driver Profile B and read the preference\n3. Activate Driver Profile A and check that the preference matches the value recorded in step 1",

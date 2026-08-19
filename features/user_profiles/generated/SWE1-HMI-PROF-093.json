@@ -23,7 +23,7 @@
    "tc_title": "Current avatar highlighted among the available avatars",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Current avatar highlighted among the available avatars",
+   "test_item": "Current avatar highlighted among the available avatars\n(Verifies that the avatar selection screen marks the current avatar and offers the remaining available ones)",
    "pre_conditions": "1. A Driver Profile with a selected avatar is active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the avatar selection screen from the “Edit Profile” tab\n2. Read the screen and check that the current avatar is highlighted",

@@ -24,7 +24,7 @@
    "tc_title": "Connected Account hidden for unsupported regions",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Connected Account hidden for unsupported regions",
+   "test_item": "Connected Account hidden for unsupported regions\n(Verifies that the Connected Profile options and the Connected Account button are absent in regions without the app)",
    "pre_conditions": "1. The vehicle is in a region without the brand app\n2. A Driver Profile is active",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the option list and check that no account button or Connected Profile info is shown",

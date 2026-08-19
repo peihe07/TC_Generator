@@ -24,7 +24,7 @@
    "tc_title": "PIN entry blocked during the 30-minute lockout",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "PIN entry blocked during the 30-minute lockout",
+   "test_item": "PIN entry blocked during the 30-minute lockout\n(Verifies that PIN entry is refused during the 30-minute lockout that follows ten incorrect attempts)",
    "pre_conditions": "1. Valet Mode is active and a 4-digit PIN is set\n2. The vehicle is stationary",
    "input_test_data": "PIN attempts: 10 incorrect attempts, then a further attempt",
    "test_procedure": "1. Open the Valet Mode deactivation screen\n2. Enter an incorrect 4-digit PIN ten times\n3. Attempt to enter a PIN again immediately\n4. Read the screen and check that the PIN entry is not accepted",

@@ -24,7 +24,7 @@
    "tc_title": "Profile button present in the status bar by default",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Profile button present in the status bar by default",
+   "test_item": "Profile button present in the status bar by default\n(Verifies that the Profile button is present in the status bar by default and its icon follows the active Profile)",
    "pre_conditions": "1. The status bar is at its default configuration\n2. Two Driver Profiles exist with different avatars\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Read the status bar and record the Profile button icon\n2. Activate the other Driver Profile\n3. Read the status bar button and check that its icon changed with the active Profile",

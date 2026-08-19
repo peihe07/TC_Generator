@@ -25,7 +25,7 @@
    "tc_title": "All head unit Valet exit paths blocked for the SPAAK user",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "All head unit Valet exit paths blocked for the SPAAK user",
+   "test_item": "All head unit Valet exit paths blocked for the SPAAK user\n(Verifies that every head unit path out of Valet Mode is blocked for the SPAAK user)",
    "pre_conditions": "1. Valet Mode is active under the SPAAK scenario\n2. The user at the head unit is the SPAAK user\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the Valet Profile icon in the status bar\n2. Open the “All Profiles” tab and look for a deactivation control\n3. Read the screen and check that no head unit path exits Valet Mode",

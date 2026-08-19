@@ -23,7 +23,7 @@
    "tc_title": "Info button on the All Profiles tab opens the same page",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Info button on the All Profiles tab opens the same page",
+   "test_item": "Info button on the All Profiles tab opens the same page\n(Verifies that the info button on the All Profiles tab opens the same page as the Edit Profile tab)",
    "pre_conditions": "1. A Driver Profile is active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the info button on the “Edit Profile” tab\n2. Record the page shown\n3. Open the “All Profiles” tab\n4. Press the info button and check that the page recorded in step 2 is displayed",

@@ -24,7 +24,7 @@
    "tc_title": "Usernames are center justified and do not overlap",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Usernames are center justified and do not overlap",
+   "test_item": "Usernames are center justified and do not overlap\n(Verifies that usernames are centred under their avatars and do not overlap one another)",
    "pre_conditions": "1. Three Driver Profiles exist on the vehicle\n2. The usernames of the three Profiles differ in length\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab\n2. Read each username and check its position under its avatar\n3. Read the usernames and check that none overlaps another",

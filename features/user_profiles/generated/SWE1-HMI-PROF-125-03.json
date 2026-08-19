@@ -24,7 +24,7 @@
    "tc_title": "Status bar interaction limited to Valet Profile and HVAC",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Status bar interaction limited to Valet Profile and HVAC",
+   "test_item": "Status bar interaction limited to Valet Profile and HVAC\n(Verifies that the status bar is not interactable in Valet Mode apart from the Valet Profile and HVAC icons)",
    "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press a status bar item other than Valet Profile or HVAC\n2. Read the screen and check that the item does not respond\n3. Press the HVAC icon in the status bar and check that it responds",

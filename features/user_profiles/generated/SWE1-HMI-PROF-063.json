@@ -24,7 +24,7 @@
    "tc_title": "Remote start time does not count toward the 30 seconds",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Remote start time does not count toward the 30 seconds",
+   "test_item": "Remote start time does not count toward the 30 seconds\n(Verifies that time spent in remote start does not count toward the 30-second dismissal timer)",
    "pre_conditions": "1. The vehicle is in remote start\n2. The welcome popup of the active Profile is displayed\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Wait 30 seconds while the vehicle is in remote start\n2. Read the screen and check whether the popup is displayed\n3. Exit the remote start and wait 30 more seconds\n4. Read the screen and check whether the popup is displayed",

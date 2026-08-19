@@ -24,7 +24,7 @@
    "tc_title": "Last known Profile loaded at the start of a key cycle",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Last known Profile loaded at the start of a key cycle",
+   "test_item": "Last known Profile loaded at the start of a key cycle\n(Verifies that the last known Profile loads at the start of a new key cycle)",
    "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. No key fob associated with another Profile is present and no memory seat button is pressed at key-on\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile B and record which Profile is active\n2. Switch the ignition off and then on again\n3. Read the active Profile and check that it matches the Profile recorded in step 1",

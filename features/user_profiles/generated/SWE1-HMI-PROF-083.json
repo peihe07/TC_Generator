@@ -24,7 +24,7 @@
    "tc_title": "Editing only the avatar shows only the avatar popup",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Editing only the avatar shows only the avatar popup",
+   "test_item": "Editing only the avatar shows only the avatar popup\n(Verifies that editing only the avatar shows only the avatar popup and that the back arrow cancels the edit)",
    "pre_conditions": "1. Driver Profile A is the active Profile with a username and an avatar\n2. The “Edit Profile” tab is open\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Select the option to edit the avatar\n2. Read the screen and check which popups are shown\n3. Press the back arrow and read the Profile",

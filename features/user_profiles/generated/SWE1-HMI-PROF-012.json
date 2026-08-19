@@ -24,7 +24,7 @@
    "tc_title": "All linked preferences reset when default Profiles are restored",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "All linked preferences reset when default Profiles are restored",
+   "test_item": "All linked preferences reset when default Profiles are restored\n(Verifies that restoring the default Driver 1 and Driver 2 Profiles returns every profile-linked preference to its default)",
    "pre_conditions": "1. The vehicle has 2 memory seat buttons with the default “Driver 1-2” Profiles\n2. Both default Profiles have several profile-linked preferences changed from their defaults",
    "input_test_data": "Preferences under test: Cluster Home screen (3.1), SiriusXM 360L Listener Profile (3.2), Nav Saved destinations (3.4)",
    "test_procedure": "1. Record the changed values of the three preferences for both default Profiles\n2. Restore the default Driver Profiles\n3. Read the three preferences for both Profiles and check that each is at its default value",

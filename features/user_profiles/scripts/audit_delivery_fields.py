@@ -81,6 +81,89 @@ def patterns() -> list:
     return out
 
 
+# ── TI-1／TI-2／TI-3（55 包）—— `Test Item` 之兩段結構
+#
+# **成因不是漏跑，是規格從未落檔。** canon §4.3 之標題逐字為
+# `Test Item / tc_title — three acceptable shapes`，即 canon **把兩者視為同一物**；
+# 本 feature 之 `R-U6` 與 `G3` 據此把 `test_item` 綁定為 `tc_title`，
+# 而 **Comfort 與 Home 之交付件皆為兩段式**（55 輪唯讀實測）——
+# 規則只存在於產物，不存在於文字。
+#
+# 規格（Pei 2026-08-19 確認，55 包 §一）：
+#
+#     <tc_title>
+#     (<一句：本條在測什麼>)
+#
+# 第二段之來源為該條 `reasoning` 之「驗證目標」句改寫為英文（§1.2），
+# **不另行構思** —— 故其正確性已由 189 條之覆核背書。
+TI_MODAL = re.compile(r"\b(shall|will|should|would|must|may)\b", re.I)
+TI_BANNED_HEAD = re.compile(
+    r"^\s*(observe|see if|check whether|confirm whether|verify|watch|monitor|"
+    r"inspect)\b", re.I)
+TI_CJK = re.compile(r"[一-鿿]")
+TI_BRACKET = re.compile(r"\[[^\]\n]*\]")
+TI_MAX_WORDS = 25
+
+
+def _ti_parts(v: str):
+    """→ (首段, 第二段之括號內文 或 None)。"""
+    lines = [x for x in str(v or "").splitlines() if x.strip()]
+    if not lines:
+        return "", None
+    head = lines[0].strip()
+    rest = " ".join(x.strip() for x in lines[1:]).strip()
+    if rest.startswith("(") and rest.endswith(")"):
+        return head, rest[1:-1].strip()
+    return head, None
+
+
+def audit_test_item(rows=None) -> list:
+    rows = corpus() if rows is None else rows
+    bad = []
+    for t in rows:
+        tid = t.get("tc_id", "?")
+        v = str(t.get("test_item", "") or "")
+        head, part2 = _ti_parts(v)
+
+        # ── TI-1：兩段結構
+        if not head:
+            bad.append(f"TI-1 {tid}: `test_item` 首段為空")
+            continue
+        if part2 is None:
+            bad.append(f"TI-1 {tid}: `test_item` **無第二段** —— 須為 "
+                       f"`<tc_title>` 換行 `(<一句：本條在測什麼>)` "
+                       f"→ 現值「{v[:46]}」")
+            continue
+
+        # ── TI-2：非空、非重複、非單詞
+        if not part2:
+            bad.append(f"TI-2 {tid}: 第二段之括號內為空")
+            continue
+        if len(part2.split()) < 2:
+            bad.append(f"TI-2 {tid}: 第二段僅 {len(part2.split())} 詞 "
+                       f"→「{part2}」")
+        if " ".join(part2.lower().split()) == " ".join(head.lower().split()):
+            bad.append(f"TI-2 {tid}: 第二段與首段**逐字相同** —— "
+                       f"重複一次不是說明")
+
+        # ── TI-3：欄位紀律
+        if TI_CJK.search(part2):
+            bad.append(f"TI-3 {tid}: 第二段含中文 → 「{part2[:40]}」")
+        if TI_MODAL.search(part2):
+            bad.append(f"TI-3 {tid}: 第二段含 modal → 「{part2[:50]}」")
+        if TI_BANNED_HEAD.search(part2):
+            bad.append(f"TI-3 {tid}: 第二段以 §5.1 之禁用動詞起首 → "
+                       f"「{part2[:40]}」")
+        if part2.rstrip().endswith("."):
+            bad.append(f"TI-3 {tid}: 第二段有行尾句點")
+        if TI_BRACKET.search(part2):
+            bad.append(f"TI-3 {tid}: 第二段含方括號 → 「{part2[:40]}」")
+        n = len(part2.split())
+        if n > TI_MAX_WORDS:
+            bad.append(f"TI-3 {tid}: 第二段 {n} 詞 > {TI_MAX_WORDS}")
+    return bad
+
+
 def corpus() -> list:
     out = []
     for p in sorted((FEATURE / "generated").glob("*.json")):
@@ -91,6 +174,19 @@ def corpus() -> list:
 
 
 def audit(rows=None, pats=None) -> list:
+    """DF（措辭）＋ TI（`Test Item` 兩段）之合併結果。"""
+    rows = corpus() if rows is None else rows
+    return audit_wording(rows, pats) + audit_test_item(rows)
+
+
+def audit_wording(rows=None, pats=None) -> list:
+    """**只驗措辭**（DF-1／DF-2）。
+
+    與 `audit_test_item` 分開之理由：兩者之受檢對象不同 ——
+    前者吃**任何欄位之字串**，後者吃**整個 `test_item` 之結構**。
+    合在一起時，DF 之方向性案例（其假列只帶一個欄位）會被 TI-1 判成
+    「首段為空」而全紅 —— **那是案例被另一項檢查誤傷，不是案例錯**。
+    """
     rows = corpus() if rows is None else rows
     pats = patterns() if pats is None else pats
     bad = []
@@ -135,20 +231,20 @@ def self_test() -> int:
         for b in bad[:2]:
             print(f"      └ {b}")
 
-    case("現行語料 → 綠", lambda: audit(rows, pats), False)
+    case("現行語料 → 綠（DF ＋ TI 合併）", lambda: audit(rows, pats), False)
 
     # **48 輪之漏網形態** —— 中文夾中文
     case("**注入：`TC-082` 之原形「上游未決事項」（中文夾中文）→ 紅**",
-         lambda: audit([{"tc_id": "FAKE-082",
+         lambda: audit_wording([{"tc_id": "FAKE-082",
                          "remarks": "**本批唯一帶上游未決事項生成者（R-U27）**："
                                     "DR #4 所缺為 popup 內文"}], pats), True)
 
     case("注入：英文之 `pending`（48 輪抓得到之形態）→ 紅",
-         lambda: audit([{"tc_id": "FAKE-1",
+         lambda: audit_wording([{"tc_id": "FAKE-1",
                          "remarks": "由 `pending` 改為具名不配"}], pats), True)
 
     case("注入：來源類別標記 `[spec-derived]` → 紅",
-         lambda: audit([{"tc_id": "FAKE-2",
+         lambda: audit_wording([{"tc_id": "FAKE-2",
                          "input_test_data": "Value [spec-derived]"}], pats),
          True)
 
@@ -156,20 +252,52 @@ def self_test() -> int:
     def regressed():
         bad_pats = [(w, re.compile(rf"\b{re.escape(w)}\b"), k)
                     if k == "cjk" else (w, rx, k) for w, rx, k in pats]
-        return audit(rows, bad_pats)
+        return audit_wording(rows, bad_pats)
     case("**DF-2 注入：中文詞之判準退回 `\\b…\\b` → 紅**（G-I 之形態本身）",
          regressed, True)
 
     # 護欄：形近而不在詞表者
     case("**護欄**：「未定」不在詞表 → 綠（詞表是枚舉，盲區 1 已具名）",
-         lambda: audit([{"tc_id": "FAKE-3",
+         lambda: audit_wording([{"tc_id": "FAKE-3",
                          "remarks": "兩者之關係條文未定"}], pats), False)
 
     # 護欄：`pending` 為英文單字之一部分
     case("**護欄**：`appending`／`impending` 不得誤判 → 綠",
-         lambda: audit([{"tc_id": "FAKE-4",
+         lambda: audit_wording([{"tc_id": "FAKE-4",
                          "remarks": "appending a row; impending change"}],
                        pats), False)
+
+    # ── TI-1／TI-2／TI-3（55 包）
+    T = "Welcome popup shown at ignition on and on activation"
+    P2 = ("Verifies that a welcome popup is displayed at ignition on and "
+          "each time a Driver Profile is activated")
+    case("**TI 紅向：ENTRY 002 之現況（`test_item` 只有 tc_title）→ 紅**",
+         lambda: audit_test_item([{"tc_id": "F-1", "test_item": T}]), True)
+    case("TI 綠向：兩段齊備 → 綠",
+         lambda: audit_test_item([{"tc_id": "F-2",
+                                   "test_item": f"{T}\n({P2})"}]), False)
+    case("**TI-2 範圍向：第二段僅一詞 → 紅**",
+         lambda: audit_test_item([{"tc_id": "F-3",
+                                   "test_item": f"{T}\n(Tutorials)"}]), True)
+    case("**TI-2 範圍向：第二段與首段逐字相同 → 紅**",
+         lambda: audit_test_item([{"tc_id": "F-4",
+                                   "test_item": f"{T}\n({T})"}]), True)
+    case("TI-3：第二段含 modal → 紅",
+         lambda: audit_test_item([{"tc_id": "F-5",
+             "test_item": f"{T}\n(Verifies that the popup shall be shown)"}]),
+         True)
+    case("TI-3：第二段含中文 → 紅",
+         lambda: audit_test_item([{"tc_id": "F-6",
+             "test_item": f"{T}\n(驗證 welcome popup 於電門開啟時顯示)"}]), True)
+    case("TI-3：第二段有行尾句點 → 紅",
+         lambda: audit_test_item([{"tc_id": "F-7",
+                                   "test_item": f"{T}\n({P2}.)"}]), True)
+    case("**護欄**：第二段 25 詞（剛好上限）→ 綠",
+         lambda: audit_test_item([{"tc_id": "F-8",
+             "test_item": T + "\n(" + " ".join(["word"] * 25) + ")"}]), False)
+    case("TI-3：第二段 26 詞 → 紅",
+         lambda: audit_test_item([{"tc_id": "F-9",
+             "test_item": T + "\n(" + " ".join(["word"] * 26) + ")"}]), True)
 
     n = len(cases)
     print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "

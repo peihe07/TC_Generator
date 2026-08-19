@@ -24,7 +24,7 @@
    "tc_title": "Profile button in Valet Mode offers to deactivate",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Profile button in Valet Mode offers to deactivate",
+   "test_item": "Profile button in Valet Mode offers to deactivate\n(Verifies that pressing the Profile button in Valet Mode reports the function as unavailable and offers to deactivate)",
    "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the Profile button in the status bar\n2. Read the popup and check that it offers to deactivate Valet Mode",

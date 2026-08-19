@@ -25,7 +25,7 @@
    "tc_title": "SPAAK user blocked from exiting Valet Mode on the head unit",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "SPAAK user blocked from exiting Valet Mode on the head unit",
+   "test_item": "SPAAK user blocked from exiting Valet Mode on the head unit\n(Verifies that a SPAAK user cannot exit Valet Mode from the head unit)",
    "pre_conditions": "1. Valet Mode is active under the SPAAK scenario\n2. The user at the head unit is the SPAAK user and not the vehicle owner\n3. The owner has an authorized app or website session available",
    "input_test_data": "NA",
    "test_procedure": "1. Open the head unit screens that offer a Valet Mode exit and attempt to exit Valet Mode\n2. Read the screen and check that the exit is blocked\n3. Deactivate Valet Mode remotely as the owner\n4. Read the head unit and check that Valet Mode is no longer active",

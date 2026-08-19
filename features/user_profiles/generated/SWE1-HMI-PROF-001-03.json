@@ -24,7 +24,7 @@
    "tc_title": "Unavailable features skipped when storing and recalling",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Unavailable features skipped when storing and recalling",
+   "test_item": "Unavailable features skipped when storing and recalling\n(Verifies that a preference is skipped on storage and recall when its feature is unavailable for the vehicle or region)",
    "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. At least one preference in the PLP table belongs to a feature not available for this vehicle or region\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "Preference under test: a PLP item whose feature is absent on this vehicle",
    "test_procedure": "1. Activate Driver Profile A and record the option list of profile-linked preferences\n2. Activate Driver Profile B, then activate Driver Profile A\n3. Read the option list and check that the unavailable item is neither stored nor recalled",

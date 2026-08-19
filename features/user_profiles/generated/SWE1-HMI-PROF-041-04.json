@@ -24,7 +24,7 @@
    "tc_title": "PU1091 shown when clearing is not confirmed complete",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "PU1091 shown when clearing is not confirmed complete",
+   "test_item": "PU1091 shown when clearing is not confirmed complete\n(Verifies that PU1091 appears when the head unit or TBM does not report that clearing completed)",
    "pre_conditions": "1. Two custom Driver Profiles exist on the vehicle\n2. The vehicle is equipped with a Telematics Box Module\n3. The vehicle is stationary",
    "input_test_data": "Fault injected: the Telematics Box Module withholds its completion report for the data clearing",
    "test_procedure": "1. Open the settings and select Clear Personal Data\n2. Press Yes on each confirmation popup PU0626/PU_0129\n3. Suppress the completion report of the Telematics Box Module\n4. Read the screen and check which popup is displayed",

@@ -24,7 +24,7 @@
    "tc_title": "Valet Mode welcome popup clears like the other popups",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Valet Mode welcome popup clears like the other popups",
+   "test_item": "Valet Mode welcome popup clears like the other popups\n(Verifies that the Valet Mode welcome popup clears in the same way as the other welcome popups)",
    "pre_conditions": "1. Valet Mode is active on the vehicle\n2. The Valet Mode welcome popup is displayed\n3. The vehicle is stationary",
    "input_test_data": "Screen pressed about five seconds after the popup appears",
    "test_procedure": "1. Press the screen while the Valet Mode welcome popup is displayed\n2. Read the screen and check whether the popup is displayed",

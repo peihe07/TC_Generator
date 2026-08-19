@@ -24,7 +24,7 @@
    "tc_title": "Saved seat position updates the Profile linked to that seat",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Saved seat position updates the Profile linked to that seat",
+   "test_item": "Saved seat position updates the Profile linked to that seat\n(Verifies that saving a seat position updates the Profile linked to that seat and shows PU0588 for another Profile)",
    "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Profile A is active and Profile B is linked to memory seat 2\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Change the seat position\n2. Save the position to memory seat 2\n3. Read the popup and check that it names the Profile the seat was saved to",

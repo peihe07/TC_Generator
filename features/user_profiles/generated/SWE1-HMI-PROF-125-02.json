@@ -25,7 +25,7 @@
    "tc_title": "Projection, native HFP and VR disabled in Valet Mode",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Projection, native HFP and VR disabled in Valet Mode",
+   "test_item": "Projection, native HFP and VR disabled in Valet Mode\n(Verifies that Projection and native HFP are disabled in Valet Mode and that voice recognition does not start)",
    "pre_conditions": "1. A projection-capable device is connected to the head unit\n2. Valet Mode is active\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Attempt to start projection mode from the head unit\n2. Attempt to place a call over native HFP\n3. Press the voice recognition control\n4. Open the Media section and check that it is available",

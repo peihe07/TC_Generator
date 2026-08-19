@@ -24,7 +24,7 @@
    "tc_title": "The same username can be used by two Driver Profiles",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "The same username can be used by two Driver Profiles",
+   "test_item": "The same username can be used by two Driver Profiles\n(Verifies that the same username can be used by more than one Driver Profile)",
    "pre_conditions": "1. Driver Profile A exists with the username Alex\n2. Two Driver Profiles exist on the vehicle\n3. The vehicle is stationary",
    "input_test_data": "Username entered for the new Profile: Alex",
    "test_procedure": "1. Start a New Profile Setup and enter the username Alex\n2. Complete the setup\n3. Open the “All Profiles” tab and read the usernames shown",

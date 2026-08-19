@@ -35,7 +35,7 @@
    "tc_title": "Connected Navigation row hidden on China market vehicles",
    "test_group": "User Profiles",
    "test_set": "Connected Account",
-   "test_item": "Connected Navigation row hidden on China market vehicles",
+   "test_item": "Connected Navigation row hidden on China market vehicles\n(Verifies that the Connected Navigation row is absent from the Local vs Connected Profile screen on China market vehicles)",
    "pre_conditions": "1. The vehicle is a China-market vehicle\n2. The vehicle is not an R1 High variant\n3. A Driver Profile is active and the Edit Profile tab is available",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Edit Profile tab and select the info icon\n2. Read the row list and check that no Connected Navigation row is shown",

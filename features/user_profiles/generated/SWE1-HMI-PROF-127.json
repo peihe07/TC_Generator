@@ -24,7 +24,7 @@
    "tc_title": "Glove box returns to its previous state after Valet Mode",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Glove box returns to its previous state after Valet Mode",
+   "test_item": "Glove box returns to its previous state after Valet Mode\n(Verifies that the glove box returns to the state it held before Valet Mode was entered)",
    "pre_conditions": "1. The vehicle is equipped with an electronic Glove Box Lock\n2. The glove box is unlocked\n3. Valet Mode is not active\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Record the glove box lock state\n2. Activate Valet Mode\n3. Deactivate Valet Mode\n4. Read the glove box lock state and check that it matches the state recorded in step 1",

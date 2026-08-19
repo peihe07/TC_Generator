@@ -24,7 +24,7 @@
    "tc_title": "Final setup step offers current or default preferences",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Final setup step offers current or default preferences",
+   "test_item": "Final setup step offers current or default preferences\n(Verifies that the final setup step offers current or default preferences and that choosing current carries them over)",
    "pre_conditions": "1. Driver Profile A is the active Profile and has known preferences\n2. A New Profile Setup is in progress\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Record the preferences of Driver Profile A\n2. Complete the New Profile Setup up to its final step\n3. Read the prompt shown at the final step\n4. Choose to create from current preferences, then read the new Profile's preferences",

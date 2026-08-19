@@ -24,7 +24,7 @@
    "tc_title": "New Profile setup from All Profiles ends on that tab",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "New Profile setup from All Profiles ends on that tab",
+   "test_item": "New Profile setup from All Profiles ends on that tab\n(Verifies that a new Profile created from the All Profiles tab becomes active and the tab returns)",
    "pre_conditions": "1. Fewer than five Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and press the “Add New” text\n2. Complete the new Profile setup process\n3. Read the active Profile and check that it is the new one\n4. Read the screen and check that the “All Profiles” tab is shown",

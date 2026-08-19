@@ -24,7 +24,7 @@
    "tc_title": "Loading message then welcome popup shown after a switch",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Loading message then welcome popup shown after a switch",
+   "test_item": "Loading message then welcome popup shown after a switch\n(Verifies that a loading message appears after a switch and is followed by the welcome popup of the new Profile)",
    "pre_conditions": "1. Two Driver Profiles exist and the welcome popup is turned on for Driver Profile B\n2. Driver Profile A is active and the vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and select Driver Profile B\n2. Read the screen and check that the Profile loading message is shown\n3. Read the screen after loading and check the welcome popup and how long it stays",

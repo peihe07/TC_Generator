@@ -24,7 +24,7 @@
    "tc_title": "Seat does not move when the Profile switches during motion",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Seat does not move when the Profile switches during motion",
+   "test_item": "Seat does not move when the Profile switches during motion\n(Verifies that the seat does not move when a Profile is switched in motion and that a popup reports it)",
    "pre_conditions": "1. Two Driver Profiles exist, each linked to a different memory seat position\n2. Driver Profile A is active and the vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Read and record the current seat position\n2. Bring the vehicle into motion\n3. Switch to Driver Profile B and check that the seat position is unchanged",

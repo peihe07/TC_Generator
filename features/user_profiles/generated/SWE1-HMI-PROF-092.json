@@ -23,7 +23,7 @@
    "tc_title": "Avatar selection screen opens from avatar or Change Avatar",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Avatar selection screen opens from avatar or Change Avatar",
+   "test_item": "Avatar selection screen opens from avatar or Change Avatar\n(Verifies that the avatar selection screen opens both from the avatar and from the Change Avatar line)",
    "pre_conditions": "1. A Driver Profile is active and the “Edit Profile” tab is displayed\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press anywhere on the avatar\n2. Read the screen and check that the avatar selection screen is displayed\n3. Return to the “Edit Profile” tab\n4. Press anywhere on the “Change Avatar” line and check that the same screen is displayed",

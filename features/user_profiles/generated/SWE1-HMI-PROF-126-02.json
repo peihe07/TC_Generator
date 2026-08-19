@@ -23,7 +23,7 @@
    "tc_title": "Glove Box Lock button greyed out while Valet Mode is active",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Glove Box Lock button greyed out while Valet Mode is active",
+   "test_item": "Glove Box Lock button greyed out while Valet Mode is active\n(Verifies that the Glove Box Lock button is greyed out while Valet Mode is active)",
    "pre_conditions": "1. The vehicle is equipped with an electronic Glove Box Lock\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Read the Glove Box Lock button before Valet Mode is activated\n2. Activate Valet Mode\n3. Read the Glove Box Lock button and check that it is greyed out",
