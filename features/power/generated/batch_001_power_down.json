@@ -46,10 +46,10 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "mode",
+    "axis": "timing",
     "delta": "本條驗正常開機分支：未轉往 Standby / Bench 時，SplashScreen_Time 到期後顯示 splash"
    },
-   "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。",
+   "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。\n\n**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `timing`。R-P308(a)：與 `…-004` 觀察於**開機序列之不同時點**（`SplashScreen_Time` 對 `StandardScreen_Time`），合 R-P298 訂正後之「事件發生之相對位置不同」。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。",
    "split_index": 1
   },
   {
@@ -125,7 +125,7 @@
     "axis": "timing",
     "delta": "本條驗第二個時序點：StandardScreen_Time 之後顯示 standard screen，與 -01 之 SplashScreen_Time 為獨立部分失效"
    },
-   "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。",
+   "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。\n\n**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `timing`。R-P308(a)：同上，對照方向相反。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。",
    "split_index": 4
   },
   {

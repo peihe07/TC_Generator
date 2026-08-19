@@ -439,6 +439,16 @@
     "main",
     "occurrences"
   ],
+  "build_tcid_history.py": [
+    "DATA",
+    "GEN",
+    "MERGED_INTO",
+    "ROOT",
+    "STAGES",
+    "at",
+    "key",
+    "main"
+  ],
   "build_template_diff.py": [
     "BOOKS",
     "COL_RE",
@@ -461,6 +471,13 @@
     "RULED_MULTI",
     "main",
     "test_set_of"
+  ],
+  "build_unmapped_review_46.py": [
+    "ALL_FIELDS",
+    "DATA",
+    "ROOT",
+    "fence",
+    "main"
   ],
   "build_unmapped_sample_43.py": [
     "DATA",
@@ -817,14 +834,19 @@
     "MODE_RE",
     "OBSERVE_RE",
     "ORDER",
+    "POS_RE",
     "ROOT",
     "TIMING_RE",
     "TRIGGER_STATE_RE",
+    "data_only_lines",
     "diff_lines",
     "main",
     "norm",
+    "own_lines",
+    "position_markers",
     "propose",
-    "self_test"
+    "self_test",
+    "timing_applies"
   ],
   "rejudge_design_method.py": [
     "BENCH_RE",
@@ -1071,5 +1093,13 @@
     "main",
     "make_non_blank",
     "sheet_structure"
+  ],
+  "write_back_47.py": [
+    "DATA",
+    "FEATURE",
+    "OUTPUT",
+    "PREFIX",
+    "ROOT",
+    "main"
   ]
 }

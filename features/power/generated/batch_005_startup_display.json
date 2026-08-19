@@ -327,10 +327,10 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "input_data",
+    "axis": "trigger_state",
     "delta": "本條驗 OR 之左支 phone main screen"
    },
-   "reasoning_note": "",
+   "reasoning_note": "**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `trigger_state`。R-P308(b)：相異為 `on the phone main screen` 對 `on the phone projection call UI` —— **顯示中之畫面為系統狀態**。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。",
    "split_index": 1
   },
   {
@@ -353,10 +353,10 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "input_data",
+    "axis": "trigger_state",
     "delta": "本條驗 OR 之右支 phone projection call UI"
    },
-   "reasoning_note": "",
+   "reasoning_note": "**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `trigger_state`。R-P308(b)：同上，對照方向相反。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。",
    "split_index": 2
   },
   {
@@ -547,7 +547,7 @@
    "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is not installing a firmware image",
    "input_test_data": "$ICSPowerButton$: Pressed for 10 seconds consecutively",
    "test_procedure": "1. Send the input listed in Input Test Data\n2. Read the HU behavior and the stored logs to check the reset\n3. Read both processors to check what the reset covers",
-   "expected_result": "1. The HU performs a radio reset\n2. The HU collects and saves logs at the time of the reset\n3. The main CPU and the CAN micro reset at the time of the reset",
+   "expected_result": "1. The HU performs a radio reset\n2. The HU collects and saves logs at the time of the reset\n3. The reset covers both processors:\n   a. The main CPU resets at the time of the reset\n   b. The CAN micro resets at the time of the reset",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.3",
    "priority": "P0",
    "design_method": "決策表 (Decision Table Testing)",
@@ -560,7 +560,7 @@
     "axis": "input_data",
     "delta": "本條驗重置本身與 log 保存"
    },
-   "reasoning_note": "**合併（R-P294 / §5.7，44 包）**：本條由臨時號 `…-175` 與 `…-176` 合併而成。二者之 `pre_conditions` / `input_test_data` 逐字全同，`test_procedure` 之**施加步驟逐字相同**（`1. Send the input listed in Input Test Data…`），僅觀察步驟與 ER 相異 —— 依 §5.7「一個觸發、多個必然後果歸同一條」，其觀察之差異為同一觸發之不同後果，以多 ER 承接。\n\n**合併之 §6 調和（44 包）**：合併後 ER 為 4 行而 procedure 為 3 步，違 §6 之 1:1（lint 阻斷類 FAIL）。原 `…-176` 之二 ER 行（`The main CPU resets` / `The CAN micro resets`）皆為其「讀二處理器」**同一步**之後果，故併為一行；**二斷言逐字保留，未新增亦未刪除事實**。",
+   "reasoning_note": "**合併（R-P294 / §5.7，44 包）**：本條由臨時號 `…-175` 與 `…-176` 合併而成。二者之 `pre_conditions` / `input_test_data` 逐字全同，`test_procedure` 之**施加步驟逐字相同**（`1. Send the input listed in Input Test Data…`），僅觀察步驟與 ER 相異 —— 依 §5.7「一個觸發、多個必然後果歸同一條」，其觀察之差異為同一觸發之不同後果，以多 ER 承接。\n\n**合併之 §6 調和（44 包）**：合併後 ER 為 4 行而 procedure 為 3 步，違 §6 之 1:1（lint 阻斷類 FAIL）。原 `…-176` 之二 ER 行（`The main CPU resets` / `The CAN micro resets`）皆為其「讀二處理器」**同一步**之後果，故以 §6.1 之 `a.` / `b.` **子項**承接（R-P303(a)，46 包）——**二斷言逐字保留**。44 包曾併為一行，屬權宜之調和；§6.1 之子項為 canon 已有之形式，非權宜。",
    "split_index": 1
   },
   {
@@ -1343,10 +1343,10 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "mode",
+    "axis": "trigger_state",
     "delta": "本條驗首次進入 Timed"
    },
-   "reasoning_note": "",
+   "reasoning_note": "**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `trigger_state`。R-P308(c)：相異為 `Bring the HU to Timed mode` 對 `to Full Operation mode` —— **電源模式為系統狀態**。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。",
    "split_index": 1
   },
   {
@@ -1369,10 +1369,10 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "mode",
+    "axis": "trigger_state",
     "delta": "本條驗首次進入 Full Operation"
    },
-   "reasoning_note": "",
+   "reasoning_note": "**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `trigger_state`。R-P308(c)：同上，對照方向相反。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。",
    "split_index": 2
   },
   {
