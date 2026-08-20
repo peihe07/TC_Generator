@@ -1,3 +1,4 @@
+# 提案版，已由 final_tc_id_map_54.tsv 取代（R-P329 / 54 包）；依 R-P329 保留不刪
 req_id	split_index	gen2_delivered	gen3_new	tc_title
 SWE-PM-001	1		NR1L-PowerManagement-001	Full-Operation keeps the TLM ON with all functionalities available
 SWE-PM-001	2		NR1L-PowerManagement-002	Full-Operation holds in each listed ignition working condition
