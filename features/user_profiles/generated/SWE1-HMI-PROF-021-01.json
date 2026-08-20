@@ -25,7 +25,7 @@
    "tc_title": "Add New Profile removed at the five-Profile maximum",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Add New Profile removed at the five-Profile maximum\n(Verifies that the Add New Profile entry and its icon string disappear at the five-Profile maximum and PU0584 appears instead)",
+   "test_item": "Add New Profile removed at the five-Profile maximum\n\n(Verifies that the Add New Profile entry and its icon string disappear at the five-Profile maximum and PU0584 appears instead)",
    "pre_conditions": "1. Four Driver Profiles exist on the vehicle\n2. A Valet Mode Profile is present on the vehicle\n3. The vehicle does not have a 7-inch screen",
    "input_test_data": "Driver Profile count: 4 (below the maximum) → 5 (at the maximum)",
    "test_procedure": "1. Open the Profile List and read the Add New Profile button\n2. Create one more Driver Profile so that five Driver Profiles exist\n3. Open the Profile List and check that the Add New Profile button is not present",

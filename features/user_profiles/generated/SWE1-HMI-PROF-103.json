@@ -24,7 +24,7 @@
    "tc_title": "User 1 or the last known Profile becomes active after deletion",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "User 1 or the last known Profile becomes active after deletion\n(Verifies that User 1 or the last known Profile becomes active after an unlinked Profile is deleted)",
+   "test_item": "User 1 or the last known Profile becomes active after deletion\n\n(Verifies that User 1 or the last known Profile becomes active after an unlinked Profile is deleted)",
    "pre_conditions": "1. Three Driver Profiles exist and Profile A is active\n2. Profile A is not linked to any memory seat\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Record which Profile was active before Profile A\n2. Delete Profile A and confirm the deletion\n3. Read the Profile List and check which Profile is active",

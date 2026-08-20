@@ -23,7 +23,7 @@
    "tc_title": "Memory seat status hidden when seats are not equipped",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Memory seat status hidden when seats are not equipped\n(Verifies that memory seat status is absent on a vehicle without memory seats)",
+   "test_item": "Memory seat status hidden when seats are not equipped\n\n(Verifies that memory seat status is absent on a vehicle without memory seats)",
    "pre_conditions": "1. The vehicle is not equipped with memory seats\n2. A Driver Profile is active",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the option list and check that no memory seat status is shown",

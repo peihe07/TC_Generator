@@ -24,7 +24,7 @@
    "tc_title": "Keyboard blocks input beyond 12 username characters",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Keyboard blocks input beyond 12 username characters\n(Verifies that the keyboard accepts no further input once the username reaches its 12-character limit)",
+   "test_item": "Keyboard blocks input beyond 12 username characters\n\n(Verifies that the keyboard accepts no further input once the username reaches its 12-character limit)",
    "pre_conditions": "1. The Profile setup flow is open at Step 2 “Enter a username”",
    "input_test_data": "Username input: 11 characters → 12 characters → one further character",
    "test_procedure": "1. Type 11 characters into the username field and read the field\n2. Type the 12th character and read the field\n3. Type one further character and check that the username field still shows 12 characters",

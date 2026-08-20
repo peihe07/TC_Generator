@@ -24,7 +24,7 @@
    "tc_title": "Welcome popup shows the Profile, Switch Users and Get Started",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "Welcome popup shows the Profile, Switch Users and Get Started\n(Verifies that the Welcome popup names the active Profile and offers Switch Users and Get Started)",
+   "test_item": "Welcome popup shows the Profile, Switch Users and Get Started\n\n(Verifies that the Welcome popup names the active Profile and offers Switch Users and Get Started)",
    "pre_conditions": "1. The active Driver Profile is a default Profile\n2. The Welcome popup setting is on for that Profile\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Switch the ignition on and read the popup shown\n2. Read the popup and check the Profile name and the buttons offered",

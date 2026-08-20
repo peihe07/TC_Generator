@@ -24,7 +24,7 @@
    "tc_title": "Profile preferences remembered across a key cycle",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Profile preferences remembered across a key cycle\n(Verifies that a preference set on the active Driver Profile matches its recorded value after an ignition off and on with no Profile switch)",
+   "test_item": "Profile preferences remembered across a key cycle\n\n(Verifies that a preference set on the active Driver Profile matches its recorded value after an ignition off and on with no Profile switch)",
    "pre_conditions": "1. A Driver Profile is active\n2. The vehicle is stationary",
    "input_test_data": "Preference under test: Cluster Home screen (3.1)",
    "test_procedure": "1. Set the preference under test to a new value and record it\n2. Switch the ignition off and then on again\n3. Read the preference and check that it matches the recorded value",

@@ -24,7 +24,7 @@
    "tc_title": "Status bar returns to its default setup in Valet Mode",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Status bar returns to its default setup in Valet Mode\n(Verifies that the status bar returns to its default layout in Valet Mode so the Profile icon stays visible)",
+   "test_item": "Status bar returns to its default setup in Valet Mode\n\n(Verifies that the status bar returns to its default layout in Valet Mode so the Profile icon stays visible)",
    "pre_conditions": "1. The status bar is configured away from its default setup\n2. Valet Mode is not active\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Record the current status bar setup\n2. Activate Valet Mode\n3. Read the status bar and check that it shows the default setup with the Profile icon visible",

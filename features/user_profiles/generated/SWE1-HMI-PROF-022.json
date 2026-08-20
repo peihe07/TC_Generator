@@ -24,7 +24,7 @@
    "tc_title": "Selecting another Profile switches to it and highlights it",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Selecting another Profile switches to it and highlights it\n(Verifies that selecting Driver Profile B on the All Profiles tab moves the highlight to it without opening the Edit Profile tab)",
+   "test_item": "Selecting another Profile switches to it and highlights it\n\n(Verifies that selecting Driver Profile B on the All Profiles tab moves the highlight to it without opening the Edit Profile tab)",
    "pre_conditions": "1. Two Driver Profiles exist and Driver Profile A is active\n2. The welcome popup is turned on for Driver Profile B\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and record which Profile is highlighted\n2. Select the username of Driver Profile B\n3. Read the screen and check that Driver Profile B is highlighted and no editing screen opened",

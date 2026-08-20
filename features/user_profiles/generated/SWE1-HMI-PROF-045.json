@@ -24,7 +24,7 @@
    "tc_title": "Cloud icon marks Profiles linked to a Connected account",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Cloud icon marks Profiles linked to a Connected account\n(Verifies that a cloud icon appears beside the avatar of a Profile linked to a Connected account)",
+   "test_item": "Cloud icon marks Profiles linked to a Connected account\n\n(Verifies that a cloud icon appears beside the avatar of a Profile linked to a Connected account)",
    "pre_conditions": "1. The vehicle is equipped with connectivity\n2. Driver Profile A is connected with a Connected account\n3. Driver Profile B is not connected with a Connected account\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and read the avatars of both Profiles\n2. Open the “Edit Profile” tab of Driver Profile A and read its avatar",

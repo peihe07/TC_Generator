@@ -24,7 +24,7 @@
    "tc_title": "Head unit usable without setting up a Profile",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Head unit usable without setting up a Profile\n(Verifies that a Profile can be set up with a username and an avatar and that setup is not required to use the head unit)",
+   "test_item": "Head unit usable without setting up a Profile\n\n(Verifies that a Profile can be set up with a username and an avatar and that setup is not required to use the head unit)",
    "pre_conditions": "1. The vehicle is on its default Profile with no username or avatar entered\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Profile section and read the setup entry point\n2. Leave the Profile section without entering a username or an avatar\n3. Operate Media and Climate and check that both respond without a profile setup prompt",

@@ -25,7 +25,7 @@
    "tc_title": "Battery disconnect resets Valet Mode at the next key on",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Battery disconnect resets Valet Mode at the next key on\n(Verifies that disconnecting the battery resets Valet Mode and the last known Driver Profile loads at the next key on)",
+   "test_item": "Battery disconnect resets Valet Mode at the next key on\n\n(Verifies that disconnecting the battery resets Valet Mode and the last known Driver Profile loads at the next key on)",
    "pre_conditions": "1. Valet Mode is active\n2. The last known Driver Profile before Valet Mode is recorded\n3. The vehicle is stationary and the battery can be disconnected on the bench",
    "input_test_data": "Fault injected: battery disconnected while Valet Mode is active",
    "test_procedure": "1. Disconnect the vehicle battery\n2. Reconnect the battery and switch the key on\n3. Read the active Profile and check that Valet Mode is no longer active",

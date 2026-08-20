@@ -35,7 +35,7 @@
    "tc_title": "Edit Profile tab lists options in Table EDPR1 order",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Edit Profile tab lists options in Table EDPR1 order\n(Verifies that the Edit Profile tab lists its options in the Table EDPR1 order with a circled one beside Resume Tutorials)",
+   "test_item": "Edit Profile tab lists options in Table EDPR1 order\n\n(Verifies that the Edit Profile tab lists its options in the Table EDPR1 order with a circled one beside Resume Tutorials)",
    "pre_conditions": "1. The vehicle is an R1 High variant\n2. A Driver Profile is active and setup assistant is not completed for it",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Profile section and select the “Edit Profile” tab\n2. Read the option list and check that the items appear in the Table EDPR1 order",

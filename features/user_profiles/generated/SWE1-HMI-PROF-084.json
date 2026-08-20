@@ -24,7 +24,7 @@
    "tc_title": "Back arrow returns to the previous step keeping selections",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Back arrow returns to the previous step keeping selections\n(Verifies that the back arrow returns to the previous setup step and keeps the selections already made)",
+   "test_item": "Back arrow returns to the previous step keeping selections\n\n(Verifies that the back arrow returns to the previous setup step and keeps the selections already made)",
    "pre_conditions": "1. A New Profile Setup is in progress at the username step\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Enter a username at the username step and record it\n2. Continue to the avatar step and choose an avatar\n3. Press the back arrow and read the username step\n4. Read the username field and check whether it matches step 1",

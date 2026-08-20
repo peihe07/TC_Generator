@@ -30,7 +30,7 @@
    "tc_title": "Bonk tone and message accompany the interruption in motion",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Bonk tone and message accompany the interruption in motion\n(Verifies that interrupting a restricted action in motion is accompanied by a bonk tone and the specified message)",
+   "test_item": "Bonk tone and message accompany the interruption in motion\n\n(Verifies that interrupting a restricted action in motion is accompanied by a bonk tone and the specified message)",
    "pre_conditions": "1. A Driver Profile is active and the Edit Profile tab is available\n2. The vehicle is stationary on a test track and can be brought into motion",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Edit Profile tab and start editing the Profile username\n2. Bring the vehicle into motion\n3. Read the screen and check that the bonk tone and the message are presented",

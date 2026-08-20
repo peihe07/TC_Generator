@@ -24,7 +24,7 @@
    "tc_title": "Restored default Profiles are added to the right",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Restored default Profiles are added to the right\n(Verifies that default Profiles restored without clearing all Profiles are added to the right)",
+   "test_item": "Restored default Profiles are added to the right\n\n(Verifies that default Profiles restored without clearing all Profiles are added to the right)",
    "pre_conditions": "1. Two custom Driver Profiles exist on the vehicle\n2. Not all default Driver Profiles are present\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and record the order of the Profiles\n2. Restore the default Driver Profiles without clearing all Profiles\n3. Open the “All Profiles” tab and read where the restored Defaults are",

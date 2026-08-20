@@ -23,7 +23,7 @@
    "tc_title": "Connected Account line shown when the vehicle has connectivity",
    "test_group": "User Profiles",
    "test_set": "Connected Account",
-   "test_item": "Connected Account line shown when the vehicle has connectivity\n(Verifies that the Connected Account line is always shown on the Edit Profile tab of a connected vehicle)",
+   "test_item": "Connected Account line shown when the vehicle has connectivity\n\n(Verifies that the Connected Account line is always shown on the Edit Profile tab of a connected vehicle)",
    "pre_conditions": "1. The vehicle is equipped with connectivity\n2. A Driver Profile is active\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the option list and check that the Connected Account line item is displayed",

@@ -25,7 +25,7 @@
    "tc_title": "Valet Mode deactivation cancelled on the tenth incorrect PIN",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Valet Mode deactivation cancelled on the tenth incorrect PIN\n(Verifies that the tenth incorrect PIN cancels the Valet Mode deactivation attempt)",
+   "test_item": "Valet Mode deactivation cancelled on the tenth incorrect PIN\n\n(Verifies that the tenth incorrect PIN cancels the Valet Mode deactivation attempt)",
    "pre_conditions": "1. Valet Mode is active and a 4-digit PIN is set\n2. No PIN lockout is in effect",
    "input_test_data": "PIN attempts: 9 incorrect attempts → 10th incorrect attempt",
    "test_procedure": "1. Open the Valet Mode deactivation screen\n2. Enter an incorrect 4-digit PIN nine times\n3. Read the deactivation screen after the ninth attempt\n4. Enter an incorrect 4-digit PIN a tenth time and check that the deactivation is cancelled",

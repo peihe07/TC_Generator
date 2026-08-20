@@ -24,7 +24,7 @@
    "tc_title": "Memory seat button overrides the last known Profile at key-on",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Memory seat button overrides the last known Profile at key-on\n(Verifies that a pressed memory seat button overrides the last known Profile at the start of a key cycle)",
+   "test_item": "Memory seat button overrides the last known Profile at key-on\n\n(Verifies that a pressed memory seat button overrides the last known Profile at the start of a key cycle)",
    "pre_conditions": "1. Two Driver Profiles exist and Driver Profile B was the last active one\n2. Driver Profile A is linked to memory seat button 1",
    "input_test_data": "NA",
    "test_procedure": "1. Switch the ignition off\n2. Select memory seat button 1 and switch the ignition on\n3. Read the active Profile and check that it is Driver Profile A rather than the last known one",

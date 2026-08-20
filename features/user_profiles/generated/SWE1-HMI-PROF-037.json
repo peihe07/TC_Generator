@@ -24,7 +24,7 @@
    "tc_title": "Default Profiles ordered by their memory seat link",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Default Profiles ordered by their memory seat link\n(Verifies that Driver 1, linked to memory seat 1, is the leftmost of the default Profiles on the All Profiles tab)",
+   "test_item": "Default Profiles ordered by their memory seat link\n\n(Verifies that Driver 1, linked to memory seat 1, is the leftmost of the default Profiles on the All Profiles tab)",
    "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Only the default Driver Profiles exist on the vehicle\n3. Driver 1 is linked to memory seat 1\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab\n2. Read the default Profiles and check their order from the left",

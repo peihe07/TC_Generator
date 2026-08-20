@@ -24,7 +24,7 @@
    "tc_title": "Valet Mode cannot be deactivated while the vehicle moves",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Valet Mode cannot be deactivated while the vehicle moves\n(Verifies that Valet Mode cannot be deactivated in motion and that PU0394 appears on entering the Profile section)",
+   "test_item": "Valet Mode cannot be deactivated while the vehicle moves\n\n(Verifies that Valet Mode cannot be deactivated in motion and that PU0394 appears on entering the Profile section)",
    "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary on a test track and can be brought into motion",
    "input_test_data": "NA",
    "test_procedure": "1. Bring the vehicle into motion\n2. Attempt to access the Profile section\n3. Read the screen and check that the unavailability popup is displayed and Valet Mode is still active",

@@ -24,7 +24,7 @@
    "tc_title": "R1 High keeps preferences and begins Tutorials after avatar",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "R1 High keeps preferences and begins Tutorials after avatar\n(Verifies that an R1 High vehicle keeps the current preferences and begins Tutorials without launching the account login)",
+   "test_item": "R1 High keeps preferences and begins Tutorials after avatar\n\n(Verifies that an R1 High vehicle keeps the current preferences and begins Tutorials without launching the account login)",
    "pre_conditions": "1. The vehicle is an R1 High variant\n2. A New Profile Setup is in progress at the avatar step\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Record the current preferences of the active Driver Profile\n2. Choose an avatar and press Save & Continue\n3. Read the screen shown after the avatar step\n4. Read the preferences of the active Driver Profile and compare them with step 1",

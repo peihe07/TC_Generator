@@ -24,7 +24,7 @@
    "tc_title": "Welcome popup links to All Profiles or the last known tab",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Welcome popup links to All Profiles or the last known tab\n(Verifies that Switch Users opens the All Profiles tab while the avatar and Welcome text open the last known tab)",
+   "test_item": "Welcome popup links to All Profiles or the last known tab\n\n(Verifies that Switch Users opens the All Profiles tab while the avatar and Welcome text open the last known tab)",
    "pre_conditions": "1. The welcome popup of the active Profile is displayed\n2. The last known tab of the active Profile is the “Edit Profile” tab\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press “Switch Users” on the welcome popup\n2. Read the screen and check which tab is shown\n3. Return to the welcome popup and press the “Welcome [username]” text\n4. Read the screen and check which tab is shown",

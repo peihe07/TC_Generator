@@ -24,7 +24,7 @@
    "tc_title": "Save, Cancel and Back options on the username step",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Save, Cancel and Back options on the username step\n(Verifies that the username step offers Save, Cancel and Back, with Save leading to step 3 and Cancel asking to confirm)",
+   "test_item": "Save, Cancel and Back options on the username step\n\n(Verifies that the username step offers Save, Cancel and Back, with Save leading to step 3 and Cancel asking to confirm)",
    "pre_conditions": "1. The vehicle is equipped with connectivity\n2. A New Profile Setup is at the username step\n3. The setup was reached through the download step\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Read the screen and record the options offered\n2. Press Save and read the screen\n3. Return to the username step and press Cancel\n4. Read the screen and check which popup is displayed",

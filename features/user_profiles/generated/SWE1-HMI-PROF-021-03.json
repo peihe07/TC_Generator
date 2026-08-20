@@ -24,7 +24,7 @@
    "tc_title": "Max Profiles reached text shown in place of the Add New entry",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Max Profiles reached text shown in place of the Add New entry\n(Verifies that text telling the user to delete a Profile first is shown once the maximum is reached)",
+   "test_item": "Max Profiles reached text shown in place of the Add New entry\n\n(Verifies that text telling the user to delete a Profile first is shown once the maximum is reached)",
    "pre_conditions": "1. Five Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab\n2. Read the screen and check the text shown in place of the Add New entry",

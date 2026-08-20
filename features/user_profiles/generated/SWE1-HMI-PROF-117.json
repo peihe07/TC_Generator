@@ -24,7 +24,7 @@
    "tc_title": "Four-digit PIN required to activate Valet Mode",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Four-digit PIN required to activate Valet Mode\n(Verifies that the four-digit one-time PIN is requested before Valet Mode becomes active)",
+   "test_item": "Four-digit PIN required to activate Valet Mode\n\n(Verifies that the four-digit one-time PIN is requested before Valet Mode becomes active)",
    "pre_conditions": "1. Valet Mode is not active\n2. The vehicle is stationary",
    "input_test_data": "PIN: a 4-digit one-time PIN chosen at activation",
    "test_procedure": "1. Open the “All Profiles” tab and press the Valet Mode button\n2. Read the screen and check that a 4-digit PIN entry is required\n3. Enter a 4-digit PIN and confirm\n4. Read the screen and check that Valet Mode is active",

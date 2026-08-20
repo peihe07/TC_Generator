@@ -24,7 +24,7 @@
    "tc_title": "Profile Setup is presented as a series of popups",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Profile Setup is presented as a series of popups\n(Verifies that every step of the New Profile Setup from the first to the last is presented as a popup)",
+   "test_item": "Profile Setup is presented as a series of popups\n\n(Verifies that every step of the New Profile Setup from the first to the last is presented as a popup)",
    "pre_conditions": "1. A New Profile Setup is in progress at its first step\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Complete each step of the New Profile Setup in turn\n2. Read each screen and check that every step is a popup",

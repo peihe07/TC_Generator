@@ -25,7 +25,7 @@
    "tc_title": "PIN entry restored after the 30-minute lockout elapses",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "PIN entry restored after the 30-minute lockout elapses\n(Verifies that PIN entry is accepted again once the 30-minute lockout has elapsed)",
+   "test_item": "PIN entry restored after the 30-minute lockout elapses\n\n(Verifies that PIN entry is accepted again once the 30-minute lockout has elapsed)",
    "pre_conditions": "1. Valet Mode is active and a 4-digit PIN is set\n2. The vehicle is stationary and can remain powered for the duration of the test",
    "input_test_data": "Elapsed time after the tenth incorrect attempt: 29 min, 30 min",
    "test_procedure": "1. Enter an incorrect 4-digit PIN ten times to trigger the lockout\n2. Attempt a PIN entry after 29 minutes\n3. Attempt a PIN entry after 30 minutes\n4. Enter the correct PIN and check that Valet Mode is no longer active",

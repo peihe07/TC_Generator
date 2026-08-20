@@ -24,7 +24,7 @@
    "tc_title": "Next available default avatar is highlighted automatically",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Next available default avatar is highlighted automatically\n(Verifies that the next available default avatar is highlighted automatically on entering the selection screen)",
+   "test_item": "Next available default avatar is highlighted automatically\n\n(Verifies that the next available default avatar is highlighted automatically on entering the selection screen)",
    "pre_conditions": "1. Two Driver Profiles exist, each using one of the first default avatars\n2. A New Profile Setup is in progress\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the avatar selection screen of the New Profile Setup\n2. Read the screen and check which avatar is highlighted",

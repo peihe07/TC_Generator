@@ -24,7 +24,7 @@
    "tc_title": "PU0585 shown on Get Started without vehicle connectivity",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "PU0585 shown on Get Started without vehicle connectivity\n(Verifies that PU0585 appears on Get Started for a vehicle without connectivity and no Connected Account login screen opens)",
+   "test_item": "PU0585 shown on Get Started without vehicle connectivity\n\n(Verifies that PU0585 appears on Get Started for a vehicle without connectivity and no Connected Account login screen opens)",
    "pre_conditions": "1. The vehicle is not equipped with connectivity",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Profile setup screen carrying the “Get Started” button\n2. Press “Get Started” and check that PU0585 is displayed and the Connected Account Login/Register screen is not displayed",

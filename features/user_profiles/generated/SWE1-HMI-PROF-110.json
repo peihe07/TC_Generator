@@ -23,7 +23,7 @@
    "tc_title": "Connected Account opens the Connected Account App",
    "test_group": "User Profiles",
    "test_set": "Connected Account",
-   "test_item": "Connected Account opens the Connected Account App\n(Verifies that pressing Connected Account opens the Connected Account App)",
+   "test_item": "Connected Account opens the Connected Account App\n\n(Verifies that pressing Connected Account opens the Connected Account App)",
    "pre_conditions": "1. The vehicle is equipped with connectivity\n2. A Driver Profile is active and the “Edit Profile” tab is displayed\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the Connected Account line item\n2. Read the screen and check that the Connected Account App is displayed",

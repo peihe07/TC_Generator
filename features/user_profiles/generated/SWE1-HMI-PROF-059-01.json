@@ -24,7 +24,7 @@
    "tc_title": "Large welcome popup lists active and other Profiles",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Large welcome popup lists active and other Profiles\n(Verifies that the large welcome popup shows the active Profile's username and avatar and lists the other Profiles)",
+   "test_item": "Large welcome popup lists active and other Profiles\n\n(Verifies that the large welcome popup shows the active Profile's username and avatar and lists the other Profiles)",
    "pre_conditions": "1. Two Driver Profiles exist, each with a username, an avatar and a memory seat assignment\n2. Driver Profile A is the active Profile",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile A so that the large welcome popup is displayed\n2. Read the popup and check that the active and the other Profiles are listed",

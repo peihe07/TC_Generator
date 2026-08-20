@@ -24,7 +24,7 @@
    "tc_title": "Avatars already in use are filtered out of the list",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Avatars already in use are filtered out of the list\n(Verifies that avatars already in use are filtered out so that no two Profiles share one)",
+   "test_item": "Avatars already in use are filtered out of the list\n\n(Verifies that avatars already in use are filtered out so that no two Profiles share one)",
    "pre_conditions": "1. Two Driver Profiles exist, each with a different avatar\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab and record the avatars of both Profiles\n2. Start a New Profile Setup and open the avatar selection screen\n3. Read the avatar list and check that the recorded avatars are absent",

@@ -24,7 +24,7 @@
    "tc_title": "Memory seat number shown under the linked Profile avatar",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Memory seat number shown under the linked Profile avatar\n(Verifies that the linked memory seat number appears under the avatar of each applicable Profile)",
+   "test_item": "Memory seat number shown under the linked Profile avatar\n\n(Verifies that the linked memory seat number appears under the avatar of each applicable Profile)",
    "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Driver Profile A is linked to a memory seat position",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab\n2. Read the area under the avatar of Driver Profile A and check the memory seat number shown",

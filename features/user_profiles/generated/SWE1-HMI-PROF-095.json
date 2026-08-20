@@ -24,7 +24,7 @@
    "tc_title": "Active Profile linked to the swapped memory seat position",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Active Profile linked to the swapped memory seat position\n(Verifies that swapping memory seat preferences links the active Profile to that seat position)",
+   "test_item": "Active Profile linked to the swapped memory seat position\n\n(Verifies that swapping memory seat preferences links the active Profile to that seat position)",
    "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Two Driver Profiles exist and Profile A is active\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab and read the memory seat linked to Profile A\n2. Swap the memory seat preference to another position\n3. Read the memory seat status and check that Profile A is linked to the new position",

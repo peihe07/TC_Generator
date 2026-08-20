@@ -24,7 +24,7 @@
    "tc_title": "Clicking outside closes the popup without asking",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "Clicking outside closes the popup without asking\n(Verifies that clicking outside the Welcome popup closes it without asking Remind me Later or Don't Show me Again)",
+   "test_item": "Clicking outside closes the popup without asking\n\n(Verifies that clicking outside the Welcome popup closes it without asking Remind me Later or Don't Show me Again)",
    "pre_conditions": "1. The Welcome popup of the active Profile is displayed\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the screen outside the Welcome popup\n2. Read the screen and check which popups are displayed",

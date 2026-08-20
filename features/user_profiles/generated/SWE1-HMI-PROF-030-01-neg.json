@@ -24,7 +24,7 @@
    "tc_title": "Memory seat link refused outside the Edit Profile screen",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Memory seat link refused outside the Edit Profile screen\n(Verifies that a memory seat cannot be linked to a Profile from anywhere other than the Edit Profile screen)",
+   "test_item": "Memory seat link refused outside the Edit Profile screen\n\n(Verifies that a memory seat cannot be linked to a Profile from anywhere other than the Edit Profile screen)",
    "pre_conditions": "1. Driver Profile A is active and has no memory seat linked\n2. At least one memory seat position is unlinked",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and read its entries\n2. Attempt to link the memory seat position from the “All Profiles” tab and from vehicle settings\n3. Read the seat links and check that Driver Profile A still has none",

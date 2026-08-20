@@ -24,7 +24,7 @@
    "tc_title": "Pressing the Profile button again returns to All Profiles",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Pressing the Profile button again returns to All Profiles\n(Verifies that pressing the Profile button again inside the Profile section returns to the All Profiles tab)",
+   "test_item": "Pressing the Profile button again returns to All Profiles\n\n(Verifies that pressing the Profile button again inside the Profile section returns to the All Profiles tab)",
    "pre_conditions": "1. The Profile section is open on the “Edit Profile” tab\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the Profile button in the status bar\n2. Read the Profile section and check that the “All Profiles” tab is shown",

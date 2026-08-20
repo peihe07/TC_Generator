@@ -24,7 +24,7 @@
    "tc_title": "Closing a custom welcome popup acts as Remind me Later",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Closing a custom welcome popup acts as Remind me Later\n(Verifies that closing a custom welcome popup asks nothing and is treated as Remind me Later)",
+   "test_item": "Closing a custom welcome popup acts as Remind me Later\n\n(Verifies that closing a custom welcome popup asks nothing and is treated as Remind me Later)",
    "pre_conditions": "1. Two Driver Profiles exist and Driver Profile A is customized\n2. The custom welcome popup of Driver Profile A is displayed\n3. The Welcome popup setting is on for both Profiles\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press X on the custom welcome popup\n2. Read the screen and check which popups are displayed\n3. Activate Driver Profile B, then activate Driver Profile A again\n4. Read the screen and check whether the popup is displayed",

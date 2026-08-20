@@ -24,7 +24,7 @@
    "tc_title": "Memory seat buttons move the seat without loading a Profile",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Memory seat buttons move the seat without loading a Profile\n(Verifies that a memory seat button in Valet Mode moves the seat without loading the linked Driver Profile)",
+   "test_item": "Memory seat buttons move the seat without loading a Profile\n\n(Verifies that a memory seat button in Valet Mode moves the seat without loading the linked Driver Profile)",
    "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Driver Profile A is linked to memory seat 1 and its position differs from the current seat position\n3. Valet Mode is active\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Record the active Profile and the seat position\n2. Press the memory seat 1 button\n3. Read the seat position and the active Profile and check that only the seat position changed",

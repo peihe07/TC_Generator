@@ -24,7 +24,7 @@
    "tc_title": "Valet Mode starts from defaults and restores on exit",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Valet Mode starts from defaults and restores on exit\n(Verifies that Valet Mode starts from default preferences and that the previous preferences return when it is exited)",
+   "test_item": "Valet Mode starts from defaults and restores on exit\n\n(Verifies that Valet Mode starts from default preferences and that the previous preferences return when it is exited)",
    "pre_conditions": "1. A Driver Profile with customized preferences is active\n2. Valet Mode is not active\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Record the preferences of the active Profile\n2. Activate Valet Mode\n3. Read the preferences and change one of them\n4. Exit Valet Mode\n5. Read the preferences and check that they match those recorded in step 1",

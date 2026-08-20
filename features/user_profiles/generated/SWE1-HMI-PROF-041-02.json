@@ -23,7 +23,7 @@
    "tc_title": "Active Profile defaults to Driver 1 without memory seats",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Active Profile defaults to Driver 1 without memory seats\n(Verifies that Driver 1 becomes active after clearing on a vehicle without memory seats)",
+   "test_item": "Active Profile defaults to Driver 1 without memory seats\n\n(Verifies that Driver 1 becomes active after clearing on a vehicle without memory seats)",
    "pre_conditions": "1. The vehicle is not equipped with memory seats\n2. Two custom Driver Profiles exist on the vehicle\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the settings and select Clear Personal Data\n2. Press Yes on each confirmation popup PU0626/PU_0129\n3. Read the status bar and check which Driver Profile is active",

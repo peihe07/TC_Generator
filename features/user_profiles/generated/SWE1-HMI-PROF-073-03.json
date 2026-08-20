@@ -24,7 +24,7 @@
    "tc_title": "Spaces count toward the username character limit",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Spaces count toward the username character limit\n(Verifies that a space is accepted in a username and counts toward the 12-character limit)",
+   "test_item": "Spaces count toward the username character limit\n\n(Verifies that a space is accepted in a username and counts toward the 12-character limit)",
    "pre_conditions": "1. A New Profile Setup is at the username step\n2. The username field is empty\n3. The vehicle is stationary",
    "input_test_data": "Username length: 12 → 13 characters (eleven letters plus one space, then one more character)",
    "test_procedure": "1. Type eleven letters and one space, giving twelve characters\n2. Read the field and record the characters accepted\n3. Type a thirteenth character and read the username field",

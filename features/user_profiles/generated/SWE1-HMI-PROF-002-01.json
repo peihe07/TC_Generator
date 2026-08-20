@@ -24,7 +24,7 @@
    "tc_title": "Restore Settings to Default affects only the active Profile",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Restore Settings to Default affects only the active Profile\n(Verifies that Restore Settings to Default resets only the active Profile and keeps its username and avatar)",
+   "test_item": "Restore Settings to Default affects only the active Profile\n\n(Verifies that Restore Settings to Default resets only the active Profile and keeps its username and avatar)",
    "pre_conditions": "1. Two Driver Profiles exist, each with a username and an avatar\n2. Both Profiles have at least one vehicle setting changed from its default\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile A and record its setting, username and avatar\n2. Select “Restore Settings to Default” and confirm it\n3. Read Driver Profile A and check its setting, username and avatar\n4. Activate Driver Profile B and check that its setting is unchanged",

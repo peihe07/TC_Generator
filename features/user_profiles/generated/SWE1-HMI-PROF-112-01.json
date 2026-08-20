@@ -36,7 +36,7 @@
    "tc_title": "Deleted App Store app removed only for the uninstalling user",
    "test_group": "User Profiles",
    "test_set": "Connected Account",
-   "test_item": "Deleted App Store app removed only for the uninstalling user\n(Verifies that deleting an App Store app removes it only for the Profile that deleted it)",
+   "test_item": "Deleted App Store app removed only for the uninstalling user\n\n(Verifies that deleting an App Store app removes it only for the Profile that deleted it)",
    "pre_conditions": "1. Two Driver Profiles exist on the vehicle, each with its own Connected Account\n2. The same App Store app is installed locally for both Profiles\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile A\n2. Record the App Store app shown in the app tray\n3. Delete the App Store app from Driver Profile A\n4. Activate Driver Profile B\n5. Open the app tray and check that the app recorded in step 2 is still present",

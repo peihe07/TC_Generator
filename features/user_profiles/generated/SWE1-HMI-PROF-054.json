@@ -24,7 +24,7 @@
    "tc_title": "Switch Users opens the All Profiles tab",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "Switch Users opens the All Profiles tab\n(Verifies that Switch Users on the Welcome popup closes it and opens the All Profiles tab of the Profile section)",
+   "test_item": "Switch Users opens the All Profiles tab\n\n(Verifies that Switch Users on the Welcome popup closes it and opens the All Profiles tab of the Profile section)",
    "pre_conditions": "1. The Welcome popup with the Switch Users button is displayed\n2. The last used tab of the active Profile is the “Edit Profile” tab\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press Switch Users on the Welcome popup\n2. Read the screen and check which tab of the Profile section is shown",

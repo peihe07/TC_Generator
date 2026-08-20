@@ -24,7 +24,7 @@
    "tc_title": "PU0833 shown when the greyed Glove Box Lock button is pressed",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "PU0833 shown when the greyed Glove Box Lock button is pressed\n(Verifies that pressing the greyed-out Glove Box Lock button shows PU0833)",
+   "test_item": "PU0833 shown when the greyed Glove Box Lock button is pressed\n\n(Verifies that pressing the greyed-out Glove Box Lock button shows PU0833)",
    "pre_conditions": "1. The vehicle is equipped with an electronic Glove Box Lock\n2. Valet Mode is active\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the greyed-out Glove Box Lock button\n2. Read the screen and check that PU0833 is displayed",

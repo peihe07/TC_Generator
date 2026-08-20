@@ -24,7 +24,7 @@
    "tc_title": "Progress popups shown during Restore Settings to Default",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Progress popups shown during Restore Settings to Default\n(Verifies that PU1087 appears after Yes on PU0118 and that PU1088 appears once restoring has completed)",
+   "test_item": "Progress popups shown during Restore Settings to Default\n\n(Verifies that PU1087 appears after Yes on PU0118 and that PU1088 appears once restoring has completed)",
    "pre_conditions": "1. A Driver Profile is active with at least one setting changed from its default\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Select “Restore Settings to Default”\n2. Press Yes on the confirmation popup and check that PU1087 is displayed\n3. Wait for the restore to end and check that PU1088 is displayed",

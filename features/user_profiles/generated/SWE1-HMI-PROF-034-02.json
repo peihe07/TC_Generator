@@ -24,7 +24,7 @@
    "tc_title": "Yes on PU0588 moves the seat to an unlinked active Profile",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Yes on PU0588 moves the seat to an unlinked active Profile\n(Verifies that answering Yes moves the seat to an unlinked active Profile and leaves the former holder unlinked)",
+   "test_item": "Yes on PU0588 moves the seat to an unlinked active Profile\n\n(Verifies that answering Yes moves the seat to an unlinked active Profile and leaves the former holder unlinked)",
    "pre_conditions": "1. Driver Profile A is active and has no memory seat linked\n2. Driver Profile B is linked to the memory seat position under test",
    "input_test_data": "NA",
    "test_procedure": "1. Change the seat position and save it to the memory seat linked to Driver Profile B\n2. Select Yes on PU0588\n3. Read the seat links of both Profiles and check where the seat now belongs",

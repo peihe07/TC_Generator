@@ -24,7 +24,7 @@
    "tc_title": "Active Profile after clearing follows the active memory seat",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Active Profile after clearing follows the active memory seat\n(Verifies that the Profile matching the active memory seat position becomes active after personal data is cleared)",
+   "test_item": "Active Profile after clearing follows the active memory seat\n\n(Verifies that the Profile matching the active memory seat position becomes active after personal data is cleared)",
    "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Memory seat 2 is the currently active seat position\n3. Two custom Driver Profiles exist on the vehicle\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the settings and select Clear Personal Data\n2. Press Yes on each confirmation popup PU0626/PU_0129\n3. Read the status bar and check which Driver Profile is active",

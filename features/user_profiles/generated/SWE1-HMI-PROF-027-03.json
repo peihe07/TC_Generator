@@ -24,7 +24,7 @@
    "tc_title": "Valet Mode Profile cannot be linked to a memory seat",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Valet Mode Profile cannot be linked to a memory seat\n(Verifies that the Valet Mode Profile is never linked to a memory seat position)",
+   "test_item": "Valet Mode Profile cannot be linked to a memory seat\n\n(Verifies that the Valet Mode Profile is never linked to a memory seat position)",
    "pre_conditions": "1. The vehicle is equipped with memory seats\n2. A Valet Mode Profile is present and at least one memory seat is unlinked",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” screen for the Valet Mode Profile\n2. Attempt to link the unlinked memory seat to the Valet Mode Profile\n3. Read the seat links and check that the Valet Mode Profile holds none",

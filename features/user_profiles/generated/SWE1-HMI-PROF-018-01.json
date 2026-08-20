@@ -23,7 +23,7 @@
    "tc_title": "All Profiles is the default tab of the Profile section",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "All Profiles is the default tab of the Profile section\n(Verifies that All Profiles is the tab shown when the Profile section is opened for the first time)",
+   "test_item": "All Profiles is the default tab of the Profile section\n\n(Verifies that All Profiles is the tab shown when the Profile section is opened for the first time)",
    "pre_conditions": "1. The active Driver Profile has never opened the Profile section on this vehicle\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the Profile button in the status bar\n2. Read the Profile section and check that the “All Profiles” tab is shown",

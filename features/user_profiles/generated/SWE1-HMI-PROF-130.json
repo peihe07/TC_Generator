@@ -24,7 +24,7 @@
    "tc_title": "Numeric buttons greyed out once four digits are entered",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Numeric buttons greyed out once four digits are entered\n(Verifies that the numeric buttons remain available at three digits and are greyed out once the fourth is entered)",
+   "test_item": "Numeric buttons greyed out once four digits are entered\n\n(Verifies that the numeric buttons remain available at three digits and are greyed out once the fourth is entered)",
    "pre_conditions": "1. The Valet Mode PIN entry popup is displayed\n2. The vehicle is stationary",
    "input_test_data": "PIN digits entered: 4",
    "test_procedure": "1. Enter three digits and read the numeric buttons\n2. Enter a fourth digit\n3. Read the numeric buttons and check that they are greyed out",

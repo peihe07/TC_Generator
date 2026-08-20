@@ -24,7 +24,7 @@
    "tc_title": "Long press on an avatar drags and reorders Profiles",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Long press on an avatar drags and reorders Profiles\n(Verifies that a long press on an avatar allows dragging and reordering without activating that Profile)",
+   "test_item": "Long press on an avatar drags and reorders Profiles\n\n(Verifies that a long press on an avatar allows dragging and reordering without activating that Profile)",
    "pre_conditions": "1. Three Driver Profiles exist on the vehicle\n2. The first Driver Profile from the left is the active one\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and record the order of the Profiles\n2. Press and hold the avatar of the second Profile\n3. Drag that avatar to the leftmost position and release it\n4. Read the tab and check the order and the active Profile",

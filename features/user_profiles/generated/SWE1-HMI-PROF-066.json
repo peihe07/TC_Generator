@@ -24,7 +24,7 @@
    "tc_title": "New Profile Setup starts from the All Profiles tab",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "New Profile Setup starts from the All Profiles tab\n(Verifies that the option to add a new Profile on the All Profiles tab displays the first step of the New Profile Setup)",
+   "test_item": "New Profile Setup starts from the All Profiles tab\n\n(Verifies that the option to add a new Profile on the All Profiles tab displays the first step of the New Profile Setup)",
    "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and press the option to add a new Profile\n2. Read the screen and check that the New Profile Setup started",

@@ -24,7 +24,7 @@
    "tc_title": "Yes on PU0588 passes the old seat to the next Profile",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Yes on PU0588 passes the old seat to the next Profile\n(Verifies that answering Yes reassigns the seat of an already linked active Profile to the next available Profile)",
+   "test_item": "Yes on PU0588 passes the old seat to the next Profile\n\n(Verifies that answering Yes reassigns the seat of an already linked active Profile to the next available Profile)",
    "pre_conditions": "1. Driver Profile A is active and already linked to its own memory seat position\n2. Driver Profile B is linked to the memory seat position under test and a further Profile has no seat linked",
    "input_test_data": "NA",
    "test_procedure": "1. Change the seat position and save it to the memory seat linked to Driver Profile B\n2. Select Yes on PU0588\n3. Read the seat links of all Profiles and check where each seat now belongs",

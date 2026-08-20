@@ -24,7 +24,7 @@
    "tc_title": "PU0588 prompt when saving a seat linked to another Profile",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "PU0588 prompt when saving a seat linked to another Profile\n(Verifies that PU0588 asks whether to take over the seat when the position belongs to another Profile)",
+   "test_item": "PU0588 prompt when saving a seat linked to another Profile\n\n(Verifies that PU0588 asks whether to take over the seat when the position belongs to another Profile)",
    "pre_conditions": "1. Driver Profile A is active and Driver Profile B is linked to a memory seat position\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Change the seat position\n2. Save the position to the memory seat linked to Driver Profile B\n3. Read the screen and check that PU0588 asks about switching the seat preference",

@@ -24,7 +24,7 @@
    "tc_title": "PU1573 shown when the SPAAK user presses the locked icon",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "PU1573 shown when the SPAAK user presses the locked icon\n(Verifies that PU1573 appears when the SPAAK user presses the locked Profiles icon)",
+   "test_item": "PU1573 shown when the SPAAK user presses the locked icon\n\n(Verifies that PU1573 appears when the SPAAK user presses the locked Profiles icon)",
    "pre_conditions": "1. Valet Mode is active under the SPAAK scenario\n2. The user at the head unit is the SPAAK user\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the Profiles icon with the lock in the status bar\n2. Read the screen and check that PU1573 is displayed",

@@ -24,7 +24,7 @@
    "tc_title": "Setup completion returns to All Profiles with the new Profile",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Setup completion returns to All Profiles with the new Profile\n(Verifies that completing the setup returns to the All Profiles tab with the new Profile active)",
+   "test_item": "Setup completion returns to All Profiles with the new Profile\n\n(Verifies that completing the setup returns to the All Profiles tab with the new Profile active)",
    "pre_conditions": "1. A New Profile Setup is at its final step\n2. Driver Profile A is the active Profile\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Complete the New Profile Setup\n2. Read the screen and check the tab shown and the active Profile",

@@ -24,7 +24,7 @@
    "tc_title": "SPAAK key activates Valet Mode without a PIN",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "SPAAK key activates Valet Mode without a PIN\n(Verifies that a SPAAK key with Valet permission activates Valet Mode automatically without a PIN)",
+   "test_item": "SPAAK key activates Valet Mode without a PIN\n\n(Verifies that a SPAAK key with Valet permission activates Valet Mode automatically without a PIN)",
    "pre_conditions": "1. A SPAAK key with Valet Mode permissions is available\n2. Valet Mode is not active\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Present the SPAAK key with Valet Mode permissions to the vehicle\n2. Read the screen and check that Valet Mode is active without a PIN entry",

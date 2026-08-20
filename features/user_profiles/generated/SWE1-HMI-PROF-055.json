@@ -24,7 +24,7 @@
    "tc_title": "Avatar and Welcome text open the last known tab",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "Avatar and Welcome text open the last known tab\n(Verifies that the avatar and the Welcome text open the last known tab of the Profile section)",
+   "test_item": "Avatar and Welcome text open the last known tab\n\n(Verifies that the avatar and the Welcome text open the last known tab of the Profile section)",
    "pre_conditions": "1. The Welcome popup of the active Profile is displayed\n2. The last known tab of the active Profile is the “Edit Profile” tab\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the Avatar on the Welcome popup\n2. Read the screen and check which tab is shown\n3. Return to the Welcome popup and press the “Welcome [username]” text\n4. Read the screen and check which tab is shown",

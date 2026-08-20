@@ -24,7 +24,7 @@
    "tc_title": "Get Started starts setup and carries over preferences",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "Get Started starts setup and carries over preferences\n(Verifies that Get Started starts the New Profile Setup and carries the current preferences over without a confirmation popup)",
+   "test_item": "Get Started starts setup and carries over preferences\n\n(Verifies that Get Started starts the New Profile Setup and carries the current preferences over without a confirmation popup)",
    "pre_conditions": "1. The active Driver Profile is a default Profile\n2. The Welcome popup with the Get Started button is displayed\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Record the current preferences of the active Driver Profile\n2. Press Get Started on the Welcome popup\n3. Read the screen and check that the New Profile Setup started\n4. Complete the setup and read the preferences of the new Driver Profile",

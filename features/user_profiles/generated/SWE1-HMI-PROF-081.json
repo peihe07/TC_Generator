@@ -24,7 +24,7 @@
    "tc_title": "Editing returns to the originating Edit Profile page",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Editing returns to the originating Edit Profile page\n(Verifies that an edit started from the Edit Profile tab returns to the page it was started from)",
+   "test_item": "Editing returns to the originating Edit Profile page\n\n(Verifies that an edit started from the Edit Profile tab returns to the page it was started from)",
    "pre_conditions": "1. Driver Profile A is the active Profile\n2. The “Edit Profile” tab is open at the page holding the username option\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Record which page of the “Edit Profile” tab is open\n2. Select the option to edit the username and complete the edit\n3. Read the screen and check which page is shown",

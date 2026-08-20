@@ -35,7 +35,7 @@
    "tc_title": "Info icon opens the Local vs Connected Profile screen",
    "test_group": "User Profiles",
    "test_set": "Connected Account",
-   "test_item": "Info icon opens the Local vs Connected Profile screen\n(Verifies that the info icon opens the Local vs Connected Profile screen with its title and two labelled columns)",
+   "test_item": "Info icon opens the Local vs Connected Profile screen\n\n(Verifies that the info icon opens the Local vs Connected Profile screen with its title and two labelled columns)",
    "pre_conditions": "1. The vehicle is not an R1 High variant\n2. The vehicle is not a China-market vehicle\n3. A Driver Profile is active and the Edit Profile tab is available",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Edit Profile tab and read the Connected Account item\n2. Select the info icon and check that the Local vs Connected Profile screen is displayed",

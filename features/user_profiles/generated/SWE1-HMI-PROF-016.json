@@ -24,7 +24,7 @@
    "tc_title": "Highlight states kept after the Profile button is removed",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Highlight states kept after the Profile button is removed\n(Verifies that the highlight state still applies in the status bar edit mode drawer once the button has been removed)",
+   "test_item": "Highlight states kept after the Profile button is removed\n\n(Verifies that the highlight state still applies in the status bar edit mode drawer once the button has been removed)",
    "pre_conditions": "1. The Profile button has been removed from the status bar through status bar customization\n2. The Profile section is closed",
    "input_test_data": "NA",
    "test_procedure": "1. Open the status bar edit mode drawer and record its state\n2. Open the Profile section from the app drawer\n3. Read the Profile button in both the edit mode drawer and the app drawer and check its highlight",

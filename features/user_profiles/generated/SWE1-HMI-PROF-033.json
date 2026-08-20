@@ -23,7 +23,7 @@
    "tc_title": "Saved seat position goes to the Profile linked to that seat",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Saved seat position goes to the Profile linked to that seat\n(Verifies that a newly saved seat position is stored on the Profile linked to that seat)",
+   "test_item": "Saved seat position goes to the Profile linked to that seat\n\n(Verifies that a newly saved seat position is stored on the Profile linked to that seat)",
    "pre_conditions": "1. Driver Profile B is linked to a memory seat position\n2. Driver Profile B is the active Profile",
    "input_test_data": "NA",
    "test_procedure": "1. Change the seat position and record the new position\n2. Save the position to the memory seat linked to Driver Profile B\n3. Read the seat position stored for Driver Profile B and check that it matches",

@@ -24,7 +24,7 @@
    "tc_title": "Selecting another Profile blocked while one is loading",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Selecting another Profile blocked while one is loading\n(Verifies that another Profile cannot be selected while one is still loading)",
+   "test_item": "Selecting another Profile blocked while one is loading\n\n(Verifies that another Profile cannot be selected while one is still loading)",
    "pre_conditions": "1. Three Driver Profiles exist on the vehicle\n2. The welcome popup is turned on for Driver Profile B\n3. Driver Profile A is active and the vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and select Driver Profile B\n2. Attempt to select Driver Profile C while Driver Profile B is still loading\n3. Read the screen and check which Profile becomes active",

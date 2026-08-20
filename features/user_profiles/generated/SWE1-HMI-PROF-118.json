@@ -24,7 +24,7 @@
    "tc_title": "Same four-digit PIN required to leave Valet Mode",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Same four-digit PIN required to leave Valet Mode\n(Verifies that leaving Valet Mode requires the same four-digit PIN used to activate it)",
+   "test_item": "Same four-digit PIN required to leave Valet Mode\n\n(Verifies that leaving Valet Mode requires the same four-digit PIN used to activate it)",
    "pre_conditions": "1. Valet Mode is active and was activated with a known 4-digit PIN\n2. The vehicle is stationary",
    "input_test_data": "PIN: the same 4-digit PIN used at activation; one differing 4-digit PIN",
    "test_procedure": "1. Start the Valet Mode deactivation\n2. Enter a 4-digit PIN that differs from the activation PIN\n3. Enter the same 4-digit PIN used at activation\n4. Read the screen and check that Valet Mode is no longer active",

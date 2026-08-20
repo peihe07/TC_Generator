@@ -23,7 +23,7 @@
    "tc_title": "Verification popup shown before a Profile is deleted",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Verification popup shown before a Profile is deleted\n(Verifies that a confirmation popup appears after delete is chosen and before the Profile is removed)",
+   "test_item": "Verification popup shown before a Profile is deleted\n\n(Verifies that a confirmation popup appears after delete is chosen and before the Profile is removed)",
    "pre_conditions": "1. Two Driver Profiles exist and Profile A is active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab and select “Delete Profile”\n2. Read the screen and check that a verification popup is displayed before any deletion",

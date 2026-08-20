@@ -24,7 +24,7 @@
    "tc_title": "R1 High begins Tutorials after the preferences step",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "R1 High begins Tutorials after the preferences step\n(Verifies that an R1 High vehicle follows the preferences step with Tutorials and never launches the account login)",
+   "test_item": "R1 High begins Tutorials after the preferences step\n\n(Verifies that an R1 High vehicle follows the preferences step with Tutorials and never launches the account login)",
    "pre_conditions": "1. The vehicle is an R1 High variant\n2. A New Profile Setup is in progress\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Complete the New Profile Setup up to step 4\n2. Read the screen and check that the preferences prompt is shown\n3. Choose to create from current preferences\n4. Read the screen shown after the preferences step",

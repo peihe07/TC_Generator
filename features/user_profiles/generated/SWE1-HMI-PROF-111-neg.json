@@ -35,7 +35,7 @@
    "tc_title": "No info button next to Connected Account on R1 High",
    "test_group": "User Profiles",
    "test_set": "Connected Account",
-   "test_item": "No info button next to Connected Account on R1 High\n(Verifies that no info button appears next to Connected Account on an R1 High vehicle)",
+   "test_item": "No info button next to Connected Account on R1 High\n\n(Verifies that no info button appears next to Connected Account on an R1 High vehicle)",
    "pre_conditions": "1. The vehicle is an R1 High variant\n2. A Driver Profile is active and the “Edit Profile” tab is available",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the Connected Account line and check that no info button is shown next to it",

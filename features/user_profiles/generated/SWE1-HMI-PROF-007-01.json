@@ -24,7 +24,7 @@
    "tc_title": "Default non-connected Profile present when none is set up",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Default non-connected Profile present when none is set up\n(Verifies that a vehicle without custom Profiles always carries one default Profile named Driver 1)",
+   "test_item": "Default non-connected Profile present when none is set up\n\n(Verifies that a vehicle without custom Profiles always carries one default Profile named Driver 1)",
    "pre_conditions": "1. The vehicle has no custom Driver Profile set up\n2. The vehicle has fewer than 2 memory seat buttons",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab\n2. Read the Profile list and check that a default Profile named “Driver 1” is present",

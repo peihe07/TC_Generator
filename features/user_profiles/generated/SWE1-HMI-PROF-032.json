@@ -25,7 +25,7 @@
    "tc_title": "Preferences saved without pressing memory seat controls",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Preferences saved without pressing memory seat controls\n(Verifies that profile-linked preferences are stored on the vehicle without pressing any memory seat set or save control)",
+   "test_item": "Preferences saved without pressing memory seat controls\n\n(Verifies that profile-linked preferences are stored on the vehicle without pressing any memory seat set or save control)",
    "pre_conditions": "1. A Driver Profile is active with the preference under test available\n2. The vehicle is equipped with memory seat hard and soft controls\n3. The Welcome popup setting is off for the active Driver Profile",
    "input_test_data": "Preference under test: Memory Profiles (Seats, mirrors, steering wheel) (3.5)",
    "test_procedure": "1. Activate Driver Profile A\n2. Adjust the seat, mirror and steering wheel positions\n3. Leave the memory seat set and save controls untouched\n4. Switch the ignition off and on\n5. Read the three positions and check that they match step 2",

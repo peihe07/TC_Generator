@@ -23,7 +23,7 @@
    "tc_title": "Profile linked info page opens from the info line",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Profile linked info page opens from the info line\n(Verifies that the linked-information page opens from the info line and omits the Memory Seat section)",
+   "test_item": "Profile linked info page opens from the info line\n\n(Verifies that the linked-information page opens from the info line and omits the Memory Seat section)",
    "pre_conditions": "1. A Driver Profile is active and the “Edit Profile” tab is displayed\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the “What is linked to my Profile” line\n2. Read the screen and check that the linked info page is displayed",

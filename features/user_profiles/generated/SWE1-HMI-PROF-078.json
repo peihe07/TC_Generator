@@ -24,7 +24,7 @@
    "tc_title": "Avatars are sorted into at least three categories",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Avatars are sorted into at least three categories\n(Verifies that avatars are sorted into at least three categories and that a category button shows its own group)",
+   "test_item": "Avatars are sorted into at least three categories\n\n(Verifies that avatars are sorted into at least three categories and that a category button shows its own group)",
    "pre_conditions": "1. A New Profile Setup is at the avatar step\n2. The vehicle screen is 8.4 inches or larger\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Read the avatar screen and count the category buttons\n2. Press one category button\n3. Read the list and check which avatars are shown",

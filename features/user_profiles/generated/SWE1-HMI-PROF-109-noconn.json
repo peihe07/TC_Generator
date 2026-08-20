@@ -24,7 +24,7 @@
    "tc_title": "Connected Account line hidden without connectivity",
    "test_group": "User Profiles",
    "test_set": "Connected Account",
-   "test_item": "Connected Account line hidden without connectivity\n(Verifies that the Connected Account line is absent on the Edit Profile tab of a vehicle without connectivity)",
+   "test_item": "Connected Account line hidden without connectivity\n\n(Verifies that the Connected Account line is absent on the Edit Profile tab of a vehicle without connectivity)",
    "pre_conditions": "1. The vehicle does not support connectivity\n2. A Driver Profile is active\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the option list and check that no Connected Account line item is shown",

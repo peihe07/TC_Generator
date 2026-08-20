@@ -24,7 +24,7 @@
    "tc_title": "Remind me Later closes the popup until next activation",
    "test_group": "User Profiles",
    "test_set": "Defaults",
-   "test_item": "Remind me Later closes the popup until next activation\n(Verifies that Remind me Later closes the Welcome popup until that Profile is activated again)",
+   "test_item": "Remind me Later closes the popup until next activation\n\n(Verifies that Remind me Later closes the Welcome popup until that Profile is activated again)",
    "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The Welcome popup setting is off for Driver Profile B\n3. The Welcome popup of Driver Profile A is displayed\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press X on the Welcome popup and read the popup shown\n2. Select Remind me Later on that popup\n3. Activate Driver Profile B\n4. Activate Driver Profile A again and read the screen",

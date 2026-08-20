@@ -24,7 +24,7 @@
    "tc_title": "PU1089 on confirmation and PU1090 on successful clearing",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "PU1089 on confirmation and PU1090 on successful clearing\n(Verifies that PU1089 marks the progress of clearing and that PU1090 marks its completion)",
+   "test_item": "PU1089 on confirmation and PU1090 on successful clearing\n\n(Verifies that PU1089 marks the progress of clearing and that PU1090 marks its completion)",
    "pre_conditions": "1. Two custom Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the settings and select Clear Personal Data\n2. Press Yes on each confirmation popup PU0626/PU_0129 and read the popup shown\n3. Wait until the clearing ends and read the popup shown",

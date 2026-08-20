@@ -24,7 +24,7 @@
    "tc_title": "Welcome popup clears immediately on screen interaction",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Welcome popup clears immediately on screen interaction\n(Verifies that the welcome popup clears immediately when the user touches the screen)",
+   "test_item": "Welcome popup clears immediately on screen interaction\n\n(Verifies that the welcome popup clears immediately when the user touches the screen)",
    "pre_conditions": "1. The welcome popup of the active Profile is displayed\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the screen five seconds after the popup, before the 30-second timeout\n2. Read the screen and check whether the popup is displayed",

@@ -134,7 +134,7 @@ Remarks = reason + anomaly id.
 
 ## 6. Status board — User_Profiles
 
-**最後更新：58 輪 close-out（2026-08-20）。本 feature 之分析層無未結項。**
+**最後更新：59 輪（2026-08-20，Pei 直接指示）。本 feature 之分析層無未結項。**
 
 - [x] **P0** intake complete；missing files：**3 項**（`PU1087`/`PU1088` 內文、
       RD #5、RD #6）—— 皆不擋執行，替代作法見 `DELIVERY_NOTE.md` §4.1
@@ -147,7 +147,7 @@ Remarks = reason + anomaly id.
 - [x] **P5** pilot 16 條 reviewed；其後各批逐批覆核
 - [x] **P6** all batches generated：**189 條，leaf 180 / 180**；
       lint green；placeholder **0**
-- [x] **P7 寫回完成** → `DELIVERY.sha256` **ENTRY 001／002／003／005**
+- [x] **P7 寫回完成** → `DELIVERY.sha256` **ENTRY 001／002／003／005／006**
       （**004 未產出**：56 包曾指定，57 包指示與 AE-1 合併，台帳留「未產出」區塊說明號次跳空）；
       **未 tag、未送客戶目錄、RD 未寄 —— 三者皆屬 Pei**
 
@@ -155,10 +155,10 @@ Remarks = reason + anomaly id.
 
 | pack | 範圍 | 已讀 | 現行檔 |
 |---|---|---|---|
-| 24a | 135–145 | 11 / 11 | `57_review_pack_24a.md` |
-| 24b | 146–156 | 11 / 11 | `57_review_pack_24b.md` |
-| 33a | 157–173 | 17 / 17 | `57_review_pack_33a.md` |
-| 33b | 174–189 | 16 / 16 | `57_review_pack_33b.md` |
+| 24a | 135–145 | 11 / 11 | `59_review_pack_24a.md` |
+| 24b | 146–156 | 11 / 11 | `59_review_pack_24b.md` |
+| 33a | 157–173 | 17 / 17 | `59_review_pack_33a.md` |
+| 33b | 174–189 | 16 / 16 | `59_review_pack_33b.md` |
 
 **189 / 189 全部經第二人逐條讀畢**（56 包 §一：`TC-165` 本輪讀畢，缺陷 0）——
 **分析層之覆核義務結清。**
@@ -189,7 +189,8 @@ Remarks = reason + anomaly id.
 | 閘 | **19 支**（新增 `audit_second_segment`；`audit_consistency` 內另增 IT-1／IT-2）|
 | 方向性案例 | `audit_consistency` **65**、`lint_tcs` 64、`audit_delivery_fields` 16、`audit_second_segment` 13、其餘合計 100+ |
 | 交付前自檢 | **十項**（57 輪新增第 j 項：IT）|
-| 產出 | **ENTRY 001／002／003／005**，皆未交付 |
+| 方向性案例（`audit_delivery_fields`）| **17**（59 輪新增：兩段之間空一行之現行形態）|
+| 產出 | **ENTRY 001／002／003／005／006**；005 已由 Pei 交付，**006 為其後之修訂版，未交付** |
 | 缺件 | **3 項**，皆不擋執行 |
 | 已具名之留白 | **28 條** ＋ `INTR2.)` ＋ A-UP14 |
 | **已知未查之欄位接合** | **9 組**，逐組具名於 canon §9.5 —— **「已知未查」，不是「已查為綠」** |

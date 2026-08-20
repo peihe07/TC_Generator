@@ -24,7 +24,7 @@
    "tc_title": "Driver Profile info page on R1 High omits subscription clause",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Driver Profile info page on R1 High omits subscription clause\n(Verifies that the Connected Account row of the information page omits the subscription sentence on R1 High)",
+   "test_item": "Driver Profile info page on R1 High omits subscription clause\n\n(Verifies that the Connected Account row of the information page omits the subscription sentence on R1 High)",
    "pre_conditions": "1. The vehicle is an R1 High variant\n2. The vehicle is equipped with Navigation\n3. A Driver Profile is active\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Driver Profile info page\n2. Read the Connected Account row and check that its description carries no subscription clause",

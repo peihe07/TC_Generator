@@ -24,7 +24,7 @@
    "tc_title": "Profile-tied settings marked with the icon in the settings screen",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Profile-tied settings marked with the icon in the settings screen\n(Verifies that every profile-linked setting inside the settings screens carries that icon)",
+   "test_item": "Profile-tied settings marked with the icon in the settings screen\n\n(Verifies that every profile-linked setting inside the settings screens carries that icon)",
    "pre_conditions": "1. The vehicle screen is larger than 7 inches\n2. At least one profile-tied setting exists in the “My Profile” tab and one in another tab",
    "input_test_data": "NA",
    "test_procedure": "1. Open the settings screen and the “My Profile” tab\n2. Read the profile-tied setting and check for the icon\n3. Open another settings tab and check that its profile-tied setting carries the icon",

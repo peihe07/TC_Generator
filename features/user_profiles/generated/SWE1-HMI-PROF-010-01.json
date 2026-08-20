@@ -24,7 +24,7 @@
    "tc_title": "Memory seat reassigned to the next available Profile on delete",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Memory seat reassigned to the next available Profile on delete\n(Verifies that deleting a linked Profile reassigns its seat to the next available Profile from the left)",
+   "test_item": "Memory seat reassigned to the next available Profile on delete\n\n(Verifies that deleting a linked Profile reassigns its seat to the next available Profile from the left)",
    "pre_conditions": "1. Three Driver Profiles exist and only one of them is linked to a memory seat position\n2. The two unlinked Profiles are ordered left to right on the “All Profiles” tab",
    "input_test_data": "NA",
    "test_procedure": "1. Read and record the order of the unlinked Profiles\n2. Delete the Profile linked to the memory seat position\n3. Read the seat link and check that it moved to the leftmost unlinked Profile",

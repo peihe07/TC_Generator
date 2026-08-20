@@ -276,6 +276,12 @@ def self_test() -> int:
     case("TI 綠向：兩段齊備 → 綠",
          lambda: audit_test_item([{"tc_id": "F-2",
                                    "test_item": f"{T}\n({P2})"}]), False)
+    # **現行形態**（Pei 2026-08-20）：兩段之間空一行。
+    # 切段先濾空行，故空行不影響判定 —— 此案即釘住該事實，
+    # 使日後有人「順手」把空行拿掉時，不會以為兩種寫法對閘是同一回事。
+    case("**TI 綠向：兩段之間空一行（現行交付形態）→ 綠**",
+         lambda: audit_test_item([{"tc_id": "F-2b",
+                                   "test_item": f"{T}\n\n({P2})"}]), False)
     case("**TI-2 範圍向：第二段僅一詞 → 紅**",
          lambda: audit_test_item([{"tc_id": "F-3",
                                    "test_item": f"{T}\n(Tutorials)"}]), True)

@@ -127,3 +127,35 @@
 #   size : 206499 bytes
 #
 570eb7cd8d1049de0e24f897c4acc376ed6dfd2b9089795991ae799aabbac5f5  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_UserProfiles_20260820_itemdata.xlsx
+
+# ── ENTRY 006 — 2026-08-20 — 第五次寫回：Test Item 兩段之間空一行
+#
+#   type : produced
+#   來源 : inputs/…_SWQT_20260817_ext.xlsx（6372fb6be02f48dc…）
+#   內容 : row 10–198，共 **189 列 = 189 條 TC**，無留空列
+#   對 ENTRY 005 之差異（一項，Pei 2026-08-20 指示）：
+#     **I 欄（Test Item）之兩段之間改為空一行** ——
+#     由 `<tc_title>\n(<句>)` 改為 `<tc_title>\n\n(<句>)`。
+#     改在 `scripts/test_item_part2.py` 之 `compose()`，**單點**；
+#     空行只影響呈現，**不影響任何閘** —— `TI-1`／`G3`／`audit_second_segment`
+#     之切段皆先濾掉空行。已於 `audit_delivery_fields` 加一條方向性案例
+#     釘住現行形態（17/17），使日後有人拿掉空行時不會以為兩種寫法等價。
+#   空白之複查（同輪，Pei 指示「去掉多餘的空格，包括數字前面」）：
+#     交付 13 欄 × 189 列全掃 —— **行尾空白 0、整格前後空白 0、
+#     連續兩個以上空格 0、全形空格 0、不斷行空格 0、tab 0、
+#     數字前異常空白 0**。**未動任何一格。**
+#     兩處「看似多餘」者經查皆為刻意，逐項具名於 59 上繳 §2：
+#       (1) `design_method` 之 `(Functional based ; no specific technique)`
+#           —— 分號前之空格**出自母本「下拉選單」工作表之逐字值**，
+#           改了即與 DV 不符；那是客戶的枚舉字串，不是我方的排版
+#       (2) `M` 欄 23 行之三格縮排（`   a.` `   b.` …，見 TC-039／013／076）
+#           —— §6.1 之子層列舉，且 `K-3` 之 `SUBLIST = ^\s+[a-z]\.\s`
+#           **以該縮排為抑制條件**：拿掉縮排，三條會轉紅且層級消失
+#   未改 : remarks 仍全空；A-UP14 仍依我方 spec 生成；
+#          `TC-167` 之 specification_reference 仍為具名缺口
+#   閘   : 十項交付前自檢全綠；`audit_delivery_fields` **17/17**（新增空行案例）；
+#          全閘自我測試綠；`verify_dv_integrity` 違規 0
+#   交付 : **未交付**。送客戶目錄屬 Pei（Tier 3）
+#   size : 206495 bytes
+#
+cbd04af652727ae49c18969e87969d195388b6610329ea5c204634e2c01ed3fb  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_UserProfiles_20260820_itemgap.xlsx

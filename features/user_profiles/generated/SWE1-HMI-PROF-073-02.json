@@ -24,7 +24,7 @@
    "tc_title": "Next button stays unavailable while the username is empty",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Next button stays unavailable while the username is empty\n(Verifies that the Next button stays unavailable while the username field is empty and becomes available at one character)",
+   "test_item": "Next button stays unavailable while the username is empty\n\n(Verifies that the Next button stays unavailable while the username field is empty and becomes available at one character)",
    "pre_conditions": "1. A New Profile Setup is at the username step\n2. The username field is empty\n3. The vehicle is stationary",
    "input_test_data": "Username length: 0 → 1 characters",
    "test_procedure": "1. Read the Next button with zero characters in the username field\n2. Type one character into the username field\n3. Read the Next button and check whether it is available",

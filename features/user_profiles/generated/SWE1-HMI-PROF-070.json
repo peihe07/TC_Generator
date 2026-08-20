@@ -25,7 +25,7 @@
    "tc_title": "Profile saved after username and avatar are entered",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Profile saved after username and avatar are entered\n(Verifies that the Profile is saved once a username has been entered and an avatar chosen)",
+   "test_item": "Profile saved after username and avatar are entered\n\n(Verifies that the Profile is saved once a username has been entered and an avatar chosen)",
    "pre_conditions": "1. The Profile setup flow is open at the username step",
    "input_test_data": "NA",
    "test_procedure": "1. Enter a username in the Profile setup flow\n2. Choose an avatar\n3. Switch the ignition off and on\n4. Open the Profile List\n5. Read the list and check that the Profile from steps 1 and 2 is listed",

@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """`Test Item` 第二段之查表（55 包 §一）。
 
-`Test Item` 之內容為兩段：
+`Test Item` 之內容為兩段，**中間空一行**（Pei 2026-08-20 指示）：
 
     <tc_title>
+
     (<一句：本條在測什麼>)
+
+空行只影響**呈現**（Excel 之儲存格內兩段分開），
+不影響任何閘 —— `TI-1`／`G3`／`audit_second_segment` 之切段皆先濾掉空行。
 
 **第二段之來源為各條 `reasoning` 之「驗證目標」句改寫為英文**（§1.2），
 逐條落於 `data/test_item_part2.tsv`，**以 `tc_id` 為鍵** ——
@@ -40,4 +44,4 @@ def compose(tc_id: str, tc_title: str) -> str:
     s = table().get(tc_id)
     if not s:
         raise SystemExit(f"`data/test_item_part2.tsv` 缺 {tc_id} 之第二段")
-    return f"{tc_title}\n({s})"
+    return f"{tc_title}\n\n({s})"

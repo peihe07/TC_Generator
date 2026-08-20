@@ -23,7 +23,7 @@
    "tc_title": "Non-interactable items greyed out in Valet Mode",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "Non-interactable items greyed out in Valet Mode\n(Verifies that every item that is not interactable in Valet Mode is greyed out)",
+   "test_item": "Non-interactable items greyed out in Valet Mode\n\n(Verifies that every item that is not interactable in Valet Mode is greyed out)",
    "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen that contains locked-out items\n2. Read the locked-out items and check that they are greyed out",

@@ -25,7 +25,7 @@
    "tc_title": "PU1088 displayed when default restoring is not confirmed",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "PU1088 displayed when default restoring is not confirmed\n(Verifies that PU1088 is displayed when the head unit or TBM does not confirm that restoring defaults completed)",
+   "test_item": "PU1088 displayed when default restoring is not confirmed\n\n(Verifies that PU1088 is displayed when the head unit or TBM does not confirm that restoring defaults completed)",
    "pre_conditions": "1. A Driver Profile is active\n2. The TBM confirmation path can be interrupted on the test bench",
    "input_test_data": "Fault injected: the completion confirmation from HU or TBM is withheld",
    "test_procedure": "1. Open the vehicle settings and select “Restore Settings to Default”\n2. Press “Yes” in PU_0118 to confirm the restore\n3. Withhold the completion confirmation from HU and TBM\n4. Read the popup shown on the head unit and check that PU1088 is displayed",

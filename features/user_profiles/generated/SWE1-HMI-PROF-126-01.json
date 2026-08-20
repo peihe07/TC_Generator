@@ -24,7 +24,7 @@
    "tc_title": "PU0832 shown when prompting to enter Valet Mode",
    "test_group": "User Profiles",
    "test_set": "Valet Mode",
-   "test_item": "PU0832 shown when prompting to enter Valet Mode\n(Verifies that PU0832 appears when a vehicle with an electronic glove box lock is prompted to enter Valet Mode)",
+   "test_item": "PU0832 shown when prompting to enter Valet Mode\n\n(Verifies that PU0832 appears when a vehicle with an electronic glove box lock is prompted to enter Valet Mode)",
    "pre_conditions": "1. The vehicle is equipped with an electronic Glove Box Lock\n2. Valet Mode is not active\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and press the Valet Mode button\n2. Read the prompt and check that PU0832 is displayed",

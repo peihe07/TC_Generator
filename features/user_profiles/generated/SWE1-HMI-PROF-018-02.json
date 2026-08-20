@@ -24,7 +24,7 @@
    "tc_title": "Last used tab remembered per Profile across key cycles",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Last used tab remembered per Profile across key cycles\n(Verifies that Driver Profile A's last used tab survives a key cycle while Driver Profile B's own tab stays unchanged)",
+   "test_item": "Last used tab remembered per Profile across key cycles\n\n(Verifies that Driver Profile A's last used tab survives a key cycle while Driver Profile B's own tab stays unchanged)",
    "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The last used tab of Driver Profile B is the “All Profiles” tab\n3. The vehicle is stationary\n4. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile A and open the “Edit Profile” tab\n2. Switch the ignition off and then on again\n3. Press the Profile button and read which tab is shown\n4. Activate Driver Profile B and check that the “All Profiles” tab is shown",

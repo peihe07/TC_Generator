@@ -24,7 +24,7 @@
    "tc_title": "None option greyed out until Profiles outnumber memory seats",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "None option greyed out until Profiles outnumber memory seats\n(Verifies that the none option stays unavailable until the Profile count exceeds the memory seat count)",
+   "test_item": "None option greyed out until Profiles outnumber memory seats\n\n(Verifies that the none option stays unavailable until the Profile count exceeds the memory seat count)",
    "pre_conditions": "1. The vehicle is equipped with two memory seats\n2. Two Driver Profiles exist on the vehicle\n3. The vehicle is stationary",
    "input_test_data": "Profile count vs memory seat count: 2 vs 2 (equal) → 3 vs 2 (exceeds)",
    "test_procedure": "1. Open the memory seat option list and read the “none” option\n2. Create a third Driver Profile\n3. Open the memory seat option list and check that the “none” option is available",

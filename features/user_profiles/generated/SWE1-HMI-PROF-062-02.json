@@ -24,7 +24,7 @@
    "tc_title": "Welcome popup clears 30 seconds after display",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Welcome popup clears 30 seconds after display\n(Verifies that the welcome popup clears 30 seconds after it appears when nothing else interacts with it)",
+   "test_item": "Welcome popup clears 30 seconds after display\n\n(Verifies that the welcome popup clears 30 seconds after it appears when nothing else interacts with it)",
    "pre_conditions": "1. The vehicle is stationary\n2. A Driver Profile carrying a Welcome Popup is available",
    "input_test_data": "Elapsed time readings: 29 s, 30 s",
    "test_procedure": "1. Activate the Profile and start a timer\n2. Read the screen at 29 seconds without touching it\n3. Read the screen at 30 seconds and check that the Welcome Popup is cleared",

@@ -23,7 +23,7 @@
    "tc_title": "Avatar unchanged when the screen is exited without saving",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "Avatar unchanged when the screen is exited without saving\n(Verifies that leaving the avatar screen without saving leaves the avatar unchanged)",
+   "test_item": "Avatar unchanged when the screen is exited without saving\n\n(Verifies that leaving the avatar screen without saving leaves the avatar unchanged)",
    "pre_conditions": "1. A Driver Profile with a selected avatar is active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the avatar selection screen and record the current avatar\n2. Select a different avatar without saving\n3. Exit the screen without saving\n4. Read the “Edit Profile” tab and check that the avatar recorded in step 1 is still in use",
