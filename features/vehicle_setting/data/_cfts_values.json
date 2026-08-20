@@ -1,0 +1,366 @@
+{
+ "$EngRun_Stat$": {
+  "f1": [
+   "Engine_On",
+   "IDLE_STBL//UNLIMITED//LIMITED//RUN"
+  ],
+  "f2": []
+ },
+ "$ESS_ENG_ST$": {
+  "f1": [
+   "1h or 2h or 3h or 4h or 5h or 6h or 8h or 9h",
+   "7h: ENS disabled",
+   "7h: ENS disabled",
+   "ENS Disabled",
+   "ENS_DSBL",
+   "Fh: SNA",
+   "SNA"
+  ],
+  "f2": [
+   "ENS_DSBL"
+  ]
+ },
+ "$DriverSide$": {
+  "f1": [
+   "0h: Left Side, 1h: Right Side",
+   "1h: Right Side",
+   "1h: Right hand",
+   "Left Side",
+   "Right Drive",
+   "Right Side",
+   "Right hand drive"
+  ],
+  "f2": []
+ },
+ "$FL_HS_RQ$": {
+  "f1": [
+   "0h: Not Pressed",
+   "0h: Not pressed",
+   "1h: Pressed",
+   "Heated Seat Pressed / HS_PSD",
+   "High",
+   "Low",
+   "Medium",
+   "Not Pressed",
+   "Not Pressed / HS_NOT_PSD",
+   "Off",
+   "Pressed"
+  ],
+  "f2": []
+ },
+ "$VC_VEH_LINE$": {
+  "f1": [
+   "DS or DJ or D2 or DD or DP or DF or DX",
+   "DT",
+   "HDCC",
+   "JL / VEH_JL",
+   "K8 / VEH_K8",
+   "M182/M189",
+   "M189",
+   "M240",
+   "M4 OR MP",
+   "RU / VEH_RU",
+   "VEH_LA OR VEH_LD OR VEH_LX",
+   "WL",
+   "WS",
+   "[WS"
+  ],
+  "f2": []
+ },
+ "$Hybrid_Type$": {
+  "f1": [
+   "BEV",
+   "HEV",
+   "HEV OR PHEV OR BSG48 OR BSG12",
+   "PHEV",
+   "PHEV OR BEV OR HEV",
+   "PHEV OR BEV OR REPB OR HEV OR FCEV",
+   "Plugin Hybrid Electric Vehicle",
+   "[PHEV"
+  ],
+  "f2": []
+ },
+ "$PowerMode$": {
+  "f1": [
+   "IGN_OFF",
+   "IGN_RUN",
+   "Ign. off & acc. (4 position switch) / IGN_OFF_ACC",
+   "Ignition lock / IGN_LK",
+   "Ignition off (5 position switch) / IGN_OFF",
+   "Ignition run / IGN_RUN",
+   "Ignition start / IGN_START",
+   "Ignition lock / IGN_LK"
+  ],
+  "f2": []
+ },
+ "$HdRstRelRq$": {
+  "f1": [
+   "Not Pressed",
+   "Not pressed",
+   "Pressed"
+  ],
+  "f2": []
+ },
+ "$RVC_SK_PRSNT$": {
+  "f1": [
+   "Present"
+  ],
+  "f2": []
+ },
+ "$DSP_SK_PRSNT$": {
+  "f1": [
+   "Present"
+  ],
+  "f2": []
+ },
+ "$TGW_DISP_STAT$": {
+  "f1": [],
+  "f2": []
+ },
+ "$Stop_And_Start_cfg$": {
+  "f1": [
+   "Absent",
+   "Present"
+  ],
+  "f2": []
+ },
+ "$HeatedSeatFL$": {
+  "f1": [
+   "0h: Off",
+   "1h: Low",
+   "3h: High",
+   "Heated Seat High / HS_HI",
+   "Heated Seat High/HS_HI",
+   "Heated Seat Low / HS_LO",
+   "Heated Seat Low/HS_LO",
+   "Heated Seat Medium / HS_MED",
+   "Heated Seat Off / HS_OFF",
+   "Heated Seat Off/HS_OFF"
+  ],
+  "f2": [
+   "Heated_seat_high",
+   "Heated_seat_low",
+   "Heated_seat_mid",
+   "Heated_seat_off"
+  ]
+ },
+ "$Heated_Seat_Levels$": {
+  "f1": [
+   "1",
+   "2",
+   "3"
+  ],
+  "f2": [
+   "One Level"
+  ]
+ },
+ "$PrplsnSysAtv$": {
+  "f1": [
+   "Active",
+   "Not Active",
+   "Not Active"
+  ],
+  "f2": []
+ },
+ "$HeatedSeatFR$": {
+  "f1": [
+   "0h: Off",
+   "1h: Low",
+   "3h: High",
+   "Heated Seat High / HS_HI",
+   "Heated Seat High/HS_HI",
+   "Heated Seat Low / HS_LO",
+   "Heated Seat Low/HS_LO",
+   "Heated Seat Medium / HS_MED",
+   "Heated Seat Off / HS_OFF",
+   "Heated Seat Off/HS_OFF"
+  ],
+  "f2": [
+   "Heated_seat_high",
+   "Heated_seat_low",
+   "Heated_seat_mid",
+   "Heated_seat_off"
+  ]
+ },
+ "$FR_HS_RQ$": {
+  "f1": [
+   "0h: Not Pressed",
+   "0h: Not pressed",
+   "1h: Pressed",
+   "Heated Seat Pressed / HS_PSD",
+   "High",
+   "Low",
+   "Medium",
+   "Not Pressed",
+   "Not Pressed / HS_NOT_PSD",
+   "Off",
+   "Pressed"
+  ],
+  "f2": []
+ },
+ "$Heated_Seats$": {
+  "f1": [
+   "Front and Rear Seats",
+   "Present"
+  ],
+  "f2": [
+   "Front Seats"
+  ]
+ },
+ "$Heated_Seats_Levels$": {
+  "f1": [
+   "1"
+  ],
+  "f2": []
+ },
+ "$Heated_Steering_Levels$": {
+  "f1": [
+   "1_Level",
+   "3 Levels",
+   "3_Levels"
+  ],
+  "f2": []
+ },
+ "$HSW_Stat$": {
+  "f1": [
+   "0h: Off",
+   "1h: On",
+   "Heated steering wheel off / HSW_OFF",
+   "OFF",
+   "Off",
+   "On"
+  ],
+  "f2": [
+   "OFF",
+   "ON"
+  ]
+ },
+ "$HSW_Stat_2$": {
+  "f1": [
+   "Heated steering wheel high / HSW_HI",
+   "Heated steering wheel low / HSW_LO",
+   "Heated steering wheel medium / HSW_MED",
+   "Heated steering wheel off / HSW_OFF"
+  ],
+  "f2": []
+ },
+ "$HSW_RQ_TGW$": {
+  "f1": [
+   "0h: Not Pressed",
+   "0h: Not pressed",
+   "1h: Pressed",
+   "High",
+   "Low",
+   "Medium",
+   "NOT Pressed / NOT_PSD",
+   "Not Pressed / NOT_PSD",
+   "ON",
+   "Off",
+   "Pressed / PSD"
+  ],
+  "f2": []
+ },
+ "$Heated_Steering_Wheel$": {
+  "f1": [
+   "Present"
+  ],
+  "f2": [
+   "Present"
+  ]
+ },
+ "$HSW_StatFailSts$": {
+  "f1": [],
+  "f2": [
+   "Fail_Not_Present"
+  ]
+ },
+ "$VentedSeatFL$": {
+  "f1": [
+   "0h: Off",
+   "1h: Low",
+   "3h: High",
+   "Vented Seat High / VS_HI",
+   "Vented Seat High/VS_HI",
+   "Vented Seat Low / VS_LO",
+   "Vented Seat Low/VS_LO",
+   "Vented Seat Medium / VS_MED",
+   "Vented Seat Off / HS_OFF",
+   "Vented Seat Off / VS_OFF",
+   "Vented Seat Off/VS_OFF",
+   "Vented seat Medium / VS_MED",
+   "Vented seat medium / VS_MED",
+   "Vented Seat Off / VS_OFF"
+  ],
+  "f2": [
+   "Vented_seat_high",
+   "Vented_seat_low",
+   "Vented_seat_mid",
+   "Vented_seat_off"
+  ]
+ },
+ "$FL_VS_RQ_TGW$": {
+  "f1": [
+   "0h: Not Pressed",
+   "0h: Not pressed",
+   "1h: Pressed",
+   "High",
+   "Low",
+   "Medium",
+   "Not Pressed",
+   "Not Pressed / VS_NOT_PSD",
+   "Off",
+   "Pressed",
+   "Vented Seat Pressed / VS_PSD"
+  ],
+  "f2": []
+ },
+ "$VentedSeatFR$": {
+  "f1": [
+   "0h: Off",
+   "1h: Low",
+   "3h: High",
+   "Vented Seat High / HS_HI",
+   "Vented Seat High / VS_HI",
+   "Vented Seat High/HS_HI",
+   "Vented Seat Low / VS_LO",
+   "Vented Seat Low / VS_Lo",
+   "Vented Seat Low/VS_Lo",
+   "Vented Seat Medium / VS_MED",
+   "Vented Seat Off / HS_OFF",
+   "Vented Seat Off / VS_OFF",
+   "Vented Seat Off/VS_OFF",
+   "Vented seat Medium / VS_MED",
+   "Vented seat medium / VS_MED"
+  ],
+  "f2": [
+   "Vented_seat_high",
+   "Vented_seat_low",
+   "Vented_seat_mid",
+   "Vented_seat_off"
+  ]
+ },
+ "$FR_VS_RQ_TGW$": {
+  "f1": [
+   "0h: Not Pressed",
+   "0h: Not pressed",
+   "1h: Pressed",
+   "High",
+   "Low",
+   "Medium",
+   "Not Pressed",
+   "Not Pressed / VS_NOT_PSD",
+   "Not pressed / VS_NOT_PSD",
+   "Off",
+   "Pressed",
+   "Vented Seat Pressed / VS_PSD"
+  ],
+  "f2": []
+ },
+ "$Heated_Steats_Levels$": {
+  "f1": [],
+  "f2": [
+   "Three Levels",
+   "Two Levels"
+  ]
+ }
+}

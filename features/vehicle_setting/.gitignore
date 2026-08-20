@@ -1,5 +1,6 @@
 # Customer source files - never commit
-inputs/
+inputs/*
+!inputs/INPUTS.sha256
 
 # Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
 # own data/*.json artefacts here as Step 1 starts emitting them.

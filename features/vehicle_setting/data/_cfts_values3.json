@@ -1,0 +1,746 @@
+{
+ "$DSP_SK_PRSNT$": {
+  "by_arch": {
+   "PowerNet": [
+    "Present"
+   ],
+   "Atlantis High": [
+    "Present"
+   ],
+   "All": [
+    "Present"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 2
+  }
+ },
+ "$DriverSide$": {
+  "by_arch": {
+   "PowerNet": [
+    "Left Side",
+    "Right Drive",
+    "Right Side",
+    "Right hand drive"
+   ],
+   "Atlantis High": [
+    "1h: Right Side",
+    "Left Side",
+    "Right Drive",
+    "Right Side",
+    "Right hand drive"
+   ],
+   "Atlantis Mid": [
+    "Left Side",
+    "Right Drive",
+    "Right Side",
+    "Right hand drive"
+   ],
+   "All": [
+    "0h: Left Side, 1h: Right Side",
+    "1h: Right Side",
+    "Left Side",
+    "Right Side"
+   ],
+   "CUSW": [
+    "0h: Left Side, 1h: Right Side",
+    "1h: Right Side",
+    "1h: Right hand"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 30
+  }
+ },
+ "$ESS_ENG_ST$": {
+  "by_arch": {
+   "CUSW": [
+    "1h or 2h or 3h or 4h or 5h or 6h or 8h or 9h",
+    "7h: ENS disabled",
+    "7h: ENS disabled",
+    "ENS_DSBL",
+    "Fh: SNA",
+    "SNA"
+   ],
+   "PowerNet": [
+    "1h or 2h or 3h or 4h or 5h or 6h or 8h or 9h",
+    "ENS_DSBL",
+    "SNA"
+   ],
+   "Atlantis High": [
+    "ENS Disabled",
+    "ENS_DSBL",
+    "SNA"
+   ],
+   "Atlantis Mid": [
+    "ENS_DSBL"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 39,
+   "式二 ==\"值\"": 1
+  }
+ },
+ "$EngRun_Stat$": {
+  "by_arch": {
+   "PowerNet": [
+    "IDLE_STBL//UNLIMITED//LIMITED//RUN"
+   ],
+   "Atlantis High": [
+    "Engine_On",
+    "IDLE_STBL//UNLIMITED//LIMITED//RUN"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 3
+  }
+ },
+ "$FL_HS_RQ$": {
+  "by_arch": {
+   "CUSW": [
+    "0h: Not Pressed",
+    "0h: Not pressed",
+    "1h: Pressed",
+    "Heated Seat Pressed / HS_PSD",
+    "Not Pressed / HS_NOT_PSD"
+   ],
+   "PowerNet": [
+    "Heated Seat Pressed / HS_PSD",
+    "Not Pressed / HS_NOT_PSD",
+    "Pressed"
+   ],
+   "Atlantis High": [
+    "Heated Seat Pressed / HS_PSD",
+    "High",
+    "Low",
+    "Medium",
+    "Not Pressed / HS_NOT_PSD",
+    "Off",
+    "Pressed"
+   ],
+   "Atlantis Mid": [
+    "Heated Seat Pressed / HS_PSD",
+    "Not Pressed",
+    "Not Pressed / HS_NOT_PSD",
+    "Pressed"
+   ],
+   "All": [
+    "1h: Pressed"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 21
+  }
+ },
+ "$FL_VS_RQ_TGW$": {
+  "by_arch": {
+   "CUSW": [
+    "0h: Not Pressed",
+    "0h: Not pressed",
+    "1h: Pressed",
+    "Not Pressed / VS_NOT_PSD",
+    "Vented Seat Pressed / VS_PSD"
+   ],
+   "PowerNet": [
+    "Not Pressed / VS_NOT_PSD",
+    "Vented Seat Pressed / VS_PSD"
+   ],
+   "Atlantis High": [
+    "High",
+    "Low",
+    "Medium",
+    "Not Pressed / VS_NOT_PSD",
+    "Off",
+    "Vented Seat Pressed / VS_PSD"
+   ],
+   "Atlantis Mid": [
+    "Not Pressed",
+    "Pressed"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 14
+  }
+ },
+ "$FR_HS_RQ$": {
+  "by_arch": {
+   "CUSW": [
+    "0h: Not Pressed",
+    "0h: Not pressed",
+    "1h: Pressed",
+    "Heated Seat Pressed / HS_PSD",
+    "Not Pressed / HS_NOT_PSD"
+   ],
+   "PowerNet": [
+    "Heated Seat Pressed / HS_PSD",
+    "Not Pressed / HS_NOT_PSD"
+   ],
+   "Atlantis High": [
+    "Heated Seat Pressed / HS_PSD",
+    "High",
+    "Low",
+    "Medium",
+    "Not Pressed / HS_NOT_PSD",
+    "Off"
+   ],
+   "Atlantis Mid": [
+    "Heated Seat Pressed / HS_PSD",
+    "Not Pressed",
+    "Not Pressed / HS_NOT_PSD",
+    "Pressed"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 16
+  }
+ },
+ "$FR_VS_RQ_TGW$": {
+  "by_arch": {
+   "CUSW": [
+    "0h: Not Pressed",
+    "0h: Not pressed",
+    "1h: Pressed",
+    "Not Pressed / VS_NOT_PSD",
+    "Vented Seat Pressed / VS_PSD"
+   ],
+   "PowerNet": [
+    "Not Pressed / VS_NOT_PSD",
+    "Not pressed / VS_NOT_PSD",
+    "Vented Seat Pressed / VS_PSD"
+   ],
+   "Atlantis High": [
+    "High",
+    "Low",
+    "Medium",
+    "Not Pressed / VS_NOT_PSD",
+    "Off",
+    "Vented Seat Pressed / VS_PSD"
+   ],
+   "Atlantis Mid": [
+    "Not Pressed",
+    "Pressed"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 14
+  }
+ },
+ "$HSW_RQ_TGW$": {
+  "by_arch": {
+   "CUSW": [
+    "0h: Not Pressed",
+    "0h: Not pressed",
+    "1h: Pressed",
+    "Not Pressed / NOT_PSD",
+    "Pressed / PSD"
+   ],
+   "PowerNet": [
+    "NOT Pressed / NOT_PSD",
+    "Not Pressed / NOT_PSD",
+    "Pressed / PSD"
+   ],
+   "Atlantis High": [
+    "High",
+    "Low",
+    "Medium",
+    "NOT Pressed / NOT_PSD",
+    "Not Pressed / NOT_PSD",
+    "Off",
+    "Pressed / PSD"
+   ],
+   "Atlantis Mid": [
+    "ON"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 18
+  }
+ },
+ "$HSW_Stat$": {
+  "by_arch": {
+   "CUSW": [
+    "0h: Off",
+    "1h: On",
+    "OFF"
+   ],
+   "PowerNet": [
+    "0h: Off",
+    "1h: On",
+    "OFF",
+    "Off",
+    "On"
+   ],
+   "Atlantis High": [
+    "0h: Off",
+    "1h: On",
+    "Heated steering wheel off / HSW_OFF",
+    "Off",
+    "On"
+   ],
+   "Atlantis Mid": [
+    "OFF",
+    "ON"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 14,
+   "式二 ==\"值\"": 3,
+   "式三 passes to": 1
+  }
+ },
+ "$HSW_StatFailSts$": {
+  "by_arch": {
+   "Atlantis Mid": [
+    "Fail_Not_Present",
+    "Fail_Present"
+   ]
+  },
+  "by_form": {
+   "式二 ==\"值\"": 2,
+   "式三 passes to": 1
+  }
+ },
+ "$HSW_Stat_2$": {
+  "by_arch": {
+   "CUSW": [
+    "Heated steering wheel high / HSW_HI",
+    "Heated steering wheel low / HSW_LO",
+    "Heated steering wheel medium / HSW_MED",
+    "Heated steering wheel off / HSW_OFF"
+   ],
+   "PowerNet": [
+    "Heated steering wheel high / HSW_HI",
+    "Heated steering wheel low / HSW_LO",
+    "Heated steering wheel medium / HSW_MED",
+    "Heated steering wheel off / HSW_OFF"
+   ],
+   "Atlantis High": [
+    "Heated steering wheel high / HSW_HI",
+    "Heated steering wheel low / HSW_LO",
+    "Heated steering wheel medium / HSW_MED",
+    "Heated steering wheel off / HSW_OFF"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 20
+  }
+ },
+ "$HdRstRelRq$": {
+  "by_arch": {
+   "CUSW": [
+    "Not Pressed",
+    "Not pressed",
+    "Pressed"
+   ],
+   "PowerNet": [
+    "Not Pressed",
+    "Not pressed",
+    "Pressed"
+   ],
+   "Atlantis High": [
+    "Not Pressed",
+    "Not pressed",
+    "Pressed"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 7
+  }
+ },
+ "$HeatedSeatFL$": {
+  "by_arch": {
+   "CUSW": [
+    "0h: Off",
+    "1h: Low",
+    "3h: High",
+    "Heated Seat High/HS_HI",
+    "Heated Seat Low/HS_LO",
+    "Heated Seat Medium / HS_MED",
+    "Heated Seat Off / HS_OFF",
+    "Heated Seat Off/HS_OFF"
+   ],
+   "PowerNet": [
+    "Heated Seat High / HS_HI",
+    "Heated Seat Low / HS_LO",
+    "Heated Seat Medium / HS_MED",
+    "Heated Seat Off / HS_OFF"
+   ],
+   "Atlantis High": [
+    "Heated Seat High / HS_HI",
+    "Heated Seat Low / HS_LO",
+    "Heated Seat Medium / HS_MED",
+    "Heated Seat Off / HS_OFF"
+   ],
+   "Atlantis Mid": [
+    "Heated Seat High / HS_HI",
+    "Heated Seat Low / HS_LO",
+    "Heated Seat Medium / HS_MED",
+    "Heated Seat Off / HS_OFF",
+    "Heated_seat_high",
+    "Heated_seat_low",
+    "Heated_seat_mid",
+    "Heated_seat_off"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 33,
+   "式三 passes to": 9,
+   "式二 ==\"值\"": 7
+  }
+ },
+ "$HeatedSeatFR$": {
+  "by_arch": {
+   "CUSW": [
+    "0h: Off",
+    "1h: Low",
+    "3h: High",
+    "Heated Seat High/HS_HI",
+    "Heated Seat Low/HS_LO",
+    "Heated Seat Medium / HS_MED",
+    "Heated Seat Off / HS_OFF",
+    "Heated Seat Off/HS_OFF"
+   ],
+   "PowerNet": [
+    "Heated Seat High / HS_HI",
+    "Heated Seat Low / HS_LO",
+    "Heated Seat Medium / HS_MED",
+    "Heated Seat Off / HS_OFF"
+   ],
+   "Atlantis High": [
+    "Heated Seat High / HS_HI",
+    "Heated Seat Low / HS_LO",
+    "Heated Seat Medium / HS_MED",
+    "Heated Seat Off / HS_OFF"
+   ],
+   "Atlantis Mid": [
+    "Heated Seat High / HS_HI",
+    "Heated Seat Low / HS_LO",
+    "Heated Seat Medium / HS_MED",
+    "Heated Seat Off / HS_OFF",
+    "Heated_seat_high",
+    "Heated_seat_low",
+    "Heated_seat_mid",
+    "Heated_seat_off"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 33,
+   "式三 passes to": 9,
+   "式二 ==\"值\"": 7
+  }
+ },
+ "$Heated_Seat_Levels$": {
+  "by_arch": {
+   "Atlantis High": [
+    "1",
+    "2",
+    "3"
+   ],
+   "Atlantis Mid": [
+    "One Level"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 12,
+   "式二 ==\"值\"": 1
+  }
+ },
+ "$Heated_Seats$": {
+  "by_arch": {
+   "Atlantis High": [
+    "Front and Rear Seats",
+    "Present"
+   ],
+   "Atlantis Mid": [
+    "Front Seats",
+    "Present"
+   ],
+   "CUSW": [
+    "Present"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 3,
+   "式二 ==\"值\"": 3
+  }
+ },
+ "$Heated_Seats_Levels$": {
+  "by_arch": {
+   "Atlantis Mid": [
+    "1"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 4
+  }
+ },
+ "$Heated_Steats_Levels$": {
+  "by_arch": {
+   "Atlantis Mid": [
+    "Three Levels",
+    "Two Levels"
+   ]
+  },
+  "by_form": {
+   "式二 ==\"值\"": 6
+  }
+ },
+ "$Heated_Steering_Levels$": {
+  "by_arch": {
+   "Atlantis High": [
+    "1_Level",
+    "3 Levels",
+    "3_Levels"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 4
+  }
+ },
+ "$Heated_Steering_Wheel$": {
+  "by_arch": {
+   "Atlantis Mid": [
+    "Present"
+   ],
+   "Atlantis High": [
+    "Present"
+   ],
+   "CUSW": [
+    "Present"
+   ]
+  },
+  "by_form": {
+   "式二 ==\"值\"": 1,
+   "式一 $var$=[值]": 2
+  }
+ },
+ "$Hybrid_Type$": {
+  "by_arch": {
+   "PowerNet": [
+    "[PHEV"
+   ],
+   "Atlantis High": [
+    "PHEV",
+    "[PHEV"
+   ],
+   "All": [
+    "BEV",
+    "HEV",
+    "HEV OR PHEV OR BSG48 OR BSG12",
+    "PHEV OR BEV OR HEV",
+    "PHEV OR BEV OR REPB OR HEV OR FCEV",
+    "Plugin Hybrid Electric Vehicle"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 20
+  }
+ },
+ "$PowerMode$": {
+  "by_arch": {
+   "CUSW": [
+    "IGN_RUN",
+    "Ign. off & acc. (4 position switch) / IGN_OFF_ACC",
+    "Ignition lock / IGN_LK",
+    "Ignition run / IGN_RUN",
+    "Ignition start / IGN_START"
+   ],
+   "PowerNet": [
+    "IGN_RUN",
+    "Ign. off & acc. (4 position switch) / IGN_OFF_ACC",
+    "Ignition lock / IGN_LK",
+    "Ignition run / IGN_RUN",
+    "Ignition start / IGN_START"
+   ],
+   "Atlantis High": [
+    "IGN_RUN",
+    "Ign. off & acc. (4 position switch) / IGN_OFF_ACC",
+    "Ignition lock / IGN_LK",
+    "Ignition run / IGN_RUN",
+    "Ignition start / IGN_START"
+   ],
+   "All": [
+    "IGN_OFF",
+    "IGN_RUN",
+    "Ign. off & acc. (4 position switch) / IGN_OFF_ACC",
+    "Ignition lock / IGN_LK",
+    "Ignition off (5 position switch) / IGN_OFF",
+    "Ignition run / IGN_RUN",
+    "Ignition lock / IGN_LK"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 35
+  }
+ },
+ "$PrplsnSysAtv$": {
+  "by_arch": {
+   "PowerNet": [
+    "Not Active",
+    "Not Active"
+   ],
+   "Atlantis High": [
+    "Active",
+    "Not Active",
+    "Not Active"
+   ],
+   "All": [
+    "Active"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 12
+  }
+ },
+ "$RVC_SK_PRSNT$": {
+  "by_arch": {
+   "PowerNet": [
+    "Present"
+   ],
+   "Atlantis High": [
+    "Present"
+   ],
+   "All": [
+    "Present"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 2
+  }
+ },
+ "$Stop_And_Start_cfg$": {
+  "by_arch": {
+   "Atlantis High": [
+    "Absent",
+    "Present"
+   ],
+   "Atlantis Mid": [
+    "Present"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 3
+  }
+ },
+ "$TGW_DISP_STAT$": {
+  "by_arch": {},
+  "by_form": {}
+ },
+ "$VC_VEH_LINE$": {
+  "by_arch": {
+   "Atlantis High": [
+    "DT",
+    "HDCC",
+    "M189",
+    "WS",
+    "[WS"
+   ],
+   "PowerNet": [
+    "DS or DJ or D2 or DD or DP or DF or DX",
+    "VEH_LA OR VEH_LD OR VEH_LX"
+   ],
+   "All": [
+    "JL / VEH_JL",
+    "K8 / VEH_K8",
+    "M182/M189",
+    "M4 OR MP",
+    "RU / VEH_RU",
+    "WL"
+   ],
+   "Atlantis Mid": [
+    "M189",
+    "M240"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 29
+  }
+ },
+ "$VentedSeatFL$": {
+  "by_arch": {
+   "CUSW": [
+    "0h: Off",
+    "1h: Low",
+    "3h: High",
+    "Vented Seat High/VS_HI",
+    "Vented Seat Low/VS_LO",
+    "Vented Seat Off / VS_OFF",
+    "Vented Seat Off/VS_OFF",
+    "Vented seat Medium / VS_MED",
+    "Vented seat medium / VS_MED"
+   ],
+   "PowerNet": [
+    "Vented Seat High / VS_HI",
+    "Vented Seat Low / VS_LO",
+    "Vented Seat Medium / VS_MED",
+    "Vented Seat Off / VS_OFF",
+    "Vented seat medium / VS_MED"
+   ],
+   "Atlantis High": [
+    "Vented Seat High / VS_HI",
+    "Vented Seat Low / VS_LO",
+    "Vented Seat Medium / VS_MED",
+    "Vented Seat Off / VS_OFF",
+    "Vented seat medium / VS_MED"
+   ],
+   "Atlantis Mid": [
+    "Vented Seat Off / HS_OFF",
+    "Vented_seat_high",
+    "Vented_seat_low",
+    "Vented_seat_mid",
+    "Vented_seat_off",
+    "Vented Seat Off / VS_OFF"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 29,
+   "式二 ==\"值\"": 7,
+   "式三 passes to": 7
+  }
+ },
+ "$VentedSeatFR$": {
+  "by_arch": {
+   "CUSW": [
+    "0h: Off",
+    "1h: Low",
+    "3h: High",
+    "Vented Seat High/HS_HI",
+    "Vented Seat Low/VS_Lo",
+    "Vented Seat Off / VS_OFF",
+    "Vented Seat Off/VS_OFF",
+    "Vented seat Medium / VS_MED",
+    "Vented seat medium / VS_MED"
+   ],
+   "PowerNet": [
+    "Vented Seat High / HS_HI",
+    "Vented Seat High / VS_HI",
+    "Vented Seat Low / VS_LO",
+    "Vented Seat Low / VS_Lo",
+    "Vented Seat Medium / VS_MED",
+    "Vented Seat Off / VS_OFF",
+    "Vented seat medium / VS_MED"
+   ],
+   "Atlantis High": [
+    "Vented Seat High / VS_HI",
+    "Vented Seat Low / VS_LO",
+    "Vented Seat Low / VS_Lo",
+    "Vented Seat Medium / VS_MED",
+    "Vented Seat Off / VS_OFF",
+    "Vented seat medium / VS_MED"
+   ],
+   "Atlantis Mid": [
+    "Vented Seat Off / HS_OFF",
+    "Vented Seat Off / VS_OFF",
+    "Vented_seat_high",
+    "Vented_seat_low",
+    "Vented_seat_mid",
+    "Vented_seat_off"
+   ]
+  },
+  "by_form": {
+   "式一 $var$=[值]": 32,
+   "式二 ==\"值\"": 7,
+   "式三 passes to": 7
+  }
+ }
+}
