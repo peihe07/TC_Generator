@@ -1,0 +1,59 @@
+token	lid_scope	lid_message	lid_signal	lid_can	dbc	dbc_message	dbc_id	start	length	factor	offset	verdict	detail
+$DSP_SK_PRSNT$	Atlantis(&High)		Display_OFF_SoftKey_Prsnt									NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$DSP_SK_PRSNT$	Atlantis(&High)		Display_OFF_SoftKey	PROXI								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$DriverSide$	Atlantis(&High)	Car_Configuration_1	Driver_Side	PROXI								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$ESS_ENG_ST$	Atlantis High	STATUS_CCAN3	ESS_ENG_ST	CAN-B FD	PDT27_E2A_R4_BHCAN.dbc	STATUS_CCAN3	994	37	4	1	0	ALL_ATTR_MATCH	
+$ESS_ENG_ST$	Atlantis High	ENGINE_FD_2	ESS_ENG_ST	CAN-B FD	PDT27_E2A_R4_BHCAN.dbc	STATUS_CCAN3						MISMATCH	LID 之 message `ENGINE_FD_2` 於 DBC 中不存在；該 signal 實際位於 ['STATUS_CCAN3']
+$ESS_ENG_ST$	Atlantis(&High)	STATUS_CCAN3	ESS_ENG_ST		PDT27_E2A_R4_BHCAN.dbc	STATUS_CCAN3	994	37	4	1	0	ALL_ATTR_MATCH	
+$EngRun_Stat$	Atlantis High	STATUS_CCAN3	EngineSts	CAN-B FD	PDT27_E2A_R4_BHCAN.dbc	STATUS_CCAN3	994	49	2	1	0	ALL_ATTR_MATCH	
+$EngRun_Stat$	Atlantis High	ENGINE_FD_2	EngineSts_W	CAN-B FD	PDT27_E2A_R5_FDCAN8.dbc	ENGINE_FD_2	262	87	2	1	0	ALL_ATTR_MATCH	
+$FL_HS_RQ$	Atlantis High	TELEMATIC_VEHICLE_SETUP3	FL_HS_Tlm	BH-CAN	PDT27_E2A_R4_BHCAN.dbc	TELEMATIC_VEHICLE_SETUP3	1291	61	1	1	0	ALL_ATTR_MATCH	
+$FL_HS_RQ$	Atlantis(&High)	TGW_HVAC_CTRL_M	HeatLeftSeatTgl	CAN-B								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$FL_HS_RQ$	Atlantis(&High)	TELEMATIC_CLIMATE_SETUP	FL_HS_Cmd_Tlm_Req	CAN-B								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$FL_VS_RQ_TGW$	Atlantis High	TELEMATIC_VEHICLE_SETUP3	FL_VS_Tlm	BH-CAN	PDT27_E2A_R4_BHCAN.dbc	TELEMATIC_VEHICLE_SETUP3	1291	59	1	1	0	ALL_ATTR_MATCH	
+$FL_VS_RQ_TGW$	Atlantis(&High)	TELEMATIC_VEHICLE_SETUP2	FL_VS_Cmd_Tlm									NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$FR_HS_RQ$	Atlantis High	TELEMATIC_VEHICLE_SETUP3	FR_HS_Tlm	BH-CAN	PDT27_E2A_R4_BHCAN.dbc	TELEMATIC_VEHICLE_SETUP3	1291	60	1	1	0	ALL_ATTR_MATCH	
+$FR_HS_RQ$	Atlantis(&High)	TGW_HVAC_CTRL_M	HeatRightSeatTgl									NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$FR_HS_RQ$	Atlantis(&High)	TELEMATIC_CLIMATE_SETUP	FR_HS_Cmd_Tlm_Req									NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$FR_VS_RQ_TGW$	Atlantis High	TELEMATIC_VEHICLE_SETUP3	FR_VS_Tlm	BH-CAN	PDT27_E2A_R4_BHCAN.dbc	TELEMATIC_VEHICLE_SETUP3	1291	58	1	1	0	ALL_ATTR_MATCH	
+$HSW_RQ_TGW$	Atlantis High	TELEMATIC_VEHICLE_SETUP3	HSW_Tlm	B-CAN	PDT27_E2A_R4_BHCAN.dbc	TELEMATIC_VEHICLE_SETUP3	1291	57	1	1	0	ALL_ATTR_MATCH	
+$HSW_RQ_TGW$	Atlantis(&High)	TELEMATIC_VEHICLE_SETUP	HSW_Cmd_Tlm									NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$HSW_Stat$	Atlantis High	STATUS_CSWM	HSW_STATSts	CAN-B								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$HSW_Stat$	Atlantis High	STATUS_CSWM	HSW_STATFailSts	CAN-B								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$HSW_Stat$	Atlantis(&High)	STATUS_CSWM	HSW_STATSts									NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$HSW_Stat_2$	Atlantis High	STATUS_CLIMATE8	Tri_Level_HSW_StatSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CLIMATE8	1442	34	3	1	0	ALL_ATTR_MATCH	
+$HdRstRelRq$	Atlantis High	RADIO_B3	HDRstRelRq_3rdRow	B-CAN								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$HeatedSeatFL$	Atlantis High	STATUS_CSWM	FL_HS_STATFailSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	5	1	1	0	VAL_DIFF	值表差異：僅LID ['heated seat high 1 bit signal (fl hs statfailsts)', 'heated seat low', 'heated seat medium']｜僅DBC []
+$HeatedSeatFL$	Atlantis High	STATUS_CSWM	FL_HS_STATSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	7	2	1	0	VAL_DIFF	值表差異：僅LID ['fail not present', 'fail present', 'heated seat high 1 bit signal (fl hs statfailsts)']｜僅DBC ['heated seat high']
+$HeatedSeatFL$	Atlantis(&High)	STATUS_CSWM	FL_HS_STATFailSts		PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	5	1	1	0	VAL_DIFF	值表差異：僅LID ['heated seat high 1 bit signal (fl hs statfailsts)', 'heated seat low', 'heated seat medium']｜僅DBC []
+$HeatedSeatFL$	Atlantis(&High)	STATUS_CSWM	FL_HS_STATSts		PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	7	2	1	0	VAL_DIFF	值表差異：僅LID ['fail not present', 'fail present', 'heated seat high 1 bit signal (fl hs statfailsts)']｜僅DBC ['heated seat high']
+$HeatedSeatFR$	Atlantis High	STATUS_CSWM	FR_HS_STATFailSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	0	1	1	0	VAL_DIFF	值表差異：僅LID ['heated seat high 1 bit signal (fr hs statfailsts)', 'heated seat low', 'heated seat medium']｜僅DBC []
+$HeatedSeatFR$	Atlantis High	STATUS_CSWM	FR_HS_STATSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	2	2	1	0	VAL_DIFF	值表差異：僅LID ['fail not present', 'fail present', 'heated seat high 1 bit signal (fr hs statfailsts)']｜僅DBC ['heated seat high']
+$HeatedSeatFR$	Atlantis(&High)	STATUS_CSWM	FR_HS_STATFailSts		PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	0	1	1	0	VAL_DIFF	值表差異：僅LID ['heated seat high 1 bit signal (fr hs statfailsts)', 'heated seat low', 'heated seat medium']｜僅DBC []
+$HeatedSeatFR$	Atlantis(&High)	STATUS_CSWM	FR_HS_STATSts		PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	2	2	1	0	VAL_DIFF	值表差異：僅LID ['fail not present', 'fail present', 'heated seat high 1 bit signal (fr hs statfailsts)']｜僅DBC ['heated seat high']
+$Heated_Seat_Levels$	Atlantis(&High)		Heated_Seat_Levels	PROXI								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$Heated_Seats$	Atlantis(&High)		Heated_Seats	PROXI								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$Heated_Steering_Levels$	Atlantis(&High)		Heated_Steering_Wheel_Levels	PROXI								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$Heated_Steering_Levels$	Atlantis(&High)		Heated_Steering_Wheel_Levels	PROXI								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$Heated_Steering_Wheel$	Atlantis(&High)		Heated_Steering_Wheel	PROXI								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$Hybrid_Type$	Atlantis(&High)		Hybrid_Type									NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$PowerMode$	Atlantis High	STATUS_BH_BCM2	CmdIgnSts	CAN-B FD	PDT27_E2A_R4_BHCAN.dbc	STATUS_BH_BCM2	1132	15	3	1	0	ALL_ATTR_MATCH	
+$PowerMode$	Atlantis High	BCM_FD_10	CmdIgnSts	CAN-B FD	PDT27_E2A_R5_FDCAN8.dbc	BCM_FD_10	1153	138	3	1	0	ALL_ATTR_MATCH	
+$PowerMode$	Atlantis(&High)	STATUS_BH_BCM2	CmdIgnSts		PDT27_E2A_R4_BHCAN.dbc	STATUS_BH_BCM2	1132	15	3	1	0	VAL_DIFF	值表差異：僅LID ['fail not present', 'fail present', 'sna 1 bit signal (cmdign failsts)']｜僅DBC []
+$PowerMode$	Atlantis(&High)	STATUS_BH_BCM2	CmdIgn_FailSts									NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$PrplsnSysAtv$	Atlantis High	HYBRID_POWERTRAIN1	PropulsionSystemActive	FD	PDT27_E2A_R5_FDCAN8.dbc	HYBRID_POWERTRAIN1	276	408	1	1	0	ALL_ATTR_MATCH	
+$RVC_SK_PRSNT$	Atlantis(&High)		Rear_View_Camera	Atl Atl High PROXI								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$RVC_SK_PRSNT$	Atlantis(&High)		Rear_View_Camera_Soft_Button	Atl Atl High PROXI								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$Stop_And_Start_cfg$	Atlantis(&High)	Car_Configuration_1	Stop_And_Start	CAN-B								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$TGW_DISP_STAT$	Atlantis High	TELEMATIC_DISPLAY2	TGW_DISP_STATSts	CAN-B CAN-FD	PDT27_E2A_R4_BHCAN.dbc	TELEMATIC_DISPLAY2	1500	0	4	1	0	VAL_DIFF	值表差異：僅LID ['diplay closed']｜僅DBC ['display closed']
+$TGW_DISP_STAT$	Atlantis High	TELEMATIC_FD_4	TGW_DISP_STATSts	CAN-B CAN-FD	PDT27_E2A_R5_FDCAN8.dbc	TELEMATIC_FD_4	1427	79	4	1	0	VAL_DIFF	值表差異：僅LID ['diplay closed']｜僅DBC ['display closed']
+$TGW_DISP_STAT$	Atlantis(&High)	TELEMATIC_DISPLAY2	TGW_DISP_STATSts		PDT27_E2A_R4_BHCAN.dbc	TELEMATIC_DISPLAY2	1500	0	4	1	0	VAL_DIFF	值表差異：僅LID ['diplay closed']｜僅DBC ['display closed']
+$VC_VEH_LINE$	Atlantis(&High)	Car_Configuration_15	Vehicle_Line_Configuration	None: Proxi								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
+$VentedSeatFL$	Atlantis High	STATUS_CSWM	FL_VS_STATFailSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	9	1	1	0	VAL_DIFF	值表差異：僅LID ['fail present statsts', 'vented seat high', 'vented seat low']｜僅DBC ['fail present']
+$VentedSeatFL$	Atlantis High	STATUS_CSWM	FL_VS_STATSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	4	2	1	0	VAL_DIFF	值表差異：僅LID ['fail not present', 'fail present statsts']｜僅DBC []
+$VentedSeatFL$	Atlantis(&High)	STATUS_CSWM	FL_VS_STATFailSts		PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	9	1	1	0	VAL_DIFF	值表差異：僅LID ['vented seat high 1 bit signal (fl vs statfailsts)', 'vented seat low', 'vented seat medium']｜僅DBC []
+$VentedSeatFL$	Atlantis(&High)	STATUS_CSWM	FL_VS_STATSts		PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	4	2	1	0	VAL_DIFF	值表差異：僅LID ['fail not present', 'fail present', 'vented seat high 1 bit signal (fl vs statfailsts)']｜僅DBC ['vented seat high']
+$VentedSeatFR$	Atlantis High	STATUS_CSWM	FR_VS_STATSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	15	2	1	0	ALL_ATTR_MATCH	
+$VentedSeatFR$	Atlantis High	STATUS_CSWM	FR_VS_STATFailSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	8	1	1	0	VAL_DIFF	值表差異：僅LID ['vented seat high', 'vented seat low', 'vented seat medium']｜僅DBC ['fail not present', 'fail present']
+$VentedSeatFR$	Atlantis(&High)	STATUS_CSWM	FR_VS_STATSts		PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	15	2	1	0	VAL_DIFF	值表差異：僅LID ['fail not present', 'fail present', 'vented seat high 1 bit signal (fr vs statfailsts)']｜僅DBC ['vented seat high']
+$VentedSeatFR$	Atlantis(&High)	STATUS_CSWM	FR_VS_STATFailSts		PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	8	1	1	0	VAL_DIFF	值表差異：僅LID ['vented seat high 1 bit signal (fr vs statfailsts)', 'vented seat low', 'vented seat medium']｜僅DBC []
