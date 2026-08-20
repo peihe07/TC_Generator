@@ -1,0 +1,35 @@
+swe_id	family	categorization
+SWE1-VC-Stop-StartSystem-001	Common Features	Heading
+SWE1-VC-SwitchLHD/RHDConfiguration-008	Common Features	Heading
+SWE1-VC-Controls-015	Common Features	Heading
+SWE1-VC-PHEVFeatures-016	Common Features	Heading
+SWE1-VC-FeaturesEnableCriteria-018	Common Features	Heading
+SWE1-VC-FeaturesEnableCriteria-019	Common Features	Information
+SWE1-VC-FeaturesEnableCriteria-020	Common Features	Information
+SWE1-VC-ThirdRowHeadrestDump-024	Common Features	Heading
+SWE1-VC-ScreenOFF-046	Common Features	Heading
+SWE1-VC-StopStartSystemBehavior-053	Common Features	Heading
+SWE1-VC-LeftFrontHeatedSeat-001	HeatedSeat	Heading
+SWE1-VC-LeftFrontHeatedSeatButton-002	HeatedSeat	Information
+SWE1-VC-RightFrontHeatedSeat-020	HeatedSeat	Heading
+SWE1-VC-RightFrontHeatedSeat-021	HeatedSeat	Information
+SWE1-VC-OneStageHeatedSeat-037	HeatedSeat	Heading
+SWE1-VC-OneStageHeatedSeat-038	HeatedSeat	Heading
+SWE1-VC-TwoStagesHeatedSeat-053	HeatedSeat	Heading
+SWE1-VC-TwoStagesHeatedSeat-054	HeatedSeat	Heading
+SWE1-VC-ThreeStagesHeatedSeat-075	HeatedSeat	Heading
+SWE1-VC-ThreeStagesHeatedSeat-076	HeatedSeat	Heading
+SWE1-VC-ThreeStagesHeatedSeat-077	HeatedSeat	information
+SWE1-VC-HeatedSteeringWheel-001	Heated Steering Wheel	Heading
+SWE1-VC-HeatedSteeringWheel-002	Heated Steering Wheel	Information
+SWE1-VC-HeatedSteeringWheelManagement-023	Heated Steering Wheel	Heading
+SWE1-VC-HeatedSteeringWheelManagement-024	Heated Steering Wheel	Heading
+SWE1-VC-LeftFrontVentedSeat-001	VentedSeat	Heading
+SWE1-VC-LeftFrontVentedSeat-002	VentedSeat	Information
+SWE1-VC-RightFrontVentedSeat-018	VentedSeat	Heading
+SWE1-VC-RightFrontVentedSeat-019	VentedSeat	Information
+SWE1-VC-TwoStagesVentedSeatsManagement-035	VentedSeat	Heading
+SWE1-VC-TwoStagesVentedSeatsManagement-036	VentedSeat	Heading
+SWE1-VC-ThreeStagesVentedSeatsManagement-057	VentedSeat	Heading
+SWE1-VC-ThreeStagesVentedSeatsManagement-058	VentedSeat	Heading
+SWE1-VC-ThreeStagesVentedSeatsManagement-059	VentedSeat	Information
