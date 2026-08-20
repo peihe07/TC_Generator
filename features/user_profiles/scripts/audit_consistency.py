@@ -689,6 +689,139 @@ def ac1_intra_field(rows) -> list:
     return sorted(hits)
 
 
+
+# ── IT-1（57 包）—— `input_test_data` 之具體值須在步驟或前提中被使用
+#
+# **AE-1**：`TC-166` 之 `input_test_data` 為
+# `Screen pressed about five seconds after the popup appears`，
+# 而其唯一之互動步驟為 `Press the screen while the ... popup is displayed` ——
+# **「約五秒」不出現於任何步驟**。測試員讀到該筆資料，
+# 卻無任何指示告訴他在哪裡用它 —— **該值為孤兒**。
+#
+# **方向與既有閘皆不同**：`G17`／`G18` 查「TC 內之字面值有無 spec 出處」
+# （往上游）；`T-1`／`U-2` 查 ER ↔ procedure 之接合（TC 內，另一組欄位）。
+# **`input_test_data` 這一組從未被納入。**
+#
+# 判準：對 `input_test_data != NA` 之每一條，取其**具體值**
+# —— 含數字之詞（`29`、`10th`、`30-second`、`3.1`）、數字詞與序數
+# （`five`、`tenth` → 正規化為阿拉伯數字）、專有名詞（首字大寫，
+# **但不取全欄之第一個詞** —— 那是句首大寫，非專有名詞）——
+# 逐一要求其出現於 `test_procedure` 或 `pre_conditions`。
+#
+# **綁定引用視同已使用**：步驟或前提若寫
+# `the three preferences listed in Input Test Data` 或 `the preference under test`，
+# 即已指明該欄之用處，**不再逐值比對**（`TC-001` 一族即此形）。
+# 這是**刻意放寬**，其代價見盲區 3。
+#
+# 盲區（R-G11）：
+#   1. **以同義語句表達同一值者抓不到** —— 資料寫 `five seconds`、
+#      步驟寫 `after a short pause`，本閘判綠而孤兒仍在。
+#   2. **只查「有沒有出現」，不查「用得對不對」** ——
+#      步驟提到 `30` 而其語意與資料之 `30` 無關者，本閘判綠。
+#   3. **綁定引用之放寬**：`under test` 一詞即可豁免全欄之逐值比對，
+#      故一筆內容錯誤之資料集只要被指名，本閘不會叫。
+IT_POINTER = re.compile(r"input test data|under test", re.I)
+IT_NUMWORD = {
+    "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11,
+    "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
+    "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19,
+    "twenty": 20,
+    "first": 1, "second": 2, "third": 3, "fourth": 4, "fifth": 5,
+    "sixth": 6, "seventh": 7, "eighth": 8, "ninth": 9, "tenth": 10,
+    "eleventh": 11, "twelfth": 12, "thirteenth": 13, "twentieth": 20,
+}
+IT_TOKEN = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.’'-]*")
+IT_NUM = re.compile(r"\d+(?:\.\d+)?")
+# 全欄第一個詞為句首大寫，非專有名詞；`second` 亦為時間單位，不當序數用
+IT_NOT_ORDINAL = {"second", "seconds"}
+
+
+def _it_haystack(t: dict) -> str:
+    """步驟 ＋ 前提，正規化：小寫、數字詞→阿拉伯數字（兩形並存）。"""
+    raw = (str(t.get("test_procedure", "")) + " \n "
+           + str(t.get("pre_conditions", ""))).lower()
+    extra = []
+    for w in IT_TOKEN.findall(raw):
+        if w in IT_NUMWORD and w not in IT_NOT_ORDINAL:
+            extra.append(str(IT_NUMWORD[w]))
+    return raw + " " + " ".join(extra)
+
+
+def _it_values(data: str) -> list:
+    """→ [(原詞, 需在 haystack 中出現之形)]。標籤（首個冒號之前）不取。"""
+    toks_all = IT_TOKEN.findall(data)
+    body = data.split(":", 1)[1] if ":" in data[:40] else data
+    out = []
+    for w in IT_TOKEN.findall(body):
+        lw = w.lower()
+        nums = IT_NUM.findall(w)
+        if nums:
+            for n in nums:
+                out.append((w, n))
+        elif lw in IT_NUMWORD and lw not in IT_NOT_ORDINAL:
+            out.append((w, str(IT_NUMWORD[lw])))
+        elif w[0].isupper() and (not toks_all or w != toks_all[0]):
+            out.append((w, lw))
+    return out
+
+
+def it1_orphan_data(rows) -> list:
+    bad = []
+    for sec, t in rows:
+        data = str(t.get("input_test_data", "") or "").strip()
+        if data in ("", "NA"):
+            continue
+        hay = _it_haystack(t)
+        if IT_POINTER.search(hay):
+            continue
+        orphans = []
+        for w, need in _it_values(data):
+            if need in hay:
+                continue
+            if need.endswith("s") and need[:-1] in hay:
+                continue
+            if (need + "s") in hay:
+                continue
+            orphans.append(w)
+        if orphans:
+            bad.append((t["tc_id"], sec, sorted(set(orphans)), data[:70]))
+    return sorted(bad)
+
+
+# ── IT-2（57 包）—— §4.5 之欄位歸屬：互動資料不該在 `input_test_data`
+#
+# §4.5 逐字：**互動資料**（tester 選取之按鈕、選項、時點）→ **Procedure step**；
+# `Input Test Data` 留給**獨立資料集**（CAN 值、邊界值、批次測試資料）。
+#
+# **列待判，不轉紅** —— 「這筆值是資料還是互動」須讀該條才判得了：
+# `Username entered for the new Profile: Alex` 之 `Alex` 是資料（值本身），
+# 而 `Screen pressed about five seconds after the popup appears` 是互動（時點）。
+IT2_INTERACT = re.compile(
+    r"\b(pressed|selected|chosen|tapped|held|touched|clicked)\b", re.I)
+IT2_TIMING = re.compile(
+    r"\b(?:seconds?|minutes?|s|min)\s+after\b|\bafter the .{2,30}appears\b",
+    re.I)
+
+
+def it2_field_home(rows) -> list:
+    hits = []
+    for sec, t in rows:
+        data = str(t.get("input_test_data", "") or "").strip()
+        if data in ("", "NA"):
+            continue
+        why = []
+        m = IT2_INTERACT.search(data)
+        if m:
+            why.append(f"互動動詞「{m.group(0)}」")
+        m = IT2_TIMING.search(data)
+        if m:
+            why.append(f"互動之時點「{m.group(0).strip()}」")
+        if why:
+            hits.append((t["tc_id"], sec, "；".join(why), data[:70]))
+    return sorted(hits)
+
+
 def tcs() -> list:
     out = []
     for p in sorted((FEATURE / "generated").glob("*.json")):
@@ -1062,6 +1195,50 @@ SELF_CASES = [
      _tc(priority="P0", priority_basis="啟用之 PIN —— Valet Mode 之防護本身"), False),
     ("P2 之 basis 寫「呈現層」（本級措辭）→ **須綠**", "k4b",
      _tc(priority="P2", priority_basis="變灰之外觀 —— 呈現層"), False),
+
+    # ---- IT-1：`input_test_data` 之值未被步驟或前提使用（57 包）
+    ("**TC-166 之現況**：資料寫「約五秒」而步驟無此值 → **須紅**", "it1",
+     _tc(input_test_data="Screen pressed about five seconds after the popup "
+                         "appears",
+         pre_conditions="1. Valet Mode is active on the vehicle\n"
+                        "2. The Valet Mode welcome popup is displayed",
+         test_procedure="1. Press the screen while the Valet Mode welcome "
+                        "popup is displayed\n2. Read the screen and check "
+                        "whether the popup is displayed"), True),
+    ("**TC-173 之現況**：資料之 `Alex` 出現於步驟 1 → **須綠**", "it1",
+     _tc(input_test_data="Username entered for the new Profile: Alex",
+         pre_conditions="1. Driver Profile A exists with the username Alex",
+         test_procedure="1. Start a New Profile Setup and enter the username "
+                        "Alex\n2. Complete the setup"), False),
+    ("**範圍向**：`input_test_data` 為 NA 者不得因本閘轉紅 → **須綠**", "it1",
+     _tc(input_test_data="NA",
+         test_procedure="1. Press the screen\n2. Read the screen"), False),
+    ("**數字詞 ↔ 阿拉伯數字**：資料寫 `4 → 5`、步驟寫 `Four`／`five` → **須綠**",
+     "it1",
+     _tc(input_test_data="Driver Profile count: 4 (below the maximum) → 5 "
+                         "(at the maximum)",
+         pre_conditions="1. Four Driver Profiles exist on the vehicle",
+         test_procedure="1. Create one more Driver Profile so that five "
+                        "Driver Profiles exist"), False),
+    ("**綁定引用**：步驟指名 Input Test Data 而不逐值列出 → **須綠**", "it1",
+     _tc(input_test_data="Preferences under test: Cluster Home screen (3.1), "
+                         "Nav Saved destinations (3.4)",
+         test_procedure="1. Set the three preferences listed in Input Test "
+                        "Data to values different from their current ones"),
+     False),
+    ("**改法之回歸**：時點移入步驟後 → **須綠**", "it1",
+     _tc(input_test_data="NA",
+         test_procedure="1. Press the screen five seconds after the Valet "
+                        "Mode welcome popup appears"), False),
+
+    # ---- IT-2：§4.5 之欄位歸屬（列待判）
+    ("**TC-166 之現況**：互動之時點寫在 `input_test_data` → **須紅**", "it2",
+     _tc(input_test_data="Screen pressed about five seconds after the popup "
+                         "appears"), True),
+    ("**TC-173 之形狀**：值本身為資料（username）→ **須綠**", "it2",
+     _tc(input_test_data="Username entered for the new Profile: Alex"), False),
+    ("**範圍向**：邊界值資料集不得列待判 → **須綠**", "it2",
+     _tc(input_test_data="Elapsed time readings: 29 s, 30 s"), False),
 ]
 
 SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b,
@@ -1069,7 +1246,8 @@ SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b,
          "u2": u2_unused_record, "v1": v1_timing,
          "w1": w1_perfect_pre, "x1": x1_unhandled_popup,
          "y1": y1_pair_claims, "z1": z1_ru56_scope,
-         "ab1": ab1_compare_ends, "ac1": ac1_intra_field}
+         "ab1": ab1_compare_ends, "ac1": ac1_intra_field,
+         "it1": it1_orphan_data, "it2": it2_field_home}
 
 
 def self_test() -> int:
@@ -1176,6 +1354,18 @@ if __name__ == "__main__":
         print(f"  {tid} ({sec})")
         print(f"      A 端（ER 之主詞）：{subj}")
         print(f"      B 端（{step}）")
+
+    it1 = it1_orphan_data(rows)
+    print(f"\n## IT-1 —— `input_test_data` 之具體值未見於步驟或前提："
+          f"{len(it1)} 處\n")
+    for tid, sec, orphans, data in it1:
+        print(f"  {tid} ({sec}) 孤兒值 {orphans} —— 「{data}」")
+
+    it2 = it2_field_home(rows)
+    print(f"\n## IT-2 —— §4.5 欄位歸屬：互動資料在 `input_test_data`："
+          f"{len(it2)} 處待判\n")
+    for tid, sec, why, data in it2:
+        print(f"  {tid} ({sec}) {why} —— 「{data}」")
 
     c = k4b(rows)
     print(f"\n## K-4b —— priority ↔ priority_basis 之措辭：{len(c)} 處待判\n")

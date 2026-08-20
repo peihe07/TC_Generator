@@ -2,7 +2,7 @@
 
 
 <!-- fingerprint:begin -->
-## 語料指紋（G-F，45 包）—— 標記輪次：**45**
+## 語料指紋（G-F，45 包）—— 標記輪次：**57**
 
 > **本表是本檔之保鮮期。** 引用本檔前先跑：`stamp_static_doc.py --verify <本檔>`；
 > **不符即「已過期，拒絕採信」**，須重出後再引。
@@ -11,25 +11,25 @@
 | tc_id | digest |
 |---|---|
 | `NR1L-UserProfiles-109` | `3f5edc65289f` |
-| `NR1L-UserProfiles-110` | `cc888e574ab2` |
+| `NR1L-UserProfiles-110` | `0004731b79bf` |
 | `NR1L-UserProfiles-111` | `1f51bdce1512` |
 | `NR1L-UserProfiles-112` | `fc703babed64` |
 | `NR1L-UserProfiles-113` | `9c306996d5cb` |
 | `NR1L-UserProfiles-114` | `c1eb068a0163` |
 | `NR1L-UserProfiles-115` | `2117868c9e94` |
 | `NR1L-UserProfiles-116` | `9a4af0c2805a` |
-| `NR1L-UserProfiles-117` | `a1bc00dadd68` |
+| `NR1L-UserProfiles-117` | `7594e6c46247` |
 | `NR1L-UserProfiles-118` | `a83e61e5218a` |
 | `NR1L-UserProfiles-119` | `1db3c64c1a68` |
 | `NR1L-UserProfiles-120` | `ab06e87dd6d3` |
-| `NR1L-UserProfiles-121` | `6006c986e17b` |
+| `NR1L-UserProfiles-121` | `27a8842ad6b4` |
 | `NR1L-UserProfiles-122` | `d4df1f4cc518` |
 | `NR1L-UserProfiles-123` | `eb36770838b0` |
 | `NR1L-UserProfiles-124` | `af9357d28ffb` |
 | `NR1L-UserProfiles-125` | `402280009eb4` |
 | `NR1L-UserProfiles-126` | `95787d01c9a5` |
 | `NR1L-UserProfiles-127` | `72254e0cd918` |
-| `NR1L-UserProfiles-128` | `16c4b7821a30` |
+| `NR1L-UserProfiles-128` | `555af39b3d2a` |
 | `NR1L-UserProfiles-129` | `400feaf338ba` |
 | `NR1L-UserProfiles-130` | `914d85d805e4` |
 | `NR1L-UserProfiles-131` | `cdbed6b2bc85` |

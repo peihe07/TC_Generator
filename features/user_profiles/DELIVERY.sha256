@@ -85,3 +85,45 @@
 #   size : 206116 bytes
 #
 1e4dbf2a828d9177c6ccacdfe62e92f62414f7afdc603cb9932706510c1eb677  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_UserProfiles_20260819_testitem.xlsx
+
+# ── ENTRY 004 — **未產出。**
+#
+# 56 包 §三曾指定 ENTRY 004（AD-1 之改寫 ＋ TC-167 之引用欄 ＋ 18 支閘 ＋ 四份 pack）。
+# 其落地前 57 包到達，Pei 指示「AD-1 與 AE-1 合併為同一次重出」（57 包 §四，G-J），
+# **故 ENTRY 004 從未產出，其內容併入 ENTRY 005**。
+# 本區塊只為說明台帳之號次跳空 —— 台帳 append-only，不回頭改號。
+
+# ── ENTRY 005 — 2026-08-20 — 第四次寫回：AD-1（第二段之資訊量）＋ AE-1（孤兒值與 §4.5）
+#
+#   type : produced
+#   來源 : inputs/…_SWQT_20260817_ext.xlsx（6372fb6be02f48dc…）
+#   內容 : row 10–198，共 **189 列 = 189 條 TC**，無留空列
+#   對 ENTRY 003 之差異（兩組，合併於同一次重出）：
+#     一、**AD-1** —— `I` 欄第二段之資訊量。35 條列待判，人工判讀後
+#         **31 條改寫**（帶進該條 ER 所斷言而首段未載之具體內容，
+#         來源仍為 reasoning 之驗證目標句與其 ER，不另行構思）；
+#         3 條（036／041／060）判為**殘餘**，其 ER 亦無首段未載之內容，
+#         改寫將構成自行構思，逾越授權，故不動並具名；
+#         1 條（176）為代理判準之偽陽（第二段已帶「12-character」，
+#         而數字為判準之盲區），維持原樣。
+#     二、**AE-1** —— `K` 欄（Input Test Data）之孤兒值與 §4.5 欄位歸屬。
+#         IT-1 首跑 6 處紅：
+#           `163`／`166` 屬**互動資料**（按下畫面之時點）→ 移入 `L` 欄步驟，
+#                        `K` 欄改 `NA`；`about` 之模糊語隨移入去除（§1.2）
+#           `004`／`100` 屬**獨立資料集**（PLP 表列項）未被引用 → 補入綁定引用
+#           `175`／`176` 屬**邊界值**未被引用 → 補入步驟（`zero characters`／
+#                        `twelve characters`／`thirteenth character`）
+#         重跑後 IT-1 **0 處**。IT-2（§4.5 欄位歸屬）留 1 處待判（`049`），
+#         人工判為**保留** —— 其值為資料本身（一組 4 位 PIN），非互動。
+#   未改 : remarks 仍全空（ENTRY 002 之裁定）；A-UP14 仍依我方 spec 生成；
+#          **TC-167 之 specification_reference 仍為具名缺口** ——
+#          Tutorials L&F 之 PDF 未落 `inputs/`（56 包 §三.2：未落則不再列為待辦）
+#   閘   : **十項**交付前自檢全綠（**新增第 j 項：IT**）；
+#          IT-1／IT-2 立於 `audit_consistency`（56 → 65 方向性案例）；
+#          `audit_second_segment` 13/13（G-K 之三條原文以字面固定，
+#          改寫落地後證明仍在）；全閘自我測試綠；
+#          `verify_dv_integrity` 違規 0（zip 48=48、x14 節點 1、sqref R10:R1411）
+#   交付 : **未交付**。送客戶目錄屬 Pei（Tier 3）
+#   size : 206499 bytes
+#
+570eb7cd8d1049de0e24f897c4acc376ed6dfd2b9089795991ae799aabbac5f5  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_UserProfiles_20260820_itemdata.xlsx

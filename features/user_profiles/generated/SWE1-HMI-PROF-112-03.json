@@ -35,7 +35,7 @@
    "tc_title": "Installed App Store app appears only in the installer app tray",
    "test_group": "User Profiles",
    "test_set": "Connected Account",
-   "test_item": "Installed App Store app appears only in the installer app tray\n(Verifies that an installed App Store app appears only in the app tray of the Profile that installed it)",
+   "test_item": "Installed App Store app appears only in the installer app tray\n(Verifies that an app installed by one Driver Profile is present in that Profile's app tray and absent from another Profile's)",
    "pre_conditions": "1. Two Driver Profiles exist, each with its own Connected Account\n2. The App Store app under test is not installed for either Profile\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile A and install the app from the App Store\n2. Read the app tray of Driver Profile A\n3. Activate Driver Profile B\n4. Open the app tray and check that the app is not present",

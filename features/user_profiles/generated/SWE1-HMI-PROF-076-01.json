@@ -24,7 +24,7 @@
    "tc_title": "Highlight moves to the newly chosen avatar",
    "test_group": "User Profiles",
    "test_set": "Setup Flow",
-   "test_item": "Highlight moves to the newly chosen avatar\n(Verifies that the highlight moves to the newly chosen avatar)",
+   "test_item": "Highlight moves to the newly chosen avatar\n(Verifies that the newly chosen avatar is highlighted and the avatar recorded before the choice is not)",
    "pre_conditions": "1. A New Profile Setup is at the avatar step\n2. One avatar is highlighted by default\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Read the avatar screen and record which avatar is highlighted\n2. Choose a different avatar\n3. Read the screen and check which avatar is highlighted",

@@ -17,6 +17,7 @@ Usage:
 """
 
 import argparse
+import datetime
 import hashlib
 import json
 import re
@@ -212,7 +213,13 @@ def emit(lo: int, hi: int, title: str, other: str) -> None:
 
     print(f"# 覆核用全文 ＋ ER 出處對照 — {BATCH} {title}"
           f"（`{lo:03d}`–`{hi:03d}`）\n")
-    print(f"- 產出層：執行層｜2026-08-18｜**供分析層逐條覆核**")
+    # **日期取產生當下**（58 包）—— 原為寫死之 `2026-08-18`，
+    # 而 57 輪四份 pack 產於 8/20 卻印著 8/18。它不影響判定
+    # （pack 之新鮮度由 §0.0 之語料指紋管，不由日期管），
+    # 但那是「值看起來像決定過」之同型（G-C）：
+    # **一個寫死的日期與一個正確的日期，在紙上長得一模一樣。**
+    today = datetime.date.today().isoformat()
+    print(f"- 產出層：執行層｜{today}｜**供分析層逐條覆核**")
     print(f"- 本檔 **{len(rows)} 條**；另半在 `{other}`")
     print(f"- 由 `scripts/build_review_pack.py` 產生，不經人手轉錄")
     if SUPERSEDES:

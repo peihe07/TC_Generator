@@ -26,8 +26,8 @@
    "test_set": "Welcome Flow",
    "test_item": "Welcome popup clears immediately on screen interaction\n(Verifies that the welcome popup clears immediately when the user touches the screen)",
    "pre_conditions": "1. The welcome popup of the active Profile is displayed\n2. The vehicle is stationary",
-   "input_test_data": "Screen pressed about five seconds after the popup appears, that is before the 30-second timeout",
-   "test_procedure": "1. Press the screen while the welcome popup is displayed\n2. Read the screen and check whether the popup is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the screen five seconds after the popup, before the 30-second timeout\n2. Read the screen and check whether the popup is displayed",
    "expected_result": "1. The screen is pressed while the welcome popup is displayed\n2. The welcome popup is cleared",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4",
    "priority": "P2",
@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "**互動之時點寫在 `input_test_data`** —— 條文之三個觸發為`whichever comes first`，若互動發生在第 30 秒附近，清除之原因即不可歸屬。該時點為**測試方法所要求之值**（J-4），非條文之值，故不寫入 ER。車輛須靜止：否則 motion 分支（`SWE1-HMI-PROF-062-01`）會先於互動成立。",
+   "remarks": "**互動之時點寫在步驟 1**（AE-1，57 包）—— 條文之三個觸發為`whichever comes first`，若互動發生在第 30 秒附近，清除之原因即不可歸屬。該時點為**測試方法所要求之值**（J-4），非條文之值，故不寫入 ER。**原寫於 `input_test_data` 而無步驟引用它** —— 該值為孤兒；且依 §4.5，互動之時點屬 Procedure step，`Input Test Data` 留給獨立資料集，故移入步驟並將該欄改 `NA`。`about` 為 §2 之模糊語，隨移入一併去除。車輛須靜止：否則 motion 分支（`SWE1-HMI-PROF-062-01`）會先於互動成立。",
    "split_flag": false,
    "split_reason": ""
   }

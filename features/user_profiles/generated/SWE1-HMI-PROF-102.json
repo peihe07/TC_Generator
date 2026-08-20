@@ -23,7 +23,7 @@
    "tc_title": "All Profiles tab shown after a Profile is deleted",
    "test_group": "User Profiles",
    "test_set": "Editing",
-   "test_item": "All Profiles tab shown after a Profile is deleted\n(Verifies that the All Profiles tab is shown after a Profile is deleted from the Edit Profile tab)",
+   "test_item": "All Profiles tab shown after a Profile is deleted\n(Verifies that the All Profiles tab is shown once a deletion started on the Edit Profile tab is confirmed)",
    "pre_conditions": "1. Two Driver Profiles exist and Profile A is active\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “Edit Profile” tab and delete Profile A\n2. Confirm the deletion in the verification popup\n3. Read the screen and check that the “All Profiles” tab is displayed",

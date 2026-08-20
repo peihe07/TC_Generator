@@ -24,7 +24,7 @@
    "tc_title": "Default Driver 1 recreated after all Profiles are deleted",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Default Driver 1 recreated after all Profiles are deleted\n(Verifies that the default Driver 1 reappears after every Profile has been deleted)",
+   "test_item": "Default Driver 1 recreated after all Profiles are deleted\n(Verifies that a default Driver 1 with its preferences back at their default values is present again after every Profile has been deleted)",
    "pre_conditions": "1. The default Profile has been customized and its name is still “Driver 1”\n2. The vehicle has fewer than 2 memory seat buttons",
    "input_test_data": "NA",
    "test_procedure": "1. Delete every Profile from the head unit\n2. Open the “All Profiles” tab\n3. Read the Profile list and check that a default “Driver 1” Profile is present again",

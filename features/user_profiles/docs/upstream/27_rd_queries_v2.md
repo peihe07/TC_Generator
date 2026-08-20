@@ -2,7 +2,7 @@
 
 
 <!-- fingerprint:begin -->
-## 語料指紋（G-F，45 包）—— 標記輪次：**45**
+## 語料指紋（G-F，45 包）—— 標記輪次：**57**
 
 > **本表是本檔之保鮮期。** 引用本檔前先跑：`stamp_static_doc.py --verify <本檔>`；
 > **不符即「已過期，拒絕採信」**，須重出後再引。
@@ -17,7 +17,7 @@
 | `NR1L-UserProfiles-059` | `b9952493e94c` |
 | `NR1L-UserProfiles-060` | `582525374e1c` |
 | `NR1L-UserProfiles-061` | `a3476ad4223a` |
-| `NR1L-UserProfiles-062` | `9f4ef2661bc2` |
+| `NR1L-UserProfiles-062` | `6f8e462918f8` |
 | `NR1L-UserProfiles-063` | `9acc8063e1d8` |
 | `NR1L-UserProfiles-074` | `2a0f77ae0a7c` |
 | `NR1L-UserProfiles-077` | `e30d396b3401` |

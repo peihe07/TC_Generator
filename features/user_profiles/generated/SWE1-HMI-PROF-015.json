@@ -24,7 +24,7 @@
    "tc_title": "Profile button highlighted while the Profile section is open",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Profile button highlighted while the Profile section is open\n(Verifies that the Profile button is highlighted while the Profile section is open)",
+   "test_item": "Profile button highlighted while the Profile section is open\n(Verifies that the Profile button changes from its recorded state to the active state when the Profile section is opened)",
    "pre_conditions": "1. The status bar is at its default configuration\n2. The Profile section is closed",
    "input_test_data": "NA",
    "test_procedure": "1. Read the status bar Profile button and record its state\n2. Open the Profile section\n3. Read the Profile button and check that it is in the active state",

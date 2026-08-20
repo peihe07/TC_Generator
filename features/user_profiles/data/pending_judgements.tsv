@@ -63,7 +63,7 @@ Q-1	NR1L-UserProfiles-129	不成立	judged-closed	3d7100f690b3	9	ER 逐字沿用
 Q-1	NR1L-UserProfiles-131	不成立	judged-closed	b0014c440ca8	9	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
 Q-1	NR1L-UserProfiles-139	不成立	judged-closed	b44f5b25407a	3	`all Profiles are cleared and the default Profiles are restored` 為 5.13.1 之**適用條件**，改寫會使該條件之範圍改變
 Q-1	NR1L-UserProfiles-146	不成立	judged-closed	00c240142772	3	`the Core HMI Logic and Flow truncation rules` 為**外部文件之專名**，改寫即失其指涉
-AB-1	NR1L-UserProfiles-004	不成立	judged-closed	21a70014029e	1	兩端皆為**同一組三個位置**（步驟 2 所設 vs 步驟 5 所讀），中間事件為 key cycle —— 判別力在該事件：不存者 key-on 後即不符
+AB-1	NR1L-UserProfiles-004	不成立	judged-closed	0d242199853f	1	兩端皆為**同一組三個位置**（步驟 2 所設 vs 步驟 5 所讀），中間事件為 key cycle —— 判別力在該事件：不存者 key-on 後即不符（57 輪 AE-1：pre-condition 1 補入 `with the preference under test available`，使 `input_test_data` 之 PLP 3.5 被引用 —— **兩端仍為同一組三個位置，判定不變**）
 AB-1	NR1L-UserProfiles-045	不成立	judged-closed	c66e9467a8e5	1	兩端皆為現用 profile 之偏好（Valet 前 vs 退出後），中間事件為 Valet 之進出；ER2 另以「**not** those recorded in step 1」作反向對照，故非恆真
 AB-1	NR1L-UserProfiles-084	不成立	judged-closed	74642a8a4e2c	1	兩端同物而中間事件為 key cycle（4.3 之本體即跨 key cycle 之保留）
 AB-1	NR1L-UserProfiles-085	不成立	judged-closed	7ed088e8a7a2	1	**主詞已指名** `Driver Profile B's own value` —— 兩端不同物，且同句另以 differs 斷言其不等於步驟 1 所記者

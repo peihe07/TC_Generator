@@ -292,16 +292,20 @@ TCS = {
         design=FUNCTIONAL,
         pre=steps("The welcome popup of the active Profile is displayed",
                   "The vehicle is stationary"),
-        data="Screen pressed about five seconds after the popup appears, "
-             "that is before the 30-second timeout",
-        proc=steps("Press the screen while the welcome popup is displayed",
+        data="NA",
+        proc=steps("Press the screen five seconds after the popup, before "
+                   "the 30-second timeout",
                    "Read the screen and check whether the popup is displayed"),
         er=steps("The screen is pressed while the welcome popup is displayed",
                  "The welcome popup is cleared"),
-        remarks="**互動之時點寫在 `input_test_data`** —— 條文之三個觸發為"
+        remarks="**互動之時點寫在步驟 1**（AE-1，57 包）—— 條文之三個觸發為"
                 "`whichever comes first`，若互動發生在第 30 秒附近，"
                 "清除之原因即不可歸屬。該時點為**測試方法所要求之值**（J-4），"
                 "非條文之值，故不寫入 ER。"
+                "**原寫於 `input_test_data` 而無步驟引用它** —— 該值為孤兒；"
+                "且依 §4.5，互動之時點屬 Procedure step，"
+                "`Input Test Data` 留給獨立資料集，故移入步驟並將該欄改 `NA`。"
+                "`about` 為 §2 之模糊語，隨移入一併去除。"
                 "車輛須靜止：否則 motion 分支（`SWE1-HMI-PROF-062-01`）"
                 "會先於互動成立。",
         reasoning=(
@@ -379,13 +383,17 @@ TCS = {
         pre=steps("Valet Mode is active on the vehicle",
                   "The Valet Mode welcome popup is displayed",
                   "The vehicle is stationary"),
-        data="Screen pressed about five seconds after the popup appears",
-        proc=steps("Press the screen while the Valet Mode welcome popup is "
-                   "displayed",
+        data="NA",
+        proc=steps("Press the screen five seconds after the Valet Mode "
+                   "welcome popup appears",
                    "Read the screen and check whether the popup is displayed"),
         er=steps("The screen is pressed while the popup is displayed",
                  "The Valet Mode welcome popup is cleared"),
-        remarks="**條文說的是「與其他 welcome popup 相同之清除／逾時行為」——"
+        remarks="**互動之時點寫在步驟 1**（AE-1，57 包）—— 原寫於 "
+                "`input_test_data` 而無步驟引用它（該值為孤兒）；"
+                "依 §4.5，互動之時點屬 Procedure step，故移入步驟並將該欄改 "
+                "`NA`，`about` 一併去除。"
+                "**條文說的是「與其他 welcome popup 相同之清除／逾時行為」——"
                 "即三個觸發**（motion／30 秒／互動）。本條取**互動**一側，"
                 "**為抽樣而非窮舉**（§8.4.2）：另兩側之同型性不由本條保證。"
                 "取互動一側之理由：三者中唯一**不需等待亦不需移動車輛**者，"
@@ -658,7 +666,8 @@ TCS = {
                   "The username field is empty",
                   "The vehicle is stationary"),
         data="Username length: 0 → 1 characters",
-        proc=steps("Read the Next button while the username field is empty",
+        proc=steps("Read the Next button with zero characters in the "
+                   "username field",
                    "Type one character into the username field",
                    "Read the Next button and check whether it is available"),
         er=steps("The Next button is not available",
@@ -687,10 +696,11 @@ TCS = {
         # K-4a 要求 `input_test_data` 明載邊界對；首跑判紅（散文寫法讀不出）。
         data="Username length: 12 → 13 characters "
              "(eleven letters plus one space, then one more character)",
-        proc=steps("Type eleven letters and one space into the username "
-                   "field",
+        proc=steps("Type eleven letters and one space, giving twelve "
+                   "characters",
                    "Read the field and record the characters accepted",
-                   "Type one more character and read the username field"),
+                   "Type a thirteenth character and read the username "
+                   "field"),
         er=steps("The eleven letters and the space are accepted",
                  "Twelve characters are shown in the username field",
                  "The keyboard does not allow a thirteenth character in "

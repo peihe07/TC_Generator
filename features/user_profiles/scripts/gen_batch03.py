@@ -776,7 +776,7 @@ TCS = {
         data="Preferences under test: Cluster Home screen (3.1), "
              "SiriusXM 360L Listener Profile (3.2), "
              "Nav Saved destinations (3.4)",
-        proc=steps("Record the changed values of the three preferences for "
+        proc=steps("Record the three preferences under test for "
                    "both default Profiles",
                    "Restore the default Driver Profiles",
                    "Read the three preferences for both Profiles and check "

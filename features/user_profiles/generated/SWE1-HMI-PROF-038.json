@@ -24,7 +24,7 @@
    "tc_title": "Editing a memory seat link leaves the order unchanged",
    "test_group": "User Profiles",
    "test_set": "Profile List",
-   "test_item": "Editing a memory seat link leaves the order unchanged\n(Verifies that editing a memory seat link leaves the order of the Profiles unchanged)",
+   "test_item": "Editing a memory seat link leaves the order unchanged\n(Verifies that the recorded order of the Profiles is unchanged after the memory seat link of the second Profile is edited)",
    "pre_conditions": "1. Three Driver Profiles exist on the vehicle\n2. The vehicle is equipped with memory seats\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the “All Profiles” tab and record the order of the Profiles\n2. Open the “Edit Profile” tab of the second Profile\n3. Change the memory seat link of that Profile\n4. Open the “All Profiles” tab and compare the order with step 1",

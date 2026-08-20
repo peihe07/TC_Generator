@@ -2,7 +2,7 @@
 
 
 <!-- fingerprint:begin -->
-## 語料指紋（G-F，45 包）—— 標記輪次：**45**
+## 語料指紋（G-F，45 包）—— 標記輪次：**57**
 
 > **本表是本檔之保鮮期。** 引用本檔前先跑：`stamp_static_doc.py --verify <本檔>`；
 > **不符即「已過期，拒絕採信」**，須重出後再引。
@@ -10,36 +10,36 @@
 
 | tc_id | digest |
 |---|---|
-| `NR1L-UserProfiles-079` | `14590d6574dc` |
+| `NR1L-UserProfiles-079` | `e273a4ac3ec5` |
 | `NR1L-UserProfiles-080` | `e679ab6e949e` |
 | `NR1L-UserProfiles-081` | `461cdbacdda8` |
 | `NR1L-UserProfiles-082` | `86015249c520` |
 | `NR1L-UserProfiles-083` | `c0a238b21805` |
-| `NR1L-UserProfiles-084` | `546d60446efc` |
-| `NR1L-UserProfiles-085` | `a5df30148a8c` |
-| `NR1L-UserProfiles-086` | `a83785f45987` |
-| `NR1L-UserProfiles-087` | `a708497ed07a` |
+| `NR1L-UserProfiles-084` | `905d6ad3df0e` |
+| `NR1L-UserProfiles-085` | `306e69e5214b` |
+| `NR1L-UserProfiles-086` | `a5d30feaf749` |
+| `NR1L-UserProfiles-087` | `de204e25cea1` |
 | `NR1L-UserProfiles-088` | `e53d7851b854` |
 | `NR1L-UserProfiles-089` | `1d5510ec546b` |
 | `NR1L-UserProfiles-090` | `c0a11924a0a0` |
 | `NR1L-UserProfiles-091` | `936616a5cb1d` |
 | `NR1L-UserProfiles-092` | `d0a9bdd93dd0` |
-| `NR1L-UserProfiles-093` | `4b65b81c0370` |
-| `NR1L-UserProfiles-094` | `da22df3abaa2` |
+| `NR1L-UserProfiles-093` | `0282e9599fd8` |
+| `NR1L-UserProfiles-094` | `02e87abc163f` |
 | `NR1L-UserProfiles-095` | `c74a25a1f87f` |
-| `NR1L-UserProfiles-096` | `753b0bbee8c4` |
+| `NR1L-UserProfiles-096` | `9de77b1c95c5` |
 | `NR1L-UserProfiles-097` | `51538e31c953` |
 | `NR1L-UserProfiles-098` | `272af1b2e2ab` |
 | `NR1L-UserProfiles-099` | `f6b2ad112f1f` |
-| `NR1L-UserProfiles-100` | `b712da5a60db` |
+| `NR1L-UserProfiles-100` | `2f3507b569de` |
 | `NR1L-UserProfiles-101` | `895a1c45471a` |
 | `NR1L-UserProfiles-102` | `71d78163e9e9` |
-| `NR1L-UserProfiles-103` | `246a8de1d36d` |
+| `NR1L-UserProfiles-103` | `a240f269c653` |
 | `NR1L-UserProfiles-104` | `b5121a79a3a0` |
 | `NR1L-UserProfiles-105` | `6a56cee2f68c` |
 | `NR1L-UserProfiles-106` | `decadab1b2bf` |
-| `NR1L-UserProfiles-107` | `dfbfd54c9387` |
-| `NR1L-UserProfiles-108` | `e7b86c21fe7d` |
+| `NR1L-UserProfiles-107` | `543e79adfcd4` |
+| `NR1L-UserProfiles-108` | `fed3c4958455` |
 
 <!-- fingerprint:end -->
 

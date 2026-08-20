@@ -24,7 +24,7 @@
    "tc_title": "Recreated Driver 1 is the single Profile on the vehicle",
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
-   "test_item": "Recreated Driver 1 is the single Profile on the vehicle\n(Verifies that the rebuilt Driver 1 is the only Profile on the vehicle)",
+   "test_item": "Recreated Driver 1 is the single Profile on the vehicle\n(Verifies that no Driver Profile other than the rebuilt Driver 1 is listed after every Profile has been deleted)",
    "pre_conditions": "1. The default Profile has been customized and its name is still “Driver 1”\n2. The vehicle has fewer than 2 memory seat buttons",
    "input_test_data": "NA",
    "test_procedure": "1. Delete every Profile from the head unit\n2. Open the “All Profiles” tab\n3. Read the Profile list and check that “Driver 1” is the only Profile present",

@@ -34,7 +34,7 @@ NR1L-UserProfiles-020	SWE1-HMI-PROF-088	Verifies that the Connected Profile opti
 NR1L-UserProfiles-021	SWE1-HMI-PROF-089	Verifies that the six restricted Edit Profile items are greyed out and not selectable while the vehicle is in motion
 NR1L-UserProfiles-022	SWE1-HMI-PROF-090	Verifies that selecting a restricted item in motion plays a bonk tone and displays the specified message
 NR1L-UserProfiles-023	SWE1-HMI-PROF-091-02	Verifies that interrupting a restricted action in motion is accompanied by a bonk tone and the specified message
-NR1L-UserProfiles-024	SWE1-HMI-PROF-092	Verifies that the avatar selection screen opens both from the avatar and from the Change Avatar line
+NR1L-UserProfiles-024	SWE1-HMI-PROF-092	Verifies that the avatar and the Change Avatar line each open the same avatar selection screen
 NR1L-UserProfiles-025	SWE1-HMI-PROF-093	Verifies that the avatar selection screen marks the current avatar and offers the remaining available ones
 NR1L-UserProfiles-026	SWE1-HMI-PROF-094	Verifies that leaving the avatar screen without saving leaves the avatar unchanged
 NR1L-UserProfiles-027	SWE1-HMI-PROF-095	Verifies that swapping memory seat preferences links the active Profile to that seat position
@@ -44,21 +44,21 @@ NR1L-UserProfiles-030	SWE1-HMI-PROF-098	Verifies that the none option stays unav
 NR1L-UserProfiles-031	SWE1-HMI-PROF-099	Verifies that saving a seat position updates the Profile linked to that seat and shows PU0588 for another Profile
 NR1L-UserProfiles-032	SWE1-HMI-PROF-100	Verifies that the welcome popup size defaults to small and that setting it off suppresses the popup
 NR1L-UserProfiles-033	SWE1-HMI-PROF-101	Verifies that a confirmation popup appears after delete is chosen and before the Profile is removed
-NR1L-UserProfiles-034	SWE1-HMI-PROF-102	Verifies that the All Profiles tab is shown after a Profile is deleted from the Edit Profile tab
+NR1L-UserProfiles-034	SWE1-HMI-PROF-102	Verifies that the All Profiles tab is shown once a deletion started on the Edit Profile tab is confirmed
 NR1L-UserProfiles-035	SWE1-HMI-PROF-103	Verifies that User 1 or the last known Profile becomes active after an unlinked Profile is deleted
 NR1L-UserProfiles-036	SWE1-HMI-PROF-105	Verifies that the Edit Profile tab shows at most six lines of information on one page
 NR1L-UserProfiles-037	SWE1-HMI-PROF-106	Verifies that the linked-information page opens from the info line and omits the Memory Seat section
-NR1L-UserProfiles-038	SWE1-HMI-PROF-107	Verifies that the info button on the All Profiles tab opens the same page as the Edit Profile tab
+NR1L-UserProfiles-038	SWE1-HMI-PROF-107	Verifies that the All Profiles tab carries its own info button and that it opens the page recorded from the Edit Profile tab
 NR1L-UserProfiles-039	SWE1-HMI-PROF-108	Verifies that the Driver Profile information page shows the introductory text and the examples that follow it
 NR1L-UserProfiles-040	SWE1-HMI-PROF-109	Verifies that the Connected Account line is always shown on the Edit Profile tab of a connected vehicle
 NR1L-UserProfiles-041	SWE1-HMI-PROF-110	Verifies that pressing Connected Account opens the Connected Account App
 NR1L-UserProfiles-042	SWE1-HMI-PROF-112-02	Verifies that updating an App Store app applies to every Profile that has it installed locally
-NR1L-UserProfiles-043	SWE1-HMI-PROF-112-03	Verifies that an installed App Store app appears only in the app tray of the Profile that installed it
+NR1L-UserProfiles-043	SWE1-HMI-PROF-112-03	Verifies that an app installed by one Driver Profile is present in that Profile's app tray and absent from another Profile's
 NR1L-UserProfiles-045	SWE1-HMI-PROF-113	Verifies that Valet Mode starts from default preferences and that the previous preferences return when it is exited
 NR1L-UserProfiles-046	SWE1-HMI-PROF-114	Verifies that the status bar returns to its default layout in Valet Mode so the Profile icon stays visible
 NR1L-UserProfiles-047	SWE1-HMI-PROF-115	Verifies that Valet Mode can be activated only from the button on the All Profiles tab
 NR1L-UserProfiles-048	SWE1-HMI-PROF-116	Verifies that the Valet Mode button is greyed out in motion and that pressing it shows PU0091
-NR1L-UserProfiles-049	SWE1-HMI-PROF-117	Verifies that a four-digit one-time PIN is required to activate Valet Mode
+NR1L-UserProfiles-049	SWE1-HMI-PROF-117	Verifies that the four-digit one-time PIN is requested before Valet Mode becomes active
 NR1L-UserProfiles-050	SWE1-HMI-PROF-118	Verifies that leaving Valet Mode requires the same four-digit PIN used to activate it
 NR1L-UserProfiles-051	SWE1-HMI-PROF-119	Verifies that disconnecting the battery resets Valet Mode and the last known Driver Profile loads at the next key on
 NR1L-UserProfiles-052	SWE1-HMI-PROF-120	Verifies that the previous Driver Profile becomes active again after Valet Mode is exited
@@ -71,15 +71,15 @@ NR1L-UserProfiles-058	SWE1-HMI-PROF-125-02	Verifies that Projection and native H
 NR1L-UserProfiles-059	SWE1-HMI-PROF-125-03	Verifies that the status bar is not interactable in Valet Mode apart from the Valet Profile and HVAC icons
 NR1L-UserProfiles-060	SWE1-HMI-PROF-125-04	Verifies that every item that is not interactable in Valet Mode is greyed out
 NR1L-UserProfiles-061	SWE1-HMI-PROF-126-01	Verifies that PU0832 appears when a vehicle with an electronic glove box lock is prompted to enter Valet Mode
-NR1L-UserProfiles-062	SWE1-HMI-PROF-126-02	Verifies that the Glove Box Lock button is greyed out while Valet Mode is active
+NR1L-UserProfiles-062	SWE1-HMI-PROF-126-02	Verifies that the Glove Box Lock button changes from selectable to greyed out when Valet Mode becomes active
 NR1L-UserProfiles-063	SWE1-HMI-PROF-126-03	Verifies that pressing the greyed-out Glove Box Lock button shows PU0833
 NR1L-UserProfiles-064	SWE1-HMI-PROF-127	Verifies that the glove box returns to the state it held before Valet Mode was entered
 NR1L-UserProfiles-065	SWE1-HMI-PROF-128-02	Verifies that PIN entry is refused during the 30-minute lockout that follows ten incorrect attempts
 NR1L-UserProfiles-066	SWE1-HMI-PROF-128-03	Verifies that PIN entry is accepted again once the 30-minute lockout has elapsed
 NR1L-UserProfiles-067	SWE1-HMI-PROF-129	Verifies that the Go button stays greyed out below four digits and that pressing it bonks and shows the popup
-NR1L-UserProfiles-068	SWE1-HMI-PROF-130	Verifies that every numeric button is greyed out once four digits have been entered
+NR1L-UserProfiles-068	SWE1-HMI-PROF-130	Verifies that the numeric buttons remain available at three digits and are greyed out once the fourth is entered
 NR1L-UserProfiles-069	SWE1-HMI-PROF-131	Verifies that a SPAAK key with Valet permission activates Valet Mode automatically without a PIN
-NR1L-UserProfiles-070	SWE1-HMI-PROF-132-01	Verifies that every head unit path out of Valet Mode is blocked for the SPAAK user
+NR1L-UserProfiles-070	SWE1-HMI-PROF-132-01	Verifies that neither the status bar Valet Profile icon nor the All Profiles tab gives the SPAAK user an exit from Valet Mode
 NR1L-UserProfiles-071	SWE1-HMI-PROF-133	Verifies that PU1573 appears when the SPAAK user presses the locked Profiles icon
 NR1L-UserProfiles-072	SWE1-HMI-PROF-134	Verifies that the Valet welcome popup states that the vehicle is in Valet Mode and offers a deactivate button
 NR1L-UserProfiles-073	SWE1-HMI-PROF-135	Verifies that Valet Mode cannot be deactivated in motion and that PU0394 appears on entering the Profile section
@@ -89,56 +89,56 @@ NR1L-UserProfiles-075	SWE1-HMI-PROF-108	Verifies that the Connected Account row 
 NR1L-UserProfiles-076	SWE1-HMI-PROF-111	Verifies that the Connected Navigation row is absent from the Local vs Connected Profile screen on China market vehicles
 NR1L-UserProfiles-077	SWE1-HMI-PROF-088	Verifies that the Connected Profile options and the Stellantis Connected Account button are absent when connected profiles are unsupported
 NR1L-UserProfiles-078	SWE1-HMI-PROF-109	Verifies that the Connected Account line is absent on the Edit Profile tab of a vehicle without connectivity
-NR1L-UserProfiles-079	SWE1-HMI-PROF-001-02	Verifies that a Driver Profile recalls its stored preferences when it is activated
+NR1L-UserProfiles-079	SWE1-HMI-PROF-001-02	Verifies that a Driver Profile's preferences match their recorded values after a switch away to another Profile and back
 NR1L-UserProfiles-080	SWE1-HMI-PROF-001-03	Verifies that a preference is skipped on storage and recall when its feature is unavailable for the vehicle or region
 NR1L-UserProfiles-081	SWE1-HMI-PROF-002-01	Verifies that Restore Settings to Default resets only the active Profile and keeps its username and avatar
 NR1L-UserProfiles-082	SWE1-HMI-PROF-002-02	Verifies that PU1087 appears after Yes on PU0118 and that PU1088 appears once restoring has completed
 NR1L-UserProfiles-083	SWE1-HMI-PROF-003	Verifies that a Profile can be set up with a username and an avatar and that setup is not required to use the head unit
-NR1L-UserProfiles-084	SWE1-HMI-PROF-004-01	Verifies that Profile preferences are retained across a key cycle
-NR1L-UserProfiles-085	SWE1-HMI-PROF-004-02	Verifies that preferences are restored when a Profile is chosen on the head unit
-NR1L-UserProfiles-086	SWE1-HMI-PROF-004-03	Verifies that preferences are restored when a Profile is activated by its memory seat button
-NR1L-UserProfiles-087	SWE1-HMI-PROF-004-04	Verifies that preferences are restored when a Profile is detected by its key fob
+NR1L-UserProfiles-084	SWE1-HMI-PROF-004-01	Verifies that a preference set on the active Driver Profile matches its recorded value after an ignition off and on with no Profile switch
+NR1L-UserProfiles-085	SWE1-HMI-PROF-004-02	Verifies that choosing Driver Profile B on the head unit restores its own preference value and not the value recorded for Driver Profile A
+NR1L-UserProfiles-086	SWE1-HMI-PROF-004-03	Verifies that a memory seat button restores its linked Profile's own preference value and not the value recorded for the previously active Profile
+NR1L-UserProfiles-087	SWE1-HMI-PROF-004-04	Verifies that detecting a key fob restores its associated Profile's own preference value and not the value recorded for the previously active Profile
 NR1L-UserProfiles-088	SWE1-HMI-PROF-005	Verifies that changed preferences are saved before the next Profile loads within one key cycle
 NR1L-UserProfiles-089	SWE1-HMI-PROF-006-01	Verifies that the last known Profile loads at the start of a new key cycle
 NR1L-UserProfiles-090	SWE1-HMI-PROF-006-02	Verifies that a detected key fob overrides the last known Profile at the start of a key cycle
 NR1L-UserProfiles-091	SWE1-HMI-PROF-006-03	Verifies that a pressed memory seat button overrides the last known Profile at the start of a key cycle
 NR1L-UserProfiles-092	SWE1-HMI-PROF-007-01	Verifies that a vehicle without custom Profiles always carries one default Profile named Driver 1
-NR1L-UserProfiles-093	SWE1-HMI-PROF-007-02	Verifies that the default Driver 1 reappears after every Profile has been deleted
-NR1L-UserProfiles-094	SWE1-HMI-PROF-007-03	Verifies that the rebuilt Driver 1 is the only Profile on the vehicle
+NR1L-UserProfiles-093	SWE1-HMI-PROF-007-02	Verifies that a default Driver 1 with its preferences back at their default values is present again after every Profile has been deleted
+NR1L-UserProfiles-094	SWE1-HMI-PROF-007-03	Verifies that no Driver Profile other than the rebuilt Driver 1 is listed after every Profile has been deleted
 NR1L-UserProfiles-095	SWE1-HMI-PROF-008	Verifies that each memory seat position has its own default Driver Profile
-NR1L-UserProfiles-096	SWE1-HMI-PROF-009	Verifies that memory seat preferences can be swapped between Driver Profiles
+NR1L-UserProfiles-096	SWE1-HMI-PROF-009	Verifies that after the swap each Driver Profile holds the memory seat position recorded for the other Profile
 NR1L-UserProfiles-097	SWE1-HMI-PROF-010-01	Verifies that deleting a linked Profile reassigns its seat to the next available Profile from the left
 NR1L-UserProfiles-098	SWE1-HMI-PROF-010-02	Verifies that a default Profile is created or restored for a seat position when no Profile is available to take it
 NR1L-UserProfiles-099	SWE1-HMI-PROF-011	Verifies that the Profile now assigned to the seat becomes active after the linked Profile is deleted
 NR1L-UserProfiles-100	SWE1-HMI-PROF-012	Verifies that restoring the default Driver 1 and Driver 2 Profiles returns every profile-linked preference to its default
 NR1L-UserProfiles-101	SWE1-HMI-PROF-013	Verifies that the Profile button is present in the status bar by default and its icon follows the active Profile
 NR1L-UserProfiles-102	SWE1-HMI-PROF-014	Verifies that the status bar icon identifies the logged-in Profile and shows the first username character on a plain avatar
-NR1L-UserProfiles-103	SWE1-HMI-PROF-015	Verifies that the Profile button is highlighted while the Profile section is open
+NR1L-UserProfiles-103	SWE1-HMI-PROF-015	Verifies that the Profile button changes from its recorded state to the active state when the Profile section is opened
 NR1L-UserProfiles-104	SWE1-HMI-PROF-016	Verifies that the highlight state still applies in the status bar edit mode drawer once the button has been removed
 NR1L-UserProfiles-105	SWE1-HMI-PROF-009	Verifies that each memory seat position holds exactly one Driver Profile
 NR1L-UserProfiles-106	SWE1-HMI-PROF-048	Verifies that a default Profile stays on the vehicle until it is customized or deleted
-NR1L-UserProfiles-107	SWE1-HMI-PROF-059-02	Verifies that More Options on the welcome popup opens the Edit Profile tab
-NR1L-UserProfiles-108	SWE1-HMI-PROF-059-03	Verifies that selecting another Profile on the welcome popup switches to it and shows its own welcome popup
+NR1L-UserProfiles-107	SWE1-HMI-PROF-059-02	Verifies that More Options on the large welcome popup opens the Edit Profile tab of the active Driver Profile
+NR1L-UserProfiles-108	SWE1-HMI-PROF-059-03	Verifies that selecting Driver Profile B on the welcome popup makes it active and shows the welcome popup applicable to it
 NR1L-UserProfiles-109	SWE1-HMI-PROF-018-01	Verifies that All Profiles is the tab shown when the Profile section is opened for the first time
-NR1L-UserProfiles-110	SWE1-HMI-PROF-018-02	Verifies that the last used tab is remembered per Profile and survives a key cycle
+NR1L-UserProfiles-110	SWE1-HMI-PROF-018-02	Verifies that Driver Profile A's last used tab survives a key cycle while Driver Profile B's own tab stays unchanged
 NR1L-UserProfiles-111	SWE1-HMI-PROF-018-03	Verifies that pressing the Profile button again inside the Profile section returns to the All Profiles tab
 NR1L-UserProfiles-112	SWE1-HMI-PROF-019	Verifies that the All Profiles tab shows every Profile with the active one enlarged and offers the three entry points
 NR1L-UserProfiles-113	SWE1-HMI-PROF-020-01	Verifies that the profile-specific settings icon and its string are always present on the All Profiles tab
 NR1L-UserProfiles-114	SWE1-HMI-PROF-020-02	Verifies that every profile-linked setting inside the settings screens carries that icon
 NR1L-UserProfiles-115	SWE1-HMI-PROF-021-02	Verifies that the add entry and the profile-specific icon and string are hidden at the five-Profile maximum
 NR1L-UserProfiles-116	SWE1-HMI-PROF-021-03	Verifies that text telling the user to delete a Profile first is shown once the maximum is reached
-NR1L-UserProfiles-117	SWE1-HMI-PROF-022	Verifies that selecting another Profile on the All Profiles tab switches to it and highlights it
+NR1L-UserProfiles-117	SWE1-HMI-PROF-022	Verifies that selecting Driver Profile B on the All Profiles tab moves the highlight to it without opening the Edit Profile tab
 NR1L-UserProfiles-118	SWE1-HMI-PROF-023	Verifies that a loading message appears after a switch and is followed by the welcome popup of the new Profile
 NR1L-UserProfiles-119	SWE1-HMI-PROF-024	Verifies that the screen stays on the All Profiles tab after a Profile is switched there
 NR1L-UserProfiles-120	SWE1-HMI-PROF-025	Verifies that another Profile cannot be selected while one is still loading
-NR1L-UserProfiles-121	SWE1-HMI-PROF-026	Verifies that pressing the already highlighted active Profile opens the Edit Profile tab
+NR1L-UserProfiles-121	SWE1-HMI-PROF-026	Verifies that pressing the avatar of the already highlighted active Driver Profile opens its Edit Profile tab
 NR1L-UserProfiles-122	SWE1-HMI-PROF-027-01	Verifies that the linked memory seat number appears under the avatar of each applicable Profile
 NR1L-UserProfiles-123	SWE1-HMI-PROF-027-02	Verifies that a new Profile is linked to no seat once the Profile count exceeds the memory seat count
 NR1L-UserProfiles-124	SWE1-HMI-PROF-027-03	Verifies that the Valet Mode Profile is never linked to a memory seat position
 NR1L-UserProfiles-125	SWE1-HMI-PROF-028	Verifies that a new Profile created from the All Profiles tab becomes active and the tab returns
 NR1L-UserProfiles-126	SWE1-HMI-PROF-029	Verifies that Add New is greyed out in motion and that selecting it bonks and reports the function unavailable
 NR1L-UserProfiles-127	SWE1-HMI-PROF-030-01	Verifies that a Profile can be linked to a memory seat through the Edit Profile screen
-NR1L-UserProfiles-128	SWE1-HMI-PROF-030-02	Verifies that saving a seat position does not link that position to the active Profile by itself
+NR1L-UserProfiles-128	SWE1-HMI-PROF-030-02	Verifies that Driver Profile A gains no memory seat link when a position is saved to Driver Profile B's seat and PU0588 is answered No
 NR1L-UserProfiles-129	SWE1-HMI-PROF-031	Verifies that the seat does not move when a Profile is switched in motion and that a popup reports it
 NR1L-UserProfiles-130	SWE1-HMI-PROF-033	Verifies that a newly saved seat position is stored on the Profile linked to that seat
 NR1L-UserProfiles-131	SWE1-HMI-PROF-034-01	Verifies that PU0588 asks whether to take over the seat when the position belongs to another Profile
@@ -146,8 +146,8 @@ NR1L-UserProfiles-132	SWE1-HMI-PROF-034-02	Verifies that answering Yes moves the
 NR1L-UserProfiles-133	SWE1-HMI-PROF-034-03	Verifies that answering Yes reassigns the seat of an already linked active Profile to the next available Profile
 NR1L-UserProfiles-134	SWE1-HMI-PROF-030-01	Verifies that a memory seat cannot be linked to a Profile from anywhere other than the Edit Profile screen
 NR1L-UserProfiles-135	SWE1-HMI-PROF-036	Verifies that Profiles are ordered by the sequence in which they were added, with the defaults on the left
-NR1L-UserProfiles-136	SWE1-HMI-PROF-037	Verifies that default Profiles are ordered by their memory seat link
-NR1L-UserProfiles-137	SWE1-HMI-PROF-038	Verifies that editing a memory seat link leaves the order of the Profiles unchanged
+NR1L-UserProfiles-136	SWE1-HMI-PROF-037	Verifies that Driver 1, linked to memory seat 1, is the leftmost of the default Profiles on the All Profiles tab
+NR1L-UserProfiles-137	SWE1-HMI-PROF-038	Verifies that the recorded order of the Profiles is unchanged after the memory seat link of the second Profile is edited
 NR1L-UserProfiles-138	SWE1-HMI-PROF-039	Verifies that default Profiles restored without clearing all Profiles are added to the right
 NR1L-UserProfiles-139	SWE1-HMI-PROF-040	Verifies that the default order returns once all Profiles are cleared and the defaults are restored
 NR1L-UserProfiles-140	SWE1-HMI-PROF-041-01	Verifies that the Profile matching the active memory seat position becomes active after personal data is cleared
@@ -165,7 +165,7 @@ NR1L-UserProfiles-151	SWE1-HMI-PROF-050-01	Verifies that Remind me Later closes 
 NR1L-UserProfiles-152	SWE1-HMI-PROF-050-02	Verifies that clicking outside the Welcome popup closes it without asking Remind me Later or Don't Show me Again
 NR1L-UserProfiles-153	SWE1-HMI-PROF-051	Verifies that Don't Show me Again turns the Welcome popup setting off for that Profile only
 NR1L-UserProfiles-154	SWE1-HMI-PROF-052	Verifies that Get Started starts the New Profile Setup and carries the current preferences over without a confirmation popup
-NR1L-UserProfiles-155	SWE1-HMI-PROF-054	Verifies that Switch Users opens the All Profiles tab of the Profile section
+NR1L-UserProfiles-155	SWE1-HMI-PROF-054	Verifies that Switch Users on the Welcome popup closes it and opens the All Profiles tab of the Profile section
 NR1L-UserProfiles-156	SWE1-HMI-PROF-055	Verifies that the avatar and the Welcome text open the last known tab of the Profile section
 NR1L-UserProfiles-157	SWE1-HMI-PROF-056	Verifies that a welcome popup is displayed at ignition on and each time a Profile is activated
 NR1L-UserProfiles-158	SWE1-HMI-PROF-057	Verifies that PU0841 appears for a Profile with incomplete Tutorials and that X on it shows PU0611
@@ -176,20 +176,20 @@ NR1L-UserProfiles-162	SWE1-HMI-PROF-062-01	Verifies that the welcome popup clear
 NR1L-UserProfiles-163	SWE1-HMI-PROF-062-03	Verifies that the welcome popup clears immediately when the user touches the screen
 NR1L-UserProfiles-164	SWE1-HMI-PROF-062-04	Verifies that a cleared welcome popup stays away for the session and returns only on reactivation
 NR1L-UserProfiles-165	SWE1-HMI-PROF-063	Verifies that time spent in remote start does not count toward the 30-second dismissal timer
-NR1L-UserProfiles-166	SWE1-HMI-PROF-064	Verifies that the Valet Mode welcome popup clears in the same way as the other welcome popups
+NR1L-UserProfiles-166	SWE1-HMI-PROF-064	Verifies that a screen press clears the Valet Mode welcome popup as the other welcome popups are cleared
 NR1L-UserProfiles-167	SWE1-HMI-PROF-065	Verifies that an R1 High vehicle follows the preferences step with Tutorials and never launches the account login
-NR1L-UserProfiles-168	SWE1-HMI-PROF-066	Verifies that the New Profile Setup starts from the All Profiles tab
-NR1L-UserProfiles-169	SWE1-HMI-PROF-067	Verifies that every step of the Profile Setup is presented as a popup
+NR1L-UserProfiles-168	SWE1-HMI-PROF-066	Verifies that the option to add a new Profile on the All Profiles tab displays the first step of the New Profile Setup
+NR1L-UserProfiles-169	SWE1-HMI-PROF-067	Verifies that every step of the New Profile Setup from the first to the last is presented as a popup
 NR1L-UserProfiles-170	SWE1-HMI-PROF-068	Verifies that pressing another button during setup is treated as cancel and asks whether to discard it
 NR1L-UserProfiles-171	SWE1-HMI-PROF-069-01	Verifies that avatars already in use are filtered out so that no two Profiles share one
 NR1L-UserProfiles-172	SWE1-HMI-PROF-069-02	Verifies that the next available default avatar is highlighted automatically on entering the selection screen
-NR1L-UserProfiles-173	SWE1-HMI-PROF-071	Verifies that the same username can be used by more than one Driver Profile
+NR1L-UserProfiles-173	SWE1-HMI-PROF-071	Verifies that a username already in use is accepted, the new Profile is saved, and both Profiles are then listed under it
 NR1L-UserProfiles-174	SWE1-HMI-PROF-072	Verifies that the first setup step on a connected vehicle offers to create a new Profile or download an existing one
 NR1L-UserProfiles-175	SWE1-HMI-PROF-073-02	Verifies that the Next button stays unavailable while the username field is empty and becomes available at one character
 NR1L-UserProfiles-176	SWE1-HMI-PROF-073-03	Verifies that a space is accepted in a username and counts toward the 12-character limit
 NR1L-UserProfiles-177	SWE1-HMI-PROF-074	Verifies that the username step offers Save, Cancel and Back, with Save leading to step 3 and Cancel asking to confirm
 NR1L-UserProfiles-178	SWE1-HMI-PROF-075	Verifies that letters and digits are accepted in a username while special characters are refused
-NR1L-UserProfiles-179	SWE1-HMI-PROF-076-01	Verifies that the highlight moves to the newly chosen avatar
+NR1L-UserProfiles-179	SWE1-HMI-PROF-076-01	Verifies that the newly chosen avatar is highlighted and the avatar recorded before the choice is not
 NR1L-UserProfiles-180	SWE1-HMI-PROF-076-02	Verifies that a screen of 8.4 inches or larger shows the avatar above a button reading Save & Continue
 NR1L-UserProfiles-181	SWE1-HMI-PROF-076-03	Verifies that a 7-inch screen shows the avatar next to a button reading Save
 NR1L-UserProfiles-182	SWE1-HMI-PROF-077	Verifies that at least ten avatars are offered when none is in use

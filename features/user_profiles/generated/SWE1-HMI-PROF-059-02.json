@@ -24,7 +24,7 @@
    "tc_title": "More Options on the welcome popup opens the Edit Profile tab",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "More Options on the welcome popup opens the Edit Profile tab\n(Verifies that More Options on the welcome popup opens the Edit Profile tab)",
+   "test_item": "More Options on the welcome popup opens the Edit Profile tab\n(Verifies that More Options on the large welcome popup opens the Edit Profile tab of the active Driver Profile)",
    "pre_conditions": "1. The large welcome popup is displayed for the active Driver Profile\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press “More Options” on the large welcome popup\n2. Read the screen and check that the “Edit Profile” tab of the active Profile is displayed",

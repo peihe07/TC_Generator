@@ -134,7 +134,7 @@ Remarks = reason + anomaly id.
 
 ## 6. Status board — User_Profiles
 
-**最後更新：53 輪 close-out（2026-08-19）。本 feature 之作業輪次至此結束。**
+**最後更新：58 輪 close-out（2026-08-20）。本 feature 之分析層無未結項。**
 
 - [x] **P0** intake complete；missing files：**3 項**（`PU1087`/`PU1088` 內文、
       RD #5、RD #6）—— 皆不擋執行，替代作法見 `DELIVERY_NOTE.md` §4.1
@@ -147,19 +147,24 @@ Remarks = reason + anomaly id.
 - [x] **P5** pilot 16 條 reviewed；其後各批逐批覆核
 - [x] **P6** all batches generated：**189 條，leaf 180 / 180**；
       lint green；placeholder **0**
-- [x] **P7 寫回完成** → `DELIVERY.sha256` **ENTRY 001／002**；
+- [x] **P7 寫回完成** → `DELIVERY.sha256` **ENTRY 001／002／003／005**
+      （**004 未產出**：56 包曾指定，57 包指示與 AE-1 合併，台帳留「未產出」區塊說明號次跳空）；
       **未 tag、未送客戶目錄、RD 未寄 —— 三者皆屬 Pei**
 
 ### 6.1 覆核
 
 | pack | 範圍 | 已讀 | 現行檔 |
 |---|---|---|---|
-| 24a | 135–145 | 11 / 11 | `44_review_pack_24a.md` |
-| 24b | 146–156 | 11 / 11 | `48_review_pack_24b.md` |
-| 33a | 157–173 | 16 / 17 | **`53_review_pack_33a.md`** |
-| 33b | 174–189 | 14 / 16 | `47_review_pack_33b.md` |
+| 24a | 135–145 | 11 / 11 | `57_review_pack_24a.md` |
+| 24b | 146–156 | 11 / 11 | `57_review_pack_24b.md` |
+| 33a | 157–173 | 17 / 17 | `57_review_pack_33a.md` |
+| 33b | 174–189 | 16 / 16 | `57_review_pack_33b.md` |
 
-**186 / 189**；餘 3 條（`165`／`181`／`182`）—— 53 輪執行期間未收到其覆核結果。
+**189 / 189 全部經第二人逐條讀畢**（56 包 §一：`TC-165` 本輪讀畢，缺陷 0）——
+**分析層之覆核義務結清。**
+
+**四份 pack 於 57 輪重出**（AD-1 之第二段改寫 31 條 ＋ AE-1 之搬移 6 條），
+`--verify` 皆 0 不符。**其所轉錄之第二段英文措辭，是最後一批交付內容之變動。**
 
 ### 6.2 Open items
 
@@ -169,6 +174,7 @@ Remarks = reason + anomaly id.
 | **git**（指令清單見 53 上繳 §7）| **Pei** |
 | `R-U17`（刪 `inputs/` 之 spec 副本）| **Pei** |
 | RD v2 ＋ #8 ＋ **A-UP14** 之寄出 | **Pei** |
+| **Tutorials L&F 之 PDF 落 `inputs/`**（若欲補 `TC-167` 之引用欄）| **Pei** |
 | **A-UP14** 之裁決（兩份上游對三個 popup id 之角色記載不一致）| **上游** |
 | `A-UP09` | RESOLVED（41 輪）|
 | `A-UP11`／`A-UP13` | 見 `ANOMALIES.md` |
@@ -180,7 +186,10 @@ Remarks = reason + anomaly id.
 |---|---|
 | TC | **189** ／ leaf **180 / 180** |
 | 優先級 | P0×38 P1×66 P2×71 P3×14 |
-| 閘 | **18 支**（自我測試案例合計 200+）|
-| 產出 | **ENTRY 001／002**，皆未交付 |
+| 閘 | **19 支**（新增 `audit_second_segment`；`audit_consistency` 內另增 IT-1／IT-2）|
+| 方向性案例 | `audit_consistency` **65**、`lint_tcs` 64、`audit_delivery_fields` 16、`audit_second_segment` 13、其餘合計 100+ |
+| 交付前自檢 | **十項**（57 輪新增第 j 項：IT）|
+| 產出 | **ENTRY 001／002／003／005**，皆未交付 |
 | 缺件 | **3 項**，皆不擋執行 |
 | 已具名之留白 | **28 條** ＋ `INTR2.)` ＋ A-UP14 |
+| **已知未查之欄位接合** | **9 組**，逐組具名於 canon §9.5 —— **「已知未查」，不是「已查為綠」** |

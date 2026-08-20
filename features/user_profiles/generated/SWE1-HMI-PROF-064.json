@@ -24,10 +24,10 @@
    "tc_title": "Valet Mode welcome popup clears like the other popups",
    "test_group": "User Profiles",
    "test_set": "Welcome Flow",
-   "test_item": "Valet Mode welcome popup clears like the other popups\n(Verifies that the Valet Mode welcome popup clears in the same way as the other welcome popups)",
+   "test_item": "Valet Mode welcome popup clears like the other popups\n(Verifies that a screen press clears the Valet Mode welcome popup as the other welcome popups are cleared)",
    "pre_conditions": "1. Valet Mode is active on the vehicle\n2. The Valet Mode welcome popup is displayed\n3. The vehicle is stationary",
-   "input_test_data": "Screen pressed about five seconds after the popup appears",
-   "test_procedure": "1. Press the screen while the Valet Mode welcome popup is displayed\n2. Read the screen and check whether the popup is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the screen five seconds after the Valet Mode welcome popup appears\n2. Read the screen and check whether the popup is displayed",
    "expected_result": "1. The screen is pressed while the popup is displayed\n2. The Valet Mode welcome popup is cleared",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.5",
    "priority": "P2",
@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "**條文說的是「與其他 welcome popup 相同之清除／逾時行為」——即三個觸發**（motion／30 秒／互動）。本條取**互動**一側，**為抽樣而非窮舉**（§8.4.2）：另兩側之同型性不由本條保證。取互動一側之理由：三者中唯一**不需等待亦不需移動車輛**者，而 Valet Mode 下移動車輛另有 12.x 之限制介入。同型之三個觸發本身由 `SWE1-HMI-PROF-062-01`／`SWE1-HMI-PROF-062-03`／`SWE1-HMI-PROF-062-02` 各自驗證。",
+   "remarks": "**互動之時點寫在步驟 1**（AE-1，57 包）—— 原寫於 `input_test_data` 而無步驟引用它（該值為孤兒）；依 §4.5，互動之時點屬 Procedure step，故移入步驟並將該欄改 `NA`，`about` 一併去除。**條文說的是「與其他 welcome popup 相同之清除／逾時行為」——即三個觸發**（motion／30 秒／互動）。本條取**互動**一側，**為抽樣而非窮舉**（§8.4.2）：另兩側之同型性不由本條保證。取互動一側之理由：三者中唯一**不需等待亦不需移動車輛**者，而 Valet Mode 下移動車輛另有 12.x 之限制介入。同型之三個觸發本身由 `SWE1-HMI-PROF-062-01`／`SWE1-HMI-PROF-062-03`／`SWE1-HMI-PROF-062-02` 各自驗證。",
    "split_flag": false,
    "split_reason": ""
   }

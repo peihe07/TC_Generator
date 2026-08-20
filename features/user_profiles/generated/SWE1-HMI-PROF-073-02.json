@@ -27,7 +27,7 @@
    "test_item": "Next button stays unavailable while the username is empty\n(Verifies that the Next button stays unavailable while the username field is empty and becomes available at one character)",
    "pre_conditions": "1. A New Profile Setup is at the username step\n2. The username field is empty\n3. The vehicle is stationary",
    "input_test_data": "Username length: 0 → 1 characters",
-   "test_procedure": "1. Read the Next button while the username field is empty\n2. Type one character into the username field\n3. Read the Next button and check whether it is available",
+   "test_procedure": "1. Read the Next button with zero characters in the username field\n2. Type one character into the username field\n3. Read the Next button and check whether it is available",
    "expected_result": "1. The Next button is not available\n2. One character is shown in the username field\n3. The Next button is available",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7",
    "priority": "P1",

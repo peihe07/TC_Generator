@@ -242,7 +242,8 @@ TCS = {
         title="Preferences saved without pressing memory seat controls",
         design=FUNCTIONAL,
         pre=steps(
-            "A Driver Profile is active",
+            "A Driver Profile is active with the preference under test "
+            "available",
             "The vehicle is equipped with memory seat hard and soft controls"),
         data="Preference under test: Memory Profiles (Seats, mirrors, "
              "steering wheel) (3.5)",
