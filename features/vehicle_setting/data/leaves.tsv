@@ -1,0 +1,1428 @@
+swe_id	family	src_ref	title	desc
+SWE1-VC-Stop-StartSystem-001	Common Features	SYS-RA-CFTS044-116	Stop-Start System	Stop-Start System Enabled
+SWE1-VC-Stop-StartSystem-002	Common Features	SYS-RA-CFTS044-117	Stop-Start System	"*HW supplier shall notify the $EngRun_Stat$ and $ESS_ENG_ST$ signals via the VHAL interface.
+*CarPropertyService shall receive the $EngRun_Stat$ and $ESS_ENG_ST$ signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the stop-start system.
+*If the stop-start system is enabled the HMI shall turn off the heated/vented seats and the heated steering wheel switch indicators based on the $EngRun_Stat$ signal and the $ESS_ENG_ST$ signal."
+SWE1-VC-Stop-StartSystem-003	Common Features	SYS-RA-CFTS044-118	Stop-Start System	"*HW supplier shall notify the $EngRun_Stat$ and $ESS_ENG_ST$ signals via the VHAL interface.
+*CarPropertyService shall receive the $EngRun_Stat$ and $ESS_ENG_ST$ signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the stop-start system.
+*If the stop-start system is enabled the HMI shall monitor the $ESS_ENG_ST$ signal to determine if a change in $EngRun_Stat$ is a result of the vehicle entering stop mode."
+SWE1-VC-Stop-StartSystem-004	Common Features	SYS-RA-CFTS044-119	Stop-Start System	"*HW supplier shall notify the $EngRun_Stat$ and $ESS_ENG_ST$ signals via the VHAL interface.
+*CarPropertyService shall receive the $EngRun_Stat$ and $ESS_ENG_ST$ signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the stop-start system.
+*If ($EngRun_Stat$ <> [IDLE_STBL//UNLIMITED//LIMITED//RUN] && $ESS_ENG_ST$ <> [ENS_DSBL] && $ESS_ENG_ST$ <> [SNA])then the HMI shall continue to activate all heat and vent switches currently active and allow the customer to select the switches."
+SWE1-VC-Stop-StartSystem-005	Common Features	SYS-RA-CFTS044-120	Stop-Start System	"*HW supplier shall notify the $EngRun_Stat$ and $ESS_ENG_ST$ signals via the VHAL interface.
+*CarPropertyService shall receive the $EngRun_Stat$ and $ESS_ENG_ST$ signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the stop-start system.
+*If  ($EngRun_Stat$ <> [IDLE_STBL//UNLIMITED//LIMITED//RUN] && $ESS_ENG_ST$ = [ENS_DSBL])then The HMI shall grey-out all heat and vent switches."
+SWE1-VC-Stop-StartSystem-006	Common Features	SYS-RA-CFTS044-121	Stop-Start System	"*HW supplier shall notify the $EngRun_Stat$ signal via the VHAL interface.
+*CarPropertyService shall receive the $EngRun_Stat$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the stop-start system.
+*IF ($EngRun_Stat$ = [IDLE_STBL//UNLIMITED//LIMITED//RUN])then The HMI shall allow activation of the heated and vented seats and the heated steering wheel switches."
+SWE1-VC-Stop-StartSystem-007	Common Features	SYS-RA-CFTS044-122	Stop-Start System	"*HW supplier shall notify the $ESS_ENG_ST$ signal via the VHAL interface.
+*CarPropertyService shall receive the $ESS_ENG_ST$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the stop-start system.
+*IF ($ESS_ENG_ST$ = [SNA])then The HMI shall behave as if the vehicle is not equipped with the Stop-Start system."
+SWE1-VC-SwitchLHD/RHDConfiguration-008	Common Features	SYS-RA-CFTS044-123	Switch LHD/RHD Configuration	Switch LHD/RHD Configuration
+SWE1-VC-SwitchLHD/RHDConfiguration-009	Common Features	SYS-RA-CFTS044-124	Switch LHD/RHD Configuration	"*HW supplier shall notify the $DriverSide$ and $FL_HS_RQ$ signals via the VHAL interface.
+*CarPropertyService shall receive the $DriverSide$ and $FL_HS_RQ$ signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If there is no Driver or Passenger label for Heated and Vented seats, the $DriverSide$ signal value shall have no impact on the Heated and Vented seat switch behavior. As an example, when $DriverSide$ = [Right Drive] and the customer selects to change the state of the LF(Passenger) heated seat, the HMI shall send an on-change $FL_HS_RQ$= [Pressed] signal."
+SWE1-VC-SwitchLHD/RHDConfiguration-010	Common Features	SYS-RA-CFTS044-125	Switch LHD/RHD Configuration	"*HW supplier shall notify the $DriverSide$ signal via the VHAL interface.
+*CarPropertyService shall receive the $DriverSide$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If $DriverSide$ = [Right hand drive] the HMI shall be modified as defined by HMI requirements."
+SWE1-VC-SwitchLHD/RHDConfiguration-011	Common Features	SYS-RA-CFTS044-126	Switch LHD/RHD Configuration	"*HW supplier shall notify the $DriverSide$ signal via the VHAL interface.
+*CarPropertyService shall receive the $DriverSide$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If there are Driver and Passenger labels for Heated and Vented seats, when $DriverSide$ = [Right Drive] the HMI shall: switch the labels of the driver and passenger heated/vented seats buttons.
+*Reference Source requirement ID's(SYS-RA-CFTS044-041,SYS-RA-CFTS044-022,SYS-RA-CFTS044-075,SYS-RA-CFTS044-058)"
+SWE1-VC-SwitchLHD/RHDConfiguration-012	Common Features	SYS-RA-CFTS044-325	Switch LHD/RHD Configuration	"*HW supplier shall notify the $DriverSide$ and $FL_HS_RQ$ signal via the VHAL interface.
+*CarPropertyService shall receive the $DriverSide$ and $FL_HS_RQ$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If there is no Driver or Passenger label for Heated and Vented seats, the $DriverSide$ signal value shall have no impact on the Heated and Vented seat switch behavior. 
+*Reference Source requirement ID's(SYS-RA-CFTS044-197,SYS-RA-CFTS044-213,SYS-RA-CFTS044-235)."
+SWE1-VC-SwitchLHD/RHDConfiguration-013	Common Features	SYS-RA-CFTS044-326	Switch LHD/RHD Configuration	"*HW supplier shall notify the $DriverSide$ signal via the VHAL interface.
+*CarPropertyService shall receive the $DriverSide$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If $DriverSide$ = [Right hand drive] the HMI shall be modified as defined by HMI requirements."
+SWE1-VC-SwitchLHD/RHDConfiguration-014	Common Features	SYS-RA-CFTS044-327	Switch LHD/RHD Configuration	"*HW supplier shall notify the $DriverSide$ signal via the VHAL interface.
+*CarPropertyService shall receive the $DriverSide$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If there are Driver and Passenger labels for Heated and Vented seats, when $DriverSide$ = [Right Drive] the HMI shall:
+*Reference Source requirement ID's(SYS-RA-CFTS044-197,SYS-RA-CFTS044-213,SYS-RA-CFTS044-235,SYS-RA-CFTS044-260,SYS-RA-CFTS044-282)."
+SWE1-VC-Controls-015	Common Features	SYS-RA-CFTS044-328	Controls	Controls (Common Across Architectures)
+SWE1-VC-PHEVFeatures-016	Common Features	SYS-RA-CFTS044-329	PHEV Features	PHEV Features
+SWE1-VC-PHEVFeatures-017	Common Features	SYS-RA-CFTS044-330	PHEV Features	This section defines the Plug-in Hybrid Electric Vehicle (PHEV) features supported by the system. These features are generated by the ePowertrain system and made available through the HMI. They can be viewed, configured, or controlled by the customer using the vehicle Head Unit, Smartphone application, or Web interface.
+SWE1-VC-FeaturesEnableCriteria-018	Common Features	SYS-RA-CFTS044-331	Features Enable Criteria	Features Enable Criteria
+SWE1-VC-FeaturesEnableCriteria-019	Common Features	SYS-RA-CFTS044-332	Features Enable Criteria	HMI shall enable and display the features for all RU PHEV, K8 PHEV, JL PHEV, MP/M4 PHEV and WL PHEV vehicles.
+SWE1-VC-FeaturesEnableCriteria-020	Common Features	SYS-RA-CFTS044-333	Features Enable Criteria	Note:  Each object is tagged Market = allMrkt which signifies all markets that apply to RU PHEV, K8 PHEV, JL PHEV, and WL PHEV vehicles.
+SWE1-VC-FeaturesEnableCriteria-021	Common Features	SYS-RA-CFTS044-334	Features Enable Criteria	"*The VHAL shall provide the current values of the $VC_VEH_LINE$ and $Hybrid_Type$ signals to CarPropertyService.
+*CarPropertyService shall receive the $VC_VEH_LINE$ and $Hybrid_Type$ signals and forward them to CarPropertyManager through the appropriate interface.
+*CarPropertyManager shall expose these signal values to the HMI through the corresponding APIs.
+*The HMI shall evaluate the received $VC_VEH_LINE$ and $Hybrid_Type$ values against the required feature enablement conditions.
+*The HMI shall enable the WL version of the Hybrid Electric Pages feature and display the Hybrid Electric Pages access button when $VC_VEH_LINE$ = [WL] and $Hybrid_Type$ = [Plugin Hybrid Electric Vehicle]."
+SWE1-VC-FeaturesEnableCriteria-022	Common Features	SYS-RA-CFTS044-335	Features Enable Criteria	"*The VHAL shall provide the current values of the $VC_VEH_LINE$ and $Hybrid_Type$ signals to CarPropertyService.
+*CarPropertyService shall receive the $VC_VEH_LINE$ and $Hybrid_Type$ signals and forward them to CarPropertyManager through the appropriate interface.
+*CarPropertyManager shall expose these signal values to the HMI through the corresponding APIs.
+*The HMI shall evaluate the received $VC_VEH_LINE$ and $Hybrid_Type$ values against the required feature enablement conditions.
+*The HMI shall enable the M version of the Hybrid Electric Pages feature and display the Hybrid Electric Pages access button when $VC_VEH_LINE$ = [M4 or MP] and $Hybrid_Type$ = [Plugin Hybrid Electric Vehicle]."
+SWE1-VC-FeaturesEnableCriteria-023	Common Features	SYS-RA-CFTS044-336	Features Enable Criteria	The HMI shall disable and hide the associated feature whenever the received signal value does not match any supported or valid operating condition. For all other signal values, the feature shall remain unavailable and shall not be displayed to the customer.
+SWE1-VC-ThirdRowHeadrestDump-024	Common Features	SYS-RA-CFTS044-134	Third Row Headrest Dump	Third Row Headrest Dump
+SWE1-VC-ThirdRowHeadrestDump-025	Common Features	SYS-RA-CFTS044-135	Third Row Headrest Dump	"*HW supplier shall notify the Third Row Headrest Dump feature availability, activation request, and status signals via the VHAL interface.
+*CarPropertyService shall receive the Third Row Headrest Dump signals and send them to CarPropertyManager via interface.
+*CarPropertyManager shall expose these values to the HMI via API interfaces as get/set methods.
+*The HMI shall evaluate the received signals and compare them with the internally stored Third Row Headrest Dump system status.
+*When the Headrest Dump Softkey button is pressed, the HMI shall simultaneously activate both left and right third-row head restraint dump functions.
+*The left and right head restraint dump functions shall operate together and shall not be independently controlled.
+*The Headrest Dump Softkey button shall only lower the head restraints and shall not provide any functionality to raise them.
+*The Headrest Dump Softkey button shall exhibit behavior consistent with other touch screen buttons, including press-to-actuation timing and button size."
+SWE1-VC-ThirdRowHeadrestDump-026	Common Features	SYS-RA-CFTS044-136	Third Row Headrest Dump	The Third Row Headrest Dump softkey shall be accessible from the Controls screen and shall remain in an enabled state when the feature is available.
+SWE1-VC-ThirdRowHeadrestDump-027	Common Features	SYS-RA-CFTS044-137	Third Row Headrest Dump	The Third Row Headrest Dump softkey shall also be accessible from the Rear View Camera screen, when supported. Rear View Camera availability shall be provided by the Camera module, and the HMI shall enable and display the softkey only when this feature is supported.
+SWE1-VC-ThirdRowHeadrestDump-028	Common Features	SYS-RA-CFTS044-138	Third Row Headrest Dump	"*HW supplier shall notify the VC_HdRstPrsnt signal via the VHAL interface.
+*CarPropertyService shall receive the VC_HdRstPrsnt signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If the HMI receives the vehicle configuration signal VC_HdRstPrsnt = [Present], the HMI shall dispaly the Third Row Headrest Dump softkey button."
+SWE1-VC-ThirdRowHeadrestDump-029	Common Features	SYS-RA-CFTS044-139	Third Row Headrest Dump	"*HW supplier shall notify the $PowerMode$ signal via the VHAL interface.
+*CarPropertyService shall receive the $PowerMode$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If The HMI shall grey-out the Third Row Headrest Dump Softkey button when the $PowerMode$ = [Ignition start / IGN_START]."
+SWE1-VC-ThirdRowHeadrestDump-030	Common Features	SYS-RA-CFTS044-140	Third Row Headrest Dump	"*The HMI shall request the current value of the $PowerMode$ signal through the CarPropertyManager API.
+*CarPropertyManager shall retrieve the $PowerMode$ signal from CarPropertyService.
+*CarPropertyService shall obtain the $PowerMode$ signal from the VHAL interface.
+*The HMI shall evaluate the received $PowerMode$ value and compare it with the required operating condition.
+*The HMI shall make the Third Row Headrest Dump softkey selectable when $PowerMode$ = [Ignition Lock / IGN_LK]."
+SWE1-VC-ThirdRowHeadrestDump-031	Common Features	SYS-RA-CFTS044-141	Third Row Headrest Dump	"*The HMI shall request the current value of the $PowerMode$ signal through the CarPropertyManager API.
+*CarPropertyManager shall retrieve the $PowerMode$ signal from CarPropertyService.
+*CarPropertyService shall obtain the $PowerMode$ signal from the VHAL interface.
+*The HMI shall evaluate the received $PowerMode$ value and compare it with the required operating condition.
+*The HMI shall make the Third Row Headrest Dump softkey selectable when $PowerMode$ = [Ign. Off & ACC (4-position switch) / IGN_OFF_ACC]."
+SWE1-VC-ThirdRowHeadrestDump-032	Common Features	SYS-RA-CFTS044-142	Third Row Headrest Dump	"*The HMI shall request the current value of the $PowerMode$ signal through the CarPropertyManager API.
+*CarPropertyManager shall retrieve the $PowerMode$ signal from CarPropertyService.
+*CarPropertyService shall obtain the $PowerMode$ signal from the VHAL interface.
+*The HMI shall evaluate the received $PowerMode$ value and compare it with the required operating condition.
+*The HMI shall make the Third Row Headrest Dump softkey selectable when $PowerMode$ = [Ignition Run / IGN_RUN]."
+SWE1-VC-ThirdRowHeadrestDump-033	Common Features	SYS-RA-CFTS044-143	Third Row Headrest Dump	"*When the customer selects the Third Row Headrest Dump softkey, the HMI shall generate an $HdRstRelRq$ request with the value [Pressed].
+*The HMI shall send the $HdRstRelRq$ request to CarPropertyManager through the appropriate API.
+*CarPropertyManager shall forward the request to CarPropertyService.
+*CarPropertyService shall transmit the $HdRstRelRq$ signal to the VHAL interface.
+*The VHAL shall communicate the $HdRstRelRq$ = [Pressed] signal to the CBC within <Tsend>."
+SWE1-VC-ThirdRowHeadrestDump-034	Common Features	SYS-RA-CFTS044-144	Third Row Headrest Dump	"*When the customer selects the Third Row Headrest Dump softkey, the HMI shall generate an $HdRstRelRq$ request with the value [Pressed].
+*The HMI shall send the $HdRstRelRq$ request to CarPropertyManager through the appropriate API.
+*CarPropertyManager shall forward the request to CarPropertyService.
+*CarPropertyService shall transmit the $HdRstRelRq$ signal to the VHAL interface.
+*The VHAL shall communicate the $HdRstRelRq$ = [Pressed] signal to the FSM within <Tsend>."
+SWE1-VC-ThirdRowHeadrestDump-035	Common Features	SYS-RA-CFTS044-145	Third Row Headrest Dump	"*After transmitting the $HdRstRelRq$ = [Pressed] signal, the HMI shall generate a follow-up $HdRstRelRq$ request with the value [Not Pressed].
+*The HMI shall send the updated $HdRstRelRq$ request to CarPropertyManager through the appropriate API.
+*CarPropertyManager shall forward the updated request to CarPropertyService.
+*CarPropertyService shall transmit the updated $HdRstRelRq$ signal to the VHAL interface.
+*The VHAL shall communicate the $HdRstRelRq$ = [Not Pressed] signal to the FSM within <Tsend> of the initial [Pressed] request."
+SWE1-VC-ThirdRowHeadrestDump-036	Common Features	SYS-RA-CFTS044-146	Third Row Headrest Dump	"*HW supplier shall notify the $HdRstRelRq$ signal via the VHAL interface.
+*CarPropertyService shall receive the $HdRstRelRq$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If The HMI shall continue to send the periodic $HdRstRelRq$ = [Not pressed] signal until the next short press event for this button."
+SWE1-VC-ThirdRowHeadrestDump-037	Common Features	SYS-RA-CFTS044-147	Third Row Headrest Dump	"*HW supplier shall notify the $RVC_SK_PRSNT$ signal via the VHAL interface.
+*CarPropertyService shall receive the $RVC_SK_PRSNT$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If the HMI receives the $RVC_SK_PRSNT$ = [Present] the HMI shall activate the virtual Rear View Camera button for user select-ability."
+SWE1-VC-ThirdRowHeadrestDump-038	Common Features	SYS-RA-CFTS044-148	Third Row Headrest Dump	"*The HMI shall request the current value of the $PowerMode$ signal through the CarPropertyManager API.
+*CarPropertyManager shall retrieve the $PowerMode$ signal from CarPropertyService.
+*CarPropertyService shall obtain the $PowerMode$ signal from the VHAL interface.
+*The HMI shall evaluate the received $PowerMode$ value against the required operating condition.
+*The Rear View Camera soft button shall be selectable only when $PowerMode$ = [IGN_RUN]."
+SWE1-VC-ThirdRowHeadrestDump-039	Common Features	SYS-RA-CFTS044-149	Third Row Headrest Dump	"*The HMI shall request the current value of the $PowerMode$ signal through the CarPropertyManager API.
+*CarPropertyManager shall retrieve the $PowerMode$ signal from CarPropertyService.
+*CarPropertyService shall obtain the $PowerMode$ signal from the VHAL interface.
+*The HMI shall continuously monitor and evaluate changes to the received $PowerMode$ signal.
+*When $PowerMode$ <> [IGN_RUN], the HMI shall update the state of the Rear View Camera soft button in accordance with the defined HMI Logic and Flow."
+SWE1-VC-ThirdRowHeadrestDump-040	Common Features	SYS-RA-CFTS044-150	Third Row Headrest Dump	"*HW supplier shall notify the Rear Camera configuration and default status signals via the VHAL interface.
+*CarPropertyService shall receive the Rear Camera signals and send them to CarPropertyManager via the interface.
+*CarPropertyManager shall expose these values to the HMI through API interfaces as get/set methods.
+*The HMI shall evaluate the received signals and compare them with the internally stored Rear Camera configuration and status.
+*The HMI shall initialize the Rear Camera setting to OFF as the default state during system startup or factory reset."
+SWE1-VC-ThirdRowHeadrestDump-041	Common Features	SYS-RA-CFTS044-151	Third Row Headrest Dump	The Rear Camera softkey shall be accessible from the Controls screen. The software shall enable and display the softkey in an accessible state whenever the feature is supported and available.
+SWE1-VC-ThirdRowHeadrestDump-042	Common Features	SYS-RA-CFTS044-152	Third Row Headrest Dump	"*HW supplier will provide the X,Y co-ordinates for softkey button click
+  Also need to provide the Camera Close API status via the VHAL interface.
+*CarPropertyService shall receive the Camera Close API status and send it to CarPropertyManager via interface.
+*CarPropertyManager shall expose this value to the HMI via API interfaces as get/set methods.
+*The HMI shall evaluate the received Rear Camera display status and compare it with the internally stored system state.
+*When the Rear Camera is activated, the HMI shall continue displaying the Rear Camera image until the driver presses the Rear Camera softkey to disable it."
+SWE1-VC-ThirdRowHeadrestDump-043	Common Features	SYS-RA-CFTS044-153	Third Row Headrest Dump	The Rear Camera softkey shall enable the display of the Rear Camera image when selected. Upon activation, the system shall request and process the camera video stream from the Camera module and present it on the display. The softkey shall remain enabled and shall exhibit behavior consistent with other touchscreen controls, including response time, visual feedback when pressed, and button dimensions.
+SWE1-VC-ThirdRowHeadrestDump-044	Common Features	SYS-RA-CFTS044-154	Third Row Headrest Dump	"*HW supplier shall notify the RVC IMAGE signal via the VHAL interface.
+*CarPropertyService shall receive the RVC IMAGE signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If the user presses the Rear Camera Softkey button, the HMI shall receive the internal signal RVC IMAGE ON and shall display the image of the rear area of the vehicle."
+SWE1-VC-ThirdRowHeadrestDump-045	Common Features	SYS-RA-CFTS044-155	Third Row Headrest Dump	"*HW supplier will provide the X,Y co-ordinates for softkey button click and RVC IMAGE signal
+  and also need to provide the Camera Close API status via the VHAL interface.
+*HW supplier shall notify the Camera Close API status and  RVC IMAGE signal via the VHAL interface.
+*CarPropertyService shall receive the RVC IMAGE signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If the user presses the X on the top right corner of the HMI screen, the HMI shall receive the internal signal RVC IMAGE OFF and shall close the image of the rear area of the vehicle."
+SWE1-VC-ScreenOFF-046	Common Features	SYS-RA-CFTS044-172	Screen OFF	Screen OFF
+SWE1-VC-ScreenOFF-047	Common Features	SYS-RA-CFTS044-173	Screen OFF	The default state of the Screen Off soft button shall be set to ON. The software shall initialize and display the Screen Off soft button in the ON state during system startup or whenever the feature is reset to its default configuration.
+SWE1-VC-ScreenOFF-048	Common Features	SYS-RA-CFTS044-174	Screen OFF	"*HW supplier shall notify the $DSP_SK_PRSNT$ signal via the VHAL interface.
+*CarPropertyService shall receive the $DSP_SK_PRSNT$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*If the HMI receives $DSP_SK_PRSNT$ = [Present], the HMI shall activate the virtual Screen Off button for user select-ability."
+SWE1-VC-ScreenOFF-049	Common Features	SYS-RA-CFTS044-175	Screen OFF	The Display soft button shall allow the customer to turn the touchscreen display ON or OFF. The software shall provide access to this soft button and enable the customer to toggle the display state through the HMI.
+SWE1-VC-ScreenOFF-050	Common Features	SYS-RA-CFTS044-176	Screen OFF	"*HW supplier shall notify the HMI wake-up status and display state signals via the VHAL interface.
+*CarPropertyService shall receive the HMI wake-up and display state signals and send them to CarPropertyManager via interface.
+*CarPropertyManager shall expose these values to the HMI via API interfaces as get/set methods.
+*The HMI shall evaluate the received wake-up and display state signals and compare them with the internally stored system status.
+*When the HMI wakes up on the BH-CAN bus, the HMI shall recall and restore the display state from the previous wake cycle."
+SWE1-VC-ScreenOFF-051	Common Features	SYS-RA-CFTS044-177	Screen OFF	"*When the user presses the Screen Off softkey, the HMI shall generate a request to update the $TGW_DISP_STAT$ signal.
+*The HMI shall send the requested $TGW_DISP_STAT$ value to CarPropertyManager through the appropriate API.
+*CarPropertyManager shall forward the request to CarPropertyService.
+*CarPropertyService shall transmit the requested $TGW_DISP_STAT$ signal to the VHAL interface.
+*The VHAL shall communicate the $TGW_DISP_STAT$ signal"
+SWE1-VC-ScreenOFF-052	Common Features	SYS-RA-CFTS044-178	Screen OFF	The software shall allow the customer to change the display state between ON and OFF using the Display soft button. Changes to the display state resulting from customer selection shall not affect any audio or video entertainment functions, informational displays, or signal warning/alert functions, unless otherwise specified by system requirements.
+SWE1-VC-StopStartSystemBehavior-053	Common Features	SYS-RA-CFTS044-320	Stop Start System Behavior	Stop Start System Behavior
+SWE1-VC-StopStartSystemBehavior-054	Common Features	SYS-RA-CFTS044-321	Stop Start System Behavior	"*HW supplier shall notify the $Stop_And_Start_cfg$, STATUS_CCAN3.EngineSts and STATUS_CCAN3.ESS_ENG_ST signals via the VHAL interface.
+*CarPropertyService shall receive the $Stop_And_Start_cfg$, STATUS_CCAN3.EngineSts and STATUS_CCAN3.ESS_ENG_ST signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*This functionality is implemented if PROXI parameter $Stop_And_Start_cfg$ = [Present].
+ During the Ignition Working Conditions:
+• Ignition On
+• Ignition On Engine On
+IF (STATUS_CCAN3.EngineSts == “Engine_Off” AND STATUS_CCAN3.ESS_ENG_ST != “ENS_DSBL”)then 
+*The HMI shall retain the existing state and level of the Heated/Vented Seats or Heated Steering Wheel button(s);
+*The HMI shall allow the vented seats buttons to be selectable, as defined in Section ‘Vented Seats’;
+*The HMI shall allow the heated steering wheel buttons to be selectable, as defined in Section ‘Heated Steering Wheel’;"
+SWE1-VC-StopStartSystemBehavior-055	Common Features	SYS-RA-CFTS044-322	Stop Start System Behavior	"*HW supplier shall notify the STATUS_CCAN3.EngineSts and STATUS_CCAN3.ESS_ENG_ST signals via the VHAL interface.
+*CarPropertyService shall receive the STATUS_CCAN3.EngineSts and STATUS_CCAN3.ESS_ENG_ST signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*ELSE IF (STATUS_CCAN3.EngineSts == “Engine_Off” AND STATUS_CCAN3.ESS_ENG_ST = “ENS_DSBL”)then
+*Heated Seats button shall be greyed-out; OR
+* Vented Seats button shall be greyed-out; OR
+* Heated Steering Wheel button shall be greyed-out"
+SWE1-VC-StopStartSystemBehavior-056	Common Features	SYS-RA-CFTS044-323	Stop Start System Behavior	"*HW supplier shall notify the STATUS_CCAN3.EngineSts signal via the VHAL interface.
+*CarPropertyService shall receive the STATUS_CCAN3.EngineSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI shall via API interface as get/set methods.
+*The HMI shall evaluate the received signal and compare it with the internally stored status of the system.
+*ELSE IF (STATUS_CCAN3.EngineSts == “Engine_On”)then
+*The HMI shall retain the existing state and level of the Heated/Vented Seats or Heated Steering Wheel button(s);
+*The HMI shall allow the Vented Seats buttons to be selectable, as defined in Section ‘Vented Seats’;
+*The HMI shall allow the Heated Steering Wheel buttons to be selectable, as defined in Section ‘Heated Steering Wheel’;"
+SWE1-VC-LeftFrontHeatedSeat-001	HeatedSeat	SYS-RA-CFTS044-022	Left Front Heated Seat	Left Front Heated Seat
+SWE1-VC-LeftFrontHeatedSeatButton-002	HeatedSeat	SYS-RA-CFTS044-023	Left Front Heated Seat Button	The LF heated seat button will allow the customer to change the state of the left front heated seat from Off to a High heat to a Low heat.
+SWE1-VC-LeftFrontHeatedSeat-003	HeatedSeat	SYS-RA-CFTS044-024	Left Front Heated Seat	"HW supplier shall notify the HU wake-up event via the BH-CAN bus through the VHAL interface and provide the HeatedSeatFL signal upon availability and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+CarPropertyService shall receive the wake-up indication and HeatedSeatFL signal and make them available to the HMI layer.
+The HMI layer shall evaluate the received event and signals and initialize the display state.
+When the HU wakes up on the BH-CAN bus, the HMI shall display the Front Left heated seat as Off until a valid $HeatedSeatFL$ status is received from CAN."
+SWE1-VC-LeftFrontHeatedSeat-004	HeatedSeat	SYS-RA-CFTS044-025	Left Front Heated Seat	"HW supplier shall notify the Heated_Seat_Levels signal via the VHAL interface.
+CarPropertyService shall receive the Heated_Seat_Levels signal from VHAL and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and determine the supported heated seat levels.
+The HMI shall interpret the Heated_Seat_Levels signal as follows:
+If $Heated_Seat_Levels$ = [1], the HMI shall support On/Off only.
+If $Heated_Seat_Levels$ = [2], the HMI shall support Off, Low, and High levels.
+If $Heated_Seat_Levels$ = [3], the HMI shall support Off, Low, Medium, and High levels.
+Any other value of $Heated_Seat_Levels$ shall be considered invalid by the HMI."
+SWE1-VC-LeftFrontHeatedSeat-005	HeatedSeat	SYS-RA-CFTS044-026	Left Front Heated Seat	"HW supplier shall notify the HeatedSeatFL signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL signal and and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+For vehicles supporting two states (i.e. LO and HI), the following values shall be considered valid: $HeatedSeatFL$ = [HS_OFF], $HeatedSeatFL$ = [HS_LO], and $HeatedSeatFL$ = [HS_HI].
+The HMI shall interpret the HeatedSeatFL signal as follows:
+If $HeatedSeatFL$ = [HS_OFF], the heated seat shall be considered Off.
+If $HeatedSeatFL$ = [HS_LO], the heated seat shall be considered Low.
+If $HeatedSeatFL$ = [HS_HI], the heated seat shall be considered High.
+Any other value of $HeatedSeatFL$ shall be considered invalid by the HMI."
+SWE1-VC-LeftFrontHeatedSeat-006	HeatedSeat	SYS-RA-CFTS044-027	Left Front Heated Seat	"HW supplier shall notify the HeatedSeatFL signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+For vehicles supporting three states (i.e. LO, MEDIUM, and HI), the following values shall be considered valid: $HeatedSeatFL$ = [HS_OFF], $HeatedSeatFL$ = [HS_LO], $HeatedSeatFL$ = [HS_MED], and $HeatedSeatFL$ = [HS_HI].
+The HMI shall interpret the HeatedSeatFL signal as follows:
+If $HeatedSeatFL$ = [HS_OFF], the heated seat shall be considered Off.
+If $HeatedSeatFL$ = [HS_LO], the heated seat shall be considered Low.
+If $HeatedSeatFL$ = [HS_MED], the heated seat shall be considered Medium.
+If $HeatedSeatFL$ = [HS_HI], the heated seat shall be considered High.
+Any other value of $HeatedSeatFL$ shall be considered invalid by the HMI."
+SWE1-VC-LeftFrontHeatedSeat-007	HeatedSeat	SYS-RA-CFTS044-028	Left Front Heated Seat	"HW supplier shall notify the HeatedSeatFL signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL signal and and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and compare it with the internally stored status of the LF heated seat.
+If the received $HeatedSeatFL$ value is valid and different from the stored value, the HMI shall update the stored status with the new value and update the display to reflect the new state."
+SWE1-VC-LeftFrontHeatedSeat-008	HeatedSeat	SYS-RA-CFTS044-029	Left Front Heated Seat	"HW supplier shall notify the HeatedSeatFL signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+If the received $HeatedSeatFL$ value is invalid, the HMI shall ignore the signal and retain the previously stored status without updating the display."
+SWE1-VC-LeftFrontHeatedSeat-009	HeatedSeat	SYS-RA-CFTS044-030	Left Front Heated Seat	"HW supplier shall notify the PrplsnSysAtv and Hybrid_Type signals via the VHAL interface.
+CarPropertyService shall receive the PrplsnSysAtv and Hybrid_Type signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $PrplsnSysAtv$ = [Not Active] and $Hybrid_Type$ = [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the left front heated seat switch shall be displayed as greyed-out in the HMI."
+SWE1-VC-LeftFrontHeatedSeat-010	HeatedSeat	SYS-RA-CFTS044-031	Left Front Heated Seat	"HW supplier shall notify the EngRun_Stat and Hybrid_Type signals via the VHAL interface.
+CarPropertyService shall receive the EngRun_Stat and Hybrid_Type signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+For vehicles not equipped with the Stop-Start feature, if $EngRun_Stat$ <> [IDLE_STBL//UNLIMITED//LIMITED//RUN] and $Hybrid_Type$ <> [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the left front heated seat switch shall be displayed as greyed-out in the HMI."
+SWE1-VC-LeftFrontHeatedSeat-011	HeatedSeat	SYS-RA-CFTS044-032	Left Front Heated Seat	"HW supplier shall notify the EngRun_Stat and Hybrid_Type signals via the VHAL interface.
+CarPropertyService shall receive the EngRun_Stat and Hybrid_Type signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+For vehicles equipped with the Stop-Start feature, if $EngRun_Stat$ <> [IDLE_STBL//UNLIMITED//LIMITED//RUN] and $Hybrid_Type$ <> [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the HMI shall apply the switch behavior as defined in Stop-Start System Feature section {CFTS044-443}."
+SWE1-VC-LeftFrontHeatedSeat-012	HeatedSeat	SYS-RA-CFTS044-033	Left Front Heated Seat	"HW supplier shall notify the PowerMode signal via the VHAL interface.
+CarPropertyService shall receive the PowerMode signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+If $PowerMode$ <> [Ignition run], the HMI shall display the left front heated seat switch as greyed-out and set its status to Off."
+SWE1-VC-LeftFrontHeatedSeat-013	HeatedSeat	SYS-RA-CFTS044-034	Left Front Heated Seat	"When the customer selects to change the state of the LF heated seat, the HMI shall trigger an on-change request.
+If the LF heated seat state is changed by the user, $FL_HS_RQ$ shall be set to [HS_PSD] and sent within <Tsend>.
+CarPropertyManager will receive signal and send it to the CarPropertyService  via API interface as get/set methods.
+CarPropertyService shall send the FL_HS_RQ signal from the HMI layer to the VHAL interface 
+HW supplier shall support receiving the FL_HS_RQ signal via the VHAL interface."
+SWE1-VC-LeftFrontHeatedSeat-014	HeatedSeat	SYS-RA-CFTS044-035	Left Front Heated Seat	"HW supplier shall support receiving the FL_HS_RQ signal via the VHAL interface.
+CarPropertyService shall send the FL_HS_RQ signal from the HMI layer to the VHAL interface.
+The HMI layer shall generate the request based on system behavior.
+Following the transmission of $FL_HS_RQ$ = [HS_PSD], the HMI shall send an on-change $FL_HS_RQ$ signal.
+$FL_HS_RQ$ shall be set to [HS_NOT_PSD] and sent within <Tsend>."
+SWE1-VC-LeftFrontHeatedSeat-015	HeatedSeat	SYS-RA-CFTS044-036	Left Front Heated Seat	"When the customer selects to change the status of the LF heated seat, the HMI shall trigger an on-change request based on the current state of $HeatedSeatFL$.
+The HMI layer shall evaluate the current value of the HeatedSeatFL signal and generate the request based on user interaction.
+
+The HMI shall determine the next state and send $FL_HS_RQ$ as follows:
+If $HeatedSeatFL$ = [HS_HI], $FL_HS_RQ$ shall be set to [HS_MED].
+If $HeatedSeatFL$ = [HS_MED], $FL_HS_RQ$ shall be set to [HS_LO].
+If $HeatedSeatFL$ = [HS_LO], $FL_HS_RQ$ shall be set to [HS_OFF].
+If $HeatedSeatFL$ = [HS_OFF], $FL_HS_RQ$ shall be set to [HS_HI].
+
+CarPropertyService shall send the FL_HS_RQ signal from the HMI layer to the VHAL interface.
+HW supplier shall support receiving the FL_HS_RQ signal via the VHAL interface."
+SWE1-VC-LeftFrontHeatedSeat-016	HeatedSeat	SYS-RA-CFTS044-037	Left Front Heated Seat	"HW supplier shall notify the HeatedSeatFL signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and update the internal stored status of the LF heated seat.
+If $HeatedSeatFL$ = [HS_OFF], the HMI shall update the stored status to Off and update the display as specified within <Tdisplay>."
+SWE1-VC-LeftFrontHeatedSeat-017	HeatedSeat	SYS-RA-CFTS044-038	Left Front Heated Seat	"HW supplier shall notify the HeatedSeatFL signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and update the internal stored status of the LF heated seat.
+If $HeatedSeatFL$ = [HS_HI], the HMI shall update the stored status to High and update the display as specified within <Tdisplay>."
+SWE1-VC-LeftFrontHeatedSeat-018	HeatedSeat	SYS-RA-CFTS044-039	Left Front Heated Seat	"HW supplier shall notify the HeatedSeatFL signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and update the internal stored status of the LF heated seat.
+If $HeatedSeatFL$ = [HS_MED], the HMI shall update the stored status to Medium and update the display as specified within <Tdisplay>."
+SWE1-VC-LeftFrontHeatedSeat-019	HeatedSeat	SYS-RA-CFTS044-040	Left Front Heated Seat	"HW supplier shall notify the HeatedSeatFL signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and update the internal stored status of the LF heated seat.
+If $HeatedSeatFL$ = [HS_LO], the HMI shall update the stored status to Low and update the display as specified within <Tdisplay>."
+SWE1-VC-RightFrontHeatedSeat-020	HeatedSeat	SYS-RA-CFTS044-041	Right Front Heated Seat	Right Front Heated Seat
+SWE1-VC-RightFrontHeatedSeat-021	HeatedSeat	SYS-RA-CFTS044-042	Right Front Heated Seat	The RF heated seat button will allow the customer to change the state of the right front heated seat from Off to a high heat level and to a low heat level.
+SWE1-VC-RightFrontHeatedSeat-022	HeatedSeat	SYS-RA-CFTS044-043	Right Front Heated Seat	"HW supplier shall notify the HU wake-up event via the BH-CAN bus through the VHAL interface.
+CarPropertyService shall receive the wake-up indication and  send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received event and initialize the heated seat states.
+When the HU wakes up on the BH-CAN bus, the HMI shall set the RF heated seat state to Off."
+SWE1-VC-RightFrontHeatedSeat-023	HeatedSeat	SYS-RA-CFTS044-044	Right Front Heated Seat	"HW supplier shall notify the HeatedSeatFR signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR signal and  send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+For vehicles supporting two states (i.e. LO and HI), the following values shall be considered valid: $HeatedSeatFR$ = [HS_OFF], $HeatedSeatFR$ = [HS_LO], and $HeatedSeatFR$ = [HS_HI].
+The HMI shall interpret the HeatedSeatFR signal as follows:
+If $HeatedSeatFR$ = [HS_OFF], the heated seat shall be considered Off.
+If $HeatedSeatFR$ = [HS_LO], the heated seat shall be considered Low.
+If $HeatedSeatFR$ = [HS_HI], the heated seat shall be considered High.
+Any other value of $HeatedSeatFR$ shall be considered invalid by the HMI."
+SWE1-VC-RightFrontHeatedSeat-024	HeatedSeat	SYS-RA-CFTS044-045	Right Front Heated Seat	"HW supplier shall notify the HeatedSeatFR signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR signal and  send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+For vehicles supporting three states (i.e. LO, MEDIUM, and HI), the following values shall be considered valid: $HeatedSeatFR$ = [HS_OFF], $HeatedSeatFR$ = [HS_LO], $HeatedSeatFR$ = [HS_MED], and $HeatedSeatFR$ = [HS_HI].
+The HMI shall interpret the HeatedSeatFR signal as follows:
+If $HeatedSeatFR$ = [HS_OFF], the heated seat shall be considered Off.
+If $HeatedSeatFR$ = [HS_LO], the heated seat shall be considered Low.
+If $HeatedSeatFR$ = [HS_MED], the heated seat shall be considered Medium.
+If $HeatedSeatFR$ = [HS_HI], the heated seat shall be considered High.
+Any other value of $HeatedSeatFR$ shall be considered invalid by the HMI."
+SWE1-VC-RightFrontHeatedSeat-025	HeatedSeat	SYS-RA-CFTS044-046	Right Front Heated Seat	"HW supplier shall notify the HeatedSeatFR signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR signal and  send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and compare it with the internally stored status of the RF heated seat.
+If the received $HeatedSeatFR$ value is valid and different from the stored value, the HMI shall update the stored status with the new value and update the display to reflect the new state."
+SWE1-VC-RightFrontHeatedSeat-026	HeatedSeat	SYS-RA-CFTS044-047	Right Front Heated Seat	"HW supplier shall notify the HeatedSeatFR signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR signal and  send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+If the received $HeatedSeatFR$ value is invalid, the HMI shall ignore the signal and retain the previously stored status without updating the display."
+SWE1-VC-RightFrontHeatedSeat-027	HeatedSeat	SYS-RA-CFTS044-048	Right Front Heated Seat	"HW supplier shall notify the PrplsnSysAtv and Hybrid_Type signals via the VHAL interface.
+CarPropertyService shall receive the PrplsnSysAtv and Hybrid_Type signals and  send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $PrplsnSysAtv$ = [Not Active] and $Hybrid_Type$ = [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the right front heated seat switch shall be displayed as greyed-out in the HMI."
+SWE1-VC-RightFrontHeatedSeat-028	HeatedSeat	SYS-RA-CFTS044-049	Right Front Heated Seat	"HW supplier shall notify the EngRun_Stat and Hybrid_Type signals via the VHAL interface.
+CarPropertyService shall receive the EngRun_Stat and Hybrid_Type signals and  send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+For vehicles not equipped with the Stop-Start feature, if $EngRun_Stat$ <> [IDLE_STBL//UNLIMITED//LIMITED//RUN] and $Hybrid_Type$ <> [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the right front heated seat switch shall be displayed as greyed-out in the HMI."
+SWE1-VC-RightFrontHeatedSeat-029	HeatedSeat	SYS-RA-CFTS044-050	Right Front Heated Seat	"HW supplier shall notify the PowerMode signal via the VHAL interface.
+CarPropertyService shall receive the PowerMode signal and  send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+If $PowerMode$ <> [Ignition run], the HMI shall display the right front heated seat switch as greyed-out and set its status to Off."
+SWE1-VC-RightFrontHeatedSeat-030	HeatedSeat	SYS-RA-CFTS044-051	Right Front Heated Seat	"When the customer selects to change the state of the RF heated seat, the HMI shall trigger an on-change request.
+The HMI layer shall generate the request based on user interaction.
+If the RF heated seat state is changed by the user, $FR_HS_RQ$ shall be set to [HS_PSD] and sent to the CSWM within <Tsend>.
+CarPropertyManager will receive signal and send it to the CarPropertyService  via API interface as get/set methods.
+CarPropertyService shall send the FR_HS_RQ signal from the HMI layer to the VHAL interface.
+HW supplier shall support receiving the FR_HS_RQ signal via the VHAL interface."
+SWE1-VC-RightFrontHeatedSeat-031	HeatedSeat	SYS-RA-CFTS044-052	Right Front Heated Seat	"The HMI layer shall generate the request based on system behavior.
+Following the transmission of $FR_HS_RQ$ = [HS_PSD], the HMI shall send an on-change $FR_HS_RQ$ signal.
+$FR_HS_RQ$ shall be set to [HS_NOT_PSD] and sent within <Tsend>.
+CarPropertyManager will receive signal and send it to the CarPropertyService  via API interface as get/set methods.
+CarPropertyService shall send the FR_HS_RQ signal from the HMI layer to the VHAL interface.
+HW supplier shall support receiving the FR_HS_RQ signal via the VHAL interface.
+
+."
+SWE1-VC-RightFrontHeatedSeat-032	HeatedSeat	SYS-RA-CFTS044-053	Right Front Heated Seat	"When the customer selects to change the status of the RF heated seat, the HMI shall trigger an on-change request based on the current state of $HeatedSeatFR$.
+The HMI shall determine the next state and send $FR_HS_RQ$ as follows:
+If $HeatedSeatFR$ = [HS_HI], $FR_HS_RQ$ shall be set to [HS_MED].
+If $HeatedSeatFR$ = [HS_MED], $FR_HS_RQ$ shall be set to [HS_LO].
+If $HeatedSeatFR$ = [HS_LO], $FR_HS_RQ$ shall be set to [HS_OFF].
+If $HeatedSeatFR$ = [HS_OFF], $FR_HS_RQ$ shall be set to [HS_HI].
+The HMI layer shall evaluate the current value of the HeatedSeatFR signal and generate the request based on user interaction.
+CarPropertyManager will receive signal and send it to the CarPropertyService  via API interface as get/set methods.
+CarPropertyService shall send the FR_HS_RQ signal from the HMI layer to the VHAL interface.
+HW supplier shall support receiving the FR_HS_RQ signal via the VHAL interface."
+SWE1-VC-RightFrontHeatedSeat-033	HeatedSeat	SYS-RA-CFTS044-054	Right Front Heated Seat	"HW supplier shall notify the HeatedSeatFR signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and update the internal stored status of the RF heated seat.
+If $HeatedSeatFR$ = [HS_OFF], the HMI shall update the stored status to Off and update the display as specified within <Tdisplay>."
+SWE1-VC-RightFrontHeatedSeat-034	HeatedSeat	SYS-RA-CFTS044-055	Right Front Heated Seat	"HW supplier shall notify the HeatedSeatFR signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and update the internal stored status of the RF heated seat.
+If $HeatedSeatFR$ = [HS_HI], the HMI shall update the stored status to High and update the display as specified within <Tdisplay>."
+SWE1-VC-RightFrontHeatedSeat-035	HeatedSeat	SYS-RA-CFTS044-056	Right Front Heated Seat	"HW supplier shall notify the HeatedSeatFR signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and update the internal stored status of the RF heated seat.
+If $HeatedSeatFR$ = [HS_MED], the HMI shall update the stored status to Medium and update the display as specified within <Tdisplay>."
+SWE1-VC-RightFrontHeatedSeat-036	HeatedSeat	SYS-RA-CFTS044-057	Right Front Heated Seat	"HW supplier shall notify the HeatedSeatFR signal via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal and update the internal stored status of the RF heated seat.
+If $HeatedSeatFR$ = [HS_LO], the HMI shall update the stored status to Low and update the display as specified within <Tdisplay>."
+SWE1-VC-OneStageHeatedSeat-037	HeatedSeat	SYS-RA-CFTS044-197	One Stage Heated Seat	One Stage Heated Seats Management
+SWE1-VC-OneStageHeatedSeat-038	HeatedSeat	SYS-RA-CFTS044-198	One Stage Heated Seat	TLM Algorithm requirements
+SWE1-VC-OneStageHeatedSeat-039	HeatedSeat	SYS-RA-CFTS044-199	One Stage Heated Seat	"HW supplier shall notify the PROXI configuration parameter Heated_Seats via the VHAL interface.
+CarPropertyService shall receive the Heated_Seats parameter and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received configuration parameter.
+The following requirements shall be applied only if $Heated_Seats$ = [Front Seats] or [Front and Rear Seats]."
+SWE1-VC-OneStageHeatedSeat-040	HeatedSeat	SYS-RA-CFTS044-200	One Stage Heated Seat	"HW supplier shall notify the STATUS_CSWM.FR_HS_STATFailSts and Heated_Seat_Levels signals via the VHAL interface.
+CarPropertyService shall receive the STATUS_CSWM.FR_HS_STATFailSts and Heated_Seat_Levels signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+The following requirements shall be applied only if $Heated_Seat_Levels$ = [One Level].
+Regardless of the value of $HeatedSeatFR$, if $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Present], the HMI shall update the relative icon on TLM_Display.GUI according to the TLM HMI Document."
+SWE1-VC-OneStageHeatedSeat-041	HeatedSeat	SYS-RA-CFTS044-201	One Stage Heated Seat	"HW supplier shall notify the Ignition Working Condition via the VHAL interface.
+CarPropertyService shall receive the Ignition Working Condition signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received Ignition Working Condition state.
+During the Ignition Working Condition (Ignition Off, Ignition On, Ignition On Engine On, Ignition Pre Off), when the user presses the heated seat icon on TLM.Display.GUI, the HMI shall update the icon status following the defined toggle logic (Off → High → Off)."
+SWE1-VC-OneStageHeatedSeat-042	HeatedSeat	SYS-RA-CFTS044-202	One Stage Heated Seat	"HW supplier shall notify the DrvSeatHeating.Req signal via the VHAL interface.
+CarPropertyService shall receive the DrvSeatHeating.Req signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal state.
+If $DrvSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_CLIMATE_SETUP.FL_HS_Cmd_Tlm$ = [Pressed]."
+SWE1-VC-OneStageHeatedSeat-043	HeatedSeat	SYS-RA-CFTS044-203	One Stage Heated Seat	"The HMI layer shall generate the signal based on system behavior.
+Following the transmission of $TELEMATIC_CLIMATE_SETUP.FR_HS_Cmd_Tlm$ = [Pressed], the HMI shall send an on-change update.
+$TELEMATIC_CLIMATE_SETUP.FR_HS_Cmd_Tlm$ shall be set to [Not_Pressed] and sent within <Tsend>.
+CarPropertyManager will receive signal and send it to the CarPropertyService  via API interface as get/set methods.
+
+CarPropertyService shall send the TELEMATIC_CLIMATE_SETUP signal from the HMI layer to the VHAL interface.
+
+HW supplier shall support receiving the TELEMATIC_CLIMATE_SETUP signal via the VHAL interface."
+SWE1-VC-OneStageHeatedSeat-044	HeatedSeat	SYS-RA-CFTS044-204	One Stage Heated Seat	"HW supplier shall notify the PsngrSeatHeating.Req signal via the VHAL interface.
+CarPropertyService shall receive the PsngrSeatHeating.Req signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal state.
+If $PsngrSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Pressed]."
+SWE1-VC-OneStageHeatedSeat-045	HeatedSeat	SYS-RA-CFTS044-205	One Stage Heated Seat	"The HMI layer shall generate the signal based on system behavior.
+Following the transmission of $TELEMATIC_CLIMATE_SETUP.FR_HS_Cmd_Tlm$ = [Pressed], the HMI shall send an on-change update.
+$TELEMATIC_CLIMATE_SETUP.FR_HS_Cmd_Tlm$ shall be set to [Not_Pressed] and sent within <Tsend>.
+CarPropertyManager will receive signal and send it to the CarPropertyService  via API interface as get/set methods.
+
+CarPropertyService shall send the TELEMATIC_CLIMATE_SETUP signal from the HMI layer to the VHAL interface.
+HW supplier shall support receiving the TELEMATIC_CLIMATE_SETUP signal via the VHAL interface."
+SWE1-VC-OneStageHeatedSeat-046	HeatedSeat	SYS-RA-CFTS044-206	One Stage Heated Seat	"HW supplier shall notify the heater state signals via the VHAL interface.
+CarPropertyService shall receive the heater state signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+When no icon on TLM_Display.GUI is pressed and the heater state changes, the HMI shall update the icon status to reflect the received information.
+The HMI shall ensure that the displayed heater states are synchronized with the latest received signals."
+SWE1-VC-OneStageHeatedSeat-047	HeatedSeat	SYS-RA-CFTS044-207	One Stage Heated Seat	"HW supplier shall notify the HeatedSeatFL and STATUS_CSWM signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL and STATUS_CSWM signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [HS_OFF] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall update the stored status of the driver heated seat and update the display as specified within <Tdisplay>."
+SWE1-VC-OneStageHeatedSeat-048	HeatedSeat	SYS-RA-CFTS044-208	One Stage Heated Seat	"HW supplier shall notify the HeatedSeatFL and STATUS_CSWM signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL and STATUS_CSWM signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [HS_HI] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall update the stored status of the driver heated seat and update the display as specified within <Tdisplay>."
+SWE1-VC-OneStageHeatedSeat-049	HeatedSeat	SYS-RA-CFTS044-209	One Stage Heated Seat	"HW supplier shall notify the HeatedSeatFR and STATUS_CSWM signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR and STATUS_CSWM signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [HS_OFF] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall update the stored status of the passenger heated seat and update the display as specified within <Tdisplay>."
+SWE1-VC-OneStageHeatedSeat-050	HeatedSeat	SYS-RA-CFTS044-210	One Stage Heated Seat	"HW supplier shall notify the HeatedSeatFR and STATUS_CSWM signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR and STATUS_CSWM signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [HS_HI] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall update the stored status of the passenger heated seat and update the display as specified within <Tdisplay>."
+SWE1-VC-OneStageHeatedSeat-051	HeatedSeat	SYS-RA-CFTS044-211	One Stage Heated Seat	"HW supplier shall notify the STATUS_CSWM.FL_HS_STATFailSts signal via the VHAL interface.
+CarPropertyService shall receive the STATUS_CSWM.FL_HS_STATFailSts signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+Regardless of the value of $HeatedSeatFL$, if $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Present], the HMI shall update the relative icon on TLM_Display.GUI according to the TLM HMI Document."
+SWE1-VC-OneStageHeatedSeat-052	HeatedSeat	SYS-RA-CFTS044-212	One Stage Heated Seat	"HW supplier shall notify the STATUS_CSWM.FR_HS_STATFailSts signal via the VHAL interface.
+CarPropertyService shall receive the STATUS_CSWM.FR_HS_STATFailSts signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+Regardless of the value of $HeatedSeatFR$, if $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Present], the HMI shall update the relative icon on TLM_Display.GUI according to the TLM HMI Document."
+SWE1-VC-TwoStagesHeatedSeat-053	HeatedSeat	SYS-RA-CFTS044-213	Two Stages Heated Seat	Two Stages Heated Seats Management
+SWE1-VC-TwoStagesHeatedSeat-054	HeatedSeat	SYS-RA-CFTS044-214	Two Stages Heated Seat	TLM Algorithm requirements
+SWE1-VC-TwoStagesHeatedSeat-055	HeatedSeat	SYS-RA-CFTS044-215	Two Stages Heated Seat	"HW supplier shall notify the PROXI parameter Heated_Seats via the VHAL interface.
+CarPropertyService shall receive the Heated_Seats parameter and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received configuration parameter.
+The following requirements shall be applied only if $Heated_Seats$ = [Front Seats] or [Front and Rear Seats]."
+SWE1-VC-TwoStagesHeatedSeat-056	HeatedSeat	SYS-RA-CFTS044-216	Two Stages Heated Seat	"HW supplier shall notify the PROXI parameter Heated_Seats and Heated_Seats_Levels via the VHAL interface.
+CarPropertyService shall receive the Heated_Seats and Heated_Seats_Levels parameters and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received configuration parameters.
+The following requirements shall be applied only if $Heated_Seats$ = [Front Seats] or [Front and Rear Seats] and $Heated_Seats_Levels$ = [Two Levels]."
+SWE1-VC-TwoStagesHeatedSeat-057	HeatedSeat	SYS-RA-CFTS044-217	Two Stages Heated Seat	"HW supplier shall notify the Ignition Working Condition signal via the VHAL interface.
+CarPropertyService shall receive the Ignition Working Condition signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received Ignition Working Condition state.
+During Ignition Working Condition (Ignition Off, Ignition On, Ignition On Engine On, Ignition Pre Off), when the user presses the heated seat icon on TLM_Display.GUI, the HMI shall update the icon status following the defined logic (Off → High → Low → Off)."
+SWE1-VC-TwoStagesHeatedSeat-058	HeatedSeat	SYS-RA-CFTS044-218	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [HS_OFF] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present] and $DrvSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [HS_HI]."
+SWE1-VC-TwoStagesHeatedSeat-059	HeatedSeat	SYS-RA-CFTS044-219	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [HS_HI] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present] and $DrvSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [HS_LO]."
+SWE1-VC-TwoStagesHeatedSeat-060	HeatedSeat	SYS-RA-CFTS044-220	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [HS_LO] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present] and $DrvSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [HS_OFF]."
+SWE1-VC-TwoStagesHeatedSeat-061	HeatedSeat	SYS-RA-CFTS044-221	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [HS_OFF] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present] and $PsngrSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [HS_HI]."
+SWE1-VC-TwoStagesHeatedSeat-062	HeatedSeat	SYS-RA-CFTS044-222	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [HS_HI] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present] and $PsngrSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [HS_LO]."
+SWE1-VC-TwoStagesHeatedSeat-063	HeatedSeat	SYS-RA-CFTS044-223	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [HS_LO] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present] and $PsngrSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [HS_OFF]."
+SWE1-VC-TwoStagesHeatedSeat-064	HeatedSeat	SYS-RA-CFTS044-224	Two Stages Heated Seat	"HW supplier shall notify the DrvSeatHeating.Req and STATUS_CSWM.FL_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the DrvSeatHeating.Req and STATUS_CSWM.FL_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $DrvSeatHeating.Req$ = [Requested] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Present], the HMI shall display an informative popup related to the failure as defined in the TLM HMI Document."
+SWE1-VC-TwoStagesHeatedSeat-065	HeatedSeat	SYS-RA-CFTS044-225	Two Stages Heated Seat	"HW supplier shall notify the PsngrSeatHeating.Req and STATUS_CSWM.FR_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the PsngrSeatHeating.Req and STATUS_CSWM.FR_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $PsngrSeatHeating.Req$ = [Requested] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Present], the HMI shall display an informative popup related to the failure as defined in the TLM HMI Document."
+SWE1-VC-TwoStagesHeatedSeat-066	HeatedSeat	SYS-RA-CFTS044-226	Two Stages Heated Seat	"HW supplier shall notify the heater state signals via the VHAL interface.
+CarPropertyService shall receive the heater state signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+When no icon on TLM_Display.GUI is pressed and the heater states change, the HMI shall update the icons to reflect the received information.
+The HMI shall ensure that the displayed heater states are synchronized with the latest received signals."
+SWE1-VC-TwoStagesHeatedSeat-067	HeatedSeat	SYS-RA-CFTS044-227	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [HS_OFF] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_off]."
+SWE1-VC-TwoStagesHeatedSeat-068	HeatedSeat	SYS-RA-CFTS044-228	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [HS_LO] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_low]."
+SWE1-VC-TwoStagesHeatedSeat-069	HeatedSeat	SYS-RA-CFTS044-229	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [Heated_seat_high] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_high]."
+SWE1-VC-TwoStagesHeatedSeat-070	HeatedSeat	SYS-RA-CFTS044-230	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_off] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_off]."
+SWE1-VC-TwoStagesHeatedSeat-071	HeatedSeat	SYS-RA-CFTS044-231	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_low] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_low]."
+SWE1-VC-TwoStagesHeatedSeat-072	HeatedSeat	SYS-RA-CFTS044-232	Two Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_high] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_high]."
+SWE1-VC-TwoStagesHeatedSeat-073	HeatedSeat	SYS-RA-CFTS044-233	Two Stages Heated Seat	"HW supplier shall notify the STATUS_CSWM.FL_HS_STATFailSts signal via the VHAL interface.
+CarPropertyService shall receive the STATUS_CSWM.FL_HS_STATFailSts signal andsend that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+Regardless of the value of $HeatedSeatFL$, if $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Present], the HMI shall update the relative icon on TLM_Display.GUI according to the TLM HMI Document."
+SWE1-VC-TwoStagesHeatedSeat-074	HeatedSeat	SYS-RA-CFTS044-234	Two Stages Heated Seat	"HW supplier shall notify the STATUS_CSWM.FR_HS_STATFailSts signal via the VHAL interface.
+CarPropertyService shall receive the STATUS_CSWM.FR_HS_STATFailSts signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+Regardless of the value of $HeatedSeatFR$, if $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Present], the HMI shall update the relative icon on TLM_Display.GUI according to the TLM HMI Document."
+SWE1-VC-ThreeStagesHeatedSeat-075	HeatedSeat	SYS-RA-CFTS044-235	Three Stages Heated Seat	Three Stages Heated Seats Management
+SWE1-VC-ThreeStagesHeatedSeat-076	HeatedSeat	SYS-RA-CFTS044-236	Three Stages Heated Seat	TLM Algorithm requirements
+SWE1-VC-ThreeStagesHeatedSeat-077	HeatedSeat	SYS-RA-CFTS044-237	Three Stages Heated Seat	The requirements in this section are applicable for R1 Low only from SR22 and beyond.
+SWE1-VC-ThreeStagesHeatedSeat-078	HeatedSeat	SYS-RA-CFTS044-238	Three Stages Heated Seat	"HW supplier shall notify the PROXI parameter Heated_Seats via the VHAL interface.
+CarPropertyService shall receive the Heated_Seats parameter and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received configuration parameter.
+The following requirements shall be applied only if $Heated_Seats$ = [Front Seats] or [Front and Rear Seats]."
+SWE1-VC-ThreeStagesHeatedSeat-079	HeatedSeat	SYS-RA-CFTS044-239	Three Stages Heated Seat	"HW supplier shall notify the PROXI parameter Heated_Seats and Heated_Seats_Levels via the VHAL interface.
+CarPropertyService shall receive the Heated_Seats and Heated_Seats_Levels parameters and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received configuration parameters.
+The following requirements shall be applied only if $Heated_Seats$ = [Front Seats] or [Front and Rear Seats] and $Heated_Seats_Levels$ = [Three Levels]."
+SWE1-VC-ThreeStagesHeatedSeat-080	HeatedSeat	SYS-RA-CFTS044-240	Three Stages Heated Seat	"HW supplier shall notify the Ignition Working Condition signal via the VHAL interface.
+CarPropertyService shall receive the Ignition Working Condition signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received Ignition Working Condition state.
+During Ignition Working Condition (Ignition Off, Ignition On, Ignition On Engine On, Ignition Pre Off), when the user presses the heated seat icon on TLM_Display.GUI, the HMI shall update the icon status following the defined logic (Off → High → Mid → Low → Off)."
+SWE1-VC-ThreeStagesHeatedSeat-081	HeatedSeat	SYS-RA-CFTS044-241	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [Heated_seat_off] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present] and $DrvSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_high]."
+SWE1-VC-ThreeStagesHeatedSeat-082	HeatedSeat	SYS-RA-CFTS044-242	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [Heated_seat_high] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present] and $DrvSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_mid]."
+SWE1-VC-ThreeStagesHeatedSeat-083	HeatedSeat	SYS-RA-CFTS044-243	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [Heated_seat_mid] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present] and $DrvSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_low]."
+SWE1-VC-ThreeStagesHeatedSeat-084	HeatedSeat	SYS-RA-CFTS044-244	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL, STATUS_CSWM.FL_HS_STATFailSts, and DrvSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [Heated_seat_low] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present] and $DrvSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_off]."
+SWE1-VC-ThreeStagesHeatedSeat-085	HeatedSeat	SYS-RA-CFTS044-245	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_off] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present] and $PsngrSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_high]."
+SWE1-VC-ThreeStagesHeatedSeat-086	HeatedSeat	SYS-RA-CFTS044-246	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_high] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present] and $PsngrSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_mid]."
+SWE1-VC-ThreeStagesHeatedSeat-087	HeatedSeat	SYS-RA-CFTS044-247	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods..
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_mid] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present] and $PsngrSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_low]."
+SWE1-VC-ThreeStagesHeatedSeat-088	HeatedSeat	SYS-RA-CFTS044-248	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR, STATUS_CSWM.FR_HS_STATFailSts, and PsngrSeatHeating.Req signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_low] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present] and $PsngrSeatHeating.Req$ = [Requested], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_off]."
+SWE1-VC-ThreeStagesHeatedSeat-089	HeatedSeat	SYS-RA-CFTS044-249	Three Stages Heated Seat	"HW supplier shall notify the heater state signals via the VHAL interface.
+CarPropertyService shall receive the heater state signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+When no icon on TLM_Display.GUI is pressed and the heater state changes, the HMI shall update the icons to reflect the received information.
+The HMI shall ensure that the displayed heater states are synchronized with the latest received signals."
+SWE1-VC-ThreeStagesHeatedSeat-090	HeatedSeat	SYS-RA-CFTS044-250	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [Heated_seat_off] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_off]."
+SWE1-VC-ThreeStagesHeatedSeat-091	HeatedSeat	SYS-RA-CFTS044-251	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [Heated_seat_low] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_low]."
+SWE1-VC-ThreeStagesHeatedSeat-092	HeatedSeat	SYS-RA-CFTS044-252	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [Heated_seat_mid] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_mid]."
+SWE1-VC-ThreeStagesHeatedSeat-093	HeatedSeat	SYS-RA-CFTS044-253	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFL and STATUS_CSWM.FL_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFL$ = [Heated_seat_high] and $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm$ = [Heated_seat_high]."
+SWE1-VC-ThreeStagesHeatedSeat-094	HeatedSeat	SYS-RA-CFTS044-254	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_off] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_off]."
+SWE1-VC-ThreeStagesHeatedSeat-095	HeatedSeat	SYS-RA-CFTS044-255	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_low] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_low]."
+SWE1-VC-ThreeStagesHeatedSeat-096	HeatedSeat	SYS-RA-CFTS044-256	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_mid] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_mid]."
+SWE1-VC-ThreeStagesHeatedSeat-097	HeatedSeat	SYS-RA-CFTS044-257	Three Stages Heated Seat	"HW supplier shall notify the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals via the VHAL interface.
+CarPropertyService shall receive the HeatedSeatFR and STATUS_CSWM.FR_HS_STATFailSts signals and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signals.
+If $HeatedSeatFR$ = [Heated_seat_high] and $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Not_Present], the HMI shall set $TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm$ = [Heated_seat_high]."
+SWE1-VC-ThreeStagesHeatedSeat-098	HeatedSeat	SYS-RA-CFTS044-258	Three Stages Heated Seat	"HW supplier shall notify the STATUS_CSWM.FL_HS_STATFailSts signal via the VHAL interface.
+CarPropertyService shall receive the STATUS_CSWM.FL_HS_STATFailSts signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+Regardless of the value of $HeatedSeatFL$, if $STATUS_CSWM.FL_HS_STATFailSts$ = [Fail_Present], the HMI shall update the relative icon on TLM_Display.GUI according to the TLM HMI Document."
+SWE1-VC-ThreeStagesHeatedSeat-099	HeatedSeat	SYS-RA-CFTS044-259	Three Stages Heated Seat	"HW supplier shall notify the STATUS_CSWM.FR_HS_STATFailSts signal via the VHAL interface.
+CarPropertyService shall receive the STATUS_CSWM.FR_HS_STATFailSts signal and send that to CarPropertyManager via Interface.
+CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+The HMI layer shall evaluate the received signal.
+Regardless of the value of $HeatedSeatFR$, if $STATUS_CSWM.FR_HS_STATFailSts$ = [Fail_Present], the HMI shall update the relative icon on TLM_Display.GUI according to the TLM HMI Document."
+SWE1-VC-HeatedSteeringWheel-001	Heated Steering Wheel	SYS-RA-CFTS044-092	Heated Steering Wheel	Heated Steering Wheel
+SWE1-VC-HeatedSteeringWheel-002	Heated Steering Wheel	SYS-RA-CFTS044-093	Heated Steering Wheel	The heated steering wheel button will allow the customer to turn on and off the heated or The system shall allow the user to turn the Heated Steering Wheel ON and OFF via the dedicated button steering wheel.
+SWE1-VC-HeatedSteeringWheel-003	Heated Steering Wheel	SYS-RA-CFTS044-094	Heated Steering Wheel	"The HW supplier shall notify the system wake-up and relevant ignition/BH-CAN status signals via the VHAL interface.
+CarPropertyService shall receive the wake-up indication from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the wake-up status to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall detect the HU wake-up condition based on the received signals.
+Upon HU wake-up on the BH-CAN bus, the HMI shall:
+Initialize the Heated Steering Wheel state to OFF
+Update the stored state accordingly
+Reflect the OFF status on the display (if applicable)"
+SWE1-VC-HeatedSteeringWheel-004	Heated Steering Wheel	SYS-RA-CFTS044-095	Heated Steering Wheel	"The HW supplier shall notify the $Heated_Steering_Levels$ and $HSW_Stat$ signals via the VHAL interface.
+CarPropertyService shall receive the $Heated_Steering_Levels$ and $HSW_Stat$ signals from VHAL and forward them to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $Heated_Steering_Levels$ and $HSW_Stat$ values to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $Heated_Steering_Levels$ signal to determine the supported Heated Steering Wheel configuration.
+When $Heated_Steering_Levels$ = [1_Level], the HMI shall interpret the $HSW_Stat$ signal as follows:
+If $HSW_Stat$ = [OFF], the HMI shall:
+Set the Heated Steering Wheel state to OFF
+Update the display accordingly
+If $HSW_Stat$ = [ON], the HMI shall:
+Set the Heated Steering Wheel state to ON (HI)
+Update the display accordingly
+Any other value of $HSW_Stat$ shall be considered invalid by the HMI and handled according to the defined error handling mechanism."
+SWE1-VC-HeatedSteeringWheel-005	Heated Steering Wheel	SYS-RA-CFTS044-096	Heated Steering Wheel	"The HW supplier shall notify the $Heated_Steering_Levels$ and $HSW_Stat_2$ signals via the VHAL interface.
+CarPropertyService shall receive the $Heated_Steering_Levels$ and $HSW_Stat_2$ signals from VHAL and forward them to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $Heated_Steering_Levels$ and $HSW_Stat_2$ values to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $Heated_Steering_Levels$ signal to determine the supported Heated Steering Wheel configuration.
+When $Heated_Steering_Levels$ = [3 Levels], the HMI shall interpret the $HSW_Stat_2$ signal as follows:
+If $HSW_Stat_2$ = [HSW_OFF], the HMI shall:
+Set the Heated Steering Wheel state to OFF
+Update the display accordingly
+If $HSW_Stat_2$ = [HSW_LO], the HMI shall:
+Set the Heated Steering Wheel state to LOW
+Update the display accordingly
+If $HSW_Stat_2$ = [HSW_MED], the HMI shall:
+Set the Heated Steering Wheel state to MEDIUM
+Update the display accordingly
+If $HSW_Stat_2$ = [HSW_HI], the HMI shall:
+Set the Heated Steering Wheel state to HIGH
+Update the display accordingly
+Any other value of $HSW_Stat_2$ shall be considered invalid by the HMI and handled according to the defined error handling mechanism."
+SWE1-VC-HeatedSteeringWheel-006	Heated Steering Wheel	SYS-RA-CFTS044-097	Heated Steering Wheel	"The HW supplier shall notify the $HSW_Stat_2$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat_2$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat_2$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_Stat_2$ signal.
+If an invalid or unsupported value of $HSW_Stat_2$ is received, the HMI shall:
+Ignore the invalid signal
+Maintain the previously stored Heated Steering Wheel state
+Not update the display based on the invalid value"
+SWE1-VC-HeatedSteeringWheel-007	Heated Steering Wheel	SYS-RA-CFTS044-098	Heated Steering Wheel	"The HW supplier shall notify the $HSW_Stat_2$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat_2$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat_2$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_Stat_2$ signal and compare it with the currently stored Heated Steering Wheel state.
+If the received $HSW_Stat_2$ value differs from the stored state, the HMI shall:
+Update the stored Heated Steering Wheel state with the new value
+Update the display to reflect the new state
+If the received $HSW_Stat_2$ value is the same as the stored state, the HMI shall:
+Not perform any update to the stored state
+Not trigger any display change"
+SWE1-VC-HeatedSteeringWheel-008	Heated Steering Wheel	SYS-RA-CFTS044-099	Heated Steering Wheel	"The HW supplier shall notify the $Hybrid_Type$ and $PrplsnSysAtv$ signals via the VHAL interface.
+CarPropertyService shall receive the $Hybrid_Type$ and $PrplsnSysAtv$ signals from VHAL and forward them to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $Hybrid_Type$ and $PrplsnSysAtv$ values to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $Hybrid_Type$ and $PrplsnSysAtv$ signals.
+If $Hybrid_Type$ = [PHEV OR BEV OR HEV OR REPB OR FCEV] and $PrplsnSysAtv$ = [Not Active], the HMI shall:
+Disable the Heated Steering Wheel control (switch/button)
+Display the Heated Steering Wheel switch in a greyed-out (inactive) state
+If the above condition is not met, the HMI shall:
+Enable the Heated Steering Wheel control
+Display the switch in an active/selectable state"
+SWE1-VC-HeatedSteeringWheel-009	Heated Steering Wheel	SYS-RA-CFTS100	Heated Steering Wheel	"The HW supplier shall notify the $EngRun_Stat$ and $Hybrid_Type$ signals via the VHAL interface.
+CarPropertyService shall receive the $EngRun_Stat$ and $Hybrid_Type$ signals from VHAL and forward them to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $EngRun_Stat$ and $Hybrid_Type$ values to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $EngRun_Stat$ and $Hybrid_Type$ signals.
+For vehicles not equipped with Stop-Start feature (i.e., $Hybrid_Type$ ≠ [PHEV, BEV, HEV, REPB, FCEV]) and when $EngRun_Stat$ ≠ [IDLE_STBL / UNLIMITED / LIMITED / RUN], the HMI shall:
+Disable the Heated Steering Wheel control (switch/button)
+Display the Heated Steering Wheel switch in a greyed-out (inactive) state
+If the above condition is not met, the HMI shall:
+Enable the Heated Steering Wheel control
+Display the switch in an active/selectable state"
+SWE1-VC-HeatedSteeringWheel-010	Heated Steering Wheel	SYS-RA-CFTS044-101	Heated Steering Wheel	"The HW supplier shall notify the $EngRun_Stat$ and $Hybrid_Type$ signals via the VHAL interface.
+CarPropertyService shall receive the $EngRun_Stat$ and $Hybrid_Type$ signals from VHAL and forward them to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $EngRun_Stat$ and $Hybrid_Type$ values to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $EngRun_Stat$ and $Hybrid_Type$ signals.
+For vehicles equipped with the Stop-Start feature and when
+$EngRun_Stat$ ≠ [IDLE_STBL / UNLIMITED / LIMITED / RUN] and
+$Hybrid_Type$ ≠ [PHEV, BEV, HEV, REPB, FCEV],
+the HMI shall:
+Determine the Heated Steering Wheel switch behavior based on the Stop-Start System Feature specification
+Apply the switch state (enabled/disabled/greyed-out) as defined in the Stop-Start System Feature"
+SWE1-VC-HeatedSteeringWheel-011	Heated Steering Wheel	SYS-RA-CFTS044-102	Heated Steering Wheel	"The HW supplier shall notify the $PowerMode$ signal via the VHAL interface.
+CarPropertyService shall receive the $PowerMode$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $PowerMode$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $PowerMode$ signal.
+If $PowerMode$ ≠ [Ignition run], the HMI shall:
+Set the Heated Steering Wheel state to OFF
+Disable the Heated Steering Wheel control (switch/button)
+Display the Heated Steering Wheel switch in a greyed-out (inactive) state
+If $PowerMode$ = [Ignition run], the HMI shall:
+Enable the Heated Steering Wheel control
+Display the switch in an active/selectable state"
+SWE1-VC-HeatedSteeringWheel-012	Heated Steering Wheel	SYS-RA-CFTS044-103	Heated Steering Wheel	"The HMI layer shall detect the user interaction when the customer selects the heated steering wheel control (button press).
+The HMI layer shall send a toggle request to the Framework Layer indicating a change in Heated Steering Wheel state.
+The Framework Layer shall process the user request and generate an on-change command for the Heated Steering Wheel.
+The Framework Layer shall forward the request to the Service Layer.
+CarPropertyManager shall expose the request to CarPropertyService via the interface.
+CarPropertyService shall transmit the $HSW_RQ_TGW$ signal via the VHAL interface.
+The HW supplier / VHAL shall send the $HSW_RQ_TGW$ = [Pressed / PSD] signal to the CSWM within <Tsend> upon receiving the request"
+SWE1-VC-HeatedSteeringWheel-013	Heated Steering Wheel	SYS-RA-CFTS044-104	Heated Steering Wheel	"The HMI layer shall detect the release of the heated steering wheel button after user interaction.
+The HMI layer shall send a release indication to the Framework Layer following the initial button press event.
+The Framework Layer shall process the release event and generate an on-change command indicating button release.
+The Framework Layer shall forward the release request to the Service Layer.
+CarPropertyManager shall expose the request to CarPropertyService via the interface.
+CarPropertyService shall transmit the $HSW_RQ_TGW$ signal via the VHAL interface.
+The HW supplier / VHAL shall send the $HSW_RQ_TGW$ = [NOT Pressed / NOT_PSD] signal to the CSWM within <Tsend> after the initial Pressed (PSD) signal."
+SWE1-VC-HeatedSteeringWheel-014	Heated Steering Wheel	SYS-RA-CFTS044-105	Heated Steering Wheel	"The HMI layer shall detect user interaction when the customer selects to change the Heated Steering Wheel state.
+The HMI layer shall send a toggle request to the Framework Layer indicating a change in Heated Steering Wheel status.
+The Framework Layer shall evaluate the current $HSW_Stat_2$ value and determine the target Heated Steering Wheel state based on the toggle logic.
+The Framework Layer shall generate an on-change $HSW_RQ_TGW$ request corresponding to the new desired state.
+The Framework Layer shall forward the request to the Service Layer.
+CarPropertyManager shall expose the request to CarPropertyService via the interface.
+CarPropertyService shall transmit the $HSW_RQ_TGW$ signal via the VHAL interface.
+The HW supplier / VHAL shall send the $HSW_RQ_TGW$ signal to the CSWM based on the evaluated state transition from $HSW_Stat_2$, as defined in the corresponding signal mapping."
+SWE1-VC-HeatedSteeringWheel-015	Heated Steering Wheel	SYS-RA-CFTS044-106	Heated Steering Wheel	"The HW supplier shall notify the $HSW_Stat$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_Stat$ signal.
+If $HSW_Stat$ = [ON], the HMI shall:
+Update the stored Heated Steering Wheel state to ON
+Update the display to reflect the ON status as per HMI specification within <Tdisplay>"
+SWE1-VC-HeatedSteeringWheel-016	Heated Steering Wheel	SYS-RA-CFTS044-107	Heated Steering Wheel	"The HW supplier shall notify the $HSW_Stat$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_Stat$ signal.
+If $HSW_Stat$ = [OFF], the HMI shall:
+Update the stored Heated Steering Wheel state to OFF
+Update the display to reflect the OFF status as per HMI specification within <Tdisplay>"
+SWE1-VC-HeatedSteeringWheel-017	Heated Steering Wheel	SYS-RA-CFTS044-108	Heated Steering Wheel	"The HW supplier shall notify the $HSW_Stat_2$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat_2$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat_2$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_Stat_2$ signal.
+If $HSW_Stat_2$ = [HSW_OFF], the HMI shall:
+Update the stored Heated Steering Wheel state to OFF
+Update the display to reflect the OFF status as per HMI specification within <Tdisplay>"
+SWE1-VC-HeatedSteeringWheel-018	Heated Steering Wheel	SYS-RA-CFTS044-109	Heated Steering Wheel	"The HW supplier shall notify the $HSW_Stat_2$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat_2$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat_2$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_Stat_2$ signal.
+If $HSW_Stat_2$ = [HSW_HI], the HMI shall:
+Update the stored Heated Steering Wheel state to HIGH (HI)
+Update the display to reflect the HIGH level as per HMI specification within <Tdisplay>"
+SWE1-VC-HeatedSteeringWheel-019	Heated Steering Wheel	SYS-RA-CFTS044-110	Heated Steering Wheel	"The HW supplier shall notify the $HSW_Stat_2$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat_2$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat_2$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_Stat_2$ signal.
+If $HSW_Stat_2$ = [HSW_MED], the HMI shall:
+Update the stored Heated Steering Wheel state to MEDIUM (MED)
+Update the display to reflect the MEDIUM level as per HMI specification within <Tdisplay>"
+SWE1-VC-HeatedSteeringWheel-020	Heated Steering Wheel	SYS-RA-CFTS044-111	Heated Steering Wheel	"The HW supplier shall notify the $HSW_Stat_2$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat_2$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat_2$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_Stat_2$ signal.
+If $HSW_Stat_2$ = [HSW_LO], the HMI shall:
+Update the stored Heated Steering Wheel state to LOW (LO)
+Update the display to reflect the LOW level as per HMI specification within <Tdisplay>"
+SWE1-VC-HeatedSteeringWheel-021	Heated Steering Wheel	SYS-RA-CFTS044-112	Heated Steering Wheel	"The HW supplier shall notify the $HSW_Stat$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_Stat$ signal.
+If $HSW_Stat$ = [1h: ON], the HMI shall:
+Update the stored Heated Steering Wheel state to ON
+Interpret the state as timed activation (1 hour duration, if applicable)
+Update the display to reflect the ON status as per HMI specification within <Tdisplay>"
+SWE1-VC-HeatedSteeringWheel-022	Heated Steering Wheel	SYS-RA-CFTS044-113	Heated Steering Wheel	"The HW supplier shall notify the $HSW_Stat$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_Stat$ signal.
+If $HSW_Stat$ = [0h: OFF], the HMI shall:
+Update the stored Heated Steering Wheel state to OFF
+Interpret the state as no active heating duration (0h)
+Update the display to reflect the OFF status as per HMI specification within <Tdisplay>"
+SWE1-VC-HeatedSteeringWheelManagement-023	Heated Steering Wheel	SYS-RA-CFTS044-307	Heated Steering Wheel Management	Heated Steering Wheel Management
+SWE1-VC-HeatedSteeringWheelManagement-024	Heated Steering Wheel	SYS-RA-CFTS044-308	Heated Steering Wheel Management	TLM algorithm requirements
+SWE1-VC-HeatedSteeringWheelManagement-025	Heated Steering Wheel	"SYS-RA-CFTS044-309
+SYS-RA-CFTS044-019"	Heated Steering Wheel Management	"The HW supplier shall notify the $Heated_Steering_Wheel$ PROXI configuration parameter via the VHAL interface.
+CarPropertyService shall receive the $Heated_Steering_Wheel$ parameter from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $Heated_Steering_Wheel$ parameter to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $Heated_Steering_Wheel$ parameter to determine feature availability.
+If $Heated_Steering_Wheel$ = [Present], the HMI shall:
+Enable all Heated Steering Wheel related functionalities
+Display the Heated Steering Wheel controls and icons as per specification
+If $Heated_Steering_Wheel$ ≠ [Present], the HMI shall:
+Disable all Heated Steering Wheel related functionalities
+Hide or remove the Heated Steering Wheel controls and icons from the HMI"
+SWE1-VC-HeatedSteeringWheelManagement-026	Heated Steering Wheel	"SYS-RA-CFTS044-310 
+SYS-RA-CFTS044-020"	Heated Steering Wheel Management	"The HW supplier shall notify the $DriverSide$ signal via the VHAL interface.
+CarPropertyService shall receive the $DriverSide$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $DriverSide$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $DriverSide$ signal.
+If $DriverSide$ = [Left Side], the HMI shall:
+Display the Heated Steering Wheel icon on the left side of the Heated/Vented Seats screen
+Position the icon as per the PDO graphics specification"
+SWE1-VC-HeatedSteeringWheelManagement-027	Heated Steering Wheel	"SYS-RA-CFTS044-311
+SYS-RA-CFTS044-021"	Heated Steering Wheel Management	"The HW supplier shall notify the $DriverSide$ signal via the VHAL interface.
+CarPropertyService shall receive the $DriverSide$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $DriverSide$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $DriverSide$ signal.
+If $DriverSide$ = [Right Side], the HMI shall:
+Mirror the Heated Steering Wheel icon position
+Display the icon on the right side of the Heated/Vented Seats screen"
+SWE1-VC-HeatedSteeringWheelManagement-028	Heated Steering Wheel	SYS-RA-CFTS044-312	Heated Steering Wheel Management	"The HW supplier shall notify the $PowerMode$ / ignition state signals via the VHAL interface.
+CarPropertyService shall receive the ignition state signals from VHAL and forward them to CarPropertyManager via the interface.
+CarPropertyManager shall expose the ignition state values to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received ignition state signals, including:
+Ignition OFF
+Ignition ON
+Ignition ON (Engine ON)
+Ignition Pre-OFF
+During the above ignition working conditions, the HMI layer shall detect user interaction when the user presses the Heated Steering Wheel icon on TLM.Display.GUI.
+Upon user interaction, the HMI layer shall:
+Send a request to the Framework Layer to change the Heated Steering Wheel state
+The Framework Layer shall process the request and determine the target Heated Steering Wheel state based on the defined logic.
+The Framework Layer shall forward the request to the Service Layer for signal transmission via VHAL.
+The HMI shall update the Heated Steering Wheel icon status based on the resulting state, following the defined state transition logic."
+SWE1-VC-HeatedSteeringWheelManagement-029	Heated Steering Wheel	SYS-RA-CFTS044-313	Heated Steering Wheel Management	"The HW supplier shall notify the $HSW_Stat$ and $HSW_StatFailSts$ signals via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat$ and $HSW_StatFailSts$ signals from VHAL and forward them to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat$ and $HSW_StatFailSts$ values to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall detect user interaction when the Heated Steering Wheel is requested (SteeringWheelHeating.Req = Requested) and forward the request to the Framework Layer.
+The Framework Layer shall evaluate the following conditions:
+$HSW_Stat$ = OFF
+STATUS_CSWM.$HSW_StatFailSts$ = Fail_Not_Present
+SteeringWheelHeating.Req = Requested
+If all the above conditions are satisfied, the Framework Layer shall:
+Set TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = ON
+The Framework Layer shall forward the command to the Service Layer.
+CarPropertyService shall transmit the HSW_Cmd_Tlm signal via the VHAL interface to the target ECU (e.g., CSWM)."
+SWE1-VC-HeatedSteeringWheelManagement-030	Heated Steering Wheel	SYS-RA-CFTS044-314	Heated Steering Wheel Management	"The HW supplier shall notify the $HSW_Stat$ and $HSW_StatFailSts$ signals via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat$ and $HSW_StatFailSts$ signals from VHAL and forward them to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat$ and $HSW_StatFailSts$ values to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall detect user interaction when the Heated Steering Wheel is requested (SteeringWheelHeating.Req = Requested) and forward the request to the Framework Layer.
+The Framework Layer shall evaluate the following conditions:
+$HSW_Stat$ = ON
+STATUS_CSWM.$HSW_StatFailSts$ = Fail_Not_Present
+SteeringWheelHeating.Req = Requested
+If all the above conditions are satisfied, the Framework Layer shall:
+Set TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = OFF
+The Framework Layer shall forward the command to the Service Layer.
+CarPropertyService shall transmit the HSW_Cmd_Tlm signal via the VHAL interface to the target ECU (e.g., CSWM)."
+SWE1-VC-HeatedSteeringWheelManagement-031	Heated Steering Wheel	SYS-RA-CFTS044-315	Heated Steering Wheel Management	"The HW supplier shall notify the $HSW_StatFailSts$ signal (e.g., STATUS_CSWM.FL_HS_STATFailSts) via the VHAL interface.
+CarPropertyService shall receive the $HSW_StatFailSts$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_StatFailSts$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall detect user interaction when the Heated Steering Wheel is requested (SteeringWheelHeating.Req = Requested) and forward the request to the Framework Layer.
+The Framework Layer shall evaluate the following condition:
+STATUS_CSWM.FL_HS_STATFailSts = Fail_Present
+If the above condition is satisfied, the Framework Layer shall:
+Inhibit sending any Heated Steering Wheel command request
+The Framework Layer shall notify the HMI layer about the failure condition.
+The HMI layer shall:
+Display an informative popup message related to the failure
+Render the popup as per the TLM HMI Document specification"
+SWE1-VC-HeatedSteeringWheelManagement-032	Heated Steering Wheel	SYS-RA-CFTS044-316	Heated Steering Wheel Management	"The HW supplier shall notify the $PowerMode$, $EngRun_Stat$, and Heated Steering Wheel state signals ($HSW_Stat$ / $HSW_Stat_2$) via the VHAL interface.
+CarPropertyService shall receive the $PowerMode$, $EngRun_Stat$, and Heated Steering Wheel state signals from VHAL and forward them to CarPropertyManager via the interface.
+CarPropertyManager shall expose these signal values to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received signals and determine the current vehicle operating condition.
+When the system is in Ignition ON – Engine ON working condition, and no user interaction is detected on the TLM_Display.GUI:
+The HMI layer shall monitor incoming Heated Steering Wheel state updates ($HSW_Stat$ / $HSW_Stat_2$)
+If the Heated Steering Wheel state changes due to external inputs (e.g., ECU update), the HMI shall:
+Update the Heated Steering Wheel icon state accordingly
+Ensure the displayed icon reflects the latest received state"
+SWE1-VC-HeatedSteeringWheelManagement-033	Heated Steering Wheel	SYS-RA-CFTS044-317	Heated Steering Wheel Management	"The HW supplier shall notify the $HSW_Stat$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat$ value to the Framework layer via API interfaces.
+The Framework Layer shall monitor the $HSW_Stat$ signal for state changes.
+If $HSW_Stat$ transitions to [ON], the Framework Layer shall:
+Set TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = ON
+The Framework Layer shall forward the command to the Service Layer.
+CarPropertyService shall transmit the HSW_Cmd_Tlm signal via the VHAL interface to the target ECU (e.g., CSWM)."
+SWE1-VC-HeatedSteeringWheelManagement-034	Heated Steering Wheel	SYS-RA-CFTS044-318	Heated Steering Wheel Management	"The HW supplier shall notify the $HSW_Stat$ signal via the VHAL interface.
+CarPropertyService shall receive the $HSW_Stat$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_Stat$ value to the Framework layer via API interfaces.
+The Framework Layer shall monitor the $HSW_Stat$ signal for state changes.
+If $HSW_Stat$ = [OFF], the Framework Layer shall:
+Set TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = OFF
+The Framework Layer shall forward the command to the Service Layer.
+CarPropertyService shall transmit the HSW_Cmd_Tlm signal via the VHAL interface to the target ECU (e.g., CSWM)."
+SWE1-VC-HeatedSteeringWheelManagement-035	Heated Steering Wheel	SYS-RA-CFTS044-319	Heated Steering Wheel Management	"The HW supplier shall notify the $HSW_StatFailSts$ signal (e.g., STATUS_CSWM.HSW_StatFailSts) via the VHAL interface.
+CarPropertyService shall receive the $HSW_StatFailSts$ signal from VHAL and forward it to CarPropertyManager via the interface.
+CarPropertyManager shall expose the $HSW_StatFailSts$ value to the HMI layer via API interfaces (get/set methods).
+The HMI layer shall evaluate the received $HSW_StatFailSts$ signal.
+If $HSW_StatFailSts$ transitions to [Fail_Present], the HMI shall:
+Override the current Heated Steering Wheel icon state, regardless of the value of $HSW_Stat$
+Update the icon representation on TLM_Display.GUI according to the TLM HMI Document specification"
+SWE1-VC-LeftFrontVentedSeat-001	VentedSeat	SYS-RA-CFTS044-058	Left Front Vented Seat	Left Front Vented Seat
+SWE1-VC-LeftFrontVentedSeat-002	VentedSeat	SYS-RA-CFTS044-059	Left Front Vented Seat	The LF vented seat button will allow the customer to change the state of the left front vented seat from Off to a high vented level and to a low vented level._x000D_
+SWE1-VC-LeftFrontVentedSeat-003	VentedSeat	SYS-RA-CFTS044-060	Left Front Vented Seat	"*HW supplier shall notify the HU wake-up event via the BH-CAN bus through the VHAL interface and provide the ventedSeatLF signal upon availability and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*CarPropertyService shall receive the wake-up indication andventedSeatLF signal and make them available to the HMI layer.
+*The HMI layer shall evaluate the received event and signals and initialize the display state.
+When the HU wakes up on the BH-CAN bus, the HMI shall display the Front Left vented seat as Off until a valid $VentedSeatFL$ status is received from CAN."""
+SWE1-VC-LeftFrontVentedSeat-004	VentedSeat	SYS-RA-CFTS044-061	Left Front Vented Seat	"*HW supplier shall notify the $VentedSeatFL$ signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ signal from VHAL and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal and determine the supported vented seat levels.
+*For vehicles with two states (i.e. LO and HI), the HU shall implement the following requirements
+*The HMI shall interpret the $VentedSeatFL$ signal as follows:
+If $VentedSeatFL$ = [Vented Seat Off / VS_OFF]
+If $VentedSeatFL$ = [Vented Seat Low / VS_LO]
+If $VentedSeatFL$ = [Vented Seat High / VS_HI]
+Any other value of $VentedSeatFL$ shall be considered invalid by the HMI."
+SWE1-VC-LeftFrontVentedSeat-005	VentedSeat	SYS-RA-CFTS044-062	Left Front Vented Seat	"*HW supplier shall notify the $VentedSeatFL$ signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ signal from VHAL and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal and determine the supported vented seat levels.
+*For vehicles with two states (i.e. LO, MED, and HI), the HU shall implement the following requirements
+*The HMI shall interpret the $VentedSeatFL$ signal as follows:
+If $VentedSeatFL$ = [Vented Seat Off / VS_OFF]
+If $VentedSeatFL$ = [Vented Seat Low / VS_LO]
+If$VentedSeatFL$ = [Vented Seat Medium / VS_MED]
+If $VentedSeatFL$ = [Vented Seat High / VS_HI]
+Any other value of $VentedSeatFL$ shall be considered invalid by the HMI."
+SWE1-VC-LeftFrontVentedSeat-006	VentedSeat	SYS-RA-CFTS044-063	Left Front Vented Seat	"*HW supplier shall notify the $VentedSeatFL$ signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ signal and and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal and compare it with the internally stored status of the LF vented seat.
+*If the received $VentedSeatFL$ value is valid and different from the stored value, the HMI shall update the stored status with the new value and update the display to reflect the new state."
+SWE1-VC-LeftFrontVentedSeat-007	VentedSeat	SYS-RA-CFTS044-064	Left Front Vented Seat	"*HW supplier shall notify the $VentedSeatFL$ signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal.
+*If the received $VentedSeatFL$ value is invalid, the HMI shall ignore the signal and retain the previously stored status without updating the display."
+SWE1-VC-LeftFrontVentedSeat-008	VentedSeat	SYS-RA-CFTS044-065	Left Front Vented Seat	"*HW supplier shall notify the PrplsnSysAtv and Hybrid_Type signals via the VHAL interface.
+*CarPropertyService shall receive the PrplsnSysAtv and Hybrid_Type signals from VHAL and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals and and determine the supported vented seat levels.
+*If $PrplsnSysAtv$ = [Not Active] and $Hybrid_Type$ = [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the left front vented seat switch shall be displayed as greyed-out in the HMI."
+SWE1-VC-LeftFrontVentedSeat-009	VentedSeat	SYS-RA-CFTS044-066	Left Front Vented Seat Switch	"*HW supplier shall notify the EngRun_Stat and Hybrid_Type signals via the VHAL interface.
+*CarPropertyService shall receive the EngRun_Stat and Hybrid_Type signals from VHAL and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals and and determine the supported vented seat levels.
+*For vehicles not equipped with the Stop-Start feature, if $EngRun_Stat$ <> [IDLE_STBL//UNLIMITED//LIMITED//RUN] and $Hybrid_Type$ <> [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the left front vented seat switch shall be displayed as greyed-out in the HMI."
+SWE1-VC-LeftFrontVentedSeat-010	VentedSeat	SYS-RA-CFTS044-067	Left Front Vented Seat	"*HW supplier shall notify the Power Mode signals via the VHAL interface.
+*CarPropertyService shall receive thePower Mode signals  from VHAL and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals and and determine the supported vented seat levels.
+*If $PowerMode$ <> [Ignition run], the left front vented seat switch, shall be shown as greyed-out, with a status of  OFF."
+SWE1-VC-LeftFrontVentedSeat-011	VentedSeat	SYS-RA-CFTS044-068	Left Front Vented Seat	"*HW supplier shall notify the $FL_VS_RQ_TGW$ signals via the VHAL interface.
+*CarPropertyService shall receive the $FL_VS_RQ_TGW$ signals  from VHAL and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals and and determine the supported vented seat levels.
+*When the customer selects to change the state of the LF vented seat, the HU shall send an on-change $FL_VS_RQ_TGW$ = [Vented Seat Pressed / VS_PSD] signal to the CSWM within <Tsend>."
+SWE1-VC-LeftFrontVentedSeat-012	VentedSeat	SYS-RA-CFTS044-069	Left Front Vented Seat	"*HW supplier shall notify the $FL_VS_RQ_TGW$  signals via the VHAL interface.
+*CarPropertyService shall receive the $FL_VS_RQ_TGW$  signals  from VHAL and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals and and determine the supported vented seat levels.
+*The HU shall follow this signal with an on change $FL_VS_RQ_TGW$ = [Not Pressed / VS_NOT_PSD] within a time period of <Tsend>."
+SWE1-VC-LeftFrontVentedSeat-013	VentedSeat	SYS-RA-CFTS044-070	Left Front Vented Seat	"*When the customer selects to change the status of the LF vented seat, the HMI shall trigger an on-change request based on the current state of $VentedSeatFL$.
+*The HMI layer shall evaluate the current value of the VentedSeatFL signal and generate the request based on user interaction.
+
+*The HMI shall determine the next state and send $FL_VS_RQ_TGW$ as follows:
+If High $FL_VS_RQ_TGW$ = [Medium]
+IfMedium $FL_VS_RQ_TGW$ = [Low]
+If Low $FL_VS_RQ_TGW$ = [Off]
+If Off $FL_VS_RQ_TGW$ = [High]
+
+*CarPropertyManager will receive signal and send it to the CarPropertyService  via API interface as get/set methods.
+*CarPropertyService shall send the$FL_VS_RQ_TGW$ signal from the HMI layer to the VHAL interface.
+*HW supplier shall support receiving the $FL_VS_RQ_TGW$ signal via the VHAL interface."
+SWE1-VC-LeftFrontVentedSeat-014	VentedSeat	SYS-RA-CFTS044-071	Left Front Vented Seat	"**HW supplier shall notify the $VentedSeatFL$ via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ signal and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal and update the internal stored status of the LF vented seat.
+*When the HU receives a $VentedSeatFL$ = [Vented Seat Off / VS_OFF] signal, the HU shall change the stored status of the LF vented seat and change the display as specified by the HMI within a time period of <Tdisplay>."
+SWE1-VC-LeftFrontVentedSeat-015	VentedSeat	SYS-RA-CFTS044-072	Left Front Vented Seat	"*HW supplier shall notify the $VentedSeatFL$ via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ signal and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal and update the internal stored status of the LF vented seat.
+*If $VentedSeatFL$ = [Vented Seat High / VS_HI]  the HMI shall update change the stored status of the LF vented seat and change the display as specified by the HMI within a time period of <Tdisplay>."
+SWE1-VC-LeftFrontVentedSeat-016	VentedSeat	SYS-RA-CFTS044-073	Left Front Vented Seat	"*HW supplier shall notify the $VentedSeatFL$ via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ signal and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal and update the internal stored status of the LF vented seat.
+*When the HU receives an $VentedSeatFL$ = [Vented seat medium / VS_MED] signal, the HU shall change the stored status of the LF vented seat and change the display as specified by the HMI within a time period of <Tdisplay>."
+SWE1-VC-LeftFrontVentedSeat-017	VentedSeat	SYS-RA-CFTS044-074	Left Front Vented Seat	"*HW supplier shall notify the $VentedSeatFL$ via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ signal and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal and update the internal stored status of the LF vented seat.
+*When the HU receives an $VentedSeatFL$ = [Vented Seat Low / VS_LO] signal, the HU shall change the stored status of the LF vented seat and change the display as specified by the HMI within a time period of <Tdisplay>."
+SWE1-VC-RightFrontVentedSeat-018	VentedSeat	SYS-RA-CFTS044-075	Right Front Vented Seat	Right Front Vented Seat
+SWE1-VC-RightFrontVentedSeat-019	VentedSeat	SYS-RA-CFTS044-076	Right Front Vented Seat	The RF vented seat button will allow the customer to change the state of the right front vented seat from Off to a high vented level and to a low vented level.
+SWE1-VC-RightFrontVentedSeat-020	VentedSeat	SYS-RA-CFTS044-077	Right Front Vented Seat	"*HW supplier shall notify the HU wake-up event via the BH-CAN bus through the VHAL interface.
+*CarPropertyService shall receive the wake-up indication and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received event and initialize the vented seat states.
+*When the HU wakes up on the BH-CAN bus, the HMI shall set the RF vented seat state to Off."
+SWE1-VC-RightFrontVentedSeat-021	VentedSeat	SYS-RA-CFTS044-078	Right Front Vented Seat	"*HW supplier shall notify the VentedSeatFR signal via the VHAL interface.
+*CarPropertyService shall receive the VentedSeatFR signal and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal.
+*For vehicles supporting two states (i.e. LO and HI), the following values shall be considered valid: $VentedSeatFR$ = [VS_OFF], $VentedSeatFR$ = [VS_LO], and $VentedSeatFR$ = [VS_HI].
+*The HMI shall interpret the VentedSeatFR signal as follows:
+If $VentedSeatFR$ = [VS_OFF], the vented seat shall be considered Off.
+If $VentedSeatFR$ = [VS_LO], the vented seat shall be considered Low.
+If $VentedSeatFR$ = [VS_HI], the vented seat shall be considered High.
+Any other value of $VentedSeatFR$ shall be considered invalid by the HMI."
+SWE1-VC-RightFrontVentedSeat-022	VentedSeat	SYS-RA-CFTS044-079	Right Front Vented Seat	"*HW supplier shall notify the VentedSeatFR signal via the VHAL interface.
+*CarPropertyService shall receive the VentedSeatFR signal and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal.
+*For vehicles supporting three states (i.e. LO, MEDIUM, and HI), the following values shall be considered valid: $VentedSeatFR$ = [VS_OFF], $VentedSeatFR$ = [VS_LO], $VentedSeatFR$ = [VS_MED], and $VentedSeatFR$ = [VS_HI].
+*The HMI shall interpret the VentedSeatFR signal as follows:
+If $VentedSeatFR$ = [VS_OFF], the vented seat shall be considered Off.
+If $VentedSeatFR$ = [VS_LO], the vented seat shall be considered Low.
+If $VentedSeatFR$ = [VS_MED], the vented seat shall be considered Medium.
+If $VentedSeatFR$ = [VS_HI], the vented seat shall be considered High.
+Any other value of $VentedSeatFR$ shall be considered invalid by the HMI."
+SWE1-VC-RightFrontVentedSeat-023	VentedSeat	SYS-RA-CFTS044-080	Right Front Vented Seat	"*HW supplier shall notify the $VentedSeatFR$ signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ signal and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal and compare it with the internally stored status of the RF vented seat.
+*If the received $VentedSeatFR$ value is valid and different from the stored value, the HMI shall update the stored status with the new value and update the display to reflect the new state."
+SWE1-VC-RightFrontVentedSeat-024	VentedSeat	SYS-RA-CFTS044-081	Right Front Vented Seat	"*HW supplier shall notify the $VentedSeatFR$  signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$  signal and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signal.
+*if the HU receives an $VentedSeatFR$ signal, it shall compare to the stored state and , if different, replace the stored value with the new value and change the display to the new state."
+SWE1-VC-RightFrontVentedSeat-025	VentedSeat	SYS-RA-CFTS044-082	Right Front Vented Seat	"*HW supplier shall notify the PrplsnSysAtv and Hybrid_Type signals via the VHAL interface.
+*CarPropertyService shall receive the PrplsnSysAtv and Hybrid_Type signals and and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If $PrplsnSysAtv$ = [Not Active] and $Hybrid_Type$ = [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the right front vented seat switch shall be displayed as greyed-out in the HMI."
+SWE1-VC-RightFrontVentedSeat-026	VentedSeat	SYS-RA-CFTS044-083	Right Front Vented Seat	"*HW supplier shall notify the $Hybrid_Type$ and $EngRun_Stat$ signals via the VHAL interface.
+*CarPropertyService shall receive the $Hybrid_Type$ and $EngRun_Stat$  signals and and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*For vehicles not equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ <> [IDLE_STBL//UNLIMITED//LIMITED//RUN] && $Hybrid_Type$ <> [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]]), the right front vented seat switch, shall be shown as greyed-out, per the HMI.
+
+For vehicles not equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ <> [IDLE_STBL//UNLIMITED//LIMITED//RUN] && $Hybrid_Type$ <> [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]]), the right front vented seat switch, shall be shown as greyed-out, per the HMI."
+SWE1-VC-RightFrontVentedSeat-027	VentedSeat	SYS-RA-CFTS044-084	Right Front Vented Seat	"*HW supplier shall notify the Power Mode signals via the VHAL interface.
+*CarPropertyService shall receive thePower Mode signals andsend that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If $PowerMode$ <> [Ignition run], the right front vented seat switch, shall be shown as greyed-out, with a status of  OFF."
+SWE1-VC-RightFrontVentedSeat-028	VentedSeat	SYS-RA-CFTS044-085	Right Front Vented Seat	"*HW supplier shall notify the $FR_VS_RQ_TGW$ signal via the VHAL interface.
+*CarPropertyService shall receive the $FR_VS_RQ_TGW$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*The HU shall follow this signal with an on change $FR_VS_RQ_TGW$ = [Not Pressed / VS_NOT_PSD] within a time period of <Tsend>."
+SWE1-VC-RightFrontVentedSeat-029	VentedSeat	SYS-RA-CFTS044-086	Right Front Vented Seat	"*HW supplier shall notify the $FR_VS_RQ_TGW$ signal via the VHAL interface.
+*CarPropertyService shall receive the $FR_VS_RQ_TGW$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If the customer selects to change the state of the RF vented seat, the HU shall send an on-change $FR_VS_RQ_TGW$ = [Vented Seat Pressed / VS_PSD] signal to the CSWM within <Tsend>."
+SWE1-VC-RightFrontVentedSeat-030	VentedSeat	SYS-RA-CFTS044-087	Right Front Vented Seat	"*HW supplier shall notify the $FR_VS_RQ_TGW$ and $VentedSeatFR$ signals via the VHAL interface.
+*CarPropertyService shall receive the $FR_VS_RQ_TGW$ and $VentedSeatFR$ signals and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If HU determines that the Customer has selected to change the status of the Vented seat, the HU shall send an on change $FR_VS_RQ_TGW$ depending on the current status of $VentedSeatFR$.Then the signal value to be diaplayed like wise
+
+Current status of $VentedSeatFR$ Signal to be sent
+
+High $FR_VS_RQ_TGW$ = [Medium]
+
+Medium $FR_VS_RQ_TGW$ = [Low]
+
+Low $FR_VS_RQ_TGW$ = [Off]
+
+Off $FR_VS_RQ_TGW$ = [High]"
+SWE1-VC-RightFrontVentedSeat-031	VentedSeat	SYS-RA-CFTS044-088	Right Front Vented Seat	"*HW supplier shall notify the $VentedSeatFR$ signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If HU receives a $VentedSeatFR$ = [Vented Seat Off / VS_OFF] signal, the HU shall change the stored status of the RF vented seat and change the display as specified by the HMI within a time period of <Tdisplay>."
+SWE1-VC-RightFrontVentedSeat-032	VentedSeat	SYS-RA-CFTS044-089	Right Front Vented Seat	"*HW supplier shall notify the $VentedSeatFR$ signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ signal and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If $VentedSeatFR$ = [Vented seat medium / VS_MED] signal, the HU shall change the stored status of the RF vented seat and change the display as specified by the HMI within a time period of <Tdisplay>."
+SWE1-VC-RightFrontVentedSeat-033	VentedSeat	SYS-RA-CFTS044-090	Right Front Vented Seat	"*HW supplier shall notify the $VentedSeatFR$ signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ signal and  send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If  $VentedSeatFR$ = [Vented seat medium / VS_MED] signal, the HU shall change the stored status of the RF vented seat and change the display as specified by the HMI within a time period of <Tdisplay>."
+SWE1-VC-RightFrontVentedSeat-034	VentedSeat	SYS-RA-CFTS044-091	Right Front Vented Seat	"*HW supplier shall notify the $VentedSeatFR$ signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If the HU receives an $VentedSeatFR$ = [Vented Seat Low / VS_LO] signal, the HU shall change the stored status of the RF vented seat and change the display as specified by the HMI within a time period of <Tdisplay>."
+SWE1-VC-TwoStagesVentedSeatsManagement-035	VentedSeat	SYS-RA-CFTS044-260	Two Stages Vented Seats Management	Two Stages Vented Seats Management
+SWE1-VC-TwoStagesVentedSeatsManagement-036	VentedSeat	SYS-RA-CFTS044-261	Two Stages Vented Seats Management	TLM Algorithm requirements
+SWE1-VC-TwoStagesVentedSeatsManagement-037	VentedSeat	SYS-RA-CFTS044-262	Two Stages Vented Seats Management	"*HW supplier shall notify the PROXI parameter Cooled_Seats signals via the VHAL interface.
+*CarPropertyService shall receive the PROXI parameter Cooled_Seats signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*And also the requirements are valid only if PROXI parameter Cooled_Seats == """"Front Seats"""" OR """"Front and Rear Seats""""."""
+SWE1-VC-TwoStagesVentedSeatsManagement-038	VentedSeat	SYS-RA-CFTS044-263	Two Stages Vented Seats Management	"*HW supplier shall notify the $Heated_Steats_Levels$ API's signals via the VHAL interface.
+*CarPropertyService shall receive the $Heated_Steats_Levels$ API's signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+* And also the requirements are valid only if $Heated_Steats_Levels$ is equal to """"Two Levels""""."
+SWE1-VC-TwoStagesVentedSeatsManagement-039	VentedSeat	SYS-RA-CFTS044-264	Two Stages Vented Seats Management	"*HW supplier shall notify the VentedSeat and Ignition mode API's signals via the VHAL interface.
+*CarPropertyService shall receive the VentedSeat and Ignition mode API's signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*HMI send the status of vented seat state to system according to ignition mode.
+SW processed signal send to TLM module.
+*If the user press the Vented seats icons on TLM.Display.GUI, the relative icons status shall follow the logic descibed below (off -> high -> low -> off):"
+SWE1-VC-TwoStagesVentedSeatsManagement-040	VentedSeat	SYS-RA-CFTS044-265	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ == ""Vented_seat_off"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"" AND DrvSeatHeating.Req passes to ""Requested"" )then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_high""."
+SWE1-VC-TwoStagesVentedSeatsManagement-041	VentedSeat	SYS-RA-CFTS044-266	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ == ""Vented_seat_high"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"" AND DrvSeatHeating.Req passes to ""Requested"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_low""."
+SWE1-VC-TwoStagesVentedSeatsManagement-042	VentedSeat	SYS-RA-CFTS044-267	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signal andsend that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ == ""Vented_seat_low"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"" AND DrvSeatHeating.Req passes to ""Requested"" )then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_off""."
+SWE1-VC-TwoStagesVentedSeatsManagement-043	VentedSeat	SYS-RA-CFTS044-268	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*""IF ($VentedSeatFR$ == """"Vented_seat_off"""" AND STATUS_CSWM.FR_VS_STATFailSts == """"Fail_Not_Present"""" AND PsngrSeatHeating.Req passes to """"Requested"""" )then TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = """"Vented_seat_high""""."""
+SWE1-VC-TwoStagesVentedSeatsManagement-044	VentedSeat	SYS-RA-CFTS044-269	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+IF ($VentedSeatFR$ == ""Vented_seat_high"" AND STATUS_CSWM.FR_VS_STATFailSts == ""Fail_Not_Present"" AND PsngrSeatHeating.Req passes to ""Requested"" )then TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = ""Vented_seat_low""."
+SWE1-VC-TwoStagesVentedSeatsManagement-045	VentedSeat	SYS-RA-CFTS044-270	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFR$ == ""Vented_seat_low"" AND STATUS_CSWM.FR_VS_STATFailSts == ""Fail_Not_Present"" AND PsngrSeatHeating.Req passes to ""Requested"" )then
+TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = ""Vented_seat_off""."
+SWE1-VC-TwoStagesVentedSeatsManagement-046	VentedSeat	SYS-RA-CFTS044-271	Two Stages Vented Seats Management	"*HW supplier shall notify the DrvSeatHeating.Req AND STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the DrvSeatHeating.Req AND STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF (DrvSeatHeating.Req passes to ""Requested"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Present"")then TLM has to show an informative popup relative to the failure."
+SWE1-VC-TwoStagesVentedSeatsManagement-047	VentedSeat	SYS-RA-CFTS044-272	Two Stages Vented Seats Management	"*HW supplier shall notify the PsngrSeatHeating.Req AND STATUS_CSWM.FR_HS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the PsngrSeatHeating.Req AND STATUS_CSWM.FR_HS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF (PsngrSeatHeating.Req == ""Requested"" AND STATUS_CSWM.FR_HS_STATFailSts == ""Fail_Present"")then TLM has to show an informative popup relative to the failure."
+SWE1-VC-TwoStagesVentedSeatsManagement-048	VentedSeat	SYS-RA-CFTS044-273	Two Stages Vented Seats Management	"*Even if the user does not interact with the TLM display (no icon is pressed), the system shall monitor the vented seat state continuously.
+*If the vented seat state changes due to external inputs (e.g., CAN signal or system update), the HMI shall update the icon accordingly.
+*The displayed icon shall always reflect the actual seat state received from the system.
+*The HMI shall remain synchronized with the latest vented seat status without requiring user action."
+SWE1-VC-TwoStagesVentedSeatsManagement-049	VentedSeat	SYS-RA-CFTS044-274	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signals via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*""IF ($VentedSeatFR$ passes to """"Vented_seat_off"""" AND STATUS_CSWM.FR_VS_STATFailSts == """"Fail_Not_Present"""")then TLM shall set    TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = """"Vented_seat_off""""."
+SWE1-VC-TwoStagesVentedSeatsManagement-050	VentedSeat	SYS-RA-CFTS044-275	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signals via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*""IF ($VentedSeatFR$ passes to """"Vented_seat_low"""" AND STATUS_CSWM.FR_VS_STATFailSts == """"Fail_Not_Present"""")then TLM shall set    TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = """"Vented_seat_low""""."
+SWE1-VC-TwoStagesVentedSeatsManagement-051	VentedSeat	SYS-RA-CFTS044-276	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signals via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*""IF ($VentedSeatFR$ passes to """"Vented_seat_high"""" AND STATUS_CSWM.FR_VS_STATFailSts == """"Fail_Not_Present"""")then TLM shall set    TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = """"Vented_seat_high""""."
+SWE1-VC-TwoStagesVentedSeatsManagement-052	VentedSeat	SYS-RA-CFTS044-277	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signals via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*""IF ($VentedSeatFR$ passes to """"Vented_seat_off"""" AND STATUS_CSWM.FR_VS_STATFailSts == """"Fail_Not_Present"""")then TLM shall set    TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = """"Vented_seat_off""""."
+SWE1-VC-TwoStagesVentedSeatsManagement-053	VentedSeat	SYS-RA-CFTS044-278	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signals via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*""IF ($VentedSeatFR$ passes to """"Vented_seat_low"""" AND STATUS_CSWM.FR_VS_STATFailSts == """"Fail_Not_Present"""")then TLM shall set    TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = """"Vented_seat_low""""."
+SWE1-VC-TwoStagesVentedSeatsManagement-054	VentedSeat	SYS-RA-CFTS044-279	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signals via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*""IF ($VentedSeatFR$ passes to """"Vented_seat_high"""" AND STATUS_CSWM.FR_VS_STATFailSts == """"Fail_Not_Present"""")then TLM shall set    TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = """"Vented_seat_high""""."
+SWE1-VC-TwoStagesVentedSeatsManagement-055	VentedSeat	SYS-RA-CFTS044-280	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signals via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ and STATUS_CSWM.FL_VS_STATFailSts signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If the value of $VentedSeatFL$, IF STATUS_CSWM.FL_VS_STATFailSts passes to ""Fail_Present"" value, the relative icon on TLM_Display.GUI shall change according to TLM HMI Document."
+SWE1-VC-TwoStagesVentedSeatsManagement-056	VentedSeat	SYS-RA-CFTS044-281	Two Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts signals via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ and STATUS_CSWM.FR_VS_STATFailSts  signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If the value of $VentedSeatFR$, IF STATUS_CSWM.FR_VS_STATFailSts passes to ""Fail_Present"" value, the relative icon on TLM_Display.GUI shall change according to TLM HMI Document."
+SWE1-VC-ThreeStagesVentedSeatsManagement-057	VentedSeat	SYS-RA-CFTS044-282	Three Stages Vented Seats Management	Three Stages Vented Seats Management
+SWE1-VC-ThreeStagesVentedSeatsManagement-058	VentedSeat	SYS-RA-CFTS044-283	Three Stages Vented Seats Management	TLM Algorithm requirements
+SWE1-VC-ThreeStagesVentedSeatsManagement-059	VentedSeat	SYS-RA-CFTS044-284	Three Stages Vented Seats Management	The requirements in this section are applicable for R1 Low only from SR22 and beyond.
+SWE1-VC-ThreeStagesVentedSeatsManagement-060	VentedSeat	SYS-RA-CFTS044-285	Three Stages Vented Seats Management	"*HW supplier shall notify the PROXI parameter Cooled_Seats signals via the VHAL interface.
+*CarPropertyService shall receive the PROXI parameter Cooled_Seats signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*And also the requirements are valid only if PROXI parameter Cooled_Seats == ""Front Seats"" OR ""Front and Rear Seats""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-061	VentedSeat	SYS-RA-CFTS044-286	Three Stages Vented Seats Management	"*HW supplier shall notify the $Heated_Steats_Levels$ API's signals via the VHAL interface.
+*CarPropertyService shall receive the $Heated_Steats_Levels$ API's signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+* And also the requirements are valid only if $Heated_Steats_Levels$ is equal to ""Three Levels""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-062	VentedSeat	SYS-RA-CFTS044-287	Three Stages Vented Seats Management	"*HW supplier shall notify the VentedSeat and Ignition mode API's signals via the VHAL interface.
+*CarPropertyService shall receive the VentedSeat and Ignition mode API's signals and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*HMI send the status of vented seat state to system according to ignition mode.
+SW processed signal send to TLM module.
+*When the user press the Vented seats icons on TLM Display.GUI, the relative icons status shall follow the logic descibed below (off -> high -> mid -> low -> off)"
+SWE1-VC-ThreeStagesVentedSeatsManagement-063	VentedSeat	SYS-RA-CFTS044-288	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ == ""Vented_seat_off"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"" AND DrvSeatHeating.Req passes to ""Requested"" )then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_high""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-064	VentedSeat	SYS-RA-CFTS044-289	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ == ""Vented_seat_high"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"" AND DrvSeatHeating.Req passes to ""Requested"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_mid""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-065	VentedSeat	SYS-RA-CFTS044-290	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ == ""Vented_seat_mid"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"" AND DrvSeatHeating.Req passes to ""Requested"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_low""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-066	VentedSeat	SYS-RA-CFTS044-291	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ == ""Vented_seat_low"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"" AND DrvSeatHeating.Req passes to ""Requested"" )
+then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_off""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-067	VentedSeat	SYS-RA-CFTS044-292	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*""IF ($VentedSeatFR$ == """"Vented_seat_off"""" AND STATUS_CSWM.FR_VS_STATFailSts == """"Fail_Not_Present"""" AND PsngrSeatHeating.Req passes to """"Requested"""" )then TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = """"Vented_seat_high""""."""
+SWE1-VC-ThreeStagesVentedSeatsManagement-068	VentedSeat	SYS-RA-CFTS044-293	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFR$ == ""Vented_seat_high"" AND STATUS_CSWM.FR_VS_STATFailSts == ""Fail_Not_Present"" AND PsngrSeatHeating.Req passes to ""Requested"" )then TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = ""Vented_seat_mid""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-069	VentedSeat	SYS-RA-CFTS044-294	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFR$ == ""Vented_seat_mid"" AND STATUS_CSWM.FR_VS_STATFailSts == ""Fail_Not_Present"" AND PsngrSeatHeating.Req passes to ""Requested"" )then TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = ""Vented_seat_low""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-070	VentedSeat	SYS-RA-CFTS044-295	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFR$ == ""Vented_seat_low"" AND STATUS_CSWM.FR_VS_STATFailSts == ""Fail_Not_Present"" AND PsngrSeatHeating.Req passes to ""Requested"" )then TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = ""Vented_seat_off""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-071	VentedSeat	SYS-RA-CFTS044-296	Three Stages Vented Seats Management	"*Even if the user does not interact with the TLM display (no icon is pressed), the system shall monitor the vented seat state continuously.
+*If the vented seat state changes due to external inputs (e.g., CAN signal or system update), the HMI shall update the icon accordingly.
+*The displayed icon shall always reflect the actual seat state received from the system.
+*The HMI shall remain synchronized with the latest vented seat status without requiring user action."
+SWE1-VC-ThreeStagesVentedSeatsManagement-072	VentedSeat	SYS-RA-CFTS044-297	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ passes to ""Vented_seat_off"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_off"";"
+SWE1-VC-ThreeStagesVentedSeatsManagement-073	VentedSeat	SYS-RA-CFTS044-298	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ passes to ""Vented_seat_low"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_low"""
+SWE1-VC-ThreeStagesVentedSeatsManagement-074	VentedSeat	SYS-RA-CFTS044-299	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ passes to ""Vented_seat_mid"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_mid"""
+SWE1-VC-ThreeStagesVentedSeatsManagement-075	VentedSeat	SYS-RA-CFTS044-300	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ AND STATUS_CSWM.FL_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFL$ passes to ""Vented_seat_high"" AND STATUS_CSWM.FL_VS_STATFailSts == ""Fail_Not_Present"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm = ""Vented_seat_high""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-076	VentedSeat	SYS-RA-CFTS044-301	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFR$ passes to ""Vented_seat_off"" AND STATUS_CSWM.FR_VS_STATFailSts == ""Fail_Not_Present"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = ""Vented_seat_off"";"
+SWE1-VC-ThreeStagesVentedSeatsManagement-077	VentedSeat	SYS-RA-CFTS044-302	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFR$ passes to ""Vented_seat_low"" AND STATUS_CSWM.FR_VS_STATFailSts == ""Fail_Not_Present"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = ""Vented_seat_low"""
+SWE1-VC-ThreeStagesVentedSeatsManagement-078	VentedSeat	SYS-RA-CFTS044-303	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFR$ passes to ""Vented_seat_mid"" AND STATUS_CSWM.FR_VS_STATFailSts == ""Fail_Not_Present"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = ""Vented_seat_mid"""
+SWE1-VC-ThreeStagesVentedSeatsManagement-079	VentedSeat	SYS-RA-CFTS044-304	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal via the VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ AND STATUS_CSWM.FR_VS_STATFailSts signal and send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*IF ($VentedSeatFR$ passes to ""Vented_seat_high"" AND STATUS_CSWM.FR_VS_STATFailSts == ""Fail_Not_Present"")then TLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = ""Vented_seat_high""."
+SWE1-VC-ThreeStagesVentedSeatsManagement-080	VentedSeat	SYS-RA-CFTS044-305	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFL$ and AND STATUS_CSWM.FL_VS_STATFailSts signals state via VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFL$ and AND STATUS_CSWM.FL_VS_STATFailSts  then send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If the value of $VentedSeatFL$, IF STATUS_CSWM.FL_VS_STATFailSts passes to ""Fail_Present"" value, the relative icon on TLM_Display.GUI shall change according to TLM HMI Document."
+SWE1-VC-ThreeStagesVentedSeatsManagement-081	VentedSeat	SYS-RA-CFTS044-306	Three Stages Vented Seats Management	"*HW supplier shall notify the $VentedSeatFR$ and AND STATUS_CSWM.FR_VS_STATFailSts signals state via VHAL interface.
+*CarPropertyService shall receive the $VentedSeatFR$ and AND STATUS_CSWM.FR_VS_STATFailSts  then send that to CarPropertyManager via Interface.
+*CarPropertyManager will expose that value to HMI layer via API interface as get/set methods.
+*The HMI layer shall evaluate the received signals.
+*If the value of $VentedSeatFR$, IF STATUS_CSWM.FR_VS_STATFailSts passes to ""Fail_Present"" value, the relative icon on TLM_Display.GUI shall change according to TLM HMI Document."

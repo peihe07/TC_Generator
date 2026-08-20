@@ -1,0 +1,274 @@
+swe_id	family	sysra	n	sheet_row	polarion_id	category	seven_digit
+SWE1-VC-Stop-StartSystem-001	Common Features	SYS-RA-CFTS044-116	116	117	NRL-61368	Heading	4858548
+SWE1-VC-Stop-StartSystem-002	Common Features	SYS-RA-CFTS044-117	117	118	NRL-61369	Functional Requirement	4858549
+SWE1-VC-Stop-StartSystem-003	Common Features	SYS-RA-CFTS044-118	118	119	NRL-61370	Functional Requirement	4858550
+SWE1-VC-Stop-StartSystem-004	Common Features	SYS-RA-CFTS044-119	119	120	NRL-61371	Functional Requirement	4858551
+SWE1-VC-Stop-StartSystem-005	Common Features	SYS-RA-CFTS044-120	120	121	NRL-61372	Functional Requirement	4858553
+SWE1-VC-Stop-StartSystem-006	Common Features	SYS-RA-CFTS044-121	121	122	NRL-61373	Functional Requirement	4858555
+SWE1-VC-Stop-StartSystem-007	Common Features	SYS-RA-CFTS044-122	122	123	NRL-61374	Functional Requirement	4858557
+SWE1-VC-SwitchLHD/RHDConfiguration-008	Common Features	SYS-RA-CFTS044-123	123	124	NRL-61375	Heading	4858558
+SWE1-VC-SwitchLHD/RHDConfiguration-009	Common Features	SYS-RA-CFTS044-124	124	125	NRL-61376	Functional Requirement	4858559
+SWE1-VC-SwitchLHD/RHDConfiguration-010	Common Features	SYS-RA-CFTS044-125	125	126	NRL-61377	Functional Requirement	4858560
+SWE1-VC-SwitchLHD/RHDConfiguration-011	Common Features	SYS-RA-CFTS044-126	126	127	NRL-61378	Functional Requirement	4858561
+SWE1-VC-SwitchLHD/RHDConfiguration-012	Common Features	SYS-RA-CFTS044-325	325	326	NRL-61577	Functional Requirement	4859508
+SWE1-VC-SwitchLHD/RHDConfiguration-013	Common Features	SYS-RA-CFTS044-326	326	327	NRL-61578	Functional Requirement	4859509
+SWE1-VC-SwitchLHD/RHDConfiguration-014	Common Features	SYS-RA-CFTS044-327	327	328	NRL-61579	Functional Requirement	4859510
+SWE1-VC-Controls-015	Common Features	SYS-RA-CFTS044-328	328	329	NRL-61580	Heading	4859511
+SWE1-VC-PHEVFeatures-016	Common Features	SYS-RA-CFTS044-329	329	330	NRL-61581	Heading	4859528
+SWE1-VC-PHEVFeatures-017	Common Features	SYS-RA-CFTS044-330	330	331	NRL-61582	Functional Requirement	4859529
+SWE1-VC-FeaturesEnableCriteria-018	Common Features	SYS-RA-CFTS044-331	331	332	NRL-61583	Heading	4859535
+SWE1-VC-FeaturesEnableCriteria-019	Common Features	SYS-RA-CFTS044-332	332	333	NRL-61584	Information	4859536
+SWE1-VC-FeaturesEnableCriteria-020	Common Features	SYS-RA-CFTS044-333	333	334	NRL-61585	Information	4859537
+SWE1-VC-FeaturesEnableCriteria-021	Common Features	SYS-RA-CFTS044-334	334	335	NRL-61586	Functional Requirement	4859541
+SWE1-VC-FeaturesEnableCriteria-022	Common Features	SYS-RA-CFTS044-335	335	336	NRL-61587	Functional Requirement	4859542
+SWE1-VC-FeaturesEnableCriteria-023	Common Features	SYS-RA-CFTS044-336	336	337	NRL-61588	Functional Requirement	4859543
+SWE1-VC-ThirdRowHeadrestDump-024	Common Features	SYS-RA-CFTS044-134	134	135	NRL-61386	Heading	4858985
+SWE1-VC-ThirdRowHeadrestDump-025	Common Features	SYS-RA-CFTS044-135	135	136	NRL-61387	Functional Requirement	4858986
+SWE1-VC-ThirdRowHeadrestDump-026	Common Features	SYS-RA-CFTS044-136	136	137	NRL-61388	Functional Requirement	4858987
+SWE1-VC-ThirdRowHeadrestDump-027	Common Features	SYS-RA-CFTS044-137	137	138	NRL-61389	Functional Requirement	4858988
+SWE1-VC-ThirdRowHeadrestDump-028	Common Features	SYS-RA-CFTS044-138	138	139	NRL-61390	Functional Requirement	4858989
+SWE1-VC-ThirdRowHeadrestDump-029	Common Features	SYS-RA-CFTS044-139	139	140	NRL-61391	Functional Requirement	4858991
+SWE1-VC-ThirdRowHeadrestDump-030	Common Features	SYS-RA-CFTS044-140	140	141	NRL-61392	Functional Requirement	4858993
+SWE1-VC-ThirdRowHeadrestDump-031	Common Features	SYS-RA-CFTS044-141	141	142	NRL-61393	Functional Requirement	4858994
+SWE1-VC-ThirdRowHeadrestDump-032	Common Features	SYS-RA-CFTS044-142	142	143	NRL-61394	Functional Requirement	4858995
+SWE1-VC-ThirdRowHeadrestDump-033	Common Features	SYS-RA-CFTS044-143	143	144	NRL-61395	Functional Requirement	4858999
+SWE1-VC-ThirdRowHeadrestDump-034	Common Features	SYS-RA-CFTS044-144	144	145	NRL-61396	Functional Requirement	4859000
+SWE1-VC-ThirdRowHeadrestDump-035	Common Features	SYS-RA-CFTS044-145	145	146	NRL-61397	Functional Requirement	4859001
+SWE1-VC-ThirdRowHeadrestDump-036	Common Features	SYS-RA-CFTS044-146	146	147	NRL-61398	Functional Requirement	4859002
+SWE1-VC-ThirdRowHeadrestDump-037	Common Features	SYS-RA-CFTS044-147	147	148	NRL-61399	Functional Requirement	4859030
+SWE1-VC-ThirdRowHeadrestDump-038	Common Features	SYS-RA-CFTS044-148	148	149	NRL-61400	Functional Requirement	4859031
+SWE1-VC-ThirdRowHeadrestDump-039	Common Features	SYS-RA-CFTS044-149	149	150	NRL-61401	Functional Requirement	4859032
+SWE1-VC-ThirdRowHeadrestDump-040	Common Features	SYS-RA-CFTS044-150	150	151	NRL-61402	Functional Requirement	4859033
+SWE1-VC-ThirdRowHeadrestDump-041	Common Features	SYS-RA-CFTS044-151	151	152	NRL-61403	Functional Requirement	4859034
+SWE1-VC-ThirdRowHeadrestDump-042	Common Features	SYS-RA-CFTS044-152	152	153	NRL-61404	Functional Requirement	4859035
+SWE1-VC-ThirdRowHeadrestDump-043	Common Features	SYS-RA-CFTS044-153	153	154	NRL-61405	Functional Requirement	4859038
+SWE1-VC-ThirdRowHeadrestDump-044	Common Features	SYS-RA-CFTS044-154	154	155	NRL-61406	Functional Requirement	4859039
+SWE1-VC-ThirdRowHeadrestDump-045	Common Features	SYS-RA-CFTS044-155	155	156	NRL-61407	Functional Requirement	4859040
+SWE1-VC-ScreenOFF-046	Common Features	SYS-RA-CFTS044-172	172	173	NRL-61424	Heading	4859103
+SWE1-VC-ScreenOFF-047	Common Features	SYS-RA-CFTS044-173	173	174	NRL-61425	Functional Requirement	4859104
+SWE1-VC-ScreenOFF-048	Common Features	SYS-RA-CFTS044-174	174	175	NRL-61426	Functional Requirement	4859105
+SWE1-VC-ScreenOFF-049	Common Features	SYS-RA-CFTS044-175	175	176	NRL-61427	Functional Requirement	4859106
+SWE1-VC-ScreenOFF-050	Common Features	SYS-RA-CFTS044-176	176	177	NRL-61428	Functional Requirement	4859107
+SWE1-VC-ScreenOFF-051	Common Features	SYS-RA-CFTS044-177	177	178	NRL-61429	Functional Requirement	4859108
+SWE1-VC-ScreenOFF-052	Common Features	SYS-RA-CFTS044-178	178	179	NRL-61430	Functional Requirement	4859110
+SWE1-VC-StopStartSystemBehavior-053	Common Features	SYS-RA-CFTS044-320	320	321	NRL-61572	Heading	4859503
+SWE1-VC-StopStartSystemBehavior-054	Common Features	SYS-RA-CFTS044-321	321	322	NRL-61573	Functional Requirement	4859504
+SWE1-VC-StopStartSystemBehavior-055	Common Features	SYS-RA-CFTS044-322	322	323	NRL-61574	Functional Requirement	4859505
+SWE1-VC-StopStartSystemBehavior-056	Common Features	SYS-RA-CFTS044-323	323	324	NRL-61575	Functional Requirement	4859506
+SWE1-VC-LeftFrontHeatedSeat-001	HeatedSeat	SYS-RA-CFTS044-022	22	23	NRL-61274	Heading	4858300
+SWE1-VC-LeftFrontHeatedSeatButton-002	HeatedSeat	SYS-RA-CFTS044-023	23	24	NRL-61275	Information	4858301
+SWE1-VC-LeftFrontHeatedSeat-003	HeatedSeat	SYS-RA-CFTS044-024	24	25	NRL-61276	Functional Requirement	4858302
+SWE1-VC-LeftFrontHeatedSeat-004	HeatedSeat	SYS-RA-CFTS044-025	25	26	NRL-61277	Functional Requirement	4858304,4858334,4858364,4858395
+SWE1-VC-LeftFrontHeatedSeat-005	HeatedSeat	SYS-RA-CFTS044-026	26	27	NRL-61278	Functional Requirement	4858307
+SWE1-VC-LeftFrontHeatedSeat-006	HeatedSeat	SYS-RA-CFTS044-027	27	28	NRL-61279	Functional Requirement	4858308
+SWE1-VC-LeftFrontHeatedSeat-007	HeatedSeat	SYS-RA-CFTS044-028	28	29	NRL-61280	Functional Requirement	4858309
+SWE1-VC-LeftFrontHeatedSeat-008	HeatedSeat	SYS-RA-CFTS044-029	29	30	NRL-61281	Functional Requirement	4858310
+SWE1-VC-LeftFrontHeatedSeat-009	HeatedSeat	SYS-RA-CFTS044-030	30	31	NRL-61282	Functional Requirement	4858311
+SWE1-VC-LeftFrontHeatedSeat-010	HeatedSeat	SYS-RA-CFTS044-031	31	32	NRL-61283	Functional Requirement	4858316
+SWE1-VC-LeftFrontHeatedSeat-011	HeatedSeat	SYS-RA-CFTS044-032	32	33	NRL-61284	Functional Requirement	4858317,4858347,4858377,4858408
+SWE1-VC-LeftFrontHeatedSeat-012	HeatedSeat	SYS-RA-CFTS044-033	33	34	NRL-61285	Functional Requirement	4858318
+SWE1-VC-LeftFrontHeatedSeat-013	HeatedSeat	SYS-RA-CFTS044-034	34	35	NRL-61286	Functional Requirement	4858319
+SWE1-VC-LeftFrontHeatedSeat-014	HeatedSeat	SYS-RA-CFTS044-035	35	36	NRL-61287	Functional Requirement	4858320
+SWE1-VC-LeftFrontHeatedSeat-015	HeatedSeat	SYS-RA-CFTS044-036	36	37	NRL-61288	Functional Requirement	4858325
+SWE1-VC-LeftFrontHeatedSeat-016	HeatedSeat	SYS-RA-CFTS044-037	37	38	NRL-61289	Functional Requirement	4858326
+SWE1-VC-LeftFrontHeatedSeat-017	HeatedSeat	SYS-RA-CFTS044-038	38	39	NRL-61290	Functional Requirement	4858327
+SWE1-VC-LeftFrontHeatedSeat-018	HeatedSeat	SYS-RA-CFTS044-039	39	40	NRL-61291	Functional Requirement	4858328
+SWE1-VC-LeftFrontHeatedSeat-019	HeatedSeat	SYS-RA-CFTS044-040	40	41	NRL-61292	Functional Requirement	4858329
+SWE1-VC-RightFrontHeatedSeat-020	HeatedSeat	SYS-RA-CFTS044-041	41	42	NRL-61293	Heading	4858330
+SWE1-VC-RightFrontHeatedSeat-021	HeatedSeat	SYS-RA-CFTS044-042	42	43	NRL-61294	Information	4858331
+SWE1-VC-RightFrontHeatedSeat-022	HeatedSeat	SYS-RA-CFTS044-043	43	44	NRL-61295	Functional Requirement	4858332
+SWE1-VC-RightFrontHeatedSeat-023	HeatedSeat	SYS-RA-CFTS044-044	44	45	NRL-61296	Functional Requirement	4858337
+SWE1-VC-RightFrontHeatedSeat-024	HeatedSeat	SYS-RA-CFTS044-045	45	46	NRL-61297	Functional Requirement	4858338
+SWE1-VC-RightFrontHeatedSeat-025	HeatedSeat	SYS-RA-CFTS044-046	46	47	NRL-61298	Functional Requirement	4858339
+SWE1-VC-RightFrontHeatedSeat-026	HeatedSeat	SYS-RA-CFTS044-047	47	48	NRL-61299	Functional Requirement	4858340
+SWE1-VC-RightFrontHeatedSeat-027	HeatedSeat	SYS-RA-CFTS044-048	48	49	NRL-61300	Functional Requirement	4858341
+SWE1-VC-RightFrontHeatedSeat-028	HeatedSeat	SYS-RA-CFTS044-049	49	50	NRL-61301	Functional Requirement	4858346
+SWE1-VC-RightFrontHeatedSeat-029	HeatedSeat	SYS-RA-CFTS044-050	50	51	NRL-61302	Functional Requirement	4858348
+SWE1-VC-RightFrontHeatedSeat-030	HeatedSeat	SYS-RA-CFTS044-051	51	52	NRL-61303	Functional Requirement	4858349
+SWE1-VC-RightFrontHeatedSeat-031	HeatedSeat	SYS-RA-CFTS044-052	52	53	NRL-61304	Functional Requirement	4858350
+SWE1-VC-RightFrontHeatedSeat-032	HeatedSeat	SYS-RA-CFTS044-053	53	54	NRL-61305	Functional Requirement	4858355
+SWE1-VC-RightFrontHeatedSeat-033	HeatedSeat	SYS-RA-CFTS044-054	54	55	NRL-61306	Functional Requirement	4858356
+SWE1-VC-RightFrontHeatedSeat-034	HeatedSeat	SYS-RA-CFTS044-055	55	56	NRL-61307	Functional Requirement	4858357
+SWE1-VC-RightFrontHeatedSeat-035	HeatedSeat	SYS-RA-CFTS044-056	56	57	NRL-61308	Functional Requirement	4858358
+SWE1-VC-RightFrontHeatedSeat-036	HeatedSeat	SYS-RA-CFTS044-057	57	58	NRL-61309	Functional Requirement	4858359
+SWE1-VC-OneStageHeatedSeat-037	HeatedSeat	SYS-RA-CFTS044-197	197	198	NRL-61449	Heading	4859358
+SWE1-VC-OneStageHeatedSeat-038	HeatedSeat	SYS-RA-CFTS044-198	198	199	NRL-61450	Heading	4859359
+SWE1-VC-OneStageHeatedSeat-039	HeatedSeat	SYS-RA-CFTS044-199	199	200	NRL-61451	Functional Requirement	4859360
+SWE1-VC-OneStageHeatedSeat-040	HeatedSeat	SYS-RA-CFTS044-200	200	201	NRL-61452	Functional Requirement	4859361
+SWE1-VC-OneStageHeatedSeat-041	HeatedSeat	SYS-RA-CFTS044-201	201	202	NRL-61453	Functional Requirement	4859362
+SWE1-VC-OneStageHeatedSeat-042	HeatedSeat	SYS-RA-CFTS044-202	202	203	NRL-61454	Functional Requirement	4859363
+SWE1-VC-OneStageHeatedSeat-043	HeatedSeat	SYS-RA-CFTS044-203	203	204	NRL-61455	Functional Requirement	4859364
+SWE1-VC-OneStageHeatedSeat-044	HeatedSeat	SYS-RA-CFTS044-204	204	205	NRL-61456	Functional Requirement	4859365
+SWE1-VC-OneStageHeatedSeat-045	HeatedSeat	SYS-RA-CFTS044-205	205	206	NRL-61457	Functional Requirement	4859366
+SWE1-VC-OneStageHeatedSeat-046	HeatedSeat	SYS-RA-CFTS044-206	206	207	NRL-61458	Functional Requirement	4859367
+SWE1-VC-OneStageHeatedSeat-047	HeatedSeat	SYS-RA-CFTS044-207	207	208	NRL-61459	Functional Requirement	4859368
+SWE1-VC-OneStageHeatedSeat-048	HeatedSeat	SYS-RA-CFTS044-208	208	209	NRL-61460	Functional Requirement	4859369
+SWE1-VC-OneStageHeatedSeat-049	HeatedSeat	SYS-RA-CFTS044-209	209	210	NRL-61461	Functional Requirement	4859370
+SWE1-VC-OneStageHeatedSeat-050	HeatedSeat	SYS-RA-CFTS044-210	210	211	NRL-61462	Functional Requirement	4859371
+SWE1-VC-OneStageHeatedSeat-051	HeatedSeat	SYS-RA-CFTS044-211	211	212	NRL-61463	Functional Requirement	4859372
+SWE1-VC-OneStageHeatedSeat-052	HeatedSeat	SYS-RA-CFTS044-212	212	213	NRL-61464	Functional Requirement	4859373
+SWE1-VC-TwoStagesHeatedSeat-053	HeatedSeat	SYS-RA-CFTS044-213	213	214	NRL-61465	Heading	4859374
+SWE1-VC-TwoStagesHeatedSeat-054	HeatedSeat	SYS-RA-CFTS044-214	214	215	NRL-61466	Heading	4859375
+SWE1-VC-TwoStagesHeatedSeat-055	HeatedSeat	SYS-RA-CFTS044-215	215	216	NRL-61467	Functional Requirement	4859376
+SWE1-VC-TwoStagesHeatedSeat-056	HeatedSeat	SYS-RA-CFTS044-216	216	217	NRL-61468	Functional Requirement	4859377,4859378
+SWE1-VC-TwoStagesHeatedSeat-057	HeatedSeat	SYS-RA-CFTS044-217	217	218	NRL-61469	Functional Requirement	4859379
+SWE1-VC-TwoStagesHeatedSeat-058	HeatedSeat	SYS-RA-CFTS044-218	218	219	NRL-61470	Functional Requirement	4859380
+SWE1-VC-TwoStagesHeatedSeat-059	HeatedSeat	SYS-RA-CFTS044-219	219	220	NRL-61471	Functional Requirement	4859381
+SWE1-VC-TwoStagesHeatedSeat-060	HeatedSeat	SYS-RA-CFTS044-220	220	221	NRL-61472	Functional Requirement	4859382
+SWE1-VC-TwoStagesHeatedSeat-061	HeatedSeat	SYS-RA-CFTS044-221	221	222	NRL-61473	Functional Requirement	4859383
+SWE1-VC-TwoStagesHeatedSeat-062	HeatedSeat	SYS-RA-CFTS044-222	222	223	NRL-61474	Functional Requirement	4859384
+SWE1-VC-TwoStagesHeatedSeat-063	HeatedSeat	SYS-RA-CFTS044-223	223	224	NRL-61475	Functional Requirement	4859385
+SWE1-VC-TwoStagesHeatedSeat-064	HeatedSeat	SYS-RA-CFTS044-224	224	225	NRL-61476	Functional Requirement	4859386
+SWE1-VC-TwoStagesHeatedSeat-065	HeatedSeat	SYS-RA-CFTS044-225	225	226	NRL-61477	Functional Requirement	4859387
+SWE1-VC-TwoStagesHeatedSeat-066	HeatedSeat	SYS-RA-CFTS044-226	226	227	NRL-61478	Functional Requirement	4859388
+SWE1-VC-TwoStagesHeatedSeat-067	HeatedSeat	SYS-RA-CFTS044-227	227	228	NRL-61479	Functional Requirement	4859389
+SWE1-VC-TwoStagesHeatedSeat-068	HeatedSeat	SYS-RA-CFTS044-228	228	229	NRL-61480	Functional Requirement	4859390
+SWE1-VC-TwoStagesHeatedSeat-069	HeatedSeat	SYS-RA-CFTS044-229	229	230	NRL-61481	Functional Requirement	4859391
+SWE1-VC-TwoStagesHeatedSeat-070	HeatedSeat	SYS-RA-CFTS044-230	230	231	NRL-61482	Functional Requirement	4859392
+SWE1-VC-TwoStagesHeatedSeat-071	HeatedSeat	SYS-RA-CFTS044-231	231	232	NRL-61483	Functional Requirement	4859393
+SWE1-VC-TwoStagesHeatedSeat-072	HeatedSeat	SYS-RA-CFTS044-232	232	233	NRL-61484	Functional Requirement	4859394
+SWE1-VC-TwoStagesHeatedSeat-073	HeatedSeat	SYS-RA-CFTS044-233	233	234	NRL-61485	Functional Requirement	4859395
+SWE1-VC-TwoStagesHeatedSeat-074	HeatedSeat	SYS-RA-CFTS044-234	234	235	NRL-61486	Functional Requirement	4859396
+SWE1-VC-ThreeStagesHeatedSeat-075	HeatedSeat	SYS-RA-CFTS044-235	235	236	NRL-61487	Heading	4859397
+SWE1-VC-ThreeStagesHeatedSeat-076	HeatedSeat	SYS-RA-CFTS044-236	236	237	NRL-61488	Heading	4859398
+SWE1-VC-ThreeStagesHeatedSeat-077	HeatedSeat	SYS-RA-CFTS044-237	237	238	NRL-61489	Information	4859399
+SWE1-VC-ThreeStagesHeatedSeat-078	HeatedSeat	SYS-RA-CFTS044-238	238	239	NRL-61490	Functional Requirement	4859400
+SWE1-VC-ThreeStagesHeatedSeat-079	HeatedSeat	SYS-RA-CFTS044-239	239	240	NRL-61491	Functional Requirement	4859401
+SWE1-VC-ThreeStagesHeatedSeat-080	HeatedSeat	SYS-RA-CFTS044-240	240	241	NRL-61492	Functional Requirement	4859402
+SWE1-VC-ThreeStagesHeatedSeat-081	HeatedSeat	SYS-RA-CFTS044-241	241	242	NRL-61493	Functional Requirement	4859403
+SWE1-VC-ThreeStagesHeatedSeat-082	HeatedSeat	SYS-RA-CFTS044-242	242	243	NRL-61494	Functional Requirement	4859404
+SWE1-VC-ThreeStagesHeatedSeat-083	HeatedSeat	SYS-RA-CFTS044-243	243	244	NRL-61495	Functional Requirement	4859405
+SWE1-VC-ThreeStagesHeatedSeat-084	HeatedSeat	SYS-RA-CFTS044-244	244	245	NRL-61496	Functional Requirement	4859406
+SWE1-VC-ThreeStagesHeatedSeat-085	HeatedSeat	SYS-RA-CFTS044-245	245	246	NRL-61497	Functional Requirement	4859407
+SWE1-VC-ThreeStagesHeatedSeat-086	HeatedSeat	SYS-RA-CFTS044-246	246	247	NRL-61498	Functional Requirement	4859408
+SWE1-VC-ThreeStagesHeatedSeat-087	HeatedSeat	SYS-RA-CFTS044-247	247	248	NRL-61499	Functional Requirement	4859409
+SWE1-VC-ThreeStagesHeatedSeat-088	HeatedSeat	SYS-RA-CFTS044-248	248	249	NRL-61500	Functional Requirement	4859410
+SWE1-VC-ThreeStagesHeatedSeat-089	HeatedSeat	SYS-RA-CFTS044-249	249	250	NRL-61501	Functional Requirement	4859413
+SWE1-VC-ThreeStagesHeatedSeat-090	HeatedSeat	SYS-RA-CFTS044-250	250	251	NRL-61502	Functional Requirement	4859414
+SWE1-VC-ThreeStagesHeatedSeat-091	HeatedSeat	SYS-RA-CFTS044-251	251	252	NRL-61503	Functional Requirement	4859415
+SWE1-VC-ThreeStagesHeatedSeat-092	HeatedSeat	SYS-RA-CFTS044-252	252	253	NRL-61504	Functional Requirement	4859416
+SWE1-VC-ThreeStagesHeatedSeat-093	HeatedSeat	SYS-RA-CFTS044-253	253	254	NRL-61505	Functional Requirement	4859417
+SWE1-VC-ThreeStagesHeatedSeat-094	HeatedSeat	SYS-RA-CFTS044-254	254	255	NRL-61506	Functional Requirement	4859418
+SWE1-VC-ThreeStagesHeatedSeat-095	HeatedSeat	SYS-RA-CFTS044-255	255	256	NRL-61507	Functional Requirement	4859419
+SWE1-VC-ThreeStagesHeatedSeat-096	HeatedSeat	SYS-RA-CFTS044-256	256	257	NRL-61508	Functional Requirement	4859420
+SWE1-VC-ThreeStagesHeatedSeat-097	HeatedSeat	SYS-RA-CFTS044-257	257	258	NRL-61509	Functional Requirement	4859421
+SWE1-VC-ThreeStagesHeatedSeat-098	HeatedSeat	SYS-RA-CFTS044-258	258	259	NRL-61510	Functional Requirement	4859422
+SWE1-VC-ThreeStagesHeatedSeat-099	HeatedSeat	SYS-RA-CFTS044-259	259	260	NRL-61511	Functional Requirement	4859423
+SWE1-VC-HeatedSteeringWheel-001	Heated Steering Wheel	SYS-RA-CFTS044-092	92	93	NRL-61344	Heading	4858511
+SWE1-VC-HeatedSteeringWheel-002	Heated Steering Wheel	SYS-RA-CFTS044-093	93	94	NRL-61345	Information	4858512
+SWE1-VC-HeatedSteeringWheel-003	Heated Steering Wheel	SYS-RA-CFTS044-094	94	95	NRL-61346	Functional Requirement	4858513
+SWE1-VC-HeatedSteeringWheel-004	Heated Steering Wheel	SYS-RA-CFTS044-095	95	96	NRL-61347	Functional Requirement	4858516
+SWE1-VC-HeatedSteeringWheel-005	Heated Steering Wheel	SYS-RA-CFTS044-096	96	97	NRL-61348	Functional Requirement	4858517
+SWE1-VC-HeatedSteeringWheel-006	Heated Steering Wheel	SYS-RA-CFTS044-097	97	98	NRL-61349	Functional Requirement	4858519
+SWE1-VC-HeatedSteeringWheel-007	Heated Steering Wheel	SYS-RA-CFTS044-098	98	99	NRL-61350	Functional Requirement	4858521
+SWE1-VC-HeatedSteeringWheel-008	Heated Steering Wheel	SYS-RA-CFTS044-099	99	100	NRL-61351	Functional Requirement	4858522
+SWE1-VC-HeatedSteeringWheel-010	Heated Steering Wheel	SYS-RA-CFTS044-101	101	102	NRL-61353	Functional Requirement	4858529
+SWE1-VC-HeatedSteeringWheel-011	Heated Steering Wheel	SYS-RA-CFTS044-102	102	103	NRL-61354	Functional Requirement	4858530
+SWE1-VC-HeatedSteeringWheel-012	Heated Steering Wheel	SYS-RA-CFTS044-103	103	104	NRL-61355	Functional Requirement	4858531
+SWE1-VC-HeatedSteeringWheel-013	Heated Steering Wheel	SYS-RA-CFTS044-104	104	105	NRL-61356	Functional Requirement	4858532
+SWE1-VC-HeatedSteeringWheel-014	Heated Steering Wheel	SYS-RA-CFTS044-105	105	106	NRL-61357	Functional Requirement	4858537
+SWE1-VC-HeatedSteeringWheel-015	Heated Steering Wheel	SYS-RA-CFTS044-106	106	107	NRL-61358	Functional Requirement	4858538
+SWE1-VC-HeatedSteeringWheel-016	Heated Steering Wheel	SYS-RA-CFTS044-107	107	108	NRL-61359	Functional Requirement	4858539
+SWE1-VC-HeatedSteeringWheel-017	Heated Steering Wheel	SYS-RA-CFTS044-108	108	109	NRL-61360	Functional Requirement	4858540
+SWE1-VC-HeatedSteeringWheel-018	Heated Steering Wheel	SYS-RA-CFTS044-109	109	110	NRL-61361	Functional Requirement	4858541
+SWE1-VC-HeatedSteeringWheel-019	Heated Steering Wheel	SYS-RA-CFTS044-110	110	111	NRL-61362	Functional Requirement	4858542
+SWE1-VC-HeatedSteeringWheel-020	Heated Steering Wheel	SYS-RA-CFTS044-111	111	112	NRL-61363	Functional Requirement	4858543
+SWE1-VC-HeatedSteeringWheel-021	Heated Steering Wheel	SYS-RA-CFTS044-112	112	113	NRL-61364	Functional Requirement	4858544
+SWE1-VC-HeatedSteeringWheel-022	Heated Steering Wheel	SYS-RA-CFTS044-113	113	114	NRL-61365	Functional Requirement	4858545
+SWE1-VC-HeatedSteeringWheelManagement-023	Heated Steering Wheel	SYS-RA-CFTS044-307	307	308	NRL-61559	Heading	4859490
+SWE1-VC-HeatedSteeringWheelManagement-024	Heated Steering Wheel	SYS-RA-CFTS044-308	308	309	NRL-61560	Heading	4859491
+SWE1-VC-HeatedSteeringWheelManagement-025	Heated Steering Wheel	SYS-RA-CFTS044-309	309	310	NRL-61561	Functional Requirement	4859492
+SWE1-VC-HeatedSteeringWheelManagement-025	Heated Steering Wheel	SYS-RA-CFTS044-019	19	20	NRL-61271	Functional Requirement	4858296
+SWE1-VC-HeatedSteeringWheelManagement-026	Heated Steering Wheel	SYS-RA-CFTS044-310	310	311	NRL-61562	Functional Requirement	4859493
+SWE1-VC-HeatedSteeringWheelManagement-026	Heated Steering Wheel	SYS-RA-CFTS044-020	20	21	NRL-61272	Functional Requirement	4858298
+SWE1-VC-HeatedSteeringWheelManagement-027	Heated Steering Wheel	SYS-RA-CFTS044-311	311	312	NRL-61563	Functional Requirement	4859494
+SWE1-VC-HeatedSteeringWheelManagement-027	Heated Steering Wheel	SYS-RA-CFTS044-021	21	22	NRL-61273	Functional Requirement	4858299
+SWE1-VC-HeatedSteeringWheelManagement-028	Heated Steering Wheel	SYS-RA-CFTS044-312	312	313	NRL-61564	Functional Requirement	4859495
+SWE1-VC-HeatedSteeringWheelManagement-029	Heated Steering Wheel	SYS-RA-CFTS044-313	313	314	NRL-61565	Functional Requirement	4859496
+SWE1-VC-HeatedSteeringWheelManagement-030	Heated Steering Wheel	SYS-RA-CFTS044-314	314	315	NRL-61566	Functional Requirement	4859497
+SWE1-VC-HeatedSteeringWheelManagement-031	Heated Steering Wheel	SYS-RA-CFTS044-315	315	316	NRL-61567	Functional Requirement	4859498
+SWE1-VC-HeatedSteeringWheelManagement-032	Heated Steering Wheel	SYS-RA-CFTS044-316	316	317	NRL-61568	Functional Requirement	4859499
+SWE1-VC-HeatedSteeringWheelManagement-033	Heated Steering Wheel	SYS-RA-CFTS044-317	317	318	NRL-61569	Functional Requirement	4859500
+SWE1-VC-HeatedSteeringWheelManagement-034	Heated Steering Wheel	SYS-RA-CFTS044-318	318	319	NRL-61570	Functional Requirement	4859501
+SWE1-VC-HeatedSteeringWheelManagement-035	Heated Steering Wheel	SYS-RA-CFTS044-319	319	320	NRL-61571	Functional Requirement	4859502
+SWE1-VC-LeftFrontVentedSeat-001	VentedSeat	SYS-RA-CFTS044-058	58	59	NRL-61310	Heading	4858360
+SWE1-VC-LeftFrontVentedSeat-002	VentedSeat	SYS-RA-CFTS044-059	59	60	NRL-61311	Information	4858361
+SWE1-VC-LeftFrontVentedSeat-003	VentedSeat	SYS-RA-CFTS044-060	60	61	NRL-61312	Functional Requirement	4858362
+SWE1-VC-LeftFrontVentedSeat-004	VentedSeat	SYS-RA-CFTS044-061	61	62	NRL-61313	Functional Requirement	4858367
+SWE1-VC-LeftFrontVentedSeat-005	VentedSeat	SYS-RA-CFTS044-062	62	63	NRL-61314	Functional Requirement	4858368
+SWE1-VC-LeftFrontVentedSeat-006	VentedSeat	SYS-RA-CFTS044-063	63	64	NRL-61315	Functional Requirement	4858369
+SWE1-VC-LeftFrontVentedSeat-007	VentedSeat	SYS-RA-CFTS044-064	64	65	NRL-61316	Functional Requirement	4858370
+SWE1-VC-LeftFrontVentedSeat-008	VentedSeat	SYS-RA-CFTS044-065	65	66	NRL-61317	Functional Requirement	4858371
+SWE1-VC-LeftFrontVentedSeat-009	VentedSeat	SYS-RA-CFTS044-066	66	67	NRL-61318	Functional Requirement	4858376
+SWE1-VC-LeftFrontVentedSeat-010	VentedSeat	SYS-RA-CFTS044-067	67	68	NRL-61319	Functional Requirement	4858378
+SWE1-VC-LeftFrontVentedSeat-011	VentedSeat	SYS-RA-CFTS044-068	68	69	NRL-61320	Functional Requirement	4858379
+SWE1-VC-LeftFrontVentedSeat-012	VentedSeat	SYS-RA-CFTS044-069	69	70	NRL-61321	Functional Requirement	4858380
+SWE1-VC-LeftFrontVentedSeat-013	VentedSeat	SYS-RA-CFTS044-070	70	71	NRL-61322	Functional Requirement	4858385
+SWE1-VC-LeftFrontVentedSeat-014	VentedSeat	SYS-RA-CFTS044-071	71	72	NRL-61323	Functional Requirement	4858386
+SWE1-VC-LeftFrontVentedSeat-015	VentedSeat	SYS-RA-CFTS044-072	72	73	NRL-61324	Functional Requirement	4858387
+SWE1-VC-LeftFrontVentedSeat-016	VentedSeat	SYS-RA-CFTS044-073	73	74	NRL-61325	Functional Requirement	4858388
+SWE1-VC-LeftFrontVentedSeat-017	VentedSeat	SYS-RA-CFTS044-074	74	75	NRL-61326	Functional Requirement	4858389
+SWE1-VC-RightFrontVentedSeat-018	VentedSeat	SYS-RA-CFTS044-075	75	76	NRL-61327	Heading	4858390
+SWE1-VC-RightFrontVentedSeat-019	VentedSeat	SYS-RA-CFTS044-076	76	77	NRL-61328	Information	4858391
+SWE1-VC-RightFrontVentedSeat-020	VentedSeat	SYS-RA-CFTS044-077	77	78	NRL-61329	Functional Requirement	4858392
+SWE1-VC-RightFrontVentedSeat-021	VentedSeat	SYS-RA-CFTS044-078	78	79	NRL-61330	Functional Requirement	4858398
+SWE1-VC-RightFrontVentedSeat-022	VentedSeat	SYS-RA-CFTS044-079	79	80	NRL-61331	Functional Requirement	4858399
+SWE1-VC-RightFrontVentedSeat-023	VentedSeat	SYS-RA-CFTS044-080	80	81	NRL-61332	Functional Requirement	4858400
+SWE1-VC-RightFrontVentedSeat-024	VentedSeat	SYS-RA-CFTS044-081	81	82	NRL-61333	Functional Requirement	4858401
+SWE1-VC-RightFrontVentedSeat-025	VentedSeat	SYS-RA-CFTS044-082	82	83	NRL-61334	Functional Requirement	4858402
+SWE1-VC-RightFrontVentedSeat-026	VentedSeat	SYS-RA-CFTS044-083	83	84	NRL-61335	Functional Requirement	4858407
+SWE1-VC-RightFrontVentedSeat-027	VentedSeat	SYS-RA-CFTS044-084	84	85	NRL-61336	Functional Requirement	4858409
+SWE1-VC-RightFrontVentedSeat-028	VentedSeat	SYS-RA-CFTS044-085	85	86	NRL-61337	Functional Requirement	4858410
+SWE1-VC-RightFrontVentedSeat-029	VentedSeat	SYS-RA-CFTS044-086	86	87	NRL-61338	Functional Requirement	4858411
+SWE1-VC-RightFrontVentedSeat-030	VentedSeat	SYS-RA-CFTS044-087	87	88	NRL-61339	Functional Requirement	4858416
+SWE1-VC-RightFrontVentedSeat-031	VentedSeat	SYS-RA-CFTS044-088	88	89	NRL-61340	Functional Requirement	4858417
+SWE1-VC-RightFrontVentedSeat-032	VentedSeat	SYS-RA-CFTS044-089	89	90	NRL-61341	Functional Requirement	4858418
+SWE1-VC-RightFrontVentedSeat-033	VentedSeat	SYS-RA-CFTS044-090	90	91	NRL-61342	Functional Requirement	4858419
+SWE1-VC-RightFrontVentedSeat-034	VentedSeat	SYS-RA-CFTS044-091	91	92	NRL-61343	Functional Requirement	4858420
+SWE1-VC-TwoStagesVentedSeatsManagement-035	VentedSeat	SYS-RA-CFTS044-260	260	261	NRL-61512	Heading	4859436
+SWE1-VC-TwoStagesVentedSeatsManagement-036	VentedSeat	SYS-RA-CFTS044-261	261	262	NRL-61513	Heading	4859437
+SWE1-VC-TwoStagesVentedSeatsManagement-037	VentedSeat	SYS-RA-CFTS044-262	262	263	NRL-61514	Functional Requirement	4859438
+SWE1-VC-TwoStagesVentedSeatsManagement-038	VentedSeat	SYS-RA-CFTS044-263	263	264	NRL-61515	Functional Requirement	4859439,4859440
+SWE1-VC-TwoStagesVentedSeatsManagement-039	VentedSeat	SYS-RA-CFTS044-264	264	265	NRL-61516	Functional Requirement	4859441
+SWE1-VC-TwoStagesVentedSeatsManagement-040	VentedSeat	SYS-RA-CFTS044-265	265	266	NRL-61517	Functional Requirement	4859442
+SWE1-VC-TwoStagesVentedSeatsManagement-041	VentedSeat	SYS-RA-CFTS044-266	266	267	NRL-61518	Functional Requirement	4859443
+SWE1-VC-TwoStagesVentedSeatsManagement-042	VentedSeat	SYS-RA-CFTS044-267	267	268	NRL-61519	Functional Requirement	4859444
+SWE1-VC-TwoStagesVentedSeatsManagement-043	VentedSeat	SYS-RA-CFTS044-268	268	269	NRL-61520	Functional Requirement	4859445
+SWE1-VC-TwoStagesVentedSeatsManagement-044	VentedSeat	SYS-RA-CFTS044-269	269	270	NRL-61521	Functional Requirement	4859446
+SWE1-VC-TwoStagesVentedSeatsManagement-045	VentedSeat	SYS-RA-CFTS044-270	270	271	NRL-61522	Functional Requirement	4859447
+SWE1-VC-TwoStagesVentedSeatsManagement-046	VentedSeat	SYS-RA-CFTS044-271	271	272	NRL-61523	Functional Requirement	4859448
+SWE1-VC-TwoStagesVentedSeatsManagement-047	VentedSeat	SYS-RA-CFTS044-272	272	273	NRL-61524	Functional Requirement	4859449
+SWE1-VC-TwoStagesVentedSeatsManagement-048	VentedSeat	SYS-RA-CFTS044-273	273	274	NRL-61525	Functional Requirement	4859450
+SWE1-VC-TwoStagesVentedSeatsManagement-049	VentedSeat	SYS-RA-CFTS044-274	274	275	NRL-61526	Functional Requirement	4859451
+SWE1-VC-TwoStagesVentedSeatsManagement-050	VentedSeat	SYS-RA-CFTS044-275	275	276	NRL-61527	Functional Requirement	4859452
+SWE1-VC-TwoStagesVentedSeatsManagement-051	VentedSeat	SYS-RA-CFTS044-276	276	277	NRL-61528	Functional Requirement	4859453
+SWE1-VC-TwoStagesVentedSeatsManagement-052	VentedSeat	SYS-RA-CFTS044-277	277	278	NRL-61529	Functional Requirement	4859454
+SWE1-VC-TwoStagesVentedSeatsManagement-053	VentedSeat	SYS-RA-CFTS044-278	278	279	NRL-61530	Functional Requirement	4859455
+SWE1-VC-TwoStagesVentedSeatsManagement-054	VentedSeat	SYS-RA-CFTS044-279	279	280	NRL-61531	Functional Requirement	4859456
+SWE1-VC-TwoStagesVentedSeatsManagement-055	VentedSeat	SYS-RA-CFTS044-280	280	281	NRL-61532	Functional Requirement	4859457,4859458
+SWE1-VC-TwoStagesVentedSeatsManagement-056	VentedSeat	SYS-RA-CFTS044-281	281	282	NRL-61533	Functional Requirement	4859459,4859460
+SWE1-VC-ThreeStagesVentedSeatsManagement-057	VentedSeat	SYS-RA-CFTS044-282	282	283	NRL-61534	Heading	4859461
+SWE1-VC-ThreeStagesVentedSeatsManagement-058	VentedSeat	SYS-RA-CFTS044-283	283	284	NRL-61535	Heading	4859462
+SWE1-VC-ThreeStagesVentedSeatsManagement-059	VentedSeat	SYS-RA-CFTS044-284	284	285	NRL-61536	Information	4859463
+SWE1-VC-ThreeStagesVentedSeatsManagement-060	VentedSeat	SYS-RA-CFTS044-285	285	286	NRL-61537	Functional Requirement	4859464
+SWE1-VC-ThreeStagesVentedSeatsManagement-061	VentedSeat	SYS-RA-CFTS044-286	286	287	NRL-61538	Functional Requirement	4859465
+SWE1-VC-ThreeStagesVentedSeatsManagement-062	VentedSeat	SYS-RA-CFTS044-287	287	288	NRL-61539	Functional Requirement	4859466
+SWE1-VC-ThreeStagesVentedSeatsManagement-063	VentedSeat	SYS-RA-CFTS044-288	288	289	NRL-61540	Functional Requirement	4859467
+SWE1-VC-ThreeStagesVentedSeatsManagement-064	VentedSeat	SYS-RA-CFTS044-289	289	290	NRL-61541	Functional Requirement	4859468
+SWE1-VC-ThreeStagesVentedSeatsManagement-065	VentedSeat	SYS-RA-CFTS044-290	290	291	NRL-61542	Functional Requirement	4859469
+SWE1-VC-ThreeStagesVentedSeatsManagement-066	VentedSeat	SYS-RA-CFTS044-291	291	292	NRL-61543	Functional Requirement	4859470
+SWE1-VC-ThreeStagesVentedSeatsManagement-067	VentedSeat	SYS-RA-CFTS044-292	292	293	NRL-61544	Functional Requirement	4859471
+SWE1-VC-ThreeStagesVentedSeatsManagement-068	VentedSeat	SYS-RA-CFTS044-293	293	294	NRL-61545	Functional Requirement	4859472
+SWE1-VC-ThreeStagesVentedSeatsManagement-069	VentedSeat	SYS-RA-CFTS044-294	294	295	NRL-61546	Functional Requirement	4859473
+SWE1-VC-ThreeStagesVentedSeatsManagement-070	VentedSeat	SYS-RA-CFTS044-295	295	296	NRL-61547	Functional Requirement	4859474
+SWE1-VC-ThreeStagesVentedSeatsManagement-071	VentedSeat	SYS-RA-CFTS044-296	296	297	NRL-61548	Functional Requirement	4859477
+SWE1-VC-ThreeStagesVentedSeatsManagement-072	VentedSeat	SYS-RA-CFTS044-297	297	298	NRL-61549	Functional Requirement	4859478
+SWE1-VC-ThreeStagesVentedSeatsManagement-073	VentedSeat	SYS-RA-CFTS044-298	298	299	NRL-61550	Functional Requirement	4859479
+SWE1-VC-ThreeStagesVentedSeatsManagement-074	VentedSeat	SYS-RA-CFTS044-299	299	300	NRL-61551	Functional Requirement	4859480
+SWE1-VC-ThreeStagesVentedSeatsManagement-075	VentedSeat	SYS-RA-CFTS044-300	300	301	NRL-61552	Functional Requirement	4859481
+SWE1-VC-ThreeStagesVentedSeatsManagement-076	VentedSeat	SYS-RA-CFTS044-301	301	302	NRL-61553	Functional Requirement	4859482
+SWE1-VC-ThreeStagesVentedSeatsManagement-077	VentedSeat	SYS-RA-CFTS044-302	302	303	NRL-61554	Functional Requirement	4859483
+SWE1-VC-ThreeStagesVentedSeatsManagement-078	VentedSeat	SYS-RA-CFTS044-303	303	304	NRL-61555	Functional Requirement	4859484
+SWE1-VC-ThreeStagesVentedSeatsManagement-079	VentedSeat	SYS-RA-CFTS044-304	304	305	NRL-61556	Functional Requirement	4859485
+SWE1-VC-ThreeStagesVentedSeatsManagement-080	VentedSeat	SYS-RA-CFTS044-305	305	306	NRL-61557	Functional Requirement	4859486,4859487
+SWE1-VC-ThreeStagesVentedSeatsManagement-081	VentedSeat	SYS-RA-CFTS044-306	306	307	NRL-61558	Functional Requirement	4859488,4859489

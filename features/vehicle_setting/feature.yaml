@@ -1,0 +1,56 @@
+# feature.yaml — pipeline configuration for Vehicle Setting
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals. Regenerate nothing by editing code.
+
+feature: "Vehicle Setting"
+test_group: "Vehicle Setting"          # framework-internal; workbook write per profile
+
+paths:
+  workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_CFTS044_Vehicle Controls_20260819.xlsx"
+  # 本 feature 之 037 散落四份（R-VS4）；recon 取 Common Features 為代表，
+  # leaf 全集以 data/leaves.tsv 為準（W-2，271 leaf）
+  a03_report: "inputs/FM-WI-FSM-037-A03_SWE1_CFTS044 STLA 報告_SWRA STLA Report_SWRA_Common Features.xlsx"
+  sys1_export: "inputs/SYS2  R1LR_Atl-H_25PI1.1_Activation and Configuration_CFTS_044_Vehicle Controls_SR26_20250815-1022_20260324_Version3_Released.xlsx"
+  spec_pdf: "inputs/R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_044_Vehicle Controls_SR26_20250909-1816.docx"
+  popup_list: null   # CFTS044 對 Pop Up 命中 0（00A DR-5c 撤回）
+
+spec_mode: "D"        # A/B/C/D/E per FEATURE_ONBOARDING §3（00 包 W-12）
+spec_reference_template: "<Spec Filename>_{outline}"
+
+workbook:
+  sheet: "Test Case Specification 測試用例規範"   # 實測分頁名，非模板值
+  header_row: 9
+  # column letters, verified by recon header match — do not guess
+  columns:
+    req_id: "D"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    design_method: "R"      # 實測：Q 為 Estimated Test Time
+    functional_safety: "S"
+    author: "AA"           # 實測：Z 為 Fastack (376) Atl-Mi
+    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+
+done_region:
+  # detection: "author" (author-cell match) or "rows" (explicit ranges)
+  detection: "author"
+  author_value: "Arif"
+  # invariant: "content_hash" (interleaved-safe) or "positional"
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: false     # true only under BLANK per canon §2
+
+lint:
+  design_method_source: "dropdown_sheet"   # exact-string vocabulary
+  popup_ids: []                            # e.g. [PU0091, PU0942] — verbatim check
+  extra_rules: []                          # feature-specific lint hooks

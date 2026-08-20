@@ -1,0 +1,35 @@
+swe_id	family	src_ref	title
+SWE1-VC-Stop-StartSystem-001	Common Features	SYS-RA-CFTS044-116	Stop-Start System
+SWE1-VC-SwitchLHD/RHDConfiguration-008	Common Features	SYS-RA-CFTS044-123	Switch LHD/RHD Configuration
+SWE1-VC-Controls-015	Common Features	SYS-RA-CFTS044-328	Controls
+SWE1-VC-PHEVFeatures-016	Common Features	SYS-RA-CFTS044-329	PHEV Features
+SWE1-VC-FeaturesEnableCriteria-018	Common Features	SYS-RA-CFTS044-331	Features Enable Criteria
+SWE1-VC-FeaturesEnableCriteria-019	Common Features	SYS-RA-CFTS044-332	Features Enable Criteria
+SWE1-VC-FeaturesEnableCriteria-020	Common Features	SYS-RA-CFTS044-333	Features Enable Criteria
+SWE1-VC-ThirdRowHeadrestDump-024	Common Features	SYS-RA-CFTS044-134	Third Row Headrest Dump
+SWE1-VC-ScreenOFF-046	Common Features	SYS-RA-CFTS044-172	Screen OFF
+SWE1-VC-StopStartSystemBehavior-053	Common Features	SYS-RA-CFTS044-320	Stop Start System Behavior
+SWE1-VC-LeftFrontHeatedSeat-001	HeatedSeat	SYS-RA-CFTS044-022	Left Front Heated Seat
+SWE1-VC-LeftFrontHeatedSeatButton-002	HeatedSeat	SYS-RA-CFTS044-023	Left Front Heated Seat Button
+SWE1-VC-RightFrontHeatedSeat-020	HeatedSeat	SYS-RA-CFTS044-041	Right Front Heated Seat
+SWE1-VC-RightFrontHeatedSeat-021	HeatedSeat	SYS-RA-CFTS044-042	Right Front Heated Seat
+SWE1-VC-OneStageHeatedSeat-037	HeatedSeat	SYS-RA-CFTS044-197	One Stage Heated Seat
+SWE1-VC-OneStageHeatedSeat-038	HeatedSeat	SYS-RA-CFTS044-198	One Stage Heated Seat
+SWE1-VC-TwoStagesHeatedSeat-053	HeatedSeat	SYS-RA-CFTS044-213	Two Stages Heated Seat
+SWE1-VC-TwoStagesHeatedSeat-054	HeatedSeat	SYS-RA-CFTS044-214	Two Stages Heated Seat
+SWE1-VC-ThreeStagesHeatedSeat-075	HeatedSeat	SYS-RA-CFTS044-235	Three Stages Heated Seat
+SWE1-VC-ThreeStagesHeatedSeat-076	HeatedSeat	SYS-RA-CFTS044-236	Three Stages Heated Seat
+SWE1-VC-ThreeStagesHeatedSeat-077	HeatedSeat	SYS-RA-CFTS044-237	Three Stages Heated Seat
+SWE1-VC-HeatedSteeringWheel-001	Heated Steering Wheel	SYS-RA-CFTS044-092	Heated Steering Wheel
+SWE1-VC-HeatedSteeringWheel-002	Heated Steering Wheel	SYS-RA-CFTS044-093	Heated Steering Wheel
+SWE1-VC-HeatedSteeringWheelManagement-023	Heated Steering Wheel	SYS-RA-CFTS044-307	Heated Steering Wheel Management
+SWE1-VC-HeatedSteeringWheelManagement-024	Heated Steering Wheel	SYS-RA-CFTS044-308	Heated Steering Wheel Management
+SWE1-VC-LeftFrontVentedSeat-001	VentedSeat	SYS-RA-CFTS044-058	Left Front Vented Seat
+SWE1-VC-LeftFrontVentedSeat-002	VentedSeat	SYS-RA-CFTS044-059	Left Front Vented Seat
+SWE1-VC-RightFrontVentedSeat-018	VentedSeat	SYS-RA-CFTS044-075	Right Front Vented Seat
+SWE1-VC-RightFrontVentedSeat-019	VentedSeat	SYS-RA-CFTS044-076	Right Front Vented Seat
+SWE1-VC-TwoStagesVentedSeatsManagement-035	VentedSeat	SYS-RA-CFTS044-260	Two Stages Vented Seats Management
+SWE1-VC-TwoStagesVentedSeatsManagement-036	VentedSeat	SYS-RA-CFTS044-261	Two Stages Vented Seats Management
+SWE1-VC-ThreeStagesVentedSeatsManagement-057	VentedSeat	SYS-RA-CFTS044-282	Three Stages Vented Seats Management
+SWE1-VC-ThreeStagesVentedSeatsManagement-058	VentedSeat	SYS-RA-CFTS044-283	Three Stages Vented Seats Management
+SWE1-VC-ThreeStagesVentedSeatsManagement-059	VentedSeat	SYS-RA-CFTS044-284	Three Stages Vented Seats Management
