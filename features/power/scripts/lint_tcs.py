@@ -1008,7 +1008,14 @@ def check_s45_data_ownership(tcs: list[dict]) -> list[dict]:
     """G65 / §4.5（R-P89）：input_test_data 不得與 procedure / pre_conditions 重複。
 
     判準：`input_test_data` 之每一行，若其**全部**長度 ≥ 3 之 token
-    皆出現於 procedure 或 pre_conditions，即為跨欄重複。
+    皆出現於他欄，即為跨欄重複。
+
+    **比對面擴及 `expected_result`（53 包 R-P341(b)）** ——
+    v1 只比 `test_procedure` 與 `pre_conditions`，而 Pei 之問含 ER：
+    「`input_test_data` 之內容是否寫入 `pre_conditions` 或
+     `test_procedure` / `expected_result`」。
+    ER 若逐字複述輸入資料，同屬 §4.5 所禁之跨欄重複，
+    **而 v1 對其全盲**。命中之欄名一併列出，供依 §4.5 分流處置。
     """
     findings = []
     for tc in tcs:
@@ -1016,15 +1023,20 @@ def check_s45_data_ownership(tcs: list[dict]) -> list[dict]:
         data = str(tc.get("input_test_data", "")).strip()
         if not data or data.upper() == "NA":
             continue
-        other = (str(tc.get("test_procedure", "")) + "\n"
-                 + str(tc.get("pre_conditions", ""))).lower()
+        fields = {"test_procedure": str(tc.get("test_procedure", "")).lower(),
+                  "pre_conditions": str(tc.get("pre_conditions", "")).lower(),
+                  "expected_result": str(tc.get("expected_result", "")).lower()}
         for line in data.split("\n"):
             toks = [t.lower() for t in DATA_TOKEN_RE.findall(line)]
-            if toks and all(t in other for t in toks):
+            if not toks:
+                continue
+            hit = [name for name, body in fields.items()
+                   if all(t in body for t in toks)]
+            if hit:
                 findings.append({
                     "rule": "§4.5", "tc_id": tc_id,
                     "detail": f"input_test_data 之「{line.strip()[:50]}」"
-                              f"全部 token 亦見於 procedure / pre_conditions —— §4.5 禁跨欄重複",
+                              f"全部 token 亦見於 {' / '.join(hit)} —— §4.5 禁跨欄重複",
                 })
     return findings
 
@@ -1324,6 +1336,16 @@ def self_test(blacklist: dict, fingerprints: dict) -> int:
          ["§4.5"]),
 
         # ── G50 表格檢查（R-P93）──
+        # R-P341(b)：擴及 ER 後**以刻意違反之 fixture 證明其會 FAIL**
+        ("G65", "應 FAIL —— input_test_data 之值逐字重複於 expected_result（R-P341(b) 新增面）",
+         [make_tc(1, "SWE-PM-071", "Power Down",
+                  input_test_data="Target voltage: 9 volts",
+                  pre_conditions="1. A bench supply is connected",
+                  test_procedure="1. Set the supply\n2. Read the TLM state",
+                  expected_result="1. The supply is set to the target voltage of 9 volts\n"
+                                  "2. The TLM state changes")],
+         ["§4.5"]),
+
         ("G50", "應 FAIL —— expected_result 含 Markdown 表格",
          [make_tc(1, "SWE-PM-071", "Power Down",
                   test_procedure="1. Start the boot sequence\n2. Read the display",

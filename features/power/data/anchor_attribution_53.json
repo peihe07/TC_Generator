@@ -1,0 +1,2802 @@
+[
+  {
+    "tc_id": "NR1L-PowerManagement-001",
+    "req_id": "SWE-PM-071",
+    "anchor": "4942337",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗正常開機分支：未轉往 Standby / Bench 時，SplashScreen_Time 到期後顯示 splash",
+    "anchor_len": 306
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-002",
+    "req_id": "SWE-PM-071",
+    "anchor": "4942337",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗轉入 Standby 之抑制分支。依 §5.7「不同 trigger 即拆分」，轉入 Standby 與轉入 Bench 為兩個不同觸發，非同一觸發之兩個後果",
+    "anchor_len": 306
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-003",
+    "req_id": "SWE-PM-071",
+    "anchor": "4942337",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗轉入 Bench 之抑制分支，與轉入 Standby 為不同觸發（§5.7 / §8.3）",
+    "anchor_len": 306
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-004",
+    "req_id": "SWE-PM-071",
+    "anchor": "4942337",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗第二個時序點：StandardScreen_Time 之後顯示 standard screen，與 -01 之 SplashScreen_Time 為獨立部分失效",
+    "anchor_len": 306
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-005",
+    "req_id": "SWE-PM-072",
+    "anchor": "4942338",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗緩衝面：開機期間到達之事件不得遺失。與 -02 之處理面為兩個獨立部分失效（§8.2.2）",
+    "anchor_len": 304
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-006",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Load Shed 之偵測與四項動作。與 -03 之 Battery Critical 為不同觸發訊號、不同控制實體，依 §8.2.2 拆分",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-007",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗故障分支：Load Shed 訊號於匯流排上消失時之回退行為，與 -01 之正常偵測路徑為獨立部分失效",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-008",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Battery Critical 之偵測與四項動作。BODY ON 與 BODY OFF-TIMED 共用同一控制實體，故合為一條之多列 ER",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-009",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗回復分支，與 -03 之進入分支為獨立部分失效。**10 秒之出處**：`4942354` 逐字為「shall go back to normal behavior 10 seconds after STATUS_LIN.Batt_ST_Crit becomes [0h]」—— 非造值（§8.4.1）",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-010",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Load Shed 之回復分支：訊號廣播恢復後 Load Shed 動作結束",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-011",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗通話轉移分支（Load Shed 側）：進行中之非 Ecall/ACN 通話轉至 head set",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-012",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗通話轉移分支（Battery Critical 側）：進行中之非 Ecall/ACN 通話轉至 head set",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-013",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 mode 分支：Battery Critical 於 BODY OFF-TIMED 模式下之行為（`009` 為 BODY ON）",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-014",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗回復條件之第一分支：voltage out of range（`010` 驗第二分支之 10 秒逾時）",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-015",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗音量未超過上限之負分支（Load Shed 側）：不送 AUD_LVL",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-016",
+    "req_id": "SWE-PM-073",
+    "anchor": "4942354",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗音量未超過上限之負分支（Battery Critical 側）：不送 AUD_LVL",
+    "anchor_len": 1568
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-017",
+    "req_id": "SWE-PM-057",
+    "anchor": "4941692",
+    "f1": 0.435,
+    "determined": false,
+    "n_candidates": 9,
+    "basis": "本條驗 PROXI \"Switch_Off_Time\" = 20 分鐘時之可選集合與 Timeout1 結果",
+    "anchor_len": 214
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-018",
+    "req_id": "SWE-PM-057",
+    "anchor": "4941692",
+    "f1": 0.435,
+    "determined": false,
+    "n_candidates": 9,
+    "basis": "本條驗 PROXI \"Switch_Off_Time\" = 60 分鐘時之可選集合與 Timeout1 結果",
+    "anchor_len": 214
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-019",
+    "req_id": "SWE-PM-057",
+    "anchor": "4941692",
+    "f1": 0.435,
+    "determined": false,
+    "n_candidates": 9,
+    "basis": "本條驗 PROXI \"Switch_Off_Time\" = 180 分鐘時之可選集合與 Timeout1 結果",
+    "anchor_len": 214
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-020",
+    "req_id": "SWE-PM-060",
+    "anchor": "4941702",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 LTM/ETM 型別：僅一個可設定參數",
+    "anchor_len": 240
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-021",
+    "req_id": "SWE-PM-060",
+    "anchor": "4941702",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗其餘 Radio 型別：兩個可設定參數",
+    "anchor_len": 240
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-022",
+    "req_id": "SWE-PM-061",
+    "anchor": "4941703",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗肯定分支：Full-Operation 下設定可用",
+    "anchor_len": 63
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-023",
+    "req_id": "SWE-PM-061",
+    "anchor": "4941703",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗否定分支：非 Full-Operation 下設定不可用",
+    "anchor_len": 63
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-024",
+    "req_id": "SWE-PM-062",
+    "anchor": "4941710",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Auto_SwitchOn_Setting.Req = \"Active\" 之選擇與其 Timeout1 條件",
+    "anchor_len": 245
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-025",
+    "req_id": "SWE-PM-062",
+    "anchor": "4941710",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Auto_SwitchOn_Setting.Req = \"Not_Active\" 之選擇與其 Timeout1 條件",
+    "anchor_len": 245
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-026",
+    "req_id": "SWE-PM-062",
+    "anchor": "4941710",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Auto_SwitchOn_Setting.Req = \"Recall_Last\" 之選擇與其 Timeout1 條件",
+    "anchor_len": 245
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-027",
+    "req_id": "SWE-PM-063",
+    "anchor": "4941715",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Timed 狀態下通話功能可用（概括陳述之可觀察面）",
+    "anchor_len": 187
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-028",
+    "req_id": "SWE-PM-064",
+    "anchor": "4941718",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗啟動條件一：Timeout1 == 00 min 且點火轉為 Pre Off 或 Off",
+    "anchor_len": 329
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-029",
+    "req_id": "SWE-PM-064",
+    "anchor": "4941718",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗啟動條件二：Timeout1 到期時通話仍為 Active",
+    "anchor_len": 329
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-030",
+    "req_id": "SWE-PM-065",
+    "anchor": "4941720",
+    "f1": 0.449,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗還原音源分支",
+    "anchor_len": 300
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-031",
+    "req_id": "SWE-PM-065",
+    "anchor": "4941721",
+    "f1": 0.304,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 Timeout1 到期前仍可處理其他通話",
+    "anchor_len": 96
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-032",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941723",
+    "f1": 0.693,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 1 之 RemStartFail 為 True 之分支",
+    "anchor_len": 240
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-033",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941724",
+    "f1": 0.474,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 1 之 ELSE 分支：還原音源並續管理其他通話",
+    "anchor_len": 193
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-034",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941726",
+    "f1": 0.63,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 2 之進入：Timeout1 到期啟動 MaxCallTimeout 並續留 Timed",
+    "anchor_len": 272
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-035",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941728",
+    "f1": 0.579,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 2 之離開路徑：通話結束（不含 RemStartFail 處置）",
+    "anchor_len": 199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-036",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941728",
+    "f1": 0.442,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 2 之離開路徑：MaxCallTimeout 到期（含 RemStartFail 處置）",
+    "anchor_len": 199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-037",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941730",
+    "f1": 0.361,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 3（不含 RemStartFail 處置）",
+    "anchor_len": 211
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-038",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941730",
+    "f1": 0.428,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 3（含 RemStartFail 處置）",
+    "anchor_len": 211
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-039",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941731",
+    "f1": 0.461,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 4 之進入：Timeout1 == 00 min 且點火轉為 Off",
+    "anchor_len": 255
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-040",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941728",
+    "f1": 0.504,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 4 之離開路徑（`4941732` ＋ `4941735`，不含 RemStartFail 處置）",
+    "anchor_len": 199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-041",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941726",
+    "f1": 0.454,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 4 之離開路徑（`4941736`，含 RemStartFail 處置）",
+    "anchor_len": 272
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-042",
+    "req_id": "SWE-PM-038",
+    "anchor": "4941731",
+    "f1": 0.498,
+    "determined": false,
+    "n_candidates": 13,
+    "basis": "本條驗 Case 4 之另一觸發：點火轉為 \"Ignition Pre Off\"（`040` 驗 \"Ignition Off\"）",
+    "anchor_len": 255
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-043",
+    "req_id": "SWE-PM-011",
+    "anchor": "4941375",
+    "f1": 0.563,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗 IDLE → Full-Operation 之 VR 觸發（短按）",
+    "anchor_len": 154
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-044",
+    "req_id": "SWE-PM-011",
+    "anchor": "4941385",
+    "f1": 0.576,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗 audio ＋ video 皆請求之分支",
+    "anchor_len": 167
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-045",
+    "req_id": "SWE-PM-011",
+    "anchor": "4941386",
+    "f1": 0.536,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗僅請求 audio 之分支",
+    "anchor_len": 229
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-046",
+    "req_id": "SWE-PM-011",
+    "anchor": "4941387",
+    "f1": 0.49,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗僅請求 video 之分支",
+    "anchor_len": 210
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-047",
+    "req_id": "SWE-PM-011",
+    "anchor": "4941388",
+    "f1": 0.513,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗二者皆不請求之分支",
+    "anchor_len": 109
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-048",
+    "req_id": "SWE-PM-011",
+    "anchor": "4941375",
+    "f1": 0.563,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗長按之觸發（`051` 驗短按）——`4941376` 載二者皆為該定義所指",
+    "anchor_len": 154
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-049",
+    "req_id": "SWE-PM-012",
+    "anchor": "4941449",
+    "f1": 0.64,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗電池回接後之使用者設定還原",
+    "anchor_len": 388
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-050",
+    "req_id": "SWE-PM-012",
+    "anchor": "4941450",
+    "f1": 0.273,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗離開 INIT 後之起始狀態",
+    "anchor_len": 185
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-051",
+    "req_id": "SWE-PM-013",
+    "anchor": "4941392",
+    "f1": 0.44,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Remote Start Active 之模式回報",
+    "anchor_len": 254
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-052",
+    "req_id": "SWE-PM-013",
+    "anchor": "4941392",
+    "f1": 0.403,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）",
+    "anchor_len": 254
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-053",
+    "req_id": "SWE-PM-013",
+    "anchor": "4941392",
+    "f1": 0.403,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）",
+    "anchor_len": 254
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-054",
+    "req_id": "SWE-PM-013",
+    "anchor": "4941392",
+    "f1": 0.403,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗逗號列舉之點火工作條件 Ignition On Engine On（R-P199 補測）",
+    "anchor_len": 254
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-055",
+    "req_id": "SWE-PM-013",
+    "anchor": "4941393",
+    "f1": 0.515,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Partial Operation 之各模組電源與音訊",
+    "anchor_len": 136
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-056",
+    "req_id": "SWE-PM-013",
+    "anchor": "4941394",
+    "f1": 0.577,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 HMI 互動之限制與其例外",
+    "anchor_len": 185
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-057",
+    "req_id": "SWE-PM-014",
+    "anchor": "4941504",
+    "f1": 0.286,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗 Remote Start 結束於點火關閉時之 RemStartFail 設定",
+    "anchor_len": 1354
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-058",
+    "req_id": "SWE-PM-014",
+    "anchor": "4941507",
+    "f1": 0.292,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗通話未啟用時之 RemStartFail 清除",
+    "anchor_len": 172
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-059",
+    "req_id": "SWE-PM-014",
+    "anchor": "4941506",
+    "f1": 0.488,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗 Behaviour 1 之無通話分支",
+    "anchor_len": 180
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-060",
+    "req_id": "SWE-PM-014",
+    "anchor": "4941507",
+    "f1": 0.474,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗 Behaviour 1 之通話中分支",
+    "anchor_len": 172
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-061",
+    "req_id": "SWE-PM-014",
+    "anchor": "4941511",
+    "f1": 0.475,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗 Behaviour 2 之 Jeep ＋ 駕駛門開啟分支",
+    "anchor_len": 263
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-062",
+    "req_id": "SWE-PM-014",
+    "anchor": "4941512",
+    "f1": 0.597,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗 Behaviour 2 之 ELSE 分支",
+    "anchor_len": 188
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-063",
+    "req_id": "SWE-PM-014",
+    "anchor": "4941510",
+    "f1": 0.437,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗 Behaviour 1 之 LTM High 形態（`063` 驗 SwitchOff_Timeout_Setting.Req 形態）",
+    "anchor_len": 164
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-064",
+    "req_id": "SWE-PM-014",
+    "anchor": "4941505",
+    "f1": 0.473,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗 Behaviour 2 之 LTM High 形態（`066` 驗 SwitchOff_Timeout_Setting.Req 形態）",
+    "anchor_len": 159
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-065",
+    "req_id": "SWE-PM-014",
+    "anchor": "4941504",
+    "f1": 0.316,
+    "determined": false,
+    "n_candidates": 8,
+    "basis": "本條驗 `Ignition Pre Off` 之觸發（其對應條驗 `Ignition Off`）",
+    "anchor_len": 1354
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-066",
+    "req_id": "SWE-PM-015",
+    "anchor": "4941540",
+    "f1": 0.554,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Front_Panel_OnOff.Req 之按下 → Idle",
+    "anchor_len": 336
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-067",
+    "req_id": "SWE-PM-015",
+    "anchor": "4941541",
+    "f1": 0.554,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 CLIMATIC_PANEL.Radio_Btn0 之按下 → Idle",
+    "anchor_len": 340
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-068",
+    "req_id": "SWE-PM-015",
+    "anchor": "4941542",
+    "f1": 0.612,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Front_Panel_OnOff.Req 於 Rear_View_Camera 存在而未啟動時之分支",
+    "anchor_len": 428
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-069",
+    "req_id": "SWE-PM-015",
+    "anchor": "4941543",
+    "f1": 0.612,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 CLIMATIC_PANEL.Radio_Btn0 於 Rear_View_Camera 存在而未啟動時之分支",
+    "anchor_len": 432
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-070",
+    "req_id": "SWE-PM-016",
+    "anchor": "4941544",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗後視攝影機啟動時之停留與影像管理",
+    "anchor_len": 292
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-071",
+    "req_id": "SWE-PM-017",
+    "anchor": "4941545",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗後視攝影機關閉後之音源回復",
+    "anchor_len": 367
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-072",
+    "req_id": "SWE-PM-018",
+    "anchor": "4941548",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Idle ＋ 點火關閉 → Standby",
+    "anchor_len": 265
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-073",
+    "req_id": "SWE-PM-018",
+    "anchor": "4941548",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 `Ignition Pre Off` 之觸發（`073` 之對應條驗 `Ignition Off`）",
+    "anchor_len": 265
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-074",
+    "req_id": "SWE-PM-019",
+    "anchor": "4941552",
+    "f1": 0.472,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 Front_Panel_OnOff.Req 於後視攝影機啟用時被忽略",
+    "anchor_len": 147
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-075",
+    "req_id": "SWE-PM-019",
+    "anchor": "4941554",
+    "f1": 0.47,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 Front_Panel_OnOff.Req 之 ELSE 分支",
+    "anchor_len": 285
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-076",
+    "req_id": "SWE-PM-019",
+    "anchor": "4941555",
+    "f1": 0.472,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 CLIMATIC_PANEL.Radio_Btn0 於後視攝影機啟用時被忽略",
+    "anchor_len": 151
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-077",
+    "req_id": "SWE-PM-019",
+    "anchor": "4941554",
+    "f1": 0.47,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 CLIMATIC_PANEL.Radio_Btn0 之 ELSE 分支",
+    "anchor_len": 285
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-078",
+    "req_id": "SWE-PM-020",
+    "anchor": "4941558",
+    "f1": 0.342,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 Idle ＋ 通話進入 → Full-Operation",
+    "anchor_len": 378
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-079",
+    "req_id": "SWE-PM-020",
+    "anchor": "4941559",
+    "f1": 0.302,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗通話結束於 Phone Main Screen 之分支",
+    "anchor_len": 462
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-080",
+    "req_id": "SWE-PM-020",
+    "anchor": "4941559",
+    "f1": 0.196,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗通話結束於其他畫面之分支",
+    "anchor_len": 462
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-081",
+    "req_id": "SWE-PM-021",
+    "anchor": "4941560",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Idle 下後視攝影機啟用之停留與畫面限制",
+    "anchor_len": 347
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-082",
+    "req_id": "SWE-PM-022",
+    "anchor": "4941562",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗物流模式進入",
+    "anchor_len": 292
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-083",
+    "req_id": "SWE-PM-023",
+    "anchor": "4941565",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Timed ＋ 離開 Ignition Off → Full-Operation",
+    "anchor_len": 312
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-084",
+    "req_id": "SWE-PM-024",
+    "anchor": "4941566",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Remote Start Not Active 下之 RemStartFail 清除",
+    "anchor_len": 408
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-085",
+    "req_id": "SWE-PM-025",
+    "anchor": "4941569",
+    "f1": 0.576,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 Front_Panel_OnOff.Req ＋ 通話中之 popup",
+    "anchor_len": 310
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-086",
+    "req_id": "SWE-PM-025",
+    "anchor": "4941570",
+    "f1": 0.479,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 Front_Panel_OnOff.Req popup 之接受分支",
+    "anchor_len": 188
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-087",
+    "req_id": "SWE-PM-025",
+    "anchor": "4941570",
+    "f1": 0.29,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 Front_Panel_OnOff.Req popup 之拒絕分支",
+    "anchor_len": 188
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-088",
+    "req_id": "SWE-PM-025",
+    "anchor": "4941569",
+    "f1": 0.409,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 Front_Panel_OnOff.Req ＋ 無通話之直接轉換",
+    "anchor_len": 310
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-089",
+    "req_id": "SWE-PM-025",
+    "anchor": "4941572",
+    "f1": 0.576,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ 通話中之 popup",
+    "anchor_len": 314
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-090",
+    "req_id": "SWE-PM-025",
+    "anchor": "4941570",
+    "f1": 0.479,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 CLIMATIC_PANEL.Radio_Btn0 popup 之接受分支",
+    "anchor_len": 188
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-091",
+    "req_id": "SWE-PM-025",
+    "anchor": "4941570",
+    "f1": 0.29,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 CLIMATIC_PANEL.Radio_Btn0 popup 之拒絕分支",
+    "anchor_len": 188
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-092",
+    "req_id": "SWE-PM-025",
+    "anchor": "4941572",
+    "f1": 0.409,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ 無通話之直接轉換",
+    "anchor_len": 314
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-093",
+    "req_id": "SWE-PM-026",
+    "anchor": "4941576",
+    "f1": 0.44,
+    "determined": false,
+    "n_candidates": 3,
+    "basis": "本條驗 Jeep 車門開啟 ＋ 前狀態 Full-Operation 之分支",
+    "anchor_len": 277
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-094",
+    "req_id": "SWE-PM-026",
+    "anchor": "4941577",
+    "f1": 0.267,
+    "determined": false,
+    "n_candidates": 3,
+    "basis": "本條驗通話中之門開啟分支，**並承擔 OR 之右支 `STATUS_BH_BCM1.PsngrDoorSts`**（R-P202 —— 使該涵蓋自附帶轉為設計）",
+    "anchor_len": 120
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-095",
+    "req_id": "SWE-PM-026",
+    "anchor": "4941577",
+    "f1": 0.28,
+    "determined": false,
+    "n_candidates": 3,
+    "basis": "本條驗前狀態為 Standby 之分支",
+    "anchor_len": 120
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-096",
+    "req_id": "SWE-PM-026",
+    "anchor": "4941576",
+    "f1": 0.179,
+    "determined": false,
+    "n_candidates": 3,
+    "basis": "本條驗守衛條件之否定側（非 Jeep）——（R-P198(b) 補測）",
+    "anchor_len": 277
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-097",
+    "req_id": "SWE-PM-027",
+    "anchor": "4941579",
+    "f1": 0.256,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗防盜失敗後之請求復歸與畫面時限",
+    "anchor_len": 201
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-098",
+    "req_id": "SWE-PM-027",
+    "anchor": "4941642",
+    "f1": 0.439,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗防盜失敗於 Partial Operation 之停留",
+    "anchor_len": 231
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-099",
+    "req_id": "SWE-PM-028",
+    "anchor": "4941582",
+    "f1": 0.396,
+    "determined": false,
+    "n_candidates": 3,
+    "basis": "本條驗防盜成功後之請求復歸",
+    "anchor_len": 107
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-100",
+    "req_id": "SWE-PM-028",
+    "anchor": "4941581",
+    "f1": 0.274,
+    "determined": false,
+    "n_candidates": 3,
+    "basis": "本條驗 Timeout1 之暫時取值與其復歸",
+    "anchor_len": 360
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-101",
+    "req_id": "SWE-PM-028",
+    "anchor": "4941581",
+    "f1": 0.417,
+    "determined": false,
+    "n_candidates": 3,
+    "basis": "本條驗 LTM High 形態之 Timeout1 取值（`100` 之對應條驗 SwitchOff_Timeout_Setting.Req 形態）",
+    "anchor_len": 360
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-102",
+    "req_id": "SWE-PM-029",
+    "anchor": "4941589",
+    "f1": 0.404,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗本變體之請求復歸",
+    "anchor_len": 107
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-103",
+    "req_id": "SWE-PM-029",
+    "anchor": "4941587",
+    "f1": 0.299,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Timeout1 取自 Switch_Off_Time 之分支",
+    "anchor_len": 267
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-104",
+    "req_id": "SWE-PM-029",
+    "anchor": "4941588",
+    "f1": 0.323,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Timeout1 取自 $PwrAccDelayAct$ 之分支",
+    "anchor_len": 254
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-105",
+    "req_id": "SWE-PM-030",
+    "anchor": "4941600",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Auto_SwitchOn_Setting.Req 為 Active 時之 Splash Screen",
+    "anchor_len": 237
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-106",
+    "req_id": "SWE-PM-030",
+    "anchor": "4941600",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之右支 Recall_Last ＋ VPLastStatus == On",
+    "anchor_len": 237
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-107",
+    "req_id": "SWE-PM-031",
+    "anchor": "4941615",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗後視影像之顯示與狀態無關",
+    "anchor_len": 205
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-108",
+    "req_id": "SWE-PM-032",
+    "anchor": "4941630",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Standby ＋ Remote Start → Partial Operation",
+    "anchor_len": 311
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-109",
+    "req_id": "SWE-PM-033",
+    "anchor": "4941634",
+    "f1": 0.494,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 OR 之左支 Ignition Pre Off",
+    "anchor_len": 166
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-110",
+    "req_id": "SWE-PM-033",
+    "anchor": "4941634",
+    "f1": 0.442,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 OR 之右支 Ignition Off",
+    "anchor_len": 166
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-111",
+    "req_id": "SWE-PM-034",
+    "anchor": "4941641",
+    "f1": 0.352,
+    "determined": false,
+    "n_candidates": 3,
+    "basis": "本條驗 Partial Operation 之前面板觸發",
+    "anchor_len": 192
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-112",
+    "req_id": "SWE-PM-035",
+    "anchor": "4941650",
+    "f1": 0.508,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Behaviour 1（Active）",
+    "anchor_len": 358
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-113",
+    "req_id": "SWE-PM-035",
+    "anchor": "4941651",
+    "f1": 0.499,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Behaviour 2（Not_Active）",
+    "anchor_len": 189
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-114",
+    "req_id": "SWE-PM-035",
+    "anchor": "4941650",
+    "f1": 0.501,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Behaviour 3 之 VPLastStatus On 分支",
+    "anchor_len": 358
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-115",
+    "req_id": "SWE-PM-035",
+    "anchor": "4941651",
+    "f1": 0.446,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Behaviour 3 之 VPLastStatus Off 分支",
+    "anchor_len": 189
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-116",
+    "req_id": "SWE-PM-036",
+    "anchor": "4941654",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Timed ＋ Remote Start → Partial Operation",
+    "anchor_len": 342
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-117",
+    "req_id": "SWE-PM-037",
+    "anchor": "4941655",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Timed ＋ 通話結束 ＋ RemStartFail 為真",
+    "anchor_len": 259
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-118",
+    "req_id": "SWE-PM-039",
+    "anchor": "4941773",
+    "f1": 0.511,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 SNA 之等同處置",
+    "anchor_len": 200
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-119",
+    "req_id": "SWE-PM-039",
+    "anchor": "4941774",
+    "f1": 0.281,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 OR 之左支 SwitchOff_Timeout_Setting.Req",
+    "anchor_len": 232
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-120",
+    "req_id": "SWE-PM-039",
+    "anchor": "4941774",
+    "f1": 0.485,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 OR 之右支 Auto_SwitchOn_Setting.Req for LTM High Radio",
+    "anchor_len": 232
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-121",
+    "req_id": "SWE-PM-039",
+    "anchor": "4941775",
+    "f1": 0.641,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Timed 狀態下之選單保證範圍",
+    "anchor_len": 170
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-122",
+    "req_id": "SWE-PM-040",
+    "anchor": "4941990",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Suspend to RAM 之正常關機序列",
+    "anchor_len": 198
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-123",
+    "req_id": "SWE-PM-041",
+    "anchor": "4941412",
+    "f1": 0.562,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Network on 狀態之功能不可用",
+    "anchor_len": 59
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-124",
+    "req_id": "SWE-PM-041",
+    "anchor": "4941411",
+    "f1": 0.533,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Network on 狀態之進入動作",
+    "anchor_len": 49
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-125",
+    "req_id": "SWE-PM-042",
+    "anchor": "4941418",
+    "f1": 0.562,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Network off 狀態之功能不可用",
+    "anchor_len": 58
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-126",
+    "req_id": "SWE-PM-042",
+    "anchor": "4941417",
+    "f1": 0.533,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗 Network off 狀態之進入動作",
+    "anchor_len": 50
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-127",
+    "req_id": "SWE-PM-043",
+    "anchor": "4941895",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Standby 之背光關閉常態",
+    "anchor_len": 106
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-128",
+    "req_id": "SWE-PM-043",
+    "anchor": "4941895",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 except 分支 —— 需顯示 HMI 畫面時",
+    "anchor_len": 106
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-129",
+    "req_id": "SWE-PM-044",
+    "anchor": "4941578",
+    "f1": 0.296,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 Front_Panel_OnOff.Req ＋ OR 之左支 Standby",
+    "anchor_len": 427
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-130",
+    "req_id": "SWE-PM-044",
+    "anchor": "4941578",
+    "f1": 0.296,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 Front_Panel_OnOff.Req ＋ OR 之右支 Sleep",
+    "anchor_len": 427
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-131",
+    "req_id": "SWE-PM-044",
+    "anchor": "4941584",
+    "f1": 0.296,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ OR 之左支 Standby",
+    "anchor_len": 431
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-132",
+    "req_id": "SWE-PM-044",
+    "anchor": "4941584",
+    "f1": 0.296,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ OR 之右支 Sleep",
+    "anchor_len": 431
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-133",
+    "req_id": "SWE-PM-045",
+    "anchor": "4941585",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之左支 Standby",
+    "anchor_len": 254
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-134",
+    "req_id": "SWE-PM-045",
+    "anchor": "4941585",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之右支 Sleep",
+    "anchor_len": 254
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-135",
+    "req_id": "SWE-PM-046",
+    "anchor": "4941601",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之左支 In_Progress",
+    "anchor_len": 412
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-136",
+    "req_id": "SWE-PM-046",
+    "anchor": "4941601",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之右支 Not_Successfully",
+    "anchor_len": 412
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-137",
+    "req_id": "SWE-PM-047",
+    "anchor": "4941602",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之左支 Standby",
+    "anchor_len": 230
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-138",
+    "req_id": "SWE-PM-047",
+    "anchor": "4941602",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之右支 Sleep",
+    "anchor_len": 230
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-139",
+    "req_id": "SWE-PM-048",
+    "anchor": "4941605",
+    "f1": 0.553,
+    "determined": false,
+    "n_candidates": 5,
+    "basis": "本條驗 Behaviour 1（Active）",
+    "anchor_len": 214
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-140",
+    "req_id": "SWE-PM-048",
+    "anchor": "4941608",
+    "f1": 0.505,
+    "determined": false,
+    "n_candidates": 5,
+    "basis": "本條驗 Behaviour 2（Not_Active）",
+    "anchor_len": 209
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-141",
+    "req_id": "SWE-PM-048",
+    "anchor": "4941605",
+    "f1": 0.511,
+    "determined": false,
+    "n_candidates": 5,
+    "basis": "本條驗 Behaviour 3 之 VPLastStatus ON 分支",
+    "anchor_len": 214
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-142",
+    "req_id": "SWE-PM-048",
+    "anchor": "4941610",
+    "f1": 0.494,
+    "determined": false,
+    "n_candidates": 5,
+    "basis": "本條驗 Behaviour 3 之 VPLastStatus OFF 分支",
+    "anchor_len": 320
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-143",
+    "req_id": "SWE-PM-048",
+    "anchor": "4941611",
+    "f1": 0.477,
+    "determined": false,
+    "n_candidates": 5,
+    "basis": "本條驗 Default 之出廠預設",
+    "anchor_len": 114
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-144",
+    "req_id": "SWE-PM-049",
+    "anchor": "4941623",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Idle 之封鎖分支",
+    "anchor_len": 242
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-145",
+    "req_id": "SWE-PM-050",
+    "anchor": "4941624",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 ELSE 分支",
+    "anchor_len": 132
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-146",
+    "req_id": "SWE-PM-051",
+    "anchor": "4941643",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Successfully 分支",
+    "anchor_len": 271
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-147",
+    "req_id": "SWE-PM-052",
+    "anchor": "4941648",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Partial Operation 之留置分支",
+    "anchor_len": 229
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-148",
+    "req_id": "SWE-PM-053",
+    "anchor": "4941668",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Brand_Configuration_2 之讀取",
+    "anchor_len": 101
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-149",
+    "req_id": "SWE-PM-054",
+    "anchor": "4941673",
+    "f1": 0.56,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗組合一（Absent ＋ No Audio Brand）",
+    "anchor_len": 171
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-150",
+    "req_id": "SWE-PM-054",
+    "anchor": "4941674",
+    "f1": 0.426,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗組合二（Absent ＋ Beats Brand White）",
+    "anchor_len": 156
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-151",
+    "req_id": "SWE-PM-054",
+    "anchor": "4941675",
+    "f1": 0.426,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗組合三（Present ＋ No Audio Brand）",
+    "anchor_len": 143
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-152",
+    "req_id": "SWE-PM-054",
+    "anchor": "4941676",
+    "f1": 0.483,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗組合四（Present ＋ Beats Brand White）",
+    "anchor_len": 166
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-153",
+    "req_id": "SWE-PM-055",
+    "anchor": "4941678",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑",
+    "anchor_len": 300
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-154",
+    "req_id": "SWE-PM-055",
+    "anchor": "4941678",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑",
+    "anchor_len": 300
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-155",
+    "req_id": "SWE-PM-056",
+    "anchor": "4941680",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Fiat Latam 之覆蓋規則",
+    "anchor_len": 167
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-156",
+    "req_id": "SWE-PM-058",
+    "anchor": "4941509",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗出廠預設值",
+    "anchor_len": 169
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-157",
+    "req_id": "SWE-PM-059",
+    "anchor": "4941616",
+    "f1": 0.522,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 boot 已完成之分支",
+    "anchor_len": 277
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-158",
+    "req_id": "SWE-PM-059",
+    "anchor": "4941617",
+    "f1": 0.423,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 boot 未結束之等待分支",
+    "anchor_len": 115
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-159",
+    "req_id": "SWE-PM-066",
+    "anchor": "4941873",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 SOS call",
+    "anchor_len": 74
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-160",
+    "req_id": "SWE-PM-066",
+    "anchor": "4941873",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Assist call",
+    "anchor_len": 74
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-161",
+    "req_id": "SWE-PM-067",
+    "anchor": "4941874",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Projection device call",
+    "anchor_len": 77
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-162",
+    "req_id": "SWE-PM-068",
+    "anchor": "4941876",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗來電所致之 IDLE → FULL OPERATION 免顯免責畫面",
+    "anchor_len": 157
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-163",
+    "req_id": "SWE-PM-069",
+    "anchor": "4941877",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之左支 phone main screen",
+    "anchor_len": 234
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-164",
+    "req_id": "SWE-PM-069",
+    "anchor": "4941877",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之右支 phone projection call UI",
+    "anchor_len": 234
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-165",
+    "req_id": "SWE-PM-070",
+    "anchor": "4941878",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗免責畫面之延後補顯",
+    "anchor_len": 261
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-166",
+    "req_id": "SWE-PM-074",
+    "anchor": "4941976",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之 Radio 支",
+    "anchor_len": 270
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-167",
+    "req_id": "SWE-PM-074",
+    "anchor": "4941976",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之 TBM 支",
+    "anchor_len": 270
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-168",
+    "req_id": "SWE-PM-074",
+    "anchor": "4941976",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之 ROV 支",
+    "anchor_len": 270
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-169",
+    "req_id": "SWE-PM-075",
+    "anchor": "4941977",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗條件一 —— 1 分鐘無互動",
+    "anchor_len": 275
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-170",
+    "req_id": "SWE-PM-075",
+    "anchor": "4941977",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗條件二 —— pop-up 被關閉",
+    "anchor_len": 275
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-171",
+    "req_id": "SWE-PM-075",
+    "anchor": "4941977",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗條件三 —— $ACCDlyAct$ 轉為 inactive",
+    "anchor_len": 275
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-172",
+    "req_id": "SWE-PM-076",
+    "anchor": "4941861",
+    "f1": 0.375,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗重置本身與 log 保存",
+    "anchor_len": 79
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-173",
+    "req_id": "SWE-PM-076",
+    "anchor": "4941867",
+    "f1": 0.634,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗韌體安裝中之例外",
+    "anchor_len": 102
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-174",
+    "req_id": "SWE-PM-093",
+    "anchor": "4941301",
+    "f1": 0.186,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 OR 之 SLEEP MODE 支",
+    "anchor_len": 1199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-175",
+    "req_id": "SWE-PM-093",
+    "anchor": "4941301",
+    "f1": 0.186,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 OR 之 STANDBY MODE 支",
+    "anchor_len": 1199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-176",
+    "req_id": "SWE-PM-093",
+    "anchor": "4941301",
+    "f1": 0.207,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 OR 之 PARTIAL OPERATION MODE 支",
+    "anchor_len": 1199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-177",
+    "req_id": "SWE-PM-093",
+    "anchor": "4941301",
+    "f1": 0.182,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 $DriverDoorOnOffSts$ 之略過分支",
+    "anchor_len": 1199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-178",
+    "req_id": "SWE-PM-093",
+    "anchor": "4941301",
+    "f1": 0.212,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗播放中之模式變更取消",
+    "anchor_len": 1199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-179",
+    "req_id": "SWE-PM-093",
+    "anchor": "4941301",
+    "f1": 0.25,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 IGN_START 取消",
+    "anchor_len": 1199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-180",
+    "req_id": "SWE-PM-093",
+    "anchor": "4941301",
+    "f1": 0.209,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 OR 之 TIMED MODE 支（R-P118(d) 反向涵蓋裁決補測）",
+    "anchor_len": 1199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-181",
+    "req_id": "SWE-PM-093",
+    "anchor": "4941301",
+    "f1": 0.253,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗門開啟時之模式變更略過（R-P118(d) 反向涵蓋裁決補測）",
+    "anchor_len": 1199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-182",
+    "req_id": "SWE-PM-093",
+    "anchor": "4941301",
+    "f1": 0.267,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗再播放之間隔規則",
+    "anchor_len": 1199
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-183",
+    "req_id": "SWE-PM-094",
+    "anchor": "4941942",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗三畫面之分離呈現",
+    "anchor_len": 99
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-184",
+    "req_id": "SWE-PM-095",
+    "anchor": "4941784",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗離開 SNA 之恢復行為",
+    "anchor_len": 269
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-185",
+    "req_id": "SWE-PM-097",
+    "anchor": "4941680",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Fiat Latam 之覆蓋規則",
+    "anchor_len": 167
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-186",
+    "req_id": "SWE-PM-098",
+    "anchor": "4941943",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Always 設定",
+    "anchor_len": 187
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-187",
+    "req_id": "SWE-PM-099",
+    "anchor": "4941944",
+    "f1": 0.439,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 Once a Day 之當日首次",
+    "anchor_len": 252
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-188",
+    "req_id": "SWE-PM-099",
+    "anchor": "4941945",
+    "f1": 0.274,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗「新的一天」之判定 —— 手動調整",
+    "anchor_len": 292
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-189",
+    "req_id": "SWE-PM-099",
+    "anchor": "4941945",
+    "f1": 0.246,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗「新的一天」之判定 —— 跨越午夜（R-P118(d) 補測）",
+    "anchor_len": 292
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-190",
+    "req_id": "SWE-PM-099",
+    "anchor": "4941945",
+    "f1": 0.231,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗「新的一天」之判定 —— 時區／日光節約自動調整（R-P118(d) 補測）",
+    "anchor_len": 292
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-191",
+    "req_id": "SWE-PM-100",
+    "anchor": "4941947",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Never 設定",
+    "anchor_len": 190
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-192",
+    "req_id": "SWE-PM-101",
+    "anchor": "4941673",
+    "f1": 0.56,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗組合一（Absent ＋ No Audio Brand）",
+    "anchor_len": 171
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-193",
+    "req_id": "SWE-PM-101",
+    "anchor": "4941674",
+    "f1": 0.426,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗組合二（Absent ＋ Beats Brand White）",
+    "anchor_len": 156
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-194",
+    "req_id": "SWE-PM-101",
+    "anchor": "4941675",
+    "f1": 0.426,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗組合三（Present ＋ No Audio Brand）",
+    "anchor_len": 143
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-195",
+    "req_id": "SWE-PM-101",
+    "anchor": "4941676",
+    "f1": 0.483,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗組合四（Present ＋ Beats Brand White）",
+    "anchor_len": 166
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-196",
+    "req_id": "SWE-PM-102",
+    "anchor": "4941678",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑",
+    "anchor_len": 300
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-197",
+    "req_id": "SWE-PM-102",
+    "anchor": "4941678",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑",
+    "anchor_len": 300
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-198",
+    "req_id": "SWE-PM-103",
+    "anchor": "4941365",
+    "f1": 0.512,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗音訊關閉與畫面限制",
+    "anchor_len": 163
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-199",
+    "req_id": "SWE-PM-103",
+    "anchor": "4941365",
+    "f1": 0.466,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）",
+    "anchor_len": 163
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-200",
+    "req_id": "SWE-PM-103",
+    "anchor": "4941365",
+    "f1": 0.466,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗逗號列舉之點火工作條件 Ignition Start（R-P199 補測）",
+    "anchor_len": 163
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-201",
+    "req_id": "SWE-PM-103",
+    "anchor": "4941365",
+    "f1": 0.466,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）",
+    "anchor_len": 163
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-202",
+    "req_id": "SWE-PM-103",
+    "anchor": "4941365",
+    "f1": 0.525,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗 ICS 與 DTV 之可用性",
+    "anchor_len": 163
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-203",
+    "req_id": "SWE-PM-104",
+    "anchor": "4941950",
+    "f1": 0.592,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗首次進入 Timed",
+    "anchor_len": 137
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-204",
+    "req_id": "SWE-PM-104",
+    "anchor": "4941950",
+    "f1": 0.634,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗首次進入 Full Operation",
+    "anchor_len": 137
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-205",
+    "req_id": "SWE-PM-104",
+    "anchor": "4941952",
+    "f1": 0.537,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗來源狀態 Idle",
+    "anchor_len": 184
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-206",
+    "req_id": "SWE-PM-104",
+    "anchor": "4941952",
+    "f1": 0.537,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗來源狀態 Standby",
+    "anchor_len": 184
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-207",
+    "req_id": "SWE-PM-104",
+    "anchor": "4941952",
+    "f1": 0.494,
+    "determined": false,
+    "n_candidates": 2,
+    "basis": "本條驗來源狀態 Partial Operation",
+    "anchor_len": 184
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-208",
+    "req_id": "SWE-PM-105",
+    "anchor": "4941951",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗通話類之暫時略過",
+    "anchor_len": 328
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-209",
+    "req_id": "SWE-PM-105",
+    "anchor": "4941951",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗非通話類之暫時略過",
+    "anchor_len": 328
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-210",
+    "req_id": "SWE-PM-105",
+    "anchor": "4941951",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 incoming call 支（R-P118(d) 補測）",
+    "anchor_len": 328
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-211",
+    "req_id": "SWE-PM-105",
+    "anchor": "4941951",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 outgoing call 支（R-P118(d) 補測）",
+    "anchor_len": 328
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-212",
+    "req_id": "SWE-PM-105",
+    "anchor": "4941951",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 climate pop-ups 支（R-P118(d) 補測）",
+    "anchor_len": 328
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-213",
+    "req_id": "SWE-PM-105",
+    "anchor": "4941951",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 SOS and Assist calls 支（R-P118(d) 補測）",
+    "anchor_len": 328
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-214",
+    "req_id": "SWE-PM-105",
+    "anchor": "4941951",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 FOTA pop ups 支（R-P118(d) 補測）",
+    "anchor_len": 328
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-215",
+    "req_id": "SWE-PM-105",
+    "anchor": "4941951",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗延後補顯之義務",
+    "anchor_len": 328
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-216",
+    "req_id": "SWE-PM-106",
+    "anchor": "4941955",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 SOS 變體",
+    "anchor_len": 192
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-217",
+    "req_id": "SWE-PM-107",
+    "anchor": "4941956",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Help 變體",
+    "anchor_len": 222
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-218",
+    "req_id": "SWE-PM-108",
+    "anchor": "4941958",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗免責畫面之顯示頻率",
+    "anchor_len": 121
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-219",
+    "req_id": "SWE-PM-109",
+    "anchor": "4941962",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 GDPR 流程",
+    "anchor_len": 262
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-220",
+    "req_id": "SWE-PM-110",
+    "anchor": "4941963",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之左支 TBM Not Present",
+    "anchor_len": 272
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-221",
+    "req_id": "SWE-PM-110",
+    "anchor": "4941963",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之右支 country 未標記",
+    "anchor_len": 272
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-222",
+    "req_id": "SWE-PM-111",
+    "anchor": "4941964",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之左支 TBM Not Present",
+    "anchor_len": 210
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-223",
+    "req_id": "SWE-PM-111",
+    "anchor": "4941964",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之右支 country 不需 SOS 或 Geolocation",
+    "anchor_len": 210
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-224",
+    "req_id": "SWE-PM-113",
+    "anchor": "4941968",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 geolocation ＋ SOS 之附加",
+    "anchor_len": 380
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-225",
+    "req_id": "SWE-PM-114",
+    "anchor": "4941876",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗來電所致之 IDLE → FULL OPERATION 免顯免責畫面",
+    "anchor_len": 157
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-226",
+    "req_id": "SWE-PM-115",
+    "anchor": "4941878",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗免責畫面之延後補顯",
+    "anchor_len": 261
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-227",
+    "req_id": "SWE-PM-077",
+    "anchor": "4942013",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 $VC_SpecialPKG$ 決定主題",
+    "anchor_len": 154
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-228",
+    "req_id": "SWE-PM-078",
+    "anchor": "4942014",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之左支 none",
+    "anchor_len": 235
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-229",
+    "req_id": "SWE-PM-078",
+    "anchor": "4942014",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 OR 之右支 不受支援之值",
+    "anchor_len": 235
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-230",
+    "req_id": "SWE-PM-079",
+    "anchor": "4942015",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗品牌化元素之回落規則",
+    "anchor_len": 276
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-231",
+    "req_id": "SWE-PM-080",
+    "anchor": "4942017",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗喚醒時之送值",
+    "anchor_len": 333
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-232",
+    "req_id": "SWE-PM-080",
+    "anchor": "4942017",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗變更後之更新與時限",
+    "anchor_len": 333
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-233",
+    "req_id": "SWE-PM-081",
+    "anchor": "4942019",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗一般品牌值之映射",
+    "anchor_len": 825
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-234",
+    "req_id": "SWE-PM-081",
+    "anchor": "4942019",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Jeep 值之映射（與 R-P193 之品牌適用性相關）",
+    "anchor_len": 825
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-235",
+    "req_id": "SWE-PM-081",
+    "anchor": "4942019",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗標為 DEFAULT 之值",
+    "anchor_len": 825
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-236",
+    "req_id": "SWE-PM-082",
+    "anchor": "4942025",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗一般品牌值之映射",
+    "anchor_len": 866
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-237",
+    "req_id": "SWE-PM-082",
+    "anchor": "4942025",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Jeep 值之映射",
+    "anchor_len": 866
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-238",
+    "req_id": "SWE-PM-082",
+    "anchor": "4942025",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗標為 DEFAULT 之值",
+    "anchor_len": 866
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-239",
+    "req_id": "SWE-PM-083",
+    "anchor": "4942027",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗自有 avatar 之品牌值",
+    "anchor_len": 813
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-240",
+    "req_id": "SWE-PM-083",
+    "anchor": "4942027",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗標為 DEFAULT 之值",
+    "anchor_len": 813
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-241",
+    "req_id": "SWE-PM-083",
+    "anchor": "4942027",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗映射至他品牌 avatar 之規則（本 leaf 獨有）",
+    "anchor_len": 813
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-242",
+    "req_id": "SWE-PM-084",
+    "anchor": "4942029",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 CUSW / Atlantis 路徑（本專案適用）",
+    "anchor_len": 416
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-243",
+    "req_id": "SWE-PM-084",
+    "anchor": "4942029",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 PNET 路徑（非本專案架構，成條以保留追溯）",
+    "anchor_len": 416
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-244",
+    "req_id": "SWE-PM-085",
+    "anchor": "4942033",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 CUSW / Atlantis 路徑（本專案適用）",
+    "anchor_len": 471
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-245",
+    "req_id": "SWE-PM-085",
+    "anchor": "4942033",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 PNET 路徑（非本專案架構，成條以保留追溯）",
+    "anchor_len": 471
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-246",
+    "req_id": "SWE-PM-086",
+    "anchor": "4942041",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗喚醒時之送值（與 SWE-PM-080 重疊，見 reasoning）",
+    "anchor_len": 333
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-247",
+    "req_id": "SWE-PM-086",
+    "anchor": "4942041",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗變更後之更新與時限（與 SWE-PM-080 重疊）",
+    "anchor_len": 333
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-248",
+    "req_id": "SWE-PM-087",
+    "anchor": "4942054",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 IF 分支 M240",
+    "anchor_len": 181
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-249",
+    "req_id": "SWE-PM-087",
+    "anchor": "4942054",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 ELSE 分支",
+    "anchor_len": 181
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-250",
+    "req_id": "SWE-PM-088",
+    "anchor": "4942064",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 $VC_VEH_LINE$ 決定 gauges",
+    "anchor_len": 171
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-251",
+    "req_id": "SWE-PM-090",
+    "anchor": "4942104",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Auto 跟隨日間值",
+    "anchor_len": 123
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-252",
+    "req_id": "SWE-PM-090",
+    "anchor": "4942104",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Auto 跟隨夜間值",
+    "anchor_len": 123
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-253",
+    "req_id": "SWE-PM-091",
+    "anchor": "4942105",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Theme Mode 設為 Day 之結果",
+    "anchor_len": 74
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-254",
+    "req_id": "SWE-PM-092",
+    "anchor": "4942107",
+    "f1": 1.0,
+    "determined": true,
+    "n_candidates": 1,
+    "basis": "本條驗 Theme Mode 設為 Night 之結果",
+    "anchor_len": 78
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-255",
+    "req_id": "SWE-PM-096",
+    "anchor": "4942091",
+    "f1": 0.189,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗季節界線一（12/21）",
+    "anchor_len": 100
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-256",
+    "req_id": "SWE-PM-096",
+    "anchor": "4942091",
+    "f1": 0.189,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗季節界線二（3/20）",
+    "anchor_len": 100
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-257",
+    "req_id": "SWE-PM-096",
+    "anchor": "4942091",
+    "f1": 0.189,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗季節界線三（6/21）",
+    "anchor_len": 100
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-258",
+    "req_id": "SWE-PM-096",
+    "anchor": "4942091",
+    "f1": 0.189,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗季節界線四（9/23）",
+    "anchor_len": 100
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-259",
+    "req_id": "SWE-PM-096",
+    "anchor": "4942092",
+    "f1": 0.429,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗有變更之後果",
+    "anchor_len": 89
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-260",
+    "req_id": "SWE-PM-096",
+    "anchor": "4942093",
+    "f1": 0.541,
+    "determined": false,
+    "n_candidates": 4,
+    "basis": "本條驗無變更之後果",
+    "anchor_len": 101
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-261",
+    "req_id": "SWE-PM-001",
+    "anchor": "4941360",
+    "f1": 0.504,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗 Ignition On 之情形",
+    "anchor_len": 51
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-262",
+    "req_id": "SWE-PM-001",
+    "anchor": "4941360",
+    "f1": 0.371,
+    "determined": false,
+    "n_candidates": 6,
+    "basis": "本條驗其餘四種 ignition 條件之取值",
+    "anchor_len": 51
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-263",
+    "req_id": "SWE-PM-002",
+    "anchor": "4941365",
+    "f1": 0.26,
+    "determined": false,
+    "n_candidates": 10,
+    "basis": "本條驗音訊與畫面之限制",
+    "anchor_len": 163
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-264",
+    "req_id": "SWE-PM-002",
+    "anchor": "4941365",
+    "f1": 0.261,
+    "determined": false,
+    "n_candidates": 10,
+    "basis": "本條驗 ICS 與 DTV 之可用性",
+    "anchor_len": 163
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-265",
+    "req_id": "SWE-PM-002",
+    "anchor": "4941366",
+    "f1": 0.529,
+    "determined": false,
+    "n_candidates": 10,
+    "basis": "本條驗後視攝影機之可用性",
+    "anchor_len": 53
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-266",
+    "req_id": "SWE-PM-002",
+    "anchor": "4941372",
+    "f1": 0.497,
+    "determined": false,
+    "n_candidates": 10,
+    "basis": "本條驗 HMI 互動之限制",
+    "anchor_len": 115
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-267",
+    "req_id": "SWE-PM-003",
+    "anchor": "4941392",
+    "f1": 0.514,
+    "determined": false,
+    "n_candidates": 9,
+    "basis": "本條驗 Remote Start Active 之觸發與其後之子系統狀態",
+    "anchor_len": 254
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-268",
+    "req_id": "SWE-PM-003",
+    "anchor": "4941393",
+    "f1": 0.459,
+    "determined": false,
+    "n_candidates": 9,
+    "basis": "本條驗音訊之例外項",
+    "anchor_len": 136
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-269",
+    "req_id": "SWE-PM-003",
+    "anchor": "4941394",
+    "f1": 0.371,
+    "determined": false,
+    "n_candidates": 9,
+    "basis": "本條驗 HMI 互動之限制",
+    "anchor_len": 185
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-270",
+    "req_id": "SWE-PM-003",
+    "anchor": "4941400",
+    "f1": 0.833,
+    "determined": false,
+    "n_candidates": 9,
+    "basis": "本條驗 Stolen Vehicle Mode 之否定規定",
+    "anchor_len": 65
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-271",
+    "req_id": "SWE-PM-004",
+    "anchor": "4941407",
+    "f1": 0.55,
+    "determined": false,
+    "n_candidates": 9,
+    "basis": "本條驗其限時性 —— 觀察於 Timeout1 之前與之後",
+    "anchor_len": 70
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-272",
+    "req_id": "SWE-PM-004",
+    "anchor": "4941663",
+    "f1": 0.702,
+    "determined": false,
+    "n_candidates": 9,
+    "basis": "本條驗 Customer setting 畫面之停用",
+    "anchor_len": 63
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-273",
+    "req_id": "SWE-PM-005",
+    "anchor": "4941412",
+    "f1": 0.539,
+    "determined": false,
+    "n_candidates": 7,
+    "basis": "本條驗處於 Standby 時之性質",
+    "anchor_len": 59
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-274",
+    "req_id": "SWE-PM-005",
+    "anchor": "4941413",
+    "f1": 0.448,
+    "determined": false,
+    "n_candidates": 7,
+    "basis": "本條驗進入 Standby 之際之動作",
+    "anchor_len": 78
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-275",
+    "req_id": "SWE-PM-006",
+    "anchor": "4941418",
+    "f1": 0.539,
+    "determined": false,
+    "n_candidates": 7,
+    "basis": "本條驗處於 Sleep 時之性質",
+    "anchor_len": 58
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-276",
+    "req_id": "SWE-PM-006",
+    "anchor": "4941419",
+    "f1": 0.448,
+    "determined": false,
+    "n_candidates": 7,
+    "basis": "本條驗進入 Sleep 之際之動作",
+    "anchor_len": 78
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-277",
+    "req_id": "SWE-PM-007",
+    "anchor": "4941423",
+    "f1": 0.412,
+    "determined": false,
+    "n_candidates": 5,
+    "basis": "原文為單一斷言，依 §5.7 為一條",
+    "anchor_len": 146
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-278",
+    "req_id": "SWE-PM-009",
+    "anchor": "4941441",
+    "f1": 0.585,
+    "determined": false,
+    "n_candidates": 11,
+    "basis": "本條驗出廠預設值",
+    "anchor_len": 354
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-279",
+    "req_id": "SWE-PM-009",
+    "anchor": "4941446",
+    "f1": 0.316,
+    "determined": false,
+    "n_candidates": 11,
+    "basis": "本條驗進入 INIT 之觸發",
+    "anchor_len": 245
+  },
+  {
+    "tc_id": "NR1L-PowerManagement-280",
+    "req_id": "SWE-PM-009",
+    "anchor": "4941449",
+    "f1": 0.514,
+    "determined": false,
+    "n_candidates": 11,
+    "basis": "本條驗離開 INIT **之後**之還原與起始狀態",
+    "anchor_len": 388
+  }
+]
