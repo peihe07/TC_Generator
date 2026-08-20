@@ -1,0 +1,20 @@
+docx : R1LR_Atl-H_25PI3.5_Cabin_CFTS _015 Time and Date _SR26_20250909-1851.docx
+sys2 : SYS2_CFTS_015_Time and Date _SR26_V1_Including_Delta_Released.xlsx
+a03  : SWE1_Secure_Date&Time.xlsx
+[3] headings          : 88
+[4] objects mapped    : 358
+    SYS2 col5 header  : 'SYS2 來源需求項目ID  Source Requirement items'
+[1] SYS2 col5 nonblank: 227 / 227
+    referenced ids    : 78
+[2] refs lacking src  : []
+[5] direct / needed split / unresolved : 71 / 5 / 2
+[6] distinct sections : 21
+    split cells:
+      SYS-RA-139 -> ['4814088', '4814089'] -> ['1.5.2.4']
+      SYS-RA-145 -> ['4814096', '4814097', '4814099'] -> ['1.5.2.5']
+      SYS-RA-147 -> ['4814100', '4814101', '4814102'] -> ['1.5.2.5']
+      SYS-RA-148 -> ['4814103', '4814104', '4814105'] -> ['1.5.2.5']
+      SYS-RA-154 -> ['4814113', '4814114', '4814115', '4814116'] -> ['1.5.2.6']
+    UNRESOLVED (A-TM13 candidates):
+      SYS-RA-221 -> ['6151328']
+      SYS-RA-224 -> ['6151331']

@@ -14,6 +14,12 @@
 | Heated Steering Wheel | 35 | **31** | 4 | Heading 3／Information 1 |
 | **合計** | **271** | **237** | **34** | Heading 25／Information 9 |
 
+### `Categorization` 之值域全集（W-16′，04 包 §4 要求）
+
+對 271 列**逐列取值**：`Functional Requirement` **237**／`Heading` **25**／`Information` **8**／`information` **1** —— **四值合計 271，無其他值、無空值。**
+
+此為**全集之宣告**，非樣本：若某 037 版本另有第五種值，`startswith("functional")` 會將其歸入非 Functional 而不報錯（canon §5a 第 12 條），故本行須於任何 037 換版後重測。
+
 > `HeatedSeat` 有一列之 Categorization 為小寫 `information` ——
 > recon 之 `.lower()` 吸收了它；**區分大小寫之掃描會漏**。
 

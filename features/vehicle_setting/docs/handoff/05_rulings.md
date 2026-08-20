@@ -1,25 +1,16 @@
-# RULINGS — FW036 Vehicle Setting
+# 05 下放包 — Pei 裁決全案落檔（2026-08-20）
 
-本檔為裁決正文。條文**逐字轉錄**自下放包，不摘要、不以編號代替（canon §8.1）。
+分析層寫入。Pei 指示「全都裁定」，即**採分析層各包所附之建議**。
+本檔為裁決正文，逐條以可直接貼入之區塊呈現。
+**執行層須將 §1～§10 逐字轉錄入 `features/vehicle_setting/RULINGS.md`**
+（不得摘要、不得以編號代替），並於 `ANOMALIES.md` 套用 §11 之狀態變更。
 
-| 來源 | 條 |
-|---|---|
-| `docs/handoff/00_intake_and_rulings.md` §3 | R-VS1 ~ R-VS6（**仍逐字有效**） |
-| `docs/handoff/00I_claude_code_prompt_v2.md` §0 | R-VS12（素材授權） |
-| `docs/handoff/05_rulings.md` §1–§10 | R-VS7 / R-VS8 / R-VS9 / R-VS10 / R-VS11 / R-VS14 / R-VS15 / R-VS16 / R-VS3′ / R-VS17 |
-
-> R-VS1 ~ R-VS6 之正文見 `docs/handoff/00_intake_and_rulings.md` §3，
-> 依 canon §8.7 其下放包已落檔且入版控，本檔不重複轉錄以免二處分岔。
-> **R-VS13**（Comfort HMI L&F 素材授權）之正文僅見於 `00J_consolidated.md:44` 之表格註記，
-> **無條文區塊** —— 已於 01 輪回報，Pei 於 02 輪口頭確認並授權執行；記於此以留痕。
+> 落檔註記：本檔於 2026-08-20 首次 `write_file` 逾時，實測為**完全失敗**
+> （ENOENT，非零位元組）。MCP 重啟後重寫。內容與逾時當時之聊天備份一致。
 
 ---
 
-## 05 包裁決條文（Pei 2026-08-20 全案裁定）
-
-抄錄核對：以程式自 `05_rulings.md` §1–§10 抽出**頂層 fenced block**，逐字寫入。
-
-### 1. R-VS7 — Comfort 重疊之委派界線
+## 1. R-VS7 — Comfort 重疊之委派界線
 
 ```
 R-VS7（Pei 2026-08-20）
@@ -46,7 +37,9 @@ R-VS7（Pei 2026-08-20）
 故 **W-9 之「做完必停」解除**，改為做完併入該輪上繳，不中斷批次。
 ```
 
-### 2. R-VS8 — 追認
+---
+
+## 2. R-VS8 — 追認
 
 ```
 R-VS8（Pei 追認 2026-08-20）
@@ -66,7 +59,9 @@ DBC 之身分由檔內 BA_ "VersionYear" / "VersionWeek" / "BusType" 三項
 屬性判定，不由檔名之 R 碼判定。入庫時記錄該三項屬性與 SHA256。
 ```
 
-### 3. R-VS9 — CAN 訊號書寫形式（v2 定案）
+---
+
+## 3. R-VS9 — CAN 訊號書寫形式（v2 定案）
 
 ```
 R-VS9（Pei 2026-08-20，取代一切先前草案）
@@ -97,7 +92,9 @@ lint 判準（L-VS1）：procedure／expected_result 內出現 DBC signal 名而
 且須以實測證明其對該類輸入不轉紅。
 ```
 
-### 4. R-VS10 — Pop Up List 基線
+---
+
+## 4. R-VS10 — Pop Up List 基線
 
 ```
 R-VS10（Pei 2026-08-20）
@@ -112,7 +109,9 @@ R-VS10（Pei 2026-08-20）
 `DATA_REQUESTS.md` 須留「已查而不取用」之痕（G-D）。
 ```
 
-### 5. R-VS11 — 撤回之追認
+---
+
+## 5. R-VS11 — 撤回之追認
 
 ```
 R-VS11（Pei 追認 2026-08-20：撤回）
@@ -128,7 +127,9 @@ R-VS11（Pei 追認 2026-08-20：撤回）
 是一次讀漏。
 ```
 
-### 6. R-VS14 / DR-10 — 追認
+---
+
+## 6. R-VS14 / DR-10 — 追認
 
 ```
 R-VS14（Pei 追認 2026-08-20）
@@ -145,7 +146,9 @@ Multiple specs allowed）。leaf 對映到多個 CFTS044 章節者，逐一列�
 **DR-10 撤銷** —— 單值形式從來不是政策，是分析層敘述時之簡化。
 ```
 
-### 7. R-VS15 — 追認
+---
+
+## 7. R-VS15 — 追認
 
 ```
 R-VS15（Pei 追認 2026-08-20）
@@ -169,7 +172,9 @@ R-VS15（Pei 追認 2026-08-20）
 (d) N 欄：可測 leaf 237 中已定 236、未定 1（DR-11）。
 ```
 
-### 8. R-VS16 — `.gitignore` 例外
+---
+
+## 8. R-VS16 — `.gitignore` 例外
 
 ```
 R-VS16（Pei 2026-08-20）
@@ -187,7 +192,9 @@ features/vehicle_setting/.gitignore 於 `inputs/` 之後增列：
 **執行由 Pei**（版控政策 + git 皆屬 Pei）。
 ```
 
-### 9. R-VS3′ — 目錄名之修正
+---
+
+## 9. R-VS3′ — 目錄名之修正
 
 ```
 R-VS3′（Pei 2026-08-20，修正 R-VS3 之內部不一致）
@@ -201,7 +208,9 @@ scaffold 指令參數改為 `vehicle_setting`（原記之 "Vehicle Setting" 會
 `feature.lower()`，不轉空白）維持登記為工具缺陷，不在本 feature 修。
 ```
 
-### 10. R-VS17 — BLOCKED 之適用範圍
+---
+
+## 10. R-VS17 — BLOCKED 之適用範圍
 
 ```
 R-VS17（Pei 2026-08-20，配合 R-VS7(b)）
@@ -218,3 +227,75 @@ DR-5-B（失效彈窗內容、加熱方向盤圖示之左右駕鏡像）未到�
 （canon：「不知道適用於誰」≠「不知道存在什麼」）。
 ```
 
+---
+
+## 11. 異常狀態變更（執行層於 `ANOMALIES.md` 套用）
+
+| id | 變更 |
+|---|---|
+| A-VS01 | **除役** —— 037 `Categorization` 對 SYS2 `Category` 逐 leaf 零錯配 |
+| A-VS06 | **id 更正為 A-VS06′**，狀態除役（差額 16 為轉檔文字之產物） |
+| A-VS18 | **除役** —— recon 未錯，兩判準數兩件事 |
+| A-VS07′ | 維持登記（FYI 類，RD-1） |
+| A-VS20 | 維持登記（RD-1 FYI；措辭依 02 包 §1.3 之方向） |
+| **A-VS21** | **新開**：分析層經 MCP 讀取含中文之 repo 檔時偶發單字元顯示為替代字元；曾兩度被誤報為「檔案疑似毀損」，位元層實測 `U+FFFD` = 0。**通則：跨層回報「檔案毀損」前須先位元層確認** |
+
+---
+
+## 12. Pei 待執行之動作（**裁決已定，執行仍屬 Pei**）
+
+```bash
+# P1 刪除誤建之空白目錄（R-VS3′）
+ls -la "features/vehicle setting"        # 先確認其內僅 scaffold 模板
+rm -rf "features/vehicle setting"
+
+# P10 .gitignore 例外（R-VS16）
+#   於 features/vehicle_setting/.gitignore 之 `inputs/` 次行加入：
+#       !inputs/INPUTS.sha256
+
+# P2 入庫（00／01 兩輪產物 + 本裁決）
+git add features/vehicle_setting/.gitignore \
+        features/vehicle_setting/inputs/INPUTS.sha256 \
+        features/vehicle_setting/RULINGS.md \
+        features/vehicle_setting/ANOMALIES.md \
+        features/vehicle_setting/DATA_REQUESTS.md \
+        features/vehicle_setting/DECISIONS.md \
+        features/vehicle_setting/docs/ \
+        features/vehicle_setting/data/ \
+        features/vehicle_setting/feature.yaml \
+        features/vehicle_setting/RECON.md \
+        features/vehicle_setting/PLAYBOOK.md \
+        features/vehicle_setting/RUNBOOK.md
+git commit -m "feat(vehicle_setting): rounds 00-01 intake and recon; rulings R-VS1..R-VS17"
+```
+
+---
+
+## 13. 裁決後之淨效果
+
+| 影響 | 內容 |
+|---|---|
+| **解除阻塞** | R-VS9 定案 → lint 規則可定稿 → W-8 完成後不再擋 pilot |
+| **解除 gate** | R-VS7 定案 → **W-9 之「做完必停」解除**，改為併入上繳 |
+| **母體確立** | 237 可測 leaf，四 Test Set 為 46／88／72／31 |
+| **仍開啟** | DR-11（CFTS100，1 leaf）、DR-5-B（失效彈窗＋PDO 圖示，17 leaf 之畫面層）、DR-7（PROXI 表）、DR-8（VC_VEH_LINE 車型碼） |
+| **下一個人工 gate** | **pilot**（canon §1.2）。其前置為：02 輪殘項完成 → framework Part Vehicle Setting ＋ profile → 首批生成 |
+
+---
+
+## 14. 本包產生之新條文清單（自檢）
+
+| 條 | 主題 | 已以區塊形式出現 |
+|---|---|---|
+| R-VS7 | Comfort 分層委派；W-9 必停解除 | ✔ §1 |
+| R-VS8 | 兩份 DBC 並用（追認） | ✔ §2 |
+| R-VS9 | CAN 訊號書寫形式 v2 定案 ＋ L-VS1 | ✔ §3 |
+| R-VS10 | 不採用 Pop Up List | ✔ §4 |
+| R-VS11 | 撤回追認 | ✔ §5 |
+| R-VS14 | spec_reference 為清單；DR-10 撤銷 | ✔ §6 |
+| R-VS15 | 可測母體 237 ＋ 值域全集 | ✔ §7 |
+| R-VS16 | `.gitignore` 例外 | ✔ §8 |
+| R-VS3′ | 目錄名修正 | ✔ §9 |
+| R-VS17 | BLOCKED 適用範圍 | ✔ §10 |
+
+十條皆以獨立可貼入之區塊呈現，未夾在敘述中。

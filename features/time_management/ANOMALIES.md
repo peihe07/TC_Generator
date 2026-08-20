@@ -11,14 +11,21 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | # | 標題 | 狀態 | 處置層級 |
 |---|---|---|---|
 | A-TM01 | `features/vehicle setting`（含空格）孤兒 scaffold | PENDING | Tier 3 |
-| A-TM02 | 037 之身分未定 | PENDING | Tier 2 |
+| A-TM02a | 037 之版本身分未定（原 A-TM02，經 R-TM6 分拆）—— **阻塞 D5 交付欄位** | PENDING | Tier 3（隨 RD-1 上問）|
 | A-TM03 | SYS2 EE Architecture 欄大小寫漂移 | PENDING | Tier 1 判準 |
 | A-TM04 | `new_feature.py` 目錄名推導無 slugify | PENDING | Tier 2 |
 | A-TM05 | `intake.py --scaffold` 與 `--adopt-existing` 整合缺口 | PENDING | Tier 2 |
 | A-TM06 | `a03_report` 路徑含 `&` 字元 | PENDING | Tier 1 判準 |
-| A-TM07 | 036 工作簿缺件 → `workbook_state` 無法判定 | PENDING | Tier 3（取件） |
+| A-TM07 | 036 工作簿缺件 → `workbook_state` 無法判定 | **RESOLVED**（R-TM5） | — |
 | A-TM08 | SYS2 EE Architecture 表頭宣告詞彙集與實測值集不符 | PENDING | Tier 2 |
-| A-TM09 | 037 只覆蓋 SYS2 功能需求之 59.5%，51 筆 FR 無對應 leaf | PENDING | **Tier 2（阻塞覆蓋稽核）** |
+| A-TM09 | 037 只覆蓋 SYS2 功能需求之 61.9%，48 筆 FR 無對應 leaf | PENDING | **Tier 2（阻塞覆蓋稽核）** |
+| A-TM10 | `spec_pdf` 仍為佔位符，CFTS docx 未回填 feature.yaml | PENDING | Tier 1 補填／Tier 2 修法 |
+| A-TM11 | 母本 Scope 欄（`D5`）為空 | PENDING | **Tier 2（填值）** |
+| A-TM12 | `recon.py` 無 spec_mode D 之 outline map 路徑 | PENDING | **Tier 2（阻塞 Phase 4）** |
+| A-TM13 | 2 筆被引用需求之來源物件不在 CFTS 基線內 | PENDING | **Tier 2（RD-1 候選）** |
+| A-TM14 | FORMS.md 引用之 Home v2 交付件不在磁碟上 | PENDING | **Tier 2** |
+| A-TM15 | `recon.py` 整份重寫 `DECISIONS.md`，沖掉手工裁決引用段 | PENDING | Tier 2（修法）／Tier 1（重建） |
+| A-TM16 | Home A-H26 之既有定性可能低估 | PENDING | Tier 2（屬 Home）|
 
 ---
 
@@ -47,9 +54,12 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 
 ---
 
-## A-TM02 — 037 之身分未定
+## A-TM02a — 037 之版本身分未定
 
-**狀態：PENDING。Tier 2。**
+**狀態：PENDING。Tier 3（隨 RD-1 上問）。**
+**經 R-TM6(2) 由原 A-TM02 分拆而來：本條僅存版本身分問題；內容缺口
+（48 筆 FR 無 leaf）已獨立為 A-TM09，兩條各自處置。R-TM6 明訂：縱使本條
+裁定手上這件即權威 037，A-TM09 之缺口依然存在。**
 
 `SWE1_Secure_Date&Time.xlsx` 之命名與封面欄位與 FW036-037-A03 之既有命名
 慣例不符。是否為本 feature 之權威 037 待確認。未確認前，**不得以其 leaf
@@ -75,6 +85,26 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 **執行層建議（不自行認定）**：向來源索取 FW036-037-A03 之正式釋出件，
 比對其 leaf 集合是否亦為 22 筆連號。若正式件不存在，需 Pei 明裁本件可否
 充當覆蓋稽核分母。已登記為 DATA_REQUESTS #2。
+
+**性質升級（2026-08-20，依 `docs/handoff/01Z-A3_review.md` §3.1(c)）**
+
+本條由「上游版本問題」升為 **阻塞交付欄位**。
+
+036 工作簿之 `D5`（範圍 Scope）欄，其語意為「本工作簿所依據之 037 報告
+之文件識別」，值即該 037 檔名去副檔名（R-TM9-A2）。交付路徑實測：
+
+| 目錄 | 037 檔名 |
+|---|---|
+| `Core HMI/HomeHMI/` | `FM-WI-FSM-037-A03-N1L-SWE1-Home-HMI-V0.1 STLA 報告.xlsx` |
+| `Core HMI/Menu Bar and AppDrawer/` | `FM-WI-FSM-037-A03-N1L-SWE1-AppDrawer-HMI-V0.1 STLA 報告.xlsx` |
+| `User Profiles/` | `FM-WI-FSM-037-A03-N1L-SWE1-PersonalAccount-HMI-V0.1 STLA 報告.xlsx` |
+| `Time Management/` | **無任何符合該形態之檔案** |
+
+本 feature 手上之 037 名為 `SWE1_Secure_Date&Time.xlsx`，不符該形態。
+故 D5 在本條裁定前**無值可填**（非「暫緩填」）。
+
+RD-1 應問：`Time Management` 是否另有正式 037，或
+`SWE1_Secure_Date&Time.xlsx` 即是而命名未依慣例。
 
 ---
 
@@ -205,7 +235,22 @@ R-TM1 之執行層回報段註記。
 
 ## A-TM07 — 036 工作簿缺件，`workbook_state` 無法判定
 
-**狀態：PENDING。取件屬 Tier 3（Pei）。**
+**狀態：RESOLVED（2026-08-20）。處置條文 R-TM5，逐字如下：**
+
+```
+R-TM5（Pei, 2026-08-20）—— 036 工作簿以母本為之
+
+本 feature 不索取客戶預填之 036 工作簿。036 以 R-G1 之全域母本
+forms/FM-WI-FSM-036-A01 …_SWQT_20260817_ext.xlsx 為之。
+
+直接後果：workbook_state = BLANK。
+A-TM07（036 缺件 → workbook_state 無法判定）由本條解消，轉 RESOLVED。
+```
+
+**解消方式為「改以母本為之」，非「取得客戶件」。** 本條所列之五項阻塞
+因而全部解除，但解除方式各異，逐項交代於本條末節。
+
+以下為本條 PENDING 期間之原始登記內容，保留為軌跡：
 
 本 feature 之 FW036 客戶原件未隨素材投放。`feature.yaml` 之
 `paths.workbook` 仍為佔位符 `"inputs/<FW036 xlsx>"`。
@@ -228,6 +273,18 @@ swra_report，故 `pick = swras[0]` 不致誤選，但 A-TM02 之身分問題因
 無法由腳本回答，必須人工裁。
 
 已登記為 DATA_REQUESTS #1，Urgency = High。
+
+### 解除後之逐項交代（2026-08-20）
+
+| 原阻塞項 | 解除方式 |
+|---|---|
+| 1. `workbook_state` 判不出 | R-TM5 直接定為 **BLANK**（母本資料區非空格 0，FORMS.md 實測） |
+| 2. R-TM2 推翻條件無法判定 | 母本 G 欄資料區為空 → 推翻條件**不成立**，`test_group` 維持 `"Time Management"`；[PROVISIONAL] 標記可於本包後移除，但屬 R-TM2 之判定範圍，本包不逕改，於上繳提請 |
+| 3. `workbook.columns` 未經實測 | 已依 FORMS.md 之 rev C 實測值更正五處，並由 recon 之表頭文字比對複驗 |
+| 4. done-region 偵測無從驗證 | BLANK 下**無 done region**，`detection` 改 `"none"`（§2.1） |
+| 5. 覆蓋稽核被除數無從取得 | 與本條無關 —— 分母已由 R-TM6 定為 SYS2 FR 126，不取 workbook |
+
+**DATA_REQUESTS #1 隨本條轉為 CLOSED。**
 
 ---
 
@@ -259,78 +316,625 @@ A-TM03 之重測附帶發現，為 A-TM03 之外的獨立事實：
 
 ---
 
-## A-TM09 — 037 只覆蓋 SYS2 功能需求之 59.5%，51 筆 Functional Requirement 無對應 SWE leaf
+## A-TM09 — 037 只覆蓋 SYS2 功能需求之 61.9%，48 筆 Functional Requirement 無對應 SWE leaf
 
-**狀態：PENDING。Tier 2。執行層登記。本條阻塞覆蓋稽核之分母認定。**
+**狀態：PENDING。Tier 2。執行層登記，分析層 00R §2 更正數字。**
+**本條阻塞覆蓋稽核之分母認定。**
 
-**本條非下放包指派，為執行層依 §7(6)「該驗而未驗者之獨立判斷」自行盤點時
-發現可驗、遂驗之結果。** 下放包全篇未觸及 037 與 SYS2 之交叉比對。
+本條非下放包指派，為執行層依 §7(6) 自行盤點時發現可驗、遂驗之結果。
+**首版數字（75 / 51 / 59.5%）有誤，已由 00R 更正為 78 / 48 / 61.9%；
+更正經過完整保留於本條 §D，不得抹除 —— 更正軌跡本身是稽核證據。**
 
-### 量測條件
+### A. 量測條件（更正後，為現行基線）
 
-037 `Analysis Report` 列 9–30 之第 2 欄（`Source System Requirement items`）
-取出所引用之 `SYS-RA-TIME&DATE-*` 序號；SYS2 `Basic Report` 列 2–228 之
-第 2 欄（`SYS2 Sys-RA-Feature-ID`）取全集，按第 10 欄 `Category` 分類。
-序號一律 zero-pad 至三位比對。解析同時處理三種書寫：完整 id、逗號延續之
-裸數字（`…-021, 022`）、範圍（`029–033`，含 en-dash 與 hyphen 兩形）。
+037：`Analysis Report` 第 9 列起、第 1 欄非空者共 22 列，取第 2 欄字串。
+展開程序：先將 U+2013 / U+2014 正規化為 `-`，以 `(\d{3})\s*-\s*(\d{3})`
+抓範圍展開為**閉區間**，將範圍字串自原字串抽除後，再抓剩餘之 `\d{3}`，
+聯集去重。
 
-### 結果
+SYS2：`Basic Report` 第 2 列起 227 列，第 2 欄尾碼三位數 → 第 10 欄
+`Category`。227 筆 id 全數解析成功、無重號。
+
+### B. 結果（現行基線）
 
 | | 數量 |
 |---|---|
-| SYS2 `Sys-RA-Feature-ID` 全集 | 227 |
-| 037 引用之相異序號 | 75 |
-| **037 引用但 SYS2 找不到（懸空引用）** | **0** |
-| SYS2 有而 037 未引用 | 152 |
+| 037 引用之相異 SYS-RA id | **78** |
+| 其中 Category = `Functional Requirement` | **78**（Heading / Information 命中 0） |
+| 懸空引用（SYS2 無此 id） | **0** |
+| SYS2 FR 總數 | **126** |
+| **FR 未被任何 SWE leaf 引用** | **48** |
+| **覆蓋率** | **78/126 = 61.9%** |
 
-152 筆未引用者按 Category 拆解：
+逐列計數（22 列全列舉，與 00R §2 之人工點數逐項相符）：
 
-| Category | 未引用數 | 判讀 |
+```
+001:4  002:6  003:3  004:4  005:2  006:3  007:4  008:7  009:9
+010:2  011:3  012:2  013:1  014:3  015:6  016:2  017:4  018:3
+019:3  020:4  021:1  022:2          合計 78，列間無重號
+```
+
+**78 筆之完整 id 清單**：
+
+```
+010 011 017 018 021 022 023 024 025 026 027 028 029 030 031 032 033
+037 039 042 044 045 046 047 048 049 050 053 054 055 058 059 060 063
+068 069 071 075 076 077 079 080 081 082 083 084 085 090 094 096 097
+106 109 112 116 118 119 121 125 126 127 136 137 138 139 140 141 142
+145 146 147 148 153 154 155 158 221 224
+```
+
+**48 筆缺口之完整 id 清單**（皆為 `Functional Requirement`）：
+
+```
+009 012 016 036 038 040 041 064 065 066 086 087 088 089 091 092 093
+099 108 110 111 113 115 117 122 123 124 128 129 130 131 134 135 144
+149 151 152 157 170 172 217 220 222 225 226 227 228 229
+```
+
+### C. 意義與對後續 Phase 之影響
+
+037 對 SYS2 功能需求之覆蓋率為 **61.9%**，48 筆功能需求在 037 中無對應
+之 SWE-RA leaf。缺口之性質與量級不因 3 筆之差而改變。
+
+與 A-TM02 相互強化：Reviewer 欄空白 + 模板佔位列未清 + 日期 `2020/09/05`
+早於 SR26 + 只覆蓋六成 FR，四項合觀，本件為未完成工作稿之可能性高於
+其為權威釋出件。
+
+1. **覆蓋稽核之分母不得取 22**（037 之 leaf 數）—— 取 22 只會得出「已全
+   覆蓋」之假象，真正的缺口在 037 自身相對 SYS2 就短少 48 筆。
+2. 分母之候選有二，屬 Tier 2，與 A-TM02 一併裁：
+   - 取 037 之 22 leaf → 等同接受 61.9% 之上游缺口
+   - 取 SYS2 之 126 筆 FR → 48 筆全數落為 BLOCKED，需上游補件
+3. **A-TM02 與 A-TM09 未裁前，任何覆蓋率數字不得寫入交付物。**
+
+### D. 更正經過（稽核軌跡，不得抹除）
+
+**首版（執行層，2026-08-20）**：75 / 51 / 59.5%。
+**更正版（00R §2 提出，執行層獨立復現確認，同日）**：78 / 48 / 61.9%。
+
+**差額 3 筆為 `030` `031` `032`，全部漏在 `SWE-RA-TIME&DATE-009` 一列。**
+執行層以 00R 之方法重跑並對差，確認：新有舊無 3 筆，**舊有新無 0 筆**
+（即首版無誤抓，純為漏抓）。三筆經查皆為 `Functional Requirement`，
+故缺口由 51 降為 48。
+
+**根因**（執行層自查）：該列原始字串為
+
+```
+SYS-RA-TIME&DATE-029–033, 046, 047, 080, 081
+```
+
+首版之範圍 regex 為 `(?<![\w-])(\d{2,3})\s*[–-]\s*(\d{2,3})`。負向後查
+`(?<![\w-])` 之本意是防止把 id 尾碼誤認為範圍起點，**但範圍起點 `029`
+前面正是 id 之連字號，故該防護把唯一一個真範圍擋掉，範圍展開完全未觸發**。
+其後 `029` 由完整 id regex 撿回、`033` 由裸數字 regex 撿回（其前為 U+2013，
+不在字元類 `[\w&-]` 內），中間 `030`–`032` 遂無任何規則命中而蒸發。
+全表僅此一列使用範圍寫法搭配 en-dash，故只錯一列。
+
+**首版之兩項推論不成立，登記於此因該形態會重演**（00R §2.1）：
+
+- **(a) 方向性搞反。** 首版稱「75 筆全部命中 FR，故啟發式只會高估，
+  59.5% 為上界」。「全部命中 FR」證明的是**零偽陽性**，而零偽陽性與**低估**
+  完全相容 —— 本例即是低估。零偽陽性只能支持「引用集 ⊆ 真集」，推出的是
+  **下界**。真值 61.9% > 59.5%，「上界」之主張被其自身證據推翻。
+- **(b) 恆等式充作檢查。** 首版稱「75 + 51 = 126 恰等於 FR 總數，此完美
+  互補即解析正確性之驗證」。但未覆蓋數既定義為 `126 − 命中數`，兩者相加
+  必為 126，與引用集對錯無關；`78 + 48 = 126` 同樣成立。**該式之鑑別力
+  為零。**
+
+兩者同屬 canon §5a「代理判準（自資料推導之統計範圍）不得凌駕實質判準」
+之失誤。實質判準是**逐筆對照**（本條 §B 之逐列點數與 id 清單），非計數
+之自洽性。往後凡以解析結果立論者，須公布展開後之完整 id 清單供反驗，
+不得只給計數。
+
+---
+
+## A-TM10 — `spec_pdf` 仍為佔位符，CFTS docx 未回填 `feature.yaml`
+
+**狀態：PENDING。補填屬 Tier 1（已執行）；腳本修法屬 Tier 2（未動）。**
+由分析層覆核包 `00R` §3 指派登記。
+
+### 成因（執行層已獨立複驗）
+
+`scripts/intake.py:420` 之 `KIND_TO_YAML` 無 `cfts_doc` 鍵：
+
+```python
+KIND_TO_YAML = {
+    "workbook": "workbook", "swra_report": "a03_report",
+    "polarion_export": "sys1_export", "spec_pdf": "spec_pdf",
+    "popup_list": "popup_list",
+}
+```
+
+`scaffold()` 內為 `key = KIND_TO_YAML.get(f["kind"])`，隨後 `if key:` 才回填。
+`cfts_doc` 取不到鍵得 `None`，該檔案**被移入 `inputs/` 但不回填任何 yaml
+路徑，且不報錯**。
+
+後果：`spec_mode = D` 正是以這份 docx 為 spec 來源，Phase 4 會在
+`spec_pdf` 處找不到 spec。與 A-TM03 / A-TM06 / A-TM08 同屬**靜默失效**
+形態 —— 本 feature 迄今第四例。
+
+### 處置（已執行）
+
+比照既有先例機械套用。`features/vehicle_setting/feature.yaml` 之
+`spec_pdf` 亦指向一份 `.docx`（`R1LR_..._CFTS_044_Vehicle Controls_...docx`），
+該值為手填、非腳本產出 —— 執行層已複驗確認。
+
+改前：
+
+```yaml
+  spec_pdf: "inputs/<spec pdf>"            # null if spec_mode E
+```
+
+改後：
+
+```yaml
+  spec_pdf: "inputs/R1LR_Atl-H_25PI3.5_Cabin_CFTS _015 Time and Date _SR26_20250909-1851.docx"  # cfts_doc；手填，見 A-TM10
+```
+
+腳本本身之修法（`KIND_TO_YAML` 加 `cfts_doc`）跨 feature 影響，Tier 2，
+**未改**。留予 Pei 與 A-TM04 / A-TM05 之腳本修法一併裁。
+
+### 執行層之自我檢討（00R §3 末段所指）
+
+本條屬首版 §7(6) 應盤到而未盤到者。首版之未驗項清單列了 036 缺件導致
+之 4 項與範圍外 2 項，但 `spec_pdf` 是**已在 `inputs/`、可立即驗、且在
+本包範圍內**之欄位。
+
+失誤在盤點所用之全集：首版是以「本包產出之數字與路徑值」為全集逐一回溯
+依據，該全集不含「已存在但未被回填」之欄位 —— 亦即**只盤了寫進去的東西，
+沒盤該寫而空著的東西**。正確全集應為 `feature.yaml` 之**全部 path 鍵**，
+逐鍵確認其值是否仍為佔位符。
+
+依該正確全集重盤，現況為：
+
+| path 鍵 | 值 | 判定 |
 |---|---|---|
-| `Heading` | 70 | 標題列，本就不該有 leaf — 非缺口 |
-| `Information` | 30 | 資訊列，非可測需求 — 非缺口 |
-| `Out of Scope` | 1 | 明示不在範圍 — 非缺口 |
-| **`Functional Requirement`** | **51** | **真缺口** |
+| `workbook` | `"inputs/<FW036 xlsx>"` | 佔位符 — 缺件，A-TM07 |
+| `a03_report` | 真實檔名 | 已填 |
+| `sys1_export` | 真實檔名 | 已填 |
+| `spec_pdf` | 真實檔名 | **本條補填後已填** |
+| `popup_list` | `"inputs/<Pop Up List xlsx>"` | 佔位符 — 未命中，DATA_REQUESTS #3，非缺陷 |
 
-**037 已引用之 75 筆，Category 全部為 `Functional Requirement`，
-無一為 Heading／Information／Out of Scope。** 且 75 + 51 = 126，恰等於
-SYS2 之 FR 總數（見 A-TM03 之 Category 重測）。
+五鍵全數有交代，無第二個漏網者。
 
-### 解析可靠性
+---
 
-上述完美分割即為解析正確性之驗證：若裸數字啟發式有誤（把不相干數字誤認
-為 id），誤中之序號會隨機落在 Heading／Information 上，不可能 75 筆全數
-落在 FR 內，亦不可能與 FR 總數恰好互補。
+## A-TM11 — 母本之 Scope 欄（`D5`）為空
 
-**方向性**：裸數字啟發式若有偏差，只可能**高估**引用集。故 75 為覆蓋數
-之**上界**，51 為缺口之**下界**。真實覆蓋率 ≤ 59.5%。
+**狀態：PENDING。登記並提案，填值屬 Tier 2，執行層不得自填。**
+由下放包 `01_recon.md` §4 指派登記。
 
-### 意義
+### 實測
 
-037 對 SYS2 功能需求之覆蓋率為 **75/126 = 59.5%**，51 筆功能需求在 037 中
-無對應之 SWE-RA leaf。
+`forms/FORMS.md` 記載（2026-08-17 唯讀實測）：母本 `C5` 標籤為
+`範圍 Scope：`，**值格 `D5` 為空**。執行層已對 `inputs/` 之複本複驗，
+與母本一致（複本 SHA256 與母本相同，見上繳包 01 §3）。
 
-此結果與 A-TM02 相互強化：一份 Reviewer 欄空白、模板佔位列未清、日期
-`2020/09/05` 早於 SR26、且只覆蓋六成功能需求的檔案，**其為未完成工作稿之
-可能性高於其為權威釋出件**。
+### 形態比較
 
-### 對後續 Phase 之影響
+| feature | Scope 值 | 狀態 |
+|---|---|---|
+| Home | 手工維護 | **錯**（A-H26） |
+| AMFM | 手工維護 | **錯**（RULINGS C1） |
+| **Time Management** | **空** | 起點較佳 —— 空而非錯，但仍須填 |
 
-1. **覆蓋稽核之分母不得取 22（037 之 leaf 數）**，那只會得出「已全覆蓋」
-   之假象，而真正的問題在 037 自身相對 SYS2 就短少 51 筆。
-2. 分母之候選有二，屬 Tier 2 裁決：
-   - 取 037 之 22 leaf → 稽核範圍等同接受 59.5% 之上游缺口
-   - 取 SYS2 之 126 筆 FR → 51 筆將全數落為 BLOCKED，需上游補件
-3. 在 Pei 裁定前，**任何覆蓋率數字都不得寫入交付物**。
+兩個既有實例皆為手工維護且皆錯，顯示本欄之填寫缺乏機械保障。本 feature
+因採母本，起點是空白 —— 不會繼承錯值，但也不會自動正確。
 
-### 執行層建議（不自行認定）
+### ~~提案（Tier 2，執行層不自填）~~ —— **已作廢（R-TM9-A2）**
 
-連同 A-TM02 一併向來源查詢：037 是否另有涵蓋全部 126 筆 FR 之正式版。
-若答覆為「037 即此件、51 筆確實不在 SW 範圍」，則需其書面依據，並應說明
-為何該 51 筆在 SYS2 標為 `Functional Requirement` 而非 `Out of Scope`
-（SYS2 全表僅 1 筆標 `Out of Scope`，顯示該欄有被實際使用，非虛設）。
+> **本段之整個框架錯誤，保留為軌跡。** 其前提為「D5 是 feature 標籤欄，
+> 可由 feature 名或 spec 標題組成」，經 01Z-A3 §3 實測證否：D5 之語意為
+> **037 報告之文件識別**。故下列兩個候選值皆為「指向不存在文件之字串」，
+> **任何一個都不得填入**。
 
-已登記為 DATA_REQUESTS #4。
+~~填值屬交付件內容之範圍界定，執行層登記並提案，等裁。~~
+
+~~格式參照：Home v2 之正確值形態為 `…Home-HMI-V0.1`。依該形態，本 feature
+之候選值為 `Time-Management-HMI-V0.1` 或以 spec 文件標題為本之
+`Time-and-Date-HMI-V0.1`。~~
+
+~~二者之取捨非執行層可決，因其牽動 R-TM1 之別名體系，與 R-TM2 之
+`test_group` 取值屬同一組命名決定，宜一併裁。~~
+
+**解除條件（2026-08-20 依 R-TM9-A2(4) 改寫）**：
+
+原條件（Home v2 之 D5 前綴段切分）**作廢** —— D5 非 feature 標籤欄，
+不可由前綴段組成（R-TM9-A2）。
+
+新條件（兩項均須）：
+1. A-TM02a（037 身分）經 Pei 裁定
+2. 該 037 之檔名逐字實測，去副檔名後即為 D5 之值
+
+在此之前 D5 維持空白，A-TM11 維持 PENDING。
+
+---
+
+## A-TM12 — `recon.py` 無 spec_mode D 之 outline map 建立路徑
+
+**狀態：PENDING。Tier 2（跨 feature，執行層不得逕改）。**
+**不阻塞 recon；阻塞 Phase 4 之 `spec_reference` 生成。** 執行層登記。
+
+### 實測
+
+`recon.py` 之 `build_outline_map(sys1_path)` **只接受 `sys1_export`**
+（`scripts/recon.py:143`），其 docstring 自陳用途為 spec_mode **A**：
+
+> This is the lookup every spec_reference is linted against under spec_mode A
+
+本 feature 為 **spec_mode D**，01 包 §5(6) 明訂 outline map 應「以
+`spec_pdf` 所指之 CFTS docx 為之」。但該函式不讀 `spec_pdf`，逕以
+`sys1_export`（SYS2 export）為來源，而該檔**無 `Outline Number` 欄**，
+故回傳空 map 與理由字串：
+
+```
+SYS2_CFTS_015_...xlsx: no 'Outline Number' column —
+this export does not carry a document outline
+```
+
+recon 輸出佐證：`sections: {}`、`distinct_sections: []`、
+`data/recon_leaf_to_section.tsv` 僅存表頭列、無資料列。
+
+### 為何 recon 未因此中止
+
+037 **無 citation 欄**（`citation column: NOT FOUND`），故
+`distinct sections cited by the leaves = 0`。`build_outline_map` 之
+docstring 已預期此情形：
+
+> a feature that never cites document sections must not be blocked by a
+> lookup it does not use
+
+零引用 → 空 map 無對象可比對 → 不構成 miss（`outline_misses: []`）。
+**故本條不觸發 01 包 §6 之「spec_id → outline 有無法解析之項」** ——
+無「項」可解析，非「項」解析失敗。二者須分辨，登記於此以免日後誤讀。
+
+### 何以仍須登記 —— Phase 4 之實質阻塞
+
+`feature.yaml` 之 `spec_reference_template` 為：
+
+```yaml
+spec_reference_template: "<Spec Filename>_{outline}"
+```
+
+Phase 4 生成 `spec_reference` 欄時需要 `{outline}` 之值。其來源本應是
+outline map，而該 map 為空且**現行工具無任何路徑可為 spec_mode D 建立它**。
+亦即：recon 全綠，但 Phase 4 一定撞牆。
+
+此為典型之**延遲失效**：缺陷在 Phase 1 完全不顯現，要到 Phase 4 才爆，
+且屆時已投入生成成本。與本 feature 既有之靜默失效系列同屬 canon §5a
+射程，但時間差更長。
+
+### 處置 —— 執行層首版兩案**皆非正解**，經 01R §3 更正
+
+**首版提案（保留為軌跡）**：(a) `recon.py` 增 spec_mode D 路徑自 CFTS docx
+解析章節；(b) 改 `spec_reference_template`。
+
+**01R §3 之更正，執行層複驗後接受**：
+
+- **(a) 不可行，且理由比「工具缺路徑」更根本。** `survey_a03()` 之 citation
+  欄尋找為 `find("hmi source")` → `find("source", forbid=("description",
+  "requirement id"))`。本件 037 之來源欄表頭為 `Source System Requirement ID`，
+  含 `requirement id` 故被 forbid 排除。**即 `citation column: NOT FOUND`
+  不是解析失敗，是本 037 根本不含文件章節引用** —— 它引用的是 SYS-RA
+  需求 id，不是 spec 章節。縱使把 CFTS docx 解析成完整章節索引，**仍無任何
+  欄位能把 leaf 接到章節上**。首版建的是索引的一端，缺的是連結本身。
+- **(b) 為時過早** —— 在確認 `{outline}` 真接不上之前就改 template，
+  等於放棄可追溯性。
+
+**首版失誤之定性**：兩案都只看「map 是空的」這個表象，未回頭問「即使 map
+不空，leaf 憑什麼接得上」。與 A-TM09 首版同型 —— **未追問連結是否存在，
+逕自處理連結的一端。**
+
+### 正解 —— 第三案：經 SYS2 之 Source Requirement items 欄建錨鏈
+
+```
+SWE-RA-TIME&DATE-nnn → SYS-RA-TIME&DATE-nnn → CFTS 物件 id → CFTS 章節號
+   （037 第 2 欄）        （SYS2 第 2 欄）      （SYS2 第 5 欄）  （docx 標題 {id}）
+```
+
+**執行層已對 `inputs/` 之原始 docx 與 xlsx 實測**（非沙箱轉換副本），
+六項數字與 01R §3.1 逐項相符，詳見上繳包 `01R_corrections.md` §2。
+可達 21 節，71 筆直接可達 + 5 筆多物件（切分後全數可達）+ 2 筆真缺口
+（A-TM13）。
+
+**處置意見（待 Pei）**：`spec_reference_template` 暫不改；`recon.py` 之
+修法應為「增一條 leaf→章節之間接解析路徑（經 SYS2 來源物件 id）」，
+非「增 docx 章節解析」。本 feature 可先以獨立腳本產出
+`data/leaf_to_section.tsv`，不動 `recon.py` —— 該路線不需 Tier 2，
+Phase 4 亦不必等腳本修法。
+
+---
+
+## A-TM13 — 2 筆被引用之需求，其來源物件不在 CFTS 基線內
+
+**狀態：PENDING。Tier 2，RD-1 候選。** 由 01R §4 指派登記。
+
+### 實測（執行層對 `inputs/` 原始檔複驗，與 01R 相符）
+
+| SYS-RA id | SYS2 第 5 欄之來源物件 id | 於 CFTS docx 之出現次數 |
+|---|---|---|
+| `SYS-RA-TIME&DATE-221` | `6151328` | **0** |
+| `SYS-RA-TIME&DATE-224` | `6151331` | **0** |
+
+全檔搜尋 `615\d{4}` 形態：**零命中**（執行層獨立複驗，相符）。
+
+被引用之路徑：221 ← `SWE-RA-TIME&DATE-005`（Internal Clock Accuracy）；
+224 ← `SWE-RA-TIME&DATE-002`（GPS Sync Enable/Disable Logic）。
+
+SYS2 描述節錄：221 為 `$GPS_Presence$ = [Absent]` 時之內部時鐘精度；
+224 為 `$GPS_Presence$ = [Present]` 時之個人化設定。
+
+### 性質
+
+**非解析缺陷，是基線缺口** —— SYS2 引用了現行 CFTS 版本
+（SR26 `20250909-1851`）所不含之物件。可能為 SYS2 較新、CFTS 較舊，
+或物件遷自他份 CFTS。與 A-TM02a（037 版本身分）同屬「上游版本對齊」
+一族，宜併入 RD-1 一次問。
+
+### 對 TC 之立即影響
+
+`SWE-RA-TIME&DATE-005` 與 `-002` 兩個 leaf 之 `specification_reference`
+在該兩筆上**無章節可寫**。
+
+**不得以鄰近章節填充** —— §8.4.1 禁止捏造來源未述之值。兩 leaf 之其餘
+引用仍有章節可寫，故非整條 leaf 阻塞；缺的是該兩筆之對應。
+
+### 執行層補充實測（01R 未提，不推翻其結論）
+
+01R §4 稱「CFTS015 全篇之物件 id 皆為 `481xxxx` 區段」。執行層全檔實測
+相異 7 位數 id 之前綴分佈為：
+
+| 前綴 | 相異 id 數 | 性質 |
+|---|---|---|
+| `481` | **358** | 需求物件（標題 88 + 物件行 270） |
+| `456` | **3** | **`WrapperResource`（內嵌 RTF 資源）**，非需求物件 |
+
+三筆為 `4561062` / `4561063` / `4561064`，行文形態為
+`4561062- CFTSMV015_CIP_R1_O833_116_inline.rtf WrapperResource`。
+
+**此不推翻 A-TM13**：`456xxxx` 非需求物件，`615xxxx` 仍為零命中，
+結論不變。登記之理由是**判準精確性** —— 若日後有人以「全檔 7 位數 id
+集合」作為物件全集（361），會比真實物件數（358）多 3，且該誤差不會報錯。
+物件全集之正確取法為「標題 `{id}` ∪ 物件行 `^\d{7}:`」，非「全檔 id 掃描」。
+
+---
+
+## A-TM14 — FORMS.md 引用之 Home v2 交付件不在磁碟上
+
+**狀態：PENDING。Tier 2。** 由 `01Z-A1_amendment.md` §4 指派登記。
+
+```
+A-TM14（PENDING，Tier 2）—— FORMS.md 引用之 Home v2 交付件不在磁碟上
+
+FORMS.md 之 instance register 與 provenance warning 均以
+features/home/output/…_Home_20260720.xlsx（SHA cfc007f3…、
+tag fw036-home-regen-v2）為 Home 之權威交付件，並以之為判定
+archive 內 Home 複本受污染之比對基準。
+
+實測（2026-08-20）：features/home/output/ 目錄不存在。
+
+後果有二，須分開處置：
+1. 對本 feature —— R-TM10 之樣式參照無來源可用（見 R-TM10-A1）
+2. 對 repo —— FORMS.md 之 provenance warning 其比對基準已不可覆驗。
+   該 warning 所述之四項差異目前無法被任何人重新驗證，
+   只能作為歷史記載引用，不得作為現行判準。
+   此與 A-UP03／A-UP05 同形態，為第二例。
+
+不建議之處置：以 archive 內之 Home 複本替代基準 —— 那正是被判定為
+受污染的那一份，以受測物充當基準即失去比對意義。
+
+建議之處置（待 Pei 裁）：確認該交付件是否仍存於他處
+（交付路徑 /Users/peihe/Work/02_Project_R1LR/10_Reviewing/…）；
+若確已不存，則 FORMS.md 相關段落須標註其基準不可覆驗，
+比照 A-UP05 之處理方式。
+```
+
+### 執行層舉證（T2，2026-08-20）—— 「確已不存」成立
+
+分析層之建議處置指定要查交付路徑。**已查，逐項如下。**
+
+**(1) 目錄層級**
+
+```
+ls -d features/home/output   →  ABSENT
+```
+
+`features/home/` 內容：`.gitignore` / `ANOMALIES.md` / `DECISIONS.md` /
+`PLAYBOOK.md` / `RECON.md` / `RUNBOOK.md` / `data` / `docs` /
+`feature.yaml` / `generated` / `scripts` —— **無 `output/`，亦無 `inputs/`**。
+與分析層實測相符。
+
+**(2) 檔名搜尋 —— 三個獨立方法，全部 0 命中**
+
+| 方法 | 結果 |
+|---|---|
+| `command find`（繞過 shell function） | 0 |
+| Python `os.walk` 獨立實作 | 0 |
+| **陰性對照**：同一掃描找「含 `Home` 之 xlsx」 | **35 筆** |
+
+第三列為**必要之陰性對照**：證明掃描確實有效、非空掃。
+本 shell 之 `find` 為 Claude Code 包裝之 `bfs` function（非系統 `find`），
+故不以其單一結果為據 —— 此為 R-TM7 精神之延伸（不假設工具行為）。
+
+**(3) SHA256 全域比對 —— 檔名可能已變，故不依賴檔名**
+
+掃描 `/Users/peihe/Work` 與 `/Users/peihe/Work_Projects` 下**全部**檔名含
+`036` 或 `SWQT` 之 xlsx，共 **150 筆**，逐一計算 SHA256 並比對
+FORMS.md 所載之 `cfc007f3…`：
+
+```
+SHA256 前綴 cfc007f3 命中：0 筆 / 150
+```
+
+**此為決定性證據**：縱使該檔被改名，其內容亦不存在於上述兩個根目錄下。
+
+**結論：A-TM14 之「確已不存」成立。** 依分析層之建議，FORMS.md 相關段落
+應標註其基準不可覆驗，比照 A-UP05。**該標註屬 `forms/` 之修改，跨 feature，
+執行層未動。**
+
+### 執行層額外發現（T2 附帶，分析層未知）
+
+**交付路徑存在一份 Home 工作簿，與 archive 那份同名但內容不同。**
+
+| | 交付路徑 | archive |
+|---|---|---|
+| 路徑 | `…/10_Reviewing/00_TestCase/ASW-R2/Core HMI/HomeHMI/` | `archive/forms_superseded/` |
+| 檔名 | `…_SWQT_Home_20260809.xlsx` | `…_SWQT_Home_20260809.xlsx`（**同名**） |
+| SHA256 | `469b2f6d346d0b1ddd8c86b597760c60a643b3a6beab2036a358b1e288f6c3df` | `1895fb2a2b44f06c46147e5c24731d2d1adf0f2eea80c7ec6f8900a679f24d72` |
+| bytes | 120,639 | 119,885 |
+| mtime | 2026-08-19 12:01 | 2026-08-09 22:22 |
+| `cmp` | **differ: char 2534, line 3** | |
+
+**兩份同名、不同內容、相差 754 bytes、mtime 差 10 天。**
+
+意義有三，均**登記不裁**：
+
+1. **FORMS.md 之 provenance warning 其受測物身分本身即有歧義** ——
+   該 warning 描述「archive 內之 Home 複本」有四項污染，但磁碟上有兩份
+   同名檔案。warning 所測者為何份，現無從得知。此使 A-TM14 之問題
+   **比分析層所述更深**：不只基準（v2）不可覆驗，**受測物亦不唯一**。
+2. **交付路徑之該份為 R-TM10-A1 解除條件 (b) 之潛在候選** —— 但
+   R-TM10-A1 明文禁止者為 `archive/` 之那份，交付路徑此份**未被提及**
+   （分析層不知其存在）。**執行層不自行認定其可用**：它既非 v2
+   （SHA 不符 `cfc007f3…`），亦不能因「不是被禁的那一份」就推定乾淨。
+   **解除須 Pei 裁。**
+3. 同一目錄另有 `FM-WI-FSM-037-A03-N1L-SWE1-Home-HMI-V0.1 STLA 報告.xlsx`
+   —— 其**檔名**即 R-TM9 所稱之正確形態 `…Home-HMI-V0.1`，構成前綴段
+   之獨立第二樣本。詳見上繳 §3.2。
+
+**本節全部為登記，執行層未複製任何檔案進 `inputs/`，未援引任何樣式，
+未組 D5 值。**
+
+**補充（2026-08-20，01Z 上繳 §2.2）—— 受測物身分亦不可判定**
+
+除基準（Home v2）不存在外，磁碟上另有**兩份同名之 Home 036 複本**：
+
+| | 交付路徑 | `archive/forms_superseded/` |
+|---|---|---|
+| 檔名 | `…_SWQT_Home_20260809.xlsx` | `…_SWQT_Home_20260809.xlsx`（同名）|
+| SHA256 | `469b2f6d346d0b1ddd8c86b597760c60a643b3a6beab2036a358b1e288f6c3df` | `1895fb2a2b44f06c46147e5c24731d2d1adf0f2eea80c7ec6f8900a679f24d72` |
+| bytes | 120,639 | 119,885 |
+| mtime | 2026-08-19 12:01 | 2026-08-09 22:22 |
+
+`cmp` 報 differ: char 2534, line 3。
+
+故 FORMS.md provenance warning 所述之四項污染，**其受測物為哪一份現已
+無從得知**。損害範圍因此擴大：不只基準不可覆驗，被判定受污染者是哪一份
+亦不確定。
+
+不得以任一份充當基準 —— 以受測物充當基準即失去比對意義。
+
+---
+
+## A-TM15 — `recon.py` 整份重寫 `DECISIONS.md`，沖掉執行層之裁決引用段
+
+**狀態：PENDING。重建屬 Tier 1（已執行）；修法屬 Tier 2（未動）。**
+執行層登記。**本條同時記錄執行層自身於 01 包之一項未察覺失誤。**
+
+### 成因
+
+`recon.py:294` 之註解自陳：
+
+> recon.py rewrites DECISIONS.md whole. That is fine for an unsigned sheet
+
+實測確認：本檔僅在**已簽核**時才受保護（改寫入 `DECISIONS.new.md`，
+`recon.py:302-304`）。未簽核者整份重寫，無備份、無警告、無提示。
+
+### 與流程要求直接衝突
+
+三個下放包均要求執行層於 `DECISIONS.md` 建裁決引用條目：
+
+| 包 | 要求 |
+|---|---|
+| `00_intake_scaffold.md` §4(1) | 「於 `DECISIONS.md` 以 `[PEI]` 條目引用」 |
+| `01_recon.md` §1 | 「執行層須…於 `DECISIONS.md` 建 `[PEI]` 條目引用」 |
+| `01Z-A2_command_set.md` T5(4) | 「`DECISIONS.md` 建對應條目」 |
+
+**但 `01_recon.md` §5 又要求跑 `recon.py`** —— 該步驟必然沖掉前一步寫入
+之引用條目。**兩項要求在同一個下放包內互相抵銷**，且失敗形態為靜默：
+recon 只印 `DECISIONS.md written.`，不提示其覆寫了什麼。
+
+### 執行層之失誤（如實記錄）
+
+執行層於 01 包**先寫 §0 裁決引用與 §1 Intake 詳細內容，後跑 recon**，
+未於 recon 後複查該檔，故未察覺內容已被沖掉。
+
+01 包上繳 §5 所稱「`DECISIONS.md` §2 / §3 已由 recon 結果填實」字面無誤
+（recon 確實填了），但**遺漏了「先前寫入之 §0 與 §1 詳細內容已消失」
+這件事** —— 該陳述因而在整體上造成誤導。
+
+**失誤性質**：寫入後未複查。與 A-TM09 首版（未驗證解析正確性）、
+A-TM12 首版（未驗證連結存在性）同族 —— **完成一個動作後，未確認該動作
+之結果仍然成立**。前兩例是未驗證前提，本例是未驗證後果。
+
+**發現時機**：本包 T5(4) 欲更新 `DECISIONS.md` 時，`str.replace` 之目標
+字串不存在，替換靜默失敗（`grep` 無輸出）而暴露。**若非本包恰好要改同
+一處，此事不會被發現。**
+
+### 處置
+
+**已執行（Tier 1）**：於 `DECISIONS.md` 重建 §0 裁決引用段，並在該節
+開頭以區塊引言標示本條之警告與「每次重跑 recon 後必須手動補回」。
+同時於該節列出 recon 之 `[AUTO]` 預填值與既有裁決之**四項覆寫關係**
+（`test_group` / 覆蓋分母 / exemplar source / spec_reference），
+使兩者並存時不致誤讀。
+
+**未動（Tier 2）**：`recon.py` 之修法。可能方向：
+
+1. 保留手工節區 —— 以標記（如 `<!-- MANUAL -->`）圈出不重寫之區段
+2. 覆寫前備份為 `DECISIONS.prev.md`，並於輸出提示
+3. 至少在輸出訊息中列出被覆寫之節名，使其非靜默
+
+**權威來源之提醒**：條文全文之權威在 `RULINGS.md`，該檔**不受 recon
+影響**，故本次無條文遺失。`DECISIONS.md` 之 §0 僅為引用索引。
+此為損害有限之唯一理由 —— 非因流程健全。
+
+---
+
+## A-TM16 — Home A-H26 之既有定性可能低估
+
+**狀態：PENDING。Tier 2。屬 Home，非本 feature —— 僅登記供 Home owner 覆核。**
+
+Home 之 A-H26 於既有文件中記為「Scope 欄未修正」。依 `docs/handoff/
+01Z-A3_review.md` §3 之實測，該欄之語意為 037 文件識別，而 Home 工作簿
+之 D5 值為：
+
+    FM-WI-FSM-037-A03-N1L-SWE1-AppDrawer-Projection-SWE1HMI-V0.1 STLA 報告
+
+該值指向 AppDrawer-Projection 之 037，即**另一個 feature 的追溯來源**；
+且其 `SWE1HMI` 形態不對應交付路徑上任何實存檔名（三個實例一致為 `HMI`）。
+
+若此讀法成立，A-H26 不是標籤筆誤而是追溯來源指錯文件，其嚴重性與既有
+記載不同。
+
+證據：交付路徑三個 feature 之 037 檔名形態一致
+（`Home-HMI-V0.1` / `AppDrawer-HMI-V0.1` / `PersonalAccount-HMI-V0.1`）。
+
+執行層 01Z 上繳 §3.1 所取得之 D5 `repr()` 原樣，保留為本條之證據，
+不因 T3 切分作業作廢而刪除。
+
+### 執行層取得之 `repr()` 原樣（歸屬由 01Z §3.1 移入本條）
+
+```python
+row5 col3: '範圍 Scope：'
+row5 col4: 'FM-WI-FSM-037-A03-N1L-SWE1-AppDrawer-Projection-SWE1HMI-V0.1 STLA 報告'
+row5 col9: '日期 Date：2026'
+row5 col33: 'FM-WI-FSM-036-A01'
+```
+
+來源：`archive/forms_superseded/…_SWQT_Home_20260809.xlsx`
+（SHA `1895fb2a…`），分頁 `Test Case Specification&Result`（rev A/B 版面）。
+無前後空白、無換行。
+
+**注意該值取自 archive 之複本，而 A-TM14 已載明磁碟上有兩份同名檔案、
+內容相異。** 故本條之證據僅能證明「archive 那一份的 D5 是這個值」，
+不能證明 FORMS.md provenance warning 所述者即此份。此限制須與本條並讀。
+
+**（2026-08-20）執行層以純目錄列舉獨立複驗三個 037 檔名，與分析層實測相符。
+本條之檔名形態論證自此為雙方確認，非單方實測。**
+
+本 feature 之處置已由 R-TM9-A2 涵蓋，本條不影響本 feature 之任何動作。
 
 ---
 
