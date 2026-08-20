@@ -41,3 +41,19 @@ HMI Settings List R1 SR25 Post R1L-R），**本 feature 條文不引用者不取
 `PDO Theme Config V3.4.xlsx`（`0079740c…`）——依 00C §3 判為內容不符；**本輪未複驗**。
 `PDT25_E3A_R4_FDCAN8_vs_PDT25_E3A_R5_FDCAN8.xlsx`（`74d11e1b…`）——證據性素材，
 依 R-VS12 入庫目的為存證非取值。
+
+## DR-14′（取代 DR-14，14 包 §2）
+
+LID 表載 `HdRstRelRq` 之 Atlantis High 對映為 `RADIO_B3.HDRstRelRq_3rdRow`，
+但基線 DBC 之 `RADIO_B3` 不含該 signal（其 4 支為 `ManDispCtrl` /
+`PowerSideStep_Req` / `RQ_DISP_INTS` / `VR_Blower_Req`）；
+兩份 DBC 全域僅有 `Driver_Headrest_Req` 與 `Passenger_Headrest_Req`，無第三排。
+
+請確認第三排頭枕釋放請求之實際 signal 名與所屬 message，
+或該功能於本專案是否不落在此二網段。
+
+**影響**：037 引用 `$HdRstRelRq$` 之 16 處，其 procedure 之操作步驟需要此訊號。
+**Urgency**：Medium（由 DR-14 之 High 降級 —— 範圍自 8 支縮為 1 支）。
+
+> **DR-13 撤銷**（14 包 §1）：`$ESS_ENG_ST$` 之 message 歸屬非矛盾，係執行層未展開 LID 單格多值。
+
