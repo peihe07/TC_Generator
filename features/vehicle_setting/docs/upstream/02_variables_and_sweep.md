@@ -213,3 +213,109 @@ git commit -m "feat(vehicle_setting): rounds 00-02 — intake, recon, rulings R-
 
 > **git 唯讀與改狀態分列**（R-G6）：本輪執行之 git 指令僅 `git status --porcelain`。
 > **未執行任何 add／commit／checkout／restore／stash／clean／tag。**
+
+---
+
+# 附錄 A — 入庫作業紀錄（R-VS22 窄口授權，一次性）
+
+依 `docs/handoff/11_commit_authorization.md`。**授權於本次 commit 完成後失效。**
+
+| 項 | 值 |
+|---|---|
+| **DECISION** | **入庫** —— `data/_cfts_values.json` 與 `data/_cfts_values3.json` 入版控（故步驟 3 跳過，未於 `.gitignore` 加 `data/_*.json`） |
+| **commit hash** | **`2c6c9b3`** |
+| 訊息 | `feat(vehicle_setting): rounds 00-02 intake, recon, rulings R-VS1..R-VS21` |
+| **暫存檔數** | **7** |
+| 變更量 | 1,592 insertions、1 deletion |
+| 分支 | `feat/m1-stage7-scorecard`（**未推送** —— 推送屬 Pei） |
+
+## A.1 暫存之 7 檔
+
+```
+features/vehicle_setting/.gitignore
+features/vehicle_setting/data/_cfts_values.json
+features/vehicle_setting/data/_cfts_values3.json
+features/vehicle_setting/docs/handoff/09_review_round03.md
+features/vehicle_setting/docs/handoff/10_p_actions.md
+features/vehicle_setting/docs/handoff/11_commit_authorization.md
+features/vehicle_setting/inputs/INPUTS.sha256
+```
+
+> 其餘 00–02 輪產物已於前次 commit `554079e` 入庫；本次為其增量。
+
+## A.2 步驟 1 —— `.gitignore` 兩向驗證（R-VS16′）之實測輸出
+
+**正向**（`git add -n .../inputs/INPUTS.sha256`）：
+
+```
+add 'features/vehicle_setting/inputs/INPUTS.sha256'
+```
+
+**反向**（`git add -n .../inputs/PDT27_E2A_R4_BHCAN.dbc`）：
+
+```
+The following paths are ignored by one of your .gitignore files:
+features/vehicle_setting/inputs/PDT27_E2A_R4_BHCAN.dbc
+hint: Use -f if you really want to add them.
+```
+
+**兩向皆符合期望。** 即 `.gitignore` 之 `inputs/*` ＋ `!inputs/INPUTS.sha256`
+**確實只放行雜湊檔一個**，非「碰巧沒擋到」。
+（反向之 exit code 為 1，係 git 對被忽略路徑之預期拒絕，非執行錯誤。）
+
+## A.3 步驟 5 —— 暫存區逐檔核對
+
+| 核對項 | 結果 |
+|---|---|
+| (a) 全部路徑皆在 `features/vehicle_setting/` 之下 | **PASS**（非該前綴者 0 筆） |
+| (b) `inputs/` 底下只有 `INPUTS.sha256` 一個 | **PASS**（計 1） |
+| (c) `_cfts_values*.json` 不在清單內 | **不適用**（DECISION = 入庫）；已反向確認二檔**確實在**清單內 |
+
+## A.4 步驟 7 —— 入庫後驗證之實測輸出
+
+**7a** `git ls-files features/vehicle_setting/inputs/`：
+
+```
+features/vehicle_setting/inputs/INPUTS.sha256
+```
+
+→ **僅一檔**，符合期望。素材本身未入庫，雜湊檔入庫 —— canon G-9 之要求自此成立。
+
+**7b** `shasum -c INPUTS.sha256`：**15 / 15 全數 OK**（15 檔逐檔驗過）。
+
+**7c** `git log --oneline -1`：`2c6c9b3 feat(vehicle_setting): rounds 00-02 intake, recon, rulings R-VS1..R-VS21`
+
+## A.5 步驟 2 之留痕 —— 工作區中 `features/vehicle_setting/` 以外之變更（R-VS23）
+
+執行時工作區另有 **9 項**變更不在本次 pathspec 內。經 Pei 確認為
+`features/time_management` 之在途工作，與本次入庫無關，依 **R-VS23** 列出並續行。
+**本次 commit 未包含其中任何一項**（步驟 5(a) 已驗證）。
+
+```
+ M features/time_management/ANOMALIES.md
+ M features/time_management/RULINGS.md
+?? docs/fw036/RD1_questions_time_management.md
+?? features/time_management/docs/handoff/02R-A1_framework_merge.md
+?? features/time_management/docs/handoff/02R_framework_lock.md
+?? features/time_management/docs/handoff/03_signoff.md
+?? features/time_management/docs/upstream/02R_corrections.md
+?? features/time_management/docs/upstream/03_signoff.md
+?? features/time_management/framework.md
+```
+
+### R-VS23 —— 措辭更正（本次作業所揭）
+
+指令步驟 2 原寫「**有輸出即停下回報**」，而 R-VS22 寫「出現任何該路徑以外之
+變更**被暫存**，即為異常」。**二者所指非同一件事**：
+
+- 步驟 2 之判準為「**工作區存在**該路徑以外之變更」
+- R-VS22 之判準為「該路徑以外之變更**被暫存**」
+
+工作區存在他 feature 之在途工作是常態（多 feature 並行），
+而 `git add` 之 pathspec 已限定範圍，二者不會互相污染。
+**依 R-VS23，阻斷判準改置於步驟 5 之暫存區核對，非步驟 2 之工作區存在**；
+步驟 2 降為**列出留痕**。
+
+⚠ **本次執行時，執行層依原措辭停下並回報** —— 該停是對的：
+兩份文件之判準不一致時，執行層不替裁決層決定採用哪一個。
+R-VS23 之更正即為此次停下之產物。
