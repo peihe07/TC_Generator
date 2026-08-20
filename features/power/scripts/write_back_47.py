@@ -10,7 +10,11 @@
   - 交付副本置於 **`output/`**（非客戶樹、非 `inputs/`）
   - 最終 `tc_id` 於此刻依 R-P113(c) 統一指派，序為 `(SWE-PM ID, split_index)`（R-P115）
   - `SWE-PM-089` 之留白列依 R-P141 保留，僅填 `req_id`
-  - **不送達客戶目錄、不執行任何 git 操作**
+  - **不送達客戶目錄、不執行任何 git 操作** —— 送達為獨立之一步
+
+**⚠ 授權字串原寫死為 R-P309（47 包，260 條）** —— 54 包以 283 條重跑時，
+紀錄因而引用了不及於該版本之授權。已改為 `AUTHORISATION` 常數，
+**每次重新取得授權後須同步更新之**。
 
 用法：
     python features/power/scripts/write_back_47.py
@@ -39,6 +43,11 @@ from dryrun_write_back import (HEADER_ROW, FIRST_DATA_ROW, load_cfg,  # noqa: E4
 from dryrun_full_write_back import ordered_tcs, pane_and_widths, BLANK_LEAF  # noqa: E402
 
 PREFIX = "NR1L-PowerManagement-"
+
+# **每次重新取得授權後須更新**（R-P309 之效力範圍限於授權當時之內容）
+AUTHORISATION = ("54 包 §E（R-P323 → R-P331 → 54 包 §E）——"
+                 "Pei 逐字「授權」，其效力範圍為**授權當時之 283 條內容**；"
+                 "其後內容再有實質變動者，該授權不及於變動後之版本。")
 
 
 def main() -> None:
@@ -125,7 +134,7 @@ def main() -> None:
     ok = all(checks.values())
 
     md = ["# B4 —— 寫回紀錄（R-P310）\n",
-          "\n> **授權**：R-P309（Pei 逐字「授權啊」）。\n",
+          f"\n> **授權**：{AUTHORISATION}\n",
           "> 寫入路徑為 `surgical_save()`；**全域無 `Workbook.save()`**。\n",
           "> **未對 `inputs/` 之原始檔寫入**；**未送達客戶目錄**；**未執行任何 git 操作**。\n",
           f"\n## 一、寫入對象\n\n| 項 | 值 |\n|---|---|\n"
