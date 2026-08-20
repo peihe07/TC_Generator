@@ -141,6 +141,14 @@ def scaffold(feature: str, root: Path, adopt_existing: bool = False) -> None:
     # Directory naming convention (2026-08-11 reorg): all features live under
     # features/, lowercase, without the HMI suffix. The feature NAME keeps its
     # own casing — it is what feature.yaml and the profile filename carry.
+    # A-TM04 — `.lower()` does not touch whitespace, so a quoted two-word
+    # feature name produced `features/vehicle setting/` silently: no error, no
+    # warning, and every later operation on that directory looked normal.
+    # Refuse rather than slugify — auto-renaming would silently change how
+    # existing features resolve their directories.
+    if any(c.isspace() for c in feature):
+        sys.exit(f"refusing: feature name contains whitespace: {feature!r} "
+                 f"(would create a directory with a space; see A-TM04)")
     feat_dir = root / "features" / feature.lower()
     if feat_dir.exists() and not adopt_existing:
         sys.exit(f"refusing to scaffold: {feat_dir} already exists")

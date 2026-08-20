@@ -300,7 +300,14 @@ def write_decisions(feature_dir: Path, body: str, signoff: dict) -> tuple[Path, 
     Returns (path_written, diverted).
     """
     target = feature_dir / "DECISIONS.md"
-    if signoff["signed"]:
+    # A-TM15 — an EXISTING sheet is never overwritten, signed or not. The
+    # original guard fired on `signed` alone, so an unsigned sheet carrying
+    # hand-maintained sections (a rulings index, [PEI] entries) was rewritten
+    # whole with no warning; the loss surfaced only because a later edit's
+    # replace() missed its anchor. Divert on existence, and let the caller
+    # decide whether existence alone is also a refusal (it is only when the
+    # sheet is signed — R-C9).
+    if target.exists():
         alt = feature_dir / "DECISIONS.new.md"
         alt.write_text(body, encoding="utf-8")
         return alt, True
@@ -1060,6 +1067,7 @@ region / replace / re-map) is a ruling, not a detection.
              "- Overridden items: ____\n- Ruling notes:\n")
     written, diverted = write_decisions(
         feature_dir, "\n".join(d), signoff or {"signed": False})
+    print(f"decisions written to: {written}")
     return {"decisions_written": True, "diverted": diverted,
             "decisions_path": written}
 
@@ -1132,7 +1140,14 @@ def main() -> None:
 
     # R-C9 — blocking. Reported after the survey so the run's evidence is on
     # screen alongside the refusal.
-    if outcome["diverted"]:
+    if outcome["diverted"] and not signoff["signed"]:
+        # A-TM15 — existing-but-unsigned: the sheet was preserved and the new
+        # survey went to DECISIONS.new.md. Not a refusal; recon succeeded.
+        print(f"NOTE (A-TM15): {feature_dir / 'DECISIONS.md'} already exists "
+              f"and was NOT overwritten. The fresh survey is at "
+              f"{outcome['decisions_path']} — diff and merge by hand.",
+              file=sys.stderr)
+    elif outcome["diverted"]:
         sys.exit(
             "REFUSED (R-C9): "
             f"{feature_dir / 'DECISIONS.md'} is signed "

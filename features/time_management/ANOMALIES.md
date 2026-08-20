@@ -26,7 +26,7 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | A-TM14 | FORMS.md 引用之 Home v2 交付件不在磁碟上 | PENDING | **Tier 2** |
 | A-TM15 | `recon.py` 整份重寫 `DECISIONS.md`，沖掉手工裁決引用段 | PENDING | Tier 2（修法）／Tier 1（重建） |
 | A-TM16 | Home A-H26 之既有定性可能低估 | PENDING | Tier 2（屬 Home）|
-| A-TM17 | repo 內有身分不明之併行寫入者（含 `vehicle setting` 滅失、git race）| PENDING | Tier 3（呈報 Pei）|
+| A-TM17 | repo 內有身分不明之併行寫入者（含 `vehicle setting` 滅失、git race）| **RESOLVED**（Pei 確認）| Tier 3 |
 | A-TM18 | Comfort 之 framework 僅存本地、未併入全域檔 | PENDING | Tier 2（屬 Comfort）|
 
 ---
@@ -1015,6 +1015,29 @@ features/vehicle setting/ 之刪除是否為其所為（若是，事件關閉為
 **與上列第 1–3 項之關係**：本項為第 1 項之後續實例，同一形態
 （他方之 git 操作與本 session 交錯），可作為釐清併行者身分之時間錨點
 （`554079e` 之 commit 時間即其活動時點之一）。
+
+### 結案（2026-08-20）
+
+```
+A-TM17 —— RESOLVED（Pei, 2026-08-20「A-TM17是」）
+
+Pei 確認：併行寫入者為 Pei 自己開啟之另一 session；
+features/vehicle setting/ 之刪除為其所為。三項登記事實均已解釋，
+repo 無未受控之刪除行為。
+
+保留之限制（理由改變，限制不變）：features/vehicle_setting/ 仍不列為
+回歸受測物，且不對其寫入或實跑腳本 —— 理由不再是身分不明，而是
+併行編輯使量測失去鑑別力（受測目錄同時被他方寫入時，diff 有輸出
+無法區分成因，R-TM21 同一判準）。屬技術限制。
+```
+
+**A-TM01 之 MOOT 不因本條改變** —— 標的確已滅失、R-TM18 確實未能執行，
+事實記載不隨成因解釋而變（R-TM13）。
+
+**第 4 項事實（git race）之殘留**：`554079e` 內 25 個 `time_management`
+檔仍掛於標題為 `feat(vehicle_setting)` 之 commit 下，本執行層之 commit
+message 未進入 git。內容完整、未 push、歷史仍可重寫。**該項屬 git 歷史
+之整理，非本 feature 之技術債，執行層未自行處置，待 Pei 決定。**
 
 ---
 

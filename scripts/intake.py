@@ -421,6 +421,12 @@ KIND_TO_YAML = {
     "workbook": "workbook", "swra_report": "a03_report",
     "polarion_export": "sys1_export", "spec_pdf": "spec_pdf",
     "popup_list": "popup_list",
+    # A-TM10 — cfts_doc had no key, so a CFTS .docx was moved into inputs/ and
+    # then silently left out of feature.yaml. Under spec_mode D that docx IS
+    # the spec source, so Phase 4 would look for a spec that no path pointed
+    # at. Fills spec_pdf only while it still holds the template placeholder
+    # (see the guard in scaffold()) — a real path is never overwritten.
+    "cfts_doc": "spec_pdf",
 }
 
 
@@ -436,13 +442,21 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
     annotated so the Tier 2 reviewer sees a decision was made, not a default.
     """
     feat_dir = root / "features" / feature.lower()
-    if not feat_dir.exists():
-        import subprocess
-        subprocess.run(
-            [sys.executable, str(root / "scripts" / "new_feature.py"),
-             feature, "--root", str(root)], check=True)
+    # A-TM05 — the two scripts assumed opposite things about a pre-existing
+    # feature dir. new_feature.py has --adopt-existing precisely for "the
+    # analysis layer already delivered docs/handoff/ into an otherwise-empty
+    # dir"; intake.py used to skip scaffolding entirely in that case and then
+    # died reading the feature.yaml that was never created. Always call
+    # new_feature.py, adopting when the directory is already there.
+    import subprocess
+    cmd = [sys.executable, str(root / "scripts" / "new_feature.py"),
+           feature, "--root", str(root)]
+    if feat_dir.exists():
+        cmd.append("--adopt-existing")
+    subprocess.run(cmd, check=True)
     inputs = feat_dir / "inputs"
     inputs.mkdir(exist_ok=True)
+    conflicts: list[str] = []
     yaml_path = feat_dir / "feature.yaml"
     text = yaml_path.read_text(encoding="utf-8")
     swras = [f for f in files if f["kind"] == "swra_report"]
@@ -454,6 +468,17 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
         if key == "a03_report" and a03_pick and f["file"] != a03_pick["file"]:
             continue          # not the Scope-designated TC source
         if key:
+            # A-TM10 — never displace a path that is already real. Two kinds
+            # can claim spec_pdf (spec_pdf and cfts_doc); whichever lands
+            # second must not clobber the first. A placeholder is the
+            # template's own `<...>` form.
+            cur = re.search(rf'{key}:\s*"([^"]*)"', text)
+            if cur and not re.search(r"<[^>]*>", cur.group(1)):
+                if cur.group(1) != f"inputs/{f['file']}":
+                    conflicts.append(
+                        f"{key}: kept `{cur.group(1)}`, did NOT overwrite with "
+                        f"`inputs/{f['file']}` ({f['kind']})")
+                continue
             text = re.sub(
                 rf'({key}:\s*)"[^"]*"', rf'\g<1>"inputs/{f["file"]}"', text)
     if len(swras) > 1:
@@ -471,6 +496,8 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
     yaml_path.write_text(text, encoding="utf-8")
     print(f"\nscaffolded {feat_dir}; classified files moved to inputs/; "
           f"feature.yaml paths + spec_mode pre-filled")
+    for c in conflicts:
+        print(f"CONFLICT (A-TM10): {c}")
 
 
 def main() -> None:
