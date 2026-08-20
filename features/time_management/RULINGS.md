@@ -452,3 +452,314 @@ T1–T4 指派**，執行層依歷來常規義務（每一新裁決逐字寫入 
 
 **本條已於本包即時適用**：A-TM11 之舊提案段依此保留（該處置早於本條
 成文，本條為其追認）。
+
+## R-TM14 — 自檢表與指令段須一一對應
+
+（分析層，2026-08-20。上游包 `docs/handoff/02R_framework_lock.md` §1）
+
+下放包末尾「本包產生之新條文清單」之每一列，指令段須有對應之登記指派
+（寫入哪個檔、插在哪個位置、逐字內容）。自檢表列了而指令段未指派者，
+視為下放包缺陷，非執行層漏做。
+
+自檢表之功能是「確認條文已以區塊形式出現」，不等同「已指派落檔」。
+
+依據：01Z-A4（A-TM02a）、02（R-TM13、framework）三次同型。
+與 R-TM11／R-TM12／R-TM13 同族：四者皆為下放包自身之缺陷。
+
+## R-TM15 — Layer 3 訊號之判讀限制
+
+（分析層，2026-08-20。上游包 `docs/handoff/02R_framework_lock.md` §2.1）
+
+canon §4.1.4 第 4 用途（章節分散即 Layer 2 切錯之訊號）僅在「該 leaf
+所落之章節為另一能力所有」時成立。若其所落章節為**條件章節**（依情境／
+時機分章，如 Key Off、Wake Up、Power State）而非能力章節，分散不構成
+訊號 —— spec 依敘述情境分章，Layer 2 依能力分組，兩者不同構是預期的。
+
+判讀順序固定：先讀 leaf 描述之語意軸，再看章節。章節證據不得單獨推翻
+語意分組。
+
+依據：Set 3 之 021，章節層孤立於 1.5.2.2（條件章節），語意層與
+005/006/016 同句型（maintain internal clock / time signal / calendar /
+counters）。
+
+## R-TM17 — framework Part VII Layer 2 簽核
+
+（Pei, 2026-08-20「都簽」。上游包 `docs/handoff/03_signoff.md` §1.1）
+
+```
+R-TM17（Pei, 2026-08-20「都簽」）—— framework Part VII Layer 2 簽核
+
+docs/fw036/framework.md Part VII 之七組 Test Set 簽核通過，
+狀態由 [PROPOSED] 轉 SIGNED：
+
+  Manual Setting (2) · GPS Sync (4) · Master Clock (5) ·
+  CAN Transmission (4) · Display (3) · Zone and DST (2) · Fault Handling (2)
+  合計 22 = 全 leaf set
+
+Layer 1 `Time and Date`（R-TM8）與 Layer 3 主軸章節一併定案。
+相鄰組界線三條（004↔010、014↔022、018↔011）為 §8.2.1 之拘束條款，
+非說明文字，TC 生成時逐條適用。
+
+「Layer 2 未經簽核不得生成 TC」之限制解除。其餘阻塞項不因本條解除
+（A-TM02a 阻塞 D5、R-TM10-A1 仍 SUSPENDED、A-TM13 影響兩片之
+spec_reference）。
+```
+
+**執行層回報（2026-08-20）**：條文已登記，簽核狀態已反映於
+`features/time_management/framework.md`。
+
+**但本條文字所指之 `docs/fw036/framework.md` Part VII 不存在** ——
+該全域檔實測僅有 Part I–VI，且 02R T3 明令「不寫入 `docs/fw036/
+framework.md`（全域檔，跨 feature，待 Pei 裁是否併入）」。
+本 feature 之 framework 依 02R T3 落於 `features/time_management/
+framework.md`。詳見上繳 `03_signoff.md` §2。**簽核之實質內容
+（七組、Layer 1/3、三條界線）不受影響，受影響者僅其所在檔案。**
+
+## R-TM18 — features/vehicle setting/ 移入 archive
+
+（Pei, 2026-08-20「都簽」。上游包 `docs/handoff/03_signoff.md` §1.2）
+
+```
+R-TM18（Pei, 2026-08-20「都簽」）—— features/vehicle setting/ 移入 archive
+
+含空格之孤兒 scaffold `features/vehicle setting/`（A-TM01，成因為
+A-TM04 之工具缺陷，非人為手滑）移入 `archive/`，比照 R-G2 不刪除慣例。
+
+限制：
+1. 只 mv，不 rm。移入後原路徑不得存在，archive 內容須逐檔可讀。
+2. 移動前後各列舉一次兩處目錄，兩份清單須逐檔對應。
+3. 不動 git —— 該目錄之 git 追蹤狀態變化由 Pei 處理。
+4. 移入後於 archive 內該目錄建 `WHY_ARCHIVED.md`，記 A-TM01 與 A-TM04。
+```
+
+**執行層回報（2026-08-20）：未執行，已停並回報。**
+理由：該目錄之 git 追蹤狀態於本 session 期間由他方變更，且 repo 內有
+另一 session 併行作業。移動屬不可逆，在併行狀態未釐清前不動。
+詳見上繳 `03_signoff.md` §4。
+
+**未能執行（2026-08-20）**：目標 `features/vehicle setting/` 於本條指派前
+已被他方自磁碟刪除，非 mv，不可復原。本條之處置無標的可施。
+條文保留為軌跡。事件見 A-TM17。
+
+## R-TM19 — 五項工具修法授權，A-TM15 優先
+
+（Pei, 2026-08-20「都簽」。上游包 `docs/handoff/03_signoff.md` §1.3）
+
+```
+R-TM19（Pei, 2026-08-20「都簽」）—— 五項工具修法授權，A-TM15 優先
+
+A-TM04 / A-TM05 / A-TM10 / A-TM12 / A-TM15 五項修法獲授權。
+分兩階段，順序不可調換 —— 理由見下之「回歸之前提」。
+
+**階段一（本包執行）**：A-TM15 單獨先修。
+  recon.py 之 write_decisions()：目標檔已存在時一律寫
+  DECISIONS.new.md，不得 write_text 覆寫既有檔。
+
+**階段二（本包執行，階段一通過後）**：A-TM04 / A-TM05 / A-TM10。
+  三者皆為 intake/scaffold 路徑之小改，互不相干。
+
+**階段三（本包不執行）**：A-TM12（錨鏈解析路徑）另包處理。
+  其為新增解析能力而非既有行為修正，回歸判準不同型。
+
+**回歸之前提（此即階段順序之理由）**：
+四項之回歸驗證均需對既有 feature 實跑 recon.py 並比對 RECON.md。
+但在 A-TM15 修好之前，該實跑會沖掉受測 feature 之 DECISIONS.md ——
+**回歸動作本身會造成它要防止的那種損害**。故 A-TM15 必須最先修。
+
+回歸判準（階段一、二共用）：對 features/vehicle_setting 實跑
+recon.py，RECON.md 之內容須與修改前逐位元相同；DECISIONS.md 之
+mtime 與 SHA256 須不變。有任一差異即回報並停。
+```
+
+**執行層回報（2026-08-20）：未執行，已停並回報。**
+理由：三支腳本為跨 feature 共用；而本條指定之回歸對象
+`features/vehicle_setting` 正由另一 session 併行作業中（該目錄檔案於
+本 session 期間持續變動）。對共用腳本改動並對他人正在工作之目錄實跑
+recon.py，風險不在本 feature 可承擔範圍。詳見上繳 `03_signoff.md` §5。
+
+## R-TM16 — framework 併入全域檔
+
+（追補：本條原由 `02R-A1_framework_merge.md` §1 指派，該包未執行，
+2026-08-20 依 `03R_review.md` T5 補落。編號不重排 —— R-TM16 遲到而非不存在。）
+
+```
+R-TM16（Pei 授權分析層裁定，2026-08-20「要併入你裁」）—— framework 併入全域檔
+
+本 feature 之 framework Part 併入 docs/fw036/framework.md，編為 Part VII。
+**不建 features/time_management/framework.md。**
+02R §4 之 T3（建 feature-local framework.md）撤銷。
+
+依據為實測之既有慣例，非偏好：
+1. docs/fw036/framework.md 現含 Part I–VI，六個 feature 之 framework 全在
+   該檔（Media / Home / AMFM / SXM / Projection / Privacy）。
+2. features/home/ 與 features/amfm/ 目錄實測皆無 framework.md ——
+   feature-local framework 檔在本 repo 不存在，一例也沒有。
+3. 該檔開頭明載「Part I 之跨領域裁決（orphan routing/attribution、
+   lint vs traceability、assumption markers、priority、anchors-as-style、
+   blocked-parent proportion）適用於 ALL Test Groups」。framework 落在
+   該檔之外，等同不受該六項拘束 —— 那是實質後果，不只是位置問題。
+
+canon §4.1 稱 framework 寫入「framework.md」而未指明路徑，本條以既有
+慣例補足：全域檔為唯一位置。
+```
+
+**執行層回報（2026-08-20）**：Part VII 已併入 `docs/fw036/framework.md`
+（該檔現有 Part I–VII 共 7 個）。`features/time_management/framework.md`
+**未刪除**，依 R-TM13 於檔首加作廢註記保留為軌跡。
+
+**順序依 03R T3 之明令**：先確認 Part VII 落地，再加作廢註記 ——
+否則會出現簽核內容無處可查之空窗。
+
+**依據 2 經補驗為偽（2026-08-20，執行層 03R 上繳提請 1）**
+
+原依據 2 稱「`features/home/` 與 `features/amfm/` 目錄實測皆無
+framework.md —— feature-local framework 檔在本 repo 不存在，一例也沒有」。
+
+補驗（逐目錄列舉七個 feature）：**`features/comfort/framework.md` 存在**，
+且 `docs/fw036/framework.md` 無 Comfort Part —— Comfort 之 framework
+僅存於本地。故該全稱斷言為偽，「全域檔為唯一位置」在本 repo 亦非全稱真。
+
+**結論不變**：本 feature 併入全域檔為 Part VII 仍為正確處置，
+依據 1（全域檔現含六個 feature 之 framework）與依據 3（Part I 之六項
+跨領域裁決適用於 ALL Test Groups，落在檔外即不受其拘束）未受影響，
+且依據 3 為實質理由。
+
+**成因記錄**：原裁定僅查兩個目錄即寫成全稱斷言，屬以雙點代全集，
+與 canon §5a 所禁之代理判準同族。Comfort 之不一致另記 A-TM18。
+
+## R-TM20 — 下放包不得依賴未上繳之前包
+
+（分析層自裁，2026-08-20。上游包 `docs/handoff/03R_review.md` §1）
+
+```
+R-TM20（分析層自裁，2026-08-20）—— 下放包不得依賴未上繳之前包
+
+分析層在前一包之上繳回來並經覆核前，不得發下一包。
+若情況變更必須追發，該追發包須：
+1. 於首節明列其所依賴之前包編號與**該前包尚未上繳**之事實
+2. 將被依賴之指令原文併入本包，使本包自足可執行
+3. 不得以「前包已指派」為由省略任何步驟
+
+依據：02R → 02R-A1 → 03 三包連發，02R-A1 從未執行，導致 03 之 T2
+目標不存在、R-TM16 編號斷裂、02R 與 03 對同一檔案給出相反指示。
+執行層無從判斷何者有效，只能停下 —— 停對了，成本卻已產生。
+```
+
+**執行層回報（2026-08-20）**：已知悉。執行層側之對應作法已於 `03` 上繳
+§2.2 實施：**收到相反指示而無仲裁資訊時，取較早且理由完整者，並停下回報**，
+不自行推定何者有效。本條追認該作法。
+
+## R-TM21 — 跨 feature 共用檔之驗證判準須唯一定錨
+
+（分析層自裁，2026-08-20。上游包 `docs/handoff/03R_review.md` §1.1）
+
+```
+R-TM21（分析層自裁，2026-08-20）—— 跨 feature 共用檔之驗證判準須唯一定錨
+
+驗證指令若跑在跨 feature 共用檔（docs/fw036/framework.md、
+docs/runtime/*、scripts/* 等）上，其比對字串須含本 feature 之唯一識別
+（`Part VII`、`Time and Date`、`SWE-RA-TIME&DATE` 等），不得使用
+`待簽`、`B1（pilot）`、`pilot` 一類他 Part 亦有之泛用字串。
+
+判準寫成後須自問：「本 feature 之工作若完全沒做，本判準會不會照樣通過？」
+會 → 判準無效，重寫。
+
+依據：03 T6 判準 3、4，執行層識破為假通過。
+```
+
+**執行層回報（2026-08-20）**：已知悉並套用於本包之 T7 驗證。
+
+## R-TM22 — R-TM19 階段一、二 HOLD
+
+（分析層自裁，2026-08-20。上游包 `docs/handoff/03R_review.md` §4）
+
+```
+R-TM22（分析層自裁，2026-08-20）—— R-TM19 階段一、二 HOLD
+
+R-TM19 之授權不撤銷，執行時機 HOLD。解除條件（兩項均須）：
+
+1. A-TM17 釐清 —— Pei 確認併行 session 之身分與作業範圍，且
+   features/vehicle setting/ 之刪除有解釋
+2. 回歸受測物經量測選定 —— 候選須同時滿足：
+   a. inputs/ 目錄存在且非空（recon.py 需其素材）
+   b. RECON.md 與 DECISIONS.md 皆存在
+   c. 靜止性：相隔 ≥10 分鐘取兩次 mtime 快照，全目錄無變動
+   選定前 /tmp 備份該 feature 之 DECISIONS.md 與 RECON.md
+
+R-TM19 之階段順序（A-TM15 最先）不變。
+```
+
+**執行層回報（2026-08-20）**：已知悉。本包未改任何腳本。
+
+**執行層補充**：解除條件 2 之 (a) 值得注意 —— 分析層已實測
+`features/home/` 無 `inputs/` 目錄（gitignored，內容不在磁碟）。
+該現象**可能非 home 獨有**：`inputs/` 於各 feature 之 `.gitignore` 均被
+排除，故任何非本機產出之 feature 目錄都可能無素材。選定受測物時，
+(a) 恐為最難滿足之條件，宜先掃描全部 feature 之 `inputs/` 存在性再選。
+
+## R-TM23 — Part VII §8.2.1 界線表增列第四、五條
+
+（分析層裁定，2026-08-20。上游包 `docs/handoff/03Z_closure.md` §2。
+發現者為執行層 `03R` 上繳 §4.2 之動詞軸橫掃。）
+
+```
+R-TM23（分析層裁定，2026-08-20）—— Part VII §8.2.1 界線表增列第四、五條
+
+界線 4 —— 014 GPS Date/Time Broadcast ↔ 008 Time Transmission on CAN
+                                        ／ 017 Date Transmission
+
+  014 驗 **GPS 來源值送出之正確性**：GPS 訊號組
+      （$GPSDateTmHour/Minute/Second/Month/Day/Year$）之內容是否為
+      GPS 導出之值。
+  008 擁有**送出時機與觸發**：週期訊息、CAN wakeup、使用者更新後之重送，
+      作用於主時間訊號 $DateTmHour/Minute$。
+  017 擁有**日期通道**：TELEMATIC_TIME_DATE 與 TLM LIDs 至 IPC。
+
+  → 014 之 TC **不重驗送出時機、不重驗傳輸通道**；
+    008/017 之 TC **不重驗 GPS 來源值之正確性**。
+  spec 依據：GPS 訊號組定義於 1.3.1.1.3（GPS TIME）與 1.5.2.5；
+            傳輸時機定義於 1.3.1.1.4（Time Information Transmission）。
+            兩者為不同章節所有，界線與 spec 結構一致。
+
+界線 5 —— 011 Time Format Handling ↔ 008 Time Transmission on CAN
+
+  011 驗 **格式訊號 $DateTmFormat$ 跨喚醒週期之保存與重送**：
+      sleep→wake 後 recall last known format，並以該訊號送出
+      （spec 物件 4813974，章節 1.3.1.1.5.1）。
+  008 擁有**時間值**之傳輸。
+
+  → 011 之 TC **不驗任何時間值之送出時機**；
+    008 之 TC **不驗格式之保存與重送**。
+
+兩條皆只窄化範圍、不新增主張，屬既有 §8.2.1 條款之同型延伸。
+Part VII 之相鄰組界線表由三條增為五條。
+```
+
+**執行層回報（2026-08-20）**：已寫入 `docs/fw036/framework.md` Part VII
+之界線表，該表現為五列，引言由「三處鄰接」改為「五處鄰接」。
+
+**待 Pei 覆簽之事項已知悉**：R-TM17 之簽核標的為三條界線，現為五條。
+分析層先行裁定使 B1 不受阻；**若 Pei 覆簽有變更，B1 之 008 相關 TC
+須依覆簽結果重審**。執行層於 B1 生成前不再啟動，故目前無既成事實。
+
+## R-TM24 — 整理式簡寫不得與逐字原文混用
+
+（分析層自裁，2026-08-20。上游包 `docs/handoff/03Z_closure.md` §3）
+
+```
+R-TM24（分析層自裁，2026-08-20）—— 整理式簡寫不得與逐字原文混用
+
+分析層為論證所作之整理式簡寫（同義改寫、語序正規化），須與逐字引用
+在形式上可區分：逐字引用加引號並註明來源欄位，簡寫不加引號並註明
+「整理式」。
+
+依據：02R §2.1 將 `maintain time using internal counters` 簡寫為
+`maintain internal counters`，形式上與逐字引用無異，日後可能被複製為
+`test_item` 上半之「原文」。
+```
+
+**執行層回報（2026-08-20）**：已知悉。本條之風險面在 TC 生成階段
+（§4 之 `test_item` 上半須為逐字原文），故執行層之對應作法為：
+**凡 `test_item` 上半之內容，一律取自
+`data/leaf_descriptions.txt`（037 原始欄位之直接輸出），
+不取自任何下放包或上繳包之敘述**。該檔已於 `03R` T6 產出並複驗 22 列。

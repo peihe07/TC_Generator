@@ -1,0 +1,47 @@
+col3 header: 'Requirement  Title'
+col4 header: 'Requirement  Description'
+SWE-RA-TIME&DATE-001 | Manual Time Setting
+    The software shall allow user to set time via HMI and update internal time counters when GPS sync is disabled
+SWE-RA-TIME&DATE-002 | GPS Sync Enable/Disable Logic
+    The software shall enable/disable GPS time synchronization based on NAV_Presence, GPS_Presence, and user settings
+SWE-RA-TIME&DATE-003 | GPS Time Calculation
+    The software shall compute local time using GPS UTC, time zone, and DST at key ON and runtime updates
+SWE-RA-TIME&DATE-004 | GPS Fallback Handling
+    The software shall use internal clock when GPS data is temporarily unavailable and switch back when available
+SWE-RA-TIME&DATE-005 | Internal Clock Accuracy
+    The software shall maintain internal clock with ±2 sec accuracy per 24 hours when GPS is unavailable
+SWE-RA-TIME&DATE-006 | Internal Time Representation
+    The software shall maintain internal time signal and update HU_Time.Info based on calculated values
+SWE-RA-TIME&DATE-007 | Time Display Handling
+    The software shall display time and date on HU and VES as per HMI requirements
+SWE-RA-TIME&DATE-008 | Time Transmission on CAN
+    The software shall transmit time data periodically, on wakeup, and on user update via CAN messages
+SWE-RA-TIME&DATE-009 | Time Signal Validation
+    The software shall validate hour (0–23), minute (0–59), second (0–59) before transmission
+SWE-RA-TIME&DATE-010 | Invalid Data Handling
+    The software shall handle invalid/missing time signals using last valid values and fallback mechanisms
+SWE-RA-TIME&DATE-011 | Time Format Handling
+    The software shall store, recall, and broadcast time format (12H/24H) across wake cycles
+SWE-RA-TIME&DATE-012 | Time Zone Handling
+    The software shall determine and apply time zone automatically using GPS and retain last known value on restart
+SWE-RA-TIME&DATE-013 | DST Handling
+    The software shall automatically adjust daylight saving time based on time zone rules
+SWE-RA-TIME&DATE-014 | GPS Date/Time Broadcast
+    The software shall transmit GPS-based date/time signals or SNA if unavailable
+SWE-RA-TIME&DATE-015 | Manual Date Handling
+    The software shall allow manual date setting and update internal counters when GPS sync is disabled
+SWE-RA-TIME&DATE-016 | Date Master Function
+    The software shall maintain an internal calendar and act as master for vehicle date (2010–2099 range)
+SWE-RA-TIME&DATE-017 | Date Transmission
+    The software shall transmit date via TELEMATICS_TIME_DATE and TLM LIDs to IPC
+SWE-RA-TIME&DATE-018 | Default Initialization
+    The software shall initialize time/date to default values after reset or battery reconnection
+SWE-RA-TIME&DATE-019 | Proxi-Based Behavior
+    The software shall enable/disable time/date features based on Proxi parameters (Cluster type, GPS, NAV)
+SWE-RA-TIME&DATE-020 | IPC Synchronization
+    The software shall synchronize time/date between HU, IPC, and LTM via TIME_DATE messages
+SWE-RA-TIME&DATE-021 | Sleep/Wakeup Handling
+    The software shall maintain time using internal counters during sleep and update on wakeup
+SWE-RA-TIME&DATE-022 | SNA Handling
+    The software shall send SNA/default values when time/date data is invalid or unavailable
+rows: 22

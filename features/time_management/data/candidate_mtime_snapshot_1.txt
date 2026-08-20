@@ -1,0 +1,7 @@
+# 受測物候選 mtime 快照 #1 —— R-TM22 2(c) 靜止性判定之基準
+# 取樣時刻（epoch）: 見下行
+# 產出時以 shell date 記錄，見同包上繳
+sxm	files=245	newest=2026-08-13 21:16:34	features/sxm/.DS_Store
+privacy	files=79	newest=2026-08-20 11:54:01	features/privacy/.DS_Store
+comfort	files=436	newest=2026-08-17 20:02:41	features/comfort/ANOMALIES.md
+user_profiles	files=453	newest=2026-08-20 11:54:28	features/user_profiles/.DS_Store

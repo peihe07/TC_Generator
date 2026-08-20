@@ -10,7 +10,7 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 
 | # | 標題 | 狀態 | 處置層級 |
 |---|---|---|---|
-| A-TM01 | `features/vehicle setting`（含空格）孤兒 scaffold | PENDING | Tier 3 |
+| A-TM01 | `features/vehicle setting`（含空格）孤兒 scaffold | **MOOT**（目標已滅失）| Tier 3 |
 | A-TM02a | 037 之版本身分未定（原 A-TM02，經 R-TM6 分拆）—— **阻塞 D5 交付欄位** | PENDING | Tier 3（隨 RD-1 上問）|
 | A-TM03 | SYS2 EE Architecture 欄大小寫漂移 | PENDING | Tier 1 判準 |
 | A-TM04 | `new_feature.py` 目錄名推導無 slugify | PENDING | Tier 2 |
@@ -26,6 +26,8 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | A-TM14 | FORMS.md 引用之 Home v2 交付件不在磁碟上 | PENDING | **Tier 2** |
 | A-TM15 | `recon.py` 整份重寫 `DECISIONS.md`，沖掉手工裁決引用段 | PENDING | Tier 2（修法）／Tier 1（重建） |
 | A-TM16 | Home A-H26 之既有定性可能低估 | PENDING | Tier 2（屬 Home）|
+| A-TM17 | repo 內有身分不明之併行寫入者（含 `vehicle setting` 滅失、git race）| PENDING | Tier 3（呈報 Pei）|
+| A-TM18 | Comfort 之 framework 僅存本地、未併入全域檔 | PENDING | Tier 2（屬 Comfort）|
 
 ---
 
@@ -51,6 +53,18 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 
 **執行層複核（2026-08-20）**：本次 intake 已獨立確認兩目錄仍並存，且兩者
 皆未進 git（`git status` 顯示為 untracked）。本次作業未觸及任一目錄。
+
+**處置（2026-08-20）—— MOOT，非依 R-TM18 完成**
+
+R-TM18 指派將 `features/vehicle setting/` mv 至 `archive/`。執行時實測：
+原路徑不存在、`archive/` 內無、全 repo `os.walk` 零命中、
+`git log --all` 從未追蹤過 → 形態為 **rm 而非 mv，不可復原**。
+分析層與執行層皆未執行任何刪除。
+
+R-TM18 之「archive 內容須逐檔可讀」無法滿足，故**不標 RESOLVED** ——
+標了等於以處置條文記載一件與該條文不符之事實（R-TM13 所防之情形）。
+
+狀態改 **MOOT — 目標已滅失**。刪除事件本身另立 A-TM17。
 
 ---
 
@@ -698,6 +712,20 @@ SYS2 描述節錄：221 為 `$GPS_Presence$ = [Absent]` 時之內部時鐘精度
 集合」作為物件全集（361），會比真實物件數（358）多 3，且該誤差不會報錯。
 物件全集之正確取法為「標題 `{id}` ∪ 物件行 `^\d{7}:`」，非「全檔 id 掃描」。
 
+**下游影響（2026-08-20，執行層 02 上繳 §4.3 之發現）**
+
+本條之影響不限於 `spec_reference` 欄無章節可寫，亦使受影響 leaf 之
+**章節證據殘缺**，連帶降低 framework 檢驗之效力：
+
+| leaf | `#SYS-RA` | 可解析出之章節數 | 缺口來源 |
+|---|---|---|---|
+| `SWE-RA-TIME&DATE-005` | 2 | 1 | `SYS-RA-221` → 物件 `6151328` 不在 CFTS 基線 |
+| `SWE-RA-TIME&DATE-002` | 6 | 4 | `SYS-RA-224` → 物件 `6151331` 不在 CFTS 基線 |
+
+即 005 之章節證據僅一半可用。framework 檢驗時若據其判定歸組，
+係據殘缺樣本而為 —— 02R §2.1 之定案改以 leaf 描述之語意軸為據，
+不依賴該殘缺章節證據。
+
 ---
 
 ## A-TM14 — FORMS.md 引用之 Home v2 交付件不在磁碟上
@@ -935,6 +963,90 @@ row5 col33: 'FM-WI-FSM-036-A01'
 本條之檔名形態論證自此為雙方確認，非單方實測。**
 
 本 feature 之處置已由 R-TM9-A2 涵蓋，本條不影響本 feature 之任何動作。
+
+---
+
+## A-TM17 — repo 內有身分不明之併行寫入者
+
+**狀態：PENDING。Tier 3 —— 呈報 Pei。** 由 `03R_review.md` §3 指派登記。
+
+```
+A-TM17（PENDING，Tier 3 —— 呈報 Pei）—— repo 內有身分不明之併行寫入者
+
+三個獨立事實，時序相連：
+
+1. （01Z-A3 §6 已報，Pei 未回覆）features/vehicle_setting/ 於 session
+   開始時整個 untracked，其後除 docs/handoff/02_coverage_baseline_
+   correction.md 外似被 add 過。本 session 未動 git。
+2. features/vehicle_setting/ANOMALIES.md mtime 16:51:28、data/ 16:49，
+   落在本 session 期間；本 session 未寫入該目錄任何檔案。
+3. features/vehicle setting/（含空格）於 R-TM18 指派前已從磁碟消失，
+   非 mv 至 archive，全 repo 零命中，git 從未追蹤故不可復原。
+
+三者可能同源。分析層與執行層皆未執行任何刪除或 git 操作。
+
+在併行者身分與作業範圍釐清前：
+- 不對任何跨 feature 共用檔（scripts/、docs/fw036/、docs/runtime/、
+  forms/）執行寫入以外之破壞性操作
+- 不對 features/vehicle_setting/ 執行任何寫入或腳本實跑
+- 腳本修法 HOLD（見 R-TM22）
+
+呈報 Pei 之具體請求：確認另一 session 之身分與作業範圍；確認
+features/vehicle setting/ 之刪除是否為其所為（若是，事件關閉為已知；
+若否，則 repo 有未受控之刪除行為，須先查明再繼續）。
+```
+
+### 執行層補充：第 4 項事實（git race，本 session 實測）
+
+本 session 執行 `git add features/time_management/` 後、`git commit` 前，
+他方執行了 commit。結果：
+
+| | |
+|---|---|
+| commit | `554079e`，標題 `feat(vehicle_setting): rounds 02-03 …` |
+| 內含 | **25 個 `time_management` 檔 + 12 個 `vehicle_setting` 檔** = 37 檔 |
+| 本執行層之 commit message | **未進入 git**（`git commit` 回報 `nothing added to commit`）|
+| 內容完整性 | 已驗：R-TM 16 條、A-TM 16 條、`test_group` 正確、上繳 333 行皆在該 commit 內 |
+| push 狀態 | 未 push（`ahead 7`），歷史理論上可重寫 |
+
+**執行層未自行修復**：修復須重寫歷史，而併行者狀態未明時重寫會破壞其
+工作；且該 commit 不屬本 feature。已呈報 Pei，未獲指示，維持現狀。
+
+**與上列第 1–3 項之關係**：本項為第 1 項之後續實例，同一形態
+（他方之 git 操作與本 session 交錯），可作為釐清併行者身分之時間錨點
+（`554079e` 之 commit 時間即其活動時點之一）。
+
+---
+
+## A-TM18 — Comfort 之 framework 僅存本地、未併入全域檔
+
+**狀態：PENDING。Tier 2。屬 Comfort，非本 feature —— 僅登記供 Comfort owner 覆核。**
+由 `03Z_closure.md` §1.2 指派登記。
+
+```
+A-TM18（PENDING，Tier 2 —— 屬 Comfort，非本 feature）
+
+features/comfort/framework.md 存在，而 docs/fw036/framework.md
+無 Comfort Part。故 Comfort 之 framework 僅存於本地，與其餘六個 feature
+之作法不一致。
+
+兩種可能，本包不判定：
+(a) Comfort 仍在進行中，尚未併入全域檔 —— 則屬正常中間狀態
+(b) Comfort 採本地檔為最終形態 —— 則全域檔非唯一位置，R-TM16 之
+    依據 3（Part I 跨領域裁決之拘束）在 Comfort 亦未生效
+
+本條僅登記，不裁 Comfort 之事。供 Comfort owner 覆核。
+本 feature 之處置不受影響：Part VII 已併入，位置正確。
+```
+
+### 緣起
+
+本條源於執行層於 `03R` 上繳 §5.6 之提請：R-TM16 依據 2 為全稱斷言
+（「一例也沒有」），而全稱斷言被單一反例推翻，驗證成本卻只有一道指令 ——
+成本與風險不對稱。分析層即刻補驗，反例確實存在。
+
+R-TM16 之依據訂正見 `RULINGS.md` 該條末節；**其結論（本 feature 併入
+全域檔）不變**，因依據 1 與依據 3 未受影響。
 
 ---
 
