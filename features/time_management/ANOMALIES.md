@@ -30,6 +30,8 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | A-TM18 | Comfort 之 framework 僅存本地、未併入全域檔 | PENDING | Tier 2（屬 Comfort）|
 | A-TM19 | intake.py 之 A-TM10 衝突訊息未進 INTAKE.md | PENDING | Tier 2（併 A-TM12）|
 | A-TM20 | 併行者寫入本 feature，兩支腳本被覆蓋且內容失落 | PENDING | **Tier 3（呈 Pei）**|
+| A-TM21 | 現存 write_back.py / lint_tcs.py 六項實質缺陷 | PENDING | Tier 2（凍結中不修）|
+| A-TM22 | verify_structure 三層全為反向驗證，member 層對映錯誤不可偵測 | PENDING | **Tier 2（B1 前必決）**|
 
 ---
 
@@ -1153,6 +1155,137 @@ Pei 之偏好明載程式碼註解用繁體中文，現存中文版在該點上�
 且**未被覆蓋**，其內已含 `SPEC_GAP` 與 `BOUNDARIES` 兩表。即三支腳本
 現為**混合來源**，非單一 session 之產出。日後若採整檔取代，須注意該支
 之歸屬與另二支不同。
+
+---
+
+## A-TM21 — 現存 `write_back.py` / `lint_tcs.py` 六項實質缺陷
+
+**狀態：PENDING。Tier 2 —— 凍結中不修，登記待歸屬裁定（A-TM20）。**
+由 `04Z_closure.md` §2 指派登記。發現者為執行層 `04R` T4 之唯讀全文評估。
+
+```
+A-TM21（PENDING，Tier 2 —— 凍結中不修，登記待歸屬裁定）
+
+features/time_management/scripts/ 現存之 write_back.py（214 行）與
+lint_tcs.py（301 行）經唯讀全文評估，六項實質缺陷：
+
+(a) resolve_columns() docstring 承諾表頭複驗與不符即 raise，
+    實作只讀 feature.yaml 之字母，ws / header_row 兩參數未使用。
+    —— docstring 承諾而實作沒有，靜默失效第六例
+(b) check_other_sheets() docstring 稱「逐位元相同」，實作只比對 zip
+    member 名稱集合，內容被改寫而名稱不變則全綠。
+    —— 同上，第七例
+(c) TC_ID_FORMAT 為模組常數（None）且不讀 feature.yaml。R-TM32 已裁定
+    且值已入 feature.yaml:49，write-back 仍會被 unresolved 檢查攔死
+(d) write_rows() 不寫 tc_id；feature.yaml 之 columns 亦無 tc_id 鍵。
+    合 (c) 即「Test Case ID 欄永遠不會被寫入」
+(e) CONST_FUNCTIONAL_SAFETY 為死碼 —— 僅出現於定義與 unresolved 檢查，
+    write_rows() 內未使用，填值亦不會進工作簿
+(f) lint_required_fields() 只檢查鍵存在不檢查是否為空；base_tc() 為
+    全空字串，故一條所有欄位皆空之 TC 會全綠通過
+
+另一項強度差異（非缺陷，§3.6）：read_design_methods() 遍歷整個
+`下拉選單` 分頁收詞彙，僅檢查非空。FORMS.md 實測 DV 來源為 $A$1:$A$9
+恰九條；現實作讀到 8 條或 10 條皆不報錯。
+
+(a)(b)(f) 為讀碼推得，凍結期間未實跑證實（04R §4.3 項 2）。
+```
+
+### 分析層之補充判讀（`04Z` §2，執行層照錄）
+
+> (a) 與 (b) 是同一形態，且是最嚴重的兩項……**讀 docstring 的人會以為
+> 保護存在。這比「沒有保護」更危險 —— 沒有保護時，下一個人會去加；
+> 假裝有保護時，沒有人會去加。**
+
+> (c)+(d) 合起來是一個完整的斷鏈：三處各自看都像小問題，合起來是
+> 「Test Case ID 欄永遠不會被寫入」。
+
+### 處置
+
+**凍結中不修**（A-TM20）。必修項與不得回退項見 **G-TM2**（十二項）。
+`feature.yaml` 之 `tc_id` 欄位對映已由 R-TM34 補入（不在凍結範圍），
+為 (d) 之其中一環，但實際寫入仍待 (c)(d) 修畢。
+
+**現存版之三項優點須保留**，見 G-TM2 項 6–8 —— 其中
+`lint_spec_reference` 之物件 id 存在性閘門為**被覆蓋之執行層版本所無**，
+不得因整檔取代而回退。
+
+### (b) 降級（2026-08-21，依 `04Z` 上繳 §5 之 verify_structure 評估）
+
+```
+**(b) 降級（2026-08-21，依 04Z 上繳 §5 之 verify_structure 評估）**
+
+check_other_sheets() 所指之保護**實際存在**，由
+backend/xlsx_surgical.py:268-275 之 verify_structure 第三層提供，
+且較 docstring 所承諾者更嚴格（逐 member 位元組比對 `a.read(m) !=
+b.read(m)`，且限定僅 patched 之 member 得有差異）。
+
+故 (b) 由「保護缺失」降為「docstring 與實作不符」。
+處置隨之由「補實作」改為「移除該函式」（G-TM2 項 2 訂正）。
+
+**(a) 不隨之降級** —— resolve_columns() 之欄位對映無任何其他機制涵蓋：
+verify_structure 保護檔案結構，不驗欄位對映是否取對。寫入落在錯欄時，
+錯欄仍在目標分頁內屬 patched，結構檢查全綠。
+```
+
+### (d) 嚴重性提高（2026-08-21，依 `04Z-A2` 上繳 §1）
+
+```
+**(d) 嚴重性提高（2026-08-21，依 04Z-A2 上繳 §1）**
+
+原記為「F 欄不會被寫入」。經 canon §10.3 末句
+（`the generator handles assignment, the LLM does not emit tc_id`，
+ASPICE_SWE6_AI_Instruction.md:521-525）確認，本項尚多一層：
+修法若照最直覺路徑做（讓 TC JSON 攜帶 tc_id 並由 tc.get(key) 取），
+會引入一個**違反 canon 的新缺陷**。處置見 G-TM2 項 3 訂正。
+```
+
+---
+
+## A-TM22 — `verify_structure` 三層全為反向驗證，member 層對映錯誤不可偵測
+
+**狀態：PENDING。Tier 2 —— B1 生成前必決。**
+由 `04Z-A3_positive_verification.md` §3 指派登記。
+發現者為執行層 `04Z-A2` 上繳 §5.3 項 1。
+
+```
+A-TM22（PENDING，Tier 2 —— B1 生成前必決）
+
+backend/xlsx_surgical.py 之 verify_structure 三層全為反向驗證
+（不該變的沒變）：
+  第一層 zip member 名稱集合未增減
+  第二層 DV 計數（classic / x14）未變
+  第三層 逐 member 位元組比對，僅 patched 者得異
+
+**無一層驗證正向**（該變的變對了地方）。若 sheet_members() 之
+sheet 名 → zip member 對映錯誤，寫入會落在另一分頁之 member，
+而該 member 恰在 patched 之列，三層全綠。
+
+與 A-TM21(a) 同構（欄位對映錯 → 結構檢查全綠），發生層級不同：
+前者 column 層，本條 member 層。
+
+sheet_members() 與 diff_cells() 尚未讀（04Z-A3 T3 指派）。
+本條之嚴重性須待該二函式讀畢方能定級 —— 若 sheet_members() 之對映
+有自身之正確性保證，本條降為理論風險；若無，則為實質盲區。
+```
+
+### 兩層盲區之並置（`04Z-A3` §3，執行層照錄）
+
+| 層 | 對映 | 錯了會怎樣 | 現有檢查 |
+|---|---|---|---|
+| column | `feature.yaml` 字母 → 實際欄 | 寫進錯欄，仍在目標分頁內 | 全綠（A-TM21(a)）|
+| member | `sheet_members()` sheet 名 → zip member | 寫進錯分頁，該 member 在 patched 內 | 全綠（A-TM22）|
+
+**兩者皆非「保護失效」，而是「該方向根本沒有檢查」。**
+
+### 定級（執行層，依 `04Z-A3` T3 讀畢後判定）
+
+見上繳 `04Z-A3_corrections.md` §3.3。
+
+### 處置
+
+**G-TM3**（寫回後須有正向驗證）為本條之對策，與 G-TM1 / G-TM2 並列為
+B1 前閘門。凍結中不實作。
 
 ---
 

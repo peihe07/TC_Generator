@@ -21,6 +21,7 @@ workbook:
   # column letters, verified by recon header match — do not guess
   columns:
     req_id: "D"
+    tc_id: "F"        # Test Case ID；R-TM34
     test_group: "G"
     test_set: "H"
     test_item: "I"
