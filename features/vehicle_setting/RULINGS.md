@@ -569,3 +569,20 @@ R-VS35（分析層裁定 2026-08-20）
 > 理由：本 feature 已兩次因只試 (1) 而誤判
 > （`$HSW_StatFailSts$` 之值域、`$Cooled_Seats$` 之覆蓋）。
 > 兩次皆非資料問題，皆為查法問題。
+
+### R-VS37 —— Layer 3 之建構（30 包 §3，分析層裁定 2026-08-20）
+
+> Layer 3 不得純以 SWE ID 中段 token 機械切分。
+> 一個 leaf 之 Layer 3 歸屬，須以其 `reqid_list` 所跨之 CFTS044 章節判定：
+>
+>   該 leaf 之 reqid 全部落在單一章節      → 依該章節之 Layer 3
+>   該 leaf 之 reqid 跨越多個同層章節      → 歸 `Common Features`
+>                                             （其為四側／多側共通需求）
+>
+> SWE ID 中段 token 僅作為**預設值**，與章節判定衝突時**以章節為準**，
+> 並於 `framework.md` 逐筆記明其原始 token 與改判依據。
+>
+> 理由：037 之 SWE ID 命名反映其撰寫時之歸檔，非其需求之實際範圍。
+> 實例：`LeftFrontHeatedSeat-004` 之 reqid 跨 1.3.2.1.3.1～.4 四節
+> （左右 × 加熱通風），其內容為 `the HU shall use $Heated_Seat_Levels$
+> to determine which levels are supported` —— 四側共通。

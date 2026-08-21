@@ -138,3 +138,30 @@ High → `[Medium]`、Medium → `[Low]`、Low → `[Off]`、Off → `[High]`。
 > **請求訊號之行為是否隨 `$Heated_Seat_Levels$` 之配置而不同？**
 > 例如 `Levels = 1` 時請求訊號為 1 bit，`Levels = 3` 時承載階數。
 > CFTS044 未明言此點。
+
+## DR-17（新，**Urgency High** —— 分析層擬，Pei 送出）
+
+**Comfort 側沒有任何「單階座椅」之條文。**
+
+CFTS044 定義單階加熱座椅之配置（`$Heated_Seat_Levels$ = [1]`），
+本 feature 有 **14 個** 對應之 SWE leaf（`SWE1-VC-OneStageHeatedSeat-*`），
+其中 **12 個已委派**。
+
+而 Comfort HMI Logic and Flow（`SWE1-HVAC-*`，全母體 **129** 個相異 leaf）中，
+所有座椅加熱／通風之畫面行為條文，其開頭皆逐字為
+`For Multi-Level Heated/Vented seats`；
+明示 `Single-Level` 者僅 `SWE1-HVAC-063`，**且其主詞為加熱方向盤**。
+以 `single[\s-]?level` ∧ `seats?` 交叉查詢 **命中 0**。
+
+### 提問（RD-1）
+
+> 請確認單階加熱座椅之畫面行為：
+>
+> (a) 由 Comfort 之某條文涵蓋而未明示階數？若是，請指明其 leaf id
+> (b) 單階座椅無彈窗、直接切換，故 Comfort 無對應條文？
+> (c) 該行為由第三份文件承載（如 TLM HMI Document）？
+
+**影響**：14 個 `OneStageHeatedSeat` leaf 之委派界線（R-VS7）。
+在答覆前，該 12 個已委派之 leaf 其委派標的與其配置條件矛盾。
+
+**狀態：未送出**（送出屬 Pei）。配對 anomaly：A-VS46。
