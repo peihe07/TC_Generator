@@ -104,12 +104,21 @@ def test_b_exempts_modal_inside_quotes():
     assert "B" not in run(er='1. The label "system shall reboot" is displayed.')
 
 
-def test_c_flags_hedge_word():
-    assert "C" in run(test_item="The system displays the screen properly.\n(shown)")
+def test_c_flags_hedge_word_in_paren_half():
+    """R-6b：括號下半為作者生成內容，hedge 仍受規制。"""
+    assert "C" in run(test_item="The system displays the screen\n"
+                                "(read the screen -> The screen loads properly)")
 
 
 def test_c_allows_specific_wording():
-    assert "C" not in run(test_item="The system displays the screen.\n(shown)")
+    assert "C" not in run(test_item="The system displays the screen\n"
+                                    "(read the screen -> The Media screen is shown)")
+
+
+def test_c_exempts_hedge_in_verbatim_upper_half():
+    """R-6b：上半為需求原句 verbatim，其用語屬來源文件，不受 C 規制。"""
+    assert "C" not in run(test_item="TLM is able to work properly again\n"
+                                    "(read the state -> The TLM restores the values)")
 
 
 def test_d_flags_powered_on_precondition():

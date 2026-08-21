@@ -3,7 +3,7 @@
   "counts": {
     "A": 20,
     "B": 0,
-    "C": 3,
+    "C": 0,
     "D": 0,
     "E": 0,
     "F": 0,
@@ -21,7 +21,7 @@
   "row_counts": {
     "A": 20,
     "B": 0,
-    "C": 3,
+    "C": 0,
     "D": 0,
     "E": 0,
     "F": 0,
@@ -57,7 +57,7 @@
   "status": {
     "A": "已校準",
     "B": "已校準",
-    "C": "已校準",
+    "C": "已校準（R-6b 範圍，基準見下）",
     "D": "已校準",
     "E": "已校準",
     "F": "已校準",
@@ -237,30 +237,6 @@
           "field": "proc",
           "detail": "禁用動詞 'check whether'",
           "snippet": "e and the screen to check whether the disclaimer appears"
-        },
-        {
-          "check": "C",
-          "row": 32,
-          "tc_id": "NR1L-PowerManagement-023",
-          "field": "test_item",
-          "detail": "hedge 'properly'",
-          "snippet": "TLM is able to work properly again and it has to restore the last user settings"
-        },
-        {
-          "check": "C",
-          "row": 39,
-          "tc_id": "NR1L-PowerManagement-030",
-          "field": "test_item",
-          "detail": "hedge 'properly'",
-          "snippet": "TLM is able to work properly again and it has to restore the last user settings"
-        },
-        {
-          "check": "C",
-          "row": 147,
-          "tc_id": "NR1L-PowerManagement-138",
-          "field": "test_item",
-          "detail": "hedge 'Successfully'",
-          "snippet": "eft_Result.Info == \"Successfully\"THEN TLM has to set Antitheft_Activation.Req ba"
         },
         {
           "check": "I-sibling",

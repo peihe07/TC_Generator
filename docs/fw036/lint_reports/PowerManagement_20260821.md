@@ -13,7 +13,7 @@
 | --- | --- | ---: | ---: | --- | --- |
 | A | 禁用動詞 (proc) | 20 | 20 | 每次命中 | 已校準 |
 | B | ER 情態詞 (er) | 0 | 0 | 每次命中 | 已校準 |
-| C | hedge (test_item) | 3 | 3 | 每次命中 | 已校準 |
+| C | hedge (test_item 括號下半) | 0 | 0 | 每次命中 | 已校準（R-6b 範圍，基準見下） |
 | D | PC 違規 (pre) | 0 | 0 | 每次命中／每編號行 | 已校準 |
 | E | proc/er 編號行數不對齊 | 0 | 0 | 每列 | 已校準 |
 | F | 方括號佔位 (proc) | 0 | 0 | 每次命中 | 已校準 |
@@ -28,7 +28,7 @@
 | N | 行尾多餘句號 | 0 | 0 | 每行 | 已校準 |
 | P | 訊號記法未用三件組 | 41 | 35 | 每次命中 | 已校準（PM 批 1：41→0） |
 
-**總計：行計 241**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 238**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
@@ -56,14 +56,6 @@
 | 280 | NR1L-PowerManagement-270 | proc | 禁用動詞 'check whether' | Read the screen to check whether the startup screens appear |
 | 281 | NR1L-PowerManagement-271 | proc | 禁用動詞 'check whether' | Read the screen to check whether the startup screens appear |
 | 292 | NR1L-PowerManagement-282 | proc | 禁用動詞 'check whether' | e and the screen to check whether the disclaimer appears |
-
-### C — hedge (test_item)（行計 3／列計 3）
-
-| 列 | TC ID | 欄位 | 說明 | 片段 |
-| ---: | --- | --- | --- | --- |
-| 32 | NR1L-PowerManagement-023 | test_item | hedge 'properly' | TLM is able to work properly again and it has to restore the last user settings |
-| 39 | NR1L-PowerManagement-030 | test_item | hedge 'properly' | TLM is able to work properly again and it has to restore the last user settings |
-| 147 | NR1L-PowerManagement-138 | test_item | hedge 'Successfully' | eft_Result.Info == "Successfully"THEN TLM has to set Antitheft_Activation.Req ba |
 
 ### I-sibling — 同 Requirement ID 括號行逐字重複（行計 104／列計 104）
 

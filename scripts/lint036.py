@@ -96,7 +96,7 @@ DEFAULT_LENGTH_LIMIT = 50
 CHECK_TITLES = {
     "A": "禁用動詞 (proc)",
     "B": "ER 情態詞 (er)",
-    "C": "hedge (test_item)",
+    "C": "hedge (test_item 括號下半)",
     "D": "PC 違規 (pre)",
     "E": "proc/er 編號行數不對齊",
     "F": "方括號佔位 (proc)",
@@ -114,7 +114,8 @@ CHECK_TITLES = {
 
 # 校準狀態（00c 最終版）：M、J 經全語料分佈補校，改標已校準
 CHECK_STATUS = {
-    "A": "已校準", "B": "已校準", "C": "已校準", "D": "已校準",
+    "A": "已校準", "B": "已校準", "C": "已校準（R-6b 範圍：Media 錨值 1→0）",
+    "D": "已校準",
     "E": "已校準", "F": "已校準", "G": "已校準（詞彙表外值待接入）",
     "H": "已校準", "I": "已校準", "I-sibling": "未校準（M15）",
     "J": "已校準（行計口徑）", "K": "已校準（分級待 R-5）",
@@ -333,9 +334,11 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
             continue
         add("B", "er", f"情態詞 {m.group(0)!r}", snippet_of(er, m.start()))
 
-    # C hedge
-    for m in RE_C.finditer(item):
-        add("C", "test_item", f"hedge {m.group(0)!r}", snippet_of(item, m.start()))
+    # C hedge（範圍依 R-6b：僅括號下半。上半為需求原句 verbatim，
+    # 其用語屬來源文件而非作者所擇，不受「作者用語品質」類檢查規制）
+    for line in paren_lines(item):
+        for m in RE_C.finditer(line):
+            add("C", "test_item(括號下半)", f"hedge {m.group(0)!r}", line[:80])
 
     # D PC 違規
     for m in RE_D_POWERED.finditer(pre):
