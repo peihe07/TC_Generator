@@ -33,6 +33,7 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | A-TM21 | 現存 write_back.py / lint_tcs.py 六項實質缺陷 | PENDING | Tier 2（凍結中不修）|
 | A-TM22 | verify_structure 三層全為反向驗證，member 層對映錯誤不可偵測 | PENDING | **Tier 2（B1 前必決）**|
 | A-TM23 | CFTS015 兩套物件編號並存，工作簿採 7 位家族而文件無此寫法先例 | **AWAITING_UPSTREAM**（R-TM43）| Tier 2 |
+| A-TM24 | functional_safety 之值未裁定，且 TODO 標記掛錯條文 | PENDING | **Tier 2（B1 寫回前必決）**|
 
 ---
 
@@ -1336,7 +1337,16 @@ CFTS015 內存在兩套並存且可互相對應之物件編號：
 
 R-TM40 採 7 位家族（SYS2 `Source Requirement items` 欄之值）。
 `CFTS015-<7 位>` 之寫法於 CFTS015 全文出現 **0 次**，
-故為本專案新定之形式，非沿用文件既有慣例。
+~~故為本專案新定之形式，非沿用文件既有慣例。~~
+
+> **修正（2026-08-21，R-TM40 依據再訂正）**：該形式為 canon §10.7(a)
+> **明文規定**之格式（`CFTS 母文件 → CFTS{nnn}-{ObjectID}，ObjectID 為
+> 該物件之 Polarion 7 位號碼`），且新 canon **明文禁止短號作為錨**
+> （其舉例恰為 `CFTS015-824`）。實測結論（文件內 0 次）不變，
+> 但其意義為「文件內無同形寫法」，非「無依據」。
+>
+> **註**：`05R` §4.1 指示引用之 §10.7 Rules 第 2 條已隨舊節刪除，
+> 現行依據為改寫後之 §10.7(a)。見 `RULINGS.md` R-TM40 之「依據再訂正」段。
 
 風險：審閱者若見工作簿之 `CFTS015-4814185` 而在文件中搜尋
 `CFTS015-4814185`，將零命中；須改搜 `4814185`。反之若見文件之
@@ -1377,6 +1387,61 @@ Pei 採 **(a) + (c)**：維持 7 位家族不阻塞 B1，並於交付說明註�
 **執行層提請**：(a) 之「交付說明」落點未指定（候選：工作簿 Remarks 欄 /
 `docs/fw036/` 交付文件 / Part VII）。影響 B1 之 Remarks 設計，見
 `RULINGS.md` R-TM43 之回報段。
+
+---
+
+## A-TM24 — `functional_safety` 之值未裁定，且 TODO 標記掛錯條文
+
+**狀態：PENDING。Tier 2 —— B1 寫回前必決。**
+由 `05R_stage_b.md` §5 指派登記。**緣起為執行層階段 A 之 A4 決定**
+（值由條文定、不由 TC 資料定），該決定使本項成為硬阻塞。
+
+```
+A-TM24（PENDING，Tier 2 —— B1 寫回前必決）
+
+write_back.py 之 CONST_FUNCTIONAL_SAFETY 現為 None，標 TODO(R-TM10-A1)。
+
+**標記掛錯條文**：R-TM10-A1 管跨 feature 樣式參照；functional_safety
+為交付欄位之內容值。抄他 feature 之值屬 R-TM10(b) 明列之不得援引。
+
+故本項不會隨 R-TM10-A1 解除而解決，須獨立裁定。
+
+可用之來源，依優先序：
+1. 母本 S 欄之 DV —— 若存在，值域即為候選集（Tier 1，可實測）
+2. FM-WI-FSM-036-A01 之填寫規範或 SWQT 團隊之既定慣例（Tier 3，問 Pei）
+3. 若二者皆無，屬範圍界定，Tier 2 → Pei 裁
+
+**現況為安全的**：run() 之 unresolved 檢查會在 --write 前 raise，
+故不會靜默寫入 None。但 B1 之寫回將因此被攔。
+
+本包 T3 指派實測第 1 項。
+```
+
+### 來源 1 之實測結果（2026-08-21，T3）—— **不成立**
+
+對母本複本之 `xl/worksheets/sheet6.xml` 唯讀解析，四組 DV 之涵蓋範圍：
+
+| DV | sqref | 涵蓋欄 | formula1 |
+|---|---|---|---|
+| classic | `P10:Q1411` | **P–Q** | `"P0,P1,P2,P3"` |
+| classic | `T10:Z1411` | T–Z | `"0,1"` |
+| classic | `AF10:AF1411` | AF | `"Pass, Fail, Pending,Block,NA"` |
+| x14 | `R10:R1411` | R | `下拉選單!$A$1:$A$9` |
+
+**S 欄（第 19 欄，`functional_safety`）不落在任何 DV 之 sqref 範圍內。**
+
+**故來源 1 不成立**，A-TM24 轉由來源 2（036 填寫規範或 SWQT 慣例，Tier 3）
+或來源 3（範圍界定，Tier 2）處理 —— **兩者皆須 Pei**。
+
+### 執行層附帶發現：P 欄之 DV 涵蓋至 Q 欄
+
+`P10:Q1411` 涵蓋 **P（priority）與 Q（Estimated Test Time）兩欄**，
+即 Q 欄之儲存格亦受 `"P0,P1,P2,P3"` 之驗證拘束。
+
+**對本 feature 無實質影響**（Q 欄依 `BLANK_BY_DECISION` 留空，
+空值不觸發 list 驗證），但**若日後有人填 Q 欄**，將被迫填入 P0–P3
+之一或觸發驗證警告。屬母本之既存形態，非本 feature 造成，
+**登記於此不另立條**。
 
 ---
 

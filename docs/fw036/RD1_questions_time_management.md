@@ -74,7 +74,9 @@ CFTS015 內存在兩套並存且可互相對應之物件編號：
 
 本工作簿之 specification_reference 採 `CFTS015-{7 位物件 id}`，
 id 取自 SYS2 匯出之 `Source Requirement items` 欄。
-`CFTS015-<7 位>` 之寫法於 CFTS015 全文出現 0 次，為本專案新定之形式。
+`CFTS015-<7 位>` 之寫法於 CFTS015 全文出現 0 次，惟依 canon §10.7(a)
+（`CFTS 母文件 → CFTS{nnn}-{ObjectID}，ObjectID 為該物件之 Polarion
+7 位號碼`）採 Polarion SourceID 形式，且該節明文禁止短號作為錨。
 
 **問**：該欄之期望寫法為何？是否應改採短號家族，或另有既定之參照體系？
 
