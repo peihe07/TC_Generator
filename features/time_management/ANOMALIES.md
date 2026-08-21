@@ -29,9 +29,10 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | A-TM17 | repo 內有身分不明之併行寫入者（含 `vehicle setting` 滅失、git race）| **RESOLVED**（Pei 確認）| Tier 3 |
 | A-TM18 | Comfort 之 framework 僅存本地、未併入全域檔 | PENDING | Tier 2（屬 Comfort）|
 | A-TM19 | intake.py 之 A-TM10 衝突訊息未進 INTAKE.md | PENDING | Tier 2（併 A-TM12）|
-| A-TM20 | 併行者寫入本 feature，兩支腳本被覆蓋且內容失落 | PENDING | **Tier 3（呈 Pei）**|
+| A-TM20 | 併行者寫入本 feature，兩支腳本被覆蓋且內容失落 | **RESOLVED**（R-TM44）| Tier 3 |
 | A-TM21 | 現存 write_back.py / lint_tcs.py 六項實質缺陷 | PENDING | Tier 2（凍結中不修）|
 | A-TM22 | verify_structure 三層全為反向驗證，member 層對映錯誤不可偵測 | PENDING | **Tier 2（B1 前必決）**|
+| A-TM23 | CFTS015 兩套物件編號並存，工作簿採 7 位家族而文件無此寫法先例 | **AWAITING_UPSTREAM**（R-TM43）| Tier 2 |
 
 ---
 
@@ -664,6 +665,17 @@ Phase 4 亦不必等腳本修法。
 
 ---
 
+**降為非阻塞（2026-08-21，依 R-TM40）**
+
+spec_reference 之取值改為 `CFTS015-{Source Requirement item id}`，
+止於物件 id，不再需要「物件 id → 章節號」之 docx 解析。
+故本條由「B1 之欄位內容阻塞」降為**非阻塞**，其 recon.py 修法
+（R-TM19 階段三）不再是 B1 之前置。
+
+錨鏈工作不作廢：`data/leaf_to_section_probe.txt` 仍為 framework
+Layer 3 主軸章節表之依據，亦為 R-TM23 兩條界線之 spec 依據。
+改變者為其角色 —— 由交付欄位之來源，改為 framework 導航之依據。
+
 ## A-TM13 — 2 筆被引用之需求，其來源物件不在 CFTS 基線內
 
 **狀態：PENDING。Tier 2，RD-1 候選。** 由 01R §4 指派登記。
@@ -1020,6 +1032,21 @@ features/vehicle setting/ 之刪除是否為其所為（若是，事件關閉為
 （他方之 git 操作與本 session 交錯），可作為釐清併行者身分之時間錨點
 （`554079e` 之 commit 時間即其活動時點之一）。
 
+### 歸屬結案（2026-08-21，R-TM44）
+
+```
+R-TM44（Pei, 2026-08-21）—— features/time_management/ 由本 session 續持
+```
+
+Pei 裁定 `features/time_management/` 由本 session 續持，**本條轉 RESOLVED**。
+
+直接後果四項（R-TM44 逐字，見 `RULINGS.md`）：`scripts/` 解凍；
+現存三支腳本為工作基底且**不因來源而降低其地位**（依 G-TM2 逐項修正，
+非整檔重寫）；快照保留不刪；併行寫入風險由 Pei 於另一端停止作業消除。
+
+**本條之事實記載不因結案而變**（R-TM13）：09:13–09:14 之覆蓋確曾發生，
+執行層原產出之兩份確已失落無備份。結案的是歸屬，不是事件。
+
 ### 結案（2026-08-20）
 
 ```
@@ -1286,6 +1313,70 @@ sheet_members() 與 diff_cells() 尚未讀（04Z-A3 T3 指派）。
 
 **G-TM3**（寫回後須有正向驗證）為本條之對策，與 G-TM1 / G-TM2 並列為
 B1 前閘門。凍結中不實作。
+
+---
+
+## A-TM23 — CFTS015 兩套物件編號並存，工作簿採 7 位家族而文件無此寫法先例
+
+**狀態：PENDING。Tier 2 —— 交付件可讀性。**
+由 `04Z-A5_numbering_correction.md` §4.1 指派登記。
+**緣起為 Pei 於聊天層之質疑**（「CFTS015 編號不都是 7 位數字嗎？」），
+分析層實測後發現其 R-TM40 之依據取錯類別。
+
+```
+A-TM23（PENDING，Tier 2 —— 交付件可讀性）
+
+CFTS015 內存在兩套並存且可互相對應之物件編號：
+
+  短號家族：CFTS015-732 … CFTS015-1639（26 個相異值，僅見於修訂註記）
+  7 位家族：4813898 … 4814253（270 個相異值，全篇正文與章節標題）
+
+對應實例：物件 4814185 之內文含 `CFTSMV015_CIP_R1_O922_118_inline.rtf`，
+其次一物件 4814186 稱 `CFTS015-922` —— 短號 922 即 7 位 4814185。
+
+R-TM40 採 7 位家族（SYS2 `Source Requirement items` 欄之值）。
+`CFTS015-<7 位>` 之寫法於 CFTS015 全文出現 **0 次**，
+故為本專案新定之形式，非沿用文件既有慣例。
+
+風險：審閱者若見工作簿之 `CFTS015-4814185` 而在文件中搜尋
+`CFTS015-4814185`，將零命中；須改搜 `4814185`。反之若見文件之
+`CFTS015-922` 而在工作簿中搜尋，亦零命中。**兩套編號在字面上不互通。**
+
+處置提請（Tier 2，待 Pei）：
+(a) 維持現狀，並於工作簿 Remarks 或交付說明註明編號家族；或
+(b) 改用短號家族 —— **不可行**，SYS2 不提供短號，且短號僅 26 個
+    相異值涵蓋不到全部 270 個物件；或
+(c) 於 RD-1 併問上游該參照體系之期望寫法
+
+分析層建議 (a) + (c)：先照 R-TM40 執行不阻塞 B1，同時於 RD-1 併問。
+```
+
+### 執行層補充：本條與 A-TM13 之交會
+
+A-TM13 之兩個 BLOCKED 物件（`6151328` / `6151331`）為 **`615xxxx` 區段**，
+既不屬短號家族亦不屬本檔之 `481xxxx` 7 位家族。即 SYS2 引用了**第三個
+區段**之物件 id。
+
+此使 A-TM23 之「兩套編號」描述在嚴格意義上不完整 —— 就本 feature 之
+資料而言，**SYS2 側可見三個區段**：`481xxxx`（CFTS015 本文，270 個）、
+`456xxxx`（WrapperResource，3 個，見 A-TM13 末節）、
+`615xxxx`（不在 CFTS015 內，2 個）。
+
+**不影響 A-TM23 之結論與處置**（其論述對象為「工作簿寫法 vs 文件寫法」
+之不互通），但 RD-1 若依 (c) 併問，**宜一併問及 `615xxxx` 區段之歸屬**
+—— 那與 Q-TM2 是同一個問題的兩面。
+
+### 處置已定（2026-08-21，R-TM43）—— 轉 AWAITING_UPSTREAM
+
+Pei 採 **(a) + (c)**：維持 7 位家族不阻塞 B1，並於交付說明註明兩套編號
+不互通；同時於 RD-1 併問（**Q-TM4 已增列**，狀態 DRAFT）。
+(b) 改用短號家族確定不採。
+
+**本條由 PENDING 轉 AWAITING_UPSTREAM** —— 處置已定，答案待 RD-1 回覆。
+
+**執行層提請**：(a) 之「交付說明」落點未指定（候選：工作簿 Remarks 欄 /
+`docs/fw036/` 交付文件 / Part VII）。影響 B1 之 Remarks 設計，見
+`RULINGS.md` R-TM43 之回報段。
 
 ---
 

@@ -13,7 +13,7 @@ paths:
   popup_list: null   # intake 命中測試 0（無 String/Popup Message 表頭、無 PU-number id）；見 01 §5(7)
 
 spec_mode: "D"        # A/B/C/D/E per FEATURE_ONBOARDING §3
-spec_reference_template: "<Spec Filename>_{outline}"
+spec_reference_template: "CFTS015-{source_item_id}"   # R-TM40
 
 workbook:
   sheet: "Test Case Specification 測試用例規範"   # rev C 版面，見 FORMS.md

@@ -29,8 +29,12 @@ commit 與否仍屬 Pei，本快照不排除日後 commit。
 
 ## 狀態
 
-- **歸屬未定** —— A-TM20，待 Pei 裁（`features/time_management/` 由哪一個
-  session 負責）
+- ~~**歸屬未定** —— A-TM20，待 Pei 裁（`features/time_management/` 由哪一個
+  session 負責）~~
+
+  > **歸屬已定（2026-08-21，R-TM44）**：features/time_management/ 由本
+  > session 續持。本快照保留為 A-TM20 事件與階段 A/B/C 修法前狀態之證據，
+  > 不刪除。
 - **缺陷登記** —— A-TM21（六項，見 `ANOMALIES.md`）
 - **必修項** —— G-TM1（四項）+ G-TM2（十二項），B1 生成前須齊備
 - 逐檔 SHA256 與 mtime 見 `SOURCE_STATE.txt`
