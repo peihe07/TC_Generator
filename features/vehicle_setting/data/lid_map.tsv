@@ -1,3 +1,4 @@
+# SUPERSEDED — lossy, do not use as input; rebuilt by scripts/lid_parse.py into data/lid_pairs.tsv
 lid	sheet	row	function	atlantis_high_signal	atlantis_high_can	atlantis_high_format	atlantis_signal	atlantis_can	atlantis_format	usage_comment	group_label_at_15	flags
 2ndHdRstRelRq	CAN Mapping	0		RADIO_B3.HDRstRelRq_2ndRow	CAN-BH						Atlantis	
 A_EV_Kilometers	CAN Mapping	0	A_EV_Kilometers	IPC_FD_11.A_EV_Kilometers	FD	see dbc					Atlantis	

@@ -1,0 +1,132 @@
+token	pos	class	bound_form	bound_value	exhaustive_marker	verdict_source	reason	tail
+$DriverSide$	256766	(a)			false	判準		 signal value shall have no impact on the Heated and Vented seat switch behavior
+$DriverSide$	553796	(a)			false	判準		 signal value shall have no impact on the Heated and Vented seat switch behavior
+$DriverSide$	741056	(a)			false	判準		 PROXI value shall have no impact on the Heated and Vented seat switch behavior.
+$DriverSide$	756568	(a)			false	判準		 PROXI value shall have no impact on the Heated and Vented seat switch behavior.
+$ESS_ENG_ST$	75672	(a)			false	判準		 signal.  4858043: [Artifact Type:Subsystem Functional Requirement] [State:New] 
+$ESS_ENG_ST$	75987	(a)			false	判準		 signal to determine if the Engine_OFF condition is a result of the vehicle ente
+$ESS_ENG_ST$	253230	(a)			false	判準		 signal.  4858550: [Artifact Type:Subsystem Functional Requirement] [State:New] 
+$ESS_ENG_ST$	253584	(a)			false	判準		 signal to determine if a change in $EngRun_Stat$ is a result of the vehicle ent
+$ESS_ENG_ST$	298877	(a)			false	判準		 signal.  4858705: [Artifact Type:Subsystem Functional Requirement] [State:New] 
+$ESS_ENG_ST$	299117	(a)			false	判準		 signal to determine if a change in $EngRun_Stat$ is a result of the vehicle ent
+$EngRun_Stat$	253201	(a)			false	判準		 signal and the $ESS_ENG_ST$ signal.  4858550: [Artifact Type:Subsystem Function
+$EngRun_Stat$	298848	(a)			false	判準		 signal and the $ESS_ENG_ST$ signal.  4858705: [Artifact Type:Subsystem Function
+$FL_HS_RQ$	165527	(a)			false	判準		 depending on the current status of $HeatedSeatFL$. The signal value to be sent 
+$FL_HS_RQ$	712382	(a)			false	判準		 AND $FL_HS_RQ2$ to the higher value.  4859994: [Artifact Type:Subsystem Functio
+$FL_VS_RQ_TGW$	190997	(a)			false	判準		 depending on the current status of $VentedSeatFL$. The signal value to be sent 
+$FL_VS_RQ_TGW$	713436	(a)			false	判準		 AND $FL_VS_RQ_TGW2$ to the higher value.  4859997: [Artifact Type:Subsystem Fun
+$FR_HS_RQ$	178300	(a)			false	判準		 depending on the current status of $HeatedSeatFR$. The signal value to be sent 
+$FR_VS_RQ_TGW$	204192	(a)			false	判準		 depending on the current status of $VentedSeatFR$. The signal value to be sent 
+$HSW_RQ_TGW$	247971	(a)			false	判準		 depending on the current status of $HSW_Stat_2$. The signal value to be sent is
+$HSW_Stat$	66314	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $HSW_S
+$HSW_Stat$	67248	(a)			false	判準		 signal, it shall compare to the stored state and, if different, replace the sto
+$HSW_Stat$	69073	(a)			false	判準		 signal and update the heated steering wheel switch, if present, per the HMI.  4
+$HSW_Stat$	238246	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $HSW_S
+$HSW_Stat$	239340	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $HSW_S
+$HSW_Stat$	240959	(a)			false	判準		 signal, it shall compare to the stored state and , if different, replace the st
+$HSW_Stat$	242746	(a)			false	判準		 signal and update the heated steering wheel switch, per the HMI.  4858525: [Art
+$HSW_Stat$	551577	(a)			false	判準		, the relative icon on TLM_Display.GUI shall change according to TLM HMI Documen
+$HSW_Stat_2$	66694	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $HSW_S
+$HSW_Stat_2$	67662	(a)			false	判準		 signal, it shall compare to the stored state and , if different, replace the st
+$HSW_Stat_2$	69495	(a)			false	判準		 signal and update the heated steering wheel switch, if present, per the HMI.  4
+$HSW_Stat_2$	238783	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $HSW_S
+$HSW_Stat_2$	239941	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $HSW_S
+$HSW_Stat_2$	240642	(a)			false	判準		 signals, if received.  4858520: [Artifact Type:Subsystem Functional Requirement
+$HSW_Stat_2$	241460	(a)			false	判準		 signal, it shall compare to the stored state and , if different, replace the st
+$HSW_Stat_2$	243043	(a)			false	判準		 signal and update the heated steering wheel switch, per the HMI.  4858526: [Art
+$HSW_Stat_2$	248019	(a)			false	判準		. The signal value to be sent is detailed belowCurrent status of $HSW_Stat_2$ Si
+$HSW_Stat_2$	248096	(a)			false	判準		. The signal value to be sent is detailed belowCurrent status of $HSW_Stat_2$ Si
+$HdRstRelRq$	107482	(a)			false	判準		 signal within a time period of <Tsend>.  4858160: [Artifact Type:Subsystem Func
+$HdRstRelRq$	377900	(a)			false	判準		 signal to the CBC within a time period of <Tsend>.  4858998: [Artifact Type:Sub
+$HdRstRelRq$	378289	(a)			false	判準		 signal to the FSM within a time period of <Tsend>.  4858999: [Artifact Type:Sub
+$HeatedSeatFL$	34975	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Heate
+$HeatedSeatFL$	35396	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Heate
+$HeatedSeatFL$	35911	(a)			false	判準		 signal it shall compare to the stored state and, if different and valid, replac
+$HeatedSeatFL$	36343	(a)			false	判準		 signals, if received.  4857944: [Artifact Type:Subsystem Functional Requirement
+$HeatedSeatFL$	37597	(a)			false	判準		 signal and update the left front heated seat switch, if present, per the HMI.  
+$HeatedSeatFL$	156089	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Heate
+$HeatedSeatFL$	157805	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Heate
+$HeatedSeatFL$	158470	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Heate
+$HeatedSeatFL$	159016	(a)			false	判準		 signal, it shall compare to the stored state and, if different, and valid, repl
+$HeatedSeatFL$	159476	(a)			false	判準		 signals, if received.  4858311: [Artifact Type:Subsystem Functional Requirement
+$HeatedSeatFL$	160639	(a)			false	判準		 signal and update the left front heated seat switch, per the HMI.  4858314: [Ar
+$HeatedSeatFL$	165573	(a)			false	判準		. The signal value to be sent is detailed belowCurrent status of $HeatedSeatFL$ 
+$HeatedSeatFL$	165652	(a)			false	判準		. The signal value to be sent is detailed belowCurrent status of $HeatedSeatFL$ 
+$HeatedSeatFL$	508080	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FL_HS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$HeatedSeatFL$	516088	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FL_HS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$HeatedSeatFL$	524820	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FL_HS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$HeatedSeatFR$	43125	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Heate
+$HeatedSeatFR$	43547	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Heate
+$HeatedSeatFR$	44062	(a)			false	判準		 signal, it shall compare to the stored state and , if different, and valid, rep
+$HeatedSeatFR$	44497	(a)			false	判準		 signals, if received.  4857965: [Artifact Type:Subsystem Functional Requirement
+$HeatedSeatFR$	45753	(a)			false	判準		 signal and update the right front heated seat switch, if present, per the HMI. 
+$HeatedSeatFR$	168808	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Heate
+$HeatedSeatFR$	170556	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Heate
+$HeatedSeatFR$	171221	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Heate
+$HeatedSeatFR$	171768	(a)			false	判準		 signal, it shall compare to the stored state and, if different, and valid, repl
+$HeatedSeatFR$	172228	(a)			false	判準		 signals, if received.  4858341: [Artifact Type:Subsystem Functional Requirement
+$HeatedSeatFR$	173392	(a)			false	判準		 signal and update the right front heated seat switch, per the HMI.  4858344: [A
+$HeatedSeatFR$	178346	(a)			false	判準		. The signal value to be sent is detailed belowCurrent status of $HeatedSeatFR$ 
+$HeatedSeatFR$	178425	(a)			false	判準		. The signal value to be sent is detailed belowCurrent status of $HeatedSeatFR$ 
+$HeatedSeatFR$	508428	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FR_HS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$HeatedSeatFR$	516436	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FR_HS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$HeatedSeatFR$	525168	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FR_HS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$Heated_Seat_Levels$	156485	(a)			false	人讀改判	**非需求條文** —— 位於 Revision Notes 之變更紀錄（`… condition (SRXX-17327) in: CFTS044-333, …`），其列出受該 CR 影響之條款編號，不賦值	 to determine which levels are supported by the vehicle and HMI. valid values ar
+$Heated_Seat_Levels$	169204	(a)			false	人讀改判	**非需求條文** —— 位於 Revision Notes 之變更紀錄（`… condition (SRXX-17327) in: CFTS044-333, …`），其列出受該 CR 影響之條款編號，不賦值	 to determine which levels are supported by the vehicle and HMI. valid values ar
+$Heated_Seat_Levels$	181978	(a)			false	人讀改判	**非需求條文** —— 位於 Revision Notes 之變更紀錄（`… condition (SRXX-17327) in: CFTS044-333, …`），其列出受該 CR 影響之條款編號，不賦值	 to determine which levels are supported by the vehicle and HMI. valid values ar
+$Heated_Seat_Levels$	195194	(a)			false	人讀改判	**非需求條文** —— 位於 Revision Notes 之變更紀錄（`… condition (SRXX-17327) in: CFTS044-333, …`），其列出受該 CR 影響之條款編號，不賦值	 to determine which levels are supported by the vehicle and HMI. valid values ar
+$Heated_Seats$	33047	(a)			false	判準		 to determine if the vehicle is equipped with heated seats and update the HMI.  
+$Heated_Seats$	152767	(a)			false	判準		 to determine if the vehicle is equipped with heated seats and update the HMI.  
+$Heated_Seats$	742651	(a)			false	人讀改判	敘述性：ECU 配置變數之**清單**（`Car_Configuration_N.<name>`），列出變數名而不賦值	 Car_Configuration_14.Cooled_Seats Car_Configuration_20.Heated_Steering_Wheel  4
+$Heated_Steering_Wheel$	33617	(a)			false	判準		 to determine if the vehicle is equipped with a heated steering wheel and update
+$Heated_Steering_Wheel$	153967	(a)			false	判準		 to determine if the vehicle is equipped with a heated steering wheel and update
+$Heated_Steering_Wheel$	742718	(a)			false	人讀改判	敘述性：ECU 配置變數之**清單**（`Car_Configuration_N.<name>`），列出變數名而不賦值	  4860099: [Artifact Type:Subsystem Functional Requirement] [State:New] [ECU:RRM
+$Hybrid_Type$	20526	(a)			false	人讀改判	**非需求條文** —— 位於 Revision Notes 之變更紀錄（`CR25968 (SR25): -> Added …`）	 condition (SRXX-17327)<br /> 03/04/2024 Jose A. Moran CR26391 (SR25):<br />-> U
+$Hybrid_Type$	730788	(a)			false	判準		 and $Fuel_Cell_Presence$*For reference only, refer to Vehicle Category HMI for 
+$Hybrid_Type$	786636	(a)			false	人讀改判	**非需求條文** —— 位於 Revision Notes 之變更紀錄（`… condition (SRXX-17327) in: CFTS044-333, …`），其列出受該 CR 影響之條款編號，不賦值	 condition (SRXX-17327) in: CFTS044-333, CFTS044-338, CFTS044-339, CFTS044-356, 
+$Stop_And_Start_cfg$	75134	(a)			false	判準		 PROXI parameter to determine when a vehicle is equipped with Stop-Start. 1.3.1.
+$Stop_And_Start_cfg$	152448	(a)			false	判準		 signal to determine if the vehicle is equipped with the Start-Stop system.  485
+$Stop_And_Start_cfg$	252639	(a)			false	判準		 signal to determine if the vehicle is equipped with the Start-Stop system. 1.3.
+$Stop_And_Start_cfg$	260783	(a)			false	判準		 signal to determine if the vehicle is equipped with the Start-Stop system.  485
+$TGW_DISP_STAT$	88579	(a)			false	判準		 signal value.  4858093: [Artifact Type:Subsystem Functional Requirement] [State
+$TGW_DISP_STAT$	126576	(a)			false	判準		 signal value.  4858222: [Artifact Type:Subsystem Functional Requirement] [State
+$TGW_DISP_STAT$	354206	(a)			false	判準		 signal value.  4858916: [Artifact Type:Subsystem Functional Requirement] [State
+$TGW_DISP_STAT$	394912	(a)			false	判準		 signal. See {CFTS020} for the signal value the HU shall set it to.  4859050: [A
+$TGW_DISP_STAT$	417196	(a)			false	判準		 signal. See {CFTS020} for the signal value the HU shall set it to.  4859109: [A
+$TGW_DISP_STAT$	417505	(a)			false	判準		 signal value to [Display OFF / DISP_OFF].  4859110: [Artifact Type:Subsystem Fu
+$TGW_DISP_STAT$	662076	(a)			false	判準		 signal. See {CFTS020} for the signal value the HU shall set it to.  4859807: [A
+$TGW_DISP_STAT$	669706	(a)			false	判準		 signal. See {CFTS020} for the signal value the HU shall set it to.  4859837: [A
+$VC_VEH_LINE$	134495	(a)			false	人讀改判	敘述性：`<token> PROXI parameters, the HU shall populate …`，述其為輸入而不賦值	 PROXI parameters, the HU shall populate a Drive Modes toggle button on the Spla
+$VentedSeatFL$	51056	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFL$	51478	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFL$	51993	(a)			false	判準		 signal, it shall compare to the stored state and , if different, replace the st
+$VentedSeatFL$	53375	(a)			false	判準		 signal and update the left front vented seat switch, if present, per the HMI.  
+$VentedSeatFL$	181582	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFL$	183309	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFL$	184000	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFL$	184464	(a)			false	判準		 signals, if received.  4858370: [Artifact Type:Subsystem Functional Requirement
+$VentedSeatFL$	184782	(a)			false	判準		 signal, it shall compare to the stored state and , if different, replace the st
+$VentedSeatFL$	185713	(a)			false	判準		 signal and update the left front vented seat switch, per the HMI.  4858373: [Ar
+$VentedSeatFL$	191047	(a)			false	判準		. The signal value to be sent is detailed belowCurrent status of $VentedSeatFL$ 
+$VentedSeatFL$	191126	(a)			false	判準		. The signal value to be sent is detailed belowCurrent status of $VentedSeatFL$ 
+$VentedSeatFL$	536911	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FL_VS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$VentedSeatFL$	537259	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FL_VS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$VentedSeatFL$	546405	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FL_VS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$VentedSeatFL$	546760	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FL_VS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$VentedSeatFR$	58692	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFR$	59113	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFR$	59628	(a)			false	判準		 signal, it shall compare to the stored state and , if different, replace the st
+$VentedSeatFR$	61012	(a)			false	判準		 signal and update the right front vented seat switch, if present, per the HMI. 
+$VentedSeatFR$	194299	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFR$	194798	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFR$	196540	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFR$	197205	(a)			true	判準		 are shown below. All other states shall be considered invalid by the HU. $Vente
+$VentedSeatFR$	197669	(a)			false	判準		 signals, if received.  4858401: [Artifact Type:Subsystem Functional Requirement
+$VentedSeatFR$	197987	(a)			false	判準		 signal, it shall compare to the stored state and , if different, replace the st
+$VentedSeatFR$	199279	(a)			false	判準		 signal and update the right front vented seat switch, per the HMI.  4858405: [A
+$VentedSeatFR$	204242	(a)			false	判準		. The signal value to be sent is detailed belowCurrent status of $VentedSeatFR$ 
+$VentedSeatFR$	204321	(a)			false	判準		. The signal value to be sent is detailed belowCurrent status of $VentedSeatFR$ 
+$VentedSeatFR$	537651	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FR_HS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$VentedSeatFR$	537999	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FR_VS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$VentedSeatFR$	547150	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FR_HS_STATFailSts passes to ""Fail_Present"" value, the relative "
+$VentedSeatFR$	547505	(a)			false	人讀改判	"敘述性：條文以 `Regardless of the value of <token>` 起首，**明示該 token 之值不影響本條**；其後之 `passes to ""Fail_Present""` 屬另一訊號（`*_STATFailSts`）"	", IF STATUS_CSWM.FR_VS_STATFailSts passes to ""Fail_Present"" value, the relative "

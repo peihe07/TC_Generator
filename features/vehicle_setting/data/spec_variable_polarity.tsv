@@ -1,0 +1,36 @@
+token	polarity	values
+$DSP_SK_PRSNT$	include	1|Present|True
+$DriverSide$	include	0h: Left Side, 1h: Right Side|1h: Right Side|1h: Right hand|Left Side|Right Drive|Right Side|Right hand drive
+$ESS_ENG_ST$	include	1h or 2h or 3h or 4h or 5h or 6h or 8h or 9h|7h: ENS disabled|7h: ENS disabled|ENS Disabled|ENS_DSBL|Fh: SNA|SNA
+$ESS_ENG_ST$	exclude	ENS Disabled|ENS_DSBL|ENS Disabled|SNA
+$EngRun_Stat$	include	Engine_On|IDLE_STBL//UNLIMITED//LIMITED//RUN|a
+$EngRun_Stat$	exclude	Engine_On|IDLE_STBL//UNLIMITED//LIMITED//RUN
+$FL_HS_RQ$	include	0h: Not Pressed|0h: Not pressed|1h: Pressed|Heated Seat Pressed / HS_PSD|High|Low|Medium|Not Pressed|Not Pressed / HS_NOT_PSD|Off|Pressed
+$FL_VS_RQ_TGW$	include	0h: Not Pressed|0h: Not pressed|1h: Pressed|High|Low|Medium|Not Pressed|Not Pressed / VS_NOT_PSD|Off|Pressed|Vented Seat Pressed / VS_PSD
+$FR_HS_RQ$	include	0h: Not Pressed|0h: Not pressed|1h: Pressed|Heated Seat Pressed / HS_PSD|High|Low|Medium|Not Pressed|Not Pressed / HS_NOT_PSD|Off|Pressed
+$FR_VS_RQ_TGW$	include	0h: Not Pressed|0h: Not pressed|1h: Pressed|High|Low|Medium|Not Pressed|Not Pressed / VS_NOT_PSD|Not pressed / VS_NOT_PSD|Off|Pressed|Vented Seat Pressed / VS_PSD
+$HSW_RQ_TGW$	include	0h: Not Pressed|0h: Not pressed|1h: Pressed|High|Low|Medium|NOT Pressed / NOT_PSD|Not Pressed / NOT_PSD|ON|Off|Pressed / PSD
+$HSW_Stat$	include	0h: Off|1h: On|Heated steering wheel off / HSW_OFF|OFF|ON|Off|On
+$HSW_StatFailSts$	include	Fail_Not_Present|Fail_Present
+$HSW_Stat_2$	include	Heated steering wheel high / HSW_HI|Heated steering wheel low / HSW_LO|Heated steering wheel medium / HSW_MED|Heated steering wheel off / HSW_OFF
+$HdRstRelRq$	include	Not Pressed|Not pressed|Pressed
+$HeatedSeatFL$	include	0h: Off|1h: Low|3h: High|Heated Seat High / HS_HI|Heated Seat High/HS_HI|Heated Seat Low / HS_LO|Heated Seat Low/HS_LO|Heated Seat Medium / HS_MED|Heated Seat Off / HS_OFF|Heated Seat Off/HS_OFF|Heated_seat_high|Heated_seat_low|Heated_seat_mid|Heated_seat_off
+$HeatedSeatFR$	include	0h: Off|1h: Low|3h: High|Heated Seat High / HS_HI|Heated Seat High/HS_HI|Heated Seat Low / HS_LO|Heated Seat Low/HS_LO|Heated Seat Medium / HS_MED|Heated Seat Off / HS_OFF|Heated Seat Off/HS_OFF|Heated_seat_high|Heated_seat_low|Heated_seat_mid|Heated_seat_off
+$Heated_Seat_Levels$	include	1|2|3|One Level
+$Heated_Seats$	include	Front|Front Seats|Front and Rear Seats|Front Seats or Front|Present
+$Heated_Seats_Levels$	include	1
+$Heated_Seats_Levels$	exclude	1
+$Heated_Steats_Levels$	include	Three Levels|Two Levels
+$Heated_Steering_Levels$	include	1_Level|3 Levels|3_Levels
+$Heated_Steering_Wheel$	include	Present
+$Hybrid_Type$	include	BEV|HEV|HEV OR PHEV OR BSG48 OR BSG12|PHEV|PHEV OR BEV OR HEV|PHEV OR BEV OR REPB OR HEV OR FCEV|Plugin Hybrid Electric Vehicle|[PHEV
+$Hybrid_Type$	exclude	[PHEV
+$PowerMode$	include	IGN_OFF|IGN_RUN|Ign. off & acc. (4 position switch) / IGN_OFF_ACC|Ignition lock / IGN_LK|Ignition off (5 position switch) / IGN_OFF|Ignition run / IGN_RUN|Ignition start / IGN_START|Ignition lock / IGN_LK|RUN
+$PowerMode$	exclude	4h:Ignition run|4h:Ignition run|IGN_RUN|Ignition run|Ignition run
+$PrplsnSysAtv$	include	Active|Not Active|Not Active
+$RVC_SK_PRSNT$	include	1|Present
+$Stop_And_Start_cfg$	include	Absent|Present
+$VC_VEH_LINE$	include	DS or DJ or D2 or DD or DP or DF or DX|DT|HDCC|JL / VEH_JL|K8 / VEH_K8|M182/M189|M189|M240|M4 OR MP|RU / VEH_RU|VEH_LA OR VEH_LD OR VEH_LX|WL|WS|[WS
+$VC_VEH_LINE$	exclude	LB|M182/M189|M240|WS
+$VentedSeatFL$	include	0h: Off|1h: Low|3h: High|Vented Seat High / VS_HI|Vented Seat High/VS_HI|Vented Seat Low / VS_LO|Vented Seat Low/VS_LO|Vented Seat Medium / VS_MED|Vented Seat Off / HS_OFF|Vented Seat Off / VS_OFF|Vented Seat Off/VS_OFF|Vented seat Medium / VS_MED|Vented seat medium / VS_MED|Vented_seat_high|Vented_seat_low|Vented_seat_mid|Vented_seat_off|Vented Seat Off / VS_OFF
+$VentedSeatFR$	include	0h: Off|1h: Low|3h: High|Vented Seat High / HS_HI|Vented Seat High / VS_HI|Vented Seat High/HS_HI|Vented Seat Low / VS_LO|Vented Seat Low / VS_Lo|Vented Seat Low/VS_Lo|Vented Seat Medium / VS_MED|Vented Seat Off / HS_OFF|Vented Seat Off / VS_OFF|Vented Seat Off/VS_OFF|Vented seat Medium / VS_MED|Vented seat medium / VS_MED|Vented_seat_high|Vented_seat_low|Vented_seat_mid|Vented_seat_off

@@ -57,3 +57,45 @@ LID 表載 `HdRstRelRq` 之 Atlantis High 對映為 `RADIO_B3.HDRstRelRq_3rdRow`
 
 > **DR-13 撤銷**（14 包 §1）：`$ESS_ENG_ST$` 之 message 歸屬非矛盾，係執行層未展開 LID 單格多值。
 
+## DR-15（新，**Urgency High** —— 排在 framework 之前）
+
+**兩造皆 in-scope，非架構差異可吸收者。**
+
+**CFTS044 側**：條文 `4858356`（`$FR_HS_RQ$`）與 `4858386`（`$FL_VS_RQ_TGW$`），
+標籤逐字 `[EE Architecture:Atlantis High]`，載請求訊號**承載階數且為循環降階**：
+High → `[Medium]`、Medium → `[Low]`、Low → `[Off]`、Off → `[High]`。
+
+**LID ＋ DBC 側**：LID 之 Atlantis High 欄組將其對映至
+`TELEMATIC_VEHICLE_SETUP3.<X>_Tlm`；基線 DBC 實測
+`FL_HS_Tlm`／`FR_HS_Tlm`／`FL_VS_Tlm`／`HSW_Tlm` **皆為 1 bit**，
+`VAL_` 為 `0 "Not_Pressed"` / `1 "Pressed"`。
+
+> `Pressed / Not Pressed` 之四階對照另見於 `4857991` 等條文，
+> 其標籤為 `[EE Architecture:CUSW]`，依 R-VS19 不取用 ——
+> **故此衝突無法以架構差異解釋。**
+
+### 提問（RD-1，可直接送出）
+
+> CFTS044 條文 4858356 與 4858386（`[EE Architecture:Atlantis High]`）
+> 定義 `$FR_HS_RQ$` / `$FL_VS_RQ_TGW$` 依目前座椅狀態送出
+> `Medium` / `Low` / `Off` / `High` 之循環降階值。
+>
+> 惟基線 CAN 資料庫 `PDT27_E2A_R4_BHCAN.dbc` 中，
+> `TELEMATIC_VEHICLE_SETUP3` 之 `FL_HS_Tlm` / `FR_HS_Tlm` /
+> `FL_VS_Tlm` / `HSW_Tlm` 皆為 **1 bit**，值表為
+> `0 = Not_Pressed`、`1 = Pressed`；
+> `Logical Identifiers and CAN Mapping v1.76` 之 Atlantis High 欄組
+> 亦將該等請求對映至上述 1 bit 訊號。
+>
+> 請確認 Atlantis High 之實作為何者：
+> (a) 請求訊號為 1 bit，階數之循環由 HU 內部狀態機決定；或
+> (b) 請求訊號承載階數，則其實際 signal 名／bit 寬／值表為何。
+>
+> 影響：Heated Seat 與 Vented Seat 兩個 Test Set 之 procedure、
+> expected_result 與設計方法（Functional Based vs Decision Table），
+> 涉及 160 個 Functional leaf。
+
+**阻塞**：`Heated Seat`（88 leaf）與 `Vented Seat`（72 leaf）之**分支結構**
+—— 即 framework Part Vehicle Setting 之 Layer 3 與設計方法。
+**配對 A-VS30。**
+
