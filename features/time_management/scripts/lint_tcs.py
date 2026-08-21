@@ -54,33 +54,14 @@ TEST_ITEM_TOKEN_MAX = 50                            # canon §4.3.1 上半上限
 TEST_ITEM_TAIL_RE = re.compile(r"\([^)]+\)\s*$")    # canon §4.3.1 下半括號
 DESIGN_METHOD_COUNT = 9          # B6 —— 母本 下拉選單!$A$1:$A$9
 LEAF_COUNT = 22                  # B2 —— 037 之 leaf 全集
-SPEC_GAP_LEAVES = {"SWE-RA-TIME&DATE-005", "SWE-RA-TIME&DATE-002"}   # B3 / A-TM13
-TEST_SETS = {                    # C1 —— framework Part VII，R-TM17 已簽
-    "Manual Setting", "GPS Sync", "Master Clock", "CAN Transmission",
-    "Display", "Zone and DST", "Fault Handling",
-}
+# B3 / B4 / C1 之裁決值取自 tm_rulings —— **context 層與本檔之單一來源**
+# （06 §4.2）。各寫一份會漂移，且漂移時 lint 全綠：context 說 A、lint 驗 B，
+# 生成照 A 寫則被 B 攔，呈現為「模型出錯」而非「規則不一致」。
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from tm_rulings import (                      # noqa: E402
+    SPEC_GAP_LEAVES, TEST_SETS, BOUNDARY_SIGNALS)
+
 SPEC_REF_RE = re.compile(r"^CFTS015-(\d{7})$")      # B7(i) —— canon §10.7(a)
-
-# B4 —— 五條 §8.2.1 界線（R-TM17 三條 + R-TM25 兩條）之訊號歸屬。
-# 訊號名與物件 id 取自 04 T3 已複驗之錨點（九 token 全命中、六物件章節相符）。
-BOUNDARY_SIGNALS = {
-    "SWE-RA-TIME&DATE-011": {
-        "owns": ["$DateTmFormat$"],
-        "not_ours": ["$DateTmHour$", "$DateTmMinute$", "$DateTmSecond$"],
-        "why": "011 擁有格式跨喚醒週期之保存與重送（物件 4813974，1.3.1.1.5.1）；時間值之送出時機屬 008",
-    },
-    "SWE-RA-TIME&DATE-008": {
-        "owns": ["$DateTmHour$", "$DateTmMinute$", "$DateTmSecond$"],
-        "not_ours": ["$DateTmFormat$", "$GPSDateTm"],
-        "why": "008 擁有主時間訊號之送出時機與觸發（1.3.1.1.4）；格式屬 011、GPS 來源值屬 014",
-    },
-    "SWE-RA-TIME&DATE-014": {
-        "owns": ["$GPSDateTm"],
-        "not_ours": ["$DateTmHour$", "$DateTmMinute$", "$DateTmSecond$"],
-        "why": "014 擁有 GPS 來源值送出之正確性（1.3.1.1.3 / 1.5.2.5）；送出時機與通道屬 008/017",
-    },
-}
-
 
 class LintError(RuntimeError):
     """呼叫或權威讀取之失敗 —— 與「發現」區分，走 exit 2。"""

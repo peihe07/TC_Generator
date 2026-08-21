@@ -10,14 +10,23 @@ A-TM20 凍結中且未進 git。
 
 | 檔案 | 產出者 | 特徵字串 `Structure ported from` |
 |---|---|---|
-| `build_batch_context.py` | **本 session 執行層** | 命中 1 |
+| ~~`build_batch_context.py`~~ | ~~**本 session 執行層**~~ | ~~命中 1~~ ← **見下更正** |
 | `write_back.py` | **非本 session** | 命中 0 |
 | `lint_tcs.py` | **非本 session** | 命中 0 |
 
-後二者為 2026-08-21 09:13–09:14 另一 session 覆蓋所得。
-**本 session 原產出之兩份（`write_back.py` 351 行、`lint_tcs.py` 312 行，
-皆英文）已失落，無備份。** 本快照保全的是覆蓋後之現存版，非本 session
-之原產出。
+~~後二者為 2026-08-21 09:13–09:14 另一 session 覆蓋所得。
+本 session 原產出之兩份（`write_back.py` 351 行、`lint_tcs.py` 312 行，
+皆英文）已失落，無備份。~~
+
+> **更正（2026-08-21，`05Z` 上繳 §1）**：經 SHA256 三方比對
+> （本快照 = git HEAD = `7344b995d0b4faf2`），`build_batch_context.py`
+> **亦非**本 session 之產出。**三支腳本全部**為 2026-08-21 09:13–09:15
+> 另一 session 覆蓋所得；本 session 執行層原產出之三份皆已失落，無備份。
+>
+> 上表之「特徵字串命中 1」為 `04` 輪之判定，其時該檔尚未被覆蓋；
+> **覆蓋於數秒後發生，而此後未再複查** —— 該錯誤陳述被引用三輪。
+
+本快照保全的是**覆蓋後**之狀態，非本 session 之原產出。
 
 ## 為何是複製而非 commit
 
