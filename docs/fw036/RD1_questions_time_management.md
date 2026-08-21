@@ -62,7 +62,7 @@ SYS2 之 Functional Requirement 共 126 筆；037 之 22 片 leaf 合計引用
 寫。依 §8.2 不得由 TC 作者自行創設 leaf 或分解 SYS2 條文湊覆蓋，
 故此缺口以宣告處理，不以生成填補。
 
-## Q-TM4 — spec_reference 之參照體系寫法
+## N-TM1 — spec_reference 之參照體系（說明，非提問）
 
 CFTS015 內存在兩套並存且可互相對應之物件編號：
 
@@ -78,7 +78,9 @@ id 取自 SYS2 匯出之 `Source Requirement items` 欄。
 （`CFTS 母文件 → CFTS{nnn}-{ObjectID}，ObjectID 為該物件之 Polarion
 7 位號碼`）採 Polarion SourceID 形式，且該節明文禁止短號作為錨。
 
-**問**：該欄之期望寫法為何？是否應改採短號家族，或另有既定之參照體系？
+**說明（非提問）**：依 canon §10.7(a)，本工作簿採 `CFTS015-{Polarion
+7 位 ObjectID}`，短號需求 ID 不作為錨、僅於 reasoning 引用。
+此處記載供上游知悉，不需回覆。
 
-**影響**：兩套編號字面不互通 —— 審閱者見工作簿之 `CFTS015-4814185`
+**附帶提示**：兩套編號字面不互通 —— 審閱者見工作簿之 `CFTS015-4814185`
 而於文件搜尋同字串將零命中，須改搜 `4814185`。

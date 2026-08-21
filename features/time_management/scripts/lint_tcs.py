@@ -49,6 +49,9 @@ except ImportError:  # pragma: no cover
     yaml = None
 
 
+PENDING_RE = re.compile(r"PENDING:\s*DR-\d+")      # canon §8.4.3 佔位形式
+TEST_ITEM_TOKEN_MAX = 50                            # canon §4.3.1 上半上限
+TEST_ITEM_TAIL_RE = re.compile(r"\([^)]+\)\s*$")    # canon §4.3.1 下半括號
 DESIGN_METHOD_COUNT = 9          # B6 —— 母本 下拉選單!$A$1:$A$9
 LEAF_COUNT = 22                  # B2 —— 037 之 leaf 全集
 SPEC_GAP_LEAVES = {"SWE-RA-TIME&DATE-005", "SWE-RA-TIME&DATE-002"}   # B3 / A-TM13
@@ -262,12 +265,30 @@ def lint_leaf_source(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
     `Requirement Description` 欄之直接輸出，是 test_item 上半之唯一許可
     來源 —— R-TM24 之對策為**來源隔離**，非人工記得不要抄下放包之簡寫。
     """
+    out = []
     leaf = str(tc.get("req_id", ""))
     if leaf not in auth["leaves"]:
-        return [("leaf-source",
-                 f"{where}: req_id `{leaf}` 不在 data/leaf_descriptions.txt "
-                 f"之 {LEAF_COUNT} 筆 leaf 全集內")]
-    return []
+        out.append(("leaf-source",
+                    f"{where}: req_id `{leaf}` 不在 data/leaf_descriptions.txt "
+                    f"之 {LEAF_COUNT} 筆 leaf 全集內"))
+    # canon §4.3.1（R-TM48 使其生效）—— test_item 兩段式。
+    # 本閘只管**結構**（下半括號之存在、上半長度），不管措辭 —— 措辭屬
+    # TC 內容，仍受 R-TM10-A1 拘束。
+    item = str(tc.get("test_item") or "")
+    if item.strip():
+        if not TEST_ITEM_TAIL_RE.search(item.strip()):
+            out.append(("test-item-shape",
+                        f"{where}: test_item 缺下半之 `(...)` 測試目的。"
+                        "canon §4.3.1：缺括號下半 = FAIL，不得出貨"))
+        head = TEST_ITEM_TAIL_RE.sub("", item.strip()).strip()
+        n = len(head.split())
+        if n > TEST_ITEM_TOKEN_MAX:
+            out.append(("test-item-shape",
+                        f"{where}: test_item 上半 {n} token，超過 canon "
+                        f"§4.3.1 之上限 {TEST_ITEM_TOKEN_MAX}。須摘句"
+                        "（以與括號下半直接相關之句為限），全文以 "
+                        "specification_reference 指回，不得整段傾倒"))
+    return out
 
 
 def lint_test_set(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
@@ -306,11 +327,19 @@ def lint_spec_gap(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
     （§8.4.1）。Remarks 為空即為把缺口藏起來。
     """
     leaf = str(tc.get("req_id", ""))
-    if leaf in SPEC_GAP_LEAVES and not str(tc.get("remarks") or "").strip():
+    if leaf not in SPEC_GAP_LEAVES:
+        return []
+    rem = str(tc.get("remarks") or "")
+    if not rem.strip():
         return [("spec-gap",
                  f"{where}: {leaf} 為 A-TM13 之受影響 leaf，其 Remarks 為空。"
+                 "canon §8.4.3 明訂缺件不得留空，須寫 "
+                 "`PENDING: DR-5 CFTS015 缺件物件 …`（R-TM41 處置訂正）")]
+    if not PENDING_RE.search(rem):
+        return [("spec-gap",
+                 f"{where}: {leaf} 之 Remarks 未含 `PENDING: DR-` 佔位。"
                  "該 leaf 有 SYS-RA 之來源物件不在 CFTS015 基線內，"
-                 "缺口須於 Remarks 宣告（G-TM1 項 3）")]
+                 "缺口須以 canon §8.4.3 之佔位形式宣告，非任意措辭")]
     return []
 
 
@@ -444,15 +473,26 @@ def lint_d5_scope(auth: dict) -> list[tuple[str, str]]:
     ws = wb[auth["sheet"]]
     v = ws["D5"].value
     wb.close()
-    if v in (None, ""):
+    s = str(v or "")
+    if not s.strip():
+        return [("d5-scope",
+                 "D5（範圍 Scope）為**空**。canon §8.4.3（R-TM48 使其生效）"
+                 "明訂欄位因來源缺失而無法填寫時須寫 `PENDING: DR-{n}`，"
+                 "**不得留空、不得填 NA**。本欄應為 "
+                 "`PENDING: DR-2 037 正式報告檔名`（R-TM9-A2 處置訂正）")]
+    if PENDING_RE.search(s):
         return [("spec-scope-pending",
-                 "D5（範圍 Scope）為空 —— R-TM9-A2：其值為所依據 037 之"
-                 "文件識別，而 037 身分未定（A-TM02a）。此為待決狀態之提示，"
-                 "非缺陷；不得以 feature 名或 spec 標題組值填入")]
+                 f"D5 為佔位 {s!r} —— 037 身分未定（A-TM02a），依 canon "
+                 "§8.4.3 以 PENDING 佔位。此為待決狀態之提示，非缺陷；"
+                 "DR 結案後須換為 037 檔名（去副檔名）")]
+    if s.upper() == "NA":
+        return [("d5-scope",
+                 "D5 為 `NA` —— canon §8.4.3 明訂 NA 僅限「確認不適用」。"
+                 "本欄為缺件而非不適用，須用 `PENDING: DR-2`")]
     return [("d5-scope",
-             f"D5 已有值 {v!r} —— R-TM9-A2 要求在 A-TM02a 裁定前維持空白。"
-             "若該值係本工作簿之依據 037 檔名（去副檔名），須先更新 A-TM02a "
-             "與 A-TM11 之狀態再行填入")]
+             f"D5 已有值 {s!r} —— 若該值係本工作簿之依據 037 檔名"
+             "（去副檔名），須先更新 A-TM02a 與 A-TM11 之狀態；"
+             "不得以 feature 名或 spec 標題組值填入（R-TM9-A2）")]
 
 
 def lint_step_er_count(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
@@ -535,6 +575,8 @@ def base_tc(auth: dict) -> dict:
     tc["test_procedure"] = "1. a\n2. b"
     tc["expected_result"] = "1. a\n2. b"
     tc["remarks"] = ""
+    # canon §4.3.1 —— 上半 verbatim + 下半 `(...)` 測試目的
+    tc["test_item"] = "The software shall set time (manual entry)"
     return tc
 
 
@@ -588,6 +630,12 @@ def self_test(auth: dict) -> int:
          {**green, "specification_reference": f"CFTS015-{oid_ok}, CFTS015-{oid_ok}"}),
         ("step-er-count    (步驟數 vs ER 行數)",
          {**green, "expected_result": "1. a"}),
+        ("spec-gap         (L2：Remarks 有值但非 PENDING 佔位)",
+         {**green, "req_id": gap_leaf, "remarks": "缺口見 A-TM13"}),
+        ("test-item-shape  (L3：缺下半括號)",
+         {**green, "test_item": "The software shall set time"}),
+        ("test-item-shape  (L3：上半 51 token 未摘句)",
+         {**green, "test_item": " ".join(["word"] * 51) + " (purpose)"}),
     ]
     for name, tc in reds:
         gate = name.split()[0]
@@ -598,14 +646,23 @@ def self_test(auth: dict) -> int:
         print(f"{'PASS' if hit else '**FAIL**'} 紅向 {name}: "
               f"{msg[0].split(': ', 1)[-1][:78] if msg else '未叫 —— 閘失效'}")
 
+    # 綠向 2：A-TM13 leaf 且 Remarks 為合規佔位 → 不應報 spec-gap
+    ok_gap = {**green, "req_id": gap_leaf,
+              "remarks": "PENDING: DR-5 CFTS015 缺件物件 6151328"}
+    v = [g for g, _ in lint_tc(ok_gap, auth, "GREEN2") if g == "spec-gap"]
+    bad += bool(v)
+    print(f"{'PASS' if not v else '**FAIL**'} 綠向 2 (A-TM13 leaf 帶 "
+          f"PENDING 佔位): {'未誤報 spec-gap' if not v else v}")
+
     # B1 —— D5 守衛（工作簿層，非逐 TC）
     d5 = lint_d5_scope(auth)
-    hit = any(g == "spec-scope-pending" for g, _ in d5)
+    # 現況 D5 為空 —— canon §8.4.3 下「空」已非合規狀態，應報 d5-scope
+    hit = any(g == "d5-scope" for g, _ in d5)
     bad += not hit
     print(f"{'PASS' if hit else '**FAIL**'} B1 D5 守衛: "
           f"{d5[0][1][:78] if d5 else '未叫'}")
 
-    total = len(reds) + 2
+    total = len(reds) + 3
     print(f"\n自驗：{total - bad} / {total}")
     return 1 if bad else 0
 
@@ -624,13 +681,18 @@ def main() -> int:
     if a.self_test:
         return self_test(auth)
     findings: list[tuple[str, str]] = []
+    # B1 為**工作簿層**檢查，與是否已生成 TC 無關 —— 故置於 early return
+    # 之前。原置於 TC 迴圈之後，`generated/` 為空時提前 return 即被跳過，
+    # 而 B1 之設計意圖正是「使 D5 之狀態每次 lint 都現形」（L1）。
+    findings += lint_d5_scope(auth)
     gen = sorted((fd / "generated").glob("*.json"))
     if not gen:
-        print("generated/ 無 json —— 尚未生成 TC")
-        return 0
+        print("generated/ 無 json —— 尚未生成 TC（工作簿層閘門仍已執行）")
+        for g, m in findings:
+            print(f"[{g}] {m}")
+        return 1 if any(g != "spec-scope-pending" for g, _ in findings) else 0
     for p in gen:
         findings += lint_file(p, auth)
-    findings += lint_d5_scope(auth)          # B1 —— 工作簿層，非逐 TC
     for g, m in findings:
         print(f"[{g}] {m}")
     print(f"\n檔 {len(gen)}；發現 {len(findings)} 項")

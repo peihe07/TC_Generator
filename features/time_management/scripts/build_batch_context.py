@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Step 4 (Time Management) — B1 之上下文產生器。
 
+modified by TC_Generator analysis round 05Z under R-TM33 (source marker only)
+
 ## 本檔之來源與界線（R-TM29）
 
 **結構參照** `features/privacy/scripts/` 之慣例（`--feature-dir` 介面、

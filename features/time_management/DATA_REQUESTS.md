@@ -17,6 +17,7 @@ Urgency 回報。回報對象為本表，不涉其他 feature。
 | 3 | Pop Up List — 全名未知 | NOT REQUESTED | — | 無 | — | 低（見下註） |
 | 4 | 涵蓋全部 126 筆 SYS2 FR 之 037（或「48 筆不在 SW 範圍」之書面依據） | MISSING / 待答 | 48 筆 SYS-RA FR 無對應 SWE leaf | **阻塞覆蓋稽核之分母認定** | A-TM09 | **High** |
 | 5 | 含物件 `6151328` / `6151331` 之 CFTS 版本（或該二物件之遷移去向說明） | MISSING / 待答 | 2 筆（SYS-RA-221 / -224），連帶 SWE leaf 005 / 002 之部分引用 | 該二筆之 `specification_reference` 無章節可寫 | A-TM13 | 中 |
+| 6 | CAN 網段依據 —— DBC 或 EE 架構文件 | MISSING | 全部含 CAN 訊號斷言之 leaf | **阻塞訊號三件組之 segment 一件**（canon §8.7.5 / R-TM49）| R-TM49 | **High** |
 
 ## 逐項說明
 
@@ -80,3 +81,39 @@ SYS2 之 `SYS-RA-TIME&DATE-221` / `-224` 引用來源物件 `6151328` / `6151331
 且處置明確（不得以鄰近章節填充，§8.4.1）。
 
 與 #2（037 版本身分）同屬上游版本對齊，**建議併入 RD-1 一次問**。
+
+### #6 CAN 網段依據 — High（2026-08-21 新增）
+
+canon §8.7.5（R-TM48 使其於本 feature 生效）要求 CAN 訊號斷言寫三件組
+`<Signal> in <MESSAGE> on <segment>`，且**網段須有 DBC 或架構文件依據，
+查無者標 PENDING 不得杜撰**。
+
+本 feature 之 intake 素材為三份 —— CFTS015 docx、SYS2 匯出、037 分析報告
+（見 A-TM02a），**無 DBC，亦無 EE 架構文件**。
+
+**三件組之前兩件有來源**：CFTS015 內文確有 MESSAGE 名
+（`TELEMATIC_TIME_DATE`、`TIME_DATE` 等）。**只有 segment 一件缺。**
+
+**例外（R-TM49）**：CFTS015 內文若對某訊號明確敘明其網段
+（如物件 4814098 之「set a BH-CAN message」），該敘述即為來源，得直接用，
+並於 reasoning 註明其物件 id。**B1 生成時逐訊號判定，不得一律標 PENDING
+亦不得一律填。**
+
+## `PENDING: DR-{n}` 之錨對照（canon §8.4.3 / R-TM48）
+
+依 canon §8.4.3，欄位因來源缺失無法填寫時寫 `PENDING: DR-{n}`，
+不得留空、不得填 NA。本 feature 現行之三處佔位與其 DR 號：
+
+| 佔位字串 | 欄位 | DR | 對應 anomaly |
+|---|---|---|---|
+| `PENDING: DR-2 037 正式報告檔名` | D5 範圍 Scope | **DR-2**（既有）| A-TM02a / A-TM11 |
+| `PENDING: DR-5 CFTS015 缺件物件 6151328 / 6151331` | 005 / 002 之 spec_reference 與 Remarks | **DR-5**（既有）| A-TM13 |
+| `PENDING: DR-6 CAN 網段依據（無 DBC／架構文件）` | 訊號三件組之 segment | **DR-6**（本次新增）| R-TM49 |
+
+**前兩筆復用既有號碼，未重複登記** —— `05Z` T2 之表列前兩項
+（037 正式報告、CFTS015 缺件物件）與既有 DR-2、DR-5 為同一缺件，
+另立新號會使同一缺件有兩個 DR，`PENDING` 佔位之指向即不唯一。
+
+**`NA` 之界線**：canon §8.4.3 明訂 `NA` 僅限「確認不適用」。故
+`input_test_data` 之 `NA`（canon §4.5：資料已屬 PC/Procedure 者）仍合法，
+其為「確認不適用」而非「缺件」。**兩者不得混用。**

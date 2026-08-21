@@ -32,7 +32,7 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | A-TM20 | 併行者寫入本 feature，兩支腳本被覆蓋且內容失落 | **RESOLVED**（R-TM44）| Tier 3 |
 | A-TM21 | 現存 write_back.py / lint_tcs.py 六項實質缺陷 | PENDING | Tier 2（凍結中不修）|
 | A-TM22 | verify_structure 三層全為反向驗證，member 層對映錯誤不可偵測 | PENDING | **Tier 2（B1 前必決）**|
-| A-TM23 | CFTS015 兩套物件編號並存，工作簿採 7 位家族而文件無此寫法先例 | **AWAITING_UPSTREAM**（R-TM43）| Tier 2 |
+| A-TM23 | CFTS015 兩套物件編號並存，工作簿採 7 位家族而文件無此寫法先例 | **RESOLVED**（canon §10.7(a)）| Tier 2 |
 | A-TM24 | functional_safety 之值未裁定，且 TODO 標記掛錯條文 | PENDING | **Tier 2（B1 寫回前必決）**|
 
 ---
@@ -1387,6 +1387,25 @@ Pei 採 **(a) + (c)**：維持 7 位家族不阻塞 B1，並於交付說明註�
 **執行層提請**：(a) 之「交付說明」落點未指定（候選：工作簿 Remarks 欄 /
 `docs/fw036/` 交付文件 / Part VII）。影響 B1 之 Remarks 設計，見
 `RULINGS.md` R-TM43 之回報段。
+
+### 結案（2026-08-21，依 canon §10.7(a) / R-TM48）
+
+```
+**結案（2026-08-21，依 canon §10.7(a) / R-TM48）**
+
+canon §10.7(a) 明定 CFTS 母文件之錨為 `CFTS{nnn}-{ObjectID}`（Polarion
+7 位號碼），且明文禁止短號需求 ID 作為錨（其舉例 `CFTS015-824` 恰為本
+feature 短號家族之成員），短號僅得於 reasoning 引用。
+
+兩套編號並存之事實不變；「該採哪一套」已由 canon 明定，不需 RD-1 回答。
+Q-TM4 隨之改為僅供上游知悉之說明，不列為待答問題（T4）。
+```
+
+**執行層補記**：R-TM43(a) 之「交付說明」落點已由 **R-TM47** 指定為
+`docs/fw036/framework.md` Part VII 之 `### Workbook sync` 節，
+**該寫入尚未執行**（該檔為全域檔且他方併行修改中，`05Z` 明令暫不動）。
+故本條雖結案，其「註明編號家族」之動作仍待執行 —— **結案的是「該採哪一套」
+之疑問，非「已完成註明」**。
 
 ---
 
