@@ -46,3 +46,10 @@ Layer 3 之界定：037 之 SWE ID 中段 token（`SWE1-VC-<token>-NNN`），**�
 
 3. **`SwitchLHD/RHDConfiguration` 之 token 含 `/`**，
    若 Layer 3 名稱進入 tc_id 或檔名須先定其轉寫規則。**未定。**
+
+4. **`LeftFrontHeatedSeat` 之 17 條中，`-004` 與 `-011` 實為四側共通需求**
+   （其 `section` 逐字含 `.1;.2;.3;.4`，見 A-VS47）。
+   **依實質應屬 `Common Features`，本表以 SWE ID 中段 token 機械切分故放錯層。**
+   Layer 3 之 17 vs 15 不對稱即源於此 —— **非 037 遺漏**（CFTS044 左右皆 29 條）。
+   **未自行搬動**；同型問題是否存在於 Vented 側未掃。
+   另 §1.3.2.1.3.4（RF Vented）為 30 條而其餘三節 29 條，**未追因**。

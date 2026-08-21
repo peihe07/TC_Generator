@@ -61,8 +61,15 @@ LID 表載 `HdRstRelRq` 之 Atlantis High 對映為 `RADIO_B3.HDRstRelRq_3rdRow`
 
 **兩造皆 in-scope，非架構差異可吸收者。**
 
-**CFTS044 側**：條文 `4858356`（`$FR_HS_RQ$`）與 `4858386`（`$FL_VS_RQ_TGW$`），
+**CFTS044 側**：條文 **`4858325`（`$FL_HS_RQ$`）／`4858355`（`$FR_HS_RQ$`）／
+`4858385`（`$FL_VS_RQ_TGW$`）／`4858416`（`$FR_VS_RQ_TGW$`）**，
 標籤逐字 `[EE Architecture:Atlantis High]`，載請求訊號**承載階數且為循環降階**：
+
+> **引用更正（29 包 §2.2，13 輪 D-3 執行）**：本條原引 `4858356` 與 `4858386`，
+> 該二條實為**接收側**（`When the HU receives a $HeatedSeatFR$ = [HS_OFF] signal,
+> the HU shall change the stored status…`），非請求側。
+> 成因為以命中位置取「前一個 7 位數」而未以區塊邊界驗證歸屬（A-VS45）。
+> **本 DR 尚未送出，更正無外部代價。**
 High → `[Medium]`、Medium → `[Low]`、Low → `[Off]`、Off → `[High]`。
 
 **LID ＋ DBC 側**：LID 之 Atlantis High 欄組將其對映至
@@ -76,9 +83,10 @@ High → `[Medium]`、Medium → `[Low]`、Low → `[Off]`、Off → `[High]`。
 
 ### 提問（RD-1，可直接送出）
 
-> CFTS044 條文 4858356 與 4858386（`[EE Architecture:Atlantis High]`）
-> 定義 `$FR_HS_RQ$` / `$FL_VS_RQ_TGW$` 依目前座椅狀態送出
-> `Medium` / `Low` / `Off` / `High` 之循環降階值。
+> CFTS044 條文 4858325 / 4858355 / 4858385 / 4858416
+> （皆 `[EE Architecture:Atlantis High]`）定義
+> `$FL_HS_RQ$` / `$FR_HS_RQ$` / `$FL_VS_RQ_TGW$` / `$FR_VS_RQ_TGW$`
+> 依目前座椅狀態送出 `Medium` / `Low` / `Off` / `High` 之循環降階值。
 >
 > 惟基線 CAN 資料庫 `PDT27_E2A_R4_BHCAN.dbc` 中，
 > `TELEMATIC_VEHICLE_SETUP3` 之 `FL_HS_Tlm` / `FR_HS_Tlm` /
@@ -123,3 +131,10 @@ High → `[Medium]`、Medium → `[Low]`、Low → `[Off]`、Off → `[High]`。
 > 涉及 `SWE1-VC-ThirdRowHeadrestDump-033` / `-034` / `-035` / `-036` 四 leaf
 > 之按鍵請求步驟。
 > **Urgency**：Medium。
+
+> **（追問，29 包 §2.3 加入）** 階數本身為配置維度 ——
+> CFTS044 以 `$Heated_Seat_Levels$ = [1] / [2] / [3]` 表達，
+> 而 Comfort（CFTS043）側寫作 `Single-Level` / `Multi-Level`。
+> **請求訊號之行為是否隨 `$Heated_Seat_Levels$` 之配置而不同？**
+> 例如 `Levels = 1` 時請求訊號為 1 bit，`Levels = 3` 時承載階數。
+> CFTS044 未明言此點。
