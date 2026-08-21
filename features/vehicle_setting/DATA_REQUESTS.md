@@ -104,3 +104,22 @@ High → `[Medium]`、Medium → `[Low]`、Low → `[Off]`、Off → `[High]`。
 > 實測 reqid 即 SYS2 `Source Requirement items` 之 7 位數，覆蓋 **236 / 237**
 > （唯一無值者為 `SWE1-VC-HeatedSteeringWheel-009`，即 DR-11）。**不向上游提出。**
 
+
+### DR-14′ 之追問文字（定稿，W-35）
+
+> `Logical Identifiers and CAN Mapping v1.76` 之 Atlantis High 欄組將
+> `HdRstRelRq` 對映至 `RADIO_B3.HDRstRelRq_3rdRow`。
+>
+> 惟基線 CAN 資料庫 `PDT27_E2A_R4_BHCAN.dbc` 之 `RADIO_B3` 不含該 signal
+> —— 其四支 signal 為 `ManDispCtrl` / `PowerSideStep_Req` /
+> `RQ_DISP_INTS` / `VR_Blower_Req`。
+> 兩份 DBC（`R4_BHCAN`、`R5_FDCAN8`）全域僅有 `Driver_Headrest_Req`
+> 與 `Passenger_Headrest_Req`，**無第三排**。
+>
+> 請確認第三排頭枕釋放請求之實際 signal 名與所屬 message，
+> 或該功能於本專案是否不落在此二網段。
+>
+> **影響**：037 引用 `$HdRstRelRq$` 之條文，其 procedure 之操作步驟需要此訊號；
+> 涉及 `SWE1-VC-ThirdRowHeadrestDump-033` / `-034` / `-035` / `-036` 四 leaf
+> 之按鍵請求步驟。
+> **Urgency**：Medium。

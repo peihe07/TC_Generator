@@ -15,7 +15,7 @@
 三次都被當成「這一次的錯」修掉，未修解析器本身；本模組為其修正。
 
 用法：
-    from lid_parse import parse_signal_cell, parse_format_cell
+    from lid_parse import parse_signal_cell, parse_format_cell, unescape_cell
     python features/vehicle_setting/scripts/lid_parse.py --self-test
 """
 
@@ -32,6 +32,16 @@ KV = re.compile(r"(-?[0-9A-Fa-f#]+)\s*[=:]\s*(.*?)(?=\s+-?[0-9A-Fa-f#]+\s*[=:]|$
 
 STOP = {"bit", "signal", "the", "and", "for", "hex", "not", "used",
         "present", "absent", "see", "proxi", "table"}
+
+
+def unescape_cell(value: str) -> str:
+    """還原 `data/lid_pairs.tsv` 之逸出（R-VS26(1)）。
+
+    寫出端以 `\\n` 保留來源之換行、`\\\\` 保留反斜線。
+    **直接讀該 TSV 而不還原者，會看到字面 `\\n` 而非換行**，
+    多訊號之切分因而失效 —— 05 輪 §6.2-3 具名之缺口，本函式為其公開介面。
+    """
+    return value.replace("\\n", "\n").replace("\\\\", "\\")
 
 
 def _split_cell(cell: str) -> list[str]:
