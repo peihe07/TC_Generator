@@ -28,6 +28,8 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | A-TM16 | Home A-H26 之既有定性可能低估 | PENDING | Tier 2（屬 Home）|
 | A-TM17 | repo 內有身分不明之併行寫入者（含 `vehicle setting` 滅失、git race）| **RESOLVED**（Pei 確認）| Tier 3 |
 | A-TM18 | Comfort 之 framework 僅存本地、未併入全域檔 | PENDING | Tier 2（屬 Comfort）|
+| A-TM19 | intake.py 之 A-TM10 衝突訊息未進 INTAKE.md | PENDING | Tier 2（併 A-TM12）|
+| A-TM20 | 併行者寫入本 feature，兩支腳本被覆蓋且內容失落 | PENDING | **Tier 3（呈 Pei）**|
 
 ---
 
@@ -1070,6 +1072,87 @@ features/comfort/framework.md 存在，而 docs/fw036/framework.md
 
 R-TM16 之依據訂正見 `RULINGS.md` 該條末節；**其結論（本 feature 併入
 全域檔）不變**，因依據 1 與依據 3 未受影響。
+
+---
+
+## A-TM19 — `intake.py` 之 A-TM10 衝突訊息未進 `INTAKE.md`
+
+**狀態：PENDING。Tier 2 —— 併 A-TM12 之腳本批次修，不單獨開包。**
+由 `04_scripts.md` §7 指派登記。
+
+```
+A-TM19（PENDING，Tier 2 —— 併 A-TM12 批次修）
+
+intake.py 之 A-TM10 衝突訊息只印 stdout（`CONFLICT (A-TM10): ...`），
+未進 INTAKE.md。成因為結構性：INTAKE.md 由 report() 產出，而衝突發生於
+scaffold()，兩者無共用資料結構。
+
+執行層之偏離處置正確（不硬塞）。但 stdout 訊息在自動化流程中會遺失，
+而 INTAKE.md 是該資訊之正確歸屬地。
+
+建議修法（隨 A-TM12 之腳本批次一併做，不單獨開包）：scaffold() 將
+conflicts 寫入 intake.json，report() 讀取後渲染入 INTAKE.md。
+```
+
+### 緣起
+
+本條源於執行層於 `03Z-A1` 上繳 §4.3 之主動提請：A-TM10 之修法要求
+「於 `INTAKE.md` 註明衝突」，但 `report()` 與 `scaffold()` 無共用資料
+結構，硬塞會製造第二個問題。執行層改印 stdout 並提請 —— 分析層確認
+該處置正確，另立本條記錄殘留缺口。
+
+**待修者為「歸屬地」而非「功能」**：衝突偵測本身已運作（守衛已就位，
+不覆寫真實路徑），缺的是其記錄落在正確的檔案裡。
+
+---
+
+## A-TM20 — 併行者寫入本 feature，兩支腳本被覆蓋且內容失落
+
+**狀態：PENDING。Tier 3 —— 呈 Pei，分析層明言不裁。**
+由 `04R_review.md` §5 指派登記。
+
+```
+A-TM20（PENDING，Tier 3 —— 呈 Pei，本包不推進）
+
+A-TM17 已 RESOLVED（Pei 確認併行者為其自己開啟之另一 session），
+但當時三項登記事實之作業範圍皆在 features/vehicle_setting/。
+
+本次為首次觀察到併行者寫入 features/time_management/：
+
+| 腳本 | 執行層所寫 | 現存 | 特徵字串 `Structure ported from` |
+|---|---|---|---|
+| write_back.py | 351 行，英文 | 214 行，中文 | 0（非執行層）|
+| lint_tcs.py | 312 行，英文 | 301 行，中文 | 0（非執行層）|
+| build_batch_context.py | 222 行，英文 | 222 行，英文 | 1（執行層）|
+
+覆蓋發生於 09:13–09:14。執行層之兩份內容已不存於磁碟，無備份。
+
+推定（未證實，須 Pei 確認）：Pei 於另一 session 對同一 feature 指派了
+相同或相近之工作。
+
+本條不由分析層裁定 —— 「哪一個 session 擁有 features/time_management/」
+是資源分配問題，非技術判斷，只有 Pei 能答。
+
+在 Pei 裁定前之保全措施（分析層逕行，逆轉成本為零）：
+  - features/time_management/scripts/ 凍結：不寫入、不覆蓋、不修改任一行
+  - 對該目錄之作業一律唯讀
+  - 分析層不再下放任何寫入 scripts/ 之指令
+```
+
+### 執行層回報（2026-08-21）
+
+**凍結已遵守**：本包對 `scripts/` 之全部動作為唯讀（`cat` / `grep` /
+`wc`），未寫入、未覆蓋、未修改任一行，未執行任一支。
+`git status --short features/time_management/scripts/` 之輸出見上繳 §5。
+
+**分析層 §5 對第 3 點之補強，執行層接受**：不能預設我方版本較好。
+Pei 之偏好明載程式碼註解用繁體中文，現存中文版在該點上更貼近；
+四項缺口是客觀可查之缺漏，但那不等於整份較差。
+
+**執行層補一項本條未載之事實**：`build_batch_context.py` 為執行層所寫
+且**未被覆蓋**，其內已含 `SPEC_GAP` 與 `BOUNDARIES` 兩表。即三支腳本
+現為**混合來源**，非單一 session 之產出。日後若採整檔取代，須注意該支
+之歸屬與另二支不同。
 
 ---
 

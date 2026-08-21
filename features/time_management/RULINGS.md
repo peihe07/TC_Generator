@@ -823,3 +823,202 @@ R-TM26（分析層自裁，2026-08-20）—— 不得升級自裁範圍內之事
 
 **反面自檢**：凡屬「我不確定該怎麼做」而非上列四類者，正解為
 「取保守預設逕行 + 在上繳標明可撤回」，不是停下。
+
+## R-TM27 — A-TM15 修法範圍追認為三分支
+
+（分析層裁定，2026-08-20。上游包 `docs/handoff/04_scripts.md` §1）
+
+```
+R-TM27（分析層裁定，2026-08-20）—— A-TM15 修法範圍追認為三分支
+
+A-TM15 之修法確定為三分支（見上表），非 03Z-A1 T4 字面之
+「目標存在即改寫路徑」。原字面指令會使既有 feature 之 recon 一律
+REFUSED 退出並誤報簽核狀態 —— 該缺陷源自分析層只讀 write_decisions()
+未讀其回傳值之消費點（recon.py:1135）。
+
+一般化：修改一個函式之回傳語意前，須讀遍其全部消費點。
+與 R-TM7（指令須經實測）同族：前者是介面未讀，本條是消費點未讀。
+```
+
+三分支之確定內容：
+
+| 情境 | 行為 |
+|---|---|
+| 目標存在 + 已簽核 | divert + REFUSED 非零退出（R-C9 原樣保留）|
+| 目標存在 + 未簽核 | divert + `NOTE (A-TM15)` + 正常退出（A-TM15 之標的）|
+| 目標不存在 | 寫 `DECISIONS.md`（新 feature 路徑不變）|
+
+**執行層回報（2026-08-21）**：已於 `4b00d33` 落檔。本條之一般化規則
+（改回傳語意前須讀遍消費點）已納為作業慣例；本次即因先讀 `recon.py:1135`
+而發現字面指令之缺陷。
+
+## R-TM28 — R-TM22 條件 2 收緊（宣告路徑齊全 + signed=False）
+
+（分析層裁定，2026-08-20。上游包 `docs/handoff/04_scripts.md` §2）
+
+```
+R-TM28（分析層裁定，2026-08-20）—— R-TM22 條件 2 收緊
+
+R-TM22 之受測物判準 2(a) 由「inputs/ 存在且非空」改為：
+
+  2(a) feature.yaml 宣告之每一個輸入路徑皆實際存在於磁碟
+       （非僅 inputs/ 非空 —— sxm 之 inputs/ 有 4 檔而宣告之 SYS1
+        檔不在其中，實跑即 input not found）
+
+新增 2(d)：受測物之 signoff.signed 必須為 False。
+       已簽核者走 divert 路徑受 R-C9 保護，A-TM15 修法前後行為相同，
+       以其為受測物則判準無鑑別力（R-TM21 同型）。
+
+依本條，四候選之適格性為：
+  privacy        signed=False  宣告路徑齊全  → 適格（本次選用）
+  user_profiles  signed=False  未驗宣告路徑  → 待驗
+  sxm            signed=True   宣告路徑缺件  → 不適格
+  comfort        signed=True   且為 A-TM18 主體 → 不適格
+```
+
+**執行層回報（2026-08-21）**：已知悉。本條之 2(d) 為 R-TM21 判準之延伸
+應用 —— 受測物之選擇本身也須通過「本工作若完全沒做，判準會不會照樣通過」。
+
+## R-TM29 — R-TM10-A1 之射程限於 TC 內容，不及於工具腳本
+
+（分析層裁定，2026-08-20。上游包 `docs/handoff/04_scripts.md` §3）
+
+```
+R-TM29（分析層裁定，2026-08-20）—— R-TM10-A1 之射程限於 TC 內容
+
+R-TM10-A1 之 SUSPENDED「不得援引任何他 feature 之既成樣式」，
+其射程限於 TC 內容，不及於工具腳本、資料結構與管線形式。
+
+依據（條文自身，非新解釋）：R-TM10(b) 明列之可援引／不得援引兩表，
+全部為 TC 內容項目 —— 步驟措辭、ER 句式、標點慣例、spec_reference 格式、
+test_group / test_set 值、priority 分佈、tc_id 體系、Input Test Data
+填法。無一項涉及工具腳本。R-TM10(c) 之語境為「爭議之裁決依據」，
+亦屬內容判準。
+
+故：features/time_management/scripts/ 之各腳本得自由參照他 feature
+之對應腳本（結構、參數、呼叫慣例、錯誤處理）。
+
+且此處參照是必要的而非便利的：write_back.py 須正確呼叫
+backend/xlsx_surgical.py 之 surgical_save，從零寫反而升高母本 R 欄
+x14 下拉被摧毀之風險（R-G3）—— 該風險為不可逆且發生在交付件上。
+以「不得援引樣式」為由強迫從零寫工具，會用一個內容層的限制去製造
+一個交付層的風險，非該條之目的。
+
+界線：腳本內若含 TC 內容之常數（步驟措辭常數、ER 樣板字串、
+Test Set 值），該常數仍受 R-TM10-A1 拘束，須依本 feature 之條文重新
+決定，不得照抄。參照結構，不繼承內容。
+```
+
+**執行層回報（2026-08-21）**：已依本條建立 `scripts/`，逐支腳本之來源與
+差異見上繳 `04_scripts.md` §5。**界線之落實方式**：凡屬 TC 內容之常數
+一律留空並標 `TODO(R-TM10-A1)`，不從來源腳本繼承任何字面值。
+
+## R-TM30 — 回歸測試遺留物移入本 feature，不刪除
+
+（分析層裁定，2026-08-20。上游包 `docs/handoff/04_scripts.md` §6）
+
+```
+R-TM30（分析層裁定，2026-08-20）—— 回歸測試遺留物移入本 feature，不刪除
+
+features/privacy/ 之兩個新增檔為本 feature 回歸測試之產物：
+  DECISIONS.new.md（2372 B）—— A-TM15 修法正確運作之現場證據
+  data/recon_leaf_to_section.tsv（48 B）
+
+處置：mv 至 features/time_management/data/regression_evidence/，
+不 rm。理由：
+1. 刪除不可逆；mv 可逆
+2. 證據價值屬本 feature（A-TM15 之驗證），不屬 Privacy
+3. 鄰居目錄不留來歷不明之檔案
+
+移動後 features/privacy/ 應與本次動它之前完全一致（RECON.md 與
+DECISIONS.md 已於 03Z-A1 §5 還原並經 SHA 驗證）。
+```
+
+**執行層回報（2026-08-21）**：已 mv，`features/privacy/` 之
+`git status` 無殘留。`regression_evidence/README.md` 已記來源與緣由。
+
+## R-TM31 — 驗證判準須輸出可歸屬之明細，不只計數
+
+（分析層自裁，2026-08-21。上游包 `docs/handoff/04R_review.md` §2。
+發現者為執行層 `04` 上繳 §6.2。）
+
+```
+R-TM31（分析層自裁，2026-08-21）—— 驗證判準須輸出可歸屬之明細，不只計數
+
+驗證步驟之輸出須足以判斷「命中者是不是我方產出」，不得只給計數。
+凡以 `grep -c`、`wc -l`、`count=` 形式收尾之判準，一律改為列出命中位置
+或內容片段。
+
+理由：計數對「內容被替換但數量相同」完全不敏感。本包之 13 處
+TODO(R-TM10-A1) 計數通過，而其中 11 處來自另一份非我方所寫之檔案。
+
+本條為 R-TM4（斷言須附完整元素清單）在**驗證步驟**上之延伸：
+前者管主張，本條管檢查。
+```
+
+**執行層回報（2026-08-21）**：已知悉並套用於本包 T5 之全部判準。
+
+**執行層補充 —— 本條有一項自身之盲區**：列出位置或片段，只在「我方知道
+自己產出長什麼樣」時才足以歸屬。本次能判定歸屬，靠的是執行層版本帶有
+特徵字串 `Structure ported from`，而該字串是偶然存在的，非刻意設計。
+
+**故執行層自訂一項對應作法**：凡本 feature 產出之腳本，其 docstring 首段
+須含一句可 grep 之來源標記（形如 `ported from <path> under R-TM29`），
+使歸屬判定不依賴偶然。本次未及套用於已被覆蓋之兩支。
+
+## R-TM32 — tc_id 格式
+
+（分析層裁定，2026-08-21。上游包 `docs/handoff/04R_review.md` §3）
+
+```
+R-TM32（分析層裁定，2026-08-21）—— tc_id 格式
+
+write_back.tc_id_format = "NR1L-TimeAndDate-{n:03d}"
+
+依據：
+1. canon §10.3 —— `{project}-{abbr}-{NNN}`，alphanumeric project +
+   alphanumeric module abbreviation + 零填三位序號
+2. project 段取 `NR1L`，與 privacy 之 `NR1L-Privacy-{n:03d}`（R-PV02）
+   同 —— 此為格式結構之參照，非 TC 內容之援引，R-TM29 界線內
+3. module 段取 `TimeAndDate`，來自 R-TM8 之 Test Group `Time and Date`
+   去空格。不取 `TimeManagement` —— 該名為內部識別，不進交付件
+   （R-TM1 / R-TM8 之同一區分）
+
+序號自 001 起，於 22 片 leaf 之全部 TC 上單調遞增，跨批次連續
+（B1 用完接 B2，不重設）。
+
+本條可撤回：B1 未生成前改之無成本。
+```
+
+**執行層回報（2026-08-21）**：已寫入 `feature.yaml` 之 `write_back:` 段。
+**未動 `scripts/`**（A-TM20 凍結）—— 故現存 `write_back.py` 是否讀取該鍵
+未經驗證，見上繳 `04R_corrections.md` §3。
+
+## G-TM1 — B1 生成前 lint 層須具備四項閘門
+
+（閘門，2026-08-21。上游包 `docs/handoff/04R_review.md` §4。
+G-series 與 R-series 同檔。）
+
+```
+G-TM1（閘門，2026-08-21）—— B1 生成前，lint 層須具備四項閘門
+
+無論最終由哪一方寫 lint_tcs.py，下列四項須存在且經 self-test 證明
+可 fire（R-TM21：不能失敗的閘門不是閘門）：
+
+1. D5 Scope 守衛 —— 寫回後 D5 仍為空，具名失敗，不與 header drift 混列
+   （R-TM9-A2、A-TM02a）
+2. leaf 文字來源隔離 —— test_item 上半之文字只認
+   data/leaf_descriptions.txt，22 筆全集數量不符即報錯（R-TM24）
+3. spec gap 閘門 —— 005 / 002 之 Remarks 為空即報 spec-gap（A-TM13）
+4. 界線閘門 —— 011 / 008 / 014 各自 owns / not_ours 之訊號名表，
+   TC 全文命中 not_ours 即報 boundary。訊號名一律取自 T3 已複驗之錨點
+   （R-TM23、R-TM25）
+
+現存之 build_batch_context.py（執行層版）已含 SPEC_GAP 與 BOUNDARIES
+兩表，故 3、4 在 context 層有編碼，僅 lint 層缺。
+context 層之編碼不能取代 lint 層 —— 前者是給生成看的，後者是驗生成的。
+```
+
+**執行層回報（2026-08-21）**：已登記。四項對現存版之逐項評估
+（有／無／部分，附位置證據）見上繳 `04R_corrections.md` §3。
+**本包未實作任一項**（A-TM20 凍結）。

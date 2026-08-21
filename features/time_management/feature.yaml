@@ -46,6 +46,7 @@ done_region:
 write_back:
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"
+  tc_id_format: "NR1L-TimeAndDate-{n:03d}"   # R-TM32
   fill_test_group_set: true      # BLANK per R-TM5，依 canon §2
 
 lint:
