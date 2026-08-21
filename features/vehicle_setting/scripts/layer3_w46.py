@@ -1,8 +1,12 @@
-"""W-46 —— Layer 3 歸屬之全掃（依 R-VS37）。
+"""W-46／W-49 —— Layer 3 歸屬之全掃（依 **R-VS37′** 四分支）。
 
-R-VS37：leaf 之 Layer 3 歸屬以其 `reqid_list` 所跨之 CFTS044 章節判定 ——
-全部落在單一章節者依該章節，跨多個同層章節者歸 `Common Features`。
-SWE ID 中段 token 僅為預設值，衝突時以章節為準。
+R-VS37′（31 包 §1，取代 R-VS37）：
+  (1) 全部 reqid 落在單一章節      → 依該章節
+  (2) 跨多個**同層**章節（段數同）  → `CrossZone Common`
+  (3) 跨**異層**章節（段數不同）    → 依**最深**（段數最多）之章節
+  (4) 無 reqid                     → 依 token 預設值，標 `UNRESOLVED-SOURCE`
+
+14 輪之實作只有 (1)(2) 兩分支，把 (3) 誤併入 (2)（A-VS50）；本版補齊。
 """
 from __future__ import annotations
 
@@ -38,11 +42,15 @@ def token_of(swe_id: str) -> str:
     return m.group(1) if m else "(不合形態)"
 
 
-def by_section(secs: list[str]) -> tuple[str, str]:
-    """回傳 (章節判定之 Layer 3, 依據)。"""
+def by_section(secs: list[str], token: str = "") -> tuple[str, str, str]:
+    """依 R-VS37′ 回傳 (Layer 3, 依據, 分支)。"""
     uniq = sorted(set(secs))
-    if not uniq:
-        return "(無 reqid)", "無章節"
-    if len(uniq) == 1:
-        return SEC_L3.get(uniq[0], f"(未知章節 {uniq[0]})"), uniq[0]
-    return "Common Features", ";".join(uniq)
+    if not uniq:                                            # (4)
+        return token, "無 reqid", "R-VS37′(4)"
+    if len(uniq) == 1:                                      # (1)
+        return SEC_L3.get(uniq[0], f"(未知章節 {uniq[0]})"), uniq[0], "R-VS37′(1)"
+    depths = {s.count(".") for s in uniq}
+    if len(depths) == 1:                                    # (2) 同層
+        return "CrossZone Common", ";".join(uniq), "R-VS37′(2)"
+    deepest = max(uniq, key=lambda s: s.count("."))          # (3) 異層 → 取最深
+    return SEC_L3.get(deepest, f"(未知章節 {deepest})"), deepest, "R-VS37′(3)"

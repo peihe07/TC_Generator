@@ -4,53 +4,76 @@
 鎖定屬 Tier 2，待 Pei 簽核（P19）。canon §4.1.2 步驟 5 —— **僅列 Layer 1–3，不列個別 RD。**
 
 母體：**237 個 Functional leaf**（R-VS15），取自 037 四本 SWRA。
-Layer 3 之界定：**依 R-VS37 以 `reqid_list` 所跨之 CFTS044 章節判定**，
+Layer 3 之界定：**依 R-VS37′ 四分支以 `reqid_list` 所跨之 CFTS044 章節判定**，
 SWE ID 中段 token 僅為預設值。**共 19 個**（含新增之 `Common Features` 與 1 個無 reqid）。
 
-## 依 R-VS37 之章節判定（14 輪 W-46，取代下方 token 判定表）
+## 依 R-VS37′ 之章節判定（15 輪 W-49，取代下方 token 判定表）
 
-| Layer 3 | leaf | 相對 token 判定之變動 |
-|---|---:|---|
-| `ThreeStagesHeatedSeat` | 22 | — |
-| `ThreeStagesVentedSeatsManagement` | 22 | — |
-| `ThirdRowHeadrestDump` | 21 | — |
-| `TwoStagesHeatedSeat` | 20 | — |
-| `TwoStagesVentedSeatsManagement` | 20 | — |
-| `HeatedSteeringWheel` | **19** | −1（`-009` 無 reqid） |
-| `LeftFrontHeatedSeat` | **15** | **−2**（`-004`／`-011` 改判 Common） |
-| `RightFrontHeatedSeat` | 15 | — |
-| `LeftFrontVentedSeat` | 15 | — |
-| `RightFrontVentedSeat` | 15 | — |
-| `OneStageHeatedSeat` | 14 | — |
-| `HeatedSteeringWheelManagement` | **8** | **−3**（`-025`／`-026`／`-027`，**該 3 筆 R-VS37 未涵蓋，見下**） |
-| `Stop-StartSystem` | 6 | — |
-| `SwitchLHD/RHDConfiguration` | 6 | — |
-| `ScreenOFF` | 6 | — |
-| **`Common Features`（新）** | **5** | **+5** |
-| `FeaturesEnableCriteria` | 3 | — |
-| `StopStartSystemBehavior` | 3 | — |
-| `PHEVFeatures` | 1 | — |
-| `(無 reqid)` | 1 | `HeatedSteeringWheel-009` |
-| **合計** | **237** | |
+| Layer 2 | Layer 3 | leaf | yes | no | blocked | pending |
+|---|---|---:|---:|---:|---:|---:|
+| Heated Seat | `ThreeStagesHeatedSeat` | 22 | 20 | 0 | 2 | 0 |
+| Vented Seat | `ThreeStagesVentedSeatsManagement` | 22 | 20 | 0 | 2 | 0 |
+| Common Features | `ThirdRowHeadrestDump` | 21 | 0 | 21 | 0 | 0 |
+| Heated Seat | `TwoStagesHeatedSeat` | 20 | 16 | 0 | 4 | 0 |
+| Heated Steering Wheel | `HeatedSteeringWheel` | 20 | 20 | 0 | 0 | 0 |
+| Vented Seat | `TwoStagesVentedSeatsManagement` | 20 | 16 | 0 | 4 | 0 |
+| Heated Seat | `LeftFrontHeatedSeat` | 15 | 15 | 0 | 0 | 0 |
+| Heated Seat | `RightFrontHeatedSeat` | 15 | 15 | 0 | 0 | 0 |
+| Vented Seat | `LeftFrontVentedSeat` | 15 | 15 | 0 | 0 | 0 |
+| Vented Seat | `RightFrontVentedSeat` | 15 | 15 | 0 | 0 | 0 |
+| Heated Seat | `OneStageHeatedSeat` | 14 | 0 | 0 | 2 | **12** |
+| Heated Steering Wheel | `HeatedSteeringWheelManagement` | 11 | 8 | 0 | 3 | 0 |
+| Common Features | `Stop-StartSystem` | 6 | 0 | 6 | 0 | 0 |
+| Common Features | `SwitchLHD/RHDConfiguration` | 6 | 0 | 6 | 0 | 0 |
+| Common Features | `ScreenOFF` | 6 | 0 | 6 | 0 | 0 |
+| Common Features | `FeaturesEnableCriteria` | 3 | 0 | 3 | 0 | 0 |
+| Common Features | `StopStartSystemBehavior` | 3 | 0 | 3 | 0 | 0 |
+| Heated Seat | **`CrossZone Common`** | 2 | 2 | 0 | 0 | 0 |
+| Common Features | `PHEVFeatures` | 1 | 0 | 1 | 0 | 0 |
+| **合計** | **19** | **237** | **162** | **46** | **17** | **12** |
 
-**左右對稱已回復**：HeatedSeat 15 / 15、VentedSeat 15 / 15。
+**Layer 2 合計 46／88／72／31 —— 與 R-VS15 逐項相符。**
+**左右對稱：HeatedSeat 15/15、VentedSeat 15/15。**
 
-### 改判逐筆之依據（R-VS37 要求記明）
+### 分支使用（R-VS37′）
 
-| leaf | 原 token | 改判為 | 依據（`section` 欄逐字） |
-|---|---|---|---|
-| `LeftFrontHeatedSeat-004` | `LeftFrontHeatedSeat` | `Common Features` | `1.3.2.1.3.1;1.3.2.1.3.2;1.3.2.1.3.3;1.3.2.1.3.4` |
-| `LeftFrontHeatedSeat-011` | `LeftFrontHeatedSeat` | `Common Features` | 同上 |
-| `HeatedSteeringWheelManagement-025` | `HeatedSteeringWheelManagement` | `Common Features` ⚠ | `1.3.2.1.3;1.3.3.3.6.1` |
-| `HeatedSteeringWheelManagement-026` | 同上 | `Common Features` ⚠ | 同上 |
-| `HeatedSteeringWheelManagement-027` | 同上 | `Common Features` ⚠ | 同上 |
-| `HeatedSteeringWheel-009` | `HeatedSteeringWheel` | `(無 reqid)` ⚠ | 無 |
+| 分支 | 筆數 |
+|---|---:|
+| (1) 單一章節 | 231 |
+| (2) 跨同層 → `CrossZone Common` | 2 |
+| (3) 跨異層 → 取最深 | 3 |
+| (4) 無 reqid → token 預設值 | 1 |
 
-> ⚠ **四筆之改判逾出 R-VS37 之文義，未定案**：
-> R-VS37 之第二分支為「跨越多個**同層**章節」，而 `1.3.2.1.3`（四段）
-> 與 `1.3.3.3.6.1`（五段）**不同層**；R-VS37 亦未規定「無 reqid」之歸屬。
-> 本表暫依「多章節即 Common」處理，**該處理無條文依據** ——
-> 見上繳 12 §2.3，待分析層補條文。
+### 改判與標記逐筆（R-VS37′ 要求記明）
+
+| leaf | 原 token | 判定 | 分支 | 依據（`section` 逐字） |
+|---|---|---|---|---|
+| `LeftFrontHeatedSeat-004` | `LeftFrontHeatedSeat` | **`CrossZone Common`** | (2) | `1.3.2.1.3.1;1.3.2.1.3.2;1.3.2.1.3.3;1.3.2.1.3.4` |
+| `LeftFrontHeatedSeat-011` | `LeftFrontHeatedSeat` | **`CrossZone Common`** | (2) | 同上 |
+| `HeatedSteeringWheelManagement-025` | HSWManagement | `HeatedSteeringWheelManagement`（不變） | (3) | 取最深 `1.3.3.3.6.1` |
+| `HeatedSteeringWheelManagement-026` | 同上 | 同上 | (3) | 同上 |
+| `HeatedSteeringWheelManagement-027` | 同上 | 同上 | (3) | 同上 |
+| `HeatedSteeringWheel-009` | HeatedSteeringWheel | `HeatedSteeringWheel`（不變），標 **`UNRESOLVED-SOURCE / DR-11`** | (4) | 無 reqid；Source 為 `SYS-RA-CFTS100` |
+
+**token 判定與章節判定不一致者：2**（14 輪為 6；R-VS37′(3) 使 3 筆回歸一致，(4) 使 1 筆回歸一致）。
+
+---
+
+## 鎖定前尚未解之項目（W-49(3)）
+
+| # | 項目 | 狀態 |
+|---|---|---|
+| 1 | **P20 R-VS19′**（Atlantis Mid，影響 112 leaf 之值域來源） | **證據完整，待 Pei** |
+| 2 | **P18 R-VS7(a)′**（委派句指名功能群） | **證據完整，待 Pei** |
+| 3 | **DR-11** — `HeatedSteeringWheel-009` 之來源（`SYS-RA-CFTS100`） | 未決 → 該 leaf 標 `UNRESOLVED-SOURCE` |
+| 4 | **DR-15** — 請求訊號 1 bit vs 承載階數 | 已定稿，**未送出** |
+| 5 | **DR-17** — Comfort 側無單階座椅條文（14 leaf／12 pending） | 已定稿，**未送出** |
+| 6 | **DR-18** — 交叉前綴 typo（4 值／2 token） | **待分析層擬** |
+| 7 | `SwitchLHD/RHDConfiguration` 之 token 含 `/`，進 tc_id／檔名前須定轉寫規則 | 未定 |
+| 8 | A-VS51 — `4858413` 之值退化為 `[ Pressed]` | 新開，未決 |
+| 9 | A-VS52 — 值域大小寫雙寫致重複值 | 新開，未決 |
+
+**`Common Features` 之名稱衝突已解**（31 包 §2：Layer 3 桶定名 `CrossZone Common`）。
 
 ---
 

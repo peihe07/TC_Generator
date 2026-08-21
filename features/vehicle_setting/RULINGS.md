@@ -572,6 +572,10 @@ R-VS35（分析層裁定 2026-08-20）
 
 ### R-VS37 —— Layer 3 之建構（30 包 §3，分析層裁定 2026-08-20）
 
+> **【經 R-VS37′ 取代，2026-08-20；原文保留不刪，見 R-TM13】**
+> 取代原因：本條第二分支僅涵蓋「跨越多個**同層**章節」，
+> 未涵蓋「跨**異層**章節」與「**無 reqid**」二情形（A-VS50）。
+
 > Layer 3 不得純以 SWE ID 中段 token 機械切分。
 > 一個 leaf 之 Layer 3 歸屬，須以其 `reqid_list` 所跨之 CFTS044 章節判定：
 >
@@ -586,3 +590,51 @@ R-VS35（分析層裁定 2026-08-20）
 > 實例：`LeftFrontHeatedSeat-004` 之 reqid 跨 1.3.2.1.3.1～.4 四節
 > （左右 × 加熱通風），其內容為 `the HU shall use $Heated_Seat_Levels$
 > to determine which levels are supported` —— 四側共通。
+
+### R-VS37′ —— Layer 3 歸屬之四分支（31 包 §1，分析層裁定 2026-08-20，取代 R-VS37）
+
+> Layer 3 不得純以 SWE ID 中段 token 機械切分。
+> 一個 leaf 之 Layer 3 歸屬，依其 `reqid_list` 所跨之 CFTS044 章節判定，
+> 四分支如下：
+>
+> (1) 全部 reqid 落在**單一章節**
+>     → 依該章節之 Layer 3
+>
+> (2) 跨越多個**同層**章節（章節號段數相同）
+>     → 歸 Layer 3 之跨區共通桶（名稱見 §2）
+>     理由：其為四側／多側共通需求
+>
+> (3) 跨越**不同層**章節（段數不同）
+>     → 依**最深**（段數最多）之章節判定
+>     理由：淺章節為其所屬之上位分節，深章節才是其能力歸屬。
+>     實例：`HeatedSteeringWheelManagement-025/-026/-027` 跨
+>     `1.3.2.1.3`（4 段）與 `1.3.3.3.6.1`（5 段）→ 依後者，
+>     歸 `HeatedSteeringWheelManagement`（**與 token 判定一致**）
+>
+> (4) **無 reqid**
+>     → 依 SWE ID 中段 token 之預設值，並於 `framework.md` 標
+>     `UNRESOLVED-SOURCE` ＋ 其待決之 DR 編號
+>     實例：`HeatedSteeringWheel-009`（其 Source 為 `SYS-RA-CFTS100`）
+>     → 歸 `HeatedSteeringWheel`，標 `UNRESOLVED-SOURCE / DR-11`
+>
+> SWE ID 中段 token 於 (1)(2)(3) 僅作預設值，與章節判定衝突時以章節為準，
+> 並逐筆記明原始 token 與改判依據。
+
+**併記（31 包 §2，分析層裁定 2026-08-20）**：
+
+> Layer 3 之跨區共通桶定名為 **`CrossZone Common`**（逐字，含空白）。
+> 其與 Layer 2 之 `Common Features` **不同名、不同層**：
+>
+>   Layer 2 `Common Features`  = 037 檔界（Common Features.xlsx 之 46 leaf）
+>   Layer 3 `CrossZone Common` = 跨四側／多側之共通需求（現為 2 leaf，
+>                                 隸屬 Layer 2 之 `Heated Seat`）
+>
+> 理由：Layer 3 不出工作簿（canon §4.1.5），其命名只需在 `framework.md`
+> 內無歧義；但同名兩層會使覆蓋分析與 sibling 判定無法陳述。
+
+**併記（31 包 §3，分析層裁定 2026-08-20）**：
+
+> `spec_variables.tsv` 之交叉前綴值**保留不清除**，
+> 增設 `suspect_prefix` 欄標記之，值為其疑似正確之前綴（如 `VS_`）。
+> **不改原值** —— 原值為 CFTS044 逐字，改之即失去與來源之可追溯性；
+> 待 DR-18 答覆後再依 R-VS26(3) 之形態處理。
