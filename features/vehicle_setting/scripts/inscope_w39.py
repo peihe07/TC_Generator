@@ -74,6 +74,25 @@ def new(b: dict) -> bool:
     return (not radio) or bool(set(radio) & RADIO_OK)   # 空欄視為不限
 
 
+def vs19p(b: dict) -> bool:
+    """R-VS19′（Pei 2026-08-20）—— **現行判準**。
+
+    in-scope ⟺ Artifact Type 含 Subsystem Functional Requirement
+               ∧ Radio 含 R1L 或 R1L-R（欄為空者視為不限）
+               ∧ ECU 含 LTM／ETM／RRM 之一
+
+    `EE Architecture` **不參與判定**（降為輔助資訊）——
+    此即與 `new()` 之唯一差異：`new()` 仍疊在 `legacy()` 之架構條件上。
+    """
+    a = b["attrs"]
+    if "Subsystem Functional Requirement" not in a.get("Artifact Type", ""):
+        return False
+    if not (set(_vals(a, "ECU")) & ECU_HEAD):
+        return False
+    radio = _vals(a, "Radio")
+    return (not radio) or bool(set(radio) & RADIO_OK)
+
+
 HEAD_RE = re.compile(r'<w:pStyle w:val="([1-7])"')
 SEC_RE = re.compile(r"^\s*((?:\d+\.)+\d+|\d+)\s+\S")
 

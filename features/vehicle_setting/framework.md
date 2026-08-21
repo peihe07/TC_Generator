@@ -59,21 +59,23 @@ SWE ID 中段 token 僅為預設值。**共 19 個**（含新增之 `Common Feat
 
 ---
 
-## 鎖定前尚未解之項目（W-49(3)）
+## 鎖定前尚未解之項目（W-52(2)，16 輪更新）
 
-| # | 項目 | 狀態 |
-|---|---|---|
-| 1 | **P20 R-VS19′**（Atlantis Mid，影響 112 leaf 之值域來源） | **證據完整，待 Pei** |
-| 2 | **P18 R-VS7(a)′**（委派句指名功能群） | **證據完整，待 Pei** |
-| 3 | **DR-11** — `HeatedSteeringWheel-009` 之來源（`SYS-RA-CFTS100`） | 未決 → 該 leaf 標 `UNRESOLVED-SOURCE` |
-| 4 | **DR-15** — 請求訊號 1 bit vs 承載階數 | 已定稿，**未送出** |
-| 5 | **DR-17** — Comfort 側無單階座椅條文（14 leaf／12 pending） | 已定稿，**未送出** |
-| 6 | **DR-18** — 交叉前綴 typo（4 值／2 token） | **待分析層擬** |
-| 7 | `SwitchLHD/RHDConfiguration` 之 token 含 `/`，進 tc_id／檔名前須定轉寫規則 | 未定 |
-| 8 | A-VS51 — `4858413` 之值退化為 `[ Pressed]` | 新開，未決 |
-| 9 | A-VS52 — 值域大小寫雙寫致重複值 | 新開，未決 |
+| # | 項目 | 阻塞？ | 所待 |
+|---|---|---|---|
+| 1 | **R-VS19′ 主文與 (a) 段互斥** —— 43 條 `PowerNet` 專屬條文之歸屬未定（A-VS55） | **阻塞** | 分析層釋義（見上繳 14 §2.1） |
+| 2 | **DR-15** — 請求訊號 1 bit vs 承載階數 | **阻塞** | 已定稿，**待 Pei 送出** |
+| 3 | **DR-17** — Comfort 側無單階座椅條文（14 leaf／12 `pending`） | **阻塞** | 已定稿，**待 Pei 送出** |
+| 4 | **DR-11** — `HeatedSteeringWheel-009` 之來源（`SYS-RA-CFTS100`） | 不阻塞 | 該 leaf 已標 `UNRESOLVED-SOURCE` |
+| 5 | **DR-18** — 座椅值域之四類書寫問題 | **不阻塞（確認型）** | 已定稿，待 Pei 送出 |
+| 6 | A-VS51 — `4858413` 值退化為 `[ Pressed]` | 不阻塞 | 併 DR-18 |
+| 7 | A-VS52／A-VS56 — 大小寫重複影響 **12 個 token** | 不阻塞 | 已依 **R-VS39** 以 `normalized_key` 處理 |
+| 8 | `SwitchLHD/RHDConfiguration` 之 token 含 `/`，進 tc_id／檔名前須定轉寫規則 | **阻塞**（TC 生成時） | 未定 |
+| 9 | `$HSW_StatFailSts$` 之 R-VS20 階梯歸屬（R-VS19′(d) 令其重查） | 不阻塞 | 本輪未查 |
 
-**`Common Features` 之名稱衝突已解**（31 包 §2：Layer 3 桶定名 `CrossZone Common`）。
+**已解者**：`Common Features` 名稱衝突（→ `CrossZone Common`）；
+**Layer 2 歸屬已以 037 檔界逐 leaf 驗證，0 / 237 不一致**（W-52(1)）——
+`CrossZone Common` 之 2 leaf 確實出自 `HeatedSeat.xlsx`（15 輪 §6-4 之待驗項已閉）。
 
 ---
 

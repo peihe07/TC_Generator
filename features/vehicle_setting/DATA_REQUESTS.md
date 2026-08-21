@@ -165,3 +165,51 @@ CFTS044 定義單階加熱座椅之配置（`$Heated_Seat_Levels$ = [1]`），
 在答覆前，該 12 個已委派之 leaf 其委派標的與其配置條件矛盾。
 
 **狀態：未送出**（送出屬 Pei）。配對 anomaly：A-VS46。
+
+## DR-18（新，**Urgency Medium** —— **確認型，不阻塞**；分析層擬，Pei 送出）
+
+CFTS044 之座椅相關值域中，發現四類書寫問題，請確認其為筆誤或另有語意：
+
+### 一、加熱／通風前綴交叉（4 筆）
+
+```
+4858393  §1.3.2.1.3.4  $VentedSeatFR$ = [Vented Seat High / HS_HI]
+4858001  §1.3.1.1.3.4  $VentedSeatFR$ = [Vented Seat High/HS_HI]
+4860021  §1.3.4.12.4   $VentedSeatFR$ = [Vented Seat Off / HS_OFF]
+4860015  §1.3.4.12.3   $VentedSeatFL$ = [Vented Seat Off / HS_OFF]
+```
+
+對照：同章節內其餘同型條文一律 `VS_`；全文 `VS_OFF` 15 次對 `HS_OFF` 2 次。
+我方判為筆誤，請確認。
+
+### 二、值退化（1 筆）
+
+```
+4858413  §1.3.2.1.3.4  $CCDMF_FR_VS_RQ$ = [ Pressed]
+```
+
+其左側對稱條文 `4858382` 為 `[Vented Seat Pressed / VS_PSD]`。
+請確認 `4858413` 應為 `[Vented Seat Pressed / VS_PSD]`。
+
+### 三、同一值之多種大小寫寫法
+
+```
+[Vented Seat Low / VS_LO] 5 次 ／ [Vented Seat Low / VS_Lo] 4 次
+[Vented Seat Medium / VS_MED] 2 ／ [Vented seat Medium / VS_MED] 2
+  ／ [Vented seat medium / VS_MED] 4
+```
+
+請確認其為同一值。
+
+### 四、參數名筆誤
+
+`$Heated_Steats_Levels$`（`Steats`）與 `$Heated_Seats_Levels$` 並存，
+前者於 `Logical Identifiers and CAN Mapping` 之 2,974 個 LID 中無對應。
+
+### 影響
+
+座椅加熱／通風之值域列舉分支數，涉及 Heated Seat 88 ＋ Vented Seat 72
+共 **160 個 SWE leaf**。
+我方已依內部判準處理（正規化計數、原值保留），**本請求為確認而非阻塞**。
+
+**狀態：未送出**（送出屬 Pei）。配對 anomaly：A-VS49／A-VS51／A-VS52／A-VS53。
