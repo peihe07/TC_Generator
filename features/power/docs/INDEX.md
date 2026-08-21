@@ -958,6 +958,15 @@ R-P37 停止章節層調查 —— 二者合起來即：本 feature 之規格涵
 - lint A–N 全零、E=0、P=10（全在 `test_item` 括號下半）。
 - DR-PW12 補記第七對（A-PM14：row 181 ≡ row 293）。
 
+### FW036 下放包 19（更正回復 ＋ 軌 C 補列 ＋ 三項裁決）
+
+- 上繳 [`docs/fw036/upstream/19_pm_final.md`](../../../docs/fw036/upstream/19_pm_final.md)
+- 產出 `sandbox/b19/pm_19.xlsx`（`b4dd5ca0…`），改動 **6 列／24 格**
+- **十二項驗收全表全零**；lint A–N 全零、E=0、P=10（全在 `test_item` 括號下半）
+- row 72 依新立之 **R-13** 回復規格原文 `PowerModeSts_Telematic`（**撤銷 17 包 §五**）
+- 軌 C 補 rows 271–274 → **30/30 完成**；283 列之 `pre`／`proc` 全數改寫完畢
+- 新開 **DR-PW21（High）**／**DR-PW22（Medium）**；登記 **A-PM13／A-PM14／A-PM15**
+
 ### 尚未進入
 
 Phase 4 以降全部未開始。FW036 workbook 為 BLANK（G10），無任何寫回動作發生過。

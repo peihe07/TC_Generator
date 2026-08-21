@@ -37,8 +37,10 @@ Urgency 回報。
 | DR-PW17 | **Low（live）** | **VF601 未尋獲 —— LOGISTICS MODE 之定義文件。** CFTS009 引用 6 次；`LTM.doc` 內僅見交叉引用、無章節本體，研判屬 BCM 側 VF 集（分析層研判，執行層未獨立複驗）。本批未觸及其內容。 | 不阻塞批 1 | — |
 | DR-PW18 | **Low（live）** | **VF665 未尋獲 —— Customer setting screens 之定義文件。** CFTS009 引用 1 次；`LTM.doc` 內 0 次出現。本批未觸及其內容。 | 不阻塞批 1 | — |
 | DR-PW20 | **Medium（live）** | **四列之轉態目標值於 CFTS009／010 原文僅載為類別，未載具體值。** rows 73／74（`LTM_OperationalModeSts.Info has a transition from "Ignition Off" to another value`）、row 245（`becomes different from "SNA" value again`）——「another value」／「different from SNA」各為 `OperationalModeSts` 15 個 VAL_ 中之任一，擇其一即為依情境推定，違 Pei 之路線 (c) 裁定（值一律取自來源）。row 119 之送出值 `15 (SNA)` 明載可填，**惟其結果之 `PowerSts_Telematic` 值未載** —— 原文僅稱「behave as an Ignition Pre Off or Ignition Off event occurs, according to par. TLM Operative state management」，須跨章取值。請上游就四列各指出應驗之具體值（或確認其為「任一非該值」之等價類，此時請指定代表值）。 | **不阻斷撰寫** —— 四列已改寫完成，各餘一格標 `PENDING: DR-PW20`（rows 73／74／119／245，見上繳 16） | — |
+| DR-PW21 | **High（live）** | **`PowerModeSts_Telematic` 為規格明載訊號，兩份 DBC 皆查無同名。** `CFTS009-4941562`（`SWE-PM-022` 錨點）逐字載「AND signal PowerModeSts_Telematic passes from "Standard_Power" to "Logistic_Mode_On"」。BH-CAN（sha256 `9ef1ec98…30d0`）與 FD-CAN8（`51c8fd60…1cd2`）皆無此名；相近者為 `STATUS_TELEMATIC.PowerSts_Telematic`（TLM 自身電源狀態）與 `STATUS_BH_BCM1.PowerModeSts`（BCM 側車輛電源模式，VAL_ 0 Standard_Power／1 Logistic_Mode_ON／2 Logistic_Mode_PR／3 LogisticModeON_and_EngineON）——**後者之 VAL_ 與原文之二值逐字相符**。請上游確認 `PowerModeSts_Telematic` 之 message 歸屬與 VAL_ 定義，或確認其是否即 `PowerModeSts`。 | **不阻斷撰寫** —— row 72 依 **R-13** 保留原文名稱（不加 `$`），可撰寫而**不可執行至訊號層** | — |
+| DR-PW22 | **Medium（live）** | **`SWE-PM-113`（row 291）之「geolocation pop-up 或 disclaimer」二擇一判準未載。** 原 ER 作二擇一表述，而來源未載何時顯示何者。依 R-11(b)「須寫出應觀察之值」，二擇一即判準不唯一。請上游指出該情境下應顯示者，或指出其擇一條件。 | **不阻斷撰寫** —— row 291 之 PROC 2／ER 2 標 `PENDING: DR-PW22`，其餘三步完整 | — |
 
-**本表現存 live 項：DR-PW1（High）、DR-PW5（High）、DR-PW8（High）、**DR-PW9（High）**、**DR-PW11（High）**、DR-PW3（Medium）、DR-PW6（Medium）、**DR-PW10（Medium）**、**DR-PW12（Medium）**、**DR-PW14（Medium）**、**DR-PW15（Medium）**、**DR-PW20（Medium）**、DR-PW7（Low）。**
+**本表現存 live 項：DR-PW1（High）、DR-PW5（High）、DR-PW8（High）、**DR-PW9（High）**、**DR-PW11（High）**、DR-PW3（Medium）、DR-PW6（Medium）、**DR-PW10（Medium）**、**DR-PW12（Medium）**、**DR-PW14（Medium）**、**DR-PW15（Medium）**、**DR-PW20（Medium）**、**DR-PW21（High）**、**DR-PW22（Medium）**、DR-PW7（Low）。**
 > **⚠ 編號偏離（03 包 §五）**：下放包指定將 VF570／VF601／VF665 登記為
 > **DR-PW12／13／14**，但該三號**已被佔用** —— DR-PW12（五對 SWE leaf 引用
 > 相同錨點，live）、DR-PW13（品牌值，26 包同包撤回）、DR-PW14（`SWE-PM-094`
@@ -46,6 +48,7 @@ Urgency 回報。
 > 執行層**未覆寫**該三列，改以次一可用號 **DR-PW16／17／18** 登記。
 > 三份文件之實質內容照下放包逐字登記，僅編號不同。
 
+19 包新增 **DR-PW21**（R-13 —— `PowerModeSts_Telematic` 之 DBC 對應缺漏）與 **DR-PW22**（row 291 二擇一判準未載）。
 16 包（PM 全面改寫）新增 **DR-PW20**（路線 (c) —— 四列轉態目標值原文未載）。
 31 包新增 **DR-PW16／17／18**（03 §五 —— VF570／VF601／VF665 三份未尋獲文件）。
 30 包新增 **DR-PW15**（R-P216(b) —— 合規修正所留下之涵蓋缺口）。

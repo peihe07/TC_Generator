@@ -23,6 +23,7 @@
 | R-6b | 2026-08-21 | verbatim 上半豁免 C（hedge）；作者用語品質類檢查僅施於括號下半 | ACTIVE | 06 | lint／全案 |
 | R-7 | 2026-08-21 | 值之語意標籤取自 DBC `VAL_` 列舉 | ACTIVE | 09 | 全案 |
 | R-8 | 2026-08-21 | spec_reference 一值一行、前綴逐行重述、禁串接；CFTS 列不附檔名章節 | ACTIVE | Pei 直接裁定 | 全案 |
+| R-13 | 2026-08-21 | 規格原文所載之訊號名，即使 DBC 查無同名亦保留原名，不得代以語意相近之他訊號；DBC 對應缺漏開 DR | ACTIVE | 19 | 全案 |
 
 ## 條文落檔位置
 
@@ -34,6 +35,7 @@
 | R-6b | `scripts/lint036.py` 檢查 C 之範圍 |
 | R-7 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5(a) |
 | R-8 | 同上 §10.7 之「排列」段 |
+| R-13 | `docs/fw036/handoff/19_pm_final.md` §一 |
 | R-2 | 同上 §10.7 |
 | R-3 | 同上 §4.3.1 |
 | R-4 | 同上 §4.3.1 |
@@ -61,3 +63,15 @@
 >
 > **程序原則（09 §五）**：格式類裁決應先窮舉 Pei 既有交付之實際寫法，
 > 以語料為權威，分析層僅負責歸納與一致化。
+
+~~**17 包 §五**：`PowerModeSts_Telematic` 係 `PowerSts_Telematic` 與
+`PowerModeSts` 之名稱混合、非 DBC 實有，故一律採 `PowerSts_Telematic`，
+`PowerModeSts` 不使用。~~
+
+> **撤銷（2026-08-21，下放包 19 §一）**：原裁定基於分析層之錯誤前提 ——
+> 僅查 DBC 未查 CFTS 原文即斷為「名稱混合」。
+> `CFTS009-4941562` 逐字載 `signal PowerModeSts_Telematic`，
+> **為規格原文之訊號名，非 036 之筆誤**。
+> 執行層於上繳 17 §五所報之二後果（`Standard_Power` 無對應 VAL_、
+> 觸發與觀察塌縮為同一訊號）**皆為該錯誤裁定之必然結果**，
+> 已於 19 包回復規格原文寫法（row 72），並立 **R-13**、開 **DR-PW21**。
