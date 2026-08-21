@@ -99,3 +99,8 @@ High → `[Medium]`、Medium → `[Low]`、Low → `[Off]`、Off → `[High]`。
 —— 即 framework Part Vehicle Setting 之 Layer 3 與設計方法。
 **配對 A-VS30。**
 
+> **DR-16 撤銷**（24 包 §0）：分析層以自身假設之 `CFTS044-NNNN` 形態掃描，
+> 掃出 4/237 後把「我方假設之形態找不到」記成「素材缺對照」。
+> 實測 reqid 即 SYS2 `Source Requirement items` 之 7 位數，覆蓋 **236 / 237**
+> （唯一無值者為 `SWE1-VC-HeatedSteeringWheel-009`，即 DR-11）。**不向上游提出。**
+

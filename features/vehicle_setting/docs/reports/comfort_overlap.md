@@ -1,3 +1,6 @@
+# SUPERSEDED as delegation source — incomplete Layer 3 list
+# (A-VS34); use data/... delegation_lookup.tsv
+
 # W-9 — Comfort 逐條對照（R-VS7 委派句之來源表）
 
 來源：`features/comfort/inputs/FM-WI-FSM-037-A03-N1L-SWE1-Comfort-HMI-V0.1 STLA 報告.xlsx`
