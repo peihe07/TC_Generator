@@ -3,6 +3,10 @@
 
 檢查 A–N 之定義見 docs/fw036/handoff/00_lint_spec.md。
 本工具唯讀開啟 xlsx，絕不寫回任何 xlsx。
+
+gate 政策（S3）：`--gate` 旗標保留但**尚不啟用**。啟用時機為尾批
+（全數回修完成後）；現階段啟用將使所有既有交付本 exit 1，阻斷正常
+作業。裁決條文見 docs/fw036/RULINGS_LEDGER.md。
 """
 
 from __future__ import annotations
@@ -44,6 +48,9 @@ TC_SHEET_PREFIX = "Test Case Specification"
 K_FIELDS = ("test_item", "test_set", "pre", "input", "proc", "er")
 M_FIELDS = ("pre", "proc", "er", "spec")
 N_FIELDS = ("pre", "input", "proc", "er")
+# P（R-1／R-6）：僅施於作者生成之內容 —— 四欄 ＋ test_item 之括號下半。
+# test_item 上半為需求原句 verbatim，其訊號記法保留來源原文，不套 R-1。
+P_FIELDS = ("pre", "input", "proc", "er")
 J_NUMBERED_FIELDS = ("pre", "proc", "er")
 
 # --- 正則 --------------------------------------------------------------------
@@ -73,6 +80,9 @@ RE_PAREN_TAIL = re.compile(r"\([^)]{3,}\)\s*$")
 RE_CJK = re.compile(r"[一-鿿]")
 RE_TOKEN = re.compile(r"[A-Za-z0-9$_.'\"-]+")
 RE_TRAILING_PERIOD = re.compile(r"[.。]$")
+# 舊式 CAN 兩段記法 `MESSAGE.Signal`（message 段全大寫）。
+# 內部訊號 `TLM_Status.Info`／`Phone_Call.Info` 之 message 段含小寫，不命中。
+RE_P_LEGACY_CAN = re.compile(r"\b[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\b")
 RE_CAMEL = re.compile(r"^[a-z][a-zA-Z0-9_]*[A-Z]")
 RE_DOTCALL = re.compile(r"^[a-z][a-z0-9_]*\.[a-zA-Z(]")
 
@@ -99,6 +109,7 @@ CHECK_TITLES = {
     "L": f"test_item 上半過長 (>{DEFAULT_LENGTH_LIMIT} tokens)",
     "M": "空欄三態",
     "N": "行尾多餘句號",
+    "P": "訊號記法未用三件組",
 }
 
 # 校準狀態（00c 最終版）：M、J 經全語料分佈補校，改標已校準
@@ -108,9 +119,10 @@ CHECK_STATUS = {
     "H": "已校準", "I": "已校準", "I-sibling": "未校準（M15）",
     "J": "已校準（行計口徑）", "K": "已校準（分級待 R-5）",
     "L": "已校準（閾值待 R-3）", "M": "已校準", "N": "已校準",
+    "P": "已校準（PM 批 1：41→0）",
 }
 CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
-               "J", "K", "L", "M", "N"]
+               "J", "K", "L", "M", "N", "P"]
 
 # 各檢查之記錄粒度（報告表頭「行計」欄之語意）
 CHECK_GRANULARITY = {
@@ -118,6 +130,7 @@ CHECK_GRANULARITY = {
     "D": "每次命中／每編號行", "E": "每列", "F": "每次命中",
     "G": "每列", "H": "每次命中", "I": "每列", "I-sibling": "每列",
     "J": "每行", "K": "每列每欄", "L": "每列", "M": "每列每欄", "N": "每行",
+    "P": "每次命中",
 }
 
 
@@ -399,6 +412,16 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
                 continue
             if RE_TRAILING_PERIOD.search(line.rstrip()):
                 add("N", key, "行尾多餘句號", line.strip()[:80])
+
+    # P 訊號記法（R-1；範圍依 R-6）
+    for key in P_FIELDS:
+        for m in RE_P_LEGACY_CAN.finditer(fields[key]):
+            add("P", key, f"舊式兩段記法 {m.group(0)!r}",
+                snippet_of(fields[key], m.start()))
+    for line in paren_lines(item):                    # test_item 括號下半
+        for m in RE_P_LEGACY_CAN.finditer(line):
+            add("P", "test_item(括號下半)",
+                f"舊式兩段記法 {m.group(0)!r}", line[:80])
 
     return out
 

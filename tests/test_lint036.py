@@ -320,6 +320,43 @@ def test_numbered_lines_helper_excludes_lettered_substeps():
     assert not lint036.NUMBERED_LINE.match("   a. Sub step")
 
 
+# --- 03 §三 R-6：P 訊號記法之施用範圍 ---
+
+
+def test_p_flags_legacy_can_notation_in_procedure():
+    """作者生成之四欄仍用兩段記法者為違規（R-1）。"""
+    assert "P" in run(proc="1. Send STATUS_LIN.Batt_ST_Crit to the bus")
+
+
+def test_p_allows_three_part_notation():
+    assert "P" not in run(proc="1. Send Batt_ST_Crit in STATUS_LIN on BH-CAN to the bus")
+
+
+def test_p_ignores_internal_signal_notation():
+    """內部訊號 `X.Info`／`X.Req` 之 message 段含小寫，不得誤判為 CAN。"""
+    assert "P" not in run(er="1. TLM_Status.Info reads \"Standby\"",
+                          pre="1. Phone_Call.Info reads \"Not_Active\"")
+
+
+def test_p_ignores_proxi_parameter():
+    """PROXI 層 `$X$` 無兩段記法，且不得被套三件組（A-PM03）。"""
+    assert "P" not in run(proc="1. Read $Radio_Theme$ on the bench")
+
+
+def test_p_exempts_test_item_verbatim_upper_half():
+    """R-6：test_item 上半為需求原句 verbatim，其記法保留來源原文。"""
+    item = ("When STATUS_LIN.PN14_LS_Actv is received the TLM shall react\n"
+            "(read the volume -> The maximum volume is reduced)")
+    assert "P" not in run(test_item=item)
+
+
+def test_p_flags_legacy_notation_in_test_item_paren():
+    """R-6：括號下半屬作者生成內容，仍受 R-1 規制。"""
+    item = ("The TLM shall react to the load shed signal\n"
+            "(drive STATUS_LIN.PN14_LS_Actv -> The maximum volume is reduced)")
+    assert "P" in run(test_item=item)
+
+
 # --- 計數口徑 ---
 
 

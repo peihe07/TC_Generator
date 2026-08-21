@@ -26,8 +26,9 @@
 | L | test_item 上半過長 (>50 tokens) | 71 | 71 | 每列 | 已校準（閾值待 R-3） |
 | M | 空欄三態 | 0 | 0 | 每列每欄 | 已校準 |
 | N | 行尾多餘句號 | 0 | 0 | 每行 | 已校準 |
+| P | 訊號記法未用三件組 | 41 | 35 | 每次命中 | 已校準（PM 批 1：41→0） |
 
-**總計：行計 200**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 241**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
@@ -255,4 +256,50 @@
 | 281 | NR1L-PowerManagement-271 | test_item | 上半 53 tokens > 50 | The disclaimer and splash screen can be temporarily skipped for incoming/outgoin |
 | 282 | NR1L-PowerManagement-272 | test_item | 上半 53 tokens > 50 | The disclaimer and splash screen can be temporarily skipped for incoming/outgoin |
 | 291 | NR1L-PowerManagement-281 | test_item | 上半 59 tokens > 50 | For all screen sizes except 7 inch If $VC_VEH_BRAND$ <> [Maserati] AND $TBM_Pres |
+
+### P — 訊號記法未用三件組（行計 41／列計 35）
+
+| 列 | TC ID | 欄位 | 說明 | 片段 |
+| ---: | --- | --- | --- | --- |
+| 17 | NR1L-PowerManagement-008 | input | 舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts' | STATUS_BH_BCM2.RemStActvSts = "Remote Start Active" |
+| 41 | NR1L-PowerManagement-032 | input | 舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts' | STATUS_BH_BCM2.RemStActvSts = "Remote Start Active" |
+| 42 | NR1L-PowerManagement-033 | input | 舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts' | STATUS_BH_BCM2.RemStActvSts = "Remote Start Active" |
+| 43 | NR1L-PowerManagement-034 | input | 舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts' | STATUS_BH_BCM2.RemStActvSts = "Remote Start Active" |
+| 44 | NR1L-PowerManagement-035 | input | 舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts' | STATUS_BH_BCM2.RemStActvSts = "Remote Start Active" |
+| 47 | NR1L-PowerManagement-038 | input | 舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts' | STATUS_BH_BCM2.RemStActvSts: "Remote Start Active" to "Remote Start Not Active" |
+| 51 | NR1L-PowerManagement-042 | input | 舊式兩段記法 'STATUS_BH_BCM1.DriverDoorSts' | STATUS_BH_BCM1.DriverDoorSts = "Open" |
+| 55 | NR1L-PowerManagement-046 | input | 舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts' | STATUS_BH_BCM2.RemStActvSts: "Remote Start Active" to "Remote Start Not Active" |
+| 57 | NR1L-PowerManagement-048 | proc | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | 1. Drive CLIMATIC_PANEL.Radio_Btn0 from "Not_Pressed" to "Pressed" ⏎ 2. Read VPLas |
+| 59 | NR1L-PowerManagement-050 | proc | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | 1. Drive CLIMATIC_PANEL.Radio_Btn0 from "Not_Pressed" to "Pressed" ⏎ 2. Read VPLas |
+| 66 | NR1L-PowerManagement-057 | proc | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | 1. Drive CLIMATIC_PANEL.Radio_Btn0 from "Not_Pressed" to "Pressed" ⏎ 2. Read TLM_S |
+| 67 | NR1L-PowerManagement-058 | proc | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | 1. Drive CLIMATIC_PANEL.Radio_Btn0 from "Not_Pressed" to "Pressed" ⏎ 2. Read the s |
+| 74 | NR1L-PowerManagement-065 | pre | 舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts' | er$ read "Timed" ⏎ 3. STATUS_BH_BCM2.RemStActvSts reads "Remote Start Not Active" |
+| 79 | NR1L-PowerManagement-070 | proc | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | 1. Drive CLIMATIC_PANEL.Radio_Btn0 from "Not_Pressed" to "Pressed" ⏎ 2. Read the s |
+| 80 | NR1L-PowerManagement-071 | pre | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | is shown after the CLIMATIC_PANEL.Radio_Btn0 press |
+| 80 | NR1L-PowerManagement-071 | proc | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | 1. Accept the CLIMATIC_PANEL.Radio_Btn0 popup as the user ⏎ 2. Read TLM_Status.Inf |
+| 81 | NR1L-PowerManagement-072 | pre | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | is shown after the CLIMATIC_PANEL.Radio_Btn0 press |
+| 81 | NR1L-PowerManagement-072 | proc | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | 1. Decline the CLIMATIC_PANEL.Radio_Btn0 popup as the user ⏎ 2. Read TLM_Status.In |
+| 82 | NR1L-PowerManagement-073 | proc | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | 1. Drive CLIMATIC_PANEL.Radio_Btn0 from "Not_Pressed" to "Pressed" ⏎ 2. Read the a |
+| 83 | NR1L-PowerManagement-074 | input | 舊式兩段記法 'STATUS_BH_BCM1.DriverDoorSts' | STATUS_BH_BCM1.DriverDoorSts = "Open" |
+| 84 | NR1L-PowerManagement-075 | input | 舊式兩段記法 'STATUS_BH_BCM1.PsngrDoorSts' | STATUS_BH_BCM1.PsngrDoorSts = "Open" |
+| 85 | NR1L-PowerManagement-076 | input | 舊式兩段記法 'STATUS_BH_BCM1.DriverDoorSts' | STATUS_BH_BCM1.DriverDoorSts = "Open" |
+| 86 | NR1L-PowerManagement-077 | input | 舊式兩段記法 'STATUS_BH_BCM1.DriverDoorSts' | STATUS_BH_BCM1.DriverDoorSts = "Open" |
+| 98 | NR1L-PowerManagement-089 | input | 舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts' | STATUS_BH_BCM2.RemStActvSts: "Remote Start Not Active" to "Remote Start Active" |
+| 106 | NR1L-PowerManagement-097 | input | 舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts' | STATUS_BH_BCM2.RemStActvSts: "Remote Start Not Active" to "Remote Start Active" |
+| 132 | NR1L-PowerManagement-123 | input | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | CLIMATIC_PANEL.Radio_Btn0: "Not_Pressed" to "Pressed" |
+| 133 | NR1L-PowerManagement-124 | input | 舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0' | CLIMATIC_PANEL.Radio_Btn0: "Not_Pressed" to "Pressed" |
+| 187 | NR1L-PowerManagement-178 | input | 舊式兩段記法 'STATUS_LIN.PN14_LS_Actv' | STATUS_LIN.PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h] ⏎ Starting volume le |
+| 187 | NR1L-PowerManagement-178 | input | 舊式兩段記法 'STATUS_LIN.PN14_LS_Lvl7' | PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h] ⏎ Starting volume level: 25 |
+| 189 | NR1L-PowerManagement-180 | input | 舊式兩段記法 'STATUS_LIN.Batt_ST_Crit' | STATUS_LIN.Batt_ST_Crit = [1h] ⏎ Starting volume level: 25 |
+| 190 | NR1L-PowerManagement-181 | input | 舊式兩段記法 'STATUS_LIN.Batt_ST_Crit' | STATUS_LIN.Batt_ST_Crit = [0h] ⏎ Measurement window: 10 seconds |
+| 191 | NR1L-PowerManagement-182 | input | 舊式兩段記法 'STATUS_LIN.PN14_LS_Actv' | STATUS_LIN.PN14_LS_Actv = [0h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [0h] |
+| 191 | NR1L-PowerManagement-182 | input | 舊式兩段記法 'STATUS_LIN.PN14_LS_Lvl7' | PN14_LS_Actv = [0h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [0h] |
+| 192 | NR1L-PowerManagement-183 | input | 舊式兩段記法 'STATUS_LIN.PN14_LS_Actv' | STATUS_LIN.PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h] |
+| 192 | NR1L-PowerManagement-183 | input | 舊式兩段記法 'STATUS_LIN.PN14_LS_Lvl7' | PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h] |
+| 193 | NR1L-PowerManagement-184 | input | 舊式兩段記法 'STATUS_LIN.Batt_ST_Crit' | STATUS_LIN.Batt_ST_Crit = [1h] |
+| 194 | NR1L-PowerManagement-185 | input | 舊式兩段記法 'STATUS_LIN.Batt_ST_Crit' | STATUS_LIN.Batt_ST_Crit = [1h] ⏎ Starting volume level: 25 |
+| 195 | NR1L-PowerManagement-186 | input | 舊式兩段記法 'STATUS_LIN.Batt_ST_Crit' | STATUS_LIN.Batt_ST_Crit = [1h] (held) |
+| 196 | NR1L-PowerManagement-187 | input | 舊式兩段記法 'STATUS_LIN.PN14_LS_Actv' | STATUS_LIN.PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h] ⏎ Starting volume le |
+| 196 | NR1L-PowerManagement-187 | input | 舊式兩段記法 'STATUS_LIN.PN14_LS_Lvl7' | PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h] ⏎ Starting volume level: 15 |
+| 197 | NR1L-PowerManagement-188 | input | 舊式兩段記法 'STATUS_LIN.Batt_ST_Crit' | STATUS_LIN.Batt_ST_Crit = [1h] ⏎ Starting volume level: 15 |
 

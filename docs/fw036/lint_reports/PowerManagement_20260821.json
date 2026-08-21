@@ -15,7 +15,8 @@
     "K": 0,
     "L": 71,
     "M": 0,
-    "N": 0
+    "N": 0,
+    "P": 41
   },
   "row_counts": {
     "A": 20,
@@ -32,7 +33,8 @@
     "K": 0,
     "L": 71,
     "M": 0,
-    "N": 0
+    "N": 0,
+    "P": 35
   },
   "granularity": {
     "A": "每次命中",
@@ -49,7 +51,8 @@
     "K": "每列每欄",
     "L": "每列",
     "M": "每列每欄",
-    "N": "每行"
+    "N": "每行",
+    "P": "每次命中"
   },
   "status": {
     "A": "已校準",
@@ -66,7 +69,8 @@
     "K": "已校準（分級待 R-5）",
     "L": "已校準（閾值待 R-3）",
     "M": "已校準",
-    "N": "已校準"
+    "N": "已校準",
+    "P": "已校準（PM 批 1：41→0）"
   },
   "sheets": [
     {
@@ -1673,6 +1677,334 @@
           "field": "test_item",
           "detail": "上半 59 tokens > 50",
           "snippet": "For all screen sizes except 7 inch If $VC_VEH_BRAND$ <> [Maserati] AND $TBM_Pres"
+        },
+        {
+          "check": "P",
+          "row": 17,
+          "tc_id": "NR1L-PowerManagement-008",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts'",
+          "snippet": "STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\""
+        },
+        {
+          "check": "P",
+          "row": 41,
+          "tc_id": "NR1L-PowerManagement-032",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts'",
+          "snippet": "STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\""
+        },
+        {
+          "check": "P",
+          "row": 42,
+          "tc_id": "NR1L-PowerManagement-033",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts'",
+          "snippet": "STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\""
+        },
+        {
+          "check": "P",
+          "row": 43,
+          "tc_id": "NR1L-PowerManagement-034",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts'",
+          "snippet": "STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\""
+        },
+        {
+          "check": "P",
+          "row": 44,
+          "tc_id": "NR1L-PowerManagement-035",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts'",
+          "snippet": "STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\""
+        },
+        {
+          "check": "P",
+          "row": 47,
+          "tc_id": "NR1L-PowerManagement-038",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts'",
+          "snippet": "STATUS_BH_BCM2.RemStActvSts: \"Remote Start Active\" to \"Remote Start Not Active\""
+        },
+        {
+          "check": "P",
+          "row": 51,
+          "tc_id": "NR1L-PowerManagement-042",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM1.DriverDoorSts'",
+          "snippet": "STATUS_BH_BCM1.DriverDoorSts = \"Open\""
+        },
+        {
+          "check": "P",
+          "row": 55,
+          "tc_id": "NR1L-PowerManagement-046",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts'",
+          "snippet": "STATUS_BH_BCM2.RemStActvSts: \"Remote Start Active\" to \"Remote Start Not Active\""
+        },
+        {
+          "check": "P",
+          "row": 57,
+          "tc_id": "NR1L-PowerManagement-048",
+          "field": "proc",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\" ⏎ 2. Read VPLas"
+        },
+        {
+          "check": "P",
+          "row": 59,
+          "tc_id": "NR1L-PowerManagement-050",
+          "field": "proc",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\" ⏎ 2. Read VPLas"
+        },
+        {
+          "check": "P",
+          "row": 66,
+          "tc_id": "NR1L-PowerManagement-057",
+          "field": "proc",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\" ⏎ 2. Read TLM_S"
+        },
+        {
+          "check": "P",
+          "row": 67,
+          "tc_id": "NR1L-PowerManagement-058",
+          "field": "proc",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\" ⏎ 2. Read the s"
+        },
+        {
+          "check": "P",
+          "row": 74,
+          "tc_id": "NR1L-PowerManagement-065",
+          "field": "pre",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts'",
+          "snippet": "er$ read \"Timed\" ⏎ 3. STATUS_BH_BCM2.RemStActvSts reads \"Remote Start Not Active\""
+        },
+        {
+          "check": "P",
+          "row": 79,
+          "tc_id": "NR1L-PowerManagement-070",
+          "field": "proc",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\" ⏎ 2. Read the s"
+        },
+        {
+          "check": "P",
+          "row": 80,
+          "tc_id": "NR1L-PowerManagement-071",
+          "field": "pre",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "is shown after the CLIMATIC_PANEL.Radio_Btn0 press"
+        },
+        {
+          "check": "P",
+          "row": 80,
+          "tc_id": "NR1L-PowerManagement-071",
+          "field": "proc",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "1. Accept the CLIMATIC_PANEL.Radio_Btn0 popup as the user ⏎ 2. Read TLM_Status.Inf"
+        },
+        {
+          "check": "P",
+          "row": 81,
+          "tc_id": "NR1L-PowerManagement-072",
+          "field": "pre",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "is shown after the CLIMATIC_PANEL.Radio_Btn0 press"
+        },
+        {
+          "check": "P",
+          "row": 81,
+          "tc_id": "NR1L-PowerManagement-072",
+          "field": "proc",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "1. Decline the CLIMATIC_PANEL.Radio_Btn0 popup as the user ⏎ 2. Read TLM_Status.In"
+        },
+        {
+          "check": "P",
+          "row": 82,
+          "tc_id": "NR1L-PowerManagement-073",
+          "field": "proc",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\" ⏎ 2. Read the a"
+        },
+        {
+          "check": "P",
+          "row": 83,
+          "tc_id": "NR1L-PowerManagement-074",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM1.DriverDoorSts'",
+          "snippet": "STATUS_BH_BCM1.DriverDoorSts = \"Open\""
+        },
+        {
+          "check": "P",
+          "row": 84,
+          "tc_id": "NR1L-PowerManagement-075",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM1.PsngrDoorSts'",
+          "snippet": "STATUS_BH_BCM1.PsngrDoorSts = \"Open\""
+        },
+        {
+          "check": "P",
+          "row": 85,
+          "tc_id": "NR1L-PowerManagement-076",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM1.DriverDoorSts'",
+          "snippet": "STATUS_BH_BCM1.DriverDoorSts = \"Open\""
+        },
+        {
+          "check": "P",
+          "row": 86,
+          "tc_id": "NR1L-PowerManagement-077",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM1.DriverDoorSts'",
+          "snippet": "STATUS_BH_BCM1.DriverDoorSts = \"Open\""
+        },
+        {
+          "check": "P",
+          "row": 98,
+          "tc_id": "NR1L-PowerManagement-089",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts'",
+          "snippet": "STATUS_BH_BCM2.RemStActvSts: \"Remote Start Not Active\" to \"Remote Start Active\""
+        },
+        {
+          "check": "P",
+          "row": 106,
+          "tc_id": "NR1L-PowerManagement-097",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_BH_BCM2.RemStActvSts'",
+          "snippet": "STATUS_BH_BCM2.RemStActvSts: \"Remote Start Not Active\" to \"Remote Start Active\""
+        },
+        {
+          "check": "P",
+          "row": 132,
+          "tc_id": "NR1L-PowerManagement-123",
+          "field": "input",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "CLIMATIC_PANEL.Radio_Btn0: \"Not_Pressed\" to \"Pressed\""
+        },
+        {
+          "check": "P",
+          "row": 133,
+          "tc_id": "NR1L-PowerManagement-124",
+          "field": "input",
+          "detail": "舊式兩段記法 'CLIMATIC_PANEL.Radio_Btn0'",
+          "snippet": "CLIMATIC_PANEL.Radio_Btn0: \"Not_Pressed\" to \"Pressed\""
+        },
+        {
+          "check": "P",
+          "row": 187,
+          "tc_id": "NR1L-PowerManagement-178",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.PN14_LS_Actv'",
+          "snippet": "STATUS_LIN.PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h] ⏎ Starting volume le"
+        },
+        {
+          "check": "P",
+          "row": 187,
+          "tc_id": "NR1L-PowerManagement-178",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.PN14_LS_Lvl7'",
+          "snippet": "PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h] ⏎ Starting volume level: 25"
+        },
+        {
+          "check": "P",
+          "row": 189,
+          "tc_id": "NR1L-PowerManagement-180",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.Batt_ST_Crit'",
+          "snippet": "STATUS_LIN.Batt_ST_Crit = [1h] ⏎ Starting volume level: 25"
+        },
+        {
+          "check": "P",
+          "row": 190,
+          "tc_id": "NR1L-PowerManagement-181",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.Batt_ST_Crit'",
+          "snippet": "STATUS_LIN.Batt_ST_Crit = [0h] ⏎ Measurement window: 10 seconds"
+        },
+        {
+          "check": "P",
+          "row": 191,
+          "tc_id": "NR1L-PowerManagement-182",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.PN14_LS_Actv'",
+          "snippet": "STATUS_LIN.PN14_LS_Actv = [0h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [0h]"
+        },
+        {
+          "check": "P",
+          "row": 191,
+          "tc_id": "NR1L-PowerManagement-182",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.PN14_LS_Lvl7'",
+          "snippet": "PN14_LS_Actv = [0h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [0h]"
+        },
+        {
+          "check": "P",
+          "row": 192,
+          "tc_id": "NR1L-PowerManagement-183",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.PN14_LS_Actv'",
+          "snippet": "STATUS_LIN.PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h]"
+        },
+        {
+          "check": "P",
+          "row": 192,
+          "tc_id": "NR1L-PowerManagement-183",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.PN14_LS_Lvl7'",
+          "snippet": "PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h]"
+        },
+        {
+          "check": "P",
+          "row": 193,
+          "tc_id": "NR1L-PowerManagement-184",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.Batt_ST_Crit'",
+          "snippet": "STATUS_LIN.Batt_ST_Crit = [1h]"
+        },
+        {
+          "check": "P",
+          "row": 194,
+          "tc_id": "NR1L-PowerManagement-185",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.Batt_ST_Crit'",
+          "snippet": "STATUS_LIN.Batt_ST_Crit = [1h] ⏎ Starting volume level: 25"
+        },
+        {
+          "check": "P",
+          "row": 195,
+          "tc_id": "NR1L-PowerManagement-186",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.Batt_ST_Crit'",
+          "snippet": "STATUS_LIN.Batt_ST_Crit = [1h] (held)"
+        },
+        {
+          "check": "P",
+          "row": 196,
+          "tc_id": "NR1L-PowerManagement-187",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.PN14_LS_Actv'",
+          "snippet": "STATUS_LIN.PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h] ⏎ Starting volume le"
+        },
+        {
+          "check": "P",
+          "row": 196,
+          "tc_id": "NR1L-PowerManagement-187",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.PN14_LS_Lvl7'",
+          "snippet": "PN14_LS_Actv = [1h] ⏎ STATUS_LIN.PN14_LS_Lvl7 = [1h] ⏎ Starting volume level: 15"
+        },
+        {
+          "check": "P",
+          "row": 197,
+          "tc_id": "NR1L-PowerManagement-188",
+          "field": "input",
+          "detail": "舊式兩段記法 'STATUS_LIN.Batt_ST_Crit'",
+          "snippet": "STATUS_LIN.Batt_ST_Crit = [1h] ⏎ Starting volume level: 15"
         }
       ]
     }
