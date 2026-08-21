@@ -22,6 +22,7 @@
 | R-6 | 2026-08-21 | verbatim 上半豁免 P（訊號記法） | ACTIVE | 03 | lint／全案 |
 | R-6b | 2026-08-21 | verbatim 上半豁免 C（hedge）；作者用語品質類檢查僅施於括號下半 | ACTIVE | 06 | lint／全案 |
 | R-7 | 2026-08-21 | 值之語意標籤取自 DBC `VAL_` 列舉 | ACTIVE | 09 | 全案 |
+| R-8 | 2026-08-21 | spec_reference 一值一行、前綴逐行重述、禁串接；CFTS 列不附檔名章節 | ACTIVE | Pei 直接裁定 | 全案 |
 
 ## 條文落檔位置
 
@@ -32,6 +33,7 @@
 | R-6 | 同上 §8.7.5 末段＋`scripts/lint036.py` 檢查 P 之範圍 |
 | R-6b | `scripts/lint036.py` 檢查 C 之範圍 |
 | R-7 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5(a) |
+| R-8 | 同上 §10.7 之「排列」段 |
 | R-2 | 同上 §10.7 |
 | R-3 | 同上 §4.3.1 |
 | R-4 | 同上 §4.3.1 |

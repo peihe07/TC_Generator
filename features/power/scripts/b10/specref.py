@@ -7,11 +7,13 @@
     → SYS2 Polarion 匯出之 `Source Requirement ID`（7 位 ObjectID）
     → SYS2 `Document ID`（CFTS009／CFTS010）
 
-**不由章節號反推**：ObjectID 一律取該 leaf 於 SYS2 所引之全集。
-§10.7 明訂同一文件內多個 ObjectID 以 `, ` 續列、文件前綴僅敘明一次，
-故無須（亦不得）自多個錨點中挑選其一 —— 挑選即為推測。
+**不由章節號反推**：ObjectID 一律取該 leaf 於 SYS2 所引之全集，
+不自多個錨點中挑選其一 —— 挑選即為推測。
 
-第二行保留原有之 `{檔名}_{章節號}` 參照，使章節層級之精度不因遷移而流失。
+**輸出格式（Pei 裁定，2026-08-21）**：一個 ObjectID 一行，
+每行皆為完整之 `CFTS{nnn}-{ObjectID}`；不留文件名與章節號、不用頓號。
+⚠ 此與 canon §10.7 現行條文（「多個 ObjectID 以 `, ` 續列且文件前綴
+僅敘明一次」）相反，該條文須依本裁定更新。
 """
 
 from __future__ import annotations
@@ -64,11 +66,10 @@ def load_leaf_map() -> dict[str, dict]:
             for leaf, v in acc.items()}
 
 
-def build(req_id: str, existing: str, leaf_map: dict[str, dict]) -> str | None:
+def build(req_id: str, existing: str, leaf_map: dict[str, dict]) -> str | None:  # noqa: ARG001
     """回傳新的 spec_reference；無法解析回 None。"""
     entry = leaf_map.get(req_id.strip())
     if not entry or not entry["ids"] or len(entry["docs"]) != 1:
         return None
-    first = f"{entry['docs'][0]}-{', '.join(entry['ids'])}"
-    tail = [ln for ln in existing.split("\n") if ln.strip()]
-    return "\n".join([first] + tail)
+    doc = entry["docs"][0]
+    return "\n".join(f"{doc}-{oid}" for oid in entry["ids"])
