@@ -934,6 +934,30 @@ R-P37 停止章節層調查 —— 二者合起來即：本 feature 之規格涵
   未一條一行結論。
 - ⚠ `tcid_three_gen_50.py` **會就地覆寫 50 包版**，本次已還原另存；輸出路徑未改。
 
+### FW036 下放包 16（PM 全面改寫）—— **另一系列，不佔本表 NN**
+
+- 下放 [`docs/fw036/handoff/16_pm_full_rewrite.md`](../../../docs/fw036/handoff/16_pm_full_rewrite.md)
+  （附件 16a–16f）
+- 上繳 [`docs/fw036/upstream/16_pm_full_rewrite.md`](../../../docs/fw036/upstream/16_pm_full_rewrite.md)
+- **253 列四欄改寫**（軌 A 56 逐字套用、軌 B 197 執行層改寫）；軌 C 30 列未動。
+- 產出 `features/power/sandbox/b16/pm_16.xlsx`（SHA256 `6c849fef89dc9064670d…`）
+  —— **止於工作副本，未送達、未覆寫交付本**。
+- lint A–N 全零，P 23 → 10（殘存 10 筆全在 `test_item` 括號下半，本包不動該半）。
+- 新增 **DR-PW20**（四列轉態目標值原文未載，標 `PENDING: DR-PW20`）。
+- ⚠ 該包 NN 與本表之 16 包（write_order）**無關**，兩系列各自編號。
+
+### FW036 下放包 17／18（覆核裁決執行 ＋ 軌 C 套用）
+
+- 上繳 [`docs/fw036/upstream/17_b16_review_actions.md`](../../../docs/fw036/upstream/17_b16_review_actions.md)
+  —— §五 `PowerModeSts_Telematic` → `$STATUS_TELEMATIC.PowerSts_Telematic$`（row 72，2 格）；
+  產出 `sandbox/b17/pm_17.xlsx`（`c837096b…`）
+- 上繳 [`docs/fw036/upstream/18_pm_trackC.md`](../../../docs/fw036/upstream/18_pm_trackC.md)
+  —— 軌 C 套用 **26 列／104 格**；產出 `sandbox/b18/pm_18.xlsx`（`c61a6d55…`）
+- ⚠ **附件 G／H 僅載 26 列，軌 C 為 30 列** —— `rows 271–274`（`SWE-PM-104`）
+  未獲附件，四列未動，待分析層補發。全表驗收因而二項各餘 4 筆。
+- lint A–N 全零、E=0、P=10（全在 `test_item` 括號下半）。
+- DR-PW12 補記第七對（A-PM14：row 181 ≡ row 293）。
+
 ### 尚未進入
 
 Phase 4 以降全部未開始。FW036 workbook 為 BLANK（G10），無任何寫回動作發生過。
