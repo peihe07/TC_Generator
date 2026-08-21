@@ -180,6 +180,10 @@ Pre-Condition, Input Test Data, and Procedure.
 If the data already belongs to Pre-Condition or Procedure, set Input Test Data
 to `NA`. `NA` is valid for many UI-operation TCs and does not fail self-check.
 
+**SWC 基準（R-1 v2 同批採認）**：資料應內聯至 Pre-Condition 或 Procedure，
+使步驟自足；Input Test Data 以 `NA` 為常態（SWC 0708 實測 285/286 為 `NA`）。
+步驟不得以「listed in Input Test Data」回指該欄。
+
 ### 4.6 Sibling Awareness
 On `## Sibling Rows` injection, output `duplicate_of` (only if truly equivalent: same trigger+outcome+input+verification target) and `distinguishing_axis` `{"axis": "<trigger_state|input_data|timing|boundary|mode|none>", "delta": "<繁中一句, 含 tc_title 具體 token>"}`. Rule: `axis="none"` ⇔ `duplicate_of` set. Full contract in code.
 
@@ -499,14 +503,37 @@ A visual state (greyed-out, dimmed) does NOT imply non-operability; the ER must
 not assert operability that contradicts the spec. Follow the behavior the spec
 explicitly states.
 
-#### 8.7.5 訊號記法（R-1）
-三層記法各有其形，同一行可並列多層，但每一 token 須自我識別所屬層：
-- PROXI 參數 → `$X$`（沿來源原文）
-- 內部訊號 → `X.Info` / `X.Req`（沿來源原文）
-- CAN 訊號斷言 → 三件組 `<Signal> in <MESSAGE> on <segment>`
-  例：`RemStActvSts in STATUS_BH_BCM2 on BH-CAN`
-網段須有來源（DBC 或架構文件）依據；查無者依 §8.4.3 標 PENDING，
-不得杜撰。
+#### 8.7.5 訊號與參數寫法（R-1 v2）
+基準：SWC 0708 交付本。**v1 之三件組 `<Signal> in <MESSAGE> on <segment>`
+已撤銷**（該式於 SWC 286 列中出現 0 次，見 RULINGS_LEDGER R-1）。
+
+(a) CAN 訊號 —— Procedure：
+    `Send CAN: <MESSAGE>.<Signal> = <raw> (<label>)`
+    例：`3. Send CAN: BCM_FD_14.Command_02Sts = 1 (PSD)`
+    不寫網段、不加 `$`。message 名本身即可判別網段。
+    `<label>` 逐字取自 DBC `VAL_` 列舉（R-7）。
+
+(b) CAN 訊號 —— Expected Result：
+    `<MESSAGE>.<Signal> = <raw> (<label>) is sent <時機>`
+    例：`3. BCM_FD_14.Command_02Sts = 1 (PSD) is sent during press window`
+
+(c) PROXI 參數 —— Pre-Condition：`PROXI <Param> = <值>`，前綴 `PROXI` 必寫。
+    參數名採加 `$` 式：`PROXI $Audio_Steering_Wheel_Controls_on_IPC$ = "Enabled"`
+
+(d) 內部訊號（`X.Info` / `X.Req` / `X.GUI`）：維持來源記法，
+    不加 `$`，不套 (a) 之 CAN 格式。
+    例（SWC）：`The TLM updates TLM_Vol_UP_Status.Info to follow …`
+
+(e) 保持／等待步驟：`Hold for <n> ms` 獨立成一步驟，
+    ER 對應 `The signal is held for <n> ms`。
+
+(f) baseline 記錄：`Read <對象> and record as <Name>_initial` →
+    `Read <對象> … and record as <Name>_after` →
+    `Check that <Name>_after <關係> <Name>_initial`。
+    ER 對應 `<Name>_initial is recorded`。
+
+訊號名以 DBC 為準；來源文件與 DBC 大小寫不一致時，步驟採 DBC 寫法，
+verbatim 上半仍保留來源原文（R-6）。
 
 ## 9. Self-Check (before emitting each TC)
 1. Test Set: noun phrase, capability-level, matches `framework.md`, no Test Group prefix, consistent spelling, no `Unclassified` / `Misc` (§4.1, §4.2)
@@ -590,6 +617,10 @@ When in doubt, omit the field.
 排列：一來源文件一行（換行分隔）；同一文件內多個 ObjectID／章節號
 以 `, ` 續列且文件前綴僅敘明一次；禁用 `;`。TC 直接驗證之主要來源
 列於首行，同文件內 ID／章節號升冪。
+
+**家族排序（SWC 基準，實測 286/286 首行為 CFTS）**：同一 TC 兼引 CFTS 與
+HMI Logic and Flow 兩家族時，CFTS 行在前、HMI 行在後。
+例：`CFTS042-4813401` ⏎ `Steering_Wheel_Controls_HMI_Logic_and_Flow_…-Volume Down`
 
 ## 11. Formatting
 No HTML / Markdown tables in TC output. Plain numbered text; one item per line; blank line between fields.

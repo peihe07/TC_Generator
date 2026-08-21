@@ -332,13 +332,36 @@ def test_numbered_lines_helper_excludes_lettered_substeps():
 # --- 03 §三 R-6：P 訊號記法之施用範圍 ---
 
 
-def test_p_flags_legacy_can_notation_in_procedure():
-    """作者生成之四欄仍用兩段記法者為違規（R-1）。"""
-    assert "P" in run(proc="1. Send STATUS_LIN.Batt_ST_Crit to the bus")
+def test_p_flags_withdrawn_triplet():
+    """R-1 v1 之三件組已撤銷，殘留即違規。"""
+    assert "P" in run(proc="1. Drive Radio_btn0 in CLIMATIC_PANEL on BH-CAN to Pressed")
 
 
-def test_p_allows_three_part_notation():
-    assert "P" not in run(proc="1. Send Batt_ST_Crit in STATUS_LIN on BH-CAN to the bus")
+def test_p_allows_v2_send_form():
+    """R-1 v2(a)：`Send CAN: <MSG>.<Sig> = <raw> (<label>)`。"""
+    assert "P" not in run(proc="1. Send CAN: BCM_FD_14.Command_02Sts = 1 (PSD)")
+
+
+def test_p_flags_assignment_without_label():
+    """R-7：值須帶 DBC `VAL_` 括號標籤。"""
+    assert "P" in run(proc="1. Send CAN: BCM_FD_14.Command_02Sts = 1")
+
+
+def test_p_flags_procedure_assignment_without_send_prefix():
+    assert "P" in run(proc="1. Set BCM_FD_14.Command_02Sts = 1 (PSD)")
+
+
+def test_p_allows_multiple_assignments_on_one_line():
+    """SWC 一行可載多個賦值，逐出現判定不得誤報。"""
+    assert "P" not in run(
+        proc="1. Send CAN: BCM_FD_14.Command_01Sts = 1 (Pressed) and "
+             "BCM_FD_14.Command_03Sts = 0 (Not_Pressed)")
+
+
+def test_p_er_does_not_constrain_trailing_wording():
+    """ER 之收尾語於基準本不固定（is sent／is set／during …），不得設限。"""
+    assert "P" not in run(er="2. BCM_FD_14.Command_09Sts = 0 (NOT_PSD) is set after release")
+    assert "P" not in run(er="2. BCM_FD_14.Command_09Sts = 1 (PSD) during press window")
 
 
 def test_p_ignores_internal_signal_notation():
@@ -354,15 +377,15 @@ def test_p_ignores_proxi_parameter():
 
 def test_p_exempts_test_item_verbatim_upper_half():
     """R-6：test_item 上半為需求原句 verbatim，其記法保留來源原文。"""
-    item = ("When STATUS_LIN.PN14_LS_Actv is received the TLM shall react\n"
+    item = ("When STATUS_LIN.PN14_LS_Actv = 1 the TLM shall react\n"
             "(read the volume -> The maximum volume is reduced)")
     assert "P" not in run(test_item=item)
 
 
 def test_p_flags_legacy_notation_in_test_item_paren():
-    """R-6：括號下半屬作者生成內容，仍受 R-1 規制。"""
+    """R-6：括號下半屬作者生成內容，仍受 R-1 v2 規制。"""
     item = ("The TLM shall react to the load shed signal\n"
-            "(drive STATUS_LIN.PN14_LS_Actv -> The maximum volume is reduced)")
+            "(drive PN14_LS_Actv in STATUS_LIN on BH-CAN -> The volume is reduced)")
     assert "P" in run(test_item=item)
 
 

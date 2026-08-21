@@ -80,9 +80,21 @@ RE_PAREN_TAIL = re.compile(r"\([^)]{3,}\)\s*$")
 RE_CJK = re.compile(r"[一-鿿]")
 RE_TOKEN = re.compile(r"[A-Za-z0-9$_.'\"-]+")
 RE_TRAILING_PERIOD = re.compile(r"[.。]$")
-# 舊式 CAN 兩段記法 `MESSAGE.Signal`（message 段全大寫）。
+# CAN 訊號 token `MESSAGE.Signal`（message 段全大寫）。
 # 內部訊號 `TLM_Status.Info`／`Phone_Call.Info` 之 message 段含小寫，不命中。
-RE_P_LEGACY_CAN = re.compile(r"\b[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\b")
+RE_CAN_TOKEN = re.compile(r"\b[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\b")
+# R-1 v1 之三件組，已撤銷；殘留即違規。
+RE_P_TRIPLET = re.compile(
+    r"\b[A-Za-z0-9_]+\s+in\s+[A-Z][A-Z0-9_]{2,}\s+on\s+[A-Za-z0-9-]+\b")
+# 賦值之偵測：CAN token 後接 `=`／`from`／`to`（不論是否合式）。
+RE_P_ASSIGNMENT = re.compile(
+    r"\b[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\s*(?:=|from\b|to\b)")
+# R-1 v2(a)(b) 共通之賦值形：`<MSG>.<Sig> = <raw> (<label>)`。
+# 括號標籤即 R-7 之 DBC `VAL_` 語意標籤。收尾語不設限（見 check_signal_line）。
+RE_P_VALUE_FORM = re.compile(
+    r"[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\s*=\s*[^\s(]+\s*\([^)]+\)")
+# PROXI 行（R-1 v2(c)）
+RE_P_PROXI = re.compile(r"\bPROXI\s+(\$[^$]+\$|[A-Za-z][A-Za-z0-9_]*)\s*=")
 RE_CAMEL = re.compile(r"^[a-z][a-zA-Z0-9_]*[A-Z]")
 RE_DOTCALL = re.compile(r"^[a-z][a-z0-9_]*\.[a-zA-Z(]")
 
@@ -109,7 +121,7 @@ CHECK_TITLES = {
     "L": f"test_item 上半過長 (>{DEFAULT_LENGTH_LIMIT} tokens)",
     "M": "空欄三態",
     "N": "行尾多餘句號",
-    "P": "訊號記法未用三件組",
+    "P": "訊號寫法不合 R-1 v2",
 }
 
 # 校準狀態（00c 最終版）：M、J 經全語料分佈補校，改標已校準
@@ -120,7 +132,7 @@ CHECK_STATUS = {
     "H": "已校準", "I": "已校準", "I-sibling": "未校準（M15）",
     "J": "已校準（行計口徑）", "K": "已校準（分級待 R-5）",
     "L": "已校準（閾值待 R-3）", "M": "已校準", "N": "已校準",
-    "P": "已校準（PM 批 1：41→0）",
+    "P": "已校準（SWC 0708：195 —— proc 11／er 184，見上繳 09）",
 }
 CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
                "J", "K", "L", "M", "N", "P"]
@@ -416,16 +428,47 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
             if RE_TRAILING_PERIOD.search(line.rstrip()):
                 add("N", key, "行尾多餘句號", line.strip()[:80])
 
-    # P 訊號記法（R-1；範圍依 R-6）
+    # P 訊號寫法（R-1 v2；範圍依 R-6：作者生成內容，不含 test_item 上半）
     for key in P_FIELDS:
-        for m in RE_P_LEGACY_CAN.finditer(fields[key]):
-            add("P", key, f"舊式兩段記法 {m.group(0)!r}",
-                snippet_of(fields[key], m.start()))
+        for line in split_lines(fields[key]):
+            out.extend(check_signal_line(line, key, row_no, tc_id))
     for line in paren_lines(item):                    # test_item 括號下半
-        for m in RE_P_LEGACY_CAN.finditer(line):
-            add("P", "test_item(括號下半)",
-                f"舊式兩段記法 {m.group(0)!r}", line[:80])
+        out.extend(check_signal_line(line, "test_item(括號下半)", row_no, tc_id))
 
+    return out
+
+
+def check_signal_line(line: str, field: str, row_no: int, tc_id: str
+                      ) -> list[Violation]:
+    """R-1 v2 之單行判定（逐賦值出現，非逐行）。
+
+    三項：(1) 撤銷之三件組殘留；(2) CAN 賦值未寫成
+    `<MSG>.<Sig> = <raw> (<label>)`；(3) Procedure 之賦值行缺
+    `Send CAN:` 前綴。
+
+    逐「出現」而非逐「行」判定，是因 SWC 語料一行可載多個賦值
+    （`… = 1 (Pressed) and BCM_FD_14.Command_09Sts = 0 (Not_Pressed)`），
+    且 ER 之收尾語不固定（`is sent`／`is set`／`during …`／`then …`），
+    對收尾語設限即與基準本相牴觸。
+    """
+    out: list[Violation] = []
+
+    def add(detail: str) -> None:
+        out.append(Violation("P", row_no, tc_id, field, detail, line.strip()[:80]))
+
+    for m in RE_P_TRIPLET.finditer(line):
+        add(f"三件組已撤銷（R-1 v1）{m.group(0)!r}")
+
+    assignments = list(RE_P_ASSIGNMENT.finditer(line))
+    if not assignments:
+        return out
+
+    for m in assignments:
+        if not RE_P_VALUE_FORM.match(line, m.start()):
+            add(f"賦值未寫成 `<MSG>.<Sig> = <raw> (<label>)`：{m.group(0)!r}")
+
+    if field == "proc" and "Send CAN:" not in line:
+        add("Procedure 之 CAN 賦值行缺 `Send CAN:` 前綴（R-1 v2(a)）")
     return out
 
 
