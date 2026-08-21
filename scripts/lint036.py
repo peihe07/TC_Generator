@@ -4,6 +4,12 @@
 檢查 A–N 之定義見 docs/fw036/handoff/00_lint_spec.md。
 本工具唯讀開啟 xlsx，絕不寫回任何 xlsx。
 
+`--profile <feature>` （21 包）：指定時 P 改採 **R-1 v3** 判準
+（`$MESSAGE.Signal$` ＋ DBC `VAL_` 標籤），並另跑
+Q（不可見字元，R-10(a)）／R（Pre-Condition 版面，R-9(a)）／
+T（PENDING 說明語言，R-14）。**未指定時行為與 21 包之前完全一致** ——
+既有八本之報告基線因而不動（迴歸基準見上繳 22）。
+
 gate 政策（S3）：`--gate` 旗標保留但**尚不啟用**。啟用時機為尾批
 （全數回修完成後）；現階段啟用將使所有既有交付本 exit 1，阻斷正常
 作業。裁決條文見 docs/fw036/RULINGS_LEDGER.md。
@@ -52,6 +58,10 @@ N_FIELDS = ("pre", "input", "proc", "er")
 # test_item 上半為需求原句 verbatim，其訊號記法保留來源原文，不套 R-1。
 P_FIELDS = ("pre", "input", "proc", "er")
 J_NUMBERED_FIELDS = ("pre", "proc", "er")
+# Q（R-10(a)）：不可見字元不構成內容，全欄位適用（含 verbatim 上半與 spec）
+Q_FIELDS = ("test_item", "test_set", "pre", "input", "proc", "er", "spec")
+# T（R-14）：`PENDING:` 佔位之說明須為英文
+T_FIELDS = ("pre", "input", "proc", "er")
 
 # --- 正則 --------------------------------------------------------------------
 
@@ -95,6 +105,23 @@ RE_P_VALUE_FORM = re.compile(
     r"[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\s*=\s*[^\s(]+\s*\([^)]+\)")
 # PROXI 行（R-1 v2(c)）
 RE_P_PROXI = re.compile(r"\bPROXI\s+(\$[^$]+\$|[A-Za-z][A-Za-z0-9_]*)\s*=")
+# --- profile 專屬（未指定 --profile 時全部不啟用）-----------------------------
+# P v3（R-1 v3）：訊號一律 `$<MSG>.<Sig>$`；賦值須帶 `(<VAL_ label>)`
+RE_P3_DOLLAR_ASSIGN = re.compile(
+    r"\$[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\$\s*=\s*(?P<val>[^\s(]+)\s*(?P<lab>\([^)]+\))?")
+# `$` 未包覆之 CAN token 賦值（v3(a) 要求包覆）
+RE_P3_BARE_ASSIGN = re.compile(
+    r"(?<!\$)\b[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\s*=")
+RE_P3_SEND_CAN = re.compile(r"\bSend CAN:")
+RE_P3_PROXI_DOLLAR = re.compile(r"\bPROXI\s+\$")
+# Q（R-10(a)）
+RE_Q_TRAILING_WS = re.compile(r"[ \t]+$")
+# R（R-9(a)）：多條件並列之謂詞計數
+RE_R_PREDICATE = re.compile(r"\b(is|are|was|were|reads?|holds?|has|have)\b")
+R_TOOL_PHRASE = "tool is available on HU"
+# T（R-14）
+RE_T_PENDING = re.compile(r"PENDING:\s*(?P<dr>[A-Za-z0-9-]+)?(?P<desc>.*)$")
+
 RE_CAMEL = re.compile(r"^[a-z][a-zA-Z0-9_]*[A-Z]")
 RE_DOTCALL = re.compile(r"^[a-z][a-z0-9_]*\.[a-zA-Z(]")
 
@@ -122,7 +149,13 @@ CHECK_TITLES = {
     "M": "空欄三態",
     "N": "行尾多餘句號",
     "P": "訊號寫法不合 R-1 v2",
+    "Q": "不可見字元（NBSP／全形空格／行尾空白）",
+    "R": "Pre-Condition 版面（未編號行／多條件並列）",
+    "T": "PENDING 說明非英文",
+    "U": "PENDING 佔位（四欄全掃，含 ER 側）",
 }
+# `--profile` 啟用時 P 改以 R-1 v3 判準，標題隨之替換
+CHECK_TITLE_PROFILE = {"P": "訊號寫法不合 R-1 v3"}
 
 # 校準狀態（00c 最終版）：M、J 經全語料分佈補校，改標已校準
 CHECK_STATUS = {
@@ -133,9 +166,34 @@ CHECK_STATUS = {
     "J": "已校準（行計口徑）", "K": "已校準（分級待 R-5）",
     "L": "已校準（閾值待 R-3）", "M": "已校準", "N": "已校準",
     "P": "已校準（SWC 0708：195 —— proc 11／er 184，見上繳 09）",
+    "Q": "未校準（R-10(a)，21 包新增）",
+    "R": "未校準（R-9(a)，21 包新增）",
+    "T": "未校準（R-14，21 包新增）",
+    "U": "計數用（A-PM16：ER 側原不受任何檢查覆蓋）",
 }
+CHECK_STATUS_PROFILE = {"P": "未校準（R-1 v3，21 包改寫；profile 專屬）"}
 CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
                "J", "K", "L", "M", "N", "P"]
+# profile 專屬檢查：僅於 `--profile <feature>` 指定時啟用。
+# 未指定時 CHECK_ORDER 不變 —— 既有八本之報告基線因而完全不動。
+PROFILE_CHECKS = ["Q", "R", "T", "U"]
+
+
+def check_order(profile: str | None) -> list[str]:
+    """本次執行所啟用之檢查序列。"""
+    return CHECK_ORDER + PROFILE_CHECKS if profile else list(CHECK_ORDER)
+
+
+def check_title(key: str, profile: str | None) -> str:
+    if profile and key in CHECK_TITLE_PROFILE:
+        return CHECK_TITLE_PROFILE[key]
+    return CHECK_TITLES[key]
+
+
+def check_status(key: str, profile: str | None) -> str:
+    if profile and key in CHECK_STATUS_PROFILE:
+        return CHECK_STATUS_PROFILE[key]
+    return CHECK_STATUS[key]
 
 # 各檢查之記錄粒度（報告表頭「行計」欄之語意）
 CHECK_GRANULARITY = {
@@ -144,6 +202,7 @@ CHECK_GRANULARITY = {
     "G": "每列", "H": "每次命中", "I": "每列", "I-sibling": "每列",
     "J": "每行", "K": "每列每欄", "L": "每列", "M": "每列每欄", "N": "每行",
     "P": "每次命中",
+    "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
 }
 
 
@@ -323,8 +382,12 @@ def n_exempt(line: str) -> bool:
 
 
 def check_row(fields: dict[str, str], row_no: int, tc_id: str,
-              length_limit: int) -> list[Violation]:
-    """對單列跑 A–N（除 I-sibling 外）之檢查。"""
+              length_limit: int, profile: str | None = None) -> list[Violation]:
+    """對單列跑 A–N（除 I-sibling 外）之檢查。
+
+    `profile` 為 None 時行為與 21 包之前完全一致；指定時另跑 Q／R／T，
+    且 P 改以 R-1 v3 判準（見 `check_signal_line_v3`）。
+    """
     out: list[Violation] = []
     proc = fields["proc"]
     er = fields["er"]
@@ -428,12 +491,57 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
             if RE_TRAILING_PERIOD.search(line.rstrip()):
                 add("N", key, "行尾多餘句號", line.strip()[:80])
 
-    # P 訊號寫法（R-1 v2；範圍依 R-6：作者生成內容，不含 test_item 上半）
+    # P 訊號寫法（範圍依 R-6：作者生成內容，不含 test_item 上半）
+    signal_check = check_signal_line_v3 if profile else check_signal_line
     for key in P_FIELDS:
         for line in split_lines(fields[key]):
-            out.extend(check_signal_line(line, key, row_no, tc_id))
+            out.extend(signal_check(line, key, row_no, tc_id))
     for line in paren_lines(item):                    # test_item 括號下半
-        out.extend(check_signal_line(line, "test_item(括號下半)", row_no, tc_id))
+        out.extend(signal_check(line, "test_item(括號下半)", row_no, tc_id))
+
+    if not profile:
+        return out
+
+    # --- 以下僅於 --profile 指定時啟用 --------------------------------------
+
+    # Q 不可見字元（R-10(a)，全欄位含 verbatim 上半）
+    for key in Q_FIELDS:
+        for line in fields.get(key, "").split("\n"):
+            hits = []
+            if "\xa0" in line:
+                hits.append("NBSP")
+            if "\u3000" in line:
+                hits.append("全形空格")
+            if RE_Q_TRAILING_WS.search(line):
+                hits.append("行尾空白")
+            if hits:
+                add("Q", key, "／".join(hits), line.strip()[:80])
+
+    # R Pre-Condition 版面（R-9(a)）
+    for line in split_lines(pre):
+        if not NUMBERED_LINE.match(line):
+            add("R", "pre", "未編號行", line.strip()[:80])
+            continue
+        body = NUMBER_PREFIX.sub("", line).replace(R_TOOL_PHRASE, "")
+        if (" and " in body or ", " in body) and \
+                len(RE_R_PREDICATE.findall(body)) >= 2:
+            add("R", "pre", "多條件並列於同一行", line.strip()[:80])
+
+    # T PENDING 說明之語言（R-14）
+    for key in T_FIELDS:
+        for line in split_lines(fields[key]):
+            m = RE_T_PENDING.search(line)
+            if not m:
+                continue
+            desc = m.group("desc") or ""
+            bad = [c for c in desc if ord(c) > 127]
+            if bad:
+                add("T", key, f"PENDING 說明含非 ASCII 字元 {bad[:3]!r}",
+                    line.strip()[:80])
+            # U 佔位之可見性（A-PM16）：ER 側原不受任何檢查覆蓋，
+            # 致 `PENDING` 行「未被覆蓋」與「通過」無從分辨。逐一列出。
+            add("U", key, f"PENDING 佔位（{m.group('dr') or '未標 DR'}）",
+                line.strip()[:80])
 
     return out
 
@@ -472,6 +580,37 @@ def check_signal_line(line: str, field: str, row_no: int, tc_id: str
     return out
 
 
+def check_signal_line_v3(line: str, field: str, row_no: int, tc_id: str
+                         ) -> list[Violation]:
+    """R-1 v3 之單行判定（`--profile` 專屬；取代 v2 之 `check_signal_line`）。
+
+    四項：(1) v1 三件組殘留；(2) v2 之 `Send CAN:` 前綴殘留；
+    (3) 訊號賦值未以 `$` 包覆全名；(4) `$MSG.Sig$` 之賦值缺 `(<VAL_ label>)`。
+    另 (5) `PROXI $X$` —— v3(c) 明定 PROXI 不加 `$`。
+    """
+    out: list[Violation] = []
+
+    def add(detail: str) -> None:
+        out.append(Violation("P", row_no, tc_id, field, detail, line.strip()[:80]))
+
+    for m in RE_P_TRIPLET.finditer(line):
+        add(f"三件組已撤銷（R-1 v1）{m.group(0)!r}")
+    for m in RE_P3_SEND_CAN.finditer(line):
+        add("`Send CAN:` 為 R-1 v2 舊式，v3 改 `Send the signal $MSG.Sig$ = …`")
+    for m in RE_P3_BARE_ASSIGN.finditer(line):
+        add(f"訊號賦值未以 `$` 包覆全名（R-1 v3(a)）：{m.group(0).strip()!r}")
+    for m in RE_P3_DOLLAR_ASSIGN.finditer(line):
+        if m.group("lab"):
+            continue
+        if m.group("val").startswith("PENDING"):     # R-14 佔位，另由 T 檢查
+            continue
+        add(f"賦值缺 DBC `VAL_` 標籤 `(<label>)`（R-1 v3(a)／R-7）："
+            f"{m.group(0).strip()!r}")
+    for m in RE_P3_PROXI_DOLLAR.finditer(line):
+        add("PROXI 不加 `$`（R-1 v3(c)）")
+    return out
+
+
 def check_sibling_parens(rows: list[tuple[int, str, str, str]]) -> list[Violation]:
     """I-sibling：同 Requirement ID 下多列括號行內容逐字相同。"""
     out: list[Violation] = []
@@ -496,8 +635,8 @@ def check_sibling_parens(rows: list[tuple[int, str, str, str]]) -> list[Violatio
 # --- 工作簿層 ----------------------------------------------------------------
 
 
-def lint_workbook(path: Path, length_limit: int = DEFAULT_LENGTH_LIMIT
-                  ) -> list[SheetResult]:
+def lint_workbook(path: Path, length_limit: int = DEFAULT_LENGTH_LIMIT,
+                  profile: str | None = None) -> list[SheetResult]:
     """唯讀開啟工作簿，對每個 TC sheet 跑檢查。"""
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
     try:
@@ -505,7 +644,7 @@ def lint_workbook(path: Path, length_limit: int = DEFAULT_LENGTH_LIMIT
         for sheet_name in wb.sheetnames:
             if not sheet_name.startswith(TC_SHEET_PREFIX):
                 continue
-            results.append(lint_sheet(wb[sheet_name], length_limit))
+            results.append(lint_sheet(wb[sheet_name], length_limit, profile))
         if not results:
             raise ValueError(f"{path.name}：找不到以 {TC_SHEET_PREFIX!r} 開頭之 sheet")
         return results
@@ -513,7 +652,7 @@ def lint_workbook(path: Path, length_limit: int = DEFAULT_LENGTH_LIMIT
         wb.close()
 
 
-def lint_sheet(ws, length_limit: int) -> SheetResult:
+def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult:
     """單一 sheet 的檢查流程。"""
     header_row = find_header_row(ws)
     rows = list(ws.iter_rows(min_row=1, values_only=True))
@@ -533,26 +672,31 @@ def lint_sheet(ws, length_limit: int) -> SheetResult:
         tc_id = cell_text(raw[columns["tc_id"]]) if "tc_id" in columns else ""
         req_id = cell_text(raw[columns["req_id"]]) if "req_id" in columns else ""
         result.data_rows += 1
-        result.violations.extend(check_row(fields, offset, tc_id, length_limit))
+        result.violations.extend(
+            check_row(fields, offset, tc_id, length_limit, profile))
         sibling_input.append((offset, tc_id, req_id, fields["test_item"]))
 
     result.violations.extend(check_sibling_parens(sibling_input))
-    result.violations.sort(key=lambda v: (CHECK_ORDER.index(v.check), v.row))
+    order = check_order(profile)
+    result.violations.sort(key=lambda v: (order.index(v.check), v.row))
     return result
 
 
-def count_by_check(results: list[SheetResult]) -> dict[str, int]:
+def count_by_check(results: list[SheetResult],
+                   profile: str | None = None) -> dict[str, int]:
     """彙總各檢查之行計（違規記錄數）。"""
-    counts = {key: 0 for key in CHECK_ORDER}
+    counts = {key: 0 for key in check_order(profile)}
     for result in results:
         for violation in result.violations:
             counts[violation.check] += 1
     return counts
 
 
-def rows_by_check(results: list[SheetResult]) -> dict[str, int]:
+def rows_by_check(results: list[SheetResult],
+                  profile: str | None = None) -> dict[str, int]:
     """彙總各檢查之列計（涉及之相異資料列數）。"""
-    seen: dict[str, set[tuple[str, int]]] = {key: set() for key in CHECK_ORDER}
+    seen: dict[str, set[tuple[str, int]]] = {key: set()
+                                             for key in check_order(profile)}
     for result in results:
         for violation in result.violations:
             seen[violation.check].add((result.sheet, violation.row))
@@ -562,10 +706,12 @@ def rows_by_check(results: list[SheetResult]) -> dict[str, int]:
 # --- 報告輸出 ----------------------------------------------------------------
 
 
-def render_report(path: Path, results: list[SheetResult], length_limit: int) -> str:
+def render_report(path: Path, results: list[SheetResult], length_limit: int,
+                  profile: str | None = None) -> str:
     """產生 markdown 報告。"""
-    counts = count_by_check(results)
-    row_counts = rows_by_check(results)
+    order = check_order(profile)
+    counts = count_by_check(results, profile)
+    row_counts = rows_by_check(results, profile)
     total_rows = sum(r.data_rows for r in results)
     lines = [
         f"# lint036 報告：{path.name}",
@@ -584,22 +730,25 @@ def render_report(path: Path, results: list[SheetResult], length_limit: int) -> 
         "| 檢查 | 項目 | 行計 | 列計 | 粒度 | 校準 |",
         "| --- | --- | ---: | ---: | --- | --- |",
     ]
-    for key in CHECK_ORDER:
+    for key in order:
         lines.append(
-            f"| {key} | {CHECK_TITLES[key]} | {counts[key]} | {row_counts[key]} "
-            f"| {CHECK_GRANULARITY[key]} | {CHECK_STATUS[key]} |"
+            f"| {key} | {check_title(key, profile)} | {counts[key]} "
+            f"| {row_counts[key]} "
+            f"| {CHECK_GRANULARITY[key]} | {check_status(key, profile)} |"
         )
+    if profile:
+        lines.insert(6, f"- profile：`{profile}`（P 採 R-1 v3；另跑 Q／R／T）")
     lines += ["",
               f"**總計：行計 {sum(counts.values())}**"
               f"（列計不加總——同一列可觸發多項檢查）",
               "", "## 明細", ""]
 
-    for key in CHECK_ORDER:
+    for key in order:
         items = [v for r in results for v in r.violations if v.check == key]
         if not items:
             continue
         affected = len({(v.row) for v in items})
-        lines += [f"### {key} — {CHECK_TITLES[key]}"
+        lines += [f"### {key} — {check_title(key, profile)}"
                   f"（行計 {len(items)}／列計 {affected}）", "",
                   "| 列 | TC ID | 欄位 | 說明 | 片段 |",
                   "| ---: | --- | --- | --- | --- |"]
@@ -639,6 +788,9 @@ def build_parser() -> argparse.ArgumentParser:
                         help="另輸出機讀 json")
     parser.add_argument("--length-limit", type=int, default=DEFAULT_LENGTH_LIMIT,
                         help=f"L 檢查 token 閾值（預設 {DEFAULT_LENGTH_LIMIT}）")
+    parser.add_argument("--profile", default=None, metavar="FEATURE",
+                        help="feature 專屬判準：P 改採 R-1 v3，另跑 Q／R／T。"
+                             "未指定時行為與既有八本之報告基線完全一致")
     return parser
 
 
@@ -653,25 +805,31 @@ def main(argv: list[str] | None = None) -> int:
         if not path.is_file():
             print(f"錯誤：找不到檔案 {path}", file=sys.stderr)
             return 2
-        results = lint_workbook(path, args.length_limit)
-        counts = count_by_check(results)
+        results = lint_workbook(path, args.length_limit, args.profile)
+        counts = count_by_check(results, args.profile)
         total_violations += sum(counts.values())
 
         tag = report_stem(path)
+        if args.profile:
+            tag = f"{tag}__{args.profile}"
         report_path = report_dir / f"{tag}_{date.today():%Y%m%d}.md"
-        report_path.write_text(render_report(path, results, args.length_limit),
-                               encoding="utf-8")
+        report_path.write_text(
+            render_report(path, results, args.length_limit, args.profile),
+            encoding="utf-8")
         print(f"{path.name}\n  -> {report_path}")
-        print("  行計 " + "  ".join(f"{k}={counts[k]}" for k in CHECK_ORDER))
+        print("  行計 " + "  ".join(f"{k}={counts[k]}"
+                                   for k in check_order(args.profile)))
 
         if args.json:
             json_path = report_path.with_suffix(".json")
             payload = {
                 "source": str(path),
+                "profile": args.profile,
                 "counts": counts,
-                "row_counts": rows_by_check(results),
+                "row_counts": rows_by_check(results, args.profile),
                 "granularity": CHECK_GRANULARITY,
-                "status": CHECK_STATUS,
+                "status": {k: check_status(k, args.profile)
+                           for k in check_order(args.profile)},
                 "sheets": [
                     {
                         "sheet": r.sheet,

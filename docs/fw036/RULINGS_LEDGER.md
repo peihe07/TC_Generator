@@ -18,7 +18,7 @@
 | S3 | 2026-08-21 | lint 出貨 gate | ACTIVE | 01b | pipeline |
 | S4 | 2026-08-21 | test_item 括號下半 | ACTIVE | 01a | 全案 |
 | S5 | 2026-08-21 | 裁決台帳制 | ACTIVE | 01b | 流程 |
-| S6 | 2026-08-21 | 缺件 PENDING 佔位 | ACTIVE | 01a | 全案 | <br>↳ **併見 R-14**：`PENDING` 說明之語言一律英文；中文描述置於 `DATA_REQUESTS.md`
+| S6 | 2026-08-21 | 缺件 PENDING 佔位。**併見 R-14**：`PENDING` 說明之語言一律英文，中文描述置於 `DATA_REQUESTS.md` | ACTIVE | 01a | 全案 |
 | N-1 | 2026-08-21 | N 規制單位為 item，子步驟與續行同受規制 | ACTIVE | 00c/00d | lint |
 | R-6 | 2026-08-21 | verbatim 上半豁免 P（訊號記法） | ACTIVE | 03 | lint／全案 |
 | R-6b | 2026-08-21 | verbatim 上半豁免 C（hedge）；作者用語品質類檢查僅施於括號下半 | ACTIVE | 06 | lint／全案 |
@@ -55,7 +55,7 @@
 |---|---|
 | ~~R-1 v1~~ | 已撤銷，見下方撤銷紀錄 |
 | ~~R-1 v2~~ | 已撤銷，見上方 R-1 v2 撤銷加註（原 `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5） |
-| R-1 v3 | `docs/fw036/handoff/12_r1v3_signal_observability.md` §二（(d) 經 `17_b16_review.md` §三修訂） |
+| R-1 v3 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5（沿革含 12 包原文與 17 包 §三之 (d) 修訂） |
 | R-6 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5 末段＋`scripts/lint036.py` 檢查 P 之範圍 |
 | R-6b | `scripts/lint036.py` 檢查 C 之範圍 |
 | R-7 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5(a) |
@@ -68,7 +68,7 @@
 | R-10 | `docs/fw036/handoff/13_r9r10_layout_whitespace.md` §R-10 |
 | R-11 | `docs/fw036/handoff/14_r11_samples.md` §R-11 條文 |
 | R-12 | `docs/fw036/handoff/15_r12_precondition_specref.md` §一 |
-| R-13 | `docs/fw036/handoff/19_pm_final.md` §一 |
+| R-13 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5(g) |
 | R-14 | `docs/fw036/handoff/20_pm_closeout.md` §一 |
 | R-15 | `docs/fw036/handoff/21_ledger_fix.md` §一 |
 | S1 | 本檔（標記行為見 `docs/fw036/upstream/01b_mechanism_setup.md`） |

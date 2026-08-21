@@ -403,10 +403,14 @@ def test_row_counts_distinguish_line_and_row_basis():
 
 
 def test_every_check_has_status_and_granularity():
-    """報告表頭所需之兩張對照表須涵蓋全部檢查。"""
-    assert set(lint036.CHECK_STATUS) == set(lint036.CHECK_ORDER)
-    assert set(lint036.CHECK_GRANULARITY) == set(lint036.CHECK_ORDER)
-    assert set(lint036.CHECK_TITLES) == set(lint036.CHECK_ORDER)
+    """報告表頭所需之三張對照表須涵蓋全部檢查（含 profile 專屬者）。"""
+    full = set(lint036.check_order("power"))
+    assert set(lint036.CHECK_STATUS) == full
+    assert set(lint036.CHECK_GRANULARITY) == full
+    assert set(lint036.CHECK_TITLES) == full
+    # profile 覆寫表不得引入 CHECK_ORDER 以外之代號
+    assert set(lint036.CHECK_TITLE_PROFILE) <= full
+    assert set(lint036.CHECK_STATUS_PROFILE) <= full
 
 
 # --- 報告命名 ----------------------------------------------------------------
@@ -415,3 +419,136 @@ def test_every_check_has_status_and_granularity():
 def test_report_stem_strips_date_and_annotation():
     path = Path("FM-WI-FSM-036-A01 x_SWQT_CFTS012_DealerMode_20260417(done).xlsx")
     assert lint036.report_stem(path) == "CFTS012_DealerMode"
+
+
+# --- profile 專屬檢查（21 包：`--profile <feature>`）-------------------------
+
+
+def run_profile(**overrides) -> list[str]:
+    """以 profile 模式跑單列檢查，回傳觸發的檢查代號清單。"""
+    violations = lint036.check_row(make_fields(**overrides), 10, "TC-001",
+                                   lint036.DEFAULT_LENGTH_LIMIT,
+                                   profile="power")
+    return [v.check for v in violations]
+
+
+def test_profile_off_by_default() -> None:
+    """未指定 profile 時不跑 Q／R／T —— 既有八本之基線不動。"""
+    dirty = make_fields(pre="1. NBSP\xa0here\nunnumbered line")
+    checks = [v.check for v in lint036.check_row(
+        dirty, 10, "TC-001", lint036.DEFAULT_LENGTH_LIMIT)]
+    assert "Q" not in checks and "R" not in checks and "T" not in checks
+
+
+def test_check_order_extends_only_with_profile() -> None:
+    assert lint036.check_order(None) == lint036.CHECK_ORDER
+    assert lint036.check_order("power") == \
+        lint036.CHECK_ORDER + ["Q", "R", "T", "U"]
+
+
+# Q —— 不可見字元（R-10(a)），全欄位含 verbatim 上半
+
+def test_q_nbsp_in_verbatim_half() -> None:
+    assert "Q" in run_profile(
+        test_item="The system\xa0shall display it\n(shown)")
+
+
+def test_q_ideographic_space_and_trailing_ws() -> None:
+    assert "Q" in run_profile(proc="1. Press　the button")
+    assert "Q" in run_profile(er="1. The screen is shown   ")
+
+
+def test_q_clean_row_passes() -> None:
+    assert "Q" not in run_profile()
+
+
+# R —— Pre-Condition 版面（R-9(a)）
+
+def test_r_unnumbered_line() -> None:
+    assert "R" in run_profile(
+        pre="1. The TLM is in Idle state\nThe ignition is On")
+
+
+def test_r_multiple_conditions_on_one_line() -> None:
+    assert "R" in run_profile(
+        pre="1. An SDCARD is inserted and a BT device is connected")
+
+
+def test_r_tool_line_is_not_a_multi_condition() -> None:
+    """工具行本身含 `and`，不得誤判（R-12(a) 之固定措辭）。"""
+    assert "R" not in run_profile(
+        pre="1. The TLM is in Idle state\n2. LIN and CAN tool is available on HU")
+
+
+# T —— PENDING 說明之語言（R-14）
+
+def test_t_non_ascii_pending_description() -> None:
+    assert "T" in run_profile(
+        proc="1. Read the screen and check that PENDING: DR-PW22 擇一判準")
+
+
+def test_t_english_pending_description_passes() -> None:
+    assert "T" not in run_profile(
+        proc="1. Read the screen and check that PENDING: DR-PW22 "
+             "(which of the two is shown)")
+
+
+# P —— R-1 v3 判準（profile 專屬，取代 v2）
+
+def test_p_v3_rejects_send_can_prefix() -> None:
+    assert "P" in run_profile(
+        proc="1. Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)")
+
+
+def test_p_v3_rejects_bare_can_token_assignment() -> None:
+    assert "P" in run_profile(
+        proc="1. Set STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)")
+
+
+def test_p_v3_rejects_assignment_without_val_label() -> None:
+    assert "P" in run_profile(
+        proc="1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2")
+
+
+def test_p_v3_rejects_proxi_with_dollar() -> None:
+    assert "P" in run_profile(pre='1. PROXI $Rear_View_Camera$ = "Present"')
+
+
+def test_p_v3_accepts_canonical_form() -> None:
+    assert "P" not in run_profile(
+        pre="1. PROXI Rear_View_Camera = Present",
+        proc="1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 "
+             "(Ignition_Off)\n"
+             "2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and "
+             "check that it is 1 (Standby)",
+        er="1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = "
+           "1 (Standby) is received")
+
+
+def test_p_v3_allows_pending_placeholder_as_value() -> None:
+    """R-14 佔位不視為缺 VAL_ 標籤 —— 其缺件由 M／T 承接。"""
+    assert "P" not in run_profile(
+        proc="1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = "
+             "PENDING: DR-PW20")
+
+
+def test_p_v3_still_rejects_v1_triplet() -> None:
+    assert "P" in run_profile(
+        proc="1. Drive Radio_btn0 in CLIMATIC_PANEL on BH-CAN to Pressed")
+
+
+# U —— PENDING 佔位之可見性（A-PM16：ER 側原不受任何檢查覆蓋）
+
+def test_u_counts_pending_on_the_er_side() -> None:
+    checks = run_profile(er="1. PENDING: DR-PW22 (which of the two is shown)")
+    assert "U" in checks and "T" not in checks
+
+
+def test_u_counts_pending_in_procedure_too() -> None:
+    assert "U" in run_profile(
+        proc="1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = "
+             "PENDING: DR-PW20")
+
+
+def test_u_silent_when_no_placeholder() -> None:
+    assert "U" not in run_profile()

@@ -985,6 +985,15 @@ R-P37 停止章節層調查 —— 二者合起來即：本 feature 之規格涵
 - ⚠ 執行層逾字面處置：落檔位置表 7 處「同上」全部展開為完整路徑（§五，待追認）
 - ⚠ 待處置：canon `ASPICE_SWE6_AI_Instruction.md` §8.7.5 本文仍為 v2
 
+### FW036 包 22（canon 同步 ＋ lint feature-scoped）—— 工作簿未動
+
+- 上繳 [`docs/fw036/upstream/22_canon_sync_and_lint_profile.md`](../../../docs/fw036/upstream/22_canon_sync_and_lint_profile.md)
+- canon `ASPICE_SWE6_AI_Instruction.md` §8.7.5 由 R-1 v2 改為 **R-1 v3**（含 (g)=R-13），v2 依 R-TM13 刪除線保留
+- `lint036.py` 新增 **`--profile <feature>`**：P 改 v3 判準，另跑 **Q／R／T／U**；
+  **九本無 profile 之報告位元組全等**（迴歸 PASS）
+- 新增 `scripts/lint_docs036.py`（`docs_structure`）—— 首跑即攔下 DR-PW12／S6 表格列缺結尾 `|`、DR-PW19 從未登載三項
+- 測試 +31（99 passed）
+
 ### 尚未進入
 
 Phase 4 以降全部未開始。FW036 workbook 為 BLANK（G10），無任何寫回動作發生過。

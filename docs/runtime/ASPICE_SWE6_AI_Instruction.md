@@ -503,26 +503,38 @@ A visual state (greyed-out, dimmed) does NOT imply non-operability; the ER must
 not assert operability that contradicts the spec. Follow the behavior the spec
 explicitly states.
 
-#### 8.7.5 訊號與參數寫法（R-1 v2）
-基準：SWC 0708 交付本。**v1 之三件組 `<Signal> in <MESSAGE> on <segment>`
-已撤銷**（該式於 SWC 286 列中出現 0 次，見 RULINGS_LEDGER R-1）。
+#### 8.7.5 訊號與參數寫法（R-1 v3）
+基準：CR30580/30581 參考本（TestResult 分頁）＋ SWC 0708 交付本。
+條文全文落檔於本節，台帳見 `docs/fw036/RULINGS_LEDGER.md`。
+**v1 之三件組 `<Signal> in <MESSAGE> on <segment>` 與 v2 之
+`Send CAN:` 前綴式皆已撤銷**，撤銷理由見本節末之沿革。
 
-(a) CAN 訊號 —— Procedure：
-    `Send CAN: <MESSAGE>.<Signal> = <raw> (<label>)`
-    例：`3. Send CAN: BCM_FD_14.Command_02Sts = 1 (PSD)`
-    不寫網段、不加 `$`。message 名本身即可判別網段。
-    `<label>` 逐字取自 DBC `VAL_` 列舉（R-7）。
+(a) 訊號一律以 `$<MESSAGE>.<Signal>$` 全名書寫，`$` 包覆全名；
+    值採 `= <raw> (<label>)`，`<label>` 逐字取自 DBC `VAL_` 列舉（R-7）。
 
-(b) CAN 訊號 —— Expected Result：
-    `<MESSAGE>.<Signal> = <raw> (<label>) is sent <時機>`
-    例：`3. BCM_FD_14.Command_02Sts = 1 (PSD) is sent during press window`
+        Procedure 送出：
+          `Send the signal $MESSAGE.Signal$ = <raw> (<label>)`
+          例：`1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)`
+        Procedure 由 HMI 觸發：
+          `Select <項目> = <值> to trigger $Signal$ signal transmission`
+        Expected Result 觀察：
+          `The signal value $MESSAGE.Signal$ = <raw> (<label>) is received`
+        Expected Result 送出之確認：
+          `The signal $MESSAGE.Signal$ = <raw> (<label>) is registered without a bus error`
 
-(c) PROXI 參數 —— Pre-Condition：`PROXI <Param> = <值>`，前綴 `PROXI` 必寫。
-    參數名採加 `$` 式：`PROXI $Audio_Steering_Wheel_Controls_on_IPC$ = "Enabled"`
+(b) Procedure 之觀察步驟須寫出應觀察之值（R-11(b)）：
+    `Read the signal $MESSAGE.Signal$ and check that it is <raw> (<label>)`
 
-(d) 內部訊號（`X.Info` / `X.Req` / `X.GUI`）：維持來源記法，
-    不加 `$`，不套 (a) 之 CAN 格式。
-    例（SWC）：`The TLM updates TLM_Vol_UP_Status.Info to follow …`
+(c) PROXI 參數：`PROXI <Param> = <值>`，前綴 `PROXI` 必寫，**不加 `$`**。
+    例：`2. PROXI Vehicle_Line_Configuration = 124 (DT)`
+    `$` 是訊號之標記，不是 PROXI 之標記。
+
+(d) 內部訊號（`X.Info` / `X.Req` / `X.GUI`）：**優先**依對照表轉為可觀察之
+    CAN 訊號並套 (a)；**DBC 查無對應者保留來源名稱，不加 `$`**，
+    並依 (b) 於 Procedure 寫出應設定或應觀察之值。
+    例：`1. Drive Front_Panel_OnOff.Req from Not_Pressed to Pressed`
+    理由：強令改寫為「HMI 現象」將失去對規格之逐條追溯性，
+    且該現象本身常無來源明載，反致造值（§8.4.1）。
 
 (e) 保持／等待步驟：`Hold for <n> ms` 獨立成一步驟，
     ER 對應 `The signal is held for <n> ms`。
@@ -532,8 +544,40 @@ explicitly states.
     `Check that <Name>_after <關係> <Name>_initial`。
     ER 對應 `<Name>_initial is recorded`。
 
+(g) **規格訊號名與 DBC 不符之處置（R-13）**：規格原文所載之訊號名，
+    即使 DBC 查無同名，一律**保留原文名稱**，不得代以語意相近之他訊號；
+    DBC 對應缺漏登記 DR 向上游查詢。
+    理由：以他訊號代入將改變 TC 之驗證對象與因果結構。
+
 訊號名以 DBC 為準；來源文件與 DBC 大小寫不一致時，步驟採 DBC 寫法，
-verbatim 上半仍保留來源原文（R-6）。
+verbatim 上半仍保留來源原文（R-6）。**(g) 為此之例外** —— DBC 全無該名時，
+無「以 DBC 為準」可言，取原文。
+
+##### 沿革（R-TM13：不刪除，加註保留）
+
+~~**v2(a)** CAN 訊號 Procedure 採 `Send CAN: <MESSAGE>.<Signal> = <raw> (<label>)`，
+不加 `$`；**v2(b)** ER 採 `<MESSAGE>.<Signal> = <raw> (<label>) is sent <時機>`；
+**v2(c)** PROXI 參數名採加 `$` 式 `PROXI $Param$ = "值"`；
+**v2(d)** 內部訊號維持來源記法，不加 `$`，不套 (a) 之 CAN 格式。~~
+
+> **撤銷（2026-08-21，下放包 12）**：CR30580/30581 參考本實測顯示
+> `$` 為**訊號**之標記而非 PROXI 之標記 —— v2(c)(d) 之指派恰好相反。
+> (a)(b) 之 `Send CAN:` 前綴一併由 (a) 之 `$MESSAGE.Signal$` 式取代。
+> v2(e)(f) 之內容不變，即現行 (e)(f)。
+>
+> **v3(d) 之再修訂（2026-08-21，下放包 17 §三）**：v3 原條文為
+> 「內部訊號**必須**轉為可觀察之 CAN 訊號，查無對應者**不得留內部訊號名**」。
+> 實作後發現該類訊號多對應可執行之實體動作或可讀之設定值，
+> 改寫為「HMI 現象」反失追溯性且易致造值。
+> **原「不得留來源名」之表述作廢**，改為現行 (d)。
+>
+> **(g) 之增立（2026-08-21，下放包 19）**：`PowerModeSts_Telematic` 一案 ——
+> 分析層僅查 DBC 未查 CFTS 原文，即斷該名為兩個 DBC 訊號之混合並代入其一，
+> 致觸發訊號被觀察訊號取代、因果驗證塌縮。R-13 為其防再犯之條文。
+
+> ⚠ **lint 之檢查 P 目前仍以 v2 判準實作**（`Send CAN:` 前綴）。
+> 其改寫以 `--profile <feature>` 為之（下放包 17 §四），
+> 未指定 profile 時維持現行行為，以保既有八本之報告基線不變。
 
 ## 9. Self-Check (before emitting each TC)
 1. Test Set: noun phrase, capability-level, matches `framework.md`, no Test Group prefix, consistent spelling, no `Unclassified` / `Misc` (§4.1, §4.2)
