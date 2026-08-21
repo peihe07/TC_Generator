@@ -967,6 +967,24 @@ R-P37 停止章節層調查 —— 二者合起來即：本 feature 之規格涵
 - 軌 C 補 rows 271–274 → **30/30 完成**；283 列之 `pre`／`proc` 全數改寫完畢
 - 新開 **DR-PW21（High）**／**DR-PW22（Medium）**；登記 **A-PM13／A-PM14／A-PM15**
 
+### FW036 下放包 20（PM 收尾）—— **文件層，工作簿未動**
+
+- 上繳 [`docs/fw036/upstream/20_pm_closeout.md`](../../../docs/fw036/upstream/20_pm_closeout.md)
+- `RULINGS_LEDGER.md` 補記 **R-9／R-10／R-11／R-12／R-13／R-14** 與 R-12 加註
+- `DATA_REQUESTS.md` 之 DR-PW21 補入 DBC 實測證據段
+- `ANOMALIES.md` 新增 **A-PM16**（`verify.py` ER 側未覆蓋）
+- `pm_19.xlsx`（`b4dd5ca0…`）**雜湊未變**
+- ⚠ 待處置：**R-1 v3 不在台帳，R-1 v2 仍列 ACTIVE** —— 283 列全依 v3 撰寫
+
+### FW036 下放包 21（台帳修正）—— **PM 最後一包，工作簿未動**
+
+- 上繳 [`docs/fw036/upstream/21_ledger_fix.md`](../../../docs/fw036/upstream/21_ledger_fix.md)
+- **R-1 v2 標 SUPERSEDED、R-1 v3 入 ACTIVE** —— 台帳與交付內容至此一致
+- R-13 回復全文；新增 **R-15**（台帳條文完整性）；S6 加註併見 R-14
+- 新增 **A-PM17**（落檔位置表「同上」串接之靜默失效）
+- ⚠ 執行層逾字面處置：落檔位置表 7 處「同上」全部展開為完整路徑（§五，待追認）
+- ⚠ 待處置：canon `ASPICE_SWE6_AI_Instruction.md` §8.7.5 本文仍為 v2
+
 ### 尚未進入
 
 Phase 4 以降全部未開始。FW036 workbook 為 BLANK（G10），無任何寫回動作發生過。

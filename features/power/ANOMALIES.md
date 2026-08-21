@@ -395,6 +395,8 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-PM13 | rows 13／265／266／267／268 五列逐字重複 | 五列之 PROC 與 ER 逐字相同，均驗證 Idle 狀態下 TLM audio OFF 且僅顯示 Splash Screen（`CFTS009-4941365`）。屬 §10.6 strict equivalence 重複。TC 側不合併、不刪列（§8.2.1）；拆併屬 Pei |
 | A-PM14 | row 181（`SWE-PM-070`）≡ row 293（`SWE-PM-115`） | 二列之 PRE／Input／PROC／ER 逐字全同，僅 Requirement ID 相異，與 A-PM04 同型（兩 SWE leaf 指向同一行為）。已併入 **DR-PW12 第七對**。另 `SWE-PM-115` 即 A-PM12 所載 037 `Source Requirement ID` 欄空白之該條，兩異常同指一 leaf |
 | A-PM15 | 8 列之 PROC 首步為抽象動作，不可執行至訊號層 | rows 270／271／275–282 之 PROC 1（`Bring the HU to Timed / Full-Operation mode` 等）因 `CFTS009-4941950`／`4941952` 未載觸發來源而保留抽象動作。**不標 PENDING**（下放包 19 §三-2 裁定）——該步驟仍可由測試者以任一合法途徑達成目標狀態，非缺件；標 PENDING 將阻斷交付而無實益。若上游補明觸發，再行細化 |
+| A-PM16 | `verify.py` 之 `read_without_value` 未覆蓋 ER 側 | 該檢查僅施於 `proc`。row 291 之 ER 2 現為純 `PENDING: DR-PW22 (…)` 行，不含 `check that`，**屬未覆蓋而非通過** —— 若日後 ER 側加檢，該列須另計。**新增（20 包 §四）**。俟 lint feature-scoped 改寫（17 包 §四、20 包 §五）時一併納入 |
+| A-PM17 | 台帳「條文落檔位置」表以「同上」串接指涉，插入列將靜默改變其後各列之指涉對象 | 19 包將 `R-13` 插於 `R-8` 與 `R-2` 之間，`R-8` 為「同上 §10.7 之『排列』段」（指 `ASPICE_SWE6_AI_Instruction.md`），插入一個指向 handoff 檔之列後，其下 `R-2 | 同上 §10.7` 之「同上」即錯指為 handoff 檔。**無任何檢查可攔** —— 本次由執行層自行回查發現（20 包 §一-3 自陳，21 包 §三確認）。**新增（21 包 §三）**。併入 lint feature-scoped 包之 `docs_structure` 檢查：台帳／DR／ANOMALIES 之編號連續性、狀態值合法性、「同上」串接之指涉正確性、條文欄非空 |
 
 > 既有之 A-PM06／A-PM09／A-PM12 條文另存於 `features/power/docs/`。
 
