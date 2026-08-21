@@ -4,6 +4,12 @@ Balance SWE.6 (deterministic, reproducible, auditable, traceable, no FP) with re
 ## 1. Language
 TC workbook fields: English only. Reasoning fields: Traditional Chinese allowed. No emoji.
 
+[OVERRIDE-R5][DEFAULT] 雙語並列（中文 AC + 英譯、英文 + 簡中對照）
+於 BT、Projection 兩 feature 為既存制度性格式，予以合法化，
+不回修；lint K 對此二本配置豁免。UI 標籤之簡中 verbatim 全案豁免。
+工作備註中文一律不得留於交付欄，應移至 Remarks。
+新 feature 一律 English only，不得援引本例。
+
 ## 2. Core Principles
 - One TC = one verification objective; flow multi-step, validation single
 - Final Step owns validation; represents Test Item executably
@@ -138,6 +144,16 @@ Length **2–14 words**. Pick whichever makes the scenario clearest:
 Forbidden: modals (`should`, `will`, `shall`), hedges (`properly`, `successfully`, `within reasonable time`).
 
 **Sibling-distinction:** two sibling tc_titles that read identically (or differ only `displayed` vs `hidden`) = FAIL.
+
+### 4.3.1 test_item 兩段式（R-S4）
+test_item 分上下兩半：
+- 上半 = 需求／規格原句 verbatim。摘句以「與括號下半之測試目的
+  直接相關之句」為限；上半 token 數上限 50（R-3）。超限須摘句，
+  全文以 specification_reference 指回，不得整段傾倒。
+- 下半 = 作者生成之測試目的或情境標籤，獨立成行，格式 `(...)`。
+同一 Requirement ID 衍生之多列，其括號下半內容不得逐字相同
+（sibling 區分 token）。缺括號下半 = FAIL，不得出貨。
+verbatim 自原句中段起抄時，句首字母轉大寫屬排版正規化，允許（R-4）。
 
 ### 4.4 Pre-Condition
 Starting **state / environment** only. Never actions, checks, reads, data-presence.
@@ -420,6 +436,12 @@ If the external spec has no parallel SWE requirements in the project (true
 coverage gap), surface it as a coverage hole in `reasoning` — do NOT silently
 absorb it into the current TC.
 
+#### 8.4.3 缺件佔位（S6）
+欄位因來源文件缺失而無法填寫時，寫 `PENDING: DR-{n} <缺件名>`，
+不得留空、不得填 NA。NA 僅限「確認不適用」。DR 登記於該 feature
+之 DATA_REQUESTS.md；每包上繳附未結 DR 清單。含 PENDING 之工作簿
+不得出貨，交付前須全數結案或由 Pei 裁定降轉 NA。
+
 ### 8.5 Pre-Condition Scope Drift
 A Pre-Condition entry is valid only if it is a trigger condition the current
 TC directly verifies. Environmental stability conditions owned by other RDs
@@ -476,6 +498,15 @@ all related steps, noting the source requirement (e.g. `<variant-ref>`).
 A visual state (greyed-out, dimmed) does NOT imply non-operability; the ER must
 not assert operability that contradicts the spec. Follow the behavior the spec
 explicitly states.
+
+#### 8.7.5 訊號記法（R-1）
+三層記法各有其形，同一行可並列多層，但每一 token 須自我識別所屬層：
+- PROXI 參數 → `$X$`（沿來源原文）
+- 內部訊號 → `X.Info` / `X.Req`（沿來源原文）
+- CAN 訊號斷言 → 三件組 `<Signal> in <MESSAGE> on <segment>`
+  例：`RemStActvSts in STATUS_BH_BCM2 on BH-CAN`
+網段須有來源（DBC 或架構文件）依據；查無者依 §8.4.3 標 PENDING，
+不得杜撰。
 
 ## 9. Self-Check (before emitting each TC)
 1. Test Set: noun phrase, capability-level, matches `framework.md`, no Test Group prefix, consistent spelling, no `Unclassified` / `Misc` (§4.1, §4.2)
@@ -549,26 +580,26 @@ matching a sibling shown as `[row #11]` in the Sibling Rows section. Strict
 equivalence required: same trigger + outcome + input + verification target.
 When in doubt, omit the field.
 
-### 10.7 `specification_reference` (workbook column)
-String list of source spec references that anchor this TC. Required when
-TC content depends on spec content (almost always).
-
-**Format per entry**: `{spec_filename}_{section_id}`
-- e.g. `Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_4.1`
-- e.g. `Menu Bar and App Drawer HMI Logic and Flow R1 SR24 3A (September 11 2023)_2.5`
-
-**Rules:**
-- List every spec section the TC directly verifies or relies on as setup
-- Use the SourceID format from SYS1 / Polarion when available
-- Order from most-specific (lowest section number) to general
-- Multiple specs allowed when TC spans multiple spec files
-- Do NOT cite specs only used as background context (those go in `reasoning`)
-- Do NOT cite RD analysis docs (SWE.1 / SWE.5) — those are not spec sources
+### 10.7 specification_reference
+依母 spec 型態分流：
+(a) CFTS 母文件 → `CFTS{nnn}-{ObjectID}`，ObjectID 為該物件之
+    Polarion 7 位號碼。短號需求 ID（如 CFTS015-824）不得作為錨，
+    僅得於 reasoning 引用。
+(b) HMI Logic and Flow 類 → `{檔名}_{章節號}`，檔名以底線 token 化
+    （空格→底線），全案逐字一致，禁止同檔名拼寫變體。
+排列：一來源文件一行（換行分隔）；同一文件內多個 ObjectID／章節號
+以 `, ` 續列且文件前綴僅敘明一次；禁用 `;`。TC 直接驗證之主要來源
+列於首行，同文件內 ID／章節號升冪。
 
 ## 11. Formatting
 No HTML / Markdown tables in TC output. Plain numbered text; one item per line; blank line between fields.
 
 **No trailing period** in `pre_conditions`, `input_test_data`, `test_procedure`, `expected_result` — strip the final `.` (or `。`) at the end of every line. Mid-sentence periods are kept (e.g. `Press button. Wait 5s` is fine; `Press button. Wait 5s.` is NOT). Applies to every numbered item.
+
+本節之引號規則與尾句號規則自 canon 生效日起適用；
+09_ 目錄舊版 Writing Rules 之方括號範例與帶尾句號範例已 superseded。
+尾句號之規制單位為 numbered item，非物理行：item 之尾句號落於續行
+時，該 item 仍屬違規。子步驟 `a./b./c.` 為實質測試內容，同受規制。
 
 **UI element labels use double quotes**, never square brackets. Applies to on-screen buttons, menu bar items, popup buttons, hard-key (H/K) buttons, tab names, and any literal label the tester reads off the UI. Display text and indicators that are values rather than tappable elements (e.g. source indicator `"AA"`, status text `"Music Muted"`) follow the same convention.
 
