@@ -1,0 +1,89 @@
+leaf	sys_ra	object_id	ee_architecture	is_atl_hi	section
+001	SYS-RA-TIME&DATE-021	4813919	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+001	SYS-RA-TIME&DATE-022	4813920	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+001	SYS-RA-TIME&DATE-063	4813984	Atlantis High, PowerNet, CUSW	True	1.3.1.1.5.2 Changing Time
+001	SYS-RA-TIME&DATE-121	4814069	Atlantis Mid	False	1.5.2.3 Time function setting
+002	SYS-RA-TIME&DATE-024	4813922	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+002	SYS-RA-TIME&DATE-039	4813939	PowerNet, CUSW, Atlantis High	True	1.3.1.1.3 GPS TIME
+002	SYS-RA-TIME&DATE-127	4814075	Atlantis Mid	False	1.5.2.3 Time function setting
+002	SYS-RA-TIME&DATE-137	4814085	Atlantis Mid	False	1.5.2.4 Automatic Time Adjustment via GPS
+002	SYS-RA-TIME&DATE-138	4814087	Atlantis Mid	False	1.5.2.4 Automatic Time Adjustment via GPS
+002	SYS-RA-TIME&DATE-224	6151331	(不在 docx —— A-TM13)	False	
+003	SYS-RA-TIME&DATE-025	4813923	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+003	SYS-RA-TIME&DATE-139	4814088	Atlantis Mid	False	1.5.2.4 Automatic Time Adjustment via GPS
+003	SYS-RA-TIME&DATE-139	4814089	Atlantis Mid	False	1.5.2.4 Automatic Time Adjustment via GPS
+003	SYS-RA-TIME&DATE-145	4814096	Atlantis Mid	False	1.5.2.5 GPS Time and Date
+003	SYS-RA-TIME&DATE-145	4814097	Atlantis Mid	False	1.5.2.5 GPS Time and Date
+003	SYS-RA-TIME&DATE-145	4814099	Atlantis Mid	False	1.5.2.5 GPS Time and Date
+004	SYS-RA-TIME&DATE-042	4813950	Atlantis High, PowerNet, CUSW	True	1.3.1.1.3 GPS TIME
+004	SYS-RA-TIME&DATE-048	4813959	Atlantis High, CUSW, PowerNet	True	1.3.1.1.4 Time Information Transmission
+004	SYS-RA-TIME&DATE-136	4814084	Atlantis Mid	False	1.5.2.4 Automatic Time Adjustment via GPS
+004	SYS-RA-TIME&DATE-147	4814100	Atlantis Mid	False	1.5.2.5 GPS Time and Date
+004	SYS-RA-TIME&DATE-147	4814101	Atlantis Mid	False	1.5.2.5 GPS Time and Date
+004	SYS-RA-TIME&DATE-147	4814102	Atlantis Mid	False	1.5.2.5 GPS Time and Date
+005	SYS-RA-TIME&DATE-037	4813936	PowerNet, CUSW, Atlantis High	True	1.3.1.1.3 GPS TIME
+005	SYS-RA-TIME&DATE-221	6151328	(不在 docx —— A-TM13)	False	
+006	SYS-RA-TIME&DATE-011	4813906	Atlantis High, PowerNet, CUSW	True	1.3.1 Time and Date
+006	SYS-RA-TIME&DATE-023	4813921	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+006	SYS-RA-TIME&DATE-026	4813924	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+007	SYS-RA-TIME&DATE-027	4813925	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+007	SYS-RA-TIME&DATE-053	4813966	PowerNet, CUSW, Atlantis High	True	1.3.1.1.5 Time Display
+007	SYS-RA-TIME&DATE-096	4814030	Atlantis High, PowerNet, CUSW	True	1.3.1.1.6.3 Date Display
+007	SYS-RA-TIME&DATE-097	4814031	Atlantis High, PowerNet, CUSW	True	1.3.1.1.6.3 Date Display
+008	SYS-RA-TIME&DATE-028	4813926	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+008	SYS-RA-TIME&DATE-044	4813952	CUSW, PowerNet, Atlantis High	True	1.3.1.1.4 Time Information Transmission
+008	SYS-RA-TIME&DATE-045	4813954	PowerNet, Atlantis High	True	1.3.1.1.4 Time Information Transmission
+008	SYS-RA-TIME&DATE-049	4813960	CUSW, PowerNet, Atlantis High	True	1.3.1.1.4 Time Information Transmission
+008	SYS-RA-TIME&DATE-050	4813961	PowerNet, Atlantis High, CUSW	True	1.3.1.1.4 Time Information Transmission
+008	SYS-RA-TIME&DATE-112	4814060	Atlantis Mid	False	1.5.2.1 Time and Date indication management
+008	SYS-RA-TIME&DATE-140	4814090	Atlantis Mid	False	1.5.2.4 Automatic Time Adjustment via GPS
+009	SYS-RA-TIME&DATE-029	4813927	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+009	SYS-RA-TIME&DATE-030	4813928	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+009	SYS-RA-TIME&DATE-031	4813929	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+009	SYS-RA-TIME&DATE-032	4813930	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+009	SYS-RA-TIME&DATE-033	4813931	Atlantis High	True	1.3.1.1.2 Vehicle Time Master Requirements
+009	SYS-RA-TIME&DATE-046	4813956	PowerNet, Atlantis High, CUSW	True	1.3.1.1.4 Time Information Transmission
+009	SYS-RA-TIME&DATE-047	4813957	All	True	1.3.1.1.4 Time Information Transmission
+009	SYS-RA-TIME&DATE-080	4814009	CUSW, Atlantis Mid, Atlantis High	True	1.3.1.1.6.2 Vehicle Date Master Requirements
+009	SYS-RA-TIME&DATE-081	4814010	Atlantis High, PowerNet	True	1.3.1.1.6.2 Vehicle Date Master Requirements
+010	SYS-RA-TIME&DATE-054	4813967	CUSW, Atlantis High, PowerNet	True	1.3.1.1.5 Time Display
+010	SYS-RA-TIME&DATE-055	4813968	PowerNet, Atlantis High, CUSW	True	1.3.1.1.5 Time Display
+011	SYS-RA-TIME&DATE-058	4813972	Atlantis High, PowerNet, CUSW	True	1.3.1.1.5.1 Time Display Formats (If applicable. Refer to HMI)
+011	SYS-RA-TIME&DATE-059	4813974	PowerNet, Atlantis High, CUSW	True	1.3.1.1.5.1 Time Display Formats (If applicable. Refer to HMI)
+011	SYS-RA-TIME&DATE-060	4813978	CUSW, PowerNet, Atlantis High	True	1.3.1.1.5.1 Time Display Formats (If applicable. Refer to HMI)
+012	SYS-RA-TIME&DATE-068	4813992	Atlantis High, CUSW, PowerNet	True	1.3.1.1.5.3 Time Zones
+012	SYS-RA-TIME&DATE-069	4813993	Atlantis High, PowerNet, CUSW	True	1.3.1.1.5.3 Time Zones
+013	SYS-RA-TIME&DATE-071	4813995	CUSW, Atlantis High, PowerNet	True	1.3.1.1.5.4 Daylight Saving Time (Nav. Only)
+014	SYS-RA-TIME&DATE-075	4813999	Atlantis High, PowerNet, CUSW	True	1.3.1.1.6.1 Date Display Configuration (If applicable. Refer to HMI)
+014	SYS-RA-TIME&DATE-146	4814098	Atlantis Mid	False	1.5.2.5 GPS Time and Date
+014	SYS-RA-TIME&DATE-148	4814103	Atlantis Mid	False	1.5.2.5 GPS Time and Date
+014	SYS-RA-TIME&DATE-148	4814104	Atlantis Mid	False	1.5.2.5 GPS Time and Date
+014	SYS-RA-TIME&DATE-148	4814105	Atlantis Mid	False	1.5.2.5 GPS Time and Date
+015	SYS-RA-TIME&DATE-076	4814000	Atlantis High, CUSW, PowerNet	True	1.3.1.1.6.1 Date Display Configuration (If applicable. Refer to HMI)
+015	SYS-RA-TIME&DATE-077	4814001	Atlantis High, PowerNet, CUSW	True	1.3.1.1.6.1 Date Display Configuration (If applicable. Refer to HMI)
+015	SYS-RA-TIME&DATE-083	4814012	Atlantis High	True	1.3.1.1.6.2 Vehicle Date Master Requirements
+015	SYS-RA-TIME&DATE-084	4814013	Atlantis High	True	1.3.1.1.6.2 Vehicle Date Master Requirements
+015	SYS-RA-TIME&DATE-085	4814014	Atlantis High	True	1.3.1.1.6.2 Vehicle Date Master Requirements
+015	SYS-RA-TIME&DATE-154	4814113	Atlantis Mid	False	1.5.2.6 Date function setting
+015	SYS-RA-TIME&DATE-154	4814114	Atlantis Mid	False	1.5.2.6 Date function setting
+015	SYS-RA-TIME&DATE-154	4814115	Atlantis Mid	False	1.5.2.6 Date function setting
+015	SYS-RA-TIME&DATE-154	4814116	Atlantis Mid	False	1.5.2.6 Date function setting
+016	SYS-RA-TIME&DATE-079	4814006	Atlantis High	True	1.3.1.1.6.2 Vehicle Date Master Requirements
+016	SYS-RA-TIME&DATE-082	4814011	Atlantis High	True	1.3.1.1.6.2 Vehicle Date Master Requirements
+017	SYS-RA-TIME&DATE-090	4814019	Atlantis High	True	1.3.1.1.6.2 Vehicle Date Master Requirements
+017	SYS-RA-TIME&DATE-106	4814053	Atlantis Mid	False	1.5.2 Time and Date indication management by LTM
+017	SYS-RA-TIME&DATE-125	4814073	Atlantis Mid	False	1.5.2.3 Time function setting
+017	SYS-RA-TIME&DATE-141	4814091	Atlantis Mid	False	1.5.2.4 Automatic Time Adjustment via GPS
+018	SYS-RA-TIME&DATE-094	4814028	CUSW, Atlantis High, PowerNet	True	1.3.1.1.6.2 Vehicle Date Master Requirements
+018	SYS-RA-TIME&DATE-155	4814118	Atlantis Mid	False	1.5.2.6 Date function setting
+018	SYS-RA-TIME&DATE-158	4814121	Atlantis Mid	False	1.5.2.7 Output behavior description for LTM: "Time and Date" indication
+019	SYS-RA-TIME&DATE-017	4813914	Atlantis High, PowerNet, CUSW	True	1.3.1.1.1 Time Display Configuration
+019	SYS-RA-TIME&DATE-018	4813915	PowerNet, Atlantis High, CUSW	True	1.3.1.1.1 Time Display Configuration
+019	SYS-RA-TIME&DATE-153	4814111	Atlantis Mid	False	1.5.2.6 Date function setting
+020	SYS-RA-TIME&DATE-116	4814064	Atlantis Mid	False	1.5.2.2 Time Indication management on Key Off Status
+020	SYS-RA-TIME&DATE-119	4814067	Atlantis Mid	False	1.5.2.2 Time Indication management on Key Off Status
+020	SYS-RA-TIME&DATE-126	4814074	Atlantis Mid	False	1.5.2.3 Time function setting
+020	SYS-RA-TIME&DATE-142	4814092	Atlantis Mid	False	1.5.2.4 Automatic Time Adjustment via GPS
+021	SYS-RA-TIME&DATE-118	4814066	Atlantis Mid	False	1.5.2.2 Time Indication management on Key Off Status
+022	SYS-RA-TIME&DATE-010	4813905	CUSW, PowerNet, Atlantis High	True	1.3.1 Time and Date
+022	SYS-RA-TIME&DATE-109	4814056	Atlantis Mid	False	1.5.2.1 Time and Date indication management

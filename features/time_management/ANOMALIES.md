@@ -35,6 +35,8 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | A-TM23 | CFTS015 兩套物件編號並存，工作簿採 7 位家族而文件無此寫法先例 | **RESOLVED**（canon §10.7(a)）| Tier 2 |
 | A-TM24 | functional_safety 之值未裁定，且 TODO 標記掛錯條文 | **RESOLVED**（R-TM57）| Tier 2 |
 | A-TM25 | 既有交付件與 canon 兩處牴觸（彎引號、check whether）| PENDING | Tier 2（呈 Pei）|
+| A-TM26 | LID 表五組架構欄，取錯不報錯且值形態合理 | **適用中**（強制判準）| Tier 2 |
+| A-TM27 | 40% 被引用物件標為 Atlantis Mid 專屬 | **RESOLVED**（R-TM63，採 (c)）| Tier 3 |
 
 ---
 
@@ -1596,3 +1598,113 @@ A-TM25 量值更正（2026-08-22，依 08 上繳 §3）
 閾值），對造仍無從重現**。分析層已自陳此點。執行層之對應作法：本包起，
 凡回報計數，一律於同一行內附量測條件（如「11 處、10 列，全在 L 欄，
 不分大小寫，全五個文字欄掃描」）。
+
+## A-TM26 — LID 表五組架構欄，取錯不報錯且值形態合理
+
+**狀態：適用中（強制判準）。Tier 2。**
+由 `11_lid.md` §2 指派登記。依據為分析層對 LID 表之唯讀探測。
+
+```
+A-TM26（PENDING → 立即適用，Tier 2 —— 本包即納入判準）
+
+LID 表 `CAN Mapping` 分頁有五組架構欄（Powernet / CUSW / Atlantis /
+Compact / Atlantis High），同一 LID 在各組之 Signal Name 與 CAN 網段
+**完全不同**。
+
+本 feature 為 Atlantis High，**須取欄 26–30**。
+
+**風險**：欄 6–10（Powernet）為由左至右第一組，是最容易取到的一組，
+且其值形態合理（`Clock_Date.DateTmHour` / `CAN-C`）—— 取錯不會報錯、
+不會缺值、看起來完全正常，**但每一條訊號斷言之 MESSAGE 與 segment 皆錯**。
+
+此為本 feature 一路在防之形態的又一實例：**錯誤實作會產出合法外觀之值**
+（同 A-TM21(a) 之欄位對映、A-TM22 之 member 對映）。
+
+**強制判準**：凡自 LID 表取值者，須於同一處記錄「取自哪一組架構欄」，
+且 lint 須驗其取自 Atlantis High。無此記錄之取值一律視為未驗。
+```
+
+### 執行層之判準擴充提案（2026-08-22，`11` T3）—— **記錄須含分頁名**
+
+實作時遇到本條之**鏡像形態**：`Proxi & Configuration` 分頁之架構分組
+**與 `CAN Mapping` 不同**：
+
+```
+CAN Mapping          : F Powernet | K CUSW | P Atlantis | U Compact | Z Atlantis High | AE Comments
+Proxi & Configuration: F Powernet | K CUSW | P **Atlantis & Atlantis High** | U Compact | Z Comments
+```
+
+執行層首次量測把 `CAN Mapping` 之欄號（26–30）套用於 Proxi 分頁，
+讀到的是 **Comments 區**，六個 PROXI 參數「全部為空」——
+**該結果形態合理**（看起來像「Atl-H 不支援這些參數」，甚至與 R-TM62
+之形態相符），差一步就寫進報告。
+
+**故提請將本條之強制記錄由「哪一組架構欄」擴充為「哪一分頁之哪一組
+架構欄」。** 現行產出已照此辦理：
+`data/proxi_atlantis_high.tsv` 之 `ArchColumn` 記為
+`Atlantis & Atlantis High (col 16-20, Proxi sheet)`。
+
+## A-TM27 — 40% 被引用物件標為 Atlantis Mid 專屬
+
+**狀態：RESOLVED（2026-08-22，R-TM63 —— Pei 裁採 (c)）。Tier 3。**
+由 `12_scope.md` §2 指派登記。
+
+```
+A-TM27（原文，2026-08-22）
+
+CFTS015 之 269 個物件帶 `[EE Architecture:...]` 標籤。037 引用之 78 個
+物件中，**35 個（45%）標為 Atlantis Mid 專屬**，本 feature 為 Atl-H。
+
+兩片之 Atl-Hi 錨點為零：
+  020 IPC Synchronization —— 4 個物件全為 Atl-Mid
+  021 Sleep/Wakeup Handling —— 唯一物件為 Atl-Mid
+
+三片之 Atl-Hi 錨點 ≤ 1：003（1/6）、014（1/5）、017（1/4）。
+
+**影響 B1**：003 在 pilot 批次內，其 6 個物件有 5 個為 Atl-Mid 專屬。
+
+**與 A-TM09 方向相反，不可混為一談**：A-TM09 是 SYS2 有而 037 未引；
+本條是 037 引了但架構標籤不符。
+
+逐 leaf 全表見下放包 12 §2.1。
+```
+
+### 執行層之量值更正（2026-08-22，`12` T3 重測）
+
+**分母錯誤：78 → 88；比例 45% → 40%。** 分子（35 Atl-Mid）不變。
+
+| 項 | 下放包 §2 摘要表 | 下放包 §2.1 逐 leaf 表 | 執行層重測 |
+|---|---|---|---|
+| 被引用物件總數 | **78**（表列合計為 79） | **88** | **88** |
+| Atl-Hi / All | 40 + 1 + 1 = 42 | **51** | **51** |
+| Atlantis Mid 專屬 | **35** | **35** | **35** |
+| 不在 docx（A-TM13） | 2 | 2 | 2 |
+
+**下放包內部之兩張表互相矛盾**（78/79/88 三個數字），
+而**執行層之重測與其 §2.1 逐 leaf 表 22 片逐格全符**。
+故採 88 為準，`35 / 88 = 39.8%`，本條標題由 45% 改為 **40%**。
+
+**核心主張全部不受影響**：35 個 Atl-Mid 專屬、020 / 021 之 Atl-Hi 錨點
+為零、003 為 1/6、014 為 1/5、017 為 1/4 —— 逐項與逐 leaf 表相符。
+**R-TM63 所依賴者為此五項，非總數與百分比。**
+
+### 執行層自身之一個量測錯誤（已自行更正）
+
+首次重測我得 84 而非 88，差異落在 009（少 3）與 015（少 1）。
+成因為 037 之來源需求欄使用 **en dash 範圍**：
+
+```
+009: 'SYS-RA-TIME&DATE-029–033, 046, 047, 080, 081'   ← 029–033 為五筆
+015: 'SYS-RA-TIME&DATE-076–077, 083–085, 154'
+```
+
+我的 regex 只抓三位數字，把 `029–033` 讀成兩個端點而漏掉中間三筆。
+**與 A-TM09 之首版錯誤同族**（皆為 regex 未涵蓋來源之實際書寫形態）。
+已改為含範圍展開之 `expand()`，並附兩向自驗
+（範圍展開、單列舉），且對 `b-a` 加合理性上限以免吞掉誤配。
+
+### 結案（R-TM63）
+
+Pei 裁採選項 **(c)**：引用標註，不縮減 TC。處置見 R-TM63。
+本條轉 RESOLVED；其量值更正如上，供日後讀者。
+

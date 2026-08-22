@@ -193,6 +193,93 @@ SPEC_REF_PREFIX = "CFTS015"
 #
 # 此為「必然 raise」而非「可能檢出」（R-TM39 之同一精神，R-TM52 §2 末段）。
 
+# ── R-TM63 —— EE Architecture 判定之單一來源 ─────────────────
+# context 層與 lint 層**共用本函式**，不各自判定（R-TM63 第 5 項）。
+# 值取自 data/ee_architecture_by_leaf.tsv（12 T3 產出），本檔不複寫其內容
+# —— 複寫即製造第二個來源，正是 R-TM59 / R-TM61 所記之漂移形態。
+EE_ARCH_TSV = "data/ee_architecture_by_leaf.tsv"
+DR_ATL_HI = 11
+
+
+def atl_hi_placeholder(objid: str) -> str:
+    """R-TM63 第 2 項之佔位字串 —— **唯一產生點**。"""
+    return (f"PENDING: DR-{DR_ATL_HI} Atl-H 對應需求"
+            f"（CFTS015-{objid} 標為 Atlantis Mid）")
+
+
+def load_ee_arch(feature_dir) -> dict[str, dict[str, dict]]:
+    """讀 tsv，回 {leaf3: {objid: {...}}}。**缺檔即 raise，不靜默略過**。
+
+    靜默略過會使每一個 Atl-Mid 物件都被當成 Atl-Hi 而寫入真值 ——
+    錯誤方向正是「寫出看起來正常的錯值」（A-TM26 之同族），故必須 raise。
+    """
+    from pathlib import Path
+    p = Path(feature_dir) / EE_ARCH_TSV
+    if not p.is_file():
+        raise FileNotFoundError(
+            f"{EE_ARCH_TSV} 不存在 —— R-TM63 之 is_atl_hi 判準無來源。"
+            "不得以「全部視為 Atl-Hi」續行（那會使 35 個 Atl-Mid 物件"
+            "靜默寫入真值）。")
+    lines = p.read_text(encoding="utf-8").rstrip("\n").split("\n")
+    hdr = lines[0].split("\t")
+    want = ["leaf", "sys_ra", "object_id", "ee_architecture",
+            "is_atl_hi", "section"]
+    if hdr != want:
+        raise ValueError(f"{EE_ARCH_TSV} 表頭為 {hdr}，應為 {want}")
+    out: dict[str, dict[str, dict]] = {}
+    for i, ln in enumerate(lines[1:], 2):
+        f = ln.split("\t")
+        if len(f) != 6:
+            raise ValueError(f"{EE_ARCH_TSV}:{i} 欄數 {len(f)} ≠ 6")
+        out.setdefault(f[0], {})[f[2]] = {
+            "sys_ra": f[1], "ee": f[3],
+            "is_atl_hi": f[4] == "True", "section": f[5]}
+    if not out:
+        raise ValueError(f"{EE_ARCH_TSV} 無資料列")
+    return out
+
+
+# ── A-TM26 / R-TM49 —— LID 表之單一來源 ─────────────────────
+# segment（CAN 網段）之權威為 LID 表 Atlantis High 欄，非 CFTS 內文之敘述
+# （`11` §3：兩者併行時以對映表優先；衝突須回報不逕採）。
+LID_TSV = "data/lid_atlantis_high.tsv"
+
+
+def load_lid_table(feature_dir) -> dict[str, dict]:
+    """讀 LID 表實測結果。**缺檔即 raise** —— 同 load_ee_arch 之理由。
+
+    回傳 {LID: {signal, can, fmt, sna, arch_column, source_row}}。
+    `arch_column` 逐列帶回，使每一處取值都能回答「取自哪一組架構欄」
+    （A-TM26 之強制記錄；`11` T3 另提請擴充為含分頁名）。
+    """
+    from pathlib import Path
+    p = Path(feature_dir) / LID_TSV
+    if not p.is_file():
+        raise FileNotFoundError(
+            f"{LID_TSV} 不存在 —— segment 無權威來源。不得回退為"
+            "「一律 PENDING」亦不得自 CFTS 內文猜測（A-TM26 / R-TM49）。")
+    lines = p.read_text(encoding="utf-8").rstrip("\n").split("\n")
+    want = ["LID", "ArchColumn", "SignalName", "CAN", "Format", "SNA",
+            "SourceRow"]
+    if lines[0].split("\t") != want:
+        raise ValueError(f"{LID_TSV} 表頭為 {lines[0].split(chr(9))}，應為 {want}")
+    out = {}
+    for i, ln in enumerate(lines[1:], 2):
+        f = ln.split("\t")
+        if len(f) != 7:
+            raise ValueError(f"{LID_TSV}:{i} 欄數 {len(f)} ≠ 7")
+        out[f[0]] = {"arch_column": f[1], "signal": f[2], "can": f[3],
+                     "format": f[4], "sna": f[5], "source_row": f[6]}
+    if not out:
+        raise ValueError(f"{LID_TSV} 無資料列")
+    return out
+
+
+def lid_of_signal(sig: str) -> str:
+    """`$DateTmHour$` → `DateTmHour`。**只去修飾符，不做任何猜測性正規化。**"""
+    return sig.strip().strip("$")
+
+
 def _assert_intact() -> None:
     fails: list[str] = []
     if len(TEST_SETS) != 7:

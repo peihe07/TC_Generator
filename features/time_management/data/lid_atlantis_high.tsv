@@ -1,0 +1,20 @@
+LID	ArchColumn	SignalName	CAN	Format	SNA	SourceRow
+DateTmHour	Atlantis High (col 26-30)	TELEMATIC_FD_1.Hour1_TLM / TELEMATIC_FD_1.Hour2_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		409
+DateTmMinute	Atlantis High (col 26-30)	TELEMATIC_FD_1.Minute1_TLM / TELEMATIC_FD_1.Minute2_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		410
+DateTmSecond	Atlantis High (col 26-30)	TELEMATIC_FD_1.Second1_TLM / TELEMATIC_FD_1.Second2_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		412
+DateTmFormat	Atlantis High (col 26-30)	TELEMATIC_FD_10.DateTmFormat	FD	0 = NDEF0 / 1 = FORMAT_12H / 2 = FORMAT_24H / 3 = FORMAT_0 / 4 = FORMAT_1 / 5 = FORMAT_2 / 6 = FORMAT_3 / 7 = SNA	7	407
+DateTmFormat2	Atlantis High (col 26-30)	(EMPTY)	(EMPTY)	(EMPTY)	(EMPTY)	408
+DateTmYear	Atlantis High (col 26-30)	TELEMATIC_FD_1.Year1_TLM / TELEMATIC_FD_1.Year2_TLM / TELEMATIC_FD_1.Year3_TLM / TELEMATIC_FD_1.Year4_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2) / 0 to 9 (digit 3) / 0 to 9 (digit 4)		413
+DateTmMonth	Atlantis High (col 26-30)	TELEMATIC_FD_1.Month1_TLM / TELEMATIC_FD_1.Month2_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		411
+DateTmDay	Atlantis High (col 26-30)	TELEMATIC_FD_1.Day1_TLM / TELEMATIC_FD_1.Day2_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		406
+GPSDateTmHour	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_UTC_Hour	FD	Atlantis / 8 bit signal / 0 - 23 hours / resolution = 1 hour		857
+GPSDateTmMinute	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_UTC_Minute	FD	Atlantis / 8 bit signal / 0 - 59 minutes / resolution = 1 minute		858
+GPSDateTmSecond	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_UTC_Second	FD	Atlantis / 16 bit signal / 0 - 59.99 seconds / resolution = .01 sec		860
+GPSDateTmYear	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_Date_Year	FD	Atlantis / 16 bit signal / 0 - 65534 Years / resolution = 1 Year		861
+GPSDateTmMonth	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_Date_Month	FD	Atlantis / 8 bit signal / 1 - 12 Months / resolution = 1 Month		859
+GPSDateTmDay	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_Date_Day	FD	Atlantis / 8 bit signal / 1 - 31 Days / resolution = 1 Day		856
+TLM_MANAGED_TIME_DATE_Hour	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	2121
+TLM_MANAGED_TIME_DATE_Minute	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	2122
+TLM_MANAGED_TIME_DATE_Day	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	2120
+TLM_MANAGED_TIME_DATE_Month	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	2123
+TLM_MANAGED_TIME_DATE_Year	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	N/A (R-TM62)	2124

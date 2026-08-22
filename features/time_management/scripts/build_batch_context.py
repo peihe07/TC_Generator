@@ -53,7 +53,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tm_rulings import (                                       # noqa: E402
     BATCHES, BOUNDARY_NOTES, BOUNDARY_SIGNALS, SEGMENT_PLACEHOLDER,
     SPEC_GAP, SPEC_REF_PREFIX, TEST_GROUP, TEST_ITEM_TOKEN_MAX,
-    TEST_SET_OF, TEST_SETS, spec_gap_placeholder)
+    TEST_SET_OF, TEST_SETS, spec_gap_placeholder, load_ee_arch, atl_hi_placeholder, load_lid_table, lid_of_signal)
 
 REPO_ROOT = next(p for p in Path(__file__).resolve().parents
                  if (p / "pyproject.toml").is_file())
@@ -193,13 +193,34 @@ def assert_rendered(r: str) -> None:
             f"C-3 守衛：rendered {r!r} 之物件 id 未升冪 —— canon §10.7 排列段")
 
 
-def build_spec_reference(num, refs, sys2, objs) -> dict:
-    """C-3 ＋ C-2 —— 候選清單（v2 格式）與缺口佔位。"""
+def build_spec_reference(num, refs, sys2, objs, arch=None) -> dict:
+    """C-3 ＋ C-2 ＋ **arch（R-TM63）** —— 候選清單與兩種佔位。
+
+    `arch` 為 `load_ee_arch()` 之該 leaf 子字典。**佔位與真值並存**
+    （R-TM63 第 3 項）：Atl-Hi 物件寫 `CFTS015-{id}`，Atl-Mid 物件寫
+    `PENDING: DR-11 …`，二者在同一 rendered 串內。
+    """
     ids = sorted({i for n in refs.get(num, []) for i in sys2.get(n, [])})
     ok = [i for i in ids if i in objs]
     missing = [i for i in ids if i not in objs]
     entry: dict = {"format": f"{SPEC_REF_PREFIX}-{{7 位物件 id}}",
                    "candidates_upper_bound": ok}
+    if arch is not None:
+        hi = [i for i in ok if arch.get(i, {}).get("is_atl_hi")]
+        mid = [i for i in ok if i in arch and not arch[i]["is_atl_hi"]]
+        unknown = [i for i in ok if i not in arch]
+        entry["arch"] = {
+            "atl_hi": hi, "atl_mid": mid, "not_in_tsv": unknown,
+            "placeholders": [atl_hi_placeholder(i) for i in mid],
+            "rule": ("R-TM63：Atl-Mid 專屬物件之 spec_reference 條目改為 "
+                     "`PENDING: DR-11 …`，**TC 照寫不縮減覆蓋**；同一 leaf "
+                     "之 Atl-Hi 物件正常寫 `CFTS015-{id}`，佔位不取代真值。"),
+        }
+        if unknown:
+            entry["arch"]["warning"] = (
+                f"物件 {unknown} 不在 ee_architecture_by_leaf.tsv 內 —— "
+                "架構不明，**不得預設為 Atl-Hi**，須回報")
+        ok = hi                     # rendered 只含真值；佔位另列
     if ok:
         entry["rendered"] = (f"{SPEC_REF_PREFIX}-{ok[0]}"
                              + "".join(f", {i}" for i in ok[1:]))
@@ -225,8 +246,15 @@ def build_spec_reference(num, refs, sys2, objs) -> dict:
     return entry
 
 
-def build_signals(num, refs, sys2, objs) -> dict:
-    """C-5 —— 訊號三件組。segment 依 R-TM51 (a) 自動篩，(b) 交生成端。"""
+def build_signals(num, refs, sys2, objs, lid=None) -> dict:
+    """C-5 —— 訊號三件組。
+
+    **segment 之權威改為 LID 表 Atlantis High 欄**（`11` T3 實測，
+    DR-6 解除）。CFTS 內文之網段敘述（R-TM49 例外）降為 `segment_candidates`
+    供對照：兩者衝突時**回報不逕採**（`11` §3）。
+
+    每一個 segment 皆帶 `arch_column`（A-TM26 之強制記錄）。
+    """
     ids = [i for n in refs.get(num, []) for i in sys2.get(n, []) if i in objs]
     signals: dict[str, dict] = {}
     for oid in sorted(set(ids)):
@@ -240,24 +268,49 @@ def build_signals(num, refs, sys2, objs) -> dict:
                     {"segment": s, "object": oid,
                      "sentence": text[:200]})
     for sig, e in signals.items():
-        if not e["segment_candidates"]:
-            e["segment"] = SEGMENT_PLACEHOLDER    # (a) 不成立即佔位
+        row = (lid or {}).get(lid_of_signal(sig))
+        if row is None:
+            # LID 表無此 LID —— 既非有值亦非 R-TM62 之 N/A，屬未知。
+            # **不得回退為 CFTS 內文之候選**（那是被降級的來源），
+            # 亦不得留空。
+            e["segment"] = SEGMENT_PLACEHOLDER
+            e["segment_source"] = "LID 表無此 LID —— 須回報"
+        elif row["can"].startswith("N/A"):
+            e["segment"] = None                   # R-TM62：不寫此訊號
+            e["segment_source"] = row["can"]
+            e["excluded"] = ("R-TM62：本架構無此對映，**不寫入任何訊號斷言**，"
+                             "亦不列為 PENDING（非缺件）")
+        elif row["can"] in ("", "(EMPTY)"):
+            e["segment"] = SEGMENT_PLACEHOLDER
+            e["segment_source"] = "Atl-H 欄為空且不在 R-TM62 射程 —— 須回報"
         else:
-            e["segment"] = None                   # 待生成端依 (b) 判定
+            e["segment"] = row["can"]             # ← LID 表為權威
+            e["message"] = row["signal"]
+            e["arch_column"] = row["arch_column"]   # A-TM26 強制記錄
+            e["lid_source_row"] = row["source_row"]
+            e["format"] = row["format"]
+            e["sna"] = row["sna"]
+            cfts = sorted({c["segment"] for c in e["segment_candidates"]})
+            if cfts and row["can"] not in cfts:
+                e["conflict"] = (
+                    f"LID 表 segment = {row['can']!r}，CFTS 內文敘述為 "
+                    f"{cfts!r} —— **以 LID 表為準（`11` §3），但此衝突須回報**")
     return {
         "form": "<Signal> in <MESSAGE> on <segment>",
-        "rule": ("canon §8.7.5。Signal 與 MESSAGE 取自 CFTS015 內文；"
-                 "**segment 須依 R-TM51 兩項判定**：(a) 網段敘述與訊號名"
-                 "出現於同一物件（本檔已篩，見 segment_candidates）；"
-                 "(b) 該敘述之句法上網段為該訊號或其 MESSAGE 之修飾語，"
-                 "非另一句之主題 —— **此項須由你判定，本檔不代為斷定**。"
-                 f"兩項有一不成立即填 `{SEGMENT_PLACEHOLDER}`。"
-                 "填寫時於 reasoning 註明來源物件 id，使該判定可被覆核。"),
+        "rule": ("canon §8.7.5。**segment 與 MESSAGE 之權威為 LID 表 "
+                 "Atlantis High 欄**（`11` T3，DR-6 已解除），本檔已填入 "
+                 "`segment` / `message` / `arch_column`，不由你判定。"
+                 "CFTS 內文之網段敘述降為 `segment_candidates` 供對照；"
+                 "若出現 `conflict` 欄，以 LID 表為準並於 reasoning 註明。"
+                 f"`{SEGMENT_PLACEHOLDER}` 僅用於 LID 表無值或無此 LID 者。"
+                 "帶 `excluded` 者為 R-TM62 —— **該訊號不寫入任何斷言**。"),
         "signals": signals,
     }
 
 
 def build(feature_dir: Path, batch: str) -> dict:
+    ee = load_ee_arch(feature_dir)      # R-TM63 之單一來源
+    lid = load_lid_table(feature_dir)   # A-TM26 / DR-6 解除後之 segment 權威
     import yaml
     cfg = yaml.safe_load(
         (feature_dir / "feature.yaml").read_text(encoding="utf-8"))
@@ -293,8 +346,8 @@ def build(feature_dir: Path, batch: str) -> dict:
                          "**缺括號下半 = FAIL，不得出貨。** 同一 leaf 衍生"
                          "之多列，其括號內容不得逐字相同。"),
             },
-            "specification_reference": build_spec_reference(num, refs, sys2, objs),
-            "signals": build_signals(num, refs, sys2, objs),
+            "specification_reference": build_spec_reference(num, refs, sys2, objs, ee.get(num)),
+            "signals": build_signals(num, refs, sys2, objs, lid),
         }
         if leaf in BOUNDARY_SIGNALS:                        # C-1
             b = BOUNDARY_SIGNALS[leaf]

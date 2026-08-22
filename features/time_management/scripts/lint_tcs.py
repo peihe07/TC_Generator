@@ -70,9 +70,16 @@ LEAF_COUNT = 22                  # B2 —— 037 之 leaf 全集
 # 生成照 A 寫則被 B 攔，呈現為「模型出錯」而非「規則不一致」。
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tm_rulings import (                      # noqa: E402
-    SPEC_GAP_LEAVES, TEST_SETS, BOUNDARY_SIGNALS)
+    SPEC_GAP_LEAVES, TEST_SETS, BOUNDARY_SIGNALS,
+    load_ee_arch, atl_hi_placeholder, load_lid_table)
 
 SPEC_REF_RE = re.compile(r"^CFTS015-(\d{7})$")      # B7(i) —— canon §10.7(a)
+
+# R-TM64 —— 零真值之片，spec_reference 之唯一合法佔位（不含物件 id）
+ATL_HI_BARE_PLACEHOLDER = "PENDING: DR-11 Atl-H 對應需求"
+
+# A-TM26 之強制記錄字樣 —— 與 tm_rulings 之 tsv `ArchColumn` 欄同字面
+ARCH_COL_MARK = "Atlantis High (col 26-30)"
 
 class LintError(RuntimeError):
     """呼叫或權威讀取之失敗 —— 與「發現」區分，走 exit 2。"""
@@ -112,6 +119,8 @@ def load_authorities(feature_dir: Path) -> dict:
         "priority": read_priority_domain(wb_path, cfg),   # C2
         "sys2_items": read_sys2_items(feature_dir, cfg),  # B7(ii)
     }
+    auth["ee_arch"] = load_ee_arch(feature_dir)   # R-TM63 之單一來源
+    auth["lid_table"] = load_lid_table(feature_dir)   # A-TM26
     return auth
 
 
@@ -365,6 +374,73 @@ def lint_boundary(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
     return out
 
 
+def lint_arch(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
+    """R-TM63 —— Atl-Mid 專屬物件不得以 `CFTS015-{id}` 形式出現。
+
+    **與 context 層共用同一 tsv**（R-TM63 第 5 項）—— 判準不在本檔複寫，
+    由 `tm_rulings.load_ee_arch()` 供給。兩層若各自判定，漂移時 lint 全綠
+    而內容錯（R-TM59 / R-TM61 之同族）。
+
+    本閘只管**該不該寫真值**，不管佔位字串之措辭 —— 後者由 B3 之
+    PENDING 規則與 R-TM40 之格式閘各自負責，三者射程不重疊。
+    """
+    arch = auth.get("ee_arch")
+    if not arch:
+        return []
+    leaf = str(tc.get("req_id", ""))[-3:]
+    per = arch.get(leaf)
+    if not per:
+        return []
+    body = str(tc.get("spec_reference") or "")
+    out = []
+    for oid, info in sorted(per.items()):
+        if info["is_atl_hi"]:
+            continue
+        if re.search(rf"(?<!\d){re.escape(oid)}(?!\d)", body) and \
+                atl_hi_placeholder(oid) not in body:
+            out.append(("arch",
+                        f"{where}: 物件 {oid} 標為 `{info['ee']}`（非 Atl-H），"
+                        f"不得以 `CFTS015-{oid}` 形式寫入 —— R-TM63 第 2 項："
+                        f"該條目須為 `{atl_hi_placeholder(oid)}`"))
+    return out
+
+
+def lint_arch_column(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
+    """A-TM26 之強制記錄 —— 用了 LID 訊號者，reasoning 須註明架構欄與來源列。
+
+    A-TM26 逐字：「凡自 LID 表取值者，須於同一處記錄取自哪一組架構欄，
+    **無此記錄之取值一律視為未驗**」。該判準原先只靠人工遵守 ——
+    `13` 生成時 30 處訊號中僅 2 處記錄，靠自檢才發現（`13` §5.3）。
+
+    本閘只驗**記錄之存在**，不驗其正確性：記了 `Atlantis High (col 26-30)`
+    卻其實取自 Powernet 欄，本閘攔不住。**該層由 context 之單一來源
+    （`load_lid_table`）保證** —— 值不由生成端自行查表，故兩者射程互補。
+    """
+    lid = auth.get("lid_table")
+    if not lid:
+        return []
+    body = " ".join(str(tc.get(k) or "") for k in
+                    ("pre_conditions", "input_test_data",
+                     "test_procedure", "expected_result"))
+    used = sorted({n for n in lid if f"${n}$" in body})
+    if not used:
+        return []
+    rsn = str(tc.get("reasoning") or "")
+    out = []
+    if ARCH_COL_MARK not in rsn:
+        out.append(("arch-column",
+                    f"{where}: 內文用了 LID 訊號 {used}，但 reasoning 未註明 "
+                    f"`{ARCH_COL_MARK}` —— A-TM26：無此記錄之取值視為未驗"))
+        return out
+    for n in used:
+        row = lid[n]["source_row"]
+        if row not in rsn:
+            out.append(("arch-column",
+                        f"{where}: 用了 `${n}$` 但 reasoning 未載其來源列 "
+                        f"{row} —— A-TM26 要求可回溯至該筆對映"))
+    return out
+
+
 def lint_no_tc_id(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
     """B8（G-TM2 項 3 訂正）—— TC JSON 不得攜帶 tc_id。
 
@@ -413,10 +489,17 @@ def lint_spec_reference(tc: dict, auth: dict, where: str) -> list[tuple[str, str
     **排列**依 canon §10.7 之排列段：同一文件內多個 ObjectID 以 `, ` 續列
     且**文件前綴僅敘明一次**、**禁用 `;`**、升冪。
     """
-    raw = str(tc.get("specification_reference", "") or "")
+    # R-TM65 —— 鍵名以 feature.yaml 之 workbook.columns 宣告為準。
+    raw = str(tc.get("spec_reference", "") or "")
     out: list[tuple[str, str]] = []
     if not raw.strip():
-        return [("spec-reference", f"{where}: specification_reference 為空")]
+        return [("spec-reference", f"{where}: spec_reference 為空")]
+    # R-TM64 例外 —— 零真值之片（全部引用物件皆非 Atl-Hi，如 020 / 021）：
+    # 欄值**恰為**單一佔位即通過。逐項明細在 Remarks，N 欄只標「待補」。
+    # 用 `==` 而非 `startswith` —— 後者會放行「佔位 + 任何尾巴」，
+    # 使 R-TM64 所廢止之 ` / ` 並列從這個豁免口溜回來。
+    if raw.strip() == ATL_HI_BARE_PLACEHOLDER:
+        return []
     if ";" in raw:
         out.append(("spec-reference",
                     f"{where}: 含 `;` —— canon §10.7 排列段明文禁用，"
@@ -538,6 +621,8 @@ GATES = (
     lint_priority_domain,    # C2
     lint_spec_gap,           # B3
     lint_boundary,           # B4
+    lint_arch,               # R-TM63
+    lint_arch_column,        # A-TM26
     lint_no_tc_id,           # B8
     lint_test_group,
     lint_design_method,
@@ -576,7 +661,7 @@ def base_tc(auth: dict) -> dict:
     tc["test_group"] = auth["test_group"]
     tc["test_set"] = "Manual Setting"
     tc["design_method"] = sorted(auth["design_methods"])[0]
-    tc["specification_reference"] = f"CFTS015-{oid}"
+    tc["spec_reference"] = f"CFTS015-{oid}"
     tc["priority"] = sorted(auth["priority"])[0]
     tc["test_procedure"] = "1. a\n2. b"
     tc["expected_result"] = "1. a\n2. b"
@@ -603,7 +688,7 @@ def self_test(auth: dict) -> int:
         print("PASS 綠向：合規之 TC 未轉紅")
 
     gap_leaf = sorted(SPEC_GAP_LEAVES)[0]
-    oid_ok = green["specification_reference"].split("-")[1]
+    oid_ok = green["spec_reference"].split("-")[1]
     reds = [
         ("required-fields  (B5 空值，只留一欄空)",
          {**green, "pre_conditions": "   "}),
@@ -631,15 +716,15 @@ def self_test(auth: dict) -> int:
         ("design-method    (不在母本下拉選單內)",
          {**green, "design_method": "不存在之方法 (Nope)"}),
         ("spec-reference i (B7 形式不符 CFTS015-<7位>)",
-         {**green, "specification_reference": "4813905"}),
+         {**green, "spec_reference": "4813905"}),
         ("spec-reference ii(B7 7 位不在 SYS2 全集)",
-         {**green, "specification_reference": "CFTS015-9999999"}),
+         {**green, "spec_reference": "CFTS015-9999999"}),
         ("spec-reference iii(B7 R-TM41：不在 CFTS015 docx)",
-         {**green, "specification_reference": "CFTS015-6151328"}),
+         {**green, "spec_reference": "CFTS015-6151328"}),
         ("spec-reference   (B7 canon §10.7 禁用 ;)",
-         {**green, "specification_reference": f"CFTS015-{oid_ok}; CFTS015-{oid_ok}"}),
+         {**green, "spec_reference": f"CFTS015-{oid_ok}; CFTS015-{oid_ok}"}),
         ("spec-reference   (B7 前綴重複敘明)",
-         {**green, "specification_reference": f"CFTS015-{oid_ok}, CFTS015-{oid_ok}"}),
+         {**green, "spec_reference": f"CFTS015-{oid_ok}, CFTS015-{oid_ok}"}),
         ("step-er-count    (步驟數 vs ER 行數)",
          {**green, "expected_result": "1. a"}),
         ("spec-gap         (L2：Remarks 有值但非 PENDING 佔位)",
@@ -665,6 +750,70 @@ def self_test(auth: dict) -> int:
     bad += bool(v)
     print(f"{'PASS' if not v else '**FAIL**'} 綠向 2 (A-TM13 leaf 帶 "
           f"PENDING 佔位): {'未誤報 spec-gap' if not v else v}")
+
+    # ── R-TM63 之 arch 閘（13 T4）──────────────────────────
+    # 綠向：003 之 Atl-Hi 物件 4813923 寫真值 → 不報
+    # 紅向：003 之 Atl-Mid 物件 4814088 寫真值 → 報 arch
+    # 綠向 2：同一物件寫佔位 → 不報（佔位與真值並存之證明）
+    a_cases = [
+        ("綠向 (003 之 Atl-Hi 物件 4813923 寫真值)",
+         {**green, "req_id": "SWE-RA-TIME&DATE-003",
+          "spec_reference": "CFTS015-4813923"}, False),
+        ("紅向 (003 之 Atl-Mid 物件 4814088 寫真值 → 須報)",
+         {**green, "req_id": "SWE-RA-TIME&DATE-003",
+          "spec_reference": "CFTS015-4813923, 4814088"}, True),
+        # R-TM64 後：佔位移 Remarks，spec_reference 只留真值。
+        ("綠向 (Atl-Mid 物件之佔位移至 Remarks → 不報)",
+         {**green, "req_id": "SWE-RA-TIME&DATE-003",
+          "spec_reference": "CFTS015-4813923",
+          "remarks": atl_hi_placeholder("4814088")}, False),
+        # 020 之四個物件全為 Atl-Mid（R-TM63 第 4 項），任一寫真值即報。
+        # 首版此處用了不存在之 id 4814035 而未報 —— 構造錯誤，非閘失效
+        # （R-TM56 所記之同一形態：兩者現象相同）。id 改自 tsv 實取。
+        ("紅向 (020 全片 Atl-Mid，寫任一真值即報)",
+         {**green, "req_id": "SWE-RA-TIME&DATE-020",
+          "spec_reference": "CFTS015-4814064"}, True),
+    ]
+    for name, tc, want in a_cases:
+        got = [m for g, m in lint_tc(tc, auth, "ARCH") if g == "arch"]
+        ok = bool(got) is want
+        bad += not ok
+        print(f"{'PASS' if ok else '**FAIL**'} arch {name}: "
+              f"{(got[0][:64] if got else '未報')}")
+
+    # ── R-TM64 之零真值例外 + A-TM26 之 ArchColumn 閘（14 T3）──
+    lid_tc = {**green, "req_id": "SWE-RA-TIME&DATE-008",
+              "expected_result": "1. $DateTmHour$ carries the hour value\n2. b",
+              "test_procedure": "1. a\n2. b"}
+    mark = "訊號取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409"
+    x_cases = [
+        # R-TM64 —— 零真值之片，欄值恰為單一佔位
+        ("綠向 R-TM64 (spec_reference 恰為單一 DR-11 佔位 → 不報)",
+         {**green, "spec_reference": ATL_HI_BARE_PLACEHOLDER},
+         "spec-reference", False),
+        ("紅向 R-TM64 (佔位後綴任何尾巴 → 仍報)",
+         {**green, "spec_reference": ATL_HI_BARE_PLACEHOLDER + " / CFTS015-4813919"},
+         "spec-reference", True),
+        ("紅向 R-TM64 (佔位帶物件 id —— 明細應在 Remarks)",
+         {**green, "spec_reference": atl_hi_placeholder("4814088")},
+         "spec-reference", True),
+        # A-TM26 —— 用了 LID 訊號而 reasoning 無記錄
+        ("紅向 A-TM26 (用 $DateTmHour$ 而 reasoning 無 ArchColumn)",
+         lid_tc, "arch-column", True),
+        ("紅向 A-TM26 (有 ArchColumn 但缺來源列號)",
+         {**lid_tc, "reasoning": "訊號取自 LID 表 Atlantis High (col 26-30) 欄"},
+         "arch-column", True),
+        ("綠向 A-TM26 (ArchColumn 與來源列俱全 → 不報)",
+         {**lid_tc, "reasoning": mark}, "arch-column", False),
+        ("綠向 A-TM26 (未用任何 LID 訊號 → 不判)",
+         {**green, "reasoning": ""}, "arch-column", False),
+    ]
+    for name, tc, gate, want in x_cases:
+        got = [m for g, m in lint_tc(tc, auth, "X") if g == gate]
+        ok = bool(got) is want
+        bad += not ok
+        print(f"{'PASS' if ok else '**FAIL**'} {name}: "
+              f"{(got[0][:60] if got else '未報')}")
 
     # ── R-TM55 之綠向與負控（07 T3）─────────────────────────
     # 空 `owns` 之片，其 not_ours 以外之訊號不得誤報；且 022 須維持不判。
@@ -723,7 +872,8 @@ def self_test(auth: dict) -> int:
             print(f"{'PASS' if hit else '**FAIL**'} B1 紅向 ({name}) → "
                   f"{want}: {got[0][1][:56] if got else '未叫 —— 閘失效'}")
 
-    total = len(reds) + 3 + len(b_cases) + 1 + len(d5_reds)
+    total = (len(reds) + 3 + len(b_cases) + 1 + len(d5_reds)
+             + len(a_cases) + len(x_cases))
     print(f"\n自驗：{total - bad} / {total}")
     return 1 if bad else 0
 

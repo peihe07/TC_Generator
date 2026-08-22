@@ -280,6 +280,42 @@ def write_rows(ws, cols: dict[str, int], rows: list[dict], cfg: dict,
             "tc_id_format_used": fmt}      # R-TM59 一致性檢查之輸入
 
 
+# R-TM65 —— 啟動檢查之豁免欄。**列出並附理由，不以「大概不用驗」帶過。**
+#   四者由條文決定而非自 TC 讀（write_rows 之迴圈明文排除），
+#   remarks 為條件性欄位（僅缺口 TC 需要），故未出現不代表失效。
+KEY_CHECK_EXEMPT = {
+    "tc_id": "由 write_rows 依列位置賦號（canon §10.3）",
+    "author": "feature.yaml write_back.author_value",
+    "tc_ref_id": "feature.yaml write_back.tc_ref_id_value",
+    "functional_safety": "常數 CONST_FUNCTIONAL_SAFETY（R-TM57）",
+    "remarks": "條件性 —— 僅有缺口宣告之 TC 需要（R-TM64）",
+    "test_group": "fill_test_group_set 時由 cfg 填（R-TM5 / R-TM8）",
+}
+
+
+def check_keys_present(cols: dict, rows: list[dict]) -> None:
+    """R-TM65 —— `cols` 之每個 key 至少在一條 TC 出現，否則 raise。
+
+    緣起：lint 讀 `specification_reference` 而 feature.yaml 宣告
+    `spec_reference`，兩者不一致時 **write_rows 之 `tc.get(key)` 取不到值，
+    該欄靜默空白寫入工作簿**（`13` 上繳 §5.1）。lint 不知道 write_back 用
+    什麼鍵，write_back 不跑 lint —— 兩支工具之間無人把關。
+
+    判準刻意是「**至少一條**」而非「每條都有」：後者會誤攔條件性欄位。
+    豁免清單見 `KEY_CHECK_EXEMPT`。
+    """
+    if not rows:
+        return
+    seen = {k for r in rows for k in r}
+    missing = [k for k in cols if k not in seen and k not in KEY_CHECK_EXEMPT]
+    if missing:
+        raise WriteBackError(
+            "下列欄位在 feature.yaml 之 columns 有宣告，但**沒有任何一條 TC "
+            f"帶此鍵**，寫入後將全欄空白：{missing}\n"
+            "最可能之成因為 TC 產生端與 feature.yaml 之鍵名不一致"
+            "（R-TM65）。豁免欄見 KEY_CHECK_EXEMPT。")
+
+
 def check_header_untouched(src: Path, out: Path, sheet: str, header_row: int) -> None:
     a = openpyxl.load_workbook(src, data_only=False)[sheet]
     b = openpyxl.load_workbook(out, data_only=False)[sheet]
@@ -352,6 +388,7 @@ def run(args) -> int:
     ws = wb[sheet]
     cols = resolve_columns(ws, header_row, cfg)
     start_seq = existing_data_rows(ws, cols, header_row)
+    check_keys_present(cols, rows)          # R-TM65 啟動檢查
     plan = write_rows(ws, cols, rows, cfg, start_seq)
 
     print(f"source        : {src.name}")

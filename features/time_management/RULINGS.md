@@ -2393,3 +2393,218 @@ unresolved 檢查之判準由 `v is None` 改為 `v is None or v == ""`
 一行 `assert_tc_id_single_source(cfg, "<壞值>")` 即可觸發，
 紅向 2 即以此構造，不經由 `run()` 之間接路徑。
 
+## R-TM60 — 常數表 v3：刪除三條手動時區/DST 常數
+
+（分析層裁定，2026-08-22。上游包 `docs/handoff/10_constants_v3.md` §1。
+發現者為執行層 `09` 上繳 §5.1；分析層回查 CFTS015 原文後確認成立。）
+
+```
+R-TM60（分析層裁定，2026-08-22）—— 常數表 v3：刪除三條手動時區/DST 常數
+
+v2 之 SET_TIME_ZONE / DST_ON / DST_OFF **刪除，不改佔位**。
+
+刪除而非佔位之理由：佔位表示「該操作存在但方式未知」，而此三者是
+**該操作依 spec 不存在** —— 012 / 013 之能力為自動判定，無使用者介面。
+留佔位會使日後讀者以為只差一個 DR 就能填。
+
+替代：012 / 013 之觸發改由位置與時間之改變為之：
+
+    CROSS_TIME_ZONE = 'PENDING: DR-10 使車輛位置跨越時區邊界之操作方式'
+    CROSS_DST_BOUNDARY = 'PENDING: DR-10 使車輛時間跨越 DST 切換點之操作方式'
+
+`CROSS_TIME_ZONE` 由 v2 之具體措辭**改為佔位** —— 我在 09 §3.3 保留
+具體措辭之理由（「位置設定是 GPS 測試之基本能力」）同樣是未經查證之推測，
+與被我自己否決之 `Remove the GPS antenna …` 同型。**同一錯誤我犯了兩次，
+第二次還為它寫了一段辯護。**
+```
+
+**spec 佐證（分析層回查 CFTS015 原文）**：
+
+| spec | 逐字 |
+|---|---|
+| 1.3.1.1.5.3 Time Zones（物件 4813992） | `The HU that has a GPS input shall set the time zone **automatically**.` |
+| 1.3.1.1.5.4 Daylight Saving Time（物件 4813995） | `The daylight saving time shall be **adjusted automatically**.` |
+
+**執行層回報（2026-08-22）**：已知悉。`tm_constants.py` **仍未建**
+（v3 待 Pei 過目），故本條於本包無程式碼落點，其效力現於
+`10` T3 之逐片複驗與日後之常數表建檔。
+
+**本條所指之失效形態，執行層記為一條可操作之判準**：凡「設定類功能」之
+步驟措辭，落筆前須先查 spec 該能力是**自動**或**由使用者觸發** ——
+二者之測試操作完全不同，而「設定類功能通常有 UI 開關」是最容易成立的
+常識推論，也是最容易寫出 spec 未述能力（§8.4.2 scope fabrication）之路徑。
+
+## R-TM61 — 搜尋未決項須兼搜識別字與字面量鍵
+
+（分析層自裁，2026-08-22。上游包 `docs/handoff/10_constants_v3.md` §4。
+發現者為執行層 `09` 上繳 §2。）
+
+```
+R-TM61（分析層自裁，2026-08-22）—— 搜尋未決項須兼搜識別字與字面量鍵
+
+清點某項之使用點時，不得只搜其識別字（常數名、變數名），
+須同時搜其**字面量鍵**（字典鍵字串、yaml 鍵名、欄位標題文字）。
+
+理由：同一個值常有兩條存取路徑 —— 具名常數與字典查表，
+前者可由識別字搜得，後者只出現為字串。只搜前者會漏掉後者，
+而漏掉的那條往往正是實際生效的那條。
+
+依據：09 上繳 §2 —— `TC_ID_FORMAT` 之使用點實為三處，
+第三處（run() 之預覽列印）以 `cfg['write_back']['tc_id_format']` 存取，
+分析層於 08 §5 之 grep 未命中，致 R-TM59 述為「雙來源」。
+
+本條與 R-TM31（判準須列明細）同族：前者管輸出之可歸屬，
+本條管輸入之涵蓋完整。
+```
+
+**執行層回報（2026-08-22）**：已套用於本包之全部清點。
+`09` §2.1 之三項超出指令之設計決定（來源指標、格式須含 `{n`、
+守衛抽為可獨立呼叫）分析層全部採納，無須調整。
+
+## R-TM62 — TLM_MANAGED_TIME_DATE_* 不適用於 Atl-H
+
+（Pei 裁定，2026-08-22。上游包 `docs/handoff/12_scope.md` §1。
+發現者為分析層 `11` §2.2 之 LID 表探測。）
+
+```
+R-TM62（Pei, 2026-08-22）—— TLM_MANAGED_TIME_DATE_* 不適用於 Atl-H
+
+LID 表 `CAN Mapping` 分頁中，五個 `TLM_MANAGED_TIME_DATE_*`
+（Hour / Minute / Day / Month / Year）於 Atlantis High 欄（26–30）無值，
+僅 Atlantis 欄（16–20）有值。
+
+裁定：該五 LID **視為不適用於 Atl-H**，不寫入本 feature 之任何
+訊號斷言，亦不列為 `PENDING`（其非缺件，而是本架構無此對映）。
+
+DR-6b（原擬登記「無 Atl-H 對應者」之缺件）**取消** —— 依本條，
+該類非缺件。
+
+**本條之射程限於此五 LID。** 其邏輯是否延伸至 Atl-Mid 專屬之需求物件，
+見 A-TM27，待 Pei 另裁。
+```
+
+**執行層回報（2026-08-22）**：五 LID 於 `data/lid_atlantis_high.tsv`
+記為 `N/A (R-TM62)`（六欄全填該值），與 `(EMPTY)` 在同一檔內可區分。
+DR-6b **未建立**，始末記於 `DATA_REQUESTS.md`。
+
+**但實測另發現一個 Atl-H 欄為空、且不在本條射程內者**：`DateTmFormat2`
+（Powernet 欄有值 `Radio_A3.DateTmFormat2`，Usage Comment 為 `For PHEV`，
+來源列 408）。**執行層未逕行套用本條**（射程擴張屬條文範圍），
+於 tsv 記為 `(EMPTY)`。提請裁定 —— 見 `docs/upstream/11_lid.md` §3.2。
+
+## R-TM63 — A-TM27 採選項 (c)：引用標註，不縮減 TC
+
+（Pei 裁定，2026-08-22。上游包 `docs/handoff/13_b1.md` §1。
+**B1 之最後一個內容阻塞於此解除。**）
+
+```
+R-TM63（Pei, 2026-08-22）—— A-TM27 採選項 (c)：引用標註，不縮減 TC
+
+037 引用之物件若標為 Atlantis Mid 專屬（`[EE Architecture:Atlantis Mid]`
+且不含 `Atlantis High`、非 `All`），其處置為：
+
+1. **TC 照寫，覆蓋範圍不縮減。** 該驗證點仍生成 TC —— 037 引用了它，
+   即上游 SWE.1 認為其在範圍內；推翻上游之範圍判斷非本層權限
+   （§8.2「TC 作者不得重新分解 RD 項目」之同一精神）。
+
+2. **該物件之 specification_reference 條目改為佔位**：
+   `PENDING: DR-11 Atl-H 對應需求（CFTS015-{objid} 標為 Atlantis Mid）`
+   —— 不寫 `CFTS015-{objid}`（該物件不適用於本架構），
+   亦不留空（canon §8.4.3）。
+
+3. **同一 leaf 若另有 Atl-Hi 物件**，該等物件正常寫 `CFTS015-{objid}`；
+   佔位與真值並存，佔位不取代真值（同 R-TM41 訂正之形態）。
+
+4. **020 / 021 兩片之全部條目皆為佔位**（Atl-Hi 錨點為零）。
+   該二片仍生成 TC，其 spec_reference 全為 `PENDING: DR-11`。
+
+5. **判準之單一來源**：is_atl_hi 之判定取自
+   `data/ee_architecture_by_leaf.tsv`（`12` T3 產出），
+   context 層與 lint 層共用同一檔，不各自判定（`tm_rulings` 之同一精神）。
+
+**與 R-TM62 之關係**：R-TM62 處理 LID（訊號對映層，判為 N/A 不寫）；
+本條處理需求物件（spec 引用層，判為佔位仍寫 TC）。
+**兩者處置不同，因其性質不同** —— 前者是「本架構無此訊號」，
+後者是「本架構之對應需求未知」。不得互相套用。
+```
+
+**執行層回報（2026-08-22）**：`data/ee_architecture_by_leaf.tsv` 已產出
+（88 資料列 × 6 欄，22 片逐 leaf 與下放包 `12` §2.1 全符）。
+`is_atl_hi` 之判準逐字為「標籤含 `Atlantis High`（不分大小寫）或等於
+`All`」，於 context 層與 lint 層**由同一檔供給**（本條第 5 項）。
+
+**A-TM27 之量值經執行層更正**：分母 78 → **88**，比例 45% → **40%**。
+**本條所依賴之五項事實（35 Atl-Mid、020/021 零錨點、003 為 1/6、
+014 為 1/5、017 為 1/4）全部不受影響** —— 更正只及於總數與百分比。
+詳見 `ANOMALIES.md` A-TM27 之量值更正段。
+
+## R-TM64 — spec_reference 只放真值，佔位放 Remarks
+
+（分析層裁定，2026-08-22。上游包 `docs/handoff/14_pilot.md` §1。
+發現者為執行層 `13` 上繳 §4 之 lint 四項發現；採其所傾向之 (a)，
+並補其自陳之 020/021 空欄缺口。）
+
+```
+R-TM64（分析層裁定，2026-08-22）—— spec_reference 只放真值，佔位放 Remarks
+
+specification_reference（工作簿 N 欄）**只放符合 canon §10.7(a) 之真值**，
+排列依 §10.7（前綴一次、`, ` 續列、升冪、禁 `;`）。
+
+**佔位一律放 Remarks（AH 欄）**，與 A-TM13 之 DR-5 佔位同處
+（G-TM1 項 3 已如此規定）。Remarks 因此成為**全部缺口宣告之單一落點**。
+
+**例外 —— 零真值之片**：若某條 TC 之全部引用物件皆非 Atl-Hi
+（020 / 021 兩片），spec_reference 留空即違反 canon §8.4.3。
+故該情形下 spec_reference 寫**單一佔位**：
+
+    PENDING: DR-11 Atl-H 對應需求
+
+（不含物件 id —— 逐項明細寫在 Remarks，N 欄只需標明「此欄待補」）
+
+**B7 之判準隨之調整為**：
+  (i) 欄值符合 `CFTS015-<7位>(, <7位>)*` 之形式；**或**
+  (ii) 欄值恰為 `PENDING: DR-11 Atl-H 對應需求` 單一佔位
+二者以外皆報。**分隔符 ` / ` 自此不再使用。**
+```
+
+**執行層回報（2026-08-22）**：B1 之四條受影響 TC 已依本條重寫，
+lint 之 B7 判準已調整，紅綠俱備。`13` 上繳 §4 所報之 4 項發現隨之清零。
+
+**本條使 Remarks 成為缺口宣告之單一落點**，其副作用須並記：同一條 TC
+若既有 A-TM13 缺件（DR-5）又有 Atl-Mid 引用（DR-11），Remarks 會同時
+承載兩種佔位。B1 七片無此重疊（002 / 005 不在 B1），**但 B2 含 002 與 005
+且其 Atl-Mid 物件分別為 3 與 0**，屆時 002 會是首個重疊樣本。已列入未驗清單。
+
+## R-TM65 — 欄位鍵名統一為 feature.yaml 之宣告
+
+（分析層裁定，2026-08-22。上游包 `docs/handoff/14_pilot.md` §2。
+發現者為執行層 `13` 上繳 §5.1；採其所傾向之 `spec_reference`，
+並採納其所建議之 write_back 啟動檢查。）
+
+```
+R-TM65（分析層裁定，2026-08-22）—— 欄位鍵名統一為 feature.yaml 之宣告
+
+TC JSON 之欄位鍵名以 `feature.yaml` 之 `workbook.columns` 宣告為準。
+本 feature 即 `spec_reference`（非 `specification_reference`）。
+
+lint 之 B7 與 arch 閘改讀 `spec_reference`。
+**19 條 TC 之 `specification_reference` 鍵移除** —— 兩鍵並存本身即雙來源
+（`13` §5.1 自陳為權宜非解法）。
+
+**write_back 增啟動檢查**（執行層 §5.1 之建議，採納）：
+`cols` 之每個 key 是否至少在一條 TC 內出現；未出現者報
+「該欄將全空寫入」並 raise，不得靜默續行。
+
+canon §10.1 之 `specification_reference` 為**輸出契約之欄名**，
+與 TC JSON 之鍵名為兩件事；本條只統一後者。
+```
+
+**執行層回報（2026-08-22）**：三處已改（lint 之 B7、lint 之 arch 閘、
+19 條 TC 之鍵），`specification_reference` 於 TC JSON 內**零殘留**。
+write_back 之啟動檢查已實作並附紅綠。
+
+**啟動檢查之射程須說明**：本檢查為「該 key 是否至少在一條 TC 出現」，
+**不是「每條 TC 都有該 key」** —— 後者會誤攔 `remarks`（僅缺口 TC 需要）
+與 `tc_id` / `author` / `functional_safety`（由條文決定，本就不從 TC 讀）。
+故四個由條文決定之欄與條件性欄位列為豁免，其清單寫在原始碼內並附理由。
+
