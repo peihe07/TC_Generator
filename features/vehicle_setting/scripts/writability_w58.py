@@ -16,6 +16,8 @@ import json
 import re
 from pathlib import Path
 
+from dr_conflict import guard          # R-VS44：輸出階段之未結 DR 交叉檢查
+
 FEAT = Path(__file__).resolve().parents[1]
 
 # ── token 之三形態（R-VS36）──────────────────────────────────────────
@@ -113,7 +115,13 @@ def scan_leaf(text: str, domain: dict[str, set[str]]) -> list[tuple[str, str]]:
             if vals:
                 out.append(("B3", f"`{tok}` 於 LID／DBC／值域資料皆無記載"))
             continue
-        bad = [v for v in vals if v and not value_matched(v, domain[tok])]
+        bad = []
+        for v in vals:
+            if not v or value_matched(v, domain[tok]):
+                continue
+            # R-VS44：落在未結 DR 提問範圍內者，不得因任何判準而被解掉
+            verdict, note = guard(tok, v, "blocked")
+            bad.append(f"{v}{f' [{note}]' if note else ''}")
         if bad:
             out.append(("B2", f"`{tok}` 之值無匯流排對應：{'；'.join(sorted(bad)[:3])}"))
     return out

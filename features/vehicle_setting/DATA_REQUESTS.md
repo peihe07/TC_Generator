@@ -44,6 +44,8 @@ HMI Settings List R1 SR25 Post R1L-R），**本 feature 條文不引用者不取
 
 ## DR-14′（取代 DR-14，14 包 §2）
 
+**型別（R-VS45）：**型 A**（規格缺陷）**
+
 **狀態：已送出（Pei，2026-08-22，37 包送件文第 3 項）—— 待覆。**
 
 LID 表載 `HdRstRelRq` 之 Atlantis High 對映為 `RADIO_B3.HDRstRelRq_3rdRow`，
@@ -60,6 +62,8 @@ LID 表載 `HdRstRelRq` 之 Atlantis High 對映為 `RADIO_B3.HDRstRelRq_3rdRow`
 > **DR-13 撤銷**（14 包 §1）：`$ESS_ENG_ST$` 之 message 歸屬非矛盾，係執行層未展開 LID 單格多值。
 
 ## DR-15（新，**Urgency High** —— 排在 framework 之前）
+
+**型別（R-VS45）：**型 A**（規格缺陷）**
 
 **狀態：已送出（Pei，2026-08-22，37 包送件文第 1 項）—— 待覆。**
 
@@ -145,6 +149,8 @@ High → `[Medium]`、Medium → `[Low]`、Low → `[Off]`、Off → `[High]`。
 
 ## DR-17（新，**Urgency High** —— 分析層擬，Pei 送出）
 
+**型別（R-VS45）：**型 A**（規格缺陷）**
+
 **Comfort 側沒有任何「單階座椅」之條文。**
 
 CFTS044 定義單階加熱座椅之配置（`$Heated_Seat_Levels$ = [1]`），
@@ -171,6 +177,8 @@ CFTS044 定義單階加熱座椅之配置（`$Heated_Seat_Levels$ = [1]`），
 **狀態：已送出（Pei，2026-08-22，37 包送件文第 2 項）—— 待覆。** 配對 anomaly：A-VS46。
 
 ## DR-18（新，**Urgency Medium** —— **確認型，不阻塞**；分析層擬，Pei 送出）
+
+**型別（R-VS45）：**型 A**（規格缺陷）**
 
 CFTS044 之座椅相關值域中，發現四類書寫問題，請確認其為筆誤或另有語意：
 
@@ -220,6 +228,8 @@ CFTS044 之座椅相關值域中，發現四類書寫問題，請確認其為筆
 
 ## DR-19（**併入 DR-21**，R-VS42；原編號保留 —— R-TM13。已於 2026-08-22 送出，待覆）
 
+**型別（R-VS45）：**型 A**（規格缺陷；併入 DR-21）**
+
 **`EngRun_Stat` 之規格值於 LID 與 DBC 皆無對應。**
 
 CFTS044 之 `4858551`／`4858553`／`4858555` 以
@@ -261,6 +271,8 @@ CFTS044 之 `4858551`／`4858553`／`4858555` 以
 
 ## DR-20（**併入 DR-23**，R-VS42；原編號保留 —— R-TM13。已於 2026-08-22 送出，待覆）
 
+**型別（R-VS45）：**型 B**（素材缺件：未具名之 HMI 需求文件；併入 DR-23）**
+
 **`4858560` 交叉參照未具名之 HMI 需求。**
 
 條文逐字：`When $DriverSide$ = [Right hand drive] the HMI shall be modified as
@@ -291,6 +303,8 @@ defined by HMI requirements.`
 配對 anomaly：A-VS59。**狀態：已送出（Pei，2026-08-22，37 包送件文第 5 項）—— 待覆。**
 
 ## DR-21（**類別式，B2**，依 **R-VS42** 改制於 20 輪；Urgency High）
+
+**型別（R-VS45）：**型 A**（規格缺陷，B2 類）**
 
 **類別：規格值於 LID 與 DBC 皆無對應。**
 
@@ -342,7 +356,41 @@ CFTS044 所用之值與其對應狀況（全文實測次數）：
 
 **提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS63。**狀態：未送出。**
 
-## DR-22（**類別式，B3**，依 **R-VS42** 改制於 20 輪；Urgency High）
+## DR-22′（**改寫為型 B — 素材缺件**，依 **R-VS45**，23 輪 D-3；Urgency High）
+
+**型別（R-VS45）：型 B（素材缺件）。原 DR-22 以型 A 之措辭承載型 B 之訴求，就此更正。**
+
+`Logical Identifiers and CAN Mapping v1.76` 之下列四個 PROXI 參數，
+其 `Format` 欄逐字為 **`See Proxi Table`**：
+
+    Cooled_Seats／Heated_Seats／Heated_Seat_Levels／Heated_Steering_Wheel
+
+即其值域已定義，惟定義於該表所轉指之 **PROXI Table**，
+而該文件不在我方持有之素材中。
+
+**請提供該 PROXI Table**（檔名＋版本＋發行日）。
+
+我方待解之值：`Front Seats`（Cooled_Seats／Heated_Seats）、
+`One Level`（Heated_Seat_Levels）、`Present`（Heated_Steering_Wheel）。
+
+影響：**79 個 SWE leaf** 之 Pre-Condition 與 Procedure 無法在不編造值之下寫出
+（`writable` 由 170 降為 91）。
+
+註：同表之 `Heated_Steering_Levels` 有實 Format
+（`0 = 1 Level`／`1 = 2 Levels`／`2 = 3 Levels`），
+故該轉指非全表性質，而是逐參數之選擇。
+
+> **⚠ 23 輪 W-65 之搜尋結果（送出前必讀）**：客戶需求目錄內**已找到** PROXI 表，
+> 惟其為**他車型**（DT27／HDCC27）。四參數之值域兩表逐字一致，
+> 且 `Heated_Seat_Levels` 僅引 `VF664`（＝ R1LR LID 欄 20 之 `664`）。
+> **是否採用他車型之表屬裁定事項**，見上繳 21 §2.1。
+> **若裁為可採，本 DR 不必送出。**
+
+---
+
+### （原 DR-22 逐實例／類別式條文，保留 —— R-TM13）
+
+## ~~DR-22（類別式，B3，依 R-VS42 改制於 20 輪；Urgency High）~~
 
 **類別：PROXI／參數於 LID、DBC、值域資料三處皆無命中。**
 
@@ -379,6 +427,8 @@ the HU shall dispaly the Third Row Headrest Dump softkey button.`
 **提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS64。**狀態：未送出。**
 
 ## DR-23（**類別式，B1**，依 **R-VS42** 改制於 20 輪；Urgency Medium）
+
+**型別（R-VS45）：**型 B**（素材缺件，B1 類）**
 
 **類別：未具名之外部交叉參照 —— 其整個結果被外推至未具名之文件。**
 
@@ -427,6 +477,8 @@ Flow to update the state of the Rear View Camera soft button.`
 
 ## DR-8（補登記，20 輪 D-3 —— 00G §5 開立而未入簿）
 
+**型別（R-VS45）：**型 B**（素材缺件：完整車型碼對照表）**
+
 **`$VC_VEH_LINE$` 之車型碼對照。**
 
 CFTS044 使用 `[DT]`／`[WS]`／`[HDCC]`／`[M240]`／`DS or DJ or D2…` 等代號；
@@ -438,6 +490,8 @@ LID 表之 `VC_VEH_LINE` 值域列舉為數字車型碼且截斷於 `101 = WL (6
 
 ## DR-12（補登記，20 輪 D-3 —— 29 包 §1.2 開立而未入簿；**併入 DR-21**）
 
+**型別（R-VS45）：**型 A**（規格缺陷；併入 DR-21）**
+
 **`$PowerMode$` 之 `IGN_OFF_ACC`。**
 
 CFTS044 `4858978`（Second Row Headrest Dump）以
@@ -447,3 +501,22 @@ LID 將 `PowerMode` 對映至 `STATUS_BH_BCM2.CmdIgnSts`，其值域為
 
 37 包送件文第 **8** 項即本條。**狀態：未送出。**
 依 **R-VS42 併入 DR-21**（B2 類），原編號保留。
+
+
+## DR-24（新，**型 A — 規格缺陷**；23 輪 D-3 開立，分析層擬）
+
+**`<Tsend>` 無具體值。**
+
+CFTS044 `4858320` 等條文以 `within a time period of <Tsend>` 為請求訊號之
+時間條件，**來源未給該符號之具體值**。
+
+canon §8.7.1 逐字：`Every trigger / release threshold MUST come from the spec
+and appear as a concrete value in the Pre-Condition, never vague language.`
+故 `<Tsend>` **不得作為 ER 之通過條件**。
+
+**請提供 `<Tsend>` 之具體值**（毫秒），及其是否隨訊號或配置而異。
+
+影響：引用 `<Tsend>` 之 leaf（數量見上繳 21 §1.4）。
+現行處置：procedure 保留 `<Tsend>` 原樣，**ER 改寫為可觀察之終態**（42 包 §3.2）。
+
+**狀態：未送出。**

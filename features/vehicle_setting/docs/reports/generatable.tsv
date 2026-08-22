@@ -1,238 +1,238 @@
-leaf_id	layer2	layer3	writable	delegate	generatable	blocker
-SWE1-VC-FeaturesEnableCriteria-021	Common Features	FeaturesEnableCriteria	no	no	no	writable=B2
-SWE1-VC-FeaturesEnableCriteria-022	Common Features	FeaturesEnableCriteria	no	no	no	writable=B2
-SWE1-VC-FeaturesEnableCriteria-023	Common Features	FeaturesEnableCriteria	yes	no	yes	
-SWE1-VC-HeatedSteeringWheel-003	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheel-004	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	writable=B2|B3
-SWE1-VC-HeatedSteeringWheel-005	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	writable=B2
-SWE1-VC-HeatedSteeringWheel-006	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheel-007	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheel-008	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	writable=B2
-SWE1-VC-HeatedSteeringWheel-009	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheel-010	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	writable=B2
-SWE1-VC-HeatedSteeringWheel-011	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheel-012	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheel-013	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheel-014	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	writable=B2
-SWE1-VC-HeatedSteeringWheel-015	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheel-016	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheel-017	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	writable=B2
-SWE1-VC-HeatedSteeringWheel-018	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	writable=B2
-SWE1-VC-HeatedSteeringWheel-019	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	writable=B2
-SWE1-VC-HeatedSteeringWheel-020	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	writable=B2
-SWE1-VC-HeatedSteeringWheel-021	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheel-022	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheelManagement-025	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheelManagement-026	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-HeatedSteeringWheelManagement-027	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheelManagement-028	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheelManagement-029	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheelManagement-030	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheelManagement-031	Heated Steering Wheel	HeatedSteeringWheelManagement	no	blocked	no	writable=B1|delegate=blocked(R-VS17)
-SWE1-VC-HeatedSteeringWheelManagement-032	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheelManagement-033	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheelManagement-034	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	
-SWE1-VC-HeatedSteeringWheelManagement-035	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-LeftFrontHeatedSeat-003	Heated Seat	LeftFrontHeatedSeat	yes	yes	yes	
-SWE1-VC-LeftFrontHeatedSeat-004	Heated Seat	CrossZone Common	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-005	Heated Seat	LeftFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-006	Heated Seat	LeftFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-007	Heated Seat	LeftFrontHeatedSeat	yes	yes	yes	
-SWE1-VC-LeftFrontHeatedSeat-008	Heated Seat	LeftFrontHeatedSeat	yes	yes	yes	
-SWE1-VC-LeftFrontHeatedSeat-009	Heated Seat	LeftFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-010	Heated Seat	LeftFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-011	Heated Seat	CrossZone Common	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-012	Heated Seat	LeftFrontHeatedSeat	yes	yes	yes	
-SWE1-VC-LeftFrontHeatedSeat-013	Heated Seat	LeftFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-014	Heated Seat	LeftFrontHeatedSeat	yes	yes	yes	
-SWE1-VC-LeftFrontHeatedSeat-015	Heated Seat	LeftFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-016	Heated Seat	LeftFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-017	Heated Seat	LeftFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-018	Heated Seat	LeftFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontHeatedSeat-019	Heated Seat	LeftFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontVentedSeat-003	Vented Seat	LeftFrontVentedSeat	yes	yes	yes	
-SWE1-VC-LeftFrontVentedSeat-004	Vented Seat	LeftFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontVentedSeat-005	Vented Seat	LeftFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontVentedSeat-006	Vented Seat	LeftFrontVentedSeat	yes	yes	yes	
-SWE1-VC-LeftFrontVentedSeat-007	Vented Seat	LeftFrontVentedSeat	yes	yes	yes	
-SWE1-VC-LeftFrontVentedSeat-008	Vented Seat	LeftFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontVentedSeat-009	Vented Seat	LeftFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontVentedSeat-010	Vented Seat	LeftFrontVentedSeat	yes	yes	yes	
-SWE1-VC-LeftFrontVentedSeat-011	Vented Seat	LeftFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontVentedSeat-012	Vented Seat	LeftFrontVentedSeat	yes	yes	yes	
-SWE1-VC-LeftFrontVentedSeat-013	Vented Seat	LeftFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontVentedSeat-014	Vented Seat	LeftFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontVentedSeat-015	Vented Seat	LeftFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontVentedSeat-016	Vented Seat	LeftFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-LeftFrontVentedSeat-017	Vented Seat	LeftFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-OneStageHeatedSeat-039	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-040	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-041	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-042	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-043	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-044	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-045	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-046	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-047	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-048	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-049	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-050	Heated Seat	OneStageHeatedSeat	yes	pending	no	delegate=pending(DR-17)
-SWE1-VC-OneStageHeatedSeat-051	Heated Seat	OneStageHeatedSeat	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-OneStageHeatedSeat-052	Heated Seat	OneStageHeatedSeat	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-PHEVFeatures-017	Common Features	PHEVFeatures	yes	no	yes	
-SWE1-VC-RightFrontHeatedSeat-022	Heated Seat	RightFrontHeatedSeat	yes	yes	yes	
-SWE1-VC-RightFrontHeatedSeat-023	Heated Seat	RightFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontHeatedSeat-024	Heated Seat	RightFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontHeatedSeat-025	Heated Seat	RightFrontHeatedSeat	yes	yes	yes	
-SWE1-VC-RightFrontHeatedSeat-026	Heated Seat	RightFrontHeatedSeat	yes	yes	yes	
-SWE1-VC-RightFrontHeatedSeat-027	Heated Seat	RightFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontHeatedSeat-028	Heated Seat	RightFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontHeatedSeat-029	Heated Seat	RightFrontHeatedSeat	yes	yes	yes	
-SWE1-VC-RightFrontHeatedSeat-030	Heated Seat	RightFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontHeatedSeat-031	Heated Seat	RightFrontHeatedSeat	yes	yes	yes	
-SWE1-VC-RightFrontHeatedSeat-032	Heated Seat	RightFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontHeatedSeat-033	Heated Seat	RightFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontHeatedSeat-034	Heated Seat	RightFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontHeatedSeat-035	Heated Seat	RightFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontHeatedSeat-036	Heated Seat	RightFrontHeatedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontVentedSeat-020	Vented Seat	RightFrontVentedSeat	yes	yes	yes	
-SWE1-VC-RightFrontVentedSeat-021	Vented Seat	RightFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontVentedSeat-022	Vented Seat	RightFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontVentedSeat-023	Vented Seat	RightFrontVentedSeat	yes	yes	yes	
-SWE1-VC-RightFrontVentedSeat-024	Vented Seat	RightFrontVentedSeat	yes	yes	yes	
-SWE1-VC-RightFrontVentedSeat-025	Vented Seat	RightFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontVentedSeat-026	Vented Seat	RightFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontVentedSeat-027	Vented Seat	RightFrontVentedSeat	yes	yes	yes	
-SWE1-VC-RightFrontVentedSeat-028	Vented Seat	RightFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontVentedSeat-029	Vented Seat	RightFrontVentedSeat	yes	yes	yes	
-SWE1-VC-RightFrontVentedSeat-030	Vented Seat	RightFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontVentedSeat-031	Vented Seat	RightFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontVentedSeat-032	Vented Seat	RightFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontVentedSeat-033	Vented Seat	RightFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-RightFrontVentedSeat-034	Vented Seat	RightFrontVentedSeat	no	yes	no	writable=B2
-SWE1-VC-ScreenOFF-047	Common Features	ScreenOFF	yes	no	yes	
-SWE1-VC-ScreenOFF-048	Common Features	ScreenOFF	no	no	no	writable=B2
-SWE1-VC-ScreenOFF-049	Common Features	ScreenOFF	yes	no	yes	
-SWE1-VC-ScreenOFF-050	Common Features	ScreenOFF	yes	no	yes	
-SWE1-VC-ScreenOFF-051	Common Features	ScreenOFF	yes	no	yes	
-SWE1-VC-ScreenOFF-052	Common Features	ScreenOFF	yes	no	yes	
-SWE1-VC-Stop-StartSystem-002	Common Features	Stop-StartSystem	yes	no	yes	
-SWE1-VC-Stop-StartSystem-003	Common Features	Stop-StartSystem	yes	no	yes	
-SWE1-VC-Stop-StartSystem-004	Common Features	Stop-StartSystem	no	no	no	writable=B2
-SWE1-VC-Stop-StartSystem-005	Common Features	Stop-StartSystem	no	no	no	writable=B2
-SWE1-VC-Stop-StartSystem-006	Common Features	Stop-StartSystem	no	no	no	writable=B2
-SWE1-VC-Stop-StartSystem-007	Common Features	Stop-StartSystem	yes	no	yes	
-SWE1-VC-StopStartSystemBehavior-054	Common Features	StopStartSystemBehavior	yes	no	yes	
-SWE1-VC-StopStartSystemBehavior-055	Common Features	StopStartSystemBehavior	yes	no	yes	
-SWE1-VC-StopStartSystemBehavior-056	Common Features	StopStartSystemBehavior	yes	no	yes	
-SWE1-VC-SwitchLHD/RHDConfiguration-009	Common Features	SwitchLHD/RHDConfiguration	yes	no	yes	
-SWE1-VC-SwitchLHD/RHDConfiguration-010	Common Features	SwitchLHD/RHDConfiguration	no	no	no	writable=B1|B2
-SWE1-VC-SwitchLHD/RHDConfiguration-011	Common Features	SwitchLHD/RHDConfiguration	yes	no	yes	
-SWE1-VC-SwitchLHD/RHDConfiguration-012	Common Features	SwitchLHD/RHDConfiguration	yes	no	yes	
-SWE1-VC-SwitchLHD/RHDConfiguration-013	Common Features	SwitchLHD/RHDConfiguration	no	no	no	writable=B1|B2
-SWE1-VC-SwitchLHD/RHDConfiguration-014	Common Features	SwitchLHD/RHDConfiguration	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-025	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-026	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-027	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-028	Common Features	ThirdRowHeadrestDump	no	no	no	writable=B3
-SWE1-VC-ThirdRowHeadrestDump-029	Common Features	ThirdRowHeadrestDump	no	no	no	writable=B2
-SWE1-VC-ThirdRowHeadrestDump-030	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-031	Common Features	ThirdRowHeadrestDump	no	no	no	writable=B2
-SWE1-VC-ThirdRowHeadrestDump-032	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-033	Common Features	ThirdRowHeadrestDump	no	no	no	writable=B2
-SWE1-VC-ThirdRowHeadrestDump-034	Common Features	ThirdRowHeadrestDump	no	no	no	writable=B2
-SWE1-VC-ThirdRowHeadrestDump-035	Common Features	ThirdRowHeadrestDump	no	no	no	writable=B2
-SWE1-VC-ThirdRowHeadrestDump-036	Common Features	ThirdRowHeadrestDump	no	no	no	writable=B2
-SWE1-VC-ThirdRowHeadrestDump-037	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-038	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-039	Common Features	ThirdRowHeadrestDump	no	no	no	writable=B1
-SWE1-VC-ThirdRowHeadrestDump-040	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-041	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-042	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-043	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-044	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThirdRowHeadrestDump-045	Common Features	ThirdRowHeadrestDump	yes	no	yes	
-SWE1-VC-ThreeStagesHeatedSeat-078	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-079	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-080	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-081	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-082	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-083	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-084	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-085	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-086	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-087	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-088	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-089	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-090	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-091	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-092	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-093	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-094	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-095	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-096	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-097	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-ThreeStagesHeatedSeat-098	Heated Seat	ThreeStagesHeatedSeat	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-ThreeStagesHeatedSeat-099	Heated Seat	ThreeStagesHeatedSeat	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-ThreeStagesVentedSeatsManagement-060	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-061	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-062	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-063	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-064	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-065	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-066	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-067	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-068	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-069	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-070	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-071	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-072	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-073	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-074	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-075	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-076	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-077	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-078	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-079	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-ThreeStagesVentedSeatsManagement-080	Vented Seat	ThreeStagesVentedSeatsManagement	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-ThreeStagesVentedSeatsManagement-081	Vented Seat	ThreeStagesVentedSeatsManagement	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-TwoStagesHeatedSeat-055	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-056	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-057	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-058	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-059	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-060	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-061	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-062	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-063	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-064	Heated Seat	TwoStagesHeatedSeat	no	blocked	no	writable=B1|delegate=blocked(R-VS17)
-SWE1-VC-TwoStagesHeatedSeat-065	Heated Seat	TwoStagesHeatedSeat	no	blocked	no	writable=B1|delegate=blocked(R-VS17)
-SWE1-VC-TwoStagesHeatedSeat-066	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-067	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-068	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-069	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-070	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-071	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-072	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	
-SWE1-VC-TwoStagesHeatedSeat-073	Heated Seat	TwoStagesHeatedSeat	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-TwoStagesHeatedSeat-074	Heated Seat	TwoStagesHeatedSeat	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-TwoStagesVentedSeatsManagement-037	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-038	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-039	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-040	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-041	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-042	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-043	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-044	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-045	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-046	Vented Seat	TwoStagesVentedSeatsManagement	no	blocked	no	writable=B1|delegate=blocked(R-VS17)
-SWE1-VC-TwoStagesVentedSeatsManagement-047	Vented Seat	TwoStagesVentedSeatsManagement	no	blocked	no	writable=B1|delegate=blocked(R-VS17)
-SWE1-VC-TwoStagesVentedSeatsManagement-048	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-049	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-050	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-051	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-052	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-053	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-054	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	
-SWE1-VC-TwoStagesVentedSeatsManagement-055	Vented Seat	TwoStagesVentedSeatsManagement	yes	blocked	no	delegate=blocked(R-VS17)
-SWE1-VC-TwoStagesVentedSeatsManagement-056	Vented Seat	TwoStagesVentedSeatsManagement	yes	blocked	no	delegate=blocked(R-VS17)
+leaf_id	layer2	layer3	writable	delegate	generatable	stable_core	blocked_layer	blocked_ref	blocker
+SWE1-VC-FeaturesEnableCriteria-021	Common Features	FeaturesEnableCriteria	no	no	no	no			writable=B2
+SWE1-VC-FeaturesEnableCriteria-022	Common Features	FeaturesEnableCriteria	no	no	no	no			writable=B2
+SWE1-VC-FeaturesEnableCriteria-023	Common Features	FeaturesEnableCriteria	yes	no	yes	yes			
+SWE1-VC-HeatedSteeringWheel-003	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheel-004	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	no			writable=B2|B3
+SWE1-VC-HeatedSteeringWheel-005	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	no			writable=B2
+SWE1-VC-HeatedSteeringWheel-006	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheel-007	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheel-008	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	no			writable=B2
+SWE1-VC-HeatedSteeringWheel-009	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheel-010	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	no			writable=B2
+SWE1-VC-HeatedSteeringWheel-011	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheel-012	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheel-013	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheel-014	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	no			writable=B2
+SWE1-VC-HeatedSteeringWheel-015	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheel-016	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheel-017	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	no			writable=B2
+SWE1-VC-HeatedSteeringWheel-018	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	no			writable=B2
+SWE1-VC-HeatedSteeringWheel-019	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	no			writable=B2
+SWE1-VC-HeatedSteeringWheel-020	Heated Steering Wheel	HeatedSteeringWheel	no	yes	no	no			writable=B2
+SWE1-VC-HeatedSteeringWheel-021	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheel-022	Heated Steering Wheel	HeatedSteeringWheel	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheelManagement-025	Heated Steering Wheel	HeatedSteeringWheelManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-HeatedSteeringWheelManagement-026	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	blocked	no	no			delegate=blocked
+SWE1-VC-HeatedSteeringWheelManagement-027	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheelManagement-028	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheelManagement-029	Heated Steering Wheel	HeatedSteeringWheelManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-HeatedSteeringWheelManagement-030	Heated Steering Wheel	HeatedSteeringWheelManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-HeatedSteeringWheelManagement-031	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	blocked	no	no	screen	DR-5-B	delegate=blocked
+SWE1-VC-HeatedSteeringWheelManagement-032	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	yes	yes	yes			
+SWE1-VC-HeatedSteeringWheelManagement-033	Heated Steering Wheel	HeatedSteeringWheelManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-HeatedSteeringWheelManagement-034	Heated Steering Wheel	HeatedSteeringWheelManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-HeatedSteeringWheelManagement-035	Heated Steering Wheel	HeatedSteeringWheelManagement	yes	blocked	no	no			delegate=blocked
+SWE1-VC-LeftFrontHeatedSeat-003	Heated Seat	LeftFrontHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-LeftFrontHeatedSeat-004	Heated Seat	CrossZone Common	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-005	Heated Seat	LeftFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-006	Heated Seat	LeftFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-007	Heated Seat	LeftFrontHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-LeftFrontHeatedSeat-008	Heated Seat	LeftFrontHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-LeftFrontHeatedSeat-009	Heated Seat	LeftFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-010	Heated Seat	LeftFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-011	Heated Seat	CrossZone Common	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-012	Heated Seat	LeftFrontHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-LeftFrontHeatedSeat-013	Heated Seat	LeftFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-014	Heated Seat	LeftFrontHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-LeftFrontHeatedSeat-015	Heated Seat	LeftFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-016	Heated Seat	LeftFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-017	Heated Seat	LeftFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-018	Heated Seat	LeftFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontHeatedSeat-019	Heated Seat	LeftFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontVentedSeat-003	Vented Seat	LeftFrontVentedSeat	yes	yes	yes	yes			
+SWE1-VC-LeftFrontVentedSeat-004	Vented Seat	LeftFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontVentedSeat-005	Vented Seat	LeftFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontVentedSeat-006	Vented Seat	LeftFrontVentedSeat	yes	yes	yes	yes			
+SWE1-VC-LeftFrontVentedSeat-007	Vented Seat	LeftFrontVentedSeat	yes	yes	yes	yes			
+SWE1-VC-LeftFrontVentedSeat-008	Vented Seat	LeftFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontVentedSeat-009	Vented Seat	LeftFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontVentedSeat-010	Vented Seat	LeftFrontVentedSeat	yes	yes	yes	yes			
+SWE1-VC-LeftFrontVentedSeat-011	Vented Seat	LeftFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontVentedSeat-012	Vented Seat	LeftFrontVentedSeat	yes	yes	yes	yes			
+SWE1-VC-LeftFrontVentedSeat-013	Vented Seat	LeftFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontVentedSeat-014	Vented Seat	LeftFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontVentedSeat-015	Vented Seat	LeftFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontVentedSeat-016	Vented Seat	LeftFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-LeftFrontVentedSeat-017	Vented Seat	LeftFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-OneStageHeatedSeat-039	Heated Seat	OneStageHeatedSeat	no	pending	no	no			writable=B2|delegate=pending|quoted_form_risk
+SWE1-VC-OneStageHeatedSeat-040	Heated Seat	OneStageHeatedSeat	no	pending	no	no			writable=B2|delegate=pending|quoted_form_risk
+SWE1-VC-OneStageHeatedSeat-041	Heated Seat	OneStageHeatedSeat	yes	pending	no	no			delegate=pending
+SWE1-VC-OneStageHeatedSeat-042	Heated Seat	OneStageHeatedSeat	no	pending	no	no			writable=B2|delegate=pending|quoted_form_risk
+SWE1-VC-OneStageHeatedSeat-043	Heated Seat	OneStageHeatedSeat	no	pending	no	no			writable=B2|delegate=pending|quoted_form_risk
+SWE1-VC-OneStageHeatedSeat-044	Heated Seat	OneStageHeatedSeat	no	pending	no	no			writable=B2|delegate=pending|quoted_form_risk
+SWE1-VC-OneStageHeatedSeat-045	Heated Seat	OneStageHeatedSeat	no	pending	no	no			writable=B2|delegate=pending|quoted_form_risk
+SWE1-VC-OneStageHeatedSeat-046	Heated Seat	OneStageHeatedSeat	yes	pending	no	no			delegate=pending
+SWE1-VC-OneStageHeatedSeat-047	Heated Seat	OneStageHeatedSeat	no	pending	no	no			writable=B2|delegate=pending|quoted_form_risk
+SWE1-VC-OneStageHeatedSeat-048	Heated Seat	OneStageHeatedSeat	no	pending	no	no			writable=B2|delegate=pending|quoted_form_risk
+SWE1-VC-OneStageHeatedSeat-049	Heated Seat	OneStageHeatedSeat	no	pending	no	no			writable=B2|delegate=pending|quoted_form_risk
+SWE1-VC-OneStageHeatedSeat-050	Heated Seat	OneStageHeatedSeat	no	pending	no	no			writable=B2|delegate=pending|quoted_form_risk
+SWE1-VC-OneStageHeatedSeat-051	Heated Seat	OneStageHeatedSeat	yes	blocked	no	no			delegate=blocked
+SWE1-VC-OneStageHeatedSeat-052	Heated Seat	OneStageHeatedSeat	yes	blocked	no	no			delegate=blocked
+SWE1-VC-PHEVFeatures-017	Common Features	PHEVFeatures	yes	no	yes	yes			
+SWE1-VC-RightFrontHeatedSeat-022	Heated Seat	RightFrontHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-RightFrontHeatedSeat-023	Heated Seat	RightFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontHeatedSeat-024	Heated Seat	RightFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontHeatedSeat-025	Heated Seat	RightFrontHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-RightFrontHeatedSeat-026	Heated Seat	RightFrontHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-RightFrontHeatedSeat-027	Heated Seat	RightFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontHeatedSeat-028	Heated Seat	RightFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontHeatedSeat-029	Heated Seat	RightFrontHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-RightFrontHeatedSeat-030	Heated Seat	RightFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontHeatedSeat-031	Heated Seat	RightFrontHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-RightFrontHeatedSeat-032	Heated Seat	RightFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontHeatedSeat-033	Heated Seat	RightFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontHeatedSeat-034	Heated Seat	RightFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontHeatedSeat-035	Heated Seat	RightFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontHeatedSeat-036	Heated Seat	RightFrontHeatedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontVentedSeat-020	Vented Seat	RightFrontVentedSeat	yes	yes	yes	yes			
+SWE1-VC-RightFrontVentedSeat-021	Vented Seat	RightFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontVentedSeat-022	Vented Seat	RightFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontVentedSeat-023	Vented Seat	RightFrontVentedSeat	yes	yes	yes	yes			
+SWE1-VC-RightFrontVentedSeat-024	Vented Seat	RightFrontVentedSeat	yes	yes	yes	yes			
+SWE1-VC-RightFrontVentedSeat-025	Vented Seat	RightFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontVentedSeat-026	Vented Seat	RightFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontVentedSeat-027	Vented Seat	RightFrontVentedSeat	yes	yes	yes	yes			
+SWE1-VC-RightFrontVentedSeat-028	Vented Seat	RightFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontVentedSeat-029	Vented Seat	RightFrontVentedSeat	yes	yes	yes	yes			
+SWE1-VC-RightFrontVentedSeat-030	Vented Seat	RightFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontVentedSeat-031	Vented Seat	RightFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontVentedSeat-032	Vented Seat	RightFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontVentedSeat-033	Vented Seat	RightFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-RightFrontVentedSeat-034	Vented Seat	RightFrontVentedSeat	no	yes	no	no			writable=B2
+SWE1-VC-ScreenOFF-047	Common Features	ScreenOFF	yes	no	yes	yes			
+SWE1-VC-ScreenOFF-048	Common Features	ScreenOFF	no	no	no	no			writable=B2
+SWE1-VC-ScreenOFF-049	Common Features	ScreenOFF	yes	no	yes	yes			
+SWE1-VC-ScreenOFF-050	Common Features	ScreenOFF	yes	no	yes	yes			
+SWE1-VC-ScreenOFF-051	Common Features	ScreenOFF	yes	no	yes	yes			
+SWE1-VC-ScreenOFF-052	Common Features	ScreenOFF	yes	no	yes	yes			
+SWE1-VC-Stop-StartSystem-002	Common Features	Stop-StartSystem	yes	no	yes	yes			
+SWE1-VC-Stop-StartSystem-003	Common Features	Stop-StartSystem	yes	no	yes	yes			
+SWE1-VC-Stop-StartSystem-004	Common Features	Stop-StartSystem	no	no	no	no			writable=B2
+SWE1-VC-Stop-StartSystem-005	Common Features	Stop-StartSystem	no	no	no	no			writable=B2
+SWE1-VC-Stop-StartSystem-006	Common Features	Stop-StartSystem	no	no	no	no			writable=B2
+SWE1-VC-Stop-StartSystem-007	Common Features	Stop-StartSystem	yes	no	yes	yes			
+SWE1-VC-StopStartSystemBehavior-054	Common Features	StopStartSystemBehavior	yes	no	yes	yes			
+SWE1-VC-StopStartSystemBehavior-055	Common Features	StopStartSystemBehavior	yes	no	yes	yes			
+SWE1-VC-StopStartSystemBehavior-056	Common Features	StopStartSystemBehavior	yes	no	yes	yes			
+SWE1-VC-SwitchLHD/RHDConfiguration-009	Common Features	SwitchLHD/RHDConfiguration	yes	no	yes	yes			
+SWE1-VC-SwitchLHD/RHDConfiguration-010	Common Features	SwitchLHD/RHDConfiguration	no	no	no	no			writable=B1|B2
+SWE1-VC-SwitchLHD/RHDConfiguration-011	Common Features	SwitchLHD/RHDConfiguration	yes	no	yes	yes			
+SWE1-VC-SwitchLHD/RHDConfiguration-012	Common Features	SwitchLHD/RHDConfiguration	yes	no	yes	yes			
+SWE1-VC-SwitchLHD/RHDConfiguration-013	Common Features	SwitchLHD/RHDConfiguration	no	no	no	no			writable=B1|B2
+SWE1-VC-SwitchLHD/RHDConfiguration-014	Common Features	SwitchLHD/RHDConfiguration	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-025	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-026	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-027	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-028	Common Features	ThirdRowHeadrestDump	no	no	no	no			writable=B3
+SWE1-VC-ThirdRowHeadrestDump-029	Common Features	ThirdRowHeadrestDump	no	no	no	no			writable=B2
+SWE1-VC-ThirdRowHeadrestDump-030	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-031	Common Features	ThirdRowHeadrestDump	no	no	no	no			writable=B2
+SWE1-VC-ThirdRowHeadrestDump-032	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-033	Common Features	ThirdRowHeadrestDump	no	no	no	no			writable=B2
+SWE1-VC-ThirdRowHeadrestDump-034	Common Features	ThirdRowHeadrestDump	no	no	no	no			writable=B2
+SWE1-VC-ThirdRowHeadrestDump-035	Common Features	ThirdRowHeadrestDump	no	no	no	no			writable=B2
+SWE1-VC-ThirdRowHeadrestDump-036	Common Features	ThirdRowHeadrestDump	no	no	no	no			writable=B2
+SWE1-VC-ThirdRowHeadrestDump-037	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-038	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-039	Common Features	ThirdRowHeadrestDump	no	no	no	no			writable=B1
+SWE1-VC-ThirdRowHeadrestDump-040	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-041	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-042	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-043	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-044	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThirdRowHeadrestDump-045	Common Features	ThirdRowHeadrestDump	yes	no	yes	yes			
+SWE1-VC-ThreeStagesHeatedSeat-078	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-079	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-080	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-ThreeStagesHeatedSeat-081	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-082	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-083	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-084	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-085	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-086	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-087	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-088	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-089	Heated Seat	ThreeStagesHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-ThreeStagesHeatedSeat-090	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-091	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-092	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-093	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-094	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-095	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-096	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-097	Heated Seat	ThreeStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesHeatedSeat-098	Heated Seat	ThreeStagesHeatedSeat	yes	blocked	no	no			delegate=blocked
+SWE1-VC-ThreeStagesHeatedSeat-099	Heated Seat	ThreeStagesHeatedSeat	yes	blocked	no	no			delegate=blocked
+SWE1-VC-ThreeStagesVentedSeatsManagement-060	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-061	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-062	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	yes			
+SWE1-VC-ThreeStagesVentedSeatsManagement-063	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-064	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-065	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-066	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-067	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-068	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-069	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-070	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-071	Vented Seat	ThreeStagesVentedSeatsManagement	yes	yes	yes	yes			
+SWE1-VC-ThreeStagesVentedSeatsManagement-072	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-073	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-074	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-075	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-076	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-077	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-078	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-079	Vented Seat	ThreeStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-ThreeStagesVentedSeatsManagement-080	Vented Seat	ThreeStagesVentedSeatsManagement	yes	blocked	no	no			delegate=blocked
+SWE1-VC-ThreeStagesVentedSeatsManagement-081	Vented Seat	ThreeStagesVentedSeatsManagement	yes	blocked	no	no			delegate=blocked
+SWE1-VC-TwoStagesHeatedSeat-055	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-056	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-057	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-TwoStagesHeatedSeat-058	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-059	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-060	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-061	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-062	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-063	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-064	Heated Seat	TwoStagesHeatedSeat	yes	blocked	no	no	screen	DR-5-B	delegate=blocked
+SWE1-VC-TwoStagesHeatedSeat-065	Heated Seat	TwoStagesHeatedSeat	yes	blocked	no	no	screen	DR-5-B	delegate=blocked
+SWE1-VC-TwoStagesHeatedSeat-066	Heated Seat	TwoStagesHeatedSeat	yes	yes	yes	yes			
+SWE1-VC-TwoStagesHeatedSeat-067	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-068	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-069	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-070	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-071	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-072	Heated Seat	TwoStagesHeatedSeat	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesHeatedSeat-073	Heated Seat	TwoStagesHeatedSeat	yes	blocked	no	no			delegate=blocked
+SWE1-VC-TwoStagesHeatedSeat-074	Heated Seat	TwoStagesHeatedSeat	yes	blocked	no	no			delegate=blocked
+SWE1-VC-TwoStagesVentedSeatsManagement-037	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-038	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-039	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	yes			
+SWE1-VC-TwoStagesVentedSeatsManagement-040	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-041	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-042	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-043	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-044	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-045	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-046	Vented Seat	TwoStagesVentedSeatsManagement	yes	blocked	no	no	screen	DR-5-B	delegate=blocked
+SWE1-VC-TwoStagesVentedSeatsManagement-047	Vented Seat	TwoStagesVentedSeatsManagement	yes	blocked	no	no	screen	DR-5-B	delegate=blocked
+SWE1-VC-TwoStagesVentedSeatsManagement-048	Vented Seat	TwoStagesVentedSeatsManagement	yes	yes	yes	yes			
+SWE1-VC-TwoStagesVentedSeatsManagement-049	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-050	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-051	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-052	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-053	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-054	Vented Seat	TwoStagesVentedSeatsManagement	no	yes	no	no			writable=B2|quoted_form_risk
+SWE1-VC-TwoStagesVentedSeatsManagement-055	Vented Seat	TwoStagesVentedSeatsManagement	yes	blocked	no	no			delegate=blocked
+SWE1-VC-TwoStagesVentedSeatsManagement-056	Vented Seat	TwoStagesVentedSeatsManagement	yes	blocked	no	no			delegate=blocked
