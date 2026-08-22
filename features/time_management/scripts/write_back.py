@@ -52,9 +52,16 @@ from backend.xlsx_surgical import (  # noqa: E402
 
 FIRST_DATA_ROW = 10          # rev C 版面；表頭列 9
 
-# TODO(R-TM10-A1): functional_safety 之常數值 —— Privacy 取 "NA"（R30-3），
-#   本 feature 須依自身條文決定，未定前不填。
-CONST_FUNCTIONAL_SAFETY = None
+# R-TM57（08 §1）—— 值已裁定，TODO 撤除。
+#   "NA" 為 canon §8.4.3 之「確認不適用」，非缺件佔位：Time and Date 與
+#   User Profiles 同屬 HMI 功能，無功能安全需求分派。兩條獨立證據：
+#   (a) 交付件 UserProfiles_20260820 之 S 欄 189/189 皆 "NA"（08 §1，
+#       執行層已獨立複驗，見 upstream/08_style.md §1.1）
+#   (b) 037 之 Categorization 22/22 皆 Functional，SYS2 與 037 皆無
+#       ASIL / FTTI 欄（04Z-A2 §2）
+#   值與 Privacy 之 R30-3 巧合相同，但**依據不同**：此處為本 feature
+#   自身之實測與條文，非援引他 feature（R-TM10(b)）。
+CONST_FUNCTIONAL_SAFETY = "NA"
 
 # TODO(R-TM10-A1): BLOCKED 佔位之措辭 —— 屬 TC 內容，不得援引他 feature。
 PLACEHOLDER_BODY = None
@@ -208,8 +215,9 @@ def write_rows(ws, cols: dict[str, int], rows: list[dict], cfg: dict,
             ws.cell(row=r, column=cols["author"], value=wbk["author_value"])
         if "tc_ref_id" in cols and wbk.get("tc_ref_id_value"):
             ws.cell(row=r, column=cols["tc_ref_id"], value=wbk["tc_ref_id_value"])
-        # A4 —— 原為死碼（宣告了卻不寫入）。接上使其實際寫入 S 欄；
-        # 值未裁定前由 run() 之 unresolved 檢查攔在寫入之前。
+        # A4 —— 原為死碼（宣告了卻不寫入）。接上使其實際寫入 S 欄。
+        # 值已由 R-TM57 裁定為 "NA"；unresolved 檢查仍在，用以攔下
+        # 日後任一常數被改回 None 之情形（08 T3 紅向已證其未被削弱）。
         if "functional_safety" in cols:
             ws.cell(row=r, column=cols["functional_safety"],
                     value=CONST_FUNCTIONAL_SAFETY)

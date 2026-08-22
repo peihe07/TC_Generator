@@ -37,6 +37,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import tempfile
 import re
 import sys
 import zipfile
@@ -325,13 +326,22 @@ def lint_spec_gap(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
 
 
 def lint_boundary(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
-    """B4（G-TM1 項 4）—— 五條 §8.2.1 界線之訊號歸屬（R-TM23 / R-TM25）。
+    """B4（G-TM1 項 4）—— §8.2.1 鄰接對之訊號歸屬（R-TM23 / R-TM25 / R-TM55）。
 
     TC 全文若命中鄰片所擁有之訊號，即為跨界重複覆蓋。
+
+    **本閘只讀 `not_ours`，不讀 `owns`**（R-TM55，07 T3）：判準是「命中了
+    別人的」，不是「有沒有提自己的」。故 018 / 017 之 `owns` 為空集不影響
+    其判定 —— 該二片之能力是行為（值之初始化／日期通道）而非某一訊號，
+    本就無「自己的訊號」可列。以 `owns` 非空為前提會把該二片排除在射程外，
+    正是 R-TM53 所記三處「可測而未測」之一部分。
+
+    未列於 `BOUNDARY_SIGNALS` 者一律不判（如 022 —— R-TM55 明文駁回列入，
+    因 B-2 之區辨軸為條件與值而非訊號名）。
     """
     leaf = str(tc.get("req_id", ""))
     rule = BOUNDARY_SIGNALS.get(leaf)
-    if not rule:
+    if rule is None:
         return []
     body = " ".join(str(tc.get(k) or "") for k in
                     ("test_item", "pre_conditions", "input_test_data",
@@ -439,15 +449,21 @@ def lint_spec_reference(tc: dict, auth: dict, where: str) -> list[tuple[str, str
     return out
 
 
+# R-TM58 —— 合法 037 檔名形態（去副檔名）。**只判形態不判歸屬** ——
+# 「是 037 檔名」不等於「是**本**工作簿之 037」（A-H26 即他 feature 之 037）。
+D5_037_RE = re.compile(r"FM-WI-FSM-037-[A-Z]\d{2}-")
+
+
 def lint_d5_scope(auth: dict) -> list[tuple[str, str]]:
     """B1（G-TM1 項 1）—— D5 Scope 守衛，**具名失敗，不與 header drift 混列**。
 
-    語意須明示：D5 現階段**本應為空**（其值為所依據 037 之文件識別，
-    而 037 身分未定 —— A-TM02a）。故本閘之綠向為「D5 為空 → 報
-    spec-scope-pending」，非「D5 有值才過」。
+    **R-TM58（08 §2）改判**：D5 為空即通過，不再要求 `PENDING: DR-` 佔位。
+    canon §8.4.3 之射程為逐列 TC 資料欄，非工作簿層之表頭格；且唯一可測
+    之正確交付實例（UserProfiles_20260820）之 D5 實測為空。
 
-    此閘報的是**待決狀態**而非缺陷：它使「D5 空著」這件事每次 lint 都
-    現形，不致因久未處理而被當成正常。
+    本閘之存在意義隨之改變：由「使 D5 空著這件事現形」改為
+    **偵測 D5 被誤填**——若 D5 非空且非合法 037 檔名形態，報 A-H26 同型缺陷。
+    A-TM02a 不因此結案（037 身分仍未定），但其阻塞 D5 之性質解除。
     """
     import openpyxl
     wb = openpyxl.load_workbook(auth["workbook"], read_only=True, data_only=True)
@@ -456,24 +472,23 @@ def lint_d5_scope(auth: dict) -> list[tuple[str, str]]:
     wb.close()
     s = str(v or "")
     if not s.strip():
-        return [("d5-scope",
-                 "D5（範圍 Scope）為**空**。canon §8.4.3（R-TM48 使其生效）"
-                 "明訂欄位因來源缺失而無法填寫時須寫 `PENDING: DR-{n}`，"
-                 "**不得留空、不得填 NA**。本欄應為 "
-                 "`PENDING: DR-2 037 正式報告檔名`（R-TM9-A2 處置訂正）")]
+        return []                       # R-TM58：空為交付先例所支持之狀態
     if PENDING_RE.search(s):
         return [("spec-scope-pending",
-                 f"D5 為佔位 {s!r} —— 037 身分未定（A-TM02a），依 canon "
-                 "§8.4.3 以 PENDING 佔位。此為待決狀態之提示，非缺陷；"
-                 "DR 結案後須換為 037 檔名（去副檔名）")]
+                 f"D5 為佔位 {s!r} —— R-TM58 撤回 PENDING 佔位之要求，D5 應"
+                 "維持空白。此非缺陷，但該佔位須移除以與交付先例一致")]
     if s.upper() == "NA":
         return [("d5-scope",
                  "D5 為 `NA` —— canon §8.4.3 明訂 NA 僅限「確認不適用」。"
-                 "本欄為缺件而非不適用，須用 `PENDING: DR-2`")]
+                 "D5 之空白非「不適用」之宣告（R-TM58），須留空而非填 NA")]
+    if D5_037_RE.search(s):
+        return [("spec-scope-pending",
+                 f"D5 為 037 檔名形態 {s!r} —— 須先確認其確為**本**工作簿之"
+                 "依據 037（A-TM02a 身分未定），並更新 A-TM02a 與 A-TM11")]
     return [("d5-scope",
-             f"D5 已有值 {s!r} —— 若該值係本工作簿之依據 037 檔名"
-             "（去副檔名），須先更新 A-TM02a 與 A-TM11 之狀態；"
-             "不得以 feature 名或 spec 標題組值填入（R-TM9-A2）")]
+             f"D5 已填 {s!r} —— 既非空白（R-TM58 之應然狀態）亦非 037 檔名"
+             "形態。A-H26 同型缺陷：不得以 feature 名或 spec 標題組值填入"
+             "（R-TM9-A2），亦不得填入他 feature 之 037")]
 
 
 def lint_step_er_count(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
@@ -593,6 +608,12 @@ def self_test(auth: dict) -> int:
         ("boundary         (B4 011 命中 008 之訊號)",
          {**green, "req_id": "SWE-RA-TIME&DATE-011",
           "expected_result": "HU transmits $DateTmHour$ within 1000 ms"}),
+        ("boundary         (B4 R-TM55：018 命中 011 之 $DateTmFormat$，owns 為空)",
+         {**green, "req_id": "SWE-RA-TIME&DATE-018",
+          "expected_result": "IPC restores $DateTmFormat$ after reset"}),
+        ("boundary         (B4 R-TM55：017 命中 014 之 $GPSDateTm，owns 為空)",
+         {**green, "req_id": "SWE-RA-TIME&DATE-017",
+          "expected_result": "HU sends $GPSDateTmHour$ on the date channel"}),
         ("no-tc-id         (B8 JSON 攜帶 tc_id)",
          {**green, "tc_id": "NR1L-TimeAndDate-001"}),
         ("test-group       (R-TM8：feature 名不是 Test Group)",
@@ -635,15 +656,64 @@ def self_test(auth: dict) -> int:
     print(f"{'PASS' if not v else '**FAIL**'} 綠向 2 (A-TM13 leaf 帶 "
           f"PENDING 佔位): {'未誤報 spec-gap' if not v else v}")
 
-    # B1 —— D5 守衛（工作簿層，非逐 TC）
-    d5 = lint_d5_scope(auth)
-    # 現況 D5 為空 —— canon §8.4.3 下「空」已非合規狀態，應報 d5-scope
-    hit = any(g == "d5-scope" for g, _ in d5)
-    bad += not hit
-    print(f"{'PASS' if hit else '**FAIL**'} B1 D5 守衛: "
-          f"{d5[0][1][:78] if d5 else '未叫'}")
+    # ── R-TM55 之綠向與負控（07 T3）─────────────────────────
+    # 空 `owns` 之片，其 not_ours 以外之訊號不得誤報；且 022 須維持不判。
+    b_cases = [
+        ("綠向 3 (018 提 $DateTmHour$ —— 非其 not_ours)",
+         {**green, "req_id": "SWE-RA-TIME&DATE-018",
+          "expected_result": "IPC restores $DateTmHour$ to 00 after reset"}, False),
+        ("綠向 4 (017 提 $DateTmMinute$ —— 非其 not_ours)",
+         {**green, "req_id": "SWE-RA-TIME&DATE-017",
+          "expected_result": "IPC shows $DateTmMinute$ on the date channel"}, False),
+        ("負控   (022 提 $GPSDateTm —— R-TM55 駁回列入，須仍不叫)",
+         {**green, "req_id": "SWE-RA-TIME&DATE-022",
+          "expected_result": "HU sets SNA into $GPSDateTmHour$"}, False),
+    ]
+    for name, tc, want in b_cases:
+        got = [m for g, m in lint_tc(tc, auth, "B4") if g == "boundary"]
+        ok = bool(got) is want
+        bad += not ok
+        print(f"{'PASS' if ok else '**FAIL**'} {name}: "
+              f"{'未誤報 boundary' if not got else got[0][:70]}")
 
-    total = len(reds) + 3
+    # ── B1 D5 守衛（工作簿層，非逐 TC）—— R-TM58 改判後之紅綠 ─────
+    # 綠向：母本現況 D5 為空 → 不報（R-TM58：空為應然狀態）
+    d5 = lint_d5_scope(auth)
+    ok = not d5
+    bad += not ok
+    print(f"{'PASS' if ok else '**FAIL**'} B1 綠向 (D5 為空 → 不報): "
+          f"{'未誤報' if ok else d5}")
+
+    # 紅向：D5 填他 feature 之 037（A-H26 形態）→ 須報。
+    # 以**新建之臨時工作簿**構造，不對任何既有工作簿存回。
+    d5_reds = [
+        ("A-H26 形態：他 feature 之 037 檔名",
+         "FM-WI-FSM-037-A03-N1L-SWE1-AppDrawer-HMI-V0.1 STLA 報告",
+         "spec-scope-pending"),
+        ("以 feature 名組值（R-TM9-A2 所禁）",
+         "Time and Date", "d5-scope"),
+        ("填 NA（canon §8.4.3：NA 僅限確認不適用）",
+         "NA", "d5-scope"),
+        ("殘留之 PENDING 佔位（R-TM58 撤回）",
+         "PENDING: DR-2 037 正式報告檔名", "spec-scope-pending"),
+    ]
+    with tempfile.TemporaryDirectory() as td:
+        for name, val, want in d5_reds:
+            import openpyxl
+            wb = openpyxl.Workbook()
+            ws = wb.active
+            ws.title = auth["sheet"]
+            ws["C5"] = "範圍 Scope："
+            ws["D5"] = val
+            fp = Path(td) / "d5.xlsx"
+            wb.save(fp)          # 新建之臨時檔，非存回母本（R-TM49 不適用）
+            got = lint_d5_scope({**auth, "workbook": fp})
+            hit = any(g == want for g, _ in got)
+            bad += not hit
+            print(f"{'PASS' if hit else '**FAIL**'} B1 紅向 ({name}) → "
+                  f"{want}: {got[0][1][:56] if got else '未叫 —— 閘失效'}")
+
+    total = len(reds) + 3 + len(b_cases) + 1 + len(d5_reds)
     print(f"\n自驗：{total - bad} / {total}")
     return 1 if bad else 0
 

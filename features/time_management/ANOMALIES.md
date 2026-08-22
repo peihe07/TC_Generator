@@ -33,7 +33,8 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | A-TM21 | 現存 write_back.py / lint_tcs.py 六項實質缺陷 | PENDING | Tier 2（凍結中不修）|
 | A-TM22 | verify_structure 三層全為反向驗證，member 層對映錯誤不可偵測 | PENDING | **Tier 2（B1 前必決）**|
 | A-TM23 | CFTS015 兩套物件編號並存，工作簿採 7 位家族而文件無此寫法先例 | **RESOLVED**（canon §10.7(a)）| Tier 2 |
-| A-TM24 | functional_safety 之值未裁定，且 TODO 標記掛錯條文 | PENDING | **Tier 2（B1 寫回前必決）**|
+| A-TM24 | functional_safety 之值未裁定，且 TODO 標記掛錯條文 | **RESOLVED**（R-TM57）| Tier 2 |
+| A-TM25 | 既有交付件與 canon 兩處牴觸（彎引號、check whether）| PENDING | Tier 2（呈 Pei）|
 
 ---
 
@@ -1435,7 +1436,7 @@ Q-TM4 隨之改為僅供上游知悉之說明，不列為待答問題（T4）。
 
 ## A-TM24 — `functional_safety` 之值未裁定，且 TODO 標記掛錯條文
 
-**狀態：PENDING。Tier 2 —— B1 寫回前必決。**
+**狀態：RESOLVED（2026-08-22，R-TM57）。Tier 2。**
 由 `05R_stage_b.md` §5 指派登記。**緣起為執行層階段 A 之 A4 決定**
 （值由條文定、不由 TC 資料定），該決定使本項成為硬阻塞。
 
@@ -1491,3 +1492,74 @@ write_back.py 之 CONST_FUNCTIONAL_SAFETY 現為 None，標 TODO(R-TM10-A1)。
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-TMnn]`.
+
+### 結案（2026-08-22，R-TM57）
+
+**值裁定為 `"NA"`。** 依據為 Pei 授權之交付件實測，來源 2（既定慣例）：
+
+```
+交付件 UserProfiles_20260820（rev C，189 資料列）
+  S 欄（Functional Safety）值分佈：{'NA': 189}     ← 單值，無例外
+```
+
+**執行層獨立複驗通過**（未採信轉述）：以 F 欄 `Test Case ID` 判定資料列
+得 189 列，S 欄 189/189 皆 `NA`。明細見 `docs/upstream/08_style.md` §1.1。
+
+本條原列之三個來源，最終取用者為**來源 2**：
+- 來源 1（母本 S 欄 DV）——`05Z` 實測**不成立**，S 欄不在任何 DV 之 sqref 內
+- 來源 2（既定慣例）——本次實測**成立**，且有第二條獨立證據同向
+  （037 之 Categorization 22/22 皆 `Functional`；SYS2 與 037 皆無
+  ASIL / FTTI 欄 —— `04Z-A2` §2）
+- 來源 3（Pei 裁）——未動用
+
+**本條原判之「標記掛錯條文」部分亦一併結清**：`TODO(R-TM10-A1)` 已自
+`write_back.py` 撤除，改為指向 R-TM57 之註解，並寫明「值與 Privacy 之
+R30-3 巧合相同但依據不同」，使日後讀者不會誤判為援引他 feature。
+
+**本條解除不等於 B1 可寫回** —— `--write` 之 unresolved 檢查尚有
+`PLACEHOLDER_BODY` 與 `TC_ID_FORMAT` 兩項（實測為死常數），見
+`docs/upstream/08_style.md` §5。
+
+## A-TM25 — 既有交付件與 canon 兩處牴觸
+
+**狀態：PENDING。Tier 2 —— 呈 Pei。**
+由 `08_style.md` §3.3 指派登記。依據為分析層之交付件實測。
+
+```
+A-TM25（PENDING，Tier 2 —— 呈 Pei）
+
+既有交付件（UserProfiles_20260820）與 canon 有兩處牴觸：
+
+(a) UI 標籤用彎引號 `“…”`（U+201C/U+201D）；canon §11 示直雙引號 `"…"`
+(b) `check whether` 作主要動詞 7 處；canon §5.1 明列其為禁用主要動詞
+
+**本 feature 依 canon**（(a) 直引號、(b) `Check that <具體目標>`），
+理由：canon 為規則之權威來源，交付件為其套用之結果，
+結果與規則牴觸時以規則為準（§8.6 之同一位階原則）。
+
+**但此使本 feature 之交付件與既有交付件在此二處外觀不同**，
+審閱者可能視為不一致。**呈 Pei 知悉**；若 Pei 認為應與既有交付件一致，
+則須反向修改 canon 或立 feature profile 之 [OVERRIDE]，
+不得由本 feature 逕自偏離 canon。
+
+**不建議回頭修改既有交付件** —— 已交付，且 (b) 涉 7 條 TC 之措辭。
+```
+
+**執行層回報（2026-08-22）**：已登記。**二項牴觸經執行層獨立複驗，
+成立；但兩項之量值皆與分析層所報不同，且兩處都是更嚴重的方向**：
+
+| 項 | 分析層 | 執行層複驗 |
+|---|---|---|
+| (a) 彎引號 | 「用 `“All Profiles”`」（未給數）| **436 處**；且**直雙引號 0 處** —— 非混用，是完全不用 canon 之形式 |
+| (b) `check whether` | 7 次 | **11 處、10 列**（L 欄 test_procedure）|
+
+canon §5.1 其餘禁用主要動詞（`confirm whether` / `observe whether` /
+`see if` / `observe` / `verify`）實測 **0 處** —— 交付件只違反
+`check whether` 這一項，其餘皆合。逐處明細見
+`docs/upstream/08_style.md` §3。
+
+本條**未化為 lint 判準**：措辭層之閘門仍在 `TODO(R-TM10-A1)` 之下
+（步驟措辭之禁用動詞閘），本包未逕行實作 —— 該 TODO 之解除屬條文範圍。
+故現階段 (a)(b) 之遵守靠生成期之 context 指示，無自動攔截。
+**此為已知之覆蓋缺口，列入未驗清單 A 區。**
+

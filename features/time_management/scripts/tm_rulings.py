@@ -35,22 +35,29 @@ modified by TC_Generator analysis round 06 under G-TM1 更正 / R-TM33
 「該片在 BOUNDARY_SIGNALS 內」不等於「該對之違規抓得到」。
 
   #    鄰接對        自動判準    a 側提 b 之訊號        b 側提 a 之訊號
+### 裁定後之重測（2026-08-22，07 T4）—— R-TM55 增列 018 / 017 之後
+
+  #    鄰接對        自動判準    a 側提 b 之訊號        b 側提 a 之訊號
   B-1  004 ↔ 010     無          無訊號可測             無訊號可測
-  B-2  014 ↔ 022     無          無訊號可測             抓不到（可測而未測）
-  B-3  018 ↔ 011     無          抓不到（可測而未測）   無訊號可測
+  B-2  014 ↔ 022     無          無訊號可測             抓不到（依 R-TM55 刻意不補）
+  B-3  018 ↔ 011     單向        抓到                   無訊號可測
   B-4  014 ↔ 008     雙向有      抓到                   抓到
-  B-5  014 ↔ 017     無          無訊號可測             抓不到（可測而未測）
+  B-5  014 ↔ 017     單向        無訊號可測             抓到
   B-6  011 ↔ 008     雙向有      抓到                   抓到
 
-**六對中僅二對（B-4、B-6）有自動判準。** lint_boundary 僅對
-BOUNDARY_SIGNALS 之三片（011 / 008 / 014）生效，故一對之兩側若只有一側
-在表內，另一側之違規完全不檢查。
+**六對中四對有自動判準（二對雙向、二對單向），較增列前之二對為多。**
+增列前三處「可測而未測」已清二處（018 / 017），餘 022 依 R-TM55 駁回。
 
-三處「可測而未測」（022 提 $GPSDateTm、018 提 $DateTmFormat$、
-017 提 $GPSDateTm）**有訊號名可比對而射程未及**，與 B-1 之「本無訊號
-可比」性質不同。是否補入 BOUNDARY_SIGNALS 屬條文範圍，待裁。
+lint_boundary 僅對 BOUNDARY_SIGNALS 內之片生效，故一對之兩側若只有一側
+在表內，另一側之違規完全不檢查 —— B-3 / B-5 之「單向」即此。
 
-無自動判準之四對，其驗證責任明歸 B1 pilot，須於檢查表逐對列出。
+**B-2 為何維持「無」—— 供日後讀者，勿重提補入**：022 之不列入為 R-TM55
+明文裁定，非疏漏。其區辨軸為條件與值（GPS 有效值 vs SNA 值），非訊號名。
+self_test 設有陰性對照（022 之 TC 提 $GPSDateTmHour$ 須仍不叫）。
+（駁回依據之出處訂正見 RULINGS.md R-TM53 回報段末。）
+
+無自動判準或僅單向之四對，其未守之側其驗證責任明歸 B1 pilot，
+須於檢查表逐對列出。
   BATCHES            framework Part VII Batch plan，`03` §3
 """
 from __future__ import annotations
@@ -126,7 +133,32 @@ BOUNDARY_SIGNALS = {
         "why": "014 擁有 GPS 來源值送出之正確性（1.3.1.1.3 / 1.5.2.5）；"
                "送出時機與通道屬 008/017",
     },
+    # ── R-TM55（07 §2.2）增列兩片 ─────────────────────────
+    # 二者之 `owns` 為空：其能力非「擁有某訊號」而是「擁有某行為」
+    # （018 值之初始化、017 日期通道），故只有 not_ours 一側。
+    # lint_boundary 只讀 not_ours，owns 空集不影響其判定（07 T3 已驗）。
+    "SWE-RA-TIME&DATE-018": {
+        "owns": [],
+        "not_ours": ["$DateTmFormat$"],          # 011 owns（B-3）
+        "objects": ["4814028", "4814118", "4814121"],
+        "why": "018 擁有 reset／斷電後之時間日期**值**之初始化；"
+               "格式（12H/24H）跨喚醒週期之保存與重送屬 011（B-3）",
+    },
+    "SWE-RA-TIME&DATE-017": {
+        "owns": [],
+        "not_ours": ["$GPSDateTm"],              # 014 owns（B-5）
+        "objects": ["4814019", "4814053", "4814073", "4814091"],
+        "why": "017 擁有日期**通道**（TELEMATIC_TIME_DATE / TLM LIDs 至 "
+               "IPC）；GPS 來源值之送出屬 014（B-5）",
+    },
 }
+
+# **022 刻意不列**（R-TM55）—— B-2 之區辨軸為「條件與值」（GPS 值 vs
+# SNA 值），非訊號名。022 之 spec 依據（4813905 / 4814056）為**通則性
+# SNA 規則且不指名任何訊號**：「If the ECU can not send reliable data,
+# the ECU shall send SNA values in the destination signal」。該通則涵蓋
+# 每一個 destination signal，其中當然包含 $GPSDateTm*$ —— 但那是**通則
+# 涵蓋**而非具名管轄。以訊號名為判準必然誤報其正常內容。
 
 # 另兩條界線無訊號層之歸屬（其區辨在觸發源與規則歸屬），故不列於
 # BOUNDARY_SIGNALS 而以敘述給 context。lint 層對其無自動判準。
@@ -174,13 +206,16 @@ def _assert_intact() -> None:
     # 檢查 **key 集合**而非長度 —— 長度對「內容被替換但數量相同」不敏感
     # （R-TM31 之計數盲點；本守衛之首次紅向即因只驗長度而未攔下改名之 key）
     want_bs = {"SWE-RA-TIME&DATE-011", "SWE-RA-TIME&DATE-008",
-               "SWE-RA-TIME&DATE-014"}
+               "SWE-RA-TIME&DATE-014", "SWE-RA-TIME&DATE-018",
+               "SWE-RA-TIME&DATE-017"}          # R-TM55 增列後為五片
     if set(BOUNDARY_SIGNALS) != want_bs:
         fails.append(f"BOUNDARY_SIGNALS 之 key 為 {sorted(BOUNDARY_SIGNALS)}，"
                      f"期望 {sorted(want_bs)}（見 R-TM53 之對照表）")
     for leaf, v in BOUNDARY_SIGNALS.items():
-        if not v.get("owns") or not v.get("not_ours"):
-            fails.append(f"BOUNDARY_SIGNALS[{leaf}] 之 owns／not_ours 有空者")
+        # `owns` 得為空（018 / 017 之能力非擁有某訊號，見 R-TM55）；
+        # `not_ours` 不得為空 —— 該片若無任何越界訊號可比，本就不該列入。
+        if "owns" not in v or not v.get("not_ours"):
+            fails.append(f"BOUNDARY_SIGNALS[{leaf}] 缺 owns 鍵或 not_ours 為空")
     if set(SPEC_GAP) != {"005", "002"}:
         fails.append(f"SPEC_GAP 之 key 為 {sorted(SPEC_GAP)}，"
                      "期望 ['002', '005']（A-TM13 之兩片）")
