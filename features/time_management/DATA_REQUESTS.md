@@ -17,7 +17,7 @@ Urgency 回報。回報對象為本表，不涉其他 feature。
 | 3 | Pop Up List — 全名未知 | NOT REQUESTED | — | 無 | — | 低（見下註） |
 | 4 | 涵蓋全部 126 筆 SYS2 FR 之 037（或「48 筆不在 SW 範圍」之書面依據） | MISSING / 待答 | 48 筆 SYS-RA FR 無對應 SWE leaf | **阻塞覆蓋稽核之分母認定** | A-TM09 | **High** |
 | 5 | 含物件 `6151328` / `6151331` 之 CFTS 版本（或該二物件之遷移去向說明） | MISSING / 待答 | 2 筆（SYS-RA-221 / -224），連帶 SWE leaf 005 / 002 之部分引用 | 該二筆之 `specification_reference` 無章節可寫 | A-TM13 | 中 |
-| 6 | CAN 網段依據 —— DBC 或 EE 架構文件 | **RECEIVED（2026-08-22，Pei 補入 LID 表）** — 解除條件見下節 | 全部含 CAN 訊號斷言之 leaf | 解除中 | R-TM49 / A-TM26 | 中 |
+| 6 | CAN 網段依據 —— DBC 或 EE 架構文件 | **Atlantis High 已解除；Atlantis Mid 未解除** —— 見下節之狀態更正 | 全部含 CAN 訊號斷言之 leaf | Atl-Mid 側 11 個 LID 有訊號而網段未載 | R-TM49 / A-TM26 | **中（Atl-Mid 側）** |
 | 11 | ~~35 個 Atl-Mid 專屬物件之 Atl-H 對應需求~~ | **CANCELLED（2026-08-22，R-TM75(2)）** —— 其所登記之缺件不存在：該 35 個物件之 Radio 標籤 35/35 含 R1L/R1L-R，即本專案；Atl-Mid 為本專案之另一 EE architecture 變體。約 40 處佔位改為真值。**不刪除本列**（軌跡，R-TM13） | 該 35 個條目之 spec_reference；**020 / 021 兩片之全部條目** | 不阻塞生成（寫佔位）；阻塞該等條目之最終值 | A-TM27 | **High** |
 | 12 | UI 標籤之正式名稱 | **RESOLVED（2026-08-22）** — 新版 HMI Settings List R1L-R (2026-02-13) §7-5 `Show Time in Status Bar`（Technical Ref CFTS015） | 含 UI 操作之步驟措辭 | 見 `11` 上繳 §4 | — | **High** |
 | 13 | Logical Identifiers and CAN Mapping v1_76.xlsx | **RECEIVED（2026-08-22，Pei 補入）** | 全部含 CAN 訊號斷言之 leaf | 解除 DR-6 之來源 | A-TM26 | — |
@@ -311,4 +311,31 @@ SHA256 相異，大小差 1436 B）。**執行層取 `26PI2.5`**（PI 版本較�
 此事記於此，因日後若需引用該檔之他節，兩份之差異須先釐清。
 
 複本 SHA256 與來源一致（`41daac0048d2afe15fe9aeee…`）。
+
+## DR-6 之狀態更正（2026-08-22，`21` §2）
+
+先前記為「已由 LID 表解除」。**該記載只對 Atlantis High 成立。**
+
+`20` T2 對 `CAN Mapping` 兩組架構欄之實測（19 LID × 2 架構 = 38 列）：
+
+```
+無訊號         8 列  → 不寫任何斷言（該架構無此對映）
+有訊號無網段  11 列  → **全部在 Atlantis Mid 側**；訊號可寫，
+                        segment 寫 `PENDING: DR-6`
+有訊號有網段  19 列  → 照用
+```
+
+**Atlantis Mid 側僅 6 個 LID 有網段**（`GPSDateTmSecond` 與五個
+`TLM_MANAGED_*`，皆為 `CAN-B`），其餘 11 個之 CAN 欄為空。
+
+**故 DR-6 對 Atlantis Mid 未解除。** 現行生成物中其佔位僅 1 處，
+因多數 Atl-Mid 片未涉該等訊號 —— **但該數會隨 017 之拆分而增加**
+（`21` T4）。
+
+**併記一項來源訂正**：下放包 `18` §5 T4 稱「`$DateTmHour$` 在 Atl-Mid 為
+`TIME_DATE.Hour1` **on CAN-B**」—— 訊號名正確，**`on CAN-B` 無來源**，
+該 LID 之 Atl-Mid 側 CAN 欄實測為空。分析層已於 `21` §2 自陳
+「是我從別的 LID 之網段推的」，並記為**第四次同型**
+（推設備 → 推 UI 開關 → 推 UI 標籤 → 推網段），
+且發生在已立 R-TM49（不得杜撰網段）之後。
 

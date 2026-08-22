@@ -39,7 +39,7 @@
       "test_group": "Time and Date",
       "test_set": "Manual Setting",
       "test_item": "The software shall allow manual date setting and update internal counters when GPS sync is disabled\n(confirm the date can be entered manually while GPS sync is disabled)",
-      "pre_conditions": "Ignition is ON\n\"Sync Time with GPS\" is set to OFF",
+      "pre_conditions": "The cluster does not have the data needed to reference the date\nIgnition is ON\n\"Sync Time with GPS\" is set to OFF",
       "input_test_data": "Date = 09/03/2035",
       "test_procedure": "1. Open the \"Clock\" settings\n2. Set \"Set Date Day\", \"Set Date Month\" and \"Set Date Year\" to 09 / 03 / 2035\n3. Read the date shown on the HU display and record it",
       "expected_result": "1. The \"Clock\" settings open\n2. The date entry is accepted\n3. The HU display shows 09/03/2035",
@@ -47,14 +47,14 @@
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
-      "reasoning": "4814012：使用者經 HU 設定選單設定日期；4814000：無 GPS 時提供手動輸入方式。UI 項名 `Set Date Day` / `Month` / `Year` 取自 HMI Settings List 第 7 節（`11` T4），**有正式來源故不寫 DR-12 佔位**。"
+      "reasoning": "4814012：使用者經 HU 設定選單設定日期；4814000：無 GPS 時提供手動輸入方式。UI 項名 `Set Date Day` / `Month` / `Year` 取自 HMI Settings List 第 7 節（`11` T4），**有正式來源故不寫 DR-12 佔位**。 **顯示前提**：HMI Settings List R1L-R 2026-02-13 §7-6 之註記逐字為 `[NOTE:  Set Dateis only shown for vehicles in which the cluster does not have data needed to reference date]`（原文 typo `Set Dateis` 照錄）。其與 4814000（`If the HU has No GPS, the HU … shall provide a manual method using HMI to enter date`）同向 —— 二者皆以「他處無日期來源」為手動設定之前提。**措辭不超出該二來源**：只述 cluster 無資料，不推論其成因，亦不加 GPS 之條件（4814000 之 No GPS 為 HU 側，與 cluster 側非同一事）。"
     },
     {
       "req_id": "SWE-RA-TIME&DATE-015",
       "test_group": "Time and Date",
       "test_set": "Manual Setting",
       "test_item": "The software shall allow manual date setting and update internal counters when GPS sync is disabled\n(confirm the manually entered date is sent on the bus)",
-      "pre_conditions": "Ignition is ON\n\"Sync Time with GPS\" is set to OFF\nThe CAN bus is awake",
+      "pre_conditions": "The cluster does not have the data needed to reference the date\nIgnition is ON\n\"Sync Time with GPS\" is set to OFF\nThe CAN bus is awake",
       "input_test_data": "Date = 25/12/2033",
       "test_procedure": "1. Open the \"Clock\" settings\n2. Set \"Set Date Day\", \"Set Date Month\" and \"Set Date Year\" to 25 / 12 / 2033\n3. Read $DateTmDay$ in TELEMATIC_FD_1.Day1_TLM / TELEMATIC_FD_1.Day2_TLM on FD and record it\n4. Read $DateTmMonth$ in TELEMATIC_FD_1.Month1_TLM / TELEMATIC_FD_1.Month2_TLM on FD and record it",
       "expected_result": "1. The \"Clock\" settings open\n2. The date entry is accepted\n3. $DateTmDay$ carries 2 in Day1_TLM and 5 in Day2_TLM\n4. $DateTmMonth$ carries 1 in Month1_TLM and 2 in Month2_TLM",
@@ -62,14 +62,14 @@
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
-      "reasoning": "4814001 逐字列出 $DateTmYear$ / $DateTmMonth$ / $DateTmDay$ 三訊號。日期各欄在 Atl-H 為 4-bit 數位對（`11` §3.3.1），故 25 表為 2 與 5。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 406 / 411（A-TM26 之強制記錄）。"
+      "reasoning": "4814001 逐字列出 $DateTmYear$ / $DateTmMonth$ / $DateTmDay$ 三訊號。日期各欄在 Atl-H 為 4-bit 數位對（`11` §3.3.1），故 25 表為 2 與 5。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 406 / 411（A-TM26 之強制記錄）。 **顯示前提**：HMI Settings List R1L-R 2026-02-13 §7-6 之註記逐字為 `[NOTE:  Set Dateis only shown for vehicles in which the cluster does not have data needed to reference date]`（原文 typo `Set Dateis` 照錄）。其與 4814000（`If the HU has No GPS, the HU … shall provide a manual method using HMI to enter date`）同向 —— 二者皆以「他處無日期來源」為手動設定之前提。**措辭不超出該二來源**：只述 cluster 無資料，不推論其成因，亦不加 GPS 之條件（4814000 之 No GPS 為 HU 側，與 cluster 側非同一事）。"
     },
     {
       "req_id": "SWE-RA-TIME&DATE-015",
       "test_group": "Time and Date",
       "test_set": "Manual Setting",
       "test_item": "The software shall allow manual date setting and update internal counters when GPS sync is disabled\n(confirm the year is sent across its four digit signals)",
-      "pre_conditions": "Ignition is ON\n\"Sync Time with GPS\" is set to OFF\nThe CAN bus is awake",
+      "pre_conditions": "The cluster does not have the data needed to reference the date\nIgnition is ON\n\"Sync Time with GPS\" is set to OFF\nThe CAN bus is awake",
       "input_test_data": "Year = 2033",
       "test_procedure": "1. Open the \"Clock\" settings\n2. Set \"Set Date Year\" to 2033\n3. Read $DateTmYear$ in TELEMATIC_FD_1.Year1_TLM / TELEMATIC_FD_1.Year2_TLM / TELEMATIC_FD_1.Year3_TLM / TELEMATIC_FD_1.Year4_TLM on FD and record it",
       "expected_result": "1. The \"Clock\" settings open\n2. \"Set Date Year\" shows 2033\n3. $DateTmYear$ carries 2, 0, 3 and 3 across Year1_TLM to Year4_TLM",
@@ -77,14 +77,14 @@
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
-      "reasoning": "$DateTmYear$ 在 Atl-H 為**四個** 4-bit 數位（LID 表 Format 欄：4 bits each / digit 1–4），與時 / 分 / 日 / 月之兩位數位不同。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 413（A-TM26 之強制記錄）。"
+      "reasoning": "$DateTmYear$ 在 Atl-H 為**四個** 4-bit 數位（LID 表 Format 欄：4 bits each / digit 1–4），與時 / 分 / 日 / 月之兩位數位不同。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 413（A-TM26 之強制記錄）。 **顯示前提**：HMI Settings List R1L-R 2026-02-13 §7-6 之註記逐字為 `[NOTE:  Set Dateis only shown for vehicles in which the cluster does not have data needed to reference date]`（原文 typo `Set Dateis` 照錄）。其與 4814000（`If the HU has No GPS, the HU … shall provide a manual method using HMI to enter date`）同向 —— 二者皆以「他處無日期來源」為手動設定之前提。**措辭不超出該二來源**：只述 cluster 無資料，不推論其成因，亦不加 GPS 之條件（4814000 之 No GPS 為 HU 側，與 cluster 側非同一事）。"
     },
     {
       "req_id": "SWE-RA-TIME&DATE-015",
       "test_group": "Time and Date",
       "test_set": "Manual Setting",
       "test_item": "The software shall allow manual date setting and update internal counters when GPS sync is disabled\n(confirm the internal date counters follow the manual entry)",
-      "pre_conditions": "Ignition is ON\n\"Sync Time with GPS\" is set to OFF",
+      "pre_conditions": "The cluster does not have the data needed to reference the date\nIgnition is ON\n\"Sync Time with GPS\" is set to OFF",
       "input_test_data": "Date = 01/01/2032",
       "test_procedure": "1. Open the \"Clock\" settings\n2. Set \"Set Date Day\", \"Set Date Month\" and \"Set Date Year\" to 01 / 01 / 2032\n3. Turn the ignition to OFF\n4. Turn the ignition to ON\n5. Read the date shown on the HU display and record it",
       "expected_result": "1. The \"Clock\" settings open\n2. The date entry is accepted\n3. The ignition is OFF\n4. The ignition is ON and the HU starts up\n5. The HU display shows 01/01/2032",
@@ -92,7 +92,7 @@
       "priority": "P1",
       "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
       "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
-      "reasoning": "4814013：依 Day/Month/Year Setting.Info 更新內部日期計數（條件為 GPS 自動調整未設定）；4814014：HU_Date.Info 等於計數值。以點火循環後仍保有該值驗證計數已更新，而非只有畫面暫存。"
+      "reasoning": "4814013：依 Day/Month/Year Setting.Info 更新內部日期計數（條件為 GPS 自動調整未設定）；4814014：HU_Date.Info 等於計數值。以點火循環後仍保有該值驗證計數已更新，而非只有畫面暫存。 **顯示前提**：HMI Settings List R1L-R 2026-02-13 §7-6 之註記逐字為 `[NOTE:  Set Dateis only shown for vehicles in which the cluster does not have data needed to reference date]`（原文 typo `Set Dateis` 照錄）。其與 4814000（`If the HU has No GPS, the HU … shall provide a manual method using HMI to enter date`）同向 —— 二者皆以「他處無日期來源」為手動設定之前提。**措辭不超出該二來源**：只述 cluster 無資料，不推論其成因，亦不加 GPS 之條件（4814000 之 No GPS 為 HU 側，與 cluster 側非同一事）。"
     },
     {
       "req_id": "SWE-RA-TIME&DATE-022",
