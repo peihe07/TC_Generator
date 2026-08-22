@@ -65,7 +65,7 @@ SWE1-VC-LeftFrontVentedSeat-014	Vented Seat	LeftFrontVentedSeat	W0	yes	yes	yes		
 SWE1-VC-LeftFrontVentedSeat-015	Vented Seat	LeftFrontVentedSeat	W0	yes	yes	yes			writable=B2	
 SWE1-VC-LeftFrontVentedSeat-016	Vented Seat	LeftFrontVentedSeat	W2	yes	no	no			writable=B2	
 SWE1-VC-LeftFrontVentedSeat-017	Vented Seat	LeftFrontVentedSeat	W0	yes	yes	yes			writable=B2	
-SWE1-VC-OneStageHeatedSeat-039	Heated Seat	OneStageHeatedSeat	W2	pending	no	no			B4-preamble	
+SWE1-VC-OneStageHeatedSeat-039	Heated Seat	OneStageHeatedSeat	W0	pending	no	no				
 SWE1-VC-OneStageHeatedSeat-040	Heated Seat	OneStageHeatedSeat	W0	pending	no	no			writable=B2|delegate=pending|quoted_form_risk	
 SWE1-VC-OneStageHeatedSeat-041	Heated Seat	OneStageHeatedSeat	W0	pending	no	no			delegate=pending	
 SWE1-VC-OneStageHeatedSeat-042	Heated Seat	OneStageHeatedSeat	W2	pending	no	no			writable=B2|delegate=pending|quoted_form_risk	
@@ -152,85 +152,85 @@ SWE1-VC-ThirdRowHeadrestDump-042	Common Features	ThirdRowHeadrestDump	W0	no	yes	
 SWE1-VC-ThirdRowHeadrestDump-043	Common Features	ThirdRowHeadrestDump	W0	no	yes	yes				
 SWE1-VC-ThirdRowHeadrestDump-044	Common Features	ThirdRowHeadrestDump	W0	no	yes	yes				
 SWE1-VC-ThirdRowHeadrestDump-045	Common Features	ThirdRowHeadrestDump	W0	no	yes	yes				
-SWE1-VC-ThreeStagesHeatedSeat-078	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	yes			B4-preamble	
+SWE1-VC-ThreeStagesHeatedSeat-078	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	yes				
 SWE1-VC-ThreeStagesHeatedSeat-079	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesHeatedSeat-080	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	yes				
-SWE1-VC-ThreeStagesHeatedSeat-081	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-ThreeStagesHeatedSeat-081	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				
 SWE1-VC-ThreeStagesHeatedSeat-082	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesHeatedSeat-083	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesHeatedSeat-084	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesHeatedSeat-085	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-ThreeStagesHeatedSeat-084	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-ThreeStagesHeatedSeat-085	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				
 SWE1-VC-ThreeStagesHeatedSeat-086	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesHeatedSeat-087	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesHeatedSeat-088	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-ThreeStagesHeatedSeat-088	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				
 SWE1-VC-ThreeStagesHeatedSeat-089	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	yes				
-SWE1-VC-ThreeStagesHeatedSeat-090	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesHeatedSeat-091	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-ThreeStagesHeatedSeat-090	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-ThreeStagesHeatedSeat-091	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				
 SWE1-VC-ThreeStagesHeatedSeat-092	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesHeatedSeat-093	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesHeatedSeat-094	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesHeatedSeat-095	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-ThreeStagesHeatedSeat-093	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-ThreeStagesHeatedSeat-094	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-ThreeStagesHeatedSeat-095	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				
 SWE1-VC-ThreeStagesHeatedSeat-096	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesHeatedSeat-097	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-ThreeStagesHeatedSeat-097	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				
 SWE1-VC-ThreeStagesHeatedSeat-098	Heated Seat	ThreeStagesHeatedSeat	W0	blocked	no	no			delegate=blocked	
 SWE1-VC-ThreeStagesHeatedSeat-099	Heated Seat	ThreeStagesHeatedSeat	W0	blocked	no	no			delegate=blocked	
-SWE1-VC-ThreeStagesVentedSeatsManagement-060	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	yes			B4-preamble	
+SWE1-VC-ThreeStagesVentedSeatsManagement-060	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	yes				
 SWE1-VC-ThreeStagesVentedSeatsManagement-061	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesVentedSeatsManagement-062	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	yes				
-SWE1-VC-ThreeStagesVentedSeatsManagement-063	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-ThreeStagesVentedSeatsManagement-063	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no				
 SWE1-VC-ThreeStagesVentedSeatsManagement-064	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesVentedSeatsManagement-065	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesVentedSeatsManagement-066	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-ThreeStagesVentedSeatsManagement-066	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no				
 SWE1-VC-ThreeStagesVentedSeatsManagement-067	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesVentedSeatsManagement-068	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesVentedSeatsManagement-069	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesVentedSeatsManagement-070	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesVentedSeatsManagement-071	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	yes				
-SWE1-VC-ThreeStagesVentedSeatsManagement-072	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesVentedSeatsManagement-073	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-ThreeStagesVentedSeatsManagement-072	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no				
+SWE1-VC-ThreeStagesVentedSeatsManagement-073	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no				
 SWE1-VC-ThreeStagesVentedSeatsManagement-074	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-ThreeStagesVentedSeatsManagement-075	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-ThreeStagesVentedSeatsManagement-075	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no				
 SWE1-VC-ThreeStagesVentedSeatsManagement-076	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesVentedSeatsManagement-077	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesVentedSeatsManagement-078	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesVentedSeatsManagement-079	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-ThreeStagesVentedSeatsManagement-080	Vented Seat	ThreeStagesVentedSeatsManagement	W0	blocked	no	no			delegate=blocked	
 SWE1-VC-ThreeStagesVentedSeatsManagement-081	Vented Seat	ThreeStagesVentedSeatsManagement	W0	blocked	no	no			delegate=blocked	
-SWE1-VC-TwoStagesHeatedSeat-055	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	yes			B4-preamble	
+SWE1-VC-TwoStagesHeatedSeat-055	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	yes				
 SWE1-VC-TwoStagesHeatedSeat-056	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-TwoStagesHeatedSeat-057	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	yes				
-SWE1-VC-TwoStagesHeatedSeat-058	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesHeatedSeat-059	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesHeatedSeat-060	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesHeatedSeat-061	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesHeatedSeat-062	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesHeatedSeat-063	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-TwoStagesHeatedSeat-058	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-TwoStagesHeatedSeat-059	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-TwoStagesHeatedSeat-060	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-TwoStagesHeatedSeat-061	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-TwoStagesHeatedSeat-062	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-TwoStagesHeatedSeat-063	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
 SWE1-VC-TwoStagesHeatedSeat-064	Heated Seat	TwoStagesHeatedSeat	W0	blocked	no	no	screen	DR-5-B	delegate=blocked	
 SWE1-VC-TwoStagesHeatedSeat-065	Heated Seat	TwoStagesHeatedSeat	W0	blocked	no	no	screen	DR-5-B	delegate=blocked	
 SWE1-VC-TwoStagesHeatedSeat-066	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	yes				
-SWE1-VC-TwoStagesHeatedSeat-067	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesHeatedSeat-068	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesHeatedSeat-069	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesHeatedSeat-070	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesHeatedSeat-071	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesHeatedSeat-072	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-TwoStagesHeatedSeat-067	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-TwoStagesHeatedSeat-068	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-TwoStagesHeatedSeat-069	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-TwoStagesHeatedSeat-070	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-TwoStagesHeatedSeat-071	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
+SWE1-VC-TwoStagesHeatedSeat-072	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				
 SWE1-VC-TwoStagesHeatedSeat-073	Heated Seat	TwoStagesHeatedSeat	W0	blocked	no	no			delegate=blocked	
 SWE1-VC-TwoStagesHeatedSeat-074	Heated Seat	TwoStagesHeatedSeat	W0	blocked	no	no			delegate=blocked	
-SWE1-VC-TwoStagesVentedSeatsManagement-037	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	yes			B4-preamble	
+SWE1-VC-TwoStagesVentedSeatsManagement-037	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	yes				
 SWE1-VC-TwoStagesVentedSeatsManagement-038	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-TwoStagesVentedSeatsManagement-039	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	yes				
-SWE1-VC-TwoStagesVentedSeatsManagement-040	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesVentedSeatsManagement-041	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesVentedSeatsManagement-042	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-TwoStagesVentedSeatsManagement-040	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				
+SWE1-VC-TwoStagesVentedSeatsManagement-041	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				
+SWE1-VC-TwoStagesVentedSeatsManagement-042	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				
 SWE1-VC-TwoStagesVentedSeatsManagement-043	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-TwoStagesVentedSeatsManagement-044	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-TwoStagesVentedSeatsManagement-045	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-TwoStagesVentedSeatsManagement-046	Vented Seat	TwoStagesVentedSeatsManagement	W0	blocked	no	no	screen	DR-5-B	delegate=blocked	
 SWE1-VC-TwoStagesVentedSeatsManagement-047	Vented Seat	TwoStagesVentedSeatsManagement	W0	blocked	no	no	screen	DR-5-B	delegate=blocked	
 SWE1-VC-TwoStagesVentedSeatsManagement-048	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	yes				
-SWE1-VC-TwoStagesVentedSeatsManagement-049	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesVentedSeatsManagement-050	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
-SWE1-VC-TwoStagesVentedSeatsManagement-051	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
+SWE1-VC-TwoStagesVentedSeatsManagement-049	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				
+SWE1-VC-TwoStagesVentedSeatsManagement-050	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				
+SWE1-VC-TwoStagesVentedSeatsManagement-051	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				
 SWE1-VC-TwoStagesVentedSeatsManagement-052	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-TwoStagesVentedSeatsManagement-053	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	
 SWE1-VC-TwoStagesVentedSeatsManagement-054	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	

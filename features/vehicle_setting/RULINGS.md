@@ -319,6 +319,8 @@ CFTS044 之值域列舉須連同其條文之 [EE Architecture] 標籤一併取�
 
 ### R-VS20 — 值域來源之三階梯
 
+> **【排除清單經 R-VS19″(a) 縮限為 `CUSW`／`PowerNet` 專屬者，2026-08-22；原文保留不刪，見 R-TM13。`Atlantis Mid` 不再排除，其值域之欄組依 R-VS51(2) 分流】**
+
 ```
 R-VS20（Pei 2026-08-20）
 token 之值域依下列次序取用，前者有值即止：
@@ -1076,3 +1078,36 @@ R-VS35（分析層裁定 2026-08-20）
 > 實際涉及 PROXI 參數者僅 **8 條**。
 > 兩輪之搜尋作業（W-65 掃 5,304 檔、W-68 擴掃 1,994 檔）因而排在
 > 實際規模為其 7.6 倍之標的之前。
+
+### R-VS51 — 架構對應之欄組（52 包 §1，分析層裁定 2026-08-22）
+
+```
+R-VS51（架構對應之欄組，分析層裁定 2026-08-22；本輪唯一新條文）
+
+(1) **R-VS20 之排除清單依 R-VS19″(a) 為 `CUSW`／`PowerNet` 專屬者。**
+    `Atlantis Mid` 之條文既在母體內（R-VS19″），其值域**得取用**。
+    `RULINGS.md` 之 R-VS20 條目須加註「排除清單經 R-VS19″(a) 縮限」。
+
+(2) **值域與訊號對映之欄組，依該條文之 `EE Architecture` 決定**：
+      條文標 `Atlantis High`（或 `All`） → LID 之 `Atlantis High` 欄組
+      條文標 `Atlantis Mid`             → LID 之 **`Atlantis` 欄組**
+      條文同時標二者                    → 取 `Atlantis High` 欄組
+    R-VS9(1)′ 之「`CAN Mapping` → Atlantis High 欄組」為**預設**，
+    非唯一；本條為其按條文架構之分流。
+
+(3) **例外（R-VS44 優先）**：凡該 (token, 值) 落在未結 DR 之範圍內者，
+    **仍由 `guard()` 攔下**，不因本條而放行。
+    具體：DR-15 之 token 級範圍含 `FL_VS_RQ_TGW` 等五者 ——
+    其值域不因本條而解。
+
+理由：R-VS19″ 依 `Radio`＋`ECU` 判適用性並將 `Atlantis Mid` 納入母體
+（13 輪實測：Mid 條文之章節自稱 `applicable for R1 Low`，
+三屬性與非 Mid 組 100% 一致）。
+既納入母體而不許取其值域，則該批 leaf 恆在範圍卻恆不可寫 ——
+**該狀態非任何一條之本意，而是 R-VS20 之文字未隨 R-VS19″ 更新。**
+```
+
+**執行層註**：A-VS98 依本條關閉。本條 (2) 之分流實作於
+`scripts/writability_w58.py::bus_domain()` 與 `spec_variables.tsv` 之
+`arch_column` 欄（32 輪 W-90(1)）。
+

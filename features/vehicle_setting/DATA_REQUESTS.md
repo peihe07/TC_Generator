@@ -67,6 +67,20 @@ LID 表載 `HdRstRelRq` 之 Atlantis High 對映為 `RADIO_B3.HDRstRelRq_3rdRow`
 
 **狀態：已送出（Pei，2026-08-22，37 包送件文第 1 項）—— 待覆。**
 
+> **補充觀察（32 輪 D-3，依 52 包 §2；本段為我方之觀察，
+> **不作為本 DR 之答覆**，本 DR 之待覆狀態不變 —— R-VS44）**
+>
+> 我方於 LID v1.76 列 769 觀察到：同一 LID `FL_VS_RQ_TGW` 於
+> `Atlantis` 欄組對映至 `TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm`
+> （2 bit、四階），於 `Atlantis High` 欄組對映至
+> `TELEMATIC_VEHICLE_SETUP3.FL_VS_Tlm`（1 bit、Not_Pressed/Pressed）。
+> 而 CFTS044 描述循環降階之條文（4858325／4858355／4858385／4858416）
+> 標記為 `[EE Architecture:Atlantis High]`。
+> 請確認該等條文之架構標記是否正確，或其所述行為是否屬 Atlantis Mid。
+>
+> **此觀察指出「1 bit」與「承載階數」兩者可能皆為真而分屬不同架構。
+> 我方不以之作答**；`guard()` 之 DR-15 範圍不變（token 級，五個 token）。
+
 **兩造皆 in-scope，非架構差異可吸收者。**
 
 **CFTS044 側**：條文 **`4858325`（`$FL_HS_RQ$`）／`4858355`（`$FR_HS_RQ$`）／
@@ -182,7 +196,25 @@ CFTS044 定義單階加熱座椅之配置（`$Heated_Seat_Levels$ = [1]`），
 
 CFTS044 之座椅相關值域中，發現四類書寫問題，請確認其為筆誤或另有語意：
 
-### 一、加熱／通風前綴交叉（4 筆）
+### 一、加熱／通風前綴交叉（4 筆 ＋ **LID 側 2 筆，32 輪 D-3 併入**）
+
+> **併入 A-VS97（32 輪 D-3，依 52 包 §3）** —— 同型，**惟其在 LID 而非 CFTS044**：
+>
+> ```
+> CAN Mapping 列 769  FL_VS_RQ_TGW  Atlantis 欄組
+>     Format: Atlantis / 2 bit signal / 0 = Vented_Seat_Off / 1 = Vented_Seat_Low / …
+> CAN Mapping 列 770  FL_VS_RQ_TGW2 Atlantis 欄組（同一 Signal Name FL_VS_Cmd_Tlm）
+>     Format: 0 = Heated_seat_off / 1 = Heated_seat_low / 2 = Heated_seat_medium / 3 = Heated_seat_high
+> CAN Mapping 列 790  FR_VS_RQ_TGW2 Atlantis 欄組（Signal Name FR_VS_Cmd_Tlm）
+>     Format: 0 = Heated_seat_off / … / 3 = Heated_seat_high
+> ```
+>
+> **同一訊號 `FL_VS_Cmd_Tlm` 在同一表內有兩個相衝之值域。**
+> 52 包 §3 依 **R-VS38** 三項聯合判準裁：取 **`Vented_Seat_*`**，
+> 列 770／790 之 `Heated_seat_*` 判為 LID 之轉錄錯誤；
+> `spec_variables.tsv` 增 `suspect_prefix` 標記，**不改原值**。
+> **請一併確認。**
+
 
 ```
 4858393  §1.3.2.1.3.4  $VentedSeatFR$ = [Vented Seat High / HS_HI]

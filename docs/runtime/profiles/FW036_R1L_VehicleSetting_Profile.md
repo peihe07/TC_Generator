@@ -95,6 +95,26 @@ signal 之**拼寫**取 DBC（R-VS9(1)′）；
 
 **來源**：R-VS5（承 canon §4.5 之 SWC 基準）。
 
+## [ADD] 送出型步驟之 ER 措辭（A-VS62，Pei 2026-08-22 定案）
+
+```
+送出型步驟（`Send the signal …`）之對應 ER 逐字形態：
+
+  The signal $<MESSAGE>.<Signal>$ = <raw> (<label>) is registered without a bus error
+
+讀取型步驟（`Read the signal …`）之 ER 仍用：
+
+  The signal $<MESSAGE>.<Signal>$ reads <raw> (<label>)
+```
+
+**來源**：A-VS62 之定案（53 包 §2，Pei 2026-08-22，採 51 包 §2.5 路徑 (a)）。
+
+**限制**：本認可為 **feature-scoped**，**不得援引至他 feature**。
+日後若取得 SWC 0708 或任一已交付本之「送 CAN 訊號」樣本而其措辭不同，
+以該樣本為準並逐條替換（單欄字串替換，成本有界）。
+
+---
+
 ---
 
 ## 未寫入本檔者（即依 canon 通則）

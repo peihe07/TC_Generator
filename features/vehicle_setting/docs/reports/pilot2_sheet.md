@@ -1,5 +1,11 @@
 # pilot #2 —— review sheet（15 條）
 
+> **pilot #2 通過，Pei 2026-08-22**（53 包 §1）—— pass 10／defect 4 項（涉 5 條）／note 1。
+> **defect 4 項已於 31 輪 W-89 修正完畢**，產出 `batch03_v2.json`／`batch04_v3.json`／`batch08_v2.json`，三批機械自檢各 0 項。
+> 未經抽樣之 53 條**不因本次通過而視為已 review**。
+> 下次 pilot：累計交付達 120 條，或 batch 之 defect 率較 pilot #2 上升，孰先。
+
+
 依 `docs/handoff/48_review_round28.md` §3 之抽法產出，29 輪 W-84。
 
 ## 抽法（可複現）

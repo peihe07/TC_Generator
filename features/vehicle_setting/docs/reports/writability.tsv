@@ -77,7 +77,7 @@ SWE1-VC-RightFrontHeatedSeat-033	4858356	RightFrontHeatedSeat	W2			B2	[4858356] 
 SWE1-VC-RightFrontHeatedSeat-034	4858357	RightFrontHeatedSeat	W2			B2	[4858357] `HeatedSeatFR` 之值無匯流排對應：Heated Seat High / HS_HI	DR-21				
 SWE1-VC-RightFrontHeatedSeat-035	4858358	RightFrontHeatedSeat	W2			B2	[4858358] `HeatedSeatFR` 之值無匯流排對應：Heated Seat Medium / HS_MED	DR-21				
 SWE1-VC-RightFrontHeatedSeat-036	4858359	RightFrontHeatedSeat	W2			B2	[4858359] `HeatedSeatFR` 之值無匯流排對應：Heated Seat Low / HS_LO	DR-21				
-SWE1-VC-OneStageHeatedSeat-039	4859360	OneStageHeatedSeat	W2		yes	B4-preamble	唯一來源條文為適用性前言（W-87），無可測之功能行為	DR-21			VF664-inferred	
+SWE1-VC-OneStageHeatedSeat-039	4859360	OneStageHeatedSeat	W0		yes						R-VS51(2)：條文 4859360 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-OneStageHeatedSeat-040	4859361	OneStageHeatedSeat	W0		yes	B2	[引號形態] `Heated_Seat_Levels` 之值無匯流排對應：One Level	DR-21			VF664-inferred	
 SWE1-VC-OneStageHeatedSeat-041	4859362	OneStageHeatedSeat	W0									
 SWE1-VC-OneStageHeatedSeat-042	4859363	OneStageHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid	DR-21				
@@ -91,46 +91,46 @@ SWE1-VC-OneStageHeatedSeat-049	4859370	OneStageHeatedSeat	W0		yes	B2	[引號形�
 SWE1-VC-OneStageHeatedSeat-050	4859371	OneStageHeatedSeat	W0		yes	B2	[引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
 SWE1-VC-OneStageHeatedSeat-051	4859372	OneStageHeatedSeat	W0									
 SWE1-VC-OneStageHeatedSeat-052	4859373	OneStageHeatedSeat	W0									
-SWE1-VC-TwoStagesHeatedSeat-055	4859376	TwoStagesHeatedSeat	W2		yes	B4-preamble	唯一來源條文為適用性前言（W-87），無可測之功能行為	DR-21			VF664-inferred	
+SWE1-VC-TwoStagesHeatedSeat-055	4859376	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859376 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-TwoStagesHeatedSeat-056	4859377;4859378	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `Heated_Steats_Levels` 之值無匯流排對應：Three Levels；Two Levels	DR-21				
 SWE1-VC-TwoStagesHeatedSeat-057	4859379	TwoStagesHeatedSeat	W0									
-SWE1-VC-TwoStagesHeatedSeat-058	4859380	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-TwoStagesHeatedSeat-059	4859381	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-TwoStagesHeatedSeat-060	4859382	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-TwoStagesHeatedSeat-061	4859383	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-TwoStagesHeatedSeat-062	4859384	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-TwoStagesHeatedSeat-063	4859385	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
+SWE1-VC-TwoStagesHeatedSeat-058	4859380	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859380 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesHeatedSeat-059	4859381	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859381 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesHeatedSeat-060	4859382	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859382 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesHeatedSeat-061	4859383	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859383 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesHeatedSeat-062	4859384	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859384 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesHeatedSeat-063	4859385	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859385 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-TwoStagesHeatedSeat-064	4859386	TwoStagesHeatedSeat	W0						screen	DR-5-B		
 SWE1-VC-TwoStagesHeatedSeat-065	4859387	TwoStagesHeatedSeat	W0						screen	DR-5-B		
 SWE1-VC-TwoStagesHeatedSeat-066	4859388	TwoStagesHeatedSeat	W0									
-SWE1-VC-TwoStagesHeatedSeat-067	4859389	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-TwoStagesHeatedSeat-068	4859390	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-TwoStagesHeatedSeat-069	4859391	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-TwoStagesHeatedSeat-070	4859392	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-TwoStagesHeatedSeat-071	4859393	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-TwoStagesHeatedSeat-072	4859394	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
+SWE1-VC-TwoStagesHeatedSeat-067	4859389	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859389 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesHeatedSeat-068	4859390	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859390 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesHeatedSeat-069	4859391	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859391 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesHeatedSeat-070	4859392	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859392 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesHeatedSeat-071	4859393	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859393 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesHeatedSeat-072	4859394	TwoStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859394 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-TwoStagesHeatedSeat-073	4859395	TwoStagesHeatedSeat	W0									
 SWE1-VC-TwoStagesHeatedSeat-074	4859396	TwoStagesHeatedSeat	W0									
-SWE1-VC-ThreeStagesHeatedSeat-078	4859400	ThreeStagesHeatedSeat	W2		yes	B4-preamble	唯一來源條文為適用性前言（W-87），無可測之功能行為	DR-21			VF664-inferred	
+SWE1-VC-ThreeStagesHeatedSeat-078	4859400	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859400 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesHeatedSeat-079	4859401	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `Heated_Steats_Levels` 之值無匯流排對應：Three Levels；Two Levels	DR-21				
 SWE1-VC-ThreeStagesHeatedSeat-080	4859402	ThreeStagesHeatedSeat	W0									
-SWE1-VC-ThreeStagesHeatedSeat-081	4859403	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
+SWE1-VC-ThreeStagesHeatedSeat-081	4859403	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859403 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesHeatedSeat-082	4859404	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
 SWE1-VC-ThreeStagesHeatedSeat-083	4859405	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-ThreeStagesHeatedSeat-084	4859406	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-ThreeStagesHeatedSeat-085	4859407	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
+SWE1-VC-ThreeStagesHeatedSeat-084	4859406	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859406 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-ThreeStagesHeatedSeat-085	4859407	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859407 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesHeatedSeat-086	4859408	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
 SWE1-VC-ThreeStagesHeatedSeat-087	4859409	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-ThreeStagesHeatedSeat-088	4859410	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
+SWE1-VC-ThreeStagesHeatedSeat-088	4859410	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859410 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesHeatedSeat-089	4859413	ThreeStagesHeatedSeat	W0									
-SWE1-VC-ThreeStagesHeatedSeat-090	4859414	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-ThreeStagesHeatedSeat-091	4859415	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
+SWE1-VC-ThreeStagesHeatedSeat-090	4859414	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859414 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-ThreeStagesHeatedSeat-091	4859415	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859415 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesHeatedSeat-092	4859416	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-ThreeStagesHeatedSeat-093	4859417	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-ThreeStagesHeatedSeat-094	4859418	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-ThreeStagesHeatedSeat-095	4859419	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
+SWE1-VC-ThreeStagesHeatedSeat-093	4859417	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859417 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-ThreeStagesHeatedSeat-094	4859418	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859418 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-ThreeStagesHeatedSeat-095	4859419	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859419 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesHeatedSeat-096	4859420	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
-SWE1-VC-ThreeStagesHeatedSeat-097	4859421	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
+SWE1-VC-ThreeStagesHeatedSeat-097	4859421	ThreeStagesHeatedSeat	W0		yes						R-VS51(2)：條文 4859421 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesHeatedSeat-098	4859422	ThreeStagesHeatedSeat	W0									
 SWE1-VC-ThreeStagesHeatedSeat-099	4859423	ThreeStagesHeatedSeat	W0									
 SWE1-VC-HeatedSteeringWheel-003	4858513	HeatedSteeringWheel	W0									
@@ -194,42 +194,42 @@ SWE1-VC-RightFrontVentedSeat-031	4858417	RightFrontVentedSeat	W0			B2	[4858417] 
 SWE1-VC-RightFrontVentedSeat-032	4858418	RightFrontVentedSeat	W0			B2	[4858418] `VentedSeatFR` 之值無匯流排對應：Vented Seat High / VS_HI	DR-21				
 SWE1-VC-RightFrontVentedSeat-033	4858419	RightFrontVentedSeat	W2			B2	[4858419] `VentedSeatFR` 之值無匯流排對應：Vented seat medium / VS_MED	DR-21				
 SWE1-VC-RightFrontVentedSeat-034	4858420	RightFrontVentedSeat	W0			B2	[4858420] `VentedSeatFR` 之值無匯流排對應：Vented Seat Low / VS_LO	DR-21				
-SWE1-VC-TwoStagesVentedSeatsManagement-037	4859438	TwoStagesVentedSeatsManagement	W2		yes	B4-preamble	唯一來源條文為適用性前言（W-87），無可測之功能行為	DR-21			VF664-inferred	
+SWE1-VC-TwoStagesVentedSeatsManagement-037	4859438	TwoStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859438 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-TwoStagesVentedSeatsManagement-038	4859439;4859440	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `Heated_Steats_Levels` 之值無匯流排對應：Three Levels；Two Levels	DR-21				
 SWE1-VC-TwoStagesVentedSeatsManagement-039	4859441	TwoStagesVentedSeatsManagement	W0									
-SWE1-VC-TwoStagesVentedSeatsManagement-040	4859442	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
-SWE1-VC-TwoStagesVentedSeatsManagement-041	4859443	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
-SWE1-VC-TwoStagesVentedSeatsManagement-042	4859444	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
+SWE1-VC-TwoStagesVentedSeatsManagement-040	4859442	TwoStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859442 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesVentedSeatsManagement-041	4859443	TwoStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859443 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesVentedSeatsManagement-042	4859444	TwoStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859444 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-TwoStagesVentedSeatsManagement-043	4859445	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-TwoStagesVentedSeatsManagement-044	4859446	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-TwoStagesVentedSeatsManagement-045	4859447	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-TwoStagesVentedSeatsManagement-046	4859448	TwoStagesVentedSeatsManagement	W0						screen	DR-5-B		
 SWE1-VC-TwoStagesVentedSeatsManagement-047	4859449	TwoStagesVentedSeatsManagement	W0						screen	DR-5-B		
 SWE1-VC-TwoStagesVentedSeatsManagement-048	4859450	TwoStagesVentedSeatsManagement	W0									
-SWE1-VC-TwoStagesVentedSeatsManagement-049	4859451	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
-SWE1-VC-TwoStagesVentedSeatsManagement-050	4859452	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
-SWE1-VC-TwoStagesVentedSeatsManagement-051	4859453	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
+SWE1-VC-TwoStagesVentedSeatsManagement-049	4859451	TwoStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859451 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesVentedSeatsManagement-050	4859452	TwoStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859452 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-TwoStagesVentedSeatsManagement-051	4859453	TwoStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859453 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-TwoStagesVentedSeatsManagement-052	4859454	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-TwoStagesVentedSeatsManagement-053	4859455	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-TwoStagesVentedSeatsManagement-054	4859456	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-TwoStagesVentedSeatsManagement-055	4859457;4859458	TwoStagesVentedSeatsManagement	W0									
 SWE1-VC-TwoStagesVentedSeatsManagement-056	4859459;4859460	TwoStagesVentedSeatsManagement	W0									
-SWE1-VC-ThreeStagesVentedSeatsManagement-060	4859464	ThreeStagesVentedSeatsManagement	W2		yes	B4-preamble	唯一來源條文為適用性前言（W-87），無可測之功能行為	DR-21			VF664-inferred	
+SWE1-VC-ThreeStagesVentedSeatsManagement-060	4859464	ThreeStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859464 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesVentedSeatsManagement-061	4859465	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `Heated_Steats_Levels` 之值無匯流排對應：Three Levels；Two Levels	DR-21				
 SWE1-VC-ThreeStagesVentedSeatsManagement-062	4859466	ThreeStagesVentedSeatsManagement	W0									
-SWE1-VC-ThreeStagesVentedSeatsManagement-063	4859467	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
+SWE1-VC-ThreeStagesVentedSeatsManagement-063	4859467	ThreeStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859467 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesVentedSeatsManagement-064	4859468	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-ThreeStagesVentedSeatsManagement-065	4859469	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
-SWE1-VC-ThreeStagesVentedSeatsManagement-066	4859470	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
+SWE1-VC-ThreeStagesVentedSeatsManagement-066	4859470	ThreeStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859470 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesVentedSeatsManagement-067	4859471	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-ThreeStagesVentedSeatsManagement-068	4859472	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-ThreeStagesVentedSeatsManagement-069	4859473	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-ThreeStagesVentedSeatsManagement-070	4859474	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-ThreeStagesVentedSeatsManagement-071	4859477	ThreeStagesVentedSeatsManagement	W0									
-SWE1-VC-ThreeStagesVentedSeatsManagement-072	4859478	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
-SWE1-VC-ThreeStagesVentedSeatsManagement-073	4859479	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
+SWE1-VC-ThreeStagesVentedSeatsManagement-072	4859478	ThreeStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859478 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
+SWE1-VC-ThreeStagesVentedSeatsManagement-073	4859479	ThreeStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859479 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesVentedSeatsManagement-074	4859480	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
-SWE1-VC-ThreeStagesVentedSeatsManagement-075	4859481	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
+SWE1-VC-ThreeStagesVentedSeatsManagement-075	4859481	ThreeStagesVentedSeatsManagement	W0		yes						R-VS51(2)：條文 4859481 標 Atlantis Mid，值域取 LID `Atlantis` 欄組（32 輪 W-90）	
 SWE1-VC-ThreeStagesVentedSeatsManagement-076	4859482	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-ThreeStagesVentedSeatsManagement-077	4859483	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-ThreeStagesVentedSeatsManagement-078	4859484	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
