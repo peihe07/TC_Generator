@@ -44,7 +44,9 @@ PREAMBLE = [re.compile(p, re.I) for p in (
     r"Following\s+requirements?\s+are\s+valid\s+only\s+if",
     r"The\s+requirements?\s+in\s+this\s+section\s+are\s+applicable",
     r"applicable\s+(?:for|to)\b[^.]{0,80}?\bonly\b",
-    r"This\s+section\s+applies")]
+    r"This\s+section\s+applies",
+    # 第五式（A-VS109，57 包 §3.2）—— `This section defines …`
+    r"This\s+section\s+defines")]
 
 
 def clause_pairs(text: str) -> dict[str, set[str]]:
@@ -97,6 +99,44 @@ def anchor_map(blocks: dict) -> dict[str, set[str]]:
     return out
 
 
+# ── R-VS57（59 包 §1）：L-VS2 三分 ────────────────────────────────
+# `MSG.Signal` 之引用。排除三段式路徑（`TLM.Display.GUI`）與純數字段，
+# 二者皆非 CAN 訊號引用（36 輪 W-98 實測之偽陽性）。
+SIG_REF = re.compile(r"\b([A-Z][A-Z0-9_]{2,})\.([A-Za-z]\w{2,})\b(?!\.)")
+
+
+def dbc_signals() -> set[str]:
+    """基線兩檔之全部 `SG_` 名（區分大小寫）—— L-VS2 之 PASS 集合。"""
+    out: set[str] = set()
+    for f in ("PDT27_E2A_R4_BHCAN.dbc", "PDT27_E2A_R5_FDCAN8.dbc"):
+        text = (FEAT / "inputs" / f).read_text(encoding="latin-1")
+        out |= set(re.findall(r"^\s*SG_\s+(\w+)", text, re.M))
+    return out
+
+
+def sourced_signals(blocks: dict) -> set[str]:
+    """有逐字來源之 signal 名 —— L-VS2 之 WARN 集合（PASS 以外者）。
+
+    來源之優先序（R-VS57）：CFTS044 條文之逐字 > LID 對應欄組之 `Signal Name`。
+    二者皆收；其不一致之偵測見 `lvs2_verdict()` 之呼叫端。
+    """
+    out: set[str] = set()
+    for blk in blocks.values():
+        out |= {m.group(2) for m in SIG_REF.finditer(blk["text"])}
+    with (FEAT / "data/lid_pairs.tsv").open(encoding="utf-8") as f:
+        out |= {r["signal"] for r in csv.DictReader(f, delimiter="\t") if r.get("signal")}
+    return out
+
+
+def lvs2_verdict(sig: str, in_dbc: set[str], sourced: set[str]) -> str:
+    """R-VS57：PASS／WARN／FAIL 三分。"""
+    if sig in in_dbc:
+        return "PASS"
+    if sig in sourced:
+        return "WARN"
+    return "FAIL"
+
+
 def adoption_map() -> set[tuple[str, str]]:
     """R-VS48′ 之採用表（(b)(c) 路須人讀，故以落檔之採用表回放）。"""
     d = json.loads((FEAT / "data/_w80_adopt.json").read_text())
@@ -109,6 +149,8 @@ def run() -> tuple[dict[str, str], dict[str, dict]]:
     adopt = adoption_map()              # R-VS48′
     blocks = {b["id"]: b for b in blocks_with_sec()}
     anchors = anchor_map(blocks)        # W-59
+    in_dbc = dbc_signals()              # R-VS57：L-VS2 之 PASS 集合
+    sourced = sourced_signals(blocks)   # R-VS57：WARN 集合
     preamble = {q for q, b in blocks.items()
                 if any(rx.search(re.sub(r"\s+", " ", b["text"])) for rx in PREAMBLE)}
 
@@ -142,6 +184,11 @@ def run() -> tuple[dict[str, str], dict[str, dict]]:
                     if not val:
                         continue
                     pairs.append((tok, val))
+                    # R-VS44(4)（57 包 §3.1）：每一個進入 TC 之 (token, 值)
+                    # 一律過閘，不限「需演繹」者。
+                    if guard_new_conclusion(tok, val, "resolved")[0] == "DR-CONFLICT":
+                        unresolved.add((tok, val))
+                        continue
                     dom = set(high.get(tok, ()))
                     if value_matched(val, dom):
                         continue
@@ -152,15 +199,77 @@ def run() -> tuple[dict[str, str], dict[str, dict]]:
                     # W-59：值之各段於他條文帶 `Nh:` 錨點者，視為已定位
                     hit = hit or bool({norm(x) for x in re.split(r"[/]{1,2}", val)}
                                       & anchors.get(tok, set()))
-                    if hit and guard_new_conclusion(tok, val, "resolved")[0] != "DR-CONFLICT":
-                        continue                      # R-VS44 未攔 → 採用
+                    if hit:
+                        continue                      # 已過閘（見上）→ 採用
                     unresolved.add((tok, val))
             gr, why = grade(text, pairs, unresolved)   # R-VS47
+            # R-VS55 ＋ R-VS57：分級須涵蓋 L-VS2，惟 WARN 類不判 W2
+            sigs = {m.group(2) for m in SIG_REF.finditer(text)}
+            verdicts = {sg: lvs2_verdict(sg, in_dbc, sourced) for sg in sigs}
+            if any(v == "FAIL" for v in verdicts.values()):
+                gr = "W2"
+                why = {**why, "blocker_class": "B5-signal-absent",
+                       "理由": "斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）"}
+            warn = sorted(sg for sg, v in verdicts.items() if v == "WARN")
             if best is None or order[gr] < order[best]:
-                best, note = gr, {"reqid": q, "arch_column": col, **why}
+                best = gr
+                note = {"reqid": q, "arch_column": col, **why}
+                if warn:
+                    note["dr_dependent"] = "DR-25"
+                    note["lvs2_warn"] = ";".join(warn)
         grades[leaf] = best or "W2"
         detail[leaf] = note
     return grades, detail
+
+
+def write_products(g: dict[str, str], d: dict[str, dict]) -> tuple[int, int]:
+    """R-VS53(1)：產物自本驅動重生。
+
+    **只改驅動所擁有之欄**（`writable`／`blocker_class`／`driver_reason`／
+    `dr_dependent`／`generatable`），其餘欄（`delegate`／`stable_core`／
+    `blocked_layer` 等人讀所得者）逐列保留 —— 覆寫它們會把人讀之結論
+    以機械結論取代，其失真不可逆。
+
+    `generatable` 之推導（自產物逐列反推所得，36 輪 W-98 實測 236/236 相符）：
+        yes ⟺ writable ∈ {W0, W1} ∧ delegate ∉ {blocked, pending}
+    """
+    changed = 0
+    wp = FEAT / "docs/reports/writability.tsv"
+    with wp.open(encoding="utf-8") as f:
+        rd = csv.DictReader(f, delimiter="\t")
+        cols, rows = rd.fieldnames, list(rd)
+    for r in rows:
+        leaf, note = r["leaf_id"], d.get(r["leaf_id"], {})
+        if r["writable"] != g.get(leaf, r["writable"]):
+            changed += 1
+        r["writable"] = g.get(leaf, r["writable"])
+        r["blocker_class"] = note.get("blocker_class", r.get("blocker_class", ""))
+        r["driver_reason"] = str(note.get("理由", r.get("driver_reason", "")))
+        if note.get("dr_dependent"):
+            r["dr_dependent"] = note["dr_dependent"]
+    with wp.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=cols, delimiter="\t", lineterminator="\n")
+        w.writeheader()
+        w.writerows(rows)
+
+    gp = FEAT / "docs/reports/generatable.tsv"
+    with gp.open(encoding="utf-8") as f:
+        rd = csv.DictReader(f, delimiter="\t")
+        cols, rows = rd.fieldnames, list(rd)
+    gen = 0
+    for r in rows:
+        leaf, note = r["leaf_id"], d.get(r["leaf_id"], {})
+        r["writable"] = g.get(leaf, r["writable"])
+        r["generatable"] = ("yes" if r["writable"] in ("W0", "W1")
+                            and r["delegate"] not in ("blocked", "pending") else "no")
+        if note.get("dr_dependent"):
+            r["dr_dependent"] = note["dr_dependent"]
+        gen += r["generatable"] == "yes"
+    with gp.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=cols, delimiter="\t", lineterminator="\n")
+        w.writeheader()
+        w.writerows(rows)
+    return changed, gen
 
 
 if __name__ == "__main__":
@@ -174,3 +283,6 @@ if __name__ == "__main__":
         print(f"與 {path.name} 逐 leaf 不一致：{len(diff)}")
         for k, a, b in diff:
             print(f"   {k:<46} 產物 {a} ／ 驅動 {b}   {str(d.get(k, {}).get('理由', ''))[:34]}")
+    if "--write" in sys.argv:
+        ch, gen = write_products(g, d)
+        print(f"產物重生：writable 變動 {ch} 列；generatable = yes {gen} 條")

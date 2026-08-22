@@ -1,0 +1,203 @@
+{
+ "batch": "batch05",
+ "feature": "vehicle_setting",
+ "test_group": "Vehicle Setting",
+ "generated_round": 24,
+ "handoff": "docs/handoff/43_review_round23.md",
+ "profile": "docs/runtime/profiles/FW036_R1L_VehicleSetting_Profile.md",
+ "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
+ "selection": "逐 Layer 2 輪流；餘量 Common Features 14／Vented Seat 11／Heated Steering Wheel 10／Heated Seat 4，配額 3／3／3／1。**選入 10 條，其中 2 條經 R-VS44′ 之閘攔下而移出，實際交付 8 條**",
+ "held_out": [
+  {
+   "leaf_id": "SWE1-VC-LeftFrontVentedSeat-012",
+   "reqid": "CFTS044-4858380",
+   "blocked_by": "DR-15（token 級）",
+   "reason": "其值 `[Not Pressed / VS_NOT_PSD]` 落在 DR-15 之 token 範圍內；斷言 `FL_VS_Tlm` 之 0/1 即預設了「請求訊號為 1 bit」之答案"
+  },
+  {
+   "leaf_id": "SWE1-VC-HeatedSteeringWheel-012",
+   "reqid": "CFTS044-4858531",
+   "blocked_by": "DR-15（token 級）",
+   "reason": "其值 `[Pressed / PSD]` 同上"
+  }
+ ],
+ "sibling_rows_injected": {
+  "note": "本批 8 條分屬四個 Layer 2、五個 Layer 3。跨批鏡像：`LeftFrontVentedSeat-010`／`HeatedSteeringWheel-011` 與 batch03 之 `LeftFrontHeatedSeat-012`／`RightFrontHeatedSeat-029` 同型（PowerMode 灰階）；`RightFrontVentedSeat-020` 與 batch04 之 `LeftFrontVentedSeat-003` 為左右鏡像；`HeatedSteeringWheel-007` 與 batch03 之 `LeftFrontHeatedSeat-007` 同型。",
+  "duplicate_of_found": "無 —— 同型各列之驗證對象分屬不同座椅或不同功能，訊號亦相異"
+ },
+ "tcs": [
+  {
+   "leaf_id": "SWE1-VC-LeftFrontVentedSeat-010",
+   "test_set": "Vented Seat",
+   "tc_title": "Left front vented seat switch greyed out outside ignition run",
+   "test_item": "If $PowerMode$ <> [Ignition run], the left front vented seat switch, shall be shown as greyed-out, with a status of OFF.\n\n(PowerMode other than ignition run)",
+   "pre_conditions": "1. The vehicle is equipped with vented front seats\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read the state of the left front vented seat switch and check that it is selectable\n3. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) and check that the left front vented seat switch is greyed out with a status of OFF",
+   "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. The left front vented seat switch reads selectable\n3. The left front vented seat switch is greyed out and shows a status of OFF",
+   "specification_reference": "CFTS044-4858378",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之驗證對象為左前通風座椅開關；batch03 之 LeftFrontHeatedSeat-012 為左前加熱座椅開關，-011 為加熱方向盤開關。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-RightFrontVentedSeat-020",
+   "test_set": "Vented Seat",
+   "tc_title": "Right front vented seat state set to off at wake-up",
+   "test_item": "When the HU wakes up on the BH-CAN bus, the HU shall set the RF vented seat state to OFF.\n\n(Wake-up initial state)",
+   "pre_conditions": "1. The vehicle is equipped with vented front seats\n2. The HU is in a sleep state on the BH-CAN bus\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FR_VS_STATSts = 3 (Vented_seat_high) and put the HU into a sleep state on the BH-CAN bus\n2. Wake the HU on the BH-CAN bus, open the Heated / Vented Seats screen and check that the right front vented seat state is OFF",
+   "expected_result": "1. The HU enters a sleep state on the BH-CAN bus\n2. The right front vented seat state is OFF",
+   "specification_reference": "CFTS044-4858392",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之驗證對象為右前通風座椅；batch04 之 LeftFrontVentedSeat-003 為左前通風座椅。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-HeatedSteeringWheel-007",
+   "test_set": "Heated Steering Wheel",
+   "tc_title": "Heated steering wheel display follows a changed status",
+   "test_item": "When the HU receives a $HSW_Stat_2$ signal, it shall compare to the stored state and , if different, replace the stored value with the new value and change the display to the new state.\n\n(Valid status change)",
+   "pre_conditions": "1. The vehicle is equipped with a heated steering wheel\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CLIMATE8.Tri_Level_HSW_StatSts = 0 (Heated_steering_wheel_off)\n2. Read the displayed state of the heated steering wheel and record as HSW_display_initial\n3. Send CAN: STATUS_CLIMATE8.Tri_Level_HSW_StatSts = 3 (Heated_steering_wheel_high) and check that the displayed state of the heated steering wheel changes from HSW_display_initial",
+   "expected_result": "1. STATUS_CLIMATE8.Tri_Level_HSW_StatSts = 0 (Heated_steering_wheel_off) is sent\n2. HSW_display_initial is recorded as off\n3. The heated steering wheel is displayed as high",
+   "specification_reference": "CFTS044-4858521",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之驗證對象為加熱方向盤之狀態更新；batch03 之 LeftFrontHeatedSeat-007 為左前加熱座椅之同型行為。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-HeatedSteeringWheel-011",
+   "test_set": "Heated Steering Wheel",
+   "tc_title": "Heated steering wheel switch greyed out outside ignition run",
+   "test_item": "If $PowerMode$ <> [Ignition run], the heated steering wheel switch, shall be shown as greyed-out, with a status of OFF.\n\n(PowerMode other than ignition run)",
+   "pre_conditions": "1. The vehicle is equipped with a heated steering wheel\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read the state of the heated steering wheel switch and check that it is selectable\n3. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) and check that the heated steering wheel switch is greyed out with a status of OFF",
+   "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. The heated steering wheel switch reads selectable\n3. The heated steering wheel switch is greyed out and shows a status of OFF",
+   "specification_reference": "CFTS044-4858530",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之驗證對象為加熱方向盤開關；LeftFrontVentedSeat-010 為左前通風座椅開關。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-044",
+   "test_set": "Common Features",
+   "tc_title": "Rear camera softkey turns the rear camera image on",
+   "test_item": "When the user presses the Rear Camera Softkey button, the HU shall receive the internal signal RVC IMAGE ON and shall display the image of the rear area of the vehicle.\n\n(Image on)",
+   "pre_conditions": "1. The vehicle is equipped with a rear camera\n2. The rear camera image is not displayed\n3. The Controls screen is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the state of the \"Rear Camera\" softkey button and check that it is displayed\n2. Press the \"Rear Camera\" softkey button and check that the image of the rear area of the vehicle is displayed",
+   "expected_result": "1. The \"Rear Camera\" softkey button reads displayed\n2. The image of the rear area of the vehicle is displayed",
+   "specification_reference": "CFTS044-4859039",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之觸發為按下 \"Rear Camera\" 軟鍵、結果為影像顯示；-045 之觸發為按下畫面右上角之 \"X\"、結果為影像關閉。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-045",
+   "test_set": "Common Features",
+   "tc_title": "Closing control turns the rear camera image off",
+   "test_item": "When the user presses the X on the top right corner of the HU screen, the HU shall receive the internal signal RVC IMAGE OFF and shall close the image of the rear area of the vehicle.\n\n(Image off)",
+   "pre_conditions": "1. The vehicle is equipped with a rear camera\n2. The image of the rear area of the vehicle is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the screen and check that the image of the rear area of the vehicle is displayed\n2. Press the \"X\" on the top right corner of the HU screen and check that the image of the rear area of the vehicle is closed",
+   "expected_result": "1. The image of the rear area of the vehicle is displayed\n2. The image of the rear area of the vehicle is closed",
+   "specification_reference": "CFTS044-4859040",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之觸發為按下畫面右上角之 \"X\"、結果為影像關閉；-044 之觸發為按下 \"Rear Camera\" 軟鍵、結果為影像顯示。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-ScreenOFF-047",
+   "test_set": "Common Features",
+   "tc_title": "Screen Off soft button defaults to on",
+   "test_item": "The default setting of the Screen Off soft button shall be ON.\n\n(Factory default state)",
+   "pre_conditions": "1. The HU has been reset to factory settings",
+   "input_test_data": "NA",
+   "test_procedure": "1. Power cycle the HU after the factory reset\n2. Open the Controls screen and check that the \"Screen Off\" soft button setting is ON",
+   "expected_result": "1. The HU completes start-up\n2. The \"Screen Off\" soft button setting is ON",
+   "specification_reference": "CFTS044-4859104",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列驗 \"Screen Off\" 軟鍵之出廠預設為 ON；batch04 之 ThirdRowHeadrestDump-040 驗後視攝影機設定之出廠預設為 OFF。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-TwoStagesHeatedSeat-057",
+   "test_set": "Heated Seat",
+   "tc_title": "Heated seat icon cycles off to high to low to off",
+   "test_item": "WHEN the user press the heated seats icons on TLM.Display.GUI, the relative icons status shall follow the logic descibed below (off -> high -> low -> off)\n\n(Two-stage icon cycle on repeated press)",
+   "pre_conditions": "1. The vehicle is configured for two heated seat states\n2. The heated seat icon status is off\n3. The ignition is in the Ignition On condition",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the heated seat icon and check that its status changes to high\n2. Press the heated seat icon and check that its status changes to low\n3. Press the heated seat icon and check that its status changes to off",
+   "expected_result": "1. The heated seat icon status is high\n2. The heated seat icon status is low\n3. The heated seat icon status is off",
+   "specification_reference": "CFTS044-4859379",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P0",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列驗連續按壓下圖示狀態之循環（off→high→low→off），驗證對象為畫面圖示狀態；其餘各列皆非循環行為。"
+   },
+   "dr15_exposed": "no",
+   "dr15_exposed_note": "驗證目標為畫面狀態循環，未斷言請求訊號之編碼（44 包 §3）",
+   "reasoning": "P0(b)：加熱座椅之按壓啟用"
+  }
+ ],
+ "reasoning": "本批依逐 Layer 2 輪流選入 10 條，其中 2 條經 R-VS44′ 之閘攔下而移出（見 held_out），實際交付 8 條。驗證目標為通風座椅與加熱方向盤之灰階與狀態更新、後視攝影機影像之開關、Screen Off 軟鍵之出廠預設、以及兩階加熱座椅圖示之循環。訊號值一律取 DBC VAL_ 逐字；`RVC IMAGE ON/OFF` 為內部訊號，依 §8.7.5(d) 保留來源名不加 `$`，其驗證改以可觀察之畫面結果為之。切分依 §4.6 之 sibling 比對，含跨批同型比對，無 duplicate_of。**`TwoStagesHeatedSeat-057` 之 ER 只斷言畫面圖示之狀態循環，不斷言請求訊號之編碼** —— 後者為 DR-15 之提問標的（token 級，待覆），依 R-VS44′ 不得由本層之判準解答。",
+ "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
+ "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值"
+}

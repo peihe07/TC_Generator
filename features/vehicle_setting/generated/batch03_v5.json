@@ -1,0 +1,244 @@
+{
+ "batch": "batch03",
+ "feature": "vehicle_setting",
+ "test_group": "Vehicle Setting",
+ "generated_round": 22,
+ "handoff": "docs/handoff/41_review_round21.md",
+ "profile": "docs/runtime/profiles/FW036_R1L_VehicleSetting_Profile.md",
+ "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
+ "selection": "穩定核心（generatable = yes ∧ quoted_form_risk = no）72 條中，扣已用 12，可選 59，依 reqid 升冪取 10",
+ "sibling_rows_injected": {
+  "note": "本批 10 條分屬三個 Layer 3；其中四對為左右鏡像（`-003`/`-022`、`-007`/`-025`、`-008`/`-026`、`-012`/`-029`），全數互為 sibling 候選（canon §4.1.4(2)）。逐對比對 trigger + outcome + input + verification target。",
+  "rows": [
+   "[row #1] HeatedSteeringWheelManagement-027 — DriverSide = Right Side → HSW 圖示鏡射至右側",
+   "[row #2] LeftFrontHeatedSeat-003 — BH-CAN 喚醒 → LF 顯示為 off",
+   "[row #3] LeftFrontHeatedSeat-007 — 收到 HeatedSeatFL 且與儲存值相異且有效 → 更新顯示",
+   "[row #4] LeftFrontHeatedSeat-008 — 收到無效 HeatedSeatFL → 忽略",
+   "[row #5] LeftFrontHeatedSeat-012 — PowerMode <> Ignition run → LF 開關灰階、狀態 OFF",
+   "[row #6] LeftFrontHeatedSeat-014 — 續送 FL_HS_RQ = Not Pressed",
+   "[row #7] RightFrontHeatedSeat-022 — BH-CAN 喚醒 → RF 狀態設為 OFF",
+   "[row #8] RightFrontHeatedSeat-025 — 收到 HeatedSeatFR 且相異且有效 → 更新顯示",
+   "[row #9] RightFrontHeatedSeat-026 — 收到無效 HeatedSeatFR → 忽略",
+   "[row #10] RightFrontHeatedSeat-029 — PowerMode <> Ignition run → RF 開關灰階、狀態 OFF"
+  ],
+  "duplicate_of_found": "無 —— 四對左右鏡像之 verification target 分屬不同座椅（FL vs FR），其訊號亦相異（FL_HS_STATSts vs FR_HS_STATSts），非 §10.6 之嚴格等價"
+ },
+ "tcs": [
+  {
+   "leaf_id": "SWE1-VC-HeatedSteeringWheelManagement-027",
+   "test_set": "Common Features",
+   "tc_title": "Right-hand drive mirrors the heated steering wheel icon to the right",
+   "test_item": "If $DriverSide$ = [Right Side], the HU shall mirror the location of the Heated Steering Wheel Icon, showing it in the right side of the Heated / Vented Seats screen.\n\n(Right-hand drive icon placement)",
+   "pre_conditions": "1. The vehicle is equipped with a heated steering wheel\n2. PROXI Driver_Side = 0 (Left Side)\n3. The Heated / Vented Seats screen is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the position of the heated steering wheel icon on the Heated / Vented Seats screen and record as HSW_icon_position_initial\n2. Set PROXI Driver_Side = 1 (Right Side)\n3. Power cycle the HU so that the configuration is applied\n4. Open the Heated / Vented Seats screen and check that the heated steering wheel icon is on the opposite side from HSW_icon_position_initial",
+   "expected_result": "1. HSW_icon_position_initial is recorded\n2. PROXI Driver_Side = 1 (Right Side) is accepted\n3. The HU completes start-up\n4. The heated steering wheel icon is shown on the right side of the Heated / Vented Seats screen, mirrored from HSW_icon_position_initial",
+   "specification_reference": "CFTS044-4858299\nCFTS044-4859494",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "mode",
+    "delta": "本列之觸發為 PROXI Driver_Side 之配置，驗證對象為加熱方向盤圖示之左右位置；其餘九列皆非圖示位置。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-003",
+   "test_set": "Common Features",
+   "tc_title": "Left front heated seat shows off after wake-up until status arrives",
+   "test_item": "When the HU wakes up on the BH-CAN bus, the HU shall show the Front Left Heated Seat as off until it receives a status update on CAN.\n\n(Wake-up before first status)",
+   "pre_conditions": "1. The vehicle is equipped with heated front seats\n2. The HU is in a sleep state on the BH-CAN bus\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Wake the HU on the BH-CAN bus without sending any STATUS_CSWM.FL_HS_STATSts frame\n2. Open the Heated / Vented Seats screen and check that the left front heated seat is shown as off",
+   "expected_result": "1. The HU completes wake-up on the BH-CAN bus\n2. The left front heated seat is shown as off",
+   "specification_reference": "CFTS044-4858302",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列驗左前座椅於喚醒後、首次狀態更新前顯示為 off；-022 驗右前座椅於喚醒時狀態被設為 OFF。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-007",
+   "test_set": "Common Features",
+   "tc_title": "Left front heated seat display follows a changed valid status",
+   "test_item": "When the HU receives a $HeatedSeatFL$ signal, it shall compare to the stored state and, if different, and valid, replace the stored value with the new value and change the display to the new state.\n\n(Valid status change)",
+   "pre_conditions": "1. The vehicle is equipped with heated front seats\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off)\n2. Read the displayed state of the left front heated seat and record as HS_FL_display_initial\n3. Send CAN: STATUS_CSWM.FL_HS_STATSts = 3 (Heated_seat_high) and check that the displayed state of the left front heated seat changes from HS_FL_display_initial",
+   "expected_result": "1. STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off) is sent\n2. HS_FL_display_initial is recorded as off\n3. The left front heated seat is displayed as high",
+   "specification_reference": "CFTS044-4858309",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列送有效值 3 (Heated_seat_high) 且期望顯示變更；-008 送無效值 2 (Heated_seat_medium) 且期望顯示不變。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-008",
+   "test_set": "Common Features",
+   "tc_title": "Left front heated seat ignores an invalid status value",
+   "test_item": "The HU shall ignore invalid $HeatedSeatFL$ signals, if received.\n\n(Two-state vehicle, medium is invalid)",
+   "pre_conditions": "1. The vehicle is configured for the two-stage seat setting (LO and HI), whose valid states are Off, Low and High\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FL_HS_STATSts = 1 (Heated_seat_low)\n2. Read the displayed state of the left front heated seat and record as HS_FL_display_initial\n3. Send CAN: STATUS_CSWM.FL_HS_STATSts = 2 (Heated_seat_medium) and check that the displayed state of the left front heated seat is unchanged from HS_FL_display_initial",
+   "expected_result": "1. STATUS_CSWM.FL_HS_STATSts = 1 (Heated_seat_low) is sent\n2. HS_FL_display_initial is recorded as low\n3. The left front heated seat is still displayed as low, unchanged from HS_FL_display_initial",
+   "specification_reference": "CFTS044-4858310",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "priority": "P2",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "本列送無效值 2 (Heated_seat_medium) 且期望顯示不變；-007 送有效值 3 (Heated_seat_high) 且期望顯示變更。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P2：無效值之忽略"
+  },
+  {
+   "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-012",
+   "test_set": "Common Features",
+   "tc_title": "Left front heated seat switch greyed out outside ignition run",
+   "test_item": "If $PowerMode$ <> [Ignition run], the left front heated seat switch, shall be shown as greyed-out, with a status of OFF.\n\n(PowerMode other than ignition run)",
+   "pre_conditions": "1. The vehicle is equipped with heated front seats\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read the state of the left front heated seat switch and check that it is selectable\n3. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) and check that the left front heated seat switch is greyed out with a status of OFF",
+   "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. The left front heated seat switch reads selectable\n3. The left front heated seat switch is greyed out and shows a status of OFF",
+   "specification_reference": "CFTS044-4858318",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之驗證對象為左前加熱座椅開關之灰階；-029 之驗證對象為右前加熱座椅開關。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-014",
+   "test_set": "Common Features",
+   "tc_title": "Left front heated seat request returns to not pressed",
+   "test_item": "The HU shall follow this signal with an on change $FL_HS_RQ$ = [Not Pressed / HS_NOT_PSD] within a time period of <Tsend>.\n\n(Release after a press)",
+   "pre_conditions": "1. The vehicle is equipped with heated front seats\n2. The Heated / Vented Seats screen is displayed\n3. BH-CAN is connected to the bus simulator with signal tracing enabled",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the signal TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm and check that it is 0 (Not_Pressed)\n2. Press the left front heated seat switch on the Heated / Vented Seats screen\n3. Read the signal TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm and check that it has returned to 0 (Not_Pressed)",
+   "expected_result": "1. The signal TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm reads 0 (Not_Pressed)\n2. TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm = 1 (Pressed) is sent\n3. The signal TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm reads 0 (Not_Pressed) after the press",
+   "specification_reference": "CFTS044-4858320",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "timing",
+    "delta": "本列驗按下後請求訊號於 <Tsend> 內回到 0 (Not_Pressed)；其餘各列皆非請求訊號之時序。"
+   },
+   "dr15_exposed": "yes",
+   "remarks": "BLOCKED: DR-24′ —— 來源之時限 `<Tsend>` 無具體值，時限之驗證不寫入 expected_result（42 包 §3.2、canon §8.7.1）",
+   "dr_dependent": "DR-24′",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-RightFrontHeatedSeat-022",
+   "test_set": "Common Features",
+   "tc_title": "Right front heated seat state set to off at wake-up",
+   "test_item": "When the HU wakes up on the BH-CAN bus, the HU shall set the RF heated seat state to OFF.\n\n(Wake-up initial state)",
+   "pre_conditions": "1. The vehicle is equipped with heated front seats\n2. The HU is in a sleep state on the BH-CAN bus\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FR_HS_STATSts = 3 (Heated_seat_high) and put the HU into a sleep state on the BH-CAN bus\n2. Wake the HU on the BH-CAN bus, open the Heated / Vented Seats screen and check that the right front heated seat state is OFF",
+   "expected_result": "1. The HU enters a sleep state on the BH-CAN bus\n2. The right front heated seat state is OFF",
+   "specification_reference": "CFTS044-4858332",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列驗右前座椅於喚醒時狀態被設為 OFF；-003 驗左前座椅於喚醒後、首次狀態更新前顯示為 off。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-RightFrontHeatedSeat-025",
+   "test_set": "Common Features",
+   "tc_title": "Right front heated seat display follows a changed valid status",
+   "test_item": "When the HU receives an $HeatedSeatFR$ signal, it shall compare to the stored state and, if different, and valid, replace the stored value with the new value and change the display to the new state.\n\n(Valid status change)",
+   "pre_conditions": "1. The vehicle is equipped with heated front seats\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FR_HS_STATSts = 0 (Heated_seat_off)\n2. Read the displayed state of the right front heated seat and record as HS_FR_display_initial\n3. Send CAN: STATUS_CSWM.FR_HS_STATSts = 3 (Heated_seat_high) and check that the displayed state of the right front heated seat changes from HS_FR_display_initial",
+   "expected_result": "1. STATUS_CSWM.FR_HS_STATSts = 0 (Heated_seat_off) is sent\n2. HS_FR_display_initial is recorded as off\n3. The right front heated seat is displayed as high",
+   "specification_reference": "CFTS044-4858339",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之驗證對象為右前座椅之 $STATUS_CSWM.FR_HS_STATSts$；-007 之驗證對象為左前座椅之 $STATUS_CSWM.FL_HS_STATSts$。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  },
+  {
+   "leaf_id": "SWE1-VC-RightFrontHeatedSeat-026",
+   "test_set": "Common Features",
+   "tc_title": "Right front heated seat ignores an invalid status value",
+   "test_item": "The HU shall ignore invalid $HeatedSeatFR$ signals, if received.\n\n(Two-state vehicle, medium is invalid)",
+   "pre_conditions": "1. The vehicle is configured for two heated seat states, Off and Low and High\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FR_HS_STATSts = 1 (Heated_seat_low)\n2. Read the displayed state of the right front heated seat and record as HS_FR_display_initial\n3. Send CAN: STATUS_CSWM.FR_HS_STATSts = 2 (Heated_seat_medium) and check that the displayed state of the right front heated seat is unchanged from HS_FR_display_initial",
+   "expected_result": "1. STATUS_CSWM.FR_HS_STATSts = 1 (Heated_seat_low) is sent\n2. HS_FR_display_initial is recorded as low\n3. The right front heated seat is still displayed as low, unchanged from HS_FR_display_initial",
+   "specification_reference": "CFTS044-4858340",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "priority": "P2",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "本列之驗證對象為右前座椅之無效值忽略；-008 之驗證對象為左前座椅。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P2：無效值之忽略"
+  },
+  {
+   "leaf_id": "SWE1-VC-RightFrontHeatedSeat-029",
+   "test_set": "Common Features",
+   "tc_title": "Right front heated seat switch greyed out outside ignition run",
+   "test_item": "If $PowerMode$ <> [Ignition run], the right front heated seat switch, shall be shown as greyed-out, with a status of OFF.\n\n(PowerMode other than ignition run)",
+   "pre_conditions": "1. The vehicle is equipped with heated front seats\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read the state of the right front heated seat switch and check that it is selectable\n3. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) and check that the right front heated seat switch is greyed out with a status of OFF",
+   "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. The right front heated seat switch reads selectable\n3. The right front heated seat switch is greyed out and shows a status of OFF",
+   "specification_reference": "CFTS044-4858348",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之驗證對象為右前加熱座椅開關之灰階；-012 之驗證對象為左前加熱座椅開關。"
+   },
+   "dr15_exposed": "no",
+   "reasoning": "P1：主要功能邏輯"
+  }
+ ],
+ "reasoning": "本批自穩定核心（generatable = yes ∧ quoted_form_risk = no）之 72 條中扣已用 12、可選 59，依 reqid 升冪取 10。驗證目標為加熱座椅之喚醒初始狀態、有效狀態更新、無效值忽略、電源模式下之灰階、請求訊號之釋放時序，以及右駕配置下加熱方向盤圖示之鏡射。關鍵情境條件以 CAN-B 之 $STATUS_CSWM.FL_HS_STATSts$／$FR_HS_STATSts$、$STATUS_BH_BCM2.CmdIgnSts$、BH-CAN 之 $TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm$ 與 PROXI Driver_Side 驅動，值一律取 DBC VAL_ 逐字。切分依 §4.6 之 sibling 比對，四對左右鏡像逐對比對後無 duplicate_of，十列全數輸出 distinguishing_axis。值域演繹：$PowerMode$ 之 [Ignition run] 依跨條文錨點 [4h:Ignition run]（全文 5 處）解為 4 (RUN)，非 R-VS43 之演繹而是來源自載原始碼值；$FL_HS_RQ$ 之 [Not Pressed / HS_NOT_PSD] 依錨點 0h: not pressed 解為 0 (Not_Pressed)。無效值之依據為 4858307 逐字「For vehicles with two states (i.e. LO and HI) … Valid values … HS_OFF, HS_LO, HS_HI」，故 2 (Heated_seat_medium) 於二階配置下為無效，非本層造值；三階配置之分支由 4858308 擁有（§8.2.1）。",
+ "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
+ "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值"
+}

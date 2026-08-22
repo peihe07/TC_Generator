@@ -336,6 +336,10 @@ defined by HMI requirements.`
 
 ## DR-21（**類別式，B2**，依 **R-VS42** 改制於 20 輪；Urgency High）
 
+> **36 輪 D-3 註記**：本 DR 之 `*_Cmd_Tlm` 部分（`FL_HS_Cmd_Tlm`／
+> `FR_HS_Cmd_Tlm`／`FL_VS_Cmd_Tlm`／`FR_VS_Cmd_Tlm` 四者）**由 DR-25 承載**
+> （57 包 §2）；本 DR 保留其餘 token。
+
 **型別（R-VS45）：**型 A**（規格缺陷，B2 類）**
 
 **類別：規格值於 LID 與 DBC 皆無對應。**
@@ -638,49 +642,100 @@ and appear as a concrete value in the Pre-Condition, never vague language.`
 
 ---
 
-## DR-25（新，**Urgency High** —— 阻塞剩餘全池 33 leaf；35 輪 W-91 開立，分析層擬）
+## DR-25（**Urgency Medium** —— 依 R-VS57 由 High 降級，性質由阻塞轉確認；35 輪 W-91 開立、36 輪 D-3 依 57 包 §2 全文改寫）
 
-**型別（R-VS45）：型 B — 素材缺件。**
+**型別（R-VS45）：型 A/B 兼具**（分析層 57 包 §2）。
 
 **成對之 anomaly：A-VS110。**
 
-本 feature 之基線 CAN 為 `PDT27_E2A_R4_BHCAN.dbc` ＋ `PDT27_E2A_R5_FDCAN8.dbc`
-（R-VS8；兩檔 `VersionYear` = 25、`VersionWeek` = 50）。
+**條文逐字轉錄自 `docs/handoff/57_review_round35.md` §2：**
 
-CFTS044 之 `1.3.3.3.2.1`／`1.3.3.3.3.1`／`1.3.3.3.4.1`／`1.3.3.3.5.1` 四節
-共 33 個 in-scope leaf，其 `THEN` 之賦值目標為：
+```
+DR-25（分析層擬，Urgency High，型 A/B 兼具）
+CFTS044 之 33 個 SWE leaf（`EE Architecture: Atlantis Mid`）其行為賦值於
+    TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm ／ .FR_HS_Cmd_Tlm
+    TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm
+三者於本專案之基線 CAN 資料庫
+（`PDT27_E2A_R4_BHCAN.dbc`／`PDT27_E2A_R5_FDCAN8.dbc`，
+ VersionYear 25／VersionWeek 50）中**皆不存在**（`SG_` 命中各 0）；
+基線僅有 `TELEMATIC_VEHICLE_SETUP3`。
 
-    TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm     11 leaf
-    TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm     11 leaf
-    TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm    11 leaf
+而 `Logical Identifiers and CAN Mapping v1.76` 之 `Atlantis` 欄組
+確載其值域（列 763：`0 = Heated_seat_off` … `3 = Heated_seat_high`）。
 
-該三個 signal 於基線兩檔之 `SG_` 命中**各為 0**。
-該 33 條之 `EE Architecture` 皆為 **`Atlantis Mid`**。
+請確認：
+(a) 承載該三訊號之 CAN 資料庫為何？（請提供）；或
+(b) 該等訊號不適用於 R1LR，其對應之 CFTS044 條文於本專案不需驗證？
 
-LID `CAN Mapping` 列 763（`FL_HS_RQ2`）之 **`Atlantis` 欄組**確有其對映與值域
-（`0 = Heated_seat_off`／`1 = Heated_seat_low`／`2 = Heated_seat_medium`／
-`3 = Heated_seat_high`），且該列之 `Atlantis High` 欄組標 `ATL_HIGH_EMPTY`。
+影響：33 個 SWE leaf 之 TC 無法寫出可執行之訊號斷言。
+若為 (b)，我方之適用性判準（`Radio` ＋ `ECU`）須修訂。
+```
 
-**即：對映與值域皆有來源，唯獨匯流排定義本身（DBC）沒有。**
+---
 
-依 R-VS9(1)′（拼寫以 DBC 為第一權威）與 L-VS2（不存在於基線 DBC 者 FAIL），
-該 33 leaf **不可寫出通過自檢之 TC**。
+### 兩種讀法（57 包 §2，逐字）
 
-**請提供下列之一：**
+| 讀法 | 意涵 |
+|---|---|
+| (a) **素材缺件** | 承載 Mid 網段之 DBC 我方未持有 |
+| (b) **R-VS19″ 判錯** | 該等條文屬 Atlantis Mid 專屬，其訊號不在本專案之匯流排上 —— 即不適用 R1LR |
 
-  (1) `Atlantis Mid` 網段之 DBC（含 `TELEMATIC_VEHICLE_SETUP`／
-      `TELEMATIC_VEHICLE_SETUP2` 之 `FL_HS_Cmd_Tlm`／`FR_HS_Cmd_Tlm`／
-      `FL_VS_Cmd_Tlm` 定義），或
-  (2) 裁定該 33 leaf 之處置 —— 標 BLOCKED 並自 `generatable` 池移出，
-      或裁定以 LID `Atlantis` 欄組之值域為權威而豁免 L-VS2
+**(b) 若成立，R-VS19″ 之 `Radio`／`ECU` 判準即不足** ——
+`Radio` 含 R1L 只表示該條文之文字涵蓋該車型，不表示其訊號在本專案佈線上存在。
 
-**不採第三路**：以 `Atlantis High` 之對稱訊號（列 762 之
-`TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm`）代之 —— 其為跨列引入，
-與 A-VS103 之處置一致，屬裁定事項而非執行層自裁。
+### 依 R-VS57 之降級（59 包 §1，Pei 2026-08-22）
 
-**影響**：`generatable = 108` 中已交付 76、DR 阻斷 3（A-VS110 以外之
-`HeatedSteeringWheel-012`／`PHEVFeatures-017`／`FeaturesEnableCriteria-023`，
-見 A-VS109／A-VS111／A-VS112），**其餘 33 全數落於本 DR**。
-即 **本 feature 之可生成池於本 DR 覆前為 0**。
+L-VS2 改三分後，該 33 條判 **WARN** 而非 FAIL：
+訊號名取 CFTS044 條文／LID `Atlantis` 欄組之逐字來源，**照常撰寫 TC**，
+並標 `dr_dependent = DR-25`。
+
+故本 DR 之性質由「阻塞」轉為「確認」，**Urgency High → Medium**：
+
+  覆後為 **(a)** —— 以該 DBC 複驗訊號名與值域
+  覆後為 **(b)** —— `dr_dependent = DR-25` 之 TC **逐條撤回**
+
+**須向客戶揭露之風險（59 包 §2）**：該 33 條 TC 之訊號斷言指向基線 DBC
+中不存在之訊號，**執行時無法在現行 CAN 環境上跑**。
+其為已知且已標記之狀態，非缺陷；交付前須揭露該依賴。
+
+### 與 DR-21 之關係（57 包 §2）
+
+**DR-21 之 `*_Cmd_Tlm` 大宗即此。DR-25 取代其中該部分之提問**，
+DR-21 保留其餘 token。
+
+**狀態：未送出。**
+
+---
+
+## DR-26（新，**Urgency Low** —— 阻塞 1 個比較步驟；36 輪 W-101(3) 開立）
+
+**型別（R-VS45）：型 A — 規格缺陷（未載之狀態）。**
+
+**成對之 anomaly：A-VS113。**
+
+`CFTS044-4859031`（1.3.2.1.22）逐字為：
+
+```
+The Rear View Camera soft button shall be selectable only when the signal
+$PowerMode$ = [IGN_RUN].
+```
+
+該條文載明 `IGN_RUN` 時**可選**，**未載** `IGN_RUN` 以外時該按鍵之狀態 ——
+其可能為「不可選（灰階）」、「不顯示」、或「顯示而不回應」，三者皆與
+`selectable only when` 相容。
+
+**請確認**：`$PowerMode$ ≠ [IGN_RUN]` 時，Rear View Camera soft button 之
+狀態為下列何者？
+
+  (a) 顯示但不可選（灰階）
+  (b) 不顯示
+  (c) 顯示且可選但不回應
+
+**影響**：`SWE1-VC-ThirdRowHeadrestDump-038` 之步驟 2 記錄 `RVC_button_ign_lk`
+而其比較之期望值無來源。依 canon §8.4.3 標 `PENDING: DR-26`。
+
+**背景**：35 輪本層曾自 tc_title 與條文推得 `not selectable` 並列供覆核；
+57 包 §3.3 判其為**造值**（§8.4.1：推論即造值），令退回記錄形態。
+本 DR 即該退回所留下之缺口。
 
 **狀態：未送出。**

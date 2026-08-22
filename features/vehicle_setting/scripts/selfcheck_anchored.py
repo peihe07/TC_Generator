@@ -17,17 +17,20 @@ FEAT = Path(__file__).resolve().parents[1]
 
 # (被檢輸入, 錨點) —— 錨點為同一 batch 之改寫前版本
 PAIRS = [
-    ("generated/batch01_v5.json", "generated/batch01_v4.json"),
-    ("generated/batch02_v3.json", "generated/batch02_v2.json"),
-    ("generated/batch03_v4.json", "generated/batch03_v3.json"),
-    ("generated/batch04_v5.json", "generated/batch04_v4.json"),
-    ("generated/batch05_v3.json", "generated/batch05_v2.json"),
-    ("generated/batch06_v3.json", "generated/batch06_v2.json"),
-    ("generated/batch07_v3.json", "generated/batch07_v2.json"),
-    ("generated/batch08_v4.json", "generated/batch08_v3.json"),
-    ("generated/batch10_v3.json", "generated/batch10_v2.json"),
-    ("generated/batch11_v3.json", "generated/batch11_v2.json"),
-    ("generated/batch12_v3.json", "generated/batch12_v2.json"),
+    ("generated/batch01_v6.json", "generated/batch01_v5.json"),
+    ("generated/batch02_v4.json", "generated/batch02_v3.json"),
+    ("generated/batch03_v5.json", "generated/batch03_v4.json"),
+    ("generated/batch04_v6.json", "generated/batch04_v5.json"),
+    ("generated/batch05_v4.json", "generated/batch05_v3.json"),
+    ("generated/batch06_v4.json", "generated/batch06_v3.json"),
+    ("generated/batch07_v4.json", "generated/batch07_v3.json"),
+    ("generated/batch08_v5.json", "generated/batch08_v4.json"),
+    ("generated/batch10_v4.json", "generated/batch10_v3.json"),
+    ("generated/batch11_v4.json", "generated/batch11_v3.json"),
+    ("generated/batch12_v4.json", "generated/batch12_v3.json"),
+    # batch13 為首版，無「改寫前之舊版」可用 —— 依 R-VS54(1) 改以
+    # 刻意違規之樣本為錨點（四處植入，見該檔之 `revision`）。
+    ("generated/batch13.json", "generated/_batch13_anchor.json"),
 ]
 
 

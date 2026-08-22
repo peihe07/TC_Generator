@@ -30,8 +30,39 @@ def _dbc_vals() -> dict[str, dict[str, str]]:
 
 
 DBC_VALS = _dbc_vals()
+
+def _lid_vals() -> dict[str, dict[str, str]]:
+    """R-VS57 之 WARN 集合 —— LID `Atlantis` 欄組之 raw → label（逐字）。
+
+    同一 signal 有多筆列舉者逐筆併入；`FL_VS_Cmd_Tlm` 之 `Heated_seat_*`
+    依 52 包 §3 判 typo，其 `Vented_Seat_*` 之一筆後寫而勝出。
+    """
+    raw = json.loads((FEAT / "data/_lid_argroups.json").read_text())["Atlantis"]
+    out: dict[str, dict[str, str]] = {}
+    for sig, forms in raw.items():
+        for form in forms:
+            for num, lab in re.findall(r"(\d+)\s*=\s*([^\n=]+)", form):
+                out.setdefault(sig, {})[num] = lab.strip()
+    return out
+
+
+LID_VALS = _lid_vals()
+
 TITLE_MODALS = re.compile(r"\b(should|will|shall|properly|successfully)\b", re.I)
 
+
+# ── W-101(2)：SWC 0708 交付本 `下拉選單` 分頁之受控值域（9 值）────────
+CONTROLLED_DOMAIN = frozenset({
+    "功能測試 (Functional based ; no specific technique)",
+    "狀態轉換 (State Transition Testing)",
+    "決策表 (Decision Table Testing)",
+    "等價劃分 (Equivalence Partitioning, EP)",
+    "邊界值分析 (Boundary Value Analysis, BVA)",
+    "組合測試 (Combinatorial Testing ; Pairwise / t-wise)",
+    "情境 / 用例 (Scenario / Use Case Testing)",
+    "負向測試 (Negative / Invalid)",
+    "基礎故障注入 (Fault Injection Lite)",
+})
 
 def items(field: str) -> list[str]:
     """以編號行切出 numbered item（續行併入其 item）——§11 之規制單位。"""
@@ -76,6 +107,15 @@ def check(tc: dict) -> list[str]:
         e.append(f"§6 {tid}: procedure {len(p)} 步 vs ER {len(r)} 條，非 1:1")
     if tc["priority"] not in ("P0", "P1", "P2", "P3"):
         e.append(f"§10.2 {tid}: priority 非 P0–P3")
+    if tc["priority"] == "P3":
+        e.append(f"R-VS56 {tid}: P3 不使用")
+    # R-VS56：Priority 之所依類別須可覆核
+    if not re.match(r"P[012](\(|：)", str(tc.get("reasoning", ""))):
+        e.append(f"R-VS56 {tid}: reasoning 未記 Priority 所依類別")
+    # W-101(2)：design_method 須落在交付本之受控值域（9 值）
+    if tc["design_method"] not in CONTROLLED_DOMAIN:
+        e.append(f"W-101(2) {tid}: design_method 不在交付本之受控值域 —— "
+                 f"{tc['design_method']!r}")
     for ln in tc["specification_reference"].split("\n"):
         if not re.fullmatch(r"CFTS044-\d{7}", ln.strip()):
             e.append(f"§10.7 {tid}: spec_ref 格式 —— {ln}")
@@ -108,11 +148,20 @@ def check(tc: dict) -> list[str]:
     for it in items(tc["test_procedure"]) + items(tc["expected_result"]):
         # R-VS52（34 輪）：訊號名不再以 `$` 包夾 —— 舊式 regex 於新形態下靜默失效
         m = re.search(r"\b[A-Z][A-Z0-9_]+\.(\w+)\s*=\s*(\d+)\s*\(([^)]+)\)", it)
-        if m and m.group(1) not in DBC_VALS:
-            e.append(f"L-VS2 {tid}: signal {m.group(1)} 不在基線 DBC")
-        elif m and DBC_VALS[m.group(1)].get(m.group(2)) != m.group(3):
-            e.append(f"R-VS39 {tid}: {m.group(1)} 之 {m.group(2)} 標籤非 DBC VAL_ 逐字 —— "
-                     f"見 {m.group(3)!r}，DBC 為 {DBC_VALS[m.group(1)].get(m.group(2))!r}")
+        if not m:
+            continue
+        sig, raw, label = m.group(1), m.group(2), m.group(3)
+        # R-VS57（59 包 §1）：L-VS2 三分 —— PASS／WARN／FAIL
+        if sig in DBC_VALS:                                     # PASS
+            if DBC_VALS[sig].get(raw) != label:
+                e.append(f"R-VS39 {tid}: {sig} 之 {raw} 標籤非 DBC VAL_ 逐字 —— "
+                         f"見 {label!r}，DBC 為 {DBC_VALS[sig].get(raw)!r}")
+        elif sig in LID_VALS:                                   # WARN
+            if LID_VALS[sig].get(raw) != label:
+                e.append(f"R-VS39 {tid}: {sig} 之 {raw} 標籤非 LID 逐字 —— "
+                         f"見 {label!r}，LID 為 {LID_VALS[sig].get(raw)!r}")
+        else:                                                   # FAIL
+            e.append(f"L-VS2 {tid}: signal {sig} 不在基線 DBC，且無逐字來源（FAIL）")
     return e
 
 
