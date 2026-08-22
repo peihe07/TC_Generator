@@ -213,3 +213,46 @@ CFTS044 之座椅相關值域中，發現四類書寫問題，請確認其為筆
 我方已依內部判準處理（正規化計數、原值保留），**本請求為確認而非阻塞**。
 
 **狀態：未送出**（送出屬 Pei）。配對 anomaly：A-VS49／A-VS51／A-VS52／A-VS53。
+
+## DR-19（新，**Urgency High** —— **阻塞 3 個 leaf**；17 輪 W-53 開立）
+
+**`EngRun_Stat` 之規格值於 LID 與 DBC 皆無對應。**
+
+CFTS044 之 `4858551`／`4858553`／`4858555` 以
+`$EngRun_Stat$ = [IDLE_STBL//UNLIMITED//LIMITED//RUN]`（或其否定）為觸發條件。
+
+實測：
+
+| 來源 | `EngRun_Stat` 之值域 |
+|---|---|
+| LID `Format` 欄 | `0 = Engine_Off`／`1 = Engine_Cranking`／`2 = Engine_On`／`3 = SNA` |
+| 基線 DBC `EngineSts`（`STATUS_CCAN3`, id 994） | 同上，逐字相同 |
+| CFTS044 所用 | `IDLE_STBL` / `UNLIMITED` / `LIMITED` / `RUN`（另有一處 `Engine_On`） |
+
+`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN` **在 LID 與 DBC 中皆不存在**。
+依 **R-VS9(2)**「兩者不一致時停下回報，不自行調和」，本層未作任何對映。
+
+**影響**：`SWE1-VC-Stop-StartSystem-004`／`-005`／`-006` 三個 leaf 之 TC
+無法決定應送出之匯流排值，已依 §8.4.3 於 `test_procedure`／`expected_result`
+填 `PENDING: DR-19`。
+
+**提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS58。
+**狀態：未送出。**
+
+## DR-20（新，**Urgency Medium** —— **阻塞 1 個 leaf**；17 輪 W-53 開立）
+
+**`4858560` 交叉參照未具名之 HMI 需求。**
+
+條文逐字：`When $DriverSide$ = [Right hand drive] the HMI shall be modified as
+defined by HMI requirements.`
+
+「HMI requirements」未具名任何文件、章節或需求 ID，故無可判定之修改項。
+依 §8.4.2，其修改內容若定義於外部規格，屬該規格所有者，
+本 TC 不得吸收；依 §8.4.3 以 `PENDING: DR-20` 佔位。
+
+**影響**：`SWE1-VC-SwitchLHD/RHDConfiguration-010`。
+其 canon §9 檢查 5（§5.5 末步驟須擁有驗證）**因此不通過**，
+在本 DR 答覆前無法修正。
+
+**提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS59。
+**狀態：未送出。**

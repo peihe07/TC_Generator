@@ -63,7 +63,7 @@ SWE ID 中段 token 僅為預設值。**共 19 個**（含新增之 `Common Feat
 
 | # | 項目 | 阻塞？ | 所待 |
 |---|---|---|---|
-| 1 | **R-VS19′ 主文與 (a) 段互斥** —— 43 條 `PowerNet` 專屬條文之歸屬未定（A-VS55） | **阻塞** | 分析層釋義（見上繳 14 §2.1） |
+| 1 | ~~R-VS19′ 主文與 (a) 段互斥~~ **已解**（**R-VS19″**，34 包 §1）：採讀法一，`EE Architecture` 僅排除 `CUSW`／`PowerNet` 專屬者。定案數字 in-scope **425**／21 節內 **259**／未覆蓋 **8**／覆蓋率 **96.9%**／落外 **0**／**(a) = 0**。43 條為 out-of-scope，不歸因。A-VS55 關閉 | **不再阻塞** | — |
 | 2 | **DR-15** — 請求訊號 1 bit vs 承載階數 | **阻塞** | 已定稿，**待 Pei 送出** |
 | 3 | **DR-17** — Comfort 側無單階座椅條文（14 leaf／12 `pending`） | **阻塞** | 已定稿，**待 Pei 送出** |
 | 4 | **DR-11** — `HeatedSteeringWheel-009` 之來源（`SYS-RA-CFTS100`） | 不阻塞 | 該 leaf 已標 `UNRESOLVED-SOURCE` |
@@ -71,7 +71,10 @@ SWE ID 中段 token 僅為預設值。**共 19 個**（含新增之 `Common Feat
 | 6 | A-VS51 — `4858413` 值退化為 `[ Pressed]` | 不阻塞 | 併 DR-18 |
 | 7 | A-VS52／A-VS56 — 大小寫重複影響 **12 個 token** | 不阻塞 | 已依 **R-VS39** 以 `normalized_key` 處理 |
 | 8 | `SwitchLHD/RHDConfiguration` 之 token 含 `/`，進 tc_id／檔名前須定轉寫規則 | **阻塞**（TC 生成時） | 未定 |
-| 9 | `$HSW_StatFailSts$` 之 R-VS20 階梯歸屬（R-VS19′(d) 令其重查） | 不阻塞 | 本輪未查 |
+| 9 | `$HSW_StatFailSts$` 之 R-VS20 階梯歸屬（R-VS19″ 承 R-VS19′(d) 令其重查） | 不阻塞 | **凍結**：`BACKLOG.md` B-02（R-VS40） |
+| 10 | **訊號書寫形式衝突**：R-VS9(3) 三件組 vs TC 規則書 §8.7.5 v3（該形式已撤銷）；本 feature **無 profile 檔** | **阻塞**（影響每一條 procedure／ER） | A-VS57，待裁 |
+| 11 | **DR-19** — `EngRun_Stat` 之規格值於 LID／DBC 無對應 | **阻塞 3 leaf**（Stop-Start-004／005／006） | A-VS58 |
+| 12 | **DR-20** — `4858560` 交叉參照未具名之 HMI 需求 | **阻塞 1 leaf**（SwitchLHD/RHD-010） | A-VS59 |
 
 **已解者**：`Common Features` 名稱衝突（→ `CrossZone Common`）；
 **Layer 2 歸屬已以 037 檔界逐 leaf 驗證，0 / 237 不一致**（W-52(1)）——

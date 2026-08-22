@@ -686,6 +686,12 @@ R-VS35（分析層裁定 2026-08-20）
 
 ### R-VS19′ —— CFTS044 條文之適用性判準（33 包 §1.1，**Pei 2026-08-20**，取代 R-VS19 之排除段）
 
+> **【經 R-VS19″ 取代全文，2026-08-20；原文保留不刪，見 R-TM13】**
+> 取代原因：主文「`EE Architecture` 不作為排除判準」與 (a) 段「縮限為
+> `CUSW`／`PowerNet` 專屬者（即 `Radio`／`ECU` 判準不通過者）」互斥，
+> 且括號內之等式在資料上不成立（270 條為他架構專屬且通過判準）——
+> A-VS55。分析層自陳為起草缺陷，原意為讀法一。
+
 > CFTS044 條文之適用性判準為：
 >
 >   in-scope ⟺ `Artifact Type` 含 `Subsystem Functional Requirement`
@@ -731,3 +737,57 @@ R-VS35（分析層裁定 2026-08-20）
 >
 > R-VS7 之其餘各段（(a) 之委派原則、(b) 之例外、(c) 之佐證）不變；
 > R-VS7(b) 對同一 leaf 仍優先於 (a)（26 包 §1 之讀法）。
+
+### R-VS19″ —— 適用性判準之更正（34 包 §1，分析層更正 2026-08-20，取代 R-VS19′ 全文；Pei 得推翻）
+
+> CFTS044 條文之適用性判準為：
+>
+>   in-scope ⟺ `Artifact Type` 含 `Subsystem Functional Requirement`
+>              ∧ `ECU` ∩ {LTM, ETM, RRM} ≠ ∅
+>              ∧ （`Radio` 為空 ∨ `Radio` ∩ {R1L, R1L-R} ≠ ∅）
+>              ∧ **NOT（`EE Architecture` ⊆ {CUSW, PowerNet}）**
+>
+> 即：`EE Architecture` **仍為排除判準，但僅排除 `CUSW`／`PowerNet` 專屬者**；
+> `Atlantis Mid` 不再排除。
+>
+> R-VS19′ 主文之「`EE Architecture` 降為輔助資訊，不作為排除判準」
+> **為誤，撤回**。其 (a) 段括號內之等式亦誤，撤回。
+>
+> 依據：
+>  (1) 13 輪之證據範圍僅及 Atlantis Mid（`4859399`／`4859463` 自稱
+>      applicable for R1 Low；三屬性與無 Mid 組 100% 一致）
+>  (2) 16 輪實測：251 個已覆蓋條文中 CUSW／PowerNet 專屬者 **0**；
+>      其分布為 Atlantis Mid 121／AH+PN 112／Atlantis High 14／All 4
+>  (3) 讀法一之 (a) = 0，母體 237 完整；讀法二之 43 條全為 PowerNet 專屬，
+>      若納入則須向上游解釋為何 037 從未引用任何 PowerNet 專屬條文
+>
+> **定案數字（讀法一）**：
+>   全文 in-scope 425／21 章節內 259／未覆蓋 8／覆蓋率 96.9%／
+>   已覆蓋 reqid 落外 0／(a) 類 0
+> **A-VS55 依本條關閉。43 條不歸因，其為 out-of-scope。**
+
+### R-VS40 —— 驗證凍結（34 包 §2，分析層裁定 2026-08-20）
+
+> 自 17 輪起，未結之驗證項一律凍結為 backlog，**不排入輪次**，
+> 除非其滿足下列任一：
+>
+>  (a) pilot review 發現之缺陷可追溯至該項
+>  (b) 其阻塞某個具體 leaf 之 TC 內容（須具名該 leaf）
+>  (c) Pei 指定
+>
+> 現行凍結項（`docs/reports/BACKLOG.md`，執行層本輪建檔）：
+>   `normalized_key` 之基欄未涵蓋 exclude／other_arch／lid／dbc（14 輪 §6-1）
+>   `$HSW_StatFailSts$` 之階梯重查（14 輪 §6-2）
+>   `1.3.1.1.3` 上位節與 `1.3.1.1.*` 其他分節未掃（14 輪 §6-3）
+>   四檔 id 互斥未逐 id 驗（14 輪 §6-4）
+>   A-VS41／A-VS48／A-VS35／A-VS36 等 FYI 類
+>   W-17 之 LID 列數差 6、`TRUNCATED_ENUM` 其他形態
+>   A-VS37 之 102 上界
+>
+> **同時凍結分析層之立條**：自 17 輪起，覆核每輪至多立**一條**新條文，
+> 且僅在其**會改變已生成或待生成之 TC 內容**時才立；
+> 其餘發現一律登記 anomaly 後入 backlog。
+>
+> 理由：16 輪、0 TC。驗證之邊際收益已低於其輪次成本，
+> 而 pilot review 是唯一能揭露 TC 內容層缺陷之關卡（canon §1.2），
+> 其至今未曾啟動。
