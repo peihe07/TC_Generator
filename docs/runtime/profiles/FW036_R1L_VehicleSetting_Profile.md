@@ -129,6 +129,28 @@ A-VS62 之 (a) 認可（`is registered without a bus error`）——
 canon §8.7.5 v3 之修訂（2026-08-21）晚於 SWC 0708 交付（2026-07-08），
 而該一致性屬交付形式，Pei 裁定。
 
+### [ADD] record 子句之處置與讀取型 ER 之形態（R-VS52(2)(4) 之細則）
+
+> **cite**：56 包 §2（分析層裁定 2026-08-22，A-VS107 之關閉）。
+> 交付本實測：`record as` 318 處**皆為後續比較之用**；
+> `the same as recorded` **0 處** —— 交付本從不記錄一個不再使用的值。
+
+```
+(a) 記錄而其值於該 TC 內無後續引用者 → 刪除 record 子句，改為直接檢查
+    procedure：Read the signal <X> and check that it is <raw> (<label>)
+    ER       ：<X> reads <raw> (<label>)
+
+(b) 用於後續比較者 → 保留並命名
+    procedure：Read … and record as <變數名>
+    ER       ：<變數名> is recorded
+    比較步驟之 ER：<變數名> = <期望>
+
+(c) 讀取型斷言之 ER 形態沿用 `<X> reads <raw> (<label>)`
+    交付本 `reads` 命中 0 非禁止，而是其未讀訊號（其讀 HU volume／
+    audio source 等 HMI 狀態）；canon §5.1 之 preferred verbs 含
+    `Read`／`Check that`，故該形態有依據，非自訂。
+```
+
 ---
 
 ---

@@ -1,0 +1,11 @@
+{
+ "batch": "batch12",
+ "feature": "vehicle_setting",
+ "generated_round": 29,
+ "selection": "batch11 交付後池為 0 —— 無 leaf 可選",
+ "tcs": [],
+ "reasoning": "batch11 交付 1 條後，W0 ∪ W1 ∧ delegate 可用 ∧ 未用 ∧ 過閘之池為 0，故 batch12 無 TC。詳見上繳 27 §1.4。",
+ "revision": "W-95（35 輪）：record 子句依 56 包 §2 處置",
+ "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
+ "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名"
+}

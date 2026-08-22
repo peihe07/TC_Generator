@@ -97,6 +97,14 @@ def check(tc: dict) -> list[str]:
             e.append(f"R-VS52 {tid}: 訊號名仍以 `$` 包夾 —— {it.strip()[:50]}")
         if "is registered without a bus error" in it:
             e.append(f"R-VS52 {tid}: 送出型 ER 仍用已撤回之措辭 —— {it.strip()[:50]}")
+    # 56 包 §2（35 輪 W-95）：record 子句之處置
+    for it in items(tc["test_procedure"]):
+        if re.search(r"\brecord\b(?!ed)", it, re.I) and not re.search(
+                r"\brecord\b[^\n]*\bas\s+[A-Z][A-Za-z0-9_]*", it):
+            e.append(f"56§2(a) {tid}: procedure 有 record 子句而無變數名 —— {it.strip()[:50]}")
+    for it in items(tc["test_procedure"]) + items(tc["expected_result"]):
+        if re.search(r"recorded in step \d+", it, re.I):
+            e.append(f"R-VS52(4) {tid}: 仍以「recorded in step N」比較 —— {it.strip()[:50]}")
     for it in items(tc["test_procedure"]) + items(tc["expected_result"]):
         # R-VS52（34 輪）：訊號名不再以 `$` 包夾 —— 舊式 regex 於新形態下靜默失效
         m = re.search(r"\b[A-Z][A-Z0-9_]+\.(\w+)\s*=\s*(\d+)\s*\(([^)]+)\)", it)

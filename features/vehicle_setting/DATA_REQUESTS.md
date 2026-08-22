@@ -635,3 +635,52 @@ and appear as a concrete value in the Pre-Condition, never vague language.`
 現行處置：procedure 保留 `<Tsend>` 原樣，**ER 改寫為可觀察之終態**（42 包 §3.2）。
 
 **狀態：未送出。**
+
+---
+
+## DR-25（新，**Urgency High** —— 阻塞剩餘全池 33 leaf；35 輪 W-91 開立，分析層擬）
+
+**型別（R-VS45）：型 B — 素材缺件。**
+
+**成對之 anomaly：A-VS110。**
+
+本 feature 之基線 CAN 為 `PDT27_E2A_R4_BHCAN.dbc` ＋ `PDT27_E2A_R5_FDCAN8.dbc`
+（R-VS8；兩檔 `VersionYear` = 25、`VersionWeek` = 50）。
+
+CFTS044 之 `1.3.3.3.2.1`／`1.3.3.3.3.1`／`1.3.3.3.4.1`／`1.3.3.3.5.1` 四節
+共 33 個 in-scope leaf，其 `THEN` 之賦值目標為：
+
+    TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm     11 leaf
+    TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm     11 leaf
+    TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm    11 leaf
+
+該三個 signal 於基線兩檔之 `SG_` 命中**各為 0**。
+該 33 條之 `EE Architecture` 皆為 **`Atlantis Mid`**。
+
+LID `CAN Mapping` 列 763（`FL_HS_RQ2`）之 **`Atlantis` 欄組**確有其對映與值域
+（`0 = Heated_seat_off`／`1 = Heated_seat_low`／`2 = Heated_seat_medium`／
+`3 = Heated_seat_high`），且該列之 `Atlantis High` 欄組標 `ATL_HIGH_EMPTY`。
+
+**即：對映與值域皆有來源，唯獨匯流排定義本身（DBC）沒有。**
+
+依 R-VS9(1)′（拼寫以 DBC 為第一權威）與 L-VS2（不存在於基線 DBC 者 FAIL），
+該 33 leaf **不可寫出通過自檢之 TC**。
+
+**請提供下列之一：**
+
+  (1) `Atlantis Mid` 網段之 DBC（含 `TELEMATIC_VEHICLE_SETUP`／
+      `TELEMATIC_VEHICLE_SETUP2` 之 `FL_HS_Cmd_Tlm`／`FR_HS_Cmd_Tlm`／
+      `FL_VS_Cmd_Tlm` 定義），或
+  (2) 裁定該 33 leaf 之處置 —— 標 BLOCKED 並自 `generatable` 池移出，
+      或裁定以 LID `Atlantis` 欄組之值域為權威而豁免 L-VS2
+
+**不採第三路**：以 `Atlantis High` 之對稱訊號（列 762 之
+`TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm`）代之 —— 其為跨列引入，
+與 A-VS103 之處置一致，屬裁定事項而非執行層自裁。
+
+**影響**：`generatable = 108` 中已交付 76、DR 阻斷 3（A-VS110 以外之
+`HeatedSteeringWheel-012`／`PHEVFeatures-017`／`FeaturesEnableCriteria-023`，
+見 A-VS109／A-VS111／A-VS112），**其餘 33 全數落於本 DR**。
+即 **本 feature 之可生成池於本 DR 覆前為 0**。
+
+**狀態：未送出。**
