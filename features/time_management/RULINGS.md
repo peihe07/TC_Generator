@@ -2470,7 +2470,13 @@ R-TM61（分析層自裁，2026-08-22）—— 搜尋未決項須兼搜識別字
 `09` §2.1 之三項超出指令之設計決定（來源指標、格式須含 `{n`、
 守衛抽為可獨立呼叫）分析層全部採納，無須調整。
 
-## R-TM62 — TLM_MANAGED_TIME_DATE_* 不適用於 Atl-H
+## ~~R-TM62 — TLM_MANAGED_TIME_DATE_* 不適用於 Atl-H~~ **已撤回**
+
+> **本條撤回 —— 見 R-TM75(4)。** 五個 `TLM_MANAGED_TIME_DATE_*` 在
+> Atlantis 欄（16–20）有值，**適用於 Atl-Mid 之 TC**。撤回之成因為
+> 分析層由 spec 檔名之 `Atl-H` 推定範圍（R-TM75 §1.2）。
+> 依 R-TM13 加刪除線保留，不刪除。
+
 
 （Pei 裁定，2026-08-22。上游包 `docs/handoff/12_scope.md` §1。
 發現者為分析層 `11` §2.2 之 LID 表探測。）
@@ -2501,7 +2507,13 @@ DR-6b **未建立**，始末記於 `DATA_REQUESTS.md`。
 來源列 408）。**執行層未逕行套用本條**（射程擴張屬條文範圍），
 於 tsv 記為 `(EMPTY)`。提請裁定 —— 見 `docs/upstream/11_lid.md` §3.2。
 
-## R-TM63 — A-TM27 採選項 (c)：引用標註，不縮減 TC
+## ~~R-TM63 — A-TM27 採選項 (c)：引用標註，不縮減 TC~~ **已撤回**
+
+> **本條撤回 —— 見 R-TM75(1)。** Atl-Mid 物件之引用寫**真值**
+> `CFTS015-{objid}`，不寫 `PENDING: DR-11`。
+> **其「覆蓋不縮減」之原則本身正確且維持** —— 錯的是處置前提
+> （誤認 Atl-Mid 為他架構）。依 R-TM13 加刪除線保留，不刪除。
+
 
 （Pei 裁定，2026-08-22。上游包 `docs/handoff/13_b1.md` §1。
 **B1 之最後一個內容阻塞於此解除。**）
@@ -2879,4 +2891,102 @@ R-TM74（分析層自裁，2026-08-22）—— 上繳須含逐 T 項對照表
 
 **執行層回報（2026-08-22）**：已套用。本包之 §0 逐 T 對照表列
 T1–T4 全部四項。
+
+## R-TM75 — 本 feature 涵蓋 Atl-Hi 與 Atl-Mid 兩架構
+
+（分析層裁定，2026-08-22。上游包 `docs/handoff/18_arch.md` §2。
+**撤回 R-TM62 / R-TM63，取消 DR-11，作廢 A-TM27 之結論。**）
+
+```
+R-TM75（分析層裁定，2026-08-22）—— 本 feature 涵蓋 Atl-Hi 與 Atl-Mid 兩架構
+
+依 §1 之實測：037 引用之 35 個 Atl-Mid 專屬物件，其 Radio 標籤
+35/35 含 R1L / R1L-R（即本專案），ECU 標籤 35/35 為 LTM。
+036 母本之七個車型欄中五欄為 Atl-Mi。
+
+**本 feature 之驗證範圍涵蓋 Atlantis High 與 Atlantis Mid 兩種
+EE architecture**，以 Radio 維度（R1L / R1L-R）為專案界線。
+
+隨之撤回／更正：
+
+(1) **R-TM63 撤回。** Atl-Mid 物件之引用寫**真值** `CFTS015-{objid}`，
+    不寫 `PENDING: DR-11`。R-TM63 之「覆蓋不縮減」原則本身正確且維持
+    —— 錯的是其處置前提。
+
+(2) **DR-11 取消。** 其所登記之缺件（Atl-H 對應需求）不存在 ——
+    那些需求本就是本專案的。約 40 處佔位改為真值。
+
+(3) **A-TM27 之結論作廢，事實記載保留。** 「35 個物件標為 Atl-Mid」
+    為真；「架構不符」為偽。依 R-TM13 加註不刪。
+
+(4) **R-TM62 撤回。** 五個 `TLM_MANAGED_TIME_DATE_*` LID 在 Atlantis 欄
+    有值，**適用於 Atl-Mid 之 TC**。017 / 020 之相關斷言得寫。
+
+(5) **A-TM26 修正**：架構欄之選取**依該條 TC 之目標架構**而定 ——
+    Atl-Hi 之 TC 取欄 26–30、Atl-Mid 之 TC 取欄 16–20。
+    **強制記錄之要求不變且更形重要**：須記錄取自哪一欄，
+    因現在兩欄都可能是對的，取錯更難察覺。
+```
+
+**執行層回報（2026-08-22）**：五項全部落實，工具三處連動已改，
+B1–B4 四批全部重生成。`PENDING: DR-11` 於生成物中**零殘留**。
+
+**執行層對本條成因之一項補充**：分析層自陳「以檔名代替內容」，
+而執行層在 `11`–`17` 之九輪中**逐輪使用 `Atlantis High (col 26-30)`
+並將其寫入每一條 TC 之 reasoning**，卻從未質疑該前提 ——
+A-TM26 之強制記錄使「取自哪一欄」可追，**但可追不等於正確**：
+它記錄的是我方選了哪一欄，不是那一欄是否該選。
+**該判準之射程限制先前已寫入 docstring**（`14` §1.2），
+本次即為該限制之實例化。
+
+## R-TM76 — 架構限定之 Pre-Condition 措辭
+
+（分析層裁定，2026-08-22。上游包 `docs/handoff/18_arch.md` §3，
+依 Pei 2026-08-22 之指示。）
+
+```
+R-TM76（分析層裁定，2026-08-22）—— 架構限定之 Pre-Condition 措辭
+
+某條 TC 若只適用於單一 EE architecture，其 Pre-Condition 加一行：
+
+    The vehicle is an Atlantis High architecture variant
+    The vehicle is an Atlantis Mid architecture variant
+
+**取值來源**：CFTS015 物件之 `[EE Architecture:...]` 標籤值逐字
+（`Atlantis High` / `Atlantis Mid`），非自擬簡稱（不寫 `Atl-Hi` / `High only`）。
+
+**加與不加之判準**：
+- 該 TC 之全部引用物件皆為單一架構 → **加**該架構之限定行
+- 引用物件跨兩架構 → **不加**（該行為適用於兩者之共通行為）
+- 引用物件標為 `All` → 不加
+
+canon §4.4 之允許類型含「system version / mode」（如 `Dev / Pre-Prod
+build only`），架構變體屬同類，為合法之 Pre-Condition。
+
+**置於 Pre-Condition 之首行**，使審閱者一眼見其適用範圍。
+```
+
+**執行層回報（2026-08-22）**：已實作為 context 之 `arch.precondition`，
+並由 `lint_arch_column` 驗其與所取架構欄一致。
+
+## R-TM77 — T–Z 車型欄留空
+
+（分析層裁定，2026-08-22。上游包 `docs/handoff/18_arch.md` §4。）
+
+```
+R-TM77（分析層裁定，2026-08-22）—— T–Z 車型欄留空
+
+`feature.yaml` 之 T–Z 七欄由 `TODO(R-TM10-A1)` 改為
+`BLANK_BY_DECISION`，理由：交付件 UserProfiles_20260820 之該七欄
+189/189 全空，**車型欄在既有交付實務中不作為範圍標示之用**。
+
+範圍標示改由 Pre-Condition 承載（R-TM76）。
+
+**此項自 `04` 起掛在 `TODO(R-TM10-A1)` 下未裁，而它正是會逼分析層
+去看架構的那一步** —— 我未將其視為阻塞項，反而繞過它推定架構。
+記於此，因該疏漏是 §1.2 之錯誤能存活四輪的原因之一。
+```
+
+**執行層回報（2026-08-22）**：`write_back.BLANK_BY_DECISION` 之
+T–Z 項已由 `TODO(R-TM10-A1) —— 待本 feature 條文` 改為本條之理由。
 

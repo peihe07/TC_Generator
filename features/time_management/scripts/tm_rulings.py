@@ -201,10 +201,60 @@ EE_ARCH_TSV = "data/ee_architecture_by_leaf.tsv"
 DR_ATL_HI = 11
 
 
+# ~~atl_hi_placeholder~~ —— **R-TM75(2) 後不再使用**。
+# DR-11 已取消（其所登記之缺件不存在），Atl-Mid 物件寫真值。
+# 函式保留為軌跡（R-TM13），呼叫即 raise —— 使殘留之呼叫點立即現形，
+# 而非靜默產出一個已被取消之 DR 之佔位。
 def atl_hi_placeholder(objid: str) -> str:
-    """R-TM63 第 2 項之佔位字串 —— **唯一產生點**。"""
-    return (f"PENDING: DR-{DR_ATL_HI} Atl-H 對應需求"
-            f"（CFTS015-{objid} 標為 Atlantis Mid）")
+    raise RuntimeError(
+        f"DR-11 已於 R-TM75(2) 取消；物件 {objid} 為本專案之 Atlantis Mid "
+        "變體，應寫真值 CFTS015-{objid}，不得寫佔位。")
+
+
+# R-TM75 —— EE architecture 之目標架構標記（取代原 is_atl_hi 之二值）
+ARCH_HI = "Atlantis High"
+ARCH_MID = "Atlantis Mid"
+ARCH_BOTH = "Both"
+
+
+def arch_of_tag(tag: str) -> str:
+    """由 `[EE Architecture:...]` 標籤值判定目標架構。
+
+    **判準以標籤逐字為準**（R-TM76 之取值來源同此）：
+      含 High 且含 Mid，或為 `All`  → Both
+      只含 High                     → Atlantis High
+      只含 Mid                      → Atlantis Mid
+    """
+    s = (tag or "").strip()
+    low = s.lower()
+    hi = "atlantis high" in low
+    mid = "atlantis mid" in low
+    if low == "all" or (hi and mid):
+        return ARCH_BOTH
+    if hi:
+        return ARCH_HI
+    if mid:
+        return ARCH_MID
+    return ARCH_BOTH        # PowerNet / CUSW 等非 Atlantis 維度之標籤
+
+
+def arch_precondition(arch: str) -> str:
+    """R-TM76 —— 架構限定之 Pre-Condition 行。`Both` 回空字串（不加）。"""
+    if arch in (ARCH_HI, ARCH_MID):
+        return f"The vehicle is an {arch} architecture variant"
+    return ""
+
+
+def lid_columns_for(arch: str) -> tuple[int, str]:
+    """A-TM26 訂正（R-TM75(5)）—— 依目標架構回 (Signal Name 欄, 記錄字樣)。
+
+    **兩欄都可能是對的**，取錯不報錯亦不缺值 —— 唯一判準是該值與該 TC
+    之目標架構是否一致，故欄號與記錄字樣由本函式**一併**回傳，
+    使兩者不可能分離（記了 26-30 卻取 16-20 之類）。
+    """
+    if arch == ARCH_MID:
+        return 16, "Atlantis (col 16-20)"
+    return 26, "Atlantis High (col 26-30)"
 
 
 def load_ee_arch(feature_dir) -> dict[str, dict[str, dict]]:
@@ -233,7 +283,11 @@ def load_ee_arch(feature_dir) -> dict[str, dict[str, dict]]:
             raise ValueError(f"{EE_ARCH_TSV}:{i} 欄數 {len(f)} ≠ 6")
         out.setdefault(f[0], {})[f[2]] = {
             "sys_ra": f[1], "ee": f[3],
-            "is_atl_hi": f[4] == "True", "section": f[5]}
+            # R-TM75 —— `is_atl_hi` 之二值語意作廢，改存目標架構標記。
+            # tsv 之該欄保留原值（軌跡），但**不再由其判定適用與否**。
+            "is_atl_hi_legacy": f[4] == "True",
+            "arch": arch_of_tag(f[3]),
+            "section": f[5]}
     if not out:
         raise ValueError(f"{EE_ARCH_TSV} 無資料列")
     return out
@@ -242,15 +296,20 @@ def load_ee_arch(feature_dir) -> dict[str, dict[str, dict]]:
 # ── A-TM26 / R-TM49 —— LID 表之單一來源 ─────────────────────
 # segment（CAN 網段）之權威為 LID 表 Atlantis High 欄，非 CFTS 內文之敘述
 # （`11` §3：兩者併行時以對映表優先；衝突須回報不逕採）。
-LID_TSV = "data/lid_atlantis_high.tsv"
+LID_TSV = "data/lid_by_arch.tsv"   # R-TM75：兩架構共存
+# 舊檔 data/lid_atlantis_high.tsv 保留為軌跡（R-TM13），不再讀取。
 
 
-def load_lid_table(feature_dir) -> dict[str, dict]:
-    """讀 LID 表實測結果。**缺檔即 raise** —— 同 load_ee_arch 之理由。
+def load_lid_table(feature_dir, arch: str = ARCH_HI) -> dict[str, dict]:
+    """LID 表，**依目標架構取該架構之列**（A-TM26 訂正 / R-TM75(5)）。
 
-    回傳 {LID: {signal, can, fmt, sna, arch_column, source_row}}。
-    `arch_column` 逐列帶回，使每一處取值都能回答「取自哪一組架構欄」
-    （A-TM26 之強制記錄；`11` T3 另提請擴充為含分頁名）。
+    來源 `data/lid_by_arch.tsv` 含 19 LID × 2 架構共 38 列。
+    **三態須分辨**（合併會使處置錯誤）：
+      `(NO SIGNAL)`   本架構無此訊號 → 不寫任何斷言
+      `(NO SEGMENT)`  有訊號而網段未載 → 訊號可寫，segment 寫 DR-6 佔位
+      有值            照用
+
+    缺檔即 raise —— 同前，缺檔會使 segment 無來源而靜默填錯。
     """
     from pathlib import Path
     p = Path(feature_dir) / LID_TSV
@@ -259,21 +318,35 @@ def load_lid_table(feature_dir) -> dict[str, dict]:
             f"{LID_TSV} 不存在 —— segment 無權威來源。不得回退為"
             "「一律 PENDING」亦不得自 CFTS 內文猜測（A-TM26 / R-TM49）。")
     lines = p.read_text(encoding="utf-8").rstrip("\n").split("\n")
-    want = ["LID", "ArchColumn", "SignalName", "CAN", "Format", "SNA",
-            "SourceRow"]
+    want = ["LID", "Arch", "ArchColumn", "SignalName", "CAN", "Format",
+            "SNA", "SourceRow"]
     if lines[0].split("\t") != want:
         raise ValueError(f"{LID_TSV} 表頭為 {lines[0].split(chr(9))}，應為 {want}")
     out = {}
     for i, ln in enumerate(lines[1:], 2):
         f = ln.split("\t")
-        if len(f) != 7:
-            raise ValueError(f"{LID_TSV}:{i} 欄數 {len(f)} ≠ 7")
-        out[f[0]] = {"arch_column": f[1], "signal": f[2], "can": f[3],
-                     "format": f[4], "sna": f[5], "source_row": f[6]}
+        if len(f) != 8:
+            raise ValueError(f"{LID_TSV}:{i} 欄數 {len(f)} ≠ 8")
+        # R-TM75 —— `Both`（跨架構）之 TC 取 Atl-Hi 欄為基準值，
+        # 並由呼叫端標明「訊號值依架構而異」。**不逕自合併兩架構之值** ——
+        # 同一 LID 在兩架構之 MESSAGE 與 segment 不同，合併會產出
+        # 一個兩邊都不對的值。
+        if f[1] != (ARCH_HI if arch == ARCH_BOTH else arch):
+            continue
+        out[f[0]] = {"arch": f[1], "arch_column": f[2], "signal": f[3],
+                     "can": f[4], "format": f[5], "sna": f[6],
+                     "source_row": f[7],
+                     "no_signal": f[3] == "(NO SIGNAL)",
+                     "no_segment": f[4] == "(NO SEGMENT)"}
     if not out:
-        raise ValueError(f"{LID_TSV} 無資料列")
+        raise ValueError(f"{LID_TSV} 無 arch={arch!r} 之資料列")
+    if arch == ARCH_BOTH:
+        for v in out.values():
+            v["cross_arch_note"] = (
+                "本片跨兩架構；此為 Atlantis High 之值。"
+                "Atlantis Mid 之 MESSAGE 與 segment 不同 —— "
+                "若該 TC 之斷言涉此訊號，須加架構限定或拆分為兩條。")
     return out
-
 
 PROXI_TSV = "data/proxi_atlantis_high.tsv"
 
@@ -282,13 +355,12 @@ def load_proxi_table(feature_dir) -> dict[str, dict]:
     """PROXI 參數表（`16` §3）—— **與 LID 表分開，因其非 CAN 訊號**。
 
     `Proxi & Configuration` 分頁之架構欄分組與 `CAN Mapping` 不同
-    （Atlantis 與 Atlantis High 合併於 col 16-20），故 `arch_column`
-    逐列帶回而不共用 LID 表之字串（A-TM26 之執行層擴充提案）。
+    （Atlantis 與 Atlantis High **合併**於 col 16-20），故本表不分架構 ——
+    `arch_column` 逐列帶回而不共用 LID 表之字串。
 
-    缺檔**不 raise**：PROXI 參數非每個 feature 皆有，缺檔即視為無此類參數。
-    此與 `load_lid_table` 之缺檔即 raise 不同 —— 後者缺檔會使 segment
-    無來源而靜默填錯，本檔缺檔只會使 PROXI 參數落回「無此 LID」之佔位路徑，
-    該路徑已標明「須回報」，不會產出看似正常之錯值。
+    缺檔**不 raise**：缺檔只會使 PROXI 參數落回「無此 LID」之佔位路徑，
+    該路徑已標明須回報，不會產出看似正常之錯值；
+    而 LID 表缺檔會使 segment 靜默填錯 —— 兩者後果不對稱，故處置不對稱。
     """
     from pathlib import Path
     p = Path(feature_dir) / PROXI_TSV

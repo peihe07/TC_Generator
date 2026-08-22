@@ -53,7 +53,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tm_rulings import (                                       # noqa: E402
     BATCHES, BOUNDARY_NOTES, BOUNDARY_SIGNALS, SEGMENT_PLACEHOLDER,
     SPEC_GAP, SPEC_REF_PREFIX, TEST_GROUP, TEST_ITEM_TOKEN_MAX,
-    TEST_SET_OF, TEST_SETS, spec_gap_placeholder, load_ee_arch, atl_hi_placeholder, load_lid_table, lid_of_signal, load_proxi_table)
+    TEST_SET_OF, TEST_SETS, spec_gap_placeholder, load_ee_arch, load_lid_table, lid_of_signal, load_proxi_table,
+    arch_of_tag, arch_precondition, lid_columns_for,
+    ARCH_HI, ARCH_MID, ARCH_BOTH)
 
 REPO_ROOT = next(p for p in Path(__file__).resolve().parents
                  if (p / "pyproject.toml").is_file())
@@ -206,21 +208,32 @@ def build_spec_reference(num, refs, sys2, objs, arch=None) -> dict:
     entry: dict = {"format": f"{SPEC_REF_PREFIX}-{{7 位物件 id}}",
                    "candidates_upper_bound": ok}
     if arch is not None:
-        hi = [i for i in ok if arch.get(i, {}).get("is_atl_hi")]
-        mid = [i for i in ok if i in arch and not arch[i]["is_atl_hi"]]
+        # R-TM75 —— **不再產生 DR-11 佔位**。Atl-Mid 物件為本專案之另一
+        # 架構變體，其引用寫真值。本段改輸出該 TC 之目標架構與
+        # R-TM76 所需之 Pre-Condition 行。
+        per = {i: arch[i]["arch"] for i in ok if i in arch}
+        kinds = set(per.values())
+        if kinds == {ARCH_HI}:
+            target = ARCH_HI
+        elif kinds == {ARCH_MID}:
+            target = ARCH_MID
+        else:
+            target = ARCH_BOTH        # 跨架構或含 All → 不加限定行
         unknown = [i for i in ok if i not in arch]
         entry["arch"] = {
-            "atl_hi": hi, "atl_mid": mid, "not_in_tsv": unknown,
-            "placeholders": [atl_hi_placeholder(i) for i in mid],
-            "rule": ("R-TM63：Atl-Mid 專屬物件之 spec_reference 條目改為 "
-                     "`PENDING: DR-11 …`，**TC 照寫不縮減覆蓋**；同一 leaf "
-                     "之 Atl-Hi 物件正常寫 `CFTS015-{id}`，佔位不取代真值。"),
+            "by_object": per, "target": target,
+            "precondition": arch_precondition(target),
+            "lid_column": lid_columns_for(target)[1],
+            "rule": ("R-TM75：Atl-Mid 物件為本專案之另一 EE architecture "
+                     "變體，其引用寫**真值**。R-TM76：全部引用物件同屬"
+                     "單一架構者，Pre-Condition 首行加該架構之限定行；"
+                     "跨架構或 `All` 者不加。"
+                     "A-TM26 訂正：訊號取自 `lid_column` 所示之欄。"),
         }
         if unknown:
             entry["arch"]["warning"] = (
                 f"物件 {unknown} 不在 ee_architecture_by_leaf.tsv 內 —— "
-                "架構不明，**不得預設為 Atl-Hi**，須回報")
-        ok = hi                     # rendered 只含真值；佔位另列
+                "架構不明，**不得預設**，須回報")
     if ok:
         entry["rendered"] = (f"{SPEC_REF_PREFIX}-{ok[0]}"
                              + "".join(f", {i}" for i in ok[1:]))
@@ -246,7 +259,8 @@ def build_spec_reference(num, refs, sys2, objs, arch=None) -> dict:
     return entry
 
 
-def build_signals(num, refs, sys2, objs, lid=None, proxi=None) -> dict:
+def build_signals(num, refs, sys2, objs, lid=None, proxi=None,
+                  target_arch=None) -> dict:
     """C-5 —— 訊號三件組。
 
     **segment 之權威改為 LID 表 Atlantis High 欄**（`11` T3 實測，
@@ -290,14 +304,27 @@ def build_signals(num, refs, sys2, objs, lid=None, proxi=None) -> dict:
             # 亦不得留空。
             e["segment"] = SEGMENT_PLACEHOLDER
             e["segment_source"] = "LID 表無此 LID —— 須回報"
-        elif row["can"].startswith("N/A"):
-            e["segment"] = None                   # R-TM62：不寫此訊號
-            e["segment_source"] = row["can"]
-            e["excluded"] = ("R-TM62：本架構無此對映，**不寫入任何訊號斷言**，"
-                             "亦不列為 PENDING（非缺件）")
-        elif row["can"] in ("", "(EMPTY)"):
+        elif row["no_signal"]:
+            # **本架構無此訊號** —— 不寫任何斷言。R-TM62 之原理保留，
+            # 但其射程由「五個 TLM LID」改為「該架構欄無訊號者」（R-TM75(4)）。
+            e["segment"] = None
+            e["excluded"] = (
+                f"{row['arch']} 欄無此訊號之對映，**不寫入任何訊號斷言**，"
+                "亦不列為 PENDING（非缺件）。"
+                + ("**但本片跨兩架構** —— 該訊號在另一架構可能有值，"
+                   "若本片之 Atl-Mid 部分需要它，須拆為架構限定之 TC。"
+                   if row.get("cross_arch_note") else ""))
+        elif row["no_segment"]:
+            # **有訊號而網段未載** —— 訊號可寫，segment 寫 DR-6 佔位。
+            # 與「無訊號」分開：前者不寫，後者寫而標缺件（`20` §2 實測：
+            # Atl-Mid 之 11 個 LID 屬此，即 DR-6 對該架構未解除）。
             e["segment"] = SEGMENT_PLACEHOLDER
-            e["segment_source"] = "Atl-H 欄為空且不在 R-TM62 射程 —— 須回報"
+            e["message"] = row["signal"]
+            e["arch_column"] = row["arch_column"]
+            e["lid_source_row"] = row["source_row"]
+            e["format"] = row["format"]
+            e["segment_source"] = (f"{row['arch']} 欄有訊號而 CAN 欄未載"
+                                   " —— DR-6 對本架構未解除")
         else:
             e["segment"] = row["can"]             # ← LID 表為權威
             e["message"] = row["signal"]
@@ -305,6 +332,8 @@ def build_signals(num, refs, sys2, objs, lid=None, proxi=None) -> dict:
             e["lid_source_row"] = row["source_row"]
             e["format"] = row["format"]
             e["sna"] = row["sna"]
+            if row.get("cross_arch_note"):
+                e["cross_arch_note"] = row["cross_arch_note"]
             cfts = sorted({c["segment"] for c in e["segment_candidates"]})
             if cfts and row["can"] not in cfts:
                 e["conflict"] = (
@@ -325,7 +354,6 @@ def build_signals(num, refs, sys2, objs, lid=None, proxi=None) -> dict:
 
 def build(feature_dir: Path, batch: str) -> dict:
     ee = load_ee_arch(feature_dir)      # R-TM63 之單一來源
-    lid = load_lid_table(feature_dir)   # A-TM26 / DR-6 解除後之 segment 權威
     proxi = load_proxi_table(feature_dir)   # `16` §3 —— PROXI 參數非 CAN 訊號
     import yaml
     cfg = yaml.safe_load(
@@ -344,6 +372,8 @@ def build(feature_dir: Path, batch: str) -> dict:
         if num not in text:
             raise ContextError(f"leaf {num} 不在 leaf_descriptions.txt 內")
         leaf = text[num]["leaf"]
+        _sr = build_spec_reference(num, refs, sys2, objs, ee.get(num))
+        _tgt = _sr.get("arch", {}).get("target", ARCH_HI)
         e: dict = {
             "leaf": leaf,
             "title": text[num]["title"],
@@ -362,8 +392,11 @@ def build(feature_dir: Path, batch: str) -> dict:
                          "**缺括號下半 = FAIL，不得出貨。** 同一 leaf 衍生"
                          "之多列，其括號內容不得逐字相同。"),
             },
-            "specification_reference": build_spec_reference(num, refs, sys2, objs, ee.get(num)),
-            "signals": build_signals(num, refs, sys2, objs, lid, proxi),
+            "specification_reference": _sr,
+            # R-TM75(5) —— 訊號依**該片之目標架構**取表，非固定 Atl-Hi。
+            "signals": build_signals(num, refs, sys2, objs,
+                                     load_lid_table(feature_dir, _tgt),
+                                     proxi, _tgt),
         }
         if leaf in BOUNDARY_SIGNALS:                        # C-1
             b = BOUNDARY_SIGNALS[leaf]

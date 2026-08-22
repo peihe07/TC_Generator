@@ -36,7 +36,8 @@ A-TM06…A-TM08 為執行層於本次 intake 實測時自行登記（Tier 1 之�
 | A-TM24 | functional_safety 之值未裁定，且 TODO 標記掛錯條文 | **RESOLVED**（R-TM57）| Tier 2 |
 | A-TM25 | 既有交付件與 canon 兩處牴觸（彎引號、check whether）| PENDING | Tier 2（呈 Pei）|
 | A-TM26 | LID 表五組架構欄，取錯不報錯且值形態合理 | **適用中**（強制判準）| Tier 2 |
-| A-TM27 | 40% 被引用物件標為 Atlantis Mid 專屬 | **RESOLVED**（R-TM63，採 (c)）| Tier 3 |
+| A-TM27 | ~~40% 被引用物件標為 Atlantis Mid 專屬~~ **結論作廢**（R-TM75）；事實記載保留 | **SUPERSEDED** | Tier 3 |
+| A-TM28 | 設定頁名 Clock 或 Clock & Date 未定 | PENDING | Tier 2（呈 Pei）|
 
 ---
 
@@ -1707,4 +1708,75 @@ CFTS015 之 269 個物件帶 `[EE Architecture:...]` 標籤。037 引用之 78 �
 
 Pei 裁採選項 **(c)**：引用標註，不縮減 TC。處置見 R-TM63。
 本條轉 RESOLVED；其量值更正如上，供日後讀者。
+
+### 結論作廢（2026-08-22，R-TM75(3)）
+
+**「35 個物件標為 Atlantis Mid」為真，事實記載全部保留。
+「架構不符」為偽，結論作廢。**
+
+實測（`18` §1）：該 35 個物件之 `[Radio:...]` 標籤 **35/35 含 R1L 或
+R1L-R**（即本專案），`[ECU:...]` **35/35 為 LTM**。形態為
+`R1L-R, R1L`（18 筆）或 `VP2Rxx, R1L-R, R1L, …`（17 筆），無一例外。
+
+即 **Atl-Mid 為本專案之另一個 EE architecture 變體，非別的專案**。
+本條原判之「架構不符」不成立，**其所導出之 R-TM63 與 DR-11 一併撤回／取消**。
+
+依 R-TM13，原文與量值更正段全部保留不刪 —— 該 35 這個數字仍是正確的
+事實，只是其意義由「不適用」變為「適用於另一架構」。
+
+## A-TM28 — 設定頁名 Clock 或 Clock & Date 未定
+
+**狀態：PENDING。Tier 2 —— 呈 Pei。**
+由 `19_hmi.md` §3 指派登記。
+
+```
+A-TM28（PENDING，Tier 2 —— 呈 Pei）
+
+HMI Settings List R1L-R (2026-02-13) §7 之標題附註：
+`when Set Date setting is implemented, rename settings section from
+"Clock" to, "Clock & Date"`。
+
+同文件 7-6 即為 `Set Date`（三種區域排序皆列出），前件似已成立，
+但該註記未言明 R1L-R 是否已實作。
+
+**兩種讀法**：
+(a) 該註記為給 HMI 團隊之施工指示，文件本身尚未改名 → 頁名為 `Clock`
+(b) Set Date 既已列入本版，改名條件成立 → 頁名應為 `Clock & Date`
+
+**分析層不裁**：此為 UI 事實，須由能看到實機或 HMI 團隊者確認。
+B1–B3 現寫 `Clock`（依 §7 標題字面），若應為 `Clock & Date`，
+至少 6 條之 procedure 與 ER 須改。
+
+**登記為 DR-12b**，Urgency High —— 其成本隨 TC 數增加，
+寫回後改動成本更高（R-TM64 同一考量）。
+```
+
+**執行層回報（2026-08-22）**：已對 `inputs/` 之新版檔案複驗，
+§7 標題附註逐字相符。**值照留 `Clock`**（依 §7 標題字面，A-TM28 未裁），
+但凡含 `Open the "Clock" settings` 之 TC，其 Remarks 加
+`PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認`
+（`20` T4）—— **使「已寫入之值可能需改」成為可見狀態，
+而非宣告該值為缺件**。
+
+### A-TM26 之訂正（2026-08-22，R-TM75(5)）
+
+**架構欄之選取依該條 TC 之目標架構而定**，非固定取 26–30：
+
+```
+Atl-Hi 之 TC   → CAN Mapping 欄 26–30（Atlantis High）
+Atl-Mid 之 TC  → CAN Mapping 欄 16–20（Atlantis）
+```
+
+**強制記錄之要求不變且更形重要** —— 先前只有一欄是對的，取錯必錯；
+現在**兩欄都可能是對的**，取錯不但不報錯，連「值形態合理」都不足以
+察覺，唯一的判準是該值與該 TC 之目標架構是否一致。
+
+**故 `lint_arch_column` 之判準隨之加強**：由「reasoning 須記錄架構欄」
+改為「**記錄之架構欄須與該 TC 之 Pre-Condition 架構行一致**」（R-TM76）。
+
+**一項執行層之自我檢討**：本條之強制記錄在 `11`–`17` 九輪中逐輪執行，
+每條 TC 之 reasoning 皆載 `Atlantis High (col 26-30)` ——
+**記錄完備，而記錄的內容整整九輪都是錯的**。
+該判準之射程限制（只驗記錄存在、不驗記錄正確）先前已寫入 docstring
+（`14` §1.2），本次即為其實例化。
 

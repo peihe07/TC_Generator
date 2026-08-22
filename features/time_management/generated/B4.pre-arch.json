@@ -9,7 +9,7 @@
       "test_group": "Time and Date",
       "test_set": "Zone and DST",
       "test_item": "The software shall automatically adjust daylight saving time based on time zone rules\n(confirm the displayed time shifts forward when the DST boundary is crossed)",
-      "pre_conditions": "The vehicle is an Atlantis High architecture variant\n\"Sync Time with GPS\" is set to ON\nGPS signal is available\nIgnition is ON\nThe current position is in a time zone that observes daylight saving time",
+      "pre_conditions": "\"Sync Time with GPS\" is set to ON\nGPS signal is available\nIgnition is ON\nThe current position is in a time zone that observes daylight saving time",
       "input_test_data": "NA",
       "test_procedure": "1. Read the time shown on the HU display and record it\n2. PENDING: DR-10 使車輛時間跨越 DST 切換點（進入日光節約時間）之操作方式\n3. Read the time shown on the HU display and record it",
       "expected_result": "1. The HU display shows the standard local time\n2. The vehicle time has crossed the daylight saving start point\n3. The HU display shows the local time advanced by one hour with no user action",
@@ -24,7 +24,7 @@
       "test_group": "Time and Date",
       "test_set": "Zone and DST",
       "test_item": "The software shall automatically adjust daylight saving time based on time zone rules\n(confirm the displayed time shifts back when the DST period ends)",
-      "pre_conditions": "The vehicle is an Atlantis High architecture variant\n\"Sync Time with GPS\" is set to ON\nGPS signal is available\nIgnition is ON\nDaylight saving time is in effect at the current position",
+      "pre_conditions": "\"Sync Time with GPS\" is set to ON\nGPS signal is available\nIgnition is ON\nDaylight saving time is in effect at the current position",
       "input_test_data": "NA",
       "test_procedure": "1. Read the time shown on the HU display and record it\n2. PENDING: DR-10 使車輛時間跨越 DST 切換點（結束日光節約時間）之操作方式\n3. Read the time shown on the HU display and record it",
       "expected_result": "1. The HU display shows the daylight saving local time\n2. The vehicle time has crossed the daylight saving end point\n3. The HU display shows the local time set back by one hour with no user action",
@@ -43,10 +43,10 @@
       "input_test_data": "Date = 09/03/2035",
       "test_procedure": "1. Open the \"Clock\" settings\n2. Set \"Set Date Day\", \"Set Date Month\" and \"Set Date Year\" to 09 / 03 / 2035\n3. Read the date shown on the HU display and record it",
       "expected_result": "1. The \"Clock\" settings open\n2. The date entry is accepted\n3. The HU display shows 09/03/2035",
-      "spec_reference": "CFTS015-4814000, 4814012, 4814113, 4814114",
+      "spec_reference": "CFTS015-4814000, 4814012",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814113 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814114 標為 Atlantis Mid）",
       "reasoning": "4814012：使用者經 HU 設定選單設定日期；4814000：無 GPS 時提供手動輸入方式。UI 項名 `Set Date Day` / `Month` / `Year` 取自 HMI Settings List 第 7 節（`11` T4），**有正式來源故不寫 DR-12 佔位**。"
     },
     {
@@ -58,10 +58,10 @@
       "input_test_data": "Date = 25/12/2033",
       "test_procedure": "1. Open the \"Clock\" settings\n2. Set \"Set Date Day\", \"Set Date Month\" and \"Set Date Year\" to 25 / 12 / 2033\n3. Read $DateTmDay$ in TELEMATIC_FD_1.Day1_TLM / TELEMATIC_FD_1.Day2_TLM on FD and record it\n4. Read $DateTmMonth$ in TELEMATIC_FD_1.Month1_TLM / TELEMATIC_FD_1.Month2_TLM on FD and record it",
       "expected_result": "1. The \"Clock\" settings open\n2. The date entry is accepted\n3. $DateTmDay$ carries 2 in Day1_TLM and 5 in Day2_TLM\n4. $DateTmMonth$ carries 1 in Month1_TLM and 2 in Month2_TLM",
-      "spec_reference": "CFTS015-4814001, 4814115",
+      "spec_reference": "CFTS015-4814001",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814115 標為 Atlantis Mid）",
       "reasoning": "4814001 逐字列出 $DateTmYear$ / $DateTmMonth$ / $DateTmDay$ 三訊號。日期各欄在 Atl-H 為 4-bit 數位對（`11` §3.3.1），故 25 表為 2 與 5。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 406 / 411（A-TM26 之強制記錄）。"
     },
     {
@@ -73,10 +73,10 @@
       "input_test_data": "Year = 2033",
       "test_procedure": "1. Open the \"Clock\" settings\n2. Set \"Set Date Year\" to 2033\n3. Read $DateTmYear$ in TELEMATIC_FD_1.Year1_TLM / TELEMATIC_FD_1.Year2_TLM / TELEMATIC_FD_1.Year3_TLM / TELEMATIC_FD_1.Year4_TLM on FD and record it",
       "expected_result": "1. The \"Clock\" settings open\n2. \"Set Date Year\" shows 2033\n3. $DateTmYear$ carries 2, 0, 3 and 3 across Year1_TLM to Year4_TLM",
-      "spec_reference": "CFTS015-4814001, 4814116",
+      "spec_reference": "CFTS015-4814001",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814116 標為 Atlantis Mid）",
       "reasoning": "$DateTmYear$ 在 Atl-H 為**四個** 4-bit 數位（LID 表 Format 欄：4 bits each / digit 1–4），與時 / 分 / 日 / 月之兩位數位不同。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 413（A-TM26 之強制記錄）。"
     },
     {
@@ -91,7 +91,7 @@
       "spec_reference": "CFTS015-4814013, 4814014",
       "priority": "P1",
       "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "",
       "reasoning": "4814013：依 Day/Month/Year Setting.Info 更新內部日期計數（條件為 GPS 自動調整未設定）；4814014：HU_Date.Info 等於計數值。以點火循環後仍保有該值驗證計數已更新，而非只有畫面暫存。"
     },
     {
@@ -100,14 +100,14 @@
       "test_set": "Fault Handling",
       "test_item": "The software shall send SNA/default values when time/date data is invalid or unavailable\n(confirm SNA is sent in the time signals when reliable data is unavailable)",
       "pre_conditions": "Ignition is ON\nThe CAN bus is awake",
-      "input_test_data": "NA",
+      "input_test_data": "PENDING: DR-20 使 HU 無法送出可靠時間資料之操作方式",
       "test_procedure": "1. PENDING: DR-20 使 HU 無法送出可靠時間資料之操作方式\n2. Read $DateTmHour$ in TELEMATIC_FD_1.Hour1_TLM / TELEMATIC_FD_1.Hour2_TLM on FD and record it",
       "expected_result": "1. The HU is unable to send reliable time data\n2. $DateTmHour$ carries the SNA value defined for that signal",
-      "spec_reference": "CFTS015-4813905, 4814056",
+      "spec_reference": "CFTS015-4813905",
       "priority": "P0",
       "design_method": "基礎故障注入 (Fault Injection Lite)",
-      "remarks": "",
-      "reasoning": "4813905 逐字：If the ECU can not send reliable data, the ECU (including gateway) shall send SNA (Signal Not available) values in the destination signal。**本條驗 SNA 送出規則本身（屬 022）**，不驗 GPS 值之送出正確性（屬 014，B-2 界線）—— 故受測訊號取時間訊號而非 GPS 訊號。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。 canon §4.5 / R-TM66：本欄原載之資料為互動操作，屬 Procedure。"
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814056 標為 Atlantis Mid）",
+      "reasoning": "4813905 逐字：If the ECU can not send reliable data, the ECU (including gateway) shall send SNA (Signal Not available) values in the destination signal。**本條驗 SNA 送出規則本身（屬 022）**，不驗 GPS 值之送出正確性（屬 014，B-2 界線）—— 故受測訊號取時間訊號而非 GPS 訊號。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。"
     },
     {
       "req_id": "SWE-RA-TIME&DATE-022",
@@ -115,14 +115,14 @@
       "test_set": "Fault Handling",
       "test_item": "The software shall send SNA/default values when time/date data is invalid or unavailable\n(confirm the default value is sent when no SNA value is defined for a signal)",
       "pre_conditions": "Ignition is ON\nThe CAN bus is awake",
-      "input_test_data": "NA",
+      "input_test_data": "PENDING: DR-20 使 HU 無法送出可靠時間資料之操作方式",
       "test_procedure": "1. PENDING: DR-20 使 HU 無法送出可靠時間資料之操作方式\n2. Read $DateTmDay$ in TELEMATIC_FD_1.Day1_TLM / TELEMATIC_FD_1.Day2_TLM on FD and record it",
       "expected_result": "1. The HU is unable to send reliable date data\n2. $DateTmDay$ carries the default value specified in the CAN database",
-      "spec_reference": "CFTS015-4813905, 4814056",
+      "spec_reference": "CFTS015-4813905",
       "priority": "P1",
       "design_method": "負向測試 (Negative / Invalid)",
-      "remarks": "",
-      "reasoning": "4813905 之第二子句：if no SNA value is defined, it shall be set to the default value. The default values are specified in the CAN database。$DateTmDay$ 之 SNA 欄在 LID 表為空（`11` §3.3.2：19 個 LID 中僅 $DateTmFormat$ 有 SNA 值），故適用此子句。**期望值指向 CAN database 而不自擬**。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 406（A-TM26 之強制記錄）。 canon §4.5 / R-TM66：本欄原載之資料為互動操作，屬 Procedure。"
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814056 標為 Atlantis Mid）",
+      "reasoning": "4813905 之第二子句：if no SNA value is defined, it shall be set to the default value. The default values are specified in the CAN database。$DateTmDay$ 之 SNA 欄在 LID 表為空（`11` §3.3.2：19 個 LID 中僅 $DateTmFormat$ 有 SNA 值），故適用此子句。**期望值指向 CAN database 而不自擬**。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 406（A-TM26 之強制記錄）。"
     }
   ]
 }

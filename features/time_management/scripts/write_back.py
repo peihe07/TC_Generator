@@ -123,7 +123,9 @@ BLANK_BY_DECISION = {
     "E (TestRail ID)": "assigned downstream",
     "O (Test Case Reference ID)": "feature.yaml write_back.tc_ref_id_value",
     "Q (Estimated Test Time)": "TODO(R-TM10-A1) —— 待本 feature 條文",
-    "T–Z (Vehicle Model)": "TODO(R-TM10-A1) —— 待本 feature 條文",
+    "T–Z (Vehicle Model)": "R-TM77 —— 交付件 UserProfiles_20260820 之該七欄 "
+                           "189/189 全空；車型欄在既有交付實務中不作為範圍"
+                           "標示之用，範圍改由 Pre-Condition 承載（R-TM76）",
 }
 
 
@@ -206,11 +208,26 @@ def resolve_columns(ws, header_row: int, cfg: dict) -> dict[str, int]:
 
 
 def load_tcs(feature_dir: Path, generated: str | None) -> list[dict]:
+    """讀取待寫回之 TC。
+
+    **`.pre-arch.json` 排除**（`20` T3 之 R-TM13 軌跡備份）—— 其為改動前
+    之完整副本，讀入會使每條 TC 寫入兩次。本項由 dry-run 抓到：
+    57 條顯示為 114 條。
+
+    **排除清單以副檔名樣式為準而非白名單**：白名單須隨批次增減維護，
+    而漏維護之後果是「少寫一批」——那比多寫一批更難察覺。
+    """
     root = feature_dir / (generated or "generated")
     rows: list[dict] = []
+    skipped: list[str] = []
     for p in sorted(root.glob("*.json")):
+        if p.name.endswith(".pre-arch.json"):
+            skipped.append(p.name)
+            continue
         data = json.loads(p.read_text(encoding="utf-8"))
         rows += data.get("tcs", data if isinstance(data, list) else [])
+    if skipped:
+        print(f"skipped       : {len(skipped)} 個軌跡備份 —— {', '.join(skipped)}")
     return rows
 
 

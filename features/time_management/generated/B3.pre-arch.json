@@ -16,7 +16,7 @@
       "spec_reference": "CFTS015-4813927, 4813930",
       "priority": "P0",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "",
       "reasoning": "4813930 逐字：minimum value of 0 hours for 12:00 midnight。4813927 明訂以 24h 格式送出。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。"
     },
     {
@@ -31,7 +31,7 @@
       "spec_reference": "CFTS015-4813928, 4813930, 4813956",
       "priority": "P0",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "",
       "reasoning": "4813930 / 4813956：maximum value of 23 hours for 11:00 PM。$DateTmHour$ 在 Atl-H 為兩個 4-bit 數位（`11` §3.3.1），故 23 表為 2 與 3 而非單一值 23。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。"
     },
     {
@@ -46,7 +46,7 @@
       "spec_reference": "CFTS015-4813929, 4813931, 4813957",
       "priority": "P0",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "",
       "reasoning": "4813931 / 4813957：maximum value of 59 minutes。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 410（A-TM26 之強制記錄）。"
     },
     {
@@ -76,7 +76,7 @@
       "spec_reference": "CFTS015-4814009, 4814010",
       "priority": "P1",
       "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "",
       "reasoning": "4814009 / 4814010：the receiving module shall convert the hour to be displayed based upon the $DateTmFormat$ signal —— 匯流排恆為 24h，轉換在接收端。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。"
     },
     {
@@ -84,7 +84,7 @@
       "test_group": "Time and Date",
       "test_set": "Display",
       "test_item": "The software shall store, recall, and broadcast time format (12H/24H) across wake cycles\n(confirm the last known format is recalled after a wake cycle)",
-      "pre_conditions": "The vehicle is an Atlantis High architecture variant\nIgnition is ON\nThe CAN bus is asleep\n\"Time Format\" was set to \"12 hrs\" before sleep",
+      "pre_conditions": "Ignition is ON\nThe CAN bus is asleep\n\"Time Format\" was set to \"12 hrs\" before sleep",
       "input_test_data": "NA",
       "test_procedure": "1. Wake the CAN bus\n2. Read the time shown on the HU display and record it",
       "expected_result": "1. The CAN bus is awake\n2. The HU display shows the time in 12 hour form",
@@ -99,7 +99,7 @@
       "test_group": "Time and Date",
       "test_set": "Display",
       "test_item": "The software shall store, recall, and broadcast time format (12H/24H) across wake cycles\n(confirm the recalled format is broadcast after a wake cycle)",
-      "pre_conditions": "The vehicle is an Atlantis High architecture variant\nIgnition is ON\nThe CAN bus is asleep\n\"Time Format\" was set to \"24 hrs\" before sleep",
+      "pre_conditions": "Ignition is ON\nThe CAN bus is asleep\n\"Time Format\" was set to \"24 hrs\" before sleep",
       "input_test_data": "NA",
       "test_procedure": "1. Wake the CAN bus\n2. Read $DateTmFormat$ in TELEMATIC_FD_10.DateTmFormat on FD and record it",
       "expected_result": "1. The CAN bus is awake\n2. $DateTmFormat$ carries 2 (FORMAT_24H)",
@@ -114,7 +114,7 @@
       "test_group": "Time and Date",
       "test_set": "Display",
       "test_item": "The software shall store, recall, and broadcast time format (12H/24H) across wake cycles\n(confirm an invalid format value leaves the last known format in use)",
-      "pre_conditions": "The vehicle is an Atlantis High architecture variant\nIgnition is ON\nThe VES screens are powered on\n\"Time Format\" is set to \"12 hrs\"",
+      "pre_conditions": "Ignition is ON\nThe VES screens are powered on\n\"Time Format\" is set to \"12 hrs\"",
       "input_test_data": "PENDING: DR-20 注入無效 $DateTmFormat$ 之操作方式",
       "test_procedure": "1. PENDING: DR-20 注入無效 $DateTmFormat$（值 5）之操作方式\n2. Read the time shown on the VES screen and record it",
       "expected_result": "1. An invalid $DateTmFormat$ is being received\n2. The VES screen continues to show the time in 12 hour form",
@@ -133,10 +133,10 @@
       "input_test_data": "Date = 20/07/2031",
       "test_procedure": "1. Open the \"Clock\" settings\n2. Set \"Set Date Day\", \"Set Date Month\" and \"Set Date Year\" to 20 / 07 / 2031\n3. Read the date shown on the IPC display and record it",
       "expected_result": "1. The \"Clock\" settings open\n2. The date entry is accepted\n3. The IPC display shows 20/07/2031",
-      "spec_reference": "CFTS015-4814019, 4814053, 4814073, 4814091",
+      "spec_reference": "CFTS015-4814019",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814053 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814073 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814091 標為 Atlantis Mid）",
       "reasoning": "4814019：The HU shall send HU_Date.Info via TELEMATIC_TIME_DATE。**本條不涵蓋 GPS 來源值之送出**（B-5 界線，屬 014）—— 故前置條件明訂 GPS 同步關閉，日期來自手動設定。**五個 TLM_MANAGED_TIME_DATE_* LID 依 R-TM62 於 Atl-H 無對映，不寫入任何訊號斷言。**"
     },
     {
@@ -148,10 +148,10 @@
       "input_test_data": "Date = 01/01/2040",
       "test_procedure": "1. Read the date shown on the IPC display and record it\n2. Open the \"Clock\" settings\n3. Set \"Set Date Day\", \"Set Date Month\" and \"Set Date Year\" to 01 / 01 / 2040\n4. Read the date shown on the IPC display and record it",
       "expected_result": "1. The IPC display shows the starting date\n2. The \"Clock\" settings open\n3. The date entry is accepted\n4. The IPC display shows 01/01/2040",
-      "spec_reference": "CFTS015-4814019, 4814053, 4814073, 4814091",
+      "spec_reference": "CFTS015-4814019",
       "priority": "P1",
       "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814053 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814073 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814091 標為 Atlantis Mid）",
       "reasoning": "4814019 之傳送隨來源值變動。**不涵蓋 GPS 來源值**（B-5）。"
     },
     {
@@ -163,10 +163,10 @@
       "input_test_data": "NA",
       "test_procedure": "1. Wake the CAN bus\n2. Read the time shown on the HU display and record it",
       "expected_result": "1. The CAN bus is awake and the HU reads the Proxi configuration\n2. The HU display shows the clock",
-      "spec_reference": "CFTS015-4813914, 4813915, 4814111",
+      "spec_reference": "CFTS015-4813914, 4813915",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
-      "remarks": "",
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814111 標為 Atlantis Mid）",
       "reasoning": "4813914：CAN sleep→wake 時 HU 監看 Proxi 並判定車輛是否已組態；4813915：組態後判定時鐘啟用與否。Cluster_Display_Type 之值域取自 data/proxi_atlantis_high.tsv（Atlantis & Atlantis High (col 16-20, Proxi sheet)），**為 PROXI 參數而非 CAN 訊號**，故寫入前置條件而不寫訊號三件組。"
     },
     {
@@ -178,10 +178,10 @@
       "input_test_data": "NA",
       "test_procedure": "1. Wake the CAN bus\n2. Read the time shown on the HU display and record it",
       "expected_result": "1. The CAN bus is awake and the HU reads the Proxi configuration\n2. The HU display does not show the clock",
-      "spec_reference": "CFTS015-4813915, 4814111",
+      "spec_reference": "CFTS015-4813915",
       "priority": "P1",
       "design_method": "負向測試 (Negative / Invalid)",
-      "remarks": "",
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814111 標為 Atlantis Mid）",
       "reasoning": "4813915 之 disabled 方向。值 0 = No Display Available 取自 proxi_atlantis_high.tsv。"
     },
     {
@@ -189,14 +189,14 @@
       "test_group": "Time and Date",
       "test_set": "CAN Transmission",
       "test_item": "The software shall synchronize time/date between HU, IPC, and LTM via TIME_DATE messages\n(confirm a time change on the head unit reaches the instrument cluster)",
-      "pre_conditions": "The vehicle is an Atlantis Mid architecture variant\nIgnition is ON\nThe CAN bus is awake\n\"Sync Time with GPS\" is set to OFF",
+      "pre_conditions": "Ignition is ON\nThe CAN bus is awake\n\"Sync Time with GPS\" is set to OFF",
       "input_test_data": "Time = 09:15",
       "test_procedure": "1. Read the time shown on the IPC display and record it\n2. Open the \"Clock\" settings\n3. Set \"Set Time Hours\" to 09 and \"Set Time Minutes\" to 15\n4. Read the time shown on the IPC display and record it",
       "expected_result": "1. The IPC display shows the starting time\n2. The \"Clock\" settings open\n3. The time entry is accepted\n4. The IPC display shows 09:15",
-      "spec_reference": "CFTS015-4814064, 4814067, 4814074, 4814092",
+      "spec_reference": "PENDING: DR-11 Atl-H 對應需求",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
-      "remarks": "PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認",
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814064 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814067 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814074 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814092 標為 Atlantis Mid）",
       "reasoning": "020 之四個引用物件全為 Atlantis Mid（`12` §2.2：Atl-Hi 錨點為零），依 R-TM64 之零真值例外，spec_reference 寫單一佔位，逐項明細入 Remarks。"
     },
     {
@@ -204,14 +204,14 @@
       "test_group": "Time and Date",
       "test_set": "CAN Transmission",
       "test_item": "The software shall synchronize time/date between HU, IPC, and LTM via TIME_DATE messages\n(confirm the head unit and the cluster hold the same time after a wake cycle)",
-      "pre_conditions": "The vehicle is an Atlantis Mid architecture variant\nIgnition is ON\nThe CAN bus is asleep\nA time has been set on the HU",
+      "pre_conditions": "Ignition is ON\nThe CAN bus is asleep\nA time has been set on the HU",
       "input_test_data": "NA",
       "test_procedure": "1. Wake the CAN bus\n2. Read the time shown on the HU display and record it\n3. Read the time shown on the IPC display and record it",
       "expected_result": "1. The CAN bus is awake\n2. The HU display shows a time value\n3. The IPC display shows the same time value as the HU display",
-      "spec_reference": "CFTS015-4814064, 4814067, 4814074, 4814092",
+      "spec_reference": "PENDING: DR-11 Atl-H 對應需求",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
-      "remarks": "",
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814064 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814067 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814074 標為 Atlantis Mid）\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814092 標為 Atlantis Mid）",
       "reasoning": "020 之同步在喚醒後之維持。spec_reference 同前條之零真值例外。"
     }
   ]

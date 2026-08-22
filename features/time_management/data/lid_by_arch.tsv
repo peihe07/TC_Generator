@@ -1,0 +1,39 @@
+LID	Arch	ArchColumn	SignalName	CAN	Format	SNA	SourceRow
+DateTmHour	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.Hour1_TLM / TELEMATIC_FD_1.Hour2_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		409
+DateTmHour	Atlantis Mid	Atlantis (col 16-20)	TIME_DATE.Hour1 / TIME_DATE.Hour2	(NO SEGMENT)	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		409
+DateTmMinute	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.Minute1_TLM / TELEMATIC_FD_1.Minute2_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		410
+DateTmMinute	Atlantis Mid	Atlantis (col 16-20)	TIME_DATE.Minute1 / TIME_DATE.Minute2	(NO SEGMENT)	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		410
+DateTmSecond	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.Second1_TLM / TELEMATIC_FD_1.Second2_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		412
+DateTmSecond	Atlantis Mid	Atlantis (col 16-20)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	412
+DateTmFormat	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_10.DateTmFormat	FD	0 = NDEF0 / 1 = FORMAT_12H / 2 = FORMAT_24H / 3 = FORMAT_0 / 4 = FORMAT_1 / 5 = FORMAT_2 / 6 = FORMAT_3 / 7 = SNA	7	407
+DateTmFormat	Atlantis Mid	Atlantis (col 16-20)	IPC_VEHICLE_SETUP.HourMode	(NO SEGMENT)			407
+DateTmFormat2	Atlantis High	Atlantis High (col 26-30)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	408
+DateTmFormat2	Atlantis Mid	Atlantis (col 16-20)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	408
+DateTmYear	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.Year1_TLM / TELEMATIC_FD_1.Year2_TLM / TELEMATIC_FD_1.Year3_TLM / TELEMATIC_FD_1.Year4_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2) / 0 to 9 (digit 3) / 0 to 9 (digit 4)		413
+DateTmYear	Atlantis Mid	Atlantis (col 16-20)	TIME_DATE.Year1 / TIME_DATE.Year2 / TIME_DATE.Year3 / TIME_DATE.Year4	(NO SEGMENT)	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2) / 0 to 9 (digit 3) / 0 to 9 (digit 4)		413
+DateTmMonth	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.Month1_TLM / TELEMATIC_FD_1.Month2_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		411
+DateTmMonth	Atlantis Mid	Atlantis (col 16-20)	TIME_DATE.Month1 / TIME_DATE.Month2	(NO SEGMENT)	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		411
+DateTmDay	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.Day1_TLM / TELEMATIC_FD_1.Day2_TLM	FD	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		406
+DateTmDay	Atlantis Mid	Atlantis (col 16-20)	TIME_DATE.Day1 / TIME_DATE.Day2	(NO SEGMENT)	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		406
+GPSDateTmHour	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_UTC_Hour	FD	Atlantis / 8 bit signal / 0 - 23 hours / resolution = 1 hour		857
+GPSDateTmHour	Atlantis Mid	Atlantis (col 16-20)	GPS_POS3.GPS_POS3_Date_Hour	(NO SEGMENT)	Atlantis / 8 bit signal / 0 - 23 hours / resolution = 1 hour		857
+GPSDateTmMinute	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_UTC_Minute	FD	Atlantis / 8 bit signal / 0 - 59 minutes / resolution = 1 minute		858
+GPSDateTmMinute	Atlantis Mid	Atlantis (col 16-20)	GPS_POS3.GPS_POS3_Date_Minutes	(NO SEGMENT)	Atlantis / 8 bit signal / 0 - 59 minutes / resolution = 1 minute		858
+GPSDateTmSecond	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_UTC_Second	FD	Atlantis / 16 bit signal / 0 - 59.99 seconds / resolution = .01 sec		860
+GPSDateTmSecond	Atlantis Mid	Atlantis (col 16-20)	GPS_POS3.GPS_POS3_Date_Seconds	CAN-B	Atlantis / 16 bit signal / 0 - 59.99 seconds / resolution = .01 sec		860
+GPSDateTmYear	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_Date_Year	FD	Atlantis / 16 bit signal / 0 - 65534 Years / resolution = 1 Year		861
+GPSDateTmYear	Atlantis Mid	Atlantis (col 16-20)	GPS_POS3.GPS_POS3_Date_Year	(NO SEGMENT)	Atlantis / 16 bit signal / 0 - 65534 Years / resolution = 1 Year		861
+GPSDateTmMonth	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_Date_Month	FD	Atlantis / 8 bit signal / 1 - 12 Months / resolution = 1 Month		859
+GPSDateTmMonth	Atlantis Mid	Atlantis (col 16-20)	GPS_POS3.GPS_POS3_Date_Month	(NO SEGMENT)	Atlantis / 8 bit signal / 1 - 12 Months / resolution = 1 Month		859
+GPSDateTmDay	Atlantis High	Atlantis High (col 26-30)	TELEMATIC_FD_1.GPS_Date_Day	FD	Atlantis / 8 bit signal / 1 - 31 Days / resolution = 1 Day		856
+GPSDateTmDay	Atlantis Mid	Atlantis (col 16-20)	GPS_POS3.GPS_POS3_Date_Day	(NO SEGMENT)	Atlantis / 8 bit signal / 1 - 31 Days / resolution = 1 Day		856
+TLM_MANAGED_TIME_DATE_Hour	Atlantis High	Atlantis High (col 26-30)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	2121
+TLM_MANAGED_TIME_DATE_Hour	Atlantis Mid	Atlantis (col 16-20)	TLM_MANAGED_TIME_DATE.Hour1_TLM_Master / TLM_MANAGED_TIME_DATE.Hour2_TLM_Master	CAN-B	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		2121
+TLM_MANAGED_TIME_DATE_Minute	Atlantis High	Atlantis High (col 26-30)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	2122
+TLM_MANAGED_TIME_DATE_Minute	Atlantis Mid	Atlantis (col 16-20)	TLM_MANAGED_TIME_DATE.Minute1_TLM_Master / TLM_MANAGED_TIME_DATE.Minute2_TLM_Master	CAN-B	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		2122
+TLM_MANAGED_TIME_DATE_Day	Atlantis High	Atlantis High (col 26-30)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	2120
+TLM_MANAGED_TIME_DATE_Day	Atlantis Mid	Atlantis (col 16-20)	TLM_MANAGED_TIME_DATE.Day1_TLM_Master / TLM_MANAGED_TIME_DATE.Day2_TLM_Master	CAN-B	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		2120
+TLM_MANAGED_TIME_DATE_Month	Atlantis High	Atlantis High (col 26-30)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	2123
+TLM_MANAGED_TIME_DATE_Month	Atlantis Mid	Atlantis (col 16-20)	TLM_MANAGED_TIME_DATE.Month1_TLM_Master / TLM_MANAGED_TIME_DATE.Month2_TLM_Master	CAN-B	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2)		2123
+TLM_MANAGED_TIME_DATE_Year	Atlantis High	Atlantis High (col 26-30)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	(NO SIGNAL)	2124
+TLM_MANAGED_TIME_DATE_Year	Atlantis Mid	Atlantis (col 16-20)	TLM_MANAGED_TIME_DATE.Year1_TLM_Master / TLM_MANAGED_TIME_DATE.Year2_TLM_Master / TLM_MANAGED_TIME_DATE.Year3_TLM_Master / TLM_MANAGED_TIME_DATE.Year4_TLM_Master	CAN-B	4 bits each / 0 to 9 (digit 1) / 0 to 9 (digit 2) / 0 to 9 (digit 3) / 0 to 9 (digit 4)		2124

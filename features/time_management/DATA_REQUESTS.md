@@ -18,13 +18,13 @@ Urgency 回報。回報對象為本表，不涉其他 feature。
 | 4 | 涵蓋全部 126 筆 SYS2 FR 之 037（或「48 筆不在 SW 範圍」之書面依據） | MISSING / 待答 | 48 筆 SYS-RA FR 無對應 SWE leaf | **阻塞覆蓋稽核之分母認定** | A-TM09 | **High** |
 | 5 | 含物件 `6151328` / `6151331` 之 CFTS 版本（或該二物件之遷移去向說明） | MISSING / 待答 | 2 筆（SYS-RA-221 / -224），連帶 SWE leaf 005 / 002 之部分引用 | 該二筆之 `specification_reference` 無章節可寫 | A-TM13 | 中 |
 | 6 | CAN 網段依據 —— DBC 或 EE 架構文件 | **RECEIVED（2026-08-22，Pei 補入 LID 表）** — 解除條件見下節 | 全部含 CAN 訊號斷言之 leaf | 解除中 | R-TM49 / A-TM26 | 中 |
-| 11 | 35 個 Atl-Mid 專屬物件之 Atl-H 對應需求（或「Atl-H 不含此需求」之書面確認）| MISSING / 待答 | 該 35 個條目之 spec_reference；**020 / 021 兩片之全部條目** | 不阻塞生成（寫佔位）；阻塞該等條目之最終值 | A-TM27 | **High** |
-| 12 | UI 標籤之正式名稱 | **部分 RECEIVED（2026-08-22）** — HMI Settings List 已到，三項中二項查得、一項不符 | 含 UI 操作之步驟措辭 | 見 `11` 上繳 §4 | — | **High** |
+| 11 | ~~35 個 Atl-Mid 專屬物件之 Atl-H 對應需求~~ | **CANCELLED（2026-08-22，R-TM75(2)）** —— 其所登記之缺件不存在：該 35 個物件之 Radio 標籤 35/35 含 R1L/R1L-R，即本專案；Atl-Mid 為本專案之另一 EE architecture 變體。約 40 處佔位改為真值。**不刪除本列**（軌跡，R-TM13） | 該 35 個條目之 spec_reference；**020 / 021 兩片之全部條目** | 不阻塞生成（寫佔位）；阻塞該等條目之最終值 | A-TM27 | **High** |
+| 12 | UI 標籤之正式名稱 | **RESOLVED（2026-08-22）** — 新版 HMI Settings List R1L-R (2026-02-13) §7-5 `Show Time in Status Bar`（Technical Ref CFTS015） | 含 UI 操作之步驟措辭 | 見 `11` 上繳 §4 | — | **High** |
 | 13 | Logical Identifiers and CAN Mapping v1_76.xlsx | **RECEIVED（2026-08-22，Pei 補入）** | 全部含 CAN 訊號斷言之 leaf | 解除 DR-6 之來源 | A-TM26 | — |
 | 14 | CFTS015 inline RTF 三份（`4814254-…_O833_116`、`4814255-…_O882_117`、`4814256-…_O922_118`）| **RECEIVED（2026-08-22，Pei 補入）** | 未定 —— 內容未解析 | 未評估 | — | — |
 | 15 | CFTS015 ReqIF 匯出（`…_20250910_1122.reqifz`）| **RECEIVED（2026-08-22，Pei 補入）** | 全 22 片（結構化來源）| 未評估 | — | — |
 | 16 | SR24 R1 Market Configuration Table v1.6 | **RECEIVED（2026-08-22，Pei 補入）** | 012 / 013（市場別時區規則之候選來源）| 未評估 | — | — |
-| 17 | HMI Settings List R1 SR24 Post 2A | **RECEIVED（2026-08-22，Pei 補入）** | 001 / 002 / 011 / 015 / 016（UI 標籤）| **已用於 `11` T4** | — | — |
+| 17 | HMI Settings List R1 SR24 Post 2A (June 15 2023) | **SUPERSEDED（2026-08-22）** — 由 DR-21 之 R1L-R (Feb 13 2026) 取代；**不刪除**（R-TM13）| 001 / 002 / 011 / 015 / 016（UI 標籤）| **已用於 `11` T4** | — | — |
 | 18 | CFTS_036 HMI Framework | **RECEIVED（2026-08-22，Pei 補入）** | 007（HMI requirements）| 未評估 | — | — |
 | 19 | CFTS_014 Internationalization Localization | **RECEIVED（2026-08-22，Pei 補入）** | 003 / 012 / 013（地區別時間日期格式）| 未評估 | — | — |
 | 20 | 注入無效／缺失時間訊號之操作方式（G2）| MISSING / 待答 | 009 / 010 / 022 | 不阻塞生成（步驟寫佔位）；**阻塞該類 TC 之實際執行** | — | **High** |
@@ -282,4 +282,33 @@ HMI Settings List」，而三者皆已見）。
 
 **與 DR-9 之區別**：DR-9 問「CAN sleep 何時算完成」（觀察面），
 DR-20 問「如何使訊號變成無效」（注入面）。
+
+## DR-12b —— 設定頁名（2026-08-22，A-TM28）
+
+| DR | 缺件 | 阻塞 | Urgency |
+|---|---|---|---|
+| **12b** | 設定頁名為 `Clock` 或 `Clock & Date` —— 須看實機或問 HMI 團隊 | 凡 `Open the "Clock" settings` 之 TC（實測 21 條） | **High** |
+
+**與 DR-12 之區別**：DR-12 問「該設定項叫什麼」（已由新版文件答覆）；
+DR-12b 問「該設定**頁**叫什麼」——文件本身給了兩個候選而未指明何者為
+R1L-R 之現況。**前者文件能答，後者文件答不了。**
+
+佔位字串：`PENDING: DR-12b 設定頁名（Clock 或 Clock & Date）待確認`
+
+**值照留 `Clock` 不改**（A-TM28 未裁前，`Clock` 為文件字面值）。
+本佔位之目的是使「已寫入之值可能需改」成為**可見狀態**，
+而非宣告該值為缺件 —— 此與其餘 DR 之佔位語意不同，故其值欄有值而非空。
+
+## DR-21 —— HMI Settings List R1L-R (Feb 13 2026)
+
+| DR | 檔案 | Status | 服務 |
+|---|---|---|---|
+| **21** | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | **RECEIVED（2026-08-22）** | 001/002/007/011/015/016 之 UI 標籤與值域 |
+
+**來源有兩份同名檔案，內容不同**（`26PI1.5` 之副本另有一個尾隨空格，
+SHA256 相異，大小差 1436 B）。**執行層取 `26PI2.5`**（PI 版本較新），
+並實測**兩份之 §7 Clock 節逐列相同** —— 故本次全部結論不受選擇影響。
+此事記於此，因日後若需引用該檔之他節，兩份之差異須先釐清。
+
+複本 SHA256 與來源一致（`41daac0048d2afe15fe9aeee…`）。
 
