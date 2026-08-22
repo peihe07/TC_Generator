@@ -275,6 +275,40 @@ def load_lid_table(feature_dir) -> dict[str, dict]:
     return out
 
 
+PROXI_TSV = "data/proxi_atlantis_high.tsv"
+
+
+def load_proxi_table(feature_dir) -> dict[str, dict]:
+    """PROXI 參數表（`16` §3）—— **與 LID 表分開，因其非 CAN 訊號**。
+
+    `Proxi & Configuration` 分頁之架構欄分組與 `CAN Mapping` 不同
+    （Atlantis 與 Atlantis High 合併於 col 16-20），故 `arch_column`
+    逐列帶回而不共用 LID 表之字串（A-TM26 之執行層擴充提案）。
+
+    缺檔**不 raise**：PROXI 參數非每個 feature 皆有，缺檔即視為無此類參數。
+    此與 `load_lid_table` 之缺檔即 raise 不同 —— 後者缺檔會使 segment
+    無來源而靜默填錯，本檔缺檔只會使 PROXI 參數落回「無此 LID」之佔位路徑，
+    該路徑已標明「須回報」，不會產出看似正常之錯值。
+    """
+    from pathlib import Path
+    p = Path(feature_dir) / PROXI_TSV
+    if not p.is_file():
+        return {}
+    lines = p.read_text(encoding="utf-8").rstrip("\n").split("\n")
+    want = ["Parameter", "ArchColumn", "SignalName", "CAN", "Format",
+            "SourceRow"]
+    if lines[0].split("\t") != want:
+        raise ValueError(f"{PROXI_TSV} 表頭為 {lines[0].split(chr(9))}，應為 {want}")
+    out = {}
+    for i, ln in enumerate(lines[1:], 2):
+        f = ln.split("\t")
+        if len(f) != 6:
+            raise ValueError(f"{PROXI_TSV}:{i} 欄數 {len(f)} ≠ 6")
+        out[f[0]] = {"arch_column": f[1], "signal": f[2], "can": f[3],
+                     "format": f[4], "source_row": f[5]}
+    return out
+
+
 def lid_of_signal(sig: str) -> str:
     """`$DateTmHour$` → `DateTmHour`。**只去修飾符，不做任何猜測性正規化。**"""
     return sig.strip().strip("$")

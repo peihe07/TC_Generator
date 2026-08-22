@@ -53,7 +53,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tm_rulings import (                                       # noqa: E402
     BATCHES, BOUNDARY_NOTES, BOUNDARY_SIGNALS, SEGMENT_PLACEHOLDER,
     SPEC_GAP, SPEC_REF_PREFIX, TEST_GROUP, TEST_ITEM_TOKEN_MAX,
-    TEST_SET_OF, TEST_SETS, spec_gap_placeholder, load_ee_arch, atl_hi_placeholder, load_lid_table, lid_of_signal)
+    TEST_SET_OF, TEST_SETS, spec_gap_placeholder, load_ee_arch, atl_hi_placeholder, load_lid_table, lid_of_signal, load_proxi_table)
 
 REPO_ROOT = next(p for p in Path(__file__).resolve().parents
                  if (p / "pyproject.toml").is_file())
@@ -246,7 +246,7 @@ def build_spec_reference(num, refs, sys2, objs, arch=None) -> dict:
     return entry
 
 
-def build_signals(num, refs, sys2, objs, lid=None) -> dict:
+def build_signals(num, refs, sys2, objs, lid=None, proxi=None) -> dict:
     """C-5 —— 訊號三件組。
 
     **segment 之權威改為 LID 表 Atlantis High 欄**（`11` T3 實測，
@@ -268,7 +268,22 @@ def build_signals(num, refs, sys2, objs, lid=None) -> dict:
                     {"segment": s, "object": oid,
                      "sentence": text[:200]})
     for sig, e in signals.items():
-        row = (lid or {}).get(lid_of_signal(sig))
+        name = lid_of_signal(sig)
+        prox = (proxi or {}).get(name)
+        if prox is not None:
+            # `16` §3 —— PROXI 參數**不是 CAN 訊號**，不寫訊號三件組。
+            # 其值域為前置條件之來源；原先誤標 `PENDING: DR-6`（CAN 網段
+            # 缺件），語意錯誤 —— 該缺件與本項無關。
+            e["segment"] = None
+            e["not_a_can_signal"] = (
+                f"`{sig}` 為 PROXI 參數而非 CAN 訊號。**不寫訊號三件組**；"
+                "其值寫入 pre_conditions。")
+            e["proxi"] = {"signal": prox["signal"], "bus": prox["can"],
+                          "domain": prox["format"],
+                          "arch_column": prox["arch_column"],
+                          "source_row": prox["source_row"]}
+            continue
+        row = (lid or {}).get(name)
         if row is None:
             # LID 表無此 LID —— 既非有值亦非 R-TM62 之 N/A，屬未知。
             # **不得回退為 CFTS 內文之候選**（那是被降級的來源），
@@ -311,6 +326,7 @@ def build_signals(num, refs, sys2, objs, lid=None) -> dict:
 def build(feature_dir: Path, batch: str) -> dict:
     ee = load_ee_arch(feature_dir)      # R-TM63 之單一來源
     lid = load_lid_table(feature_dir)   # A-TM26 / DR-6 解除後之 segment 權威
+    proxi = load_proxi_table(feature_dir)   # `16` §3 —— PROXI 參數非 CAN 訊號
     import yaml
     cfg = yaml.safe_load(
         (feature_dir / "feature.yaml").read_text(encoding="utf-8"))
@@ -347,7 +363,7 @@ def build(feature_dir: Path, batch: str) -> dict:
                          "之多列，其括號內容不得逐字相同。"),
             },
             "specification_reference": build_spec_reference(num, refs, sys2, objs, ee.get(num)),
-            "signals": build_signals(num, refs, sys2, objs, lid),
+            "signals": build_signals(num, refs, sys2, objs, lid, proxi),
         }
         if leaf in BOUNDARY_SIGNALS:                        # C-1
             b = BOUNDARY_SIGNALS[leaf]

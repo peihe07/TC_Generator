@@ -16,8 +16,8 @@
       "spec_reference": "CFTS015-4813919, 4813984",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
-      "remarks": "",
-      "reasoning": "4813919 為使用者可經 HU 設定選單設定時間；4813984 為該畫面之存在。UI 標籤取自 HMI Settings List 第 7 節 Clock（11 T4）。"
+      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814069 標為 Atlantis Mid）",
+      "reasoning": "4813919 為使用者可經 HU 設定選單設定時間；4813984 為該畫面之存在。UI 標籤取自 HMI Settings List 第 7 節 Clock（11 T4）。 001 之 Atl-Mid 物件 4814069 之 DR-11 佔位補於本條（該 leaf 三條 TC 中最直接引用 HU 設定選單者）。"
     },
     {
       "req_id": "SWE-RA-TIME&DATE-001",

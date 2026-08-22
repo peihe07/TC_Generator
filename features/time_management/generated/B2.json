@@ -31,7 +31,7 @@
       "spec_reference": "CFTS015-4813939",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
-      "remarks": "PENDING: DR-11 Atl-H 對應需求（CFTS015-4814087 標為 Atlantis Mid）",
+      "remarks": "PENDING: DR-5 CFTS015 缺件物件 6151331\nPENDING: DR-11 Atl-H 對應需求（CFTS015-4814087 標為 Atlantis Mid）",
       "reasoning": "4813939 逐字：ON 時 disable the 'SET TIME' feature，OFF 時 enable —— 本條驗 OFF 方向。"
     },
     {
@@ -46,7 +46,7 @@
       "spec_reference": "CFTS015-4813922",
       "priority": "P1",
       "design_method": "負向測試 (Negative / Invalid)",
-      "remarks": "",
+      "remarks": "PENDING: DR-5 CFTS015 缺件物件 6151331",
       "reasoning": "4813922 之條件之反面。值域 0 = Absent 取自 proxi_atlantis_high.tsv。"
     },
     {
