@@ -312,11 +312,42 @@ defined by HMI requirements.`
 **DR-12**（`IGN_OFF_ACC`，29 包 §1.2 開立）。
 > 本類別包含已於 2026-08-22 送出之 **DR-19**，其為本類之實例。
 
-**影響範圍（20 輪 W-58 全量掃描）**：**82 個 leaf**、104 次命中。
-主要 token（次數）：`Hybrid_Type` 14／`EngRun_Stat` 12／`PowerMode` 10／
-`DriverSide` 6／`HeatedSeatFL` 6／`HeatedSeatFR` 6／`VentedSeatFL` 6／
-`VentedSeatFR` 6／`PrplsnSysAtv` 5／`HSW_Stat_2` 5／`HdRstRelRq` 4／
-`Heated_Seat_Levels` 4。逐列見 `docs/reports/writability.tsv`。
+**影響範圍（31 輪依 R-VS50 回查重估；取代 20 輪之「82 個 leaf」）**：
+**137 個 leaf**、215 次命中、**27 個相異 token**。
+
+逐 token 之 leaf 數（全表，非「主要」）：
+
+| token | leaf | token | leaf |
+|---|---:|---|---:|
+| `HeatedSeatFL` | 22 | `Heated_Steats_Levels` | 4 |
+| `HeatedSeatFR` | 22 | `HSW_Cmd_Tlm` | 4 |
+| `VentedSeatFL` | 20 | `ESS_ENG_ST` | 2 |
+| `VentedSeatFR` | 20 | `VC_VEH_LINE` | 2 |
+| `FL_HS_Cmd_Tlm` | 16 | `PowerMode` | 2 |
+| `FR_HS_Cmd_Tlm` | 16 | `FL_HS_RQ` | 2 |
+| `Hybrid_Type` | 14 | `FR_HS_RQ` | 2 |
+| `FL_VS_Cmd_Tlm` | 14 | `FL_VS_RQ_TGW` | 2 |
+| `FR_VS_Cmd_Tlm` | 14 | `FR_VS_RQ_TGW` | 2 |
+| `EngRun_Stat` | 12 | `DSP_SK_PRSNT` | 1 |
+| `Heated_Seat_Levels` | 5 | `Heated_Steering_Levels` | 1 |
+| `PrplsnSysAtv` | 5 | `HSW_RQ_TGW` | 1 |
+| `HSW_Stat_2` | 5 | `Heated_Steering_Wheel` | 1 |
+| `HdRstRelRq` | 4 | | |
+
+**依 R-VS50 之群組回查（相異 leaf，非累加）**：
+
+| 群 | 相異 leaf |
+|---|---:|
+| `HeatedSeatFL`／`FR`／`VentedSeatFL`／`FR` | **84** |
+| `*_Cmd_Tlm` 四者 | **60** |
+| HSW 系（5 token） | 12 |
+
+**與此前之優先序不符**：24～51 包以 `*_Cmd_Tlm`「61 leaf」為單一最大解鎖，
+實際最大群為 `HeatedSeat*`／`VentedSeat*` 四者之 **84 leaf**。
+20 輪所載之「82 個 leaf」與其逐 token 次數（`PowerMode` 10、`DriverSide` 6 等）
+亦與現行掃描不符 —— 其為 W-59／W-77／W-80 三次改判前之計數，
+本次不追改該歷史記載，僅以本節取代其作為決策依據之地位。
+逐列見 `docs/reports/writability.tsv`。
 
 **我方之掃描條件與其盲區**見上繳 18 §4。
 
