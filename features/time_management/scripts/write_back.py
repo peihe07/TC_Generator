@@ -14,8 +14,16 @@ dry-run 為預設、寫入後之三重驗證（表頭未動／他分頁逐位元
 x14 下拉被摧毀之風險（R-G3），該風險不可逆且發生在交付件上。
 
 **不繼承其內容**：Privacy 之 `CONST_FUNCTIONAL_SAFETY = "NA"`（R30-3）、
-`PLACEHOLDER_BODY`、`tc_id_format` 皆為其自身裁決，本 feature 之對應值
-標 `TODO(R-TM10-A1)`，待本 feature 條文決定。
+`PLACEHOLDER_BODY`、`tc_id_format` 皆為其自身裁決。本 feature 之對應值
+現況（2026-08-22）：
+
+  CONST_FUNCTIONAL_SAFETY  已決 `"NA"`（**R-TM57**）—— 依據為本 feature
+                           自身之交付件實測與 037 分類實測，與 Privacy
+                           之值巧合相同但**依據不同**，非援引
+  tc_id_format             已決（**R-TM32**），單一來源為 `feature.yaml`，
+                           模組層不另存值（**R-TM59**）
+  PLACEHOLDER_BODY         仍為 `TODO(R-TM10-A1)`，但**無使用點**，
+                           故不列入 unresolved（R-TM59）
 
 ## 本 feature 之調整點
 
@@ -64,10 +72,50 @@ FIRST_DATA_ROW = 10          # rev C 版面；表頭列 9
 CONST_FUNCTIONAL_SAFETY = "NA"
 
 # TODO(R-TM10-A1): BLOCKED 佔位之措辭 —— 屬 TC 內容，不得援引他 feature。
+#   **不列入 unresolved**（R-TM59）：本常數無任何使用點，其未決不影響任何
+#   寫入；留在 unresolved 內等於以一個不生效之未決項阻擋整條寫回路徑。
+#   BLOCKED 佔位之寫入路徑實作時須移回 —— 屆時它才真的會影響輸出。
 PLACEHOLDER_BODY = None
 
-# TODO(R-TM10-A1): tc_id 之格式 —— 屬 tc_id 體系，R-TM10(b) 明列不得援引。
-TC_ID_FORMAT = None
+# R-TM59 —— tc_id 格式之**單一來源為 feature.yaml**，模組層不另存一份值。
+# 本識別字保留為**來源指標**（R-TM13 之精神：留下「此處曾有一個值」之痕跡），
+# 其內容刻意不是格式字串本身，使誤用者立即失敗而非靜默產出壞 tc_id。
+# 原 `TC_ID_FORMAT = None` 為死常數：從不被讀用（真正生效者在 yaml，
+# 值早由 R-TM32 裁定），卻列入 unresolved 而擋住 --write（08 上繳 §5）。
+TC_ID_FORMAT = "<see feature.yaml: write_back.tc_id_format>"
+
+
+def resolve_tc_id_format(cfg: dict) -> str:
+    """tc_id 格式之**唯一**取值入口（R-TM59）。
+
+    凡需要該格式者一律呼叫本函式，不得自行 `cfg["write_back"][...]` ——
+    自行讀取即製造第二個來源，而兩個來源不會互相比對，漂移時無人發現。
+    """
+    fmt = (cfg.get("write_back") or {}).get("tc_id_format")
+    if not fmt:
+        raise WriteBackError(
+            "feature.yaml 缺 `write_back.tc_id_format` —— tc_id 格式為 "
+            "R-TM32 之裁決值，其單一來源為 feature.yaml（R-TM59）。"
+            "不得於程式碼內補寫預設值。")
+    if "{n" not in fmt:
+        raise WriteBackError(
+            f"`write_back.tc_id_format` = {fmt!r} 不含序號欄位 `{{n...}}`，"
+            "無法賦號（R-TM32：`NR1L-TimeAndDate-{n:03d}`）")
+    return fmt
+
+
+def assert_tc_id_single_source(cfg: dict, used: str) -> None:
+    """R-TM56 之可獨立呼叫守衛 —— 實際用於寫入者須與唯一入口同值。
+
+    `used` 為 write_rows 實際賦號所用之格式字串。此檢查之作用不是驗
+    yaml 內容（那是 resolve 的事），而是驗**沒有第二條取值路徑** ——
+    若日後有人在 write_rows 內改回自行讀 cfg，本檢查即在兩者分岔時失敗。
+    """
+    want = resolve_tc_id_format(cfg)
+    if used != want:
+        raise WriteBackError(
+            f"tc_id 格式雙來源：write_rows 用 {used!r}，"
+            f"resolve_tc_id_format 得 {want!r}（R-TM59）")
 
 # 刻意留白之欄位，列出使覆核者看見這是決定而非疏漏。
 BLANK_BY_DECISION = {
@@ -195,7 +243,7 @@ def write_rows(ws, cols: dict[str, int], rows: list[dict], cfg: dict,
     tc_id，序號在迴圈外由 start_seq 遞增。
     """
     wbk = cfg.get("write_back", {})
-    fmt = wbk["tc_id_format"]
+    fmt = resolve_tc_id_format(cfg)       # R-TM59：唯一取值入口
     first = FIRST_DATA_ROW + start_seq
     expected: list[dict] = []             # A5 正向驗證之預期值
     for i, tc in enumerate(rows):
@@ -228,7 +276,8 @@ def write_rows(ws, cols: dict[str, int], rows: list[dict], cfg: dict,
                          "test_item": tc.get("test_item")})
     return {"rows": len(rows), "first_row": first,
             "last_row": first + len(rows) - 1 if rows else first,
-            "start_seq": start_seq, "expected": expected}
+            "start_seq": start_seq, "expected": expected,
+            "tc_id_format_used": fmt}      # R-TM59 一致性檢查之輸入
 
 
 def check_header_untouched(src: Path, out: Path, sheet: str, header_row: int) -> None:
@@ -312,27 +361,39 @@ def run(args) -> int:
         f"{k}={openpyxl.utils.get_column_letter(v)}" for k, v in cols.items()))
     print(f"rows          : {plan['rows']} TCs at rows "
           f"{plan['first_row']}-{plan['last_row']}")
+    # R-TM59：本處原為 tc_id_format 之**第三個**自讀點（模組常數、
+    # write_rows、此處各一）。全部改走 resolve_tc_id_format。
+    assert_tc_id_single_source(cfg, plan["tc_id_format_used"])
+    _fmt = resolve_tc_id_format(cfg)
     print(f"tc_id         : 起點序號 {plan['start_seq']}（既有資料列數，"
           f"A3 之唯一起點來源）；本批 "
-          f"{cfg['write_back']['tc_id_format'].format(n=plan['start_seq'] + 1)}"
-          f" … {cfg['write_back']['tc_id_format'].format(n=plan['start_seq'] + plan['rows'])}")
+          f"{_fmt.format(n=plan['start_seq'] + 1)}"
+          f" … {_fmt.format(n=plan['start_seq'] + plan['rows'])}")
     print(f"test_group    : {cfg['test_group']!r} "
           f"(fill_test_group_set={cfg['write_back'].get('fill_test_group_set')})")
     print("blank by decision: " + "; ".join(
         f"{k} — {v}" for k, v in BLANK_BY_DECISION.items()))
 
-    unresolved = [n for n, v in (("CONST_FUNCTIONAL_SAFETY", CONST_FUNCTIONAL_SAFETY),
-                                 ("PLACEHOLDER_BODY", PLACEHOLDER_BODY),
-                                 ("TC_ID_FORMAT", TC_ID_FORMAT)) if v is None]
+    # R-TM59 —— 清單只列**其未決會實際影響寫入**者。
+    # PLACEHOLDER_BODY 無使用點故移出；TC_ID_FORMAT 之值改由 yaml 供給，
+    # 其缺失由 resolve_tc_id_format 直接 raise，不走本清單。
+    # 判準由 `v is None` 改為 `v is None or v == ""`：空字串同樣是未決
+    # （08 上繳 §4.1 紅向 2 之已知射程缺口）。
+    unresolved = [n for n, v in (("CONST_FUNCTIONAL_SAFETY",
+                                  CONST_FUNCTIONAL_SAFETY),)
+                  if v is None or v == ""]
     if unresolved:
-        print("\nTODO(R-TM10-A1) 未決之內容常數：" + ", ".join(unresolved))
-        print("  —— 其值屬 TC 內容，須由本 feature 之條文決定，不得援引他 feature。")
+        print("\n未決之內容常數（其值屬 TC 內容，須由本 feature 之條文決定）："
+              + ", ".join(unresolved))
+    else:
+        print("\n內容常數        : 全部已決 —— unresolved 為空（R-TM57 / R-TM59）")
 
     if not args.write:
         print("\nDRY RUN —— 未寫出任何檔案。加 --write 才實際寫入。")
         return 0
     if unresolved:
-        raise WriteBackError("內容常數未決，拒絕寫入（R-TM10-A1）")
+        raise WriteBackError(
+            "內容常數未決，拒絕寫入：" + ", ".join(unresolved))
 
     out = Path(args.out) if args.out else src.with_name(src.stem + "_regen-v1.xlsx")
     report = surgical_save(wb, src, out)

@@ -9,9 +9,19 @@ modified by TC_Generator analysis round 05R under G-TM1/G-TM2
 rev C 母本、spec_mode D，形態最近）：權威讀取而非寫死、閘門逐條回傳
 `(gate, message)`、`--self-test` 對每閘造紅綠兩向、exit 0/1/2 之語義。
 
-**不繼承其內容**（R-TM10-A1，射程由 R-TM29 界定）：步驟措辭常數、
-ER 樣板字串、Test Set 值、priority 預設一律留 `TODO(R-TM10-A1)`，
-待本 feature 依條文決定。Privacy 之 `step-actions`／`negative-scope`
+**不繼承其內容**（R-TM10-A1，射程由 R-TM29 界定）。各項現況
+（2026-08-22 更新 —— 原文稱「一律留 TODO」已過時）：
+
+  Test Set 值      **已實作**（`lint_test_set`）—— Part VII 七組，R-TM17 簽核
+  priority 值域    **已實作**（`lint_priority_domain`）—— 自母本 P 欄 DV 讀取
+  priority 分佈    仍未決，但標 `TODO(內容裁決)` 而非 R-TM10-A1（見檔末註）
+  步驟措辭常數     仍為 `TODO(R-TM10-A1)`；已確定**自訂**（08 §3.2 實測：
+                   既有交付件之步驟全為他 feature 專屬 UI，無可援引者），
+                   擬定中（09 §3.1 常數表 v2 [PROPOSED]）
+  ER 樣板字串      **刻意不做**（08 上繳 §6.3）—— 樣板化會使
+                   `lint_step_er_count` 之 1:1 以湊行數方式通過而內容仍錯
+
+Privacy 之 `step-actions`／`negative-scope`
 兩閘編碼的是 R33-5／R33-1(d)，**那是 Privacy 之裁決，本 feature 不援引**。
 
 ## 權威一律讀取，不寫死

@@ -2343,3 +2343,53 @@ lint 之 B1（`lint_d5_scope`）判準隨之改回：**D5 為空即通過**，
 `d5-scope`，lint 主流程之 `return 1 if any(...)` 因而恆為 1；改判後
 D5 空即零發現。此為判準改變之連帶效果，非本包另行更動主流程。
 
+## R-TM59 — 死常數處置採 (b)
+
+（分析層裁定，2026-08-22。上游包 `docs/handoff/09_constants.md` §1。
+發現者為執行層 `08` 上繳 §5；執行層所提之三選項中採 (b)，其理由
+一併採納為本條依據。）
+
+```
+R-TM59（分析層裁定，2026-08-22）—— 死常數處置採 (b)
+
+TC_ID_FORMAT：改為自 feature.yaml 之 write_back.tc_id_format 讀入，
+  消除雙來源。不刪除該識別字 —— 保留「此處曾有一個值」之痕跡，
+  且使 lint 日後可比對兩處。
+  **同時加一項一致性檢查**：模組層讀入之值與 write_rows 實際使用者
+  須為同一來源，不得各讀一次。
+
+PLACEHOLDER_BODY：保留 TODO 標記，但**移出 unresolved 清單**。
+  理由：其無任何使用點，未決不影響任何寫入。留在 unresolved 內
+  等於以一個不生效之未決項阻擋整條寫回路徑。
+  待 BLOCKED 佔位之寫入路徑實作時再移回。
+
+執行層傾向 (b) 之理由（雙來源即本 feature 一路在防之漂移形態，
+而現況恰為「一處已裁定、另一處還是 None」，且 lint 不會發現因兩處
+從不比對）—— **採納為本條之依據**。
+
+unresolved 檢查之判準由 `v is None` 改為 `v is None or v == ""`
+（§4.1 紅向 2 之已知射程缺口，本包一併補）。
+```
+
+**執行層回報（2026-08-22）**：已實作，紅綠 **8/8**。
+`--write` 之 unresolved **實測為空**（dry-run 印出「內容常數：全部已決」）。
+
+**實作時發現本條所述之「雙來源」實為三來源**：除模組常數與 `write_rows`
+外，`run()` 之 tc_id 預覽列印**又自行讀了一次** `cfg['write_back']
+['tc_id_format']`。三處已全部改走唯一入口 `resolve_tc_id_format(cfg)`。
+
+**`TC_ID_FORMAT` 之保留值刻意不是格式字串**，而是來源指標
+`"<see feature.yaml: write_back.tc_id_format>"`。理由：若保留一份真的
+格式字串，痕跡是留下了，但**雙來源也一併留下了** —— 誤用者會靜默產出
+看似正常的 tc_id。改為指標後，任何誤用立即失敗（`.format()` 不含 `{n}`
+會產出常數字串，而 `resolve` 對此有明確檢查）。
+
+`resolve_tc_id_format` 另加一項本條未要求之檢查：格式**須含 `{n`**。
+無序號欄位之格式會使 189 列拿到同一個 tc_id，而 `check_written_back`
+（G-TM3）逐列比對預期值時兩側同錯，驗不出來 —— 此為 R-TM21（檢查須能
+失敗）之直接應用。
+
+`assert_tc_id_single_source` 為**可獨立呼叫**之守衛（R-TM56）：
+一行 `assert_tc_id_single_source(cfg, "<壞值>")` 即可觸發，
+紅向 2 即以此構造，不經由 `run()` 之間接路徑。
+
