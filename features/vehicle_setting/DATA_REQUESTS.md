@@ -218,7 +218,7 @@ CFTS044 之座椅相關值域中，發現四類書寫問題，請確認其為筆
 
 **狀態：未送出** —— 37 包送件文第 6 項，**Pei 本次僅送 1–5**，本項維持待送。配對 anomaly：A-VS49／A-VS51／A-VS52／A-VS53。
 
-## DR-19（新，**Urgency High** —— **阻塞 3 個 leaf**；17 輪 W-53 開立）
+## DR-19（**併入 DR-21**，R-VS42；原編號保留 —— R-TM13。已於 2026-08-22 送出，待覆）
 
 **`EngRun_Stat` 之規格值於 LID 與 DBC 皆無對應。**
 
@@ -259,7 +259,7 @@ CFTS044 之 `4858551`／`4858553`／`4858555` 以
 
 配對 anomaly：A-VS58。**狀態：已送出（Pei，2026-08-22，37 包送件文第 4 項）—— 待覆。**
 
-## DR-20（新，**Urgency Medium** —— **阻塞 1 個 leaf**；17 輪 W-53 開立）
+## DR-20（**併入 DR-23**，R-VS42；原編號保留 —— R-TM13。已於 2026-08-22 送出，待覆）
 
 **`4858560` 交叉參照未具名之 HMI 需求。**
 
@@ -290,7 +290,27 @@ defined by HMI requirements.`
 
 配對 anomaly：A-VS59。**狀態：已送出（Pei，2026-08-22，37 包送件文第 5 項）—— 待覆。**
 
-## DR-21（新，**Urgency High** —— **阻塞 2 個 leaf**；19 輪 W-57 開立）
+## DR-21（**類別式，B2**，依 **R-VS42** 改制於 20 輪；Urgency High）
+
+**類別：規格值於 LID 與 DBC 皆無對應。**
+
+**併入本類者**：**DR-19**（`EngRun_Stat` 四值，**已於 2026-08-22 單獨送出**）、
+**DR-12**（`IGN_OFF_ACC`，29 包 §1.2 開立）。
+> 本類別包含已於 2026-08-22 送出之 **DR-19**，其為本類之實例。
+
+**影響範圍（20 輪 W-58 全量掃描）**：**82 個 leaf**、104 次命中。
+主要 token（次數）：`Hybrid_Type` 14／`EngRun_Stat` 12／`PowerMode` 10／
+`DriverSide` 6／`HeatedSeatFL` 6／`HeatedSeatFR` 6／`VentedSeatFL` 6／
+`VentedSeatFR` 6／`PrplsnSysAtv` 5／`HSW_Stat_2` 5／`HdRstRelRq` 4／
+`Heated_Seat_Levels` 4。逐列見 `docs/reports/writability.tsv`。
+
+**我方之掃描條件與其盲區**見上繳 18 §4。
+
+---
+
+### （原逐實例條文，保留 —— R-TM13）
+
+## ~~DR-21（新，Urgency High —— 阻塞 2 個 leaf；17 輪 W-53 開立）~~
 
 **`$PowerMode$` 之 `IGN_START` 與 `IGN_OFF_ACC` 於基線 DBC 無對應值。**
 
@@ -322,7 +342,19 @@ CFTS044 所用之值與其對應狀況（全文實測次數）：
 
 **提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS63。**狀態：未送出。**
 
-## DR-22（新，**Urgency High** —— **阻塞 1 個 leaf**；19 輪 W-57 開立）
+## DR-22（**類別式，B3**，依 **R-VS42** 改制於 20 輪；Urgency High）
+
+**類別：PROXI／參數於 LID、DBC、值域資料三處皆無命中。**
+
+**影響範圍（20 輪 W-58）**：**2 個 leaf**、2 次命中 ——
+`ThirdRowHeadrestDump-028`（`VC_HdRstPrsnt`）、
+`HeatedSteeringWheel-004`（`HSW_StatS`，**實為來源 `$` 不對稱之 typo**，見 A-VS68）。
+
+---
+
+### （原逐實例條文，保留 —— R-TM13）
+
+## ~~DR-22（新，Urgency High —— 阻塞 1 個 leaf；19 輪 W-57 開立）~~
 
 **`VC_HdRstPrsnt` 於 LID、DBC、值域資料三處皆無記載。**
 
@@ -346,7 +378,34 @@ the HU shall dispaly the Third Row Headrest Dump softkey button.`
 
 **提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS64。**狀態：未送出。**
 
-## DR-23（新，**Urgency Medium** —— **阻塞 1 個 leaf**；19 輪 W-57 開立）
+## DR-23（**類別式，B1**，依 **R-VS42** 改制於 20 輪；Urgency Medium）
+
+**類別：未具名之外部交叉參照 —— 其整個結果被外推至未具名之文件。**
+
+**併入本類者**：**DR-20**（`4858560`，**已於 2026-08-22 單獨送出**）。
+> 本類別包含已於 2026-08-22 送出之 **DR-20**，其為本類之實例。
+
+**影響範圍（20 輪 W-58）**：**8 個 leaf**、8 個相異條文：
+
+```
+4858560  4859509   the HMI shall be modified as defined by HMI requirements
+4859032            the HU shall follow the HMI Logic & Flow to update the state …
+4859386  4859387   TLM has to show an informative popup …
+4859448  4859449
+4859498
+```
+
+> **判準之精化須記明**：初測以「`as defined by`／`refer to`／`follow the`／
+> `per the`／`as specified by`／`according to` ＋ 未帶文件名或章節號」為準，
+> 得 **65 條**。逐條讀後，其中 **57 條為尾綴修飾**
+> （如 `shall be shown as greyed-out, **per the HMI**` —— 結果動詞已具體），
+> **僅 8 條為整個結果被外推**。**尾綴修飾不阻塞。**
+
+---
+
+### （原逐實例條文，保留 —— R-TM13）
+
+## ~~DR-23（新，Urgency Medium —— 阻塞 1 個 leaf；19 輪 W-57 開立）~~
 
 **`4859032` 交叉參照未具名之 HMI Logic and Flow。**
 
@@ -364,3 +423,27 @@ Flow to update the state of the Rear View Camera soft button.`
 **影響**：`SWE1-VC-ThirdRowHeadrestDump-039`。
 
 **提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS65。**狀態：未送出。**
+
+
+## DR-8（補登記，20 輪 D-3 —— 00G §5 開立而未入簿）
+
+**`$VC_VEH_LINE$` 之車型碼對照。**
+
+CFTS044 使用 `[DT]`／`[WS]`／`[HDCC]`／`[M240]`／`DS or DJ or D2…` 等代號；
+LID 表之 `VC_VEH_LINE` 值域列舉為數字車型碼且截斷於 `101 = WL (65 Hex)`，
+**二者完全無交集**。請提供完整之車型碼對照。
+
+37 包送件文第 **7** 項即本條。**狀態：未送出**（Pei 本次僅送 1–5）。
+配對 anomaly：A-VS66（本條未入簿之事實）。
+
+## DR-12（補登記，20 輪 D-3 —— 29 包 §1.2 開立而未入簿；**併入 DR-21**）
+
+**`$PowerMode$` 之 `IGN_OFF_ACC`。**
+
+CFTS044 `4858978`（Second Row Headrest Dump）以
+`$PowerMode$ = [Ign. off & acc. (4 position switch) / IGN_OFF_ACC]` 為軟鍵可選之條件；
+LID 將 `PowerMode` 對映至 `STATUS_BH_BCM2.CmdIgnSts`，其值域為
+`Initialization / IGN_LK / ACC / RUN / START / SNA`，**無 `IGN_OFF_ACC`**。
+
+37 包送件文第 **8** 項即本條。**狀態：未送出。**
+依 **R-VS42 併入 DR-21**（B2 類），原編號保留。
