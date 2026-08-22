@@ -38,7 +38,11 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "mode", "delta": "本列之進入路徑為 Controls 畫面；-027 之進入路徑為 Rear View Camera 畫面。"}
+      "distinguishing_axis": {
+        "axis": "mode",
+        "delta": "本列之進入路徑為 Controls 畫面；-027 之進入路徑為 Rear View Camera 畫面。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-027",
@@ -54,7 +58,11 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "mode", "delta": "本列之進入路徑為 Rear View Camera 畫面且以 PROXI Rear_View_Camera = 1 (Present) 為前提；-026 之進入路徑為 Controls 畫面。"}
+      "distinguishing_axis": {
+        "axis": "mode",
+        "delta": "本列之進入路徑為 Rear View Camera 畫面且以 PROXI Rear_View_Camera = 1 (Present) 為前提；-026 之進入路徑為 Controls 畫面。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-030",
@@ -70,7 +78,11 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "trigger_state", "delta": "本列之 CmdIgnSts = 1 (IGN_LK)，軟鍵可選；-032 之 CmdIgnSts = 4 (RUN)，同為可選但觸發值不同。"}
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列之 CmdIgnSts = 1 (IGN_LK)，軟鍵可選；-032 之 CmdIgnSts = 4 (RUN)，同為可選但觸發值不同。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-032",
@@ -86,7 +98,11 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "trigger_state", "delta": "本列之 CmdIgnSts = 4 (RUN)，軟鍵可選；-030 之 CmdIgnSts = 1 (IGN_LK)，同為可選但觸發值不同。"}
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列之 CmdIgnSts = 4 (RUN)，軟鍵可選；-030 之 CmdIgnSts = 1 (IGN_LK)，同為可選但觸發值不同。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-037",
@@ -102,7 +118,11 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "input_data", "delta": "本列之觸發為 PROXI Rear_View_Camera = 1 (Present) 之配置；-038 之觸發為 CmdIgnSts 之電源模式。"}
+      "distinguishing_axis": {
+        "axis": "input_data",
+        "delta": "本列之觸發為 PROXI Rear_View_Camera = 1 (Present) 之配置；-038 之觸發為 CmdIgnSts 之電源模式。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-038",
@@ -118,7 +138,11 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "trigger_state", "delta": "本列之驗證對象為 Rear View Camera 軟鍵於 CmdIgnSts = 4 (RUN) 之可選性；-032 之驗證對象為 Headrest Dump 軟鍵。"}
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列之驗證對象為 Rear View Camera 軟鍵於 CmdIgnSts = 4 (RUN) 之可選性；-032 之驗證對象為 Headrest Dump 軟鍵。"
+      },
+      "dr15_exposed": "no"
     }
   ],
   "reasoning": "本批自 Common Features 之 32 個未用可用 leaf 中依 reqid 升冪取 10，其中 4 條因來源缺件而移出（見 blocked_pending_dr.json），實際交付 6 條。驗證目標為第三排頭枕下放軟鍵之可及性（Controls 畫面／Rear View Camera 畫面）、其於各電源模式之可選性、以及 Rear View Camera 虛擬鍵之啟用條件。關鍵情境條件以 CAN-B 之 $STATUS_BH_BCM2.CmdIgnSts$ 與 PROXI Rear_View_Camera 驅動；CmdIgnSts 之值取 DBC VAL_ 逐字（0 Initialization／1 IGN_LK／4 RUN）。切分依 §4.6 之 sibling 比對：11 列（含 batch01_v3 之 -025）逐列比對 trigger 與 verification target，無 duplicate_of；每條輸出 distinguishing_axis，軸為 mode（進入路徑）／trigger_state（電源模式值）／input_data（PROXI 配置）。未涵蓋者：-028（VC_HdRstPrsnt 無匯流排對應）、-029（IGN_START 無對應）、-031（IGN_OFF_ACC 無對應）、-039（未具名之 HMI Logic and Flow 交叉參照）四條移出本批。"

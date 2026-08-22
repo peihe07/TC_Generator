@@ -19,7 +19,8 @@
       "design_method": "State Transition",
       "priority": "P1",
       "split_flag": false,
-      "split_reason": ""
+      "split_reason": "",
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-Stop-StartSystem-003",
@@ -34,7 +35,8 @@
       "design_method": "State Transition",
       "priority": "P2",
       "split_flag": false,
-      "split_reason": ""
+      "split_reason": "",
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-Stop-StartSystem-004",
@@ -53,7 +55,8 @@
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本列之 ESS_ENG_ST 非 ENS disabled 亦非 SNA，故 heat and vent switches stay active；-005 之 ESS_ENG_ST = ENS disabled，故 greyed out。"
-      }
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-Stop-StartSystem-005",
@@ -72,7 +75,8 @@
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本列之 ESS_ENG_ST = ENS disabled，故 heat and vent switches greyed out；-004 之 ESS_ENG_ST 為其他值，故 stay active。"
-      }
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-Stop-StartSystem-007",
@@ -87,7 +91,8 @@
       "design_method": "Functional Based",
       "priority": "P1",
       "split_flag": false,
-      "split_reason": ""
+      "split_reason": "",
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-SwitchLHD/RHDConfiguration-009",
@@ -102,7 +107,8 @@
       "design_method": "Equivalence Partitioning",
       "priority": "P1",
       "split_flag": false,
-      "split_reason": ""
+      "split_reason": "",
+      "dr15_exposed": "yes"
     },
     {
       "leaf_id": "SWE1-VC-SwitchLHD/RHDConfiguration-011",
@@ -117,7 +123,8 @@
       "design_method": "State Transition",
       "priority": "P1",
       "split_flag": false,
-      "split_reason": ""
+      "split_reason": "",
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-025",
@@ -132,7 +139,8 @@
       "design_method": "Functional Based",
       "priority": "P1",
       "split_flag": false,
-      "split_reason": ""
+      "split_reason": "",
+      "dr15_exposed": "no"
     }
   ],
   "reasoning": "本批為 batch01_v2 依 pilot review 第二輪（38 包 §1）之缺陷修正，v1／v2 皆保留。驗證目標未變。`SwitchLHD/RHD-009` 依 D-1 改為 §5.6 之 baseline 比較 —— 其需求主張的是「$DriverSide$ 改變時行為不變」之一個比較，原寫法只證明右駕下按鍵會送出請求，即使 $DriverSide$ 有影響仍會通過，屬 §7 之 false pass。`Stop-Start-004`／`-005` 依 D-2 將驗證併入最後一個可執行步驟，使末步驟含 action ＋ check。`Stop-Start-006`（DR-19）與 `SwitchLHD/RHD-010`（DR-20）依 D-3 自本批移出 —— 二者扣除 PENDING 行後之可執行步驟不足 2，另存 `blocked_pending_dr.json`，待該二 DR 覆後再入批。批次規模由 10 降為 8。",

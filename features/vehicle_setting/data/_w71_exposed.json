@@ -1,0 +1,1 @@
+[["batch01_v3", "SWE1-VC-SwitchLHD/RHDConfiguration-009", [["FL_HS_Tlm", "-", "-"], ["FL_HS_Tlm", "3", "-"]]], ["batch03", "SWE1-VC-LeftFrontHeatedSeat-014", [["FL_HS_Tlm", "-", "-"], ["FL_HS_Tlm", "0", "Not_Pressed"], ["FL_HS_Tlm", "1", "Pressed"]]], ["batch04_v2", "SWE1-VC-RightFrontHeatedSeat-031", [["FR_HS_Tlm", "-", "-"], ["FR_HS_Tlm", "1", "Pressed"]]]]

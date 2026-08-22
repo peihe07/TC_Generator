@@ -269,7 +269,7 @@ CFTS044 之 `4858551`／`4858553`／`4858555` 以
 
 配對 anomaly：A-VS58。**狀態：已送出（Pei，2026-08-22，37 包送件文第 4 項）—— 待覆。**
 
-## DR-20（**併入 DR-23**，R-VS42；原編號保留 —— R-TM13。已於 2026-08-22 送出，待覆）
+## DR-20（**搜尋已停止，44 包 §2**；**併入 DR-23**，R-VS42；原編號保留 —— R-TM13。已於 2026-08-22 送出，待覆）
 
 **型別（R-VS45）：**型 B**（素材缺件：未具名之 HMI 需求文件；併入 DR-23）**
 
@@ -356,35 +356,31 @@ CFTS044 所用之值與其對應狀況（全文實測次數）：
 
 **提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS63。**狀態：未送出。**
 
-## DR-22′（**改寫為型 B — 素材缺件**，依 **R-VS45**，23 輪 D-3；Urgency High）
+## DR-22′（**型 B — 素材缺件；44 包 §1 改為是非題**，25 輪 D-2；Urgency High）
 
-**型別（R-VS45）：型 B（素材缺件）。原 DR-22 以型 A 之措辭承載型 B 之訴求，就此更正。**
+**型別（R-VS45）：型 B。搜尋已停止（44 包 §2）—— 客戶目錄已窮盡，R1LR 之 PROXI 表不存在。**
 
-`Logical Identifiers and CAN Mapping v1.76` 之下列四個 PROXI 參數，
-其 `Format` 欄逐字為 **`See Proxi Table`**：
+> 我方 LID v1.76 之 `Proxi & Configuration` 分頁，下列四參數之
+> `Format` 欄為 `See Proxi Table`，`VFs` 欄為 `664`：
+>
+>     Cooled_Seats／Heated_Seats／Heated_Seat_Levels／Heated_Steering_Wheel
+>
+> 請確認 R1LR 之該四參數值域，是否即 VF664_V2／V3 所對應之 PROXI 表定義
+> （我方於他車型之 PROXI 表見：
+>  `Cooled_Seats`／`Heated_Seats` = `0 Absent／1 Front Seats／2 Front And Rear Seats`；
+>  `Heated_Steering_Wheel` = `0 Absent／1 Present`；
+>  `Heated_Seat_Levels` = `0 = 1 Level／1 = 2 Levels／2 = 3 Levels`）？
+>
+> 若否，請提供 R1LR 所適用之 PROXI 表。
 
-    Cooled_Seats／Heated_Seats／Heated_Seat_Levels／Heated_Steering_Wheel
+**影響：79 個 SWE leaf。** 我方**不採用**他車型之值（44 包 §1 裁定），
+四參數維持未解；`writability.tsv` 之 `evidence_note = VF664-inferred` 保留供比對。
 
-即其值域已定義，惟定義於該表所轉指之 **PROXI Table**，
-而該文件不在我方持有之素材中。
+**理由（44 包 §1）**：`VF664_V42_R3`（Toro226）完全未提及該四參數，
+而 `V2_R1`／`V2_R2` 提及 —— **VF664 之內容隨版本而異，而 R1LR 目錄下無 VF664**。
+兩份轉錄一致只證明 DT27 與 HDCC28 用同一版。
 
-**請提供該 PROXI Table**（檔名＋版本＋發行日）。
-
-我方待解之值：`Front Seats`（Cooled_Seats／Heated_Seats）、
-`One Level`（Heated_Seat_Levels）、`Present`（Heated_Steering_Wheel）。
-
-影響：**79 個 SWE leaf** 之 Pre-Condition 與 Procedure 無法在不編造值之下寫出
-（`writable` 由 170 降為 91）。
-
-註：同表之 `Heated_Steering_Levels` 有實 Format
-（`0 = 1 Level`／`1 = 2 Levels`／`2 = 3 Levels`），
-故該轉指非全表性質，而是逐參數之選擇。
-
-> **⚠ 23 輪 W-65 之搜尋結果（送出前必讀）**：客戶需求目錄內**已找到** PROXI 表，
-> 惟其為**他車型**（DT27／HDCC27）。四參數之值域兩表逐字一致，
-> 且 `Heated_Seat_Levels` 僅引 `VF664`（＝ R1LR LID 欄 20 之 `664`）。
-> **是否採用他車型之表屬裁定事項**，見上繳 21 §2.1。
-> **若裁為可採，本 DR 不必送出。**
+**狀態：未送出**（送出屬 Pei）。
 
 ---
 
@@ -426,7 +422,7 @@ the HU shall dispaly the Third Row Headrest Dump softkey button.`
 
 **提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS64。**狀態：未送出。**
 
-## DR-23（**類別式，B1**，依 **R-VS42** 改制於 20 輪；Urgency Medium）
+## DR-23（**搜尋已停止，44 包 §2**；**類別式，B1**，依 **R-VS42** 改制於 20 輪；Urgency Medium）
 
 **型別（R-VS45）：**型 B**（素材缺件，B1 類）**
 
@@ -475,7 +471,29 @@ Flow to update the state of the Rear View Camera soft button.`
 **提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS65。**狀態：未送出。**
 
 
-## DR-8（補登記，20 輪 D-3 —— 00G §5 開立而未入簿）
+## DR-8′（**改寫**，44 包 §5；25 輪 D-2。型 B — 素材缺件）
+
+**型別（R-VS45）：型 B。搜尋已停止（44 包 §2）。**
+
+`Logical Identifiers and CAN Mapping v1.76` 之 `VC_VEH_LINE` 值域列舉
+為數字車型碼且截斷於 `101 = WL (65 Hex)`。
+
+而 R1LR 之 CFTS 文件**實際使用之值**為 `332`／`M182`／`M189`
+（`VEH_M182 OR VEH_M189` 等形態，24 輪 W-68(3) 實測 **103 處引用**），
+**與該列舉無交集**。
+
+**請提供 R1LR 所適用之完整車型碼對照**（含 `332`／`M182`／`M189` 之編碼）。
+
+> **原 DR-8 之前提已失效**：其列舉 `DT`／`WS`／`HDCC`／`M240`，
+> 而該四碼於 R1LR 之 CFTS 中交叉命中 **0**。
+
+**狀態：未送出。**
+
+---
+
+### （原 DR-8 條文，保留 —— R-TM13）
+
+## ~~DR-8（補登記，20 輪 D-3 —— 00G §5 開立而未入簿）~~
 
 **型別（R-VS45）：**型 B**（素材缺件：完整車型碼對照表）**
 
@@ -503,7 +521,32 @@ LID 將 `PowerMode` 對映至 `STATUS_BH_BCM2.CmdIgnSts`，其值域為
 依 **R-VS42 併入 DR-21**（B2 類），原編號保留。
 
 
-## DR-24（新，**型 A — 規格缺陷**；23 輪 D-3 開立，分析層擬）
+## DR-24′（改寫，併入 `<Tdisplay>`；43 包 §3.1，24 輪 D-3）
+
+**型別（R-VS45）：型 A（規格缺陷）。**
+
+CFTS044 使用**兩個**時間符號而未給其具體值：
+
+```
+`<Tsend>`     15 次引用
+`<Tdisplay>`  28 次引用
+去重後涉及 **43 個 SWE leaf**
+```
+
+canon §8.7.1 要求門檻須為具體值，故二者皆無法作為 ER 之通過條件。
+
+**請提供 `<Tsend>` 與 `<Tdisplay>` 之具體時值（含單位與量測起訖點）。**
+
+我方之暫行處置：procedure 保留符號原樣（來源逐字），
+ER 改寫為可觀察之終態，不以時限為通過條件。
+
+**狀態：未送出。**
+
+---
+
+### （原 DR-24 條文，保留 —— R-TM13）
+
+## ~~DR-24（新，型 A — 規格缺陷；23 輪 D-3 開立，分析層擬）~~
 
 **`<Tsend>` 無具體值。**
 

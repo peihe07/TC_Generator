@@ -38,7 +38,11 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "mode", "delta": "本列之觸發為 PROXI Driver_Side 之配置，驗證對象為加熱方向盤圖示之左右位置；其餘九列皆非圖示位置。"}
+      "distinguishing_axis": {
+        "axis": "mode",
+        "delta": "本列之觸發為 PROXI Driver_Side 之配置，驗證對象為加熱方向盤圖示之左右位置；其餘九列皆非圖示位置。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-003",
@@ -54,7 +58,11 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "trigger_state", "delta": "本列驗左前座椅於喚醒後、首次狀態更新前顯示為 off；-022 驗右前座椅於喚醒時狀態被設為 OFF。"}
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列驗左前座椅於喚醒後、首次狀態更新前顯示為 off；-022 驗右前座椅於喚醒時狀態被設為 OFF。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-007",
@@ -70,7 +78,11 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "trigger_state", "delta": "本列送有效值 3 (Heated_seat_high) 且期望顯示變更；-008 送無效值 2 (Heated_seat_medium) 且期望顯示不變。"}
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列送有效值 3 (Heated_seat_high) 且期望顯示變更；-008 送無效值 2 (Heated_seat_medium) 且期望顯示不變。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-008",
@@ -86,7 +98,11 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "input_data", "delta": "本列送無效值 2 (Heated_seat_medium) 且期望顯示不變；-007 送有效值 3 (Heated_seat_high) 且期望顯示變更。"}
+      "distinguishing_axis": {
+        "axis": "input_data",
+        "delta": "本列送無效值 2 (Heated_seat_medium) 且期望顯示不變；-007 送有效值 3 (Heated_seat_high) 且期望顯示變更。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-012",
@@ -102,7 +118,11 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "trigger_state", "delta": "本列之驗證對象為左前加熱座椅開關之灰階；-029 之驗證對象為右前加熱座椅開關。"}
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列之驗證對象為左前加熱座椅開關之灰階；-029 之驗證對象為右前加熱座椅開關。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-014",
@@ -118,7 +138,11 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "timing", "delta": "本列驗按下後請求訊號於 <Tsend> 內回到 0 (Not_Pressed)；其餘各列皆非請求訊號之時序。"}
+      "distinguishing_axis": {
+        "axis": "timing",
+        "delta": "本列驗按下後請求訊號於 <Tsend> 內回到 0 (Not_Pressed)；其餘各列皆非請求訊號之時序。"
+      },
+      "dr15_exposed": "yes"
     },
     {
       "leaf_id": "SWE1-VC-RightFrontHeatedSeat-022",
@@ -134,7 +158,11 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "trigger_state", "delta": "本列驗右前座椅於喚醒時狀態被設為 OFF；-003 驗左前座椅於喚醒後、首次狀態更新前顯示為 off。"}
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列驗右前座椅於喚醒時狀態被設為 OFF；-003 驗左前座椅於喚醒後、首次狀態更新前顯示為 off。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-RightFrontHeatedSeat-025",
@@ -150,7 +178,11 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "trigger_state", "delta": "本列之驗證對象為右前座椅之 $STATUS_CSWM.FR_HS_STATSts$；-007 之驗證對象為左前座椅之 $STATUS_CSWM.FL_HS_STATSts$。"}
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列之驗證對象為右前座椅之 $STATUS_CSWM.FR_HS_STATSts$；-007 之驗證對象為左前座椅之 $STATUS_CSWM.FL_HS_STATSts$。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-RightFrontHeatedSeat-026",
@@ -166,7 +198,11 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "input_data", "delta": "本列之驗證對象為右前座椅之無效值忽略；-008 之驗證對象為左前座椅。"}
+      "distinguishing_axis": {
+        "axis": "input_data",
+        "delta": "本列之驗證對象為右前座椅之無效值忽略；-008 之驗證對象為左前座椅。"
+      },
+      "dr15_exposed": "no"
     },
     {
       "leaf_id": "SWE1-VC-RightFrontHeatedSeat-029",
@@ -182,7 +218,11 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "distinguishing_axis": {"axis": "trigger_state", "delta": "本列之驗證對象為右前加熱座椅開關之灰階；-012 之驗證對象為左前加熱座椅開關。"}
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列之驗證對象為右前加熱座椅開關之灰階；-012 之驗證對象為左前加熱座椅開關。"
+      },
+      "dr15_exposed": "no"
     }
   ],
   "reasoning": "本批自穩定核心（generatable = yes ∧ quoted_form_risk = no）之 72 條中扣已用 12、可選 59，依 reqid 升冪取 10。驗證目標為加熱座椅之喚醒初始狀態、有效狀態更新、無效值忽略、電源模式下之灰階、請求訊號之釋放時序，以及右駕配置下加熱方向盤圖示之鏡射。關鍵情境條件以 CAN-B 之 $STATUS_CSWM.FL_HS_STATSts$／$FR_HS_STATSts$、$STATUS_BH_BCM2.CmdIgnSts$、BH-CAN 之 $TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm$ 與 PROXI Driver_Side 驅動，值一律取 DBC VAL_ 逐字。切分依 §4.6 之 sibling 比對，四對左右鏡像逐對比對後無 duplicate_of，十列全數輸出 distinguishing_axis。值域演繹：$PowerMode$ 之 [Ignition run] 依跨條文錨點 [4h:Ignition run]（全文 5 處）解為 4 (RUN)，非 R-VS43 之演繹而是來源自載原始碼值；$FL_HS_RQ$ 之 [Not Pressed / HS_NOT_PSD] 依錨點 0h: not pressed 解為 0 (Not_Pressed)。無效值之依據為 4858307 逐字「For vehicles with two states (i.e. LO and HI) … Valid values … HS_OFF, HS_LO, HS_HI」，故 2 (Heated_seat_medium) 於二階配置下為無效，非本層造值；三階配置之分支由 4858308 擁有（§8.2.1）。"
