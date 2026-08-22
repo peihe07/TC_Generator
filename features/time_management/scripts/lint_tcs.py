@@ -84,6 +84,21 @@ ARCH_COL_MARK = "Atlantis High (col 26-30)"
 # R-TM68 —— 佔位行之 DR 號擷取（供數值升冪比較）
 PENDING_DR_RE = re.compile(r"PENDING:\s*DR-(\d+)")
 
+# R-TM73 —— **作者所撰內容之欄位清單，單一來源**。
+#   lint 之界線閘與執行層之自檢臨時判準共用本常數，使「同範圍」不靠人
+#   記得而取自同一處（條文只要求一致；一致靠人維持會漂移）。
+#   **排除 `reasoning`**（掃它會把「本條不涵蓋 X」之聲明本身當成違規，
+#   已誤判三次）與 **`test_item` 上半 verbatim**（R-TM70）。
+AUTHORED_FIELDS = ("pre_conditions", "input_test_data",
+                   "test_procedure", "expected_result")
+
+
+def authored_text(tc: dict) -> str:
+    """作者所撰之全文 —— test_item 下半 + AUTHORED_FIELDS。"""
+    ti = str(tc.get("test_item") or "")
+    lower = ti.split("\n", 1)[1] if "\n" in ti else ""
+    return " ".join([lower] + [str(tc.get(k) or "") for k in AUTHORED_FIELDS])
+
 class LintError(RuntimeError):
     """呼叫或權威讀取之失敗 —— 與「發現」區分，走 exit 2。"""
 
@@ -377,11 +392,7 @@ def lint_boundary(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
     #   上半，唯一的遵守方式就是改寫需求原文 —— 那正是 §4.3.1 所禁。
     #   reasoning 排除之理由見 `15` §5.3：掃 reasoning 會把「本條不涵蓋
     #   SNA」這句**聲明本身**當成違規。
-    ti = str(tc.get("test_item") or "")
-    lower = ti.split("\n", 1)[1] if "\n" in ti else ""
-    body = " ".join([lower] + [str(tc.get(k) or "") for k in
-                    ("pre_conditions", "input_test_data",
-                     "test_procedure", "expected_result")])
+    body = authored_text(tc)          # R-TM73：與自檢判準同源
     out = []
     for sig in rule["not_ours"]:
         if sig in body:
@@ -516,57 +527,56 @@ def lint_data_placement(tc: dict, auth: dict, where: str) -> list[tuple[str, str
     return out
 
 
-def lint_placeholder_completeness(tc: dict, auth: dict,
+def lint_placeholder_completeness(tcs: list[dict], auth: dict,
                                   where: str) -> list[tuple[str, str]]:
-    """R-TM69(2) —— Remarks 之佔位集合須與「應有」相等，**缺與多皆報**。
+    """R-TM72 —— 佔位齊全性，**以 leaf 為單位取聯集**（非逐 TC）。
 
-    應有集合由兩處推得，皆為既有之單一來源：
-      DR-11  該 leaf 之 Atl-Mid 物件（`ee_architecture_by_leaf.tsv`）
-      DR-5   該 leaf 若在 `SPEC_GAP` 內
+    該 leaf 之全部 TC 之 Remarks 佔位聯集，須等於該 leaf 應有之集合。
+    缺與多皆報，**報在 leaf 層**。
 
-    **報「多」而非只報「缺」**：多出之佔位表示宣告了一個本片沒有的缺口，
-    其後果是 DR 答覆回來時對不上任何欄位 —— 與缺漏同樣使佔位失去指向。
+    **判準由 R-TM69(2) 之「逐 TC 比對 leaf 全集」改來**（R-TM72）：
+    舊判準對 B1/B2 產出 32 項，其中 31 項為「這條沒把該 leaf 的所有
+    Atl-Mid 都列一遍」—— 雜訊率 97%，把唯一的真遺漏淹沒。
+    缺口是 leaf 層級之事實，與哪一條 TC 驗證它無關。
 
-    **本閘只比對 DR-11 之物件層級與 DR-5 之有無**，不驗其他 DR 號
-    （DR-8/9/10/12/20 為步驟措辭之佔位，寫在 procedure 而非 Remarks，
-    其齊全性無資料可據）。射程寫窄，理由同 `15` §3.2。
+    **本閘為檔案級**（接受 TC 清單而非單條），故不在 `GATES` 內，
+    由 `lint_file` 另行呼叫。**單檔內聯集** —— 一個 leaf 若跨批次生成，
+    聯集會跨檔而本閘只看單檔；本 feature 之批次計畫使每片只屬一批，
+    故現行無此情形，但限制須明記。
     """
     arch = auth.get("ee_arch")
     if not arch:
         return []
-    leaf3 = str(tc.get("req_id", ""))[-3:]
-    per = arch.get(leaf3)
-    if per is None:
-        return []
-    ref = str(tc.get("spec_reference") or "")
-    rem = str(tc.get("remarks") or "")
-    # 應有：本 TC 之 spec_reference 所涉 leaf 中，屬 Atl-Mid 者。
-    # **以該 leaf 之全集為準**（canon §10.7 之「只列該 TC 驗證之物件」
-    # 拘束真值欄；缺口宣告則須及於該 leaf 之全部 Atl-Mid 物件，
-    # 否則佔位會隨 TC 之取捨而漏）。
-    want_mid = {o for o, v in per.items() if not v["is_atl_hi"]
-                and v["ee"] != "(不在 docx —— A-TM13)"}
-    have_mid = set(re.findall(r"CFTS015-(\d{7}) 標為", rem))
+    by_leaf: dict[str, list[dict]] = {}
+    for tc in tcs:
+        by_leaf.setdefault(str(tc.get("req_id", ""))[-3:], []).append(tc)
     out = []
-    for o in sorted(want_mid - have_mid):
-        out.append(("placeholder-completeness",
-                    f"{where}: 缺 DR-11 佔位 —— 物件 {o} 標為 "
-                    f"`{per[o]['ee']}`，應於 Remarks 宣告（R-TM69）"))
-    for o in sorted(have_mid - want_mid):
-        out.append(("placeholder-completeness",
-                    f"{where}: 多出 DR-11 佔位 —— 物件 {o} 非本片之 "
-                    "Atl-Mid 引用，該佔位無對應欄位（R-TM69）"))
-    want_gap = str(tc.get("req_id", "")) in SPEC_GAP_LEAVES
-    have_gap = f"PENDING: DR-{SPEC_GAP_DR}" in rem
-    if want_gap and not have_gap:
-        out.append(("placeholder-completeness",
-                    f"{where}: 缺 DR-{SPEC_GAP_DR} 佔位（A-TM13 受影響 leaf）"))
-    if have_gap and not want_gap:
-        out.append(("placeholder-completeness",
-                    f"{where}: 多出 DR-{SPEC_GAP_DR} 佔位 —— 本片不在 "
-                    "SPEC_GAP 內"))
+    for leaf3, group in sorted(by_leaf.items()):
+        per = arch.get(leaf3)
+        if per is None:
+            continue
+        want = {o for o, v in per.items() if not v["is_atl_hi"]
+                and v["ee"] != "(不在 docx —— A-TM13)"}
+        have: set[str] = set()
+        for tc in group:
+            have |= set(re.findall(r"CFTS015-(\d{7}) 標為",
+                                   str(tc.get("remarks") or "")))
+        for o in sorted(want - have):
+            out.append(("placeholder-completeness",
+                        f"{where} leaf {leaf3}: 該片之 {len(group)} 條 TC 皆未"
+                        f"宣告物件 {o}（標為 `{per[o]['ee']}`）—— R-TM72"))
+        for o in sorted(have - want):
+            out.append(("placeholder-completeness",
+                        f"{where} leaf {leaf3}: 宣告了物件 {o}，"
+                        "但其非本片之 Atl-Mid 引用（R-TM72）"))
+        # DR-5 之齊全性同改 leaf 層
+        if f"SWE-RA-TIME&DATE-{leaf3}" in SPEC_GAP_LEAVES:
+            if not any(f"PENDING: DR-{SPEC_GAP_DR}" in str(tc.get("remarks") or "")
+                       for tc in group):
+                out.append(("placeholder-completeness",
+                            f"{where} leaf {leaf3}: 該片之 {len(group)} 條 TC "
+                            f"皆未宣告 DR-{SPEC_GAP_DR}（A-TM13 受影響 leaf）"))
     return out
-
 
 def lint_no_tc_id(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
     """B8（G-TM2 項 3 訂正）—— TC JSON 不得攜帶 tc_id。
@@ -752,7 +762,6 @@ GATES = (
     lint_arch_column,        # A-TM26
     lint_remarks_order,      # R-TM68
     lint_data_placement,     # R-TM66 / canon §4.5
-    lint_placeholder_completeness,   # R-TM69(2)
     lint_no_tc_id,           # B8
     lint_test_group,
     lint_design_method,
@@ -774,6 +783,8 @@ def lint_file(path: Path, auth: dict) -> list[tuple[str, str]]:
     out: list[tuple[str, str]] = []
     for i, tc in enumerate(tcs, 1):
         out += lint_tc(tc, auth, f"{path.name}#{i}")
+    # R-TM72 —— 檔案級閘（leaf 聯集），不在逐條之 GATES 內
+    out += lint_placeholder_completeness(tcs, auth, path.name)
     return out
 
 
@@ -1019,16 +1030,10 @@ def self_test(auth: dict) -> int:
          "spec-gap", True),
         ("綠向 R-TM69(1) (帶該 leaf 之 DR-5 → 不報)",
          {**green, "req_id": gap_leaf, "remarks": gap_rem}, "spec-gap", False),
-        ("紅向 R-TM69(2) (缺一個應有之 DR-11 → 報)",
-         {**green, "req_id": gap_leaf, "remarks": spec_gap_ph},
-         "placeholder-completeness", bool(gap_mid)),
-        ("紅向 R-TM69(2) (多出一個不屬本片之 DR-11 → 報)",
-         {**green, "req_id": gap_leaf,
-          "remarks": gap_rem + "\n" + atl_hi_placeholder("4814064")},
-         "placeholder-completeness", True),
-        ("綠向 R-TM69(2) (應有與實有相等 → 不報)",
-         {**green, "req_id": gap_leaf, "remarks": gap_rem},
-         "placeholder-completeness", False),
+        # R-TM69(2) 之三項逐 TC 案例已由 R-TM72 之 leaf 層案例取代
+        # （w_cases）—— 閘改為檔案級後不再由 lint_tc 呼叫，
+        # 留在此處會恆為「未報」而假性失敗。**移除而非改期望值**：
+        # 改期望值會使其變成「驗證一個已不存在之行為」。
         ("綠向 R-TM70 (鄰片訊號只出現於 verbatim 上半 → 豁免)",
          {**green, "req_id": b011,
           "test_item": f"Requirement text mentioning {_v} verbatim\n(purpose)"},
@@ -1043,6 +1048,45 @@ def self_test(auth: dict) -> int:
         ok = bool(got) is want
         bad += not ok
         print(f"{'PASS' if ok else '**FAIL**'} {name}: {(got[0][:56] if got else '未報')}")
+
+    # ── R-TM72 齊全性閘（leaf 聯集，17 T2）──────────────────
+    # 本閘為**檔案級**，故受測物為 TC 清單而非單條。
+    w_leaf = gap_leaf[-3:]
+    w_mid = sorted(o for o, v in (auth["ee_arch"].get(w_leaf) or {}).items()
+                   if not v["is_atl_hi"] and "不在 docx" not in v["ee"])
+    def _tc(rem):
+        return {**green, "req_id": gap_leaf, "remarks": rem}
+    # 分散於兩條：聯集齊全 —— 判準 (a) 會報而 (c) 不報
+    split = [_tc("\n".join([spec_gap_ph] + [atl_hi_placeholder(o) for o in w_mid[:1]])),
+             _tc("\n".join(atl_hi_placeholder(o) for o in w_mid[1:]))]
+    missing = [_tc(spec_gap_ph + "\n" + atl_hi_placeholder(w_mid[0]))]
+    extra = [_tc("\n".join([spec_gap_ph] + [atl_hi_placeholder(o) for o in w_mid]
+                            + [atl_hi_placeholder("4814064")]))]
+    no_gap = [_tc("\n".join(atl_hi_placeholder(o) for o in w_mid))]
+    # ── 構造複驗（R-TM67）──
+    _u = lambda g: set().union(*[set(re.findall(r"CFTS015-(\d{7}) 標為",
+                                                x["remarks"])) for x in g])
+    print(f"   [構造複驗] leaf {w_leaf} 應有 Atl-Mid {w_mid}")
+    _each = [set(re.findall(r"CFTS015-(\d{7}) 標為", x["remarks"])) for x in split]
+    _partial = all(s != set(w_mid) for s in _each)
+    print(f"   [構造複驗] split 之聯集 {sorted(_u(split))} 等於應有 = "
+          f"{_u(split) == set(w_mid)}；**單條各自不全** = {_partial}")
+    print(f"   [構造複驗] missing 之聯集缺 {sorted(set(w_mid) - _u(missing))}"
+          f"；extra 之聯集多 {sorted(_u(extra) - set(w_mid))}")
+    print(f"   [構造複驗] no_gap 確實不含 DR-{SPEC_GAP_DR} = "
+          f"{('PENDING: DR-%d' % SPEC_GAP_DR) not in ' '.join(x['remarks'] for x in no_gap)}")
+    w_cases = [
+        ("綠向 R-TM72 (佔位分散於兩條、聯集齊全 → 不報)", split, False),
+        ("紅向 R-TM72 (全部 TC 皆未宣告某一物件 → 報)", missing, True),
+        ("紅向 R-TM72 (宣告了不屬本片之物件 → 報)", extra, True),
+        ("紅向 R-TM72 (全部 TC 皆未宣告 DR-5 → 報)", no_gap, True),
+    ]
+    for name, group, want in w_cases:
+        got = [m for g, m in lint_placeholder_completeness(group, auth, "W")
+               if g == "placeholder-completeness"]
+        ok = bool(got) is want
+        bad += not ok
+        print(f"{'PASS' if ok else '**FAIL**'} {name}: {(got[0][:60] if got else '未報')}")
 
     # ── R-TM55 之綠向與負控（07 T3）─────────────────────────
     # 空 `owns` 之片，其 not_ours 以外之訊號不得誤報；且 022 須維持不判。
@@ -1103,7 +1147,7 @@ def self_test(auth: dict) -> int:
 
     total = (len(reds) + 3 + len(b_cases) + 1 + len(d5_reds)
              + len(a_cases) + len(x_cases) + len(y_cases)
-             + len(z_cases))
+             + len(z_cases) + len(w_cases))
     print(f"\n自驗：{total - bad} / {total}")
     return 1 if bad else 0
 
