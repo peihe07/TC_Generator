@@ -1,0 +1,155 @@
+{
+  "batch": "batch02",
+  "feature": "vehicle_setting",
+  "test_group": "Vehicle Setting",
+  "generated_round": 19,
+  "handoff": "docs/handoff/38_pilot_review2.md",
+  "profile": "docs/runtime/profiles/FW036_R1L_VehicleSetting_Profile.md",
+  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
+  "sibling_rows_injected": {
+    "note": "本批 10 條與 batch01_v3 之 `ThirdRowHeadrestDump-025` **同屬 Layer 3 `ThirdRowHeadrestDump`**，全數互為 sibling 候選（canon §4.1.4(2)）。逐條比對 trigger + outcome + input + verification target。",
+    "rows": [
+      "[row #1] batch01_v3 ThirdRowHeadrestDump-025 — 按下軟鍵 → 左右頭枕同時下降",
+      "[row #2] -026 Controls 畫面可及性",
+      "[row #3] -027 Rear View Camera 畫面可及性",
+      "[row #4] -028 VC_HdRstPrsnt = Present → 顯示軟鍵（BLOCKED）",
+      "[row #5] -029 PowerMode = IGN_START → 灰階（BLOCKED）",
+      "[row #6] -030 PowerMode = IGN_LK → 可選",
+      "[row #7] -031 PowerMode = IGN_OFF_ACC → 可選（BLOCKED）",
+      "[row #8] -032 PowerMode = IGN_RUN → 可選",
+      "[row #9] -037 RVC_SK_PRSNT = Present → RVC 虛擬鍵可選",
+      "[row #10] -038 RVC 軟鍵僅於 IGN_RUN 可選",
+      "[row #11] -039 PowerMode <> IGN_RUN → 依 HMI Logic & Flow 更新（BLOCKED）"
+    ],
+    "duplicate_of_found": "無 —— 11 列之 trigger 與 verification target 皆相異；與 batch01_v3 已放行之 -025 無重複（-025 驗致動行為，本批驗可及性與可選性）"
+  },
+  "tcs": [
+    {
+      "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-026",
+      "test_set": "Common Features",
+      "tc_title": "Headrest Dump softkey reachable from the Controls screen",
+      "test_item": "The Third Row Headrest Dump softkey shall be accessible from the Controls screen and shall remain in an enabled state when the feature is available.\n\n(Entry path: Controls screen)",
+      "pre_conditions": "1. The vehicle is equipped with the third row head restraint dump feature\n2. The HU is on the home screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Open the Controls screen from the Menu Bar\n2. Check that the \"Headrest Dump\" softkey button is displayed and enabled on the Controls screen",
+      "expected_result": "1. The Controls screen is displayed\n2. The \"Headrest Dump\" softkey button is displayed and enabled",
+      "specification_reference": "CFTS044-4858987",
+      "design_method": "Functional Based",
+      "priority": "P2",
+      "split_flag": false,
+      "split_reason": "",
+      "distinguishing_axis": {
+        "axis": "mode",
+        "delta": "本列之進入路徑為 Controls 畫面；-027 之進入路徑為 Rear View Camera 畫面。"
+      },
+      "dr15_exposed": "no"
+    },
+    {
+      "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-027",
+      "test_set": "Common Features",
+      "tc_title": "Headrest Dump softkey reachable from the Rear View Camera screen",
+      "test_item": "The Third Row Headrest Dump softkey shall also be accessible from the Rear View Camera screen, when supported.\n\n(Entry path: Rear View Camera screen)",
+      "pre_conditions": "1. The vehicle is equipped with the third row head restraint dump feature\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The HU is on the home screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Open the Rear View Camera screen from the Menu Bar\n2. Check that the \"Headrest Dump\" softkey button is displayed on the Rear View Camera screen",
+      "expected_result": "1. The Rear View Camera screen is displayed\n2. The \"Headrest Dump\" softkey button is displayed",
+      "specification_reference": "CFTS044-4858988",
+      "design_method": "Functional Based",
+      "priority": "P2",
+      "split_flag": false,
+      "split_reason": "",
+      "distinguishing_axis": {
+        "axis": "mode",
+        "delta": "本列之進入路徑為 Rear View Camera 畫面且以 PROXI Rear_View_Camera = 1 (Present) 為前提；-026 之進入路徑為 Controls 畫面。"
+      },
+      "dr15_exposed": "no"
+    },
+    {
+      "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-030",
+      "test_set": "Common Features",
+      "tc_title": "Headrest Dump softkey selectable at ignition lock",
+      "test_item": "The HMI shall make the Third Row Headrest Dump softkey selectable when $PowerMode$ = [Ignition Lock / IGN_LK].\n\n(PowerMode = IGN_LK)",
+      "pre_conditions": "1. The vehicle is equipped with the third row head restraint dump feature\n2. The Controls screen is displayed\n3. CAN-B is connected to the bus simulator",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 0 (Initialization)\n2. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) and check that the \"Headrest Dump\" softkey button is selectable",
+      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 0 (Initialization) is sent\n2. The \"Headrest Dump\" softkey button is selectable",
+      "specification_reference": "CFTS044-4858993",
+      "design_method": "State Transition",
+      "priority": "P2",
+      "split_flag": false,
+      "split_reason": "",
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列之 CmdIgnSts = 1 (IGN_LK)，軟鍵可選；-032 之 CmdIgnSts = 4 (RUN)，同為可選但觸發值不同。"
+      },
+      "dr15_exposed": "no"
+    },
+    {
+      "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-032",
+      "test_set": "Common Features",
+      "tc_title": "Headrest Dump softkey selectable at ignition run",
+      "test_item": "The HMI shall make the Third Row Headrest Dump softkey selectable when $PowerMode$ = [Ignition Run / IGN_RUN].\n\n(PowerMode = IGN_RUN)",
+      "pre_conditions": "1. The vehicle is equipped with the third row head restraint dump feature\n2. The Controls screen is displayed\n3. CAN-B is connected to the bus simulator",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 0 (Initialization)\n2. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) and check that the \"Headrest Dump\" softkey button is selectable",
+      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 0 (Initialization) is sent\n2. The \"Headrest Dump\" softkey button is selectable",
+      "specification_reference": "CFTS044-4858995",
+      "design_method": "State Transition",
+      "priority": "P2",
+      "split_flag": false,
+      "split_reason": "",
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列之 CmdIgnSts = 4 (RUN)，軟鍵可選；-030 之 CmdIgnSts = 1 (IGN_LK)，同為可選但觸發值不同。"
+      },
+      "dr15_exposed": "no"
+    },
+    {
+      "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-037",
+      "test_set": "Common Features",
+      "tc_title": "Rear View Camera button activated when camera is present",
+      "test_item": "If the HMI receives the $RVC_SK_PRSNT$ = [Present] the HMI shall activate the virtual Rear View Camera button for user select-ability.\n\n(Rear View Camera present)",
+      "pre_conditions": "1. PROXI Rear_View_Camera = 1 (Present)\n2. The Controls screen is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Power cycle the HU so that PROXI Rear_View_Camera = 1 (Present) is applied\n2. Check that the virtual \"Rear View Camera\" button is displayed and selectable on the Controls screen",
+      "expected_result": "1. The HU completes start-up and the Controls screen is displayed\n2. The virtual \"Rear View Camera\" button is displayed and selectable",
+      "specification_reference": "CFTS044-4859030",
+      "design_method": "Functional Based",
+      "priority": "P2",
+      "split_flag": false,
+      "split_reason": "",
+      "distinguishing_axis": {
+        "axis": "input_data",
+        "delta": "本列之觸發為 PROXI Rear_View_Camera = 1 (Present) 之配置；-038 之觸發為 CmdIgnSts 之電源模式。"
+      },
+      "dr15_exposed": "no"
+    },
+    {
+      "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-038",
+      "test_set": "Common Features",
+      "tc_title": "Rear View Camera button selectable only at ignition run",
+      "test_item": "The Rear View Camera soft button shall be selectable only when $PowerMode$ = [IGN_RUN].\n\n(PowerMode = IGN_RUN, camera present)",
+      "pre_conditions": "1. PROXI Rear_View_Camera = 1 (Present)\n2. The Controls screen is displayed\n3. CAN-B is connected to the bus simulator",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK)\n2. Read the state of the virtual \"Rear View Camera\" button and record it\n3. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) and check that the virtual \"Rear View Camera\" button is selectable",
+      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) is sent\n2. The state of the virtual \"Rear View Camera\" button is recorded\n3. The virtual \"Rear View Camera\" button is selectable",
+      "specification_reference": "CFTS044-4859031",
+      "design_method": "State Transition",
+      "priority": "P2",
+      "split_flag": false,
+      "split_reason": "",
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本列之驗證對象為 Rear View Camera 軟鍵於 CmdIgnSts = 4 (RUN) 之可選性；-032 之驗證對象為 Headrest Dump 軟鍵。"
+      },
+      "dr15_exposed": "no"
+    }
+  ],
+  "reasoning": "本批自 Common Features 之 32 個未用可用 leaf 中依 reqid 升冪取 10，其中 4 條因來源缺件而移出（見 blocked_pending_dr.json），實際交付 6 條。驗證目標為第三排頭枕下放軟鍵之可及性（Controls 畫面／Rear View Camera 畫面）、其於各電源模式之可選性、以及 Rear View Camera 虛擬鍵之啟用條件。關鍵情境條件以 CAN-B 之 $STATUS_BH_BCM2.CmdIgnSts$ 與 PROXI Rear_View_Camera 驅動；CmdIgnSts 之值取 DBC VAL_ 逐字（0 Initialization／1 IGN_LK／4 RUN）。切分依 §4.6 之 sibling 比對：11 列（含 batch01_v3 之 -025）逐列比對 trigger 與 verification target，無 duplicate_of；每條輸出 distinguishing_axis，軸為 mode（進入路徑）／trigger_state（電源模式值）／input_data（PROXI 配置）。未涵蓋者：-028（VC_HdRstPrsnt 無匯流排對應）、-029（IGN_START 無對應）、-031（IGN_OFF_ACC 無對應）、-039（未具名之 HMI Logic and Flow 交叉參照）四條移出本批。",
+  "revision": {
+    "from": "batch02.json",
+    "round": 34,
+    "basis": "54 包 §1 R-VS52（SWC 0708 對齊）",
+    "scope": "僅 test_procedure 與 expected_result；其餘欄未動"
+  }
+}

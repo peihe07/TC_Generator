@@ -809,6 +809,8 @@ R-VS35（分析層裁定 2026-08-20）
 
 ### R-VS41 —— 撤回三件組，canon 優先於 feature 自訂（35 包 §1，分析層裁定 2026-08-20）
 
+> **【(1) 撤回，經 R-VS52 取代，Pei 2026-08-22；原文保留不刪，見 R-TM13。(2)(3)(4) 不變】**
+
 > (1) **R-VS9(3) 撤回。** 訊號書寫依 canon §8.7.5 v3：
 >     `$<MESSAGE>.<Signal>$`，值採 `= <raw> (<label>)`。
 >     例：`$STATUS_CSWM.HSW_StatFailSts$ = 1 (Fail_Present)`
@@ -1110,4 +1112,71 @@ R-VS51（架構對應之欄組，分析層裁定 2026-08-22；本輪唯一新條
 **執行層註**：A-VS98 依本條關閉。本條 (2) 之分流實作於
 `scripts/writability_w58.py::bus_domain()` 與 `spec_variables.tsv` 之
 `arch_column` 欄（32 輪 W-90(1)）。
+
+### R-VS52 — 訊號書寫依 SWC 0708 交付本（54 包 §1，Pei 裁定 2026-08-22）
+
+```
+R-VS52（Pei 2026-08-22）
+本 feature 之訊號書寫形式，**依 SWC 0708 交付本**
+（`/Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/SWC/
+  FM-WI-FSM-036-A01 …SWQT_SWC_20260708.xlsx`，286 條、284 條含 CAN 步驟）
+之實際樣式，**不依 canon §8.7.5 v3**。
+
+**(1) 送出型步驟**
+    procedure：`Send CAN: <MESSAGE>.<Signal> = <raw> (<label>)`
+    ER       ：`<MESSAGE>.<Signal> = <raw> (<label>) is sent`
+               必要時附時機（交付本用 `during press window`／`after release`）
+    **訊號名不加 `$` 包夾**（交付本 `$MSG.Sig$` 形態命中 0）
+
+**(2) 讀取型步驟**
+    procedure：`Read <對象> and record as <變數名>`
+    ER       ：`<變數名> is recorded`；比較步驟之 ER 用
+               `<變數名> = <期望>` 或 `<變數名A> = <變數名B> …`
+
+**(3) 保持型步驟**
+    `Hold for <t>` **自成一步**，ER 為 `The signal is held for <t>`
+
+**(4) baseline 比較採具名變數**（交付本：`Vol_initial`／`Vol_after`），
+    **不用「the same as recorded in step N」**
+
+**推翻之條文**：
+  R-VS41(1)（採 canon §8.7.5 v3 之 `$<MESSAGE>.<Signal>$` 形式）—— **撤回**
+  A-VS62 之 (a) 認可（`is registered without a bus error`）—— **撤回**
+  R-VS41(2)(3)(4) 不變（網段入 Pre-Condition／spec_ref 逐行／canon 優先之通則）
+
+**canon 優先之通則（R-VS41(4)）於本項之例外依據**：
+canon §0 明文「a feature profile's cited override wins over the generic rule
+here」。本條寫入 `FW036_R1L_VehicleSetting_Profile.md` 之 [OVERRIDE §8.7.5] 段
+並 cite 之，即取得該例外之資格。
+
+**理由**：訊號書寫慣例專由 Pei 之交付本推導；canon §8.7.5 v3 之修訂
+（2026-08-21，time_management 之下放包 17）晚於 SWC 0708 交付（2026-07-08），
+惟本 feature 之交付物須與 SWC 交付本外觀一致 —— 該一致性屬交付形式，Pei 裁定。
+
+**影響**：已交付 **76 條**之 procedure 與 expected_result **全數改寫**。
+```
+
+### R-VS53 — 交付論述之產物須可重現（55 包 §1，分析層裁定 2026-08-22）
+
+```
+R-VS53（產物須可重現，分析層裁定 2026-08-22；本輪唯一新條文）
+凡進入交付論述之產物（覆蓋率、可寫性分級、母體計數、
+`writability.tsv`／`generatable.tsv` 等），**須可自 repo 之腳本重現**。
+
+具體要求：
+(1) 每一份此類產物須有**具名之驅動腳本**於 `scripts/`，
+    其輸入僅為 `inputs/` 之素材與 `RULINGS.md` 之條文
+(2) 歷輪之裁定（R-VS43／R-VS47／R-VS48′／R-VS49／R-VS51／W-87 等）
+    須以**可回放之形式**寫入該驅動，不得只寫進產物
+(3) 驅動之輸出與現行產物不一致時，**逐筆列出差異**並判其為
+    「驅動缺某條裁定」或「產物含未落條文之調整」
+(4) inline heredoc 之一次性修改**不得作為產物之最終來源**
+
+過渡期之處置：現行 `writability.tsv` 之**絕對值標「不可稽核」**，
+**可稽核者僅其增量**（本輪之 +33 與 +5）。引用時須連同此限制。
+```
+
+**執行層註**：A-VS101 依本條進入 W-94。`guard()` 之改名（55 包 §2）
+一併於 W-94(4) 執行 —— `guard_new_conclusion(tok, value, conclusion)`，
+`conclusion` 僅受 `{"resolved","derivable","write"}`，其餘 **raise**。
 

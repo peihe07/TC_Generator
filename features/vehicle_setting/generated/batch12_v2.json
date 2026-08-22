@@ -1,0 +1,15 @@
+{
+  "batch": "batch12",
+  "feature": "vehicle_setting",
+  "generated_round": 29,
+  "selection": "batch11 交付後池為 0 —— 無 leaf 可選",
+  "tcs": [],
+  "reasoning": "batch11 交付 1 條後，W0 ∪ W1 ∧ delegate 可用 ∧ 未用 ∧ 過閘之池為 0，故 batch12 無 TC。詳見上繳 27 §1.4。",
+  "revision": {
+    "from": "batch12.json",
+    "round": 34,
+    "basis": "54 包 §1 R-VS52（SWC 0708 對齊）",
+    "scope": "僅 test_procedure 與 expected_result；其餘欄未動"
+  },
+  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）"
+}

@@ -42,13 +42,36 @@ def conflict(token: str, value: str) -> str | None:
     return None
 
 
-def guard(token: str, value: str, verdict: str) -> tuple[str, str]:
+# 得過閘之結論。**不含 `"blocked"`** —— 已阻塞者無結論可解，
+# 舊版以 `verdict != "blocked"` 靜默直通，其誤用在計數上與正確呼叫不可分辨
+# （32 輪之實例：58 次被誤記為「被攔」）。55 包 §2 令改為 raise。
+CONCLUSIONS = frozenset({"resolved", "derivable", "write"})
+
+
+def guard_new_conclusion(token: str, value: str, conclusion: str) -> tuple[str, str]:
     """判定結論之輸出閘。落在未結 DR 提問範圍內者一律改標 `DR-CONFLICT`。
 
-    回傳 (verdict, note)。**不採用原結論** —— 即使其為 `derivable`。
+    回傳 (conclusion, note)。**不採用原結論** —— 即使其為 `derivable`。
+
+    `conclusion` 僅受 `CONCLUSIONS`；其餘一律 **raise**，不靜默直通。
     """
+    if conclusion not in CONCLUSIONS:
+        raise ValueError(
+            f"guard_new_conclusion: conclusion 須為 {sorted(CONCLUSIONS)} 之一，"
+            f"得到 {conclusion!r}。已阻塞之結論無須過閘，不應呼叫本函式。")
     dr = conflict(token, value)
-    if dr and verdict != "blocked":
+    if dr:
         lvl, _t, _p, state = OPEN_DR[dr]
-        return "DR-CONFLICT", f"{dr}（{lvl} 級，{state}）之提問標的，依 R-VS44′ 不採用「{verdict}」"
-    return verdict, ""
+        return "DR-CONFLICT", f"{dr}（{lvl} 級，{state}）之提問標的，依 R-VS44′ 不採用「{conclusion}」"
+    return conclusion, ""
+
+
+def guard(token: str, value: str, verdict: str) -> tuple[str, str]:
+    """**已棄用**（55 包 §2）—— 保留供既有呼叫端過渡，見 R-TM13。
+
+    `verdict == "blocked"` 時直接回傳，此即其靜默直通之缺陷所在。
+    新程式一律用 `guard_new_conclusion()`。
+    """
+    if verdict == "blocked":
+        return verdict, ""
+    return guard_new_conclusion(token, value, verdict)

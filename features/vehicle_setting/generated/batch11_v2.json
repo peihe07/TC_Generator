@@ -1,0 +1,69 @@
+{
+  "batch": "batch11",
+  "feature": "vehicle_setting",
+  "test_group": "Vehicle Setting",
+  "generated_round": 29,
+  "handoff": "docs/handoff/49_proxi_adoption.md",
+  "profile": "docs/runtime/profiles/FW036_R1L_VehicleSetting_Profile.md",
+  "selection": "池 11 → 過閘 7 → 扣除 26 輪已判 2 條 → 5 條；**其中 4 條為適用性前言，無自身可觀察結果**，移出。**交付 1 條**",
+  "held_out": [
+    {
+      "leaf_id": "SWE1-VC-TwoStagesHeatedSeat-055",
+      "reqid": "CFTS044-4859376",
+      "blocked_by": "無可測內容",
+      "reason": "條文逐字為 `Following requirements are valid only if PROXI parameter Heated_Seats == \"Front Seats\" OR \"Front and Rear Seats\".` —— **適用性前言**，其僅界定後續條文之適用範圍，**自身無觸發亦無可觀察之結果**。與 13 輪判為 (c) 之 `4859399`／`4859463` 同型"
+    },
+    {
+      "leaf_id": "SWE1-VC-ThreeStagesHeatedSeat-078",
+      "reqid": "CFTS044-4859400",
+      "blocked_by": "無可測內容",
+      "reason": "同上（`Heated_Seats`）"
+    },
+    {
+      "leaf_id": "SWE1-VC-TwoStagesVentedSeatsManagement-037",
+      "reqid": "CFTS044-4859438",
+      "blocked_by": "無可測內容",
+      "reason": "同上（`Cooled_Seats`）"
+    },
+    {
+      "leaf_id": "SWE1-VC-ThreeStagesVentedSeatsManagement-060",
+      "reqid": "CFTS044-4859464",
+      "blocked_by": "無可測內容",
+      "reason": "同上（`Cooled_Seats`）"
+    }
+  ],
+  "sibling_rows_injected": {
+    "note": "本批僅 1 條。其與 batch05 之 `HeatedSteeringWheel-003`／batch07 之 `-016`／`-021`／`-022` 同屬 Heated Steering Wheel，惟本條之驗證對象為**配置參數驅動之 HMI 更新**，非狀態訊號驅動之顯示。",
+    "duplicate_of_found": "無"
+  },
+  "tcs": [
+    {
+      "leaf_id": "SWE1-VC-HeatedSteeringWheelManagement-025",
+      "test_set": "Heated Steering Wheel",
+      "tc_title": "Heated steering wheel control shown only when configured present",
+      "test_item": "The HU shall Monitor $Heated_Steering_Wheel$ to determine if the vehicle is equipped with a heated steering wheel and update the HMI.\n\n(Configuration present versus absent)",
+      "pre_conditions": "1. PROXI Heated_Steering_Wheel = 0 (Absent)\n2. The Heated / Vented Seats screen is reachable from the Menu Bar",
+      "input_test_data": "NA",
+      "test_procedure": "1. Power cycle the HU and read whether the heated steering wheel control is present on the Heated / Vented Seats screen, and record it\n2. Set PROXI Heated_Steering_Wheel = 1 (Present)\n3. Power cycle the HU so that the configuration is applied\n4. Open the Heated / Vented Seats screen and check that the heated steering wheel control is present, unlike the state recorded in step 1",
+      "expected_result": "1. The heated steering wheel control is not present and the state is recorded\n2. PROXI Heated_Steering_Wheel = 1 (Present) is accepted\n3. The HU completes start-up\n4. The heated steering wheel control is present on the Heated / Vented Seats screen",
+      "specification_reference": "CFTS044-4858296\nCFTS044-4859492",
+      "design_method": "Equivalence Partitioning",
+      "priority": "P1",
+      "split_flag": false,
+      "split_reason": "",
+      "dr15_exposed": "no",
+      "distinguishing_axis": {
+        "axis": "mode",
+        "delta": "本列之觸發為 PROXI 配置參數之有無（Absent → Present），驗證對象為控制項之存在與否；batch05 之 HeatedSteeringWheel-003 之觸發為喚醒事件，驗證對象為狀態值。"
+      }
+    }
+  ],
+  "reasoning": "本批自重跑後之池（11）過閘（7）並扣除 26 輪已判之 2 條後得 5 條，其中 **4 條為適用性前言**（`Following requirements are valid only if PROXI parameter … == …`），**其僅界定後續條文之適用範圍，自身無觸發亦無可觀察之結果**，撰寫即為 §8.4.1 之造值，故移出；與 13 輪判為 (c) 之 `4859399`／`4859463` 同型。**交付 1 條。** 該條之驗證目標為配置參數驅動之 HMI 更新：`4858296` 明載 `Monitor $Heated_Steering_Wheel$ to determine if the vehicle is equipped … and update the HMI`，`4859492` 提供其適用條件。**值域取自 PROXI_HDCC27_R3（VF664_V2/V3，與本專案 LID 之 VFs=664、ECU=LTM/ETM 一致）**：`Heated_Steering_Wheel` = `0 Absent` / `1 Present`（R-VS49 之標記要求）。",
+  "revision": {
+    "from": "batch11.json",
+    "round": 34,
+    "basis": "54 包 §1 R-VS52（SWC 0708 對齊）",
+    "scope": "僅 test_procedure 與 expected_result；其餘欄未動"
+  },
+  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）"
+}

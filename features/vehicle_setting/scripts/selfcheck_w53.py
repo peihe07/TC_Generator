@@ -93,8 +93,13 @@ def check(tc: dict) -> list[str]:
                 e.append(f"R-VS9(5) {tid}: procedure/ER 出現規格 token ${tok}$")
         if re.search(r"\b\w+ in [A-Z0-9_]+ on (CAN-B|BH-CAN|CAN-FD)\b", it):
             e.append(f"R-VS41(1) {tid}: 殘留已撤回之三件組 —— {it.strip()[:50]}")
+        if re.search(r"\$[A-Z0-9_]+\.", it):
+            e.append(f"R-VS52 {tid}: 訊號名仍以 `$` 包夾 —— {it.strip()[:50]}")
+        if "is registered without a bus error" in it:
+            e.append(f"R-VS52 {tid}: 送出型 ER 仍用已撤回之措辭 —— {it.strip()[:50]}")
     for it in items(tc["test_procedure"]) + items(tc["expected_result"]):
-        m = re.search(r"\$[A-Z0-9_]+\.(\w+)\$\s*=\s*(\d+)\s*\(([^)]+)\)", it)
+        # R-VS52（34 輪）：訊號名不再以 `$` 包夾 —— 舊式 regex 於新形態下靜默失效
+        m = re.search(r"\b[A-Z][A-Z0-9_]+\.(\w+)\s*=\s*(\d+)\s*\(([^)]+)\)", it)
         if m and m.group(1) not in DBC_VALS:
             e.append(f"L-VS2 {tid}: signal {m.group(1)} 不在基線 DBC")
         elif m and DBC_VALS[m.group(1)].get(m.group(2)) != m.group(3):

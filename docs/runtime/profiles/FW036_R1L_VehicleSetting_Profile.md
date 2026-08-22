@@ -95,23 +95,39 @@ signal 之**拼寫**取 DBC（R-VS9(1)′）；
 
 **來源**：R-VS5（承 canon §4.5 之 SWC 基準）。
 
-## [ADD] 送出型步驟之 ER 措辭（A-VS62，Pei 2026-08-22 定案）
+## [OVERRIDE §8.7.5] 訊號書寫依 SWC 0708 交付本（R-VS52）
+
+> **cite**：R-VS52（Pei 2026-08-22，54 包 §1）。
+> 依 canon §0「a feature profile's cited override wins over the generic rule here」，
+> 本段取得 R-VS41(4)（canon 優先）之例外資格。
+> **取代 canon §8.7.5 v3 之 `$<MESSAGE>.<Signal>$ = <raw> (<label>)` 形式。**
 
 ```
-送出型步驟（`Send the signal …`）之對應 ER 逐字形態：
+(1) 送出型步驟
+    procedure：Send CAN: <MESSAGE>.<Signal> = <raw> (<label>)
+    ER       ：<MESSAGE>.<Signal> = <raw> (<label>) is sent
+               必要時附時機（交付本用 during press window／after release）
+    訊號名不加 `$` 包夾（交付本 `$MSG.Sig$` 形態命中 0）
 
-  The signal $<MESSAGE>.<Signal>$ = <raw> (<label>) is registered without a bus error
+(2) 讀取型步驟
+    procedure：Read <對象> and record as <變數名>
+    ER       ：<變數名> is recorded
+               比較步驟之 ER 用 <變數名> = <期望> 或 <變數名A> = <變數名B>
 
-讀取型步驟（`Read the signal …`）之 ER 仍用：
+(3) 保持型步驟
+    `Hold for <t>` 自成一步，ER 為 `The signal is held for <t>`
 
-  The signal $<MESSAGE>.<Signal>$ reads <raw> (<label>)
+(4) baseline 比較採具名變數（交付本：Vol_initial／Vol_after），
+    不用「the same as recorded in step N」
 ```
 
-**來源**：A-VS62 之定案（53 包 §2，Pei 2026-08-22，採 51 包 §2.5 路徑 (a)）。
+**撤回者**：R-VS41(1)（canon §8.7.5 v3 形式）；
+A-VS62 之 (a) 認可（`is registered without a bus error`）——
+**送出型 ER 改為 `is sent`**。
 
-**限制**：本認可為 **feature-scoped**，**不得援引至他 feature**。
-日後若取得 SWC 0708 或任一已交付本之「送 CAN 訊號」樣本而其措辭不同，
-以該樣本為準並逐條替換（單欄字串替換，成本有界）。
+**理由**：本 feature 之交付物須與 SWC 0708 交付本外觀一致。
+canon §8.7.5 v3 之修訂（2026-08-21）晚於 SWC 0708 交付（2026-07-08），
+而該一致性屬交付形式，Pei 裁定。
 
 ---
 
