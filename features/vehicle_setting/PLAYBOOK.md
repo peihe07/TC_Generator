@@ -134,12 +134,30 @@ Remarks = reason + anomaly id.
 
 ## 6. Status board — Vehicle Setting
 
-- [ ] P0 intake complete; INTAKE.md reviewed; missing files: ____
-- [ ] P1 recon complete; workbook_state: ____; leaves: ____; targets: ____
-- [ ] P2 DECISIONS signed (date: ____)
-- [ ] P3 framework Part N + profile approved
-- [ ] P4 data artifacts built
-- [ ] P5 pilot batch ____ reviewed; verdict: ____; corrections: ____
-- [ ] P6 all batches generated; lint green; placeholders: ____
-- [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: ____
-- Open PENDING rulings: ____
+- [x] P0 intake complete; INTAKE.md reviewed; missing files: none (INPUTS.sha256 recorded)
+- [x] P1 recon complete; workbook_state: BLANK; leaves: 271 (237 Functional); targets: 237
+- [x] P2 DECISIONS signed (date: 2026-08-20)
+- [x] P3 framework Part N + profile approved — framework **locked 2026-08-22** (P19, signed 2026-08-20); profile `FW036_R1L_VehicleSetting_Profile.md` created round 18
+- [x] P4 data artifacts built — `leaves.tsv` / `leaf_to_reqid.tsv` / `lid_pairs.tsv` / `spec_variables.tsv` (+ `normalized_key`, `suspect_prefix`) / `can_signal_map.tsv` / `delegation_lookup.tsv`
+- [x] P5 pilot batch **01** reviewed; verdict: **PASS (Pei, 2026-08-22)**; corrections: 3 defects (D-1 baseline comparison, D-2 final-step action, D-3 executable steps < 2) → `batch01_v3.json`, batch **10 → 8**
+- [ ] P6 all batches generated; lint green; placeholders: **4 PENDING lines across 2 TCs held out of batch** (`Stop-StartSystem-006` DR-19, `SwitchLHD/RHD-010` DR-20)
+- [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: **2026-08-22, items 1–5 of the 8-item dispatch letter (37 §2)**
+
+### Open DRs — 待送 vs 待覆 (D-9)
+
+| DR | 送件文項次 | 阻塞 | 影響 leaf | 狀態 |
+|---|---|---|---:|---|
+| DR-15 | 1 | yes | 160 | **待覆**（送出 2026-08-22） |
+| DR-17 | 2 | yes | 14 | **待覆**（送出 2026-08-22） |
+| DR-14′ | 3 | yes | 16 | **待覆**（送出 2026-08-22） |
+| DR-19 | 4 | yes | 3 | **待覆**（送出 2026-08-22） |
+| DR-20 | 5 | yes | 1 | **待覆**（送出 2026-08-22） |
+| DR-18 | 6 | no (確認型) | 160 | **待送** |
+| DR-8 | — | no | — | **待送** |
+| DR-11 | — | no | 1 | **待送** |
+| DR-12 | — | no | — | **待送** |
+
+送件文第 7 項（`$VC_VEH_LINE$` 車型碼）與第 8 項（`$PowerMode$` 之 `IGN_OFF_ACC`）
+**於 `DATA_REQUESTS.md` 無對應之 DR 編號**，且本次未送。
+
+- Open PENDING rulings: none — R-VS19″ / R-VS41 / P19 皆已裁；`A-VS02` 為缺號，不補不重編

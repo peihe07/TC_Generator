@@ -44,6 +44,8 @@ HMI Settings List R1 SR25 Post R1L-R），**本 feature 條文不引用者不取
 
 ## DR-14′（取代 DR-14，14 包 §2）
 
+**狀態：已送出（Pei，2026-08-22，37 包送件文第 3 項）—— 待覆。**
+
 LID 表載 `HdRstRelRq` 之 Atlantis High 對映為 `RADIO_B3.HDRstRelRq_3rdRow`，
 但基線 DBC 之 `RADIO_B3` 不含該 signal（其 4 支為 `ManDispCtrl` /
 `PowerSideStep_Req` / `RQ_DISP_INTS` / `VR_Blower_Req`）；
@@ -58,6 +60,8 @@ LID 表載 `HdRstRelRq` 之 Atlantis High 對映為 `RADIO_B3.HDRstRelRq_3rdRow`
 > **DR-13 撤銷**（14 包 §1）：`$ESS_ENG_ST$` 之 message 歸屬非矛盾，係執行層未展開 LID 單格多值。
 
 ## DR-15（新，**Urgency High** —— 排在 framework 之前）
+
+**狀態：已送出（Pei，2026-08-22，37 包送件文第 1 項）—— 待覆。**
 
 **兩造皆 in-scope，非架構差異可吸收者。**
 
@@ -164,7 +168,7 @@ CFTS044 定義單階加熱座椅之配置（`$Heated_Seat_Levels$ = [1]`），
 **影響**：14 個 `OneStageHeatedSeat` leaf 之委派界線（R-VS7）。
 在答覆前，該 12 個已委派之 leaf 其委派標的與其配置條件矛盾。
 
-**狀態：未送出**（送出屬 Pei）。配對 anomaly：A-VS46。
+**狀態：已送出（Pei，2026-08-22，37 包送件文第 2 項）—— 待覆。** 配對 anomaly：A-VS46。
 
 ## DR-18（新，**Urgency Medium** —— **確認型，不阻塞**；分析層擬，Pei 送出）
 
@@ -212,7 +216,7 @@ CFTS044 之座椅相關值域中，發現四類書寫問題，請確認其為筆
 共 **160 個 SWE leaf**。
 我方已依內部判準處理（正規化計數、原值保留），**本請求為確認而非阻塞**。
 
-**狀態：未送出**（送出屬 Pei）。配對 anomaly：A-VS49／A-VS51／A-VS52／A-VS53。
+**狀態：未送出** —— 37 包送件文第 6 項，**Pei 本次僅送 1–5**，本項維持待送。配對 anomaly：A-VS49／A-VS51／A-VS52／A-VS53。
 
 ## DR-19（新，**Urgency High** —— **阻塞 3 個 leaf**；17 輪 W-53 開立）
 
@@ -236,8 +240,24 @@ CFTS044 之 `4858551`／`4858553`／`4858555` 以
 無法決定應送出之匯流排值，已依 §8.4.3 於 `test_procedure`／`expected_result`
 填 `PENDING: DR-19`。
 
-**提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS58。
-**狀態：未送出。**
+### 提問（RD-1，35 包 §3 全文，分析層擬）
+
+> CFTS044 條文 4858551／4858553／4858555（`[EE Architecture:Atlantis High]`）
+> 以 `$EngRun_Stat$ = [IDLE_STBL]`／`[UNLIMITED]`／`[LIMITED]`／`[RUN]`
+> 為 Stop/Start 開關可用性之判定條件。
+>
+> 惟 `Logical Identifiers and CAN Mapping v1.76` 將 `EngRun_Stat` 對映至
+> `STATUS_CCAN3.EngineSts`（Atlantis High 欄組），
+> 其 Format 與基線 DBC `PDT27_E2A_R4_BHCAN.dbc` 之 `VAL_` 皆為
+> `0 = Engine_Off`／`1 = Engine_Cranking`／`2 = Engine_On`／`3 = SNA`。
+> **四個規格值於 LID 與 DBC 中皆無對應。**
+>
+> 請提供 `IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN` 之匯流排對應
+> （訊號名、message、值），或確認其應改用他訊號。
+> 影響：SWE1-VC-Stop-StartSystem-004／-005／-006 三個 leaf 之 procedure
+> 與 expected_result 無法在不編造值之下寫出。
+
+配對 anomaly：A-VS58。**狀態：已送出（Pei，2026-08-22，37 包送件文第 4 項）—— 待覆。**
 
 ## DR-20（新，**Urgency Medium** —— **阻塞 1 個 leaf**；17 輪 W-53 開立）
 
@@ -254,5 +274,93 @@ defined by HMI requirements.`
 其 canon §9 檢查 5（§5.5 末步驟須擁有驗證）**因此不通過**，
 在本 DR 答覆前無法修正。
 
-**提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS59。
-**狀態：未送出。**
+### 提問（RD-1，35 包 §3 全文，分析層擬）
+
+> CFTS044 條文 4858560（`[EE Architecture:Atlantis High]`）逐字為
+> `… the HMI shall be modified as defined by HMI requirements.`
+> —— **未具名任何文件、章節或需求 ID**。
+>
+> 我方已查 26PI2.5/HMI 之全部 107 檔（含對無文字層 PDF 施以旋轉 OCR），
+> 未能定位其所指之 HMI 需求。
+>
+> 請指明該 HMI 需求之文件與章節。
+> 影響：SWE1-VC-SwitchLHD/RHDConfiguration-010 之末步驟無可寫之驗證目標；
+> 寫具體修改項即為造值（§8.4.1），寫「HMI is modified」則不可觀察（§6）。
+> 現以 `PENDING: DR-20` 佔位。
+
+配對 anomaly：A-VS59。**狀態：已送出（Pei，2026-08-22，37 包送件文第 5 項）—— 待覆。**
+
+## DR-21（新，**Urgency High** —— **阻塞 2 個 leaf**；19 輪 W-57 開立）
+
+**`$PowerMode$` 之 `IGN_START` 與 `IGN_OFF_ACC` 於基線 DBC 無對應值。**
+
+LID 表將 `PowerMode` 對映至 `STATUS_BH_BCM2.CmdIgnSts`（Atlantis High 欄組），
+其 Format 與兩份基線 DBC 之 `VAL_` 皆為：
+
+```
+0 = Initialization   1 = IGN_LK   3 = ACC   4 = RUN   5 = START   7 = SNA
+```
+
+CFTS044 所用之值與其對應狀況（全文實測次數）：
+
+| CFTS044 值 | 次數 | DBC 對應 | 判 |
+|---|---:|---|---|
+| `[Ignition lock / IGN_LK]` | 11 | `1 (IGN_LK)` | **逐字相符，可用** |
+| `[4h:Ignition run]` | 5 | `4 (RUN)` | **CFTS044 自載原始碼值 `4h`，可用** |
+| `[IGN_RUN]`／`[Ignition run / IGN_RUN]`／`[Ignition run]` | 20／5／9 | 同上 | 依 `4h` 之並列可用 |
+| **`[Ignition start / IGN_START]`** | **3** | 無（DBC 為 `START`） | **無對應，且無原始碼值** |
+| **`[Ign. off & acc. (4 position switch) / IGN_OFF_ACC]`** | **4** | 無 | **無對應** |
+| `[Ignition off (5 position switch) / IGN_OFF]`／`[IGN_OFF]` | 1／1 | 無 | 本批未涉 |
+
+依 **R-VS9(2)**「兩者不一致時停下回報，不自行調和」，本層未把 `IGN_START` 讀為 `START`。
+
+**影響**：`SWE1-VC-ThirdRowHeadrestDump-029`（IGN_START）與 `-031`（IGN_OFF_ACC）。
+
+> **與 37 包送件文第 8 項之關係**：該項已就 `4858978`（Second Row Headrest Dump）
+> 提出 `IGN_OFF_ACC` 之同一問題，**惟其未送出且無 DR 編號**。
+> 本 DR 併同 `IGN_START` 一併提出，範圍及於 Third Row。
+
+**提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS63。**狀態：未送出。**
+
+## DR-22（新，**Urgency High** —— **阻塞 1 個 leaf**；19 輪 W-57 開立）
+
+**`VC_HdRstPrsnt` 於 LID、DBC、值域資料三處皆無記載。**
+
+CFTS044 `4858989` 逐字：
+`When the HU receives the vehicle configuration signal VC_HdRstPrsnt = [Present],
+the HU shall dispaly the Third Row Headrest Dump softkey button.`
+
+實測命中數：
+
+| 來源 | 命中 |
+|---|---:|
+| `Logical Identifiers and CAN Mapping v1.76`（`lid_pairs.tsv` 2,710 列） | **0** |
+| `PDT27_E2A_R4_BHCAN.dbc`／`PDT27_E2A_R5_FDCAN8.dbc` | **0** |
+| `data/spec_variables.tsv`（30 個 token） | **0** |
+
+> **附記（R-VS34 形態）**：該 token 於 CFTS044 中寫作**裸名 `VC_HdRstPrsnt`，無 `$...$` 包夾**，
+> 故早輪以 `$var$` 形態建立 `spec_variables.tsv` 時未收入。
+> 本輪依 **R-VS36** 之三形態試法方發現。
+
+**影響**：`SWE1-VC-ThirdRowHeadrestDump-028`。
+
+**提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS64。**狀態：未送出。**
+
+## DR-23（新，**Urgency Medium** —— **阻塞 1 個 leaf**；19 輪 W-57 開立）
+
+**`4859032` 交叉參照未具名之 HMI Logic and Flow。**
+
+條文逐字：
+`When the signal $PowerMode$ <> [IGN_RUN], the HU shall follow the HMI Logic &
+Flow to update the state of the Rear View Camera soft button.`
+
+「HMI Logic & Flow」未具名任何文件、章節或需求 ID。
+其「更新後之狀態」為何無從判定：寫具體狀態即造值（§8.4.1），
+寫「state is updated」則不可觀察（§6）。
+
+**與 A-VS59／DR-20（`4858560`）為同型**，惟所指之文件不同
+（該條為「HMI requirements」，本條為「HMI Logic & Flow」）。
+
+**影響**：`SWE1-VC-ThirdRowHeadrestDump-039`。
+
+**提問文待分析層擬**（本層不代擬）。配對 anomaly：A-VS65。**狀態：未送出。**

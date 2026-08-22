@@ -1,4 +1,4 @@
-"""canon §9 十七項自檢之可機械化部分（W-53）。
+"""canon §9 十七項自檢之可機械化部分（W-53；18 輪依 R-VS41 更新）。
 
 不可機械化者（1 之 capability 判斷、3 之 trigger vs 環境前提、
 7 之 snippet 適用性、11 之 FP/FF、12 之上游分解、13 之方法適配、
@@ -16,6 +16,20 @@ KEYS = ("tc_title", "pre_conditions", "input_test_data", "test_procedure",
         "priority", "split_flag", "split_reason")
 NO_TRAIL = ("pre_conditions", "input_test_data", "test_procedure", "expected_result")
 MODALS = re.compile(r"\b(shall|will|should|would)\b", re.I)
+
+
+def _dbc_vals() -> dict[str, dict[str, str]]:
+    """自基線 DBC 讀 `VAL_` 表（檔為 ISO-8859，須以 latin-1 讀）。"""
+    out: dict[str, dict[str, str]] = {}
+    for f in ("PDT27_E2A_R4_BHCAN.dbc", "PDT27_E2A_R5_FDCAN8.dbc"):
+        text = (FEAT / "inputs" / f).read_text(encoding="latin-1")
+        for m in re.finditer(r"^VAL_\s+\d+\s+(\w+)\s+(.*?);", text, re.M | re.S):
+            out.setdefault(m.group(1), {}).update(
+                dict(re.findall(r'(\d+)\s+"([^"]*)"', m.group(2))))
+    return out
+
+
+DBC_VALS = _dbc_vals()
 TITLE_MODALS = re.compile(r"\b(should|will|shall|properly|successfully)\b", re.I)
 
 
@@ -71,15 +85,29 @@ def check(tc: dict) -> list[str]:
     for it in p:
         if re.match(r"^\s*\d+\.\s*(observe|see if|verify|watch|monitor|inspect)\b", it, re.I):
             e.append(f"§5.1 {tid}: 禁用動詞為主動詞 —— {it.strip()[:40]}")
-    if "$" in tc["test_procedure"] or "$" in tc["expected_result"]:
-        for it in items(tc["test_procedure"]) + items(tc["expected_result"]):
-            if "$" in it and "PENDING" not in it:
-                e.append(f"R-VS9(5) {tid}: procedure/ER 出現 $var$ —— {it.strip()[:40]}")
+    # R-VS41(1)：訊號採 `$<MESSAGE>.<Signal>$ = <raw> (<label>)`。
+    # R-VS9(5) 仍禁**規格 token** 之 `$var$`（無 `.` 者）入 procedure／ER。
+    for it in items(tc["test_procedure"]) + items(tc["expected_result"]):
+        for tok in re.findall(r"\$([^$]+)\$", it):
+            if "." not in tok:
+                e.append(f"R-VS9(5) {tid}: procedure/ER 出現規格 token ${tok}$")
+        if re.search(r"\b\w+ in [A-Z0-9_]+ on (CAN-B|BH-CAN|CAN-FD)\b", it):
+            e.append(f"R-VS41(1) {tid}: 殘留已撤回之三件組 —— {it.strip()[:50]}")
+    for it in items(tc["test_procedure"]) + items(tc["expected_result"]):
+        m = re.search(r"\$[A-Z0-9_]+\.(\w+)\$\s*=\s*(\d+)\s*\(([^)]+)\)", it)
+        if m and m.group(1) not in DBC_VALS:
+            e.append(f"L-VS2 {tid}: signal {m.group(1)} 不在基線 DBC")
+        elif m and DBC_VALS[m.group(1)].get(m.group(2)) != m.group(3):
+            e.append(f"R-VS39 {tid}: {m.group(1)} 之 {m.group(2)} 標籤非 DBC VAL_ 逐字 —— "
+                     f"見 {m.group(3)!r}，DBC 為 {DBC_VALS[m.group(1)].get(m.group(2))!r}")
     return e
 
 
 def main() -> None:
-    d = json.loads((FEAT / "generated/batch01.json").read_text(encoding="utf-8"))
+    import sys
+    name = sys.argv[1] if len(sys.argv) > 1 else "generated/batch01_v2.json"
+    d = json.loads((FEAT / name).read_text(encoding="utf-8"))
+    print(f"檢查 {name}")
     errs = [x for tc in d["tcs"] for x in check(tc)]
     print(f"TC {len(d['tcs'])} 條，機械檢查發現 {len(errs)} 項：")
     for x in errs:

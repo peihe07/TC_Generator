@@ -1,7 +1,47 @@
-# Vehicle Setting —— framework 草案（Layer 1–3）
+# Vehicle Setting —— framework（Layer 1–3）
 
-**狀態：草案，未鎖定。** 依 28 包 §5 之 W-41 產出，14 輪 W-46 依 **R-VS37** 重判；
-鎖定屬 Tier 2，待 Pei 簽核（P19）。canon §4.1.2 步驟 5 —— **僅列 Layer 1–3，不列個別 RD。**
+**狀態：已簽核並鎖定。** Pei 於 2026-08-20 簽核（P19，Tier 2），19 輪 D-5 落鎖。
+
+```
+P19（Pei 2026-08-20：簽核）
+`features/vehicle_setting/framework.md` 之三層結構定案並鎖定：
+
+  Layer 1  `Vehicle Setting`（R-VS3′）
+  Layer 2  `Common Features` 46／`Heated Seat` 88／`Vented Seat` 72／
+           `Heated Steering Wheel` 31 ＝ 237（R-VS4、R-VS15）
+  Layer 3  19 個，依 R-VS37′ 四分支以 CFTS044 章節判定
+
+簽核之依據（皆已實測）：
+  Layer 2 歸屬以 037 檔界逐 leaf 驗證，**0 / 237 不一致**（16 輪 W-52）
+  Layer 2 四數與 R-VS15 逐項相符
+  左右對稱 HeatedSeat 15/15、VentedSeat 15/15
+  分支使用 (1)231／(2)2／(3)3／(4)1 ＝ 237
+  token 判定與章節判定不一致者 2，皆逐筆記明依據
+
+**簽核不涵蓋**（各自另有其關卡）：
+  TC 內容（pilot review）
+  委派狀態之逐 leaf 正確性（R-VS7(a)′ 為群層級）
+  未結 DR 之答覆
+```
+
+```
+Layer 3 名稱之轉寫（36 包 §2.1，隨本次簽核生效）
+`framework.md` 內之顯示名維持 `SwitchLHD/RHDConfiguration`（037 之逐字）。
+凡用於檔名、批次名、或任何不接受 `/` 之識別碼者，
+取其**正規化形式** `SwitchLHDRHDConfiguration`（去 `/`，不補底線）。
+兩者於 Layer 3 表並列，逐字對照。
+```
+
+**重開條件**：新 RD 無法對映入現行三層；或 Layer 2 四數因上游改版而變動；
+或 pilot review 發現之缺陷可追溯至分層本身。**重開屬 Tier 2（Pei）。**
+
+---
+
+**原草案標題保留加註**（R-TM13）：本檔原題為
+「Vehicle Setting —— framework 草案（Layer 1–3）」，狀態「草案，未鎖定」。
+
+依 28 包 §5 之 W-41 產出，14 輪 W-46 依 R-VS37 重判；
+canon §4.1.2 步驟 5 —— **僅列 Layer 1–3，不列個別 RD。**
 
 母體：**237 個 Functional leaf**（R-VS15），取自 037 四本 SWRA。
 Layer 3 之界定：**依 R-VS37′ 四分支以 `reqid_list` 所跨之 CFTS044 章節判定**，
@@ -9,28 +49,28 @@ SWE ID 中段 token 僅為預設值。**共 19 個**（含新增之 `Common Feat
 
 ## 依 R-VS37′ 之章節判定（15 輪 W-49，取代下方 token 判定表）
 
-| Layer 2 | Layer 3 | leaf | yes | no | blocked | pending |
-|---|---|---:|---:|---:|---:|---:|
-| Heated Seat | `ThreeStagesHeatedSeat` | 22 | 20 | 0 | 2 | 0 |
-| Vented Seat | `ThreeStagesVentedSeatsManagement` | 22 | 20 | 0 | 2 | 0 |
-| Common Features | `ThirdRowHeadrestDump` | 21 | 0 | 21 | 0 | 0 |
-| Heated Seat | `TwoStagesHeatedSeat` | 20 | 16 | 0 | 4 | 0 |
-| Heated Steering Wheel | `HeatedSteeringWheel` | 20 | 20 | 0 | 0 | 0 |
-| Vented Seat | `TwoStagesVentedSeatsManagement` | 20 | 16 | 0 | 4 | 0 |
-| Heated Seat | `LeftFrontHeatedSeat` | 15 | 15 | 0 | 0 | 0 |
-| Heated Seat | `RightFrontHeatedSeat` | 15 | 15 | 0 | 0 | 0 |
-| Vented Seat | `LeftFrontVentedSeat` | 15 | 15 | 0 | 0 | 0 |
-| Vented Seat | `RightFrontVentedSeat` | 15 | 15 | 0 | 0 | 0 |
-| Heated Seat | `OneStageHeatedSeat` | 14 | 0 | 0 | 2 | **12** |
-| Heated Steering Wheel | `HeatedSteeringWheelManagement` | 11 | 8 | 0 | 3 | 0 |
-| Common Features | `Stop-StartSystem` | 6 | 0 | 6 | 0 | 0 |
-| Common Features | `SwitchLHD/RHDConfiguration` | 6 | 0 | 6 | 0 | 0 |
-| Common Features | `ScreenOFF` | 6 | 0 | 6 | 0 | 0 |
-| Common Features | `FeaturesEnableCriteria` | 3 | 0 | 3 | 0 | 0 |
-| Common Features | `StopStartSystemBehavior` | 3 | 0 | 3 | 0 | 0 |
-| Heated Seat | **`CrossZone Common`** | 2 | 2 | 0 | 0 | 0 |
-| Common Features | `PHEVFeatures` | 1 | 0 | 1 | 0 | 0 |
-| **合計** | **19** | **237** | **162** | **46** | **17** | **12** |
+| Layer 2 | Layer 3 | **正規化名**（檔名／批次名用） | leaf | yes | no | blocked | pending |
+|---|---|---|---:|---:|---:|---:|---:|
+| Heated Seat | `ThreeStagesHeatedSeat` | `ThreeStagesHeatedSeat` | 22 | 20 | 0 | 2 | 0 |
+| Vented Seat | `ThreeStagesVentedSeatsManagement` | `ThreeStagesVentedSeatsManagement` | 22 | 20 | 0 | 2 | 0 |
+| Common Features | `ThirdRowHeadrestDump` | `ThirdRowHeadrestDump` | 21 | 0 | 21 | 0 | 0 |
+| Heated Seat | `TwoStagesHeatedSeat` | `TwoStagesHeatedSeat` | 20 | 16 | 0 | 4 | 0 |
+| Heated Steering Wheel | `HeatedSteeringWheel` | `HeatedSteeringWheel` | 20 | 20 | 0 | 0 | 0 |
+| Vented Seat | `TwoStagesVentedSeatsManagement` | `TwoStagesVentedSeatsManagement` | 20 | 16 | 0 | 4 | 0 |
+| Heated Seat | `LeftFrontHeatedSeat` | `LeftFrontHeatedSeat` | 15 | 15 | 0 | 0 | 0 |
+| Heated Seat | `RightFrontHeatedSeat` | `RightFrontHeatedSeat` | 15 | 15 | 0 | 0 | 0 |
+| Vented Seat | `LeftFrontVentedSeat` | `LeftFrontVentedSeat` | 15 | 15 | 0 | 0 | 0 |
+| Vented Seat | `RightFrontVentedSeat` | `RightFrontVentedSeat` | 15 | 15 | 0 | 0 | 0 |
+| Heated Seat | `OneStageHeatedSeat` | `OneStageHeatedSeat` | 14 | 0 | 0 | 2 | **12** |
+| Heated Steering Wheel | `HeatedSteeringWheelManagement` | `HeatedSteeringWheelManagement` | 11 | 8 | 0 | 3 | 0 |
+| Common Features | `Stop-StartSystem` | `Stop-StartSystem` | 6 | 0 | 6 | 0 | 0 |
+| Common Features | `SwitchLHD/RHDConfiguration` | `SwitchLHDRHDConfiguration` | 6 | 0 | 6 | 0 | 0 |
+| Common Features | `ScreenOFF` | `ScreenOFF` | 6 | 0 | 6 | 0 | 0 |
+| Common Features | `FeaturesEnableCriteria` | `FeaturesEnableCriteria` | 3 | 0 | 3 | 0 | 0 |
+| Common Features | `StopStartSystemBehavior` | `StopStartSystemBehavior` | 3 | 0 | 3 | 0 | 0 |
+| Heated Seat | **`CrossZone Common`** | **`CrossZoneCommon`** | 2 | 2 | 0 | 0 | 0 |
+| Common Features | `PHEVFeatures` | `PHEVFeatures` | 1 | 0 | 1 | 0 | 0 |
+| **合計** | **19** | — | **237** | **162** | **46** | **17** | **12** |
 
 **Layer 2 合計 46／88／72／31 —— 與 R-VS15 逐項相符。**
 **左右對稱：HeatedSeat 15/15、VentedSeat 15/15。**
@@ -64,17 +104,17 @@ SWE ID 中段 token 僅為預設值。**共 19 個**（含新增之 `Common Feat
 | # | 項目 | 阻塞？ | 所待 |
 |---|---|---|---|
 | 1 | ~~R-VS19′ 主文與 (a) 段互斥~~ **已解**（**R-VS19″**，34 包 §1）：採讀法一，`EE Architecture` 僅排除 `CUSW`／`PowerNet` 專屬者。定案數字 in-scope **425**／21 節內 **259**／未覆蓋 **8**／覆蓋率 **96.9%**／落外 **0**／**(a) = 0**。43 條為 out-of-scope，不歸因。A-VS55 關閉 | **不再阻塞** | — |
-| 2 | **DR-15** — 請求訊號 1 bit vs 承載階數 | **阻塞** | 已定稿，**待 Pei 送出** |
-| 3 | **DR-17** — Comfort 側無單階座椅條文（14 leaf／12 `pending`） | **阻塞** | 已定稿，**待 Pei 送出** |
+| 2 | **DR-15** — 請求訊號 1 bit vs 承載階數 | **阻塞** | **已送出（2026-08-22，送件文第 1 項）—— 待覆** |
+| 3 | **DR-17** — Comfort 側無單階座椅條文（14 leaf／12 `pending`） | **阻塞** | **已送出（2026-08-22，送件文第 2 項）—— 待覆** |
 | 4 | **DR-11** — `HeatedSteeringWheel-009` 之來源（`SYS-RA-CFTS100`） | 不阻塞 | 該 leaf 已標 `UNRESOLVED-SOURCE` |
-| 5 | **DR-18** — 座椅值域之四類書寫問題 | **不阻塞（確認型）** | 已定稿，待 Pei 送出 |
+| 5 | **DR-18** — 座椅值域之四類書寫問題 | **不阻塞（確認型）** | **未送出**（送件文第 6 項，本次僅送 1–5） |
 | 6 | A-VS51 — `4858413` 值退化為 `[ Pressed]` | 不阻塞 | 併 DR-18 |
 | 7 | A-VS52／A-VS56 — 大小寫重複影響 **12 個 token** | 不阻塞 | 已依 **R-VS39** 以 `normalized_key` 處理 |
-| 8 | `SwitchLHD/RHDConfiguration` 之 token 含 `/`，進 tc_id／檔名前須定轉寫規則 | **阻塞**（TC 生成時） | 未定 |
+| 8 | ~~`SwitchLHD/RHDConfiguration` 之 `/` 轉寫~~ **已解**（36 包 §2.1）：Layer 3 不入工作簿（§4.1.5）亦不入 `tc_id`（§10.3），唯一受影響者為 `generated/` 之檔名／批次名，取正規化名 `SwitchLHDRHDConfiguration` | **不再阻塞** | — |
 | 9 | `$HSW_StatFailSts$` 之 R-VS20 階梯歸屬（R-VS19″ 承 R-VS19′(d) 令其重查） | 不阻塞 | **凍結**：`BACKLOG.md` B-02（R-VS40） |
-| 10 | **訊號書寫形式衝突**：R-VS9(3) 三件組 vs TC 規則書 §8.7.5 v3（該形式已撤銷）；本 feature **無 profile 檔** | **阻塞**（影響每一條 procedure／ER） | A-VS57，待裁 |
-| 11 | **DR-19** — `EngRun_Stat` 之規格值於 LID／DBC 無對應 | **阻塞 3 leaf**（Stop-Start-004／005／006） | A-VS58 |
-| 12 | **DR-20** — `4858560` 交叉參照未具名之 HMI 需求 | **阻塞 1 leaf**（SwitchLHD/RHD-010） | A-VS59 |
+| 10 | ~~訊號書寫形式衝突~~ **已解**（**R-VS41**，35 包 §1）：三件組撤回，改依 canon §8.7.5 v3；網段入 Pre-Condition。profile 已建。A-VS57／60／61 關閉 | **不再阻塞** | — |
+| 11 | **DR-19** — `EngRun_Stat` 之規格值於 LID／DBC 無對應 | **阻塞 1 leaf**（`-006` 已移出批次；`-004`／`-005` 保留 PENDING） | **已送出（送件文第 4 項）—— 待覆**；A-VS58 |
+| 12 | **DR-20** — `4858560` 交叉參照未具名之 HMI 需求 | **阻塞 1 leaf**（已移出批次） | **已送出（送件文第 5 項）—— 待覆**；A-VS59 |
 
 **已解者**：`Common Features` 名稱衝突（→ `CrossZone Common`）；
 **Layer 2 歸屬已以 037 檔界逐 leaf 驗證，0 / 237 不一致**（W-52(1)）——
@@ -134,5 +174,5 @@ SWE ID 中段 token 僅為預設值。**共 19 個**（含新增之 `Common Feat
    差 1 源自 RF Vented 多一組重複條文（`4858393`／`4858394`），
    二者僅差 `HS_HI` vs `VS_HI` —— **上游 typo**，見 A-VS49。
 
-5. **`Common Features` 同時是 Layer 2 名稱與（新增之）Layer 3 名稱** ——
-   名稱衝突，鎖定前須改名或改層。**未定。**
+5. ~~`Common Features` 同時是 Layer 2 與 Layer 3 名稱~~ **已解**（15 輪）：
+   Layer 3 之跨區共通桶改名 `CrossZone Common`（31 包 §2）。**本項為過期記載。**

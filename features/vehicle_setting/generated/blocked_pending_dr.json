@@ -1,0 +1,70 @@
+{
+  "held_out_of_batch": "batch01_v3",
+  "reason": "38 包 §1 之 D-3 裁定（profile [ADD]）",
+  "dispatched": "DR-19 / DR-20 皆已於 2026-08-22 送出（送件文第 4／5 項），待覆",
+  "tcs": [
+    {
+      "leaf_id": "SWE1-VC-Stop-StartSystem-006",
+      "test_set": "Common Features",
+      "tc_title": "Engine running -> heat, vent and steering wheel switches activatable",
+      "test_item": "IF ($EngRun_Stat$ = [IDLE_STBL//UNLIMITED//LIMITED//RUN])then The HMI shall allow activation of the heated and vented seats and the heated steering wheel switches.\n\n(Engine running)",
+      "pre_conditions": "1. The vehicle is equipped with the Stop-Start system\n2. The heated seat, vented seat and heated steering wheel switches are shown on the Climate screen\n3. CAN-B is connected to the bus simulator",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-19 EngRun_Stat 之規格值 IDLE_STBL / UNLIMITED / LIMITED / RUN 於 LID 與 DBC 皆無對應，無法決定滿足等於條件之匯流排值\n2. Select the heated seat, vented seat and heated steering wheel switches on the Climate screen and check that each switch activates",
+      "expected_result": "1. PENDING: DR-19\n2. The heated seat, vented seat and heated steering wheel switches each change to the activated state",
+      "specification_reference": "CFTS044-4858555",
+      "design_method": "Functional Based",
+      "priority": "P1",
+      "split_flag": false,
+      "split_reason": "BLOCKED-BY-DR-19: executable steps < 2"
+    },
+    {
+      "leaf_id": "SWE1-VC-SwitchLHD/RHDConfiguration-010",
+      "test_set": "Common Features",
+      "tc_title": "Right-hand drive configuration applied to the HMI",
+      "test_item": "If $DriverSide$ = [Right hand drive] the HMI shall be modified as defined by HMI requirements.\n\n(Right-hand drive configuration accepted)",
+      "pre_conditions": "1. PROXI Driver_Side = 1 (Right Side)\n2. The Climate screen is reachable from the Menu Bar",
+      "input_test_data": "NA",
+      "test_procedure": "1. Power cycle the HU so that PROXI Driver_Side = 1 (Right Side) is applied\n2. PENDING: DR-20 條文以「as defined by HMI requirements」交叉參照，未指名該 HMI 需求，無可判定之修改項",
+      "expected_result": "1. The HU completes start-up and the Climate screen is displayed\n2. PENDING: DR-20",
+      "specification_reference": "CFTS044-4858560",
+      "design_method": "Functional Based",
+      "priority": "P2",
+      "split_flag": false,
+      "split_reason": "BLOCKED-BY-DR-20: executable steps < 2"
+    }
+  ],
+  "batch02_not_written": {
+    "note": "下列 4 條於 W-57 選入第二批，但其觸發值或引用於來源中缺件，**未撰寫 TC**（撰寫即為 §8.4.1 之造值）。待 DR 覆後再入批。",
+    "entries": [
+      {
+        "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-028",
+        "reqid": "CFTS044-4858989",
+        "blocked_by": "DR-22",
+        "missing": "`VC_HdRstPrsnt` 於 LID、兩份基線 DBC、`spec_variables.tsv` **三處皆 0 命中**",
+        "split_reason": "BLOCKED-BY-DR-22: trigger signal has no bus mapping"
+      },
+      {
+        "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-029",
+        "reqid": "CFTS044-4858991",
+        "blocked_by": "DR-21",
+        "missing": "`$PowerMode$ = [Ignition start / IGN_START]`；DBC `CmdIgnSts` 之值域為 `0 Initialization／1 IGN_LK／3 ACC／4 RUN／5 START／7 SNA`，**無 `IGN_START`**，且 CFTS044 未載其原始碼值",
+        "split_reason": "BLOCKED-BY-DR-21: trigger value has no bus counterpart"
+      },
+      {
+        "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-031",
+        "reqid": "CFTS044-4858994",
+        "blocked_by": "DR-21",
+        "missing": "`$PowerMode$ = [Ign. off & acc. (4 position switch) / IGN_OFF_ACC]`；DBC 無 `IGN_OFF_ACC`。**37 包送件文第 8 項已就 `4858978`（Second Row）提出同一問題，惟該項未送出且無 DR 編號**",
+        "split_reason": "BLOCKED-BY-DR-21: trigger value has no bus counterpart"
+      },
+      {
+        "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-039",
+        "reqid": "CFTS044-4859032",
+        "blocked_by": "DR-23",
+        "missing": "條文逐字 `the HU shall follow the HMI Logic & Flow to update the state of the Rear View Camera soft button` —— **未具名任何文件或章節**（與 A-VS59／`4858560` 同型）",
+        "split_reason": "BLOCKED-BY-DR-23: unnamed cross-reference, no observable outcome"
+      }
+    ]
+  }
+}
