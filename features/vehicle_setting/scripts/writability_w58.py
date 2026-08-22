@@ -48,9 +48,17 @@ def is_ident(tok: str) -> bool:
     return bool(IDENT.match(tok)) and tok not in STOP
 
 
+# R-VS39 補充（49 包 §1）：數詞與阿拉伯數字互為同一值之寫法
+NUMWORD = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5"}
+
+
 def norm(v: str) -> str:
-    """R-VS39 之正規化鍵（不含 typo 前綴修正 —— 此處只比對存在性）。"""
-    return re.sub(r"\s+", " ", v).strip().casefold()
+    """R-VS39 之正規化鍵：空白正規化 ＋ casefold ＋ **數詞→數字**。
+
+    不含 typo 前綴修正 —— 此處只比對存在性。
+    """
+    k = re.sub(r"\s+", " ", v).strip().casefold()
+    return re.sub(r"\b(one|two|three|four|five)\b", lambda m: NUMWORD[m.group(1)], k)
 
 
 def clause_tokens(text: str) -> dict[str, set[str]]:
@@ -80,6 +88,11 @@ def bus_domain() -> dict[str, set[str]]:
             for m in re.finditer(r"(\d+)\s*=\s*([^0-9][^=]*?)(?=\s+\d+\s*=|$)",
                                  r.get("lid_format") or ""):
                 vals.add(norm(m.group(2)))
+            # R-VS49：PROXI_HDCC27_R3 之四參數值域（`N = label` 以 `|` 分隔）
+            for cell in (r.get("proxi_values") or "").split("|"):
+                m = re.match(r"\s*(\d+)\s*=\s*(.+)$", cell)
+                if m:
+                    vals.add(norm(m.group(2)))
             dom[bare] = vals
     return dom
 

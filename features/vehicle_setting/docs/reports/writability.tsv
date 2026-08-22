@@ -1,8 +1,8 @@
 leaf_id	reqid_list	layer3	writable	derivable	quoted_form_risk	blocker_class	blocker_detail	dr_id	blocked_layer	blocked_ref	evidence_note	dr_dependent
 SWE1-VC-Stop-StartSystem-002	4858549	Stop-StartSystem	W0									
 SWE1-VC-Stop-StartSystem-003	4858550	Stop-StartSystem	W0									
-SWE1-VC-Stop-StartSystem-004	4858551	Stop-StartSystem	W1			B2	[4858551] `EngRun_Stat` 之值無匯流排對應：IDLE_STBL//UNLIMITED//LIMITED//RUN ‖ [4858551] `ESS_ENG_ST` 之值無匯流排對應：ENS_DSBL	DR-21				DR-19|DR-21
-SWE1-VC-Stop-StartSystem-005	4858553	Stop-StartSystem	W2			B2	[4858553] `EngRun_Stat` 之值無匯流排對應：IDLE_STBL//UNLIMITED//LIMITED//RUN ‖ [4858553] `ESS_ENG_ST` 之值無匯流排對應：ENS_DSBL	DR-21				
+SWE1-VC-Stop-StartSystem-004	4858551	Stop-StartSystem	W1			B2	[4858551] `EngRun_Stat` 之值無匯流排對應：IDLE_STBL//UNLIMITED//LIMITED//RUN ‖ [4858551] `ESS_ENG_ST` 之值無匯流排對應：ENS_DSBL	DR-21				DR-19
+SWE1-VC-Stop-StartSystem-005	4858553	Stop-StartSystem	W1			B2	[4858553] `EngRun_Stat` 之值無匯流排對應：IDLE_STBL//UNLIMITED//LIMITED//RUN ‖ [4858553] `ESS_ENG_ST` 之值無匯流排對應：ENS_DSBL	DR-21				DR-19
 SWE1-VC-Stop-StartSystem-006	4858555	Stop-StartSystem	W2			B2	[4858555] `EngRun_Stat` 之值無匯流排對應：IDLE_STBL//UNLIMITED//LIMITED//RUN	DR-21				
 SWE1-VC-Stop-StartSystem-007	4858557	Stop-StartSystem	W0									
 SWE1-VC-SwitchLHD/RHDConfiguration-009	4858559	SwitchLHD/RHDConfiguration	W0	yes								
@@ -42,8 +42,8 @@ SWE1-VC-ScreenOFF-049	4859106	ScreenOFF	W0
 SWE1-VC-ScreenOFF-050	4859107	ScreenOFF	W0									
 SWE1-VC-ScreenOFF-051	4859108	ScreenOFF	W0									
 SWE1-VC-ScreenOFF-052	4859110	ScreenOFF	W0									
-SWE1-VC-StopStartSystemBehavior-054	4859504	StopStartSystemBehavior	W1									DR-21
-SWE1-VC-StopStartSystemBehavior-055	4859505	StopStartSystemBehavior	W1									DR-21
+SWE1-VC-StopStartSystemBehavior-054	4859504	StopStartSystemBehavior	W0									
+SWE1-VC-StopStartSystemBehavior-055	4859505	StopStartSystemBehavior	W0									
 SWE1-VC-StopStartSystemBehavior-056	4859506	StopStartSystemBehavior	W0									
 SWE1-VC-LeftFrontHeatedSeat-003	4858302	LeftFrontHeatedSeat	W0									
 SWE1-VC-LeftFrontHeatedSeat-004	4858304;4858334;4858364;4858395	CrossZone Common	W2			B2	[4858304] `Heated_Seat_Levels` 之值無匯流排對應：1；2；3 ‖ [4858334] `Heated_Seat_Levels` 之值無匯流排對應：1；2；3 ‖ [4858364] `Heated_Seat_Levels` 之值無匯流排對應：1；2；3 ‖ [4858395] `Heated_Seat_Levels` 之值無匯流排對應：1；2；3	DR-21			VF664-inferred	
@@ -77,8 +77,8 @@ SWE1-VC-RightFrontHeatedSeat-033	4858356	RightFrontHeatedSeat	W2			B2	[4858356] 
 SWE1-VC-RightFrontHeatedSeat-034	4858357	RightFrontHeatedSeat	W2			B2	[4858357] `HeatedSeatFR` 之值無匯流排對應：Heated Seat High / HS_HI	DR-21				
 SWE1-VC-RightFrontHeatedSeat-035	4858358	RightFrontHeatedSeat	W2			B2	[4858358] `HeatedSeatFR` 之值無匯流排對應：Heated Seat Medium / HS_MED	DR-21				
 SWE1-VC-RightFrontHeatedSeat-036	4858359	RightFrontHeatedSeat	W2			B2	[4858359] `HeatedSeatFR` 之值無匯流排對應：Heated Seat Low / HS_LO	DR-21				
-SWE1-VC-OneStageHeatedSeat-039	4859360	OneStageHeatedSeat	W2		yes	B2	[引號形態] `Heated_Seats` 之值無匯流排對應：Front Seats	DR-21			VF664-inferred	
-SWE1-VC-OneStageHeatedSeat-040	4859361	OneStageHeatedSeat	W2		yes	B2	[引號形態] `Heated_Seat_Levels` 之值無匯流排對應：One Level	DR-21			VF664-inferred	
+SWE1-VC-OneStageHeatedSeat-039	4859360	OneStageHeatedSeat	W0		yes	B2	[引號形態] `Heated_Seats` 之值無匯流排對應：Front Seats	DR-21			VF664-inferred	
+SWE1-VC-OneStageHeatedSeat-040	4859361	OneStageHeatedSeat	W0		yes	B2	[引號形態] `Heated_Seat_Levels` 之值無匯流排對應：One Level	DR-21			VF664-inferred	
 SWE1-VC-OneStageHeatedSeat-041	4859362	OneStageHeatedSeat	W0									
 SWE1-VC-OneStageHeatedSeat-042	4859363	OneStageHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid	DR-21				
 SWE1-VC-OneStageHeatedSeat-043	4859364	OneStageHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid	DR-21				
@@ -91,7 +91,7 @@ SWE1-VC-OneStageHeatedSeat-049	4859370	OneStageHeatedSeat	W0		yes	B2	[引號形�
 SWE1-VC-OneStageHeatedSeat-050	4859371	OneStageHeatedSeat	W0		yes	B2	[引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
 SWE1-VC-OneStageHeatedSeat-051	4859372	OneStageHeatedSeat	W0									
 SWE1-VC-OneStageHeatedSeat-052	4859373	OneStageHeatedSeat	W0									
-SWE1-VC-TwoStagesHeatedSeat-055	4859376	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `Heated_Seats` 之值無匯流排對應：Front Seats	DR-21			VF664-inferred	
+SWE1-VC-TwoStagesHeatedSeat-055	4859376	TwoStagesHeatedSeat	W0		yes	B2	[引號形態] `Heated_Seats` 之值無匯流排對應：Front Seats	DR-21			VF664-inferred	
 SWE1-VC-TwoStagesHeatedSeat-056	4859377;4859378	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `Heated_Steats_Levels` 之值無匯流排對應：Three Levels；Two Levels	DR-21				
 SWE1-VC-TwoStagesHeatedSeat-057	4859379	TwoStagesHeatedSeat	W0									
 SWE1-VC-TwoStagesHeatedSeat-058	4859380	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
@@ -111,7 +111,7 @@ SWE1-VC-TwoStagesHeatedSeat-071	4859393	TwoStagesHeatedSeat	W2		yes	B2	[引號�
 SWE1-VC-TwoStagesHeatedSeat-072	4859394	TwoStagesHeatedSeat	W2		yes	B2	[引號形態] `FR_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFR` 之值無匯流排對應：Heated_seat_mid	DR-21				
 SWE1-VC-TwoStagesHeatedSeat-073	4859395	TwoStagesHeatedSeat	W0									
 SWE1-VC-TwoStagesHeatedSeat-074	4859396	TwoStagesHeatedSeat	W0									
-SWE1-VC-ThreeStagesHeatedSeat-078	4859400	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `Heated_Seats` 之值無匯流排對應：Front Seats	DR-21			VF664-inferred	
+SWE1-VC-ThreeStagesHeatedSeat-078	4859400	ThreeStagesHeatedSeat	W0		yes	B2	[引號形態] `Heated_Seats` 之值無匯流排對應：Front Seats	DR-21			VF664-inferred	
 SWE1-VC-ThreeStagesHeatedSeat-079	4859401	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `Heated_Steats_Levels` 之值無匯流排對應：Three Levels；Two Levels	DR-21				
 SWE1-VC-ThreeStagesHeatedSeat-080	4859402	ThreeStagesHeatedSeat	W0									
 SWE1-VC-ThreeStagesHeatedSeat-081	4859403	ThreeStagesHeatedSeat	W2		yes	B2	[引號形態] `FL_HS_Cmd_Tlm` 之值無匯流排對應：Heated_seat_high；Heated_seat_low；Heated_seat_mid ‖ [引號形態] `HeatedSeatFL` 之值無匯流排對應：Heated_seat_mid	DR-21				
@@ -153,7 +153,7 @@ SWE1-VC-HeatedSteeringWheel-019	4858542	HeatedSteeringWheel	W2			B2	[4858542] `H
 SWE1-VC-HeatedSteeringWheel-020	4858543	HeatedSteeringWheel	W2			B2	[4858543] `HSW_Stat_2` 之值無匯流排對應：Heated steering wheel low / HSW_LO	DR-21				
 SWE1-VC-HeatedSteeringWheel-021	4858544	HeatedSteeringWheel	W0									
 SWE1-VC-HeatedSteeringWheel-022	4858545	HeatedSteeringWheel	W0									
-SWE1-VC-HeatedSteeringWheelManagement-025	4858296;4859492	HeatedSteeringWheelManagement	W2		yes	B2	[引號形態] `Heated_Steering_Wheel` 之值無匯流排對應：Present	DR-21			VF664-inferred	
+SWE1-VC-HeatedSteeringWheelManagement-025	4858296;4859492	HeatedSteeringWheelManagement	W0		yes	B2	[引號形態] `Heated_Steering_Wheel` 之值無匯流排對應：Present	DR-21			VF664-inferred	
 SWE1-VC-HeatedSteeringWheelManagement-026	4858298;4859493	HeatedSteeringWheelManagement	W0									
 SWE1-VC-HeatedSteeringWheelManagement-027	4858299;4859494	HeatedSteeringWheelManagement	W0									
 SWE1-VC-HeatedSteeringWheelManagement-028	4859495	HeatedSteeringWheelManagement	W0									
@@ -165,7 +165,7 @@ SWE1-VC-HeatedSteeringWheelManagement-033	4859500	HeatedSteeringWheelManagement	
 SWE1-VC-HeatedSteeringWheelManagement-034	4859501	HeatedSteeringWheelManagement	W2		yes	B2	[引號形態] `HSW_Cmd_Tlm` 之值無匯流排對應：ON；OFF	DR-21				
 SWE1-VC-HeatedSteeringWheelManagement-035	4859502	HeatedSteeringWheelManagement	W0									
 SWE1-VC-LeftFrontVentedSeat-003	4858362	LeftFrontVentedSeat	W0									
-SWE1-VC-LeftFrontVentedSeat-004	4858367	LeftFrontVentedSeat	W2			B2	[4858367] `VentedSeatFL` 之值無匯流排對應：Vented Seat High / VS_HI；Vented Seat Low / VS_LO；Vented Seat Off / VS_OFF	DR-21				
+SWE1-VC-LeftFrontVentedSeat-004	4858367	LeftFrontVentedSeat	W0			B2	[4858367] `VentedSeatFL` 之值無匯流排對應：Vented Seat High / VS_HI；Vented Seat Low / VS_LO；Vented Seat Off / VS_OFF	DR-21				
 SWE1-VC-LeftFrontVentedSeat-005	4858368	LeftFrontVentedSeat	W2			B2	[4858368] `VentedSeatFL` 之值無匯流排對應：Vented Seat High / VS_HI；Vented Seat Low / VS_LO；Vented Seat Medium / VS_MED	DR-21				
 SWE1-VC-LeftFrontVentedSeat-006	4858369	LeftFrontVentedSeat	W0									
 SWE1-VC-LeftFrontVentedSeat-007	4858370	LeftFrontVentedSeat	W0									
@@ -175,12 +175,12 @@ SWE1-VC-LeftFrontVentedSeat-010	4858378	LeftFrontVentedSeat	W0
 SWE1-VC-LeftFrontVentedSeat-011	4858379	LeftFrontVentedSeat	W2			B2	[4858379] `FL_VS_RQ_TGW` 之值無匯流排對應：Vented Seat Pressed / VS_PSD	DR-21				
 SWE1-VC-LeftFrontVentedSeat-012	4858380	LeftFrontVentedSeat	W0									
 SWE1-VC-LeftFrontVentedSeat-013	4858385	LeftFrontVentedSeat	W2			B2	[4858385] `FL_VS_RQ_TGW` 之值無匯流排對應：High；Low；Medium	DR-21				
-SWE1-VC-LeftFrontVentedSeat-014	4858386	LeftFrontVentedSeat	W2			B2	[4858386] `VentedSeatFL` 之值無匯流排對應：Vented Seat Off / VS_OFF	DR-21				
-SWE1-VC-LeftFrontVentedSeat-015	4858387	LeftFrontVentedSeat	W2			B2	[4858387] `VentedSeatFL` 之值無匯流排對應：Vented Seat High / VS_HI	DR-21				
+SWE1-VC-LeftFrontVentedSeat-014	4858386	LeftFrontVentedSeat	W0			B2	[4858386] `VentedSeatFL` 之值無匯流排對應：Vented Seat Off / VS_OFF	DR-21				
+SWE1-VC-LeftFrontVentedSeat-015	4858387	LeftFrontVentedSeat	W0			B2	[4858387] `VentedSeatFL` 之值無匯流排對應：Vented Seat High / VS_HI	DR-21				
 SWE1-VC-LeftFrontVentedSeat-016	4858388	LeftFrontVentedSeat	W2			B2	[4858388] `VentedSeatFL` 之值無匯流排對應：Vented seat medium / VS_MED	DR-21				
-SWE1-VC-LeftFrontVentedSeat-017	4858389	LeftFrontVentedSeat	W2			B2	[4858389] `VentedSeatFL` 之值無匯流排對應：Vented Seat Low / VS_LO	DR-21				
+SWE1-VC-LeftFrontVentedSeat-017	4858389	LeftFrontVentedSeat	W0			B2	[4858389] `VentedSeatFL` 之值無匯流排對應：Vented Seat Low / VS_LO	DR-21				
 SWE1-VC-RightFrontVentedSeat-020	4858392	RightFrontVentedSeat	W0									
-SWE1-VC-RightFrontVentedSeat-021	4858398	RightFrontVentedSeat	W2			B2	[4858398] `VentedSeatFR` 之值無匯流排對應：Vented Seat High / VS_HI；Vented Seat Low / VS_Lo；Vented Seat Off / VS_OFF	DR-21				
+SWE1-VC-RightFrontVentedSeat-021	4858398	RightFrontVentedSeat	W0			B2	[4858398] `VentedSeatFR` 之值無匯流排對應：Vented Seat High / VS_HI；Vented Seat Low / VS_Lo；Vented Seat Off / VS_OFF	DR-21				
 SWE1-VC-RightFrontVentedSeat-022	4858399	RightFrontVentedSeat	W2			B2	[4858399] `VentedSeatFR` 之值無匯流排對應：Vented Seat High / VS_HI；Vented Seat Low / VS_Lo；Vented Seat Medium / VS_MED	DR-21				
 SWE1-VC-RightFrontVentedSeat-023	4858400	RightFrontVentedSeat	W0									
 SWE1-VC-RightFrontVentedSeat-024	4858401	RightFrontVentedSeat	W0									
@@ -190,11 +190,11 @@ SWE1-VC-RightFrontVentedSeat-027	4858409	RightFrontVentedSeat	W0
 SWE1-VC-RightFrontVentedSeat-028	4858410	RightFrontVentedSeat	W2			B2	[4858410] `FR_VS_RQ_TGW` 之值無匯流排對應：Vented Seat Pressed / VS_PSD	DR-21				
 SWE1-VC-RightFrontVentedSeat-029	4858411	RightFrontVentedSeat	W0									
 SWE1-VC-RightFrontVentedSeat-030	4858416	RightFrontVentedSeat	W2			B2	[4858416] `FR_VS_RQ_TGW` 之值無匯流排對應：High；Low；Medium	DR-21				
-SWE1-VC-RightFrontVentedSeat-031	4858417	RightFrontVentedSeat	W2			B2	[4858417] `VentedSeatFR` 之值無匯流排對應：Vented Seat Off / VS_OFF	DR-21				
-SWE1-VC-RightFrontVentedSeat-032	4858418	RightFrontVentedSeat	W2			B2	[4858418] `VentedSeatFR` 之值無匯流排對應：Vented Seat High / VS_HI	DR-21				
+SWE1-VC-RightFrontVentedSeat-031	4858417	RightFrontVentedSeat	W0			B2	[4858417] `VentedSeatFR` 之值無匯流排對應：Vented Seat Off / VS_OFF	DR-21				
+SWE1-VC-RightFrontVentedSeat-032	4858418	RightFrontVentedSeat	W0			B2	[4858418] `VentedSeatFR` 之值無匯流排對應：Vented Seat High / VS_HI	DR-21				
 SWE1-VC-RightFrontVentedSeat-033	4858419	RightFrontVentedSeat	W2			B2	[4858419] `VentedSeatFR` 之值無匯流排對應：Vented seat medium / VS_MED	DR-21				
-SWE1-VC-RightFrontVentedSeat-034	4858420	RightFrontVentedSeat	W2			B2	[4858420] `VentedSeatFR` 之值無匯流排對應：Vented Seat Low / VS_LO	DR-21				
-SWE1-VC-TwoStagesVentedSeatsManagement-037	4859438	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `Cooled_Seats` 之值無匯流排對應：Front Seats	DR-21			VF664-inferred	
+SWE1-VC-RightFrontVentedSeat-034	4858420	RightFrontVentedSeat	W0			B2	[4858420] `VentedSeatFR` 之值無匯流排對應：Vented Seat Low / VS_LO	DR-21				
+SWE1-VC-TwoStagesVentedSeatsManagement-037	4859438	TwoStagesVentedSeatsManagement	W0		yes	B2	[引號形態] `Cooled_Seats` 之值無匯流排對應：Front Seats	DR-21			VF664-inferred	
 SWE1-VC-TwoStagesVentedSeatsManagement-038	4859439;4859440	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `Heated_Steats_Levels` 之值無匯流排對應：Three Levels；Two Levels	DR-21				
 SWE1-VC-TwoStagesVentedSeatsManagement-039	4859441	TwoStagesVentedSeatsManagement	W0									
 SWE1-VC-TwoStagesVentedSeatsManagement-040	4859442	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
@@ -214,7 +214,7 @@ SWE1-VC-TwoStagesVentedSeatsManagement-053	4859455	TwoStagesVentedSeatsManagemen
 SWE1-VC-TwoStagesVentedSeatsManagement-054	4859456	TwoStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFR` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FR_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				
 SWE1-VC-TwoStagesVentedSeatsManagement-055	4859457;4859458	TwoStagesVentedSeatsManagement	W0									
 SWE1-VC-TwoStagesVentedSeatsManagement-056	4859459;4859460	TwoStagesVentedSeatsManagement	W0									
-SWE1-VC-ThreeStagesVentedSeatsManagement-060	4859464	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `Cooled_Seats` 之值無匯流排對應：Front Seats	DR-21			VF664-inferred	
+SWE1-VC-ThreeStagesVentedSeatsManagement-060	4859464	ThreeStagesVentedSeatsManagement	W0		yes	B2	[引號形態] `Cooled_Seats` 之值無匯流排對應：Front Seats	DR-21			VF664-inferred	
 SWE1-VC-ThreeStagesVentedSeatsManagement-061	4859465	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `Heated_Steats_Levels` 之值無匯流排對應：Three Levels；Two Levels	DR-21				
 SWE1-VC-ThreeStagesVentedSeatsManagement-062	4859466	ThreeStagesVentedSeatsManagement	W0									
 SWE1-VC-ThreeStagesVentedSeatsManagement-063	4859467	ThreeStagesVentedSeatsManagement	W2		yes	B2	[引號形態] `VentedSeatFL` 之值無匯流排對應：Vented_seat_mid ‖ [引號形態] `FL_VS_Cmd_Tlm` 之值無匯流排對應：Vented_seat_mid；Vented_seat_off；Vented_seat_high	DR-21				

@@ -24,8 +24,9 @@ OPEN_DR: dict[str, tuple[str, set[str], str, str]] = {
     "DR-17": ("clause", set(), r"(?!x)x", "待覆"),          # 委派界線，非值域
     "DR-19": ("value", {"EngRun_Stat"}, r"IDLE_STBL|UNLIMITED|LIMITED|\bRUN\b", "待覆（併入 DR-21）"),
     "DR-21": ("value", {"PowerMode", "EngRun_Stat"}, r"IGN_START|IGN_OFF_ACC", "待送"),
-    "DR-22′": ("token", {"VC_HdRstPrsnt", "Cooled_Seats", "Heated_Seats",
-                         "Heated_Seat_Levels", "Heated_Steering_Wheel"}, r".", "待送"),
+    # DR-22′ **已撤回**（R-VS49）—— 四個 PROXI 參數之值域已有來源，其閘同步移除。
+    # `VC_HdRstPrsnt` 之缺仍在，改由 DR-22（B3 類）承載。
+    "DR-22": ("token", {"VC_HdRstPrsnt"}, r".", "待送"),
     "DR-18": ("value", {"VentedSeatFL", "VentedSeatFR"}, r"HS_HI|HS_OFF", "待送"),
     "DR-8": ("token", {"VC_VEH_LINE"}, r".", "待送"),
     "DR-24′": ("value", {"FL_HS_RQ", "FR_HS_RQ", "FL_VS_RQ_TGW", "FR_VS_RQ_TGW",

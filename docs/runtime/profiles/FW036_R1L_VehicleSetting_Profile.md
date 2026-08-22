@@ -74,6 +74,21 @@ signal 之**拼寫**取 DBC（R-VS9(1)′）；
 **來源**：38 包 §1 之 D-3 裁定（分析層，記入 profile，不另編號）。
 實例：`SWE1-VC-Stop-StartSystem-006` 於 19 輪自 batch01 移出。
 
+## [ADD] 無效值注入之優先序
+
+  (1) DBC 中**未定義之編碼** → 寫作 `= <raw>`，**不加 `(<label>)`**
+  (2) 無未定義編碼時，取**配置相依之無效值**（他條文之有效值列舉所排除者），
+      寫作 `= <raw> (<label>)` 並於 `reasoning` 記其依據條文
+  (3) 二者皆無 → `PENDING: DR-{n}`
+
+**來源**：44 包 §4（分析層裁定，記入 profile）。
+實例：`HeatedSteeringWheel-006` 取 (1)（`Tri_Level_HSW_StatSts` 之 4 未定義）；
+`LeftFrontHeatedSeat-008`／`RightFrontHeatedSeat-026`／`LeftFrontVentedSeat-006`
+取 (2)（`4858307`／`4858363` 之二階有效值列舉排除 `medium`）。
+
+**`SNA` 不得作為 invalid state 之注入值** —— 其為 DBC 已定義之編碼，
+語意為「訊號不可用」，非「無效狀態」。
+
 ## [ADD] `input_test_data` 一律 `NA`
 
 資料內聯至 `pre_conditions` 或 `test_procedure`，使步驟自足。

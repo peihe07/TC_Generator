@@ -66,5 +66,12 @@
         "split_reason": "BLOCKED-BY-DR-23: unnamed cross-reference, no observable outcome"
       }
     ]
+  },
+  "batch07_released": {
+    "note": "25 輪移出之二條，經 47 包 §1 裁 `ENS_DSBL` 成立後移回可生成池（28 輪 D-4），已入 batch10",
+    "leaf_ids": [
+      "SWE1-VC-StopStartSystemBehavior-054",
+      "SWE1-VC-StopStartSystemBehavior-055"
+    ]
   }
 }

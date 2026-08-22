@@ -1,0 +1,1 @@
+{"batch":"batch12","feature":"vehicle_setting","generated_round":29,"selection":"batch11 交付後池為 0 —— 無 leaf 可選","tcs":[],"reasoning":"batch11 交付 1 條後，W0 ∪ W1 ∧ delegate 可用 ∧ 未用 ∧ 過閘之池為 0，故 batch12 無 TC。詳見上繳 27 §1.4。"}
