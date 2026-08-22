@@ -28,6 +28,29 @@ modified by TC_Generator analysis round 06 under G-TM1 更正 / R-TM33
   SPEC_GAP           A-TM13；物件 id 經 `01R` 全檔搜尋確認零命中
   BOUNDARY_SIGNALS   R-TM23 + R-TM25；訊號名與物件 id 經 `04` T3 複驗
                      （九 token 全命中、六物件章節歸屬全符）
+
+## §8.2.1 界線之鄰接對編號與自動判準（R-TM53；與 RULINGS.md 逐字相同）
+
+判定方式非讀表，而是逐對造違規 TC 送 `lint_boundary` 實跑 ——
+「該片在 BOUNDARY_SIGNALS 內」不等於「該對之違規抓得到」。
+
+  #    鄰接對        自動判準    a 側提 b 之訊號        b 側提 a 之訊號
+  B-1  004 ↔ 010     無          無訊號可測             無訊號可測
+  B-2  014 ↔ 022     無          無訊號可測             抓不到（可測而未測）
+  B-3  018 ↔ 011     無          抓不到（可測而未測）   無訊號可測
+  B-4  014 ↔ 008     雙向有      抓到                   抓到
+  B-5  014 ↔ 017     無          無訊號可測             抓不到（可測而未測）
+  B-6  011 ↔ 008     雙向有      抓到                   抓到
+
+**六對中僅二對（B-4、B-6）有自動判準。** lint_boundary 僅對
+BOUNDARY_SIGNALS 之三片（011 / 008 / 014）生效，故一對之兩側若只有一側
+在表內，另一側之違規完全不檢查。
+
+三處「可測而未測」（022 提 $GPSDateTm、018 提 $DateTmFormat$、
+017 提 $GPSDateTm）**有訊號名可比對而射程未及**，與 B-1 之「本無訊號
+可比」性質不同。是否補入 BOUNDARY_SIGNALS 屬條文範圍，待裁。
+
+無自動判準之四對，其驗證責任明歸 B1 pilot，須於檢查表逐對列出。
   BATCHES            framework Part VII Batch plan，`03` §3
 """
 from __future__ import annotations
@@ -130,3 +153,46 @@ TEST_ITEM_TOKEN_MAX = 50
 # ── R-TM8 / R-TM40 ───────────────────────────────────────────
 TEST_GROUP = "Time and Date"
 SPEC_REF_PREFIX = "CFTS015"
+
+# ── 模組載入斷言（06Z T3）──────────────────────────────────
+# 本模組只含裁決值、不含邏輯，故其常數被清空即代表**裁決值遺失** ——
+# 那是任何下游都無法補救之失效（06Z §4）。守衛加在錯誤發生的那一層，
+# 加在下游只是把同一個問題往後推。
+#
+# 此為「必然 raise」而非「可能檢出」（R-TM39 之同一精神，R-TM52 §2 末段）。
+
+def _assert_intact() -> None:
+    fails: list[str] = []
+    if len(TEST_SETS) != 7:
+        fails.append(f"TEST_SETS 為 {len(TEST_SETS)} 值，期望 7"
+                     "（framework Part VII Layer 2，R-TM17 簽核）")
+    if set(TEST_SET_OF) != {f"{n:03d}" for n in range(1, 23)}:
+        fails.append(f"TEST_SET_OF 之 key 非 001…022（現有 "
+                     f"{len(TEST_SET_OF)} 片）")
+    if set(TEST_SET_OF.values()) != TEST_SETS:
+        fails.append("TEST_SET_OF 之值域與 TEST_SETS 不一致")
+    # 檢查 **key 集合**而非長度 —— 長度對「內容被替換但數量相同」不敏感
+    # （R-TM31 之計數盲點；本守衛之首次紅向即因只驗長度而未攔下改名之 key）
+    want_bs = {"SWE-RA-TIME&DATE-011", "SWE-RA-TIME&DATE-008",
+               "SWE-RA-TIME&DATE-014"}
+    if set(BOUNDARY_SIGNALS) != want_bs:
+        fails.append(f"BOUNDARY_SIGNALS 之 key 為 {sorted(BOUNDARY_SIGNALS)}，"
+                     f"期望 {sorted(want_bs)}（見 R-TM53 之對照表）")
+    for leaf, v in BOUNDARY_SIGNALS.items():
+        if not v.get("owns") or not v.get("not_ours"):
+            fails.append(f"BOUNDARY_SIGNALS[{leaf}] 之 owns／not_ours 有空者")
+    if set(SPEC_GAP) != {"005", "002"}:
+        fails.append(f"SPEC_GAP 之 key 為 {sorted(SPEC_GAP)}，"
+                     "期望 ['002', '005']（A-TM13 之兩片）")
+    for n, g in SPEC_GAP.items():
+        if not g.get("object"):
+            fails.append(f"SPEC_GAP[{n}] 缺 object")
+    if sum(len(v) for v in BATCHES.values()) != 22:
+        fails.append("BATCHES 之 leaf 總數不為 22")
+    if fails:
+        raise AssertionError(
+            "tm_rulings 之裁決值遺失或不完整 —— 下游無法補救，故於載入時中止：\n  "
+            + "\n  ".join(fails))
+
+
+_assert_intact()

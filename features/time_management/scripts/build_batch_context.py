@@ -174,6 +174,25 @@ def load_spec_objects(feature_dir: Path, cfg: dict) -> dict[str, dict]:
 
 # ── 六類編碼 ─────────────────────────────────────────────────
 
+def assert_rendered(r: str) -> None:
+    """C-3 執行期守衛（06Z T3）—— `rendered` 之格式在**產出當下**即驗。
+
+    抽為獨立函式使其可被 self-test 直接以壞值呼叫 —— 守衛若只存在於
+    產生函式內部，紅向無從注入壞值（本包首次構造即因此失敗：
+    在產生函式回傳**之後**改值，守衛已跑過）。
+
+    canon §10.7 排列段：文件前綴僅敘明一次、禁用 `;`、同文件內 ID 升冪。
+    """
+    if r.count(SPEC_REF_PREFIX) != 1 or ";" in r:
+        raise ContextError(
+            f"C-3 守衛：rendered {r!r} 之前綴非恰一次或含 `;` —— "
+            "canon §10.7 排列段：文件前綴僅敘明一次、禁用 `;`")
+    got = re.findall(r"\d{7}", r)
+    if got != sorted(got):
+        raise ContextError(
+            f"C-3 守衛：rendered {r!r} 之物件 id 未升冪 —— canon §10.7 排列段")
+
+
 def build_spec_reference(num, refs, sys2, objs) -> dict:
     """C-3 ＋ C-2 —— 候選清單（v2 格式）與缺口佔位。"""
     ids = sorted({i for n in refs.get(num, []) for i in sys2.get(n, [])})
@@ -197,6 +216,8 @@ def build_spec_reference(num, refs, sys2, objs) -> dict:
                 "（§8.4.1），亦**不得留空**（canon §8.4.3）——"
                 f"於 Remarks 寫 `{spec_gap_placeholder(missing)}`。"),
         }
+    if entry.get("rendered") is not None:
+        assert_rendered(entry["rendered"])          # C-3 執行期守衛
     entry["scope_note"] = (
         "本清單為該 leaf 之**聯集上限**，非每條 TC 之預設值 ——"
         " canon §10.7：只列該 TC 直接驗證或作為 setup 依賴之物件，"
@@ -243,6 +264,8 @@ def build(feature_dir: Path, batch: str) -> dict:
     if batch not in BATCHES:
         raise ContextError(f"未知批次 {batch!r}；已知：{sorted(BATCHES)}")
     text = load_leaf_text(feature_dir)
+    leaf_src = (feature_dir / "data" / "leaf_descriptions.txt").read_text(
+        encoding="utf-8")                      # C-4 守衛之比對基準
     sys2 = load_sys2_items(feature_dir, cfg)
     refs = load_leaf_refs(feature_dir, cfg)
     objs = load_spec_objects(feature_dir, cfg)
@@ -284,6 +307,15 @@ def build(feature_dir: Path, batch: str) -> dict:
             }
         if leaf in BOUNDARY_NOTES:                          # C-1（敘述型）
             e.setdefault("boundary", {})["note"] = BOUNDARY_NOTES[leaf]
+        # C-4 執行期守衛（06Z T3）—— upper_verbatim 須逐字出現於來源檔。
+        # R-TM24 之來源隔離若只靠「產生器讀對檔案」，仍可能於後續處理
+        # 被改寫；此處在產出當下比對來源，使該隔離成為必然而非約定。
+        v = e["test_item"]["upper_verbatim"]
+        if not v or v not in leaf_src:
+            raise ContextError(
+                f"C-4 守衛：{leaf} 之 upper_verbatim 未逐字出現於 "
+                "data/leaf_descriptions.txt —— test_item 上半之唯一許可來源"
+                "為該檔（R-TM24），不得取自任何下放包或上繳包之敘述")
         items.append(e)
 
     return {
