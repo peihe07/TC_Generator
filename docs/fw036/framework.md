@@ -1436,6 +1436,15 @@ done region 之 feature 更重要。
 Remarks 缺口標示與 reasoning 寫法可一次比對，避免兩批各寫一套。
 SXM B11 先例（`(add)` leaves 集中一批一起讀）。
 
+### Pilot 之結構性限制
+
+本 feature 無 done region，pilot 為唯一人工閘（canon §1.1 第三層不存在）。
+B1 之 19 條中，7 條由分析層覆核，**12 條由產出者自檢** ——
+自檢不等於獨立覆核。B2–B4 沿用同一形態。
+
+此限制於交付時須為讀者可見。
+
+
 ### Workbook sync
 
 BLANK workbook、FILL 適用：Test Group `Time and Date` 與 Part VII 之

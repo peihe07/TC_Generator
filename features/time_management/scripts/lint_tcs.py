@@ -81,6 +81,9 @@ ATL_HI_BARE_PLACEHOLDER = "PENDING: DR-11 Atl-H 對應需求"
 # A-TM26 之強制記錄字樣 —— 與 tm_rulings 之 tsv `ArchColumn` 欄同字面
 ARCH_COL_MARK = "Atlantis High (col 26-30)"
 
+# R-TM68 —— 佔位行之 DR 號擷取（供數值升冪比較）
+PENDING_DR_RE = re.compile(r"PENDING:\s*DR-(\d+)")
+
 class LintError(RuntimeError):
     """呼叫或權威讀取之失敗 —— 與「發現」區分，走 exit 2。"""
 
@@ -441,6 +444,64 @@ def lint_arch_column(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
     return out
 
 
+def lint_remarks_order(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
+    """R-TM68 —— Remarks 之佔位行須依 DR 號**數值**升冪，一佔位一行。
+
+    **數值比較，非字串比較**：`DR-11` 之字串序在 `DR-5` 之前（`1` < `5`），
+    以字串排序會把一個已正確升冪之 Remarks 判為錯 —— 而該誤判之方向是
+    「對的被判錯」，比放行更難察覺其成因。
+    """
+    raw = str(tc.get("remarks") or "")
+    if not raw.strip():
+        return []
+    out = []
+    nums, lines = [], []
+    for ln in raw.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        found = PENDING_DR_RE.findall(s)
+        if not found:
+            continue
+        if len(found) > 1:
+            out.append(("remarks-order",
+                        f"{where}: Remarks 單行含 {len(found)} 個佔位 "
+                        f"—— R-TM68 第 1 項：一佔位一行，不合併"))
+        nums.append(int(found[0]))
+        lines.append(s[:40])
+    if nums != sorted(nums):
+        out.append(("remarks-order",
+                    f"{where}: Remarks 之佔位非依 DR 號升冪 —— 現為 "
+                    f"{nums}，應為 {sorted(nums)}（R-TM68 第 2 項）"))
+    return out
+
+
+def lint_data_placement(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
+    """canon §4.5 / R-TM66 —— 同一資料不得在 input_test_data 與 Procedure 重複。
+
+    **判準為「逐字相同之行」，不涉任何特定字串** —— R-TM66 所記之同型風險
+    （日後新增之 DR 號字串不同即漏掃）於此消除：本閘不認得 DR 號，
+    只比對兩欄之行。
+
+    只驗**重複**，不驗歸屬是否正確：一筆真正的獨立資料集寫在
+    input_test_data 而 Procedure 未提，本閘不報 —— 該判斷需讀懂資料性質，
+    非本層所能。射程刻意窄，以免誤攔合法之資料欄。
+    """
+    itd = str(tc.get("input_test_data") or "").strip()
+    if not itd or itd.upper() == "NA":
+        return []
+    proc = {l.strip() for l in str(tc.get("test_procedure") or "").splitlines()}
+    proc |= {re.sub(r"^\d+\.\s*", "", l).strip() for l in proc}
+    out = []
+    for ln in [l.strip() for l in itd.splitlines() if l.strip()]:
+        if ln in proc:
+            out.append(("data-placement",
+                        f"{where}: input_test_data 之 `{ln[:44]}` 與 "
+                        "test_procedure 逐字重複 —— canon §4.5：互動操作屬 "
+                        "Procedure，本欄應為 `NA`（R-TM66）"))
+    return out
+
+
 def lint_no_tc_id(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
     """B8（G-TM2 項 3 訂正）—— TC JSON 不得攜帶 tc_id。
 
@@ -623,6 +684,8 @@ GATES = (
     lint_boundary,           # B4
     lint_arch,               # R-TM63
     lint_arch_column,        # A-TM26
+    lint_remarks_order,      # R-TM68
+    lint_data_placement,     # R-TM66 / canon §4.5
     lint_no_tc_id,           # B8
     lint_test_group,
     lint_design_method,
@@ -815,6 +878,52 @@ def self_test(auth: dict) -> int:
         print(f"{'PASS' if ok else '**FAIL**'} {name}: "
               f"{(got[0][:60] if got else '未報')}")
 
+    # ── R-TM68 / R-TM66 兩閘（15 T3）──────────────────────
+    # **紅向皆附構造複驗（R-TM67）**：先證明壞值確實違反該閘所檢之條件，
+    # 再看守衛反應 —— 否則「守衛失效」與「壞值不壞」在現象上相同。
+    import re as _re
+    def _drs(s):
+        return [int(x) for x in _re.findall(r"PENDING:\s*DR-(\d+)", s)]
+    r_ok = "PENDING: DR-5 CFTS015 缺件物件 6151328\nPENDING: DR-11 Atl-H 對應需求"
+    r_bad = "PENDING: DR-11 Atl-H 對應需求\nPENDING: DR-5 CFTS015 缺件物件 6151328"
+    r_merged = "PENDING: DR-5 缺件 / PENDING: DR-11 Atl-H 對應需求"
+    itd_dup = {"input_test_data": "Wake the CAN bus",
+               "test_procedure": "1. Wake the CAN bus\n2. b",
+               "expected_result": "1. a\n2. b"}
+    itd_ok = {**itd_dup, "input_test_data": "Hours = 10, Minutes = 30"}
+    # ── 構造複驗（R-TM67）──
+    print(f"   [構造複驗] r_ok 之 DR 序 {_drs(r_ok)} 已升冪 = {_drs(r_ok)==sorted(_drs(r_ok))}"
+          f"；r_bad 之 DR 序 {_drs(r_bad)} 已升冪 = {_drs(r_bad)==sorted(_drs(r_bad))}")
+    print(f"   [構造複驗] r_bad 之字串序若以字典序排 = "
+          f"{sorted(r_bad.splitlines()) == r_bad.splitlines()}"
+          f"（若為 True，則字串比較會放行此壞值 —— 本閘須用數值）")
+    _p = {l.strip() for l in itd_dup['test_procedure'].splitlines()}
+    _p |= {_re.sub(r'^\d+\.\s*','',l).strip() for l in _p}
+    print(f"   [構造複驗] itd_dup 之 input_test_data 確實出現於 procedure = "
+          f"{itd_dup['input_test_data'] in _p}"
+          f"；itd_ok 則為 {itd_ok['input_test_data'] in _p}")
+    y_cases = [
+        ("綠向 R-TM68 (DR-5 在 DR-11 之前 → 不報)",
+         {**green, "remarks": r_ok}, "remarks-order", False),
+        ("紅向 R-TM68 (DR-11 在 DR-5 之前 → 報)",
+         {**green, "remarks": r_bad}, "remarks-order", True),
+        ("紅向 R-TM68 (兩佔位擠一行 → 報)",
+         {**green, "remarks": r_merged}, "remarks-order", True),
+        ("綠向 R-TM68 (Remarks 為空 → 不判)",
+         {**green, "remarks": ""}, "remarks-order", False),
+        ("紅向 R-TM66 (input_test_data 與 procedure 逐字重複 → 報)",
+         {**green, **itd_dup}, "data-placement", True),
+        ("綠向 R-TM66 (獨立資料集，procedure 未提 → 不報)",
+         {**green, **itd_ok}, "data-placement", False),
+        ("綠向 R-TM66 (input_test_data 為 NA → 不判)",
+         {**green, **itd_dup, "input_test_data": "NA"}, "data-placement", False),
+    ]
+    for name, tc, gate, want in y_cases:
+        got = [m for g, m in lint_tc(tc, auth, "Y") if g == gate]
+        ok = bool(got) is want
+        bad += not ok
+        print(f"{'PASS' if ok else '**FAIL**'} {name}: {(got[0][:56] if got else '未報')}")
+
     # ── R-TM55 之綠向與負控（07 T3）─────────────────────────
     # 空 `owns` 之片，其 not_ours 以外之訊號不得誤報；且 022 須維持不判。
     b_cases = [
@@ -873,7 +982,7 @@ def self_test(auth: dict) -> int:
                   f"{want}: {got[0][1][:56] if got else '未叫 —— 閘失效'}")
 
     total = (len(reds) + 3 + len(b_cases) + 1 + len(d5_reds)
-             + len(a_cases) + len(x_cases))
+             + len(a_cases) + len(x_cases) + len(y_cases))
     print(f"\n自驗：{total - bad} / {total}")
     return 1 if bad else 0
 

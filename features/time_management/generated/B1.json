@@ -220,14 +220,14 @@
       "test_set": "Fault Handling",
       "test_item": "The software shall handle invalid/missing time signals using last valid values and fallback mechanisms\n(confirm the last valid time is held for two minutes when an invalid signal is received)",
       "pre_conditions": "Ignition is ON\nThe VES screens are powered on\nThe splash screen display time has ended",
-      "input_test_data": "PENDING: DR-20 注入無效 $DateTmHour$ 之操作方式",
+      "input_test_data": "NA",
       "test_procedure": "1. Read the time shown on the VES screen and record it\n2. PENDING: DR-20 注入無效 $DateTmHour$ 之操作方式\n3. Read the time shown on the VES screen and record it 1 minute later",
       "expected_result": "1. The VES screen shows a valid time value\n2. An invalid $DateTmHour$ is being received\n3. The VES screen still shows the last valid time value",
       "spec_reference": "CFTS015-4813967",
       "priority": "P0",
       "design_method": "基礎故障注入 (Fault Injection Lite)",
       "remarks": "",
-      "reasoning": "4813967 明訂無效訊號後顯示最後有效值 2 分鐘。注入操作無來源，依 canon §8.4.3 寫佔位。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。"
+      "reasoning": "4813967 明訂無效訊號後顯示最後有效值 2 分鐘。注入操作無來源，依 canon §8.4.3 寫佔位。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。 canon §4.5 / R-TM66：本欄原載之資料為互動操作，屬 Procedure；input_test_data 為 NA。"
     },
     {
       "req_id": "SWE-RA-TIME&DATE-010",
@@ -235,14 +235,14 @@
       "test_set": "Fault Handling",
       "test_item": "The software shall handle invalid/missing time signals using last valid values and fallback mechanisms\n(confirm dashes are shown after the two-minute hold expires)",
       "pre_conditions": "Ignition is ON\nThe VES screens are powered on",
-      "input_test_data": "PENDING: DR-20 注入無效 $DateTmHour$ 之操作方式",
+      "input_test_data": "NA",
       "test_procedure": "1. PENDING: DR-20 注入無效 $DateTmHour$ 之操作方式\n2. Read the time shown on the VES screen and record it 2 minutes later",
       "expected_result": "1. An invalid $DateTmHour$ is being received continuously\n2. The VES screen shows dashes in place of the time value",
       "spec_reference": "CFTS015-4813968",
       "priority": "P1",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
       "remarks": "",
-      "reasoning": "4813968 之 2 分鐘為狀態切換邊界，故取 BVA。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。"
+      "reasoning": "4813968 之 2 分鐘為狀態切換邊界，故取 BVA。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。 canon §4.5 / R-TM66：本欄原載之資料為互動操作，屬 Procedure；input_test_data 為 NA。"
     },
     {
       "req_id": "SWE-RA-TIME&DATE-010",
@@ -250,14 +250,14 @@
       "test_set": "Fault Handling",
       "test_item": "The software shall handle invalid/missing time signals using last valid values and fallback mechanisms\n(confirm the valid time replaces the dashes once valid data returns)",
       "pre_conditions": "Ignition is ON\nThe VES screens are powered on\nThe VES screen is showing dashes",
-      "input_test_data": "PENDING: DR-20 恢復有效 $DateTmHour$ 之操作方式",
+      "input_test_data": "NA",
       "test_procedure": "1. PENDING: DR-20 恢復有效 $DateTmHour$ 之操作方式\n2. Read the time shown on the VES screen and record it",
       "expected_result": "1. A valid $DateTmHour$ is being received\n2. The VES screen shows the valid time value in place of the dashes",
       "spec_reference": "CFTS015-4813968",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
-      "reasoning": "4813968 末句：有效資料回復後以有效值取代 dashes。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。"
+      "reasoning": "4813968 末句：有效資料回復後以有效值取代 dashes。 訊號三件組之 MESSAGE 與 segment 取自 LID 表 Atlantis High (col 26-30) 欄，來源列 409（A-TM26 之強制記錄）。 canon §4.5 / R-TM66：本欄原載之資料為互動操作，屬 Procedure；input_test_data 為 NA。"
     },
     {
       "req_id": "SWE-RA-TIME&DATE-012",
