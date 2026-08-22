@@ -1780,3 +1780,27 @@ Atl-Mid 之 TC  → CAN Mapping 欄 16–20（Atlantis）
 該判準之射程限制（只驗記錄存在、不驗記錄正確）先前已寫入 docstring
 （`14` §1.2），本次即為其實例化。
 
+
+## A-TM29 — `write_back.py` 之輸出預設落在輸入目錄
+
+**狀態：PENDING。Tier 2 —— 跨 feature。**
+由 `25_closure.md` §1 指派登記。
+
+```
+A-TM29（PENDING，Tier 2 —— 跨 feature）
+
+`write_back.py:452` 之輸出預設為 `src.with_name(src.stem + "_regen-v1.xlsx")`
+即來源檔同目錄（`inputs/`），而本專案之慣例為輸出落 `output/`。
+
+**後果**：未帶 `--out` 時，產出物落入輸入目錄。其危害有二：
+一為輸入目錄混入產出物；二為若該目錄之檔案日後被當成輸入重讀，
+會形成自我循環。本次因 `inputs/` 為 gitignored 且執行層即時發現，
+未造成實害。
+
+修法（改預設為 `feature-dir/output/`）影響全部 feature，Tier 2。
+在其修畢前，以 R-TM80 之作業紀律迴避。
+```
+
+**執行層回報（2026-08-22）**：已登記，未改腳本（Tier 2 不逕改）。
+本條之形態與本 feature 之主線一致 —— **錯誤落點產出之檔案外觀完全正常**
+（同檔名、同 SHA、同內容），既有檢查全綠，唯一的判準是它在哪個目錄。
