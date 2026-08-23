@@ -32,3 +32,23 @@ Run recon; outputs `RECON.md` + pre-filled `DECISIONS.md`.
 
 ## Phase 7 — Delivery (Tier 3)
 - [ ] Release tag (xlsx SHA256 ↔ commit) · submission · RD-1 sent
+
+---
+
+## 分級覆寫層（R-VF20，2026-08-23）
+
+**跑 `writability_driver.py --write` 之後必跑覆寫層**，否則 R-VF17 之
+4 leaf 會被回復為 W2。
+
+```bash
+python3 scripts/writability_driver.py --write
+python3 scripts/grade_overrides.py --apply     # ← 必跑
+python3 scripts/grade_overrides.py --check     # 驗證；不符則 exit 1
+```
+
+覆寫清單為 `data/grade_overrides.tsv`。**新增覆寫須引用一條裁決編號**
+（`ruling` 欄）與逐字來源（`source_verbatim` 欄），缺者腳本 `raise`。
+**不得以程式碼內嵌之條件式代替清單**（R-VF20 第 2 項）。
+
+`--check` 之可失敗性已實測（V08／W-VF23）：人為將任一覆寫標的改回原級，
+`--check` 即報出該列並 `exit 1`。

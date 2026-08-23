@@ -1,0 +1,5 @@
+leaf_id	from_grade	to_grade	ruling	source_column	reqid	source_verbatim
+SWE1-VC-HeatedSteeringWheelManagement-029	W2	W0	R-VF17	037 Verification Method	4859496	* verify that TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = "ON"
+SWE1-VC-HeatedSteeringWheelManagement-030	W2	W0	R-VF17	037 Verification Method	4859497	* verify that TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = "OFF"
+SWE1-VC-HeatedSteeringWheelManagement-033	W2	W0	R-VF17	037 Verification Method	4859500	* HMI shall update to TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = "ON"
+SWE1-VC-HeatedSteeringWheelManagement-034	W2	W0	R-VF17	037 Verification Method	4859501	* HMI shall update to TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = "OFF"

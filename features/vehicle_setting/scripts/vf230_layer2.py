@@ -110,7 +110,9 @@ def main() -> None:
 
     mc = Counter(r["match"] for r in rows)
     tot_leaf = sum(r["leaf"] for r in rows)
-    assert tot_leaf == 619 or True   # 總數自各簇重算，不硬編
+    # R-VF22：`or True` 使本斷言恆真、不可能失敗，本即無效之檢查
+    # （R-VF21 之同型）。改為真斷言並更新為 R-VF16 之 627。
+    assert tot_leaf == 627, f"leaf 合計應為 627（R-VF16），實得 {tot_leaf}"
 
     def grain(field: str) -> list[tuple[str, int, int]]:
         """回 [(章名, 簇數, leaf 數)]，依 leaf 遞減。"""

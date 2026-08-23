@@ -1,14 +1,7 @@
 [
   {
     "file": "feature.yaml",
-    "line": 29,
-    "text": "# leaf 全集以 data/vf230_leaves.tsv 為準（619 leaf）。",
-    "verdict": "須改",
-    "why": "現行有效之設定／作業文件，後續作業據以行動"
-  },
-  {
-    "file": "feature.yaml",
-    "line": 118,
+    "line": 119,
     "text": "# 以 `Vehicle Setting Management (VSM)` 為多數（388/619）。待 Pei 裁定。",
     "verdict": "不改",
     "why": "此行為 **當時之 Sub Categorization 實測**（388/619），非後續作業據以行動之設定值 —— 其所支持之判定（Test Group）已由 R-VF9 裁定，本行僅存為裁定當時之證據。雖位於現行有效之 `feature.yaml`，依 R-VF18「逐句為之」判為歷史紀錄。"
@@ -70,6 +63,48 @@
     "why": "條文中引為理由之當時實測值"
   },
   {
+    "file": "RULINGS.md",
+    "line": 2171,
+    "text": "R-VF22（619 → 627 之現行有效陳述更新，分析層裁定 2026-08-23）",
+    "verdict": "不改",
+    "why": "對照式書寫（619→627／619 版／619＋8）—— 其為變更之紀錄本身"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 2176,
+    "text": "feature.yaml:29              `（619 leaf）` → `（627 leaf）`",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 2177,
+    "text": "scripts/vf230_layer2.py:113  `assert tot_leaf == 619 or True`",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 2184,
+    "text": "`feature.yaml:118`（`388/619`）依 W-VF20 之逐行判別**維持不改** ——",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 2193,
+    "text": "- `feature.yaml:29` —— `（619 leaf）` 改為 `（627 leaf，R-VF16；其中 8 列標 disagree=1，見 A-VS132）`",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 2195,
+    "text": "- `feature.yaml:118`（`388/619`）**維持不改**",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
     "file": "docs/handoff/63_test_group_ruling.md",
     "line": 34,
     "text": "(b) 037 Sub Categorization 眾數 `Vehicle Setting Management (VSM)`（388/619）",
@@ -80,6 +115,34 @@
     "file": "docs/handoff/63_test_group_ruling.md",
     "line": 99,
     "text": "在其覆文前，VF230 之 619 leaf 之 Functional/Heading 判定**單源自 037**",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V08_review_v07.md",
+    "line": 102,
+    "text": "R-VF22（619 → 627 之現行有效陳述更新，分析層裁定 2026-08-23）",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V08_review_v07.md",
+    "line": 107,
+    "text": "feature.yaml:29              `（619 leaf）` → `（627 leaf）`",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V08_review_v07.md",
+    "line": 108,
+    "text": "scripts/vf230_layer2.py:113  `assert tot_leaf == 619 or True`",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V08_review_v07.md",
+    "line": 115,
+    "text": "`feature.yaml:118`（`388/619`）依 W-VF20 之逐行判別**維持不改** ——",
     "verdict": "不改",
     "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
   },
@@ -292,6 +355,27 @@
     "text": "W-VF20（619 之逐句判別，`feature.yaml` 優先）。",
     "verdict": "不改",
     "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/upstream/V08_review_v07.md",
+    "line": 137,
+    "text": "- # leaf 全集以 data/vf230_leaves.tsv 為準（619 leaf）。",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V08_review_v07.md",
+    "line": 142,
+    "text": "- assert tot_leaf == 619 or True   # 總數自各簇重算，不硬編",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V08_review_v07.md",
+    "line": 149,
+    "text": "`feature.yaml:118`（`388/619`）依 W-VF20 之逐行判別**維持不改**。",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
   },
   {
     "file": "docs/upstream/V06_scope_close.md",
@@ -561,7 +645,7 @@
   },
   {
     "file": "docs/reports/w120_verification_criteria.md",
-    "line": 204,
+    "line": 203,
     "text": "| | CFTS044（237 leaf） | VF230（619 leaf） |",
     "verdict": "不改",
     "why": "已結案之報告 —— 作成當時之正確量測"
@@ -645,14 +729,7 @@
   },
   {
     "file": "scripts/vf230_layer2.py",
-    "line": 113,
-    "text": "assert tot_leaf == 619 or True   # 總數自各簇重算，不硬編",
-    "verdict": "須改",
-    "why": "腳本內之可執行常數／斷言 —— 現行行為據以判定"
-  },
-  {
-    "file": "scripts/vf230_layer2.py",
-    "line": 150,
+    "line": 152,
     "text": "f\"- 037 分組來源：`data/vf230_leaves.tsv`（619 leaf，11 份分報告）\",",
     "verdict": "不改",
     "why": "腳本之 docstring 或輸出字串 —— 敘述當時之量測，非現行行為所依"

@@ -184,3 +184,18 @@ Remarks = reason + anomaly id.
 - **A-VF2** R-VF11 立法**當輪**，執行層寫 W-VF14 判準 (c) 時仍未附錨點
 - **A-VF4** 錨點本身選錯：選了不在被掃描檔內之 leaf（W-VF18、R-VF17 首版）
 - 分析層側：V06 §5.3(2) 之「簇分布必變」為未經錨點檢驗之斷言，實測為錯
+
+---
+
+## driver 後置步驟（R-VF20 第 4 項，2026-08-23）
+
+`writability.tsv`／`generatable.tsv` 由 `scripts/writability_driver.py --write`
+產生，而 **R-VF17 之 4 leaf 之分級不在 driver 之判定內** ——
+其值域來源為 037 之 `Verification Method` 欄，而 driver 之 `value_sourced()`
+不認該欄（**刻意不改**：改之即對全部 leaf 重評，違反 R-VF14 第 4 項）。
+
+**故 driver 每次 `--write` 後必跑 `python3 scripts/grade_overrides.py --apply`。**
+詳見 `RUNBOOK.md` 之「分級覆寫層」。
+
+驗證：`python3 scripts/grade_overrides.py --check`，不符即 `exit 1`。
+

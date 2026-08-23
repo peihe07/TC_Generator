@@ -26,7 +26,8 @@ paths:
   # --- Part 2 = VF230（61 包進場）---
   workbook_vf230: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_VF230_20260819.xlsx"
   # VF230 之 037 散落 11 份；此鍵取 leaf 數最多者為代表（131 leaf），
-  # leaf 全集以 data/vf230_leaves.tsv 為準（619 leaf）。
+  # leaf 全集以 data/vf230_leaves.tsv 為準（627 leaf，R-VF16；
+  # 其中 8 列標 disagree=1，見 A-VS132）。
   # 每個 paths 鍵須恰好 glob 到 1 檔（feature_config.resolve_path），
   # 故 11 份不得以單鍵表達。
   a03_report_vf230: "inputs/FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Trailer_Name - Max_Power_Level_Report.xlsx"
