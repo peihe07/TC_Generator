@@ -41,6 +41,22 @@ def load_overrides() -> list[dict]:
     return rows
 
 
+def expected_row(r: dict) -> dict:
+    """一筆覆寫所要求之**逐欄**終態 —— `--apply` 與 `--check` 共用此單一定義。
+
+    R-VF29 第 6 項：檢查面須等於變更面。二者共用本函式即結構上保證相等，
+    不靠兩處程式碼各自維護一份欄位清單。
+    """
+    return {
+        "writable": r["to_grade"],
+        "blocker_class": "",
+        "blocker_detail": "",
+        # R-VF29 第 5 項：註記依清單重生，非附加 —— 故其為終態之一部分
+        "evidence_note": (f"{r['ruling']}：值域來源為 {r['source_column']}，"
+                          f"reqid {r['reqid']}，逐字 `{r['source_verbatim']}`"),
+    }
+
+
 def read_tsv(p: Path):
     with p.open(encoding="utf-8") as fh:
         rd = csv.DictReader(fh, delimiter="\t")
@@ -72,38 +88,35 @@ def main() -> None:
                          "「不在檔內」與「已為新級」不可分辨，停。")
 
     if mode == "--check":
-        bad = [(r["leaf_id"], by_w[r["leaf_id"]]["writable"], r["to_grade"])
-               for r in ovr if by_w[r["leaf_id"]]["writable"] != r["to_grade"]]
+        bad = []
+        for r in ovr:
+            cur, want = by_w[r["leaf_id"]], expected_row(r)
+            for col, exp in want.items():
+                if cur.get(col, "") != exp:
+                    bad.append((r["leaf_id"], col, cur.get(col, ""), exp))
         if bad:
             print("覆寫未生效 —— driver 已重跑而後置步驟未跑：", file=sys.stderr)
-            for lid, cur, want in bad:
-                print(f"  {lid}: 現為 {cur}，應為 {want}", file=sys.stderr)
+            for lid, col, cur, want in bad:
+                print(f"  {lid} · {col}: 現為 {cur!r}，應為 {want!r}", file=sys.stderr)
             print(f"\n修法：python3 {Path(__file__).name} --apply", file=sys.stderr)
             sys.exit(1)
-        print(f"覆寫層 OK —— {len(ovr)} 筆皆為其應有之級")
+        print(f"覆寫層 OK —— {len(ovr)} 筆 × "
+              f"{len(expected_row(ovr[0]))} 欄皆為其應有之值")
         return
 
     gcols, grows = read_tsv(GEN)
     by_g = {r["leaf_id"]: r for r in grows}
     changed = []
     for r in ovr:
-        w = by_w[r["leaf_id"]]
-        if w["writable"] == r["to_grade"]:
+        w, want = by_w[r["leaf_id"]], expected_row(r)
+        if all(w.get(c, "") == v for c, v in want.items()):
             continue
-        if w["writable"] != r["from_grade"]:
+        if w["writable"] not in (r["from_grade"], r["to_grade"]):
             raise SystemExit(f"{r['leaf_id']}：現為 {w['writable']}，"
                              f"既非 {r['from_grade']} 亦非 {r['to_grade']}，停")
-        w["writable"] = r["to_grade"]
-        w["blocker_class"] = ""
-        w["blocker_detail"] = ""
-        note = (f"{r['ruling']}：值域來源為 {r['source_column']}，reqid "
-                f"{r['reqid']}，逐字 `{r['source_verbatim']}`")
-        prev = w.get("evidence_note", "")
-        # 去重：本層須可重跑，而重跑不得使註記累積。
-        # 以「同一裁決編號 ＋ 同一 reqid」為同一筆註記之鍵。
-        key = f"{r['ruling']}：值域來源為 {r['source_column']}，reqid {r['reqid']}"
-        if key not in prev:
-            w["evidence_note"] = (prev + " ｜ " if prev else "") + note
+        # R-VF29 第 5 項：**重生**而非附加 —— 重跑 N 次後筆數與 N 無關。
+        # 文字比對去重曾因新舊腳本措辭不同而失效（A-VF6 同輪）。
+        w.update(want)
         if r["leaf_id"] in by_g:
             by_g[r["leaf_id"]]["writable"] = r["to_grade"]
         changed.append(r["leaf_id"])

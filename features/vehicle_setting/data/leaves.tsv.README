@@ -1,0 +1,23 @@
+# data/leaves.tsv —— 名實不符之註記（A-VF7；R-VF10 前所開之 A-VS 編號沿用）
+
+**本檔名為 `leaves`，內容為「037 之列」。**
+
+```
+總列數                    271
+其中非 leaf                34   （Heading 25 ／ Information 9）
+可測 leaf 母體            237   = leaves.tsv − non_functional_leaves.tsv（R-VS15）
+```
+
+**`271` 不得作為任何比率之分母**（`RULINGS.md` R-VS15 段）。
+
+**不改名**（Part 1 產物，改名斷全庫引用）。
+
+## 為何註記不寫在檔內首行
+
+V10 §8（A-VF7）令「改以檔內首行加註」。**本層實測該做法會破壞消費者**：
+`scripts/writeback_036.py:59` 等以 `csv.DictReader(f, delimiter="\t")` 讀本檔，
+**首行即表頭** —— 加一行 `#` 註記後 `fieldnames` 變為該註記本身，
+`swe_id` 等欄全數取不到。實測 `fieldnames` 為單一元素之註記字串。
+
+故改以本旁註檔履行同一目的（名實對齊、低成本、不動引用），
+**`leaves.tsv` 未動一個位元**。已回報，見上繳 V10 §5。

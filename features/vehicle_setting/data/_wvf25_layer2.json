@@ -1,0 +1,224 @@
+{
+  "names": {
+    "STLA_Trailer_Name - Max_Power_Level_Report": "Trailer and Signage",
+    "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features": "Driver Convenience",
+    "Time_Date_Autodoor_Camera_features": "Units and Cameras",
+    "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": "Auxiliary Switches",
+    "STLA_Illuminated_Approach - Trailer_Number_Report": "Approach and Tailgate",
+    "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report": "Suspension and Comfort",
+    "Cornering Lights_lane_features": "Lane and Lighting",
+    "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report": "Switch Power Mode",
+    "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": "Switch Type and State",
+    "Pressure_Unit , Power_Unit And Torque_Unit features": "Measurement Units",
+    "Daytime_Running_Light And Headlights_Off_Delay features^": "Daytime Lighting"
+  },
+  "fam_leaf": {
+    "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features": 99,
+    "Cornering Lights_lane_features": 49,
+    "Daytime_Running_Light And Headlights_Off_Delay features^": 12,
+    "Pressure_Unit , Power_Unit And Torque_Unit features": 17,
+    "Time_Date_Autodoor_Camera_features": 79,
+    "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 72,
+    "STLA_Illuminated_Approach - Trailer_Number_Report": 57,
+    "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": 24,
+    "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report": 35,
+    "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report": 52,
+    "STLA_Trailer_Name - Max_Power_Level_Report": 131
+  },
+  "split_clusters": {
+    "SWITCH 1 Power Mode": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report": 3
+    },
+    "SWITCH 2 Power Mode": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report": 3
+    },
+    "SWITCH 3 Power Mode": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report": 3
+    },
+    "SWITCH 4 Power Mode": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report": 3
+    },
+    "SWITCH 1 Type": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": 3
+    },
+    "SWITCH 2 Type": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": 3
+    },
+    "SWITCH 3 Type": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": 3
+    },
+    "SWITCH 4 Type": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": 3
+    },
+    "SWITCH 1 Hold Last State": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": 3
+    },
+    "SWITCH 2 Hold Last State": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": 3
+    },
+    "SWITCH 3 Hold Last State": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": 3
+    },
+    "SWITCH 4 Hold Last State": {
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": 3,
+      "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": 3
+    }
+  },
+  "merged_switch_total": 131,
+  "sections": {
+    "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features": [
+      "Auto High Beam",
+      "Auto Park Brake",
+      "Auto Unlock on Exit",
+      "Auto on Driver Comfort - 2 Option",
+      "Auto on Driver Comfort - 3 Option",
+      "Blind Spot Alert",
+      "Flash Light With Lock",
+      "Horn With Lock",
+      "Horn With Remote Start",
+      "Language",
+      "Navigation Turn by Turn",
+      "Park Sense Front Volume",
+      "Park Sense Rear Volume",
+      "Passive Entry",
+      "Phone Repetition",
+      "RKE Linked to Memory",
+      "Rearview Camera Delay",
+      "Rearview Camera Dynamic Guidelines",
+      "Remote Door Unlock"
+    ],
+    "Cornering Lights_lane_features": [
+      "Cornering Lights",
+      "Forward Collision Warning",
+      "Forward Collision Warning Sensitivity",
+      "Greeting Lights",
+      "Lane Sense Strength",
+      "Lane Sense Warning",
+      "Pedestrian Emergency Braking or Warning & Active Braking",
+      "Rain Sensing Wipers",
+      "Signature Lighting"
+    ],
+    "Daytime_Running_Light And Headlights_Off_Delay features^": [
+      "Daytime Running Lights",
+      "Headlights Off Delay"
+    ],
+    "Pressure_Unit , Power_Unit And Torque_Unit features": [
+      "Power Unit",
+      "Pressure Unit",
+      "Torque Unit"
+    ],
+    "Time_Date_Autodoor_Camera_features": [
+      "Auto Door Locks",
+      "Consumption Unit",
+      "Distance Unit",
+      "Hour Mode",
+      "Park Sense",
+      "ParkSense Based Camera Activation",
+      "Speed Unit",
+      "Surround View Camera Delay",
+      "Surround View Camera Guidelines",
+      "Suspension Auto Entry or Exit",
+      "Temperature Unit",
+      "Time and Date Settings",
+      "Turn Signal Activated Blind Spot Camera View",
+      "Turn Signal Activated Blind Spot Camera View with Trailer Option",
+      "Unit Energy"
+    ],
+    "6 Aux Switches, SWITCH 1 Power Mode and E-Save features": [
+      "6 Aux Switches",
+      "Rear Guidance Light Status",
+      "Rear Guidance Lighting with Approach",
+      "SWITCH 1 Hold Last State",
+      "SWITCH 1 Power Mode",
+      "SWITCH 1 Type",
+      "SWITCH 2 Hold Last State",
+      "SWITCH 2 Power Mode",
+      "SWITCH 2 Type",
+      "SWITCH 3 Hold Last State",
+      "SWITCH 3 Power Mode",
+      "SWITCH 3 Type",
+      "SWITCH 4 Hold Last State",
+      "SWITCH 4 Power Mode",
+      "SWITCH 4 Type",
+      "SWITCH 5 Hold Last State",
+      "SWITCH 5 Power Mode",
+      "SWITCH 5 Type",
+      "SWITCH 6 Hold Last State",
+      "SWITCH 6 Power Mode",
+      "SWITCH 6 Type"
+    ],
+    "STLA_Illuminated_Approach - Trailer_Number_Report": [
+      "Charge Power Level",
+      "Illuminated Approach",
+      "New Speed Zone Indication",
+      "Paddle Shifter",
+      "Power Liftgate/Tailgate Alert",
+      "Power Tailgate",
+      "Rear Seat Reminder",
+      "Traffic Sign Warning",
+      "Trailer Number"
+    ],
+    "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report": [
+      "SWITCH 1 Hold Last State",
+      "SWITCH 1 Type",
+      "SWITCH 2 Hold Last State",
+      "SWITCH 2 Type",
+      "SWITCH 3 Hold Last State",
+      "SWITCH 3 Type",
+      "SWITCH 4 Hold Last State",
+      "SWITCH 4 Type"
+    ],
+    "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report": [
+      "4 AUX Switches",
+      "Rear Guidance Lights with Cargo Lights",
+      "SWITCH 1 Power Mode",
+      "SWITCH 2 Power Mode",
+      "SWITCH 3 Power Mode",
+      "SWITCH 4 Power Mode",
+      "Suspension Default Ride Height",
+      "Suspension Flash Lights With Lower",
+      "Suspension Sound Horn With Lower"
+    ],
+    "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report": [
+      "Auto Fold Mirrors",
+      "Driver Easy Exit Seat",
+      "Engine Off Power Delay",
+      "Headlights with Wipers",
+      "Hill Start Assist",
+      "Ready to Drive Pop-Up",
+      "Suspension Display Messages",
+      "Suspension Service Mode",
+      "Tilt Mirror in Reverse",
+      "Tire Fill Alert"
+    ],
+    "STLA_Trailer_Name - Max_Power_Level_Report": [
+      "Automatic Trailer Light Check",
+      "Blind Spot with Trailer Detection",
+      "Enhanced Display Synchronization",
+      "Max Power Level",
+      "Power Side Step",
+      "Traffic Sign Assist Offset - NAFTA Setting",
+      "Traffic Sign Assist Offset - non-NAFTA Setting",
+      "Trailer Brake Type",
+      "Trailer Name",
+      "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
+      "Warnings for Low Fuel Inverter Shutdown - Visual Warning"
+    ]
+  },
+  "no_spec": [
+    "E-Save",
+    "CHMSL CAMERA DYNAMIC CENTERLINE"
+  ],
+  "total": 627
+}
