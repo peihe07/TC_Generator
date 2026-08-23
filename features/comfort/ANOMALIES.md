@@ -1319,3 +1319,75 @@ LED 規則**（§8.2.1：引用另一節之事實不等於驗證另一節之行�
 `NEVER_WRITE` 與 `feature.yaml` 之設定互相矛盾。
 
 **本回報不含處置建議** —— 交由 Comfort 自行判斷。
+
+---
+
+## A-CF-EXT-02 — `R-C6` 之條文與其自身已交付件不一致（由 Power Moding feature 回報）
+
+> **來源**：Power Moding feature 之 02／03 包
+> （`features/power_moding/docs/upstream/02_baseline_switch.md` §10.2、
+> `03_testgroup_and_dv.md` §5）。執行層實測後由分析層獨立複驗，
+> 依 03 包步驟 5 回報。**只記事實與證據，不判定成因、不提案修改 Comfort
+> 之任何條文，未修改 Comfort 之任何交付物。**
+
+**回報之緣由**：Power Moding 之 `R-PMH2`（feature 身分與 `test_group`）
+逐字引 Comfort `R-C6` 為其唯一依據。查證該前例時發現條文與交付件不符，
+致 `R-PMH2` 之後半於 Power Moding 側被撤回（`R-PMH13`）。
+本則為該查證之回報。
+
+**條文原文**（`features/comfort/RULINGS.md:128`）：
+
+```
+R-C6  Test Group
+workbook Test Group 欄一律填 "Comfort"。
+
+依 §4.1.1：Layer 1 Test Group 等同 spec 文件標題之模組名；spec 標題為
+"Comfort HMI Logic and Flow"，故模組名為 Comfort。客戶交付路徑中之
+"Climate Control Interface" 為資料夾分類，非 spec 標題，不作為 Test Group
+來源。
+```
+
+**實測**（唯讀，`openpyxl` `data_only=True`；未寫入）：
+
+檔案：`/Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/ASW-R2/
+Climate Control Interface/FM-WI-FSM-036-A01 …_SWQT_Comfort_20260817.xlsx`
+分頁：`Test Case Specification 測試用例規範`，r10 起 `D` 欄非空之列
+
+| 項 | 實測 |
+|---|---|
+| 資料列數 | 466 |
+| `G`（Test Group）欄相異值 | **1** |
+| 該值 | **`Climate Control Interface`** |
+| 覆蓋 | **466 / 466（100%）** |
+| 值為 `Comfort` 之列 | **0** |
+
+即：**已交付之工作簿，其 Test Group 欄 466 列全填交付夾名
+`Climate Control Interface`，恰為 R-C6 明文排除者；填 `Comfort` 者零列。**
+
+**同批對照**（四份已交付件，同一量測條件）：
+
+| 交付件 | 交付夾名 | `G` 欄實測值 | 覆蓋 |
+|---|---|---|---|
+| **Comfort 20260817** | `Climate Control Interface` | **`Climate Control Interface`** | **466 / 466** |
+| User Profiles 20260820 | `User Profiles` | `User Profiles` | 189 / 189 |
+| Time Management 20260822 | `Time Management` | `Time Management` | 59 / 59 |
+| Power Management 20260821 | `Power Management` | `Power Management` | 283 / 283 |
+
+四份皆為交付夾名，無一例外。**Comfort 是四份中唯一「交付夾名 ≠ 規格模組名」
+者，也因此是唯一能分辨兩種取法之語料** —— 其餘三份之二者恰好相同，
+對本題無鑑別力（Power Moding `R-PMH14`）。
+
+**三種可能之成因，本 feature 無從判定，不選擇**：
+
+(a) R-C6 立於 2026-08-14 而交付件出於 2026-08-17，條文未被落實或落實後被回改；
+(b) `features/comfort/feature.yaml` 之 `test_group` 註明
+    「framework-internal; workbook write per profile」，即**宣告值與寫回值
+    本即分離**，R-C6 管前者而交付件呈現後者 —— 若為此解，則 R-C6 之
+    「**workbook** Test Group 欄一律填」一語與該分離不一致；
+(c) 該欄由管線以外之他人填寫（比照 A-CF-EXT-01 之 T–Z 情形）。
+
+**Power Moding 側之處置（僅供參照，不要求 Comfort 比照）**：
+依四份交付件之實測立 `R-PMH13`，G 欄填交付夾名 `Disclaimer screen`，
+並撤回 `R-PMH2` 之後半。Pei 於 2026-08-23 核可。
+
+**本回報不含處置建議** —— 交由 Comfort 自行判斷。

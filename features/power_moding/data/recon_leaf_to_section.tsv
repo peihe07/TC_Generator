@@ -1,0 +1,49 @@
+req_id	outline	polarion_id	spec_reference	title
+SWE1-HMI-PM-001-01	7.1	NRL-115711	Power Moding HMI Logic and Flow R1 SR24 2A_7.1	SU1.) When the vehicle’s driver door is closed a startup animation will be prese
+SWE1-HMI-PM-001-02	7.1	NRL-115711	Power Moding HMI Logic and Flow R1 SR24 2A_7.1	SU1.) When the vehicle’s driver door is closed a startup animation will be prese
+SWE1-HMI-PM-001-03	7.1	NRL-115711	Power Moding HMI Logic and Flow R1 SR24 2A_7.1	SU1.) When the vehicle’s driver door is closed a startup animation will be prese
+SWE1-HMI-PM-001-04	7.1	NRL-115711	Power Moding HMI Logic and Flow R1 SR24 2A_7.1	SU1.) When the vehicle’s driver door is closed a startup animation will be prese
+SWE1-HMI-PM-001-05	7.1	NRL-115711	Power Moding HMI Logic and Flow R1 SR24 2A_7.1	SU1.) When the vehicle’s driver door is closed a startup animation will be prese
+SWE1-HMI-PM-002	7.1.1	NRL-115712	Power Moding HMI Logic and Flow R1 SR24 2A_7.1.1	SU1.1) While ignition is off, transitions related to the power button to display
+SWE1-HMI-PM-003	7.2	NRL-115713	Power Moding HMI Logic and Flow R1 SR24 2A_7.2	SU2.) For Maserati vehicles, while on the disclaimer screen the user will have a
+SWE1-HMI-PM-004	7.3	NRL-115714	Power Moding HMI Logic and Flow R1 SR24 2A_7.3	SU2.1) Do not display comfort controls on Maserati disclaimer screen when vehicl
+SWE1-HMI-PM-005	7.4	NRL-115715	Power Moding HMI Logic and Flow R1 SR24 2A_7.4	SU3.) No pop-ups will appear until the disclaimer screen has been removed. If an
+SWE1-HMI-PM-006-01	7.5	NRL-115716	Power Moding HMI Logic and Flow R1 SR24 2A_7.5	SU4.) If start-up animation is supported, it shall start upon driver door close,
+SWE1-HMI-PM-006-02	7.5	NRL-115716	Power Moding HMI Logic and Flow R1 SR24 2A_7.5	SU4.) If start-up animation is supported, it shall start upon driver door close,
+SWE1-HMI-PM-006-03	7.5	NRL-115716	Power Moding HMI Logic and Flow R1 SR24 2A_7.5	SU4.) If start-up animation is supported, it shall start upon driver door close,
+SWE1-HMI-PM-007	7.5.1	NRL-115717	Power Moding HMI Logic and Flow R1 SR24 2A_7.5.1	DS4.1) If doors are removed/not present and ignition is turned to ACC, RUN, or S
+SWE1-HMI-PM-008-01	7.6	NRL-115718	Power Moding HMI Logic and Flow R1 SR24 2A_7.6	SU5.) If ignition cycle has not changed the animation should only be played once
+SWE1-HMI-PM-008-02	7.6	NRL-115718	Power Moding HMI Logic and Flow R1 SR24 2A_7.6	SU5.) If ignition cycle has not changed the animation should only be played once
+SWE1-HMI-PM-009-01	7.7	NRL-115719	Power Moding HMI Logic and Flow R1 SR24 2A_7.7	SU6.) If last state is Radio OFF, play startup animation and show applicable spl
+SWE1-HMI-PM-009-02	7.7	NRL-115719	Power Moding HMI Logic and Flow R1 SR24 2A_7.7	SU6.) If last state is Radio OFF, play startup animation and show applicable spl
+SWE1-HMI-PM-010	7.8	NRL-115720	Power Moding HMI Logic and Flow R1 SR24 2A_7.8	SU7.) Start up animation should sync on start up with all capable screen’s start
+SWE1-HMI-PM-011	7.9	NRL-115721	Power Moding HMI Logic and Flow R1 SR24 2A_7.9	SU8.) Show the splash screen and disclaimer screen once per CAN BUS cycle
+SWE1-HMI-PM-012	8.1	NRL-115723	Power Moding HMI Logic and Flow R1 SR24 2A_8.1	SSND 1) If start-up sounds are supported, it will start upon driver door close a
+SWE1-HMI-PM-013	8.2	NRL-115724	Power Moding HMI Logic and Flow R1 SR24 2A_8.2	SSND 2) Start-up and goodbye sounds shall have a setting with Always/Once a Day/
+SWE1-HMI-PM-014	8.2.1	NRL-115725	Power Moding HMI Logic and Flow R1 SR24 2A_8.2.1	SSND 2.1) If the setting is Always, start-up and goodbye sounds should be played
+SWE1-HMI-PM-015	8.2.2	NRL-115726	Power Moding HMI Logic and Flow R1 SR24 2A_8.2.2	SSND 2.2) If the setting is Once a Day, start-up and goodbye sounds should be pl
+SWE1-HMI-PM-016	8.2.3	NRL-393805	Power Moding HMI Logic and Flow R1 SR24 2A_8.2.3	SSND 2.3) If the setting is Never, start-up and goodbye sounds should not be pla
+SWE1-HMI-PM-017	8.3	NRL-115727	Power Moding HMI Logic and Flow R1 SR24 2A_8.3	SSND 3) Sound volume level shall match current entertainment sounds volume. [DCR
+SWE1-HMI-PM-018-01	9.1	NRL-115729	Power Moding HMI Logic and Flow R1 SR24 2A_9.1	PM1) In the event that there are popups to show at IGN OFF but the user has set 
+SWE1-HMI-PM-018-02	9.1	NRL-115729	Power Moding HMI Logic and Flow R1 SR24 2A_9.1	PM1) In the event that there are popups to show at IGN OFF but the user has set 
+SWE1-HMI-PM-018-03	9.1	NRL-115729	Power Moding HMI Logic and Flow R1 SR24 2A_9.1	PM1) In the event that there are popups to show at IGN OFF but the user has set 
+SWE1-HMI-PM-018-04	9.1	NRL-115729	Power Moding HMI Logic and Flow R1 SR24 2A_9.1	PM1) In the event that there are popups to show at IGN OFF but the user has set 
+SWE1-HMI-PM-018-05	9.1	NRL-115729	Power Moding HMI Logic and Flow R1 SR24 2A_9.1	PM1) In the event that there are popups to show at IGN OFF but the user has set 
+SWE1-HMI-PM-019	10.1	NRL-115731	Power Moding HMI Logic and Flow R1 SR24 2A_10.1	PITA4: Screen Off and HU Power button selections shall be ignored while backup c
+SWE1-HMI-PM-020	10.2	NRL-115732	Power Moding HMI Logic and Flow R1 SR24 2A_10.2	PITA5: If backup cam needs to be shown during Power Button OFF state, then it sh
+SWE1-HMI-PM-021	10.3	NRL-115733	Power Moding HMI Logic and Flow R1 SR24 2A_10.3	PITA6: HVAC pop-ups shall be temporarily displayed during Power Button Off state
+SWE1-HMI-PM-022-01	10.4	NRL-115734	Power Moding HMI Logic and Flow R1 SR24 2A_10.4	PITA6.1: If radio is in Power Button Off state upon going from ignition in OFF p
+SWE1-HMI-PM-022-02	10.4	NRL-115734	Power Moding HMI Logic and Flow R1 SR24 2A_10.4	PITA6.1: If radio is in Power Button Off state upon going from ignition in OFF p
+SWE1-HMI-PM-023	10.5	NRL-115735	Power Moding HMI Logic and Flow R1 SR24 2A_10.5	PITA8: During Key OFF (with no ACC position available), HU power ON, all headuni
+SWE1-HMI-PM-024-01	10.6	NRL-115736	Power Moding HMI Logic and Flow R1 SR24 2A_10.6	PITA9: Phone call popups can be displayed over Power Button Off state. Ignoring 
+SWE1-HMI-PM-024-02	10.6	NRL-115736	Power Moding HMI Logic and Flow R1 SR24 2A_10.6	PITA9: Phone call popups can be displayed over Power Button Off state. Ignoring 
+SWE1-HMI-PM-024-03	10.6	NRL-115736	Power Moding HMI Logic and Flow R1 SR24 2A_10.6	PITA9: Phone call popups can be displayed over Power Button Off state. Ignoring 
+SWE1-HMI-PM-025	10.7	NRL-115737	Power Moding HMI Logic and Flow R1 SR24 2A_10.7	PITA10: SOS and ASSIST can turn head unit power back on.
+SWE1-HMI-PM-026-01	11.1	NRL-115739	Power Moding HMI Logic and Flow R1 SR24 2A_11.1	VRLP1: VR hard key to activate SIRI/non-native Voice Assistants (eg. Long press 
+SWE1-HMI-PM-026-02	11.1	NRL-115739	Power Moding HMI Logic and Flow R1 SR24 2A_11.1	VRLP1: VR hard key to activate SIRI/non-native Voice Assistants (eg. Long press 
+SWE1-HMI-PM-026-03	11.1	NRL-115739	Power Moding HMI Logic and Flow R1 SR24 2A_11.1	VRLP1: VR hard key to activate SIRI/non-native Voice Assistants (eg. Long press 
+SWE1-HMI-PM-026-04	11.1	NRL-115739	Power Moding HMI Logic and Flow R1 SR24 2A_11.1	VRLP1: VR hard key to activate SIRI/non-native Voice Assistants (eg. Long press 
+SWE1-HMI-PM-026-05	11.1	NRL-115739	Power Moding HMI Logic and Flow R1 SR24 2A_11.1	VRLP1: VR hard key to activate SIRI/non-native Voice Assistants (eg. Long press 
+SWE1-HMI-PM-027	12.1	NRL-115741	Power Moding HMI Logic and Flow R1 SR24 2A_12.1	OFF1.) If vehicle is in Off Road state prior to pressing Off Road+ hard control 
+SWE1-HMI-PM-028	12.2	NRL-115742	Power Moding HMI Logic and Flow R1 SR24 2A_12.2	OFF2.)Please refer to CFTS009 for complete behavior.
+SWE1-HMI-PM-029	12.3	NRL-115743	Power Moding HMI Logic and Flow R1 SR24 2A_12.3	OFF3.)Head unit is muted when launching app from Power Off State.

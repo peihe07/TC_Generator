@@ -1,5 +1,10 @@
 # Customer source files - never commit
-inputs/
+# R-PMH11 —— 素材檔本身不入版控，但其雜湊檔須入版控（§9.1 通則 9）。
+# 寫成 `inputs/*` 而非 `inputs/`：git 不會遞迴進入已被排除之「目錄」，
+# 故 `inputs/` + `!inputs/MANIFEST.sha256` 之組合實測無效（A-PMH06）。
+# 排除「目錄內容」才能讓其後之否定規則生效。
+inputs/*
+!inputs/MANIFEST.sha256
 
 # Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
 # own data/*.json artefacts here as Step 1 starts emitting them.
@@ -10,6 +15,13 @@ lint_report.json
 # data/spec_id_to_outline.tsv IS tracked on purpose where a feature builds
 # one: it is the traceability lookup every spec_reference is linted against,
 # and a diff on it is the signal that the spec export moved underneath us.
+#
+# data/outline_map.json IS tracked for the same reason (02 包步驟 10)：
+# 它是 48 leaf → outline → PDF 頁次之唯一追溯表，且其 `sources` 欄記著
+# 三份素材之 SHA256 —— 素材一換，diff 就會顯示出來。
+
+# 本 feature 之暫存工作區（pdftotext 產出、render 之 PNG）。
+sandbox/
 
 # Local noise
 __pycache__/

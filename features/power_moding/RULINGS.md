@@ -125,3 +125,277 @@ Layer 2 之候選輸入之一，與規格目次取交集後再判granularity（c
 | R-PMH4 | 素材台帳之到齊定義 | 277 | `04d87eb139a11e2b` | `04d87eb139a11e2b` | ✅ 逐字相符 |
 | R-PMH5 | 既有 48 列非 done region，視為草稿列 | 555 | `e589281f93426f27` | `e589281f93426f27` | ✅ 逐字相符 |
 | R-PMH6 | G/H 兩欄之處置延後至 Phase 3 | 278 | `5bb6ebe395b25187` | `5bb6ebe395b25187` | ✅ 逐字相符 |
+
+---
+
+# 下放包 02 —— 母本改定、workbook_state 改判
+
+來源包：`docs/handoff/02_baseline_switch.md`（SHA256 `a820199d7fefe707a81882d993e375c96a68e06ab372733a6b2142e43580fa65`）§二
+抄錄日：2026-08-23
+
+## R-PMH7 —— 交付母本為 forms ext；客戶那份降為來源複本
+
+```
+R-PMH7（交付母本）
+本 feature 之交付基底為 `forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果
+_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx`
+（SHA256 `6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2`），
+即 R-G1 所定之全域母本，不另行例外。
+
+客戶交付夾之 `…_SWQT_PowerModingHMI_20260819.xlsx`
+（SHA256 `2be63febf005dd87ad302b78989ee7800a1a90c60f1f6673f9b455e664625a54`）
+自本條起之身分為「需求對應之來源複本」，其用途限於 037→036 之 leaf 對應
+查核與其三個附屬分頁之內容取得，**不作交付基底、不作版面依據、
+不作 style authority**。
+
+判準：交付副本之 r9 表頭欄數為 34（A–AH），`Estimated Test Time (mins)`
+恰出現一次。出現兩次或欄數為 35 者，即非本條所定之母本。
+```
+
+## R-PMH8 —— `workbook_state` = `BLANK`；撤回 `PREFILLED_DRAFT`
+
+```
+R-PMH8（workbook_state）
+`workbook_state` 為 `BLANK`。
+
+Q1 所核可之 `PREFILLED_DRAFT` 提案**撤回**。撤回之依據為 R-PMH7 更換交付
+基底，致該狀態所描述之 48 列預填不存在於交付標的，**非原判定有誤** ——
+01 包 §4.3 對客戶那份之逐列判定（filled 48 / qualifying-done 0）仍然成立，
+且為本條之前提。
+
+丟棄該 48 列之資訊損失為零：01 包 §4.4 已逐格驗證其 336/336 逐字等同 037
+之七欄，037 本身為本 feature 之權威輸入且已在 `inputs/` 內。
+
+連帶：`done_region` 不適用（`author_value: null`）；write-back 為自首資料列
+（r10）append；done invariant 不適用。
+```
+
+## R-PMH9 —— 欄位對應作廢重測，四方交叉佐證
+
+```
+R-PMH9（欄位對應重測）
+01 包 §4.2 之 `16/16` 欄位對應**作廢** —— 其量測對象為 R-PMH7 所排除之
+離群版面（35 欄，priority Q / design_method S / author AB / remarks AI）。
+
+重測須對 R-PMH7 之母本 r9 表頭進行，並與下列三份**已交付件**交叉佐證
+（G-H：先查他 feature 之交付件，且須先確認母本同一）：
+
+  User Profiles 20260820、Comfort 20260817、Time Management 20260822
+
+四者（母本 ＋ 三份交付件）之 r9 表頭須逐欄相等；不相等者停並回報，
+不得擇一採用。
+```
+
+## R-PMH10 —— D3／D4／D5 一律留空
+
+```
+R-PMH10（前言欄之留白）
+工作簿 `Test Case Specification 測試用例規範` 分頁之
+`D3 審查者` / `D4 目的` / `D5 範圍 Scope` 三欄**一律留空**。
+
+依據為實測：已交付件 User Profiles 20260820、Comfort 20260817、
+Time Management 20260822、Power Management 20260821 四份之該三欄皆空，
+R-PMH7 之母本亦空 —— 語料 5/5 無一填寫。
+
+不得自擬字串填入。若日後客戶要求填寫，其字串由 Pei 給定，本條屆時另立
+新條取代，不以「補上」之名逕行填寫。
+```
+
+## R-PMH11 —— `MANIFEST.sha256` 入版控
+
+```
+R-PMH11（素材雜湊檔之版控）
+`features/power_moding/inputs/MANIFEST.sha256` 須入版控。
+
+實施方式：於 `features/power_moding/.gitignore` 之 `inputs/` 排除規則後
+增列否定規則 `!inputs/MANIFEST.sha256`，並以 `git check-ignore -v` 對該
+路徑實測其不再被忽略（唯讀指令，執行層可執行）。
+
+素材檔本身（四份）維持不入版控。本條解 A-PMH05 所指之 §9.1 通則 9 衝突，
+其適用範圍限於本 feature；`scripts/new_feature.py` 之 `GITIGNORE` 樣板
+是否同步修改，屬 canon 層，本條不及之。
+```
+
+> **執行層附註（2026-08-23，A-PMH06 → RESOLVED）** —— 上列 R-PMH11 所指定之
+> 實施方式（`inputs/` ＋ `!inputs/MANIFEST.sha256`）**實測無效**：git 不遞迴
+> 進入已排除之目錄，其內之否定規則不被求值。**本條之目的未變**，其寫法由
+> **R-PMH15** 取代（`inputs/*` ＋ 否定規則，四項雙向驗證），並經 **R-PMH17**
+> 由 Pei 於 2026-08-23 追認。**原條文不改字**（比照 R-PMH6／R-P36）。
+>
+> ⚠ **canon 層成因未解（PENDING-CANON）** —— `scripts/new_feature.py` 之
+> `GITIGNORE` 樣板仍為 `inputs/` 目錄形態，任何新 feature 照樣板產出者，
+> 其雜湊檔都會被忽略。Pei 之追認就其字面只及於本 feature 之 `.gitignore`，
+> 未及於樣板；執行層不得順手改之（03a §四）。
+
+## R-PMH12 —— 跨表列號以 id 實測，不以位移推算
+
+```
+R-PMH12（跨表列號之比對方式）
+跨表之列號對應一律以 id 實測比對，不以列號位移推算。
+
+依據：037 之 56 列含 8 個 Heading 列而 036 之 48 列不含之，位移非定值
+（01 包 §3.3）。本條適用於本 feature 之全部跨表比對，不限於 037↔036。
+```
+
+---
+
+## 抄錄逐條核對表（02 包步驟 1）
+
+抄錄方式同 01 包：以 `re.findall` 自 handoff §二之 fenced block 直接取字串
+寫入，未經人工重打；核對時對 handoff 原文與 `RULINGS.md` 落地文**各自獨立
+再抽取**後計 SHA256。
+
+| 條號 | 主旨 | 字數 | handoff SHA256（前 16） | RULINGS SHA256（前 16） | 逐字相符 |
+|---|---|---|---|---|---|
+| R-PMH7 | 交付母本為 forms ext；客戶那份降為來源複本 | 545 | `78b740e423d40164` | `78b740e423d40164` | ✅ 逐字相符 |
+| R-PMH8 | `workbook_state` = `BLANK`；撤回 `PREFILLED_DRAFT` | 400 | `533aac08d7e1c3da` | `533aac08d7e1c3da` | ✅ 逐字相符 |
+| R-PMH9 | 欄位對應作廢重測，四方交叉佐證 | 325 | `e32121320838363a` | `e32121320838363a` | ✅ 逐字相符 |
+| R-PMH10 | D3／D4／D5 一律留空 | 304 | `885070968235b262` | `885070968235b262` | ✅ 逐字相符 |
+| R-PMH11 | `MANIFEST.sha256` 入版控 | 347 | `bbba2810887e6e96` | `bbba2810887e6e96` | ✅ 逐字相符 |
+| R-PMH12 | 跨表列號以 id 實測，不以位移推算 | 146 | `e56341f8ea5c4b56` | `e56341f8ea5c4b56` | ✅ 逐字相符 |
+
+---
+
+# 下放包 03 —— Test Group 欄值改判、DV 列舉值實測
+
+來源包：`docs/handoff/03_testgroup_and_dv.md`
+（SHA256 `22ad9db5775e46518be65e7e3bfbc2c75f40700667065a109bf711dee8d24e59`）§三
+抄錄日：2026-08-23
+
+## R-PMH13 —— G 欄填交付夾名；撤回 R-PMH2 後半
+
+```
+R-PMH13（workbook Test Group 欄之值）
+工作簿 `Test Group`（G）欄一律填交付夾名 `Disclaimer screen`。
+
+依據為四份已交付件之實測：G 欄相異值恰為交付夾名，覆蓋 4/4、
+各檔 100% 之資料列（Comfort 466/466 = `Climate Control Interface`、
+User Profiles 189/189、Time Management 59/59、
+Power Management 283/283）。
+
+R-PMH2 之後半（`test_group` 為 `Power Moding`）**撤回**。
+R-PMH2 之前半（`feature` = `Power Moding`、slug = `power_moding`）
+**維持有效** —— 其為 repo 內部識別，不進入任何交付欄位，不受本條影響。
+
+`feature.yaml` 之 `test_group` 鍵改為 `Disclaimer screen`，並於註解記明
+其為交付夾名而非規格模組名，以免日後被讀成 R-C6 之同型錯誤。
+
+本條之效力起於 Pei 核可；核可前 G 欄不得寫入任何值（R-PMH6 之延後仍在）。
+```
+
+## R-PMH14 —— 語料之鑑別力口徑（分母為能分辨者）
+
+```
+R-PMH14（語料之鑑別力口徑）
+以已交付件語料支持某一判斷時，其分母為「**能分辨候選各案之交付件數**」，
+不是「交付件總數」。
+
+不能分辨者（各候選在該件上取值相同）不計入分子亦不計入分母，並須於
+引用處具名列出其被排除之理由。
+
+依據：Q7 之語料中，三份交付件之交付夾名與規格模組名恰好相同，
+故其 `{abbr}` 無論依何者取值都得同一結果 —— 該三份對本題之鑑別力為零，
+「3 / 4 支持某案」為無效之比率（R-G8：缺判準之比率不予採認）。
+```
+
+## R-PMH15 —— `.gitignore` 之 `inputs/*` 形態與四項雙向驗證
+
+```
+R-PMH15（A-PMH06 之落實方法）
+`features/power_moding/.gitignore` 之素材排除改以 `inputs/*` 形態書寫，
+其後接否定規則放行 `inputs/MANIFEST.sha256`。
+
+不得使用 `inputs/`（目錄形態）＋ 否定規則之組合 —— git 不遞迴進入已排除
+之目錄，該組合實測無效（A-PMH06）。
+
+驗證條件（雙向，缺一不可）：
+(a) `git check-ignore -v` 對 `MANIFEST.sha256` 無命中；
+(b) 同指令對四份素材各自仍命中；
+(c) 他 feature 之忽略行為不變；
+(d) `git add --dry-run` 對 `inputs/` 恰輸出一筆。
+
+R-PMH11 之目的未變，本條僅取代其所指定之寫法。
+```
+
+---
+
+# 下放包 03a —— Pei 裁定三項（與 03 同一往返）
+
+來源包：`docs/handoff/03a_pei_rulings.md`
+（SHA256 `3da4ce9e6aa88f3b8230ae03837998a0a89baa562b3630068ff26b268d88598e`）§二
+抄錄日：2026-08-23
+Pei 之裁定原文（2026-08-23，逐字）：「R-PMH13 核可、Q7 乙、A-PMH06 追認」
+
+## R-PMH13 之生效 —— 核可生效，G 欄停止條件解除
+
+```
+R-PMH13 之生效（加註，原條文不改字）
+Pei 於 2026-08-23 核可 R-PMH13。該條末句「本條之效力起於 Pei 核可；
+核可前 G 欄不得寫入任何值」之停止條件**解除**。
+
+`feature.yaml` 之 `test_group` 得改為 `Disclaimer screen`。
+R-PMH6 對 H 欄（Test Set）之延後**不受本核可影響**，仍待 Phase 3。
+```
+
+## R-PMH16 —— `tc_id_format` = `NR1L-DisclaimerScreen-{NNN}`，附已知反例
+
+```
+R-PMH16（tc_id 之 {abbr}）
+`tc_id_format` 為 `NR1L-DisclaimerScreen-{NNN}`。
+
+判準：`{abbr}` = 交付夾名去除空白後之 PascalCase，即
+`Disclaimer screen` → `DisclaimerScreen`。與 R-PMH13 之 G 欄值同源。
+
+Pei 於 2026-08-23 裁定採 03 包 §4.3 之（乙）案，未採分析層所提之（甲）案
+（`PowerModingHMI`）。
+
+**已知反例須隨本條保留，不得略去**：Comfort 之 `{abbr}` 為 `ComfortHMI`，
+其交付夾名為 `Climate Control Interface` —— 該件不符本條之判準，且它是
+03 包 §4.2 依 R-PMH14 篩出之唯一具鑑別力語料。
+
+故本條為**本 feature 之裁定，不主張為全案慣例**；他 feature 引用本條前
+須自行查其交付件。
+```
+
+## R-PMH17 —— A-PMH06 之追認，RESOLVED
+
+```
+R-PMH17（A-PMH06 之追認）
+Pei 於 2026-08-23 追認 R-PMH15 所定之 `.gitignore` 寫法
+（`inputs/*` ＋ 否定規則放行 `MANIFEST.sha256`，四項雙向驗證）。
+
+A-PMH06 → RESOLVED。R-PMH11 之目的未變，其所指定之無效寫法由 R-PMH15
+取代，原文不改字。
+```
+
+## R-PMH18 —— 兩個字面常數之大小寫保真
+
+```
+R-PMH18（本 feature 兩個字面常數之保真）
+下列二字串為逐字常數，大小寫、空白、單複數一律照抄，任何比對與 lint
+須為大小寫敏感：
+
+  G 欄（Test Group）之值：`Disclaimer screen`   —— screen 為小寫 s
+  tc_id 之 {abbr}：      `DisclaimerScreen`     —— Screen 為大寫 S
+
+二者刻意不同（前者為交付夾名原樣，後者為其去空白之 PascalCase），
+**不是筆誤，不得「統一」**。任何將二者正規化為同一形態之處理即為缺陷。
+```
+
+---
+
+## 抄錄逐條核對表（03 ＋ 03a）
+
+抄錄方式同 01／02 包：`re.findall` 自 handoff 之 fenced block 直接取字串寫入，
+未經人工重打；核對時對 handoff 原文與 `RULINGS.md` 落地文**各自獨立再抽取**
+後計 SHA256。
+
+| 來源 | 條號 | 主旨 | 字數 | handoff SHA256（前 16） | RULINGS SHA256（前 16） | 逐字相符 |
+|---|---|---|---|---|---|---|
+| 03 | R-PMH13 | G 欄填交付夾名；撤回 R-PMH2 後半 | 544 | `6e163ef260ff31e6` | `6e163ef260ff31e6` | ✅ 逐字相符 |
+| 03 | R-PMH14 | 語料之鑑別力口徑（分母為能分辨者） | 232 | `6d4b62eca4fb8279` | `6d4b62eca4fb8279` | ✅ 逐字相符 |
+| 03 | R-PMH15 | `.gitignore` 之 `inputs/*` 形態與四項雙向驗證 | 368 | `8c7e1e9140c9575f` | `8c7e1e9140c9575f` | ✅ 逐字相符 |
+| 03a | R-PMH13 之生效 | 核可生效，G 欄停止條件解除 | 204 | `5c2d8191265d14af` | `5c2d8191265d14af` | ✅ 逐字相符 |
+| 03a | R-PMH16 | `tc_id_format` = `NR1L-DisclaimerScreen-{NNN}`，附已知反例 | 441 | `b5c1dca6cebb18b6` | `b5c1dca6cebb18b6` | ✅ 逐字相符 |
+| 03a | R-PMH17 | A-PMH06 之追認，RESOLVED | 179 | `8d9e34596fe21d01` | `8d9e34596fe21d01` | ✅ 逐字相符 |
+| 03a | R-PMH18 | 兩個字面常數之大小寫保真 | 273 | `8ec7e2b9cf2f794d` | `8ec7e2b9cf2f794d` | ✅ 逐字相符 |

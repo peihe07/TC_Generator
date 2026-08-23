@@ -2,68 +2,96 @@
 # All feature-specific constants live HERE; shared scripts read this file
 # and contain no per-feature literals. Regenerate nothing by editing code.
 #
-# Phase 0（2026-08-22，下放包 01）填入。每一欄位之來源：
-#   - 欄位字母：對 inputs/ 之 036 複本（SHA256 2be63feb…664625a54）r9 表頭
-#     逐欄實測，16/16 唯一命中（比對法：取換行前英文段、空白正規化、小寫、
-#     逐字相等）。**未沿用任何既有 feature 之欄位表**（R-PMH3(a)）。
-#   - 命名值：R-PMH1／R-PMH2 逐字。
-#   - spec_mode：步驟 7 之跨素材抽取試驗（見 docs/upstream/01_intake.md §5）。
+# Phase 0：01 包（2026-08-22）建立，**02 包（2026-08-23）依 R-PMH7～R-PMH9
+# 大幅改寫**。改寫之範圍與依據：
+#   - `paths.workbook`：改指 R-G1 全域母本之工作副本（R-PMH7）。客戶那份
+#     降為 `customer_source_copy`，僅供 leaf 對應查核與附屬分頁取得。
+#   - `workbook.columns`：01 包之 16/16 **作廢**（其量測對象為 35 欄之離群
+#     版面），改對母本 r9 重測（R-PMH9），並與三份已交付件四方逐欄比對通過。
+#   - `workbook_state`：`PENDING_RULING` → `BLANK`（R-PMH8）。
 # 未實測者一律留 TBD／null，不猜。
 #
 # 客戶交付夾：/Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/
 #             ASW-R2/Disclaimer screen/
 #   —— 夾名 `Disclaimer screen` 為 FROP 標籤，**不入任何 TC 欄位**（R-PMH2）。
+#   ⚠ 見 A-PMH07：R-PMH2 所引之 Comfort R-C6 前例，於實際交付件上未實現
+#     （Comfort 交付件 G 欄 466 列全為交付夾名 `Climate Control Interface`）。
 
 feature: "Power Moding"
 slug: "power_moding"                   # R-PMH2
-test_group: "Power Moding"             # R-PMH2：規格標題之模組名，非交付夾名
-                                       # （Comfort R-C6 同型前例）
-tc_id_pattern: TBD                     # Phase 3 定；本工作簿 F 欄 48 列全空
+# R-PMH13（Pei 2026-08-23 核可）—— **交付夾名，不是規格模組名**。
+# 依據為四份已交付件之實測：G 欄相異值恰為交付夾名，覆蓋 4/4、各檔 100%
+# （Comfort 466/466 = `Climate Control Interface`、User Profiles 189/189、
+#  Time Management 59/59、Power Management 283/283）。
+# R-PMH2 之後半（`test_group` 為 `Power Moding`）已撤回；其前半
+# （`feature` / `slug`）維持有效 —— 那是 repo 內部識別，不進交付欄位。
+# ⚠ R-PMH18 —— `screen` 為**小寫 s**，與 tc_id 之 `DisclaimerScreen` 刻意不同。
+#   二者不得「統一」；一切比對與 lint 須大小寫敏感。
+# ⚠ 不得讀成 R-C6 之同型錯誤（A-PMH07：R-C6 裁「填 Comfort」而其交付件
+#   466 列全填 `Climate Control Interface`）。
+test_group: "Disclaimer screen"
+
+# R-PMH16（Pei 2026-08-23 裁「乙」案）—— `{abbr}` = 交付夾名去空白之 PascalCase。
+# ⚠ R-PMH18 —— `Screen` 為**大寫 S**。
+# 已知反例隨條保留：Comfort 之 `{abbr}` 為 `ComfortHMI` 而其交付夾名為
+# `Climate Control Interface` —— 該件不符本判準，且它是依 R-PMH14 篩出之
+# **唯一具鑑別力語料**（其餘三份之交付夾名與規格模組名相同，鑑別力為零）。
+# 故本條為本 feature 之裁定，**不主張為全案慣例**；他 feature 引用前須自查其交付件。
+tc_id_format: "NR1L-DisclaimerScreen-{NNN}"
 
 paths:
-  # 母本身分待裁（Q2）—— 現指向客戶交付夾之現有 036（已含 48 列 req 對應）。
-  # 若 Q2 裁為改用 R-G1 母本 forms/…_20260817_ext.xlsx，此鍵與下方 columns
-  # 須整組重測（二者版面不同，見 workbook.layout_note）。
-  workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_PowerModingHMI_20260819.xlsx"
+  # R-PMH7 —— 交付基底為 R-G1 全域母本之工作副本。
+  # SHA256 6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2
+  # 與 R-PMH7 條文所載逐字相同（02 包步驟 4 實測）。
+  workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
+  # R-PMH7 —— 「需求對應之來源複本」。**不作交付基底、不作版面依據、
+  # 不作 style authority**。SHA256 2be63feb…664625a54。用途限二項：
+  #   (1) 037→036 之 leaf 對應查核；
+  #   (2) 其三個附屬分頁（Test Case Framework／Reference／QS Suggestion）
+  #       之內容取得 —— 母本為 9 分頁，無 `Test Case Framework`。
+  # ⚠ A-PMH09 —— **其 `Cover 封面`／`ChangeHistory 修訂履歷`／
+  #   `Product Document 記錄封面頁` 三頁不得取用**：ChangeHistory 之 rev C
+  #   列已被覆寫為 **AMFM feature 之寫回註記**（`SWE1_AMFM`、143 TC／102 leaf／
+  #   自 r168 append），表單自身之版本沿革在該檔已遺失；`Cover!D6` 版本為 `A`
+  #   而其 ChangeHistory 有 A/B/C 三列，檔案自相矛盾。
+  #   上列 (2) 之「附屬分頁」僅指 Reference／QS Suggestion／Test Case Framework。
+  customer_source_copy: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_PowerModingHMI_20260819.xlsx"
   a03_report: "inputs/FM-WI-FSM-037-A03-N1L-SWE1-PowerModing-HMI-V0.1 STLA 報告.xlsx"
   sys1_export: "inputs/SYS1_HMI_Power_Moding_HMI_Logic_and_Flow_R1_SR24_2A.xlsx"
   spec_pdf: "inputs/Power Moding HMI Logic and Flow R1 SR24 2A DCR22412 (January 24 2023).pdf"
   popup_list: null                     # 交付夾未提供；037 亦無 PU-number id
 
-# 步驟 7 實測：兩面基線，依 §9.1 通則 3 指定分工，依通則 7「增欄不取代」並存。
+# 01 包步驟 7 實測，02 包 §1.2 核可。兩面基線依 §9.1 通則 3 指定分工，
+# 依通則 7「增欄不取代」並存。
 spec_mode: "A+B"
 spec_baseline:
   interpretation:   "spec_pdf"      # 判讀基準（內文面）—— 11/11 頁具文字層
   traceability:     "sys1_export"   # 追溯用（結構面）—— Outline Number 之權威
   known_exceptions:
-    - "sys1_export 之 6 個 outline（2.1/3.1/4.1/5.1/6.1/12.4）描述為
-       `Please refer to the diagram (image: …png)` 圖片佔位，無文字內容；
-       其內容僅存於 PDF p3–p7 之流程圖。**該六者不在 037 引用之 29 章節內**，
-       但屬 Layer 2 之目次輸入。見 A-PMH04。"
-    - "sys1_export 之 outline 7.1 相對 PDF 為**重排**（文字 777 字 100% 見於
-       PDF，惟切成兩段落於 PDF 之不同位置）；流程之語句順序以 PDF 為準。
-       見 A-PMH03。"
-    - "spec_pdf 為 Visio 匯出之流程圖冊，**無編號目次**（pdftotext 偵得之
-       章節號僅頂層 1–10 且為誤命中）。故 `{outline}` 一律取自 sys1_export，
-       不得以 PDF 之 section regex 構造。"
-    - "pdftotext -layout 對多欄流程圖頁會誤切（通則 7 之「誤切之來源」）；
-       圖頁之判讀須另以圖像 render 為準（canon §3）。"
+    - "sys1_export 之 6 則 outline（2.1/3.1/4.1/5.1/6.1/12.4）為圖片佔位，
+       內容僅存於 PDF 流程圖。該六者不在 037 引用之 29 章節內。見 A-PMH04。"
+    - "sys1_export 之 outline 7.1 相對 PDF 為**重排**；流程之語句順序以 PDF
+       為準。**Phase 4 之指名複核項**（該章節 5 個 leaf，且被移位改寫者為
+       動畫／splash 之時序）。見 A-PMH03 與 02 包 §1.2。"
+    - "spec_pdf 為 Visio 匯出之流程圖冊，**無編號目次**。`{outline}` 一律取自
+       sys1_export，不得以 PDF 之 section regex 構造。"
+    - "pdftotext -layout 對多欄流程圖頁會誤切；圖頁之判讀須以圖像 render
+       為準（canon §3 之無條件義務）。"
 
-# 037 之 `HMI Source ID` 欄 48 列格式即為本模板之實例，故 template 非構造而是
-# 複現：`Power Moding HMI Logic and Flow R1 SR24 2A_7.1` 等。
 spec_reference_template: "Power Moding HMI Logic and Flow R1 SR24 2A_{outline}"
 
 workbook:
-  sheet: "Test Case Specification 測試用例規範"   # 實測；非 rev A/B 之 "…&Result"
+  sheet: "Test Case Specification 測試用例規範"
   header_row: 9
   first_data_row: 10
-  last_capacity_row: TBD          # 未實測（B 欄公式與 DV 上界）
-  # layout_note —— 實測為 **A–AI 共 35 欄**，非 rev C 之 A–AH 34 欄：
-  #   P 與 R **兩欄同名** `Estimated Test Time (mins)`（唯一重複表頭）。
-  #   故自 priority 起，每一欄較 rev C（user_profiles / time_management）
-  #   再右移一格：priority Q（rev C 為 P）、design_method S（R）、
-  #   functional_safety T（S）、author AB（AA）、remarks AI（AH）。
-  #   AH 於本版面實為 Defect ID —— 誤用 rev C 之 AH 會寫進 Defect ID 欄。
+  last_capacity_row: 1411        # 實測：B 欄公式止於 B1411（B1412 為 None）；
+                                 # 四組 DV 之 sqref 亦皆止於 1411
+  # layout_note —— 母本為 **A–AH 共 34 欄**（rev C 標準版面）。
+  #   `Estimated Test Time (mins)` **恰出現一次**（Q）—— R-PMH7 之判準通過。
+  #   與 01 包所測之客戶那份（35 欄、P/R 兩個 Estimated Test Time）不同版面：
+  #   自 priority 起每欄左移一格。01 包之欄位表已依 R-PMH9 作廢。
+  #   四方交叉佐證（R-PMH9）：母本 ＋ User Profiles 20260820 ＋
+  #   Comfort 20260817 ＋ Time Management 20260822，r9 表頭 34 欄逐欄相等。
   columns:
     req_id: "D"            # Requirement or Design ID 需求/設計 ID
     tc_id: "F"             # Test Case ID 測試用例ID
@@ -76,34 +104,65 @@ workbook:
     expected_result: "M"   # Expected Result 預期結果
     spec_reference: "N"    # Specification Reference 規格參考
     tc_ref_id: "O"         # Test Case Reference ID 測項參考ID
-    priority: "Q"          # Test Case Priority 測試用例優先級別
-    design_method: "S"     # Test Case Design Methods 測試用例設計方法
-    functional_safety: "T" # Functional Safety 功能安全
-    author: "AB"           # Test Case Author 測試案例作者
-    remarks: "AI"          # Remarks 備註
-  # 未入 16 鍵但已實測之欄，供 Phase 3 參考，本包不使用：
-  #   C req_id_polarion / E tc_id_testrail / P,R estimated_test_time（重複）
-  #   U–AA 七個車型欄 / AC test_version / AD test_vehicle / AE test_period
-  #   AF tester / AG test_result / AH defect_id
-  data_validation: TBD     # 未實測（含 x14 擴充）—— Q2 定案後隨母本一併測
+    priority: "P"          # Test Case Priority（01 包誤記 Q —— 離群版面）
+    design_method: "R"     # Test Case Design Methods（01 包誤記 S）
+    functional_safety: "S" # Functional Safety 功能安全（01 包誤記 T）
+    author: "AA"           # Test Case Author 測試案例作者（01 包誤記 AB）
+    remarks: "AH"          # Remarks 備註（01 包誤記 AI）
+  # 未入 16 鍵但已實測之欄：C req_id_polarion / E tc_id_testrail /
+  #   Q estimated_test_time / T–Z 七個車型欄 / AB test_version /
+  #   AC test_vehicle / AD test_period / AE tester / AF test_result /
+  #   AG defect_id
+  b_column_formula: '=IF(ISBLANK($D{row}),"",ROW()-9)'   # 實測 B10–B1411
+  freeze_panes: null                                     # 實測：母本無凍結窗格
+  merged_cells: ["A1:AE1", "B7:AA7", "AB7:AH7", "T8:Z8"]
+  # ⚠ `data/outline_map.json` 之 `row_036_customer` 欄記的是 leaf 在
+  #   **客戶那份**之列號（10–57），**不是寫回目標列**。母本為 BLANK，
+  #   寫回目標由 `write_back.first_row` 起之 append 順序決定。
+  #   任何以 `row_036_customer` 定位寫回之程式即為缺陷（02 §11 第 4 項）。
+  # R-PMH10 —— 前言三欄一律留空。實測語料 5/5 皆空（母本 ＋ UP 20260820 ＋
+  # Comfort 20260817 ＋ TM 20260822 ＋ Power Management 20260821）。
+  preamble_cells_keep_blank: ["D3", "D4", "D5"]
+  data_validation:               # 實測自 sheet6.xml 之 sqref，未經 openpyxl 存回
+    priority:      {range: "P10:Q1411", kind: "standard"}
+    vehicle_models: {range: "T10:Z1411", kind: "standard"}
+    test_result:   {range: "AF10:AF1411", kind: "standard"}
+    design_method: {range: "R10:R1411", kind: "x14", source: "下拉選單!$A$1:$A$9"}
+  # ⚠ x14 DV 存在 —— **不得以 openpyxl 開啟後 save()**（R-G1 註／R-G3）。
+  #   寫回一律走 xlsx_surgical splice。停止條件 9。
 
-# 步驟 6 之逐列判定結果見 docs/upstream/01_intake.md §4。
-# canon §2 四類皆不合：filled = 48、qualifying done = 0。
-# **不自行歸類**（停止條件 2）—— 待 Q1 裁定。
-workbook_state: PENDING_RULING   # 提案 `PREFILLED_DRAFT`，見 Q1
+# R-PMH8 —— 撤回 `PREFILLED_DRAFT`。實測佐證：母本資料區（r>=10）除 B 欄
+# 公式外之非空儲存格 = 0（掃 A–AH 全 34 欄）。
+workbook_state: "BLANK"
 
 done_region:
   detection: "author"
-  author_value: null       # AB 欄 48 列全空 —— 無 done region（R-PMH5）
-  invariant: "content_hash"
+  author_value: null             # R-PMH8 —— done_region 不適用
+  invariant: null                # R-PMH8 —— done invariant 不適用
 
 write_back:
-  author_value: "PeiPYHsu"
+  first_row: 10                  # R-PMH8 —— 自首資料行 append
+  mode: "append"
+  author_value: "PeiPYHsu"       # 語料佐證：Comfort 交付件 AA 欄實測值
   tc_ref_id_value: "NEW"
-  fill_test_group_set: TBD       # 隨 Q1 與 R-PMH6 之 Phase 3 定版
-  # 本包無寫回（停止條件 3）。
+  fill_test_group_set: true      # BLANK 之 canon §2 綁定
+  test_group_value: "Disclaimer screen"   # R-PMH13 已裁，G 欄可寫
+  test_set_value: null                    # H 欄仍待 Phase 3（R-PMH6，不受 R-PMH13 核可影響）
+  keep_blank: ["D3", "D4", "D5"] # R-PMH10
 
 lint:
-  design_method_source: "dropdown_sheet"   # 分頁 `下拉選單` 存在，內容未實測
-  popup_ids: []                            # 交付夾無 Pop Up List
+  # 01 包為「沿用預設」，02 包步驟 7 改為**實測**：母本與客戶那份之
+  # `下拉選單` A1:A9 **逐項相等**，即 x14 DV 之 source 全集。
+  design_method_source: "dropdown_sheet"
+  design_method_vocabulary:
+    - "功能測試 (Functional based ; no specific technique)"
+    - "狀態轉換 (State Transition Testing)"
+    - "決策表 (Decision Table Testing)"
+    - "等價劃分 (Equivalence Partitioning, EP)"
+    - "邊界值分析 (Boundary Value Analysis, BVA)"
+    - "組合測試 (Combinatorial Testing ; Pairwise / t-wise)"
+    - "情境 / 用例 (Scenario / Use Case Testing)"
+    - "負向測試 (Negative / Invalid)"
+    - "基礎故障注入 (Fault Injection Lite)"
+  popup_ids: []
   extra_rules: []
