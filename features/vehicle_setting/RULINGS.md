@@ -2195,3 +2195,67 @@ W-VF20 依 R-VF18 判出「須改 2／不改 95／待人工 0」，本層核可�
 - `feature.yaml:118`（`388/619`）**維持不改**
 
 本條末段令「變更前確認併行線未同時編輯該檔」—— 施行前 `git status` 實測`feature.yaml` 無併行線之未提交變更。
+
+---
+
+## VF230 線 —— V09 包
+
+Pei 裁定 2026-08-23（逐字：「還是 Vehicle Setting 不變」），逐字落檔。
+
+### R-VF23 —— feature 歸屬不變；檔案擺放不涉 feature 身分（V09 §1，**Pei 裁定 2026-08-23**）
+
+```
+R-VF23（feature 歸屬之重申與子目錄提案之撤回，Pei 裁定 2026-08-23）
+
+**一、重申 R-VF2。** VF230 併入 `features/vehicle_setting/`，
+與 CFTS044 同屬一個 feature。此不因任何 `docs/` 之檔案擺放而改變：
+`features/` 目錄結構不動、`framework.md` 之 Layer 1 不分、
+Test Group 依 R-VF9 兩本同值為 `Vehicle Setting`。
+
+**二、V08 §5.1 之修訂建議撤回。** 本層曾建議將 R-VF10 之
+「handoff／upstream 用 `VNN_`」改為「用 `vf230/{NN}_` 子目錄」，
+並同步建 `docs/handoff/vf230/`。**該建議撤回，不再提起。**
+
+理由：該提案在結構上讀為分家之訊號，而其所欲解決者
+（命名空間撞號）**R-VF10 之原制已足以解決** ——
+以檔名前綴分線，不需目錄分線。以較強之手段解決較弱之問題，
+其副作用（讀為分家）大於其收益。
+
+**三、R-VF10 維持原文，不修訂。** 五個命名空間之分配不變：
+
+  handoff／upstream 檔名   `V{NN}_` 平鋪
+  裁決                     `R-VF{n}`
+  anomaly                  `A-VF{n}`
+  工單                     `W-VF{n}`
+  DR                       不分離
+
+**四、目標狀態為單一套。** 現況為兩套並存 ——
+`docs/upstream/vf230/00_intake.md`＋`01_recon.md`（併行線所搬）
+與 `docs/upstream/V06_*.md`＋`V07_*.md`（本線）。
+**兩套並存即撞號問題之殘留形態**，須收斂為一套。
+依本條第三項，收斂方向為 `V{NN}_` 平鋪：
+
+  `docs/upstream/vf230/00_intake.md` → `docs/upstream/V01_vf230_intake.md`
+  `docs/upstream/vf230/01_recon.md`  → `docs/upstream/V02_vf230_recon.md`
+  收斂後移除空目錄 `docs/upstream/vf230/`
+
+**W-VF19 已實測二檔為純搬移、逐位元相同（368/368、247/247 行），
+無獨有內容，故此收斂無資料損失之虞。**
+
+**全部檔案搬移與 git 操作屬 Pei。** 兩層只備清單，不執行。
+```
+
+**執行層註（W-VF24 已執行，只列不改）**：清單見
+`docs/reports/wvf24_converge_plan.md`。**本輪未搬移、未改名、未 `git mv`、
+未刪目錄**（本條第四項末句：搬移與 git 操作屬 Pei）。
+
+三項須具名：
+
+1. **撞號於 handoff 側仍為現行狀態** —— `61`／`62`／`63` 三個號各有兩義
+   （`61_review_round37.md` vs `61_vf230_intake.md` 等）。upstream 側已無同號。
+2. **交叉引用 67 處／須同步更新 12 處** —— 其餘 55 處位於下放／上繳／已結案
+   報告，依 R-VF18 為歷史紀錄不追改。
+3. **與併行線有一處實質衝突**：`docs/handoff/64_review_round40.md`
+   （Part 1 線之下放包）已引用 `docs/upstream/vf230/…` 之新路徑。
+   依本條搬回後，該引用將指向不存在之路徑；而依 R-VF18 該檔為歷史紀錄
+   不得追改。**兩者不可兼得，本層不擇一，見上繳 V09 §4。**
