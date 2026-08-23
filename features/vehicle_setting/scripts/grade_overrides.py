@@ -14,11 +14,15 @@ R-VF20 之四項：
 **不改 `scripts/writability_driver.py`** —— 改其 `value_sourced()` 會令
 driver 對全部 leaf 重評值域來源，即全面回溯重跑，違反 R-VF14 第 4 項。
 
+**R-VF40 之兩條跨線檢查併入本檢查點**（不另立入口）：
+  檢查一（R-VF23 檔名合規）／檢查二（R-VF10 編號唯一性）
+
 用法：
     python3 scripts/grade_overrides.py --check     # 只驗，不寫；不符則 exit 1
     python3 scripts/grade_overrides.py --apply     # 套用覆寫並留快照
 """
 import csv
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -55,6 +59,63 @@ def expected_row(r: dict) -> dict:
         "evidence_note": (f"{r['ruling']}：值域來源為 {r['source_column']}，"
                           f"reqid {r['reqid']}，逐字 `{r['source_verbatim']}`"),
     }
+
+
+def check_rvf23() -> list[str]:
+    """檢查一（R-VF40）—— `docs/handoff`／`docs/upstream` 之檔名合規。
+
+    判準：檔名含 `vf230`／`test_group_ruling`／`numbering_collision`
+    而**不以 `V` 起首**者即為違反；`docs/upstream/vf230/` 目錄存在亦為違反。
+
+    錨點（R-VF21／R-VF28，以內容定錨）：
+      必命中   `99_vf230_test.md`（人為建）→ 須被列為違反
+      必不命中 `61_review_round37.md`（Part 1，含 `61_` 而非 VF230 線）
+      鑑別     `V01_vf230_intake.md` —— 含 `vf230` 而合規；
+               一條過寬之「檔名不得含 vf230」規則會誤殺之
+    """
+    bad = []
+    marks = ("vf230", "test_group_ruling", "numbering_collision")
+    for d in ("docs/handoff", "docs/upstream"):
+        base = ROOT / d
+        if not base.is_dir():
+            continue
+        for f in sorted(base.iterdir()):
+            if f.is_dir() and f.name == "vf230":
+                bad.append(f"{d}/vf230/ 目錄仍存在（R-VF23 第四項令收斂後移除）")
+                continue
+            if not f.is_file() or not f.name.endswith(".md"):
+                continue
+            low = f.name.lower()
+            if any(m in low for m in marks) and not f.name.startswith("V"):
+                bad.append(f"{d}/{f.name}：VF230 線之檔而未以 `V` 起首（R-VF23）")
+    return bad
+
+
+def check_rvf10() -> list[str]:
+    """檢查二（R-VF40）—— `RULINGS.md`／`ANOMALIES.md` 之編號唯一性。
+
+    同一編號不得有兩個**條文起始**。註記行（如「【VF230 線舊制編號…】」）
+    不得被計為第二次定義 —— 故 `RULINGS.md` 只認 `### R-Vx{n} ——` 之標題行，
+    `ANOMALIES.md` 只認表列首欄之 `| **A-Vx{n}**`。
+
+    錨點：
+      必命中   人為插入重複之 `### R-VF17 ——` → 須被列為違反
+      必不命中 現行兩檔 → 應通過
+      鑑別     `A-VS129`–`A-VS136` 之舊制標記行（其與編號同列，非新定義）
+    """
+    import collections
+    bad = []
+    r = (ROOT / "RULINGS.md").read_text(encoding="utf-8")
+    heads = re.findall(r"^### (R-V[SF]\d+) ——", r, re.M)
+    for k, n in collections.Counter(heads).items():
+        if n > 1:
+            bad.append(f"RULINGS.md：`{k}` 有 {n} 個條文起始（R-VF10）")
+    a = (ROOT / "ANOMALIES.md").read_text(encoding="utf-8")
+    ids = re.findall(r"^\| \*\*(A-V[SF]\d+)\*\*", a, re.M)
+    for k, n in collections.Counter(ids).items():
+        if n > 1:
+            bad.append(f"ANOMALIES.md：`{k}` 有 {n} 個表列定義（R-VF10）")
+    return bad
 
 
 def read_tsv(p: Path):
@@ -100,8 +161,16 @@ def main() -> None:
                 print(f"  {lid} · {col}: 現為 {cur!r}，應為 {want!r}", file=sys.stderr)
             print(f"\n修法：python3 {Path(__file__).name} --apply", file=sys.stderr)
             sys.exit(1)
+        # R-VF40：兩條跨線檢查併入同一檢查點
+        cross = check_rvf23() + check_rvf10()
+        if cross:
+            print("跨線檢查失敗（R-VF40）：", file=sys.stderr)
+            for b in cross:
+                print(f"  {b}", file=sys.stderr)
+            sys.exit(1)
         print(f"覆寫層 OK —— {len(ovr)} 筆 × "
               f"{len(expected_row(ovr[0]))} 欄皆為其應有之值")
+        print("R-VF23 檔名合規 OK ／ R-VF10 編號唯一性 OK")
         return
 
     gcols, grows = read_tsv(GEN)

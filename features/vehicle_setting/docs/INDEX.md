@@ -123,3 +123,31 @@
 `R-VS7` Comfort 委派界線／`R-VS9` CAN 訊號書寫形式（**建議增列「須指明 message 與網段」**）／
 `R-VS10` Pop Up List 基線版本／`R-VS11` Atlantis 欄可代用性（**A-VS15 為新素材**）／
 `R-VS8` 待 Pei 追認（本輪依改寫版作業，未據以更動任何交付內容）
+
+---
+
+## 舊路徑對照（R-VF23 搬移，2026-08-23；W-VF33）
+
+VF230 線之 handoff／upstream 檔於 `495b541` 收斂為 `V{NN}_` 平鋪。
+**歷史檔內之舊路徑引用一律不追改**（R-VF18／R-VF31 二之處置 1）——
+本表使失效連結可追。
+
+| 舊路徑 | 新路徑 |
+|---|---|
+| `docs/upstream/vf230/00_intake.md` | `docs/upstream/V01_vf230_intake.md` |
+| `docs/upstream/vf230/01_recon.md` | `docs/upstream/V02_vf230_recon.md` |
+| `docs/upstream/61_vf230_intake.md` | `docs/upstream/V01_vf230_intake.md` |
+| `docs/upstream/62_vf230_recon.md` | `docs/upstream/V02_vf230_recon.md` |
+| `docs/handoff/61_vf230_intake.md` | `docs/handoff/V01_vf230_intake.md` |
+| `docs/handoff/62_vf230_recon_review.md` | `docs/handoff/V02_vf230_recon_review.md` |
+| `docs/handoff/63_test_group_ruling.md` | `docs/handoff/V03_test_group_ruling.md` |
+| `docs/handoff/ZZ_vf230_numbering_collision.md` | `docs/handoff/V00_numbering_collision.md` |
+
+**引用面實測（W-VF33，2026-08-23 復測，不沿用 V11 之「2 處」）**：
+全庫 **68 處**／**24 檔**。其中位於 `docs/handoff/`、`docs/upstream/`、
+`docs/reports/` 者為歷史紀錄，依 R-VF18 不追改；
+`RULINGS.md` 之 9 處為執行層註內對當時路徑之記述，同屬歷史。
+**現行有效而須改者：0**（`scripts/vf230_wvf24_converge.py` 之搬移表為
+該工單之產物，其列舊路徑即其用途；`scripts/grade_overrides.py` 之
+`vf230/` 為 R-VF40 檢查一之判準文字，刻意保留）。
+

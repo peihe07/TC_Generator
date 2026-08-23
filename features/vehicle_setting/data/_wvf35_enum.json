@@ -1,0 +1,861 @@
+{
+  "moved": [
+    {
+      "cluster": "4 AUX Switches",
+      "leaf": 2,
+      "from": "Switch Power Mode",
+      "to": "Auxiliary Switches",
+      "gist": "取得 AUX_Switch_Type 配置以決定輔助開關之數量與型別",
+      "why_bad": "其為輔助開關本身之配置，與「電源模式」此一單一屬性不相稱",
+      "why_good": "`6 Aux Switches` 已在此，二者為同一功能之不同車型配置",
+      "seed": "(a)/(c)/檢視"
+    },
+    {
+      "cluster": "Rear Guidance Lights with\\nCargo Lights",
+      "leaf": 5,
+      "from": "Switch Power Mode",
+      "to": "Auxiliary Switches",
+      "gist": "取得 Utility_Light 配置以決定後方導引燈與貨廂燈之連動",
+      "why_bad": "其非開關之電源模式",
+      "why_good": "其二姊妹簇 `Rear Guidance Lighting with Approach` 與 `Rear Guidance Light Status` 皆已在此",
+      "seed": "(a)/(c)/檢視"
+    },
+    {
+      "cluster": "SWITCH 1 Hold Last State",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "to": "Auxiliary Switches",
+      "gist": "The HMI layer shall capture the customer selection for the SWITCH 1 Ho",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 1 Power Mode",
+      "leaf": 3,
+      "from": "Switch Power Mode",
+      "to": "Auxiliary Switches",
+      "gist": "When the customer chooses to set the SWITCH 1 Power Mode setting to Ig",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 1 Type",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "to": "Auxiliary Switches",
+      "gist": "The HMI layer shall capture the customer selection for the SWITCH 1 Ty",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 2 Hold Last State",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "to": "Auxiliary Switches",
+      "gist": "The HMI layer shall capture the customer selection for the SWITCH 2 Ho",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 2 Power Mode",
+      "leaf": 3,
+      "from": "Switch Power Mode",
+      "to": "Auxiliary Switches",
+      "gist": "When the customer chooses to set the SWITCH 2 Power Mode setting to Ig",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 2 Type",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "to": "Auxiliary Switches",
+      "gist": "The HMI layer shall capture the customer selection for the SWITCH 2 Ty",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 3 Hold Last State",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "to": "Auxiliary Switches",
+      "gist": "The HMI layer shall capture the customer selection for the SWITCH 3 Ho",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 3 Power Mode",
+      "leaf": 3,
+      "from": "Switch Power Mode",
+      "to": "Auxiliary Switches",
+      "gist": "When the customer chooses to set the SWITCH 3 Power Mode setting to Ig",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 3 Type",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "to": "Auxiliary Switches",
+      "gist": "The HMI layer shall capture the customer selection for the SWITCH 3 Ty",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 4 Hold Last State",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "to": "Auxiliary Switches",
+      "gist": "The HMI layer shall capture the customer selection for the SWITCH 4 Ho",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 4 Power Mode",
+      "leaf": 3,
+      "from": "Switch Power Mode",
+      "to": "Auxiliary Switches",
+      "gist": "When the customer chooses to set the SWITCH 4 Power Mode setting to Ig",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "SWITCH 4 Type",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "to": "Auxiliary Switches",
+      "gist": "The HMI layer shall capture the customer selection for the SWITCH 4 Ty",
+      "why_bad": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "why_good": "其另一半已在 `Auxiliary Switches`；不整併則同一功能被切成兩個 Test Set 各 3 條",
+      "seed": "(b)"
+    },
+    {
+      "cluster": "Suspension Auto Entry or Exit",
+      "leaf": 6,
+      "from": "Units and Cameras",
+      "to": "Suspension and Comfort",
+      "gist": "取得配置以決定上下車時懸吊之自動升降",
+      "why_bad": "其與單位顯示、攝影機無共同之 setup 型態",
+      "why_good": "為懸吊之自動行為，與 `Suspension Service Mode` 同族",
+      "seed": "(a)/(c)/檢視"
+    },
+    {
+      "cluster": "Suspension Default Ride Height",
+      "leaf": 6,
+      "from": "Switch Power Mode",
+      "to": "Suspension and Comfort",
+      "gist": "取得 Hybrid_Type 等配置以定懸吊之預設車高",
+      "why_bad": "其與開關之電源模式無任何共同之 setup 或 UI 進入路徑",
+      "why_good": "`Suspension Service Mode`／`Suspension Display Messages` 已在此，同為懸吊之設定",
+      "seed": "(a)/(c)/檢視"
+    },
+    {
+      "cluster": "Suspension Flash Lights With Lower",
+      "leaf": 5,
+      "from": "Switch Power Mode",
+      "to": "Suspension and Comfort",
+      "gist": "取得 CAN node 27 配置，控制車身降低時之閃燈行為",
+      "why_bad": "同上 —— 其為懸吊動作之附隨行為，非開關設定",
+      "why_good": "與其餘懸吊簇同一能力叢集",
+      "seed": "(a)/(c)/檢視"
+    },
+    {
+      "cluster": "Suspension Sound Horn With Lower",
+      "leaf": 5,
+      "from": "Switch Power Mode",
+      "to": "Suspension and Comfort",
+      "gist": "取得 CAN node 27 配置，控制車身降低時之鳴笛行為",
+      "why_bad": "同上",
+      "why_good": "同上",
+      "seed": "(a)/(c)/檢視"
+    },
+    {
+      "cluster": "Trailer Number",
+      "leaf": 8,
+      "from": "Approach and Tailgate",
+      "to": "Trailer and Signage",
+      "gist": "取得配置以決定可登錄之拖車組數",
+      "why_bad": "其與 approach 照明、電動尾門無關",
+      "why_good": "`Trailer Name`(22)／`Trailer Brake Type`(13)／`Automatic Trailer Light Check`／`Blind Spot with Trailer Detection` 皆在此",
+      "seed": "(a)/(c)/檢視"
+    }
+  ],
+  "stayed": [
+    {
+      "cluster": "6 Aux Switches",
+      "leaf": 2,
+      "ts": "Auxiliary Switches",
+      "note": ""
+    },
+    {
+      "cluster": "Auto Door Locks",
+      "leaf": 5,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Auto Fold Mirrors",
+      "leaf": 5,
+      "ts": "Suspension and Comfort",
+      "note": ""
+    },
+    {
+      "cluster": "Auto High Beam",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Auto On Driver Comfort - 2 Option",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Auto On Driver Comfort - 3 Option",
+      "leaf": 6,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Auto Park Brake",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Auto Unlock on Exit",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Automatic Trailer Light Check",
+      "leaf": 5,
+      "ts": "Trailer and Signage",
+      "note": ""
+    },
+    {
+      "cluster": "Blind Spot Alert",
+      "leaf": 6,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Blind Spot with Trailer Detection",
+      "leaf": 5,
+      "ts": "Trailer and Signage",
+      "note": ""
+    },
+    {
+      "cluster": "CHMSL CAMERA DYNAMIC CENTERLINE",
+      "leaf": 5,
+      "ts": "Trailer and Signage",
+      "note": ""
+    },
+    {
+      "cluster": "Charge Power Level",
+      "leaf": 8,
+      "ts": "Approach and Tailgate",
+      "note": "主旨為充電功率等級。**與 `Approach and Tailgate` 之名不相稱**，惟無更適當之既有 Test Set；依 R-VF41「不設通則」亦不得為其新設。**具名為異質性殘留**（R-VF37 已裁其為已接受之狀態）。"
+    },
+    {
+      "cluster": "Consumption Unit",
+      "leaf": 7,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Cornering Lights",
+      "leaf": 5,
+      "ts": "Lane and Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Daytime Running Lights",
+      "leaf": 5,
+      "ts": "Daytime Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Distance Unit",
+      "leaf": 4,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Driver Easy Exit Seat",
+      "leaf": 5,
+      "ts": "Suspension and Comfort",
+      "note": ""
+    },
+    {
+      "cluster": "E-Save",
+      "leaf": 6,
+      "ts": "Auxiliary Switches",
+      "note": ""
+    },
+    {
+      "cluster": "Engine Off Power Delay",
+      "leaf": 7,
+      "ts": "Suspension and Comfort",
+      "note": "主旨為熄火後電源延時。其屬 `Suspension and Comfort` 之「Comfort」一側，可辯護惟非理想。**具名。**"
+    },
+    {
+      "cluster": "Enhanced Display Synchronization",
+      "leaf": 6,
+      "ts": "Trailer and Signage",
+      "note": ""
+    },
+    {
+      "cluster": "Flash Light With Lock",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Forward Collision Warning",
+      "leaf": 6,
+      "ts": "Lane and Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Forward Collision Warning Sensitivity",
+      "leaf": 6,
+      "ts": "Lane and Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Greeting Lights",
+      "leaf": 5,
+      "ts": "Lane and Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Headlights Off Delay",
+      "leaf": 7,
+      "ts": "Daytime Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Headlights with Wipers",
+      "leaf": 5,
+      "ts": "Suspension and Comfort",
+      "note": ""
+    },
+    {
+      "cluster": "Hill Start Assist",
+      "leaf": 5,
+      "ts": "Suspension and Comfort",
+      "note": ""
+    },
+    {
+      "cluster": "Horn With Lock",
+      "leaf": 6,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Horn With Remote Start",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Hour Mode",
+      "leaf": 4,
+      "ts": "Units and Cameras",
+      "note": "主旨為 12／24 小時制之顯示格式，與 `Time and Date Settings` 同組，留於 `Units and Cameras` 正確。上一版規則因 `mode` 一詞誤移。"
+    },
+    {
+      "cluster": "Illuminated Approach",
+      "leaf": 7,
+      "ts": "Approach and Tailgate",
+      "note": ""
+    },
+    {
+      "cluster": "Lane Sense Strength",
+      "leaf": 6,
+      "ts": "Lane and Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Lane Sense Warning",
+      "leaf": 6,
+      "ts": "Lane and Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Language",
+      "leaf": 4,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Max Power Level",
+      "leaf": 4,
+      "ts": "Trailer and Signage",
+      "note": "主旨為最大輸出功率等級。同上。**具名。**"
+    },
+    {
+      "cluster": "Navigation Turn by Turn",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "New Speed Zone Indication",
+      "leaf": 6,
+      "ts": "Approach and Tailgate",
+      "note": ""
+    },
+    {
+      "cluster": "Paddle Shifter",
+      "leaf": 5,
+      "ts": "Approach and Tailgate",
+      "note": ""
+    },
+    {
+      "cluster": "Park Sense",
+      "leaf": 5,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Park Sense Front Volume",
+      "leaf": 6,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Park Sense Rear Volume",
+      "leaf": 6,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "ParkSense Based Camera Activation",
+      "leaf": 5,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Passive Entry",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Pedestrian Emergency Braking or Warning & Active Braking",
+      "leaf": 5,
+      "ts": "Lane and Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Phone Repetition",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Power Liftgate/Tailgate Alert",
+      "leaf": 6,
+      "ts": "Approach and Tailgate",
+      "note": ""
+    },
+    {
+      "cluster": "Power Side Step",
+      "leaf": 5,
+      "ts": "Trailer and Signage",
+      "note": "主旨為電動側踏板之啟閉。與 `Signage` 不相稱，無更適之處。**具名。**"
+    },
+    {
+      "cluster": "Power Tailgate",
+      "leaf": 6,
+      "ts": "Approach and Tailgate",
+      "note": ""
+    },
+    {
+      "cluster": "Power Unit",
+      "leaf": 6,
+      "ts": "Measurement Units",
+      "note": "**鑑別錨點**。主旨為功率單位（kW／hp）之顯示配置 —— 其為**量測單位**，非開關之電源模式。上一版規則僅因共用 `power` 一詞而誤移之，本方案不移。"
+    },
+    {
+      "cluster": "Pressure Unit",
+      "leaf": 6,
+      "ts": "Measurement Units",
+      "note": ""
+    },
+    {
+      "cluster": "RKE Linked to Memory",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Rain Sensing Wipers",
+      "leaf": 5,
+      "ts": "Lane and Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Ready to Drive Pop-Up",
+      "leaf": 5,
+      "ts": "Suspension and Comfort",
+      "note": ""
+    },
+    {
+      "cluster": "Rear Guidance Light Status",
+      "leaf": 5,
+      "ts": "Auxiliary Switches",
+      "note": ""
+    },
+    {
+      "cluster": "Rear Guidance Lighting with Approach",
+      "leaf": 5,
+      "ts": "Auxiliary Switches",
+      "note": "與其二姊妹簇同處 `Auxiliary Switches`，不動。"
+    },
+    {
+      "cluster": "Rear Seat Reminder",
+      "leaf": 5,
+      "ts": "Approach and Tailgate",
+      "note": ""
+    },
+    {
+      "cluster": "Rearview Camera Delay",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Rearview Camera Dynamic Guidelines",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "Remote Door Unlock",
+      "leaf": 5,
+      "ts": "Driver Convenience",
+      "note": ""
+    },
+    {
+      "cluster": "SWITCH 5 Hold Last State",
+      "leaf": 3,
+      "ts": "Auxiliary Switches",
+      "note": ""
+    },
+    {
+      "cluster": "SWITCH 5 Power Mode",
+      "leaf": 3,
+      "ts": "Auxiliary Switches",
+      "note": ""
+    },
+    {
+      "cluster": "SWITCH 5 Type",
+      "leaf": 3,
+      "ts": "Auxiliary Switches",
+      "note": ""
+    },
+    {
+      "cluster": "SWITCH 6 Hold Last State",
+      "leaf": 3,
+      "ts": "Auxiliary Switches",
+      "note": ""
+    },
+    {
+      "cluster": "SWITCH 6 Power Mode",
+      "leaf": 3,
+      "ts": "Auxiliary Switches",
+      "note": ""
+    },
+    {
+      "cluster": "SWITCH 6 Type",
+      "leaf": 3,
+      "ts": "Auxiliary Switches",
+      "note": ""
+    },
+    {
+      "cluster": "Signature Lighting",
+      "leaf": 5,
+      "ts": "Lane and Lighting",
+      "note": ""
+    },
+    {
+      "cluster": "Speed Unit",
+      "leaf": 4,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Surround View Camera Delay",
+      "leaf": 5,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Surround View Camera Guidelines",
+      "leaf": 5,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Suspension Display Messages",
+      "leaf": 5,
+      "ts": "Suspension and Comfort",
+      "note": ""
+    },
+    {
+      "cluster": "Suspension Service Mode",
+      "leaf": 5,
+      "ts": "Suspension and Comfort",
+      "note": ""
+    },
+    {
+      "cluster": "Temperature Unit",
+      "leaf": 5,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Tilt Mirror in Reverse",
+      "leaf": 5,
+      "ts": "Suspension and Comfort",
+      "note": ""
+    },
+    {
+      "cluster": "Time and Date Settings",
+      "leaf": 7,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Tire Fill Alert",
+      "leaf": 5,
+      "ts": "Suspension and Comfort",
+      "note": ""
+    },
+    {
+      "cluster": "Torque Unit",
+      "leaf": 5,
+      "ts": "Measurement Units",
+      "note": ""
+    },
+    {
+      "cluster": "Traffic Sign Assist Offset - NAFTA Setting",
+      "leaf": 33,
+      "ts": "Trailer and Signage",
+      "note": ""
+    },
+    {
+      "cluster": "Traffic Sign Assist Offset - non-NAFTA Setting",
+      "leaf": 23,
+      "ts": "Trailer and Signage",
+      "note": ""
+    },
+    {
+      "cluster": "Traffic Sign Warning",
+      "leaf": 6,
+      "ts": "Approach and Tailgate",
+      "note": ""
+    },
+    {
+      "cluster": "Trailer Brake Type",
+      "leaf": 13,
+      "ts": "Trailer and Signage",
+      "note": ""
+    },
+    {
+      "cluster": "Trailer Name",
+      "leaf": 22,
+      "ts": "Trailer and Signage",
+      "note": ""
+    },
+    {
+      "cluster": "Turn Signal Activated Blind Spot Camera View",
+      "leaf": 5,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Turn Signal Activated Blind Spot Camera View with Trailer Option",
+      "leaf": 6,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Unit Energy",
+      "leaf": 6,
+      "ts": "Units and Cameras",
+      "note": ""
+    },
+    {
+      "cluster": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
+      "leaf": 5,
+      "ts": "Trailer and Signage",
+      "note": ""
+    },
+    {
+      "cluster": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
+      "leaf": 5,
+      "ts": "Trailer and Signage",
+      "note": ""
+    }
+  ],
+  "ts_leaf": {
+    "Auxiliary Switches": 115,
+    "Units and Cameras": 73,
+    "Suspension and Comfort": 74,
+    "Driver Convenience": 99,
+    "Trailer and Signage": 139,
+    "Approach and Tailgate": 49,
+    "Lane and Lighting": 49,
+    "Daytime Lighting": 12,
+    "Measurement Units": 17
+  },
+  "total": 627,
+  "gone": [
+    "Switch Power Mode",
+    "Switch Type and State"
+  ],
+  "new_names": [],
+  "final": {
+    "Auxiliary Switches": {
+      "4 AUX Switches": 2,
+      "6 Aux Switches": 2,
+      "E-Save": 6,
+      "Rear Guidance Light Status": 5,
+      "Rear Guidance Lighting with Approach": 5,
+      "Rear Guidance Lights with\\nCargo Lights": 5,
+      "SWITCH 1 Hold Last State": 6,
+      "SWITCH 1 Power Mode": 6,
+      "SWITCH 1 Type": 6,
+      "SWITCH 2 Hold Last State": 6,
+      "SWITCH 2 Power Mode": 6,
+      "SWITCH 2 Type": 6,
+      "SWITCH 3 Hold Last State": 6,
+      "SWITCH 3 Power Mode": 6,
+      "SWITCH 3 Type": 6,
+      "SWITCH 4 Hold Last State": 6,
+      "SWITCH 4 Power Mode": 6,
+      "SWITCH 4 Type": 6,
+      "SWITCH 5 Hold Last State": 3,
+      "SWITCH 5 Power Mode": 3,
+      "SWITCH 5 Type": 3,
+      "SWITCH 6 Hold Last State": 3,
+      "SWITCH 6 Power Mode": 3,
+      "SWITCH 6 Type": 3
+    },
+    "Units and Cameras": {
+      "Auto Door Locks": 5,
+      "Consumption Unit": 7,
+      "Distance Unit": 4,
+      "Hour Mode": 4,
+      "Park Sense": 5,
+      "ParkSense Based Camera Activation": 5,
+      "Speed Unit": 4,
+      "Surround View Camera Delay": 5,
+      "Surround View Camera Guidelines": 5,
+      "Temperature Unit": 5,
+      "Time and Date Settings": 7,
+      "Turn Signal Activated Blind Spot Camera View": 5,
+      "Turn Signal Activated Blind Spot Camera View with Trailer Option": 6,
+      "Unit Energy": 6
+    },
+    "Suspension and Comfort": {
+      "Auto Fold Mirrors": 5,
+      "Driver Easy Exit Seat": 5,
+      "Engine Off Power Delay": 7,
+      "Headlights with Wipers": 5,
+      "Hill Start Assist": 5,
+      "Ready to Drive Pop-Up": 5,
+      "Suspension Auto Entry or Exit": 6,
+      "Suspension Default Ride Height": 6,
+      "Suspension Display Messages": 5,
+      "Suspension Flash Lights With Lower": 5,
+      "Suspension Service Mode": 5,
+      "Suspension Sound Horn With Lower": 5,
+      "Tilt Mirror in Reverse": 5,
+      "Tire Fill Alert": 5
+    },
+    "Driver Convenience": {
+      "Auto High Beam": 5,
+      "Auto On Driver Comfort - 2 Option": 5,
+      "Auto On Driver Comfort - 3 Option": 6,
+      "Auto Park Brake": 5,
+      "Auto Unlock on Exit": 5,
+      "Blind Spot Alert": 6,
+      "Flash Light With Lock": 5,
+      "Horn With Lock": 6,
+      "Horn With Remote Start": 5,
+      "Language": 4,
+      "Navigation Turn by Turn": 5,
+      "Park Sense Front Volume": 6,
+      "Park Sense Rear Volume": 6,
+      "Passive Entry": 5,
+      "Phone Repetition": 5,
+      "RKE Linked to Memory": 5,
+      "Rearview Camera Delay": 5,
+      "Rearview Camera Dynamic Guidelines": 5,
+      "Remote Door Unlock": 5
+    },
+    "Trailer and Signage": {
+      "Automatic Trailer Light Check": 5,
+      "Blind Spot with Trailer Detection": 5,
+      "CHMSL CAMERA DYNAMIC CENTERLINE": 5,
+      "Enhanced Display Synchronization": 6,
+      "Max Power Level": 4,
+      "Power Side Step": 5,
+      "Traffic Sign Assist Offset - NAFTA Setting": 33,
+      "Traffic Sign Assist Offset - non-NAFTA Setting": 23,
+      "Trailer Brake Type": 13,
+      "Trailer Name": 22,
+      "Trailer Number": 8,
+      "Warnings for Low Fuel Inverter Shutdown - Audible Warning": 5,
+      "Warnings for Low Fuel Inverter Shutdown - Visual Warning": 5
+    },
+    "Approach and Tailgate": {
+      "Charge Power Level": 8,
+      "Illuminated Approach": 7,
+      "New Speed Zone Indication": 6,
+      "Paddle Shifter": 5,
+      "Power Liftgate/Tailgate Alert": 6,
+      "Power Tailgate": 6,
+      "Rear Seat Reminder": 5,
+      "Traffic Sign Warning": 6
+    },
+    "Lane and Lighting": {
+      "Cornering Lights": 5,
+      "Forward Collision Warning": 6,
+      "Forward Collision Warning Sensitivity": 6,
+      "Greeting Lights": 5,
+      "Lane Sense Strength": 6,
+      "Lane Sense Warning": 6,
+      "Pedestrian Emergency Braking or Warning & Active Braking": 5,
+      "Rain Sensing Wipers": 5,
+      "Signature Lighting": 5
+    },
+    "Daytime Lighting": {
+      "Daytime Running Lights": 5,
+      "Headlights Off Delay": 7
+    },
+    "Measurement Units": {
+      "Power Unit": 6,
+      "Pressure Unit": 6,
+      "Torque Unit": 5
+    }
+  }
+}
