@@ -157,12 +157,12 @@ SWE1-VC-HeatedSteeringWheelManagement-025	4858296;4859492	HeatedSteeringWheelMan
 SWE1-VC-HeatedSteeringWheelManagement-026	4858298;4859493	HeatedSteeringWheelManagement	W0										無未解值
 SWE1-VC-HeatedSteeringWheelManagement-027	4858299;4859494	HeatedSteeringWheelManagement	W0										無未解值
 SWE1-VC-HeatedSteeringWheelManagement-028	4859495	HeatedSteeringWheelManagement	W0										無未解值
-SWE1-VC-HeatedSteeringWheelManagement-029	4859496	HeatedSteeringWheelManagement	W2		yes	B6-value-absent	[引號形態] `HSW_Cmd_Tlm` 之值無匯流排對應：ON；OFF	DR-21				DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
-SWE1-VC-HeatedSteeringWheelManagement-030	4859497	HeatedSteeringWheelManagement	W2		yes	B6-value-absent	[引號形態] `HSW_Cmd_Tlm` 之值無匯流排對應：ON；OFF	DR-21				DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
+SWE1-VC-HeatedSteeringWheelManagement-029	4859496	HeatedSteeringWheelManagement	W2		yes	B2	[引號形態] `HSW_Cmd_Tlm` 之值無匯流排對應：ON；OFF	DR-21				DR-25	未解值位於後件 —— 驗證目標即該值
+SWE1-VC-HeatedSteeringWheelManagement-030	4859497	HeatedSteeringWheelManagement	W2		yes	B2	[引號形態] `HSW_Cmd_Tlm` 之值無匯流排對應：ON；OFF	DR-21				DR-25	未解值位於後件 —— 驗證目標即該值
 SWE1-VC-HeatedSteeringWheelManagement-031	4859498	HeatedSteeringWheelManagement	W0						screen	DR-5-B			無未解值
 SWE1-VC-HeatedSteeringWheelManagement-032	4859499	HeatedSteeringWheelManagement	W0										無未解值
-SWE1-VC-HeatedSteeringWheelManagement-033	4859500	HeatedSteeringWheelManagement	W2		yes	B6-value-absent	[引號形態] `HSW_Cmd_Tlm` 之值無匯流排對應：ON；OFF	DR-21				DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
-SWE1-VC-HeatedSteeringWheelManagement-034	4859501	HeatedSteeringWheelManagement	W2		yes	B6-value-absent	[引號形態] `HSW_Cmd_Tlm` 之值無匯流排對應：ON；OFF	DR-21				DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
+SWE1-VC-HeatedSteeringWheelManagement-033	4859500	HeatedSteeringWheelManagement	W2		yes	B2	[引號形態] `HSW_Cmd_Tlm` 之值無匯流排對應：ON；OFF	DR-21				DR-25	未解值位於後件 —— 驗證目標即該值
+SWE1-VC-HeatedSteeringWheelManagement-034	4859501	HeatedSteeringWheelManagement	W2		yes	B2	[引號形態] `HSW_Cmd_Tlm` 之值無匯流排對應：ON；OFF	DR-21				DR-25	未解值位於後件 —— 驗證目標即該值
 SWE1-VC-HeatedSteeringWheelManagement-035	4859502	HeatedSteeringWheelManagement	W2										未解值位於後件 —— 驗證目標即該值
 SWE1-VC-LeftFrontVentedSeat-003	4858362	LeftFrontVentedSeat	W0										無未解值
 SWE1-VC-LeftFrontVentedSeat-004	4858367	LeftFrontVentedSeat	W0			B2	[4858367] `VentedSeatFL` 之值無匯流排對應：Vented Seat High / VS_HI；Vented Seat Low / VS_LO；Vented Seat Off / VS_OFF	DR-21					無未解值

@@ -1,7 +1,8 @@
 # DATA_REQUESTS — FW036 Vehicle Setting
 
 每項含**路徑與 SHA**（G-L：沒有路徑的「到齊」不算到齊）。
-`inputs/` 之權威雜湊見 `inputs/INPUTS.sha256`（14 檔，`shasum -a 256 -c` 全數 OK）。
+`inputs/` 之權威雜湊見 `inputs/INPUTS.sha256`（**29 檔**：CFTS044 區塊 16 ＋ VF230 區塊 13，
+`shasum -a 256 -c` 全數 OK；61 包 W-102）。
 
 ## 已關閉
 
@@ -678,6 +679,18 @@ CFTS044 之 SWE leaf 其行為賦值於下列五個訊號，
 
 **擴充之依據**：36 輪 W-98(1) 實測之 L-VS2 WARN 類為 **5 個相異 signal**，受影響 leaf **65**（`FR_VS_Cmd_Tlm` 14／`HSW_Cmd_Tlm` 4 為 DR-25 原文所漏）。
 
+> **38 輪 D-3 之更正（依 R-VS57(4)，61 包 §4）**：
+> `HSW_Cmd_Tlm` 之**值域於 LID 兩欄組皆為 `None`**，
+> 依 R-VS57(4)「名有來源 ∧ 值域無來源 → **W2／`B6-value-absent`**」，
+> 其 **4 leaf 自本 DR 之範圍移出**，改列於 **A-VS118 之 B6 類**。
+>
+> **本 DR 之影響段因而為四訊號／61 leaf**：
+> `FL_HS_Cmd_Tlm` 17／`FR_HS_Cmd_Tlm` 16／`FL_VS_Cmd_Tlm` 14／`FR_VS_Cmd_Tlm` 14
+> —— 相異 leaf 合計 **61**（38 輪 W-108 實測，與 61 包 §4 之預期相符）。
+>
+> 上文條文區塊之五訊號列表為 60 包 §3 之逐字轉錄，**不追改**（R-TM13）；
+> 其 `HSW_Cmd_Tlm` 一列於送出時應連同本註記。
+
 **`FR_VS_Cmd_Tlm` 另受牽制**：其 LID `Atlantis` 欄組之值域為 `Heated_seat_*`，52 包 §3 已判該前綴為 typo，惟其正確值域須自 `FL_VS_Cmd_Tlm` 之列跨列引入 —— **A-VS103 判其為裁定事項，本層不跨列引入**，該 14 leaf 之值域仍未解（併 DR-18）。
 
 **狀態：未送出。**
@@ -821,5 +834,39 @@ CFTS044 之 `1.3.2.1.3.11` 內，四個 leaf 之條文兩兩僅差值之書寫�
 
 **影響**：4 個已交付 leaf 之 TC 唯一性。**本層未合併、未刪除**（§8.2.2 之限制
 與「各版保留不刪」之禁區皆及於此）。
+
+**狀態：未送出。**
+
+---
+
+## DR-28（新，**Urgency 待定** —— VF230 缺 SYS2 ICS export；61 包 §6／§7 開立）
+
+> **⚠ 改號**：61 包 §7 之草稿編為 DR-27，而 **DR-27 已為 37 輪 W-105 之
+> 唯一性提問所用**（成對 A-VS119，本檔 §DR-27）。本件改編為 **DR-28**。
+> 撞號之登記見 A-VS124。61 包 §7、§8 之「DR-27」一律指本件。
+
+**型別（R-VS45）：型 C — 素材缺件。**
+
+**成對之 anomaly：無**（缺件非量測異常）。
+
+CFTS044 之素材含 SYS2 ICS export
+（`SYS2  R1LR_Atl-H_25PI1.1_Activation and Configuration_CFTS_044_
+Vehicle Controls_SR26_20250815-1022_20260324_Version3_Released.xlsx`），
+VF230 之交付資料夾 `VF230_V1_R5/` 內無對應檔案（61 包 §2.1 之清冊實測，
+本輪複驗：該目錄一層 17 項，無任何 `SYS2` 檔名）。
+
+**請提供**：VF230（`C-VF230_V1_R5_PDT27`）對應之 SYS2 ICS and DCSD export
+（Released 版）。
+
+**影響**：SYS2 為 Part 1 之 Category 交叉驗核來源（01 輪唯一之跨源檢驗，
+537 列對帳、零錯配）。VF230 缺此來源者，其 **619 個 leaf** 之
+Functional/Heading 判定將無第二來源可核，A-VS01 型之錯配無從偵測。
+
+**不得代用 CFTS044 之 SYS2** —— 其為該 CFTS 專屬（R-VS63 之末段明排除）。
+`feature.yaml` 之 `paths.sys1_export_vf230` 現為 `null`，覆後方填。
+
+**本輪之處置**：VF230 之 leaf 母體（619）**單源自 037**，未經跨源驗核。
+該事實已於 `data/_vf230_w103.json` 與上繳 §3 具名，不以「Categorization
+僅二值、0 other」冒充驗核 —— 該檢查只證 037 內部一致，不證其與上游相符。
 
 **狀態：未送出。**

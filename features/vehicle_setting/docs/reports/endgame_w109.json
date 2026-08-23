@@ -1,0 +1,1187 @@
+{
+ "delivered": 109,
+ "undelivered": 128,
+ "target": {
+  "DR-8": 2,
+  "（無 DR：未解值位於後件 —— 驗證目標即該值）": 25,
+  "（無 DR：（未載））": 1,
+  "DR-19": 7,
+  "DR-15": 13,
+  "（無 DR：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟）": 16,
+  "（無 DR：HSW_Cmd_Tlm 值域無來源）": 4,
+  "DR-5-B": 5,
+  "（無 DR：唯一來源條文為適用性前言，無可測之功能行為）": 6,
+  "DR-25′": 27,
+  "DR-22": 1,
+  "DR-21": 2
+ },
+ "unlock": {
+  "DR-8": 2,
+  "（無 DR：未解值位於後件 —— 驗證目標即該值）": 24,
+  "（無 DR：（未載））": 1,
+  "DR-19": 7,
+  "DR-15": 13,
+  "（無 DR：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟）": 16,
+  "（無 DR：HSW_Cmd_Tlm 值域無來源）": 4,
+  "DR-22": 1,
+  "DR-21": 2,
+  "DR-25′": 23
+ },
+ "rows": [
+  {
+   "leaf": "SWE1-VC-FeaturesEnableCriteria-021",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "DR-8"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-FeaturesEnableCriteria-022",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "DR-8"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-FeaturesEnableCriteria-023",
+   "w": "W0",
+   "gen": "yes",
+   "delegate": "no",
+   "blockers": []
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-004",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-005",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-008",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-009",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：（未載）"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-010",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-19"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-012",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-013",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-014",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-017",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-018",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-019",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheel-020",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheelManagement-026",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheelManagement-029",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "B6-value-absent"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheelManagement-030",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "B6-value-absent"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheelManagement-031",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked/DR-5-B"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheelManagement-033",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "B6-value-absent"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheelManagement-034",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "B6-value-absent"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-HeatedSteeringWheelManagement-035",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-004",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-005",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-006",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-009",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-010",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-19"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-011",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-19"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-013",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-015",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-016",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-017",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-018",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontHeatedSeat-019",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontVentedSeat-005",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontVentedSeat-008",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontVentedSeat-009",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-19"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontVentedSeat-011",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontVentedSeat-012",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontVentedSeat-013",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-LeftFrontVentedSeat-016",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-039",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending",
+    "B4-preamble"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-040",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-041",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-042",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending",
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-043",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending",
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-044",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending",
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-045",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending",
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-046",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-047",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-048",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-049",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-050",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "pending",
+   "blockers": [
+    "delegate=pending"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-051",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-OneStageHeatedSeat-052",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-PHEVFeatures-017",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "B4-preamble"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontHeatedSeat-023",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontHeatedSeat-024",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontHeatedSeat-027",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontHeatedSeat-028",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-19"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontHeatedSeat-030",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontHeatedSeat-032",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontHeatedSeat-033",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontHeatedSeat-034",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontHeatedSeat-035",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontHeatedSeat-036",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontVentedSeat-022",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontVentedSeat-025",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontVentedSeat-026",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-19"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontVentedSeat-028",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontVentedSeat-029",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontVentedSeat-030",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "DR-15"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-RightFrontVentedSeat-033",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ScreenOFF-048",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-Stop-StartSystem-006",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "DR-19"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-SwitchLHD/RHDConfiguration-010",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-SwitchLHD/RHDConfiguration-013",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThirdRowHeadrestDump-028",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "DR-22"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThirdRowHeadrestDump-029",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "DR-21"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThirdRowHeadrestDump-031",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "DR-21"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThirdRowHeadrestDump-033",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThirdRowHeadrestDump-034",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThirdRowHeadrestDump-035",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThirdRowHeadrestDump-036",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThirdRowHeadrestDump-039",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "no",
+   "blockers": [
+    "W2：前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesHeatedSeat-078",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "B4-preamble"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesHeatedSeat-079",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesHeatedSeat-082",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesHeatedSeat-083",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesHeatedSeat-086",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesHeatedSeat-087",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesHeatedSeat-092",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesHeatedSeat-096",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesHeatedSeat-098",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesHeatedSeat-099",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-060",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "B4-preamble"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-061",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-064",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-065",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-067",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-068",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-069",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-070",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-074",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-076",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-077",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-078",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-079",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-080",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-ThreeStagesVentedSeatsManagement-081",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesHeatedSeat-055",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "B4-preamble"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesHeatedSeat-056",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesHeatedSeat-064",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked/DR-5-B"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesHeatedSeat-065",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked/DR-5-B"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesHeatedSeat-073",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesHeatedSeat-074",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-037",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "B4-preamble"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-038",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "W2：未解值位於後件 —— 驗證目標即該值"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-043",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-044",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-045",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-046",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked/DR-5-B"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-047",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked/DR-5-B"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-052",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-053",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-054",
+   "w": "W2",
+   "gen": "no",
+   "delegate": "yes",
+   "blockers": [
+    "dr_dependent=DR-25"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-055",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  },
+  {
+   "leaf": "SWE1-VC-TwoStagesVentedSeatsManagement-056",
+   "w": "W0",
+   "gen": "no",
+   "delegate": "blocked",
+   "blockers": [
+    "delegate=blocked"
+   ]
+  }
+ ]
+}

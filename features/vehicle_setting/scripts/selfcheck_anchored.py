@@ -31,7 +31,8 @@ PAIRS = [
     # batch13 為首版，無「改寫前之舊版」可用 —— 依 R-VS54(1) 改以
     # 刻意違規之樣本為錨點（四處植入，見該檔之 `revision`）。
     ("generated/batch13_v2.json", "generated/_batch13_anchor.json"),
-    ("generated/batch14.json", "generated/_batch14_anchor.json"),
+    ("generated/batch14_v2.json", "generated/_batch14_anchor.json"),
+    ("generated/batch15.json", "generated/_batch15_anchor.json"),
 ]
 
 

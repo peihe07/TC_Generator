@@ -128,12 +128,31 @@ def sourced_signals(blocks: dict) -> set[str]:
     return out
 
 
-def lvs2_verdict(sig: str, in_dbc: set[str], sourced: set[str]) -> str:
-    """R-VS57：PASS／WARN／FAIL 三分。"""
+def value_sourced(sig: str, in_dbc: set[str], mid: dict[str, set[str]],
+                  high: dict[str, set[str]]) -> bool:
+    """R-VS57(4)：該訊號之**值域**是否有來源。
+
+    條文所列之三處來源中，**條文內嵌值不計** —— 其只給標籤而不給 raw 碼，
+    無從寫成 R-VS52 所令之 `= <raw> (<label>)`。
+    依據為 61 包 §4 之實例：`HSW_Cmd_Tlm` 之條文內嵌值為 `"ON"`，
+    而該條裁其為 **B6**；即該實例已排除內嵌值一路。
+    **判準文字與其實例之落差見上繳 34 §2.1。**
+    """
+    return bool(sig in in_dbc or mid.get(sig) or high.get(sig))
+
+
+def lvs2_verdict(sig: str, in_dbc: set[str], sourced: set[str],
+                 value_ok: bool = True) -> str:
+    """R-VS57 ＋ 其 (4)（61 包 §4）：PASS／WARN／W2-B6／FAIL 四分。
+
+      名有來源 ∧ 值域有來源 → WARN
+      名有來源 ∧ 值域無來源 → **B6**（分級判 W2）
+      名無來源              → FAIL
+    """
     if sig in in_dbc:
         return "PASS"
     if sig in sourced:
-        return "WARN"
+        return "WARN" if value_ok else "B6"
     return "FAIL"
 
 
@@ -205,11 +224,18 @@ def run() -> tuple[dict[str, str], dict[str, dict]]:
             gr, why = grade(text, pairs, unresolved)   # R-VS47
             # R-VS55 ＋ R-VS57：分級須涵蓋 L-VS2，惟 WARN 類不判 W2
             sigs = {m.group(2) for m in SIG_REF.finditer(text)}
-            verdicts = {sg: lvs2_verdict(sg, in_dbc, sourced) for sg in sigs}
+            # R-VS57(4)：值域之來源 —— 條文內嵌值、LID 欄組、DBC `VAL_`
+            verdicts = {sg: lvs2_verdict(
+                sg, in_dbc, sourced,
+                value_sourced(sg, in_dbc, mid, high)) for sg in sigs}
             if any(v == "FAIL" for v in verdicts.values()):
                 gr = "W2"
                 why = {**why, "blocker_class": "B5-signal-absent",
                        "理由": "斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）"}
+            elif any(v == "B6" for v in verdicts.values()):
+                gr = "W2"
+                why = {**why, "blocker_class": "B6-value-absent",
+                       "理由": "訊號名有來源而其值域無來源（R-VS57(4)）"}
             warn = sorted(sg for sg, v in verdicts.items() if v == "WARN")
             if best is None or order[gr] < order[best]:
                 best = gr
