@@ -157,12 +157,12 @@ SWE1-VC-HeatedSteeringWheelManagement-025	4858296;4859492	HeatedSteeringWheelMan
 SWE1-VC-HeatedSteeringWheelManagement-026	4858298;4859493	HeatedSteeringWheelManagement	W0										無未解值
 SWE1-VC-HeatedSteeringWheelManagement-027	4858299;4859494	HeatedSteeringWheelManagement	W0										無未解值
 SWE1-VC-HeatedSteeringWheelManagement-028	4859495	HeatedSteeringWheelManagement	W0										無未解值
-SWE1-VC-HeatedSteeringWheelManagement-029	4859496	HeatedSteeringWheelManagement	W2		yes	B6-value-absent		DR-21			"R-VF17：值域來源為 037 Verification Method，reqid 4859496，逐字 `* verify that TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = ""ON""`"	DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
-SWE1-VC-HeatedSteeringWheelManagement-030	4859497	HeatedSteeringWheelManagement	W2		yes	B6-value-absent		DR-21			"R-VF17：值域來源為 037 Verification Method，reqid 4859497，逐字 `* verify that TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = ""OFF""`"	DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
+SWE1-VC-HeatedSteeringWheelManagement-029	4859496	HeatedSteeringWheelManagement	W0		yes			DR-21			"R-VF17：值域來源為 037 Verification Method，reqid 4859496，逐字 `* verify that TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = ""ON""`"	DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
+SWE1-VC-HeatedSteeringWheelManagement-030	4859497	HeatedSteeringWheelManagement	W0		yes			DR-21			"R-VF17：值域來源為 037 Verification Method，reqid 4859497，逐字 `* verify that TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = ""OFF""`"	DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
 SWE1-VC-HeatedSteeringWheelManagement-031	4859498	HeatedSteeringWheelManagement	W0						screen	DR-5-B			無未解值
 SWE1-VC-HeatedSteeringWheelManagement-032	4859499	HeatedSteeringWheelManagement	W0										無未解值
-SWE1-VC-HeatedSteeringWheelManagement-033	4859500	HeatedSteeringWheelManagement	W2		yes	B6-value-absent		DR-21			"R-VF17：值域來源為 037 Verification Method，reqid 4859500，逐字 `* HMI shall update to TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = ""ON""`"	DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
-SWE1-VC-HeatedSteeringWheelManagement-034	4859501	HeatedSteeringWheelManagement	W2		yes	B6-value-absent		DR-21			"R-VF17：值域來源為 037 Verification Method，reqid 4859501，逐字 `* HMI shall update to TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = ""OFF""`"	DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
+SWE1-VC-HeatedSteeringWheelManagement-033	4859500	HeatedSteeringWheelManagement	W0		yes			DR-21			"R-VF17：值域來源為 037 Verification Method，reqid 4859500，逐字 `* HMI shall update to TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = ""ON""`"	DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
+SWE1-VC-HeatedSteeringWheelManagement-034	4859501	HeatedSteeringWheelManagement	W0		yes			DR-21			"R-VF17：值域來源為 037 Verification Method，reqid 4859501，逐字 `* HMI shall update to TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = ""OFF""`"	DR-25	訊號名有來源而其值域無來源（R-VS57(4)）
 SWE1-VC-HeatedSteeringWheelManagement-035	4859502	HeatedSteeringWheelManagement	W0										無未解值
 SWE1-VC-LeftFrontVentedSeat-003	4858362	LeftFrontVentedSeat	W0										無未解值
 SWE1-VC-LeftFrontVentedSeat-004	4858367	LeftFrontVentedSeat	W0			B2	[4858367] `VentedSeatFL` 之值無匯流排對應：Vented Seat High / VS_HI；Vented Seat Low / VS_LO；Vented Seat Off / VS_OFF	DR-21					無未解值

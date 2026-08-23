@@ -35,44 +35,46 @@
 |---|---|---|
 | `feature.yaml` 含 `388/619` 之行 | 不改 | 此行為 **當時之 Sub Categorization 實測**（388/619），非後續作業據以行動之設定值 —— 其所支持之判定（Test Group）已由 R-VF9 裁定，本行僅存為裁定當時之證據。雖位於現行有效之 `feature.yaml`，依 R-VF18「逐句為之」判為歷史紀錄。 |
 
-## 2. 結果：120 處 ／ 25 檔
+## 2. 結果：128 處 ／ 27 檔
 
 - **須改 0**
-- **不改 120**
+- **不改 128**
 - **待人工 0**
 
 ### 2.3 不改（逐檔計數）
 
 | 檔 | 處 |
 |---|---:|
+| `RULINGS.md` | 15 |
 | `docs/upstream/vf230/00_intake.md` | 15 |
-| `RULINGS.md` | 14 |
 | `docs/handoff/62_vf230_recon_review.md` | 13 |
 | `docs/upstream/V07_review_v06.md` | 8 |
 | `docs/upstream/V06_scope_close.md` | 7 |
 | `docs/upstream/vf230/01_recon.md` | 7 |
+| `docs/upstream/V08_review_v07.md` | 6 |
+| `ANOMALIES.md` | 6 |
 | `docs/handoff/V06_scope_close.md` | 5 |
 | `docs/handoff/V07_review_v06.md` | 5 |
 | `docs/reports/vf230_crosscheck.md` | 5 |
 | `docs/reports/wvf20_619_triage.md` | 5 |
-| `ANOMALIES.md` | 5 |
 | `docs/handoff/V08_review_v07.md` | 4 |
 | `scripts/vf230_crosscheck.py` | 4 |
 | `docs/handoff/V05_scope_and_vcrit.md` | 3 |
 | `docs/handoff/V04_numbering_separation.md` | 3 |
-| `docs/upstream/V08_review_v07.md` | 3 |
 | `DATA_REQUESTS.md` | 3 |
 | `docs/handoff/63_test_group_ruling.md` | 2 |
+| `docs/handoff/V10_four_rulings.md` | 2 |
 | `docs/reports/w120_verification_criteria.md` | 2 |
 | `scripts/vf230_leaves.py` | 2 |
 | `feature.yaml` | 1 |
 | `docs/handoff/ZZ_vf230_numbering_collision.md` | 1 |
+| `docs/reports/wvf28_disclosure_draft.md` | 1 |
 | `docs/reports/vf230_layer2_candidates.md` | 1 |
 | `scripts/vf230_layer2.py` | 1 |
 | `scripts/vf230_w120_vcrit.py` | 1 |
 
 ## 3. 留痕（R-VF18 末段：改與不改皆須留痕）
 
-本表即為留痕。**120 處判「不改」者，其理由逐條見 §1 之規則**；
+本表即為留痕。**128 處判「不改」者，其理由逐條見 §1 之規則**；
 **0 處判「須改」者逐處列於 §2.1，本輪未改。**
 

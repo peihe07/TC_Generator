@@ -366,3 +366,21 @@ if __name__ == "__main__":
     if "--write" in sys.argv:
         ch, gen = write_products(g, d)
         print(f"產物重生：writable 變動 {ch} 列；generatable = yes {gen} 條")
+        # --- R-VF39 授權之尾段（限於呼叫／提示；不觸及分級判定邏輯）---
+        # 成因 A-VF8：本 driver 之重跑曾將 R-VF17 之 4 leaf 靜默回復為 W2
+        # 並進入 git 歷史。`RUNBOOK.md`／`PLAYBOOK.md` 已載「跑 driver 後
+        # 必跑後置步驟」而未被遵行 —— 文件之可見度不足以構成保證。
+        # 故改由本處直接呼叫。**其使該 4 leaf 自動回復 W0，此為裁定之意圖。**
+        import subprocess
+        ovr = Path(__file__).resolve().parent / "grade_overrides.py"
+        if ovr.exists():
+            print("\n[R-VF39] 執行分級覆寫層（R-VF20 之後置步驟）……")
+            r = subprocess.run([sys.executable, str(ovr), "--apply"],
+                               capture_output=True, text=True)
+            print(r.stdout.rstrip() or r.stderr.rstrip())
+            if r.returncode != 0:
+                print("[R-VF39] ⚠ 覆寫層失敗 —— 產物現與裁定不一致，"
+                      "須人工處置", file=sys.stderr)
+        else:
+            print("\n[R-VF39] ⚠ 找不到 scripts/grade_overrides.py —— "
+                  "覆寫未套用，產物可能與 R-VF17 之裁定不一致", file=sys.stderr)

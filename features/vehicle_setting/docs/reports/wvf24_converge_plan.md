@@ -5,8 +5,8 @@
 
 ## 1. 現況（本輪復測，不以 V07／V08 之目錄列表為來源）
 
-- `docs/handoff/` 共 **90** 檔，其中屬 VF230 線 **10**
-- `docs/upstream/` 一層共 **43** 檔，其中 `V*` **4**
+- `docs/handoff/` 共 **95** 檔，其中屬 VF230 線 **11**
+- `docs/upstream/` 一層共 **45** 檔，其中 `V*` **5**
 - `docs/upstream/vf230/` **2** 檔：`00_intake.md`／`01_recon.md`
 
 **VF230 線之 handoff 逐檔**：
@@ -20,6 +20,7 @@
 - `V07_review_v06.md`
 - `V08_review_v07.md`
 - `V09_feature_identity.md`
+- `V10_four_rulings.md`
 - `ZZ_vf230_numbering_collision.md`
 
 **VF230 線之 upstream 逐檔**：
@@ -28,6 +29,7 @@
 - `docs/upstream/V07_review_v06.md`
 - `docs/upstream/V08_review_v07.md`
 - `docs/upstream/V09_feature_identity.md`
+- `docs/upstream/V10_four_rulings.md`
 - `docs/upstream/vf230/00_intake.md`
 - `docs/upstream/vf230/01_recon.md`
 
@@ -57,22 +59,23 @@ upstream 側已無同號（VF230 線為 `V*` 或 `vf230/`）。
 
 **Part 1 之 `00_`–`38_` 一律不列入**（V09 §2 第 2 項）。
 
-## 4. 交叉引用（100 處 ／ 25 檔）
+## 4. 交叉引用（106 處 ／ 26 檔）
 
-- **搬移後須同步更新 16 處**（現行有效之陳述）
-- 其餘 **84** 處位於 `docs/handoff/`／
+- **搬移後須同步更新 17 處**（現行有效之陳述）
+- 其餘 **89** 處位於 `docs/handoff/`／
   `docs/upstream/`／`docs/reports/`，依 **R-VF18** 為歷史紀錄，**不追改**
 
 ### 4.1 須同步更新者（逐處）
 
 | 檔:行 | 所指 |
 |---|---|
-| `RULINGS.md:1683` | `vf230/00_intake` |
-| `RULINGS.md:2051` | `vf230/00_intake` |
-| `RULINGS.md:2233` | `vf230/00_intake` |
+| `RULINGS.md:1688` | `vf230/00_intake` |
+| `RULINGS.md:2056` | `vf230/00_intake` |
 | `RULINGS.md:2238` | `vf230/00_intake` |
-| `RULINGS.md:2239` | `vf230/01_recon` |
-| `RULINGS.md:2255` | `61_vf230_intake` |
+| `RULINGS.md:2243` | `vf230/00_intake` |
+| `RULINGS.md:2244` | `vf230/01_recon` |
+| `RULINGS.md:2260` | `61_vf230_intake` |
+| `RULINGS.md:2548` | `vf230/00_intake` |
 | `docs/INDEX.md:86` | `61_vf230_intake` |
 | `scripts/index_backfill.py:53` | `61_vf230_intake` |
 | `scripts/vf230_wvf20_619.py:14` | `vf230/00_intake` |
@@ -88,7 +91,7 @@ upstream 側已無同號（VF230 線為 `V*` 或 `vf230/`）。
 
 | 檔 | 處 |
 |---|---:|
-| `docs/reports/wvf24_converge_plan.md` | 26 |
+| `docs/reports/wvf24_converge_plan.md` | 30 |
 | `docs/handoff/V07_review_v06.md` | 8 |
 | `docs/upstream/35_delegation_reopen.md` | 6 |
 | `docs/handoff/V09_feature_identity.md` | 5 |
@@ -106,6 +109,7 @@ upstream 側已無同號（VF230 線為 `V*` 或 `vf230/`）。
 | `docs/handoff/61_vf230_intake.md` | 1 |
 | `docs/handoff/V08_review_v07.md` | 1 |
 | `docs/handoff/63_rulings_round39.md` | 1 |
+| `docs/handoff/V10_four_rulings.md` | 1 |
 | `docs/upstream/V08_review_v07.md` | 1 |
 | `docs/upstream/vf230/01_recon.md` | 1 |
 

@@ -132,7 +132,7 @@ HU screen observation in vehicle.
 2. The heated steering wheel switch reads selectable
 3. The heated steering wheel switch is greyed out and shows a status of OFF
 
-### `SWE1-VC-HeatedSteeringWheel-015`（batch06_v4.json）
+### `SWE1-VC-HeatedSteeringWheel-015`（batch06_v5.json）
 
 - **037 `Verification Criteria`**：CAN signal to be trigger
 System update CAN value to HMI and also read the memory and check it contains the proper updated values.
@@ -144,7 +144,7 @@ HU screen observation in vehicle.
 2. The heated steering wheel reads off
 3. The heated steering wheel is displayed as on
 
-### `SWE1-VC-HeatedSteeringWheel-016`（batch07_v4.json）
+### `SWE1-VC-HeatedSteeringWheel-016`（batch07_v5.json）
 
 - **037 `Verification Criteria`**：CAN signal to be trigger
 System update CAN value to HMI and also read the memory and check it contains the proper updated values.
@@ -156,7 +156,7 @@ HU screen observation in vehicle.
 2. The heated steering wheel reads on
 3. The heated steering wheel is displayed as off
 
-### `SWE1-VC-HeatedSteeringWheel-021`（batch07_v4.json）
+### `SWE1-VC-HeatedSteeringWheel-021`（batch07_v5.json）
 
 - **037 `Verification Criteria`**：CAN signal to be trigger
 System update CAN value to HMI and also read the memory and check it contains the proper updated values.
@@ -168,7 +168,7 @@ HU screen observation in vehicle.
 2. The heated steering wheel reads off
 3. The heated steering wheel is displayed as on
 
-### `SWE1-VC-HeatedSteeringWheel-022`（batch07_v4.json）
+### `SWE1-VC-HeatedSteeringWheel-022`（batch07_v5.json）
 
 - **037 `Verification Criteria`**：CAN signal to be trigger
 System update CAN value to HMI and also read the memory and check it contains the proper updated values.
@@ -189,15 +189,14 @@ HU screen observation in vehicle.
 3. The HU completes start-up
 4. The heated steering wheel control is present on the Heated / Vented Seats screen
 
-### `SWE1-VC-HeatedSteeringWheelManagement-027`（batch03_v5.json）
+### `SWE1-VC-HeatedSteeringWheelManagement-026`（batch18_v3.json）
 
 - **037 `Verification Criteria`**：HU is on
 - **037 `Verification Method`**：`* Set $DriverSide$ = [Left Side] through CAN simulation
-* In HMI Heated / Vented Seats screen, Heated Steering Wheel Icon shall be on right side`
-- **已交付 `expected_result`**：1. HSW_icon_position_initial is recorded
-2. PROXI Driver_Side = 1 (Right Side) is accepted
-3. The HU completes start-up
-4. The heated steering wheel icon is shown on the right side of the Heated / Vented Seats screen, mirrored from HSW_icon_position_initial
+* In HMI Heated / Vented Seats screen, Heated Steering Wheel Icon shall be on left side`
+- **已交付 `expected_result`**：1. PROXI Driver_Side = 0 (Left Side) is accepted
+2. The HU completes start-up
+3. PENDING: DR-5-B
 
 ## 5. 兩類離群值 —— 該欄承載之內容不齊一
 

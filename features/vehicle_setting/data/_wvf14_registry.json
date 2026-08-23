@@ -13,8 +13,8 @@
           "ON"
         ]
       ],
-      "writable": "W2",
-      "blocker": "B6-value-absent",
+      "writable": "W0",
+      "blocker": "",
       "dr": "DR-21",
       "delivered_a": false,
       "delivered_b": false,
@@ -33,8 +33,8 @@
           "OFF"
         ]
       ],
-      "writable": "W2",
-      "blocker": "B6-value-absent",
+      "writable": "W0",
+      "blocker": "",
       "dr": "DR-21",
       "delivered_a": false,
       "delivered_b": false,
@@ -65,8 +65,8 @@
           "ON"
         ]
       ],
-      "writable": "W2",
-      "blocker": "B6-value-absent",
+      "writable": "W0",
+      "blocker": "",
       "dr": "DR-21",
       "delivered_a": false,
       "delivered_b": false,
@@ -81,8 +81,8 @@
           "OFF"
         ]
       ],
-      "writable": "W2",
-      "blocker": "B6-value-absent",
+      "writable": "W0",
+      "blocker": "",
       "dr": "DR-21",
       "delivered_a": false,
       "delivered_b": false,
@@ -234,6 +234,6 @@
     }
   ],
   "delivered_a": [],
-  "delivered_b_n": 129,
+  "delivered_b_n": 143,
   "delivered_c_n": 158
 }

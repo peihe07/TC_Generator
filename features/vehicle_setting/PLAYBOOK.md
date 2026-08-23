@@ -199,3 +199,19 @@ Remarks = reason + anomaly id.
 
 驗證：`python3 scripts/grade_overrides.py --check`，不符即 `exit 1`。
 
+---
+
+## `接手` 之讀取清單（R-VF38 二，2026-08-23）
+
+`<Feature>, 接手` 時之讀取順序：
+
+1. **`CROSSLINE.md`** ← 跨線拘束項，**最先讀**
+2. `PLAYBOOK.md` §6 狀態板
+3. `docs/INDEX.md`
+
+**兩線皆適用**（本條非 VF230 線專用）。
+
+理由（A-VF8／A-VF9）：兩線共用 `features/vehicle_setting/` 之全部工具與資料檔，
+而一線之裁定從無機制送達另一線 —— 已致 R-VF17 被一次例行 driver 重跑抹除
+並進入 git 歷史。
+

@@ -1,0 +1,2223 @@
+{
+  "moves": [
+    {
+      "cluster": "4 AUX Switches",
+      "leaf": 2,
+      "from": "Switch Power Mode",
+      "chapter": "4 AUX Switches",
+      "chapter_words": [
+        "aux",
+        "switches"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Auxiliary Switches"
+      ],
+      "no_spec": false,
+      "to": "Auxiliary Switches",
+      "overlap": [
+        "switches"
+      ]
+    },
+    {
+      "cluster": "Charge Power Level",
+      "leaf": 8,
+      "from": "Approach and Tailgate",
+      "chapter": "Charge Power Level",
+      "chapter_words": [
+        "charge",
+        "level",
+        "power"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "power"
+      ]
+    },
+    {
+      "cluster": "Driver Easy Exit Seat",
+      "leaf": 5,
+      "from": "Suspension and Comfort",
+      "chapter": "Driver Easy Exit Seat",
+      "chapter_words": [
+        "driver",
+        "easy",
+        "exit",
+        "seat"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Driver Convenience"
+      ],
+      "no_spec": false,
+      "to": "Driver Convenience",
+      "overlap": [
+        "driver"
+      ]
+    },
+    {
+      "cluster": "Engine Off Power Delay",
+      "leaf": 7,
+      "from": "Suspension and Comfort",
+      "chapter": "Engine Off Power Delay",
+      "chapter_words": [
+        "delay",
+        "engine",
+        "off",
+        "power"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "power"
+      ]
+    },
+    {
+      "cluster": "Hour Mode",
+      "leaf": 4,
+      "from": "Units and Cameras",
+      "chapter": "Hour Mode",
+      "chapter_words": [
+        "hour",
+        "mode"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "mode"
+      ]
+    },
+    {
+      "cluster": "Max Power Level",
+      "leaf": 4,
+      "from": "Trailer and Signage",
+      "chapter": "Max Power Level",
+      "chapter_words": [
+        "level",
+        "max",
+        "power"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "power"
+      ]
+    },
+    {
+      "cluster": "Power Side Step",
+      "leaf": 5,
+      "from": "Trailer and Signage",
+      "chapter": "Power Side Step",
+      "chapter_words": [
+        "power",
+        "side",
+        "step"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "power"
+      ]
+    },
+    {
+      "cluster": "Power Unit",
+      "leaf": 6,
+      "from": "Measurement Units",
+      "chapter": "Power Unit",
+      "chapter_words": [
+        "power",
+        "unit"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "power"
+      ]
+    },
+    {
+      "cluster": "Rear Guidance Lighting with Approach",
+      "leaf": 5,
+      "from": "Auxiliary Switches",
+      "chapter": "Rear Guidance Lighting with Approach",
+      "chapter_words": [
+        "approach",
+        "guidance",
+        "lighting",
+        "rear"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Approach and Tailgate",
+        "Daytime Lighting",
+        "Lane and Lighting"
+      ],
+      "no_spec": false,
+      "to": "Daytime Lighting",
+      "overlap": [
+        "lighting"
+      ]
+    },
+    {
+      "cluster": "SWITCH 1 Hold Last State",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 1 Hold Last State",
+      "chapter_words": [
+        "hold",
+        "last",
+        "state",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "state",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 1 Power Mode",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 1 Power Mode",
+      "chapter_words": [
+        "mode",
+        "power",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "mode",
+        "power",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 1 Type",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 1 Type",
+      "chapter_words": [
+        "switch",
+        "type"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "switch",
+        "type"
+      ]
+    },
+    {
+      "cluster": "SWITCH 2 Hold Last State",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 2 Hold Last State",
+      "chapter_words": [
+        "hold",
+        "last",
+        "state",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "state",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 2 Power Mode",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 2 Power Mode",
+      "chapter_words": [
+        "mode",
+        "power",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "mode",
+        "power",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 2 Type",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 2 Type",
+      "chapter_words": [
+        "switch",
+        "type"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "switch",
+        "type"
+      ]
+    },
+    {
+      "cluster": "SWITCH 3 Hold Last State",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 3 Hold Last State",
+      "chapter_words": [
+        "hold",
+        "last",
+        "state",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "state",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 3 Power Mode",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 3 Power Mode",
+      "chapter_words": [
+        "mode",
+        "power",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "mode",
+        "power",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 3 Type",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 3 Type",
+      "chapter_words": [
+        "switch",
+        "type"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "switch",
+        "type"
+      ]
+    },
+    {
+      "cluster": "SWITCH 4 Hold Last State",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 4 Hold Last State",
+      "chapter_words": [
+        "hold",
+        "last",
+        "state",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "state",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 4 Power Mode",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 4 Power Mode",
+      "chapter_words": [
+        "mode",
+        "power",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "mode",
+        "power",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 4 Type",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 4 Type",
+      "chapter_words": [
+        "switch",
+        "type"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "switch",
+        "type"
+      ]
+    },
+    {
+      "cluster": "SWITCH 5 Hold Last State",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 5 Hold Last State",
+      "chapter_words": [
+        "hold",
+        "last",
+        "state",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "state",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 5 Power Mode",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 5 Power Mode",
+      "chapter_words": [
+        "mode",
+        "power",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "mode",
+        "power",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 5 Type",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 5 Type",
+      "chapter_words": [
+        "switch",
+        "type"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "switch",
+        "type"
+      ]
+    },
+    {
+      "cluster": "SWITCH 6 Hold Last State",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 6 Hold Last State",
+      "chapter_words": [
+        "hold",
+        "last",
+        "state",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "state",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 6 Power Mode",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 6 Power Mode",
+      "chapter_words": [
+        "mode",
+        "power",
+        "switch"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Power Mode",
+      "overlap": [
+        "mode",
+        "power",
+        "switch"
+      ]
+    },
+    {
+      "cluster": "SWITCH 6 Type",
+      "leaf": 3,
+      "from": "Auxiliary Switches",
+      "chapter": "SWITCH 6 Type",
+      "chapter_words": [
+        "switch",
+        "type"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Switch Power Mode",
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "to": "Switch Type and State",
+      "overlap": [
+        "switch",
+        "type"
+      ]
+    },
+    {
+      "cluster": "Suspension Auto Entry or Exit",
+      "leaf": 6,
+      "from": "Units and Cameras",
+      "chapter": "Suspension Auto Entry or Exit",
+      "chapter_words": [
+        "auto",
+        "entry",
+        "exit",
+        "suspension"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Suspension and Comfort"
+      ],
+      "no_spec": false,
+      "to": "Suspension and Comfort",
+      "overlap": [
+        "suspension"
+      ]
+    },
+    {
+      "cluster": "Suspension Default Ride Height",
+      "leaf": 6,
+      "from": "Switch Power Mode",
+      "chapter": "Suspension Default Ride Height",
+      "chapter_words": [
+        "default",
+        "height",
+        "ride",
+        "suspension"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Suspension and Comfort"
+      ],
+      "no_spec": false,
+      "to": "Suspension and Comfort",
+      "overlap": [
+        "suspension"
+      ]
+    },
+    {
+      "cluster": "Suspension Flash Lights With Lower",
+      "leaf": 5,
+      "from": "Switch Power Mode",
+      "chapter": "Suspension Flash Lights With Lower",
+      "chapter_words": [
+        "flash",
+        "lights",
+        "lower",
+        "suspension"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Suspension and Comfort"
+      ],
+      "no_spec": false,
+      "to": "Suspension and Comfort",
+      "overlap": [
+        "suspension"
+      ]
+    },
+    {
+      "cluster": "Suspension Sound Horn With Lower",
+      "leaf": 5,
+      "from": "Switch Power Mode",
+      "chapter": "Suspension Sound Horn With Lower",
+      "chapter_words": [
+        "horn",
+        "lower",
+        "sound",
+        "suspension"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Suspension and Comfort"
+      ],
+      "no_spec": false,
+      "to": "Suspension and Comfort",
+      "overlap": [
+        "suspension"
+      ]
+    },
+    {
+      "cluster": "Trailer Number",
+      "leaf": 8,
+      "from": "Approach and Tailgate",
+      "chapter": "Trailer Number",
+      "chapter_words": [
+        "number",
+        "trailer"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Trailer and Signage"
+      ],
+      "no_spec": false,
+      "to": "Trailer and Signage",
+      "overlap": [
+        "trailer"
+      ]
+    },
+    {
+      "cluster": "Turn Signal Activated Blind Spot Camera View with Trailer Option",
+      "leaf": 6,
+      "from": "Units and Cameras",
+      "chapter": "Turn Signal Activated Blind Spot Camera View with Trailer Option",
+      "chapter_words": [
+        "activated",
+        "blind",
+        "camera",
+        "option",
+        "signal",
+        "spot",
+        "trailer",
+        "turn",
+        "view"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [
+        "Trailer and Signage"
+      ],
+      "no_spec": false,
+      "to": "Trailer and Signage",
+      "overlap": [
+        "trailer"
+      ]
+    }
+  ],
+  "stays": [
+    {
+      "cluster": "6 Aux Switches",
+      "leaf": 2,
+      "from": "Auxiliary Switches",
+      "chapter": "6 Aux Switches",
+      "chapter_words": [
+        "aux",
+        "switches"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：switches"
+    },
+    {
+      "cluster": "Auto Door Locks",
+      "leaf": 5,
+      "from": "Units and Cameras",
+      "chapter": "Auto Door Locks",
+      "chapter_words": [
+        "auto",
+        "door",
+        "locks"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Auto Fold Mirrors",
+      "leaf": 5,
+      "from": "Suspension and Comfort",
+      "chapter": "Auto Fold Mirrors",
+      "chapter_words": [
+        "auto",
+        "fold",
+        "mirrors"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Auto High Beam",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Auto High Beam",
+      "chapter_words": [
+        "auto",
+        "beam",
+        "high"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Auto On Driver Comfort - 2 Option",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Auto on Driver Comfort - 2 Option",
+      "chapter_words": [
+        "auto",
+        "comfort",
+        "driver",
+        "option"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Suspension and Comfort"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：driver"
+    },
+    {
+      "cluster": "Auto On Driver Comfort - 3 Option",
+      "leaf": 6,
+      "from": "Driver Convenience",
+      "chapter": "Auto on Driver Comfort - 3 Option",
+      "chapter_words": [
+        "auto",
+        "comfort",
+        "driver",
+        "option"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Suspension and Comfort"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：driver"
+    },
+    {
+      "cluster": "Auto Park Brake",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Auto Park Brake",
+      "chapter_words": [
+        "auto",
+        "brake",
+        "park"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Auto Unlock on Exit",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Auto Unlock on Exit",
+      "chapter_words": [
+        "auto",
+        "exit",
+        "unlock"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Automatic Trailer Light Check",
+      "leaf": 5,
+      "from": "Trailer and Signage",
+      "chapter": "Automatic Trailer Light Check",
+      "chapter_words": [
+        "automatic",
+        "check",
+        "light",
+        "trailer"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：trailer"
+    },
+    {
+      "cluster": "Blind Spot Alert",
+      "leaf": 6,
+      "from": "Driver Convenience",
+      "chapter": "Blind Spot Alert",
+      "chapter_words": [
+        "alert",
+        "blind",
+        "spot"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Blind Spot with Trailer Detection",
+      "leaf": 5,
+      "from": "Trailer and Signage",
+      "chapter": "Blind Spot with Trailer Detection",
+      "chapter_words": [
+        "blind",
+        "detection",
+        "spot",
+        "trailer"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：trailer"
+    },
+    {
+      "cluster": "CHMSL CAMERA DYNAMIC CENTERLINE",
+      "leaf": 5,
+      "from": "Trailer and Signage",
+      "chapter": "",
+      "chapter_words": [
+        "camera",
+        "centerline",
+        "chmsl",
+        "dynamic"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": true,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Consumption Unit",
+      "leaf": 7,
+      "from": "Units and Cameras",
+      "chapter": "Consumption Unit",
+      "chapter_words": [
+        "consumption",
+        "unit"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Cornering Lights",
+      "leaf": 5,
+      "from": "Lane and Lighting",
+      "chapter": "Cornering Lights",
+      "chapter_words": [
+        "cornering",
+        "lights"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Daytime Running Lights",
+      "leaf": 5,
+      "from": "Daytime Lighting",
+      "chapter": "Daytime Running Lights",
+      "chapter_words": [
+        "daytime",
+        "lights",
+        "running"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：daytime"
+    },
+    {
+      "cluster": "Distance Unit",
+      "leaf": 4,
+      "from": "Units and Cameras",
+      "chapter": "Distance Unit",
+      "chapter_words": [
+        "distance",
+        "unit"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "E-Save",
+      "leaf": 6,
+      "from": "Auxiliary Switches",
+      "chapter": "",
+      "chapter_words": [
+        "e",
+        "save"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": true,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Enhanced Display Synchronization",
+      "leaf": 6,
+      "from": "Trailer and Signage",
+      "chapter": "Enhanced Display Synchronization",
+      "chapter_words": [
+        "display",
+        "enhanced",
+        "synchronization"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Flash Light With Lock",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Flash Light With Lock",
+      "chapter_words": [
+        "flash",
+        "light",
+        "lock"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Forward Collision Warning",
+      "leaf": 6,
+      "from": "Lane and Lighting",
+      "chapter": "Forward Collision Warning",
+      "chapter_words": [
+        "collision",
+        "forward",
+        "warning"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Forward Collision Warning Sensitivity",
+      "leaf": 6,
+      "from": "Lane and Lighting",
+      "chapter": "Forward Collision Warning Sensitivity",
+      "chapter_words": [
+        "collision",
+        "forward",
+        "sensitivity",
+        "warning"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Greeting Lights",
+      "leaf": 5,
+      "from": "Lane and Lighting",
+      "chapter": "Greeting Lights",
+      "chapter_words": [
+        "greeting",
+        "lights"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Headlights Off Delay",
+      "leaf": 7,
+      "from": "Daytime Lighting",
+      "chapter": "Headlights Off Delay",
+      "chapter_words": [
+        "delay",
+        "headlights",
+        "off"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Headlights with Wipers",
+      "leaf": 5,
+      "from": "Suspension and Comfort",
+      "chapter": "Headlights with Wipers",
+      "chapter_words": [
+        "headlights",
+        "wipers"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Hill Start Assist",
+      "leaf": 5,
+      "from": "Suspension and Comfort",
+      "chapter": "Hill Start Assist",
+      "chapter_words": [
+        "assist",
+        "hill",
+        "start"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Horn With Lock",
+      "leaf": 6,
+      "from": "Driver Convenience",
+      "chapter": "Horn With Lock",
+      "chapter_words": [
+        "horn",
+        "lock"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Horn With Remote Start",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Horn With Remote Start",
+      "chapter_words": [
+        "horn",
+        "remote",
+        "start"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Illuminated Approach",
+      "leaf": 7,
+      "from": "Approach and Tailgate",
+      "chapter": "Illuminated Approach",
+      "chapter_words": [
+        "approach",
+        "illuminated"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：approach"
+    },
+    {
+      "cluster": "Lane Sense Strength",
+      "leaf": 6,
+      "from": "Lane and Lighting",
+      "chapter": "Lane Sense Strength",
+      "chapter_words": [
+        "lane",
+        "sense",
+        "strength"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：lane"
+    },
+    {
+      "cluster": "Lane Sense Warning",
+      "leaf": 6,
+      "from": "Lane and Lighting",
+      "chapter": "Lane Sense Warning",
+      "chapter_words": [
+        "lane",
+        "sense",
+        "warning"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：lane"
+    },
+    {
+      "cluster": "Language",
+      "leaf": 4,
+      "from": "Driver Convenience",
+      "chapter": "Language",
+      "chapter_words": [
+        "language"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Navigation Turn by Turn",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Navigation Turn by Turn",
+      "chapter_words": [
+        "by",
+        "navigation",
+        "turn"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "New Speed Zone Indication",
+      "leaf": 6,
+      "from": "Approach and Tailgate",
+      "chapter": "New Speed Zone Indication",
+      "chapter_words": [
+        "indication",
+        "new",
+        "speed",
+        "zone"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Paddle Shifter",
+      "leaf": 5,
+      "from": "Approach and Tailgate",
+      "chapter": "Paddle Shifter",
+      "chapter_words": [
+        "paddle",
+        "shifter"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Park Sense",
+      "leaf": 5,
+      "from": "Units and Cameras",
+      "chapter": "Park Sense",
+      "chapter_words": [
+        "park",
+        "sense"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Park Sense Front Volume",
+      "leaf": 6,
+      "from": "Driver Convenience",
+      "chapter": "Park Sense Front Volume",
+      "chapter_words": [
+        "front",
+        "park",
+        "sense",
+        "volume"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Park Sense Rear Volume",
+      "leaf": 6,
+      "from": "Driver Convenience",
+      "chapter": "Park Sense Rear Volume",
+      "chapter_words": [
+        "park",
+        "rear",
+        "sense",
+        "volume"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "ParkSense Based Camera Activation",
+      "leaf": 5,
+      "from": "Units and Cameras",
+      "chapter": "ParkSense Based Camera Activation",
+      "chapter_words": [
+        "activation",
+        "based",
+        "camera",
+        "parksense"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Passive Entry",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Passive Entry",
+      "chapter_words": [
+        "entry",
+        "passive"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Pedestrian Emergency Braking or Warning & Active Braking",
+      "leaf": 5,
+      "from": "Lane and Lighting",
+      "chapter": "Pedestrian Emergency Braking or Warning & Active Braking",
+      "chapter_words": [
+        "active",
+        "braking",
+        "emergency",
+        "pedestrian",
+        "warning"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Phone Repetition",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Phone Repetition",
+      "chapter_words": [
+        "phone",
+        "repetition"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Power Liftgate/Tailgate Alert",
+      "leaf": 6,
+      "from": "Approach and Tailgate",
+      "chapter": "Power Liftgate/Tailgate Alert",
+      "chapter_words": [
+        "alert",
+        "liftgate",
+        "power",
+        "tailgate"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：tailgate"
+    },
+    {
+      "cluster": "Power Tailgate",
+      "leaf": 6,
+      "from": "Approach and Tailgate",
+      "chapter": "Power Tailgate",
+      "chapter_words": [
+        "power",
+        "tailgate"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：tailgate"
+    },
+    {
+      "cluster": "Pressure Unit",
+      "leaf": 6,
+      "from": "Measurement Units",
+      "chapter": "Pressure Unit",
+      "chapter_words": [
+        "pressure",
+        "unit"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "RKE Linked to Memory",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "RKE Linked to Memory",
+      "chapter_words": [
+        "linked",
+        "memory",
+        "rke"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Rain Sensing Wipers",
+      "leaf": 5,
+      "from": "Lane and Lighting",
+      "chapter": "Rain Sensing Wipers",
+      "chapter_words": [
+        "rain",
+        "sensing",
+        "wipers"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Ready to Drive Pop-Up",
+      "leaf": 5,
+      "from": "Suspension and Comfort",
+      "chapter": "Ready to Drive Pop-Up",
+      "chapter_words": [
+        "drive",
+        "pop",
+        "ready",
+        "up"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Rear Guidance Light Status",
+      "leaf": 5,
+      "from": "Auxiliary Switches",
+      "chapter": "Rear Guidance Light Status",
+      "chapter_words": [
+        "guidance",
+        "light",
+        "rear",
+        "status"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Rear Guidance Lights with\\nCargo Lights",
+      "leaf": 5,
+      "from": "Switch Power Mode",
+      "chapter": "Rear Guidance Lights with Cargo Lights",
+      "chapter_words": [
+        "cargo",
+        "guidance",
+        "lights",
+        "rear"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Rear Seat Reminder",
+      "leaf": 5,
+      "from": "Approach and Tailgate",
+      "chapter": "Rear Seat Reminder",
+      "chapter_words": [
+        "rear",
+        "reminder",
+        "seat"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Rearview Camera Delay",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Rearview Camera Delay",
+      "chapter_words": [
+        "camera",
+        "delay",
+        "rearview"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Rearview Camera Dynamic Guidelines",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Rearview Camera Dynamic Guidelines",
+      "chapter_words": [
+        "camera",
+        "dynamic",
+        "guidelines",
+        "rearview"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Remote Door Unlock",
+      "leaf": 5,
+      "from": "Driver Convenience",
+      "chapter": "Remote Door Unlock",
+      "chapter_words": [
+        "door",
+        "remote",
+        "unlock"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "SWITCH 1 Hold Last State",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "chapter": "SWITCH 1 Hold Last State",
+      "chapter_words": [
+        "hold",
+        "last",
+        "state",
+        "switch"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：state／switch"
+    },
+    {
+      "cluster": "SWITCH 1 Power Mode",
+      "leaf": 3,
+      "from": "Switch Power Mode",
+      "chapter": "SWITCH 1 Power Mode",
+      "chapter_words": [
+        "mode",
+        "power",
+        "switch"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：mode／power／switch"
+    },
+    {
+      "cluster": "SWITCH 1 Type",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "chapter": "SWITCH 1 Type",
+      "chapter_words": [
+        "switch",
+        "type"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：switch／type"
+    },
+    {
+      "cluster": "SWITCH 2 Hold Last State",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "chapter": "SWITCH 2 Hold Last State",
+      "chapter_words": [
+        "hold",
+        "last",
+        "state",
+        "switch"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：state／switch"
+    },
+    {
+      "cluster": "SWITCH 2 Power Mode",
+      "leaf": 3,
+      "from": "Switch Power Mode",
+      "chapter": "SWITCH 2 Power Mode",
+      "chapter_words": [
+        "mode",
+        "power",
+        "switch"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：mode／power／switch"
+    },
+    {
+      "cluster": "SWITCH 2 Type",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "chapter": "SWITCH 2 Type",
+      "chapter_words": [
+        "switch",
+        "type"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：switch／type"
+    },
+    {
+      "cluster": "SWITCH 3 Hold Last State",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "chapter": "SWITCH 3 Hold Last State",
+      "chapter_words": [
+        "hold",
+        "last",
+        "state",
+        "switch"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：state／switch"
+    },
+    {
+      "cluster": "SWITCH 3 Power Mode",
+      "leaf": 3,
+      "from": "Switch Power Mode",
+      "chapter": "SWITCH 3 Power Mode",
+      "chapter_words": [
+        "mode",
+        "power",
+        "switch"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：mode／power／switch"
+    },
+    {
+      "cluster": "SWITCH 3 Type",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "chapter": "SWITCH 3 Type",
+      "chapter_words": [
+        "switch",
+        "type"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：switch／type"
+    },
+    {
+      "cluster": "SWITCH 4 Hold Last State",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "chapter": "SWITCH 4 Hold Last State",
+      "chapter_words": [
+        "hold",
+        "last",
+        "state",
+        "switch"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：state／switch"
+    },
+    {
+      "cluster": "SWITCH 4 Power Mode",
+      "leaf": 3,
+      "from": "Switch Power Mode",
+      "chapter": "SWITCH 4 Power Mode",
+      "chapter_words": [
+        "mode",
+        "power",
+        "switch"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：mode／power／switch"
+    },
+    {
+      "cluster": "SWITCH 4 Type",
+      "leaf": 3,
+      "from": "Switch Type and State",
+      "chapter": "SWITCH 4 Type",
+      "chapter_words": [
+        "switch",
+        "type"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：switch／type"
+    },
+    {
+      "cluster": "Signature Lighting",
+      "leaf": 5,
+      "from": "Lane and Lighting",
+      "chapter": "Signature Lighting",
+      "chapter_words": [
+        "lighting",
+        "signature"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Daytime Lighting"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：lighting"
+    },
+    {
+      "cluster": "Speed Unit",
+      "leaf": 4,
+      "from": "Units and Cameras",
+      "chapter": "Speed Unit",
+      "chapter_words": [
+        "speed",
+        "unit"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Surround View Camera Delay",
+      "leaf": 5,
+      "from": "Units and Cameras",
+      "chapter": "Surround View Camera Delay",
+      "chapter_words": [
+        "camera",
+        "delay",
+        "surround",
+        "view"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Surround View Camera Guidelines",
+      "leaf": 5,
+      "from": "Units and Cameras",
+      "chapter": "Surround View Camera Guidelines",
+      "chapter_words": [
+        "camera",
+        "guidelines",
+        "surround",
+        "view"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Suspension Display Messages",
+      "leaf": 5,
+      "from": "Suspension and Comfort",
+      "chapter": "Suspension Display Messages",
+      "chapter_words": [
+        "display",
+        "messages",
+        "suspension"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：suspension"
+    },
+    {
+      "cluster": "Suspension Service Mode",
+      "leaf": 5,
+      "from": "Suspension and Comfort",
+      "chapter": "Suspension Service Mode",
+      "chapter_words": [
+        "mode",
+        "service",
+        "suspension"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Power Mode"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：suspension"
+    },
+    {
+      "cluster": "Temperature Unit",
+      "leaf": 5,
+      "from": "Units and Cameras",
+      "chapter": "Temperature Unit",
+      "chapter_words": [
+        "temperature",
+        "unit"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Tilt Mirror in Reverse",
+      "leaf": 5,
+      "from": "Suspension and Comfort",
+      "chapter": "Tilt Mirror in Reverse",
+      "chapter_words": [
+        "mirror",
+        "reverse",
+        "tilt"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Time and Date Settings",
+      "leaf": 7,
+      "from": "Units and Cameras",
+      "chapter": "Time and Date Settings",
+      "chapter_words": [
+        "date",
+        "time"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Tire Fill Alert",
+      "leaf": 5,
+      "from": "Suspension and Comfort",
+      "chapter": "Tire Fill Alert",
+      "chapter_words": [
+        "alert",
+        "fill",
+        "tire"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Torque Unit",
+      "leaf": 5,
+      "from": "Measurement Units",
+      "chapter": "Torque Unit",
+      "chapter_words": [
+        "torque",
+        "unit"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Traffic Sign Assist Offset - NAFTA Setting",
+      "leaf": 33,
+      "from": "Trailer and Signage",
+      "chapter": "Traffic Sign Assist Offset - NAFTA Setting",
+      "chapter_words": [
+        "assist",
+        "nafta",
+        "offset",
+        "sign",
+        "traffic"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Traffic Sign Assist Offset - non-NAFTA Setting",
+      "leaf": 23,
+      "from": "Trailer and Signage",
+      "chapter": "Traffic Sign Assist Offset - non-NAFTA Setting",
+      "chapter_words": [
+        "assist",
+        "nafta",
+        "non",
+        "offset",
+        "sign",
+        "traffic"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Traffic Sign Warning",
+      "leaf": 6,
+      "from": "Approach and Tailgate",
+      "chapter": "Traffic Sign Warning",
+      "chapter_words": [
+        "sign",
+        "traffic",
+        "warning"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Trailer Brake Type",
+      "leaf": 13,
+      "from": "Trailer and Signage",
+      "chapter": "Trailer Brake Type",
+      "chapter_words": [
+        "brake",
+        "trailer",
+        "type"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [
+        "Switch Type and State"
+      ],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：trailer"
+    },
+    {
+      "cluster": "Trailer Name",
+      "leaf": 22,
+      "from": "Trailer and Signage",
+      "chapter": "Trailer Name",
+      "chapter_words": [
+        "name",
+        "trailer"
+      ],
+      "cond_i_disjoint": false,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(i) 不成立 —— 章名主題詞與現屬 Test Set 名相交：trailer"
+    },
+    {
+      "cluster": "Turn Signal Activated Blind Spot Camera View",
+      "leaf": 5,
+      "from": "Units and Cameras",
+      "chapter": "Turn Signal Activated Blind Spot Camera View",
+      "chapter_words": [
+        "activated",
+        "blind",
+        "camera",
+        "signal",
+        "spot",
+        "turn",
+        "view"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Unit Energy",
+      "leaf": 6,
+      "from": "Units and Cameras",
+      "chapter": "Unit Energy",
+      "chapter_words": [
+        "energy",
+        "unit"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
+      "leaf": 5,
+      "from": "Trailer and Signage",
+      "chapter": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
+      "chapter_words": [
+        "audible",
+        "fuel",
+        "inverter",
+        "low",
+        "shutdown",
+        "warning",
+        "warnings"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    },
+    {
+      "cluster": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
+      "leaf": 5,
+      "from": "Trailer and Signage",
+      "chapter": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
+      "chapter_words": [
+        "fuel",
+        "inverter",
+        "low",
+        "shutdown",
+        "visual",
+        "warning",
+        "warnings"
+      ],
+      "cond_i_disjoint": true,
+      "candidates": [],
+      "no_spec": false,
+      "reason": "(ii) 不成立 —— 無其他 Test Set 之名與章名主題詞相交，依 R-VF36 留原處，不得新設"
+    }
+  ],
+  "cross": [
+    "SWITCH 1 Hold Last State",
+    "SWITCH 1 Power Mode",
+    "SWITCH 1 Type",
+    "SWITCH 2 Hold Last State",
+    "SWITCH 2 Power Mode",
+    "SWITCH 2 Type",
+    "SWITCH 3 Hold Last State",
+    "SWITCH 3 Power Mode",
+    "SWITCH 3 Type",
+    "SWITCH 4 Hold Last State",
+    "SWITCH 4 Power Mode",
+    "SWITCH 4 Type"
+  ],
+  "final": {
+    "Driver Convenience": {
+      "Blind Spot Alert": 6,
+      "Passive Entry": 5,
+      "Remote Door Unlock": 5,
+      "Auto Park Brake": 5,
+      "Horn With Remote Start": 5,
+      "Horn With Lock": 6,
+      "Auto Unlock on Exit": 5,
+      "Flash Light With Lock": 5,
+      "Navigation Turn by Turn": 5,
+      "Language": 4,
+      "Phone Repetition": 5,
+      "Park Sense Rear Volume": 6,
+      "Park Sense Front Volume": 6,
+      "Auto High Beam": 5,
+      "RKE Linked to Memory": 5,
+      "Auto On Driver Comfort - 3 Option": 6,
+      "Auto On Driver Comfort - 2 Option": 5,
+      "Rearview Camera Delay": 5,
+      "Rearview Camera Dynamic Guidelines": 5,
+      "Driver Easy Exit Seat": 5
+    },
+    "Lane and Lighting": {
+      "Cornering Lights": 5,
+      "Greeting Lights": 5,
+      "Lane Sense Warning": 6,
+      "Signature Lighting": 5,
+      "Lane Sense Strength": 6,
+      "Forward Collision Warning": 6,
+      "Forward Collision Warning Sensitivity": 6,
+      "Pedestrian Emergency Braking or Warning & Active Braking": 5,
+      "Rain Sensing Wipers": 5
+    },
+    "Daytime Lighting": {
+      "Daytime Running Lights": 5,
+      "Headlights Off Delay": 7,
+      "Rear Guidance Lighting with Approach": 5
+    },
+    "Measurement Units": {
+      "Pressure Unit": 6,
+      "Torque Unit": 5
+    },
+    "Switch Power Mode": {
+      "Power Unit": 6,
+      "Hour Mode": 4,
+      "SWITCH 5 Power Mode": 3,
+      "SWITCH 6 Power Mode": 3,
+      "Charge Power Level": 8,
+      "Rear Guidance Lights with\\nCargo Lights": 5,
+      "Engine Off Power Delay": 7,
+      "Power Side Step": 5,
+      "Max Power Level": 4
+    },
+    "Units and Cameras": {
+      "Time and Date Settings": 7,
+      "Auto Door Locks": 5,
+      "Distance Unit": 4,
+      "Speed Unit": 4,
+      "Consumption Unit": 7,
+      "Unit Energy": 6,
+      "Temperature Unit": 5,
+      "Surround View Camera Delay": 5,
+      "Surround View Camera Guidelines": 5,
+      "Turn Signal Activated Blind Spot Camera View": 5,
+      "ParkSense Based Camera Activation": 5,
+      "Park Sense": 5
+    },
+    "Trailer and Signage": {
+      "Turn Signal Activated Blind Spot Camera View with Trailer Option": 6,
+      "Trailer Number": 8,
+      "Trailer Name": 22,
+      "Trailer Brake Type": 13,
+      "Automatic Trailer Light Check": 5,
+      "Blind Spot with Trailer Detection": 5,
+      "Traffic Sign Assist Offset - NAFTA Setting": 33,
+      "Traffic Sign Assist Offset - non-NAFTA Setting": 23,
+      "Warnings for Low Fuel Inverter Shutdown - Visual Warning": 5,
+      "Warnings for Low Fuel Inverter Shutdown - Audible Warning": 5,
+      "Enhanced Display Synchronization": 6,
+      "CHMSL CAMERA DYNAMIC CENTERLINE": 5
+    },
+    "Suspension and Comfort": {
+      "Suspension Auto Entry or Exit": 6,
+      "Suspension Flash Lights With Lower": 5,
+      "Suspension Sound Horn With Lower": 5,
+      "Suspension Default Ride Height": 6,
+      "Suspension Service Mode": 5,
+      "Suspension Display Messages": 5,
+      "Tilt Mirror in Reverse": 5,
+      "Tire Fill Alert": 5,
+      "Ready to Drive Pop-Up": 5,
+      "Auto Fold Mirrors": 5,
+      "Hill Start Assist": 5,
+      "Headlights with Wipers": 5
+    },
+    "Auxiliary Switches": {
+      "6 Aux Switches": 2,
+      "SWITCH 1 Power Mode": 6,
+      "SWITCH 2 Power Mode": 6,
+      "SWITCH 3 Power Mode": 6,
+      "SWITCH 4 Power Mode": 6,
+      "SWITCH 1 Type": 6,
+      "SWITCH 2 Type": 6,
+      "SWITCH 3 Type": 6,
+      "SWITCH 4 Type": 6,
+      "SWITCH 1 Hold Last State": 6,
+      "SWITCH 2 Hold Last State": 6,
+      "SWITCH 3 Hold Last State": 6,
+      "SWITCH 4 Hold Last State": 6,
+      "Rear Guidance Light Status": 5,
+      "E-Save": 6,
+      "4 AUX Switches": 2
+    },
+    "Switch Type and State": {
+      "SWITCH 5 Type": 3,
+      "SWITCH 6 Type": 3,
+      "SWITCH 5 Hold Last State": 3,
+      "SWITCH 6 Hold Last State": 3
+    },
+    "Approach and Tailgate": {
+      "Illuminated Approach": 7,
+      "Paddle Shifter": 5,
+      "Power Liftgate/Tailgate Alert": 6,
+      "Power Tailgate": 6,
+      "Traffic Sign Warning": 6,
+      "New Speed Zone Indication": 6,
+      "Rear Seat Reminder": 5
+    }
+  },
+  "ts_leaf": {
+    "Driver Convenience": 104,
+    "Lane and Lighting": 49,
+    "Daytime Lighting": 17,
+    "Measurement Units": 11,
+    "Switch Power Mode": 45,
+    "Units and Cameras": 63,
+    "Trailer and Signage": 136,
+    "Suspension and Comfort": 62,
+    "Auxiliary Switches": 87,
+    "Switch Type and State": 12,
+    "Approach and Tailgate": 41
+  },
+  "total": 627,
+  "new_names": [],
+  "gone": [],
+  "verdict": "(b)",
+  "inflow": {
+    "Auxiliary Switches": 2,
+    "Switch Power Mode": 52,
+    "Driver Convenience": 5,
+    "Daytime Lighting": 5,
+    "Switch Type and State": 36,
+    "Suspension and Comfort": 22,
+    "Trailer and Signage": 14
+  },
+  "outflow": {
+    "Switch Power Mode": 18,
+    "Approach and Tailgate": 16,
+    "Suspension and Comfort": 12,
+    "Units and Cameras": 16,
+    "Trailer and Signage": 9,
+    "Measurement Units": 6,
+    "Auxiliary Switches": 59
+  }
+}

@@ -8,99 +8,106 @@
   },
   {
     "file": "RULINGS.md",
-    "line": 1448,
+    "line": 1453,
     "text": "本輪亦未取用、未對帳。VF230 之 leaf 母體（`data/vf230_leaves.tsv`，619 leaf）",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
   {
     "file": "RULINGS.md",
-    "line": 1777,
+    "line": 1782,
     "text": "627 = 619（037 判 Functional）＋ 8（A-VS132）。",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
   {
     "file": "RULINGS.md",
-    "line": 1789,
+    "line": 1794,
     "text": "**執行層註（W-VF17 已執行）**：`data/vf230_leaves.tsv` 619 → **627**，",
     "verdict": "不改",
     "why": "對照式書寫（619→627／619 版／619＋8）—— 其為變更之紀錄本身"
   },
   {
     "file": "RULINGS.md",
-    "line": 1790,
+    "line": 1795,
     "text": "新增 `disagree` 欄（該 8 列為 `1`，其餘 619 列為 `0`）。",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
   {
     "file": "RULINGS.md",
-    "line": 1890,
+    "line": 1895,
     "text": "母體、分母或判準變更時（如 619 → 627），**既有文件中之舊數不一律改**。",
     "verdict": "不改",
     "why": "對照式書寫（619→627／619 版／619＋8）—— 其為變更之紀錄本身"
   },
   {
     "file": "RULINGS.md",
-    "line": 1904,
+    "line": 1909,
     "text": "理由：上繳 V06 §5 掃出 18 檔含 `619`，其中多數為當時之正確量測。",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
   {
     "file": "RULINGS.md",
-    "line": 1910,
+    "line": 1915,
     "text": "`assert tot_leaf == 619`）／**不改 95**／待人工 0。",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
   {
     "file": "RULINGS.md",
-    "line": 1912,
+    "line": 1917,
     "text": "（Sub Categorization 之 `388/619`）雖位於現行有效之設定檔，",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
   {
     "file": "RULINGS.md",
-    "line": 2171,
+    "line": 2176,
     "text": "R-VF22（619 → 627 之現行有效陳述更新，分析層裁定 2026-08-23）",
     "verdict": "不改",
     "why": "對照式書寫（619→627／619 版／619＋8）—— 其為變更之紀錄本身"
   },
   {
     "file": "RULINGS.md",
-    "line": 2176,
+    "line": 2181,
     "text": "feature.yaml:29              `（619 leaf）` → `（627 leaf）`",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
   {
     "file": "RULINGS.md",
-    "line": 2177,
+    "line": 2182,
     "text": "scripts/vf230_layer2.py:113  `assert tot_leaf == 619 or True`",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
   {
     "file": "RULINGS.md",
-    "line": 2184,
+    "line": 2189,
     "text": "`feature.yaml:118`（`388/619`）依 W-VF20 之逐行判別**維持不改** ——",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
   {
     "file": "RULINGS.md",
-    "line": 2193,
+    "line": 2198,
     "text": "- `feature.yaml:29` —— `（619 leaf）` 改為 `（627 leaf，R-VF16；其中 8 列標 disagree=1，見 A-VS132）`",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
   {
     "file": "RULINGS.md",
-    "line": 2195,
+    "line": 2200,
     "text": "- `feature.yaml:118`（`388/619`）**維持不改**",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 2483,
+    "text": "實例（A-VF6）：R-VF22 施行使 `feature.yaml` 之 `388/619` 由 118 移至 119，",
     "verdict": "不改",
     "why": "條文中引為理由之當時實測值"
   },
@@ -206,6 +213,20 @@
     "file": "docs/handoff/ZZ_vf230_numbering_collision.md",
     "line": 119,
     "text": "- **A-VS132**（037 判 Heading／035 判 Functional 之 8 列）—— leaf 母體 619 或 627",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V10_four_rulings.md",
+    "line": 22,
+    "text": "1. **A-VF6（行號鍵 vs 內容鍵）** —— R-VF22 之施行使 `388/619` 由 118 移至 119，",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V10_four_rulings.md",
+    "line": 150,
+    "text": "實例（A-VF6）：R-VF22 施行使 `feature.yaml` 之 `388/619` 由 118 移至 119，",
     "verdict": "不改",
     "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
   },
@@ -374,6 +395,27 @@
     "file": "docs/upstream/V08_review_v07.md",
     "line": 149,
     "text": "`feature.yaml:118`（`388/619`）依 W-VF20 之逐行判別**維持不改**。",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V08_review_v07.md",
+    "line": 161,
+    "text": "（不改之數增加係因 R-VF22 之施行與本輪之落檔另生若干含 `619` 之歷史陳述。）",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V08_review_v07.md",
+    "line": 166,
+    "text": "而不再含 `619`，腳本依 **R-VF21 第 1 項**（存在性先驗）停下。",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V08_review_v07.md",
+    "line": 169,
+    "text": "`388/619` 一行**自 118 移至 119**，覆寫鍵失配，該行遂由「不改」",
     "verdict": "不改",
     "why": "上繳包 —— 已提交之歷史紀錄"
   },
@@ -651,6 +693,13 @@
     "why": "已結案之報告 —— 作成當時之正確量測"
   },
   {
+    "file": "docs/reports/wvf28_disclosure_draft.md",
+    "line": 29,
+    "text": "> 經裁定計入可測母體（627 = 619 + 8）。該 8 條集中於 SWITCH 族",
+    "verdict": "不改",
+    "why": "對照式書寫（619→627／619 版／619＋8）—— 其為變更之紀錄本身"
+  },
+  {
     "file": "docs/reports/vf230_crosscheck.md",
     "line": 20,
     "text": "（2626），且**缺 037 之 6 個 `E-Save` leaf**；035 則涵蓋全部 619。",
@@ -694,29 +743,29 @@
   },
   {
     "file": "docs/reports/wvf20_619_triage.md",
-    "line": 20,
+    "line": 9,
+    "text": "| 必為「不改」（逐行覆寫之標的） | `feature.yaml:119`（含 `388/619`） | 不改 |",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/wvf20_619_triage.md",
+    "line": 16,
+    "text": "> 即因該行不再含 `619` 而停 —— **R-VF21 第 1 項之正面作用**。",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/wvf20_619_triage.md",
+    "line": 24,
     "text": "| 文字為對照式（`619 → 627`／`619 版`／`619 或 627`／`619 ＋ 8`） | 不改 | 其為變更之紀錄本身，改之即抹除變更 |",
     "verdict": "不改",
     "why": "對照式書寫（619→627／619 版／619＋8）—— 其為變更之紀錄本身"
   },
   {
     "file": "docs/reports/wvf20_619_triage.md",
-    "line": 32,
-    "text": "| `feature.yaml:118` | 不改 | 此行為 **當時之 Sub Categorization 實測**（388/619），非後續作業據以行動之設定值 —— 其所支持之判定（Test Group）已由 R-VF9 裁定，本行僅存為裁定當時之證據。雖位於現行有效之 `feature.yaml`，依 R-",
-    "verdict": "不改",
-    "why": "已結案之報告 —— 作成當時之正確量測"
-  },
-  {
-    "file": "docs/reports/wvf20_619_triage.md",
-    "line": 44,
-    "text": "| `feature.yaml:29` | `# leaf 全集以 data/vf230_leaves.tsv 為準（619 leaf）。` | 現行有效之設定／作業文件，後續作業據以行動 |",
-    "verdict": "不改",
-    "why": "已結案之報告 —— 作成當時之正確量測"
-  },
-  {
-    "file": "docs/reports/wvf20_619_triage.md",
-    "line": 45,
-    "text": "| `scripts/vf230_layer2.py:113` | `assert tot_leaf == 619 or True   # 總數自各簇重算，不硬編` | 腳本內之可執行常數／斷言 —— 現行行為據以判定 |",
+    "line": 36,
+    "text": "| `feature.yaml` 含 `388/619` 之行 | 不改 | 此行為 **當時之 Sub Categorization 實測**（388/619），非後續作業據以行動之設定值 —— 其所支持之判定（Test Group）已由 R-VF9 裁定，本行僅存為裁定當時之證據。雖位於現行有效之 `feature",
     "verdict": "不改",
     "why": "已結案之報告 —— 作成當時之正確量測"
   },
@@ -814,28 +863,35 @@
   {
     "file": "ANOMALIES.md",
     "line": 137,
-    "text": "| **A-VS132** | **037 之 8 列判 `Heading` 而 035 SYSRA 判 `Functional Requirement` —— VF230 之 leaf 母體可能為 627 而非 619** | 38 輪 VF230 跨源驗核：037 之 745 列**全數命中** 035（`FM-W",
+    "text": "| **A-VS132** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **037 之 8 列判 `Heading` 而 035 SYSRA 判 `Functional Requirement` —— VF230 之 leaf 母體可能為 627 而非 619** | 38 輪 VF230 跨源",
     "verdict": "不改",
     "why": "登記簿 —— 記錄開立當時之事實"
   },
   {
     "file": "ANOMALIES.md",
     "line": 138,
-    "text": "| **A-VS133** | **037 之 11 份分報告僅涵蓋 035 之 `Functional Requirement` 之 57.7%，460 條無任何 SWE.1 分析** | 38 輪 VF230 跨源驗核：035 之 `Functional Requirement` 合計 **1087**，為 037",
+    "text": "| **A-VS133** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **037 之 11 份分報告僅涵蓋 035 之 `Functional Requirement` 之 57.7%，460 條無任何 SWE.1 分析** | 38 輪 VF230 跨源驗核：035 之 `Functiona",
     "verdict": "不改",
     "why": "登記簿 —— 記錄開立當時之事實"
   },
   {
     "file": "ANOMALIES.md",
     "line": 140,
-    "text": "| **A-VS129** | **5 個 `swe_id` 與其 `title` 內嵌換行（分析層開立，62 包 §2.3）** | 38 輪 W-116 之執行層複驗**成立**：`data/vf230_leaves.tsv` 之 619 列中，`swe_id` 異常 **5**（皆為 `SWE1-VC-RearG",
+    "text": "| **A-VS129** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **5 個 `swe_id` 與其 `title` 內嵌換行（分析層開立，62 包 §2.3）** | 38 輪 W-116 之執行層複驗**成立**：`data/vf230_leaves.tsv` 之 619 列中，`sw",
     "verdict": "不改",
     "why": "登記簿 —— 記錄開立當時之事實"
   },
   {
     "file": "ANOMALIES.md",
     "line": 141,
-    "text": "| **A-VS130** | **17 個 `swe_id` 缺數字前之連字號（分析層開立，62 包 §2.4）** | 38 輪 W-117／W-118 之執行層複驗**成立**：619 個 `swe_id` 中不符 `-\\d+$` 者 **17** —— `SWE1-VC-TrailerBrakeType025`",
+    "text": "| **A-VS130** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **17 個 `swe_id` 缺數字前之連字號（分析層開立，62 包 §2.4）** | 38 輪 W-117／W-118 之執行層複驗**成立**：619 個 `swe_id` 中不符 `-\\d+$` 者 **17** ",
+    "verdict": "不改",
+    "why": "登記簿 —— 記錄開立當時之事實"
+  },
+  {
+    "file": "ANOMALIES.md",
+    "line": 157,
+    "text": "| **A-VF6** | **行號型錨點會被同檔他處之編輯位移 —— 位置不是識別** | 38 輪 W-VF20 重跑：R-VF22 施行後，`scripts/vf230_wvf20_619.py` 之兩處錨點皆失效。**(a)** 必為「須改」錨點指向 `feature.yaml:29`，該行已改為 `627`，",
     "verdict": "不改",
     "why": "登記簿 —— 記錄開立當時之事實"
   }
