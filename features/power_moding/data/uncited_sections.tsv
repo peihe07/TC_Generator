@@ -1,0 +1,24 @@
+outline_number	polarion_id	level	title	classification
+1	NRL-115694	1	Assumptions	chapter_node
+1.1	NRL-115695	2	This specification covers the requirements for the R1 Low 7", R1 Low 8.4", R1 Lo	assumptions
+1.2	NRL-115696	2	Differences between the radios will be specified.	assumptions
+1.3	NRL-115697	2	Unless otherwise specified, the 12" user interface will be a scaled up version o	assumptions
+1.4	NRL-115698	2	Unless otherwise specified, the 12.3" user interface will be a scaled up version	assumptions
+1.5	NRL-115699	2	Reference PDO release for all official graphics and animation examples.	assumptions
+2	NRL-115700	1	Headunit Startup – Non-GDPR/NonMaserati	chapter_node
+2.1	NRL-115701	2	Please refer to the diagram (image: %E5%9C%96%E7%89%87_1465596780.png)	image_placeholder
+3	NRL-115702	1	Headunit Startup – GDPR/Non-Maserati	chapter_node
+3.1	NRL-115703	2	Please refer to the diagram (image: %E5%9C%96%E7%89%87_518773150.png)	image_placeholder
+4	NRL-115704	1	Headunit Startup – Maserati/Non-GDPR	chapter_node
+4.1	NRL-115705	2	Please refer to the diagram (image: %E5%9C%96%E7%89%87_1114342513.png)	image_placeholder
+5	NRL-115706	1	Headunit Startup – GDPR/Maserati	chapter_node
+5.1	NRL-115707	2	Please refer to the diagram (image: %E5%9C%96%E7%89%87_1612966867.png)	image_placeholder
+6	NRL-115708	1	Passenger Screen Startup	chapter_node
+6.1	NRL-115709	2	Please refer to the diagram (image: %E5%9C%96%E7%89%87_2144612656.png)	image_placeholder
+7	NRL-115710	1	Startup	chapter_node
+8	NRL-115722	1	Starup R1Low Only	chapter_node
+9	NRL-115728	1	Power Moding	chapter_node
+10	NRL-115730	1	Additional Power Moding Behavior Notes:	chapter_node
+11	NRL-115738	1	VR HARD KEY FOR SIRI/NON-NATIVE VOICE ASSISTANTS	chapter_node
+12	NRL-115740	1	Power Moding – Off Road+	chapter_node
+12.4	NRL-115744	2	Please refer to the diagram (image: %E5%9C%96%E7%89%87_1052920486.png)	image_placeholder

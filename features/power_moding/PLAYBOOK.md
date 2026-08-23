@@ -134,12 +134,40 @@ Remarks = reason + anomaly id.
 
 ## 6. Status board — Power_Moding
 
-- [ ] P0 intake complete; INTAKE.md reviewed; missing files: ____
-- [ ] P1 recon complete; workbook_state: ____; leaves: ____; targets: ____
-- [ ] P2 DECISIONS signed (date: ____)
-- [ ] P3 framework Part N + profile approved
-- [ ] P4 data artifacts built
+> 更新於 2026-08-23（下放包 04）。往返紀錄見 `docs/INDEX.md`。
+
+- [x] **P0 intake complete** — 素材 5 份（4 客戶 ＋ 1 母本工作副本），
+      `shasum -c` 全 OK；missing files: **無**（DR-PMH 零筆）
+- [x] **P1 recon complete** — `workbook_state:` **BLANK**（R-PMH8）;
+      `leaves:` **48**; `targets:` **48**; recon assertion 1/1 PASS
+- [ ] **P2 DECISIONS signed** (date: ____) — `DECISIONS.md` 已預填並補入
+      8 項 `[RULED]`，**待 Pei 簽核**
+- [ ] P3 framework Part N + profile approved — Layer 2 備料已完成
+      （FROP 12 值 × 章節 52 項之交集與分歧，見 upstream/03 §7）
+- [ ] P4 data artifacts built — `outline_map.json`／`uncited_sections.tsv`
+      已就緒；A-PMH03（outline 7.1 之 5 leaf）為指名複核項
 - [ ] P5 pilot batch ____ reviewed; verdict: ____; corrections: ____
 - [ ] P6 all batches generated; lint green; placeholders: ____
 - [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: ____
-- Open PENDING rulings: ____
+
+### 下一步
+
+**Phase 2／3（framework）。** P1 已完成，無阻斷項。
+
+### Open rulings
+
+| 標記 | 事項 | 狀態 |
+|---|---|---|
+| **`[PEI-REOPEN]`** | **R-PMH10（D3／D4／D5 留空）之 Q3 重裁** —— 其依據「語料 5/5 無一填寫」證據基礎不完整；04 包已依 R-PMH19 取得全母體語料（11 檔，D5 **3 非空**），**待 Pei 重裁** | 行為維持「不寫入」，**不阻斷** |
+| `[PEI]` | Test Set（H）欄之值 —— R-PMH6 延後至 Phase 3 | Phase 3 |
+| `[PEI]` | `DECISIONS.md` §6 之 Part N 與 profile `[OVERRIDE]` | Phase 3 |
+
+### Open PENDING anomalies
+
+| 條號 | 主旨 | 複核時點 |
+|---|---|---|
+| A-PMH03 | SYS1 匯出 outline 7.1 相對 PDF 為重排 | **Phase 4**（5 leaf 指名複核） |
+| A-PMH04 | 6 則 outline 為圖片佔位 | **Phase 4**（render 取用時） |
+| A-PMH10 | 母本與客戶那份之 design_method DV source 不同 | 不阻斷（實務逸出 0） |
+| **A-PMH12** | **`Q` 套用 P0–P3 下拉、`AF` 列舉含前導空白** | **Phase 6／7 之前置阻斷項** |
+| A-PMH06 附項 | `new_feature.py` 之 `GITIGNORE` 樣板 | **PENDING-CANON**，本 feature 不改

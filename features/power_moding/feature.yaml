@@ -120,14 +120,31 @@ workbook:
   #   **客戶那份**之列號（10–57），**不是寫回目標列**。母本為 BLANK，
   #   寫回目標由 `write_back.first_row` 起之 append 順序決定。
   #   任何以 `row_036_customer` 定位寫回之程式即為缺陷（02 §11 第 4 項）。
-  # R-PMH10 —— 前言三欄一律留空。實測語料 5/5 皆空（母本 ＋ UP 20260820 ＋
-  # Comfort 20260817 ＋ TM 20260822 ＋ Power Management 20260821）。
+  # R-PMH10 —— 前言三欄不寫入任何值。
+  # ⚠ **`[PEI-REOPEN]`（04 包 §三）** —— 原依據「語料 5/5 皆空」之母體未定義。
+  #   依 R-PMH19 建立母體（ASW-R2 全樹 28 候選 → 排除 14+1+2 → **11 檔**）後實測：
+  #     D3 = 11/11 空、D4 = 11/11 空、**D5 = 3/11 非空**
+  #     （AM:FM `SWE1_AMFM_FM-WI-FSM-037-A03 …_20260323`、
+  #      Privacy Mode `SWE1_CFTS_022-Privacy_Features`、
+  #      SiriusXM `SWE1_SXM_FM-WI-FSM-037-A03 …_20260406`）
+  #   **Q3 待 Pei 重裁**；重裁前行為與現行相同（不寫入），故不阻斷。
   preamble_cells_keep_blank: ["D3", "D4", "D5"]
   data_validation:               # 實測自 sheet6.xml 之 sqref，未經 openpyxl 存回
     priority:      {range: "P10:Q1411", kind: "standard"}
     vehicle_models: {range: "T10:Z1411", kind: "standard"}
     test_result:   {range: "AF10:AF1411", kind: "standard"}
     design_method: {range: "R10:R1411", kind: "x14", source: "下拉選單!$A$1:$A$9"}
+  # R-PMH20 —— 上列為**本分頁**（Test Case Specification）之 DV，共 4 組。
+  # **全簿**為 5 組：另有 `Product Document 記錄封面頁!B7:C7`
+  # （legacy list，`"Confidential, Top Secret"`）—— 不在寫回範圍內。見 A-PMH11。
+  # ⚠ A-PMH12 —— 兩項母本 DV 瑕疵，Phase 6／7 首次填值前必須處理：
+  #   (1) priority 之 sqref 跨 P、Q 兩欄 → `Q`（Estimated Test Time）套用
+  #       `"P0,P1,P2,P3"`，任何分鐘數都會被擋下；
+  #   (2) `AF` 列舉逐字為 `"Pass, Fail, Pending,Block,NA"` —— ` Fail` 與
+  #       ` Pending` **含前導空白**，寫入 `Fail`（無空格）會被擋下。
+  # ⚠ A-PMH10 —— 客戶那份之 x14 DV source 為 `Reference!$C$4:$C$12`（非
+  #   `下拉選單`），其第 6 項為 `Pair-wise / N-wise`。本 feature 之權威為母本
+  #   之 `下拉選單!$A$1:$A$9`（`Pairwise / t-wise`）。
   # ⚠ x14 DV 存在 —— **不得以 openpyxl 開啟後 save()**（R-G1 註／R-G3）。
   #   寫回一律走 xlsx_surgical splice。停止條件 9。
 
@@ -149,6 +166,13 @@ write_back:
   test_group_value: "Disclaimer screen"   # R-PMH13 已裁，G 欄可寫
   test_set_value: null                    # H 欄仍待 Phase 3（R-PMH6，不受 R-PMH13 核可影響）
   keep_blank: ["D3", "D4", "D5"] # R-PMH10
+
+# R-PMH22 —— 寫回前必跑之機器檢查（三項），失敗即中止寫回。
+# 三項故意失敗測試已實跑並全部攔下，範圍向亦通過（04 包步驟 3）。
+write_back_checks:
+  script: "scripts/check_write_back.py"
+  checks: ["blank_precondition", "start_row_source", "row_count_delta"]
+  self_test: "python scripts/check_write_back.py --feature . --self-test"
 
 lint:
   # 01 包為「沿用預設」，02 包步驟 7 改為**實測**：母本與客戶那份之

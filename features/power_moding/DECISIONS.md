@@ -17,7 +17,7 @@ sign-off = binding as proposed.
 - workbook_state: [AUTO] BLANK
 - form layout revision: [AUTO] C (has Estimated Test Time)
 - column mapping: [AUTO] 15 fields + estimated_test_time = 16，與 `feature.yaml` 零衝突（R-PMH9 之四方交叉佐證另證 34/34 逐欄相等）
-- 前言三欄: [RULED R-PMH10] `D3`／`D4`／`D5` 一律留空（語料 5/5 皆空）；`write_back.keep_blank` 已設
+- 前言三欄: [RULED R-PMH10 · **`[PEI-REOPEN]`**] `D3`／`D4`／`D5` **不寫入任何值**。⚠ 其依據「語料 5/5 皆空」**證據基礎不完整** —— 04 包依 R-PMH19 建立母體（11 檔）後實測：`D3` 11/11 空、`D4` 11/11 空、**`D5` 3/11 非空**（AM:FM／Privacy Mode／SiriusXM）。**Q3 待 Pei 重裁**；重裁前行為不變，故不阻斷
 - DV 全量: [AUTO 03 包步驟 2] legacy 3 組（`P10:Q1411` = `"P0,P1,P2,P3"`／`T10:Z1411` = `"0,1"`／`AF10:AF1411` = `"Pass, Fail, Pending,Block,NA"`）＋ x14 1 組（`R10:R1411` → `下拉選單!$A$1:$A$9`）。四份已交付件之逸出 **0**
 - 寫回機制: [RULED R-G3／R-G1 註] x14 DV 存在 —— **不得 `openpyxl` + `save()`**，一律走 `xlsx_surgical` splice
 - done segments: [AUTO] none
@@ -50,6 +50,8 @@ sign-off = binding as proposed.
 
 ## 7. Execution
 - batch plan: [PROPOSED: 依 spec 章節分組，pilot 取最小之完整章節] leaf 之章分布 7(19)／8(6)／9(5)／10(10)／11(5)／12(3)；PDF 頁分布 p8(25)／p9(5)／p10(15)／p11(3)
+- **Phase 6／7 之前置阻斷項**: [RULED A-PMH12] 首次填 `Q`（Estimated Test Time）或 `AF`（Test Result）之前**必須處理**兩項母本 DV 瑕疵 —— (1) priority DV 之 sqref 為 `P10:Q1411` **跨兩欄**，使 `Q` 套用 `"P0,P1,P2,P3"` 下拉，任何分鐘數都會被擋下；(2) `AF` 之列舉逐字為 `"Pass, Fail, Pending,Block,NA"`，` Fail` 與 ` Pending` **含前導空白**，寫入 `Fail`（無空格）會被擋下。二者因四份交付件該二欄全空而從未被檢驗過
+- **寫回前必跑之機器檢查**: [RULED R-PMH22] `scripts/check_write_back.py` 三項（blank 前提／起始列來源／列數差），三項故意失敗測試已實跑並全部攔下，範圍向亦通過
 - BLOCKED batches at start: [AUTO] **0** —— 29/29 章節於 SYS1 命中、48/48 leaf 之 `pdf_page` 已解、無 DR-PMH 待答
 
 ---

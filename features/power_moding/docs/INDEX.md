@@ -10,6 +10,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 01 | 2026-08-22 | 開案：骨架、裁決落檔、Phase 0 intake 實測 | [handoff/01_intake.md](handoff/01_intake.md) | [upstream/01_intake.md](upstream/01_intake.md) | R-PMH1–R-PMH6（分析層，逐字抄錄 6/6 相符） | A-PMH01–A-PMH05 | **步驟 1–8 全數執行；停止條件 2、4 觸發，已停於待裁** |
 | 02 | 2026-08-23 | 母本改定、`workbook_state` 改判、Phase 1 前置 | [handoff/02_baseline_switch.md](handoff/02_baseline_switch.md) | [upstream/02_baseline_switch.md](upstream/02_baseline_switch.md) | R-PMH7–R-PMH12（逐字抄錄 6/6 相符） | A-PMH06–A-PMH08；A-PMH01／A-PMH05 → RESOLVED | **步驟 1–10 全數執行；九條停止條件全未觸發** |
 | 03 | 2026-08-23 | Test Group 欄值改判、DV 列舉值實測、Phase 1 recon | [handoff/03_testgroup_and_dv.md](handoff/03_testgroup_and_dv.md) ＋ [03a_pei_rulings.md](handoff/03a_pei_rulings.md) | [upstream/03_testgroup_and_dv.md](upstream/03_testgroup_and_dv.md) | R-PMH13–R-PMH18（逐字抄錄 7/7 相符） | A-PMH09、A-PMH10；A-PMH06（附 PENDING-CANON）／A-PMH07 → RESOLVED | **步驟 1–8 全數執行；九條停止條件全未觸發** |
+| 04 | 2026-08-23 | R-PMH10 證據基礎更正、母體判準、機器檢查補實 | [handoff/04_corpus_and_assertions.md](handoff/04_corpus_and_assertions.md) | [upstream/04_corpus_and_assertions.md](upstream/04_corpus_and_assertions.md) | R-PMH19–R-PMH23（逐字抄錄 5/5 相符） | A-PMH11／A-PMH12；A-PMH09 → RESOLVED、A-PMH10 證據更正 | **步驟 1–7 全數執行；九條停止條件全未觸發** |
 
 ## 01 輪要點
 
@@ -196,3 +197,79 @@ Pei 之追認就其字面只及於本 feature，**執行層未改樣板**（03a 
 **下一包之首要建議**：`data/sr24_uncited_sections.tsv` 未產出（RECON.md 明點），
 本 feature 無 `classify_uncited_sections.py`。23 項之組成已人工分析為無實質
 遺漏，**但那是我讀出來的結論，不是機器分類的結果**。詳見上繳 §9（五項）。
+
+## 04 輪要點
+
+**R-PMH10 之依據確不成立 → Q3 待 Pei 重裁**
+- 依 **R-PMH19** 建立母體：`ASW-R2` 全樹 `**/*036*.xlsx` **28 候選**
+  → 排除 (a) 非根層 **14**、(b) 中間態標記 **1**、(c) 同夾舊版 **2**
+  → **母體 11**（≥5，停止條件 7 未觸發）。
+- 實測：**`D3` 11/11 空、`D4` 11/11 空、`D5` 8 空 / **3 非空****
+  —— 原依據句「語料 5/5 無一填寫」不成立。`D3`/`D4` 之結論不受影響。
+- 三個非空 `D5`：**AM:FM** 與 **SiriusXM** 指向 **037 SWRA 報告全名**
+  （同一模板，僅 feature 縮寫與日期不同）、**Privacy Mode** 指向
+  **CFTS 規格條目 id**（`SWE1_CFTS_022-Privacy_Features`）。
+- **01 包 Q3 原提案之「規格文件全名」形態，在母體中零個。**
+- 未觀察到與 `Cover!D6` 版本或欄數之相關性。**執行層不提案，Q3 屬 Pei。**
+- R-PMH10 標 `[PEI-REOPEN]`，原文 SHA256 `885070968235b262` 未變；
+  重裁前三欄一律不寫入，**不阻斷**。
+
+**⚠ 母體判準本身之副作用（本輪最該優先處理者）**
+- R-PMH19 之 (a)「根層」規則**排除了 5 個 feature 之交付件** ——
+  Home、AppDrawer、Notifications HMI、Vehicle Settings(CFTS044)、VF230。
+  它們並非中間態，只是交付夾多了一層。**本包照條文執行，未自行放寬。**
+- 若 Pei 之意圖是「所有已交付件」，母體應為 16 而非 11，`D5` 比率會變。
+  **Q3 重裁前建議先確認此點**，否則會重蹈「母體未定義」之覆轍 ——
+  只是這次母體有定義但可能定錯。
+
+**R-PMH22 —— `write_back` 機器檢查已實作並實跑**
+- `scripts/check_write_back.py` 三項：blank 前提／起始列來源／列數差。
+- **三次故意失敗全部被攔下**（停止條件 8 未觸發）；**範圍向亦通過**（R-G9）。
+- (b) 之注入值刻意取 `outline_map.json` 之 `row_036_customer`（44）——
+  檢查不僅擋下，還在訊息中指出該值的來源。
+- 03 包 §9 第 5 項自陳「目前只是文字修補」，**本輪已轉為實跑之機器檢查**。
+- ⚠ 尚未被任何寫回路徑呼叫 —— 要到 Phase 6 實作寫回時才接得上（已知未完成）。
+
+**`data/uncited_sections.tsv` —— 機器分類**
+- `scripts/classify_uncited_sections.py`（新寫，未改共用腳本）。
+  餘數驗證 `52 − 29 − 23 = 0`，程式內 `assert` 強制。
+- 分類：`chapter_node` 12／`image_placeholder` 6／`assumptions` 5／**`other` 0**。
+- 與 03 §7.3C 人讀結論**集合完全相同**，`other` = 0 印證「無一項帶實質需求
+  文字而被漏引」。唯一差異為 outline `1` 之分類邊界（人讀歸 Assumptions、
+  機器規則歸 chapter_node）—— 依下放包以機器產出為準。停止條件 9 未觸發。
+
+**A-PMH11 —— 全簿 DV 實為 5 組，不是 4 組**
+- 遺漏者為 `Product Document 記錄封面頁!B7:C7` = `"Confidential, Top Secret"`。
+- **不是量錯，是量詞與量測範圍不一致**（分頁層量測寫成全簿結論）→ R-PMH20。
+- 03 §2.2 之結論句已依 R-PMH20 改寫為分頁層陳述並另列全簿清單。
+
+**A-PMH10 之證據全面更正（本輪最重要之發現）**
+- **兩檔之 x14 DV 指向不同的 source 分頁**：母本 → `下拉選單!$A$1:$A$9`
+  （`Pairwise / t-wise`）；客戶那份 → **`Reference!$C$4:$C$12`**
+  （`Pair-wise / N-wise`）。九項中八項逐字相同，僅第 6 項不同。
+- 03 包「兩檔皆同 → 表單層瑕疵」**不正確** —— 客戶那份之 `下拉選單` 是
+  **孤兒分頁**（存在、與母本相同、但無任何 DV 指向它），03 包被它誤導。
+- **教訓與 R-PMH20 同型**：比對兩個值之前，先確認兩邊指的是不是同一個東西。
+  這與 03 §3 之 priority 假衝突、02 §3.3 之列號位移推算是同一形狀。
+- **對本 feature 效力不變**：母本為交付基底，`design_method_vocabulary`
+  9 項維持；四份交付件 996 個 R 欄值**無一用過 `Pair-wise / N-wise`**。
+
+**A-PMH12 —— Phase 6／7 之前置阻斷項**
+- (1) priority DV 之 sqref `P10:Q1411` **跨兩欄**，使 `Q`（Estimated Test
+  Time）套用 `"P0,P1,P2,P3"` —— **任何分鐘數都會被 Excel 擋下**。
+- (2) `AF` 列舉逐字 `"Pass, Fail, Pending,Block,NA"` —— ` Fail` 與
+  ` Pending` **含前導空白**；寫 `Fail`（無空格）會被擋下，
+  任何 `.strip()` 都會產出無法通過 DV 的值。
+- 二者因四份交付件該二欄全空而**從未被實際檢驗過**。已標入 `DECISIONS.md`。
+
+**A-PMH09 → RESOLVED（結論更正）**
+- 「衍生自 AMFM **交付件**」**不成立** —— 該件 34 欄、`Cover!D6` = `C`、
+  履歷未被覆寫、`D5` 已填。成立者為「帶 AMFM **中繼產物**血緣」。
+- **AMFM 交付件乾淨，無須回報**；執行層原提案 (c) 不執行。
+- R-PMH23 將客戶那份之**封面五頁**列為禁用。
+
+**狀態**：P0 ✅ / P1 ✅ / **P2 待 Pei 簽核** `DECISIONS.md`。
+下一步 Phase 2／3（framework），**無阻斷項**。
+
+**下一包之首要建議**：先確認 R-PMH19 (a) 之「根層」是否為預期範圍
+（見上「母體判準之副作用」），再進行 Q3 重裁。詳見上繳 §8（五項）。
