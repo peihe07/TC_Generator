@@ -1,0 +1,56 @@
+{
+  "dist": {
+    "W0": 593,
+    "W1": 28,
+    "W2": 6
+  },
+  "blocker": {
+    "B5-signal-absent": 6
+  },
+  "per_test_set": {
+    "Driver Convenience": {
+      "W0": 99
+    },
+    "Lane and Lighting": {
+      "W0": 47,
+      "W1": 2
+    },
+    "Daytime Lighting": {
+      "W0": 12
+    },
+    "Measurement Units": {
+      "W0": 17
+    },
+    "Units and Cameras": {
+      "W0": 68,
+      "W1": 5
+    },
+    "Suspension and Comfort": {
+      "W0": 74
+    },
+    "Auxiliary Switches": {
+      "W1": 7,
+      "W0": 105,
+      "W2": 3
+    },
+    "Approach and Tailgate": {
+      "W0": 45,
+      "W1": 4
+    },
+    "Trailer and Signage": {
+      "W0": 126,
+      "W1": 10,
+      "W2": 3
+    }
+  },
+  "chain_used": {
+    "3-PROXI": 87,
+    "2-DBC": 370,
+    "1-LID": 4,
+    "3-PROXI(未解)": 28,
+    "(無來源)": 6
+  },
+  "vcvm_only": [],
+  "not_clear": 90,
+  "total": 627
+}

@@ -1,0 +1,628 @@
+leaf_id	test_set	layer3	src_ref	writable	blocker_class	blocker_detail	value_source	dr_id	vcvm_not_clear	disagree
+SWE1-VC-BlindSpotAlert-002	Driver Convenience	Blind Spot Alert	SYS-RA-VF230_V1-672	W0					0	0
+SWE1-VC-BlindSpotAlert-003	Driver Convenience	Blind Spot Alert	SYS-RA-VF230_V1-673	W0					0	0
+SWE1-VC-BlindSpotAlert-004	Driver Convenience	Blind Spot Alert	SYS-RA-VF230_V1-674	W0			BSDEnable_Req=2-DBC		0	0
+SWE1-VC-BlindSpotAlert-005	Driver Convenience	Blind Spot Alert	SYS-RA-VF230_V1-675	W0			BSDEnable_Req=2-DBC		0	0
+SWE1-VC-BlindSpotAlert-006	Driver Convenience	Blind Spot Alert	SYS-RA-VF230_V1-676	W0			BSDEnable_Req=2-DBC		0	0
+SWE1-VC-BlindSpotAlert-007	Driver Convenience	Blind Spot Alert	SYS-RA-VF230_V1-677	W0			BSDEnable=2-DBC		0	0
+SWE1-VC-PassiveEntry-009	Driver Convenience	Passive Entry	SYS-RA-VF230_V1-679	W0					0	0
+SWE1-VC-PassiveEntry-010	Driver Convenience	Passive Entry	SYS-RA-VF230_V1-680	W0					0	0
+SWE1-VC-PassiveEntry-011	Driver Convenience	Passive Entry	SYS-RA-VF230_V1-681	W0			PassiveEntry_Req=2-DBC		0	0
+SWE1-VC-PassiveEntry-012	Driver Convenience	Passive Entry	SYS-RA-VF230_V1-682	W0			PassiveEntry_Req=2-DBC		0	0
+SWE1-VC-PassiveEntry-013	Driver Convenience	Passive Entry	SYS-RA-VF230_V1-683	W0			PassiveEntry=2-DBC		0	0
+SWE1-VC-RemoteDoorUnlock-015	Driver Convenience	Remote Door Unlock	SYS-RA-VF230_V1-685	W0					0	0
+SWE1-VC-RemoteDoorUnlock-016	Driver Convenience	Remote Door Unlock	SYS-RA-VF230_V1-686	W0					0	0
+SWE1-VC-RemoteDoorUnlock-017	Driver Convenience	Remote Door Unlock	SYS-RA-VF230_V1-687	W0			RemoteDoorUnlock_Req=2-DBC		0	0
+SWE1-VC-RemoteDoorUnlock-018	Driver Convenience	Remote Door Unlock	SYS-RA-VF230_V1-688	W0			RemoteDoorUnlock_Req=2-DBC		0	0
+SWE1-VC-RemoteDoorUnlock-019	Driver Convenience	Remote Door Unlock	SYS-RA-VF230_V1-689	W0			RemoteDoorUnlock=2-DBC		0	0
+SWE1-VC-AutoParkBrake-021	Driver Convenience	Auto Park Brake	SYS-RA-VF230_V1-691	W0					0	0
+SWE1-VC-AutoParkBrake-022	Driver Convenience	Auto Park Brake	SYS-RA-VF230_V1-692	W0					0	0
+SWE1-VC-AutoParkBrake-023	Driver Convenience	Auto Park Brake	SYS-RA-VF230_V1-693	W0			AutoParkBrake_Req=2-DBC		0	0
+SWE1-VC-AutoParkBrake-024	Driver Convenience	Auto Park Brake	SYS-RA-VF230_V1-694	W0			AutoParkBrake_Req=2-DBC		0	0
+SWE1-VC-AutoParkBrake-025	Driver Convenience	Auto Park Brake	SYS-RA-VF230_V1-695	W0			AutoParkBrake=2-DBC		0	0
+SWE1-VC-HornWithRemoteStart-027	Driver Convenience	Horn With Remote Start	SYS-RA-VF230_V1-697	W0					0	0
+SWE1-VC-HornWithRemoteStart-028	Driver Convenience	Horn With Remote Start	SYS-RA-VF230_V1-698	W0					0	0
+SWE1-VC-HornWithRemoteStart-029	Driver Convenience	Horn With Remote Start	SYS-RA-VF230_V1-699	W0			SoundHornRemoteStart_Req=2-DBC		0	0
+SWE1-VC-HornWithRemoteStart-030	Driver Convenience	Horn With Remote Start	SYS-RA-VF230_V1-700	W0			SoundHornRemoteStart_Req=2-DBC		0	0
+SWE1-VC-HornWithRemoteStart-031	Driver Convenience	Horn With Remote Start	SYS-RA-VF230_V1-701	W0			SoundHornRemoteStart=2-DBC		0	0
+SWE1-VC-HornWithLock-033	Driver Convenience	Horn With Lock	SYS-RA-VF230_V1-703	W0					0	0
+SWE1-VC-HornWithLock-034	Driver Convenience	Horn With Lock	SYS-RA-VF230_V1-704	W0					0	0
+SWE1-VC-HornWithLock-035	Driver Convenience	Horn With Lock	SYS-RA-VF230_V1-705	W0			SoundHornLock_Req=2-DBC		0	0
+SWE1-VC-HornWithLock-036	Driver Convenience	Horn With Lock	SYS-RA-VF230_V1-706	W0			SoundHornLock_Req=2-DBC		0	0
+SWE1-VC-HornWithLock-037	Driver Convenience	Horn With Lock	SYS-RA-VF230_V1-707	W0			SoundHornLock_Req=2-DBC		0	0
+SWE1-VC-HornWithLock-038	Driver Convenience	Horn With Lock	SYS-RA-VF230_V1-708	W0			SoundHornLock=2-DBC		0	0
+SWE1-VC-AutoUnlockonExit-040	Driver Convenience	Auto Unlock on Exit	SYS-RA-VF230_V1-710	W0					0	0
+SWE1-VC-AutoUnlockonExit-041	Driver Convenience	Auto Unlock on Exit	SYS-RA-VF230_V1-711	W0					0	0
+SWE1-VC-AutoUnlockonExit-042	Driver Convenience	Auto Unlock on Exit	SYS-RA-VF230_V1-712	W0			AutoUnlockDoorExit_Req=2-DBC		0	0
+SWE1-VC-AutoUnlockonExit-043	Driver Convenience	Auto Unlock on Exit	SYS-RA-VF230_V1-713	W0			AutoUnlockDoorExit_Req=2-DBC		0	0
+SWE1-VC-AutoUnlockonExit-044	Driver Convenience	Auto Unlock on Exit	SYS-RA-VF230_V1-714	W0			AutoUnlockDoorExit=2-DBC		0	0
+SWE1-VC-FlashLightWithLock-046	Driver Convenience	Flash Light With Lock	SYS-RA-VF230_V1-716	W0					0	0
+SWE1-VC-FlashLightWithLock-047	Driver Convenience	Flash Light With Lock	SYS-RA-VF230_V1-717	W0					0	0
+SWE1-VC-FlashLightWithLock-048	Driver Convenience	Flash Light With Lock	SYS-RA-VF230_V1-718	W0			FlashLightWLock_Req=2-DBC		0	0
+SWE1-VC-FlashLightWithLock-049	Driver Convenience	Flash Light With Lock	SYS-RA-VF230_V1-719	W0			FlashLightWLock_Req=2-DBC		0	0
+SWE1-VC-FlashLightWithLock-050	Driver Convenience	Flash Light With Lock	SYS-RA-VF230_V1-720	W0			FlashLightWLock=2-DBC		0	0
+SWE1-VC-NavigationTurnbyTurn-053	Driver Convenience	Navigation Turn by Turn	SYS-RA-VF230_V1-722	W0					0	0
+SWE1-VC-NavigationTurnbyTurn-054	Driver Convenience	Navigation Turn by Turn	SYS-RA-VF230_V1-723	W0					0	0
+SWE1-VC-NavigationTurnbyTurn-055	Driver Convenience	Navigation Turn by Turn	SYS-RA-VF230_V1-724	W0			NavigationRepetition_Req=2-DBC		0	0
+SWE1-VC-NavigationTurnbyTurn-056	Driver Convenience	Navigation Turn by Turn	SYS-RA-VF230_V1-725	W0			NavigationRepetition_Req=2-DBC		0	0
+SWE1-VC-NavigationTurnbyTurn-057	Driver Convenience	Navigation Turn by Turn	SYS-RA-VF230_V1-726	W0			NavRepetition=2-DBC		0	0
+SWE1-VC-Language-059	Driver Convenience	Language	SYS-RA-VF230_V1-653	W0					0	0
+SWE1-VC-Language-060	Driver Convenience	Language	SYS-RA-VF230_V1-654	W0					0	0
+SWE1-VC-Language-061	Driver Convenience	Language	SYS-RA-VF230_V1-655	W0			LanguageSelection_Req=2-DBC		0	0
+SWE1-VC-Language-062	Driver Convenience	Language	SYS-RA-VF230_V1-656	W0			LanguageSelection=1-LID		1	0
+SWE1-VC-PhoneRepetition-064	Driver Convenience	Phone Repetition	SYS-RA-VF230_V1-728	W0					0	0
+SWE1-VC-PhoneRepetition-065	Driver Convenience	Phone Repetition	SYS-RA-VF230_V1-729	W0					0	0
+SWE1-VC-PhoneRepetition-066	Driver Convenience	Phone Repetition	SYS-RA-VF230_V1-730	W0			PhoneRepetition_Req=2-DBC		0	0
+SWE1-VC-PhoneRepetition-067	Driver Convenience	Phone Repetition	SYS-RA-VF230_V1-731	W0			PhoneRepetition_Req=2-DBC		0	0
+SWE1-VC-PhoneRepetition-068	Driver Convenience	Phone Repetition	SYS-RA-VF230_V1-732	W0			PhoneRepetition=2-DBC		0	0
+SWE1-VC-ParkSenseRearVolume-070	Driver Convenience	Park Sense Rear Volume	SYS-RA-VF230_V1-734	W0					1	0
+SWE1-VC-ParkSenseRearVolume-071	Driver Convenience	Park Sense Rear Volume	SYS-RA-VF230_V1-735	W0					1	0
+SWE1-VC-ParkSenseRearVolume-072	Driver Convenience	Park Sense Rear Volume	SYS-RA-VF230_V1-736	W0			PamChimeVolumeRear_Req=2-DBC		0	0
+SWE1-VC-ParkSenseRearVolume-073	Driver Convenience	Park Sense Rear Volume	SYS-RA-VF230_V1-737	W0			PamChimeVolumeRear_Req=2-DBC		0	0
+SWE1-VC-ParkSenseRearVolume-074	Driver Convenience	Park Sense Rear Volume	SYS-RA-VF230_V1-738	W0			PamChimeVolumeRear_Req=2-DBC		0	0
+SWE1-VC-ParkSenseRearVolume-075	Driver Convenience	Park Sense Rear Volume	SYS-RA-VF230_V1-739	W0			PamChimeVolumeRear=1-LID		1	0
+SWE1-VC-ParkSenseFrontVolume-077	Driver Convenience	Park Sense Front Volume	SYS-RA-VF230_V1-741	W0					1	0
+SWE1-VC-ParkSenseFrontVolume-078	Driver Convenience	Park Sense Front Volume	SYS-RA-VF230_V1-742	W0					1	0
+SWE1-VC-ParkSenseFrontVolume-079	Driver Convenience	Park Sense Front Volume	SYS-RA-VF230_V1-743	W0			PamChimeVolumeFront_Req=2-DBC		0	0
+SWE1-VC-ParkSenseFrontVolume-080	Driver Convenience	Park Sense Front Volume	SYS-RA-VF230_V1-744	W0			PamChimeVolumeFront_Req=2-DBC		0	0
+SWE1-VC-ParkSenseFrontVolume-081	Driver Convenience	Park Sense Front Volume	SYS-RA-VF230_V1-745	W0			PamChimeVolumeFront_Req=2-DBC		0	0
+SWE1-VC-ParkSenseFrontVolume-082	Driver Convenience	Park Sense Front Volume	SYS-RA-VF230_V1-746	W0			PamChimeVolumeFront=1-LID		1	0
+SWE1-VC-AutoHighBeam-084	Driver Convenience	Auto High Beam	SYS-RA-VF230_V1-748	W0					0	0
+SWE1-VC-AutoHighBeam-085	Driver Convenience	Auto High Beam	SYS-RA-VF230_V1-749	W0					0	0
+SWE1-VC-AutoHighBeam-086	Driver Convenience	Auto High Beam	SYS-RA-VF230_V1-750	W0			AutoHighBeamEnable_Req=2-DBC		0	0
+SWE1-VC-AutoHighBeam-087	Driver Convenience	Auto High Beam	SYS-RA-VF230_V1-751	W0			AutoHighBeamEnable_Req=2-DBC		0	0
+SWE1-VC-AutoHighBeam-088	Driver Convenience	Auto High Beam	SYS-RA-VF230_V1-752	W0			AutoHighBeamEnable=2-DBC		0	0
+SWE1-VC-RKELinkedtoMemory-090	Driver Convenience	RKE Linked to Memory	SYS-RA-VF230_V1-754	W0					0	0
+SWE1-VC-RKELinkedtoMemory-091	Driver Convenience	RKE Linked to Memory	SYS-RA-VF230_V1-755	W0					0	0
+SWE1-VC-RKELinkedtoMemory-092	Driver Convenience	RKE Linked to Memory	SYS-RA-VF230_V1-756	W0			RKEMemoryLinkEnable_Req=2-DBC		0	0
+SWE1-VC-RKELinkedtoMemory-093	Driver Convenience	RKE Linked to Memory	SYS-RA-VF230_V1-757	W0			RKEMemoryLinkEnable_Req=2-DBC		0	0
+SWE1-VC-RKELinkedtoMemory-094	Driver Convenience	RKE Linked to Memory	SYS-RA-VF230_V1-758	W0			RKEMemoryLinkEnable=2-DBC		0	0
+SWE1-VC-AutoOnDriverComfort-3Option-096	Driver Convenience	Auto On Driver Comfort - 3 Option	SYS-RA-VF230_V1-760	W0					0	0
+SWE1-VC-AutoOnDriverComfort-3Option-097	Driver Convenience	Auto On Driver Comfort - 3 Option	SYS-RA-VF230_V1-761	W0					0	0
+SWE1-VC-AutoOnDriverComfort-3Option-098	Driver Convenience	Auto On Driver Comfort - 3 Option	SYS-RA-VF230_V1-762	W0			RemStNrmlStEnbl_Req=2-DBC		0	0
+SWE1-VC-AutoOnDriverComfort-3Option-099	Driver Convenience	Auto On Driver Comfort - 3 Option	SYS-RA-VF230_V1-763	W0			RemStNrmlStEnbl_Req=2-DBC		0	0
+SWE1-VC-AutoOnDriverComfort-3Option-100	Driver Convenience	Auto On Driver Comfort - 3 Option	SYS-RA-VF230_V1-764	W0			RemStNrmlStEnbl_Req=2-DBC		0	0
+SWE1-VC-AutoOnDriverComfort-3Option-101	Driver Convenience	Auto On Driver Comfort - 3 Option	SYS-RA-VF230_V1-765	W0			RemStNrmlStEnbl=2-DBC		0	0
+SWE1-VC-AutoOnDriverComfort-2Option-103	Driver Convenience	Auto On Driver Comfort - 2 Option	SYS-RA-VF230_V1-767	W0					0	0
+SWE1-VC-AutoOnDriverComfort-2Option-104	Driver Convenience	Auto On Driver Comfort - 2 Option	SYS-RA-VF230_V1-768	W0					0	0
+SWE1-VC-AutoOnDriverComfort-2Option-105	Driver Convenience	Auto On Driver Comfort - 2 Option	SYS-RA-VF230_V1-769	W0			RemStNrmlStEnbl_Req=2-DBC		0	0
+SWE1-VC-AutoOnDriverComfort-2Option-106	Driver Convenience	Auto On Driver Comfort - 2 Option	SYS-RA-VF230_V1-770	W0			RemStNrmlStEnbl_Req=2-DBC		0	0
+SWE1-VC-AutoOnDriverComfort-2Option-107	Driver Convenience	Auto On Driver Comfort - 2 Option	SYS-RA-VF230_V1-771	W0			RemStNrmlStEnbl=2-DBC		0	0
+SWE1-VC-RearviewCameraDelay-109	Driver Convenience	Rearview Camera Delay	SYS-RA-VF230_V1-773	W0					0	0
+SWE1-VC-RearviewCameraDelay-110	Driver Convenience	Rearview Camera Delay	SYS-RA-VF230_V1-774	W0					0	0
+SWE1-VC-RearviewCameraDelay-111	Driver Convenience	Rearview Camera Delay	SYS-RA-VF230_V1-775	W0			Backup_Cam_Delay_Req=2-DBC		0	0
+SWE1-VC-RearviewCameraDelay-112	Driver Convenience	Rearview Camera Delay	SYS-RA-VF230_V1-776	W0			Backup_Cam_Delay_Req=2-DBC		0	0
+SWE1-VC-RearviewCameraDelay-113	Driver Convenience	Rearview Camera Delay	SYS-RA-VF230_V1-777	W0			Backup_Cam_Delay=2-DBC		0	0
+SWE1-VC-RearviewCameraDynamicGuidelines-115	Driver Convenience	Rearview Camera Dynamic Guidelines	SYS-RA-VF230_V1-779	W0					0	0
+SWE1-VC-RearviewCameraDynamicGuidelines-116	Driver Convenience	Rearview Camera Dynamic Guidelines	SYS-RA-VF230_V1-780	W0					0	0
+SWE1-VC-RearviewCameraDynamicGuidelines-117	Driver Convenience	Rearview Camera Dynamic Guidelines	SYS-RA-VF230_V1-781	W0			DynamicGrid_Req=2-DBC		0	0
+SWE1-VC-RearviewCameraDynamicGuidelines-118	Driver Convenience	Rearview Camera Dynamic Guidelines	SYS-RA-VF230_V1-782	W0			DynamicGrid_Req=2-DBC		0	0
+SWE1-VC-RearviewCameraDynamicGuidelines-119	Driver Convenience	Rearview Camera Dynamic Guidelines	SYS-RA-VF230_V1-783	W0			DynamicGrid=2-DBC		0	0
+SWE1-VC-CorneringLights-002	Lane and Lighting	Cornering Lights	SYS-RA-VF230_V1-525	W0					0	0
+SWE1-VC-CorneringLights-003	Lane and Lighting	Cornering Lights	SYS-RA-VF230_V1-526	W0					0	0
+SWE1-VC-CorneringLights-004	Lane and Lighting	Cornering Lights	SYS-RA-VF230_V1-527	W0					0	0
+SWE1-VC-CorneringLights-005	Lane and Lighting	Cornering Lights	SYS-RA-VF230_V1-528	W0					0	0
+SWE1-VC-CorneringLights-006	Lane and Lighting	Cornering Lights	SYS-RA-VF230_V1-529	W0			CorneringEnable=2-DBC		0	0
+SWE1-VC-GreetingLights-008	Lane and Lighting	Greeting Lights	SYS-RA-VF230_V1-531	W1		PROXI 參數之值域無來源：Greeting_Light	PROXI:Greeting_Light=PENDING	DR-34	0	0
+SWE1-VC-GreetingLights-009	Lane and Lighting	Greeting Lights	SYS-RA-VF230_V1-532	W1		PROXI 參數之值域無來源：Greeting_Light	PROXI:Greeting_Light=PENDING	DR-34	0	0
+SWE1-VC-GreetingLights-010	Lane and Lighting	Greeting Lights	SYS-RA-VF230_V1-533	W0					0	0
+SWE1-VC-GreetingLights-011	Lane and Lighting	Greeting Lights	SYS-RA-VF230_V1-534	W0					0	0
+SWE1-VC-GreetingLights-012	Lane and Lighting	Greeting Lights	SYS-RA-VF230_V1-535	W0			GreetingLightsEnable=2-DBC		0	0
+SWE1-VC-LaneSenseWarning-014	Lane and Lighting	Lane Sense Warning	SYS-RA-VF230_V1-537	W0					0	0
+SWE1-VC-LaneSenseWarning-015	Lane and Lighting	Lane Sense Warning	SYS-RA-VF230_V1-538	W0					0	0
+SWE1-VC-LaneSenseWarning-016	Lane and Lighting	Lane Sense Warning	SYS-RA-VF230_V1-539	W0					0	0
+SWE1-VC-LaneSenseWarning-017	Lane and Lighting	Lane Sense Warning	SYS-RA-VF230_V1-540	W0					0	0
+SWE1-VC-LaneSenseWarning-018	Lane and Lighting	Lane Sense Warning	SYS-RA-VF230_V1-541	W0					0	0
+SWE1-VC-LaneSenseWarning-019	Lane and Lighting	Lane Sense Warning	SYS-RA-VF230_V1-542	W0			LDW_Sensibility=2-DBC		0	0
+SWE1-VC-SignatureLighting-021	Lane and Lighting	Signature Lighting	SYS-RA-VF230_V1-544	W0					0	0
+SWE1-VC-SignatureLighting-022	Lane and Lighting	Signature Lighting	SYS-RA-VF230_V1-545	W0					0	0
+SWE1-VC-SignatureLighting-023	Lane and Lighting	Signature Lighting	SYS-RA-VF230_V1-546	W0					0	0
+SWE1-VC-SignatureLighting-024	Lane and Lighting	Signature Lighting	SYS-RA-VF230_V1-547	W0					0	0
+SWE1-VC-SignatureLighting-025	Lane and Lighting	Signature Lighting	SYS-RA-VF230_V1-548	W0			SignatureLightingEnable=2-DBC		0	0
+SWE1-VC-LaneSenseStrength-027	Lane and Lighting	Lane Sense Strength	SYS-RA-VF230_V1-550	W0					0	0
+SWE1-VC-LaneSenseStrength-028	Lane and Lighting	Lane Sense Strength	SYS-RA-VF230_V1-551	W0					0	0
+SWE1-VC-LaneSenseStrength-029	Lane and Lighting	Lane Sense Strength	SYS-RA-VF230_V1-552	W0					0	0
+SWE1-VC-LaneSenseStrength-030	Lane and Lighting	Lane Sense Strength	SYS-RA-VF230_V1-553	W0					0	0
+SWE1-VC-LaneSenseStrength-031	Lane and Lighting	Lane Sense Strength	SYS-RA-VF230_V1-554	W0					0	0
+SWE1-VC-LaneSenseStrength-032	Lane and Lighting	Lane Sense Strength	SYS-RA-VF230_V1-555	W0			LDW_Intensity=2-DBC		0	0
+SWE1-VC-ForwardCollisionWarning-034	Lane and Lighting	Forward Collision Warning	SYS-RA-VF230_V1-557	W0					0	0
+SWE1-VC-ForwardCollisionWarning-035	Lane and Lighting	Forward Collision Warning	SYS-RA-VF230_V1-558	W0					0	0
+SWE1-VC-ForwardCollisionWarning-036	Lane and Lighting	Forward Collision Warning	SYS-RA-VF230_V1-559	W0					0	0
+SWE1-VC-ForwardCollisionWarning-037	Lane and Lighting	Forward Collision Warning	SYS-RA-VF230_V1-560	W0					0	0
+SWE1-VC-ForwardCollisionWarning-038	Lane and Lighting	Forward Collision Warning	SYS-RA-VF230_V1-561	W0					0	0
+SWE1-VC-ForwardCollisionWarning-039	Lane and Lighting	Forward Collision Warning	SYS-RA-VF230_V1-562	W0			FSFCWPlusSetting=2-DBC		0	0
+SWE1-VC-ForwardCollisionWarningSensitivity-041	Lane and Lighting	Forward Collision Warning Sensitivity	SYS-RA-VF230_V1-564	W0					0	0
+SWE1-VC-ForwardCollisionWarningSensitivity-042	Lane and Lighting	Forward Collision Warning Sensitivity	SYS-RA-VF230_V1-565	W0					0	0
+SWE1-VC-ForwardCollisionWarningSensitivity-043	Lane and Lighting	Forward Collision Warning Sensitivity	SYS-RA-VF230_V1-566	W0					0	0
+SWE1-VC-ForwardCollisionWarningSensitivity-044	Lane and Lighting	Forward Collision Warning Sensitivity	SYS-RA-VF230_V1-567	W0					0	0
+SWE1-VC-ForwardCollisionWarningSensitivity-045	Lane and Lighting	Forward Collision Warning Sensitivity	SYS-RA-VF230_V1-568	W0					0	0
+SWE1-VC-ForwardCollisionWarningSensitivity-046	Lane and Lighting	Forward Collision Warning Sensitivity	SYS-RA-VF230_V1-569	W0			FSFCWPlusActivationMode=2-DBC		0	0
+SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-048	Lane and Lighting	Pedestrian Emergency Braking or Warning & Active Braking	SYS-RA-VF230_V1-571	W0					0	0
+SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-049	Lane and Lighting	Pedestrian Emergency Braking or Warning & Active Braking	SYS-RA-VF230_V1-572	W0					0	0
+SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-050	Lane and Lighting	Pedestrian Emergency Braking or Warning & Active Braking	SYS-RA-VF230_V1-573	W0					0	0
+SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-051	Lane and Lighting	Pedestrian Emergency Braking or Warning & Active Braking	SYS-RA-VF230_V1-574	W0					0	0
+SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-052	Lane and Lighting	Pedestrian Emergency Braking or Warning & Active Braking	SYS-RA-VF230_V1-575	W0			Ped_EM_Brk_Warn_Act=2-DBC		0	0
+SWE1-VC-RainSensingWipers-054	Lane and Lighting	Rain Sensing Wipers	SYS-RA-VF230_V1-577	W0					0	0
+SWE1-VC-RainSensingWipers-055	Lane and Lighting	Rain Sensing Wipers	SYS-RA-VF230_V1-578	W0					0	0
+SWE1-VC-RainSensingWipers-056	Lane and Lighting	Rain Sensing Wipers	SYS-RA-VF230_V1-579	W0					0	0
+SWE1-VC-RainSensingWipers-057	Lane and Lighting	Rain Sensing Wipers	SYS-RA-VF230_V1-580	W0					0	0
+SWE1-VC-RainSensingWipers-058	Lane and Lighting	Rain Sensing Wipers	SYS-RA-VF230_V1-581	W0			RainSensorLevel=2-DBC		0	0
+SWE1-VC-DaytimeRunningLights-002	Daytime Lighting	Daytime Running Lights	SYS-RA-VF230_V1-658	W0					0	0
+SWE1-VC-DaytimeRunningLights-003	Daytime Lighting	Daytime Running Lights	SYS-RA-VF230_V1-659	W0					0	0
+SWE1-VC-DaytimeRunningLights-004	Daytime Lighting	Daytime Running Lights	SYS-RA-VF230_V1-660	W0			DRLEnable_Req=2-DBC		0	0
+SWE1-VC-DaytimeRunningLights-005	Daytime Lighting	Daytime Running Lights	SYS-RA-VF230_V1-661	W0			DRLEnable_Req=2-DBC		0	0
+SWE1-VC-DaytimeRunningLights-006	Daytime Lighting	Daytime Running Lights	SYS-RA-VF230_V1-662	W0			DRLEnable=2-DBC		0	0
+SWE1-VC-HeadlightsOffDelay-008	Daytime Lighting	Headlights Off Delay	SYS-RA-VF230_V1-664	W0					0	0
+SWE1-VC-HeadlightsOffDelay-009	Daytime Lighting	Headlights Off Delay	SYS-RA-VF230_V1-665	W0					0	0
+SWE1-VC-HeadlightsOffDelay-010	Daytime Lighting	Headlights Off Delay	SYS-RA-VF230_V1-666	W0			HeadlightsOffDelay_Req=2-DBC		0	0
+SWE1-VC-HeadlightsOffDelay-011	Daytime Lighting	Headlights Off Delay	SYS-RA-VF230_V1-667	W0			HeadlightsOffDelay_Req=2-DBC		0	0
+SWE1-VC-HeadlightsOffDelay-012	Daytime Lighting	Headlights Off Delay	SYS-RA-VF230_V1-668	W0			HeadlightsOffDelay_Req=2-DBC		0	0
+SWE1-VC-HeadlightsOffDelay-013	Daytime Lighting	Headlights Off Delay	SYS-RA-VF230_V1-669	W0			HeadlightsOffDelay_Req=2-DBC		0	0
+SWE1-VC-HeadlightsOffDelay-014	Daytime Lighting	Headlights Off Delay	SYS-RA-VF230_V1-670	W0			HeadlightsOffDelay=2-DBC		0	0
+SWE1-VC-PressureUnit-002	Measurement Units	Pressure Unit	SYS-RA-VF230_V1-633	W0					0	0
+SWE1-VC-PressureUnit-003	Measurement Units	Pressure Unit	SYS-RA-VF230_V1-634	W0					0	0
+SWE1-VC-PressureUnit-004	Measurement Units	Pressure Unit	SYS-RA-VF230_V1-635	W0			TyrePress_Unit_Req=2-DBC		0	0
+SWE1-VC-PressureUnit-005	Measurement Units	Pressure Unit	SYS-RA-VF230_V1-636	W0			TyrePress_Unit_Req=2-DBC		0	0
+SWE1-VC-PressureUnit-006	Measurement Units	Pressure Unit	SYS-RA-VF230_V1-637	W0			TyrePress_Unit_Req=2-DBC		0	0
+SWE1-VC-PressureUnit-007	Measurement Units	Pressure Unit	SYS-RA-VF230_V1-638	W0			TyrePress_Unit=1-LID		0	0
+SWE1-VC-PowerUnit-009	Measurement Units	Power Unit	SYS-RA-VF230_V1-640	W0					0	0
+SWE1-VC-PowerUnit-010	Measurement Units	Power Unit	SYS-RA-VF230_V1-641	W0					0	0
+SWE1-VC-PowerUnit-011	Measurement Units	Power Unit	SYS-RA-VF230_V1-642	W0			HP_Unit_Req=2-DBC		0	0
+SWE1-VC-PowerUnit-012	Measurement Units	Power Unit	SYS-RA-VF230_V1-643	W0			HP_Unit_Req=2-DBC		0	0
+SWE1-VC-PowerUnit-013	Measurement Units	Power Unit	SYS-RA-VF230_V1-644	W0			HP_Unit_Req=2-DBC		0	0
+SWE1-VC-PowerUnit-014	Measurement Units	Power Unit	SYS-RA-VF230_V1-645	W0			HP_Unit=2-DBC		0	0
+SWE1-VC-TorqueUnit-016	Measurement Units	Torque Unit	SYS-RA-VF230_V1-647	W0					0	0
+SWE1-VC-TorqueUnit-017	Measurement Units	Torque Unit	SYS-RA-VF230_V1-648	W0					0	0
+SWE1-VC-TorqueUnit-018	Measurement Units	Torque Unit	SYS-RA-VF230_V1-649	W0			Torque_Unit_Req=2-DBC		0	0
+SWE1-VC-TorqueUnit-019	Measurement Units	Torque Unit	SYS-RA-VF230_V1-650	W0			Torque_Unit_Req=2-DBC		0	0
+SWE1-VC-TorqueUnit-020	Measurement Units	Torque Unit	SYS-RA-VF230_V1-651	W0			HP_Unit=2-DBC;Torque_Unit=2-DBC		0	0
+SWE1-VC-TimeandDateSettings-002	Units and Cameras	Time and Date Settings	SYS-RA-VF230_V1-583	W0					0	0
+SWE1-VC-TimeandDateSettings-003	Units and Cameras	Time and Date Settings	SYS-RA-VF230_V1-584	W0					0	0
+SWE1-VC-TimeandDateSettings-004	Units and Cameras	Time and Date Settings	SYS-RA-VF230_V1-585	W0					1	0
+SWE1-VC-TimeandDateSettings-005	Units and Cameras	Time and Date Settings	SYS-RA-VF230_V1-586	W0					1	0
+SWE1-VC-TimeandDateSettings-006	Units and Cameras	Time and Date Settings	SYS-RA-VF230_V1-587	W0					0	0
+SWE1-VC-TimeandDateSettings-007	Units and Cameras	Time and Date Settings	SYS-RA-VF230_V1-588	W0					0	0
+SWE1-VC-TimeandDateSettings-008	Units and Cameras	Time and Date Settings	SYS-RA-VF230_V1-589	W0					0	0
+SWE1-VC-HourMode-010	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-591	W0					0	0
+SWE1-VC-HourMode-011	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-592	W0					0	0
+SWE1-VC-HourMode-012	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-593	W0					0	0
+SWE1-VC-HourMode-013	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-594	W0					0	0
+SWE1-VC-AutoDoorLocks-015	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-596	W0					0	0
+SWE1-VC-AutoDoorLocks-016	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-597	W0					0	0
+SWE1-VC-AutoDoorLocks-017	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-598	W0					0	0
+SWE1-VC-AutoDoorLocks-018	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-599	W0					0	0
+SWE1-VC-AutoDoorLocks-019	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-600	W0					0	0
+SWE1-VC-DistanceUnit-021	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-602	W0					0	0
+SWE1-VC-DistanceUnit-022	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-603	W0					0	0
+SWE1-VC-DistanceUnit-023	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-604	W0					0	0
+SWE1-VC-DistanceUnit-024	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-605	W0					0	0
+SWE1-VC-SpeedUnit-026	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-607	W0					0	0
+SWE1-VC-SpeedUnit-027	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-608	W0					0	0
+SWE1-VC-SpeedUnit-028	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-609	W0					0	0
+SWE1-VC-SpeedUnit-029	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-610	W0					0	0
+SWE1-VC-ConsumptionUnit-031	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-612	W0					0	0
+SWE1-VC-ConsumptionUnit-032	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-613	W0					0	0
+SWE1-VC-ConsumptionUnit-033	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-614	W0					0	0
+SWE1-VC-ConsumptionUnit-034	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-615	W0					0	0
+SWE1-VC-ConsumptionUnit-035	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-616	W0					0	0
+SWE1-VC-ConsumptionUnit-036	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-617	W0					0	0
+SWE1-VC-ConsumptionUnit-037	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-618	W0					0	0
+SWE1-VC-UnitEnergy-039	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-620	W0					0	0
+SWE1-VC-UnitEnergy-040	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-621	W0					0	0
+SWE1-VC-UnitEnergy-041	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-622	W0					0	0
+SWE1-VC-UnitEnergy-042	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-623	W0					0	0
+SWE1-VC-UnitEnergy-043	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-624	W0					0	0
+SWE1-VC-UnitEnergy-044	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-625	W0					0	0
+SWE1-VC-TemperatureUnit-046	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-627	W0					0	0
+SWE1-VC-TemperatureUnit-047	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-628	W0					0	0
+SWE1-VC-TemperatureUnit-048	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-629	W0					0	0
+SWE1-VC-TemperatureUnit-049	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-630	W0					0	0
+SWE1-VC-TemperatureUnit-050	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-631	W0					0	0
+SWE1-VC-SurroundViewCameraDelay-053	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-845	W0					0	0
+SWE1-VC-SurroundViewCameraDelay-054	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-846	W0					0	0
+SWE1-VC-SurroundViewCameraDelay-055	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-847	W0					0	0
+SWE1-VC-SurroundViewCameraDelay-056	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-848	W0					0	0
+SWE1-VC-SurroundViewCameraDelay-057	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-849	W0					0	0
+SWE1-VC-SurroundViewCameraGuidelines-059	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-851	W0					0	0
+SWE1-VC-SurroundViewCameraGuidelines-060	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-852	W0					0	0
+SWE1-VC-SurroundViewCameraGuidelines-061	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-853	W0					0	0
+SWE1-VC-SurroundViewCameraGuidelines-062	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-854	W0					0	0
+SWE1-VC-SurroundViewCameraGuidelines-063	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-855	W0					0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraView-065	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1094	W0					1	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraView-066	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1095	W0					1	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraView-067	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1096	W0					0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraView-068	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1097	W0					0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraView-069	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1098	W0					1	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-071	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1100	W1		PROXI 參數之值域無來源：Turn_Signal_Camera_View	PROXI:Turn_Signal_Camera_View=PENDING	DR-34	1	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-072	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1101	W1		PROXI 參數之值域無來源：Turn_Signal_Camera_View	PROXI:Turn_Signal_Camera_View=PENDING	DR-34	1	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-073	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1102	W0					0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-074	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1103	W0					0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-075	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1104	W0					0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-076	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1105	W0					1	0
+SWE1-VC-ParkSenseBasedCameraActivation-078	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1107	W1		PROXI 參數之值域無來源：Parksense_Camera_View	PROXI:Parksense_Camera_View=PENDING	DR-34	1	0
+SWE1-VC-ParkSenseBasedCameraActivation-079	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1108	W1		PROXI 參數之值域無來源：Parksense_Camera_View	PROXI:Parksense_Camera_View=PENDING	DR-34	1	0
+SWE1-VC-ParkSenseBasedCameraActivation-080	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1109	W1		PROXI 參數之值域無來源：Parksense_Camera_View	PROXI:Parksense_Camera_View=PENDING	DR-34	0	0
+SWE1-VC-ParkSenseBasedCameraActivation-081	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1110	W0					0	0
+SWE1-VC-ParkSenseBasedCameraActivation-082	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1111	W0					1	0
+SWE1-VC-ParkSense-084	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2042	W0					1	0
+SWE1-VC-ParkSense-085	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2043	W0					1	0
+SWE1-VC-ParkSense-086	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2044	W0					0	0
+SWE1-VC-ParkSense-087	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2045	W0					0	0
+SWE1-VC-ParkSense-088	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2046	W0					1	0
+SWE1-VC-SuspensionAutoEntryorExit-090	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2171	W0					0	0
+SWE1-VC-SuspensionAutoEntryorExit-091	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2172	W0					0	0
+SWE1-VC-SuspensionAutoEntryorExit-092	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2173	W0					0	0
+SWE1-VC-SuspensionAutoEntryorExit-093	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2174	W0					0	0
+SWE1-VC-SuspensionAutoEntryorExit-094	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2175	W0					0	0
+SWE1-VC-SuspensionAutoEntryorExit-095	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2176	W0					0	0
+SWE1-VC-6AuxSwitches-002	Auxiliary Switches	6 Aux Switches	SYS-RA-VF230_V1-2259	W1		PROXI 參數之值域無來源：AUX_Switch_Types	PROXI:AUX_Switch_Types=PENDING	DR-34	1	0
+SWE1-VC-6AuxSwitches-003	Auxiliary Switches	6 Aux Switches	SYS-RA-VF230_V1-2260	W1		PROXI 參數之值域無來源：AUX_Switch_Types	PROXI:AUX_Switch_Types=PENDING	DR-34	1	0
+SWE1-VC-SWITCH1PowerMode-005	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2262	W0			AUX1_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH1PowerMode-006	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2263	W0			AUX1_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH1PowerMode-007	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2264	W0			AUX1_PWRMD=2-DBC		1	0
+SWE1-VC-SWITCH2PowerMode-009	Auxiliary Switches	SWITCH 2 Power Mode	SYS-RA-VF230_V1-2266	W0			AUX2_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH2PowerMode-010	Auxiliary Switches	SWITCH 2 Power Mode	SYS-RA-VF230_V1-2267	W0			AUX2_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH2PowerMode-011	Auxiliary Switches	SWITCH 2 Power Mode	SYS-RA-VF230_V1-2268	W0			AUX2_PWRMD=2-DBC		1	0
+SWE1-VC-SWITCH3PowerMode-013	Auxiliary Switches	SWITCH 3 Power Mode	SYS-RA-VF230_V1-2270	W0			AUX3_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH3PowerMode-015	Auxiliary Switches	SWITCH 3 Power Mode	SYS-RA-VF230_V1-2272	W0			AUX3_PWRMD=2-DBC		1	0
+SWE1-VC-SWITCH4PowerMode-017	Auxiliary Switches	SWITCH 4 Power Mode	SYS-RA-VF230_V1-2274	W0			AUX4_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH4PowerMode-018	Auxiliary Switches	SWITCH 4 Power Mode	SYS-RA-VF230_V1-2275	W0			AUX4_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH4PowerMode-019	Auxiliary Switches	SWITCH 4 Power Mode	SYS-RA-VF230_V1-2276	W0			AUX4_PWRMD=2-DBC		1	0
+SWE1-VC-SWITCH5PowerMode-021	Auxiliary Switches	SWITCH 5 Power Mode	SYS-RA-VF230_V1-2278	W0			AUX5_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH5PowerMode-022	Auxiliary Switches	SWITCH 5 Power Mode	SYS-RA-VF230_V1-2279	W0			AUX5_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH5PowerMode-023	Auxiliary Switches	SWITCH 5 Power Mode	SYS-RA-VF230_V1-2280	W0			AUX5_PWRMD=2-DBC		1	0
+SWE1-VC-SWITCH6PowerMode-025	Auxiliary Switches	SWITCH 6 Power Mode	SYS-RA-VF230_V1-2282	W0			AUX6_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH6PowerMode-027	Auxiliary Switches	SWITCH 6 Power Mode	SYS-RA-VF230_V1-2284	W0			AUX6_PWRMD=2-DBC		1	0
+SWE1-VC-SWITCH1Type-029	Auxiliary Switches	SWITCH 1 Type	SYS-RA-VF230_V1-2286	W0			AUX1_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH1Type-030	Auxiliary Switches	SWITCH 1 Type	SYS-RA-VF230_V1-2287	W0			AUX1_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH1Type-031	Auxiliary Switches	SWITCH 1 Type	SYS-RA-VF230_V1-2288	W0			AUX1_TYPE=2-DBC		1	0
+SWE1-VC-SWITCH2Type-033	Auxiliary Switches	SWITCH 2 Type	SYS-RA-VF230_V1-2290	W0			AUX2_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH2Type-034	Auxiliary Switches	SWITCH 2 Type	SYS-RA-VF230_V1-2291	W0			AUX2_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH2Type-035	Auxiliary Switches	SWITCH 2 Type	SYS-RA-VF230_V1-2292	W0			AUX2_TYPE=2-DBC		1	0
+SWE1-VC-SWITCH3Type-037	Auxiliary Switches	SWITCH 3 Type	SYS-RA-VF230_V1-2294	W0			AUX3_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH3Type-038	Auxiliary Switches	SWITCH 3 Type	SYS-RA-VF230_V1-2295	W0			AUX3_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH4Type-041	Auxiliary Switches	SWITCH 4 Type	SYS-RA-VF230_V1-2298	W0			AUX4_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH4Type-042	Auxiliary Switches	SWITCH 4 Type	SYS-RA-VF230_V1-2299	W0			AUX4_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH4Type-043	Auxiliary Switches	SWITCH 4 Type	SYS-RA-VF230_V1-2300	W0			AUX4_TYPE=2-DBC		1	0
+SWE1-VC-SWITCH5Type-046	Auxiliary Switches	SWITCH 5 Type	SYS-RA-VF230_V1-2303	W0			AUX5_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH5Type-047	Auxiliary Switches	SWITCH 5 Type	SYS-RA-VF230_V1-2304	W0			AUX5_TYPE=2-DBC		1	0
+SWE1-VC-SWITCH6Type-049	Auxiliary Switches	SWITCH 6 Type	SYS-RA-VF230_V1-2306	W0			AUX6_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH6Type-050	Auxiliary Switches	SWITCH 6 Type	SYS-RA-VF230_V1-2307	W0			AUX6_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH1HoldLastState-054	Auxiliary Switches	SWITCH 1 Hold Last State	SYS-RA-VF230_V1-2310	W0			AUX1_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH1HoldLastState-055	Auxiliary Switches	SWITCH 1 Hold Last State	SYS-RA-VF230_V1-2311	W0			AUX1_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH1HoldLastState-056	Auxiliary Switches	SWITCH 1 Hold Last State	SYS-RA-VF230_V1-2312	W0			AUX1_HLEnbl=2-DBC		1	0
+SWE1-VC-SWITCH2HoldLastState-059	Auxiliary Switches	SWITCH 2 Hold Last State	SYS-RA-VF230_V1-2315	W0			AUX2_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH2HoldLastState-060	Auxiliary Switches	SWITCH 2 Hold Last State	SYS-RA-VF230_V1-2316	W0			AUX2_HLEnbl=2-DBC		1	0
+SWE1-VC-SWITCH3HoldLastState-062	Auxiliary Switches	SWITCH 3 Hold Last State	SYS-RA-VF230_V1-2318	W0			AUX3_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH3HoldLastState-064	Auxiliary Switches	SWITCH 3 Hold Last State	SYS-RA-VF230_V1-2320	W0			AUX3_HLEnbl=2-DBC		1	0
+SWE1-VC-SWITCH4HoldLastState-066	Auxiliary Switches	SWITCH 4 Hold Last State	SYS-RA-VF230_V1-2322	W0			AUX4_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH4HoldLastState-067	Auxiliary Switches	SWITCH 4 Hold Last State	SYS-RA-VF230_V1-2323	W0			AUX4_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH4HoldLastState-068	Auxiliary Switches	SWITCH 4 Hold Last State	SYS-RA-VF230_V1-2324	W0			AUX4_HLEnbl=2-DBC		1	0
+SWE1-VC-SWITCH5HoldLastState-070	Auxiliary Switches	SWITCH 5 Hold Last State	SYS-RA-VF230_V1-2326	W0			AUX5_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH5HoldLastState-071	Auxiliary Switches	SWITCH 5 Hold Last State	SYS-RA-VF230_V1-2327	W0			AUX5_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH5HoldLastState-072	Auxiliary Switches	SWITCH 5 Hold Last State	SYS-RA-VF230_V1-2328	W0			AUX5_HLEnbl=2-DBC		1	0
+SWE1-VC-SWITCH6HoldLastState-074	Auxiliary Switches	SWITCH 6 Hold Last State	SYS-RA-VF230_V1-2330	W0			AUX6_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH6HoldLastState-075	Auxiliary Switches	SWITCH 6 Hold Last State	SYS-RA-VF230_V1-2331	W0			AUX6_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-RearGuidanceLightingwithApproach-078	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2597	W1		PROXI 參數之值域無來源：Utility_Lighting	PROXI:Utility_Lighting=PENDING	DR-34	0	0
+SWE1-VC-RearGuidanceLightingwithApproach-079	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2598	W1		PROXI 參數之值域無來源：Utility_Lighting	PROXI:Utility_Lighting=PENDING	DR-34	0	0
+SWE1-VC-RearGuidanceLightingwithApproach-080	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2599	W0			Rear_Lights_with_Approach_Req=2-DBC		0	0
+SWE1-VC-RearGuidanceLightingwithApproach-081	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2600	W0			Rear_Lights_with_Approach_Req=2-DBC		0	0
+SWE1-VC-RearGuidanceLightingwithApproach-082	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2601	W0			Rear_Lights_with_Approach=2-DBC		0	0
+SWE1-VC-RearGuidanceLightStatus-084	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2603	W1		PROXI 參數之值域無來源：Utility_Lighting	PROXI:Utility_Lighting=PENDING	DR-34	0	0
+SWE1-VC-RearGuidanceLightStatus-085	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2604	W1		PROXI 參數之值域無來源：Utility_Lighting	PROXI:Utility_Lighting=PENDING	DR-34	0	0
+SWE1-VC-RearGuidanceLightStatus-086	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2605	W0			Rear_Guidance_Light_Status_Req=2-DBC		0	0
+SWE1-VC-RearGuidanceLightStatus-087	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2606	W0			Rear_Guidance_Light_Status_Req=2-DBC		0	0
+SWE1-VC-RearGuidanceLightStatus-088	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2607	W0			Rear_Guidance_Light_Status=2-DBC		0	0
+SWE1-VC-E-Save-090	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2660	W0					0	0
+SWE1-VC-E-Save-091	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2661	W0					0	0
+SWE1-VC-E-Save-092	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2662	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
+SWE1-VC-E-Save-093	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2663	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
+SWE1-VC-E-Save-094	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2664	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
+SWE1-VC-E-Save-095	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2665	W0					0	0
+SWE1-VC-SWITCH3PowerMode-014	Auxiliary Switches	SWITCH 3 Power Mode	SYS-RA-VF230_V1-2271	W0			AUX3_PWRMD_Req=2-DBC		0	1
+SWE1-VC-SWITCH6PowerMode-026	Auxiliary Switches	SWITCH 6 Power Mode	SYS-RA-VF230_V1-2283	W0			AUX6_PWRMD_Req=2-DBC		0	1
+SWE1-VC-SWITCH3Type-039	Auxiliary Switches	SWITCH 3 Type	SYS-RA-VF230_V1-2296	W0			AUX3_TYPE=2-DBC		1	1
+SWE1-VC-SWITCH5Type-045	Auxiliary Switches	SWITCH 5 Type	SYS-RA-VF230_V1-2302	W0			AUX5_TYPE_Req=2-DBC		0	1
+SWE1-VC-SWITCH6Type-051	Auxiliary Switches	SWITCH 6 Type	SYS-RA-VF230_V1-2308	W0			AUX6_TYPE=2-DBC		1	1
+SWE1-VC-SWITCH2HoldLastState-058	Auxiliary Switches	SWITCH 2 Hold Last State	SYS-RA-VF230_V1-2314	W0			AUX2_HLEnbl_Req=2-DBC		0	1
+SWE1-VC-SWITCH3HoldLastState-063	Auxiliary Switches	SWITCH 3 Hold Last State	SYS-RA-VF230_V1-2319	W0			AUX3_HLEnbl_Req=2-DBC		0	1
+SWE1-VC-SWITCH6HoldLastState-076	Auxiliary Switches	SWITCH 6 Hold Last State	SYS-RA-VF230_V1-2332	W0			AUX6_HLEnbl=2-DBC		1	1
+SWE1-VC-IlluminatedApproach-002	Approach and Tailgate	Illuminated Approach	SYS-RA-VF230_V1-2131	W0					0	0
+SWE1-VC-IlluminatedApproach-003	Approach and Tailgate	Illuminated Approach	SYS-RA-VF230_V1-2132	W0					0	0
+SWE1-VC-IlluminatedApproach-004	Approach and Tailgate	Illuminated Approach	SYS-RA-VF230_V1-2133	W0			Illuminated_Approach_Req=2-DBC		0	0
+SWE1-VC-IlluminatedApproach-005	Approach and Tailgate	Illuminated Approach	SYS-RA-VF230_V1-2134	W0			Illuminated_Approach_Req=2-DBC		0	0
+SWE1-VC-IlluminatedApproach-006	Approach and Tailgate	Illuminated Approach	SYS-RA-VF230_V1-2135	W0			Illuminated_Approach_Req=2-DBC		0	0
+SWE1-VC-IlluminatedApproach-007	Approach and Tailgate	Illuminated Approach	SYS-RA-VF230_V1-2136	W0			Illuminated_Approach_Req=2-DBC		0	0
+SWE1-VC-IlluminatedApproach-008	Approach and Tailgate	Illuminated Approach	SYS-RA-VF230_V1-2137	W0			Illuminated_Approach=2-DBC		0	0
+SWE1-VC-PaddleShifter-010	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2139	W1		PROXI 參數之值域無來源：Paddle_Shifter_Menu	PROXI:Paddle_Shifter_Menu=PENDING	DR-34	0	0
+SWE1-VC-PaddleShifter-011	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2140	W1		PROXI 參數之值域無來源：Paddle_Shifter_Menu	PROXI:Paddle_Shifter_Menu=PENDING	DR-34	0	0
+SWE1-VC-PaddleShifter-012	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2141	W0			Paddle_Shifter_Req=2-DBC		0	0
+SWE1-VC-PaddleShifter-013	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2142	W0			Paddle_Shifter_Req=2-DBC		0	0
+SWE1-VC-PaddleShifter-014	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2143	W0			Paddle_Shifter=2-DBC		0	0
+SWE1-VC-PowerLiftgate/TailgateAlert-016	Approach and Tailgate	Power Liftgate/Tailgate Alert	SYS-RA-VF230_V1-2145	W0					0	0
+SWE1-VC-PowerLiftgate/TailgateAlert-017	Approach and Tailgate	Power Liftgate/Tailgate Alert	SYS-RA-VF230_V1-2146	W0					0	0
+SWE1-VC-PowerLiftgate/TailgateAlert-018	Approach and Tailgate	Power Liftgate/Tailgate Alert	SYS-RA-VF230_V1-2147	W0			PLGAlert_Req=2-DBC		0	0
+SWE1-VC-PowerLiftgate/TailgateAlert-019	Approach and Tailgate	Power Liftgate/Tailgate Alert	SYS-RA-VF230_V1-2148	W0			PLGAlert_Req=2-DBC		0	0
+SWE1-VC-PowerLiftgate/TailgateAlert-020	Approach and Tailgate	Power Liftgate/Tailgate Alert	SYS-RA-VF230_V1-2149	W0			PLGAlert=2-DBC		0	0
+SWE1-VC-PowerLiftgate/TailgateAlert-021	Approach and Tailgate	Power Liftgate/Tailgate Alert	SYS-RA-VF230_V1-2150	W0			PLGAlert=2-DBC		0	0
+SWE1-VC-PowerTailgate-023	Approach and Tailgate	Power Tailgate	SYS-RA-VF230_V1-2152	W0					0	0
+SWE1-VC-PowerTailgate-024	Approach and Tailgate	Power Tailgate	SYS-RA-VF230_V1-2153	W0					0	0
+SWE1-VC-PowerTailgate-025	Approach and Tailgate	Power Tailgate	SYS-RA-VF230_V1-2154	W0			Power_Tailgate_Enable_Req=2-DBC		0	0
+SWE1-VC-PowerTailgate-026	Approach and Tailgate	Power Tailgate	SYS-RA-VF230_V1-2155	W0			Power_Tailgate_Enable_Req=2-DBC		0	0
+SWE1-VC-PowerTailgate-027	Approach and Tailgate	Power Tailgate	SYS-RA-VF230_V1-2156	W0			Power_Tailgate_Enable=2-DBC		0	0
+SWE1-VC-PowerTailgate-028	Approach and Tailgate	Power Tailgate	SYS-RA-VF230_V1-2157	W0			Power_Tailgate_Enable=2-DBC		0	0
+SWE1-VC-TrafficSignWarning-030	Approach and Tailgate	Traffic Sign Warning	SYS-RA-VF230_V1-2372	W0					0	0
+SWE1-VC-TrafficSignWarning-031	Approach and Tailgate	Traffic Sign Warning	SYS-RA-VF230_V1-2373	W0					0	0
+SWE1-VC-TrafficSignWarning-032	Approach and Tailgate	Traffic Sign Warning	SYS-RA-VF230_V1-2374	W0			Traffic_Sign_Warn_Req=2-DBC		0	0
+SWE1-VC-TrafficSignWarning-033	Approach and Tailgate	Traffic Sign Warning	SYS-RA-VF230_V1-2375	W0			Traffic_Sign_Warn_Req=2-DBC		0	0
+SWE1-VC-TrafficSignWarning-034	Approach and Tailgate	Traffic Sign Warning	SYS-RA-VF230_V1-2376	W0			Traffic_Sign_Warn_Req=2-DBC		0	0
+SWE1-VC-TrafficSignWarning-035	Approach and Tailgate	Traffic Sign Warning	SYS-RA-VF230_V1-2377	W0			Traffic_Sign_Warn=2-DBC		0	0
+SWE1-VC-NewSpeedZoneIndication-037	Approach and Tailgate	New Speed Zone Indication	SYS-RA-VF230_V1-2379	W0					0	0
+SWE1-VC-NewSpeedZoneIndication-038	Approach and Tailgate	New Speed Zone Indication	SYS-RA-VF230_V1-2380	W0					0	0
+SWE1-VC-NewSpeedZoneIndication-039	Approach and Tailgate	New Speed Zone Indication	SYS-RA-VF230_V1-2381	W0			New_Spd_Zone_Ind_Req=2-DBC		0	0
+SWE1-VC-NewSpeedZoneIndication-040	Approach and Tailgate	New Speed Zone Indication	SYS-RA-VF230_V1-2382	W0			New_Spd_Zone_Ind_Req=2-DBC		0	0
+SWE1-VC-NewSpeedZoneIndication-041	Approach and Tailgate	New Speed Zone Indication	SYS-RA-VF230_V1-2383	W0			New_Spd_Zone_Ind_Req=2-DBC		0	0
+SWE1-VC-NewSpeedZoneIndication-042	Approach and Tailgate	New Speed Zone Indication	SYS-RA-VF230_V1-2384	W0			New_Spd_Zone_Ind=2-DBC		0	0
+SWE1-VC-ChargePowerLevel-044	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2386	W0					0	0
+SWE1-VC-ChargePowerLevel-045	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2387	W0					0	0
+SWE1-VC-ChargePowerLevel-046	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2388	W0			PwrLevReq=2-DBC		0	0
+SWE1-VC-ChargePowerLevel-047	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2389	W0			PwrLevReq=2-DBC		0	0
+SWE1-VC-ChargePowerLevel-048	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2390	W0			PwrLevReq=2-DBC		0	0
+SWE1-VC-ChargePowerLevel-049	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2391	W0			PwrLevReq=2-DBC		0	0
+SWE1-VC-ChargePowerLevel-050	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2392	W0			PwrLevReq=2-DBC		0	0
+SWE1-VC-ChargePowerLevel-051	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2393	W0			PwrLev=2-DBC		0	0
+SWE1-VC-RearSeatReminder-053	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2395	W1		PROXI 參數之值域無來源：FOA_Presence	PROXI:FOA_Presence=PENDING	DR-34	0	0
+SWE1-VC-RearSeatReminder-054	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2396	W1		PROXI 參數之值域無來源：FOA_Presence	PROXI:FOA_Presence=PENDING	DR-34	0	0
+SWE1-VC-RearSeatReminder-055	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2397	W0			FOA_Alert_Type_Req=2-DBC		0	0
+SWE1-VC-RearSeatReminder-056	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2398	W0			FOA_Alert_Type=2-DBC		0	0
+SWE1-VC-RearSeatReminder-057	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2399	W0			FOA_Alert_Type_Req=2-DBC		0	0
+SWE1-VC-TrailerNumber-059	Trailer and Signage	Trailer Number	SYS-RA-VF230_V1-2401	W0					0	0
+SWE1-VC-TrailerNumber-060	Trailer and Signage	Trailer Number	SYS-RA-VF230_V1-2402	W0					0	0
+SWE1-VC-TrailerNumber-061	Trailer and Signage	Trailer Number	SYS-RA-VF230_V1-2403	W0			Trail_Num_Req=2-DBC		0	0
+SWE1-VC-TrailerNumber-062	Trailer and Signage	Trailer Number	SYS-RA-VF230_V1-2404	W0			Trail_Num_Req=2-DBC		0	0
+SWE1-VC-TrailerNumber-063	Trailer and Signage	Trailer Number	SYS-RA-VF230_V1-2405	W0			Trail_Num_Req=2-DBC		0	0
+SWE1-VC-TrailerNumber-064	Trailer and Signage	Trailer Number	SYS-RA-VF230_V1-2406	W0			Trail_Num_Req=2-DBC		0	0
+SWE1-VC-TrailerNumber-065	Trailer and Signage	Trailer Number	SYS-RA-VF230_V1-2407	W0			Trail_Num=2-DBC		0	0
+SWE1-VC-TrailerNumber-066	Trailer and Signage	Trailer Number	SYS-RA-VF230_V1-2408	W0			Trail_Num=2-DBC		0	0
+SWE1-VC-SWITCH1Type-002	Auxiliary Switches	SWITCH 1 Type	SYS-RA-VF230_V1-2227	W0			AUX1_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH1Type-003	Auxiliary Switches	SWITCH 1 Type	SYS-RA-VF230_V1-2228	W0			AUX1_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH1Type-004	Auxiliary Switches	SWITCH 1 Type	SYS-RA-VF230_V1-2229	W0			AUX1_TYPE=2-DBC		1	0
+SWE1-VC-SWITCH2Type-006	Auxiliary Switches	SWITCH 2 Type	SYS-RA-VF230_V1-2231	W0			AUX2_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH2Type-007	Auxiliary Switches	SWITCH 2 Type	SYS-RA-VF230_V1-2232	W0			AUX2_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH2Type-008	Auxiliary Switches	SWITCH 2 Type	SYS-RA-VF230_V1-2233	W0			AUX2_TYPE=2-DBC		1	0
+SWE1-VC-SWITCH3Type-010	Auxiliary Switches	SWITCH 3 Type	SYS-RA-VF230_V1-2235	W0			AUX3_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH3Type-011	Auxiliary Switches	SWITCH 3 Type	SYS-RA-VF230_V1-2236	W0			AUX3_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH3Type-012	Auxiliary Switches	SWITCH 3 Type	SYS-RA-VF230_V1-2237	W0			AUX3_TYPE=2-DBC		1	0
+SWE1-VC-SWITCH4Type-014	Auxiliary Switches	SWITCH 4 Type	SYS-RA-VF230_V1-2239	W0			AUX4_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH4Type-015	Auxiliary Switches	SWITCH 4 Type	SYS-RA-VF230_V1-2240	W0			AUX4_TYPE_Req=2-DBC		0	0
+SWE1-VC-SWITCH4Type-016	Auxiliary Switches	SWITCH 4 Type	SYS-RA-VF230_V1-2241	W0			AUX4_TYPE=2-DBC		1	0
+SWE1-VC-SWITCH1HoldLastState-018	Auxiliary Switches	SWITCH 1 Hold Last State	SYS-RA-VF230_V1-2243	W0			AUX1_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH1HoldLastState-019	Auxiliary Switches	SWITCH 1 Hold Last State	SYS-RA-VF230_V1-2244	W0			AUX1_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH1HoldLastState-020	Auxiliary Switches	SWITCH 1 Hold Last State	SYS-RA-VF230_V1-2245	W0			AUX1_HLEnbl=2-DBC		1	0
+SWE1-VC-SWITCH2HoldLastState-022	Auxiliary Switches	SWITCH 2 Hold Last State	SYS-RA-VF230_V1-2247	W0			AUX2_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH2HoldLastState-023	Auxiliary Switches	SWITCH 2 Hold Last State	SYS-RA-VF230_V1-2248	W0			AUX2_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH2HoldLastState-024	Auxiliary Switches	SWITCH 2 Hold Last State	SYS-RA-VF230_V1-2249	W0			AUX2_HLEnbl=2-DBC		1	0
+SWE1-VC-SWITCH3HoldLastState-026	Auxiliary Switches	SWITCH 3 Hold Last State	SYS-RA-VF230_V1-2251	W0			AUX3_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH3HoldLastState-027	Auxiliary Switches	SWITCH 3 Hold Last State	SYS-RA-VF230_V1-2252	W0			AUX3_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH3HoldLastState-028	Auxiliary Switches	SWITCH 3 Hold Last State	SYS-RA-VF230_V1-2253	W0			AUX3_HLEnbl=2-DBC		1	0
+SWE1-VC-SWITCH4HoldLastState-030	Auxiliary Switches	SWITCH 4 Hold Last State	SYS-RA-VF230_V1-2255	W0			AUX4_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH4HoldLastState-031	Auxiliary Switches	SWITCH 4 Hold Last State	SYS-RA-VF230_V1-2256	W0			AUX4_HLEnbl_Req=2-DBC		0	0
+SWE1-VC-SWITCH4HoldLastState-032	Auxiliary Switches	SWITCH 4 Hold Last State	SYS-RA-VF230_V1-2257	W0			AUX4_HLEnbl=2-DBC		1	0
+SWE1-VC-SuspensionFlashLightsWithLower-002	Suspension and Comfort	Suspension Flash Lights With Lower	SYS-RA-VF230_V1-2453	W0					1	0
+SWE1-VC-SuspensionFlashLightsWithLower-003	Suspension and Comfort	Suspension Flash Lights With Lower	SYS-RA-VF230_V1-2454	W0					1	0
+SWE1-VC-SuspensionFlashLightsWithLower-004	Suspension and Comfort	Suspension Flash Lights With Lower	SYS-RA-VF230_V1-2455	W0			Susp_Flsh_Lght_Low_Req=2-DBC		0	0
+SWE1-VC-SuspensionFlashLightsWithLower-005	Suspension and Comfort	Suspension Flash Lights With Lower	SYS-RA-VF230_V1-2456	W0			Susp_Flsh_Lght_Low_Req=2-DBC		0	0
+SWE1-VC-SuspensionFlashLightsWithLower-006	Suspension and Comfort	Suspension Flash Lights With Lower	SYS-RA-VF230_V1-2457	W0			Susp_Flsh_Lght_Low=2-DBC		1	0
+SWE1-VC-SuspensionSoundHornWithLower-008	Suspension and Comfort	Suspension Sound Horn With Lower	SYS-RA-VF230_V1-2459	W0					1	0
+SWE1-VC-SuspensionSoundHornWithLower-009	Suspension and Comfort	Suspension Sound Horn With Lower	SYS-RA-VF230_V1-2460	W0					1	0
+SWE1-VC-SuspensionSoundHornWithLower-010	Suspension and Comfort	Suspension Sound Horn With Lower	SYS-RA-VF230_V1-2461	W0			Susp_Sound_Hrn_Low_Req=2-DBC		0	0
+SWE1-VC-SuspensionSoundHornWithLower-011	Suspension and Comfort	Suspension Sound Horn With Lower	SYS-RA-VF230_V1-2462	W0			Susp_Sound_Hrn_Low_Req=2-DBC		0	0
+SWE1-VC-SuspensionSoundHornWithLower-012	Suspension and Comfort	Suspension Sound Horn With Lower	SYS-RA-VF230_V1-2463	W0			Susp_Sound_Hrn_Low=2-DBC		1	0
+SWE1-VC-RearGuidanceLightswith\nCargoLights-014	Auxiliary Switches	Rear Guidance Lights with Cargo Lights	SYS-RA-VF230_V1-2547	W0					0	0
+SWE1-VC-RearGuidanceLightswith\nCargoLights-015	Auxiliary Switches	Rear Guidance Lights with Cargo Lights	SYS-RA-VF230_V1-2548	W0					0	0
+SWE1-VC-RearGuidanceLightswith\nCargoLights-016	Auxiliary Switches	Rear Guidance Lights with Cargo Lights	SYS-RA-VF230_V1-2549	W0			Rear_G_LGT_with_Cargo_Lights_Req=2-DBC		0	0
+SWE1-VC-RearGuidanceLightswith\nCargoLights-017	Auxiliary Switches	Rear Guidance Lights with Cargo Lights	SYS-RA-VF230_V1-2550	W0			Rear_G_LGT_with_Cargo_Lights_Req=2-DBC		0	0
+SWE1-VC-RearGuidanceLightswith\nCargoLights-018	Auxiliary Switches	Rear Guidance Lights with Cargo Lights	SYS-RA-VF230_V1-2551	W0			Rear_G_LGT_with_Cargo_Lights=2-DBC		0	0
+SWE1-VC-SuspensionDefaultRideHeight-020	Suspension and Comfort	Suspension Default Ride Height	SYS-RA-VF230_V1-2590	W0					0	0
+SWE1-VC-SuspensionDefaultRideHeight-021	Suspension and Comfort	Suspension Default Ride Height	SYS-RA-VF230_V1-2591	W0					0	0
+SWE1-VC-SuspensionDefaultRideHeight-022	Suspension and Comfort	Suspension Default Ride Height	SYS-RA-VF230_V1-2592	W0					0	0
+SWE1-VC-SuspensionDefaultRideHeight-023	Suspension and Comfort	Suspension Default Ride Height	SYS-RA-VF230_V1-2593	W0			Default_Ride_Height_Req=2-DBC		0	0
+SWE1-VC-SuspensionDefaultRideHeight-024	Suspension and Comfort	Suspension Default Ride Height	SYS-RA-VF230_V1-2594	W0			Default_Ride_Height_Req=2-DBC		0	0
+SWE1-VC-SuspensionDefaultRideHeight-025	Suspension and Comfort	Suspension Default Ride Height	SYS-RA-VF230_V1-2595	W0			Default_Ride_Height=2-DBC		0	0
+SWE1-VC-4AUXSwitches-027	Auxiliary Switches	4 AUX Switches	SYS-RA-VF230_V1-2208	W0					1	0
+SWE1-VC-4AUXSwitches-028	Auxiliary Switches	4 AUX Switches	SYS-RA-VF230_V1-2209	W1		PROXI 參數之值域無來源：AUX_Switch_Types	PROXI:AUX_Switch_Types=PENDING	DR-34	1	0
+SWE1-VC-SWITCH1PowerMode-030	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2211	W0			AUX1_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH1PowerMode-031	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2212	W0			AUX1_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH1PowerMode-032	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2213	W0			AUX1_PWRMD=2-DBC		1	0
+SWE1-VC-SWITCH2PowerMode-034	Auxiliary Switches	SWITCH 2 Power Mode	SYS-RA-VF230_V1-2215	W0			AUX2_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH2PowerMode-035	Auxiliary Switches	SWITCH 2 Power Mode	SYS-RA-VF230_V1-2216	W0			AUX2_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH2PowerMode-036	Auxiliary Switches	SWITCH 2 Power Mode	SYS-RA-VF230_V1-2217	W0			AUX2_PWRMD=2-DBC		1	0
+SWE1-VC-SWITCH3PowerMode-038	Auxiliary Switches	SWITCH 3 Power Mode	SYS-RA-VF230_V1-2219	W0			AUX3_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH3PowerMode-039	Auxiliary Switches	SWITCH 3 Power Mode	SYS-RA-VF230_V1-2220	W0			AUX3_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH3PowerMode-040	Auxiliary Switches	SWITCH 3 Power Mode	SYS-RA-VF230_V1-2221	W0			AUX3_PWRMD=2-DBC		1	0
+SWE1-VC-SWITCH4PowerMode-042	Auxiliary Switches	SWITCH 4 Power Mode	SYS-RA-VF230_V1-2223	W0			AUX4_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH4PowerMode-043	Auxiliary Switches	SWITCH 4 Power Mode	SYS-RA-VF230_V1-2224	W0			AUX4_PWRMD_Req=2-DBC		0	0
+SWE1-VC-SWITCH4PowerMode-044	Auxiliary Switches	SWITCH 4 Power Mode	SYS-RA-VF230_V1-2225	W0			AUX4_PWRMD=2-DBC		1	0
+SWE1-VC-SuspensionServiceMode-002	Suspension and Comfort	Suspension Service Mode	SYS-RA-VF230_V1-857	W0					0	0
+SWE1-VC-SuspensionServiceMode-003	Suspension and Comfort	Suspension Service Mode	SYS-RA-VF230_V1-858	W0					0	0
+SWE1-VC-SuspensionServiceMode-004	Suspension and Comfort	Suspension Service Mode	SYS-RA-VF230_V1-859	W0			Susp_Tire_Jack_Req=2-DBC		0	0
+SWE1-VC-SuspensionServiceMode-005	Suspension and Comfort	Suspension Service Mode	SYS-RA-VF230_V1-860	W0			Susp_Tire_Jack_Req=2-DBC		0	0
+SWE1-VC-SuspensionServiceMode-006	Suspension and Comfort	Suspension Service Mode	SYS-RA-VF230_V1-861	W0			Susp_Tire_Jack=2-DBC		0	0
+SWE1-VC-SuspensionDisplayMessages-008	Suspension and Comfort	Suspension Display Messages	SYS-RA-VF230_V1-863	W0					0	0
+SWE1-VC-SuspensionDisplayMessages-009	Suspension and Comfort	Suspension Display Messages	SYS-RA-VF230_V1-864	W0					0	0
+SWE1-VC-SuspensionDisplayMessages-010	Suspension and Comfort	Suspension Display Messages	SYS-RA-VF230_V1-865	W0			Susp_Disp_Message_Req=2-DBC		0	0
+SWE1-VC-SuspensionDisplayMessages-011	Suspension and Comfort	Suspension Display Messages	SYS-RA-VF230_V1-866	W0			Susp_Disp_Message_Req=2-DBC		0	0
+SWE1-VC-SuspensionDisplayMessages-012	Suspension and Comfort	Suspension Display Messages	SYS-RA-VF230_V1-867	W0			Susp_Disp_Message=2-DBC		0	0
+SWE1-VC-TiltMirrorinReverse-014	Suspension and Comfort	Tilt Mirror in Reverse	SYS-RA-VF230_V1-869	W0					0	0
+SWE1-VC-TiltMirrorinReverse-015	Suspension and Comfort	Tilt Mirror in Reverse	SYS-RA-VF230_V1-870	W0					0	0
+SWE1-VC-TiltMirrorinReverse-016	Suspension and Comfort	Tilt Mirror in Reverse	SYS-RA-VF230_V1-871	W0			Tilt_Mirr_Rev_Req=2-DBC		0	0
+SWE1-VC-TiltMirrorinReverse-017	Suspension and Comfort	Tilt Mirror in Reverse	SYS-RA-VF230_V1-872	W0			Tilt_Mirr_Rev_Req=2-DBC		0	0
+SWE1-VC-TiltMirrorinReverse-018	Suspension and Comfort	Tilt Mirror in Reverse	SYS-RA-VF230_V1-873	W0			Tilt_Mirr_Rev=2-DBC		0	0
+SWE1-VC-TireFillAlert-020	Suspension and Comfort	Tire Fill Alert	SYS-RA-VF230_V1-875	W0					0	0
+SWE1-VC-TireFillAlert-021	Suspension and Comfort	Tire Fill Alert	SYS-RA-VF230_V1-876	W0					0	0
+SWE1-VC-TireFillAlert-022	Suspension and Comfort	Tire Fill Alert	SYS-RA-VF230_V1-877	W0			Tire_Fill_Alert_Req=2-DBC		0	0
+SWE1-VC-TireFillAlert-023	Suspension and Comfort	Tire Fill Alert	SYS-RA-VF230_V1-878	W0			Tire_Fill_Alert_Req=2-DBC		0	0
+SWE1-VC-TireFillAlert-024	Suspension and Comfort	Tire Fill Alert	SYS-RA-VF230_V1-879	W0			Tire_Fill_Alert=2-DBC		0	0
+SWE1-VC-ReadytoDrivePopUp-026	Suspension and Comfort	Ready to Drive Pop-Up	SYS-RA-VF230_V1-881	W0					0	0
+SWE1-VC-ReadytoDrivePopUp-027	Suspension and Comfort	Ready to Drive Pop-Up	SYS-RA-VF230_V1-882	W0					0	0
+SWE1-VC-ReadytoDrivePopUp-028	Suspension and Comfort	Ready to Drive Pop-Up	SYS-RA-VF230_V1-883	W0			Rdy_To_Drive_Req=2-DBC		0	0
+SWE1-VC-ReadytoDrivePopUp-029	Suspension and Comfort	Ready to Drive Pop-Up	SYS-RA-VF230_V1-884	W0			Rdy_To_Drive_Req=2-DBC		0	0
+SWE1-VC-ReadytoDrivePopUp-030	Suspension and Comfort	Ready to Drive Pop-Up	SYS-RA-VF230_V1-885	W0			Rdy_To_Drive=2-DBC		0	0
+SWE1-VC-AutoFoldMirrors-032	Suspension and Comfort	Auto Fold Mirrors	SYS-RA-VF230_V1-2099	W0					0	0
+SWE1-VC-AutoFoldMirrors-033	Suspension and Comfort	Auto Fold Mirrors	SYS-RA-VF230_V1-2100	W0					0	0
+SWE1-VC-AutoFoldMirrors-034	Suspension and Comfort	Auto Fold Mirrors	SYS-RA-VF230_V1-2101	W0			Auto_Fold_Mirr_Req=2-DBC		0	0
+SWE1-VC-AutoFoldMirrors-035	Suspension and Comfort	Auto Fold Mirrors	SYS-RA-VF230_V1-2102	W0			Auto_Fold_Mirr_Req=2-DBC		0	0
+SWE1-VC-AutoFoldMirrors-036	Suspension and Comfort	Auto Fold Mirrors	SYS-RA-VF230_V1-2103	W0			Auto_Fold_Mirr=2-DBC		0	0
+SWE1-VC-DriverEasyExitSeat-038	Suspension and Comfort	Driver Easy Exit Seat	SYS-RA-VF230_V1-2105	W0					0	0
+SWE1-VC-DriverEasyExitSeat-039	Suspension and Comfort	Driver Easy Exit Seat	SYS-RA-VF230_V1-2106	W0					0	0
+SWE1-VC-DriverEasyExitSeat-040	Suspension and Comfort	Driver Easy Exit Seat	SYS-RA-VF230_V1-2107	W0			Easy_Exit_D_Req=2-DBC		0	0
+SWE1-VC-DriverEasyExitSeat-041	Suspension and Comfort	Driver Easy Exit Seat	SYS-RA-VF230_V1-2108	W0			Easy_Exit_D_Req=2-DBC		0	0
+SWE1-VC-DriverEasyExitSeat-042	Suspension and Comfort	Driver Easy Exit Seat	SYS-RA-VF230_V1-2109	W0			Easy_Exit_D=2-DBC		0	0
+SWE1-VC-EngineOffPowerDelay-044	Suspension and Comfort	Engine Off Power Delay	SYS-RA-VF230_V1-2111	W0					0	0
+SWE1-VC-EngineOffPowerDelay-045	Suspension and Comfort	Engine Off Power Delay	SYS-RA-VF230_V1-2112	W0					0	0
+SWE1-VC-EngineOffPowerDelay-046	Suspension and Comfort	Engine Off Power Delay	SYS-RA-VF230_V1-2113	W0			Eng_Off_Pwr_Delay_Req=2-DBC		0	0
+SWE1-VC-EngineOffPowerDelay-047	Suspension and Comfort	Engine Off Power Delay	SYS-RA-VF230_V1-2114	W0			Eng_Off_Pwr_Delay_Req=2-DBC		0	0
+SWE1-VC-EngineOffPowerDelay-048	Suspension and Comfort	Engine Off Power Delay	SYS-RA-VF230_V1-2115	W0			Eng_Off_Pwr_Delay_Req=2-DBC		0	0
+SWE1-VC-EngineOffPowerDelay-049	Suspension and Comfort	Engine Off Power Delay	SYS-RA-VF230_V1-2116	W0			Eng_Off_Pwr_Delay_Req=2-DBC		0	0
+SWE1-VC-EngineOffPowerDelay-050	Suspension and Comfort	Engine Off Power Delay	SYS-RA-VF230_V1-2117	W0			Eng_Off_Pwr_Delay=2-DBC		0	0
+SWE1-VC-HillStartAssist-052	Suspension and Comfort	Hill Start Assist	SYS-RA-VF230_V1-2119	W0					0	0
+SWE1-VC-HillStartAssist-053	Suspension and Comfort	Hill Start Assist	SYS-RA-VF230_V1-2120	W0					0	0
+SWE1-VC-HillStartAssist-054	Suspension and Comfort	Hill Start Assist	SYS-RA-VF230_V1-2121	W0			Hill_Start_Assist_Req=2-DBC		0	0
+SWE1-VC-HillStartAssist-055	Suspension and Comfort	Hill Start Assist	SYS-RA-VF230_V1-2122	W0			Hill_Start_Assist_Req=2-DBC		0	0
+SWE1-VC-HillStartAssist-056	Suspension and Comfort	Hill Start Assist	SYS-RA-VF230_V1-2123	W0			Hill_Start_Assist=2-DBC		0	0
+SWE1-VC-HeadlightswithWipers-058	Suspension and Comfort	Headlights with Wipers	SYS-RA-VF230_V1-2125	W0					0	0
+SWE1-VC-HeadlightswithWipers-059	Suspension and Comfort	Headlights with Wipers	SYS-RA-VF230_V1-2126	W0					0	0
+SWE1-VC-HeadlightswithWipers-060	Suspension and Comfort	Headlights with Wipers	SYS-RA-VF230_V1-2127	W0			HeadLightWipers_Req=2-DBC		0	0
+SWE1-VC-HeadlightswithWipers-061	Suspension and Comfort	Headlights with Wipers	SYS-RA-VF230_V1-2128	W0			HeadLightWipers_Req=2-DBC		0	0
+SWE1-VC-HeadlightswithWipers-062	Suspension and Comfort	Headlights with Wipers	SYS-RA-VF230_V1-2129	W0			HeadLightWipers=2-DBC		0	0
+SWE1-VC-TrailerName-002	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2410	W0					0	0
+SWE1-VC-TrailerName-003	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2411	W0					0	0
+SWE1-VC-TrailerName-004	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2412	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-005	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2413	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-006	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2414	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-007	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2415	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-008	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2416	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-009	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2417	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-010	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2418	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-011	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2419	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-012	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2420	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-013	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2421	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-014	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2422	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-015	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2423	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-016	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2424	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-017	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2425	W0			Trail_Name=2-DBC		0	0
+SWE1-VC-TrailerName-018	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2426	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-019	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2427	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-020	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2428	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-021	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2429	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerName-022	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2430	W0			Trail_Brk_Type_Req=2-DBC		0	0
+SWE1-VC-TrailerName-023	Trailer and Signage	Trailer Name	SYS-RA-VF230_V1-2431	W0			Trail_Name_Req=2-DBC		0	0
+SWE1-VC-TrailerBrakeType025	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2433	W0					0	0
+SWE1-VC-TrailerBrakeType026	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2434	W0					0	0
+SWE1-VC-TrailerBrakeType027	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2435	W0			Trail_Brk_Type_Req=2-DBC		0	0
+SWE1-VC-TrailerBrakeType028	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2436	W0			Trail_Brk_Type_Req=2-DBC		0	0
+SWE1-VC-TrailerBrakeType029	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2437	W0			Trail_Brk_Type_Req=2-DBC		0	0
+SWE1-VC-TrailerBrakeType030	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2438	W0			Trail_Brk_Type_Req=2-DBC		0	0
+SWE1-VC-TrailerBrakeType031	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2439	W0			Trail_Brk_Type=2-DBC		0	0
+SWE1-VC-TrailerBrakeType032	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2440	W0			Trail_Brk_Type_Req=2-DBC;Trail_Num_Req=2-DBC		0	0
+SWE1-VC-TrailerBrakeType033	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2441	W0			Trail_Brk_Type_Req=2-DBC;Trail_Num_Req=2-DBC		0	0
+SWE1-VC-TrailerBrakeType034	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2442	W0			Trail_Brk_Type_Req=2-DBC;Trail_Num_Req=2-DBC		0	0
+SWE1-VC-TrailerBrakeType035	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2443	W0			Trail_Brk_Type_Req=2-DBC;Trail_Num_Req=2-DBC		0	0
+SWE1-VC-TrailerBrakeType036	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2444	W0			Trail_Brk_Type_Req=2-DBC		1	0
+SWE1-VC-TrailerBrakeType037	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2445	W0			Trail_Brk_Type_Req=2-DBC		0	0
+SWE1-VC-AutomaticTrailerLight Check-039	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2447	W1		PROXI 參數之值域無來源：Trailer_Light_Check	PROXI:Trailer_Light_Check=PENDING	DR-34	1	0
+SWE1-VC-AutomaticTrailerLight Check-040	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2448	W1		PROXI 參數之值域無來源：Trailer_Light_Check	PROXI:Trailer_Light_Check=PENDING	DR-34	1	0
+SWE1-VC-AutomaticTrailerLight Check-041	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2449	W0			Auto_Trailer_Light_Check_Req=2-DBC		0	0
+SWE1-VC-AutomaticTrailerLight Check-042	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2450	W0			Auto_Trailer_Light_Check_Req=2-DBC		0	0
+SWE1-VC-AutomaticTrailerLight Check-043	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2451	W0			Trailer_Light_Check=2-DBC		1	0
+SWE1-VC-Blind Spot with Trailer Detection-045	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2465	W1		PROXI 參數之值域無來源：Blindspot_Trailer_Detection	PROXI:Blindspot_Trailer_Detection=PENDING	DR-34	1	0
+SWE1-VC-Blind Spot with Trailer Detection-046	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2466	W1		PROXI 參數之值域無來源：Blindspot_Trailer_Detection	PROXI:Blindspot_Trailer_Detection=PENDING	DR-34	1	0
+SWE1-VC-Blind Spot with Trailer Detection-047	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2467	W0			Trailer_detection_blind_spot_Req=2-DBC		0	0
+SWE1-VC-Blind Spot with Trailer Detection-048	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2468	W0			Trailer_detection_blind_spot_Req=2-DBC		0	0
+SWE1-VC-Blind Spot with Trailer Detection-049	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2469	W0			Trailer_detection_blind_spot=2-DBC		1	0
+SWE1-VC-PowerSideStep-051	Trailer and Signage	Power Side Step	SYS-RA-VF230_V1-2471	W0					1	0
+SWE1-VC-PowerSideStep-052	Trailer and Signage	Power Side Step	SYS-RA-VF230_V1-2472	W0					1	0
+SWE1-VC-PowerSideStep-053	Trailer and Signage	Power Side Step	SYS-RA-VF230_V1-2473	W0			Power_Side_Step_Req=2-DBC		0	0
+SWE1-VC-PowerSideStep-054	Trailer and Signage	Power Side Step	SYS-RA-VF230_V1-2474	W0			Power_Side_Step_Req=2-DBC		0	0
+SWE1-VC-PowerSideStep-055	Trailer and Signage	Power Side Step	SYS-RA-VF230_V1-2475	W0			Power_Side_Step=2-DBC		1	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-057	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2477	W0					1	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-058	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2478	W0					1	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-059	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2479	W0					0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-060	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2480	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-061	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2481	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-062	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2482	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-063	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2483	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-064	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2484	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-065	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2485	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-066	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2486	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-067	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2487	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-068	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2488	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-069	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2489	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-070	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2490	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-071	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2491	W0			TSI_Offset_Mph=2-DBC		1	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-072	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2492	W0					0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-073	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2493	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-074	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2494	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-075	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2495	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-076	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2496	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-077	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2497	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-078	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2498	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-079	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2499	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-080	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2500	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-081	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2501	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-082	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2502	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-083	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2503	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-084	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2504	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-085	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2505	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-086	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2506	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-087	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2507	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-088	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2508	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - NAFTASetting-089	Trailer and Signage	Traffic Sign Assist Offset - NAFTA Setting	SYS-RA-VF230_V1-2509	W0			TSI_Offset_Kph=2-DBC		1	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-091	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2511	W0					1	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-092	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2512	W0					1	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-093	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2513	W0					0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-094	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2514	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-095	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2515	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-096	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2516	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-097	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2517	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-098	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2518	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-099	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2519	W0			TSI_Offset_Mph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-100	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2520	W0			TSI_Offset_Mph=2-DBC		1	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-101	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2521	W0					0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-102	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2522	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-103	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2523	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-104	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2524	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-105	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2525	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-106	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2526	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-107	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2527	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-108	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2528	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-109	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2529	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-110	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2530	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-111	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2531	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-112	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2532	W0			TSI_Offset_Kph_Req=2-DBC		0	0
+SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-113	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2533	W0			TSI_Offset_Kph=2-DBC		1	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1119	W1		PROXI 參數之值域無來源：INVM_LIN_Module	PROXI:INVM_LIN_Module=PENDING	DR-34	1	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-116	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1120	W1		PROXI 參數之值域無來源：INVM_LIN_Module	PROXI:INVM_LIN_Module=PENDING	DR-34	1	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1121	W0			WorksiteINVM_Visual_LFW_Req=2-DBC		0	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-118	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1122	W0			WorksiteINVM_Visual_LFW_Req=2-DBC		0	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-119	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1123	W0			WorksiteINVM_Visual_LFW=2-DBC		1	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-121	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1125	W1		PROXI 參數之值域無來源：INVM_LIN_Module	PROXI:INVM_LIN_Module=PENDING	DR-34	1	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-122	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1126	W1		PROXI 參數之值域無來源：INVM_LIN_Module	PROXI:INVM_LIN_Module=PENDING	DR-34	1	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-123	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1127	W0			WorksiteINVM_Audible_LFW_Req=2-DBC		0	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1128	W0			WorksiteINVM_Audible_LFW_Req=2-DBC		0	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1129	W0			WorksiteINVM_Audible_LFW=2-DBC		1	0
+SWE1-VC-EnhancedDisplaySynchronization-127	Trailer and Signage	Enhanced Display Synchronization	SYS-RA-VF230_V1-1131	W0					1	0
+SWE1-VC-EnhancedDisplaySynchronization-128	Trailer and Signage	Enhanced Display Synchronization	SYS-RA-VF230_V1-1132	W0					1	0
+SWE1-VC-EnhancedDisplaySynchronization-129	Trailer and Signage	Enhanced Display Synchronization	SYS-RA-VF230_V1-1133	W0			Display_Synch_Req=2-DBC		0	0
+SWE1-VC-EnhancedDisplaySynchronization-130	Trailer and Signage	Enhanced Display Synchronization	SYS-RA-VF230_V1-1134	W0			Display_Synch_Req=2-DBC		0	0
+SWE1-VC-EnhancedDisplaySynchronization-131	Trailer and Signage	Enhanced Display Synchronization	SYS-RA-VF230_V1-1135	W0			Display_Synch=2-DBC		1	0
+SWE1-VC-EnhancedDisplaySynchronization-132	Trailer and Signage	Enhanced Display Synchronization	SYS-RA-VF230_V1-1136	W0			Display_Synch=2-DBC		0	0
+SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-134	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1138	W1		PROXI 參數之值域無來源：Digital_CHMSL_Camera_Prsnt	PROXI:Digital_CHMSL_Camera_Prsnt=PENDING	DR-34	0	0
+SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-135	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1139	W1		PROXI 參數之值域無來源：Digital_CHMSL_Camera_Prsnt	PROXI:Digital_CHMSL_Camera_Prsnt=PENDING	DR-34	0	0
+SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-136	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1140	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
+SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-137	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1141	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
+SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-138	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1142	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
+SWE1-VC-MaxPowerLevel140	Trailer and Signage	Max Power Level	SYS-RA-VF230_V1-1144	W0					1	0
+SWE1-VC-MaxPowerLevel141	Trailer and Signage	Max Power Level	SYS-RA-VF230_V1-1145	W0			SOC_Max_Lev_Req=2-DBC		0	0
+SWE1-VC-MaxPowerLevel142	Trailer and Signage	Max Power Level	SYS-RA-VF230_V1-1146	W0			SOC_Max_Lev_Req=2-DBC		0	0
+SWE1-VC-MaxPowerLevel143	Trailer and Signage	Max Power Level	SYS-RA-VF230_V1-1147	W0			SOC_Max_Lev=2-DBC		1	0

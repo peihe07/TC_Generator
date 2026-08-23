@@ -1160,3 +1160,48 @@ SWITCH 5－6 Hold Last State 2      1        0        3
 「含兩種條文形態」標註**（其確無兩種形態），並於鎖定註記中具名其成因未查。
 
 **狀態：未送出**（送出屬 Pei，R-VF27）。
+
+---
+
+## DR-34（新，**Urgency Medium** —— 11 個 PROXI 參數之值域無來源；W-VF44 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-33**（R-VF10）。
+
+**型別（R-VS45）：型 C — 素材缺件（值域來源）。**
+
+**成對之 anomaly：A-VF11。**
+
+VF230 之 627 leaf 中，**252 leaf 之可測內容立於 PROXI 配置之取得**
+（條文形態為 `The HMI layer shall send a request to VehicleConfigManager to
+retrieve the <X> PROXI configuration …`），共引用 **46 個相異 PROXI 參數**。
+
+以 `inputs/PROXI_HDCC27_R3_20250424.xlsx` 之 `Format` 分頁比對：
+
+```
+表內可查得      35
+表內無          11   →  影響 28 leaf，分級判 W1，標 PENDING: DR-34
+```
+
+**表內無者逐一**：
+
+```
+AUX_Switch_Types            Blindspot_Trailer_Detection   Digital_CHMSL_Camera_Prsnt
+FOA_Presence                Greeting_Light                INVM_LIN_Module
+Paddle_Shifter_Menu         Parksense_Camera_View         Trailer_Light_Check
+Turn_Signal_Camera_View     Utility_Lighting
+```
+
+**請提供**：上列 11 個 PROXI 參數之值域（其 allowed values 與其語意），
+或指明其所在之 PROXI 表版本。
+
+**影響**：該 28 leaf 之 TC 之前提條件無法寫出具體值，
+依 **R-VS47／R-VS71** 判 **W1**（部分可寫）—— 照常生成，
+未解處標 `PENDING: DR-34`，並於該 TC 標 `dr_dependent = DR-34`。
+**其驗證目標為顯示／啟用行為，非該 PROXI 值本身**，故不判 W2。
+
+**與 Part 1 之 DR-7 之關係**：DR-7 求四個指定參數
+（`Heated_Seats`／`Heated_Seat_Levels`／`Heated_Steering_Wheel`／`DSP_SK_PRSNT`）
+之值域，其中 `Heated_Seats` 於本表可查得。
+**本件之 11 個與 DR-7 之四個無交集**，故另立而非併入。
+
+**狀態：未送出**（送出屬 Pei，R-VF27）。

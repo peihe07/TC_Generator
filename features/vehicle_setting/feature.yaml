@@ -39,7 +39,7 @@ paths:
   # `9_ASPICE/SYS.2 …/Z.QS YuShen 260423/08.[SYS2]Vehicle Settings/SYS2_VF230.xlsx`
   # 尋得，惟未補入（R-VS61）且缺 6 個 E-Save leaf。
   sys1_export_vf230: null
-  # 跨源驗核之實際來源（A-VS131）：其 `Basic Report` 與 SYS2 export 同型，
+  # 跨源驗核之實際來源（A-VS134）：其 `Basic Report` 與 SYS2 export 同型，
   # 且涵蓋 037 之全部 745 列。DR-28 之「無第二來源可核」因之作廢。
   sysra_vf230: "inputs/FM-WI-FSM-035-A02_VF230_HDCC_DT_STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_VF230_V4_Released.xlsx"
   # 內容與 spec_pdf_vf230 之 `.doc` 逐字相同（A-VS125 之複驗），保留僅為留痕
@@ -103,7 +103,7 @@ profiles:
     workbook: "workbook_vf230"
     a03_report: "a03_report_vf230"
     leaves: "data/vf230_leaves.tsv"
-    crosscheck: "sysra_vf230"        # 跨源驗核之來源（A-VS131）
+    crosscheck: "sysra_vf230"        # 跨源驗核之來源（A-VS134）
     # R-VS59 —— B 欄「No.#/序號」自 238 起連續遞增。
     # 該映射**僅對 VF230 生效**；CFTS044 之 B 欄（1–237）為凍結欄，
     # 任何寫回不得觸及，故 cfts044 profile 不設 seq。

@@ -118,6 +118,59 @@ def check_rvf10() -> list[str]:
     return bad
 
 
+LIVE_SCOPE = ("RULINGS.md", "ANOMALIES.md", "DATA_REQUESTS.md", "CROSSLINE.md",
+              "framework.md", "feature.yaml", "docs/INDEX.md")
+
+
+def check_rvf48() -> list[str]:
+    """檢查三（R-VF48）—— 引用而無定義。
+
+    R-VF10 之檢查驗「同號不得兩義」，**未驗「有引用而無定義」**。
+    `R-VF9` 被引用 3 處逾三包而無人察覺，即該缺口之實例。
+
+    **豁免** `docs/handoff/`／`docs/upstream/`／`docs/reports/` ——
+    下放包必先於落檔，將其納入會使檢查恆為失敗而喪失區辨力。
+
+    錨點：
+      必命中   人為於 `framework.md` 插入「依 R-VF99」→ 須失敗
+      必不命中 現行全庫（`R-VF9` 已補落後）→ 應通過
+      鑑別     `docs/handoff/V16_*.md` 對 `R-VF48` 之引用 —— 在豁免內，
+               不得被計為「引用而無定義」
+    """
+    defined = set()
+    r = (ROOT / "RULINGS.md").read_text(encoding="utf-8")
+    defined |= set(re.findall(r"^### (R-V[SF]\d+) ——", r, re.M))
+    a = (ROOT / "ANOMALIES.md").read_text(encoding="utf-8")
+    # 表列首欄之三種書寫皆為定義：`| **A-VSnn**`／`| A-VSnn`／`| ~~A-VSnn~~`
+    # （早期列不加粗、除役者加刪除線）。首版只認第一種，
+    # 致 A-VS01–A-VS11 等被誤報為「引用而無定義」。
+    # 取**列首之第一個編號**，不限定其後之修飾 —— 該欄可含加粗、刪除線、
+    # 以及 R-VF10 所令之【VF230 線舊制編號】標記。首版要求編號後緊接 `|`，
+    # 致加了標記之 A-VS129–136 被誤報。
+    defined |= set(re.findall(r"^\|\s*[~*\s]*(A-V[SF]\d+)", a, re.M))
+    d = (ROOT / "DATA_REQUESTS.md").read_text(encoding="utf-8")
+    defined |= set(re.findall(r"^## (DR-\d+)", d, re.M))
+
+    bad, seen = [], {}
+    for rel in LIVE_SCOPE:
+        f = ROOT / rel
+        if not f.is_file():
+            continue
+        for tok in re.findall(r"\b(R-V[SF]\d+|A-V[SF]\d+|DR-\d+)\b",
+                              f.read_text(encoding="utf-8")):
+            if tok not in defined:
+                seen.setdefault(tok, set()).add(rel)
+    for f in sorted((ROOT / "scripts").glob("*.py")):
+        for tok in re.findall(r"\b(R-V[SF]\d+|A-V[SF]\d+|DR-\d+)\b",
+                              f.read_text(encoding="utf-8")):
+            if tok not in defined:
+                seen.setdefault(tok, set()).add(f"scripts/{f.name}")
+    for tok, where in sorted(seen.items()):
+        bad.append(f"`{tok}` 被引用而無定義 —— 見 "
+                   + "／".join(sorted(where)[:3]))
+    return bad
+
+
 def read_tsv(p: Path):
     with p.open(encoding="utf-8") as fh:
         rd = csv.DictReader(fh, delimiter="\t")
@@ -170,6 +223,9 @@ def main() -> None:
 
         b10 = check_rvf10()
         results.append(("R-VF10 編號唯一性", not b10, b10, "A-VF10"))
+
+        b48 = check_rvf48()
+        results.append(("R-VF48 引用而無定義", not b48, b48, ""))
 
         for name, ok, msgs, known in results:
             tag = "PASS" if ok else ("FAIL（已知：" + known + "）" if known else "FAIL")
