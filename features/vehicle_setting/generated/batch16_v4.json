@@ -8,7 +8,7 @@
  "selection": "W-111 後之池 **35**（R-VS59 解除 delegate 之扣除）。依 R-VS58／W-113：`Fail_Present` 類 **15 條**優先，取 **10**；同序內逐 Layer 2 輪流（HS 5／VS 4／HSW 1）＋ reqid 升冪；兼取兩式（P 4／I 6）。",
  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
  "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
- "revision": "W-135（47 輪）：彈窗類改採最弱斷言（73 包 §3），§5.5 之衝突消解；內容與樣式以 remarks 承載",
+ "revision": "W-135（47 輪）：彈窗類改採最弱斷言（73 包 §3），§5.5 之衝突消解；內容與樣式以 remarks 承載；D-3（48 輪）：`screen_pending` 依 R-VS69 改以 AH 之畫面層 BLOCKED 註記為判準",
  "screen_layer": "R-VS59(2) 之來源不足 —— 全 10 條之畫面層斷言標 `PENDING: DR-5-B`（R-VS59(4)）",
  "signal_section_mismatch": [
   {
@@ -54,7 +54,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 I）；式 P 之列為請求時之彈窗。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   },
   {
@@ -79,7 +79,7 @@
     "axis": "failure-mode",
     "delta": "本列為請求時之失效彈窗（式 P）；式 I 之列為失效時之圖示變更。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 彈窗之內容與樣式待 TLM HMI Document"
   },
   {
@@ -104,7 +104,7 @@
     "axis": "failure-mode",
     "delta": "本列為請求時之失效彈窗（式 P）；式 I 之列為失效時之圖示變更。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 彈窗之內容與樣式待 TLM HMI Document"
   },
   {
@@ -129,7 +129,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 I）；式 P 之列為請求時之彈窗。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   },
   {
@@ -154,7 +154,7 @@
     "axis": "failure-mode",
     "delta": "本列為請求時之失效彈窗（式 P）；式 I 之列為失效時之圖示變更。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 彈窗之內容與樣式待 TLM HMI Document"
   },
   {
@@ -179,7 +179,7 @@
     "axis": "failure-mode",
     "delta": "本列為請求時之失效彈窗（式 P）；式 I 之列為失效時之圖示變更。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 彈窗之內容與樣式待 TLM HMI Document"
   },
   {
@@ -204,7 +204,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 I）；式 P 之列為請求時之彈窗。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   },
   {
@@ -229,7 +229,7 @@
     "axis": "failure-mode",
     "delta": "本列為請求時之失效彈窗（式 P）；式 I 之列為失效時之圖示變更。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 彈窗之內容與樣式待 TLM HMI Document"
   },
   {
@@ -254,7 +254,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 I）；式 P 之列為請求時之彈窗。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   },
   {
@@ -279,7 +279,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 I）；式 P 之列為請求時之彈窗。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   }
  ],

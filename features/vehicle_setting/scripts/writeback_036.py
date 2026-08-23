@@ -88,8 +88,9 @@ def rows_from_json(files: list[Path]) -> list[dict]:
                 "K": tc["input_test_data"], "L": tc["test_procedure"],
                 "M": tc["expected_result"], "N": tc["specification_reference"],
                 "P": tc["priority"], "R": tc["design_method"], "AA": AUTHOR,
-                "AH": (f"BLOCKED: {tc.get('dr_dependent', 'DR-?')}；"
-                       f"待補來源：TLM HMI Document／DR-5-B" if pending else ""),
+                # **48 輪 D-3**：AH 之來源改取 `remarks`（其已載 BLOCKED／IMPL_GAP
+                # 之逐條註記）；原以 `dr_dependent` 推導者為 42 輪之權宜。
+                "AH": str(tc.get("remarks", "")).strip(),
             })
     return out
 
@@ -111,11 +112,77 @@ def dry_run(rows: list[dict], label: str) -> dict:
             "AH_nonempty": ah}
 
 
+COL_IDX = {  # 欄字母 → openpyxl 之 1-based 欄號
+    "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10,
+    "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18,
+    "S": 19, "T": 20, "U": 21, "V": 22, "W": 23, "X": 24, "Y": 25, "Z": 26,
+    "AA": 27, "AB": 28, "AC": 29, "AD": 30, "AE": 31, "AF": 32, "AG": 33, "AH": 34,
+}
+
+
+def write_back(rows: list[dict]) -> tuple[int, int]:
+    """W-137（48 輪）—— 實寫。
+
+    (1) 先清空現有資料列之 **B–AH**（R-VS1：效力 BLANK、全欄重生）
+    (2) 自列 10 起 append，依 66 包 §3 之欄位對映
+    **列 1–9、其他分頁、B–AH 以外之欄一格不動。**
+    """
+    import openpyxl
+    wb = openpyxl.load_workbook(BOOK)
+    ws = wb[SHEET]
+    cleared = 0
+    for r in range(FIRST_DATA_ROW, ws.max_row + 1):
+        touched = False
+        for c in range(COL_IDX["B"], COL_IDX["AH"] + 1):
+            if ws.cell(row=r, column=c).value is not None:
+                ws.cell(row=r, column=c).value = None
+                touched = True
+        cleared += touched
+    for i, row in enumerate(rows):
+        r = FIRST_DATA_ROW + i
+        for k, idx in COL_IDX.items():
+            if k in row:
+                ws.cell(row=r, column=idx).value = row[k]
+    wb.save(BOOK)
+    return cleared, len(rows)
+
+
+def verify(rows: list[dict]) -> list[str]:
+    """W-137(3)：重讀，逐列比對 JSON 與工作簿之十六欄。"""
+    import openpyxl
+    ws = openpyxl.load_workbook(BOOK, data_only=True)[SHEET]
+    bad = []
+    for i, row in enumerate(rows):
+        r = FIRST_DATA_ROW + i
+        for k in COLS:
+            got = ws.cell(row=r, column=COL_IDX[k]).value
+            want = row[k]
+            if (str(got) if got is not None else "") != (str(want) if want is not None else ""):
+                bad.append(f"列 {r} 欄 {k}：工作簿 {got!r} ／ JSON {want!r}")
+    return bad
+
+
 def main() -> None:
-    if "--write" in sys.argv:
-        raise SystemExit("實寫之閘未開（67 包）：dry-run 通過且 Pei 核可後方得執行。")
     files = latest_batches()
     rows = rows_from_json(files)
+    if "--write" in sys.argv:
+        import hashlib
+        h = hashlib.sha256(BOOK.read_bytes()).hexdigest()
+        expect = "ebe5a65f30a0d4bcf9e46b51a43145ce222027ac49ad523fe5c2d2b6566a5089"
+        print(f"實寫前之母本 sha256：{h}")
+        if h != expect:
+            raise SystemExit(f"⚠ 母本雜湊不等於 {expect} —— 依 W-136(2) 中止")
+        cleared, n = write_back(rows)
+        print(f"清空 {cleared} 列之 B–AH；自列 {FIRST_DATA_ROW} 起寫入 {n} 列")
+        bad = verify(rows)
+        print(f"重讀比對：不符 **{len(bad)}** 處")
+        for b in bad[:20]:
+            print("   ", b)
+        if bad:
+            raise SystemExit("⚠ 重讀比對不符 —— 依 W-137(3) 中止，請自 "
+                             "REF/036_pre_writeback_20260823.xlsx 還原")
+        print(f"實寫後之 sha256：{hashlib.sha256(BOOK.read_bytes()).hexdigest()}")
+        return
     subj = dry_run(rows, "正常輸入")
 
     # ── R-VS54 錨點：刻意違規之 JSON（四處植入）──────────────────

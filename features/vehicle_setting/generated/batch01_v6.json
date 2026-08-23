@@ -62,7 +62,7 @@
    },
    "dr15_exposed": "no",
    "reasoning": "P1：主要功能邏輯",
-   "screen_pending": "yes"
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-Stop-StartSystem-005",
@@ -84,7 +84,7 @@
    },
    "dr15_exposed": "no",
    "reasoning": "P1：主要功能邏輯",
-   "screen_pending": "yes"
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-Stop-StartSystem-007",
@@ -165,7 +165,7 @@
  "profile": "docs/runtime/profiles/FW036_R1L_VehicleSetting_Profile.md",
  "pilot_verdict": "PASS（Pei，2026-08-22）；3 缺陷修正、2 條移出，批次 10 → 8",
  "batch_size": 8,
- "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
+ "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域；D-3（48 輪）：`screen_pending` 依 R-VS69 改以 AH 之畫面層 BLOCKED 註記為判準",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
  "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
  "screen_pending_note": "68 包 §2：`screen_pending` 為畫面層待補之標記（R-VS59(4)／R-VS17），與 `dr_dependent`（可寫性繫於 DR）分離。"

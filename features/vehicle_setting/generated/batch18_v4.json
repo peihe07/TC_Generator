@@ -8,7 +8,7 @@
  "selection": "池 **16**（W-114 重跑後扣已交付 129）。依 R-VS58 取 **10**，**餘 6**。同序內逐 Layer 2 輪流（HS 4／VS 5／HSW 1）—— **輪流不均**：池中 Heated Seat 僅 5 條而 Vented Seat 有 9 條，見上繳 37 §2。",
  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
  "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
- "revision": "W-133(4)（47 輪）：依 R-VS67′ 取能承載之 `Atlantis` 欄組，標 `impl_gap`（R-VS66(a)）；`dr15_exposed` 保留",
+ "revision": "W-133(4)（47 輪）：依 R-VS67′ 取能承載之 `Atlantis` 欄組，標 `impl_gap`（R-VS66(a)）；`dr15_exposed` 保留；D-3（48 輪）：`screen_pending` 依 R-VS69 改以 AH 之畫面層 BLOCKED 註記為判準",
  "held_out": [
   {
    "leaf_id": "SWE1-VC-OneStageHeatedSeat-040",
@@ -43,7 +43,7 @@
     "axis": "trigger",
     "delta": "本列為按壓循環（式 C），一階配置之 off → high → off。"
    },
-   "screen_pending": "yes"
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-TwoStagesVentedSeatsManagement-045",
@@ -94,7 +94,7 @@
     "axis": "trigger",
     "delta": "本列之觸發為狀態訊號變更而非按壓（式 S）。"
    },
-   "screen_pending": "yes"
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-TwoStagesVentedSeatsManagement-052",
@@ -145,7 +145,7 @@
     "axis": "trigger",
     "delta": "本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。"
    },
-   "screen_pending": "yes",
+   "screen_pending": "no",
    "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
@@ -197,7 +197,7 @@
     "axis": "trigger",
     "delta": "本列驗左駕配置下圖示之側位（式 L），來源另指 PDO graphics。"
    },
-   "screen_pending": "yes"
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-TwoStagesVentedSeatsManagement-054",
@@ -248,7 +248,7 @@
     "axis": "trigger",
     "delta": "本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。"
    },
-   "screen_pending": "yes",
+   "screen_pending": "no",
    "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {

@@ -8,7 +8,7 @@
  "selection": "W-114 重跑後之池 **26**。依 R-VS58：第一序 `Fail_Present` **6** 條全取；第二序 P1 逐 Layer 2 輪流取 **4**（HS 2／VS 2）。合計 **10**。",
  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
  "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
- "revision": "W-133(4)（47 輪）：依 R-VS67′ 取能承載之 `Atlantis` 欄組，標 `impl_gap`（R-VS66(a)）；`dr15_exposed` 保留",
+ "revision": "W-133(4)（47 輪）：依 R-VS67′ 取能承載之 `Atlantis` 欄組，標 `impl_gap`（R-VS66(a)）；`dr15_exposed` 保留；D-3（48 輪）：`screen_pending` 依 R-VS69 改以 AH 之畫面層 BLOCKED 註記為判準",
  "screen_layer": "依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS59(4)）",
  "signal_section_mismatch": [
   {
@@ -42,7 +42,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 F），失效訊號為 `FR_HS_STATFailSts`。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   },
   {
@@ -67,7 +67,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 F），失效訊號為 `FL_HS_STATFailSts`。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   },
   {
@@ -92,7 +92,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 F），失效訊號為 `FR_HS_STATFailSts`。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   },
   {
@@ -117,7 +117,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 F），失效訊號為 `FL_VS_STATFailSts`。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   },
   {
@@ -142,7 +142,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 F），失效訊號為 `FR_HS_STATFailSts`。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   },
   {
@@ -167,7 +167,7 @@
     "axis": "failure-mode",
     "delta": "本列為失效時之圖示變更（式 F），失效訊號為 `HSW_StatFailSts`。"
    },
-   "screen_pending": "no",
+   "screen_pending": "yes",
    "remarks": "BLOCKED: DR-5-B —— 變更後之圖示樣式待 TLM HMI Document"
   },
   {
@@ -192,7 +192,7 @@
     "axis": "trigger",
     "delta": "本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。"
    },
-   "screen_pending": "yes",
+   "screen_pending": "no",
    "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
@@ -244,7 +244,7 @@
     "axis": "trigger",
     "delta": "本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。"
    },
-   "screen_pending": "yes",
+   "screen_pending": "no",
    "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
