@@ -17,35 +17,18 @@ from selfcheck_w53 import check  # noqa: E402
 FEAT = Path(__file__).resolve().parents[1]
 
 # (被檢輸入, 錨點) —— 錨點為同一 batch 之改寫前版本
-def _pairs() -> list[tuple[str, str]]:
-    """(被檢輸入, 錨點) —— 各 batch 之**最新版**對其**前一版**。
+SAMPLES = FEAT / "tests/anchor_samples/selfcheck_anchor.json"
 
-    46 輪起改為自動推導：本輪 W-130／W-131／W-132 三度產出 `_v{n+1}`，
-    硬編之清單必然落後（其落後之症狀為「錨點檔不存在」或「錨點即被檢輸入」）。
-    無前一版者（首版批次）改以同名之 `_batchNN_anchor.json`（刻意違規之樣本）。
-    """
+
+def subjects() -> list[str]:
+    """被檢輸入 —— 各 batch 之最新版。"""
     import collections
-    groups: dict[str, list] = collections.defaultdict(list)
+    g: dict[str, list] = collections.defaultdict(list)
     for f in (FEAT / "generated").glob("batch*.json"):
         m = re.match(r"(batch\d+)(?:_v(\d+))?\.json$", f.name)
         if m:
-            groups[m.group(1)].append((int(m.group(2) or 1), f))
-    out = []
-    for k, v in sorted(groups.items()):
-        v.sort()
-        subj = v[-1][1]
-        if len(v) >= 2:
-            anchor = v[-2][1]
-        else:
-            a = FEAT / "generated" / f"_{k}_anchor.json"
-            if not a.exists():
-                continue
-            anchor = a
-        out.append((f"generated/{subj.name}", f"generated/{anchor.name}"))
-    return out
-
-
-PAIRS = _pairs()
+            g[m.group(1)].append((int(m.group(2) or 1), f))
+    return [f"generated/{max(v)[1].name}" for _, v in sorted(g.items())]
 
 
 def run(name: str) -> list[str]:
@@ -54,26 +37,31 @@ def run(name: str) -> list[str]:
 
 
 def main() -> None:
-    dead, subj_total, anch_total = [], 0, 0
-    print(f"{'batch':10s} {'新版':>6s} {'錨點（舊版）':>12s}  判")
-    for subj, anchor in PAIRS:
-        se, ae = run(subj), run(anchor)
-        subj_total += len(se)
-        anch_total += len(ae)
-        tcs = json.loads((FEAT / subj).read_text(encoding="utf-8"))["tcs"]
-        if not tcs:
-            verdict = "無 TC，錨點不適用"
-        elif not ae:
-            verdict = "⚠ 錨點回報通過 —— 檢查已失效"
-            dead.append(subj)
-        else:
-            verdict = "可失敗"
-        print(f"{Path(subj).stem:10s} {len(se):6d} {len(ae):12d}  {verdict}")
-        for x in se:
-            print("    新版:", x)
-    print(f"\n合計：新版 {subj_total} 項；錨點 {anch_total} 項")
-    if dead:
-        print(f"\n⚠ 下列之錨點未命中，依 R-VS54(2) 停下：{dead}")
+    """W-134（73 包 §2）：錨點改用**固定之刻意違規樣本**，不再以前一版為錨。
+
+    以前一版為錨者，其語意在「本輪使其變差」時反轉 ——
+    「檢查失效」與「輸入變差」在計數上不可分辨（46 輪 W-131 之實例，A-VS149）。
+    固定樣本之預期恆為「必命中」。
+    """
+    samples = json.loads(SAMPLES.read_text(encoding="utf-8"))["tcs"]
+    miss = [t["_expect"] for t in samples if not check(t)]
+    print(f"錨點（固定樣本）{len(samples)} 項 —— 未命中 **{len(miss)}**   "
+          f"{'PASS，可失敗' if not miss else '⚠ 檢查已失效'}")
+    for m in miss:
+        print("    未命中:", m)
+
+    print(f"\n{'batch':16s} 違規")
+    total = 0
+    for name in subjects():
+        d = json.loads((FEAT / name).read_text(encoding="utf-8"))
+        errs = [x for tc in d["tcs"] for x in check(tc)]
+        total += len(errs)
+        print(f"{Path(name).stem:16s} {len(errs)}")
+        for x in errs:
+            print("    ", x)
+    print(f"\n合計：被檢輸入 {total} 項；錨點必命中 {len(samples) - len(miss)}"
+          f"／{len(samples)}")
+    if miss:
         raise SystemExit(2)
 
 

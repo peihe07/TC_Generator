@@ -40,6 +40,8 @@ CONTROLLED = {
     "基礎故障注入 (Fault Injection Lite)",
 }
 PROJECT, ABBR = "NR1L", "VS"
+# **D-4（47 輪，Pei 2026-08-23）**：`AA` 欄之作者姓名。46 輪以 `<AUTHOR>` 佔位。
+AUTHOR = "PeiPYHsu"
 
 
 def latest_batches() -> list[Path]:
@@ -85,7 +87,7 @@ def rows_from_json(files: list[Path]) -> list[dict]:
                 "H": tc["test_set"], "I": tc["test_item"], "J": tc["pre_conditions"],
                 "K": tc["input_test_data"], "L": tc["test_procedure"],
                 "M": tc["expected_result"], "N": tc["specification_reference"],
-                "P": tc["priority"], "R": tc["design_method"], "AA": "<AUTHOR>",
+                "P": tc["priority"], "R": tc["design_method"], "AA": AUTHOR,
                 "AH": (f"BLOCKED: {tc.get('dr_dependent', 'DR-?')}；"
                        f"待補來源：TLM HMI Document／DR-5-B" if pending else ""),
             })

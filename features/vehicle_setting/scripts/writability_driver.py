@@ -80,11 +80,15 @@ def lid_column_domain() -> dict[str, set[str]]:
     `FL_VS_Cmd_Tlm`／`FR_VS_Cmd_Tlm` 之 `Heated_seat_*` 依 52 包 §3 判 typo，
     取 `Vented_Seat_*`；**不跨列引入**（A-VS103）。
     """
-    # **R-VS67**：欄組一律取 `Atlantis High`；`Atlantis` 欄組僅作旁證。
+    # **R-VS67′（73 包 §1，Pei 追認 2026-08-23）**：欄組依「能承載」擇之 ——
+    # `Atlantis High` 能承載者取之；**不能承載者取能承載之欄組**並標 `impl_gap`。
+    # 46 輪一律取 High 之代價：48 leaf W0→W2、44 條斷言失效（A-VS148）。
+    # 實作上以**聯集**表達：兩欄組之值域併取，`value_matched()` 逐值比對時
+    # 只要任一欄組能對映即算已解；欄組之具名選取見 `carry_test_w133.choose()`。
     grp = json.loads((FEAT / "data/_lid_argroups.json").read_text())
     raw = dict(grp.get("Atlantis High") or {})
-    for k, v in grp["Atlantis"].items():        # 旁證：High 欄組無該 token 時方取
-        raw.setdefault(k, v)
+    for k, v in grp["Atlantis"].items():
+        raw[k] = list(raw.get(k, [])) + list(v)
     for k in ("FL_VS_Cmd_Tlm", "FR_VS_Cmd_Tlm"):
         if k in raw:
             raw[k] = [f for f in raw[k] if "Vented" in f] or raw[k]
@@ -248,8 +252,12 @@ def run() -> tuple[dict[str, str], dict[str, dict]]:
                     dom = set(high.get(tok, ()))
                     if value_matched(val, dom):
                         continue
-                    # R-VS51：Mid 條文另取 `Atlantis` 欄組
-                    hit = col == "Atlantis" and value_matched(val, mid.get(tok, set()))
+                    # **R-VS67′**：欄組之選取依「能承載」，**不依條文之架構標籤** ——
+                    # 故不再以 `col == "Atlantis"` 為閘（R-VS51(2) 已由 R-VS67 推翻，
+                    # 而 R-VS67 之「一律 High」又由 R-VS67′ 限縮）。
+                    # 兩欄組之值域任一能對映即算已解；其具名選取見
+                    # `carry_test_w133.choose()`，`impl_gap` 之標記見 `impl_gap_w133.py`。
+                    hit = value_matched(val, mid.get(tok, set()))
                     # R-VS48′／R-VS43：落檔之採用表
                     hit = hit or (tok, val) in adopt
                     # W-59：值之各段於他條文帶 `Nh:` 錨點者，視為已定位

@@ -26,12 +26,12 @@ SWE1-VC-HeatedSteeringWheelManagement-025	Heated Steering Wheel	HeatedSteeringWh
 SWE1-VC-HeatedSteeringWheelManagement-026	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-HeatedSteeringWheelManagement-027	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	yes					comfort
 SWE1-VC-HeatedSteeringWheelManagement-028	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	yes					comfort
-SWE1-VC-HeatedSteeringWheelManagement-029	Heated Steering Wheel	HeatedSteeringWheelManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-HeatedSteeringWheelManagement-030	Heated Steering Wheel	HeatedSteeringWheelManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-HeatedSteeringWheelManagement-029	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-HeatedSteeringWheelManagement-030	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-HeatedSteeringWheelManagement-031	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	no	screen	DR-5-B	delegate=blocked		comfort
 SWE1-VC-HeatedSteeringWheelManagement-032	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	yes					comfort
-SWE1-VC-HeatedSteeringWheelManagement-033	Heated Steering Wheel	HeatedSteeringWheelManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-HeatedSteeringWheelManagement-034	Heated Steering Wheel	HeatedSteeringWheelManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-HeatedSteeringWheelManagement-033	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-HeatedSteeringWheelManagement-034	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-HeatedSteeringWheelManagement-035	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-LeftFrontHeatedSeat-003	Heated Seat	LeftFrontHeatedSeat	W0	yes	yes	yes					comfort
 SWE1-VC-LeftFrontHeatedSeat-004	Heated Seat	CrossZone Common	W2	yes	no	no			writable=B2		comfort
@@ -155,84 +155,84 @@ SWE1-VC-ThirdRowHeadrestDump-045	Common Features	ThirdRowHeadrestDump	W0	no	yes	
 SWE1-VC-ThreeStagesHeatedSeat-078	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	yes					comfort
 SWE1-VC-ThreeStagesHeatedSeat-079	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk		comfort
 SWE1-VC-ThreeStagesHeatedSeat-080	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	yes					comfort
-SWE1-VC-ThreeStagesHeatedSeat-081	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
+SWE1-VC-ThreeStagesHeatedSeat-081	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
 SWE1-VC-ThreeStagesHeatedSeat-082	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-ThreeStagesHeatedSeat-083	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-ThreeStagesHeatedSeat-084	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-ThreeStagesHeatedSeat-085	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
+SWE1-VC-ThreeStagesHeatedSeat-084	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-ThreeStagesHeatedSeat-085	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
 SWE1-VC-ThreeStagesHeatedSeat-086	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-ThreeStagesHeatedSeat-087	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-ThreeStagesHeatedSeat-088	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
+SWE1-VC-ThreeStagesHeatedSeat-088	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
 SWE1-VC-ThreeStagesHeatedSeat-089	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	yes					comfort
-SWE1-VC-ThreeStagesHeatedSeat-090	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-ThreeStagesHeatedSeat-091	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
+SWE1-VC-ThreeStagesHeatedSeat-090	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-ThreeStagesHeatedSeat-091	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
 SWE1-VC-ThreeStagesHeatedSeat-092	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-ThreeStagesHeatedSeat-093	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-ThreeStagesHeatedSeat-094	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-ThreeStagesHeatedSeat-095	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
+SWE1-VC-ThreeStagesHeatedSeat-093	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-ThreeStagesHeatedSeat-094	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-ThreeStagesHeatedSeat-095	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
 SWE1-VC-ThreeStagesHeatedSeat-096	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-ThreeStagesHeatedSeat-097	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
+SWE1-VC-ThreeStagesHeatedSeat-097	Heated Seat	ThreeStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
 SWE1-VC-ThreeStagesHeatedSeat-098	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-ThreeStagesHeatedSeat-099	Heated Seat	ThreeStagesHeatedSeat	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-060	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	yes					comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-061	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk		comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-062	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	yes					comfort
-SWE1-VC-ThreeStagesVentedSeatsManagement-063	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
+SWE1-VC-ThreeStagesVentedSeatsManagement-063	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-064	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-065	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-ThreeStagesVentedSeatsManagement-066	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-ThreeStagesVentedSeatsManagement-067	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-ThreeStagesVentedSeatsManagement-066	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
+SWE1-VC-ThreeStagesVentedSeatsManagement-067	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-068	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-069	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-ThreeStagesVentedSeatsManagement-070	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-ThreeStagesVentedSeatsManagement-070	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-071	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	yes					comfort
-SWE1-VC-ThreeStagesVentedSeatsManagement-072	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-ThreeStagesVentedSeatsManagement-073	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
+SWE1-VC-ThreeStagesVentedSeatsManagement-072	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
+SWE1-VC-ThreeStagesVentedSeatsManagement-073	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-074	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-ThreeStagesVentedSeatsManagement-075	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-ThreeStagesVentedSeatsManagement-076	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-ThreeStagesVentedSeatsManagement-077	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-ThreeStagesVentedSeatsManagement-075	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
+SWE1-VC-ThreeStagesVentedSeatsManagement-076	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-ThreeStagesVentedSeatsManagement-077	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-078	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-ThreeStagesVentedSeatsManagement-079	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-ThreeStagesVentedSeatsManagement-079	Vented Seat	ThreeStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-080	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-ThreeStagesVentedSeatsManagement-081	Vented Seat	ThreeStagesVentedSeatsManagement	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-TwoStagesHeatedSeat-055	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	yes					comfort
 SWE1-VC-TwoStagesHeatedSeat-056	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no			writable=B2|quoted_form_risk		comfort
 SWE1-VC-TwoStagesHeatedSeat-057	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	yes					comfort
-SWE1-VC-TwoStagesHeatedSeat-058	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesHeatedSeat-059	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesHeatedSeat-060	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesHeatedSeat-061	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesHeatedSeat-062	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesHeatedSeat-063	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-058	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-059	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-060	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-061	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-062	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-063	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
 SWE1-VC-TwoStagesHeatedSeat-064	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no	screen	DR-5-B	delegate=blocked		comfort
 SWE1-VC-TwoStagesHeatedSeat-065	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no	screen	DR-5-B	delegate=blocked		comfort
 SWE1-VC-TwoStagesHeatedSeat-066	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	yes					comfort
-SWE1-VC-TwoStagesHeatedSeat-067	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesHeatedSeat-068	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesHeatedSeat-069	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesHeatedSeat-070	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesHeatedSeat-071	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesHeatedSeat-072	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-067	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-068	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-069	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-070	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-071	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesHeatedSeat-072	Heated Seat	TwoStagesHeatedSeat	W2	yes	no	no				DR-25	comfort
 SWE1-VC-TwoStagesHeatedSeat-073	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-TwoStagesHeatedSeat-074	Heated Seat	TwoStagesHeatedSeat	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-TwoStagesVentedSeatsManagement-037	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	yes					comfort
 SWE1-VC-TwoStagesVentedSeatsManagement-038	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk		comfort
 SWE1-VC-TwoStagesVentedSeatsManagement-039	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	yes					comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-040	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-041	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-042	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-043	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-044	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-045	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-040	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-041	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-042	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-043	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-044	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-045	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-TwoStagesVentedSeatsManagement-046	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no	screen	DR-5-B	delegate=blocked		comfort
 SWE1-VC-TwoStagesVentedSeatsManagement-047	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no	screen	DR-5-B	delegate=blocked		comfort
 SWE1-VC-TwoStagesVentedSeatsManagement-048	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	yes					comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-049	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-050	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-051	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no				DR-25	comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-052	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-053	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-TwoStagesVentedSeatsManagement-054	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-049	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-050	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-051	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no				DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-052	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-053	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-TwoStagesVentedSeatsManagement-054	Vented Seat	TwoStagesVentedSeatsManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-TwoStagesVentedSeatsManagement-055	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-TwoStagesVentedSeatsManagement-056	Vented Seat	TwoStagesVentedSeatsManagement	W0	yes	yes	no			delegate=blocked		comfort
