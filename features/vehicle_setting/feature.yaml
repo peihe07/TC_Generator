@@ -114,7 +114,8 @@ profiles:
     # 進場時 0 非空資料列（61 包 §2.2 實測）——
     # leaf 母體來自 037，非來自 036；覆蓋率於 P1 無分母，不報（§4.5）
     workbook_state_at_intake: "BLANK"
-    # W-104 停下項：Test Group 之值未定。spec 之 L1 Heading 逐字為
-    # `Vehicle Setup Management [VF230_V1_]`，037 之 Sub Categorization
-    # 以 `Vehicle Setting Management (VSM)` 為多數（388/619）。待 Pei 裁定。
-    test_group: null
+    # R-VF9（Pei 裁定 2026-08-23）：Test Group 為 `Vehicle Setting`，
+    # CFTS044 與 VF230 兩本 workbook 同值。本條明示排除 spec L1 Heading
+    # （`Vehicle Setup Management [VF230_V1_]`）與 037 Sub Categorization
+    # 之眾數（`Vehicle Setting Management (VSM)`），亦明示排除 R-C6 於本案之適用。
+    test_group: "Vehicle Setting"

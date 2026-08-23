@@ -1,0 +1,7132 @@
+{
+  "rows": [
+    {
+      "file": "feature.yaml",
+      "line": 8,
+      "frag": "# 本 feature 含兩份交付（R-VS60）：",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "feature.yaml",
+      "line": 40,
+      "frag": "# 尋得，惟未補入（R-VS61）且缺 6 個 E-Save leaf。",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "feature.yaml",
+      "line": 107,
+      "frag": "# R-VS59 —— B 欄「No.#/序號」自 238 起連續遞增。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 24,
+      "frag": "> **【(a) 段之「故不寫」效果經 R-VS59（63 包 §1，Pei 2026-08-23）撤回；原文保留不刪】**",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 967,
+      "frag": "> 廢止理由：該判準之前提為「值未解即不可寫」，而 **R-VS61 已否定該前提**。",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1096,
+      "frag": "> **【(2) 經 R-VS67 推翻，2026-08-23（Pei）；原文保留不刪】**",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1369,
+      "frag": "第五條（R-VS63）為 Pei 於同日就 61 包 §6 第 3–5 項另行之裁定。",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1371,
+      "frag": "### R-VS59 —— VF230 之 B 欄序號自 238 起（61 包 §3，**Pei 裁定 2026-08-23**）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1372,
+      "frag": "> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1377,
+      "frag": "R-VS59（VF230 序號基準，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1390,
+      "frag": "4. F 欄「Test Case ID」兩本 workbook 皆為 0 filled；R-VS59 **不**新增",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1400,
+      "frag": "### R-VS60 —— VF230 併入 `vehicle_setting`，不另開 feature（61 包 §3，**Pei 裁定 2026-08-23**）",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1401,
+      "frag": "> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1406,
+      "frag": "R-VS60（VF230 之 feature 歸屬，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1419,
+      "frag": "### R-VS61 —— 素材補入由 Pei 執行（61 包 §3，**Pei 裁定 2026-08-23**）",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1420,
+      "frag": "> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1425,
+      "frag": "R-VS61（VF230 素材補入，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1440,
+      "frag": "### R-VS62 —— `output/` 之證據位階（61 包 §3，**Pei 裁定 2026-08-23**）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1441,
+      "frag": "> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1446,
+      "frag": "R-VS62（Pei 先前彙整之證據位階，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1454,
+      "frag": "- 其所含之任何列序，**不**構成 R-VS59 之續號依據",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1461,
+      "frag": "### R-VS63 —— 專案級 REF 素材得由 CFTS044 代用（**Pei 裁定 2026-08-23**）",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1462,
+      "frag": "> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1467,
+      "frag": "R-VS63（VF230 之 REF 素材代用，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1488,
+      "frag": "> **編號說明（Pei 裁定 2026-08-23）**：下列四條為 **CFTS044 本線**之 R-VS59～R-VS62，",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1491,
+      "frag": "### R-VS59 —— 委派不等於不寫（63 包 §1，**Pei 裁定 2026-08-23**；取代 R-VS7(a) 之效果）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1494,
+      "frag": "R-VS59（Pei 2026-08-23）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1521,
+      "frag": "### R-VS60 —— A-VS103 之跨列引入，准（63 包 §2，**Pei 裁定 2026-08-23**）",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1524,
+      "frag": "R-VS60（Pei 2026-08-23）",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1536,
+      "frag": "### R-VS61 —— DR-19：無匯流排對應者，寫分析所載之名（63 包 §3，**Pei 裁定 2026-08-23**）",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1539,
+      "frag": "R-VS61（Pei 2026-08-23）",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1557,
+      "frag": "### R-VS62 —— DR-8′：車型碼取自 PROXI 表（63 包 §4，**Pei 裁定 2026-08-23**）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1559,
+      "frag": "> **【經 R-VS62′ 取代，2026-08-23；原文保留不刪，見 R-TM13】**",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1565,
+      "frag": "R-VS62（Pei 2026-08-23）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1590,
+      "frag": "### R-VS64 —— W 號改編追認（62 包 §3，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1593,
+      "frag": "R-VS64（VF230 進場之 W 號改編，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1616,
+      "frag": "### R-VS65 —— W-115（DR 波及判定）之輸入改以 token 掃描（62 包 §3，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1619,
+      "frag": "R-VS65（DR 波及判定之輸入，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1646,
+      "frag": "### R-VS66 —— Layer 2 決定前之前置複驗（62 包 §3，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1649,
+      "frag": "R-VS66（Layer 2 交集之正規化複驗，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1672,
+      "frag": "### R-VS63 —— 編號分線（64 包 §4，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1675,
+      "frag": "R-VS63（分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1690,
+      "frag": "VF230 線現行之 `R-VS59`～`R-VS63` 五條，其標題加註",
+      "nums": [
+        "R-VS59",
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1696,
+      "frag": "**引用之義務**：跨線引用時須標線名（如「VF230 線之 R-VS59」）。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1806,
+      "frag": "### R-VS62′ —— `$VC_VEH_LINE$` 之值域取 PROXI 表列 466；DR-8′ 撤回（65 包 §1，分析層裁定 2026-08-23，取代 R-VS62）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1809,
+      "frag": "R-VS62′（分析層裁定 2026-08-23，取代 R-VS62）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1817,
+      "frag": "R-VS62 原文所列之四碼（`332`／`WS`／`DT`／`HDCC`）**於母體命中 0**，",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1835,
+      "frag": "R-VS60 之跨列引入只實作於驅動側，致 batch17 首次自檢報 4 項 R-VS39 違規）。",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1950,
+      "frag": "### R-VS64 —— 升級門檻不得以常數表示（68 包 §1，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1953,
+      "frag": "R-VS64（分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 1981,
+      "frag": "成因：R-VF2（原 R-VS60）令 VF230 併入 `vehicle_setting`，兩條分析線",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2022,
+      "frag": "理由：R-VF8（原 R-VS66）之逐字正規化不足以達成其自身目的 ——",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2273,
+      "frag": "### R-VS65 —— （69 包 §1，44 輪之條文；46 輪 D-2 補轉錄）",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2276,
+      "frag": "R-VS65（分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2299,
+      "frag": "### R-VS66 —— 規格明確而實作未見之處置（71 包 §2）",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2302,
+      "frag": "R-VS66（分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2313,
+      "frag": "**本例（`*_Cmd_Tlm`）依 R-VS67 改由 LID 取名，已無實作缺口，(a) 不適用。**",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2317,
+      "frag": "### R-VS67 —— 訊號名與值域一律取 LID 之 `Atlantis High` 欄組（71 包 §1，**Pei 裁定 2026-08-23**；推翻 R-VS51(2)）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2319,
+      "frag": "> **【經 R-VS67′ 限縮，2026-08-23（Pei 追認）；原文保留不刪】**",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2323,
+      "frag": "> 並依 R-VS66(a) 標 `impl_gap`。**(推翻 R-VS51(2) 之部分不變。)**",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2326,
+      "frag": "R-VS67（Pei 2026-08-23）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2581,
+      "frag": "### R-VS67′ —— 欄組之選取依「能承載」，不能承載者標 `impl_gap`（73 包 §1，**Pei 追認 2026-08-23**；限縮 R-VS67）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2584,
+      "frag": "R-VS67′（**Pei 追認 2026-08-23**，限縮 R-VS67）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2591,
+      "frag": "並依 **R-VS66(a)** 標 `impl_gap = <訊號名>`",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2602,
+      "frag": "該訊號不在基線 DBC → **標 `impl_gap`，依 R-VS66(a) 照寫、開 issue 予 RD**",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2609,
+      "frag": "(d) **DR-25′ 維持撤回** —— 其標的（訊號不在 DBC）依 R-VS66 已非 DR 之事由，",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 2997,
+      "frag": "**⚠ 檢查二之「必不命中」錨點於現行全檔即失敗** —— 非錨點有誤，是**真違反**：`R-VS59`–`R-VS66` **各有兩個條文起始**（VF230 線之 V01／V02 包 vs Part 1 之 63／",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3121,
+      "frag": "值無對應而來源有逐字   → `= <來源逐字值>`，**不附 raw**（R-VS61），",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3130,
+      "frag": "而 R-VS61 已否定該前提。R-VS47 之 W1／W2 分界依本條重定。",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3175,
+      "frag": "**W-VF39 實測發現**：`R-VF9`（Test Group）**自始未以任何編號落檔於 `RULINGS.md`** —— 其原編號 `R-VS67` 已為 Part 1 之 71 包所用（訊號名與值域取 LI",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3181,
+      "frag": "> **原文之編號為 `R-VS67`，逐字保留於區塊內**（R-VF45 三之精神：使歷史引用可解）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3184,
+      "frag": "R-VS67（VF230 之 Test Group，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3202,
+      "frag": "（R-VS60），單一 feature 內之 Test Group 保持單值，優先於 spec 模組名之",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3258,
+      "frag": "R-VF45（R-VS59–R-VS66 撞號之處置，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3260,
+      "frag": "A-VF10 實測：`R-VS59`–`R-VS66` 八號各有兩個定義，兩線皆為 Pei 裁定、",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3281,
+      "frag": "`R-VS59→R-VF1 … R-VS66→R-VF8`，並註明",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3282,
+      "frag": "「歷史文件中之 `R-VS59`–`R-VS66` 可能指兩義之任一，",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3288,
+      "frag": "**R-VF9 原為 R-VS67，亦在 V04 §3.1 之對照表內**；本條所列為 59–66 八號，",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "RULINGS.md",
+      "line": 3294,
+      "frag": "**第 1 項之實測揭出一項更嚴重者**：`R-VS67` **不撞號**（僅 1 個起始），而 **`R-VF1`–`R-VF9` 九號於 `RULINGS.md` 全為 0** —— 其中 **`R-VF9`（Tes",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/handoff/77_split_and_full.md",
+      "line": 18,
+      "frag": "值無對應而來源有逐字   → `= <來源逐字值>`，**不附 raw**（R-VS61），",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/77_split_and_full.md",
+      "line": 27,
+      "frag": "而 R-VS61 已否定該前提。R-VS47 之 W1／W2 分界依本條重定。",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/67_round42.md",
+      "line": 40,
+      "frag": "D-2  逐字轉錄 65 包 §1 之 **R-VS62′**、§2 之 **R-VS55(2)** 入 RULINGS.md；",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/67_round42.md",
+      "line": 41,
+      "frag": "R-VS62 標「經 R-VS62′ 取代」（原文保留）。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/67_round42.md",
+      "line": 42,
+      "frag": "D-3  DATA_REQUESTS.md：**DR-8′ 標「撤回，R-VS62′」**（原文保留）；A-VS140 關閉。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/67_round42.md",
+      "line": 43,
+      "frag": "D-4  delegation_lookup.tsv 同步 R-VS59：**廢除 `blocked` 之值**",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/67_round42.md",
+      "line": 118,
+      "frag": "R-VS43／R-VS48′／R-VS49／R-VS51／R-VS56／R-VS57／R-VS59～R-VS62′ ＋",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 4,
+      "frag": "本包新增 **R-VS64–R-VS66**（3 條）、**A-VS129–A-VS130**（2 件）、",
+      "nums": [
+        "R-VS64",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 79,
+      "frag": "B（序號）= 0        ← 與 R-VS62 末項一致",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 100,
+      "frag": "不取代 DR-28 所求之 SYS2 跨源驗核** —— R-VS62 之位階不因對帳相符而升等）。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 147,
+      "frag": "### R-VS64 —— W 號改編追認",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 150,
+      "frag": "R-VS64（VF230 進場之 W 號改編，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 168,
+      "frag": "### R-VS65 —— W-115（DR 波及判定）之輸入改以 token 掃描",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 171,
+      "frag": "R-VS65（DR 波及判定之輸入，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 194,
+      "frag": "### R-VS66 —— Layer 2 決定前之前置複驗",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 197,
+      "frag": "R-VS66（Layer 2 交集之正規化複驗，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 231,
+      "frag": "**惟本層不決，且提請注意一項後果**：VF230 併入 `vehicle_setting`（R-VS60），",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 244,
+      "frag": "**分析層同意其排除 spec 目次之理由**，但**建議在 R-VS66 之複驗完成後",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 254,
+      "frag": "### 5.1 W-116 — R-VS66 之正規化複驗（§3 R-VS66）",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 271,
+      "frag": "### 5.4 W-119 — W-115 執行（依 R-VS65 之掃描定義）",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 311,
+      "frag": "| R-VS64（W 號改編 W-110–W-115） | 分析層裁定 | ✅ §3 |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 312,
+      "frag": "| R-VS65（W-115 改以 token 掃描，含掃描定義） | 分析層裁定 | ✅ §3 |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V02_vf230_recon_review.md",
+      "line": 313,
+      "frag": "| R-VS66（Layer 2 前之正規化複驗） | 分析層裁定 | ✅ §3 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 1,
+      "frag": "# 71 下放包 — R-VS67（LID 為主）、全數送出、45 輪",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 7,
+      "frag": "## 1. R-VS67 —— 訊號名與值域一律取 LID 之 Atlantis High 欄組",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 10,
+      "frag": "R-VS67（Pei 2026-08-23）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 44,
+      "frag": "## 2. R-VS66 —— 規格明確而實作未見之處置（保留，惟本例已不適用）",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 47,
+      "frag": "R-VS66（分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 58,
+      "frag": "**本例（`*_Cmd_Tlm`）依 R-VS67 改由 LID 取名，已無實作缺口，(a) 不適用。**",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 68,
+      "frag": "| 1 | **DR-15′** | 規格兩讀 | 請求訊號之階數 vs 1 bit（160 leaf，含依 R-VS67 新寫者） |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 79,
+      "frag": "| — | ~~DR-25′~~ | — | **撤回（R-VS67(b)）** |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 80,
+      "frag": "| — | ~~DR-8′~~ | — | 已撤回（R-VS62′） |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 123,
+      "frag": "D-2  逐字轉錄 71 包 §1 之 **R-VS67**、§2 之 **R-VS66**、",
+      "nums": [
+        "R-VS66",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 124,
+      "frag": "69 包 §1 之 **R-VS65** 入 RULINGS.md；",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 125,
+      "frag": "**R-VS51(2) 標「經 R-VS67 推翻」**（原文保留）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 126,
+      "frag": "D-3  `DATA_REQUESTS.md`：**DR-25′ 標「撤回，R-VS67(b)」**（原文保留）；",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 133,
+      "frag": "W-127 **依 R-VS67 全量重跑**",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 143,
+      "frag": "**凡以 `*_Tlm` 為斷言標的者標 `dr15_exposed = yes`**（R-VS67(d)）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 146,
+      "frag": "依 R-VS67 逐條檢查其 procedure／ER 之訊號名是否取自 LID `Atlantis High`；",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 152,
+      "frag": "**批次規模 ＝ 池扣 held_out**（依 R-VS64，不寫死）。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 156,
+      "frag": "**W-124／W-125／W-126（44 輪）順延** —— 其分級對照數將因 R-VS67 而全面改變。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 162,
+      "frag": "**不得以條文內嵌之訊號名或 LID 他欄組為取值來源**（R-VS67）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 167,
+      "frag": "W-127(3) 之 `generatable` 較 138 增加 < 40（則 R-VS67 之解鎖不如預期）；",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 189,
+      "frag": "| **R-VS67** | 訊號名與值域一律取 LID `Atlantis High` 欄組；推翻 R-VS51(2) | **Pei** |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/71_lid_primary.md",
+      "line": 190,
+      "frag": "| R-VS66 | 規格明確而實作未見者照寫並開 issue 予 RD；規格兩讀者開 DR | 分析層 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/V03_test_group_ruling.md",
+      "line": 4,
+      "frag": "本包新增 **R-VS67**（1 條）、**W-121**（1 項工單）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V03_test_group_ruling.md",
+      "line": 21,
+      "frag": "### R-VS67 —— VF230 之 Test Group",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V03_test_group_ruling.md",
+      "line": 24,
+      "frag": "R-VS67（VF230 之 Test Group，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V03_test_group_ruling.md",
+      "line": 42,
+      "frag": "（R-VS60），單一 feature 內之 Test Group 保持單值，優先於 spec 模組名之",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V03_test_group_ruling.md",
+      "line": 50,
+      "frag": "R-VS67 定了**值**，未定**是否寫入 G 欄**。二者不同：",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V03_test_group_ruling.md",
+      "line": 87,
+      "frag": "分析層同意排除 spec 目次之理由，建議**待 W-116 之正規化複驗（R-VS66）完成後",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V03_test_group_ruling.md",
+      "line": 92,
+      "frag": "**注意**：R-VS67 只定 Layer 1。**Layer 2 未定則 `framework.md` 仍不得寫入，",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V03_test_group_ruling.md",
+      "line": 108,
+      "frag": "| R-VS67（Test Group = `Vehicle Setting`，兩本同值，明示排除 R-C6） | Pei 裁定 | ✅ §2 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 1,
+      "frag": "# 63 下放包 — Pei 五項裁定（R-VS59～R-VS62）、40 輪",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 7,
+      "frag": "## 1. R-VS59 —— 委派不等於不寫（**取代 R-VS7(a) 之效果**）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 10,
+      "frag": "R-VS59（Pei 2026-08-23）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 42,
+      "frag": "## 2. R-VS60 —— A-VS103：跨列引入，准",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 45,
+      "frag": "R-VS60（Pei 2026-08-23）",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 59,
+      "frag": "## 3. R-VS61 —— DR-19：無匯流排對應者，寫分析所載之名",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 62,
+      "frag": "R-VS61（Pei 2026-08-23）",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 82,
+      "frag": "## 4. R-VS62 —— DR-8′：車型碼取自 PROXI 表",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 85,
+      "frag": "R-VS62（Pei 2026-08-23）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 167,
+      "frag": "## 6. DR-25′ —— 依 R-VS59 照寫，性質轉為確認",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 171,
+      "frag": "**其 23 條之阻塞依 R-VS59 解除**：畫面層取自 Comfort 素材，",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 193,
+      "frag": "D-2  逐字轉錄 63 包 §1–§4 之 **R-VS59／R-VS60／R-VS61／R-VS62** 入 RULINGS.md；",
+      "nums": [
+        "R-VS59",
+        "R-VS60",
+        "R-VS61",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 194,
+      "frag": "**R-VS7(a) 標「其『不寫』之效果經 R-VS59 撤回」**（原文保留）。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 205,
+      "frag": "(1) R-VS59：`generatable` 之推導式去除 `delegate` 之扣除；",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 207,
+      "frag": "(2) R-VS60：`FR_VS_Cmd_Tlm` 跨列引入 `FL_VS_Cmd_Tlm` 之值域",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 208,
+      "frag": "(3) R-VS61：`$EngRun_Stat$` 四值改判可寫，標 `dr_dependent = DR-19`",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 209,
+      "frag": "(4) R-VS62：`VC_VEH_LINE` 之 `332`／`WS`／`DT`／`HDCC` 改判已解；",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 217,
+      "frag": "W-112 **Comfort 素材之畫面層對照表**（R-VS59(2) 之前置）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 223,
+      "frag": "**必列**：查得／查無兩數。**查無者即 R-VS59(4) 之 PENDING 標的。**",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 229,
+      "frag": "R-VS59～62 ＋ Sibling Rows ＋ 無效值優先序；",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 238,
+      "frag": "**R-VS61 之值不得附 `(<label>)`**（無 raw 碼可附）。",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 239,
+      "frag": "R-VS62 限 `VC_VEH_LINE` 一參數。不得合併 A-VS119／123 之 leaf。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 245,
+      "frag": "W-112 之查無數 > 查得數（則 Comfort 素材不足以支撐 R-VS59(2)）。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 266,
+      "frag": "| R-VS59 | 委派不免除產出；畫面層取自 Comfort 素材；`blocked` 廢除 | **Pei** |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 267,
+      "frag": "| R-VS60 | `FR_VS_Cmd_Tlm` 跨列引入 | **Pei** |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 268,
+      "frag": "| R-VS61 | 無匯流排對應者取分析所載逐字名，不附 label | **Pei** |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/63_rulings_round39.md",
+      "line": 269,
+      "frag": "| R-VS62 | `VC_VEH_LINE` 取 PROXI 表列 466；DR-8′ 縮為三碼 | **Pei** |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/72_pilot34_verdict.md",
+      "line": 21,
+      "frag": "分析層裁定 2026-08-23（R-VS59(4) 之細化）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/72_pilot34_verdict.md",
+      "line": 76,
+      "frag": "非適用性；R-VS67 更定取值一律取 `Atlantis High` 欄組。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/72_pilot34_verdict.md",
+      "line": 120,
+      "frag": "### D-6（**5 條**）—— 訊號名待 R-VS67 之改寫",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/72_pilot34_verdict.md",
+      "line": 123,
+      "frag": "依 R-VS67 應為 `TELEMATIC_VEHICLE_SETUP3.FR_HS_Tlm`（1 bit）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/72_pilot34_verdict.md",
+      "line": 128,
+      "frag": "**該 5 條改寫後須標 `dr15_exposed = yes`**（R-VS67(d)）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/72_pilot34_verdict.md",
+      "line": 176,
+      "frag": "D-6 訊號名依 R-VS67                         全母體（W-128）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/72_pilot34_verdict.md",
+      "line": 218,
+      "frag": "D-2  逐字轉錄 71 包 §1 之 R-VS67、§2 之 R-VS66、69 包 §1 之 R-VS65、",
+      "nums": [
+        "R-VS65",
+        "R-VS66",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/72_pilot34_verdict.md",
+      "line": 219,
+      "frag": "72 包 §5 之 **R-VS68** 入 RULINGS.md；R-VS51(2) 標「經 R-VS67 推翻」。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/72_pilot34_verdict.md",
+      "line": 238,
+      "frag": "W-131  **R-VS67 之全量重跑 ＋ 訊號名改寫**（71 包 §5 之 W-127＋W-128）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/72_pilot34_verdict.md",
+      "line": 271,
+      "frag": "| R-VS59(4) 之細化 | 畫面層待補時先寫最弱斷言，具體內容以 AH 承載 | 分析層 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 32,
+      "frag": "> `RULINGS.md` 內 R-VS59～R-VS62 曾有兩批同號（VF230 進場包一批、63 包一批）。",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 33,
+      "frag": "> **本線以 63 包之編號為準，照原編法**；VF230 線之五條（R-VS59～R-VS63）",
+      "nums": [
+        "R-VS59",
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 36,
+      "frag": "**Pei 已就 R-VS59–R-VS63 裁定：Part 1 線之編號為準，VF230 線待重編。**",
+      "nums": [
+        "R-VS59",
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 39,
+      "frag": "**R-VS64／R-VS65／R-VS66**（62 包 §3）與 **R-VS67**（63 包 §2），",
+      "nums": [
+        "R-VS64",
+        "R-VS65",
+        "R-VS66",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 46,
+      "frag": "| 1 | `W-102`–`W-107` | 改編 W-110–W-115 | R-VS64（VF230 線） |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 49,
+      "frag": "| 4 | `R-VS59`–`R-VS63` | VF230 線待重編 | **Pei 裁定** |",
+      "nums": [
+        "R-VS59",
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 50,
+      "frag": "| 5 | `R-VS64`–`R-VS67` | 未處置 | **本檔補報** |",
+      "nums": [
+        "R-VS64",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 53,
+      "frag": "**六次撞號同一成因**：R-VS60（VF230 併入 `vehicle_setting`）使兩條分析線",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 62,
+      "frag": "## 2. 本線建議（不逆轉 R-VS60）",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 64,
+      "frag": "**不建議**重議 R-VS60。分立 feature 雖可解此問題，但 Part 1 已有",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 86,
+      "frag": "| R-VS59 | R-VF1 | VF230 之 B 欄序號自 238 起 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 87,
+      "frag": "| R-VS60 | R-VF2 | VF230 併入 `vehicle_setting` |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 88,
+      "frag": "| R-VS61 | R-VF3 | 素材補入由 Pei 執行（單次免除已記） |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 89,
+      "frag": "| R-VS62 | R-VF4 | `output/` 為參考素材，非權威 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 90,
+      "frag": "| R-VS63 | R-VF5 | 專案級 REF 素材得由 CFTS044 代用 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 91,
+      "frag": "| R-VS64 | R-VF6 | W 號改編 W-110–W-115 |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 92,
+      "frag": "| R-VS65 | R-VF7 | DR 波及判定改以 token 掃描（含掃描定義） |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 93,
+      "frag": "| R-VS66 | R-VF8 | Layer 2 前之正規化複驗 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 94,
+      "frag": "| R-VS67 | R-VF9 | Test Group = `Vehicle Setting`，兩本同值 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V00_numbering_collision.md",
+      "line": 100,
+      "frag": "`R-VS64` 之「W-110–W-115」與 `R-VS65` 之掃描定義等已被執行層遵行者，",
+      "nums": [
+        "R-VS64",
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 4,
+      "frag": "本包新增 **R-VS59–R-VS62**（4 條）、**W-102–W-107**（6 項工單）、**DR-27**（1 件草稿）。",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 95,
+      "frag": "### R-VS59 —— VF230 之 B 欄序號自 238 起",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 98,
+      "frag": "R-VS59（VF230 序號基準，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 111,
+      "frag": "4. F 欄「Test Case ID」兩本 workbook 皆為 0 filled；R-VS59 **不**新增",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 115,
+      "frag": "### R-VS60 —— VF230 併入 `vehicle_setting`，不另開 feature",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 118,
+      "frag": "R-VS60（VF230 之 feature 歸屬，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 128,
+      "frag": "### R-VS61 —— 素材補入由 Pei 執行",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 131,
+      "frag": "R-VS61（VF230 素材補入，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 140,
+      "frag": "### R-VS62 —— `output/` 之證據位階",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 143,
+      "frag": "R-VS62（Pei 先前彙整之證據位階，Pei 裁定 2026-08-23）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 151,
+      "frag": "- 其所含之任何列序，**不**構成 R-VS59 之續號依據",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 156,
+      "frag": "## 4. 併入（R-VS60）之技術後果與處置",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 274,
+      "frag": "## 6. Pei 需補之素材（R-VS61）",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 318,
+      "frag": "| R-VS59（VF230 B 欄自 238 起） | Pei 裁定 | ✅ §3 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 319,
+      "frag": "| R-VS60（併入 `vehicle_setting`） | Pei 裁定 | ✅ §3 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 320,
+      "frag": "| R-VS61（素材補入由 Pei 執行） | Pei 裁定 | ✅ §3 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V01_vf230_intake.md",
+      "line": 321,
+      "frag": "| R-VS62（`output/` 為參考素材，非權威） | Pei 裁定 | ✅ §3 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 1,
+      "frag": "# 73 下放包 — R-VS67′（限縮）、錨點固定樣本、D-3 改採最弱斷言、47 輪",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 3,
+      "frag": "分析層寫入，2026-08-23。**R-VS67 之淨效果為負，本包限縮之。**",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 7,
+      "frag": "## 1. R-VS67′ —— 限縮（本輪唯一新條文；**Pei 得推翻**）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 11,
+      "frag": "**成因**：R-VS67(a) 令取 `Atlantis High` 欄組之 `*_Tlm`（1 bit），",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 15,
+      "frag": "**而 R-VS66 正是為此而立**，我於 71 包 §2 誤判「本例依 R-VS67 已無實作缺口」。",
+      "nums": [
+        "R-VS66",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 19,
+      "frag": "R-VS67′（**Pei 追認 2026-08-23**，限縮 R-VS67）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 26,
+      "frag": "並依 **R-VS66(a)** 標 `impl_gap = <訊號名>`",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 37,
+      "frag": "該訊號不在基線 DBC → **標 `impl_gap`，依 R-VS66(a) 照寫、開 issue 予 RD**",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 44,
+      "frag": "(d) **DR-25′ 維持撤回** —— 其標的（訊號不在 DBC）依 R-VS66 已非 DR 之事由，",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 49,
+      "frag": "**這是我的錯**：71 包 §2 我寫「本例依 R-VS67 已無實作缺口，(a) 不適用」——",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 121,
+      "frag": "D-2  逐字轉錄 73 包 §1 之 **R-VS67′** 入 RULINGS.md；",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 122,
+      "frag": "**R-VS67 標「經 R-VS67′ 限縮」**（原文保留）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 125,
+      "frag": "D-5  ANOMALIES.md：A-VS148 標「依 R-VS67′ 處置」；A-VS149／A-VS150 標處置。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 130,
+      "frag": "W-133  **依 R-VS67′ 重跑**",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 170,
+      "frag": "| **1** | ~~**R-VS67′ 之追認或推翻**~~ —— **已追認（Pei 2026-08-23）** |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/73_rvs67_narrowing.md",
+      "line": 180,
+      "frag": "| **R-VS67′** | `Atlantis High` 不能承載條文語義者，取能承載之欄組並標 `impl_gap` | **Pei（追認 2026-08-23）** |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/V15_layer2_approved.md",
+      "line": 19,
+      "frag": "（R-VS59–R-VS67 → R-VF1–R-VF9），該部分自始未執行。",
+      "nums": [
+        "R-VS59",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V15_layer2_approved.md",
+      "line": 80,
+      "frag": "R-VF45（R-VS59–R-VS66 撞號之處置，分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V15_layer2_approved.md",
+      "line": 82,
+      "frag": "A-VF10 實測：`R-VS59`–`R-VS66` 八號各有兩個定義，兩線皆為 Pei 裁定、",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V15_layer2_approved.md",
+      "line": 103,
+      "frag": "`R-VS59→R-VF1 … R-VS66→R-VF8`，並註明",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V15_layer2_approved.md",
+      "line": 104,
+      "frag": "「歷史文件中之 `R-VS59`–`R-VS66` 可能指兩義之任一，",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V15_layer2_approved.md",
+      "line": 110,
+      "frag": "**R-VF9 原為 R-VS67，亦在 V04 §3.1 之對照表內**；本條所列為 59–66 八號，",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V15_layer2_approved.md",
+      "line": 211,
+      "frag": "### W-VF39 — R-VS59–R-VS67 改號範圍之分類（只列不改）",
+      "nums": [
+        "R-VS59",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V15_layer2_approved.md",
+      "line": 213,
+      "frag": "1. 實測 `R-VS67` 是否亦撞號（A-VF10 只列 59–66，不以其為全集）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/75_writeback_go.md",
+      "line": 153,
+      "frag": "| 2 | **`impl_gap` 之 44 條開 issue 予 RD**（R-VS66(a)；訊號不在基線 DBC） |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 1,
+      "frag": "# 64 下放包 — R-VS59 下半未兌現之處置、編號分線、41 輪",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 7,
+      "frag": "## 1. R-VS59 下半 —— **Comfort 對失效層確實為空，該事實須入交付揭露**",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 12,
+      "frag": "**即 R-VS59(2) 之「畫面層取自 Comfort 素材」，對失效狀態一類無素材可取。**",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 18,
+      "frag": "畫面層標 `PENDING: DR-5-B` 為 R-VS59(4) 之正解。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 51,
+      "frag": "**R-VS62 之四碼解鎖因而未經驗證。** 真錨點應取**實際引用 `$VC_VEH_LINE$` 之 leaf**",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 56,
+      "frag": "## 4. R-VS63 —— 編號分線（本輪唯一新條文）",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 58,
+      "frag": "三次衝突（兩份 NN=61 之下放包／R-VS59～62 兩批同號／A-VS129-130 撞號）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 62,
+      "frag": "R-VS63（分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 77,
+      "frag": "VF230 線現行之 `R-VS59`～`R-VS63` 五條，其標題加註",
+      "nums": [
+        "R-VS59",
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 83,
+      "frag": "**引用之義務**：跨線引用時須標線名（如「VF230 線之 R-VS59」）。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 103,
+      "frag": "D-2  逐字轉錄 64 包 §4 之 **R-VS63** 入 RULINGS.md；",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 104,
+      "frag": "VF230 線之 R-VS59～R-VS63 五條加註「⚠ 本條屬 VF230 線」。",
+      "nums": [
+        "R-VS59",
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 124,
+      "frag": "(1) **R-VS62 之真錨點**：先量 `$VC_VEH_LINE$` 於 237 leaf 之引用數與其值；",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 136,
+      "frag": "畫面層依 W-115(2) 之新對照表；查無者依 R-VS59(4) 標 `PENDING`。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 161,
+      "frag": "| **`upstream/61_vf230_intake.md` 之搬移** | 依 R-VS63，移入 `docs/upstream/vf230/00_intake.md` —— **路徑變更屬你** |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/64_review_round40.md",
+      "line": 171,
+      "frag": "| R-VS63 | 兩線編號空間分段預留；VF230 線另立目錄 | 分析層（本輪額度用畢） |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/65_review_round41.md",
+      "line": 1,
+      "frag": "# 65 下放包 — R-VS62′（DR-8′ 撤回）、pilot #4、42 輪",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/65_review_round41.md",
+      "line": 7,
+      "frag": "## 1. R-VS62′ —— 母體實際用的兩個值，PROXI 表都有；**DR-8′ 撤回**",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/65_review_round41.md",
+      "line": 25,
+      "frag": "R-VS62′（分析層裁定 2026-08-23，取代 R-VS62）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/65_review_round41.md",
+      "line": 33,
+      "frag": "R-VS62 原文所列之四碼（`332`／`WS`／`DT`／`HDCC`）**於母體命中 0**，",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/65_review_round41.md",
+      "line": 52,
+      "frag": "| **§2.3 lint 未同步 R-VS60** | **與 R-VS55 同源而方向相反**（R-VS55 防 lint 較嚴、本項為 lint 較舊）。**併入 R-VS55 為其 (2)**：凡裁定同時影響分級",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/65_review_round41.md",
+      "line": 98,
+      "frag": "D-2  逐字轉錄 65 包 §1 之 **R-VS62′** 與 §2 之 **R-VS55(2)** 入 RULINGS.md；",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/65_review_round41.md",
+      "line": 99,
+      "frag": "R-VS62 標「經 R-VS62′ 取代」（原文保留）。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/65_review_round41.md",
+      "line": 100,
+      "frag": "D-3  `DATA_REQUESTS.md`：**DR-8′ 標「撤回，R-VS62′」**（原文保留）。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/65_review_round41.md",
+      "line": 102,
+      "frag": "D-4  `delegation_lookup.tsv` 同步 R-VS59：廢除 `blocked` 之值",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/65_review_round41.md",
+      "line": 160,
+      "frag": "| R-VS62′ | `VC_VEH_LINE` 取 PROXI 列 466；母體二值皆已解；**DR-8′ 撤回** | 分析層（本輪額度用畢） |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 26,
+      "frag": "成因：R-VF2（原 R-VS60）令 VF230 併入 `vehicle_setting`，兩條分析線",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 58,
+      "frag": "| R-VS59 | **R-VF1** | VF230 之 B 欄序號自 238 起 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 59,
+      "frag": "| R-VS60 | **R-VF2** | VF230 併入 `vehicle_setting` |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 60,
+      "frag": "| R-VS61 | **R-VF3** | 素材補入由 Pei 執行（單次免除已記於原條文之執行層註） |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 61,
+      "frag": "| R-VS62 | **R-VF4** | `output/` 為參考素材，非權威來源 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 62,
+      "frag": "| R-VS63 | **R-VF5** | 專案級 REF 素材得由 CFTS044 代用；不及於 SYS2 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 63,
+      "frag": "| R-VS64 | **R-VF6** | W 號改編（其內容依 §3.3 再改一次） |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 64,
+      "frag": "| R-VS65 | **R-VF7** | DR 波及判定改以 token 掃描（含掃描定義） |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 65,
+      "frag": "| R-VS66 | **R-VF8** | Layer 2 前之正規化複驗 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 66,
+      "frag": "| R-VS67 | **R-VF9** | Test Group = `Vehicle Setting`，兩本 workbook 同值 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 142,
+      "frag": "理由：R-VF8（原 R-VS66）之逐字正規化不足以達成其自身目的 ——",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/V04_numbering_separation.md",
+      "line": 183,
+      "frag": "（`grep -rn` 搜 `R-VS59`／`R-VS6[0-7]`／`W-1[12][0-9]`／`61 包`／`62 包`／`63 包`）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 1,
+      "frag": "# 69 下放包 — R-VS65（結構判準須加閘）、A-VS145 認錯、44 輪",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 7,
+      "frag": "## 1. R-VS65 —— 結構判準只產候選，採用須有第二道（本輪唯一新條文）",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 17,
+      "frag": "R-VS65（分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 66,
+      "frag": "| batch16–18 | **23** | **畫面層整層待補**（R-VS59(4)／R-VS17） |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 111,
+      "frag": "D-2  逐字轉錄 69 包 §1 之 **R-VS65** 入 RULINGS.md。",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 113,
+      "frag": "D-4  ANOMALIES.md：A-VS144 標「依 R-VS65 不採用該判定」；",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 118,
+      "frag": "W-124 **W-121 之判準依 R-VS65 採用並重跑**",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 125,
+      "frag": "W-125 **D-3 之 27 行門檻改寫**（R-VS64 之回溯）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 143,
+      "frag": "**不得以常數表示新增之門檻**（R-VS64）。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 144,
+      "frag": "**不得以未經 R-VS65 之閘之判準改動產物。**",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/69_review_round43.md",
+      "line": 174,
+      "frag": "| R-VS65 | 結構判準只產候選；採用須舊式交集或人讀；代價不對稱故不對稱設閘 | 分析層（本輪額度用畢） |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/74_pilot34_ruling.md",
+      "line": 25,
+      "frag": "D-6  訊號名待 R-VS67′ 之改寫（樣本 5/15）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/74_pilot34_ruling.md",
+      "line": 47,
+      "frag": "| D-6 | W-133 | 47 輪 | 待執行（依 R-VS67′） |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/74_pilot34_ruling.md",
+      "line": 69,
+      "frag": "**九項全過方得貼回。** 依 R-VS64，上表之判準皆為關係式或 0，未寫死交付量。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/76_writeback_review.md",
+      "line": 43,
+      "frag": "### 2.1 §2.1 AH 對照式過時 —— R-VS64 之第四次實例",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/76_writeback_review.md",
+      "line": 50,
+      "frag": "**且 R-VS64 之回溯清單（43 輪 D-3 之 51 行）仍未改寫** —— 本項即其直接後果。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/76_writeback_review.md",
+      "line": 59,
+      "frag": "`HSW_Tlm`）於 PDT24 與 PDT27 兩代皆為 1 bit，**R-VS67′ 之前提成立**。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/76_writeback_review.md",
+      "line": 125,
+      "frag": "W-140  **R-VS64 之回溯清單改寫**（43 輪 D-3 之 51 行，至今未改）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/68_review_round42.md",
+      "line": 1,
+      "frag": "# 68 下放包 — R-VS64（門檻不得寫死）、兩個標記之分離、43 輪",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/68_review_round42.md",
+      "line": 7,
+      "frag": "## 1. R-VS64 —— 升級門檻不得以常數表示（本輪唯一新條文）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/68_review_round42.md",
+      "line": 20,
+      "frag": "R-VS64（分析層裁定 2026-08-23）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/68_review_round42.md",
+      "line": 50,
+      "frag": "（R-VS57 之 WARN 類、R-VS61 之逐字值類）",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/68_review_round42.md",
+      "line": 53,
+      "frag": "（R-VS59(4)、R-VS17 之 BLOCKED）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/68_review_round42.md",
+      "line": 114,
+      "frag": "D-2  逐字轉錄 68 包 §1 之 R-VS64 入 RULINGS.md。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/68_review_round42.md",
+      "line": 115,
+      "frag": "D-3  各現行下放包之門檻逐條檢視（R-VS64 之回溯）：",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/68_review_round42.md",
+      "line": 138,
+      "frag": "（依 R-VS64，不寫死條數）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/68_review_round42.md",
+      "line": 153,
+      "frag": "**不得以常數表示新增之門檻**（R-VS64）。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/handoff/68_review_round42.md",
+      "line": 181,
+      "frag": "| R-VS64 | 升級門檻須以關係式表示，不得寫死交付量 | 分析層（本輪額度用畢） |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/INDEX.md",
+      "line": 41,
+      "frag": "| 34 | — | 母體層冗餘掃描、R-VS57(4) 重跑、產能終局盤點 | [61](handoff/61_review_round37.md) | [upstream/34_redundancy_and_batc",
+      "nums": [
+        "R-VS59",
+        "R-VS61",
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/upstream/41_writeback.md",
+      "line": 84,
+      "frag": "| **§C** | **實作缺口**（`IMPL_GAP`，R-VS66(a)／R-VS67′） | **44** |",
+      "nums": [
+        "R-VS66",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/41_writeback.md",
+      "line": 87,
+      "frag": "**32 ＋ 44 ＝ 76，逐條可對。** §C 為 **47 輪 W-133 依 R-VS67′ 新增之註記**，",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/41_writeback.md",
+      "line": 88,
+      "frag": "**而 48 輪指令之對照式寫於其之前** —— 其為 R-VS64 所指之「門檻之關係式過時」。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/41_writeback.md",
+      "line": 129,
+      "frag": "**於 PDT24 與 PDT27 兩代皆為 1 bit** —— **R-VS67′ 之前提成立**。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/41_writeback.md",
+      "line": 160,
+      "frag": "- **`impl_gap` 之 44 條未開 issue 予 RD**（R-VS66(a)，屬 Pei）。",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/41_writeback.md",
+      "line": 184,
+      "frag": "**R-VS35 之兩數（依 R-VS63 分線列）**：",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/41_writeback.md",
+      "line": 205,
+      "frag": "3. **AH 之對照式過時（§2.1）是 R-VS64 之第四次實例**（前三為 129／21／「預期命中」）。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/41_writeback.md",
+      "line": 206,
+      "frag": "R-VS64 立於 42 輪，**其回溯清單（43 輪 D-3 之 51 行）仍未改寫** ——",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/41_writeback.md",
+      "line": 215,
+      "frag": "而其應有之後續動作（R-VS66(a)）未啟動。",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/38_threshold_and_preamble.md",
+      "line": 9,
+      "frag": "| D-2 | 轉錄 R-VS64 | ✅ |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/38_threshold_and_preamble.md",
+      "line": 34,
+      "frag": "| 10 | W-122(2)：batch19 自池選取，依 R-VS64 不寫死條數 | 池 **6** 扣 held_out **2** → **全取 4** | 相符 |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/38_threshold_and_preamble.md",
+      "line": 168,
+      "frag": "| batch19 之規模 | **依 R-VS64 不寫死** —— 批次規模 ＝ 池（6）扣 held_out（2）＝ **4** |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/38_threshold_and_preamble.md",
+      "line": 178,
+      "frag": "**R-VS35 之兩數（依 R-VS63 分線列）**：",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/38_threshold_and_preamble.md",
+      "line": 181,
+      "frag": "**VF230 線**之新增未計入本包（其編號依 R-VS63 自 `A-VS200` 起）",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/38_threshold_and_preamble.md",
+      "line": 206,
+      "frag": "而該表本身是 R-VS64 之回溯清單 —— **若不改寫，次輪起這 27 行會陸續自行失效**。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/38_threshold_and_preamble.md",
+      "line": 228,
+      "frag": "| §5 | 新開 anomaly 與 DR 成對 | ✅ 2 anomaly／0 新 DR，R-VS35 依 R-VS63 分線列 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 1,
+      "frag": "# 上繳 40 —— R-VS67′ 之限縮重跑、固定錨點樣本、彈窗類最弱斷言",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 9,
+      "frag": "| D-2 | 轉錄 R-VS67′；R-VS67 標限縮 | ⬜ |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 13,
+      "frag": "| **W-133** | 依 R-VS67′ 重跑 | ⬜ |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 51,
+      "frag": "| 1 | D-2：轉錄 R-VS67′；R-VS67 標限縮 | 已入 `RULINGS.md`；R-VS67 加註 | 相符 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 95,
+      "frag": "**本層未複製**（其形態同 R-VS61：素材補入由 Pei 執行），",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 122,
+      "frag": "**其於 46 輪末為 W0 係因 R-VS67 將其導向 `SETUP3.HSW_Tlm`**（該訊號有值域）；",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 123,
+      "frag": "R-VS67′ 回復依「能承載」擇欄組後，`HSW_Cmd_Tlm` 之值域缺失重新顯現。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 154,
+      "frag": "- **`impl_gap` 之 44 條未開 issue 予 RD** —— R-VS66(a) 令「照寫、開 issue」，",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 167,
+      "frag": "| 驅動之 R-VS67′ 實作 | 兩欄組之值域**聯集**；`hit` 不再以 `col == \"Atlantis\"` 為閘（R-VS51(2) 已由 R-VS67 推翻、其「一律 High」又由 R-VS67′ 限",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 178,
+      "frag": "**R-VS35 之兩數（依 R-VS63 分線列）**：",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 184,
+      "frag": "**已標處置者**：A-VS148（依 R-VS67′ 全數回復）／A-VS149（W-134 改固定樣本）／",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 193,
+      "frag": "1. **R-VS67′ 把 46 輪的崩落完全補回來了** —— 138/2/97、`generatable` 140、自檢 0 項，",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 196,
+      "frag": "依 R-VS66(a) 照寫並開 issue 予 RD —— **開 issue 尚未做，且屬 Pei**。",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/40_narrowing.md",
+      "line": 211,
+      "frag": "R-VS67′ 使其斷言回復成立，**但 47 條之標記保留**（R-VS67′(a) 明令）——",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 1,
+      "frag": "# 上繳 39 —— pilot 七項 defect 之全母體修正、R-VS67 重跑、畫面層改寫",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 7,
+      "frag": "> **44／45 輪未執行**：本輪之 D-2 依 46 輪指令一併轉錄 69 包之 R-VS65、",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 8,
+      "frag": "> 71 包之 R-VS66／R-VS67，故二輪之條文面於本輪補齊；其作業面（W-124～W-129）",
+      "nums": [
+        "R-VS66",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 14,
+      "frag": "| D-2 | 轉錄 R-VS65／R-VS66／R-VS67／R-VS68；R-VS51(2) 標推翻 | ⬜ |",
+      "nums": [
+        "R-VS65",
+        "R-VS66",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 19,
+      "frag": "| **W-131** | R-VS67 之全量重跑 ＋ 訊號名改寫 | ⬜ |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 56,
+      "frag": "| 1 | D-2：轉錄 R-VS65／66／67／68；R-VS51(2) 標推翻 | 四條入 `RULINGS.md`；R-VS51(2) 加註 | 相符 |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 73,
+      "frag": "### 2.1 R-VS67 使分級崩落、並使 44 條已交付 TC 之斷言失效 —— **本輪於此中止**",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 83,
+      "frag": "**成因非執行偏差，是 R-VS67 自身之 (a) 與 (c) 相衝**：",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 89,
+      "frag": "R-VS67(a) 預期「`dr_dependent = DR-25` 解除、DR-25′ 撤回」；",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 96,
+      "frag": "不回退 R-VS67（其為 Pei 裁定）、不重寫 44 條之驗證目標（其屬 DR-15′ 之標的）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 147,
+      "frag": "| 驅動之 R-VS67 實作 | `arch_column()` 恆回 `Atlantis High`；`lid_column_domain()` 以 `Atlantis High` 為主、`Atlantis` 僅補其",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 156,
+      "frag": "| **A-VS148** | R-VS67 之 (a)(c) 相衝：44 條已交付 TC 之四階斷言於 1 bit 訊號上無法成立，分級崩落 48 leaf | **DR-15′**（待送） |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 164,
+      "frag": "1. **本輪最重要之事實：R-VS67 之淨效果是負的。** 其解掉「訊號不在 DBC」，",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/39_pilot_fix.md",
+      "line": 166,
+      "frag": "**該衝突 R-VS67(c) 自己已預告**，惟其量級（過半）本輪始實測。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 7,
+      "frag": "> `docs/upstream/vf230/00_intake.md`（與 R-VS63 之預留一致）。留痕於此。",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 12,
+      "frag": "| D-2 | 轉錄 R-VS63；VF230 線五條加註 | ✅ 五條全加註 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 37,
+      "frag": "| 11 | W-115(2)：判準改逐 leaf 行為層 | 「對象 ∧ 行為」雙命中；標的由 174 擴為 **191**（納入 R-VS59 廢除之 `blocked`） | 相符 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 49,
+      "frag": "### 2.1 R-VS62 之二錨點**兩側皆無標的** —— 該條係以母體外之證據所裁",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 57,
+      "frag": "| R-VS62 之已解四碼（`332`／`WS`／`DT`／`HDCC`）於母體之引用 | **0** |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 63,
+      "frag": "**R-VS62 因而是以母體外之證據所裁**，其解鎖與其縮限於本 feature 內皆無從驗證。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 87,
+      "frag": "### 2.3 §9 自檢曾對 batch17 報 4 項，係 lint 未同步 R-VS60",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 92,
+      "frag": "追因：**R-VS60（跨列引入）只實作於驅動側（`writability_driver.lid_column_domain()`），",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 112,
+      "frag": "§2.1（R-VS62 兩側無標的，升級條件兩讀）／§2.2（三數而非兩數）／",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 113,
+      "frag": "§2.3（lint 未同步 R-VS60）。",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 132,
+      "frag": "| W-115(2) 之標的 | `delegation_lookup.tsv` 之 `delegate != \"no\"`，得 **191**（R-VS59 已廢除 `blocked` 之值，該檔尚未同步，故三值皆為委派",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 142,
+      "frag": "| **A-VS140** | `$VC_VEH_LINE$` 於母體僅 2 處引用（`WL`／`M4 OR MP`），R-VS62 之七碼全數命中 0 | **DR-8′**（已在簿，未送出；**其縮限後之三碼不涵蓋 ",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 144,
+      "frag": "**R-VS35 之兩數（依 R-VS63 分線列）**：",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 147,
+      "frag": "並行 **VF230 線**於本輪期間之新增未計入本包（其編號依 R-VS63 自 `A-VS200` 起）",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 159,
+      "frag": "R-VS62 之七個車型碼於母體命中 0（§2.1）；W-112 之舊判準對 191 個標的",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/36_domain_and_anchor.md",
+      "line": 190,
+      "frag": "| §5 | 新開 anomaly 與 DR 成對 | ✅ 1 anomaly／0 新 DR，R-VS35 兩數依 R-VS63 分線列 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/V14_layer2_enumerate.md",
+      "line": 111,
+      "frag": "### 4.1 ⚠ A-VF10 —— `R-VS59`–`R-VS66` 各有兩個定義",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V14_layer2_enumerate.md",
+      "line": 116,
+      "frag": "### R-VS59 ——  行 1366  VF230 之 B 欄序號自 238 起        （V01 包，Pei 裁定）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V14_layer2_enumerate.md",
+      "line": 117,
+      "frag": "### R-VS59 ——  行 1486  委派不等於不寫                    （Part 1 之 63 包，Pei 裁定）",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V14_layer2_enumerate.md",
+      "line": 120,
+      "frag": "R-VS60–R-VS66 同型。**八號各有兩義，皆為 Pei 裁定，皆在生效中。**",
+      "nums": [
+        "R-VS60",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V14_layer2_enumerate.md",
+      "line": 125,
+      "frag": "**引用面實測**：八號合計 **433 處**（R-VS59 單一即 124 處），",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V14_layer2_enumerate.md",
+      "line": 133,
+      "frag": "**後果**：任何文件寫「依 R-VS59」者，**其所指為何義不可由編號決定**。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 1,
+      "frag": "# 上繳 35 —— 委派重啟（R-VS59～R-VS62）、Comfort 畫面層對照、batch16",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 6,
+      "frag": "> **條文編號之處置（Pei 裁定 2026-08-23）**：`RULINGS.md` 內 R-VS59～R-VS62 曾兩批同號。",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 7,
+      "frag": "> **本線以 63 包之編號為準，照原編法**；VF230 線之五條（R-VS59～R-VS63）原文保留，",
+      "nums": [
+        "R-VS59",
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 13,
+      "frag": "| D-2 | 轉錄 R-VS59～R-VS62；R-VS7(a) 標撤回 | ✅ |",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 63,
+      "frag": "**錨點之判讀**：15/16 之未達 100% **不是 R-VS59 未生效** ——",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 83,
+      "frag": "**「查無 0」不可讀為「Comfort 素材足以支撐 R-VS59(2)」** ——",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 86,
+      "frag": "`PENDING: DR-5-B`（R-VS59(4)）。→ **A-VS139**",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 97,
+      "frag": "「**未執行**」，非「PASS」。R-VS62 之四碼解鎖因而**未經錨點驗證**。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 112,
+      "frag": "| R-VS59（委派） | 16 個 `Fail_Present` ＋ 其餘 blocked／pending | **+29**（17 blocked ＋ 12 pending，扣既已 yes 者） |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 113,
+      "frag": "| R-VS60（`FR_VS_Cmd_Tlm` 跨列） | 14 | 併入上列，**其 14 leaf 之值域已解** |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 114,
+      "frag": "| R-VS61（DR-19） | 7 | 併入上列 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 115,
+      "frag": "| R-VS62（`VC_VEH_LINE` 四碼） | 未具名 | **0 可驗** —— 標的於本母體命中 0（§2.3） |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 117,
+      "frag": "**差額之主因為 R-VS62 於本母體無標的**，非四條裁定之效力不足。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 125,
+      "frag": "**此為本專案第三次編號衝突**（前二次：兩份 NN=61 之下放包；R-VS59～R-VS62 兩批同號）。",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 133,
+      "frag": "- `FR_VS_Cmd_Tlm` 之值域由跨列引入解得四階（R-VS60）",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 169,
+      "frag": "- **R-VS62 之四碼解鎖未經任何驗證**（§2.3）。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 171,
+      "frag": "- **R-VS59(2) 之「畫面層取自 Comfort 素材」在本輪未實際取到任何內容** ——",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 179,
+      "frag": "| `generatable` 之推導 | **`yes ⟺ writable ∈ {W0, W1}`**（R-VS59：去除 `delegate` 之扣除） |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 181,
+      "frag": "| R-VS60 之實作 | `lid_column_domain()` 中，`FR_VS_Cmd_Tlm` 若無 `Vented` 形態之列舉，取 `FL_VS_Cmd_Tlm` 之 `Vented` 列舉 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 182,
+      "frag": "| R-VS61 之實作 | `OPEN_DR[\"DR-19\"]` 之 token 集合清空、樣式改為永不命中；原文以註解保留 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 183,
+      "frag": "| R-VS62 之實作 | `OPEN_DR[\"DR-8\"]` 由 `token` 級改 `value` 級，樣式 `M182\\|M189\\|M240` |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 213,
+      "frag": "1. **R-VS59 解鎖了 34 個 leaf，但它所承諾的「畫面層取自 Comfort 素材」在本輪一次都沒兌現。**",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 220,
+      "frag": "**R-VS62 之解鎖目前沒有任何證據支撐**。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/35_delegation_reopen.md",
+      "line": 246,
+      "frag": "| §6 | 獨立判斷 | ✅ 五項，含「R-VS59 下半未兌現」之結論 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/V01_vf230_intake.md",
+      "line": 26,
+      "frag": "| 7 | 裁決落檔 | **完成** | `RULINGS.md` +R-VS59–63、`DATA_REQUESTS.md` +DR-28、`ANOMALIES.md` +A-VS124–128 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V01_vf230_intake.md",
+      "line": 29,
+      "frag": "**Pei 於 2026-08-23 之兩項現場裁定**：(a) R-VS61 之搬檔限制**單次免除**，",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V01_vf230_intake.md",
+      "line": 31,
+      "frag": "（落為 R-VS63）。二者已逐字落檔。",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V01_vf230_intake.md",
+      "line": 54,
+      "frag": "**`output/` 三檔（R-VS62）**：**未複製入 `inputs/`**，本輪未取用、未對帳。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V01_vf230_intake.md",
+      "line": 94,
+      "frag": "**R-VS59 第 3 項之末值**：VF230 尚無 TC 產出，**本輪無值可報**。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V01_vf230_intake.md",
+      "line": 133,
+      "frag": "**R-VS59 之 `seq: \"B\"` 落於 `profiles.vf230.columns`，不在共用之",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V01_vf230_intake.md",
+      "line": 135,
+      "frag": "進入寫回範圍，違反 R-VS59 第 2 項。`profiles.cfts044` 刻意不設 `seq`。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V01_vf230_intake.md",
+      "line": 269,
+      "frag": "2. **`output/` 三檔未對帳**（R-VS62 允其用於交叉比對）。其",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V01_vf230_intake.md",
+      "line": 353,
+      "frag": "**R-VS61**（2026-08-23 之免除已明記為單次個案）。",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V15_layer2_approved.md",
+      "line": 57,
+      "frag": "| B 欄續號基準 | ✅ R-VF1（238 起）—— **惟其現以 `R-VS59` 落檔，見 §4** |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V15_layer2_approved.md",
+      "line": 83,
+      "frag": "**第 1 項之實測**：`R-VS67` **不撞號**（`RULINGS.md` 內僅 1 個條文起始，",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V15_layer2_approved.md",
+      "line": 88,
+      "frag": "- `R-VF1`–`R-VF8` 以 `R-VS59`–`R-VS66` 存在 → 即 **A-VF10** 之撞號",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V15_layer2_approved.md",
+      "line": 90,
+      "frag": "其原號 `R-VS67` 已為 Part 1 所用，而其正文**從未進入條文簿**",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V15_layer2_approved.md",
+      "line": 96,
+      "frag": "**本輪已補落**（逐字，原編號 `R-VS67` 保留於區塊內），並復查發現",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V15_layer2_approved.md",
+      "line": 115,
+      "frag": "對照表（`R-VS59`→`R-VF1` … `R-VS67`→`R-VF9`）已備於報告 §3，供 R-VF45 三置入。",
+      "nums": [
+        "R-VS59",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V15_layer2_approved.md",
+      "line": 148,
+      "frag": "4. **P4 啟動前，B 欄續號基準（R-VF1，238 起）現以 `R-VS59` 落檔** ——",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/37_pilot_and_writeback.md",
+      "line": 10,
+      "frag": "| D-2 | 轉錄 R-VS62′／R-VS55(2)；R-VS62 標取代 | ✅ |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/37_pilot_and_writeback.md",
+      "line": 12,
+      "frag": "| D-4 | `delegation_lookup.tsv` 同步 R-VS59 | ✅ 17 列 `blocked` → `yes` |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/37_pilot_and_writeback.md",
+      "line": 70,
+      "frag": "成因：`dr_dependent` 自 batch14 起即全批標記（R-VS57 之 WARN 類 ＋ R-VS59(4) 之 PENDING 類）。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/37_pilot_and_writeback.md",
+      "line": 156,
+      "frag": "**R-VS35 之兩數（依 R-VS63 分線列）**：",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/37_pilot_and_writeback.md",
+      "line": 159,
+      "frag": "**VF230 線**之新增未計入本包（其編號依 R-VS63 自 `A-VS200` 起）",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/37_pilot_and_writeback.md",
+      "line": 162,
+      "frag": "DR：本輪新增 **0**；**DR-8′ 標撤回**（R-VS62′，原文保留）。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/37_pilot_and_writeback.md",
+      "line": 163,
+      "frag": "**已標處置者**：A-VS140（依 R-VS62′ **關閉**）。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/37_pilot_and_writeback.md",
+      "line": 203,
+      "frag": "| §5 | 新開 anomaly 與 DR 成對 | ✅ 3 anomaly／0 新 DR，R-VS35 兩數依 R-VS63 分線列 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/34_redundancy_and_batch15.md",
+      "line": 9,
+      "frag": "> VF230 之素材尚未補入 `inputs/`（R-VS61 由 Pei 執行），該線本輪未動。詳見 §2.5。",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/34_redundancy_and_batch15.md",
+      "line": 109,
+      "frag": "實測 **vf230 相關檔 0 份**。R-VS61 明訂補入由 Pei 執行。",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/34_redundancy_and_batch15.md",
+      "line": 183,
+      "frag": "同批寫入者另有 **R-VS59 ～ R-VS63**（`RULINGS.md`）與 **DR-28**（`DATA_REQUESTS.md`）。",
+      "nums": [
+        "R-VS59",
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "Part 1"
+    },
+    {
+      "file": "docs/upstream/V02_vf230_recon.md",
+      "line": 17,
+      "frag": "| W-116 正規化複驗（R-VS66） | **完成** | `scripts/vf230_layer2.py`（`key()` 改寫）、`docs/reports/vf230_layer2_candidates.m",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V02_vf230_recon.md",
+      "line": 20,
+      "frag": "| W-119 DR 波及三分類（R-VS65） | **完成** | `scripts/vf230_w119_dr_impact.py`、`docs/reports/vf230_dr_impact.md` |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V02_vf230_recon.md",
+      "line": 22,
+      "frag": "| 條文落檔 | **完成** | `RULINGS.md` +R-VS64／65／66（逐字） |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V02_vf230_recon.md",
+      "line": 41,
+      "frag": "**讓號之理由**：62 包之 **R-VS66 逐字引用「理由見 A-VS129」**，而條文一經",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V02_vf230_recon.md",
+      "line": 47,
+      "frag": "R-VS64 已令「開新 W 號前須先查最大已用號」；**該令未及於 A-VS 與 DR**。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V02_vf230_recon.md",
+      "line": 52,
+      "frag": "## 3. W-116 —— 正規化複驗（R-VS66）",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V02_vf230_recon.md",
+      "line": 56,
+      "frag": "依 R-VS66 逐字實作     exact 103 ／ 無對應 3     ← 無變化",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V02_vf230_recon.md",
+      "line": 63,
+      "frag": "**R-VS66 逐字所列之正規化不足以達成其目的** —— `vf230_leaves.tsv` 將換行",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V02_vf230_recon.md",
+      "line": 115,
+      "frag": "## 6. W-119 —— DR 波及三分類（R-VS65）",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/upstream/V02_vf230_recon.md",
+      "line": 138,
+      "frag": "> **依 R-VS65 末段**：上列 11 個「不波及」**不是不波及之證明**，",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "VF230"
+    },
+    {
+      "file": "docs/reports/vf230_dr_impact.md",
+      "line": 3,
+      "frag": "**依 R-VS65 之掃描定義（62 包 §3）。**",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pdt24_prep.md",
+      "line": 44,
+      "frag": "若讀為**本 feature 之五個標的**，則兩代 DBC 皆為 1 bit，R-VS67′ 之前提成立。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/vf230_crosscheck.md",
+      "line": 21,
+      "frag": "**本輪採 035**，其已在 `inputs/` 內（R-VS61 之補入由 Pei 執行）。",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/threshold_audit.md",
+      "line": 1,
+      "frag": "# 升級門檻之回溯檢視（D-3，43 輪；R-VS64）",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/threshold_audit.md",
+      "line": 70,
+      "frag": "| 門檻 | 寫死之數 | 該輪實況 | R-VS64 之關係式 |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/delivery_disclosure.md",
+      "line": 14,
+      "frag": "**即：R-VS59(2) 所指之 Comfort 素材，對本 feature 之失效層無任何可取用之內容。**",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/delivery_disclosure.md",
+      "line": 38,
+      "frag": "| **§C** | **實作缺口**（`IMPL_GAP`，R-VS66(a)／R-VS67′）—— 非待補，待開 issue 予 RD | **44** |",
+      "nums": [
+        "R-VS66",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/delivery_disclosure.md",
+      "line": 45,
+      "frag": "> **§C 之 44 條為 48 輪指令所未列** —— 其為 47 輪 W-133 依 R-VS67′ 新增之",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/delivery_disclosure.md",
+      "line": 99,
+      "frag": "> 其訊號名取自 LID `Atlantis` 欄組而**不在基線 DBC**（R-VS67′(2)）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/delivery_disclosure.md",
+      "line": 100,
+      "frag": "> 依 **R-VS66(a)** 照寫並**開 issue 予 RD** —— 開 issue 屬 Pei，本層只標記。",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pilot4_sheet.md",
+      "line": 48,
+      "frag": "| Priority 所依類別（R-VS56） | P0(b)：加熱元件之失效狀態處置；畫面層依 R-VS59(2) 取自 Comfort 素材，而 Comfort 037 之 seat 相關 20 條中含 fail／e",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pilot4_sheet.md",
+      "line": 119,
+      "frag": "| Priority 所依類別（R-VS56） | P0(b)：加熱元件之失效狀態處置；畫面層依 R-VS59(2) 取自 Comfort 素材，而 Comfort 037 之 seat 相關 20 條中含 fail／e",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pilot4_sheet.md",
+      "line": 194,
+      "frag": "| Priority 所依類別（R-VS56） | P0(b)：加熱元件之失效狀態處置；畫面層依 R-VS59(2) 取自 Comfort 素材，而 Comfort 037 之 seat 相關 20 條中含 fail／e",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pilot4_sheet.md",
+      "line": 265,
+      "frag": "| Priority 所依類別（R-VS56） | P0(b)：加熱元件之失效狀態處置；畫面層依 R-VS59(2) 取自 Comfort 素材，而 Comfort 037 之 seat 相關 20 條中含 fail／e",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pilot4_sheet.md",
+      "line": 336,
+      "frag": "| Priority 所依類別（R-VS56） | P0(b)：加熱元件之失效狀態處置；畫面層依 W-115(2) 之逐 leaf 行為層對照，本 leaf 判「PENDING」，故依 R-VS59(4) 標 `PEND",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pilot4_sheet.md",
+      "line": 411,
+      "frag": "| Priority 所依類別（R-VS56） | P0(b)：加熱元件之失效狀態處置；畫面層依 W-115(2) 之逐 leaf 行為層對照，本 leaf 判「PENDING」，故依 R-VS59(4) 標 `PEND",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pilot4_sheet.md",
+      "line": 482,
+      "frag": "| Priority 所依類別（R-VS56） | P0(b)：加熱元件之失效狀態處置；畫面層依 W-115(2) 之逐 leaf 行為層對照，本 leaf 判「PENDING」，故依 R-VS59(4) 標 `PEND",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pilot4_sheet.md",
+      "line": 553,
+      "frag": "| Priority 所依類別（R-VS56） | P1：通風座椅之失效狀態處置（非熱源，不入 P0(b)）；畫面層依 W-115(2) 之逐 leaf 行為層對照，本 leaf 判「PENDING」，故依 R-VS59",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pilot4_sheet.md",
+      "line": 776,
+      "frag": "| Priority 所依類別（R-VS56） | P0(b)：加熱元件之失效狀態處置；畫面層依 R-VS59(2) 取自 Comfort 素材，而 Comfort 037 之 seat 相關 20 條中含 fail／e",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/pilot4_sheet.md",
+      "line": 847,
+      "frag": "| Priority 所依類別（R-VS56） | P1：主要功能邏輯；畫面層依 W-115(2) 之逐 leaf 行為層對照，本 leaf 判「PENDING」，故依 R-VS59(4) 標 `PENDING: DR-",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 1,
+      "frag": "# W-VF39 —— `R-VS59`–`R-VS67` 改號範圍之分類（R-VF45；**只列不改**）",
+      "nums": [
+        "R-VS59",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 9,
+      "frag": "| 必為「現行」 | `RULINGS.md` 之 `> **【(a) 段之「故不寫」效果經 R-VS59（63 包 §1，Pei 2026-…` | 現行 ✅ |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 11,
+      "frag": "| **鑑別**（Part 1 檔名而引用 VF230 線） | `docs/handoff/64_review_round40.md` — `VF230 線現行之 `R-VS59`～`R-VS63` 五條，其標題加註…",
+      "nums": [
+        "R-VS59",
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 13,
+      "frag": "## 1. R-VS67 是否亦撞號（V15 §7 第 1 項）",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 15,
+      "frag": "**否。** `RULINGS.md` 內 `### R-VS67 ——` 僅 **1 個條文起始**（Part 1 之 71 包，「訊號名與值域一律取 LID `Atlantis High` 欄組」）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 18,
+      "frag": "R-VF1–R-VF8 以 `R-VS59`–`R-VS66` 存在（即 A-VF10 之撞號），",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 20,
+      "frag": "其原號 `R-VS67` 已為 Part 1 所用，而其正文從未進入條文簿，",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 35,
+      "frag": "| `ANOMALIES.md` | `| **A-VS124** | **61 包所開之 W-102–W-107 與 DR-27 與 Part 1 既有編號全面撞號** | 38` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 36,
+      "frag": "| `ANOMALIES.md` | `| **A-VS132** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **037 之 8 列判 `Heading`` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 37,
+      "frag": "| `ANOMALIES.md` | `| **A-VS129** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **5 個 `swe_id` 與其 `tit` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 38,
+      "frag": "| `ANOMALIES.md` | `| **A-VS135** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **W-116／W-119 之判準三度修正 ` | R-VS65／R-VS66 | ",
+      "nums": [
+        "R-VS65",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 39,
+      "frag": "| `ANOMALIES.md` | `| **A-VS137** | **`HSW_StatFailSts` 之值域於 `spec_variables.tsv` 與 LID 兩欄` | R-VS59／R-VS62 | ",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 40,
+      "frag": "| `ANOMALIES.md` | `| **A-VS139** | **W-112 之「查得 174／查無 0」為 Layer 3 群層級之命中，非逐 leaf 之畫面層對應*` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 41,
+      "frag": "| `ANOMALIES.md` | `| **A-VS140** | **`$VC_VEH_LINE$` 於 237 leaf 僅 2 處引用，其值為 `WL` 與 `M4 OR` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 42,
+      "frag": "| `ANOMALIES.md` | `| **A-VS142** | **pilot #4 之分層維度 `dr_dependent`（有／無）退化 —— 43/43 皆為「有」*` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 43,
+      "frag": "| `ANOMALIES.md` | `| **A-VS148** | **R-VS67 之 (a)(c) 相衝：44 條已交付 TC 之四階斷言於 1 bit 訊號上無法成立，分` | R-VS66／R-VS67 | ",
+      "nums": [
+        "R-VS66",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 44,
+      "frag": "| `ANOMALIES.md` | `| **A-VS152** | **D-3 令補入之 PDT24 兩檔不在 `inputs/`，與本輪禁區「不補素材」相衝** | 47 輪` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 45,
+      "frag": "| `ANOMALIES.md` | `| **A-VF10** | **`R-VS59`–`R-VS66` 八條各有兩個定義 —— R-VF10 所欲防之撞號至今仍活在 `RUL` | R-VS59／R-VS60／R-",
+      "nums": [
+        "R-VS59",
+        "R-VS60",
+        "R-VS62",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 46,
+      "frag": "| `CROSSLINE.md` | `| **R-VF10** | `RULINGS.md`／`ANOMALIES.md` 之編號 | 同一編號不得有兩個定義 | `grade_` | R-VS59／R-VS66 | ",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 47,
+      "frag": "| `DATA_REQUESTS.md` | `> **40 輪 D-3（依 R-VS61，63 包 §3）**：**性質由阻塞轉確認，不阻塞。**` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 48,
+      "frag": "| `DATA_REQUESTS.md` | `> 依 R-VS61 **仍產 TC**，其值取來源逐字（`STATUS_CCAN3.EngineSts = IDLE_STBL`，**不附` | R-VS61 | 共用簿",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 49,
+      "frag": "| `DATA_REQUESTS.md` | `## DR-8′（**撤回，不送出** —— R-VS62′，65 包 §1；42 輪 D-3。原文保留 —— R-TM13）` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 50,
+      "frag": "| `DATA_REQUESTS.md` | `> **撤回理由（R-VS62′）**：本 DR 縮限後之三碼（`M182`／`M189`／`M240`）` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 51,
+      "frag": "| `DATA_REQUESTS.md` | `> **40 輪 D-3 之縮限（依 R-VS62，63 包 §4，Pei 2026-08-23）**：` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 52,
+      "frag": "| `DATA_REQUESTS.md` | `> **40 輪 D-3（依 R-VS59，63 包 §6）**：**性質由阻塞轉確認，不阻塞。**` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 53,
+      "frag": "| `DATA_REQUESTS.md` | `> 其 61 leaf 依 R-VS57／R-VS59 照寫，訊號名與值域取來源逐字並標 `dr_dependent`；` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 54,
+      "frag": "| `DATA_REQUESTS.md` | `**不得代用 CFTS044 之 SYS2** —— 其為該 CFTS 專屬（R-VS63 之末段明排除）。` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 55,
+      "frag": "| `DATA_REQUESTS.md` | `補入須依 **R-VS61**（由 Pei 執行；2026-08-23 之免除為單次個案）。` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 56,
+      "frag": "| `RULINGS.md` | `> **【(a) 段之「故不寫」效果經 R-VS59（63 包 §1，Pei 2026-08-23）撤回；原文保留不刪】**` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 57,
+      "frag": "| `RULINGS.md` | `> 廢止理由：該判準之前提為「值未解即不可寫」，而 **R-VS61 已否定該前提**。` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 58,
+      "frag": "| `RULINGS.md` | `> **【(2) 經 R-VS67 推翻，2026-08-23（Pei）；原文保留不刪】**` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 59,
+      "frag": "| `RULINGS.md` | `第五條（R-VS63）為 Pei 於同日就 61 包 §6 第 3–5 項另行之裁定。` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 60,
+      "frag": "| `RULINGS.md` | `### R-VS59 —— VF230 之 B 欄序號自 238 起（61 包 §3，**Pei 裁定 2026-08-23**）` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 61,
+      "frag": "| `RULINGS.md` | `> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 62,
+      "frag": "| `RULINGS.md` | `R-VS59（VF230 序號基準，Pei 裁定 2026-08-23）` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 63,
+      "frag": "| `RULINGS.md` | `4. F 欄「Test Case ID」兩本 workbook 皆為 0 filled；R-VS59 **不**新增` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 64,
+      "frag": "| `RULINGS.md` | `### R-VS60 —— VF230 併入 `vehicle_setting`，不另開 feature（61 包 §3，**Pei 裁定 ` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 65,
+      "frag": "| `RULINGS.md` | `> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 66,
+      "frag": "| `RULINGS.md` | `R-VS60（VF230 之 feature 歸屬，Pei 裁定 2026-08-23）` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 67,
+      "frag": "| `RULINGS.md` | `### R-VS61 —— 素材補入由 Pei 執行（61 包 §3，**Pei 裁定 2026-08-23**）` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 68,
+      "frag": "| `RULINGS.md` | `> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 69,
+      "frag": "| `RULINGS.md` | `R-VS61（VF230 素材補入，Pei 裁定 2026-08-23）` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 70,
+      "frag": "| `RULINGS.md` | `### R-VS62 —— `output/` 之證據位階（61 包 §3，**Pei 裁定 2026-08-23**）` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 71,
+      "frag": "| `RULINGS.md` | `> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 72,
+      "frag": "| `RULINGS.md` | `R-VS62（Pei 先前彙整之證據位階，Pei 裁定 2026-08-23）` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 73,
+      "frag": "| `RULINGS.md` | `- 其所含之任何列序，**不**構成 R-VS59 之續號依據` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 74,
+      "frag": "| `RULINGS.md` | `### R-VS63 —— 專案級 REF 素材得由 CFTS044 代用（**Pei 裁定 2026-08-23**）` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 75,
+      "frag": "| `RULINGS.md` | `> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 76,
+      "frag": "| `RULINGS.md` | `R-VS63（VF230 之 REF 素材代用，Pei 裁定 2026-08-23）` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 77,
+      "frag": "| `RULINGS.md` | `> **編號說明（Pei 裁定 2026-08-23）**：下列四條為 **CFTS044 本線**之 R-VS59～R-VS62，` | R-VS59／R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 78,
+      "frag": "| `RULINGS.md` | `### R-VS59 —— 委派不等於不寫（63 包 §1，**Pei 裁定 2026-08-23**；取代 R-VS7(a) 之效果）` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 79,
+      "frag": "| `RULINGS.md` | `R-VS59（Pei 2026-08-23）` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 80,
+      "frag": "| `RULINGS.md` | `### R-VS60 —— A-VS103 之跨列引入，准（63 包 §2，**Pei 裁定 2026-08-23**）` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 81,
+      "frag": "| `RULINGS.md` | `R-VS60（Pei 2026-08-23）` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 82,
+      "frag": "| `RULINGS.md` | `### R-VS61 —— DR-19：無匯流排對應者，寫分析所載之名（63 包 §3，**Pei 裁定 2026-08-23**）` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 83,
+      "frag": "| `RULINGS.md` | `R-VS61（Pei 2026-08-23）` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 84,
+      "frag": "| `RULINGS.md` | `### R-VS62 —— DR-8′：車型碼取自 PROXI 表（63 包 §4，**Pei 裁定 2026-08-23**）` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 85,
+      "frag": "| `RULINGS.md` | `> **【經 R-VS62′ 取代，2026-08-23；原文保留不刪，見 R-TM13】**` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 86,
+      "frag": "| `RULINGS.md` | `R-VS62（Pei 2026-08-23）` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 87,
+      "frag": "| `RULINGS.md` | `### R-VS64 —— W 號改編追認（62 包 §3，分析層裁定 2026-08-23）` | R-VS64 | 共用簿 |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 88,
+      "frag": "| `RULINGS.md` | `R-VS64（VF230 進場之 W 號改編，分析層裁定 2026-08-23）` | R-VS64 | 共用簿 |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 89,
+      "frag": "| `RULINGS.md` | `### R-VS65 —— W-115（DR 波及判定）之輸入改以 token 掃描（62 包 §3，分析層裁定 2026-08-23）` | R-VS65 | 共用簿 |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 90,
+      "frag": "| `RULINGS.md` | `R-VS65（DR 波及判定之輸入，分析層裁定 2026-08-23）` | R-VS65 | 共用簿 |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 91,
+      "frag": "| `RULINGS.md` | `### R-VS66 —— Layer 2 決定前之前置複驗（62 包 §3，分析層裁定 2026-08-23）` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 92,
+      "frag": "| `RULINGS.md` | `R-VS66（Layer 2 交集之正規化複驗，分析層裁定 2026-08-23）` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 93,
+      "frag": "| `RULINGS.md` | `### R-VS63 —— 編號分線（64 包 §4，分析層裁定 2026-08-23）` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 94,
+      "frag": "| `RULINGS.md` | `R-VS63（分析層裁定 2026-08-23）` | R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 95,
+      "frag": "| `RULINGS.md` | `VF230 線現行之 `R-VS59`～`R-VS63` 五條，其標題加註` | R-VS59／R-VS63 | 共用簿 |",
+      "nums": [
+        "R-VS59",
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 96,
+      "frag": "| `RULINGS.md` | `**引用之義務**：跨線引用時須標線名（如「VF230 線之 R-VS59」）。` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 97,
+      "frag": "| `RULINGS.md` | `### R-VS62′ —— `$VC_VEH_LINE$` 之值域取 PROXI 表列 466；DR-8′ 撤回（65 包 §1，分析層裁` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 98,
+      "frag": "| `RULINGS.md` | `R-VS62′（分析層裁定 2026-08-23，取代 R-VS62）` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 99,
+      "frag": "| `RULINGS.md` | `R-VS62 原文所列之四碼（`332`／`WS`／`DT`／`HDCC`）**於母體命中 0**，` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 100,
+      "frag": "| `RULINGS.md` | `R-VS60 之跨列引入只實作於驅動側，致 batch17 首次自檢報 4 項 R-VS39 違規）。` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 101,
+      "frag": "| `RULINGS.md` | `### R-VS64 —— 升級門檻不得以常數表示（68 包 §1，分析層裁定 2026-08-23）` | R-VS64 | 共用簿 |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 102,
+      "frag": "| `RULINGS.md` | `R-VS64（分析層裁定 2026-08-23）` | R-VS64 | 共用簿 |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 103,
+      "frag": "| `RULINGS.md` | `成因：R-VF2（原 R-VS60）令 VF230 併入 `vehicle_setting`，兩條分析線` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 104,
+      "frag": "| `RULINGS.md` | `理由：R-VF8（原 R-VS66）之逐字正規化不足以達成其自身目的 ——` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 105,
+      "frag": "| `RULINGS.md` | `### R-VS65 —— （69 包 §1，44 輪之條文；46 輪 D-2 補轉錄）` | R-VS65 | 共用簿 |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 106,
+      "frag": "| `RULINGS.md` | `R-VS65（分析層裁定 2026-08-23）` | R-VS65 | 共用簿 |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 107,
+      "frag": "| `RULINGS.md` | `### R-VS66 —— 規格明確而實作未見之處置（71 包 §2）` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 108,
+      "frag": "| `RULINGS.md` | `R-VS66（分析層裁定 2026-08-23）` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 109,
+      "frag": "| `RULINGS.md` | `**本例（`*_Cmd_Tlm`）依 R-VS67 改由 LID 取名，已無實作缺口，(a) 不適用。**` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 110,
+      "frag": "| `RULINGS.md` | `### R-VS67 —— 訊號名與值域一律取 LID 之 `Atlantis High` 欄組（71 包 §1，**Pei 裁定 2026` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 111,
+      "frag": "| `RULINGS.md` | `> **【經 R-VS67′ 限縮，2026-08-23（Pei 追認）；原文保留不刪】**` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 112,
+      "frag": "| `RULINGS.md` | `> 並依 R-VS66(a) 標 `impl_gap`。**(推翻 R-VS51(2) 之部分不變。)**` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 113,
+      "frag": "| `RULINGS.md` | `R-VS67（Pei 2026-08-23）` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 114,
+      "frag": "| `RULINGS.md` | `### R-VS67′ —— 欄組之選取依「能承載」，不能承載者標 `impl_gap`（73 包 §1，**Pei 追認 2026-08-` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 115,
+      "frag": "| `RULINGS.md` | `R-VS67′（**Pei 追認 2026-08-23**，限縮 R-VS67）` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 116,
+      "frag": "| `RULINGS.md` | `並依 **R-VS66(a)** 標 `impl_gap = <訊號名>`` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 117,
+      "frag": "| `RULINGS.md` | `該訊號不在基線 DBC → **標 `impl_gap`，依 R-VS66(a) 照寫、開 issue 予 RD**` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 118,
+      "frag": "| `RULINGS.md` | `(d) **DR-25′ 維持撤回** —— 其標的（訊號不在 DBC）依 R-VS66 已非 DR 之事由，` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 119,
+      "frag": "| `RULINGS.md` | `**⚠ 檢查二之「必不命中」錨點於現行全檔即失敗** —— 非錨點有誤，是**真違反**：`R-VS59`–`R-VS66` **各有兩個條` | R-VS59／R-VS66 | 共用",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 120,
+      "frag": "| `RULINGS.md` | `值無對應而來源有逐字   → `= <來源逐字值>`，**不附 raw**（R-VS61），` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 121,
+      "frag": "| `RULINGS.md` | `而 R-VS61 已否定該前提。R-VS47 之 W1／W2 分界依本條重定。` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 122,
+      "frag": "| `RULINGS.md` | `**W-VF39 實測發現**：`R-VF9`（Test Group）**自始未以任何編號落檔於 `RULINGS.md`** —— 其原編` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 123,
+      "frag": "| `RULINGS.md` | `> **原文之編號為 `R-VS67`，逐字保留於區塊內**（R-VF45 三之精神：使歷史引用可解）。` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 124,
+      "frag": "| `RULINGS.md` | `R-VS67（VF230 之 Test Group，Pei 裁定 2026-08-23）` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 125,
+      "frag": "| `RULINGS.md` | `（R-VS60），單一 feature 內之 Test Group 保持單值，優先於 spec 模組名之` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 126,
+      "frag": "| `docs/INDEX.md` | `| 34 | — | 母體層冗餘掃描、R-VS57(4) 重跑、產能終局盤點 | [61](handoff/61_review_round3` | R-VS59／R-VS61／R",
+      "nums": [
+        "R-VS59",
+        "R-VS61",
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 127,
+      "frag": "| `feature.yaml` | `# 本 feature 含兩份交付（R-VS60）：` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 128,
+      "frag": "| `feature.yaml` | `# 尋得，惟未補入（R-VS61）且缺 6 個 E-Save leaf。` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 129,
+      "frag": "| `feature.yaml` | `# R-VS59 —— B 欄「No.#/序號」自 238 起連續遞增。` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 130,
+      "frag": "| `scripts/batch15_w108.py` | `\"**以 pre_conditions 之階數配置分辨**（R-VS59 前之既有慣例）。\",` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 131,
+      "frag": "| `scripts/batch16_w113.py` | `（A-VS116 之標的，本輪因 R-VS59 首次入池）。同序內逐 Layer 2 輪流 ＋ reqid 升冪。` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 132,
+      "frag": "| `scripts/batch16_w113.py` | `故本批之畫面層斷言一律標 `PENDING: DR-5-B`（R-VS59(4)）。見上繳 35 §2.2。` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 133,
+      "frag": "| `scripts/batch16_w113.py` | `\"reasoning\": (why + \"；畫面層依 R-VS59(2) 取自 Comfort 素材，\"` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 134,
+      "frag": "| `scripts/batch16_w113.py` | `\"故依 R-VS59(4) 標 `PENDING: DR-5-B`\"),` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 135,
+      "frag": "| `scripts/batch16_w113.py` | `\"selection\": \"W-111 後之池 **35**（R-VS59 解除 delegate 之扣除）。\"` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 136,
+      "frag": "| `scripts/batch16_w113.py` | `\"screen_layer\": \"R-VS59(2) 之來源不足 —— 全 10 條之畫面層斷言標 `PENDING: DR-5-B`（R-` | R-VS5",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 137,
+      "frag": "| `scripts/batch16_w113.py` | `\"自 R-VS59 撤回 `delegate = blocked` 之扣除後首次入池）。\"` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 138,
+      "frag": "| `scripts/batch17_w116.py` | `查無者依 R-VS59(4) 標 `PENDING`。` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 139,
+      "frag": "| `scripts/batch17_w116.py` | `axis = f\"本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。\"` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 140,
+      "frag": "| `scripts/batch17_w116.py` | `+ (\"故依 R-VS59(4) 標 `PENDING: DR-5-B`\"` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 141,
+      "frag": "| `scripts/batch17_w116.py` | `\"screen_layer\": \"依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS5` | R-VS5",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 142,
+      "frag": "| `scripts/batch17_w116.py` | `\"`FR_VS_Cmd_Tlm` 之二條為 R-VS60 跨列引入後首次可寫。\",` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 143,
+      "frag": "| `scripts/batch18_w119.py` | `axis = f\"本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。\"` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 144,
+      "frag": "| `scripts/batch18_w119.py` | `+ (\"，故依 R-VS59(4) 標 `PENDING: DR-5-B`\"` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 145,
+      "frag": "| `scripts/batch18_w119.py` | `\"screen_layer\": \"依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS5` | R-VS5",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 146,
+      "frag": "| `scripts/batch19_w122.py` | `**依 R-VS64，本批不寫死條數** —— 池扣除 held_out 後有幾條即取幾條。` | R-VS64 | 共用簿 |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 147,
+      "frag": "| `scripts/batch19_w122.py` | `axis = f\"本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。\"` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 148,
+      "frag": "| `scripts/batch19_w122.py` | `+ (\"，故依 R-VS59(4) 標 `PENDING: DR-5-B`\"` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 149,
+      "frag": "| `scripts/batch19_w122.py` | `\"screen_layer\": \"依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS5` | R-VS5",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 150,
+      "frag": "| `scripts/carry_test_w133.py` | `\"\"\"W-133（73 包 §5）—— R-VS67′ 之「能承載」判準與欄組選取。` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 151,
+      "frag": "| `scripts/carry_test_w133.py` | `R-VS67′：欄組之選取依下列次序 ——` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 152,
+      "frag": "| `scripts/carry_test_w133.py` | `(2) 不能承載者 → 取**能承載之欄組**（`Atlantis`），並依 R-VS66(a) 標 `impl_gap`` | R-VS66 | 共用",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 153,
+      "frag": "| `scripts/carry_test_w133.py` | `\"\"\"R-VS67′ 之次序選取。\"\"\"` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 154,
+      "frag": "| `scripts/dr_conflict.py` | `# **R-VS61（63 包 §3，Pei 2026-08-23）**：無匯流排對應者仍產 TC，` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 155,
+      "frag": "| `scripts/dr_conflict.py` | `\"DR-19\": (\"value\", set(), r\"(?!x)x\", \"待覆（性質轉確認，R-VS61；不阻塞）\"),` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 156,
+      "frag": "| `scripts/dr_conflict.py` | `# **R-VS62（63 包 §4，Pei 2026-08-23）**：`VC_VEH_LINE` 之車型碼取自` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 157,
+      "frag": "| `scripts/dr_conflict.py` | `\"DR-8\": (\"value\", {\"VC_VEH_LINE\"}, r\"M182|M189|M240\", \"待送（縮為三碼，R-VS62）` | R-VS62",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 158,
+      "frag": "| `scripts/impl_gap_w133.py` | `\"\"\"W-133(4)（73 包 §5）—— 依 R-VS67′ 回復 44 條之斷言並標 `impl_gap`。` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 159,
+      "frag": "| `scripts/impl_gap_w133.py` | `46 輪 W-131 依 R-VS67 將訊號名改取 `Atlantis High` 欄組之 `*_Tlm`（1 bit），` | R-VS67 | 共用簿",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 160,
+      "frag": "| `scripts/impl_gap_w133.py` | `致四階斷言無法成立（44 條）。R-VS67′ 令**不能承載者取能承載之欄組**` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 161,
+      "frag": "| `scripts/impl_gap_w133.py` | `（`Atlantis` → `*_Cmd_Tlm`，四階）並依 **R-VS66(a)** 標 `impl_gap`。` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 162,
+      "frag": "| `scripts/impl_gap_w133.py` | ``dr15_exposed` 之標記**保留**（R-VS67′(a)）—— DR-15′ 之答覆仍可能改其形態。` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 163,
+      "frag": "| `scripts/impl_gap_w133.py` | `BACK = {  # `Atlantis High`（1 bit）→ `Atlantis`（四階），R-VS67′(2)` | R-VS67 | 共用簿 ",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 164,
+      "frag": "| `scripts/impl_gap_w133.py` | `tc[\"signal_source\"] = (\"LID `Atlantis` 欄組（R-VS67′(2)：`Atlantis High` \"` | R-VS",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 165,
+      "frag": "| `scripts/impl_gap_w133.py` | `+ (f\"IMPL_GAP: {tc['impl_gap']} —— 依 R-VS66(a) 照寫，\"` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 166,
+      "frag": "| `scripts/impl_gap_w133.py` | `d[\"revision\"] = (\"W-133(4)（47 輪）：依 R-VS67′ 取能承載之 `Atlantis` 欄組，\"` | R-VS67 | 共",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 167,
+      "frag": "| `scripts/impl_gap_w133.py` | `\"標 `impl_gap`（R-VS66(a)）；`dr15_exposed` 保留\")` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 168,
+      "frag": "| `scripts/screen_layer_w132.py` | `**D-2 圖示變更類**（72 包 §1 之 R-VS59(4) 細化）：` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 169,
+      "frag": "| `scripts/screen_source_w112.py` | `\"\"\"W-112（63 包 §7）—— Comfort 素材之畫面層對照表（R-VS59(2) 之前置）。` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 170,
+      "frag": "| `scripts/screen_source_w112.py` | `**必列**：查得／查無兩數。**查無者即 R-VS59(4) 之 PENDING 標的。**` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 171,
+      "frag": "| `scripts/screen_source_w115.py` | `# R-VS59 已廢除 `blocked` 之值；`delegation_lookup.tsv` 尚未同步，` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 172,
+      "frag": "| `scripts/selfcheck_w53.py` | `# **R-VS60（63 包 §2，Pei 2026-08-23）**：`FR_VS_Cmd_Tlm` 之值域准自` | R-VS60 | 共用簿 |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 173,
+      "frag": "| `scripts/signal_rewrite_w131.py` | `\"\"\"W-131（72 包 §6；承 71 包 §5 之 W-127＋W-128）—— R-VS67 之訊號名改寫。` | R-VS67 | 共",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 174,
+      "frag": "| `scripts/signal_rewrite_w131.py` | `R-VS67：訊號名、message、值域**一律取 LID `Atlantis High` 欄組**，` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 175,
+      "frag": "| `scripts/signal_rewrite_w131.py` | `其為 **DR-15′ 之標的**，依 R-VS67(d) 逐條標 `dr15_exposed = yes`。` | R-VS67 | 共用簿 ",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 176,
+      "frag": "| `scripts/signal_rewrite_w131.py` | `+ (\"BLOCKED: DR-15′ —— 改依 R-VS67 取 `*_Tlm`（1 bit，\"` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 177,
+      "frag": "| `scripts/signal_rewrite_w131.py` | `tc[\"signal_source\"] = \"LID `Atlantis High` 欄組（R-VS67）\"` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 178,
+      "frag": "| `scripts/signal_rewrite_w131.py` | `d[\"revision\"] = (\"W-131（46 輪）：依 R-VS67 將訊號名改取 LID \"` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 179,
+      "frag": "| `scripts/vehline_anchor_w115.py` | `\"\"\"W-115(1)（64 包 §5）—— R-VS62 之真錨點。` | R-VS62 | 共用簿 |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 180,
+      "frag": "| `scripts/vf230_crosscheck.py` | `\"**本輪採 035**，其已在 `inputs/` 內（R-VS61 之補入由 Pei 執行）。\", \"\",` | R-VS61 | 共用簿 |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 181,
+      "frag": "| `scripts/vf230_layer2.py` | `\"\"\"比對用鍵 —— R-VS66 之正規化（W-116）。` | R-VS66 | 共用簿 |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 182,
+      "frag": "| `scripts/vf230_w119_dr_impact.py` | `依 **R-VS65** 之掃描定義（逐字）：` | R-VS65 | 共用簿 |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 183,
+      "frag": "| `scripts/vf230_w119_dr_impact.py` | `# 掃描面：title ＋ desc（R-VS65）` | R-VS65 | 共用簿 |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 184,
+      "frag": "| `scripts/vf230_w119_dr_impact.py` | `\"**依 R-VS65 之掃描定義（62 包 §3）。**\", \"\",` | R-VS65 | 共用簿 |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 185,
+      "frag": "| `scripts/writability_driver.py` | `\"\"\"**R-VS67（71 包 §1，Pei 2026-08-23）**：一律取 `Atlantis High` 欄組。` | R-VS67 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 186,
+      "frag": "| `scripts/writability_driver.py` | `# **R-VS67′（73 包 §1，Pei 追認 2026-08-23）**：欄組依「能承載」擇之 ——` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 187,
+      "frag": "| `scripts/writability_driver.py` | `# **R-VS60（63 包 §2，Pei 2026-08-23）**：`FR_VS_Cmd_Tlm` 之值域` | R-VS60 | 共用簿 ",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 188,
+      "frag": "| `scripts/writability_driver.py` | `# **R-VS67′**：欄組之選取依「能承載」，**不依條文之架構標籤** ——` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 189,
+      "frag": "| `scripts/writability_driver.py` | `# 故不再以 `col == \"Atlantis\"` 為閘（R-VS51(2) 已由 R-VS67 推翻，` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 190,
+      "frag": "| `scripts/writability_driver.py` | `# 而 R-VS67 之「一律 High」又由 R-VS67′ 限縮）。` | R-VS67 | 共用簿 |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 191,
+      "frag": "| `scripts/writability_driver.py` | `**R-VS59（63 包 §1，Pei 2026-08-23）**：委派不免除產出 TC 之義務 ——` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 192,
+      "frag": "| `scripts/writability_driver.py` | `# R-VS59：`blocked` 之值廢除` | R-VS59 | 共用簿 |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 220,
+      "frag": "| `R-VS59` | `R-VF1` |",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 221,
+      "frag": "| `R-VS60` | `R-VF2` |",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 222,
+      "frag": "| `R-VS61` | `R-VF3` |",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 223,
+      "frag": "| `R-VS62` | `R-VF4` |",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 224,
+      "frag": "| `R-VS63` | `R-VF5` |",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 225,
+      "frag": "| `R-VS64` | `R-VF6` |",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 226,
+      "frag": "| `R-VS65` | `R-VF7` |",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 227,
+      "frag": "| `R-VS66` | `R-VF8` |",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 228,
+      "frag": "| `R-VS67` | `R-VF9` |",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "docs/reports/wvf39_renumber_scope.md",
+      "line": 230,
+      "frag": "> 歷史文件中之 `R-VS59`–`R-VS67` 可能指兩義之任一，**以該文件之線別判之**。使歷史引用**可解，而非可靠**。",
+      "nums": [
+        "R-VS59",
+        "R-VS67"
+      ],
+      "cls": "歷史",
+      "side": "共用簿"
+    },
+    {
+      "file": "CROSSLINE.md",
+      "line": 22,
+      "frag": "| **R-VF10** | `RULINGS.md`／`ANOMALIES.md` 之編號 | 同一編號不得有兩個定義 | `grade_overrides.py --check`（檢查二，R-VF40）—— **⚠ ",
+      "nums": [
+        "R-VS59",
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/screen_layer_w132.py",
+      "line": 3,
+      "frag": "**D-2 圖示變更類**（72 包 §1 之 R-VS59(4) 細化）：",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/dr_conflict.py",
+      "line": 25,
+      "frag": "# **R-VS61（63 包 §3，Pei 2026-08-23）**：無匯流排對應者仍產 TC，",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/dr_conflict.py",
+      "line": 29,
+      "frag": "\"DR-19\": (\"value\", set(), r\"(?!x)x\", \"待覆（性質轉確認，R-VS61；不阻塞）\"),",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/dr_conflict.py",
+      "line": 35,
+      "frag": "# **R-VS62（63 包 §4，Pei 2026-08-23）**：`VC_VEH_LINE` 之車型碼取自",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/dr_conflict.py",
+      "line": 38,
+      "frag": "\"DR-8\": (\"value\", {\"VC_VEH_LINE\"}, r\"M182|M189|M240\", \"待送（縮為三碼，R-VS62）\"),",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "line": 64,
+      "frag": "\"\"\"**R-VS67（71 包 §1，Pei 2026-08-23）**：一律取 `Atlantis High` 欄組。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "line": 83,
+      "frag": "# **R-VS67′（73 包 §1，Pei 追認 2026-08-23）**：欄組依「能承載」擇之 ——",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "line": 95,
+      "frag": "# **R-VS60（63 包 §2，Pei 2026-08-23）**：`FR_VS_Cmd_Tlm` 之值域",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "line": 255,
+      "frag": "# **R-VS67′**：欄組之選取依「能承載」，**不依條文之架構標籤** ——",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "line": 256,
+      "frag": "# 故不再以 `col == \"Atlantis\"` 為閘（R-VS51(2) 已由 R-VS67 推翻，",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "line": 257,
+      "frag": "# 而 R-VS67 之「一律 High」又由 R-VS67′ 限縮）。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "line": 307,
+      "frag": "**R-VS59（63 包 §1，Pei 2026-08-23）**：委派不免除產出 TC 之義務 ——",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "line": 340,
+      "frag": "# R-VS59：`blocked` 之值廢除",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch15_w108.py",
+      "line": 155,
+      "frag": "\"**以 pre_conditions 之階數配置分辨**（R-VS59 前之既有慣例）。\",",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/screen_source_w112.py",
+      "line": 1,
+      "frag": "\"\"\"W-112（63 包 §7）—— Comfort 素材之畫面層對照表（R-VS59(2) 之前置）。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/screen_source_w112.py",
+      "line": 12,
+      "frag": "**必列**：查得／查無兩數。**查無者即 R-VS59(4) 之 PENDING 標的。**",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch17_w116.py",
+      "line": 8,
+      "frag": "查無者依 R-VS59(4) 標 `PENDING`。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch17_w116.py",
+      "line": 134,
+      "frag": "axis = f\"本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。\"",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch17_w116.py",
+      "line": 155,
+      "frag": "+ (\"故依 R-VS59(4) 標 `PENDING: DR-5-B`\"",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch17_w116.py",
+      "line": 172,
+      "frag": "\"screen_layer\": \"依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS59(4)）\",",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch17_w116.py",
+      "line": 176,
+      "frag": "\"`FR_VS_Cmd_Tlm` 之二條為 R-VS60 跨列引入後首次可寫。\",",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/vf230_w119_dr_impact.py",
+      "line": 3,
+      "frag": "依 **R-VS65** 之掃描定義（逐字）：",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/vf230_w119_dr_impact.py",
+      "line": 99,
+      "frag": "# 掃描面：title ＋ desc（R-VS65）",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/vf230_w119_dr_impact.py",
+      "line": 136,
+      "frag": "\"**依 R-VS65 之掃描定義（62 包 §3）。**\", \"\",",
+      "nums": [
+        "R-VS65"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "line": 4,
+      "frag": "（A-VS116 之標的，本輪因 R-VS59 首次入池）。同序內逐 Layer 2 輪流 ＋ reqid 升冪。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "line": 8,
+      "frag": "故本批之畫面層斷言一律標 `PENDING: DR-5-B`（R-VS59(4)）。見上繳 35 §2.2。",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "line": 113,
+      "frag": "\"reasoning\": (why + \"；畫面層依 R-VS59(2) 取自 Comfort 素材，\"",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "line": 115,
+      "frag": "\"故依 R-VS59(4) 標 `PENDING: DR-5-B`\"),",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "line": 125,
+      "frag": "\"selection\": \"W-111 後之池 **35**（R-VS59 解除 delegate 之扣除）。\"",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "line": 131,
+      "frag": "\"screen_layer\": \"R-VS59(2) 之來源不足 —— 全 10 條之畫面層斷言標 `PENDING: DR-5-B`（R-VS59(4)）\",",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "line": 134,
+      "frag": "\"自 R-VS59 撤回 `delegate = blocked` 之扣除後首次入池）。\"",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/vehline_anchor_w115.py",
+      "line": 1,
+      "frag": "\"\"\"W-115(1)（64 包 §5）—— R-VS62 之真錨點。",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/vf230_layer2.py",
+      "line": 28,
+      "frag": "\"\"\"比對用鍵 —— R-VS66 之正規化（W-116）。",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/screen_source_w115.py",
+      "line": 82,
+      "frag": "# R-VS59 已廢除 `blocked` 之值；`delegation_lookup.tsv` 尚未同步，",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/vf230_crosscheck.py",
+      "line": 136,
+      "frag": "\"**本輪採 035**，其已在 `inputs/` 內（R-VS61 之補入由 Pei 執行）。\", \"\",",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/signal_rewrite_w131.py",
+      "line": 1,
+      "frag": "\"\"\"W-131（72 包 §6；承 71 包 §5 之 W-127＋W-128）—— R-VS67 之訊號名改寫。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/signal_rewrite_w131.py",
+      "line": 3,
+      "frag": "R-VS67：訊號名、message、值域**一律取 LID `Atlantis High` 欄組**，",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/signal_rewrite_w131.py",
+      "line": 16,
+      "frag": "其為 **DR-15′ 之標的**，依 R-VS67(d) 逐條標 `dr15_exposed = yes`。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/signal_rewrite_w131.py",
+      "line": 76,
+      "frag": "+ (\"BLOCKED: DR-15′ —— 改依 R-VS67 取 `*_Tlm`（1 bit，\"",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/signal_rewrite_w131.py",
+      "line": 80,
+      "frag": "tc[\"signal_source\"] = \"LID `Atlantis High` 欄組（R-VS67）\"",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/signal_rewrite_w131.py",
+      "line": 82,
+      "frag": "d[\"revision\"] = (\"W-131（46 輪）：依 R-VS67 將訊號名改取 LID \"",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch18_w119.py",
+      "line": 165,
+      "frag": "axis = f\"本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。\"",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch18_w119.py",
+      "line": 180,
+      "frag": "+ (\"，故依 R-VS59(4) 標 `PENDING: DR-5-B`\"",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch18_w119.py",
+      "line": 198,
+      "frag": "\"screen_layer\": \"依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS59(4)）\",",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "line": 1,
+      "frag": "\"\"\"W-133(4)（73 包 §5）—— 依 R-VS67′ 回復 44 條之斷言並標 `impl_gap`。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "line": 3,
+      "frag": "46 輪 W-131 依 R-VS67 將訊號名改取 `Atlantis High` 欄組之 `*_Tlm`（1 bit），",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "line": 4,
+      "frag": "致四階斷言無法成立（44 條）。R-VS67′ 令**不能承載者取能承載之欄組**",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "line": 5,
+      "frag": "（`Atlantis` → `*_Cmd_Tlm`，四階）並依 **R-VS66(a)** 標 `impl_gap`。",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "line": 7,
+      "frag": "`dr15_exposed` 之標記**保留**（R-VS67′(a)）—— DR-15′ 之答覆仍可能改其形態。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "line": 18,
+      "frag": "BACK = {  # `Atlantis High`（1 bit）→ `Atlantis`（四階），R-VS67′(2)",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "line": 58,
+      "frag": "tc[\"signal_source\"] = (\"LID `Atlantis` 欄組（R-VS67′(2)：`Atlantis High` \"",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "line": 63,
+      "frag": "+ (f\"IMPL_GAP: {tc['impl_gap']} —— 依 R-VS66(a) 照寫，\"",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "line": 70,
+      "frag": "d[\"revision\"] = (\"W-133(4)（47 輪）：依 R-VS67′ 取能承載之 `Atlantis` 欄組，\"",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "line": 71,
+      "frag": "\"標 `impl_gap`（R-VS66(a)）；`dr15_exposed` 保留\")",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/carry_test_w133.py",
+      "line": 1,
+      "frag": "\"\"\"W-133（73 包 §5）—— R-VS67′ 之「能承載」判準與欄組選取。",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/carry_test_w133.py",
+      "line": 3,
+      "frag": "R-VS67′：欄組之選取依下列次序 ——",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/carry_test_w133.py",
+      "line": 5,
+      "frag": "(2) 不能承載者 → 取**能承載之欄組**（`Atlantis`），並依 R-VS66(a) 標 `impl_gap`",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/carry_test_w133.py",
+      "line": 82,
+      "frag": "\"\"\"R-VS67′ 之次序選取。\"\"\"",
+      "nums": [
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch19_w122.py",
+      "line": 3,
+      "frag": "**依 R-VS64，本批不寫死條數** —— 池扣除 held_out 後有幾條即取幾條。",
+      "nums": [
+        "R-VS64"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch19_w122.py",
+      "line": 164,
+      "frag": "axis = f\"本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。\"",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch19_w122.py",
+      "line": 179,
+      "frag": "+ (\"，故依 R-VS59(4) 標 `PENDING: DR-5-B`\"",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/batch19_w122.py",
+      "line": 197,
+      "frag": "\"screen_layer\": \"依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS59(4)）\",",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "scripts/selfcheck_w53.py",
+      "line": 41,
+      "frag": "# **R-VS60（63 包 §2，Pei 2026-08-23）**：`FR_VS_Cmd_Tlm` 之值域准自",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "line": 332,
+      "frag": "> **40 輪 D-3（依 R-VS61，63 包 §3）**：**性質由阻塞轉確認，不阻塞。**",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "line": 334,
+      "frag": "> 依 R-VS61 **仍產 TC**，其值取來源逐字（`STATUS_CCAN3.EngineSts = IDLE_STBL`，**不附 label**），",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "line": 624,
+      "frag": "## DR-8′（**撤回，不送出** —— R-VS62′，65 包 §1；42 輪 D-3。原文保留 —— R-TM13）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "line": 626,
+      "frag": "> **撤回理由（R-VS62′）**：本 DR 縮限後之三碼（`M182`／`M189`／`M240`）",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "line": 647,
+      "frag": "> **40 輪 D-3 之縮限（依 R-VS62，63 包 §4，Pei 2026-08-23）**：",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "line": 785,
+      "frag": "> **40 輪 D-3（依 R-VS59，63 包 §6）**：**性質由阻塞轉確認，不阻塞。**",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "line": 786,
+      "frag": "> 其 61 leaf 依 R-VS57／R-VS59 照寫，訊號名與值域取來源逐字並標 `dr_dependent`；",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "line": 963,
+      "frag": "**不得代用 CFTS044 之 SYS2** —— 其為該 CFTS 專屬（R-VS63 之末段明排除）。",
+      "nums": [
+        "R-VS63"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "line": 976,
+      "frag": "補入須依 **R-VS61**（由 Pei 執行；2026-08-23 之免除為單次個案）。",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 132,
+      "frag": "| **A-VS124** | **61 包所開之 W-102–W-107 與 DR-27 與 Part 1 既有編號全面撞號** | 38 輪 VF230 進場：Part 1 之 W 號已用至 **W-109**，其中",
+      "nums": [
+        "R-VS60"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 137,
+      "frag": "| **A-VS132** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **037 之 8 列判 `Heading` 而 035 SYSRA 判 `Functional Requirement` ",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 140,
+      "frag": "| **A-VS129** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **5 個 `swe_id` 與其 `title` 內嵌換行（分析層開立，62 包 §2.3）** | 38 輪 W-116",
+      "nums": [
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 142,
+      "frag": "| **A-VS135** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **W-116／W-119 之判準三度修正 —— R-VS66 之正規化清單與 R-VS65 之 token 定義皆不足以達",
+      "nums": [
+        "R-VS65",
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 144,
+      "frag": "| **A-VS137** | **`HSW_StatFailSts` 之值域於 `spec_variables.tsv` 與 LID 兩欄組皆為空，而基線 DBC 有其完整 `VAL_`** | 40 輪 W-111：",
+      "nums": [
+        "R-VS59",
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 146,
+      "frag": "| **A-VS139** | **W-112 之「查得 174／查無 0」為 Layer 3 群層級之命中，非逐 leaf 之畫面層對應** | 40 輪 W-112：`delegation_lookup.tsv` 之",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 148,
+      "frag": "| **A-VS140** | **`$VC_VEH_LINE$` 於 237 leaf 僅 2 處引用，其值為 `WL` 與 `M4 OR MP` —— R-VS62 之七個車型碼於母體內全數命中 0** | 41 輪",
+      "nums": [
+        "R-VS62"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 150,
+      "frag": "| **A-VS142** | **pilot #4 之分層維度 `dr_dependent`（有／無）退化 —— 43/43 皆為「有」** | 42 輪 W-118：交叉格矩陣實測 `batch14/有 10・無 0",
+      "nums": [
+        "R-VS59"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 162,
+      "frag": "| **A-VS148** | **R-VS67 之 (a)(c) 相衝：44 條已交付 TC 之四階斷言於 1 bit 訊號上無法成立，分級崩落 48 leaf** | 46 輪 W-131：改取 `Atlantis ",
+      "nums": [
+        "R-VS66",
+        "R-VS67"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 166,
+      "frag": "| **A-VS152** | **D-3 令補入之 PDT24 兩檔不在 `inputs/`，與本輪禁區「不補素材」相衝** | 47 輪 D-3：`inputs/` 之 PDT24 命中 **0**；兩檔位於 rep",
+      "nums": [
+        "R-VS61"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "line": 168,
+      "frag": "| **A-VF10** | **`R-VS59`–`R-VS66` 八條各有兩個定義 —— R-VF10 所欲防之撞號至今仍活在 `RULINGS.md` 內** | 38 輪 W-VF34：R-VF40 之檢查二（編",
+      "nums": [
+        "R-VS59",
+        "R-VS60",
+        "R-VS62",
+        "R-VS66"
+      ],
+      "cls": "現行",
+      "side": "共用簿"
+    }
+  ],
+  "live": 164,
+  "hist": 540,
+  "map": {
+    "R-VS59": "R-VF1",
+    "R-VS60": "R-VF2",
+    "R-VS61": "R-VF3",
+    "R-VS62": "R-VF4",
+    "R-VS63": "R-VF5",
+    "R-VS64": "R-VF6",
+    "R-VS65": "R-VF7",
+    "R-VS66": "R-VF8",
+    "R-VS67": "R-VF9"
+  }
+}

@@ -149,28 +149,46 @@ def main() -> None:
                          "「不在檔內」與「已為新級」不可分辨，停。")
 
     if mode == "--check":
+        # R-VF46：各項獨立執行、各自輸出，一項失敗不中止其餘；
+        # 末尾列總表；整體 exit code 仍為「任一失敗即非 0」（閘不放寬）；
+        # 已知且已登記之失敗標其 anomaly 編號，使「新失敗」與「已知未解」可分辨。
+        # **不得以抑制、跳過、白名單解決** —— 抑制即回到 A-VS106 之形態。
+        results: list[tuple[str, bool, list[str], str]] = []
+
         bad = []
         for r in ovr:
             cur, want = by_w[r["leaf_id"]], expected_row(r)
             for col, exp in want.items():
                 if cur.get(col, "") != exp:
-                    bad.append((r["leaf_id"], col, cur.get(col, ""), exp))
-        if bad:
-            print("覆寫未生效 —— driver 已重跑而後置步驟未跑：", file=sys.stderr)
-            for lid, col, cur, want in bad:
-                print(f"  {lid} · {col}: 現為 {cur!r}，應為 {want!r}", file=sys.stderr)
-            print(f"\n修法：python3 {Path(__file__).name} --apply", file=sys.stderr)
-            sys.exit(1)
-        # R-VF40：兩條跨線檢查併入同一檢查點
-        cross = check_rvf23() + check_rvf10()
-        if cross:
-            print("跨線檢查失敗（R-VF40）：", file=sys.stderr)
-            for b in cross:
-                print(f"  {b}", file=sys.stderr)
-            sys.exit(1)
-        print(f"覆寫層 OK —— {len(ovr)} 筆 × "
-              f"{len(expected_row(ovr[0]))} 欄皆為其應有之值")
-        print("R-VF23 檔名合規 OK ／ R-VF10 編號唯一性 OK")
+                    bad.append(f"{r['leaf_id']} · {col}: 現為 {cur.get(col,'')!r}，"
+                               f"應為 {exp!r}")
+        results.append((f"覆寫層（R-VF17／R-VF20；{len(ovr)} 筆 × "
+                        f"{len(expected_row(ovr[0]))} 欄）", not bad, bad, ""))
+
+        b23 = check_rvf23()
+        results.append(("R-VF23 檔名合規", not b23, b23, ""))
+
+        b10 = check_rvf10()
+        results.append(("R-VF10 編號唯一性", not b10, b10, "A-VF10"))
+
+        for name, ok, msgs, known in results:
+            tag = "PASS" if ok else ("FAIL（已知：" + known + "）" if known else "FAIL")
+            out = sys.stdout if ok else sys.stderr
+            print(f"[{tag}] {name}", file=out)
+            for m in msgs:
+                print(f"      {m}", file=out)
+
+        print("\n---- 總表 ----")
+        for name, ok, msgs, known in results:
+            mark = "PASS" if ok else ("FAIL ← 已知未解 " + known if known else "FAIL ← 新")
+            print(f"  {mark:22} {name}"
+                  + (f"（{len(msgs)} 項）" if msgs else ""))
+        nfail = sum(1 for _, ok, _, _ in results if not ok)
+        new_fail = sum(1 for _, ok, _, k in results if not ok and not k)
+        print(f"  —— {len(results)-nfail} PASS ／ {nfail} FAIL"
+              f"（其中新失敗 {new_fail}）")
+        if nfail:
+            sys.exit(1)          # 閘不放寬：任一失敗即非 0
         return
 
     gcols, grows = read_tsv(GEN)

@@ -176,3 +176,218 @@ SWE ID 中段 token 僅為預設值。**共 19 個**（含新增之 `Common Feat
 
 5. ~~`Common Features` 同時是 Layer 2 與 Layer 3 名稱~~ **已解**（15 輪）：
    Layer 3 之跨區共通桶改名 `CrossZone Common`（31 包 §2）。**本項為過期記載。**
+
+<!-- VF230-BEGIN (W-VF38) -->
+
+---
+
+# Vehicle Setting / VF230（Part 2）—— framework（Layer 1–3）
+
+**狀態：已核可並鎖定。** 分析層依 **R-VF44** 核可（2026-08-23），依 **R-VF41** 之核可路徑（名單為已核可 11 名之子集者由分析層覆核）。
+
+**Part 1（CFTS044）之 Layer 1／2／3 一律不動**（R-VF44 附帶條件 3）——本節為附加，未改上方任何一行。
+
+## Layer 1
+
+`Vehicle Setting`（**R-VF9**：兩本 workbook 同值，明示排除 R-C6）。
+
+## Layer 2 —— 9 個 Test Set，合計 627
+
+粒度為 **提案 C**（R-VF36／R-VF41）：以 037 之 11 份分報告族群為基底，語義明顯錯置之簇逐筆移至名實相符之 Test Set。
+**逐筆列舉之依據見 `docs/reports/wvf35_layer2_enumerated.md`**（19 移動／87 留置，各附條文主旨與雙向理由）。
+
+| # | Test Set | leaf | 簇 |
+|---:|---|---:|---:|
+| 1 | **Trailer and Signage** | 139 | 13 |
+| 2 | **Auxiliary Switches** | 115 | 24 |
+| 3 | **Driver Convenience** | 99 | 19 |
+| 4 | **Suspension and Comfort** | 74 | 14 |
+| 5 | **Units and Cameras** | 73 | 14 |
+| 6 | **Approach and Tailgate** | 49 | 8 |
+| 7 | **Lane and Lighting** | 49 | 9 |
+| 8 | **Measurement Units** | 17 | 3 |
+| 9 | **Daytime Lighting** | 12 | 2 |
+
+**合計 627**（自各 Test Set 重算 —— R-VF16 之母體）。
+
+**已消失之二名**：`Switch Power Mode`／`Switch Type and State` ——其名與其主要內容不符（V11 §7），內容各歸其實。
+
+**Test Set 名自本鎖定起凍結**（R-VF44 附帶條件 4）：其變更須經 Pei，不得由任一層自裁。
+
+### 已裁定接受之異質性（R-VF37；**不得作為 pilot review 之 defect**）
+
+下列簇之主旨與其所屬 Test Set 之名不完全相稱，而無更適當之既有 Test Set；依 R-VF41「不設通則」亦不得為其新設：
+
+- `Charge Power Level`（8 leaf，Approach and Tailgate）
+- `Engine Off Power Delay`（7 leaf，Suspension and Comfort）
+- `Power Unit`（6 leaf，Measurement Units）
+- `Power Side Step`（5 leaf，Trailer and Signage）
+- `Rear Guidance Lighting with Approach`（5 leaf，Auxiliary Switches）
+- `Hour Mode`（4 leaf，Units and Cameras）
+- `Max Power Level`（4 leaf，Trailer and Signage）
+
+## Layer 3 —— 各 Test Set 之 spec 章名
+
+**取自 spec 之自有章名，不自創標籤**（R-VF25 配套 3）。**不寫入工作簿**（canon §4.1.5）。
+
+### Trailer and Signage（139 leaf）
+
+| spec 章名 | leaf | 註 |
+|---|---:|---|
+| `Traffic Sign Assist Offset - NAFTA Setting`（簇 `Traffic Sign Assist Offset - NAFTA Setting`） | 33 |  |
+| `Traffic Sign Assist Offset - non-NAFTA Setting`（簇 `Traffic Sign Assist Offset - non-NAFTA Setting`） | 23 |  |
+| `Trailer Name`（簇 `Trailer Name`） | 22 |  |
+| `Trailer Brake Type`（簇 `Trailer Brake Type`） | 13 |  |
+| `Trailer Number`（簇 `Trailer Number`） | 8 |  |
+| `Enhanced Display Synchronization`（簇 `Enhanced Display Synchronization`） | 6 |  |
+| `Automatic Trailer Light Check`（簇 `Automatic Trailer Light Check`） | 5 |  |
+| `Blind Spot with Trailer Detection`（簇 `Blind Spot with Trailer Detection`） | 5 |  |
+| **（無 spec 對應）**（簇 `CHMSL CAMERA DYNAMIC CENTERLINE`） | 5 | R-VF34：留空且可見，不以鄰近章名填充 |
+| `Power Side Step`（簇 `Power Side Step`） | 5 |  |
+| `Warnings for Low Fuel Inverter Shutdown - Audible Warning`（簇 `Warnings for Low Fuel Inverter Shutdown - Audible Warning`） | 5 |  |
+| `Warnings for Low Fuel Inverter Shutdown - Visual Warning`（簇 `Warnings for Low Fuel Inverter Shutdown - Visual Warning`） | 5 |  |
+| `Max Power Level`（簇 `Max Power Level`） | 4 |  |
+
+### Auxiliary Switches（115 leaf）
+
+| spec 章名 | leaf | 註 |
+|---|---:|---|
+| **（無 spec 對應）**（簇 `E-Save`） | 6 | R-VF34：留空且可見，不以鄰近章名填充 |
+| `SWITCH 1 Hold Last State`（簇 `SWITCH 1 Hold Last State`） | 6 |  |
+| `SWITCH 1 Power Mode`（簇 `SWITCH 1 Power Mode`） | 6 | **R-VF43：含兩種條文形態**（顯示／HW 通知／HMI 送出）——其 leaf 不得因同簇而逕作 sibling；`reasoning` 須具名其形態 |
+| `SWITCH 1 Type`（簇 `SWITCH 1 Type`） | 6 |  |
+| `SWITCH 2 Hold Last State`（簇 `SWITCH 2 Hold Last State`） | 6 |  |
+| `SWITCH 2 Power Mode`（簇 `SWITCH 2 Power Mode`） | 6 | **R-VF43：含兩種條文形態**（顯示／HW 通知／HMI 送出）——其 leaf 不得因同簇而逕作 sibling；`reasoning` 須具名其形態 |
+| `SWITCH 2 Type`（簇 `SWITCH 2 Type`） | 6 |  |
+| `SWITCH 3 Hold Last State`（簇 `SWITCH 3 Hold Last State`） | 6 |  |
+| `SWITCH 3 Power Mode`（簇 `SWITCH 3 Power Mode`） | 6 | **R-VF43：含兩種條文形態**（顯示／HW 通知／HMI 送出）——其 leaf 不得因同簇而逕作 sibling；`reasoning` 須具名其形態 |
+| `SWITCH 3 Type`（簇 `SWITCH 3 Type`） | 6 |  |
+| `SWITCH 4 Hold Last State`（簇 `SWITCH 4 Hold Last State`） | 6 |  |
+| `SWITCH 4 Power Mode`（簇 `SWITCH 4 Power Mode`） | 6 | **R-VF43：含兩種條文形態**（顯示／HW 通知／HMI 送出）——其 leaf 不得因同簇而逕作 sibling；`reasoning` 須具名其形態 |
+| `SWITCH 4 Type`（簇 `SWITCH 4 Type`） | 6 |  |
+| `Rear Guidance Light Status`（簇 `Rear Guidance Light Status`） | 5 |  |
+| `Rear Guidance Lighting with Approach`（簇 `Rear Guidance Lighting with Approach`） | 5 |  |
+| `Rear Guidance Lights with Cargo Lights`（簇 `Rear Guidance Lights with Cargo Lights`） | 5 |  |
+| `SWITCH 5 Hold Last State`（簇 `SWITCH 5 Hold Last State`） | 3 |  |
+| `SWITCH 5 Power Mode`（簇 `SWITCH 5 Power Mode`） | 3 |  |
+| `SWITCH 5 Type`（簇 `SWITCH 5 Type`） | 3 |  |
+| `SWITCH 6 Hold Last State`（簇 `SWITCH 6 Hold Last State`） | 3 |  |
+| `SWITCH 6 Power Mode`（簇 `SWITCH 6 Power Mode`） | 3 |  |
+| `SWITCH 6 Type`（簇 `SWITCH 6 Type`） | 3 |  |
+| `4 AUX Switches`（簇 `4 AUX Switches`） | 2 |  |
+| `6 Aux Switches`（簇 `6 Aux Switches`） | 2 |  |
+
+### Driver Convenience（99 leaf）
+
+| spec 章名 | leaf | 註 |
+|---|---:|---|
+| `Auto on Driver Comfort - 3 Option`（簇 `Auto On Driver Comfort - 3 Option`） | 6 |  |
+| `Blind Spot Alert`（簇 `Blind Spot Alert`） | 6 |  |
+| `Horn With Lock`（簇 `Horn With Lock`） | 6 |  |
+| `Park Sense Front Volume`（簇 `Park Sense Front Volume`） | 6 |  |
+| `Park Sense Rear Volume`（簇 `Park Sense Rear Volume`） | 6 |  |
+| `Auto High Beam`（簇 `Auto High Beam`） | 5 |  |
+| `Auto on Driver Comfort - 2 Option`（簇 `Auto On Driver Comfort - 2 Option`） | 5 |  |
+| `Auto Park Brake`（簇 `Auto Park Brake`） | 5 |  |
+| `Auto Unlock on Exit`（簇 `Auto Unlock on Exit`） | 5 |  |
+| `Flash Light With Lock`（簇 `Flash Light With Lock`） | 5 |  |
+| `Horn With Remote Start`（簇 `Horn With Remote Start`） | 5 |  |
+| `Navigation Turn by Turn`（簇 `Navigation Turn by Turn`） | 5 |  |
+| `Passive Entry`（簇 `Passive Entry`） | 5 |  |
+| `Phone Repetition`（簇 `Phone Repetition`） | 5 |  |
+| `RKE Linked to Memory`（簇 `RKE Linked to Memory`） | 5 |  |
+| `Rearview Camera Delay`（簇 `Rearview Camera Delay`） | 5 |  |
+| `Rearview Camera Dynamic Guidelines`（簇 `Rearview Camera Dynamic Guidelines`） | 5 |  |
+| `Remote Door Unlock`（簇 `Remote Door Unlock`） | 5 |  |
+| `Language`（簇 `Language`） | 4 |  |
+
+### Suspension and Comfort（74 leaf）
+
+| spec 章名 | leaf | 註 |
+|---|---:|---|
+| `Engine Off Power Delay`（簇 `Engine Off Power Delay`） | 7 |  |
+| `Suspension Auto Entry or Exit`（簇 `Suspension Auto Entry or Exit`） | 6 |  |
+| `Suspension Default Ride Height`（簇 `Suspension Default Ride Height`） | 6 |  |
+| `Auto Fold Mirrors`（簇 `Auto Fold Mirrors`） | 5 |  |
+| `Driver Easy Exit Seat`（簇 `Driver Easy Exit Seat`） | 5 |  |
+| `Headlights with Wipers`（簇 `Headlights with Wipers`） | 5 |  |
+| `Hill Start Assist`（簇 `Hill Start Assist`） | 5 |  |
+| `Ready to Drive Pop-Up`（簇 `Ready to Drive Pop-Up`） | 5 |  |
+| `Suspension Display Messages`（簇 `Suspension Display Messages`） | 5 |  |
+| `Suspension Flash Lights With Lower`（簇 `Suspension Flash Lights With Lower`） | 5 |  |
+| `Suspension Service Mode`（簇 `Suspension Service Mode`） | 5 |  |
+| `Suspension Sound Horn With Lower`（簇 `Suspension Sound Horn With Lower`） | 5 |  |
+| `Tilt Mirror in Reverse`（簇 `Tilt Mirror in Reverse`） | 5 |  |
+| `Tire Fill Alert`（簇 `Tire Fill Alert`） | 5 |  |
+
+### Units and Cameras（73 leaf）
+
+| spec 章名 | leaf | 註 |
+|---|---:|---|
+| `Consumption Unit`（簇 `Consumption Unit`） | 7 |  |
+| `Time and Date Settings`（簇 `Time and Date Settings`） | 7 |  |
+| `Turn Signal Activated Blind Spot Camera View with Trailer Option`（簇 `Turn Signal Activated Blind Spot Camera View with Trailer Option`） | 6 |  |
+| `Unit Energy`（簇 `Unit Energy`） | 6 |  |
+| `Auto Door Locks`（簇 `Auto Door Locks`） | 5 |  |
+| `Park Sense`（簇 `Park Sense`） | 5 |  |
+| `ParkSense Based Camera Activation`（簇 `ParkSense Based Camera Activation`） | 5 |  |
+| `Surround View Camera Delay`（簇 `Surround View Camera Delay`） | 5 |  |
+| `Surround View Camera Guidelines`（簇 `Surround View Camera Guidelines`） | 5 |  |
+| `Temperature Unit`（簇 `Temperature Unit`） | 5 |  |
+| `Turn Signal Activated Blind Spot Camera View`（簇 `Turn Signal Activated Blind Spot Camera View`） | 5 |  |
+| `Distance Unit`（簇 `Distance Unit`） | 4 |  |
+| `Hour Mode`（簇 `Hour Mode`） | 4 |  |
+| `Speed Unit`（簇 `Speed Unit`） | 4 |  |
+
+### Approach and Tailgate（49 leaf）
+
+| spec 章名 | leaf | 註 |
+|---|---:|---|
+| `Charge Power Level`（簇 `Charge Power Level`） | 8 |  |
+| `Illuminated Approach`（簇 `Illuminated Approach`） | 7 |  |
+| `New Speed Zone Indication`（簇 `New Speed Zone Indication`） | 6 |  |
+| `Power Liftgate/Tailgate Alert`（簇 `Power Liftgate/Tailgate Alert`） | 6 |  |
+| `Power Tailgate`（簇 `Power Tailgate`） | 6 |  |
+| `Traffic Sign Warning`（簇 `Traffic Sign Warning`） | 6 |  |
+| `Paddle Shifter`（簇 `Paddle Shifter`） | 5 |  |
+| `Rear Seat Reminder`（簇 `Rear Seat Reminder`） | 5 |  |
+
+### Lane and Lighting（49 leaf）
+
+| spec 章名 | leaf | 註 |
+|---|---:|---|
+| `Forward Collision Warning`（簇 `Forward Collision Warning`） | 6 |  |
+| `Forward Collision Warning Sensitivity`（簇 `Forward Collision Warning Sensitivity`） | 6 |  |
+| `Lane Sense Strength`（簇 `Lane Sense Strength`） | 6 |  |
+| `Lane Sense Warning`（簇 `Lane Sense Warning`） | 6 |  |
+| `Cornering Lights`（簇 `Cornering Lights`） | 5 |  |
+| `Greeting Lights`（簇 `Greeting Lights`） | 5 |  |
+| `Pedestrian Emergency Braking or Warning & Active Braking`（簇 `Pedestrian Emergency Braking or Warning & Active Braking`） | 5 |  |
+| `Rain Sensing Wipers`（簇 `Rain Sensing Wipers`） | 5 |  |
+| `Signature Lighting`（簇 `Signature Lighting`） | 5 |  |
+
+### Measurement Units（17 leaf）
+
+| spec 章名 | leaf | 註 |
+|---|---:|---|
+| `Power Unit`（簇 `Power Unit`） | 6 |  |
+| `Pressure Unit`（簇 `Pressure Unit`） | 6 |  |
+| `Torque Unit`（簇 `Torque Unit`） | 5 |  |
+
+### Daytime Lighting（12 leaf）
+
+| spec 章名 | leaf | 註 |
+|---|---:|---|
+| `Headlights Off Delay`（簇 `Headlights Off Delay`） | 7 |  |
+| `Daytime Running Lights`（簇 `Daytime Running Lights`） | 5 |  |
+
+## 鎖定註記
+
+**一、Layer 2 之分組立於本層對條文主旨之判斷，非上游之切分準則**（R-VF47 二）。037 之 11 份分報告將同一功能之 6 條需求分置兩份（12 個功能如此），其切分依據**未經上游查證** —— 已開 DR 待覆。
+**本註記依 R-VF47 二只記一次，不逐輪重提。**
+
+**二、R-VF34 之 2 簇**（`E-Save` 6 leaf／`CHMSL CAMERA DYNAMIC CENTERLINE` 5 leaf）之 Layer 3 留空 —— 其 leaf **仍計入 627 與其 Test Set**，Layer 3 為導航工具而非可測性之判準（canon §4.1.4／§4.1.5）。
+
+**三、SWITCH 5／6 不加 R-VF43 標註** —— W-VF36 實測其**完全無「HMI 送出」類需求**（1–4 各 2 條、5／6 各 0 條），故其無兩種形態。**其成因未查，已開 DR 待覆。**
+
+<!-- VF230-END -->
