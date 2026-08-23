@@ -38,6 +38,11 @@ def _lid_vals() -> dict[str, dict[str, str]]:
     依 52 包 §3 判 typo，其 `Vented_Seat_*` 之一筆後寫而勝出。
     """
     raw = json.loads((FEAT / "data/_lid_argroups.json").read_text())["Atlantis"]
+    # **R-VS60（63 包 §2，Pei 2026-08-23）**：`FR_VS_Cmd_Tlm` 之值域准自
+    # `FL_VS_Cmd_Tlm` 之列跨列引入（A-VS103 之裁定）。lint 側須同步，
+    # 否則其對跨列引入後之書寫回報 R-VS39 違規。
+    if not any("Vented" in f for f in raw.get("FR_VS_Cmd_Tlm", [])):
+        raw["FR_VS_Cmd_Tlm"] = [f for f in raw.get("FL_VS_Cmd_Tlm", []) if "Vented" in f]
     out: dict[str, dict[str, str]] = {}
     for sig, forms in raw.items():
         for form in forms:

@@ -75,8 +75,8 @@
         "Heading": 30,
         "Functional Requirement": 64
       },
-      "leaf": 64,
-      "heading": 30
+      "leaf": 72,
+      "heading": 22
     },
     {
       "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Illuminated_Approach - Trailer_Number_Report.xlsx",
@@ -145,8 +145,18 @@
     }
   ],
   "total_rows": 745,
-  "total_leaf": 619,
-  "total_heading": 126,
-  "distinct_swe_id": 619,
+  "total_leaf": 627,
+  "total_heading": 118,
+  "distinct_swe_id": 627,
+  "source_disagreement": [
+    "SWE1-VC-SWITCH2HoldLastState-058",
+    "SWE1-VC-SWITCH3HoldLastState-063",
+    "SWE1-VC-SWITCH3PowerMode-014",
+    "SWE1-VC-SWITCH3Type-039",
+    "SWE1-VC-SWITCH5Type-045",
+    "SWE1-VC-SWITCH6HoldLastState-076",
+    "SWE1-VC-SWITCH6PowerMode-026",
+    "SWE1-VC-SWITCH6Type-051"
+  ],
   "cross_file_dupes": {}
 }

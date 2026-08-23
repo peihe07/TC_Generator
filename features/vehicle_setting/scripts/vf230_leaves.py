@@ -7,6 +7,12 @@ leaf 判準沿用 recon.py 之既有實作：Categorization 正規化後
 以 "functional" 起首者為 leaf，其餘為 heading／other。
 不引入 ID 後綴啟發式（R-C3 明禁）。
 
+**R-VF16（Pei 裁定 2026-08-23）—— 母體為 627，非 619**：
+037 判 `Heading` 而 035 SYSRA 判 `Functional Requirement` 之 8 列
+（A-VS132）計入可測 leaf。該 8 列以 `source_disagreement=1` 標記，
+**不得靜默併入** —— 本層之 Categorization 於該 8 列刻意偏離 037，
+須可分辨。其餘 619 列標 `0`。
+
 分頁以**版面**定位（掃描各分頁尋找含 `Requirement Description` 之表頭列），
 不以分頁名定位：11 份中 2 份之分頁名為 `Sheet1` 而非 `Analysis Report`，
 其版面與其餘 9 份逐欄相同（W-103 實測）。
@@ -77,7 +83,7 @@ def parse_one(path: Path) -> dict:
         rid = str(r[0]).strip()
         cat = str(r[cat_i] or "").strip()
         cat_dist[cat or "(blank)"] += 1
-        rec = {"swe_id": rid, "family": fam,
+        rec = {"swe_id": rid, "family": fam, "disagree": "0",
                "src_ref": str(r[src_i] or "").strip(),
                "title": str(r[title_i] or "").strip(),
                "desc": str(r[desc_i] or "").strip()}
@@ -96,6 +102,35 @@ def main() -> None:
         raise SystemExit(f"預期 11 份 037，實得 {len(files)} 份")
 
     per_file = [parse_one(p) for p in files]
+
+    # --- R-VF16：8 列之偏離，錨點先行（R-VF11）---
+    dis = json.loads((ROOT / "data" / "_vf230_crosscheck.json")
+                     .read_text(encoding="utf-8"))
+    must_hit = set(dis["mismatch_heading_vs_functional"])       # 必命中，8
+    if len(must_hit) != 8:
+        raise SystemExit(f"R-VF16 之偏離集應為 8，實得 {len(must_hit)}")
+    all_head = {r["swe_id"] for d in per_file for r in d["headings"]}
+    must_miss = all_head - must_hit                            # 必不命中，118
+    print(f"R-VF11 錨點：必命中 {len(must_hit)}／必不命中 {len(must_miss)}")
+    if must_hit & must_miss:
+        raise SystemExit("錨點集相交，判準有誤")
+    if len(must_miss) != 118:
+        raise SystemExit(f"必不命中錨點應為 118，實得 {len(must_miss)}")
+
+    promoted = []
+    for d in per_file:
+        keep = []
+        for rec in d["headings"]:
+            if rec["swe_id"] in must_hit:
+                rec = rec | {"disagree": "1"}
+                d["leaves"].append(rec)
+                promoted.append(rec["swe_id"])
+            else:
+                keep.append(rec)
+        d["headings"] = keep
+    print(f"R-VF16 提列 {len(promoted)} 列為 leaf")
+    if set(promoted) != must_hit:
+        raise SystemExit("錨點實測不符：提列集與必命中集不等，停")
 
     print(f"{'family':46} {'sheet':>16} {'rows':>5} {'leaf':>5} {'head':>5} {'other':>5}")
     for d in per_file:
@@ -127,12 +162,12 @@ def main() -> None:
         print(f"  {v:5}  {k}")
 
     out = ROOT / "data" / "vf230_leaves.tsv"
-    cols = ["swe_id", "family", "src_ref", "title", "desc"]
+    cols = ["swe_id", "family", "src_ref", "title", "desc", "disagree"]
     with out.open("w", encoding="utf-8") as fh:
         fh.write("\t".join(cols) + "\n")
         for r in all_leaves:
-            fh.write("\t".join(r[c].replace("\t", " ").replace("\n", "\\n")
-                               for c in cols) + "\n")
+            fh.write("\t".join(str(r.get(c, "")).replace("\t", " ")
+                                 .replace("\n", "\\n") for c in cols) + "\n")
     print(f"\nwrote {out.relative_to(ROOT)}  ({len(all_leaves)} leaf)")
 
     meta = {"files": [{k: d[k] for k in
@@ -141,6 +176,7 @@ def main() -> None:
                       for d in per_file],
             "total_rows": tot_rows, "total_leaf": tot_leaf,
             "total_heading": tot_head, "distinct_swe_id": len(ids),
+            "source_disagreement": sorted(must_hit),
             "cross_file_dupes": dupes}
     (ROOT / "data" / "_vf230_w103.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")

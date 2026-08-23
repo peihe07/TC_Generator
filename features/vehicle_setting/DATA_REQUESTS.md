@@ -1013,3 +1013,41 @@ SWE1-VC-MaxPowerLevel139 … 143          5 列（139 為 Heading，140–143 �
 容錯改為 `-?(\d+)$` 之修法**已列出而未施行**（62 包 §5.2 令「先列清單，不逕改」）。
 
 **狀態：未送出。**
+
+---
+
+## DR-30（新，**Urgency Low** —— 037 與 035 於 8 列之 Categorization 相左；V06 §5.4 開立）
+
+> **開號依據**：全庫（`DATA_REQUESTS.md`／`RULINGS.md`／`ANOMALIES.md`／
+> `docs/handoff/`／`docs/upstream/`）之最大已用 DR 號為 **DR-29**。
+
+**型別（R-VS45）：型 A —— 規格／分析文件間之不一致。**
+
+**成對之 anomaly：A-VS132。**
+
+VF230 之 037 分報告判為 `Heading` 而 035（SYSRA）判為
+`Functional Requirement` 者 8 列，集中於 SWITCH 族
+（Power Mode／Type／Hold Last State）。其 037 條文逐字為需求形態：
+
+```
+The HMI layer shall capture the customer selection for …          （5 列）
+HW supplier shall notify the IPC_VEHICLE_SETUP2.* signal
+via VHAL interface …                                              （3 列）
+```
+
+逐一為 `SWE1-VC-SWITCH3PowerMode-014`／`SWITCH6PowerMode-026`／
+`SWITCH3Type-039`／`SWITCH5Type-045`／`SWITCH6Type-051`／
+`SWITCH2HoldLastState-058`／`SWITCH3HoldLastState-063`／
+`SWITCH6HoldLastState-076`。
+
+**請確認**：該 8 列之正確 Categorization 為 `Functional Requirement`
+或 `Heading`？
+
+**本層之處置（已定，不待覆文）**：依 Pei 裁定（**R-VF16**）計入可測 leaf，
+母體為 **627**。該 8 列於 `data/vf230_leaves.tsv` 已加 `disagree=1` 註記，
+以資分辨。若上游覆為 `Heading`，本層將於當時另裁是否回退。
+
+**已實測之影響（W-VF17）**：Layer 2 之簇數（106）與 spec 目次交集（104／2）
+**皆不因 627 而變**，僅 8 個既有簇各 +1 leaf，且全落於同一份 037 分報告。
+
+**狀態：未送出。**

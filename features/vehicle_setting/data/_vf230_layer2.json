@@ -549,6 +549,28 @@
       "ambiguous_l4": []
     },
     {
+      "title": "SWITCH 3 Power Mode",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 3 Power Mode"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
       "title": "SWITCH 4 Power Mode",
       "leaf": 6,
       "families": [
@@ -615,6 +637,28 @@
       "ambiguous_l4": []
     },
     {
+      "title": "SWITCH 3 Type",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 3 Type"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
       "title": "SWITCH 4 Type",
       "leaf": 6,
       "families": [
@@ -652,6 +696,50 @@
         "LTM or ETM Algorithm Requirements",
         "4 AUX Switches",
         "SWITCH 1 Hold Last State"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 2 Hold Last State",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 2 Hold Last State"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 3 Hold Last State",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 3 Hold Last State"
       ],
       "coarse": "LTM or ETM Algorithm Requirements",
       "mid": "LTM or ETM Vehicle Setup Management",
@@ -1355,94 +1443,6 @@
       "ambiguous_l4": []
     },
     {
-      "title": "SWITCH 3 Power Mode",
-      "leaf": 5,
-      "families": [
-        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
-        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
-      ],
-      "match": "exact",
-      "spec_level": 6,
-      "spec_path": [
-        "Vehicle Setup Management [VF230_V1_]",
-        "Functional Requirements",
-        "LTM or ETM Vehicle Setup Management",
-        "LTM or ETM Algorithm Requirements",
-        "4 AUX Switches",
-        "SWITCH 3 Power Mode"
-      ],
-      "coarse": "LTM or ETM Algorithm Requirements",
-      "mid": "LTM or ETM Vehicle Setup Management",
-      "spec_hits": 2,
-      "ambiguous_l4": []
-    },
-    {
-      "title": "SWITCH 3 Type",
-      "leaf": 5,
-      "families": [
-        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
-        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
-      ],
-      "match": "exact",
-      "spec_level": 6,
-      "spec_path": [
-        "Vehicle Setup Management [VF230_V1_]",
-        "Functional Requirements",
-        "LTM or ETM Vehicle Setup Management",
-        "LTM or ETM Algorithm Requirements",
-        "4 AUX Switches",
-        "SWITCH 3 Type"
-      ],
-      "coarse": "LTM or ETM Algorithm Requirements",
-      "mid": "LTM or ETM Vehicle Setup Management",
-      "spec_hits": 2,
-      "ambiguous_l4": []
-    },
-    {
-      "title": "SWITCH 2 Hold Last State",
-      "leaf": 5,
-      "families": [
-        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
-        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
-      ],
-      "match": "exact",
-      "spec_level": 6,
-      "spec_path": [
-        "Vehicle Setup Management [VF230_V1_]",
-        "Functional Requirements",
-        "LTM or ETM Vehicle Setup Management",
-        "LTM or ETM Algorithm Requirements",
-        "4 AUX Switches",
-        "SWITCH 2 Hold Last State"
-      ],
-      "coarse": "LTM or ETM Algorithm Requirements",
-      "mid": "LTM or ETM Vehicle Setup Management",
-      "spec_hits": 2,
-      "ambiguous_l4": []
-    },
-    {
-      "title": "SWITCH 3 Hold Last State",
-      "leaf": 5,
-      "families": [
-        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
-        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
-      ],
-      "match": "exact",
-      "spec_level": 6,
-      "spec_path": [
-        "Vehicle Setup Management [VF230_V1_]",
-        "Functional Requirements",
-        "LTM or ETM Vehicle Setup Management",
-        "LTM or ETM Algorithm Requirements",
-        "4 AUX Switches",
-        "SWITCH 3 Hold Last State"
-      ],
-      "coarse": "LTM or ETM Algorithm Requirements",
-      "mid": "LTM or ETM Vehicle Setup Management",
-      "spec_hits": 2,
-      "ambiguous_l4": []
-    },
-    {
       "title": "Rear Guidance Lighting with Approach",
       "leaf": 5,
       "families": [
@@ -2001,6 +2001,69 @@
       "ambiguous_l4": []
     },
     {
+      "title": "SWITCH 6 Power Mode",
+      "leaf": 3,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 6 Power Mode"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 5 Type",
+      "leaf": 3,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 5 Type"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 6 Type",
+      "leaf": 3,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 6 Type"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
       "title": "SWITCH 5 Hold Last State",
       "leaf": 3,
       "families": [
@@ -2022,6 +2085,27 @@
       "ambiguous_l4": []
     },
     {
+      "title": "SWITCH 6 Hold Last State",
+      "leaf": 3,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 6 Hold Last State"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
       "title": "6 Aux Switches",
       "leaf": 2,
       "families": [
@@ -2035,90 +2119,6 @@
         "LTM or ETM Vehicle Setup Management",
         "LTM or ETM Algorithm Requirements",
         "6 Aux Switches"
-      ],
-      "coarse": "LTM or ETM Algorithm Requirements",
-      "mid": "LTM or ETM Vehicle Setup Management",
-      "spec_hits": 1,
-      "ambiguous_l4": []
-    },
-    {
-      "title": "SWITCH 6 Power Mode",
-      "leaf": 2,
-      "families": [
-        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
-      ],
-      "match": "exact",
-      "spec_level": 6,
-      "spec_path": [
-        "Vehicle Setup Management [VF230_V1_]",
-        "Functional Requirements",
-        "LTM or ETM Vehicle Setup Management",
-        "LTM or ETM Algorithm Requirements",
-        "6 Aux Switches",
-        "SWITCH 6 Power Mode"
-      ],
-      "coarse": "LTM or ETM Algorithm Requirements",
-      "mid": "LTM or ETM Vehicle Setup Management",
-      "spec_hits": 1,
-      "ambiguous_l4": []
-    },
-    {
-      "title": "SWITCH 5 Type",
-      "leaf": 2,
-      "families": [
-        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
-      ],
-      "match": "exact",
-      "spec_level": 6,
-      "spec_path": [
-        "Vehicle Setup Management [VF230_V1_]",
-        "Functional Requirements",
-        "LTM or ETM Vehicle Setup Management",
-        "LTM or ETM Algorithm Requirements",
-        "6 Aux Switches",
-        "SWITCH 5 Type"
-      ],
-      "coarse": "LTM or ETM Algorithm Requirements",
-      "mid": "LTM or ETM Vehicle Setup Management",
-      "spec_hits": 1,
-      "ambiguous_l4": []
-    },
-    {
-      "title": "SWITCH 6 Type",
-      "leaf": 2,
-      "families": [
-        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
-      ],
-      "match": "exact",
-      "spec_level": 6,
-      "spec_path": [
-        "Vehicle Setup Management [VF230_V1_]",
-        "Functional Requirements",
-        "LTM or ETM Vehicle Setup Management",
-        "LTM or ETM Algorithm Requirements",
-        "6 Aux Switches",
-        "SWITCH 6 Type"
-      ],
-      "coarse": "LTM or ETM Algorithm Requirements",
-      "mid": "LTM or ETM Vehicle Setup Management",
-      "spec_hits": 1,
-      "ambiguous_l4": []
-    },
-    {
-      "title": "SWITCH 6 Hold Last State",
-      "leaf": 2,
-      "families": [
-        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
-      ],
-      "match": "exact",
-      "spec_level": 6,
-      "spec_path": [
-        "Vehicle Setup Management [VF230_V1_]",
-        "Functional Requirements",
-        "LTM or ETM Vehicle Setup Management",
-        "LTM or ETM Algorithm Requirements",
-        "6 Aux Switches",
-        "SWITCH 6 Hold Last State"
       ],
       "coarse": "LTM or ETM Algorithm Requirements",
       "mid": "LTM or ETM Vehicle Setup Management",
@@ -4160,12 +4160,12 @@
     "exact": 104,
     "none": 2
   },
-  "total_leaf": 619,
+  "total_leaf": 627,
   "grain_coarse_l4": [
     [
       "LTM or ETM Algorithm Requirements",
       104,
-      608
+      616
     ],
     [
       "(無對應章)",
@@ -4177,7 +4177,7 @@
     [
       "LTM or ETM Vehicle Setup Management",
       104,
-      608
+      616
     ],
     [
       "(無對應章)",
@@ -4204,7 +4204,7 @@
     [
       "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
       22,
-      64
+      72
     ],
     [
       "STLA_Illuminated_Approach - Trailer_Number_Report",

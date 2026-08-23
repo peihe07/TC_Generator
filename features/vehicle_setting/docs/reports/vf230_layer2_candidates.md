@@ -9,7 +9,7 @@ Part 1 之 Layer 1/2/3 於本輪未觸及。
   python-docx 直讀，無需轉檔（推翻 61 包 §6 第 2 項之前提）
 - spec Heading 段落：**192**（層級分布 {1: 1, 2: 17, 3: 34, 4: 11, 5: 99, 6: 30}）
 - 037 分組來源：`data/vf230_leaves.tsv`（619 leaf，11 份分報告）
-- 037 之 Requirement Title 簇：**106**，涵蓋 **619** leaf
+- 037 之 Requirement Title 簇：**106**，涵蓋 **627** leaf
 - 交集判準：Title 與 Heading 正規化（小寫、非英數字摺空白）後**全等**；
   不做子字串容錯
 
@@ -40,7 +40,7 @@ canon §4.1.2 步驟 2 之交集法在此**不產生可用之 Layer 2**。
 
 | spec L4 章 | 簇數 | leaf | 佔比 |
 |---|---:|---:|---:|
-| LTM or ETM Algorithm Requirements | 104 | 608 | 98.2% |
+| LTM or ETM Algorithm Requirements | 104 | 616 | 98.2% |
 | (無對應章) | 2 | 11 | 1.8% |
 
 ### 3.1 同名章歧義（spec 目次多處同名）
@@ -59,7 +59,7 @@ canon §4.1.2 步驟 2 之交集法在此**不產生可用之 Layer 2**。
 
 | spec L3 章 | 簇數 | leaf | 佔比 |
 |---|---:|---:|---:|
-| LTM or ETM Vehicle Setup Management | 104 | 608 | 98.2% |
+| LTM or ETM Vehicle Setup Management | 104 | 616 | 98.2% |
 | (無對應章) | 2 | 11 | 1.8% |
 
 ## 4b. 粒度 D（替代切分源）—— 037 之 11 份分報告族群
@@ -71,15 +71,15 @@ spec 目次既不產生可用粒度，另備此源：037 之分檔本身即為
 
 | 037 分報告族群 | Title 簇數 | leaf | 佔比 |
 |---|---:|---:|---:|
-| STLA_Trailer_Name - Max_Power_Level_Report | 12 | 131 | 21.2% |
-| Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features | 19 | 99 | 16.0% |
-| Time_Date_Autodoor_Camera_features | 15 | 79 | 12.8% |
-| 6 Aux Switches, SWITCH 1 Power Mode and E-Save features | 22 | 64 | 10.3% |
-| STLA_Illuminated_Approach - Trailer_Number_Report | 9 | 57 | 9.2% |
-| STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report | 10 | 52 | 8.4% |
-| Cornering Lights_lane_features | 9 | 49 | 7.9% |
-| STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report | 9 | 35 | 5.7% |
-| STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report | 8 | 24 | 3.9% |
+| STLA_Trailer_Name - Max_Power_Level_Report | 12 | 131 | 20.9% |
+| Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features | 19 | 99 | 15.8% |
+| Time_Date_Autodoor_Camera_features | 15 | 79 | 12.6% |
+| 6 Aux Switches, SWITCH 1 Power Mode and E-Save features | 22 | 72 | 11.5% |
+| STLA_Illuminated_Approach - Trailer_Number_Report | 9 | 57 | 9.1% |
+| STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report | 10 | 52 | 8.3% |
+| Cornering Lights_lane_features | 9 | 49 | 7.8% |
+| STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report | 9 | 35 | 5.6% |
+| STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report | 8 | 24 | 3.8% |
 | Pressure_Unit , Power_Unit And Torque_Unit features | 3 | 17 | 2.7% |
 | Daytime_Running_Light And Headlights_Off_Delay features^ | 2 | 12 | 1.9% |
 
@@ -121,50 +121,50 @@ Test Set 欄將近乎 TC ID 欄之複本，索引價值歸零。**不建議**。
 | 25 | Suspension Auto Entry or Exit | 6 | exact | LTM or ETM Algorithm Requirements |
 | 26 | SWITCH 1 Power Mode | 6 | exact | LTM or ETM Algorithm Requirements |
 | 27 | SWITCH 2 Power Mode | 6 | exact | LTM or ETM Algorithm Requirements |
-| 28 | SWITCH 4 Power Mode | 6 | exact | LTM or ETM Algorithm Requirements |
-| 29 | SWITCH 1 Type | 6 | exact | LTM or ETM Algorithm Requirements |
-| 30 | SWITCH 2 Type | 6 | exact | LTM or ETM Algorithm Requirements |
-| 31 | SWITCH 4 Type | 6 | exact | LTM or ETM Algorithm Requirements |
-| 32 | SWITCH 1 Hold Last State | 6 | exact | LTM or ETM Algorithm Requirements |
-| 33 | SWITCH 4 Hold Last State | 6 | exact | LTM or ETM Algorithm Requirements |
-| 34 | E-Save | 6 | none | (無對應章) |
-| 35 | Power Liftgate/Tailgate Alert | 6 | exact | LTM or ETM Algorithm Requirements |
-| 36 | Power Tailgate | 6 | exact | LTM or ETM Algorithm Requirements |
-| 37 | Traffic Sign Warning | 6 | exact | LTM or ETM Algorithm Requirements |
-| 38 | New Speed Zone Indication | 6 | exact | LTM or ETM Algorithm Requirements |
-| 39 | Suspension Default Ride Height | 6 | exact | LTM or ETM Algorithm Requirements |
-| 40 | Enhanced Display Synchronization | 6 | exact | LTM or ETM Algorithm Requirements |
-| 41 | Passive Entry | 5 | exact | LTM or ETM Algorithm Requirements |
-| 42 | Remote Door Unlock | 5 | exact | LTM or ETM Algorithm Requirements |
-| 43 | Auto Park Brake | 5 | exact | LTM or ETM Algorithm Requirements |
-| 44 | Horn With Remote Start | 5 | exact | LTM or ETM Algorithm Requirements |
-| 45 | Auto Unlock on Exit | 5 | exact | LTM or ETM Algorithm Requirements |
-| 46 | Flash Light With Lock | 5 | exact | LTM or ETM Algorithm Requirements |
-| 47 | Navigation Turn by Turn | 5 | exact | LTM or ETM Algorithm Requirements |
-| 48 | Phone Repetition | 5 | exact | LTM or ETM Algorithm Requirements |
-| 49 | Auto High Beam | 5 | exact | LTM or ETM Algorithm Requirements |
-| 50 | RKE Linked to Memory | 5 | exact | LTM or ETM Algorithm Requirements |
-| 51 | Auto On Driver Comfort - 2 Option | 5 | exact | LTM or ETM Algorithm Requirements |
-| 52 | Rearview Camera Delay | 5 | exact | LTM or ETM Algorithm Requirements |
-| 53 | Rearview Camera Dynamic Guidelines | 5 | exact | LTM or ETM Algorithm Requirements |
-| 54 | Cornering Lights | 5 | exact | LTM or ETM Algorithm Requirements |
-| 55 | Greeting Lights | 5 | exact | LTM or ETM Algorithm Requirements |
-| 56 | Signature Lighting | 5 | exact | LTM or ETM Algorithm Requirements |
-| 57 | Pedestrian Emergency Braking or Warning & Active Braking | 5 | exact | LTM or ETM Algorithm Requirements |
-| 58 | Rain Sensing Wipers | 5 | exact | LTM or ETM Algorithm Requirements |
-| 59 | Daytime Running Lights | 5 | exact | LTM or ETM Algorithm Requirements |
-| 60 | Torque Unit | 5 | exact | LTM or ETM Algorithm Requirements |
-| 61 | Auto Door Locks | 5 | exact | LTM or ETM Algorithm Requirements |
-| 62 | Temperature Unit | 5 | exact | LTM or ETM Algorithm Requirements |
-| 63 | Surround View Camera Delay | 5 | exact | LTM or ETM Algorithm Requirements |
-| 64 | Surround View Camera Guidelines | 5 | exact | LTM or ETM Algorithm Requirements |
-| 65 | Turn Signal Activated Blind Spot Camera View | 5 | exact | LTM or ETM Algorithm Requirements |
-| 66 | ParkSense Based Camera Activation | 5 | exact | LTM or ETM Algorithm Requirements |
-| 67 | Park Sense | 5 | exact | LTM or ETM Algorithm Requirements |
-| 68 | SWITCH 3 Power Mode | 5 | exact | LTM or ETM Algorithm Requirements |
-| 69 | SWITCH 3 Type | 5 | exact | LTM or ETM Algorithm Requirements |
-| 70 | SWITCH 2 Hold Last State | 5 | exact | LTM or ETM Algorithm Requirements |
-| 71 | SWITCH 3 Hold Last State | 5 | exact | LTM or ETM Algorithm Requirements |
+| 28 | SWITCH 3 Power Mode | 6 | exact | LTM or ETM Algorithm Requirements |
+| 29 | SWITCH 4 Power Mode | 6 | exact | LTM or ETM Algorithm Requirements |
+| 30 | SWITCH 1 Type | 6 | exact | LTM or ETM Algorithm Requirements |
+| 31 | SWITCH 2 Type | 6 | exact | LTM or ETM Algorithm Requirements |
+| 32 | SWITCH 3 Type | 6 | exact | LTM or ETM Algorithm Requirements |
+| 33 | SWITCH 4 Type | 6 | exact | LTM or ETM Algorithm Requirements |
+| 34 | SWITCH 1 Hold Last State | 6 | exact | LTM or ETM Algorithm Requirements |
+| 35 | SWITCH 2 Hold Last State | 6 | exact | LTM or ETM Algorithm Requirements |
+| 36 | SWITCH 3 Hold Last State | 6 | exact | LTM or ETM Algorithm Requirements |
+| 37 | SWITCH 4 Hold Last State | 6 | exact | LTM or ETM Algorithm Requirements |
+| 38 | E-Save | 6 | none | (無對應章) |
+| 39 | Power Liftgate/Tailgate Alert | 6 | exact | LTM or ETM Algorithm Requirements |
+| 40 | Power Tailgate | 6 | exact | LTM or ETM Algorithm Requirements |
+| 41 | Traffic Sign Warning | 6 | exact | LTM or ETM Algorithm Requirements |
+| 42 | New Speed Zone Indication | 6 | exact | LTM or ETM Algorithm Requirements |
+| 43 | Suspension Default Ride Height | 6 | exact | LTM or ETM Algorithm Requirements |
+| 44 | Enhanced Display Synchronization | 6 | exact | LTM or ETM Algorithm Requirements |
+| 45 | Passive Entry | 5 | exact | LTM or ETM Algorithm Requirements |
+| 46 | Remote Door Unlock | 5 | exact | LTM or ETM Algorithm Requirements |
+| 47 | Auto Park Brake | 5 | exact | LTM or ETM Algorithm Requirements |
+| 48 | Horn With Remote Start | 5 | exact | LTM or ETM Algorithm Requirements |
+| 49 | Auto Unlock on Exit | 5 | exact | LTM or ETM Algorithm Requirements |
+| 50 | Flash Light With Lock | 5 | exact | LTM or ETM Algorithm Requirements |
+| 51 | Navigation Turn by Turn | 5 | exact | LTM or ETM Algorithm Requirements |
+| 52 | Phone Repetition | 5 | exact | LTM or ETM Algorithm Requirements |
+| 53 | Auto High Beam | 5 | exact | LTM or ETM Algorithm Requirements |
+| 54 | RKE Linked to Memory | 5 | exact | LTM or ETM Algorithm Requirements |
+| 55 | Auto On Driver Comfort - 2 Option | 5 | exact | LTM or ETM Algorithm Requirements |
+| 56 | Rearview Camera Delay | 5 | exact | LTM or ETM Algorithm Requirements |
+| 57 | Rearview Camera Dynamic Guidelines | 5 | exact | LTM or ETM Algorithm Requirements |
+| 58 | Cornering Lights | 5 | exact | LTM or ETM Algorithm Requirements |
+| 59 | Greeting Lights | 5 | exact | LTM or ETM Algorithm Requirements |
+| 60 | Signature Lighting | 5 | exact | LTM or ETM Algorithm Requirements |
+| 61 | Pedestrian Emergency Braking or Warning & Active Braking | 5 | exact | LTM or ETM Algorithm Requirements |
+| 62 | Rain Sensing Wipers | 5 | exact | LTM or ETM Algorithm Requirements |
+| 63 | Daytime Running Lights | 5 | exact | LTM or ETM Algorithm Requirements |
+| 64 | Torque Unit | 5 | exact | LTM or ETM Algorithm Requirements |
+| 65 | Auto Door Locks | 5 | exact | LTM or ETM Algorithm Requirements |
+| 66 | Temperature Unit | 5 | exact | LTM or ETM Algorithm Requirements |
+| 67 | Surround View Camera Delay | 5 | exact | LTM or ETM Algorithm Requirements |
+| 68 | Surround View Camera Guidelines | 5 | exact | LTM or ETM Algorithm Requirements |
+| 69 | Turn Signal Activated Blind Spot Camera View | 5 | exact | LTM or ETM Algorithm Requirements |
+| 70 | ParkSense Based Camera Activation | 5 | exact | LTM or ETM Algorithm Requirements |
+| 71 | Park Sense | 5 | exact | LTM or ETM Algorithm Requirements |
 | 72 | Rear Guidance Lighting with Approach | 5 | exact | LTM or ETM Algorithm Requirements |
 | 73 | Rear Guidance Light Status | 5 | exact | LTM or ETM Algorithm Requirements |
 | 74 | Paddle Shifter | 5 | exact | LTM or ETM Algorithm Requirements |
@@ -193,12 +193,12 @@ Test Set 欄將近乎 TC ID 欄之複本，索引價值歸零。**不建議**。
 | 97 | Speed Unit | 4 | exact | LTM or ETM Algorithm Requirements |
 | 98 | Max Power Level | 4 | exact | LTM or ETM Algorithm Requirements |
 | 99 | SWITCH 5 Power Mode | 3 | exact | LTM or ETM Algorithm Requirements |
-| 100 | SWITCH 5 Hold Last State | 3 | exact | LTM or ETM Algorithm Requirements |
-| 101 | 6 Aux Switches | 2 | exact | LTM or ETM Algorithm Requirements |
-| 102 | SWITCH 6 Power Mode | 2 | exact | LTM or ETM Algorithm Requirements |
-| 103 | SWITCH 5 Type | 2 | exact | LTM or ETM Algorithm Requirements |
-| 104 | SWITCH 6 Type | 2 | exact | LTM or ETM Algorithm Requirements |
-| 105 | SWITCH 6 Hold Last State | 2 | exact | LTM or ETM Algorithm Requirements |
+| 100 | SWITCH 6 Power Mode | 3 | exact | LTM or ETM Algorithm Requirements |
+| 101 | SWITCH 5 Type | 3 | exact | LTM or ETM Algorithm Requirements |
+| 102 | SWITCH 6 Type | 3 | exact | LTM or ETM Algorithm Requirements |
+| 103 | SWITCH 5 Hold Last State | 3 | exact | LTM or ETM Algorithm Requirements |
+| 104 | SWITCH 6 Hold Last State | 3 | exact | LTM or ETM Algorithm Requirements |
+| 105 | 6 Aux Switches | 2 | exact | LTM or ETM Algorithm Requirements |
 | 106 | 4 AUX Switches | 2 | exact | LTM or ETM Algorithm Requirements |
 
 ## 6. spec 目次（逐字）

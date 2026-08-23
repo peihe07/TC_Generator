@@ -2,7 +2,7 @@
 
 **依 R-VS65 之掃描定義（62 包 §3）。**
 
-- 掃描面：`data/vf230_leaves.tsv` 之 `title` ＋ `desc`（619 leaf）；`swe_id`／`src_ref`／`family` 不掃
+- 掃描面：`data/vf230_leaves.tsv` 之 `title` ＋ `desc`（627 leaf）；`swe_id`／`src_ref`／`family` 不掃
 - 大小寫不分；**以詞界為準，不作子字串命中**
 - token 由各 DR 之提問正文機械取得（`$X$`／`A.B`／`` `X` `` 三式），
   去泛用詞後去重。**不自創 token。**

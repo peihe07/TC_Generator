@@ -1,0 +1,239 @@
+{
+  "rows": [
+    {
+      "feature": "CFTS044",
+      "leaf": "SWE1-VC-HeatedSteeringWheelManagement-029",
+      "pairs": [
+        [
+          "STATUS_CSWM.HSW_StatFailSts",
+          "Fail_Not_Present"
+        ],
+        [
+          "TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm",
+          "ON"
+        ]
+      ],
+      "writable": "W2",
+      "blocker": "B6-value-absent",
+      "dr": "DR-21",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "CFTS044",
+      "leaf": "SWE1-VC-HeatedSteeringWheelManagement-030",
+      "pairs": [
+        [
+          "STATUS_CSWM.HSW_StatFailSts",
+          "Fail_Not_Present"
+        ],
+        [
+          "TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm",
+          "OFF"
+        ]
+      ],
+      "writable": "W2",
+      "blocker": "B6-value-absent",
+      "dr": "DR-21",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "CFTS044",
+      "leaf": "SWE1-VC-HeatedSteeringWheelManagement-031",
+      "pairs": [
+        [
+          "STATUS_CSWM.FL_HS_STATFailSts",
+          "Fail_Present"
+        ]
+      ],
+      "writable": "W0",
+      "blocker": "",
+      "dr": "",
+      "delivered_a": false,
+      "delivered_b": true,
+      "delivered_c": false
+    },
+    {
+      "feature": "CFTS044",
+      "leaf": "SWE1-VC-HeatedSteeringWheelManagement-033",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm",
+          "ON"
+        ]
+      ],
+      "writable": "W2",
+      "blocker": "B6-value-absent",
+      "dr": "DR-21",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "CFTS044",
+      "leaf": "SWE1-VC-HeatedSteeringWheelManagement-034",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm",
+          "OFF"
+        ]
+      ],
+      "writable": "W2",
+      "blocker": "B6-value-absent",
+      "dr": "DR-21",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "VF230",
+      "leaf": "SWE1-VC-AutoHighBeam-086",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req",
+          "Not_Enable to IPC within"
+        ]
+      ],
+      "writable": "—（無分級紀錄）",
+      "blocker": "",
+      "dr": "",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "VF230",
+      "leaf": "SWE1-VC-AutoUnlockonExit-043",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.AutoUnlockDoorExit_Req",
+          "Enable and send it to IPC within"
+        ]
+      ],
+      "writable": "—（無分級紀錄）",
+      "blocker": "",
+      "dr": "",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "VF230",
+      "leaf": "SWE1-VC-FlashLightWithLock-048",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.FlashLightWLock_Req",
+          "Off to IPC within"
+        ]
+      ],
+      "writable": "—（無分級紀錄）",
+      "blocker": "",
+      "dr": "",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "VF230",
+      "leaf": "SWE1-VC-FlashLightWithLock-049",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.FlashLightWLock_Req",
+          "On to IPC within"
+        ]
+      ],
+      "writable": "—（無分級紀錄）",
+      "blocker": "",
+      "dr": "",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "VF230",
+      "leaf": "SWE1-VC-NavigationTurnbyTurn-055",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.NavigationRepetition_Req",
+          "Off within"
+        ]
+      ],
+      "writable": "—（無分級紀錄）",
+      "blocker": "",
+      "dr": "",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "VF230",
+      "leaf": "SWE1-VC-NavigationTurnbyTurn-056",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.NavigationRepetition_Req",
+          "On within"
+        ]
+      ],
+      "writable": "—（無分級紀錄）",
+      "blocker": "",
+      "dr": "",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "VF230",
+      "leaf": "SWE1-VC-PassiveEntry-011",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req",
+          "Off"
+        ]
+      ],
+      "writable": "—（無分級紀錄）",
+      "blocker": "",
+      "dr": "",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "VF230",
+      "leaf": "SWE1-VC-PhoneRepetition-066",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.PhoneRepetition_Req",
+          "Off to IPC within"
+        ]
+      ],
+      "writable": "—（無分級紀錄）",
+      "blocker": "",
+      "dr": "",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    },
+    {
+      "feature": "VF230",
+      "leaf": "SWE1-VC-PhoneRepetition-067",
+      "pairs": [
+        [
+          "TELEMATIC_VEHICLE_SETUP.PhoneRepetition_Req",
+          "On to IPC within"
+        ]
+      ],
+      "writable": "—（無分級紀錄）",
+      "blocker": "",
+      "dr": "",
+      "delivered_a": false,
+      "delivered_b": false,
+      "delivered_c": false
+    }
+  ],
+  "delivered_a": [],
+  "delivered_b_n": 129,
+  "delivered_c_n": 158
+}

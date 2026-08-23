@@ -34,6 +34,7 @@ PAIRS = [
     ("generated/batch14_v2.json", "generated/_batch14_anchor.json"),
     ("generated/batch15.json", "generated/_batch15_anchor.json"),
     ("generated/batch16.json", "generated/_batch16_anchor.json"),
+    ("generated/batch17.json", "generated/_batch17_anchor.json"),
 ]
 
 

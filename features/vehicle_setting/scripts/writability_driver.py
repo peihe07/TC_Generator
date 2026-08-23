@@ -87,6 +87,24 @@ def lid_column_domain() -> dict[str, set[str]]:
             for k, v in raw.items()}
 
 
+def dbc_value_backfill(high: dict[str, set[str]]) -> dict[str, set[str]]:
+    """**W-114(1)（64 包 §5）**：DBC `VAL_` 有而 `spec_variables.tsv` 與 LID
+    兩欄組皆空之 token，其值域自 DBC 補收。
+
+    依據：R-VS9(1)′ ＋ R-VS39 —— **DBC 為值域之權威**；
+    兩處皆空係掃描遺漏（A-VS102 補收四個 ＋ `EngineSts`，漏 `HSW_StatFailSts`
+    → A-VS137）。W-114(2) 之全量量測得同型遺漏**共 1 個**，即本函式之全部標的。
+
+    以**回放形式**寫入驅動（R-VS53(2)），不改產物、不手改 `spec_variables.tsv`。
+    """
+    from selfcheck_w53 import DBC_VALS
+    out = dict(high)
+    for tok, table in DBC_VALS.items():
+        if not out.get(tok):
+            out[tok] = {norm(v) for v in table.values()}
+    return out
+
+
 def anchor_map(blocks: dict) -> dict[str, set[str]]:
     """W-59（21 輪）：跨條文之 `Nh:` 錨點聚合。
 
@@ -170,6 +188,7 @@ def adoption_map() -> set[tuple[str, str]]:
 
 def run() -> tuple[dict[str, str], dict[str, dict]]:
     high = bus_domain()                 # R-VS39 ＋ R-VS49（proxi_values 已併入）
+    high = dbc_value_backfill(high)     # W-114(1)：DBC `VAL_` 之補收（A-VS137）
     mid = lid_column_domain()           # R-VS51
     adopt = adoption_map()              # R-VS48′
     blocks = {b["id"]: b for b in blocks_with_sec()}
