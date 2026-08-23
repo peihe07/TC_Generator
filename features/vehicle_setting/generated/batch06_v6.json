@@ -1,0 +1,252 @@
+{
+ "batch": "batch06",
+ "feature": "vehicle_setting",
+ "test_group": "Vehicle Setting",
+ "generated_round": 25,
+ "handoff": "docs/handoff/44_review_round24.md",
+ "profile": "docs/runtime/profiles/FW036_R1L_VehicleSetting_Profile.md",
+ "selection": "逐 Layer 2 輪流；餘量 Common Features 11／Vented Seat 8／Heated Steering Wheel 7／Heated Seat 3，配額 4／3／2／1。選入 10 條，**1 條經 guard() 攔下移出，交付 9 條**",
+ "held_out": [
+  {
+   "leaf_id": "SWE1-VC-HeatedSteeringWheel-013",
+   "reqid": "CFTS044-4858532",
+   "blocked_by": "DR-15（token 級）",
+   "reason": "其值 `[NOT Pressed / NOT_PSD]` 落在 DR-15 之 token 範圍內"
+  }
+ ],
+ "sibling_rows_injected": {
+  "note": "9 條分屬三個 Layer 2。跨批同型：`RightFrontVentedSeat-023/-024/-027` 與 batch04 之 `LeftFrontVentedSeat-006/-007`、batch05 之 `-010` 為左右鏡像。`ScreenOFF-049~052` 四條同屬 ScreenOFF，逐條比對其驗證對象。",
+  "duplicate_of_found": "無"
+ },
+ "tcs": [
+  {
+   "leaf_id": "SWE1-VC-RightFrontVentedSeat-023",
+   "test_set": "Vented Seat",
+   "tc_title": "Right front vented seat ignores an invalid status value",
+   "test_item": "The HU shall ignore invalid $VentedSeatFR$ signals, if received.\n\n(Two-state vehicle, medium is invalid)",
+   "pre_conditions": "1. The vehicle is configured for two vented seat states, Off and Low and High\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FR_VS_STATSts = 1 (Vented_seat_low)\n2. Read the displayed state of the right front vented seat and record as VS_FR_display_initial\n3. Send CAN: STATUS_CSWM.FR_VS_STATSts = 2 (Vented_seat_medium) and check that the displayed state of the right front vented seat is unchanged from VS_FR_display_initial",
+   "expected_result": "1. STATUS_CSWM.FR_VS_STATSts = 1 (Vented_seat_low) is sent\n2. VS_FR_display_initial is recorded as low\n3. The right front vented seat is still displayed as low, unchanged from VS_FR_display_initial",
+   "specification_reference": "CFTS044-4858400",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "priority": "P2",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "本列之驗證對象為右前通風座椅之無效值忽略；batch04 之 LeftFrontVentedSeat-006 為左前通風座椅。"
+   },
+   "reasoning": "P2：無效值之忽略",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-RightFrontVentedSeat-024",
+   "test_set": "Vented Seat",
+   "tc_title": "Right front vented seat display follows a changed status",
+   "test_item": "When the HU receives an $VentedSeatFR$ signal, it shall compare to the stored state and , if different, replace the stored value with the new value and change the display to the new state.\n\n(Valid status change)",
+   "pre_conditions": "1. The vehicle is equipped with vented front seats\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FR_VS_STATSts = 0 (Vented_seat_off)\n2. Read the displayed state of the right front vented seat and record as VS_FR_display_initial\n3. Send CAN: STATUS_CSWM.FR_VS_STATSts = 3 (Vented_seat_high) and check that the displayed state of the right front vented seat changes from VS_FR_display_initial",
+   "expected_result": "1. STATUS_CSWM.FR_VS_STATSts = 0 (Vented_seat_off) is sent\n2. VS_FR_display_initial is recorded as off\n3. The right front vented seat is displayed as high",
+   "specification_reference": "CFTS044-4858401",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列送有效值 3 (Vented_seat_high) 且期望顯示變更；-023 送無效值 2 (Vented_seat_medium) 且期望顯示不變。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-RightFrontVentedSeat-027",
+   "test_set": "Vented Seat",
+   "tc_title": "Right front vented seat switch greyed out outside ignition run",
+   "test_item": "If $PowerMode$ <> [Ignition run], the right front vented seat switch, shall be shown as greyed-out, with a status of OFF.\n\n(PowerMode other than ignition run)",
+   "pre_conditions": "1. The vehicle is equipped with vented front seats\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read the state of the right front vented seat switch and check that it is selectable\n3. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) and check that the right front vented seat switch is greyed out with a status of OFF",
+   "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. The right front vented seat switch reads selectable\n3. The right front vented seat switch is greyed out and shows a status of OFF",
+   "specification_reference": "CFTS044-4858409",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之驗證對象為右前通風座椅開關；batch05 之 LeftFrontVentedSeat-010 為左前通風座椅開關。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-HeatedSteeringWheel-015",
+   "test_set": "Heated Steering Wheel",
+   "tc_title": "Heated steering wheel turns on when status reports on",
+   "test_item": "When the HU receives a $HSW_Stat$ = [On] signal, the HU shall change the stored status of the heated steering wheel to ON and change the display as specified by the HMI within a time period of <Tdisplay>.\n\n(Status reports on)",
+   "pre_conditions": "1. The vehicle is equipped with a heated steering wheel\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.HSW_StatSts = 0 (OFF)\n2. Read the displayed state of the heated steering wheel and check that it is off\n3. Send CAN: STATUS_CSWM.HSW_StatSts = 1 (ON) and check that the heated steering wheel is displayed as on",
+   "expected_result": "1. STATUS_CSWM.HSW_StatSts = 0 (OFF) is sent\n2. The heated steering wheel reads off\n3. The heated steering wheel is displayed as on",
+   "specification_reference": "CFTS044-4858538",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P0",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列送 1 (ON) 且期望顯示為 on；batch07 之 HeatedSteeringWheel-016 送 0 (OFF) 且期望顯示為 off。"
+   },
+   "reasoning": "P0(b)：加熱方向盤之啟用",
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
+  },
+  {
+   "leaf_id": "SWE1-VC-ScreenOFF-049",
+   "test_set": "Common Features",
+   "tc_title": "Display button turns the touchscreen off and on",
+   "test_item": "The display button will allow the customer to turn the Touchscreen display on or off.\n\n(Both directions from one control)",
+   "pre_conditions": "1. The touchscreen display is on\n2. The Controls screen is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the \"Screen Off\" soft button and check that the touchscreen display turns off\n2. Touch the screen and check that the touchscreen display turns on",
+   "expected_result": "1. The touchscreen display is off\n2. The touchscreen display is on",
+   "specification_reference": "CFTS044-4859106",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列驗同一控制之開與關兩向；-050 驗喚醒後之狀態回復，-051 驗訊號送出，-052 驗對影音之不影響。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-ScreenOFF-050",
+   "test_set": "Common Features",
+   "tc_title": "Display state recalled from the previous wake cycle",
+   "test_item": "When the HU wakes-up on the BH-CAN bus, the HU shall recall the state of the display from the previous wake cycle.\n\n(State persists across a sleep cycle)",
+   "pre_conditions": "1. The touchscreen display is on\n2. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the \"Screen Off\" soft button, read the touchscreen display state and record as Display_before_sleep\n2. Put the HU into a sleep state on the BH-CAN bus\n3. Wake the HU on the BH-CAN bus, read the touchscreen display state and record as Display_after_wake\n4. Check that Display_after_wake equals Display_before_sleep",
+   "expected_result": "1. Display_before_sleep is recorded as off\n2. The HU enters a sleep state on the BH-CAN bus\n3. Display_after_wake is recorded as off\n4. Display_after_wake = Display_before_sleep",
+   "specification_reference": "CFTS044-4859107",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列驗睡眠與喚醒後之狀態回復；-049 驗同一控制之開關兩向。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-ScreenOFF-051",
+   "test_set": "Common Features",
+   "tc_title": "Screen Off soft button transmits the display status signal",
+   "test_item": "When the user presses the Screen Off Softkey button, the HU shall send the $TGW_DISP_STAT$ signal. See {CFTS020} for the signal value the HU shall set it to.\n\n(Signal transmitted on press)",
+   "pre_conditions": "1. The touchscreen display is on\n2. The Controls screen is displayed\n3. CAN-B is connected to the bus simulator with signal tracing enabled",
+   "input_test_data": "NA",
+   "test_procedure": "1. Start a bus trace on CAN-B that captures the frames carrying TGW_DISP_STAT\n2. Press the \"Screen Off\" soft button and check that a TGW_DISP_STAT signal is transmitted on CAN-B",
+   "expected_result": "1. The bus trace is running and is capturing the frames carrying TGW_DISP_STAT\n2. A TGW_DISP_STAT signal is transmitted on CAN-B after the button press",
+   "specification_reference": "CFTS044-4859108",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列驗按下軟鍵時訊號之送出；-049 驗畫面之開關，-052 驗對影音之不影響。"
+   },
+   "reasoning_note": "**委派句（§8.2.1）**：`$TGW_DISP_STAT$` 之訊號**值**由 `{CFTS020}` 擁有，非本 Req 之標的；本 TC 僅驗「該訊號被送出」此一事實（§8.4.2）。45 包 §1.1 確認採用。",
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-ScreenOFF-052",
+   "test_set": "Common Features",
+   "tc_title": "Display on off does not alter audio or video functions — touchscreen",
+   "test_item": "Display \"on\" or \"off\" status changes resulting from customer display button selections shall not alter any audio or video entertainment, information or signal warning/alert functions unless otherwise specified.\n\n(Audio continues across a display state change)",
+   "pre_conditions": "1. Audio is playing from a media source\n2. The touchscreen display is on\n3. The Controls screen is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the audio playback state and the current track and record as Audio_track_initial\n2. Press the \"Screen Off\" soft button and check that audio playback continues with Audio__initial",
+   "expected_result": "1. Audio_track_initial is recorded as playing\n2. The touchscreen display is off playback continues with Audio__initial",
+   "specification_reference": "CFTS044-4859110",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "priority": "P1",
+   "split_flag": true,
+   "split_reason": "§8.2.2 不同控制實體 → 拆；本條之實體為 touchscreen（原條涵蓋 touchscreen、audio）",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列驗畫面狀態變更對影音之不影響；-049 驗畫面本身之開關。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-ScreenOFF-052",
+   "test_set": "Common Features",
+   "tc_title": "Display on off does not alter audio or video functions — audio",
+   "test_item": "Display \"on\" or \"off\" status changes resulting from customer display button selections shall not alter any audio or video entertainment, information or signal warning/alert functions unless otherwise specified.\n\n(Audio continues across a display state change)",
+   "pre_conditions": "1. Audio is playing from a media source\n2. The touchscreen display is on\n3. The Controls screen is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the audio playback state and the current track and record as Audio_track_initial\n2. Press the \"\" soft button and check that audio playback continues with Audio_track_initial",
+   "expected_result": "1. Audio_track_initial is recorded as playing\n2. The touchscreen display is off and audio playback continues with Audio_track_initial",
+   "specification_reference": "CFTS044-4859110",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "priority": "P1",
+   "split_flag": true,
+   "split_reason": "§8.2.2 不同控制實體 → 拆；本條之實體為 audio（原條涵蓋 touchscreen、audio）",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列驗畫面狀態變更對影音之不影響；-049 驗畫面本身之開關。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-TwoStagesHeatedSeat-066",
+   "test_set": "Heated Seat",
+   "tc_title": "Heated seat icons follow status changes without a press",
+   "test_item": "WHEN no icon on TLM_Display.GUI is pressed but the state of the heaters change, the icons shall change and follow the information received.\n\n(Status-driven icon update, no user press)",
+   "pre_conditions": "1. The vehicle is configured for two heated seat states\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off) and record the heated seat icon status as HS_icon_initial\n2. Send CAN: STATUS_CSWM.FL_HS_STATSts = 3 (Heated_seat_high) without pressing any icon and check that the heated seat icon status changes from HS_icon_initial",
+   "expected_result": "1. HS_icon_initial is recorded as off\n2. The heated seat icon status is high, which differs from HS_icon_initial",
+   "specification_reference": "CFTS044-4859388",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "dr15_exposed_note": "驗證目標為狀態訊號驅動之圖示更新，未斷言請求訊號之編碼",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之觸發為狀態訊號變更而非使用者按壓；batch05 之 TwoStagesHeatedSeat-057 之觸發為使用者按壓。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  }
+ ],
+ "reasoning": "本批依逐 Layer 2 輪流選入 10 條，1 條經 guard() 攔下移出（`HeatedSteeringWheel-013` 之 `[NOT Pressed / NOT_PSD]` 落在 DR-15 之 token 範圍），交付 9 條。驗證目標為右前通風座椅之三種行為、加熱方向盤狀態之開啟、Screen Off 軟鍵之四個面向、以及狀態驅動之圖示更新。值一律取 DBC VAL_ 逐字。無效值依 profile 之優先序取 (2) 配置相依（`4858363` 之二階列舉排除 medium）。**`HeatedSteeringWheel-015` 之 ER 未以 `<Tdisplay>` 為通過條件**，改寫為可觀察之終態（44 包承 42 包 §3.2）。**`ScreenOFF-051` 之 ER 只斷言訊號有送出，不斷言其值** —— 該值由 `{CFTS020}` 擁有（§8.4.2），且 `TGW_DISP_STAT` 於基線 DBC 中不存在，依 §8.7.5(g) 保留來源名不加 `$`。**委派句（§8.2.1）**：該訊號之值由 `{CFTS020}` 擁有，本 Req 僅擁有「訊號被送出」此一事實（45 包 §1.1 確認）。",
+ "revision": "W-143(2)（50 輪）：依 W-145 之稽核拆分 —— §8.2.2 不同控制實體各為一條",
+ "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
+ "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
+ "screen_pending_note": "68 包 §2：`screen_pending` 為畫面層待補之標記（R-VS59(4)／R-VS17），與 `dr_dependent`（可寫性繫於 DR）分離。"
+}

@@ -26,12 +26,12 @@ SWE1-VC-HeatedSteeringWheelManagement-025	Heated Steering Wheel	HeatedSteeringWh
 SWE1-VC-HeatedSteeringWheelManagement-026	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-HeatedSteeringWheelManagement-027	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	yes					comfort
 SWE1-VC-HeatedSteeringWheelManagement-028	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	yes					comfort
-SWE1-VC-HeatedSteeringWheelManagement-029	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-HeatedSteeringWheelManagement-030	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-HeatedSteeringWheelManagement-029	Heated Steering Wheel	HeatedSteeringWheelManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-HeatedSteeringWheelManagement-030	Heated Steering Wheel	HeatedSteeringWheelManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-HeatedSteeringWheelManagement-031	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	no	screen	DR-5-B	delegate=blocked		comfort
 SWE1-VC-HeatedSteeringWheelManagement-032	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	yes					comfort
-SWE1-VC-HeatedSteeringWheelManagement-033	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
-SWE1-VC-HeatedSteeringWheelManagement-034	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-HeatedSteeringWheelManagement-033	Heated Steering Wheel	HeatedSteeringWheelManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
+SWE1-VC-HeatedSteeringWheelManagement-034	Heated Steering Wheel	HeatedSteeringWheelManagement	W2	yes	no	no			writable=B2|quoted_form_risk	DR-25	comfort
 SWE1-VC-HeatedSteeringWheelManagement-035	Heated Steering Wheel	HeatedSteeringWheelManagement	W0	yes	yes	no			delegate=blocked		comfort
 SWE1-VC-LeftFrontHeatedSeat-003	Heated Seat	LeftFrontHeatedSeat	W0	yes	yes	yes					comfort
 SWE1-VC-LeftFrontHeatedSeat-004	Heated Seat	CrossZone Common	W1	yes	yes	no			writable=B2		comfort

@@ -1,0 +1,504 @@
+{
+ "generated_leaf": 161,
+ "generated_tc": 165,
+ "ungen": 76,
+ "est": 80,
+ "total_B": 245,
+ "total_A": 329,
+ "rows": [
+  [
+   "SWE1-VC-FeaturesEnableCriteria-023",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheel-004",
+   1,
+   [
+    "heated steering wheel"
+   ]
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheel-005",
+   1,
+   [
+    "heated steering wheel"
+   ]
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheel-008",
+   1,
+   [
+    "heated steering wheel"
+   ]
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheel-009",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheel-010",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheel-013",
+   1,
+   [
+    "heated steering wheel"
+   ]
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheel-019",
+   1,
+   [
+    "heated steering wheel"
+   ]
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheel-020",
+   1,
+   [
+    "heated steering wheel"
+   ]
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheelManagement-029",
+   1,
+   [
+    "heated steering wheel"
+   ]
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheelManagement-030",
+   1,
+   [
+    "heated steering wheel"
+   ]
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheelManagement-033",
+   1,
+   [
+    "heated steering wheel"
+   ]
+  ],
+  [
+   "SWE1-VC-HeatedSteeringWheelManagement-034",
+   1,
+   [
+    "heated steering wheel"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-004",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-005",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-006",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-009",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-010",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-011",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-013",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-015",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-016",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-017",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-018",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontHeatedSeat-019",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontVentedSeat-005",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontVentedSeat-008",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontVentedSeat-009",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontVentedSeat-011",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontVentedSeat-012",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontVentedSeat-013",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-LeftFrontVentedSeat-016",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-OneStageHeatedSeat-039",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-OneStageHeatedSeat-040",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-OneStageHeatedSeat-042",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-OneStageHeatedSeat-043",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-OneStageHeatedSeat-044",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-OneStageHeatedSeat-045",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-PHEVFeatures-017",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-RightFrontHeatedSeat-023",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontHeatedSeat-024",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontHeatedSeat-027",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontHeatedSeat-028",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontHeatedSeat-030",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontHeatedSeat-032",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontHeatedSeat-033",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontHeatedSeat-034",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontHeatedSeat-035",
+   1,
+   [
+    "heated seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontHeatedSeat-036",
+   2,
+   [
+    "heated seat",
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontVentedSeat-022",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontVentedSeat-025",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontVentedSeat-026",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontVentedSeat-028",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontVentedSeat-029",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontVentedSeat-030",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-RightFrontVentedSeat-033",
+   1,
+   [
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-ScreenOFF-048",
+   1,
+   [
+    "touchscreen"
+   ]
+  ],
+  [
+   "SWE1-VC-Stop-StartSystem-006",
+   2,
+   [
+    "heated steering wheel",
+    "vented seat"
+   ]
+  ],
+  [
+   "SWE1-VC-SwitchLHD/RHDConfiguration-010",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-SwitchLHD/RHDConfiguration-013",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-ThirdRowHeadrestDump-028",
+   1,
+   [
+    "head restraint"
+   ]
+  ],
+  [
+   "SWE1-VC-ThirdRowHeadrestDump-029",
+   1,
+   [
+    "head restraint"
+   ]
+  ],
+  [
+   "SWE1-VC-ThirdRowHeadrestDump-031",
+   1,
+   [
+    "head restraint"
+   ]
+  ],
+  [
+   "SWE1-VC-ThirdRowHeadrestDump-033",
+   1,
+   [
+    "head restraint"
+   ]
+  ],
+  [
+   "SWE1-VC-ThirdRowHeadrestDump-034",
+   1,
+   [
+    "head restraint"
+   ]
+  ],
+  [
+   "SWE1-VC-ThirdRowHeadrestDump-035",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-ThirdRowHeadrestDump-036",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-ThirdRowHeadrestDump-039",
+   1,
+   [
+    "rear camera"
+   ]
+  ],
+  [
+   "SWE1-VC-ThreeStagesHeatedSeat-078",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-ThreeStagesHeatedSeat-079",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-ThreeStagesVentedSeatsManagement-060",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-ThreeStagesVentedSeatsManagement-061",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-TwoStagesHeatedSeat-055",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-TwoStagesHeatedSeat-056",
+   2,
+   []
+  ],
+  [
+   "SWE1-VC-TwoStagesVentedSeatsManagement-037",
+   1,
+   []
+  ],
+  [
+   "SWE1-VC-TwoStagesVentedSeatsManagement-038",
+   2,
+   []
+  ]
+ ]
+}

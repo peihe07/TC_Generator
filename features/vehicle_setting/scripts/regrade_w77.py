@@ -35,11 +35,23 @@ def grade(text: str, pairs: list[tuple[str, str]], unresolved: set[tuple[str, st
                and (re.search(re.escape(p[0]), cons) and re.search(re.escape(p[1][:24]), cons))]
     resolved_in_ante = [p for p in pairs if p not in unresolved
                         and re.search(re.escape(p[0]), ante)]
+    # **R-VS71（77 包 §1，Pei 2026-08-23）：值之未解不阻塞生成。**
+    # 得判 W2 者僅二類 —— (a) 條文無可測內容；(b) 與他 leaf 不可分辨。
+    # 二者皆非本函式所判（(a) 由 `PREAMBLE` 判 B4、(b) 由冗餘掃描判 B7），
+    # 故本函式**不再回傳 W2**。原式保留於下，不刪（R-TM13）：
+    #
+    #     if in_cons:
+    #         return "W2", {"理由": "未解值位於後件 —— 驗證目標即該值", …}
+    #     if not resolved_in_ante:
+    #         return "W2", {"理由": "前件無已解條件 —— 扣除 PENDING 後不足 2 步", …}
+    #
+    # 「扣除 PENDING 不足 2 步」之判準**經 R-VS71 廢止**。
     if in_cons:
-        return "W2", {"理由": "未解值位於後件 —— 驗證目標即該值",
+        return "W1", {"理由": "未解值位於後件 —— 依 R-VS71 照寫，該處標 PENDING／"
+                              "dr_dependent／impl_gap",
                       "後件之未解值": [f"{t}={v[:24]}" for t, v in in_cons]}
     if not resolved_in_ante:
-        return "W2", {"理由": "前件無已解條件 —— 扣除 PENDING 後不足 2 個可執行步驟",
+        return "W1", {"理由": "未解值僅在前件而前件無已解條件 —— 依 R-VS71 照寫",
                       "前件之已解條件": []}
     return "W1", {"理由": "未解值僅在前件，且前件另有已解條件",
                   "前件之已解條件": [f"{t}={v[:24]}" for t, v in resolved_in_ante][:3]}
