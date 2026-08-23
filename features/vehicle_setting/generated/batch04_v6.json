@@ -45,7 +45,8 @@
    "dr15_exposed": "yes",
    "remarks": "BLOCKED: DR-24′ —— 來源之時限 `<Tsend>` 無具體值，時限之驗證不寫入 expected_result（42 包 §3.2、canon §8.7.1）",
    "dr_dependent": "DR-24′",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontVentedSeat-003",
@@ -66,7 +67,8 @@
     "delta": "本列驗左前通風座椅於喚醒時狀態被設為 OFF；HeatedSteeringWheel-003 驗加熱方向盤之同一時機。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontVentedSeat-006",
@@ -87,7 +89,8 @@
     "delta": "本列送無效值 2 (Vented_seat_medium) 且期望顯示不變；-007 送有效值 3 (Vented_seat_high) 且期望顯示變更。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P2：無效值之忽略"
+   "reasoning": "P2：無效值之忽略",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontVentedSeat-007",
@@ -108,7 +111,8 @@
     "delta": "本列送有效值 3 (Vented_seat_high) 且期望顯示變更；-006 送無效值 2 (Vented_seat_medium) 且期望顯示不變。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheel-003",
@@ -129,7 +133,8 @@
     "delta": "本列之驗證對象為加熱方向盤於喚醒時之狀態；LeftFrontVentedSeat-003 之驗證對象為左前通風座椅。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheel-006",
@@ -150,7 +155,8 @@
     "delta": "本列送 4，其在基線 DBC 之 VAL_ 表中未定義；LeftFrontVentedSeat-006 送 2 (Vented_seat_medium)，其為已定義編碼而於二階配置下無效。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P2：未定義編碼之忽略"
+   "reasoning": "P2：未定義編碼之忽略",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-040",
@@ -171,7 +177,8 @@
     "delta": "本列驗出廠預設狀態為 OFF；-041 驗軟鍵之可及性，-042 驗影像之持續顯示，-043 驗軟鍵之啟用行為。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-041",
@@ -192,7 +199,8 @@
     "delta": "本列驗軟鍵自 Controls 畫面之可及性；-040 驗其預設狀態，-042／-043 驗按下後之行為。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-042",
@@ -213,7 +221,8 @@
     "delta": "本列驗影像持續顯示至再次按下軟鍵為止；-043 驗首次按下即顯示影像。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-043",
@@ -234,12 +243,14 @@
     "delta": "本列驗首次按下即顯示影像且按鍵變色；-042 驗影像持續顯示至再次按下為止。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   }
  ],
  "reasoning": "本批依 42 包 §3.3 之逐 Layer 2 輪流判準選 leaf：四個 Layer 2 之穩定核心餘量為 Common Features 18／Vented Seat 14／Heated Steering Wheel 12／Heated Seat 5，比例加權後配額 4／3／2／1，每個 Layer 2 至少 1 條。驗證目標為請求訊號之釋放、通風座椅與加熱方向盤之喚醒初始狀態與無效值忽略、以及後視攝影機軟鍵之預設值、可及性與顯示行為。關鍵情境條件以 CAN-B 之 $STATUS_CSWM.FL_VS_STATSts$、$STATUS_CLIMATE8.Tri_Level_HSW_StatSts$ 與 BH-CAN 之 $TELEMATIC_VEHICLE_SETUP3.FR_HS_Tlm$ 驅動，值一律取 DBC VAL_ 逐字。無效值之依據為來源自載之有效值列舉：通風座椅取 4858363（VS_OFF／VS_LO／VS_HI，故 2 (Vented_seat_medium) 於二階下無效）、加熱方向盤依 43 包 §3.2 改取**基線 DBC 中未定義之編碼 4**（`Tri_Level_HSW_StatSts` 之 VAL_ 為 0/1/2/3/7，4／5／6 未定義）——`7 (SNA)` 為 DBC 已定義之編碼、語意為「訊號不可用」，不得作為 invalid state 之注入值。**未定義編碼無 `(<label>)` 可寫**，故該步驟寫作 `= 4`；為其編造標籤即違 §8.4.1。切分依 §4.6 之 sibling 比對，含與 batch03 之跨批鏡像比對，無 duplicate_of。**`-031` 之 ER 未以 `within <Tsend>` 為通過條件**，改寫為可觀察之終態（42 包 §3.2；`<Tsend>` 之具體值另開 DR-24）。",
  "supersedes": "generated/batch04.json（v1 保留不刪，R-TM13）",
  "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
- "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值"
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
+ "screen_pending_note": "68 包 §2：`screen_pending` 為畫面層待補之標記（R-VS59(4)／R-VS17），與 `dr_dependent`（可寫性繫於 DR）分離。"
 }

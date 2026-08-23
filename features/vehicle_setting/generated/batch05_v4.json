@@ -45,7 +45,8 @@
     "delta": "本列之驗證對象為左前通風座椅開關；batch03 之 LeftFrontHeatedSeat-012 為左前加熱座椅開關，-011 為加熱方向盤開關。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontVentedSeat-020",
@@ -66,7 +67,8 @@
     "delta": "本列之驗證對象為右前通風座椅；batch04 之 LeftFrontVentedSeat-003 為左前通風座椅。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheel-007",
@@ -87,7 +89,8 @@
     "delta": "本列之驗證對象為加熱方向盤之狀態更新；batch03 之 LeftFrontHeatedSeat-007 為左前加熱座椅之同型行為。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheel-011",
@@ -108,7 +111,8 @@
     "delta": "本列之驗證對象為加熱方向盤開關；LeftFrontVentedSeat-010 為左前通風座椅開關。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-044",
@@ -129,7 +133,8 @@
     "delta": "本列之觸發為按下 \"Rear Camera\" 軟鍵、結果為影像顯示；-045 之觸發為按下畫面右上角之 \"X\"、結果為影像關閉。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-045",
@@ -150,7 +155,8 @@
     "delta": "本列之觸發為按下畫面右上角之 \"X\"、結果為影像關閉；-044 之觸發為按下 \"Rear Camera\" 軟鍵、結果為影像顯示。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ScreenOFF-047",
@@ -171,7 +177,8 @@
     "delta": "本列驗 \"Screen Off\" 軟鍵之出廠預設為 ON；batch04 之 ThirdRowHeadrestDump-040 驗後視攝影機設定之出廠預設為 OFF。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-TwoStagesHeatedSeat-057",
@@ -193,11 +200,13 @@
    },
    "dr15_exposed": "no",
    "dr15_exposed_note": "驗證目標為畫面狀態循環，未斷言請求訊號之編碼（44 包 §3）",
-   "reasoning": "P0(b)：加熱座椅之按壓啟用"
+   "reasoning": "P0(b)：加熱座椅之按壓啟用",
+   "screen_pending": "no"
   }
  ],
  "reasoning": "本批依逐 Layer 2 輪流選入 10 條，其中 2 條經 R-VS44′ 之閘攔下而移出（見 held_out），實際交付 8 條。驗證目標為通風座椅與加熱方向盤之灰階與狀態更新、後視攝影機影像之開關、Screen Off 軟鍵之出廠預設、以及兩階加熱座椅圖示之循環。訊號值一律取 DBC VAL_ 逐字；`RVC IMAGE ON/OFF` 為內部訊號，依 §8.7.5(d) 保留來源名不加 `$`，其驗證改以可觀察之畫面結果為之。切分依 §4.6 之 sibling 比對，含跨批同型比對，無 duplicate_of。**`TwoStagesHeatedSeat-057` 之 ER 只斷言畫面圖示之狀態循環，不斷言請求訊號之編碼** —— 後者為 DR-15 之提問標的（token 級，待覆），依 R-VS44′ 不得由本層之判準解答。",
  "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
- "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值"
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
+ "screen_pending_note": "68 包 §2：`screen_pending` 為畫面層待補之標記（R-VS59(4)／R-VS17），與 `dr_dependent`（可寫性繫於 DR）分離。"
 }

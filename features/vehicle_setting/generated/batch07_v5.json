@@ -57,7 +57,8 @@
     "delta": "本列送 0 (OFF) 且期望顯示為 off；batch06 之 HeatedSteeringWheel-015 送 1 (ON) 且期望顯示為 on。"
    },
    "reasoning": "P1：主要功能邏輯",
-   "screen_pending": "no"
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheel-021",
@@ -80,7 +81,8 @@
     "delta": "與 batch06 之 HeatedSteeringWheel-015（row #1）嚴格等價 —— 觸發、結果、輸入、驗證對象全同，差別僅在來源條文之記法（`[1h: On]` vs `[On]`）。"
    },
    "reasoning": "P0(b)：加熱方向盤之啟用",
-   "screen_pending": "no"
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheel-022",
@@ -103,7 +105,8 @@
     "delta": "與本批 HeatedSteeringWheel-016（row #2）嚴格等價 —— 差別僅在來源條文之記法（`[0h: Off]` vs `[Off]`）。"
    },
    "reasoning": "P1：主要功能邏輯",
-   "screen_pending": "no"
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
    "leaf_id": "SWE1-VC-ThreeStagesHeatedSeat-080",
@@ -197,7 +200,7 @@
   }
  ],
  "reasoning": "本批依逐 Layer 2 輪流選入 10 條，3 條移出（1 條 DR-15 token 級、2 條因 `ENS_DSBL` 無匯流排對應），交付 7 條。驗證目標為加熱方向盤狀態之開關、三階加熱座椅與二階通風座椅之圖示循環、狀態驅動之圖示更新、以及引擎運轉時之狀態保留。**§4.6 之 sibling 比對查出兩對嚴格等價**：`HeatedSteeringWheel-021` ≡ batch06 之 `-015`、`-022` ≡ 本批 `-016` —— 其差別僅在來源條文之記法（`[1h: On]` vs `[On]`），觸發、結果、輸入、驗證對象全同，依 §10.6 標 `duplicate_of` 且 `distinguishing_axis.axis = none`。**ER 皆未以 `<Tdisplay>` 為通過條件。** 圖示循環之 ER 只斷言畫面狀態，不斷言請求訊號之編碼（DR-15 之標的）。",
- "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
+ "revision": "W-130（46 輪）：pilot 七項 defect 之全母體修正 —— D-1 刪架構前置條件／D-4 剝節標題／D-5 還原 HTML 實體／D-7 時限改 remarks 標 BLOCKED",
  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
  "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",

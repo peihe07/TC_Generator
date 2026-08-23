@@ -21,7 +21,8 @@
    "split_flag": false,
    "split_reason": "",
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-Stop-StartSystem-003",
@@ -38,7 +39,8 @@
    "split_flag": false,
    "split_reason": "",
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-Stop-StartSystem-004",
@@ -59,7 +61,8 @@
     "delta": "本列之 ESS_ENG_ST 非 ENS disabled 亦非 SNA，故 heat and vent switches stay active；-005 之 ESS_ENG_ST = ENS disabled，故 greyed out。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "yes"
   },
   {
    "leaf_id": "SWE1-VC-Stop-StartSystem-005",
@@ -80,7 +83,8 @@
     "delta": "本列之 ESS_ENG_ST = ENS disabled，故 heat and vent switches greyed out；-004 之 ESS_ENG_ST 為其他值，故 stay active。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "yes"
   },
   {
    "leaf_id": "SWE1-VC-Stop-StartSystem-007",
@@ -97,7 +101,8 @@
    "split_flag": false,
    "split_reason": "",
    "dr15_exposed": "no",
-   "reasoning": "P2：SNA 之處置"
+   "reasoning": "P2：SNA 之處置",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-SwitchLHD/RHDConfiguration-009",
@@ -114,7 +119,8 @@
    "split_flag": false,
    "split_reason": "",
    "dr15_exposed": "yes",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-SwitchLHD/RHDConfiguration-011",
@@ -131,7 +137,8 @@
    "split_flag": false,
    "split_reason": "",
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-025",
@@ -148,7 +155,8 @@
    "split_flag": false,
    "split_reason": "",
    "dr15_exposed": "no",
-   "reasoning": "P0(a)：第三排頭枕之下放致動"
+   "reasoning": "P0(a)：第三排頭枕之下放致動",
+   "screen_pending": "no"
   }
  ],
  "reasoning": "本批為 batch01_v2 依 pilot review 第二輪（38 包 §1）之缺陷修正，v1／v2 皆保留。驗證目標未變。`SwitchLHD/RHD-009` 依 D-1 改為 §5.6 之 baseline 比較 —— 其需求主張的是「$DriverSide$ 改變時行為不變」之一個比較，原寫法只證明右駕下按鍵會送出請求，即使 $DriverSide$ 有影響仍會通過，屬 §7 之 false pass。`Stop-Start-004`／`-005` 依 D-2 將驗證併入最後一個可執行步驟，使末步驟含 action ＋ check。`Stop-Start-006`（DR-19）與 `SwitchLHD/RHD-010`（DR-20）依 D-3 自本批移出 —— 二者扣除 PENDING 行後之可執行步驟不足 2，另存 `blocked_pending_dr.json`，待該二 DR 覆後再入批。批次規模由 10 降為 8。",
@@ -159,5 +167,6 @@
  "batch_size": 8,
  "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
- "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值"
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
+ "screen_pending_note": "68 包 §2：`screen_pending` 為畫面層待補之標記（R-VS59(4)／R-VS17），與 `dr_dependent`（可寫性繫於 DR）分離。"
 }

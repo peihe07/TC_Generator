@@ -85,7 +85,8 @@
     "delta": "本列送 0 (Vented_seat_off)；-015 送 3 (Vented_seat_high)、-017 送 1 (Vented_seat_low)。"
    },
    "reasoning": "P1：主要功能邏輯",
-   "screen_pending": "no"
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontVentedSeat-015",
@@ -107,7 +108,8 @@
     "delta": "本列送 3 (Vented_seat_high)；-014 送 0 (Vented_seat_off)、-017 送 1 (Vented_seat_low)。"
    },
    "reasoning": "P1：主要功能邏輯",
-   "screen_pending": "no"
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontVentedSeat-017",
@@ -129,7 +131,8 @@
     "delta": "本列送 1 (Vented_seat_low)；-014 送 0 (Vented_seat_off)、-015 送 3 (Vented_seat_high)。"
    },
    "reasoning": "P1：主要功能邏輯",
-   "screen_pending": "no"
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontVentedSeat-021",
@@ -173,7 +176,8 @@
     "delta": "本列之驗證對象為右前通風座椅且送 0 (Vented_seat_off)；-014 為左前座椅之同一值。"
    },
    "reasoning": "P1：主要功能邏輯",
-   "screen_pending": "no"
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontVentedSeat-032",
@@ -195,7 +199,8 @@
     "delta": "本列之驗證對象為右前通風座椅且送 3 (Vented_seat_high)；-015 為左前座椅之同一值。"
    },
    "reasoning": "P1：主要功能邏輯",
-   "screen_pending": "no"
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontVentedSeat-034",
@@ -217,7 +222,8 @@
     "delta": "本列之驗證對象為右前通風座椅且送 1 (Vented_seat_low)；-017 為左前座椅之同一值。"
    },
    "reasoning": "P1：主要功能邏輯",
-   "screen_pending": "no"
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
    "leaf_id": "SWE1-VC-StopStartSystemBehavior-054",
@@ -265,7 +271,7 @@
   }
  ],
  "reasoning": "**R-VS48 之實作使池由 0 恢復為 16**，逐條過 `guard()` 後 12 過閘，扣除 26 輪已判者 2 條，本批交付 10 條。驗證目標為二階通風座椅之有效值列舉、左右通風座椅之三個狀態值驅動之顯示更新、以及 Stop-Start 之兩支互斥條件。值一律取 DBC VAL_ 逐字。**`ENS_DSBL` → `7 (ENS disabled)` 依 R-VS43＋R-VS48(a) 對映**：(1) 縮寫關係於 11 值值域中唯一命中 `ens disabled`；(2) `[7h: ENS disabled]` 全文 5 處為錨點；(3) 對偶 `ens enabled` 全文 0 命中。47 包 §1 已裁定成立。**`<Tdisplay>` 未作為 ER 之通過條件**，ER 改寫為可觀察之終態（DR-24′）。",
- "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
+ "revision": "W-130（46 輪）：pilot 七項 defect 之全母體修正 —— D-1 刪架構前置條件／D-4 剝節標題／D-5 還原 HTML 實體／D-7 時限改 remarks 標 BLOCKED",
  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
  "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",

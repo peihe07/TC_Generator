@@ -56,12 +56,14 @@
     "axis": "mode",
     "delta": "本列之觸發為 PROXI 配置參數之有無（Absent → Present），驗證對象為控制項之存在與否；batch05 之 HeatedSteeringWheel-003 之觸發為喚醒事件，驗證對象為狀態值。"
    },
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   }
  ],
  "reasoning": "本批自重跑後之池（11）過閘（7）並扣除 26 輪已判之 2 條後得 5 條，其中 **4 條為適用性前言**（`Following requirements are valid only if PROXI parameter … == …`），**其僅界定後續條文之適用範圍，自身無觸發亦無可觀察之結果**，撰寫即為 §8.4.1 之造值，故移出；與 13 輪判為 (c) 之 `4859399`／`4859463` 同型。**交付 1 條。** 該條之驗證目標為配置參數驅動之 HMI 更新：`4858296` 明載 `Monitor $Heated_Steering_Wheel$ to determine if the vehicle is equipped … and update the HMI`，`4859492` 提供其適用條件。**值域取自 PROXI_HDCC27_R3（VF664_V2/V3，與本專案 LID 之 VFs=664、ECU=LTM/ETM 一致）**：`Heated_Steering_Wheel` = `0 Absent` / `1 Present`（R-VS49 之標記要求）。",
  "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
- "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值"
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
+ "screen_pending_note": "68 包 §2：`screen_pending` 為畫面層待補之標記（R-VS59(4)／R-VS17），與 `dr_dependent`（可寫性繫於 DR）分離。"
 }

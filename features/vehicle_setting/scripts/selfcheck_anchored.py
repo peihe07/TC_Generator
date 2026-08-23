@@ -10,33 +10,42 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import json
+import re
 
 from selfcheck_w53 import check  # noqa: E402
 
 FEAT = Path(__file__).resolve().parents[1]
 
 # (被檢輸入, 錨點) —— 錨點為同一 batch 之改寫前版本
-PAIRS = [
-    ("generated/batch01_v6.json", "generated/batch01_v5.json"),
-    ("generated/batch02_v4.json", "generated/batch02_v3.json"),
-    ("generated/batch03_v5.json", "generated/batch03_v4.json"),
-    ("generated/batch04_v6.json", "generated/batch04_v5.json"),
-    ("generated/batch05_v4.json", "generated/batch05_v3.json"),
-    ("generated/batch06_v4.json", "generated/batch06_v3.json"),
-    ("generated/batch07_v4.json", "generated/batch07_v3.json"),
-    ("generated/batch08_v5.json", "generated/batch08_v4.json"),
-    ("generated/batch10_v4.json", "generated/batch10_v3.json"),
-    ("generated/batch11_v4.json", "generated/batch11_v3.json"),
-    ("generated/batch12_v4.json", "generated/batch12_v3.json"),
-    # batch13 為首版，無「改寫前之舊版」可用 —— 依 R-VS54(1) 改以
-    # 刻意違規之樣本為錨點（四處植入，見該檔之 `revision`）。
-    ("generated/batch13_v2.json", "generated/_batch13_anchor.json"),
-    ("generated/batch14_v2.json", "generated/_batch14_anchor.json"),
-    ("generated/batch15.json", "generated/_batch15_anchor.json"),
-    ("generated/batch16.json", "generated/_batch16_anchor.json"),
-    ("generated/batch17.json", "generated/_batch17_anchor.json"),
-    ("generated/batch18.json", "generated/_batch18_anchor.json"),
-]
+def _pairs() -> list[tuple[str, str]]:
+    """(被檢輸入, 錨點) —— 各 batch 之**最新版**對其**前一版**。
+
+    46 輪起改為自動推導：本輪 W-130／W-131／W-132 三度產出 `_v{n+1}`，
+    硬編之清單必然落後（其落後之症狀為「錨點檔不存在」或「錨點即被檢輸入」）。
+    無前一版者（首版批次）改以同名之 `_batchNN_anchor.json`（刻意違規之樣本）。
+    """
+    import collections
+    groups: dict[str, list] = collections.defaultdict(list)
+    for f in (FEAT / "generated").glob("batch*.json"):
+        m = re.match(r"(batch\d+)(?:_v(\d+))?\.json$", f.name)
+        if m:
+            groups[m.group(1)].append((int(m.group(2) or 1), f))
+    out = []
+    for k, v in sorted(groups.items()):
+        v.sort()
+        subj = v[-1][1]
+        if len(v) >= 2:
+            anchor = v[-2][1]
+        else:
+            a = FEAT / "generated" / f"_{k}_anchor.json"
+            if not a.exists():
+                continue
+            anchor = a
+        out.append((f"generated/{subj.name}", f"generated/{anchor.name}"))
+    return out
+
+
+PAIRS = _pairs()
 
 
 def run(name: str) -> list[str]:

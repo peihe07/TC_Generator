@@ -61,9 +61,17 @@ def clause_pairs(text: str) -> dict[str, set[str]]:
 
 
 def arch_column(attrs: dict) -> str:
-    """R-VS51(2)：條文架構 → LID 欄組。同時標二者取 `Atlantis High`。"""
-    a = attrs.get("EE Architecture", "")
-    return "Atlantis" if ("Atlantis Mid" in a and "Atlantis High" not in a) else "Atlantis High"
+    """**R-VS67（71 包 §1，Pei 2026-08-23）**：一律取 `Atlantis High` 欄組。
+
+    推翻 R-VS51(2) 之「條文標 `Atlantis Mid` → 取 LID `Atlantis` 欄組」——
+    其分流依**條文之架構標籤**，而 R-VS19″ 已定該標籤為**來源沿革**而非適用性。
+    **沿革不應決定取值。** 原式保留於下，不刪（R-TM13）。
+
+        a = attrs.get("EE Architecture", "")
+        return "Atlantis" if ("Atlantis Mid" in a and "Atlantis High" not in a) \
+            else "Atlantis High"
+    """
+    return "Atlantis High"
 
 
 def lid_column_domain() -> dict[str, set[str]]:
@@ -72,7 +80,11 @@ def lid_column_domain() -> dict[str, set[str]]:
     `FL_VS_Cmd_Tlm`／`FR_VS_Cmd_Tlm` 之 `Heated_seat_*` 依 52 包 §3 判 typo，
     取 `Vented_Seat_*`；**不跨列引入**（A-VS103）。
     """
-    raw = json.loads((FEAT / "data/_lid_argroups.json").read_text())["Atlantis"]
+    # **R-VS67**：欄組一律取 `Atlantis High`；`Atlantis` 欄組僅作旁證。
+    grp = json.loads((FEAT / "data/_lid_argroups.json").read_text())
+    raw = dict(grp.get("Atlantis High") or {})
+    for k, v in grp["Atlantis"].items():        # 旁證：High 欄組無該 token 時方取
+        raw.setdefault(k, v)
     for k in ("FL_VS_Cmd_Tlm", "FR_VS_Cmd_Tlm"):
         if k in raw:
             raw[k] = [f for f in raw[k] if "Vented" in f] or raw[k]

@@ -1,0 +1,53 @@
+{
+ "new": [
+  "SWE1-VC-OneStageHeatedSeat-039",
+  "SWE1-VC-OneStageHeatedSeat-040",
+  "SWE1-VC-PHEVFeatures-017",
+  "SWE1-VC-ThirdRowHeadrestDump-027",
+  "SWE1-VC-ThreeStagesHeatedSeat-078",
+  "SWE1-VC-ThreeStagesHeatedSeat-079",
+  "SWE1-VC-ThreeStagesVentedSeatsManagement-060",
+  "SWE1-VC-ThreeStagesVentedSeatsManagement-061",
+  "SWE1-VC-TwoStagesHeatedSeat-055",
+  "SWE1-VC-TwoStagesHeatedSeat-056",
+  "SWE1-VC-TwoStagesVentedSeatsManagement-037",
+  "SWE1-VC-TwoStagesVentedSeatsManagement-038"
+ ],
+ "old": [
+  "SWE1-VC-OneStageHeatedSeat-039",
+  "SWE1-VC-OneStageHeatedSeat-040",
+  "SWE1-VC-PHEVFeatures-017",
+  "SWE1-VC-ThreeStagesHeatedSeat-078",
+  "SWE1-VC-ThreeStagesHeatedSeat-079",
+  "SWE1-VC-ThreeStagesVentedSeatsManagement-060",
+  "SWE1-VC-ThreeStagesVentedSeatsManagement-061",
+  "SWE1-VC-TwoStagesHeatedSeat-055",
+  "SWE1-VC-TwoStagesHeatedSeat-056",
+  "SWE1-VC-TwoStagesVentedSeatsManagement-037",
+  "SWE1-VC-TwoStagesVentedSeatsManagement-038"
+ ],
+ "testable_verbs": [
+  "activate",
+  "behave",
+  "change",
+  "check",
+  "close",
+  "disable",
+  "display",
+  "enable",
+  "maintain",
+  "open",
+  "pending",
+  "power",
+  "press",
+  "read",
+  "reflect",
+  "retain",
+  "send",
+  "set",
+  "show",
+  "transmit",
+  "update",
+  "wake"
+ ]
+}

@@ -105,7 +105,8 @@
     "delta": "本列送 1 (ON) 且期望顯示為 on；batch07 之 HeatedSteeringWheel-016 送 0 (OFF) 且期望顯示為 off。"
    },
    "reasoning": "P0(b)：加熱方向盤之啟用",
-   "screen_pending": "no"
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
   },
   {
    "leaf_id": "SWE1-VC-ScreenOFF-049",
@@ -221,7 +222,7 @@
   }
  ],
  "reasoning": "本批依逐 Layer 2 輪流選入 10 條，1 條經 guard() 攔下移出（`HeatedSteeringWheel-013` 之 `[NOT Pressed / NOT_PSD]` 落在 DR-15 之 token 範圍），交付 9 條。驗證目標為右前通風座椅之三種行為、加熱方向盤狀態之開啟、Screen Off 軟鍵之四個面向、以及狀態驅動之圖示更新。值一律取 DBC VAL_ 逐字。無效值依 profile 之優先序取 (2) 配置相依（`4858363` 之二階列舉排除 medium）。**`HeatedSteeringWheel-015` 之 ER 未以 `<Tdisplay>` 為通過條件**，改寫為可觀察之終態（44 包承 42 包 §3.2）。**`ScreenOFF-051` 之 ER 只斷言訊號有送出，不斷言其值** —— 該值由 `{CFTS020}` 擁有（§8.4.2），且 `TGW_DISP_STAT` 於基線 DBC 中不存在，依 §8.7.5(g) 保留來源名不加 `$`。**委派句（§8.2.1）**：該訊號之值由 `{CFTS020}` 擁有，本 Req 僅擁有「訊號被送出」此一事實（45 包 §1.1 確認）。",
- "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
+ "revision": "W-130（46 輪）：pilot 七項 defect 之全母體修正 —— D-1 刪架構前置條件／D-4 剝節標題／D-5 還原 HTML 實體／D-7 時限改 remarks 標 BLOCKED",
  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
  "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",

@@ -1,0 +1,117 @@
+{
+ "batch": "_batch19_anchor",
+ "feature": "vehicle_setting",
+ "test_group": "Vehicle Setting",
+ "generated_round": 43,
+ "handoff": "docs/handoff/68_review_round42.md",
+ "profile": "docs/runtime/profiles/FW036_R1L_VehicleSetting_Profile.md",
+ "selection": "池 **16**（W-114 重跑後扣已交付 129）。依 R-VS58 取 **10**，**餘 6**。同序內逐 Layer 2 輪流（HS 4／VS 5／HSW 1）—— **輪流不均**：池中 Heated Seat 僅 5 條而 Vented Seat 有 9 條，見上繳 37 §2。",
+ "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
+ "revision": "R-VS54 之錨點 —— **刻意違規之樣本**，非交付物。四處植入。",
+ "held_out": [
+  {
+   "leaf_id": "SWE1-VC-OneStageHeatedSeat-040",
+   "reason": "適用性前言（A-VS141 之第六式）。**W-121 之新判準確判其為前言**，惟該判準因升級條件命中而本輪未套用（上繳 38 §2.1）——故其分級仍為 W0，**維持 held_out 而未移入 W2**"
+  },
+  {
+   "leaf_id": "SWE1-VC-FeaturesEnableCriteria-023",
+   "reason": "其「all other signal values」須跨條文取值（A-VS112），跨條文引入屬裁定事項"
+  }
+ ],
+ "screen_layer": "依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS59(4)）",
+ "tcs": [
+  {
+   "leaf_id": "SWE1-VC-ThreeStagesVentedSeatsManagement-070",
+   "test_set": "Vented Seat",
+   "tc_title": "Right front vented seat at low plus request commands off",
+   "test_item": "IF ($VentedSeatFR$ == \"Vented_seat_low\" AND STATUS_CSWM.FR_VS_STATFailSts == \"Fail_Not_Present\" AND PsngrSeatHeating.Req passes to \"Requested\" )THENTLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = \"Vented_seat_off\".\n\n(Three vented seat states, low plus press request)",
+   "pre_conditions": "1. The vehicle is configured for three vented seat states\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator\n4. The vehicle architecture is Atlantis Mid",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FR_VS_STATFailSts = 0 (Fail_Not_Present)\n2. Send CAN: STATUS_CSWM.FR_VS_STATSts = 1 (Vented_seat_low)\n3. Press the right front vented seat icon and check that TELEMATIC_VEHICLE_SETUP2.FR_VS_NOPE_Tlm = 0 (Vented_Seat_Off) is transmitted",
+   "expected_result": "1. STATUS_CSWM.FR_VS_STATFailSts = 0 (Fail_Not_Present) is sent\n2. STATUS_CSWM.FR_VS_STATSts = 1 (Vented_seat_low) is sent\n3. TELEMATIC_VEHICLE_SETUP2.FR_VS_NOPE_Tlm = 0 (Vented_Seat_Off) is sent",
+   "specification_reference": "CFTS044-4859474",
+   "design_method": "決策表 (Decision Table Testing)",
+   "priority": "P1",
+   "reasoning": "P1：主要功能邏輯；畫面層依 W-115(2) 之逐 leaf 行為層對照判「unextracted」",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "dr_dependent": "DR-25",
+   "screen_source": "unextracted",
+   "distinguishing_axis": {
+    "axis": "trigger",
+    "delta": "本列之觸發為按壓請求，對象為 VentedSeatFR，初始階為 low。"
+   }
+  },
+  {
+   "leaf_id": "SWE1-VC-ThreeStagesVentedSeatsManagement-076",
+   "test_set": "Vented Seat",
+   "tc_title": "Right front vented seat status change mirrors off to the command",
+   "test_item": "IF ($VentedSeatFR$ passes to \"Vented_seat_off\" AND STATUS_CSWM.FR_VS_STATFailSts == \"Fail_Not_Present\")THENTLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = \"Vented_seat_off\";\n\n(Three vented seat states, status transition, no press)",
+   "pre_conditions": "1. The vehicle is configured for three vented seat states\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator\n4. The vehicle architecture is Atlantis Mid",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FR_VS_STATFailSts = 0 (Fail_Not_Present)\n2. Send CAN: STATUS_CSWM.FR_VS_STATSts = 2 (Vented_seat_medium)\n3. Send CAN: STATUS_CSWM.FR_VS_STATSts = 0 (Vented_seat_off) without pressing any icon and check that TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = 0 (Vented_Seat_Off) is transmitted",
+   "expected_result": "1. STATUS_CSWM.FR_VS_STATFailSts = 0 (Fail_Not_Present) is sent\n2. STATUS_CSWM.FR_VS_STATSts = 2 (Vented_seat_medium) is sent\n3. TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = 0 (Vented_Seat_Off) is sent",
+   "specification_reference": "CFTS044-4859482",
+   "design_method": "State Transition",
+   "priority": "P1",
+   "reasoning": "P1：主要功能邏輯；畫面層依 W-115(2) 之逐 leaf 行為層對照判「unextracted」",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "dr_dependent": "DR-25",
+   "screen_source": "unextracted",
+   "distinguishing_axis": {
+    "axis": "trigger",
+    "delta": "本列之觸發為狀態轉換，對象為 VentedSeatFR，初始階為 off。"
+   }
+  },
+  {
+   "leaf_id": "SWE1-VC-ThreeStagesVentedSeatsManagement-077",
+   "test_set": "Vented Seat",
+   "tc_title": "Right front vented seat status change mirrors low to the command",
+   "test_item": "IF ($VentedSeatFR$ passes to \"Vented_seat_low\" AND STATUS_CSWM.FR_VS_STATFailSts == \"Fail_Not_Present\")THENTLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = \"Vented_seat_low\"\n\n(Three vented seat states, status transition, no press)",
+   "pre_conditions": "1. The vehicle is configured for three vented seat states\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator\n4. The vehicle architecture is Atlantis Mid",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FR_VS_STATFailSts = 0 (Fail_Not_Present)\n2. Send CAN: STATUS_CSWM.FR_VS_STATSts = 2 (Vented_seat_medium)\n3. Send CAN: STATUS_CSWM.FR_VS_STATSts = 1 (Vented_seat_low) without pressing any icon and check that TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = 1 (Vented_Seat_Low) is transmitted",
+   "expected_result": "1. STATUS_CSWM.FR_VS_STATFailSts = 0 (Fail_Not_Present) is sent\n2. STATUS_CSWM.FR_VS_STATSts = 2 (Vented_seat_medium) is sent\n3. TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = 1 (Vented_seat_low) is sent",
+   "specification_reference": "CFTS044-4859483",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "reasoning": "P1：主要功能邏輯；畫面層依 W-115(2) 之逐 leaf 行為層對照判「unextracted」",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "dr_dependent": "DR-25",
+   "screen_source": "unextracted",
+   "distinguishing_axis": {
+    "axis": "trigger",
+    "delta": "本列之觸發為狀態轉換，對象為 VentedSeatFR，初始階為 low。"
+   }
+  },
+  {
+   "leaf_id": "SWE1-VC-ThreeStagesVentedSeatsManagement-079",
+   "test_set": "Vented Seat",
+   "tc_title": "Right front vented seat status change mirrors high to the command",
+   "test_item": "IF ($VentedSeatFR$ passes to \"Vented_seat_high\" AND STATUS_CSWM.FR_VS_STATFailSts == \"Fail_Not_Present\")THENTLM shall set TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = \"Vented_seat_high\".\n\n(Three vented seat states, status transition, no press)",
+   "pre_conditions": "1. The vehicle is configured for three vented seat states\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator\n4. The vehicle architecture is Atlantis Mid",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FR_VS_STATFailSts = 0 (Fail_Not_Present)\n2. Send CAN: STATUS_CSWM.FR_VS_STATSts = 2 (Vented_seat_medium)\n3. Send CAN: STATUS_CSWM.FR_VS_STATSts = 3 (Vented_seat_high) without pressing any icon and check that TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = 3 (Vented_Seat_High) is transmitted",
+   "expected_result": "1. STATUS_CSWM.FR_VS_STATFailSts = 0 (Fail_Not_Present) is sent\n2. STATUS_CSWM.FR_VS_STATSts = 2 (Vented_seat_medium) is sent\n3. TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm = 3 (Vented_Seat_High) is sent",
+   "specification_reference": "CFTS044-4859485",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "reasoning": "本列驗命令鏡射",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "dr_dependent": "DR-25",
+   "screen_source": "unextracted",
+   "distinguishing_axis": {
+    "axis": "trigger",
+    "delta": "本列之觸發為狀態轉換，對象為 VentedSeatFR，初始階為 high。"
+   }
+  }
+ ]
+}

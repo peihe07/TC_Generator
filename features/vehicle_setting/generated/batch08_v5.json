@@ -44,7 +44,8 @@
     "axis": "mode",
     "delta": "本列之配置為三階加熱座椅且注入 2 (Heated_seat_medium)；batch06 之 TwoStagesHeatedSeat-066 為二階配置且注入 3 (Heated_seat_high)。"
    },
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThreeStagesVentedSeatsManagement-062",
@@ -66,7 +67,8 @@
     "axis": "mode",
     "delta": "本列之配置為三階（off→high→mid→low→off，四步）；batch07 之 TwoStagesVentedSeatsManagement-039 為二階（off→high→low→off，三步）。"
    },
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThreeStagesVentedSeatsManagement-071",
@@ -87,7 +89,8 @@
     "axis": "mode",
     "delta": "本列之配置為三階通風座椅且注入 2 (Vented_seat_medium)；batch07 之 TwoStagesVentedSeatsManagement-048 為二階配置且注入 3 (Vented_seat_high)。"
    },
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheelManagement-028",
@@ -109,7 +112,8 @@
     "axis": "mode",
     "delta": "本列之驗證對象為加熱方向盤圖示；batch07 之 ThreeStagesHeatedSeat-080 為加熱座椅圖示。條文未逐字列出其循環序列，故本列只斷言「離開 off」與「回到 off」兩點。"
    },
-   "reasoning": "P0(b)：加熱方向盤之按壓啟用"
+   "reasoning": "P0(b)：加熱方向盤之按壓啟用",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheelManagement-032",
@@ -130,7 +134,8 @@
     "axis": "trigger_state",
     "delta": "本列之前置條件含 Ignition On Engine On（條文明載），且驗證對象為加熱方向盤圖示；-028 之觸發為使用者按壓。"
    },
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-SwitchLHD/RHDConfiguration-012",
@@ -152,7 +157,8 @@
     "axis": "trigger_state",
     "delta": "本列以 `DrvSeatHeating.Req` 之內部訊號路徑觸發、驗畫面圖示不變；batch01_v3 之 SwitchLHD/RHD-009 以 `$TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm$` 之匯流排值為驗證對象。"
    },
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-SwitchLHD/RHDConfiguration-014",
@@ -173,12 +179,14 @@
     "axis": "trigger_state",
     "delta": "本列驗有標籤時之左右互換；-012 驗無標籤時行為不受影響。二者為同一需求之兩個互斥情境。"
    },
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   }
  ],
  "reasoning": "**穩定核心已近耗盡** —— 餘量 10（1 條無 reqid），本批全數選入 9 條，2 條移出，交付 7 條。逐 Layer 2 輪流之配額於 Common Features 不足（餘量 4 < 配額 5），依 45 包 §3 自餘量最大者補足並記明。驗證目標為三階座椅與加熱方向盤之圖示循環與狀態驅動更新、以及 LHD/RHD 兩種標籤情境。值一律取 DBC VAL_ 逐字；`DrvSeatHeating.Req` 為內部訊號，依 §8.7.5(d) 保留來源名不加 `$`。`$DriverSide$` 之 `[Right Drive]` 依 **R-VS43** 三條件成立而演繹為 `1 (Right Side)`：(1) 值域二值且與 `right side` 共享實詞唯一、(2) `1h: Right Side` 錨定、(3) `left drive` 全文 0 命中。`HeatedSteeringWheelManagement-028` 之條文未逐字列出其循環序列（僅稱 `described below`），故本列只斷言「離開 off」與「回到 off」兩點，**不編造中間階數**。",
  "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
  "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
- "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值"
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
+ "screen_pending_note": "68 包 §2：`screen_pending` 為畫面層待補之標記（R-VS59(4)／R-VS17），與 `dr_dependent`（可寫性繫於 DR）分離。"
 }

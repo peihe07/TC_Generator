@@ -43,7 +43,8 @@
     "delta": "本列之觸發為 PROXI Driver_Side 之配置，驗證對象為加熱方向盤圖示之左右位置；其餘九列皆非圖示位置。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-003",
@@ -64,7 +65,8 @@
     "delta": "本列驗左前座椅於喚醒後、首次狀態更新前顯示為 off；-022 驗右前座椅於喚醒時狀態被設為 OFF。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-007",
@@ -85,7 +87,8 @@
     "delta": "本列送有效值 3 (Heated_seat_high) 且期望顯示變更；-008 送無效值 2 (Heated_seat_medium) 且期望顯示不變。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-008",
@@ -106,7 +109,8 @@
     "delta": "本列送無效值 2 (Heated_seat_medium) 且期望顯示不變；-007 送有效值 3 (Heated_seat_high) 且期望顯示變更。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P2：無效值之忽略"
+   "reasoning": "P2：無效值之忽略",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-012",
@@ -127,7 +131,8 @@
     "delta": "本列之驗證對象為左前加熱座椅開關之灰階；-029 之驗證對象為右前加熱座椅開關。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-014",
@@ -150,7 +155,8 @@
    "dr15_exposed": "yes",
    "remarks": "BLOCKED: DR-24′ —— 來源之時限 `<Tsend>` 無具體值，時限之驗證不寫入 expected_result（42 包 §3.2、canon §8.7.1）",
    "dr_dependent": "DR-24′",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontHeatedSeat-022",
@@ -171,7 +177,8 @@
     "delta": "本列驗右前座椅於喚醒時狀態被設為 OFF；-003 驗左前座椅於喚醒後、首次狀態更新前顯示為 off。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontHeatedSeat-025",
@@ -192,7 +199,8 @@
     "delta": "本列之驗證對象為右前座椅之 $STATUS_CSWM.FR_HS_STATSts$；-007 之驗證對象為左前座椅之 $STATUS_CSWM.FL_HS_STATSts$。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontHeatedSeat-026",
@@ -213,7 +221,8 @@
     "delta": "本列之驗證對象為右前座椅之無效值忽略；-008 之驗證對象為左前座椅。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P2：無效值之忽略"
+   "reasoning": "P2：無效值之忽略",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontHeatedSeat-029",
@@ -234,11 +243,13 @@
     "delta": "本列之驗證對象為右前加熱座椅開關之灰階；-012 之驗證對象為左前加熱座椅開關。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   }
  ],
  "reasoning": "本批自穩定核心（generatable = yes ∧ quoted_form_risk = no）之 72 條中扣已用 12、可選 59，依 reqid 升冪取 10。驗證目標為加熱座椅之喚醒初始狀態、有效狀態更新、無效值忽略、電源模式下之灰階、請求訊號之釋放時序，以及右駕配置下加熱方向盤圖示之鏡射。關鍵情境條件以 CAN-B 之 $STATUS_CSWM.FL_HS_STATSts$／$FR_HS_STATSts$、$STATUS_BH_BCM2.CmdIgnSts$、BH-CAN 之 $TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm$ 與 PROXI Driver_Side 驅動，值一律取 DBC VAL_ 逐字。切分依 §4.6 之 sibling 比對，四對左右鏡像逐對比對後無 duplicate_of，十列全數輸出 distinguishing_axis。值域演繹：$PowerMode$ 之 [Ignition run] 依跨條文錨點 [4h:Ignition run]（全文 5 處）解為 4 (RUN)，非 R-VS43 之演繹而是來源自載原始碼值；$FL_HS_RQ$ 之 [Not Pressed / HS_NOT_PSD] 依錨點 0h: not pressed 解為 0 (Not_Pressed)。無效值之依據為 4858307 逐字「For vehicles with two states (i.e. LO and HI) … Valid values … HS_OFF, HS_LO, HS_HI」，故 2 (Heated_seat_medium) 於二階配置下為無效，非本層造值；三階配置之分支由 4858308 擁有（§8.2.1）。",
  "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
- "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值"
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
+ "screen_pending_note": "68 包 §2：`screen_pending` 為畫面層待補之標記（R-VS59(4)／R-VS17），與 `dr_dependent`（可寫性繫於 DR）分離。"
 }

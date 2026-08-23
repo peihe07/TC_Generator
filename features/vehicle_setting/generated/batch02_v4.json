@@ -43,7 +43,8 @@
     "delta": "本列之進入路徑為 Controls 畫面；-027 之進入路徑為 Rear View Camera 畫面。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-027",
@@ -64,7 +65,8 @@
     "delta": "本列之進入路徑為 Rear View Camera 畫面且以 PROXI Rear_View_Camera = 1 (Present) 為前提；-026 之進入路徑為 Controls 畫面。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-030",
@@ -85,7 +87,8 @@
     "delta": "本列之 CmdIgnSts = 1 (IGN_LK)，軟鍵可選；-032 之 CmdIgnSts = 4 (RUN)，同為可選但觸發值不同。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-032",
@@ -106,7 +109,8 @@
     "delta": "本列之 CmdIgnSts = 4 (RUN)，軟鍵可選；-030 之 CmdIgnSts = 1 (IGN_LK)，同為可選但觸發值不同。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-037",
@@ -127,7 +131,8 @@
     "delta": "本列之觸發為 PROXI Rear_View_Camera = 1 (Present) 之配置；-038 之觸發為 CmdIgnSts 之電源模式。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-038",
@@ -148,11 +153,13 @@
     "delta": "本列之驗證對象為 Rear View Camera 軟鍵於 CmdIgnSts = 4 (RUN) 之可選性；-032 之驗證對象為 Headrest Dump 軟鍵。"
    },
    "dr15_exposed": "no",
-   "reasoning": "P1：主要功能邏輯"
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "yes"
   }
  ],
  "reasoning": "本批自 Common Features 之 32 個未用可用 leaf 中依 reqid 升冪取 10，其中 4 條因來源缺件而移出（見 blocked_pending_dr.json），實際交付 6 條。驗證目標為第三排頭枕下放軟鍵之可及性（Controls 畫面／Rear View Camera 畫面）、其於各電源模式之可選性、以及 Rear View Camera 虛擬鍵之啟用條件。關鍵情境條件以 CAN-B 之 $STATUS_BH_BCM2.CmdIgnSts$ 與 PROXI Rear_View_Camera 驅動；CmdIgnSts 之值取 DBC VAL_ 逐字（0 Initialization／1 IGN_LK／4 RUN）。切分依 §4.6 之 sibling 比對：11 列（含 batch01_v3 之 -025）逐列比對 trigger 與 verification target，無 duplicate_of；每條輸出 distinguishing_axis，軸為 mode（進入路徑）／trigger_state（電源模式值）／input_data（PROXI 配置）。未涵蓋者：-028（VC_HdRstPrsnt 無匯流排對應）、-029（IGN_START 無對應）、-031（IGN_OFF_ACC 無對應）、-039（未具名之 HMI Logic and Flow 交叉參照）四條移出本批。",
  "revision": "W-101（36 輪）：Priority 依 R-VS56 重判；design_method 對齊受控值域",
  "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
- "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值"
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
+ "screen_pending_note": "68 包 §2：`screen_pending` 為畫面層待補之標記（R-VS59(4)／R-VS17），與 `dr_dependent`（可寫性繫於 DR）分離。"
 }
