@@ -62,6 +62,74 @@ LID 表載 `HdRstRelRq` 之 Atlantis High 對映為 `RADIO_B3.HDRstRelRq_3rdRow`
 
 > **DR-13 撤銷**（14 包 §1）：`$ESS_ENG_ST$` 之 message 歸屬非矛盾，係執行層未展開 LID 單格多值。
 
+## DR-15′（**改寫**，63 包 §5；40 輪 D-3。取代 DR-15 —— Pei 指示「說明更詳細一點」。Urgency High；**已送出者補送本文**）
+
+**條文逐字轉錄自 `docs/handoff/63_rulings_round39.md` §5：**
+
+```
+DR-15′（取代 17 包 §2.3；已送出者以本文補送）
+
+**問題**：加熱／通風座椅之請求訊號，其承載階數或為單一位元？
+
+**背景**：本專案（R1LR，Atlantis High）之 TC 撰寫中，
+同一個邏輯識別碼在三份文件上得到互相矛盾之描述。
+
+**證據一 —— CFTS044 之條文（標記 `[EE Architecture:Atlantis High]`）**
+條文 `4858325`（`$FL_HS_RQ$`）／`4858355`（`$FR_HS_RQ$`）／
+`4858385`（`$FL_VS_RQ_TGW$`）／`4858416`（`$FR_VS_RQ_TGW$`）
+令 HU 依座椅**目前狀態**送出循環降階之值：
+
+    目前 High   → 送出 Medium
+    目前 Medium → 送出 Low
+    目前 Low    → 送出 Off
+    目前 Off    → 送出 High
+
+即該請求訊號**承載四個階數值**。
+
+**證據二 —— 基線 CAN 資料庫**
+`PDT27_E2A_R4_BHCAN.dbc`（VersionYear 25／VersionWeek 50）之
+`TELEMATIC_VEHICLE_SETUP3.FL_HS_Tlm`／`FR_HS_Tlm`／`FL_VS_Tlm`／`HSW_Tlm`
+皆為 **1 bit**，值表為 `0 = Not_Pressed`／`1 = Pressed`。
+即該請求訊號**只有二值**。
+
+**證據三 —— LID v1.76 之同一列（列 769）**
+同一個 LID `FL_VS_RQ_TGW` 於兩個欄組對映至不同訊號：
+
+    `Atlantis` 欄組      → `TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm`
+                           2 bit，四階（Off／Low／Medium／High）
+    `Atlantis High` 欄組 → `TELEMATIC_VEHICLE_SETUP3.FL_VS_Tlm`
+                           1 bit（Not_Pressed／Pressed）
+
+且該表對請求類 LID 之 `Format` 欄**無位元寬宣告**，
+而對狀態類 LID（如 `HeatedSeatFL`）明載 `2 bit signal`。
+
+**我方之觀察**：三份證據可以一致地解釋為 ——
+**四階者屬 Atlantis Mid 架構，二值者屬 Atlantis High**；
+而 CFTS044 描述循環降階之四條條文標記為 `Atlantis High`，
+**其架構標記疑為自 Atlantis Mid 遷入時未更新**。
+
+**請確認（擇一）**：
+(a) 請求訊號為 1 bit，階數之循環由 HU 內部狀態機決定
+    → 則 `4858325` 等四條之描述應改；
+(b) 請求訊號承載階數
+    → 請提供其實際 signal 名、bit 寬、值表；
+(c) 兩者皆是，依 EE Architecture 分流
+    → 則 `4858325` 等四條之 `[EE Architecture]` 標記應為 `Atlantis Mid`。
+
+**另請確認**：該行為是否隨 `$Heated_Seat_Levels$`（1／2／3）之配置而不同？
+
+**影響**：Heated Seat 88 ＋ Vented Seat 72 共 160 個 SWE leaf 之
+測試步驟、預期結果與測試設計方法（Functional Based vs Decision Table）。
+其中已交付 **6 條** TC 之斷言落在該五個 token 上，覆後須逐條複檢。
+```
+
+**狀態：已送出（原 DR-15，2026-08-22）—— 待覆；本文為補送之詳本。**
+**覆後回溯之已交付 TC 為 6 條**（A-VS86 3 ＋ A-VS108 2 ＋ A-VS114 1）。
+
+---
+
+### （原 DR-15 條文，保留 —— R-TM13）
+
 ## DR-15（新，**Urgency High** —— 排在 framework 之前）
 
 **型別（R-VS45）：**型 A**（規格缺陷）**
@@ -260,6 +328,11 @@ CFTS044 之座椅相關值域中，發現四類書寫問題，請確認其為筆
 **狀態：未送出** —— 37 包送件文第 6 項，**Pei 本次僅送 1–5**，本項維持待送。配對 anomaly：A-VS49／A-VS51／A-VS52／A-VS53。
 
 ## DR-19（**併入 DR-21**，R-VS42；原編號保留 —— R-TM13。已於 2026-08-22 送出，待覆）
+
+> **40 輪 D-3（依 R-VS61，63 包 §3）**：**性質由阻塞轉確認，不阻塞。**
+> `$EngRun_Stat$` 之 `IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN` 四值於 LID 與 DBC 皆無對應，
+> 依 R-VS61 **仍產 TC**，其值取來源逐字（`STATUS_CCAN3.EngineSts = IDLE_STBL`，**不附 label**），
+> 標 `dr_dependent = DR-19`。覆後補 raw 碼。**解 7 條。**
 
 **型別（R-VS45）：**型 A**（規格缺陷；併入 DR-21）**
 
@@ -561,6 +634,12 @@ Flow to update the state of the Rear View Camera soft button.`
 
 **請提供 R1LR 所適用之完整車型碼對照**（含 `332`／`M182`／`M189` 之編碼）。
 
+> **40 輪 D-3 之縮限（依 R-VS62，63 包 §4，Pei 2026-08-23）**：
+> `332`／`WS`／`DT`／`HDCC` 四碼已自 `PROXI_HDCC27_R3_20250424.xlsx` 之 `Format` 分頁
+> 列 466 解得（`332 → 105 (69 Hex)`／`WS → 104 (68 Hex)`／`DT → 124 (7C hex)`／
+> `HDCC → 130 (82 Hex)`）。**本 DR 縮限為 `M182`／`M189`／`M240` 三碼**，
+> 三者於該表命中 0。適用範圍限 `VC_VEH_LINE` 一參數。
+
 > **原 DR-8 之前提已失效**：其列舉 `DT`／`WS`／`HDCC`／`M240`，
 > 而該四碼於 R1LR 之 CFTS 中交叉命中 **0**。
 
@@ -692,6 +771,10 @@ CFTS044 之 SWE leaf 其行為賦值於下列五個訊號，
 > 其 `HSW_Cmd_Tlm` 一列於送出時應連同本註記。
 
 **`FR_VS_Cmd_Tlm` 另受牽制**：其 LID `Atlantis` 欄組之值域為 `Heated_seat_*`，52 包 §3 已判該前綴為 typo，惟其正確值域須自 `FL_VS_Cmd_Tlm` 之列跨列引入 —— **A-VS103 判其為裁定事項，本層不跨列引入**，該 14 leaf 之值域仍未解（併 DR-18）。
+
+> **40 輪 D-3（依 R-VS59，63 包 §6）**：**性質由阻塞轉確認，不阻塞。**
+> 其 61 leaf 依 R-VS57／R-VS59 照寫，訊號名與值域取來源逐字並標 `dr_dependent`；
+> 覆後為 (b) 者逐條撤回。
 
 **狀態：未送出。**
 
