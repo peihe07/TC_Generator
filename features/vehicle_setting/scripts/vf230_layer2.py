@@ -14,6 +14,7 @@ Part 1 之 Layer 1/2/3 一律不得更動（61 包 §4.2）。
 import csv
 import json
 import re
+import unicodedata
 from collections import Counter, OrderedDict
 from pathlib import Path
 
@@ -24,8 +25,22 @@ SPEC = ROOT / "inputs" / "C-VF230_V1_R5_PDT27.doc"
 
 
 def key(s: str) -> str:
-    """比對用鍵：小寫、非英數字（含換行）摺為單一空白。"""
-    return re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
+    """比對用鍵 —— R-VS66 之正規化（W-116）。
+
+    依序：Unicode NFKC → 換行／tab 摺為空白 → 大小寫不分 →
+    非英數字摺為單一空白 → 首尾去空白。
+
+    首版未含 NFKC 與換行摺疊；A-VS129 指出至少 1 簇之 037 title
+    內嵌換行，其「無對應」可能為正規化產物。W-116 即該複驗。
+    """
+    # `vf230_leaves.tsv` 將換行序列化為**字面兩字元** `\n`；
+    # 須先解序列化，否則 `with\nCargo` 會摺成 `with ncargo`
+    # （`n` 為英數字，不被 `[^a-z0-9]+` 吃掉）——
+    # W-116 首跑即因此仍得 103/3，與複驗前無異。
+    t = s.replace("\\n", " ").replace("\\t", " ")
+    t = unicodedata.normalize("NFKC", t)
+    t = re.sub(r"[\r\n\t]+", " ", t)
+    return re.sub(r"[^a-z0-9]+", " ", t.lower()).strip()
 
 
 def spec_toc() -> list[dict]:

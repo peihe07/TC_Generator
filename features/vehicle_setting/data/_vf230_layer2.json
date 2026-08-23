@@ -1568,12 +1568,18 @@
       "families": [
         "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
       ],
-      "match": "none",
-      "spec_level": null,
-      "spec_path": [],
-      "coarse": "(無對應章)",
-      "mid": "(無對應章)",
-      "spec_hits": 0,
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rear Guidance Lights with Cargo Lights"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
       "ambiguous_l4": []
     },
     {
@@ -4151,32 +4157,32 @@
     }
   ],
   "match_dist": {
-    "exact": 103,
-    "none": 3
+    "exact": 104,
+    "none": 2
   },
   "total_leaf": 619,
   "grain_coarse_l4": [
     [
       "LTM or ETM Algorithm Requirements",
-      103,
-      603
+      104,
+      608
     ],
     [
       "(無對應章)",
-      3,
-      16
+      2,
+      11
     ]
   ],
   "grain_mid_l3": [
     [
       "LTM or ETM Vehicle Setup Management",
-      103,
-      603
+      104,
+      608
     ],
     [
       "(無對應章)",
-      3,
-      16
+      2,
+      11
     ]
   ],
   "grain_family": [

@@ -264,7 +264,7 @@ W-107 DR 波及判定     → W-115
 
 1. ~~**VF230 之 619 leaf 未經任何跨源驗核**（§3）。~~
    **已於同輪稍後解決，見 §12** —— 該判斷本身即為錯的：可用之跨源
-   （035 SYSRA）當時已在 `inputs/` 內，本層未察。此為 A-VS131。
+   （035 SYSRA）當時已在 `inputs/` 內，本層未察。此為 A-VS134。
 
 2. **`output/` 三檔未對帳**（R-VS62 允其用於交叉比對）。其
    `fw036_vf230_from_fw037_functional_requirements.xlsx` 之列數與本輪之 619
@@ -316,20 +316,20 @@ ASIL   命中 leaf 之 ASIL 全為 NA 或空 → VF230 無安全相關 leaf
 
 **§3 之「619 單源自 037、未經跨源驗核」因而更正**：已驗，且**leaf 側零錯配**。
 
-### 12.3 兩項新開之待裁（A-VS129／A-VS130）
+### 12.3 兩項新開之待裁（A-VS132／A-VS133）
 
-**A-VS129 —— 8 列錯配，leaf 母體可能為 627**。037 判 `Heading` 而 035 判
+**A-VS132 —— 8 列錯配，leaf 母體可能為 627**。037 判 `Heading` 而 035 判
 `Functional Requirement` 者 8 列，其 037 條文逐字為 `The HMI layer shall
 capture the customer selection for …`（5）與 `HW supplier shall notify the
 IPC_VEHICLE_SETUP2.* signal via VHAL interface …`（3）—— **皆為需求形態**。
 八者集中於 SWITCH 族（Power Mode／Type／Hold Last State），非隨機散布。
 **本層未改母體**，`vf230_leaves.tsv` 維持 619。**請裁**。
 
-**A-VS130 —— 037 只涵蓋 035 之 Functional 之 57.7%**。
+**A-VS133 —— 037 只涵蓋 035 之 Functional 之 57.7%**。
 
 ```
 035 之 Functional Requirement       1087
-  為 037 之 745 列所收              627   （619 leaf ＋ A-VS129 之 8）
+  為 037 之 745 列所收              627   （619 leaf ＋ A-VS132 之 8）
   未收                              460   42.3%
 ```
 
@@ -365,4 +365,4 @@ Criteria` 未取用）**仍未做**。
 是因為本層以**檔名族群**推得「素材有無」（找 `SYS2*`），而未問
 「有無其他檔承載同一欄位」。同一失效在本輪已出現三次 ——
 A-VS125（以檔名推得格式）、A-VS126（以分頁名推得版面）、
-A-VS131（以檔名推得素材有無）。**三者皆為「以標籤代替內容」**。
+A-VS134（以檔名推得素材有無）。**三者皆為「以標籤代替內容」**。

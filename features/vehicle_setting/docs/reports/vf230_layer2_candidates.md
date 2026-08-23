@@ -21,14 +21,13 @@ spec 之 L1 Heading 逐字：`Vehicle Setup Management [VF230_V1_]`
 Layer 1 候選為 **Vehicle Setup Management**。
 **此與 W-104（Test Group 判定）為同一停下項，本層不決。**
 
-## 2. 交集結果：exact **103** ／ 無對應 **3**
+## 2. 交集結果：exact **104** ／ 無對應 **2**
 
 ### 2.1 無對應之簇（spec 目次查無同名章）
 
 | 037 Requirement Title | leaf | 分報告族群 |
 |---|---:|---|
 | `E-Save` | 6 | 6 Aux Switches, SWITCH 1 Power Mode and E-Save features |
-| `Rear Guidance Lights with\nCargo Lights` | 5 | STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report |
 | `CHMSL CAMERA DYNAMIC CENTERLINE` | 5 | STLA_Trailer_Name - Max_Power_Level_Report |
 
 → 此三簇之 Layer 2 歸屬**無 spec 依據**，登記為待判。
@@ -41,8 +40,8 @@ canon §4.1.2 步驟 2 之交集法在此**不產生可用之 Layer 2**。
 
 | spec L4 章 | 簇數 | leaf | 佔比 |
 |---|---:|---:|---:|
-| LTM or ETM Algorithm Requirements | 103 | 603 | 97.4% |
-| (無對應章) | 3 | 16 | 2.6% |
+| LTM or ETM Algorithm Requirements | 104 | 608 | 98.2% |
+| (無對應章) | 2 | 11 | 1.8% |
 
 ### 3.1 同名章歧義（spec 目次多處同名）
 
@@ -60,8 +59,8 @@ canon §4.1.2 步驟 2 之交集法在此**不產生可用之 Layer 2**。
 
 | spec L3 章 | 簇數 | leaf | 佔比 |
 |---|---:|---:|---:|
-| LTM or ETM Vehicle Setup Management | 103 | 603 | 97.4% |
-| (無對應章) | 3 | 16 | 2.6% |
+| LTM or ETM Vehicle Setup Management | 104 | 608 | 98.2% |
+| (無對應章) | 2 | 11 | 1.8% |
 
 ## 4b. 粒度 D（替代切分源）—— 037 之 11 份分報告族群
 
@@ -172,7 +171,7 @@ Test Set 欄將近乎 TC ID 欄之複本，索引價值歸零。**不建議**。
 | 75 | Rear Seat Reminder | 5 | exact | LTM or ETM Algorithm Requirements |
 | 76 | Suspension Flash Lights With Lower | 5 | exact | LTM or ETM Algorithm Requirements |
 | 77 | Suspension Sound Horn With Lower | 5 | exact | LTM or ETM Algorithm Requirements |
-| 78 | Rear Guidance Lights with\nCargo Lights | 5 | none | (無對應章) |
+| 78 | Rear Guidance Lights with\nCargo Lights | 5 | exact | LTM or ETM Algorithm Requirements |
 | 79 | Suspension Service Mode | 5 | exact | LTM or ETM Algorithm Requirements |
 | 80 | Suspension Display Messages | 5 | exact | LTM or ETM Algorithm Requirements |
 | 81 | Tilt Mirror in Reverse | 5 | exact | LTM or ETM Algorithm Requirements |
