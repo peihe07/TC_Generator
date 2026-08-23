@@ -33,9 +33,17 @@ paths:
   # 副檔名為 `.doc`，內容實為 OOXML（`Microsoft Word 2007+`），
   # python-docx 直讀，未轉檔（推翻 61 包 §6 第 2 項之前提）
   spec_pdf_vf230: "inputs/C-VF230_V1_R5_PDT27.doc"
-  # VF230 之 SYS2 ICS export 缺件 —— DR-27 未覆前為 null，不得代用 CFTS044 之
-  # SYS2（其為該 CFTS 專屬）
+  # VF230 之 SYS2 ICS export 缺件 —— DR-28 未覆前為 null，不得代用 CFTS044 之
+  # SYS2（其為該 CFTS 專屬）。原生檔已於
+  # `9_ASPICE/SYS.2 …/Z.QS YuShen 260423/08.[SYS2]Vehicle Settings/SYS2_VF230.xlsx`
+  # 尋得，惟未補入（R-VS61）且缺 6 個 E-Save leaf。
   sys1_export_vf230: null
+  # 跨源驗核之實際來源（A-VS131）：其 `Basic Report` 與 SYS2 export 同型，
+  # 且涵蓋 037 之全部 745 列。DR-28 之「無第二來源可核」因之作廢。
+  sysra_vf230: "inputs/FM-WI-FSM-035-A02_VF230_HDCC_DT_STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_VF230_V4_Released.xlsx"
+  # 內容與 spec_pdf_vf230 之 `.doc` 逐字相同（A-VS125 之複驗），保留僅為留痕
+  spec_docx_vf230: "inputs/C-VF230_V1_R5_PDT27.docx"
+
   # SYSAD 於 VF230 交付夾內之副本與 inputs/ 既有者 sha256 相同
   # （469162b8…，61 包 W-102 實測），不重複複製
 
@@ -94,6 +102,7 @@ profiles:
     workbook: "workbook_vf230"
     a03_report: "a03_report_vf230"
     leaves: "data/vf230_leaves.tsv"
+    crosscheck: "sysra_vf230"        # 跨源驗核之來源（A-VS131）
     # R-VS59 —— B 欄「No.#/序號」自 238 起連續遞增。
     # 該映射**僅對 VF230 生效**；CFTS044 之 B 欄（1–237）為凍結欄，
     # 任何寫回不得觸及，故 cfts044 profile 不設 seq。

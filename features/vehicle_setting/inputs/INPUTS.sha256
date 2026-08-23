@@ -29,3 +29,8 @@ e012400423c33eda3571753d329f4889364f8d428b347dc9a6b7d9008b802c61  FM-WI-FSM-037-
 27f87f8b62cc7cb885bdab5a084632e8774ac6cd5563f05699e316f53672ec08  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report.xlsx
 36e4ef190dcb6c5e1c415af48b2f31705e1e48b57d3d235f048cdf62dd6c54bb  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report.xlsx
 effe232998a4f18c5095cce59e1aaad1d3449b448710685a34e8c96405186b32  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Trailer_Name - Max_Power_Level_Report.xlsx
+# --- VF230 補入（Pei 2026-08-23，61 包 §6 之外）---
+79aea8490ca2627440121189d2800f1ed3c50418b73be4538e47dd02fc9bbc8b  C-VF230_V1_R5_PDT27.docx
+b0d8d1ba1d88f37bac0b10a1aff58620ebb7681ad7c11c39ce9322d034f7dd68  FM-WI-FSM-035-A02_VF230_HDCC_DT_STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_VF230_V4_Released.xlsx
+# --- Part 1 時期已在 inputs/ 而未入清單者（本輪補雜湊；DATA_REQUESTS 記為「已查而不取用」）---
+0a37121f4670b0b707885170448a8de6e5f8bf7e1b27158ee74d6b5b1d759a46  HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx

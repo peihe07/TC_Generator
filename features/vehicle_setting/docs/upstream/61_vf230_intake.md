@@ -262,9 +262,9 @@ W-107 DR 波及判定     → W-115
 
 **有，三項。**
 
-1. **VF230 之 619 leaf 未經任何跨源驗核**（§3）。Part 1 於 01 輪有 SYS2 之
-   537 列對帳；VF230 無對應來源，DR-28 未覆前無法補。**A-VS01 型之錯配
-   於 VF230 目前無從偵測。**
+1. ~~**VF230 之 619 leaf 未經任何跨源驗核**（§3）。~~
+   **已於同輪稍後解決，見 §12** —— 該判斷本身即為錯的：可用之跨源
+   （035 SYSRA）當時已在 `inputs/` 內，本層未察。此為 A-VS131。
 
 2. **`output/` 三檔未對帳**（R-VS62 允其用於交叉比對）。其
    `fw036_vf230_from_fw037_functional_requirements.xlsx` 之列數與本輪之 619
@@ -280,3 +280,89 @@ W-107 DR 波及判定     → W-115
 **另有一項非「未驗」而是「不可驗」**：spec 之 `.doc` 雖可直讀，其
 **目次與 037 之 leaf 之逐條對應（Layer 3）本輪未建**，因 Layer 2 未鎖。
 Layer 3 依 canon §4.1.2 步驟 3 須待 Layer 2 核可後方能作。
+
+---
+
+## 12. 補篇（同輪稍後）—— 跨源驗核完成，DR-28 之前提作廢
+
+Pei 於 2026-08-23 另補入兩檔（61 包 §6 之清單外），本層據以複驗，
+結果**推翻本上繳 §11 第 1 項之自我判斷**。
+
+### 12.1 兩個補入檔之處置
+
+| 檔 | 處置 |
+|---|---|
+| `C-VF230_V1_R5_PDT27.docx` | 與 `.doc` **內容逐字相同**（段落 3954／表 6／Heading 192／全文 sha1 `5096965efbec`），轉檔未帶新資訊。`paths.spec_pdf_vf230` **維持指向 `.doc`**（原始交付檔名）；`.docx` 另記為 `spec_docx_vf230` 留痕。**建議刪除，未刪**（刪檔屬 Pei 之權） |
+| `FM-WI-FSM-035-A02_…_SYSRA_VF230_V4_Released.xlsx` | **即 DR-28 所缺之跨源**。落為 `paths.sysra_vf230` 與 `profiles.vf230.crosscheck` |
+
+`inputs/INPUTS.sha256` 29 → **32 列**（另補一列：`HMI Settings List R1 SR25
+Post R1L-R` 自 Part 1 時期即在 `inputs/` 而從未入清單）。
+**實體檔 32 = 清單 32 列 = `shasum -c` 32 OK，0 非 OK** —— 至此 `inputs/`
+之雜湊覆蓋為全量，無漏列。
+
+### 12.2 跨源驗核結果（`docs/reports/vf230_crosscheck.md`）
+
+035 之 `Basic Report` 與 CFTS044 之 SYS2 export **逐欄同型**
+（`SYS2 Sys-RA-Feature-ID`／`SYS2 分類 Category`／`SYS2 VF章節`／
+`SYS2 EE Architecture`／`SYS2 限定地區`），2655 列。
+
+```
+037 之 745 列          全數命中 035（未命中 0）
+leaf   619 / 619       035 皆判 Functional Requirement    零錯配
+                       反向錯配（037 Functional × 035 非 Functional）= 0
+head   126             035 判 Heading 118 ／ Functional Requirement 8   ← 錯配
+ASIL   命中 leaf 之 ASIL 全為 NA 或空 → VF230 無安全相關 leaf
+```
+
+**§3 之「619 單源自 037、未經跨源驗核」因而更正**：已驗，且**leaf 側零錯配**。
+
+### 12.3 兩項新開之待裁（A-VS129／A-VS130）
+
+**A-VS129 —— 8 列錯配，leaf 母體可能為 627**。037 判 `Heading` 而 035 判
+`Functional Requirement` 者 8 列，其 037 條文逐字為 `The HMI layer shall
+capture the customer selection for …`（5）與 `HW supplier shall notify the
+IPC_VEHICLE_SETUP2.* signal via VHAL interface …`（3）—— **皆為需求形態**。
+八者集中於 SWITCH 族（Power Mode／Type／Hold Last State），非隨機散布。
+**本層未改母體**，`vf230_leaves.tsv` 維持 619。**請裁**。
+
+**A-VS130 —— 037 只涵蓋 035 之 Functional 之 57.7%**。
+
+```
+035 之 Functional Requirement       1087
+  為 037 之 745 列所收              627   （619 leaf ＋ A-VS129 之 8）
+  未收                              460   42.3%
+```
+
+未收者全數 `ATL-Hi`、全數落於 `01.10.…`，**與已收者同一分支**；
+同一章節內既有收錄亦有未收（`01.10.01.01.74` 收 14、未收 33），
+故非「整章委派他 feature」之乾淨切分。
+
+**非本層漏收** —— 全樹搜尋確認 VF230 之 037 分報告**僅此 11 份**，
+未收之 460 條在上游尚無 SWE.1 分析。
+
+**其後果須具名**：若 VF230 之交付範圍為「該 VF 之全部功能需求」，
+現行 619（或 627）**只是 1087 之 57.7%**。交付時「覆蓋率」一詞將有
+**兩個分母，答案相差 42.3 個百分點**。**請裁交付範圍之界**。
+
+### 12.4 原生 SYS2 已尋得，未取用
+
+`SYS2_VF230.xlsx` 位於 `9_ASPICE/SYS.2 System Requirements Analysis/
+Z.QS YuShen 260423/08.[SYS2]Vehicle Settings/`（2626 列，schema 同型）。
+
+**未複製入 `inputs/`** —— 其為 repo 既定根目錄之外之素材，補入須依
+**R-VS61**（2026-08-23 之免除已明記為單次個案）。
+
+且該檔**缺 037 之 6 個 `E-Save` leaf**（`SYS-RA-VF230_V1-2660`～`-2665`），
+而 035 有、spec 目次無。**三源不一致**，DR-28 因而不撤回，僅降 Urgency 為 Low
+並作廢其「影響」段。
+
+### 12.5 本補篇之獨立判斷 —— 仍有該驗而未驗者
+
+**有。** §11 之第 2 項（`output/` 三檔未對帳）與第 3 項（`Verification
+Criteria` 未取用）**仍未做**。
+
+**且本補篇本身揭示一個方法層之教訓**：§11 第 1 項之所以判錯，
+是因為本層以**檔名族群**推得「素材有無」（找 `SYS2*`），而未問
+「有無其他檔承載同一欄位」。同一失效在本輪已出現三次 ——
+A-VS125（以檔名推得格式）、A-VS126（以分頁名推得版面）、
+A-VS131（以檔名推得素材有無）。**三者皆為「以標籤代替內容」**。

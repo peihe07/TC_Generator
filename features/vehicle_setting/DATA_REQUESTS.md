@@ -1,7 +1,7 @@
 # DATA_REQUESTS — FW036 Vehicle Setting
 
 每項含**路徑與 SHA**（G-L：沒有路徑的「到齊」不算到齊）。
-`inputs/` 之權威雜湊見 `inputs/INPUTS.sha256`（**29 檔**：CFTS044 區塊 16 ＋ VF230 區塊 13，
+`inputs/` 之權威雜湊見 `inputs/INPUTS.sha256`（**32 檔**：CFTS044 16 ＋ VF230 13 ＋ VF230 補入 2 ＋ Part 1 遺漏補列 1，
 `shasum -a 256 -c` 全數 OK；61 包 W-102）。
 
 ## 已關閉
@@ -839,7 +839,12 @@ CFTS044 之 `1.3.2.1.3.11` 內，四個 leaf 之條文兩兩僅差值之書寫�
 
 ---
 
-## DR-28（新，**Urgency 待定** —— VF230 缺 SYS2 ICS export；61 包 §6／§7 開立）
+## DR-28（新，**Urgency Low** —— VF230 缺 SYS2 ICS export；61 包 §6／§7 開立）
+
+> **⚠ 本件之「影響」段已作廢（38 輪，A-VS131）。** 開立時之前提為「無第二來源
+> 可核」，該前提不成立：`inputs/` 內之 `FM-WI-FSM-035-A02_…_SYSRA_VF230_V4_Released.xlsx`
+> 與 SYS2 同型且涵蓋 037 之全部 745 列，跨源驗核已完成（`docs/reports/vf230_crosscheck.md`），
+> 錯配亦已偵得 8 個（A-VS129）。Urgency 由「待定」降 **Low**。
 
 > **⚠ 改號**：61 包 §7 之草稿編為 DR-27，而 **DR-27 已為 37 輪 W-105 之
 > 唯一性提問所用**（成對 A-VS119，本檔 §DR-27）。本件改編為 **DR-28**。
@@ -865,8 +870,21 @@ Functional/Heading 判定將無第二來源可核，A-VS01 型之錯配無從偵
 **不得代用 CFTS044 之 SYS2** —— 其為該 CFTS 專屬（R-VS63 之末段明排除）。
 `feature.yaml` 之 `paths.sys1_export_vf230` 現為 `null`，覆後方填。
 
-**本輪之處置**：VF230 之 leaf 母體（619）**單源自 037**，未經跨源驗核。
-該事實已於 `data/_vf230_w103.json` 與上繳 §3 具名，不以「Categorization
-僅二值、0 other」冒充驗核 —— 該檢查只證 037 內部一致，不證其與上游相符。
+**~~本輪之處置~~**：~~VF230 之 leaf 母體（619）單源自 037，未經跨源驗核。~~
+**已於同輪稍後完成跨源驗核**（`scripts/vf230_crosscheck.py`）：037 之 745 列
+**全數命中** 035，leaf 側 619/619 皆為 `Functional Requirement`（零錯配、
+反向錯配 0），heading 側 126 列中 **8 列錯配**（A-VS129）。
+
+**本件仍請求之理由（縮小後）**：
+
+1. `SYS2_VF230.xlsx` 已於 `9_ASPICE/SYS.2 System Requirements Analysis/
+   Z.QS YuShen 260423/08.[SYS2]Vehicle Settings/` 尋得（2626 列，schema 同型），
+   **但未取用、未複製入 `inputs/`** —— 其為 repo 既定根目錄之外之素材，
+   補入須依 **R-VS61**（由 Pei 執行；2026-08-23 之免除為單次個案）。
+2. 該檔**缺 037 之 6 個 `E-Save` leaf**（`SYS-RA-VF230_V1-2660`～`-2665`），
+   而 035 有、spec 目次無（A-VS127 §2.1）。**三源不一致，需原生 SYS2 方能定讞。**
+
+**請確認**：(a) 是否將 `SYS2_VF230.xlsx` 補入 `inputs/`；
+(b) `E-Save` 之 7 列於三源之不一致該以何者為準。
 
 **狀態：未送出。**
