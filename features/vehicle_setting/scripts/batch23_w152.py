@@ -235,7 +235,11 @@ def build() -> tuple[list[dict], list[dict]]:
                     f"故取其值域中之未用碼 `{spare[0]} ({spare[1]})` 為注入值（§7 之 unsupported 配對）")
                 dep2, rem2 = "", ""
             else:
-                inj = f"{sig} = a value outside the declared valid set"
+                # **D-1（83 包 §2）**：`a value outside the declared valid set`
+                # 為描述而非值，**測試員無從執行**；ER 已標 PENDING 而 procedure 未標，
+                # 致步驟不可執行且與 ER 不一致（§5.1／§6）。
+                # 依 83 包之修法，**procedure 該步驟亦標 `PENDING: DR-18`**。
+                inj = "PENDING: DR-18"
                 er2, why2 = "PENDING: DR-18", (
                     "而該訊號為 2 bit、其 0–3 四碼**皆已定義** —— "
                     "**無未用碼可注入**；依 §8.4.1 不得造值，"
@@ -248,7 +252,7 @@ def build() -> tuple[list[dict], list[dict]]:
                 [f"The vehicle is equipped with the {obj}", SCREEN, BUS],
                 [f"Send CAN: {sig} = 0 ({lab[0]}) and record the displayed state "
                  f"as Display_valid",
-                 f"Send CAN: {inj}",
+                 (inj if inj.startswith("PENDING") else f"Send CAN: {inj}"),
                  f"Read the displayed state of the {obj} and check that it is unchanged "
                  f"from Display_valid"],
                 [f"{sig} = 0 ({lab[0]}) is sent；Display_valid is recorded", er2,
@@ -269,7 +273,10 @@ def build() -> tuple[list[dict], list[dict]]:
             out.append(tc(
                 leaf, f"{obj.capitalize()} greyed out when propulsion is not active",
                 "Propulsion inactive on an electrified vehicle",
-                ["The vehicle is an electrified vehicle", SCREEN, BUS],
+                # **D-2（83 包 §2）**：`The vehicle is an electrified vehicle` 與
+                # procedure 1 之 `Set PROXI Hybrid_Type` **兩處各述同一配置**，
+                # 違 §4.5 之欄位歸屬 —— **刪 pre_condition，餘項重編號**。
+                [SCREEN, BUS],
                 ["Set PROXI Hybrid_Type = 3 (Plugin Hybrid Electric Vehicle)",
                  f"Send CAN: {PROP} = 1 (Active)",
                  f"Send CAN: {PROP} = 0 (Not_Active) and check that the {obj} switch "
@@ -303,18 +310,27 @@ def build() -> tuple[list[dict], list[dict]]:
             out.append(tc(
                 leaf, f"{obj.capitalize()} greyed out when the engine is not running",
                 "Engine not running on a vehicle without stop-start",
-                ["The vehicle is not equipped with the Stop-Start feature", SCREEN, BUS],
+                # **D-2**：與 procedure 1 之 `Set PROXI Stop_And_Start_cfg` 重複（§4.5）
+                [SCREEN, BUS],
                 ["Set PROXI Stop_And_Start_cfg = 0 (Absent)",
                  f"Send CAN: {ENG} = 2 (Engine_On)",
                  f"Send CAN: {ENG} = 0 (Engine_Off) and check that the {obj} switch "
                  f"is greyed out"],
+                # **D-3（83 包 §2）**：不確定之處**不在步驟 3** ——
+                # 灰階與否可觀察；不確定者為「所送之 `EngineSts = 0` 是否滿足條文之
+                # `$EngRun_Stat$ <> [四值]`」，**其為前提之不確定，非結果之不可觀察**。
+                # 故 ER 3 寫可觀察斷言，前提之不確定以 AH 承載。
                 ["PROXI Stop_And_Start_cfg = 0 (Absent) is accepted",
-                 f"{ENG} = 2 (Engine_On) is sent", "PENDING: DR-19"],
+                 f"{ENG} = 2 (Engine_On) is sent",
+                 f"The {obj} switch is greyed out"],
                 "決策表 (Decision Table Testing)", "G4 Stop-Start 未配備 → 灰階",
                 "條文之條件為 `$EngRun_Stat$ <> [IDLE_STBL//UNLIMITED//LIMITED//RUN]`；"
                 "該四值於 LID 與 DBC 皆無對應（**DR-19 之標的**），"
                 "依 R-VS71 該步驟之 ER 寫 `PENDING: DR-19`、前置步驟照寫",
-                dep="DR-19", remarks="BLOCKED: DR-19 —— `$EngRun_Stat$` 之四值待覆"))
+                dep="DR-19",
+                remarks="BLOCKED: DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值"
+                        "（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），"
+                        "其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19"))
             continue
 
         # G5 follow-up 訊號
@@ -368,8 +384,11 @@ def build() -> tuple[list[dict], list[dict]]:
                      "Power cycle the HU and check that the seat control layout differs "
                      "from Layout_LHD"],
                     ["PROXI Driver_Side = 0 (Left Side) is accepted；Layout_LHD is recorded",
+                     # **D-4（83 包 §2）**：「有無變更」本身可驗 ——
+                     # 72 包 §1 之最弱斷言（R-VS59(4) 之細化）於此套用；
+                     # 具體版面待補仍以 AH 承載。
                      "PROXI Driver_Side = 1 (Right Side) is accepted",
-                     "PENDING: DR-5-B"],
+                     "The seat control layout differs from Layout_LHD"],
                     "等價劃分 (Equivalence Partitioning, EP)", "G6 DriverSide 之條件",
                     "條文逐字「the HMI shall be modified as defined by HMI requirements」"
                     "——**其所指之 HMI requirements 不在本 feature 之範圍**（§8.4.2），"
@@ -438,12 +457,17 @@ def build() -> tuple[list[dict], list[dict]]:
             [f"Send CAN: {ENG} = 0 (Engine_Off)",
              f"Send CAN: {ENG} = 2 (Engine_On)",
              "Read the heated seat switch and check that it can be activated"],
-            [f"{ENG} = 0 (Engine_Off) is sent", "PENDING: DR-19",
+            # **D-3**：ER 2 之不確定同為前提（`EngineSts = 2` 是否滿足 `$EngRun_Stat$`
+            # 之四值），非結果之不可觀察 —— 改可觀察斷言，前提之不確定入 AH。
+            [f"{ENG} = 0 (Engine_Off) is sent", f"{ENG} = 2 (Engine_On) is sent",
              "The heated seat switch can be activated"],
             "決策表 (Decision Table Testing)", "G8 引擎運轉 → 允許啟用",
             "條文之條件 `$EngRun_Stat$ = [IDLE_STBL//UNLIMITED//LIMITED//RUN]` 之四值"
             "於 LID 與 DBC 皆無對應（**DR-19 之標的**），依 R-VS71 該步驟寫 `PENDING: DR-19`",
-            dep="DR-19", remarks="BLOCKED: DR-19 —— `$EngRun_Stat$` 之四值待覆"))
+            dep="DR-19",
+            remarks="BLOCKED: DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值"
+                    "（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），"
+                    "其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19"))
     return out, held
 
 

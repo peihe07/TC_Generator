@@ -8,7 +8,7 @@
  "selection": "W-152：餘 53 leaf 之生成，分四段（D 型／F 型／A 型補／G 型逐條）。",
  "signal_notation": "R-VS52 ＋ R-VS61 ＋ R-VS67′",
  "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
- "revision": "W-152（53 輪）：batch23 首版",
+ "revision": "W-157（55 輪）：83 包 §2 之五項 defect 修正 —— D-2 刪重複 pre_condition／D-3・D-4 ER 改可觀察斷言、待補入 AH／D-5 test_item 上半段回復逐字／note 標 duplicate_of",
  "held_out": [
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheel-010",
@@ -95,7 +95,8 @@
     "axis": "form",
     "delta": "觸發為使用者按壓、標的為匯流排上之送出值。**其送出值為 DR-15 之 token 級標的**，於來源無逐字對應 —— 依 R-VS71 該步驟之 ER 寫 `PENDING: DR-15`、前置步驟照寫。**不以「有送出」代替「送出正確之值」**（80 包 §1，A-VS157）"
    },
-   "remarks": "BLOCKED: DR-15 —— 請求訊號之編碼待覆；BLOCKED: DR-24′ —— `<Tsend>` 之上限值待覆"
+   "remarks": "BLOCKED: DR-15 —— 請求訊號之編碼待覆；BLOCKED: DR-24′ —— `<Tsend>` 之上限值待覆",
+   "duplicate_of": "SWE1-VC-LeftFrontHeatedSeat-013"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontVentedSeat-011",
@@ -145,7 +146,8 @@
     "axis": "form",
     "delta": "觸發為使用者按壓、標的為匯流排上之送出值。**其送出值為 DR-15 之 token 級標的**，於來源無逐字對應 —— 依 R-VS71 該步驟之 ER 寫 `PENDING: DR-15`、前置步驟照寫。**不以「有送出」代替「送出正確之值」**（80 包 §1，A-VS157）"
    },
-   "remarks": "BLOCKED: DR-15 —— 請求訊號之編碼待覆；BLOCKED: DR-24′ —— `<Tsend>` 之上限值待覆"
+   "remarks": "BLOCKED: DR-15 —— 請求訊號之編碼待覆；BLOCKED: DR-24′ —— `<Tsend>` 之上限值待覆",
+   "duplicate_of": "SWE1-VC-LeftFrontVentedSeat-011"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontHeatedSeat-030",
@@ -195,7 +197,8 @@
     "axis": "form",
     "delta": "觸發為使用者按壓、標的為匯流排上之送出值。**其送出值為 DR-15 之 token 級標的**，於來源無逐字對應 —— 依 R-VS71 該步驟之 ER 寫 `PENDING: DR-15`、前置步驟照寫。**不以「有送出」代替「送出正確之值」**（80 包 §1，A-VS157）"
    },
-   "remarks": "BLOCKED: DR-15 —— 請求訊號之編碼待覆；BLOCKED: DR-24′ —— `<Tsend>` 之上限值待覆"
+   "remarks": "BLOCKED: DR-15 —— 請求訊號之編碼待覆；BLOCKED: DR-24′ —— `<Tsend>` 之上限值待覆",
+   "duplicate_of": "SWE1-VC-RightFrontHeatedSeat-030"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontVentedSeat-028",
@@ -245,7 +248,8 @@
     "axis": "form",
     "delta": "觸發為使用者按壓、標的為匯流排上之送出值。**其送出值為 DR-15 之 token 級標的**，於來源無逐字對應 —— 依 R-VS71 該步驟之 ER 寫 `PENDING: DR-15`、前置步驟照寫。**不以「有送出」代替「送出正確之值」**（80 包 §1，A-VS157）"
    },
-   "remarks": "BLOCKED: DR-15 —— 請求訊號之編碼待覆；BLOCKED: DR-24′ —— `<Tsend>` 之上限值待覆"
+   "remarks": "BLOCKED: DR-15 —— 請求訊號之編碼待覆；BLOCKED: DR-24′ —— `<Tsend>` 之上限值待覆",
+   "duplicate_of": "SWE1-VC-RightFrontVentedSeat-028"
   },
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheel-013",
@@ -540,7 +544,8 @@
     "axis": "form",
     "delta": "條文列 `HeatedSeatFL` 之合法值集並逐字宣告「All other states shall be considered invalid by the HU」——**其可測內容即「非合法值不改變顯示」**，而該訊號為 2 bit、其 0–3 四碼**皆已定義** —— **無未用碼可注入**；依 §8.4.1 不得造值，故該步驟之 ER 依 R-VS71 寫 `PENDING: DR-18`（無效碼之定義待覆）"
    },
-   "remarks": "BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆"
+   "remarks": "BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆",
+   "duplicate_of": "SWE1-VC-LeftFrontHeatedSeat-004"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-006",
@@ -565,7 +570,8 @@
     "axis": "form",
     "delta": "條文列 `HeatedSeatFL` 之合法值集並逐字宣告「All other states shall be considered invalid by the HU」——**其可測內容即「非合法值不改變顯示」**，而該訊號為 2 bit、其 0–3 四碼**皆已定義** —— **無未用碼可注入**；依 §8.4.1 不得造值，故該步驟之 ER 依 R-VS71 寫 `PENDING: DR-18`（無效碼之定義待覆）"
    },
-   "remarks": "BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆"
+   "remarks": "BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆",
+   "duplicate_of": "SWE1-VC-LeftFrontHeatedSeat-004"
   },
   {
    "leaf_id": "SWE1-VC-LeftFrontHeatedSeat-009",
@@ -813,7 +819,8 @@
     "axis": "form",
     "delta": "條文列 `HeatedSeatFR` 之合法值集並逐字宣告「All other states shall be considered invalid by the HU」——**其可測內容即「非合法值不改變顯示」**，而該訊號為 2 bit、其 0–3 四碼**皆已定義** —— **無未用碼可注入**；依 §8.4.1 不得造值，故該步驟之 ER 依 R-VS71 寫 `PENDING: DR-18`（無效碼之定義待覆）"
    },
-   "remarks": "BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆"
+   "remarks": "BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆",
+   "duplicate_of": "SWE1-VC-RightFrontHeatedSeat-023"
   },
   {
    "leaf_id": "SWE1-VC-RightFrontHeatedSeat-027",
@@ -1061,7 +1068,8 @@
     "axis": "form",
     "delta": "條文逐字「the HMI shall be modified as defined by HMI requirements」——**其所指之 HMI requirements 不在本 feature 之範圍**（§8.4.2），故只驗「有無變更」，其具體版面依 R-VS59(4) 標 PENDING"
    },
-   "remarks": "BLOCKED: DR-5-B —— 右駕版面之具體定義待 HMI requirements"
+   "remarks": "BLOCKED: DR-5-B —— 右駕版面之具體定義待 HMI requirements",
+   "duplicate_of": "SWE1-VC-SwitchLHD/RHDConfiguration-010"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-028",
@@ -1186,7 +1194,8 @@
     "axis": "form",
     "delta": "條文逐字「shall follow this signal with an on change … = [Not Pressed …] within <Tsend>」——**其驗證目標為釋放後之回歸值**，非按壓本身。`HdRstRelRq` 依 R-VS67′ 取 `Atlantis High` 之 `RADIO_B3.HDRstRelRq_3rdRow`；其值域於 LID 與 DBC 皆無來源，依 R-VS61 取條文逐字 `[Not Pressed]`、不附 raw"
    },
-   "remarks": "BLOCKED: DR-24′ —— `<Tsend>` 之上限值待覆，ER 只寫可觀察終態"
+   "remarks": "BLOCKED: DR-24′ —— `<Tsend>` 之上限值待覆，ER 只寫可觀察終態",
+   "duplicate_of": "SWE1-VC-ThirdRowHeadrestDump-035"
   },
   {
    "leaf_id": "SWE1-VC-ThirdRowHeadrestDump-039",

@@ -26,7 +26,8 @@ from fullwrite_w144 import build_rows                                          #
 from completeness_w154 import classify                                         # noqa
 from xlsx_surgical import surgical_save                                        # noqa
 
-BACKUP = BOOK.parent / "REF/036_pre_fullwrite2_20260823.xlsx"
+# 還原之來源 —— 取**寫前之最新備份**（55 輪為 fullwrite3）
+BACKUP = BOOK.parent / "REF/036_pre_fullwrite3_20260823.xlsx"
 
 
 def seven(path: Path) -> dict:
