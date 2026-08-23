@@ -15,7 +15,7 @@
 | 條文 | 受拘束之對象 | 一句話 | 機械檢查 | 開立 |
 |---|---|---|---|---|
 | **R-VF17** | `docs/reports/writability.tsv`／`generatable.tsv` 之 4 leaf（見 `data/grade_overrides.tsv`） | 該 4 leaf 之分級為 W0，四欄皆有其應有之值 | `python3 scripts/grade_overrides.py --check` | 2026-08-23 |
-| **R-VF20 / R-VF32** | 同上 | **跑 `writability_driver.py --write` 後必跑 `grade_overrides.py --apply`** | 同上 | 2026-08-23 |
+| **R-VF20 / R-VF32 / R-VF39** | 同上 | **`writability_driver.py --write` 之尾段已自動呼叫覆寫層**（R-VF39 授權）—— 重跑 driver 會使該 4 leaf **自動回復 W0**，此為裁定之意圖 | `python3 scripts/writability_driver.py --write` 後 `--check` 應 exit 0 | 2026-08-23 |
 | **R-VF16** | `data/vf230_leaves.tsv` | VF230 之 leaf 母體為 627，8 列標 `disagree=1` | `python3 scripts/vf230_layer2.py`（內含 `assert tot_leaf == 627`） | 2026-08-23 |
 
 ## 未受保護（無機械檢查 —— 每次上繳須具名）

@@ -7,7 +7,7 @@
 | 錨點 | 位置 | 判別 |
 |---|---|---|
 | 必為「不改」（逐行覆寫之標的） | `feature.yaml:119`（含 `388/619`） | 不改 |
-| 必為「不改」（已上繳之歷史紀錄） | `docs/upstream/vf230/00_intake.md:21` | 不改 |
+| 必為「不改」（已上繳之歷史紀錄） | `docs/upstream/V08_review_v07.md:137` | 不改 |
 
 **錨點皆符。**
 
@@ -35,22 +35,28 @@
 |---|---|---|
 | `feature.yaml` 含 `388/619` 之行 | 不改 | 此行為 **當時之 Sub Categorization 實測**（388/619），非後續作業據以行動之設定值 —— 其所支持之判定（Test Group）已由 R-VF9 裁定，本行僅存為裁定當時之證據。雖位於現行有效之 `feature.yaml`，依 R-VF18「逐句為之」判為歷史紀錄。 |
 
-## 2. 結果：128 處 ／ 27 檔
+## 2. 結果：129 處 ／ 28 檔
 
 - **須改 0**
 - **不改 128**
-- **待人工 0**
+- **待人工 1**
+
+### 2.2 待人工（規則不決斷）
+
+| 檔:行 | 逐字 |
+|---|---|
+| `CROSSLINE.md:26` | `| **R-VF18** | 全庫之數字陳述 | 母體變更時只改現行有效之陳述，歷史不追改 | 無檢查（`vf230_wvf20_619.py` 只涵蓋 `619` 一數） | 2026-08-23 |` |
 
 ### 2.3 不改（逐檔計數）
 
 | 檔 | 處 |
 |---|---:|
 | `RULINGS.md` | 15 |
-| `docs/upstream/vf230/00_intake.md` | 15 |
-| `docs/handoff/62_vf230_recon_review.md` | 13 |
+| `docs/upstream/V01_vf230_intake.md` | 15 |
+| `docs/handoff/V02_vf230_recon_review.md` | 13 |
 | `docs/upstream/V07_review_v06.md` | 8 |
 | `docs/upstream/V06_scope_close.md` | 7 |
-| `docs/upstream/vf230/01_recon.md` | 7 |
+| `docs/upstream/V02_vf230_recon.md` | 7 |
 | `docs/upstream/V08_review_v07.md` | 6 |
 | `ANOMALIES.md` | 6 |
 | `docs/handoff/V06_scope_close.md` | 5 |
@@ -62,12 +68,12 @@
 | `docs/handoff/V05_scope_and_vcrit.md` | 3 |
 | `docs/handoff/V04_numbering_separation.md` | 3 |
 | `DATA_REQUESTS.md` | 3 |
-| `docs/handoff/63_test_group_ruling.md` | 2 |
+| `docs/handoff/V03_test_group_ruling.md` | 2 |
 | `docs/handoff/V10_four_rulings.md` | 2 |
 | `docs/reports/w120_verification_criteria.md` | 2 |
 | `scripts/vf230_leaves.py` | 2 |
 | `feature.yaml` | 1 |
-| `docs/handoff/ZZ_vf230_numbering_collision.md` | 1 |
+| `docs/handoff/V00_numbering_collision.md` | 1 |
 | `docs/reports/wvf28_disclosure_draft.md` | 1 |
 | `docs/reports/vf230_layer2_candidates.md` | 1 |
 | `scripts/vf230_layer2.py` | 1 |

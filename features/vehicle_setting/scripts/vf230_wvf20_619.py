@@ -11,7 +11,11 @@
 規則無法決斷者標 `待人工`，不臆測。
 
 依 **R-VF11／R-VF21** 附錨點：
-  必為「不改」  `docs/upstream/vf230/00_intake.md` 之任一行（已上繳之歷史紀錄）
+  必為「不改」  `docs/upstream/` 內任一 `V*` 上繳檔之行（已上繳之歷史紀錄）
+                —— **原錨點指 `docs/upstream/vf230/00_intake.md`，
+                該目錄已於 `495b541` 之搬移中收斂為 `V01_vf230_intake.md`，
+                錨點依 R-VF21 第 1 項正確停下。以內容類別定錨（R-VF28），
+                不以單一路徑。**
   必為「不改」  `feature.yaml` 內含 `388/619` 之行 —— **逐行覆寫之標的**，
                 其位於現行有效之設定檔而判為歷史紀錄，
                 本錨點證明逐行覆寫確有生效（若覆寫失效，其將判為「須改」）
@@ -103,7 +107,8 @@ def main() -> None:
     # --- R-VF11 錨點 ---
     a_ovr = next((r for r in rows
                   if r["file"] == "feature.yaml" and "388/619" in r["text"]), None)
-    a_hist = next((r for r in rows if r["file"].startswith("docs/upstream/vf230/")), None)
+    a_hist = next((r for r in rows
+                   if r["file"].startswith("docs/upstream/V")), None)
     if a_ovr is None or a_hist is None:
         raise SystemExit("R-VF21(1)：錨點所指之行不存在，停 "
                          f"（覆寫錨點={a_ovr is not None}／歷史錨點={a_hist is not None}）")
@@ -121,7 +126,8 @@ def main() -> None:
          "| 錨點 | 位置 | 判別 |", "|---|---|---|",
          f"| 必為「不改」（逐行覆寫之標的） | `feature.yaml:{a_ovr['line']}`"
          f"（含 `388/619`） | {a_ovr['verdict']} |",
-         f"| 必為「不改」（已上繳之歷史紀錄） | `{a_hist['file']}:{a_hist['line']}` | {a_hist['verdict']} |",
+         f"| 必為「不改」（已上繳之歷史紀錄） | `{a_hist['file']}:{a_hist['line']}` |"
+         f" {a_hist['verdict']} |",
          "", "**錨點皆符。**", "",
          "> **R-VF22 施行後，「須改」應為 0** —— 原判出之 2 處已改為 627。",
          "> 首版之必為「須改」錨點指向 `feature.yaml:29`，於 R-VF22 施行後",
