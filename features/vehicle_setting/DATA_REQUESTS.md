@@ -642,6 +642,50 @@ and appear as a concrete value in the Pre-Condition, never vague language.`
 
 ---
 
+## DR-25′（**改寫**，60 包 §3；37 輪 D-3。取代 57 包 §2 之 DR-25 —— 由 3 訊號／33 leaf 擴為 **5 訊號／65 leaf**。型 A/B 兼具，Urgency Medium）
+
+**成對之 anomaly：A-VS110（阻塞）＋ A-VS115（範圍不足，依本條關閉）。**
+
+**條文逐字轉錄自 `docs/handoff/60_review_round36.md` §3：**
+
+```
+DR-25′（取代 57 包 §2 之 DR-25；型 A/B 兼具，Urgency Medium）
+CFTS044 之 SWE leaf 其行為賦值於下列五個訊號，
+而該五者於本專案之基線 CAN 資料庫
+（`PDT27_E2A_R4_BHCAN.dbc`／`PDT27_E2A_R5_FDCAN8.dbc`，
+ VersionYear 25／VersionWeek 50）中**皆不存在**（`SG_` 命中各 0）：
+
+    TELEMATIC_VEHICLE_SETUP.FL_HS_Cmd_Tlm      17 leaf
+    TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm      16 leaf
+    TELEMATIC_VEHICLE_SETUP2.FL_VS_Cmd_Tlm     14 leaf
+    TELEMATIC_VEHICLE_SETUP2.FR_VS_Cmd_Tlm     14 leaf
+    HSW_Cmd_Tlm                                 4 leaf
+    ——— 相異 leaf 合計 65
+
+基線僅有 `TELEMATIC_VEHICLE_SETUP3`。
+而 `Logical Identifiers and CAN Mapping v1.76` 之 `Atlantis` 欄組
+確載其值域。該等條文之 `EE Architecture` 皆為 `Atlantis Mid`。
+
+請確認：
+(a) 承載該五訊號之 CAN 資料庫為何？（請提供）；或
+(b) 該等訊號不適用於 R1LR，其對應之 CFTS044 條文於本專案不需驗證？
+
+我方之暫行處置（Pei 2026-08-22，R-VS57）：**以 spec 與 037 所載為主**，
+訊號名取來源逐字撰寫 TC，並標 `dr_dependent = DR-25`。
+**該等 TC 在現行 CAN 環境上無法執行**，其依賴已逐條標記。
+若答覆為 (b)，該 65 leaf 之 TC 逐條撤回。
+```
+
+**擴充之依據**：36 輪 W-98(1) 實測之 L-VS2 WARN 類為 **5 個相異 signal**，受影響 leaf **65**（`FR_VS_Cmd_Tlm` 14／`HSW_Cmd_Tlm` 4 為 DR-25 原文所漏）。
+
+**`FR_VS_Cmd_Tlm` 另受牽制**：其 LID `Atlantis` 欄組之值域為 `Heated_seat_*`，52 包 §3 已判該前綴為 typo，惟其正確值域須自 `FL_VS_Cmd_Tlm` 之列跨列引入 —— **A-VS103 判其為裁定事項，本層不跨列引入**，該 14 leaf 之值域仍未解（併 DR-18）。
+
+**狀態：未送出。**
+
+---
+
+### （原 DR-25 條文，保留 —— R-TM13）
+
 ## DR-25（**Urgency Medium** —— 依 R-VS57 由 High 降級，性質由阻塞轉確認；35 輪 W-91 開立、36 輪 D-3 依 57 包 §2 全文改寫）
 
 **型別（R-VS45）：型 A/B 兼具**（分析層 57 包 §2）。
@@ -737,5 +781,45 @@ $PowerMode$ = [IGN_RUN].
 **背景**：35 輪本層曾自 tc_title 與條文推得 `not selectable` 並列供覆核；
 57 包 §3.3 判其為**造值**（§8.4.1：推論即造值），令退回記錄形態。
 本 DR 即該退回所留下之缺口。
+
+**狀態：未送出。**
+
+---
+
+## DR-27（新，**Urgency Medium** —— 4 個 leaf；37 輪 W-105 之唯一性掃描開立）
+
+**型別（R-VS45）：型 A — 規格缺陷（條文冗餘）。**
+
+**成對之 anomaly：A-VS119。**
+
+CFTS044 之 `1.3.2.1.3.11` 內，四個 leaf 之條文兩兩僅差值之書寫形式：
+
+```
+4858538（-015）  When the HU receives a $HSW_Stat$ = [On] signal, …
+4858544（-021）  When the HU receives a $HSW_Stat$ = [1h: On] signal, …
+
+4858539（-016）  When the HU receives a $HSW_Stat$ = [Off] signal, …
+4858545（-022）  When the HU receives a $HSW_Stat$ = [0h: Off] signal, …
+```
+
+四者之後半段（`shall change the stored status … within <Tdisplay>`）**逐字相同**，
+`EE Architecture` 亦相同（`PowerNet, Atlantis High`）。
+
+**其可測內容因而完全一致** —— 已交付之四條 TC，其
+`pre_conditions`／`test_procedure`／`expected_result` **三欄全同**，
+僅 `specification_reference` 相異。
+
+依 §8.2.2「一 leaf 得對多 TC，反向不可」，四個 leaf 不得共用一份 TC；
+而其可測內容無法分辨，**故無從產生四份相異之 TC**。
+
+**請確認：**
+
+  (a) `[1h: On]` 與 `[On]` 為同一需求之兩次書寫（條文冗餘）？
+      若是，`-021`／`-022` 是否可標為 `-015`／`-016` 之重複而不獨立產 TC？
+  (b) 二者有語意差別（如前者指原始碼值、後者指邏輯狀態），
+      其差別應如何在 TC 中呈現？
+
+**影響**：4 個已交付 leaf 之 TC 唯一性。**本層未合併、未刪除**（§8.2.2 之限制
+與「各版保留不刪」之禁區皆及於此）。
 
 **狀態：未送出。**
