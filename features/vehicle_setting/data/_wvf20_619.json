@@ -1,0 +1,765 @@
+[
+  {
+    "file": "feature.yaml",
+    "line": 29,
+    "text": "# leaf 全集以 data/vf230_leaves.tsv 為準（619 leaf）。",
+    "verdict": "須改",
+    "why": "現行有效之設定／作業文件，後續作業據以行動"
+  },
+  {
+    "file": "feature.yaml",
+    "line": 118,
+    "text": "# 以 `Vehicle Setting Management (VSM)` 為多數（388/619）。待 Pei 裁定。",
+    "verdict": "不改",
+    "why": "此行為 **當時之 Sub Categorization 實測**（388/619），非後續作業據以行動之設定值 —— 其所支持之判定（Test Group）已由 R-VF9 裁定，本行僅存為裁定當時之證據。雖位於現行有效之 `feature.yaml`，依 R-VF18「逐句為之」判為歷史紀錄。"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 1448,
+    "text": "本輪亦未取用、未對帳。VF230 之 leaf 母體（`data/vf230_leaves.tsv`，619 leaf）",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 1777,
+    "text": "627 = 619（037 判 Functional）＋ 8（A-VS132）。",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 1789,
+    "text": "**執行層註（W-VF17 已執行）**：`data/vf230_leaves.tsv` 619 → **627**，",
+    "verdict": "不改",
+    "why": "對照式書寫（619→627／619 版／619＋8）—— 其為變更之紀錄本身"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 1790,
+    "text": "新增 `disagree` 欄（該 8 列為 `1`，其餘 619 列為 `0`）。",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 1890,
+    "text": "母體、分母或判準變更時（如 619 → 627），**既有文件中之舊數不一律改**。",
+    "verdict": "不改",
+    "why": "對照式書寫（619→627／619 版／619＋8）—— 其為變更之紀錄本身"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 1904,
+    "text": "理由：上繳 V06 §5 掃出 18 檔含 `619`，其中多數為當時之正確量測。",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 1910,
+    "text": "`assert tot_leaf == 619`）／**不改 95**／待人工 0。",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "RULINGS.md",
+    "line": 1912,
+    "text": "（Sub Categorization 之 `388/619`）雖位於現行有效之設定檔，",
+    "verdict": "不改",
+    "why": "條文中引為理由之當時實測值"
+  },
+  {
+    "file": "docs/handoff/63_test_group_ruling.md",
+    "line": 34,
+    "text": "(b) 037 Sub Categorization 眾數 `Vehicle Setting Management (VSM)`（388/619）",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/63_test_group_ruling.md",
+    "line": 99,
+    "text": "在其覆文前，VF230 之 619 leaf 之 Functional/Heading 判定**單源自 037**",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V05_scope_and_vcrit.md",
+    "line": 20,
+    "text": "- **A-VS132**（leaf 母體 619 或 627）—— 見 §4.1，本次裁定**縮小**其範圍",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V05_scope_and_vcrit.md",
+    "line": 105,
+    "text": "→ **leaf 母體為 619 或 627，仍待 Pei 裁。此項須先於 Layer 2。**",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V05_scope_and_vcrit.md",
+    "line": 167,
+    "text": "| **A-VS132** | leaf 母體 619 或 627 | **Layer 2 之前置** |",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V06_scope_close.md",
+    "line": 80,
+    "text": "627 = 619（037 判 Functional）＋ 8（A-VS132）。",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V06_scope_close.md",
+    "line": 135,
+    "text": "1. 重跑 leaf 母體，`data/vf230_leaves.tsv` 619 → **627**，",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V06_scope_close.md",
+    "line": 138,
+    "text": "非隨機散布，簇分布必變）。回報與 619 版之逐簇差異。",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V06_scope_close.md",
+    "line": 139,
+    "text": "3. 全庫掃描以 **619** 為母體之既有陳述，逐處列出（**不改**）——",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V06_scope_close.md",
+    "line": 194,
+    "text": "W-VF17（627 落實＋Layer 2 簇數重算＋619 陳述清單，含錨點前置）。",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/ZZ_vf230_numbering_collision.md",
+    "line": 119,
+    "text": "- **A-VS132**（037 判 Heading／035 判 Functional 之 8 列）—— leaf 母體 619 或 627",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V04_numbering_separation.md",
+    "line": 161,
+    "text": "實測（上繳 62 §4）：Part 1（271 leaf）命中 0；VF230（619 leaf）命中 0。",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V04_numbering_separation.md",
+    "line": 195,
+    "text": "### 6.1 A-VS132 —— leaf 母體 619 或 627",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V04_numbering_separation.md",
+    "line": 208,
+    "text": "為 037 之 11 份分報告所收         627   （619 ＋ A-VS132 之 8）",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 74,
+    "text": "對 `data/vf230_leaves.tsv`（619 列）作**集合比對**，非僅比總數。",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 77,
+    "text": "Pei 彙整之非空資料列        619 / 619 掃描",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 78,
+    "text": "逐欄非空                    D 619 / H 619 / I 619 / L 619 / M 619 / N 619",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 86,
+    "text": "交集 619    tsv-only 0    xlsx-only 0        ← 逐值全等",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 98,
+    "text": "→ **兩條互相獨立之抽取路徑對 619 之母體達成一致。**",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 99,
+    "text": "上繳 §3 之 619 由此獲得一項跨源佐證（**惟其非上游來源，",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 104,
+    "text": "**量測條件**：`data/vf230_leaves.tsv` 全 619 列，逐欄掃 `\\n`／`\\\\n`／",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 124,
+    "text": "**量測條件**：同上，對 619 個 `swe_id` 套 `-\\d+$`。",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 131,
+    "text": "所有 619 個皆以 SWE1-VC- 起首（0 例外）",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 132,
+    "text": "N 欄前綴 SYS-RA-VF230_V1-  619 / 619       ← 與上繳 §3 之 745 列前綴檢查一致",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 224,
+    "text": "| (b) 037 之 Sub Categorization（眾數） | `Vehicle Setting Management (VSM)` — 388 / 619，62.7% |",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 278,
+    "text": "上繳測得 **619 / 619 leaf 之 `Verification Criteria` 皆非空**。",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/62_vf230_recon_review.md",
+    "line": 302,
+    "text": "- **DR-28**：待 Pei 核可後送出。VF230 之 619 leaf 在其覆文前**單源自 037**，",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V07_review_v06.md",
+    "line": 71,
+    "text": "母體、分母或判準變更時（如 619 → 627），**既有文件中之舊數不一律改**。",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V07_review_v06.md",
+    "line": 85,
+    "text": "理由：上繳 V06 §5 掃出 18 檔含 `619`，其中多數為當時之正確量測。",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V07_review_v06.md",
+    "line": 174,
+    "text": "037 Title 簇        106（627 版與 619 版相同，新簇 0、消失 0）",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V07_review_v06.md",
+    "line": 236,
+    "text": "對 §5 所列 18 檔中之每一處 `619`，依 R-VF18 逐句判為「歷史紀錄」",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/handoff/V07_review_v06.md",
+    "line": 255,
+    "text": "W-VF20（619 之逐句判別，`feature.yaml` 優先）。",
+    "verdict": "不改",
+    "why": "下放包 —— 作成當時之指示與量測，改之使「當時據何而裁」不可考"
+  },
+  {
+    "file": "docs/upstream/V06_scope_close.md",
+    "line": 19,
+    "text": "| W-VF17 627 落實 ＋ Layer 2 重算 ＋ 619 清單 | **完成** | `data/vf230_leaves.tsv`（627）、`scripts/vf230_leaves.py`、本檔 §3–§4 |",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V06_scope_close.md",
+    "line": 91,
+    "text": "037 判 Functional              619",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V06_scope_close.md",
+    "line": 98,
+    "text": "`data/vf230_leaves.tsv` 新增 **`disagree` 欄**：該 8 列為 `1`，其餘 619 列為 `0`。",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V06_scope_close.md",
+    "line": 114,
+    "text": "leaf 合計   619 → 627",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V06_scope_close.md",
+    "line": 119,
+    "text": "| 簇 | 619 版 | 627 版 |",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V06_scope_close.md",
+    "line": 138,
+    "text": "## 5. W-VF17(3) —— 以 619 為母體之既有陳述（列出，**未改**）",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V06_scope_close.md",
+    "line": 163,
+    "text": "**一律未改**（V06 §5.3(3)）。其中多數之 `619` 為**當時之正確量測**，",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 21,
+    "text": "| 2 | W-103 leaf 母體 | **完成** | `data/vf230_leaves.tsv`（619 leaf）、`data/_vf230_w103.json`、`scripts/vf230_leaves.py` |",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 78,
+    "text": "| **TOTAL（自各份重算）** | | **745** | **619** | **126** | **0** |",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 81,
+    "text": "相異 swe_id        619（跨份重複 0）",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 82,
+    "text": "Categorization     Functional Requirement 619 ／ Heading 126 ／ 其他 0",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 90,
+    "text": "**未經跨源驗核**：VF230 缺 SYS2（DR-28），故 619 之 Functional/Heading",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 105,
+    "text": "037 Title 簇      106，涵蓋 619 leaf",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 265,
+    "text": "1. ~~**VF230 之 619 leaf 未經任何跨源驗核**（§3）。~~",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 270,
+    "text": "`fw036_vf230_from_fw037_functional_requirements.xlsx` 之列數與本輪之 619",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 272,
+    "text": "若相符，可作為 619 之弱佐證；若不符，須登記 anomaly。**建議下輪納入。**",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 275,
+    "text": "實測 **619 / 619 leaf 之 `Verification Criteria` 皆非空（100%）**。其與 TC 之",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 311,
+    "text": "leaf   619 / 619       035 皆判 Functional Requirement    零錯配",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 317,
+    "text": "**§3 之「619 單源自 037、未經跨源驗核」因而更正**：已驗，且**leaf 側零錯配**。",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 326,
+    "text": "**本層未改母體**，`vf230_leaves.tsv` 維持 619。**請裁**。",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 332,
+    "text": "為 037 之 745 列所收              627   （619 leaf ＋ A-VS132 之 8）",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/00_intake.md",
+    "line": 344,
+    "text": "現行 619（或 627）**只是 1087 之 57.7%**。交付時「覆蓋率」一詞將有",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/01_recon.md",
+    "line": 83,
+    "text": "| # | 位置 | 形態 | Part 1（271） | VF230（619） |",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/01_recon.md",
+    "line": 117,
+    "text": "**掃描定義逐字遵行**：掃 `title` ＋ `desc`（619 leaf）；大小寫不分；",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/01_recon.md",
+    "line": 128,
+    "text": "**DR-15 判不波及** —— 其 25 個 token 於 VF230 之 619 leaf 命中 **0**。",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/01_recon.md",
+    "line": 154,
+    "text": "VF230    leaf 619   Verification Criteria 非空 619 (100.0%)   Method 619 (100.0%)",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/01_recon.md",
+    "line": 202,
+    "text": "| | CFTS044（237） | VF230（619） |",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/01_recon.md",
+    "line": 232,
+    "text": "即未見補篇。故 **8 列錯配（leaf 母體 619 vs 627）與 460 條無 SWE.1 分析",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/vf230/01_recon.md",
+    "line": 238,
+    "text": "本層對「619 之 src_ref 逐值全等」一句僅為照錄。",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V07_review_v06.md",
+    "line": 1,
+    "text": "# 上繳 V07 —— 4 leaf 轉 W0、158/160 結案、619 逐句判別、錨點自身之盲點",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V07_review_v06.md",
+    "line": 18,
+    "text": "| W-VF20 619 逐句判別 | **完成（只判不改）** | `scripts/vf230_wvf20_619.py`、`docs/reports/wvf20_619_triage.md` |",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V07_review_v06.md",
+    "line": 113,
+    "text": "## 5. W-VF20 —— 619 之逐句判別（只判不改）",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V07_review_v06.md",
+    "line": 116,
+    "text": "有 `1619`／`2619`／列號 `619`，首版未加詞界混入 4 筆偽陽性）。",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V07_review_v06.md",
+    "line": 128,
+    "text": "| `feature.yaml:29` | `# leaf 全集以 data/vf230_leaves.tsv 為準（619 leaf）。` |",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V07_review_v06.md",
+    "line": 129,
+    "text": "| `scripts/vf230_layer2.py:113` | `assert tot_leaf == 619 or True` |",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V07_review_v06.md",
+    "line": 132,
+    "text": "（`388/619`）雖位於現行有效之設定檔，其為 **Test Group 裁定當時之證據**",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/upstream/V07_review_v06.md",
+    "line": 178,
+    "text": "`scripts/vf230_layer2.py:113` 之 `assert tot_leaf == 619 or True`",
+    "verdict": "不改",
+    "why": "上繳包 —— 已提交之歷史紀錄"
+  },
+  {
+    "file": "docs/reports/w120_verification_criteria.md",
+    "line": 10,
+    "text": "| VF230（Part 2，11 份） | 619 | 619（100.0%） | 619（100.0%） |",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/w120_verification_criteria.md",
+    "line": 204,
+    "text": "| | CFTS044（237 leaf） | VF230（619 leaf） |",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/vf230_crosscheck.md",
+    "line": 20,
+    "text": "（2626），且**缺 037 之 6 個 `E-Save` leaf**；035 則涵蓋全部 619。",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/vf230_crosscheck.md",
+    "line": 27,
+    "text": "| Functional（leaf） | 619 | 619 | 0 | `Functional Requirement` 619 |",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/vf230_crosscheck.md",
+    "line": 30,
+    "text": "**leaf 側零錯配**：619 個 037 判 Functional 者，035 亦全數判",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/vf230_crosscheck.md",
+    "line": 52,
+    "text": "**本層未改 leaf 母體**：`data/vf230_leaves.tsv` 維持 619。",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/vf230_crosscheck.md",
+    "line": 89,
+    "text": "035 為技術安全需求分析報告，其 `SYS2 ASIL 等級 (ASIL)` 欄於 037 之 619 個命中 leaf 上之分布：`NA` 615／`(空)` 4",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/wvf20_619_triage.md",
+    "line": 1,
+    "text": "# W-VF20 —— 以 619 為母體之陳述之逐句判別（R-VF18）",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/wvf20_619_triage.md",
+    "line": 20,
+    "text": "| 文字為對照式（`619 → 627`／`619 版`／`619 或 627`／`619 ＋ 8`） | 不改 | 其為變更之紀錄本身，改之即抹除變更 |",
+    "verdict": "不改",
+    "why": "對照式書寫（619→627／619 版／619＋8）—— 其為變更之紀錄本身"
+  },
+  {
+    "file": "docs/reports/wvf20_619_triage.md",
+    "line": 32,
+    "text": "| `feature.yaml:118` | 不改 | 此行為 **當時之 Sub Categorization 實測**（388/619），非後續作業據以行動之設定值 —— 其所支持之判定（Test Group）已由 R-VF9 裁定，本行僅存為裁定當時之證據。雖位於現行有效之 `feature.yaml`，依 R-",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/wvf20_619_triage.md",
+    "line": 44,
+    "text": "| `feature.yaml:29` | `# leaf 全集以 data/vf230_leaves.tsv 為準（619 leaf）。` | 現行有效之設定／作業文件，後續作業據以行動 |",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/wvf20_619_triage.md",
+    "line": 45,
+    "text": "| `scripts/vf230_layer2.py:113` | `assert tot_leaf == 619 or True   # 總數自各簇重算，不硬編` | 腳本內之可執行常數／斷言 —— 現行行為據以判定 |",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "docs/reports/vf230_layer2_candidates.md",
+    "line": 11,
+    "text": "- 037 分組來源：`data/vf230_leaves.tsv`（619 leaf，11 份分報告）",
+    "verdict": "不改",
+    "why": "已結案之報告 —— 作成當時之正確量測"
+  },
+  {
+    "file": "scripts/vf230_layer2.py",
+    "line": 113,
+    "text": "assert tot_leaf == 619 or True   # 總數自各簇重算，不硬編",
+    "verdict": "須改",
+    "why": "腳本內之可執行常數／斷言 —— 現行行為據以判定"
+  },
+  {
+    "file": "scripts/vf230_layer2.py",
+    "line": 150,
+    "text": "f\"- 037 分組來源：`data/vf230_leaves.tsv`（619 leaf，11 份分報告）\",",
+    "verdict": "不改",
+    "why": "腳本之 docstring 或輸出字串 —— 敘述當時之量測，非現行行為所依"
+  },
+  {
+    "file": "scripts/vf230_w120_vcrit.py",
+    "line": 156,
+    "text": "\"| | CFTS044（237 leaf） | VF230（619 leaf） |\", \"|---|---:|---:|\",",
+    "verdict": "不改",
+    "why": "腳本之 docstring 或輸出字串 —— 敘述當時之量測，非現行行為所依"
+  },
+  {
+    "file": "scripts/vf230_crosscheck.py",
+    "line": 3,
+    "text": "61 包 §7／DR-28 稱 VF230 缺 SYS2 ICS export，其 619 leaf 之",
+    "verdict": "不改",
+    "why": "腳本之 docstring 或輸出字串 —— 敘述當時之量測，非現行行為所依"
+  },
+  {
+    "file": "scripts/vf230_crosscheck.py",
+    "line": 11,
+    "text": "`SYS2 EE Architecture`），且涵蓋 037 之全部 619 leaf。",
+    "verdict": "不改",
+    "why": "腳本之 docstring 或輸出字串 —— 敘述當時之量測，非現行行為所依"
+  },
+  {
+    "file": "scripts/vf230_crosscheck.py",
+    "line": 135,
+    "text": "f\"（2626），且**缺 037 之 6 個 `E-Save` leaf**；035 則涵蓋全部 619。\",",
+    "verdict": "不改",
+    "why": "腳本之 docstring 或輸出字串 —— 敘述當時之量測，非現行行為所依"
+  },
+  {
+    "file": "scripts/vf230_crosscheck.py",
+    "line": 158,
+    "text": "\"**本層未改 leaf 母體**：`data/vf230_leaves.tsv` 維持 619。\",",
+    "verdict": "不改",
+    "why": "腳本之 docstring 或輸出字串 —— 敘述當時之量測，非現行行為所依"
+  },
+  {
+    "file": "scripts/vf230_leaves.py",
+    "line": 10,
+    "text": "**R-VF16（Pei 裁定 2026-08-23）—— 母體為 627，非 619**：",
+    "verdict": "不改",
+    "why": "腳本之 docstring 或輸出字串 —— 敘述當時之量測，非現行行為所依"
+  },
+  {
+    "file": "scripts/vf230_leaves.py",
+    "line": 14,
+    "text": "須可分辨。其餘 619 列標 `0`。",
+    "verdict": "不改",
+    "why": "腳本之 docstring 或輸出字串 —— 敘述當時之量測，非現行行為所依"
+  },
+  {
+    "file": "DATA_REQUESTS.md",
+    "line": 960,
+    "text": "537 列對帳、零錯配）。VF230 缺此來源者，其 **619 個 leaf** 之",
+    "verdict": "不改",
+    "why": "登記簿 —— 記錄開立當時之事實"
+  },
+  {
+    "file": "DATA_REQUESTS.md",
+    "line": 966,
+    "text": "**~~本輪之處置~~**：~~VF230 之 leaf 母體（619）單源自 037，未經跨源驗核。~~",
+    "verdict": "不改",
+    "why": "登記簿 —— 記錄開立當時之事實"
+  },
+  {
+    "file": "DATA_REQUESTS.md",
+    "line": 968,
+    "text": "**全數命中** 035，leaf 側 619/619 皆為 `Functional Requirement`（零錯配、",
+    "verdict": "不改",
+    "why": "登記簿 —— 記錄開立當時之事實"
+  },
+  {
+    "file": "ANOMALIES.md",
+    "line": 136,
+    "text": "| **A-VS128** | **VF230 之 Test Group 之三個來源互不相同 —— W-104 之停下項有三個候選而非二個** | 38 輪 VF230 進場，三源逐字：(a) spec 之 L1 Heading = **`Vehicle Setup Management [VF230_V1_]`**；",
+    "verdict": "不改",
+    "why": "登記簿 —— 記錄開立當時之事實"
+  },
+  {
+    "file": "ANOMALIES.md",
+    "line": 137,
+    "text": "| **A-VS132** | **037 之 8 列判 `Heading` 而 035 SYSRA 判 `Functional Requirement` —— VF230 之 leaf 母體可能為 627 而非 619** | 38 輪 VF230 跨源驗核：037 之 745 列**全數命中** 035（`FM-W",
+    "verdict": "不改",
+    "why": "登記簿 —— 記錄開立當時之事實"
+  },
+  {
+    "file": "ANOMALIES.md",
+    "line": 138,
+    "text": "| **A-VS133** | **037 之 11 份分報告僅涵蓋 035 之 `Functional Requirement` 之 57.7%，460 條無任何 SWE.1 分析** | 38 輪 VF230 跨源驗核：035 之 `Functional Requirement` 合計 **1087**，為 037",
+    "verdict": "不改",
+    "why": "登記簿 —— 記錄開立當時之事實"
+  },
+  {
+    "file": "ANOMALIES.md",
+    "line": 140,
+    "text": "| **A-VS129** | **5 個 `swe_id` 與其 `title` 內嵌換行（分析層開立，62 包 §2.3）** | 38 輪 W-116 之執行層複驗**成立**：`data/vf230_leaves.tsv` 之 619 列中，`swe_id` 異常 **5**（皆為 `SWE1-VC-RearG",
+    "verdict": "不改",
+    "why": "登記簿 —— 記錄開立當時之事實"
+  },
+  {
+    "file": "ANOMALIES.md",
+    "line": 141,
+    "text": "| **A-VS130** | **17 個 `swe_id` 缺數字前之連字號（分析層開立，62 包 §2.4）** | 38 輪 W-117／W-118 之執行層複驗**成立**：619 個 `swe_id` 中不符 `-\\d+$` 者 **17** —— `SWE1-VC-TrailerBrakeType025`",
+    "verdict": "不改",
+    "why": "登記簿 —— 記錄開立當時之事實"
+  }
+]

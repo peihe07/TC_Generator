@@ -1,0 +1,43 @@
+{
+  "targets": {
+    "SWE1-VC-HeatedSteeringWheelManagement-029": "4859496",
+    "SWE1-VC-HeatedSteeringWheelManagement-030": "4859497",
+    "SWE1-VC-HeatedSteeringWheelManagement-033": "4859500",
+    "SWE1-VC-HeatedSteeringWheelManagement-034": "4859501"
+  },
+  "source_lines": {
+    "SWE1-VC-HeatedSteeringWheelManagement-029": "* verify that TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = \"ON\"",
+    "SWE1-VC-HeatedSteeringWheelManagement-030": "* verify that TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = \"OFF\"",
+    "SWE1-VC-HeatedSteeringWheelManagement-033": "* HMI shall update to TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = \"ON\"",
+    "SWE1-VC-HeatedSteeringWheelManagement-034": "* HMI shall update to TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = \"OFF\""
+  },
+  "pre": {
+    "SWE1-VC-HeatedSteeringWheelManagement-029": [
+      "W2",
+      "B6-value-absent"
+    ],
+    "SWE1-VC-HeatedSteeringWheelManagement-030": [
+      "W2",
+      "B6-value-absent"
+    ],
+    "SWE1-VC-HeatedSteeringWheelManagement-033": [
+      "W2",
+      "B6-value-absent"
+    ],
+    "SWE1-VC-HeatedSteeringWheelManagement-034": [
+      "W2",
+      "B6-value-absent"
+    ]
+  },
+  "post": {
+    "SWE1-VC-HeatedSteeringWheelManagement-029": "W0",
+    "SWE1-VC-HeatedSteeringWheelManagement-030": "W0",
+    "SWE1-VC-HeatedSteeringWheelManagement-033": "W0",
+    "SWE1-VC-HeatedSteeringWheelManagement-034": "W0"
+  },
+  "anchor_miss": {
+    "leaf": "SWE1-VC-HeatedSteeringWheelManagement-023",
+    "pre": null,
+    "post": null
+  }
+}
