@@ -27,6 +27,8 @@
 
 ## 3. 畫面層標 `PENDING` 之 TC 逐條
 
+**合計 26 條**（42 輪 W-119 之 batch18 新增 5 條；41 輪為 21 條）。
+
 | batch | leaf_id | `dr_dependent` | 行為層對照 | 待補之來源 |
 |---|---|---|---|---|
 | `batch01_v3` | `SWE1-VC-Stop-StartSystem-004` |  | — | DR-19 |
@@ -50,6 +52,11 @@
 | `batch17` | `SWE1-VC-ThreeStagesVentedSeatsManagement-080` | DR-5-B | PENDING | DR-5-B |
 | `batch17` | `SWE1-VC-ThreeStagesVentedSeatsManagement-081` | DR-5-B | PENDING | DR-5-B |
 | `batch17` | `SWE1-VC-TwoStagesHeatedSeat-074` | DR-5-B | PENDING | DR-5-B |
+| `batch18` | `SWE1-VC-HeatedSteeringWheelManagement-026` | DR-5-B | PENDING | DR-5-B |
+| `batch18` | `SWE1-VC-OneStageHeatedSeat-041` | DR-5-B | PENDING | DR-5-B |
+| `batch18` | `SWE1-VC-OneStageHeatedSeat-046` | DR-5-B | unextracted | DR-5-B |
+| `batch18` | `SWE1-VC-OneStageHeatedSeat-049` | DR-5-B | PENDING | DR-5-B |
+| `batch18` | `SWE1-VC-OneStageHeatedSeat-050` | DR-5-B | PENDING | DR-5-B |
 
 ## 4. 待補之來源，逐項
 
