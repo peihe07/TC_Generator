@@ -199,6 +199,44 @@ HU screen observation in vehicle.
 3. The HU completes start-up
 4. The heated steering wheel icon is shown on the right side of the Heated / Vented Seats screen, mirrored from HSW_icon_position_initial
 
+## 5. 兩類離群值 —— 該欄承載之內容不齊一
+
+| | CFTS044（237 leaf） | VF230（619 leaf） |
+|---|---:|---:|
+| 上游自述 `not clear` | 14（5.9%） | 90（14.5%） |
+| VC/VM 含訊號路徑引用（`X.Y` 形態） | 6（2.5%） | 232（37.5%） |
+| VC/VM 含 `CAN simulation` | 8 | 1 |
+
+→ **VF230 之該欄遠比 CFTS044 豐富**（訊號引用 37.5% 對 2.5%），
+  但同時上游自述 `not clear` 者亦達 90（14.5%）。
+  **該欄之內容品質不齊一，不可整欄一體採信。**
+
+## 6. 一個決定性之實例 —— A-VS118 之 4 leaf
+
+A-VS118（37 輪 W-106）判定：`HSW_Cmd_Tlm` 於 LID 之 `Atlantis` 與
+`Atlantis High` 兩欄組皆無值域、於 DBC 之 `SG_` 命中 0，故其 4 個 leaf
+「訊號名可寫而值無從書寫」，於 38 輪 W-108(1) 判 **W2／`B6-value-absent`**。
+
+**該 4 leaf 與「037 之 VC/VM 提及 `HSW_Cmd_Tlm` 者」為同一組**（各 4 個，逐一相符）：
+
+| leaf | reqid | 037 `Verification Method` 之末行（逐字） |
+|---|---|---|
+| `SWE1-VC-HeatedSteeringWheelManagement-029` | 4859496 | * verify that TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = "ON" |
+| `SWE1-VC-HeatedSteeringWheelManagement-030` | 4859497 | * verify that TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = "OFF" |
+| `SWE1-VC-HeatedSteeringWheelManagement-033` | 4859500 | * HMI shall update to TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = "ON" |
+| `SWE1-VC-HeatedSteeringWheelManagement-034` | 4859501 | * HMI shall update to TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = "OFF" |
+
+→ **`TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = "ON"／"OFF"` 逐字載於上游 037**。
+
+A-VS118 之結論建立於「查 LID 與 DBC 二源皆無」——
+**該二源確實無，而值在 037 之一個從未被讀取之欄內**。
+此非 A-VS118 判斷有誤，是其**搜尋範圍未含此欄**
+（因全庫無人知其存在，見 §2）。
+
+**本層未改該 4 leaf 之分級**：由 W2 轉 W0 須先裁定該欄之位階
+（R-VS9(1)′ 令拼寫以 DBC 為權威、R-VS57(4) 令 WARN 須名與值域皆有來源，
+二者皆未預設 037 之 VC/VM 為值域來源）。**請裁。**
+
 ## 4. 判斷 —— 是否為一個未被使用之權威來源
 
 **是一個未被使用之來源；其是否為「權威」則不由本層認定。**

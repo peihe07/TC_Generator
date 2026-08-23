@@ -76,6 +76,12 @@ def lid_column_domain() -> dict[str, set[str]]:
     for k in ("FL_VS_Cmd_Tlm", "FR_VS_Cmd_Tlm"):
         if k in raw:
             raw[k] = [f for f in raw[k] if "Vented" in f] or raw[k]
+    # **R-VS60（63 包 §2，Pei 2026-08-23）**：`FR_VS_Cmd_Tlm` 之值域
+    # **准自 `FL_VS_Cmd_Tlm` 之列跨列引入**（A-VS103 之裁定）。
+    # 依據：52 包 §3 已判列 770／790 之 `Heated_seat_*` 前綴為轉錄錯誤，
+    # 而列 769（`FL_VS_Cmd_Tlm`）之四階值域為同一對稱側之正確記載。
+    if not any("Vented" in f for f in raw.get("FR_VS_Cmd_Tlm", [])):
+        raw["FR_VS_Cmd_Tlm"] = [f for f in raw.get("FL_VS_Cmd_Tlm", []) if "Vented" in f]
     return {k: {norm(m.group(2)) for f in v
                 for m in re.finditer(r"(\d+)\s*=\s*([^\n=]+)", f)}
             for k, v in raw.items()}
@@ -257,7 +263,11 @@ def write_products(g: dict[str, str], d: dict[str, dict]) -> tuple[int, int]:
     以機械結論取代，其失真不可逆。
 
     `generatable` 之推導（自產物逐列反推所得，36 輪 W-98 實測 236/236 相符）：
-        yes ⟺ writable ∈ {W0, W1} ∧ delegate ∉ {blocked, pending}
+        yes ⟺ writable ∈ {W0, W1}
+
+    **R-VS59（63 包 §1，Pei 2026-08-23）**：委派不免除產出 TC 之義務 ——
+    推導式中 `delegate` 之扣除**去除**；`delegate = blocked` 之值**廢除**
+    （改記 `yes`），其標的改標 `screen_source = comfort`。
     """
     changed = 0
     wp = FEAT / "docs/reports/writability.tsv"
@@ -283,11 +293,16 @@ def write_products(g: dict[str, str], d: dict[str, dict]) -> tuple[int, int]:
         rd = csv.DictReader(f, delimiter="\t")
         cols, rows = rd.fieldnames, list(rd)
     gen = 0
+    if "screen_source" not in cols:
+        cols = cols + ["screen_source"]
     for r in rows:
         leaf, note = r["leaf_id"], d.get(r["leaf_id"], {})
         r["writable"] = g.get(leaf, r["writable"])
-        r["generatable"] = ("yes" if r["writable"] in ("W0", "W1")
-                            and r["delegate"] not in ("blocked", "pending") else "no")
+        # R-VS59：`blocked` 之值廢除
+        if r["delegate"] == "blocked":
+            r["delegate"] = "yes"
+        r["screen_source"] = "comfort" if r["delegate"] in ("yes", "pending") else ""
+        r["generatable"] = "yes" if r["writable"] in ("W0", "W1") else "no"
         if note.get("dr_dependent"):
             r["dr_dependent"] = note["dr_dependent"]
         gen += r["generatable"] == "yes"

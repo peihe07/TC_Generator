@@ -92,6 +92,23 @@ def main() -> None:
 
     vm_dist = Counter(v["vm"] for v in cf.values() if v["vm"])
 
+    # §5 —— 兩類離群值之量化
+    SIG = re.compile(r"\b([A-Z][A-Z0-9_]{2,})\.([A-Za-z]\w{2,})\b(?!\.)")
+
+    def outliers(d):
+        leaf = {k: v for k, v in d.items()
+                if v["cat"].lower().startswith("functional")}
+        both = {k: v["vc"] + " " + v["vm"] for k, v in leaf.items()}
+        return {
+            "n": len(leaf),
+            "unclear": sorted(k for k, t in both.items() if "not clear" in t.lower()),
+            "sig": sorted(k for k, t in both.items() if SIG.search(t)),
+            "cansim": sorted(k for k, t in both.items()
+                             if "can simulation" in t.lower()),
+            "hsw": sorted(k for k, t in both.items() if "HSW_Cmd_Tlm" in t)}
+
+    oc, ov = outliers(cf), outliers(vf)
+
     L = ["# W-120 —— 037 之 `Verification Criteria`／`Verification Method` 二欄", "",
          "**62 包 §5.5 之工單。逐事回報，未採用。**", "",
          "## 1. 兩份 037 皆有此二欄，且皆 100% 非空", "",
@@ -135,7 +152,49 @@ def main() -> None:
               f"- **037 `Verification Method`**：`{src['vm']}`",
               f"- **已交付 `expected_result`**：{t.get('expected_result','')}", ""]
 
-    L += ["## 4. 判斷 —— 是否為一個未被使用之權威來源", "",
+    L += ["## 5. 兩類離群值 —— 該欄承載之內容不齊一", "",
+          "| | CFTS044（237 leaf） | VF230（619 leaf） |", "|---|---:|---:|",
+          f"| 上游自述 `not clear` | {len(oc['unclear'])}"
+          f"（{len(oc['unclear']) / oc['n']:.1%}） | {len(ov['unclear'])}"
+          f"（{len(ov['unclear']) / ov['n']:.1%}） |",
+          f"| VC/VM 含訊號路徑引用（`X.Y` 形態） | {len(oc['sig'])}"
+          f"（{len(oc['sig']) / oc['n']:.1%}） | {len(ov['sig'])}"
+          f"（{len(ov['sig']) / ov['n']:.1%}） |",
+          f"| VC/VM 含 `CAN simulation` | {len(oc['cansim'])} | {len(ov['cansim'])} |",
+          "",
+          "→ **VF230 之該欄遠比 CFTS044 豐富**（訊號引用 37.5% 對 2.5%），",
+          "  但同時上游自述 `not clear` 者亦達 90（14.5%）。",
+          "  **該欄之內容品質不齊一，不可整欄一體採信。**", "",
+          "## 6. 一個決定性之實例 —— A-VS118 之 4 leaf", "",
+          "A-VS118（37 輪 W-106）判定：`HSW_Cmd_Tlm` 於 LID 之 `Atlantis` 與",
+          "`Atlantis High` 兩欄組皆無值域、於 DBC 之 `SG_` 命中 0，故其 4 個 leaf",
+          "「訊號名可寫而值無從書寫」，於 38 輪 W-108(1) 判 **W2／`B6-value-absent`**。",
+          "",
+          f"**該 4 leaf 與「037 之 VC/VM 提及 `HSW_Cmd_Tlm` 者」為同一組**"
+          f"（各 {len(oc['hsw'])} 個，逐一相符）：", "",
+          "| leaf | reqid | 037 `Verification Method` 之末行（逐字） |",
+          "|---|---|---|"]
+    _vm_tail = {
+        "SWE1-VC-HeatedSteeringWheelManagement-029": "4859496",
+        "SWE1-VC-HeatedSteeringWheelManagement-030": "4859497",
+        "SWE1-VC-HeatedSteeringWheelManagement-033": "4859500",
+        "SWE1-VC-HeatedSteeringWheelManagement-034": "4859501"}
+    for k in oc["hsw"]:
+        tail = [ln for ln in cf[k]["vm"].splitlines()
+                if "HSW_Cmd_Tlm" in ln]
+        t = (tail[-1] if tail else "").strip().replace("|", "\\|")
+        L.append(f"| `{k}` | {_vm_tail.get(k, '')} | {t} |")
+    L += ["",
+          "→ **`TELEMATIC_VEHICLE_SETUP.HSW_Cmd_Tlm = \"ON\"／\"OFF\"` 逐字載於上游 037**。",
+          "",
+          "A-VS118 之結論建立於「查 LID 與 DBC 二源皆無」——",
+          "**該二源確實無，而值在 037 之一個從未被讀取之欄內**。",
+          "此非 A-VS118 判斷有誤，是其**搜尋範圍未含此欄**",
+          "（因全庫無人知其存在，見 §2）。", "",
+          "**本層未改該 4 leaf 之分級**：由 W2 轉 W0 須先裁定該欄之位階",
+          "（R-VS9(1)′ 令拼寫以 DBC 為權威、R-VS57(4) 令 WARN 須名與值域皆有來源，",
+          "二者皆未預設 037 之 VC/VM 為值域來源）。**請裁。**", "",
+          "## 4. 判斷 —— 是否為一個未被使用之權威來源", "",
           "**是一個未被使用之來源；其是否為「權威」則不由本層認定。**", "",
           "三項事實已足以支持前半：",
           "",
@@ -162,6 +221,10 @@ def main() -> None:
     print(f"VF230   leaf {v_n}  VC {v_vc}  VM {v_vm}")
     print(f"Verification Method 相異值 {len(vm_dist)}: {dict(vm_dist)}")
     print(f"取樣配對 {len(pairs)}")
+    print(f"離群值 CFTS044: unclear {len(oc['unclear'])} sig {len(oc['sig'])} "
+          f"cansim {len(oc['cansim'])} hsw {len(oc['hsw'])}")
+    print(f"離群值 VF230  : unclear {len(ov['unclear'])} sig {len(ov['sig'])} "
+          f"cansim {len(ov['cansim'])} hsw {len(ov['hsw'])}")
     print(f"wrote {out.relative_to(ROOT)}")
 
 

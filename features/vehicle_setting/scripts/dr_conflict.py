@@ -22,13 +22,20 @@ OPEN_DR: dict[str, tuple[str, set[str], str, str]] = {
     "DR-15": ("token", {"FL_HS_RQ", "FR_HS_RQ", "FL_VS_RQ_TGW", "FR_VS_RQ_TGW", "HSW_RQ_TGW"},
               r".", "待覆"),
     "DR-17": ("clause", set(), r"(?!x)x", "待覆"),          # 委派界線，非值域
-    "DR-19": ("value", {"EngRun_Stat"}, r"IDLE_STBL|UNLIMITED|LIMITED|\bRUN\b", "待覆（併入 DR-21）"),
+    # **R-VS61（63 包 §3，Pei 2026-08-23）**：無匯流排對應者仍產 TC，
+    # 其值取分析／規格之逐字（不附 label），標 `dr_dependent = DR-19`。
+    # 本 DR 之性質由**阻塞轉確認**，故自閘中移出；其 token／值仍登記於下以留痕。
+    # "DR-19": ("value", {"EngRun_Stat"}, r"IDLE_STBL|UNLIMITED|LIMITED|\bRUN\b", "待覆"),
+    "DR-19": ("value", set(), r"(?!x)x", "待覆（性質轉確認，R-VS61；不阻塞）"),
     "DR-21": ("value", {"PowerMode", "EngRun_Stat"}, r"IGN_START|IGN_OFF_ACC", "待送"),
     # DR-22′ **已撤回**（R-VS49）—— 四個 PROXI 參數之值域已有來源，其閘同步移除。
     # `VC_HdRstPrsnt` 之缺仍在，改由 DR-22（B3 類）承載。
     "DR-22": ("token", {"VC_HdRstPrsnt"}, r".", "待送"),
     "DR-18": ("value", {"VentedSeatFL", "VentedSeatFR"}, r"HS_HI|HS_OFF", "待送"),
-    "DR-8": ("token", {"VC_VEH_LINE"}, r".", "待送"),
+    # **R-VS62（63 包 §4，Pei 2026-08-23）**：`VC_VEH_LINE` 之車型碼取自
+    # `PROXI_HDCC27_R3` 之 Format 分頁列 466。`332`／`WS`／`DT`／`HDCC` **已解**；
+    # DR-8′ 縮限為 `M182`／`M189`／`M240` 三碼。
+    "DR-8": ("value", {"VC_VEH_LINE"}, r"M182|M189|M240", "待送（縮為三碼，R-VS62）"),
     "DR-24′": ("value", {"FL_HS_RQ", "FR_HS_RQ", "FL_VS_RQ_TGW", "FR_VS_RQ_TGW",
                          "HSW_RQ_TGW"}, r"Tsend|Tdisplay", "待送"),
 }

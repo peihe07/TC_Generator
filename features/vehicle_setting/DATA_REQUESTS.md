@@ -888,3 +888,45 @@ Functional/Heading 判定將無第二來源可核，A-VS01 型之錯配無從偵
 (b) `E-Save` 之 7 列於三源之不一致該以何者為準。
 
 **狀態：未送出。**
+
+---
+
+## DR-29（新，**Urgency Low** —— 19 個 `SWE-Requirement ID` 缺連字號；62 包 §5.3／W-118 開立）
+
+> **開號依據**：本檔與 `RULINGS.md`／`ANOMALIES.md`／`docs/` 之最大已用
+> DR 號為 **DR-28**（62 包 §5.3 令「開號前先查最大已用號」）。
+
+**型別（R-VS45）：型 A — 規格缺陷（書寫瑕疵）。**
+
+**成對之 anomaly：A-VS130。**
+
+VF230 之 037 分報告 `FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_
+Trailer_Name - Max_Power_Level_Report.xlsx` 內，**19 列之 `SWE-Requirement ID`
+於序號前缺連字號**：
+
+```
+SWE1-VC-TrailerBrakeType024 … 037      14 列（024 為 Heading，025–037 為 leaf）
+SWE1-VC-MaxPowerLevel139 … 143          5 列（139 為 Heading，140–143 為 leaf）
+```
+
+同檔內其餘 ID 皆為 `SWE1-VC-<Family>-NNN` 之形態（例：同檔之
+`SWE1-VC-TrailerName-001`）。**本層已回原始儲存格逐字實測，確認為上游所書**，
+非本層抽取或序列化所致。
+
+**請確認：**
+
+  (a) 該 19 列之正確 ID 是否為 `SWE1-VC-TrailerBrakeType-024` …
+      與 `SWE1-VC-MaxPowerLevel-139` …（即補上連字號）？
+  (b) 若是，上游是否會出修訂版？在其到位前，本層應以原值或補號後之值
+      作為 `specification_reference` 之錨？
+
+**影響**：`swe_id` 之 family／序號分離。實測受影響之處 **1**：
+`scripts/layer3_w46.py:41` 之 `re.match(r"SWE1-VC-(.+)-\d+$", swe_id)`
+對該 17 個 leaf 回 `None`。Part 1 之 271 leaf 受影響 **0**。
+`scripts/recon.py` 之 `-\d\d$` 於兩 feature 皆命中 0（其為 R-C3 之證據測量，
+非選取路徑），與本件無關。
+
+**本層未補連字號**（改值即造值，同 A-VS103／A-VS104 之處置）。
+容錯改為 `-?(\d+)$` 之修法**已列出而未施行**（62 包 §5.2 令「先列清單，不逕改」）。
+
+**狀態：未送出。**
