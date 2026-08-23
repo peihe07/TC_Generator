@@ -5,6 +5,12 @@
 feature: "Vehicle Setting"
 test_group: "Vehicle Setting"          # framework-internal; workbook write per profile
 
+# 本 feature 含兩份交付（R-VS60）：
+#   Part 1 = CFTS044 —— 既有交付，本區塊之鍵一律不得更動
+#   Part 2 = VF230    —— 61 包進場，鍵一律以 `_vf230` 具名結尾
+# `workbook` / `a03_report` / `sys1_export` / `spec_pdf` 四個無後綴鍵
+# **保留指向 CFTS044**（61 包 §4.1 之「擇一」取前者），既有腳本與
+# recon.py 之預設路徑因而不變。VF230 之消費者一律取具名鍵。
 paths:
   workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_CFTS044_Vehicle Controls_20260819.xlsx"
   # 本 feature 之 037 散落四份（R-VS4）；recon 取 Common Features 為代表，
@@ -14,12 +20,33 @@ paths:
   spec_pdf: "inputs/R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_044_Vehicle Controls_SR26_20250909-1816.docx"
   popup_list: null   # CFTS044 對 Pop Up 命中 0（00A DR-5c 撤回）
 
+  # --- Part 1 = CFTS044（具名別名，值與上列無後綴鍵逐字相同）---
+  workbook_cfts044: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_CFTS044_Vehicle Controls_20260819.xlsx"
+
+  # --- Part 2 = VF230（61 包進場）---
+  workbook_vf230: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_VF230_20260819.xlsx"
+  # VF230 之 037 散落 11 份；此鍵取 leaf 數最多者為代表（131 leaf），
+  # leaf 全集以 data/vf230_leaves.tsv 為準（619 leaf）。
+  # 每個 paths 鍵須恰好 glob 到 1 檔（feature_config.resolve_path），
+  # 故 11 份不得以單鍵表達。
+  a03_report_vf230: "inputs/FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Trailer_Name - Max_Power_Level_Report.xlsx"
+  # 副檔名為 `.doc`，內容實為 OOXML（`Microsoft Word 2007+`），
+  # python-docx 直讀，未轉檔（推翻 61 包 §6 第 2 項之前提）
+  spec_pdf_vf230: "inputs/C-VF230_V1_R5_PDT27.doc"
+  # VF230 之 SYS2 ICS export 缺件 —— DR-27 未覆前為 null，不得代用 CFTS044 之
+  # SYS2（其為該 CFTS 專屬）
+  sys1_export_vf230: null
+  # SYSAD 於 VF230 交付夾內之副本與 inputs/ 既有者 sha256 相同
+  # （469162b8…，61 包 W-102 實測），不重複複製
+
 spec_mode: "D"        # A/B/C/D/E per FEATURE_ONBOARDING §3（00 包 W-12）
 spec_reference_template: "<Spec Filename>_{outline}"
 
 workbook:
   sheet: "Test Case Specification 測試用例規範"   # 實測分頁名，非模板值
   header_row: 9
+  # 表頭列 9 之 34 欄（B–AH）於兩本 workbook 逐欄相同（61 包 §2.2），
+  # 故 `columns` 共用；僅 VF230 另有 `seq`（見 profiles.vf230）
   # column letters, verified by recon header match — do not guess
   columns:
     req_id: "D"
@@ -54,3 +81,30 @@ lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary
   popup_ids: []                            # e.g. [PU0091, PU0942] — verbatim check
   extra_rules: []                          # feature-specific lint hooks
+
+# --- 逐交付之覆寫（無後綴鍵為 CFTS044 之值；此處僅列相異者）---
+# 消費者以交付別（cfts044 / vf230）取用；未列之鍵一律沿用上方共用值。
+profiles:
+  cfts044:
+    workbook: "workbook_cfts044"
+    a03_report: "a03_report"
+    leaves: "data/leaves.tsv"
+
+  vf230:
+    workbook: "workbook_vf230"
+    a03_report: "a03_report_vf230"
+    leaves: "data/vf230_leaves.tsv"
+    # R-VS59 —— B 欄「No.#/序號」自 238 起連續遞增。
+    # 該映射**僅對 VF230 生效**；CFTS044 之 B 欄（1–237）為凍結欄，
+    # 任何寫回不得觸及，故 cfts044 profile 不設 seq。
+    columns:
+      seq: "B"
+    seq_start: 238
+    seq_basis: "CFTS044 交付路徑之 036，列 10-246，B 欄末值 = 237（61 包 §2.3 實測）"
+    # 進場時 0 非空資料列（61 包 §2.2 實測）——
+    # leaf 母體來自 037，非來自 036；覆蓋率於 P1 無分母，不報（§4.5）
+    workbook_state_at_intake: "BLANK"
+    # W-104 停下項：Test Group 之值未定。spec 之 L1 Heading 逐字為
+    # `Vehicle Setup Management [VF230_V1_]`，037 之 Sub Categorization
+    # 以 `Vehicle Setting Management (VSM)` 為多數（388/619）。待 Pei 裁定。
+    test_group: null

@@ -1,0 +1,4243 @@
+{
+  "layer1": "Vehicle Setup Management [VF230_V1_]",
+  "groups": [
+    {
+      "title": "Traffic Sign Assist Offset - NAFTA Setting",
+      "leaf": 33,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Traffic Sign Assist Offset - NAFTA Setting"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Traffic Sign Assist Offset - non-NAFTA Setting",
+      "leaf": 23,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Traffic Sign Assist Offset - non-NAFTA Setting"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Trailer Name",
+      "leaf": 22,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Trailer Name"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Trailer Brake Type",
+      "leaf": 13,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Trailer Brake Type"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Charge Power Level",
+      "leaf": 8,
+      "families": [
+        "STLA_Illuminated_Approach - Trailer_Number_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Charge Power Level"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": [
+        "IPC Algorithim Requirements for Remote Operation",
+        "LTM or ETM Algorithm Requirements"
+      ]
+    },
+    {
+      "title": "Trailer Number",
+      "leaf": 8,
+      "families": [
+        "STLA_Illuminated_Approach - Trailer_Number_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Trailer Number"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Headlights Off Delay",
+      "leaf": 7,
+      "families": [
+        "Daytime_Running_Light And Headlights_Off_Delay features^"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Headlights Off Delay"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Time and Date Settings",
+      "leaf": 7,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Time and Date Settings"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Consumption Unit",
+      "leaf": 7,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Consumption Unit"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Illuminated Approach",
+      "leaf": 7,
+      "families": [
+        "STLA_Illuminated_Approach - Trailer_Number_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Illuminated Approach"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Engine Off Power Delay",
+      "leaf": 7,
+      "families": [
+        "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Engine Off Power Delay"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Blind Spot Alert",
+      "leaf": 6,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Blind Spot Alert"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Horn With Lock",
+      "leaf": 6,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Horn With Lock"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Park Sense Rear Volume",
+      "leaf": 6,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Park Sense Rear Volume"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Park Sense Front Volume",
+      "leaf": 6,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Park Sense Front Volume"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Auto On Driver Comfort - 3 Option",
+      "leaf": 6,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto on Driver Comfort - 3 Option"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Lane Sense Warning",
+      "leaf": 6,
+      "families": [
+        "Cornering Lights_lane_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Lane Sense Warning"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Lane Sense Strength",
+      "leaf": 6,
+      "families": [
+        "Cornering Lights_lane_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Lane Sense Strength"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Forward Collision Warning",
+      "leaf": 6,
+      "families": [
+        "Cornering Lights_lane_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Forward Collision Warning"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Forward Collision Warning Sensitivity",
+      "leaf": 6,
+      "families": [
+        "Cornering Lights_lane_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Forward Collision Warning Sensitivity"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Pressure Unit",
+      "leaf": 6,
+      "families": [
+        "Pressure_Unit , Power_Unit And Torque_Unit features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Pressure Unit"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Power Unit",
+      "leaf": 6,
+      "families": [
+        "Pressure_Unit , Power_Unit And Torque_Unit features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Power Unit"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Unit Energy",
+      "leaf": 6,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Unit Energy"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Turn Signal Activated Blind Spot Camera View with Trailer Option",
+      "leaf": 6,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Turn Signal Activated Blind Spot Camera View with Trailer Option"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Suspension Auto Entry or Exit",
+      "leaf": 6,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Auto Entry or Exit"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 1 Power Mode",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 1 Power Mode"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 2 Power Mode",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 2 Power Mode"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 4 Power Mode",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 4 Power Mode"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 1 Type",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 1 Type"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 2 Type",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 2 Type"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 4 Type",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 4 Type"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 1 Hold Last State",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 1 Hold Last State"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 4 Hold Last State",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 4 Hold Last State"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "E-Save",
+      "leaf": 6,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "none",
+      "spec_level": null,
+      "spec_path": [],
+      "coarse": "(無對應章)",
+      "mid": "(無對應章)",
+      "spec_hits": 0,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Power Liftgate/Tailgate Alert",
+      "leaf": 6,
+      "families": [
+        "STLA_Illuminated_Approach - Trailer_Number_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Power Liftgate/Tailgate Alert"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Power Tailgate",
+      "leaf": 6,
+      "families": [
+        "STLA_Illuminated_Approach - Trailer_Number_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Power Tailgate"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Traffic Sign Warning",
+      "leaf": 6,
+      "families": [
+        "STLA_Illuminated_Approach - Trailer_Number_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Traffic Sign Warning"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "New Speed Zone Indication",
+      "leaf": 6,
+      "families": [
+        "STLA_Illuminated_Approach - Trailer_Number_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "New Speed Zone Indication"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Suspension Default Ride Height",
+      "leaf": 6,
+      "families": [
+        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Default Ride Height"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Enhanced Display Synchronization",
+      "leaf": 6,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Enhanced Display Synchronization"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Passive Entry",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Passive Entry"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Remote Door Unlock",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Remote Door Unlock"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Auto Park Brake",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto Park Brake"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Horn With Remote Start",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Horn With Remote Start"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Auto Unlock on Exit",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto Unlock on Exit"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Flash Light With Lock",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Flash Light With Lock"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Navigation Turn by Turn",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Navigation Turn by Turn"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Phone Repetition",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Phone Repetition"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Auto High Beam",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto High Beam"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "RKE Linked to Memory",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "RKE Linked to Memory"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Auto On Driver Comfort - 2 Option",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto on Driver Comfort - 2 Option"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Rearview Camera Delay",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rearview Camera Delay"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Rearview Camera Dynamic Guidelines",
+      "leaf": 5,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rearview Camera Dynamic Guidelines"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Cornering Lights",
+      "leaf": 5,
+      "families": [
+        "Cornering Lights_lane_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Cornering Lights"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Greeting Lights",
+      "leaf": 5,
+      "families": [
+        "Cornering Lights_lane_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Greeting Lights"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Signature Lighting",
+      "leaf": 5,
+      "families": [
+        "Cornering Lights_lane_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Signature Lighting"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Pedestrian Emergency Braking or Warning & Active Braking",
+      "leaf": 5,
+      "families": [
+        "Cornering Lights_lane_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Pedestrian Emergency Braking or Warning & Active Braking"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Rain Sensing Wipers",
+      "leaf": 5,
+      "families": [
+        "Cornering Lights_lane_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rain Sensing Wipers"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Daytime Running Lights",
+      "leaf": 5,
+      "families": [
+        "Daytime_Running_Light And Headlights_Off_Delay features^"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Daytime Running Lights"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Torque Unit",
+      "leaf": 5,
+      "families": [
+        "Pressure_Unit , Power_Unit And Torque_Unit features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Torque Unit"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Auto Door Locks",
+      "leaf": 5,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto Door Locks"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Temperature Unit",
+      "leaf": 5,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Temperature Unit"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Surround View Camera Delay",
+      "leaf": 5,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Surround View Camera Delay"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Surround View Camera Guidelines",
+      "leaf": 5,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Surround View Camera Guidelines"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Turn Signal Activated Blind Spot Camera View",
+      "leaf": 5,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Turn Signal Activated Blind Spot Camera View"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "ParkSense Based Camera Activation",
+      "leaf": 5,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "ParkSense Based Camera Activation"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Park Sense",
+      "leaf": 5,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Park Sense"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 3 Power Mode",
+      "leaf": 5,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 3 Power Mode"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 3 Type",
+      "leaf": 5,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 3 Type"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 2 Hold Last State",
+      "leaf": 5,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 2 Hold Last State"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 3 Hold Last State",
+      "leaf": 5,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+        "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 3 Hold Last State"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Rear Guidance Lighting with Approach",
+      "leaf": 5,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rear Guidance Lighting with Approach"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Rear Guidance Light Status",
+      "leaf": 5,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rear Guidance Light Status"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Paddle Shifter",
+      "leaf": 5,
+      "families": [
+        "STLA_Illuminated_Approach - Trailer_Number_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Paddle Shifter"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Rear Seat Reminder",
+      "leaf": 5,
+      "families": [
+        "STLA_Illuminated_Approach - Trailer_Number_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rear Seat Reminder"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Suspension Flash Lights With Lower",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Flash Lights With Lower"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Suspension Sound Horn With Lower",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Sound Horn With Lower"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Rear Guidance Lights with\\nCargo Lights",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
+      ],
+      "match": "none",
+      "spec_level": null,
+      "spec_path": [],
+      "coarse": "(無對應章)",
+      "mid": "(無對應章)",
+      "spec_hits": 0,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Suspension Service Mode",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Service Mode"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Suspension Display Messages",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Display Messages"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Tilt Mirror in Reverse",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Tilt Mirror in Reverse"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Tire Fill Alert",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Tire Fill Alert"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Ready to Drive Pop-Up",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Ready to Drive Pop-Up"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Auto Fold Mirrors",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto Fold Mirrors"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Driver Easy Exit Seat",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Driver Easy Exit Seat"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Hill Start Assist",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Hill Start Assist"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Headlights with Wipers",
+      "leaf": 5,
+      "families": [
+        "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Headlights with Wipers"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Automatic Trailer Light Check",
+      "leaf": 5,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Automatic Trailer Light Check"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Blind Spot with Trailer Detection",
+      "leaf": 5,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Blind Spot with Trailer Detection"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Power Side Step",
+      "leaf": 5,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Power Side Step"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
+      "leaf": 5,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Warnings for Low Fuel Inverter Shutdown - Visual Warning"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
+      "leaf": 5,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Warnings for Low Fuel Inverter Shutdown - Audible Warning"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "CHMSL CAMERA DYNAMIC CENTERLINE",
+      "leaf": 5,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "none",
+      "spec_level": null,
+      "spec_path": [],
+      "coarse": "(無對應章)",
+      "mid": "(無對應章)",
+      "spec_hits": 0,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Language",
+      "leaf": 4,
+      "families": [
+        "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Language"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Hour Mode",
+      "leaf": 4,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Hour Mode"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Distance Unit",
+      "leaf": 4,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Distance Unit"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "Speed Unit",
+      "leaf": 4,
+      "families": [
+        "Time_Date_Autodoor_Camera_features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Speed Unit"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 2,
+      "ambiguous_l4": [
+        "IPC Algorithm Requirements",
+        "LTM or ETM Algorithm Requirements"
+      ]
+    },
+    {
+      "title": "Max Power Level",
+      "leaf": 4,
+      "families": [
+        "STLA_Trailer_Name - Max_Power_Level_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Max Power Level"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 5 Power Mode",
+      "leaf": 3,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 5 Power Mode"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 5 Hold Last State",
+      "leaf": 3,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 5 Hold Last State"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "6 Aux Switches",
+      "leaf": 2,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 6 Power Mode",
+      "leaf": 2,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 6 Power Mode"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 5 Type",
+      "leaf": 2,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 5 Type"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 6 Type",
+      "leaf": 2,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 6 Type"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "SWITCH 6 Hold Last State",
+      "leaf": 2,
+      "families": [
+        "6 Aux Switches, SWITCH 1 Power Mode and E-Save features"
+      ],
+      "match": "exact",
+      "spec_level": 6,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 6 Hold Last State"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    },
+    {
+      "title": "4 AUX Switches",
+      "leaf": 2,
+      "families": [
+        "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report"
+      ],
+      "match": "exact",
+      "spec_level": 5,
+      "spec_path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches"
+      ],
+      "coarse": "LTM or ETM Algorithm Requirements",
+      "mid": "LTM or ETM Vehicle Setup Management",
+      "spec_hits": 1,
+      "ambiguous_l4": []
+    }
+  ],
+  "toc": [
+    {
+      "level": 1,
+      "text": "Vehicle Setup Management [VF230_V1_]",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Vehicle Function Data",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Vehicle Function Data"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Vehicle Function Area",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Vehicle Function Data",
+        "Vehicle Function Area"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Vehicle Function Group",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Vehicle Function Data",
+        "Vehicle Function Group"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Vehicle Function Owner",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Vehicle Function Data",
+        "Vehicle Function Owner"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Revision notes",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Revision notes"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Introduction",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Introduction"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Functional Diagram",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Diagram"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "External Interfaces",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "External Interfaces"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "External Inputs",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "External Interfaces",
+        "External Inputs"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "External Outputs",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "External Interfaces",
+        "External Outputs"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Control Unit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Control Unit"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "ECU",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Control Unit",
+        "ECU"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "EMCU",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Control Unit",
+        "EMCU"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "External Device",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Control Unit",
+        "External Device"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Additional Component",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Control Unit",
+        "Additional Component"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "I/O",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "I/O"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Signal",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Hardwire",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "Hardwire"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Internal",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "Internal"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "B/BH-CAN",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "B/BH-CAN"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "C-CAN",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "C-CAN"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "LIN",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "LIN"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "B-CAN2",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "B-CAN2"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "FD-CAN3",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "FD-CAN3"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "PROXI Parameters",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "PROXI Parameters"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "C-CAN1",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "C-CAN1"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "C-CAN2",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "C-CAN2"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "FD-CAN1",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "FD-CAN1"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "FD-CAN2",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "FD-CAN2"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "FD-CAN8",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Signal",
+        "FD-CAN8"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Indication",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Indication"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Functional Requirements",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "LTM or ETM Vehicle Setup Management",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "LTM or ETM Algorithm Requirements",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Cornering Lights",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Cornering Lights"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Greeting Lights",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Greeting Lights"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Lane Sense Warning",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Lane Sense Warning"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Signature Lighting",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Signature Lighting"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Lane Sense Strength",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Lane Sense Strength"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Forward Collision Warning",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Forward Collision Warning"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Forward Collision Warning Sensitivity",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Forward Collision Warning Sensitivity"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Pedestrian Emergency Braking or Warning & Active Braking",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Pedestrian Emergency Braking or Warning & Active Braking"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Rain Sensing Wipers",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rain Sensing Wipers"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Time and Date Settings",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Time and Date Settings"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Hour Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Hour Mode"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Auto Door Locks",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto Door Locks"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Distance Unit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Distance Unit"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Speed Unit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Speed Unit"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Consumption Unit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Consumption Unit"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Unit Energy",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Unit Energy"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Temperature Unit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Temperature Unit"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Pressure Unit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Pressure Unit"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Power Unit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Power Unit"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Torque Unit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Torque Unit"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Language",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Language"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Daytime Running Lights",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Daytime Running Lights"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Headlights Off Delay",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Headlights Off Delay"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Blind Spot Alert",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Blind Spot Alert"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Passive Entry",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Passive Entry"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Remote Door Unlock",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Remote Door Unlock"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Auto Park Brake",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto Park Brake"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Horn With Remote Start",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Horn With Remote Start"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Horn With Lock",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Horn With Lock"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Auto Unlock on Exit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto Unlock on Exit"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Flash Light With Lock",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Flash Light With Lock"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Navigation Turn by Turn",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Navigation Turn by Turn"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Phone Repetition",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Phone Repetition"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Park Sense",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Park Sense"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Park Sense Rear Volume",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Park Sense Rear Volume"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Park Sense Front Volume",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Park Sense Front Volume"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Auto High Beam",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto High Beam"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "RKE Linked to Memory",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "RKE Linked to Memory"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Auto on Driver Comfort - 3 Option",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto on Driver Comfort - 3 Option"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Auto on Driver Comfort - 2 Option",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto on Driver Comfort - 2 Option"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Rearview Camera Delay",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rearview Camera Delay"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Rearview Camera Dynamic Guidelines",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rearview Camera Dynamic Guidelines"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Auto Fold Mirrors",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Auto Fold Mirrors"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Driver Easy Exit Seat",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Driver Easy Exit Seat"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Engine Off Power Delay",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Engine Off Power Delay"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Hill Start Assist",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Hill Start Assist"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Headlights with Wipers",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Headlights with Wipers"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Illuminated Approach",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Illuminated Approach"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Paddle Shifter",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Paddle Shifter"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Power Liftgate/Tailgate Alert",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Power Liftgate/Tailgate Alert"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Power Tailgate",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Power Tailgate"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Surround View Camera Delay",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Surround View Camera Delay"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Surround View Camera Guidelines",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Surround View Camera Guidelines"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Suspension Auto Entry or Exit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Auto Entry or Exit"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Suspension Service Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Service Mode"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Suspension Display Messages",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Display Messages"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Tilt Mirror in Reverse",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Tilt Mirror in Reverse"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Tire Fill Alert",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Tire Fill Alert"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Ready to Drive Pop-Up",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Ready to Drive Pop-Up"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "4 AUX Switches",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 1 Power Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 1 Power Mode"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 2 Power Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 2 Power Mode"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 3 Power Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 3 Power Mode"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 4 Power Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 4 Power Mode"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 1 Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 1 Type"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 2 Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 2 Type"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 3 Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 3 Type"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 4 Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 4 Type"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 1 Hold Last State",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 1 Hold Last State"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 2 Hold Last State",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 2 Hold Last State"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 3 Hold Last State",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 3 Hold Last State"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 4 Hold Last State",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "4 AUX Switches",
+        "SWITCH 4 Hold Last State"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "6 Aux Switches",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 1 Power Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 1 Power Mode"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 2 Power Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 2 Power Mode"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 3 Power Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 3 Power Mode"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 4 Power Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 4 Power Mode"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 5 Power Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 5 Power Mode"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 6 Power Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 6 Power Mode"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 1 Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 1 Type"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 2 Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 2 Type"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 3 Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 3 Type"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 4 Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 4 Type"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 5 Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 5 Type"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 6 Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 6 Type"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 1 Hold Last State",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 1 Hold Last State"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 2 Hold Last State",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 2 Hold Last State"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 3 Hold Last State",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 3 Hold Last State"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 4 Hold Last State",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 4 Hold Last State"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 5 Hold Last State",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 5 Hold Last State"
+      ]
+    },
+    {
+      "level": 6,
+      "text": "SWITCH 6 Hold Last State",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "6 Aux Switches",
+        "SWITCH 6 Hold Last State"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Traffic Sign Information",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Traffic Sign Information"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Forward Facing Camera Guidelines",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Forward Facing Camera Guidelines"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Proximity Wakeup",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Proximity Wakeup"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Drowsy Driver Alert",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Drowsy Driver Alert"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Active Lane Management",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Active Lane Management"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Active Lane Management Strength",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Active Lane Management Strength"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Traffic Sign Warning",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Traffic Sign Warning"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "New Speed Zone Indication",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "New Speed Zone Indication"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Charge Power Level",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Charge Power Level"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Rear Seat Reminder",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rear Seat Reminder"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Trailer Number",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Trailer Number"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Trailer Name",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Trailer Name"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Trailer Brake Type",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Trailer Brake Type"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Automatic Trailer Light Check",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Automatic Trailer Light Check"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Suspension Flash Lights With Lower",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Flash Lights With Lower"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Suspension Sound Horn With Lower",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Sound Horn With Lower"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Blind Spot with Trailer Detection",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Blind Spot with Trailer Detection"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Power Side Step",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Power Side Step"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Traffic Sign Assist Offset - NAFTA Setting",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Traffic Sign Assist Offset - NAFTA Setting"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Traffic Sign Assist Offset - non-NAFTA Setting",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Traffic Sign Assist Offset - non-NAFTA Setting"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Active ParkSense Mode",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Active ParkSense Mode"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Active ParkSense Proximity Chimes",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Active ParkSense Proximity Chimes"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Rear Guidance Lights with Cargo Lights",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rear Guidance Lights with Cargo Lights"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Turn Signal Activated Blind Spot Camera View",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Turn Signal Activated Blind Spot Camera View"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Turn Signal Activated Blind Spot Camera View with Trailer Option",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Turn Signal Activated Blind Spot Camera View with Trailer Option"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "ParkSense Based Camera Activation",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "ParkSense Based Camera Activation"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Fuel Saver",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Fuel Saver"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Warnings for Low Fuel Inverter Shutdown - Visual Warning"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Warnings for Low Fuel Inverter Shutdown - Audible Warning"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Suspension Default Ride Height",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Suspension Default Ride Height"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Rear Guidance Lighting with Approach",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rear Guidance Lighting with Approach"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Rear Guidance Light Status",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Rear Guidance Light Status"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Enhanced Display Synchronization",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Enhanced Display Synchronization"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Max Power Level",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "LTM or ETM Vehicle Setup Management",
+        "LTM or ETM Algorithm Requirements",
+        "Max Power Level"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Vehicle Setup Management Between IPC and LTM or ETM",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "Vehicle Setup Management Between IPC and LTM or ETM"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "IPC Vehicle Setup Management",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "IPC Vehicle Setup Management"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "IPC Algorithm Requirements",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "IPC Vehicle Setup Management",
+        "IPC Algorithm Requirements"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Speed Warning Enable or Disable",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "IPC Vehicle Setup Management",
+        "IPC Algorithm Requirements",
+        "Speed Warning Enable or Disable"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Speed Unit",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "IPC Vehicle Setup Management",
+        "IPC Algorithm Requirements",
+        "Speed Unit"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "IPC Algorithim Requirements for Remote Operation",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "IPC Vehicle Setup Management",
+        "IPC Algorithim Requirements for Remote Operation"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Charge Power Level",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "IPC Vehicle Setup Management",
+        "IPC Algorithim Requirements for Remote Operation",
+        "Charge Power Level"
+      ]
+    },
+    {
+      "level": 5,
+      "text": "Max SOC Level",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "IPC Vehicle Setup Management",
+        "IPC Algorithim Requirements for Remote Operation",
+        "Max SOC Level"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Gateway Management",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "Gateway Management"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "BCM Algorithm Requirements",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "Gateway Management",
+        "BCM Algorithm Requirements"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "SGW Algorithm Requirements",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Functional Requirements",
+        "Gateway Management",
+        "SGW Algorithm Requirements"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Non-Customer Functional Modes",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Non-Customer Functional Modes"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Logistics Mode Requirements",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Non-Customer Functional Modes",
+        "Logistics Mode Requirements"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "Logistics Mode Functionality Table",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Non-Customer Functional Modes",
+        "Logistics Mode Requirements",
+        "Logistics Mode Functionality Table"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "Logistics Mode Functionality Table Description",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Non-Customer Functional Modes",
+        "Logistics Mode Requirements",
+        "Logistics Mode Functionality Table Description"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Other Non-Customer Functional Modes",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Non-Customer Functional Modes",
+        "Other Non-Customer Functional Modes"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "Other Non-Customer Functional Modes Table",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Non-Customer Functional Modes",
+        "Other Non-Customer Functional Modes",
+        "Other Non-Customer Functional Modes Table"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "Other Non-Customer Functional Modes Table Description",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Non-Customer Functional Modes",
+        "Other Non-Customer Functional Modes",
+        "Other Non-Customer Functional Modes Table Description"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Indication Management",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Indication Management"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Diagnosis and Recovery",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Diagnosis and Recovery"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Diagnosis Table",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Diagnosis and Recovery",
+        "Diagnosis Table"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Diagnosis Table and Recovery Description",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Diagnosis and Recovery",
+        "Diagnosis Table and Recovery Description"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Diagnostic Requirements",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Diagnosis and Recovery",
+        "Diagnostic Requirements"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "IPC Diagnostic Requirements",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Diagnosis and Recovery",
+        "Diagnostic Requirements",
+        "IPC Diagnostic Requirements"
+      ]
+    },
+    {
+      "level": 4,
+      "text": "BCM Diagnostic Requirements",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Diagnosis and Recovery",
+        "Diagnostic Requirements",
+        "BCM Diagnostic Requirements"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Configuration Parameters",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Configuration Parameters"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Configuration Parameters Table",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Configuration Parameters",
+        "Configuration Parameters Table"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Wake Up Stay Active",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Wake Up Stay Active"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Wake Up and Stay Active Event Table",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Wake Up Stay Active",
+        "Wake Up and Stay Active Event Table"
+      ]
+    },
+    {
+      "level": 3,
+      "text": "Wake Up and Stay Active Event Table Description",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Wake Up Stay Active",
+        "Wake Up and Stay Active Event Table Description"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Acronyms and Glossary",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Acronyms and Glossary"
+      ]
+    },
+    {
+      "level": 2,
+      "text": "Reference Documents",
+      "path": [
+        "Vehicle Setup Management [VF230_V1_]",
+        "Reference Documents"
+      ]
+    }
+  ],
+  "match_dist": {
+    "exact": 103,
+    "none": 3
+  },
+  "total_leaf": 619,
+  "grain_coarse_l4": [
+    [
+      "LTM or ETM Algorithm Requirements",
+      103,
+      603
+    ],
+    [
+      "(無對應章)",
+      3,
+      16
+    ]
+  ],
+  "grain_mid_l3": [
+    [
+      "LTM or ETM Vehicle Setup Management",
+      103,
+      603
+    ],
+    [
+      "(無對應章)",
+      3,
+      16
+    ]
+  ],
+  "grain_family": [
+    [
+      "STLA_Trailer_Name - Max_Power_Level_Report",
+      12,
+      131
+    ],
+    [
+      "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features",
+      19,
+      99
+    ],
+    [
+      "Time_Date_Autodoor_Camera_features",
+      15,
+      79
+    ],
+    [
+      "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+      22,
+      64
+    ],
+    [
+      "STLA_Illuminated_Approach - Trailer_Number_Report",
+      9,
+      57
+    ],
+    [
+      "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report",
+      10,
+      52
+    ],
+    [
+      "Cornering Lights_lane_features",
+      9,
+      49
+    ],
+    [
+      "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report",
+      9,
+      35
+    ],
+    [
+      "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report",
+      8,
+      24
+    ],
+    [
+      "Pressure_Unit , Power_Unit And Torque_Unit features",
+      3,
+      17
+    ],
+    [
+      "Daytime_Running_Light And Headlights_Off_Delay features^",
+      2,
+      12
+    ]
+  ],
+  "ambiguous": [
+    "Charge Power Level",
+    "Speed Unit"
+  ]
+}

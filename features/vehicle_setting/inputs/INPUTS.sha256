@@ -1,3 +1,4 @@
+# --- CFTS044 (Part 1) ---
 1ee4aaaa6506fb4497cfe0e026af8096d33815f9560d70cfb2a6417a6e14040b  Comfort HMI Logic and Flow R1 SR25 Post 3A CR29359 (Feb 24 2025).pdf
 ebe5a65f30a0d4bcf9e46b51a43145ce222027ac49ad523fe5c2d2b6566a5089  FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_CFTS044_Vehicle Controls_20260819.xlsx
 494f2d74547dd731bfff6b0e95a1917a742aef2e6ae4d55a09044b80fe3629c0  FM-WI-FSM-037-A03_SWE1_CFTS044 STLA 報告_SWRA STLA Report_SWRA_Common Features.xlsx
@@ -14,3 +15,17 @@ ffceac36e9db145dc0311a25435b15249835e077bab264e71a95b0fb37a98ef4  Logical Identi
 8c2977b56e216b5d2e1aef1714c3be90f2d6ed3f451812fc4412dcb1c23eaf0b  SYS2  R1LR_Atl-H_25PI1.1_Activation and Configuration_CFTS_044_Vehicle Controls_SR26_20250815-1022_20260324_Version3_Released.xlsx
 469162b81bf3101855089feb87b4a155d4ce867860c194d65d2a901bad08b200  SYS3_Vehicle_Settings_FM-WI-FSM-011-A01_System Architectural Design_SYSAD_v1.0.docx
 e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2  PROXI_HDCC27_R3_20250424.xlsx
+# --- VF230 (Part 2, 61 包 W-102, 2026-08-23) ---
+800c1fd2c34e14c9dcb0490d9453b554c1fd243f3d0a543b9bd1dc22a88760b5  C-VF230_V1_R5_PDT27.doc
+5dd5431e6286a0af3064fe16c4b678d1d77b6652f1094cf4e4d3f3eae67fe9cc  FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_VF230_20260819.xlsx
+49d27af66ee297bd949ca302ef5ddd3855a93c07a663fcb5ad7dfd8484678d73  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA_Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features.xlsx
+93fba5e5cf2da1c1ffd3adf559a992236f9c096a2511b93e257839f23a47355b  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA_Cornering Lights_lane_features.xlsx
+effdfde6b905390592649e6157338801a2925c1bd5787fbd75a8a1e2a2f6aa64  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA_Daytime_Running_Light And Headlights_Off_Delay features^.xlsx
+b90a8be5c7d0f389fab9e5aff7597a7138955e27b3e338faee13e2a931d957dc  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA_Pressure_Unit , Power_Unit And Torque_Unit features.xlsx
+6970af7a94e1ad898f22f3c7b43735bc5fca856b695063131cb0d852f012ab76  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA_Time_Date_Autodoor_Camera_features.xlsx
+099bc9bb33d7f8f20db64049170d9361aeb253a78ac123e650030217a49d6877  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA__6 Aux Switches, SWITCH 1 Power Mode and E-Save features.xlsx
+434236a6864f01153a52483cb1e076ecf946f9d6717345ecde8bf48e9b41325d  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Illuminated_Approach - Trailer_Number_Report.xlsx
+e012400423c33eda3571753d329f4889364f8d428b347dc9a6b7d9008b802c61  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report.xlsx
+27f87f8b62cc7cb885bdab5a084632e8774ac6cd5563f05699e316f53672ec08  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report.xlsx
+36e4ef190dcb6c5e1c415af48b2f31705e1e48b57d3d235f048cdf62dd6c54bb  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report.xlsx
+effe232998a4f18c5095cce59e1aaad1d3449b448710685a34e8c96405186b32  FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Trailer_Name - Max_Power_Level_Report.xlsx

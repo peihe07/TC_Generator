@@ -1,0 +1,152 @@
+{
+  "files": [
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA_Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features.xlsx",
+      "family": "Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features",
+      "sheet": "Analysis Report",
+      "header_row": 6,
+      "data_rows": 118,
+      "cat_dist": {
+        "Heading": 19,
+        "Functional Requirement": 99
+      },
+      "leaf": 99,
+      "heading": 19
+    },
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA_Cornering Lights_lane_features.xlsx",
+      "family": "Cornering Lights_lane_features",
+      "sheet": "Analysis Report",
+      "header_row": 6,
+      "data_rows": 58,
+      "cat_dist": {
+        "Heading": 9,
+        "Functional Requirement": 49
+      },
+      "leaf": 49,
+      "heading": 9
+    },
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA_Daytime_Running_Light And Headlights_Off_Delay features^.xlsx",
+      "family": "Daytime_Running_Light And Headlights_Off_Delay features^",
+      "sheet": "Sheet1",
+      "header_row": 6,
+      "data_rows": 14,
+      "cat_dist": {
+        "Heading": 2,
+        "Functional Requirement": 12
+      },
+      "leaf": 12,
+      "heading": 2
+    },
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA_Pressure_Unit , Power_Unit And Torque_Unit features.xlsx",
+      "family": "Pressure_Unit , Power_Unit And Torque_Unit features",
+      "sheet": "Sheet1",
+      "header_row": 6,
+      "data_rows": 20,
+      "cat_dist": {
+        "Heading": 3,
+        "Functional Requirement": 17
+      },
+      "leaf": 17,
+      "heading": 3
+    },
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA_Time_Date_Autodoor_Camera_features.xlsx",
+      "family": "Time_Date_Autodoor_Camera_features",
+      "sheet": "Analysis Report",
+      "header_row": 6,
+      "data_rows": 94,
+      "cat_dist": {
+        "Heading": 15,
+        "Functional Requirement": 79
+      },
+      "leaf": 79,
+      "heading": 15
+    },
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA STLA Report_SWRA__6 Aux Switches, SWITCH 1 Power Mode and E-Save features.xlsx",
+      "family": "6 Aux Switches, SWITCH 1 Power Mode and E-Save features",
+      "sheet": "Analysis Report",
+      "header_row": 6,
+      "data_rows": 94,
+      "cat_dist": {
+        "Heading": 30,
+        "Functional Requirement": 64
+      },
+      "leaf": 64,
+      "heading": 30
+    },
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Illuminated_Approach - Trailer_Number_Report.xlsx",
+      "family": "STLA_Illuminated_Approach - Trailer_Number_Report",
+      "sheet": "Analysis Report",
+      "header_row": 6,
+      "data_rows": 66,
+      "cat_dist": {
+        "Heading": 9,
+        "Functional Requirement": 57
+      },
+      "leaf": 57,
+      "heading": 9
+    },
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report.xlsx",
+      "family": "STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report",
+      "sheet": "Analysis Report",
+      "header_row": 6,
+      "data_rows": 32,
+      "cat_dist": {
+        "Heading": 8,
+        "Functional Requirement": 24
+      },
+      "leaf": 24,
+      "heading": 8
+    },
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report.xlsx",
+      "family": "STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report",
+      "sheet": "Analysis Report",
+      "header_row": 6,
+      "data_rows": 44,
+      "cat_dist": {
+        "Heading": 9,
+        "Functional Requirement": 35
+      },
+      "leaf": 35,
+      "heading": 9
+    },
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report.xlsx",
+      "family": "STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report",
+      "sheet": "Analysis Report",
+      "header_row": 6,
+      "data_rows": 62,
+      "cat_dist": {
+        "Heading": 10,
+        "Functional Requirement": 52
+      },
+      "leaf": 52,
+      "heading": 10
+    },
+    {
+      "file": "FM-WI-FSM-037-A03_SWE1_VF230_STLA 報告_SWRA_STLA_Trailer_Name - Max_Power_Level_Report.xlsx",
+      "family": "STLA_Trailer_Name - Max_Power_Level_Report",
+      "sheet": "Analysis Report",
+      "header_row": 6,
+      "data_rows": 143,
+      "cat_dist": {
+        "Heading": 12,
+        "Functional Requirement": 131
+      },
+      "leaf": 131,
+      "heading": 12
+    }
+  ],
+  "total_rows": 745,
+  "total_leaf": 619,
+  "total_heading": 126,
+  "distinct_swe_id": 619,
+  "cross_file_dupes": {}
+}
