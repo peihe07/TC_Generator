@@ -33,17 +33,43 @@ R-VS56 之 P0(a) 為第三排頭枕下放、P0(b) 為加熱元件 ——**VF230 
 
 **P0(b)（熱源）：0** —— VF230 無熱源功能。
 
-## 2. 分布：P0 **49** ／ P1 **288** ／ P2 **290**（合計 627）
+### P0(c) —— canon §10.2 之 `safety` 一類（W-VF47，R-VF51 二）
+
+**R-VS56 之二類係以 Part 1 之內容界定，非 P0 之全部定義。**
+canon §10.2 之 P0 含 `safety`，其**不限於實體致動**。
+
+**採 R-VF51 之建議界線**：改變「警示**是否發出**」者 P0；
+改變「音量／靈敏度／樣式」者 P1。**採之，理由**：前者之失效
+使駕駛**失去一次警示**（不可回復之單次事件），後者僅改變其呈現。
+
+| 簇 | leaf | 判 | 其失效之後果 —— 駕駛因而失去什麼 |
+|---|---:|---|---|
+| `Forward Collision Warning` | 6 | **P0** | 其開關決定前方碰撞警示**是否發出**；關閉或誤關即失去該警示 |
+| `Pedestrian Emergency Braking or Warning & Active Braking` | 5 | **P0** | 其開關決定行人緊急煞車／警示**是否作動** |
+| `Blind Spot Alert` | 6 | **P0** | 其開關決定盲點警示**是否發出** |
+| `Blind Spot with Trailer Detection` | 5 | **P0** | 其決定拖車情境下盲點偵測範圍**是否延伸**；未延伸即拖車側之盲點無警示 |
+| `Lane Sense Warning` | 6 | **P0** | 其開關決定車道偏離警示**是否發出** |
+| `Park Sense` | 5 | **P0** | 其開關決定倒車／停車距離警示**是否發出** |
+| `Traffic Sign Warning` | 6 | **P0** | 其開關決定速限標誌警示**是否發出** |
+| `Forward Collision Warning Sensitivity` | 6 | P1 | 靈敏度 —— 警示仍發出，僅其觸發距離不同 |
+| `Lane Sense Strength` | 6 | P1 | 強度 —— 警示仍發出，僅其力道不同 |
+| `Park Sense Front Volume` | 6 | P1 | 音量 —— 警示仍發出，僅其響度不同 |
+| `Park Sense Rear Volume` | 6 | P1 | 音量 —— 同上 |
+
+**鑑別對**：`Forward Collision Warning`（P0）vs `Forward Collision Warning Sensitivity`（P1）—— 二名僅差一詞，
+而其失效之後果不同。**一條以 `Collision` 為鍵之規則會把二者判同級。**
+
+## 2. 分布：P0 **88** ／ P1 **267** ／ P2 **272**（合計 627）
 
 | Test Set | P0 | P1 | P2 | 合計 |
 |---|---:|---:|---:|---:|
-| Trailer and Signage | 5 | 46 | 88 | 139 |
+| Trailer and Signage | 10 | 44 | 85 | 139 |
 | Auxiliary Switches | 0 | 28 | 87 | 115 |
-| Driver Convenience | 0 | 36 | 63 | 99 |
+| Driver Convenience | 6 | 42 | 51 | 99 |
 | Suspension and Comfort | 32 | 42 | 0 | 74 |
-| Units and Cameras | 0 | 21 | 52 | 73 |
-| Lane and Lighting | 0 | 49 | 0 | 49 |
-| Approach and Tailgate | 12 | 37 | 0 | 49 |
+| Units and Cameras | 5 | 19 | 49 | 73 |
+| Lane and Lighting | 17 | 32 | 0 | 49 |
+| Approach and Tailgate | 18 | 31 | 0 | 49 |
 | Measurement Units | 0 | 17 | 0 | 17 |
 | Daytime Lighting | 0 | 12 | 0 | 12 |
 
@@ -57,25 +83,25 @@ R-VS56 之 P0(a) 為第三排頭枕下放、P0(b) 為加熱元件 ——**VF230 
 | # | leaf | Pri | Test Set | writable |
 |---:|---|---|---|---|
 | 1 | `SWE1-VC-PowerLiftgate/TailgateAlert-016` | P0 | Approach and Tailgate | W0 |
-| 2 | `SWE1-VC-SuspensionServiceMode-002` | P0 | Suspension and Comfort | W0 |
-| 3 | `SWE1-VC-PowerSideStep-051` | P0 | Trailer and Signage | W0 |
-| 4 | `SWE1-VC-IlluminatedApproach-002` | P1 | Approach and Tailgate | W0 |
-| 5 | `SWE1-VC-4AUXSwitches-027` | P1 | Auxiliary Switches | W0 |
-| 6 | `SWE1-VC-DaytimeRunningLights-002` | P1 | Daytime Lighting | W0 |
-| 7 | `SWE1-VC-BlindSpotAlert-002` | P1 | Driver Convenience | W0 |
-| 8 | `SWE1-VC-CorneringLights-002` | P1 | Lane and Lighting | W0 |
-| 9 | `SWE1-VC-PressureUnit-002` | P1 | Measurement Units | W0 |
-| 10 | `SWE1-VC-SuspensionDisplayMessages-008` | P1 | Suspension and Comfort | W0 |
-| 11 | `SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115` | P1 | Trailer and Signage | W1 |
-| 12 | `SWE1-VC-TimeandDateSettings-004` | P1 | Units and Cameras | W0 |
-| 13 | `SWE1-VC-SWITCH1Type-002` | P2 | Auxiliary Switches | W0 |
-| 14 | `SWE1-VC-Language-059` | P2 | Driver Convenience | W0 |
-| 15 | `SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117` | P2 | Trailer and Signage | W0 |
-| 16 | `SWE1-VC-TimeandDateSettings-002` | P2 | Units and Cameras | W0 |
-| 17 | `SWE1-VC-PowerLiftgate/TailgateAlert-017` | P0 | Approach and Tailgate | W0 |
-| 18 | `SWE1-VC-SuspensionServiceMode-003` | P0 | Suspension and Comfort | W0 |
-| 19 | `SWE1-VC-PowerSideStep-052` | P0 | Trailer and Signage | W0 |
-| 20 | `SWE1-VC-IlluminatedApproach-003` | P1 | Approach and Tailgate | W0 |
+| 2 | `SWE1-VC-BlindSpotAlert-002` | P0 | Driver Convenience | W0 |
+| 3 | `SWE1-VC-LaneSenseWarning-014` | P0 | Lane and Lighting | W0 |
+| 4 | `SWE1-VC-SuspensionServiceMode-002` | P0 | Suspension and Comfort | W0 |
+| 5 | `SWE1-VC-Blind Spot with Trailer Detection-045` | P0 | Trailer and Signage | W1 |
+| 6 | `SWE1-VC-ParkSense-084` | P0 | Units and Cameras | W0 |
+| 7 | `SWE1-VC-IlluminatedApproach-002` | P1 | Approach and Tailgate | W0 |
+| 8 | `SWE1-VC-4AUXSwitches-027` | P1 | Auxiliary Switches | W0 |
+| 9 | `SWE1-VC-DaytimeRunningLights-002` | P1 | Daytime Lighting | W0 |
+| 10 | `SWE1-VC-PassiveEntry-009` | P1 | Driver Convenience | W0 |
+| 11 | `SWE1-VC-CorneringLights-002` | P1 | Lane and Lighting | W0 |
+| 12 | `SWE1-VC-PressureUnit-002` | P1 | Measurement Units | W0 |
+| 13 | `SWE1-VC-SuspensionDisplayMessages-008` | P1 | Suspension and Comfort | W0 |
+| 14 | `SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115` | P1 | Trailer and Signage | W1 |
+| 15 | `SWE1-VC-TimeandDateSettings-004` | P1 | Units and Cameras | W0 |
+| 16 | `SWE1-VC-SWITCH1Type-002` | P2 | Auxiliary Switches | W0 |
+| 17 | `SWE1-VC-Language-059` | P2 | Driver Convenience | W0 |
+| 18 | `SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117` | P2 | Trailer and Signage | W0 |
+| 19 | `SWE1-VC-TimeandDateSettings-002` | P2 | Units and Cameras | W0 |
+| 20 | `SWE1-VC-PowerLiftgate/TailgateAlert-017` | P0 | Approach and Tailgate | W0 |
 
 ## 4. 批次規劃（**待分析層核可，不得逕行生成**）
 

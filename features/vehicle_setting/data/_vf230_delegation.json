@@ -1,0 +1,41 @@
+{
+  "dist": {
+    "no": 627
+  },
+  "per_test_set": {
+    "Auxiliary Switches": {
+      "no": 115
+    },
+    "Units and Cameras": {
+      "no": 73
+    },
+    "Suspension and Comfort": {
+      "no": 74
+    },
+    "Driver Convenience": {
+      "no": 99
+    },
+    "Trailer and Signage": {
+      "no": 139
+    },
+    "Approach and Tailgate": {
+      "no": 49
+    },
+    "Lane and Lighting": {
+      "no": 49
+    },
+    "Daytime Lighting": {
+      "no": 12
+    },
+    "Measurement Units": {
+      "no": 17
+    }
+  },
+  "comfort_titles": 127,
+  "vf230_clusters": 106,
+  "exact_hits": [],
+  "name_contains_comfort": [
+    "Auto On Driver Comfort - 3 Option",
+    "Auto On Driver Comfort - 2 Option"
+  ]
+}

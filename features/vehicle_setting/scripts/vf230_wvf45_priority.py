@@ -36,6 +36,38 @@ P0A: dict[str, str] = {
     "Suspension Service Mode": "維修模式之車身升降 —— 作業者可能在車下",
     "Driver Easy Exit Seat": "駕駛座椅之自動退移 —— 實體致動且人在座",
 }
+# W-VF47（R-VF51 二）—— canon §10.2 之 `safety` 一類。
+# R-VS56 之 P0 二類以 Part 1 之內容界定，**非 P0 之全部定義**；
+# canon §10.2 之 P0 含 `safety`，其不限於實體致動。
+#
+# **界線（採 R-VF51 之建議，逐簇具名其採否之理由）**：
+#   改變「警示是否發出」者 → P0：其失效使駕駛失去一次警示
+#   改變「警示之音量／靈敏度／樣式」者 → P1：警示仍發出，僅其呈現不同
+P0_SAFETY: dict[str, str] = {
+    "Forward Collision Warning":
+        "P0(c) safety —— 其開關決定前方碰撞警示**是否發出**；關閉或誤關即失去該警示",
+    "Pedestrian Emergency Braking or Warning & Active Braking":
+        "P0(c) safety —— 其開關決定行人緊急煞車／警示**是否作動**",
+    "Blind Spot Alert":
+        "P0(c) safety —— 其開關決定盲點警示**是否發出**",
+    "Blind Spot with Trailer Detection":
+        "P0(c) safety —— 其決定拖車情境下盲點偵測範圍**是否延伸**；"
+        "未延伸即拖車側之盲點無警示",
+    "Lane Sense Warning":
+        "P0(c) safety —— 其開關決定車道偏離警示**是否發出**",
+    "Park Sense":
+        "P0(c) safety —— 其開關決定倒車／停車距離警示**是否發出**",
+    "Traffic Sign Warning":
+        "P0(c) safety —— 其開關決定速限標誌警示**是否發出**",
+}
+# 落於 safety 域而**改變呈現而非有無**者 → 維持 P1，逐簇具名
+P1_SAFETY_PRESENTATION: dict[str, str] = {
+    "Forward Collision Warning Sensitivity": "靈敏度 —— 警示仍發出，僅其觸發距離不同",
+    "Lane Sense Strength": "強度 —— 警示仍發出，僅其力道不同",
+    "Park Sense Front Volume": "音量 —— 警示仍發出，僅其響度不同",
+    "Park Sense Rear Volume": "音量 —— 同上",
+}
+
 # P2 之形態（R-VS56：無效值、SNA、時序、前言與適用性條件）
 P2_PAT = re.compile(
     r"\bSNA\b|invalid|<Tsend>|<Tdisplay>|shall ignore|are valid only if"
@@ -56,6 +88,11 @@ def main() -> None:
         w = wr.get(leaf, {})
         if title in P0A:
             pri, why = "P0", f"P0(a) {P0A[title]}"
+        elif title in P0_SAFETY:
+            pri, why = "P0", P0_SAFETY[title]
+        elif title in P1_SAFETY_PRESENTATION:
+            pri, why = "P1", ("落於 safety 域而改變呈現非有無 —— "
+                              + P1_SAFETY_PRESENTATION[title])
         elif P2_PAT.search(text):
             pri, why = "P2", "次要與診斷（無效值／SNA／時序／適用性條件）"
         else:
@@ -73,6 +110,16 @@ def main() -> None:
         raise SystemExit("必命中錨點不符：`Power Tailgate` 應判 P0，停")
     if not a_p1 or a_p1["priority"] == "P0":
         raise SystemExit("必不命中錨點不符：`Speed Unit` 不應判 P0，停")
+    # W-VF47 之錨點：`Forward Collision Warning` 判 P0（有無）而
+    # `Forward Collision Warning Sensitivity` 判 P1（呈現）—— **鑑別對**
+    a_s0 = next((x for x in rows if x["layer3"] == "Forward Collision Warning"), None)
+    a_s1 = next((x for x in rows
+                 if x["layer3"] == "Forward Collision Warning Sensitivity"), None)
+    if not a_s0 or a_s0["priority"] != "P0":
+        raise SystemExit("safety 錨點不符：`Forward Collision Warning` 應判 P0，停")
+    if not a_s1 or a_s1["priority"] != "P1":
+        raise SystemExit("safety 鑑別錨點不符："
+                         "`Forward Collision Warning Sensitivity` 應判 P1，停")
     if a_disc and a_disc["priority"] == "P0":
         raise SystemExit("鑑別錨點不符：`Suspension Display Messages` 為**訊息顯示**"
                          "而非車身致動，不應判 P0（一條以 `Suspension` 為鍵之"
@@ -118,8 +165,26 @@ def main() -> None:
          "| 簇 | leaf | 其驅動何機構、乘員何以可能在其行程內 |", "|---|---:|---|"]
     p0c = Counter(x["layer3"] for x in rows if x["priority"] == "P0")
     for t, n in p0c.most_common():
-        L.append(f"| `{t}` | {n} | {P0A[t]} |")
+        if t in P0A:            # P0(a) 之表只列實體致動類；safety 類另表
+            L.append(f"| `{t}` | {n} | {P0A[t]} |")
     L += ["", f"**P0(b)（熱源）：0** —— VF230 無熱源功能。", "",
+          "### P0(c) —— canon §10.2 之 `safety` 一類（W-VF47，R-VF51 二）", "",
+          "**R-VS56 之二類係以 Part 1 之內容界定，非 P0 之全部定義。**",
+          "canon §10.2 之 P0 含 `safety`，其**不限於實體致動**。", "",
+          "**採 R-VF51 之建議界線**：改變「警示**是否發出**」者 P0；",
+          "改變「音量／靈敏度／樣式」者 P1。**採之，理由**：前者之失效",
+          "使駕駛**失去一次警示**（不可回復之單次事件），後者僅改變其呈現。", "",
+          "| 簇 | leaf | 判 | 其失效之後果 —— 駕駛因而失去什麼 |",
+          "|---|---:|---|---|"]
+    for t, w in P0_SAFETY.items():
+        n = sum(1 for x in rows if x["layer3"] == t)
+        L.append(f"| `{t}` | {n} | **P0** | {w.split('—— ')[-1]} |")
+    for t, w in P1_SAFETY_PRESENTATION.items():
+        n = sum(1 for x in rows if x["layer3"] == t)
+        L.append(f"| `{t}` | {n} | P1 | {w} |")
+    L += ["", "**鑑別對**：`Forward Collision Warning`（P0）vs "
+          "`Forward Collision Warning Sensitivity`（P1）—— 二名僅差一詞，",
+          "而其失效之後果不同。**一條以 `Collision` 為鍵之規則會把二者判同級。**", "",
           f"## 2. 分布：P0 **{dist['P0']}** ／ P1 **{dist['P1']}** ／ "
           f"P2 **{dist['P2']}**（合計 {sum(dist.values())}）", "",
           "| Test Set | P0 | P1 | P2 | 合計 |", "|---|---:|---:|---:|---:|"]

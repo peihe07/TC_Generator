@@ -150,21 +150,47 @@ def check_rvf48() -> list[str]:
     defined |= set(re.findall(r"^\|\s*[~*\s]*(A-V[SF]\d+)", a, re.M))
     d = (ROOT / "DATA_REQUESTS.md").read_text(encoding="utf-8")
     defined |= set(re.findall(r"^## (DR-\d+)", d, re.M))
+    # 「仍開啟」表以**裸號**定義 DR（`| **5-A** |`／`| **8** |`／`| **9（新）** |`）
+    for m in re.finditer(r"^\|\s*\*{0,2}(\d+)(?:-[A-Z])?", d, re.M):
+        defined.add("DR-" + m.group(1))
+    # `RULINGS.md` 檔首之「來源／條」對照表 —— 其列出**正文在他處之條文**
+    # （canon §8.7：下放包已落檔且入版控，本檔不重複轉錄以免二處分岔）。
+    # **故定義之全集為：本檔之條文起始 ∪ 該對照表所列 ∪ fenced block 起始。**
+    # 首版只認條文起始，致 R-VS1–R-VS53 等大量被誤報。
+    # 以**水平線**切，不以任何 `---` 切 —— 表格之分隔列 `|---|---|`
+    # 亦含 `---`，首版因而在對照表之表頭處即截斷，其列全數落空。
+    head = re.split(r"\n---+\n", r, 1)[0]
+    for m in re.finditer(r"(R-V[SF])(\d+)\s*[~\uff5e]\s*(?:R-V[SF])?(\d+)", head):
+        pre, a, b = m.group(1), int(m.group(2)), int(m.group(3))
+        defined |= {pre + str(i) for i in range(a, b + 1)}
+    defined |= set(re.findall(r"\b(R-V[SF]\d+)", head))
+    defined |= set(re.findall(r"^(R-V[SF]\d+)\uff08", r, re.M))
+
+    # 編號**區間記法**為對編號空間之描述，非對特定條文之引用 ——
+    # 依 R-VF52(c) 以判準精確化排除，不以白名單。
+    RANGE = re.compile(r"`?([A-Z]-V[SF]\d+)`?\s*[~\uff5e\u2013\u2014]\s*`?([A-Z]-V[SF]\d+)`?")
+    DOC = re.compile(r'"""(?:.|\n)*?"""')
+
+    def refs(txt, is_py):
+        if is_py:
+            # R-VF52(c)：排除 docstring 與註解 —— 其內之編號為說明用例，非引用
+            txt = DOC.sub("", txt)
+            txt = re.sub(r"#[^\n]*", "", txt)
+        txt = RANGE.sub(" ", txt)
+        return re.findall(r"\b(R-V[SF]\d+|A-V[SF]\d+|DR-\d+)\b", txt)
 
     bad, seen = [], {}
     for rel in LIVE_SCOPE:
         f = ROOT / rel
         if not f.is_file():
             continue
-        for tok in re.findall(r"\b(R-V[SF]\d+|A-V[SF]\d+|DR-\d+)\b",
-                              f.read_text(encoding="utf-8")):
+        for tok in refs(f.read_text(encoding="utf-8"), False):
             if tok not in defined:
                 seen.setdefault(tok, set()).add(rel)
     for f in sorted((ROOT / "scripts").glob("*.py")):
-        for tok in re.findall(r"\b(R-V[SF]\d+|A-V[SF]\d+|DR-\d+)\b",
-                              f.read_text(encoding="utf-8")):
+        for tok in refs(f.read_text(encoding="utf-8"), True):
             if tok not in defined:
-                seen.setdefault(tok, set()).add(f"scripts/{f.name}")
+                seen.setdefault(tok, set()).add("scripts/" + f.name)
     for tok, where in sorted(seen.items()):
         bad.append(f"`{tok}` 被引用而無定義 —— 見 "
                    + "／".join(sorted(where)[:3]))

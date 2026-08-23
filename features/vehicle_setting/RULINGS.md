@@ -3528,3 +3528,140 @@ R-VS76（分析層裁定 2026-08-23）
 §9 檢既有條目之品質，錨點檢檢查本身是否失效，**二者皆以「已有之產物」為輸入**。
 53 輪之所以攔到 2 leaf 之漏，是因為指令令「必列 TC 總量與 245 之對照」而
 **被迫回頭點母體** —— 該攔截為偶然，非機制。
+
+---
+
+## VF230 線 —— V17 包
+
+分析層裁定 2026-08-23，逐字落檔。
+
+### R-VF50 —— 委派判定為 P4 之前置，批次生成暫停（V17 §2）
+
+```
+R-VF50（VF230 之委派判定，分析層裁定 2026-08-23）
+
+上繳 V16 §6 第 2 項自判為「本輪最大之未驗項」，本層同意，並升其位階：
+
+**委派判定（R-VS7／blocker 碼 B1–B3）於 VF230 之 627 leaf 完全未做。**
+Part 1 有 **99 個 B2**（畫面層委派 Comfort）。VF230 之 627 leaf 中
+是否有應委派者未查；未查者現一律判 W0，**將被寫成 TC**。
+
+**其後果不對稱**：
+  漏判委派 → 寫出本不屬本 feature 之 TC，違反 canon §8.2.1（不得擴張至
+             sibling Req 之範圍）與 §8.4.2（不得測本規格未擁有者），
+             且該 TC 已進入批次後，回收成本遠高於事前判定
+  誤判委派 → 該 leaf 暫不產 TC，事後補回，成本低
+
+**故：委派判定完成前，VF230 不得開始批次生成。** 包含 pilot 批。
+
+**此非新增阻塞，是把既有之未驗項移到其應在之位置** ——
+canon §3 之工作流第 1 步即為「理解需求（行為、觸發、結果）」，
+而「此需求是否屬本 feature」先於該步。
+
+**W-VF45 之批次規劃（63 批 × 10、pilot 為第 1 批）不作廢**，
+其於委派判定完成、池數確定後重算即可。
+```
+
+**執行層註（W-VF46 已執行）**：委派判定完成 —— **627 leaf 全數 `delegate = no`**。判準沿用 Part 1（同一實體功能於 Comfort 037 全集是否有對應，Layer 3 層級），未新設。Comfort 之 037 為 **HVAC／空調域**（127 簇：Comfort Tabs／SYNC／ATC／MTC／Fan Speed／Defrost…），VF230 為車輛設定域，**106 簇無一與之同名**。Part 1 之 179 委派來自加熱／通風座椅與加熱方向盤，**VF230 無此類功能**。
+
+**⚠ 本條之風險陳述須更正**：其稱「漏判委派 → 寫出本不屬本 feature 之 TC」，該後果立於 **R-VS7(a) 之原效果**（委派者不產 TC）—— 而該效果**已由 Part 1 之 R-VS59（Pei 2026-08-23）撤回**：委派不免除產 TC 之義務，其作用改為「畫面層之來源為 Comfort 素材」。**故漏判委派之後果為「畫面層之來源取錯」，非「寫出不屬本 feature 之 TC」。**本輪之實測結果（0 委派）使該差異不生實害，惟條文之理由段須更正。
+
+**批次生成之暫停條件已解除。**
+
+### R-VF51 —— P0 對映部分核可，須補 canon §10.2 之 safety 一類（V17 §3）
+
+```
+R-VF51（VF230 之 P0 對映，分析層裁定 2026-08-23）
+
+**一、已提之九簇予以核可。** 其依 R-VS56 之原則（實體致動且具傷害可能／熱源）
+對映，逐簇附「驅動何機構、乘員何以可能在其行程內」，判準可辯護：
+
+  Power Tailgate ／ Power Liftgate/Tailgate Alert ／ Power Side Step ／
+  Suspension Auto Entry or Exit ／ Suspension Default Ride Height ／
+  Suspension Flash Lights With Lower ／ Suspension Sound Horn With Lower ／
+  Suspension Service Mode ／ Driver Easy Exit Seat
+
+  **鑑別錨點 `Suspension Display Messages` 判非 P0 正確** ——
+  其為訊息顯示而非車身致動；以 `Suspension` 為鍵之規則會誤判之。
+
+  **P0(b)（熱源）= 0** 亦核可：VF230 無加熱功能。
+
+**二、對映之涵蓋面不足，須補。**
+
+R-VS56 之二類係**以 Part 1 之內容界定**（頭枕下放、加熱元件）。
+以其原則外推至 VF230 為正確作法，**但 R-VS56 非 P0 之全部定義** ——
+canon §10.2 之 P0 為「safety, boot/recovery, connection, audio output,
+eCall, vehicle-critical CAN signal, data-loss risk」，
+**`safety` 一詞不限於實體致動。**
+
+VF230 含下列 ADAS 相關設定，其開關直接改變安全警示系統之行為：
+
+  Forward Collision Warning ／ Forward Collision Warning Sensitivity ／
+  Pedestrian Emergency Braking or Warning & Active Braking ／
+  Blind Spot Alert ／ Blind Spot with Trailer Detection ／
+  Lane Sense Warning ／ Lane Sense Strength ／
+  Park Sense ／ Park Sense Front Volume ／ Park Sense Rear Volume ／
+  Traffic Sign Warning
+
+**該類現全數落於 P1／P2。** 其是否應為 P0，**本層不逕裁** ——
+須依 canon §10.2 之 `safety` 逐簇具名判定，見 W-VF47。
+
+**判定之界線建議（非結論）**：
+  改變「警示是否發出」者，其失效使駕駛失去一次警示 → 傾向 P0
+  改變「警示之音量／靈敏度／樣式」者 → 傾向 P1
+
+**三、在 W-VF47 完成前，選池順序不得定案** ——
+R-VS58 令選池依 P0→P1→P2，**而 pilot 批正是自池首取**（上繳 V16 §6 第 3 項
+已具名此連動）。P0 集合若變，pilot 批之內容隨之變。
+```
+
+**執行層註（W-VF47 已執行）**：safety 一類已補判。**採本條建議之界線**（改變「警示是否發出」→ P0；改變「音量／靈敏度／樣式」→ P1），理由：前者之失效使駕駛**失去一次警示**（不可回復之單次事件），後者僅改變其呈現。
+
+P0(c) 七簇：`Forward Collision Warning`／`Pedestrian Emergency Braking or Warning & Active Braking`／`Blind Spot Alert`／`Blind Spot with Trailer Detection`／`Lane Sense Warning`／`Park Sense`／`Traffic Sign Warning`。
+維持 P1 者四簇：`Forward Collision Warning Sensitivity`／`Lane Sense Strength`／`Park Sense Front Volume`／`Park Sense Rear Volume`。
+
+**鑑別對**：`Forward Collision Warning`(P0) vs `…Sensitivity`(P1) —— 二名僅差一詞而失效後果不同；**一條以 `Collision` 為鍵之規則會判同級**。
+
+**分布 49／288／290 → 88／267／272**（P0 +39）。選池已依新序重排。
+
+### R-VF52 —— R-VF48 之誤報以判準精確化消除，不以白名單（V17 §4）
+
+```
+R-VF52（R-VF48 判準之精確化原則，分析層裁定 2026-08-23）
+
+R-VF48 之檢查現 FAIL 57 項，執行層已逐類具名為 (a) 真缺漏／
+(b) 判準過窄之殘留／(c) 偽陽性。
+
+**三類之處置不同，不得以同一手段處理**：
+
+  **(a) 真缺漏**（`R-VF1`／`R-VF2`／`R-VF8` 等，即 A-VF10 之撞號集）
+      → 待 R-VF49 之改號。**其 FAIL 為正確之報告，不得消除。**
+
+  **(b) 判準過窄之殘留**（`R-VS1`／`DR-5`／`DR-11`）
+      → **修正定義偵測之抽取式**，使其涵蓋條文簿之實際形態
+        （早期條文之標題形態、`DATA_REQUESTS.md` 之表列編號如 `5-A`／`9`）。
+      **不得以「豁免該編號」處理** —— 豁免會使日後該號真正缺漏時無法被察覺。
+
+  **(c) 偽陽性**（`A-VS001`／`A-VS199`／`R-VF99`）
+      → **精確化引用之抽取式**：排除程式碼字串與 docstring、
+        排除數列片段（如 `A-VS001` 之三位零填形態於本簿不存在）。
+      **同樣不得以白名單處理。**
+
+**通則**：檢查之誤報須以**判準之精確化**消除，不以**例外清單**消除。
+例外清單使檢查在該處永久失明，而失明處不會報錯（A-VS106／A-VF1 之形態）。
+
+**驗收條件**：修正後之 FAIL 應**僅餘 (a) 類**，其數應等於 A-VF10 之
+撞號集大小。若仍有 (b)(c) 殘留，逐項具名其不可精確化之理由。
+
+**R-VF46 第 4 項之「已知未解」標記適用於 (a) 類**，
+使其與新失敗可分辨；(b)(c) 不得使用該標記。
+```
+
+**執行層註（W-VF49 已執行）**：FAIL **57 → 15**，全程**未用白名單或豁免清單**。四項判準精確化，每項皆為對**實際形態**之涵蓋，非對特定編號之豁免：
+
+1. `DATA_REQUESTS.md` 之「仍開啟」表以**裸號**定義 DR（`| **5-A** |`／`| **8** |`）
+2. `RULINGS.md` 檔首之「來源／條」對照表 —— 其列出**正文在他處之條文**（canon §8.7：不重複轉錄以免二處分岔）。**`RULINGS.md` 並非條文之全集**，此為本輪之重要發現
+3. 編號**區間記法**（`` `A-VS001` ～ `A-VS199` ``）為對編號空間之描述，非引用
+4. 腳本之 **docstring 與註解**內之編號為說明用例，非引用
+
+**第 2 項之首版又錯一次**：`head = r.split("---", 1)[0]` 被表格之分隔列 `|---|---|` 截斷，對照表之列全數落空（21 → 15 即修此）。見 A-VF12。
