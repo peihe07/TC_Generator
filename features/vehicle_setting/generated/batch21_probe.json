@@ -8,7 +8,7 @@
  "selection": "W-146：D／E／F 三型各 2 條之**樣板抽驗**，共 6 條。其 procedure 之觸發與 ER 之標的逐條自條文取，**不套 A 型樣板**。通過 §9 自檢 ＋ 固定錨點 ＋ 分析層抽驗者，其型方得放量。",
  "signal_notation": "R-VS52 ＋ R-VS61 ＋ R-VS67′",
  "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
- "revision": "W-146（51 輪）：batch21_probe 首版",
+ "revision": "W-149（52 輪）：probe 之修正 —— `-014` 之 ER 改 PENDING: DR-15（false pass 退回）／`-022` 依 §8.3 拆二條／`-021` 刪 pre_condition 1",
  "tcs": [
   {
    "leaf_id": "SWE1-VC-HeatedSteeringWheel-012",
@@ -41,8 +41,8 @@
    "test_item": "When the HU determines that the Customer has selected to change the status of the Heated Steering Wheel, the HU shall send an on change $HSW_RQ_TGW$ depending on the current status of $HSW_Stat_2$. The signal value to be sent is detailed belowCurrent status of $HSW_Stat_2$ Signal to be sentHigh $HSW_RQ_TGW$ = [Medium]Medium $HSW_RQ_TGW$ = [Low]Low $HSW_RQ_TGW$ = [Off]Off $HSW_RQ_TGW$ = [High]\n\n(Request value follows the current status)",
    "pre_conditions": "1. The vehicle is equipped with a heated steering wheel\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator with signal tracing enabled",
    "input_test_data": "NA",
-   "test_procedure": "1. Send CAN: STATUS_CLIMATE8.Tri_Level_HSW_StatSts = 3 (Heated_steering_wheel_high)\n2. Press the heated steering wheel icon on the Heated / Vented Seats screen\n3. Read the CAN-B trace and check that TELEMATIC_VEHICLE_SETUP3.HSW_Tlm = 1 (Pressed) is transmitted",
-   "expected_result": "1. STATUS_CLIMATE8.Tri_Level_HSW_StatSts = 3 (Heated_steering_wheel_high) is sent\n2. The heated steering wheel icon registers the press\n3. TELEMATIC_VEHICLE_SETUP3.HSW_Tlm = 1 (Pressed) is sent",
+   "test_procedure": "1. Send CAN: STATUS_CLIMATE8.Tri_Level_HSW_StatSts = 3 (Heated_steering_wheel_high)\n2. Press the heated steering wheel icon on the Heated / Vented Seats screen\n3. Read the CAN-B trace and check that the request signal sent for the current status is as specified by the truth table",
+   "expected_result": "1. STATUS_CLIMATE8.Tri_Level_HSW_StatSts = 3 (Heated_steering_wheel_high) is sent\n2. The heated steering wheel icon registers the press\n3. PENDING: DR-15",
    "specification_reference": "CFTS044-4858537",
    "design_method": "決策表 (Decision Table Testing)",
    "priority": "P1",
@@ -50,9 +50,9 @@
    "split_reason": "",
    "dr15_exposed": "yes",
    "screen_pending": "no",
-   "reasoning": "P1：主要功能邏輯；本條文之表（`Current status … Signal to be sent`）為真值表，**其送出值依當前狀態而異** —— 本條驗 High 一列，餘列依 §8.2.2 各自為一條（W-147 之預估已計）。`HSW_RQ_TGW` 為 DR-15 標的，依 R-VS71 照寫",
+   "reasoning": "P1：主要功能邏輯；本條文之表（`Current status … Signal to be sent`）為真值表，**其驗證目標即「送出之值是否對應當前狀態」** —— 該值為 **DR-15 之 token 級標的**，於來源亦無逐字對應，故依 **R-VS71** 該處寫 `PENDING: DR-15`、前置步驟照寫。**初版以 `HSW_Tlm = 1 (Pressed)` 為 ER 者為 false pass** —— 設 off 得 Pressed、設 high 亦得 Pressed，HU 送錯階數亦通過（80 包 §1）",
    "dr_dependent": "DR-15",
-   "remarks": "BLOCKED: DR-15 —— 請求訊號之編碼待覆，其逐狀態之送出值待覆後補",
+   "remarks": "BLOCKED: DR-15 —— 真值表之逐狀態送出值待覆；其覆前本條只驗前置狀態之設定，送出值不驗",
    "distinguishing_axis": {
     "axis": "mode",
     "delta": "本列之當前狀態為 high；`-012` 為 off。"
@@ -111,7 +111,7 @@
    "test_set": "Common Features",
    "tc_title": "Hybrid pages enabled for WL plug-in hybrid",
    "test_item": "The HU shall enable the WL version of the Hybrid Electric Pages Feature and display the Hybrid Electric Pages access button if $VC_VEH_LINE$ = [WL] and $Hybrid_Type$ = [Plugin Hybrid Electric Vehicle].\n\n(Two configuration parameters combined)",
-   "pre_conditions": "1. The vehicle is a plug-in hybrid\n2. The HU is in the Full-Operation state",
+   "pre_conditions": "1. The HU is in the Full-Operation state",
    "input_test_data": "NA",
    "test_procedure": "1. Set PROXI VC_VEH_LINE = 101 (WL (65 Hex))\n2. Set PROXI Hybrid_Type = 3 (Plugin Hybrid Electric Vehicle)\n3. Power cycle the HU and check that the Hybrid Electric Pages access button is displayed",
    "expected_result": "1. PROXI VC_VEH_LINE = 101 (WL (65 Hex)) is accepted\n2. PROXI Hybrid_Type = 3 (Plugin Hybrid Electric Vehicle) is accepted\n3. The Hybrid Electric Pages access button is displayed",
@@ -122,7 +122,7 @@
    "split_reason": "",
    "dr15_exposed": "no",
    "screen_pending": "no",
-   "reasoning": "P1：主要功能邏輯；**F 型之觸發為兩個配置參數之組合**（`if $VC_VEH_LINE$ = […] and $Hybrid_Type$ = […]`），非訊號注入 —— 其步驟為 PROXI 設定 ＋ 電源循環。`VC_VEH_LINE` 之值依 **R-VS62′** 取 PROXI 表列 466；`Hybrid_Type` 取 LID `Atlantis(&High)` 欄組",
+   "reasoning": "P1：主要功能邏輯；**F 型之觸發為兩個配置參數之組合**（`if $VC_VEH_LINE$ = […] and $Hybrid_Type$ = […]`），非訊號注入 —— 其步驟為 PROXI 設定 ＋ 電源循環。`VC_VEH_LINE` 之值依 **R-VS62′** 取 PROXI 表列 466；`Hybrid_Type` 取 LID `Atlantis(&High)` 欄組；pre_condition「The vehicle is a plug-in hybrid」與 step 2 之 `Set PROXI Hybrid_Type` 重複，依 **§4.5 欄位歸屬**刪除（80 包 §1）",
    "dr_dependent": "",
    "distinguishing_axis": {
     "axis": "configuration",
@@ -132,7 +132,7 @@
   {
    "leaf_id": "SWE1-VC-FeaturesEnableCriteria-022",
    "test_set": "Common Features",
-   "tc_title": "Hybrid pages enabled for 553/M4 plug-in hybrid",
+   "tc_title": "Hybrid pages enabled for M4 plug-in hybrid",
    "test_item": "The radio shall enable the M version of the Hybrid Electric Pages Feature and display the Hybrid Electric Pages access button if $VC_VEH_LINE$ = [M4 OR MP] AND $Hybrid_Type$ = [Plugin Hybrid Electric Vehicle ].\n\n(Two configuration parameters combined)",
    "pre_conditions": "1. The vehicle is a plug-in hybrid\n2. The HU is in the Full-Operation state",
    "input_test_data": "NA",
@@ -141,8 +141,8 @@
    "specification_reference": "CFTS044-4859542",
    "design_method": "決策表 (Decision Table Testing)",
    "priority": "P1",
-   "split_flag": false,
-   "split_reason": "",
+   "split_flag": true,
+   "split_reason": "§8.3：條文之 `[M4 OR MP]` 為**兩個獨立之部分失效** —— 其一錯而另一對時，單一 TC 之判定不可分辨；本條之車型碼為 M4",
    "dr15_exposed": "no",
    "screen_pending": "no",
    "reasoning": "P1：主要功能邏輯；**F 型之觸發為兩個配置參數之組合**（`if $VC_VEH_LINE$ = […] and $Hybrid_Type$ = […]`），非訊號注入 —— 其步驟為 PROXI 設定 ＋ 電源循環。`VC_VEH_LINE` 之值依 **R-VS62′** 取 PROXI 表列 466；`Hybrid_Type` 取 LID `Atlantis(&High)` 欄組",
@@ -150,6 +150,29 @@
    "distinguishing_axis": {
     "axis": "configuration",
     "delta": "本列之車型碼為 553/M4 (62 Hex)。"
+   }
+  },
+  {
+   "leaf_id": "SWE1-VC-FeaturesEnableCriteria-022",
+   "test_set": "Common Features",
+   "tc_title": "Hybrid pages enabled for MP plug-in hybrid",
+   "test_item": "The radio shall enable the M version of the Hybrid Electric Pages Feature and display the Hybrid Electric Pages access button if $VC_VEH_LINE$ = [M4 OR MP] AND $Hybrid_Type$ = [Plugin Hybrid Electric Vehicle ].\n\n(Two configuration parameters combined)",
+   "pre_conditions": "1. The vehicle is a plug-in hybrid\n2. The HU is in the Full-Operation state",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set PROXI VC_VEH_LINE = 93 (552/MP (5D Hex))\n2. Set PROXI Hybrid_Type = 3 (Plugin Hybrid Electric Vehicle)\n3. Power cycle the HU and check that the Hybrid Electric Pages access button is displayed",
+   "expected_result": "1. PROXI VC_VEH_LINE = 93 (552/MP (5D Hex)) is accepted\n2. PROXI Hybrid_Type = 3 (Plugin Hybrid Electric Vehicle) is accepted\n3. The Hybrid Electric Pages access button is displayed",
+   "specification_reference": "CFTS044-4859542",
+   "design_method": "決策表 (Decision Table Testing)",
+   "priority": "P1",
+   "split_flag": true,
+   "split_reason": "§8.3：條文之 `[M4 OR MP]` 為**兩個獨立之部分失效** —— 其一錯而另一對時，單一 TC 之判定不可分辨；本條之車型碼為 MP",
+   "dr15_exposed": "no",
+   "screen_pending": "no",
+   "reasoning": "P1：主要功能邏輯；**F 型之觸發為兩個配置參數之組合**（`if $VC_VEH_LINE$ = […] and $Hybrid_Type$ = […]`），非訊號注入 —— 其步驟為 PROXI 設定 ＋ 電源循環。`VC_VEH_LINE` 之值依 **R-VS62′** 取 PROXI 表列 466；`Hybrid_Type` 取 LID `Atlantis(&High)` 欄組",
+   "dr_dependent": "",
+   "distinguishing_axis": {
+    "axis": "configuration",
+    "delta": "本列之車型碼為 552/MP (5D Hex)。"
    }
   }
  ]

@@ -47,7 +47,11 @@ AUTHOR = "PeiPYHsu"
 def latest_batches() -> list[Path]:
     groups: dict[str, list] = collections.defaultdict(list)
     for f in (FEAT / "generated").glob("batch*.json"):
-        m = re.match(r"(batch\d+)(?:_v(\d+))?\.json$", f.name)
+        # A-VS160(b)：舊式為 `(batch\d+)(?:_v(\d+))?\.json$`，
+        # **`batch21_probe.json` 不匹配而整檔被丟棄**（7 條／6 leaf）。
+        # 改為「批號 ＋ 任意後綴」，其版號仍取 `_v(\d+)`；
+        # 後綴（`_probe` 等）為批之識別之一部，故併入分組鍵。
+        m = re.match(r"(batch\d+(?:_[a-z]+)?)(?:_v(\d+))?\.json$", f.name)
         if m:
             groups[m.group(1)].append((int(m.group(2) or 1), f))
     return [max(v)[1] for k, v in sorted(groups.items())]

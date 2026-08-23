@@ -1,0 +1,373 @@
+[
+ [
+  "F",
+  "SWE1-VC-FeaturesEnableCriteria-023",
+  "4859543",
+  "Common Features",
+  "The HU shall disable and not display the features for all other signal values."
+ ],
+ [
+  "G",
+  "SWE1-VC-HeatedSteeringWheel-004",
+  "4858516",
+  "Heated Steering Wheel",
+  "For vehicles with dual states (i.e. OFF and HI) when $Heated_Steering_Levels$ = [1_Level], the HU shall implement the following requirements:Valid values for the $HSW_Stat$ are shown below. All other states shall be considered invalid by the HU. $HSW_StatS = [Heated steering wheel off / OFF] $HSW_StatS = [Heated steering wheel on / ON]"
+ ],
+ [
+  "G",
+  "SWE1-VC-HeatedSteeringWheel-005",
+  "4858517",
+  "Heated Steering Wheel",
+  "For vehicles with three states (i.e. LO, MEDIUM, and HI), when the $Heated_Steering_Levels$ = [3 Levels], the HU shall implement the following requirements:Valid values for the $HSW_Stat_2$ are shown below. All other states shall be considered invalid by the HU. $HSW_Stat_2$ = [Heated steering wheel off / HSW_OFF] $HSW_Stat_2$ = [Heated steering wheel low / HSW_LO] $HSW_Stat_2$ = [Heated steering wheel medium / HSW_MED] $HSW_Stat_2$ = [Heated steering wheel high / HSW_HI]"
+ ],
+ [
+  "G",
+  "SWE1-VC-HeatedSteeringWheel-008",
+  "4858522",
+  "Heated Steering Wheel",
+  "If $Hybrid_Type$ = [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]] &amp;&amp; $PrplsnSysAtv$ = [Not Active], the heated steering wheel switch, shall be shown as greyed-out, per the HMI."
+ ],
+ [
+  "G",
+  "SWE1-VC-HeatedSteeringWheel-010",
+  "4858529",
+  "Heated Steering Wheel",
+  "For vehicles equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ &lt;&gt; [IDLE_STBL//UNLIMITED//LIMITED//RUN] &amp;&amp; $Hybrid_Type$ &lt;&gt; [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]] ), please see Stop-Start System Feature section for switch behavior."
+ ],
+ [
+  "G",
+  "SWE1-VC-HeatedSteeringWheel-013",
+  "4858532",
+  "Heated Steering Wheel",
+  "The HU shall follow this signal with an on change $HSW_RQ_TGW$ = [NOT Pressed / NOT_PSD] within a time period of &lt;Tsend&gt;."
+ ],
+ [
+  "G",
+  "SWE1-VC-LeftFrontHeatedSeat-004",
+  "4858304",
+  "Heated Seat",
+  "the HU shall use $Heated_Seat_Levels$ to determine which levels are supported by the vehicle and HMI. valid values are below$Heated_Seat_Levels$ = [1] (On/Off only)$Heated_Seat_Levels$ = [2] (Off/High/Low)$Heated_Seat_Levels$ = [3] (Off/High/Med/Low) the HU shall use $Heated_Seat_Levels$ to determine which levels are supported by the vehicle and HMI. valid values are below$Heated_Seat_Levels$ = [1] (On/Off only)$Heated_Seat_Levels$ = [2] (Off/High/Low)$Heated_Seat_Levels$ = [3] (Off/High/Med/Low) the HU shall use $Heated_Seat_Levels$ to determine which levels are supported by the vehicle and HMI. valid values are below$Heated_Seat_Levels$ = [1] (On/Off only)$Heated_Seat_Levels$ = [2] (Off/High/Low)$Heated_Seat_Levels$ = [3] (Off/High/Med/Low) the HU shall use $Heated_Seat_Levels$ to determine which levels are supported by the vehicle and HMI. valid values are below$Heated_Seat_Levels$ = [1] (On/Off only)$Heated_Seat_Levels$ = [2] (Off/High/Low)$Heated_Seat_Levels$ = [3] (Off/High/Med/Low)"
+ ],
+ [
+  "G",
+  "SWE1-VC-LeftFrontHeatedSeat-005",
+  "4858307",
+  "Heated Seat",
+  "For vehicles with two states (i.e. LO and HI) the HU shall implement the following requirements:Valid values for the $HeatedSeatFL$ are shown below. All other states shall be considered invalid by the HU. $HeatedSeatFL$ = [Heated Seat Off / HS_OFF] $HeatedSeatFL$ = [Heated Seat Low / HS_LO] $HeatedSeatFL$ = [Heated Seat High / HS_HI]"
+ ],
+ [
+  "G",
+  "SWE1-VC-LeftFrontHeatedSeat-006",
+  "4858308",
+  "Heated Seat",
+  "For vehicles with three states (i.e. LO, MEDIUM, and HI), the HU shall implement the following requirements:Valid values for the $HeatedSeatFL$ are shown below. All other states shall be considered invalid by the HU. $HeatedSeatFL$ = [Heated Seat Off / HS_OFF] $HeatedSeatFL$ = [Heated Seat Low / HS_LO] $HeatedSeatFL$ = [Heated Seat Medium / HS_MED] $HeatedSeatFL$ = [Heated Seat High / HS_HI]"
+ ],
+ [
+  "G",
+  "SWE1-VC-LeftFrontHeatedSeat-009",
+  "4858311",
+  "Heated Seat",
+  "If $PrplsnSysAtv$ = [Not Active] &amp;&amp; $Hybrid_Type$ = [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the left front heated seat switch, shall be shown as greyed-out, per the HMI."
+ ],
+ [
+  "G",
+  "SWE1-VC-LeftFrontHeatedSeat-010",
+  "4858316",
+  "Heated Seat",
+  "For vehicles not equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ &lt;&gt; [IDLE_STBL//UNLIMITED//LIMITED//RUN] &amp;&amp; $Hybrid_Type$ &lt;&gt; [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]]), the left front heated seat switch, shall be shown as greyed-out, per the HMI."
+ ],
+ [
+  "G",
+  "SWE1-VC-LeftFrontHeatedSeat-011",
+  "4858317",
+  "Heated Seat",
+  "For vehicles equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ &lt;&gt; [IDLE_STBL//UNLIMITED//LIMITED//RUN] &amp;&amp; $Hybrid_Type$ &lt;&gt; [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]]), please see Stop-Start System Feature section {CFTS044-443} for switch behavior. For vehicles equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ &lt;&gt; [IDLE_STBL//UNLIMITED//LIMITED//RUN] &amp;&amp; $Hybrid_Type$ &lt;&gt; [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]]), please see Stop-Start System Feature section for switch behavior. For vehicles equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ &lt;&gt; [IDLE_STBL//UNLIMITED//LIMITED//RUN] &amp;&amp; $Hybrid_Type$ &lt;&gt; [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]]), please see Stop-Start System Feature section for switch behavior. For vehicles equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ &lt;&gt; [IDLE_STBL//UNLIMITED//LIMITED//RUN] &amp;&amp; $Hybrid_Type$ &lt;&gt; [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]]), please see Stop-Start System Feature section for switch behavior."
+ ],
+ [
+  "D",
+  "SWE1-VC-LeftFrontHeatedSeat-013",
+  "4858319",
+  "Heated Seat",
+  "When the customer selects to change the state of the LF heated seat, the HU shall send an on-change $FL_HS_RQ$ = [Heated Seat Pressed / HS_PSD] signal within &lt;Tsend&gt;."
+ ],
+ [
+  "D",
+  "SWE1-VC-LeftFrontHeatedSeat-015",
+  "4858325",
+  "Heated Seat",
+  "When the HU determines that the Customer has selected to change the status of the heated seat, the HU shall send an on change $FL_HS_RQ$ depending on the current status of $HeatedSeatFL$. The signal value to be sent is detailed belowCurrent status of $HeatedSeatFL$ Signal to be sentHigh $FL_HS_RQ$ = [Medium]Medium $FL_HS_RQ$ = [Low]Low $FL_HS_RQ$ = [Off]Off $FL_HS_RQ$ = [High]"
+ ],
+ [
+  "G",
+  "SWE1-VC-LeftFrontVentedSeat-005",
+  "4858368",
+  "Vented Seat",
+  "For vehicles with three states for vehicles with two states (i.e. LO, MED, and HI), the HU shall implement the following requirements:Valid values for the $VentedSeatFL$ are shown below. All other states shall be considered invalid by the HU. $VentedSeatFL$ = [Vented Seat Off / VS_OFF] $VentedSeatFL$ = [Vented Seat Low / VS_LO] $VentedSeatFL$ = [Vented Seat Medium / VS_MED] $VentedSeatFL$ = [Vented Seat High / VS_HI]"
+ ],
+ [
+  "G",
+  "SWE1-VC-LeftFrontVentedSeat-008",
+  "4858371",
+  "Vented Seat",
+  "If $PrplsnSysAtv$ = [Not Active] &amp;&amp; $Hybrid_Type$ = [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the left front vented seat switch, shall be shown as greyed-out, per the HMI."
+ ],
+ [
+  "G",
+  "SWE1-VC-LeftFrontVentedSeat-009",
+  "4858376",
+  "Vented Seat",
+  "For vehicles not equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ &lt;&gt; [IDLE_STBL//UNLIMITED//LIMITED//RUN] &amp;&amp; $Hybrid_Type$ &lt;&gt; [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]]), the left front vented seat switch, shall be shown as greyed-out, per the HMI."
+ ],
+ [
+  "D",
+  "SWE1-VC-LeftFrontVentedSeat-011",
+  "4858379",
+  "Vented Seat",
+  "When the customer selects to change the state of the LF vented seat, the HU shall send an on-change $FL_VS_RQ_TGW$ = [Vented Seat Pressed / VS_PSD] signal to the CSWM within &lt;Tsend&gt;."
+ ],
+ [
+  "G",
+  "SWE1-VC-LeftFrontVentedSeat-012",
+  "4858380",
+  "Vented Seat",
+  "The HU shall follow this signal with an on change $FL_VS_RQ_TGW$ = [Not Pressed / VS_NOT_PSD] within a time period of &lt;Tsend&gt;."
+ ],
+ [
+  "D",
+  "SWE1-VC-LeftFrontVentedSeat-013",
+  "4858385",
+  "Vented Seat",
+  "When the HU determines that the Customer has selected to change the status of the Vented seat, the HU shall send an on change $FL_VS_RQ_TGW$ depending on the current status of $VentedSeatFL$. The signal value to be sent is detailed belowCurrent status of $VentedSeatFL$ Signal to be sentHigh $FL_VS_RQ_TGW$ = [Medium]Medium $FL_VS_RQ_TGW$ = [Low]Low $FL_VS_RQ_TGW$ = [Off]Off $FL_VS_RQ_TGW$ = [High]"
+ ],
+ [
+  "G",
+  "SWE1-VC-OneStageHeatedSeat-040",
+  "4859361",
+  "Heated Seat",
+  "Also the requirements are valid only if $Heated_Seat_Levels$ == \"One Level\""
+ ],
+ [
+  "A",
+  "SWE1-VC-OneStageHeatedSeat-042",
+  "4859363",
+  "Heated Seat",
+  "IF DrvSeatHeating.Req passes to \"Requested\"THENTLM shall set TELEMATIC_CLIMATE_SETUP.FL_HS_Cmd_Tlm = \"Pressed\"."
+ ],
+ [
+  "G",
+  "SWE1-VC-OneStageHeatedSeat-043",
+  "4859364",
+  "Heated Seat",
+  "The TLM shall follow this signal with TELEMATIC_CLIMATE_SETUP.FL_HS_Cmd_Tlm = \"Not_Pressed\" within a time period of &lt;Tsend&gt;."
+ ],
+ [
+  "A",
+  "SWE1-VC-OneStageHeatedSeat-044",
+  "4859365",
+  "Heated Seat",
+  "IF PsngrSeatHeating.Req passes to \"Requested\"THENTLM shall set TELEMATIC_VEHICLE_SETUP.FR_HS_Cmd_Tlm = \"Pressed\"."
+ ],
+ [
+  "G",
+  "SWE1-VC-OneStageHeatedSeat-045",
+  "4859366",
+  "Heated Seat",
+  "The TLM shall follow this signal with TELEMATIC_CLIMATE_SETUP.FR_HS_Cmd_Tlm = \"Not_Pressed\" within a time period of &lt;Tsend&gt;."
+ ],
+ [
+  "G",
+  "SWE1-VC-RightFrontHeatedSeat-023",
+  "4858337",
+  "Heated Seat",
+  "For vehicles with two states (i.e. LO and HI), the HU shall implement the following requirements:Valid values for the $HeatedSeatFR$ are shown below. All other states shall be considered invalid by the HU. $HeatedSeatFR$ = [Heated Seat Off / HS_OFF] $HeatedSeatFR$ = [Heated Seat Low / HS_LO] $HeatedSeatFR$ = [Heated Seat High / HS_HI]"
+ ],
+ [
+  "G",
+  "SWE1-VC-RightFrontHeatedSeat-024",
+  "4858338",
+  "Heated Seat",
+  "For vehicles with three states (i.e. LO, MEDIUM, and HI), the HU shall implement the following requirements:Valid values for the $HeatedSeatFR$ are shown below. All other states shall be considered invalid by the HU. $HeatedSeatFR$ = [Heated Seat Off / HS_OFF] $HeatedSeatFR$ = [Heated Seat Low / HS_LO] $HeatedSeatFR$ = [Heated Seat Medium / HS_MED] $HeatedSeatFR$ = [Heated Seat High / HS_HI]"
+ ],
+ [
+  "G",
+  "SWE1-VC-RightFrontHeatedSeat-027",
+  "4858341",
+  "Heated Seat",
+  "If $PrplsnSysAtv$ = [Not Active] &amp;&amp; $Hybrid_Type$ = [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the right front heated seat switch, shall be shown as greyed-out, per the HMI."
+ ],
+ [
+  "G",
+  "SWE1-VC-RightFrontHeatedSeat-028",
+  "4858346",
+  "Heated Seat",
+  "For vehicles not equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ &lt;&gt; [IDLE_STBL//UNLIMITED//LIMITED//RUN] &amp;&amp; $Hybrid_Type$ &lt;&gt; [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]]), the right front heated seat switch, shall be shown as greyed-out, per the HMI."
+ ],
+ [
+  "D",
+  "SWE1-VC-RightFrontHeatedSeat-030",
+  "4858349",
+  "Heated Seat",
+  "When the customer selects to change the state of the RF heated seat, the HU shall send an on-change $FR_HS_RQ$ = [Heated Seat Pressed / HS_PSD] signal to the CSWM within &lt;Tsend&gt;."
+ ],
+ [
+  "D",
+  "SWE1-VC-RightFrontHeatedSeat-032",
+  "4858355",
+  "Heated Seat",
+  "When the HU determines that the Customer has selected to change the status of the heated seat, the HU shall send an on change $FR_HS_RQ$ depending on the current status of $HeatedSeatFR$. The signal value to be sent is detailed belowCurrent status of $HeatedSeatFR$ Signal to be sentHigh $FR_HS_RQ$ = [Medium]Medium $FR_HS_RQ$ = [Low]Low $FR_HS_RQ$ = [Off]Off $FR_HS_RQ$ = [High]"
+ ],
+ [
+  "G",
+  "SWE1-VC-RightFrontVentedSeat-022",
+  "4858399",
+  "Vented Seat",
+  "For vehicles with three states (i.e. LO, MEDIUM, and HI), the HU shall implement the following requirements:Valid values for the $VentedSeatFR$ are shown below. All other states shall be considered invalid by the HU. $VentedSeatFR$ = [Vented Seat Off / VS_OFF] $VentedSeatFR$ = [Vented Seat Low / VS_Lo] $VentedSeatFR$ = [Vented Seat Medium / VS_MED] $VentedSeatFR$ = [Vented Seat High / VS_HI]"
+ ],
+ [
+  "G",
+  "SWE1-VC-RightFrontVentedSeat-025",
+  "4858402",
+  "Vented Seat",
+  "If $PrplsnSysAtv$ = [Not Active] &amp;&amp; $Hybrid_Type$ = [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]], the right front vented seat switch, shall be shown as greyed-out, per the HMI."
+ ],
+ [
+  "G",
+  "SWE1-VC-RightFrontVentedSeat-026",
+  "4858407",
+  "Vented Seat",
+  "For vehicles not equipped with the Stop-Start feature, when the vehicle engine is not running ($EngRun_Stat$ &lt;&gt; [IDLE_STBL//UNLIMITED//LIMITED//RUN] &amp;&amp; $Hybrid_Type$ &lt;&gt; [[PHEV] OR [BEV] OR [HEV] OR [REPB] OR [FCEV]]), the right front vented seat switch, shall be shown as greyed-out, per the HMI."
+ ],
+ [
+  "D",
+  "SWE1-VC-RightFrontVentedSeat-028",
+  "4858410",
+  "Vented Seat",
+  "When the customer selects to change the state of the RF vented seat, the HU shall send an on-change $FR_VS_RQ_TGW$ = [Vented Seat Pressed / VS_PSD] signal to the CSWM within &lt;Tsend&gt;."
+ ],
+ [
+  "G",
+  "SWE1-VC-RightFrontVentedSeat-029",
+  "4858411",
+  "Vented Seat",
+  "The HU shall follow this signal with an on change $FR_VS_RQ_TGW$ = [Not Pressed / VS_NOT_PSD] within a time period of &lt;Tsend&gt;."
+ ],
+ [
+  "D",
+  "SWE1-VC-RightFrontVentedSeat-030",
+  "4858416",
+  "Vented Seat",
+  "When the HU determines that the Customer has selected to change the status of the Vented seat, the HU shall send an on change $FR_VS_RQ_TGW$ depending on the current status of $VentedSeatFR$. The signal value to be sent is detailed belowCurrent status of $VentedSeatFR$ Signal to be sentHigh $FR_VS_RQ_TGW$ = [Medium]Medium $FR_VS_RQ_TGW$ = [Low]Low $FR_VS_RQ_TGW$ = [Off]Off $FR_VS_RQ_TGW$ = [High]"
+ ],
+ [
+  "E",
+  "SWE1-VC-ScreenOFF-048",
+  "4859105",
+  "Common Features",
+  "When the HU receives $DSP_SK_PRSNT$ = [Present], the HU shall activate the virtual Screen Off button for user select-ability."
+ ],
+ [
+  "G",
+  "SWE1-VC-Stop-StartSystem-006",
+  "4858555",
+  "Common Features",
+  "IF ($EngRun_Stat$ = [IDLE_STBL//UNLIMITED//LIMITED//RUN])THEN- The HU shall allow activation of the heated and vented seats and the heated steering wheel switches."
+ ],
+ [
+  "G",
+  "SWE1-VC-SwitchLHD/RHDConfiguration-010",
+  "4858560",
+  "Common Features",
+  "When $DriverSide$ = [Right hand drive] the HMI shall be modified as defined by HMI requirements."
+ ],
+ [
+  "G",
+  "SWE1-VC-SwitchLHD/RHDConfiguration-013",
+  "4859509",
+  "Common Features",
+  "When $DriverSide$ = [Right hand drive] the HMI shall be modified as defined by HMI requirements."
+ ],
+ [
+  "E",
+  "SWE1-VC-ThirdRowHeadrestDump-028",
+  "4858989",
+  "Common Features",
+  "When the HU receives the vehicle configuration signal VC_HdRstPrsnt = [Present], the HU shall dispaly the Third Row Headrest Dump softkey button."
+ ],
+ [
+  "G",
+  "SWE1-VC-ThirdRowHeadrestDump-029",
+  "4858991",
+  "Common Features",
+  "The HU shall grey-out the Third Row Headrest Dump Softkey button when the $PowerMode$ = [Ignition start / IGN_START]."
+ ],
+ [
+  "G",
+  "SWE1-VC-ThirdRowHeadrestDump-031",
+  "4858994",
+  "Common Features",
+  "The HU shall make the Third Row Headrest Dump Softkey button selectable when $PowerMode$ = [Ign. off &amp; acc. (4 position switch) / IGN_OFF_ACC]."
+ ],
+ [
+  "D",
+  "SWE1-VC-ThirdRowHeadrestDump-033",
+  "4858999",
+  "Common Features",
+  "When the customer selects to dump the 3rd row Headrest, the HU shall send an on-change $HdRstRelRq$ = [Pressed] signal to the CBC within &lt;Tsend&gt;."
+ ],
+ [
+  "D",
+  "SWE1-VC-ThirdRowHeadrestDump-034",
+  "4859000",
+  "Common Features",
+  "When the customer selects to dump the 3rd row Headrest, the HU shall send an on-change $HdRstRelRq$ = [Pressed] signal to the FSM within &lt;Tsend&gt;."
+ ],
+ [
+  "G",
+  "SWE1-VC-ThirdRowHeadrestDump-035",
+  "4859001",
+  "Common Features",
+  "The HU shall follow this signal with an on change $HdRstRelRq$ = [Not Pressed] within a time period of &lt;Tsend&gt;."
+ ],
+ [
+  "G",
+  "SWE1-VC-ThirdRowHeadrestDump-036",
+  "4859002",
+  "Common Features",
+  "The HU shall continue to send the periodic $HdRstRelRq$ = [Not pressed] signal until the next short press event for this button. 1.3.2.1.19 Wireless Charging Pad {4859003}"
+ ],
+ [
+  "G",
+  "SWE1-VC-ThirdRowHeadrestDump-039",
+  "4859032",
+  "Common Features",
+  "When the signal $PowerMode$ &lt;&gt; [IGN_RUN], the HU shall follow the HMI Logic &amp; Flow to update the state of the Rear View Camera soft button."
+ ],
+ [
+  "G",
+  "SWE1-VC-ThreeStagesHeatedSeat-079",
+  "4859401",
+  "Heated Seat",
+  "Also the requirements are valid only if $Heated_Steats_Levels$ == \"Three Levels\""
+ ],
+ [
+  "G",
+  "SWE1-VC-ThreeStagesVentedSeatsManagement-061",
+  "4859465",
+  "Vented Seat",
+  "Also the requirements are valid only if $Heated_Steats_Levels$ == \"Three Levels\""
+ ],
+ [
+  "G",
+  "SWE1-VC-TwoStagesHeatedSeat-056",
+  "4859377",
+  "Heated Seat",
+  "Also the requirements are valid only if $Heated_Steats_Levels$ == \"Two Levels\" Also the requirements are valid only if $Heated_Steats_Levels$ == \"Two Levels\""
+ ],
+ [
+  "G",
+  "SWE1-VC-TwoStagesVentedSeatsManagement-038",
+  "4859439",
+  "Vented Seat",
+  "Also the requirements are valid only if $Heated_Steats_Levels$ == \"Two Levels\" Also the requirements are valid only if $Heated_Steats_Levels$ == \"Two Levels\""
+ ]
+]

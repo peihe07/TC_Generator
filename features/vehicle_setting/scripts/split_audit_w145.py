@@ -205,7 +205,8 @@ def main() -> None:
     # 兩讀之數獨立計算（`need` 已不含負向補數，見 audit() 之註）
     a_need = [r for r in enum_leaves if r["has_negative"] == "no"]
     b_need = len(domains) - len(covered)
-    print("**§7 之配對粒度有兩讀 —— 依 78 包 §1 暫掛，不以任一為準**：")
+    print("**§7 之配對粒度依 R-VS74（Pei 2026-08-23）定案為讀法 B —— 應補 0**。")
+    print("兩讀並列取消；讀法 A 之數僅供對照：")
     print(f"  讀法 A（**逐 leaf**）—— 每個列舉型 leaf 各須一條負向：應補 "
           f"**{len(a_need)}**；拆後總量 **{tgt + len(a_need)}**")
     print(f"  讀法 B（**逐列舉型訊號**）—— 每個值域一條負向即足：應補 "
