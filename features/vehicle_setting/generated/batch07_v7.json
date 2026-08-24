@@ -1,0 +1,208 @@
+{
+ "batch": "batch07",
+ "feature": "vehicle_setting",
+ "test_group": "Vehicle Setting",
+ "generated_round": 25,
+ "handoff": "docs/handoff/44_review_round24.md",
+ "profile": "docs/runtime/profiles/FW036_R1L_VehicleSetting_Profile.md",
+ "selection": "逐 Layer 2 輪流；餘量 Common Features 7／Heated Steering Wheel 5／Vented Seat 5／Heated Seat 2，配額 3／3／3／1。選入 10 條，**3 條移出，交付 7 條**",
+ "held_out": [
+  {
+   "leaf_id": "SWE1-VC-RightFrontVentedSeat-029",
+   "reqid": "CFTS044-4858411",
+   "blocked_by": "DR-15（token 級）",
+   "reason": "其值 `[Not Pressed / VS_NOT_PSD]` 落在 DR-15 之 token 範圍內"
+  },
+  {
+   "leaf_id": "SWE1-VC-StopStartSystemBehavior-054",
+   "reqid": "CFTS044-4859504",
+   "blocked_by": "DR-21（B2 類）",
+   "reason": "其條件為 `STATUS_CCAN3.ESS_ENG_ST != “ENS_DSBL”`（**彎引號形態**）；`ENS_DSBL` 於 DBC 為 `ENS disabled`，**逐字無對應**，與 A-VS58 同型"
+  },
+  {
+   "leaf_id": "SWE1-VC-StopStartSystemBehavior-055",
+   "reqid": "CFTS044-4859505",
+   "blocked_by": "DR-21（B2 類）",
+   "reason": "同上"
+  }
+ ],
+ "sibling_rows_injected": {
+  "note": "7 條分屬三個 Layer 2。**跨批嚴格等價已查出兩對**：`HeatedSteeringWheel-021` 與 batch06 之 `-015`（同為 `$HSW_Stat$` 報 On → 顯示 on），`-022` 與本批 `-016`（同為報 Off → 顯示 off）。二者之差僅在來源之記法（`[On]` vs `[1h: On]`），trigger／outcome／input／verification target 全同 —— 依 §10.6 標 `duplicate_of`。",
+  "rows": [
+   "[row #1] batch06 HeatedSteeringWheel-015 — $HSW_Stat$ = [On] → 顯示 on",
+   "[row #2] HeatedSteeringWheel-016 — $HSW_Stat$ = [Off] → 顯示 off",
+   "[row #3] HeatedSteeringWheel-021 — $HSW_Stat$ = [1h: On] → 顯示 on",
+   "[row #4] HeatedSteeringWheel-022 — $HSW_Stat$ = [0h: Off] → 顯示 off"
+  ],
+  "duplicate_of_found": "**2 對** —— row #3 ≡ row #1、row #4 ≡ row #2"
+ },
+ "tcs": [
+  {
+   "leaf_id": "SWE1-VC-HeatedSteeringWheel-016",
+   "test_set": "Heated Steering Wheel",
+   "tc_title": "Heated steering wheel turns off when status reports off",
+   "test_item": "When the HU receives a $HSW_Stat$ = [Off] signal, the HU shall change the stored status of the heated steering wheel to OFF and change the display as specified by the HMI within a time period of <Tdisplay>.\n\n(Status reports off)",
+   "pre_conditions": "1. The vehicle is equipped with a heated steering wheel\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.HSW_StatSts = 1 (ON)\n2. Read the displayed state of the heated steering wheel and check that it is on\n3. Send CAN: STATUS_CSWM.HSW_StatSts = 0 (OFF) and check that the heated steering wheel is displayed as off",
+   "expected_result": "1. STATUS_CSWM.HSW_StatSts = 1 (ON) is sent\n2. The heated steering wheel reads on\n3. The heated steering wheel is displayed as off",
+   "specification_reference": "CFTS044-4858539",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列送 0 (OFF) 且期望顯示為 off；batch06 之 HeatedSteeringWheel-015 送 1 (ON) 且期望顯示為 on。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
+  },
+  {
+   "leaf_id": "SWE1-VC-HeatedSteeringWheel-021",
+   "test_set": "Heated Steering Wheel",
+   "tc_title": "Heated steering wheel turns on when status reports on",
+   "test_item": "When the HU receives a $HSW_Stat$ = [1h: On] signal, the HU shall change the stored status of the heated steering wheel to ON and change the display as specified by the HMI within a time period of <Tdisplay>.\n\n(Status reports on, raw code form)",
+   "pre_conditions": "1. The vehicle is equipped with a heated steering wheel\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.HSW_StatSts = 0 (OFF)\n2. Read the displayed state of the heated steering wheel and check that it is off\n3. Send CAN: STATUS_CSWM.HSW_StatSts = 1 (ON) and check that the heated steering wheel is displayed as on",
+   "expected_result": "1. STATUS_CSWM.HSW_StatSts = 0 (OFF) is sent\n2. The heated steering wheel reads off\n3. The heated steering wheel is displayed as on",
+   "specification_reference": "CFTS044-4858544",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P0",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "duplicate_of": "1",
+   "distinguishing_axis": {
+    "axis": "none",
+    "delta": "與 batch06 之 HeatedSteeringWheel-015（row #1）嚴格等價 —— 觸發、結果、輸入、驗證對象全同，差別僅在來源條文之記法（`[1h: On]` vs `[On]`）。"
+   },
+   "reasoning": "P0(b)：加熱方向盤之啟用",
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
+  },
+  {
+   "leaf_id": "SWE1-VC-HeatedSteeringWheel-022",
+   "test_set": "Heated Steering Wheel",
+   "tc_title": "Heated steering wheel turns off when status reports off",
+   "test_item": "When the HU receives a $HSW_Stat$ = [0h: Off] signal, the HU shall change the stored status of the heated steering wheel to OFF and change the display as specified by the HMI within a time period of <Tdisplay>.\n\n(Status reports off, raw code form)",
+   "pre_conditions": "1. The vehicle is equipped with a heated steering wheel\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.HSW_StatSts = 1 (ON)\n2. Read the displayed state of the heated steering wheel and check that it is on\n3. Send CAN: STATUS_CSWM.HSW_StatSts = 0 (OFF) and check that the heated steering wheel is displayed as off",
+   "expected_result": "1. STATUS_CSWM.HSW_StatSts = 1 (ON) is sent\n2. The heated steering wheel reads on\n3. The heated steering wheel is displayed as off",
+   "specification_reference": "CFTS044-4858545",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "duplicate_of": "SWE1-VC-HeatedSteeringWheel-016",
+   "distinguishing_axis": {
+    "axis": "none",
+    "delta": "與本批 HeatedSteeringWheel-016（row #2）嚴格等價 —— 差別僅在來源條文之記法（`[0h: Off]` vs `[Off]`）。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no",
+   "remarks": "BLOCKED: DR-24′ —— 時限之上限值待覆，ER 只寫可觀察終態"
+  },
+  {
+   "leaf_id": "SWE1-VC-ThreeStagesHeatedSeat-080",
+   "test_set": "Heated Seat",
+   "tc_title": "Three stage heated seat icon cycles through its levels",
+   "test_item": "During the Ignition Working Condition- Ignition Off- Ignition On- Ignition On Engine On- Ignition Pre OffWHEN the user press the heated seats icons on TLM.Display.GUI, the relative icons status shall follow the logic descibed below (off -&gt; high -&gt;mid -&gt; low -&gt; off):\n\n(Three-stage icon cycle on repeated press)",
+   "pre_conditions": "1. The vehicle is configured for three heated seat states\n2. The heated seat icon status is off\n3. The ignition is in the Ignition On condition",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the heated seat icon and check that its status changes to high\n2. Press the heated seat icon and check that its status changes to low\n3. Press the heated seat icon and check that its status changes to off",
+   "expected_result": "1. The heated seat icon status is high\n2. The heated seat icon status is low\n3. The heated seat icon status is off",
+   "specification_reference": "CFTS044-4859402",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P0",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "dr15_exposed_note": "驗證目標為畫面圖示之狀態循環，未斷言請求訊號之編碼（44 包 §3）",
+   "distinguishing_axis": {
+    "axis": "mode",
+    "delta": "本列之配置為三階加熱座椅；batch05 之 TwoStagesHeatedSeat-057 之配置為二階。"
+   },
+   "reasoning": "P0(b)：加熱座椅之按壓啟用",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-TwoStagesVentedSeatsManagement-039",
+   "test_set": "Vented Seat",
+   "tc_title": "Vented seat icon cycles through its levels on press",
+   "test_item": "WHEN the user press the Vented seats icons on TLM.Display.GUI, the relative icons status shall follow the logic descibed below (off -> high -> low -> off)\n\n(Two-stage vented icon cycle on repeated press)",
+   "pre_conditions": "1. The vehicle is configured for two vented seat states\n2. The vented seat icon status is off\n3. The ignition is in the Ignition On condition",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the vented seat icon and check that its status changes to high\n2. Press the vented seat icon and check that its status changes to low\n3. Press the vented seat icon and check that its status changes to off",
+   "expected_result": "1. The vented seat icon status is high\n2. The vented seat icon status is low\n3. The vented seat icon status is off",
+   "specification_reference": "CFTS044-4859441",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "dr15_exposed_note": "驗證目標為畫面圖示之狀態循環，未斷言請求訊號之編碼",
+   "distinguishing_axis": {
+    "axis": "mode",
+    "delta": "本列之驗證對象為通風座椅圖示；batch05 之 TwoStagesHeatedSeat-057 為加熱座椅圖示。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-TwoStagesVentedSeatsManagement-048",
+   "test_set": "Vented Seat",
+   "tc_title": "Vented seat icons follow status changes without a press",
+   "test_item": "WHEN no icon on TLM_Display.GUI is pressed but the state of the vented seats change, the icons shall change and follow the information received.\n\n(Status-driven icon update, no user press)",
+   "pre_conditions": "1. The vehicle is configured for two vented seat states\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CSWM.FL_VS_STATSts = 0 (Vented_seat_off) and record the vented seat icon status as VS_icon_initial\n2. Send CAN: STATUS_CSWM.FL_VS_STATSts = 3 (Vented_seat_high) without pressing any icon and check that the vented seat icon status changes from VS_icon_initial",
+   "expected_result": "1. VS_icon_initial is recorded as off\n2. The vented seat icon status is high, which differs from VS_icon_initial",
+   "specification_reference": "CFTS044-4859450",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之觸發為狀態訊號變更而非使用者按壓；-039 之觸發為使用者按壓。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  },
+  {
+   "leaf_id": "SWE1-VC-StopStartSystemBehavior-056",
+   "test_set": "Common Features",
+   "tc_title": "Engine running retains the heated and vented seat button state",
+   "test_item": "ELSE IF (STATUS_CCAN3.EngineSts == “Engine_On”)THEN- The HU shall retain the existing state and level of the Heated/Vented Seats or Heated Steering Wheel button(s);- The HU shall allow the Vented Seats buttons to be selectable, as defined in Section ‘Vented Seats’;- The HU shall allow the Heated Steering Wheel buttons to be selectable, as defined in Section ‘Heated Steering Wheel’;\n1.3.3.3.8 Switch LHD/RHD Configuration {4859507}\n\n(Engine running, state retained)",
+   "pre_conditions": "1. PROXI Stop_And_Start_cfg = 1 (Present)\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send CAN: STATUS_CCAN3.EngineSts = 2 (Engine_On)\n2. Read the heated seat button state and level and record as HS_button_initial\n3. Send CAN: STATUS_CCAN3.EngineSts = 2 (Engine_On)\n4. Read the heated seat button state and level and record as HS_button_after\n5. Check that HS_button_after equals HS_button_initial",
+   "expected_result": "1. STATUS_CCAN3.EngineSts = 2 (Engine_On) is sent\n2. HS_button_initial is recorded\n3. STATUS_CCAN3.EngineSts = 2 (Engine_On) is sent\n4. HS_button_after is recorded\n5. HS_button_after = HS_button_initial",
+   "specification_reference": "CFTS044-4859506",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "dr15_exposed": "no",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本列之條件為 EngineSts = 2 (Engine_On) 且期望狀態保留；-054／-055 之條件含 ESS_ENG_ST 之 ENS_DSBL，因其無匯流排對應而移出本批。"
+   },
+   "reasoning": "P1：主要功能邏輯",
+   "screen_pending": "no"
+  }
+ ],
+ "reasoning": "本批依逐 Layer 2 輪流選入 10 條，3 條移出（1 條 DR-15 token 級、2 條因 `ENS_DSBL` 無匯流排對應），交付 7 條。驗證目標為加熱方向盤狀態之開關、三階加熱座椅與二階通風座椅之圖示循環、狀態驅動之圖示更新、以及引擎運轉時之狀態保留。**§4.6 之 sibling 比對查出兩對嚴格等價**：`HeatedSteeringWheel-021` ≡ batch06 之 `-015`、`-022` ≡ 本批 `-016` —— 其差別僅在來源條文之記法（`[1h: On]` vs `[On]`），觸發、結果、輸入、驗證對象全同，依 §10.6 標 `duplicate_of` 且 `distinguishing_axis.axis = none`。**ER 皆未以 `<Tdisplay>` 為通過條件。** 圖示循環之 ER 只斷言畫面狀態，不斷言請求訊號之編碼（DR-15 之標的）。",
+ "revision": "W-160（56 輪，R-VS77 之首次全母體回掃）：`test_item` 上半段回復條文逐字（R-VS6）—— 55 輪之 D-5 只掃 `split_flag`，本輪掃全母體",
+ "signal_notation": "R-VS52 / SWC 0708（Send CAN: MSG.Sig = raw (label)；ER … is sent）",
+ "record_clause_policy": "R-VS52(2)(4) ＋ 56 包 §2：無後續引用者刪除改直接檢查；用於比較者命名",
+ "design_method_domain": "SWC 0708 交付本之 `下拉選單` 分頁，9 值",
+ "screen_pending_note": "68 包 §2：`screen_pending` 為畫面層待補之標記（R-VS59(4)／R-VS17），與 `dr_dependent`（可寫性繫於 DR）分離。"
+}

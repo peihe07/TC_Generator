@@ -22,15 +22,15 @@ L2R = {r["swe_id"]: r for r in csv.DictReader(
     (FEAT / "data/leaf_to_reqid.tsv").open(encoding="utf-8"), delimiter="\t")}
 
 
-def _steps(s: str) -> list[str]:
+def steps_of(s: str) -> list[str]:
     return [re.sub(r"^\d+\.\s*", "", x) for x in (s or "").split("\n") if x.strip()]
 
 
 def d1(t: dict) -> str | None:
     """procedure 含不可執行之描述性步驟，而 ER 已標 PENDING。"""
-    for i, p in enumerate(_steps(t.get("test_procedure", ""))):
+    for i, p in enumerate(steps_of(t.get("test_procedure", ""))):
         if "a value outside the declared valid set" in p:
-            er = _steps(t.get("expected_result", ""))
+            er = steps_of(t.get("expected_result", ""))
             if i < len(er) and er[i].startswith("PENDING"):
                 return f"procedure step {i + 1} 為描述而非值，ER 已標 {er[i]}"
     return None
@@ -38,8 +38,8 @@ def d1(t: dict) -> str | None:
 
 def d2(t: dict) -> str | None:
     """pre_condition 與 procedure 重複設定同一配置（§4.5）。"""
-    pre = _steps(t.get("pre_conditions", ""))
-    proc = _steps(t.get("test_procedure", ""))
+    pre = steps_of(t.get("pre_conditions", ""))
+    proc = steps_of(t.get("test_procedure", ""))
     sets = [p for p in proc if p.startswith("Set PROXI")]
     for s in sets:
         m = re.match(r"Set PROXI (\w+)", s)
@@ -65,7 +65,7 @@ def d2(t: dict) -> str | None:
 
 def d3(t: dict) -> str | None:
     """ER 為 PENDING 而同序之 procedure 已寫 check target（§6 1:1 不成立）。"""
-    proc, er = _steps(t.get("test_procedure", "")), _steps(t.get("expected_result", ""))
+    proc, er = steps_of(t.get("test_procedure", "")), steps_of(t.get("expected_result", ""))
     for i, e in enumerate(er):
         if not e.startswith("PENDING") or i >= len(proc):
             continue
@@ -84,11 +84,18 @@ def d4(t: dict) -> str | None:
     """screen_pending = yes 而 ER 為 PENDING —— 最弱斷言未套用。"""
     if str(t.get("screen_pending")) != "yes":
         return None
-    er = _steps(t.get("expected_result", ""))
+    er = steps_of(t.get("expected_result", ""))
     bad = [i + 1 for i, e in enumerate(er) if e.startswith("PENDING")]
     if bad:
         return f"screen_pending = yes 而 ER {bad} 為 PENDING，最弱斷言未套用"
     return None
+
+
+def clause_of(leaf: str) -> str:
+    """該 leaf 之來源條文逐字（供 R-VS6 之全母體回掃共用）。"""
+    qs = re.findall(r"\d{7}", L2R.get(leaf, {}).get("reqid_list", ""))
+    return ("\n".join(BLK[qs[0]]["text"].split("\n")[1:]).strip()
+            if qs and qs[0] in BLK else "")
 
 
 def d5(t: dict) -> str | None:
