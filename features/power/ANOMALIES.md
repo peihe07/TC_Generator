@@ -397,6 +397,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-PM15 | 8 列之 PROC 首步為抽象動作，不可執行至訊號層 | rows 270／271／275–282 之 PROC 1（`Bring the HU to Timed / Full-Operation mode` 等）因 `CFTS009-4941950`／`4941952` 未載觸發來源而保留抽象動作。**不標 PENDING**（下放包 19 §三-2 裁定）——該步驟仍可由測試者以任一合法途徑達成目標狀態，非缺件；標 PENDING 將阻斷交付而無實益。若上游補明觸發，再行細化 |
 | A-PM16 | `verify.py` 之 `read_without_value` 未覆蓋 ER 側 | 該檢查僅施於 `proc`。row 291 之 ER 2 現為純 `PENDING: DR-PW22 (…)` 行，不含 `check that`，**屬未覆蓋而非通過** —— 若日後 ER 側加檢，該列須另計。**新增（20 包 §四）**。俟 lint feature-scoped 改寫（17 包 §四、20 包 §五）時一併納入 |
 | A-PM17 | 台帳「條文落檔位置」表以「同上」串接指涉，插入列將靜默改變其後各列之指涉對象 | 19 包將 `R-13` 插於 `R-8` 與 `R-2` 之間，`R-8` 為「同上 §10.7 之『排列』段」（指 `ASPICE_SWE6_AI_Instruction.md`），插入一個指向 handoff 檔之列後，其下 `R-2 | 同上 §10.7` 之「同上」即錯指為 handoff 檔。**無任何檢查可攔** —— 本次由執行層自行回查發現（20 包 §一-3 自陳，21 包 §三確認）。**新增（21 包 §三）**。併入 lint feature-scoped 包之 `docs_structure` 檢查：台帳／DR／ANOMALIES 之編號連續性、狀態值合法性、「同上」串接之指涉正確性、條文欄非空 |
+| A-PM18 | 括號四軌並存（已知形態差異，非缺陷） | **登記即撤銷（30 包）** —— 下放包 28 §四-2 裁「四軌不收斂，維持現狀，登記 A-PM18」，但該裁定寫成前一分鐘，28 包（`upstream/28_paren_convergence.md`，commit `c2980fe`）已將四軌收斂為 V2，**該異常所描述之狀態不存在**，故不登記。**§四-2 之裁定係被 28 包之時序越過**（下放包晚於執行一分鐘落檔），收斂結果已由 Pei 於 29 包當面裁定追認（見 `upstream/29_content.md` §〇）。本列依 R-TM13「撤回不刪、不重編號」保留為裁決跡證 |
 
 > 既有之 A-PM06／A-PM09／A-PM12 條文另存於 `features/power/docs/`。
 

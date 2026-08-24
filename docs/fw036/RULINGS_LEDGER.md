@@ -31,6 +31,7 @@
 | R-13 | 2026-08-21 | 規格訊號名與 DBC 不符之處置：規格原文所載之訊號名，即使 DBC 查無同名，一律保留原文名稱，不得代以語意相近之他訊號；DBC 對應缺漏登記 DR 向上游查詢 | ACTIVE | 19 | 全案 |
 | R-14 | 2026-08-21 | PENDING 佔位說明一律英文 | ACTIVE | 20 | 全案 |
 | R-15 | 2026-08-21 | 台帳條文之完整性：下放包要求「逐字寫入」台帳之條文必須為條文全文，分析層不得為版面或欄寬簡寫；若原條文過長，改列摘要欄並保留全文於同列，不得以摘要取代全文 | ACTIVE | 21 | 全案 |
+| R-16 | 2026-08-24 | test_item 括號下半為**需求側摘要**，自 b19 原列語意推導，**與 proc 現行文字無需逐字同調**；proc／er 之內容改寫不因此觸發括號重推導 | ACTIVE | 30（29 包上繳 §七-1 之就地裁決） | 全案 |
 
 > **R-12 加註**：R-12(b)（spec_ref 條數上限 4）已於
 > `features/power/docs/specref_anchor_chain_verified.md` 撤銷；
@@ -71,6 +72,7 @@
 | R-13 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5(g) |
 | R-14 | `docs/fw036/handoff/20_pm_closeout.md` §一 |
 | R-15 | `docs/fw036/handoff/21_ledger_fix.md` §一 |
+| R-16 | `docs/fw036/handoff/30_pm_final_review.md` §一（就地裁決第 1 項） |
 | S1 | 本檔（標記行為見 `docs/fw036/upstream/01b_mechanism_setup.md`） |
 | S2 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §11 |
 | S3 | `scripts/lint036.py` module docstring |
