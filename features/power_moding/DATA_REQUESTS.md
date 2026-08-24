@@ -13,6 +13,8 @@ Urgency 回報。
 | # | 主旨 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
 | **DR-PMH1** | CFTS009 所定之 Off Road+ power moding 行為 | **OPEN** | 1（`SWE1-HMI-PM-028`） | `Off Road Plus` 批之 1 條為 `PENDING` 佔位；**含 PENDING 之工作簿不得出貨**（§8.4.3） | **A-PMH13** | **High（交付前阻斷）** |
+| **DR-PMH2** | **Power Moding State Matrix**（獨立 Excel 文件） | **OPEN** | ch 9 之 5 leaf（引 `9.1`）＋ 全 feature 之 power moding 行為 | 規格逐字稱「behavior **shall not be developed without following** the Power Moding State Matrix」——**該文件不在四份素材內** | **A-PMH14** | **High** |
+| **DR-PMH3** | `SU9.)` 與 `SU9.1)` 是否應存在於 037 | **OPEN** | **0（現無 leaf）** | PDF p8 有該二需求而 SYS1／037 全無 → **不在 48 leaf 內**；其題材落在 `Disclaimer Screen` 且影響逾時語意 | **A-PMH14** | **High** |
 
 ---
 
@@ -64,10 +66,84 @@ Urgency 回報。
   不受影響。
 - **交付影響**：**阻斷** —— 交付前須本 DR 結案，或由 Pei 裁定降轉。
 
+---
+
+## DR-PMH2（開立 2026-08-24，依 **A-PMH14** 新漏 3）
+
+**型別**：素材缺件 —— 規格所指之外部文件不在本 feature 之素材內。
+**成對之 anomaly**：**A-PMH14**。**狀態**：`OPEN`
+
+### 問題全文
+
+> `Power Moding HMI Logic and Flow R1 SR24 2A` 之 PDF p10 逐字載：
+>
+> ```
+> POWER MODING STATE MATRIX: Power Moding behavior shall not be developed without
+> following the Power Moding State Matrix, which is in a separate Excel document.
+> If this document is not available, please request a copy from the author of this
+> logic and flow document.
+> ```
+>
+> **這是一條規範性陳述**（`shall not be developed without following …`），
+> 而該 Excel **不在本 feature 之四份素材內**（036／037／SYS1 匯出／PDF）。
+>
+> 該註記於 **SYS1 匯出之全 52 則描述中亦不存在**（四組探針皆 0 命中）——
+> 即：**若只讀 SYS1，連「有這份文件」都不會知道。**
+>
+> **請提供該 Excel**，或釋明其於本次交付範圍內是否為必要。
+
+### 影響
+- ch 9 之 **5 個 leaf** 引 `9.1`（Power Moding 之 PM1)–PM4)），其判讀背景
+  即該狀態矩陣；p9 之矩陣表格於 SYS1 亦全缺（A-PMH14 新漏 2）。
+- **不阻斷 batch 1**（`Disclaimer Screen` 不引 ch 9）；
+  **阻斷 `Power Transitions` 批之 ch 9 部分**。
+
+---
+
+## DR-PMH3（開立 2026-08-24，依 **A-PMH14** 新漏 1）
+
+**型別**：leaf 母體缺口 —— 規格有需求而 037 無對應列。
+**成對之 anomaly**：**A-PMH14**。**狀態**：`OPEN`
+
+### 問題全文
+
+> PDF p8 於 `SU8.)` 之後尚有二條需求：
+>
+> ```
+> SU9.) Pressing "Screen Off" or "Power Off" hard key will not do anything when
+>       pressed during animation.
+> SU9.1) Pressing Power Off or Screen Off hard keys during the splash screen(s) or
+>        disclaimer will reset the timeout and the radio shall display the screen
+>        the next time the screen turns on. (DCR20015)
+> ```
+>
+> **SYS1 匯出之 `7.9` 止於 `SU8.)`，且 7.9 為 7.x 之最末則**；
+> `SU9.1`／`SU9)`／`reset the timeout`／`hard keys during the splash`
+> 四組探針於 SYS1 全 52 則**皆 0 命中**。
+>
+> 037 之 leaf 以 `HMI Source ID` 指向 outline 編號 —— **SYS1 既無該二 outline，
+> 037 即無對應之 Functional Requirement 列**，故該二需求
+> **不在 R-PMH1 所定之 48 leaf 之內**。
+>
+> **請釋明**：037 是否應含 `SU9.)` 與 `SU9.1)` 之對應需求？
+> 若應含而未含，本 feature 之 leaf 母體 **48** 即為低估。
+
+### 影響
+- **題材落在 `Disclaimer Screen` 內**（按 Power Off／Screen Off 於 splash
+  或 disclaimer 期間之行為）。
+- **`SU9.1` 直接影響逾時語意** —— batch 1 之 `-003`（逾時路徑）與
+  `-004`（Maserati 無逾時）已依 PDF 於 pre-condition／procedure 加
+  「不按任何硬鍵」之限定；**該限定只能自 PDF 取得**。
+- **不阻斷 batch 1 已寫之 8 條**，但**該 Test Set 之覆蓋完整性待答**。
+
+---
+
 ### 未結 DR 清單（每包上繳須附，R-PMH47(c)）
 
-| DR | 狀態 | 阻斷交付 |
-|---|---|---|
-| **DR-PMH1** | **OPEN** | **是** |
+| DR | 主旨 | 狀態 | 阻斷 |
+|---|---|---|---|
+| **DR-PMH1** | CFTS009 之 Off Road+ 行為 | **OPEN** | **交付**（§8.4.3） |
+| **DR-PMH2** | Power Moding State Matrix Excel | **OPEN** | `Power Transitions` 批之 ch 9 部分 |
+| **DR-PMH3** | `SU9.)`／`SU9.1)` 是否應在 037 | **OPEN** | `Disclaimer Screen` 之覆蓋完整性 |
 
-合計未結 **1** 筆。
+合計未結 **3** 筆。

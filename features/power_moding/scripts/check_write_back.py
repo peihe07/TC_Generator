@@ -11,6 +11,9 @@
                             該欄記的是「客戶那份」的列號（10-57），
                             與母本的寫回目標無關（02 包 §11 第 4 項）。
   (c) row_count_delta     — 寫回後列數 == 寫回前列數 + 本批 TC 數。
+  (d) tc_id_not_provisional — 批次檔頭之 `tc_id_status` 為 `provisional` 者，
+                            寫回即中止（13 包步驟 6；12 包上繳 §8 第 6 項自陳
+                            「provisional 無任何機制防止其被當成最終編號」）。
 
 本檔只讀工作簿，不寫。x14 DV 之保全由呼叫端的 xlsx_surgical splice 負責
 （R-G3）—— 這裡連 openpyxl 的 save() 都不呼叫。
@@ -89,6 +92,18 @@ def check_start_row_source(proposed_start: int, cfg: dict, feature_dir: Path) ->
     return f"(b) start_row_source PASS — 起始列 {proposed_start} == first_row"
 
 
+def check_tc_id_not_provisional(batch: Path) -> str:
+    """(d) 批次之 `tc_id_status` 為 `provisional` 者不得寫回。"""
+    d = json.loads(batch.read_text(encoding="utf-8"))
+    st = d.get("tc_id_status")
+    if st == "provisional":
+        raise CheckFailed(
+            f"(d) tc_id_not_provisional FAILED — 批次 {d.get('batch')!r} 之 "
+            f"tc_id_status = 'provisional'。**臨時編號不得寫回工作簿** —— "
+            f"最終編號須待全 48 leaf 完成後單次指派。")
+    return f"(d) tc_id_not_provisional PASS — tc_id_status = {st!r}"
+
+
 def check_row_count_delta(before: int, after: int, batch_size: int) -> str:
     """(c) after == before + batch_size。"""
     if after != before + batch_size:
@@ -151,6 +166,17 @@ def self_test(feature_dir: Path) -> int:
         results.append(("b", False, "未被攔下"))
     except CheckFailed as e:
         results.append(("b", True, str(e)))
+
+    # (d) 故意失敗：批次為 provisional
+    b = feature_dir / "generated" / "batch01.json"
+    try:
+        if b.exists():
+            check_tc_id_not_provisional(b)
+            results.append(("d", False, "未被攔下"))
+        else:
+            results.append(("d", False, "batch01.json 不存在，測試無效"))
+    except CheckFailed as e:
+        results.append(("d", True, str(e)))
 
     # (c) 故意失敗：寫回後列數少一
     before = len(filled_rows(ws, req_col, first_row))

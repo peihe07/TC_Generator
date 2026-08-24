@@ -65,7 +65,7 @@ scaffold，得 abbr `PO`，故 `ANOMALIES.md` 與 `PLAYBOOK.md` 之範例 marker
 
 ---
 
-## A-PMH03 — SYS1 匯出相對 PDF 之內文偏離 —— **7.1 為漏句，非重排** · PENDING（**結論已於 12 包更正**）
+## A-PMH03 — SYS1 匯出相對 PDF 之內文偏離 · **PENDING**（**13 包再度改判 —— 見 A-PMH14**）
 
 **登記日**：2026-08-22（下放包 01 步驟 7）
 
@@ -780,6 +780,136 @@ OFF2.)Please refer to CFTS009 for complete behavior.
 **連帶**：`-027`（12.1）與 `-029`（12.3）**本身含可驗證行為**
 （前者為「不喚醒」、後者為「靜音」），不受本則影響，
 仍在 Test Set `Off Road Plus` 內正常生成。**本則只涉 `-028` 一個 leaf。**
+
+---
+
+## A-PMH14 — 雙向複驗查出 **三處 7.1 以外之新漏句**，其一使兩條需求根本不在 48 leaf 內 · PENDING
+
+**登記日**：2026-08-24（13 包步驟 3，**停止條件 7 觸發**）
+
+依 **R-PMH51** 補做方向二（PDF → SYS1）。方向一（SYS1 → PDF，01 包已做）
+**看不見漏句** —— 漏句不顯示為「不符」，只顯示為「沒有這一則」。
+
+### 方法
+
+| 項 | 值 |
+|---|---|
+| 比對單位 | 句（句號後空白切分），最短 25 字元 |
+| 正規化 | 去 `_x000D_`、摺疊空白、統一彎引號／省略號／破折號 |
+| 一級判定 | 該句是否為對方全文之子字串 |
+| **二級判定** | 未命中者再求 **6-gram 覆蓋率**；`< 30%` 者列為真漏候選，`>= 30%` 者判為 `pdftotext -layout` 之切分假象 |
+| 產出 | `docs/reports/bidirectional_spec_diff.md` |
+
+**方向二原始未命中 55 句**，經 6-gram 過濾後真漏候選 **37 句**，
+其中 **23 句在 p1–p7**（封面 ＋ 五張流程圖頁）—— **屬 A-PMH04 已知之
+圖片佔位，不計為新漏**。餘 **14 句在 p8–p11**，逐句查證後得**三處新漏**。
+
+### 新漏 1 —— **`SU9.)` 與 `SU9.1)` 兩條需求整段缺失**（p8）
+
+PDF p8 逐字（緊接 SU8 之後）：
+
+```
+SU8.) Show the splash screen and disclaimer screen once per CAN BUS cycle
+SU9.) Pressing "Screen Off" or "Power Off" hard key will not do anything when
+      pressed during animation.
+SU9.1) Pressing Power Off or Screen Off hard keys during the splash screen(s) or
+       disclaimer will reset the timeout and the radio shall display the screen
+       the next time the screen turns on. (DCR20015)
+```
+
+SYS1 之 `7.9` 逐字為 **`SU8.) Show the splash screen and disclaimer screen once
+per CAN BUS cycle`**，且 **7.9 為 7.x 之最末則**。
+
+| 探針 | SYS1 全 52 則 |
+|---|---|
+| `SU8` | 有 |
+| **`SU9.1`** | **0** |
+| **`SU9)`** | **0** |
+| `reset the timeout` | **0** |
+| `hard keys during the splash` | **0** |
+
+**⚠ 其後果不只是 `source_clause` 缺料 —— 是 leaf 不存在。**
+037 之 leaf 以 `HMI Source ID` 指向 outline 編號；SYS1 既無 SU9／SU9.1 之
+outline，**037 即無對應之 Functional Requirement 列**，故該二需求
+**不在 R-PMH1 所定之 48 leaf 之內**。
+
+**其題材正落在 `Disclaimer Screen` 之內**（按 Power Off／Screen Off 於
+splash 或 disclaimer 期間之行為），且 **SU9.1 直接影響逾時語意** ——
+batch 1 之 `-003`（逾時路徑）與 `-004`（Maserati 無逾時）之 pre-condition
+因而須加「不按任何硬鍵」，該限定**只能自 PDF 取得**。
+
+### 新漏 2 —— **p9 之 Power Moding 狀態矩陣表格全缺**
+
+PDF p9 為兩欄狀態矩陣（`HEADUNIT POWER OFF` / `ON` × `ICS Hard Controls`／
+`HVAC Knobs`／`Climate GUI`／`Headunit`，另分 `KEY ON ENGINE ON`／
+`KEY OFF (ACC)`／`KEY OFF (No ACC)` 三列）。
+
+| 探針 | SYS1 全 52 則 |
+|---|---|
+| `ICS Hard Controls` | **0** |
+| `HVAC Knobs` | **0** |
+| `Climate GUI` | **0** |
+| `Power Button only is functional` | **0** |
+| `Fully functional` | **0** |
+| `ENGINE ON` | **0** |
+
+SYS1 之 `9.1` 只有 `PM1)`–`PM4)` 之散文（1,265 字元）。
+**5 個 leaf 引 `9.1`** —— 其判讀所需之狀態矩陣不在 SYS1 內。
+（該表為表格形態，與 A-PMH04 之圖片佔位同類，惟**其所在之 ch 9 有 leaf**，
+而 2.1–6.1 無，故性質不同。）
+
+### 新漏 3 —— **指向一份我們沒有之外部規格**（p10）
+
+PDF p10 逐字：
+
+```
+POWER MODING STATE MATRIX: Power Moding behavior shall not be developed without
+following the Power Moding State Matrix, which is in a separate Excel document.
+If this document is not available, please request a copy from the author of this
+logic and flow document.
+```
+
+| 探針 | SYS1 全 52 則 |
+|---|---|
+| `POWER MODING STATE MATRIX` | **0** |
+| `State Matrix` | **0** |
+| `separate Excel` | **0** |
+| `request a copy from the author` | **0** |
+
+**這是一條規範性陳述**（`shall not be developed without following …`），
+指向一份**獨立 Excel 文件**，而該文件**不在本 feature 之四份素材內**。
+**已開 `DR-PMH2`。**
+
+### 非新漏者（具名，避免誤計）
+
+| 項 | 判定 |
+|---|---|
+| p1–p7 之 23 句 | **A-PMH04 已知** —— SYS1 之 2.1–6.1 為圖片佔位，封面頁無對應 outline |
+| p10 之 VRLP1 四個 outcome（`Screen ON and Audio OFF` 等） | **非漏** —— SYS1 之 11.1 有之，僅條列符號與順序不同（A-PMH03 原記之「條列再流」） |
+| p11 之 1 句 | **A-PMH04 已知** —— 12.4 為圖片佔位 |
+
+### 對 A-PMH03 之影響
+
+A-PMH03 原記「四則缺口」（7.1 重排、8 拼字、9.1／11.1 條列再流）。
+**該框架本身不成立** —— 它以「SYS1 之則」為單位計缺口，
+而**漏句沒有「則」可計**（SU9／SU9.1 在 SYS1 中不存在任何一則）。
+
+**改判**（R-PMH51）：
+- 7.1 —— **漏句**（12 包已證）
+- 8 —— 拼字（`Starup`），維持
+- 9.1／11.1 —— 條列再流，**維持**（本輪方向二未在其上查出新漏）
+- **新增：SU9／SU9.1 整段缺失、p9 狀態矩陣全缺、p10 STATE MATRIX 註記缺**
+  —— **此三者不對應任何 SYS1 之則，故不計入「四則」，另計。**
+
+### 提案處置（不裁定）
+
+(a) `source_clause` 一律取自 PDF —— **R-PMH50 已定，本輪再獲佐證**；
+(b) **SU9／SU9.1 之 leaf 缺口**：其不在 48 leaf 內，**開 DR 詢問上游
+    037 是否應含該二需求**（與 A-PMH13 之形態相反 —— 那是 leaf 存在而
+    行為在他處，這是**行為存在而 leaf 不存在**）；
+(c) p9 狀態矩陣：Phase 4 撰寫 ch 9 之 5 個 leaf 時，**須自 PDF p9 render
+    圖像判讀**（A-PMH04 之 render 能力實測已證 300 DPI 可辨讀）；
+(d) `DR-PMH2` 索取 Power Moding State Matrix Excel。
 
 ---
 

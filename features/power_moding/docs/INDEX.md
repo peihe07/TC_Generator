@@ -19,6 +19,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 10 | 2026-08-24 | doc-sync 檢查落實、替換殘留回掃、profile 草案核對 | [handoff/10_profile_draft.md](handoff/10_profile_draft.md) | [upstream/10_profile_draft.md](upstream/10_profile_draft.md) | R-PMH41／R-PMH42（逐字抄錄 2/2 相符） | （無新 A-PMH） | **步驟 1–5 全數執行；停止條件 8 觸發 1 項，已修正並回報** |
 | 11 | 2026-08-24 | 已發生變更之舉證、勘誤方式、互斥狀態一致性 | [handoff/11_claim_evidence.md](handoff/11_claim_evidence.md) | [upstream/11_claim_evidence.md](upstream/11_claim_evidence.md) | R-PMH43–R-PMH45（逐字抄錄 3/3 相符） | （無新 A-PMH；08 上繳追加勘誤節） | **步驟 1–5 全數執行；九條停止條件全未觸發** |
 | 12 | 2026-08-24 | profile 落檔、A-PMH13 定案、**Phase 4 batch 1** | [handoff/12_phase4_batch1.md](handoff/12_phase4_batch1.md) | [upstream/12_phase4_batch1.md](upstream/12_phase4_batch1.md) | R-PMH46–R-PMH50（逐字抄錄 5/5 相符） | A-PMH03 **結論更正**（7.1 為漏句非重排）；A-PMH13 → RESOLVED；**DR-PMH1 開立** | **步驟 1–6 全數執行；九條停止條件全未觸發** |
+| 13 | 2026-08-24 | batch 1 重寫、**雙向複驗**、lint 擴充 | [handoff/13_batch1_rework.md](handoff/13_batch1_rework.md) | [upstream/13_batch1_rework.md](upstream/13_batch1_rework.md) | R-PMH51–R-PMH53（逐字抄錄 3/3 相符） | **A-PMH14（三處新漏）**；**DR-PMH2／DR-PMH3 開立** | **⚠ 停止條件 7 觸發**；8、9 未觸發；batch 1 重寫後 lint 28/28 |
 
 ## 01 輪要點
 
@@ -746,3 +747,64 @@ profile §0／§2 之「48 leaf」須加註「其中 1 條為揭露列」）／1
 
 **待 Pei**：batch 1 之人讀覆核（**阻斷下一批**）／A-PMH03 其餘三則是否複驗／
 12 包之 commit 授權／`PROFILE_INTEGRATION.md` 是否登錄。
+
+## 13 輪要點
+
+**⚠ 停止條件 7 觸發 —— 雙向複驗查出 7.1 以外之三處新漏**
+- 方向二（PDF → SYS1）原始未命中 55 句，經 **6-gram 覆蓋率**二級過濾後真漏
+  候選 37 句；其中 23 句在 p1–p7（A-PMH04 已知之圖片佔位，**不計**），
+  餘 14 句逐句查證得**三處新漏**。
+- **新漏 1（最嚴重）—— `SU9.)` 與 `SU9.1)` 兩條需求整段缺失。**
+  SYS1 之 `7.9` 止於 `SU8.)` 且為 7.x 之最末則；四組探針
+  （`SU9.1`／`SU9)`／`reset the timeout`／`hard keys during the splash`）
+  於 SYS1 全 52 則**皆 0 命中**。
+  **其後果不只是 source_clause 缺料 —— 是 leaf 不存在**：037 之 leaf 以
+  outline 指路，SYS1 無該二 outline ⇒ 037 無對應列 ⇒
+  **該二需求不在 R-PMH1 所定之 48 leaf 內**。
+  **題材正落在 `Disclaimer Screen`**，且 `SU9.1` 直接影響逾時語意。→ `DR-PMH3`
+- **新漏 2 —— p9 之 Power Moding 狀態矩陣表格全缺**（六組探針皆 0）；
+  **5 個 leaf 引 `9.1`**，其判讀背景不在 SYS1 內。
+- **新漏 3 —— 指向一份我們沒有之外部規格**：PDF p10 之
+  `Power Moding behavior **shall not be developed without following** the Power
+  Moding State Matrix, which is in a separate Excel document.`
+  四組探針於 SYS1 皆 0 —— **只讀 SYS1 連「有這份文件」都不會知道。** → `DR-PMH2`
+- **A-PMH03 之「四則缺口」框架本身不成立** —— 它以「SYS1 之則」計缺口，
+  而**漏句沒有「則」可計**。三處新漏另計為 **A-PMH14**。
+
+**batch 1 重寫 —— 六類違規逐項修正，lint 28/28 PASS**
+- §10.5 三條單步已補；§5.1 之 `observe` 8 處全改 `Read … and check that …`；
+  §5.2B/§5.5 八條末步皆含驗證意圖；**§4.3.1 八條上半全部改為
+  `source_clause` 之逐字子句**；markdown 粗體移除；彎引號改直引號；
+  UI 標籤加引號；交叉引用改為成對且語意可機械比對；§8.5 之 PC 溢出已收。
+- **`-003` 之造值已刪**：`which automatically equals Accept` 與 ER 之
+  `the same outcome as pressing Accept` 皆移除 ——
+  **規格逐字只有 `or wait for the screen to timeout`**。
+- **新漏 1 已回饋進 TC**：`-003`／`-004` 之 procedure 加
+  `Without pressing any hard key or the "Accept" button …` ——
+  該限定源自 `SU9.1`，**於 SYS1 不存在**。**R-PMH50 之第二次實證。**
+
+**lint 擴充 20 → 28 項，七項新檢查之 must-hit 全部如期 FAIL**
+- 以**未修正之 batch 1** 為天然反例（已保全 `tests/fixtures/batch01_prerework.json`）。
+- **R-PMH53 之檢查加強一次才 must-hit** —— 首版只驗存在性故 PASS；
+  依條文之「語意相容」改為**比對被引用者與引用者之 `distinguishing_axis`
+  是否共用實詞**，精準命中 4 處。
+- **R-PMH52 之具名義務已實作**：輸出末尾固定列出九個**未涵蓋**之 canon 節號
+  （§4.3／§4.4／§5.7／§7／§8.2-8.3／§8.4.1／§8.5／§8.7.3／§10.2），
+  並印「lint 全綠不得作為 TC 可用之證據」。
+
+**`tc_id` provisional 防護已加**（`check_write_back.py` 之 (d)）——
+**四項故意失敗全部攔下**。實作時首版誤用模組層不存在之 `ROOT`，
+**自測 exit 1 —— 是它自己攔下自己**，已修正並驗命中數。
+
+**未結 DR：3 筆**（`DR-PMH1` 交付阻斷、**`DR-PMH2`**、**`DR-PMH3`**）。
+
+**⚠ 本輪自陳之未竟項中，最該追而未追者（上繳 §8 第 4 項）**：
+**每章之末則是否系統性被截斷。** 本輪只發現 7.x 之末尾被截（SU9／SU9.1），
+**未逐章檢查其末則是否對得上 PDF** —— 若此為 SYS1 匯出之系統性行為，
+則 48 leaf 之母體低估不止兩條。
+
+**其餘未竟項**：6-gram 之 30% 門檻無來源、方向二只做到句級、
+以無 leaf 之規格內容限縮 TC 是否越界 §8.4.2、lint 新檢查無範圍向對照。
+
+**待 Pei**：`DR-PMH3`（**48 leaf 母體是否低估**）／`DR-PMH2`／
+**逐章末則之系統性檢查**（建議優先）／重寫後 batch 1 之人讀覆核／13 包 commit 授權。
