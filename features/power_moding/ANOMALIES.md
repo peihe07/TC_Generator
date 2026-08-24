@@ -558,6 +558,114 @@ Phase 6／7 之前置阻斷項**：首次填 `Q` 或 `AF` 之前必須處理，
 
 ---
 
+## A-PMH13 — `SWE1-HMI-PM-028`（12.2）之行為定義在 CFTS009，而 `features/power` 之 284 條**零命中** · PENDING
+
+**登記日**：2026-08-24（06 包 §六，查證見步驟 4）
+
+**條文逐字**（SYS1 `Basic Report` outline `12.2` 之 `Description`）：
+
+```
+OFF2.)Please refer to CFTS009 for complete behavior.
+```
+
+該 leaf **本身不含任何可驗證之行為**，其行為定義在 **CFTS009** ——
+而 CFTS009 正是已交付之 `features/power`（Power Management）之來源規格。
+
+**惟該 leaf 確在本 feature 之 48 個 Functional Requirement 內**
+（R-PMH1 之判準：`Categorization == Functional Requirement`），不能不涵蓋。
+此為 canon §8.4.2（no scope fabrication）之典型情形。
+
+### 查證（06 包步驟 4）—— **零命中**
+
+**量測對象**：`ASW-R2/Power Management/…_PowerManagement_20260821.xlsx`
+（R-PMH24 母體之 `Power Management` 交付件），分頁
+`Test Case Specification&Result`，**唯讀開啟，未修改 `features/power` 之任何檔案**。
+
+**實測 284 條 TC**（非 283 —— 見下方口徑註）。對其
+`Test Case ID`／`Test Set`／`Test Item`／`Pre-Conditions`／`Test procedure`／
+`Expected Result` 六欄之合併文字做大小寫不敏感之正規式搜尋：
+
+| 標的（章 12 之三個 leaf） | 檢索式 | 命中 |
+|---|---|---:|
+| **12.2（`-028`）本身** | `OFF2` | **0** |
+| 12.1（`-027`）：Off Road state 下按 Off Road+ 不喚醒 | `off[\s\-_]*road` | **0** |
+| 同上 | `hard control` | **0** |
+| 同上 | `Power Button On` | **0** |
+| 同上 | `wake\s*up` | 1 → **經人工複核不相關**（`NR1L-PowerManagement-233`，其 Test Item 為「skip start-up animation…until the next CAN wakeup cycle」，屬 Startup Display，與 Off Road+ 無關） |
+| 12.3（`-029`）：Power Off State 啟動 app 時靜音 | `Power Off State` | **0** |
+| 同上 | `launch.*app` | **0** |
+| 同上 | `\bmute` | 9 → **皆非本標的**（無一與「自 Power Off State 啟動 app」相關） |
+
+**結論：`features/power` 之 284 條已交付 TC 中，`Off Road+` 之行為零命中。**
+
+**佐證**：該 284 條之 `specification_reference` 相異前綴僅 **`CFTS009`／`CFTS010`**
+二者，其 Test Set 為 `Power State`(148)／`Startup Display`(59)／
+`Branding and Theme`(34)／`Timeout Settings`(26)／`Power Down`(16)
+—— **無任何 Off Road 相關之 Test Set**。
+
+**故 06 包 §六所設之前提「若已涵蓋，(ii) 成立且無缺口」不成立**：
+未涵蓋，**這是一個真缺口**。
+
+### 口徑註（R-G8）—— **已結案（07 包 §二）**
+
+06 包 §六稱 283、執行層實測 284。**成因已由分析層之既有量測解明**
+（03 包 §2 對同一檔之實測）：
+
+| 口徑 | 值 |
+|---|---|
+| `D` 欄非空之**資料列數** | **284** |
+| 其中具 `Test Group` 之列（＝ **TC 數**） | **283** |
+| 留白列（`SWE-PM-089`，有 req id 無 TC） | **1** |
+
+**兩個數字都對，量的是不同東西。** 本則之查證以「資料列」為分母
+（284），其結論（零命中）不受此口徑影響 —— 留白列不含任何 TC 文字。
+**未改動 `features/power` 之任何檔案。**
+
+**本口徑註結案。** 本則之 PENDING 狀態僅繫於 `-028` 之處置（(i)/(ii)/(iii)）。
+
+### 跨 feature 擴查（07 包步驟 2）—— **16 個交付件全部零命中**
+
+06 包之零命中僅限 `features/power` 之 284 列（R-PMH20 之量詞限定）。
+07 包對 R-PMH24 母體之**全部 16 個交付夾**（含 `Engineering Mode` 之
+兩個平手候選，共 17 個檔）重跑同一組檢索，**合計 3,234 資料列**：
+
+| 標的 | 全 16 夾之命中 | 複核後之真命中 |
+|---|---:|---|
+| `OFF2` | 1 | **0** —— 唯一命中在 `Disclaimer screen`（本 feature 之客戶那份），其為 037 機械搬運之草稿列（R-PMH5），**是來源自身，不是覆蓋** |
+| `off road` | 3 | **0** —— 1 同上；另 2 為 `Off Road Pages`（Home 之 widget 清單、MBAD 之 favorites 清單），**是 app／widget 名稱** |
+| `Off Road+` | 1 | **0** —— 同上，本 feature 自身之草稿列 |
+| `Power Off State` | 7 | **0** —— 全部在本 feature 自身之草稿列 |
+| `launch` | 206 | **0**（無一與「自 Power Off State 啟動 app」相關） |
+| `hard control` | 129 | **0** —— 全部為 ICS hardcontrols 之調台／空調操作 |
+
+**結論句（R-PMH20 之量詞限定）**：
+> **本次量測之 16 個交付件（3,234 資料列，量測時點 2026-08-24T11:06:22+0800）中，
+> `SWE1-HMI-PM-028` 所指之 Off Road+ power moding 行為零命中。**
+
+**故 A-PMH13 為全案缺口之判定，其量詞由「`features/power` 之 284 列」
+擴為「母體 16 個交付件之 3,234 列」。停止條件 8 未觸發。**
+
+### 三種處置並列（**本包不裁**，06 包 §六原文保留）
+
+- **(i)** 撰寫一條僅驗證「該行為存在且與 CFTS009 一致」之 TC，
+  `specification_reference` 同時列 12.2 與 CFTS009 之對應節；
+- **(ii)** 依 §8.4.2 判為 out of scope，於 `reasoning` 記為 coverage gap
+  並指向 `features/power` 之對應 TC —— **查證後此案之後半不可行**
+  （無對應 TC 可指）；
+- **(iii)** 開 DR 詢問上游該 leaf 是否應存在於本報告。
+
+**執行層之補充（不提案）**：查證結果使 (ii) 之形態改變 ——
+原設想為「已被他 feature 涵蓋，故本 feature 不重複」，
+而實測為「**兩邊都沒有**」。若仍採 (ii)，其記載須為
+「out of scope 且 `features/power` 亦未涵蓋 → 全案缺口」，
+而非「已由他 feature 涵蓋」。
+
+**連帶**：`-027`（12.1）與 `-029`（12.3）**本身含可驗證行為**
+（前者為「不喚醒」、後者為「靜音」），不受本則影響，
+仍在 Test Set `Off Road Plus` 內正常生成。**本則只涉 `-028` 一個 leaf。**
+
+---
+
 ## 開案時之介面實測記錄（非異常，供追溯）
 
 `scripts/new_feature.py` 之實際介面與本 slug 之相合情形：

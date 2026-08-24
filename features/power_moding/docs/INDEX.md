@@ -12,6 +12,8 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 03 | 2026-08-23 | Test Group 欄值改判、DV 列舉值實測、Phase 1 recon | [handoff/03_testgroup_and_dv.md](handoff/03_testgroup_and_dv.md) ＋ [03a_pei_rulings.md](handoff/03a_pei_rulings.md) | [upstream/03_testgroup_and_dv.md](upstream/03_testgroup_and_dv.md) | R-PMH13–R-PMH18（逐字抄錄 7/7 相符） | A-PMH09、A-PMH10；A-PMH06（附 PENDING-CANON）／A-PMH07 → RESOLVED | **步驟 1–8 全數執行；九條停止條件全未觸發** |
 | 04 | 2026-08-23 | R-PMH10 證據基礎更正、母體判準、機器檢查補實 | [handoff/04_corpus_and_assertions.md](handoff/04_corpus_and_assertions.md) | [upstream/04_corpus_and_assertions.md](upstream/04_corpus_and_assertions.md) | R-PMH19–R-PMH23（逐字抄錄 5/5 相符） | A-PMH11／A-PMH12；A-PMH09 → RESOLVED、A-PMH10 證據更正 | **步驟 1–7 全數執行；九條停止條件全未觸發** |
 | 05 | 2026-08-24 | 母體判準修正、Q3 完整語料與**重裁定案**、Phase 3 前置 | [handoff/05_corpus_fix_and_framework_prep.md](handoff/05_corpus_fix_and_framework_prep.md) ＋ [05a](handoff/05a_upstream_naming_scope.md)／[05b](handoff/05b_q3_final.md) | [upstream/05_corpus_fix_and_framework_prep.md](upstream/05_corpus_fix_and_framework_prep.md) | R-PMH24–R-PMH27（逐字抄錄 4/4 相符） | （未立新 A-PMH —— 新發現皆為停止條件之回報） | **步驟 1–6 全數執行；停止條件 7、8 觸發，已查明並回報** |
+| 06 | 2026-08-24 | 停止條件處置、Layer 2 複算、跨規格缺口 | [handoff/06_framework_proposal.md](handoff/06_framework_proposal.md) | [upstream/06_framework_proposal.md](upstream/06_framework_proposal.md) | R-PMH28–R-PMH31（逐字抄錄 4/4 相符） | A-PMH13（CFTS009 缺口） | **步驟 1–5 全數執行；九條停止條件全未觸發** |
+| 07 | 2026-08-24 | tie-break、granularity 檢查、跨 feature 缺口擴查 | [handoff/07_gap_widening.md](handoff/07_gap_widening.md) | [upstream/07_gap_widening.md](upstream/07_gap_widening.md) | R-PMH32／R-PMH33（逐字抄錄 2/2 相符） | （無新 A-PMH；A-PMH13 之量詞擴大、口徑註結案） | **步驟 1–5 全數執行；九條停止條件全未觸發** |
 
 ## 01 輪要點
 
@@ -372,3 +374,102 @@ Vehicle Settings 4／其餘各 1；本 feature `V0.1`、Popup `V0.2` 皆屬實�
 **狀態**：P0 ✅／P1 ✅／**P2 待簽核**。**無阻斷 Phase 3 之未決項。**
 下一步：Layer 2 提案（分析層提出、Pei 裁定），輸入為
 `data/layer3_sections.tsv`。
+
+## 06 輪要點
+
+**兩項停止條件均已處置**
+- **母體回到 16**（R-PMH28：`Engineering Mode/App Team Effort/` 為工作子目錄，
+  非交付夾）。**執行層之停止條件 7 經確認為正確觸發**；差異歸屬為
+  分析層之列舉遺漏 ＋ R-PMH24 (a′) 之缺口。R-PMH27 之勘誤附註**已撤除**，
+  其原文 SHA256 `e6e14fc0a96c1ccc` 未變。
+- **`_Rebuilt` 之排除理由已換**（R-PMH31 將 `_Rebuilt`／`(done)` 自 (b) 移除）。
+  16 項排除清單**逐項反向覆核，理由全部成立**，停止條件 8 未觸發。
+- **量測時點 `2026-08-24T10:35:05+0800`**（R-PMH30 首次適用）。
+
+**⚠ 新發現：(c) 在 `Engineering Mode` 遇到平手，條文未定 tie-break**
+- `_Rebuilt` 改由 (c) 排除後，該夾兩檔**檔名日期相同**（皆 `20260816`），
+  (c) 之「取日期最大者」**無鑑別力** —— 實際取捨由排序實作決定，非由條文決定。
+- 依 **R-PMH29** 量測全部候選：兩者之 `(D3,D4,D5)` 皆 `(空,空,空)`，
+  **相異組合數 = 1** → **Q3 之結論對此不敏感**，該不確定性不必解決。
+- **惟 R-PMH29 保證的是「本次結論不敏感」，不是「(c) 有 tie-break」** ——
+  日後若有其他判準落在該夾，(c) 仍給不出答案。建議補一句，本包不自行補。
+
+**Layer 2 複算 —— 48/48、八組全符、餘數 0**
+- 提案內無重複、無漏、無多；三處切法之 TSV 複驗全部相符
+  （7.1 與 10.4 依 037 `FROP` 拆組 —— **上游 RD 之切法**，非重新分解；
+  章 9 五 leaf 同屬 9.1、`pdf_page` 皆 p9）。
+- **`framework.md` 已產出，狀態「未定版」**，Test Set #2 記 `<PENDING Q11>`，
+  **不預填**。
+
+**A-PMH13 —— `-028`（12.2）指向 CFTS009，`features/power` **零命中****
+- 條文逐字：`OFF2.)Please refer to CFTS009 for complete behavior.`
+- 查 `Power Management` 交付件 **284 條**（唯讀，未改 `features/power`）：
+  `OFF2` 0／`off road` 0／`hard control` 0／`Power Button On` 0／
+  `Power Off State` 0／`launch app` 0；`wake up` 1 但**經人工複核不相關**
+  （`-233` 為 startup animation）；`mute` 9 但皆非本標的。
+- 佐證：284 條之 spec_ref 前綴僅 `CFTS009`／`CFTS010`，
+  Test Set 五組**無任何 Off Road 相關者**。
+- **06 §六之前提不成立**：實測為未涵蓋 → **這是真缺口**。(ii) 之形態因而改變
+  —— 原設想「已被他 feature 涵蓋」，實測為「**兩邊都沒有**」。
+- 口徑差異具名：06 §六稱 283，實測 **284**（分母＝`D` 欄非空列）。
+- **範圍限定**：只涉 `-028`；`-027`／`-029` 本身含可驗證行為，不受影響。
+
+**Q10 —— 範圍是一張分頁，不是一格**
+- 母體 16 檔中 **12 檔有填**，且為**全有全無**：填的其 B3/B5/B6/B7 與修訂列
+  都有值；空的 4 檔**整張分頁一格未填**（Comfort／Privacy／TM／UP，
+  與 05 包所測 `B7` 為空者一致）。**`Power Management` 有填**，
+  故非「本 repo 產出者皆未填」。
+- 若裁為須填，`feature.yaml` 之 `write_back` 需增補 **11 項**，其中
+  **5 項須 Pei 給定字串**、**1 項與 R-PMH26(d) 相衝**（`B4` 取檔名即依賴
+  上游命名）、**1 項需擴充機器檢查**（現行三項皆不涵蓋封面頁）。
+  另發現表單層不一致：**DV 之 sqref 為 `B7:C7` 而合併範圍為 `B7:D7`**。
+
+**待 Pei**：**Q11（阻斷 Layer 2 定版）**／A-PMH13 之處置／Q10／(c) tie-break。
+
+## 07 輪要點
+
+**(c) 平手改為並列，不擇一**（R-PMH32）
+- 母體仍 **16**，`Engineering Mode` 一夾標為「代表檔未定」，兩候選並列。
+- 與 06 包之差異：06 之實作由排序決定了代表檔；**本輪不再決定**。
+  依 R-PMH29(a)，兩候選之 `(D3,D4,D5)` 皆空 → **Q3 結論不敏感**。
+- 量測時點 `2026-08-24T11:06:22+0800`（R-PMH30）。
+
+**A-PMH13 跨 feature 擴查 —— 16 個交付件、3,234 資料列，真命中 0**
+- 六組檢索式之原始命中：`OFF2` 1／`off road` 3／`Off Road+` 1／
+  `Power Off State` 7／`launch` 206／`hard control` 129。
+- **逐項人工複核後真命中 0**：`OFF2`／`Off Road+`／`Power Off State` 之命中
+  **全部落在本 feature 自身之 48 列草稿**（R-PMH5 之 037 機械搬運，
+  **是來源自身不是覆蓋**）；他 feature 之 2 個 `off road` 為
+  **`Off Road Pages`**（Home 之 widget 清單、MBAD 之 favorites 清單）；
+  129 個 `hard control` 全為 ICS hardcontrols 之調台／空調。
+- **停止條件 8 未觸發**，A-PMH13 之「全案缺口」判定量詞由 284 列擴為 3,234 列。
+
+**283/284 口徑註結案**（07 §二）—— 284 = 資料列數、283 = TC 數、
+差額為 `SWE-PM-089` 留白列。**兩個數字都對，量的是不同東西。**
+A-PMH13 之 PENDING 自此僅繫於 `-028` 之處置。
+
+**母本 `Cover 封面` 複驗 —— 四項全符**（`D6=C`／核准者／審查者／`D9` 空）。
+04 包 §8.1 之記載自此為**被複驗**而非被取代（通則 5）。停止條件 9 未觸發。
+
+**granularity 檢查已寫入 `framework.md`，六項判準全 PASS**
+- 執行層複算與分析層七項對照，**六項完全一致**；唯一差異為標準差 ——
+  分析層 2.2 為**樣本標準差**，執行層另算**母體標準差** 2.06。
+  **兩者皆對，量的是不同東西**（8 組為全集，`pstdev` 較切題），
+  且標準差非任一錨點之判準，不影響通過與否。二值已並列記明。
+- 限制照錄：**驗的是 leaf 分布不是 TC 分布**，Phase 4 須以 TC 分布重驗，
+  已列入 `framework.md` 未決表。
+
+**⚠ 本包自陳之口徑瑕疵二項（上繳 §6）**
+1. **`VF230_V1_R5` 之資料列為 0** —— 它是空白工作簿，把它計入
+   「16 個交付件」之分母**會讓結論看起來比實際強**。誠實陳述應為
+   「15 個有內容之交付件零命中，另 1 個為空白無從命中」。
+2. **`Engineering Mode` 兩候選同時計入 3,234 列**（527+211），
+   其內容大量重疊，**分母被灌水**。零命中之結論不受影響。
+
+**另二項該驗而未驗**：檢索未及 `Remarks`(AI) 等欄（盲區已聲明）；
+**granularity 檢查全部由 must-not-hit 構成，無 must-hit 錨點** ——
+無法區分「判準有效」與「判準對所有東西都通過」（R-G9 之反向形狀）。
+
+**待 Pei**：**Q11（阻斷 Layer 2 定版）**／A-PMH13 之處置（分析層提案
+(ii)+(iii) 併行且該列仍寫入並揭露，比照 R-VF12）／Q10（分析層提案不填）／
+granularity 是否補 must-hit。
