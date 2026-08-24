@@ -316,3 +316,159 @@ def surgical_save(mutated, src: Path, out: Path, *, verify: bool = True) -> dict
 def copy_unchanged(src: Path, out: Path) -> None:
     """Byte-for-byte copy, for the no-edits case."""
     shutil.copy(src, out)
+
+
+# ------------------------------------------------- structural row insertion
+#
+# `surgical_save` is an append-only cell patcher: it refuses to insert a row
+# mid-sheet, because shifting every row below it is not a cell change set (see
+# the StructureError in `patch_sheet_xml`). Row insertion is therefore a
+# separate, purely *structural* emit that runs BEFORE the content pass:
+#
+#     expanded = surgical_insert_rows(src, tmp, {11: 3, 12: 2, ...})
+#     wb = openpyxl.load_workbook(tmp); ...mutate...
+#     surgical_save(wb, tmp, out)
+#
+# It moves rows and the sheet's row-addressed references; it writes no values.
+# Everything `surgical_save` preserves is preserved here for the same reason —
+# every zip member but the target sheet's XML is copied byte-for-byte — and the
+# same `verify_structure` invariant is asserted on the result.
+
+ROW_ATTR_RE = re.compile(r'(<row r=")(\d+)(")')
+CELL_REF_RE = re.compile(r'(<c r=")([A-Z]+)(\d+)(")')
+A1_RE = re.compile(r"\$?([A-Z]+)\$?(\d+)")
+SHEETDATA_RE = re.compile(r"(<sheetData[^>]*>)(.*)(</sheetData>)", re.S)
+
+
+def build_shift(insertions: dict[int, int]):
+    """Return `S(row) -> new row`, the offset a set of insertions imposes.
+
+    Rows inserted "after row k" land at `S(k)+1 … S(k)+n`, so a source row `r`
+    moves down by the number of rows inserted at anchors strictly before it.
+    """
+    anchors = sorted(insertions)
+
+    def shift(row: int) -> int:
+        return row + sum(insertions[a] for a in anchors if a < row)
+
+    return shift
+
+
+def _shift_ref_token(token: str, shift) -> str:
+    """Shift one A1 or A1:B2 reference. Non-references pass through."""
+    parts = token.split(":")
+    out = []
+    for part in parts:
+        m = A1_RE.fullmatch(part)
+        if not m:
+            return token
+        out.append(f"{m.group(1)}{shift(int(m.group(2)))}")
+    return ":".join(out)
+
+
+def shift_ref_list(refs: str, shift) -> str:
+    """Shift a space-separated `sqref`/`ref` list (`P10:P221 Q10:Q11`)."""
+    return " ".join(_shift_ref_token(t, shift) for t in refs.split())
+
+
+def _clone_row(anchor_xml: str, anchor_attrs: str, row_num: int) -> str:
+    """A blank row carrying the anchor row's height, format and cell styles.
+
+    Cloning the styles is the point: `_new_row_xml` emits `<c>` with no `s=`,
+    which in this form means no border, no wrap and the default row height —
+    a visibly broken row in the delivered workbook.
+    """
+    attrs = ROW_ATTR_RE.sub("", anchor_attrs)
+    cells = []
+    for m in CELL_RE.finditer(anchor_xml):
+        style = re.search(r'\ss="\d+"', m.group(3) or "")
+        cells.append(f'<c r="{m.group(1)}{row_num}"'
+                     f'{style.group(0) if style else ""}/>')
+    return f'<row r="{row_num}"{attrs}>{"".join(cells)}</row>'
+
+
+def insert_rows_xml(xml: str, insertions: dict[int, int]) -> str:
+    """Insert blank styled rows into one worksheet's XML and shift its refs."""
+    block = SHEETDATA_RE.search(xml)
+    if not block:
+        raise StructureError("sheet has no <sheetData> to insert into")
+
+    rows = list(ROW_RE.finditer(block.group(2)))
+    present = [int(m.group(1)) for m in rows]
+    if present != sorted(present):
+        raise StructureError(f"rows are not in ascending document order: "
+                             f"{present[:10]}")
+    missing = sorted(set(insertions) - set(present))
+    if missing:
+        raise StructureError(f"insertion anchors absent from the sheet: "
+                             f"{missing}. An anchor must be an existing row, "
+                             "so the inserted rows can clone its format")
+
+    shift, out, cum = build_shift(insertions), [], 0
+    for m in rows:
+        old = int(m.group(1))
+        new = old + cum
+        body = m.group(3) or ""
+        attrs = m.group(2) or ""
+        renumbered = CELL_REF_RE.sub(
+            lambda c: f"{c.group(1)}{c.group(2)}{new}{c.group(4)}", body)
+        out.append(f'<row r="{new}"{attrs}>{renumbered}</row>'
+                   if body else f'<row r="{new}"{attrs}/>')
+        for i in range(insertions.get(old, 0)):
+            out.append(_clone_row(body, attrs, new + 1 + i))
+        cum += insertions.get(old, 0)
+
+    patched = (xml[:block.start(2)] + "".join(out) + xml[block.end(2):])
+
+    # Row-addressed references outside <sheetData>. Every one of these moves
+    # with its rows; leaving any behind silently detaches a dropdown, a filter
+    # or a colour scale from the data it belongs to.
+    def sub_attr(pattern: str, text: str) -> str:
+        return re.sub(
+            pattern,
+            lambda m: m.group(1) + shift_ref_list(m.group(2), shift) + m.group(3),
+            text)
+
+    for pat in (r'(<autoFilter ref=")([^"]*)(")',
+                r'(<mergeCell ref=")([^"]*)(")',
+                r'(<conditionalFormatting sqref=")([^"]*)(")',
+                r'(<dataValidation\b[^>]*?\ssqref=")([^"]*)(")',
+                r'(<xm:sqref>)([^<]*)(</xm:sqref>)',
+                r'(<selection[^>]*?\ssqref=")([^"]*)(")'):
+        patched = sub_attr(pat, patched)
+
+    return _fix_dimension(patched)
+
+
+def surgical_insert_rows(src: Path, out: Path, insertions: dict[int, int],
+                         sheet: str, *, verify: bool = True) -> dict:
+    """Insert blank styled rows into `sheet` of `src`, emitting to `out`.
+
+    `insertions` maps an existing row number to how many rows to insert
+    immediately after it. Values are written by a later `surgical_save` pass.
+    """
+    src, out = Path(src), Path(out)
+    if not insertions:
+        copy_unchanged(src, out)
+        return {"inserted": 0, "differing": []}
+
+    member = sheet_members(src).get(sheet)
+    if member is None:
+        raise StructureError(f"no zip member resolved for sheet {sheet!r}")
+    with zipfile.ZipFile(src) as z:
+        xml = z.read(member).decode("utf-8")
+    patched = insert_rows_xml(xml, insertions)
+
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(src) as zin, zipfile.ZipFile(
+            out, "w", zipfile.ZIP_DEFLATED) as zout:
+        for info in zin.infolist():
+            data = (patched.encode("utf-8") if info.filename == member
+                    else zin.read(info.filename))
+            zout.writestr(info, data)
+
+    report = {"inserted": sum(insertions.values()),
+              "anchors": len(insertions), "member": member}
+    if verify:
+        report.update(verify_structure(src, out, {member}))
+    return report
