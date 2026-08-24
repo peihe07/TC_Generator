@@ -1,4 +1,4 @@
-"""W-167（87 包 §5，R-VS79）—— R-VS6 之 **L3 抽驗**。
+"""W-167／W-169 —— R-VS6 之 **L3 驗**（87 包 §5；88 包 §2.1 改全量）。
 
 R-VS79 之三層：
   L1 產物 ↔ 解析結果（兩側同解析層，其偏差不可見）
@@ -8,7 +8,9 @@ R-VS79 之三層：
 本檔以 `zipfile` 直讀 `word/document.xml`，**不經 `inscope_w39`**，
 自其 `<w:t>` 重建段落文字，與 `blocks_with_sec()` 所得之條文逐字比對。
 
-抽法：225 條依 `leaf_id` 排序後**等距取 10**（步長 `len // 10`，自 index 0 起）。
+**W-169（88 包 §2.1）**：R-VS79 之「至少一次抽驗」已改為「**全量驗**」——
+其理由為「不可見的東西，抽 10 條看不見它，和它不存在，是兩回事」。
+故本檔預設**全量**（225 條）；傳入整數引數則退回抽樣（保留 W-167 之可重跑性）。
 """
 from __future__ import annotations
 
@@ -55,13 +57,17 @@ def main() -> int:
     for f in latest_batches():
         tcs += json.loads(f.read_text(encoding="utf-8"))["tcs"]
     tcs.sort(key=lambda t: (t["leaf_id"], t["tc_title"]))
-    step = len(tcs) // 10
-    sample = [tcs[i * step] for i in range(10)]
+    n = int(sys.argv[1]) if len(sys.argv) > 1 else 0
+    if n:
+        step = len(tcs) // n
+        sample, how = [tcs[i * step] for i in range(n)], f"等距取 {n}（步長 {step}）"
+    else:
+        sample, how = tcs, "**全量**"
 
     paras = raw_paragraphs()
     joined = norm(" ".join(paras))
 
-    print(f"R-VS79 之 L3 抽驗 —— 母體 {len(tcs)} 條，等距取 10（步長 {step}）")
+    print(f"R-VS79 之 L3 驗 —— 母體 {len(tcs)} 條，{how}")
     print(f"原始文件：`{DOCX.name}`（{len(paras)} 段，直讀 `word/document.xml`）\n")
     bad = 0
     for i, t in enumerate(sample, 1):
@@ -73,7 +79,9 @@ def main() -> int:
             print(f"{i:2d}. {leaf}  [{rid}]  —— 無解析所得之條文，略過")
             continue
         hit = norm(parsed) in joined
-        print(f"{i:2d}. {leaf}  [{rid}]  {'✅ 逐字命中' if hit else '❌ 不符'}")
+        if not hit or n:
+            print(f"{i:2d}. {leaf}  [{rid}]  "
+                  f"{'✅ 逐字命中' if hit else '❌ 不符'}")
         if not hit:
             bad += 1
             n = norm(parsed)
@@ -93,7 +101,7 @@ def main() -> int:
                 print(f"      原始文件 …{m[max(0, lo - 40):lo + 40]}…")
             else:
                 print("      原始文件：無以相同前 30 字起首之段落")
-    print(f"\n不符數 **{bad}** ／ 10")
+    print(f"\n命中 **{len(sample) - bad}** ／ 不符 **{bad}** ／ 共 {len(sample)}")
     if bad:
         print("**R-VS6 之全部結論須加註其前提不成立**（R-VS79）")
     return 0 if bad == 0 else 1

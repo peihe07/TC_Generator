@@ -10,8 +10,8 @@
 
 | 批 | 原生成器 | 修正層（依序） | 層 | 現行版本 | sha256（前 16） | 凍結點 | `frozen_sha256`（前 16） |
 |---|---|---|---:|---|---|---|---|
-| `batch01` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `split_exec_w143.py` → `earlyfix_w157.py` → `rvs6_restore_w160.py` | 5 | `batch01_v9.json` | `34f551be0e3b850a` | `batch01.json` | `cf1e5510232a5158` |
-| `batch02` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `split_exec_w143.py` → `earlyfix_w157.py` → `rvs6_restore_w160.py` | 5 | `batch02_v7.json` | `45f32fc651724852` | `batch02.json` | `6b6f45d5473d27ed` |
+| `batch01` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `split_exec_w143.py` → `earlyfix_w157.py` → `rvs6_restore_w160.py` | 6 | `batch01_v9.json` | `34f551be0e3b850a` | `batch01.json` | `cf1e5510232a5158` |
+| `batch02` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `split_exec_w143.py` → `earlyfix_w157.py` → `rvs6_restore_w160.py` | 6 | `batch02_v7.json` | `45f32fc651724852` | `batch02.json` | `6b6f45d5473d27ed` |
 | `batch03` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `rvs6_restore_w160.py` | 3 | `batch03_v6.json` | `3e6e6eddc6db7286` | `batch03.json` | `207fd0f8c7706682` |
 | `batch04` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` | 2 | `batch04_v6.json` | `94540d4f762244b4` | `batch04.json` | `8843b891c5503373` |
 | `batch05` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` | 2 | `batch05_v4.json` | `5bd88bfacaa4ce55` | `batch05.json` | `c13574c86736e45d` |
@@ -22,18 +22,18 @@
 | `batch11` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` | 2 | `batch11_v4.json` | `314bb2c9a37d2ec2` | `batch11.json` | `cffe83b367b9bd68` |
 | `batch12` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` | 2 | `batch12_v4.json` | `d0fab7fa4f14ead5` | `batch12.json` | `fb7cfac7481b7e98` |
 | `batch13` | `batch13_w100.py` | `sibling_fix_w105.py` → `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` | 4 | `batch13_v5.json` | `d7080276032bc6c1` | — | — |
-| `batch14` | `batch14_w105.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` | 3 | `batch14_v5.json` | `510d80f88526c040` | — | — |
+| `batch14` | `batch14_w105.py` | `**D-4（38 輪） 之腳本或作業不在 repo**` → `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` | 4 | `batch14_v5.json` | `510d80f88526c040` | — | — |
 | `batch15` | `batch15_w108.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` | 3 | `batch15_v4.json` | `ff8f979d8b0abcc2` | — | — |
-| `batch16` | `batch16_w113.py` | `pilot_fix_w130.py` → `screen_layer_w132.py` → `popup_weakest_w135.py` | 3 | `batch16_v4.json` | `763cca763bb0202c` | — | — |
-| `batch17` | `batch17_w116.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `screen_layer_w132.py` → `impl_gap_w133.py` → `earlyfix_w157.py` | 5 | `batch17_v6.json` | `e4f094ec44dff012` | — | — |
-| `batch18` | `batch18_w119.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` → `earlyfix_w157.py` | 4 | `batch18_v5.json` | `d3d1f9a7b0e6da7c` | — | — |
+| `batch16` | `batch16_w113.py` | `pilot_fix_w130.py` → `screen_layer_w132.py` → `popup_weakest_w135.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` | 4 | `batch16_v4.json` | `763cca763bb0202c` | — | — |
+| `batch17` | `batch17_w116.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `screen_layer_w132.py` → `impl_gap_w133.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `earlyfix_w157.py` | 6 | `batch17_v6.json` | `e4f094ec44dff012` | — | — |
+| `batch18` | `batch18_w119.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `earlyfix_w157.py` | 5 | `batch18_v5.json` | `d3d1f9a7b0e6da7c` | — | — |
 | `batch19` | `batch19_w122.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` | 3 | `batch19_v4.json` | `cc47d18045ad4d50` | — | — |
 | `batch20` | `batch20_w143.py` | — | 0 | `batch20.json` | `feb5ef8ece767038` | — | — |
-| `batch21_probe` | `batch21_probe_w146.py` | `**W-149 腳本缺**` → `earlyfix_w157.py` | 2 | `batch21_probe_v2.json` | `868da48b133950af` | — | — |
+| `batch21_probe` | `batch21_probe_w146.py` | `**W-149 之腳本或作業不在 repo**` → `earlyfix_w157.py` | 2 | `batch21_probe_v2.json` | `868da48b133950af` | — | — |
 | `batch22` | `batch22_w150.py` | — | 0 | `batch22.json` | `fe0c2c2822b8e105` | — | — |
 | `batch23` | `batch23_w152.py` | `earlyfix_w157.py` | 1 | `batch23_v2.json` | `c74c457dbebe3824` | — | — |
 
-**鏈長最長者：`batch17`，6 層。**
+**鏈長最長者：`batch17`，7 層。**
 
 ### 原生成器未入庫者 —— **11 批**，其 R-VS53 以**雜湊凍結**滿足（86 包 §3）
 
@@ -81,3 +81,43 @@ python3 scripts/defect_scan_w157.py                     # 五項 defect
 python3 scripts/backscan_w160.py                        # R-VS77 全母體回掃
 python3 scripts/completeness_w154.py                    # R-VS76 完整性
 ```
+
+### ⚠ 已入庫後之**就地改動**（R-VS80 所禁；A-VS162）
+
+判準為 **git 可驗者**：該版本檔之 commit 數 > 1，即其入庫後另有 commit 改其內容。
+**不以 `revision` 之標記推斷** —— `batch14_v2` 之首標記為 `D-4（38 輪）`，其為該版之產出者而非就地改動。
+
+| 版本檔 | 改動之 commit | 所改之欄位（條數） |
+|---|---|---|
+| `batch01_v3.json` | `baeb58a` | `dr15_exposed` 8 |
+| `batch01_v6.json` | `70b75d0` | `screen_pending` 8 |
+| `batch01_v6.json` | `100d1e0` | `screen_pending` 2 |
+| `batch02.json` | `baeb58a` | `dr15_exposed` 6 |
+| `batch02_v4.json` | `70b75d0` | `screen_pending` 6 |
+| `batch02_v4.json` | `100d1e0` | `screen_pending` 1 |
+| `batch03.json` | `baeb58a` | `dr15_exposed` 10 |
+| `batch03_v5.json` | `70b75d0` | `screen_pending` 10 |
+| `batch04_v6.json` | `70b75d0` | `screen_pending` 10 |
+| `batch05_v4.json` | `70b75d0` | `screen_pending` 8 |
+| `batch06_v4.json` | `70b75d0` | `screen_pending` 9 |
+| `batch07_v4.json` | `70b75d0` | `screen_pending` 7 |
+| `batch08_v5.json` | `70b75d0` | `screen_pending` 7 |
+| `batch10_v4.json` | `70b75d0` | `screen_pending` 10 |
+| `batch11_v4.json` | `70b75d0` | `screen_pending` 1 |
+| `batch13_v2.json` | `70b75d0` | `screen_pending` 10 |
+| `batch14_v2.json` | `70b75d0` | `screen_pending` 10 |
+| `batch15.json` | `70b75d0` | `screen_pending` 13 |
+| `batch16.json` | `70b75d0` | `screen_pending` 10 |
+| `batch16_v4.json` | `100d1e0` | `screen_pending` 10 |
+| `batch17.json` | `70b75d0` | `screen_pending` 10 |
+| `batch17_v5.json` | `100d1e0` | `screen_pending` 8 |
+| `batch18.json` | `70b75d0` | `screen_pending` 10 |
+| `batch18_v4.json` | `100d1e0` | `screen_pending` 5 |
+| `batch21_probe.json` | `a8b5bb1` | `expected_result` 2／`reasoning` 2／`test_procedure` 2／`remarks` 1／`tc_title` 1／`split_flag` 1／`split_reason` 1／`distinguishing_axis` 1／`pre_conditions` 1 |
+| `batch23.json` | `cc66602` | `pre_conditions` 9／`test_procedure` 8／`expected_result` 7／`remarks` 5 |
+| **合計** | **5 個 commit** ／ **26 檔次** | |
+
+**該層皆不在鏈上** —— 其無腳本，亦不產新版；
+**其記錄僅存於上表之 git commit**。若該次未入庫，其缺口即永久不可見。
+
+**48 輪之就地改動（A-VS162）—— 其手段不可考，以 git commit `100d1e0` 為其記錄。**

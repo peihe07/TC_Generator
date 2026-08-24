@@ -92,21 +92,72 @@ def chain(stem: str, origin: str = "") -> list[str]:
         key=lambda p: int(re.search(r"_v(\d+)", p.name).group(1)))
     for p in vers:
         rev = str(json.loads(p.read_text(encoding="utf-8")).get("revision") or "")
-        m = re.match(r"(W-\d+)", rev)
-        # 未能對映者**不得靜默略過** —— 其表示該層之腳本已不在 repo，
-        # 與「原生成器缺」為同一問題，須顯示於鏈上。
-        if not m:
+        # **修正（59 輪 W-170）**：舊式為 `re.match(r"(W-\d+)", rev)` ——
+        # 其**錨於字串首**，只取第一個標記。而一版之 `revision` 可被**追加**
+        # 多個標記（48 輪之 D-3 即以 `；D-3（48 輪）：…` 追加於既有字串之後），
+        # **該追加因而被靜默丟棄** —— A-VS162 之「鏈缺一層」實由此式所致，
+        # 非由「未更新 revision」所致（其實已更新）。
+        # 改為掃全串之 `W-nn` 與 `D-n（nn 輪）` 二式，依其出現序。
+        marks = re.findall(r"W-\d+|D-\d+（\d+\s*輪）", rev)
+        if not marks:
             continue
         # 首版之 `revision` 記的是**原生成器自己**之 W 號
         # （如 `batch13.json` 記 `W-100`，即 `batch13_w100.py`）——
         # 其已列於「原生成器」欄，不重複列為修正層。
         ow = re.search(r"_w(\d+)\.py$", origin)
-        if ow and f"W-{ow.group(1)}" == m.group(1):
+        for mk in marks:
+            # 首版之 `revision` 記原生成器自己之 W 號，其已列於「原生成器」欄
+            if ow and f"W-{ow.group(1)}" == mk:
+                continue
+            # **不以標記形態推斷就地改動**（59 輪 W-170 之更正）——
+            # `batch14_v2` 之首標記即 `D-4（38 輪）`，其為**該版之產出者**，
+            # 非就地改動。就地改動須以 **git 之 commit 數**判定，見 `inplace()`。
+            script = FIXER_MAP.get(mk, f"**{mk} 之腳本或作業不在 repo**")
+            if script not in seen:
+                seen.add(script)
+                out.append(script)
+    return out
+
+
+def inplace() -> list[tuple[str, str, str]]:
+    """**已入庫後被就地改動之版本檔**（R-VS80 所禁之形態）。
+
+    判準為 **git 可驗者**：該檔之 commit 數 > 1 —— 即其入庫後另有 commit 改之。
+    不以 `revision` 之標記形態推斷（該推斷於 `batch14_v2` 誤判）。
+    回傳（檔名, 改動之 commit, 該次所改之欄位摘要）。
+    """
+    import subprocess
+    out = []
+    for f in sorted(GEN.glob("batch*.json")):
+        rel = f.relative_to(FEAT.parents[1])
+        cs = subprocess.run(["git", "log", "--format=%h", "--", str(rel)],
+                            capture_output=True, text=True,
+                            cwd=FEAT.parents[1]).stdout.split()[::-1]
+        if len(cs) < 2:
             continue
-        script = FIXER_MAP.get(m.group(1), f"**{m.group(1)} 腳本缺**")
-        if script and script not in seen:
-            seen.add(script)
-            out.append(script)
+
+        def load(rev):
+            r = subprocess.run(["git", "show", f"{rev}:{rel}"], capture_output=True,
+                               text=True, cwd=FEAT.parents[1])
+            try:
+                return json.loads(r.stdout)
+            except Exception:
+                return None
+
+        for prev, cur in zip(cs, cs[1:]):
+            a, b = load(prev), load(cur)
+            if a is None or b is None:
+                continue
+            ta = {t["leaf_id"]: t for t in a["tcs"]}
+            tb = {t["leaf_id"]: t for t in b["tcs"]}
+            fields = {}
+            for k in set(ta) & set(tb):
+                for fld in set(ta[k]) | set(tb[k]):
+                    if ta[k].get(fld) != tb[k].get(fld):
+                        fields[fld] = fields.get(fld, 0) + 1
+            if fields:
+                out.append((f.name, cur, "／".join(
+                    f"`{k}` {v}" for k, v in sorted(fields.items(), key=lambda x: -x[1]))))
     return out
 
 
@@ -180,6 +231,26 @@ def main() -> None:
           "python3 scripts/backscan_w160.py                        # R-VS77 全母體回掃",
           "python3 scripts/completeness_w154.py                    # R-VS76 完整性",
           "```"]
+    ip = inplace()
+    L += ["", "### ⚠ 已入庫後之**就地改動**（R-VS80 所禁；A-VS162）",
+          "",
+          "判準為 **git 可驗者**：該版本檔之 commit 數 > 1，"
+          "即其入庫後另有 commit 改其內容。",
+          "**不以 `revision` 之標記推斷** —— `batch14_v2` 之首標記為 "
+          "`D-4（38 輪）`，其為該版之產出者而非就地改動。",
+          "",
+          "| 版本檔 | 改動之 commit | 所改之欄位（條數） |",
+          "|---|---|---|"]
+    for n, c, f in ip:
+        L.append(f"| `{n}` | `{c}` | {f} |")
+    L += [f"| **合計** | **{len({c for _, c, _ in ip})} 個 commit** "
+          f"／ **{len(ip)} 檔次** | |",
+          "",
+          "**該層皆不在鏈上** —— 其無腳本，亦不產新版；",
+          "**其記錄僅存於上表之 git commit**。若該次未入庫，其缺口即永久不可見。",
+          "",
+          "**48 輪之就地改動（A-VS162）—— 其手段不可考，"
+          "以 git commit `100d1e0` 為其記錄。**"]
     p = FEAT / "docs/reports/REGEN_ORDER.md"
     p.write_text("\n".join(L), encoding="utf-8")
     print(f"{p} —— 鏈長最長 {longest} 層（`{worst}`）")
