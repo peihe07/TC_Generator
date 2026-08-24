@@ -76,6 +76,27 @@ VERDICT: dict[str, tuple[str, str]] = {
 CHAPTER = {"SU": 7, "DS": 7, "SSND": 8, "PM": 9, "PITA": 10, "VRLP": 11, "OFF": 12}
 
 
+# --- R-PMH52 之擴及（17 包步驟 4）---
+# R-PMH52 之措詞為「**任何** lint 之輸出須具名其未涵蓋之範圍」，
+# 而 16 包 §5.3 查出該條實際只施行於 `lint_batch.py` —— 單向套用。
+# 本檢查自此於輸出末尾具名其限度。**內容須為本檢查之限度，
+# 不得寫成一般性免責。**
+LIMITS = [
+    "marker 之**內容**不看 —— 只驗其標記字串是否出現於 SYS1；該 marker 之需求文句是否完整（如 7.1 之漏句）屬 `bidirectional_spec_diff.py`",
+    "`VERDICT` 之判定值仍為人工 —— must-hit C 只攔「未判定」，**不攔「判錯」**；R-PMH61 之語氣檢查為部分補救，且其窗口只取 marker 之後",
+    "**候選集合隨萃取器而變**（16 §4.2：PyMuPDF 多出 `Loading`／`each`）—— 本檢查之候選以 `sandbox/spec.txt` 為準",
+    "候選形態 `CANDIDATE` 仍是一個正規式 —— 若規格改用 `[A-3]` 或 `Req 4.1 -` 之類形態，反向掃描一樣看不見",
+    "SYS1 側只讀 `Basic Report` 之 `Description` 欄；**其餘欄不看**",
+]
+
+
+def print_limits() -> None:
+    print("\n=== 本檢查未涵蓋之範圍（R-PMH52）===")
+    for _x in LIMITS:
+        print(f"  - {_x}")
+    print("  **以上各項本檢查一律不看** —— 其全綠不含關於該等項之任何資訊。")
+
+
 def norm(t: str) -> str:
     t = str(t).replace("_x000D_", " ")
     for a, b in (("‘", "'"), ("’", "'"),
@@ -208,17 +229,24 @@ IMPERATIVE = re.compile(
 TONE_WINDOW = 180   # marker 之後取之字元數（其所引領之句）
 
 
-def tone_scan(pdf: str, prefixes: list[str]) -> dict[str, list[tuple[str, str]]]:
+def tone_scan(pdf: str, prefixes: list[str],
+              side: str = "after") -> dict[str, list[tuple[str, str]]]:
     """回傳 {前綴: [(命中之 marker 文字, 語氣證據)]}。
 
-    窗口取 marker **之後** `TONE_WINDOW` 字元 —— 需求 marker 之作用是引領其
-    需求文句，故證據在其後而非其前。
+    `side="after"`（預設）：窗口取 marker **之後** `TONE_WINDOW` 字元 ——
+    需求 marker 之作用是引領其需求文句，故證據在其後而非其前。
+
+    `side="before"`（17 包步驟 6，16 §10 第 1 項）：取其**前** —— 供對照。
+    **窗口方向本身是一個假設**：若某前綴之 marker 恆出現於需求句**尾**，
+    其語氣證據會落在 `after` 窗之外而本檢查看不見。
+    **只回報兩窗之旗標差異，不改現行窗口之選擇。**
     """
     hits: dict[str, list[tuple[str, str]]] = {}
     for p_ in prefixes:
         pat = re.compile(r"\b" + re.escape(p_) + r"\s*\d+(?:\.\d+)?\.?[):]")
         for m in pat.finditer(pdf):
-            after = pdf[m.end():m.end() + TONE_WINDOW]
+            after = (pdf[m.end():m.end() + TONE_WINDOW] if side == "after"
+                     else pdf[max(0, m.start() - TONE_WINDOW):m.start()])
             ev = ""
             if (im := IMPERATIVE.match(after)):
                 ev = f"祈使句起首 `{im.group(1)}`"
@@ -229,14 +257,16 @@ def tone_scan(pdf: str, prefixes: list[str]) -> dict[str, list[tuple[str, str]]]
     return hits
 
 
-def print_tone_report(pdf: str, cnt: Counter, extra_req_drop: tuple[str, ...] = ()) -> list[str]:
+def print_tone_report(pdf: str, cnt: Counter, extra_req_drop: tuple[str, ...] = (),
+                      side: str = "after") -> list[str]:
     """對判為 `noise`／`xref` 者做語氣檢查，回傳須人讀之前綴清單。"""
     targets = [p_ for p_ in cnt
                if VERDICT.get(p_, ("", ""))[0] in {"noise", "xref"}
                or p_ in extra_req_drop]
     targets.sort()
-    hits = tone_scan(pdf, targets)
-    print("\n=== 非需求前綴之需求語氣檢查（R-PMH61）===")
+    hits = tone_scan(pdf, targets, side)
+    lbl = "其後" if side == "after" else "其前"
+    print(f"\n=== 非需求前綴之需求語氣檢查（R-PMH61，窗口取 marker {lbl}）===")
     print(f"受檢前綴 = {len(targets)} 個（判為 `noise`／`xref` 者）\n")
     print(f"{'前綴':<10} {'判定':<6} {'語氣命中':>6}  證據")
     flagged = []
@@ -250,6 +280,20 @@ def print_tone_report(pdf: str, cnt: Counter, extra_req_drop: tuple[str, ...] = 
     print(f"\n**須人讀確認之前綴**：{flagged or '無'}")
     print("  （只具名，**不自行改判** —— 判定值之變更須另有依據）")
     return flagged
+
+
+def print_window_compare(pdf: str, cnt: Counter) -> bool:
+    """17 包步驟 6 —— 兩窗口之旗標集合對照。**只回報，不改判準。**"""
+    a = set(print_tone_report(pdf, cnt, side="after"))
+    b = set(print_tone_report(pdf, cnt, side="before"))
+    print("\n=== 兩窗口之旗標對照（17 包步驟 6）===")
+    print(f"  取其後（現行）：{sorted(a) or '無'}")
+    print(f"  取其前（對照）：{sorted(b) or '無'}")
+    print(f"  只在其後：{sorted(a - b) or '無'}")
+    print(f"  **只在其前：{sorted(b - a) or '無'}**"
+          "  ← 此集合非空即表示現行窗口看不見之語氣證據確實存在")
+    print("  **只回報，不改現行窗口之選擇**（16 §10 第 1 項之自提項）。")
+    return a == b
 
 
 def coverage(markers: list[str], sysall: str) -> list[tuple[str, bool]]:
@@ -324,6 +368,8 @@ def self_test() -> int:
     pdf = norm(PDF_TXT.read_text(errors="replace"))
     flagged = print_tone_report(pdf, cnt)
 
+    same_window = print_window_compare(pdf, cnt)
+
     print("\n=== must-hit D —— 將 `SU` 之判定由 `req` 改為 `noise`（測試替身）===")
     print("  其鄰近文句必含需求語氣，**故須被升為須人讀並攔下**；"
           "\n  攔不下者，本檢查對真正之誤判亦無效（R-PMH61）。")
@@ -338,6 +384,8 @@ def self_test() -> int:
     print(f"前綴全判定: {ok_judged}；範圍向 31／2: {ok_scope}；"
           f"must-hit A: {caught}；must-hit B: {caught_b}；"
           f"must-hit C: {caught_c}；must-hit D: {caught_d}")
+    print(f"兩窗口旗標集合相同: {same_window}"
+          "（不同不構成 FAIL —— 步驟 6 明令只回報）")
     return 0 if all((ok_judged, ok_scope, caught, caught_b,
                      caught_c, caught_d)) else 1
 
@@ -348,21 +396,34 @@ def main() -> None:
     ap.add_argument("--prefix-scan", action="store_true")
     ap.add_argument("--tone-scan", action="store_true",
                     help="R-PMH61 —— 非需求前綴之需求語氣檢查")
+    ap.add_argument("--window-compare", action="store_true",
+                    help="17 包步驟 6 —— 語氣窗口取其前／其後之旗標對照")
     ap.add_argument("--verify-extraction", metavar="TEXT_FILE",
                     help="R-PMH60 —— 與另一份萃取比對 marker 集合")
     a = ap.parse_args()
     if a.self_test:
-        sys.exit(self_test())
+        rc = self_test()
+        print_limits()
+        sys.exit(rc)
     if a.verify_extraction:
-        sys.exit(verify_extraction(Path(a.verify_extraction)))
+        rc = verify_extraction(Path(a.verify_extraction))
+        print_limits()
+        sys.exit(rc)
     markers, sysall, cnt, ex, unjudged = load()
     if a.prefix_scan:
         print_verdict_table(cnt, ex)
+        print_limits()
         sys.exit(1 if unjudged else 0)
+    if a.window_compare:
+        print_window_compare(norm(PDF_TXT.read_text(errors="replace")), cnt)
+        print_limits()
+        sys.exit(0)
     if a.tone_scan:
         print_tone_report(norm(PDF_TXT.read_text(errors="replace")), cnt)
+        print_limits()
         sys.exit(1 if unjudged else 0)
     total, miss = report(markers, sysall)
+    print_limits()
     if unjudged:
         print(f"\n⚠ 未判定之候選前綴：{unjudged}  ← R-PMH57，須逐項判定")
     sys.exit(0 if (miss == 0 and not unjudged) else 1)

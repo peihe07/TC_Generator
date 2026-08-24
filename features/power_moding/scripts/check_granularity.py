@@ -49,6 +49,27 @@ THRESHOLDS = {
 }
 
 
+# --- R-PMH52 之擴及（17 包步驟 4）---
+# R-PMH52 之措詞為「**任何** lint 之輸出須具名其未涵蓋之範圍」，
+# 而 16 包 §5.3 查出該條實際只施行於 `lint_batch.py` —— 單向套用。
+# 本檢查自此於輸出末尾具名其限度。**內容須為本檢查之限度，
+# 不得寫成一般性免責。**
+LIMITS = [
+    "G1–G5 五項**只看組數與組員數之分布**；**不看任何組之內容** —— 一組 3 個 leaf 是否真屬同一能力，本檢查不判",
+    "Layer 2 之**組名**（字面、大小寫、是否與 Test Group 重複）不看 —— 該屬 R-PMH13／R-PMH36／canon §4.2",
+    "**分母 `n_leaf` 為外部給定**（現行 48）；其是否正確不由本檢查驗 —— DR-PMH3 若確認，48 → 50 而本檢查不會察覺",
+    "leaf 到組之**指派**不看 —— 只要分布合格，指派錯誤仍全綠",
+    "`--check-doc-sync` 只驗門檻表與程式同源；**不驗該門檻本身是否恰當**",
+]
+
+
+def print_limits() -> None:
+    print("\n=== 本檢查未涵蓋之範圍（R-PMH52）===")
+    for _x in LIMITS:
+        print(f"  - {_x}")
+    print("  **以上各項本檢查一律不看** —— 其全綠不含關於該等項之任何資訊。")
+
+
 def self_sha256() -> str:
     """本程式檔之 SHA256 —— R-PMH42 之比對基準。"""
     return hashlib.sha256(Path(__file__).resolve().read_bytes()).hexdigest()
@@ -342,12 +363,16 @@ def main() -> None:
     if args.check_doc_sync:
         ok, why = check_doc_sync()
         print(f"doc-sync {'PASS' if ok else '**FAIL**'} — {why}")
+        print_limits()
         sys.exit(0 if ok else 1)
     if args.self_test:
-        sys.exit(self_test())
+        rc = self_test()
+        print_limits()
+        sys.exit(rc)
     ok = report("現行提案（8 組）", PROPOSAL, 48)
     print(f"\n結果：{'PASS' if ok else 'FAIL'}")
     print("⚠ 依 R-PMH35(c)，未跑 --self-test 者不得將本結果標為 PASS。")
+    print_limits()
     sys.exit(0 if ok else 1)
 
 

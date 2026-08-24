@@ -23,6 +23,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 14 | 2026-08-24 | **marker 枚舉**、未涵蓋清單程式化、batch 1 第三輪 | [handoff/14_marker_enumeration.md](handoff/14_marker_enumeration.md) | [upstream/14_marker_enumeration.md](upstream/14_marker_enumeration.md) | R-PMH54–R-PMH56（逐字抄錄 3/3 相符） | （無新 A-PMH；13 包 §8 第 4 項之疑慮解除） | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 29/29** |
 | 15 | 2026-08-24 | **marker 前綴反向掃描**、`COVERED` 自動化、priority 批內矛盾 | [handoff/15_marker_prefix_and_priority.md](handoff/15_marker_prefix_and_priority.md) | [upstream/15_marker_prefix_and_priority.md](upstream/15_marker_prefix_and_priority.md) | R-PMH57–R-PMH59（逐字抄錄 3/3 相符） | **A-PMH15（`DS4.1)` 前綴斷裂，只登記不開 DR）** | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；marker 全集 30 → 31** |
 | 16 | 2026-08-24 | `-002` 判錯採認、**萃取等同性判準**、`VERDICT` 誤判偵測 | [handoff/16_verdict_blindspot.md](handoff/16_verdict_blindspot.md) | [upstream/16_verdict_blindspot.md](upstream/16_verdict_blindspot.md) | R-PMH60–R-PMH62（逐字抄錄 3/3 相符） | （無新 A-PMH；查出 **A-PMH14 對 9.1 之記載自相矛盾**） | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；must-hit A–D 全攔下** |
+| 17 | 2026-08-24 | **章 8 雙向複驗**、五支檢查具名限度、質疑型條文母體 | [handoff/17_scope_of_inventory.md](handoff/17_scope_of_inventory.md) | [upstream/17_scope_of_inventory.md](upstream/17_scope_of_inventory.md) | R-PMH63–R-PMH65（逐字抄錄 3/3 相符） | **A-PMH14 結語更正**（9.1 之「維持」不成立；`8` 之歸因更精確） | **步驟 1–7 全數執行；九條停止條件全未觸發；lint 30/30；章 8 新漏 0；shasum 5/5 OK** |
 
 ## 01 輪要點
 
@@ -952,3 +953,57 @@ PyMuPDF 之萃取多出 `Loading`／`each` 兩個候選（p9 流程圖標籤之�
 
 **待 Pei**：三筆 DR 之發出（**第四度重申**）／16 之 commit 授權（9 路徑）／
 §8 條件 9 之三項是否排入 Phase 5 前／Q10、`PROFILE_INTEGRATION.md`。
+
+---
+
+## 17 包要點
+
+**章 8 之雙向複驗補做完成 —— 無漏句**（方向二 8 句 8/8 命中，真漏候選 0）。
+R-PMH51 之未套用側自此結清；該條明文「未複驗前其標題結論不得引用」，
+**而「拼字」之結論被沿用了兩包**。
+
+**惟其歸因須更精確**：A-PMH03 原記「PDF 為 `Startup R1Low Only`」——
+**PDF 中無此連續字串**。以 `get_text("blocks")` 查 p8：`Startup` 在 y=21.6
+（**頁眉**），`R1Low Only` 在 y=469.3（本文之節標題）。
+SYS1 之 `Starup R1Low Only` 是**兩個獨立文字物件之串接，且掉了一個 `t`**。
+影響：無（該標題不對應任何 leaf、不入任何 `source_clause`）。
+
+**A-PMH14 之結語已更正（R-PMH63）**：9.1 之「維持（本輪方向二未在其上
+查出新漏）」**不實** —— 同一則之新漏 2 查出的正是 9.1 之狀態矩陣全缺。
+原句一字未改，更正段置於其後（R-PMH44）。11.1 之「維持」成立，不受影響。
+
+**R-PMH52 由一支擴及五支**：`check_granularity`／`check_write_back`／
+`marker_coverage`／`check_state_consistency`／`chapter_bidirectional`
+各於輸出末尾具名其限度，內容為該檢查之實際盲區而非一般性免責。
+
+**⚠ 此舉連帶觸發 R-PMH42（第二次實地兌現）**：加 `LIMITS` 後 doc-sync
+立即 FAIL（程式 SHA256 變）。重跑 `--emit-thresholds` 重貼門檻節後 PASS，
+**門檻值一字未變**。**惟其粗度已具名**：任何編輯（含純註解）皆使文件失效，
+**這會訓練出「重跑再貼」之反射，而該反射正是使 R-PMH42 失效之途徑** ——
+若某日門檻真的變了，重貼之動作與本次完全相同（上繳 §4.6、§12 第 5 項）。
+
+**質疑型條文之母體已程式化（R-PMH64）**：65 條 → 候選 23 → 偽陽 6、質疑型 17。
+**已雙向自套 11 條**（R-PMH13／R-PMH24 為條文內即明寫雙向之正面例）；
+**未套用或未查明 6 條**，其中最該看者：
+
+1. **R-PMH50**（`source_clause` 不取 SYS1）**未回頭套用於
+   `layer3_sections.tsv`** —— 其 `section_title`／`chapter_title` 全部取自 SYS1，
+   **而 lint §3.4 正是拿該 TSV 之 outline 對照**。
+2. **R-PMH39**（「湊得且錨點無鑑別力」）**未回頭套用於 G3 之收容簇清單與 G5 之區間端點**。
+3. **R-PMH60**（字元數為代理量）**未回頭套用於其他代理量** ——
+   覆蓋率、6-gram 30% 門檻、granularity 比例門檻皆是。
+
+**語氣窗口之雙窗對照**：「只在其前」為**空集** —— 本規格中不存在
+語氣證據只落在 marker 之前者。16 §10 第 1 項所擔憂之情形未實際發生。
+**惟這證明的是「在這份規格裡沒發生」，不是「窗口方向無關緊要」。**
+
+**`shasum -c` 5/5 OK**（下放包記「四份」，實為五筆）——
+16 §10 第 2 項之「PDF 被換過」風險排除。
+
+**⚠ 本輪自陳之未竟項中，兩項互相指涉（上繳 §12 第 2 項）**：
+R-PMH51 記為「已結清」之依據是章 8 補做完成，**而 9.1／11.1 之結論仍建於
+13 包之 6-gram 30% 門檻，該門檻正是 §5.4 第 3 項所列之未受檢驗代理量**。
+**我未能切斷該循環。**
+
+**待 Pei**：三筆 DR 之發出（**第五度重申**）／17 之 commit 授權（12 路徑）／
+§5.4 六項之處置（尤其 TSV 之 SYS1 來源）／Q10、`PROFILE_INTEGRATION.md`。

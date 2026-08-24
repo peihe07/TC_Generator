@@ -96,6 +96,24 @@ PAIRS = [
 PAIRS_IS_ENUMERATION_NOT_TOTAL = True  # R-PMH49(a) 明載
 
 
+# --- R-PMH52 之擴及（17 包步驟 4）---
+# 本檢查已以 `EXCLUDED` 具名其排除之檔，**格式與他支對齊**如下。
+LIMITS = [
+    "**互斥對 8 組為列舉而非全集** —— 未列舉之互斥形態不會被發現",
+    "有效範圍只及三個狀態板（`framework.md`／`feature.yaml`／`PLAYBOOK.md`）；`RULINGS.md`／`ANOMALIES.md`／`DECISIONS.md` 已具名排除（散文檔，按條號切分之判準實測不可用）",
+    "**只驗同檔內之互斥**；**跨檔之矛盾不看** —— 如 `framework.md` 稱定版而上繳包稱未定版，本檢查全綠",
+    "只比對**字面**之狀態詞；語意等價之不同措詞（「已鎖」vs「定版」）不視為同一狀態",
+    "被排除之散文檔中之矛盾（如 16 包所查出之 A-PMH14）**須人讀**，本檢查看不見",
+]
+
+
+def print_limits() -> None:
+    print("\n=== 本檢查未涵蓋之範圍（R-PMH52）===")
+    for _x in LIMITS:
+        print(f"  - {_x}")
+    print("  **以上各項本檢查一律不看** —— 其全綠不含關於該等項之任何資訊。")
+
+
 def scan(path: Path) -> list[tuple[str, list, list]]:
     """回傳該檔中**兩側同時出現**之互斥對及其行號。"""
     lines = path.read_text(encoding="utf-8").splitlines()
@@ -233,8 +251,12 @@ def main() -> None:
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
     if args.self_test:
-        sys.exit(self_test())
-    sys.exit(0 if run([ROOT / f for f in TARGETS]) else 1)
+        rc = self_test()
+        print_limits()
+        sys.exit(rc)
+    ok = run([ROOT / f for f in TARGETS])
+    print_limits()
+    sys.exit(0 if ok else 1)
 
 
 if __name__ == "__main__":

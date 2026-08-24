@@ -37,6 +37,27 @@ class CheckFailed(Exception):
     """任一檢查未通過即拋出；呼叫端據此中止寫回。"""
 
 
+# --- R-PMH52 之擴及（17 包步驟 4）---
+# R-PMH52 之措詞為「**任何** lint 之輸出須具名其未涵蓋之範圍」，
+# 而 16 包 §5.3 查出該條實際只施行於 `lint_batch.py` —— 單向套用。
+# 本檢查自此於輸出末尾具名其限度。**內容須為本檢查之限度，
+# 不得寫成一般性免責。**
+LIMITS = [
+    "四項只驗**寫回之前提與列數**；**不看任何欄之值** —— 寫入之 TC 內容是否正確，本檢查不判",
+    "**x14 data validation 之存留不驗**（R-G3）—— 寫回若以 `openpyxl.save()` 破壞 DV，本檢查仍全綠",
+    "**接線狀態未驗**：本檢查目前不被任何寫回路徑呼叫（`feature.yaml` 之 `write_back_checks.wired: false`）—— 一段未被呼叫之正確程式碼，其效力等同文字修補（通則 8）",
+    "母本 DV 之兩項既知瑕疵（A-PMH12：`Q` 欄 sqref 跨欄、`AF` 之前導空白）不驗",
+    "寫回**之後**之複驗不做 —— 本檢查只跑於寫回前",
+]
+
+
+def print_limits() -> None:
+    print("\n=== 本檢查未涵蓋之範圍（R-PMH52）===")
+    for _x in LIMITS:
+        print(f"  - {_x}")
+    print("  **以上各項本檢查一律不看** —— 其全綠不含關於該等項之任何資訊。")
+
+
 def _col_index(letter: str) -> int:
     n = 0
     for ch in letter:
@@ -215,13 +236,17 @@ def main() -> None:
     args = ap.parse_args()
     fd = Path(args.feature).resolve()
     if args.self_test:
-        sys.exit(self_test(fd))
+        rc = self_test(fd)
+        print_limits()
+        sys.exit(rc)
     try:
         for line in run(fd, args.batch_size):
             print(line)
     except CheckFailed as e:
         print(f"WRITE-BACK ABORTED — {e}", file=sys.stderr)
+        print_limits()
         sys.exit(1)
+    print_limits()
 
 
 if __name__ == "__main__":

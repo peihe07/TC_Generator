@@ -122,7 +122,7 @@ Layer 3 取**規格自身之 section id**（canon §4.1.1），不自創標籤�
 | **G4** | max(組規模) / leaf | `<=` | **`1/2`** | canon §4.1.3「不是整本」—— 單組不得吃掉過半 |
 | **G5** | 逸出 [2, floor(leaf/2)] 之組規模數 | `==` | **`0`** | G2 之下限與 G4 之上限所夾之區間，逐組適用 |
 
-> 產生時之程式 SHA256：`eada46d05ea268f0273dc3909d71b21524a5eb433f944477ab33bda71da70f4b`
+> 產生時之程式 SHA256：`6d9fdbc53ddcd27426fe907700fc74697f83a06f5390a2c0e4173c76075c65a7`
 > 重新產生：`python scripts/check_granularity.py --emit-thresholds`
 
 **G1 之門檻由 `0.35` 改為 `1/3`（R-PMH39）** —— `0.35` 係湊得，且現有錨點
