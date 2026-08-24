@@ -25,6 +25,8 @@ from pathlib import Path
 FEAT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(FEAT / "scripts"))
 
+from versioned_out import (OverwriteRefused,  # noqa: E402
+                           next_version)
 from writeback_036 import latest_batches        # noqa: E402
 from defect_scan_w157 import clause_of          # noqa: E402
 
@@ -54,7 +56,10 @@ def main() -> int:
         if not touched:
             continue
         m = re.match(r"(batch\d+(?:_[a-z]+)?)(?:_v(\d+))?\.json$", f.name)
-        nxt = f.parent / f"{m.group(1)}_v{int(m.group(2) or 1) + 1}.json"
+        # **R-VS81(1)(2)**：版號由 `next_version()` 定，目標已存在即 raise。
+        nxt, _prev = next_version(f.parent, m.group(1))
+        if nxt.exists():
+            raise OverwriteRefused(f"R-VS81(2)：`{nxt.name}` 已存在，拒絕覆蓋")
         d["revision"] = ("W-160（56 輪，R-VS77 之首次全母體回掃）："
                          "`test_item` 上半段回復條文逐字（R-VS6）—— "
                          "55 輪之 D-5 只掃 `split_flag`，本輪掃全母體")

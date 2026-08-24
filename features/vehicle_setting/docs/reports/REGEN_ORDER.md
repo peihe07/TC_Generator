@@ -10,30 +10,30 @@
 
 | 批 | 原生成器 | 修正層（依序） | 層 | 現行版本 | sha256（前 16） | 凍結點 | `frozen_sha256`（前 16） |
 |---|---|---|---:|---|---|---|---|
-| `batch01` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `split_exec_w143.py` → `earlyfix_w157.py` → `rvs6_restore_w160.py` | 6 | `batch01_v9.json` | `34f551be0e3b850a` | `batch01.json` | `cf1e5510232a5158` |
-| `batch02` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `split_exec_w143.py` → `earlyfix_w157.py` → `rvs6_restore_w160.py` | 6 | `batch02_v7.json` | `45f32fc651724852` | `batch02.json` | `6b6f45d5473d27ed` |
-| `batch03` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `rvs6_restore_w160.py` | 3 | `batch03_v6.json` | `3e6e6eddc6db7286` | `batch03.json` | `207fd0f8c7706682` |
+| `batch01` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `split_exec_w143.py` → `**W-157 之腳本或作業不在 repo**` → `**W-160 之腳本或作業不在 repo**` | 6 | `batch01_v9.json` | `34f551be0e3b850a` | `batch01.json` | `cf1e5510232a5158` |
+| `batch02` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `split_exec_w143.py` → `**W-157 之腳本或作業不在 repo**` → `**W-160 之腳本或作業不在 repo**` | 6 | `batch02_v7.json` | `45f32fc651724852` | `batch02.json` | `6b6f45d5473d27ed` |
+| `batch03` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `**W-160 之腳本或作業不在 repo**` | 3 | `batch03_v6.json` | `3e6e6eddc6db7286` | `batch03.json` | `207fd0f8c7706682` |
 | `batch04` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` | 2 | `batch04_v6.json` | `94540d4f762244b4` | `batch04.json` | `8843b891c5503373` |
 | `batch05` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` | 2 | `batch05_v4.json` | `5bd88bfacaa4ce55` | `batch05.json` | `c13574c86736e45d` |
 | `batch06` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `pilot_fix_w130.py` → `split_exec_w143.py` | 4 | `batch06_v6.json` | `e0cca54927ae429f` | `batch06.json` | `e14897d1099897d5` |
-| `batch07` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `pilot_fix_w130.py` → `earlyfix_w157.py` → `rvs6_restore_w160.py` | 5 | `batch07_v7.json` | `85462b3aedb5a688` | `batch07.json` | `c494bb31a4a00e95` |
+| `batch07` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `pilot_fix_w130.py` → `**W-157 之腳本或作業不在 repo**` → `**W-160 之腳本或作業不在 repo**` | 5 | `batch07_v7.json` | `85462b3aedb5a688` | `batch07.json` | `c494bb31a4a00e95` |
 | `batch08` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` | 2 | `batch08_v5.json` | `8f3d3565f752576c` | `batch08.json` | `5b0070a0b1ee0551` |
-| `batch10` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `pilot_fix_w130.py` → `rvs6_restore_w160.py` | 4 | `batch10_v6.json` | `96cf32046b0a9796` | `batch10.json` | `268a31a3d7ac4868` |
+| `batch10` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` → `pilot_fix_w130.py` → `**W-160 之腳本或作業不在 repo**` | 4 | `batch10_v6.json` | `96cf32046b0a9796` | `batch10.json` | `268a31a3d7ac4868` |
 | `batch11` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` | 2 | `batch11_v4.json` | `314bb2c9a37d2ec2` | `batch11.json` | `cffe83b367b9bd68` |
 | `batch12` | `**首版生成器未入庫；其產物以 sha256 凍結為基準**` | `record_rewrite_w95.py` → `priority_and_style_w101.py` | 2 | `batch12_v4.json` | `d0fab7fa4f14ead5` | `batch12.json` | `fb7cfac7481b7e98` |
 | `batch13` | `batch13_w100.py` | `sibling_fix_w105.py` → `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` | 4 | `batch13_v5.json` | `d7080276032bc6c1` | — | — |
 | `batch14` | `batch14_w105.py` | `**D-4（38 輪） 之腳本或作業不在 repo**` → `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` | 4 | `batch14_v5.json` | `510d80f88526c040` | — | — |
 | `batch15` | `batch15_w108.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` | 3 | `batch15_v4.json` | `ff8f979d8b0abcc2` | — | — |
 | `batch16` | `batch16_w113.py` | `pilot_fix_w130.py` → `screen_layer_w132.py` → `popup_weakest_w135.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` | 4 | `batch16_v4.json` | `763cca763bb0202c` | — | — |
-| `batch17` | `batch17_w116.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `screen_layer_w132.py` → `impl_gap_w133.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `earlyfix_w157.py` | 6 | `batch17_v6.json` | `e4f094ec44dff012` | — | — |
-| `batch18` | `batch18_w119.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `earlyfix_w157.py` | 5 | `batch18_v5.json` | `d3d1f9a7b0e6da7c` | — | — |
+| `batch17` | `batch17_w116.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `screen_layer_w132.py` → `impl_gap_w133.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `**W-157 之腳本或作業不在 repo**` | 6 | `batch17_v6.json` | `e4f094ec44dff012` | — | — |
+| `batch18` | `batch18_w119.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` → `**D-3（48 輪） 之腳本或作業不在 repo**` → `**W-157 之腳本或作業不在 repo**` | 5 | `batch18_v5.json` | `d3d1f9a7b0e6da7c` | — | — |
 | `batch19` | `batch19_w122.py` | `pilot_fix_w130.py` → `signal_rewrite_w131.py` → `impl_gap_w133.py` | 3 | `batch19_v4.json` | `cc47d18045ad4d50` | — | — |
 | `batch20` | `batch20_w143.py` | — | 0 | `batch20.json` | `feb5ef8ece767038` | — | — |
-| `batch21_probe` | `batch21_probe_w146.py` | `**W-149 之腳本或作業不在 repo**` → `earlyfix_w157.py` | 2 | `batch21_probe_v2.json` | `868da48b133950af` | — | — |
+| `batch21_probe` | `batch21_probe_w146.py` | `**W-149 之腳本或作業不在 repo**` → `**W-157 之腳本或作業不在 repo**` | 2 | `batch21_probe_v2.json` | `868da48b133950af` | — | — |
 | `batch22` | `batch22_w150.py` | — | 0 | `batch22.json` | `fe0c2c2822b8e105` | — | — |
-| `batch23` | `batch23_w152.py` | `earlyfix_w157.py` | 1 | `batch23_v2.json` | `c74c457dbebe3824` | — | — |
+| `batch23` | `batch23_w152.py` | `**W-157 之腳本或作業不在 repo**` | 1 | `batch23_v2.json` | `c74c457dbebe3824` | — | — |
 
-**鏈長最長者：`batch17`，7 層。**
+**鏈長最長者：`batch01`，6 層。**
 
 ### 原生成器未入庫者 —— **11 批**，其 R-VS53 以**雜湊凍結**滿足（86 包 §3）
 
@@ -113,7 +113,7 @@ python3 scripts/completeness_w154.py                    # R-VS76 完整性
 | `batch17_v5.json` | `100d1e0` | `screen_pending` 8 |
 | `batch18.json` | `70b75d0` | `screen_pending` 10 |
 | `batch18_v4.json` | `100d1e0` | `screen_pending` 5 |
-| `batch21_probe.json` | `a8b5bb1` | `expected_result` 2／`reasoning` 2／`test_procedure` 2／`remarks` 1／`tc_title` 1／`split_flag` 1／`split_reason` 1／`distinguishing_axis` 1／`pre_conditions` 1 |
+| `batch21_probe.json` | `a8b5bb1` | `expected_result` 2／`test_procedure` 2／`reasoning` 2／`remarks` 1／`pre_conditions` 1／`split_reason` 1／`distinguishing_axis` 1／`tc_title` 1／`split_flag` 1 |
 | `batch23.json` | `cc66602` | `pre_conditions` 9／`test_procedure` 8／`expected_result` 7／`remarks` 5 |
 | **合計** | **5 個 commit** ／ **26 檔次** | |
 

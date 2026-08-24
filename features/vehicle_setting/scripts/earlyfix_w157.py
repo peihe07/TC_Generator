@@ -23,6 +23,8 @@ from pathlib import Path
 FEAT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(FEAT / "scripts"))
 
+from versioned_out import (OverwriteRefused,  # noqa: E402
+                           next_version)
 from writeback_036 import latest_batches      # noqa: E402
 from inscope_w39 import blocks_with_sec       # noqa: E402
 
@@ -146,7 +148,10 @@ def main() -> int:
         if not touched:
             continue
         m = re.match(r"(batch\d+(?:_[a-z]+)?)(?:_v(\d+))?\.json$", f.name)
-        nxt = f.parent / f"{m.group(1)}_v{int(m.group(2) or 1) + 1}.json"
+        # **R-VS81(1)(2)**：版號由 `next_version()` 定，目標已存在即 raise。
+        nxt, _prev = next_version(f.parent, m.group(1))
+        if nxt.exists():
+            raise OverwriteRefused(f"R-VS81(2)：`{nxt.name}` 已存在，拒絕覆蓋")
         d["tcs"] = tcs
         d["revision"] = ("W-157（55 輪）：83 包 §2 之五項 defect 修正 —— "
                          "D-2 刪重複 pre_condition／D-3・D-4 ER 改可觀察斷言、"

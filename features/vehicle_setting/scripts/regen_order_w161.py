@@ -177,12 +177,15 @@ def main() -> None:
         # （`_[a-z]+` 貪婪吃掉 `_v`，而無後續 pattern 迫其回溯）。
         stem = re.match(r"(batch\d+(?:_[a-z]+)?)(?:_v(\d+))?\.json$",
                         f.name).group(1)
-        ch = chain(stem)
-        if len(ch) > longest:
-            longest, worst = len(ch), stem
+        # **修正（60 輪 W-174）**：此處原另呼叫一次 `chain(stem)` 而**未帶
+        # `origin`** —— 其未排除「批之首版記其原生成器自身之 W 號」一層，
+        # 故 `longest` 恆較表格之層數多 1（58 輪報 6 而表列 5；59 輪報 7 而表列 6）。
+        # `longest` 改自下方之正式 `ch`（帶 origin 者）取。
         h = hashlib.sha256(f.read_bytes()).hexdigest()[:16]
         org = origin_of(stem)
         ch = chain(stem, org)
+        if len(ch) > longest:
+            longest, worst = len(ch), stem
         fz_name, fz_hash, fz_n = frozen_point(stem)
         if org == "**缺**":
             missing.append((stem, fz_name, fz_hash, fz_n))
