@@ -1205,3 +1205,37 @@ Turn_Signal_Camera_View     Utility_Lighting
 **本件之 11 個與 DR-7 之四個無交集**，故另立而非併入。
 
 **狀態：未送出**（送出屬 Pei，R-VF27）。
+
+---
+
+## DR-35（新，**Urgency Low** —— `LaneSenseWarning-014` 條文內部不一致；A-VF18／V23 §4.1 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-34**（R-VF10）。
+
+**型別（R-VS45）：型 A — 規格缺陷（條文內部矛盾）。**
+
+**成對之 anomaly：A-VF18。**
+
+`SWE1-VC-LaneSenseWarning-014`（`SYS-RA-VF230_V1-537`，
+`VF230_V1_PHDCC27_VF_2024`）之條文，其**第 4 句與結論句所指之 feature 不同**：
+
+```
+第 4 句   The HMI layer shall evaluate the received Lane_Assist PROXI value to
+          determine Cornering Lights feature availability.
+結論句    If $Lane_Assist$ = [Not Present] or [Lane Departure Warning], the LTM
+          or ETM shall not display the Lane Sense Warning customer setting
+```
+
+**`Cornering Lights` 與 `Lane Sense Warning` 為不同功能** ——
+二者於 037 為不同之 Requirement Title 簇，雖同屬 Test Set `Lane and Lighting`。
+
+**請確認**：`Lane_Assist` 之 PROXI 值所決定者為 `Cornering Lights` 之可用性、
+`Lane Sense Warning` 之可用性，抑或二者皆是？
+
+**影響**：pilot #1 之 **seq 240**。其驗證對象因上游條文自相矛盾而不確定。
+
+**本層之處置（已定，不待覆文）**：依 **V23 §4.2 以結論句為準**
+（結論句為該需求之處置條款），TC 之驗證對象為 `Lane Sense Warning` 之不顯示；
+於 Remarks 具名該不一致與本 DR 編號。**不自行調和二者。**
+
+**狀態：未送出**（送出屬 Pei，R-VF27）。
