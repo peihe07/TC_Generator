@@ -88,20 +88,20 @@ canon §10.2 之 P0 含 `safety`，其**不限於實體致動**。
 | 4 | `SWE1-VC-SuspensionServiceMode-002` | P0 | Suspension and Comfort | W0 |
 | 5 | `SWE1-VC-Blind Spot with Trailer Detection-045` | P0 | Trailer and Signage | W1 |
 | 6 | `SWE1-VC-ParkSense-084` | P0 | Units and Cameras | W0 |
-| 7 | `SWE1-VC-IlluminatedApproach-002` | P1 | Approach and Tailgate | W0 |
-| 8 | `SWE1-VC-4AUXSwitches-027` | P1 | Auxiliary Switches | W0 |
-| 9 | `SWE1-VC-DaytimeRunningLights-002` | P1 | Daytime Lighting | W0 |
-| 10 | `SWE1-VC-PassiveEntry-009` | P1 | Driver Convenience | W0 |
-| 11 | `SWE1-VC-CorneringLights-002` | P1 | Lane and Lighting | W0 |
-| 12 | `SWE1-VC-PressureUnit-002` | P1 | Measurement Units | W0 |
-| 13 | `SWE1-VC-SuspensionDisplayMessages-008` | P1 | Suspension and Comfort | W0 |
-| 14 | `SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115` | P1 | Trailer and Signage | W1 |
-| 15 | `SWE1-VC-TimeandDateSettings-004` | P1 | Units and Cameras | W0 |
-| 16 | `SWE1-VC-SWITCH1Type-002` | P2 | Auxiliary Switches | W0 |
-| 17 | `SWE1-VC-Language-059` | P2 | Driver Convenience | W0 |
-| 18 | `SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117` | P2 | Trailer and Signage | W0 |
-| 19 | `SWE1-VC-TimeandDateSettings-002` | P2 | Units and Cameras | W0 |
-| 20 | `SWE1-VC-PowerLiftgate/TailgateAlert-017` | P0 | Approach and Tailgate | W0 |
+| 7 | `SWE1-VC-PowerLiftgate/TailgateAlert-017` | P0 | Approach and Tailgate | W0 |
+| 8 | `SWE1-VC-BlindSpotAlert-003` | P0 | Driver Convenience | W0 |
+| 9 | `SWE1-VC-LaneSenseWarning-015` | P0 | Lane and Lighting | W0 |
+| 10 | `SWE1-VC-SuspensionServiceMode-003` | P0 | Suspension and Comfort | W0 |
+| 11 | `SWE1-VC-Blind Spot with Trailer Detection-046` | P0 | Trailer and Signage | W1 |
+| 12 | `SWE1-VC-ParkSense-085` | P0 | Units and Cameras | W0 |
+| 13 | `SWE1-VC-PowerLiftgate/TailgateAlert-018` | P0 | Approach and Tailgate | W0 |
+| 14 | `SWE1-VC-BlindSpotAlert-004` | P0 | Driver Convenience | W0 |
+| 15 | `SWE1-VC-LaneSenseWarning-016` | P0 | Lane and Lighting | W0 |
+| 16 | `SWE1-VC-SuspensionServiceMode-004` | P0 | Suspension and Comfort | W0 |
+| 17 | `SWE1-VC-Blind Spot with Trailer Detection-047` | P0 | Trailer and Signage | W0 |
+| 18 | `SWE1-VC-ParkSense-086` | P0 | Units and Cameras | W0 |
+| 19 | `SWE1-VC-PowerLiftgate/TailgateAlert-019` | P0 | Approach and Tailgate | W0 |
+| 20 | `SWE1-VC-BlindSpotAlert-005` | P0 | Driver Convenience | W0 |
 
 ## 4. 批次規劃（**待分析層核可，不得逕行生成**）
 

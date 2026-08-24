@@ -127,21 +127,41 @@ def main() -> None:
 
     dist = Counter(x["priority"] for x in rows)
     # R-VS58 之選池優先序：P0→P1→P2；同序內逐 Test Set 輪流 ＋ reqid 升冪
+    #
+    # ⚠ A-VF17 之修正（W-VF53）—— 原實作將 Priority 併入 round-robin 之鍵
+    # （`sorted(buckets)` 涵蓋全部 (order, test_set) 組合），致每一輪同時取
+    # P0、P1、P2 各一，**Priority 成為同層之排序鍵而非外層之分割**。
+    # 其結果：池首 10 條為 6 個 P0 ＋ 4 個 P1，而另外 82 個 P0 散落其後 ——
+    # 與 R-VS58 之「第一序 P0／第二序 P1／第三序 P2」逐字不符，
+    # 亦與本檔原註解自身不符。
+    #
+    # 正確實作：**Priority 為外層分割**，同一 Priority 內才做 Test Set 輪流。
     gen = [x for x in rows if x["writable"] in ("W0", "W1")]
     order = {"P0": 0, "P1": 1, "P2": 2}
-    buckets: dict[tuple, list] = defaultdict(list)
-    for x in gen:
-        buckets[(order[x["priority"]], x["test_set"])].append(x)
-    for v in buckets.values():
-        v.sort(key=lambda z: int(re.sub(r"\D", "", z["src_ref"]) or 0))
-    pool, i = [], 0
-    while any(buckets.values()):
-        for key in sorted(buckets):
-            if buckets[key]:
-                pool.append(buckets[key].pop(0))
-        i += 1
-        if i > 5000:
-            raise SystemExit("選池迴圈未收斂，停")
+    pool = []
+    for pri in ("P0", "P1", "P2"):                    # 外層：Priority 分割
+        buckets: dict[str, list] = defaultdict(list)
+        for x in gen:
+            if x["priority"] == pri:
+                buckets[x["test_set"]].append(x)
+        for v in buckets.values():                     # 同序內：reqid 升冪
+            v.sort(key=lambda z: int(re.sub(r"\D", "", z["src_ref"]) or 0))
+        i = 0
+        while any(buckets.values()):                   # 同序內：Test Set 輪流
+            for key in sorted(buckets):
+                if buckets[key]:
+                    pool.append(buckets[key].pop(0))
+            i += 1
+            if i > 5000:
+                raise SystemExit("選池迴圈未收斂，停")
+
+    # 斷言（R-G7-1 之對照向）：池首 88 條須全為 P0，第 89 條須為 P1。
+    head = [x["priority"] for x in pool[:dist["P0"]]]
+    if set(head) != {"P0"}:
+        raise SystemExit(f"R-VS58 違反：池首 {dist['P0']} 條含非 P0 —— "
+                         f"{Counter(head)}，停")
+    if pool[dist["P0"]]["priority"] != "P1":
+        raise SystemExit("R-VS58 違反：第 P0+1 條應為 P1，停")
 
     BATCH = 10
     nb = (len(pool) + BATCH - 1) // BATCH
