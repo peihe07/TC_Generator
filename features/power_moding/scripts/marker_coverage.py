@@ -63,6 +63,13 @@ VERDICT: dict[str, tuple[str, str]] = {
     "of":      ("noise", "一般文句：`of 10.`"),
     "to":      ("noise", "一般文句：`up to 2.`"),
     "expires": ("noise", "一般文句：`expires 3.`"),
+    # 以下二者**不出現於 `pdftotext -layout` 之萃取**，只出現於 PyMuPDF 之
+    # 萃取（16 包步驟 4）—— p9 流程圖之標籤，兩種萃取器之閱讀順序不同，
+    # 致相鄰標籤被併成不同字串。**候選集合本身是萃取相依的。**
+    "Loading": ("noise", "p9 流程圖標籤：`System Loading` 後接 `1.5 sec timeout`，"
+                         "二者為圖上相鄰之獨立標籤，非編號"),
+    "each":    ("noise", "p9 流程圖標籤：`…with a 1.5 timeout each` 後接 "
+                         "`1.5 sec timeout`，同上"),
 }
 
 # marker 所屬之章（依 PDF 之編排；供分章列表，不參與判定）
@@ -133,6 +140,48 @@ def load(extra_drop: tuple[str, ...] = ()) -> tuple[list[str], str, Counter, dic
     return order, sysall, cnt, ex, unjudged
 
 
+def verify_extraction(other: Path) -> int:
+    """R-PMH60 —— 兩份獨立萃取之等同性，以 **marker 集合逐項相等**驗之。
+
+    **不以字元數、行數或位元組數** —— R-PMH21 已裁定抽取字元數不得作為
+    完整性、正確性或版本一致性之判準，而「兩份萃取是否為同一份文件」
+    即版本一致性之問題。marker 為需求單位之標記，**不受正規化策略影響**。
+    """
+    other = Path(other).resolve()
+    a = norm(PDF_TXT.read_text(errors="replace"))
+    b = norm(other.read_text(errors="replace"))
+    ca, _ = prefix_scan(a)
+    cb, _ = prefix_scan(b)
+    pa, ua = req_prefixes(ca)
+    pb, ub = req_prefixes(cb)
+    ma = [canon_marker(x) for x in enumerate_markers(a, pa)]
+    mb = [canon_marker(x) for x in enumerate_markers(b, pb)]
+    sa, sb = set(ma), set(mb)
+    print("\n=== 兩份萃取之等同性（R-PMH60）===")
+    print(f"  A：`{PDF_TXT.relative_to(ROOT)}`")
+    print(f"  B：`{other}`")
+    print(f"\n  marker 全集：A = **{len(sa)}**；B = **{len(sb)}**")
+    only_a, only_b = sorted(sa - sb), sorted(sb - sa)
+    for ch in sorted({CHAPTER.get(re.match(r'[A-Za-z]+', m).group(0), 0)
+                      for m in sa | sb}):
+        na = sum(1 for m in sa if CHAPTER.get(re.match(r'[A-Za-z]+', m).group(0), 0) == ch)
+        nb = sum(1 for m in sb if CHAPTER.get(re.match(r'[A-Za-z]+', m).group(0), 0) == ch)
+        print(f"    章 {ch:>2}：A = {na:>2}；B = {nb:>2}"
+              + ("" if na == nb else "   ← **不等**"))
+    ok = sa == sb
+    if ok:
+        print("\n  **逐項相等 —— 等同性成立**（二者為同一份規格之同一版本）")
+    else:
+        print(f"\n  **不相等** —— 只在 A：{only_a}；只在 B：{only_b}")
+    if ua or ub:
+        print(f"  ⚠ 未判定之候選前綴：A {ua}；B {ub}")
+    # 字元數只**列出**，明載其不作為判準
+    print(f"\n  （字元數 A = {len(a)}／B = {len(b)}，"
+          f"差 {abs(len(a)-len(b))} —— **依 R-PMH21／R-PMH60 不作為判準**，"
+          "列出僅為記錄）")
+    return 0 if (ok and not ua and not ub) else 1
+
+
 def print_verdict_table(cnt: Counter, ex: dict) -> None:
     print("\n=== 反向掃描之前綴判定表（R-PMH57）===")
     print(f"候選形態 = `{CANDIDATE.pattern}`；候選前綴 = {len(cnt)} 種\n")
@@ -143,6 +192,64 @@ def print_verdict_table(cnt: Counter, ex: dict) -> None:
     for p in order:
         v, why = VERDICT.get(p, ("**未判定**", "← 須逐項判定，不得沉默略過"))
         print(f"{p:<10} {cnt[p]:>4}  {v:<6} {' '.join(ex[p])[:34]:<34} {why}")
+
+
+# --- R-PMH61（16 包）：`VERDICT` **誤判**之偵測 ---
+# 反向掃描（R-PMH57）保證「沒有候選被漏看」，must-hit C 保證「沒有候選未判定」。
+# **二者皆不攔「判錯」** —— 把真需求前綴標為 `noise`，該章一樣靜默消失。
+# 故對判為 `noise`／`xref` 者，檢查其**鄰近文句是否具需求語氣**，
+# 命中者升為「須人讀確認」並具名，**不自行改判**。
+MODAL = re.compile(r"\b(shall|should|must|will|needs? to|is required to)\b", re.I)
+# 祈使句：marker 之後（容許一個 `If …,` 前置子句）以原形動詞起首
+IMPERATIVE = re.compile(
+    r"^\s*(?:if\b[^,]{0,120},\s*)?"
+    r"(do not|don't|show|display|play|jump|set|go|present|keep|turn|enable|"
+    r"disable|remove|hide|wait|use|select|ensure|start|stop|mute|unmute)\b", re.I)
+TONE_WINDOW = 180   # marker 之後取之字元數（其所引領之句）
+
+
+def tone_scan(pdf: str, prefixes: list[str]) -> dict[str, list[tuple[str, str]]]:
+    """回傳 {前綴: [(命中之 marker 文字, 語氣證據)]}。
+
+    窗口取 marker **之後** `TONE_WINDOW` 字元 —— 需求 marker 之作用是引領其
+    需求文句，故證據在其後而非其前。
+    """
+    hits: dict[str, list[tuple[str, str]]] = {}
+    for p_ in prefixes:
+        pat = re.compile(r"\b" + re.escape(p_) + r"\s*\d+(?:\.\d+)?\.?[):]")
+        for m in pat.finditer(pdf):
+            after = pdf[m.end():m.end() + TONE_WINDOW]
+            ev = ""
+            if (im := IMPERATIVE.match(after)):
+                ev = f"祈使句起首 `{im.group(1)}`"
+            elif (mo := MODAL.search(after)):
+                ev = f"情態動詞 `{mo.group(1)}`"
+            if ev:
+                hits.setdefault(p_, []).append((m.group(0), ev))
+    return hits
+
+
+def print_tone_report(pdf: str, cnt: Counter, extra_req_drop: tuple[str, ...] = ()) -> list[str]:
+    """對判為 `noise`／`xref` 者做語氣檢查，回傳須人讀之前綴清單。"""
+    targets = [p_ for p_ in cnt
+               if VERDICT.get(p_, ("", ""))[0] in {"noise", "xref"}
+               or p_ in extra_req_drop]
+    targets.sort()
+    hits = tone_scan(pdf, targets)
+    print("\n=== 非需求前綴之需求語氣檢查（R-PMH61）===")
+    print(f"受檢前綴 = {len(targets)} 個（判為 `noise`／`xref` 者）\n")
+    print(f"{'前綴':<10} {'判定':<6} {'語氣命中':>6}  證據")
+    flagged = []
+    for p_ in targets:
+        v = VERDICT.get(p_, ("(測試替身)", ""))[0]
+        h = hits.get(p_, [])
+        if h:
+            flagged.append(p_)
+        ev = "；".join(f"{a} → {b}" for a, b in h[:2]) if h else "—"
+        print(f"{p_:<10} {v:<6} {len(h):>6}  {ev[:80]}")
+    print(f"\n**須人讀確認之前綴**：{flagged or '無'}")
+    print("  （只具名，**不自行改判** —— 判定值之變更須另有依據）")
+    return flagged
 
 
 def coverage(markers: list[str], sysall: str) -> list[tuple[str, bool]]:
@@ -213,22 +320,47 @@ def self_test() -> int:
     caught_c = "OFF" in unj3
     print(f"  未判定清單 = {unj3}；被攔下：{caught_c}")
 
+    # --- R-PMH61：語氣檢查與其 must-hit ---
+    pdf = norm(PDF_TXT.read_text(errors="replace"))
+    flagged = print_tone_report(pdf, cnt)
+
+    print("\n=== must-hit D —— 將 `SU` 之判定由 `req` 改為 `noise`（測試替身）===")
+    print("  其鄰近文句必含需求語氣，**故須被升為須人讀並攔下**；"
+          "\n  攔不下者，本檢查對真正之誤判亦無效（R-PMH61）。")
+    saved = VERDICT["SU"]
+    VERDICT["SU"] = ("noise", "（測試替身 —— must-hit D）")
+    flagged_d = print_tone_report(pdf, cnt)
+    VERDICT["SU"] = saved
+    caught_d = "SU" in flagged_d
+    print(f"\n  `SU` 被升為須人讀：{caught_d}")
+
     print("\n" + "=" * 70)
     print(f"前綴全判定: {ok_judged}；範圍向 31／2: {ok_scope}；"
-          f"must-hit A: {caught}；must-hit B: {caught_b}；must-hit C: {caught_c}")
-    return 0 if all((ok_judged, ok_scope, caught, caught_b, caught_c)) else 1
+          f"must-hit A: {caught}；must-hit B: {caught_b}；"
+          f"must-hit C: {caught_c}；must-hit D: {caught_d}")
+    return 0 if all((ok_judged, ok_scope, caught, caught_b,
+                     caught_c, caught_d)) else 1
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--self-test", action="store_true")
     ap.add_argument("--prefix-scan", action="store_true")
+    ap.add_argument("--tone-scan", action="store_true",
+                    help="R-PMH61 —— 非需求前綴之需求語氣檢查")
+    ap.add_argument("--verify-extraction", metavar="TEXT_FILE",
+                    help="R-PMH60 —— 與另一份萃取比對 marker 集合")
     a = ap.parse_args()
     if a.self_test:
         sys.exit(self_test())
+    if a.verify_extraction:
+        sys.exit(verify_extraction(Path(a.verify_extraction)))
     markers, sysall, cnt, ex, unjudged = load()
     if a.prefix_scan:
         print_verdict_table(cnt, ex)
+        sys.exit(1 if unjudged else 0)
+    if a.tone_scan:
+        print_tone_report(norm(PDF_TXT.read_text(errors="replace")), cnt)
         sys.exit(1 if unjudged else 0)
     total, miss = report(markers, sysall)
     if unjudged:

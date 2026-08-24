@@ -22,6 +22,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 13 | 2026-08-24 | batch 1 重寫、**雙向複驗**、lint 擴充 | [handoff/13_batch1_rework.md](handoff/13_batch1_rework.md) | [upstream/13_batch1_rework.md](upstream/13_batch1_rework.md) | R-PMH51–R-PMH53（逐字抄錄 3/3 相符） | **A-PMH14（三處新漏）**；**DR-PMH2／DR-PMH3 開立** | **⚠ 停止條件 7 觸發**；8、9 未觸發；batch 1 重寫後 lint 28/28 |
 | 14 | 2026-08-24 | **marker 枚舉**、未涵蓋清單程式化、batch 1 第三輪 | [handoff/14_marker_enumeration.md](handoff/14_marker_enumeration.md) | [upstream/14_marker_enumeration.md](upstream/14_marker_enumeration.md) | R-PMH54–R-PMH56（逐字抄錄 3/3 相符） | （無新 A-PMH；13 包 §8 第 4 項之疑慮解除） | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 29/29** |
 | 15 | 2026-08-24 | **marker 前綴反向掃描**、`COVERED` 自動化、priority 批內矛盾 | [handoff/15_marker_prefix_and_priority.md](handoff/15_marker_prefix_and_priority.md) | [upstream/15_marker_prefix_and_priority.md](upstream/15_marker_prefix_and_priority.md) | R-PMH57–R-PMH59（逐字抄錄 3/3 相符） | **A-PMH15（`DS4.1)` 前綴斷裂，只登記不開 DR）** | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；marker 全集 30 → 31** |
+| 16 | 2026-08-24 | `-002` 判錯採認、**萃取等同性判準**、`VERDICT` 誤判偵測 | [handoff/16_verdict_blindspot.md](handoff/16_verdict_blindspot.md) | [upstream/16_verdict_blindspot.md](upstream/16_verdict_blindspot.md) | R-PMH60–R-PMH62（逐字抄錄 3/3 相符） | （無新 A-PMH；查出 **A-PMH14 對 9.1 之記載自相矛盾**） | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；must-hit A–D 全攔下** |
 
 ## 01 輪要點
 
@@ -910,3 +911,44 @@ marker 前綴完備性之反向掃描／priority 重判之覆核／第三輪 bat
 
 **待 Pei**：三筆 DR 之發出（**第三度重申**）／14＋15 之 commit 授權（14 路徑）／
 第三輪 batch 1 之人讀覆核／Q10、`PROFILE_INTEGRATION.md`。
+
+---
+
+## 16 包要點
+
+**分析層採認其於 15 包 §3.3 對 `-002` 判錯**（本層 15 §4.2 所指認者），
+並立 **R-PMH62（自訂判準須雙向自套）**：以某一判準質疑某項結論時，
+須將同一判準回頭套用於**支持該質疑之其他項**。
+`-003` 與 `-002` 犯的是同一個錯之鏡像 —— 各自論證己方路徑之重要性時，
+**把對方的路徑當作不存在**。
+
+**`spec.txt` 與 PDF 之等同性疑慮（15 §10 第 3 項）已結清，
+但其結清方式是「判準錯了」而非「證據補上了」**：
+R-PMH21 早已裁定抽取字元數不得作為版本一致性之判準，
+**且 03 包上繳 §6.2 早已記載同一工具差異** —— 15 包是未回查既有記載。
+正確判準（R-PMH60）為 **marker 集合逐項相等**：以 PyMuPDF 另做一份獨立萃取，
+全集皆 31、逐章 13／6／1／7／1／3 全同、缺漏皆 `SU9.)`／`SU9.1)`。
+上繳 15 §10 原文一字未改，另附**勘誤 1**。
+
+**步驟 4 查出下放包未預期者：候選集合本身是萃取相依的。**
+PyMuPDF 之萃取多出 `Loading`／`each` 兩個候選（p9 流程圖標籤之閱讀順序差異）。
+**同一形態已往上退了三階**：前綴清單（14）→ 候選形態（15）→ 萃取器（16）。
+**每一階都消滅了下一階的錯，也都留下自己這一階的前提。**
+
+**R-PMH61 之語氣檢查已實作，must-hit D 攔下**（`SU` 改判 `noise` → 升為須人讀）。
+`xref` 三個被旗標（變更單號附於需求句旁，**已知偽陽形態**），
+`noise` 九個零命中。
+
+**⚠ 步驟 5 查出一項現存於檔案中之錯誤陳述（上繳 §5.1）**：
+`ANOMALIES.md` 之 **A-PMH14 結語稱「9.1／11.1 條列再流，維持
+（本輪方向二未在其上查出新漏）」，而同一份 A-PMH14 之新漏 2
+查出的正是 9.1 之狀態矩陣全缺** —— 二者指向同一個 outline。
+**依步驟 5「只列不改」之令未改，但本層據實記明其應改。**
+另 A-PMH03 之 outline `8`（拼字歸因）**從未經雙向法複驗**，
+而 R-PMH51 明文其結論「未複驗前不得引用」。
+
+**停止條件 9 未觸發之唯一理由是「還沒交付」** —— batch 1 不涵蓋 9.x／11.x，
+工作簿至今零寫回。**一旦寫回開始，該三項同時變成阻斷項。**
+
+**待 Pei**：三筆 DR 之發出（**第四度重申**）／16 之 commit 授權（9 路徑）／
+§8 條件 9 之三項是否排入 Phase 5 前／Q10、`PROFILE_INTEGRATION.md`。

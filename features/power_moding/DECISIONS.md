@@ -55,6 +55,8 @@ sign-off = binding as proposed.
 - **Phase 6／7 之前置阻斷項**: [RULED A-PMH12] 首次填 `Q`（Estimated Test Time）或 `AF`（Test Result）之前**必須處理**兩項母本 DV 瑕疵 —— (1) priority DV 之 sqref 為 `P10:Q1411` **跨兩欄**，使 `Q` 套用 `"P0,P1,P2,P3"` 下拉，任何分鐘數都會被擋下；(2) `AF` 之列舉逐字為 `"Pass, Fail, Pending,Block,NA"`，` Fail` 與 ` Pending` **含前導空白**，寫入 `Fail`（無空格）會被擋下。二者因四份交付件該二欄全空而從未被檢驗過
 - **寫回前必跑之機器檢查**: [RULED R-PMH22] `scripts/check_write_back.py` 三項（blank 前提／起始列來源／列數差），三項故意失敗測試已實跑並全部攔下，範圍向亦通過
 - **⚠ 上列檢查之接線狀態**: [KNOWN-INCOMPLETE — 05 包步驟 5] 三項檢查**已實作並經故意失敗驗證**，但**尚未被任何寫回路徑呼叫** —— `feature.yaml` 之 `write_back_checks` 節目前只是宣告。R-PMH22 所要求之「於每次寫回前**自動**驗證」之**接線為 Phase 6 之交付項**。**本項為已知未完成，非疏漏、亦非 RESOLVED**（通則 8：文字修補不構成 RESOLVED，而一段未被呼叫的正確程式碼，其效力與文字修補相同）
+- **規格 PDF 之文字萃取來源**: [RULED R-PMH60 — 16 包步驟 4] `sandbox/spec.txt` 由 `pdftotext -layout` 產出（`sandbox/` 於 `.gitignore` 內，不入版控；PDF 本體與其 SHA256 在 `inputs/MANIFEST.sha256`）。第二份獨立萃取 `sandbox/spec_pymupdf.txt` 由 PyMuPDF 1.28.0 產出（11 頁）。**二者之等同性以 marker 集合驗，不以字元數**：全集皆 31、逐章 13／6／1／7／1／3 全同、缺漏皆 `SU9.)`／`SU9.1)` —— **等同性成立**。指令：`python scripts/marker_coverage.py --verify-extraction sandbox/spec_pymupdf.txt`
+- **⚠ 字元數不得作為等同性之依據**: [RULED R-PMH21／R-PMH60] 兩份萃取正規化後之字元數為 15,171／15,420（差 249），另分析層之 `pm.txt` 為 15,751。**該等差額不予採認為疑點** —— 抽取字元數已由 R-PMH21 明文排除於完整性／正確性／版本一致性之判準之外。03 包上繳 §6.2 早已記載同一工具差異（pymupdf 15,618 vs pdftotext 15,167），**15 包 §10 第 3 項將其重提為未解疑點，係判準之誤用**
 - BLOCKED batches at start: [AUTO] **0** —— 29/29 章節於 SYS1 命中、48/48 leaf 之 `pdf_page` 已解、無 DR-PMH 待答
 
 ---
