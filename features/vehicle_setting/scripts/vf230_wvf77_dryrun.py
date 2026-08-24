@@ -29,7 +29,13 @@ sys.path.insert(0, str(FEAT.parents[1] / "scripts"))
 
 SHEET = "Test Case Specification 測試用例規範"
 HEADER_ROW, FIRST_DATA_ROW = 9, 10
-B_START = 238                      # R-VF83
+# ---- B 欄起始號：**由實測導出，不寫死**（Pei 裁定 2026-08-24：自 244 起）----
+# **R-VF83 寫死 238，其前提「CFTS044 佔 1–237」於本輪實測為假** ——
+# 交付路徑之 CFTS044 已增長至 **243**（repo 內副本仍為 237，二者分岔）。
+# **寫死一個依賴他本狀態之數，其過時不會被任何檢查攔下** —— 本輪即其實例。
+# 故改為每跑一次即實測，並取 **二本之最大末號 + 1**（保守：同時避開二者）。
+# 現行實測 max(237, 243) + 1 = **244**，與裁定相符。
+B_START_RULED = 244                # Pei 裁定之值，用以與實測交叉驗證
 PROJECT, ABBR = "NR1L", "VS"
 AUTHOR = "PeiPYHsu"
 
@@ -40,6 +46,36 @@ COLS = {
     "M": "Expected Result", "N": "Specification Reference", "P": "Test Case Priority",
     "R": "Test Case Design", "AA": "Test Case Author", "AH": "Remarks",
 }
+
+
+def cfts044_last_b() -> tuple[int, dict]:
+    """實測 CFTS044 二本之 B 欄末號 —— repo 內副本與交付路徑對應本。
+
+    **二者分岔已知**（W-VF78 實測 237 vs 243）；取其**最大值**以同時避開。
+    交付路徑不存在時只取 repo 內者並具名。
+    """
+    import openpyxl
+    seen = {}
+    cands = [("repo", next(iter(sorted((FEAT / "inputs").glob("*036*CFTS044*.xlsx"))), None))]
+    d = Path("/Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/ASW-R2/"
+             "Vehicle Settings/CFTS044")
+    if d.exists():
+        cands.append(("delivery", next(iter(sorted(d.glob("*036*.xlsx"))), None)))
+    for tag, p in cands:
+        if p is None or not p.exists():
+            seen[tag] = None
+            continue
+        wb = openpyxl.load_workbook(p, read_only=True, data_only=True)
+        ws = wb[SHEET]
+        last = 0
+        for r in ws.iter_rows(min_row=FIRST_DATA_ROW, min_col=2, max_col=2,
+                              values_only=True):
+            if isinstance(r[0], int):
+                last = max(last, r[0])
+        wb.close()
+        seen[tag] = last
+    vals = [v for v in seen.values() if v]
+    return (max(vals) + 1 if vals else B_START_RULED), seen
 
 
 def book() -> Path:
@@ -64,12 +100,12 @@ def sources() -> list[Path]:
     return out
 
 
-def rows_from(files: list[Path]) -> list[dict]:
+def rows_from(files: list[Path], b_start: int) -> list[dict]:
     titles = {r["swe_id"]: r["title"].replace("\\n", " ")
               for r in csv.DictReader(
                   (FEAT / "data/vf230_leaves.tsv").open(encoding="utf-8"),
                   delimiter="\t")}
-    out, b = [], B_START
+    out, b = [], b_start
     for f in files:
         for tc in json.loads(f.read_text(encoding="utf-8"))["tcs"]:
             leaf = tc["leaf_id"]
@@ -92,13 +128,23 @@ def main() -> None:
     print(f"=== W-VF77 dry-run（**不寫任何檔**）===")
     print(f"目標工作簿（自 feature.yaml `paths.workbook_vf230`）：\n  {bk}")
     print(f"  存在：{bk.exists()}")
+    b_start, seen = cfts044_last_b()
+    print(f"\nB 欄起始號（**實測導出，不寫死**）：")
+    print(f"  CFTS044 之 B 欄末號 —— repo 內 {seen.get('repo')}／"
+          f"交付路徑 {seen.get('delivery')}"
+          + ("  ⚠ **二者分岔**" if seen.get('repo') != seen.get('delivery') else ""))
+    print(f"  取其最大 + 1 = **{b_start}**（Pei 裁定之值 {B_START_RULED}）"
+          f"  {'✅ 相符' if b_start == B_START_RULED else '❌ 不符 —— 停'}")
+    if b_start != B_START_RULED:
+        raise SystemExit(f"B 欄起始號之實測（{b_start}）與裁定（{B_START_RULED}）不符，"
+                         "其一已過時，停")
     files = sources()
     print(f"來源：`data/vf230_batches.tsv` 之 {len(files)} 檔")
-    rows = rows_from(files)
+    rows = rows_from(files, b_start)
     n = len(rows)
     print(f"\n列數 **{n}**；B 欄 **{rows[0]['B']} – {rows[-1]['B']}**"
-          f"（期望 {B_START} – {B_START + n - 1}）")
-    ok_b = [r["B"] for r in rows] == list(range(B_START, B_START + n))
+          f"（期望 {b_start} – {b_start + n - 1}）")
+    ok_b = [r["B"] for r in rows] == list(range(b_start, b_start + n))
     print(f"  B 欄連號：{'✅' if ok_b else '❌'}")
 
     print(f"\n--- 四項驗證 ---")
