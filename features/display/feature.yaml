@@ -1,0 +1,55 @@
+# feature.yaml — pipeline configuration for Display
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals. Regenerate nothing by editing code.
+
+feature: "Display"
+test_group: "Display"          # framework-internal; workbook write per profile
+
+paths:
+  workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"   # R-G1 母本；sha256 6372fb6b…
+  a03_report: "inputs/Display_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx"   # R-DM2′；intake.py sniffer 誤判為 spec_xlsx（R-DM5(a)），故本行為人工填入
+  sys1_export: "inputs/SYS2_CFTS_020_DISP_TCH_ICS_20260616_All_HW_System_Accepted & Released.xlsx"        # null if spec_mode has no export
+  spec_pdf: "inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and DCSD _20260310-1533.docx"   # CFTS 本文；spec_mode D 之判讀基準
+  sys3_sysad: "inputs/SYS3_CFTS_020_display_FM-WI-FSM-011-A01_System Architectural Design_SYSAD_v1.0.docx"   # 追溯/架構參考，非判讀基準（intake.py A-TM10 未填入）
+  popup_list: null                       # 交付夾內無 Pop Up List
+
+spec_mode: "D"        # A/B/C/D/E per FO §3
+spec_reference_template: null   # mode D：spec_reference 為查得，非構造（canon §3）
+
+workbook:
+  sheet: "Test Case Specification 測試用例規範"   # 實測自母本；模板之 rev A/B 名在本母本不存在
+  header_row: 9
+  # column letters, verified by recon header match — do not guess
+  columns:
+    req_id: "D"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    design_method: "R"      # 實測；母本 Q 欄為 Estimated Test Time
+    functional_safety: "S"  # 實測
+    author: "AA"            # 實測；母本 Z 欄為 Fastack (376) Atl-Mi
+    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+
+done_region:
+  # detection: "author" (author-cell match) or "rows" (explicit ranges)
+  detection: "author"     # workbook_state = BLANK：無 done region，本節不生效
+  author_value: null      # BLANK：無既有作者
+  # invariant: "content_hash" (interleaved-safe) or "positional"
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: true      # workbook_state = BLANK -> FILL（canon §2.1）
+
+lint:
+  design_method_source: "dropdown_sheet"   # exact-string vocabulary
+  popup_ids: []                            # e.g. [PU0091, PU0942] — verbatim check
+  extra_rules: []                          # feature-specific lint hooks
