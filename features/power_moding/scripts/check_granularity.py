@@ -58,25 +58,58 @@ DOC = ROOT / "framework.md"
 DOC_SHA_RE = re.compile(r"程式 SHA256：`([0-9a-f]{64})`")
 
 
-def check_doc_sync(doc: Path = None, prog_sha: str = None) -> tuple[bool, str]:
+TBL_RE = re.compile(r"(\| id \| 量 \| 關係 \| 門檻 \| 來源 \|\n(?:\|[^\n]*\|\n)+)")
+
+
+def _norm_tbl(s: str) -> list[str]:
+    """表格之正規化：去行首尾空白、摺疊 cell 內之對齊空白。"""
+    out = []
+    for line in s.strip().splitlines():
+        cells = [re.sub(r"\s+", " ", c).strip() for c in line.strip().strip("|").split("|")]
+        out.append("|".join(cells))
+    return out
+
+
+def check_doc_sync(doc: Path = None, prog_sha: str = None,
+                   doc_text: str = None) -> tuple[bool, str]:
     """R-PMH42 —— 門檻單一來源之**可執行檢查**。
 
-    讀文件中所記之程式 SHA256，比對程式現值。不符即失敗。
-    `prog_sha` 僅供自測注入（模擬「程式已改而文件未重貼」）。
+    **11 包步驟 4 之強化**：原僅比對程式 SHA256，而**雜湊是代理量** ——
+    手改文件中之門檻數值而不動雜湊行，檢查會 PASS。
+    現改為**兩項並驗**：
+      (1) 程式 SHA256 之記載與程式現值相符（命中須恰 1 —— R-PMH41）；
+      (2) **文件之門檻表與 `emit_thresholds()` 之輸出正規化後逐字相同**。
+
+    `prog_sha` / `doc_text` 僅供自測注入。
     """
     doc = doc or DOC
     cur = prog_sha or self_sha256()
-    if not doc.exists():
-        return False, f"文件不存在：{doc}"
-    hits = DOC_SHA_RE.findall(doc.read_text(encoding="utf-8"))
+    if doc_text is None:
+        if not doc.exists():
+            return False, f"文件不存在：{doc}"
+        doc_text = doc.read_text(encoding="utf-8")
+
+    hits = DOC_SHA_RE.findall(doc_text)
     if len(hits) != 1:
         return False, (f"文件中之 `程式 SHA256：` 記載數 = {len(hits)}（預期恰 1）"
                        f" —— R-PMH41：驗命中數")
     if hits[0] != cur:
-        return False, (f"**門檻表已與程式分岔** —— 文件記 `{hits[0][:16]}…`，"
+        return False, (f"**門檻表已與程式分岔（雜湊）** —— 文件記 `{hits[0][:16]}…`，"
                        f"程式現值 `{cur[:16]}…`。"
                        f"請重跑 `--emit-thresholds` 並重貼門檻節。")
-    return True, f"文件與程式同源 —— SHA256 `{cur[:16]}…`（命中 1 處）"
+
+    tbls = TBL_RE.findall(doc_text)
+    if len(tbls) != 1:
+        return False, (f"文件中之門檻表數 = {len(tbls)}（預期恰 1）—— R-PMH41")
+    want, got = _norm_tbl(emit_thresholds()), _norm_tbl(tbls[0])
+    if want != got:
+        diff = next((f"L{i+1}: 文件 {g!r} vs 程式 {w!r}"
+                     for i, (w, g) in enumerate(zip(want, got)) if w != g),
+                    f"行數 文件 {len(got)} vs 程式 {len(want)}")
+        return False, (f"**門檻表之內容已與程式分岔** —— {diff}。"
+                       f"（雜湊相符但表被手改 —— 雜湊是代理量，故此項另驗）")
+    return True, (f"文件與程式同源 —— SHA256 `{cur[:16]}…`（命中 1 處）"
+                  f"＋ 門檻表 {len(got)} 列逐字相同")
 
 
 def emit_thresholds() -> str:
@@ -280,7 +313,14 @@ def self_test() -> int:
     good_ok, good_why = check_doc_sync()
     print(f"\n  [還原] 用程式實際雜湊")
     print(f"    doc-sync {'PASS ✅' if good_ok else '**FAIL** ❌'} — {good_why}")
-    sync_ok = (not bad_ok) and good_ok
+
+    # 11 包步驟 4：第二項故意失敗 —— 雜湊相符而**表被手改**
+    tampered = DOC.read_text(encoding="utf-8").replace("**`1/3`**", "**`0.35`**", 1)
+    tam_ok, tam_why = check_doc_sync(doc_text=tampered)
+    print(f"\n  [故意失敗 2] 手改文件之門檻值 `1/3` → `0.35`（雜湊行不動）")
+    print(f"    doc-sync {'PASS ❌ **未攔下**' if tam_ok else '**FAIL** 攔下 ✅'} — {tam_why}")
+
+    sync_ok = (not bad_ok) and good_ok and (not tam_ok)
 
     print(f"\nmust-hit 五錨點全部如期 FAIL: {all_ok}；範圍向 PASS: {scope_ok}；"
           f"doc-sync 故意失敗被攔下且還原後 PASS: {sync_ok}")

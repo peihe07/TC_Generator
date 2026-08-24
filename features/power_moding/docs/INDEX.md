@@ -14,9 +14,10 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 05 | 2026-08-24 | 母體判準修正、Q3 完整語料與**重裁定案**、Phase 3 前置 | [handoff/05_corpus_fix_and_framework_prep.md](handoff/05_corpus_fix_and_framework_prep.md) ＋ [05a](handoff/05a_upstream_naming_scope.md)／[05b](handoff/05b_q3_final.md) | [upstream/05_corpus_fix_and_framework_prep.md](upstream/05_corpus_fix_and_framework_prep.md) | R-PMH24–R-PMH27（逐字抄錄 4/4 相符） | （未立新 A-PMH —— 新發現皆為停止條件之回報） | **步驟 1–6 全數執行；停止條件 7、8 觸發，已查明並回報** |
 | 06 | 2026-08-24 | 停止條件處置、Layer 2 複算、跨規格缺口 | [handoff/06_framework_proposal.md](handoff/06_framework_proposal.md) | [upstream/06_framework_proposal.md](upstream/06_framework_proposal.md) | R-PMH28–R-PMH31（逐字抄錄 4/4 相符） | A-PMH13（CFTS009 缺口） | **步驟 1–5 全數執行；九條停止條件全未觸發** |
 | 07 | 2026-08-24 | tie-break、granularity 檢查、跨 feature 缺口擴查 | [handoff/07_gap_widening.md](handoff/07_gap_widening.md) | [upstream/07_gap_widening.md](upstream/07_gap_widening.md) | R-PMH32／R-PMH33（逐字抄錄 2/2 相符） | （無新 A-PMH；A-PMH13 之量詞擴大、口徑註結案） | **步驟 1–5 全數執行；九條停止條件全未觸發** |
-| 08 | 2026-08-24 | granularity 判準補正、分母口徑、**Layer 2 定版** | [handoff/08_criterion_repair.md](handoff/08_criterion_repair.md) ＋ [08a](handoff/08a_q11_and_git.md) | [upstream/08_criterion_repair.md](upstream/08_criterion_repair.md) | R-PMH34–R-PMH37（逐字抄錄 4/4 相符） | （無新 A-PMH；A-PMH13 依 R-PMH34 改寫分母） | **步驟 1–8 全數執行；九條停止條件全未觸發；Q11 結清** |
+| 08 | 2026-08-24 | granularity 判準補正、分母口徑、**Layer 2 定版** | [handoff/08_criterion_repair.md](handoff/08_criterion_repair.md) ＋ [08a](handoff/08a_q11_and_git.md) | [upstream/08_criterion_repair.md](upstream/08_criterion_repair.md) **（含勘誤）** | R-PMH34–R-PMH37（逐字抄錄 4/4 相符） | （無新 A-PMH；A-PMH13 依 R-PMH34 改寫分母） | **步驟 1–8 全數執行；九條停止條件全未觸發；Q11 結清** |
 | 09 | 2026-08-24 | must-hit 隔離度、G1 門檻推導、門檻單一來源 | [handoff/09_threshold_derivation.md](handoff/09_threshold_derivation.md) | [upstream/09_threshold_derivation.md](upstream/09_threshold_derivation.md) | R-PMH38–R-PMH40（逐字抄錄 3/3 相符） | （無新 A-PMH；修正一處 08a 之未命中替換） | **步驟 1–6 全數執行；九條停止條件全未觸發** |
 | 10 | 2026-08-24 | doc-sync 檢查落實、替換殘留回掃、profile 草案核對 | [handoff/10_profile_draft.md](handoff/10_profile_draft.md) | [upstream/10_profile_draft.md](upstream/10_profile_draft.md) | R-PMH41／R-PMH42（逐字抄錄 2/2 相符） | （無新 A-PMH） | **步驟 1–5 全數執行；停止條件 8 觸發 1 項，已修正並回報** |
+| 11 | 2026-08-24 | 已發生變更之舉證、勘誤方式、互斥狀態一致性 | [handoff/11_claim_evidence.md](handoff/11_claim_evidence.md) | [upstream/11_claim_evidence.md](upstream/11_claim_evidence.md) | R-PMH43–R-PMH45（逐字抄錄 3/3 相符） | （無新 A-PMH；08 上繳追加勘誤節） | **步驟 1–5 全數執行；九條停止條件全未觸發** |
 
 ## 01 輪要點
 
@@ -641,3 +642,48 @@ granularity 是否補 must-hit。
 **待 Pei**：profile 草案核可（Phase 4 前置）／A-PMH13（連帶：若裁 (ii)，
 profile §0／§2 之「48 leaf」須加註「其中 1 條為揭露列」）／10 包之 commit 授權／
 已交付上繳包之誤稱是否更正／`--check-doc-sync` 是否加強。
+
+## 11 輪要點
+
+**08 上繳已追加勘誤節（R-PMH44）—— 原文一字未改**
+- 被更正者：§11.3(a) 之「狀態由『未定版』改為 **定版**」——
+  **該變更於 08a 輪從未發生**。
+- **R-PMH44(c) 之驗證**：原句於檔內出現 **2 次**（原文 1 ＋ 勘誤引用 1）
+  —— 原句連同勘誤並存，方能看出當時相信了什麼、何時發現不是。
+- **雜湊變化已揭露**：檔案 `ed07aa01…` → `91972102…`；
+  **所改者為「檔案」，非「該節原文」**。`docs/INDEX.md` 之 08 列已標「含勘誤」。
+
+**`check_state_consistency.py`（R-PMH45）—— 精準攔下 L7／L24**
+- 四組互斥對（定版/未定版、PENDING/RESOLVED、待裁/已結清、wired）。
+- **故意失敗於暫存副本上**把 `framework.md:7` 改回「未定版」→ 檢查 FAIL 並
+  **逐行列出 L24（A 側）與 L7（B 側）**，即 08a／09 兩輪間之實際不一致狀態。
+  ROOT 之檔案未被改動。範圍向四檔全 PASS。**停止條件 7 未觸發。**
+- **`RULINGS.md`／`ANOMALIES.md` 採具名排除，非放寬判準**（停止條件 9 未觸發）：
+  二檔為多對象登記簿，不同 anomaly 之 PENDING／RESOLVED 共存為正常；
+  排除理由於**每次執行皆印出**。
+- **本檢查之價值**：它抓的是**替換未命中之結果**而非過程 ——
+  不依賴標記清單，只依賴「兩個互斥狀態同時存在」，
+  故 10 §6 第 1 項所指之「已無 before 可查之替換」其殘留仍會被抓到。
+
+**`--check-doc-sync` 已強化：雜湊 → 雜湊 ＋ 表內容**
+- 10 §6 第 3 項自陳「雜湊是代理量，手改門檻數值不動雜湊行會 PASS」——
+  **本輪已修**，改為並驗「程式 SHA256」與「門檻表正規化後逐字相同」。
+- **兩項故意失敗皆攔下**：(1) 注入假雜湊；
+  (2) **手改 `1/3` → `0.35` 而雜湊行不動** → 精準指出 L3 之 cell 差異。
+- **該檢查第二次在真實情境下攔下自己**：強化它即改了程式，
+  `--check-doc-sync` 當場 FAIL（`07aea6e3…` vs `eada46d0…`），重貼後 PASS。
+
+**⚠ 本輪自陳之未竟項（上繳 §6），其中兩項值得先看**
+1. **`RULINGS.md`／`ANOMALIES.md` 之互斥一致性至今無任何檢查。**
+   具名排除是誠實的，**但排除不等於解決** —— 那兩個檔正是狀態陳述最密集之處。
+   若某則 anomaly 標題寫 RESOLVED 而內文仍寫「待 Pei 裁定」，**現行無檢查會發現**。
+   按條號切分（`^## (A-PMH\d+)` 切段、段內判互斥）**可行，本包未做**。
+2. **四組互斥對是列舉，不是全集** —— 還有 `已授權`/`未授權`、
+   `已定案`/`待裁`、`FULL`/`BLANK` 等。**未列舉者不會被檢查** ——
+   與 A-PMH08／A-PMH13 同族（判準以列舉為之，形態一變即靜默脫落）。
+
+**另**：下放包載提交狀態而已過時，本輪為**第三次**（08 §5.1、10 §七、11 §五）。
+建議下放包不再載提交狀態（其為 git 現況，非分析層可知），**未立條，待裁**。
+
+**待 Pei**：profile 草案核可與 A-PMH13 —— **二者阻斷 Phase 4 已三輪**；
+11 包之 commit 授權（8 路徑，含 08 上繳之勘誤追加）。
