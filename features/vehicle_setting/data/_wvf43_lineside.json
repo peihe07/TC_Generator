@@ -1,0 +1,1032 @@
+{
+  "rows": [
+    {
+      "file": "feature.yaml",
+      "num": "R-VS60",
+      "frag": "# 本 feature 含兩份交付（R-VS60）：",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "feature.yaml",
+      "num": "R-VS61",
+      "frag": "# 尋得，惟未補入（R-VS61）且缺 6 個 E-Save leaf。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "feature.yaml",
+      "num": "R-VS59",
+      "frag": "# R-VS59 —— B 欄「No.#/序號」自 238 起連續遞增。",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：B 欄／238／序號"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "> **【(a) 段之「故不寫」效果經 R-VS59（63 包 §1，Pei 2026-08-23）撤回；原文保留不刪】**",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：委派"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS61",
+      "frag": "> 廢止理由：該判準之前提為「值未解即不可寫」，而 **R-VS61 已否定該前提**。",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：值未解"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "第五條（R-VS63）為 Pei 於同日就 61 包 §6 第 3–5 項另行之裁定。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "### R-VS59 —— VF230 之 B 欄序號自 238 起（61 包 §3，**Pei 裁定 2026-08-23**）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：B 欄／238／序號"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "R-VS59（VF230 序號基準，Pei 裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：B 欄／238／序號"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "4. F 欄「Test Case ID」兩本 workbook 皆為 0 filled；R-VS59 **不**新增",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：B 欄／序號／續號"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS60",
+      "frag": "### R-VS60 —— VF230 併入 `vehicle_setting`，不另開 feature（61 包 §3，**Pei 裁定 2026-08-23**）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：併入／vehicle_setting／另開"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS60",
+      "frag": "R-VS60（VF230 之 feature 歸屬，Pei 裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：併入／vehicle_setting／feature slug／另開"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS61",
+      "frag": "### R-VS61 —— 素材補入由 Pei 執行（61 包 §3，**Pei 裁定 2026-08-23**）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：素材補入／Pei 執行"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS61",
+      "frag": "R-VS61（VF230 素材補入，Pei 裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：素材補入"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS62",
+      "frag": "### R-VS62 —— `output/` 之證據位階（61 包 §3，**Pei 裁定 2026-08-23**）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：output/"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS62",
+      "frag": "R-VS62（Pei 先前彙整之證據位階，Pei 裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：output/／參考素材／非權威"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "- 其所含之任何列序，**不**構成 R-VS59 之續號依據",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：續號"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "### R-VS63 —— 專案級 REF 素材得由 CFTS044 代用（**Pei 裁定 2026-08-23**）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：REF 素材／代用／專案級"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "> **⚠ 本條屬 VF230 線，與主線同號者為不同條文**（R-VS63）。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "R-VS63（VF230 之 REF 素材代用，Pei 裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：REF 素材／代用／專案級"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "> **編號說明（Pei 裁定 2026-08-23）**：下列四條為 **CFTS044 本線**之 R-VS59～R-VS62，",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：委派／不等於不寫"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS62",
+      "frag": "> **編號說明（Pei 裁定 2026-08-23）**：下列四條為 **CFTS044 本線**之 R-VS59～R-VS62，",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "### R-VS59 —— 委派不等於不寫（63 包 §1，**Pei 裁定 2026-08-23**；取代 R-VS7(a) 之效果）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：委派／不等於不寫／R-VS7(a)"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "R-VS59（Pei 2026-08-23）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：委派／不等於不寫／R-VS7(a)"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS60",
+      "frag": "### R-VS60 —— A-VS103 之跨列引入，准（63 包 §2，**Pei 裁定 2026-08-23**）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：跨列引入／A-VS103"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS60",
+      "frag": "R-VS60（Pei 2026-08-23）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：跨列引入／A-VS103"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS61",
+      "frag": "### R-VS61 —— DR-19：無匯流排對應者，寫分析所載之名（63 包 §3，**Pei 裁定 2026-08-23**）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-19／匯流排對應／分析所載之名"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS61",
+      "frag": "R-VS61（Pei 2026-08-23）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-19／匯流排對應／分析所載之名"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS62",
+      "frag": "### R-VS62 —— DR-8′：車型碼取自 PROXI 表（63 包 §4，**Pei 裁定 2026-08-23**）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-8／車型碼／PROXI 表"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS62",
+      "frag": "> **【經 R-VS62′ 取代，2026-08-23；原文保留不刪，見 R-TM13】**",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-8／車型碼／PROXI 表"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS62",
+      "frag": "R-VS62（Pei 2026-08-23）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：車型碼／PROXI 表／VC_VEH_LINE"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS64",
+      "frag": "### R-VS64 —— W 號改編追認（62 包 §3，分析層裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：W 號改編"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS64",
+      "frag": "R-VS64（VF230 進場之 W 號改編，分析層裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：W 號改編／W-110"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS65",
+      "frag": "### R-VS65 —— W-115（DR 波及判定）之輸入改以 token 掃描（62 包 §3，分析層裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：token 掃描／DR 波及"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS65",
+      "frag": "R-VS65（DR 波及判定之輸入，分析層裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：token 掃描／DR 波及"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "### R-VS66 —— Layer 2 決定前之前置複驗（62 包 §3，分析層裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：正規化／Layer 2／複驗"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "R-VS66（Layer 2 交集之正規化複驗，分析層裁定 2026-08-23）",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：正規化／Layer 2／複驗／NFKC"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "### R-VS63 —— 編號分線（64 包 §4，分析層裁定 2026-08-23）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：編號分線"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "R-VS63（分析層裁定 2026-08-23）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：編號分線"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "VF230 線現行之 `R-VS59`～`R-VS63` 五條，其標題加註",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS63",
+      "frag": "VF230 線現行之 `R-VS59`～`R-VS63` 五條，其標題加註",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "**引用之義務**：跨線引用時須標線名（如「VF230 線之 R-VS59」）。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS62",
+      "frag": "### R-VS62′ —— `$VC_VEH_LINE$` 之值域取 PROXI 表列 466；DR-8′ 撤回（65 包 §1，分析層裁定 2026-08-23，取代 R-VS",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-8／PROXI 表／VC_VEH_LINE"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS62",
+      "frag": "R-VS62′（分析層裁定 2026-08-23，取代 R-VS62）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-8／PROXI 表／VC_VEH_LINE"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS62",
+      "frag": "R-VS62 原文所列之四碼（`332`／`WS`／`DT`／`HDCC`）**於母體命中 0**，",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-8"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS60",
+      "frag": "R-VS60 之跨列引入只實作於驅動側，致 batch17 首次自檢報 4 項 R-VS39 違規）。",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：跨列引入"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS64",
+      "frag": "### R-VS64 —— 升級門檻不得以常數表示（68 包 §1，分析層裁定 2026-08-23）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：升級門檻／常數"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS64",
+      "frag": "R-VS64（分析層裁定 2026-08-23）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：升級門檻／常數"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS60",
+      "frag": "成因：R-VF2（原 R-VS60）令 VF230 併入 `vehicle_setting`，兩條分析線",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：併入／vehicle_setting"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "理由：R-VF8（原 R-VS66）之逐字正規化不足以達成其自身目的 ——",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：正規化"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS65",
+      "frag": "### R-VS65 —— （69 包 §1，44 輪之條文；46 輪 D-2 補轉錄）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：44 輪／69 包"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS65",
+      "frag": "R-VS65（分析層裁定 2026-08-23）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：44 輪／69 包"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "### R-VS66 —— 規格明確而實作未見之處置（71 包 §2）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：規格明確／實作未見／71 包"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "R-VS66（分析層裁定 2026-08-23）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：規格明確／實作未見／71 包"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "> 並依 R-VS66(a) 標 `impl_gap`。**(推翻 R-VS51(2) 之部分不變。)**",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "並依 **R-VS66(a)** 標 `impl_gap = <訊號名>`",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "該訊號不在基線 DBC → **標 `impl_gap`，依 R-VS66(a) 照寫、開 issue 予 RD**",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "(d) **DR-25′ 維持撤回** —— 其標的（訊號不在 DBC）依 R-VS66 已非 DR 之事由，",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "**⚠ 檢查二之「必不命中」錨點於現行全檔即失敗** —— 非錨點有誤，是**真違反**：`R-VS59`–`R-VS66` **各有兩個條文起始**（VF230 線之 V01／V",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "**⚠ 檢查二之「必不命中」錨點於現行全檔即失敗** —— 非錨點有誤，是**真違反**：`R-VS59`–`R-VS66` **各有兩個條文起始**（VF230 線之 V01／V",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS61",
+      "frag": "值無對應而來源有逐字   → `= <來源逐字值>`，**不附 raw**（R-VS61），",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS61",
+      "frag": "而 R-VS61 已否定該前提。R-VS47 之 W1／W2 分界依本條重定。",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：值未解"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS60",
+      "frag": "（R-VS60），單一 feature 內之 Test Group 保持單值，優先於 spec 模組名之",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：併入／vehicle_setting"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "R-VF45（R-VS59–R-VS66 撞號之處置，分析層裁定 2026-08-23）",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "R-VF45（R-VS59–R-VS66 撞號之處置，分析層裁定 2026-08-23）",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "A-VF10 實測：`R-VS59`–`R-VS66` 八號各有兩個定義，兩線皆為 Pei 裁定、",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "A-VF10 實測：`R-VS59`–`R-VS66` 八號各有兩個定義，兩線皆為 Pei 裁定、",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "`R-VS59→R-VF1 … R-VS66→R-VF8`，並註明",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "`R-VS59→R-VF1 … R-VS66→R-VF8`，並註明",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS59",
+      "frag": "「歷史文件中之 `R-VS59`–`R-VS66` 可能指兩義之任一，",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "RULINGS.md",
+      "num": "R-VS66",
+      "frag": "「歷史文件中之 `R-VS59`–`R-VS66` 可能指兩義之任一，",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "docs/INDEX.md",
+      "num": "R-VS59",
+      "frag": "| 34 | — | 母體層冗餘掃描、R-VS57(4) 重跑、產能終局盤點 | [61](handoff/61_review_round37.md) | [upstream/34",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "docs/INDEX.md",
+      "num": "R-VS61",
+      "frag": "| 34 | — | 母體層冗餘掃描、R-VS57(4) 重跑、產能終局盤點 | [61](handoff/61_review_round37.md) | [upstream/34",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "docs/INDEX.md",
+      "num": "R-VS63",
+      "frag": "| 34 | — | 母體層冗餘掃描、R-VS57(4) 重跑、產能終局盤點 | [61](handoff/61_review_round37.md) | [upstream/34",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "CROSSLINE.md",
+      "num": "R-VS59",
+      "frag": "| **R-VF10** | `RULINGS.md`／`ANOMALIES.md` 之編號 | 同一編號不得有兩個定義 | `grade_overrides.py --check",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "CROSSLINE.md",
+      "num": "R-VS66",
+      "frag": "| **R-VF10** | `RULINGS.md`／`ANOMALIES.md` 之編號 | 同一編號不得有兩個定義 | `grade_overrides.py --check",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/screen_layer_w132.py",
+      "num": "R-VS59",
+      "frag": "**D-2 圖示變更類**（72 包 §1 之 R-VS59(4) 細化）：",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/dr_conflict.py",
+      "num": "R-VS61",
+      "frag": "# **R-VS61（63 包 §3，Pei 2026-08-23）**：無匯流排對應者仍產 TC，",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-19／匯流排對應"
+    },
+    {
+      "file": "scripts/dr_conflict.py",
+      "num": "R-VS61",
+      "frag": "\"DR-19\": (\"value\", set(), r\"(?!x)x\", \"待覆（性質轉確認，R-VS61；不阻塞）\"),",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-19"
+    },
+    {
+      "file": "scripts/dr_conflict.py",
+      "num": "R-VS62",
+      "frag": "# **R-VS62（63 包 §4，Pei 2026-08-23）**：`VC_VEH_LINE` 之車型碼取自",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：車型碼／VC_VEH_LINE"
+    },
+    {
+      "file": "scripts/dr_conflict.py",
+      "num": "R-VS62",
+      "frag": "\"DR-8\": (\"value\", {\"VC_VEH_LINE\"}, r\"M182|M189|M240\", \"待送（縮為三碼，R-VS62）\"),",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-8／車型碼／VC_VEH_LINE"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "num": "R-VS60",
+      "frag": "# **R-VS60（63 包 §2，Pei 2026-08-23）**：`FR_VS_Cmd_Tlm` 之值域",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：跨列引入／A-VS103"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "num": "R-VS59",
+      "frag": "**R-VS59（63 包 §1，Pei 2026-08-23）**：委派不免除產出 TC 之義務 ——",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：委派"
+    },
+    {
+      "file": "scripts/writability_driver.py",
+      "num": "R-VS59",
+      "frag": "# R-VS59：`blocked` 之值廢除",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch15_w108.py",
+      "num": "R-VS59",
+      "frag": "\"**以 pre_conditions 之階數配置分辨**（R-VS59 前之既有慣例）。\",",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/screen_source_w112.py",
+      "num": "R-VS59",
+      "frag": "\"\"\"W-112（63 包 §7）—— Comfort 素材之畫面層對照表（R-VS59(2) 之前置）。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/screen_source_w112.py",
+      "num": "R-VS59",
+      "frag": "**必列**：查得／查無兩數。**查無者即 R-VS59(4) 之 PENDING 標的。**",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：R-VS7(a)"
+    },
+    {
+      "file": "scripts/batch17_w116.py",
+      "num": "R-VS59",
+      "frag": "查無者依 R-VS59(4) 標 `PENDING`。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch17_w116.py",
+      "num": "R-VS59",
+      "frag": "axis = f\"本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。\"",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch17_w116.py",
+      "num": "R-VS59",
+      "frag": "+ (\"故依 R-VS59(4) 標 `PENDING: DR-5-B`\"",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch17_w116.py",
+      "num": "R-VS59",
+      "frag": "\"screen_layer\": \"依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS59(4)）\",",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch17_w116.py",
+      "num": "R-VS60",
+      "frag": "\"`FR_VS_Cmd_Tlm` 之二條為 R-VS60 跨列引入後首次可寫。\",",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：跨列引入"
+    },
+    {
+      "file": "scripts/vf230_w119_dr_impact.py",
+      "num": "R-VS65",
+      "frag": "依 **R-VS65** 之掃描定義（逐字）：",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：掃描定義"
+    },
+    {
+      "file": "scripts/vf230_w119_dr_impact.py",
+      "num": "R-VS65",
+      "frag": "# 掃描面：title ＋ desc（R-VS65）",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/vf230_w119_dr_impact.py",
+      "num": "R-VS65",
+      "frag": "\"**依 R-VS65 之掃描定義（62 包 §3）。**\", \"\",",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：掃描定義"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "num": "R-VS59",
+      "frag": "（A-VS116 之標的，本輪因 R-VS59 首次入池）。同序內逐 Layer 2 輪流 ＋ reqid 升冪。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "num": "R-VS59",
+      "frag": "故本批之畫面層斷言一律標 `PENDING: DR-5-B`（R-VS59(4)）。見上繳 35 §2.2。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "num": "R-VS59",
+      "frag": "\"reasoning\": (why + \"；畫面層依 R-VS59(2) 取自 Comfort 素材，\"",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "num": "R-VS59",
+      "frag": "\"故依 R-VS59(4) 標 `PENDING: DR-5-B`\"),",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "num": "R-VS59",
+      "frag": "\"selection\": \"W-111 後之池 **35**（R-VS59 解除 delegate 之扣除）。\"",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "num": "R-VS59",
+      "frag": "\"screen_layer\": \"R-VS59(2) 之來源不足 —— 全 10 條之畫面層斷言標 `PENDING: DR-5-B`（R-VS59(4)）\",",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch16_w113.py",
+      "num": "R-VS59",
+      "frag": "\"自 R-VS59 撤回 `delegate = blocked` 之扣除後首次入池）。\"",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/vehline_anchor_w115.py",
+      "num": "R-VS62",
+      "frag": "\"\"\"W-115(1)（64 包 §5）—— R-VS62 之真錨點。",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：VC_VEH_LINE"
+    },
+    {
+      "file": "scripts/vf230_layer2.py",
+      "num": "R-VS66",
+      "frag": "\"\"\"比對用鍵 —— R-VS66 之正規化（W-116）。",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：正規化／NFKC"
+    },
+    {
+      "file": "scripts/screen_source_w115.py",
+      "num": "R-VS59",
+      "frag": "# R-VS59 已廢除 `blocked` 之值；`delegation_lookup.tsv` 尚未同步，",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：委派"
+    },
+    {
+      "file": "scripts/vf230_crosscheck.py",
+      "num": "R-VS61",
+      "frag": "\"**本輪採 035**，其已在 `inputs/` 內（R-VS61 之補入由 Pei 執行）。\", \"\",",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：Pei 執行"
+    },
+    {
+      "file": "scripts/batch18_w119.py",
+      "num": "R-VS59",
+      "frag": "axis = f\"本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。\"",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch18_w119.py",
+      "num": "R-VS59",
+      "frag": "+ (\"，故依 R-VS59(4) 標 `PENDING: DR-5-B`\"",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch18_w119.py",
+      "num": "R-VS59",
+      "frag": "\"screen_layer\": \"依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS59(4)）\",",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "num": "R-VS66",
+      "frag": "（`Atlantis` → `*_Cmd_Tlm`，四階）並依 **R-VS66(a)** 標 `impl_gap`。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "num": "R-VS66",
+      "frag": "+ (f\"IMPL_GAP: {tc['impl_gap']} —— 依 R-VS66(a) 照寫，\"",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/impl_gap_w133.py",
+      "num": "R-VS66",
+      "frag": "\"標 `impl_gap`（R-VS66(a)）；`dr15_exposed` 保留\")",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/carry_test_w133.py",
+      "num": "R-VS66",
+      "frag": "(2) 不能承載者 → 取**能承載之欄組**（`Atlantis`），並依 R-VS66(a) 標 `impl_gap`",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch19_w122.py",
+      "num": "R-VS64",
+      "frag": "**依 R-VS64，本批不寫死條數** —— 池扣除 held_out 後有幾條即取幾條。",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch19_w122.py",
+      "num": "R-VS59",
+      "frag": "axis = f\"本列為顯示同步（式 D／顯示型），其畫面層依 R-VS59(4) 標 PENDING。\"",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch19_w122.py",
+      "num": "R-VS59",
+      "frag": "+ (\"，故依 R-VS59(4) 標 `PENDING: DR-5-B`\"",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/batch19_w122.py",
+      "num": "R-VS59",
+      "frag": "\"screen_layer\": \"依 W-115(2) 之逐 leaf 行為層對照；查無者標 `PENDING: DR-5-B`（R-VS59(4)）\",",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "scripts/selfcheck_w53.py",
+      "num": "R-VS60",
+      "frag": "# **R-VS60（63 包 §2，Pei 2026-08-23）**：`FR_VS_Cmd_Tlm` 之值域准自",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：跨列引入／A-VS103"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "num": "R-VS61",
+      "frag": "> **40 輪 D-3（依 R-VS61，63 包 §3）**：**性質由阻塞轉確認，不阻塞。**",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-19"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "num": "R-VS61",
+      "frag": "> 依 R-VS61 **仍產 TC**，其值取來源逐字（`STATUS_CCAN3.EngineSts = IDLE_STBL`，**不附 label**），",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-19"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "num": "R-VS62",
+      "frag": "## DR-8′（**撤回，不送出** —— R-VS62′，65 包 §1；42 輪 D-3。原文保留 —— R-TM13）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-8"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "num": "R-VS62",
+      "frag": "> **撤回理由（R-VS62′）**：本 DR 縮限後之三碼（`M182`／`M189`／`M240`）",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：DR-8"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "num": "R-VS62",
+      "frag": "> **40 輪 D-3 之縮限（依 R-VS62，63 包 §4，Pei 2026-08-23）**：",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：車型碼"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "num": "R-VS59",
+      "frag": "> **40 輪 D-3（依 R-VS59，63 包 §6）**：**性質由阻塞轉確認，不阻塞。**",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "num": "R-VS59",
+      "frag": "> 其 61 leaf 依 R-VS57／R-VS59 照寫，訊號名與值域取來源逐字並標 `dr_dependent`；",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "num": "R-VS63",
+      "frag": "**不得代用 CFTS044 之 SYS2** —— 其為該 CFTS 專屬（R-VS63 之末段明排除）。",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：代用"
+    },
+    {
+      "file": "DATA_REQUESTS.md",
+      "num": "R-VS61",
+      "frag": "補入須依 **R-VS61**（由 Pei 執行；2026-08-23 之免除為單次個案）。",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：Pei 執行"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS60",
+      "frag": "| **A-VS124** | **61 包所開之 W-102–W-107 與 DR-27 與 Part 1 既有編號全面撞號** | 38 輪 VF230 進場：Part 1 之",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：併入"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS59",
+      "frag": "| **A-VS132** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **037 之 8 列判 `Heading` 而 035 SYSRA 判 `Func",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS66",
+      "frag": "| **A-VS129** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **5 個 `swe_id` 與其 `title` 內嵌換行（分析層開立，62 包 ",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：複驗"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS65",
+      "frag": "| **A-VS135** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **W-116／W-119 之判準三度修正 —— R-VS66 之正規化清單與 R-",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS66",
+      "frag": "| **A-VS135** **【VF230 線舊制編號，R-VF10 前所開，保留】** | **W-116／W-119 之判準三度修正 —— R-VS66 之正規化清單與 R-",
+      "side": "VF230",
+      "why": "命中 VF230 義之主題詞：正規化"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS59",
+      "frag": "| **A-VS137** | **`HSW_StatFailSts` 之值域於 `spec_variables.tsv` 與 LID 兩欄組皆為空，而基線 DBC 有其完整 `V",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS62",
+      "frag": "| **A-VS137** | **`HSW_StatFailSts` 之值域於 `spec_variables.tsv` 與 LID 兩欄組皆為空，而基線 DBC 有其完整 `V",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS59",
+      "frag": "| **A-VS139** | **W-112 之「查得 174／查無 0」為 Layer 3 群層級之命中，非逐 leaf 之畫面層對應** | 40 輪 W-112：`dele",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS62",
+      "frag": "| **A-VS140** | **`$VC_VEH_LINE$` 於 237 leaf 僅 2 處引用，其值為 `WL` 與 `M4 OR MP` —— R-VS62 之七個車型",
+      "side": "Part 1",
+      "why": "命中 Part 1 義之主題詞：車型碼／VC_VEH_LINE"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS59",
+      "frag": "| **A-VS142** | **pilot #4 之分層維度 `dr_dependent`（有／無）退化 —— 43/43 皆為「有」** | 42 輪 W-118：交叉格矩陣",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS66",
+      "frag": "| **A-VS148** | **R-VS67 之 (a)(c) 相衝：44 條已交付 TC 之四階斷言於 1 bit 訊號上無法成立，分級崩落 48 leaf** | 46 輪",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS61",
+      "frag": "| **A-VS152** | **D-3 令補入之 PDT24 兩檔不在 `inputs/`，與本輪禁區「不補素材」相衝** | 47 輪 D-3：`inputs/` 之 PDT",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS59",
+      "frag": "| **A-VF10** | **`R-VS59`–`R-VS66` 八條各有兩個定義 —— R-VF10 所欲防之撞號至今仍活在 `RULINGS.md` 內** | 38 輪 ",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS60",
+      "frag": "| **A-VF10** | **`R-VS59`–`R-VS66` 八條各有兩個定義 —— R-VF10 所欲防之撞號至今仍活在 `RULINGS.md` 內** | 38 輪 ",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS62",
+      "frag": "| **A-VF10** | **`R-VS59`–`R-VS66` 八條各有兩個定義 —— R-VF10 所欲防之撞號至今仍活在 `RULINGS.md` 內** | 38 輪 ",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    },
+    {
+      "file": "ANOMALIES.md",
+      "num": "R-VS66",
+      "frag": "| **A-VF10** | **`R-VS59`–`R-VS66` 八條各有兩個定義 —— R-VF10 所欲防之撞號至今仍活在 `RULINGS.md` 內** | 38 輪 ",
+      "side": "待人工",
+      "why": "兩義皆未命中，須讀全段"
+    }
+  ],
+  "dist": {
+    "待人工": 73,
+    "VF230": 31,
+    "Part 1": 42
+  },
+  "disc_historical": 5
+}

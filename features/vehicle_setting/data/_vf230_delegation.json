@@ -31,7 +31,45 @@
       "no": 17
     }
   },
-  "comfort_titles": 127,
+  "candidates": [
+    "amfm",
+    "comfort",
+    "home",
+    "media",
+    "power",
+    "power_moding",
+    "privacy",
+    "projection",
+    "sxm",
+    "time_management",
+    "user_profiles"
+  ],
+  "states": {
+    "amfm": "無 037 素材，無法比對",
+    "comfort": "已比對",
+    "home": "無 037 素材，無法比對",
+    "media": "無 037 素材，無法比對",
+    "power": "已比對",
+    "power_moding": "已比對",
+    "privacy": "無 037 素材，無法比對",
+    "projection": "無 037 素材，無法比對",
+    "sxm": "已比對",
+    "time_management": "無 037 素材，無法比對",
+    "user_profiles": "已比對"
+  },
+  "titles_per_feature": {
+    "amfm": 0,
+    "comfort": 127,
+    "home": 0,
+    "media": 0,
+    "power": 99,
+    "power_moding": 56,
+    "privacy": 0,
+    "projection": 0,
+    "sxm": 202,
+    "time_management": 0,
+    "user_profiles": 207
+  },
   "vf230_clusters": 106,
   "exact_hits": [],
   "name_contains_comfort": [

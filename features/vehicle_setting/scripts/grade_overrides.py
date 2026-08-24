@@ -118,8 +118,14 @@ def check_rvf10() -> list[str]:
     return bad
 
 
-LIVE_SCOPE = ("RULINGS.md", "ANOMALIES.md", "DATA_REQUESTS.md", "CROSSLINE.md",
-              "framework.md", "feature.yaml", "docs/INDEX.md")
+# R-VF54 二：引用之掃描面限縮為**會被據以行動之處**。
+# 不掃 `RULINGS.md`／`ANOMALIES.md`／`DATA_REQUESTS.md` 之敘述文字 ——
+# 該三簿之行文中提及編號者多為**記述**（讓號紀錄、區間描述、對照說明），
+# 而記述與引用在語法上不可分辨。
+# **限縮不損攔截力，已由實例驗證**：`R-VF9` 之攔截來自 `framework.md`，
+# `A-VS131` 之攔截來自 `feature.yaml` —— 二者皆在限縮後之範圍內。
+# **此為判準之精確化（對準「會被據以行動者」），非白名單（不豁免任何編號）。**
+LIVE_SCOPE = ("CROSSLINE.md", "framework.md", "feature.yaml", "docs/INDEX.md")
 
 
 def check_rvf48() -> list[str]:
@@ -165,6 +171,22 @@ def check_rvf48() -> list[str]:
         defined |= {pre + str(i) for i in range(a, b + 1)}
     defined |= set(re.findall(r"\b(R-V[SF]\d+)", head))
     defined |= set(re.findall(r"^(R-V[SF]\d+)\uff08", r, re.M))
+    # R-VF54 一：定義之全集擴及 `docs/handoff/`、`docs/upstream/` 內
+    # **fenced block 之條文起始** —— 條文之正文確在其中（canon §8.7：
+    # 下放包已落檔且入版控，條文簿不重複轉錄以免二處分岔）。
+    # **不採「維護檔首對照表」之路**：該表現僅列至 05 包，維護一份須與
+    # 45 包同步之索引，其失效不會報錯 —— 即 A-VF1 之形態。
+    for d in ("docs/handoff", "docs/upstream"):
+        base = ROOT / d
+        if not base.is_dir():
+            continue
+        for f in base.rglob("*.md"):
+            t = f.read_text(encoding="utf-8")
+            for m in re.finditer(r"```\n\s*(R-V[SF]\d+|A-V[SF]\d+|DR-\d+)",
+                                 t):
+                defined.add(m.group(1))
+            defined |= set(re.findall(r"^#{2,4} (R-V[SF]\d+|A-V[SF]\d+|DR-\d+)",
+                                      t, re.M))
 
     # 編號**區間記法**為對編號空間之描述，非對特定條文之引用 ——
     # 依 R-VF52(c) 以判準精確化排除，不以白名單。
