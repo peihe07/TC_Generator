@@ -19,6 +19,7 @@ sys.path.insert(0, str(FEAT / "scripts"))
 import vf230_wvf45_priority as PR      # noqa: E402
 import vf230_wvf61_pilot as P1         # noqa: E402
 import vf230_selfcheck_wvf62 as SC62   # noqa: E402  canon 判準之單一權威
+import vf230_wvf69_facts as FACTS      # noqa: E402  EXCLUDE 之單一權威（R-VF91 二）
 
 DEFAULT_DOC = FEAT / "generated/vf230_pilot2.json"
 
@@ -106,9 +107,105 @@ def c5_step_pairing(tcs, ctx):
     return bad
 
 
+# ---- R-VF91 二：`input_test_data` 之唯一合法非 NA 形態 ----
+# 本項原為「一律 NA」。R-VF91 二令訊號上行型之未指名值改依 canon §8.4.1
+# 之佔位形式，其 `input_test_data` **須**逐字列 DBC 有效值域全集。
+# **放行不得只看形態** —— 若只驗「長得像佔位式」，即為造值開門。
+# 故放行之條件含「所列值域逐項與 DBC 相符」一項，其為本項之實質防線。
+PLACEHOLDER = re.compile(r"^([A-Za-z0-9_]+)\.([A-Za-z0-9_]+) = one of \[(.+)\]$")
+NEED_SENT = "條文未指定所收之值；值域取自 DBC，本條驗其代表值"
+
+
 def c6_input_na(tcs, ctx):
-    return [f"seq {t['seq']}：Input Test Data 應為 `NA`，實為 `{t['input_test_data']}`"
-            for t in tcs if t["input_test_data"] != "NA"]
+    bad = []
+    for t in tcs:
+        v = t["input_test_data"]
+        if v == "NA":
+            continue
+        m = PLACEHOLDER.match(v)
+        if not m:
+            bad.append(f"seq {t['seq']}：Input Test Data 應為 `NA` 或 R-VF91 二之"
+                       f"佔位式，實為 `{v}`")
+            continue
+        msg, sig, body = m.group(1), m.group(2), m.group(3)
+        if t.get("clause_form") != "訊號上行型":
+            bad.append(f"seq {t['seq']}：佔位式僅適用訊號上行型（R-VF91 一），"
+                       f"本條為 `{t.get('clause_form')}`")
+            continue
+        if NEED_SENT not in (t.get("reasoning") or ""):
+            bad.append(f"seq {t['seq']}：佔位式而 reasoning 缺 R-VF91 二之必要句")
+            continue
+        # **實質防線**：所列之 raw→label 須逐項出自 DBC，且為該訊號之**全集**
+        # （排除保留值後）。缺一項或多一項皆為造值。
+        vals = (ctx["dbc"].get(sig) or {}).get("vals")
+        if not vals:
+            bad.append(f"seq {t['seq']}：佔位式之訊號 `{sig}` 不在 DBC")
+            continue
+        listed = []
+        for part in body.split(", "):
+            mm = re.match(r"^(\d+) \((.+)\)$", part)
+            if not mm:
+                bad.append(f"seq {t['seq']}：佔位式之項 `{part}` 不合 `raw (label)` 式")
+                break
+            listed.append((mm.group(1), mm.group(2)))
+        else:
+            want = [(r, vals[r]) for r in sorted(vals, key=lambda x: int(x))
+                    if not FACTS.EXCLUDE.match(vals[r].strip())]
+            if listed != want:
+                bad.append(f"seq {t['seq']}：佔位式所列值域 {listed} 與 DBC 之有效"
+                           f"值域 {want} 不符（序亦須為 raw 序）")
+    return bad
+
+
+# ---- R-VF92 一：項 6 之實質防線須獨立確認其能攔 ----
+# 項 6 之泛用破壞式（`input_test_data = "Off"`）只證明「非 NA 且非佔位式」被攔，
+# **未證明「形態合法而值域造假」被攔** —— 而後者才是本項之實質防線。
+# 一個只驗形態之通過，與造值未被攔不可分辨。故另立三個造值錨點，逐一實測。
+FORGE_ANCHORS = [
+    ("IPC_VEHICLE_SETUP.PLGAlert = one of [0 (Off), 1 (On), 2 (Maybe)]",
+     "多列一個 DBC 所無之值"),
+    ("IPC_VEHICLE_SETUP.PLGAlert = one of [0 (Off)]",
+     "漏列一個 DBC 有之值（非全集）"),
+    ("IPC_VEHICLE_SETUP.PLGAlert = one of [1 (On), 0 (Off)]",
+     "值域正確而**序非 raw 序**（代表值因而被換掉）"),
+]
+
+
+def verify_forge(ctx) -> None:
+    """R-VF92 一：於不經產出之另一路徑上，證實造值確被項 6 攔下。"""
+    bad = []
+    for itd, kind in FORGE_ANCHORS:
+        probe = [{"seq": 9999, "input_test_data": itd,
+                  "clause_form": "訊號上行型",
+                  "reasoning": NEED_SENT}]
+        caught = bool(c6_input_na(probe, ctx))
+        print(f"  {'✅' if caught else '❌'} {kind}\n      {itd[:58]}… → "
+              f"攔下={caught}")
+        if not caught:
+            bad.append(kind)
+    # 反向：真值域須放行，否則本錨點組只是把項 6 變成一律拒絕
+    ok_itd = "IPC_VEHICLE_SETUP.PLGAlert = one of [0 (Off), 1 (On)]"
+    probe = [{"seq": 9999, "input_test_data": ok_itd,
+              "clause_form": "訊號上行型", "reasoning": NEED_SENT}]
+    passed = not c6_input_na(probe, ctx)
+    print(f"  {'✅' if passed else '❌'} **假陽之防**：真值域須放行 → 放行={passed}")
+    if not passed:
+        bad.append("真值域被誤攔")
+    if bad:
+        raise SystemExit("R-VF92 一之造值錨點不符，停 —— " + "；".join(bad))
+
+
+def c12_placeholder_sentence(tcs, ctx):
+    """W-VF71 第 2 項：R-VF91 二末之必要句，缺之即 FAIL。
+
+    **其射程為「佔位式之條」**，非全部 —— 逐字指名值者無此句，
+    強令之則該句成為樣板噪音，反使其失去「此條未指名值」之標記作用。
+    """
+    return [f"seq {t['seq']}：input_test_data 為佔位式而 reasoning 缺必要句"
+            f"「{NEED_SENT}」"
+            for t in tcs
+            if PLACEHOLDER.match(t["input_test_data"] or "")
+            and NEED_SENT not in (t.get("reasoning") or "")]
 
 
 def c7_priority(tcs, ctx):
@@ -193,6 +290,7 @@ CHECKS = [
     ("9  可執行欄位無實作層名詞殘留", c9_no_leaked_impl),
     ("10 writable 與 dr_dependent 相符", c10_writable_dr),
     ("11 seq 唯一且為連號", c11_seq_unique),
+    ("12 R-VF91 二之必要句（佔位式）", c12_placeholder_sentence),
 ]
 
 # 逐項之刻意破壞 —— 施於副本，用以證明該項**能夠**失敗。
@@ -221,7 +319,17 @@ MUTATIONS = {
                           + ts[0]["test_procedure"]),
     "10": lambda ts: ts[0].__setitem__("writable", "W9"),
     "11": lambda ts: ts[-1].__setitem__("seq", ts[0]["seq"]),
+    # 項 12 之破壞須**泛用**：本組未必首條即佔位式，故先造一個合法佔位式
+    # （值域取自 DBC 之真值，故項 6 不會先攔），再抽掉其必要句。
+    "12": lambda ts: _break12(ts),
 }
+
+
+def _break12(ts):
+    t = ts[0]
+    t["clause_form"] = "訊號上行型"
+    t["input_test_data"] = "IPC_VEHICLE_SETUP.PLGAlert = one of [0 (Off), 1 (On)]"
+    t["reasoning"] = "（必要句已被本破壞式抽除）"
 
 
 def main() -> None:
@@ -244,6 +352,9 @@ def main() -> None:
         total += len(bad)
         print(f"  {'❌' if bad else '✅'} {name:38} {len(bad)}")
         details += bad
+
+    print("\n=== R-VF92 一：項 6 實質防線之造值錨點（獨立確認）===")
+    verify_forge(ctx)
 
     print("\n=== 逐項可失效測試（A-VS106 之對治）===")
     dead = []

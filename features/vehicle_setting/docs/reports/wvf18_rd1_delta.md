@@ -7,7 +7,7 @@
 | 錨點 | leaf | 實質判準 | 代理判準 |
 |---|---|---|---|
 | 必命中 | `SWE1-VC-LeftFrontHeatedSeat-003` | 命中 | 命中 |
-| 必不命中 | `SWE1-VC-HeatedSteeringWheelManagement-023` | 未命中 | 未命中 |
+| 必不命中 | `SWE1-VC-HeatedSteeringWheelManagement-031` | 未命中 | 未命中 |
 | 鑑別 | `SWE1-VC-LeftFrontHeatedSeat-004` | 命中 | 未命中 |
 
 **實質判準之錨點：皆符。**
@@ -64,7 +64,7 @@ RD-1 之標的逐字為「`Heated Seat`（88 leaf）與 `Vented Seat`（72 leaf�
 **160**。本輪之 2 leaf（`CrossZone Common`）確在 RD-1 之
 標的內。惟**此更正不改變 W-VF16 之結論**：A-VS118 之 4 leaf 於
 `HeatedSteeringWheelManagement`，於 158 與 160 兩版皆判「未交付」
-（必不命中錨點 `SWE1-VC-HeatedSteeringWheelManagement-023` 於實質判準亦未命中）。
+（必不命中錨點 `SWE1-VC-HeatedSteeringWheelManagement-031` 於實質判準亦未命中）。
 
 **本輪未改任何檔。**
 

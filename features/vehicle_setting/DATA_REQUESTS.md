@@ -1165,6 +1165,14 @@ SWITCH 5－6 Hold Last State 2      1        0        3
 
 ## DR-34（新，**Urgency Medium** —— 11 個 PROXI 參數之值域無來源；W-VF44 開立）
 
+> ⚠ **本 DR 之範圍於 38 輪 W-VF70 大幅更正 —— 其 11 個標的中 10 個為偽陽。**
+> `proxi_known()` 讀 PROXI 表時寫死 `max_row=800`，而該分頁**實有 1060 列** ——
+> 11 個「無來源」參數中 **9 個在第 800 列之後**（`AUX_Switch_Types` 列 911、
+> `Blindspot_Trailer_Detection` 列 810、`Turn_Signal_Camera_View` 列 924 等），
+> 另 1 個（`FOA_Presence`）表內逐字名為 `FOA _Presence`（多一空格）而未被比對到。
+> **真正表內所無者僅 `Greeting_Light` 一個，影響 leaf 由 28 條降為 2 條。**
+> 詳見 **A-VF27**。本 DR 之所詢**僅就 `Greeting_Light` 仍然成立**。
+
 > **開號依據**：全庫最大已用 DR 號為 **DR-33**（R-VF10）。
 
 **型別（R-VS45）：型 C — 素材缺件（值域來源）。**
@@ -1203,6 +1211,24 @@ Turn_Signal_Camera_View     Utility_Lighting
 （`Heated_Seats`／`Heated_Seat_Levels`／`Heated_Steering_Wheel`／`DSP_SK_PRSNT`）
 之值域，其中 `Heated_Seats` 於本表可查得。
 **本件之 11 個與 DR-7 之四個無交集**，故另立而非併入。
+
+> **標的自 11 縮為 2，並具名一個近名參數（W-VF71 第 5 項實測，2026-08-24）**：
+> 依 `A-VF27`，11 個中之 10 個為本層 `max_row=800` 讀表截斷所致之偽陽
+> （9 個實在第 800 列之後，1 個表內逐字名為 `FOA _Presence`）。
+> **真正表內所無者僅 `Greeting_Light`（其二 leaf）。**
+>
+> **本輪之獨立確認（R-VF92 一）**：以 zipfile 直讀 xlsx 之 shared strings
+> （**不經 `proxi_known()`** —— 其為被驗程式，A-VF27 之缺陷正出於它），
+> 不設列上限、不限欄，實測 `Greeting_Light` **確不在表內**；
+> 對照組 `Heated_Seats`／`AUX_Switch_Types`（列 911）／
+> `Blindspot_Trailer_Detection`（列 810）／`FOA _Presence` **皆在表內**。
+> 即該必不命中錨點之不命中係「因資料如此」，非「因讀不到」。
+>
+> **⚠ 同一路徑另測到**：表內有 **`Greeting_Lights_Menu`** 一參數，與本件所求之
+> `Greeting_Light` **名近而不同**。**本層不以名近推定其對應**（`R-VF92` 二：
+> 比對不符時不得改取他標的，`A-VF28` 之教訓）—— **登記於此並回報，未改取、未據以生成**。
+> **請上游一併裁示** `Greeting_Light` 與 `Greeting_Lights_Menu` 是否為同一參數；
+> 若是，本件即可結案。
 
 **狀態：未送出**（送出屬 Pei，R-VF27）。
 
@@ -1338,3 +1364,123 @@ SWE1-VC-RearGuidanceLightswithCargoLights-017
 `chooses to (enable|disable)` 與值之極性比對，**其為已知集合，非全集**）。
 
 **登記者**：執行層（38 輪 W-VF69）。**送出屬 Pei**（R-VF27）。
+
+---
+
+## DR-39（新，**Urgency High** —— 條文未指名值時該訊號應送何值；R-VF81 三開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-38**（R-VF10）。
+
+**標的**：**128 條 leaf**（逐條列於 `data/vf230_isolated.tsv` 之
+「R-VF81 三：未指名值且無語意對應」類），其中 **訊號上行型 100 條**、
+訊號送出型 28 條。
+
+**其形態**：條文只述「HMI 應依所收到之值更新顯示」而**不指名任何具體值**，例如
+
+```
+SWE1-VC-…（訊號上行型）
+  HW supplier shall notify the IPC_VEHICLE_SETUP.<Sig> signal via VHAL interface.
+  … The HMI layer shall evaluate the received signal and update/display the
+  <Setting> setting information accordingly.
+```
+
+**所詢**：條文未指名值時，該訊號應以何值為被驗分區？
+
+1. 取 DBC 值域之**任一分區**（如 pilot #2 seq 264／265 之作法，該二條已通過覆核）？
+2. 取**全部分區**（每值一條 TC）？
+3. 抑或其值須另有來源（037 之補充、Verification Criteria）？
+
+**其阻塞者**：該 128 條**未生成任何 TC**。
+
+> **標的自 128 縮為 28（W-VF71 第 1 項施行 R-VF91 後）**：
+> `R-VF91` 一將 `R-VF81` 三之適用範圍限縮為**訊號送出型**，
+> 二令訊號上行型之未指名值改依 canon §8.4.1 之佔位形式處理。
+> **訊號上行型 100 條已解除隔離並回歸母體**（其 TC 已生成，
+> `input_test_data` 逐字列 DBC 有效值域全集、取列舉首值為代表值）。
+> **本 DR 之現行標的為訊號送出型 28 條** —— 其第一款適用而無語意對應，維持隔離。
+> 本條**維持開立**（R-VF91 五）：其所詢「條文未指名值時該送何值」仍為真問題，
+> R-VF91 為其覆文到達前之可執行處置，非其替代。
+
+**另具名一項條文之交互後果**：R-VF81 第一款以「條文之動作動詞」定語意側，
+而**訊號上行型之刺激來自 HW、顧客不執行任何動作**，故其條文結構上不會有動作動詞，
+**第一款對該形態恆不適用、第三款恆成立**。
+**pilot #2 已核可之 seq 264／265 正屬此類** —— 照 R-VF81 字面，
+該二條須改為 PENDING，**即該條回頭否定了兩條已通過覆核之 pilot 條**。
+**本輪未改動 pilot #2**，具名待裁。
+
+**登記者**：執行層（38 輪 W-VF70）。**送出屬 Pei**（R-VF27）。
+
+---
+
+## DR-40（新，**Urgency Medium** —— 8 條之條文值與 DBC 值域不符；W-VF70 §2 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-39**（R-VF10）。
+
+**標的與逐條成因**：見 `docs/reports/vf230_wvf70_cclass.md`。
+
+| 成因 | 條數 | 例 |
+|---|---|---|
+| **(a) DBC 值域拼字** | 1 | `Eng_Off_Pwr_Delay_Req`：條文 `Forty_Five_Sec`／DBC **`Fourty_Five_Sec`**（`Fourty` 非英文正詞，**DBC 側誤**） |
+| **(b) 條文誤植** | 7 | `Power_Tailgate_Enable_Req` 條文 `Disable`／DBC `Disabled`（差一字尾，2 條）；`DRLEnable_Req` 條文 `Early` 而值域為 `False`／`True`（1 條）；`Trail_Brk_Type_Req` 條文 `One`～`Four` 而值域為 `Heavy_Electric` 等制動型別（4 條） |
+
+**所詢**：各條以何者為準 —— 條文抑或 DBC？(a) 是否為 DBC 之勘誤？
+
+**本層之處置**：**只判不改**（V30 §5.2）。該 8 條列入隔離、未生成 TC。
+**具名一項本層曾犯之錯**：首版於值對不上時自動改取「同條文內值域能容納該值之
+另一訊號」，致 `TrailerBrakeType032` 之 `Trail_Brk_Type_Req` 被偷換為
+後句另一情境之 `Trail_Num_Req`，**產出驗錯訊號之 TC**。**已撤回**（見 A-VF28）。
+
+**登記者**：執行層（38 輪 W-VF70）。**送出屬 Pei**（R-VF27）。
+
+---
+
+## DR-41（新，**Urgency Medium** —— PROXI 型 9 條之條文只述取值流程而不帶值；W-VF71 第 3 項開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-40**（R-VF10）。
+> **登記，未送出。**
+
+**標的**：**9 條 leaf**（PROXI 型，`data/vf230_isolated.tsv` 之
+「事實不足以書寫（R-VF80 一）」類內）：
+
+```
+SWE1-VC-4AUXSwitches-027          SWE1-VC-ConsumptionUnit-032
+SWE1-VC-ChargePowerLevel-044      SWE1-VC-ChargePowerLevel-045
+SWE1-VC-EngineOffPowerDelay-044   SWE1-VC-EngineOffPowerDelay-045
+SWE1-VC-RearSeatReminder-053      SWE1-VC-RearSeatReminder-054
+SWE1-VC-Language-060
+```
+
+**其形態**：條文完整敘述 PROXI 之**取值鏈路**（HMI → VehicleConfigManager →
+VehicleConfigService → SystemProperties），**而自始至終不出現任何具體值**——
+既無 `If <Param> = [ <Value> ]`，亦無 `receives the value <Value> via signal`。
+
+```
+SWE1-VC-4AUXSwitches-027
+  The HMI layer shall send a request to VehicleConfigManager to retrieve the
+  AUX_Switch_Types configuration value. VehicleConfigManager shall communicate
+  with VehicleConfigService to obtain the requested configuration value.
+  VehicleConfigService shall read and verify the AUX_Switch_Types configuration
+  value from SystemProperties and/or HW configuration data. …
+```
+
+**所詢**：PROXI 參數之條文未帶值時，該參數應以何值為被驗分區？
+
+1. 自 PROXI 表之該參數值域取一代表值（即 **R-VF91 二**對訊號上行型之處置，
+   平移至 PROXI 側）？
+2. 每值一條 TC？
+3. 抑或其值須另有來源（037 之補充、Verification Criteria）？
+
+**其與 DR-39 之別**：DR-39 問**訊號**側（DBC 值域），本條問 **PROXI** 側
+（PROXI 表值域）。二者之來源檔不同、值域形態不同，**故不併案**。
+
+**其阻塞者**：該 9 條**未生成任何 TC**。
+
+> **本條之標的數自 11 更正為 9（W-VF71 第 3 項實測）**：
+> V34 §4 第 3 項載「B 類 11 條，含 2 條連參數名都抽不出者」。
+> **實測該 2 條（`SWE1-VC-TurnSignalActivatedBlindSpotCameraView-065／066`）
+> 之參數名 `Turn_Signal_Camera_View` 逐字在條文內，且在 PROXI 表內** ——
+> 其抽不出係本層之抽取式只認 `retrieve the … configuration`，
+> 而該 2 條之條文以**參數名起首**（`Turn_Signal_Camera_View PROXI configuration.`）。
+> **即本層讀不到而報為資料所缺** —— `A-VF13`／`A-VF21`／`A-VF25`／`A-VF27` 之同族。
+> 抽取式已放寬（`PROXI_CLAUSE_LEAD`，附 5 個假陰／假陽錨點），**該 2 條已回收入母體**。
+> **不以其入 DR** —— 問上游一個本層自己讀不到的東西，是問錯問題。

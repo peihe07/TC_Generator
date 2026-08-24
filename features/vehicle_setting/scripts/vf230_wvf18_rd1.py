@@ -10,7 +10,9 @@ RD-1 之標的逐字為「`Heated Seat`（88 leaf）與 `Vented Seat`（72 leaf�
 
 依 **R-VF11** 附錨點（三個）：
   必命中   `SWE1-VC-LeftFrontHeatedSeat-003`（LeftFrontHeatedSeat ∈ Heated Seat）
-  必不命中 `SWE1-VC-HeatedSteeringWheelManagement-023`（確不在 RD-1 內）
+  必不命中 `SWE1-VC-HeatedSteeringWheelManagement-031`（在 237 列內，
+           layer3 含 `SteeringWheel` 而為實質判準所明排除）
+           —— **W-VF71 換錨**：舊為 `-023`，其不在 237 列內而恆通過
   鑑別     `SWE1-VC-LeftFrontHeatedSeat-004`（layer3 = `CrossZone Common`）
            —— 實質判準須命中、代理判準須不命中；**此錨點正是差額本身**，
            其存在使兩判準之定義差異在落筆時即可見。
@@ -30,7 +32,15 @@ ROOT = Path(__file__).resolve().parent.parent
 
 ANCHOR_HIT = "SWE1-VC-LeftFrontHeatedSeat-003"
 ANCHOR_DISC = "SWE1-VC-LeftFrontHeatedSeat-004"
-ANCHOR_MISS = "SWE1-VC-HeatedSteeringWheelManagement-023"
+# **W-VF71 第 5 項換錨（R-VF92 一，2026-08-24）**：舊錨點為 `-023`，
+# 其**不存在於 `writability.tsv` 之 237 列內** —— 即 A-VF4 所載之形態：
+# 不存在之必不命中錨點恆為通過（`in subst` 恆 False，`not False` 恆 True）。
+# **A-VF4 之改正當時只套用於 R-VF17 施行之腳本，未及於本支。**
+# 獨立路徑（直讀 `writability.tsv`，不經本程式）確認：
+#   `-023` 不在 237 列內；`-031` 在其內且 layer3 = `HeatedSteeringWheelManagement`
+#   —— 其含 `SteeringWheel`，為實質判準所**明排除**者，故為合格之必不命中錨點
+#   （存在且不應命中，R-VF17 二）。
+ANCHOR_MISS = "SWE1-VC-HeatedSteeringWheelManagement-031"
 
 
 def framework_layer3() -> dict[str, str]:
@@ -60,6 +70,14 @@ def main() -> None:
     proxy = {r["leaf_id"] for r in wt
              if PROXY.search(r.get("layer3", ""))
              and "SteeringWheel" not in r.get("layer3", "")}
+
+    # --- R-VF17 二：錨點須**先驗其存在於被掃描之集合內** ---
+    # 缺此則「錨點通過」與「錨點不存在」不可分辨（A-VF4；R-VF92 一）。
+    scanned = {r["leaf_id"] for r in wt}
+    absent = [a for a in (ANCHOR_HIT, ANCHOR_MISS, ANCHOR_DISC) if a not in scanned]
+    if absent:
+        raise SystemExit(f"R-VF17 二：錨點不存在於被掃描集合（{len(wt)} 列）內，"
+                         f"其通過與其不存在不可分辨，停 —— {absent}")
 
     # --- R-VF11 錨點，先於結論 ---
     anchors = {

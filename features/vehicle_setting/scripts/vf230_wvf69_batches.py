@@ -25,6 +25,16 @@ FULLOP = "The HU is in the Full-Operation state"
 BUS = "FD-CAN8 is connected to the bus simulator with signal tracing enabled"
 MENU = "Open the Vehicle Settings menu and wait until it is fully rendered"
 SEQ0, PER_BATCH, N_BATCH = 268, 50, 3
+# **W-VF71 第 7 項：第 2 組（3 批 150 條）**。組別以 `--group` 指定，
+# 其 seq 與批號自第 1 組續接，**不重疊**：
+#   第 1 組 batch01–03 seq 268–417   第 2 組 batch04–06 seq 418–567
+# 組別只決定「自選池序之第幾條起取」，**選池序本身不變**（R-VS58）。
+GROUP = int(next((a.split("=")[1] for a in sys.argv[1:]
+                  if a.startswith("--group=")), "1"))
+assert GROUP >= 1, "--group 須 >= 1"
+SKIP = PER_BATCH * N_BATCH * (GROUP - 1)      # 前組已取之條數
+SEQ0 += SKIP
+BATCH0 = N_BATCH * (GROUP - 1)                # 批號之偏移
 
 
 def n(xs: list[str]) -> str:
@@ -95,6 +105,7 @@ SENT_SIG = re.compile(r"(When the customer chooses|The HMI layer shall capture"
 
 def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict) -> tuple[dict | None, str]:
     S, form = f["setting"], f["form"]
+    itd = "NA"          # R-VF91 二之佔位式覆寫之；其餘形態維持 NA
     w = wr[f["leaf_id"]]
     ref = refs.get(lv[f["leaf_id"]]["src_ref"], "")
     if not ref:
@@ -173,11 +184,31 @@ def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict) -> tuple[dict | Non
               f"{msg}.{sig} = {raw} ({lab}) is sent",
               f"The {S} setting is displayed as {lab}"]
         remark = contradiction_remark(f["text"], lab)
-        vsrc, reason = "2-DBC", (
-            f"值域來源 **2-DBC** —— `{sig}` 之 `VAL_` 內 raw {raw} = `{lab}`"
-            + ("；條文逐字指名該值。" if f["value_named"] else
-               "；**條文未指名值**，取 DBC 值域之最大 raw 為被驗分區，"
-               f"其對偶 raw {oraw} = `{olab}` 置於 procedure 第 1 步。"))
+        if f.get("placeholder"):
+            # ---- R-VF91 二：canon §8.4.1 之佔位形式 ----
+            # `input_test_data` 列 DBC 有效值域**全集**，`test_procedure` 取其首值。
+            # **末句為必要句**（R-VF91 二末）—— 缺之即為造值，自檢列 FAIL。
+            # 欄內為交付語料，**全英文**（canon §8.4.1 之佔位式本身即英文）。
+            dom = ", ".join(f"{r} ({l})" for r, l in
+                            zip(f["domain_raw"], f["domain"]))
+            itd = f"{msg}.{sig} = one of [{dom}]"
+            vsrc, reason = "2-DBC", (
+                f"值域來源 **2-DBC**（R-VF91 二）—— `{sig}` 之 DBC 有效值域全集為 "
+                f"{{{dom}}}"
+                + (f"（已排除保留值 {'、'.join(f['excluded'])}）"
+                   if f.get("excluded") else "")
+                + f"，`input_test_data` 逐字列之；取列舉之首值 raw {raw} = `{lab}` "
+                  f"為代表值，其次值 raw {oraw} = `{olab}` 置於 procedure 第 1 步。"
+                  "列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。"
+                  "條文未指定所收之值；值域取自 DBC，本條驗其代表值。")
+        else:
+            itd = "NA"
+            vsrc, reason = "2-DBC", (
+                f"值域來源 **2-DBC** —— `{sig}` 之 `VAL_` 內 raw {raw} = `{lab}`"
+                + ("；條文逐字指名該值。" if f["value_named"] else
+                   "；**條文未指名值**，依 R-VF81 一之語意側取值"
+                   f"（{f.get('pick_why') or '見 facts'}），"
+                   f"其對偶 raw {oraw} = `{olab}` 置於 procedure 第 1 步。"))
 
     elif form == "設定顯示與修改型":
         item = f["text"]
@@ -227,7 +258,7 @@ def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict) -> tuple[dict | Non
     return {
         "leaf_id": f["leaf_id"], "seq": seq, "test_set": w["test_set"],
         "layer3": title3, "tc_title": title, "test_item": item,
-        "pre_conditions": n(pre), "input_test_data": "NA",
+        "pre_conditions": n(pre), "input_test_data": itd,
         "test_procedure": n(proc), "expected_result": n(er),
         "specification_reference": ref, "priority": pri, "priority_class": cls,
         "design_method": EP, "writable": w["writable"],
@@ -246,8 +277,17 @@ def main() -> None:
         (FEAT / "data/vf230_leaves.tsv").open(encoding="utf-8"), delimiter="\t")}
     refs = P1.spec_refs()
 
-    tcs, rejected, seq = [], [], SEQ0
+    tcs, rejected, seq, taken = [], [], SEQ0, 0
     for f in facts:
+        if f.get("pending"):
+            continue          # R-VF81 三 —— 已隔離，見 data/vf230_isolated.tsv
+        # 前組已取者跳過 —— **以「可生成之條」計數，非以 facts 之索引計**，
+        # 否則模板套不上而被 reject 者會使兩組之邊界錯位。
+        if taken < SKIP:
+            t0, _ = build(f, 0, wr, refs, lv)
+            if t0 is not None:
+                taken += 1
+            continue
         if len(tcs) >= PER_BATCH * N_BATCH:
             break
         t, why = build(f, seq, wr, refs, lv)
@@ -258,6 +298,26 @@ def main() -> None:
         seq += 1
 
     from collections import Counter
+    # ---- R-VS83：selection 欄記**算式**（各項之出處與運算），不得只記結果數 ----
+    # 其成因（25 上繳 §七-2）：手算值 `574（620 − pilot 20 − 隔離 26）` 之
+    # 620 在 repo 內查無落檔，故該欄之「不符」無法歸因於任一側。
+    # **本欄之每一項皆自本輪實測得，不寫死。**
+    pool_n = len({k for k, v in wr.items() if v["writable"] in ("W0", "W1")})
+    pilot_n = len({t["leaf_id"] for f in
+                   ("generated/vf230_pilot1.json", "generated/vf230_pilot2.json")
+                   for t in json.loads((FEAT / f).read_text())["tcs"]})
+    iso_pending = sum(1 for f in facts if f.get("pending"))
+    iso_skipped = len(skipped)
+    body_n = pool_n - pilot_n - iso_pending - iso_skipped
+    SELECTION_FORMULA = (
+        f"R-VS58 選池序。量產母體之算式（各項皆本輪實測，R-VS83）："
+        f"選池 {pool_n}（`docs/reports/vf230_writability.tsv` 之 writable ∈ "
+        f"{{W0,W1}}）− pilot {pilot_n}（`generated/vf230_pilot1.json` ＋ "
+        f"`pilot2.json` 之 leaf_id 去重）− 隔離 {iso_pending + iso_skipped}"
+        f"（其中 R-VF81 三之訊號送出型 {iso_pending}、事實抽不出 {iso_skipped}；"
+        f"逐條列於 `data/vf230_isolated.tsv`）= **{body_n}**。"
+        f"本組為第 {GROUP} 組，自該母體之選池序第 {SKIP + 1}–{SKIP + len(tcs)} 條取"
+    )
     print(f"生成 {len(tcs)} 條，seq {SEQ0}–{seq - 1}")
     print(f"  事實抽不出而跳過（母體 574 中）：{len(skipped)}")
     print(f"  模板套不上而跳過：{len(rejected)}")
@@ -269,13 +329,12 @@ def main() -> None:
         dist = Counter(t["priority_class"] for t in part)
         forms = Counter(t["clause_form"] for t in part)
         doc = {
-            "batch": f"vf230_batch{i + 1:02d}", "line": "VF230",
+            "batch": f"vf230_batch{BATCH0 + i + 1:02d}", "line": "VF230",
             "feature": "vehicle_setting / VF230", "test_group": "Vehicle Setting",
             "handoff": "docs/handoff/V29_production_start.md"
                        "（sha256 ff86f0c6242f6ac2…，7015 bytes）",
             "work_order": "W-VF69",
-            "selection": "R-VS58 選池序，量產母體 574（620 − pilot 20 − 隔離 26，"
-                         "R-VF77 二）。事實抽不出者跳過並具名。"
+            "selection": SELECTION_FORMULA + "。事實抽不出者跳過並具名。"
                          "priority 分布（逐條實測）："
                          + "；".join(f"{k} {v}" for k, v in sorted(dist.items())) + "。",
             "form_distribution": dict(forms),
@@ -292,12 +351,12 @@ def main() -> None:
             "write_back": "**未寫回**（R-VF26）。`seq` 僅記於產出。",
             "tcs": part,
         }
-        p = FEAT / f"generated/vf230_batch{i + 1:02d}.json"
+        p = FEAT / f"generated/vf230_batch{BATCH0 + i + 1:02d}.json"
         p.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
-        print(f"  batch{i + 1:02d}  {len(part)} 條  seq {part[0]['seq']}–"
+        print(f"  batch{BATCH0 + i + 1:02d}  {len(part)} 條  seq {part[0]['seq']}–"
               f"{part[-1]['seq']}  {dict(forms)}  {dict(dist)}")
 
-    (FEAT / "data/_vf230_wvf69_skipped.json").write_text(
+    (FEAT / f"data/_vf230_wvf69_skipped{'' if GROUP == 1 else f'_g{GROUP}'}.json").write_text(
         json.dumps({"facts_missing": skipped, "template_rejected": rejected},
                    ensure_ascii=False, indent=1), encoding="utf-8")
 
