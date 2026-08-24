@@ -16,6 +16,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 07 | 2026-08-24 | tie-break、granularity 檢查、跨 feature 缺口擴查 | [handoff/07_gap_widening.md](handoff/07_gap_widening.md) | [upstream/07_gap_widening.md](upstream/07_gap_widening.md) | R-PMH32／R-PMH33（逐字抄錄 2/2 相符） | （無新 A-PMH；A-PMH13 之量詞擴大、口徑註結案） | **步驟 1–5 全數執行；九條停止條件全未觸發** |
 | 08 | 2026-08-24 | granularity 判準補正、分母口徑、**Layer 2 定版** | [handoff/08_criterion_repair.md](handoff/08_criterion_repair.md) ＋ [08a](handoff/08a_q11_and_git.md) | [upstream/08_criterion_repair.md](upstream/08_criterion_repair.md) | R-PMH34–R-PMH37（逐字抄錄 4/4 相符） | （無新 A-PMH；A-PMH13 依 R-PMH34 改寫分母） | **步驟 1–8 全數執行；九條停止條件全未觸發；Q11 結清** |
 | 09 | 2026-08-24 | must-hit 隔離度、G1 門檻推導、門檻單一來源 | [handoff/09_threshold_derivation.md](handoff/09_threshold_derivation.md) | [upstream/09_threshold_derivation.md](upstream/09_threshold_derivation.md) | R-PMH38–R-PMH40（逐字抄錄 3/3 相符） | （無新 A-PMH；修正一處 08a 之未命中替換） | **步驟 1–6 全數執行；九條停止條件全未觸發** |
+| 10 | 2026-08-24 | doc-sync 檢查落實、替換殘留回掃、profile 草案核對 | [handoff/10_profile_draft.md](handoff/10_profile_draft.md) | [upstream/10_profile_draft.md](upstream/10_profile_draft.md) | R-PMH41／R-PMH42（逐字抄錄 2/2 相符） | （無新 A-PMH） | **步驟 1–5 全數執行；停止條件 8 觸發 1 項，已修正並回報** |
 
 ## 01 輪要點
 
@@ -588,3 +589,55 @@ granularity 是否補 must-hit。
 
 **待 Pei**：A-PMH13（Phase 4 唯一前置）／**08＋09 之 commit 授權**
 （R-PMH37 已用畢）／R-PMH40 是否加一致性檢查／Q10／profile 撰寫。
+
+## 10 輪要點
+
+**R-PMH42 落實 —— `--check-doc-sync` 上線第一秒就抓到真實分岔**
+- 新增該檢查即改動了程式，文件之雜湊當場過時，檢查**立即 FAIL** 並指出
+  `bd0f147e…` vs `07aea6e3…`。**這不是合成測試。**
+- 重貼門檻節後 PASS；`--self-test` 另含**故意失敗（注入假雜湊）＋ 還原**，
+  兩者皆如期。R-PMH42 之三項 RESOLVED 條件全部滿足。**停止條件 7 未觸發。**
+- ⚠ 仍存之限制：檢查已存在且 `--self-test` 會跑到它，但**尚無正式閘門強制**
+  （與 `check_write_back.py` 之 `wired: false` 同型）。
+
+**⚠ 停止條件 8 觸發 —— 同一 `.replace()` 缺陷之第二個實例**
+- `framework.md:7` 仍寫「**狀態：未定版**…待 Pei 裁定」，成因與 09 §6.1
+  完全相同（08a 中先換 `<PENDING Q11>`、再換含該字串之該行 → 靜默未命中）。
+- **這一項比 09 那一項更嚴重**：09 是「驗了、通過了、但驗的不是要驗的那件事」；
+  **本項是 08a 上繳 §11.3(a) 逐字寫「狀態由「未定版」改為 定版」——
+  一句對「已發生之變更」之正面陳述，而該變更從未發生。**
+- 後果：`framework.md` 在 08a 與 09 之間，**同一檔內第 7 行說未定版、
+  第 24 行說定版**，維持了兩輪。
+- 09 §7 第 2 項我自陳「只修了這一處，未回頭掃描」—— **那句自陳是對的，
+  而它所預告的東西就在同一個檔案的第 7 行。**
+- 已修正並依 R-PMH41 驗命中數（舊字串殘留 0、新字串命中 1），兩處一致。
+
+**回掃結果（六檔 × 七組標記）：命中 4，殘留 1**
+- 殘留 1 即上述 `framework.md:7`。
+- 其餘 3 皆為**現行有效**：`feature.yaml:12` 之 TBD 為通則敘述；
+  `RULINGS.md:204/696` 為「`[PEI-REOPEN]` 標記已撤除」之敘述本身。
+- 修正後複驗：命中 3、殘留 **0**。
+
+**profile 草案核對 —— 零不符（停止條件 9 未觸發）**
+- 引用之 **17 條 R-PMH** 與 **5 條 A-PMH 全部存在**且抽樣內容相符。
+- §0.1 欄位對應**九鍵逐欄相符**（P／R／S／AA／AH）；
+  另 12 項可機器核對之數值全符；九個 design_method 詞條逐字相同。
+- §2 之 Test Set leaf 數八組逐組相符，合計 48、餘數 0。
+- §7 之他 feature 前例聲明亦唯讀複驗：Power 為 35 欄（Q／S／AB／AI）、
+  `spec_mode = D`，**五項全符**。
+- **草案未寫入 `docs/runtime/profiles/`**（禁止項），待 Pei 核可。
+
+**本輪自陳之未竟項（上繳 §6，五項）**，其中兩項值得先看：
+1. **回掃之判準是「找得到的標記」，不是「所有未命中之替換」** ——
+   未命中之結果不必然含那七個標記。徹底之作法是回頭看每次替換之
+   before/after，部分已無 before 可查。
+2. **08a 上繳那句誤稱至今仍在已提交之檔案裡** —— 本包具名了它，
+   但**未去改已交付之上繳包**；改已交付之上繳是否適當，無規則可循，**待裁**。
+
+**另**：`git status` 顯示 `features/power/docs/internal_var_observability.md`
+未追蹤 —— **非本 session 產物**（13:21 建立，內容為 power 之 SYS3 SYSAD 摘錄，
+屬併行 session），不入本次 pathspec。
+
+**待 Pei**：profile 草案核可（Phase 4 前置）／A-PMH13（連帶：若裁 (ii)，
+profile §0／§2 之「48 leaf」須加註「其中 1 條為揭露列」）／10 包之 commit 授權／
+已交付上繳包之誤稱是否更正／`--check-doc-sync` 是否加強。

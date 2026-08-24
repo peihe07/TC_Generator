@@ -19,7 +19,9 @@
 
 import argparse
 import csv
+import hashlib
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -45,6 +47,36 @@ THRESHOLDS = {
     "G5": ("逸出 [2, floor(leaf/2)] 之組規模數", "==", 0, "0",
            "G2 之下限與 G4 之上限所夾之區間，逐組適用"),
 }
+
+
+def self_sha256() -> str:
+    """本程式檔之 SHA256 —— R-PMH42 之比對基準。"""
+    return hashlib.sha256(Path(__file__).resolve().read_bytes()).hexdigest()
+
+
+DOC = ROOT / "framework.md"
+DOC_SHA_RE = re.compile(r"程式 SHA256：`([0-9a-f]{64})`")
+
+
+def check_doc_sync(doc: Path = None, prog_sha: str = None) -> tuple[bool, str]:
+    """R-PMH42 —— 門檻單一來源之**可執行檢查**。
+
+    讀文件中所記之程式 SHA256，比對程式現值。不符即失敗。
+    `prog_sha` 僅供自測注入（模擬「程式已改而文件未重貼」）。
+    """
+    doc = doc or DOC
+    cur = prog_sha or self_sha256()
+    if not doc.exists():
+        return False, f"文件不存在：{doc}"
+    hits = DOC_SHA_RE.findall(doc.read_text(encoding="utf-8"))
+    if len(hits) != 1:
+        return False, (f"文件中之 `程式 SHA256：` 記載數 = {len(hits)}（預期恰 1）"
+                       f" —— R-PMH41：驗命中數")
+    if hits[0] != cur:
+        return False, (f"**門檻表已與程式分岔** —— 文件記 `{hits[0][:16]}…`，"
+                       f"程式現值 `{cur[:16]}…`。"
+                       f"請重跑 `--emit-thresholds` 並重貼門檻節。")
+    return True, f"文件與程式同源 —— SHA256 `{cur[:16]}…`（命中 1 處）"
 
 
 def emit_thresholds() -> str:
@@ -239,8 +271,20 @@ def self_test() -> int:
         print("本判準對 Q11 有鑑別力：" + str(verdicts))
     print("=" * 72)
 
-    print(f"\nmust-hit 五錨點全部如期 FAIL: {all_ok}；範圍向 PASS: {scope_ok}")
-    return 0 if (all_ok and scope_ok) else 1
+    print("\n=== R-PMH42 —— doc-sync 檢查之故意失敗與還原 ===")
+    real = self_sha256()
+    fake = "0" * 64
+    bad_ok, bad_why = check_doc_sync(prog_sha=fake)
+    print(f"\n  [故意失敗] 注入假雜湊（模擬程式已改而文件未重貼）")
+    print(f"    doc-sync {'PASS ❌ **未攔下**' if bad_ok else '**FAIL** 攔下 ✅'} — {bad_why}")
+    good_ok, good_why = check_doc_sync()
+    print(f"\n  [還原] 用程式實際雜湊")
+    print(f"    doc-sync {'PASS ✅' if good_ok else '**FAIL** ❌'} — {good_why}")
+    sync_ok = (not bad_ok) and good_ok
+
+    print(f"\nmust-hit 五錨點全部如期 FAIL: {all_ok}；範圍向 PASS: {scope_ok}；"
+          f"doc-sync 故意失敗被攔下且還原後 PASS: {sync_ok}")
+    return 0 if (all_ok and scope_ok and sync_ok) else 1
 
 
 def main() -> None:
@@ -249,10 +293,16 @@ def main() -> None:
     ap.add_argument("--self-test", action="store_true")
     ap.add_argument("--emit-thresholds", action="store_true",
                     help="R-PMH40 —— 輸出門檻表（Markdown），供文件貼入")
+    ap.add_argument("--check-doc-sync", action="store_true",
+                    help="R-PMH42 —— 驗 framework.md 之門檻節與本程式同源")
     args = ap.parse_args()
     if args.emit_thresholds:
         print(emit_thresholds())
         sys.exit(0)
+    if args.check_doc_sync:
+        ok, why = check_doc_sync()
+        print(f"doc-sync {'PASS' if ok else '**FAIL**'} — {why}")
+        sys.exit(0 if ok else 1)
     if args.self_test:
         sys.exit(self_test())
     ok = report("現行提案（8 組）", PROPOSAL, 48)

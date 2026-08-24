@@ -4,7 +4,8 @@
 - 資料來源：`data/layer3_sections.tsv`（48 leaf，執行層 05 包產出）
 - Layer 2 提案來源：下放包 06 §5，**經執行層以 TSV 機器複算，48/48 相符、
   各 Test Set 計數與 §5.1 逐項相符、R-G10 餘數 0**
-- **狀態：未定版。** Test Set #2 之名為 `Disclaimer Screen`，待 Pei 裁定（06 §5.4）
+- **狀態：定版**（2026-08-24，**R-PMH36** —— Pei 裁「甲」）。Layer 2 為 **8 組**，
+  第 2 組名為 `Disclaimer Screen`。逐 leaf 歸屬以 `data/layer3_sections.tsv` 為權威。
 
 ---
 
@@ -121,7 +122,7 @@ Layer 3 取**規格自身之 section id**（canon §4.1.1），不自創標籤�
 | **G4** | max(組規模) / leaf | `<=` | **`1/2`** | canon §4.1.3「不是整本」—— 單組不得吃掉過半 |
 | **G5** | 逸出 [2, floor(leaf/2)] 之組規模數 | `==` | **`0`** | G2 之下限與 G4 之上限所夾之區間，逐組適用 |
 
-> 產生時之程式 SHA256：`bd0f147e03919c24166bf1009434e69f4f8d300bed5c8101e86681f9ddec4866`
+> 產生時之程式 SHA256：`07aea6e38c2d236b4424b27c022ddb7c6de849ea5144d21f04fbc003441eae25`
 > 重新產生：`python scripts/check_granularity.py --emit-thresholds`
 
 **G1 之門檻由 `0.35` 改為 `1/3`（R-PMH39）** —— `0.35` 係湊得，且現有錨點
