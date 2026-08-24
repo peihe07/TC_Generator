@@ -30,31 +30,70 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-TARGETS = ["framework.md", "feature.yaml", "DECISIONS.md", "PLAYBOOK.md"]
+# 有效範圍：**狀態板**三檔（其內容為欄位值與勾選項，非散文）。
+TARGETS = ["framework.md", "feature.yaml", "PLAYBOOK.md"]
 
-# **具名排除，非放寬判準**（R-PMH45 之 11 包 §四步驟 3 末段，停止條件 9）。
+# **R-PMH49(b) —— 按條號切分已實作**，故 `RULINGS.md`／`ANOMALIES.md`
+# 不再具名排除；其互斥判定以「同一條號之段」為單位，見 `scan_sectioned()`。
+# 切分式保留供追溯；二檔皆已具名排除，故本表為空。
+SECTIONED: dict[str, str] = {}
+SECTIONED_ATTEMPTED = {"RULINGS.md": r"^#{1,3}\s*(R-PMH\d+)",
+                       "ANOMALIES.md": r"^#{1,3}\s*(A-PMH\d+)"}
+
+# **R-PMH49(b) 之實作結果 —— 按條號切分已實作並實跑，惟判準對「散文檔」不可用。**
 #
-# `RULINGS.md` 與 `ANOMALIES.md` 為**多對象登記簿** —— 其「PENDING」與
-# 「RESOLVED」分屬不同 anomaly，「待裁」與「已結清」分屬不同 Q 項，
-# 全檔字串共現是**正常且必然**的，不是不一致。
+# 切分本身可行（`RULINGS.md` 51 段、`ANOMALIES.md` 13 段）。
+# **不可用者為判準**：本檢查以「互斥字串共現」判定，而
+# **「引述狀態字」與「斷言狀態」在字面與上下文形態上完全相同**。
 #
-# 要對它們做互斥判定，須先以「同一 `A-PMH{n}` / `R-PMH{n}` / `Q{n}`」為單位
-# 切分，而該切分無法由行級掃描乾淨得出（狀態可寫在節標題、表格列、
-# 或內文任一處，且一則 anomaly 之內文常引述他則之狀態）。
+# 實跑所見（12 包步驟 4）：
+#   `RULINGS.md`   —— 10 命中、**10 皆誤報**。R-PMH43/45/49 之條文本身即逐字
+#                     列舉互斥對兩側（R-PMH45：「最低限度之互斥對：`定版`/
+#                     `未定版`、`PENDING`/`RESOLVED`…」）。**定義本檢查之
+#                     條文，其字面必然含兩側。**
+#   `ANOMALIES.md` —— 段外 2 命中為**檔頭之詞彙說明**（"PENDING entries block
+#                     their batch … RESOLVED entries record the ruling
+#                     verbatim"）；段內 1 命中為 A-PMH13 之**歷史引述**與
+#                     **規則敘述**（「含 PENDING 之工作簿不得出貨」）。
+#   `DECISIONS.md` —— 兩側皆為**規則敘述**：「含 PENDING 之工作簿不得出貨」
+#                     與「通則 8：文字修補不構成 RESOLVED」。
 #
-# **故本檢查不納入此二檔，並在每次輸出中具名。**
+# **可修與不可修之界線**（本輪已修前者，未動後者）：
+#   可修  —— pattern 之**精確度**：`PENDING-CANON` 為另一狀態值、
+#            `PENDING: DR-` 為欄位佔位標記、`非 RESOLVED` 為否定式。已加 lookaround。
+#   不可修 —— **散文提及 vs 狀態斷言**。再加 lookaround 即是把判準往資料上調，
+#            正是 R-PMH49(b) 所禁之「放寬判準後宣稱通過」。
+#
+# **故三個散文檔具名排除；本檢查之有效範圍為「狀態板」三檔。**
+# **此範圍窄於 R-PMH49(b) 所期，據實記載，未宣稱通過。**
+#
+# **本輪之實跑仍有實益**：它在 A-PMH13 段內查出一句**已過時之狀態陳述**
+# （07 包所寫「本則之 PENDING 狀態僅繫於 -028 之處置」，而 12 包已裁 RESOLVED），
+# 已改標為當時陳述。**該項為真缺陷。**
 EXCLUDED = {
-    "RULINGS.md": "多對象登記簿 —— 不同條文之狀態字共存為正常；"
-                  "互斥判定須先按條號切分，行級掃描無法乾淨得出",
-    "ANOMALIES.md": "同上 —— 不同 A-PMH 之 PENDING/RESOLVED 共存為正常",
+    "RULINGS.md": "散文檔 —— 條文本身列舉互斥對兩側（切分 51 段，10/10 誤報）",
+    "ANOMALIES.md": "散文檔 —— 檔頭詞彙說明 ＋ 歷史引述 ＋ 規則敘述（切分 13 段）",
+    "DECISIONS.md": "散文檔 —— 兩側皆為規則敘述（§8.4.3 與通則 8）",
 }
 
 PAIRS = [
-    ("定版", [r"(?<!未)定版"], [r"未定版"]),
-    ("PENDING/RESOLVED", [r"\bRESOLVED\b"], [r"\bPENDING\b"]),
+    ("定版/未定版", [r"(?<!未)定版"], [r"未定版"]),
+    # pattern 之**精確化**（非放寬，12 包步驟 4）：
+    #   `PENDING-CANON` 是**另一個狀態值**，不是 `PENDING`；
+    #   `PENDING: DR-…` 是**欄位佔位標記**（§8.4.3），不是 anomaly 之狀態；
+    #   `非 RESOLVED`／`not RESOLVED` 是**否定式**，其斷言與 `RESOLVED` 相反。
+    ("PENDING/RESOLVED",
+     [r"(?<!非 )(?<!非)\bRESOLVED\b"],
+     [r"\bPENDING\b(?!-CANON)(?!:\s*DR-)(?!-CANON)"]),
     ("待裁/已結清", [r"已裁|已結清"], [r"待裁"]),
     ("wired", [r"wired:\s*true"], [r"wired:\s*false"]),
+    # R-PMH49(a) 新增四組
+    ("已授權/未授權", [r"已授權"], [r"未授權"]),
+    ("已接上/wired:false", [r"已接上"], [r"wired:\s*false"]),
+    ("已定案/待裁", [r"已定案"], [r"待裁"]),
+    ("workbook_state", [r"\bFULL\b"], [r"\bBLANK\b"]),
 ]
+PAIRS_IS_ENUMERATION_NOT_TOTAL = True  # R-PMH49(a) 明載
 
 
 def scan(path: Path) -> list[tuple[str, list, list]]:
@@ -71,16 +110,73 @@ def scan(path: Path) -> list[tuple[str, list, list]]:
     return out
 
 
+def scan_sectioned(path: Path, head_re: str) -> tuple[list, list]:
+    """R-PMH49(b) —— 以條號切段，段內判互斥。
+
+    回傳 (違反清單, 落在任何段外之狀態陳述)。**切分失敗者須具名列出，
+    不得靜默歸入前段。**
+    """
+    lines = path.read_text(encoding="utf-8").splitlines()
+    rx = re.compile(head_re)
+    # 切段：(條號, 起始行, 結束行)
+    marks = [(m.group(1), i) for i, l in enumerate(lines, 1)
+             if (m := rx.match(l))]
+    segs = [(cid, s, (marks[k + 1][1] - 1 if k + 1 < len(marks) else len(lines)))
+            for k, (cid, s) in enumerate(marks)]
+    first = marks[0][1] if marks else len(lines) + 1
+
+    bad, orphan = [], []
+    for name, a_pats, b_pats in PAIRS:
+        # 段外（首個條號之前）之狀態陳述 —— 具名，不歸入任何段
+        for i, l in enumerate(lines[:first - 1], 1):
+            if any(re.search(p, l) for p in a_pats + b_pats):
+                orphan.append((i, name, l.strip()))
+        for cid, s, e in segs:
+            body = list(enumerate(lines[s - 1:e], s))
+            a = [(i, l.strip()) for i, l in body if any(re.search(p, l) for p in a_pats)]
+            b = [(i, l.strip()) for i, l in body if any(re.search(p, l) for p in b_pats)]
+            if a and b:
+                bad.append((cid, name, a, b))
+    return bad, orphan
+
+
 def run(files: list[Path], label: str = "") -> bool:
     print(f"\n=== 互斥狀態一致性檢查{label} ===")
-    print(f"具名排除之檔（R-PMH45，非放寬判準）：")
+    print(f"互斥對 {len(PAIRS)} 組（R-PMH49(a)）—— "
+          f"**本清單為列舉而非全集，未列舉者不會被發現**")
+    print(f"有效範圍（狀態板）：{', '.join(TARGETS)}")
+    print(f"按條號切分之嘗試（R-PMH49(b)）：{', '.join(SECTIONED_ATTEMPTED)} "
+          f"—— 已實作實跑，判準對散文檔不可用，具名排除如下")
     for f, why in EXCLUDED.items():
-        print(f"    {f} —— {why}")
+        print(f"    具名排除 {f} —— {why}")
     ok = True
     for p in files:
         if not p.exists():
             print(f"\n  {p.name:18s} **FAIL** —— 檔不存在")
             ok = False
+            continue
+        if p.name in SECTIONED:
+            bad, orphan = scan_sectioned(p, SECTIONED[p.name])
+            n_seg = len(re.findall(SECTIONED[p.name], p.read_text(encoding="utf-8"), re.M))
+            tag = f"（按條號切分，{n_seg} 段）"
+            if orphan:
+                print(f"\n  {p.name:18s} **段外之狀態陳述 {len(orphan)} 處（具名，"
+                      f"未歸入任何段）**{tag}")
+                for i, nm, l in orphan[:6]:
+                    print(f"      L{i:<5d} [{nm}] {l[:78]}")
+                if len(orphan) > 6:
+                    print(f"      … 另 {len(orphan)-6} 處")
+            if not bad:
+                print(f"\n  {p.name:18s} PASS {tag}")
+                continue
+            ok = False
+            print(f"\n  {p.name:18s} **FAIL** —— {len(bad)} 個條號段內互斥{tag}")
+            for cid, name, a, b in bad:
+                print(f"      [{cid} / {name}]")
+                for i, l in a[:2]:
+                    print(f"         L{i:<5d} (A 側) {l[:80]}")
+                for i, l in b[:2]:
+                    print(f"         L{i:<5d} (B 側) {l[:80]}")
             continue
         bad = scan(p)
         if not bad:

@@ -65,7 +65,7 @@ scaffold，得 abbr `PO`，故 `ANOMALIES.md` 與 `PLAYBOOK.md` 之範例 marker
 
 ---
 
-## A-PMH03 — SYS1 匯出相對 PDF 之內文偏離（重排／重排式再流） · PENDING
+## A-PMH03 — SYS1 匯出相對 PDF 之內文偏離 —— **7.1 為漏句，非重排** · PENDING（**結論已於 12 包更正**）
 
 **登記日**：2026-08-22（下放包 01 步驟 7）
 
@@ -85,10 +85,64 @@ scaffold，得 abbr `PO`，故 `ANOMALIES.md` 與 `PLAYBOOK.md` 之範例 marker
 | 11.1 | 371 | 313（84%） | 同上；export 獨有者為 `- Screen ON and Audio OFF, - Screen Off, and Audio ON,` 四個條列項 |
 | 8 | 17 | 0 | export 之標題為 `Starup R1Low Only`（缺 `t`）；PDF 為 `Startup R1Low Only`。**export 側之拼字錯誤** |
 
-**與 canon §3 「Mode A blind spot」之關係**：canon 所述之 Home 型漏句
-（export 靜默丟句、item-code diff 看不見）**於本 feature 未觀察到** ——
-逐則覆蓋率最低者為 84%，且其缺口全為 `-layout` 之條列再流。本 feature 所見
-之偏離為**重排**（7.1）與**拼字**（8），非漏句。此為正向紀錄，不誇大。
+### ⚠ **結論更正（12 包步驟 5 之指名複核）—— 7.1 是漏句，不是重排**
+
+01 包原記：「canon 所述之 Home 型漏句…**於本 feature 未觀察到** ——
+本 feature 所見之偏離為**重排**（7.1）與**拼字**（8），非漏句。」
+**該結論不成立。**
+
+**成因（量測方法之限制）**：01 包之判定以「SYS1 該則描述是否為 PDF **全文**
+之子字串」為之，未命中者再求共同片段覆蓋率。7.1 得「777 字 100% 覆蓋、
+切成 2 段」，遂記為重排。**該量測看不見「PDF 有而 SYS1 無」之內容** ——
+它只驗 SYS1 之字有沒有出現在 PDF，不驗 PDF 之字有沒有出現在 SYS1。
+
+**12 包之逐句對照（SYS1 8 句 vs PDF 9 句）**：
+
+| # | 對照 |
+|---|---|
+| 1 | **≠ 差異段** |
+| | SYS1：`SU1.) When the vehicle's driver door is closed a startup animation will be presented (3 sec), If ignition remains off after animation, screen is black.` |
+| | PDF ：`SU1.) … presented (3 sec), `**`after the animation (3 sec) a splash screen is presented timeout (1.5 each).`** |
+| | PDF ：`If ignition remains off after animation, screen is black.` |
+| 2–8 | ＝ 逐句相同 |
+
+**被漏之子句於 SYS1 全 52 則描述中完全不存在**（實測）：
+
+| 檢索 | SYS1 全簿 |
+|---|---|
+| `after the animation (3 sec) a splash screen is presented timeout (1.5 each)` | **不存在** |
+| `after the animation` | **不存在** |
+| `splash screen is presented` | **不存在** |
+| `1.5 each` | **不存在** |
+
+**不是同義改寫，是整句消失。** SYS1 保留了另一句
+`If ignition is turned on during animation, splash screen(s) are presented (1.5 sec timeout each).`
+—— 其為**有條件**（點火於動畫期間開啟），而被漏者為**無條件**
+（動畫結束後即呈現 splash）。**二者非同一敘述。**
+
+**故：canon §3 之 Home 型 Mode A blind spot（export 靜默丟句）
+在本 feature 確實發生，且落在 7.1。**
+
+**其嚴重性**：被漏者為**時序子句**（動畫 3 sec → splash 1.5 each）——
+正是 A-PW68（Power Management `006` 時序誤讀，歷經兩輪修正與多次 lint
+全綠而未被察覺）之同一形態。**若以 SYS1 為判讀基準撰寫 7.1 之 TC，
+該時序無從得知。**
+
+**R-PMH50 因而得到直接佐證**：`source_clause` 取自 PDF 而非 SYS1
+之規定，在本 feature 之第一批即被用上 —— batch 1 之 4 條 7.1 系 TC
+其 `source_clause` 皆含該子句。
+
+**原記之其餘三則（8 之拼字、9.1／11.1 之條列再流）不變。**
+**缺口數仍為 4**（同一位置，性質更正），停止條件 9（新的偏離）未觸發。
+
+---
+
+**原文保留（01 包所記，供追溯）**：
+
+> **與 canon §3 「Mode A blind spot」之關係**：canon 所述之 Home 型漏句
+> （export 靜默丟句、item-code diff 看不見）**於本 feature 未觀察到** ——
+> 逐則覆蓋率最低者為 84%，且其缺口全為 `-layout` 之條列再流。本 feature 所見
+> 之偏離為**重排**（7.1）與**拼字**（8），非漏句。此為正向紀錄，不誇大。
 
 **提案處置**（不裁定）：
 (a) 依 §9.1 通則 3 指定 `spec_pdf` 為判讀基準（內文面）、`sys1_export` 為
@@ -558,7 +612,7 @@ Phase 6／7 之前置阻斷項**：首次填 `Q` 或 `AF` 之前必須處理，
 
 ---
 
-## A-PMH13 — `SWE1-HMI-PM-028`（12.2）之行為定義在 CFTS009，而 `features/power` 之 284 條**零命中** · PENDING
+## A-PMH13 — `SWE1-HMI-PM-028`（12.2）之行為定義在 CFTS009 · **RESOLVED（處置已定，R-PMH47）**
 
 **登記日**：2026-08-24（06 包 §六，查證見步驟 4）
 
@@ -621,7 +675,9 @@ OFF2.)Please refer to CFTS009 for complete behavior.
 （284），其結論（零命中）不受此口徑影響 —— 留白列不含任何 TC 文字。
 **未改動 `features/power` 之任何檔案。**
 
-**本口徑註結案。** 本則之 PENDING 狀態僅繫於 `-028` 之處置（(i)/(ii)/(iii)）。
+**本口徑註結案。** 〔**07 包當時之陳述**：本則之 PENDING 狀態僅繫於 `-028` 之處置。〕
+**已於 12 包定案** —— R-PMH47 裁 (ii)＋(iii)，本則狀態為 **RESOLVED（處置已定）**，
+其 (c) 項另立 `DR-PMH1`（`OPEN`）。
 
 ### 跨 feature 擴查（07 包步驟 2、08 包步驟 5）—— **零命中**
 
@@ -677,7 +733,36 @@ OFF2.)Please refer to CFTS009 for complete behavior.
 
 **故 A-PMH13 為全案缺口之判定成立。停止條件 8（07）／9（08）皆未觸發。**
 
-### 三種處置並列（**本包不裁**，06 包 §六原文保留）
+### 裁定（R-PMH47，Pei 2026-08-24「上繳了 兩項都核可」）—— **(ii)＋(iii) 併行**
+
+**(a) 判為 out of scope**（canon §8.4.2）—— 其內文逐字為
+`OFF2.) Please refer to CFTS009 for complete behavior.`，本身無可驗證行為；
+其行為定義於 CFTS009，屬他規格。**不得為其撰寫驗證 CFTS009 行為之 TC。**
+
+**(b) 該列仍寫入工作簿並揭露**，不靜默丟棄（比照 R-VF12）。欄位處置：
+
+| 欄 | 值 |
+|---|---|
+| `Test Set` | `Off Road Plus`（維持 R-PMH36 之分組） |
+| `Test Item` | 037 之 `Requirement Title` 逐字（`CFTS009 Behavior Reference`）＋ 括號下半（profile §3.1 硬規則） |
+| `Test Procedure` / `Expected Result` | `PENDING: DR-PMH1 CFTS009 所定之 Off Road+ power moding 行為`（§8.4.3 之缺件佔位，**不得留空、不得填 NA**） |
+| `Remarks` | `[BLOCKED-SPEC] Owner: CFTS009 — behavior defined in an external specification; no coverage found in any delivered workbook.`（形態沿用 Comfort 之既有慣例，**非自創**） |
+
+**(c) 開 `DR-PMH1`** —— 已登記於 `DATA_REQUESTS.md`（本 feature 首筆，狀態 `OPEN`）。
+
+**⚠ 含 PENDING 之工作簿不得出貨**（§8.4.3）—— 交付前須 DR-PMH1 結案，
+或由 Pei 裁定降轉。已記於 `DECISIONS.md` 之交付前阻斷項。
+
+**連帶修改（已落實）**：profile §0 與 §2 之「48 leaf」已加註
+「其中 1 條（`SWE1-HMI-PM-028`）為揭露列」；**48 之總數不變** ——
+該 leaf 仍在 R-PMH1 之範圍內。
+
+**本則狀態 → RESOLVED（處置已定）。** 其執行落在 Phase 4 之
+`Off Road Plus` 批次；`DR-PMH1` 之結案另計（見 `DATA_REQUESTS.md`）。
+
+---
+
+### 原三種處置之並列（06 包 §六原文保留，供追溯）
 
 - **(i)** 撰寫一條僅驗證「該行為存在且與 CFTS009 一致」之 TC，
   `specification_reference` 同時列 12.2 與 CFTS009 之對應節；

@@ -18,6 +18,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 09 | 2026-08-24 | must-hit 隔離度、G1 門檻推導、門檻單一來源 | [handoff/09_threshold_derivation.md](handoff/09_threshold_derivation.md) | [upstream/09_threshold_derivation.md](upstream/09_threshold_derivation.md) | R-PMH38–R-PMH40（逐字抄錄 3/3 相符） | （無新 A-PMH；修正一處 08a 之未命中替換） | **步驟 1–6 全數執行；九條停止條件全未觸發** |
 | 10 | 2026-08-24 | doc-sync 檢查落實、替換殘留回掃、profile 草案核對 | [handoff/10_profile_draft.md](handoff/10_profile_draft.md) | [upstream/10_profile_draft.md](upstream/10_profile_draft.md) | R-PMH41／R-PMH42（逐字抄錄 2/2 相符） | （無新 A-PMH） | **步驟 1–5 全數執行；停止條件 8 觸發 1 項，已修正並回報** |
 | 11 | 2026-08-24 | 已發生變更之舉證、勘誤方式、互斥狀態一致性 | [handoff/11_claim_evidence.md](handoff/11_claim_evidence.md) | [upstream/11_claim_evidence.md](upstream/11_claim_evidence.md) | R-PMH43–R-PMH45（逐字抄錄 3/3 相符） | （無新 A-PMH；08 上繳追加勘誤節） | **步驟 1–5 全數執行；九條停止條件全未觸發** |
+| 12 | 2026-08-24 | profile 落檔、A-PMH13 定案、**Phase 4 batch 1** | [handoff/12_phase4_batch1.md](handoff/12_phase4_batch1.md) | [upstream/12_phase4_batch1.md](upstream/12_phase4_batch1.md) | R-PMH46–R-PMH50（逐字抄錄 5/5 相符） | A-PMH03 **結論更正**（7.1 為漏句非重排）；A-PMH13 → RESOLVED；**DR-PMH1 開立** | **步驟 1–6 全數執行；九條停止條件全未觸發** |
 
 ## 01 輪要點
 
@@ -687,3 +688,61 @@ profile §0／§2 之「48 leaf」須加註「其中 1 條為揭露列」）／1
 
 **待 Pei**：profile 草案核可與 A-PMH13 —— **二者阻斷 Phase 4 已三輪**；
 11 包之 commit 授權（8 路徑，含 08 上繳之勘誤追加）。
+
+## 12 輪要點
+
+**Phase 4 已開跑 —— batch 1（`Disclaimer Screen`）產出 8 條 TC，lint 20/20 PASS**
+- **8 條而非 7 條**：`SWE1-HMI-PM-001-04` 依 **profile §4「不同觸發即拆分」**
+  拆為「按 Accept」與「等待逾時」兩條 —— 規格逐字為 `either press the Accept …
+  or wait for the screen to timeout`。下放包依 1:1 推估為 7 條，**差異已具名**。
+- `source_clause` **8/8 皆取自 `spec_pdf`**（R-PMH50），零取自 SYS1。
+- 三處**不造值**已具名（§8.4.1）：逾時秒數未載、Maserati 對照時長未載、
+  `unless certain phone call scenarios` 未列舉 —— **皆不斷言**。
+- `tc_id_status = provisional`；**零寫回工作簿**。
+
+**⚠ A-PMH03 之結論被推翻 —— 7.1 是漏句，不是重排**
+- 逐句對照（SYS1 8 句 vs PDF 9 句）顯示 PDF 之
+  **`after the animation (3 sec) a splash screen is presented timeout (1.5 each)`**
+  一句，**於 SYS1 全 52 則描述中完全不存在**（四組檢索皆 0）。
+- **不是同義改寫，是整句消失。** SYS1 保留的是另一句**有條件**敘述
+  （`If ignition is turned on during animation…`），與被漏之**無條件**敘述不同。
+- **故 canon §3 之 Home 型 Mode A blind spot 在本 feature 確實發生** ——
+  01 包記「於本 feature 未觀察到」，該結論已更正（原文保留供追溯）。
+- **成因是量測之方向性缺陷**：01 包以「SYS1 該則是否為 PDF 全文之子字串」判定，
+  **只驗 SYS1→PDF，不驗 PDF→SYS1** —— 它看不見「PDF 有而 SYS1 無」。
+- **被漏者為時序子句**（動畫 3 sec → splash 1.5 each），正是 **A-PW68** 之同型。
+- **R-PMH50 因而得到直接佐證**：本批 4 條 7.1 系 TC 之 `source_clause` 皆含該子句；
+  若取自 SYS1 則無從得知。
+- **停止條件 9 之判定**：位置未變、缺口仍 4，**依字面未觸發**；
+  惟其性質改變且推翻標題結論，**以同等份量具名**。
+
+**profile 已落檔** —— `docs/runtime/profiles/FW036_R1L_PowerModing_Profile.md`，
+284 行，SHA256 `8f8a1514…`。逐字比對：**差異 3 行、零刪除**，全為 R-PMH47
+之兩處連帶加註（「其中 1 條為揭露列」）。`PROFILE_INTEGRATION.md` 未動。
+
+**A-PMH13 → RESOLVED（處置已定）＋ `DR-PMH1` 開立**
+- (a) 判 out of scope；(b) 該列仍寫入工作簿揭露，`Remarks` 沿用 Comfort 之
+  `[BLOCKED-SPEC] Owner:` 形態；(c) **`DR-PMH1`（`OPEN`，High，交付前阻斷）**。
+- **含 PENDING 之工作簿不得出貨**（§8.4.3）已記入 `DECISIONS.md`。
+
+**R-PMH49 —— (a) 擴至 8 組；(b) 按條號切分「已實作實跑但判準對散文檔不可用」**
+- 切分可行（`RULINGS.md` 51 段、`ANOMALIES.md` 13 段），**判準不可用**：
+  R-PMH43/45/49 之條文**本身即逐字列舉互斥對兩側** ——
+  **定義本檢查之條文，其字面必然含兩側**（10/10 誤報）。
+- **可修與不可修之界線已劃**：pattern 精確度（`PENDING-CANON`／`PENDING: DR-`／
+  `非 RESOLVED`）已修；**散文提及 vs 狀態斷言不可修** —— 再加 lookaround
+  即是把判準往資料上調，正是 R-PMH49(b) 所禁。
+- **三個散文檔具名排除，有效範圍縮為狀態板三檔。⚠ 這是退步**：
+  11 包時 `DECISIONS.md` 在範圍內且 PASS，本輪改為排除，**覆蓋率下降**。
+- **但該次實跑抓到一件真的**：`A-PMH13` 段內一句 07 包所寫之
+  「本則之 PENDING 狀態…」已過時，已改標為當時陳述。
+
+**本輪自陳之未竟項（上繳 §8，六項），其中三項相連**
+1. **batch 1 之「是否忠於規格」未經人讀覆核** —— R-PMH50 明言不可機械檢查，
+   **自己覆核自己不構成覆核**，須分析層或 Pei 人讀 PDF 對照。
+2. **A-PMH03 其餘三則（8／9.1／11.1）未以逐句法複驗** ——
+   **其判定依據與 7.1 相同，而 7.1 已證為漏句**。
+3. **同一方向性缺陷及於全部 52 則** —— 01 包之「39 則逐字命中」同樣只驗一個方向。
+
+**待 Pei**：batch 1 之人讀覆核（**阻斷下一批**）／A-PMH03 其餘三則是否複驗／
+12 包之 commit 授權／`PROFILE_INTEGRATION.md` 是否登錄。

@@ -1201,3 +1201,141 @@ R-PMH45（同檔內互斥狀態陳述之一致性）
 | R-PMH43 | 已發生變更之陳述須附實測證據；同包舉證標準須一致 | 341 | `bfa28d4131e17cb8` | `bfa28d4131e17cb8` | ✅ 逐字相符 |
 | R-PMH44 | 已提交之往返包原文不改字，以檔末勘誤節處理 | 354 | `91b85993581cc00a` | `91b85993581cc00a` | ✅ 逐字相符 |
 | R-PMH45 | 同檔內互斥狀態陳述之一致性檢查 | 361 | `eb951180053ad6b6` | `eb951180053ad6b6` | ✅ 逐字相符 |
+
+---
+
+# 下放包 12 —— profile 落檔、A-PMH13 定案與 Phase 4 首批
+
+來源包：`docs/handoff/12_phase4_batch1.md`
+（SHA256 `c197c4ffe49038ad5c3707557b8b06f647cc396d82b7b8159f8e61affe931d53`）§三
+抄錄日：2026-08-24
+Pei 之裁定原文（2026-08-24，逐字）：「上繳了 兩項都核可」
+
+## R-PMH46 —— profile 落檔一次性授權（含明文不授權清單）
+
+```
+R-PMH46（profile 落檔授權 —— 一次性）
+Pei 於 2026-08-24 核可 10 包 §四之 profile 草案。
+
+授權執行層將該草案寫入
+`docs/runtime/profiles/FW036_R1L_PowerModing_Profile.md`，**一次**。
+
+**寫入內容須為 10 包 §四之 markdown 區塊逐字**，另加 R-PMH47 所定之
+兩處連帶修改（§0 與 §2 之「48 leaf」加註）。除該兩處外不得增刪改。
+
+**明文不授權**：`docs/runtime/` 下任何其他檔案（含 canon、其他 feature
+之 profile、`PROFILE_INTEGRATION.md`）。若 `PROFILE_INTEGRATION.md`
+需登錄本 profile，**列為待裁，不逕行修改**。
+
+驗證義務：寫入後以逐字比對證明其與 10 包 §四之區塊（加上兩處連帶）相同，
+並附行數與 SHA256。本授權用畢即失效。
+```
+
+## R-PMH47 —— A-PMH13 定案 (ii)＋(iii)：out of scope ＋ 揭露列 ＋ DR-PMH1
+
+```
+R-PMH47（A-PMH13 定案 —— (ii)＋(iii) 併行）
+`SWE1-HMI-PM-028` 之處置如下：
+
+(a) **判為 out of scope**（canon §8.4.2）—— 其內文逐字為
+    `OFF2.) Please refer to CFTS009 for complete behavior.`，本身無可驗證
+    行為；其行為定義於 CFTS009，屬他規格。**不得為其撰寫驗證 CFTS009
+    行為之 TC**。
+(b) **該列仍寫入工作簿並揭露**，不靜默丟棄（比照 R-VF12：460/1087
+    out of SWE.1 scope 須揭露）。其欄位處置：
+      `Test Set` = `Off Road Plus`（維持 R-PMH36 之分組）
+      `Test Item` = 037 之 `Requirement Title` 逐字（`CFTS009 Behavior
+        Reference`）＋ 括號下半（R-PMH36 之 profile §3.1 硬規則）
+      `Test Procedure` / `Expected Result` = `PENDING: DR-PMH1 CFTS009
+        所定之 Off Road+ power moding 行為`（§8.4.3 之缺件佔位，
+        不得留空、不得填 NA）
+      `Remarks` = `[BLOCKED-SPEC] Owner: CFTS009 — behavior defined in an
+        external specification; no coverage found in any delivered workbook.`
+        （形態沿用 Comfort 之既有慣例，非自創）
+(c) **開 `DR-PMH1`** 向上游詢問：該 leaf 之行為應由 CFTS009 之 SWE 需求
+    涵蓋，抑或本報告應自行載明其行為。DR 登記於本 feature 之
+    `DATA_REQUESTS.md`，每包上繳附未結 DR 清單。
+
+**含 PENDING 之工作簿不得出貨**（§8.4.3）—— 交付前須 DR-PMH1 結案，
+或由 Pei 裁定降轉。
+
+**連帶修改（兩處）**：profile §0 與 §2 之「48 leaf」加註
+「**其中 1 條（`SWE1-HMI-PM-028`）為揭露列，不含可驗證行為，見 §6**」。
+48 之總數不變 —— 該 leaf 仍在 R-PMH1 之範圍內。
+
+依據：跨 feature 擴查零命中（母體 15 個有內容交付件、3,023 資料列、
+11 個欄位、166 個相異 Test Set 全數人工核對）—— 兩邊都沒有，
+是全案缺口而非分工；其 037 `Requirement Title` 逐字為
+`CFTS009 Behavior Reference`，上游自己即命名為「參照」。
+```
+
+## R-PMH48 —— 下放包不載 git 提交狀態
+
+```
+R-PMH48（下放包不載 git 提交狀態）
+下放包不得記載 git 之提交狀態（「尚未提交」「累積未提交」「已授權」）。
+
+理由：提交狀態為撰包時點之外之事實，分析層無從得知其於執行時是否仍成立
+—— 已三次過時（08 §5.1、10 §七、11 §五）。
+
+改為：提交狀態一律由執行層於上繳回報（R-G6 之揭露表已涵蓋）；
+下放包若需觸及提交，只寫**授權與否**（授權為分析層或 Pei 之行為，
+其效力不隨時間變動），不寫**已否提交**。
+
+採納執行層 11 包上繳 §6 第 5 項之建議。
+```
+
+## R-PMH49 —— 互斥對擴充至八組 ＋ 按條號切分實作
+
+```
+R-PMH49（互斥狀態檢查之兩項擴充）
+(a) **互斥對清單擴充**，於 R-PMH45 之四組外增列：
+      `已授權`/`未授權`、`已接上`/`wired: false`、`已定案`/`待裁`、
+      `FULL`/`BLANK`（workbook_state）
+    並於程式中明載「本清單為列舉而非全集」——
+    列舉式判準之形態一變即靜默脫落（A-PMH08／A-PMH13 之同族形態）。
+
+(b) **`RULINGS.md`／`ANOMALIES.md` 之按條號切分實作**：
+    以 `^#{1,3}\s*(A-PMH\d+|R-PMH\d+|Q\d+)` 切段，段內判互斥。
+    切分失敗（某狀態陳述不落在任何段內）者須具名列出，不得靜默歸入前段。
+
+    實作後 11 包 §3.2 之具名排除即解除；若實作證明不可行，
+    **維持具名排除並記其嘗試與失敗之處**，不得放寬判準後宣稱通過。
+
+採納執行層 11 包上繳 §6 第 1、2 項之自陳。
+```
+
+## R-PMH50 —— 每批 JSON 之 `source_clause` 須取自 PDF
+
+```
+R-PMH50（每批產出 JSON 之 source_clause）
+Phase 4 之每批產出 JSON，其每一 leaf **必附 `source_clause`** ——
+該 leaf 所對應章節之**規格原文子句**。
+
+**取自 PDF**（判讀基準，通則 3），**不得取自 SYS1 匯出**
+（追溯用）—— A-PMH03 已實測 SYS1 匯出相對 PDF 有 4 則偏離，
+其中 outline 7.1 之偏離正是動畫／splash 之**時序子句重排**。
+
+- 不得節錄至失去語意；過長者以 `...` 標明截斷處並另附全文檔。
+- **該 TC 之 `expected_result` 所斷言之每一項行為，其規格依據必須完整
+  出現於 `source_clause` 中**（比照 Power R-P109）。
+- **機械檢查**：逐 leaf 檢查該欄存在且非空。
+  **「是否忠於規格」本身不可機械檢查** —— 須人讀 PDF 原文與 TC 對照。
+  該檢查只保證覆核所需之材料存在，不保證覆核已做。
+
+依據：Power Management 之 `006` 時序誤讀（A-PW68）歷經兩輪修正與多次
+lint 全綠而未被察覺，最後由 `source_clause` 查出（R-P103／R-P104）。
+本 feature 之 A-PMH03 為同一形狀且已知落在 7.1。
+```
+
+---
+
+## 抄錄逐條核對表（12 包步驟 1）
+
+| 條號 | 主旨 | 字數 | handoff SHA256（前 16） | RULINGS SHA256（前 16） | 逐字相符 |
+|---|---|---|---|---|---|
+| R-PMH46 | profile 落檔一次性授權（含明文不授權清單） | 448 | `3c12ee5e7db1e695` | `3c12ee5e7db1e695` | ✅ 逐字相符 |
+| R-PMH47 | A-PMH13 定案 (ii)＋(iii)：out of scope ＋ 揭露列 ＋ DR-PMH1 | 1312 | `391b39313a6b3759` | `391b39313a6b3759` | ✅ 逐字相符 |
+| R-PMH48 | 下放包不載 git 提交狀態 | 253 | `46273e8cf65f867a` | `46273e8cf65f867a` | ✅ 逐字相符 |
+| R-PMH49 | 互斥對擴充至八組 ＋ 按條號切分實作 | 456 | `404337182adbefd7` | `404337182adbefd7` | ✅ 逐字相符 |
+| R-PMH50 | 每批 JSON 之 `source_clause` 須取自 PDF | 609 | `879f74215e51fa7e` | `879f74215e51fa7e` | ✅ 逐字相符 |
