@@ -173,11 +173,21 @@ write_back_checks:
   script: "scripts/check_write_back.py"
   checks: ["blank_precondition", "start_row_source", "row_count_delta"]
   self_test: "python scripts/check_write_back.py --feature . --self-test"
+  # ⚠ KNOWN-INCOMPLETE（05 包步驟 5）—— 本節目前只是**宣告**：三項檢查已實作
+  # 且經故意失敗驗證，但**尚未被任何寫回路徑呼叫**。R-PMH22 所要求之
+  # 「每次寫回前自動驗證」之接線為 **Phase 6 之交付項**。
+  wired: false
 
 lint:
   # 01 包為「沿用預設」，02 包步驟 7 改為**實測**：母本與客戶那份之
   # `下拉選單` A1:A9 **逐項相等**，即 x14 DV 之 source 全集。
-  design_method_source: "dropdown_sheet"
+  # R-PMH25 —— source 取自母本 x14 DV 之 `<xm:f>` 實測值，**不以分頁名認定**。
+  # 母本實測：`<x14:dataValidation>` 之 `<xm:f>` 逐字為 `下拉選單!$A$1:$A$9`。
+  # ⚠ 全母體 17 檔中僅 4 檔指向 `下拉選單!$A$1:$A$9`；10 檔指向
+  #   `Reference!$C$4:$C$12`、2 檔指向 `下拉選單!$A$1:$A$11`、1 檔無 x14。
+  #   **本 feature 之權威為母本自身之實測值**，不隨多數。
+  design_method_source: "x14_dv_target"
+  design_method_source_measured: "下拉選單!$A$1:$A$9"
   design_method_vocabulary:
     - "功能測試 (Functional based ; no specific technique)"
     - "狀態轉換 (State Transition Testing)"

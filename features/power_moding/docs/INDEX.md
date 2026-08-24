@@ -11,6 +11,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 02 | 2026-08-23 | 母本改定、`workbook_state` 改判、Phase 1 前置 | [handoff/02_baseline_switch.md](handoff/02_baseline_switch.md) | [upstream/02_baseline_switch.md](upstream/02_baseline_switch.md) | R-PMH7–R-PMH12（逐字抄錄 6/6 相符） | A-PMH06–A-PMH08；A-PMH01／A-PMH05 → RESOLVED | **步驟 1–10 全數執行；九條停止條件全未觸發** |
 | 03 | 2026-08-23 | Test Group 欄值改判、DV 列舉值實測、Phase 1 recon | [handoff/03_testgroup_and_dv.md](handoff/03_testgroup_and_dv.md) ＋ [03a_pei_rulings.md](handoff/03a_pei_rulings.md) | [upstream/03_testgroup_and_dv.md](upstream/03_testgroup_and_dv.md) | R-PMH13–R-PMH18（逐字抄錄 7/7 相符） | A-PMH09、A-PMH10；A-PMH06（附 PENDING-CANON）／A-PMH07 → RESOLVED | **步驟 1–8 全數執行；九條停止條件全未觸發** |
 | 04 | 2026-08-23 | R-PMH10 證據基礎更正、母體判準、機器檢查補實 | [handoff/04_corpus_and_assertions.md](handoff/04_corpus_and_assertions.md) | [upstream/04_corpus_and_assertions.md](upstream/04_corpus_and_assertions.md) | R-PMH19–R-PMH23（逐字抄錄 5/5 相符） | A-PMH11／A-PMH12；A-PMH09 → RESOLVED、A-PMH10 證據更正 | **步驟 1–7 全數執行；九條停止條件全未觸發** |
+| 05 | 2026-08-24 | 母體判準修正、Q3 完整語料、Phase 3 前置 | [handoff/05_corpus_fix_and_framework_prep.md](handoff/05_corpus_fix_and_framework_prep.md) | [upstream/05_corpus_fix_and_framework_prep.md](upstream/05_corpus_fix_and_framework_prep.md) | R-PMH24／R-PMH25（逐字抄錄 2/2 相符） | （未立新 A-PMH —— 新發現皆為停止條件之回報） | **步驟 1–6 全數執行；停止條件 7、8 觸發，已查明並回報** |
 
 ## 01 輪要點
 
@@ -273,3 +274,66 @@ Pei 之追認就其字面只及於本 feature，**執行層未改樣板**（03a 
 
 **下一包之首要建議**：先確認 R-PMH19 (a) 之「根層」是否為預期範圍
 （見上「母體判準之副作用」），再進行 Q3 重裁。詳見上繳 §8（五項）。
+
+## 05 輪要點
+
+**母體 17，非分析層所報之 16 —— 停止條件 7 觸發**
+- 候選數亦變動：**32**（04 包為 28）。新增 4 檔為併行 session 於
+  `Vehicle Settings/CFTS044/REF/` 產生之寫回前備份，依 (a′) 全部排除，
+  **不影響母體**。惟顯示 **`ASW-R2` 是活動目錄** —— 以它為母體之比率，
+  其分母會隨他人作業變動。**建議 R-PMH19 之揭露義務補入「量測時點」。**
+- 差異歸屬：**分析層補測 5 檔時漏了
+  `Engineering Mode/App Team Effort/…_CFTS011_EngMode.xlsx`**。
+  它與那 5 檔同樣是被原 (a) 深度規則排除、(a′) 生效後回到母體者。
+
+**Q3 語料再更新 —— `D5` 空 9 / 非空 8**
+- 第 17 檔之 `D5` **非空**：`FM-WI-SW-PSCFTS011-ENGM-A01`，**第六種格式**
+  （表單／文件編號，既非 037 報告名亦非 CFTS 條目 id）。
+- 四次量測之演進：`5/0` → `8/3` → `9/7` → **`9/8`**。
+  **`D3`／`D4` 四次皆全空，留空無爭議；變動者只有 `D5`。**
+- 分析層 §五稱「母體最大單一群 9/16」，在 17 之母體下為 **9/17** ——
+  相對多數由 56% 降為 53%，**（甲）之語料強度較其所述更弱**。
+- 八個非空者用**六種格式**，其中**三者指向物不是規格或報告**
+  （他 feature 之報告名／本表單編號／另一份文件編號）。
+  若只算「填得對」者，分母為 5，而**五者中仍用了四種排列**。
+
+**停止條件 8 觸發一項 —— `_Rebuilt` 之排除理由不成立**
+- `Engineering Mode/` 根層有兩份同日期（20260816）檔案：保留者
+  `EngeeringMode_20260816`（**211 列，檔名拼錯多一個 e**）、
+  排除者 `EngMode_20260816_Rebuilt`（**527 列，2.5 倍**）。
+- (c) 之日期規則對兩者無鑑別力（同日），**實際上是 (b) 之字面比對決定取捨，
+  而它選中了資料較少且檔名拼錯的那一份**。
+- 另 `(done)` 一項：其字面語意為「完成」，與「中間態」相反 ——
+  **理由措辭與事實相反，但結論仍成立**（另有 (c) 之獨立依據）。
+
+**17 檔全簿 DV 掃描（依 R-PMH20，量詞即「這 17 檔」）**
+- **`AF`／`AG` 前導空白：具該 DV 者 15/15 全部帶前導空白**
+  （` Fail`／` Pending`）；另 2 檔無此 DV。
+- **x14 source：`Reference!$C$4:$C$12` 10 檔／`下拉選單!$A$1:$A$9` 4 檔／
+  `下拉選單!$A$1:$A$11` 2 檔／無 x14 2 檔。**
+  **母本所用之 `下拉選單!$A$1:$A$9` 在這 17 檔中是少數（4/17）** ——
+  R-PMH25「不以分頁名認 source、取母本自身實測值」因而更有必要：
+  **若以多數定 source 會取到 `Reference`。**
+- `$A$1:$A$11` 兩檔之 source 範圍含**兩個空值**（分頁只有 9 個非空）。
+- **priority DV 跨欄者 7 檔** —— A-PMH12 (1) 之形態非母本獨有。
+
+**`Product Document!B7:C7`**：DV 17/17 全備且逐字相同；值為
+`Confidential` **12 檔**、空 **5 檔**，**無一填 `Top Secret`**。
+⚠ **母本為空而客戶那份為 `Confidential`** —— 若交付須填，
+本 feature 之寫回範圍不只 `Test Case Specification` 分頁（Phase 7 待決）。
+
+**`data/layer3_sections.tsv` —— 48/48 對應規格自身 section id**
+- 停止條件 9 未觸發。章分布 7(19)／8(6)／9(5)／10(10)／11(5)／12(3)；
+  FROP 12 值與 03 包逐項相符。**不擬 Layer 2 名、不定 granularity。**
+- **首版寫出之 TSV 結構是壞的**（自陳）：`section_title` 含實體換行與
+  `_x000D_`，未正規化即寫入，一列被拆成多列。**與 A-PMH08 同族** ——
+  把有結構的東西當無結構字串處理。修正後**加寫出後之回讀自檢**
+  （48 列 × 7 欄），不以「寫出成功」為通過（R-G7-1）。
+
+**`check_write_back.py` 標 `[KNOWN-INCOMPLETE]`**
+- 三項檢查已實作且經故意失敗驗證，**但尚未被任何寫回路徑呼叫**；
+  接線為 **Phase 6 交付項**。理由逐字：**「一段未被呼叫的正確程式碼，
+  其效力與文字修補相同」**（通則 8）。`feature.yaml` 加 `wired: false`。
+
+**待 Pei 三項**：Q3 之 `D5`（語料已備齊）／`_Rebuilt` 何者為交付態／
+`App Team Effort` 是交付夾或工作子目錄（決定母體 17 或 16）。
