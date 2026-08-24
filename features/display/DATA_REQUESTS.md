@@ -10,12 +10,17 @@ pattern is stated and marked (pattern).
 的同時必須新增一列於此表；且每次 session opener 與 batch gate 都要按
 Urgency 回報。
 
+**R-G14（2026-08-24，全域）**：凡屬「某訊號／參數查無」之 DR，開立前須先
+滿足 R-G13 三要件並登入 `forms/LOOKUP_MISSES.md`。台帳防重複發現、
+本表綁上游提問、`ANOMALIES.md` 綁批次 —— 三處各有其職，不互相取代。
+
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
 | DR-DM1 | CFTS_009（條號 `{CFTS009-722}`，定義 `Start Up Sequence - Splash/Disclaimer Screen` 之時段）— 檔名待查（pattern：`…CFTS_009…docx`） | OPEN | SWE-DM-003 | splash/sleep 時長之預期結果無法寫 | — | HIGH |
 | DR-DM2 | Popup 優先序仲裁規則與 timeout 之來源（CFTS 本文僅有 RVC「high priority」語句，無仲裁順序表或 timeout 值） | OPEN | SWE-DM-006 | popup 仲裁之預期結果無法寫 | — | HIGH |
 | DR-DM3 | `SYS-RA-DISP-*` ↔ SYS2 之對應表，或含 `DISP` id 之 SYS2 版本 | OPEN | 全 8 leaf 之追溯欄 | 追溯鏈斷；spec_reference 無 id 路徑 | A-DM2 / A-DM10 | MEDIUM |
 | DR-DM4 | CFTS_013（條號 `CFTS013-629` Standard/`-633` Standard/`-952` Multi-stage，載 DCSD Display Hot 演算法本體與其分級溫度門檻）— 檔名待查（pattern：`…CFTS_013…docx`） | OPEN | SWE-DM-005（004 部分） | multi-stage 之分級判準無法寫；單級 85 °C 行為可寫 | A-DM13 | HIGH |
+| DR-DM5 | `RADIO_B4.CCDMF_RQ_DISP_INTS` 之 DBC 定義（訊息 `RADIO_B4` 存在於 `PDT27_E2A_R1_BHCAN2.dbc`，該 `SG_` 不存在）；一併確認 `GW_B_5.Mute_Button` | OPEN | 用到 `$CCDMF_RQ_DISP_INTS$` 之 SYS2 FR 列 | 該訊號之值域與位元定義無法寫 | A-DM10a／`forms/LOOKUP_MISSES.md` M-1、M-2 | MEDIUM |
 
 ## R-DM8 之查證結果（先查 CFTS 與 SYS3，查得者記章節）
 

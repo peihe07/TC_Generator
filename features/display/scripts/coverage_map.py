@@ -50,7 +50,15 @@ F037 = ROOT / "inputs" / \
 MIN_PHRASE = 8
 
 SIGNAL = re.compile(r"\$([A-Za-z0-9_]+)\$")
-VALUE = re.compile(r"\[([A-Za-z0-9_%\s]+)\]")
+# R-DM16 mandates the wide form `\[([^\]]+)\]`. Applied literally it also
+# sweeps in the Polarion export's own metadata prefix ([State:Approved],
+# [Radio:R1H], [Artifact Type:...]) — 44 distinct tokens, not the 13 the
+# ruling's text states. The 13 comes from the narrower form below, which is
+# what upstream 03 measured and called "wide". Both are emitted: `values`
+# follows the ruling as written, `values_narrow` keeps the 13-token view.
+# The conflict is reported, not silently resolved.
+VALUE = re.compile(r"\[([^\]]+)\]")
+VALUE_NARROW = re.compile(r"\[([A-Za-z0-9_%\s]+)\]")
 
 
 def norm(s):
@@ -129,6 +137,8 @@ def main():
         desc = norm(r[c_desc])
         sigs = sorted(set(SIGNAL.findall(desc)))
         vals = sorted({v.strip() for v in VALUE.findall(desc) if v.strip()})
+        vals_n = sorted({v.strip() for v in VALUE_NARROW.findall(desc)
+                         if v.strip()})
         anc = ancestor[rn]
         anc_txt = anc[2] if anc else ""
         mel = sorted({t.strip() for t in re.split(r"[,\s;]+", norm(r[c_melco]))
@@ -167,6 +177,7 @@ def main():
             "category": norm(r[c_cat]), "swhw": norm(r[c_swhw]),
             "heading_ancestor": f"r{anc[0]} {anc[2]}" if anc else "",
             "signals": ",".join(sigs), "values": ",".join(vals),
+            "values_narrow": ",".join(vals_n),
             "melco": ",".join(mel), "anchor_kind": kind,
             "candidate_leaf": cand, "note": note,
             "func_l1": norm(r[c_l1]), "func_l2": norm(r[c_l2]),
@@ -174,8 +185,8 @@ def main():
         })
 
     cols = ["sys2_row", "sys_ra_id", "category", "swhw", "heading_ancestor",
-            "signals", "values", "melco", "anchor_kind", "candidate_leaf",
-            "note", "func_l1", "func_l2", "func_l3"]
+            "signals", "values", "values_narrow", "melco", "anchor_kind",
+            "candidate_leaf", "note", "func_l1", "func_l2", "func_l3"]
     out = ROOT / "data" / "coverage_sys2_vs_swe_dm.tsv"
     with out.open("w", encoding="utf-8") as fh:
         fh.write("\t".join(cols) + "\n")
@@ -196,8 +207,15 @@ def main():
     print(f"  Melco 命中 Excluded: {sum(1 for d in out_rows if d['melco'])}")
     sig = sorted({s for d in out_rows for s in d["signals"].split(",") if s})
     val = sorted({v for d in out_rows for v in d["values"].split(",") if v})
+    valn = sorted({v for d in out_rows
+                   for v in d["values_narrow"].split(",") if v})
     print(f"  相異訊號名 {len(sig)}: {sig}")
-    print(f"  相異值 token {len(val)}: {val}")
+    print(f"  相異值 token — R-DM16 條文之 regex \\[([^\\]]+)\\] : "
+          f"{len(val)}")
+    print(f"    {val}")
+    print(f"  相異值 token — 上繳 03 所量之 \\[([A-Za-z0-9_%\\s]+)\\] : "
+          f"{len(valn)}  <- R-DM16 條文所載之「13」為此數")
+    print(f"    {valn}")
 
     print()
     print("## candidate_leaf 分布（候選，非裁定）")

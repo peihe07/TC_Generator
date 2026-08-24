@@ -12,6 +12,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 01 | 2026-08-24 | 開案：Phase 0 intake + Phase 1 recon | [handoff/01_intake_recon.md](handoff/01_intake_recon.md) | （併入 02 上繳） | R-DM1–R-DM8（分析層自裁 8 條） | （未及登記） | **步驟 1 即停：`_intake/Display/` 不存在、037 未就位；停止條件 8 觸發。另查出 R-DM2 之前提「磁碟上無 037」為誤** |
 | 02 | 2026-08-24 | 素材來源更正，續跑 01 步驟 1–14 | [handoff/02_source_correction.md](handoff/02_source_correction.md) | [upstream/02_intake_recon.md](upstream/02_intake_recon.md) | R-DM2 廢止、R-DM2′、R-DM9–R-DM11（逐字抄錄 13/13 相符） | A-DM1–A-DM11；DR-DM1–DR-DM3 開立 | **步驟 1–14 全數執行；九條停止條件全未觸發。`recon.py` 依 R-DM5(b) 預期失敗，未修腳本 → RECON.md／recon.json 未產出** |
 | 03 | 2026-08-24 | 上繳 02 覆核；覆蓋對照退回重做（錨定法） | [handoff/03_coverage_redo.md](handoff/03_coverage_redo.md) | [upstream/03_coverage_redo.md](upstream/03_coverage_redo.md) | R-DM12–R-DM15（逐字抄錄 4/4 相符，累計 17/17） | A-DM12／A-DM13 新增；**A-DM11 結論撤回並改寫**；A-DM5 適用範圍擴及 036；DR-DM4 開立 | **步驟 1–10 全數執行；十條停止條件全未觸發。舊覆蓋表依 R-TM13 加註保留為 `…RETRACTED.tsv`** |
+| 04 | 2026-08-24 | 參考素材庫（`forms/`）建置；訊號三段解析鏈 | [handoff/04_reference_store.md](handoff/04_reference_store.md) | [upstream/04_reference_store.md](upstream/04_reference_store.md) | R-G12–R-G14（全域，抄入 `docs/fw036/RULINGS_LEDGER.md`）＋ R-DM16／R-DM17（逐字抄錄 5/5，Display 累計 19/19） | A-DM14／A-DM15／A-DM16 新增；**A-DM10 拆為 a（RESOLVED）／b（PENDING）**；A-DM11 之 `[value]` 數字更正；DR-DM5 開立 | **步驟 1–12 全數執行；十三條停止條件全未觸發。`.gitignore` 加一行否定使 `LOOKUP_MISSES.md` 可 tracked** |
 
 ## 02 輪要點
 
@@ -59,3 +60,23 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 - 036 母本 B 欄為公式欄（1402/1402），且其 `data_only` 快取為陳舊值
 - 036 母本表頭之分隔符為換行，33 欄皆然（A-DM5 適用範圍擴大）
 - CFTS_020 引用 8 份外部 CFTS 文件（A-DM13）
+
+## 04 輪要點
+
+**相符者（執行層獨立重算 vs 下放包 §3.1／§3.2）**
+- 四本 DBC 之訊號定義列／訊息數 344/63、1916/318、914/155、2037/323 逐項相符
+- BHCAN2-R1 vs BHCAN-R4 訊號名三分 310／573／32 逐項相符
+- 三個顯示訊號之 tx 節點差異逐項相符；位元定義與 `VAL_` 兩本逐字相同
+- `CM_TCH_STAT` 於 BHCAN2 之 0 命中確為「本就不在該匯流排」（R-G13 教案）
+
+**須加限定者**
+- §3.4 之「15 個 `$Signal$` 全數解得」：LID 階段 15/15 成立，**DBC 階段
+  14/15** —— `CCDMF_RQ_DISP_INTS` 之 CAN 名不在任一本 DBC（LOOKUP_MISSES M-1）
+- R-DM16 之 regex 與其所載之「13」不一致：`[^\]]+` 實測 44（含 Polarion
+  metadata），13 為 `[A-Za-z0-9_%\s]+` 之數。本輪兩者並列，未擇一
+
+**新查明者**
+- 三個顯示訊號之 **rx 節點亦隨 tx 對調**（下放包只列 tx）
+- BHCAN2 之四個 FPDM 顯示訊號與 `DCSD_*` 為平行族（A-DM15）
+- LID `Proxi & Configuration` 有 `DSP_SK_PRSNT`／`RVC_SK_PRSNT`／`DCSD_cfg`
+  等組態旗標，形態上像 TC 前置條件來源（A-DM16，未解析）

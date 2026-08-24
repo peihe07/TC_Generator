@@ -108,3 +108,74 @@
 > 執行層於上繳 17 §五所報之二後果（`Standard_Power` 無對應 VAL_、
 > 觸發與觀察塌縮為同一訊號）**皆為該錯誤裁定之必然結果**，
 > 已於 19 包回復規格原文寫法（row 72），並立 **R-13**、開 **DR-PW21**。
+
+---
+
+## 參考素材庫條文（R-G12／R-G13／R-G14，Pei 2026-08-24，全域）
+
+來源：`features/display/docs/handoff/04_reference_store.md` §四。
+抄錄方式：機器抽取原樣寫入，未經人工轉錄；核對表見節末。
+
+```text
+R-G12（參考素材庫之位置與 manifest —— 全域）
+DBC、PROXI 表、LID 對照表一律置於 `forms/`，與 036 母本同目錄。
+不另立 `reference/` 目錄（Pei 2026-08-24 裁定）。
+
+`forms/*` 已由根 `.gitignore` 排除、`FORMS.md` 已 tracked，
+形狀無須變更：檔案不入 git，manifest 入 git。
+
+`FORMS.md` 新增一節 `## 參考資料庫（DBC / PROXI / LID）`，每檔一條目，
+必填欄位六項：
+
+  (a) 檔名、SHA256、bytes、mtime
+  (b) **涵蓋範圍** —— DBC 記其匯流排與訊號定義列數、訊息數；
+      LID 記其分頁、資料列數、架構欄組清單；PROXI 記其分頁與參數列數
+  (c) 版次與其來源（檔名所載，非推定）
+  (d) 已知不涵蓋者（如 BHCAN2 不含 FD-CAN 上之訊號）
+  (e) 取代關係（本檔取代誰、被誰取代、或並存）
+  (f) 首個採用之 feature 與日期
+
+(b) 為必填之理由見 R-G13：無涵蓋範圍之登錄，「查無」不構成發現。
+```
+
+```text
+R-G13（查無之成立要件 —— 全域）
+「某訊號／參數查無」之陳述，僅在同時載明下列三項時成立：
+
+  (1) 查了哪些檔（檔名 + SHA256）
+  (2) 用什麼名字查（LID 名？CAN 訊號名？規格原文名？）
+  (3) 該檔之涵蓋範圍是否本應包含之（匯流排、架構、版次）
+
+三項缺一，該陳述一律記為「未查得」而非「查無」，且不得據以開 DR。
+
+實例（2026-08-24，Display）：分析層先以 `PDT27_E2A_R5_FDCAN8.dbc` 查
+`DCSD_DISP_STAT` 得 0，若逕報查無即為誤 —— 該訊號在 B-CAN 上，
+FD-CAN 之 DBC 本就不含之。同日又以 LID 名 `ICSPowerButton` 查 DBC 得 0，
+亦為誤 —— 其 CAN 訊號名為 `Radio_btn0`／`DCSD_Power`。
+```
+
+```text
+R-G14（查無台帳 —— 全域）
+`forms/LOOKUP_MISSES.md`（tracked）為全案唯一之查無台帳。
+凡經 R-G13 三要件仍查無者，登記一列，欄位：
+
+  query | 查詢用之名稱種類 | 查了哪些檔(含SHA256前16碼) | 涵蓋範圍是否應含
+  | 結果 | 發現之feature | DR編號 | 狀態
+
+目的為避免同一個 miss 被各 feature 重複發現、重複向上游提問。
+新 feature 開案時須先讀本檔。
+
+登記之同時，仍須於該 feature 之 `ANOMALIES.md` 登 anomaly、
+`DATA_REQUESTS.md` 開 DR —— 三處各有其職，不互相取代：
+台帳防重複發現，anomaly 綁該 feature 之批次，DR 綁上游提問。
+```
+
+### 抄錄核對表
+
+| 條號 | 字元數 | SHA256（前 16 碼） | 逐字相符 |
+|---|---|---|---|
+| R-G12 | 528 | `c9fb52dea97b2edb` | 是 |
+| R-G13 | 387 | `a1ba5e165f2ad121` | 是 |
+| R-G14 | 363 | `0d18b275bc9428d6` | 是 |
+
+首個適用之 feature：`display`（2026-08-24）。台帳實作見 `forms/FORMS.md` 之參考資料庫節與 `forms/LOOKUP_MISSES.md`。

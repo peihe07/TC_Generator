@@ -446,3 +446,87 @@ DV 來源已為 `$A$1:$A$9`，不含空選項。
 本版之實質差異是相對於 **rev C 原範本 `20260121`**（B 欄 row 10–59、
 DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 列」版本
 在 repo 內已不存在（A-UP05），故本節不沿用該中間版之任何數值。
+
+---
+
+## 參考資料庫（DBC / PROXI / LID）
+
+依 **R-G12**（Pei 2026-08-24，全域）：DBC、PROXI 表、LID 對照表一律置於
+`forms/`，不另立 `reference/`。`forms/*` 已由根 `.gitignore` 排除、
+`FORMS.md` 已 tracked，形狀未變更（檔案不入 git，manifest 入 git）。
+
+每檔六項必填欄位：(a) 檔名／SHA256／bytes／mtime　(b) 涵蓋範圍
+(c) 版次與其來源　(d) 已知不涵蓋者　(e) 取代關係　(f) 首個採用之 feature
+與日期。(b) 為必填之理由見 **R-G13**：無涵蓋範圍之登錄，「查無」不構成發現。
+
+涵蓋範圍(b) 一律為執行層實測所得，量測條件見
+`features/display/docs/upstream/04_reference_store.md` §4。
+
+### `PDT27_E2A_R1_BHCAN2.dbc`
+
+- **(a)** SHA256 `46cb73f3db62ac9fba6ad8010d7930661983faf01383c022c52ba3c37de1cc60`
+  · 167,226 bytes · mtime 2026-08-24T19:59:45
+- **(b) 涵蓋範圍**：B-CAN（BHCAN2）。訊號定義列 **344**（相異訊號名 342）、
+  訊息 **63**。編碼非 UTF-8（以 cp1252 解讀）；行尾 CRLF 3,359 + 裸 LF 8
+- **(c) 版次**：`R1`（檔名所載，非推定）
+- **(d) 已知不涵蓋**：FD-CAN 上之訊號。例：`CM_TCH_STAT` 於本檔 0 命中，
+  但 LID r368 載其為 `TELEMATIC_FD_5.CM_TCH_STAT`、`CAN` 欄為 `FD` ——
+  **本檔本就不該有，不得記為缺漏**（R-G13 之教案）
+- **(e) 取代關係**：與 `PDT27_E2A_R4_BHCAN.dbc`
+  （`features/vehicle_setting/inputs/`）**並非版次關係**。訊號名集合
+  三分實測：兩者皆有 310、僅 R4 有 **573**、僅 BHCAN2 有 **32**。
+  何者適用於本專案**未裁定**（A-DM14）
+- **(f) 首個採用**：`display`，2026-08-24
+
+### `PDT27_E2A_R1_FDCAN8.dbc`
+
+- **(a)** SHA256 `2a86c4bf3e670d71b362d430b446d8d157c74b94429e833362f81f4a48f6a22e`
+  · 1,106,532 bytes · mtime 2026-08-24T19:59:52
+- **(b) 涵蓋範圍**：FD-CAN（FDCAN8）。訊號定義列 **1,916**（相異訊號名
+  1,634）、訊息 **318**。cp1252；CRLF 19,805 + 裸 LF 2
+- **(c) 版次**：`R1`（檔名所載）
+- **(d) 已知不涵蓋**：B-CAN 上之訊號。例：`DCSD_DISP_STAT`、
+  `RQ_DISP_INTS` 於本檔 0 命中，二者皆在 B-CAN 上
+- **(e) 取代關係**：與 `PDT27_E2A_R5_FDCAN8.dbc`（vehicle_setting）並存；
+  R5 有訊號定義列 2,037／訊息 323，較 R1 多。兩者之差異本輪未逐一比對
+- **(f) 首個採用**：`display`，2026-08-24
+
+### `Logical Identifiers and CAN Mapping v1_78.xlsx`
+
+- **(a)** SHA256 `a01e1679c706cd454daf82573a732fe5ad5eedb3865083897cb18c970b312433`
+  · 623,612 bytes · mtime 2026-08-24T20:02:03
+- **(b) 涵蓋範圍**：14 個分頁。主分頁 `CAN Mapping` 為 2,627 列 × 35 欄，
+  r1 標題／r2 架構分組／r3 欄名／**資料自 r4 起共 2,624 列**。
+  架構欄組七個（r2 所載之起始欄）：`LID Information`(c1)／`Powernet`(c6)／
+  `CUSW`(c11)／`Atlantis`(c16)／`Compact`(c21)／**`Atlantis High`(c26)**／
+  `Comments`(c31)；`Atlantis High` 之 r3 欄名為
+  `Signal Name`／`CAN`／`Format`／`SNA`／`VFs`。
+  另 `Proxi & Configuration` 449 列 × 31 欄、`Rev History` 108 列，
+  及 10 個車型專屬訊號分頁（3–35 列不等）
+- **(c) 版次**：`v1_78`（檔名所載）
+- **(d) 已知不涵蓋**：LID 之左欄為 Logical Identifier，**不是 CAN 訊號名**。
+  以 LID 名直接查 DBC 必然 0 命中（例 `ICSPowerButton` → 實際 CAN 名為
+  `CLIMATIC_PANEL.Radio_btn0`／`DIS_CENTERSTACK.DCSD_Power`）。
+  一列可載多個 `MESSAGE.Signal`，本檔不指定何者適用
+- **(e) 取代關係**：`features/vehicle_setting/inputs/` 之
+  `…v1_76.xlsx` 為較舊版次。**兩版差異本輪未測**；依既有慣例
+  （同 R-G1），vehicle_setting 之已交付件不因新版而改
+- **(f) 首個採用**：`display`，2026-08-24（R-DM17 之三段解析鏈）
+
+### `PROXI_HDCC27_R3_20250424.xlsx`
+
+- **(a)** SHA256 `e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2`
+  · 743,785 bytes · mtime 2026-08-24T20:00:27
+- **(b) 涵蓋範圍**：13 個分頁。`Format` 1,060 列 × 24 欄（參數主表）、
+  `Country Code` 224 列、`Revision Notes` 483 非空列、
+  `EPS_Configuration_Families` 50 列、`ANC Table` 23 列、
+  `Projection Mode Selection` 11 非空列、`Additional Languages` 10 列、
+  `Acoustic Configuration` 12 列、`Allowed Conditions` 6 非空列、
+  `Checks` 9 非空列、`Help` 16 列、`Cover` 10 非空列、`Header` 4 非空列
+- **(c) 版次**：`R3`，日期碼 `20250424`（檔名所載）
+- **(d) 已知不涵蓋**：本輪**未解析其內容**（下放包 04 步驟 11：與本
+  feature 之關聯尚未確立，逕行解析屬無據之工）。故其參數與 Display
+  之關聯**未知**，不得以本條目為據主張任何 PROXI 參數存在或不存在
+- **(e) 取代關係**：`features/vehicle_setting/` 另有其自用之 PROXI 取值
+  （`data/_vf230_proxi_values.json`），來源檔非本檔，兩者關係未測
+- **(f) 首個採用**：**尚無**。本輪僅登台帳

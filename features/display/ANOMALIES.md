@@ -129,7 +129,7 @@ sniffer 未認出 037（R-DM5(a) 之下游效應），非欄位語意。**故 ne
 
 - 提案處置：登記為理由失真；Q5 修 sniffer 後須重跑並複核 need list
 
-## A-DM10 — SYS2 無指向 CFTS 條號之錨，mode D 之 spec_reference 無 id 橋樑  [PENDING]
+## A-DM10 — SYS2 無指向 CFTS 條號之錨，mode D 之 spec_reference 無 id 橋樑  [**拆條**：a 已 RESOLVED／b 仍 PENDING]
 
 canon §3 之 mode D 要求 spec_reference 為**查得**。實測：
 
@@ -146,6 +146,129 @@ canon §3 之 mode D 要求 spec_reference 為**查得**。實測：
 - 證據：`scripts/probe_spec_mode.py`
 - 影響：Phase 4 之 spec_reference 目前只能靠文字比對定位條號
 - 提案處置：登記；spec_reference 之取得方式屬 Tier 2
+
+---
+
+### 拆條（2026-08-24，下放包 04 §3.4／步驟 7）
+
+以上原文依 R-TM13 保留，不刪除、不改寫。本條實含兩件事，分列處置：
+
+#### A-DM10a — 訊號側之 id 橋樑　**[RESOLVED]**
+
+原條所述「SYS2 之 `$Signal$` 無法接到任何外部定義」一節**已解**。
+橋樑為 LID `CAN Mapping` 分頁（R-DM17 之三段解析鏈）。
+
+執行層獨立重算（`scripts/signal_resolution.py`，
+`data/signal_resolution.tsv`）：
+
+| 項 | 實測 |
+|---|---|
+| FR 母體之 `$Signal$` | 15 |
+| 於 LID `Logical Identifier` 欄逐字查得者 | **15 / 15** |
+| 解出之 `MESSAGE.Signal` 值（多值逐值一列） | 26 |
+| 其中於 DBC 查得 `SG_` 者 | **24 / 26** |
+| 至少解得一列之 `$Signal$` | **14 / 15** |
+
+**惟下放包 04 §3.4 之「15 個 `$Signal$` 全數解得」須加限定**：該陳述在
+**LID 階段**成立（15/15），在 **DBC 階段**不成立 ——
+`CCDMF_RQ_DISP_INTS` 之 CAN 名 `RADIO_B4.CCDMF_RQ_DISP_INTS` 在兩本 DBC
+皆無此 `SG_`，而訊息 `RADIO_B4` 本身存在於 BHCAN2-R1，故屬 R-G13 三要件
+齊備之真查無（`forms/LOOKUP_MISSES.md` M-1、DR-DM5）。
+
+同時撤回之誤讀（依下放包 04 §3.4 第 1、2 點）：
+`TGW_DISP_STAT` → `TGW_DISP_STATSts` 之 `Sts` 尾綴**不是規格錯誤**，
+`ICS*` 系列在 DBC 0 命中**不是缺漏** —— 二者皆為「以 LID 名查 CAN 名」
+之必然結果。
+
+#### A-DM10b — 章節側之 id 橋樑　**[PENDING]**
+
+SWE-DM leaf → CFTS 條號之橋樑**仍不存在**。本輪未有任何進展：
+CFTS 側之 184 個 outline id 與 037 之 8 個 leaf 之間，沒有任何逐字錨。
+spec_reference 之取得方式仍為 Tier 2 未決，`feature.yaml` 之
+`spec_reference_template` 維持 `null`。
+
+## A-DM14 — BHCAN2 與 BHCAN-R4 為不同資料庫，且顯示訊號之收發節點相反  [PENDING]
+
+`forms/PDT27_E2A_R1_BHCAN2.dbc`（`46cb73f3…`）與
+`features/vehicle_setting/inputs/PDT27_E2A_R4_BHCAN.dbc` 之訊號名集合
+三分（相異名，逐字，`scripts/dbc_probe.py`）：
+
+| | 數 |
+|---|---|
+| 兩者皆有 | 310 |
+| 僅 BHCAN-R4 有 | **573** |
+| 僅 BHCAN2-R1 有 | 32 |
+
+**故二者非版次關係，是不同的資料庫。** 573 個只在舊檔存在之訊號名，其在
+新架構下之地位（移除／改名／移至他匯流排）本輪不推定。
+
+三個顯示訊號之位元定義與 `VAL_` 列舉**兩本逐字相同**，但**節點相反**：
+
+| 訊號 | 訊息 | BHCAN2-R1 | BHCAN-R4 |
+|---|---|---|---|
+| `DCSD_DISP_STAT` | `BO_ 1445 DIS_CENTERSTACK` | tx=**SGW**，rx=`ETM,LTM` | tx=**DCSD**，rx=`SGW` |
+| `RQ_DISP_INTS` | `BO_ 1283 RADIO_B3` | tx=**ETM**，rx=`SGW` | tx=**SGW**，rx=`DCSD` |
+| `TGW_DISP_STATSts` | `BO_ 1500 TELEMATIC_DISPLAY2` | tx=**ETM**，rx=`SGW` | tx=**SGW**，rx=`DCSD` |
+
+> 下放包 04 §3.2 只列 tx。本輪一併實測 rx（`SG_` 行末之接收節點清單），
+> **rx 亦隨之改變**，方向與 tx 一致地對調。
+
+**發送節點決定 TC 該寫「送出」還是「觀察」**，故此差異非中繼資料。
+
+- 提案處置：登記。**何者適用於本專案未裁定** —— 二選一需要專案之
+  EE 架構配置為據，不在手上四份素材內
+
+## A-DM15 — BHCAN2 含四個 FPDM 顯示訊號，而 037 與 SYS2 皆未提及 FPDM  [PENDING]
+
+「僅 BHCAN2 有」之 32 個訊號名中，四個與顯示直接相關（逐字複驗，
+`scripts/dbc_probe.py`）：
+
+| 訊號 | 訊息 | tx | rx | VAL_ / 格式 |
+|---|---|---|---|---|
+| `FPDM_DISP_STAT` | `BO_ 1513 FPDM1` | FPDM | ETM | `0 OFF 1 ON 2 BLANK 3 DISP_HOT 7 SNA` |
+| `TGW_FPDM_DISP_STATSts` | `BO_ 1282 RADIO_B2` | ETM | FPDM | 同上五值 |
+| `FPDM_RQ_DISP_INTS` | `BO_ 1282 RADIO_B2` | ETM | FPDM | `63\|8@0+ (0.5,0) [0\|100] "%"`，`255 SNA` |
+| `CameraDisplaySts` | `BO_ 1283 RADIO_B3` | ETM | Vector__XXX | `0 Default 1 View_1 … 7 View_7` |
+
+`FPDM_*` 為 `DCSD_*` 之平行族：值域 `OFF/ON/BLANK/DISP_HOT/SNA` 與
+`DCSD_DISP_STAT` 相同（惟 `DCSD_DISP_STAT` 另有 `3 RR_CMRA`，FPDM 族無），
+`FPDM_RQ_DISP_INTS` 之格式與 `RQ_DISP_INTS` 逐字相同（`0.5 %/bit`、
+`0–100`、`255 SNA`）。四者在 BHCAN-R4 皆不存在。
+
+**037 與 SYS2 皆未提及 FPDM**（兩檔全文逐字查 `FPDM` 為 0）。
+這是新素材帶進來的問題，不是既有缺漏。
+
+- 提案處置：登記。**不推定其是否在本 feature 範圍內** —— 若 FPDM 為
+  本專案之另一顯示裝置，則 8 個 leaf 之涵蓋面須重議；若非本專案配備，
+  則其存在於 DBC 中不生影響。二者皆需專案配置為據
+
+## A-DM16 — LID `Proxi & Configuration` 分頁含顯示相關組態旗標  [PENDING]
+
+下放包 04 步驟 11 之停手觸發條件為「LID `Proxi & Configuration` 分頁與
+本 feature 之**訊號**有關聯」。逐字測試：15 個 SYS2 `$Signal$` 在該分頁
+**0 命中**，故該條件**未逐字成立**，本輪未停手、未解析 PROXI。
+
+惟以關鍵字（`DISP`／`DCSD`／`RVC`／`Camera`／`Display`）掃描該 449 列分頁，
+命中 23 列，其中四列與 Display 之 leaf 明顯相鄰：
+
+| LID 列 | Logical Identifier | Function |
+|---|---|---|
+| r51 | `DCSD_cfg` | DCSD Present |
+| r64 | `DSP_SK_PRSNT` | Display off soft key present |
+| r131 | `NetCfg_DCSD` | （無 Function 文字） |
+| r170 | `RVC_SK_PRSNT` | Rear Camera soft key present |
+
+`DSP_SK_PRSNT` 對應 SWE-DM-001 之 Screen Off 行為、`RVC_SK_PRSNT` 對應
+SWE-DM-007／008 之 RVC 行為、`DCSD_cfg` 決定 DCSD 是否存在 —— 形態上像是
+TC 之**前置條件**來源。
+
+- 證據：LID `Proxi & Configuration` 449 列 × 31 欄之逐列 regex 掃描
+- **本輪未做任何 PROXI 解析**（步驟 11 明文禁止無據之工），僅登記相鄰性
+- 提案處置：請裁示步驟 11 之觸發是否應由「與訊號有關聯」放寬為
+  「與 leaf 之前置條件有關聯」。若是，則 PROXI 解析應排入下一輪；
+  若否，本條轉為記錄性條目
+
+
 
 ## A-DM11 — R-DM7 覆蓋落差（**2026-08-24 更正；原結論撤回**）  [PENDING]
 
@@ -185,8 +308,19 @@ r31／r32 判給 `SWE-DM-001`、r34 判給 `SWE-DM-003`、r33 判為「無」—
 | melco | 0 |
 | none | 0 |
 
-各錨之存在數（非互斥）：含 `$signal$` 43 列、含 `[value]` 34 列、
+各錨之存在數（非互斥）：含 `$signal$` 43 列、含 `[value]` **54** 列、
 有 heading 祖先 80 列、Melco 命中 037 Excluded 1 列（r54）。
+
+> **`[value]` 之數字更正（2026-08-24，R-DM16）**：原記 34 列，係以
+> `\[([A-Za-z0-9_%\s]+)\]` 量得。R-DM16 指定之寬式 `\[([^\]]+)\]` 得
+> **54 列**。相異 token 數三種定義分別為：`[A-Z0-9_]+` **9**（R-DM14 原引，
+> 已由 R-DM16 撤回）、`[A-Za-z0-9_%\s]+` **13**（R-DM16 條文所載之數）、
+> `[^\]]+` **44**（R-DM16 條文所指定之 regex）。
+> **R-DM16 之 regex 與其數字不一致** —— 44 之多出者為 Polarion 匯出自身之
+> metadata（`[State:Approved]`／`[Radio:R1H]`／`[Artifact Type:…]`），
+> 非訊號值。本輪依條文之 regex 產出 `values` 欄，同時保留
+> `values_narrow` 欄（13-token 定義），兩者並列於
+> `data/coverage_sys2_vs_swe_dm.tsv`，**未自行擇一**。
 
 `candidate_leaf`（**候選，非裁定**；依 R-DM12 引用時須連同 `anchor_kind`）：
 
