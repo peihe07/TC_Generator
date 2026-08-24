@@ -1,0 +1,46 @@
+heading_row	sys_ra_id	heading_text	child_rows	child_FR_count
+2	SYS-RA-DM-001	ICS and DCSD [CFTSMV020_CIP_R3]		0
+3	SYS-RA-DM-002	Revision Notes	4	0
+5	SYS-RA-DM-004	Introduction	6,7,8,9,10,11	0
+12	SYS-RA-DM-011	HU Behavior when receiving Implausible Signal Values	13	1
+14	SYS-RA-DM-013	DCSD and HU HMI Communication	15,16,17,18,19	2
+20	SYS-RA-DM-019	DTC Maturation Criteria		0
+21	SYS-RA-DM-020	Networking DTC's		0
+22	SYS-RA-DM-021	BH-CAN Loss of Communication	23,24,25,26,27,28	2
+29	SYS-RA-DM-028	The DTCs are defined in Diagnosis specification.		0
+30	SYS-RA-DM-029	Multi-stage' DCSD Display Hot Algorithm	31,32,33,34	4
+35	SYS-RA-DM-034	DCSD Display Status Behavior		0
+36	SYS-RA-DM-035	Rear Camera Interrupts	37	1
+38	SYS-RA-DM-037	HU and DCSD Screen ON behavior	39	1
+40	SYS-RA-DM-039	Rear Camera Events	41,42	2
+43	SYS-RA-DM-042	Rear Camera Interrupts	44,45	2
+46	SYS-RA-DM-045	Screen Touch Event Interrupts for DCSD	47	1
+48	SYS-RA-DM-047	HU 3-second Timer Times Out	49	1
+50	SYS-RA-DM-049	HU and DCSD Screen OFF state Behavior		0
+51	SYS-RA-DM-050	Rear Camera Events	52,53,54	3
+55	SYS-RA-DM-054	Screen Touch Events	56,57,58,59,60,61	5
+62	SYS-RA-DM-061	2.3 LVDS Interface	63,64,65,66,67,68,69,70,71	6
+72	SYS-RA-DM-071	2.2 Serializer Touch Interrupt PIN Definition	73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303	48
+304	SYS2-RA-303	ICS HMI Communication	305	0
+306	SYS2-RA-305	HU behavior in response to ICS POWER hardkey pressed events		0
+307	SYS2-RA-306	HU behavior in response to ICS SCREEN OFF hardkey press events		0
+308	SYS2-RA-307	Rotary Knob Data Transfer {4819577}	309,310	0
+311	SYS2-RA-310	Short Press Event		0
+312	SYS2-RA-311	Press and Move Event		0
+313	SYS2-RA-312	Stuck Button Behavior	314,315,316	1
+317	SYS2-RA-316	DCSD Display Status Behavior		0
+318	SYS2-RA-317	Rear Camera Interrupts		0
+319	SYS2-RA-318	HU and DCSD Screen ON behavior		0
+320	SYS2-RA-319	Rear Camera Events		0
+321	SYS2-RA-320	HU and DCSD Transitioning to Screen OFF behavior		0
+322	SYS2-RA-321	Rear Camera Interrupts		0
+323	SYS2-RA-322	Screen Touch Event Interrupts for DCSD		0
+324	SYS2-RA-323	HU and DCSD Screen OFF state Behavior		0
+325	SYS2-RA-324	Rear Camera Events		0
+326	SYS2-RA-325	Screen Touch Events		0
+327	SYS2-RA-326	DCSD Display Hot Behavior	328	0
+329	SYS2-RA-328	Multi-stage' DCSD Display Hot Algorithm		0
+330	SYS2-RA-329	Touch Screen Event Communication and X-Y Coord System	331	0
+332	SYS2-RA-331	(Press,) Drag and Drop Event		0
+333	SYS2-RA-332	[Artifact Type:Description] [State:Approved] [Market:All] [Model Year:Default] [Radio:R1M, R1L-R, R1H, VP484, R1L, VP384, VP4R84, VP5R120] [EE Architecture:Atlantis Mid, PowerNet, Atlantis High]_x000D_ A Press, Drag and Drop event will be used by the HU for all touch screen HMI controls (ex. 'Reconfigurable Menu Bar') that allow the customer to press and drag a screen object to some other location on the screen and then to assign (drop) the object onto some other screen control._x000D_		0
+334	SYS2-RA-333	Capacitive Multi-touch Screen Gesture support		0

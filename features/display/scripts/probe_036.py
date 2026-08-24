@@ -7,6 +7,21 @@ workbook — it only loads it.
 
 Column mapping is derived from THIS file's header row, not inherited from
 another feature's table. workbook_state follows canon §2 step by step.
+
+Two baselines are printed, each named (handoff 03 §2.1). Printing only one
+of them lets a reader draw the opposite conclusion about A-DM7:
+
+  template-declared  — docs/fw036/templates/feature.yaml, i.e. what the
+                       scaffold writes into a brand-new feature. Its
+                       mismatches ARE A-DM7.
+  effective-declared — features/display/feature.yaml as it now stands, i.e.
+                       this feature's corrected map. A clean run here is a
+                       re-verification of the correction, NOT evidence that
+                       the template is right.
+
+Header cells are printed with repr(): the master's headers embed newlines
+('No.#\n序號'), so a whitespace-normalised print would show them as clean
+(handoff 03 §2.2 — same defect class as A-DM5).
 """
 import re
 from pathlib import Path
@@ -46,6 +61,9 @@ def norm(s):
 
 def main():
     cfg = yaml.safe_load((ROOT / "feature.yaml").read_text(encoding="utf-8"))
+    tpl_path = ROOT.parents[1] / "docs" / "fw036" / "templates" / "feature.yaml"
+    tpl = yaml.safe_load(tpl_path.read_text(encoding="utf-8")
+                         .replace("{FEATURE}", "Display"))
     sheet = cfg["workbook"]["sheet"]
     hdr_row = cfg["workbook"]["header_row"]
     declared = cfg["workbook"]["columns"]
@@ -90,49 +108,71 @@ def main():
     ws = wb[sheet]
     print(f"dims: max_row={ws.max_row} max_col={ws.max_column}")
 
-    hdr = {}
+    hdr, hdr_raw = {}, {}
     print()
-    print("## header row content (raw)")
+    print("## header row content — repr() of the RAW cell value")
+    print("   (newlines are the master's own; nothing is normalised here)")
     for c in range(1, ws.max_column + 1):
-        v = norm(ws.cell(hdr_row, c).value)
+        raw = ws.cell(hdr_row, c).value
+        v = norm(raw)
         letter = openpyxl.utils.get_column_letter(c)
         if v:
-            hdr[letter] = v
-            print(f"  {letter}: {v!r}")
+            hdr[letter] = v          # normalised, used for matching only
+            hdr_raw[letter] = raw
+            print(f"  {letter}: {raw!r}")
+
+    def compare(label, declared):
+        print()
+        print(f"## column mapping — {label} vs header-derived")
+        print("| key | declared | header text at declared col | expected label"
+              " | verdict |")
+        print("|---|---|---|---|---|")
+        ok, bad = 0, []
+        for key, letter in declared.items():
+            text = hdr.get(letter, "")
+            want = EXPECT[key]
+            good = want in text.lower()
+            ok += good
+            if not good:
+                bad.append((key, letter, text, want))
+            print(f"| {key} | {letter} | {text or '（空）'} | {want} | "
+                  f"{'MATCH' if good else 'MISMATCH'} |")
+        print(f"\nmatch count ({label}): {ok}/{len(declared)}")
+        for key, letter, text, want in bad:
+            cands = [l for l, x in hdr.items() if want in x.lower()]
+            print(f"  MISMATCH {key} @ {letter}: header={text!r}; "
+                  f"columns whose header contains {want!r}: {cands or 'none'}")
+        return ok, bad
 
     print()
-    print("## column mapping — declared vs header-derived")
-    print("| key | declared | header text at declared col | expected label | verdict |")
-    print("|---|---|---|---|---|")
-    ok = 0
-    mismatches = []
-    for key, letter in declared.items():
-        text = hdr.get(letter, "")
-        want = EXPECT[key]
-        good = want in text.lower()
-        ok += good
-        if not good:
-            mismatches.append((key, letter, text, want))
-        print(f"| {key} | {letter} | {text or '（空）'} | {want} | "
-              f"{'MATCH' if good else 'MISMATCH'} |")
-    print(f"\nmatch count: {ok}/{len(declared)}")
-    print("matching method: whitespace-normalised, case-insensitive substring "
-          "of the expected label in the header cell at the declared column")
-    for key, letter, text, want in mismatches:
-        cands = [l for l, t in hdr.items() if want in t.lower()]
-        print(f"  MISMATCH {key} @ {letter}: header={text!r}; "
-              f"columns whose header contains {want!r}: {cands or 'none'}")
+    print("matching method: the expected label, whitespace-normalised and "
+          "lower-cased, as a substring of the whitespace-normalised header "
+          "cell at the declared column")
+    print(f"template-declared source: {tpl_path}")
+    print(f"effective-declared source: {ROOT / 'feature.yaml'}")
+    t_ok, t_bad = compare("template-declared", tpl["workbook"]["columns"])
+    e_ok, e_bad = compare("effective-declared", declared)
+
+    print()
+    print("## 兩基準之並列結論")
+    print(f"  template-declared : {t_ok}/{len(tpl['workbook']['columns'])} "
+          f"— 不符 {len(t_bad)} 鍵 {[k for k, *_ in t_bad] or '無'}")
+    print(f"  effective-declared: {e_ok}/{len(declared)} "
+          f"— 不符 {len(e_bad)} 鍵 {[k for k, *_ in e_bad] or '無'}")
+    print("  template 之分頁名 "
+          f"{tpl['workbook']['sheet']!r} 於本母本 "
+          f"{'存在' if tpl['workbook']['sheet'] in wb.sheetnames else '不存在'}")
+    print("  -> effective 之全綠是「更正已生效」之複驗，"
+          "不得讀為「模板無誤」。模板之不符即 A-DM7 之內容。")
 
     print()
     print("## header-derived column map (candidates per key)")
-    print("| key | expected label | candidate columns | declared | 生效提案 |")
+    print("| key | expected label | candidate columns | template | effective |")
     print("|---|---|---|---|---|")
     for key, want in EXPECT.items():
-        cands = [l for l, t in hdr.items() if want in t.lower()]
-        pick = declared[key] if declared[key] in cands else (
-            cands[0] if len(cands) == 1 else "AMBIGUOUS")
+        cands = [l for l, x in hdr.items() if want in x.lower()]
         print(f"| {key} | {want} | {','.join(cands) or 'none'} | "
-              f"{declared[key]} | {pick} |")
+              f"{tpl['workbook']['columns'][key]} | {declared[key]} |")
 
     # ---------------- workbook_state (canon §2)
     print()

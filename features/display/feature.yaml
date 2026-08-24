@@ -20,6 +20,13 @@ workbook:
   sheet: "Test Case Specification 測試用例規範"   # 實測自母本；模板之 rev A/B 名在本母本不存在
   header_row: 9
   # column letters, verified by recon header match — do not guess
+  #
+  # R-DM15：B 欄（`No.#`）為公式欄，B10-B1411 逐列為
+  # `=IF(ISBLANK($D{row}),"",ROW()-9)`（1402/1402 實測）。
+  # 寫回一律不得對 B 欄賦值 —— 序號由 D 欄（req_id）之填寫自動產生。
+  # B 欄不列於 columns，即無鍵可寫；本註為防日後有人補上。
+  # 另：B10 之 data_only 快取值為陳舊之 `1`（D10 為空，公式應回 ""），
+  # 以快取值判斷「該列已填」會誤判 r10（A-DM12）。
   columns:
     req_id: "D"
     test_group: "G"

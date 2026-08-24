@@ -69,6 +69,19 @@ token 中命中，已複驗）。
 - 影響：任何以精確欄名取欄之實作
 - 提案處置：本 feature 之欄名比對一律先 `" ".join(str(s).split())`
 
+**適用範圍擴及 036 母本（2026-08-24，下放包 03 §2.2）**：036 母本
+`Test Case Specification 測試用例規範` 分頁 r9 之表頭，其分隔符為**換行**
+而非空格，33 欄皆然 —— 例：`'No.#\n序號'`、
+`'Test Case Design \nMethods\n測試用例設計方法'`、`'HDCC27\nAtl-Hi\n'`
+（尾隨換行）、`'Specification Reference \n規格參考'`（尾空格＋換行）。
+
+上繳包 02 §6.4 之表頭清單標為 `(raw)` 卻印正規化後之值，會使讀者誤以為
+036 表頭乾淨。`scripts/probe_036.py` 已改為 `repr()` 輸出，全欄見上繳包
+03 §3。SYS2 側之同類情形為欄名帶雙語括號尾綴（見 `recount_sys2.py` 之
+`col()` 前綴回退）。
+
+> 三份素材之表頭皆不可逐字取欄。此為本 feature 之通則，非個案。
+
 ## A-DM6 — 037 `Excluded NRLs` 分頁之 `Sys-RA-Feature-ID` 欄 8/8 為空  [PENDING]
 
 該分頁四欄中，`Sys-RA-Feature-ID` 欄 8 列全為 `None`，故排除項亦無法
@@ -134,27 +147,119 @@ canon §3 之 mode D 要求 spec_reference 為**查得**。實測：
 - 影響：Phase 4 之 spec_reference 目前只能靠文字比對定位條號
 - 提案處置：登記；spec_reference 之取得方式屬 Tier 2
 
-## A-DM11 — R-DM7 覆蓋落差：80 列母體中 58 列無對應  [PENDING]
+## A-DM11 — R-DM7 覆蓋落差（**2026-08-24 更正；原結論撤回**）  [PENDING]
 
-以 SYS2 `Category` 正規化為 `functional requirement` 之 80 列為母體，逐列
-標記可否對應到 8 個 SWE-DM leaf：
+### 撤回之內容
 
-| 依據 | 列數 |
+本條原載「以 bag-of-words token 重疊為依據，80 列母體中 58 列無對應，
+`SWE-DM-004`／`005`／`007` 命中 0 列」。**該結論撤回。**
+
+撤回理由（下放包 03 §3.1，分析層以關鍵字直查 SYS2 `Description` 發現）：
+SYS2 r30 之 Heading 為 `Multi-stage' DCSD Display Hot Algorithm`，其子列
+r31–r34 為 Display Hot 之狀態機需求，與 `SWE-DM-004`／`005` 之
+Requirement Title 所稱之 `Hot Algorithm` **逐字同名**。而原啟發式將
+r31／r32 判給 `SWE-DM-001`、r34 判給 `SWE-DM-003`、r33 判為「無」——
+**同時產生偽陽性與偽陰性，且兩者互為因果**：列被錯配到相鄰 leaf，
+被搶走的 leaf 於是顯示 0。
+
+原方法之產物依 R-TM13 保留於
+`data/coverage_sys2_vs_swe_dm.RETRACTED.tsv`（檔頭已加註廢止），不刪除、
+不再引用。方法本身由 **R-DM13 廢止**。
+
+> 致誤之方法為下放包 01 R-DM7 所指定（「Description 文字」列為三種依據
+> 之一），分析層已於下放包 03 §4.2 自陳「方法是我指定的」。執行層之
+> 責任在於：上繳 02 §11 第 3 項雖自陳其為啟發式，**低估了嚴重性** ——
+> 只說了精度不足，未察覺它會把結論指向相反方向。
+
+### 更正後之陳述（錨定法，R-DM13）
+
+母體不變：SYS2 `Category` 正規化為 `functional requirement` 之 **80 列**。
+錨一律逐字，無錨即記無錨（`scripts/coverage_map.py`，全表見
+`data/coverage_sys2_vs_swe_dm.tsv`）：
+
+| anchor_kind（最高優先之現存錨） | 列數 |
 |---|---|
-| id（037 Traceability 之 `Sys-RA-Feature-ID(s)`） | 0 |
-| Melco（037 Excluded 分頁明列排除之 HW 項） | 1 |
-| Description 文字（共通 token ≥3） | 22 |
-| 無 | 57 |
+| signal（`$NAME$`） | 43 |
+| value（`[VALUE]`） | 1 |
+| heading | 36 |
+| melco | 0 |
+| none | 0 |
 
-無對應合計 58 列（含上表之 Melco 1 列）。另：`SWE-DM-004`（Thermal
-Management）、`SWE-DM-005`（Thermal Protection）、`SWE-DM-007`（RVC
-Management）之文字依據命中列數均為 **0**。
+各錨之存在數（非互斥）：含 `$signal$` 43 列、含 `[value]` 34 列、
+有 heading 祖先 80 列、Melco 命中 037 Excluded 1 列（r54）。
 
-- 證據：`scripts/coverage_map.py`、`data/coverage_sys2_vs_swe_dm.tsv`
-- 說明：文字分數為機械 bag-of-words 重疊，是**搜尋輔助**；門檻 3 只決定
-  列印時的顯示，不是對應之裁定
-- 提案處置：本表為 R-DM7 所要求之**揭露**。範圍之裁定屬 Tier 2
-  （下放包 01 Q2），執行層不裁定
+`candidate_leaf`（**候選，非裁定**；依 R-DM12 引用時須連同 `anchor_kind`）：
+
+| leaf | 候選列數 |
+|---|---|
+| SWE-DM-004（Thermal Management） | 4（r31–r34） |
+| SWE-DM-005（Thermal Protection Management） | 4（r31–r34） |
+| 其餘六個 leaf | 0 |
+| 有候選之列 / 無候選之列 | 4 / 76 |
+
+r31–r34 之候選依據為 heading 錨逐字含 leaf 片語 `'Hot Algorithm'`；該片語
+同時出現於 004 與 005 之 Requirement Title，故兩者並列為候選，不擇一。
+
+### 仍站得住之覆蓋陳述
+
+**只有一句**：以 id 為據之對應為 **0 列**（A-DM2，逐字比對）。
+「58 列無對應」已撤回；「76 列無候選」為錨定法之輸出，其意義是
+**「無逐字錨可連到 leaf」**，不等於「不屬於本 feature 範圍」。
+
+### 錨定法本身之兩項限制（本輪實測，須併同引用）
+
+1. **heading 錨在 r72 退化。** SYS2 之 45 個 Heading 中，`r72
+   2.2 Serializer Touch Interrupt PIN Definition` 一個節點底下掛了 231 列，
+   其中 **48 列為 FR —— 佔母體 80 列之 60%**。該 heading 之文字與顯示行為
+   無關，故對這 48 列而言 heading 錨存在但無鑑別力。
+   （另：r62 為 `2.3 LVDS Interface`、r72 為 `2.2 …`，編號逆序，該匯出之
+   Heading 層級疑似已被壓平。）
+2. **RVC 之縮寫不逐字。** 037 用 `Display RVC Handling`／`RVC Management`
+   （`SWE-DM-007`／`008`），SYS2 之 heading 用 `Rear Camera Events`／
+   `Rear Camera Interrupts`。`RVC` → `Rear View Camera` 之展開**不是逐字
+   比對**，依下放包 03 §七第 10 條不得作為錨，故二 leaf 之候選為 0。
+   **這是方法之界線，不是「SYS2 無 RVC 需求」之發現** —— 兩者不可混同。
+
+- 提案處置：本表為 R-DM7 所要求之揭露。範圍之裁定屬 Tier 2（Q2），
+  依下放包 03 §4.2 **於本條之限制 1、2 有處置前不提交裁定**
+
+## A-DM12 — 036 母本 B 欄為公式欄，前輪完全未報告  [PENDING]
+
+036 母本 `Test Case Specification 測試用例規範` 分頁之 B 欄（`No.#\n序號`）
+為公式欄。本輪以 `data_only=False` 實測 B10–B1411：
+
+- **1402/1402 逐列符合 `=IF(ISBLANK($D{row}),"",ROW()-9)`**，$D 之列號逐列
+  遞增且與所在列一致，不符 0 列
+- B 欄為該分頁資料列中**唯一**含公式之欄（全 34 欄逐格掃描）
+- `data_only=True` 讀 B10 得快取值 `1`，B11 起為 `None` —— 即快取為
+  **陳舊值**：D10 目前為空，公式應回傳 `""`，快取卻仍存 `1`
+
+上繳包 02 全文未提及 B 欄之存在與其公式。`workbook_state` 判 `BLANK`
+不受影響（canon §2 step 1 之判準為 Test Item／TC ID，非 B 欄），但寫回時
+若對 B 欄賦值，將摧毀 1402 列之公式，序號改為死值。
+
+- 證據：本輪之 `data_only=False` 全欄掃描
+- 提案處置：依 **R-DM15**，寫回一律不觸碰 B 欄；`feature.yaml` 已補註。
+  另註：因快取陳舊，任何以 `data_only=True` 讀 B 欄判斷「該列是否已填」
+  之實作會誤判 r10
+
+## A-DM13 — CFTS_020 引用 8 份外部 CFTS 文件，一份未在手上  [PENDING]
+
+判讀基準 CFTS_020 之本文以 `{CFTSnnn-mmm}` 形式引用外部條號。本輪全文
+清點：相異外部文件 **8 份**（`CFTS004`／`009`／`010`／`013`／`019`／
+`022`／`033`／`044`；另有指向自身之 `CFTS020-*`）。引用次數較高者：
+`CFTS019-723`×12、`CFTS009-722`×9、`CFTS033-2111`×7、`CFTS013-629`×6、
+`CFTS013-633`×5、`CFTS013-967`×5、`CFTS044-656`×5、`CFTS013-952`×4。
+
+其中兩份已知直接擋住 R-DM8 之缺值：`CFTS009-722`（Splash/Disclaimer
+時段，DR-DM1）與 `CFTS013-629`／`-633`／`-952`（Display Hot 演算法本體，
+DR-DM4）。其餘六份之影響本輪**未逐一評估**。
+
+- 證據：`scripts/hot_behaviour_join.py` 之併讀輸出；CFTS_020 本文全文
+  regex 清點
+- 影響：spec_mode D 之判讀基準本身是一份會外指的文件；BLOCKED 之預估
+  不能只看手上四份
+- 提案處置：登記；DR-DM4 開立。其餘六份之影響待 Phase 2 逐一評估
 
 ---
 

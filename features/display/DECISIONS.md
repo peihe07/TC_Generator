@@ -55,8 +55,14 @@ An unsigned sheet blocks Phase 4+.
 - Leaves covered nowhere: `[AUTO]` → 不適用（無既有工作簿內容）
 - Parent/child both-leaf duplications: **未實測** —— 037 之 8 筆皆為 leaf
   且 `Categorization` 無 `Heading`，無父子結構可測
-- SYS2 覆蓋落差（R-DM7）: `[AUTO]` → 母體 80 列中 **58 列無對應**；
-  全表見 `data/coverage_sys2_vs_swe_dm.tsv`。**範圍之裁定見 Q2**
+- SYS2 覆蓋落差（R-DM7／R-DM13）: `[AUTO]` → **原「58 列無對應」已撤回**
+  （A-DM11，方法由 R-DM13 廢止）。改以錨定法：母體 80 列，anchor_kind 為
+  signal 43／heading 36／value 1／melco 0／none 0；`candidate_leaf` 僅
+  `SWE-DM-004`／`005` 各 4 列（r31–r34，heading 錨逐字含 `'Hot Algorithm'`），
+  其餘 76 列無候選。全表見 `data/coverage_sys2_vs_swe_dm.tsv`；
+  舊表保留於 `…RETRACTED.tsv`。
+  **唯一站得住之覆蓋陳述為「以 id 為據之對應 0 列」（A-DM2）。**
+  引用 `candidate_leaf` 須連同 `anchor_kind`（R-DM12）
 
 ## 4. Style bindings
 
@@ -76,12 +82,14 @@ An unsigned sheet blocks Phase 4+.
 - split_mode: `[PROPOSED: standard]`
 - Granularity precedent to follow: `[PROPOSED]` → docs.md §8.3（BLANK）
 - Known scope carve-outs: `[AUTO]` → 037 `Excluded NRLs (HW-only)` 之
-  8 個 Melco ID（HW supplier 範疇，已於 SYS2 Melco 欄 8/8 命中複驗）
+  8 個 Melco ID（HW supplier 範疇，已於 SYS2 Melco 欄 8/8 命中複驗）。
+  其中 2 個（`PSCFTS020-1-56-9`／`-10`）落在 FR 母體之 r54，為母體中唯一
+  帶 Melco 錨之列
 
 ## 6. Framework & profile
 
 - Test Set table (Part N draft): `[PROPOSED]` → 待 Phase 3
-- Contested attributions: `[PEI]` → 見下方待裁清單 Q2／Q3
+- Contested attributions: `[PEI]` → Q3；Q2 已改為**暫緩**（見下方）
 - Profile [OVERRIDE] clauses needed: `[PROPOSED]` → 待 Phase 3
 
 ## 7. Execution
@@ -89,7 +97,9 @@ An unsigned sheet blocks Phase 4+.
 - Batch plan: `[PROPOSED]` → 待 Phase 3
 - Model assignment per batch: `[PROPOSED]` → 待 Phase 3
 - BLOCKED batches at start: `[AUTO]` → SWE-DM-003（DR-DM1）、
-  SWE-DM-006（DR-DM2）之相關批次
+  SWE-DM-006（DR-DM2）、SWE-DM-005 之 multi-stage 分級判準（DR-DM4）。
+  SWE-DM-004 之單級門檻與 005 之回復條件經再判定為**不缺**（見
+  `DATA_REQUESTS.md` §R-DM8 之再判定）
 
 ---
 
@@ -98,7 +108,7 @@ An unsigned sheet blocks Phase 4+.
 | # | 事項 | 層級 | 本輪實測對該題之影響 |
 |---|---|---|---|
 | Q1 | 036 母本與 `workbook_state` | `[PROPOSED]` | 實測 `BLANK`（1402 列 filled = 0）；交付夾內亦無 036。提案成立 |
-| Q2 | 驗證範圍：8 leaf，或含 SYS2 之 80 個 Functional Requirement | `[PEI]` | 覆蓋對照已產出：80 列中 58 列無對應，且 004/005/007 三個 leaf 之文字依據命中 0 列 |
+| Q2 | 驗證範圍：8 leaf，或含 SYS2 之 80 個 Functional Requirement | **暫緩** —— 不提交裁定 | 原提法之前提（037 leaf 與 SYS2 FR 是兩組不同的東西）不成立：037 之 `Hot Algorithm` 與 SYS2 r30 之 `Multi-stage' DCSD Display Hot Algorithm` 為同一件事之兩個抽象層級。依下放包 03 §4.2，於錨定法之兩項限制（heading 在 r72 退化、RVC 縮寫不逐字，見 A-DM11）有處置前不得提交 —— 以無錨之數字請求裁決即為拿錯誤的量級問 Pei |
 | Q3 | `req_id` 寫 `SWE-DM-001` 或 `SWE1-DM-001` | `[PEI]` | 兩種寫法皆已實測存在（A-DM1）；`feature.yaml` 尚未寫入任何 req_id 值 |
 | Q4 | `Verification Criteria` / `Verification Method` 之地位 | `[PROPOSED]` | 本輪一律未用（R-DM8 末段），二欄內容亦未檢視 |
 | Q5 | `intake.py` sniffer 之修法 | `[PROPOSED]`，Phase 2 | 偏差已如實重現（§5）；連帶使 need list 之理由失真（A-DM9），且 `recon.py` 亦中止（A-DM8） |
