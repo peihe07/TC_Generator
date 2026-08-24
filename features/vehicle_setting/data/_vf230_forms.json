@@ -1,0 +1,4980 @@
+{
+  "rows": [
+    {
+      "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-016",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Liftgate/Tailgate Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-BlindSpotAlert-002",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Driver Convenience",
+      "layer3": "Blind Spot Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseWarning-014",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionServiceMode-002",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Service Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-Blind Spot with Trailer Detection-045",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Blind Spot with Trailer Detection"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSense-084",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Units and Cameras",
+      "layer3": "Park Sense"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-017",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Liftgate/Tailgate Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-BlindSpotAlert-003",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Driver Convenience",
+      "layer3": "Blind Spot Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseWarning-015",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionServiceMode-003",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Service Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-Blind Spot with Trailer Detection-046",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Blind Spot with Trailer Detection"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSense-085",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Units and Cameras",
+      "layer3": "Park Sense"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-018",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Liftgate/Tailgate Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-BlindSpotAlert-004",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Driver Convenience",
+      "layer3": "Blind Spot Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseWarning-016",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionServiceMode-004",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Service Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-Blind Spot with Trailer Detection-047",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Blind Spot with Trailer Detection"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSense-086",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Units and Cameras",
+      "layer3": "Park Sense"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-019",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Liftgate/Tailgate Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-BlindSpotAlert-005",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Driver Convenience",
+      "layer3": "Blind Spot Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseWarning-017",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionServiceMode-005",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Service Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-Blind Spot with Trailer Detection-048",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Blind Spot with Trailer Detection"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSense-087",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Units and Cameras",
+      "layer3": "Park Sense"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-020",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Liftgate/Tailgate Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-BlindSpotAlert-006",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Driver Convenience",
+      "layer3": "Blind Spot Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseWarning-018",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionServiceMode-006",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Service Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-Blind Spot with Trailer Detection-049",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Blind Spot with Trailer Detection"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSense-088",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Units and Cameras",
+      "layer3": "Park Sense"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-021",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Liftgate/Tailgate Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-BlindSpotAlert-007",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Driver Convenience",
+      "layer3": "Blind Spot Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseWarning-019",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-DriverEasyExitSeat-038",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Driver Easy Exit Seat"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerSideStep-051",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Power Side Step"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerTailgate-023",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Tailgate"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarning-034",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-DriverEasyExitSeat-039",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Driver Easy Exit Seat"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerSideStep-052",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Power Side Step"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerTailgate-024",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Tailgate"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarning-035",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-DriverEasyExitSeat-040",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Driver Easy Exit Seat"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerSideStep-053",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Power Side Step"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerTailgate-025",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Tailgate"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarning-036",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-DriverEasyExitSeat-041",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Driver Easy Exit Seat"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerSideStep-054",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Power Side Step"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerTailgate-026",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Tailgate"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarning-037",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-DriverEasyExitSeat-042",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Driver Easy Exit Seat"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerSideStep-055",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Power Side Step"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerTailgate-027",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Tailgate"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarning-038",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-090",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Auto Entry or Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerTailgate-028",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Tailgate"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarning-039",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-091",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Auto Entry or Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignWarning-030",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Traffic Sign Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-048",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Pedestrian Emergency Braking or Warning & Active Braking"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-092",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Auto Entry or Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignWarning-031",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Traffic Sign Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-049",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Pedestrian Emergency Braking or Warning & Active Braking"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-093",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Auto Entry or Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignWarning-032",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Traffic Sign Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-050",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Pedestrian Emergency Braking or Warning & Active Braking"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-094",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Auto Entry or Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignWarning-033",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Traffic Sign Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-051",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Pedestrian Emergency Braking or Warning & Active Braking"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-095",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Auto Entry or Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignWarning-034",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Traffic Sign Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-052",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Lane and Lighting",
+      "layer3": "Pedestrian Emergency Braking or Warning & Active Braking"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionFlashLightsWithLower-002",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Flash Lights With Lower"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignWarning-035",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Traffic Sign Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionFlashLightsWithLower-003",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Flash Lights With Lower"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionFlashLightsWithLower-004",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Flash Lights With Lower"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionFlashLightsWithLower-005",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Flash Lights With Lower"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionFlashLightsWithLower-006",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Flash Lights With Lower"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionSoundHornWithLower-008",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Sound Horn With Lower"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionSoundHornWithLower-009",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Sound Horn With Lower"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionSoundHornWithLower-010",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Sound Horn With Lower"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionSoundHornWithLower-011",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Sound Horn With Lower"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionSoundHornWithLower-012",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Sound Horn With Lower"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDefaultRideHeight-020",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Default Ride Height"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDefaultRideHeight-021",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Default Ride Height"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDefaultRideHeight-022",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Default Ride Height"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDefaultRideHeight-023",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Default Ride Height"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDefaultRideHeight-024",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Default Ride Height"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDefaultRideHeight-025",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Default Ride Height"
+    },
+    {
+      "leaf_id": "SWE1-VC-IlluminatedApproach-002",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Illuminated Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-4AUXSwitches-027",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "4 AUX Switches"
+    },
+    {
+      "leaf_id": "SWE1-VC-DaytimeRunningLights-002",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Daytime Running Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PassiveEntry-009",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Passive Entry"
+    },
+    {
+      "leaf_id": "SWE1-VC-CorneringLights-002",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Cornering Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PressureUnit-002",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Pressure Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDisplayMessages-008",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Display Messages"
+    },
+    {
+      "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-TimeandDateSettings-004",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Time and Date Settings"
+    },
+    {
+      "leaf_id": "SWE1-VC-IlluminatedApproach-003",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Illuminated Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-4AUXSwitches-028",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "4 AUX Switches"
+    },
+    {
+      "leaf_id": "SWE1-VC-DaytimeRunningLights-003",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Daytime Running Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PassiveEntry-010",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Passive Entry"
+    },
+    {
+      "leaf_id": "SWE1-VC-CorneringLights-003",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Cornering Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PressureUnit-003",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Pressure Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDisplayMessages-009",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Display Messages"
+    },
+    {
+      "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-116",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-TimeandDateSettings-005",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Time and Date Settings"
+    },
+    {
+      "leaf_id": "SWE1-VC-IlluminatedApproach-004",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Illuminated Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1PowerMode-030",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-DaytimeRunningLights-004",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Daytime Running Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-RemoteDoorUnlock-015",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Remote Door Unlock"
+    },
+    {
+      "leaf_id": "SWE1-VC-CorneringLights-004",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Cornering Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PressureUnit-004",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Pressure Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDisplayMessages-010",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Display Messages"
+    },
+    {
+      "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-121",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoDoorLocks-015",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Auto Door Locks"
+    },
+    {
+      "leaf_id": "SWE1-VC-IlluminatedApproach-005",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Illuminated Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1PowerMode-031",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-DaytimeRunningLights-005",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Daytime Running Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-RemoteDoorUnlock-016",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Remote Door Unlock"
+    },
+    {
+      "leaf_id": "SWE1-VC-CorneringLights-005",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Cornering Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PressureUnit-005",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Pressure Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDisplayMessages-011",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Display Messages"
+    },
+    {
+      "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-122",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoDoorLocks-016",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Auto Door Locks"
+    },
+    {
+      "leaf_id": "SWE1-VC-IlluminatedApproach-006",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Illuminated Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1PowerMode-032",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-DaytimeRunningLights-006",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Daytime Running Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoParkBrake-021",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto Park Brake"
+    },
+    {
+      "leaf_id": "SWE1-VC-CorneringLights-006",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Cornering Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PressureUnit-006",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Pressure Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionDisplayMessages-012",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Display Messages"
+    },
+    {
+      "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-127",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Enhanced Display Synchronization"
+    },
+    {
+      "leaf_id": "SWE1-VC-ConsumptionUnit-032",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Consumption Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-IlluminatedApproach-007",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Illuminated Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2PowerMode-034",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightsOffDelay-008",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Headlights Off Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoParkBrake-022",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto Park Brake"
+    },
+    {
+      "leaf_id": "SWE1-VC-GreetingLights-008",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Greeting Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PressureUnit-007",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Pressure Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TiltMirrorinReverse-014",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Tilt Mirror in Reverse"
+    },
+    {
+      "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-128",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Enhanced Display Synchronization"
+    },
+    {
+      "leaf_id": "SWE1-VC-UnitEnergy-039",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Unit Energy"
+    },
+    {
+      "leaf_id": "SWE1-VC-IlluminatedApproach-008",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Illuminated Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2PowerMode-035",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightsOffDelay-009",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Headlights Off Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithRemoteStart-027",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Remote Start"
+    },
+    {
+      "leaf_id": "SWE1-VC-GreetingLights-009",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Greeting Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerUnit-009",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Power Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TiltMirrorinReverse-015",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Tilt Mirror in Reverse"
+    },
+    {
+      "leaf_id": "SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-134",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "CHMSL CAMERA DYNAMIC CENTERLINE"
+    },
+    {
+      "leaf_id": "SWE1-VC-TemperatureUnit-046",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Temperature Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-PaddleShifter-010",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Paddle Shifter"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2PowerMode-036",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightsOffDelay-010",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Headlights Off Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithRemoteStart-028",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Remote Start"
+    },
+    {
+      "leaf_id": "SWE1-VC-GreetingLights-010",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Greeting Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerUnit-010",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Power Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TiltMirrorinReverse-016",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Tilt Mirror in Reverse"
+    },
+    {
+      "leaf_id": "SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-135",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "CHMSL CAMERA DYNAMIC CENTERLINE"
+    },
+    {
+      "leaf_id": "SWE1-VC-TemperatureUnit-047",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Temperature Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-PaddleShifter-011",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Paddle Shifter"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3PowerMode-038",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightsOffDelay-011",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Headlights Off Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithLock-033",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-GreetingLights-011",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Greeting Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerUnit-011",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Power Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TiltMirrorinReverse-017",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Tilt Mirror in Reverse"
+    },
+    {
+      "leaf_id": "SWE1-VC-MaxPowerLevel140",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Max Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-SurroundViewCameraDelay-053",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Surround View Camera Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-PaddleShifter-012",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Paddle Shifter"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3PowerMode-039",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightsOffDelay-012",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Headlights Off Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithLock-034",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-GreetingLights-012",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Greeting Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerUnit-012",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Power Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TiltMirrorinReverse-018",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Tilt Mirror in Reverse"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerNumber-059",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Number"
+    },
+    {
+      "leaf_id": "SWE1-VC-SurroundViewCameraDelay-054",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Surround View Camera Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-PaddleShifter-013",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Paddle Shifter"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3PowerMode-040",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightsOffDelay-013",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Headlights Off Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoUnlockonExit-040",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto Unlock on Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SignatureLighting-021",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Signature Lighting"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerUnit-013",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Power Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TireFillAlert-020",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Tire Fill Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerNumber-060",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Number"
+    },
+    {
+      "leaf_id": "SWE1-VC-SurroundViewCameraGuidelines-059",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Surround View Camera Guidelines"
+    },
+    {
+      "leaf_id": "SWE1-VC-PaddleShifter-014",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Paddle Shifter"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4PowerMode-042",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightsOffDelay-014",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Daytime Lighting",
+      "layer3": "Headlights Off Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoUnlockonExit-041",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto Unlock on Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SignatureLighting-022",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Signature Lighting"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerUnit-014",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Power Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TireFillAlert-021",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Tire Fill Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerNumber-061",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Number"
+    },
+    {
+      "leaf_id": "SWE1-VC-SurroundViewCameraGuidelines-060",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Surround View Camera Guidelines"
+    },
+    {
+      "leaf_id": "SWE1-VC-NewSpeedZoneIndication-037",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "New Speed Zone Indication"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4PowerMode-043",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-FlashLightWithLock-046",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Flash Light With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-SignatureLighting-023",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Signature Lighting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TorqueUnit-016",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Torque Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TireFillAlert-022",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Tire Fill Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerNumber-062",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Number"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraView-065",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View"
+    },
+    {
+      "leaf_id": "SWE1-VC-NewSpeedZoneIndication-038",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "New Speed Zone Indication"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4PowerMode-044",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-FlashLightWithLock-047",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Flash Light With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-SignatureLighting-024",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Signature Lighting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TorqueUnit-017",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Torque Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TireFillAlert-023",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Tire Fill Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerNumber-063",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Number"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraView-066",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View"
+    },
+    {
+      "leaf_id": "SWE1-VC-NewSpeedZoneIndication-039",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "New Speed Zone Indication"
+    },
+    {
+      "leaf_id": "SWE1-VC-6AuxSwitches-002",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "6 Aux Switches"
+    },
+    {
+      "leaf_id": "SWE1-VC-NavigationTurnbyTurn-053",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Navigation Turn by Turn"
+    },
+    {
+      "leaf_id": "SWE1-VC-SignatureLighting-025",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Signature Lighting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TorqueUnit-018",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Torque Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TireFillAlert-024",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Tire Fill Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerNumber-064",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Number"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-071",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View with Trailer Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-NewSpeedZoneIndication-040",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "New Speed Zone Indication"
+    },
+    {
+      "leaf_id": "SWE1-VC-6AuxSwitches-003",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "6 Aux Switches"
+    },
+    {
+      "leaf_id": "SWE1-VC-NavigationTurnbyTurn-054",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Navigation Turn by Turn"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseStrength-027",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Strength"
+    },
+    {
+      "leaf_id": "SWE1-VC-TorqueUnit-019",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Torque Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-ReadytoDrivePopUp-026",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Ready to Drive Pop-Up"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerNumber-066",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Number"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-072",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View with Trailer Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-NewSpeedZoneIndication-041",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "New Speed Zone Indication"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightswith\\nCargoLights-014",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Lights with Cargo Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PhoneRepetition-064",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Phone Repetition"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseStrength-028",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Strength"
+    },
+    {
+      "leaf_id": "SWE1-VC-TorqueUnit-020",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Measurement Units",
+      "layer3": "Torque Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-ReadytoDrivePopUp-027",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Ready to Drive Pop-Up"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-002",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseBasedCameraActivation-078",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "ParkSense Based Camera Activation"
+    },
+    {
+      "leaf_id": "SWE1-VC-NewSpeedZoneIndication-042",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "New Speed Zone Indication"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightswith\\nCargoLights-015",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Lights with Cargo Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-PhoneRepetition-065",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Phone Repetition"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseStrength-029",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Strength"
+    },
+    {
+      "leaf_id": "SWE1-VC-ReadytoDrivePopUp-028",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Ready to Drive Pop-Up"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-003",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseBasedCameraActivation-079",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "ParkSense Based Camera Activation"
+    },
+    {
+      "leaf_id": "SWE1-VC-ChargePowerLevel-044",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Charge Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightswith\\nCargoLights-016",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Lights with Cargo Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseRearVolume-070",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Rear Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseStrength-030",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Strength"
+    },
+    {
+      "leaf_id": "SWE1-VC-ReadytoDrivePopUp-029",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Ready to Drive Pop-Up"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-005",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseBasedCameraActivation-080",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Units and Cameras",
+      "layer3": "ParkSense Based Camera Activation"
+    },
+    {
+      "leaf_id": "SWE1-VC-ChargePowerLevel-045",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Charge Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightswith\\nCargoLights-017",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Lights with Cargo Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseRearVolume-071",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Rear Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseStrength-031",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Strength"
+    },
+    {
+      "leaf_id": "SWE1-VC-ReadytoDrivePopUp-030",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Ready to Drive Pop-Up"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-006",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-ChargePowerLevel-046",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Charge Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightswith\\nCargoLights-018",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Lights with Cargo Lights"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseRearVolume-072",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Rear Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-LaneSenseStrength-032",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Lane Sense Strength"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoFoldMirrors-032",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Auto Fold Mirrors"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-007",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-ChargePowerLevel-047",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Charge Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightingwithApproach-078",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Lighting with Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseRearVolume-073",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Rear Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-041",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning Sensitivity"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoFoldMirrors-033",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Auto Fold Mirrors"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-008",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-ChargePowerLevel-048",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Charge Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightingwithApproach-079",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Lighting with Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseRearVolume-074",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Rear Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-042",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning Sensitivity"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoFoldMirrors-034",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Auto Fold Mirrors"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-009",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-ChargePowerLevel-049",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Charge Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightStatus-084",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Light Status"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseRearVolume-075",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Rear Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-043",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning Sensitivity"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoFoldMirrors-035",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Auto Fold Mirrors"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-010",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-ChargePowerLevel-050",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Charge Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightStatus-085",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Light Status"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseFrontVolume-077",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Front Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-044",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning Sensitivity"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoFoldMirrors-036",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Auto Fold Mirrors"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-011",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-ChargePowerLevel-051",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Charge Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-E-Save-090",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "E-Save"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseFrontVolume-078",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Front Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-045",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning Sensitivity"
+    },
+    {
+      "leaf_id": "SWE1-VC-EngineOffPowerDelay-044",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Engine Off Power Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-012",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearSeatReminder-053",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Rear Seat Reminder"
+    },
+    {
+      "leaf_id": "SWE1-VC-E-Save-091",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "E-Save"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseFrontVolume-079",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Front Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-046",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Forward Collision Warning Sensitivity"
+    },
+    {
+      "leaf_id": "SWE1-VC-EngineOffPowerDelay-045",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Engine Off Power Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-013",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearSeatReminder-054",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Rear Seat Reminder"
+    },
+    {
+      "leaf_id": "SWE1-VC-E-Save-095",
+      "form": "無可測內容",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Auxiliary Switches",
+      "layer3": "E-Save"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseFrontVolume-080",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Front Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-RainSensingWipers-054",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Rain Sensing Wipers"
+    },
+    {
+      "leaf_id": "SWE1-VC-EngineOffPowerDelay-046",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Engine Off Power Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-014",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearSeatReminder-055",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Rear Seat Reminder"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseFrontVolume-081",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Front Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-RainSensingWipers-055",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Rain Sensing Wipers"
+    },
+    {
+      "leaf_id": "SWE1-VC-EngineOffPowerDelay-047",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Engine Off Power Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-015",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearSeatReminder-056",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Rear Seat Reminder"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseFrontVolume-082",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Park Sense Front Volume"
+    },
+    {
+      "leaf_id": "SWE1-VC-RainSensingWipers-056",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Rain Sensing Wipers"
+    },
+    {
+      "leaf_id": "SWE1-VC-EngineOffPowerDelay-048",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Engine Off Power Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-016",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearSeatReminder-057",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Rear Seat Reminder"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoHighBeam-084",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto High Beam"
+    },
+    {
+      "leaf_id": "SWE1-VC-RainSensingWipers-057",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Rain Sensing Wipers"
+    },
+    {
+      "leaf_id": "SWE1-VC-EngineOffPowerDelay-049",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Engine Off Power Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-018",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoHighBeam-085",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto High Beam"
+    },
+    {
+      "leaf_id": "SWE1-VC-RainSensingWipers-058",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Lane and Lighting",
+      "layer3": "Rain Sensing Wipers"
+    },
+    {
+      "leaf_id": "SWE1-VC-EngineOffPowerDelay-050",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Engine Off Power Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-019",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-RKELinkedtoMemory-090",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "RKE Linked to Memory"
+    },
+    {
+      "leaf_id": "SWE1-VC-HillStartAssist-052",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Hill Start Assist"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-020",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-RKELinkedtoMemory-091",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "RKE Linked to Memory"
+    },
+    {
+      "leaf_id": "SWE1-VC-HillStartAssist-053",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Hill Start Assist"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-021",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-3Option-096",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 3 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-HillStartAssist-054",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Hill Start Assist"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-022",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-3Option-097",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 3 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-HillStartAssist-055",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Hill Start Assist"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType025",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-2Option-103",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 2 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-HillStartAssist-056",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Hill Start Assist"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType026",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-2Option-104",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 2 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightswithWipers-058",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Headlights with Wipers"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutomaticTrailerLight Check-039",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Automatic Trailer Light Check"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearviewCameraDelay-109",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Rearview Camera Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightswithWipers-059",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Headlights with Wipers"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutomaticTrailerLight Check-040",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Automatic Trailer Light Check"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearviewCameraDelay-110",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Rearview Camera Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightswithWipers-060",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Headlights with Wipers"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-057",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-115",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Rearview Camera Dynamic Guidelines"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightswithWipers-061",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Headlights with Wipers"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-058",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-116",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Driver Convenience",
+      "layer3": "Rearview Camera Dynamic Guidelines"
+    },
+    {
+      "leaf_id": "SWE1-VC-HeadlightswithWipers-062",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Headlights with Wipers"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-091",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-092",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-101",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1Type-002",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-Language-059",
+      "form": "設定顯示與修改型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Language"
+    },
+    {
+      "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-TimeandDateSettings-002",
+      "form": "設定顯示與修改型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Time and Date Settings"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1Type-003",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-Language-060",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Language"
+    },
+    {
+      "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-118",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-TimeandDateSettings-003",
+      "form": "其他",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Time and Date Settings"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1Type-004",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-Language-061",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Language"
+    },
+    {
+      "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-119",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-TimeandDateSettings-006",
+      "form": "其他",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Time and Date Settings"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2Type-006",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-Language-062",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Language"
+    },
+    {
+      "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-123",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-TimeandDateSettings-007",
+      "form": "其他",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Time and Date Settings"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2Type-007",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-PassiveEntry-011",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Passive Entry"
+    },
+    {
+      "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-TimeandDateSettings-008",
+      "form": "其他",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Time and Date Settings"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2Type-008",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-PassiveEntry-012",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Passive Entry"
+    },
+    {
+      "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning"
+    },
+    {
+      "leaf_id": "SWE1-VC-HourMode-010",
+      "form": "設定顯示與修改型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Hour Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3Type-010",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-PassiveEntry-013",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Passive Entry"
+    },
+    {
+      "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-129",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Enhanced Display Synchronization"
+    },
+    {
+      "leaf_id": "SWE1-VC-HourMode-011",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Hour Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3Type-011",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-RemoteDoorUnlock-017",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Remote Door Unlock"
+    },
+    {
+      "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-130",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Enhanced Display Synchronization"
+    },
+    {
+      "leaf_id": "SWE1-VC-HourMode-012",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Hour Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3Type-012",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-RemoteDoorUnlock-018",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Remote Door Unlock"
+    },
+    {
+      "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-131",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Enhanced Display Synchronization"
+    },
+    {
+      "leaf_id": "SWE1-VC-HourMode-013",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Hour Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4Type-014",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-RemoteDoorUnlock-019",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Remote Door Unlock"
+    },
+    {
+      "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-132",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Enhanced Display Synchronization"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoDoorLocks-017",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Auto Door Locks"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4Type-015",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoParkBrake-023",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto Park Brake"
+    },
+    {
+      "leaf_id": "SWE1-VC-MaxPowerLevel141",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Max Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoDoorLocks-018",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Auto Door Locks"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4Type-016",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoParkBrake-024",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto Park Brake"
+    },
+    {
+      "leaf_id": "SWE1-VC-MaxPowerLevel142",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Max Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoDoorLocks-019",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Auto Door Locks"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1HoldLastState-018",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoParkBrake-025",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto Park Brake"
+    },
+    {
+      "leaf_id": "SWE1-VC-MaxPowerLevel143",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Max Power Level"
+    },
+    {
+      "leaf_id": "SWE1-VC-DistanceUnit-021",
+      "form": "設定顯示與修改型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Distance Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1HoldLastState-019",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithRemoteStart-029",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Remote Start"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerNumber-065",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Number"
+    },
+    {
+      "leaf_id": "SWE1-VC-DistanceUnit-022",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Distance Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1HoldLastState-020",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithRemoteStart-030",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Remote Start"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-004",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-DistanceUnit-023",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Distance Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2HoldLastState-022",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithRemoteStart-031",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Remote Start"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-017",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-DistanceUnit-024",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Distance Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2HoldLastState-023",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithLock-035",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerName-023",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Name"
+    },
+    {
+      "leaf_id": "SWE1-VC-SpeedUnit-026",
+      "form": "設定顯示與修改型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Speed Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2HoldLastState-024",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithLock-036",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType027",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-SpeedUnit-027",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Speed Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3HoldLastState-026",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithLock-037",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType028",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-SpeedUnit-028",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Speed Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3HoldLastState-027",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-HornWithLock-038",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Horn With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType029",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-SpeedUnit-029",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Speed Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3HoldLastState-028",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoUnlockonExit-042",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto Unlock on Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType030",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-ConsumptionUnit-031",
+      "form": "設定顯示與修改型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Consumption Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4HoldLastState-030",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoUnlockonExit-043",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto Unlock on Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType031",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-ConsumptionUnit-033",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Consumption Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4HoldLastState-031",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoUnlockonExit-044",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto Unlock on Exit"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType032",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-ConsumptionUnit-034",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Consumption Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4HoldLastState-032",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-FlashLightWithLock-048",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Flash Light With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType033",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-ConsumptionUnit-035",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Consumption Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1PowerMode-005",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-FlashLightWithLock-049",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Flash Light With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType034",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-ConsumptionUnit-036",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Consumption Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1PowerMode-006",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-FlashLightWithLock-050",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Flash Light With Lock"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType035",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-ConsumptionUnit-037",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Consumption Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1PowerMode-007",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-NavigationTurnbyTurn-055",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Navigation Turn by Turn"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType036",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-UnitEnergy-040",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Unit Energy"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2PowerMode-009",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-NavigationTurnbyTurn-056",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Navigation Turn by Turn"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrailerBrakeType037",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Trailer Brake Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-UnitEnergy-041",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Unit Energy"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2PowerMode-010",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-NavigationTurnbyTurn-057",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Navigation Turn by Turn"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutomaticTrailerLight Check-041",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Automatic Trailer Light Check"
+    },
+    {
+      "leaf_id": "SWE1-VC-UnitEnergy-042",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Unit Energy"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2PowerMode-011",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-PhoneRepetition-066",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Phone Repetition"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutomaticTrailerLight Check-042",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Automatic Trailer Light Check"
+    },
+    {
+      "leaf_id": "SWE1-VC-UnitEnergy-043",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Unit Energy"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3PowerMode-013",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-PhoneRepetition-067",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Phone Repetition"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutomaticTrailerLight Check-043",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Automatic Trailer Light Check"
+    },
+    {
+      "leaf_id": "SWE1-VC-UnitEnergy-044",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Unit Energy"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3PowerMode-014",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-PhoneRepetition-068",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Phone Repetition"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-059",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TemperatureUnit-048",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Temperature Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3PowerMode-015",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoHighBeam-086",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto High Beam"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-060",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TemperatureUnit-049",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Temperature Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4PowerMode-017",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoHighBeam-087",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto High Beam"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-061",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TemperatureUnit-050",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Temperature Unit"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4PowerMode-018",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoHighBeam-088",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto High Beam"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-062",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SurroundViewCameraDelay-055",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Surround View Camera Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4PowerMode-019",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-RKELinkedtoMemory-092",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "RKE Linked to Memory"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-063",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SurroundViewCameraDelay-056",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Surround View Camera Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH5PowerMode-021",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 5 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-RKELinkedtoMemory-093",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "RKE Linked to Memory"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-064",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SurroundViewCameraDelay-057",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Surround View Camera Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH5PowerMode-022",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 5 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-RKELinkedtoMemory-094",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "RKE Linked to Memory"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-065",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SurroundViewCameraGuidelines-061",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Surround View Camera Guidelines"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH5PowerMode-023",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 5 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-3Option-098",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 3 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-066",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SurroundViewCameraGuidelines-062",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Surround View Camera Guidelines"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH6PowerMode-025",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 6 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-3Option-099",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 3 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-067",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SurroundViewCameraGuidelines-063",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Surround View Camera Guidelines"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH6PowerMode-026",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 6 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-3Option-100",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 3 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-068",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraView-067",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH6PowerMode-027",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 6 Power Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-3Option-101",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 3 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-069",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraView-068",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1Type-029",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-2Option-105",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 2 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-070",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraView-069",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1Type-030",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-2Option-106",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 2 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-071",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-073",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View with Trailer Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1Type-031",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-AutoOnDriverComfort-2Option-107",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Auto On Driver Comfort - 2 Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-072",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-074",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View with Trailer Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2Type-033",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearviewCameraDelay-111",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Rearview Camera Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-073",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-075",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View with Trailer Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2Type-034",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearviewCameraDelay-112",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Rearview Camera Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-074",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-076",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Turn Signal Activated Blind Spot Camera View with Trailer Option"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2Type-035",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearviewCameraDelay-113",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Rearview Camera Delay"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-075",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseBasedCameraActivation-081",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "ParkSense Based Camera Activation"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3Type-037",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-117",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Rearview Camera Dynamic Guidelines"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-076",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSenseBasedCameraActivation-082",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "ParkSense Based Camera Activation"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3Type-038",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-118",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Rearview Camera Dynamic Guidelines"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-077",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3Type-039",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-119",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Rearview Camera Dynamic Guidelines"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-078",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4Type-041",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-079",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4Type-042",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-080",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4Type-043",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-081",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH5Type-045",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 5 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-082",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH5Type-046",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 5 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-083",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH5Type-047",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 5 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-084",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH6Type-049",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 6 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-085",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH6Type-050",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 6 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-086",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH6Type-051",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 6 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-087",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1HoldLastState-054",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-088",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1HoldLastState-055",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-089",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1HoldLastState-056",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-093",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2HoldLastState-058",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-094",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2HoldLastState-059",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-095",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH2HoldLastState-060",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 2 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-096",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3HoldLastState-062",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-097",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3HoldLastState-063",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-098",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH3HoldLastState-064",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 3 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-099",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4HoldLastState-066",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-100",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4HoldLastState-067",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-102",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH4HoldLastState-068",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 4 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-103",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH5HoldLastState-070",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 5 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-104",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH5HoldLastState-071",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 5 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-105",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH5HoldLastState-072",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 5 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-106",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH6HoldLastState-074",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 6 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-107",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH6HoldLastState-075",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 6 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-108",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH6HoldLastState-076",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 6 Hold Last State"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-109",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightingwithApproach-080",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Lighting with Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-110",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightingwithApproach-081",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Lighting with Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-111",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightingwithApproach-082",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Lighting with Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-112",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightStatus-086",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Light Status"
+    },
+    {
+      "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-113",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Trailer and Signage",
+      "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightStatus-087",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Light Status"
+    },
+    {
+      "leaf_id": "SWE1-VC-RearGuidanceLightStatus-088",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "Rear Guidance Light Status"
+    }
+  ],
+  "dist": {
+    "PROXI 型": 168,
+    "訊號送出型": 318,
+    "訊號上行型": 124,
+    "無可測內容": 1,
+    "設定顯示與修改型": 6,
+    "其他": 4
+  }
+}

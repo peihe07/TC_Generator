@@ -1,0 +1,111 @@
+{
+  "sel": [
+    {
+      "leaf_id": "SWE1-VC-Blind Spot with Trailer Detection-046",
+      "form": "PROXI 型",
+      "writable": "W1",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Blind Spot with Trailer Detection"
+    },
+    {
+      "leaf_id": "SWE1-VC-ParkSense-085",
+      "form": "PROXI 型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Units and Cameras",
+      "layer3": "Park Sense"
+    },
+    {
+      "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-018",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Power Liftgate/Tailgate Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-IlluminatedApproach-004",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P1",
+      "test_set": "Approach and Tailgate",
+      "layer3": "Illuminated Approach"
+    },
+    {
+      "leaf_id": "SWE1-VC-SWITCH1Type-002",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Auxiliary Switches",
+      "layer3": "SWITCH 1 Type"
+    },
+    {
+      "leaf_id": "SWE1-VC-BlindSpotAlert-004",
+      "form": "訊號送出型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Driver Convenience",
+      "layer3": "Blind Spot Alert"
+    },
+    {
+      "leaf_id": "SWE1-VC-SuspensionServiceMode-006",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Suspension and Comfort",
+      "layer3": "Suspension Service Mode"
+    },
+    {
+      "leaf_id": "SWE1-VC-Blind Spot with Trailer Detection-049",
+      "form": "訊號上行型",
+      "writable": "W0",
+      "priority": "P0",
+      "test_set": "Trailer and Signage",
+      "layer3": "Blind Spot with Trailer Detection"
+    },
+    {
+      "leaf_id": "SWE1-VC-Language-059",
+      "form": "設定顯示與修改型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Driver Convenience",
+      "layer3": "Language"
+    },
+    {
+      "leaf_id": "SWE1-VC-TimeandDateSettings-002",
+      "form": "設定顯示與修改型",
+      "writable": "W0",
+      "priority": "P2",
+      "test_set": "Units and Cameras",
+      "layer3": "Time and Date Settings"
+    }
+  ],
+  "form": {
+    "PROXI 型": 2,
+    "訊號送出型": 4,
+    "訊號上行型": 2,
+    "設定顯示與修改型": 2
+  },
+  "priority": {
+    "P0": 6,
+    "P1": 1,
+    "P2": 3
+  },
+  "writable": {
+    "W1": 1,
+    "W0": 9
+  },
+  "test_set": {
+    "Trailer and Signage": 2,
+    "Units and Cameras": 2,
+    "Approach and Tailgate": 2,
+    "Auxiliary Switches": 1,
+    "Driver Convenience": 2,
+    "Suspension and Comfort": 1
+  },
+  "absent": [
+    "狀態轉換型",
+    "值域切換型"
+  ]
+}
