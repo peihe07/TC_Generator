@@ -50,6 +50,7 @@ sign-off = binding as proposed.
 
 ## 7. Execution
 - batch plan: [PROPOSED: 依 spec 章節分組，pilot 取最小之完整章節] leaf 之章分布 7(19)／8(6)／9(5)／10(10)／11(5)／12(3)；PDF 頁分布 p8(25)／p9(5)／p10(15)／p11(3)
+- **`DR-PMH3` 之連帶（預先登記，14 包步驟 6）**: [PENDING] 若上游回覆 `SU9.)`／`SU9.1)` **應在 037**，則 `Disclaimer Screen` 組將自 **7 leaf 增為 9**，連帶須重驗：(a) Layer 2 之八組計數與 48 總數（R-PMH36 之定版數字）；(b) granularity G1–G5（`min` 由 3 變 3、`max` 由 9 變 9，惟分母由 48 變 50 —— `check_granularity.py` 之 `n_leaf` 須改）；(c) `layer3_sections.tsv` 與 `outline_map.json` 之 48 列；(d) batch 1 須增 2 條 TC。**本包不預改任何數字** —— 待 DR 回覆。
 - **交付前阻斷項（DR-PMH1）**: [RULED R-PMH47] `SWE1-HMI-PM-028` 依 (ii)＋(iii) 判 out of scope 並**寫入工作簿揭露**，其 `Test Procedure`／`Expected Result` 為 `PENDING: DR-PMH1 …`。**含 PENDING 之工作簿不得出貨**（§8.4.3）—— 交付前須 DR-PMH1 結案，或由 Pei 裁定降轉。未結 DR 清單見 `DATA_REQUESTS.md`
 - **Phase 6／7 之前置阻斷項**: [RULED A-PMH12] 首次填 `Q`（Estimated Test Time）或 `AF`（Test Result）之前**必須處理**兩項母本 DV 瑕疵 —— (1) priority DV 之 sqref 為 `P10:Q1411` **跨兩欄**，使 `Q` 套用 `"P0,P1,P2,P3"` 下拉，任何分鐘數都會被擋下；(2) `AF` 之列舉逐字為 `"Pass, Fail, Pending,Block,NA"`，` Fail` 與 ` Pending` **含前導空白**，寫入 `Fail`（無空格）會被擋下。二者因四份交付件該二欄全空而從未被檢驗過
 - **寫回前必跑之機器檢查**: [RULED R-PMH22] `scripts/check_write_back.py` 三項（blank 前提／起始列來源／列數差），三項故意失敗測試已實跑並全部攔下，範圍向亦通過

@@ -11,6 +11,7 @@
 須人讀 PDF 原文與 TC 對照。本檢查只保證覆核所需之材料存在，不保證覆核已做。
 """
 import argparse
+import ast
 import json
 import re
 import sys
@@ -20,6 +21,36 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 SPEC = "Power Moding HMI Logic and Flow R1 SR24 2A"
+
+# **R-PMH58（15 包）—— `COVERED` 不得手寫，須自各檢查點自動彙集。**
+#
+# 各 `chk(...)` 於其呼叫處以 `canon=` 具名其所檢查之 canon 節號；
+# 本常數由 `ast` 掃本檔自身之 `chk(...)` 呼叫彙集而得，
+# `canon_coverage.py` 匯入之並自 canon 節號全集求差集。
+#
+# 依據（14 包 §3.2）：手寫之 `COVERED` 先宣告 `5.2` 而該檢查尚未實作，
+# 致未涵蓋清單稱其「已涵蓋」而實際沒有。**宣告與實作分離即會分岔**
+# （A-PMH12 之同型）。自動彙集使「宣告」與「檢查點」成為同一處，無從分岔。
+#
+# 另設**執行期交叉核對**：`main()` 末尾比對「靜態彙集」與「本次實際執行到之
+# 檢查點」，二者不同即具名 —— 攔下「宣告於原始碼但該分支從未執行」之情形。
+def _covered_from_source() -> set[str]:
+    """R-PMH58 —— 自本檔之 `chk(..., canon=...)` 呼叫靜態彙集已涵蓋之節號。"""
+    tree = ast.parse(Path(__file__).read_text(encoding="utf-8"))
+    out: set[str] = set()
+    for node in ast.walk(tree):
+        if not (isinstance(node, ast.Call)
+                and getattr(node.func, "id", "") == "chk"):
+            continue
+        for kw in node.keywords:
+            if kw.arg == "canon":
+                v = ast.literal_eval(kw.value)
+                out.update([v] if isinstance(v, str) else v)
+    return out
+
+
+COVERED = _covered_from_source()
+
 LAYER3 = ROOT / "data" / "layer3_sections.tsv"
 
 
@@ -37,7 +68,10 @@ def main() -> None:
 
     checks, fails = [], []
 
-    def chk(name, ok, detail=""):
+    executed: set[str] = set()
+
+    def chk(name, ok, detail="", canon=()):
+        executed.update([canon] if isinstance(canon, str) else canon)
         checks.append((name, ok, detail))
         if not ok:
             fails.append(name)
@@ -68,12 +102,14 @@ def main() -> None:
         m = re.fullmatch(re.escape(SPEC) + r"_(\d+(?:\.\d+)*)", t["specification_reference"])
         if not m or l3.get(t["leaf_id"]) != m.group(1):
             bad.append((t["tc_id"], t["specification_reference"], l3.get(t["leaf_id"])))
-    chk("profile §3.4 spec_reference 形態且與 layer3_sections.tsv 相符", not bad, str(bad))
+    chk("profile §3.4 spec_reference 形態且與 layer3_sections.tsv 相符", not bad,
+        str(bad), canon="10.7")
 
     # --- profile §3.5：priority ∈ P0–P3 ---
     bad = [(t["tc_id"], t["priority"]) for t in tcs
            if t["priority"] not in {"P0", "P1", "P2", "P3"}]
-    chk("profile §3.5 priority ∈ {P0,P1,P2,P3}（母本 DV）", not bad, str(bad))
+    chk("profile §3.5 priority ∈ {P0,P1,P2,P3}（母本 DV）", not bad, str(bad),
+        canon="10.2")
 
     # --- profile §3.6 / §3.8：Q 與 T–Z 留白 ---
     chk("profile §3.6 estimated_test_time 留白",
@@ -91,14 +127,16 @@ def main() -> None:
     chk("R-PMH36 test_set = 'Disclaimer Screen'（大寫 S）",
         all(t["test_set"] == "Disclaimer Screen" for t in tcs))
     chk("R-PMH16 tc_id 形態 NR1L-DisclaimerScreen-{NNN}",
-        all(re.fullmatch(r"NR1L-DisclaimerScreen-\d{3}", t["tc_id"]) for t in tcs))
+        all(re.fullmatch(r"NR1L-DisclaimerScreen-\d{3}", t["tc_id"]) for t in tcs),
+        canon="10.3")
     chk("test_set ∈ Layer 2 定版 8 組", all(t["test_set"] in sets for t in tcs))
 
     # --- profile §11：方括號禁止（本 feature 無例外）---
     bad = [t["tc_id"] for t in tcs
            if re.search(r"\[[^\]]+\]", t["test_item"] + t["pre_conditions"]
                         + t["test_procedure"] + t["expected_result"])]
-    chk("canon §11 方括號禁止（本 feature 無 profile 例外）", not bad, str(bad))
+    chk("canon §11 方括號禁止（本 feature 無 profile 例外）", not bad, str(bad),
+        canon="11")
 
     # --- canon：步數一致、無空欄、無 NA 充當未知 ---
     bad = [(t["tc_id"], len(t["test_procedure"].split("\n")),
@@ -110,7 +148,7 @@ def main() -> None:
     bad = [(t["tc_id"], f) for t in tcs for f in REQ if not str(t[f]).strip()]
     chk("必填欄無空", not bad, str(bad))
     bad = [t["tc_id"] for t in tcs if re.search(r"\bNA\b", t["expected_result"])]
-    chk("ER 未以 NA 充當未知", not bad, str(bad))
+    chk("ER 未以 NA 充當未知", not bad, str(bad), canon="8.4.3")
 
     # ==================== 13 包新增（R-PMH52）====================
 
@@ -118,7 +156,7 @@ def main() -> None:
     bad = [(t["tc_id"], len([x for x in t["test_procedure"].split("\n") if x.strip()]))
            for t in tcs
            if len([x for x in t["test_procedure"].split("\n") if x.strip()]) < 2]
-    chk("canon §10.5 test_procedure >= 2 步", not bad, str(bad))
+    chk("canon §10.5 test_procedure >= 2 步", not bad, str(bad), canon="10.5")
 
     # C2 §5.1 —— 禁用動詞作主動詞
     FORBID = r"\b(observe|see if|check whether|make sure|ensure|watch|look at|try to)\b"
@@ -128,7 +166,8 @@ def main() -> None:
             body = re.sub(r"^\s*\d+[.)]\s*", "", ln)
             for m in re.finditer(FORBID, body, re.I):
                 bad.append((t["tc_id"], m.group(0), body[:60]))
-    chk("canon §5.1 procedure 無禁用動詞", not bad, f"{len(bad)} 處 {bad[:3]}")
+    chk("canon §5.1 procedure 無禁用動詞", not bad, f"{len(bad)} 處 {bad[:3]}",
+        canon="5.1")
 
     # C3 §5.2B/§5.5 —— Final Step 須含驗證意圖
     VERIFY = r"\b(check that|confirm that|verify that|record|compare|read)\b|to verify"
@@ -136,7 +175,7 @@ def main() -> None:
            if not re.search(VERIFY,
                             [x for x in t["test_procedure"].split("\n") if x.strip()][-1],
                             re.I)]
-    chk("canon §5.2B/§5.5 Final Step 含驗證意圖", not bad, str(bad))
+    chk("canon §5.2B/§5.5 Final Step 含驗證意圖", not bad, str(bad), canon="5.5")
 
     # C4 §4.3.1 —— test_item 上半須為 source_clause 之子字串（正規化後）
     def nz(s):
@@ -150,7 +189,8 @@ def main() -> None:
         top = nz(t["test_item"].split("\n\n(")[0])
         if top and top not in nz(t.get("source_clause", "")):
             bad.append(t["tc_id"])
-    chk("canon §4.3.1 test_item 上半 ⊆ source_clause（verbatim）", not bad, str(bad))
+    chk("canon §4.3.1 test_item 上半 ⊆ source_clause（verbatim）", not bad,
+        str(bad), canon="4.3.1")
 
     # C5 交付欄位無 markdown 標記
     DELIV = ["test_item", "pre_conditions", "test_procedure", "expected_result",
@@ -162,11 +202,26 @@ def main() -> None:
     # C6 §11 —— 直雙引號、無彎引號；UI 標籤須加引號
     bad = [(t["tc_id"], f) for t in tcs for f in DELIV
            if re.search(r"[“”‘’]", str(t.get(f, "")))]
-    chk("canon §11 無彎引號", not bad, str(bad[:4]))
+    chk("canon §11 無彎引號", not bad, str(bad[:4]), canon="11")
     UI = r"\bthe (Accept|Loading) (button|indicator)\b"
     bad = [t["tc_id"] for t in tcs for f in DELIV
            if re.search(UI, str(t.get(f, "")))]
-    chk("canon §11 UI 標籤加直雙引號", not bad, str(sorted(set(bad))))
+    chk("canon §11 UI 標籤加直雙引號", not bad, str(sorted(set(bad))), canon="11")
+
+    # C8 §5.2 —— 步驟字數上限（14 包 §5.1）
+    #   normal step <= 12 words；**final step <= 18 words**（其得延長以承載
+    #   action ＋ check target）。字數以空白切分計，去除行首之編號。
+    bad = []
+    for t_ in tcs:
+        steps = [x for x in t_["test_procedure"].split("\n") if x.strip()]
+        for i, ln in enumerate(steps):
+            body = re.sub(r"^\s*\d+[.)]\s*", "", ln)
+            n_w = len(body.split())
+            cap = 18 if i == len(steps) - 1 else 12
+            if n_w > cap:
+                bad.append((t_["tc_id"], f"step {i+1}", n_w, f"<= {cap}"))
+    chk("canon §5.2 步驟字數（normal <=12／final <=18）", not bad, canon="5.2", detail=
+        f"{len(bad)} 處 " + str(bad[:4]))
 
     # C7 R-PMH53 —— 批內交叉引用：存在性 ＋ **語意相容**
     #
@@ -203,6 +258,20 @@ def main() -> None:
         for a, f, r in refs:
             print(f"      {a} .{f} → {r}")
 
+    # --- 15 包步驟 6：procedure 與 ER 之**編號**逐條對齊（人讀覆核之前置）---
+    # 只驗機械可查者：編號自 1 起連號、且兩側逐位相同。
+    # **「一步一意圖」與「ER 是否真對應該步」不可機械判定** —— 屬人讀。
+    bad = []
+    for t in tcs:
+        def nums(field):
+            return [x.split(".", 1)[0].strip()
+                    for x in t[field].split("\n") if x.strip()]
+        pn, en = nums("test_procedure"), nums("expected_result")
+        want = [str(i) for i in range(1, len(pn) + 1)]
+        if pn != want or en != want:
+            bad.append((t["tc_id"], pn, en))
+    chk("procedure／ER 編號自 1 起連號且逐位對齊", not bad, str(bad[:3]))
+
     # --- tc_id 唯一且連號 ---
     ids = [t["tc_id"] for t in tcs]
     chk("tc_id 唯一", len(set(ids)) == len(ids))
@@ -224,14 +293,19 @@ def main() -> None:
               + (f"  {det}" if not ok and det else ""))
     print(f"\n{len(checks)-len(fails)}/{len(checks)} PASS"
           + (f"；FAIL：{fails}" if fails else ""))
-    print("\n⚠ **本 lint 未涵蓋之 canon 節號（R-PMH52 之具名義務）**：")
-    for s in ("§4.3 tc_title 之形態與字數", "§4.4 Pre-Condition 不得含動作",
-              "§5.7 同一觸發之後果是否應合併", "§7 負向案例之配置",
-              "§8.2/§8.3 拆分是否恰當", "§8.4.1 造值（推論寫成斷言）",
-              "§8.5 Pre-Condition 範圍是否溢出", "§8.7.3 變體條件是否逐字",
-              "§10.2 priority 之 rubric 是否切合內容"):
-        print(f"    - {s}")
-    print("    **以上皆須人讀。** R-PMH52：lint 全綠不得作為 TC 可用之證據。")
+    print("\n⚠ **本 lint 未涵蓋之 canon 節號（R-PMH52／R-PMH56）**：")
+    print("    由 `scripts/canon_coverage.py` 自 canon 之節號全集減去上方 "
+          "`COVERED` 產生，**不手寫**。")
+    print("    執行：`python scripts/canon_coverage.py`")
+    print(f"    本 lint 宣告涵蓋 {len(COVERED)} 節：{sorted(COVERED)}")
+    drift = (COVERED - executed, executed - COVERED)
+    if any(drift):
+        print(f"    ⚠ **R-PMH58 靜態／執行期不一致**："
+              f"宣告未執行 {sorted(drift[0])}；執行未宣告 {sorted(drift[1])}")
+    else:
+        print("    （R-PMH58：靜態彙集與本次實際執行到之檢查點一致）")
+    print("    **以上以外之全部 canon 節皆未由本 lint 檢查，須人讀。**")
+    print("    R-PMH52：lint 全綠不得作為 TC 可用之證據。")
     print("\n⚠ R-PMH50 之限度：本 lint 只驗 source_clause **存在且取自 PDF**。"
           "\n  **「是否忠於規格」不可機械檢查** —— 須人讀 PDF 原文與 TC 對照。"
           "\n  本檢查只保證覆核所需之材料存在，不保證覆核已做。")
