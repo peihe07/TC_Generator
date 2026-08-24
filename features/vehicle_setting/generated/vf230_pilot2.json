@@ -49,7 +49,7 @@
    "layer3": "Park Sense",
    "tc_title": "Park Sense is displayed and modifiable when CAN Node 24 is \"Present\"",
    "test_item": "If CAN Node 24 (PAM/CVADAS) = [Present], the LTM or ETM shall display the Park Sense customer setting to allow the customer the ability to modify the setting.",
-   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN_Node_24 (PAM/CVADAS)$ is set to \"Present\"",
+   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN Node 24 (PAM/CVADAS)$ is set to \"Present\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Park Sense\" customer setting is displayed\n4. Select the \"Park Sense\" customer setting and check that its value can be changed",
    "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"Park Sense\" customer setting is displayed\n4. The value of the \"Park Sense\" customer setting can be changed",
@@ -59,7 +59,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "PROXI 參數名之書寫形態：本條取條文逐字 `CAN Node 24 (PAM/CVADAS)`。**pilot #1 v4 內同類參數有二式**（seq 238 之 `$CAN_Node_82_PTGM$` 底線式，seq 242 之 `$CAN_Node_27(ASM / ASCM)$` 括號式）—— 已開 A-VF22，待裁示，本批不自行統一。",
+   "remarks": "PROXI 參數名取**條文逐字** `CAN Node 24 (PAM/CVADAS)`（R-VF78 二）。A-VF22 之實況（W-VF69 複測後更正）：不一致發生於**同一條 TC 之內** —— pilot #1 之 seq 241／247 其 test_item 為括號式（斜線兩側有空格）、pre_conditions 為底線式，**二者皆非條文逐字**。已依 R-VF78 二統一，見 `vf230_wvf69_proxi_fix.py`。**條文自身之大小寫不一致保留**（`CAN node 82` vs `CAN Node 24`）—— 逐字即含其大小寫。",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
    "reasoning": "值域來源 **0-CLAUSE** —— 條文逐字：「If CAN Node 24 (PAM/CVADAS) = [Present]」。"

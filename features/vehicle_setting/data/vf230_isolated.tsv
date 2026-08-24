@@ -1,0 +1,27 @@
+leaf_id	form	class	reason	dr	unblock
+SWE1-VC-LaneSenseWarning-016	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-LaneSenseWarning-017	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-LaneSenseWarning-018	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-ForwardCollisionWarning-036	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-ForwardCollisionWarning-037	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-ForwardCollisionWarning-038	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-050	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-051	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-CorneringLights-004	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-CorneringLights-005	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-GreetingLights-010	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-GreetingLights-011	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-SignatureLighting-023	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-SignatureLighting-024	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-LaneSenseStrength-029	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-LaneSenseStrength-030	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-LaneSenseStrength-031	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-ForwardCollisionWarningSensitivity-043	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-ForwardCollisionWarningSensitivity-044	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-ForwardCollisionWarningSensitivity-045	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-RainSensingWipers-056	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-RainSensingWipers-057	訊號送出型	純 propId 式	條文無 TELEMATIC_* 訊號名，TC 之訊號來源未驗		須完成一次書寫式查證（R-VF74）
+SWE1-VC-TimeandDateSettings-003	其他	<Name>.Info 式	DBC 查無同名；條文之訊號 Day1_Setting.Info, Day2_Setting.Info, Hour1_Setting.Info, Hour2_Setting.Info, Minute1_Setting.Info, Minute2_Setting.Info, Month1_Setting.Info, Month2_Setting.Info, Year1_Setting.Info, Year2_Setting.Info, Year3_Setting.Info, Year4_Setting.Info	DR-36	須先解 DR-36（是否為 CAN 訊號）
+SWE1-VC-TimeandDateSettings-006	其他	<Name>.Info 式	DBC 查無同名；條文之訊號 GPS_Automatic_Time_Adj_Setup.Info	DR-36	須先解 DR-36（是否為 CAN 訊號）
+SWE1-VC-TimeandDateSettings-007	其他	<Name>.Info 式	DBC 查無同名；條文之訊號 GPS_Automatic_Time_Adj_Setup.Info	DR-36	須先解 DR-36（是否為 CAN 訊號）
+SWE1-VC-TimeandDateSettings-008	其他	<Name>.Info 式	DBC 查無同名；條文之訊號 GPS_Automatic_Time_Adj_Setup.Info	DR-36	須先解 DR-36（是否為 CAN 訊號）

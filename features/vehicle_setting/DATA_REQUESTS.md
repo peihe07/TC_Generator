@@ -1239,3 +1239,102 @@ Turn_Signal_Camera_View     Utility_Lighting
 於 Remarks 具名該不一致與本 DR 編號。**不自行調和二者。**
 
 **狀態：未送出**（送出屬 Pei，R-VF27）。
+
+---
+
+## DR-36（新，**Urgency Medium** —— `<Name>.Info` 訊號之歸屬；R-VF77 一開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-35**（R-VF10）。
+
+**標的**：VF230 之 4 條 leaf（`SWE1-VC-TimeandDateSettings-003`／`-006`／`-007`／`-008`）
+其條文所載之訊號採 `<Name>.Info` 命名空間：
+
+```
+Hour1_Setting.Info, Hour2_Setting.Info, Minute1_Setting.Info, Minute2_Setting.Info
+GPS_Automatic_Time_Adj_Setup.Info
+```
+
+**實測**：二份 DBC（`PDT27_E2A_R4_BHCAN.dbc`／`PDT27_E2A_R5_FDCAN8.dbc`）
+**查無同名訊號**。而 VF230 其餘 617 條之訊號皆為 `TELEMATIC_*`／`IPC_*`
+（在 DBC 內可解）。
+
+**所詢**：
+
+1. `<Name>.Info` 是否為 **CAN 訊號**？若是，其在哪一份 DBC／哪一個 message？
+2. 若否 —— 其為 **service 層介面**（條文言「send … to the Date & Time Service」）——
+   則該 4 條之 TC **無法以 `Send CAN:` 書寫**，其刺激與斷言之手段為何？
+3. `-003` 所列之 `Hour1`／`Hour2`／`Minute1`／`Minute2` 為**四個獨立訊號**，
+   抑或同一時間值之四個欄位？其影響該條之等價類劃分。
+
+**其阻塞者**：該 4 條依 **R-VF77 一**已列入 `data/vf230_isolated.tsv` 隔離，
+**不入量產**（量產母體 574 已扣之）。**本 DR 未解則該 4 條不得解除隔離。**
+
+**登記者**：執行層（38 輪 W-VF69 §4）。**送出屬 Pei**（R-VF27）。
+
+---
+
+## DR-37（新，**Urgency High** —— 46 條之條文只有 message、無訊號名；W-VF69 §5 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-36**（R-VF10）。
+
+**標的**：VF230 之 **46 條 leaf**（逐條列於 `docs/reports/vf230_wvf69_skipped.md` A 類）。
+其條文之訊號引用**只到 message 一層**：
+
+```
+SWE1-VC-ParkSense-086
+  … send the request using CarPropertyManager.setProperty() with the
+  TELEMATIC_VEHICLE_SETUP signal value as Warn.
+SWE1-VC-ParkSense-088
+  HW supplier shall notify the IPC_VEHICLE_SETUP signal via VHAL interface.
+```
+
+`TELEMATIC_VEHICLE_SETUP` 為 **message**（DBC `msg_id 158`），其下有數十個訊號。
+**條文未指出是哪一個。**
+
+**本層已試之路徑及其結論**：以條文所帶之值反查該 message 內具該值之訊號 ——
+**唯一解 13／多解 13／條文未帶值 20**。**多解者佔可反查者之半，
+故反解即推測，本層不採用**（R-VF79 一：抽不出者回報「未查」，不得回報為「無」）。
+
+**所詢**：該 46 條之訊號名各為何？其來源為 037 之補充、LID、抑或另有對映表？
+
+**其阻塞者**：該 46 條**未生成任何 TC**。
+**另具名一項與現有判定之抵觸**：該 46 條於 `vf230_writability.tsv` **全數判 W0**
+（完全可寫），且 `value_source` 與 `blocker_class` **皆為空** ——
+即 W-VF44 之 `B5-signal-absent` 路徑對「有 message 無 signal」之形態未觸發。
+**本層未逕自改判**（其須重跑全量且屬分級之判準變更），登記為 **A-VF25**，請裁。
+
+**登記者**：執行層（38 輪 W-VF69）。**送出屬 Pei**（R-VF27）。
+
+---
+
+## DR-38（新，**Urgency Medium** —— 2 條之條文動作句與其值極性相反；W-VF69 §5 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-37**（R-VF10）。
+
+**標的**：
+
+```
+SWE1-VC-SuspensionServiceMode-004
+  When the customer chooses to **enable** the Suspension Service Mode setting …
+  CarPropertyManager shall invoke setProperty() with propId = Susp_Tire_Jack_Req
+  and value = [OFF]. … Then the HMI/LTM/ETM shall update the Suspension Service
+  Mode customer setting status to **OFF** …
+
+SWE1-VC-RearGuidanceLightswithCargoLights-017
+  … chooses to **disable** … 而其值為 **Enable**
+```
+
+即**動作句之動詞與其 `value`／結論句之極性相反**。
+
+**所詢**：何者為誤植 —— 動作句之動詞，抑或其值？
+
+**本層之處置（未待答即照 V23 §4.2）**：**以結論句為準**
+（結論句為該需求之處置條款），於該 TC 之 Remarks 逐字具名其不一致與本 DR 編號，
+**不自行調和二者**。`SuspensionServiceMode-004` 即本組 seq **268**，已具名。
+另一條不在本組 150 之內。
+
+**其形態**：與 **A-VF18**（`LaneSenseWarning-014`，DR-35）同族。
+**全母體之量測**：可抽之 497 條中，此形態 **2 條**（偵測式為
+`chooses to (enable|disable)` 與值之極性比對，**其為已知集合，非全集**）。
+
+**登記者**：執行層（38 輪 W-VF69）。**送出屬 Pei**（R-VF27）。

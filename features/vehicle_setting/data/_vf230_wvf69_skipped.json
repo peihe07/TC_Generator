@@ -1,0 +1,390 @@
+{
+ "facts_missing": [
+  {
+   "leaf_id": "SWE1-VC-ParkSense-086",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-ParkSense-087",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-ParkSense-088",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-PowerTailgate-025",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Disable` 不在 `Power_Tailgate_Enable_Req` 之 DBC 值域 ['Disabled', 'Enabled'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-PowerTailgate-026",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Enable` 不在 `Power_Tailgate_Enable_Req` 之 DBC 值域 ['Disabled', 'Enabled'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-093",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-094",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-095",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-SuspensionDefaultRideHeight-020",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名"
+  },
+  {
+   "leaf_id": "SWE1-VC-4AUXSwitches-027",
+   "form": "PROXI 型",
+   "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-DaytimeRunningLights-005",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Early` 不在 `DRLEnable_Req` 之 DBC 值域 ['False', 'True'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-ConsumptionUnit-032",
+   "form": "PROXI 型",
+   "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraView-065",
+   "form": "PROXI 型",
+   "why": "PROXI 型而抽不出參數名（無 `retrieve the … configuration`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraView-066",
+   "form": "PROXI 型",
+   "why": "PROXI 型而抽不出參數名（無 `retrieve the … configuration`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-ChargePowerLevel-044",
+   "form": "PROXI 型",
+   "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-ChargePowerLevel-045",
+   "form": "PROXI 型",
+   "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-EngineOffPowerDelay-044",
+   "form": "PROXI 型",
+   "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-RearSeatReminder-053",
+   "form": "PROXI 型",
+   "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-EngineOffPowerDelay-045",
+   "form": "PROXI 型",
+   "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-RearSeatReminder-054",
+   "form": "PROXI 型",
+   "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-EngineOffPowerDelay-047",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Forty_Five_Sec` 不在 `Eng_Off_Pwr_Delay_Req` 之 DBC 值域 ['Five_Min', 'Fourty_Five_Sec', 'Ten_Min', 'Zero'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-101",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名"
+  },
+  {
+   "leaf_id": "SWE1-VC-Language-060",
+   "form": "PROXI 型",
+   "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-Language-061",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `selected` 不在 `LanguageSelection_Req` 之 DBC 值域 ['Arabic', 'Brazilian', 'Canadian', 'Chinese', 'Czech', 'Deutsch', 'Dutch', 'English', 'English_US', 'Espanol', 'Francais', 'Hindi', 'Hungarian', 'Italian', 'Japanese', 'Korean', 'Mexican', 'Polish', 'Portugues', 'Russian', 'Slovakian', 'Turkish'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-HourMode-011",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-HourMode-012",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-HourMode-013",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-AutoDoorLocks-017",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-MaxPowerLevel141",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Level` 不在 `SOC_Max_Lev_Req` 之 DBC 值域 ['Level1', 'Level2'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-AutoDoorLocks-018",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-MaxPowerLevel142",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Level` 不在 `SOC_Max_Lev_Req` 之 DBC 值域 ['Level1', 'Level2'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-AutoDoorLocks-019",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-DistanceUnit-022",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-DistanceUnit-023",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-DistanceUnit-024",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-HornWithLock-036",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `1st` 不在 `SoundHornLock_Req` 之 DBC 值域 ['1st Press', '2nd Press', 'Off'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-SpeedUnit-027",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-HornWithLock-037",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `2nd` 不在 `SoundHornLock_Req` 之 DBC 值域 ['1st Press', '2nd Press', 'Off'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-SpeedUnit-028",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-SpeedUnit-029",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-ConsumptionUnit-033",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TrailerBrakeType032",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `One` 不在 `Trail_Brk_Type_Req` 之 DBC 值域 ['Heavy_Electric', 'Heavy_Electric_Over_Hydraulic', 'Light_Electric', 'Light_Electric_Over_Hydraulic'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-ConsumptionUnit-034",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TrailerBrakeType033",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Two` 不在 `Trail_Brk_Type_Req` 之 DBC 值域 ['Heavy_Electric', 'Heavy_Electric_Over_Hydraulic', 'Light_Electric', 'Light_Electric_Over_Hydraulic'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-ConsumptionUnit-035",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TrailerBrakeType034",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Three` 不在 `Trail_Brk_Type_Req` 之 DBC 值域 ['Heavy_Electric', 'Heavy_Electric_Over_Hydraulic', 'Light_Electric', 'Light_Electric_Over_Hydraulic'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-ConsumptionUnit-036",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TrailerBrakeType035",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Four` 不在 `Trail_Brk_Type_Req` 之 DBC 值域 ['Heavy_Electric', 'Heavy_Electric_Over_Hydraulic', 'Light_Electric', 'Light_Electric_Over_Hydraulic'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-ConsumptionUnit-037",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-UnitEnergy-040",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-UnitEnergy-041",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-UnitEnergy-042",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-UnitEnergy-043",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-UnitEnergy-044",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-059",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名"
+  },
+  {
+   "leaf_id": "SWE1-VC-TemperatureUnit-048",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TemperatureUnit-049",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TemperatureUnit-050",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-SurroundViewCameraDelay-055",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-SurroundViewCameraDelay-056",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-SurroundViewCameraDelay-057",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-SurroundViewCameraGuidelines-061",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-SurroundViewCameraGuidelines-062",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-SurroundViewCameraGuidelines-063",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraView-067",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_FD_1`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraView-068",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_FD_1`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraView-069",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP2`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-073",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_FD_1`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-072",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名"
+  },
+  {
+   "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-074",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_FD_1`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-075",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_FD_1`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-076",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP2`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-ParkSenseBasedCameraActivation-081",
+   "form": "訊號送出型",
+   "why": "訊號送出型 而條文**只有 message `TELEMATIC_FD_1`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-117",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Dynamic` 不在 `DynamicGrid_Req` 之 DBC 值域 ['Dynamic Gridlines OFF', 'Dynamic Gridlines ON'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-ParkSenseBasedCameraActivation-082",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而條文**只有 message `IPC_VEHICLE_SETUP2`、無訊號名** —— 不以 DBC 值域反解（多解者佔半），列 DR"
+  },
+  {
+   "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-118",
+   "form": "訊號送出型",
+   "why": "條文指名之值 `Dynamic` 不在 `DynamicGrid_Req` 之 DBC 值域 ['Dynamic Gridlines OFF', 'Dynamic Gridlines ON'] 內 —— 不臆造"
+  },
+  {
+   "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-093",
+   "form": "訊號上行型",
+   "why": "訊號上行型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名"
+  }
+ ],
+ "template_rejected": []
+}

@@ -95,7 +95,7 @@ TCS = [
              'the Park Sense customer setting to allow the customer the ability to '
              'modify the setting.',
         pre=[FULLOP,
-             'PROXI $CAN_Node_24 (PAM/CVADAS)$ is set to "Present"'],
+             'PROXI $CAN Node 24 (PAM/CVADAS)$ is set to "Present"'],
         proc=['Power cycle the HU',
               'Open the Vehicle Settings menu and wait until it is fully rendered',
               'Read the Vehicle Settings menu and check that the "Park Sense" '
@@ -107,10 +107,13 @@ TCS = [
             'The "Park Sense" customer setting is displayed',
             'The value of the "Park Sense" customer setting can be changed'],
         vsrc="0-CLAUSE", dr="",
-        remarks='PROXI 參數名之書寫形態：本條取條文逐字 `CAN Node 24 (PAM/CVADAS)`。'
-                '**pilot #1 v4 內同類參數有二式**（seq 238 之 `$CAN_Node_82_PTGM$` '
-                '底線式，seq 242 之 `$CAN_Node_27(ASM / ASCM)$` 括號式）—— '
-                '已開 A-VF22，待裁示，本批不自行統一。',
+        remarks='PROXI 參數名取**條文逐字** `CAN Node 24 (PAM/CVADAS)`（R-VF78 二）。'
+                'A-VF22 之實況（W-VF69 複測後更正）：不一致發生於**同一條 TC 之內** —— '
+                'pilot #1 之 seq 241／247 其 test_item 為括號式（斜線兩側有空格）、'
+                'pre_conditions 為底線式，**二者皆非條文逐字**。'
+                '已依 R-VF78 二統一，見 `vf230_wvf69_proxi_fix.py`。'
+                '**條文自身之大小寫不一致保留**（`CAN node 82` vs `CAN Node 24`）—— '
+                '逐字即含其大小寫。',
         reason='值域來源 **0-CLAUSE** —— 條文逐字：'
                '「If CAN Node 24 (PAM/CVADAS) = [Present]」。'),
     dict(

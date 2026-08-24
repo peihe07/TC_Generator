@@ -20,7 +20,7 @@ import vf230_wvf45_priority as PR      # noqa: E402
 import vf230_wvf61_pilot as P1         # noqa: E402
 import vf230_selfcheck_wvf62 as SC62   # noqa: E402  canon 判準之單一權威
 
-DOC = FEAT / "generated/vf230_pilot2.json"
+DEFAULT_DOC = FEAT / "generated/vf230_pilot2.json"
 
 SEND_CAN = re.compile(r"^Send CAN: ([A-Z][A-Z0-9_]*)\.(\w+) = (\d+) \(([^)]+)\)$")
 SIG_ANY = re.compile(r"\b([A-Z][A-Z0-9_]{3,})\.(\w+)\s*=\s*(\d+)\s*\(([^)]+)\)")
@@ -170,12 +170,14 @@ def c10_writable_dr(tcs, ctx):
 
 
 def c11_seq_unique(tcs, ctx):
+    """seq 須唯一且為連號。**範圍自產出取，不寫死**（W-VF69 泛化）。"""
     seqs = [t["seq"] for t in tcs]
     bad = []
     if len(set(seqs)) != len(seqs):
-        bad.append(f"seq 重複：{seqs}")
-    if seqs != list(range(258, 268)):
-        bad.append(f"seq 應為 258–267 之連號，實為 {seqs}")
+        dup = sorted({x for x in seqs if seqs.count(x) > 1})
+        bad.append(f"seq 重複：{dup}")
+    if seqs != list(range(seqs[0], seqs[0] + len(seqs))):
+        bad.append(f"seq 非自 {seqs[0]} 起之連號")
     return bad
 
 
@@ -190,38 +192,41 @@ CHECKS = [
     ("8  spec_reference 出自 R-VF68 錨鏈", c8_spec_ref),
     ("9  可執行欄位無實作層名詞殘留", c9_no_leaked_impl),
     ("10 writable 與 dr_dependent 相符", c10_writable_dr),
-    ("11 seq 唯一且為 258–267", c11_seq_unique),
+    ("11 seq 唯一且為連號", c11_seq_unique),
 ]
 
-# 逐項之刻意破壞 —— 施於副本，用以證明該項**能夠**失敗
-def brk(fn):
-    return fn
-
+# 逐項之刻意破壞 —— 施於副本，用以證明該項**能夠**失敗。
+# **泛用**（W-VF69）：不指向特定 seq 之特定字串 —— 首版之項 9 破壞式因產出改寫
+# 而失效，其「破壞未生效」曾被誤讀為「該檢查項無法失效」。
+# 破壞一律施於 ts[0]，且皆為**加寫**或**覆寫**，不依賴既有內容之形態。
+BOGUS_SIG = "TELEMATIC_VEHICLE_SETUP.PLGAlert_Req = 9 (Bogus)"
 
 MUTATIONS = {
     "1": lambda ts: ts[0].__setitem__("pre_conditions", "1. Somebody presses a button"),
-    "2": lambda ts: ts[7].__setitem__(
-        "test_procedure", "1. Send CAN IPC_VEHICLE_SETUP Trailer_detection_blind_spot high\n"
-                          "2. Read the display"),
-    "3": lambda ts: ts[6].__setitem__(
-        "expected_result", ts[6]["expected_result"].replace("= 1 (On)", "= 1 (Off)")),
-    "4": lambda ts: ts[6].__setitem__(
-        "expected_result", ts[6]["expected_result"].replace("is sent", "is transmitted")),
+    "2": lambda ts: ts[0].__setitem__(
+        "test_procedure", "1. Send CAN IPC_VEHICLE_SETUP Susp_Tire_Jack high\n"
+                          + ts[0]["test_procedure"]),
+    "3": lambda ts: ts[0].__setitem__(
+        "expected_result", ts[0]["expected_result"] + f"\n99. {BOGUS_SIG} is sent"),
+    "4": lambda ts: ts[0].__setitem__(
+        "test_procedure", ts[0]["test_procedure"] + f"\n99. {BOGUS_SIG} is sent"),
     "5": lambda ts: ts[0].__setitem__(
-        "expected_result", ts[0]["expected_result"] + "\n5. An extra unmatched step"),
-    "6": lambda ts: ts[3].__setitem__("input_test_data", "Off"),
-    "7": lambda ts: ts[3].__setitem__("priority", "P0"),
-    "8": lambda ts: ts[5].__setitem__("specification_reference", "VF230_V1_PDT27_VF_9999"),
-    "9": lambda ts: ts[2].__setitem__(
+        "expected_result", ts[0]["expected_result"] + "\n99. An extra unmatched step"),
+    "6": lambda ts: ts[0].__setitem__("input_test_data", "Off"),
+    "7": lambda ts: ts[0].__setitem__(
+        "priority", "P9"),
+    "8": lambda ts: ts[0].__setitem__("specification_reference", "VF230_V1_PDT27_VF_9999"),
+    "9": lambda ts: ts[0].__setitem__(
         "test_procedure", "1. Invoke setProperty() with propId = PLGAlert_Req\n"
-                          + ts[2]["test_procedure"]),
-    "10": lambda ts: ts[0].__setitem__("dr_dependent", ""),
-    "11": lambda ts: ts[9].__setitem__("seq", 258),
+                          + ts[0]["test_procedure"]),
+    "10": lambda ts: ts[0].__setitem__("writable", "W9"),
+    "11": lambda ts: ts[-1].__setitem__("seq", ts[0]["seq"]),
 }
 
 
 def main() -> None:
-    doc = json.loads(DOC.read_text(encoding="utf-8"))
+    path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_DOC
+    doc = json.loads(path.read_text(encoding="utf-8"))
     ctx = {
         "dbc": dbc_vals(),
         "lv": {r["swe_id"]: r for r in csv.DictReader(
@@ -232,7 +237,7 @@ def main() -> None:
         "refs": P1.spec_refs(),
     }
 
-    print(f"=== pilot #2 自檢（{len(doc['tcs'])} 條，R-VF46 逐項分報）===")
+    print(f"=== {path.name} 自檢（{len(doc['tcs'])} 條，R-VF46 逐項分報）===")
     total, details = 0, []
     for name, fn in CHECKS:
         bad = fn(doc["tcs"], ctx)
