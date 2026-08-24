@@ -54,6 +54,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import re
 import sys
 from collections import Counter, defaultdict
@@ -66,7 +67,13 @@ CANONS = {
 }
 GOVERNANCE_FILES = {"RULINGS.md", "ANOMALIES.md", "DATA_REQUESTS.md", "DECISIONS.md"}
 WAIVER_DEFAULT = "docs/fw036/CANON_REFS_WAIVER.tsv"
-WAIVER_COLUMNS = ["source", "line", "kind", "target", "reason"]
+# 鍵為 `(source, kind, target, line_sha8)`；`line` 降為輔助欄（顯示用，不參與比對）。
+# **改鍵之理由**（26 上繳 §五-1，本輪失效兩次）：以行號為鍵者，
+# **任何在被豁免行之上插入一行即製造一次假性新增** —— 而 R-G18 令
+# 「waiver 只減不增，新增即紅」，遂使每次正當之增補都要手動維護行號。
+# 內容雜湊之語意為「**這一行的這個引用**」：行移動不失效，行內容改動即失效
+# ——後者正確，因為內容改了本來就該重判。
+WAIVER_COLUMNS = ["source", "kind", "target", "line_sha8", "line", "reason"]
 # 歷史檔：作成當時之正確紀錄，不追改（R-VF18 之精神；24 包 §C 裁定 2）。
 # 判準為**路徑成分**，非子串 —— `docs/fw036/upstream/` 不含 `docs/upstream/`，
 # 以子串比對會把 `docs/fw036/` 下之歷史包誤分為活躍（本判準之首個實測缺陷）。
@@ -77,6 +84,19 @@ SKIP_PARTS = {
     "archive", "sandbox", "data", "generated", "inputs", "_intake", "forms",
 }
 QUALIFIER_WINDOW = 30
+# --- 使用／提及之二分（R-G18 之精度；27 包 §三）------------------------------
+#
+# **一篇說明某引用為何歧義的文字，其本身不該成為一個歧義引用。**
+# 26 上繳 §五-2 實測本層於一節之內連續誤踩四次 —— 其非不小心，
+# 是判準要求作者在寫作時持續維持一種不自然的迴避。
+#
+# 判準：**圍籬優先於動詞**。被引號／反引號／code fence／[SUPERSEDED]
+# 區塊包住者一律為「提及」，縱使其**內部**有規範性動詞（第 2 例即此形）。
+# 未被包住而有規範性動詞引導者為「使用」，計入解析義務。
+NORMATIVE = re.compile(r"依據|依照|違反|適用|豁免|依|照|見|據|按")
+# 詞彙型「提及」標記：其後之節號是被談論的對象，不是被援引的依據
+MENTION = re.compile(r"之條文|所述|該節|原文|提及|所指|字串|寫作|複寫|逐字複")
+RE_SUPERSEDED_MARK = re.compile(r"\[SUPERSEDED")
 RE_CANON_MARK = re.compile(r"canon|FEATURE_ONBOARDING|ASPICE_SWE6|Instruction|\bFO\b|\bIN\b")
 # 下放包／輪次／他檔之指稱 —— 其後之 `§N` 為該物之節號，非 canon 之節號
 RE_OTHER_MARK = re.compile(
@@ -104,6 +124,8 @@ class Ref:
     source: str
     line: int
     text: str
+    usage: str = "use"   # use（計入解析義務）| mention（不計）
+    line_sha8: str = ""  # 該行內容之 sha8 —— waiver 鍵之一部分（27 包 §四）
 
 
 @dataclass
@@ -179,6 +201,47 @@ class Resolver:
                 tuple(f"{c}:R-G{n}" for c in hits))
 
 
+def enclosing_spans(line: str) -> list:
+    """該行中之引號／反引號區間 —— 落於其內者為「提及」。"""
+    spans, stack = [], {}
+    for i, ch in enumerate(line):
+        if ch == "「":
+            stack.setdefault("「", []).append(i)
+        elif ch == "」" and stack.get("「"):
+            spans.append((stack["「"].pop(), i))
+        elif ch == "『":
+            stack.setdefault("『", []).append(i)
+        elif ch == "』" and stack.get("『"):
+            spans.append((stack["『"].pop(), i))
+    for quote in ("`", '"', "“"):
+        pass
+    # 反引號與直引號成對掃描
+    for ch, close in (("`", "`"), ('"', '"'), ("“", "”")):
+        idx, open_at = 0, None
+        while idx < len(line):
+            c = line[idx]
+            if open_at is None and c == ch:
+                open_at = idx
+            elif open_at is not None and c == close and idx > open_at:
+                spans.append((open_at, idx))
+                open_at = None
+            idx += 1
+    return spans
+
+
+def usage_of(line: str, pos: int, in_fence: bool, in_superseded: bool) -> str:
+    """單一 `§` 之使用／提及判定。**圍籬優先於動詞。**"""
+    if in_fence or in_superseded:
+        return "mention"
+    if any(a < pos < b for a, b in enclosing_spans(line)):
+        return "mention"
+    # 圍籬外：取窗內**最近**之標記；兩者皆無則預設為使用
+    window = line[max(0, pos - QUALIFIER_WINDOW):pos]
+    m_at = max((m.end() for m in MENTION.finditer(window)), default=-1)
+    n_at = max((m.end() for m in NORMATIVE.finditer(window)), default=-1)
+    return "mention" if m_at > n_at else "use"
+
+
 def is_canon_ref(line: str, pos: int) -> bool:
     """逐處判定：該 `§` 之前 30 字元內，**最近**之標記是否為 canon。"""
     window = line[max(0, pos - QUALIFIER_WINDOW):pos]
@@ -187,10 +250,16 @@ def is_canon_ref(line: str, pos: int) -> bool:
     return canon_at > other_at
 
 
-def scan_line(rs: Resolver, source: str, lineno: int, line: str) -> list[Ref]:
+def scan_line(rs: Resolver, source: str, lineno: int, line: str,
+              in_fence: bool = False, in_superseded: bool = False) -> list[Ref]:
     """單行之引用抽取；先吃 item 型，其區段不再計為 section。"""
     out: list[Ref] = []
     used: list[tuple[int, int]] = []
+
+    lsha = line_sha8(line)
+
+    def usage_at(pos: int) -> str:
+        return usage_of(line, pos, in_fence, in_superseded)
 
     def free(m: re.Match) -> bool:
         return not any(a <= m.start() < b for a, b in used)
@@ -202,11 +271,11 @@ def scan_line(rs: Resolver, source: str, lineno: int, line: str) -> list[Ref]:
             used.append((m.start(), m.end()))
             sec, n = m.group("sec"), int(m.group("n"))
             if not is_canon_ref(line, m.start()):
-                out.append(Ref("unqualified", f"§{sec}-{n}", "resolved", (), source, lineno, m.group(0)))
+                out.append(Ref("unqualified", f"§{sec}-{n}", "resolved", (), source, lineno, m.group(0), usage_at(m.start()), lsha))
                 continue
             verdict, hits = rs.resolve_item(sec, n, None)
             sep = " 第" if label == "cn" else "-"
-            out.append(Ref("item", f"§{sec}{sep}{n}", verdict, hits, source, lineno, m.group(0)))
+            out.append(Ref("item", f"§{sec}{sep}{n}", verdict, hits, source, lineno, m.group(0), usage_at(m.start()), lsha))
 
     for m in RE_SEC.finditer(line):
         if not free(m):
@@ -215,15 +284,15 @@ def scan_line(rs: Resolver, source: str, lineno: int, line: str) -> list[Ref]:
         sec = m.group("sec")
         doc = (m.group("doc") or "").strip() or None
         if doc is None and not is_canon_ref(line, m.start()):
-            out.append(Ref("unqualified", f"§{sec}", "resolved", (), source, lineno, m.group(0)))
+            out.append(Ref("unqualified", f"§{sec}", "resolved", (), source, lineno, m.group(0), usage_at(m.start()), lsha))
             continue
         verdict, hits = rs.resolve_section(sec, doc)
         label = f"{doc} §{sec}" if doc else f"§{sec}"
-        out.append(Ref("section", label, verdict, hits, source, lineno, m.group(0)))
+        out.append(Ref("section", label, verdict, hits, source, lineno, m.group(0), usage_at(m.start()), lsha))
 
     for m in RE_RULING.finditer(line):
         verdict, hits = rs.resolve_ruling(m.group("n"))
-        out.append(Ref("ruling", f"R-G{m.group('n')}", verdict, hits, source, lineno, m.group(0)))
+        out.append(Ref("ruling", f"R-G{m.group('n')}", verdict, hits, source, lineno, m.group(0), usage_at(m.start()), lsha))
     return out
 
 
@@ -260,24 +329,47 @@ def waiver_reason(root: Path, r: "Ref", fence_cache: dict) -> str:
     return "active-backlog"
 
 
+def line_sha8(text: str) -> str:
+    """該行內容之 sha8（去尾端空白）—— waiver 鍵之一部分。"""
+    return hashlib.sha256(text.rstrip().encode("utf-8")).hexdigest()[:8]
+
+
 def waiver_key(r: "Ref") -> tuple:
-    return (r.source, r.line, r.kind, r.target)
+    return (r.source, r.kind, r.target, r.line_sha8)
 
 
 def load_waiver(path: Path) -> dict:
-    """讀 waiver tsv → {key: reason}；檔不存在時回空 dict。"""
+    """讀 waiver tsv → {key: (reason, line)}；檔不存在時回空 dict。
+
+    **相容舊格式**（`source line kind target reason`）：其無 `line_sha8`，
+    以 `legacy` 佔位載入，由 `--migrate-waiver` 一次性遷移。
+    """
     if not path.exists():
         return {}
     out = {}
-    for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-        if not line.strip() or lineno == 1:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if not lines:
+        return {}
+    header = lines[0].split("\t")
+    legacy = "line_sha8" not in header
+    for line in lines[1:]:
+        if not line.strip():
             continue
-        cols = line.split("\t")
-        if len(cols) < 5:
-            continue
-        source, ln, kind, target, reason = cols[:5]
-        out[(source, int(ln), kind, target)] = reason
+        c = line.split("\t")
+        if legacy and len(c) >= 5:
+            out[(c[0], c[2], c[3], "legacy")] = (c[4], c[1])
+        elif not legacy and len(c) >= 6:
+            out[(c[0], c[1], c[2], c[3])] = (c[5], c[4])
     return out
+
+
+def waiver_hit(waived: dict, r: "Ref") -> str | None:
+    """查該引用是否已豁免。舊格式以 `legacy` 鍵 fallback（遷移期）。"""
+    v = waived.get(waiver_key(r))
+    if v is not None:
+        return v[0]
+    v = waived.get((r.source, r.kind, r.target, "legacy"))
+    return v[0] if v is not None else None
 
 
 def in_scan_surface(rel: Path) -> bool:
@@ -309,10 +401,18 @@ def collect(root: Path) -> tuple[Resolver, list[Ref], int]:
         except UnicodeDecodeError:
             continue
         n_files += 1
+        in_fence = False
+        in_sup = False
         for lineno, line in enumerate(lines, 1):
+            if line.lstrip().startswith("```"):
+                in_fence = not in_fence
+            if RE_SUPERSEDED_MARK.search(line):
+                in_sup = True
+            elif in_sup and not line.lstrip().startswith(">") and line.strip():
+                in_sup = False          # blockquote 結束即離開 [SUPERSEDED] 區
             if "§" not in line and "R-G" not in line:
                 continue
-            refs.extend(scan_line(rs, str(rel), lineno, line))
+            refs.extend(scan_line(rs, str(rel), lineno, line, in_fence, in_sup))
     return rs, refs, n_files
 
 
@@ -348,6 +448,8 @@ def main() -> int:
         seen: set = set()
         rows = []
         for r in bad_all:                       # 同一行同一 target 重複者去重（鍵相同）
+            if r.usage == "mention":            # 提及非使用，不入 waiver（27 包 §三）
+                continue
             if waiver_key(r) in seen:
                 continue
             seen.add(waiver_key(r))
@@ -355,7 +457,7 @@ def main() -> int:
         rows.sort(key=lambda x: (x[0].source, x[0].line, x[0].target))
         body = "\n".join(
             ["\t".join(WAIVER_COLUMNS)]
-            + [f"{r.source}\t{r.line}\t{r.kind}\t{r.target}\t{reason}"
+            + [f"{r.source}\t{r.kind}\t{r.target}\t{r.line_sha8}\t{r.line}\t{reason}"
                for r, reason in rows]
         ) + "\n"
         out = root / args.emit_waiver
@@ -375,13 +477,14 @@ def main() -> int:
     if args.waiver:
         wpath = root / args.waiver
         waived = load_waiver(wpath)
-        live = {waiver_key(r) for r in bad_all}
-        stale = [k for k in waived if k not in live]
+        live = {waiver_key(r) for r in bad_all if r.usage == "use"}
+        stale = [k for k in waived if k not in live and k[3] != "legacy"]
 
+    mentions = [r for r in qualified if r.verdict != "resolved" and r.usage == "mention"]
     unresolved = [r for r in qualified if r.verdict == "unresolved"
-                  and waiver_key(r) not in waived]
+                  and r.usage == "use" and waiver_hit(waived, r) is None]
     ambiguous = [r for r in qualified if r.verdict == "ambiguous"
-                 and waiver_key(r) not in waived]
+                 and r.usage == "use" and waiver_hit(waived, r) is None]
     unqualified = [r for r in refs if r.kind == "unqualified"]
 
     print(f"\n掃描 {n_files} 檔，引用 {len(refs)} 處"
@@ -392,12 +495,13 @@ def main() -> int:
               f"{sum(1 for r in sub if r.verdict == 'unresolved'):>5}   ambiguous "
               f"{sum(1 for r in sub if r.verdict == 'ambiguous'):>5}")
     if args.waiver:
-        n_waived = sum(1 for r in bad_all if waiver_key(r) in waived)
+        n_waived = sum(1 for r in bad_all if waiver_hit(waived, r) is not None)
         print(f"\nwaiver {args.waiver}：{len(waived)} 列，本跑命中 {n_waived} 處，"
               f"stale {len(stale)} 列（清單內而現已不存在；只減不增，不 FAIL）")
     print(f"\nunresolved  = {len(unresolved)}   （waiver 外）" if args.waiver
           else f"\nunresolved  = {len(unresolved)}")
     print(f"ambiguous   = {len(ambiguous)}" + ("   （waiver 外）" if args.waiver else ""))
+    print(f"mention     = {len(mentions)}   （提及非使用，不計入 FAIL；27 包 §三）")
     print(f"unqualified = {len(unqualified)}   （盲區，不計入 FAIL）")
 
     if args.report:

@@ -1,578 +1,457 @@
-source	line	kind	target	reason
-docs/fw036/CANON_DRAFT_r16_delivery_integrity.md	15	section	§0	active-backlog
-docs/fw036/CANON_DRAFT_r16_delivery_integrity.md	60	section	§0	active-backlog
-docs/fw036/CANON_DRAFT_r16_delivery_integrity.md	161	section	§6a	active-backlog
-docs/fw036/FEATURE_ONBOARDING.md	786	section	§9	verbatim-ruling-text
-docs/fw036/MECHANISM_FIXES_20260821.md	39	section	§8.4	active-backlog
-docs/fw036/RD1_amfm_submission.md	6	section	§7	active-backlog
-docs/fw036/RD1_projection_submission.md	162	section	§8.2	active-backlog
-docs/fw036/RD1_sxm_submission.md	10	section	§7	active-backlog
-docs/fw036/RESYNC_proposal_projection_closeout.md	99	section	§2	active-backlog
-docs/fw036/RULE_COMPLIANCE_SURVEY_20260821.md	38	section	§6	active-backlog
-docs/fw036/handoff/10_BATCH_PLAYBOOK_A.md	39	section	§8.5	historical-record
-docs/fw036/handoff/15_r12_precondition_specref.md	39	section	§2	historical-record
-docs/fw036/handoff/20_pm_closeout.md	13	section	§1	historical-record
-docs/fw036/handoff/22_process_improvement.md	58	section	§9	historical-record
-docs/fw036/handoff/22_process_improvement.md	65	section	§9	historical-record
-docs/fw036/handoff/22_process_improvement.md	164	section	§9	historical-record
-docs/fw036/handoff/22_process_improvement.md	165	section	§9	historical-record
-docs/fw036/handoff/22_process_improvement.md	198	section	§9	historical-record
-docs/fw036/handoff/23_process_improvement.md	71	section	§9	historical-record
-docs/fw036/handoff/23_process_improvement.md	78	section	§9	historical-record
-docs/fw036/handoff/23_process_improvement.md	177	section	§9	historical-record
-docs/fw036/handoff/23_process_improvement.md	178	section	§9	historical-record
-docs/fw036/handoff/23_process_improvement.md	216	section	§9	historical-record
-docs/fw036/handoff/23b_wp2_supplement.md	39	section	§9	historical-record
-docs/fw036/handoff/23b_wp2_supplement.md	88	section	§3	historical-record
-docs/fw036/handoff/24_wp1_continuation.md	41	section	§7.3	historical-record
-docs/fw036/handoff/24_wp1_continuation.md	65	section	§9	historical-record
-docs/fw036/handoff/24_wp1_continuation.md	85	section	§8.1	historical-record
-docs/fw036/handoff/24_wp1_continuation.md	85	section	§9	historical-record
-docs/fw036/handoff/24_wp1_continuation.md	110	section	§7.3	historical-record
-docs/fw036/handoff/24_wp1_continuation.md	119	section	§9	historical-record
-docs/fw036/handoff/25_wp2.md	40	section	§9	historical-record
-docs/fw036/handoff/25_wp2.md	109	section	§3	historical-record
-docs/fw036/upstream/05_pm_batch2.md	56	section	§7	historical-record
-docs/fw036/upstream/20_pm_closeout.md	118	section	§1	historical-record
-docs/fw036/upstream/23a_wp1.md	18	section	§9	historical-record
-docs/fw036/upstream/23a_wp1.md	152	section	§8.2	historical-record
-docs/fw036/upstream/23a_wp1.md	153	section	§6	historical-record
-docs/fw036/upstream/23a_wp1.md	154	section	§2	historical-record
-docs/fw036/upstream/23a_wp1.md	155	section	§3	historical-record
-docs/fw036/upstream/23a_wp1.md	156	section	§0	historical-record
-docs/fw036/upstream/23a_wp1.md	157	section	§8.4	historical-record
-docs/fw036/upstream/23a_wp1.md	158	section	§9	historical-record
-docs/fw036/upstream/23a_wp1.md	159	section	§4	historical-record
-docs/fw036/upstream/23a_wp1.md	160	section	§7	historical-record
-docs/fw036/upstream/23a_wp1.md	161	section	§5	historical-record
-docs/fw036/upstream/23a_wp1.md	162	section	§8	historical-record
-docs/fw036/upstream/23a_wp1.md	163	section	§1	historical-record
-docs/fw036/upstream/23a_wp1.md	165	section	§8.4	historical-record
-docs/fw036/upstream/23a_wp1.md	179	section	§7.3	historical-record
-docs/fw036/upstream/23a_wp1.md	184	section	§7.3	historical-record
-docs/fw036/upstream/23a_wp1.md	196	section	§9	historical-record
-docs/fw036/upstream/23a_wp1.md	198	section	§9	historical-record
-docs/fw036/upstream/23a_wp1.md	199	section	§9	historical-record
-docs/fw036/upstream/23a_wp1.md	329	item	§8.5-1	historical-record
-docs/fw036/upstream/23a_wp1.md	329	item	§8.5-2	historical-record
-docs/fw036/upstream/23a_wp1.md	329	item	§8.5-3	historical-record
-docs/fw036/upstream/24_wp1_continuation.md	37	section	§7.3	historical-record
-docs/fw036/upstream/24_wp1_continuation.md	60	section	§7.3	historical-record
-docs/fw036/upstream/24_wp1_continuation.md	70	section	§7.3	historical-record
-docs/fw036/upstream/24_wp1_continuation.md	238	section	§6	historical-record
-docs/fw036/upstream/24_wp1_continuation.md	319	section	§9	historical-record
-docs/fw036/upstream/24_wp1_continuation.md	330	section	§9	historical-record
-docs/fw036/upstream/24_wp1_continuation.md	340	section	§8.4	historical-record
-docs/fw036/upstream/24_wp1_continuation.md	401	section	§7.3	historical-record
-docs/fw036/upstream/25_wp2.md	65	section	§3	historical-record
-docs/fw036/upstream/25_wp2.md	150	section	§9	historical-record
-docs/fw036/upstream/25_wp2.md	153	section	§8.7	historical-record
-docs/fw036/upstream/25_wp2.md	159	section	§8.1	historical-record
-docs/fw036/upstream/25_wp2.md	160	section	§8.7	historical-record
-docs/fw036/upstream/25_wp2.md	161	section	§8.2	historical-record
-docs/fw036/upstream/25_wp2.md	162	section	§0	historical-record
-docs/fw036/upstream/25_wp2.md	163	section	§8.2	historical-record
-docs/fw036/upstream/25_wp2.md	164	section	§7	historical-record
-docs/fw036/upstream/25_wp2.md	165	section	§7	historical-record
-docs/fw036/upstream/25_wp2.md	166	section	§3	historical-record
-docs/fw036/upstream/25_wp2.md	167	section	§8.7	historical-record
-docs/fw036/upstream/25_wp2.md	168	section	§3	historical-record
-docs/fw036/upstream/25_wp2.md	168	section	§8.7	historical-record
-docs/runtime/OPERATING_CHARTER.md	82	section	§6	active-backlog
-docs/runtime/OPERATING_CHARTER.md	83	section	§6	active-backlog
-docs/runtime/PROJECT_INSTRUCTION.md	82	section	§6	active-backlog
-docs/runtime/PROJECT_INSTRUCTION.md	83	section	§6	active-backlog
-docs/runtime/profiles/FW036_R1L_Comfort_Profile.md	115	section	§2	active-backlog
-docs/runtime/profiles/FW036_R1L_Privacy_Profile.md	31	section	§2	active-backlog
-docs/runtime/profiles/FW036_R1L_Privacy_Profile.md	136	section	§2	active-backlog
-docs/runtime/profiles/FW036_R1L_Privacy_Profile.md	434	section	§0	active-backlog
-docs/runtime/profiles/FW036_R1L_Projection_Profile.md	22	section	§2	active-backlog
-docs/runtime/profiles/FW036_R1L_Projection_Profile.md	464	section	§6	active-backlog
-docs/runtime/profiles/FW036_R1L_Projection_Profile.md	544	section	§6	active-backlog
-docs/runtime/profiles/FW036_R1L_SXM_Profile.md	62	section	§2	active-backlog
-docs/runtime/profiles/FW036_R1L_VehicleSetting_Profile.md	101	section	§0	active-backlog
-features/amfm/DECISIONS.md	3	section	§4	active-backlog
-features/amfm/PLAYBOOK.md	14	section	§0	active-backlog
-features/amfm/PLAYBOOK.md	73	section	§0	active-backlog
-features/amfm/PLAYBOOK.md	95	section	§6	active-backlog
-features/amfm/PLAYBOOK.md	153	section	§5	active-backlog
-features/amfm/PLAYBOOK.md	224	section	§6	active-backlog
-features/amfm/RULINGS.md	281	section	§6	active-backlog
-features/amfm/RULINGS.md	538	section	§0	active-backlog
-features/amfm/RUNBOOK.md	40	section	§3	active-backlog
-features/amfm/RUNBOOK.md	561	section	§6	active-backlog
-features/amfm/docs/handoff/01_closeout.md	112	section	§6	historical-record
-features/amfm/docs/handoff/01_closeout.md	196	section	§0	historical-record
-features/amfm/docs/handoff/02_integrity.md	136	section	§0	historical-record
-features/amfm/docs/handoff/02_integrity.md	205	section	§2	historical-record
-features/amfm/docs/handoff/04_wrapup.md	44	section	§0	historical-record
-features/amfm/docs/handoff/06_writeback_paths.md	171	section	§1	historical-record
-features/amfm/docs/upstream/01_closeout.md	118	section	§6	historical-record
-features/amfm/feature.yaml	51	section	§3	active-backlog
-features/amfm/scripts/write_back.py	452	section	§6	active-backlog
-features/amfm/scripts/write_back.py	504	section	§0	active-backlog
-features/comfort/DECISIONS.md	3	section	§4	active-backlog
-features/comfort/PLAYBOOK.md	53	section	§0	active-backlog
-features/comfort/PLAYBOOK.md	75	section	§6	active-backlog
-features/comfort/PLAYBOOK.md	124	section	§5	active-backlog
-features/comfort/RULINGS.md	153	section	§4	active-backlog
-features/comfort/RULINGS.md	208	section	§5	active-backlog
-features/comfort/RULINGS.md	233	section	§7	active-backlog
-features/comfort/RULINGS.md	283	section	§7	active-backlog
-features/comfort/RULINGS.md	351	section	§8	active-backlog
-features/comfort/RULINGS.md	372	section	§6	active-backlog
-features/comfort/RULINGS.md	398	section	§6	active-backlog
-features/comfort/RULINGS.md	422	section	§8	active-backlog
-features/comfort/RULINGS.md	453	section	§6	active-backlog
-features/comfort/RULINGS.md	500	section	§6	active-backlog
-features/comfort/RULINGS.md	541	section	§6	active-backlog
-features/comfort/RULINGS.md	593	section	§5	active-backlog
-features/comfort/docs/handoff/01_phase0_intake.md	26	section	§2	historical-record
-features/comfort/docs/handoff/07_upstream03_review.md	131	section	§3	historical-record
-features/comfort/docs/handoff/09_upstream04_review.md	136	section	§4	historical-record
-features/comfort/docs/handoff/10_phase3_start.md	113	section	§0	historical-record
-features/comfort/docs/handoff/15_profile_draft.md	66	section	§2	historical-record
-features/comfort/docs/handoff/17_g1_baseline_exhaustiveness.md	149	section	§1	historical-record
-features/comfort/docs/handoff/17_g1_baseline_exhaustiveness.md	149	section	§3	historical-record
-features/comfort/docs/handoff/19_pilot_rulings.md	191	section	§2	historical-record
-features/comfort/docs/handoff/19_pilot_rulings.md	191	section	§4	historical-record
-features/comfort/docs/handoff/22_rev3_review.md	132	section	§6	historical-record
-features/comfort/docs/handoff/23_rev4_review.md	143	section	§1	historical-record
-features/comfort/docs/handoff/23_rev4_review.md	143	section	§2	historical-record
-features/comfort/docs/handoff/29_axes_rc29_rc30.md	151	section	§2	historical-record
-features/comfort/docs/handoff/30_batch2_content_review.md	156	section	§1	historical-record
-features/comfort/docs/handoff/33_rc33_axes.md	28	section	§8.1	historical-record
-features/comfort/docs/handoff/33_rc33_axes.md	182	section	§3	historical-record
-features/comfort/docs/handoff/91_closeout.md	34	section	§4	historical-record
-features/comfort/docs/handoff/91_closeout.md	102	section	§4	historical-record
-features/comfort/docs/upstream/02_phase2_review.md	28	section	§4	historical-record
-features/comfort/docs/upstream/02_phase2_review.md	217	section	§2	historical-record
-features/comfort/docs/upstream/10_pilot_and_exhaustiveness.md	280	section	§9	historical-record
-features/comfort/docs/upstream/10_pilot_and_exhaustiveness.md	286	section	§9	historical-record
-features/comfort/docs/upstream/20_batch2_final.md	293	section	§9	historical-record
-features/comfort/feature.yaml	21	section	§3	active-backlog
-features/comfort/feature.yaml	68	section	§2	active-backlog
-features/comfort/scripts/build_layer3_map.py	5	section	§0	active-backlog
-features/comfort/scripts/lint_tcs.py	272	section	§1	active-backlog
-features/display/docs/handoff/01_intake_recon.md	74	section	§0	historical-record
-features/display/docs/handoff/01_intake_recon.md	312	section	§2	historical-record
-features/display/docs/handoff/01_intake_recon.md	317	section	§3	historical-record
-features/display/docs/handoff/01_intake_recon.md	337	section	§0	historical-record
-features/home/DECISIONS.md	3	section	§4	active-backlog
-features/home/PLAYBOOK.md	14	section	§0	active-backlog
-features/home/PLAYBOOK.md	78	section	§0	active-backlog
-features/home/PLAYBOOK.md	100	section	§6	active-backlog
-features/home/PLAYBOOK.md	149	section	§5	active-backlog
-features/power/DECISIONS.md	3	section	§4	active-backlog
-features/power/PLAYBOOK.md	53	section	§0	active-backlog
-features/power/PLAYBOOK.md	75	section	§6	active-backlog
-features/power/PLAYBOOK.md	124	section	§5	active-backlog
-features/power/RUNBOOK.md	9	section	§3	active-backlog
-features/power/docs/upstream/12_pilot_fixes.md	1289	section	§8.5	historical-record
-features/power/feature.yaml	73	section	§2	active-backlog
-features/power_moding/ANOMALIES.md	88	section	§3	active-backlog
-features/power_moding/ANOMALIES.md	130	section	§3	active-backlog
-features/power_moding/ANOMALIES.md	350	section	§2	active-backlog
-features/power_moding/DECISIONS.md	3	section	§4	active-backlog
-features/power_moding/PLAYBOOK.md	53	section	§0	active-backlog
-features/power_moding/PLAYBOOK.md	75	section	§6	active-backlog
-features/power_moding/PLAYBOOK.md	124	section	§5	active-backlog
-features/power_moding/RULINGS.md	86	section	§2	active-backlog
-features/power_moding/RULINGS.md	89	section	§3	active-backlog
-features/power_moding/RUNBOOK.md	9	section	§3	active-backlog
-features/power_moding/docs/INDEX.md	3	section	§8.7	active-backlog
-features/power_moding/docs/INDEX.md	44	section	§2	active-backlog
-features/power_moding/docs/INDEX.md	50	section	§3	active-backlog
-features/power_moding/docs/handoff/01_intake.md	106	section	§2	historical-record
-features/power_moding/docs/handoff/01_intake.md	109	section	§3	historical-record
-features/power_moding/docs/handoff/01_intake.md	182	section	§2	historical-record
-features/power_moding/docs/handoff/01_intake.md	188	section	§2	historical-record
-features/power_moding/docs/handoff/01_intake.md	228	section	§2	historical-record
-features/power_moding/docs/handoff/01_intake.md	232	section	§3	historical-record
-features/power_moding/docs/handoff/01_intake.md	247	section	§0	historical-record
-features/power_moding/docs/handoff/01_intake.md	270	section	§2	historical-record
-features/power_moding/docs/handoff/02_baseline_switch.md	46	section	§3	historical-record
-features/power_moding/docs/handoff/02_baseline_switch.md	209	section	§0	historical-record
-features/power_moding/docs/handoff/03_testgroup_and_dv.md	229	section	§0	historical-record
-features/power_moding/docs/handoff/04_corpus_and_assertions.md	269	section	§0	historical-record
-features/power_moding/docs/handoff/05_corpus_fix_and_framework_prep.md	205	section	§0	historical-record
-features/power_moding/docs/handoff/06_framework_proposal.md	294	section	§0	historical-record
-features/power_moding/docs/handoff/07_gap_widening.md	208	section	§0	historical-record
-features/power_moding/docs/handoff/08_criterion_repair.md	192	section	§0	historical-record
-features/power_moding/docs/handoff/09_threshold_derivation.md	198	section	§0	historical-record
-features/power_moding/docs/handoff/10_profile_draft.md	398	section	§0	historical-record
-features/power_moding/docs/handoff/11_claim_evidence.md	153	section	§0	historical-record
-features/power_moding/docs/upstream/01_intake.md	173	section	§2	historical-record
-features/power_moding/docs/upstream/01_intake.md	214	section	§2	historical-record
-features/power_moding/docs/upstream/01_intake.md	264	section	§3	historical-record
-features/power_moding/docs/upstream/01_intake.md	309	section	§3	historical-record
-features/power_moding/docs/upstream/01_intake.md	312	section	§3	historical-record
-features/power_moding/docs/upstream/01_intake.md	421	section	§3	historical-record
-features/power_moding/docs/upstream/01_intake.md	514	section	§0	historical-record
-features/power_moding/docs/upstream/02_baseline_switch.md	305	section	§2	historical-record
-features/power_moding/docs/upstream/06_framework_proposal.md	152	section	§8.2	historical-record
-features/power_moding/feature.yaml	90	section	§3	active-backlog
-features/power_moding/feature.yaml	178	section	§2	active-backlog
-features/power_moding/framework.md	68	section	§8.2	active-backlog
-features/privacy/ANOMALIES.md	78	section	§6	active-backlog
-features/privacy/DECISIONS.md	3	section	§4	active-backlog
-features/privacy/PLAYBOOK.md	14	section	§0	active-backlog
-features/privacy/PLAYBOOK.md	77	section	§0	active-backlog
-features/privacy/PLAYBOOK.md	99	section	§6	active-backlog
-features/privacy/PLAYBOOK.md	148	section	§5	active-backlog
-features/privacy/RUNBOOK.md	9	section	§3	active-backlog
-features/privacy/docs/handoff/00_bootstrap.md	192	section	§0	historical-record
-features/privacy/docs/upstream/00_bootstrap.md	192	section	§2	historical-record
-features/privacy/docs/upstream/04_framework.md	147	section	§2	historical-record
-features/privacy/docs/upstream/04_framework.md	203	section	§2	historical-record
-features/privacy/docs/upstream/04_framework.md	391	section	§0	historical-record
-features/privacy/feature.yaml	22	section	§3	active-backlog
-features/privacy/feature.yaml	67	section	§2	active-backlog
-features/projection/ANOMALIES.md	1567	section	§7.6	active-backlog
-features/projection/ANOMALIES.md	1569	section	§7.6	active-backlog
-features/projection/ANOMALIES.md	2068	section	§6	active-backlog
-features/projection/ANOMALIES.md	2083	section	§6	active-backlog
-features/projection/ANOMALIES.md	2244	section	§7	active-backlog
-features/projection/ANOMALIES.md	2255	section	§7	active-backlog
-features/projection/ANOMALIES.md	2255	section	§8	active-backlog
-features/projection/ANOMALIES.md	2257	section	§8.2	active-backlog
-features/projection/DECISIONS.md	3	section	§4	active-backlog
-features/projection/DECISIONS.md	542	section	§6	active-backlog
-features/projection/DECISIONS.md	913	section	§6	active-backlog
-features/projection/DECISIONS.md	914	section	§6	active-backlog
-features/projection/DECISIONS.md	915	section	§6	active-backlog
-features/projection/DECISIONS.md	1059	section	§3	active-backlog
-features/projection/DECISIONS.md	1575	section	§6	active-backlog
-features/projection/DECISIONS.md	1580	section	§6	active-backlog
-features/projection/DECISIONS.md	1610	section	§7.2	active-backlog
-features/projection/DECISIONS.md	1610	section	§8.2	active-backlog
-features/projection/DECISIONS.md	1623	section	§7.2	active-backlog
-features/projection/DECISIONS.md	1689	section	§8	active-backlog
-features/projection/DECISIONS.md	1691	section	§8	active-backlog
-features/projection/DECISIONS.md	1694	section	§8	active-backlog
-features/projection/DECISIONS.md	1694	section	§8.2	active-backlog
-features/projection/DECISIONS.md	1695	section	§7	active-backlog
-features/projection/DECISIONS.md	1698	section	§8	active-backlog
-features/projection/DECISIONS.md	1754	section	§2	active-backlog
-features/projection/DECISIONS.md	1850	section	§2	active-backlog
-features/projection/PLAYBOOK.md	14	section	§0	active-backlog
-features/projection/PLAYBOOK.md	76	section	§0	active-backlog
-features/projection/PLAYBOOK.md	98	section	§6	active-backlog
-features/projection/PLAYBOOK.md	147	section	§5	active-backlog
-features/projection/RUNBOOK.md	9	section	§2	active-backlog
-features/projection/docs/INDEX.md	32	section	§8	active-backlog
-features/projection/docs/handoff/12_phase7_step6_conditions.md	193	section	§6	historical-record
-features/projection/docs/handoff/14_apj69_rerun.md	139	section	§7	historical-record
-features/projection/docs/handoff/15_phase7_closeout.md	143	section	§7	historical-record
-features/projection/docs/handoff/15_phase7_closeout.md	169	section	§7	historical-record
-features/projection/docs/handoff/15_phase7_closeout.md	205	section	§1	historical-record
-features/projection/docs/handoff/16_closeout_disposition.md	191	section	§5	historical-record
-features/projection/docs/handoff/17_delivery_precheck.md	53	section	§7.3	historical-record
-features/projection/docs/handoff/17_delivery_precheck.md	133	section	§1	historical-record
-features/projection/docs/handoff/19_sidecar_policy.md	4	section	§6	historical-record
-features/projection/docs/handoff/19_sidecar_policy.md	20	section	§6	historical-record
-features/projection/docs/handoff/19_sidecar_policy.md	23	section	§6	historical-record
-features/projection/docs/handoff/19_sidecar_policy.md	31	section	§6	historical-record
-features/projection/docs/handoff/19_sidecar_policy.md	44	section	§6	historical-record
-features/projection/docs/handoff/19_sidecar_policy.md	66	section	§6	historical-record
-features/projection/docs/handoff/19_sidecar_policy.md	109	section	§1	historical-record
-features/projection/docs/handoff/20_archive_and_charter.md	96	section	§7.2	historical-record
-features/projection/docs/handoff/20_archive_and_charter.md	185	section	§6	historical-record
-features/projection/docs/handoff/20_archive_and_charter.md	186	section	§6	historical-record
-features/projection/docs/handoff/20_archive_and_charter.md	202	section	§6	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	1	section	§8	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	4	section	§7.2	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	46	section	§7.2	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	48	section	§7	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	50	section	§7	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	59	section	§8	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	61	section	§8	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	61	section	§8.2	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	62	section	§7	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	208	section	§7.2	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	208	section	§8.2	historical-record
-features/projection/docs/handoff/21_canon_s8_and_charter.md	239	section	§8	historical-record
-features/projection/docs/handoff/22_rp99_and_git.md	48	section	§8.2	historical-record
-features/projection/docs/handoff/22_rp99_and_git.md	69	section	§8.7	historical-record
-features/projection/docs/handoff/22_rp99_and_git.md	198	section	§6	historical-record
-features/projection/docs/reports/dryrun_report.md	113	section	§5	active-backlog
-features/projection/docs/reports/dryrun_report.md	211	section	§6	active-backlog
-features/projection/docs/upstream/20_archive_and_charter.md	222	section	§7.2	historical-record
-features/projection/docs/upstream/20_archive_and_charter.md	224	section	§7.2	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	1	section	§8	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	18	section	§8	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	20	section	§8.2	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	75	section	§8	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	121	item	§5 第2	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	121	section	§8	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	174	section	§0.27	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	174	section	§8.2	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	233	section	§3	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	233	section	§8	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	242	section	§8	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	297	section	§8	historical-record
-features/projection/docs/upstream/21_canon_s8_and_charter.md	327	section	§8	historical-record
-features/projection/docs/upstream/22_rp99_and_git.md	19	section	§8	historical-record
-features/projection/docs/upstream/22_rp99_and_git.md	65	section	§8.7	historical-record
-features/projection/docs/upstream/22_rp99_and_git.md	404	section	§8.7	historical-record
-features/projection/feature.yaml	6	section	§2	active-backlog
-features/projection/feature.yaml	227	section	§2	active-backlog
-features/sxm/DECISIONS.md	3	section	§4	active-backlog
-features/sxm/PLAYBOOK.md	14	section	§0	active-backlog
-features/sxm/PLAYBOOK.md	77	section	§0	active-backlog
-features/sxm/PLAYBOOK.md	99	section	§6	active-backlog
-features/sxm/PLAYBOOK.md	148	section	§5	active-backlog
-features/sxm/RUNBOOK.md	17	section	§3	active-backlog
-features/sxm/feature.yaml	135	section	§2	active-backlog
-features/time_management/DECISIONS.md	3	section	§4	active-backlog
-features/time_management/PLAYBOOK.md	53	section	§0	active-backlog
-features/time_management/PLAYBOOK.md	75	section	§6	active-backlog
-features/time_management/PLAYBOOK.md	124	section	§5	active-backlog
-features/time_management/RULINGS.md	306	section	§0	active-backlog
-features/time_management/RUNBOOK.md	9	section	§3	active-backlog
-features/time_management/docs/handoff/00Z_closure.md	100	section	§3.3	historical-record
-features/time_management/docs/handoff/01R_review_of_upstream.md	170	section	§0	historical-record
-features/time_management/docs/handoff/01Z_naming_rulings.md	61	section	§0	historical-record
-features/time_management/docs/handoff/01_recon.md	87	section	§2	historical-record
-features/time_management/docs/handoff/01_recon.md	126	section	§0	historical-record
-features/time_management/docs/handoff/04Z-A2_backend_review.md	191	section	§6.5	historical-record
-features/time_management/docs/handoff/05Z_canon_adoption.md	6	section	§2	historical-record
-features/time_management/docs/handoff/05Z_canon_adoption.md	159	section	§2	historical-record
-features/time_management/docs/handoff/05Z_canon_adoption.md	305	section	§2	historical-record
-features/time_management/docs/handoff/08_style.md	183	section	§6	historical-record
-features/time_management/docs/handoff/09_constants.md	90	section	§3.2	historical-record
-features/time_management/docs/handoff/10_constants_v3.md	133	section	§3.2	historical-record
-features/time_management/docs/handoff/22_sys3.md	93	section	§8.2	historical-record
-features/time_management/docs/handoff/22_sys3.md	171	section	§8.2	historical-record
-features/time_management/docs/handoff/23_sys3_result.md	95	section	§8.2	historical-record
-features/time_management/docs/handoff/23_sys3_result.md	160	section	§8.2	historical-record
-features/time_management/docs/handoff/23_sys3_result.md	174	section	§8.2	historical-record
-features/time_management/docs/upstream/01_recon.md	248	section	§0	historical-record
-features/time_management/docs/upstream/04Z-A5_corrections.md	75	section	§3.2	historical-record
-features/time_management/docs/upstream/05Z_corrections.md	201	section	§2.3	historical-record
-features/time_management/feature.yaml	15	section	§3	active-backlog
-features/time_management/feature.yaml	51	section	§2	active-backlog
-features/time_management/scripts/build_batch_context.py	433	section	§4	active-backlog
-features/time_management/scripts/write_back.py	31	section	§2	active-backlog
-features/time_management/scripts/write_back.py	255	section	§2	active-backlog
-features/user_profiles/ANOMALIES.md	83	section	§0	active-backlog
-features/user_profiles/ANOMALIES.md	203	section	§8.5	active-backlog
-features/user_profiles/DECISIONS.md	3	section	§4	active-backlog
-features/user_profiles/PLAYBOOK.md	53	section	§0	active-backlog
-features/user_profiles/PLAYBOOK.md	75	section	§6	active-backlog
-features/user_profiles/PLAYBOOK.md	124	section	§5	active-backlog
-features/user_profiles/RULINGS.md	795	section	§9	active-backlog
-features/user_profiles/RULINGS.md	797	section	§9	active-backlog
-features/user_profiles/docs/INDEX.md	21	section	§9	active-backlog
-features/user_profiles/docs/INDEX.md	1285	section	§9	active-backlog
-features/user_profiles/docs/handoff/10a_rulings.md	32	section	§9	historical-record
-features/user_profiles/docs/handoff/10a_rulings.md	34	section	§9	historical-record
-features/user_profiles/docs/handoff/55_test_item_two_parts.md	30	section	§1	historical-record
-features/user_profiles/docs/upstream/01_intake.md	220	item	§8.5 第2	historical-record
-features/user_profiles/docs/upstream/01_intake.md	388	section	§8.3	historical-record
-features/user_profiles/docs/upstream/01_intake.md	490	section	§4	historical-record
-features/user_profiles/docs/upstream/01_intake.md	567	section	§8.3	historical-record
-features/user_profiles/docs/upstream/01_intake.md	624	item	§8.5 第2	historical-record
-features/user_profiles/docs/upstream/02_rulings_execution.md	244	section	§3	historical-record
-features/user_profiles/docs/upstream/09_ruling_consolidation.md	14	section	§9	historical-record
-features/user_profiles/docs/upstream/09_ruling_consolidation.md	41	section	§9	historical-record
-features/user_profiles/docs/upstream/09_ruling_consolidation.md	172	section	§9	historical-record
-features/user_profiles/docs/upstream/09_ruling_consolidation.md	214	item	§5 第1	historical-record
-features/user_profiles/docs/upstream/09_ruling_consolidation.md	214	section	§9	historical-record
-features/user_profiles/docs/upstream/13_pilot_generated.md	223	section	§7	historical-record
-features/user_profiles/docs/upstream/13_pilot_generated.md	234	section	§7	historical-record
-features/user_profiles/docs/upstream/14_pilot_fixes.md	317	section	§9	historical-record
-features/user_profiles/docs/upstream/18_batch02_sample.md	27	section	§7	historical-record
-features/user_profiles/docs/upstream/18_batch02_sample.md	94	section	§7	historical-record
-features/user_profiles/docs/upstream/48_delivery_build.md	71	section	§7	historical-record
-features/user_profiles/docs/upstream/53_closeout.md	264	section	§9	historical-record
-features/user_profiles/docs/upstream/58_field_junction_matrix.md	75	section	§9	historical-record
-features/user_profiles/scripts/lint_tcs.py	20	section	§6	active-backlog
-features/vehicle_setting/DATA_REQUESTS.md	392	section	§9	active-backlog
-features/vehicle_setting/DECISIONS.md	3	section	§4	active-backlog
-features/vehicle_setting/PLAYBOOK.md	53	section	§0	active-backlog
-features/vehicle_setting/PLAYBOOK.md	75	section	§6	active-backlog
-features/vehicle_setting/PLAYBOOK.md	124	section	§5	active-backlog
-features/vehicle_setting/RUNBOOK.md	9	section	§3	active-backlog
-features/vehicle_setting/docs/INDEX.md	3	section	§8.7	active-backlog
-features/vehicle_setting/docs/handoff/00_intake_and_rulings.md	58	section	§2	historical-record
-features/vehicle_setting/docs/handoff/00_intake_and_rulings.md	62	section	§2	historical-record
-features/vehicle_setting/docs/handoff/00_intake_and_rulings.md	68	section	§2	historical-record
-features/vehicle_setting/docs/handoff/00_intake_and_rulings.md	189	section	§1	historical-record
-features/vehicle_setting/docs/handoff/03_round01_prompt.md	20	section	§8.2	historical-record
-features/vehicle_setting/docs/handoff/04_review_round01.md	6	section	§2	historical-record
-features/vehicle_setting/docs/handoff/07_review_round02.md	28	section	§8.2	historical-record
-features/vehicle_setting/docs/handoff/07_review_round02.md	160	section	§8.2	historical-record
-features/vehicle_setting/docs/handoff/08_round03_prompt.md	20	section	§8.2	historical-record
-features/vehicle_setting/docs/handoff/13_round04_prompt.md	19	section	§8.2	historical-record
-features/vehicle_setting/docs/handoff/15_rulings2_round05.md	17	section	§8.2	historical-record
-features/vehicle_setting/docs/handoff/34_pilot_batch.md	153	section	§4	historical-record
-features/vehicle_setting/docs/handoff/34_pilot_batch.md	168	section	§9	historical-record
-features/vehicle_setting/docs/handoff/34_pilot_batch.md	180	section	§9	historical-record
-features/vehicle_setting/docs/handoff/54_swc_alignment.md	39	section	§0	historical-record
-features/vehicle_setting/docs/handoff/79_rvs74_and_continue.md	11	section	§7	historical-record
-features/vehicle_setting/docs/handoff/V03_test_group_ruling.md	60	section	§2	historical-record
-features/vehicle_setting/docs/handoff/V10_four_rulings.md	195	section	§8.2	historical-record
-features/vehicle_setting/docs/handoff/V17_delegation_gate.md	59	section	§3	historical-record
-features/vehicle_setting/docs/handoff/V18_delegation_scope.md	86	section	§8.7	historical-record
-features/vehicle_setting/docs/handoff/V20_pilot1_review.md	107	section	§7	historical-record
-features/vehicle_setting/docs/handoff/V20_pilot1_review.md	296	section	§8	historical-record
-features/vehicle_setting/docs/reports/036_baseline.md	41	section	§2	active-backlog
-features/vehicle_setting/docs/reports/DELIVERY.md	199	section	§9	active-backlog
-features/vehicle_setting/docs/upstream/00_intake_and_rulings.md	209	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/01_leaf_universe.md	121	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/02_variables_and_sweep.md	119	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/03_crosscheck_and_overlap.md	104	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/04_extraction_and_overlap.md	78	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/05_parser_fix_and_residual.md	126	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/06_comfort_overlap.md	63	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/07_residual_verification.md	133	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/08_polarity_and_delegation.md	123	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/09_reverse_coverage.md	136	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/10_criterion_and_framework.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/10_criterion_and_framework.md	163	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/11_arch_scope.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/11_arch_scope.md	175	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/12_layer3_and_convergence.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/12_layer3_and_convergence.md	155	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/13_contamination_and_symmetry.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/13_contamination_and_symmetry.md	166	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/14_normalization_and_lock.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/14_normalization_and_lock.md	189	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/15_pilot_batch.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/15_pilot_batch.md	45	section	§9	historical-record
-features/vehicle_setting/docs/upstream/15_pilot_batch.md	132	section	§9	historical-record
-features/vehicle_setting/docs/upstream/15_pilot_batch.md	179	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/16_batch01_rework.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/16_batch01_rework.md	51	section	§9	historical-record
-features/vehicle_setting/docs/upstream/16_batch01_rework.md	129	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/17_batch01_v3_and_batch02.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/17_batch01_v3_and_batch02.md	151	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/18_writability.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/18_writability.md	185	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/19_writability_refined.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/19_writability_refined.md	179	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/20_stable_core.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/20_stable_core.md	205	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/21_proxi_hunt.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/21_proxi_hunt.md	175	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/22_vf664_hunt.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/22_vf664_hunt.md	170	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/23_dr15_exposure.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/23_dr15_exposure.md	137	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/24_batch0809.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/24_batch0809.md	146	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/25_regrade.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/25_regrade.md	161	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/26_uniqueness.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/26_uniqueness.md	144	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/27_proxi_and_pilot2.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/27_proxi_and_pilot2.md	173	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/28_cmd_tlm.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/28_cmd_tlm.md	88	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/29_arch_columns.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/29_arch_columns.md	83	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/30_swc_alignment.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/30_swc_alignment.md	83	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/31_record_and_batch13.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/31_record_and_batch13.md	110	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/32_alignment_and_gate.md	5	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/32_alignment_and_gate.md	124	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/33_priority_pool.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/33_priority_pool.md	107	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/34_redundancy_and_batch15.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/34_redundancy_and_batch15.md	112	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/35_delegation_reopen.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/35_delegation_reopen.md	128	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/35_delegation_reopen.md	150	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/36_domain_and_anchor.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/36_domain_and_anchor.md	99	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/37_pilot_and_writeback.md	5	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/37_pilot_and_writeback.md	99	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/38_threshold_and_preamble.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/38_threshold_and_preamble.md	125	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/39_pilot_fix.md	5	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/39_pilot_fix.md	32	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/39_pilot_fix.md	129	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/40_narrowing.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/40_narrowing.md	27	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/40_narrowing.md	126	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/41_writeback.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/41_writeback.md	29	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/41_writeback.md	133	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/43_split_and_full.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/43_split_and_full.md	27	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/43_split_and_full.md	149	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/44_type_probe.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/44_type_probe.md	26	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/44_type_probe.md	122	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/45_probe_fix.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/45_probe_fix.md	25	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/45_probe_fix.md	97	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/45_probe_fix.md	165	section	§7	historical-record
-features/vehicle_setting/docs/upstream/46_scale_up.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/46_scale_up.md	129	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/46_scale_up.md	200	section	§6	historical-record
-features/vehicle_setting/docs/upstream/46_scale_up.md	200	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/47_fullwrite2.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/47_fullwrite2.md	99	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/47_fullwrite2.md	164	section	§6	historical-record
-features/vehicle_setting/docs/upstream/47_fullwrite2.md	164	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/48_pilot_fix2.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/48_pilot_fix2.md	150	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/48_pilot_fix2.md	213	section	§6	historical-record
-features/vehicle_setting/docs/upstream/48_pilot_fix2.md	213	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/49_delivery.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/49_delivery.md	148	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/49_delivery.md	214	section	§6	historical-record
-features/vehicle_setting/docs/upstream/49_delivery.md	214	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/50_final.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/50_final.md	106	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/50_final.md	171	section	§6	historical-record
-features/vehicle_setting/docs/upstream/50_final.md	171	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/51_baseline.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/51_baseline.md	152	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/51_baseline.md	215	section	§6	historical-record
-features/vehicle_setting/docs/upstream/51_baseline.md	215	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/52_full_l3.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/52_full_l3.md	140	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/52_full_l3.md	206	section	§6	historical-record
-features/vehicle_setting/docs/upstream/52_full_l3.md	206	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/53_inplace_audit.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/53_inplace_audit.md	149	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/53_inplace_audit.md	220	section	§6	historical-record
-features/vehicle_setting/docs/upstream/53_inplace_audit.md	220	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V01_vf230_intake.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V02_vf230_recon.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V06_scope_close.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V07_review_v06.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V08_review_v07.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V09_feature_identity.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V10_four_rulings.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V12_layer2_final.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V14_layer2_enumerate.md	4	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V15_layer2_approved.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V16_p3_done_p4_prep.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V17_delegation_gate.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V17_delegation_gate.md	113	section	§8.7	historical-record
-features/vehicle_setting/docs/upstream/V18_delegation_scope.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V19_pilot_start.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V23_unblock.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V24_pilot1v3.md	3	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V24_pilot1v3.md	148	section	§8.4	historical-record
-features/vehicle_setting/docs/upstream/V24_pilot1v3.md	212	section	§6	historical-record
-features/vehicle_setting/docs/upstream/V24_pilot1v3.md	212	section	§8.2	historical-record
-features/vehicle_setting/docs/upstream/V25_pilot1v4.md	4	section	§8.2	historical-record
-features/vehicle_setting/feature.yaml	51	section	§3	active-backlog
-features/vehicle_setting/feature.yaml	87	section	§2	active-backlog
-features/vehicle_setting/scripts/grade_overrides.py	163	section	§8.7	active-backlog
-features/vehicle_setting/scripts/grade_overrides.py	175	section	§8.7	active-backlog
-features/vehicle_setting/scripts/selfcheck_w53.py	1	section	§9	active-backlog
-features/vehicle_setting/scripts/split_audit_w145.py	3	section	§8.3	active-backlog
-scripts/canon_refs.py	15	section	§9	active-backlog
-scripts/expected_numbers.py	9	item	§8.5-2	active-backlog
-scripts/intake.py	22	section	§3	active-backlog
-scripts/new_feature.py	59	section	§3	active-backlog
-scripts/recon.py	943	section	§2	active-backlog
-scripts/recon.py	947	section	§4	active-backlog
-scripts/rulings_hash.py	48	section	§9	active-backlog
+source	kind	target	line_sha8	line	reason
+docs/fw036/CANON_DRAFT_r16_delivery_integrity.md	section	§0	9559741f	15	active-backlog
+docs/fw036/CANON_DRAFT_r16_delivery_integrity.md	section	§0	80ec1e01	60	active-backlog
+docs/fw036/CANON_DRAFT_r16_delivery_integrity.md	section	§6a	90a8feb9	161	active-backlog
+docs/fw036/MECHANISM_FIXES_20260821.md	section	§8.4	7e5497eb	39	active-backlog
+docs/fw036/RD1_amfm_submission.md	section	§7	c8044adc	6	active-backlog
+docs/fw036/RD1_projection_submission.md	section	§8.2	b559bde7	162	active-backlog
+docs/fw036/RD1_sxm_submission.md	section	§7	85674347	10	active-backlog
+docs/fw036/RESYNC_proposal_projection_closeout.md	section	§2	f523c919	99	active-backlog
+docs/fw036/RULE_COMPLIANCE_SURVEY_20260821.md	section	§6	b7e09fb5	38	active-backlog
+docs/fw036/handoff/10_BATCH_PLAYBOOK_A.md	section	§8.5	c00cb955	39	historical-record
+docs/fw036/handoff/15_r12_precondition_specref.md	section	§2	18522f4f	39	historical-record
+docs/fw036/handoff/22_process_improvement.md	section	§9	0097891c	58	historical-record
+docs/fw036/handoff/22_process_improvement.md	section	§9	ae21b82b	164	historical-record
+docs/fw036/handoff/22_process_improvement.md	section	§9	8df1a0d3	165	historical-record
+docs/fw036/handoff/22_process_improvement.md	section	§9	c4ceaeea	198	historical-record
+docs/fw036/handoff/23_process_improvement.md	section	§9	0097891c	71	historical-record
+docs/fw036/handoff/23_process_improvement.md	section	§9	32ace082	177	historical-record
+docs/fw036/handoff/23_process_improvement.md	section	§9	8df1a0d3	178	historical-record
+docs/fw036/handoff/23_process_improvement.md	section	§9	c4ceaeea	216	historical-record
+docs/fw036/handoff/24_wp1_continuation.md	section	§8.1	96c37eaf	85	historical-record
+docs/fw036/handoff/24_wp1_continuation.md	section	§9	96c37eaf	85	historical-record
+docs/fw036/handoff/24_wp1_continuation.md	section	§9	03736ab7	119	historical-record
+docs/fw036/upstream/05_pm_batch2.md	section	§7	ddd90cb5	56	historical-record
+docs/fw036/upstream/20_pm_closeout.md	section	§1	ffc5e7f8	118	historical-record
+docs/fw036/upstream/23a_wp1.md	section	§9	1aa7dfe1	18	historical-record
+docs/fw036/upstream/23a_wp1.md	section	§7.3	c8734c0b	184	historical-record
+docs/fw036/upstream/23a_wp1.md	section	§9	8e33d987	196	historical-record
+docs/fw036/upstream/23a_wp1.md	item	§8.5-1	bb42bf3f	329	historical-record
+docs/fw036/upstream/23a_wp1.md	item	§8.5-2	bb42bf3f	329	historical-record
+docs/fw036/upstream/23a_wp1.md	item	§8.5-3	bb42bf3f	329	historical-record
+docs/runtime/OPERATING_CHARTER.md	section	§6	18bdf78f	82	active-backlog
+docs/runtime/OPERATING_CHARTER.md	section	§6	1f0de0a6	83	active-backlog
+docs/runtime/PROJECT_INSTRUCTION.md	section	§6	18bdf78f	82	active-backlog
+docs/runtime/PROJECT_INSTRUCTION.md	section	§6	1f0de0a6	83	active-backlog
+docs/runtime/profiles/FW036_R1L_Comfort_Profile.md	section	§2	f908ff57	115	active-backlog
+docs/runtime/profiles/FW036_R1L_Privacy_Profile.md	section	§2	10795569	31	active-backlog
+docs/runtime/profiles/FW036_R1L_Privacy_Profile.md	section	§2	c3663680	136	active-backlog
+docs/runtime/profiles/FW036_R1L_Privacy_Profile.md	section	§0	b658bb08	434	active-backlog
+docs/runtime/profiles/FW036_R1L_Projection_Profile.md	section	§2	f8542b36	22	active-backlog
+docs/runtime/profiles/FW036_R1L_Projection_Profile.md	section	§6	96dffc4f	464	active-backlog
+docs/runtime/profiles/FW036_R1L_Projection_Profile.md	section	§6	9353194c	544	active-backlog
+docs/runtime/profiles/FW036_R1L_SXM_Profile.md	section	§2	3b25ba25	62	active-backlog
+docs/runtime/profiles/FW036_R1L_VehicleSetting_Profile.md	section	§0	c8f51f13	101	active-backlog
+features/amfm/DECISIONS.md	section	§4	78311584	3	active-backlog
+features/amfm/PLAYBOOK.md	section	§0	c890e78b	14	active-backlog
+features/amfm/PLAYBOOK.md	section	§0	b9fdccd5	73	active-backlog
+features/amfm/PLAYBOOK.md	section	§6	e5e4db78	95	active-backlog
+features/amfm/PLAYBOOK.md	section	§5	67bb1c6e	153	active-backlog
+features/amfm/PLAYBOOK.md	section	§6	db4955f7	224	active-backlog
+features/amfm/RULINGS.md	section	§6	e3b9cd1e	281	active-backlog
+features/amfm/RUNBOOK.md	section	§3	ccbe10df	40	active-backlog
+features/amfm/RUNBOOK.md	section	§6	17dc39fd	561	active-backlog
+features/amfm/docs/handoff/01_closeout.md	section	§6	14c08f7a	112	historical-record
+features/amfm/docs/handoff/01_closeout.md	section	§0	fdc0025b	196	historical-record
+features/amfm/docs/handoff/02_integrity.md	section	§0	a5f6becc	136	historical-record
+features/amfm/docs/handoff/02_integrity.md	section	§2	4b473340	205	historical-record
+features/amfm/docs/handoff/06_writeback_paths.md	section	§1	f91fe2af	171	historical-record
+features/amfm/docs/upstream/01_closeout.md	section	§6	35953512	118	historical-record
+features/amfm/feature.yaml	section	§3	40e5a546	51	active-backlog
+features/amfm/scripts/write_back.py	section	§6	0616e0ed	452	active-backlog
+features/amfm/scripts/write_back.py	section	§0	fe9f51dd	504	active-backlog
+features/comfort/DECISIONS.md	section	§4	78311584	3	active-backlog
+features/comfort/PLAYBOOK.md	section	§0	b9fdccd5	53	active-backlog
+features/comfort/PLAYBOOK.md	section	§6	e5e4db78	75	active-backlog
+features/comfort/PLAYBOOK.md	section	§5	67bb1c6e	124	active-backlog
+features/comfort/RULINGS.md	section	§4	753000ae	153	active-backlog
+features/comfort/RULINGS.md	section	§5	0dcd3443	208	active-backlog
+features/comfort/RULINGS.md	section	§7	d6618f2f	233	active-backlog
+features/comfort/RULINGS.md	section	§7	8380f2bc	283	active-backlog
+features/comfort/RULINGS.md	section	§8	4acf2d95	351	active-backlog
+features/comfort/RULINGS.md	section	§6	7516ccbd	372	active-backlog
+features/comfort/RULINGS.md	section	§6	a483aee3	398	active-backlog
+features/comfort/RULINGS.md	section	§8	c7b78298	422	active-backlog
+features/comfort/RULINGS.md	section	§6	5c32fa80	453	active-backlog
+features/comfort/RULINGS.md	section	§6	38bd8b5d	500	active-backlog
+features/comfort/RULINGS.md	section	§6	861b6947	541	active-backlog
+features/comfort/RULINGS.md	section	§5	edd01713	593	active-backlog
+features/comfort/docs/handoff/01_phase0_intake.md	section	§2	5c4b3454	26	historical-record
+features/comfort/docs/handoff/07_upstream03_review.md	section	§3	fde8de09	131	historical-record
+features/comfort/docs/handoff/09_upstream04_review.md	section	§4	42fb1b9d	136	historical-record
+features/comfort/docs/handoff/10_phase3_start.md	section	§0	c1d7c307	113	historical-record
+features/comfort/docs/handoff/15_profile_draft.md	section	§2	f908ff57	66	historical-record
+features/comfort/docs/handoff/17_g1_baseline_exhaustiveness.md	section	§1	c78c546f	149	historical-record
+features/comfort/docs/handoff/17_g1_baseline_exhaustiveness.md	section	§3	c78c546f	149	historical-record
+features/comfort/docs/handoff/19_pilot_rulings.md	section	§2	d2f97a5e	191	historical-record
+features/comfort/docs/handoff/19_pilot_rulings.md	section	§4	d2f97a5e	191	historical-record
+features/comfort/docs/handoff/22_rev3_review.md	section	§6	91a9a7b0	132	historical-record
+features/comfort/docs/handoff/23_rev4_review.md	section	§1	cb227b62	143	historical-record
+features/comfort/docs/handoff/23_rev4_review.md	section	§2	cb227b62	143	historical-record
+features/comfort/docs/handoff/29_axes_rc29_rc30.md	section	§2	8198b902	151	historical-record
+features/comfort/docs/handoff/30_batch2_content_review.md	section	§1	3b3ad5e5	156	historical-record
+features/comfort/docs/handoff/33_rc33_axes.md	section	§8.1	86f225d6	28	historical-record
+features/comfort/docs/handoff/33_rc33_axes.md	section	§3	83e916bd	182	historical-record
+features/comfort/docs/handoff/91_closeout.md	section	§4	0fb9faaa	34	historical-record
+features/comfort/docs/handoff/91_closeout.md	section	§4	035d00ca	102	historical-record
+features/comfort/docs/upstream/02_phase2_review.md	section	§4	a220aaa1	28	historical-record
+features/comfort/docs/upstream/02_phase2_review.md	section	§2	a80eb63a	217	historical-record
+features/comfort/docs/upstream/10_pilot_and_exhaustiveness.md	section	§9	88ec2c15	280	historical-record
+features/comfort/docs/upstream/10_pilot_and_exhaustiveness.md	section	§9	4decb331	286	historical-record
+features/comfort/docs/upstream/20_batch2_final.md	section	§9	0c8f36a0	293	historical-record
+features/comfort/feature.yaml	section	§3	ef979138	21	active-backlog
+features/comfort/feature.yaml	section	§2	a5b076e9	68	active-backlog
+features/comfort/scripts/build_layer3_map.py	section	§0	2d6fc078	5	active-backlog
+features/comfort/scripts/lint_tcs.py	section	§1	3384bfa6	272	active-backlog
+features/display/docs/handoff/01_intake_recon.md	section	§2	719762ce	312	historical-record
+features/display/docs/handoff/01_intake_recon.md	section	§3	686e9de1	317	historical-record
+features/display/docs/handoff/01_intake_recon.md	section	§0	3cdb0996	337	historical-record
+features/home/DECISIONS.md	section	§4	78311584	3	active-backlog
+features/home/PLAYBOOK.md	section	§0	c890e78b	14	active-backlog
+features/home/PLAYBOOK.md	section	§0	b9fdccd5	78	active-backlog
+features/home/PLAYBOOK.md	section	§6	e5e4db78	100	active-backlog
+features/home/PLAYBOOK.md	section	§5	67bb1c6e	149	active-backlog
+features/power/DECISIONS.md	section	§4	2c9e652d	3	active-backlog
+features/power/PLAYBOOK.md	section	§0	b9fdccd5	53	active-backlog
+features/power/PLAYBOOK.md	section	§6	e5e4db78	75	active-backlog
+features/power/PLAYBOOK.md	section	§5	67bb1c6e	124	active-backlog
+features/power/RUNBOOK.md	section	§3	d993103a	9	active-backlog
+features/power/docs/upstream/12_pilot_fixes.md	section	§8.5	71464188	1289	historical-record
+features/power/feature.yaml	section	§2	682c8d0d	73	active-backlog
+features/power_moding/ANOMALIES.md	section	§3	ab74294a	123	active-backlog
+features/power_moding/ANOMALIES.md	section	§3	5f32ad98	142	active-backlog
+features/power_moding/ANOMALIES.md	section	§3	d2a672f0	184	active-backlog
+features/power_moding/ANOMALIES.md	section	§2	81c7ad9b	404	active-backlog
+features/power_moding/DECISIONS.md	section	§4	78311584	3	active-backlog
+features/power_moding/PLAYBOOK.md	section	§0	b9fdccd5	53	active-backlog
+features/power_moding/PLAYBOOK.md	section	§6	e5e4db78	75	active-backlog
+features/power_moding/PLAYBOOK.md	section	§5	67bb1c6e	124	active-backlog
+features/power_moding/RUNBOOK.md	section	§3	d993103a	9	active-backlog
+features/power_moding/docs/INDEX.md	section	§8.7	d2763fcf	3	active-backlog
+features/power_moding/docs/INDEX.md	section	§2	3d5d2190	46	active-backlog
+features/power_moding/docs/INDEX.md	section	§3	a9eb7dd4	52	active-backlog
+features/power_moding/docs/INDEX.md	section	§3	5c02e7e7	710	active-backlog
+features/power_moding/docs/handoff/01_intake.md	section	§2	4bcd72bc	182	historical-record
+features/power_moding/docs/handoff/01_intake.md	section	§2	7896b5ff	188	historical-record
+features/power_moding/docs/handoff/01_intake.md	section	§2	1f839f8f	228	historical-record
+features/power_moding/docs/handoff/01_intake.md	section	§3	4bdb5704	232	historical-record
+features/power_moding/docs/handoff/01_intake.md	section	§0	da4b8968	247	historical-record
+features/power_moding/docs/handoff/01_intake.md	section	§2	bf4db9d9	270	historical-record
+features/power_moding/docs/handoff/02_baseline_switch.md	section	§3	f1547ae4	46	historical-record
+features/power_moding/docs/handoff/02_baseline_switch.md	section	§0	9c404a91	209	historical-record
+features/power_moding/docs/handoff/03_testgroup_and_dv.md	section	§0	9c404a91	229	historical-record
+features/power_moding/docs/handoff/04_corpus_and_assertions.md	section	§0	9c404a91	269	historical-record
+features/power_moding/docs/handoff/05_corpus_fix_and_framework_prep.md	section	§0	9c404a91	205	historical-record
+features/power_moding/docs/handoff/06_framework_proposal.md	section	§0	9c404a91	294	historical-record
+features/power_moding/docs/handoff/07_gap_widening.md	section	§0	9c404a91	208	historical-record
+features/power_moding/docs/handoff/08_criterion_repair.md	section	§0	9c404a91	192	historical-record
+features/power_moding/docs/handoff/09_threshold_derivation.md	section	§0	9c404a91	198	historical-record
+features/power_moding/docs/handoff/10_profile_draft.md	section	§0	9c404a91	398	historical-record
+features/power_moding/docs/handoff/11_claim_evidence.md	section	§0	9c404a91	153	historical-record
+features/power_moding/docs/handoff/12_phase4_batch1.md	section	§0	9c404a91	203	historical-record
+features/power_moding/docs/handoff/13_batch1_rework.md	section	§8.5	95f7e087	99	historical-record
+features/power_moding/docs/handoff/13_batch1_rework.md	section	§8.5	2f24f61e	209	historical-record
+features/power_moding/docs/handoff/13_batch1_rework.md	section	§0	9c404a91	312	historical-record
+features/power_moding/docs/upstream/01_intake.md	section	§2	96f8f054	173	historical-record
+features/power_moding/docs/upstream/01_intake.md	section	§2	9a72e653	214	historical-record
+features/power_moding/docs/upstream/01_intake.md	section	§3	60173064	264	historical-record
+features/power_moding/docs/upstream/01_intake.md	section	§3	0342887b	309	historical-record
+features/power_moding/docs/upstream/01_intake.md	section	§3	ab370a3e	312	historical-record
+features/power_moding/docs/upstream/01_intake.md	section	§3	01161237	421	historical-record
+features/power_moding/docs/upstream/01_intake.md	section	§0	cc2b2fa8	514	historical-record
+features/power_moding/docs/upstream/02_baseline_switch.md	section	§2	8c1bc6ce	305	historical-record
+features/power_moding/docs/upstream/06_framework_proposal.md	section	§8.2	4a06ef49	152	historical-record
+features/power_moding/docs/upstream/12_phase4_batch1.md	section	§3	a5aad1fb	177	historical-record
+features/power_moding/feature.yaml	section	§3	5be427f8	90	active-backlog
+features/power_moding/feature.yaml	section	§2	249f53a5	178	active-backlog
+features/power_moding/framework.md	section	§8.2	ebb8b256	68	active-backlog
+features/power_moding/scripts/lint_batch.py	section	§8.5	90523a6d	5	active-backlog
+features/privacy/ANOMALIES.md	section	§6	caf11142	78	active-backlog
+features/privacy/DECISIONS.md	section	§4	78311584	3	active-backlog
+features/privacy/PLAYBOOK.md	section	§0	c890e78b	14	active-backlog
+features/privacy/PLAYBOOK.md	section	§0	b9fdccd5	77	active-backlog
+features/privacy/PLAYBOOK.md	section	§6	e5e4db78	99	active-backlog
+features/privacy/PLAYBOOK.md	section	§5	67bb1c6e	148	active-backlog
+features/privacy/RUNBOOK.md	section	§3	d993103a	9	active-backlog
+features/privacy/docs/handoff/00_bootstrap.md	section	§0	f45577a2	192	historical-record
+features/privacy/docs/upstream/00_bootstrap.md	section	§2	cc5d7931	192	historical-record
+features/privacy/feature.yaml	section	§3	40e5a546	22	active-backlog
+features/privacy/feature.yaml	section	§2	a5b076e9	67	active-backlog
+features/projection/ANOMALIES.md	section	§7.6	98a550ce	1567	active-backlog
+features/projection/ANOMALIES.md	section	§7.6	af689f86	1569	active-backlog
+features/projection/ANOMALIES.md	section	§6	c97f1304	2083	active-backlog
+features/projection/ANOMALIES.md	section	§7	84b0d45d	2244	active-backlog
+features/projection/ANOMALIES.md	section	§7	f5338503	2255	active-backlog
+features/projection/ANOMALIES.md	section	§8	f5338503	2255	active-backlog
+features/projection/DECISIONS.md	section	§4	2d959696	3	active-backlog
+features/projection/DECISIONS.md	section	§6	f8279854	542	active-backlog
+features/projection/DECISIONS.md	section	§6	bd0dddc8	913	active-backlog
+features/projection/DECISIONS.md	section	§6	0362c467	914	active-backlog
+features/projection/DECISIONS.md	section	§6	558f9ebd	915	active-backlog
+features/projection/DECISIONS.md	section	§3	f6a7522b	1059	active-backlog
+features/projection/DECISIONS.md	section	§6	183e4418	1580	active-backlog
+features/projection/DECISIONS.md	section	§7.2	ad90507d	1623	active-backlog
+features/projection/DECISIONS.md	section	§8	8991ce54	1689	active-backlog
+features/projection/DECISIONS.md	section	§8	5215b495	1691	active-backlog
+features/projection/DECISIONS.md	section	§8	90a9cf3a	1698	active-backlog
+features/projection/DECISIONS.md	section	§2	0e976555	1754	active-backlog
+features/projection/DECISIONS.md	section	§2	c6573f66	1850	active-backlog
+features/projection/PLAYBOOK.md	section	§0	c890e78b	14	active-backlog
+features/projection/PLAYBOOK.md	section	§0	b9fdccd5	76	active-backlog
+features/projection/PLAYBOOK.md	section	§6	e5e4db78	98	active-backlog
+features/projection/PLAYBOOK.md	section	§5	67bb1c6e	147	active-backlog
+features/projection/RUNBOOK.md	section	§2	92046bdd	9	active-backlog
+features/projection/docs/INDEX.md	section	§8	295cca27	32	active-backlog
+features/projection/docs/handoff/12_phase7_step6_conditions.md	section	§6	efa5bf6f	193	historical-record
+features/projection/docs/handoff/14_apj69_rerun.md	section	§7	ab746da7	139	historical-record
+features/projection/docs/handoff/15_phase7_closeout.md	section	§7	7a79a409	143	historical-record
+features/projection/docs/handoff/15_phase7_closeout.md	section	§7	205da45e	169	historical-record
+features/projection/docs/handoff/15_phase7_closeout.md	section	§1	27aa1133	205	historical-record
+features/projection/docs/handoff/16_closeout_disposition.md	section	§5	68111fed	191	historical-record
+features/projection/docs/handoff/17_delivery_precheck.md	section	§7.3	f4289c6e	53	historical-record
+features/projection/docs/handoff/17_delivery_precheck.md	section	§1	7b35f470	133	historical-record
+features/projection/docs/handoff/19_sidecar_policy.md	section	§1	3052e9ed	109	historical-record
+features/projection/docs/handoff/20_archive_and_charter.md	section	§7.2	ad90507d	96	historical-record
+features/projection/docs/handoff/20_archive_and_charter.md	section	§6	798b0fca	202	historical-record
+features/projection/docs/handoff/21_canon_s8_and_charter.md	section	§8	7f8ec208	1	historical-record
+features/projection/docs/handoff/21_canon_s8_and_charter.md	section	§7.2	36f489a0	4	historical-record
+features/projection/docs/handoff/21_canon_s8_and_charter.md	section	§7	7385e11a	50	historical-record
+features/projection/docs/handoff/21_canon_s8_and_charter.md	section	§8	69742df4	59	historical-record
+features/projection/docs/handoff/22_rp99_and_git.md	section	§8.7	a6b4bae0	69	historical-record
+features/projection/docs/reports/dryrun_report.md	section	§5	faab0df7	113	active-backlog
+features/projection/docs/reports/dryrun_report.md	section	§6	b291cfc0	211	active-backlog
+features/projection/docs/upstream/21_canon_s8_and_charter.md	section	§8	6a500aa7	1	historical-record
+features/projection/docs/upstream/21_canon_s8_and_charter.md	section	§8	6a2653e2	18	historical-record
+features/projection/docs/upstream/21_canon_s8_and_charter.md	section	§8.2	8c22e435	20	historical-record
+features/projection/docs/upstream/21_canon_s8_and_charter.md	item	§5 第2	b8b5f017	121	historical-record
+features/projection/docs/upstream/21_canon_s8_and_charter.md	section	§8	b8b5f017	121	historical-record
+features/projection/docs/upstream/21_canon_s8_and_charter.md	section	§0.27	7816448f	174	historical-record
+features/projection/docs/upstream/21_canon_s8_and_charter.md	section	§3	c443966b	233	historical-record
+features/projection/docs/upstream/21_canon_s8_and_charter.md	section	§8	c3b2bc96	242	historical-record
+features/projection/docs/upstream/21_canon_s8_and_charter.md	section	§8	42e22e39	297	historical-record
+features/projection/docs/upstream/21_canon_s8_and_charter.md	section	§8	66185676	327	historical-record
+features/projection/docs/upstream/22_rp99_and_git.md	section	§8.7	81000bdd	65	historical-record
+features/projection/docs/upstream/22_rp99_and_git.md	section	§8.7	08b899d4	404	historical-record
+features/projection/feature.yaml	section	§2	9ffba63c	6	active-backlog
+features/projection/feature.yaml	section	§2	fe48b7d0	227	active-backlog
+features/sxm/DECISIONS.md	section	§4	78311584	3	active-backlog
+features/sxm/PLAYBOOK.md	section	§0	c890e78b	14	active-backlog
+features/sxm/PLAYBOOK.md	section	§0	b9fdccd5	77	active-backlog
+features/sxm/PLAYBOOK.md	section	§6	e5e4db78	99	active-backlog
+features/sxm/PLAYBOOK.md	section	§5	67bb1c6e	148	active-backlog
+features/sxm/RUNBOOK.md	section	§3	d993103a	17	active-backlog
+features/sxm/feature.yaml	section	§2	a5b076e9	135	active-backlog
+features/time_management/DECISIONS.md	section	§4	78311584	3	active-backlog
+features/time_management/PLAYBOOK.md	section	§0	b9fdccd5	53	active-backlog
+features/time_management/PLAYBOOK.md	section	§6	e5e4db78	75	active-backlog
+features/time_management/PLAYBOOK.md	section	§5	67bb1c6e	124	active-backlog
+features/time_management/RUNBOOK.md	section	§3	d993103a	9	active-backlog
+features/time_management/docs/handoff/00Z_closure.md	section	§3.3	a2d99593	100	historical-record
+features/time_management/docs/handoff/01R_review_of_upstream.md	section	§0	0f32fb1b	170	historical-record
+features/time_management/docs/handoff/01_recon.md	section	§0	8f21067c	126	historical-record
+features/time_management/docs/handoff/04Z-A2_backend_review.md	section	§6.5	a458f6ef	191	historical-record
+features/time_management/docs/handoff/05Z_canon_adoption.md	section	§2	f30e0a14	6	historical-record
+features/time_management/docs/handoff/05Z_canon_adoption.md	section	§2	eeaf4231	159	historical-record
+features/time_management/docs/handoff/05Z_canon_adoption.md	section	§2	0bfd97f2	305	historical-record
+features/time_management/docs/handoff/08_style.md	section	§6	e9ae73d1	183	historical-record
+features/time_management/docs/handoff/22_sys3.md	section	§8.2	268afd5d	93	historical-record
+features/time_management/docs/handoff/22_sys3.md	section	§8.2	669117e0	171	historical-record
+features/time_management/docs/handoff/23_sys3_result.md	section	§8.2	7ec6d999	95	historical-record
+features/time_management/docs/handoff/23_sys3_result.md	section	§8.2	279f7234	160	historical-record
+features/time_management/docs/handoff/23_sys3_result.md	section	§8.2	6a13ec96	174	historical-record
+features/time_management/docs/upstream/01_recon.md	section	§0	57d18ea3	248	historical-record
+features/time_management/docs/upstream/04Z-A5_corrections.md	section	§3.2	0f786cc3	75	historical-record
+features/time_management/docs/upstream/05Z_corrections.md	section	§2.3	f8dc8398	201	historical-record
+features/time_management/feature.yaml	section	§3	40e5a546	15	active-backlog
+features/time_management/feature.yaml	section	§2	75d0e174	51	active-backlog
+features/time_management/scripts/write_back.py	section	§2	e49aabe9	31	active-backlog
+features/time_management/scripts/write_back.py	section	§2	d3a876f0	255	active-backlog
+features/user_profiles/ANOMALIES.md	section	§0	32650936	83	active-backlog
+features/user_profiles/ANOMALIES.md	section	§8.5	85545651	203	active-backlog
+features/user_profiles/DECISIONS.md	section	§4	78311584	3	active-backlog
+features/user_profiles/PLAYBOOK.md	section	§0	b9fdccd5	53	active-backlog
+features/user_profiles/PLAYBOOK.md	section	§6	e5e4db78	75	active-backlog
+features/user_profiles/PLAYBOOK.md	section	§5	67bb1c6e	124	active-backlog
+features/user_profiles/docs/INDEX.md	section	§9	b6d34e25	21	active-backlog
+features/user_profiles/docs/INDEX.md	section	§9	c7a17cec	1285	active-backlog
+features/user_profiles/docs/handoff/55_test_item_two_parts.md	section	§1	0cdcec4d	30	historical-record
+features/user_profiles/docs/upstream/01_intake.md	item	§8.5 第2	61399165	220	historical-record
+features/user_profiles/docs/upstream/01_intake.md	section	§8.3	6cc80afc	388	historical-record
+features/user_profiles/docs/upstream/01_intake.md	section	§4	6ee36263	490	historical-record
+features/user_profiles/docs/upstream/01_intake.md	section	§8.3	519fbb6c	567	historical-record
+features/user_profiles/docs/upstream/01_intake.md	item	§8.5 第2	9dc203a0	624	historical-record
+features/user_profiles/docs/upstream/02_rulings_execution.md	section	§3	eac774f4	244	historical-record
+features/user_profiles/docs/upstream/09_ruling_consolidation.md	section	§9	2a71268c	14	historical-record
+features/user_profiles/docs/upstream/09_ruling_consolidation.md	section	§9	02744ccc	41	historical-record
+features/user_profiles/docs/upstream/09_ruling_consolidation.md	section	§9	a5a8e987	172	historical-record
+features/user_profiles/docs/upstream/09_ruling_consolidation.md	item	§5 第1	cd6db19a	214	historical-record
+features/user_profiles/docs/upstream/09_ruling_consolidation.md	section	§9	cd6db19a	214	historical-record
+features/user_profiles/docs/upstream/13_pilot_generated.md	section	§7	d1211f21	223	historical-record
+features/user_profiles/docs/upstream/13_pilot_generated.md	section	§7	e0131785	234	historical-record
+features/user_profiles/docs/upstream/14_pilot_fixes.md	section	§9	7194961c	317	historical-record
+features/user_profiles/docs/upstream/18_batch02_sample.md	section	§7	e54816d1	27	historical-record
+features/user_profiles/docs/upstream/18_batch02_sample.md	section	§7	ba72c9f0	94	historical-record
+features/user_profiles/docs/upstream/58_field_junction_matrix.md	section	§9	8a9929e9	75	historical-record
+features/user_profiles/scripts/lint_tcs.py	section	§6	d472e823	20	active-backlog
+features/vehicle_setting/DATA_REQUESTS.md	section	§9	992a1734	392	active-backlog
+features/vehicle_setting/DECISIONS.md	section	§4	78311584	3	active-backlog
+features/vehicle_setting/PLAYBOOK.md	section	§0	b9fdccd5	53	active-backlog
+features/vehicle_setting/PLAYBOOK.md	section	§6	e5e4db78	75	active-backlog
+features/vehicle_setting/PLAYBOOK.md	section	§5	67bb1c6e	124	active-backlog
+features/vehicle_setting/RUNBOOK.md	section	§3	d993103a	9	active-backlog
+features/vehicle_setting/docs/INDEX.md	section	§8.7	d2763fcf	3	active-backlog
+features/vehicle_setting/docs/handoff/00_intake_and_rulings.md	section	§1	f58da8ad	189	historical-record
+features/vehicle_setting/docs/handoff/04_review_round01.md	section	§2	3958c5cf	6	historical-record
+features/vehicle_setting/docs/handoff/07_review_round02.md	section	§8.2	b64ef495	160	historical-record
+features/vehicle_setting/docs/handoff/V03_test_group_ruling.md	section	§2	07e50318	60	historical-record
+features/vehicle_setting/docs/handoff/V20_pilot1_review.md	section	§7	343e2b70	107	historical-record
+features/vehicle_setting/docs/handoff/V20_pilot1_review.md	section	§8	0a5158a4	296	historical-record
+features/vehicle_setting/docs/handoff/V33_number_hygiene_wvf71.md	section	§8.7	ea545667	39	historical-record
+features/vehicle_setting/docs/reports/036_baseline.md	section	§2	d8de6c16	41	active-backlog
+features/vehicle_setting/docs/upstream/00_intake_and_rulings.md	section	§8.4	5518ecb3	209	historical-record
+features/vehicle_setting/docs/upstream/01_leaf_universe.md	section	§8.4	7f99e589	121	historical-record
+features/vehicle_setting/docs/upstream/02_variables_and_sweep.md	section	§8.4	5518ecb3	119	historical-record
+features/vehicle_setting/docs/upstream/03_crosscheck_and_overlap.md	section	§8.4	5518ecb3	104	historical-record
+features/vehicle_setting/docs/upstream/04_extraction_and_overlap.md	section	§8.4	5518ecb3	78	historical-record
+features/vehicle_setting/docs/upstream/05_parser_fix_and_residual.md	section	§8.4	5518ecb3	126	historical-record
+features/vehicle_setting/docs/upstream/06_comfort_overlap.md	section	§8.4	5518ecb3	63	historical-record
+features/vehicle_setting/docs/upstream/07_residual_verification.md	section	§8.4	5518ecb3	133	historical-record
+features/vehicle_setting/docs/upstream/08_polarity_and_delegation.md	section	§8.4	5518ecb3	123	historical-record
+features/vehicle_setting/docs/upstream/09_reverse_coverage.md	section	§8.4	5518ecb3	136	historical-record
+features/vehicle_setting/docs/upstream/10_criterion_and_framework.md	section	§8.2	a2ed214a	4	historical-record
+features/vehicle_setting/docs/upstream/10_criterion_and_framework.md	section	§8.4	5518ecb3	163	historical-record
+features/vehicle_setting/docs/upstream/11_arch_scope.md	section	§8.2	406ca1b1	3	historical-record
+features/vehicle_setting/docs/upstream/11_arch_scope.md	section	§8.4	5518ecb3	175	historical-record
+features/vehicle_setting/docs/upstream/12_layer3_and_convergence.md	section	§8.2	b157fe46	3	historical-record
+features/vehicle_setting/docs/upstream/12_layer3_and_convergence.md	section	§8.4	5518ecb3	155	historical-record
+features/vehicle_setting/docs/upstream/13_contamination_and_symmetry.md	section	§8.2	437ed628	3	historical-record
+features/vehicle_setting/docs/upstream/13_contamination_and_symmetry.md	section	§8.4	5518ecb3	166	historical-record
+features/vehicle_setting/docs/upstream/14_normalization_and_lock.md	section	§8.2	05432fbe	3	historical-record
+features/vehicle_setting/docs/upstream/14_normalization_and_lock.md	section	§8.4	5518ecb3	189	historical-record
+features/vehicle_setting/docs/upstream/15_pilot_batch.md	section	§8.2	697e10ee	3	historical-record
+features/vehicle_setting/docs/upstream/15_pilot_batch.md	section	§9	295ffdae	45	historical-record
+features/vehicle_setting/docs/upstream/15_pilot_batch.md	section	§8.4	5518ecb3	179	historical-record
+features/vehicle_setting/docs/upstream/16_batch01_rework.md	section	§8.2	055a39b2	3	historical-record
+features/vehicle_setting/docs/upstream/16_batch01_rework.md	section	§9	db4ac1cd	51	historical-record
+features/vehicle_setting/docs/upstream/16_batch01_rework.md	section	§8.4	5518ecb3	129	historical-record
+features/vehicle_setting/docs/upstream/17_batch01_v3_and_batch02.md	section	§8.2	9cc2c491	3	historical-record
+features/vehicle_setting/docs/upstream/17_batch01_v3_and_batch02.md	section	§8.4	5518ecb3	151	historical-record
+features/vehicle_setting/docs/upstream/18_writability.md	section	§8.2	2e4f73a6	3	historical-record
+features/vehicle_setting/docs/upstream/18_writability.md	section	§8.4	5518ecb3	185	historical-record
+features/vehicle_setting/docs/upstream/19_writability_refined.md	section	§8.2	d4c2b152	3	historical-record
+features/vehicle_setting/docs/upstream/19_writability_refined.md	section	§8.4	5518ecb3	179	historical-record
+features/vehicle_setting/docs/upstream/20_stable_core.md	section	§8.2	f4e5f098	3	historical-record
+features/vehicle_setting/docs/upstream/20_stable_core.md	section	§8.4	5518ecb3	205	historical-record
+features/vehicle_setting/docs/upstream/21_proxi_hunt.md	section	§8.2	78eb15bc	3	historical-record
+features/vehicle_setting/docs/upstream/21_proxi_hunt.md	section	§8.4	5518ecb3	175	historical-record
+features/vehicle_setting/docs/upstream/22_vf664_hunt.md	section	§8.2	94eeffb5	3	historical-record
+features/vehicle_setting/docs/upstream/22_vf664_hunt.md	section	§8.4	5518ecb3	170	historical-record
+features/vehicle_setting/docs/upstream/23_dr15_exposure.md	section	§8.2	b262c91c	3	historical-record
+features/vehicle_setting/docs/upstream/23_dr15_exposure.md	section	§8.4	5518ecb3	137	historical-record
+features/vehicle_setting/docs/upstream/24_batch0809.md	section	§8.2	8f662142	3	historical-record
+features/vehicle_setting/docs/upstream/24_batch0809.md	section	§8.4	5518ecb3	146	historical-record
+features/vehicle_setting/docs/upstream/25_regrade.md	section	§8.2	f36b8259	3	historical-record
+features/vehicle_setting/docs/upstream/25_regrade.md	section	§8.4	5518ecb3	161	historical-record
+features/vehicle_setting/docs/upstream/26_uniqueness.md	section	§8.2	589fcc8c	3	historical-record
+features/vehicle_setting/docs/upstream/26_uniqueness.md	section	§8.4	5518ecb3	144	historical-record
+features/vehicle_setting/docs/upstream/27_proxi_and_pilot2.md	section	§8.2	209c689d	3	historical-record
+features/vehicle_setting/docs/upstream/27_proxi_and_pilot2.md	section	§8.4	5518ecb3	173	historical-record
+features/vehicle_setting/docs/upstream/28_cmd_tlm.md	section	§8.2	c8ddc1b9	4	historical-record
+features/vehicle_setting/docs/upstream/28_cmd_tlm.md	section	§8.4	5518ecb3	88	historical-record
+features/vehicle_setting/docs/upstream/29_arch_columns.md	section	§8.2	45e83d4b	4	historical-record
+features/vehicle_setting/docs/upstream/29_arch_columns.md	section	§8.4	5518ecb3	83	historical-record
+features/vehicle_setting/docs/upstream/30_swc_alignment.md	section	§8.2	c584c817	4	historical-record
+features/vehicle_setting/docs/upstream/30_swc_alignment.md	section	§8.4	5518ecb3	83	historical-record
+features/vehicle_setting/docs/upstream/31_record_and_batch13.md	section	§8.2	4031664d	3	historical-record
+features/vehicle_setting/docs/upstream/31_record_and_batch13.md	section	§8.4	5518ecb3	110	historical-record
+features/vehicle_setting/docs/upstream/32_alignment_and_gate.md	section	§8.2	b956d1e5	5	historical-record
+features/vehicle_setting/docs/upstream/32_alignment_and_gate.md	section	§8.4	5518ecb3	124	historical-record
+features/vehicle_setting/docs/upstream/33_priority_pool.md	section	§8.2	72e612cd	3	historical-record
+features/vehicle_setting/docs/upstream/33_priority_pool.md	section	§8.4	5518ecb3	107	historical-record
+features/vehicle_setting/docs/upstream/34_redundancy_and_batch15.md	section	§8.2	73a4d715	3	historical-record
+features/vehicle_setting/docs/upstream/34_redundancy_and_batch15.md	section	§8.4	5518ecb3	112	historical-record
+features/vehicle_setting/docs/upstream/35_delegation_reopen.md	section	§8.2	c0714472	3	historical-record
+features/vehicle_setting/docs/upstream/35_delegation_reopen.md	section	§8.4	5518ecb3	128	historical-record
+features/vehicle_setting/docs/upstream/35_delegation_reopen.md	section	§8.2	67078968	150	historical-record
+features/vehicle_setting/docs/upstream/36_domain_and_anchor.md	section	§8.2	255252d7	3	historical-record
+features/vehicle_setting/docs/upstream/36_domain_and_anchor.md	section	§8.4	5518ecb3	99	historical-record
+features/vehicle_setting/docs/upstream/37_pilot_and_writeback.md	section	§8.2	ba407812	5	historical-record
+features/vehicle_setting/docs/upstream/37_pilot_and_writeback.md	section	§8.4	5518ecb3	99	historical-record
+features/vehicle_setting/docs/upstream/38_threshold_and_preamble.md	section	§8.2	bffb77e5	3	historical-record
+features/vehicle_setting/docs/upstream/38_threshold_and_preamble.md	section	§8.4	5518ecb3	125	historical-record
+features/vehicle_setting/docs/upstream/39_pilot_fix.md	section	§8.2	7ec5da49	5	historical-record
+features/vehicle_setting/docs/upstream/39_pilot_fix.md	section	§8.4	5518ecb3	32	historical-record
+features/vehicle_setting/docs/upstream/40_narrowing.md	section	§8.2	7b4894da	3	historical-record
+features/vehicle_setting/docs/upstream/40_narrowing.md	section	§8.4	5518ecb3	27	historical-record
+features/vehicle_setting/docs/upstream/41_writeback.md	section	§8.2	9023b79c	4	historical-record
+features/vehicle_setting/docs/upstream/41_writeback.md	section	§8.4	5518ecb3	29	historical-record
+features/vehicle_setting/docs/upstream/43_split_and_full.md	section	§8.2	4194ec29	3	historical-record
+features/vehicle_setting/docs/upstream/43_split_and_full.md	section	§8.4	5518ecb3	27	historical-record
+features/vehicle_setting/docs/upstream/44_type_probe.md	section	§8.2	37a85837	3	historical-record
+features/vehicle_setting/docs/upstream/44_type_probe.md	section	§8.4	5518ecb3	26	historical-record
+features/vehicle_setting/docs/upstream/45_probe_fix.md	section	§8.2	1fcc7eae	3	historical-record
+features/vehicle_setting/docs/upstream/45_probe_fix.md	section	§8.4	5518ecb3	25	historical-record
+features/vehicle_setting/docs/upstream/45_probe_fix.md	section	§7	81724394	165	historical-record
+features/vehicle_setting/docs/upstream/46_scale_up.md	section	§8.2	2ceadbe6	3	historical-record
+features/vehicle_setting/docs/upstream/46_scale_up.md	section	§8.4	5518ecb3	129	historical-record
+features/vehicle_setting/docs/upstream/46_scale_up.md	section	§6	20f1446d	200	historical-record
+features/vehicle_setting/docs/upstream/46_scale_up.md	section	§8.2	20f1446d	200	historical-record
+features/vehicle_setting/docs/upstream/47_fullwrite2.md	section	§8.2	786492ac	3	historical-record
+features/vehicle_setting/docs/upstream/47_fullwrite2.md	section	§8.4	5518ecb3	99	historical-record
+features/vehicle_setting/docs/upstream/47_fullwrite2.md	section	§6	20f1446d	164	historical-record
+features/vehicle_setting/docs/upstream/47_fullwrite2.md	section	§8.2	20f1446d	164	historical-record
+features/vehicle_setting/docs/upstream/48_pilot_fix2.md	section	§8.2	6daaff25	3	historical-record
+features/vehicle_setting/docs/upstream/48_pilot_fix2.md	section	§8.4	5518ecb3	150	historical-record
+features/vehicle_setting/docs/upstream/48_pilot_fix2.md	section	§6	20f1446d	213	historical-record
+features/vehicle_setting/docs/upstream/48_pilot_fix2.md	section	§8.2	20f1446d	213	historical-record
+features/vehicle_setting/docs/upstream/49_delivery.md	section	§8.2	614e1c3a	4	historical-record
+features/vehicle_setting/docs/upstream/49_delivery.md	section	§8.4	5518ecb3	148	historical-record
+features/vehicle_setting/docs/upstream/49_delivery.md	section	§6	20f1446d	214	historical-record
+features/vehicle_setting/docs/upstream/49_delivery.md	section	§8.2	20f1446d	214	historical-record
+features/vehicle_setting/docs/upstream/50_final.md	section	§8.2	5cda1f23	3	historical-record
+features/vehicle_setting/docs/upstream/50_final.md	section	§8.4	5518ecb3	106	historical-record
+features/vehicle_setting/docs/upstream/50_final.md	section	§6	20f1446d	171	historical-record
+features/vehicle_setting/docs/upstream/50_final.md	section	§8.2	20f1446d	171	historical-record
+features/vehicle_setting/docs/upstream/51_baseline.md	section	§8.2	bf043542	3	historical-record
+features/vehicle_setting/docs/upstream/51_baseline.md	section	§8.4	5518ecb3	152	historical-record
+features/vehicle_setting/docs/upstream/51_baseline.md	section	§6	20f1446d	215	historical-record
+features/vehicle_setting/docs/upstream/51_baseline.md	section	§8.2	20f1446d	215	historical-record
+features/vehicle_setting/docs/upstream/52_full_l3.md	section	§8.2	3c76fbd3	3	historical-record
+features/vehicle_setting/docs/upstream/52_full_l3.md	section	§8.4	5518ecb3	140	historical-record
+features/vehicle_setting/docs/upstream/52_full_l3.md	section	§6	20f1446d	206	historical-record
+features/vehicle_setting/docs/upstream/52_full_l3.md	section	§8.2	20f1446d	206	historical-record
+features/vehicle_setting/docs/upstream/53_inplace_audit.md	section	§8.2	336a4cb2	3	historical-record
+features/vehicle_setting/docs/upstream/53_inplace_audit.md	section	§8.4	5518ecb3	149	historical-record
+features/vehicle_setting/docs/upstream/53_inplace_audit.md	section	§6	20f1446d	220	historical-record
+features/vehicle_setting/docs/upstream/53_inplace_audit.md	section	§8.2	20f1446d	220	historical-record
+features/vehicle_setting/docs/upstream/V01_vf230_intake.md	section	§8.2	c2ede4fb	3	historical-record
+features/vehicle_setting/docs/upstream/V02_vf230_recon.md	section	§8.2	fc140b09	3	historical-record
+features/vehicle_setting/docs/upstream/V06_scope_close.md	section	§8.2	7f747dbc	3	historical-record
+features/vehicle_setting/docs/upstream/V07_review_v06.md	section	§8.2	a2ed214a	4	historical-record
+features/vehicle_setting/docs/upstream/V08_review_v07.md	section	§8.2	42c4f589	4	historical-record
+features/vehicle_setting/docs/upstream/V09_feature_identity.md	section	§8.2	a2ed214a	4	historical-record
+features/vehicle_setting/docs/upstream/V10_four_rulings.md	section	§8.2	86788188	4	historical-record
+features/vehicle_setting/docs/upstream/V12_layer2_final.md	section	§8.2	1005c2d5	4	historical-record
+features/vehicle_setting/docs/upstream/V14_layer2_enumerate.md	section	§8.2	e2f71da6	4	historical-record
+features/vehicle_setting/docs/upstream/V15_layer2_approved.md	section	§8.2	dfcde8ec	3	historical-record
+features/vehicle_setting/docs/upstream/V16_p3_done_p4_prep.md	section	§8.2	5ecd8a88	3	historical-record
+features/vehicle_setting/docs/upstream/V17_delegation_gate.md	section	§8.2	088bcc92	3	historical-record
+features/vehicle_setting/docs/upstream/V17_delegation_gate.md	section	§8.7	b580f648	113	historical-record
+features/vehicle_setting/docs/upstream/V18_delegation_scope.md	section	§8.2	a092d422	3	historical-record
+features/vehicle_setting/docs/upstream/V19_pilot_start.md	section	§8.2	58141026	3	historical-record
+features/vehicle_setting/docs/upstream/V23_unblock.md	section	§8.2	38b8d6bc	3	historical-record
+features/vehicle_setting/docs/upstream/V24_pilot1v3.md	section	§8.2	2edc3c13	3	historical-record
+features/vehicle_setting/docs/upstream/V24_pilot1v3.md	section	§8.4	5518ecb3	148	historical-record
+features/vehicle_setting/docs/upstream/V24_pilot1v3.md	section	§6	20f1446d	212	historical-record
+features/vehicle_setting/docs/upstream/V24_pilot1v3.md	section	§8.2	20f1446d	212	historical-record
+features/vehicle_setting/docs/upstream/V25_pilot1v4.md	section	§8.2	9efb6c74	4	historical-record
+features/vehicle_setting/feature.yaml	section	§3	dacb17de	51	active-backlog
+features/vehicle_setting/feature.yaml	section	§2	c1491d44	87	active-backlog
+features/vehicle_setting/scripts/grade_overrides.py	section	§8.7	199e5859	163	active-backlog
+features/vehicle_setting/scripts/selfcheck_w53.py	section	§9	0ebea7dc	1	active-backlog
+features/vehicle_setting/scripts/split_audit_w145.py	section	§8.3	e27a4437	3	active-backlog
+scripts/expected_numbers.py	item	§8.5-2	da0c3b34	9	active-backlog
+scripts/intake.py	section	§3	29d25e22	22	active-backlog
+scripts/new_feature.py	section	§3	d993103a	59	active-backlog
+scripts/recon.py	section	§2	5f97d854	943	active-backlog
+scripts/rulings_hash.py	section	§9	d5df2a0a	48	active-backlog

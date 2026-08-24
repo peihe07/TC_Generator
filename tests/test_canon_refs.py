@@ -265,6 +265,7 @@ def hist(repo, text: str) -> Path:
 def active(repo, text: str) -> Path:
     """活躍檔 —— 不入 waiver，須改寫加前綴。"""
     p = repo / "features/f/RULINGS.md"
+    p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(text, encoding="utf-8")
     return p
 
@@ -283,21 +284,25 @@ def test_emit_waiver_covers_historical_and_classifies_reason(repo):
     assert r.returncode == 0, r.stdout
     rows = (repo / "w.tsv").read_text(encoding="utf-8").strip().splitlines()
     assert rows[0].split("\t") == cr.WAIVER_COLUMNS
-    reasons = {ln.split("\t")[0]: ln.split("\t")[4] for ln in rows[1:]}
+    reasons = {ln.split("\t")[0]: ln.split("\t")[5] for ln in rows[1:]}
     assert reasons["features/f/docs/handoff/07_round.md"] == "historical-record"
     assert reasons["features/f/RULINGS.md"] == "active-backlog"
 
 
-def test_verbatim_ruling_text_inside_canon_fence(repo):
-    """FO §9 之 R-G13 條文逐字含裸節號；其在圍籬內，理由須為 verbatim-ruling-text。"""
+def test_fenced_ruling_text_is_mention_not_waived(repo):
+    """條文圍籬內之引用為「提及」，**不入 waiver 亦不計 FAIL**（27 包 §三）。
+
+    27 包前此類以 `verbatim-ruling-text` 之 waiver 列處置；
+    mention 判準生效後該特例被吸收 —— **一個不必豁免的東西不該出現在豁免清單裡。**
+    """
     fo = repo / "docs/fw036/FEATURE_ONBOARDING.md"
     fo.write_text(FO_TEXT + "\n#### R-G13 — 引用制\n\n```\n"
                   "R-G13：裁決條文集中於各 feature 之 RULINGS.md 與 canon §8.4。\n```\n",
                   encoding="utf-8")
-    run(repo, "--emit-waiver", "w.tsv")
+    r = run(repo, "--emit-waiver", "w.tsv")
     rows = (repo / "w.tsv").read_text(encoding="utf-8").strip().splitlines()[1:]
-    got = [ln.split("\t") for ln in rows if ln.startswith("docs/fw036/FEATURE_ONBOARDING")]
-    assert got and got[0][4] == "verbatim-ruling-text", got
+    assert not [ln for ln in rows if ln.startswith("docs/fw036/FEATURE_ONBOARDING")]
+    assert run(repo, "--waiver", "w.tsv", "--gate").returncode == 0
 
 
 def test_waived_ref_does_not_trip_gate(repo):
@@ -342,3 +347,96 @@ def test_missing_waiver_file_is_empty_not_error(repo):
     hist(repo, "依 canon §8.4 三分法。\n")
     r = run(repo, "--waiver", "nope.tsv", "--gate")
     assert r.returncode == 1 and "FAIL" in r.stdout
+
+
+# --- 使用／提及（27 包 §三）------------------------------------------------
+#
+# 判準表自 26 上繳 §五-2 所載之**四次誤踩實例**歸納。四例逐一釘入（G-N），
+# 並附範圍向：真正的援引不得被誤判為提及（R-G9）。
+
+@pytest.mark.parametrize("line, expect, case", [
+    # 例 1：複寫並列字串以說明前綴不及於後續節號（26 §五-0 初稿）
+    ('初稿寫「`FO §8.1／§8.2／§8.8`」—— 前綴只涵蓋第一個', "mention", "圍籬（「」＋反引號）"),
+    # 例 2：引述一句本身含規範性動詞之原文（V33 §C-2 加註）
+    ('本條二款括號內「依 canon §8.7」所指為 FO §8.7', "mention", "圍籬優先於其內之動詞"),
+    # 例 3：條文圍籬內（FO §9.2 之 R-G13 條文）—— 見 in_fence 之測試
+    ('條文本體提及 canon 之 §9 → 已豁免', "mention", "詞彙標記「提及」"),
+    # 例 4：更正文字又引述原句（26 §五-2 之第四次）
+    ('上表原以「條文本體提及 canon §9」書之，該句自身遂成為命中', "mention", "圍籬"),
+    # 範圍向：真正的援引
+    ('依 canon §8.7 其下放包已落檔且入版控', "use", "規範性動詞引導"),
+    ('違反 canon §5.1 之禁用動詞', "use", "規範性動詞引導"),
+    ('見 canon §5a 之數字紀律', "use", "規範性動詞引導"),
+    ('依 canon §8.4.3 填 PENDING: DR-20', "use", "規範性動詞引導"),
+])
+def test_usage_four_misfires_and_range_vector(line, expect, case):
+    assert cr.usage_of(line, line.index("§"), False, False) == expect, case
+
+
+def test_fence_and_superseded_regions_are_mention():
+    line = "R-G13：裁決條文集中於各 feature 之 RULINGS.md 與 canon §9"
+    assert cr.usage_of(line, line.index("§"), True, False) == "mention"
+    assert cr.usage_of(line, line.index("§"), False, True) == "mention"
+    assert cr.usage_of(line, line.index("§"), False, False) == "use"
+
+
+def test_mention_is_not_counted_in_gate(repo):
+    active(repo, '本條所指者為「依 canon §8.4」之三分法。\n')
+    r = run(repo, "--gate")
+    assert r.returncode == 0, r.stdout
+    assert "mention     = 1" in r.stdout
+
+
+def test_use_is_still_counted_in_gate(repo):
+    active(repo, '依 canon §8.4 之三分法處置。\n')
+    assert run(repo, "--gate").returncode == 1
+
+
+# --- waiver 之內容雜湊鍵（27 包 §四）---------------------------------------
+#
+# 鍵之語意為「**這一行的這個引用**」。故須兩向都驗：
+#   行移動  → 不失效（26 上繳 §五-1 之兩次假性新增，即由此消除）
+#   內容變動 → 失效（內容改了本來就該重判）
+
+def test_waiver_survives_line_movement(repo):
+    """字面案例：於被豁免行之**上方**插入內容，waiver 不得失效。"""
+    hist(repo, "依 canon §8.4 三分法。\n")
+    run(repo, "--emit-waiver", "w.tsv")
+    assert run(repo, "--waiver", "w.tsv", "--gate").returncode == 0
+    hist(repo, "新增之前言一行。\n又一行。\n\n依 canon §8.4 三分法。\n")
+    r = run(repo, "--waiver", "w.tsv", "--gate")
+    assert r.returncode == 0, "行下移不得使 waiver 失效\n" + r.stdout
+    assert "stale 0 列" in r.stdout
+
+
+def test_waiver_fails_when_line_content_changes(repo):
+    """反向：同一行之**內容**改動即失效 —— 內容改了本來就該重判。"""
+    hist(repo, "依 canon §8.4 三分法。\n")
+    run(repo, "--emit-waiver", "w.tsv")
+    hist(repo, "依 canon §8.4 三分法，並加一句改變語意之補述。\n")
+    assert run(repo, "--waiver", "w.tsv", "--gate").returncode == 1
+
+
+def test_waiver_columns_carry_hash_and_advisory_line(repo):
+    hist(repo, "依 canon §8.4 三分法。\n")
+    run(repo, "--emit-waiver", "w.tsv")
+    rows = (repo / "w.tsv").read_text(encoding="utf-8").strip().splitlines()
+    assert rows[0].split("\t") == cr.WAIVER_COLUMNS
+    c = rows[1].split("\t")
+    assert len(c[3]) == 8 and all(ch in "0123456789abcdef" for ch in c[3])
+    assert c[4].isdigit(), "line 欄保留為輔助欄（顯示用）"
+
+
+def test_line_sha8_ignores_trailing_whitespace():
+    assert cr.line_sha8("依 canon §8.4 三分法。") == cr.line_sha8("依 canon §8.4 三分法。   ")
+
+
+def test_legacy_waiver_format_still_matches(repo, tmp_path):
+    """遷移期相容：舊格式（無 line_sha8）之列仍應命中。"""
+    hist(repo, "依 canon §8.4 三分法。\n")
+    legacy = repo / "old.tsv"
+    legacy.write_text(
+        "source\tline\tkind\ttarget\treason\n"
+        "features/f/docs/handoff/07_round.md\t1\tsection\t§8.4\thistorical-record\n",
+        encoding="utf-8")
+    assert run(repo, "--waiver", "old.tsv", "--gate").returncode == 0
