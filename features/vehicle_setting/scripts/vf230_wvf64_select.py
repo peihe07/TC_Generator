@@ -33,7 +33,7 @@ def main() -> None:
     # 否則其第二次之通過不構成新形態之證據（首版未排除，seq 259 命中
     # `PowerLiftgate/TailgateAlert-016`，其已為 pilot #1 之 seq 238）。
     done = {t["leaf_id"] for t in json.loads(
-        (ROOT / "generated" / "vf230_pilot1_v4.json").read_text(encoding="utf-8"))["tcs"]}
+        (ROOT / "generated" / "vf230_pilot1.json").read_text(encoding="utf-8"))["tcs"]}
     rows = [r for r in rows if r["leaf_id"] not in done]
     print(f"池 {len(rows)}（已扣 pilot #1 之 {len(done)} 條）")
     by_form = defaultdict(list)

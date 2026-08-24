@@ -91,7 +91,7 @@ def check(tcs: list[dict]) -> list[str]:
 
 
 def main() -> int:
-    path = Path(sys.argv[1]) if len(sys.argv) > 1 else FEAT / "generated/vf230_pilot1_v3.json"
+    path = Path(sys.argv[1]) if len(sys.argv) > 1 else FEAT / "generated/vf230_pilot1.json"
     d = json.loads(path.read_text(encoding="utf-8"))
     import collections
     cnt = collections.Counter(t["priority_class"] for t in d["tcs"])

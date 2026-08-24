@@ -68,6 +68,34 @@ def form_of(text: str) -> str:
     return "其他"
 
 
+ANCHORS = [
+    # (leaf_id, 期望形態, 性質) —— R-VF21／R-VF28，以內容定錨
+    ("SWE1-VC-SuspensionServiceMode-006", "訊號上行型", "必命中"),
+    ("SWE1-VC-BlindSpotAlert-004", "訊號送出型", "必不命中（不得歸為上行型）"),
+    # **鑑別錨點**：雙參數之 PROXI 條文 —— 其曾因方括號 ≥3 被誤歸「值域切換型」，
+    # 為本分類式之**已知失效點**（上繳 V26 §2.1 第 2 項）。
+    ("SWE1-VC-SuspensionAutoEntryorExit-090", "PROXI 型", "鑑別（已知失效點）"),
+]
+
+
+def verify_anchors(lv, form_of_fn) -> None:
+    """錨點不符即停（R-VF21）。以內容定錨，不以行號。"""
+    bad = []
+    for leaf, want, kind in ANCHORS:
+        if leaf not in lv:
+            bad.append(f"{kind} 錨點 `{leaf}` 不存在於 leaf 集合內 —— "
+                       "其值恆為無，不構成錨點（A-VF4）")
+            continue
+        txt = re.sub(r"\s+", " ", lv[leaf]["desc"].replace("\\n", " "))
+        got = form_of_fn(txt)
+        mark = "✅" if got == want else "❌"
+        print(f"  {kind:22} {leaf[:40]:42} 期望 {want:10} 實得 {got:10} {mark}")
+        if got != want:
+            bad.append(f"{kind} 錨點不符：`{leaf}` 期望 {want}，實得 {got}")
+    if bad:
+        raise SystemExit("R-VF21：錨點不符，停 —— " + "；".join(bad))
+
+
 def main() -> None:
     lv = {r["swe_id"]: r for r in csv.DictReader(
         (ROOT / "data" / "vf230_leaves.tsv").open(encoding="utf-8"), delimiter="\t")}
@@ -85,6 +113,9 @@ def main() -> None:
     pr = importlib.util.module_from_spec(sp)
     sp.loader.exec_module(pr)
 
+    print("=== 分類式之三錨點（R-VF21／R-VF28）===")
+    verify_anchors(lv, form_of)
+    print()
     rows = []
     for leaf in pri["pool"]:
         txt = re.sub(r"\s+", " ", lv[leaf]["desc"].replace("\\n", " "))

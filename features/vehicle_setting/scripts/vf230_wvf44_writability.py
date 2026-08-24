@@ -100,6 +100,9 @@ def proxi_known() -> set[str]:
     return out
 
 
+# R-VF75 一：無可測內容之判準。**已知集合，非全集**（R-VF71 三）。
+NOTE_ONLY = re.compile(r"^\s*Note[:\uff1a]|managed in CFTS|not HMI setting", re.I)
+
 VALUE_ASSIGN = re.compile(
     r"\b([A-Z][A-Z0-9_]{2,}(?:\.[A-Za-z]\w{2,})?)\s*==?\s*[\"'\[]?([A-Za-z0-9_ ]{1,40})")
 
@@ -135,7 +138,25 @@ def main() -> None:
         rec = vv.get(leaf, {})
         note, blocker, detail = {}, "", ""
 
-        # W2(a)：條文無可測內容 —— 適用性前言（B4-preamble，Part 1 之既有碼）
+        # --- W2(a) 之第二路徑（R-VF75 一，A-VF21）---
+        # R-VS71 之 W2(a)「條文無可測內容」於首版**從未被實作** ——
+        # 其 W2 僅由 B4-preamble／B5／B6 三路徑產生。
+        # `E-Save-095` 之全文為「Note: … managed in CFTS 088」，
+        # 無觸發、無可觀察之結果，而首版判其 W0 且其在選池內。
+        if NOTE_ONLY.search(text) or len(text.strip()) < 120:
+            grade, blocker = "W2", "B7-no-testable-content"
+            detail = ("條文無可測內容（R-VS71 之 W2(a)）—— "
+                      "註記式或過短，無觸發亦無可觀察之結果")
+            rows.append({
+                "leaf_id": leaf, "test_set": ts_of.get(lf["title"], ""),
+                "layer3": lf["title"].replace("\\n", " "),
+                "src_ref": lf["src_ref"], "writable": grade,
+                "blocker_class": blocker, "blocker_detail": detail,
+                "value_source": "", "dr_id": "",
+                "vcvm_not_clear": "0", "disagree": lf.get("disagree", "0")})
+            continue
+
+        # W2(a) 之第一路徑：適用性前言（B4-preamble，Part 1 之既有碼）
         if any(rx.search(text) for rx in wd.PREAMBLE):
             grade, blocker = "W2", "B4-preamble"
             detail = "唯一來源條文為適用性前言，無可測之功能行為"

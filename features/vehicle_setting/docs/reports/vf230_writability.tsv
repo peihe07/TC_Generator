@@ -318,7 +318,7 @@ SWE1-VC-E-Save-091	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2661	W0					0	0
 SWE1-VC-E-Save-092	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2662	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
 SWE1-VC-E-Save-093	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2663	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
 SWE1-VC-E-Save-094	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2664	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
-SWE1-VC-E-Save-095	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2665	W0					0	0
+SWE1-VC-E-Save-095	Auxiliary Switches	E-Save	SYS-RA-VF230_V1-2665	W2	B7-no-testable-content	條文無可測內容（R-VS71 之 W2(a)）—— 註記式或過短，無觸發亦無可觀察之結果			0	0
 SWE1-VC-SWITCH3PowerMode-014	Auxiliary Switches	SWITCH 3 Power Mode	SYS-RA-VF230_V1-2271	W0			AUX3_PWRMD_Req=2-DBC		0	1
 SWE1-VC-SWITCH6PowerMode-026	Auxiliary Switches	SWITCH 6 Power Mode	SYS-RA-VF230_V1-2283	W0			AUX6_PWRMD_Req=2-DBC		0	1
 SWE1-VC-SWITCH3Type-039	Auxiliary Switches	SWITCH 3 Type	SYS-RA-VF230_V1-2296	W0			AUX3_TYPE=2-DBC		1	1

@@ -7,6 +7,11 @@
       **置於 PROXI 設定之前**（其為狀態，PROXI 為配置）
   (5) 產 `vf230_pilot1_v4.json`，`supersedes: vf230_pilot1_v3.json`
 
+**本檔為 38 輪 W-VF63 之歷史腳本，其輸入 `vf230_pilot1_v3.json` 已於 W-VF68
+依 V28 §3（Pei 已允）刪除，故本檔已不可重跑。**其產物 `vf230_pilot1_v4.json`
+同輪改名為 `vf230_pilot1.json`（定稿）。保留本檔僅為記錄其修改內容，
+不作為可執行之重製路徑 —— **具名此為 R-VS53（產物須可自 driver 重製）之一處斷鏈**。
+
 **不重跑選池、不改 leaf 集合、不改 `specification_reference`、
 不改 `reasoning` 之 Priority 段。**
 

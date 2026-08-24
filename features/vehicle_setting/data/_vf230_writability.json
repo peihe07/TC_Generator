@@ -1,11 +1,12 @@
 {
   "dist": {
-    "W0": 593,
+    "W0": 592,
     "W1": 28,
-    "W2": 6
+    "W2": 7
   },
   "blocker": {
-    "B5-signal-absent": 6
+    "B5-signal-absent": 6,
+    "B7-no-testable-content": 1
   },
   "per_test_set": {
     "Driver Convenience": {
@@ -30,8 +31,8 @@
     },
     "Auxiliary Switches": {
       "W1": 7,
-      "W0": 105,
-      "W2": 3
+      "W0": 104,
+      "W2": 4
     },
     "Approach and Tailgate": {
       "W0": 45,

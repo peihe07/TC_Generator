@@ -2395,7 +2395,7 @@
     {
       "leaf_id": "SWE1-VC-E-Save-095",
       "form": "無可測內容",
-      "writable": "W0",
+      "writable": "W2",
       "priority": "P1",
       "test_set": "Auxiliary Switches",
       "layer3": "E-Save"
