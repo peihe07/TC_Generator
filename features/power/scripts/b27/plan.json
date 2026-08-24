@@ -1,0 +1,1459 @@
+{
+ "base": "features/power/sandbox/b19/pm_19.xlsx",
+ "sheet": "Test Case Specification&Result",
+ "insertions": {
+  "10": 3,
+  "11": 3,
+  "12": 2,
+  "17": 2,
+  "21": 3,
+  "23": 2,
+  "24": 5,
+  "26": 5,
+  "28": 2,
+  "29": 4,
+  "30": 4,
+  "32": 3,
+  "39": 3,
+  "45": 5,
+  "97": 2,
+  "102": 3,
+  "109": 0,
+  "124": 5,
+  "125": 5,
+  "126": 5,
+  "127": 5,
+  "157": 2,
+  "158": 2,
+  "159": 2,
+  "162": 2,
+  "170": 2,
+  "179": 1,
+  "180": 1,
+  "188": 3,
+  "189": 5,
+  "190": 3,
+  "194": 5,
+  "197": 2,
+  "204": 3,
+  "285": 2
+ },
+ "splits": [
+  {
+   "src_row": 10,
+   "variants": [
+    {
+     "I": "All TLM, AMP/ICS/DTV functionalities are available.\n\n(read the TLM audio output state and check that audio output is active -> The TLM audio output is active)",
+     "J": "1. Ignition state = Ignition_On\n2. The TLM is in Full-Operation state\n3. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)\n2. Read the TLM audio output state and check that audio output is active",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received\n2. The TLM audio output is active"
+    },
+    {
+     "I": "All TLM, AMP/ICS/DTV functionalities are available.\n\n(read the AMP functionality and check that it is available -> The AMP functionality is available)",
+     "J": "1. Ignition state = Ignition_On\n2. The TLM is in Full-Operation state\n3. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)\n2. Read the AMP functionality and check that it is available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received\n2. The AMP functionality is available"
+    },
+    {
+     "I": "All TLM, AMP/ICS/DTV functionalities are available.\n\n(read the ICS functionality and check that it is available -> The ICS functionality is available)",
+     "J": "1. Ignition state = Ignition_On\n2. The TLM is in Full-Operation state\n3. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)\n2. Read the ICS functionality and check that it is available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received\n2. The ICS functionality is available"
+    },
+    {
+     "I": "All TLM, AMP/ICS/DTV functionalities are available.\n\n(read the DTV functionality and check that it is available -> The DTV functionality is available)",
+     "J": "1. Ignition state = Ignition_On\n2. The TLM is in Full-Operation state\n3. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)\n2. Read the DTV functionality and check that it is available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received\n2. The DTV functionality is available"
+    }
+   ]
+  },
+  {
+   "src_row": 11,
+   "variants": [
+    {
+     "I": "All TLM, AMP/ICS/DTV functionalities are available.\n\n(send OperationalModeSts = 5 Ignition_Pre_Start -> Full-Operation is kept)",
+     "J": "1. The TLM is in Full-Operation state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 5 (Ignition_Pre_Start)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 5 (Ignition_Pre_Start) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received"
+    },
+    {
+     "I": "All TLM, AMP/ICS/DTV functionalities are available.\n\n(send OperationalModeSts = 6 Ignition_Start -> Full-Operation is kept)",
+     "J": "1. The TLM is in Full-Operation state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 6 (Ignition_Start)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 6 (Ignition_Start) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received"
+    },
+    {
+     "I": "All TLM, AMP/ICS/DTV functionalities are available.\n\n(send OperationalModeSts = 7 Ignition_Cranking -> Full-Operation is kept)",
+     "J": "1. The TLM is in Full-Operation state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 7 (Ignition_Cranking)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 7 (Ignition_Cranking) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received"
+    },
+    {
+     "I": "All TLM, AMP/ICS/DTV functionalities are available.\n\n(send OperationalModeSts = 8 Ignition_On_EngOn -> Full-Operation is kept)",
+     "J": "1. The TLM is in Full-Operation state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 8 (Ignition_On_EngOn)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 8 (Ignition_On_EngOn) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received"
+    }
+   ]
+  },
+  {
+   "src_row": 12,
+   "variants": [
+    {
+     "I": "Full-Operation\nTLM plays the audio active source (Tuner, USB, AUX_IN, SDCARD, BT Music streaming or Phone Call, etc)\n\n(select SDCARD -> SDCARD is played)",
+     "J": "1. The TLM is in Full-Operation state\n2. An SDCARD is inserted\n3. A paired BT audio device is connected\n4. An active phone call is available\n5. LIN and CAN tool is available on HU",
+     "L": "1. Select SDCARD as the audio active source\n2. Read the played audio source and check that it is the SDCARD",
+     "M": "1. The SDCARD is selected as the audio active source\n2. The TLM plays the SDCARD as the audio active source"
+    },
+    {
+     "I": "Full-Operation\nTLM plays the audio active source (Tuner, USB, AUX_IN, SDCARD, BT Music streaming or Phone Call, etc)\n\n(select BT Music streaming -> BT Music streaming is played)",
+     "J": "1. The TLM is in Full-Operation state\n2. An SDCARD is inserted\n3. A paired BT audio device is connected\n4. An active phone call is available\n5. LIN and CAN tool is available on HU",
+     "L": "1. Select BT Music streaming as the audio active source\n2. Read the played audio source and check that it is the BT Music streaming",
+     "M": "1. The BT Music streaming is selected as the audio active source\n2. The TLM plays the BT Music streaming as the audio active source"
+    },
+    {
+     "I": "Full-Operation\nTLM plays the audio active source (Tuner, USB, AUX_IN, SDCARD, BT Music streaming or Phone Call, etc)\n\n(place a phone call -> the phone call is played)",
+     "J": "1. The TLM is in Full-Operation state\n2. An SDCARD is inserted\n3. A paired BT audio device is connected\n4. An active phone call is available\n5. LIN and CAN tool is available on HU",
+     "L": "1. Place a phone call\n2. Read the played audio source and check that it is the phone call",
+     "M": "1. The phone call is established\n2. The TLM plays the phone call as the audio active source"
+    }
+   ]
+  },
+  {
+   "src_row": 17,
+   "variants": [
+    {
+     "I": "In this mode TLM shall shall report $Telematic_Power$ = \" Partial_Operation\". This mode shall exist for AMP, ICS, and DTV when STATUS_BH_BCM2.RemStActvSts is equal to \"Remote Start Active\" is recieved and TLM sends $Telematic_Power$ = \"Partial_Operation\"\n\n(read the AMP state and check that it is off -> The AMP is off)",
+     "J": "1. Ignition state = Ignition_On\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 7 (Partial_Operation)\n3. Read the AMP state and check that it is off",
+     "M": "1. The signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received\n3. The AMP is off"
+    },
+    {
+     "I": "In this mode TLM shall shall report $Telematic_Power$ = \" Partial_Operation\". This mode shall exist for AMP, ICS, and DTV when STATUS_BH_BCM2.RemStActvSts is equal to \"Remote Start Active\" is recieved and TLM sends $Telematic_Power$ = \"Partial_Operation\"\n\n(read the ICS state and check that it is off -> The ICS is off)",
+     "J": "1. Ignition state = Ignition_On\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 7 (Partial_Operation)\n3. Read the ICS state and check that it is off",
+     "M": "1. The signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received\n3. The ICS is off"
+    },
+    {
+     "I": "In this mode TLM shall shall report $Telematic_Power$ = \" Partial_Operation\". This mode shall exist for AMP, ICS, and DTV when STATUS_BH_BCM2.RemStActvSts is equal to \"Remote Start Active\" is recieved and TLM sends $Telematic_Power$ = \"Partial_Operation\"\n\n(read the DTV state and check that it is off -> The DTV is off)",
+     "J": "1. Ignition state = Ignition_On\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 7 (Partial_Operation)\n3. Read the DTV state and check that it is off",
+     "M": "1. The signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received\n3. The DTV is off"
+    }
+   ]
+  },
+  {
+   "src_row": 21,
+   "variants": [
+    {
+     "I": "TLM AMP/ICS/DTV functionalities are available only for a limited time.\n\n(read the AMP functionality and check that it is available -> The AMP functionality is available)",
+     "J": "1. Ignition state = Ignition_Off\n2. The TLM is in Timed state\n3. Timeout1 is configured to a value other than 00 min\n4. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)\n2. Read the AMP functionality and check that it is available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received\n2. The AMP functionality is available"
+    },
+    {
+     "I": "TLM AMP/ICS/DTV functionalities are available only for a limited time.\n\n(read the ICS functionality and check that it is available -> The ICS functionality is available)",
+     "J": "1. Ignition state = Ignition_Off\n2. The TLM is in Timed state\n3. Timeout1 is configured to a value other than 00 min\n4. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)\n2. Read the ICS functionality and check that it is available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received\n2. The ICS functionality is available"
+    },
+    {
+     "I": "TLM AMP/ICS/DTV functionalities are available only for a limited time.\n\n(read the DTV functionality and check that it is available -> The DTV functionality is available)",
+     "J": "1. Ignition state = Ignition_Off\n2. The TLM is in Timed state\n3. Timeout1 is configured to a value other than 00 min\n4. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)\n2. Read the DTV functionality and check that it is available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received\n2. The DTV functionality is available"
+    },
+    {
+     "I": "TLM AMP/ICS/DTV functionalities are available only for a limited time.\n\n(wait until Timeout1 has elapsed -> The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ is no longer 2 (Timed))",
+     "J": "1. Ignition state = Ignition_Off\n2. The TLM is in Timed state\n3. Timeout1 is configured to a value other than 00 min\n4. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)\n2. Wait until Timeout1 has elapsed\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is no longer 2 (Timed)",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received\n2. Timeout1 has elapsed\n3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ is no longer 2 (Timed)"
+    }
+   ]
+  },
+  {
+   "src_row": 23,
+   "variants": [
+    {
+     "I": "Timed\nTLM plays the audio active source (Tuner, USB, AUX_IN, SDCARD, BT Music streaming or Phone Call, etc)\n\n(select SDCARD -> SDCARD is played)",
+     "J": "1. The TLM is in Timed state\n2. An SDCARD is inserted\n3. A paired BT audio device is connected\n4. An active phone call is available\n5. LIN and CAN tool is available on HU",
+     "L": "1. Select SDCARD as the audio active source\n2. Read the played audio source and check that it is the SDCARD",
+     "M": "1. The SDCARD is selected as the audio active source\n2. The TLM plays the SDCARD as the audio active source"
+    },
+    {
+     "I": "Timed\nTLM plays the audio active source (Tuner, USB, AUX_IN, SDCARD, BT Music streaming or Phone Call, etc)\n\n(select BT Music streaming -> BT Music streaming is played)",
+     "J": "1. The TLM is in Timed state\n2. An SDCARD is inserted\n3. A paired BT audio device is connected\n4. An active phone call is available\n5. LIN and CAN tool is available on HU",
+     "L": "1. Select BT Music streaming as the audio active source\n2. Read the played audio source and check that it is the BT Music streaming",
+     "M": "1. The BT Music streaming is selected as the audio active source\n2. The TLM plays the BT Music streaming as the audio active source"
+    },
+    {
+     "I": "Timed\nTLM plays the audio active source (Tuner, USB, AUX_IN, SDCARD, BT Music streaming or Phone Call, etc)\n\n(place a phone call -> the phone call is played)",
+     "J": "1. The TLM is in Timed state\n2. An SDCARD is inserted\n3. A paired BT audio device is connected\n4. An active phone call is available\n5. LIN and CAN tool is available on HU",
+     "L": "1. Place a phone call\n2. Read the played audio source and check that it is the phone call",
+     "M": "1. The phone call is established\n2. The TLM plays the phone call as the audio active source"
+    }
+   ]
+  },
+  {
+   "src_row": 24,
+   "variants": [
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(read the network state and check that the network is on -> The network is on)",
+     "J": "1. The TLM is in Standby state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n2. Read the network state and check that the network is on",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n2. The network is on"
+    },
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(read the TLM functionality and check that it is not available -> The TLM functionality is not available)",
+     "J": "1. The TLM is in Standby state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n2. Read the TLM functionality and check that it is not available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n2. The TLM functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(read the FPDM functionality and check that it is not available -> The FPDM functionality is not available)",
+     "J": "1. The TLM is in Standby state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n2. Read the FPDM functionality and check that it is not available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n2. The FPDM functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(read the AMP functionality and check that it is not available -> The AMP functionality is not available)",
+     "J": "1. The TLM is in Standby state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n2. Read the AMP functionality and check that it is not available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n2. The AMP functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(read the ICS functionality and check that it is not available -> The ICS functionality is not available)",
+     "J": "1. The TLM is in Standby state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n2. Read the ICS functionality and check that it is not available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n2. The ICS functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(read the DTV functionality and check that it is not available -> The DTV functionality is not available)",
+     "J": "1. The TLM is in Standby state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n2. Read the DTV functionality and check that it is not available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n2. The DTV functionality is not available"
+    }
+   ]
+  },
+  {
+   "src_row": 26,
+   "variants": [
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(read the network state and check that the network is off -> The network is off)",
+     "J": "1. The TLM is in Sleep state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n2. Read the network state and check that the network is off",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n2. The network is off"
+    },
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(read the TLM functionality and check that it is not available -> The TLM functionality is not available)",
+     "J": "1. The TLM is in Sleep state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n2. Read the TLM functionality and check that it is not available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n2. The TLM functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(read the FPDM functionality and check that it is not available -> The FPDM functionality is not available)",
+     "J": "1. The TLM is in Sleep state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n2. Read the FPDM functionality and check that it is not available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n2. The FPDM functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(read the AMP functionality and check that it is not available -> The AMP functionality is not available)",
+     "J": "1. The TLM is in Sleep state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n2. Read the AMP functionality and check that it is not available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n2. The AMP functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(read the ICS functionality and check that it is not available -> The ICS functionality is not available)",
+     "J": "1. The TLM is in Sleep state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n2. Read the ICS functionality and check that it is not available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n2. The ICS functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(read the DTV functionality and check that it is not available -> The DTV functionality is not available)",
+     "J": "1. The TLM is in Sleep state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n2. Read the DTV functionality and check that it is not available",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n2. The DTV functionality is not available"
+    }
+   ]
+  },
+  {
+   "src_row": 28,
+   "variants": [
+    {
+     "I": "This status is related to TLM AMP, ICS, and DTV ON only for testing, diagnostics and development of TLM component, relatively to Engineering Line.\n\n(read the AMP state and check that it is on -> The AMP is on)",
+     "J": "1. Ignition state = Ignition_Off\n2. The Engineering Line is activated\n3. LIN and CAN tool is available on HU",
+     "L": "1. Bring the TLM to the Bench state\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 6 (Bench)\n3. Read the AMP state and check that it is on",
+     "M": "1. The TLM reaches the Bench state\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received\n3. The AMP is on"
+    },
+    {
+     "I": "This status is related to TLM AMP, ICS, and DTV ON only for testing, diagnostics and development of TLM component, relatively to Engineering Line.\n\n(read the ICS state and check that it is on -> The ICS is on)",
+     "J": "1. Ignition state = Ignition_Off\n2. The Engineering Line is activated\n3. LIN and CAN tool is available on HU",
+     "L": "1. Bring the TLM to the Bench state\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 6 (Bench)\n3. Read the ICS state and check that it is on",
+     "M": "1. The TLM reaches the Bench state\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received\n3. The ICS is on"
+    },
+    {
+     "I": "This status is related to TLM AMP, ICS, and DTV ON only for testing, diagnostics and development of TLM component, relatively to Engineering Line.\n\n(read the DTV state and check that it is on -> The DTV is on)",
+     "J": "1. Ignition state = Ignition_Off\n2. The Engineering Line is activated\n3. LIN and CAN tool is available on HU",
+     "L": "1. Bring the TLM to the Bench state\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 6 (Bench)\n3. Read the DTV state and check that it is on",
+     "M": "1. The TLM reaches the Bench state\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received\n3. The DTV is on"
+    }
+   ]
+  },
+  {
+   "src_row": 29,
+   "variants": [
+    {
+     "I": "Bench\nLTM plays the audio active source (Tuner, USB, AUX_IN or Phone Call, etc)\nON (if present) Refer to {VF652} for further details about USB presence\nON (if present) Refer to {VF652} for further details about AUX_IN presence\n\n(read the BoosterOUT state and check that it is on -> The BoosterOUT is on)",
+     "J": "1. Ignition state = Ignition_Off\n2. The Engineering Line is activated\n3. The TLM is in Bench state\n4. LIN and CAN tool is available on HU",
+     "L": "1. Read the audio power amplifier state and check that it is on and not muted\n2. Read the BoosterOUT state and check that it is on",
+     "M": "1. The audio power amplifier is on and not muted\n2. The BoosterOUT is on"
+    },
+    {
+     "I": "Bench\nLTM plays the audio active source (Tuner, USB, AUX_IN or Phone Call, etc)\nON (if present) Refer to {VF652} for further details about USB presence\nON (if present) Refer to {VF652} for further details about AUX_IN presence\n\n(read the analog antenna supply and check that it is on -> The analog antenna supply is on)",
+     "J": "1. Ignition state = Ignition_Off\n2. The Engineering Line is activated\n3. The TLM is in Bench state\n4. LIN and CAN tool is available on HU",
+     "L": "1. Read the audio power amplifier state and check that it is on and not muted\n2. Read the analog antenna supply and check that it is on",
+     "M": "1. The audio power amplifier is on and not muted\n2. The analog antenna supply is on"
+    },
+    {
+     "I": "Bench\nLTM plays the audio active source (Tuner, USB, AUX_IN or Phone Call, etc)\nON (if present) Refer to {VF652} for further details about USB presence\nON (if present) Refer to {VF652} for further details about AUX_IN presence\n\n(read the digital antenna supply and check that it is on -> The digital antenna supply is on)",
+     "J": "1. Ignition state = Ignition_Off\n2. The Engineering Line is activated\n3. The TLM is in Bench state\n4. LIN and CAN tool is available on HU",
+     "L": "1. Read the audio power amplifier state and check that it is on and not muted\n2. Read the digital antenna supply and check that it is on",
+     "M": "1. The audio power amplifier is on and not muted\n2. The digital antenna supply is on"
+    },
+    {
+     "I": "Bench\nLTM plays the audio active source (Tuner, USB, AUX_IN or Phone Call, etc)\nON (if present) Refer to {VF652} for further details about USB presence\nON (if present) Refer to {VF652} for further details about AUX_IN presence\n\n(read the USB MCU state and check that it is on -> The USB MCU is on)",
+     "J": "1. Ignition state = Ignition_Off\n2. The Engineering Line is activated\n3. The TLM is in Bench state\n4. LIN and CAN tool is available on HU",
+     "L": "1. Read the audio power amplifier state and check that it is on and not muted\n2. Read the USB MCU state and check that it is on",
+     "M": "1. The audio power amplifier is on and not muted\n2. The USB MCU is on"
+    },
+    {
+     "I": "Bench\nLTM plays the audio active source (Tuner, USB, AUX_IN or Phone Call, etc)\nON (if present) Refer to {VF652} for further details about USB presence\nON (if present) Refer to {VF652} for further details about AUX_IN presence\n\n(read the AUX MCU state and check that it is on -> The AUX MCU is on)",
+     "J": "1. Ignition state = Ignition_Off\n2. The Engineering Line is activated\n3. The TLM is in Bench state\n4. LIN and CAN tool is available on HU",
+     "L": "1. Read the audio power amplifier state and check that it is on and not muted\n2. Read the AUX MCU state and check that it is on",
+     "M": "1. The audio power amplifier is on and not muted\n2. The AUX MCU is on"
+    }
+   ]
+  },
+  {
+   "src_row": 30,
+   "variants": [
+    {
+     "I": "First default values for TLM are: TLM_Status.Info, $Telematic_Power$ equal to \"Sleep\" value; VPLastStatus equal to \"On\" value; SwitchOff_Timeout_Setting.Req equal to \"00 min\" == Timeout1 equal to 00 minutes; Timeout1 equal to 00 minutes for LTM High Auto_SwitchOn_Setting.Req equal to \"Recall_Last\" value; Antitheft_Activation.Req equal to \"False\" value.\n\n(read VPLastStatus and check that it is On -> VPLastStatus is On)",
+     "J": "1. The unit carries the ex-factory configuration\n2. LIN and CAN tool is available on HU",
+     "L": "1. Power up the TLM for the first time\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read VPLastStatus and check that it is On",
+     "M": "1. The TLM is powered up for the first time\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. VPLastStatus is On"
+    },
+    {
+     "I": "First default values for TLM are: TLM_Status.Info, $Telematic_Power$ equal to \"Sleep\" value; VPLastStatus equal to \"On\" value; SwitchOff_Timeout_Setting.Req equal to \"00 min\" == Timeout1 equal to 00 minutes; Timeout1 equal to 00 minutes for LTM High Auto_SwitchOn_Setting.Req equal to \"Recall_Last\" value; Antitheft_Activation.Req equal to \"False\" value.\n\n(read SwitchOff_Timeout_Setting.Req and check that it is 00 min -> SwitchOff_Timeout_Setting.Req is 00 min)",
+     "J": "1. The unit carries the ex-factory configuration\n2. LIN and CAN tool is available on HU",
+     "L": "1. Power up the TLM for the first time\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read SwitchOff_Timeout_Setting.Req and check that it is 00 min",
+     "M": "1. The TLM is powered up for the first time\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. SwitchOff_Timeout_Setting.Req is 00 min"
+    },
+    {
+     "I": "First default values for TLM are: TLM_Status.Info, $Telematic_Power$ equal to \"Sleep\" value; VPLastStatus equal to \"On\" value; SwitchOff_Timeout_Setting.Req equal to \"00 min\" == Timeout1 equal to 00 minutes; Timeout1 equal to 00 minutes for LTM High Auto_SwitchOn_Setting.Req equal to \"Recall_Last\" value; Antitheft_Activation.Req equal to \"False\" value.\n\n(read Auto_SwitchOn_Setting.Req and check that it is Recall_Last -> Auto_SwitchOn_Setting.Req is Recall_Last)",
+     "J": "1. The unit carries the ex-factory configuration\n2. LIN and CAN tool is available on HU",
+     "L": "1. Power up the TLM for the first time\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read Auto_SwitchOn_Setting.Req and check that it is Recall_Last",
+     "M": "1. The TLM is powered up for the first time\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. Auto_SwitchOn_Setting.Req is Recall_Last"
+    },
+    {
+     "I": "First default values for TLM are: TLM_Status.Info, $Telematic_Power$ equal to \"Sleep\" value; VPLastStatus equal to \"On\" value; SwitchOff_Timeout_Setting.Req equal to \"00 min\" == Timeout1 equal to 00 minutes; Timeout1 equal to 00 minutes for LTM High Auto_SwitchOn_Setting.Req equal to \"Recall_Last\" value; Antitheft_Activation.Req equal to \"False\" value.\n\n(read Antitheft_Activation.Req and check that it is False -> Antitheft_Activation.Req is False)",
+     "J": "1. The unit carries the ex-factory configuration\n2. LIN and CAN tool is available on HU",
+     "L": "1. Power up the TLM for the first time\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read Antitheft_Activation.Req and check that it is False",
+     "M": "1. The TLM is powered up for the first time\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. Antitheft_Activation.Req is False"
+    },
+    {
+     "I": "First default values for TLM are: TLM_Status.Info, $Telematic_Power$ equal to \"Sleep\" value; VPLastStatus equal to \"On\" value; SwitchOff_Timeout_Setting.Req equal to \"00 min\" == Timeout1 equal to 00 minutes; Timeout1 equal to 00 minutes for LTM High Auto_SwitchOn_Setting.Req equal to \"Recall_Last\" value; Antitheft_Activation.Req equal to \"False\" value.\n\n(read RemStartFail and check that it is False -> RemStartFail is False)",
+     "J": "1. The unit carries the ex-factory configuration\n2. LIN and CAN tool is available on HU",
+     "L": "1. Power up the TLM for the first time\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read RemStartFail and check that it is False",
+     "M": "1. The TLM is powered up for the first time\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. RemStartFail is False"
+    }
+   ]
+  },
+  {
+   "src_row": 32,
+   "variants": [
+    {
+     "I": "After a battery reconnection and also when TLM has to exit INIT state (as soon as the voltage is limited within certain thresholds), TLM is able to work properly again and it has to restore the last user settings and the last variables values:\n\n(VPLastStatus is the value held before the disconnection)",
+     "J": "1. The TLM is in the INIT state after a battery disconnection\n2. VPLastStatus held a known value before the disconnection\n3. SwitchOffSetting.Req held a known value before the disconnection\n4. Auto_SwitchOn_Setting.Req held a known value before the disconnection\n5. LIN and CAN tool is available on HU",
+     "L": "1. Reconnect the battery and let the TLM exit the INIT state\n2. Read VPLastStatus and check that it is the value held before the disconnection",
+     "M": "1. The TLM exits the INIT state\n2. VPLastStatus is the value held before the disconnection"
+    },
+    {
+     "I": "After a battery reconnection and also when TLM has to exit INIT state (as soon as the voltage is limited within certain thresholds), TLM is able to work properly again and it has to restore the last user settings and the last variables values:\n\n(SwitchOffSetting.Req is the value held before the disconnection)",
+     "J": "1. The TLM is in the INIT state after a battery disconnection\n2. VPLastStatus held a known value before the disconnection\n3. SwitchOffSetting.Req held a known value before the disconnection\n4. Auto_SwitchOn_Setting.Req held a known value before the disconnection\n5. LIN and CAN tool is available on HU",
+     "L": "1. Reconnect the battery and let the TLM exit the INIT state\n2. Read SwitchOffSetting.Req and check that it is the value held before the disconnection",
+     "M": "1. The TLM exits the INIT state\n2. SwitchOffSetting.Req is the value held before the disconnection"
+    },
+    {
+     "I": "After a battery reconnection and also when TLM has to exit INIT state (as soon as the voltage is limited within certain thresholds), TLM is able to work properly again and it has to restore the last user settings and the last variables values:\n\n(Auto_SwitchOn_Setting.Req is the value held before the disconnection)",
+     "J": "1. The TLM is in the INIT state after a battery disconnection\n2. VPLastStatus held a known value before the disconnection\n3. SwitchOffSetting.Req held a known value before the disconnection\n4. Auto_SwitchOn_Setting.Req held a known value before the disconnection\n5. LIN and CAN tool is available on HU",
+     "L": "1. Reconnect the battery and let the TLM exit the INIT state\n2. Read Auto_SwitchOn_Setting.Req and check that it is the value held before the disconnection",
+     "M": "1. The TLM exits the INIT state\n2. Auto_SwitchOn_Setting.Req is the value held before the disconnection"
+    },
+    {
+     "I": "After a battery reconnection and also when TLM has to exit INIT state (as soon as the voltage is limited within certain thresholds), TLM is able to work properly again and it has to restore the last user settings and the last variables values:\n\n(The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received)",
+     "J": "1. The TLM is in the INIT state after a battery disconnection\n2. VPLastStatus held a known value before the disconnection\n3. SwitchOffSetting.Req held a known value before the disconnection\n4. Auto_SwitchOn_Setting.Req held a known value before the disconnection\n5. LIN and CAN tool is available on HU",
+     "L": "1. Reconnect the battery and let the TLM exit the INIT state\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)",
+     "M": "1. The TLM exits the INIT state\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received"
+    }
+   ]
+  },
+  {
+   "src_row": 39,
+   "variants": [
+    {
+     "I": "VPLastStatus, SwitchOffSetting.Req, Auto_SwitchOn_Setting.Req shall be restored to their values before the battery disconnection / battery reset\n\n(The TLM has left the INIT state)",
+     "J": "1. VPLastStatus holds a known value\n2. SwitchOffSetting.Req holds a known value\n3. Auto_SwitchOn_Setting.Req holds a known value\n4. The battery is disconnected\n5. LIN and CAN tool is available on HU",
+     "L": "1. Reconnect the battery and let the voltage settle within its thresholds\n2. Read the TLM state and check that it has left the INIT state",
+     "M": "1. The voltage settles within its thresholds\n2. The TLM has left the INIT state"
+    },
+    {
+     "I": "VPLastStatus, SwitchOffSetting.Req, Auto_SwitchOn_Setting.Req shall be restored to their values before the battery disconnection / battery reset\n\n(VPLastStatus is the value held before the disconnection)",
+     "J": "1. VPLastStatus holds a known value\n2. SwitchOffSetting.Req holds a known value\n3. Auto_SwitchOn_Setting.Req holds a known value\n4. The battery is disconnected\n5. LIN and CAN tool is available on HU",
+     "L": "1. Reconnect the battery and let the voltage settle within its thresholds\n2. Read VPLastStatus and check that it is the value held before the disconnection",
+     "M": "1. The voltage settles within its thresholds\n2. VPLastStatus is the value held before the disconnection"
+    },
+    {
+     "I": "VPLastStatus, SwitchOffSetting.Req, Auto_SwitchOn_Setting.Req shall be restored to their values before the battery disconnection / battery reset\n\n(SwitchOffSetting.Req is the value held before the disconnection)",
+     "J": "1. VPLastStatus holds a known value\n2. SwitchOffSetting.Req holds a known value\n3. Auto_SwitchOn_Setting.Req holds a known value\n4. The battery is disconnected\n5. LIN and CAN tool is available on HU",
+     "L": "1. Reconnect the battery and let the voltage settle within its thresholds\n2. Read SwitchOffSetting.Req and check that it is the value held before the disconnection",
+     "M": "1. The voltage settles within its thresholds\n2. SwitchOffSetting.Req is the value held before the disconnection"
+    },
+    {
+     "I": "VPLastStatus, SwitchOffSetting.Req, Auto_SwitchOn_Setting.Req shall be restored to their values before the battery disconnection / battery reset\n\n(Auto_SwitchOn_Setting.Req is the value held before the disconnection)",
+     "J": "1. VPLastStatus holds a known value\n2. SwitchOffSetting.Req holds a known value\n3. Auto_SwitchOn_Setting.Req holds a known value\n4. The battery is disconnected\n5. LIN and CAN tool is available on HU",
+     "L": "1. Reconnect the battery and let the voltage settle within its thresholds\n2. Read Auto_SwitchOn_Setting.Req and check that it is the value held before the disconnection",
+     "M": "1. The voltage settles within its thresholds\n2. Auto_SwitchOn_Setting.Req is the value held before the disconnection"
+    }
+   ]
+  },
+  {
+   "src_row": 45,
+   "variants": [
+    {
+     "I": "This status is related to TLM OFF. AMP/ICS/DTV shall be OFF. Audio for ANC, ACN, and chimes (if equipped) shall be active in this state)\n\n(read the AMP power state and check that it is off -> The AMP is off)",
+     "J": "1. The TLM is in Partial_Operation state\n2. The unit is equipped with AMP\n3. The unit is equipped with ICS\n4. The unit is equipped with DTV\n5. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 7 (Partial_Operation)\n2. Read the AMP power state and check that it is off",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received\n2. The AMP is off"
+    },
+    {
+     "I": "This status is related to TLM OFF. AMP/ICS/DTV shall be OFF. Audio for ANC, ACN, and chimes (if equipped) shall be active in this state)\n\n(read the ICS power state and check that it is off -> The ICS is off)",
+     "J": "1. The TLM is in Partial_Operation state\n2. The unit is equipped with AMP\n3. The unit is equipped with ICS\n4. The unit is equipped with DTV\n5. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 7 (Partial_Operation)\n2. Read the ICS power state and check that it is off",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received\n2. The ICS is off"
+    },
+    {
+     "I": "This status is related to TLM OFF. AMP/ICS/DTV shall be OFF. Audio for ANC, ACN, and chimes (if equipped) shall be active in this state)\n\n(read the DTV power state and check that it is off -> The DTV is off)",
+     "J": "1. The TLM is in Partial_Operation state\n2. The unit is equipped with AMP\n3. The unit is equipped with ICS\n4. The unit is equipped with DTV\n5. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 7 (Partial_Operation)\n2. Read the DTV power state and check that it is off",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received\n2. The DTV is off"
+    },
+    {
+     "I": "This status is related to TLM OFF. AMP/ICS/DTV shall be OFF. Audio for ANC, ACN, and chimes (if equipped) shall be active in this state)\n\n(read the ANC audio output and check that it is active -> The ANC audio output is active)",
+     "J": "1. The TLM is in Partial_Operation state\n2. The unit is equipped with AMP\n3. The unit is equipped with ICS\n4. The unit is equipped with DTV\n5. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 7 (Partial_Operation)\n2. Read the ANC audio output and check that it is active",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received\n2. The ANC audio output is active"
+    },
+    {
+     "I": "This status is related to TLM OFF. AMP/ICS/DTV shall be OFF. Audio for ANC, ACN, and chimes (if equipped) shall be active in this state)\n\n(read the ACN audio output and check that it is active -> The ACN audio output is active)",
+     "J": "1. The TLM is in Partial_Operation state\n2. The unit is equipped with AMP\n3. The unit is equipped with ICS\n4. The unit is equipped with DTV\n5. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 7 (Partial_Operation)\n2. Read the ACN audio output and check that it is active",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received\n2. The ACN audio output is active"
+    },
+    {
+     "I": "This status is related to TLM OFF. AMP/ICS/DTV shall be OFF. Audio for ANC, ACN, and chimes (if equipped) shall be active in this state)\n\n(read the chime audio output and check that it is active -> The chime audio output is active)",
+     "J": "1. The TLM is in Partial_Operation state\n2. The unit is equipped with AMP\n3. The unit is equipped with ICS\n4. The unit is equipped with DTV\n5. LIN and CAN tool is available on HU",
+     "L": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 7 (Partial_Operation)\n2. Read the chime audio output and check that it is active",
+     "M": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received\n2. The chime audio output is active"
+    }
+   ]
+  },
+  {
+   "src_row": 97,
+   "variants": [
+    {
+     "I": "IF Rear_View_Camera PROXI parameter == \"Present\", according to the value of Rear_Camera_Enable.Info, TLM shall show or not rear view camera images regardless of TLM_Status.Info and $Telematic_Power$ value.\n\n(No rear view camera images are shown on the TLM screen)",
+     "J": "1. The TLM is in Standby state\n2. Rear_View_Camera is Present\n3. LIN and CAN tool is available on HU",
+     "L": "1. Set Rear_Camera_Enable.Info to False\n2. Read the TLM screen and check that no rear view camera images are shown",
+     "M": "1. Rear_Camera_Enable.Info is False\n2. No rear view camera images are shown on the TLM screen"
+    },
+    {
+     "I": "IF Rear_View_Camera PROXI parameter == \"Present\", according to the value of Rear_Camera_Enable.Info, TLM shall show or not rear view camera images regardless of TLM_Status.Info and $Telematic_Power$ value.\n\n(set Rear_Camera_Enable.Info to True -> The rear view camera images are shown on the TLM screen)",
+     "J": "1. The TLM is in Standby state\n2. Rear_View_Camera is Present\n3. LIN and CAN tool is available on HU",
+     "L": "1. Set Rear_Camera_Enable.Info to False\n2. Set Rear_Camera_Enable.Info to True\n3. Read the TLM screen and check that the rear view camera images are shown",
+     "M": "1. Rear_Camera_Enable.Info is False\n2. Rear_Camera_Enable.Info is True\n3. The rear view camera images are shown on the TLM screen"
+    },
+    {
+     "I": "IF Rear_View_Camera PROXI parameter == \"Present\", according to the value of Rear_Camera_Enable.Info, TLM shall show or not rear view camera images regardless of TLM_Status.Info and $Telematic_Power$ value.\n\n(The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received)",
+     "J": "1. The TLM is in Standby state\n2. Rear_View_Camera is Present\n3. LIN and CAN tool is available on HU",
+     "L": "1. Set Rear_Camera_Enable.Info to False\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is still 1 (Standby)",
+     "M": "1. Rear_Camera_Enable.Info is False\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received"
+    }
+   ]
+  },
+  {
+   "src_row": 102,
+   "variants": [
+    {
+     "I": "Behaviour 1: \"Auto_SwitchOn_Setting.Req == Active\":TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time. At Response_wait_Time expired TLM has to set VPLastStatus to “On” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and it passes to TLM Full-Operation state.\n\n(read Antitheft_Activation.Req and check that it is False -> Antitheft_Activation.Req is False)",
+     "J": "1. Antitheft_Activation.Req is True\n2. Auto_SwitchOn_Setting.Req is Active\n3. LIN and CAN tool is available on HU",
+     "L": "1. Set Antitheft_Result.Info to Successfully\n2. Read Antitheft_Activation.Req and check that it is False",
+     "M": "1. The Antitheft_Result.Info value Successfully is registered\n2. Antitheft_Activation.Req is False"
+    },
+    {
+     "I": "Behaviour 1: \"Auto_SwitchOn_Setting.Req == Active\":TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time. At Response_wait_Time expired TLM has to set VPLastStatus to “On” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and it passes to TLM Full-Operation state.\n\n(A proper Splash Screen is shown on the TLM screen for Response_Wait_Time)",
+     "J": "1. Antitheft_Activation.Req is True\n2. Auto_SwitchOn_Setting.Req is Active\n3. LIN and CAN tool is available on HU",
+     "L": "1. Set Antitheft_Result.Info to Successfully\n2. Read the TLM screen and check that a proper Splash Screen is shown for Response_Wait_Time",
+     "M": "1. The Antitheft_Result.Info value Successfully is registered\n2. A proper Splash Screen is shown on the TLM screen for Response_Wait_Time"
+    },
+    {
+     "I": "Behaviour 1: \"Auto_SwitchOn_Setting.Req == Active\":TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time. At Response_wait_Time expired TLM has to set VPLastStatus to “On” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and it passes to TLM Full-Operation state.\n\n(read VPLastStatus and check that it is On -> VPLastStatus is On)",
+     "J": "1. Antitheft_Activation.Req is True\n2. Auto_SwitchOn_Setting.Req is Active\n3. LIN and CAN tool is available on HU",
+     "L": "1. Set Antitheft_Result.Info to Successfully\n2. Read VPLastStatus and check that it is On",
+     "M": "1. The Antitheft_Result.Info value Successfully is registered\n2. VPLastStatus is On"
+    },
+    {
+     "I": "Behaviour 1: \"Auto_SwitchOn_Setting.Req == Active\":TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time. At Response_wait_Time expired TLM has to set VPLastStatus to “On” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and it passes to TLM Full-Operation state.\n\n(The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received)",
+     "J": "1. Antitheft_Activation.Req is True\n2. Auto_SwitchOn_Setting.Req is Active\n3. LIN and CAN tool is available on HU",
+     "L": "1. Set Antitheft_Result.Info to Successfully\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)",
+     "M": "1. The Antitheft_Result.Info value Successfully is registered\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received"
+    }
+   ]
+  },
+  {
+   "src_row": 109,
+   "variants": [
+    {
+     "I": "ELSE TLM has to restore the active source managed by TLM before the call (for example entertainment features like DAB Tuner, rather than USB or BT streaming audio) staying still in Timed state.\n\n(read the active source and the TLM state -> The TLM stayed in Timed state throughout and no transition to Standby occurred)",
+     "J": "1. The TLM is in Timed state\n2. Timeout1 is a value other than 00 min\n3. RemStartFail is False\n4. A DAB Tuner source was active before the call\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set Phone_Call.Info to Not_Active before Timeout1 expires\n2. Read the active audio source and check that it is the DAB Tuner source\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is still 2 (Timed)\n4. Place a further bluetooth call while Timeout1 is still running\n5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is still 2 (Timed)",
+     "M": "1. Phone_Call.Info is Not_Active before Timeout1 expires\n2. The DAB Tuner source is the active audio source again\n3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received\n4. The further bluetooth call is connected and is managed by the TLM\n5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received"
+    }
+   ]
+  },
+  {
+   "src_row": 124,
+   "variants": [
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the network state and check that the network is on -> The network is on)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the network state and check that the network is on",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The network is on"
+    },
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the TLM functionality and check that it is not available -> The TLM functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the TLM functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The TLM functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the FPDM functionality and check that it is not available -> The FPDM functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the FPDM functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The FPDM functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the AMP functionality and check that it is not available -> The AMP functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the AMP functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The AMP functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the ICS functionality and check that it is not available -> The ICS functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the ICS functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The ICS functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the DTV functionality and check that it is not available -> The DTV functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the DTV functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The DTV functionality is not available"
+    }
+   ]
+  },
+  {
+   "src_row": 125,
+   "variants": [
+    {
+     "I": "This status is related to TLM OFF with Network on\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the network state and check that the network is on -> The network is on)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the network state and check that the network is on",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The network is on"
+    },
+    {
+     "I": "This status is related to TLM OFF with Network on\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the TLM functionality and check that it is not available -> The TLM functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the TLM functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The TLM functionality is not available"
+    },
+    {
+     "I": "This status is related to TLM OFF with Network on\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the FPDM functionality and check that it is not available -> The FPDM functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the FPDM functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The FPDM functionality is not available"
+    },
+    {
+     "I": "This status is related to TLM OFF with Network on\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the AMP functionality and check that it is not available -> The AMP functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the AMP functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The AMP functionality is not available"
+    },
+    {
+     "I": "This status is related to TLM OFF with Network on\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the ICS functionality and check that it is not available -> The ICS functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the ICS functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The ICS functionality is not available"
+    },
+    {
+     "I": "This status is related to TLM OFF with Network on\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the DTV functionality and check that it is not available -> The DTV functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Read the DTV functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. The DTV functionality is not available"
+    }
+   ]
+  },
+  {
+   "src_row": 126,
+   "variants": [
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the network state and check that the network is off -> The network is off)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the network state and check that the network is off",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The network is off"
+    },
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the TLM functionality and check that it is not available -> The TLM functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the TLM functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The TLM functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the FPDM functionality and check that it is not available -> The FPDM functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the FPDM functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The FPDM functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the AMP functionality and check that it is not available -> The AMP functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the AMP functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The AMP functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the ICS functionality and check that it is not available -> The ICS functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the ICS functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The ICS functionality is not available"
+    },
+    {
+     "I": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) — read the DTV functionality and check that it is not available -> The DTV functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the DTV functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The DTV functionality is not available"
+    }
+   ]
+  },
+  {
+   "src_row": 127,
+   "variants": [
+    {
+     "I": "This status is related to TLM OFF with Network off\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the network state and check that the network is off -> The network is off)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the network state and check that the network is off",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The network is off"
+    },
+    {
+     "I": "This status is related to TLM OFF with Network off\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the TLM functionality and check that it is not available -> The TLM functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the TLM functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The TLM functionality is not available"
+    },
+    {
+     "I": "This status is related to TLM OFF with Network off\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the FPDM functionality and check that it is not available -> The FPDM functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the FPDM functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The FPDM functionality is not available"
+    },
+    {
+     "I": "This status is related to TLM OFF with Network off\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the AMP functionality and check that it is not available -> The AMP functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the AMP functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The AMP functionality is not available"
+    },
+    {
+     "I": "This status is related to TLM OFF with Network off\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the ICS functionality and check that it is not available -> The ICS functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the ICS functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The ICS functionality is not available"
+    },
+    {
+     "I": "This status is related to TLM OFF with Network off\n\n(send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) — read the DTV functionality and check that it is not available -> The DTV functionality is not available)",
+     "J": "1. The TLM is in an operative state\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)\n3. Read the DTV functionality and check that it is not available",
+     "M": "1. The signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off) is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received\n3. The DTV functionality is not available"
+    }
+   ]
+  },
+  {
+   "src_row": 157,
+   "variants": [
+    {
+     "I": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(The offered values are 00 min and 20 min and no other value is offered)",
+     "J": "1. The TLM is in Full-Operation state\n2. An LTM High Radio is absent from the bench configuration\n3. PROXI Switch_Off_Time = 20 minutes\n4. LIN and CAN tool is available on HU",
+     "L": "1. Open the timeout setting entry in the TLM menu\n2. Read the offered values for SwitchOff_Timeout_Setting.Req and check that they are 00 min and 20 min only",
+     "M": "1. The timeout setting entry is opened in the TLM menu\n2. The offered values are 00 min and 20 min and no other value is offered"
+    },
+    {
+     "I": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(PROXI Switch_Off_Time = 20 minutes — select SwitchOff_Timeout_Setting.Req = 00 min -> Timeout1 is 00 min)",
+     "J": "1. The TLM is in Full-Operation state\n2. An LTM High Radio is absent from the bench configuration\n3. PROXI Switch_Off_Time = 20 minutes\n4. LIN and CAN tool is available on HU",
+     "L": "1. Open the timeout setting entry in the TLM menu\n2. Select SwitchOff_Timeout_Setting.Req = 00 min\n3. Read Timeout1 and check that it is 00 min",
+     "M": "1. The timeout setting entry is opened in the TLM menu\n2. SwitchOff_Timeout_Setting.Req is 00 min\n3. Timeout1 is 00 min"
+    },
+    {
+     "I": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(select SwitchOff_Timeout_Setting.Req = 20 min -> Timeout1 is 20 minutes)",
+     "J": "1. The TLM is in Full-Operation state\n2. An LTM High Radio is absent from the bench configuration\n3. PROXI Switch_Off_Time = 20 minutes\n4. LIN and CAN tool is available on HU",
+     "L": "1. Open the timeout setting entry in the TLM menu\n2. Select SwitchOff_Timeout_Setting.Req = 20 min\n3. Read Timeout1 and check that it is 20 minutes",
+     "M": "1. The timeout setting entry is opened in the TLM menu\n2. SwitchOff_Timeout_Setting.Req is 20 min\n3. Timeout1 is 20 minutes"
+    }
+   ]
+  },
+  {
+   "src_row": 158,
+   "variants": [
+    {
+     "I": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(The offered values are 00 min and 60 min and no other value is offered)",
+     "J": "1. The TLM is in Full-Operation state\n2. An LTM High Radio is absent from the bench configuration\n3. PROXI Switch_Off_Time = 60 minutes\n4. LIN and CAN tool is available on HU",
+     "L": "1. Open the timeout setting entry in the TLM menu\n2. Read the offered values for SwitchOff_Timeout_Setting.Req and check that they are 00 min and 60 min only",
+     "M": "1. The timeout setting entry is opened in the TLM menu\n2. The offered values are 00 min and 60 min and no other value is offered"
+    },
+    {
+     "I": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(PROXI Switch_Off_Time = 60 minutes — select SwitchOff_Timeout_Setting.Req = 00 min -> Timeout1 is 00 min)",
+     "J": "1. The TLM is in Full-Operation state\n2. An LTM High Radio is absent from the bench configuration\n3. PROXI Switch_Off_Time = 60 minutes\n4. LIN and CAN tool is available on HU",
+     "L": "1. Open the timeout setting entry in the TLM menu\n2. Select SwitchOff_Timeout_Setting.Req = 00 min\n3. Read Timeout1 and check that it is 00 min",
+     "M": "1. The timeout setting entry is opened in the TLM menu\n2. SwitchOff_Timeout_Setting.Req is 00 min\n3. Timeout1 is 00 min"
+    },
+    {
+     "I": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(select SwitchOff_Timeout_Setting.Req = 60 min -> Timeout1 is 60 minutes)",
+     "J": "1. The TLM is in Full-Operation state\n2. An LTM High Radio is absent from the bench configuration\n3. PROXI Switch_Off_Time = 60 minutes\n4. LIN and CAN tool is available on HU",
+     "L": "1. Open the timeout setting entry in the TLM menu\n2. Select SwitchOff_Timeout_Setting.Req = 60 min\n3. Read Timeout1 and check that it is 60 minutes",
+     "M": "1. The timeout setting entry is opened in the TLM menu\n2. SwitchOff_Timeout_Setting.Req is 60 min\n3. Timeout1 is 60 minutes"
+    }
+   ]
+  },
+  {
+   "src_row": 159,
+   "variants": [
+    {
+     "I": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(The offered values are 00 min and 180 min and no other value is offered)",
+     "J": "1. The TLM is in Full-Operation state\n2. An LTM High Radio is absent from the bench configuration\n3. PROXI Switch_Off_Time = 180 minutes\n4. LIN and CAN tool is available on HU",
+     "L": "1. Open the timeout setting entry in the TLM menu\n2. Read the offered values for SwitchOff_Timeout_Setting.Req and check that they are 00 min and 180 min only",
+     "M": "1. The timeout setting entry is opened in the TLM menu\n2. The offered values are 00 min and 180 min and no other value is offered"
+    },
+    {
+     "I": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(PROXI Switch_Off_Time = 180 minutes — select SwitchOff_Timeout_Setting.Req = 00 min -> Timeout1 is 00 min)",
+     "J": "1. The TLM is in Full-Operation state\n2. An LTM High Radio is absent from the bench configuration\n3. PROXI Switch_Off_Time = 180 minutes\n4. LIN and CAN tool is available on HU",
+     "L": "1. Open the timeout setting entry in the TLM menu\n2. Select SwitchOff_Timeout_Setting.Req = 00 min\n3. Read Timeout1 and check that it is 00 min",
+     "M": "1. The timeout setting entry is opened in the TLM menu\n2. SwitchOff_Timeout_Setting.Req is 00 min\n3. Timeout1 is 00 min"
+    },
+    {
+     "I": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(select SwitchOff_Timeout_Setting.Req = 180 min -> Timeout1 is 180 minutes)",
+     "J": "1. The TLM is in Full-Operation state\n2. An LTM High Radio is absent from the bench configuration\n3. PROXI Switch_Off_Time = 180 minutes\n4. LIN and CAN tool is available on HU",
+     "L": "1. Open the timeout setting entry in the TLM menu\n2. Select SwitchOff_Timeout_Setting.Req = 180 min\n3. Read Timeout1 and check that it is 180 minutes",
+     "M": "1. The timeout setting entry is opened in the TLM menu\n2. SwitchOff_Timeout_Setting.Req is 180 min\n3. Timeout1 is 180 minutes"
+    }
+   ]
+  },
+  {
+   "src_row": 162,
+   "variants": [
+    {
+     "I": "If TLM Boot is not ended, TLM has to wait for its end before passing to Sleep state and starting the Shutdown_Time.\n\n(Shutdown_Time is not started while the boot is not ended)",
+     "J": "1. The TLM is in Standby state\n2. The boot of the TLM is not ended\n3. LIN and CAN tool is available on HU",
+     "L": "1. Issue a Network Sleep request to the TLM\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is still 1 (Standby) while the boot is not ended\n3. Read the Shutdown_Time counter and check that it is not running while the boot is not ended",
+     "M": "1. The Network Sleep request is registered\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received while the boot is not ended\n3. Shutdown_Time is not started while the boot is not ended"
+    },
+    {
+     "I": "If TLM Boot is not ended, TLM has to wait for its end before passing to Sleep state and starting the Shutdown_Time.\n\n(let the boot of the TLM end -> The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received)",
+     "J": "1. The TLM is in Standby state\n2. The boot of the TLM is not ended\n3. LIN and CAN tool is available on HU",
+     "L": "1. Issue a Network Sleep request to the TLM\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is still 1 (Standby) while the boot is not ended\n3. Let the boot of the TLM end\n4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 0 (Sleep)",
+     "M": "1. The Network Sleep request is registered\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received while the boot is not ended\n3. The boot of the TLM ends\n4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received"
+    },
+    {
+     "I": "If TLM Boot is not ended, TLM has to wait for its end before passing to Sleep state and starting the Shutdown_Time.\n\n(read the Shutdown_Time counter and check that it is running -> Shutdown_Time starts after the end of the boot)",
+     "J": "1. The TLM is in Standby state\n2. The boot of the TLM is not ended\n3. LIN and CAN tool is available on HU",
+     "L": "1. Issue a Network Sleep request to the TLM\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is still 1 (Standby) while the boot is not ended\n3. Read the Shutdown_Time counter and check that it is running",
+     "M": "1. The Network Sleep request is registered\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received while the boot is not ended\n3. Shutdown_Time starts after the end of the boot"
+    }
+   ]
+  },
+  {
+   "src_row": 170,
+   "variants": [
+    {
+     "I": "In Timed state, it is possible either to make and to receive one or more bluetooth phone calls according to following logics that depend on Timeout1 and on MaxCallTimeout time parameters.\n\n(The outgoing call is connected through the TLM)",
+     "J": "1. The TLM is in Timed state\n2. A paired bluetooth phone is available on the bench\n3. LIN and CAN tool is available on HU",
+     "L": "1. Place an outgoing bluetooth call from the paired phone through the TLM\n2. Read the call audio routing and check that the outgoing call is connected through the TLM",
+     "M": "1. The outgoing bluetooth call is placed\n2. The outgoing call is connected through the TLM"
+    },
+    {
+     "I": "In Timed state, it is possible either to make and to receive one or more bluetooth phone calls according to following logics that depend on Timeout1 and on MaxCallTimeout time parameters.\n\n(end that call and receive an incoming bluetooth call -> The incoming call is presented and can be answered)",
+     "J": "1. The TLM is in Timed state\n2. A paired bluetooth phone is available on the bench\n3. LIN and CAN tool is available on HU",
+     "L": "1. Place an outgoing bluetooth call from the paired phone through the TLM\n2. End that call and receive an incoming bluetooth call\n3. Read the call audio routing and check that the incoming call is presented and can be answered",
+     "M": "1. The outgoing bluetooth call is placed\n2. The incoming bluetooth call is received\n3. The incoming call is presented and can be answered"
+    },
+    {
+     "I": "In Timed state, it is possible either to make and to receive one or more bluetooth phone calls according to following logics that depend on Timeout1 and on MaxCallTimeout time parameters.\n\n(The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received)",
+     "J": "1. The TLM is in Timed state\n2. A paired bluetooth phone is available on the bench\n3. LIN and CAN tool is available on HU",
+     "L": "1. Place an outgoing bluetooth call from the paired phone through the TLM\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is still 2 (Timed)",
+     "M": "1. The outgoing bluetooth call is placed\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received"
+    }
+   ]
+  },
+  {
+   "src_row": 179,
+   "variants": [
+    {
+     "I": "IF the HU transitions from IDLE to FULL OPERATION due to an incoming phone call AND the phone call becomes inactive AND the HU display is on the phone main screen or phone projection call UI, THEN the HU shall transition back to IDLE.\n\n(The display is on the phone main screen — incoming call -> FULL OPERATION)",
+     "J": "1. The HU is in IDLE mode\n2. The display is on the phone main screen\n3. LIN and CAN tool is available on HU",
+     "L": "1. Let the bench place an incoming phone call to the HU\n2. Read the HU mode and check that it is FULL OPERATION",
+     "M": "1. The incoming phone call is presented to the HU\n2. The HU transitions from IDLE to FULL OPERATION"
+    },
+    {
+     "I": "IF the HU transitions from IDLE to FULL OPERATION due to an incoming phone call AND the phone call becomes inactive AND the HU display is on the phone main screen or phone projection call UI, THEN the HU shall transition back to IDLE.\n\n(The display is on the phone main screen — call becomes inactive -> IDLE)",
+     "J": "1. The HU is in FULL OPERATION mode due to an active incoming phone call\n2. The display is on the phone main screen\n3. LIN and CAN tool is available on HU",
+     "L": "1. Let the phone call become inactive\n2. Read the HU mode and check that it is IDLE",
+     "M": "1. The phone call becomes inactive\n2. The HU transitions back to IDLE"
+    }
+   ]
+  },
+  {
+   "src_row": 180,
+   "variants": [
+    {
+     "I": "IF the HU transitions from IDLE to FULL OPERATION due to an incoming phone call AND the phone call becomes inactive AND the HU display is on the phone main screen or phone projection call UI, THEN the HU shall transition back to IDLE.\n\n(The display is on the phone projection call UI — incoming call -> FULL OPERATION)",
+     "J": "1. The HU is in IDLE mode\n2. The display is on the phone projection call UI\n3. LIN and CAN tool is available on HU",
+     "L": "1. Let the bench place an incoming phone call to the HU\n2. Read the HU mode and check that it is FULL OPERATION",
+     "M": "1. The incoming phone call is presented to the HU\n2. The HU transitions from IDLE to FULL OPERATION"
+    },
+    {
+     "I": "IF the HU transitions from IDLE to FULL OPERATION due to an incoming phone call AND the phone call becomes inactive AND the HU display is on the phone main screen or phone projection call UI, THEN the HU shall transition back to IDLE.\n\n(The display is on the phone projection call UI — call becomes inactive -> IDLE)",
+     "J": "1. The HU is in FULL OPERATION mode due to an active incoming phone call\n2. The display is on the phone projection call UI\n3. LIN and CAN tool is available on HU",
+     "L": "1. Let the phone call become inactive\n2. Read the HU mode and check that it is IDLE",
+     "M": "1. The phone call becomes inactive\n2. The HU transitions back to IDLE"
+    }
+   ]
+  },
+  {
+   "src_row": 188,
+   "variants": [
+    {
+     "I": "If the load shed signals do not recover, the on-going load shed action shall be maintained for the rest of current ignition key cycle.\n\n(The two Load Shed signals are absent from the bus trace)",
+     "J": "1. The bench is an Atlantis High configuration\n2. The Load Shed condition is already active\n3. LIN and CAN tool is available on HU",
+     "L": "1. Stop the broadcast of $STATUS_LIN.PN14_LS_Actv$ and $STATUS_LIN.PN14_LS_Lvl7$ on the bus\n2. Read the bus trace and check that both Load Shed signals are absent",
+     "M": "1. The broadcast of the two Load Shed signals is stopped\n2. The two Load Shed signals are absent from the bus trace"
+    },
+    {
+     "I": "If the load shed signals do not recover, the on-going load shed action shall be maintained for the rest of current ignition key cycle.\n\n(stop the broadcast of $STATUS_LIN.PN14_LS_Actv$ and $STATUS_LIN.PN14_LS_Lvl7$ on the bus — AUD_LVL carries the reduced maximum volume of 20)",
+     "J": "1. The bench is an Atlantis High configuration\n2. The Load Shed condition is already active\n3. LIN and CAN tool is available on HU",
+     "L": "1. Stop the broadcast of $STATUS_LIN.PN14_LS_Actv$ and $STATUS_LIN.PN14_LS_Lvl7$ on the bus\n2. Read AUD_LVL and check that the maximum volume is still reduced to 20",
+     "M": "1. The broadcast of the two Load Shed signals is stopped\n2. AUD_LVL carries the reduced maximum volume of 20"
+    },
+    {
+     "I": "If the load shed signals do not recover, the on-going load shed action shall be maintained for the rest of current ignition key cycle.\n\n(read the audio output and check that the TLM is still muted -> The TLM audio output is muted)",
+     "J": "1. The bench is an Atlantis High configuration\n2. The Load Shed condition is already active\n3. LIN and CAN tool is available on HU",
+     "L": "1. Stop the broadcast of $STATUS_LIN.PN14_LS_Actv$ and $STATUS_LIN.PN14_LS_Lvl7$ on the bus\n2. Read the audio output and check that the TLM is still muted",
+     "M": "1. The broadcast of the two Load Shed signals is stopped\n2. The TLM audio output is muted"
+    },
+    {
+     "I": "If the load shed signals do not recover, the on-going load shed action shall be maintained for the rest of current ignition key cycle.\n\n(keep the broadcast stopped to the end of the ignition key cycle -> The Load Shed action is maintained for the rest of the current ignition key cycle)",
+     "J": "1. The bench is an Atlantis High configuration\n2. The Load Shed condition is already active\n3. LIN and CAN tool is available on HU",
+     "L": "1. Stop the broadcast of $STATUS_LIN.PN14_LS_Actv$ and $STATUS_LIN.PN14_LS_Lvl7$ on the bus\n2. Keep the broadcast stopped to the end of the ignition key cycle\n3. Read AUD_LVL and check that the maximum volume is still reduced to 20 at the end of the ignition key cycle",
+     "M": "1. The broadcast of the two Load Shed signals is stopped\n2. The broadcast stays stopped to the end of the ignition key cycle\n3. The Load Shed action is maintained for the rest of the current ignition key cycle"
+    }
+   ]
+  },
+  {
+   "src_row": 189,
+   "variants": [
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nTLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(the TLM is in BODY ON mode — read the TLM volume indicator and check that it shows 25 -> The TLM volume indicator shows 25)",
+     "J": "1. The TLM is in BODY ON mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Read the TLM volume indicator and check that it shows 25",
+     "M": "1. The TLM volume level is set to 25\n2. The TLM volume indicator shows 25"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nTLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(the TLM is in BODY ON mode — send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True) -> The TLM display stays on)",
+     "J": "1. The TLM is in BODY ON mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)\n3. Read the TLM display and check that it stays on",
+     "M": "1. The TLM volume level is set to 25\n2. The signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True) is registered without a bus error\n3. The TLM display stays on"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nTLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(the TLM is in BODY ON mode — read the HVAC controls and check that they stay active -> The HVAC controls stay active)",
+     "J": "1. The TLM is in BODY ON mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Read the HVAC controls and check that they stay active",
+     "M": "1. The TLM volume level is set to 25\n2. The HVAC controls stay active"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nTLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(the TLM is in BODY ON mode — read the ACN phone state and check that it stays active -> The ACN phone stays active)",
+     "J": "1. The TLM is in BODY ON mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Read the ACN phone state and check that it stays active",
+     "M": "1. The TLM volume level is set to 25\n2. The ACN phone stays active"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nTLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(the TLM is in BODY ON mode — AUD_LVL carries the reduced maximum volume of 20)",
+     "J": "1. The TLM is in BODY ON mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Read AUD_LVL and check that the maximum volume is reduced to 20",
+     "M": "1. The TLM volume level is set to 25\n2. AUD_LVL carries the reduced maximum volume of 20"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nTLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(the TLM is in BODY ON mode — read the audio output and check that the TLM is muted -> The TLM audio output is muted)",
+     "J": "1. The TLM is in BODY ON mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Read the audio output and check that the TLM is muted",
+     "M": "1. The TLM volume level is set to 25\n2. The TLM audio output is muted"
+    }
+   ]
+  },
+  {
+   "src_row": 190,
+   "variants": [
+    {
+     "I": "TLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(AUD_LVL still carries the reduced maximum volume of 20 before 10 seconds have elapsed)",
+     "J": "1. The Battery Critical condition is already active\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False) and start a timer at the moment the signal changes\n2. Read AUD_LVL before 10 seconds have elapsed and check that the maximum volume is still reduced to 20",
+     "M": "1. The signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False) is registered without a bus error\n2. AUD_LVL still carries the reduced maximum volume of 20 before 10 seconds have elapsed"
+    },
+    {
+     "I": "TLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(The TLM audio output is still muted before 10 seconds have elapsed)",
+     "J": "1. The Battery Critical condition is already active\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False) and start a timer at the moment the signal changes\n2. Read the audio output before 10 seconds have elapsed and check that the TLM is still muted",
+     "M": "1. The signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False) is registered without a bus error\n2. The TLM audio output is still muted before 10 seconds have elapsed"
+    },
+    {
+     "I": "TLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(AUD_LVL carries the normal maximum volume 10 seconds after the signal change)",
+     "J": "1. The Battery Critical condition is already active\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False) and start a timer at the moment the signal changes\n2. Read AUD_LVL 10 seconds after the signal change and check that the maximum volume is back to its normal maximum",
+     "M": "1. The signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False) is registered without a bus error\n2. AUD_LVL carries the normal maximum volume 10 seconds after the signal change"
+    },
+    {
+     "I": "TLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(The TLM audio output is unmuted 10 seconds after the signal change)",
+     "J": "1. The Battery Critical condition is already active\n2. LIN and CAN tool is available on HU",
+     "L": "1. Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False) and start a timer at the moment the signal changes\n2. Read the audio output 10 seconds after the signal change and check that the TLM is unmuted",
+     "M": "1. The signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False) is registered without a bus error\n2. The TLM audio output is unmuted 10 seconds after the signal change"
+    }
+   ]
+  },
+  {
+   "src_row": 194,
+   "variants": [
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nWhile in BODY ON or BODY OFF-TIMED mode, when TLM receives STATUS_LIN.Batt_ST_Crit=[1h], the TLM shall mimimize current withdraw while keeping only the display on and controls active for HVAC controls, and active phone for ACN.\n\n(the TLM is in BODY OFF-TIMED mode — read the TLM volume indicator and check that it shows 25 -> The TLM volume indicator shows 25)",
+     "J": "1. The TLM is in BODY OFF-TIMED mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Read the TLM volume indicator and check that it shows 25",
+     "M": "1. The TLM volume level is set to 25\n2. The TLM volume indicator shows 25"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nWhile in BODY ON or BODY OFF-TIMED mode, when TLM receives STATUS_LIN.Batt_ST_Crit=[1h], the TLM shall mimimize current withdraw while keeping only the display on and controls active for HVAC controls, and active phone for ACN.\n\n(the TLM is in BODY OFF-TIMED mode — send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True) -> The TLM display stays on)",
+     "J": "1. The TLM is in BODY OFF-TIMED mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)\n3. Read the TLM display and check that it stays on",
+     "M": "1. The TLM volume level is set to 25\n2. The signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True) is registered without a bus error\n3. The TLM display stays on"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nWhile in BODY ON or BODY OFF-TIMED mode, when TLM receives STATUS_LIN.Batt_ST_Crit=[1h], the TLM shall mimimize current withdraw while keeping only the display on and controls active for HVAC controls, and active phone for ACN.\n\n(the TLM is in BODY OFF-TIMED mode — read the HVAC controls and check that they stay active -> The HVAC controls stay active)",
+     "J": "1. The TLM is in BODY OFF-TIMED mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Read the HVAC controls and check that they stay active",
+     "M": "1. The TLM volume level is set to 25\n2. The HVAC controls stay active"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nWhile in BODY ON or BODY OFF-TIMED mode, when TLM receives STATUS_LIN.Batt_ST_Crit=[1h], the TLM shall mimimize current withdraw while keeping only the display on and controls active for HVAC controls, and active phone for ACN.\n\n(the TLM is in BODY OFF-TIMED mode — read the ACN phone state and check that it stays active -> The ACN phone stays active)",
+     "J": "1. The TLM is in BODY OFF-TIMED mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Read the ACN phone state and check that it stays active",
+     "M": "1. The TLM volume level is set to 25\n2. The ACN phone stays active"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nWhile in BODY ON or BODY OFF-TIMED mode, when TLM receives STATUS_LIN.Batt_ST_Crit=[1h], the TLM shall mimimize current withdraw while keeping only the display on and controls active for HVAC controls, and active phone for ACN.\n\n(the TLM is in BODY OFF-TIMED mode — AUD_LVL carries the reduced maximum volume of 20)",
+     "J": "1. The TLM is in BODY OFF-TIMED mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Read AUD_LVL and check that the maximum volume is reduced to 20",
+     "M": "1. The TLM volume level is set to 25\n2. AUD_LVL carries the reduced maximum volume of 20"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nWhile in BODY ON or BODY OFF-TIMED mode, when TLM receives STATUS_LIN.Batt_ST_Crit=[1h], the TLM shall mimimize current withdraw while keeping only the display on and controls active for HVAC controls, and active phone for ACN.\n\n(the TLM is in BODY OFF-TIMED mode — read the audio output and check that the TLM is muted -> The TLM audio output is muted)",
+     "J": "1. The TLM is in BODY OFF-TIMED mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 25\n2. Read the audio output and check that the TLM is muted",
+     "M": "1. The TLM volume level is set to 25\n2. The TLM audio output is muted"
+    }
+   ]
+  },
+  {
+   "src_row": 197,
+   "variants": [
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nTLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(read the TLM volume indicator and check that it shows 15 -> The TLM volume indicator shows 15)",
+     "J": "1. The TLM is in BODY ON mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 15\n2. Read the TLM volume indicator and check that it shows 15",
+     "M": "1. The TLM volume level is set to 15\n2. The TLM volume indicator shows 15"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nTLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True) -> No AUD_LVL signal carrying a new volume level appears in the CAN trace)",
+     "J": "1. The TLM is in BODY ON mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 15\n2. Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)\n3. Read the CAN trace and check that no AUD_LVL signal carrying a new volume level appears",
+     "M": "1. The TLM volume level is set to 15\n2. The signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True) is registered without a bus error\n3. No AUD_LVL signal carrying a new volume level appears in the CAN trace"
+    },
+    {
+     "I": "If Ecall/ACN/chimes mode is not active, TLM shall be muted.\nTLM shall immediately reduce the maximum volume level to 20 for Ecall/ACN/Chimes/Beeps/Alerts  and if the volume was greater, send the AUD_LVL signal with the updated volume level.\n\n(read the TLM volume indicator and check that it still shows 15 -> The TLM volume indicator shows 15)",
+     "J": "1. The TLM is in BODY ON mode\n2. Ecall mode is inactive\n3. ACN mode is inactive\n4. Chimes mode are inactive\n5. LIN and CAN tool is available on HU",
+     "L": "1. Set the TLM volume level to 15\n2. Read the TLM volume indicator and check that it still shows 15",
+     "M": "1. The TLM volume level is set to 15\n2. The TLM volume indicator shows 15"
+    }
+   ]
+  },
+  {
+   "src_row": 204,
+   "variants": [
+    {
+     "I": "The HU shall reset both the main CPU and the CAN micro at the time of the reset\n\n(read the HU behavior and check that a radio reset is performed -> The HU performs a radio reset)",
+     "J": "1. The HU is not installing a firmware image\n2. LIN and CAN tool is available on HU",
+     "L": "1. Press the ICS power button for 10 seconds consecutively\n2. Read the HU behavior and check that a radio reset is performed",
+     "M": "1. The ICS power button press of 10 seconds is registered\n2. The HU performs a radio reset"
+    },
+    {
+     "I": "The HU shall reset both the main CPU and the CAN micro at the time of the reset\n\n(The HU collects and saves logs at the time of the reset)",
+     "J": "1. The HU is not installing a firmware image\n2. LIN and CAN tool is available on HU",
+     "L": "1. Press the ICS power button for 10 seconds consecutively\n2. Read the stored logs and check that the HU collected and saved logs at the time of the reset",
+     "M": "1. The ICS power button press of 10 seconds is registered\n2. The HU collects and saves logs at the time of the reset"
+    },
+    {
+     "I": "The HU shall reset both the main CPU and the CAN micro at the time of the reset\n\n(The main CPU resets at the time of the reset)",
+     "J": "1. The HU is not installing a firmware image\n2. LIN and CAN tool is available on HU",
+     "L": "1. Press the ICS power button for 10 seconds consecutively\n2. Read the main CPU and check that it resets at the time of the reset",
+     "M": "1. The ICS power button press of 10 seconds is registered\n2. The main CPU resets at the time of the reset"
+    },
+    {
+     "I": "The HU shall reset both the main CPU and the CAN micro at the time of the reset\n\n(The CAN micro resets at the time of the reset)",
+     "J": "1. The HU is not installing a firmware image\n2. LIN and CAN tool is available on HU",
+     "L": "1. Press the ICS power button for 10 seconds consecutively\n2. Read the CAN micro and check that it resets at the time of the reset",
+     "M": "1. The ICS power button press of 10 seconds is registered\n2. The CAN micro resets at the time of the reset"
+    }
+   ]
+  },
+  {
+   "src_row": 285,
+   "variants": [
+    {
+     "I": "If $VC_VEH_BRAND$ <> [Maserati] the R1 Head Unit shall only show the core disclaimer screen once every 30 ignition cycles\n\n(The core disclaimer screen is shown on the first ignition cycle)",
+     "J": "1. PROXI VC_VEH_BRAND is at a value other than Maserati\n2. LIN and CAN tool is available on HU",
+     "L": "1. Run the head unit through the first ignition cycle\n2. Read the HU screen and check that the core disclaimer screen is shown",
+     "M": "1. The first ignition cycle is completed\n2. The core disclaimer screen is shown on the first ignition cycle"
+    },
+    {
+     "I": "If $VC_VEH_BRAND$ <> [Maserati] the R1 Head Unit shall only show the core disclaimer screen once every 30 ignition cycles\n\n(run the head unit through the following 29 ignition cycles -> The core disclaimer screen is not shown on any of those 29 ignition cycles)",
+     "J": "1. PROXI VC_VEH_BRAND is at a value other than Maserati\n2. LIN and CAN tool is available on HU",
+     "L": "1. Run the head unit through the first ignition cycle\n2. Run the head unit through the following 29 ignition cycles\n3. Read the HU screen on each of those cycles and check that the core disclaimer screen is not shown",
+     "M": "1. The first ignition cycle is completed\n2. The following 29 ignition cycles are completed\n3. The core disclaimer screen is not shown on any of those 29 ignition cycles"
+    },
+    {
+     "I": "If $VC_VEH_BRAND$ <> [Maserati] the R1 Head Unit shall only show the core disclaimer screen once every 30 ignition cycles\n\n(run the head unit through the thirty-first ignition cycle -> The core disclaimer screen is shown only once every 30 ignition cycles)",
+     "J": "1. PROXI VC_VEH_BRAND is at a value other than Maserati\n2. LIN and CAN tool is available on HU",
+     "L": "1. Run the head unit through the first ignition cycle\n2. Run the head unit through the thirty-first ignition cycle\n3. Read the HU screen and check that the core disclaimer screen is shown again",
+     "M": "1. The first ignition cycle is completed\n2. The thirty-first ignition cycle is completed\n3. The core disclaimer screen is shown only once every 30 ignition cycles"
+    }
+   ]
+  }
+ ],
+ "audit_b": [
+  {
+   "row": 10,
+   "req": "SWE-PM-001",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 1,
+   "basis": "powersts",
+   "aspects": 4,
+   "aspects_v1": 4,
+   "merged": 0,
+   "table": 5,
+   "delta": -1
+  },
+  {
+   "row": 17,
+   "req": "SWE-PM-003",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 2,
+   "basis": "powersts",
+   "aspects": 3,
+   "aspects_v1": 3,
+   "merged": 0,
+   "table": 5,
+   "delta": -2
+  },
+  {
+   "row": 21,
+   "req": "SWE-PM-004",
+   "proc_steps": 6,
+   "er_lines": 6,
+   "setup": 1,
+   "basis": "powersts",
+   "aspects": 4,
+   "aspects_v1": 5,
+   "merged": 1,
+   "table": 6,
+   "delta": -2
+  },
+  {
+   "row": 24,
+   "req": "SWE-PM-005",
+   "proc_steps": 7,
+   "er_lines": 7,
+   "setup": 1,
+   "basis": "powersts",
+   "aspects": 6,
+   "aspects_v1": 6,
+   "merged": 0,
+   "table": 7,
+   "delta": -1
+  },
+  {
+   "row": 26,
+   "req": "SWE-PM-006",
+   "proc_steps": 7,
+   "er_lines": 7,
+   "setup": 1,
+   "basis": "powersts",
+   "aspects": 6,
+   "aspects_v1": 6,
+   "merged": 0,
+   "table": 7,
+   "delta": -1
+  },
+  {
+   "row": 28,
+   "req": "SWE-PM-007",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 2,
+   "basis": "powersts",
+   "aspects": 3,
+   "aspects_v1": 3,
+   "merged": 0,
+   "table": 5,
+   "delta": -2
+  },
+  {
+   "row": 29,
+   "req": "SWE-PM-007",
+   "proc_steps": 6,
+   "er_lines": 6,
+   "setup": 1,
+   "basis": "first-step",
+   "aspects": 5,
+   "aspects_v1": 5,
+   "merged": 0,
+   "table": 6,
+   "delta": -1
+  },
+  {
+   "row": 30,
+   "req": "SWE-PM-009",
+   "proc_steps": 7,
+   "er_lines": 7,
+   "setup": 2,
+   "basis": "powersts",
+   "aspects": 5,
+   "aspects_v1": 5,
+   "merged": 0,
+   "table": 7,
+   "delta": -2
+  },
+  {
+   "row": 32,
+   "req": "SWE-PM-009",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 1,
+   "basis": "lead-verb+repair",
+   "aspects": 4,
+   "aspects_v1": 4,
+   "merged": 0,
+   "table": 5,
+   "delta": -1
+  },
+  {
+   "row": 39,
+   "req": "SWE-PM-012",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 1,
+   "basis": "lead-verb",
+   "aspects": 4,
+   "aspects_v1": 4,
+   "merged": 0,
+   "table": 5,
+   "delta": -1
+  },
+  {
+   "row": 45,
+   "req": "SWE-PM-013",
+   "proc_steps": 7,
+   "er_lines": 7,
+   "setup": 1,
+   "basis": "powersts",
+   "aspects": 6,
+   "aspects_v1": 6,
+   "merged": 0,
+   "table": 7,
+   "delta": -1
+  },
+  {
+   "row": 97,
+   "req": "SWE-PM-031",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 1,
+   "basis": "first-step+repair",
+   "aspects": 3,
+   "aspects_v1": 4,
+   "merged": 1,
+   "table": 5,
+   "delta": -2
+  },
+  {
+   "row": 102,
+   "req": "SWE-PM-035",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 1,
+   "basis": "first-step+repair",
+   "aspects": 4,
+   "aspects_v1": 4,
+   "merged": 0,
+   "table": 5,
+   "delta": -1
+  },
+  {
+   "row": 109,
+   "req": "SWE-PM-038",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 3,
+   "basis": "powersts",
+   "aspects": 1,
+   "aspects_v1": 2,
+   "merged": 1,
+   "table": 5,
+   "delta": -4
+  },
+  {
+   "row": 124,
+   "req": "SWE-PM-041",
+   "proc_steps": 8,
+   "er_lines": 8,
+   "setup": 2,
+   "basis": "powersts",
+   "aspects": 6,
+   "aspects_v1": 6,
+   "merged": 0,
+   "table": 8,
+   "delta": -2
+  },
+  {
+   "row": 125,
+   "req": "SWE-PM-041",
+   "proc_steps": 8,
+   "er_lines": 8,
+   "setup": 2,
+   "basis": "powersts",
+   "aspects": 6,
+   "aspects_v1": 6,
+   "merged": 0,
+   "table": 8,
+   "delta": -2
+  },
+  {
+   "row": 126,
+   "req": "SWE-PM-042",
+   "proc_steps": 8,
+   "er_lines": 8,
+   "setup": 2,
+   "basis": "powersts",
+   "aspects": 6,
+   "aspects_v1": 6,
+   "merged": 0,
+   "table": 8,
+   "delta": -2
+  },
+  {
+   "row": 127,
+   "req": "SWE-PM-042",
+   "proc_steps": 8,
+   "er_lines": 8,
+   "setup": 2,
+   "basis": "powersts",
+   "aspects": 6,
+   "aspects_v1": 6,
+   "merged": 0,
+   "table": 8,
+   "delta": -2
+  },
+  {
+   "row": 157,
+   "req": "SWE-PM-057",
+   "proc_steps": 6,
+   "er_lines": 6,
+   "setup": 1,
+   "basis": "first-step",
+   "aspects": 3,
+   "aspects_v1": 5,
+   "merged": 2,
+   "table": 6,
+   "delta": -3
+  },
+  {
+   "row": 158,
+   "req": "SWE-PM-057",
+   "proc_steps": 6,
+   "er_lines": 6,
+   "setup": 1,
+   "basis": "first-step",
+   "aspects": 3,
+   "aspects_v1": 5,
+   "merged": 2,
+   "table": 6,
+   "delta": -3
+  },
+  {
+   "row": 159,
+   "req": "SWE-PM-057",
+   "proc_steps": 6,
+   "er_lines": 6,
+   "setup": 1,
+   "basis": "first-step",
+   "aspects": 3,
+   "aspects_v1": 5,
+   "merged": 2,
+   "table": 6,
+   "delta": -3
+  },
+  {
+   "row": 162,
+   "req": "SWE-PM-059",
+   "proc_steps": 6,
+   "er_lines": 6,
+   "setup": 2,
+   "basis": "powersts",
+   "aspects": 3,
+   "aspects_v1": 4,
+   "merged": 1,
+   "table": 6,
+   "delta": -3
+  },
+  {
+   "row": 170,
+   "req": "SWE-PM-063",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 1,
+   "basis": "first-step+repair",
+   "aspects": 3,
+   "aspects_v1": 4,
+   "merged": 1,
+   "table": 5,
+   "delta": -2
+  },
+  {
+   "row": 188,
+   "req": "SWE-PM-073",
+   "proc_steps": 6,
+   "er_lines": 6,
+   "setup": 1,
+   "basis": "first-step",
+   "aspects": 4,
+   "aspects_v1": 5,
+   "merged": 1,
+   "table": 6,
+   "delta": -2
+  },
+  {
+   "row": 189,
+   "req": "SWE-PM-073",
+   "proc_steps": 8,
+   "er_lines": 8,
+   "setup": 1,
+   "basis": "first-step",
+   "aspects": 6,
+   "aspects_v1": 7,
+   "merged": 1,
+   "table": 8,
+   "delta": -2
+  },
+  {
+   "row": 190,
+   "req": "SWE-PM-073",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 1,
+   "basis": "lead-verb",
+   "aspects": 4,
+   "aspects_v1": 4,
+   "merged": 0,
+   "table": 5,
+   "delta": -1
+  },
+  {
+   "row": 194,
+   "req": "SWE-PM-073",
+   "proc_steps": 8,
+   "er_lines": 8,
+   "setup": 1,
+   "basis": "first-step",
+   "aspects": 6,
+   "aspects_v1": 7,
+   "merged": 1,
+   "table": 8,
+   "delta": -2
+  },
+  {
+   "row": 197,
+   "req": "SWE-PM-073",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 1,
+   "basis": "first-step",
+   "aspects": 3,
+   "aspects_v1": 4,
+   "merged": 1,
+   "table": 5,
+   "delta": -2
+  },
+  {
+   "row": 204,
+   "req": "SWE-PM-076",
+   "proc_steps": 5,
+   "er_lines": 5,
+   "setup": 1,
+   "basis": "first-step",
+   "aspects": 4,
+   "aspects_v1": 4,
+   "merged": 0,
+   "table": 5,
+   "delta": -1
+  },
+  {
+   "row": 285,
+   "req": "SWE-PM-108",
+   "proc_steps": 6,
+   "er_lines": 6,
+   "setup": 1,
+   "basis": "first-step",
+   "aspects": 3,
+   "aspects_v1": 5,
+   "merged": 2,
+   "table": 6,
+   "delta": -3
+  }
+ ],
+ "paren_disambiguated": 40,
+ "paren_residual_collisions": [],
+ "frozen_rows_touched": []
+}
