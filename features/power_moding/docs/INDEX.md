@@ -14,6 +14,8 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 05 | 2026-08-24 | 母體判準修正、Q3 完整語料與**重裁定案**、Phase 3 前置 | [handoff/05_corpus_fix_and_framework_prep.md](handoff/05_corpus_fix_and_framework_prep.md) ＋ [05a](handoff/05a_upstream_naming_scope.md)／[05b](handoff/05b_q3_final.md) | [upstream/05_corpus_fix_and_framework_prep.md](upstream/05_corpus_fix_and_framework_prep.md) | R-PMH24–R-PMH27（逐字抄錄 4/4 相符） | （未立新 A-PMH —— 新發現皆為停止條件之回報） | **步驟 1–6 全數執行；停止條件 7、8 觸發，已查明並回報** |
 | 06 | 2026-08-24 | 停止條件處置、Layer 2 複算、跨規格缺口 | [handoff/06_framework_proposal.md](handoff/06_framework_proposal.md) | [upstream/06_framework_proposal.md](upstream/06_framework_proposal.md) | R-PMH28–R-PMH31（逐字抄錄 4/4 相符） | A-PMH13（CFTS009 缺口） | **步驟 1–5 全數執行；九條停止條件全未觸發** |
 | 07 | 2026-08-24 | tie-break、granularity 檢查、跨 feature 缺口擴查 | [handoff/07_gap_widening.md](handoff/07_gap_widening.md) | [upstream/07_gap_widening.md](upstream/07_gap_widening.md) | R-PMH32／R-PMH33（逐字抄錄 2/2 相符） | （無新 A-PMH；A-PMH13 之量詞擴大、口徑註結案） | **步驟 1–5 全數執行；九條停止條件全未觸發** |
+| 08 | 2026-08-24 | granularity 判準補正、分母口徑、**Layer 2 定版** | [handoff/08_criterion_repair.md](handoff/08_criterion_repair.md) ＋ [08a](handoff/08a_q11_and_git.md) | [upstream/08_criterion_repair.md](upstream/08_criterion_repair.md) | R-PMH34–R-PMH37（逐字抄錄 4/4 相符） | （無新 A-PMH；A-PMH13 依 R-PMH34 改寫分母） | **步驟 1–8 全數執行；九條停止條件全未觸發；Q11 結清** |
+| 09 | 2026-08-24 | must-hit 隔離度、G1 門檻推導、門檻單一來源 | [handoff/09_threshold_derivation.md](handoff/09_threshold_derivation.md) | [upstream/09_threshold_derivation.md](upstream/09_threshold_derivation.md) | R-PMH38–R-PMH40（逐字抄錄 3/3 相符） | （無新 A-PMH；修正一處 08a 之未命中替換） | **步驟 1–6 全數執行；九條停止條件全未觸發** |
 
 ## 01 輪要點
 
@@ -473,3 +475,116 @@ A-PMH13 之 PENDING 自此僅繫於 `-028` 之處置。
 **待 Pei**：**Q11（阻斷 Layer 2 定版）**／A-PMH13 之處置（分析層提案
 (ii)+(iii) 併行且該列仍寫入並揭露，比照 R-VF12）／Q10（分析層提案不填）／
 granularity 是否補 must-hit。
+
+## 08／08a 輪要點
+
+**Q11 定案（Pei：「甲 commit 交給claude code」）→ Layer 2 定版 8 組**
+- Test Set #2 = **`Disclaimer Screen`**（R-PMH36）。
+  與 Test Group `Disclaimer screen` **字面重複，為 canon §4.2 之明示例外**，
+  **限本 feature、本組、此一情形，不得外推**。
+- **三字串刻意不同、不得統一**（大小寫敏感驗證已跑）：
+  G 欄 `Disclaimer screen`（小寫 s）／H 欄 `Disclaimer Screen`（大寫 S）／
+  `tc_id` `DisclaimerScreen`（大寫 S 無空白）。三者兩兩相異、
+  去空白小寫後相同 —— 證明差異僅在大小寫與空白。
+- 四檔之 `PENDING Q11` 佔位符**全數清零**；`framework.md` 狀態改**定版**。
+- 未採之兩案理由隨條保留（乙造詞、丙混 FROP 且不可過濾）；
+  **明記 granularity 無鑑別力，不得引為理由**。
+
+**granularity 判準重寫（R-PMH35）—— 五個 must-hit 全部如期 FAIL**
+- 07 §三之六列**全為 must-not-hit** 且門檻不可執行（「≈」「過半」），
+  依 R-PMH35 不得標 PASS。改為 **G1–G5 五項，門檻寫死於程式**
+  （`scripts/check_granularity.py`，可重跑，`--self-test` exit 0）。
+- A1–A5 五錨點之**指定判準全部 FAIL**；A3／A4／A5 **隔離**，
+  A1／A2 之連帶為**構造本質使然**（29 或 48 組分 48 leaf 必有單 leaf 組）。
+- **執行時之兩處修正須追認**：A3 之期望集**執行層漏抄 G5**（已補）；
+  A4 之 `Misc` 由 1 leaf 改 **2 leaf** 以隔離 G3。
+- **一項方法決定請追認**：**連帶 FAIL 不使錨點失敗**（must-hit 之職責是證明
+  該判準會 FAIL，其他判準一併 FAIL 不否定此事），但須記其**隔離度**。
+- **三案試算全部 PASS → 對 Q11 無鑑別力**，程式輸出明示字串。
+  連帶更正 06 §5.4 之「丙案 granularity 須重驗」為**不成立**。
+
+**A-PMH13 之分母依 R-PMH34 改寫**
+- 三種口徑並列：16/3,234（原報，兩處灌水）→ 15/3,234（排除空白工作簿）
+  → **15/3,023（平手只計一份，取 527 之 `_Rebuilt`；另一候選 211 則為 2,707）**。
+- **盲區聲明**：已檢索 10 欄；**`Test Set` 欄未機器檢索為最大盲區**
+  （R-PMH36 之後此項更重要 —— 本 feature 現有一個叫 `Disclaimer Screen` 的
+  Test Set，而檢索從未及於該欄）。
+
+**盲區補查（Remarks／Design Methods／TC Ref ID）—— `CFTS009` 零命中**
+- 15 檔 × 3 欄，七組檢索式，**`CFTS009` 0 命中** ——
+  無任一 feature 在備註欄記載「此項由 CFTS009 涵蓋」。停止條件 9 未觸發。
+- 唯一 4 個 `hard control` 命中為 Comfort 備註中之 CFTS044 4-way rocker。
+- **附帶所見**：Comfort 之 `Remarks` 用 `[BLOCKED-SPEC] Owner: {CFTS}` 標註
+  跨規格歸屬 —— **若 A-PMH13 採 (ii)，該形態為現成前例**（不提案）。
+
+**R-PMH37（git 一次性授權）—— 標的已完成，不執行第二次**
+- 授權提交 06＋07，而該標的已於本輪前完成為 **`a345ca8`**。
+  逐項比對：訊息**逐字相符**、八路徑**完全相符**（多出 None／缺少 None）、
+  時點符合。**故不執行第二次提交**（明文不授權），**授權已用畢失效**。
+- `git log -1` 已非 `a345ca8`（併行 session 推進了兩個 vehicle_setting 提交），
+  改以 `git show --name-only a345ca8` 查核。**本輪改狀態 git 為 0 次。**
+
+**狀態**：P0 ✅／P1 ✅／**P3 Layer 1/2/3 定版 ✅**（profile 尚未撰寫）。
+**下一步 Phase 4**，其唯一前置為 A-PMH13 之處置，**首批可於不含 `-028`
+之情形下先行開批**。
+
+## 09 輪要點
+
+**G1 門檻 `0.35` → `1/3`，並補上其隔離錨點 A6**
+- `0.35` 係湊得，且現有錨點對 `0.35` 與 `0.5` **無鑑別力**（A1 之 `0.6042`
+  對兩者皆 FAIL）。`1/3` 之來源為 canon §4.1.3 決策測試之**平均意義** ——
+  G2 之 `min ≥ 2` 承接單組下限，**G1 承接平均**（平均不足 3 個 leaf 時，
+  過濾結果多為 1–2 列）。
+- **A6（48 leaf 分 20 組，8×3＋12×2）使 G1 單獨 FAIL**（`0.4167 > 0.3333`），
+  G2/G3/G4/G5 **全 PASS** —— **G1 之隔離證明成立**，08 包之缺口已補。
+  該組態亦證明 **G1 不可省**（G2/G4/G5 全過而仍過細）。
+
+**六錨點之隔離度已依 R-PMH38 三級標示，A1／A2 之連帶由**算式**判定**
+- 鴿籠原理寫進程式（`structural_collateral()`）：`k > floor(n/2)` ⇒
+  每組 ≥2 須 `n ≥ 2k` ⇒ **必有單 leaf 組**，G2、G5 必然 FAIL。
+  A1：`29 > 24`，`58 > 48`；A2：`48 > 24`，`96 > 48`。
+- **08 §7 第 3 項自陳「只被論述、未被證明」之缺口已補** ——
+  現由程式輸出，且若出現「無算式可推之連帶」，程式判該錨點**未隔離**並失敗。
+- **五項判準全部有隔離錨點，無一須標「未實測」**：
+  G1→A6／G2→A3／G3→A4／G4→A5／G5→A3,A5。
+
+**R-PMH40 —— 採「`--emit-thresholds` ＋ 程式 SHA256」**
+- `THRESHOLDS` 常數為**唯一來源**，`evaluate()` 亦讀它，**判準與門檻表同源**；
+  `framework.md` 之門檻節由該輸出貼入並附產生時之程式 SHA256。
+- **⚠ 自陳其限制**：SHA256 之比對**須人工執行**，沒有程式會去驗它 ——
+  **這仍是「宣告」而非「檢查」**，分岔由「兩份數值」縮為「一個雜湊」而未消除。
+
+**`Test Set` 欄檢索 —— 08 §7 之「最大盲區」已關閉**
+- 3,023 列、`Test Set` 欄（16/16 皆 `H` 欄），七組檢索式。
+- 全部命中皆為**本 feature 自身之草稿列**（其 H 欄為 037 `Requirement Title`）；
+  他 feature 唯一命中為 MBAD 之 `Launch/Exit`。**他 feature 真命中 0。**
+- **166 個相異 Test Set 已全數人工核對**，無 Off Road 相關者。
+- **新發現**：`-028` 之 037 `Requirement Title` 逐字為
+  **`CFTS009 Behavior Reference`** —— **上游自己就把它命名為「參照」**，
+  此為 A-PMH13 之處置之一項直接證據。
+- 已檢索欄位增為 **11 欄**；現存最大盲區改為 `Input Test Data`。
+
+**profile 備料（唯讀，未撰寫）**
+- 10 個 profile，行數 143–1466（中位 276），`[OVERRIDE]` 3–6／`[ADD]` 6–24。
+- **八個之中有六個共用同一骨架**（`## 0 identity` → `## 1 authority chain`
+  → `## 2 Test Set vocabulary [OVERRIDE]` → `## 3 house style` 之 3.1–3.7
+  → `## 4 Split policy` → `## 5 step-writing` → `## 6 anomalies register`）；
+  例外為 `Projection` 與 `VehicleSetting`（後者全檔皆 `## [MARKER §n] 主旨`，
+  且末節為**明示之否定清單**「未寫入本檔者」）。
+- 標記形態 186 個：`[X]` 無尾綴 135／`[X — 說明]` 48／`[X §n]` 3。
+  canon 節號一律 `§{n}[.{n}]` 無空格。
+- **`§4.2` 全庫僅被引用 1 次**（VehicleSetting 之 `[OVERRIDE §4.1.3／§4.2]`）
+  —— 本 feature 之 R-PMH36 為第二例，**惟 R-PMH36 已明載不得外推，
+  而該前例未見同等限定**。
+
+**⚠ 修正一處 08a 之缺陷（自陳）**
+- `framework.md` 第 79 行仍為「Test Set #2 之命名**待裁**」。成因：08a 中我先把
+  `<PENDING Q11>` 全換掉，**再**去替換該節（其原文含該佔位符）——
+  第二個 `.replace()` **靜默未命中**，而我**只驗了佔位符數、未驗節標題**。
+- 08a 上繳 §11.3(a) 之「殘留 0」陳述本身正確，但該節內文仍是舊的。已修正。
+- **教訓**：`str.replace()` 無命中時不報錯，**凡替換皆須驗其命中數** ——
+  與 A-PMH08 同族，方向相反（一為誤命中、一為未命中，皆不報錯）。
+- **§7 第 2 項自陳**：此形態只修了這一處，**未回頭掃描前八包之全部就地替換**。
+
+**待 Pei**：A-PMH13（Phase 4 唯一前置）／**08＋09 之 commit 授權**
+（R-PMH37 已用畢）／R-PMH40 是否加一致性檢查／Q10／profile 撰寫。

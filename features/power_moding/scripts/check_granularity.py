@@ -1,0 +1,265 @@
+#!/usr/bin/env python3
+"""R-PMH35 —— Layer 2 之 granularity 判準（G1–G5），含 must-hit 錨點之實跑。
+
+門檻**寫死於程式**（R-PMH35(a)：「約等於」「過半」不構成門檻）：
+
+  G1 過細 —— 組數相對 leaf 數      : 組數 / leaf 數 <= 1/3（平均組規模 >= 3）
+  G2 過細 —— 最小組                : min(組規模) >= 2
+  G3 過粗 —— 收容簇                : 組名不得命中收容簇清單（大小寫不敏感、全字）
+  G4 過粗 —— 最大組佔比            : max(組規模) / leaf 數 <= 0.5
+  G5 決策測試 —— 組規模之區間      : 全部組規模 ∈ [2, floor(leaf 數 / 2)]
+
+**未經 must-hit 實跑者不得標 PASS**（R-PMH35(c)）—— 故 `--self-test`
+為採用本判準之前提，非可選項。
+
+用法：
+    python scripts/check_granularity.py --feature .            # 現行提案
+    python scripts/check_granularity.py --feature . --self-test
+"""
+
+import argparse
+import csv
+import math
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+# G3 之收容簇清單。全字比對、大小寫不敏感 —— `Other` 命中而
+# `Power Off Behavior` 不命中（其含 `Off` 而非 `Other`，且比對單位為整詞）。
+CATCH_ALL = {"misc", "general", "unclassified", "other", "雜項"}
+
+# ---------------------------------------------------------------- 門檻
+# **R-PMH40 —— 判準門檻之唯一來源即此處。**
+# 文件中之門檻數值一律由 `--emit-thresholds` 產生後貼入，不得另行維護副本。
+THRESHOLDS = {
+    "G1": ("組數 / leaf", "<=", 1.0 / 3.0, "1/3",
+           "canon §4.1.3 決策測試之平均意義：平均每組不足 3 個 leaf 時，"
+           "過濾結果多為 1–2 列，索引價值與逐條列舉無異（R-PMH39）"),
+    "G2": ("min(組規模)", ">=", 2, "2",
+           "canon §4.1.3「不是一條」之單組下限 —— 至少兩個才成組"),
+    "G3": ("組名命中收容簇清單之數", "==", 0, "0",
+           f"收容簇清單 {sorted(CATCH_ALL)}；全字比對、大小寫不敏感"),
+    "G4": ("max(組規模) / leaf", "<=", 0.5, "1/2",
+           "canon §4.1.3「不是整本」—— 單組不得吃掉過半"),
+    "G5": ("逸出 [2, floor(leaf/2)] 之組規模數", "==", 0, "0",
+           "G2 之下限與 G4 之上限所夾之區間，逐組適用"),
+}
+
+
+def emit_thresholds() -> str:
+    """R-PMH40 —— 門檻表之機器產出，供文件貼入。"""
+    L = ["| id | 量 | 關係 | 門檻 | 來源 |", "|---|---|:--:|---|---|"]
+    for k, (q, op, _v, disp, why) in THRESHOLDS.items():
+        L.append(f"| **{k}** | {q} | `{op}` | **`{disp}`** | {why} |")
+    return "\n".join(L)
+
+# 06 §5.2 之逐 leaf 分配。Test Set #2 之名依 **R-PMH36**（Pei 2026-08-24 裁
+# 「甲」）為 `Disclaimer Screen` —— Layer 2 已定版 8 組。
+PROPOSAL = {
+    "Splash Screen": ["001-01", "001-02", "011"],
+    "Disclaimer Screen": ["001-03", "001-04", "001-05", "003", "004", "005", "022-02"],
+    "Startup Animation": ["006-01", "006-02", "006-03", "007", "008-01", "008-02",
+                          "009-01", "009-02", "010"],
+    "Startup Sounds": ["012", "013", "014", "015", "016", "017"],
+    "Power Transitions": ["002", "018-01", "018-02", "018-03", "018-04", "018-05",
+                          "023"],
+    "Power Off Behavior": ["019", "020", "021", "022-01", "024-01", "024-02",
+                           "024-03", "025"],
+    "Voice Assistant Key": ["026-01", "026-02", "026-03", "026-04", "026-05"],
+    "Off Road Plus": ["027", "028", "029"],
+}
+
+
+def evaluate(groups: dict[str, list], n_leaf: int) -> dict[str, tuple[bool, str]]:
+    """回傳 {判準 id: (是否 PASS, 實測值之說明)}。"""
+    sizes = [len(v) for v in groups.values()]
+    n_grp = len(groups)
+    hi = math.floor(n_leaf / 2)
+    r1 = n_grp / n_leaf
+    r4 = max(sizes) / n_leaf
+    hits = sorted(n for n in groups
+                  if any(w == t for t in n.lower().replace("/", " ").split()
+                         for w in CATCH_ALL))
+    out_of_band = sorted(s for s in sizes if not (2 <= s <= hi))
+    t1, t2, t4 = THRESHOLDS["G1"][2], THRESHOLDS["G2"][2], THRESHOLDS["G4"][2]
+    return {
+        "G1": (r1 <= t1, f"組數/leaf = {n_grp}/{n_leaf} = {r1:.4f} "
+                         f"(門檻 <= {THRESHOLDS['G1'][3]} = {t1:.4f})"),
+        "G2": (min(sizes) >= t2, f"min(組規模) = {min(sizes)} (門檻 >= {t2})"),
+        "G3": (not hits, f"收容簇命中 = {hits or '無'} (門檻 = 零命中)"),
+        "G4": (r4 <= t4, f"max/leaf = {max(sizes)}/{n_leaf} = {r4:.4f} "
+                         f"(門檻 <= {THRESHOLDS['G4'][3]} = {t4})"),
+        "G5": (not out_of_band,
+               f"逸出 [2, {hi}] 之組規模 = {out_of_band or '無'} "
+               f"(實測區間 [{min(sizes)}, {max(sizes)}])"),
+    }
+
+
+def structural_collateral(groups: dict, n_leaf: int) -> dict[str, str]:
+    """R-PMH38 —— 以**算式**判定哪些連帶 FAIL 為結構性，不以文字論述代替。
+
+    鴿籠：n 個 leaf 分 k 組，若每組規模 >= 2 則須 n >= 2k。
+    故 k > floor(n/2) 時**必有**單 leaf 組 —— G2 必然 FAIL，
+    且該單 leaf 組必逸出 [2, floor(n/2)] —— G5 亦必然 FAIL。
+    """
+    k, hi = len(groups), math.floor(n_leaf / 2)
+    out = {}
+    if k > hi:
+        why = (f"鴿籠：k={k} > floor(n/2)={hi} ⇒ 每組規模 >= 2 須 n >= 2k = {2*k} "
+               f"> n = {n_leaf}，故必有單 leaf 組")
+        out["G2"] = why
+        out["G5"] = why + "；該單 leaf 組必逸出 [2, %d]" % hi
+    return out
+
+
+def report(title: str, groups: dict, n_leaf: int, expect_fail: set = frozenset(),
+           collateral: str = "") -> bool:
+    """回傳「指定判準是否全部如期 FAIL」（錨點）或「是否全 PASS」（範圍向）。
+
+    **連帶 FAIL 不使錨點失敗** —— must-hit 之職責是證明「該判準會 FAIL」，
+    其他判準一併 FAIL 不否定此事。惟連帶須具名，因其影響**隔離度**：
+    一個同時觸發三個判準之錨點，不足以單獨證明其中任一個有效。
+    """
+    res = evaluate(groups, n_leaf)
+    struct = structural_collateral(groups, n_leaf)
+    print(f"\n--- {title} ---")
+    ok = True
+    coll = []
+    for k in ("G1", "G2", "G3", "G4", "G5"):
+        p, why = res[k]
+        mark = "PASS" if p else "**FAIL**"
+        want = ""
+        if expect_fail:
+            if k in expect_fail:
+                want = "  ← 指定 FAIL " + ("✅" if not p else "❌ **未 FAIL**")
+                ok &= not p
+            elif not p:
+                if k in struct:
+                    want = "  ← **結構性連帶**（算式可推）"
+                else:
+                    want = "  ← 連帶 FAIL（未隔離）"
+                coll.append(k)
+        print(f"    {k} {mark:9s} {why}{want}")
+    if expect_fail:
+        if not coll:
+            print("    隔離度：**隔離**（僅指定判準 FAIL）")
+        elif all(k in struct for k in coll):
+            print(f"    隔離度：**結構性連帶** {coll}")
+            for k in coll:
+                print(f"        {k} 之算式：{struct[k]}")
+        else:
+            bad = [k for k in coll if k not in struct]
+            print(f"    隔離度：**未隔離** —— {bad} 無算式可推 ❌")
+            ok = False
+    else:
+        ok = all(p for p, _ in res.values())
+    return ok
+
+
+def self_test() -> int:
+    n = 48
+    print("=== R-PMH35(c) —— must-hit 錨點之實跑（五個，各須 FAIL 其指定判準）===")
+    anchors = []
+
+    # A1：每個 outline 各成一組（29 組）
+    rows = list(csv.DictReader((ROOT / "data" / "layer3_sections.tsv")
+                               .open(encoding="utf-8"), delimiter="\t"))
+    by_outline: dict[str, list] = {}
+    for r in rows:
+        by_outline.setdefault(r["outline_number"], []).append(r["swe_requirement_id"])
+    anchors.append(("A1 每個 outline 各成一組", by_outline, {"G1"},
+                    "**構造本質使然**：29 個 outline 分 48 leaf，必有單 leaf 組，"
+                    "故 G2／G5 必然一併 FAIL —— 無法隔離"))
+
+    # A2：每個 leaf 各成一組（48 組）
+    anchors.append(("A2 每個 leaf 各成一組",
+                    {r["swe_requirement_id"]: [r["swe_requirement_id"]] for r in rows},
+                    {"G1", "G2"},
+                    "**構造本質使然**：全部組規模為 1，G5 必然一併 FAIL —— 無法隔離"))
+
+    # A3：`Off Road Plus` 拆為三個單 leaf 組（10 組）
+    g3 = {k: v for k, v in PROPOSAL.items() if k != "Off Road Plus"}
+    for x in PROPOSAL["Off Road Plus"]:
+        g3[f"Off Road Plus {x}"] = [x]
+    anchors.append(("A3 Off Road Plus 拆為三個單 leaf 組", g3, {"G2", "G5"},
+                    ""))
+
+    # A4：新增一組名為 `Misc`（自 Startup Animation 移一個 leaf 過去，維持 48）
+    # A4 之 `Misc` 取 **2** 個 leaf（非 1）—— 取 1 會連帶觸發 G2／G5，
+    # 使本錨點無法單獨證明 G3。取 2 即隔離。
+    g4 = {k: list(v) for k, v in PROPOSAL.items()}
+    g4["Misc"] = [g4["Startup Animation"].pop(), g4["Startup Animation"].pop()]
+    anchors.append(("A4 新增一組名為 Misc（2 leaf，以隔離 G3）", g4, {"G3"}, ""))
+
+    # A5：八組併為一組
+    anchors.append(("A5 八組併為一組",
+                    {"All": [x for v in PROPOSAL.values() for x in v]}, {"G4", "G5"}, ""))
+
+    # A6（R-PMH39）：G1 之**隔離**錨點 —— 48 leaf 分 20 組（8×3 + 12×2）。
+    # G2 min=2 ✅／G4 max=3 ✅／G5 全落 [2,24] ✅／G3 組名無收容簇 ✅，
+    # 僅 G1 = 20/48 = 0.4167 > 1/3 FAIL。此組態即 R-PMH39 所述
+    # 「G2/G4/G5 全通過而仍過細」者，證明 G1 不可省。
+    leaves = [x for v in PROPOSAL.values() for x in v]
+    g6, i = {}, 0
+    for j in range(8):
+        g6[f"Set{j+1:02d}"] = leaves[i:i+3]; i += 3
+    for j in range(12):
+        g6[f"Set{j+9:02d}"] = leaves[i:i+2]; i += 2
+    assert sum(len(v) for v in g6.values()) == 48 and len(g6) == 20
+    anchors.append(("A6 48 leaf 分 20 組（8×3 + 12×2）—— G1 之隔離錨點",
+                    g6, {"G1"}, ""))
+
+    all_ok = True
+    for title, groups, exp, coll in anchors:
+        all_ok &= report(f"{title}（{len(groups)} 組）", groups, n, exp, coll)
+
+    print("\n=== 範圍向（R-G9）—— 現行 8 組須 G1–G5 全 PASS ===")
+    scope_ok = report("現行提案（8 組）", PROPOSAL, n)
+    print(f"    範圍向 {'PASS ✅' if scope_ok else 'FAIL ❌'}")
+
+    print("\n=== Q11 三案之試算（R-PMH35 末段 / R-PMH14 鑑別力）===")
+    cases = {"（甲）Disclaimer Screen ← **R-PMH36 已採**": "Disclaimer Screen",
+             "（乙）Acceptance Screen": "Acceptance Screen"}
+    verdicts = {}
+    for label, name in cases.items():
+        g = {(name if k == "Disclaimer Screen" else k): v for k, v in PROPOSAL.items()}
+        verdicts[label] = report(f"{label}（{len(g)} 組）", g, n)
+    g_bing = {k: list(v) for k, v in PROPOSAL.items() if k != "Disclaimer Screen"}
+    g_bing["Splash Screen"] = g_bing["Splash Screen"] + PROPOSAL["Disclaimer Screen"]
+    verdicts["（丙）併入 Splash Screen"] = report(
+        f"（丙）併入 Splash Screen（{len(g_bing)} 組）", g_bing, n)
+
+    print("\n" + "=" * 72)
+    if len(set(verdicts.values())) == 1:
+        print("本判準對 Q11 之三案無鑑別力 —— 三案於 G1–G5 之結果完全相同"
+              f"（皆 {'PASS' if all(verdicts.values()) else 'FAIL'}），"
+              "依 R-PMH14 不得被引為支持任一案之理由。")
+    else:
+        print("本判準對 Q11 有鑑別力：" + str(verdicts))
+    print("=" * 72)
+
+    print(f"\nmust-hit 五錨點全部如期 FAIL: {all_ok}；範圍向 PASS: {scope_ok}")
+    return 0 if (all_ok and scope_ok) else 1
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--feature", default=".")
+    ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--emit-thresholds", action="store_true",
+                    help="R-PMH40 —— 輸出門檻表（Markdown），供文件貼入")
+    args = ap.parse_args()
+    if args.emit_thresholds:
+        print(emit_thresholds())
+        sys.exit(0)
+    if args.self_test:
+        sys.exit(self_test())
+    ok = report("現行提案（8 組）", PROPOSAL, 48)
+    print(f"\n結果：{'PASS' if ok else 'FAIL'}")
+    print("⚠ 依 R-PMH35(c)，未跑 --self-test 者不得將本結果標為 PASS。")
+    sys.exit(0 if ok else 1)
+
+
+if __name__ == "__main__":
+    main()

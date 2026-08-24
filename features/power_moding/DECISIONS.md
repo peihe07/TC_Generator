@@ -34,7 +34,7 @@ sign-off = binding as proposed.
 - style authority: [PROPOSED: fallback chain — no done region]
 - test item shape: [PROPOSED: standard §4.3 tc_title]
 - Test Group（G）欄: [RULED R-PMH13，Pei 2026-08-23 核可] 一律填 `Disclaimer screen`（交付夾名，**小寫 s**，R-PMH18）。依據為四份已交付件 4/4 皆填交付夾名；R-PMH2 之後半已撤回
-- Test Set（H）欄: [PEI — Phase 3] R-PMH6 之延後**不受 R-PMH13 核可影響**，仍待 framework Layer 2 定版
+- Test Set（H）欄: [RULED R-PMH36，Pei 2026-08-24 裁「甲」] **Layer 2 定版 8 組**：`Splash Screen`(3)／**`Disclaimer Screen`**(7)／`Startup Animation`(9)／`Startup Sounds`(6)／`Power Transitions`(7)／`Power Off Behavior`(8)／`Voice Assistant Key`(5)／`Off Road Plus`(3)，合計 48、餘數 0。⚠ 第 2 組與 Test Group `Disclaimer screen` **字面重複，為 canon §4.2 之明示例外**，限本 feature、本組、此一情形，**不得外推**。⚠ **三字串刻意不同**：G 欄 `Disclaimer screen`（小寫 s）／H 欄 `Disclaimer Screen`（大寫 S）／`tc_id` `DisclaimerScreen`（大寫 S 無空白）—— 比對須大小寫敏感。granularity 對三案無鑑別力，**不得引為理由**；本條依據為**可過濾性**與**不造詞**。
 - tc_id_format: [RULED R-PMH16，Pei 2026-08-23 裁（乙）] `NR1L-DisclaimerScreen-{NNN}`（**大寫 S**，R-PMH18）。已知反例 Comfort `ComfortHMI` 隨條保留；本條為本 feature 之裁定，**不主張為全案慣例**
 - exemplar source: [PROPOSED: nearest sibling feature done region, cross-feature: style only]
 - author on new rows: [PROPOSED: PeiPYHsu]

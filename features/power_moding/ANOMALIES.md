@@ -623,27 +623,59 @@ OFF2.)Please refer to CFTS009 for complete behavior.
 
 **本口徑註結案。** 本則之 PENDING 狀態僅繫於 `-028` 之處置（(i)/(ii)/(iii)）。
 
-### 跨 feature 擴查（07 包步驟 2）—— **16 個交付件全部零命中**
+### 跨 feature 擴查（07 包步驟 2、08 包步驟 5）—— **零命中**
 
-06 包之零命中僅限 `features/power` 之 284 列（R-PMH20 之量詞限定）。
-07 包對 R-PMH24 母體之**全部 16 個交付夾**（含 `Engineering Mode` 之
-兩個平手候選，共 17 個檔）重跑同一組檢索，**合計 3,234 資料列**：
+06 包之零命中僅限 `features/power` 之 284 列。07 包擴為全母體；
+08 包再擴檢索欄位並依 **R-PMH34** 改寫分母。
 
-| 標的 | 全 16 夾之命中 | 複核後之真命中 |
+#### 分母之三種口徑（R-PMH34(a)(b)）
+
+| 口徑 | 交付件 | 資料列 | 說明 |
+|---|---:|---:|---|
+| 07 §3.3 原報 | 16 | 3,234 | **兩處灌水**，見下 |
+| **(a) 排除無內容者** | **15** | 3,234 | `Vehicle Settings/VF230_V1_R5` 之資料列為 **0**（空白工作簿），**無從命中**，計入分母會使結論看起來比實際強 |
+| **(a)+(b) 平手只計一份** | **15** | **3,023** | `Engineering Mode` 之兩候選（527 + 211）內容大量重疊，同時計入即重複計算；本表取 **527 列之 `_Rebuilt`**，另一候選為 **211 列**（若改取之則分母為 **2,707**） |
+
+**採認之口徑：15 個有內容之交付件、3,023 資料列。**
+零命中之結論在三種口徑下皆成立（各檔命中皆為 0）。
+
+#### 檢索範圍與其盲區聲明（R-PMH34(c)）
+
+| 輪次 | 檢索欄位 |
+|---|---|
+| 07 包 | `Test Case ID`／`Test Group`／`Test Item`／`Pre-Conditions`／`Test procedure`／`Expected Result`／`Specification Reference`（7 欄） |
+| **08 包擴查** | **`Remarks`／`Test Case Design Methods`／`Test Case Reference ID`**（3 欄，依表頭文字定位，各檔欄位字母不同：`AH`/`AI`/`AG` 等） |
+
+**仍未及之欄位（盲區，R-G11）**：`No.#`／`Requirement or Design ID (Polarion)`／
+`Test Case ID (TestRail)`／`Test Set`／`Input Test Data`／`Estimated Test Time`／
+`Functional Safety`／七個車型欄／`Test Version`～`Defect ID`。
+**其中 `Test Set` 之未檢索為本則之最大盲區** —— 若某 feature 立了一個名為
+`Off Road` 之 Test Set 而其 TC 文字未用該詞，本檢索看不到。
+（惟 07 包已列出各檔之 Test Set 清單，人工檢視無 Off Road 相關者。）
+
+#### 08 包擴查之結果 —— **`CFTS009` 於三個擴查欄位零命中**
+
+| 標的 | 15 檔 × 3 欄之命中 | 複核 |
 |---|---:|---|
-| `OFF2` | 1 | **0** —— 唯一命中在 `Disclaimer screen`（本 feature 之客戶那份），其為 037 機械搬運之草稿列（R-PMH5），**是來源自身，不是覆蓋** |
-| `off road` | 3 | **0** —— 1 同上；另 2 為 `Off Road Pages`（Home 之 widget 清單、MBAD 之 favorites 清單），**是 app／widget 名稱** |
-| `Off Road+` | 1 | **0** —— 同上，本 feature 自身之草稿列 |
-| `Power Off State` | 7 | **0** —— 全部在本 feature 自身之草稿列 |
-| `launch` | 206 | **0**（無一與「自 Power Off State 啟動 app」相關） |
-| `hard control` | 129 | **0** —— 全部為 ICS hardcontrols 之調台／空調操作 |
+| `OFF2` | 0 | — |
+| `off road` | 0 | — |
+| `Off Road+` | 0 | — |
+| `Power Off State` | 0 | — |
+| `launch` | 0 | — |
+| **`CFTS009`** | **0** | **無任一 feature 在備註欄記載「此項由 CFTS009 涵蓋」** |
+| `hard control` | 4 | 全在 `Climate Control Interface` 之 `Remarks`，逐字為 `[BLOCKED-SPEC] Owner: CFTS044 — the equivalence to the previous 4-way rocker hard control …` —— **屬 CFTS044，與本標的無關** |
 
-**結論句（R-PMH20 之量詞限定）**：
-> **本次量測之 16 個交付件（3,234 資料列，量測時點 2026-08-24T11:06:22+0800）中，
-> `SWE1-HMI-PM-028` 所指之 Off Road+ power moding 行為零命中。**
+**停止條件 9 未觸發。**
 
-**故 A-PMH13 為全案缺口之判定，其量詞由「`features/power` 之 284 列」
-擴為「母體 16 個交付件之 3,234 列」。停止條件 8 未觸發。**
+#### 結論句（R-PMH20 之量詞限定 ＋ R-PMH34 之分母口徑）
+
+> **本次量測之 15 個有內容交付件（3,023 資料列，`Engineering Mode` 取
+> 527 列之候選；量測時點 2026-08-24）中，就 10 個欄位所作之七組檢索，
+> `SWE1-HMI-PM-028` 所指之 Off Road+ power moding 行為零命中；
+> 另 1 個交付件（`Vehicle Settings/VF230_V1_R5`）為 0 列之空白工作簿，
+> 無從命中。未檢索之欄位見上方盲區聲明。**
+
+**故 A-PMH13 為全案缺口之判定成立。停止條件 8（07）／9（08）皆未觸發。**
 
 ### 三種處置並列（**本包不裁**，06 包 §六原文保留）
 

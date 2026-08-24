@@ -142,8 +142,9 @@ Remarks = reason + anomaly id.
       `leaves:` **48**; `targets:` **48**; recon assertion 1/1 PASS
 - [ ] **P2 DECISIONS signed** (date: ____) — `DECISIONS.md` 已預填並補入
       8 項 `[RULED]`，**待 Pei 簽核**
-- [ ] P3 framework Part N + profile approved — Layer 2 備料已完成
-      （FROP 12 值 × 章節 52 項之交集與分歧，見 upstream/03 §7）
+- [x] **P3 framework Layer 1/2/3 定版**（2026-08-24，R-PMH36）—— Layer 2
+      **8 組定版**，48/48 分配與 granularity（G1–G5 ＋ 五個 must-hit）皆已驗。
+      ⚠ profile（`FW036_R1L_PowerModing_Profile.md`）**尚未撰寫**
 - [ ] P4 data artifacts built — `outline_map.json`／`uncited_sections.tsv`
       已就緒；A-PMH03（outline 7.1 之 5 leaf）為指名複核項
 - [ ] P5 pilot batch ____ reviewed; verdict: ____; corrections: ____
@@ -152,15 +153,19 @@ Remarks = reason + anomaly id.
 
 ### 下一步
 
-**Phase 2／3（framework）。** P1 已完成，無阻斷項。
+**Phase 4（TC 生成）。** Phase 3 之 Layer 1/2/3 已定版（R-PMH36）。
+**Phase 4 之唯一前置為 A-PMH13（`SWE1-HMI-PM-028`）之處置** ——
+其涉 48 leaf 中之一個，**首批可於不含 `-028` 之情形下先行開批**。
+另 profile 尚未撰寫。
 
 ### Open rulings
 
-> Q3（D3／D4／D5）**已於 2026-08-24 結清** —— R-PMH27，三欄留空。
+> Q3 **已結清**（R-PMH27，三欄留空）；**Q11 已結清**（R-PMH36，Test Set #2 = `Disclaimer Screen`）。
 
 | 標記 | 事項 | 狀態 |
 |---|---|---|
-| `[PEI]` | Test Set（H）欄之值 —— R-PMH6 延後至 Phase 3 | Phase 3 |
+| `[PEI]` Q10 | `Product Document 記錄封面頁` —— 範圍為**一整張分頁**，需增補 11 項 | 否，Phase 7 前 |
+| `[PEI]` A-PMH13 | `SWE1-HMI-PM-028` 之處置 —— 擴查後確認為**全案缺口** | 否，Phase 4 前 |
 | `[PEI]` | `DECISIONS.md` §6 之 Part N 與 profile `[OVERRIDE]` | Phase 3 |
 
 ### Open PENDING anomalies

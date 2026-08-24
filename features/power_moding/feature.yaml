@@ -177,7 +177,25 @@ write_back:
   tc_ref_id_value: "NEW"
   fill_test_group_set: true      # BLANK 之 canon §2 綁定
   test_group_value: "Disclaimer screen"   # R-PMH13 已裁，G 欄可寫
-  test_set_value: null                    # H 欄仍待 Phase 3（R-PMH6，不受 R-PMH13 核可影響）
+  # R-PMH36（Pei 2026-08-24 裁「甲」）—— Layer 2 定版 8 組，H 欄之值依 leaf
+  # 所屬組填入。全表見 framework.md；逐 leaf 對照見 data/layer3_sections.tsv。
+  test_set_values:
+    - "Splash Screen"          # 3 leaf —— outline 7.1(部分), 7.9
+    - "Disclaimer Screen"      # 7 leaf —— outline 7.1(部分), 7.2, 7.3, 7.4, 10.4(部分)
+    - "Startup Animation"      # 9 leaf —— outline 7.5, 7.5.1, 7.6, 7.7, 7.8
+    - "Startup Sounds"         # 6 leaf —— outline 8.1, 8.2, 8.2.1-8.2.3, 8.3
+    - "Power Transitions"      # 7 leaf —— outline 7.1.1, 9.1, 10.5
+    - "Power Off Behavior"     # 8 leaf —— outline 10.1, 10.2, 10.3, 10.4(部分), 10.6, 10.7
+    - "Voice Assistant Key"    # 5 leaf —— outline 11.1
+    - "Off Road Plus"          # 3 leaf —— outline 12.1, 12.2, 12.3
+  # 合計 48，餘數 0（R-G10）。
+  #
+  # ⚠ **R-PMH18 之精神延伸 —— 三個字串刻意不同，不得統一，比對須大小寫敏感**：
+  #     Test Group（G 欄）  `Disclaimer screen`   小寫 s（交付夾名原樣，R-PMH13）
+  #     Test Set （H 欄）   `Disclaimer Screen`   大寫 S（能力群名，R-PMH36）
+  #     tc_id 之 {abbr}     `DisclaimerScreen`    大寫 S、無空白（R-PMH16）
+  # ⚠ **R-PMH36 之例外範圍限定**：Test Set 與 Test Group 字面重複，為 canon
+  #   §4.2 之明示例外，**限本 feature、本組、此一情形**，不得外推。
   keep_blank: ["D3", "D4", "D5"] # R-PMH10
 
 # R-PMH22 —— 寫回前必跑之機器檢查（三項），失敗即中止寫回。
