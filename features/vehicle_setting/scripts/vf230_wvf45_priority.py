@@ -155,12 +155,24 @@ def main() -> None:
             if i > 5000:
                 raise SystemExit("選池迴圈未收斂，停")
 
-    # 斷言（R-G7-1 之對照向）：池首 88 條須全為 P0，第 89 條須為 P1。
-    head = [x["priority"] for x in pool[:dist["P0"]]]
+    # 斷言（R-G7-1 之對照向）：池首之 P0 段須全為 P0，其次一條須為 P1。
+    #
+    # **W-VF73 §4 三之修正（V37 准修）**：切點原為 `dist["P0"]`，
+    # 而 `dist` 之母數為**全 627 列**（`rows`），`pool` 之母數為 **574**（W0+W1）。
+    # 6 條 `priority == "P0"` 而 `writable ∉ {W0, W1}` 者**被計入 dist 而不入 pool**，
+    # 致斷言取 pool 之前 88 條而其第 83–88 條為 P1 —— 即 `{P0: 82, P1: 6}`。
+    # **選池序是對的（前 82 條確為 P0），錯的是斷言之切點。**
+    # 其為既有缺陷，由 W-VF70 之 B8／B9 分級精進使該 6 條掉出 W0/W1 而暴露。
+    # 切點改為 **`pool` 內 `priority == "P0"` 之實數**；**選池序不改**。
+    pool_p0 = sum(1 for x in pool if x["priority"] == "P0")
+    if pool_p0 != dist["P0"]:
+        print(f"  ℹ 池內 P0 {pool_p0} 條，全庫 P0 {dist['P0']} 條 —— "
+              f"差 {dist['P0'] - pool_p0} 條為 P0 而非 W0/W1 者（不入選池）")
+    head = [x["priority"] for x in pool[:pool_p0]]
     if set(head) != {"P0"}:
-        raise SystemExit(f"R-VS58 違反：池首 {dist['P0']} 條含非 P0 —— "
+        raise SystemExit(f"R-VS58 違反：池首 {pool_p0} 條含非 P0 —— "
                          f"{Counter(head)}，停")
-    if pool[dist["P0"]]["priority"] != "P1":
+    if pool[pool_p0]["priority"] != "P1":
         raise SystemExit("R-VS58 違反：第 P0+1 條應為 P1，停")
 
     BATCH = 10

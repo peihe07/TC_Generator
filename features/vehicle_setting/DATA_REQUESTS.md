@@ -1484,3 +1484,165 @@ SWE1-VC-4AUXSwitches-027
 > **即本層讀不到而報為資料所缺** —— `A-VF13`／`A-VF21`／`A-VF25`／`A-VF27` 之同族。
 > 抽取式已放寬（`PROXI_CLAUSE_LEAD`，附 5 個假陰／假陽錨點），**該 2 條已回收入母體**。
 > **不以其入 DR** —— 問上游一個本層自己讀不到的東西，是問錯問題。
+
+---
+
+## DR-42（新，**Urgency Medium** —— 同家族之二對 leaf 其條文逐字相同；W-VF72 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-41**（R-VF10）。**登記，未送出。**
+
+**標的**：**2 對 4 條 leaf**
+
+```
+SWE1-VC-ParkSenseBasedCameraActivation-078  ／ -080
+SWE1-VC-AutoOnDriverComfort-2Option-103     ／ -104
+```
+
+**其形態**：同一 leaf 家族內之二條 leaf，其 `desc` **逐字相同**
+（以 sha1 比對，非目視），其 PROXI 參數與值亦相同。
+
+```
+-078 ／ -080  參數 Parksense_Camera_View  值 "Absent"   sha1 同
+-103 ／ -104  參數 Heated_Seats           值 "Absent"   sha1 同
+```
+
+**其後果**：二者所生之 TC **逐字相同**，
+而 canon §4.3 逐字令「two sibling tc_titles that read identically = **FAIL**」。
+
+**所詢**：該二對是否應為**一條**需求？抑或其差異存在於 037 而未進 035 之 `desc`？
+
+**本層之處置**：**保留首條、隔離次條**（`-080`／`-104`），登記於
+`data/vf230_isolated.tsv`。**未造區辨 token 消解之** ——
+二條文既逐字相同，任何區辨皆為本層所造，
+**即以造值消解不符**（`R-VF92` 二、`R-VF79` 一之同一禁令）。
+
+**其阻塞者**：該 2 條未生成 TC。**另 2 條（首條）已生成，不受影響。**
+
+---
+
+## DR-43（新，**Urgency Medium** —— `Trail_Num` 之無效值處理：條文所稱之無效值屬他訊號，且該訊號無可送之無效 raw；W-VF73 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-42**（R-VF10）。**登記，未送出。**
+
+**標的**：`SWE1-VC-TrailerNumber-065`（1 條）
+
+**條文逐字**：
+
+```
+When the LTM or ETM receives the IPC_VEHICLE_SETUP.Trail_Num signal with the
+value [GOOSE] or [FIFTH], $IPC_VEHICLE_SETUP.Trail_Num$, Then the HMI shall
+treat the received value as invalid, shall not display the invalid enumeration,
+and shall continue displaying the previously received valid Trailer Number
+value until a valid signal value is received.
+```
+
+**二項實測與條文不符**（皆以獨立路徑直讀 `inputs/PDT27_E2A_R5_FDCAN8.dbc`）：
+
+1. **`GOOSE`／`FIFTH` 不屬 `Trail_Num`。** 該二標籤實屬
+   `SelTrlrStyle`／`TrlrStyle_1`–`TrlrStyle_4`（**拖車樣式**，
+   值域 `NONE／TRAILER／BOAT／CAR／CARGO／DUMP／EQUIPMENT／FLAT／GOOSE／…`），
+   而 `Trail_Num` 為**拖車數量**，值域僅 `One／Two／Three／Four`。
+
+2. **`Trail_Num` 結構上不存在可送之無效值。** 其於 DBC 為
+   `SG_ Trail_Num : 214|2@…` —— **2 bit**，四個 raw（0–3）**全部已定義**。
+   即使條文所指之訊號正確，亦無 raw 可用以送出「無效列舉」。
+
+**所詢**：
+
+1. 本條所指之訊號是否應為 `SelTrlrStyle`（或 `TrlrStyle_n`）而非 `Trail_Num`？
+2. 若確為 `Trail_Num`，則「無效值」指何者？（其 2 bit 四值全為有效列舉）
+
+**本層之處置**：**維持隔離，不改取他訊號**（`R-VF92` 二：比對不符時不得改取
+「能容納該值之另一訊號」——改取即換掉了條文明寫之驗證標的，產出驗錯對象之 TC）。
+**與 `A-VF28`（`TrailerBrakeType032` 之自動換訊號）同族**，其教訓已成文。
+
+**其阻塞者**：pilot #3 之「無效值處理」型 **1 條未生成**。
+**書寫式本身不缺** —— 既有交付範例
+`Invalid heated steering wheel status value is ignored`
+（送有效值並記錄 → 送無效值 → 讀顯示確認未變）可依，**缺的是資料**。
+
+---
+
+## DR-44（新，**Urgency Medium** —— AUX Switch 之 35 對需求描述同一可測行為；W-VF74 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-43**（R-VF10）。**登記，未送出。**
+
+**標的**：**35 對 70 條 leaf**，全數集中於 **AUX Switch 1–4 之三個屬性**
+（`PowerMode`／`Type`／`HoldLastState`）。
+
+**其形態**：同一屬性有**二條需求，措辭不同而描述同一可測行為**，
+來自不同之 `src_ref`。實例（`SWITCH1PowerMode`）：
+
+```
+-005  src_ref SYS-RA-VF230_V1-2262
+  The HMI layer shall capture the customer selection for the SWITCH 1 Power Mode
+  setting and send the request using CarPropertyManager.setProperty() with the
+  TELEMATIC_FD_1.AUX1_PWRMD_Req signal value as IGNITION. …
+
+-030  src_ref SYS-RA-VF230_V1-2211
+  When the customer chooses to set the SWITCH 1 Power Mode setting to Ignition on
+  the LTM or ETM, the HMI layer shall send the updated customer preference to
+  CarPropertyManager via the Android Car API. … HMI receives the … as IGNITION
+  via signal, $TELEMATIC_FD_1.AUX1_PWRMD_Req$ …
+```
+
+**二者之差為敘述層次**（Android 屬性層寫法 vs 顧客動作寫法），
+**其設定、訊號、值皆同**。
+
+**其後果為可機械判定，不涉語意推測**：所生之二條 TC 之
+`pre_conditions`／`test_procedure`／`expected_result`／`input_test_data`
+**四欄逐字相同**，**僅 `test_item`（條文節錄）不同** ——
+即**執行二者即做同一件事**，且其 `tc_title` 亦逐字相同（canon §4.3 FAIL）。
+
+**所詢**：該 35 對是否為同一需求之二次描述？
+若是，量產應涵蓋其一或二者？（若二者皆須涵蓋，其 TC 之區辨應以何為據？）
+
+**本層之處置**：**保留首條、去重次條**（判準為可執行四欄之逐字相同），
+去重清單逐條列於 `data/_vf230_wvf69_skipped_g3.json` 之 `exec_duplicate`。
+**未造假區辨**（`R-VF92` 二：不得改取他標的以消解不符；
+造一個區辨 token 即宣稱二者驗不同的東西，而實測其驗同一件事）。
+
+**其阻塞者**：**無**。35 條去重後量產仍涵蓋該 35 個行為（由其成對之另一條承擔），
+**故本 DR 不阻塞交付**，僅求確認上游是否有意如此。
+
+<details><summary>35 對之逐條清單</summary>
+
+```
+SWE1-VC-SWITCH1PowerMode-005                   同 SWE1-VC-SWITCH1PowerMode-030
+SWE1-VC-SWITCH1PowerMode-006                   同 SWE1-VC-SWITCH1PowerMode-031
+SWE1-VC-SWITCH1PowerMode-007                   同 SWE1-VC-SWITCH1PowerMode-032
+SWE1-VC-SWITCH2PowerMode-009                   同 SWE1-VC-SWITCH2PowerMode-034
+SWE1-VC-SWITCH2PowerMode-010                   同 SWE1-VC-SWITCH2PowerMode-035
+SWE1-VC-SWITCH2PowerMode-011                   同 SWE1-VC-SWITCH2PowerMode-036
+SWE1-VC-SWITCH3PowerMode-013                   同 SWE1-VC-SWITCH3PowerMode-038
+SWE1-VC-SWITCH3PowerMode-014                   同 SWE1-VC-SWITCH3PowerMode-039
+SWE1-VC-SWITCH3PowerMode-015                   同 SWE1-VC-SWITCH3PowerMode-040
+SWE1-VC-SWITCH4PowerMode-017                   同 SWE1-VC-SWITCH4PowerMode-042
+SWE1-VC-SWITCH4PowerMode-018                   同 SWE1-VC-SWITCH4PowerMode-043
+SWE1-VC-SWITCH4PowerMode-019                   同 SWE1-VC-SWITCH4PowerMode-044
+SWE1-VC-SWITCH1Type-030                        同 SWE1-VC-SWITCH1Type-003
+SWE1-VC-SWITCH1Type-031                        同 SWE1-VC-SWITCH1Type-004
+SWE1-VC-SWITCH2Type-033                        同 SWE1-VC-SWITCH2Type-006
+SWE1-VC-SWITCH2Type-034                        同 SWE1-VC-SWITCH2Type-007
+SWE1-VC-SWITCH2Type-035                        同 SWE1-VC-SWITCH2Type-008
+SWE1-VC-SWITCH3Type-037                        同 SWE1-VC-SWITCH3Type-010
+SWE1-VC-SWITCH3Type-038                        同 SWE1-VC-SWITCH3Type-011
+SWE1-VC-SWITCH3Type-039                        同 SWE1-VC-SWITCH3Type-012
+SWE1-VC-SWITCH4Type-041                        同 SWE1-VC-SWITCH4Type-014
+SWE1-VC-SWITCH4Type-042                        同 SWE1-VC-SWITCH4Type-015
+SWE1-VC-SWITCH4Type-043                        同 SWE1-VC-SWITCH4Type-016
+SWE1-VC-SWITCH1HoldLastState-054               同 SWE1-VC-SWITCH1HoldLastState-018
+SWE1-VC-SWITCH1HoldLastState-055               同 SWE1-VC-SWITCH1HoldLastState-019
+SWE1-VC-SWITCH1HoldLastState-056               同 SWE1-VC-SWITCH1HoldLastState-020
+SWE1-VC-SWITCH2HoldLastState-058               同 SWE1-VC-SWITCH2HoldLastState-022
+SWE1-VC-SWITCH2HoldLastState-059               同 SWE1-VC-SWITCH2HoldLastState-023
+SWE1-VC-SWITCH2HoldLastState-060               同 SWE1-VC-SWITCH2HoldLastState-024
+SWE1-VC-SWITCH3HoldLastState-062               同 SWE1-VC-SWITCH3HoldLastState-026
+SWE1-VC-SWITCH3HoldLastState-063               同 SWE1-VC-SWITCH3HoldLastState-027
+SWE1-VC-SWITCH3HoldLastState-064               同 SWE1-VC-SWITCH3HoldLastState-028
+SWE1-VC-SWITCH4HoldLastState-066               同 SWE1-VC-SWITCH4HoldLastState-030
+SWE1-VC-SWITCH4HoldLastState-067               同 SWE1-VC-SWITCH4HoldLastState-031
+SWE1-VC-SWITCH4HoldLastState-068               同 SWE1-VC-SWITCH4HoldLastState-032
+```
+
+</details>

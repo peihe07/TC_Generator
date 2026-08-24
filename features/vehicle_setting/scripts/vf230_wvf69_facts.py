@@ -16,6 +16,19 @@ from pathlib import Path
 
 FEAT = Path(__file__).resolve().parent.parent
 
+# 「預設值」需求之形態（W-VF72）—— 其為新形態，非取值式。
+DEFAULT_VALUE = re.compile(r"default value of|\bdefault as [A-Z]", re.I)
+# 預設值之逐字：`shall be <Label>`／`shall be [<Label>]`／`default as <Label>`
+DEFAULT_LABEL = re.compile(
+    r"shall be \[?([A-Za-z0-9_]+)\]?|default as \[?([A-Za-z0-9_]+)\]?", re.I)
+# 「無效值處理」需求 —— 其需求為「收到無效值時**不顯示**且維持前值」，
+# **驗法為送無效值而確認顯示未變**，與上行型（送值→看顯示）之模板相反。
+# **須與伴隨子句區辨**：`Any invalid value shall be considered invalid by HMI.`
+# 為 122 條中常見之附帶句，其主體需求仍為正常顯示 —— **不得誤殺**。
+# 故本式要求「不顯示無效列舉」或「維持前一有效值」之逐字，非僅 `invalid` 一詞。
+INVALID_VALUE = re.compile(
+    r"shall not display the invalid|continue displaying the previously received",
+    re.I)
 PROXI_CLAUSE = re.compile(r"retrieve the (.+?) (?:PROXI )?configuration", re.I)
 # **W-VF71 第 3 項之放寬（R-VF82，2026-08-24）**：另有一式以參數名**起首**
 # （`Turn_Signal_Camera_View PROXI configuration.` —— 無 `retrieve the`）。
@@ -62,16 +75,27 @@ def match_label(tail: str, vals: dict[str, str]) -> tuple[str | None, str | None
 
 
 # 值之**起點**（其終點由 `match_label` 依 DBC 值域決定）
+# **W-VF73 §3 三之補式（R-VF-乙／R-VF101，2026-08-24）**：
+# `shall be <Value>` 為條文指名值之一式，首版未認之。
+# 其後果實測於 `PowerTailgate-028`：條文明寫 `The default value … shall be Enabled`
+# 而落入「未指名值」→ 佔位式 → 取列舉首值 `Disabled`，**與條文所令之值相反**。
+# **收窄之防已在，不另加停用詞表**：首版曾加 `SHALL_BE_STOP` 動詞尾清單，
+# **實測其為多餘** —— `match_label()` 只認 DBC 標籤逐字，而
+# `transmitted`／`displayed`／`considered` 皆非任一標籤，故本就不命中。
+# 加一層無作用之判準，會使「其攔下了什麼」與「它本就攔不到什麼」不可分辨。
+# 五個錨點固定其二側，見 `SHALL_BE_ANCHORS`。
 SIG_VALUE_AT = [
     re.compile(r"signal value as\s+\[?"),
     re.compile(r"value\s*=\s*\["),
     re.compile(r"receives the value\s*(?:as\s*)?\[?"),
+    re.compile(r"shall be\s+"),
 ]
 
 SIG_VALUE = [
     re.compile(r"signal value as\s+\[?([A-Za-z0-9_]+)\]?"),
     re.compile(r"value\s*=\s*\[([^\]]+)\]"),
     re.compile(r"receives the value\s*(?:as\s*)?\[?([A-Za-z0-9_ ]+?)\]?\s*via signal"),
+    re.compile(r"shall be\s+\[?([A-Za-z0-9_]+)\]?"),
 ]
 
 
@@ -132,15 +156,19 @@ EXCLUDE = re.compile(r"^(?:sna|not_?used|invalid|reserved)\d*$", re.I)
 def valid_domain(vals: dict[str, str]) -> list[tuple[str, str]]:
     """回 [(raw, label)]，**依 DBC 之 raw 序**，已排除保留值。
 
-    **序之選擇須具名**：R-VF91 二令「取列舉之首值」，而「列舉」所指為
-    `input_test_data` 所列之 DBC 值域。**DBC 值域之列舉序為 raw 序**；
-    字母序為本層施加者，非來源所有。二者於本組 100 條中 **38 條給出不同代表值**
-    （`Trail_Num` 字母序給 `Four`、raw 序給 `One`；
-    `Illuminated_Approach` 字母序給 `Ninety`、raw 序給 `Zero`），
-    **字母序之代表值為任意**，故採 raw 序。
+    **序之選擇**：R-VF91 二令「取列舉之首值」，R-VF101 一定義該序為
+    **DBC `VAL_` 之書寫序**（非 raw 大小、非字母序）。
+    三序之別於本組實測：字母序與另二者在 38 條上給出不同代表值
+    （`Trail_Num` 字母序給 `Four`；`Illuminated_Approach` 字母序給 `Ninety`）
+    —— **字母序之代表值為任意**；而書寫序與 raw 序之首值 **97／97 相同**。
     """
-    out = [(r, vals[r]) for r in sorted(vals, key=lambda x: int(x))
-           if not EXCLUDE.match(vals[r].strip())]
+    # **W-VF73 §3 一（R-VF101）**：序改為 **DBC `VAL_` 之書寫序**，非 raw 大小序。
+    # 前置確認（R-VF92 一，獨立路徑）：直讀 `inputs/*.dbc` 之 `VAL_` 行，
+    # 比對 `_dbc_parsed.json` 之 dict 序 —— **2044／2044 全等**，故該 json 保序可用。
+    # **實測二序於本組 97 條佔位式之首值 97／97 相同**，其同序須具名於 `reasoning`
+    # （R-VF101 一），以免日後被誤讀為依 raw 大小取值。
+    out = [(r, lab) for r, lab in vals.items()
+           if not EXCLUDE.match(lab.strip())]
     return out
 
 
@@ -178,6 +206,18 @@ def extract(leaf: str, lf: dict, form: str, D: dict) -> tuple[dict | None, str]:
                 "negative": bool(PROXI_NEG.search(text))}, ""
 
     if form in ("訊號送出型", "訊號上行型"):
+        # ---- 「預設值」需求為**未經 pilot 之新形態**（W-VF72，2026-08-24）----
+        # `The default value of the MSG.SIG signal shall be <Label>.`
+        # 其需求為「開機後之預設值」，**驗法為不送任何 CAN 值而讀其顯示**，
+        # 與上行型（送值→看顯示）之模板不同。
+        # **實測其危害**：`PowerTailgate-028` 被套上行型模板後，
+        #   (a) 條文明寫 `shall be Enabled` 而未被 `SIG_VALUE_AT` 認出，
+        #       遂落入「未指名值」→ R-VF91 二佔位式 → 取首值 `Disabled`，
+        #       **與條文所令之值相反**；
+        #   (b) procedure／ER 皆送 CAN 值，**完全未驗「預設值」此一需求**；
+        #   (c) 其 `tc_title` 與同家族之 `-027` 逐字相同（canon §4.3 FAIL）。
+        # **三個缺陷同源，而其根為形態誤套，非標題。**
+        # 依 R-VF80 一：**不得以既有形態之書寫式套之** —— 隔離並具名。
         sigs = SIG.findall(text)
         if not sigs:
             mo = SIG_MSGONLY.search(text)
@@ -194,6 +234,37 @@ def extract(leaf: str, lf: dict, form: str, D: dict) -> tuple[dict | None, str]:
                           f"條文寫 `{msg}` —— 不符，不臆造")
         if not d["vals"]:
             return None, f"訊號 `{sig}` 於 DBC 無 `VAL_` 值域"
+
+        # ---- pilot #3（W-VF73 §4 二；R-VF74 之既有範例已查得）----
+        # 「預設值」型之既有範例：`Rear camera setting defaults to off`
+        #   （vehicle_setting 交付本）—— factory reset ＋ power cycle ＋ 讀初始顯示。
+        # **依既有範例書寫，不回退、不自創**（R-VF74 一）。
+        if DEFAULT_VALUE.search(text):
+            dv = DEFAULT_LABEL.search(text)
+            if not dv:
+                return None, ("「預設值」型而抽不出其預設值 —— "
+                              "條文有 `default value` 而無 `shall be <Label>`／"
+                              "`default as <Label>` 之逐字")
+            want = dv.group(1) or dv.group(2)
+            hit = [r for r, l in d["vals"].items() if l.lower() == want.lower()]
+            if len(hit) != 1:
+                return None, (f"「預設值」型而其預設值 `{want}` 於 `{sig}` 之 DBC 值域 "
+                              f"{sorted(d['vals'].values())} 內命中 {len(hit)} 次，非唯一")
+            return {**base, "msg": msg, "sig": sig, "raw": hit[0],
+                    "label": d["vals"][hit[0]], "other_raw": None,
+                    "other_label": None, "value_named": True, "pending": False,
+                    "pilot3": "預設值型", "pick_why": "條文逐字指名之預設值"}, ""
+        # 「無效值處理」型：既有範例有（`Invalid heated steering wheel status value
+        # is ignored`），**而本輪唯一之標的其資料不支援**，見 extract 之呼叫端註。
+        m = INVALID_VALUE.search(text)
+        if m:
+            return None, ("「無效值處理」型 —— **既有範例有而資料不支援**："
+                          f"`{sig}` 之 DBC 為 2 bit，其四值 "
+                          f"{sorted(d['vals'].values())} **全部已定義**，"
+                          "結構上不存在可送之無效 raw；且條文所稱之無效值 "
+                          "`GOOSE`／`FIFTH` 實屬 `SelTrlrStyle`（拖車樣式）"
+                          "而非本訊號（拖車數量）。**不改取他訊號**（R-VF92 二），"
+                          "維持隔離並開 DR")
         want, raw = None, None
         for rx in SIG_VALUE_AT:
             mm = rx.search(text)
@@ -307,7 +378,31 @@ def load_all() -> tuple[list, list]:
         (facts if f else skipped).append(f or {"leaf_id": leaf,
                                                "form": forms.get(leaf, "?"),
                                                "why": why})
-    return facts, skipped
+
+    # ---- 上游條文逐字重複者：保留首條，其餘隔離（W-VF72，2026-08-24）----
+    # **成因**：同一 leaf 家族內二條 leaf 之 `desc` 逐字相同，其 param／value
+    # 亦相同，故所生之 TC 逐字相同 —— **canon §4.3「手足標題逐字相同 = FAIL」**。
+    # **不造區辨 token 以消解之** —— 二條文既逐字相同，任何區辨皆為本層所造，
+    # 即以造值消解不符（R-VF92 二、R-VF79 一之同一禁令）。
+    # 處置：登記並回報，開 DR 詢上游該二需求是否應為一條。
+    import hashlib
+    fam_seen: dict[tuple[str, str], str] = {}
+    kept = []
+    for f in facts:
+        fam = re.sub(r"-?\d+$", "", f["leaf_id"])
+        h = hashlib.sha1(re.sub(r"\s+", " ", f["text"]).strip().encode()).hexdigest()
+        k = (fam, h)
+        if k in fam_seen:
+            skipped.append({
+                "leaf_id": f["leaf_id"], "form": f["form"],
+                "why": (f"上游條文與同家族之 `{fam_seen[k]}` **逐字相同**"
+                        f"（sha1 {h[:8]}），其 param／value 亦同 —— "
+                        f"所生之 TC 將與之逐字相同（canon §4.3 FAIL）。"
+                        f"**不造區辨 token 消解之**（R-VF92 二）；登記待 DR")})
+            continue
+        fam_seen[k] = f["leaf_id"]
+        kept.append(f)
+    return kept, skipped
 
 
 # ---- R-VF82：放寬判準之連帶檢驗（假陰／假陽二側）----
@@ -373,6 +468,50 @@ LEAD_ANCHORS = [
 ]
 
 
+# ---- R-VF82：`shall be <Value>` 補式之假陰／假陽錨點 ----
+# **本式於現行管線之命中為 0**（見 `verify_shall_be` 之註）——
+# 一個零命中之放寬，其正確與否不可分辨（A-VF4 之教訓），故錨點為其唯一佐證。
+SHALL_BE_ANCHORS = [
+    ("The default value of the X.Y signal shall be Enabled. VHAL shall forward",
+     "Enabled", "假陰之回收：本輪 `PowerTailgate-028` 之實際形態"),
+    ("The value shall be Disabled by default.", "Disabled",
+     "假陰之回收：另一語意側，證其非只認單一標籤"),
+    ("The signal shall be transmitted to IPC within the defined system response time.",
+     None, "**假陽之防**：`transmitted` 為動詞非標籤"),
+    ("The setting shall be displayed on the HMI.", None,
+     "**假陽之防**：`displayed` 為動詞非標籤"),
+    ("Any invalid value shall be considered invalid by HMI.", None,
+     "**假陽之防**：`considered` 為動詞；本句為 122 條中常見之伴隨句，誤收之則大量偽陽"),
+]
+
+
+def verify_shall_be() -> None:
+    """**其現行命中為 0，須具名**：`shall be <Value>` 之四條標的
+    （`PowerTailgate-028` 等）已由 `DEFAULT_VALUE`／`INVALID_VALUE` 於更前處
+    攔為新形態並隔離，**故本式在現行管線中走不到**。
+    R-VF82 所令之二數因而皆為 0（回收 0／誤收 0）。
+    **保留本式並以錨點固定其二側** —— 移除之則日後同形態之非預設值條文
+    會再度落入佔位式；留而不驗則其與不存在不可分辨。
+    """
+    rx = SIG_VALUE_AT[-1]
+    vals = {"0": "Disabled", "1": "Enabled"}
+    bad = []
+    for text, want, kind in SHALL_BE_ANCHORS:
+        mm = rx.search(text)
+        lab = None
+        if mm:
+            tail = text[mm.end():]
+            if not re.match(r"\s*via\s", tail):
+                _, lab = match_label(tail, vals)
+        ok = lab == want
+        print(f"  {'✅' if ok else '❌'} {kind}\n      …{text[mm.end():mm.end() + 32]!r}"
+              f" → {lab!r}（期望 {want!r}）")
+        if not ok:
+            bad.append(kind)
+    if bad:
+        raise SystemExit("R-VF82 錨點（shall be）不符，停 —— " + "；".join(bad))
+
+
 def verify_lead() -> None:
     bad = []
     for text, want, kind in LEAD_ANCHORS:
@@ -420,6 +559,8 @@ if __name__ == "__main__":
     verify_exclude()
     print("\n=== R-VF82：`PROXI_CLAUSE_LEAD`（參數名起首式）之假陰／假陽錨點 ===")
     verify_lead()
+    print("\n=== R-VF82：`shall be <Value>` 補式之假陰／假陽錨點（現行命中 0）===")
+    verify_shall_be()
     print()
     fa, sk = load_all()
     print(f"量產母體 {len(fa) + len(sk)}；可抽 **{len(fa)}**；抽不出 **{len(sk)}**")

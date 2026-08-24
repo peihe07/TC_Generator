@@ -5,12 +5,12 @@
  "test_group": "Vehicle Setting",
  "handoff": "docs/handoff/V29_production_start.md（sha256 ff86f0c6242f6ac2…，7015 bytes）",
  "work_order": "W-VF69",
- "selection": "R-VS58 選池序。量產母體之算式（各項皆本輪實測，R-VS83）：選池 574（`docs/reports/vf230_writability.tsv` 之 writable ∈ {W0,W1}）− pilot 20（`generated/vf230_pilot1.json` ＋ `pilot2.json` 之 leaf_id 去重）− 隔離 76（其中 R-VF81 三之訊號送出型 28、事實抽不出 48；逐條列於 `data/vf230_isolated.tsv`）= **478**。本組為第 2 組，自該母體之選池序第 151–300 條取。事實抽不出者跳過並具名。priority 分布（逐條實測）：P1 28；P2 22。",
+ "selection": "R-VS58 選池序。量產母體之算式（各項皆本輪實測，R-VS83）：選池 574（`docs/reports/vf230_writability.tsv` 之 writable ∈ {W0,W1}）− pilot 20（`generated/vf230_pilot1.json` ＋ `pilot2.json` 之 leaf_id 去重）− 隔離 79（其中 R-VF81 三之訊號送出型 28、事實抽不出 51；逐條列於 `data/vf230_isolated.tsv`）= **475**。本組為第 2 組，自該母體之選池序第 151–300 條取。事實抽不出者跳過並具名。priority 分布（逐條實測）：P1 24；P2 26。",
  "form_distribution": {
-  "PROXI 型": 22,
-  "訊號送出型": 18,
-  "訊號上行型": 9,
-  "設定顯示與修改型": 1
+  "PROXI 型": 18,
+  "訊號送出型": 19,
+  "訊號上行型": 10,
+  "設定顯示與修改型": 3
  },
  "signal_notation": "R-1 v2／R-VS52：Send CAN: MESSAGE.Signal = <raw> (<Label>)；ER「… is sent」；procedure「… is transmitted」；PROXI $Param$ = \"值\"（參數名取條文逐字，R-VF78 二）；Input Test Data 為 NA",
  "bus": "FD-CAN8（R-VF78 一；Part 1 交付本內 `FD-CAN` 之逐字形實測 0 命中）",
@@ -20,74 +20,8 @@
  "write_back": "**未寫回**（R-VF26）。`seq` 僅記於產出。",
  "tcs": [
   {
-   "leaf_id": "SWE1-VC-RKELinkedtoMemory-090",
-   "seq": 518,
-   "test_set": "Driver Convenience",
-   "layer3": "RKE Linked to Memory",
-   "tc_title": "RKE Linked to Memory is not displayed when Memory_System is \"Absent\"",
-   "test_item": "The HMI layer shall evaluate the received Memory_System PROXI value to determine the availability of the RKE Linked to Memory feature. If $Memory_System$ = [Absent], the LTM or ETM shall not display the RKE Linked to Memory customer setting.",
-   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Memory_System$ is set to \"Absent\"",
-   "input_test_data": "NA",
-   "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"RKE Linked to Memory\" customer setting is not displayed",
-   "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"RKE Linked to Memory\" customer setting is not displayed",
-   "specification_reference": "VF230_V1_PHDCC27_VF_2337",
-   "priority": "P1",
-   "priority_class": "P1",
-   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
-   "writable": "W0",
-   "dr_dependent": "",
-   "remarks": "",
-   "value_source": "0-CLAUSE",
-   "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
-  },
-  {
-   "leaf_id": "SWE1-VC-HillStartAssist-052",
-   "seq": 519,
-   "test_set": "Suspension and Comfort",
-   "layer3": "Hill Start Assist",
-   "tc_title": "Hill Start Assist is not displayed when Hill_Start_Menu_Presence is \"Absent\"",
-   "test_item": "When the HMI receives the value as Absent via signal, $Hill_Start_Menu_Presence$, then the HMI shall not display the Hill Start Assist customer setting in the Vehicle Settings menu.",
-   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Hill_Start_Menu_Presence$ is set to \"Absent\"",
-   "input_test_data": "NA",
-   "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Hill Start Assist\" customer setting is not displayed",
-   "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"Hill Start Assist\" customer setting is not displayed",
-   "specification_reference": "VF230_V1_PDT27_VF_3532",
-   "priority": "P1",
-   "priority_class": "P1",
-   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
-   "writable": "W0",
-   "dr_dependent": "",
-   "remarks": "",
-   "value_source": "0-CLAUSE",
-   "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
-  },
-  {
-   "leaf_id": "SWE1-VC-RKELinkedtoMemory-091",
-   "seq": 520,
-   "test_set": "Driver Convenience",
-   "layer3": "RKE Linked to Memory",
-   "tc_title": "RKE Linked to Memory is displayed and modifiable when Memory_System is \"Present\"",
-   "test_item": "The HMI layer shall evaluate the received Memory_System PROXI value to determine the availability of the RKE Linked to Memory feature. If $Memory_System$ = [Present], the LTM or ETM shall display the RKE Linked to Memory customer setting to allow the customer the ability to modify the setting.",
-   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Memory_System$ is set to \"Present\"",
-   "input_test_data": "NA",
-   "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"RKE Linked to Memory\" customer setting is displayed\n4. Select the \"RKE Linked to Memory\" customer setting and check that its value can be changed",
-   "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"RKE Linked to Memory\" customer setting is displayed\n4. The value of the \"RKE Linked to Memory\" customer setting can be changed",
-   "specification_reference": "VF230_V1_PHDCC27_VF_5772",
-   "priority": "P1",
-   "priority_class": "P1",
-   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
-   "writable": "W0",
-   "dr_dependent": "",
-   "remarks": "",
-   "value_source": "0-CLAUSE",
-   "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
-  },
-  {
    "leaf_id": "SWE1-VC-HillStartAssist-053",
-   "seq": 521,
+   "seq": 518,
    "test_set": "Suspension and Comfort",
    "layer3": "Hill Start Assist",
    "tc_title": "Hill Start Assist is displayed and modifiable when Hill_Start_Menu_Presence is \"Present\"",
@@ -105,11 +39,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Hill_Start_Menu_Presence`（R-VF78 二）；`tc_title` 取 `Hill_Start_Menu_Presence`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoOnDriverComfort-3Option-096",
-   "seq": 522,
+   "seq": 519,
    "test_set": "Driver Convenience",
    "layer3": "Auto On Driver Comfort - 3 Option",
    "tc_title": "Auto On Driver Comfort - 3 Option is not displayed when Heated_Seats is \"Absent\"",
@@ -127,11 +61,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Heated_Seats`（R-VF78 二）；`tc_title` 取 `Heated_Seats`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-HillStartAssist-054",
-   "seq": 523,
+   "seq": 520,
    "test_set": "Suspension and Comfort",
    "layer3": "Hill Start Assist",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Hill_Start_Assist_Req is sent as 0 (Off) when Hill Start Assist is Off",
@@ -153,7 +87,7 @@
   },
   {
    "leaf_id": "SWE1-VC-AutoOnDriverComfort-3Option-097",
-   "seq": 524,
+   "seq": 521,
    "test_set": "Driver Convenience",
    "layer3": "Auto On Driver Comfort - 3 Option",
    "tc_title": "Auto On Driver Comfort - 3 Option is displayed and modifiable",
@@ -171,11 +105,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Heated_Seats`（R-VF78 二）；`tc_title` 取 `Heated_Seats`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Auto On Driver Comfort - 3 Option` 7 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-AutoOnDriverComfort-3Option`，6 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
   },
   {
    "leaf_id": "SWE1-VC-HillStartAssist-055",
-   "seq": 525,
+   "seq": 522,
    "test_set": "Suspension and Comfort",
    "layer3": "Hill Start Assist",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Hill_Start_Assist_Req is sent as 1 (On) when Hill Start Assist is On",
@@ -197,7 +131,7 @@
   },
   {
    "leaf_id": "SWE1-VC-TrailerBrakeType025",
-   "seq": 526,
+   "seq": 523,
    "test_set": "Trailer and Signage",
    "layer3": "Trailer Brake Type",
    "tc_title": "Trailer Brake Type is not displayed when CAN node 95 is \"Absent\"",
@@ -215,11 +149,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 95`（R-VF78 二）；`tc_title` 取 `CAN node 95`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoOnDriverComfort-2Option-103",
-   "seq": 527,
+   "seq": 524,
    "test_set": "Driver Convenience",
    "layer3": "Auto On Driver Comfort - 2 Option",
    "tc_title": "Auto On Driver Comfort - 2 Option is not displayed when Heated_Seats is \"Absent\"",
@@ -237,15 +171,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Heated_Seats`（R-VF78 二）；`tc_title` 取 `Heated_Seats`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-HillStartAssist-056",
-   "seq": 528,
+   "seq": 525,
    "test_set": "Suspension and Comfort",
    "layer3": "Hill Start Assist",
    "tc_title": "Hill Start Assist is displayed as Off when Hill_Start_Assist is 0 (Off)",
-   "test_item": "The HW supplier shall provide the IPC_VEHICLE_SETUP.Hill_Start_Assist signal to the Android Automotive layer through the vehicle communication network and VHAL interface. When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.Hill_Start_Assist$, the LTM or ETM shall update the Hill Start Assist setting status information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.Hill_Start_Assist$, the LTM or ETM shall update the Hill Start Assist setting status information on the display within the defined system response time.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Hill_Start_Assist = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Hill_Start_Assist = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.Hill_Start_Assist = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Hill Start Assist setting is displayed as Off",
@@ -259,11 +193,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Hill_Start_Assist` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Hill_Start_Assist` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-TrailerBrakeType026",
-   "seq": 529,
+   "seq": 526,
    "test_set": "Trailer and Signage",
    "layer3": "Trailer Brake Type",
    "tc_title": "Trailer Brake Type is displayed and modifiable when CAN node 95 is \"Present\"",
@@ -281,33 +215,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
-  },
-  {
-   "leaf_id": "SWE1-VC-AutoOnDriverComfort-2Option-104",
-   "seq": 530,
-   "test_set": "Driver Convenience",
-   "layer3": "Auto On Driver Comfort - 2 Option",
-   "tc_title": "Auto On Driver Comfort - 2 Option is not displayed when Heated_Seats is \"Absent\"",
-   "test_item": "The HMI layer shall evaluate the received Heated_Seats PROXI value to determine the availability of the Auto On Driver Comfort - 2 Option feature. If $Heated_Seats$ = [Absent], the LTM or ETM shall not display the Auto On Driver Comfort - 2 Option customer setting.",
-   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Heated_Seats$ is set to \"Absent\"",
-   "input_test_data": "NA",
-   "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Auto On Driver Comfort - 2 Option\" customer setting is not displayed",
-   "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"Auto On Driver Comfort - 2 Option\" customer setting is not displayed",
-   "specification_reference": "VF230_V1_PHDCC27_VF_5784",
-   "priority": "P1",
-   "priority_class": "P1",
-   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
-   "writable": "W0",
-   "dr_dependent": "",
-   "remarks": "",
-   "value_source": "0-CLAUSE",
-   "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 95`（R-VF78 二）；`tc_title` 取 `CAN node 95`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
   },
   {
    "leaf_id": "SWE1-VC-HeadlightswithWipers-058",
-   "seq": 531,
+   "seq": 527,
    "test_set": "Suspension and Comfort",
    "layer3": "Headlights with Wipers",
    "tc_title": "Headlights with Wipers is not displayed when Twilight_Sensor is \"Absent\"",
@@ -325,11 +237,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Twilight_Sensor`（R-VF78 二）；`tc_title` 取 `Twilight_Sensor`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-AutomaticTrailerLight Check-039",
-   "seq": 532,
+   "seq": 528,
    "test_set": "Trailer and Signage",
    "layer3": "Automatic Trailer Light Check",
    "tc_title": "Automatic Trailer Light Check is not displayed when Trailer_Light_Check is \"Absent\"",
@@ -347,11 +259,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Trailer_Light_Check`（R-VF78 二）；`tc_title` 取 `Trailer_Light_Check`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-RearviewCameraDelay-109",
-   "seq": 533,
+   "seq": 529,
    "test_set": "Driver Convenience",
    "layer3": "Rearview Camera Delay",
    "tc_title": "Rearview Camera Delay is not displayed when Rear_View_Camera is \"Absent\"",
@@ -369,11 +281,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Rear_View_Camera`（R-VF78 二）；`tc_title` 取 `Rear_View_Camera`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-HeadlightswithWipers-059",
-   "seq": 534,
+   "seq": 530,
    "test_set": "Suspension and Comfort",
    "layer3": "Headlights with Wipers",
    "tc_title": "Headlights with Wipers is displayed and modifiable when Twilight_Sensor is \"Present\"",
@@ -391,11 +303,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Twilight_Sensor`（R-VF78 二）；`tc_title` 取 `Twilight_Sensor`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-AutomaticTrailerLight Check-040",
-   "seq": 535,
+   "seq": 531,
    "test_set": "Trailer and Signage",
    "layer3": "Automatic Trailer Light Check",
    "tc_title": "Automatic Trailer Light Check is displayed and modifiable when Trailer_Light_Check is \"Present\"",
@@ -413,11 +325,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Trailer_Light_Check`（R-VF78 二）；`tc_title` 取 `Trailer_Light_Check`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-RearviewCameraDelay-110",
-   "seq": 536,
+   "seq": 532,
    "test_set": "Driver Convenience",
    "layer3": "Rearview Camera Delay",
    "tc_title": "Rearview Camera Delay is displayed and modifiable when Rear_View_Camera is \"Present\"",
@@ -435,11 +347,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Rear_View_Camera`（R-VF78 二）；`tc_title` 取 `Rear_View_Camera`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-HeadlightswithWipers-060",
-   "seq": 537,
+   "seq": 533,
    "test_set": "Suspension and Comfort",
    "layer3": "Headlights with Wipers",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.HeadLightWipers_Req is sent as 0 (Off) when Headlights with Wipers is Off",
@@ -461,7 +373,7 @@
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-057",
-   "seq": 538,
+   "seq": 534,
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "Traffic Sign Assist Offset - NAFTA Setting is displayed and modifiable",
@@ -479,11 +391,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Traffic Sign Assist Offset - NAFTA Setting` 7 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-TrafficSignAssistOffset - NAFTASetting`，31 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
   },
   {
    "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-115",
-   "seq": 539,
+   "seq": 535,
    "test_set": "Driver Convenience",
    "layer3": "Rearview Camera Dynamic Guidelines",
    "tc_title": "Rearview Camera Dynamic Guidelines is not displayed when Rear_View_Camera is \"Absent\"",
@@ -501,11 +413,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Rear_View_Camera`（R-VF78 二）；`tc_title` 取 `Rear_View_Camera`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-HeadlightswithWipers-061",
-   "seq": 540,
+   "seq": 536,
    "test_set": "Suspension and Comfort",
    "layer3": "Headlights with Wipers",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.HeadLightWipers_Req is sent as 1 (On) when Headlights with Wipers is On",
@@ -527,7 +439,7 @@
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-058",
-   "seq": 541,
+   "seq": 537,
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "Traffic Sign Assist Offset - NAFTA Setting is not displayed when Traffic_Sign_Recognition_Menu is \"Absent\"",
@@ -545,11 +457,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-116",
-   "seq": 542,
+   "seq": 538,
    "test_set": "Driver Convenience",
    "layer3": "Rearview Camera Dynamic Guidelines",
    "tc_title": "Rearview Camera Dynamic Guidelines is displayed and modifiable when Rear_View_Camera is \"Present\"",
@@ -567,15 +479,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Rear_View_Camera`（R-VF78 二）；`tc_title` 取 `Rear_View_Camera`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-HeadlightswithWipers-062",
-   "seq": 543,
+   "seq": 539,
    "test_set": "Suspension and Comfort",
    "layer3": "Headlights with Wipers",
    "tc_title": "Headlights with Wipers is displayed as Off when HeadLightWipers is 0 (Off)",
-   "test_item": "The HW supplier shall provide the IPC_VEHICLE_SETUP.HeadLightWipers signal to the Android Automotive layer through the vehicle communication network and VHAL interface. When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.HeadLightWipers$, the LTM or ETM shall update the Headlights with Wipers setting status information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.HeadLightWipers$, the LTM or ETM shall update the Headlights with Wipers setting status information on the display within the defined system response time.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.HeadLightWipers = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.HeadLightWipers = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.HeadLightWipers = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Headlights with Wipers setting is displayed as Off",
@@ -589,11 +501,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `HeadLightWipers` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `HeadLightWipers` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-091",
-   "seq": 544,
+   "seq": 540,
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting",
    "tc_title": "Traffic Sign Assist Offset - non-NAFTA Setting is displayed and modifiable",
@@ -611,11 +523,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Traffic Sign Assist Offset - non-NAFTA Setting` 7 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting`，19 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-092",
-   "seq": 545,
+   "seq": 541,
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - non-NAFTA Setting",
    "tc_title": "Traffic Sign Assist Offset - non-NAFTA Setting is not displayed when Traffic_Sign_Recognition_Menu is \"Absent\"",
@@ -633,11 +545,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117",
-   "seq": 546,
+   "seq": 542,
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
    "tc_title": "TELEMATIC_FD_5.WorksiteINVM_Visual_LFW_Req is sent as 0 (OFF)",
@@ -659,7 +571,7 @@
   },
   {
    "leaf_id": "SWE1-VC-SWITCH1Type-003",
-   "seq": 547,
+   "seq": 543,
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 1 Type",
    "tc_title": "TELEMATIC_FD_1.AUX1_TYPE_Req is sent as 1 (Momentary) when SWITCH 1 Type is Momentary",
@@ -681,7 +593,7 @@
   },
   {
    "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-118",
-   "seq": 548,
+   "seq": 544,
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
    "tc_title": "TELEMATIC_FD_5.WorksiteINVM_Visual_LFW_Req is sent as 1 (ON)",
@@ -703,11 +615,11 @@
   },
   {
    "leaf_id": "SWE1-VC-SWITCH1Type-004",
-   "seq": 549,
+   "seq": 545,
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 1 Type",
    "tc_title": "SWITCH 1 Type is displayed as Latching when AUX1_TYPE is 0 (Latching)",
-   "test_item": "HW supplier shall notify the IPC_VEHICLE_SETUP2.AUX1_TYPE signal via VHAL interface. The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX1_TYPE signal and update/display the SWITCH 1 Type setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX1_TYPE signal and update/display the SWITCH 1 Type setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX1_TYPE = one of [0 (Latching), 1 (Momentary)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX1_TYPE = 1 (Momentary)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX1_TYPE = 0 (Latching)\n3. Read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Latching",
@@ -721,15 +633,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX1_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX1_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-119",
-   "seq": 550,
+   "seq": 546,
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
    "tc_title": "Warnings for Low Fuel Inverter Shutdown - Visual Warning is displayed as OFF",
-   "test_item": "HW supplier shall notify the IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW signal via VHAL interface. The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW signal and update/display the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW signal and update/display the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW = one of [0 (OFF), 1 (ON)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW = 1 (ON)\n2. Send CAN: IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW = 0 (OFF)\n3. Read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF",
@@ -743,11 +655,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `WorksiteINVM_Visual_LFW` 之 DBC 有效值域全集為 {0 (OFF), 1 (ON)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `OFF` 為代表值，其次值 raw 1 = `ON` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `WorksiteINVM_Visual_LFW` 之 DBC 有效值域全集為 {0 (OFF), 1 (ON)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `OFF` 為代表值，其次值 raw 1 = `ON` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH2Type-006",
-   "seq": 551,
+   "seq": 547,
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 2 Type",
    "tc_title": "TELEMATIC_FD_1.AUX2_TYPE_Req is sent as 0 (Latching) when SWITCH 2 Type is Latching",
@@ -769,11 +681,11 @@
   },
   {
    "leaf_id": "SWE1-VC-Language-062",
-   "seq": 552,
+   "seq": 548,
    "test_set": "Driver Convenience",
    "layer3": "Language",
    "tc_title": "Language is displayed as Italian when LanguageSelection is 0 (Italian)",
-   "test_item": "HW supplier shall notify the IPC_VEHICLE_SETUP.LanguageSelection signal via VHAL interface. The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.LanguageSelection signal and update/display the Language information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.LanguageSelection signal and update/display the Language information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.LanguageSelection = one of [0 (Italian), 1 (Deutsch), 2 (English), 3 (Espanol), 4 (Francais), 5 (Portugues), 6 (Polish), 7 (Dutch), 8 (Brazilian), 9 (Turkish), 10 (Mexican), 11 (English_US), 12 (Canadian), 13 (Russian), 14 (Chinese), 15 (Japanese), 16 (Korean), 17 (Arabic), 18 (Czech), 19 (Slovakian), 20 (Hungarian), 21 (Hindi), 22 (Slovenian)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = 1 (Deutsch)\n2. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = 0 (Italian)\n3. Read the Vehicle Settings menu and check that the Language setting is displayed as Italian",
@@ -787,11 +699,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `LanguageSelection` 之 DBC 有效值域全集為 {0 (Italian), 1 (Deutsch), 2 (English), 3 (Espanol), 4 (Francais), 5 (Portugues), 6 (Polish), 7 (Dutch), 8 (Brazilian), 9 (Turkish), 10 (Mexican), 11 (English_US), 12 (Canadian), 13 (Russian), 14 (Chinese), 15 (Japanese), 16 (Korean), 17 (Arabic), 18 (Czech), 19 (Slovakian), 20 (Hungarian), 21 (Hindi), 22 (Slovenian)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Italian` 為代表值，其次值 raw 1 = `Deutsch` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `LanguageSelection` 之 DBC 有效值域全集為 {0 (Italian), 1 (Deutsch), 2 (English), 3 (Espanol), 4 (Francais), 5 (Portugues), 6 (Polish), 7 (Dutch), 8 (Brazilian), 9 (Turkish), 10 (Mexican), 11 (English_US), 12 (Canadian), 13 (Russian), 14 (Chinese), 15 (Japanese), 16 (Korean), 17 (Arabic), 18 (Czech), 19 (Slovakian), 20 (Hungarian), 21 (Hindi), 22 (Slovenian)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Italian` 為代表值，其次值 raw 1 = `Deutsch` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-123",
-   "seq": 553,
+   "seq": 549,
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
    "tc_title": "TELEMATIC_FD_5.WorksiteINVM_Audible_LFW_Req is sent as 0 (OFF)",
@@ -813,7 +725,7 @@
   },
   {
    "leaf_id": "SWE1-VC-SWITCH2Type-007",
-   "seq": 554,
+   "seq": 550,
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 2 Type",
    "tc_title": "TELEMATIC_FD_1.AUX2_TYPE_Req is sent as 1 (Momentary) when SWITCH 2 Type is Momentary",
@@ -835,7 +747,7 @@
   },
   {
    "leaf_id": "SWE1-VC-PassiveEntry-011",
-   "seq": 555,
+   "seq": 551,
    "test_set": "Driver Convenience",
    "layer3": "Passive Entry",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req is sent as 1 (Off) when Passive Entry is Off",
@@ -857,7 +769,7 @@
   },
   {
    "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124",
-   "seq": 556,
+   "seq": 552,
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
    "tc_title": "TELEMATIC_FD_5.WorksiteINVM_Audible_LFW_Req is sent as 1 (ON)",
@@ -879,11 +791,11 @@
   },
   {
    "leaf_id": "SWE1-VC-SWITCH2Type-008",
-   "seq": 557,
+   "seq": 553,
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 2 Type",
    "tc_title": "SWITCH 2 Type is displayed as Latching when AUX2_TYPE is 0 (Latching)",
-   "test_item": "HW supplier shall notify the IPC_VEHICLE_SETUP2.AUX2_TYPE signal via VHAL interface. The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX2_TYPE signal and update/display the SWITCH 2 Type setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX2_TYPE signal and update/display the SWITCH 2 Type setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX2_TYPE = one of [0 (Latching), 1 (Momentary)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX2_TYPE = 1 (Momentary)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX2_TYPE = 0 (Latching)\n3. Read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Latching",
@@ -897,11 +809,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX2_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX2_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-PassiveEntry-012",
-   "seq": 558,
+   "seq": 554,
    "test_set": "Driver Convenience",
    "layer3": "Passive Entry",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req is sent as 0 (On) when Passive Entry is On",
@@ -923,11 +835,11 @@
   },
   {
    "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125",
-   "seq": 559,
+   "seq": 555,
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
    "tc_title": "Warnings for Low Fuel Inverter Shutdown - Audible Warning is displayed as OFF",
-   "test_item": "HW supplier shall notify the IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW signal via VHAL interface. The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW signal and update/display the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW signal and update/display the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW = one of [0 (OFF), 1 (ON)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW = 1 (ON)\n2. Send CAN: IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW = 0 (OFF)\n3. Read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF",
@@ -941,11 +853,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `WorksiteINVM_Audible_LFW` 之 DBC 有效值域全集為 {0 (OFF), 1 (ON)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `OFF` 為代表值，其次值 raw 1 = `ON` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `WorksiteINVM_Audible_LFW` 之 DBC 有效值域全集為 {0 (OFF), 1 (ON)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `OFF` 為代表值，其次值 raw 1 = `ON` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-HourMode-010",
-   "seq": 560,
+   "seq": 556,
    "test_set": "Units and Cameras",
    "layer3": "Hour Mode",
    "tc_title": "Hour Mode customer setting is displayed and modifiable on the LTM screen",
@@ -963,11 +875,11 @@
    "remarks": "",
    "value_source": "",
    "clause_form": "設定顯示與修改型",
-   "reasoning": "本條無訊號亦無 PROXI，值域來源欄留白（非未查，而是條文本無值）。書寫式沿用 pilot #1 v4 之正向式（W-VF68 §2.1 第 3 項之回退，已核可）。"
+   "reasoning": "本條無訊號亦無 PROXI，值域來源欄留白（非未查，而是條文本無值）。書寫式沿用 pilot #1 v4 之正向式（W-VF68 §2.1 第 3 項之回退，已核可）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Hour Mode` 2 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-HourMode`，1 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH3Type-010",
-   "seq": 561,
+   "seq": 557,
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 3 Type",
    "tc_title": "TELEMATIC_FD_1.AUX3_TYPE_Req is sent as 0 (Latching) when SWITCH 3 Type is Latching",
@@ -989,11 +901,11 @@
   },
   {
    "leaf_id": "SWE1-VC-PassiveEntry-013",
-   "seq": 562,
+   "seq": 558,
    "test_set": "Driver Convenience",
    "layer3": "Passive Entry",
    "tc_title": "Passive Entry is displayed as On when PassiveEntry is 0 (On)",
-   "test_item": "HW supplier shall notify the IPC_VEHICLE_SETUP.PassiveEntry signal via VHAL interface. The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.PassiveEntry signal and update/display the Passive Entry information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.PassiveEntry signal and update/display the Passive Entry information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.PassiveEntry = one of [0 (On), 1 (Off)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.PassiveEntry = 1 (Off)\n2. Send CAN: IPC_VEHICLE_SETUP.PassiveEntry = 0 (On)\n3. Read the Vehicle Settings menu and check that the Passive Entry setting is displayed as On",
@@ -1007,11 +919,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PassiveEntry` 之 DBC 有效值域全集為 {0 (On), 1 (Off)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `On` 為代表值，其次值 raw 1 = `Off` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PassiveEntry` 之 DBC 有效值域全集為 {0 (On), 1 (Off)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `On` 為代表值，其次值 raw 1 = `Off` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-129",
-   "seq": 563,
+   "seq": 559,
    "test_set": "Trailer and Signage",
    "layer3": "Enhanced Display Synchronization",
    "tc_title": "TELEMATIC_FD_1.Display_Synch_Req is sent as 1 (ON) when Enhanced Display Synchronization is ON",
@@ -1032,8 +944,30 @@
    "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Display_Synch_Req` 之 `VAL_` 內 raw 1 = `ON`；條文逐字指名該值。"
   },
   {
+   "leaf_id": "SWE1-VC-DistanceUnit-021",
+   "seq": 560,
+   "test_set": "Units and Cameras",
+   "layer3": "Distance Unit",
+   "tc_title": "Distance Unit customer setting is displayed and modifiable on the LTM screen",
+   "test_item": "The SW supplier shall display the Distance Unit customer setting and allow the customer to modify the setting through the LTM or ETM screen. The HMI layer shall update and manage the Distance Unit setting based on the customer selection in the display. Any invalid customer selection shall be considered invalid by the HMI.",
+   "pre_conditions": "1. The HU is in the Full-Operation state",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Read the Vehicle Settings menu and check that the \"Distance Unit\" customer setting is displayed\n3. Select the \"Distance Unit\" customer setting and check that its options are displayed\n4. Select an option other than the current one and check that the \"Distance Unit\" customer setting is changed to the selected option",
+   "expected_result": "1. The Vehicle Settings menu is displayed\n2. The \"Distance Unit\" customer setting is displayed\n3. The options of the \"Distance Unit\" customer setting are displayed\n4. The \"Distance Unit\" customer setting is changed to the selected option",
+   "specification_reference": "VF230_V1_PHDCC27_VF_3636",
+   "priority": "P2",
+   "priority_class": "P2",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "writable": "W0",
+   "dr_dependent": "",
+   "remarks": "",
+   "value_source": "",
+   "clause_form": "設定顯示與修改型",
+   "reasoning": "本條無訊號亦無 PROXI，值域來源欄留白（非未查，而是條文本無值）。書寫式沿用 pilot #1 v4 之正向式（W-VF68 §2.1 第 3 項之回退，已核可）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Distance Unit` 2 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-DistanceUnit`，1 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
+  },
+  {
    "leaf_id": "SWE1-VC-SWITCH3Type-011",
-   "seq": 564,
+   "seq": 561,
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 3 Type",
    "tc_title": "TELEMATIC_FD_1.AUX3_TYPE_Req is sent as 1 (Momentary) when SWITCH 3 Type is Momentary",
@@ -1055,7 +989,7 @@
   },
   {
    "leaf_id": "SWE1-VC-RemoteDoorUnlock-017",
-   "seq": 565,
+   "seq": 562,
    "test_set": "Driver Convenience",
    "layer3": "Remote Door Unlock",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req is sent as 0 (Driver) when Remote Door Unlock is Driver",
@@ -1077,7 +1011,7 @@
   },
   {
    "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-130",
-   "seq": 566,
+   "seq": 563,
    "test_set": "Trailer and Signage",
    "layer3": "Enhanced Display Synchronization",
    "tc_title": "TELEMATIC_FD_1.Display_Synch_Req is sent as 0 (OFF) when Enhanced Display Synchronization is OFF",
@@ -1098,12 +1032,34 @@
    "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Display_Synch_Req` 之 `VAL_` 內 raw 0 = `OFF`；條文逐字指名該值。"
   },
   {
+   "leaf_id": "SWE1-VC-SpeedUnit-026",
+   "seq": 564,
+   "test_set": "Units and Cameras",
+   "layer3": "Speed Unit",
+   "tc_title": "Speed Unit customer setting is displayed and modifiable on the LTM screen",
+   "test_item": "The SW supplier shall display the Speed Unit customer setting and allow the customer to modify the setting through the LTM or ETM screen. The HMI layer shall update and manage the Speed Unit setting based on the customer selection in the display. Any invalid customer selection shall be considered invalid by the HMI.",
+   "pre_conditions": "1. The HU is in the Full-Operation state",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Read the Vehicle Settings menu and check that the \"Speed Unit\" customer setting is displayed\n3. Select the \"Speed Unit\" customer setting and check that its options are displayed\n4. Select an option other than the current one and check that the \"Speed Unit\" customer setting is changed to the selected option",
+   "expected_result": "1. The Vehicle Settings menu is displayed\n2. The \"Speed Unit\" customer setting is displayed\n3. The options of the \"Speed Unit\" customer setting are displayed\n4. The \"Speed Unit\" customer setting is changed to the selected option",
+   "specification_reference": "VF230_V1_PHDCC27_VF_3638",
+   "priority": "P2",
+   "priority_class": "P2",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "writable": "W0",
+   "dr_dependent": "",
+   "remarks": "",
+   "value_source": "",
+   "clause_form": "設定顯示與修改型",
+   "reasoning": "本條無訊號亦無 PROXI，值域來源欄留白（非未查，而是條文本無值）。書寫式沿用 pilot #1 v4 之正向式（W-VF68 §2.1 第 3 項之回退，已核可）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Speed Unit` 2 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-SpeedUnit`，1 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
+  },
+  {
    "leaf_id": "SWE1-VC-SWITCH3Type-012",
-   "seq": 567,
+   "seq": 565,
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 3 Type",
    "tc_title": "SWITCH 3 Type is displayed as Latching when AUX3_TYPE is 0 (Latching)",
-   "test_item": "HW supplier shall notify the IPC_VEHICLE_SETUP2.AUX3_TYPE signal via VHAL interface. The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX3_TYPE signal and update/display the SWITCH 3 Type setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX3_TYPE signal and update/display the SWITCH 3 Type setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX3_TYPE = one of [0 (Latching), 1 (Momentary)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX3_TYPE = 1 (Momentary)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX3_TYPE = 0 (Latching)\n3. Read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Latching",
@@ -1117,7 +1073,51 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX3_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX3_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+  },
+  {
+   "leaf_id": "SWE1-VC-RemoteDoorUnlock-018",
+   "seq": 566,
+   "test_set": "Driver Convenience",
+   "layer3": "Remote Door Unlock",
+   "tc_title": "TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req is sent as 1 (All) when Remote Door Unlock is All",
+   "test_item": "The HMI layer shall capture the customer selection for the Remote Door Unlock setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req signal value as All. The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.",
+   "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Remote Door Unlock\" customer setting is set to Driver",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Remote Door Unlock\" customer setting to All and check that TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req = 1 (All) is transmitted\n3. Read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as All",
+   "expected_result": "1. The Vehicle Settings menu is displayed\n2. TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req = 1 (All) is sent\n3. The Remote Door Unlock setting is displayed as All",
+   "specification_reference": "VF230_V1_PHDCC27_VF_5714",
+   "priority": "P2",
+   "priority_class": "P2",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "writable": "W0",
+   "dr_dependent": "",
+   "remarks": "",
+   "value_source": "2-DBC",
+   "clause_form": "訊號送出型",
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemoteDoorUnlock_Req` 之 `VAL_` 內 raw 1 = `All`；條文逐字指名該值。"
+  },
+  {
+   "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-131",
+   "seq": 567,
+   "test_set": "Trailer and Signage",
+   "layer3": "Enhanced Display Synchronization",
+   "tc_title": "Enhanced Display Synchronization is displayed as OFF when Display_Synch is 0 (OFF)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.Display_Synch signal and update/display the Enhanced Display Synchronization setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
+   "input_test_data": "IPC_VEHICLE_SETUP2.Display_Synch = one of [0 (OFF), 1 (ON)]",
+   "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.Display_Synch = 1 (ON)\n2. Send CAN: IPC_VEHICLE_SETUP2.Display_Synch = 0 (OFF)\n3. Read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as OFF",
+   "expected_result": "1. IPC_VEHICLE_SETUP2.Display_Synch = 1 (ON) is sent\n2. IPC_VEHICLE_SETUP2.Display_Synch = 0 (OFF) is sent\n3. The Enhanced Display Synchronization setting is displayed as OFF",
+   "specification_reference": "VF230_V1_PHDCC27_VF_6821",
+   "priority": "P2",
+   "priority_class": "P2",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "writable": "W0",
+   "dr_dependent": "",
+   "remarks": "",
+   "value_source": "2-DBC",
+   "clause_form": "訊號上行型",
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Display_Synch` 之 DBC 有效值域全集為 {0 (OFF), 1 (ON)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `OFF` 為代表值，其次值 raw 1 = `ON` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   }
  ]
 }

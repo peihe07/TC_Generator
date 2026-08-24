@@ -5,10 +5,10 @@
  "test_group": "Vehicle Setting",
  "handoff": "docs/handoff/V29_production_start.md（sha256 ff86f0c6242f6ac2…，7015 bytes）",
  "work_order": "W-VF69",
- "selection": "R-VS58 選池序。量產母體之算式（各項皆本輪實測，R-VS83）：選池 574（`docs/reports/vf230_writability.tsv` 之 writable ∈ {W0,W1}）− pilot 20（`generated/vf230_pilot1.json` ＋ `pilot2.json` 之 leaf_id 去重）− 隔離 76（其中 R-VF81 三之訊號送出型 28、事實抽不出 48；逐條列於 `data/vf230_isolated.tsv`）= **478**。本組為第 2 組，自該母體之選池序第 151–300 條取。事實抽不出者跳過並具名。priority 分布（逐條實測）：P1 50。",
+ "selection": "R-VS58 選池序。量產母體之算式（各項皆本輪實測，R-VS83）：選池 574（`docs/reports/vf230_writability.tsv` 之 writable ∈ {W0,W1}）− pilot 20（`generated/vf230_pilot1.json` ＋ `pilot2.json` 之 leaf_id 去重）− 隔離 79（其中 R-VF81 三之訊號送出型 28、事實抽不出 51；逐條列於 `data/vf230_isolated.tsv`）= **475**。本組為第 2 組，自該母體之選池序第 151–300 條取。事實抽不出者跳過並具名。priority 分布（逐條實測）：P1 50。",
  "form_distribution": {
-  "PROXI 型": 19,
-  "訊號送出型": 20,
+  "訊號送出型": 19,
+  "PROXI 型": 20,
   "訊號上行型": 11
  },
  "signal_notation": "R-1 v2／R-VS52：Send CAN: MESSAGE.Signal = <raw> (<Label>)；ER「… is sent」；procedure「… is transmitted」；PROXI $Param$ = \"值\"（參數名取條文逐字，R-VF78 二）；Input Test Data 為 NA",
@@ -19,74 +19,8 @@
  "write_back": "**未寫回**（R-VF26）。`seq` 僅記於產出。",
  "tcs": [
   {
-   "leaf_id": "SWE1-VC-ParkSenseRearVolume-070",
-   "seq": 468,
-   "test_set": "Driver Convenience",
-   "layer3": "Park Sense Rear Volume",
-   "tc_title": "Park Sense Rear Volume is not displayed when the PROXI parameter is \"Absent\"",
-   "test_item": "The HMI layer shall evaluate the received the PROXI parameter PROXI value to determine the availability of the Park Sense Rear Volume feature. If $the PROXI parameter$ = [Absent], the LTM or ETM shall not display the Park Sense Rear Volume customer setting.",
-   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $the PROXI parameter$ is set to \"Absent\"",
-   "input_test_data": "NA",
-   "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Park Sense Rear Volume\" customer setting is not displayed",
-   "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"Park Sense Rear Volume\" customer setting is not displayed",
-   "specification_reference": "VF230_V1_PHDCC27_VF_6677",
-   "priority": "P1",
-   "priority_class": "P1",
-   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
-   "writable": "W0",
-   "dr_dependent": "",
-   "remarks": "",
-   "value_source": "0-CLAUSE",
-   "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
-  },
-  {
-   "leaf_id": "SWE1-VC-ReadytoDrivePopUp-029",
-   "seq": 469,
-   "test_set": "Suspension and Comfort",
-   "layer3": "Ready to Drive Pop-Up",
-   "tc_title": "TELEMATIC_VEHICLE_SETUP.Rdy_To_Drive_Req is sent as 1 (On) when Ready to Drive Pop-Up is On",
-   "test_item": "When the customer chooses to enable the Ready to Drive Pop-Up setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager through the Android Car API. The HMI receives the value as ON via signal, $TELEMATIC_VEHICLE_SETUP.Rdy_To_Drive_Req$. Then the HMI/LTM/ETM shall update the Ready to Drive Pop-Up customer setting status to Enabled in the Vehicle Settings menu. The signal shall be transmitted to IPC within the defined system response time.",
-   "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Ready to Drive Pop-Up\" customer setting is set to Off",
-   "input_test_data": "NA",
-   "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Ready to Drive Pop-Up\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.Rdy_To_Drive_Req = 1 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Ready to Drive Pop-Up setting is displayed as On",
-   "expected_result": "1. The Vehicle Settings menu is displayed\n2. TELEMATIC_VEHICLE_SETUP.Rdy_To_Drive_Req = 1 (On) is sent\n3. The Ready to Drive Pop-Up setting is displayed as On",
-   "specification_reference": "VF230_V1_PHDCC27_VF_5902",
-   "priority": "P1",
-   "priority_class": "P1",
-   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
-   "writable": "W0",
-   "dr_dependent": "",
-   "remarks": "",
-   "value_source": "2-DBC",
-   "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Rdy_To_Drive_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。"
-  },
-  {
-   "leaf_id": "SWE1-VC-ParkSenseBasedCameraActivation-080",
-   "seq": 470,
-   "test_set": "Units and Cameras",
-   "layer3": "ParkSense Based Camera Activation",
-   "tc_title": "ParkSense Based Camera Activation is not displayed when Parksense_Camera_View is \"Absent\"",
-   "test_item": "The HMI layer shall evaluate the received Parksense_Camera_View PROXI value to determine the availability of the ParkSense Based Camera Activation feature. If $Parksense_Camera_View$ = [Absent], the LTM/ETM shall not display the ParkSense Based Camera Activation customer setting, and the user shall not be allowed to modify the feature configuration",
-   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Parksense_Camera_View$ is set to \"Absent\"",
-   "input_test_data": "NA",
-   "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"ParkSense Based Camera Activation\" customer setting is not displayed",
-   "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"ParkSense Based Camera Activation\" customer setting is not displayed",
-   "specification_reference": "VF230_V1_PHDCC27_VF_6366",
-   "priority": "P1",
-   "priority_class": "P1",
-   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
-   "writable": "W0",
-   "dr_dependent": "",
-   "remarks": "",
-   "value_source": "0-CLAUSE",
-   "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
-  },
-  {
    "leaf_id": "SWE1-VC-RearGuidanceLightswith\\nCargoLights-017",
-   "seq": 471,
+   "seq": 468,
    "test_set": "Auxiliary Switches",
    "layer3": "Rear Guidance Lights with Cargo Lights",
    "tc_title": "TELEMATIC_FD_1.Rear_G_LGT_with_Cargo_Lights_Req is sent as 1 (Enable)",
@@ -108,7 +42,7 @@
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseRearVolume-071",
-   "seq": 472,
+   "seq": 469,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Rear Volume",
    "tc_title": "Park Sense Rear Volume is displayed and modifiable when the PROXI parameter is \"Present\"",
@@ -126,15 +60,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `the PROXI parameter`（R-VF78 二）；`tc_title` 取 `the PROXI parameter`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
   },
   {
    "leaf_id": "SWE1-VC-ReadytoDrivePopUp-030",
-   "seq": 473,
+   "seq": 470,
    "test_set": "Suspension and Comfort",
    "layer3": "Ready to Drive Pop-Up",
    "tc_title": "Ready to Drive Pop-Up is displayed as Off when Rdy_To_Drive is 0 (Off)",
-   "test_item": "The HW supplier shall provide the IPC_VEHICLE_SETUP.Rdy_To_Drive signal to the Android Automotive layer through the vehicle communication network and VHAL interface. When the LTM or ETM receives the value via signal $IPC_VEHICLE_SETUP.Rdy_To_Drive$, the LTM or ETM shall update the Suspension Service Mode setting status Information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal $IPC_VEHICLE_SETUP.Rdy_To_Drive$, the LTM or ETM shall update the Suspension Service Mode setting status Information on the display within the defined system response time.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Rdy_To_Drive = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Rdy_To_Drive = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.Rdy_To_Drive = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Ready to Drive Pop-Up setting is displayed as Off",
@@ -148,11 +82,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Rdy_To_Drive` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Rdy_To_Drive` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-ChargePowerLevel-046",
-   "seq": 474,
+   "seq": 471,
    "test_set": "Approach and Tailgate",
    "layer3": "Charge Power Level",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PwrLevReq is sent as 0 (Level1) when Charge Power Level is Level1",
@@ -174,11 +108,11 @@
   },
   {
    "leaf_id": "SWE1-VC-RearGuidanceLightswith\\nCargoLights-018",
-   "seq": 475,
+   "seq": 472,
    "test_set": "Auxiliary Switches",
    "layer3": "Rear Guidance Lights with Cargo Lights",
-   "tc_title": "Rear Guidance Lights with Cargo Lights is displayed as Disable",
-   "test_item": "The HW supplier shall provide the IPC_VEHICLE_SETUP2.Rear_G_LGT_with_Cargo_Lights signal to the Android Automotive software layer through the vehicle communication network and Vehicle HAL (VHAL) interface. The HMI/LTM/ETM layer shall process the updated setting information. When the LTM or ETM receives the Enable and Disable value via signal, $IPC_VEHICLE_SETUP2.Rear_G_LGT_with_Cargo_Lights$, the LTM or ETM shall update the corresponding setting status on the display.",
+   "tc_title": "Rear_G_LGT_with_Cargo_Lights = 0 (Disable) updates the Rear Guidance Lights with Cargo Lights setting",
+   "test_item": "When the LTM or ETM receives the Enable and Disable value via signal, $IPC_VEHICLE_SETUP2.Rear_G_LGT_with_Cargo_Lights$, the LTM or ETM shall update the corresponding setting status on the display.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.Rear_G_LGT_with_Cargo_Lights = one of [0 (Disable), 1 (Enable)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.Rear_G_LGT_with_Cargo_Lights = 1 (Enable)\n2. Send CAN: IPC_VEHICLE_SETUP2.Rear_G_LGT_with_Cargo_Lights = 0 (Disable)\n3. Read the Vehicle Settings menu and check that the Rear Guidance Lights with Cargo Lights setting is displayed as Disable",
@@ -192,11 +126,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Rear_G_LGT_with_Cargo_Lights` 之 DBC 有效值域全集為 {0 (Disable), 1 (Enable)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Disable` 為代表值，其次值 raw 1 = `Enable` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Rear_G_LGT_with_Cargo_Lights` 之 DBC 有效值域全集為 {0 (Disable), 1 (Enable)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Disable` 為代表值，其次值 raw 1 = `Enable` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseRearVolume-072",
-   "seq": 476,
+   "seq": 473,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Rear Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req is sent as 0 (Low) when Park Sense Rear Volume is Low",
@@ -218,7 +152,7 @@
   },
   {
    "leaf_id": "SWE1-VC-LaneSenseStrength-032",
-   "seq": 477,
+   "seq": 474,
    "test_set": "Lane and Lighting",
    "layer3": "Lane Sense Strength",
    "tc_title": "Lane Sense Strength is displayed as Low when LDW_Intensity is 0 (Low)",
@@ -236,11 +170,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `LDW_Intensity` 之 DBC 有效值域全集為 {0 (Low), 1 (Med), 2 (High)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Low` 為代表值，其次值 raw 1 = `Med` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `LDW_Intensity` 之 DBC 有效值域全集為 {0 (Low), 1 (Med), 2 (High)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Low` 為代表值，其次值 raw 1 = `Med` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-AutoFoldMirrors-032",
-   "seq": 478,
+   "seq": 475,
    "test_set": "Suspension and Comfort",
    "layer3": "Auto Fold Mirrors",
    "tc_title": "Auto Fold Mirrors is not displayed when Auto_Power_Folding_Mirrors is \"Absent\"",
@@ -258,11 +192,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Auto_Power_Folding_Mirrors`（R-VF78 二）；`tc_title` 取 `Auto_Power_Folding_Mirrors`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-ChargePowerLevel-047",
-   "seq": 479,
+   "seq": 476,
    "test_set": "Approach and Tailgate",
    "layer3": "Charge Power Level",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PwrLevReq is sent as 1 (Level2) when Charge Power Level is Level2",
@@ -284,7 +218,7 @@
   },
   {
    "leaf_id": "SWE1-VC-RearGuidanceLightingwithApproach-078",
-   "seq": 480,
+   "seq": 477,
    "test_set": "Auxiliary Switches",
    "layer3": "Rear Guidance Lighting with Approach",
    "tc_title": "Rear Guidance Lighting with Approach is not displayed when Utility_Lighting is \"Absent\"",
@@ -302,11 +236,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Utility_Lighting`（R-VF78 二）；`tc_title` 取 `Utility_Lighting`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseRearVolume-073",
-   "seq": 481,
+   "seq": 478,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Rear Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req is sent as 1 (Medium) when Park Sense Rear Volume is Medium",
@@ -328,7 +262,7 @@
   },
   {
    "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-041",
-   "seq": 482,
+   "seq": 479,
    "test_set": "Lane and Lighting",
    "layer3": "Forward Collision Warning Sensitivity",
    "tc_title": "Forward Collision Warning Sensitivity is not displayed",
@@ -346,11 +280,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed Forward Collision Warning with Mitigation`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed Forward Collision Warning with Mitigation`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Forward_Collision_Mitigation`（R-VF78 二）；`tc_title` 取 `Forward_Collision_Mitigation`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Forward Collision Warning Sensitivity` 4 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-ForwardCollisionWarningSensitivity`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
   },
   {
    "leaf_id": "SWE1-VC-AutoFoldMirrors-033",
-   "seq": 483,
+   "seq": 480,
    "test_set": "Suspension and Comfort",
    "layer3": "Auto Fold Mirrors",
    "tc_title": "Auto Fold Mirrors is displayed and modifiable when Auto_Power_Folding_Mirrors is \"Present\"",
@@ -368,11 +302,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Auto_Power_Folding_Mirrors`（R-VF78 二）；`tc_title` 取 `Auto_Power_Folding_Mirrors`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-ChargePowerLevel-048",
-   "seq": 484,
+   "seq": 481,
    "test_set": "Approach and Tailgate",
    "layer3": "Charge Power Level",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PwrLevReq is sent as 2 (Level3) when Charge Power Level is Level3",
@@ -394,7 +328,7 @@
   },
   {
    "leaf_id": "SWE1-VC-RearGuidanceLightingwithApproach-079",
-   "seq": 485,
+   "seq": 482,
    "test_set": "Auxiliary Switches",
    "layer3": "Rear Guidance Lighting with Approach",
    "tc_title": "Rear Guidance Lighting with Approach is displayed and modifiable when Utility_Lighting is \"Type 1\"",
@@ -412,11 +346,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Type 1`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Type 1`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Utility_Lighting`（R-VF78 二）；`tc_title` 取 `Utility_Lighting`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseRearVolume-074",
-   "seq": 486,
+   "seq": 483,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Rear Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req is sent as 2 (High) when Park Sense Rear Volume is High",
@@ -438,7 +372,7 @@
   },
   {
    "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-042",
-   "seq": 487,
+   "seq": 484,
    "test_set": "Lane and Lighting",
    "layer3": "Forward Collision Warning Sensitivity",
    "tc_title": "Forward Collision Warning Sensitivity is displayed and modifiable",
@@ -456,11 +390,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed Forward Collision Warning with Mitigation or Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed Forward Collision Warning with Mitigation or Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Forward_Collision_Mitigation`（R-VF78 二）；`tc_title` 取 `Forward_Collision_Mitigation`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Forward Collision Warning Sensitivity` 4 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-ForwardCollisionWarningSensitivity`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
   },
   {
    "leaf_id": "SWE1-VC-AutoFoldMirrors-034",
-   "seq": 488,
+   "seq": 485,
    "test_set": "Suspension and Comfort",
    "layer3": "Auto Fold Mirrors",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Auto_Fold_Mirr_Req is sent as 0 (Off) when Auto Fold Mirrors is Off",
@@ -482,7 +416,7 @@
   },
   {
    "leaf_id": "SWE1-VC-ChargePowerLevel-049",
-   "seq": 489,
+   "seq": 486,
    "test_set": "Approach and Tailgate",
    "layer3": "Charge Power Level",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PwrLevReq is sent as 3 (Level4) when Charge Power Level is Level4",
@@ -504,7 +438,7 @@
   },
   {
    "leaf_id": "SWE1-VC-RearGuidanceLightStatus-084",
-   "seq": 490,
+   "seq": 487,
    "test_set": "Auxiliary Switches",
    "layer3": "Rear Guidance Light Status",
    "tc_title": "Rear Guidance Light Status is not displayed when Utility_Lighting is \"Absent\"",
@@ -522,15 +456,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Utility_Lighting`（R-VF78 二）；`tc_title` 取 `Utility_Lighting`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseRearVolume-075",
-   "seq": 491,
+   "seq": 488,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Rear Volume",
    "tc_title": "Park Sense Rear Volume is displayed as Low when PamChimeVolumeRear is 0 (Low)",
-   "test_item": "HW supplier shall notify the IPC_VEHICLE_SETUP.PamChimeVolumeRear signal via VHAL interface. The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.PamChimeVolumeRear signal and update/display the Park Sense Rear Volume information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.PamChimeVolumeRear signal and update/display the Park Sense Rear Volume information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.PamChimeVolumeRear = one of [0 (Low), 1 (Medium), 2 (High)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.PamChimeVolumeRear = 1 (Medium)\n2. Send CAN: IPC_VEHICLE_SETUP.PamChimeVolumeRear = 0 (Low)\n3. Read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Low",
@@ -544,11 +478,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PamChimeVolumeRear` 之 DBC 有效值域全集為 {0 (Low), 1 (Medium), 2 (High)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Low` 為代表值，其次值 raw 1 = `Medium` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PamChimeVolumeRear` 之 DBC 有效值域全集為 {0 (Low), 1 (Medium), 2 (High)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Low` 為代表值，其次值 raw 1 = `Medium` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-AutoFoldMirrors-035",
-   "seq": 492,
+   "seq": 489,
    "test_set": "Suspension and Comfort",
    "layer3": "Auto Fold Mirrors",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Auto_Fold_Mirr_Req is sent as 1 (On) when Auto Fold Mirrors is On",
@@ -570,7 +504,7 @@
   },
   {
    "leaf_id": "SWE1-VC-ChargePowerLevel-050",
-   "seq": 493,
+   "seq": 490,
    "test_set": "Approach and Tailgate",
    "layer3": "Charge Power Level",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PwrLevReq is sent as 4 (Level5) when Charge Power Level is Level5",
@@ -592,7 +526,7 @@
   },
   {
    "leaf_id": "SWE1-VC-RearGuidanceLightStatus-085",
-   "seq": 494,
+   "seq": 491,
    "test_set": "Auxiliary Switches",
    "layer3": "Rear Guidance Light Status",
    "tc_title": "Rear Guidance Light Status is displayed and modifiable when Utility_Lighting is \"Type 1\"",
@@ -610,11 +544,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Type 1`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Type 1`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Utility_Lighting`（R-VF78 二）；`tc_title` 取 `Utility_Lighting`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseFrontVolume-077",
-   "seq": 495,
+   "seq": 492,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Front Volume",
    "tc_title": "Park Sense Front Volume is not displayed when the PROXI parameter is \"Absent\"",
@@ -632,15 +566,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `the PROXI parameter`（R-VF78 二）；`tc_title` 取 `the PROXI parameter`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoFoldMirrors-036",
-   "seq": 496,
+   "seq": 493,
    "test_set": "Suspension and Comfort",
    "layer3": "Auto Fold Mirrors",
    "tc_title": "Auto Fold Mirrors is displayed as Off when Auto_Fold_Mirr is 0 (Off)",
-   "test_item": "The HW supplier shall provide the IPC_VEHICLE_SETUP.Auto_Fold_Mirr signal to the Android Automotive layer through the vehicle communication network and VHAL interface. When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.Auto_Fold_Mirr$, the LTM or ETM shall update the Auto Fold Mirrors setting status information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.Auto_Fold_Mirr$, the LTM or ETM shall update the Auto Fold Mirrors setting status information on the display within the defined system response time.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Auto_Fold_Mirr = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Auto_Fold_Mirr = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.Auto_Fold_Mirr = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Auto Fold Mirrors setting is displayed as Off",
@@ -654,15 +588,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Auto_Fold_Mirr` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Auto_Fold_Mirr` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-ChargePowerLevel-051",
-   "seq": 497,
+   "seq": 494,
    "test_set": "Approach and Tailgate",
    "layer3": "Charge Power Level",
    "tc_title": "Charge Power Level is displayed as Level1 when PwrLev is 0 (Level1)",
-   "test_item": "The HW supplier shall provide the IPC_VEHICLE_SETUP.PwrLev signal to the Android Automotive layer through the vehicle communication network and VHAL interface. When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.PwrLev$, Then the LTM or ETM shall update the Charge Power Level setting information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.PwrLev$, Then the LTM or ETM shall update the Charge Power Level setting information on the display within the defined system response time.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.PwrLev = one of [0 (Level1), 1 (Level2), 2 (Level3), 3 (Level4), 4 (Level5)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.PwrLev = 1 (Level2)\n2. Send CAN: IPC_VEHICLE_SETUP.PwrLev = 0 (Level1)\n3. Read the Vehicle Settings menu and check that the Charge Power Level setting is displayed as Level1",
@@ -676,11 +610,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PwrLev` 之 DBC 有效值域全集為 {0 (Level1), 1 (Level2), 2 (Level3), 3 (Level4), 4 (Level5)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Level1` 為代表值，其次值 raw 1 = `Level2` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PwrLev` 之 DBC 有效值域全集為 {0 (Level1), 1 (Level2), 2 (Level3), 3 (Level4), 4 (Level5)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Level1` 為代表值，其次值 raw 1 = `Level2` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-E-Save-090",
-   "seq": 498,
+   "seq": 495,
    "test_set": "Auxiliary Switches",
    "layer3": "E-Save",
    "tc_title": "E-Save is not displayed when eSave_Menu is \"Absent\"",
@@ -698,11 +632,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `eSave_Menu`（R-VF78 二）；`tc_title` 取 `eSave_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseFrontVolume-078",
-   "seq": 499,
+   "seq": 496,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Front Volume",
    "tc_title": "Park Sense Front Volume is displayed and modifiable when the PROXI parameter is \"Present\"",
@@ -720,11 +654,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `the PROXI parameter`（R-VF78 二）；`tc_title` 取 `the PROXI parameter`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
   },
   {
    "leaf_id": "SWE1-VC-E-Save-091",
-   "seq": 500,
+   "seq": 497,
    "test_set": "Auxiliary Switches",
    "layer3": "E-Save",
    "tc_title": "E-Save is displayed and modifiable when eSave_Menu is \"Without Target or With Target\"",
@@ -742,11 +676,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Without Target or With Target`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Without Target or With Target`。PROXI 參數名於 `pre_conditions` 取條文逐字 `eSave_Menu`（R-VF78 二）；`tc_title` 取 `eSave_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseFrontVolume-079",
-   "seq": 501,
+   "seq": 498,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Front Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req is sent as 0 (Low) when Park Sense Front Volume is Low",
@@ -768,7 +702,7 @@
   },
   {
    "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-046",
-   "seq": 502,
+   "seq": 499,
    "test_set": "Lane and Lighting",
    "layer3": "Forward Collision Warning Sensitivity",
    "tc_title": "Forward Collision Warning Sensitivity is displayed as Near when FSFCWPlusActivationMode is 0 (Near)",
@@ -786,11 +720,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `FSFCWPlusActivationMode` 之 DBC 有效值域全集為 {0 (Near), 1 (Med), 2 (Far)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Near` 為代表值，其次值 raw 1 = `Med` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `FSFCWPlusActivationMode` 之 DBC 有效值域全集為 {0 (Near), 1 (Med), 2 (Far)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Near` 為代表值，其次值 raw 1 = `Med` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseFrontVolume-080",
-   "seq": 503,
+   "seq": 500,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Front Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req is sent as 1 (Medium) when Park Sense Front Volume is Medium",
@@ -812,7 +746,7 @@
   },
   {
    "leaf_id": "SWE1-VC-RainSensingWipers-054",
-   "seq": 504,
+   "seq": 501,
    "test_set": "Lane and Lighting",
    "layer3": "Rain Sensing Wipers",
    "tc_title": "Rain Sensing Wipers is not displayed when Rain_Sensor is \"Absent\"",
@@ -830,11 +764,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Rain_Sensor`（R-VF78 二）；`tc_title` 取 `Rain_Sensor`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-EngineOffPowerDelay-046",
-   "seq": 505,
+   "seq": 502,
    "test_set": "Suspension and Comfort",
    "layer3": "Engine Off Power Delay",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Eng_Off_Pwr_Delay_Req is sent as 0 (Zero) when Engine Off Power Delay is Zero",
@@ -856,7 +790,7 @@
   },
   {
    "leaf_id": "SWE1-VC-RearSeatReminder-055",
-   "seq": 506,
+   "seq": 503,
    "test_set": "Approach and Tailgate",
    "layer3": "Rear Seat Reminder",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.FOA_Alert_Type_Req is sent as 0 (Off) when Rear Seat Reminder is Off",
@@ -878,7 +812,7 @@
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseFrontVolume-081",
-   "seq": 507,
+   "seq": 504,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Front Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req is sent as 2 (High) when Park Sense Front Volume is High",
@@ -900,7 +834,7 @@
   },
   {
    "leaf_id": "SWE1-VC-RainSensingWipers-055",
-   "seq": 508,
+   "seq": 505,
    "test_set": "Lane and Lighting",
    "layer3": "Rain Sensing Wipers",
    "tc_title": "Rain Sensing Wipers is displayed and modifiable when Rain_Sensor is \"Present\"",
@@ -918,15 +852,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Rain_Sensor`（R-VF78 二）；`tc_title` 取 `Rain_Sensor`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-RearSeatReminder-056",
-   "seq": 509,
+   "seq": 506,
    "test_set": "Approach and Tailgate",
    "layer3": "Rear Seat Reminder",
    "tc_title": "Rear Seat Reminder is displayed as Off when FOA_Alert_Type is 0 (Off)",
-   "test_item": "The HW supplier shall provide the IPC_VEHICLE_SETUP2.FOA_Alert_Type signal to the Android Automotive layer through the vehicle communication network and VHAL interface. When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP2.FOA_Alert_Type$, Then the LTM or ETM shall update the Rear Seat Reminder setting information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP2.FOA_Alert_Type$, Then the LTM or ETM shall update the Rear Seat Reminder setting information on the display within the defined system response time.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.FOA_Alert_Type = one of [0 (Off), 1 (Cluster_Warning), 2 (Cluster_SMS_Warning)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.FOA_Alert_Type = 1 (Cluster_Warning)\n2. Send CAN: IPC_VEHICLE_SETUP2.FOA_Alert_Type = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Rear Seat Reminder setting is displayed as Off",
@@ -940,15 +874,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `FOA_Alert_Type` 之 DBC 有效值域全集為 {0 (Off), 1 (Cluster_Warning), 2 (Cluster_SMS_Warning)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `Cluster_Warning` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `FOA_Alert_Type` 之 DBC 有效值域全集為 {0 (Off), 1 (Cluster_Warning), 2 (Cluster_SMS_Warning)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `Cluster_Warning` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-ParkSenseFrontVolume-082",
-   "seq": 510,
+   "seq": 507,
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Front Volume",
    "tc_title": "Park Sense Front Volume is displayed as Low when PamChimeVolumeFront is 0 (Low)",
-   "test_item": "HW supplier shall notify the IPC_VEHICLE_SETUP.PamChimeVolumeFront signal via VHAL interface. The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.PamChimeVolumeFront signal and update/display the Park Sense Front Volume information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.PamChimeVolumeFront signal and update/display the Park Sense Front Volume information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.PamChimeVolumeFront = one of [0 (Low), 1 (Medium), 2 (High)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.PamChimeVolumeFront = 1 (Medium)\n2. Send CAN: IPC_VEHICLE_SETUP.PamChimeVolumeFront = 0 (Low)\n3. Read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Low",
@@ -962,11 +896,11 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PamChimeVolumeFront` 之 DBC 有效值域全集為 {0 (Low), 1 (Medium), 2 (High)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Low` 為代表值，其次值 raw 1 = `Medium` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PamChimeVolumeFront` 之 DBC 有效值域全集為 {0 (Low), 1 (Medium), 2 (High)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Low` 為代表值，其次值 raw 1 = `Medium` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-EngineOffPowerDelay-048",
-   "seq": 511,
+   "seq": 508,
    "test_set": "Suspension and Comfort",
    "layer3": "Engine Off Power Delay",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Eng_Off_Pwr_Delay_Req is sent as 2 (Five_Min) when Engine Off Power Delay is Five_Min",
@@ -988,7 +922,7 @@
   },
   {
    "leaf_id": "SWE1-VC-RearSeatReminder-057",
-   "seq": 512,
+   "seq": 509,
    "test_set": "Approach and Tailgate",
    "layer3": "Rear Seat Reminder",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.FOA_Alert_Type_Req is sent as 1 (Cluster_Warning) when Rear Seat Reminder is Cluster_Warning",
@@ -1010,7 +944,7 @@
   },
   {
    "leaf_id": "SWE1-VC-AutoHighBeam-084",
-   "seq": 513,
+   "seq": 510,
    "test_set": "Driver Convenience",
    "layer3": "Auto High Beam",
    "tc_title": "Auto High Beam is not displayed when AHBM_Feature_Menu is \"Absent\"",
@@ -1028,11 +962,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `AHBM_Feature_Menu`（R-VF78 二）；`tc_title` 取 `AHBM_Feature_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-EngineOffPowerDelay-049",
-   "seq": 514,
+   "seq": 511,
    "test_set": "Suspension and Comfort",
    "layer3": "Engine Off Power Delay",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Eng_Off_Pwr_Delay_Req is sent as 3 (Ten_Min) when Engine Off Power Delay is Ten_Min",
@@ -1054,7 +988,7 @@
   },
   {
    "leaf_id": "SWE1-VC-AutoHighBeam-085",
-   "seq": 515,
+   "seq": 512,
    "test_set": "Driver Convenience",
    "layer3": "Auto High Beam",
    "tc_title": "Auto High Beam is displayed and modifiable when AHBM_Feature_Menu is \"Present\"",
@@ -1072,11 +1006,11 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名取條文逐字（R-VF78 二）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `AHBM_Feature_Menu`（R-VF78 二）；`tc_title` 取 `AHBM_Feature_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   },
   {
    "leaf_id": "SWE1-VC-RainSensingWipers-058",
-   "seq": 516,
+   "seq": 513,
    "test_set": "Lane and Lighting",
    "layer3": "Rain Sensing Wipers",
    "tc_title": "Rain Sensing Wipers is displayed as Not_Enable when RainSensorLevel is 0 (Not_Enable)",
@@ -1094,15 +1028,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `RainSensorLevel` 之 DBC 有效值域全集為 {0 (Not_Enable), 1 (Enable)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Not_Enable` 為代表值，其次值 raw 1 = `Enable` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `RainSensorLevel` 之 DBC 有效值域全集為 {0 (Not_Enable), 1 (Enable)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Not_Enable` 為代表值，其次值 raw 1 = `Enable` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
   },
   {
    "leaf_id": "SWE1-VC-EngineOffPowerDelay-050",
-   "seq": 517,
+   "seq": 514,
    "test_set": "Suspension and Comfort",
    "layer3": "Engine Off Power Delay",
    "tc_title": "Engine Off Power Delay is displayed as Zero when Eng_Off_Pwr_Delay is 0 (Zero)",
-   "test_item": "The HW supplier shall provide the IPC_VEHICLE_SETUP.Eng_Off_Pwr_Delay signal to the Android Automotive layer through the vehicle communication network and VHAL interface. When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.Eng_Off_Pwr_Delay$, the LTM or ETM shall update the Engine Off Power Delay setting status information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.Eng_Off_Pwr_Delay$, the LTM or ETM shall update the Engine Off Power Delay setting status information on the display within the defined system response time.",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Eng_Off_Pwr_Delay = one of [0 (Zero), 1 (Fourty_Five_Sec), 2 (Five_Min), 3 (Ten_Min)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Eng_Off_Pwr_Delay = 1 (Fourty_Five_Sec)\n2. Send CAN: IPC_VEHICLE_SETUP.Eng_Off_Pwr_Delay = 0 (Zero)\n3. Read the Vehicle Settings menu and check that the Engine Off Power Delay setting is displayed as Zero",
@@ -1116,7 +1050,73 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Eng_Off_Pwr_Delay` 之 DBC 有效值域全集為 {0 (Zero), 1 (Fourty_Five_Sec), 2 (Five_Min), 3 (Ten_Min)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Zero` 為代表值，其次值 raw 1 = `Fourty_Five_Sec` 置於 procedure 第 1 步。列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。條文未指定所收之值；值域取自 DBC，本條驗其代表值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Eng_Off_Pwr_Delay` 之 DBC 有效值域全集為 {0 (Zero), 1 (Fourty_Five_Sec), 2 (Five_Min), 3 (Ten_Min)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Zero` 為代表值，其次值 raw 1 = `Fourty_Five_Sec` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+  },
+  {
+   "leaf_id": "SWE1-VC-RKELinkedtoMemory-090",
+   "seq": 515,
+   "test_set": "Driver Convenience",
+   "layer3": "RKE Linked to Memory",
+   "tc_title": "RKE Linked to Memory is not displayed when Memory_System is \"Absent\"",
+   "test_item": "The HMI layer shall evaluate the received Memory_System PROXI value to determine the availability of the RKE Linked to Memory feature. If $Memory_System$ = [Absent], the LTM or ETM shall not display the RKE Linked to Memory customer setting.",
+   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Memory_System$ is set to \"Absent\"",
+   "input_test_data": "NA",
+   "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"RKE Linked to Memory\" customer setting is not displayed",
+   "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"RKE Linked to Memory\" customer setting is not displayed",
+   "specification_reference": "VF230_V1_PHDCC27_VF_2337",
+   "priority": "P1",
+   "priority_class": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "writable": "W0",
+   "dr_dependent": "",
+   "remarks": "",
+   "value_source": "0-CLAUSE",
+   "clause_form": "PROXI 型",
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Memory_System`（R-VF78 二）；`tc_title` 取 `Memory_System`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+  },
+  {
+   "leaf_id": "SWE1-VC-HillStartAssist-052",
+   "seq": 516,
+   "test_set": "Suspension and Comfort",
+   "layer3": "Hill Start Assist",
+   "tc_title": "Hill Start Assist is not displayed when Hill_Start_Menu_Presence is \"Absent\"",
+   "test_item": "When the HMI receives the value as Absent via signal, $Hill_Start_Menu_Presence$, then the HMI shall not display the Hill Start Assist customer setting in the Vehicle Settings menu.",
+   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Hill_Start_Menu_Presence$ is set to \"Absent\"",
+   "input_test_data": "NA",
+   "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Hill Start Assist\" customer setting is not displayed",
+   "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"Hill Start Assist\" customer setting is not displayed",
+   "specification_reference": "VF230_V1_PDT27_VF_3532",
+   "priority": "P1",
+   "priority_class": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "writable": "W0",
+   "dr_dependent": "",
+   "remarks": "",
+   "value_source": "0-CLAUSE",
+   "clause_form": "PROXI 型",
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Hill_Start_Menu_Presence`（R-VF78 二）；`tc_title` 取 `Hill_Start_Menu_Presence`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+  },
+  {
+   "leaf_id": "SWE1-VC-RKELinkedtoMemory-091",
+   "seq": 517,
+   "test_set": "Driver Convenience",
+   "layer3": "RKE Linked to Memory",
+   "tc_title": "RKE Linked to Memory is displayed and modifiable when Memory_System is \"Present\"",
+   "test_item": "The HMI layer shall evaluate the received Memory_System PROXI value to determine the availability of the RKE Linked to Memory feature. If $Memory_System$ = [Present], the LTM or ETM shall display the RKE Linked to Memory customer setting to allow the customer the ability to modify the setting.",
+   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Memory_System$ is set to \"Present\"",
+   "input_test_data": "NA",
+   "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"RKE Linked to Memory\" customer setting is displayed\n4. Select the \"RKE Linked to Memory\" customer setting and check that its value can be changed",
+   "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"RKE Linked to Memory\" customer setting is displayed\n4. The value of the \"RKE Linked to Memory\" customer setting can be changed",
+   "specification_reference": "VF230_V1_PHDCC27_VF_5772",
+   "priority": "P1",
+   "priority_class": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "writable": "W0",
+   "dr_dependent": "",
+   "remarks": "",
+   "value_source": "0-CLAUSE",
+   "clause_form": "PROXI 型",
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Memory_System`（R-VF78 二）；`tc_title` 取 `Memory_System`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
   }
  ]
 }

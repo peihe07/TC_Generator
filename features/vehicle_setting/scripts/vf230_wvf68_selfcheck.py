@@ -113,7 +113,10 @@ def c5_step_pairing(tcs, ctx):
 # **放行不得只看形態** —— 若只驗「長得像佔位式」，即為造值開門。
 # 故放行之條件含「所列值域逐項與 DBC 相符」一項，其為本項之實質防線。
 PLACEHOLDER = re.compile(r"^([A-Za-z0-9_]+)\.([A-Za-z0-9_]+) = one of \[(.+)\]$")
-NEED_SENT = "條文未指定所收之值；值域取自 DBC，本條驗其代表值"
+# R-VF101 二：必要句增分句後之逐字形。**單一權威**：自 batches 匯入，
+# 二處各寫一份則其分岔不會被任何檢查攔下（R-G20 之同一顧慮）。
+import vf230_wvf69_batches as BATCHES     # noqa: E402
+NEED_SENT = BATCHES.NEED_SENTENCE
 
 
 def c6_input_na(tcs, ctx):
@@ -193,6 +196,69 @@ def verify_forge(ctx) -> None:
         bad.append("真值域被誤攔")
     if bad:
         raise SystemExit("R-VF92 一之造值錨點不符，停 —— " + "；".join(bad))
+
+
+# ---- R-VF98：手足區辨之最低要件（W-VF72 第 4 項）----
+FAMILY = re.compile(r"-?\d+$")
+
+
+def _family(leaf: str) -> str:
+    return FAMILY.sub("", leaf)
+
+
+def c13_sibling_title_unique(tcs, ctx):
+    """同一 leaf 家族內，`tc_title` 逐字相同者 → FAIL（canon §4.3；R-VF98 一）。
+
+    **跨批**：家族之成員未必落於同一批，故本項於 `ctx["all"]`（全批合併）
+    上判，而以本批之 seq 回報 —— 只看單批者會漏掉跨批之對。
+    """
+    fam = {}
+    for t in ctx.get("all") or tcs:
+        fam.setdefault((_family(t["leaf_id"]), t["tc_title"]), []).append(t["seq"])
+    mine = {t["seq"] for t in tcs}
+    return [f"seq {sorted(v)}：同家族 `{k[0]}` 之 tc_title 逐字相同 —— `{k[1]}`"
+            for k, v in sorted(fam.items()) if len(v) > 1 and mine & set(v)]
+
+
+def c14_sibling_discriminator(tcs, ctx):
+    """家族 > 1 條者，其 `tc_title` 須含區辨 token（R-VF98 二）。
+
+    **V35 之逐字形式為「不含 ` when ` 且家族 TC 數 > 1 → FAIL」，本層實測其過寬**：
+    訊號送出型之合法標題 `X is sent as 0 (Disabled)` 無 ` when ` 而**有**區辨
+    （raw ＋ label），照該式將誤殺 9 條。
+    **改為**：標題須含 ` when ` **或** `as <raw> (<Label>)` 之區辨式，二者有其一即可。
+    其攔下者為「`<設定> is displayed and modifiable`」此類**無任何區辨**之形式
+    —— 即 R-VF98 所欲攔者。
+    """
+    # 區辨式之三形：條件子句 ` when `、`as <raw> (<Label>)`、`= <raw> (<Label>)`。
+    # **第三形不得漏**：上行型之次式為 `<Sig> = 0 (Disable) updates the <S> setting`，
+    # 其有 raw ＋ label 之區辨而無 ` when ` 亦無 `as ` —— 漏之即誤殺（實測 seq 458）。
+    # 區辨式之四形：` when ` 條件子句、`as/is/= <raw> (<Label>)`、`as <Label>`。
+    # **第四形不得漏**：長設定名之上行型退化為 `<S> is displayed as OFF`，
+    # 其**帶值**故對同家族他條不可共用（實測 seq 528／537 之 Visual vs Audible）。
+    # **邊界**：`is displayed and modifiable` 無值，仍被攔 —— 即 R-VF98 所欲攔者。
+    # `\b` 不可置於 `=` 之前 —— 空格與 `=` 之間無詞邊界，該式恆不命中（實測）。
+    DISC = re.compile(r" when |(?:\bas|\bis|=) \d+ \(|\bas [A-Z][A-Za-z0-9_]*\b")
+    size = {}
+    for t in ctx.get("all") or tcs:
+        size[_family(t["leaf_id"])] = size.get(_family(t["leaf_id"]), 0) + 1
+    # **canon §4.3 之退化為合法例外，但不得靜默** —— 其 `reasoning` 內須有
+    # 逐字之具名（`**標題退化為無條件式**`），缺之即 FAIL。
+    # 退化條之逐字唯一性由項 13 守住；本項只保證「退化必被具名且可數」。
+    bad, degraded = [], []
+    for t in tcs:
+        if size.get(_family(t["leaf_id"]), 1) <= 1 or DISC.search(t["tc_title"]):
+            continue
+        if "**標題退化為無條件式**" in (t.get("reasoning") or ""):
+            degraded.append(t["seq"])
+            continue
+        bad.append(f"seq {t['seq']}：家族 `{_family(t['leaf_id'])}` 有 "
+                   f"{size[_family(t['leaf_id'])]} 條而本條標題無區辨 token"
+                   f"且未具名其退化 —— `{t['tc_title']}`")
+    if degraded:
+        print(f"      ↳ canon §4.3 之具名退化 {len(degraded)} 條（非違規，回報使其可見）："
+              f"{degraded}")
+    return bad
 
 
 def c12_placeholder_sentence(tcs, ctx):
@@ -291,6 +357,8 @@ CHECKS = [
     ("10 writable 與 dr_dependent 相符", c10_writable_dr),
     ("11 seq 唯一且為連號", c11_seq_unique),
     ("12 R-VF91 二之必要句（佔位式）", c12_placeholder_sentence),
+    ("13 同家族 tc_title 不得逐字相同", c13_sibling_title_unique),
+    ("14 家族>1 之標題須含區辨 token", c14_sibling_discriminator),
 ]
 
 # 逐項之刻意破壞 —— 施於副本，用以證明該項**能夠**失敗。
@@ -322,6 +390,18 @@ MUTATIONS = {
     # 項 12 之破壞須**泛用**：本組未必首條即佔位式，故先造一個合法佔位式
     # （值域取自 DBC 之真值，故項 6 不會先攔），再抽掉其必要句。
     "12": lambda ts: _break12(ts),
+    # 項 13：令首二條同家族且標題逐字相同
+    "13": lambda ts: (ts[1].__setitem__("leaf_id", ts[0]["leaf_id"][:-1] + "9"),
+                      ts[1].__setitem__("tc_title", ts[0]["tc_title"])),
+    # 項 14：令首條與次條同家族，且首條之標題無任何區辨 token
+    # 項 14 之破壞須令**同一家族有二條**且首條無區辨、且未具名退化。
+    # **不可只改 ts[1] 之 leaf_id** —— 小樣本（pilot #3 僅 3 條且家族各異）下
+    # 家族計數仍為 1，該項遂無從失效（實測 pilot #3 報「項 14 無法失效」）。
+    # 故改為令二條**同屬一新家族**，其計數必為 2。
+    "14": lambda ts: (ts[0].__setitem__("leaf_id", "SWE1-VC-MutantFamily-001"),
+                      ts[1].__setitem__("leaf_id", "SWE1-VC-MutantFamily-002"),
+                      ts[0].__setitem__("tc_title", "Some Setting is displayed"),
+                      ts[0].__setitem__("reasoning", "（本破壞式抽除了退化之具名）")),
 }
 
 
@@ -344,6 +424,14 @@ def main() -> None:
             delimiter="\t")},
         "refs": P1.spec_refs(),
     }
+    # ---- 項 13／14 之跨批視野 ----
+    # 家族之成員未必落於同一批（實測 `TrailerNumber` 橫跨 batch03 與 batch06），
+    # **只看單批者會漏掉跨批之對**。故合併現存之全部量產批為 `ctx["all"]`。
+    # 破壞式施於本批之副本，其結果須反映於 `ctx["all"]`，故此處以 id 對映替換。
+    allt = []
+    for q in sorted((FEAT / "generated").glob("vf230_batch*.json")):
+        allt += json.loads(q.read_text(encoding="utf-8"))["tcs"]
+    ctx["all"] = allt or doc["tcs"]
 
     print(f"=== {path.name} 自檢（{len(doc['tcs'])} 條，R-VF46 逐項分報）===")
     total, details = 0, []
@@ -362,6 +450,10 @@ def main() -> None:
         num = name.split()[0]
         mutant = copy.deepcopy(doc)
         MUTATIONS[num](mutant["tcs"])
+        # 跨批項（13／14）之 ctx 亦須換為 mutant，否則其破壞被原批之內容蓋過
+        seqs = {t["seq"] for t in mutant["tcs"]}
+        ctx = {**ctx, "all": mutant["tcs"] + [t for t in allt
+                                              if t["seq"] not in seqs]}
         if mutant["tcs"] == doc["tcs"]:
             print(f"  ❌ 項 {num:<3} **破壞未生效**（副本與原檔相同）—— "
                   "此測試本身無效，非該檢查項無效")

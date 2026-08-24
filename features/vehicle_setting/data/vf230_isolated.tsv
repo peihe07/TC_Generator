@@ -68,6 +68,7 @@ SWE1-VC-RearSeatReminder-054	PROXI 型	事實不足以書寫（R-VF80 一）	PRO
 SWE1-VC-EngineOffPowerDelay-047	訊號送出型	事實不足以書寫（R-VF80 一）	條文指名之值 `Forty_Five_Sec] to CarPr` 對不上 `Eng_Off_Pwr_Delay_Req` 之 DBC 值域 ['Five_Min', 'Fourty_Five_Sec', 'Ten_Min', 'Zero'] —— 不臆造		須補齊條文所缺之事實，或經裁示其取值法
 SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-101	訊號上行型	事實不足以書寫（R-VF80 一）	訊號上行型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名		須補齊條文所缺之事實，或經裁示其取值法
 SWE1-VC-Language-060	PROXI 型	事實不足以書寫（R-VF80 一）	PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）		須補齊條文所缺之事實，或經裁示其取值法
+SWE1-VC-TrailerNumber-065	訊號上行型	事實不足以書寫（R-VF80 一）	「無效值處理」型 —— **既有範例有而資料不支援**：`Trail_Num` 之 DBC 為 2 bit，其四值 ['Four', 'One', 'Three', 'Two'] **全部已定義**，結構上不存在可送之無效 raw；且條文所稱之無效值 `GOOSE`／`FIFTH` 實屬 `SelTrlrStyle`（拖車樣式）而非本訊號（拖車數量）。**不改取他訊號**（R-VF92 二），維持隔離並開 DR		須補齊條文所缺之事實，或經裁示其取值法
 SWE1-VC-TrailerBrakeType032	訊號送出型	事實不足以書寫（R-VF80 一）	條文指名之值 `One. CarPropertyService ` 對不上 `Trail_Brk_Type_Req` 之 DBC 值域 ['Heavy_Electric', 'Heavy_Electric_Over_Hydraulic', 'Light_Electric', 'Light_Electric_Over_Hydraulic'] —— 不臆造		須補齊條文所缺之事實，或經裁示其取值法
 SWE1-VC-TrailerBrakeType033	訊號送出型	事實不足以書寫（R-VF80 一）	條文指名之值 `Two. CarPropertyService ` 對不上 `Trail_Brk_Type_Req` 之 DBC 值域 ['Heavy_Electric', 'Heavy_Electric_Over_Hydraulic', 'Light_Electric', 'Light_Electric_Over_Hydraulic'] —— 不臆造		須補齊條文所缺之事實，或經裁示其取值法
 SWE1-VC-TrailerBrakeType034	訊號送出型	事實不足以書寫（R-VF80 一）	條文指名之值 `Three. CarPropertyServic` 對不上 `Trail_Brk_Type_Req` 之 DBC 值域 ['Heavy_Electric', 'Heavy_Electric_Over_Hydraulic', 'Light_Electric', 'Light_Electric_Over_Hydraulic'] —— 不臆造		須補齊條文所缺之事實，或經裁示其取值法
@@ -75,3 +76,5 @@ SWE1-VC-TrailerBrakeType035	訊號送出型	事實不足以書寫（R-VF80 一�
 SWE1-VC-TrafficSignAssistOffset - NAFTASetting-059	訊號上行型	事實不足以書寫（R-VF80 一）	訊號上行型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名		須補齊條文所缺之事實，或經裁示其取值法
 SWE1-VC-TrafficSignAssistOffset - NAFTASetting-072	訊號上行型	事實不足以書寫（R-VF80 一）	訊號上行型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名		須補齊條文所缺之事實，或經裁示其取值法
 SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-093	訊號上行型	事實不足以書寫（R-VF80 一）	訊號上行型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名		須補齊條文所缺之事實，或經裁示其取值法
+SWE1-VC-ParkSenseBasedCameraActivation-080	PROXI 型	事實不足以書寫（R-VF80 一）	上游條文與同家族之 `SWE1-VC-ParkSenseBasedCameraActivation-078` **逐字相同**（sha1 8231eb31），其 param／value 亦同 —— 所生之 TC 將與之逐字相同（canon §4.3 FAIL）。**不造區辨 token 消解之**（R-VF92 二）；登記待 DR		須補齊條文所缺之事實，或經裁示其取值法
+SWE1-VC-AutoOnDriverComfort-2Option-104	PROXI 型	事實不足以書寫（R-VF80 一）	上游條文與同家族之 `SWE1-VC-AutoOnDriverComfort-2Option-103` **逐字相同**（sha1 3de757c9），其 param／value 亦同 —— 所生之 TC 將與之逐字相同（canon §4.3 FAIL）。**不造區辨 token 消解之**（R-VF92 二）；登記待 DR		須補齊條文所缺之事實，或經裁示其取值法

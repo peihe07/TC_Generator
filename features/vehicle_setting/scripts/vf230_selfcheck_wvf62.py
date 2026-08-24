@@ -39,8 +39,16 @@ WHITELIST = {
                  r"\btemperature\b", r"\bignition\b", r"\bengine\b"],
     "硬體周邊": [r"\bconnected\b", r"\binstalled\b", r"\bpresent\b",
                  r"\btrailer\b", r"\bdevice\b"],
+    # **`reset to factory settings` 補入於 W-VF73（2026-08-24）**，依 R-VF95 二
+    # 「新發現之表述即時補入並具名其發現輪次」。
+    # **其發現途徑**：pilot #3 之書寫式依 R-VF74 一取自既有交付範例
+    # 「Rear camera setting defaults to off」，該範例之 `pre_conditions` 逐字含此句，
+    # **而現行白名單不含之** —— 即 R-VF95 二所指之「列舉之不完整」，
+    # 由人讀（此處為既有範例之引用）補之，非 pattern 自行發現。
+    # 其語意屬「功能初始狀態」：述系統之初始狀態，非外部環境亦非硬體有無。
     "功能初始狀態": [r"\bFull-Operation state\b", r"\bis in the .+ state\b",
-                     r"\bmenu is (open|displayed)\b", r"\bsetting is set to\b"],
+                     r"\bmenu is (open|displayed)\b", r"\bsetting is set to\b",
+                     r"\breset to factory settings\b"],
     "系統版本或模式": [r"\bPROXI \$", r"\bconfiguration\b", r"\bmode\b",
                        r"\bsoftware version\b", r"\bvariant\b"],
 }

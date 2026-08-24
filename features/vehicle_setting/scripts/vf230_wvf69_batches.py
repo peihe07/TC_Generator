@@ -52,7 +52,17 @@ PLUMBING = re.compile(
     r"^\s*(?:CarPropertyService|CarPropertyManager|The Vehicle HAL|Vehicle HAL|VHAL"
     r"|VehicleConfigManager|VehicleConfigService|SystemProperties"
     r"|The response shall be returned|The configuration response shall be returned"
-    r"|HW supplier shall process|The HMI layer shall send a request to)", re.I)
+    r"|HW supplier shall process|The HMI layer shall send a request to"
+    # ---- W-VF73 §5-1：W-VF71 第 4 項所測之 4 個漏列句型（**現准修**）----
+    # #1 述訊號**如何送達** Android 層（傳輸路徑本身），非需求之觸發或結果
+    r"|The HW supplier shall provide the \S+ signal to the Android Automotive"
+    # #2 述中介層之處理動作，無可觀察之結果
+    r"|The HMI/LTM/ETM layer shall process"
+    # #3／#4 為現行列舉之近變體 —— 其漏列非概念之遺漏，
+    # 而是**逐字列舉對措辭變體不具韌性**（R-VF95 二所指之「列舉之不完整」）
+    r"|HW supplier shall notify"
+    r"|The retrieved configuration response shall be returned"
+    r")", re.I)
 
 
 def clause_tail(text: str, anchor: re.Pattern) -> str:
@@ -103,23 +113,137 @@ SENT_SIG = re.compile(r"(When the customer chooses|The HMI layer shall capture"
                       r"|HW supplier shall|The HW supplier shall|When the LTM or ETM)")
 
 
-def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict) -> tuple[dict | None, str]:
+
+# ---- R-VF97：`tc_title` 之參數名形態 —— **以 PROXI 表為準，不以形態猜** ----
+# R-VF97 乙令「節點／參數之別名移除」。**實測其對本組不成立**：
+#   `CAN node 82 (PTGM)`  PROXI 表內**逐字如此**；`CAN node 82` 與 `PTGM` 皆不在表內
+#                          → 移除別名反使標題所指之參數不存在
+#   `SVC_SK_PRSNT (Surround_View_Camera)`  表內只有**括號內**者
+#                          → 該保留者為括號內，非括號外
+#   `(SRT)`／`(Utility_Lighting)`  表內有其括號內之名 → 剝括號即得
+# 故判準改為：**取「在 PROXI 表內」之形態**（原樣／括號內／剝殼後），
+# 三者皆不在表內者維持條文逐字並具名。**其依據為資料，非形態。**
+_PROXI_NAMES = None
+
+
+def proxi_names() -> set[str]:
+    """PROXI 表之全部文字（正規化形）。**直讀 XML，不經 `proxi_known()`**
+    —— 後者限於 `Format` 分頁前六欄，而別名式之名未必落於該範圍（R-VF92 一）。"""
+    global _PROXI_NAMES
+    if _PROXI_NAMES is None:
+        import zipfile
+        z = zipfile.ZipFile(FEAT / "inputs" / "PROXI_HDCC27_R3_20250424.xlsx")
+        ts = re.findall(r"<t[^>]*>(.*?)</t>",
+                        z.read("xl/sharedStrings.xml").decode("utf-8"), re.S)
+        _PROXI_NAMES = {pnorm(t) for t in ts}
+    return _PROXI_NAMES
+
+
+def pnorm(s: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", s.lower())
+
+
+def title_param(raw: str) -> tuple[str, str]:
+    """回 (標題用之參數名, 依據)。逐式試，取**首個在 PROXI 表內**者。"""
+    names = proxi_names()
+    raw = raw.strip()
+    # **候選之序：剝殼形態先於原樣。**
+    # `pnorm()` 會吸收括號（`pnorm("(SRT)") == pnorm("SRT")`），
+    # 故原樣若排在前，`(SRT)` 會被判為「表內有此形態」而把括號留在標題內
+    # —— **正規化掩蓋了形態差異**（R-VF92 一所警告之「因正規化吸收」）。
+    cands = []
+    m = re.match(r"^\[\s*(.+?)\s*\]$", raw)
+    if m:
+        cands.append((m.group(1), "剝方括號"))
+    m = re.match(r"^(.*?)\s*\(([^)]+)\)$", raw)
+    if m:
+        if m.group(1).strip():
+            cands.append((m.group(1).strip(), "取括號外之主體"))
+        cands.append((m.group(2).strip(), "取括號內之名（表內僅此形態）"))
+    cands.append((raw, "條文逐字 —— 剝殼形態皆不在表內，而原樣在"))
+    for c, why in cands:
+        if pnorm(c) in names:
+            return c, why
+    return raw, "**三式皆不在 PROXI 表內** —— 維持條文逐字並具名"
+
+
+# R-VF101 二：`reasoning` 之必要句（增分句後之逐字形）。缺之即 FAIL（自檢項 12）。
+NEED_SENTENCE = (
+    "條文未指定所收之值；值域取自 DBC；本條驗其代表值，"
+    "該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。")
+
+
+def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict,
+          famsize: dict | None = None) -> tuple[dict | None, str]:
+    """`famsize`：leaf 家族 → 其可生成之條數。
+
+    **R-VF98 之射程逐字為「同一 leaf 家族之**二條以上** TC」** ——
+    家族僅一條者，無手足可與之混淆，**無條件子句之標題為合法**。
+    故退化式（`<S> is not displayed`）**僅對單條家族開放**。
+    缺此區分則長設定名 ＋ 長 value 之條無式可用（實測 11 條），
+    而其在 W-VF71 版本中係以該退化式生成 —— 即 V35 Defect 1 所攔者。
+    """
     S, form = f["setting"], f["form"]
+    # ---- canon §4.3（≤14 字）與 R-VF98 二（多條家族須帶區辨）之衝突 ----
+    # 實測 11 條：長設定名 ＋ 長 value（`Full Speed Forward Collision Warning
+    # with Mitigation` 7 字、另一條 25 字），**任何帶 value 之式皆逾 14 字**。
+    # **canon §4.3 為 canon 層之硬限制，R-VF98 二為專案層之預防性判準** ——
+    # 二者衝突時 canon 優先；而 canon §4.3 之**實質**要求（手足不得逐字相同）
+    # 仍由自檢項 13 守住。
+    # **其區辨由正負向承擔**：`<S> is not displayed` 與
+    # `<S> is displayed and modifiable` 逐字不同，非可互換。
+    # 故退化式恢復為**最後手段**，而其使用**逐條具名於 `reasoning`**，
+    # 並由自檢項 14 回報其數 —— **不得靜默退化**。
+    degraded = False
     itd = "NA"          # R-VF91 二之佔位式覆寫之；其餘形態維持 NA
     w = wr[f["leaf_id"]]
     ref = refs.get(lv[f["leaf_id"]]["src_ref"], "")
     if not ref:
         return None, "spec_reference 未由 R-VF68 之錨鏈解出"
 
-    if form == "PROXI 型":
+    if f.get("pilot3") == "預設值型":
+        # ---- pilot #3（W-VF73 §4 二）----
+        # **書寫式取自既有交付範例**（R-VF74 一，非自創）：
+        #   `Rear camera setting defaults to off`（vehicle_setting 交付本）
+        #     pre  1. The HU has been reset to factory settings
+        #     proc 1. Power cycle the HU after the factory reset
+        #          2. Open the … screen and check that the … setting is <V>
+        #     ER   1. The HU completes start-up
+        #          2. The … setting is <V>
+        # **不送任何 CAN 值** —— 其所驗者為預設值，送值即改驗上行型之行為。
+        msg, sig, raw, lab = f["msg"], f["sig"], f["raw"], f["label"]
+        item = clause_tail(f["text"], SENT_SIG)
+        title = pick_title([f"{S} defaults to {lab}",
+                            f"The {S} setting defaults to {lab}"])
+        pre = [FULLOP, "The HU has been reset to factory settings"]
+        proc = ["Power cycle the HU after the factory reset", MENU,
+                f'Read the Vehicle Settings menu and check that the {S} setting '
+                f"is displayed as {lab}"]
+        er = ["The HU completes start-up", "The Vehicle Settings menu is displayed",
+              f"The {S} setting is displayed as {lab}"]
+        remark = ""
+        vsrc, reason = "2-DBC", (
+            f"值域來源 **2-DBC** —— 條文逐字指名預設值 `{lab}`，"
+            f"其於 `{sig}` 之 DBC 值域內為 raw {raw}（唯一命中）。"
+            f"**書寫式取自既有交付範例**「Rear camera setting defaults to off」"
+            f"（R-VF74 一，非自創）：factory reset ＋ power cycle ＋ 讀初始顯示。"
+            f"**不送任何 CAN 值** —— 送值即改驗上行型之行為，非本條之需求。")
+
+    elif form == "PROXI 型":
         p, v, neg = f["param"], f["value"], f["negative"]
+        # R-VF97：標題用之參數名以 PROXI 表定之；
+        # **`pre_conditions` 仍用條文逐字 `p`**（R-VF78 二），二者不混。
+        pt, pt_why = title_param(p)
         item = clause_tail(f["text"], SENT_PROXI)
         pre = [FULLOP, f'PROXI ${p}$ is set to "{v}"']
         if neg:
             title = pick_title([
-                f'{S} is not displayed when {p} is "{v}"',
+                f'{S} is not displayed when {pt} is "{v}"',
                 f'{S} is not displayed when the PROXI value is "{v}"',
-                f'{S} is not displayed'])
+                # R-VF98：退化為無條件子句之式前，先試僅帶值之區辨式 ——
+                # 無條件式對同家族之任兩條皆適用，不得單獨作為標題。
+                f'{S} is not displayed when set to "{v}"']
+                + [f'{S} is not displayed'])
             proc = ["Power cycle the HU", MENU,
                     f'Read the Vehicle Settings menu and check that the "{S}" '
                     "customer setting is not displayed"]
@@ -127,9 +251,10 @@ def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict) -> tuple[dict | Non
                   f'The "{S}" customer setting is not displayed']
         else:
             title = pick_title([
-                f'{S} is displayed and modifiable when {p} is "{v}"',
+                f'{S} is displayed and modifiable when {pt} is "{v}"',
                 f'{S} is displayed and modifiable when the PROXI value is "{v}"',
-                f'{S} is displayed and modifiable'])
+                f'{S} is displayed and modifiable when set to "{v}"']
+                + [f'{S} is displayed and modifiable'])
             proc = ["Power cycle the HU", MENU,
                     f'Read the Vehicle Settings menu and check that the "{S}" '
                     "customer setting is displayed",
@@ -141,7 +266,8 @@ def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict) -> tuple[dict | Non
         remark = ""
         vsrc, reason = "0-CLAUSE", (
             f"值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `{v}`。"
-            f"PROXI 參數名取條文逐字（R-VF78 二）。")
+            f"PROXI 參數名於 `pre_conditions` 取條文逐字 `{p}`（R-VF78 二）；"
+            f"`tc_title` 取 `{pt}`（R-VF97，{pt_why}）。")
 
     elif form == "訊號送出型":
         msg, sig, raw, lab = f["msg"], f["sig"], f["raw"], f["label"]
@@ -171,10 +297,14 @@ def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict) -> tuple[dict | Non
         msg, sig, raw, lab = f["msg"], f["sig"], f["raw"], f["label"]
         oraw, olab = f["other_raw"], f["other_label"]
         item = clause_tail(f["text"], SENT_SIG)
+        # R-VF98：**有區辨之式須排在無區辨之式之前**。
+        # 原序將 `{S} is displayed as {lab}`（無區辨）排在第 2，
+        # 致長設定名之條退化至該式而與同家族者不可分辨（實測 seq 458）。
         title = pick_title([
             f"{S} is displayed as {lab} when {sig} is {raw} ({lab})",
-            f"{S} is displayed as {lab}",
-            f"{sig} = {raw} ({lab}) updates the {S} setting"])
+            f"{sig} = {raw} ({lab}) updates the {S} setting",
+            f"{S} is displayed as {lab} when {sig} is {raw}",
+            f"{S} is displayed as {lab}"])
         pre = [FULLOP, BUS, "The Vehicle Settings menu is open"]
         proc = [f"Send CAN: {msg}.{sig} = {oraw} ({olab})",
                 f"Send CAN: {msg}.{sig} = {raw} ({lab})",
@@ -191,6 +321,8 @@ def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict) -> tuple[dict | Non
             # 欄內為交付語料，**全英文**（canon §8.4.1 之佔位式本身即英文）。
             dom = ", ".join(f"{r} ({l})" for r, l in
                             zip(f["domain_raw"], f["domain"]))
+            # R-VF101 一：書寫序與 raw 大小序若同，須具名（否則被誤讀為依大小取值）
+            same_order = f["domain_raw"] == sorted(f["domain_raw"], key=int)
             itd = f"{msg}.{sig} = one of [{dom}]"
             vsrc, reason = "2-DBC", (
                 f"值域來源 **2-DBC**（R-VF91 二）—— `{sig}` 之 DBC 有效值域全集為 "
@@ -199,8 +331,10 @@ def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict) -> tuple[dict | Non
                    if f.get("excluded") else "")
                 + f"，`input_test_data` 逐字列之；取列舉之首值 raw {raw} = `{lab}` "
                   f"為代表值，其次值 raw {oraw} = `{olab}` 置於 procedure 第 1 步。"
-                  "列舉序為 **DBC 之 raw 序**，非字母序（字母序之代表值為任意）。"
-                  "條文未指定所收之值；值域取自 DBC，本條驗其代表值。")
+                + ("**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— "
+                   "取值之依據為書寫序，非大小序。" if same_order else
+                   "本訊號之書寫序與 raw 大小序**不同**，取值依書寫序。")
+                + NEED_SENTENCE)
         else:
             itd = "NA"
             vsrc, reason = "2-DBC", (
@@ -237,6 +371,16 @@ def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict) -> tuple[dict | Non
 
     if not title:
         return None, f"標題逐式皆逾 canon §4.3 之 2–14 字（設定名 `{S}`）"
+    # 退化＝所選之式不含區辨 token（` when `／`as|is|= <raw> (`／`as <Label>`）
+    degraded = not re.search(r" when |(?:\bas|\bis|=) \d+ \(|\bas [A-Z][A-Za-z0-9_]*\b",
+                             title)
+    if degraded:
+        fam = re.sub(r"-?\d+$", "", f["leaf_id"])
+        reason += (f" **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字"
+                   f"（設定名 `{S}` {len(S.split())} 字）。canon §4.3 為硬限制而"
+                   f"R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族"
+                   f"（`{fam}`，{(famsize or {}).get(fam, 1)} 條）之區辨由正負向承擔，"
+                   f"其逐字唯一性由自檢項 13 驗證。")
 
     title3 = lv[f["leaf_id"]]["title"].replace("\\n", " ")
     text = re.sub(r"\s+", " ", lv[f["leaf_id"]]["desc"])
@@ -277,23 +421,68 @@ def main() -> None:
         (FEAT / "data/vf230_leaves.tsv").open(encoding="utf-8"), delimiter="\t")}
     refs = P1.spec_refs()
 
+    # R-VF98 之家族計數 —— **以 facts 全集計**（非本組），
+    # 蓋家族之成員可能落於他組，只算本組會把跨組之手足誤判為單條。
+    famsize: dict[str, int] = {}
+    for x in facts:
+        if not x.get("pending") and not x.get("pilot3"):
+            k = re.sub(r"-?\d+$", "", x["leaf_id"])
+            famsize[k] = famsize.get(k, 0) + 1
+
+    # ---- 可執行內容逐字相同者之去重（W-VF74，2026-08-24）----
+    # **成因**：上游有二條需求以不同措辭描述**同一可測行為**
+    # （如 `SWITCH1PowerMode-005` 之 Android 屬性層寫法 與 `-030` 之顧客動作寫法，
+    #  src_ref 各為 `SYS-RA-VF230_V1-2262`／`-2211`）。
+    # **其產出之 TC 除 `test_item`（條文節錄）外，
+    #  `pre_conditions`／`test_procedure`／`expected_result`／`input_test_data`
+    #  逐字相同** —— 執行二者即做同一件事，且 `tc_title` 亦相同（canon §4.3 FAIL）。
+    # **判準為機械且不涉語意推測**：可執行四欄之逐字相同。
+    # **不造假區辨**（R-VF92 二）；保留首條、其餘登記並回報，開 DR。
+    # **指紋於 SKIP 階段即開始累積** —— 否則跨組之重複偵測不到。
+    import hashlib
+    EXEC_KEYS = ("pre_conditions", "test_procedure", "expected_result",
+                 "input_test_data")
+
+    def _fp(t):
+        return hashlib.sha1("\u0000".join(t[k] for k in EXEC_KEYS)
+                            .encode()).hexdigest()
+
+    seen_fp: dict[str, str] = {}
+    dup_exec: list[dict] = []
+
     tcs, rejected, seq, taken = [], [], SEQ0, 0
     for f in facts:
         if f.get("pending"):
             continue          # R-VF81 三 —— 已隔離，見 data/vf230_isolated.tsv
+        if f.get("pilot3"):
+            continue          # pilot #3 之條另檔產出（seq 901–），不入量產號段
         # 前組已取者跳過 —— **以「可生成之條」計數，非以 facts 之索引計**，
         # 否則模板套不上而被 reject 者會使兩組之邊界錯位。
         if taken < SKIP:
-            t0, _ = build(f, 0, wr, refs, lv)
+            t0, _ = build(f, 0, wr, refs, lv, famsize)
             if t0 is not None:
+                fp = _fp(t0)
+                if fp in seen_fp:
+                    continue          # 前組已去重者，不計入 taken
+                seen_fp[fp] = f["leaf_id"]
                 taken += 1
             continue
         if len(tcs) >= PER_BATCH * N_BATCH:
             break
-        t, why = build(f, seq, wr, refs, lv)
+        t, why = build(f, seq, wr, refs, lv, famsize)
         if t is None:
             rejected.append({"leaf_id": f["leaf_id"], "form": f["form"], "why": why})
             continue
+        fp = _fp(t)
+        if fp in seen_fp:
+            dup_exec.append({"leaf_id": f["leaf_id"], "form": f["form"],
+                             "same_as": seen_fp[fp],
+                             "why": ("可執行四欄（pre／procedure／ER／input）與 "
+                                     f"`{seen_fp[fp]}` **逐字相同** —— "
+                                     "上游二需求描述同一可測行為，執行二者即做同一件事；"
+                                     "**不造假區辨**（R-VF92 二），保留首條，本條登記待 DR")})
+            continue
+        seen_fp[fp] = f["leaf_id"]
         tcs.append(t)
         seq += 1
 
@@ -321,11 +510,18 @@ def main() -> None:
     print(f"生成 {len(tcs)} 條，seq {SEQ0}–{seq - 1}")
     print(f"  事實抽不出而跳過（母體 574 中）：{len(skipped)}")
     print(f"  模板套不上而跳過：{len(rejected)}")
+    print(f"  可執行內容與前條逐字相同而去重：{len(dup_exec)}")
+    for r in dup_exec:
+        print(f"    {r['leaf_id'][:42]:44} 同 {r['same_as']}")
     for r in rejected:
         print(f"    {r['leaf_id'][:44]:46} {r['why']}")
 
     for i in range(N_BATCH):
         part = tcs[i * PER_BATCH:(i + 1) * PER_BATCH]
+        # **尾批不足額或無條時跳過** —— 末組之條數未必為 PER_BATCH 之倍數
+        # （W-VF74 之末組為 22 條）。無此守衛則空批於 `part[0]` 拋錯。
+        if not part:
+            continue
         dist = Counter(t["priority_class"] for t in part)
         forms = Counter(t["clause_form"] for t in part)
         doc = {
@@ -357,7 +553,8 @@ def main() -> None:
               f"{part[-1]['seq']}  {dict(forms)}  {dict(dist)}")
 
     (FEAT / f"data/_vf230_wvf69_skipped{'' if GROUP == 1 else f'_g{GROUP}'}.json").write_text(
-        json.dumps({"facts_missing": skipped, "template_rejected": rejected},
+        json.dumps({"facts_missing": skipped, "template_rejected": rejected,
+                    "exec_duplicate": dup_exec},
                    ensure_ascii=False, indent=1), encoding="utf-8")
 
 

@@ -76,7 +76,7 @@ canon §10.2 之 P0 含 `safety`，其**不限於實體致動**。
 ## 3. 選池順序（R-VS58）
 
 優先序 **P0 → P1 → P2**；同序內**逐 Test Set 輪流 ＋ reqid 升冪**。
-可生成之池（`writable ∈ {W0, W1}`）= **621**（627 − W2 6 = 621）。
+可生成之池（`writable ∈ {W0, W1}`）= **574**（627 − W2 53 = 574）。
 
 **前 20 條之順序**：
 
@@ -86,27 +86,27 @@ canon §10.2 之 P0 含 `safety`，其**不限於實體致動**。
 | 2 | `SWE1-VC-BlindSpotAlert-002` | P0 | Driver Convenience | W0 |
 | 3 | `SWE1-VC-LaneSenseWarning-014` | P0 | Lane and Lighting | W0 |
 | 4 | `SWE1-VC-SuspensionServiceMode-002` | P0 | Suspension and Comfort | W0 |
-| 5 | `SWE1-VC-Blind Spot with Trailer Detection-045` | P0 | Trailer and Signage | W1 |
+| 5 | `SWE1-VC-Blind Spot with Trailer Detection-045` | P0 | Trailer and Signage | W0 |
 | 6 | `SWE1-VC-ParkSense-084` | P0 | Units and Cameras | W0 |
 | 7 | `SWE1-VC-PowerLiftgate/TailgateAlert-017` | P0 | Approach and Tailgate | W0 |
 | 8 | `SWE1-VC-BlindSpotAlert-003` | P0 | Driver Convenience | W0 |
 | 9 | `SWE1-VC-LaneSenseWarning-015` | P0 | Lane and Lighting | W0 |
 | 10 | `SWE1-VC-SuspensionServiceMode-003` | P0 | Suspension and Comfort | W0 |
-| 11 | `SWE1-VC-Blind Spot with Trailer Detection-046` | P0 | Trailer and Signage | W1 |
+| 11 | `SWE1-VC-Blind Spot with Trailer Detection-046` | P0 | Trailer and Signage | W0 |
 | 12 | `SWE1-VC-ParkSense-085` | P0 | Units and Cameras | W0 |
 | 13 | `SWE1-VC-PowerLiftgate/TailgateAlert-018` | P0 | Approach and Tailgate | W0 |
 | 14 | `SWE1-VC-BlindSpotAlert-004` | P0 | Driver Convenience | W0 |
 | 15 | `SWE1-VC-LaneSenseWarning-016` | P0 | Lane and Lighting | W0 |
 | 16 | `SWE1-VC-SuspensionServiceMode-004` | P0 | Suspension and Comfort | W0 |
 | 17 | `SWE1-VC-Blind Spot with Trailer Detection-047` | P0 | Trailer and Signage | W0 |
-| 18 | `SWE1-VC-ParkSense-086` | P0 | Units and Cameras | W0 |
-| 19 | `SWE1-VC-PowerLiftgate/TailgateAlert-019` | P0 | Approach and Tailgate | W0 |
-| 20 | `SWE1-VC-BlindSpotAlert-005` | P0 | Driver Convenience | W0 |
+| 18 | `SWE1-VC-PowerLiftgate/TailgateAlert-019` | P0 | Approach and Tailgate | W0 |
+| 19 | `SWE1-VC-BlindSpotAlert-005` | P0 | Driver Convenience | W0 |
+| 20 | `SWE1-VC-LaneSenseWarning-017` | P0 | Lane and Lighting | W0 |
 
 ## 4. 批次規劃（**待分析層核可，不得逕行生成**）
 
 - 每批 **10** 條（沿用 Part 1 之批量）
-- 批數 **63**（621 條）
+- 批數 **58**（574 條）
 - **pilot 批建議為第 1 批**：其含 P0 之前 10 條，涵蓋實體致動類 —— 風險最高者先驗其書寫形式
 
 **pilot 批之範圍與時點須待核可**（V16 §5 第 3 項）。**本輪未生成任何 TC。**
