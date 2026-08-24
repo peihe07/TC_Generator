@@ -4298,3 +4298,127 @@ VF230 之 SYS2 缺件（DR-28），**以 `inputs/` 內既有之
 ```
 
 **執行層註**：本輪之 pilot #1 重生成依本條之形態 `VF230_V1_{PHDCC27|PDT27}_VF_{n}`，其錨鏈末端為 `inputs/` 內之 035 SYSRA `Basic Report`。
+
+---
+
+### R-VF69 —— 自檢項須以逐字禁止串表述，不得以概念表述（V24 包，分析層裁定 2026-08-24）
+
+逐字轉錄：
+
+```
+R-VF69（自檢項之表述形式，分析層裁定 2026-08-24）
+
+**成因**：V23 §4.3 之自檢第 7 項為「Pre-Condition 無系統預設、
+無以受測 feature 之可達性為前提」。執行層據以自檢，**回報通過**，
+而十條之第 1 項系統預設**原封未動**。
+
+**「系統預設」為概念**；實作者須自行決定哪些字串屬之，
+其決定不會被檢驗。**概念型自檢項之通過，只證明實作者之解讀與其自身一致。**
+
+**故：凡自檢項涉及禁止之內容者，須以逐字串或逐 pattern 表述**，例如：
+
+  ✗ 「Pre-Condition 無系統預設」
+  ✓ 「Pre-Condition 不得含下列 pattern：`powered`／`power on`／
+     `start-up`／`booted`／`ignition on`；命中即失敗」
+
+  ✗ 「procedure 無禁用動詞」
+  ✓ 「procedure 不得含 `observe`／`observe whether`／`see if`／
+     `check whether`／`confirm whether`／`verify`（主動詞位）／
+     `watch`／`monitor`／`inspect`」
+
+**本條與 R-VF11／R-VF21（錨點）互補**：錨點驗判準之區辨力，
+本條驗判準之**可執行性**。**一個無法被機械執行之自檢項，
+其通過與未做不可分辨** —— 此為 A-VS106 形態之第五例，
+而前四例已各自立過條文。
+
+**分析層同受拘束**：本條之成因即本層所擬之自檢清單。
+凡本層於下放包中列出之自檢項，**須自問「實作者能否不加解讀即執行之」**。
+```
+
+**其實作**：`scripts/vf230_selfcheck_wvf62.py` 之 `PRE_FORBIDDEN`／`VERB_FORBIDDEN`
+二組 pattern 常數，**其可失敗性經人為插入實測**（V24 §7 所令）。
+
+---
+
+## VF230 線 —— V25 包
+
+分析層裁定 2026-08-24，逐字落檔。
+
+### R-VF70 —— tc_title 採純句式；括號別名不入標題
+
+```
+R-VF70（VF230 之 tc_title 形式，分析層裁定 2026-08-24）
+
+**一、採純句式，不採情境標籤式，不用冒號。**
+
+依 R-1（格式須窮盡既有已交付範例，不自創）：執行層實測 Part 1 之 225 條
+`tc_title`，**無一採 `X: Y = "Z"` 之情境標籤式，全為句式**。
+canon §4.3(c) 雖允許標籤式，**專案既有慣例優先**。
+
+v3 §2.3 所提之冒號式（`Suspension Service Mode not displayed: CAN node 27 "Absent"`）
+介於兩式之間，**不採**。
+
+**二、括號內之別名不入 tc_title。**
+
+`(ASM / ASCM)`／`(PTGM)`／`(PAM/CVADAS)` 為節點之別名，
+其節點號已足以識別。**別名保留於 `test_item`／`test_procedure`／
+`expected_result`，僅自 `tc_title` 移除。**
+
+其效果：四條逾字者皆降至 14 字內，**且未逾字之六條亦一併縮短，
+使十條之標題形式一致**（形式之一致本身即手足可讀性之一部分）。
+
+**三、正負向之句式固定**：
+  負向  `<Setting> is not displayed when <Param> is "<Value>"`
+  正向  `<Setting> is displayed and modifiable when <Param> is "<Value>"`
+
+  正向不用 `can be modified`（3 字）而用 `modifiable`（1 字）——
+  其語義相同而字數省二。
+
+**手足區辨 token 為分割值本身**（`"Absent"`／`"Present"`／
+`"Active Lane Management"`／`"Not Present"`），皆保留於標題內。
+```
+
+**執行層註（W-VF63 已施行）**：十條之 `tc_title` 全改為純句式、無冒號、括號別名已自標題移除（保留於 `test_item`／`test_procedure`／`expected_result`）。正向採 `is displayed and modifiable`。**字數以 `len(title.split())` 複驗，見上繳 §3。**
+
+### R-VF71 —— ER 與 procedure 之動詞取自條文；量測須機械執行
+
+```
+R-VF71（用詞來源與量測形式，分析層裁定 2026-08-24）
+
+**一、`listed` 與 `displayed` 統一為 `displayed`。**
+
+上繳 §2.2 具名 procedure 用 `listed` 而 ER 用 `displayed`，
+並自判二者於選單語境為同一可觀察（本層同意其判斷）。
+**惟統一仍有其據**：來源條文逐字為 `shall not display the ... customer setting`
+—— **ER 與 procedure 之動詞取自條文，可使 TC 與條文之對應在字面上可見**。
+
+  procedure 3  `Read the Vehicle Settings menu and check that the "X"
+                customer setting is not displayed`
+  ER 3         `The "X" customer setting is not displayed`
+
+  正向四條同理，`is listed` → `is displayed`。
+
+**二、分析層之量測須機械執行**（承 §2）。
+
+本層於下放包中列舉「違規之逐項清單」「字數」「命中數」等量時，
+**須以與執行層相同之機械判準產出並具名該判準**，不得以目視估算。
+**R-VF69 之拘束及於量測本身，非僅及於自檢項之措辭。**
+
+**成因**：V24 §4 之字數表漏列 seq 241、seq 247 少算 1，
+其成因為本層未逐詞切分而以目視估之。
+
+**三、`PRE_FORBIDDEN` 等列舉須標其性質。**
+
+上繳 §6.1 自承：pattern 清單「是概念的一次列舉，其是否窮盡沒有任何檢查在管」，
+「pattern 化把『解讀之不可檢驗』換成『列舉之不完整』——
+它是嚴格的改善，但不是消除」。**該自我限制正確且須保留。**
+
+  凡此類列舉，**於其定義處標「已知集合，非全集」**，
+  新發現之表述即時補入並具名其發現輪次。
+  **機械檢查與人讀互為補位**：pattern 攔已知者，pilot 之人讀補未知者。
+  **二者缺一，則列舉之不完整無人發現。**
+```
+
+**執行層註（W-VF63 已施行）**：`listed` → `displayed` 十條全改（ER 未動，其已為 `displayed`）。`PRE_FORBIDDEN`／`VERB_FORBIDDEN` 之定義處已加註**「已知集合，非全集」**。
+
+**第二項（分析層之量測須機械執行）本輪已生效**：V25 §6.1 之字數表由本層以同一判準複驗，結果見上繳 §3 —— **其中有不符者，依本條末句以實測為準並回報**。
