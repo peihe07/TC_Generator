@@ -424,14 +424,32 @@ def main() -> None:
             delimiter="\t")},
         "refs": P1.spec_refs(),
     }
-    # ---- 項 13／14 之跨批視野 ----
+    # ---- 項 13／14 之跨批視野（W-VF75 §5-2：改以清單檔為來源）----
     # 家族之成員未必落於同一批（實測 `TrailerNumber` 橫跨 batch03 與 batch06），
-    # **只看單批者會漏掉跨批之對**。故合併現存之全部量產批為 `ctx["all"]`。
-    # 破壞式施於本批之副本，其結果須反映於 `ctx["all"]`，故此處以 id 對映替換。
-    allt = []
-    for q in sorted((FEAT / "generated").glob("vf230_batch*.json")):
+    # **只看單批者會漏掉跨批之對**。
+    #
+    # **原以 `generated/` 之目錄列舉為視野來源，其縮小為靜默**（A-VS106 同型）：
+    # 舊批若移出該目錄，`glob` 少抓幾個檔而視野隨之縮小，**無任何回報**。
+    # 改以 `data/vf230_batches.tsv` 為**單一權威**：
+    #   **清單所列而檔案不存在者即 FAIL** —— 縮小遂由靜默轉為可見。
+    man = FEAT / "data" / "vf230_batches.tsv"
+    if not man.exists():
+        raise SystemExit(f"跨批視野之清單檔不存在：{man} —— "
+                         "無其則視野之縮小不可見，停")
+    allt, missing = [], []
+    listed = list(csv.DictReader(man.open(encoding="utf-8"), delimiter="\t"))
+    for row in listed:
+        q = FEAT / row["file"]
+        if not q.exists():
+            missing.append(row["batch"])
+            continue
         allt += json.loads(q.read_text(encoding="utf-8"))["tcs"]
+    if missing:
+        raise SystemExit(f"跨批視野缺 {len(missing)} 批（清單所列而檔案不存在）："
+                         f"{missing} —— 視野已縮小，停")
     ctx["all"] = allt or doc["tcs"]
+    print(f"  跨批視野：{len(listed)} 批 / {len(allt)} 條"
+          f"（來源 `data/vf230_batches.tsv`）")
 
     print(f"=== {path.name} 自檢（{len(doc['tcs'])} 條，R-VF46 逐項分報）===")
     total, details = 0, []
