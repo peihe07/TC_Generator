@@ -1646,3 +1646,34 @@ SWE1-VC-SWITCH4HoldLastState-068               同 SWE1-VC-SWITCH4HoldLastState-
 ```
 
 </details>
+
+---
+
+## DR-45（新，**Urgency Low** —— 條文主語為 `The SW supplier shall display`；W-VF76 §4-4 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-44**（R-VF10）。**登記，未送出。**
+
+**標的**：`SWE1-VC-SpeedUnit-026`（seq 564）
+
+**條文逐字**：
+
+```
+The SW supplier shall display the Speed Unit customer setting and allow the
+customer to modify the setting through the LTM or ETM screen. …
+```
+
+**其疑點**：同形態之其他條（如 `SWE1-VC-HourMode-010`，seq 556）之主語為
+**`The HMI layer shall display …`**，而本條為 **`The SW supplier shall display …`**。
+
+**「軟體供應商顯示設定」於可測層面無意義** —— 供應商為組織，非可觀察之系統元件；
+其「顯示」無從在測試中驗證。二條之其餘文字逐字相同。
+
+**所詢**：本條之主語是否應為 `The HMI layer`（即與 `HourMode-010` 一致）？
+
+**本層之處置**：**逐字保留，未改**（`A-VS161`：只刪句不改字）。
+所生之 TC 其 `test_item` 逐字含該主語；**其 `tc_title`／`test_procedure`／
+`expected_result` 皆以設定之可觀察行為書寫，不受影響** ——
+故本條**不阻塞交付**，僅求上游確認其為筆誤或有意。
+
+**發現途徑**：W-VF75 之人讀抽樣（8 條）之一，非機械判準所攔 ——
+**現行 15 項自檢中無一項管「條文主語是否為可觀察之系統元件」。**

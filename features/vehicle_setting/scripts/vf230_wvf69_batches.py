@@ -174,7 +174,8 @@ NEED_SENTENCE = (
 
 
 def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict,
-          famsize: dict | None = None) -> tuple[dict | None, str]:
+          famsize: dict | None = None,
+          vcvm: dict | None = None) -> tuple[dict | None, str]:
     """`famsize`：leaf 家族 → 其可生成之條數。
 
     **R-VF98 之射程逐字為「同一 leaf 家族之**二條以上** TC」** ——
@@ -399,6 +400,24 @@ def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict,
     if pending:
         pre[1] = pre[1] + " (PENDING: DR-34)"
 
+    # ---- R-VF111：`not clear` 之逐字轉錄補入 `remarks`（AH 欄）----
+    # `R-VF15` 令「於該 TC 之 Remarks 逐字記 `Upstream Verification Criteria: …`」，
+    # `R-VF26` 二令其「於 **TC 書寫時**作為 TC 內容之一部分產出」。
+    # **W-VF77 之 dry-run 查出其從未履行**（67 條該有而 0 條有），
+    # 而工作簿當時全空 —— **故此處補記即為「書寫時」，非回溯編輯**（R-VF111）。
+    # **取逐字，不取定型句**：67 條之 `vc` 有 **34 種** distinct 值，
+    # 定型句所載等同於一個旗標，而該旗標已在 `writability.tsv` 之 `vcvm_not_clear`。
+    nc = (vcvm or {}).get(f["leaf_id"])
+    if nc:
+        lines = []
+        if "not clear" in nc.get("vc", "").lower():
+            lines.append(f"Upstream Verification Criteria: {nc['vc']}")
+        if "not clear" in nc.get("vm", "").lower():
+            lines.append(f"Upstream Verification Method: {nc['vm']}")
+        if lines:
+            # **既有 remark 不覆蓋**（實測標的中 0 條已有 remark，此為防未來）。
+            remark = (remark + "\n" if remark else "") + "\n".join(lines)
+
     return {
         "leaf_id": f["leaf_id"], "seq": seq, "test_set": w["test_set"],
         "layer3": title3, "tc_title": title, "test_item": item,
@@ -420,6 +439,9 @@ def main() -> None:
     lv = {r["swe_id"]: r for r in csv.DictReader(
         (FEAT / "data/vf230_leaves.tsv").open(encoding="utf-8"), delimiter="\t")}
     refs = P1.spec_refs()
+    # R-VF111：037 之 `vc`／`vm` 逐字（僅 `not clear` 者用之）
+    import vf230_wvf44_writability as WR
+    vcvm = WR.vcvm()
 
     # R-VF98 之家族計數 —— **以 facts 全集計**（非本組），
     # 蓋家族之成員可能落於他組，只算本組會把跨組之手足誤判為單條。
@@ -459,7 +481,7 @@ def main() -> None:
         # 前組已取者跳過 —— **以「可生成之條」計數，非以 facts 之索引計**，
         # 否則模板套不上而被 reject 者會使兩組之邊界錯位。
         if taken < SKIP:
-            t0, _ = build(f, 0, wr, refs, lv, famsize)
+            t0, _ = build(f, 0, wr, refs, lv, famsize, vcvm)
             if t0 is not None:
                 fp = _fp(t0)
                 if fp in seen_fp:
@@ -469,7 +491,7 @@ def main() -> None:
             continue
         if len(tcs) >= PER_BATCH * N_BATCH:
             break
-        t, why = build(f, seq, wr, refs, lv, famsize)
+        t, why = build(f, seq, wr, refs, lv, famsize, vcvm)
         if t is None:
             rejected.append({"leaf_id": f["leaf_id"], "form": f["form"], "why": why})
             continue

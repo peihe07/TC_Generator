@@ -256,7 +256,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
    "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Trailer_Light_Check`（R-VF78 二）；`tc_title` 取 `Trailer_Light_Check`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
@@ -322,7 +322,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
    "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Trailer_Light_Check`（R-VF78 二）；`tc_title` 取 `Trailer_Light_Check`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
@@ -388,7 +388,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
    "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Traffic Sign Assist Offset - NAFTA Setting` 7 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-TrafficSignAssistOffset - NAFTASetting`，31 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
@@ -454,7 +454,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
    "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
@@ -520,7 +520,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
    "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Traffic Sign Assist Offset - non-NAFTA Setting` 7 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting`，19 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
@@ -542,7 +542,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
    "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
@@ -630,7 +630,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX1_TYPE signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX1_TYPE signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX1_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -652,7 +652,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `WorksiteINVM_Visual_LFW` 之 DBC 有效值域全集為 {0 (OFF), 1 (ON)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `OFF` 為代表值，其次值 raw 1 = `ON` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -696,7 +696,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP.LanguageSelection signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP.LanguageSelection signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `LanguageSelection` 之 DBC 有效值域全集為 {0 (Italian), 1 (Deutsch), 2 (English), 3 (Espanol), 4 (Francais), 5 (Portugues), 6 (Polish), 7 (Dutch), 8 (Brazilian), 9 (Turkish), 10 (Mexican), 11 (English_US), 12 (Canadian), 13 (Russian), 14 (Chinese), 15 (Japanese), 16 (Korean), 17 (Arabic), 18 (Czech), 19 (Slovakian), 20 (Hungarian), 21 (Hindi), 22 (Slovenian)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Italian` 為代表值，其次值 raw 1 = `Deutsch` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -806,7 +806,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX2_TYPE signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX2_TYPE signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX2_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -850,7 +850,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `WorksiteINVM_Audible_LFW` 之 DBC 有效值域全集為 {0 (OFF), 1 (ON)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `OFF` 為代表值，其次值 raw 1 = `ON` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -1070,7 +1070,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX3_TYPE signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX3_TYPE signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX3_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -1114,7 +1114,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.Display_Synch signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.Display_Synch signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Display_Synch` 之 DBC 有效值域全集為 {0 (OFF), 1 (ON)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `OFF` 為代表值，其次值 raw 1 = `ON` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"

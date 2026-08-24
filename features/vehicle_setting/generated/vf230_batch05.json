@@ -57,7 +57,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: Scenario of receiving signal is not clear\nUpstream Verification Method: Scenario of receiving signal is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
    "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `the PROXI parameter`（R-VF78 二）；`tc_title` 取 `the PROXI parameter`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
@@ -475,7 +475,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP.PamChimeVolumeRear signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP.PamChimeVolumeRear signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PamChimeVolumeRear` 之 DBC 有效值域全集為 {0 (Low), 1 (Medium), 2 (High)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Low` 為代表值，其次值 raw 1 = `Medium` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -563,7 +563,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: Scenario of receiving signal is not clear\nUpstream Verification Method: Scenario of receiving signal is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
    "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `the PROXI parameter`（R-VF78 二）；`tc_title` 取 `the PROXI parameter`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
@@ -651,7 +651,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: Scenario of receiving signal is not clear\nUpstream Verification Method: Scenario of receiving signal is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
    "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `the PROXI parameter`（R-VF78 二）；`tc_title` 取 `the PROXI parameter`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
@@ -893,7 +893,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP.PamChimeVolumeFront signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP.PamChimeVolumeFront signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PamChimeVolumeFront` 之 DBC 有效值域全集為 {0 (Low), 1 (Medium), 2 (High)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Low` 為代表值，其次值 raw 1 = `Medium` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"

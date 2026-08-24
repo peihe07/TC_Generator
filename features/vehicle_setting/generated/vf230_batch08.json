@@ -276,7 +276,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX5_PWRMD signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX5_PWRMD signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX5_PWRMD` 之 DBC 有效值域全集為 {0 (IGNITION), 1 (BATTERY)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `IGNITION` 為代表值，其次值 raw 1 = `BATTERY` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -474,7 +474,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX6_PWRMD signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX6_PWRMD signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX6_PWRMD` 之 DBC 有效值域全集為 {0 (IGNITION), 1 (BATTERY)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `IGNITION` 為代表值，其次值 raw 1 = `BATTERY` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -628,7 +628,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.TSI_Offset_Mph signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.TSI_Offset_Mph signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `TSI_Offset_Mph` 之 DBC 有效值域全集為 {0 (0), 1 (1), 2 (2), 3 (3), 4 (4), 5 (5), 6 (6), 7 (7), 8 (8), 9 (9), 10 (10)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `0` 為代表值，其次值 raw 1 = `1` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -1090,7 +1090,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX5_TYPE signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX5_TYPE signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX5_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"

@@ -167,7 +167,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX4_TYPE signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX4_TYPE signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX4_TYPE` 之 DBC 有效值域全集為 {0 (Latching), 1 (Momentary)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Latching` 為代表值，其次值 raw 1 = `Momentary` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -277,7 +277,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP.SOC_Max_Lev signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP.SOC_Max_Lev signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `SOC_Max_Lev` 之 DBC 有效值域全集為 {0 (Level1), 1 (Level2)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Level1` 為代表值，其次值 raw 1 = `Level2` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -343,7 +343,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX1_HLEnbl signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX1_HLEnbl signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX1_HLEnbl` 之 DBC 有效值域全集為 {0 (Disable), 1 (Enable)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Disable` 為代表值，其次值 raw 1 = `Enable` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -497,7 +497,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX2_HLEnbl signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX2_HLEnbl signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX2_HLEnbl` 之 DBC 有效值域全集為 {0 (Disable), 1 (Enable)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Disable` 為代表值，其次值 raw 1 = `Enable` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -629,7 +629,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX3_HLEnbl signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX3_HLEnbl signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX3_HLEnbl` 之 DBC 有效值域全集為 {0 (Disable), 1 (Enable)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Disable` 為代表值，其次值 raw 1 = `Enable` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -783,7 +783,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.AUX4_HLEnbl signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.AUX4_HLEnbl signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `AUX4_HLEnbl` 之 DBC 有效值域全集為 {0 (Disable), 1 (Enable)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Disable` 為代表值，其次值 raw 1 = `Enable` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
@@ -1025,7 +1025,7 @@
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
    "writable": "W0",
    "dr_dependent": "",
-   "remarks": "",
+   "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP2.Trailer_Light_Check signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.Trailer_Light_Check signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
    "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Trailer_Light_Check` 之 DBC 有效值域全集為 {0 (Disable), 1 (Enable)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Disable` 為代表值，其次值 raw 1 = `Enable` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"

@@ -261,6 +261,33 @@ def c14_sibling_discriminator(tcs, ctx):
     return bad
 
 
+# ---- R-VF107：句界切分之守衛（W-VF76 §1）----
+# `clause_tail()` 以 `re.split(r"(?<=\.)\s+", …)` 切句，**對「句號後無空格」無效**
+# （實測 seq 407 之 `…availability.If $Signature_Lighting$…`，二句被切為一句）。
+# 其後果：若該處之後為管路句，`PLUMBING.match()` 只驗合併後之首字元，**刪不掉**。
+#
+# **准立之理由不是它現在會攔到東西，而是它現在攔不到**（V42 §2 逐字）——
+# 全 437 條實測：含此形態者 127 條，**因而留下管路句者 0 條**。
+# 「缺口存在而現行後果為零」是**現況而非保證**，而無此守衛則其發生無人會知
+# （A-VS106 同型）。**不改切分式本身**（改之影響全部 `test_item`，屬判準變動）。
+NOSPACE = re.compile(r"([a-z0-9)\]])\.([A-Z])")
+
+
+def c15_sentence_boundary(tcs, ctx):
+    bad = []
+    for t in tcs:
+        item = t.get("test_item") or ""
+        if not NOSPACE.search(item):
+            continue
+        fixed = NOSPACE.sub(r"\1. \2", item)
+        for sent in re.split(r"(?<=\.)\s+", fixed.strip()):
+            if sent.strip() and BATCHES.PLUMBING.match(sent):
+                bad.append(f"seq {t['seq']}：`test_item` 之句號後無空格致切分失效，"
+                           f"補空格重切後有管路句可刪 —— `{sent.strip()[:64]}…`")
+                break
+    return bad
+
+
 def c12_placeholder_sentence(tcs, ctx):
     """W-VF71 第 2 項：R-VF91 二末之必要句，缺之即 FAIL。
 
@@ -359,6 +386,7 @@ CHECKS = [
     ("12 R-VF91 二之必要句（佔位式）", c12_placeholder_sentence),
     ("13 同家族 tc_title 不得逐字相同", c13_sibling_title_unique),
     ("14 家族>1 之標題須含區辨 token", c14_sibling_discriminator),
+    ("15 句界切分未因無空格而漏刪管路句", c15_sentence_boundary),
 ]
 
 # 逐項之刻意破壞 —— 施於副本，用以證明該項**能夠**失敗。
@@ -398,6 +426,11 @@ MUTATIONS = {
     # **不可只改 ts[1] 之 leaf_id** —— 小樣本（pilot #3 僅 3 條且家族各異）下
     # 家族計數仍為 1，該項遂無從失效（實測 pilot #3 報「項 14 無法失效」）。
     # 故改為令二條**同屬一新家族**，其計數必為 2。
+    # 項 15：構造「句號後無空格 ＋ 其後為管路句」之 test_item。
+    # **其前半須為完整句且以小寫或 `)` 結尾**，否則 NOSPACE 不命中而破壞不生效。
+    "15": lambda ts: ts[0].__setitem__(
+        "test_item", "The HMI shall display the setting.VHAL shall forward the "
+                     "updated value to CarPropertyService."),
     "14": lambda ts: (ts[0].__setitem__("leaf_id", "SWE1-VC-MutantFamily-001"),
                       ts[1].__setitem__("leaf_id", "SWE1-VC-MutantFamily-002"),
                       ts[0].__setitem__("tc_title", "Some Setting is displayed"),
