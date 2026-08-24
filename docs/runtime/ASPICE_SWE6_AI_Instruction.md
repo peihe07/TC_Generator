@@ -504,6 +504,7 @@ not assert operability that contradicts the spec. Follow the behavior the spec
 explicitly states.
 
 #### 8.7.5 訊號與參數寫法（R-1 v3）
+**適用範圍**：全域預設；feature profile 之 cited `[OVERRIDE §8.7.5]` 勝出（FO §0）—— 現有 override：`vehicle_setting`（R-VS52／R-VS67，依 SWC 0708 交付本風格，不適用本節）。
 基準：CR30580/30581 參考本（TestResult 分頁）＋ SWC 0708 交付本。
 條文全文落檔於本節，台帳見 `docs/fw036/RULINGS_LEDGER.md`。
 **v1 之三件組 `<Signal> in <MESSAGE> on <segment>` 與 v2 之

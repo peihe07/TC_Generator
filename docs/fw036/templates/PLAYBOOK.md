@@ -50,7 +50,7 @@ Claude Code.** The two never blur:
 
 Chat touchpoints are exactly five: DECISIONS sign-off, framework/profile
 approval, pilot review, dry-run approval, delivery. Everything else runs in
-Claude Code without asking — bounded by the six stop conditions (canon §0):
+Claude Code without asking — bounded by the six stop conditions (FO §0):
 unresolved lookup, ambiguous segmentation, invariant violation, uncovered
 rule, fabrication pressure, done-region-vs-spec contradiction. On a stop:
 file it (ANOMALIES/DECISIONS entry with evidence + proposal), continue
@@ -72,7 +72,7 @@ elsewhere, and it comes back to chat.
 - After P6: `lint_report` + distributions (priority, design method) +
   placeholder set
 - Before P7 write: dry-run summary containing ALL checklist fields
-  (canon §6) — a summary missing a field is returned, not approved
+  (FO §6) — a summary missing a field is returned, not approved
 
 ## 3. The TC production loop (P5/P6 core, one parent per turn)
 
@@ -121,7 +121,7 @@ Remarks = reason + anomaly id.
 - What VARIES lives only in `feature.yaml` (paths, columns, done-region
   rule, spec_mode, reference template, lint vocab) and the profile
   ([OVERRIDE]/[ADD] clauses citing what they displace). Scripts are
-  copy+yaml, no shared library (canon §5 ruling).
+  copy+yaml, no shared library (FO §5 ruling).
 
 ## 5. Kickoff prompt template (paste into Claude Code)
 

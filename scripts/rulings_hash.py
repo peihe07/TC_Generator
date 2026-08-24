@@ -1,0 +1,217 @@
+#!/usr/bin/env python3
+"""裁決條文之指紋表（R-G13）。
+
+R-G13 以 `R-XX@<sha8>` 為下放包之引用格式，執行層自 repo 讀原文並回報
+所讀 sha8。本工具產生該對照表 `docs/fw036/RULINGS.sha.tsv`。
+
+**條文本體之定義**（量測條件，須與上繳包所載一致）：
+自錨點標題之**次行**起，至下一個同級或更高級標題之**前一行**止；
+首尾空行去除，行尾空白去除，行間以 `\\n` 接合，UTF-8 編碼後取 sha256。
+標題文字本身**不入雜湊** —— 標題含輪次與日期，其變動不應改變條文身分。
+
+唯讀，只寫 `--out` 所指之 tsv。`--check` 時比對既有 tsv，不符 exit 1。
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import re
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+
+# 錨點：`### R-XX <slug>`；階數 2~4 皆收，以 `#` 數記其級。
+# 子條之三種書寫（`R-VS57 之 (4)`／`R-VS57(4)`／`R-VS7(a)′`）一律收進 id，
+# 否則子條會與母條同 id 而假性碰撞。
+RE_ANCHOR = re.compile(
+    r"^(?P<hashes>#{2,4})\s*"
+    r"(?P<base>R-[A-Z]{0,3}\d+[A-Za-z]?)"
+    r"(?P<sub>(?:\s*之)?\s*\([0-9a-z]+\))?"
+    r"(?P<prime>[′″‴]*)"
+    r"(?P<qual>\s*(?:之補充|之修訂|之解釋|之更正|但書))?"
+    r"\s*(?P<rest>.*)$"
+)
+RE_HEADING = re.compile(r"^(#{1,6})\s")
+# 非條文段落：條號於此僅為標題重用（執行層回報、落實紀錄），其本體非條文
+RE_NON_RULING = re.compile(r"執行層回報|落實紀錄|實測紀錄|回報摘要")
+# 作廢標記：標題含之者，其自身與其下轄各級標題皆為 superseded
+RE_SUPERSEDED = re.compile(r"作廢|SUPERSEDED|已撤回")
+# 群組標題（`## R-C1 ~ R-C5 —— 下放包 01`）：其非單條之錨點，不得佔用首條之 id
+RE_GROUP = re.compile(r"^[\s~～、／/,]*(?:及|與|至)?\s*R-[A-Z]{0,3}\d")
+
+OUT_DEFAULT = "docs/fw036/RULINGS.sha.tsv"
+COLUMNS = ["ruling_id", "kind", "sha8", "sha256", "source", "line", "body_lines", "ancestor", "slug"]
+# W-P1 §4：本輪結構化範圍為 canon §9 與 vehicle_setting；其餘 feature 延後
+SCOPE_DEFAULT = ["docs/fw036/FEATURE_ONBOARDING.md", "features/vehicle_setting/RULINGS.md"]
+
+
+@dataclass(frozen=True)
+class Ruling:
+    ruling_id: str
+    kind: str            # ruling | report（report 為條號被重用作回報標題者）
+    sha256: str
+    source: str
+    line: int
+    body_lines: int
+    ancestor: str        # 最近之 `## ` 祖先標題，供判讀重複之成因
+    slug: str
+
+    @property
+    def sha8(self) -> str:
+        return self.sha256[:8]
+
+    def row(self) -> str:
+        return "\t".join([
+            self.ruling_id, self.kind, self.sha8, self.sha256,
+            self.source, str(self.line), str(self.body_lines),
+            self.ancestor, self.slug,
+        ])
+
+
+def body_sha(lines: list[str]) -> tuple[str, int]:
+    """條文本體之雜湊與其行數（量測條件見 module docstring）。"""
+    trimmed = [ln.rstrip() for ln in lines]
+    while trimmed and not trimmed[0]:
+        trimmed.pop(0)
+    while trimmed and not trimmed[-1]:
+        trimmed.pop()
+    body = "\n".join(trimmed)
+    return hashlib.sha256(body.encode("utf-8")).hexdigest(), len(trimmed)
+
+
+def extract(path: Path, root: Path) -> list[Ruling]:
+    """自單一 markdown 檔抽出全部具錨點之條文。"""
+    lines = path.read_text(encoding="utf-8").splitlines()
+    source = str(path.relative_to(root))
+    # (idx, level, id, ancestor, slug, superseded)
+    anchors: list[tuple[int, int, str, str, str, bool]] = []
+    ancestor = ""
+    in_fence = False
+    details = 0          # `<details>` 巢深；其內之條文一律 superseded（留痕用之原文）
+    dead_level = 0       # >0 表尚在某作廢標題之轄下，其值為該標題之級
+    for idx, line in enumerate(lines):
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        details += line.count("<details") - line.count("</details>")
+        h = RE_HEADING.match(line)
+        if h:
+            level = len(h.group(1))
+            if dead_level and level <= dead_level:
+                dead_level = 0
+            if RE_SUPERSEDED.search(line):
+                dead_level = level
+        if line.startswith("## "):
+            ancestor = line[3:].strip()
+        m = RE_ANCHOR.match(line)
+        if m:
+            sub = (m.group("sub") or "").replace("之", "").replace(" ", "")
+            qual = (m.group("qual") or "").strip().lstrip("之")
+            ruling_id = m.group("base") + sub + m.group("prime") + (f"+{qual}" if qual else "")
+            slug = m.group("rest").strip().lstrip("—–-").strip()
+            dead = details > 0 or (dead_level and len(m.group("hashes")) > dead_level)
+            anchors.append((idx, len(m.group("hashes")), ruling_id, ancestor, slug, bool(dead)))
+
+    out: list[Ruling] = []
+    for idx, level, ruling_id, anc, slug, dead in anchors:
+        end = len(lines)
+        for j in range(idx + 1, len(lines)):
+            h = RE_HEADING.match(lines[j])
+            if h and len(h.group(1)) <= level:
+                end = j
+                break
+        sha, n = body_sha(lines[idx + 1:end])
+        if RE_GROUP.match(slug):
+            kind = "group"
+        elif dead:
+            kind = "superseded"
+        elif RE_NON_RULING.search(anc):
+            kind = "report"
+        else:
+            kind = "ruling"
+        out.append(Ruling(ruling_id, kind, sha, source, idx + 1, n, anc, slug))
+    return out
+
+
+def collect(root: Path, targets: list[str]) -> tuple[list[Ruling], list[str]]:
+    """掃描目標檔；回傳條文清單與重複 id 之警告。"""
+    rulings: list[Ruling] = []
+    for rel in targets:
+        p = root / rel
+        if not p.exists():
+            continue
+        rulings.extend(extract(p, root))
+
+    seen: dict[str, Ruling] = {}
+    dupes: list[str] = []
+    for r in (x for x in rulings if x.kind == "ruling"):
+        prev = seen.get(r.ruling_id)
+        if prev is None:
+            seen[r.ruling_id] = r
+        else:
+            dupes.append(
+                f"{r.ruling_id}: {prev.source}:{prev.line} 與 {r.source}:{r.line}"
+                + ("（本體相同）" if prev.sha256 == r.sha256 else "（**本體不同**）")
+            )
+    rulings.sort(key=lambda r: (r.source, r.line))
+    return rulings, dupes
+
+
+def default_targets(root: Path, all_features: bool) -> list[str]:
+    """預設為 W-P1 之結構化範圍；`--all-features` 擴及全部 feature（調查用）。"""
+    if not all_features:
+        return list(SCOPE_DEFAULT)
+    targets = ["docs/fw036/FEATURE_ONBOARDING.md"]
+    targets += sorted(
+        str(p.relative_to(root)) for p in (root / "features").glob("*/RULINGS.md")
+    )
+    return targets
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="裁決條文指紋表（R-G13）")
+    ap.add_argument("--root", default=".", help="repo 根目錄")
+    ap.add_argument("--out", default=OUT_DEFAULT, help="輸出 tsv")
+    ap.add_argument("--target", action="append", default=None, help="指定來源檔（可重複）")
+    ap.add_argument("--check", action="store_true", help="只比對既有 tsv，不寫入")
+    ap.add_argument("--all-features", action="store_true", help="擴及全部 feature（調查用，非 W-P1 範圍）")
+    ap.add_argument("--gate", action="store_true", help="有重複 id 之本體歧異時 exit 1")
+    args = ap.parse_args()
+
+    root = Path(args.root).resolve()
+    targets = args.target or default_targets(root, args.all_features)
+    rulings, dupes = collect(root, targets)
+
+    body = "\n".join(["\t".join(COLUMNS)] + [r.row() for r in rulings]) + "\n"
+    out_path = root / args.out
+
+    if args.check:
+        if not out_path.exists():
+            print(f"FAIL: {args.out} 不存在", file=sys.stderr)
+            return 1
+        if out_path.read_text(encoding="utf-8") != body:
+            print(f"FAIL: {args.out} 與現行條文不符 —— 重跑本工具並覆核 diff", file=sys.stderr)
+            return 1
+        print(f"OK: {args.out} 與現行條文相符（{len(rulings)} 條）")
+    else:
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(body, encoding="utf-8")
+        tally: dict[str, int] = {}
+        for r in rulings:
+            tally[r.kind] = tally.get(r.kind, 0) + 1
+        breakdown = "／".join(f"{k} {v}" for k, v in sorted(tally.items()))
+        print(f"寫入 {args.out}：{len(rulings)} 錨點（{breakdown}），來源 {len(targets)} 檔")
+
+    hard = [d for d in dupes if "本體不同" in d]
+    if dupes:
+        print(f"\n重複 ruling_id {len(dupes)} 組（其中本體不同 {len(hard)} 組）：", file=sys.stderr)
+        for d in dupes:
+            print(f"  {d}", file=sys.stderr)
+    return 1 if (args.gate and hard) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

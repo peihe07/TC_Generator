@@ -12,7 +12,7 @@ paths:
   spec_pdf: "inputs/<spec pdf>"            # null if spec_mode E
   popup_list: "inputs/<Pop Up List xlsx>"  # null if not referenced
 
-spec_mode: "A"        # A/B/C/D/E per FEATURE_ONBOARDING §3
+spec_mode: "A"        # A/B/C/D/E per FO §3
 spec_reference_template: "<Spec Filename>_{outline}"
 
 workbook:
@@ -46,7 +46,7 @@ done_region:
 write_back:
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"
-  fill_test_group_set: false     # true only under BLANK per canon §2
+  fill_test_group_set: false     # true only under BLANK per FO §2
 
 lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary
