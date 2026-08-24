@@ -156,9 +156,10 @@ Remarks = reason + anomaly id.
 
 ### Open rulings
 
+> Q3（D3／D4／D5）**已於 2026-08-24 結清** —— R-PMH27，三欄留空。
+
 | 標記 | 事項 | 狀態 |
 |---|---|---|
-| **`[PEI-REOPEN]`** | **R-PMH10（D3／D4／D5 留空）之 Q3 重裁** —— 其依據「語料 5/5 無一填寫」證據基礎不完整；04 包已依 R-PMH19 取得全母體語料（11 檔，D5 **3 非空**），**待 Pei 重裁** | 行為維持「不寫入」，**不阻斷** |
 | `[PEI]` | Test Set（H）欄之值 —— R-PMH6 延後至 Phase 3 | Phase 3 |
 | `[PEI]` | `DECISIONS.md` §6 之 Part N 與 profile `[OVERRIDE]` | Phase 3 |
 

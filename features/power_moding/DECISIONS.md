@@ -17,7 +17,7 @@ sign-off = binding as proposed.
 - workbook_state: [AUTO] BLANK
 - form layout revision: [AUTO] C (has Estimated Test Time)
 - column mapping: [AUTO] 15 fields + estimated_test_time = 16，與 `feature.yaml` 零衝突（R-PMH9 之四方交叉佐證另證 34/34 逐欄相等）
-- 前言三欄: [RULED R-PMH10 · **`[PEI-REOPEN]`**] `D3`／`D4`／`D5` **不寫入任何值**。⚠ 其依據「語料 5/5 皆空」**證據基礎不完整** —— 04 包依 R-PMH19 建立母體（11 檔）後實測：`D3` 11/11 空、`D4` 11/11 空、**`D5` 3/11 非空**（AM:FM／Privacy Mode／SiriusXM）。**Q3 待 Pei 重裁**；重裁前行為不變，故不阻斷
+- 前言三欄: [RULED R-PMH27，Pei 2026-08-24 裁「（甲）」] `D3 審查者`／`D4 目的`／`D5 範圍 Scope` **一律留空**。結論同 R-PMH10，**其依據段由 R-PMH27 更換** —— 原「語料 5/5 無一填寫」作廢（母體未定義）。改依 R-PMH24 之母體實測：`D3` 全空、`D4` 全空、`D5` 空者略多（分析層 9/16；執行層實測 9/17，差異見上繳 05 §2）。**本裁定非多數決**，須連同三項一併記載：(a) 非空者中有數者填錯（`HomeHMI` 填他 feature 之 037 報告名、`Notifications HMI` 填表單編號本身、`App Team Effort` 填一份文件編號）；(b) 案（乙）之代價為版號過期無通知機制（本 feature 037 為 `V0.1`，Popup 已至 `V0.2`）；(c) 部分 feature 無單一份 037（VF230 對應 11 份、CFTS044 對應 4 份），案（乙）在全案非良定義。**日後若客戶要求填寫，字串由 Pei 給定並另立新條，不得以「補上」之名逕行填寫。**
 - DV 全量: [AUTO 03 包步驟 2] legacy 3 組（`P10:Q1411` = `"P0,P1,P2,P3"`／`T10:Z1411` = `"0,1"`／`AF10:AF1411` = `"Pass, Fail, Pending,Block,NA"`）＋ x14 1 組（`R10:R1411` → `下拉選單!$A$1:$A$9`）。四份已交付件之逸出 **0**
 - 寫回機制: [RULED R-G3／R-G1 註] x14 DV 存在 —— **不得 `openpyxl` + `save()`**，一律走 `xlsx_surgical` splice
 - done segments: [AUTO] none

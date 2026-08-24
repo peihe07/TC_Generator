@@ -11,7 +11,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 02 | 2026-08-23 | 母本改定、`workbook_state` 改判、Phase 1 前置 | [handoff/02_baseline_switch.md](handoff/02_baseline_switch.md) | [upstream/02_baseline_switch.md](upstream/02_baseline_switch.md) | R-PMH7–R-PMH12（逐字抄錄 6/6 相符） | A-PMH06–A-PMH08；A-PMH01／A-PMH05 → RESOLVED | **步驟 1–10 全數執行；九條停止條件全未觸發** |
 | 03 | 2026-08-23 | Test Group 欄值改判、DV 列舉值實測、Phase 1 recon | [handoff/03_testgroup_and_dv.md](handoff/03_testgroup_and_dv.md) ＋ [03a_pei_rulings.md](handoff/03a_pei_rulings.md) | [upstream/03_testgroup_and_dv.md](upstream/03_testgroup_and_dv.md) | R-PMH13–R-PMH18（逐字抄錄 7/7 相符） | A-PMH09、A-PMH10；A-PMH06（附 PENDING-CANON）／A-PMH07 → RESOLVED | **步驟 1–8 全數執行；九條停止條件全未觸發** |
 | 04 | 2026-08-23 | R-PMH10 證據基礎更正、母體判準、機器檢查補實 | [handoff/04_corpus_and_assertions.md](handoff/04_corpus_and_assertions.md) | [upstream/04_corpus_and_assertions.md](upstream/04_corpus_and_assertions.md) | R-PMH19–R-PMH23（逐字抄錄 5/5 相符） | A-PMH11／A-PMH12；A-PMH09 → RESOLVED、A-PMH10 證據更正 | **步驟 1–7 全數執行；九條停止條件全未觸發** |
-| 05 | 2026-08-24 | 母體判準修正、Q3 完整語料、Phase 3 前置 | [handoff/05_corpus_fix_and_framework_prep.md](handoff/05_corpus_fix_and_framework_prep.md) | [upstream/05_corpus_fix_and_framework_prep.md](upstream/05_corpus_fix_and_framework_prep.md) | R-PMH24／R-PMH25（逐字抄錄 2/2 相符） | （未立新 A-PMH —— 新發現皆為停止條件之回報） | **步驟 1–6 全數執行；停止條件 7、8 觸發，已查明並回報** |
+| 05 | 2026-08-24 | 母體判準修正、Q3 完整語料與**重裁定案**、Phase 3 前置 | [handoff/05_corpus_fix_and_framework_prep.md](handoff/05_corpus_fix_and_framework_prep.md) ＋ [05a](handoff/05a_upstream_naming_scope.md)／[05b](handoff/05b_q3_final.md) | [upstream/05_corpus_fix_and_framework_prep.md](upstream/05_corpus_fix_and_framework_prep.md) | R-PMH24–R-PMH27（逐字抄錄 4/4 相符） | （未立新 A-PMH —— 新發現皆為停止條件之回報） | **步驟 1–6 全數執行；停止條件 7、8 觸發，已查明並回報** |
 
 ## 01 輪要點
 
@@ -337,3 +337,38 @@ Pei 之追認就其字面只及於本 feature，**執行層未改樣板**（03a 
 
 **待 Pei 三項**：Q3 之 `D5`（語料已備齊）／`_Rebuilt` 何者為交付態／
 `App Team Effort` 是交付夾或工作子目錄（決定母體 17 或 16）。
+
+## 05a／05b 要點（併入第 05 輪）
+
+**R-PMH26 —— 上游 037 命名不在範圍**（Pei：「037的報告命名不一致不關我的事
+我不能要求他們改」）。四項拘束：不開 DR／不以「命名將趨一致」為前提設計判準／
+不登記為 anomaly／**判準若取決於上游命名即不成立**。
+- **(d) 之適用點為 `inputs/MANIFEST.sha256`** —— 其指稱以 SHA256 為主、
+  檔名為輔，**已滿足，未改動**；理由已記入 `feature.yaml`，
+  以免日後有人把台帳改成只記檔名。
+
+**R-PMH27 —— Q3 定案：三欄留空**（Pei：「（甲）」）。**Q3 結清。**
+- 結論同 R-PMH10，**依據段更換**：原「語料 5/5 無一填寫」作廢（母體未定義）。
+- **本裁定明載「不是多數決」**，三項須隨條保留：非空者中有數者填錯／
+  案（乙）之版號過期無通知機制（本 037 為 `V0.1`，Popup 已至 `V0.2`）／
+  部分 feature 無單一份 037（VF230 11 份、CFTS044 4 份）。
+- `[PEI-REOPEN]` 已自 `DECISIONS.md`／`feature.yaml`／`PLAYBOOK.md` **全數撤除**
+  （殘留 0）；**R-PMH10 原文 SHA256 `885070968235b262` 維持不變**。
+
+**⚠ R-PMH27 所引母體為 16，執行層實測 17** —— `D5` 應為 **9 空 / 8 非空**，
+其 (a) 之「兩者填錯」應為 **三者**。**結論不受影響**（非多數決，且兩種母體下
+`D3`／`D4` 皆全空），已以勘誤附註記於條後，原條文不改字。
+
+**05a §三之數字獨立複驗（先算後比）：全部相符** —— VF230 11／CFTS044 4／
+Vehicle Settings 4／其餘各 1；本 feature `V0.1`、Popup `V0.2` 皆屬實。
+037 檔總數 36、分布 20 個目錄。**口徑補述**：那 17 個「各 1 份」之目錄中有
+4 個是用途目錄（`AM:FM/REF`、`SiriusXM/REF`、`VF230_V1_R5/output{,/validation}`），
+**「17 個目錄」≠「17 個 feature」**；05a 之實質結論不受影響。
+
+**仍未結清（不在 05b §四之表內，特此具名）**：上繳 05 §10 之
+**停止條件 7、8** —— 母體 16／17 之定案、`_Rebuilt` 何者為交付態。
+二者皆不阻斷 Phase 3。
+
+**狀態**：P0 ✅／P1 ✅／**P2 待簽核**。**無阻斷 Phase 3 之未決項。**
+下一步：Layer 2 提案（分析層提出、Pei 裁定），輸入為
+`data/layer3_sections.tsv`。

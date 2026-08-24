@@ -39,6 +39,17 @@ test_group: "Disclaimer screen"
 # 故本條為本 feature 之裁定，**不主張為全案慣例**；他 feature 引用前須自查其交付件。
 tc_id_format: "NR1L-DisclaimerScreen-{NNN}"
 
+# R-PMH26 —— 上游 037 報告之**檔名**一致性不在本 feature 之範圍。
+#   (a) 不就 037 檔名差異開 DR、不產生要求上游改名之建議；
+#   (b) 不以「上游命名將趨於一致」為前提設計任何欄位、判準或腳本；
+#   (c) 037 檔名之差異不登記為 anomaly（非缺陷，是無權處置之外部事實）；
+#   (d) 判準之正確性若取決於上游命名一致，該判準即不成立。
+# **(d) 於本 feature 之適用點：`inputs/MANIFEST.sha256`。**
+#   該台帳以「SHA256 + 檔名」兩欄記載，其**指稱以 SHA256 為主、檔名為輔** ——
+#   `shasum -c` 之比對標的是雜湊，檔名只是定位。**本項已滿足，未改動**；
+#   記明於此，以免日後有人把台帳改成只記檔名（那會使指稱依賴上游命名）。
+# 下列 `paths.*` 之值為檔名，其正確性由 MANIFEST 之 SHA256 背書，非由檔名自證。
+
 paths:
   # R-PMH7 —— 交付基底為 R-G1 全域母本之工作副本。
   # SHA256 6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2
@@ -120,14 +131,16 @@ workbook:
   #   **客戶那份**之列號（10–57），**不是寫回目標列**。母本為 BLANK，
   #   寫回目標由 `write_back.first_row` 起之 append 順序決定。
   #   任何以 `row_036_customer` 定位寫回之程式即為缺陷（02 §11 第 4 項）。
-  # R-PMH10 —— 前言三欄不寫入任何值。
-  # ⚠ **`[PEI-REOPEN]`（04 包 §三）** —— 原依據「語料 5/5 皆空」之母體未定義。
-  #   依 R-PMH19 建立母體（ASW-R2 全樹 28 候選 → 排除 14+1+2 → **11 檔**）後實測：
-  #     D3 = 11/11 空、D4 = 11/11 空、**D5 = 3/11 非空**
-  #     （AM:FM `SWE1_AMFM_FM-WI-FSM-037-A03 …_20260323`、
-  #      Privacy Mode `SWE1_CFTS_022-Privacy_Features`、
-  #      SiriusXM `SWE1_SXM_FM-WI-FSM-037-A03 …_20260406`）
-  #   **Q3 待 Pei 重裁**；重裁前行為與現行相同（不寫入），故不阻斷。
+  # R-PMH27（Pei 2026-08-24 裁「（甲）」）—— 前言三欄一律留空。**Q3 已結清。**
+  # 結論同 R-PMH10，其依據段更換：原「語料 5/5 無一填寫」作廢（母體未定義），
+  # 改依 R-PMH24 之母體實測 —— D3 全空、D4 全空、D5 空者略多
+  # （分析層 9/16；執行層實測 9/17，差異見 upstream/05 §2，繫於
+  #  `Engineering Mode/App Team Effort/` 之身分，待 Pei 裁）。
+  # ⚠ 本裁定**非多數決**，三項須隨條保留：
+  #   (a) 非空者中有數者填錯（他 feature 之 037 報告名／表單編號本身／文件編號）；
+  #   (b) 案（乙）之代價為版號過期無通知機制（本 037 為 V0.1，Popup 已至 V0.2）；
+  #   (c) 部分 feature 無單一份 037（VF230 11 份、CFTS044 4 份），案（乙）非良定義。
+  # 日後若客戶要求填寫，字串由 Pei 給定並另立新條，不得以「補上」之名逕行填寫。
   preamble_cells_keep_blank: ["D3", "D4", "D5"]
   data_validation:               # 實測自 sheet6.xml 之 sqref，未經 openpyxl 存回
     priority:      {range: "P10:Q1411", kind: "standard"}
