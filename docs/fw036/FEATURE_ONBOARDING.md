@@ -195,12 +195,12 @@ Ambiguous segmentation → Tier 2 with suspect row numbers listed.
 
 | Decision | BLANK | PARTIAL_CLEAN | PARTIAL_INTERLEAVED | FULL |
 |---|---|---|---|---|
-| Style authority | fallback chain (§3) | done region | done region | done region |
+| Style authority | fallback chain (FO §2.1) | done region | done region | done region |
 | Write-back | append from first data row | positional freeze + rewrite tail | in-place segment rewrite + **content-hash** invariant | none |
 | Done invariant | n/a | positional hash | ordered content hash | full hash |
 | Draft rows | n/a | discard & regenerate (default) | discard & regenerate (default) | n/a |
 
-### BLANK fallback chain (style decisions when no done region exists)
+### 2.1 BLANK fallback chain (style decisions when no done region exists)
 
 `done region → nearest FW036 sibling feature done region (STYLE ONLY) →
 docs.md generic rules`
@@ -715,6 +715,7 @@ sha 不符即停下（FO §8.4）。**原文段保留不刪**（R-TM13 之精神
 | R-G19 | prompt 指紋 | 同上 |
 | R-G20 | 規則副本同步指紋 | 同上 |
 | R-G21 | 自查表機檢對映 | 同上 |
+| R-G22 | 條文之任何字元變動皆變更其 sha | 25 包 §C 裁定 C，Pei 2026-08-24 |
 
 #### R-G1 — 036 母本之固定與其身分
 
@@ -898,6 +899,23 @@ R-G21：§9 自查表逐項標註其保證來源：有對應 lint 閘者記閘 i
 
 > **本條所稱之自查表指 `IN §9`（Self-Check）**，非本節。
 > 條文原文寫「§9」，依 R-G18 於此註明其實指，**原文不改**。
+
+#### R-G22 — 條文之任何字元變動皆變更其 sha
+
+```
+R-G22：條文之任何字元變動（含加註、沿革、SUPERSEDED 標記）皆改變其
+sha，不設「加註不算改動」之例外。下放包引用之 sha8 與執行層實讀不符時，
+執行層停下回報（R-G13），分析層核對變動性質後於下一包換發新 sha8 引用；
+變動屬實質修訂者，依通則另出 ′ 版條文。
+```
+
+> **本條之來源**（24 上繳 §十三-7）：R-VF45 於 24 包被加註
+> `[本句之目標編號經裁定 3 取代]` 後其 sha 即變，而該加註**不是實質修訂**。
+> 「加註是否算改動」若不裁，R-G13 之 sha 比對會在每次留痕加註後產生
+> 一次假性不符，而假性不符多了就會被當成噪音忽略 —— **那正是 R-G13
+> 之效力所繫**。故本條選擇「一律算改動」，把成本放在換發引用（分析層一次）
+> 而非放在判斷變動性質（執行層每次）。
+> **其代價**：留痕加註亦須換發 sha8，下放包之引用表因而每包可能有數列更新。
 
 #### R-G4／R-G7 之原文與 R-G12 之來源
 

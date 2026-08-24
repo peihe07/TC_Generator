@@ -37,8 +37,11 @@ RE_HEADING = re.compile(r"^(#{1,6})\s")
 RE_NON_RULING = re.compile(r"執行層回報|落實紀錄|實測紀錄|回報摘要")
 # 作廢標記：標題含之者，其自身與其下轄各級標題皆為 superseded
 RE_SUPERSEDED = re.compile(r"作廢|SUPERSEDED|已撤回")
-# 群組標題（`## R-C1 ~ R-C5 —— 下放包 01`）：其非單條之錨點，不得佔用首條之 id
-RE_GROUP = re.compile(r"^[\s~～、／/,]*(?:及|與|至)?\s*R-[A-Z]{0,3}\d")
+# 群組標題（`## R-C1 ~ R-C5 —— 下放包 01`）：其非單條之錨點，不得佔用首條之 id。
+# 判別特徵為 slug **以分隔符或連接詞起首**再接另一條號；
+# 不得只憑「slug 以條號起首」—— `### R-VS82 —— R-G14 綠色通道之生效起點`
+# 之 slug 即以條號起首而其為單條錨點（W-P2 實測之假陽）。
+RE_GROUP = re.compile(r"^\s*(?:[~～、／/,]|及|與|至)\s*R-[A-Z]{0,3}\d")
 
 OUT_DEFAULT = "docs/fw036/RULINGS.sha.tsv"
 COLUMNS = ["ruling_id", "kind", "sha8", "sha256", "source", "line", "body_lines", "ancestor", "slug"]

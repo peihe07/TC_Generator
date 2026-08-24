@@ -1,0 +1,21 @@
+gate_id	criterion	source_ruling	effective_date	granularity	status	scope	hit_rounds	hits_total	hits_recent	retire_candidate	retired
+A	禁用動詞 (proc)	未載明	未載明	每次命中	已校準	always	8	156	57,37,6,31,0,0,20,5	N	N
+B	ER 情態詞 (er)	未載明	未載明	每次命中	已校準	always	8	42	0,0,22,18,2,0,0,0	N	N
+C	hedge (test_item 括號下半)	R-6b	未載明	每次命中	已校準（R-6b 範圍：Media 錨值 1→0）	always	8	3	0,0,0,0,0,1,0,2	N	N
+D	PC 違規 (pre)	未載明	未載明	每次命中／每編號行	已校準	always	8	332	8,275,6,21,2,0,0,20	N	N
+E	proc/er 編號行數不對齊	未載明	未載明	每列	已校準	always	8	13	0,1,1,5,0,1,0,5	N	N
+F	方括號佔位 (proc)	未載明	未載明	每次命中	已校準	always	8	187	21,33,129,3,0,0,0,1	N	N
+G	Test Set 空值	未載明	未載明	每列	已校準（詞彙表外值待接入）	always	8	254	0,8,0,29,216,0,0,1	N	N
+H	ER 模糊語 (er)	未載明	未載明	每次命中	已校準	always	8	7	0,1,6,0,0,0,0,0	N	N
+I	test_item 括號下半缺失	未載明	未載明	每列	已校準	always	8	239	154,8,29,28,16,2,0,2	N	N
+I-sibling	同 Requirement ID 括號行逐字重複	M15	未載明	每列	未校準（M15）	always	8	128	12,2,0,2,0,6,104,2	N	N
+J	行首大寫	未載明	未載明	每行	已校準（行計口徑）	always	8	20	0,14,0,0,0,0,2,4	N	N
+K	CJK 字元	R-5	未載明	每列每欄	已校準（分級待 R-5）	always	8	1736	0,1043,0,45,0,0,0,648	N	N
+L	test_item 上半過長 (>50 tokens)	R-3	未載明	每列	已校準（閾值待 R-3）	always	8	627	29,375,0,44,17,0,71,91	N	N
+M	空欄三態	未載明	未載明	每列每欄	已校準	always	8	208	0,14,54,39,5,0,0,96	N	N
+N	行尾多餘句號	未載明	未載明	每行	已校準	always	8	6703	2916,0,1304,2111,369,2,0,1	N	N
+P	訊號寫法不合 R-1 v2	未載明	未載明	每次命中	已校準（SWC 0708：195 —— proc 11／er 184，見上繳 09）	always	1	41	未知,未知,未知,未知,未知,未知,41,未知	N	N
+Q	不可見字元（NBSP／全形空格／行尾空白）	R-10(a)	未載明	每行每欄	未校準（R-10(a)，21 包新增）	profile-only	0	未知	未知，自本輪起算	N	N
+R	Pre-Condition 版面（未編號行／多條件並列）	R-9(a)	未載明	每行	未校準（R-9(a)，21 包新增）	profile-only	0	未知	未知，自本輪起算	N	N
+T	PENDING 說明非英文	R-14	未載明	每次命中	未校準（R-14，21 包新增）	profile-only	0	未知	未知，自本輪起算	N	N
+U	PENDING 佔位（四欄全掃，含 ER 側）	A-PM16	未載明	每次命中	計數用（A-PM16：ER 側原不受任何檢查覆蓋）	profile-only	0	未知	未知，自本輪起算	N	N

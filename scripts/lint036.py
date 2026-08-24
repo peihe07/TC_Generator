@@ -761,13 +761,47 @@ def render_report(path: Path, results: list[SheetResult], length_limit: int,
 
 
 def report_stem(path: Path) -> str:
-    """由檔名推出報告 tag（取 SWQT_ 之後、日期之前的段）。"""
+    """由檔名推出報告 tag（取 SWQT_ 之後、日期之前的段）。
+
+    **日期起首之 tag 併入 feature 名**（25 包 §D-6）：036 母本之副本檔名為
+    `…_SWQT_20260817_ext.xlsx`，`SWQT_` 之後直接是日期，去日期後 tag 為
+    `20260817_ext` —— **不帶任何 workbook 身分**，故 `user_profiles`／
+    `time_management`／`power_moding` 三份之報告互相覆寫。
+    此形態下以 `features/<name>/` 之 name 前置，使 tag 帶回身分。
+
+    **非此形態者 tag 一律不變** —— `AMFM`／`Home`／`CFTS012_DealerMode`
+    等既有八本之報告檔名須維持（G-N 之回歸向）。
+    """
     stem = path.stem
     m = re.search(r"SWQT_(.+)$", stem)
     tag = m.group(1) if m else stem
     tag = re.sub(r"_\d{8}.*$", "", tag)          # 去除尾端日期與 (done)/(Refine) 註記
     tag = re.sub(r"[^\w.-]+", "_", tag).strip("_")
+    if re.match(r"^\d{8}(?:[_.-]|$)", tag):
+        tag = f"{_identity_dir(path)}_{tag}"
     return tag
+
+
+# 通用容器目錄 —— 其名不帶 workbook 身分，取身分時跳過
+_GENERIC_DIRS = {"inputs", "SWE6", "docs", "test", "data", "generated", "output", "_intake"}
+
+
+def _identity_dir(path: Path) -> str:
+    """日期起首之 tag 取身分用之目錄名。
+
+    `features/<name>/…` 取 `<name>`；否則取**最近之非通用容器**祖先目錄
+    （`docs/test/Dealer Mode/SWE6/x.xlsx` → `Dealer_Mode`）。
+    皆無者取 `unknown` —— 不回退為空字串，否則又得到一個不帶身分之 tag。
+    """
+    parts = path.resolve().parts
+    if "features" in parts:
+        i = parts.index("features")
+        if i + 1 < len(parts):
+            return parts[i + 1]
+    for name in reversed(parts[:-1]):
+        if name not in _GENERIC_DIRS and not name.startswith("."):
+            return re.sub(r"[^\w.-]+", "_", name).strip("_") or "unknown"
+    return "unknown"
 
 
 # --- CLI ---------------------------------------------------------------------

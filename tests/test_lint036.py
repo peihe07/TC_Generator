@@ -421,6 +421,66 @@ def test_report_stem_strips_date_and_annotation():
     assert lint036.report_stem(path) == "CFTS012_DealerMode"
 
 
+# --- 日期起首之 tag 併入身分（25 包 §D-6）-----------------------------------
+#
+# 缺陷之原文以**字面**釘入（G-N）：036 母本副本之檔名於 `SWQT_` 之後
+# 直接是日期，去日期後 tag 為 `20260817_ext`，三個 feature 之報告互相覆寫。
+
+_MASTER = ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA "
+           "Test Case Specification & Result_SWQT_20260817_ext.xlsx")
+
+
+def test_date_only_tag_collides_before_identity_is_added(tmp_path):
+    """缺陷之形狀：三份不同 feature 之母本副本，其 `SWQT_` 段只有日期。"""
+    bare = [Path(_MASTER)]
+    # 未帶目錄脈絡時，tag 只能是日期段本身 —— 這正是覆寫之成因
+    assert lint036.report_stem(bare[0]).endswith("20260817_ext")
+
+
+def test_identity_dir_disambiguates_the_three_features(tmp_path):
+    """修正後不得再命中（G-N 之回歸向）：三份之 tag 須相異。"""
+    tags = set()
+    for feature in ("user_profiles", "time_management", "power_moding"):
+        p = tmp_path / "features" / feature / "inputs" / _MASTER
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_bytes(b"")
+        tags.add(lint036.report_stem(p))
+    assert tags == {
+        "user_profiles_20260817_ext",
+        "time_management_20260817_ext",
+        "power_moding_20260817_ext",
+    }, tags
+
+
+def test_identity_falls_back_to_nearest_non_generic_dir(tmp_path):
+    """無 `features/` 者取最近之非通用容器祖先（`docs/test/<name>/SWE6/`）。"""
+    name = ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA "
+            "Test Case Specification & Result_SWQT_20260121.xlsx")
+    got = {}
+    for area in ("Dealer Mode", "Player"):
+        p = tmp_path / "docs" / "test" / area / "SWE6" / name
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_bytes(b"")
+        got[area] = lint036.report_stem(p)
+    assert got == {"Dealer Mode": "Dealer_Mode_20260121",
+                   "Player": "Player_20260121"}, got
+
+
+@pytest.mark.parametrize("stem, expected", [
+    # 範圍向（R-G9）：非日期起首者 tag 一律不變 —— 既有八本之報告檔名須維持
+    ("FM-WI-FSM-036-A01 x_SWQT_AMFM_20260821", "AMFM"),
+    ("FM-WI-FSM-036-A01 x_SWQT_Home_20260809", "Home"),
+    ("FM-WI-FSM-036-A01 x_SWQT_CFTS012_DealerMode_20260417(done)", "CFTS012_DealerMode"),
+    ("FM-WI-FSM-036-A01 x_SWQT_PowerManagement_20260821(Revise)", "PowerManagement"),
+    ("FM-WI-FSM-036-A01 x_SWQT_UserProfiles_20260820_itemgap", "UserProfiles"),
+])
+def test_named_tags_are_untouched_by_the_fix(tmp_path, stem, expected):
+    p = tmp_path / "features" / "amfm" / "inputs" / f"{stem}.xlsx"
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_bytes(b"")
+    assert lint036.report_stem(p) == expected, "feature 名不得混入已具身分之 tag"
+
+
 # --- profile 專屬檢查（21 包：`--profile <feature>`）-------------------------
 
 

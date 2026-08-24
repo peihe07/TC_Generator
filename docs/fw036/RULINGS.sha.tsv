@@ -1,30 +1,31 @@
 ruling_id	kind	sha8	sha256	source	line	body_lines	ancestor	slug
-R-G1	ruling	550ace4f	550ace4fab995b766d75160960e9f3b6e5611f71bd409a6e9070bb757d2f71b6	docs/fw036/FEATURE_ONBOARDING.md	719	2	9. 全域條文與通則（整併落點）	036 母本之固定與其身分
-R-G2	ruling	521fde5f	521fde5fedde77c14cc479c2f0e06ee3415c5caf8f6f16dfdf8ef4060740f969	docs/fw036/FEATURE_ONBOARDING.md	724	1	9. 全域條文與通則（整併落點）	`forms/` 舊檔以 `mv` 歸檔
-R-G3	ruling	79860d4a	79860d4a4c9624f0afe354f34f363cc80de3fb036b1e2ea909e79731b907ffab	docs/fw036/FEATURE_ONBOARDING.md	728	2	9. 全域條文與通則（整併落點）	`framework.md` 範例禁用 `openpyxl` + `wb.save()`
-R-G4	ruling	329570ce	329570ce47fe242c290f224979003382ce27bf841a036c5c53e9737fe4180dbf	docs/fw036/FEATURE_ONBOARDING.md	733	3	9. 全域條文與通則（整併落點）	衍生檔之檔名歸屬與其讀者
-R-G5	ruling	9814d24c	9814d24ca744fa17831281ec13fccae57f0f589ffc827495227966b1b6659543	docs/fw036/FEATURE_ONBOARDING.md	739	2	9. 全域條文與通則（整併落點）	全部 git 操作屬 Pei
-R-G6	ruling	6ad48387	6ad483878e40b4432fa8cf7d73cded9f77afeceac449efb4c5eb16f362d830f6	docs/fw036/FEATURE_ONBOARDING.md	744	2	9. 全域條文與通則（整併落點）	上繳包之記載一致性
-R-G7	ruling	bc6acec6	bc6acec678570e6194ee7af0e9112b9cad1b94e1f931d03b41b20bc5333a6797	docs/fw036/FEATURE_ONBOARDING.md	749	2	9. 全域條文與通則（整併落點）	反向驗證之對照向
-R-G8	ruling	d3ac16c4	d3ac16c4359a3804bbcb4c8610b18c894662772992cb9d20084fa4709d774b2a	docs/fw036/FEATURE_ONBOARDING.md	754	1	9. 全域條文與通則（整併落點）	比率須載明其分子與分母
-R-G9	ruling	d4f630f0	d4f630f0afe9acebc39731b7ab5d21245748e7022a5793899bf15f3eecdfc216	docs/fw036/FEATURE_ONBOARDING.md	758	2	9. 全域條文與通則（整併落點）	lint 規則之驗證須含範圍向
-R-G10	ruling	2b51c522	2b51c5220e545d6e7352c61dd7a9acee02969952491deac368b324a7056bd93c	docs/fw036/FEATURE_ONBOARDING.md	763	2	9. 全域條文與通則（整併落點）	清單式分類須以餘數驗證
-R-G11	ruling	894614b2	894614b2839c24e1c994e8e1122d08d5742bf4d1eacaebaf1de71098f244f063	docs/fw036/FEATURE_ONBOARDING.md	768	2	9. 全域條文與通則（整併落點）	可測判準須同時聲明其盲區
-R-G12	ruling	eabe2726	eabe272635a55614906d5e60ba17f8190e36c2c4a386c6be245941a66b105d97	docs/fw036/FEATURE_ONBOARDING.md	773	4	9. 全域條文與通則（整併落點）	`git commit` 一律帶 pathspec
-R-G13	ruling	abdc56e3	abdc56e3a9c86c775ec8b448c0747cca9b67dee3dc096601aef16980791465cb	docs/fw036/FEATURE_ONBOARDING.md	780	20	9. 全域條文與通則（整併落點）	裁決引用制（取代 FO §8.1「裁決逐字照錄」）
-R-G14	ruling	fb508d10	fb508d1012978a20215cf046a7954c1e496be4034223e239b0ce31e3fcb82c89	docs/fw036/FEATURE_ONBOARDING.md	803	8	9. 全域條文與通則（整併落點）	綠色通道（FO §8.8 之例外）
-R-G15	ruling	2aa0c28f	2aa0c28fa166c510ebe90ab42ad7d861b48f0a0881fe2d2843f3a843f6f2bf1e	docs/fw036/FEATURE_ONBOARDING.md	814	12	9. 全域條文與通則（整併落點）	Pilot 退出準則
-R-G16	ruling	2ec55d94	2ec55d94365fad4d38b5948eda69fe9f52ed8242d1a68174ba8ae309ed4164e7	docs/fw036/FEATURE_ONBOARDING.md	829	6	9. 全域條文與通則（整併落點）	預期數字自動生成
-R-G17	ruling	24cdeec6	24cdeec65d4b3baf13ae6b12081a6fda0df24d67d61a4a58ec5696be7c2dc63f	docs/fw036/FEATURE_ONBOARDING.md	838	8	9. 全域條文與通則（整併落點）	閘登錄簿與除役
-R-G18	ruling	8f61f9fd	8f61f9fd2bedd2985220698780d07e452bd8c9294f7a3d3bd5fad299c4679400	docs/fw036/FEATURE_ONBOARDING.md	849	21	9. 全域條文與通則（整併落點）	canon 引用唯一可解析
-R-G19	ruling	bd206972	bd206972e5c52fcb7ddddd587019c0bb04946ae4052f3ccd93e7ea39878f0ed9	docs/fw036/FEATURE_ONBOARDING.md	873	5	9. 全域條文與通則（整併落點）	prompt 指紋（TC 規則抗漂移之一）
-R-G20	ruling	3d0cd37b	3d0cd37b3170d7cd66f12fb2846408a5be4b9d4ed700f0bc58d0bba86cf9c627	docs/fw036/FEATURE_ONBOARDING.md	881	6	9. 全域條文與通則（整併落點）	規則副本同步指紋（TC 規則抗漂移之二）
-R-G21	ruling	1230e795	1230e795feb9d96ae622fa57756b4503a3366f449fd3ca4fd11fe1d4fc78dd5d	docs/fw036/FEATURE_ONBOARDING.md	890	9	9. 全域條文與通則（整併落點）	自查表機檢對映（TC 規則抗漂移之三）
-R-G4	group	9551aa3b	9551aa3b6223406b9c874993986332c91fc67a823d373d28f6f0a1985ff0d453	docs/fw036/FEATURE_ONBOARDING.md	902	11	9. 全域條文與通則（整併落點）	／R-G7 之原文與 R-G12 之來源
+R-G1	ruling	550ace4f	550ace4fab995b766d75160960e9f3b6e5611f71bd409a6e9070bb757d2f71b6	docs/fw036/FEATURE_ONBOARDING.md	720	2	9. 全域條文與通則（整併落點）	036 母本之固定與其身分
+R-G2	ruling	521fde5f	521fde5fedde77c14cc479c2f0e06ee3415c5caf8f6f16dfdf8ef4060740f969	docs/fw036/FEATURE_ONBOARDING.md	725	1	9. 全域條文與通則（整併落點）	`forms/` 舊檔以 `mv` 歸檔
+R-G3	ruling	79860d4a	79860d4a4c9624f0afe354f34f363cc80de3fb036b1e2ea909e79731b907ffab	docs/fw036/FEATURE_ONBOARDING.md	729	2	9. 全域條文與通則（整併落點）	`framework.md` 範例禁用 `openpyxl` + `wb.save()`
+R-G4	ruling	329570ce	329570ce47fe242c290f224979003382ce27bf841a036c5c53e9737fe4180dbf	docs/fw036/FEATURE_ONBOARDING.md	734	3	9. 全域條文與通則（整併落點）	衍生檔之檔名歸屬與其讀者
+R-G5	ruling	9814d24c	9814d24ca744fa17831281ec13fccae57f0f589ffc827495227966b1b6659543	docs/fw036/FEATURE_ONBOARDING.md	740	2	9. 全域條文與通則（整併落點）	全部 git 操作屬 Pei
+R-G6	ruling	6ad48387	6ad483878e40b4432fa8cf7d73cded9f77afeceac449efb4c5eb16f362d830f6	docs/fw036/FEATURE_ONBOARDING.md	745	2	9. 全域條文與通則（整併落點）	上繳包之記載一致性
+R-G7	ruling	bc6acec6	bc6acec678570e6194ee7af0e9112b9cad1b94e1f931d03b41b20bc5333a6797	docs/fw036/FEATURE_ONBOARDING.md	750	2	9. 全域條文與通則（整併落點）	反向驗證之對照向
+R-G8	ruling	d3ac16c4	d3ac16c4359a3804bbcb4c8610b18c894662772992cb9d20084fa4709d774b2a	docs/fw036/FEATURE_ONBOARDING.md	755	1	9. 全域條文與通則（整併落點）	比率須載明其分子與分母
+R-G9	ruling	d4f630f0	d4f630f0afe9acebc39731b7ab5d21245748e7022a5793899bf15f3eecdfc216	docs/fw036/FEATURE_ONBOARDING.md	759	2	9. 全域條文與通則（整併落點）	lint 規則之驗證須含範圍向
+R-G10	ruling	2b51c522	2b51c5220e545d6e7352c61dd7a9acee02969952491deac368b324a7056bd93c	docs/fw036/FEATURE_ONBOARDING.md	764	2	9. 全域條文與通則（整併落點）	清單式分類須以餘數驗證
+R-G11	ruling	894614b2	894614b2839c24e1c994e8e1122d08d5742bf4d1eacaebaf1de71098f244f063	docs/fw036/FEATURE_ONBOARDING.md	769	2	9. 全域條文與通則（整併落點）	可測判準須同時聲明其盲區
+R-G12	ruling	eabe2726	eabe272635a55614906d5e60ba17f8190e36c2c4a386c6be245941a66b105d97	docs/fw036/FEATURE_ONBOARDING.md	774	4	9. 全域條文與通則（整併落點）	`git commit` 一律帶 pathspec
+R-G13	ruling	abdc56e3	abdc56e3a9c86c775ec8b448c0747cca9b67dee3dc096601aef16980791465cb	docs/fw036/FEATURE_ONBOARDING.md	781	20	9. 全域條文與通則（整併落點）	裁決引用制（取代 FO §8.1「裁決逐字照錄」）
+R-G14	ruling	fb508d10	fb508d1012978a20215cf046a7954c1e496be4034223e239b0ce31e3fcb82c89	docs/fw036/FEATURE_ONBOARDING.md	804	8	9. 全域條文與通則（整併落點）	綠色通道（FO §8.8 之例外）
+R-G15	ruling	2aa0c28f	2aa0c28fa166c510ebe90ab42ad7d861b48f0a0881fe2d2843f3a843f6f2bf1e	docs/fw036/FEATURE_ONBOARDING.md	815	12	9. 全域條文與通則（整併落點）	Pilot 退出準則
+R-G16	ruling	2ec55d94	2ec55d94365fad4d38b5948eda69fe9f52ed8242d1a68174ba8ae309ed4164e7	docs/fw036/FEATURE_ONBOARDING.md	830	6	9. 全域條文與通則（整併落點）	預期數字自動生成
+R-G17	ruling	24cdeec6	24cdeec65d4b3baf13ae6b12081a6fda0df24d67d61a4a58ec5696be7c2dc63f	docs/fw036/FEATURE_ONBOARDING.md	839	8	9. 全域條文與通則（整併落點）	閘登錄簿與除役
+R-G18	ruling	8f61f9fd	8f61f9fd2bedd2985220698780d07e452bd8c9294f7a3d3bd5fad299c4679400	docs/fw036/FEATURE_ONBOARDING.md	850	21	9. 全域條文與通則（整併落點）	canon 引用唯一可解析
+R-G19	ruling	bd206972	bd206972e5c52fcb7ddddd587019c0bb04946ae4052f3ccd93e7ea39878f0ed9	docs/fw036/FEATURE_ONBOARDING.md	874	5	9. 全域條文與通則（整併落點）	prompt 指紋（TC 規則抗漂移之一）
+R-G20	ruling	3d0cd37b	3d0cd37b3170d7cd66f12fb2846408a5be4b9d4ed700f0bc58d0bba86cf9c627	docs/fw036/FEATURE_ONBOARDING.md	882	6	9. 全域條文與通則（整併落點）	規則副本同步指紋（TC 規則抗漂移之二）
+R-G21	ruling	1230e795	1230e795feb9d96ae622fa57756b4503a3366f449fd3ca4fd11fe1d4fc78dd5d	docs/fw036/FEATURE_ONBOARDING.md	891	9	9. 全域條文與通則（整併落點）	自查表機檢對映（TC 規則抗漂移之三）
+R-G22	ruling	bca29f8f	bca29f8fa03e06aa926d8a2dac9001b8f3ee3b33f16e70e8d9ec88038f28d28f	docs/fw036/FEATURE_ONBOARDING.md	903	14	9. 全域條文與通則（整併落點）	條文之任何字元變動皆變更其 sha
+R-G4	group	9551aa3b	9551aa3b6223406b9c874993986332c91fc67a823d373d28f6f0a1985ff0d453	docs/fw036/FEATURE_ONBOARDING.md	920	11	9. 全域條文與通則（整併落點）	／R-G7 之原文與 R-G12 之來源
 R-VS6+解釋	ruling	c18ff90e	c18ff90e5f7fd3f4d4f518717e2e1e335c215e369693a12bec4338ac7f8173e2	features/vehicle_setting/RULINGS.md	51	29	VF230 線八條之永久編號對照（R-VF45 §三；24 包 §C 裁定 3 執行完成 2026-08-24）	逐字以**所顯示之字元**為準（86 包 §1，分析層裁定 2026-08-23）
 R-VS9(1)′	ruling	6c0f0347	6c0f034701817a0458d18691d4d3c5de51aef2ac72d8ab62d73228fe905574be	features/vehicle_setting/RULINGS.md	312	20	14／15 包裁決條文（Pei 2026-08-20，第二批）	signal 拼寫以 DBC 為權威、對映以 LID 為權威；L-VS2
 R-VS25	ruling	b0266026	b02660260c8a0c108e458fdc472ad7c80bdd354f7459840ce053d20487a51e61	features/vehicle_setting/RULINGS.md	335	12	14／15 包裁決條文（Pei 2026-08-20，第二批）	單輪作業上限三項
-R-VS18	ruling	8d1e149a	8d1e149af717c55e82e95b535ef294d1427c9c04c3021719d2ff8837d2d0ba0d	features/vehicle_setting/RULINGS.md	350	16	14／15 包裁決條文（Pei 2026-08-20，第二批）	上繳包為每輪第一項
+R-VS18	ruling	502e91d0	502e91d0f784c0bd2b4827e8019984a5de19f5e3dad43714ec0003e225aa96e8	features/vehicle_setting/RULINGS.md	350	16	14／15 包裁決條文（Pei 2026-08-20，第二批）	上繳包為每輪第一項
 R-VS19	ruling	f9d2eb0e	f9d2eb0ee4d8f1d9ac63ff992dd8ba5f1a1c88048459b0bf1b0d934792bb0dee	features/vehicle_setting/RULINGS.md	369	18	14／15 包裁決條文（Pei 2026-08-20，第二批）	值域須連同 [EE Architecture] 取用
 R-VS20	ruling	75c08659	75c08659a239949b1a693996bd0effbf8a80e47a843cf32774e53a18ceeeec69	features/vehicle_setting/RULINGS.md	390	25	14／15 包裁決條文（Pei 2026-08-20，第二批）	值域來源之三階梯
 R-VS21	ruling	b8757441	b87574412fb01552bfda0216d307b1a0136be12d6de30aeaebe8edd4e48bce6b	features/vehicle_setting/RULINGS.md	418	10	14／15 包裁決條文（Pei 2026-08-20，第二批）	積壓項排入頭部
@@ -57,12 +58,12 @@ R-VS45	ruling	650e2f03	650e2f0301cab94448f3b2ddffdb5494601baf5d9af258c303de82cd3
 R-VS44′	ruling	8bc26bce	8bc26bcee89f152b7049cc303554303a2dbfff4bb60fb54134df4f4f4437038b	features/vehicle_setting/RULINGS.md	992	21	14／15 包裁決條文（Pei 2026-08-20，第二批）	未結 DR 之宣告粒度（43 包 §2，分析層裁定 2026-08-22）
 R-VS46	ruling	2712e131	2712e131b01e9529149953bedbff2a4807ccb22d39763b56b371c3585e991c4e	features/vehicle_setting/RULINGS.md	1016	10	14／15 包裁決條文（Pei 2026-08-20，第二批）	「已窮盡」之宣稱須附涵蓋清單（45 包 §2，分析層裁定 2026-08-22）
 R-VS47	ruling	8151b4de	8151b4dee7ea35972f3ebac72838ba458abac8715e293afa7178cc2090012cc3	features/vehicle_setting/RULINGS.md	1029	30	14／15 包裁決條文（Pei 2026-08-20，第二批）	可寫性分級（46 包 §1，分析層裁定 2026-08-22）
-R-VS48	group	72fad62e	72fad62ed9853552fecff8f12966bec2559b8393932d7e961441e6aefd0dbccb	features/vehicle_setting/RULINGS.md	1062	18	14／15 包裁決條文（Pei 2026-08-20，第二批）	R-VS43(1) 後半之操作型定義（47 包 §2，分析層裁定 2026-08-22）
+R-VS48	ruling	72fad62e	72fad62ed9853552fecff8f12966bec2559b8393932d7e961441e6aefd0dbccb	features/vehicle_setting/RULINGS.md	1062	18	14／15 包裁決條文（Pei 2026-08-20，第二批）	R-VS43(1) 後半之操作型定義（47 包 §2，分析層裁定 2026-08-22）
 R-VS48′	ruling	9a791357	9a791357bc60517a599e59b993694a581b643dd9b682ca9a7713013093628836	features/vehicle_setting/RULINGS.md	1083	15	14／15 包裁決條文（Pei 2026-08-20，第二批）	收緊 (b) 路（48 包 §1，分析層裁定 2026-08-22）
 R-VS49	ruling	6b42d425	6b42d4256f614355476ce2bfb288a30aad2da57fcf6b130972fefd3ccdc35306	features/vehicle_setting/RULINGS.md	1101	38	14／15 包裁決條文（Pei 2026-08-20，第二批）	採用 PROXI_HDCC27_R3 之四參數值域（49 包 §1，分析層裁定 2026-08-22；推翻 44 包 §1；Pei 得推翻）
 R-VS50	ruling	87d132ec	87d132ecc1f2d5abd5ca1105d94a3c6868ab59c67dfbf594a6b1271a58248848	features/vehicle_setting/RULINGS.md	1142	14	14／15 包裁決條文（Pei 2026-08-20，第二批）	來源數字之回查（50 包 §1，分析層裁定 2026-08-22）
 R-VS51	ruling	69aa225b	69aa225bd8210b5d8eabd430e6c2b0133649ab5a5008176a932cd0484173345f	features/vehicle_setting/RULINGS.md	1159	34	14／15 包裁決條文（Pei 2026-08-20，第二批）	架構對應之欄組（52 包 §1，分析層裁定 2026-08-22）
-R-VS52	ruling	ec58cc91	ec58cc918407b20efd40902076b089a1086449f1b2f3357900961d229c4374a8	features/vehicle_setting/RULINGS.md	1196	40	14／15 包裁決條文（Pei 2026-08-20，第二批）	訊號書寫依 SWC 0708 交付本（54 包 §1，Pei 裁定 2026-08-22）
+R-VS52	ruling	0f582c42	0f582c42a76f21dcdac18b27fb085ad3bb30ed45cffe0ef6c073247847868e73	features/vehicle_setting/RULINGS.md	1196	40	14／15 包裁決條文（Pei 2026-08-20，第二批）	訊號書寫依 SWC 0708 交付本（54 包 §1，Pei 裁定 2026-08-22）
 R-VS53	ruling	db6c9be5	db6c9be551019817a49afd485d758d5ec065854a5df59a5c016c60f2e5707f24	features/vehicle_setting/RULINGS.md	1239	21	14／15 包裁決條文（Pei 2026-08-20，第二批）	交付論述之產物須可重現（55 包 §1，分析層裁定 2026-08-22）
 R-VS54	ruling	9277f8c8	9277f8c83aea86ecf61f5f7710afb7d8590aa24c693dbe8eec814077325bf36c	features/vehicle_setting/RULINGS.md	1264	17	14／15 包裁決條文（Pei 2026-08-20，第二批）	形態相依檢查之錨點（56 包 §1，分析層裁定 2026-08-22）
 R-VS55	ruling	9569651d	9569651de3cea860832fe087a5ae6b6a3509fb0c16013f19fc10621737c53a41	features/vehicle_setting/RULINGS.md	1284	16	14／15 包裁決條文（Pei 2026-08-20，第二批）	分級與 lint 須同義（57 包 §1，分析層裁定 2026-08-22）
@@ -98,7 +99,7 @@ R-VF10	ruling	518224a5	518224a57a550d9a437463c6805b77ecafbcfc5c5ecb7de344df54aaa
 R-VF11	ruling	7544ba99	7544ba99bf6f8b32eacc55a99b26383a0a02a4a7c6afcf73712d2d2cc32acc68	features/vehicle_setting/RULINGS.md	2074	23	VF230 線 —— V04／V05 之條文補落（W-VF21 第 1 項）	判準須附錨點（V04 §4，分析層裁定 2026-08-23）
 R-VF12	ruling	8deed7fc	8deed7fcd42af55dcbba28f276726d45416b9beccd6170ffaae5d946ea1452a2	features/vehicle_setting/RULINGS.md	2100	25	VF230 線 —— V04／V05 之條文補落（W-VF21 第 1 項）	交付範圍以 SWE.1 之涵蓋為界（V05 §2，Pei 裁定 2026-08-23）
 R-VF13	ruling	1d2adf95	1d2adf953df0370043123c3e2403ad4a4f1fa2e0ecfe07975230c52aa06f5239	features/vehicle_setting/RULINGS.md	2128	37	VF230 線 —— V04／V05 之條文補落（W-VF21 第 1 項）	VC/VM 得作為值域來源（V05 §3，Pei 裁定 2026-08-23）
-R-VF20	group	cc86de5f	cc86de5fcf131447d922da8fa4dfc4fda7ad05255a15533dec15c640433560e4	features/vehicle_setting/RULINGS.md	2172	32	VF230 線 —— V08 包	R-VF17 之持久化以覆寫層為之，不改 driver（V08 §2）
+R-VF20	ruling	cc86de5f	cc86de5fcf131447d922da8fa4dfc4fda7ad05255a15533dec15c640433560e4	features/vehicle_setting/RULINGS.md	2172	32	VF230 線 —— V08 包	R-VF17 之持久化以覆寫層為之，不改 driver（V08 §2）
 R-VF21	ruling	d0fa5fe2	d0fa5fe26780507bd12eb66eec2831434cd52aebbe223ef5b3043062eea60c3b	features/vehicle_setting/RULINGS.md	2207	33	VF230 線 —— V08 包	錨點之有效性前提（V08 §3）
 R-VF22	ruling	656bcf90	656bcf900df90cc1b25df2d06c54893bca953e9523d852c957a50ed6c63c605a	features/vehicle_setting/RULINGS.md	2243	30	VF230 線 —— V08 包	W-VF20 之「須改 2」核可變更（V08 §4）
 R-VF23	ruling	dd9eca4a	dd9eca4a1f9151b3d6454767421734aedcd0419abbeedcd2c8dedc145ddb9573	features/vehicle_setting/RULINGS.md	2280	55	VF230 線 —— V09 包	feature 歸屬不變；檔案擺放不涉 feature 身分（V09 §1，**Pei 裁定 2026-08-23**）
@@ -110,25 +111,25 @@ R-VF24	ruling	e9f920af	e9f920af0455a8637044403f3d41ce5c48197247224aa13cf93676168
 R-VF25	ruling	83c1be2a	83c1be2ad3c2dca53db7f4c08add241942935ee589f45030202888679009d0f6	features/vehicle_setting/RULINGS.md	2465	32	VF230 線 —— V10 包	Layer 2 鎖定為粒度 D（V10 §3，**Pei 裁定 2026-08-23**）
 R-VF26	ruling	a62cd4d8	a62cd4d81cee458e24b4491a3c367602ba467513d1de22e37632da440ad63e14	features/vehicle_setting/RULINGS.md	2500	23	VF230 線 —— V10 包	現階段不執行任何工作簿寫回（V10 §4，**Pei 裁定 2026-08-23**）
 R-VF27	ruling	38b759f8	38b759f8bd46d8949e9b8af9fc4da6e418c81485e964db79050758d2e9a25fb1	features/vehicle_setting/RULINGS.md	2526	17	VF230 線 —— V10 包	DR 之送出屬 Pei 自理（V10 §5，**Pei 裁定 2026-08-23**）
-R-VF28	group	309642af	309642af5bbf12732a3c75ee2fbbc14fcf627d8b45d0fbe60d29de7ce3dd0ddf	features/vehicle_setting/RULINGS.md	2546	18	VF230 線 —— V10 包	R-VF21 增第 4 項：定錨以內容，不以行號（V10 §6）
-R-VF29	group	bbc458e4	bbc458e4573788cb4e2caea172c4246d1a7f10914397269fce3b6cd88dcbffc3	features/vehicle_setting/RULINGS.md	2567	22	VF230 線 —— V10 包	R-VF20 增第 5、6 項（V10 §6）
-R-VF30	ruling	89226969	89226969eebfcf486e231a6f8d32f575104a3e6b2e132449b9a97a9cdc9ef192	features/vehicle_setting/RULINGS.md	2592	21	VF230 線 —— V10 包	下放包成文前之前置（V10 §6）
+R-VF28	ruling	309642af	309642af5bbf12732a3c75ee2fbbc14fcf627d8b45d0fbe60d29de7ce3dd0ddf	features/vehicle_setting/RULINGS.md	2546	18	VF230 線 —— V10 包	R-VF21 增第 4 項：定錨以內容，不以行號（V10 §6）
+R-VF29	ruling	bbc458e4	bbc458e4573788cb4e2caea172c4246d1a7f10914397269fce3b6cd88dcbffc3	features/vehicle_setting/RULINGS.md	2567	22	VF230 線 —— V10 包	R-VF20 增第 5、6 項（V10 §6）
+R-VF30	ruling	696b1159	696b1159833ed9fb12c0fc8a9d8ade0c67c88ef1bf9664c84c172273f1f8c02a	features/vehicle_setting/RULINGS.md	2592	21	VF230 線 —— V10 包	下放包成文前之前置（V10 §6）
 R-VF31	ruling	34dc265e	34dc265eaf6efdbfe8251a6f6c269ad2fc697d64c5a5f4a0596d1ed3bc933c15	features/vehicle_setting/RULINGS.md	2616	27	VF230 線 —— V10 包	兩項範圍界定（V10 §7）
 R-VS67′	ruling	8ee49586	8ee49586d3ad55dc9e0f5c91da7ed662cb78b4437b80f77f29e6e12371485829	features/vehicle_setting/RULINGS.md	2646	32	VF230 線 —— V10 包	欄組之選取依「能承載」，不能承載者標 `impl_gap`（73 包 §1，**Pei 追認 2026-08-23**；限縮 R-VS67）
-R-VF32	group	01723c61	01723c61f481863b65e25d33f147bd68391bb51c336598349dec5f6cae14e6ba	features/vehicle_setting/RULINGS.md	2685	25	VF230 線 —— V11 包（補落）	R-VF20 禁令之範圍澄清；後置步驟須機械化（V11 §2）
+R-VF32	ruling	01723c61	01723c61f481863b65e25d33f147bd68391bb51c336598349dec5f6cae14e6ba	features/vehicle_setting/RULINGS.md	2685	25	VF230 線 —— V11 包（補落）	R-VF20 禁令之範圍澄清；後置步驟須機械化（V11 §2）
 R-VF33	ruling	1ff76e47	1ff76e4723d117026a549de6edd511f4bae89b00629e6452b1260caa9f39465f	features/vehicle_setting/RULINGS.md	2713	25	VF230 線 —— V11 包（補落）	修改既有檔前須列其消費者與解析路徑（V11 §4）
 R-VF34	ruling	164c51cf	164c51cf57e05c8638cb8985f1515e94e958ee1d1642cc2e49f78e21506d2258	features/vehicle_setting/RULINGS.md	2741	20	VF230 線 —— V11 包（補落）	Layer 3 無 spec 對應之 2 簇（V11 §5）
 R-VF35	ruling	b4f6f33e	b4f6f33e1917bf05c1554ff0773f03147553d8492c9fd9a5a67b047926137824	features/vehicle_setting/RULINGS.md	2764	23	VF230 線 —— V11 包（補落）	reasoning gate 之三項未決（V11 §6）
 R-VF36	ruling	9aa6dc07	9aa6dc077f1c4b5c29acde0487d60c2f78ffd1c7c8d09f5677b7188f0fb6203a	features/vehicle_setting/RULINGS.md	2794	33	VF230 線 —— V12 包	Layer 2 採提案 C（V12 §1，**Pei 裁定 2026-08-23**）
 R-VF37	ruling	454e51d9	454e51d99a86cb0ea163f8299bae8c678ab9ed24ea8dfe7f0221179d9d197f3b	features/vehicle_setting/RULINGS.md	2830	31	VF230 線 —— V12 包	Test Set 名核可與 framework 鎖定條件（V12 §2，**Pei 裁定 2026-08-23**）
 R-VF38	ruling	1ae61847	1ae618474fc5ffed90560ba1748db292ea6fcdfdc00fe1268f4dce94dfd5ac02	features/vehicle_setting/RULINGS.md	2864	45	VF230 線 —— V12 包	跨線通知機制（V12 §3）
-R-VF39	group	fec75e8f	fec75e8fe6f4144eb00c2a804e2be3f518b6a959282a467859aaba5d71132532	features/vehicle_setting/RULINGS.md	2912	36	VF230 線 —— V12 包	R-VF32(a) 之授權（V12 §4，**Pei 裁定 2026-08-23**）
+R-VF39	ruling	fec75e8f	fec75e8fe6f4144eb00c2a804e2be3f518b6a959282a467859aaba5d71132532	features/vehicle_setting/RULINGS.md	2912	36	VF230 線 —— V12 包	R-VF32(a) 之授權（V12 §4，**Pei 裁定 2026-08-23**）
 R-VS68′	ruling	873404c8	873404c8c07371af196773bf524d04bc42aecaded9146e4a026863ad3f6f0a03	features/vehicle_setting/RULINGS.md	2965	18	VF230 線 —— V12 包	PDT24 兩檔之版本裁定（75 包 §1，**Pei 2026-08-23**）
 R-VS69	ruling	ac256302	ac256302dd2bd29d4eae8b39f6399991f73dfd8ccf2af2bb3693e282c44cf69a	features/vehicle_setting/RULINGS.md	2986	16	VF230 線 —— V12 包	`screen_pending` 之判準為 AH 之 BLOCKED 註記（75 包 §1，分析層裁定 2026-08-23）
 R-VS35+補充	ruling	6eb5a058	6eb5a05844cb4d6b3df3abd3353ea779c851e0fc38303f1e46e601e3df09a29d	features/vehicle_setting/RULINGS.md	3005	10	VF230 線 —— V12 包	登記類 D 項不隨升級而中止（75 包 §1，分析層裁定 2026-08-23）
-R-VF40	group	217fcf9e	217fcf9e787819d742a75dc810b7b33e85745e5c4446594986a3c25155c84155	features/vehicle_setting/RULINGS.md	3022	42	VF230 線 —— V13 包（補落）	R-VF23 與 R-VF10 由「未受保護」轉為可檢查（V13 §3）
+R-VF40	ruling	217fcf9e	217fcf9e787819d742a75dc810b7b33e85745e5c4446594986a3c25155c84155	features/vehicle_setting/RULINGS.md	3022	42	VF230 線 —— V13 包（補落）	R-VF23 與 R-VF10 由「未受保護」轉為可檢查（V13 §3）
 R-VF41	ruling	d5d234d0	d5d234d0eb8d986fb353afb2528f66c5d3573e51915fecbd5a7d150e42260e44	features/vehicle_setting/RULINGS.md	3071	47	VF230 線 —— V14 包	廢止移動通則，改逐筆列舉（V14 §2）
-R-VF42	group	d2032926	d2032926475a52f8e61e72e69e5c415f658df1db117f1ac78943bb6d8f37af47	features/vehicle_setting/RULINGS.md	3121	18	VF230 線 —— V14 包	R-VF30 增第 4 項（V14 §3）
+R-VF42	ruling	d2032926	d2032926475a52f8e61e72e69e5c415f658df1db117f1ac78943bb6d8f37af47	features/vehicle_setting/RULINGS.md	3121	18	VF230 線 —— V14 包	R-VF30 增第 4 項（V14 §3）
 R-VF43	ruling	852cb453	852cb453c632b7553aaba7a1a01b5068a5da79c82611f28b1b41e84b153611e4	features/vehicle_setting/RULINGS.md	3142	33	VF230 線 —— V14 包	4 個 Power Mode 簇之兩半非同質，須記載（V14 §4）
 R-VS71	ruling	6a6a963b	6a6a963b9f9b4d59eabab957af2cb837315170aea13e78a256600414f9183f7e	features/vehicle_setting/RULINGS.md	3178	20	VF230 線 —— V14 包	值之未解不阻塞生成（77 包 §1，**Pei 裁定 2026-08-23**）
 R-VS72	ruling	1e714c9f	1e714c9f26fbceda50b732f6074ba560dbfa7822def3c8328be8df35eaf35c1f	features/vehicle_setting/RULINGS.md	3201	20	VF230 線 —— V14 包	交付之工作簿須為母體全量 237 列（77 包 §1，**Pei 裁定 2026-08-23**）
@@ -141,14 +142,14 @@ R-VF42+但書	ruling	ba57593e	ba57593e621dd92d62d90695d64a9a84918cc87d6553fab381
 R-VF48	ruling	bf96c5c0	bf96c5c0547655644b64790b5b7493eeb84eb2de5757f0ce7c9c2c783c927d89	features/vehicle_setting/RULINGS.md	3450	38	VF230 線 —— V16 包	補立「引用而無定義」之檢查（V16 §2）
 R-VF49	ruling	6fed037e	6fed037eccfe0033f556d3b87490b3eb0f8b4911cccb515fca5766b155475473	features/vehicle_setting/RULINGS.md	3491	23	VF230 線 —— V16 包	改號升為 P4 之前置（V16 §3）
 R-VS73	ruling	e21204f9	e21204f95b641277fee507293cba103c996bbae734e6d910194a72771b87d553	features/vehicle_setting/RULINGS.md	3517	15	VF230 線 —— V16 包	判準之調整使數上升者，須逐條抽驗其增量（78 包 §2，分析層裁定 2026-08-23；與 R-VS29 對稱）
-R-VS74	ruling	1ab46a60	1ab46a606d1d2275e529dfac9b876e4c164986125adc75d8c30ccb31ee5c7f51	features/vehicle_setting/RULINGS.md	3535	26	VF230 線 —— V16 包	canon §7 之配對粒度為逐列舉型訊號（79 包 §1，**Pei 裁定 2026-08-23**）
+R-VS74	ruling	a9dfb159	a9dfb159beb2c20de655003ee3b8973428cfdb8e4fcbf4bcdb50415d6d043b2a	features/vehicle_setting/RULINGS.md	3535	26	VF230 線 —— V16 包	IN §7 之配對粒度為逐列舉型訊號（79 包 §1，**Pei 裁定 2026-08-23**）
 R-VS75	ruling	7fcf417c	7fcf417c65dbecac1daa2cbe3a538c54f19227aff55e9f710be8fdd7622398ee	features/vehicle_setting/RULINGS.md	3564	12	VF230 線 —— V16 包	直接往返之裁定須回流（80 包 §2，分析層裁定 2026-08-23；R-VS35 之延伸）
 R-VS76	ruling	6f4d3cf1	6f4d3cf119f34a92abd41dcb9706968b2bc86b6fe5e60bbd44e7c8a64e7391ef	features/vehicle_setting/RULINGS.md	3579	20	VF230 線 —— V16 包	「該生成而沒生成」須有專屬檢查（82 包 §1，分析層裁定 2026-08-23）
-R-VF50	ruling	db597066	db597066558e31018f277af3059bfe47ddc160afdcf6d3f25ce7da694c6707e7	features/vehicle_setting/RULINGS.md	3606	30	VF230 線 —— V17 包	委派判定為 P4 之前置，批次生成暫停（V17 §2）
+R-VF50	ruling	672ba27e	672ba27e95e940e28e9c30d62502c0d0b48749eec66dda2fcd323b6e9f1b982a	features/vehicle_setting/RULINGS.md	3606	30	VF230 線 —— V17 包	委派判定為 P4 之前置，批次生成暫停（V17 §2）
 R-VF51	ruling	cb168eff	cb168effa3ce5c24fea8e21ae46af8e660898f6258257c9b99063c9b5dcad252	features/vehicle_setting/RULINGS.md	3639	53	VF230 線 —— V17 包	P0 對映部分核可，須補 canon §10.2 之 safety 一類（V17 §3）
-R-VF52	group	1630d24d	1630d24de8b44581a94775afa91ceeb68cae5696a71e9a84bc8489fc48210ae1	features/vehicle_setting/RULINGS.md	3695	41	VF230 線 —— V17 包	R-VF48 之誤報以判準精確化消除，不以白名單（V17 §4）
-R-VF53	group	826e5452	826e54528255f05c1a5fdea84be6451813f678481ab14880f903a3b7b8e56436	features/vehicle_setting/RULINGS.md	3743	42	VF230 線 —— V18 包	R-VF50 之理由段更正；委派閘之範圍補足（V18 §2）
-R-VF54	group	e15ceb63	e15ceb636c33cd59ecfc04e814a75a5db98d330f53bb79634841e752bbed8314	features/vehicle_setting/RULINGS.md	3788	55	VF230 線 —— V18 包	R-VF48 之定義全集擴充、引用掃描面限縮（V18 §3）
+R-VF52	ruling	25738465	2573846525d536ed543ac80b67e11f560aa6ed8da3c76645d922d301ce5903b6	features/vehicle_setting/RULINGS.md	3695	41	VF230 線 —— V17 包	R-VF48 之誤報以判準精確化消除，不以白名單（V17 §4）
+R-VF53	ruling	826e5452	826e54528255f05c1a5fdea84be6451813f678481ab14880f903a3b7b8e56436	features/vehicle_setting/RULINGS.md	3743	42	VF230 線 —— V18 包	R-VF50 之理由段更正；委派閘之範圍補足（V18 §2）
+R-VF54	ruling	7f84a907	7f84a9070ff61f24ae9e2c48ad0596378edaa5aa4890e02e51c2284b01715111	features/vehicle_setting/RULINGS.md	3788	55	VF230 線 —— V18 包	R-VF48 之定義全集擴充、引用掃描面限縮（V18 §3）
 R-VF55	ruling	dbb565f3	dbb565f383582f98269f50ba8a77ed42b2d89b9acba82c53494426bd022f99f4	features/vehicle_setting/RULINGS.md	3846	28	VF230 線 —— V18 包	「不可精確化」與「成本高於收益」須分列（V18 §4）
 R-VS77	ruling	380d7740	380d77402b44f62ca8a43fb041a0496d80edf0efad4c19b6b16ae9c521273bf4	features/vehicle_setting/RULINGS.md	3877	26	VF230 線 —— V18 包	裁定變更後之回掃義務（84 包 §2，分析層裁定 2026-08-23）
 R-VF56	ruling	743e9dee	743e9deef00957c135063071b1ad2a123854e7c147b60f884e677152a9d8bdf9	features/vehicle_setting/RULINGS.md	3910	26	VF230 線 —— V19 包	批次凍結撤銷（V19 §2，**Pei 裁定 2026-08-23**）
@@ -159,10 +160,10 @@ R-VS79	ruling	9ea4c3dd	9ea4c3dd243d0d2931a5afe336bad1a5daf293db0fb630cf4eb26bc8e
 R-VF59	ruling	40195628	401956287749034b80804fa4605278b43175e285236aeceda609942fd2af6bf5	features/vehicle_setting/RULINGS.md	4052	20	VF230 線 —— V20／V21／V22／V23 包（補落）	`specification_reference` 之形式（V20 包）
 R-VF60	ruling	7af65e3e	7af65e3ecf2440d2a9de1d73e5056a48977522c1712b1c1a707307e9ddda7f16	features/vehicle_setting/RULINGS.md	4075	29	VF230 線 —— V20／V21／V22／V23 包（補落）	值域來源鏈補第 0 位：條文自帶值（V20 包）
 R-VF61	ruling	e4c8f7f9	e4c8f7f9114b6982f1ace743f8f4053c2a7ac6ba8800736dcae1e4d1e0b76a59	features/vehicle_setting/RULINGS.md	4107	25	VF230 線 —— V20／V21／V22／V23 包（補落）	pilot 取樣須分層，本批 verdict 之範圍受限（V20 包）
-R-VF62	group	0e38a155	0e38a155f0dea998f6e04b919951147505de6ffa4612c8469ce99d8d29a5234c	features/vehicle_setting/RULINGS.md	4135	22	VF230 線 —— V20／V21／V22／V23 包（補落）	R-VF58 擴充；下放包首段須記載所據上繳（V20 包）
+R-VF62	ruling	0e38a155	0e38a155f0dea998f6e04b919951147505de6ffa4612c8469ce99d8d29a5234c	features/vehicle_setting/RULINGS.md	4135	22	VF230 線 —— V20／V21／V22／V23 包（補落）	R-VF58 擴充；下放包首段須記載所據上繳（V20 包）
 R-VF63	ruling	f5185f6f	f5185f6f7f95c25315bd3260278f3b62aded18e67598ba5b17249936c189afcd	features/vehicle_setting/RULINGS.md	4160	26	VF230 線 —— V20／V21／V22／V23 包（補落）	pilot #1 之 verdict（V21 包）
 R-VF64	ruling	7f602099	7f6020994ba5a8d5d834cc61e3d54510fd40edd1960e66c7cef863b1d03af73b	features/vehicle_setting/RULINGS.md	4189	34	VF230 線 —— V20／V21／V22／V23 包（補落）	採甲案：修選池序，不改 Priority 標記（V22 包）
-R-VF65	group	b1662002	b1662002456a49835fd7ca6c6deaad106fd8099b3a41ef1faa10b527443a9132	features/vehicle_setting/RULINGS.md	4226	26	VF230 線 —— V20／V21／V22／V23 包（補落）	R-VF59 暫停，其依據須重新驗證（V22 包）
+R-VF65	ruling	b1662002	b1662002456a49835fd7ca6c6deaad106fd8099b3a41ef1faa10b527443a9132	features/vehicle_setting/RULINGS.md	4226	26	VF230 線 —— V20／V21／V22／V23 包（補落）	R-VF59 暫停，其依據須重新驗證（V22 包）
 R-VF66	ruling	d0179e16	d0179e164fe06bce504f625478b451d18dbf7ae4c3b0d4d5bf5c90d87ab17cf6	features/vehicle_setting/RULINGS.md	4255	32	VF230 線 —— V20／V21／V22／V23 包（補落）	跨 session 工單鎖（V22 包）
 R-VF67	ruling	3279fa50	3279fa505ca8e76243a646e6c1cfe6586fe0ceadea9603cd07c00f0539f77339	features/vehicle_setting/RULINGS.md	4290	21	VF230 線 —— V20／V21／V22／V23 包（補落）	事故期間之產物一律重生，不採用（V22 包）
 R-VF68	ruling	7d290650	7d290650118f1783c97a96e6087388ffd64e60a02ec5d1c7081a90b5f8c43f90	features/vehicle_setting/RULINGS.md	4314	27	VF230 線 —— V20／V21／V22／V23 包（補落）	`specification_reference` 定案；R-VF59 撤銷（V23 包）
@@ -174,7 +175,7 @@ R-VS79+修訂	superseded	8d8b1391	8d8b1391de4aed7107eae7d366a537e62cd2afce11c58d
 R-VF70	ruling	3ed9c277	3ed9c2770eea566f37f5e55632ef3d5e78726578d584f3a397cd352bd0bb9da3	features/vehicle_setting/RULINGS.md	4532	24	VF230 線 —— V25 包（**改寫後之版本**，2026-08-24 10:27）	判準以允許型別之白名單為之（V25 §4）
 R-VF72	ruling	dcfaad11	dcfaad110ff9c809347530101ea7c2559565addf0b26d454e972562da5f6dae9	features/vehicle_setting/RULINGS.md	4563	45	VF230 線 —— V26 包	pilot #2 立即進行；第 2 批延後至其通過後
 R-VF73	ruling	b76e276e	b76e276e43910d183f37c706f924c5a02338715c9c3cb8179dff702d61a271fc	features/vehicle_setting/RULINGS.md	4611	31	VF230 線 —— V26 包	分析層不列無法機械執行之量
-R-VS80′	group	5088105d	5088105dfde7fdd756dfb4f721cb64cd82b94e89b3f1ca5763c5b35ff409c636	features/vehicle_setting/RULINGS.md	4645	23	VF230 線 —— V26 包	R-VS80 之理由段更正（89 包 §1，分析層裁定 2026-08-24；規範不變）
+R-VS80′	ruling	5088105d	5088105dfde7fdd756dfb4f721cb64cd82b94e89b3f1ca5763c5b35ff409c636	features/vehicle_setting/RULINGS.md	4645	23	VF230 線 —— V26 包	R-VS80 之理由段更正（89 包 §1，分析層裁定 2026-08-24；規範不變）
 R-VS81	ruling	e8779228	e8779228f2cba5094ee3564d1c6992e495e57554add7fc52d35a4e6207cb1c13	features/vehicle_setting/RULINGS.md	4671	24	VF230 線 —— V26 包	生成器之輸出須帶版號（89 包 §2，分析層裁定 2026-08-24）
 R-VF74	ruling	3fccaac8	3fccaac827fa9c9ccc48e37f8a84cafc1d75cc156a19e0f796b562b52309520a	features/vehicle_setting/RULINGS.md	4698	40	VF230 線 —— V26 包	範例查證之義務及於每一種將被書寫之形態（V27 §3，分析層裁定 2026-08-24）
 R-VF75	ruling	e17d4f24	e17d4f249fa2a70f64e1099108c1224b651af4e6e67249d0a49c8fd693596b19	features/vehicle_setting/RULINGS.md	4741	48	VF230 線 —— V26 包	A-VF21：W2(a) 未實作；委派標的不限本 repo（V27 §4，分析層裁定 2026-08-24）
@@ -184,4 +185,5 @@ R-VF78	ruling	b5ce1e5f	b5ce1e5f951725f38df348c1620486486a26331fa771aaaf6a8ecd9e4
 R-VF79	ruling	4c163d8a	4c163d8a40c97d9a59e5da5679923d7f1246d8342d7d875cb283c4f22ad48e95	features/vehicle_setting/RULINGS.md	4906	34	VF230 線 —— V26 包	查證與自檢之二則方法規則（V29 §4，分析層裁定 2026-08-24）
 R-VF80	ruling	09aaa0a1	09aaa0a15a4a92e8a872435cf7024a89922c812ff8ff8965f39ae64a0be6be5c	features/vehicle_setting/RULINGS.md	4943	44	VF230 線 —— V26 包	量產母體更正為 497（V30 §2，分析層裁定 2026-08-24）
 R-VF81	ruling	1cdbf0aa	1cdbf0aa4004cb12be7838770322fd263585b6d0a497e8f857e08b6f815ad609	features/vehicle_setting/RULINGS.md	4990	44	VF230 線 —— V26 包	「取最大 raw」不認可（V30 §3，分析層裁定 2026-08-24）
-R-VF82	ruling	38752426	38752426e381ca56687f073f5aefe533be27c70cc5ae8042931085f01b53f9a3	features/vehicle_setting/RULINGS.md	5037	33	VF230 線 —— V26 包	放寬判準須同時檢驗假陽假陰（V30 §4，分析層裁定 2026-08-24）
+R-VF82	ruling	c3497bc9	c3497bc9518606fdcd0693370621f879f8b1bc1b867561a537bb55b101b49a51	features/vehicle_setting/RULINGS.md	5037	35	VF230 線 —— V26 包	放寬判準須同時檢驗假陽假陰（V30 §4，分析層裁定 2026-08-24）
+R-VS82	ruling	12177e4f	12177e4fc6c26bf51ccf4c396e74f053582a76768342d8f1f2977de4dac4830a	features/vehicle_setting/RULINGS.md	5080	21	主線 —— 25 包（W-P2；R-G14 綠色通道之生效起點）	R-G14 綠色通道於本 feature 之生效起點（25 包 §C 裁定 D，**Pei 裁定 2026-08-24**）

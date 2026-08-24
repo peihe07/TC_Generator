@@ -22,10 +22,19 @@
 | `item`    | `canon §5a 第 9 條`、`§10.4-2` | 該節內之條號（表列或編號條列）|
 | `ruling`  | `R-G12` | FO §9.2 之全域條文編號（全域命名空間）|
 
-**qualified 之判準**（盲區宣告，R-G11）：同一行內出現 `canon`／`FO`／`IN`
-／`FEATURE_ONBOARDING`／`Instruction` 者，其 `§` 引用視為 canon 引用；
-否則記為 `unqualified`（多為 feature 自身文件之節號），**不計入 FAIL**，
-數目照報。本工具之盲區即在此 —— 未加前綴而實指 canon 者驗不到。
+**qualified 之判準**（盲區宣告，R-G11）：**逐處**取該 `§` 之前
+`QUALIFIER_WINDOW`（30）字元，找**最近**之標記：
+`canon`／`FO`／`IN`／`FEATURE_ONBOARDING`／`ASPICE_SWE6` → canon 引用；
+`包`／`輪`／`W-`／`V<n>`／`上繳`／`.md`／`.py`／`profile`／`framework`
+／`PLAYBOOK` 等**下放包或他檔之指稱** → 非 canon 引用。
+兩類皆無、或非 canon 者較近 → `unqualified`，**不計入 FAIL**。
+
+> **首版以「同一行內有無 `canon`」判之，為行級啟發式。** W-P2 逐處判讀
+> `vehicle_setting` 之 35 處時實測：**19 處（54%）指下放包節號**
+> （`26 包 §2`、`W-VF68 §2.1`、`V17 §3`、`` `00_intake_and_rulings.md` §3 ``），
+> 因同行另有 `canon` 而被誤判為 canon 引用。改為逐處就近判定。
+> **本工具之盲區仍在**：未加前綴而實指 canon 者驗不到（其形態見
+> `ANOMALIES.md` 之 `§8.7.5 §0 之衝突條款` —— 該 `§0` 實指 FO §0 而無前綴）。
 
 **waiver（R-G18 之修訂版，24 包 §C 裁定 2）**：歷史 handoff / upstream 檔
 不追改，其既有 unresolved / ambiguous 逐檔逐行列於
@@ -67,7 +76,14 @@ SKIP_PARTS = {
     ".git", "__pycache__", "node_modules", ".venv", "spec-index",
     "archive", "sandbox", "data", "generated", "inputs", "_intake", "forms",
 }
-QUALIFIERS = ("canon", "FEATURE_ONBOARDING", "ASPICE_SWE6", "Instruction", "FO §", "IN §")
+QUALIFIER_WINDOW = 30
+RE_CANON_MARK = re.compile(r"canon|FEATURE_ONBOARDING|ASPICE_SWE6|Instruction|\bFO\b|\bIN\b")
+# 下放包／輪次／他檔之指稱 —— 其後之 `§N` 為該物之節號，非 canon 之節號
+RE_OTHER_MARK = re.compile(
+    r"包|輪|上繳|下放|W-[\w()（）]+|\bV\d+|"
+    r"\.md|\.py|\.tsv|\.yaml|profile|PLAYBOOK|framework|RUNBOOK|"
+    r"RULINGS|ANOMALIES|DECISIONS|DATA_REQUESTS"
+)
 
 SEC = r"[0-9]+[a-z]?(?:\.[0-9]+){0,2}"
 RE_ITEM_CN = re.compile(rf"§(?P<sec>{SEC})\s*第\s*(?P<n>[0-9]+)\s*[條項點]")
@@ -163,11 +179,18 @@ class Resolver:
                 tuple(f"{c}:R-G{n}" for c in hits))
 
 
+def is_canon_ref(line: str, pos: int) -> bool:
+    """逐處判定：該 `§` 之前 30 字元內，**最近**之標記是否為 canon。"""
+    window = line[max(0, pos - QUALIFIER_WINDOW):pos]
+    canon_at = max((m.end() for m in RE_CANON_MARK.finditer(window)), default=-1)
+    other_at = max((m.end() for m in RE_OTHER_MARK.finditer(window)), default=-1)
+    return canon_at > other_at
+
+
 def scan_line(rs: Resolver, source: str, lineno: int, line: str) -> list[Ref]:
     """單行之引用抽取；先吃 item 型，其區段不再計為 section。"""
     out: list[Ref] = []
     used: list[tuple[int, int]] = []
-    qualified = any(q in line for q in QUALIFIERS)
 
     def free(m: re.Match) -> bool:
         return not any(a <= m.start() < b for a, b in used)
@@ -178,7 +201,7 @@ def scan_line(rs: Resolver, source: str, lineno: int, line: str) -> list[Ref]:
                 continue
             used.append((m.start(), m.end()))
             sec, n = m.group("sec"), int(m.group("n"))
-            if not qualified:
+            if not is_canon_ref(line, m.start()):
                 out.append(Ref("unqualified", f"§{sec}-{n}", "resolved", (), source, lineno, m.group(0)))
                 continue
             verdict, hits = rs.resolve_item(sec, n, None)
@@ -191,7 +214,7 @@ def scan_line(rs: Resolver, source: str, lineno: int, line: str) -> list[Ref]:
         used.append((m.start(), m.end()))
         sec = m.group("sec")
         doc = (m.group("doc") or "").strip() or None
-        if not qualified and doc is None:
+        if doc is None and not is_canon_ref(line, m.start()):
             out.append(Ref("unqualified", f"§{sec}", "resolved", (), source, lineno, m.group(0)))
             continue
         verdict, hits = rs.resolve_section(sec, doc)
