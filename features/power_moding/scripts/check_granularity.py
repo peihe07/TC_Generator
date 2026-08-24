@@ -60,6 +60,7 @@ LIMITS = [
     "**分母 `n_leaf` 為外部給定**（現行 48）；其是否正確不由本檢查驗 —— DR-PMH3 若確認，48 → 50 而本檢查不會察覺",
     "leaf 到組之**指派**不看 —— 只要分布合格，指派錯誤仍全綠",
     "`--check-doc-sync` 只驗門檻表與程式同源；**不驗該門檻本身是否恰當**",
+    "**R-PMH68 之殘餘盲區**：doc-sync 之錨為**門檻表輸出**之 SHA256，守的是**值**而非**產生該值之邏輯** —— 改 `evaluate()` 之計算方式而門檻值不變者，本檢查不會察覺",
 ]
 
 
@@ -71,12 +72,30 @@ def print_limits() -> None:
 
 
 def self_sha256() -> str:
-    """本程式檔之 SHA256 —— R-PMH42 之比對基準。"""
+    """本程式檔之 SHA256。
+
+    **R-PMH68（18 包）起不再作為 doc-sync 之錨** —— 以整支程式為錨者，
+    任何編輯（含純註解、含與門檻無關之常數）皆使文件失效而門檻一字未動；
+    該誤報會訓練出「重跑 emit 再貼上」之反射，**而該反射正是使本檢查
+    失效之途徑**（17 包 §12 第 5 項）。保留本函式供追溯。
+    """
     return hashlib.sha256(Path(__file__).resolve().read_bytes()).hexdigest()
 
 
+def thresholds_sha256() -> str:
+    """**門檻表本身**之 SHA256 —— R-PMH68 之錨。
+
+    取 `emit_thresholds()` 之輸出（門檻表之正規形式）為錨，
+    故加註解、加 `LIMITS` 等與門檻無關之編輯**不再使文件失效**。
+
+    **殘餘盲區（已寫入 `LIMITS`）**：本錨守的是**值**，
+    不是**產生該值之邏輯** —— 改計算方式而值不變者，本檢查不會察覺。
+    """
+    return hashlib.sha256(emit_thresholds().encode("utf-8")).hexdigest()
+
+
 DOC = ROOT / "framework.md"
-DOC_SHA_RE = re.compile(r"程式 SHA256：`([0-9a-f]{64})`")
+DOC_SHA_RE = re.compile(r"門檻表 SHA256：`([0-9a-f]{64})`")
 
 
 TBL_RE = re.compile(r"(\| id \| 量 \| 關係 \| 門檻 \| 來源 \|\n(?:\|[^\n]*\|\n)+)")
@@ -104,7 +123,7 @@ def check_doc_sync(doc: Path = None, prog_sha: str = None,
     `prog_sha` / `doc_text` 僅供自測注入。
     """
     doc = doc or DOC
-    cur = prog_sha or self_sha256()
+    cur = prog_sha or thresholds_sha256()
     if doc_text is None:
         if not doc.exists():
             return False, f"文件不存在：{doc}"
@@ -112,11 +131,11 @@ def check_doc_sync(doc: Path = None, prog_sha: str = None,
 
     hits = DOC_SHA_RE.findall(doc_text)
     if len(hits) != 1:
-        return False, (f"文件中之 `程式 SHA256：` 記載數 = {len(hits)}（預期恰 1）"
+        return False, (f"文件中之 `門檻表 SHA256：` 記載數 = {len(hits)}（預期恰 1）"
                        f" —— R-PMH41：驗命中數")
     if hits[0] != cur:
         return False, (f"**門檻表已與程式分岔（雜湊）** —— 文件記 `{hits[0][:16]}…`，"
-                       f"程式現值 `{cur[:16]}…`。"
+                       f"門檻表現值 `{cur[:16]}…`。"
                        f"請重跑 `--emit-thresholds` 並重貼門檻節。")
 
     tbls = TBL_RE.findall(doc_text)
@@ -129,7 +148,7 @@ def check_doc_sync(doc: Path = None, prog_sha: str = None,
                     f"行數 文件 {len(got)} vs 程式 {len(want)}")
         return False, (f"**門檻表之內容已與程式分岔** —— {diff}。"
                        f"（雜湊相符但表被手改 —— 雜湊是代理量，故此項另驗）")
-    return True, (f"文件與程式同源 —— SHA256 `{cur[:16]}…`（命中 1 處）"
+    return True, (f"文件與程式同源 —— 門檻表 SHA256 `{cur[:16]}…`（命中 1 處）"
                   f"＋ 門檻表 {len(got)} 列逐字相同")
 
 
@@ -348,6 +367,57 @@ def self_test() -> int:
     return 0 if (all_ok and scope_ok and sync_ok) else 1
 
 
+def doc_sync_must_hit() -> int:
+    """R-PMH68 之兩項故意失敗（18 包步驟 5）。
+
+    (a) **改門檻值而不重貼文件 → 須 FAIL**（真報仍在）
+    (b) **加一行純註解 → 須 PASS**（誤報已消除）
+
+    (b) 以**實際複本＋子行程**為之：把本檔複製為 `scripts/_docsync_probe.py`
+    並在其中加一行純註解，跑其 `--check-doc-sync`。複本置於 `scripts/` 下，
+    使其 `ROOT` 與本檔相同。跑畢即刪。
+    """
+    import shutil
+    import subprocess
+    ok_a = ok_b = False
+
+    print("=== R-PMH68 must-hit (a) —— 改門檻值而不重貼文件 → 須 FAIL ===")
+    saved = THRESHOLDS["G2"]
+    THRESHOLDS["G2"] = (saved[0], saved[1], 3, "3", saved[4])
+    try:
+        ok, why = check_doc_sync()
+        ok_a = not ok
+        print(f"  改 G2 之門檻為 3 後：{'**FAIL**' if not ok else 'PASS'} — {why[:150]}")
+    finally:
+        THRESHOLDS["G2"] = saved
+    print(f"  攔下：{ok_a}")
+
+    print("\n=== R-PMH68 must-hit (b) —— 加一行純註解 → 須 PASS ===")
+    src = Path(__file__).resolve()
+    probe = src.parent / "_docsync_probe.py"
+    try:
+        text = src.read_text(encoding="utf-8")
+        text = text.replace('"""', '"""\n# 純註解 —— R-PMH68 must-hit (b) 之測試替身\n', 1)
+        probe.write_text(text, encoding="utf-8")
+        r = subprocess.run([sys.executable, str(probe), "--check-doc-sync"],
+                           capture_output=True, text=True)
+        ok_b = r.returncode == 0
+        print(f"  複本之 SHA256 與本檔不同："
+              f"{hashlib.sha256(probe.read_bytes()).hexdigest() != self_sha256()}")
+        print(f"  複本之 --check-doc-sync 退出碼 = {r.returncode}"
+              f"（0 = PASS）：{ok_b}")
+        print(f"  {r.stdout.splitlines()[0] if r.stdout else r.stderr[:120]}")
+    finally:
+        probe.unlink(missing_ok=True)
+    print(f"  誤報已消除：{ok_b}")
+
+    print("\n" + "=" * 66)
+    print(f"(a) 改門檻值 → FAIL: {ok_a}；(b) 加純註解 → PASS: {ok_b}")
+    print("**若改用舊錨（整支程式之 SHA256），(b) 必然 FAIL** —— "
+          "\n  該誤報即 17 §12 第 5 項所述之「訓練出重貼反射」之來源。")
+    return 0 if (ok_a and ok_b) else 1
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--feature", default=".")
@@ -355,11 +425,19 @@ def main() -> None:
     ap.add_argument("--emit-thresholds", action="store_true",
                     help="R-PMH40 —— 輸出門檻表（Markdown），供文件貼入")
     ap.add_argument("--check-doc-sync", action="store_true",
-                    help="R-PMH42 —— 驗 framework.md 之門檻節與本程式同源")
+                    help="R-PMH42／R-PMH68 —— 驗 framework.md 之門檻節與門檻表同源")
+    ap.add_argument("--doc-sync-must-hit", action="store_true",
+                    help="R-PMH68 —— 兩項故意失敗（改門檻值 FAIL／加註解 PASS）")
     args = ap.parse_args()
     if args.emit_thresholds:
         print(emit_thresholds())
+        print(f"\n> 門檻表 SHA256：`{thresholds_sha256()}`")
+        print("> 重新產生：`python scripts/check_granularity.py --emit-thresholds`")
         sys.exit(0)
+    if args.doc_sync_must_hit:
+        rc = doc_sync_must_hit()
+        print_limits()
+        sys.exit(rc)
     if args.check_doc_sync:
         ok, why = check_doc_sync()
         print(f"doc-sync {'PASS' if ok else '**FAIL**'} — {why}")

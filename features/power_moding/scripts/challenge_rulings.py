@@ -14,6 +14,7 @@ R-PMH62 要求「提出某一判準以質疑某項結論時，須將同一判準
 用法:
     python scripts/challenge_rulings.py
 """
+import random
 import re
 import sys
 from pathlib import Path
@@ -23,9 +24,43 @@ RULINGS = ROOT / "RULINGS.md"
 
 # R-PMH64 逐字之標記清單
 MARKS = ["不成立", "作廢", "撤回", "改判", "取代", "推翻", "未套用", "誤用",
-         "判錯", "不符", "矛盾", "之錯", "之缺陷", "之瑕疵"]
+         "判錯", "不符", "矛盾", "之錯", "之缺陷", "之瑕疵",
+         # --- R-PMH67（18 包）補列：實測偽陰 R-PMH20（「實測全簿為 5 組**而非**
+         #     4 組」）未命中，同型可疑者 R-PMH21（「**非**內容差異」）---
+         "而非", "並非", "過時", "失效", "無來源", "湊得"]
 MARK_RE = [(m, re.compile(re.escape(m))) for m in MARKS]
 MARK_RE.append(("由…查出", re.compile(r"由.{0,20}查出")))
+
+# R-PMH67 —— 偽陰之抽樣估計。**補標記不構成本條之滿足**：
+# 補完之後仍無人知道還有多少種措詞未被列舉（此即列舉式判準之形態，
+# 在本 repo 已第四次出現）。抽樣之作用不在補齊，
+# **在於使「不知道還漏多少」變成一個有數字之陳述**。
+SAMPLE_N = 10
+SAMPLE_SEED = 18          # = 本包編號，固定值，**抽樣可重現**
+
+# 抽樣之人讀判定（R-PMH67）—— 逐條具名，供重跑時比對
+SAMPLE_VERDICT: dict[str, tuple[bool, str]] = {
+    "R-PMH4":
+        (False, "定義型 —— 定「到齊」之定義並排除較弱判準（檔名相符／大小相同），未推翻任何既有結論"),
+    "R-PMH6":
+        (False, "延後處置型 —— 登記 G/H 兩欄現況（H 欄違 canon §4.2）並禁止 Phase 0/1 改動，不推翻既有裁定"),
+    "R-PMH7":
+        (False, "新裁定型 —— 定交付基底並給辨識判準；其所引發之作廢由 R-PMH8／R-PMH9 執行，本條自身不質疑"),
+    "R-PMH11":
+        (False, "要求型 —— 其所指定之實施方式後被 R-PMH15 推翻，故本條為**被質疑者**而非質疑者"),
+    "R-PMH18":
+        (False, "防禦型 —— 預先禁止一個尚未發生之處理（把兩常數統一），非推翻既有結論"),
+    "R-PMH25":
+        (True, "**質疑型（偽陰）** —— 推翻「以分頁名認 DV source」之做法，依據為實測：客戶那份之 x14 指向 `Reference!$C$4:$C$12`，`下拉選單` 為孤兒分頁。「以分頁名認 source 會取到未生效之清單」即其結論。**未命中之因：全條無 21 個標記中之任一詞**"),
+    "R-PMH29":
+        (True, "**質疑型（偽陰）** —— 駁斥「以『測了會有併入之誘惑』為由不測」之理由，並禁止任選一案與擱置。**未命中之因：其反駁以「會讓一個可關閉之不確定性繼續開著」表達**"),
+    "R-PMH34":
+        (True, "**質疑型（偽陰）** —— 其依據逐字指認 07 包上繳之分母有二錯（0 列工作簿計入、兩候選重複計入）。**未命中之因：措詞為「重複計算」「看起來比實際強」**"),
+    "R-PMH35":
+        (True, "**質疑型（偽陰）** —— 其依據指認 07 包 §三之六列皆 must-not-hit、門檻不可執行、對 Q11 無鑑別力。**未命中之因：措詞為「不構成門檻」「無法區分」「無鑑別力」**"),
+    "R-PMH40":
+        (True, "**質疑型（偽陰）** —— 「兩份獨立維護之副本**一律視為缺陷**」，依據為 08 包自陳。**未命中之因：「視為缺陷」不在標記內，而「之缺陷」在**（差一個「之」）"),
+}
 
 LIMITS = [
     "**判準為字面標記，不判語意** —— 條文僅引他處之錯為例證者會被列為候選（偽陽），"
@@ -33,6 +68,7 @@ LIMITS = [
     "只掃 `RULINGS.md` 之 fenced block；**`ANOMALIES.md`／`DECISIONS.md` 之判斷不入母體**",
     "**只判定「是否為質疑型」，不判定「其是否已被雙向自套」** —— 後者須人讀",
     "R-G 系列（跨 feature 通則）不在本檔範圍 —— 其存於他處",
+    "**抽樣只估偽陰率，不消滅偽陰** —— 抽中之 10 條外仍可能有質疑型條文未命中",
 ]
 
 
@@ -71,6 +107,36 @@ def main() -> None:
     if not hits:
         print("\n**候選數為 0 —— 依 R-PMH64 視為判準失效**，"
               "不得視為「無質疑型條文」。")
+
+    # --- R-PMH67：自**未命中**之母體隨機抽樣，供人讀估偽陰率 ---
+    miss = [(cid, body) for cid, body in rs
+            if cid not in {c for c, _, _ in hits}]
+    rng = random.Random(SAMPLE_SEED)
+    n = min(SAMPLE_N, len(miss))
+    sample = rng.sample(miss, n)
+    print(f"\n=== 偽陰之抽樣（R-PMH67）===")
+    print(f"未命中母體 = {len(miss)} 條；抽樣 N = {n}；"
+          f"種子 = {SAMPLE_SEED}（`random.Random({SAMPLE_SEED}).sample`，**可重現**）")
+    print("**逐條由人讀判其是否應命中**；命中數即偽陰率之估計。\n")
+    named, pos = 0, 0
+    for cid, body in sorted(sample):
+        v = SAMPLE_VERDICT.get(cid)
+        first = body.split("\n")[0]
+        print(f"  {cid:<10} {first[:64]}")
+        if v is None:
+            print("     **人讀判定：未具名 ← 抽樣未完成（R-PMH67）**")
+            continue
+        named += 1
+        pos += 1 if v[0] else 0
+        print(f"     {'**應命中**' if v[0] else '不應命中'} —— {v[1]}")
+    if named == n:
+        print(f"\n  **偽陰率之估計 = {pos}/{n} = {pos/n:.0%}**"
+              f" —— 推估未命中母體 {len(miss)} 條中約 **{round(len(miss)*pos/n)}** 條為質疑型")
+        print(f"  即真正之質疑型條文約 {len(hits)}（候選，含偽陽）"
+              f" ＋ {round(len(miss)*pos/n)}（未命中之推估） —— "
+              "**判準只抓到其中一部分**")
+    else:
+        print(f"\n  **抽樣未完成：{n - named} 條未具名人讀判定**")
     print_limits()
     sys.exit(1 if not hits else 0)
 

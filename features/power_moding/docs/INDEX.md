@@ -24,6 +24,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 15 | 2026-08-24 | **marker 前綴反向掃描**、`COVERED` 自動化、priority 批內矛盾 | [handoff/15_marker_prefix_and_priority.md](handoff/15_marker_prefix_and_priority.md) | [upstream/15_marker_prefix_and_priority.md](upstream/15_marker_prefix_and_priority.md) | R-PMH57–R-PMH59（逐字抄錄 3/3 相符） | **A-PMH15（`DS4.1)` 前綴斷裂，只登記不開 DR）** | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；marker 全集 30 → 31** |
 | 16 | 2026-08-24 | `-002` 判錯採認、**萃取等同性判準**、`VERDICT` 誤判偵測 | [handoff/16_verdict_blindspot.md](handoff/16_verdict_blindspot.md) | [upstream/16_verdict_blindspot.md](upstream/16_verdict_blindspot.md) | R-PMH60–R-PMH62（逐字抄錄 3/3 相符） | （無新 A-PMH；查出 **A-PMH14 對 9.1 之記載自相矛盾**） | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；must-hit A–D 全攔下** |
 | 17 | 2026-08-24 | **章 8 雙向複驗**、五支檢查具名限度、質疑型條文母體 | [handoff/17_scope_of_inventory.md](handoff/17_scope_of_inventory.md) | [upstream/17_scope_of_inventory.md](upstream/17_scope_of_inventory.md) | R-PMH63–R-PMH65（逐字抄錄 3/3 相符） | **A-PMH14 結語更正**（9.1 之「維持」不成立；`8` 之歸因更精確） | **步驟 1–7 全數執行；九條停止條件全未觸發；lint 30/30；章 8 新漏 0；shasum 5/5 OK** |
+| 18 | 2026-08-24 | **章 9／11 逐字複驗**、偽陰抽樣、doc-sync 改錨 | [handoff/18_break_the_circle.md](handoff/18_break_the_circle.md) | [upstream/18_break_the_circle.md](upstream/18_break_the_circle.md) | R-PMH66–R-PMH68（逐字抄錄 3/3 相符） | **A-PMH16（SYS1 之 9.1 散文漏字，兩處為時序）** | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；分割檢查未覆蓋段無 marker** |
 
 ## 01 輪要點
 
@@ -1007,3 +1008,61 @@ R-PMH51 記為「已結清」之依據是章 8 補做完成，**而 9.1／11.1 �
 
 **待 Pei**：三筆 DR 之發出（**第五度重申**）／17 之 commit 授權（12 路徑）／
 §5.4 六項之處置（尤其 TSV 之 SYS1 來源）／Q10、`PROFILE_INTEGRATION.md`。
+
+---
+
+## 18 包要點
+
+**⚠ 本輪查出新異常 A-PMH16 —— SYS1 之 `9.1` 散文本身漏字，其中兩處為時序。**
+
+以 PyMuPDF block 層取 p9 之 `PM1)` 單一區塊（658 字元，不與矩陣交錯）
+對 SYS1 `9.1` 做字級 diff：
+
+| PDF | SYS1 | 判定 |
+|---|---|---|
+| `should 'stay awake'` **`for 60 seconds`** `up to 2.5 minutes` | `should 'stay awake up to 2.5 minutes` | **漏 —— 時序** |
+| `within 60` **`seconds`** `the timeout` | `within 60 the timeout` | **漏 —— 時序**（句不成句） |
+| `pop-up list,` **`the radio should shut Off the`** `popup should close` | `pop-up list, the popup should close` | **漏 —— 整個子句** |
+
+**7.1 漏的是動畫／splash 之時序，9.1 漏的是 popup stay-awake 之時序 ——
+同一份 SYS1 匯出，同一類內容，兩處。** 5 個 leaf 引 `9.1`。
+**R-PMH50 第三度獲直接佐證。**
+
+**為何 13 包之全簿雙向 diff 沒查出 —— 這正是 R-PMH66 之立條理由兌現**：
+p9 切出之「句」皆為矩陣格與散文之混合串，其 6-gram 覆蓋率多 >= 30%，
+**遂被門檻自動判為「切分假象」而濾掉**。**門檻做了本不該由它做的判定。**
+本輪令殘餘逐句人讀，該四處即浮現。**16 §12 第 2 項之循環指涉自此切斷。**
+
+**章錨改為「訖 = 下一章之起」**，重疊與縫隙在構造上不再可能；
+未覆蓋段只有 p1–p7（4,845 字元），**其中之 marker 為「無」**。
+
+**R-PMH67 之偽陰抽樣（N=10，種子 18，可重現）：偽陰率 50%。**
+補六標記後候選由 23 增為 37（R-PMH20 已抓到），**而偽陽亦隨之上升**（`而非` 極常用）。
+**最該看的是 R-PMH40**：它漏掉的原因是「視為缺陷」與標記「之缺陷」**差一個字**。
+
+**doc-sync 改錨（R-PMH68）**：由整支程式之 SHA256 改為**門檻表輸出**之 SHA256。
+兩項故意失敗實跑通過 —— (a) 改門檻值 → FAIL；(b) **加一行純註解 → PASS**
+（以實際複本＋子行程證明，複本檔案雜湊不同而退出碼 0）。誤報已消除。
+
+**TSV `section_title` vs PDF**：`-layout` 不符 10/48，**block 層不符 5/48**，
+**5 筆全部是 outline 7.1**（A-PMH03 已知漏句）。零誤報、零新發現。
+**惟其「相符」有一個很大的但書**：`section_title` **已截 120 字元** ——
+outline 9.1 之所以相符，**是因為 A-PMH16 之漏字落在第 120 字元之後**。
+**故 17 §5.4 第 1 項不得降為低風險。**
+
+**⚠ 本輪自陳之未竟項中，三項須先看（上繳 §11）**
+1. **A-PMH16 是用 block 層查出的，而 `chapter_bidirectional.py` 之預設來源
+   仍是 `-layout`** —— **該檢查此刻重跑，查不出 A-PMH16**。結論寫進了
+   `RESIDUE_VERDICT`，產生結論之量測不在程式裡。**「宣告與實作分離」之新形態。**
+2. **章 7／10／12 之殘餘未讀（該三章現為 FAIL）**，
+   **而 batch 1 之 8 條 TC 全部出自章 7 與章 10** —— A-PMH16 已證明殘餘裡會有東西。
+3. **`bidirectional_spec_diff.py` 仍以 6-gram 門檻自動判定** ——
+   **它正是漏掉 A-PMH16 的那一支**，本包未依 R-PMH66 改造亦未停用。
+   R-PMH62 之同型：立了條而未回頭套用於它所指認的對象。
+
+**另**：偽陰率 5/10 之 95% 區間約 19%–81%，**「約 16 條」實為「約 6 到 25 條」** ——
+上繳 §4.3 之點估計未附區間，據實補記。
+
+**待 Pei**：三筆 DR 之發出（**第六度重申**，DR-PMH2 因 A-PMH16 理由更強）／
+18 之 commit 授權（10 路徑）／**章 7／10／12 之殘餘人讀（建議 Phase 5 前）**／
+`chapter_bidirectional.py` 預設來源是否改 block 層／`bidirectional_spec_diff.py` 之處置。

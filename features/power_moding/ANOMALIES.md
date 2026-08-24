@@ -1014,6 +1014,69 @@ DS4.1) If doors are removed/not present and ignition is turned to ACC, RUN, or
 
 ---
 
+## A-PMH16 — **SYS1 之 `9.1` 散文本身漏字，其一為時序子句** · 18 包步驟 2 查出 · PENDING
+
+**登記日**：2026-08-24（18 包步驟 2，依 **R-PMH66** 之殘餘人讀）
+
+### 所見
+
+A-PMH14 之新漏 2 已載「p9 之狀態矩陣**表格**全缺」。
+**本輪另查出：SYS1 之 `9.1` 所保留之 `PM1)` 散文，其本身亦非逐字。**
+
+量測方式：以 PyMuPDF `get_text("blocks")` 取 PDF p9 之 `PM1)` **單一文字區塊**
+（658 字元，未與矩陣交錯），對 SYS1 `9.1`（1,265 字元）做**字級** diff。
+
+| # | PDF p9 之 `PM1)` 區塊 | SYS1 `9.1` | 判定 |
+|---|---|---|---|
+| **1** | `the head unit should 'stay awake'` **`for 60 seconds`** `up to 2.5 minutes` | `the head unit should 'stay awake up to 2.5 minutes` | **漏 —— 時序子句 ＋ 收尾單引號** |
+| **2** | `interact with the popup within 60` **`seconds`** `the timeout` | `interact with the popup within 60 the timeout` | **漏 —— 時序單位**（SYS1 之句因而不成句） |
+| **3** | `pop-up list,` **`the radio should shut Off the`** `popup should close` | `pop-up list, the popup should close` | **漏 —— 整個子句** |
+| 4 | `popup should close` **`aofnd`** `if no other popups` | `popup should close if no other popups` | **非漏** —— `aofnd` 為 PDF 原文之 typo，SYS1 逕改為 `if`（**未經授權之改寫，登記但不視為漏**） |
+
+### 其嚴重性 —— **與 A-PMH03 之 7.1 完全同型**
+
+被漏之 (1)(2) **皆為時序**（60 秒之 stay-awake 窗、60 秒之互動逾時），
+正是 **A-PW68**（Power Management `006` 時序誤讀，歷經兩輪修正與多次 lint
+全綠而未被察覺）之形態。**7.1 漏的是動畫／splash 之時序，9.1 漏的是
+popup stay-awake 之時序 —— 同一份 SYS1 匯出，同一類內容，兩處。**
+
+**5 個 leaf 引 `9.1`** —— 若以 SYS1 為判讀基準撰寫其 TC，該二時序無從得知。
+**R-PMH50（`source_clause` 取自 PDF）於此第三度獲得直接佐證。**
+
+### **為何 13 包之全簿雙向 diff 沒查出**
+
+13 包方向二以 `pdftotext -layout` 之 PDF 全文切句，
+**而 p9 之文字層是兩欄矩陣與 `PM1)` 散文交錯**，切出之「句」皆為
+矩陣格與散文之混合串。該等混合串之 6-gram 覆蓋率多 >= 30%，
+**遂被門檻自動判為「`-layout` 之切分假象」而濾掉。**
+
+**這正是 R-PMH66 所禁止之事** —— 門檻不得決定結論。
+本輪依 R-PMH66(b)(c) 令殘餘逐句人讀，該四處即於第 9、11 句浮現。
+
+**且其修法亦已具名**：p9 之比對不得用 `-layout` 之交錯文字，
+須用 **block 層**之萃取（PyMuPDF `get_text("blocks")`），其 `PM1)` 為單一區塊。
+
+### 另一項（同輪、較輕）
+
+`Please refer to Power Moding State Matrix for further specifications.`
+—— 章 9 之**首句指標句**，SYS1 全 52 則命中 **0**。
+屬新漏 2 之範圍（同一矩陣），**惟 A-PMH14 未具名此句**，本輪補記。
+與新漏 3（p10 之 `POWER MODING STATE MATRIX:` 段）同形態、不同位置。
+
+### 處置（提案，不裁定）
+
+(a) **不阻斷 batch 1** —— 章 9 之 5 leaf 不在 `Disclaimer Screen` 組內；
+(b) 撰寫 ch 9 之 5 leaf 時，`source_clause` **須取自 PDF p9 之 block 層萃取**，
+    不得取自 SYS1，亦不得取自 `-layout` 之交錯文字；
+(c) **`DR-PMH2` 之理由再增一項** —— 該矩陣不僅表格缺，其散文亦已失真；
+(d) `chapter_bidirectional.py` 之 PDF 來源**現仍為 `-layout`**，
+    章 9 之殘餘結論係以 block 層另行查證後寫入 `RESIDUE_VERDICT`。
+    **改用 block 層為預設來源，屬判準變更，須另立條文。**
+
+**狀態**：PENDING。不阻斷本包。
+
+---
+
 ## 開案時之介面實測記錄（非異常，供追溯）
 
 `scripts/new_feature.py` 之實際介面與本 slug 之相合情形：
