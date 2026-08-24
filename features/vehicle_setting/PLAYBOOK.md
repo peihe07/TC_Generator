@@ -134,33 +134,120 @@ Remarks = reason + anomaly id.
 
 ## 6. Status board — Vehicle Setting
 
+**主線 CFTS044 已收尾（60 輪）。** 更新於 2026-08-24，W-175（90 包）。
+VF230 線之狀態不在本節範圍 —— 見 `CROSSLINE.md`。
+
 - [x] P0 intake complete; INTAKE.md reviewed; missing files: none (INPUTS.sha256 recorded)
 - [x] P1 recon complete; workbook_state: BLANK; leaves: 271 (237 Functional); targets: 237
 - [x] P2 DECISIONS signed (date: 2026-08-20)
 - [x] P3 framework Part N + profile approved — framework **locked 2026-08-22** (P19, signed 2026-08-20); profile `FW036_R1L_VehicleSetting_Profile.md` created round 18
 - [x] P4 data artifacts built — `leaves.tsv` / `leaf_to_reqid.tsv` / `lid_pairs.tsv` / `spec_variables.tsv` (+ `normalized_key`, `suspect_prefix`) / `can_signal_map.tsv` / `delegation_lookup.tsv`
-- [x] P5 pilot batch **01** reviewed; verdict: **PASS (Pei, 2026-08-22)**; corrections: 3 defects (D-1 baseline comparison, D-2 final-step action, D-3 executable steps < 2) → `batch01_v3.json`, batch **10 → 8**
-- [ ] P6 all batches generated; lint green; placeholders: **4 PENDING lines across 2 TCs held out of batch** (`Stop-StartSystem-006` DR-19, `SwitchLHD/RHD-010` DR-20)
-- [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: **2026-08-22, items 1–5 of the 8-item dispatch letter (37 §2)**
+- [x] **P5 pilot #1–#6 全數 PASS**：
+  - pilot **#1** PASS（Pei 2026-08-22，**8** 條）—— 3 項 defect 修畢
+  - pilot **#2** PASS（**15** 條）
+  - pilot **#3＋#4** 不通過 → **七項 defect 修畢後 PASS**（**28** 條）
+  - pilot **#5＋#6** 不通過 → **五項 defect 修畢後 PASS**（**18** 條）
+  - **累計 69 條經人工關卡（225 之 31%）**
+- [x] **P6 全批生成完畢；機械檢查全綠**：
+  - **225 TC 涵蓋 219 leaf**
+  - 母體 **237** 之三類：有 TC **219**／`held_out` **7**／`generatable = no` **11**（R-VS76 完整性 **PASS**）
+  - §9 十七項 **0**／固定錨點 **20/20 必命中**／五項 defect **0**／R-VS77 八判準 **0**／**L3 全量 225/225 不符 0**
+  - placeholders：無整條 PENDING 者（§B-1 = 0）；部分步驟 PENDING 者 25 條，見 `DELIVERY.md` §3
+- [x] **P7 dry-run approved**（47 輪，四錨點皆可失敗）：
+  - 母本 **`c72b9556…`**（**243 列**，資料列 **10–252**）
+  - `DELIVERY.md` **11 節定稿**（**§0 交付物之實際狀態在首**）
+  - 附件三份：`writability.tsv`／`REGEN_ORDER.md`／`DATA_REQUESTS.md`
+  - RD-1 已送 **5 項**（2026-08-22）
+  - **v__ tag: ____；submitted: ____ —— 二者仍空白，其屬 Pei**
 
-### Open DRs — 待送 vs 待覆 (D-9)
+### Open DRs — 待送 vs 待覆（D-9；2026-08-24 重列）
 
-| DR | 送件文項次 | 阻塞 | 影響 leaf | 狀態 |
+**待覆**（已送出 2026-08-22，5 項）
+
+| DR | 送件文項次 | 阻塞 | 影響 | 狀態 |
 |---|---|---|---:|---|
-| DR-15 | 1 | yes | 160 | **待覆**（送出 2026-08-22） |
-| DR-17 | 2 | yes | 14 | **待覆**（送出 2026-08-22） |
-| DR-14′ | 3 | yes | 16 | **待覆**（送出 2026-08-22） |
-| DR-19 | 4 | yes | 3 | **待覆**（送出 2026-08-22） |
-| DR-20 | 5 | yes | 1 | **待覆**（送出 2026-08-22） |
-| DR-18 | 6 | no (確認型) | 160 | **待送** |
-| DR-8 | — | no | — | **待送** |
-| DR-11 | — | no | 1 | **待送** |
-| DR-12 | — | no | — | **待送** |
+| DR-15 | 1 | yes | 11 TC | **待覆** |
+| DR-17 | 2 | yes | 14 leaf | **待覆** |
+| DR-14′ | 3 | yes | 16 leaf | **待覆** |
+| DR-19 | 4 | yes | 5 TC | **待覆**（**併入 DR-21**，R-VS42；原編號保留 R-TM13） |
+| DR-20 | 5 | yes | 1 leaf | **待覆**（**併入 DR-23**，R-VS42；搜尋已停止，44 包 §2） |
 
-送件文第 7 項（`$VC_VEH_LINE$` 車型碼）與第 8 項（`$PowerMode$` 之 `IGN_OFF_ACC`）
-**於 `DATA_REQUESTS.md` 無對應之 DR 編號**，且本次未送。
+**待送**
+
+| DR | Urgency | 阻塞 | 影響 | 備註 |
+|---|---|---|---:|---|
+| DR-15′ | High | yes | — | 取代 DR-15（63 包 §5）；**已送出者以本文補送** |
+| DR-18 | Medium | no（確認型） | **20 TC** | 2 bit 狀態訊號無未用碼 —— 無效值之定義 |
+| DR-21 | High | yes | **2 TC** | 類別式 B2（R-VS42 改制）；DR-12／DR-19 併入之 |
+| DR-23 | Medium | yes | — | 類別式 B1（R-VS42 改制）；搜尋已停止 |
+| DR-24′ | — | yes | **49 TC** | 時限（`<Tsend>` 等）之上限值；併入 `<Tdisplay>` |
+| DR-25 | Medium | no（確認型） | **44 TC** | 依 R-VS57 由 High 降級 |
+| DR-26 | Low | yes | 1 步驟 | 36 輪 W-101(3) 開立 |
+| DR-27 | Medium | yes | 4 leaf | 37 輪 W-105 唯一性掃描開立 |
+| DR-29 | Low | no | — | 19 個 `SWE-Requirement ID` 缺連字號 |
+| DR-30 | Low | no | — | 037 與 035 於 8 列之 Categorization 相左 |
+
+**已撤回**（原文保留 —— R-TM13）
+
+| DR | 撤回之依據條文 |
+|---|---|
+| **DR-8′** | **R-VS62′**（65 包 §1，42 輪 D-3）—— `VC_VEH_LINE` 取自 PROXI 列 466，其素材缺件之前提消滅 |
+| **DR-22′** | **R-VS49**（29 輪 D-4） |
+| **DR-25′** | **R-VS66／R-VS67′(d)**（73 包 §1）—— 其標的（訊號不在基線 DBC）依 R-VS66 已非 DR 之事由，而是 issue-to-RD 之事由 |
+
+**⚠ 一項於本次重列時查得**：**`DR-5-B` 無登記條目。**
+其為 **39 條 TC** 之 AH 所載之阻塞標的（畫面層之樣式與內容待 TLM HMI Document），
+出處為 **`docs/handoff/05_rulings.md`**，而 **`DATA_REQUESTS.md` 內僅一次提及、無 `## DR-5` 之條目**。
+`DR-5`／`DR-7`／`DR-11` 同 —— 三者於該檔皆無條目。**具名，不補**（本輪禁區禁補素材）。
 
 - Open PENDING rulings: none — R-VS19″ / R-VS41 / P19 皆已裁；`A-VS02` 為缺號，不補不重編
+
+### 交付物之已知限制（自 `DELIVERY.md` §0 逐字取，四項）
+
+1. **R 欄無選單；P 欄與 T–Z 欄自第 133 列起無選單**
+   —— 修復範圍 **`R10:R252`／`P10:P252`／`T10:Z252`**（**A-VS153 未關閉**；
+   驗收判準見 `docs/reports/x14_fix_prep.md` §4）
+2. **11 批 80 條之首版不可重放**，其變更鏈**經實跑證實缺一層**
+   （A-VS162／163／164；其可稽核範圍為「自凍結點起之變更」，非「自需求起之產出」）
+3. **156 條（69%）未經人工覆核**
+4. **就地改動實為 5 commit／26 檔次／24 檔，含實質欄位**
+   （`test_procedure` 10／`pre_conditions` 10／`expected_result` 9）
+
+> 上開四項**不因「八項回掃全數 0」而消失** ——
+> 那八項驗的是條文一致性，不是這四件事。
+
+### 未結之作業（供接手者判）
+
+**⚠ 本節與 90 包 §2 所令之文字不同，其差具名如下。**
+
+90 包令記「**60 輪之 W-172／W-173／W-174 未執行**；其中 W-172(2)
+（`70b75d0` 之 15 檔次其下放包依據未查）有實質 —— 若無依據，即為
+無授權之變更落在已交付之產物內」。
+
+**實測：該三項已於 60 輪執行完畢並入庫**（commit `1670756`，
+上繳 `docs/upstream/53_inplace_audit.md`）。**其結果為**：
+
+| 項 | 結果 |
+|---|---|
+| **W-172** | **26 檔次逐一皆有下放包依據，無依據者 0**。`70b75d0` 之 15 檔次**並非值之改動而是欄位之新增**（前版無 `screen_pending` 欄），其依 **68 包 D-4** 逐字「`generated/` 各批次**增** `screen_pending` 欄」所令 —— **即 R-VS80「下放包之措辭亦受本條拘束」之實證**。**「無授權之變更落在已交付產物內」一事不成立。** |
+| **W-173** | **R-VS81 已實作**（`scripts/versioned_out.py`），錨點兩側皆有標的（現行最大版號為目標 → raise；`_v{n+1}` → 成功；**內容相同者仍 raise**）。已接入 `earlyfix_w157.py`／`rvs6_restore_w160.py` |
+| **W-174** | 鏈重建**新增 7 層**（門檻 10，未逾）。另查得 **A-VS165**：`REGEN_ORDER.md` 之「鏈長最長者」句與其表格**差恆為 1，自 58 輪起** —— 90 包所據之數即受其影響 |
+
+**本層之處置**：狀態板為接手者之基準（90 包 §1 逐字：「不更新即收尾者，
+下次接手會以錯誤之基準往下做」），**故不錄入一個實測為假之陳述**；
+兩者並列於此，其取捨屬分析層。
+
+**真正未結者，三項**：
+
+| # | 事項 | 歸屬 |
+|---|---|---|
+| 1 | **下拉之修復**（`R10:R252`／`P10:P252`／`T10:Z252`）—— A-VS153 未關閉 | **Pei** |
+| 2 | **`impl_gap` 56 條開 issue 予 RD**（R-VS66(a)） | **Pei** |
+| 3 | `record_rewrite_w95.py`／`priority_and_style_w101.py`／`pilot_fix_w130.py` **三支歷史腳本未接 R-VS81** —— 其輸出為明列之對映表，改之須動 `generated/` | **分析層裁** |
+
+**另二項待分析層更正**（上繳 53 §2.1／§5）：
+A-VS163 之歸屬（那 18 檔次為照令執行，非本層之工程缺陷）與其數
+（165 條中 133 為新增、26＋6 為重標）。
 
 ---
 
