@@ -467,7 +467,7 @@ def test_identity_falls_back_to_nearest_non_generic_dir(tmp_path):
 
 
 @pytest.mark.parametrize("stem, expected", [
-    # 範圍向（R-G9）：非日期起首者 tag 一律不變 —— 既有八本之報告檔名須維持
+    # 範圍向（R-G9）：非日期起首者 tag 一律不變
     ("FM-WI-FSM-036-A01 x_SWQT_AMFM_20260821", "AMFM"),
     ("FM-WI-FSM-036-A01 x_SWQT_Home_20260809", "Home"),
     ("FM-WI-FSM-036-A01 x_SWQT_CFTS012_DealerMode_20260417(done)", "CFTS012_DealerMode"),
@@ -479,6 +479,80 @@ def test_named_tags_are_untouched_by_the_fix(tmp_path, stem, expected):
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_bytes(b"")
     assert lint036.report_stem(p) == expected, "feature 名不得混入已具身分之 tag"
+
+
+# --- 報告檔名 v2（26 包 §C 裁定 3）------------------------------------------
+#
+# 25 包之回歸向為「既有報告**檔名**不變」。裁定 3 改其方向：
+# 新產報告採 `{tag}_{來源檔sha8}_{YYYYMMDD}`，故新檔名本就會變；
+# **回歸判準改為「既有報告檔案不被重命名」** —— 工具不得碰 report_dir
+# 內既存之檔。二者並存：tag 之範圍向（上）＋ 既有檔案之不動（下）。
+
+EXISTING_REPORTS = [                      # 字面釘入（G-N）：現存之既有報告檔名
+    "AMFM_20260821.md", "AMFM_20260821.json",
+    "Home_20260821.md", "CFTS012_DealerMode_20260821.md",
+    "PowerManagement_20260821.json", "Projection_20260821.md",
+    "pm_25__power_20260824.md",
+]
+
+
+def test_source_sha8_is_content_addressed(tmp_path):
+    """sha8 取自位元組 —— 檔名可以改，位元組不會。"""
+    a = tmp_path / "a.xlsx"
+    b = tmp_path / "b.xlsx"
+    a.write_bytes(b"same-bytes")
+    b.write_bytes(b"same-bytes")
+    assert lint036.source_sha8(a) == lint036.source_sha8(b)
+    b.write_bytes(b"other-bytes")
+    assert lint036.source_sha8(a) != lint036.source_sha8(b)
+
+
+def test_source_sha8_declares_its_own_absence(tmp_path):
+    """讀不到者回 `nosha`，不回退為空字串（空字串會讓檔名退回舊式而看似正常）。"""
+    assert lint036.source_sha8(tmp_path / "missing.xlsx") == "nosha"
+
+
+def test_same_tag_different_content_no_longer_collides(tmp_path):
+    """字面案例：同一 feature 之兩個來源日期，其 tag 相同而內容不同。
+
+    25 包實測 `PowerManagement` 有 12 檔共用一個 tag —— 同日 lint 即互相覆寫。
+    """
+    names = set()
+    for day, content in (("20260816", b"v1"), ("20260820", b"v2"), ("20260821", b"v3")):
+        p = (tmp_path / "features" / "power" / "inputs" /
+             f"FM-WI-FSM-036-A01 x_SWQT_PowerManagement_{day}.xlsx")
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_bytes(content)
+        assert lint036.report_stem(p) == "PowerManagement"      # tag 仍相同
+        names.add(f"{lint036.report_stem(p)}_{lint036.source_sha8(p)}")
+    assert len(names) == 3, f"三份相異內容須得三個相異檔名，實得 {names}"
+
+
+def test_identical_copies_share_one_report_name(tmp_path):
+    """範圍向（R-G9）：位元組相同之多處副本**應**共用檔名，不得被當成碰撞。"""
+    names = set()
+    for feature in ("comfort", "time_management"):
+        p = tmp_path / "features" / feature / "inputs" / "SR24 Table v1.6.xlsx"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_bytes(b"identical")
+        names.add(f"{lint036.report_stem(p)}_{lint036.source_sha8(p)}")
+    assert len(names) == 1
+
+
+@pytest.mark.parametrize("existing", EXISTING_REPORTS)
+def test_existing_report_files_are_never_renamed(existing):
+    """裁定 3 之回歸判準：既有報告**檔案**不得被重命名。
+
+    工具只寫新檔名，從不移動或改名 `report_dir` 內既存之檔 ——
+    以原始碼為證：`lint036` 全檔無任何 rename／move／unlink 呼叫。
+    """
+    root = Path(__file__).resolve().parent.parent
+    src = (root / "scripts" / "lint036.py").read_text(encoding="utf-8")
+    for forbidden in (".rename(", ".replace(Path", "shutil.move", ".unlink(", "os.remove"):
+        assert forbidden not in src, f"lint036 不得改動既存檔案：發現 {forbidden}"
+    report = root / "docs" / "fw036" / "lint_reports" / existing
+    if report.exists():
+        assert report.name == existing        # 檔名逐字不變
 
 
 # --- profile 專屬檢查（21 包：`--profile <feature>`）-------------------------

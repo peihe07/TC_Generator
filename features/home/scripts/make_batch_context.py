@@ -267,6 +267,7 @@ def main() -> None:
         "exemplar_chapter": ex_source,
         "exemplar_is_fallback": ex_source not in chapters,
         "exemplars": ex[:args.per_chapter],
+        "fingerprint": _fingerprint("features/home"),
     }
     if unresolved:
         ctx["unresolved_sections"] = unresolved
@@ -326,6 +327,26 @@ def main() -> None:
         print(f"  {len(leaves) - len(home_leaves)} leaves trace to an external "
               f"spec, no Home text injected: {foreign}")
 
+
+
+# --- R-G19：prompt／exemplar 指紋（26 包 §D-5）------------------------------
+
+def _fingerprint(feature_dir: str) -> dict:
+    """本批實際使用之 prompt 模板與 exemplar 集之 sha（R-G19@`bd206972`）。
+
+    指紋之計算集中於 `scripts/prompt_fingerprint.py`，各 feature 只呼叫。
+    **取不到時回 `{"error": ...}` 而非省略該鍵** —— 少一個鍵與指紋相符
+    在 manifest 上長得不一樣，而少一個鍵與「沒有指紋」長得一樣（G-D）。
+    """
+    import importlib.util
+    root = Path(__file__).resolve().parents[3]
+    spec = importlib.util.spec_from_file_location(
+        "tc_prompt_fingerprint", root / "scripts" / "prompt_fingerprint.py")
+    if spec is None or spec.loader is None:
+        return {"error": "scripts/prompt_fingerprint.py 不可載入"}
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.fingerprint(root, feature_dir)
 
 if __name__ == "__main__":
     main()

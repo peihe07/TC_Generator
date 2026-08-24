@@ -18,6 +18,7 @@ gate 政策（S3）：`--gate` 旗標保留但**尚不啟用**。啟用時機為
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -760,6 +761,24 @@ def render_report(path: Path, results: list[SheetResult], length_limit: int,
     return "\n".join(lines) + "\n"
 
 
+def source_sha8(path: Path) -> str:
+    """來源工作簿之 sha256 前 8 碼（26 包 §C 裁定 3）。
+
+    報告檔名自本裁定後之新產報告起採 `{tag}_{來源檔sha8}_{YYYYMMDD}`。
+    **`tag` 本身不足以識別報告**：同一 feature 之兩個來源日期於同一天被
+    lint，其 `{tag}_{今日}` 相同，後者靜默覆寫前者（25 上繳 §九-2 實測
+    18 組）。sha8 帶回來源之身分，且它比檔名可靠 —— **檔名可以改，
+    位元組不會**。
+
+    讀不到者回 `nosha`，**不回退為空字串** —— 空字串會使檔名退回舊式而
+    看起來正常，`nosha` 則在檔名上自陳其缺。
+    """
+    try:
+        return hashlib.sha256(path.read_bytes()).hexdigest()[:8]
+    except OSError:
+        return "nosha"
+
+
 def report_stem(path: Path) -> str:
     """由檔名推出報告 tag（取 SWQT_ 之後、日期之前的段）。
 
@@ -846,7 +865,7 @@ def main(argv: list[str] | None = None) -> int:
         tag = report_stem(path)
         if args.profile:
             tag = f"{tag}__{args.profile}"
-        report_path = report_dir / f"{tag}_{date.today():%Y%m%d}.md"
+        report_path = report_dir / f"{tag}_{source_sha8(path)}_{date.today():%Y%m%d}.md"
         report_path.write_text(
             render_report(path, results, args.length_limit, args.profile),
             encoding="utf-8")

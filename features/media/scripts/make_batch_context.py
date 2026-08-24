@@ -143,6 +143,7 @@ def main():
                              for p in sorted(pages)],
         "popup_refs": popups,
         "exemplars": ex[:2],
+        "fingerprint": _fingerprint("features/media"),
     }
 
     out = Path(args.out) if args.out else Path("batches") / f"{args.parent}.json"
@@ -152,6 +153,26 @@ def main():
           f"{len(pages)} page images, {len(pu_ids)} PU refs, "
           f"test_set={test_set} -> {out}")
 
+
+
+# --- R-G19：prompt／exemplar 指紋（26 包 §D-5）------------------------------
+
+def _fingerprint(feature_dir: str) -> dict:
+    """本批實際使用之 prompt 模板與 exemplar 集之 sha（R-G19@`bd206972`）。
+
+    指紋之計算集中於 `scripts/prompt_fingerprint.py`，各 feature 只呼叫。
+    **取不到時回 `{"error": ...}` 而非省略該鍵** —— 少一個鍵與指紋相符
+    在 manifest 上長得不一樣，而少一個鍵與「沒有指紋」長得一樣（G-D）。
+    """
+    import importlib.util
+    root = Path(__file__).resolve().parents[3]
+    spec = importlib.util.spec_from_file_location(
+        "tc_prompt_fingerprint", root / "scripts" / "prompt_fingerprint.py")
+    if spec is None or spec.loader is None:
+        return {"error": "scripts/prompt_fingerprint.py 不可載入"}
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.fingerprint(root, feature_dir)
 
 if __name__ == "__main__":
     main()

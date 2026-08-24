@@ -1,0 +1,18 @@
+item	coverage	gate_ids	in_sections	residual_manual	summary
+1	partial	G	§4.1／§4.2	G 只驗 Test Set 非空；名詞片語／capability-level／與 framework.md 一致／無 Test Group 前綴／拼寫一致／非 Unclassified 或 Misc —— 六項皆人讀	Test Set: noun phrase, capability-level, matches `framework.md`, no Test Group prefix, consistent spelling, no `Unclassified` / `Misc`
+2	manual	人工項	§4.3	tc_title 之三種形態、2–14 字、sibling token 可見、無情態詞 —— lint036 無 tc_title 閘（feature 級 vf230_selfcheck_wvf62 有字數檢查，未入本簿）	tc_title: one of 3 shapes, 2–14 words, sibling token visible, no modals
+3	partial	D,R	§4.4／§8.5	D 驗 Pre-Condition 之違規詞、R 驗其版面（未編號行／多條件並列）；「每一條是 spec 觸發條件而非環境穩定前提」（§8.5）為語意判斷，人讀	Pre-Condition state/env only; each entry is a spec trigger condition, not an implicit environment-stability premise
+4	partial	M	§4.5	M 只驗空欄三態；欄位歸屬是否正確、重複資料是否已移入 PC／Procedure —— 人讀	Input Test Data field ownership correct, duplicate data moved to PC / Procedure or `NA`
+5	partial	A	§5.1／§5.5	A 驗禁用動詞；「步驟可執行」與「末步驟擁有驗證」（§5.5）為人讀	Steps executable; no forbidden verbs; Final Step owns verification
+6	manual	人工項	§5.2	步驟長度與意圖層級之三分類 —— 無可測判準	Step length and intent level fit normal / final / necessary-intent categories
+7	manual	人工項	§5.3	標準 setup 片語是否逐字重用 —— 無片語清單可比對	Standard setup snippets reused verbatim when applicable
+8	manual	人工項	§5.4	CLI／工具步驟之 description + `$` 格式 —— 無閘	CLI / tooling steps use description + `$` command format
+9	manual	人工項	§5.6	需要前後比較時是否取 baseline —— 需判斷「是否需要」，無閘	Baseline when before/after needed
+10	partial	E,B,H	§6／§6.1	E 驗 proc/er 編號行數對齊、B 驗 ER 情態詞、H 驗 ER 模糊語；「ER 可觀察」「結果涵蓋完整」「多階段版面之適用時機」為人讀	Procedure ↔ ER 1:1; ER observable; no modal verbs in ER; complete outcome covered; multi-phase ER layout used when needed
+11	manual	人工項	§7	無 False Pass／False Fail；supported 須配負向 —— 配對之完整性需跨 TC 判斷	No FP / FF; supported paired with negative
+12	partial	U,F	§8.1／§8.2.1／§8.2.2／§8.4.1／§8.4.2	U 計 PENDING 佔位、F 攔方括號佔位；追溯至 Req/SWRA、RD 分解不越界、無造值、無範圍造作 —— 皆人讀（其中造值為 IN §8.4.1／§8.4.2）	Traces to Req/SWRA; respects RD upstream decomposition without expanding into siblings; allows RD sub-id ≠ TC count when partial failures ar
+13	manual	人工項	§12	Design Method 是否於 procedure 定稿後才指派 —— 順序不可由產物觀察	Design Method assigned AFTER procedure finalized
+14	full	N	§11		No trailing period on any line of `pre_conditions` / `input_test_data` / `test_procedure` / `expected_result`
+15	full	F	§11		UI element labels use `"..."` double quotes, never `[...]` square brackets
+16	manual	人工項	§10.7	specification_reference 是否列出**每一個**直接驗證之 spec 節 —— G17／G18 型之雙向閘在 feature 級存在，lint036 無	`specification_reference` lists every spec section the TC directly verifies
+17	manual	人工項	§8.6／§8.7	來源 spec 優先於索引匯出、門檻取自 spec 之具體值、相似操作於 ER 消歧、變體標籤一致、styled 元素不臆測為不可操作 —— 五項皆人讀	Source spec wins over index export; thresholds are spec-sourced concrete values, similar operations disambiguated in ER, variant labels appl

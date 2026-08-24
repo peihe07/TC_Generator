@@ -1,5 +1,10 @@
 # 23b — W-P2 補充下放包（四項裁定落地 + 兩處併入 W-P2）
 
+> **[SUPERSEDED by 25_wp2.md — 2026-08-24]**
+> 本檔為並行 session 所產之同輪下放包，與 `25_wp2.md` 對裁定 D 之落點分歧
+> （上繳 25 §五-1）。**以 25 為準**；本檔內文一字未改，僅加本標頭（26 包 §A）。
+> 依 R-G23（26 包 §C [DEFAULT]）：同輪重複下放者，另一份標 [SUPERSEDED] 不刪。
+
 日期：2026-08-24
 主工單：`docs/fw036/handoff/23_process_improvement.md` §E W-P2（本檔為其補充，同讀）
 另讀：`docs/fw036/upstream/24_wp1_continuation.md`（§五-2／§五-3／§七-2／§十三-7 之背景）

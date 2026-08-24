@@ -69,6 +69,38 @@ def test_body_change_changes_hash(tmp_path):
     assert a.sha256 != b.sha256
 
 
+def test_trailing_hrule_not_absorbed_into_body(tmp_path):
+    """章節分隔線不屬任何條文 —— 其後追加新章節不得改變前一條之 sha。
+
+    W-P3 實測之字面案例：`R-VS82` 於其後追加 `## 主線 —— 26 包` 後 sha 變，
+    **而其本體一字未改**。假性不符若累積，R-G13 之比對會被當成噪音忽略。
+    """
+    body = "### R-X1 —— 甲\n\n條文本體，一字未改。\n"
+    write(tmp_path, "a.md", body)
+    write(tmp_path, "b.md", body + "\n---\n\n## 新章節\n\n### R-X2 —— 乙\n\n另一條。\n")
+    a = rh.extract(tmp_path / "a.md", tmp_path)[0]
+    b = by_id(rh.extract(tmp_path / "b.md", tmp_path))["R-X1"]
+    assert a.sha256 == b.sha256, "末條之 sha 不得因其後有無章節而改變"
+
+
+@pytest.mark.parametrize("rule", ["---", "***", "___", "-----"])
+def test_all_hrule_forms_are_stripped(tmp_path, rule):
+    write(tmp_path, "a.md", "### R-X1 — 甲\n\n本體。\n")
+    write(tmp_path, "b.md", f"### R-X1 — 甲\n\n本體。\n\n{rule}\n")
+    a = rh.extract(tmp_path / "a.md", tmp_path)[0]
+    b = rh.extract(tmp_path / "b.md", tmp_path)[0]
+    assert a.sha256 == b.sha256
+
+
+def test_hrule_inside_body_is_kept(tmp_path):
+    """範圍向（R-G9）：只剝**尾端**之分隔線；本體中間者為內容，不得剝。"""
+    write(tmp_path, "a.md", "### R-X1 — 甲\n\n前段。\n\n---\n\n後段。\n")
+    write(tmp_path, "b.md", "### R-X1 — 甲\n\n前段。\n\n後段。\n")
+    a = rh.extract(tmp_path / "a.md", tmp_path)[0]
+    b = rh.extract(tmp_path / "b.md", tmp_path)[0]
+    assert a.sha256 != b.sha256, "本體中間之分隔線為內容之一部分"
+
+
 def test_anchor_inside_fence_not_collected(tmp_path):
     write(tmp_path, "R.md", "### R-VS7 — 甲\n\n```\n### R-VS8 — 這在 code fence 內\n```\n")
     assert ids(rh.extract(tmp_path / "R.md", tmp_path)) == ["R-VS7"]

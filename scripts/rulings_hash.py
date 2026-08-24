@@ -72,12 +72,23 @@ class Ruling:
         ])
 
 
+# 章節分隔線 —— 其不屬任何條文，卻落在前一條之本體範圍內
+RE_HRULE = re.compile(r"^\s*(?:-{3,}|\*{3,}|_{3,})\s*$")
+
+
 def body_sha(lines: list[str]) -> tuple[str, int]:
-    """條文本體之雜湊與其行數（量測條件見 module docstring）。"""
+    """條文本體之雜湊與其行數（量測條件見 module docstring）。
+
+    **尾端之分隔線與空行一律剝除**：`---` 為章節之分隔，不屬任何一條。
+    不剝除者，同一條文之 sha 會因**其後是否追加新章節**而改變 ——
+    W-P3 實測：R-VS82 在其後追加 `## 主線 —— 26 包` 後 sha 由 `12177e4f`
+    變為另一值，**而其本體一字未改**。那種假性不符若累積，
+    R-G13 之 sha 比對就會被當成噪音忽略，而**那正是 R-G13 之效力所繫**。
+    """
     trimmed = [ln.rstrip() for ln in lines]
     while trimmed and not trimmed[0]:
         trimmed.pop(0)
-    while trimmed and not trimmed[-1]:
+    while trimmed and (not trimmed[-1] or RE_HRULE.match(trimmed[-1])):
         trimmed.pop()
     body = "\n".join(trimmed)
     return hashlib.sha256(body.encode("utf-8")).hexdigest(), len(trimmed)
