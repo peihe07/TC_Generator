@@ -32,11 +32,22 @@ import vf230_wvf84_writeback as WB        # noqa: E402  復用其 restore_extlst
 
 LIMIT = 1000
 STYLE_SRC_ROW, FIRST, LAST = 10, 10, 447
-# **`H10:H132` 為第五處，`R-VF139` 未列**（其明文為 P／R／T–Z／AF 四處）。
-# H 為 `Test Set 測試集`（9 種已鎖之值）。**一併延伸，其理由為該條之立法目的**：
-# 「只改其一則同一份交付本內有二種驗證範圍，其不一致本身即為日後之疑點來源」——
-# **留 H 停於 132 恰為該條所欲避免者**。**本處置超出其字面，已具名待追認。**
-SUBS = [('sqref="H10:H132"', f'sqref="H10:H{LIMIT}"', "H（Test Set，**R-VF139 未列**）"),
+# **`R-VF139` 明文為 P／R／T–Z／AF 四處，本表即以此為限。**
+#
+# 【已撤回之處置，記之以防再犯】本腳本前一版曾將 `H10:H132` 列為「第五處下拉」
+# 而一併延伸至 1000。**其前提為假** —— `H10:H132` 之母元素為
+# `<conditionalFormatting>`（colorScale），**不是 `dataValidation`**。
+# 其誤因為抽取時只取 `sqref="..."` 字串而不問母元素為何
+# （同一抽取所得之 `L9` 實為 `<selection activeCell="L9">`）。
+# **已還原為 `H10:H132`，其與交付本 CFTS044 一致。**
+#
+# 【未納入者，其為刻意】
+#   `Q10:Q11`     其被納入 Priority 之下拉而 Q 為 Estimated Test Time——樣板既有瑕疵，
+#                 延伸之則將一個錯誤之驗證自 2 列擴大至 991 列。
+#   `autoFilter`  `ref="A9:AH132"` 而資料至列 447（樣板容量之第四處）。
+#                 **其為另一元素，不在 `R-VF139` 之射程**；且交付本 CFTS044 亦如此。
+#                 其修正屬 Excel 內之一個動作，已列入交付說明 §六。
+SUBS = [
         ('sqref="P10:P132 Q10:Q11"', f'sqref="P10:P{LIMIT} Q10:Q11"', "P（Priority）"),
         ('sqref="T10:Z132"', f'sqref="T10:Z{LIMIT}"', "T–Z（車型適用）"),
         ('sqref="AF10:AF13"', f'sqref="AF10:AF{LIMIT}"', "AF（測試結果）"),
