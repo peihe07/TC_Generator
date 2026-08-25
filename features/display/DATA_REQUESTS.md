@@ -20,6 +20,7 @@ Urgency 回報。
 | DR-DM2 | Popup 優先序仲裁規則與 timeout 之來源（CFTS 本文僅有 RVC「high priority」語句，無仲裁順序表或 timeout 值） | OPEN | SWE-DM-006 | popup 仲裁之預期結果無法寫 | — | HIGH |
 | DR-DM3 | `SYS-RA-DISP-*` ↔ SYS2 之對應表，或含 `DISP` id 之 SYS2 版本 | OPEN | 全 8 leaf 之追溯欄 | 追溯鏈斷；spec_reference 無 id 路徑 | A-DM2 / A-DM10 | MEDIUM |
 | DR-DM4 | CFTS_013（條號 `CFTS013-629` Standard/`-633` Standard/`-952` Multi-stage，載 DCSD Display Hot 演算法本體與其分級溫度門檻）— 檔名待查（pattern：`…CFTS_013…docx`） | OPEN | SWE-DM-005（004 部分） | multi-stage 之分級判準無法寫；單級 85 °C 行為可寫 | A-DM13 | HIGH |
+| DR-DM6 | `Display_OFF_SoftKey_Prsnt` 之 PROXI 定義；或確認其與 `PROXI_HDCC27_R3` `Format` r692 之 `Display_OFF_SoftKey` 為同一參數（LID r63 `DSP_SK_PRSNT`） | OPEN | SWE-DM-001（Screen Off 行為之配備前提） | 該 leaf 之前置條件是否需帶軟鍵存在旗標，無法判定 | A-DM17／`forms/LOOKUP_MISSES.md` M-3 | MEDIUM |
 | DR-DM5 | `RADIO_B4.CCDMF_RQ_DISP_INTS` 之 DBC 定義（訊息 `RADIO_B4` 存在於 `PDT27_E2A_R1_BHCAN2.dbc`，該 `SG_` 不存在）；一併確認 `GW_B_5.Mute_Button` | OPEN | 用到 `$CCDMF_RQ_DISP_INTS$` 之 SYS2 FR 列 | 該訊號之值域與位元定義無法寫 | A-DM10a／`forms/LOOKUP_MISSES.md` M-1、M-2 | MEDIUM |
 
 ## R-DM8 之查證結果（先查 CFTS 與 SYS3，查得者記章節）

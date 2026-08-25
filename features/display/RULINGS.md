@@ -342,6 +342,96 @@ R-DM14 之「SYS2 為訊號值域之第一來源」不變，但其表述之
 查了就有。
 ```
 
+## 來源：下放包 05
+
+```
+R-DM18（`[VALUE]` token 之擷取 —— 取代 R-DM16）
+R-DM16 廢止。其 regex 與其所載之數字不相容（條文指定
+`\[([^\]]+)\]` 而記「相異 13 個」），致誤原因為分析層將上繳包 03 以
+`\[([A-Za-z0-9_%\s]+)\]` 量得之 13 誤植為寬式之產物。
+
+現行判準：以 `\[([^\]]+)\]` 擷取後，**排除 token 中含 `:` 者**。
+冒號為 Polarion 匯出 metadata 之逐字標記（`[Artifact Type:…]`／
+`[State:…]`／`[Market:…]`／`[Radio:…]`／`[EE Architecture:…]`），
+非規格值。此判準為逐字比對，不涉相似度。
+
+分析層 2026-08-24 實測（母體 80 列 FR，`Description` 欄）：
+寬式相異 59、含 `:` 43、不含 `:` **16**、至少含一個不含 `:` token
+之 FR 列 **35**。執行層須先調和其 44 與本處之 59 之切分差異，
+以調和後之數字為準。
+
+不含 `:` 之 16 個中，`DCSD_and_HU_LVDS_Backchannel_Protocol`、
+`DCSD* and HU CAN and LVDS Backchannel Message Sequence Charts`、
+`SD.xxxxx DCSD LVDS VIDEO COMMUNICATION INTERFACE` 三者為文件／協定名，
+於輸出中另標 `kind=document`，不計入值域。其餘 13 個為值 token。
+
+`[current non-zero value]`（8 次）必須保留：它是 `$RQ_DISP_INTS$` 之值，
+且其模糊性為規格自身所有。依 canon §8.4.1，來源模糊即保留模糊；
+丟棄它會使 TC 撰寫時被迫填入一個來源未載之具體數值。
+```
+
+## 來源：下放包 05
+
+```
+R-DM19（B-CAN 資料庫之選定）[PROPOSED]
+本 feature 之 B-CAN 資料庫為 `forms/PDT27_E2A_R1_BHCAN2.dbc`
+（SHA256 `46cb73f3db62ac9f…`）。依據：Pei 2026-08-24 之指示
+「BHCAN 改成 BHCAN2」並親自置檔。
+
+FD-CAN 資料庫為 `forms/PDT27_E2A_R1_FDCAN8.dbc`
+（SHA256 `2a86c4bf3e670d71…`）。
+
+承載範圍（本條若有誤，下列全部須重做）：
+  - `features/display/data/signal_resolution.tsv` 之 26 列
+  - `forms/LOOKUP_MISSES.md` 之 M-1／M-2 兩筆查無
+  - 此後所有 Display TC 之訊號名、訊息、raw 值、VAL_ 標籤、
+    收發節點
+
+`features/vehicle_setting/inputs/` 之 `PDT27_E2A_R4_BHCAN.dbc` 與
+`PDT27_E2A_R5_FDCAN8.dbc` **不因本條而作廢**；vehicle_setting 之
+已交付件依既有慣例不回頭改（同 R-G1）。
+
+BHCAN-R4 有 573 個訊號名不在 BHCAN2 中（A-DM14）。其他 feature 若
+改用 BHCAN2，須逐一複驗既有訊號 —— 不在本 feature 範圍，登記於
+`forms/LOOKUP_MISSES.md` 之備註區。
+```
+
+## 來源：下放包 05
+
+```
+R-DM20（PROXI 之開工 —— 步驟 11 之觸發放寬）
+下放包 04 步驟 11 之停手觸發原為「LID `Proxi & Configuration` 分頁與
+本 feature 之**訊號**有關聯」。該條件過窄：PROXI 參數本就不是訊號，
+以訊號為觸發等於永不觸發。
+
+放寬為：**與任一 leaf 之前置條件、可用性條件、或配備有無相關者**。
+A-DM16 所列之 `DCSD_cfg`（DCSD Present）、`DSP_SK_PRSNT`（Display off
+soft key present）、`RVC_SK_PRSNT`（Rear Camera soft key present）
+三者已滿足此條件，故 PROXI 解析自本輪起為 in scope。
+
+值域仍依 R-VS49 之既有裁定：PROXI 表本身為該參數值域之權威。
+`forms/PROXI_HDCC27_R3_20250424.xlsx` 之 `Format` 分頁（1,060 列）
+為主表。
+
+**本條只開放解析，不授權將任何 PROXI 參數寫入 TC 之 Pre-Condition。**
+何者進入 Pre-Condition 屬 §8.5 之範疇（須為規格明載之觸發條件，
+非隱含環境穩定前提），於 Phase 2 逐 leaf 判定。
+```
+
+## 來源：下放包 05
+
+```
+R-DM21（「解得」須指明止於哪一段）
+R-DM17 之解析鏈為三段（SYS2 `$Signal$` → LID → DBC）。任何「解得」
+「查得」「resolved」之陳述，一律須指明其止於哪一段，並分別給數。
+
+實例（2026-08-24）：下放包 04 §3.4 記「15 個 `$Signal$` 全數解得」，
+該陳述止於 LID 成立（15/15），止於 DBC 不成立（14/15）。
+單寫「全數解得」會使讀者以為 TC 可用之 CAN 名已備齊。
+
+本條同理適用於 CFTS 條號之解析（A-DM10b）與任何多段查找。
+```
+
 ---
 
 ## 抄錄核對表
@@ -367,10 +457,26 @@ R-DM14 之「SYS2 為訊號值域之第一來源」不變，但其表述之
 | 17 | R-DM15 | 03 | 171 | `135cf28886d145e2` | 是 |
 | 18 | R-DM16 | 04 | 462 | `4ab4b941b20a6769` | 是 |
 | 19 | R-DM17 | 04 | 579 | `c575758943f0fe02` | 是 |
+| 20 | R-DM18 | 05 | 855 | `8db2178577564199` | 是 |
+| 21 | R-DM19 | 05 | 681 | `0939e0a7878c49b8` | 是 |
+| 22 | R-DM20 | 05 | 576 | `6caf121fb4def656` | 是 |
+| 23 | R-DM21 | 05 | 270 | `d384fa5b99e3888a` | 是 |
 
 核對方法：抄錄後自 `RULINGS.md` 反向抽取各 fenced 區塊，與下放包原檔
-之對應區塊逐字元 `==` 比對並比對 SHA256；**19 條全數相符**（01 包 8 條、
-02 包 5 條、03 包 4 條、04 包 2 條）。
+之對應區塊逐字元 `==` 比對並比對 SHA256；**23 條全數相符**（01 包 8 條、
+02 包 5 條、03 包 4 條、04 包 2 條、05 包 4 條）。
+
+> 下放包 05 之 `R-G15` 為全域條文，依該包 §四之指定抄入
+> `docs/fw036/RULINGS_LEDGER.md`，不重複於本檔。
+
+### 廢止與取代之對照（原文一律依 R-TM13 保留於上方，不刪除、不改寫）
+
+| 被廢止／修正者 | 取代者 | 出處 |
+|---|---|---|
+| R-DM7 之「Description 文字（bag-of-words）」一項 | R-DM13 | 下放包 03 |
+| R-DM14 之「兩段表述」與其所引之「相異值 token 9」 | R-DM17（三段鏈）、R-DM16→R-DM18 | 下放包 04、05 |
+| **R-DM16（全條廢止）** —— 其 regex `\[([^\]]+)\]` 與所載之「13」不相容 | **R-DM18**（寬式扣除含 `:` 者） | 下放包 05 §2.1 |
+| R-DM7 之揭露義務、「不得裁定範圍」 | **未廢止，仍有效** | — |
 
 > 下放包 04 之 `R-G12`／`R-G13`／`R-G14` 為全域條文，依該包 §四之指定
 > 抄入 `docs/fw036/RULINGS_LEDGER.md`，不重複於本檔。

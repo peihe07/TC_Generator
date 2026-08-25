@@ -13,6 +13,25 @@ paths:
   sys3_sysad: "inputs/SYS3_CFTS_020_display_FM-WI-FSM-011-A01_System Architectural Design_SYSAD_v1.0.docx"   # 追溯/架構參考，非判讀基準（intake.py A-TM10 未填入）
   popup_list: null                       # 交付夾內無 Pop Up List
 
+# R-G15（2026-08-24，全域）：參考資料庫之版本綁定。逐項記檔名與 SHA256，
+# 使跨 feature 之版本差異可見 —— vehicle_setting 用 LID v1_76、display 用
+# v1_78，在本節出現前沒有任何條文在追這件事。
+# 選定依據見 R-DM19（B-CAN = BHCAN2，Pei 2026-08-24 指示並親自置檔）。
+# 檔案本身不入 git（R-G12）；台帳見 forms/FORMS.md。
+reference:
+  dbc_b:
+    file: "forms/PDT27_E2A_R1_BHCAN2.dbc"
+    sha256: "46cb73f3db62ac9fba6ad8010d7930661983faf01383c022c52ba3c37de1cc60"
+  dbc_fd:
+    file: "forms/PDT27_E2A_R1_FDCAN8.dbc"
+    sha256: "2a86c4bf3e670d71b362d430b446d8d157c74b94429e833362f81f4a48f6a22e"
+  lid:
+    file: "forms/Logical Identifiers and CAN Mapping v1_78.xlsx"
+    sha256: "a01e1679c706cd454daf82573a732fe5ad5eedb3865083897cb18c970b312433"
+  proxi:
+    file: "forms/PROXI_HDCC27_R3_20250424.xlsx"
+    sha256: "e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2"
+
 spec_mode: "D"        # A/B/C/D/E per FO §3
 spec_reference_template: null   # mode D：spec_reference 為查得，非構造（canon §3）
 

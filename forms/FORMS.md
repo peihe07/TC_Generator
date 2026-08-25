@@ -464,6 +464,8 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 
 ### `PDT27_E2A_R1_BHCAN2.dbc`
 
+> **使用中之 feature（R-G15 反向記載）**：`display`（R-DM19 選定為其 B-CAN 資料庫）。各該 feature 之 `feature.yaml` `reference:` 節載其 SHA256。
+
 - **(a)** SHA256 `46cb73f3db62ac9fba6ad8010d7930661983faf01383c022c52ba3c37de1cc60`
   · 167,226 bytes · mtime 2026-08-24T19:59:45
 - **(b) 涵蓋範圍**：B-CAN（BHCAN2）。訊號定義列 **344**（相異訊號名 342）、
@@ -480,6 +482,8 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 
 ### `PDT27_E2A_R1_FDCAN8.dbc`
 
+> **使用中之 feature（R-G15 反向記載）**：`display`（R-DM19）。各該 feature 之 `feature.yaml` `reference:` 節載其 SHA256。
+
 - **(a)** SHA256 `2a86c4bf3e670d71b362d430b446d8d157c74b94429e833362f81f4a48f6a22e`
   · 1,106,532 bytes · mtime 2026-08-24T19:59:52
 - **(b) 涵蓋範圍**：FD-CAN（FDCAN8）。訊號定義列 **1,916**（相異訊號名
@@ -492,6 +496,8 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 - **(f) 首個採用**：`display`，2026-08-24
 
 ### `Logical Identifiers and CAN Mapping v1_78.xlsx`
+
+> **使用中之 feature（R-G15 反向記載）**：`display`（R-DM17 之解析鏈）。各該 feature 之 `feature.yaml` `reference:` 節載其 SHA256。
 
 - **(a)** SHA256 `a01e1679c706cd454daf82573a732fe5ad5eedb3865083897cb18c970b312433`
   · 623,612 bytes · mtime 2026-08-24T20:02:03
@@ -514,6 +520,8 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 - **(f) 首個採用**：`display`，2026-08-24（R-DM17 之三段解析鏈）
 
 ### `PROXI_HDCC27_R3_20250424.xlsx`
+
+> **使用中之 feature（R-G15 反向記載）**：`display`（R-DM20 起 in scope）。各該 feature 之 `feature.yaml` `reference:` 節載其 SHA256。
 
 - **(a)** SHA256 `e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2`
   · 743,785 bytes · mtime 2026-08-24T20:00:27

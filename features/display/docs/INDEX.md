@@ -13,6 +13,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 02 | 2026-08-24 | 素材來源更正，續跑 01 步驟 1–14 | [handoff/02_source_correction.md](handoff/02_source_correction.md) | [upstream/02_intake_recon.md](upstream/02_intake_recon.md) | R-DM2 廢止、R-DM2′、R-DM9–R-DM11（逐字抄錄 13/13 相符） | A-DM1–A-DM11；DR-DM1–DR-DM3 開立 | **步驟 1–14 全數執行；九條停止條件全未觸發。`recon.py` 依 R-DM5(b) 預期失敗，未修腳本 → RECON.md／recon.json 未產出** |
 | 03 | 2026-08-24 | 上繳 02 覆核；覆蓋對照退回重做（錨定法） | [handoff/03_coverage_redo.md](handoff/03_coverage_redo.md) | [upstream/03_coverage_redo.md](upstream/03_coverage_redo.md) | R-DM12–R-DM15（逐字抄錄 4/4 相符，累計 17/17） | A-DM12／A-DM13 新增；**A-DM11 結論撤回並改寫**；A-DM5 適用範圍擴及 036；DR-DM4 開立 | **步驟 1–10 全數執行；十條停止條件全未觸發。舊覆蓋表依 R-TM13 加註保留為 `…RETRACTED.tsv`** |
 | 04 | 2026-08-24 | 參考素材庫（`forms/`）建置；訊號三段解析鏈 | [handoff/04_reference_store.md](handoff/04_reference_store.md) | [upstream/04_reference_store.md](upstream/04_reference_store.md) | R-G12–R-G14（全域，抄入 `docs/fw036/RULINGS_LEDGER.md`）＋ R-DM16／R-DM17（逐字抄錄 5/5，Display 累計 19/19） | A-DM14／A-DM15／A-DM16 新增；**A-DM10 拆為 a（RESOLVED）／b（PENDING）**；A-DM11 之 `[value]` 數字更正；DR-DM5 開立 | **步驟 1–12 全數執行；十三條停止條件全未觸發。`.gitignore` 加一行否定使 `LOOKUP_MISSES.md` 可 tracked** |
+| 05 | 2026-08-24 | `[VALUE]` 定義定案、PROXI 開工、DBC 適用性 | [handoff/05_proxi_and_values.md](handoff/05_proxi_and_values.md) | [upstream/05_proxi_and_values.md](upstream/05_proxi_and_values.md) | R-DM18–R-DM21 ＋ R-G15（全域）（逐字抄錄 5/5，Display 累計 23/23） | A-DM17 新增；A-DM16 結案並記執行結果；A-DM11 之值 token 定案；DR-DM6 開立；LOOKUP_MISSES M-3 | **步驟 1–9 全數執行；十五條停止條件全未觸發。59 vs 44 已調和：擷取無誤，錯在聚合** |
 
 ## 02 輪要點
 
@@ -80,3 +81,23 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 - BHCAN2 之四個 FPDM 顯示訊號與 `DCSD_*` 為平行族（A-DM15）
 - LID `Proxi & Configuration` 有 `DSP_SK_PRSNT`／`RVC_SK_PRSNT`／`DCSD_cfg`
   等組態旗標，形態上像 TC 前置條件來源（A-DM16，未解析）
+
+## 05 輪要點
+
+**調和 59 vs 44** —— 擷取兩次都是 59（正規化與否皆同）；44 是**聚合**造成的：
+以逗號串進 TSV 再以逗號切回，而 token 本身可含逗號（`[Radio:R1M, VP5R120,
+R1H]`）。分隔符已改為 ` ¦ `。
+
+**`[VALUE]` 定案（R-DM18）**：寬式 59 → 扣除含 `:` 者 43 → 餘 16
+（值 13 + 文件名 3），涉及 35 個 FR 列。與條文 §2.2 之表逐項相符。
+
+**PROXI（R-DM20）**：446 列母體，`proxi_param` 176／`cfts_usage` 1／
+`leaf_phrase` **0**／`none` 269。`DCSD_cfg`→PROXI r37、`RVC_SK_PRSNT`→r401+r494，
+皆 `0=Absent 1=Present`；`DSP_SK_PRSNT` 查無 → M-3／DR-DM6。
+
+**A-DM17（新）**：以 LID 名直接查 PROXI 只得 70/446，改用 `Atlantis Signal
+Name` 後得 177/446 —— **漏 107 列**，與「以 `ICSPowerButton` 查 DBC」同型。
+
+**LID v1.78 vs v1.76**：2,548 個 LID 中**僅 2 個**相異（`CallAction`、
+`EngineRPM`），單側有 0。兩者皆未出現於任何已交付 TC，停止條件 15 未觸發。
+本 feature 之 15 個訊號在兩版**全部相同**。

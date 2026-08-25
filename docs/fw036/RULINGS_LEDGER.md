@@ -179,3 +179,37 @@ R-G14（查無台帳 —— 全域）
 | R-G14 | 363 | `0d18b275bc9428d6` | 是 |
 
 首個適用之 feature：`display`（2026-08-24）。台帳實作見 `forms/FORMS.md` 之參考資料庫節與 `forms/LOOKUP_MISSES.md`。
+
+---
+
+## 參考資料庫之版本綁定（R-G15，2026-08-24，全域）
+
+來源：`features/display/docs/handoff/05_proxi_and_values.md` §四。
+抄錄方式：機器抽取原樣寫入，未經人工轉錄。
+
+```text
+R-G15（參考資料庫之版本綁定 —— 全域）
+每個 feature 之 `feature.yaml` 須新增 `reference:` 節，逐項記載其
+所用之參考資料庫檔名與 SHA256：
+
+  reference:
+    dbc_b:   { file: ..., sha256: ... }
+    dbc_fd:  { file: ..., sha256: ... }
+    lid:     { file: ..., sha256: ... }
+    proxi:   { file: ..., sha256: ... }
+
+理由：`features/vehicle_setting/` 使用 LID v1_76，`features/display/`
+使用 v1_78，而**沒有任何條文在追這件事**（執行層上繳 04 §8 第 4 項
+指出）。兩版若對同一 Logical Identifier 給出不同之 CAN 訊號名，
+跨 feature 之一致性即斷裂，且斷得無聲無息 ——
+「看起來成功的輸出最需要對照其定義」（上繳 04 §5.3）。
+
+`forms/FORMS.md` 之各條目須反向記載「哪些 feature 使用本檔」。
+版本差異之實測不在本條範圍；本條只要求**綁定可見**。
+```
+
+| 條號 | 字元數 | SHA256（前 16 碼） | 逐字相符 |
+|---|---|---|---|
+| R-G15 | 561 | `9b4512a26c552666` | 是 |
+
+首個適用之 feature：`display`（2026-08-24，`feature.yaml` 之 `reference:` 節）。

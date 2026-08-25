@@ -169,6 +169,11 @@ canon §3 之 mode D 要求 spec_reference 為**查得**。實測：
 | 其中於 DBC 查得 `SG_` 者 | **24 / 26** |
 | 至少解得一列之 `$Signal$` | **14 / 15** |
 
+> **R-DM21 之補註（2026-08-24）**：上表各數字所止之段 —— 段 1（SYS2 →
+> LID）**15/15**；段 2（LID → CAN 名）解出 **26** 個 `MESSAGE.Signal`；
+> 段 3（CAN 名 → DBC）**24/26 列、14/15 個訊號**。
+> 本條之「已解」指段 1 與段 2 之橋樑已建立，**不表示段 3 已全數備齊**。
+
 **惟下放包 04 §3.4 之「15 個 `$Signal$` 全數解得」須加限定**：該陳述在
 **LID 階段**成立（15/15），在 **DBC 階段**不成立 ——
 `CCDMF_RQ_DISP_INTS` 之 CAN 名 `RADIO_B4.CCDMF_RQ_DISP_INTS` 在兩本 DBC
@@ -268,6 +273,70 @@ TC 之**前置條件**來源。
   「與 leaf 之前置條件有關聯」。若是，則 PROXI 解析應排入下一輪；
   若否，本條轉為記錄性條目
 
+---
+
+### 裁示與執行結果（2026-08-24，R-DM20 / 下放包 05）
+
+觸發**已放寬**為「與任一 leaf 之前置條件、可用性條件、或配備有無相關者」，
+PROXI 解析自下放包 05 起 in scope。本輪之解析結果
+（`scripts/proxi_candidates.py`、`data/proxi_candidates.tsv`）：
+
+| anchor_kind | 列數 |
+|---|---|
+| `leaf_phrase`（leaf 片語逐字命中） | **0** |
+| `cfts_usage`（`Primary CFTS Usage` 逐字含 `CFTS020`） | 1 |
+| `proxi_param`（於 PROXI `Format` 逐字查得定義） | 176 |
+| `none` | 269 |
+| 合計 | 446 |
+
+三個起點之逐字查詢結果：
+
+| LID | Atlantis Signal Name | PROXI 列 | 值域 |
+|---|---|---|---|
+| r51 `DCSD_cfg` | `CAN node 31 (DCSD)` | **r37** | `0 = Absent 1 = Present` |
+| r170 `RVC_SK_PRSNT` | `Rear_View_Camera` ／ `Rear_View_Camera_Soft_Button` | **r401、r494** | 兩者皆 `0 = Absent 1 = Present` |
+| r63 `DSP_SK_PRSNT` | `Display_OFF_SoftKey_Prsnt` | **查無** | — |
+
+**`related_leaf` 全部為空。** leaf 片語在 446 列中 0 命中 —— 與
+`SWE-DM-007`／`008` 在覆蓋對照中候選為 0 同因：037 之 leaf 標題用
+`RVC`／`Display RVC Handling`，而 LID／PROXI 用 `Rear_View_Camera`。
+逐字比對接不上，依停止條件 14 不得猜。
+
+`cfts_usage` 僅 1 列（r95 `Head_Unit_Screen_Size`），且該欄 **378/446 為空**
+—— **其未載 `CFTS020` 不構成「與本 feature 無關」之證據**（R-G13 第 (3)
+要件之反面）。
+
+**未寫入任何 TC 欄位**（R-DM20 末段）。
+
+## A-DM17 — LID 之 PROXI 側名稱與 Logical Identifier 不同名，且 `_Prsnt` 尾綴不一致  [PENDING]
+
+R-G13 之教訓在 PROXI 上重演一次：LID `Proxi & Configuration` 之左欄是
+Logical Identifier，PROXI `Format` 分頁用的是另一組名稱，其對應關係載於
+LID 之 `Atlantis & Atlantis High` 欄組 `Signal Name`（該欄組之 `CAN` 欄
+值為 `PROXI`）。
+
+本輪之實測差距：
+
+| 查詢鍵 | 於 PROXI `Format` 逐字查得之列數 |
+|---|---|
+| Logical Identifier（首版作法） | 70 / 446 |
+| ＋ `Atlantis Signal Name`、`Object Text`（含多值逐值拆分） | **177 / 446** |
+
+即：**以 LID 名直接查 PROXI 會漏掉 107 列（60%）**，與
+「以 `ICSPowerButton` 查 DBC」為同一型錯誤。
+
+另查出一處逐字不等而語意疑似同一者：LID r63 `DSP_SK_PRSNT` 之 PROXI 側名
+為 `Display_OFF_SoftKey_Prsnt`，而 PROXI `Format` r692 之參數名為
+**`Display_OFF_SoftKey`**（少 `_Prsnt` 尾綴）。同分頁另有
+`FCW_Soft_Button`(r436)／`Rear_View_Camera_Soft_Button`(r494)／
+`Glove_Box_Soft_Button`(r803) 等同類參數，**皆無 `_Prsnt` 尾綴**。
+
+- **本輪不認定二者為同一物**（下放包 05 §六第 14 條：不逐字即不得猜），
+  已依 R-G13 登記為 `forms/LOOKUP_MISSES.md` M-3，並開 DR-DM6
+- 提案處置：請上游確認 `Display_OFF_SoftKey_Prsnt` 與
+  `Display_OFF_SoftKey` 是否為同一參數。若是，則屬 LID 之命名不一致，
+  應反映給 LID 維護者；若否，則 PROXI 缺該參數
+
 
 
 ## A-DM11 — R-DM7 覆蓋落差（**2026-08-24 更正；原結論撤回**）  [PENDING]
@@ -311,16 +380,32 @@ r31／r32 判給 `SWE-DM-001`、r34 判給 `SWE-DM-003`、r33 判為「無」—
 各錨之存在數（非互斥）：含 `$signal$` 43 列、含 `[value]` **54** 列、
 有 heading 祖先 80 列、Melco 命中 037 Excluded 1 列（r54）。
 
-> **`[value]` 之數字更正（2026-08-24，R-DM16）**：原記 34 列，係以
-> `\[([A-Za-z0-9_%\s]+)\]` 量得。R-DM16 指定之寬式 `\[([^\]]+)\]` 得
-> **54 列**。相異 token 數三種定義分別為：`[A-Z0-9_]+` **9**（R-DM14 原引，
-> 已由 R-DM16 撤回）、`[A-Za-z0-9_%\s]+` **13**（R-DM16 條文所載之數）、
-> `[^\]]+` **44**（R-DM16 條文所指定之 regex）。
-> **R-DM16 之 regex 與其數字不一致** —— 44 之多出者為 Polarion 匯出自身之
-> metadata（`[State:Approved]`／`[Radio:R1H]`／`[Artifact Type:…]`），
-> 非訊號值。本輪依條文之 regex 產出 `values` 欄，同時保留
-> `values_narrow` 欄（13-token 定義），兩者並列於
-> `data/coverage_sys2_vs_swe_dm.tsv`，**未自行擇一**。
+> **`[value]` 之數字定案（2026-08-24，R-DM18；R-DM16 全條廢止）**
+>
+> 判準為「寬式 `\[([^\]]+)\]` 擷取後**扣除 token 中含 `:` 者**」。
+> 冒號是 Polarion 匯出 metadata 之逐字標記，非規格值。實測：
+>
+> | 項 | 值 |
+> |---|---|
+> | 寬式相異 token | **59** |
+> | 含 `:`（metadata） | 43 |
+> | 不含 `:` | **16** |
+> | 其中 `kind=value` | **13** |
+> | 其中 `kind=document` | 3 |
+> | 至少含一個不含 `:` token 之 FR 列 | **35** |
+> | 含 `[value]`（扣除後）之列數 | **33** |
+>
+> **「44」撤回。** 該數字並非擷取有誤，而是**聚合有誤**：上輪把 token
+> 以逗號串進 TSV 欄再以逗號切回統計，而 token 本身可含逗號
+> （`[Radio:R1M, VP5R120, R1H]`），切碎後去重才得 44。擷取無論正規化
+> 與否皆為 59（已複驗）。TSV 之分隔符已改為 ` ¦ `。
+>
+> 三種舊定義（9／13／44）**全部丟棄 `[current non-zero value]`**
+> （出現 8 次，為 `$RQ_DISP_INTS$` 之值）。依 canon §8.4.1，來源模糊即
+> 保留模糊；丟掉它，TC 寫到該處就會有人去填一個來源未載之具體數字。
+>
+> `values_narrow_REPEALED` 欄依 R-TM13 保留供稽核，**其定義已廢止，
+> 不得作為值域來源**。
 
 `candidate_leaf`（**候選，非裁定**；依 R-DM12 引用時須連同 `anchor_kind`）：
 

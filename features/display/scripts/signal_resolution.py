@@ -189,12 +189,19 @@ def main():
 
     y = sum(1 for d in out if d["resolved"] == "Y")
     solved = {d["sys2_signal"] for d in out if d["resolved"] == "Y"}
-    print(f"\n## 統計")
-    print(f"  輸出列數（多值逐值一列）: {len(out)}")
-    print(f"  resolved=Y 列: {y} / resolved=N 列: {len(out) - y}")
-    print(f"  15 個 $Signal$ 中，至少解得一列者: {len(solved)}/{len(sigs)}")
+    print(f"\n## 統計（R-DM21：每個數字都標明其止於哪一段）")
+    in_lid = sum(1 for s in sigs if s in lid_idx)
+    print(f"  段 1 SYS2 -> LID：於 `Logical Identifier` 欄逐字查得 "
+          f"{in_lid}/{len(sigs)}")
+    print(f"  段 2 LID -> CAN 名：解出之 MESSAGE.Signal 值（多值逐值一列） "
+          f"{len(out)}")
+    print(f"  段 3 CAN 名 -> DBC：查得 SG_ 者 {y}/{len(out)} 列"
+          f"（未查得 {len(out) - y}）")
+    print(f"  止於段 3 而至少解得一列之 $Signal$: {len(solved)}/{len(sigs)}")
     unres = [s for s in sigs if s not in solved]
-    print(f"  完全未解者: {unres or '無'}")
+    print(f"  止於段 3 完全未解者: {unres or '無'}")
+    print("  注意：僅寫「解得 15/15」會是止於段 1 之數字，"
+          "不得用以表示 TC 可用之 CAN 名已備齊（R-DM21）")
     print(f"\nwrote {p}")
 
     print("\n| sys2_signal | lid_row | atl_high_signal_name | can | dbc_file "

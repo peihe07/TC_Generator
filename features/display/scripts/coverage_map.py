@@ -50,15 +50,29 @@ F037 = ROOT / "inputs" / \
 MIN_PHRASE = 8
 
 SIGNAL = re.compile(r"\$([A-Za-z0-9_]+)\$")
-# R-DM16 mandates the wide form `\[([^\]]+)\]`. Applied literally it also
-# sweeps in the Polarion export's own metadata prefix ([State:Approved],
-# [Radio:R1H], [Artifact Type:...]) — 44 distinct tokens, not the 13 the
-# ruling's text states. The 13 comes from the narrower form below, which is
-# what upstream 03 measured and called "wide". Both are emitted: `values`
-# follows the ruling as written, `values_narrow` keeps the 13-token view.
-# The conflict is reported, not silently resolved.
+# R-DM18 (supersedes R-DM16): extract with the wide form, then DROP any
+# token containing ':'. The colon is the export's own verbatim marker for
+# Polarion metadata ([Artifact Type:...], [State:...], [Market:...],
+# [Radio:...], [EE Architecture:...]); it is not a spec value. Literal test,
+# no similarity.
+#
+# Three of the surviving tokens are document/protocol names rather than
+# values and are emitted separately as kind=document (R-DM18).
 VALUE = re.compile(r"\[([^\]]+)\]")
+# R-DM16's definition, KEPT for the record per R-TM13. ITS DEFINITION IS
+# REPEALED — the column exists so the retracted numbers stay auditable, and
+# must not be used as a value source.
 VALUE_NARROW = re.compile(r"\[([A-Za-z0-9_%\s]+)\]")
+DOCUMENT_TOKENS = {
+    "DCSD_and_HU_LVDS_Backchannel_Protocol",
+    "DCSD* and HU CAN and LVDS Backchannel Message Sequence Charts",
+    "SD.xxxxx DCSD LVDS VIDEO COMMUNICATION INTERFACE",
+}
+# Tokens can contain commas ([Radio:R1M, VP5R120, R1H]). Serialising with a
+# comma and splitting it back is what produced the retracted "44 distinct"
+# figure in upstream 04 §0.2 — the extraction was never wrong, the
+# aggregation was. Use a separator that cannot occur in the data.
+SEP = " ¦ "
 
 
 def norm(s):
@@ -136,7 +150,10 @@ def main():
     for rn, r in pop:
         desc = norm(r[c_desc])
         sigs = sorted(set(SIGNAL.findall(desc)))
-        vals = sorted({v.strip() for v in VALUE.findall(desc) if v.strip()})
+        wide = {v.strip() for v in VALUE.findall(desc) if v.strip()}
+        kept = {v for v in wide if ":" not in v}
+        vals = sorted(kept - DOCUMENT_TOKENS)
+        docs = sorted(kept & DOCUMENT_TOKENS)
         vals_n = sorted({v.strip() for v in VALUE_NARROW.findall(desc)
                          if v.strip()})
         anc = ancestor[rn]
@@ -176,8 +193,9 @@ def main():
             "sys2_row": rn, "sys_ra_id": norm(r[c_fid]),
             "category": norm(r[c_cat]), "swhw": norm(r[c_swhw]),
             "heading_ancestor": f"r{anc[0]} {anc[2]}" if anc else "",
-            "signals": ",".join(sigs), "values": ",".join(vals),
-            "values_narrow": ",".join(vals_n),
+            "signals": SEP.join(sigs), "values": SEP.join(vals),
+            "documents": SEP.join(docs),
+            "values_narrow_REPEALED": SEP.join(vals_n),
             "melco": ",".join(mel), "anchor_kind": kind,
             "candidate_leaf": cand, "note": note,
             "func_l1": norm(r[c_l1]), "func_l2": norm(r[c_l2]),
@@ -185,8 +203,9 @@ def main():
         })
 
     cols = ["sys2_row", "sys_ra_id", "category", "swhw", "heading_ancestor",
-            "signals", "values", "values_narrow", "melco", "anchor_kind",
-            "candidate_leaf", "note", "func_l1", "func_l2", "func_l3"]
+            "signals", "values", "documents", "values_narrow_REPEALED",
+            "melco", "anchor_kind", "candidate_leaf", "note",
+            "func_l1", "func_l2", "func_l3"]
     out = ROOT / "data" / "coverage_sys2_vs_swe_dm.tsv"
     with out.open("w", encoding="utf-8") as fh:
         fh.write("\t".join(cols) + "\n")
@@ -201,21 +220,47 @@ def main():
     print()
     print("## 各錨之存在數（非互斥，逐列獨立計）")
     print(f"  含 $signal$        : {sum(1 for d in out_rows if d['signals'])}")
-    print(f"  含 [value]         : {sum(1 for d in out_rows if d['values'])}")
+    print(f"  含 [value]（R-DM18） : "
+          f"{sum(1 for d in out_rows if d['values'])}")
     print(f"  有 heading 祖先    : "
           f"{sum(1 for d in out_rows if d['heading_ancestor'])}")
     print(f"  Melco 命中 Excluded: {sum(1 for d in out_rows if d['melco'])}")
-    sig = sorted({s for d in out_rows for s in d["signals"].split(",") if s})
-    val = sorted({v for d in out_rows for v in d["values"].split(",") if v})
-    valn = sorted({v for d in out_rows
-                   for v in d["values_narrow"].split(",") if v})
+    from collections import Counter as _C
+    sig = sorted({s for d in out_rows for s in d["signals"].split(SEP) if s})
+    # Two counts, because they are different questions and the handoff's
+    # table gives the first: occurrences = every match in every row;
+    # rows = how many FR rows carry the token at least once.
+    wide_all, val_occ, val_row, doc_occ, doc_row = set(), _C(), _C(), _C(), _C()
+    for rn, r in pop:
+        all_toks = [v.strip() for v in VALUE.findall(norm(r[c_desc]))
+                    if v.strip()]
+        wide_all |= set(all_toks)
+        for v in all_toks:
+            if ":" in v:
+                continue
+            (doc_occ if v in DOCUMENT_TOKENS else val_occ)[v] += 1
+        for v in set(all_toks):
+            if ":" in v:
+                continue
+            (doc_row if v in DOCUMENT_TOKENS else val_row)[v] += 1
     print(f"  相異訊號名 {len(sig)}: {sig}")
-    print(f"  相異值 token — R-DM16 條文之 regex \\[([^\\]]+)\\] : "
-          f"{len(val)}")
-    print(f"    {val}")
-    print(f"  相異值 token — 上繳 03 所量之 \\[([A-Za-z0-9_%\\s]+)\\] : "
-          f"{len(valn)}  <- R-DM16 條文所載之「13」為此數")
-    print(f"    {valn}")
+    print(f"  [VALUE] 擷取（R-DM18）——")
+    print(f"    寬式 \\[([^\\]]+)\\] 相異        : {len(wide_all)}")
+    print(f"    其中含 ':'（Polarion metadata）: "
+          f"{sum(1 for v in wide_all if ':' in v)}")
+    print(f"    不含 ':'                      : "
+          f"{sum(1 for v in wide_all if ':' not in v)}")
+    print(f"      -> 值 token (kind=value)    : {len(val_occ)}")
+    print(f"         {'出現次數':>8} {'列數':>6}  token")
+    for v, n in sorted(val_occ.items(), key=lambda x: (-x[1], x[0])):
+        print(f"         {n:>8} {val_row[v]:>6}  {v}")
+    print(f"      -> 文件／協定名 (kind=document): {len(doc_occ)}")
+    for v, n in sorted(doc_occ.items(), key=lambda x: (-x[1], x[0])):
+        print(f"         {n:>8} {doc_row[v]:>6}  {v}")
+    rows_v = sum(1 for d in out_rows if d["values"] or d["documents"])
+    print(f"    至少含一個不含 ':' token 之 FR 列: {rows_v}")
+    print(f"  values_narrow_REPEALED 欄：R-DM16 之定義，已由 R-DM18 廢止，"
+          f"保留供稽核（R-TM13），不得作為值域來源")
 
     print()
     print("## candidate_leaf 分布（候選，非裁定）")
