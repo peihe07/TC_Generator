@@ -20,6 +20,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 09 | 2026-08-25 | 選項 D 執行、sidecar 化、ETM 判準否定 | [handoff/09_recon_crosscheck.md](handoff/09_recon_crosscheck.md) | [upstream/09_recon_crosscheck.md](upstream/09_recon_crosscheck.md) | R-DM30／R-DM31 ＋ R-G19／R-G20（全域）（逐字抄錄 4/4，Display 累計 33/33） | A-DM24（自查，RESOLVED）／A-DM25 新增 | **步驟 1–4、6 執行；步驟 5 觸發停止條件 25 已停。`recon.py` 七輪來首次跑通，回歸 11/12 相同** |
 | 10 | 2026-08-25 | 交叉檢查結案、DECISIONS 合併、PROXI 改需求驅動 | [handoff/10_decisions_merge.md](handoff/10_decisions_merge.md) | [upstream/10_decisions_merge.md](upstream/10_decisions_merge.md) | R-DM32–R-DM34 ＋ R-G21／R-G22（全域）（逐字抄錄 5/5，Display 累計 36/36） | A-DM26 新增 | **步驟 1–7 全數執行；二十七條停止條件全未觸發。Q2／Q3 材料已備，`docs/proxi_triage_proposal.md` SUPERSEDED** |
 | 11 | 2026-08-25 | 綁定檢查、合併複驗、待裁期間之不阻塞工作 | [handoff/11_binding_verify.md](handoff/11_binding_verify.md) | [upstream/11_binding_verify.md](upstream/11_binding_verify.md) | R-DM35 ＋ R-G23（全域）（逐字抄錄 2/2，Display 累計 37/37） | （無新 A-DM） | **⚠ 步驟 3 觸發停止條件 29：合併漏了 3 項，已停於待裁。步驟 1、2、4–6 完成** |
+| 12 | 2026-08-25 | marker 衝突裁定、已裁常數改為機器檢查 | [handoff/12_assertions.md](handoff/12_assertions.md) | [upstream/12_assertions.md](upstream/12_assertions.md) | R-DM36／R-DM37 ＋ R-G24（全域）（逐字抄錄 3/3，Display 累計 39/39） | A-DM27／A-DM28 新增 | **步驟 1–8 全數執行；三十二條停止條件全未觸發。三項分歧已處置，複驗 24/24 有對應** |
 
 ## 02 輪要點
 
@@ -256,3 +257,28 @@ briefing 末列 **6 項未涵蓋者**，逐項標「未查證／未量測」，�
 
 **`DECISIONS.new.md`** 依 R-DM35 加註地位；重跑之新舊兩份**逐字相同**，
 舊者改名 `DECISIONS.new.2026-08-25a.md` 保留。
+
+## 12 輪要點
+
+**三項分歧處置完畢**：`ruled-constant assertions` 補入並填實；
+`Test Set table`／`profile [OVERRIDE]` 依 **R-G24** 改為 `[PEI]`
+（**機器是對的**，02 輪自填之 `[PROPOSED]` 是錯的）。
+複驗：recon 之 24 項**全部有對應**，marker 不一致僅餘 `spec_reference`
+一項，且該項為 R-DM32／R-G24 皆判取 `[PEI]` 之刻意結果。
+
+**反向比對（停止條件 30 未觸發）**：17 項合併檔獨有者中，
+**10 項是 recon 有測而未列入 `DECISIONS.new.md`**、7 項為自測獨有概念、
+**recon 漏測 0 項**。由此立 **A-DM27**：`DECISIONS.new.md` 是 recon
+量測之**子集**，此後對照一律兼看 `RECON.md` 與 `recon.json`。
+
+**`recon_assertions` 宣告**（R-DM36）：`functional_requirement_count: 8`，
+recon 重跑得 **PASS，0 failed / 1 checked**。PASS 證明的是「仍為 8」，
+不是「8 是對的」。
+
+**綁定**：036 母本納入 `reference:`（R-DM37），**5/5 相符**；
+四支讀取素材之腳本已串接該檢查，蓄意破壞後實測 **退出碼 1、
+stdout 0 行、TSV 未被改寫**。串接前後列數 4/4 未變。
+
+**A-DM28（自查）**：漂移警示首版「說不採納卻採納了」——
+連跑兩次第二次警示即消失。已修正並以連跑兩次驗證。
+**第七次同型缺陷，但形態是新的：宣稱之行為與實際行為不一致。**

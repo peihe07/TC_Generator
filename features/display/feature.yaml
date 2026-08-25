@@ -31,6 +31,13 @@ reference:
   proxi:
     file: "forms/PROXI_HDCC27_R3_20250424.xlsx"
     sha256: "e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2"
+  # R-DM37：036 母本是**寫回之標的** —— 其欄位配置一旦改變，
+  # workbook.columns 之 15 個鍵、B 欄公式（R-DM15）、Q 欄之版面判準
+  # （R-DM34(a)）全部受影響。故納入 reference: 之檢查範圍。
+  # 判準不是「它是不是參考資料庫」，是「它變了以後我們的東西還對不對」。
+  workbook_master:
+    file: "forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
+    sha256: "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"
 
 # R-DM24（Q5 定案 B，Pei 2026-08-25）：以人工指定 kind 取代放寬共用分類器。
 # `scripts/intake.py` 之 SHEET_SIGNATURES 一字未動；覆寫僅在下列 sha256
@@ -103,3 +110,16 @@ lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary
   popup_ids: []                            # e.g. [PU0091, PU0942] — verbatim check
   extra_rules: []                          # feature-specific lint hooks
+
+# R-DM36：已裁常數宣告於此，使其於每次 recon.py 執行時被機器比對，
+# 而非靠注意力維持。PASS 證明的是「該值仍未改變」，不是「該值是對的」——
+# 其正確性來自上繳 09 §4 之交叉檢查。
+#
+# 只宣告一項。distinct_spec_sections 與 spec_reference_stem 不宣告：
+# 本 feature 之 sections 為 0、citation_stems 為空（src_i 被 forbid 排除），
+# 宣告必然為 0 之 assertion 只會製造一個不可能失敗之檢查（canon §5a）。
+#
+# **Q2 若裁為選項 B 或 C 而 leaf 母體改變，須改本值並記其理由；
+#   靜默更新 assertion 等同取消該 assertion。**
+recon_assertions:
+  functional_requirement_count: 8

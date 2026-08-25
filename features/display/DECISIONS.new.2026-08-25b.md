@@ -1,3 +1,8 @@
+<!-- R-DM35(a)：本檔為 `recon.py` 某一次執行之產出，地位為**帶時間戳之證據**，
+     非待處理之草稿。已於 2026-08-25 併入 `DECISIONS.md`（權威，R-DM32），
+     分歧處置見 `docs/upstream/10_decisions_merge.md` §3。
+     **本檔不得被當作簽核標的。** 依 R-TM13 保留原文。 -->
+
 # DECISIONS — Display (FW036)
 
 Pre-filled by recon.py. Markers per FEATURE_ONBOARDING §4; an
@@ -8,7 +13,7 @@ sign-off = binding as proposed.
 - spec_mode: [AUTO] D
 - spec text layer: [AUTO] text-layer: 854333 chars (via pymupdf)
 - source files: [AUTO] 5 present (SHA256 in RECON.md)
-- ruled-constant assertions: [AUTO] 1 checked, 1 PASS, 0 FAIL (measured values in RECON.md)
+- ruled-constant assertions: [AUTO] 0 checked, 0 PASS, 0 FAIL (measured values in RECON.md)
 
 ## 2. Workbook survey
 - workbook_state: [AUTO] BLANK

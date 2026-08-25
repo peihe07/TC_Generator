@@ -9,9 +9,9 @@
 - spec text layer: text-layer: 854333 chars (via pymupdf)
 
 ## Assertions — ruled constants, checked mechanically
-- (no assertions declared in feature.yaml)
+- PASS — leaf count == Functional Requirement rows: expected `8`, measured `8` — categorization distribution: {'Functional Requirement': 8}; the banned id-suffix criterion would have selected 0 (8 parent-shaped requirements dropped)
 
-**0 failed / 0 checked.**
+**0 failed / 1 checked.**
 DECISIONS.md written.
 
 ## Spec outline map

@@ -41,6 +41,17 @@ An unsigned sheet blocks Phase 4+.
 - Missing referenced specs: `[AUTO]` → **CFTS_009**（CFTS_020 以
   `{CFTS009-722}` 引用，定義 Splash/Disclaimer 時段）→ DR-DM1，
   影響 SWE-DM-003
+- Ruled-constant assertions: `[AUTO]`（recon）→ **1 checked, 1 PASS, 0 FAIL**
+  （`functional_requirement_count: 8`，依 **R-DM36** 宣告於
+  `feature.yaml` 之 `recon_assertions`）。
+  > **本項於上輪合併時遺漏**（上繳 11 §3 第 1 項）。其原值為
+  > `0 checked, 0 PASS, 0 FAIL` —— 一個內容為空的項最容易被略過，
+  > 但它記的是「本 feature 未宣告任何 ruled-constant assertion」，
+  > 而那是應該被看見的空。依 R-DM36 已填實。
+  >
+  > **PASS 之意義**：它證明的是「037 之 leaf 數**仍**為 8」，
+  > **不是**「8 這個數字是對的」。8 之正確性來自上繳 09 §4 第 2 項
+  > 之交叉檢查，assertion 只保證它此後不會無聲改變。
 - Spec release/version pinned: `[AUTO]` → CFTS_020 檔名版次
   `20260310-1533`；SYS2 `20260616 All_HW_System Accepted & Released`；
   037 `FM-WI-FSM-037-A03`；SYS3 `v1.0`
@@ -127,9 +138,16 @@ An unsigned sheet blocks Phase 4+.
 
 ## 6. Framework & profile
 
-- Test Set table (Part N draft): `[PROPOSED]` → 待 Phase 3
+- Test Set table (Part N draft): **`[PEI]`** → 待 Phase 3，須由 Pei 決定
+  > **更正（2026-08-25，R-G24）**：本項於 02 輪（`61d1c12`）由分析層
+  > 自填為 `[PROPOSED]`，而 `recon.py` 標 `[PEI]`。依 R-G24「marker 衝突
+  > 取較嚴者，不問在哪一側」改為 `[PEI]`。原標記依 R-TM13 記於此，不刪除。
+  > **機器是對的**：`FEATURE_ONBOARDING` 已定 framework 之 Test Set 表
+  > 屬 Tier 2；標成 `[PROPOSED]` 會使其在簽核時無聲通過。
 - Contested attributions: `[PEI]` → Q3；Q2 已改為**暫緩**（見下方）
-- Profile [OVERRIDE] clauses needed: `[PROPOSED]` → 待 Phase 3
+- Profile [OVERRIDE] clauses needed: **`[PEI]`** → 待 Phase 3，須由 Pei 決定
+  > **更正（2026-08-25，R-G24）**：同上項。02 輪自填 `[PROPOSED]`，
+  > recon 標 `[PEI]`，取較嚴者。profile override 條款屬 Tier 2。
 
 ## 7. Execution
 
@@ -175,6 +193,25 @@ An unsigned sheet blocks Phase 4+.
 | 7 | 欄位對應之計數 | `15 fields resolved` | 模板基準 12/15、生效基準 15/15 | 非分歧：兩者之 `declared` 基準不同（A-DM7）。recon 之 15 對應本檔之生效基準 |
 | 8 | covered nowhere | `8 = all leaves — expected under BLANK` | 語意相同，措辭併入 | 非分歧 |
 | 9 | parent/child dupes | `[]` | 自「未實測」升為 `[AUTO]` 無 | recon 之 `id-suffix criterion: not applicable` 與自測之理由一致，該項已可判定 |
+
+### 追加處置（2026-08-25，下放包 12 §二 —— 上輪合併之三項遺漏）
+
+上繳 11 §3 之複驗查出上輪合併漏了三項。處置如下：
+
+| # | 項 | 上輪合併後 | 本輪處置 | 依據 |
+|---|---|---|---|---|
+| 10 | `ruled-constant assertions` | **缺席** | 補入，並依 R-DM36 填實（1 checked / 1 PASS） | R-DM36 |
+| 11 | `Test Set table (Part N)` | `[PROPOSED]` | **改 `[PEI]`** | R-G24（較嚴者為準；機器是對的） |
+| 12 | `profile [OVERRIDE] clauses` | `[PROPOSED]` | **改 `[PEI]`** | R-G24（同上） |
+
+第 11、12 項須記明：兩者之 `[PROPOSED]` 出自 `61d1c12`（02 輪），
+**早於 `recon.py` 首次成功執行**，故非合併時之降格而是既存分歧未被察覺。
+**錯的是分析層於 02 輪之自填，不是合併。**
+
+與 R-DM32 之關係：該條規制「機器不得降格人所標之 `[PEI]`」（本檔之
+`spec_reference` 即其實例）與「機器所增之項不得自動升格」；
+**R-G24 補其未涵蓋向** —— 兩側皆有該項而 marker 不同時取較嚴者，
+不問較嚴者在哪一側。兩條方向相反而判準一致：**寧可多問一個問題。**
 
 ### 標記齊備性（停止條件 26）
 

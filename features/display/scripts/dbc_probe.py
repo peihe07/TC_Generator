@@ -67,7 +67,27 @@ def parse(path):
     return raw, lines, msgs, sig_lines, vals
 
 
+def _verify_bindings():
+    """R-G23: refuse to measure against unbound reference material.
+
+    Every figure this script produces is only as true as the DBC/LID/PROXI
+    revision it was computed from. Checking at the entry point means a
+    swapped file stops the run instead of quietly changing the numbers.
+    """
+    import subprocess
+    import sys as _sys
+    r = subprocess.run(
+        [_sys.executable, str(Path(__file__).with_name(
+            "verify_reference_binding.py"))],
+        capture_output=True, text=True)
+    if r.returncode != 0:
+        _sys.stderr.write(r.stdout + r.stderr)
+        _sys.exit("reference binding check FAILED — refusing to run "
+                  "(R-G23). Do not update the declared sha256; report it.")
+
+
 def main():
+    _verify_bindings()
     print("# DBC recount — measurement conditions")
     print("encoding=cp1252 (files are not valid UTF-8) | split=str.splitlines()")
     print("signal def line = lstrip() startswith 'SG_ ' (counted as LINES)")

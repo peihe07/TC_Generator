@@ -18,5 +18,10 @@
   "R-DM34",
   "A-DM26"
  ],
- "notes": "登記值取 pymupdf（下放包 10 §2.1）：該數字之用途是判斷有無文字層（門檻 500 字元），三數皆遠超門檻，導出之結論相同（spec_mode D 成立）；跨 feature 之可比性由管線探針提供。另記 A-DM26：欄名為 spec_pdf 而內容為 .docx。"
+ "notes": "登記值取 pymupdf（下放包 10 §2.1）：該數字之用途是判斷有無文字層（門檻 500 字元），三數皆遠超門檻，導出之結論相同（spec_mode D 成立）；跨 feature 之可比性由管線探針提供。另記 A-DM26：欄名為 spec_pdf 而內容為 .docx。",
+ "expected_chars": {
+  "pymupdf": "854333",
+  "python-docx（段落＋表格格，正規化後）": "907382",
+  "python-docx（未正規化、含空段）": "910850"
+ }
 }

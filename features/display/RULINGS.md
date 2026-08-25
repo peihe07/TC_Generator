@@ -745,6 +745,47 @@ R-DM35（`DECISIONS.new.md` 之地位與失效）
 「較舊之一次量測」。名稱與地位相反之檔案會被誤用。
 ```
 
+## 來源：下放包 12
+
+```
+R-DM36（已裁常數宣告入 recon_assertions）
+本 feature 之已裁常數須宣告入 `feature.yaml` 之 `recon_assertions`，
+使其於每次 `recon.py` 執行時被機器比對，而非靠注意力維持。
+
+本輪宣告一項：
+  functional_requirement_count: 8
+（037 之 leaf 全集，recon 與自寫腳本兩側相符 —— 上繳 09 §4 第 2 項）
+
+不宣告 `distinct_spec_sections` 與 `spec_reference_stem`：本 feature
+之 `sections` 為 0、`citation_stems` 為空，宣告必然為 0 之 assertion
+只會製造一個不可能失敗之檢查（canon §5a）。
+
+`DECISIONS.md` 之 `ruled-constant assertions` 一項自
+`[AUTO] 0 checked` 改為實際值，並記其宣告內容。
+
+**Q2 若裁為選項 B 或 C 而 leaf 母體改變，須改宣告值並記其理由，
+不得靜默更新** —— 靜默更新 assertion 等同取消該 assertion。
+```
+
+## 來源：下放包 12
+
+```
+R-DM37（036 母本納入 reference: 綁定）
+`feature.yaml` 之 `reference:` 節現綁 dbc_b／dbc_fd／lid／proxi 四項，
+**036 母本不在其中** —— 其 sha256 僅存在於 `paths.workbook` 之註解，
+不被 `verify_reference_binding.py` 檢查。
+
+而 036 母本是**寫回之標的**：其欄位配置一旦改變，
+`workbook.columns` 之 15 個鍵、B 欄公式（R-DM15）、Q 欄之版面判準
+（R-DM34(a)）全部受影響。
+
+處置：於 `reference:` 節增 `workbook_master` 一項，綁其檔名與 sha256，
+納入檢查範圍。
+
+一般化：**凡其變動會使既有產出失效之素材，皆應在 `reference:` 節內。**
+判準不是「它是不是參考資料庫」，是「它變了以後我們的東西還對不對」。
+```
+
 ---
 
 ## 抄錄核對表
@@ -784,9 +825,9 @@ R-DM35（`DECISIONS.new.md` 之地位與失效）
 | 31 | R-DM29 | 08 | 482 | `387d90ad885f0c9e` | 是 |
 
 核對方法：抄錄後自 `RULINGS.md` 反向抽取各 fenced 區塊，與下放包原檔
-之對應區塊逐字元 `==` 比對並比對 SHA256；**37 條全數相符**（01 包 8 條、
+之對應區塊逐字元 `==` 比對並比對 SHA256；**39 條全數相符**（01 包 8 條、
 02 包 5 條、03 包 4 條、04 包 2 條、05 包 4 條、06 包 2 條、07 包 4 條、
-08 包 2 條、09 包 2 條、10 包 3 條、11 包 1 條）。
+08 包 2 條、09 包 2 條、10 包 3 條、11 包 1 條、12 包 2 條）。
 
 > 自下放包 09 起，核對表由 `scripts/transcribe_rulings.py` 直接產出
 > markdown 貼入上繳包（R-G20：報告中之摘要數字須為機器輸出）。
@@ -820,6 +861,7 @@ R-DM35（`DECISIONS.new.md` 之地位與失效）
 | 錨優先序中 heading 之第三位 | **R-DM26**（降為倒數第二） | 下放包 07 |
 | R-DM26 所宣稱之效果（使 `glossary_phrase` 現身於 `anchor_kind`） | **R-DM28 更正**：遮蔽者是 signal 非 heading；R-DM26 之調整本身仍有效 | 下放包 08 §1.3 |
 | PROXI 之供給側對照（keyword／heading／ETM 三種嘗試） | **R-DM33**：改為需求驅動；`docs/proxi_triage_proposal.md` 撤回（原文保留） | 下放包 10 §三 |
+| 分析層於 02 輪自填之 `Test Set table`／`profile [OVERRIDE]` 兩項 `[PROPOSED]` | **R-G24**：marker 衝突取較嚴者 → 改為 `[PEI]`；**機器是對的** | 下放包 12 §二 |
 
 > 下放包 04 之 `R-G12`／`R-G13`／`R-G14` 為全域條文，依該包 §四之指定
 > 抄入 `docs/fw036/RULINGS_LEDGER.md`，不重複於本檔。

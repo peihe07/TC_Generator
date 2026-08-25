@@ -771,6 +771,47 @@ PDF 為前提（其探針依序試 pymupdf 與 `pdftotext`）。
   全表見 `data/spec_text_layer.tsv`
 - 提案處置：登記。欄名之修正屬全域 Tier 2
 
+## A-DM27 — `DECISIONS.new.md` 只呈現 recon 所測之一部分  [PENDING]
+
+下放包 12 步驟 3 之反向比對（合併檔有而 recon 無者）實測 17 項，
+逐項判其性質後：
+
+| 判定 | 項數 | 例 |
+|---|---|---|
+| **recon 有測，只是未列入 `DECISIONS.new.md`** | **10** | `feature.yaml` column conflicts／Categorization 欄與分布／Covered by done region／Parent-child dupes／Authors present／Header row index／Regen-region segments／Draft-region disposition／Missing referenced specs／Priority rubric deviations |
+| 自測獨有（recon 不涉及此概念） | 7 | Spec release/version pinned／SYS2 覆蓋落差／Granularity precedent／Known scope carve-outs／Contested attributions／Model assignment／BLOCKED batches |
+| **recon 漏測** | **0** | —— |
+
+**停止條件 30 未觸發**：無任何一項為 recon 漏測。
+
+惟前一類值得登記：那 10 項在 `recon.json` 與／或 `RECON.md` 中**都有**，
+只是 `DECISIONS.new.md` 之模板不列它們。即：
+
+> **`DECISIONS.new.md` 不是 recon 之全部量測，是其一個子集。**
+> 以它為「管線說了什麼」之唯一依據，會漏掉十項管線確實測過的事實。
+
+- 影響：任何以 `DECISIONS.new.md` 為準之對照（含上輪之合併）都會少這 10 項
+- 提案處置：登記。是否擴充 `recon.py` 之 DECISIONS 模板屬全域 Tier 2，
+  不在本 feature 可處置之範圍。本 feature 之對照此後一律**兼看
+  `RECON.md` 與 `recon.json`**，不以 `DECISIONS.new.md` 為唯一依據
+
+## A-DM28 — 我的漂移警示曾與其自身行為相反（已於本輪修正）  [RESOLVED]
+
+步驟 7 首版實作：偵測到 `spec_text_layer` 之字元數與 sidecar 所記不符時
+印出警示「NOT updating the expectation」，**但同一次執行之 `write_meta`
+仍以實測值重寫 `expected_chars`** —— 訊息說不採納，程式卻採納了。
+
+實測發現方式：蓄意將期望值改為 `999999` 後連跑兩次，第二次警示消失。
+
+已修正為 `{**現算, **既有}`：既有鍵保留 sidecar 所記，只有從未見過之
+抽取器才新增。修正後連跑兩次，**警示兩次皆出現、期望值維持 999999**。
+
+- 這是本 feature 第七次同型缺陷，但形態是新的：**前六次是數字錯，
+  這次是「宣稱之行為」與「實際之行為」不一致**。一個會說謊的警示
+  比沒有警示更糟 —— 它讓人以為有守衛
+- 一般化提案（Tier 2）：凡輸出中含「不會做 X」之宣稱者，
+  其測試須含「連跑兩次，第二次仍應出現同一訊息」
+
 ---
 
 ## Assumption markers

@@ -20,7 +20,9 @@ STAMP = "2026-08-25"
 
 def write_meta(path, columns, data_rows, *, generated_by, rulings=(),
                measurement_conditions="", notes="", inputs=(),
-               generated_at=STAMP):
+               generated_at=STAMP, **extra):
+    """`extra` carries per-file expectation blocks (e.g. `expected_chars`)
+    so a producer can record what it measured and compare next run."""
     path = Path(path)
     meta = {
         "data_file": path.name,
@@ -33,6 +35,7 @@ def write_meta(path, columns, data_rows, *, generated_by, rulings=(),
         "rulings": list(rulings),
         "notes": notes,
     }
+    meta.update(extra)
     path.with_suffix(path.suffix + ".meta.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     return meta

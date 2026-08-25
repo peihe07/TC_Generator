@@ -151,6 +151,25 @@ def main():
 
     cols = ["path_key", "file", "extractor", "chars", "registered", "source"]
     rows = spec_text_layer_rows()
+
+    # R-G23 之同分寸，施於自己的量測：the sidecar records what each
+    # extractor yielded last time. If a library update moves a number, say
+    # so and print both — do not quietly overwrite the expectation, because
+    # a file that silently follows whatever it measures asserts nothing.
+    import json as _json
+    meta_path = (FEAT / "data" / "spec_text_layer.tsv").with_suffix(
+        ".tsv.meta.json")
+    expected = {}
+    if meta_path.is_file():
+        expected = (_json.loads(meta_path.read_text(encoding="utf-8"))
+                    .get("expected_chars") or {})
+    drift = [(r[2], expected[r[2]], r[3]) for r in rows
+             if r[2] in expected and expected[r[2]] != r[3]]
+    for extractor, want, got in drift:
+        print(f"WARNING: spec text layer drift — {extractor}: "
+              f"sidecar records {want}, this run measured {got}. "
+              f"NOT updating the expectation (R-G23 分寸：察覺變動，"
+              f"不代為採納)。")
     out = FEAT / "data" / "spec_text_layer.tsv"
     with out.open("w", encoding="utf-8") as fh:
         fh.write("\t".join(cols) + "\n")
@@ -162,6 +181,12 @@ def main():
                measurement_conditions=(
                    "同一份 .docx 由三種計法量得。三數皆由本腳本現算，"
                    "非人工登記；差異為抽取器不同而非計算錯誤。"),
+               # Keep whatever the sidecar already recorded for an
+               # extractor; only add keys it has never seen. Rewriting it
+               # from this run would adopt the drift the WARNING above just
+               # refused to adopt — the message would say one thing and the
+               # file would do the other.
+               expected_chars={**{r[2]: r[3] for r in rows}, **expected},
                notes=(
                    "登記值取 pymupdf（下放包 10 §2.1）：該數字之用途是判斷"
                    "有無文字層（門檻 500 字元），三數皆遠超門檻，導出之結論"

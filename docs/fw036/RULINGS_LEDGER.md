@@ -484,3 +484,33 @@ R-G15 要求 `feature.yaml` 之 `reference:` 節逐項綁定參考資料庫之
 本條適用於 `reference:` 節之全部項目（dbc_b／dbc_fd／lid／proxi），
 以及此後任何以 sha256 綁定之素材。
 ```
+
+---
+
+## marker 衝突之解（R-G24，2026-08-25，全域）
+
+來源：`features/display/docs/handoff/12_assertions.md` §四。
+抄錄方式：機器抽取原樣寫入，未經人工轉錄。
+
+```text
+R-G24（marker 衝突以較嚴者為準 —— 全域）
+同一項於兩份決策文件中皆存在而 marker 不同時，**一律取較嚴者**，
+不論該較嚴者在人側或機器側。
+
+嚴格序：`[PEI]` > `[PROPOSED]` > `[AUTO]`。
+（`[RULED]` 不在此序中：其為已凍結之項，不開放於簽核，
+ 與其他 marker 衝突時停並回報。）
+
+理由：`[PROPOSED]` 未經修改即生效（canon §4），`[PEI]` 必須被回答。
+取較嚴者之失敗形態是「多問了一個問題」，取較寬者之失敗形態是
+「一個該被決定的事無聲通過」。兩者代價不對稱。
+
+本條補 R-DM32 之未涵蓋向。R-DM32 規制「機器不得降格人所標之
+`[PEI]`」與「機器所增之項不得自動升格」；本條規制**兩側皆有該項
+而 marker 不同**之情形，且不問較嚴者在哪一側。
+
+實例（上繳 11 §3）：`Test Set table (Part N)` 與
+`profile [OVERRIDE] clauses` 兩項，`recon.py` 標 `[PEI]`，
+分析層於 02 輪自行填 `[PROPOSED]`。二者依 `FEATURE_ONBOARDING`
+本即 Tier 2，**機器是對的**。
+```
