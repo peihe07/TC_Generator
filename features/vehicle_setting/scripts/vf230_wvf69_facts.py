@@ -198,6 +198,19 @@ def extract(leaf: str, lf: dict, form: str, D: dict) -> tuple[dict | None, str]:
         if not m:
             return None, ("PROXI 型而抽不出參數名"
                           "（無 `retrieve the … configuration`，亦非參數名起首式）")
+        # ---- W-VF82：PROXI 參數名不可執行者隔離 ----
+        # **實測 5 條**：`the PROXI parameter`（上游之佔位詞，4 條）與
+        # `Hybrid_Type and SRT (VC_SRT_PRSNT)`（二參數併寫，1 條）。
+        # 其所生之 `pre_conditions` 為 `PROXI $the PROXI parameter$ is set to "Absent"`
+        # —— **測試員無從得知須設哪一個參數，該前置不可執行**。
+        # **不自行取其一**（`Hybrid_Type` 雖在表內，取之即改取他標的，R-VF92 二）。
+        pname = m.group(1).strip()
+        if re.fullmatch(r"the PROXI parameter", pname, re.I):
+            return None, ("PROXI 參數名為**上游之佔位詞** `the PROXI parameter` ——"
+                          "其 `pre_conditions` 不可執行（測試員無從得知須設何參數）")
+        if re.search(r"\band\b", pname):
+            return None, (f"PROXI 參數名 `{pname}` **併寫二參數** —— "
+                          "不自行取其一（R-VF92 二：不得改取他標的）")
         v = next((mm for rx in PROXI_VALUE for mm in [rx.search(text)] if mm), None)
         if not v:
             return None, ("PROXI 型而條文未帶值"
@@ -379,6 +392,35 @@ def load_all() -> tuple[list, list]:
                                                "form": forms.get(leaf, "?"),
                                                "why": why})
 
+    # ---- R-VF119：多值條文之拆列（W-VF82 §2）----
+    # **於 facts 層展開，非於 batches 層以字串替換** ——
+    # 後者之首版實測二錯：(a) `seq` 與原列衝突；
+    # (b) **僅改 label 而未改 raw**，產出 `is 0 (30sec)` 之自相矛盾標題。
+    # 於此層展開則 `raw`／`label` 由 DBC 一併取得，`build()` 自然產出正確之對。
+    # **其值取自條文逐字**（`receives the value as X via signal`），非本層所造。
+    MULTI = {"SWE1-VC-HeadlightsOffDelay-014": ["0sec", "30sec", "60sec", "90sec"],
+             "SWE1-VC-DaytimeRunningLights-006": ["False", "True"]}
+    expanded = []
+    for f in facts:
+        vals = MULTI.get(f["leaf_id"])
+        if not vals or not f.get("sig"):
+            expanded.append(f)
+            continue
+        d = D.get(f["sig"], {}).get("vals", {})
+        rev = {v.lower(): r for r, v in d.items()}
+        made = 0
+        for v in vals:
+            r = rev.get(v.lower())
+            if r is None:
+                continue
+            g = dict(f, raw=r, label=d[r], value_named=True,
+                     multi_of=(f["leaf_id"], vals, v))
+            expanded.append(g)
+            made += 1
+        if made == 0:
+            expanded.append(f)
+    facts = expanded
+
     # ---- 上游條文逐字重複者：保留首條，其餘隔離（W-VF72，2026-08-24）----
     # **成因**：同一 leaf 家族內二條 leaf 之 `desc` 逐字相同，其 param／value
     # 亦相同，故所生之 TC 逐字相同 —— **canon §4.3「手足標題逐字相同 = FAIL」**。
@@ -392,7 +434,11 @@ def load_all() -> tuple[list, list]:
         fam = re.sub(r"-?\d+$", "", f["leaf_id"])
         h = hashlib.sha1(re.sub(r"\s+", " ", f["text"]).strip().encode()).hexdigest()
         k = (fam, h)
-        if k in fam_seen:
+        # **多值拆列不受本去重拘束** —— 其各列之 `text` 本就相同（同一條文），
+        # 而其相異在 `raw`／`label`。**首版未排除之，展開之列遂被本機制吃掉**
+        # （實測：每 leaf 只剩 1 列）。R-VF122 已裁其重複判準為「四欄逐字相同」，
+        # 而四欄於 `build()` 後方存在，故此層不得以 `text` 判之。
+        if k in fam_seen and not f.get("multi_of"):
             skipped.append({
                 "leaf_id": f["leaf_id"], "form": f["form"],
                 "why": (f"上游條文與同家族之 `{fam_seen[k]}` **逐字相同**"

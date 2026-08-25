@@ -155,14 +155,10 @@
   "SWE1-VC-PaddleShifter-014",
   "SWE1-VC-ParkSenseBasedCameraActivation-078",
   "SWE1-VC-ParkSenseBasedCameraActivation-079",
-  "SWE1-VC-ParkSenseFrontVolume-077",
-  "SWE1-VC-ParkSenseFrontVolume-078",
   "SWE1-VC-ParkSenseFrontVolume-079",
   "SWE1-VC-ParkSenseFrontVolume-080",
   "SWE1-VC-ParkSenseFrontVolume-081",
   "SWE1-VC-ParkSenseFrontVolume-082",
-  "SWE1-VC-ParkSenseRearVolume-070",
-  "SWE1-VC-ParkSenseRearVolume-071",
   "SWE1-VC-ParkSenseRearVolume-072",
   "SWE1-VC-ParkSenseRearVolume-073",
   "SWE1-VC-ParkSenseRearVolume-074",
@@ -347,7 +343,6 @@
   "SWE1-VC-SurroundViewCameraDelay-054",
   "SWE1-VC-SurroundViewCameraGuidelines-059",
   "SWE1-VC-SurroundViewCameraGuidelines-060",
-  "SWE1-VC-SuspensionAutoEntryorExit-090",
   "SWE1-VC-SuspensionAutoEntryorExit-091",
   "SWE1-VC-SuspensionAutoEntryorExit-092",
   "SWE1-VC-SuspensionDefaultRideHeight-021",
@@ -476,8 +471,8 @@
   "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124",
   "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125"
  ],
- "n": 475,
+ "n": 470,
  "pool": 574,
  "pilots": 20,
- "isolated": 79
+ "isolated": 84
 }

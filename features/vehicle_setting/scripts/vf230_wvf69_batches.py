@@ -136,7 +136,13 @@ def proxi_names() -> set[str]:
         ts = re.findall(r"<t[^>]*>(.*?)</t>",
                         z.read("xl/sharedStrings.xml").decode("utf-8"), re.S)
         _PROXI_NAMES = {pnorm(t) for t in ts}
+        globals()["_PROXI_RAW"] = {t.strip() for t in ts if t.strip()}
     return _PROXI_NAMES
+
+
+def proxi_names_raw() -> set[str]:
+    proxi_names()
+    return globals().get("_PROXI_RAW", set())
 
 
 def pnorm(s: str) -> str:
@@ -146,6 +152,7 @@ def pnorm(s: str) -> str:
 def title_param(raw: str) -> tuple[str, str]:
     """回 (標題用之參數名, 依據)。逐式試，取**首個在 PROXI 表內**者。"""
     names = proxi_names()
+    names_raw = proxi_names_raw()
     raw = raw.strip()
     # **候選之序：剝殼形態先於原樣。**
     # `pnorm()` 會吸收括號（`pnorm("(SRT)") == pnorm("SRT")`），
@@ -164,6 +171,30 @@ def title_param(raw: str) -> tuple[str, str]:
     for c, why in cands:
         if pnorm(c) in names:
             return c, why
+    # ---- W-VF82：**前綴唯一匹配**（表內較長之形態）----
+    # 實測 9 條之條文**省略了表內名之別名段**或以 `or` 代 `/`：
+    #   `CAN node 95`              表內 `CAN node 95 (ITBM/ITCM)`
+    #   `CAN node 97`              表內 `CAN node 97 (PSSM)`
+    #   `CAN Node 27 (ASM or ASCM)` 剝殼後 `CAN Node 27` → 表內 `CAN node 27 (ASM/ASCM)`
+    # **其非「改取他標的」**（R-VF92 二）—— 二者為**同一參數之完整名與省略名**，
+    # 非另一參數；且**要求其前綴匹配為唯一**，多於一者不取。
+    # **其剩餘部分須以空白或 `(` 起首** —— 即表內名為「條文名 ＋ 獨立之別名段」，
+    # 而非續字。**缺此守衛則 `Greeting_Light` 會命中 `Greeting_Lights_Menu`**
+    # （剩餘為 `s_Menu`，續字），**而該二者正是 DR-34 所問、
+    # 且 R-VF92 二明令「不得以名近推定其對應」者** —— 本判準若無此守衛，
+    # 恰好造出該條所禁之推定。**本守衛即為其對治。**
+    for c, _ in cands:
+        if not c:
+            continue
+        pre = [t for t in names_raw
+               if t.lower().startswith(c.lower())
+               and len(t) > len(c)
+               and t[len(c):len(c) + 1] in (" ", "(")]
+        if len(pre) == 1:
+            return pre[0], f"前綴唯一匹配（條文 `{c}` → 表內 `{pre[0]}`；其別名段獨立）"
+    for c, why in cands:
+        if pnorm(c) in names:
+            return c, why
     return raw, "**三式皆不在 PROXI 表內** —— 維持條文逐字並具名"
 
 
@@ -171,6 +202,49 @@ def title_param(raw: str) -> tuple[str, str]:
 NEED_SENTENCE = (
     "條文未指定所收之值；值域取自 DBC；本條驗其代表值，"
     "該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。")
+
+
+
+# ---- R-VF118：`test_item` 之括號下半 ＋ 摘句（W-VF82 全量施行）----
+# canon §4.3.1 逐字：「缺括號下半 = FAIL，不得出貨」。實測 0/440 具之。
+# **格式**：`<條文上半（摘句）>` ⏎（空行）`(<procedure 末步，首字小寫> -> <ER 末項>)`
+# **下半之二端逐字取自該 TC 之 `test_procedure` 末步與 `expected_result` 末項**
+#   —— R-VF118 一：不另創語句，其為「已寫之物之投影」。
+# **上半以與括號下半之測試目的直接相關之句為限**（canon §4.3.1），
+#   **只刪句不改字**（A-VS161）—— 故上半恆為條文之某一整句，不截斷。
+_CONCL = re.compile(r"shall (?:not )?display|shall send|shall be sent|is displayed|"
+                    r"receives the value|shall maintain/update|shall update|"
+                    r"shall allow|shall prevent|= *\[", re.I)
+
+
+def _sents(x: str) -> list[str]:
+    return [t.strip() for t in re.split(r"(?<=\.)\s+", x.strip()) if t.strip()]
+
+
+def summarise(item: str, title: str) -> tuple[str, str]:
+    """上半：取與測試目的直接相關之句。回 (句, 依據)。
+
+    **「取末句」為錯之規則** —— 實測 440 條中 **230 條之末句為伴隨句
+    （`Any invalid value shall be considered invalid by HMI.`）或無結論動詞**，
+    其與測試目的無關。故改取「含結論動詞且與 `tc_title` 之關鍵詞重疊最多」者。
+    """
+    ss = _sents(item)
+    key = set(re.findall(r"[A-Za-z0-9_]{4,}", title))
+    cand = [x for x in ss if _CONCL.search(x)]
+    if cand:
+        best = max(cand, key=lambda x: (len(key & set(re.findall(r"[A-Za-z0-9_]{4,}", x))),
+                                        cand.index(x)))
+        return best, "結論句"
+    return ss[-1], "**無結論句，退回末句**"
+
+
+def bracket(proc: str, er: str) -> str:
+    """下半 —— 逐字取 procedure 末步與 ER 末項，首字小寫，不另創。"""
+    p = re.sub(r"^\d+\.\s*", "", [x for x in proc.split("\n") if x.strip()][-1]).strip()
+    e = re.sub(r"^\d+\.\s*", "", [x for x in er.split("\n") if x.strip()][-1]).strip()
+    return f"({p[:1].lower()}{p[1:]} -> {e})"
+
+
 
 
 def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict,
@@ -417,6 +491,11 @@ def build(f: dict, seq: int, wr: dict, refs: dict, lv: dict,
         if lines:
             # **既有 remark 不覆蓋**（實測標的中 0 條已有 remark，此為防未來）。
             remark = (remark + "\n" if remark else "") + "\n".join(lines)
+
+    # R-VF118：上半（摘句）＋ 空行 ＋ 括號下半
+    _up, _why = summarise(item, title)
+    item = f"{_up}\n\n{bracket(n(proc), n(er))}"
+    reason += f" `test_item` 之上半取{_why}（R-VF118；canon §4.3.1）。"
 
     return {
         "leaf_id": f["leaf_id"], "seq": seq, "test_set": w["test_set"],

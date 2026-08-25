@@ -1712,3 +1712,50 @@ BH 側   現行 BHCAN   →  forms BHCAN2    （**不同匯流排名**）
 **本層之處置**：**二本並存，不取代**（R-VF120）。
 **若 Pei 明示 `forms/` 之本即 VF230 之正確目標，本層即改用，不待本 DR 之覆文**
 （R-VF120 末句已明訂此例外）。
+
+---
+
+## DR-47（新，**Urgency High** —— PROXI 參數名不可執行 5 條 ＋ DBC 標籤錯字 1 處；W-VF82 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-46**（R-VF10）。**登記，未送出。**
+
+### 甲、`pre_conditions` 不可執行之 PROXI 參數名（5 條）
+
+**其形態**：所生之前置為 `PROXI $the PROXI parameter$ is set to "Absent"`
+—— **測試員無從得知須設哪一個參數**。
+
+```
+SWE1-VC-ParkSenseRearVolume-070／-071    條文逐字 `retrieve the the PROXI parameter PROXI configuration`
+SWE1-VC-ParkSenseFrontVolume-077／-078   （同上；注意條文有 `the the` 之重字）
+SWE1-VC-SuspensionAutoEntryorExit-090    條文 `Hybrid_Type and SRT (VC_SRT_PRSNT)` —— **併寫二參數**
+```
+
+**所詢**：
+1. 前四條之 PROXI 參數名為何？（條文以 `the PROXI parameter` 佔位，未填）
+2. `SuspensionAutoEntryorExit-090` 之標的為 `Hybrid_Type` 抑或 `SRT`？
+   （`Hybrid_Type` 在 PROXI 表內；`VC_SRT_PRSNT` 不在）
+
+**本層之處置**：**五條隔離，不自行取其一** ——
+`Hybrid_Type` 雖在表內，取之即改取他標的（`R-VF92` 二）。
+
+> **其未被更早發現之因須具名**：現行自檢之 canon §4.4 白名單
+> 將 `PROXI $…$` 之列**一律歸「系統版本或模式」**（`vf230_selfcheck_wvf62.py:classify()`
+> 之首個分支），**其不驗參數名是否為有效參數** ——
+> 故該五條之前置十九輪來皆判合規。**本輪由 `title_param()` 之表內比對方揭露。**
+
+### 乙、DBC 標籤錯字 `90ec`（1 處）
+
+```
+IPC_VEHICLE_SETUP.HeadlightsOffDelay 之 VAL_：
+  0 = 0sec ｜ 1 = 30sec ｜ 2 = 60sec ｜ 3 = **90ec**   ← 缺 `s`
+條文逐字：`… receives the value as 90sec via signal …`
+```
+
+**其後果**：本輪依 `R-VF119` 拆 `HeadlightsOffDelay-014` 為多列，
+**0sec／30sec／60sec 三列成立，而 90sec 對不上 DBC 之 `90ec`，第四列未生成。**
+
+**所詢**：DBC 之 `90ec` 是否應為 `90sec`？
+
+**本層之處置**：**不自行對應**（`R-VF92` 二：值與值域不符者登記並回報，
+不得改取能容納該值之另一標籤）。**第四列缺席，已具名。**
+若確為錯字，其更正屬 DBC 之維護方；更正後本層重跑即補齊該列。

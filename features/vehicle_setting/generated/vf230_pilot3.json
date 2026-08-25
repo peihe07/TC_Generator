@@ -15,7 +15,7 @@
    "test_set": "Approach and Tailgate",
    "layer3": "Power Liftgate/Tailgate Alert",
    "tc_title": "Power Liftgate/Tailgate Alert defaults to On",
-   "test_item": "The default value of the Power Tailgate Alert property shall be [On]. When the HMI receives the value [On] via signal, $IPC_VEHICLE_SETUP.PLGAlert$, the HMI shall display the Power Tailgate Alert status as On.",
+   "test_item": "When the HMI receives the value [On] via signal, $IPC_VEHICLE_SETUP.PLGAlert$, the HMI shall display the Power Tailgate Alert status as On.\n\n(read the Vehicle Settings menu and check that the Power Liftgate/Tailgate Alert setting is displayed as On -> The Power Liftgate/Tailgate Alert setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. The HU has been reset to factory settings",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU after the factory reset\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the Power Liftgate/Tailgate Alert setting is displayed as On",
@@ -29,7 +29,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC** —— 條文逐字指名預設值 `On`，其於 `PLGAlert` 之 DBC 值域內為 raw 1（唯一命中）。**書寫式取自既有交付範例**「Rear camera setting defaults to off」（R-VF74 一，非自創）：factory reset ＋ power cycle ＋ 讀初始顯示。**不送任何 CAN 值** —— 送值即改驗上行型之行為，非本條之需求。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Power Liftgate/Tailgate Alert` 3 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-PowerLiftgate/TailgateAlert`，1 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
+   "reasoning": "值域來源 **2-DBC** —— 條文逐字指名預設值 `On`，其於 `PLGAlert` 之 DBC 值域內為 raw 1（唯一命中）。**書寫式取自既有交付範例**「Rear camera setting defaults to off」（R-VF74 一，非自創）：factory reset ＋ power cycle ＋ 讀初始顯示。**不送任何 CAN 值** —— 送值即改驗上行型之行為，非本條之需求。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Power Liftgate/Tailgate Alert` 3 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-PowerLiftgate/TailgateAlert`，1 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerTailgate-028",
@@ -37,7 +37,7 @@
    "test_set": "Approach and Tailgate",
    "layer3": "Power Tailgate",
    "tc_title": "Power Tailgate defaults to Enabled",
-   "test_item": "The default value of the IPC_VEHICLE_SETUP2.Power_Tailgate_Enable signal shall be Enabled.",
+   "test_item": "The default value of the IPC_VEHICLE_SETUP2.Power_Tailgate_Enable signal shall be Enabled.\n\n(read the Vehicle Settings menu and check that the Power Tailgate setting is displayed as Enabled -> The Power Tailgate setting is displayed as Enabled)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. The HU has been reset to factory settings",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU after the factory reset\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the Power Tailgate setting is displayed as Enabled",
@@ -51,7 +51,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC** —— 條文逐字指名預設值 `Enabled`，其於 `Power_Tailgate_Enable` 之 DBC 值域內為 raw 1（唯一命中）。**書寫式取自既有交付範例**「Rear camera setting defaults to off」（R-VF74 一，非自創）：factory reset ＋ power cycle ＋ 讀初始顯示。**不送任何 CAN 值** —— 送值即改驗上行型之行為，非本條之需求。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Power Tailgate` 2 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-PowerTailgate`，1 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
+   "reasoning": "值域來源 **2-DBC** —— 條文逐字指名預設值 `Enabled`，其於 `Power_Tailgate_Enable` 之 DBC 值域內為 raw 1（唯一命中）。**書寫式取自既有交付範例**「Rear camera setting defaults to off」（R-VF74 一，非自創）：factory reset ＋ power cycle ＋ 讀初始顯示。**不送任何 CAN 值** —— 送值即改驗上行型之行為，非本條之需求。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Power Tailgate` 2 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-PowerTailgate`，1 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-132",
@@ -59,7 +59,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Enhanced Display Synchronization",
    "tc_title": "Enhanced Display Synchronization defaults to ON",
-   "test_item": "HW supplier shall provide the default value of IPC_VEHICLE_SETUP2.Display_Synch default as ON via VHAL interface. The HMI layer shall initialise and display the setting with the default value of ON for IPC_VEHICLE_SETUP2.Display_Synch. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as ON -> The Enhanced Display Synchronization setting is displayed as ON)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. The HU has been reset to factory settings",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU after the factory reset\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as ON",
@@ -73,7 +73,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC** —— 條文逐字指名預設值 `ON`，其於 `Display_Synch` 之 DBC 值域內為 raw 1（唯一命中）。**書寫式取自既有交付範例**「Rear camera setting defaults to off」（R-VF74 一，非自創）：factory reset ＋ power cycle ＋ 讀初始顯示。**不送任何 CAN 值** —— 送值即改驗上行型之行為，非本條之需求。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Enhanced Display Synchronization` 3 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-EnhancedDisplaySynchronization`，1 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
+   "reasoning": "值域來源 **2-DBC** —— 條文逐字指名預設值 `ON`，其於 `Display_Synch` 之 DBC 值域內為 raw 1（唯一命中）。**書寫式取自既有交付範例**「Rear camera setting defaults to off」（R-VF74 一，非自創）：factory reset ＋ power cycle ＋ 讀初始顯示。**不送任何 CAN 值** —— 送值即改驗上行型之行為，非本條之需求。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Enhanced Display Synchronization` 3 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-EnhancedDisplaySynchronization`，1 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   }
  ]
 }

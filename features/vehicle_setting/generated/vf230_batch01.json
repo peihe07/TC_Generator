@@ -5,11 +5,11 @@
  "test_group": "Vehicle Setting",
  "handoff": "docs/handoff/V29_production_start.md（sha256 ff86f0c6242f6ac2…，7015 bytes）",
  "work_order": "W-VF69",
- "selection": "R-VS58 選池序。量產母體之算式（各項皆本輪實測，R-VS83）：選池 574（`docs/reports/vf230_writability.tsv` 之 writable ∈ {W0,W1}）− pilot 20（`generated/vf230_pilot1.json` ＋ `pilot2.json` 之 leaf_id 去重）− 隔離 79（其中 R-VF81 三之訊號送出型 28、事實抽不出 51；逐條列於 `data/vf230_isolated.tsv`）= **475**。本組為第 1 組，自該母體之選池序第 1–150 條取。事實抽不出者跳過並具名。priority 分布（逐條實測）：P0(a) 32；P0(c) 18。",
+ "selection": "R-VS58 選池序。量產母體之算式（各項皆本輪實測，R-VS83）：選池 574（`docs/reports/vf230_writability.tsv` 之 writable ∈ {W0,W1}）− pilot 20（`generated/vf230_pilot1.json` ＋ `pilot2.json` 之 leaf_id 去重）− 隔離 84（其中 R-VF81 三之訊號送出型 28、事實抽不出 56；逐條列於 `data/vf230_isolated.tsv`）= **470**。本組為第 1 組，自該母體之選池序第 1–150 條取。事實抽不出者跳過並具名。priority 分布（逐條實測）：P0(a) 32；P0(c) 18。",
  "form_distribution": {
-  "訊號送出型": 18,
+  "訊號送出型": 19,
   "訊號上行型": 11,
-  "PROXI 型": 21
+  "PROXI 型": 20
  },
  "signal_notation": "R-1 v2／R-VS52：Send CAN: MESSAGE.Signal = <raw> (<Label>)；ER「… is sent」；procedure「… is transmitted」；PROXI $Param$ = \"值\"（參數名取條文逐字，R-VF78 二）；Input Test Data 為 NA",
  "bus": "FD-CAN8（R-VF78 一；Part 1 交付本內 `FD-CAN` 之逐字形實測 0 命中）",
@@ -24,7 +24,7 @@
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Service Mode",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Susp_Tire_Jack_Req is sent as 0 (Off) when Suspension Service Mode is Off",
-   "test_item": "When the customer chooses to enable the Suspension Service Mode setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API. The HMI receives the value as OFF via signal, $TELEMATIC_VEHICLE_SETUP.Susp_Tire_Jack_Req$. Then the HMI/LTM/ETM shall update the Suspension Service Mode customer setting status to OFF in the Vehicle Settings menu. The signal shall be transmitted to IPC within the defined system response time.",
+   "test_item": "Then the HMI/LTM/ETM shall update the Suspension Service Mode customer setting status to OFF in the Vehicle Settings menu.\n\n(read the Vehicle Settings menu and check that the Suspension Service Mode setting is displayed as Off -> The Suspension Service Mode setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Suspension Service Mode\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Suspension Service Mode\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.Susp_Tire_Jack_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Suspension Service Mode setting is displayed as Off",
@@ -38,7 +38,7 @@
    "remarks": "⚠ **條文自身不一致**：其動作句為 `chooses to enable`，而其 `value` 與結論句皆為 `Off`（極性相反）。依 **V23 §4.2**（A-VF18 之處置）**以結論句為準**，本條驗 `Off`；**不自行調和二者**。已開 **DR-38**。",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Tire_Jack_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Tire_Jack_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-Blind Spot with Trailer Detection-047",
@@ -46,7 +46,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Blind Spot with Trailer Detection",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req is sent as 0 (Auto) when Blind Spot with Trailer Detection is Auto",
-   "test_item": "The HMI layer shall capture the customer selection for the Blind Spot with Trailer Detection setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req signal value as Auto. The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Auto -> The Blind Spot with Trailer Detection setting is displayed as Auto)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Blind Spot with Trailer Detection\" customer setting is set to Max",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Blind Spot with Trailer Detection\" customer setting to Auto and check that TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req = 0 (Auto) is transmitted\n3. Read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Auto",
@@ -60,7 +60,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Trailer_detection_blind_spot_Req` 之 `VAL_` 內 raw 0 = `Auto`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Trailer_detection_blind_spot_Req` 之 `VAL_` 內 raw 0 = `Auto`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-019",
@@ -68,7 +68,7 @@
    "test_set": "Approach and Tailgate",
    "layer3": "Power Liftgate/Tailgate Alert",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PLGAlert_Req is sent as 1 (On) when Power Liftgate/Tailgate Alert is On",
-   "test_item": "When the customer chooses to enable the Power Liftgate Alert setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API. When the HMI receives the value as [On] via signal, $TELEMATIC_VEHICLE_SETUP.PLGAlert_Req$, Then the HMI shall display the Power Liftgate Alert status as On.",
+   "test_item": "When the HMI receives the value as [On] via signal, $TELEMATIC_VEHICLE_SETUP.PLGAlert_Req$, Then the HMI shall display the Power Liftgate Alert status as On.\n\n(read the Vehicle Settings menu and check that the Power Liftgate/Tailgate Alert setting is displayed as On -> The Power Liftgate/Tailgate Alert setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Power Liftgate/Tailgate Alert\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Power Liftgate/Tailgate Alert\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.PLGAlert_Req = 1 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Power Liftgate/Tailgate Alert setting is displayed as On",
@@ -82,7 +82,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PLGAlert_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PLGAlert_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-BlindSpotAlert-005",
@@ -90,7 +90,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Blind Spot Alert",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.BSDEnable_Req is sent as 1 (Enable_LED) when Blind Spot Alert is Enable_LED",
-   "test_item": "The HMI layer shall capture the customer selection for the Blind Spot Alert setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.BSDEnable_Req signal value as Enable_LED. The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Enable_LED -> The Blind Spot Alert setting is displayed as Enable_LED)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Blind Spot Alert\" customer setting is set to Not_Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Blind Spot Alert\" customer setting to Enable_LED and check that TELEMATIC_VEHICLE_SETUP.BSDEnable_Req = 1 (Enable_LED) is transmitted\n3. Read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Enable_LED",
@@ -104,7 +104,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `BSDEnable_Req` 之 `VAL_` 內 raw 1 = `Enable_LED`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `BSDEnable_Req` 之 `VAL_` 內 raw 1 = `Enable_LED`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionServiceMode-005",
@@ -112,7 +112,7 @@
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Service Mode",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Susp_Tire_Jack_Req is sent as 1 (On) when Suspension Service Mode is On",
-   "test_item": "When the customer chooses to enable the Suspension Service Mode setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API. The HMI receives the value as ON via signal, $TELEMATIC_VEHICLE_SETUP.Susp_Tire_Jack_Req$. Then the HMI/LTM/ETM shall update the Suspension Service Mode customer setting status to ON in the Vehicle Settings menu. The signal shall be transmitted to IPC within the defined system response time.",
+   "test_item": "Then the HMI/LTM/ETM shall update the Suspension Service Mode customer setting status to ON in the Vehicle Settings menu.\n\n(read the Vehicle Settings menu and check that the Suspension Service Mode setting is displayed as On -> The Suspension Service Mode setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Suspension Service Mode\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Suspension Service Mode\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.Susp_Tire_Jack_Req = 1 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Suspension Service Mode setting is displayed as On",
@@ -126,7 +126,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Tire_Jack_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Tire_Jack_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-Blind Spot with Trailer Detection-048",
@@ -134,7 +134,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Blind Spot with Trailer Detection",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req is sent as 1 (Max) when Blind Spot with Trailer Detection is Max",
-   "test_item": "The HMI layer shall capture the customer selection for the Blind Spot with Trailer Detection setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req signal value as Max. The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Max -> The Blind Spot with Trailer Detection setting is displayed as Max)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Blind Spot with Trailer Detection\" customer setting is set to Auto",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Blind Spot with Trailer Detection\" customer setting to Max and check that TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req = 1 (Max) is transmitted\n3. Read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Max",
@@ -148,7 +148,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Trailer_detection_blind_spot_Req` 之 `VAL_` 內 raw 1 = `Max`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Trailer_detection_blind_spot_Req` 之 `VAL_` 內 raw 1 = `Max`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-020",
@@ -156,7 +156,7 @@
    "test_set": "Approach and Tailgate",
    "layer3": "Power Liftgate/Tailgate Alert",
    "tc_title": "Power Liftgate/Tailgate Alert is displayed as Off when PLGAlert is 0 (Off)",
-   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.PLGAlert$, Then the LTM or ETM shall update the Power Liftgate Alert setting status information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.PLGAlert$, Then the LTM or ETM shall update the Power Liftgate Alert setting status information on the display within the defined system response time.\n\n(read the Vehicle Settings menu and check that the Power Liftgate/Tailgate Alert setting is displayed as Off -> The Power Liftgate/Tailgate Alert setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.PLGAlert = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.PLGAlert = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.PLGAlert = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Power Liftgate/Tailgate Alert setting is displayed as Off",
@@ -170,7 +170,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PLGAlert` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `PLGAlert` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-BlindSpotAlert-006",
@@ -178,7 +178,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Blind Spot Alert",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.BSDEnable_Req is sent as 2 (Enable_ LED_Chime) when Blind Spot Alert is Enable_ LED_Chime",
-   "test_item": "The HMI layer shall capture the customer selection for the Blind Spot Alert setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.BSDEnable_Req signal value as Enable_LED_Chime. The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Enable_ LED_Chime -> The Blind Spot Alert setting is displayed as Enable_ LED_Chime)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Blind Spot Alert\" customer setting is set to Not_Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Blind Spot Alert\" customer setting to Enable_ LED_Chime and check that TELEMATIC_VEHICLE_SETUP.BSDEnable_Req = 2 (Enable_ LED_Chime) is transmitted\n3. Read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Enable_ LED_Chime",
@@ -192,7 +192,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `BSDEnable_Req` 之 `VAL_` 內 raw 2 = `Enable_ LED_Chime`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `BSDEnable_Req` 之 `VAL_` 內 raw 2 = `Enable_ LED_Chime`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-BlindSpotAlert-007",
@@ -200,7 +200,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Blind Spot Alert",
    "tc_title": "Blind Spot Alert is displayed as Not_Enable when BSDEnable is 0 (Not_Enable)",
-   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.BSDEnable signal and update/display the Blind Spot Alert information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Not_Enable -> The Blind Spot Alert setting is displayed as Not_Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.BSDEnable = one of [0 (Not_Enable), 1 (Enable_LED), 2 (Enable_ LED_Chime)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.BSDEnable = 1 (Enable_LED)\n2. Send CAN: IPC_VEHICLE_SETUP.BSDEnable = 0 (Not_Enable)\n3. Read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Not_Enable",
@@ -214,7 +214,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `BSDEnable` 之 DBC 有效值域全集為 {0 (Not_Enable), 1 (Enable_LED), 2 (Enable_ LED_Chime)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Not_Enable` 為代表值，其次值 raw 1 = `Enable_LED` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `BSDEnable` 之 DBC 有效值域全集為 {0 (Not_Enable), 1 (Enable_LED), 2 (Enable_ LED_Chime)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Not_Enable` 為代表值，其次值 raw 1 = `Enable_LED` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-LaneSenseWarning-019",
@@ -222,7 +222,7 @@
    "test_set": "Lane and Lighting",
    "layer3": "Lane Sense Warning",
    "tc_title": "Lane Sense Warning is displayed as Early when LDW_Sensibility is 0 (Early)",
-   "test_item": "The HW Supplier / ECU shall send the updated Lane Sense Warning status via the IPC_VEHICLE_SETUP.LDW_Sensibility signal. The HMI layer shall evaluate the received $LDW_Sensibility$ value and update the Lane Sense Warning setting display accordingly.",
+   "test_item": "The HW Supplier / ECU shall send the updated Lane Sense Warning status via the IPC_VEHICLE_SETUP.LDW_Sensibility signal.\n\n(read the Vehicle Settings menu and check that the Lane Sense Warning setting is displayed as Early -> The Lane Sense Warning setting is displayed as Early)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.LDW_Sensibility = one of [0 (Early), 1 (Med), 2 (Late)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.LDW_Sensibility = 1 (Med)\n2. Send CAN: IPC_VEHICLE_SETUP.LDW_Sensibility = 0 (Early)\n3. Read the Vehicle Settings menu and check that the Lane Sense Warning setting is displayed as Early",
@@ -236,7 +236,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `LDW_Sensibility` 之 DBC 有效值域全集為 {0 (Early), 1 (Med), 2 (Late)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Early` 為代表值，其次值 raw 1 = `Med` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `LDW_Sensibility` 之 DBC 有效值域全集為 {0 (Early), 1 (Med), 2 (Late)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Early` 為代表值，其次值 raw 1 = `Med` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-DriverEasyExitSeat-038",
@@ -244,7 +244,7 @@
    "test_set": "Suspension and Comfort",
    "layer3": "Driver Easy Exit Seat",
    "tc_title": "Driver Easy Exit Seat is not displayed when Easy_Entry_Menu is \"Absent\"",
-   "test_item": "When the HMI receives the value as Absent via signal, $Easy_Entry_Menu$, Then the HMI shall not display the Driver Easy Exit Seat customer setting in the Vehicle Settings menu.",
+   "test_item": "When the HMI receives the value as Absent via signal, $Easy_Entry_Menu$, Then the HMI shall not display the Driver Easy Exit Seat customer setting in the Vehicle Settings menu.\n\n(read the Vehicle Settings menu and check that the \"Driver Easy Exit Seat\" customer setting is not displayed -> The \"Driver Easy Exit Seat\" customer setting is not displayed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Easy_Entry_Menu$ is set to \"Absent\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Driver Easy Exit Seat\" customer setting is not displayed",
@@ -258,15 +258,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Easy_Entry_Menu`（R-VF78 二）；`tc_title` 取 `Easy_Entry_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Easy_Entry_Menu`（R-VF78 二）；`tc_title` 取 `Easy_Entry_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerSideStep-051",
    "seq": 279,
    "test_set": "Trailer and Signage",
    "layer3": "Power Side Step",
-   "tc_title": "Power Side Step is not displayed when CAN node 97 is \"Absent\"",
-   "test_item": "The HMI layer shall evaluate the received CAN node 97 PROXI value to determine the availability of the Power Side Step feature. If CAN node 97 = [Absent], the LTM or ETM shall not display the Power Side Step customer setting.",
+   "tc_title": "Power Side Step is not displayed when CAN node 97 (PSSM) is \"Absent\"",
+   "test_item": "If CAN node 97 = [Absent], the LTM or ETM shall not display the Power Side Step customer setting.\n\n(read the Vehicle Settings menu and check that the \"Power Side Step\" customer setting is not displayed -> The \"Power Side Step\" customer setting is not displayed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN node 97$ is set to \"Absent\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Power Side Step\" customer setting is not displayed",
@@ -280,7 +280,7 @@
    "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 97`（R-VF78 二）；`tc_title` 取 `CAN node 97`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 97`（R-VF78 二）；`tc_title` 取 `CAN node 97 (PSSM)`（R-VF97，前綴唯一匹配（條文 `CAN node 97` → 表內 `CAN node 97 (PSSM)`；其別名段獨立））。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerTailgate-023",
@@ -288,7 +288,7 @@
    "test_set": "Approach and Tailgate",
    "layer3": "Power Tailgate",
    "tc_title": "Power Tailgate is not displayed when CAN node 82 (PTGM) is \"Absent\"",
-   "test_item": "When the HMI receives the value Absent via signal, $CAN_Node_82_PTGM$, Then the HMI shall not display the Power Tailgate customer setting in the Vehicle Settings menu.",
+   "test_item": "When the HMI receives the value Absent via signal, $CAN_Node_82_PTGM$, Then the HMI shall not display the Power Tailgate customer setting in the Vehicle Settings menu.\n\n(read the Vehicle Settings menu and check that the \"Power Tailgate\" customer setting is not displayed -> The \"Power Tailgate\" customer setting is not displayed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN node 82 (PTGM)$ is set to \"Absent\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Power Tailgate\" customer setting is not displayed",
@@ -302,7 +302,7 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 82 (PTGM)`（R-VF78 二）；`tc_title` 取 `CAN node 82 (PTGM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 82 (PTGM)`（R-VF78 二）；`tc_title` 取 `CAN node 82 (PTGM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-ForwardCollisionWarning-034",
@@ -310,7 +310,7 @@
    "test_set": "Lane and Lighting",
    "layer3": "Forward Collision Warning",
    "tc_title": "Forward Collision Warning is not displayed",
-   "test_item": "The HMI layer shall evaluate the received Forward_Collision_Mitigation to determine Forward Collision Warning feature availability. If $Forward_Collision_Mitigation$ != [Full Speed Forward Collision Warning with Mitigation], [Full Speed FCW with Pedestrian Emergency Braking], or [Full Speed FCW with Pedestrian or Cyclist Emergency Braking], the LTM or ETM shall not display the Forward Collision Warning customer setting.",
+   "test_item": "If $Forward_Collision_Mitigation$ != [Full Speed Forward Collision Warning with Mitigation], [Full Speed FCW with Pedestrian Emergency Braking], or [Full Speed FCW with Pedestrian or Cyclist Emergency Braking], the LTM or ETM shall not display the Forward Collision Warning customer setting.\n\n(read the Vehicle Settings menu and check that the \"Forward Collision Warning\" customer setting is not displayed -> The \"Forward Collision Warning\" customer setting is not displayed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Forward_Collision_Mitigation$ is set to \"Full Speed Forward Collision Warning with Mitigation\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Forward Collision Warning\" customer setting is not displayed",
@@ -324,7 +324,7 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed Forward Collision Warning with Mitigation`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Forward_Collision_Mitigation`（R-VF78 二）；`tc_title` 取 `Forward_Collision_Mitigation`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Forward Collision Warning` 3 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-ForwardCollisionWarning`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed Forward Collision Warning with Mitigation`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Forward_Collision_Mitigation`（R-VF78 二）；`tc_title` 取 `Forward_Collision_Mitigation`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Forward Collision Warning` 3 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-ForwardCollisionWarning`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-DriverEasyExitSeat-039",
@@ -332,7 +332,7 @@
    "test_set": "Suspension and Comfort",
    "layer3": "Driver Easy Exit Seat",
    "tc_title": "Driver Easy Exit Seat is displayed and modifiable when Easy_Entry_Menu is \"Present\"",
-   "test_item": "When the HMI receives the value as Present via signal, $Easy_Entry_Menu$, Then the HMI shall display the Driver Easy Exit Seat customer setting in the Vehicle Settings menu and allow the customer to modify the setting.",
+   "test_item": "When the HMI receives the value as Present via signal, $Easy_Entry_Menu$, Then the HMI shall display the Driver Easy Exit Seat customer setting in the Vehicle Settings menu and allow the customer to modify the setting.\n\n(select the \"Driver Easy Exit Seat\" customer setting and check that its value can be changed -> The value of the \"Driver Easy Exit Seat\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Easy_Entry_Menu$ is set to \"Present\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Driver Easy Exit Seat\" customer setting is displayed\n4. Select the \"Driver Easy Exit Seat\" customer setting and check that its value can be changed",
@@ -346,15 +346,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Easy_Entry_Menu`（R-VF78 二）；`tc_title` 取 `Easy_Entry_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Easy_Entry_Menu`（R-VF78 二）；`tc_title` 取 `Easy_Entry_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerSideStep-052",
    "seq": 283,
    "test_set": "Trailer and Signage",
    "layer3": "Power Side Step",
-   "tc_title": "Power Side Step is displayed and modifiable when CAN node 97 is \"Present\"",
-   "test_item": "The HMI layer shall evaluate the received CAN node 97 PROXI value to determine the availability of the Power Side Step feature. If CAN node 97 = [Present], the LTM or ETM shall display the Power Side Step customer setting to allow the customer the ability to modify the setting.",
+   "tc_title": "Power Side Step is displayed and modifiable when CAN node 97 (PSSM) is \"Present\"",
+   "test_item": "If CAN node 97 = [Present], the LTM or ETM shall display the Power Side Step customer setting to allow the customer the ability to modify the setting.\n\n(select the \"Power Side Step\" customer setting and check that its value can be changed -> The value of the \"Power Side Step\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN node 97$ is set to \"Present\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Power Side Step\" customer setting is displayed\n4. Select the \"Power Side Step\" customer setting and check that its value can be changed",
@@ -368,7 +368,7 @@
    "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 97`（R-VF78 二）；`tc_title` 取 `CAN node 97`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 97`（R-VF78 二）；`tc_title` 取 `CAN node 97 (PSSM)`（R-VF97，前綴唯一匹配（條文 `CAN node 97` → 表內 `CAN node 97 (PSSM)`；其別名段獨立））。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerTailgate-024",
@@ -376,7 +376,7 @@
    "test_set": "Approach and Tailgate",
    "layer3": "Power Tailgate",
    "tc_title": "Power Tailgate is displayed and modifiable when CAN node 82 (PTGM) is \"Present\"",
-   "test_item": "When the HMI receives the value Present via signal, $CAN_Node_82_PTGM$, Then the HMI shall display the Power Tailgate customer setting in the Vehicle Settings menu and allow the customer to modify the setting.",
+   "test_item": "When the HMI receives the value Present via signal, $CAN_Node_82_PTGM$, Then the HMI shall display the Power Tailgate customer setting in the Vehicle Settings menu and allow the customer to modify the setting.\n\n(select the \"Power Tailgate\" customer setting and check that its value can be changed -> The value of the \"Power Tailgate\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN node 82 (PTGM)$ is set to \"Present\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Power Tailgate\" customer setting is displayed\n4. Select the \"Power Tailgate\" customer setting and check that its value can be changed",
@@ -390,7 +390,7 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 82 (PTGM)`（R-VF78 二）；`tc_title` 取 `CAN node 82 (PTGM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 82 (PTGM)`（R-VF78 二）；`tc_title` 取 `CAN node 82 (PTGM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-ForwardCollisionWarning-035",
@@ -398,7 +398,7 @@
    "test_set": "Lane and Lighting",
    "layer3": "Forward Collision Warning",
    "tc_title": "Forward Collision Warning is displayed and modifiable",
-   "test_item": "If $Forward_Collision_Mitigation$ = [Full Speed Forward Collision Warning with Mitigation or Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking], the HMI shall display the Forward Collision Warning customer setting to allow the customer to modify the setting.",
+   "test_item": "If $Forward_Collision_Mitigation$ = [Full Speed Forward Collision Warning with Mitigation or Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking], the HMI shall display the Forward Collision Warning customer setting to allow the customer to modify the setting.\n\n(select the \"Forward Collision Warning\" customer setting and check that its value can be changed -> The value of the \"Forward Collision Warning\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Forward_Collision_Mitigation$ is set to \"Full Speed Forward Collision Warning with Mitigation or Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Forward Collision Warning\" customer setting is displayed\n4. Select the \"Forward Collision Warning\" customer setting and check that its value can be changed",
@@ -412,7 +412,7 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed Forward Collision Warning with Mitigation or Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Forward_Collision_Mitigation`（R-VF78 二）；`tc_title` 取 `Forward_Collision_Mitigation`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Forward Collision Warning` 3 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-ForwardCollisionWarning`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed Forward Collision Warning with Mitigation or Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Forward_Collision_Mitigation`（R-VF78 二）；`tc_title` 取 `Forward_Collision_Mitigation`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Forward Collision Warning` 3 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-ForwardCollisionWarning`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-DriverEasyExitSeat-040",
@@ -420,7 +420,7 @@
    "test_set": "Suspension and Comfort",
    "layer3": "Driver Easy Exit Seat",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Easy_Exit_D_Req is sent as 0 (Off) when Driver Easy Exit Seat is Off",
-   "test_item": "When the customer chooses to disable the Driver Easy Exit Seat setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager through the Android Car API. The HMI receives the value as OFF via signal, $TELEMATIC_VEHICLE_SETUP.Easy_Exit_D_Req$. Then the HMI/LTM/ETM shall update the Driver Easy Exit Seat customer setting status to OFF in the Vehicle Settings menu. The signal shall be transmitted to IPC within the defined system response time.",
+   "test_item": "Then the HMI/LTM/ETM shall update the Driver Easy Exit Seat customer setting status to OFF in the Vehicle Settings menu.\n\n(read the Vehicle Settings menu and check that the Driver Easy Exit Seat setting is displayed as Off -> The Driver Easy Exit Seat setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Driver Easy Exit Seat\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Driver Easy Exit Seat\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.Easy_Exit_D_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Driver Easy Exit Seat setting is displayed as Off",
@@ -434,7 +434,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Easy_Exit_D_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Easy_Exit_D_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerSideStep-053",
@@ -442,7 +442,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Power Side Step",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req is sent as 0 (Auto) when Power Side Step is Auto",
-   "test_item": "The HMI layer shall capture the customer selection for the Power Side Step setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req signal value as auto. The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto -> The Power Side Step setting is displayed as Auto)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Power Side Step\" customer setting is set to Store",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Power Side Step\" customer setting to Auto and check that TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req = 0 (Auto) is transmitted\n3. Read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto",
@@ -456,7 +456,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Power_Side_Step_Req` 之 `VAL_` 內 raw 0 = `Auto`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Power_Side_Step_Req` 之 `VAL_` 內 raw 0 = `Auto`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-DriverEasyExitSeat-041",
@@ -464,7 +464,7 @@
    "test_set": "Suspension and Comfort",
    "layer3": "Driver Easy Exit Seat",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Easy_Exit_D_Req is sent as 1 (On) when Driver Easy Exit Seat is On",
-   "test_item": "When the customer chooses to enable the Driver Easy Exit Seat setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager through the Android Car API. The HMI receives the value as ON via signal, $TELEMATIC_VEHICLE_SETUP.Easy_Exit_D_Req$. Then the HMI/LTM/ETM shall update the Driver Easy Exit Seat customer setting status to ON in the Vehicle Settings menu. The signal shall be transmitted to IPC within the defined system response time.",
+   "test_item": "Then the HMI/LTM/ETM shall update the Driver Easy Exit Seat customer setting status to ON in the Vehicle Settings menu.\n\n(read the Vehicle Settings menu and check that the Driver Easy Exit Seat setting is displayed as On -> The Driver Easy Exit Seat setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Driver Easy Exit Seat\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Driver Easy Exit Seat\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.Easy_Exit_D_Req = 1 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Driver Easy Exit Seat setting is displayed as On",
@@ -478,7 +478,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Easy_Exit_D_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Easy_Exit_D_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerSideStep-054",
@@ -486,7 +486,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Power Side Step",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req is sent as 1 (Store) when Power Side Step is Store",
-   "test_item": "The HMI layer shall capture the customer selection for the Power Side Step setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req signal value as store. The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.",
+   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Store -> The Power Side Step setting is displayed as Store)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Power Side Step\" customer setting is set to Auto",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Power Side Step\" customer setting to Store and check that TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req = 1 (Store) is transmitted\n3. Read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Store",
@@ -500,7 +500,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Power_Side_Step_Req` 之 `VAL_` 內 raw 1 = `Store`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Power_Side_Step_Req` 之 `VAL_` 內 raw 1 = `Store`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-DriverEasyExitSeat-042",
@@ -508,7 +508,7 @@
    "test_set": "Suspension and Comfort",
    "layer3": "Driver Easy Exit Seat",
    "tc_title": "Driver Easy Exit Seat is displayed as Off when Easy_Exit_D is 0 (Off)",
-   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.Easy_Exit_D$, the LTM or ETM shall update the Driver Easy Exit Seat setting status information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.Easy_Exit_D$, the LTM or ETM shall update the Driver Easy Exit Seat setting status information on the display within the defined system response time.\n\n(read the Vehicle Settings menu and check that the Driver Easy Exit Seat setting is displayed as Off -> The Driver Easy Exit Seat setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Easy_Exit_D = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Easy_Exit_D = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.Easy_Exit_D = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Driver Easy Exit Seat setting is displayed as Off",
@@ -522,7 +522,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Easy_Exit_D` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Easy_Exit_D` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerSideStep-055",
@@ -530,7 +530,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Power Side Step",
    "tc_title": "Power Side Step is displayed as Auto when Power_Side_Step is 0 (Auto)",
-   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.Power_Side_Step signal and update/display the Power Side Step setting information accordingly within <TDisplay>. Any invalid value shall be considered invalid by HMI.",
+   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto -> The Power Side Step setting is displayed as Auto)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Power_Side_Step = one of [0 (Auto), 1 (Store)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Power_Side_Step = 1 (Store)\n2. Send CAN: IPC_VEHICLE_SETUP.Power_Side_Step = 0 (Auto)\n3. Read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto",
@@ -544,7 +544,7 @@
    "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP.Power_Side_Step signal will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP.Power_Side_Step signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Power_Side_Step` 之 DBC 有效值域全集為 {0 (Auto), 1 (Store)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Auto` 為代表值，其次值 raw 1 = `Store` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Power_Side_Step` 之 DBC 有效值域全集為 {0 (Auto), 1 (Store)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Auto` 為代表值，其次值 raw 1 = `Store` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerTailgate-027",
@@ -552,7 +552,7 @@
    "test_set": "Approach and Tailgate",
    "layer3": "Power Tailgate",
    "tc_title": "Power Tailgate is displayed as Disabled when Power_Tailgate_Enable is 0 (Disabled)",
-   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP2.Power_Tailgate_Enable$, Then the LTM or ETM shall update the Power Tailgate setting status information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP2.Power_Tailgate_Enable$, Then the LTM or ETM shall update the Power Tailgate setting status information on the display within the defined system response time.\n\n(read the Vehicle Settings menu and check that the Power Tailgate setting is displayed as Disabled -> The Power Tailgate setting is displayed as Disabled)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.Power_Tailgate_Enable = one of [0 (Disabled), 1 (Enabled)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.Power_Tailgate_Enable = 1 (Enabled)\n2. Send CAN: IPC_VEHICLE_SETUP2.Power_Tailgate_Enable = 0 (Disabled)\n3. Read the Vehicle Settings menu and check that the Power Tailgate setting is displayed as Disabled",
@@ -566,37 +566,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Power_Tailgate_Enable` 之 DBC 有效值域全集為 {0 (Disabled), 1 (Enabled)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Disabled` 為代表值，其次值 raw 1 = `Enabled` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
-  },
-  {
-   "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-090",
-   "seq": 293,
-   "test_set": "Suspension and Comfort",
-   "layer3": "Suspension Auto Entry or Exit",
-   "tc_title": "Suspension Auto Entry or Exit is displayed and modifiable",
-   "test_item": "The HMI layer shall evaluate the received Hybrid_Type and SRT PROXI values to determine the applicability of the feature section. If $Hybrid_Type$ = [Battery Electric Vehicle] or [Range Electric Paradigm Breaker (REPB)] or $SRT$ = [Present], the requirements in this section shall be applicable and available for the below features.",
-   "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Hybrid_Type and SRT (VC_SRT_PRSNT)$ is set to \"Battery Electric Vehicle\"",
-   "input_test_data": "NA",
-   "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Suspension Auto Entry or Exit\" customer setting is displayed\n4. Select the \"Suspension Auto Entry or Exit\" customer setting and check that its value can be changed",
-   "expected_result": "1. The HU completes start-up\n2. The Vehicle Settings menu is displayed\n3. The \"Suspension Auto Entry or Exit\" customer setting is displayed\n4. The value of the \"Suspension Auto Entry or Exit\" customer setting can be changed",
-   "specification_reference": "VF230_V1_PDT27_VF_3550",
-   "priority": "P0",
-   "priority_class": "P0(a)",
-   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
-   "writable": "W0",
-   "dr_dependent": "",
-   "remarks": "",
-   "value_source": "0-CLAUSE",
-   "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Battery Electric Vehicle`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Hybrid_Type and SRT (VC_SRT_PRSNT)`（R-VF78 二）；`tc_title` 取 `Hybrid_Type and SRT (VC_SRT_PRSNT)`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Suspension Auto Entry or Exit` 5 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-SuspensionAutoEntryorExit`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Power_Tailgate_Enable` 之 DBC 有效值域全集為 {0 (Disabled), 1 (Enabled)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Disabled` 為代表值，其次值 raw 1 = `Enabled` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-ForwardCollisionWarning-039",
-   "seq": 294,
+   "seq": 293,
    "test_set": "Lane and Lighting",
    "layer3": "Forward Collision Warning",
    "tc_title": "Forward Collision Warning is displayed as Off when FSFCWPlusSetting is 0 (Off)",
-   "test_item": "The HW Supplier / ECU shall send the updated Forward Collision Warning status via the IPC_VEHICLE_SETUP.FSFCWPlusSetting signal. The HMI layer shall evaluate the received $FSFCWPlusSetting$ value and update the Forward Collision Warning setting display accordingly.",
+   "test_item": "The HW Supplier / ECU shall send the updated Forward Collision Warning status via the IPC_VEHICLE_SETUP.FSFCWPlusSetting signal.\n\n(read the Vehicle Settings menu and check that the Forward Collision Warning setting is displayed as Off -> The Forward Collision Warning setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.FSFCWPlusSetting = one of [0 (Off), 1 (Audio), 2 (Brake), 3 (Audio_Brake), 4 (Not_Request)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.FSFCWPlusSetting = 1 (Audio)\n2. Send CAN: IPC_VEHICLE_SETUP.FSFCWPlusSetting = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Forward Collision Warning setting is displayed as Off",
@@ -610,15 +588,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `FSFCWPlusSetting` 之 DBC 有效值域全集為 {0 (Off), 1 (Audio), 2 (Brake), 3 (Audio_Brake), 4 (Not_Request)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `Audio` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `FSFCWPlusSetting` 之 DBC 有效值域全集為 {0 (Off), 1 (Audio), 2 (Brake), 3 (Audio_Brake), 4 (Not_Request)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `Audio` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-091",
-   "seq": 295,
+   "seq": 294,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Auto Entry or Exit",
    "tc_title": "Suspension Auto Entry or Exit is not displayed when the PROXI value is \"Absent\"",
-   "test_item": "The HMI layer shall evaluate the received CAN Node 27 (ASM or ASCM) PROXI value to determine the availability of the Suspension Auto Entry or Exit feature. If CAN Node 27 (ASM or ASCM) = [Absent], the LTM or ETM shall not display the Suspension Auto Entry or Exit customer setting.",
+   "test_item": "If CAN Node 27 (ASM or ASCM) = [Absent], the LTM or ETM shall not display the Suspension Auto Entry or Exit customer setting.\n\n(read the Vehicle Settings menu and check that the \"Suspension Auto Entry or Exit\" customer setting is not displayed -> The \"Suspension Auto Entry or Exit\" customer setting is not displayed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN Node 27 (ASM or ASCM)$ is set to \"Absent\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Suspension Auto Entry or Exit\" customer setting is not displayed",
@@ -632,15 +610,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN Node 27 (ASM or ASCM)`（R-VF78 二）；`tc_title` 取 `CAN Node 27 (ASM or ASCM)`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN Node 27 (ASM or ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，前綴唯一匹配（條文 `CAN Node 27` → 表內 `CAN node 27 (ASM/ASCM)`；其別名段獨立））。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignWarning-030",
-   "seq": 296,
+   "seq": 295,
    "test_set": "Approach and Tailgate",
    "layer3": "Traffic Sign Warning",
    "tc_title": "Traffic Sign Warning is not displayed when Traffic_Sign_Recognition_Menu is \"Absent\"",
-   "test_item": "When the HMI receives the value Absent via signal, $Traffic_Sign_Recognition_Menu$, Then the HMI shall not display the Traffic Sign Warning customer setting in the Vehicle Settings menu.",
+   "test_item": "When the HMI receives the value Absent via signal, $Traffic_Sign_Recognition_Menu$, Then the HMI shall not display the Traffic Sign Warning customer setting in the Vehicle Settings menu.\n\n(read the Vehicle Settings menu and check that the \"Traffic Sign Warning\" customer setting is not displayed -> The \"Traffic Sign Warning\" customer setting is not displayed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Traffic_Sign_Recognition_Menu$ is set to \"Absent\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Traffic Sign Warning\" customer setting is not displayed",
@@ -654,15 +632,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-048",
-   "seq": 297,
+   "seq": 296,
    "test_set": "Lane and Lighting",
    "layer3": "Pedestrian Emergency Braking or Warning & Active Braking",
    "tc_title": "Pedestrian Emergency Braking or Warning & Active Braking is not displayed",
-   "test_item": "The HMI layer shall evaluate the received Forward_Collision_Mitigation to determine Pedestrian Emergency Braking or Warning & Active Braking feature availability. If $Forward_Collision_Mitigation$ != [Full Speed FCW with Pedestrian Emergency Braking] or [Full Speed FCW with Pedestrian or Cyclist Emergency Braking], the LTM or ETM shall not display the Pedestrian Emergency Braking or Warning & Active Braking customer setting.",
+   "test_item": "If $Forward_Collision_Mitigation$ != [Full Speed FCW with Pedestrian Emergency Braking] or [Full Speed FCW with Pedestrian or Cyclist Emergency Braking], the LTM or ETM shall not display the Pedestrian Emergency Braking or Warning & Active Braking customer setting.\n\n(read the Vehicle Settings menu and check that the \"Pedestrian Emergency Braking or Warning & Active Braking\" customer setting is not displayed -> The \"Pedestrian Emergency Braking or Warning & Active Braking\" customer setting is not displayed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Forward_Collision_Mitigation$ is set to \"Full Speed FCW with Pedestrian Emergency Braking\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Pedestrian Emergency Braking or Warning & Active Braking\" customer setting is not displayed",
@@ -676,15 +654,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed FCW with Pedestrian Emergency Braking`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Forward_Collision_Mitigation`（R-VF78 二）；`tc_title` 取 `Forward_Collision_Mitigation`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Pedestrian Emergency Braking or Warning & Active Braking` 8 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed FCW with Pedestrian Emergency Braking`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Forward_Collision_Mitigation`（R-VF78 二）；`tc_title` 取 `Forward_Collision_Mitigation`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Pedestrian Emergency Braking or Warning & Active Braking` 8 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-092",
-   "seq": 298,
+   "seq": 297,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Auto Entry or Exit",
    "tc_title": "Suspension Auto Entry or Exit is displayed and modifiable when set to \"Present\"",
-   "test_item": "The HMI layer shall evaluate the received CAN Node 27 (ASM or ASCM) PROXI value to determine the availability of the Suspension Auto Entry or Exit feature. If CAN Node 27 (ASM or ASCM) = [Present], the LTM or ETM shall display the Suspension Auto Entry or Exit customer setting to allow the customer the ability to modify the setting.",
+   "test_item": "If CAN Node 27 (ASM or ASCM) = [Present], the LTM or ETM shall display the Suspension Auto Entry or Exit customer setting to allow the customer the ability to modify the setting.\n\n(select the \"Suspension Auto Entry or Exit\" customer setting and check that its value can be changed -> The value of the \"Suspension Auto Entry or Exit\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN Node 27 (ASM or ASCM)$ is set to \"Present\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Suspension Auto Entry or Exit\" customer setting is displayed\n4. Select the \"Suspension Auto Entry or Exit\" customer setting and check that its value can be changed",
@@ -698,15 +676,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN Node 27 (ASM or ASCM)`（R-VF78 二）；`tc_title` 取 `CAN Node 27 (ASM or ASCM)`（R-VF97，**三式皆不在 PROXI 表內** —— 維持條文逐字並具名）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN Node 27 (ASM or ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，前綴唯一匹配（條文 `CAN Node 27` → 表內 `CAN node 27 (ASM/ASCM)`；其別名段獨立））。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignWarning-031",
-   "seq": 299,
+   "seq": 298,
    "test_set": "Approach and Tailgate",
    "layer3": "Traffic Sign Warning",
    "tc_title": "Traffic Sign Warning is displayed and modifiable when Traffic_Sign_Recognition_Menu is \"Present\"",
-   "test_item": "When the HMI receives the value Present via signal, $Traffic_Sign_Recognition_Menu$, Then the HMI shall display the Traffic Sign Warning customer setting in the Vehicle Settings menu and allow the customer to modify the setting.",
+   "test_item": "When the HMI receives the value Present via signal, $Traffic_Sign_Recognition_Menu$, Then the HMI shall display the Traffic Sign Warning customer setting in the Vehicle Settings menu and allow the customer to modify the setting.\n\n(select the \"Traffic Sign Warning\" customer setting and check that its value can be changed -> The value of the \"Traffic Sign Warning\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Traffic_Sign_Recognition_Menu$ is set to \"Present\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Traffic Sign Warning\" customer setting is displayed\n4. Select the \"Traffic Sign Warning\" customer setting and check that its value can be changed",
@@ -720,15 +698,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Traffic_Sign_Recognition_Menu`（R-VF78 二）；`tc_title` 取 `Traffic_Sign_Recognition_Menu`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-049",
-   "seq": 300,
+   "seq": 299,
    "test_set": "Lane and Lighting",
    "layer3": "Pedestrian Emergency Braking or Warning & Active Braking",
    "tc_title": "Pedestrian Emergency Braking or Warning & Active Braking is displayed and modifiable",
-   "test_item": "If $Forward_Collision_Mitigation$ = [Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking], the HMI shall display the Forward Collision Warning Sensitivity customer setting to allow the customer to modify the setting.",
+   "test_item": "If $Forward_Collision_Mitigation$ = [Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking], the HMI shall display the Forward Collision Warning Sensitivity customer setting to allow the customer to modify the setting.\n\n(select the \"Pedestrian Emergency Braking or Warning & Active Braking\" customer setting and check that its value can be changed -> The value of the \"Pedestrian Emergency Braking or Warning & Active Braking\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $Forward_Collision_Mitigation$ is set to \"Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Pedestrian Emergency Braking or Warning & Active Braking\" customer setting is displayed\n4. Select the \"Pedestrian Emergency Braking or Warning & Active Braking\" customer setting and check that its value can be changed",
@@ -742,15 +720,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Forward_Collision_Mitigation`（R-VF78 二）；`tc_title` 取 `Forward_Collision_Mitigation`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Pedestrian Emergency Braking or Warning & Active Braking` 8 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking`。PROXI 參數名於 `pre_conditions` 取條文逐字 `Forward_Collision_Mitigation`（R-VF78 二）；`tc_title` 取 `Forward_Collision_Mitigation`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 **標題退化為無條件式**：帶區辨之逐式皆逾 canon §4.3 之 14 字（設定名 `Pedestrian Emergency Braking or Warning & Active Braking` 8 字）。canon §4.3 為硬限制而R-VF98 二為預防性判準，衝突時 canon 優先；本條與同家族（`SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking`，3 條）之區辨由正負向承擔，其逐字唯一性由自檢項 13 驗證。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionFlashLightsWithLower-002",
-   "seq": 301,
+   "seq": 300,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Flash Lights With Lower",
    "tc_title": "Suspension Flash Lights With Lower is displayed and modifiable when set to \"Absent\"",
-   "test_item": "If CAN node 27 (ASM or ASCM) = [Absent] and Market_Area ≠ [NAFTA], the HMI shall suppress and not display the \"Suspension Flash Lights With Lower\" customer setting in the Vehicle Settings menu.",
+   "test_item": "If CAN node 27 (ASM or ASCM) = [Absent] and Market_Area ≠ [NAFTA], the HMI shall suppress and not display the \"Suspension Flash Lights With Lower\" customer setting in the Vehicle Settings menu.\n\n(select the \"Suspension Flash Lights With Lower\" customer setting and check that its value can be changed -> The value of the \"Suspension Flash Lights With Lower\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN node 27 (ASM/ASCM)$ is set to \"Absent\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Suspension Flash Lights With Lower\" customer setting is displayed\n4. Select the \"Suspension Flash Lights With Lower\" customer setting and check that its value can be changed",
@@ -764,15 +742,15 @@
    "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignWarning-032",
-   "seq": 302,
+   "seq": 301,
    "test_set": "Approach and Tailgate",
    "layer3": "Traffic Sign Warning",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req is sent as 0 (Off) when Traffic Sign Warning is Off",
-   "test_item": "When the customer chooses to disable the Traffic Sign Warning setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API. When the HMI receives the value as [Off] via signal, $TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req$, Then the HMI shall display the Traffic Sign Warning status as Off.",
+   "test_item": "When the HMI receives the value as [Off] via signal, $TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req$, Then the HMI shall display the Traffic Sign Warning status as Off.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Warning setting is displayed as Off -> The Traffic Sign Warning setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Warning\" customer setting is set to Visual",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Warning\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Warning setting is displayed as Off",
@@ -786,15 +764,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Traffic_Sign_Warn_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Traffic_Sign_Warn_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionFlashLightsWithLower-003",
-   "seq": 303,
+   "seq": 302,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Flash Lights With Lower",
    "tc_title": "Suspension Flash Lights With Lower is displayed and modifiable when set to \"Present\"",
-   "test_item": "If $CAN node 27 (ASM/ASCM)$ = [Present] and $Market_Area$ = [NAFTA], the HMI shall display the \"Suspension Flash Lights With Lower\" customer setting in the Vehicle Settings menu and allow the customer to modify the setting.",
+   "test_item": "If $CAN node 27 (ASM/ASCM)$ = [Present] and $Market_Area$ = [NAFTA], the HMI shall display the \"Suspension Flash Lights With Lower\" customer setting in the Vehicle Settings menu and allow the customer to modify the setting.\n\n(select the \"Suspension Flash Lights With Lower\" customer setting and check that its value can be changed -> The value of the \"Suspension Flash Lights With Lower\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN node 27 (ASM/ASCM)$ is set to \"Present\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Suspension Flash Lights With Lower\" customer setting is displayed\n4. Select the \"Suspension Flash Lights With Lower\" customer setting and check that its value can be changed",
@@ -808,15 +786,15 @@
    "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignWarning-033",
-   "seq": 304,
+   "seq": 303,
    "test_set": "Approach and Tailgate",
    "layer3": "Traffic Sign Warning",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req is sent as 1 (Visual) when Traffic Sign Warning is Visual",
-   "test_item": "When the customer chooses to set the Traffic Sign Warning setting to Visual Only on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API. When the HMI receives the value as [Visual] via signal, $TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req$, Then the HMI shall display the Traffic Sign Warning setting as Visual Only.",
+   "test_item": "When the HMI receives the value as [Visual] via signal, $TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req$, Then the HMI shall display the Traffic Sign Warning setting as Visual Only.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Warning setting is displayed as Visual -> The Traffic Sign Warning setting is displayed as Visual)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Warning\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Warning\" customer setting to Visual and check that TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req = 1 (Visual) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Warning setting is displayed as Visual",
@@ -830,15 +808,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Traffic_Sign_Warn_Req` 之 `VAL_` 內 raw 1 = `Visual`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Traffic_Sign_Warn_Req` 之 `VAL_` 內 raw 1 = `Visual`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionFlashLightsWithLower-004",
-   "seq": 305,
+   "seq": 304,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Flash Lights With Lower",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Susp_Flsh_Lght_Low_Req is sent as 0 (Off) when Suspension Flash Lights With Lower is Off",
-   "test_item": "When the customer chooses to disable the “Suspension Flash Lights With Lower” setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API. The HMI receives the value as OFF via signal, $TELEMATIC_VEHICLE_SETUP.Susp_Flsh_Lght_Low_Req$. Then the HMI/LTM/ETM shall update the customer setting status to OFF in the Vehicle Settings menu. The signal shall be transmitted to IPC within the defined system response time.",
+   "test_item": "When the customer chooses to disable the “Suspension Flash Lights With Lower” setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API.\n\n(read the Vehicle Settings menu and check that the Suspension Flash Lights With Lower setting is displayed as Off -> The Suspension Flash Lights With Lower setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Suspension Flash Lights With Lower\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Suspension Flash Lights With Lower\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.Susp_Flsh_Lght_Low_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Suspension Flash Lights With Lower setting is displayed as Off",
@@ -852,15 +830,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Flsh_Lght_Low_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Flsh_Lght_Low_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignWarning-034",
-   "seq": 306,
+   "seq": 305,
    "test_set": "Approach and Tailgate",
    "layer3": "Traffic Sign Warning",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req is sent as 2 (Visual_Chime) when Traffic Sign Warning is Visual_Chime",
-   "test_item": "When the customer chooses to set the Traffic Sign Warning setting to Visual & Chime on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API. When the HMI receives the value as [Visual_Chime] via signal, $TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req$, Then the HMI shall display the Traffic Sign Warning setting as Visual & Chime.",
+   "test_item": "When the HMI receives the value as [Visual_Chime] via signal, $TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req$, Then the HMI shall display the Traffic Sign Warning setting as Visual & Chime.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Warning setting is displayed as Visual_Chime -> The Traffic Sign Warning setting is displayed as Visual_Chime)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Warning\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Warning\" customer setting to Visual_Chime and check that TELEMATIC_VEHICLE_SETUP.Traffic_Sign_Warn_Req = 2 (Visual_Chime) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Warning setting is displayed as Visual_Chime",
@@ -874,15 +852,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Traffic_Sign_Warn_Req` 之 `VAL_` 內 raw 2 = `Visual_Chime`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Traffic_Sign_Warn_Req` 之 `VAL_` 內 raw 2 = `Visual_Chime`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-052",
-   "seq": 307,
+   "seq": 306,
    "test_set": "Lane and Lighting",
    "layer3": "Pedestrian Emergency Braking or Warning & Active Braking",
    "tc_title": "Pedestrian Emergency Braking or Warning & Active Braking is displayed as Off",
-   "test_item": "The HW Supplier / ECU shall send the updated Forward Collision Warning Sensitivity status via the IPC_VEHICLE_SETUP.Ped_EM_Brk_Warn_Act signal. The HMI layer shall evaluate the received $Ped_EM_Brk_Warn_Act$ value and update the Forward Collision Warning Sensitivity setting display accordingly.",
+   "test_item": "The HW Supplier / ECU shall send the updated Forward Collision Warning Sensitivity status via the IPC_VEHICLE_SETUP.Ped_EM_Brk_Warn_Act signal.\n\n(read the Vehicle Settings menu and check that the Pedestrian Emergency Braking or Warning & Active Braking setting is displayed as Off -> The Pedestrian Emergency Braking or Warning & Active Braking setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Ped_EM_Brk_Warn_Act = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Ped_EM_Brk_Warn_Act = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.Ped_EM_Brk_Warn_Act = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Pedestrian Emergency Braking or Warning & Active Braking setting is displayed as Off",
@@ -896,15 +874,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Ped_EM_Brk_Warn_Act` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Ped_EM_Brk_Warn_Act` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionFlashLightsWithLower-005",
-   "seq": 308,
+   "seq": 307,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Flash Lights With Lower",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Susp_Flsh_Lght_Low_Req is sent as 1 (On) when Suspension Flash Lights With Lower is On",
-   "test_item": "When the customer chooses to enable the “Suspension Flash Lights With Lower” setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API. The HMI receives the value as ON via signal, $TELEMATIC_VEHICLE_SETUP.Susp_Flsh_Lght_Low_Req$. Then the HMI/LTM/ETM shall update the customer setting status to ON in the Vehicle Settings menu. The signal shall be transmitted to IPC within the defined system response time.",
+   "test_item": "When the customer chooses to enable the “Suspension Flash Lights With Lower” setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API.\n\n(read the Vehicle Settings menu and check that the Suspension Flash Lights With Lower setting is displayed as On -> The Suspension Flash Lights With Lower setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Suspension Flash Lights With Lower\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Suspension Flash Lights With Lower\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.Susp_Flsh_Lght_Low_Req = 1 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Suspension Flash Lights With Lower setting is displayed as On",
@@ -918,15 +896,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Flsh_Lght_Low_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Flsh_Lght_Low_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignWarning-035",
-   "seq": 309,
+   "seq": 308,
    "test_set": "Approach and Tailgate",
    "layer3": "Traffic Sign Warning",
    "tc_title": "Traffic Sign Warning is displayed as Off when Traffic_Sign_Warn is 0 (Off)",
-   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.Traffic_Sign_Warn$, Then the LTM or ETM shall update the Traffic Sign Warning setting status information on the display within the defined system response time.",
+   "test_item": "When the LTM or ETM receives the value via signal, $IPC_VEHICLE_SETUP.Traffic_Sign_Warn$, Then the LTM or ETM shall update the Traffic Sign Warning setting status information on the display within the defined system response time.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Warning setting is displayed as Off -> The Traffic Sign Warning setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Traffic_Sign_Warn = one of [0 (Off), 1 (Visual), 2 (Visual_Chime)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Traffic_Sign_Warn = 1 (Visual)\n2. Send CAN: IPC_VEHICLE_SETUP.Traffic_Sign_Warn = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Traffic Sign Warning setting is displayed as Off",
@@ -940,15 +918,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Traffic_Sign_Warn` 之 DBC 有效值域全集為 {0 (Off), 1 (Visual), 2 (Visual_Chime)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `Visual` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Traffic_Sign_Warn` 之 DBC 有效值域全集為 {0 (Off), 1 (Visual), 2 (Visual_Chime)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `Visual` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionFlashLightsWithLower-006",
-   "seq": 310,
+   "seq": 309,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Flash Lights With Lower",
    "tc_title": "Suspension Flash Lights With Lower is displayed as Off when Susp_Flsh_Lght_Low is 0 (Off)",
-   "test_item": "When the LTM or ETM receives the ON or OFF value via signal $IPC_VEHICLE_SETUP.Susp_Flsh_Lght_Low$, the LTM or ETM shall update the corresponding setting status on the display.",
+   "test_item": "When the LTM or ETM receives the ON or OFF value via signal $IPC_VEHICLE_SETUP.Susp_Flsh_Lght_Low$, the LTM or ETM shall update the corresponding setting status on the display.\n\n(read the Vehicle Settings menu and check that the Suspension Flash Lights With Lower setting is displayed as Off -> The Suspension Flash Lights With Lower setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Susp_Flsh_Lght_Low = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Susp_Flsh_Lght_Low = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.Susp_Flsh_Lght_Low = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Suspension Flash Lights With Lower setting is displayed as Off",
@@ -962,15 +940,15 @@
    "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP.Susp_Flsh_Lght_Low will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP.Susp_Flsh_Lght_Low signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Susp_Flsh_Lght_Low` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Susp_Flsh_Lght_Low` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionSoundHornWithLower-008",
-   "seq": 311,
+   "seq": 310,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Sound Horn With Lower",
    "tc_title": "Suspension Sound Horn With Lower is displayed and modifiable when set to \"Absent\"",
-   "test_item": "If CAN node 27 (ASM or ASCM) = [Absent] and $Market_Area$ ≠ [NAFTA], the HMI shall suppress and not display the \"Suspension Sound Horn With Lower\" customer setting in the Vehicle Settings menu.",
+   "test_item": "If CAN node 27 (ASM or ASCM) = [Absent] and $Market_Area$ ≠ [NAFTA], the HMI shall suppress and not display the \"Suspension Sound Horn With Lower\" customer setting in the Vehicle Settings menu.\n\n(select the \"Suspension Sound Horn With Lower\" customer setting and check that its value can be changed -> The value of the \"Suspension Sound Horn With Lower\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN node 27 (ASM/ASCM)$ is set to \"Absent\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Suspension Sound Horn With Lower\" customer setting is displayed\n4. Select the \"Suspension Sound Horn With Lower\" customer setting and check that its value can be changed",
@@ -984,15 +962,15 @@
    "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionSoundHornWithLower-009",
-   "seq": 312,
+   "seq": 311,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Sound Horn With Lower",
    "tc_title": "Suspension Sound Horn With Lower is displayed and modifiable when set to \"Present\"",
-   "test_item": "If CAN node 27 (ASM or ASCM) = [Present] and Market_Area = [NAFTA], the HMI shall display the \"Suspension Sound Horn With Lower\" customer setting in the Vehicle Settings menu and allow the customer to modify the setting.",
+   "test_item": "If CAN node 27 (ASM or ASCM) = [Present] and Market_Area = [NAFTA], the HMI shall display the \"Suspension Sound Horn With Lower\" customer setting in the Vehicle Settings menu and allow the customer to modify the setting.\n\n(select the \"Suspension Sound Horn With Lower\" customer setting and check that its value can be changed -> The value of the \"Suspension Sound Horn With Lower\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN node 27 (ASM/ASCM)$ is set to \"Present\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Suspension Sound Horn With Lower\" customer setting is displayed\n4. Select the \"Suspension Sound Horn With Lower\" customer setting and check that its value can be changed",
@@ -1006,15 +984,15 @@
    "remarks": "Upstream Verification Criteria: Scenario of checking PROXI parameter is not clear\nUpstream Verification Method: Scenario of checking PROXI parameter is not clear",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionSoundHornWithLower-010",
-   "seq": 313,
+   "seq": 312,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Sound Horn With Lower",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Susp_Sound_Hrn_Low_Req is sent as 0 (Off) when Suspension Sound Horn With Lower is Off",
-   "test_item": "When the customer chooses to disable the “Suspension Sound Horn With Lower” setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API. The HMI receives the value as OFF via signal, $TELEMATIC_VEHICLE_SETUP.Susp_Sound_Hrn_Low_Req$. Then the HMI/LTM/ETM shall update the customer setting status to OFF in the Vehicle Settings menu. The signal shall be transmitted to IPC within the defined system response time.",
+   "test_item": "When the customer chooses to disable the “Suspension Sound Horn With Lower” setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API.\n\n(read the Vehicle Settings menu and check that the Suspension Sound Horn With Lower setting is displayed as Off -> The Suspension Sound Horn With Lower setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Suspension Sound Horn With Lower\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Suspension Sound Horn With Lower\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.Susp_Sound_Hrn_Low_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Suspension Sound Horn With Lower setting is displayed as Off",
@@ -1028,15 +1006,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Sound_Hrn_Low_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Sound_Hrn_Low_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionSoundHornWithLower-011",
-   "seq": 314,
+   "seq": 313,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Sound Horn With Lower",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Susp_Sound_Hrn_Low_Req is sent as 1 (On) when Suspension Sound Horn With Lower is On",
-   "test_item": "When the customer chooses to enable the “Suspension Sound Horn With Lower” setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API. The HMI receives the value as ON via signal, $TELEMATIC_VEHICLE_SETUP.Susp_Sound_Hrn_Low_Req$. Then the HMI/LTM/ETM shall update the customer setting status to ON in the Vehicle Settings menu. The signal shall be transmitted to IPC within the defined system response time.",
+   "test_item": "When the customer chooses to enable the “Suspension Sound Horn With Lower” setting on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API.\n\n(read the Vehicle Settings menu and check that the Suspension Sound Horn With Lower setting is displayed as On -> The Suspension Sound Horn With Lower setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Suspension Sound Horn With Lower\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Suspension Sound Horn With Lower\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.Susp_Sound_Hrn_Low_Req = 1 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Suspension Sound Horn With Lower setting is displayed as On",
@@ -1050,15 +1028,15 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Sound_Hrn_Low_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Susp_Sound_Hrn_Low_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionSoundHornWithLower-012",
-   "seq": 315,
+   "seq": 314,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Sound Horn With Lower",
    "tc_title": "Suspension Sound Horn With Lower is displayed as Off when Susp_Sound_Hrn_Low is 0 (Off)",
-   "test_item": "When the LTM or ETM receives the ON or OFF value via signal $IPC_VEHICLE_SETUP.Susp_Sound_Hrn_Low$, the LTM or ETM shall update the corresponding setting status on the display.",
+   "test_item": "When the LTM or ETM receives the ON or OFF value via signal $IPC_VEHICLE_SETUP.Susp_Sound_Hrn_Low$, the LTM or ETM shall update the corresponding setting status on the display.\n\n(read the Vehicle Settings menu and check that the Suspension Sound Horn With Lower setting is displayed as Off -> The Suspension Sound Horn With Lower setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Susp_Sound_Hrn_Low = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Susp_Sound_Hrn_Low = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.Susp_Sound_Hrn_Low = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Suspension Sound Horn With Lower setting is displayed as Off",
@@ -1072,15 +1050,15 @@
    "remarks": "Upstream Verification Criteria: In which scenario the IPC_VEHICLE_SETUP.Susp_Sound_Hrn_Low will be received is not clear\nUpstream Verification Method: In which scenario the IPC_VEHICLE_SETUP.Susp_Sound_Hrn_Low signal will be received is not clear",
    "value_source": "2-DBC",
    "clause_form": "訊號上行型",
-   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Susp_Sound_Hrn_Low` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。"
+   "reasoning": "值域來源 **2-DBC**（R-VF91 二）—— `Susp_Sound_Hrn_Low` 之 DBC 有效值域全集為 {0 (Off), 1 (On)}，`input_test_data` 逐字列之；取列舉之首值 raw 0 = `Off` 為代表值，其次值 raw 1 = `On` 置於 procedure 第 1 步。**本訊號之書寫序與 raw 大小序恰同**（R-VF101 一所令之具名）—— 取值之依據為書寫序，非大小序。條文未指定所收之值；值域取自 DBC；本條驗其代表值，該值為 DBC VAL_ 列舉之書寫序首項，非依 raw 大小、非條文指定。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionDefaultRideHeight-021",
-   "seq": 316,
+   "seq": 315,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Default Ride Height",
    "tc_title": "Suspension Default Ride Height is displayed and modifiable when the PROXI value is \"Absent\"",
-   "test_item": "If NetCfg_ASCM = [Absent], the HMI shall suppress and not display the \"Suspension Default Ride Height\" customer setting in the Vehicle Settings menu.",
+   "test_item": "If NetCfg_ASCM = [Absent], the HMI shall suppress and not display the \"Suspension Default Ride Height\" customer setting in the Vehicle Settings menu.\n\n(select the \"Suspension Default Ride Height\" customer setting and check that its value can be changed -> The value of the \"Suspension Default Ride Height\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN node 27 (ASM/ASCM)$ is set to \"Absent\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Suspension Default Ride Height\" customer setting is displayed\n4. Select the \"Suspension Default Ride Height\" customer setting and check that its value can be changed",
@@ -1094,15 +1072,15 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Absent`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionDefaultRideHeight-022",
-   "seq": 317,
+   "seq": 316,
    "test_set": "Suspension and Comfort",
    "layer3": "Suspension Default Ride Height",
    "tc_title": "Suspension Default Ride Height is displayed and modifiable when the PROXI value is \"Present\"",
-   "test_item": "If CAN node 27 (ASM or ASCM) = [Present], the HMI shall display and enable the \"Suspension Default Ride Height\" customer setting in the Vehicle Settings menu and allow the customer to modify the setting.",
+   "test_item": "If CAN node 27 (ASM or ASCM) = [Present], the HMI shall display and enable the \"Suspension Default Ride Height\" customer setting in the Vehicle Settings menu and allow the customer to modify the setting.\n\n(select the \"Suspension Default Ride Height\" customer setting and check that its value can be changed -> The value of the \"Suspension Default Ride Height\" customer setting can be changed)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI $CAN node 27 (ASM/ASCM)$ is set to \"Present\"",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the \"Suspension Default Ride Height\" customer setting is displayed\n4. Select the \"Suspension Default Ride Height\" customer setting and check that its value can be changed",
@@ -1116,7 +1094,29 @@
    "remarks": "",
    "value_source": "0-CLAUSE",
    "clause_form": "PROXI 型",
-   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。"
+   "reasoning": "值域來源 **0-CLAUSE**（R-VF13／R-VF60）—— 條文逐字帶出 `Present`。PROXI 參數名於 `pre_conditions` 取條文逐字 `CAN node 27 (ASM/ASCM)`（R-VF78 二）；`tc_title` 取 `CAN node 27 (ASM/ASCM)`（R-VF97，條文逐字 —— 剝殼形態皆不在表內，而原樣在）。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+  },
+  {
+   "leaf_id": "SWE1-VC-SuspensionDefaultRideHeight-023",
+   "seq": 317,
+   "test_set": "Suspension and Comfort",
+   "layer3": "Suspension Default Ride Height",
+   "tc_title": "TELEMATIC_FD_1.Default_Ride_Height_Req is sent as 0 (Normal) when Suspension Default Ride Height is Normal",
+   "test_item": "When the customer chooses to set the “Suspension Default Ride Height” setting to Normal on the LTM or ETM, the HMI layer shall send the updated customer preference to CarPropertyManager via the Android Car API.\n\n(read the Vehicle Settings menu and check that the Suspension Default Ride Height setting is displayed as Normal -> The Suspension Default Ride Height setting is displayed as Normal)",
+   "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Suspension Default Ride Height\" customer setting is set to Aerodynamic",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Suspension Default Ride Height\" customer setting to Normal and check that TELEMATIC_FD_1.Default_Ride_Height_Req = 0 (Normal) is transmitted\n3. Read the Vehicle Settings menu and check that the Suspension Default Ride Height setting is displayed as Normal",
+   "expected_result": "1. The Vehicle Settings menu is displayed\n2. TELEMATIC_FD_1.Default_Ride_Height_Req = 0 (Normal) is sent\n3. The Suspension Default Ride Height setting is displayed as Normal",
+   "specification_reference": "VF230_V1_PDT27_VF_6387",
+   "priority": "P0",
+   "priority_class": "P0(a)",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "writable": "W0",
+   "dr_dependent": "",
+   "remarks": "",
+   "value_source": "2-DBC",
+   "clause_form": "訊號送出型",
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Default_Ride_Height_Req` 之 `VAL_` 內 raw 0 = `Normal`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
   }
  ]
 }

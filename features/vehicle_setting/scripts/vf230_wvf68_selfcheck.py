@@ -288,6 +288,55 @@ def c15_sentence_boundary(tcs, ctx):
     return bad
 
 
+# ---- R-VF118：括號下半之四項（V47 §5.3；canon §4.3.1「缺括號下半 = FAIL」）----
+def c16_bracket_form(tcs, ctx):
+    bad = []
+    for t in tcs:
+        it = t["test_item"]
+        if "\n\n(" not in it or not it.rstrip().endswith(")"):
+            bad.append(f"seq {t['seq']}：`test_item` 缺括號下半（canon §4.3.1 = 不得出貨）")
+    return bad
+
+
+def c17_upper_tokens(tcs, ctx):
+    return [f"seq {t['seq']}：上半 {len(t['test_item'].split(chr(10) + chr(10) + '(')[0].split())} "
+            f"token > 50（R-VF118）"
+            for t in tcs
+            if len(t["test_item"].split("\n\n(")[0].split()) > 50]
+
+
+def c18_lower_unique(tcs, ctx):
+    """同一上半之各列，其下半不得逐字相同（R-VF118 二）。**跨批判**。
+
+    **其射程為「同一原條文所拆出之列」，非「碰巧摘出同一上半之不同 leaf」** ——
+    初版未區分，遂報 22 對假陽：`TrafficSignAssistOffset-060` 與 `-073`
+    之條文不同、四欄不同、`tc_title` 不同，**僅摘句碰巧收斂至同一句**。
+    **R-VF122 已裁重複之判準為「四欄逐字相同」**，其由去重機制與項 13 管；
+    本項不得越俎。故鍵改為 `(leaf_id, 上半)`。
+    """
+    g = {}
+    for t in ctx.get("all") or tcs:
+        if "\n\n(" not in t["test_item"]:
+            continue
+        up, low = t["test_item"].split("\n\n(", 1)
+        g.setdefault((t["leaf_id"], up), []).append((low, t["seq"]))
+    mine = {t["seq"] for t in tcs}
+    bad = []
+    for _k, lows in g.items():
+        seen = {}
+        for low, sq in lows:
+            if low in seen and (sq in mine or seen[low] in mine):
+                bad.append(f"seq [{seen[low]}, {sq}]：同上半而下半逐字相同（R-VF118 二）")
+            seen.setdefault(low, sq)
+    return bad
+
+
+def c19_lower_arrow(tcs, ctx):
+    return [f"seq {t['seq']}：括號下半不含 ` -> `（R-VF118）"
+            for t in tcs
+            if "\n\n(" in t["test_item"] and " -> " not in t["test_item"].split("\n\n(", 1)[1]]
+
+
 def c12_placeholder_sentence(tcs, ctx):
     """W-VF71 第 2 項：R-VF91 二末之必要句，缺之即 FAIL。
 
@@ -387,6 +436,10 @@ CHECKS = [
     ("13 同家族 tc_title 不得逐字相同", c13_sibling_title_unique),
     ("14 家族>1 之標題須含區辨 token", c14_sibling_discriminator),
     ("15 句界切分未因無空格而漏刪管路句", c15_sentence_boundary),
+    ("16 test_item 具括號下半", c16_bracket_form),
+    ("17 上半 token <= 50", c17_upper_tokens),
+    ("18 同上半之下半不得逐字相同", c18_lower_unique),
+    ("19 括號下半含 ' -> '", c19_lower_arrow),
 ]
 
 # 逐項之刻意破壞 —— 施於副本，用以證明該項**能夠**失敗。
@@ -428,6 +481,14 @@ MUTATIONS = {
     # 故改為令二條**同屬一新家族**，其計數必為 2。
     # 項 15：構造「句號後無空格 ＋ 其後為管路句」之 test_item。
     # **其前半須為完整句且以小寫或 `)` 結尾**，否則 NOSPACE 不命中而破壞不生效。
+    "16": lambda ts: ts[0].__setitem__("test_item", "No bracket here."),
+    "17": lambda ts: ts[0].__setitem__(
+        "test_item", " ".join(["w"] * 60) + "\n\n(do x -> X happens)"),
+    # 項 18 之破壞須令二列**同 leaf** 且上下半皆同（其射程為同一原條文之拆列）
+    "18": lambda ts: (ts[1].__setitem__("leaf_id", ts[0]["leaf_id"]),
+                      ts[0].__setitem__("test_item", "Same upper.\n\n(do x -> X)"),
+                      ts[1].__setitem__("test_item", "Same upper.\n\n(do x -> X)")),
+    "19": lambda ts: ts[0].__setitem__("test_item", "Upper.\n\n(do x ; X happens)"),
     "15": lambda ts: ts[0].__setitem__(
         "test_item", "The HMI shall display the setting.VHAL shall forward the "
                      "updated value to CarPropertyService."),

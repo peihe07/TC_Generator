@@ -41,6 +41,11 @@
    "why": "訊號送出型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名"
   },
   {
+   "leaf_id": "SWE1-VC-SuspensionAutoEntryorExit-090",
+   "form": "PROXI 型",
+   "why": "PROXI 參數名 `Hybrid_Type and SRT (VC_SRT_PRSNT)` **併寫二參數** —— 不自行取其一（R-VF92 二：不得改取他標的）"
+  },
+  {
    "leaf_id": "SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-050",
    "form": "訊號送出型",
    "why": "訊號送出型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名"
@@ -111,6 +116,11 @@
    "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
   },
   {
+   "leaf_id": "SWE1-VC-ParkSenseRearVolume-070",
+   "form": "PROXI 型",
+   "why": "PROXI 參數名為**上游之佔位詞** `the PROXI parameter` ——其 `pre_conditions` 不可執行（測試員無從得知須設何參數）"
+  },
+  {
    "leaf_id": "SWE1-VC-LaneSenseStrength-030",
    "form": "訊號送出型",
    "why": "訊號送出型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名"
@@ -119,6 +129,11 @@
    "leaf_id": "SWE1-VC-ChargePowerLevel-045",
    "form": "PROXI 型",
    "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+  },
+  {
+   "leaf_id": "SWE1-VC-ParkSenseRearVolume-071",
+   "form": "PROXI 型",
+   "why": "PROXI 參數名為**上游之佔位詞** `the PROXI parameter` ——其 `pre_conditions` 不可執行（測試員無從得知須設何參數）"
   },
   {
    "leaf_id": "SWE1-VC-LaneSenseStrength-031",
@@ -131,9 +146,19 @@
    "why": "訊號送出型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名"
   },
   {
+   "leaf_id": "SWE1-VC-ParkSenseFrontVolume-077",
+   "form": "PROXI 型",
+   "why": "PROXI 參數名為**上游之佔位詞** `the PROXI parameter` ——其 `pre_conditions` 不可執行（測試員無從得知須設何參數）"
+  },
+  {
    "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-044",
    "form": "訊號送出型",
    "why": "訊號送出型 而抽不出 `TELEMATIC_*`／`IPC_*` 訊號名"
+  },
+  {
+   "leaf_id": "SWE1-VC-ParkSenseFrontVolume-078",
+   "form": "PROXI 型",
+   "why": "PROXI 參數名為**上游之佔位詞** `the PROXI parameter` ——其 `pre_conditions` 不可執行（測試員無從得知須設何參數）"
   },
   {
    "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-045",
@@ -183,7 +208,7 @@
   {
    "leaf_id": "SWE1-VC-Language-060",
    "form": "PROXI 型",
-   "why": "PROXI 型而條文未帶值（無 `If … = [ … ]`，亦無 `receives the value … via signal`）"
+   "why": "PROXI 參數名 `Country_Code and Additional Languages` **併寫二參數** —— 不自行取其一（R-VF92 二：不得改取他標的）"
   },
   {
    "leaf_id": "SWE1-VC-TimeandDateSettings-003",
