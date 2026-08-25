@@ -29,6 +29,8 @@ from pathlib import Path
 
 import openpyxl
 
+from tsv_meta import write_meta
+
 ROOT = Path(__file__).resolve().parents[3]
 FEAT = Path(__file__).resolve().parents[1]
 LID = ROOT / "forms" / "Logical Identifiers and CAN Mapping v1_78.xlsx"
@@ -198,6 +200,11 @@ def main():
         for d in out:
             fh.write("\t".join(str(d[c]).replace("\t", " ") for c in cols) + "\n")
 
+    write_meta(p, cols, len(out),
+               generated_by="features/display/scripts/signal_resolution.py",
+               rulings=["R-DM17", "R-DM19", "R-DM21", "R-DM23", "R-G13"],
+               measurement_conditions="三段鏈：SYS2 $Signal$ → LID Logical Identifier（逐字）→ Atlantis High 之 Signal Name（多值逐值一列）→ DBC 之 SG_/VAL_",
+               notes="R-DM21：每個數字須指明其止於哪一段。n_semantics 欄載 R-DM23 之語意別。")
     y = sum(1 for d in out if d["resolved"] == "Y")
     solved = {d["sys2_signal"] for d in out if d["resolved"] == "Y"}
     print(f"\n## 統計（R-DM21：每個數字都標明其止於哪一段）")

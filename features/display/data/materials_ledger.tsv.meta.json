@@ -1,0 +1,30 @@
+{
+ "data_file": "materials_ledger.tsv",
+ "columns": [
+  "file",
+  "role",
+  "src_path",
+  "dst_path",
+  "size",
+  "mtime_src",
+  "mtime_dst",
+  "sha256_src",
+  "sha256_dst",
+  "shasum_c",
+  "other_copy_path",
+  "other_copy_sha256",
+  "other_copy_verdict"
+ ],
+ "data_rows": 4,
+ "generated_by": "下放包 02 步驟 5 之台帳（人工腳本）",
+ "generated_at": "2026-08-25",
+ "inputs": [],
+ "measurement_conditions": "逐檔 SHA256／size／mtime，搬入前後各記一次，shasum -c 對帳",
+ "rulings": [
+  "R-DM6",
+  "R-DM9",
+  "R-DM10",
+  "R-DM2′"
+ ],
+ "notes": "四份素材皆取自 ASW-R2/Display/；037 之雜湊與 R-DM2′ 所載 64 碼逐字相符。"
+}

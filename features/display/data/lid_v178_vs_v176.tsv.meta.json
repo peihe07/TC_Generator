@@ -1,0 +1,20 @@
+{
+ "data_file": "lid_v178_vs_v176.tsv",
+ "columns": [
+  "logical_identifier",
+  "verdict",
+  "v178_rows",
+  "v178_signal_names",
+  "v176_rows",
+  "v176_signal_names"
+ ],
+ "data_rows": 2548,
+ "generated_by": "features/display/scripts/lid_version_diff.py",
+ "generated_at": "2026-08-25",
+ "inputs": [],
+ "measurement_conditions": "比對面＝CAN Mapping 之 Atlantis High Signal Name，鍵為 Logical Identifier；多值以 frozenset 比對（順序無關）",
+ "rulings": [
+  "R-G15"
+ ],
+ "notes": "v1_76 全程唯讀，未搬動。"
+}

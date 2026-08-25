@@ -549,7 +549,7 @@ def survey_workbook(cfg: dict, wb_path: Path) -> dict:
     }
 
 
-def survey_a03(a03_path: Path) -> dict:
+def survey_a03(a03_path: Path, sheet: str = "Analysis Report") -> dict:
     """Survey the requirement report — columns located by header text.
 
     The Analysis Report template is not stable across features: Home's
@@ -565,13 +565,24 @@ def survey_a03(a03_path: Path) -> dict:
     property of the ruled requirement source, not of what files are present.
     """
     wb = openpyxl.load_workbook(a03_path, read_only=True)
-    ws = wb["Analysis Report"]
+    # The sheet name is a parameter because not every requirement report
+    # calls it "Analysis Report" — Display's 037 carries `SWE1 Requirements`
+    # and nothing else about the survey needed to change. Default preserved,
+    # so a feature that does not declare `paths_meta.a03_sheet` behaves
+    # exactly as before.
+    if sheet not in wb.sheetnames:
+        sys.exit(
+            f"{a03_path.name}: sheet {sheet!r} not found.\n"
+            f"  sheets present: {wb.sheetnames}\n"
+            f"  declare the right one as `paths_meta.a03_sheet` in this "
+            f"feature's feature.yaml (default: 'Analysis Report')")
+    ws = wb[sheet]
     rows = list(ws.iter_rows(values_only=True))
     hdr = next((i for i, r in enumerate(rows)
                 if any("requirement description" in norm(v) for v in r)), None)
     if hdr is None:
         sys.exit(f"{a03_path.name}: no header row (no 'Requirement Description'"
-                 " cell) in the Analysis Report sheet")
+                 f" cell) in the {sheet!r} sheet")
     header = rows[hdr]
 
     def find(*need, forbid=()):
@@ -1109,7 +1120,10 @@ def main() -> None:
             hashes[key] = {"name": p.name, "sha256": sha256_file(p)}
 
     wbres = survey_workbook(cfg, paths["workbook"])
-    a03res = survey_a03(paths["a03_report"])
+    a03res = survey_a03(
+        paths["a03_report"],
+        (cfg.get("paths_meta") or {}).get("a03_sheet",
+                                          "Analysis Report"))
     textlayer = survey_spec_text_layer(paths["spec_pdf"])
     omap, omap_reason = build_outline_map(paths.get("sys1_export"))
     asserts, misses = run_assertions(cfg, a03res, omap, omap_reason)

@@ -18,6 +18,8 @@ from pathlib import Path
 
 import openpyxl
 
+from tsv_meta import write_meta
+
 ROOT = Path(__file__).resolve().parents[3]
 V178 = ROOT / "forms" / "Logical Identifiers and CAN Mapping v1_78.xlsx"
 V176 = (ROOT / "features" / "vehicle_setting" / "inputs"
@@ -127,6 +129,11 @@ def main():
                 " ¦ ".join(str(i) for i, _, _ in b.get(k, [])),
                 " ¦ ".join(sorted(x for _, v, _ in b.get(k, []) for x in v)),
             ]) + "\n")
+    write_meta(out, ["logical_identifier", "verdict", "v178_rows", "v178_signal_names", "v176_rows", "v176_signal_names"], len(set(a) | set(b)),
+               generated_by="features/display/scripts/lid_version_diff.py",
+               rulings=["R-G15"],
+               measurement_conditions="比對面＝CAN Mapping 之 Atlantis High Signal Name，鍵為 Logical Identifier；多值以 frozenset 比對（順序無關）",
+               notes="v1_76 全程唯讀，未搬動。")
     print(f"\nwrote {out}")
 
 

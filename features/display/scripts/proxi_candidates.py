@@ -39,6 +39,8 @@ from pathlib import Path
 
 import openpyxl
 
+from tsv_meta import write_meta
+
 ROOT = Path(__file__).resolve().parents[3]
 FEAT = Path(__file__).resolve().parents[1]
 LID = ROOT / "forms" / "Logical Identifiers and CAN Mapping v1_78.xlsx"
@@ -267,14 +269,24 @@ def main():
 
     p = FEAT / "data" / "proxi_candidates.tsv"
     with p.open("w", encoding="utf-8") as fh:
-        fh.write("# R-DM25 正規化之定義：比對前對「兩側」同時施加 "
-                 "re.sub(r'[ _]+', ' ', s)，即底線與空格之連續段一律折為"
-                 "單一空格。僅此一項；連字號、點號、駝峰切分不在範圍內。\n")
-        fh.write("# anchor_kind = glossary_phrase 者為嚴格比對即成立；"
-                 "= glossary_phrase_norm 者為正規化後才成立，兩者不合併計數。\n")
+        # R-DM30: header first, no comment lines. Provenance goes to the
+        # sidecar — a comment line here would be read AS the header by a
+        # plain csv.DictReader (A-DM23).
         fh.write("\t".join(cols) + "\n")
         for d in out:
             fh.write("\t".join(str(d[c]).replace("\t", " ") for c in cols) + "\n")
+
+    write_meta(
+        p, cols, len(out),
+        generated_by="features/display/scripts/proxi_candidates.py",
+        rulings=["R-DM12", "R-DM13", "R-DM20", "R-DM22", "R-DM23", "R-DM25"],
+        measurement_conditions=(
+            "母體＝LID `Proxi & Configuration` 之資料列；R-DM25 正規化＝"
+            "比對前對兩側同時施加 re.sub(r'[ _]+', ' ', s)，僅此一項"
+            "（連字號、點號、駝峰切分不在範圍內）"),
+        notes=("anchor_kind=glossary_phrase 者為嚴格比對即成立；"
+               "=glossary_phrase_norm 者為正規化後才成立，兩者不合併計數。"
+               "empty_semantics 欄載 R-DM23 之語意別。"))
 
     print(f"\n## anchor_kind 分布")
     for k in ["leaf_phrase", "glossary_phrase", "glossary_phrase_norm",

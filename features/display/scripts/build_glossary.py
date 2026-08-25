@@ -25,6 +25,8 @@ from pathlib import Path
 import docx
 import openpyxl
 
+from tsv_meta import write_meta
+
 ROOT = Path(__file__).resolve().parents[3]
 FEAT = Path(__file__).resolve().parents[1]
 F037 = FEAT / "inputs" / \
@@ -210,6 +212,11 @@ def main():
                  "cooccurrence_quote\tusable\toccurrences\tinitials_rule\n")
         for r in rows:
             fh.write("\t".join(x.replace("\t", " ") for x in r) + "\n")
+    write_meta(out, ["abbrev", "expansion", "source_file", "source_locator", "cooccurrence_quote", "usable", "occurrences", "initials_rule"], len(rows),
+               generated_by="features/display/scripts/build_glossary.py",
+               rulings=["R-DM22"],
+               measurement_conditions="收錄判準為候選詞之首字母須逐一拼出該縮寫；initials_rule 欄記 strict／filler-skipped",
+               notes="每條必引一處同句並列之來源；查無並列者不建條目。")
     print(f"\nwrote {out}")
     if conflicts:
         print("\n**停止條件 16 觸發** —— 見上方衝突清單，不擇一。")

@@ -1,0 +1,30 @@
+{
+ "data_file": "coverage_sys2_vs_swe_dm.PRE_GLOSSARY.tsv",
+ "columns": [
+  "sys2_row",
+  "sys_ra_id",
+  "category",
+  "swhw",
+  "heading_ancestor",
+  "signals",
+  "values",
+  "documents",
+  "values_narrow_REPEALED",
+  "melco",
+  "anchor_kind",
+  "candidate_leaf",
+  "note",
+  "func_l1",
+  "func_l2",
+  "func_l3"
+ ],
+ "data_rows": 80,
+ "generated_by": "features/display/scripts/coverage_map.py（下放包 06 步驟 3 之前）",
+ "generated_at": "2026-08-25",
+ "inputs": [],
+ "measurement_conditions": "快照，非現行產物",
+ "rulings": [
+  "R-TM13"
+ ],
+ "notes": "PRE_GLOSSARY 快照 2026-08-24。此版無 glossary_phrase 錨層，SWE-DM-007/008 之候選為 0。依 R-TM13 保留，不刪除。取代者：coverage_sys2_vs_swe_dm.tsv"
+}

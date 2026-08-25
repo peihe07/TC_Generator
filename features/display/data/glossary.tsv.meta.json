@@ -1,0 +1,22 @@
+{
+ "data_file": "glossary.tsv",
+ "columns": [
+  "abbrev",
+  "expansion",
+  "source_file",
+  "source_locator",
+  "cooccurrence_quote",
+  "usable",
+  "occurrences",
+  "initials_rule"
+ ],
+ "data_rows": 13,
+ "generated_by": "features/display/scripts/build_glossary.py",
+ "generated_at": "2026-08-25",
+ "inputs": [],
+ "measurement_conditions": "收錄判準為候選詞之首字母須逐一拼出該縮寫；initials_rule 欄記 strict／filler-skipped",
+ "rulings": [
+  "R-DM22"
+ ],
+ "notes": "每條必引一處同句並列之來源；查無並列者不建條目。"
+}

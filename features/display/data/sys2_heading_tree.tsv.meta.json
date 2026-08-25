@@ -1,0 +1,17 @@
+{
+ "data_file": "sys2_heading_tree.tsv",
+ "columns": [
+  "heading_row",
+  "sys_ra_id",
+  "heading_text",
+  "child_rows",
+  "child_FR_count"
+ ],
+ "data_rows": 45,
+ "generated_by": "features/display/scripts/sys2_heading_tree.py",
+ "generated_at": "2026-08-25",
+ "inputs": [],
+ "measurement_conditions": "節點＝Category 正規化為 heading 之列；子＝其後之非 Heading 資料列至下一個 Heading 為止（位置性）",
+ "rulings": [],
+ "notes": "45 節點；r72 一節點下掛 48 個 FR。"
+}

@@ -1,0 +1,32 @@
+{
+ "data_file": "coverage_sys2_vs_swe_dm.PRE_PRIORITY.tsv",
+ "columns": [
+  "sys2_row",
+  "sys_ra_id",
+  "category",
+  "swhw",
+  "heading_ancestor",
+  "signals",
+  "values",
+  "documents",
+  "values_narrow_REPEALED",
+  "melco",
+  "anchor_kind",
+  "candidate_leaf",
+  "candidate_from",
+  "empty_semantics",
+  "note",
+  "func_l1",
+  "func_l2",
+  "func_l3"
+ ],
+ "data_rows": 80,
+ "generated_by": "features/display/scripts/coverage_map.py（下放包 07 步驟 6 之前）",
+ "generated_at": "2026-08-25",
+ "inputs": [],
+ "measurement_conditions": "快照，非現行產物",
+ "rulings": [
+  "R-TM13"
+ ],
+ "notes": "PRE_PRIORITY 快照 2026-08-25。此版之錨優先序為 signal>value>heading>glossary_phrase>melco，heading 100% 命中致 glossary_phrase 在 anchor_kind 中永不現身。取代者：coverage_sys2_vs_swe_dm.tsv（R-DM26 新序）"
+}

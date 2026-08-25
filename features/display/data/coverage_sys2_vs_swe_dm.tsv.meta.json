@@ -1,0 +1,40 @@
+{
+ "data_file": "coverage_sys2_vs_swe_dm.tsv",
+ "columns": [
+  "sys2_row",
+  "sys_ra_id",
+  "category",
+  "swhw",
+  "heading_ancestor",
+  "signals",
+  "values",
+  "documents",
+  "values_narrow_REPEALED",
+  "melco",
+  "anchor_kind",
+  "candidate_leaf",
+  "candidate_from",
+  "empty_semantics",
+  "note",
+  "func_l1",
+  "func_l2",
+  "func_l3"
+ ],
+ "data_rows": 80,
+ "generated_by": "features/display/scripts/coverage_map.py",
+ "generated_at": "2026-08-25",
+ "inputs": [],
+ "measurement_conditions": "母體＝SYS2 Basic Report 之 Category 正規化為 functional requirement 之列；錨一律逐字；優先序 signal>value>glossary_phrase>glossary_phrase_norm>melco>heading>none",
+ "rulings": [
+  "R-DM7",
+  "R-DM12",
+  "R-DM13",
+  "R-DM18",
+  "R-DM22",
+  "R-DM23",
+  "R-DM25",
+  "R-DM26",
+  "R-DM28"
+ ],
+ "notes": "引用候選一律以 candidate_from 為準，不得單用 anchor_kind（R-DM28）。"
+}

@@ -1,0 +1,19 @@
+{
+ "data_file": "recon_leaf_to_section.tsv",
+ "columns": [
+  "req_id",
+  "outline",
+  "polarion_id",
+  "spec_reference",
+  "title"
+ ],
+ "data_rows": 0,
+ "generated_by": "scripts/recon.py（共用腳本，非本 feature 之腳本）",
+ "generated_at": "2026-08-25",
+ "inputs": [],
+ "measurement_conditions": "由 recon.py 之 build_outline_map() 產出；本 feature 之 sys1_export（SYS2）無 'Outline Number' 欄，故 outline map 為空、本檔 0 資料列",
+ "rulings": [
+  "R-DM30"
+ ],
+ "notes": "首行為表頭、0 資料列。空非缺漏：SYS2 匯出不帶文件 outline（A-DM10b：leaf → CFTS 條號之橋樑仍不存在）。本 sidecar 由執行層補寫 —— 產生者為共用腳本 recon.py，其未實作 R-DM30 之 sidecar 機制，該機制目前僅及於本 feature 之自寫腳本。"
+}

@@ -1,0 +1,21 @@
+{
+ "data_file": "leaf_value_gaps.tsv",
+ "columns": [
+  "swe_dm",
+  "sub_categorization",
+  "numeric_with_unit",
+  "signal_tokens",
+  "unresolved_quantifier",
+  "description_verbatim"
+ ],
+ "data_rows": 8,
+ "generated_by": "features/display/scripts/read_037_leaves.py 之附屬產出（下放包 07 步驟 8）",
+ "generated_at": "2026-08-25",
+ "inputs": [],
+ "measurement_conditions": "母體＝037 `SWE1 Requirements` r8–r15 全 8 條；numeric_with_unit 與 signal_tokens 皆為 0/8",
+ "rulings": [
+  "R-DM8",
+  "R-DM27"
+ ],
+ "notes": "R-DM27：R-DM8 之缺值範圍由四處（003/004/005/006）改為八條全稱。unresolved_quantifier 欄為描述中出現而未給值之抽象量詞，逐字取自來源；本欄為揭露，不是缺值點之裁定（哪些須有值屬 Tier 2）。"
+}

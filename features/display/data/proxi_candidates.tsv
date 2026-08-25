@@ -1,5 +1,3 @@
-# R-DM25 正規化之定義：比對前對「兩側」同時施加 re.sub(r'[ _]+', ' ', s)，即底線與空格之連續段一律折為單一空格。僅此一項；連字號、點號、駝峰切分不在範圍內。
-# anchor_kind = glossary_phrase 者為嚴格比對即成立；= glossary_phrase_norm 者為正規化後才成立，兩者不合併計數。
 lid_row	logical_identifier	function	atlantis_signal_name	lookup_key	proxi_row	proxi_values	related_leaf	anchor_kind	empty_semantics	note	keyword_note
 4	ACN_Hardwired		ACN_Hardwire	Atlantis Signal Name=ACN_Hardwire	728	0 = Absent 1 = Present		proxi_param	(2) 本輪未追查：僅追 A-DM16 指名之三個起點	無 leaf 片語逐字命中；PROXI Format 定義於 r728（Parameter Group: Telematic_Configuration_1；查詢鍵 Atlantis Signal Name=ACN_Hardwire）	
 5	ADASIS_Mini_Full		ADASIS_Mini_Full	Atlantis Signal Name=ADASIS_Mini_Full ¦ Logical Identifier=ADASIS_Mini_Full	884	0 = Absent 1 = ADASIS_Mini 2 = ADASIS_Full		proxi_param	(2) 本輪未追查：僅追 A-DM16 指名之三個起點	無 leaf 片語逐字命中；PROXI Format 定義於 r884（Parameter Group: （空）；查詢鍵 Atlantis Signal Name=ADASIS_Mini_Full ¦ Logical Identifier=ADASIS_Mini_Full）	

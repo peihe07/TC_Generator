@@ -1,4 +1,3 @@
-# PRE_GLOSSARY 快照 2026-08-24（下放包 06 步驟 3 之前）。依 R-TM13 保留，不刪除。此版無 glossary_phrase 錨層，SWE-DM-007/008 之候選為 0。取代者：coverage_sys2_vs_swe_dm.tsv
 sys2_row	sys_ra_id	category	swhw	heading_ancestor	signals	values	documents	values_narrow_REPEALED	melco	anchor_kind	candidate_leaf	note	func_l1	func_l2	func_l3
 13	SYS-RA-DM-012	Functional Requirement	System	r12 HU Behavior when receiving Implausible Signal Values	DCSD_DISP_STAT					signal		heading 錨無逐字 leaf 片語	B. 顯示與互動管理(Display and Interaction Management)	B.1. 顯示狀態控制(Display State Control)	B.1.3. DCSD 顯示狀態發送 (DCSD Display State Sending)
 17	SYS-RA-DM-016	Functional Requirement	SW	r14 DCSD and HU HMI Communication			DCSD_and_HU_LVDS_Backchannel_Protocol ¦ SD.xxxxx DCSD LVDS VIDEO COMMUNICATION INTERFACE	DCSD_and_HU_LVDS_Backchannel_Protocol		heading		heading 錨無逐字 leaf 片語	A. ICS/DCSD 系統整合(ICS/DCSD System Integration)	A.1. 模組間通訊(Inter-module Communication)	A.1.1. 模組互動 (Module Interaction)

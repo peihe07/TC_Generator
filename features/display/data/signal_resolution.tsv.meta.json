@@ -1,0 +1,30 @@
+{
+ "data_file": "signal_resolution.tsv",
+ "columns": [
+  "sys2_signal",
+  "lid_row",
+  "atl_high_signal_name",
+  "can",
+  "format",
+  "sna",
+  "dbc_file",
+  "dbc_msg_id",
+  "dbc_val_labels",
+  "resolved",
+  "n_semantics",
+  "note"
+ ],
+ "data_rows": 26,
+ "generated_by": "features/display/scripts/signal_resolution.py",
+ "generated_at": "2026-08-25",
+ "inputs": [],
+ "measurement_conditions": "三段鏈：SYS2 $Signal$ → LID Logical Identifier（逐字）→ Atlantis High 之 Signal Name（多值逐值一列）→ DBC 之 SG_/VAL_",
+ "rulings": [
+  "R-DM17",
+  "R-DM19",
+  "R-DM21",
+  "R-DM23",
+  "R-G13"
+ ],
+ "notes": "R-DM21：每個數字須指明其止於哪一段。n_semantics 欄載 R-DM23 之語意別。"
+}

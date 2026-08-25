@@ -42,6 +42,8 @@ from pathlib import Path
 
 import openpyxl
 
+from tsv_meta import write_meta
+
 ROOT = Path(__file__).resolve().parents[1]
 SYS2 = ROOT / "inputs" / ("SYS2_CFTS_020_DISP_TCH_ICS_20260616_All_HW_System"
                           "_Accepted & Released.xlsx")
@@ -307,6 +309,11 @@ def main():
         for d in out_rows:
             fh.write("\t".join(str(d[c]) for c in cols) + "\n")
 
+    write_meta(out, cols, len(out_rows),
+               generated_by="features/display/scripts/coverage_map.py",
+               rulings=["R-DM7", "R-DM12", "R-DM13", "R-DM18", "R-DM22", "R-DM23", "R-DM25", "R-DM26", "R-DM28"],
+               measurement_conditions="母體＝SYS2 Basic Report 之 Category 正規化為 functional requirement 之列；錨一律逐字；優先序 signal>value>glossary_phrase>glossary_phrase_norm>melco>heading>none",
+               notes="引用候選一律以 candidate_from 為準，不得單用 anchor_kind（R-DM28）。")
     print()
     print("## candidate_from 分布（哪一種錨產生了候選）")
     from collections import Counter as _C2

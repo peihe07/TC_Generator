@@ -1,7 +1,3 @@
-# R-DM27：R-DM8 之缺值範圍由四處（003/004/005/006）改為八條全稱。
-# numeric_with_unit 與 signal_tokens 皆為 0/8，故「缺值」非抽樣結論。
-# unresolved_quantifier 欄為描述中出現而未給值之抽象量詞，逐字取自來源；
-# 本欄為揭露，不是缺值點之裁定（哪些須有值屬 Tier 2）。
 swe_dm	sub_categorization	numeric_with_unit	signal_tokens	unresolved_quantifier	description_verbatim
 SWE-DM-001	State Management	0	0	appropriate ¦ timeout	The Display Management software shall manage display operative states as DISPLAY_ON and DISPLAY_OFF based on system operational requests and timeout conditions.The software shall send appropriate display state and brightness requests to DCSD during state transition handling.
 SWE-DM-002	Wake-up Management	0	0	previous ¦ valid	The Display Management software shall transition display state from DISPLAY_OFF to DISPLAY_ON when valid touch coordinates are received from DCSD.The software shall restore previous display brightness and active HMI context after wake-up event handling.

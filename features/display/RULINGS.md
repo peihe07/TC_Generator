@@ -622,6 +622,47 @@ A-DM21 維持 PENDING，其處置與 `intake.py:114`／`:311` 之寫死一併
 留待，不與選項 D 打包。
 ```
 
+## 來源：下放包 09
+
+```
+R-DM30（`data/` 下之 TSV 不得有註解行）
+`features/display/data/` 下之 `.tsv`，**第一行必須是表頭列**，
+不得有 `#` 或任何形式之前置行。
+
+出處、量測條件、所依之裁決、廢止註記等移入同 stem 之
+`<name>.tsv.meta.json`。產生腳本一律同時寫資料檔與 sidecar，
+缺一即為腳本缺陷。
+
+不採「保留註解行並明定慣例」：那需要每個未來讀取者都記得略過 `#`，
+而其失敗形態是靜默的空資料（`csv.DictReader` 把註解讀成表頭）。
+sidecar 之失敗形態是檔案不存在，會出聲。
+
+本條回溯適用於 Display `data/` 下現有全部 `.tsv`；
+其他 feature 之既有檔不回頭修改，新產出者適用。
+```
+
+## 來源：下放包 09
+
+```
+R-DM31（A-DM21 之更正：5 處出現，性質有別）
+A-DM21 記 `"Analysis Report"` 於共用腳本中「寫死 5 處」。
+數量無誤，性質須分：
+
+  scripts/intake.py:63   SHEET_SIGNATURES 之判準      — 簽章表，非讀取
+  scripts/intake.py:114  _swra_profile()              — 未防護
+  scripts/intake.py:311  cited_documents()            — 未防護
+  scripts/recon.py:568   survey_a03()                 — 未防護（本輪由選項 D 處理）
+  scripts/compare_req_families.py:41  SHEET 常數      — **有 sys.exit guard**
+
+`compare_req_families.py` 另經清查（上繳 08 §6）：無任何腳本或管線
+呼叫，為手動 CLI，唯一使用紀錄為 AMFM，Display 用不到
+（其用途為比較兩份競爭之需求報告，本 feature 只有一份 037）。
+**自 A-DM21 之待處理清單除名。**
+
+`intake.py:114` 在本 feature 從未被觸及（R-DM29 用 `a03_report`），
+故對它之描述僅來自讀碼，非實測 —— 此限定須隨其被引用。
+```
+
 ---
 
 ## 抄錄核對表
@@ -661,9 +702,12 @@ A-DM21 維持 PENDING，其處置與 `intake.py:114`／`:311` 之寫死一併
 | 31 | R-DM29 | 08 | 482 | `387d90ad885f0c9e` | 是 |
 
 核對方法：抄錄後自 `RULINGS.md` 反向抽取各 fenced 區塊，與下放包原檔
-之對應區塊逐字元 `==` 比對並比對 SHA256；**31 條全數相符**（01 包 8 條、
+之對應區塊逐字元 `==` 比對並比對 SHA256；**33 條全數相符**（01 包 8 條、
 02 包 5 條、03 包 4 條、04 包 2 條、05 包 4 條、06 包 2 條、07 包 4 條、
-08 包 2 條）。
+08 包 2 條、09 包 2 條）。
+
+> 自下放包 09 起，核對表由 `scripts/transcribe_rulings.py` 直接產出
+> markdown 貼入上繳包（R-G20：報告中之摘要數字須為機器輸出）。
 
 > 下放包 07 之 `R-G17` 為全域條文，抄入 `docs/fw036/RULINGS_LEDGER.md`。
 >

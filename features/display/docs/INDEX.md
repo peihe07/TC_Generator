@@ -17,6 +17,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 06 | 2026-08-25 | 縮寫錨定案、聚合缺陷通則、037 精讀、Polarion 分頁清償 | [handoff/06_glossary_anchor.md](handoff/06_glossary_anchor.md) | [upstream/06_glossary_anchor.md](upstream/06_glossary_anchor.md) | R-DM22／R-DM23 ＋ R-G16／R-G13 補充（全域）（逐字抄錄 4/4，Display 累計 25/25） | A-DM18／A-DM19／A-DM20 新增；**A-DM4 升級（`_polarion` 字典）**；DR-DM7 開立 | **步驟 1–10 全數執行；十七條停止條件全未觸發。積欠四輪之步驟 8、9 一併清償** |
 | 07 | 2026-08-25 | Q5 定案 B、錨優先序、分隔符正規化；**首次授權改 `scripts/intake.py`** | [handoff/07_pipeline_and_anchors.md](handoff/07_pipeline_and_anchors.md) | [upstream/07_pipeline_and_anchors.md](upstream/07_pipeline_and_anchors.md) | R-DM24–R-DM27 ＋ R-G17（全域）（逐字抄錄 5/5，Display 累計 29/29） | A-DM21／A-DM22 新增；A-DM4 之 `_polarion` 待辦結案；DR-DM8 開立 | **步驟 1–11 全數執行；二十條停止條件全未觸發。回歸 14/14 逐字相同；`recon.py` 仍失敗於同一點，成因已定位（A-DM21）** |
 | 08 | 2026-08-25 | Q5-B 誤診歸屬、警示分支實測、正規化回施 | [handoff/08_recon_and_norm.md](handoff/08_recon_and_norm.md) | [upstream/08_recon_and_norm.md](upstream/08_recon_and_norm.md) | R-DM28／R-DM29 ＋ R-G18（全域）（逐字抄錄 3/3，Display 累計 31/31） | A-DM23 新增 | **步驟 1、2、4–7 執行；步驟 3（選項 D）待 Pei 裁示未做。二十二條停止條件全未觸發** |
+| 09 | 2026-08-25 | 選項 D 執行、sidecar 化、ETM 判準否定 | [handoff/09_recon_crosscheck.md](handoff/09_recon_crosscheck.md) | [upstream/09_recon_crosscheck.md](upstream/09_recon_crosscheck.md) | R-DM30／R-DM31 ＋ R-G19／R-G20（全域）（逐字抄錄 4/4，Display 累計 33/33） | A-DM24（自查，RESOLVED）／A-DM25 新增 | **步驟 1–4、6 執行；步驟 5 觸發停止條件 25 已停。`recon.py` 七輪來首次跑通，回歸 11/12 相同** |
 
 ## 02 輪要點
 
@@ -176,3 +177,29 @@ Display 用不到它（它比較兩份同範圍需求報告，本 feature 只有
 且錯得像空資料而非報錯。
 
 **步驟 3（選項 D）未執行** —— 待 Pei 裁示。
+
+## 09 輪要點
+
+**`recon.py` 跑通** —— 本 feature 首次取得獨立管線交叉檢查。
+17 項可對照者中 **16 項相符**，1 項不符（spec text layer 字元數：
+pymupdf 854,333 vs python-docx 907,382，兩數皆重現，**未擇一**）。
+另 4 項為 recon 有而自寫腳本未測（ASIL/FTTI、版面 revision、
+`estimated_test_time=Q`、id-suffix 判準）。
+
+**選項 D 之改動實為四處非一處**（函式簽章／取分頁處／其錯誤訊息／
+`main()` 之唯一呼叫處）。已如實回報，不主張四等於一。
+回歸 12 個 feature：11 個逐字相同，僅 Display 改變。
+
+**下放包 08 §2.3 之逐項表**首次實測：7 項中 6 項相符，
+1 項「結果對而理由錯」（Display 其實**有** `sys1_export`）。
+
+**停止條件 25 觸發**：ETM 判準鑑別力實測 **0.88x**（群內 8.0% 低於
+群外 9.1%），第一梯次判準不成立，已停，未自行改判準。
+
+**A-DM24（自查）**：我上輪排程提案有索引錯位（ETM 50→100）與
+不成立之互斥宣稱（69+117+269 實為 455）。第六次同型缺陷，
+但這次錯的是**我親手打在表下的一句斷言**，無程式在檢查它。
+
+**R-DM30**：11 個 TSV 全部改為表頭起首 + `.tsv.meta.json` sidecar，
+列數 11/11 未變。全 repo 82 個 TSV 中另有 15 個帶註解行（多在
+`user_profiles`），**登記未代改**。

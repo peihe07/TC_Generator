@@ -42,6 +42,12 @@ intake:
       reason: "R-DM5: no 'Analysis Report' sheet; sheets are SWE1 Requirements / SYS2 Traceability / Excluded NRLs (HW-only)"
       sha256: "ab3198e81fb21d2182f5dd7a665488aac5eb937481cf6bede9ecc668f3185050"
 
+# R-DM24 之後續（選項 D，Pei 2026-08-25 授權）：037 之需求分頁名不是
+# `Analysis Report`。`scripts/recon.py` 之 survey_a03() 已改為讀本節，
+# 未宣告者取預設 "Analysis Report"，故其他 feature 行為不變。
+paths_meta:
+  a03_sheet: "SWE1 Requirements"
+
 spec_mode: "D"        # A/B/C/D/E per FO §3
 spec_reference_template: null   # mode D：spec_reference 為查得，非構造（canon §3）
 

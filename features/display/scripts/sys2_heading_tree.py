@@ -11,6 +11,8 @@ from pathlib import Path
 
 import openpyxl
 
+from tsv_meta import write_meta
+
 ROOT = Path(__file__).resolve().parents[1]
 SYS2 = ROOT / "inputs" / ("SYS2_CFTS_020_DISP_TCH_ICS_20260616_All_HW_System"
                           "_Accepted & Released.xlsx")
@@ -86,6 +88,11 @@ def main():
             fh.write(f"{n['row']}\t{n['fid']}\t{n['text']}\t"
                      f"{' ¦ '.join(str(c) for c in n['children'])}\t"
                      f"{len(n['fr'])}\n")
+    write_meta(out, ["heading_row", "sys_ra_id", "heading_text", "child_rows", "child_FR_count"], len(nodes),
+               generated_by="features/display/scripts/sys2_heading_tree.py",
+               rulings=[],
+               measurement_conditions="節點＝Category 正規化為 heading 之列；子＝其後之非 Heading 資料列至下一個 Heading 為止（位置性）",
+               notes="45 節點；r72 一節點下掛 48 個 FR。")
     print(f"\nwrote {out}")
     print(f"FR rows under a heading: {sum(len(n['fr']) for n in nodes)}")
     print(f"headings with 0 FR children: "
