@@ -1112,6 +1112,79 @@ R-DM48 原載：規格值標籤逐字解得 DBC `VAL_` 者始寫入訊號值，
 
 ---
 
+## 來源：下放包 24
+
+```
+R-DM51（Associated Display 與 DCSD 為不同標的，其值不得互相代入）
+CFTS013（`Radio Error Management - Associated Display`）之需求標的為
+**Associated Display**（觸控螢幕整合於 HU 模組者）；
+CFTS_020 `1.11.2.2` 之需求標的為 **DCSD**
+（Disassociated Center Stack Display，外部觸控螢幕模組）。
+
+`{CFTS013-930}` 逐字定義該區分（`_ADspl` vs `_DDspl`）。
+
+三項拘束：
+(a) CFTS013 之門檻（50／51–55／56–<60／>=60 degrees C）與
+    CFTS_020 之門檻（85 degrees C）**分屬兩個標的**，
+    不得互相代入、不得以其一補其二之缺（§8.4.1）。
+(b) `{CFTS013-951}` 之亮度規則（每高於 50 一度降 5%）為 Associated
+    Display 之規則。**DCSD 側之亮度降低數值仍屬未給**
+    （上繳 22 之 B4 對 DCSD 仍成立）。
+(c) 引用 CFTS013 之任一值時，須於 `reasoning` 逐字記其標的為
+    Associated Display，並記其與本 TC 標的之關係。
+
+本條為本 feature 第四個命名近似陷阱（前三：037 檔名連字號 R-DM11、
+CFTS043 為 HVAC A-DM31、SYS3 無 `SYS-RA-DISP`）。
+**其形態最隱蔽** —— 檔名、章節名、門檻語彙、popup id 全部相似，
+差別只在 `Associated` 與 `Dis`associated 一字。
+```
+
+```
+R-DM52（本檔為 CFTS013 之部分分析，不得視為全文）
+`SYS2_CFTS013_…xlsx` 之 `Document ID` 為 32 個值，
+**不含 DR-DM4 所求之 `629`／`633`／`952`** ——
+三者僅出現於 `r8`（`CFTS013-752`，Category = Information）之
+修訂履歷自由文字內，非 `Document ID` 欄之值。
+
+即：**「該 id 之字串出現於檔內」不等於「該需求存在於檔內」。**
+凡查證某條號是否到手，須查 `Document ID` 欄，
+不得以全檔子字串命中為據（R-G27 之逐字原則於本處之應用）。
+
+DR-DM4 **維持 OPEN**，其標的不變（CFTS013 之 `629`／`633`／`952`）。
+```
+
+---
+
+## 來源：下放包 25
+
+```
+R-DM53（`deferred` 項改為物件，明載其英文 token）
+`batch_context.md` 與 `generated/*.json` 之 `deferred` 陣列，
+其每一項改為物件，必含四鍵：
+
+  leaf_id      該 deferred 項所屬之 leaf
+  token        R-G33(c) 檢查所用之英文 token，**逐字**
+  reason       其被 deferred 之理由（中文可）
+  blocking_dr  阻斷之 DR 編號；無則 null
+
+`token` 為**寫 deferred 項時**決定之值，由寫的人負責，
+並於上繳包中可見。R-G33(c) 之檢查改為「括號下半是否含該項之 `token`
+逐字」—— 檢查成為純字串比對，**無判斷成分**。
+
+理由（上繳 23 之 B11）：原陣列為自由文句，檢查者須自中文標的
+對譯英文 token 方能比對。本批三項標的具體（popup／shutdown／
+multi-stage）故對譯無爭議，**而「對譯無爭議」本身是檢查者之判斷，
+無第二來源核對**。措辭較抽象時，該對譯即成判斷而非量測。
+
+本條與 B9（停止條件 58 之自訂詞表）同類：
+**一個看起來是機器判準之檢查，其詞表是人給的。**
+差別在本條可結構性解決 —— 把詞從檢查端移到宣告端。
+
+現行三項之 `token` 依上繳 23 §2.1 之對譯落定，
+**不重新決定**（其已通過複驗且三條之揭露句已依其補寫）。
+```
+---
+
 ## 抄錄核對表
 
 | # | 條號 | 來源包 | 字元數 | SHA256（前 16 碼） | 逐字相符 |

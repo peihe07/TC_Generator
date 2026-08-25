@@ -27,6 +27,8 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 21 | 2026-08-25 | pilot-01 覆核：四項退回、負向補列 | [handoff/21_pilot01_rev2.md](handoff/21_pilot01_rev2.md) | [upstream/21_pilot01_rev2.md](upstream/21_pilot01_rev2.md) | （無新條文） | A-DM33 新增；DR-DM10 開立 | **步驟 1–7 全數執行；五十五條停止條件全未觸發。rev2 三條，lint 二十項行計 0** |
 | 22 | 2026-08-25 | #1 亦受 A-DM33 波及：popup 側分離 deferred | [handoff/22_pilot01_rev3.md](handoff/22_pilot01_rev3.md) | [upstream/22_pilot01_rev3.md](upstream/22_pilot01_rev3.md) | R-DM49 | A-DM34 新增；DR-DM10 阻斷範圍擴至 004 | **步驟 1–6 全數執行；五十八條停止條件全未觸發。rev3 三條，lint 二十項行計 0；寫回前兩項閘皆 PASS** |
 | 23 | 2026-08-25 | pilot-01 收束、揭露義務入條 | [handoff/23_pilot01_closeout.md](handoff/23_pilot01_closeout.md) | [upstream/23_pilot01_closeout.md](upstream/23_pilot01_closeout.md) | R-G33（全域）；R-DM48 之補充 | A-DM34 複驗 PASS | **停止條件 59 觸發且處置完畢；rev4 三條，lint 二十項行計 0** |
+| 24 | 2026-08-25 | CFTS013 SYSRA 之驗明（**檔未落磁碟，步驟 4／5／6 未執行**） | [handoff/24_cfts013.md](handoff/24_cfts013.md) | 併入 [upstream/25](upstream/25_disclosure_lifecycle.md) §五 | R-DM51／R-DM52 | A-DM31 敘述修正；DR-DM10(b) 改問法 | **停止條件 61／62 無從通過；R-DM51 拘束已生效（60 未觸發）** |
+| 25 | 2026-08-25 | 揭露句之時效與 token 資料化 | [handoff/25_disclosure_lifecycle.md](handoff/25_disclosure_lifecycle.md) | [upstream/25_disclosure_lifecycle.md](upstream/25_disclosure_lifecycle.md) | R-G34／R-G33(d)（全域）；R-DM53 | B11 結案；B12／B13／A6 新增 | **MISSING 0／STALE 0；R-DM 區塊 55，順序驗證 exit 0** |
 
 ## 02 輪要點
 
@@ -464,3 +466,47 @@ R-DM48 條下。先照做再量測 —— 字面置放使 `transcribe_rulings.py
 > 由我自中文對譯（B11，與 B9 同類）；三句 `is deferred` 之正確性有時效
 > 而無機制提醒。第三項最重要：**本輪把落差寫出來，沒有縮小它 ——
 > 004 仍是部分覆蓋，而本輪之後看起來更像已處理完畢。**
+
+## 24／25 輪要點
+
+**兩包合併執行**（25 包 §四步驟 5 指定），故只出一份上繳包。
+
+### CFTS013 檔案不在本機
+
+下放包 24 據 `SYS2_CFTS013_Radio_Error_Management-Associated_Display.xlsx`
+作出全部量測。**該檔不存在於本機任何位置** —— 全 repo、`_intake/`、
+`forms/`、各 feature `inputs/`、`~/Downloads`、`~/Desktop` 皆無，
+**且無任何檔名含 `Associated`／`ADspl`／`Radio Error`**。
+
+**這不是 01 輪那種檔名差異問題**（037 當時確實在磁碟上，只是用連字號）。
+本輪沒有任何近似候選。依 R-DM2(a) 停手不替代。
+
+| 24 包步驟 | 狀態 |
+|---|---|
+| 1 抄錄（R-DM51 為保護性條文，愈早生效愈好） | 已執行 |
+| 2 A-DM31／3 DR-DM10(b) | 已執行，**各附「本層未能重算」之限定** |
+| 4 `popup_priority.tsv` 來源登記 | **未執行** —— 全案唯一一次被要求把沒見過的規格文字寫進交付所依之資料檔 |
+| 5 綁定 12 項／6 獨立重算 | **不可執行**（停止條件 62 無從通過、61 無從評估） |
+
+### B11 結案 —— 不是對譯變可靠，是不再需要對譯
+
+上繳 23 我自陳 R-G33(c) 之三個英文 token 是我從中文 deferred 項
+**自行對譯**的（B11）。**我只診斷、沒開方**；下放包 25 的解法是
+**R-DM53：把 token 移到宣告端** —— `deferred` 每項改為四鍵物件
+（`leaf_id`／`token`／`reason`／`blocking_dr`），檢查遂成純字串比對。
+
+`check_disclosure.py`（本輪新增）雙向檢查：**MISSING 0／STALE 0**。
+`STALE` 方向有母體（004 之 TC 檢兩個非本 leaf 之 token、005 之檢一個），
+0 為實測。
+
+### R-G33(d)／R-G34
+
+- **R-G33(d)**：揭露句之誤讀風險是雙向的 —— 23 輪我增列於 BACKLOG，
+  25 包採納立為條文，並加一項我沒想到的：該檢查須於**兩個時點**
+  各執行一次（寫入時、**交付前**）。
+- **R-G34**：抄錄之置放以順序驗證 exit 0 為準；補充置於其所屬下放包之節，
+  被補充之條下留指標。**立條後第一次適用就是我自己的補充**（R-G33(d)）。
+
+> §八三項自陳，第二項最該記：**`STALE` 方向從未在真實情境下被觸發過。**
+> 本輪 0 只證明「現在沒有殘留」，沒有證明「解除發生時抓得到」。
+> R-G25（宣稱不做 X 須跑兩次）之精神在此適用而本輪未做。
