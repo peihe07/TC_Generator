@@ -153,8 +153,12 @@ Urgency 回報。
 | **DR-PMH4** | outline 9.1 之 PDF 破句何者為權威 | **`CLOSED`** | **（從未發出）** | — | — | R-PMH75 | 解除 |
 | **DR-PMH5** | **PDF p9 之能力矩陣**之來源文件 | **`DRAFT`** | **（待填）** | （待填） | （待填） | — | **ch 9 開批** |
 | **DR-PMH6** | RVC 情境下 HVAC popup 之規格依據 | **`DRAFT`** | **（待填）** | （待填） | （待填） | — | **否**（R-PMH80 已以限縮＋揭露解除） |
+| **DR-PMH7** | `VP` 之定義（規格全文 0 命中、素材 30 格） | **`DRAFT`** | **（待填）** | （待填） | （待填） | — | **矩陣對照之四列判定**（R-PMH85(c)）；不阻斷 batch 1 |
 
-**合計未結 2 筆（`DR-PMH5`／`DR-PMH6`），二者皆為 `DRAFT`。**
+**合計未結 3 筆（`DR-PMH5`／`DR-PMH6`／`DR-PMH7`），三者皆為 `DRAFT`。**
+
+**Pei 於 2026-08-25 逐字表明「`DR-PMH5`／`6`  DR-PMH7 我處理」** —— 三筆之發出由 Pei 為之；**執行層不得代為發出**（R-PMH83），
+狀態欄待其告知**實際日期與對象**後方改 `SENT`。
 
 **R-PMH82 之回溯記明**：`DR-PMH1`～`4` 自 2026-08-24 開立起，
 經執行層於**六個往返連續重申**而其狀態欄始終為 `OPEN` ——
@@ -338,6 +342,23 @@ Excel 全簿無任何一格描述 `ICS Hard Controls`／`HVAC Knobs`／`Climate 
 `PITA4` 之逐字為 `Screen Off and HU Power button **selections** shall be ignored
 while backup cam is being shown.` —— **其對象為使用者之按鍵輸入，非 popup 之顯示**。
 
+### 增補（22 包，依 R-PMH87 之連帶 / A-PMH19）—— **三項覆蓋缺口**
+
+`-007`（`SU3.)`，outline 7.4）依 R-PMH87 加事件層限定後，
+下列三項行為**只在矩陣有、規格未載，且無 leaf**，
+依 R-PMH55(b) 不撰 TC，**併入本 DR 詢問其是否應補為需求**：
+
+| # | 行為 | 矩陣出處 |
+|---|---|---|
+| 1 | 免責畫面顯示期間**按 ON/OFF 鍵**（通話中）→ `Pop-up: Cannot Power Off System during active phone call.` | `r6` c2／c3／c6／c7 |
+| 2 | 免責畫面顯示期間**轉 key-off**（通話中，僅 R1High）→ `VP display pop-up: "Power OFF System. Continue call on mobile phone? Yes or NO"` | `r15` c2／c3／c6／c7 |
+| 3 | 免責畫面顯示期間**調整 HVAC 硬控** → `Show Pop-Up …` | `r48` c2／c3／c4／c5 |
+
+**⚠ 本增補之前提**：`DR-PMH6` **尚未發出**（其狀態為 `DRAFT`，發出日期欄空白）。
+**若 Pei 實際已發出，則此三項須改以 `DR-PMH8` 另開**（22a §五之二擇一）。
+
+---
+
 ### 處置（R-PMH80，不待答覆即生效）
 
 (a) `10.3` 之 TC 於 Pre-Condition 加「倒車影像未顯示（`Gear != Reverse`）」，
@@ -477,6 +498,61 @@ Two questions:
 In the meantime we are writing the PITA6 test case with a pre-condition that
 the reverse camera is not being shown, and recording the reverse camera case as
 a coverage gap.
+
+Thank you,
+```
+
+---
+
+## DR-PMH7（開立 2026-08-25，依 **R-PMH85(b)**）
+
+**型別**：規範性素材使用**規格全文 0 命中**之術語。
+
+**成對之 anomaly**：**A-PMH20**。**狀態**：`DRAFT`（Pei 表明自行處理發出）。
+**阻斷**：矩陣對照之四列判定（`r6`／`r15`／`r24`／`r25`，R-PMH85(c) 標「待定義」）；
+**不阻斷 batch 1**。
+
+### 可寄出全文
+
+```text
+Subject: Power Moding HMI — what does "VP" refer to in the Power Moding State Matrix?
+
+Hello,
+
+While preparing the SWE.6 test cases for Power Moding HMI we found a term used
+throughout the Power Moding State Matrix that does not appear anywhere in the
+logic and flow document.
+
+The term is "VP". It occurs in 30 cells of the "State Matrix" sheet of
+"Power Moding HMI State Matrix R1 SR24 Post 2A DCR21421 (August 3 2022).xlsx",
+for example:
+
+    VP Stays ON
+    VP Turns OFF
+    VP standby mode
+    VP display pop-up: "Power OFF System. Continue call on mobile phone? Yes or NO"
+    (R1Low) VP Stays ON  (R1High) VP display pop-up: "Power OFF System. ..."
+    If Radio Off Delay = 0 minutes then VP turns OFF Else VP stays ON
+
+We searched "Power Moding HMI Logic and Flow R1 SR24 2A DCR22412
+(January 24 2023)", all 11 pages, for the string "VP". It returns zero matches.
+None of the other source files we hold defines it either.
+
+From the usage we can tell that VP is something that can be on or off and that
+can display a pop-up, but we do not want to assume what it refers to.
+
+The question matters for one specific comparison. The logic and flow document
+states, verbatim:
+
+    SU3.) No pop-ups will appear until the disclaimer screen has been removed.
+
+If "VP" is the head unit display, then the matrix cells that read
+"VP display pop-up: ..." and the sentence above are talking about the same
+thing, and we need to determine whether they can both hold. If "VP" is a
+different display, they are not in conflict.
+
+Could you please confirm what VP refers to? Specifically: is VP the head unit
+display screen, or something else?
 
 Thank you,
 ```

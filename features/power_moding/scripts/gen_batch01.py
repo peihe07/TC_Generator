@@ -206,12 +206,20 @@ TCS = [
      "(同一觸發之兩個必然後果 —— 視覺抑制與音訊照常，依 §5.7 不拆)"),
    pre=["1. The disclaimer screen is displayed",
         "2. A traffic announcement is available to be received"],
-   proc=["1. Deliver a traffic announcement while the disclaimer screen is displayed",
-         "2. Read the screen and the audio output and record both",
-         "3. Remove the disclaimer screen and check that the pop-up is displayed"],
-   er=["1. The traffic announcement is delivered",
-       "2. The announcement is heard in the background and no pop-up is displayed",
-       "3. The traffic announcement pop-up is displayed"],
+   # R-PMH87（22a）—— 事件層限定，**拆為兩步**（加上後逾 §5.2 之 18 字上限）。
+   # 四項缺一即漏一格：State Matrix 之 17 個 pop-up 顯示格全數繫於
+   # `ON/OFF button Pressed`／`Key-off`／`Door opened`／`HVAC Hard Control Adjustment`
+   # 四個事件（其列標籤即該事件）。
+   proc=["1. Do not press the ON/OFF key and do not turn key-off",
+         "2. Do not open any door and do not adjust HVAC hard controls",
+         "3. Deliver a traffic announcement while the disclaimer screen is displayed",
+         "4. Read the screen and the audio output and record both",
+         "5. Remove the disclaimer screen and check that the pop-up is displayed"],
+   er=["1. No ON/OFF key press and no key-off transition occurs",
+       "2. No door is opened and no HVAC hard control is adjusted",
+       "3. The traffic announcement is delivered",
+       "4. The announcement is heard in the background and no pop-up is displayed",
+       "5. The traffic announcement pop-up is displayed"],
    reason=("**P1 —— 主要功能邏輯**（非 P0）：pop-up 抑制影響免責畫面之可讀性，"
      "而免責畫面為 legal 要求（`as defined by legal/CFTS009`）——"
      "**惟其失效不阻斷開機**，故不落 boot/recovery。"
@@ -224,6 +232,18 @@ TCS = [
      "對 -001（P0）亦然：-001 之失效使 Accept 按鈕**永不出現**，主動路徑消失；"
      "本條之失效不影響任一離開路徑（16 包 §三）。"
      "§4.3.1：test_item 上半為 source_clause 之逐字整段。"
+     "⚠ **R-PMH84／R-PMH87 —— 事件層限定**：State Matrix（規範性文件，PDF p10 "
+     "`shall not be developed without following`）之 pop-up 顯示格共 **17 個**，"
+     "分布於五列：`r6` `ON/OFF button Pressed`(4)／`r15` `Key-off`(4)／"
+     "`r24` `ON/OFF button Pressed`(4)／`r25` `Door opened`(1)／"
+     "`r48` `HVAC Hard Control Adjustment`(4)。**全數繫於四個事件**，"
+     "且四者皆為測試員可控之操作，故 procedure 步驟 1、2 排除之 —— "
+     "**排除事件即排除全部 17 格**，R-PMH84 所要求之「條件互斥之證明」"
+     "由 TC 自身之構造成立，非由對矩陣涵蓋範圍之推定成立（21 包之推定已被推翻）。"
+     "不採 `No phone call is active`（`r48` 不涉通話，不充分）、"
+     "不採 `Gear != Reverse`（只擋 `r48` 之一部）、"
+     "不採以 `R1Low` 限定 `r15`（`SU3.)` 全稱適用於所有變體，違 R-PMH55(a)）。"
+     "**連帶之覆蓋缺口三項見 ANOMALIES A-PMH19。** "
      "source_clause 取自 PDF p8 之 SU3.)（R-PMH50）。"),
    axis="同一觸發之兩後果：視覺抑制 ＋ 音訊照常"),
 

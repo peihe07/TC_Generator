@@ -28,6 +28,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 19 | 2026-08-24 | **Pei 四筆 DR 一次結清**、leaf 48→47、預設來源改 block 層 | [handoff/19_broken_source.md](handoff/19_broken_source.md) ＋ [19a](handoff/19a_pei_dr_rulings.md) | [upstream/19_broken_source.md](upstream/19_broken_source.md) | R-PMH69–R-PMH75（逐字抄錄 7/7 相符） | **A-PMH17（章 10 全大寫標籤全缺）**／**A-PMH18（State Matrix 與 p9 不對應，停手上呈）**；A-PMH13／14／16 狀態更新 | **⚠ 停止條件 canon 2、canon 5、本包 8 觸發；本包 7 為字面／目的分歧；六章全 PASS；lint 30/30** |
 | 20 | 2026-08-25 | **State Matrix 效力範圍更正**、Off Road+ 互補分支、PITA6 牴觸 | [handoff/20_matrix_scope.md](handoff/20_matrix_scope.md) | [upstream/20_matrix_scope.md](upstream/20_matrix_scope.md) | R-PMH76–R-PMH78（逐字抄錄 3/3 相符） | A-PMH18 補記（語意層亦不涵蓋）；**`DR-PMH5` 開立** | **⚠ canon 1／2／5 觸發；本包 7 字面觸發；`--source-must-hit` 改寫後轉綠；TSV 重跑 diff = 0** |
 | 21 | 2026-08-25 | **牴觸之判準**、矩陣 × ch 7 全對照、DR 四級狀態機 | [handoff/21_predicate_criterion.md](handoff/21_predicate_criterion.md) ＋ [21a](handoff/21a_dr_dispatch.md) | [upstream/21_predicate_criterion.md](upstream/21_predicate_criterion.md) | R-PMH79–R-PMH83（逐字抄錄 5/5 相符） | A-PMH18 補記（對照涵蓋數字）；**`DR-PMH6` 開立** | **ch 7 × 矩陣牴觸 0；停止條件 9 一度觸發已解除；canon 1／2／5 觸發（既有）** |
+| 22 | 2026-08-25 | **pop-up 組改判**、`VP` 未定義、`-007` 事件層限定 | [handoff/22_popup_conflict.md](handoff/22_popup_conflict.md) ＋ [22a](handoff/22a_007_limitation.md) | [upstream/22_popup_conflict.md](upstream/22_popup_conflict.md) | R-PMH84–R-PMH87（逐字抄錄 4/4 相符） | **A-PMH19（覆蓋缺口三項）**／**A-PMH20（`VP` 未定義）**；**`DR-PMH7` 開立** | **ch 7 牴觸 1／待定義 4；ch 8 牴觸 0；`-007` 已改寫，lint 30/30** |
 
 ## 01 輪要點
 
@@ -1281,3 +1282,68 @@ KNOWN-INCOMPLETE（20 條中 **13 條為執行層本人所寫**）。
 **待 Pei**：`DR-PMH5`／`6` 之實際發出並告知日期與對象／
 **pop-up 組之記法覆核**／矩陣之 `VP` 指什麼／章 8・11 之對照／
 21 之 commit 授權（11 路徑）。
+
+---
+
+## 22 包要點
+
+### pop-up 組改判 —— 但**我沒有照步驟 2 之字面**
+
+下放包步驟 2 令五格全改「牴觸」。**我只把 `r48` 改為牴觸，其餘四列記「待定義」。**
+
+逐格查證：`r6`／`r15`／`r24`／`r25` 之 pop-up **全由 `VP` 承載**
+（`VP display pop-up`／`VP Stays ON Pop-up: …`），**只有 `r48` 之
+`Show Pop-Up` 未用該詞**。而 R-PMH85 逐字載「本條優先……惟 §三之 pop-up 組
+不倚賴 `VP`」——**該句之前半涵蓋五列，其括號所給之依據只涵蓋一列。**
+
+若 `VP` 非 head unit 之顯示螢幕，則四列與 `SU3.)` **無共同謂詞**，
+**而共同謂詞正是 R-PMH84 判牴觸之前提**。故依 R-PMH85(c) 記「待定義」。
+
+**我在條文與步驟之間選了條文。我認為這是對的，但那是我的判斷，不是誰授權的。
+請覆核。**
+
+### pop-up 格之窮舉
+
+含 `pop-up` 字樣之格 **21**；**顯示者 17、否定者 4**（`r25c7` = `no pop-up`；
+`r48` c6／c10／c11 = `Popup not displayed over RVC`）。事件列外 **0**。
+22a §二之表**四項全部複驗相符**（五列、欄位、`Call Active` 共同條件、
+`r48` 為唯一不涉通話者）。
+
+### ⚠ `VERDICT` 之鍵不含章號（已修）
+
+首版鍵為 `(區塊起列, 列)` —— 以 `matrix_vs_chapter.py 10` 執行會**靜默沿用
+章 7 之判定**，而每列都「有結論」故檢查不會察覺。已改為 `(章, 區塊起列, 列)`。
+**形態同於 19 包之 `RESIDUE_VERDICT` 60 字元鍵碰撞 ——
+兩次皆為「鍵不足以識別其所指」，兩次皆是在做別的事時撞出來的。**
+
+### `-007` 已改寫（R-PMH87）
+
+procedure 3→5 步（限定拆為兩步，字數 11／12），ER 3→5 逐位對齊，
+四項限定一項未刪（**缺一即漏一格**），未以 `R1Low` 限定 `r15`。
+**lint 30/30。** 連帶三項覆蓋缺口登記為 **A-PMH19** 並增補入 `DR-PMH6`。
+
+### 章 8 × 矩陣：**牴觸 0**，停止條件 7 未觸發
+
+十六個名詞全 0 命中。**兩處子字串偽命中已修**：`play` 命中 `display` 19 次、
+`played` 命中 `displayed` 3 次 —— **探針已字界錨定**。
+
+### 停止條件 8 之偽陰抽樣：1/10 = **10%**，Wilson [2%, 40%]
+
+**惟偽陰率低之原因不是判準好，是對照結論本身很少** ——
+124 行母體中九行為同值查核（identity）、條文名稱或自檢，
+**真正為「規格 × 素材之對照結論」者屈指可數。這個數字不宜被讀成「該判準夠用」。**
+
+### ⚠ 本輪自陳之未竟項中，三項須先看（上繳 §12）
+
+1. **`-007` 之限定只排除了矩陣之 pop-up** ——
+   **規格自身是否另有會在免責畫面期間產生 pop-up 之敘述，我沒有反向掃過**
+   （如 `PITA9` 之 phone call popups，而 `-007` 之限定不含「無來電」）。
+2. **batch 1 其餘七條未依 R-PMH84 逐條對照** ——
+   ch 7 × 矩陣之 30 列判定涵蓋「章」層，**不等於逐條 TC 之 ER 都被對照過**。
+3. **章 8 之 24 列依據為「ch 8 全文無此事件之敘述」** ——
+   那句證明的是「規格沒說」，不是「二者條件互斥」。記法用對，**依據之措詞不夠精確**。
+
+**待 Pei**：**§2.2 之覆核（四列記「待定義」）**／**`DR-PMH6` 是否已發出**
+（決定 A-PMH19 採甲或乙）／三筆 DR 之發出日期與對象／
+§12 第 4、6 項（`-007` 之規格側反向掃描、batch 1 其餘七條）／
+章 11 × 矩陣之對照／22 之 commit 授權（12 路徑）。

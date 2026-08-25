@@ -1265,6 +1265,75 @@ PDF 章 10 內以**全大寫標籤**分節，該等標籤於 SYS1 全簿命中 *
 
 ---
 
+## A-PMH19 — `-007` 加事件層限定後之**覆蓋缺口三項** · 22 包步驟 9 · PENDING
+
+**登記日**：2026-08-25（依 **R-PMH55(b)**／**R-PMH87** 之連帶）
+
+`-007` 依 R-PMH87 於 procedure 加「不按 ON/OFF 鍵、不轉 key-off、
+不開啟車門、不操作 HVAC 硬控」四項限定後，下列行為**不被任何 TC 涵蓋**：
+
+| # | 未涵蓋之行為 | 來源（矩陣） | 是否有 leaf |
+|---|---|---|---|
+| 1 | 免責畫面顯示期間**按 ON/OFF 鍵**（通話中）→ `Pop-up: Cannot Power Off System during active phone call.` | `r6` c2／c3／c6／c7（皆 `Call Active`） | **無** |
+| 2 | 免責畫面顯示期間**轉 key-off**（通話中，**僅 R1High**）→ `VP display pop-up: "Power OFF System. Continue call on mobile phone? Yes or NO"` | `r15` c2／c3／c6／c7（皆 `Call Active`） | **無** |
+| 3 | 免責畫面顯示期間**調整 HVAC 硬控** → `Show Pop-Up …` | `r48` c2／c3／c4／c5（`Gear != Reverse`） | **無**（其相關者 `PITA6`／10.3 已由 R-PMH80 處置） |
+
+**另二列之格不列為缺口**：`r24`（`Key-off` 區塊之 `ON/OFF button Pressed`）
+與 `r25`（`Door opened`）之情境為 **key 已 off**，
+**而免責畫面出現於開機序列（key-on）** —— 其與免責畫面期間之重疊性最低。
+**惟此為本層之判斷，非量測**（矩陣未斷言其不重疊），故一併記於此供覆核。
+
+**依 R-PMH55(b)**：三者皆「只在矩陣有、規格未載」，**不得為其撰寫 TC**。
+
+**歸屬**：依 22a §五，二擇一 ——
+（甲）`DR-PMH6` **尚未發出** → 直接增補其全文；
+（乙）`DR-PMH6` **已發出** → 另開 `DR-PMH8` 承接。
+**Pei 已表明三筆 DR 由其自行處理，故其是否已發出執行層無從得知** ——
+**本輪依 R-PMH82 記 `DR-PMH6` 為 `DRAFT`（發出日期欄空白），故採（甲）**，
+已將三項增補入 `DR-PMH6` 之全文。**若 Pei 實際已發出，請改採（乙）。**
+
+**狀態**：PENDING。**不阻斷 batch 1**（其為揭露而非待答）。
+
+---
+
+## A-PMH20 — 規範性素材使用規格未定義之術語 `VP` · 22 包 §二 · PENDING
+
+**登記日**：2026-08-25（依 **R-PMH85(a)**）
+
+| 來源 | `VP` 之命中 |
+|---|---|
+| **規格 PDF（全 11 頁）** | **0** |
+| Excel `State Matrix` | **30 格** |
+
+**其三種用法（逐字）**：
+
+```
+VP Stays ON / VP Turns OFF / VP turns Off / VP standby mode
+VP display pop-up: "Power OFF System. Continue call on mobile phone? Yes or NO"
+(R1Low) VP Stays ON  (R1High) VP display pop-up: …
+If Radio Off Delay = 0 minutes then VP turns OFF Else VP stays ON
+```
+
+**由用法可知其功能**：`VP` 是**會開關、且會顯示 pop-up 之物**。
+**其指涉未定義** —— 規格未定義該縮寫，本 feature 之**六筆素材**亦無定義。
+
+### 其影響 —— 直接及於 21／22 包之對照判定
+
+若 `VP` 即 head unit 之顯示螢幕，則 `VP display pop-up` 與 `SU3.)` 之
+`No pop-ups will appear` **為同一謂詞**。
+
+**依 R-PMH85(c)**，凡倚賴 `VP` 指涉之判定一律標「**待定義**」：
+`r6`／`r15`／`r24`／`r25` 四列已改標（22 包步驟 2）。
+**`r48` 不倚賴 `VP`**（其格逐字為 `Show Pop-Up`，未用該詞），
+故其**牴觸獨立成立**。
+
+**已開 `DR-PMH7`**（`DRAFT`）。**在其 `ANSWERED` 前，該四列不得轉為其他記法。**
+
+**狀態**：PENDING。**阻斷該四列之判定，不阻斷 batch 1**
+（`-007` 之限定已依 R-PMH87 排除全部四列之事件）。
+
+---
+
 ## 開案時之介面實測記錄（非異常，供追溯）
 
 `scripts/new_feature.py` 之實際介面與本 slug 之相合情形：
