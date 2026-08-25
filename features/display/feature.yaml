@@ -62,6 +62,14 @@ workbook:
   # B 欄不列於 columns，即無鍵可寫；本註為防日後有人補上。
   # 另：B10 之 data_only 快取值為陳舊之 `1`（D10 為空，公式應回 ""），
   # 以快取值判斷「該列已填」會誤判 r10（A-DM12）。
+  #
+  # R-DM34(a)：Q 欄 `Estimated Test Time (mins)` 為版面 revision 標記
+  # （有此欄 = rev C），**非管線欄位**。recon.py 會解出 estimated_test_time=Q，
+  # 但本表不列它，寫回一律不觸碰。
+  #
+  # 「辨識但不寫入」之欄共兩個，理由不同，故分列：
+  #   B 欄  公式欄（R-DM15）—— 賦值會摧毀 1402 列之 =IF(ISBLANK($D…))
+  #   Q 欄  版面標記（R-DM34(a)）—— 賦值會把一個 revision 判準變成資料
   columns:
     req_id: "D"
     test_group: "G"

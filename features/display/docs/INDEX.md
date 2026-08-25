@@ -18,6 +18,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 07 | 2026-08-25 | Q5 定案 B、錨優先序、分隔符正規化；**首次授權改 `scripts/intake.py`** | [handoff/07_pipeline_and_anchors.md](handoff/07_pipeline_and_anchors.md) | [upstream/07_pipeline_and_anchors.md](upstream/07_pipeline_and_anchors.md) | R-DM24–R-DM27 ＋ R-G17（全域）（逐字抄錄 5/5，Display 累計 29/29） | A-DM21／A-DM22 新增；A-DM4 之 `_polarion` 待辦結案；DR-DM8 開立 | **步驟 1–11 全數執行；二十條停止條件全未觸發。回歸 14/14 逐字相同；`recon.py` 仍失敗於同一點，成因已定位（A-DM21）** |
 | 08 | 2026-08-25 | Q5-B 誤診歸屬、警示分支實測、正規化回施 | [handoff/08_recon_and_norm.md](handoff/08_recon_and_norm.md) | [upstream/08_recon_and_norm.md](upstream/08_recon_and_norm.md) | R-DM28／R-DM29 ＋ R-G18（全域）（逐字抄錄 3/3，Display 累計 31/31） | A-DM23 新增 | **步驟 1、2、4–7 執行；步驟 3（選項 D）待 Pei 裁示未做。二十二條停止條件全未觸發** |
 | 09 | 2026-08-25 | 選項 D 執行、sidecar 化、ETM 判準否定 | [handoff/09_recon_crosscheck.md](handoff/09_recon_crosscheck.md) | [upstream/09_recon_crosscheck.md](upstream/09_recon_crosscheck.md) | R-DM30／R-DM31 ＋ R-G19／R-G20（全域）（逐字抄錄 4/4，Display 累計 33/33） | A-DM24（自查，RESOLVED）／A-DM25 新增 | **步驟 1–4、6 執行；步驟 5 觸發停止條件 25 已停。`recon.py` 七輪來首次跑通，回歸 11/12 相同** |
+| 10 | 2026-08-25 | 交叉檢查結案、DECISIONS 合併、PROXI 改需求驅動 | [handoff/10_decisions_merge.md](handoff/10_decisions_merge.md) | [upstream/10_decisions_merge.md](upstream/10_decisions_merge.md) | R-DM32–R-DM34 ＋ R-G21／R-G22（全域）（逐字抄錄 5/5，Display 累計 36/36） | A-DM26 新增 | **步驟 1–7 全數執行；二十七條停止條件全未觸發。Q2／Q3 材料已備，`docs/proxi_triage_proposal.md` SUPERSEDED** |
 
 ## 02 輪要點
 
@@ -203,3 +204,25 @@ pymupdf 854,333 vs python-docx 907,382，兩數皆重現，**未擇一**）。
 **R-DM30**：11 個 TSV 全部改為表頭起首 + `.tsv.meta.json` sidecar，
 列數 11/11 未變。全 repo 82 個 TSV 中另有 15 個帶註解行（多在
 `user_profiles`），**登記未代改**。
+
+## 10 輪要點
+
+**`DECISIONS.md` 合併完成**（R-DM32）。9 處分歧逐處留處置與理由；
+最要緊者為 `spec_reference` **維持 `[PEI]`、拒絕降格為 `[PROPOSED]`**
+（後者未經修改即生效，會使無法提案之項無聲通過）。
+§1–§7 之項目行**無一未標記**（停止條件 26 未觸發）；原三項未標記者已補標。
+
+**字元數定案**：登記 **854,333**（pymupdf／管線探針），自測之 907,382
+並列保留於 `data/spec_text_layer.tsv`。兩者皆遠超 500 字元門檻，
+**結論相同**。連帶登記 **A-DM26**：欄名 `spec_pdf` 而內容為 `.docx`。
+
+**PROXI 改為需求驅動（R-DM33）**：`related_leaf` 全 446 列停止填寫，
+語意一律標 (2)；錨仍照跑，結果留在 `note` 欄。
+`docs/proxi_triage_proposal.md` **撤回**（原文依 R-TM13 保留並加註）。
+
+**Q 欄／B 欄**：`feature.yaml` 已註記兩者皆「辨識但不寫入」，
+理由不同（B 為公式欄 R-DM15；Q 為版面標記 R-DM34(a)）。
+
+**Q2／Q3 材料已備**：`docs/Q2_Q3_briefing.md`。Q2 由「暫緩」改為
+`[PEI]` 可提交；Q5 標為已裁定（B）並註明其未達原目的。
+briefing 末列 **6 項未涵蓋者**，逐項標「未查證／未量測」，不補推論。

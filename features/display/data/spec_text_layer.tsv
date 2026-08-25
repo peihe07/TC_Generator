@@ -1,0 +1,4 @@
+path_key	file	extractor	chars	registered	source
+spec_pdf	R1LR_…CFTS_020 ICS and DCSD _20260310-1533.docx	pymupdf	854333	Y	recon.py survey_spec_text_layer()；跨 feature 之管線探針
+spec_pdf	R1LR_…CFTS_020 ICS and DCSD _20260310-1533.docx	python-docx（段落＋表格格，正規化後）	907382	N	features/display/scripts/probe_spec_mode.py；本 feature 自測
+spec_pdf	R1LR_…CFTS_020 ICS and DCSD _20260310-1533.docx	python-docx（未正規化、含空段）	910850	N	同上，另一種計法

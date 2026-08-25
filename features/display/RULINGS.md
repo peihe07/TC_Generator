@@ -663,6 +663,69 @@ A-DM21 記 `"Analysis Report"` 於共用腳本中「寫死 5 處」。
 故對它之描述僅來自讀碼，非實測 —— 此限定須隨其被引用。
 ```
 
+## 來源：下放包 10
+
+```
+R-DM32（`DECISIONS.md` 之權威與 `[PEI]` 之不可降格）
+既有之 `features/display/DECISIONS.md` 為**權威**；
+`recon.py` 產出之 `DECISIONS.new.md` 為**證據**。
+合併為人工逐項，每一處分歧須於合併後之檔中留下處置與理由。
+
+**機器不得將 `[PEI]` 降格為 `[PROPOSED]`。** 兩者之差別不在內容
+而在簽核時之行為：`[PROPOSED]` 未經修改即生效（canon §4），
+`[PEI]` 必須被回答。把一個無法提案之項標成已提案，
+會使它在簽核時無聲通過。
+
+實例（上繳 09 §5.2）：`spec_reference` 一項，`recon.py` 依
+`spec_reference_template` 為 null 機械讀出 `[PROPOSED: None]`；
+既有 `DECISIONS.md` 標 `[PEI]`，理由為 mode D 要求查得，
+而 leaf → CFTS 條號之橋樑不存在（A-DM10b），**故無法提案**。
+**維持 `[PEI]`。**
+
+反向亦然：`recon.py` 所提之項若為既有檔所無（本輪之
+safety attributes、batch plan、版面 revision），一律以
+`[PROPOSED]` 併入，不自動升格為 `[PEI]`。
+```
+
+## 來源：下放包 10
+
+```
+R-DM33（PROXI 改為需求驅動）
+PROXI 之對照**停止由供給側進行**。`proxi_candidates.tsv` 之
+446 列保留為索引（其中 177 列之值域已查得），
+`related_leaf` 欄停止填寫，全欄語意標 R-DM23 之 (2) 未追查，
+並於 sidecar 註明「本欄不再由供給側填寫」。
+
+改為：TC 撰寫時某 leaf 需要一個前置條件，才去 PROXI 查那一個參數。
+查得即用（值域依 R-VS49 以 PROXI 表為權威）；查不得則依 R-G13
+三要件登記 `LOOKUP_MISSES.md` 並開 DR。
+
+理由：三輪嘗試（keyword 相鄰、heading、`Used by NODE` 含 ETM）
+全部失敗。ETM 之實測為群內命中率 8.0%、群外 9.1%、倍率 0.88x ——
+**群內低於群外**。三次失敗不是判準不夠好，是供給側沒有指向需求側
+之資訊：在不知道需要什麼之前，446 列分不出來。
+
+`docs/proxi_triage_proposal.md` 撤回，依 R-TM13 保留原文並加註。
+已查得之線索（`DCSD_cfg`／`RVC_SK_PRSNT`／`Splashscreen_Type`）
+保留供 Phase 2 優先查證，但不因此取得 Pre-Condition 之資格 ——
+該資格仍受 §8.5 拘束。
+```
+
+## 來源：下放包 10
+
+```
+R-DM34（`estimated_test_time` 與 `spec_pdf` 之兩項記明）
+(a) 036 母本之 Q 欄 `Estimated Test Time (mins)` 為版面 revision 標記，
+    非管線欄位（`recon.py` 自身註解已定其性質）。
+    **不加入 `feature.yaml` 之 `workbook.columns`，寫回一律不觸碰。**
+    其地位與 B 欄（公式欄，R-DM15）同：存在、被辨識、不被寫入。
+
+(b) `feature.yaml` 之 `paths.spec_pdf` 於本 feature 指向一份 `.docx`，
+    欄名與內容不符；`survey_spec_text_layer()` 之 docstring 亦以 PDF
+    為前提。**不改欄名**（會動到所有 feature），以 A-DM26 登記。
+    引用該欄時須知其內容未必為 PDF。
+```
+
 ---
 
 ## 抄錄核對表
@@ -702,9 +765,9 @@ A-DM21 記 `"Analysis Report"` 於共用腳本中「寫死 5 處」。
 | 31 | R-DM29 | 08 | 482 | `387d90ad885f0c9e` | 是 |
 
 核對方法：抄錄後自 `RULINGS.md` 反向抽取各 fenced 區塊，與下放包原檔
-之對應區塊逐字元 `==` 比對並比對 SHA256；**33 條全數相符**（01 包 8 條、
+之對應區塊逐字元 `==` 比對並比對 SHA256；**36 條全數相符**（01 包 8 條、
 02 包 5 條、03 包 4 條、04 包 2 條、05 包 4 條、06 包 2 條、07 包 4 條、
-08 包 2 條、09 包 2 條）。
+08 包 2 條、09 包 2 條、10 包 3 條）。
 
 > 自下放包 09 起，核對表由 `scripts/transcribe_rulings.py` 直接產出
 > markdown 貼入上繳包（R-G20：報告中之摘要數字須為機器輸出）。
@@ -737,6 +800,7 @@ A-DM21 記 `"Analysis Report"` 於共用腳本中「寫死 5 處」。
 | R-DM22(c) 之「不得再放寬一層」 | **未廢止，仍有效**；R-DM25 所開放者為比對前對兩側同施之宣告式正規化，非放寬 | 下放包 07 §1.2 |
 | 錨優先序中 heading 之第三位 | **R-DM26**（降為倒數第二） | 下放包 07 |
 | R-DM26 所宣稱之效果（使 `glossary_phrase` 現身於 `anchor_kind`） | **R-DM28 更正**：遮蔽者是 signal 非 heading；R-DM26 之調整本身仍有效 | 下放包 08 §1.3 |
+| PROXI 之供給側對照（keyword／heading／ETM 三種嘗試） | **R-DM33**：改為需求驅動；`docs/proxi_triage_proposal.md` 撤回（原文保留） | 下放包 10 §三 |
 
 > 下放包 04 之 `R-G12`／`R-G13`／`R-G14` 為全域條文，依該包 §四之指定
 > 抄入 `docs/fw036/RULINGS_LEDGER.md`，不重複於本檔。

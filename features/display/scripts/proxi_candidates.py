@@ -255,15 +255,23 @@ def main():
             rn, lid_name, func, atl_name, lookup_key,
             SEP.join(str(x[0]) for x in pr),
             SEP.join(x[1] for x in pr if x[1]),
-            SEP.join(sorted({h[0] for h in hits + gl_hits + gl_norm_hits})),
+            # R-DM33: supply-side matching stopped. Three attempts
+            # (keyword adjacency, heading, Used-by-contains-ETM) all failed;
+            # the last measured 8.0% inside vs 9.1% outside. The column is
+            # kept for shape but is no longer filled from this side — a leaf
+            # that needs a pre-condition looks the parameter up instead.
+            # The anchors still RUN, and what they would have found stays in
+            # `note`, so nothing measured is thrown away.
+            "",
             kind,
             # R-DM23: `related_leaf` empty on this sheet is (2) — only the
             # three A-DM16 starting points were pursued; the rest were never
             # investigated. It is NOT a finding that they are unrelated.
-            ("" if (hits or gl_hits or gl_norm_hits) else
-             ("(2) 本輪未追查：僅追 A-DM16 指名之三個起點"
-              if kind != "none" else
-              "(2) 本輪未追查；且 PROXI Format 亦未查得其定義")),
+            # R-DM33: every row is (2) now — the column is not filled from
+            # this side at all, so no row can be (1) or (3) here.
+            ("(2) 未追查：R-DM33 起本欄不由供給側填寫；"
+             "leaf 需要前置條件時再逐一查 PROXI"
+             + ("" if kind != "none" else "。且 PROXI Format 亦未查得其定義")),
             "；".join(note),
             ("僅揭露，非錨：" + SEP.join(khits)) if khits else ""])))
 
@@ -279,24 +287,29 @@ def main():
     write_meta(
         p, cols, len(out),
         generated_by="features/display/scripts/proxi_candidates.py",
-        rulings=["R-DM12", "R-DM13", "R-DM20", "R-DM22", "R-DM23", "R-DM25"],
+        rulings=["R-DM12", "R-DM13", "R-DM20", "R-DM22", "R-DM23", "R-DM25",
+                 "R-DM33"],
         measurement_conditions=(
             "母體＝LID `Proxi & Configuration` 之資料列；R-DM25 正規化＝"
             "比對前對兩側同時施加 re.sub(r'[ _]+', ' ', s)，僅此一項"
             "（連字號、點號、駝峰切分不在範圍內）"),
-        notes=("anchor_kind=glossary_phrase 者為嚴格比對即成立；"
-               "=glossary_phrase_norm 者為正規化後才成立，兩者不合併計數。"
-               "empty_semantics 欄載 R-DM23 之語意別。"))
+        notes=("R-DM33：本檔保留為索引（177 列之值域已查得），"
+               "`related_leaf` 欄不再由供給側填寫，全欄語意為 R-DM23 之 "
+               "(2) 未追查。錨仍照跑，其結果留在 `note` 欄供 Phase 2 參考。"
+               "anchor_kind=glossary_phrase 者為嚴格比對即成立；"
+               "=glossary_phrase_norm 者為正規化後才成立，兩者不合併計數。"))
 
     print(f"\n## anchor_kind 分布")
     for k in ["leaf_phrase", "glossary_phrase", "glossary_phrase_norm",
               "cfts_usage", "proxi_param", "none"]:
         print(f"  {k}: {counts.get(k, 0)}")
     print(f"  合計 {len(out)}")
-    print(f"\n  R-DM23 語意別：`related_leaf` 為空之 "
-          f"{sum(1 for d in out if not d['related_leaf'])} 列，"
-          f"語意為 **(2) 本輪未追查** —— 只追了 A-DM16 指名之三個起點，"
-          f"其餘從未被調查過，**不是**「已查證與本 feature 無關」")
+    print(f"\n  R-DM33：`related_leaf` 自本輪起不由供給側填寫，"
+          f"故全 {len(out)} 列皆空，語意一律為 R-DM23 之 **(2) 未追查**。"
+          f"\n  錨仍照跑，其結果留在 `note` 欄"
+          f"（本輪 anchor_kind 非 none 者 "
+          f"{sum(1 for d in out if d['anchor_kind'] != 'none')} 列）"
+          f"，供 Phase 2 逐 leaf 查前置條件時參考。")
     print(f"\n  於 PROXI Format 逐字查得定義者: "
           f"{sum(1 for d in out if d['proxi_row'])}/{len(out)}")
     print(f"  keyword 命中（僅揭露）: "

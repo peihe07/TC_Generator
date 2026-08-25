@@ -753,6 +753,24 @@ C 無定義但 keyword **9**／D 無定義且無 keyword **260**。
 - 提案處置：登記。是否重跑並更新該三個 feature 之 `RECON.md`，
   屬各該 feature 之事，不在本 feature 範圍
 
+## A-DM26 — `paths.spec_pdf` 指向 `.docx`；欄名與內容不符  [PENDING]
+
+`feature.yaml` 之欄位名為 `paths.spec_pdf`，而本 feature 之該欄指向
+`R1LR_…CFTS_020 ICS and DCSD _20260310-1533.docx` —— **一份 Word 檔，
+不是 PDF**。`recon.py` 之 `survey_spec_text_layer()` 其 docstring 亦以
+PDF 為前提（其探針依序試 pymupdf 與 `pdftotext`）。
+
+實際上探針對 `.docx` 可用（pymupdf 讀得 854,333 字元），故**功能無誤**，
+誤導的是名稱。
+
+- **不改欄名**（會動到所有 feature 之 `feature.yaml` 與所有讀取者）
+- 引用該欄時須知其內容未必為 PDF
+- 連帶記明字元數之兩個值：pymupdf **854,333**（登記值）／
+  python-docx **907,382**（自測，保留）。兩者皆遠超「有無文字層」之
+  500 字元門檻，**導出之結論相同**（spec_mode D 成立）。
+  全表見 `data/spec_text_layer.tsv`
+- 提案處置：登記。欄名之修正屬全域 Tier 2
+
 ---
 
 ## Assumption markers

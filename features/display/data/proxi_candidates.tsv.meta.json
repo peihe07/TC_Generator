@@ -25,7 +25,8 @@
   "R-DM20",
   "R-DM22",
   "R-DM23",
-  "R-DM25"
+  "R-DM25",
+  "R-DM33"
  ],
- "notes": "anchor_kind=glossary_phrase 者為嚴格比對即成立；=glossary_phrase_norm 者為正規化後才成立，兩者不合併計數。empty_semantics 欄載 R-DM23 之語意別。"
+ "notes": "R-DM33：本檔保留為索引（177 列之值域已查得），`related_leaf` 欄不再由供給側填寫，全欄語意為 R-DM23 之 (2) 未追查。錨仍照跑，其結果留在 `note` 欄供 Phase 2 參考。anchor_kind=glossary_phrase 者為嚴格比對即成立；=glossary_phrase_norm 者為正規化後才成立，兩者不合併計數。"
 }
