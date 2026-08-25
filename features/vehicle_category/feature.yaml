@@ -1,0 +1,115 @@
+# feature.yaml — pipeline configuration for Vehicle Category
+# 全部 feature 專屬常數集中於此；共用腳本讀本檔，不含 per-feature literal。
+#
+# 來源：下放包 01（features/vehicle_category/docs/handoff/01_intake_recon.md）§八 草案，
+# 依 T1–T4 之 repo 內實測值填實。未實測者一律留 null／TBD，不猜。
+
+feature: "Vehicle Category"
+test_group: "Vehicle Category"
+
+# R-VC1：FROP 為功能推出計畫之歸屬，非 repo 之 feature 切分。
+# 記於此保留該事實；不進入 test_group、不進入任何 TC 欄位。
+frop: "Vehicle Settings"
+
+paths:
+  # R-G1 全域母本之工作副本（SHA256 6372fb6b…825b2，與 forms/ 原件逐位元相同）
+  workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
+  a03_report: "inputs/FM-WI-FSM-037-A03-N1L-SWE1-VehicleCategory-HMI-V0.1 STLA 報告.xlsx"
+  sys1_export: "inputs/SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023).xlsx"
+  spec_pdf: "inputs/Vehicle Category HMI Logic and Flow R1 SR24 Post 2A (December 27 2023).pdf"
+  # ⚠ 下放包 §八 草案將此二鍵置於 `inputs/`（即複製入 feature 目錄）；
+  #   Pei 之 T1 指示為「forms/ 兩份不複製，僅綁定」。二者衝突，未自行裁決 ——
+  #   本輪留 null，僅於 `reference:` 綁定並記 SHA256。待裁後補填。
+  #   （T6 之查詢直接讀 forms/ 原件，不經本鍵。）
+  popup_list: null
+  settings_list: null
+
+# R-VC1／下放包 §八：037 之 `Analysis Report` 分頁存在，intake sniffer 正常命中
+# （T2 實測：命中 swra_report，145 列，req family SWE1-HMI-VC）。
+# 本 feature **不需** intake.kind_overrides，亦不需 paths_meta.a03_sheet
+# （取預設 "Analysis Report"）。Display 之 R-DM5 偏差在此不成立。
+
+# FO §3 實測（R-VC4 不逕定）：SYS1 Polarion export 齊備，outline map 可建，
+# 037 之 HMI Source ID 66 個相異值對 SYS1 SYSRE_HMI_Source ID 命中 66/66
+# → Mode A。規格 PDF 之文字層僅 14/28 頁（T2 實測），其餘頁為圖 ——
+# 圖頁一律另行 render（FO §3「Images are always rendered … regardless of mode」），
+# 不因此改變 spec_mode 之字母。
+spec_mode: "A"
+
+# R-VC4：spec_reference 為**查得**（逐字抄 037 `HMI Source ID` 欄），非構造。
+spec_reference_template: null
+
+workbook:
+  sheet: "Test Case Specification 測試用例規範"   # 實測自母本（T3）
+  header_row: 9                                   # 實測自母本（T3）
+  # T3 之表頭實測結果由 recon.py 自表頭字串解析並回報命中數；
+  # 下列字母為實測所得之先驗值，recon.py 之解析結果與之不符時會逐項報衝突。
+  columns:
+    no: "B"
+    req_id_polarion: "C"
+    req_id: "D"
+    tc_id_testrail: "E"
+    tc_id: "F"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    estimated_test_time: "Q"
+    design_method: "R"
+    functional_safety: "S"
+    author: "AA"
+    test_version: "AB"
+
+done_region:
+  detection: "author"
+  author_value: null            # R-VC2：workbook_state = BLANK，本節不生效
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: true     # R-VC2(a)：BLANK -> FILL
+
+lint:
+  design_method_source: "dropdown_sheet"
+  popup_ids: []                 # T6 查得後填入
+  extra_rules: []
+
+# R-VC3 之機器化：leaf 全集與覆蓋落差之數字宣告於此，使其於每次
+# recon.py 執行時被機器比對，而非靠注意力維持。
+# PASS 證明的是「該值仍未改變」，不是「該值是對的」——
+# 其正確性來自 T4 之重測與上繳包之交叉檢查。
+recon_assertions:
+  leaf_count: 117
+  functional_requirement_count: 145
+  distinct_spec_sections: 66
+  uncovered_content_sections: 18
+
+# R-G15 / R-DM37 判準：其變動會使既有產出失效者一律綁定。
+# paths: 記「檔在哪」（供腳本開檔）；reference: 記「檔是哪一份」
+# （供 verify_reference_binding.py 比對）。同一檔出現於兩節不是重複。
+reference:
+  a03_report:
+    file: "features/vehicle_category/inputs/FM-WI-FSM-037-A03-N1L-SWE1-VehicleCategory-HMI-V0.1 STLA 報告.xlsx"
+    sha256: "cb80a77e8d57721ef0851c4ce263c46d3cbf5d028bd1a03c89c9d7debfd877ed"
+  sys1_export:
+    file: "features/vehicle_category/inputs/SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023).xlsx"
+    sha256: "1fcc87116ac3893602f933ea10b2116895265ea0375ed88d0bf02ebcdeb091d6"
+  spec_pdf:
+    file: "features/vehicle_category/inputs/Vehicle Category HMI Logic and Flow R1 SR24 Post 2A (December 27 2023).pdf"
+    sha256: "3a6752c83bed1582485ad5e1aa7052ae63e6f0bb94304839beaf0e0b12776a76"
+  workbook_master:
+    file: "forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
+    sha256: "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"
+  popup_list:
+    file: "forms/Pop Up List HMI R1 (26PI).xlsx"
+    sha256: "ff47b7be63e5824cafe35deda9f9ddd0a63f6ea458169ef73689a1c559ea13ea"
+  settings_list:
+    file: "forms/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx"
+    sha256: "41daac0048d2afe15fe9aeee52a6197a28efdd2a71da44d2b836b4da3e9d4cf9"
