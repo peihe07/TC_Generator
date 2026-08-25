@@ -679,6 +679,13 @@ No HTML / Markdown tables in TC output. Plain numbered text; one item per line; 
 尾句號之規制單位為 numbered item，非物理行：item 之尾句號落於續行
 時，該 item 仍屬違規。子步驟 `a./b./c.` 為實質測試內容，同受規制。
 
+**No leading / trailing whitespace on any physical line**（Pei 裁定 2026-08-24）：
+多行欄位（`test_item`、`pre_conditions`、`input_test_data`、
+`test_procedure`、`expected_result`、`specification_reference`、`remarks`）
+之每一實體行行首不得有空白字元；空行須為真空行（不得含任何空白字元）；
+行尾不得有 trailing 空白。適用於 generated json 與寫回後之 cell 兩層 ——
+寫回組裝不得引入縮排。lint 檢測項於全域收尾輪接入。
+
 **UI element labels use double quotes**, never square brackets. Applies to on-screen buttons, menu bar items, popup buttons, hard-key (H/K) buttons, tab names, and any literal label the tester reads off the UI. Display text and indicators that are values rather than tappable elements (e.g. source indicator `"AA"`, status text `"Music Muted"`) follow the same convention.
 
 - ✓ `Press "Media" on Menu Bar`
