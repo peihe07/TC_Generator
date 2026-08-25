@@ -33,6 +33,7 @@ CHECKS = [
     ("lint_batch.py generated/batch02.json", "lint_batch", ["generated/batch02.json"], "0"),
     # 30 包（R-PMH107）：batch 3 之納入 —— **既有檢查對新資料之適用**
     ("lint_batch.py generated/batch03.json", "lint_batch", ["generated/batch03.json"], "0"),
+    ("lint_batch.py generated/batch04.json", "lint_batch", ["generated/batch04.json"], "0"),
     ("lint_batch.py <fixture prerework>", "lint_batch", ["tests/fixtures/batch01_prerework.json"], "1"),
     ("lint_batch.py <fixture r2>", "lint_batch", ["tests/fixtures/batch01_r2.json"], "1"),
     ("lint_batch.py --limit-must-hit", "lint_batch", ["--limit-must-hit"], "0"),
@@ -64,6 +65,8 @@ CHECKS = [
     ("matrix_vs_chapter.py 9", "matrix_vs_chapter", ["9"], "1"),
     ("spec_assertion_scan.py --assertion popup_ignoff", "spec_assertion_scan",
      ["--assertion", "popup_ignoff"], "0"),
+    ("spec_assertion_scan.py --assertion splash_anim", "spec_assertion_scan",
+     ["--assertion", "splash_anim"], "0"),
     ("spec_assertion_scan.py --assertion animation", "spec_assertion_scan",
      ["--assertion", "animation"], "1"),
     ("spec_assertion_scan.py --assertion popup", "spec_assertion_scan", ["--assertion", "popup"], "0"),

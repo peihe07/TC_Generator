@@ -67,7 +67,8 @@ def collect() -> list[tuple[str, str, str]]:
     import spec_assertion_scan as sas
     # 29 包（R-PMH107）：`ANIM_LINE_VERDICT` 為新資料，其納入為**既有檢查之適用**。
     for name in ("LINE_VERDICT", "AUDIO_LINE_VERDICT", "ANN_LINE_VERDICT",
-                 "AFTER_LINE_VERDICT", "AUDIO_CELL_VERDICT", "ANIM_LINE_VERDICT"):
+                 "AFTER_LINE_VERDICT", "AUDIO_CELL_VERDICT", "ANIM_LINE_VERDICT",
+                 "IGNOFF_LINE_VERDICT", "SPLASH_LINE_VERDICT"):
         for k, v in getattr(sas, name).items():
             out.append((f"spec_assertion_scan.{name}", str(k), v[0]))
     # R-PMH100（27 包）—— **矩陣側 174 格全部入母體**（× 四斷言），

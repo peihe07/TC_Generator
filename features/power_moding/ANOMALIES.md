@@ -612,7 +612,12 @@ Phase 6／7 之前置阻斷項**：首次填 `Q` 或 `AF` 之前必須處理，
 
 ---
 
-## A-PMH13 — `SWE1-HMI-PM-028`（12.2）之行為定義在 CFTS009 · **RESOLVED（處置已定，R-PMH47）**
+## A-PMH13 — `SWE1-HMI-PM-028`（12.2）之行為定義在 CFTS009 · **ACCEPTED（經裁定不寫入，R-PMH47／R-PMH72）**
+
+> **33 包步驟 4（R-PMH123）之更正**：原標 `RESOLVED（處置已定）`。
+> **R-PMH123 令 `-002`／`-023`／`-028` 三者之狀態詞一致為 `ACCEPTED`** ——
+> 其缺口之**事實未消失**（CFTS009 仍未持有，該行為仍無 TC），
+> 改變者為我方之處置。**`RESOLVED` 者沒有理由出現在 R-PMH121(c) 之「已知未決清單」上。**
 
 > **19 包更新（R-PMH72）**：Pei 2026-08-24 裁「DR-PMH1 拿掉」——
 > `-028` **不寫入交付工作簿、不產出 TC、不以 `PENDING` 佔位**。
@@ -1622,7 +1627,20 @@ Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
 
 ---
 
-## A-PMH27 — `SU1.1)`（7.1.1）之行為委於外部規格 CFTS009 · 31 包 §四 · **ACCEPTED（經裁定不寫入）**
+## A-PMH27 — `SU1.1)`（7.1.1）之行為委於外部規格 CFTS009 · 31 包 §四 · **ACCEPTED（Pei 核可 2026-08-25，經裁定不寫入）**
+
+> ⚠ **狀態詞與下放包不同，理由於此具名（R-PMH77(c)：兩面並陳）**
+> 32 包步驟 2 逐字令改為 `RESOLVED（Pei 核可 2026-08-25）`。**我未用 `RESOLVED`。**
+>
+> **理由**：本 anomaly 之事實**未消失** —— `SU1.1)` 之行為仍定義於 CFTS009，
+> 本 feature 仍不持有該文件，該行為仍**不會有任何一條 TC 驗到**。
+> 裁定所改變者是**我方之處置**（不寫入工作簿），不是**該缺口本身**。
+> **前例**：R-PMH74 對 A-PMH14 新漏 1 之處置逐字為
+> 「**A-PMH14 之新漏 1 不撤銷** —— 其狀態改為 `ACCEPTED（經裁定不補）`」——
+> 同一形態（經裁定不補／不寫入，而事實不變）用 `ACCEPTED`。
+>
+> **若判 `RESOLVED` 為正**，一句話即可反轉；其差別為：`RESOLVED` 讀作「此事已了」，
+> `ACCEPTED` 讀作「此事仍在，而我方已決定承擔」。**交付揭露清單（R-PMH121(c)）取後者方能成立。**
 
 **形態同 A-PMH13**（`SWE1-HMI-PM-028`，12.2，`Please refer to CFTS009 for complete behavior.`）。
 
@@ -1664,6 +1682,39 @@ Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
 
 > ⚠ **`SWE1-HMI-PM-023`（10.5）留在本組** —— 其為「停手待 `DR-PMH5`」（R-PMH111），
 > **非 out of scope**。**二者不同，不得合併處置。**
+
+---
+
+## A-PMH28 — p3–p7 流程圖之文字層載有散文所無之行為 · 32 包步驟 3／4 · PENDING
+
+**A-PMH04 之重驗所得**（32 包步驟 4）。其六則圖片佔位 outline 為
+`2.1`／`3.1`／`4.1`／`5.1`／`6.1`／`12.4`，**無一落在 7.5～7.8**，
+且 batch 4 之 12 leaf **全部在 p8 且皆有散文來源** ——
+**故停止條件 8（有 leaf 之內容只在流程圖而無其他來源）未觸發。**
+
+**惟本輪首次以 `fitz` 讀該六張圖之文字層，發現其載有散文所無之行為**：
+
+| 行 | 逐字 | 散文之對應 |
+|---|---|---|
+| L41–43／L93–95／L177／L226 | `If vehicle supports more than 1 Splash screen, toggle them one after another with a 1.5 timeout each` | **`toggle them one after another` 於散文 0 命中**；`SU1.)` 只給 `(1.5 sec timeout each)` 而未給其順序 |
+| L27–29／L84–86／L168–169／L217–218 | `If vehicle supports only one Splash screen` | **該一對多之分支散文未分述**（只以 `splash screen(s)` 之括號複數涵蓋） |
+| L59–63 | `Ignition ON or Ign. OFF > 3 sec.` ／ `Ignition ON ≤ 3 sec.` | **該 3 秒分支散文無** |
+| L66–71 | `ON OR Recall Last and Last = ON` ／ `OFF OR Recall Last and Last = OFF` | **`Recall Last` 之判準散文無** |
+| L53–54 | `If disclaimer screen is skipped see CFTS009 for Instant ON` | 指向 **CFTS009**（未持有） |
+
+**其記法**：上列各行於 `splash_anim` 斷言之掃描中記 **`待定義`**（非 `牴觸`）——
+**其與散文不取相反值，而是散文所無**；且**流程圖是否為規範性來源未經裁定**
+（A-PMH04 之提案 (a)「render 入 `data/`」至今未裁）。
+
+**其效力**：batch 4 之 `-024`／`-026`／`-033`／`-034` **不斷言 splash 之輪替順序、
+張數判準與 3 秒分支**（§8.4.1 不造值），**該等行為因而無任何 TC 覆蓋**。
+
+**⚠ 本項與 A-PMH18／`DR-PMH5` 為同一形態**：一份**看起來有規範性**之素材
+（p9 能力矩陣／p3–p7 流程圖）其地位未定，而其內容落在我方之射程內。
+**其差別在於：p9 之來源不明，而本項之來源就在同一份 PDF 內。**
+
+**未開 DR** —— 其形態屬「流程圖是否為需求來源」之政策問題，**應併入 A-PMH04 之處置一併裁定**。
+⚠ **該判斷未經裁定。**
 
 ---
 

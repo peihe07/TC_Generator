@@ -145,10 +145,18 @@ def limit_must_hit() -> int:
     ok_del = ok_dup = ok_three = True
     n_del = 0
     try:
-        for bn in ("batch01", "batch02"):
+        # **33 包（R-PMH124）之母體一般化**：批次清單原為寫死之列舉
+        # （32 包補為四批仍是列舉），**新批仍須有人記得改**。
+        # 改為**掃 `generated/` 之全部批次檔** —— 母體之來源自此與期望值同源。
+        # 空 `limits` 之批（如 batch03，其限定在 pre_conditions）明白印出，不冒充通過。
+        for bn in sorted(p.stem for p in (ROOT / "generated").glob("batch*.json")):
             base = json.loads((ROOT / "generated" / f"{bn}.json").read_text(encoding="utf-8"))
             lim = batch_limits(base)
             print(f"--- {bn}：{len(lim)} 條／{sum(len(v) for v in lim.values())} 項 ---")
+            if not lim:
+                print("  （本批之 `limits` 為空 —— 其事件層限定置於 pre_conditions，"
+                      "不受 R-PMH99(c) 之字串檢查所管）")
+                continue
             for tc_id, toks in lim.items():
                 for tok in toks:
                     d = copy.deepcopy(base)
@@ -351,10 +359,17 @@ def main() -> None:
         all(t["test_group"] == "Disclaimer screen" for t in tcs))
     # **28 包：由 batch-01 專屬之硬編碼改為讀該批之 `test_set`**
     # （R-PMH104：**一般化既有檢查，非新增檢查**）。其值仍須 ∈ Layer 2 定版 8 組。
-    bset = d.get("test_set")
-    chk("R-PMH36 各 TC 之 test_set == 該批之 test_set（大小寫敏感）",
-        bool(bset) and all(t["test_set"] == bset for t in tcs),
-        f"批 test_set={bset!r}；相異值={sorted({t['test_set'] for t in tcs})}")
+    # **32 包（R-PMH107）之一般化**：batch 4 起一批得含**多個 Test Set**
+    # （R-PMH120 之收尾計畫）。原讀法為「該批一個值」（`d["test_set"]`），
+    # 於兩值之批必 FAIL。改為：**讀該批之宣告**（`test_sets` 為清單，
+    # 或 `test_set` 為單值），驗每條之值 ∈ 該宣告。
+    # **檢查之種類不變**（各 TC 之 test_set 須合於該批之宣告），只是宣告得為多值。
+    decl = d.get("test_sets") or ([d["test_set"]] if d.get("test_set") else [])
+    seen = sorted({t["test_set"] for t in tcs})
+    chk(f"R-PMH36 各 TC 之 test_set ∈ 該批之宣告（{len(decl)} 值，大小寫敏感）",
+        bool(decl) and all(t["test_set"] in decl for t in tcs)
+        and set(seen) == set(decl),
+        f"批宣告={decl!r}；實測相異值={seen}")
     chk("R-PMH16 tc_id 形態 NR1L-DisclaimerScreen-{NNN}",
         all(re.fullmatch(r"NR1L-DisclaimerScreen-\d{3}", t["tc_id"]) for t in tcs),
         canon="10.3")

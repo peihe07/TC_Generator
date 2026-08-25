@@ -38,6 +38,8 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 29 | 2026-08-25 | **batch 2 人讀覆核四項修正**、凍結範圍界定、**`animation` 掃描** | [handoff/29_batch2_review.md](handoff/29_batch2_review.md) ＋ [29a](handoff/29a_dr_sent.md) ＋ [29b](handoff/29b_ch9_unfreeze.md) | [upstream/29_batch2_review.md](upstream/29_batch2_review.md) ＋ [29b](upstream/29b_ch9_unfreeze.md) | R-PMH107–R-PMH112（逐字抄錄 6/6 相符） | **A-PMH23（告別音跨螢幕同步無 ER 斷言）**／**A-PMH24（延遲參數名稱歧義）**；**`DR-PMH8` 開立**；`DR-PMH5`／`6`／`7` 改 `SENT` | **⚠ 停止條件 7 觸發：`animation` 掃描牴觸 3 處（L299／L300／L301）—— 未自行調和，原樣上呈**；lint 32/32×2、限定 must-hit 19/19、檢查項數維持 32；**29b：ch 9 限縮解凍，章 9 × 矩陣牴觸 2（`r31`／`r32`）→ 停止條件 10 觸發，batch 3 未產出** |
 | 30 | 2026-08-25 | **batch 3（Power Transitions）**、`PENDING-ON-DR` 登記簿、章 9 規格側全枚舉 | [handoff/30_batch3.md](handoff/30_batch3.md) | [upstream/30_batch3.md](upstream/30_batch3.md) | R-PMH113–R-PMH115（逐字抄錄 3/3 相符） | **A-PMH25（9.1 權威文本破句）**／**A-PMH26（canon §11 × §4.3.1 相衝）**；`DR-PMH8` 增 Q4／Q5 | **三條停止條件全未觸發；batch 3 = 6 TC / 5 leaf，lint 32/32×3；7 leaf 中 2 leaf 停手（`-023` 依 R-PMH111、`-002` 依 §8.4.1）；章 9 規格側 30 行全判定** |
 | 31 | 2026-08-25 | **batch 3 重做（6→8 條）**、**apparatus 首次解凍**、`-002` 判 out of scope | [handoff/31_batch3_rework.md](handoff/31_batch3_rework.md) | [upstream/31_batch3_rework.md](upstream/31_batch3_rework.md) | R-PMH116–R-PMH118（逐字抄錄 3/3 相符；**R-PMH117 經 Pei 同日核可並已生效**） | **A-PMH27（`SU1.1)` 委於 CFTS009，`ACCEPTED`）** | **三條停止條件全未觸發；Final Step 檢查強化：must-hit 5/5 FAIL、範圍向 15/15 PASS；lint 32/32×3；解凍用畢已恢復凍結** |
+| 32 | 2026-08-25 | **batch 4（14 條／12 leaf／兩個 Test Set）**、章 7 規格側全枚舉、A-PMH04 重驗 | [handoff/32_batch4.md](handoff/32_batch4.md) | [upstream/32_batch4.md](upstream/32_batch4.md) | R-PMH119–R-PMH121（逐字抄錄 3/3 相符；**R-PMH121 待核可**） | **A-PMH28（流程圖載有散文所無之行為）**；A-PMH27 → `ACCEPTED` | **⚠ 停止條件 7 字面觸發（目的未觸發，兩面並陳）；8／9 未觸發；四批皆 lint 32/32；章 7 全枚舉 28/28 未判定 0** |
+| 33 | 2026-08-25 | **batch 4 重做（限定 14→3 筆）**、TSV 增 `requirement_title`、`NA` 一致化 | [handoff/33_batch4_rework.md](handoff/33_batch4_rework.md) | [upstream/33_batch4_rework.md](upstream/33_batch4_rework.md) | R-PMH122–R-PMH126（逐字抄錄 5/5 相符） | A-PMH13 → `ACCEPTED` | **⚠ 停止條件 8 觸發（五處射程與 037 title 不符，未自行改）；9 字面觸發；7 未觸發；四批皆 lint 32/32** |
 
 ## 01 輪要點
 
@@ -1945,3 +1947,84 @@ R-PMH115 之簿設計為「繫於某 DR 之答覆」，**未預期此形態**。
 **二者不同，不得合併處置。**
 
 `R-PMH117` 正文未改一字（SHA256 `896dc34b89c5597a` 前後同值，實測），核可以**勘誤**記於其核對表下方。
+
+---
+
+## 32 包要點
+
+
+### 一、batch 4 —— 首個含兩個 Test Set 之批次
+
+`Splash Screen`(3 leaf → 4 條) ＋ `Startup Animation`(9 leaf → 10 條)。
+兩處拆分皆依 canon §8.2.2：`-001-01` 之兩分支預期結果相反；`-010` 之兩觸發獨立。
+
+**事件層限定十四條各一項**（`SU9.1)` 之硬鍵會重設逾時）——**其為測試員之動作，置於 procedure**；
+對照 R-PMH113 之狀態型限定置於 pre_condition。**限定之位置由型別決定。**
+
+### 二、⚠ 停止條件 7 —— **字面觸發，目的未觸發**
+
+| 子句 | SYS1 命中 |
+|---|---|
+| `after the animation (3 sec) a splash screen is presented timeout (1.5 each).` | **0** ← A-PMH03，由 `-024` 承載 |
+| `If ignition remains off after animation, screen is black.` | 1 |
+| `If ignition is turned on during animation, splash screen(s) are presented …` | 1 |
+
+**只有一句真的漏，而它已有 TC。** 我**未**把該子句補進 `-025`／`-026` 之 `source_clause`——
+**那會使追溯欄記載一個該條並未驗證的句子，是把檢查做綠而不是把事做對。** 兩面並陳，處置待裁。
+
+### 三、A-PMH28 —— A-PMH04 重驗所查出
+
+停止條件 8 未觸發（12 leaf 全在 p8 且皆有散文來源）。**惟首次讀流程圖之文字層**，
+發現 `toggle them one after another`（splash 輪替順序）**於散文 0 命中**，
+另有 `Ignition ON ≤ 3 sec.` 分支、`Recall Last` 判準等五類。
+**記 `待定義` 非 `牴觸`——其與散文不取相反值，而是散文所無。**
+
+**與 A-PMH18／`DR-PMH5` 同形態，差別在於：p9 之來源不明，而本項之來源就在同一份 PDF 內。**
+
+### 四、一項自查：must-hit 之母體原本漏了 batch 4
+
+`--limit-must-hit` 之迴圈寫死 `("batch01","batch02")`，**batch 3／4 從未進過該錨點**。
+**上繳草稿一度寫成 33/33 而實測 19/19，我在報出之前自己量了一次才發現。**
+已補為四批（33/33）。**此即 28 §5.2 一般化之未竟處——當時只改了期望值的來源，沒改母體的來源。**
+
+---
+
+## 33 包要點
+
+
+### 一、限定之樣板 —— **我把同一段貼了十四次，九條是不成立的陳述**
+
+十四條 `reasoning` 皆含一字不差之「與**本條之逾時斷言**同謂詞取相反值」，
+而逐條實查其 ER，**多數條無任何逾時斷言**。
+
+**結構上已改掉產生它的方式**：限定改由旗標 `lim=(ER 之指名, 理由)` 決定，
+步驟與 ER 之編號由程式產生。**無旗標者不可能得到限定——樣板在結構上已不可貼。**
+
+### 二、逐條導出得 **三筆**，非下放包所列之五筆
+
+| tc | 依據 | 判 |
+|---|---|---|
+| `-024`／`-026` | `SU9.1)` 前半：按鍵**重設 splash 逾時** | 保留 |
+| **`-027`** | `SU9.1)` **後半**：`the radio shall display the screen the next time the screen turns on` —— 與其「不再顯示」相反 | **保留**（下放包列為無逾時斷言） |
+| `-028`／`-029`／`-032` | **`SU9.)` 逐字為「按鍵於動畫期間不做任何事」** —— 不取相反值 | **移除**（下放包列為保留） |
+
+**停止條件 7 所預設之「九條」因而為十一條；實測 14 條全 1:1、步數 ≥2 → 未觸發。**
+
+### 三、⚠ 停止條件 8 —— `requirement_title` 一加上去就抓到五處
+
+| tc | 問題 |
+|---|---|
+| `-017`／`-018` | **leaf 指派錯位**（應在 `-018-02`／`-018-03`）——**而 batch 3 已於 31 包覆核通過** |
+| `-024`／`-025` | leaf 之 title 為「動畫」而 TC 之標的為 splash／黑螢幕 |
+| `-032` | **037 取 `CAN BUS Wake Up` 為單位，我取 `ignition cycle`**——我曾明言「不斷言二者等價」，**而 037 已經替我選了** |
+
+**我未自行改**：`-017`／`-018` 之更正會重開一個已結之批；`-024`／`-025` 之兩條路
+（改 TC 就 title ／ 承認 037 之 title 未涵蓋該二句）**前者製造新缺口、後者是對 RD 提異議**，皆須裁。
+
+> **這一欄本身就是一次有效的檢查，而它不是一個檢查程式——沒有任何 must-hit 會攔它。**
+
+### 四、三處與下放包不同，皆已具名
+
+限定筆數 3 vs 5；**`-023` 之狀態詞我未改為 `ACCEPTED`**（其仍在交付範圍內，
+與 out of scope 之 `-002`／`-028` 不同類，該差別正是 R-PMH119(b) 所分者）；
+**`NA` 實為兩批須改而非一批、37 條而非 43 條**。

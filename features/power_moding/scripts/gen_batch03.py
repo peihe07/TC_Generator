@@ -344,7 +344,9 @@ def main() -> None:
             # 該處置為執行層之判斷，**未經裁定**（A-PMH26）。
             "test_item": norm_item(t["item"]),
             "pre_conditions": "\n".join(t["pre"]),
-            "input_test_data": "N/A",
+            # 33 包 §2.3 之連帶：canon §4.5 逐字為 `set Input Test Data to NA`。
+            # ⚠ **下放包謂「batch 1／2／3 皆為 NA」而實測 batch 3 為 `N/A`** —— 一併更正。
+            "input_test_data": "NA",
             "test_procedure": "\n".join(t["proc"]),
             "expected_result": "\n".join(t["er"]),
             "specification_reference": f"{SPEC}_{t['outline']}",
