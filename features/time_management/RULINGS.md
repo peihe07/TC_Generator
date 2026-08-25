@@ -3152,3 +3152,70 @@ DATA_REQUESTS #6 降轉為「僅供追溯，不再阻塞」，加註不刪列。
 由 11 條掉到 0 條而不報錯 —— 改寫後第一次 lint 之「0 項」有一部分是
 閘門失效而非真的乾淨。判準已擴充為「LID 別名 ∪ 兩架構訊號全名」，
 覆蓋還原為同一組 11 條。回繳見 `docs/handoff/27_wtm26_return.md` §3。
+
+
+## R-TM84 — test_item 下半之格式定式
+
+（Pei, 2026-08-25。上游包 `docs/handoff/28_wtm26a1_testitem.md` §2。
+發現者為 Pei 之 0825 件審查 P1／P2。）
+
+```
+R-TM84（Pei, 2026-08-25）—— test_item 下半之格式定式
+
+test_item 之括號下半（R-S4）：
+  1. 與 verbatim 上半之間以空行分隔（連續兩個換行 `\n\n(`）
+  2. 括號內首字母大寫（`(Confirm …)`）
+
+基準：UserProfiles 0824 交付本之 189/189 既有形態
+（`…\n\n(Verifies that …`）。canon §4.3.1 之「獨立成行」自此
+於本 feature 讀為「空行分隔」。sibling 區分 token 之既有內容不動，
+只改分隔與首字母。
+```
+
+**執行層回報（2026-08-25）**：已套用，59/59。原形態齊一為單換行＋
+小寫（`\n(confirm …`），改為 `\n\n(Confirm …`；括號內其餘內容逐字未動
+（僅首字母大寫化，長度差恰為每條 +1 字元之換行）。殘留單換行括號 0。
+本項為 B1 生成樣式，0822 交付件同樣如此，非 W-TM-26 引入。
+
+
+## R-TM85 — TC ID family 與 Test Group 回改定案
+
+（Pei, 2026-08-25。上游包 `docs/handoff/28_wtm26a1_testitem.md` §7。
+發現者為分析層對 `27` §C1 之覆核 —— 兩個 0822 為不同檔案，A-TM31。）
+
+```
+R-TM85（Pei, 2026-08-25）—— TC ID family 與 Test Group 回改定案
+
+F 欄 TC ID family 回改 NR1L-TimeManagement-NNN（NNN 不變），
+G 欄 Test Group 回改 Time Management —— 與已送審之 ASW-R2 交付件
+（SHA `088a4476…`）一致。R-TM2 之 [PROVISIONAL] 就此定案：
+test_group = "Time Management"、非 canon §4.1.1 之 spec 標題預設
+（"Time and Date"），Pei 明裁優先。feature.yaml 若已被改為
+"Time and Date" 一併回改並移除 [PROVISIONAL] 註記。
+A-TM31 之未經裁定改名，處置即本條之回改；日後 identifier 欄之
+任何變更依 R-G19-4 先裁後動。
+```
+
+**執行層回報（2026-08-25）**：已套用。F 欄 59 列
+`NR1L-TimeAndDate-NNN` → `NR1L-TimeManagement-NNN`（序號 001–059 不變、
+連續性已驗）；G 欄 59 列 → `Time Management`。`feature.yaml` 之
+`test_group` 與 `write_back.tc_id_format` 一併回改（單一來源，R-TM59），
+`generated/*.json` 之 per-TC `test_group` 59 筆同步。全欄逐列 diff：
+F/G/I 各 59 處，**其餘欄全分頁零變更**（R-G19-4 驗收判準）。
+
+
+## R-TM86 — VES 供電行 KEEP
+
+（Pei, 2026-08-25。上游包 `docs/handoff/28_wtm26a1_testitem.md` §7。
+發現者為執行層 `27` §2 之借調判斷上呈。）
+
+```
+R-TM86（Pei, 2026-08-25）—— VES 供電行 KEEP
+
+`The VES screens are powered on`（5 行，#009 #015 #016 #017 #043）
+維持 KEEP —— 執行層 27 §2 之借調判斷（VES 獨立供電，非點火 ON
+所蘊含）獲 Pei 追認，非 §4.4 system default。
+```
+
+**執行層回報（2026-08-25）**：無須改動 —— W-TM-26 已按 KEEP 處置，
+Pei 追認即定案。該 5 行現以編號形態留於 J 欄。

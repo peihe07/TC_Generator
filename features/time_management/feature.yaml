@@ -3,7 +3,7 @@
 # and contain no per-feature literals. Regenerate nothing by editing code.
 
 feature: "Time Management"
-test_group: "Time and Date"             # R-TM8；framework-internal; workbook write per profile
+test_group: "Time Management"           # R-TM85（Pei 2026-08-25 定案，推翻 R-TM2 之 [PROVISIONAL]）
 
 paths:
   workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"  # R-G1 母本複本；SHA256 6372fb6b…6fb825b2，與 forms/ 母本相同
@@ -47,7 +47,7 @@ done_region:
 write_back:
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"
-  tc_id_format: "NR1L-TimeAndDate-{n:03d}"   # R-TM32
+  tc_id_format: "NR1L-TimeManagement-{n:03d}"   # R-TM32 / R-TM85 回改
   fill_test_group_set: true
   # D5 / W-TM-26 T5 —— 內容欄資料列之對齊。置中使多行文字之每行編號前
   # 出現視覺空白（文字層無前導空白，已逐字驗證）。交付基準

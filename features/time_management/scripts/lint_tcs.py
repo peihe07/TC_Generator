@@ -843,9 +843,13 @@ def self_test(auth: dict) -> int:
          {**green, "req_id": "SWE-RA-TIME&DATE-017",
           "expected_result": "HU sends $GPSDateTmHour$ on the date channel"}),
         ("no-tc-id         (B8 JSON 攜帶 tc_id)",
-         {**green, "tc_id": "NR1L-TimeAndDate-001"}),
-        ("test-group       (R-TM8：feature 名不是 Test Group)",
-         {**green, "test_group": "Time Management"}),
+         {**green, "tc_id": "NR1L-TimeManagement-001"}),
+        # R-TM85（2026-08-25）定案 test_group = "Time Management"（＝feature 名），
+        # 本紅向原以「feature 名」為錯值，該前提就此失效 —— 錯值改取前一版
+        # 之 "Time and Date"，既是真實可能之回歸，也保住紅向覆蓋。
+        # 閘門本身（逐字等於 feature.yaml）不受影響。
+        ("test-group       (R-TM8：非 feature.yaml 之值即報)",
+         {**green, "test_group": "Time and Date"}),
         ("design-method    (不在母本下拉選單內)",
          {**green, "design_method": "不存在之方法 (Nope)"}),
         ("spec-reference i (B7 形式不符 CFTS015-<7位>)",
