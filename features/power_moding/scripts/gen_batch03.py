@@ -103,18 +103,28 @@ TCS = [
    proc=["1. Turn the ignition off and record the head unit power state",
          "2. Read the display and record the pop-up shown",
          "3. Do not interact with the pop-up and record the awake duration",
-         "4. Compare the recorded duration with the stated maximum"],
+         "4. Read the pop-up state after the 60-second timeout expires",
+         "5. Read the radio power state when no other pop-ups remain",
+         "6. Compare the recorded duration with the stated maximum"],
    er=["1. The head unit stays awake when the ignition is turned off",
        "2. The pending pop-up is displayed",
        "3. The head unit does not power off while the pop-up is being displayed",
-       "4. The head unit stays awake for no longer than 2.5 minutes"],
+       "4. The pop-up is closed after the 60-second timeout defined in the pop-up list",
+       "5. The radio shuts off when no other pop-ups remain",
+       "6. The head unit stays awake for no longer than 2.5 minutes"],
    p9="否",
    p9why=("其斷言為「head unit 於 IGN OFF 後是否維持喚醒、pop-up 是否顯示」，"
           "**非**「某受控對象於某電源狀態下是否可用」。"),
    reason=("**P1 —— 主要功能邏輯**（非 P0）：其失效使 IGN OFF 之 popup 無法顯示，"
      "惟不阻斷開機或回復。設計方法 STATE —— 標的為 IGN OFF 所引發之電源狀態轉換及其延遲。"
      "⚠ **`source_clause` 取自 SYS1 之 9.1，非 PDF**（**R-PMH75** —— R-PMH50 於本 5 leaf 反轉）。"
-     "⚠ **§8.4.1 不造值 —— 未斷言者為 `stay awake` 之起算 60 秒（31 包 §2.3 之更正）**："
+     "⚠ **35 包 §3（R-PMH133）之修正 —— 前開「不造值」之前提已被 037 之 DESC 推翻**："
+     "本 leaf 之 `Requirement Description` 逐字為 `If the user does not interact with the popup "
+     "within **the 60-second timeout defined in the pop-up list**, the system shall close the "
+     "popup. If no other popups remain, the system shall shut off the radio.` —— "
+     "**60 秒與其後二句皆完整**，故 ER4／ER5 補之。**A-PMH25 已改 `RESOLVED`。**"
+     "**DESC 決定要驗什麼，PDF／SYS1 決定其措詞為何**（R-PMH133 之分工）。"
+     "⚠ **以下為 31 包當時之陳述，依 R-PMH44 保留，其前提已不成立**："
      "SYS1 之權威文本於逾時處逐字為 `If the user does not interact with the popup within 60 "
      "the timeout defined in pop-up list` —— **該句於權威文本中即為破句**（A-PMH25），"
      "故本條**不斷言該處之逾時秒數**。"
@@ -131,13 +141,13 @@ TCS = [
      "**該限定不預判 `Power Accessory Delay` 與 `Radio off Delay` 是否同一**（A-PMH24，`DR-PMH8` Q4）。"),
    axis="路徑：無互動之維持喚醒（對 -017 之 FOTA 互動延長）"),
 
- dict(leaf="SWE1-HMI-PM-018-01", outline="9.1", frop="Power Management", src="S1",
+ dict(leaf="SWE1-HMI-PM-018-02", outline="9.1", frop="FOTA Via Wi-fi", src="S1",
    dm=STATE, pri="P1",
    title="FOTA pop-up interaction extends the stay awake time up to ten minutes",
    item=("If the user interacts with the FOTA [CR22412] popup the radio shall ‘stay awake’ "
      "until the user has not interacted with the popup for 60 seconds. Maximum time the radio "
      "can ‘stay awake’ because of these popups is 10 minutes.\n\n"
-     "(FOTA 互動延長路徑 —— 與 -016 之無互動路徑成對；同 leaf 之第二條，profile §4)"),
+     "(FOTA 互動延長路徑 —— 與 -016 之無互動路徑成對；34 包改掛 018-02)"),
    pre=[f"1. {PC_CALL}",
         "2. A FOTA pop-up is displayed after the ignition has been turned off"],
    proc=["1. Interact with the FOTA pop-up and record the interaction time",
@@ -150,17 +160,21 @@ TCS = [
    p9="否",
    p9why="其斷言為「radio 因 popup 互動而維持喚醒之時長」，**非**受控對象之可用性。",
    reason=("**P1 —— 主要功能邏輯**：其失效使 radio 於 IGN OFF 後無限期喚醒（電池耗損）"
-     "或過早關閉（使用者無法完成 FOTA 互動）。**同 leaf 之第二條** —— "
-     "依 profile §4「不同觸發即拆分」：-016 之觸發為 IGN OFF 本身，本條之觸發為"
-     "**使用者與 FOTA popup 之互動**。設計方法 STATE。"
+     "或過早關閉（使用者無法完成 FOTA 互動）。"
+     "⚠ **34 包 §2.2／R-PMH128 之改掛** —— 本條原掛 `SWE1-HMI-PM-018-01`，**改掛 `-018-02`**："
+     "037 之 `Requirement Description` 逐字為 `If the user interacts with the FOTA popup, "
+     "the system shall stay awake until the user has not interacted with the popup for 60 "
+     "seconds. The maximum time the system can stay awake due to these popups is 10 minutes.` "
+     "—— **與本條逐項相符**；而 `-018-01` 之 DESC 為 2.5 分鐘與該逾時，**是 -016 之標的**。"
+     "**本條因而不再是同 leaf 之第二條**，profile §4 之拆分依據隨之撤回。設計方法 STATE。"
      "⚠ **本條之二個秒數皆得斷言** —— `60 seconds` 與 `10 minutes` 於 SYS1 之權威文本中"
      "**皆完整**（與 -016 之破句處不同，該差異已於 A-PMH25 具名）。"
      "⚠ **R-PMH113 之 Pre-Condition** 同 -016，其理由不重述（§8.5）。"
      "⚠ **`until the user has not interacted … for 60 seconds` 與 `Maximum … 10 minutes` "
      "二者何者先到即何者生效** —— 規格未言其優先，**本條以二個獨立步驟分別驗之而不斷言其交互作用**。"),
-   axis="路徑：FOTA 互動延長（對 -016 之無互動）"),
+   axis="路徑：FOTA 互動延長（對 -016 之無互動；34 包改掛 `-018-02`）"),
 
- dict(leaf="SWE1-HMI-PM-018-02", outline="9.1", frop="FOTA Via Wi-fi", src="S4",
+ dict(leaf="SWE1-HMI-PM-018-03", outline="9.1", frop="FOTA Via Wi-fi", src="S4",
    dm=EP, pri="P1",
    title="Accepting the FOTA pop-up starts the update and dismisses the later pop-ups",
    item=("- If user accepts FOTA popup, start update and dismiss FOTA via Wi-Fi / Charge\n\n"
@@ -181,12 +195,16 @@ TCS = [
      "`design_method` 之判準為**輸入是否被劃分為等價類，非該 TC 之內含幾類**。"
      "`accepts`／`schedules`／`dismisses` 為使用者於同一 popup 上之三個等價類，"
      "**本條只涵蓋其一，其技術仍為 EP**。"
+     "⚠ **34 包 §2.2／R-PMH128 之改掛** —— 本條原掛 `-018-02`，**改掛 `-018-03`**："
+     "037 之 DESC 逐字為 `For Priority 1 (FOTA update available): If the user accepts the FOTA "
+     "popup, the system shall start the update and dismiss FOTA via Wi-Fi / Charge Now …` "
+     "—— **本條與 -019／-020 三者同屬該 leaf**。"
      "⚠ **`(if applicable)` 之處置** —— 權威文本逐字載 `Charge Now (if applicable)`；"
      "本條以 **pre_condition 3** 承載該條件，**不於 ER 中重述其條件式**（canon §5）。"
      "⚠ **`source_clause` 為權威文本之逐字子句，其於 SYS1 中即斷行於 `Charge` 之後** —— "
      "**未補其下一行之 `Now (if applicable)`**（§4.3.1 逐字，不修補）。"
      "⚠ **R-PMH113 之 Pre-Condition** 同 -016，其理由不重述（§8.5）。"),
-   axis="使用者選擇之等價類：接受（對 -019 之排程、-020 之取消）"),
+   axis="使用者選擇之等價類：接受（對 -019 之排程、-020 之取消；34 包改掛 `-018-03`）"),
 
  dict(leaf="SWE1-HMI-PM-018-03", outline="9.1", frop="FOTA Via Wi-fi", src="S6",
    dm=EP, pri="P1",

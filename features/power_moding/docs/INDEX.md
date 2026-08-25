@@ -40,6 +40,8 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 31 | 2026-08-25 | **batch 3 重做（6→8 條）**、**apparatus 首次解凍**、`-002` 判 out of scope | [handoff/31_batch3_rework.md](handoff/31_batch3_rework.md) | [upstream/31_batch3_rework.md](upstream/31_batch3_rework.md) | R-PMH116–R-PMH118（逐字抄錄 3/3 相符；**R-PMH117 經 Pei 同日核可並已生效**） | **A-PMH27（`SU1.1)` 委於 CFTS009，`ACCEPTED`）** | **三條停止條件全未觸發；Final Step 檢查強化：must-hit 5/5 FAIL、範圍向 15/15 PASS；lint 32/32×3；解凍用畢已恢復凍結** |
 | 32 | 2026-08-25 | **batch 4（14 條／12 leaf／兩個 Test Set）**、章 7 規格側全枚舉、A-PMH04 重驗 | [handoff/32_batch4.md](handoff/32_batch4.md) | [upstream/32_batch4.md](upstream/32_batch4.md) | R-PMH119–R-PMH121（逐字抄錄 3/3 相符；**R-PMH121 待核可**） | **A-PMH28（流程圖載有散文所無之行為）**；A-PMH27 → `ACCEPTED` | **⚠ 停止條件 7 字面觸發（目的未觸發，兩面並陳）；8／9 未觸發；四批皆 lint 32/32；章 7 全枚舉 28/28 未判定 0** |
 | 33 | 2026-08-25 | **batch 4 重做（限定 14→3 筆）**、TSV 增 `requirement_title`、`NA` 一致化 | [handoff/33_batch4_rework.md](handoff/33_batch4_rework.md) | [upstream/33_batch4_rework.md](upstream/33_batch4_rework.md) | R-PMH122–R-PMH126（逐字抄錄 5/5 相符） | A-PMH13 → `ACCEPTED` | **⚠ 停止條件 8 觸發（五處射程與 037 title 不符，未自行改）；9 字面觸發；7 未觸發；四批皆 lint 32/32** |
+| 34 | 2026-08-25 | **射程改以 037 `Requirement Description` 比對**、`-017`／`-018` 改掛、**`-024` 撤除** | [handoff/34_leaf_realign.md](handoff/34_leaf_realign.md) ＋ [34a](handoff/34a_flowchart_and_cutoff.md) | [upstream/34_leaf_realign.md](upstream/34_leaf_realign.md) | R-PMH127–R-PMH132（逐字抄錄 6/6 相符；三處撤回附註，正文 SHA 不變） | **A-PMH29（漏句無 leaf）**；A-PMH25 → `RESOLVED`（**其前提被 037 DESC 推翻**）；A-PMH28 → `ACCEPTED` | **⚠ 停止條件 7 觸發（DESC 射程四處不符）、8 觸發（單位三處不符），皆未自行改；9 未觸發；四批 lint 32/32** |
+| 35 | 2026-08-25 | **DESC 逐斷言涵蓋之一次性總結**、回溯重判、**追溯維度封閉** | [handoff/35_desc_closing_pass.md](handoff/35_desc_closing_pass.md) | [upstream/35_desc_closing_pass.md](upstream/35_desc_closing_pass.md) | R-PMH133–R-PMH135（逐字抄錄 3/3 相符） | **A-PMH30（037 於二處以兩 leaf 承載同一行為）**；A-PMH25 → `RESOLVED` | **三條停止條件全未觸發；42 斷言／30 leaf，未涵蓋 2；回溯母體 25，翻案 2；四批 lint 32/32** |
 
 ## 01 輪要點
 
@@ -2028,3 +2030,85 @@ R-PMH115 之簿設計為「繫於某 DR 之答覆」，**未預期此形態**。
 限定筆數 3 vs 5；**`-023` 之狀態詞我未改為 `ACCEPTED`**（其仍在交付範圍內，
 與 out of scope 之 `-002`／`-028` 不同類，該差別正是 R-PMH119(b) 所分者）；
 **`NA` 實為兩批須改而非一批、37 條而非 43 條**。
+
+---
+
+## 34 包要點
+
+
+### 一、比對欄一換，**四處射程不足立刻現形**
+
+R-PMH127：**title 是標籤，`Requirement Description` 才是範圍**。33 包以 title 比對之五處，
+分析層以 DESC 複驗得三處為偽陽；**而以 DESC 重驗 36 條，另得四處真不符**。
+
+| tc | DESC 之要求 | 我之 TC 所缺 |
+|---|---|---|
+| **`-016`** | `… within the **60-second** timeout …, the system shall **close the popup**. If no other popups remain, the system shall **shut off the radio**.` | **三項全未斷言** |
+| **`-026`** | `… the system **interrupts the animation** … **then proceeds to Disclaimer**.` | 二項未斷言 |
+| **`-008`** | `… **unless certain phone call scenarios have occurred**.` | 例外未處理（**屬 batch 1**） |
+| `-025` | DESC 首句之 3 秒動畫 | 由 `-028` 承載而該條掛他 leaf |
+
+### 二、**A-PMH25 被推翻——我當初「不造值」的前提不成立**
+
+30 包我判 9.1 之權威文本於逾時處為破句、秒數無法確定，故 `-016` 不斷言任何秒數。
+**037 之 DESC 於同處為完整句，60 秒之值一直在裡面。**
+**「無法確定」只在 SYS1 側成立，而 037 是需求單位的權威。**
+
+> **我在 30 包看的是 SYS1，而那一欄一直在 037 裡。**
+> R-PMH127 的增欄不只修正了比對判準，**還修正了一個「不造值」的判斷**。
+
+### 三、單位比對 —— 三處不符，且**第一版寬鬆比對曾把其一讀成相符**
+
+`-016` 缺 `60 秒`、`-025` 缺 `3 秒`、`-032` 缺 `CAN BUS wake-up`。
+⚠ **第一版以前綴比對，`'0 seconds'` 的首詞 `0` 命中了 `'60-second'`**，`-016` 因而被誤判相符；
+改為正規化後之精確集合差方測出。**若我沒有改，本包會報「單位全數相符」。**
+
+### 四、batch 2 之限定也是樣板，**惟其陳述皆為真**
+
+六條含一字不差之「本條之 ER 斷言『聲音有／無播放』」，**未具名哪一個 ER**。
+逐條實查其 ER：**六條皆確有聲音斷言**。
+**故其違反者為 R-PMH126 之形式要求，非其實質**——與 batch 4 之「九條為假」不同類。
+本輪只查不改。
+
+### 五、`-024` 撤除、`-017`／`-018` 改掛
+
+`-024` 之定義以 `dropped=True` 保留（R-PMH44），**tc_id 不重編**，batch 4 為 13 條。
+其缺口登記為 **A-PMH29**、入 `DR-PMH8` Q6。`PENDING-ON-DR` **10 → 13 筆**。
+`DR-PMH8` 現為 **7 問 ＋ 首段更正句**（SHA256 `34c711b9dae0af53`），仍 `DRAFT`。
+
+---
+
+## 35 包要點
+
+
+### 一、DESC 逐斷言涵蓋表 —— **42 斷言／30 leaf，未涵蓋 2**
+
+已知四處（`-016`／`-026`／`-008`／`-025`）全數出現於表中 → 切分未漏。
+**表中另查出二處先前未知**：
+
+- **`-003` A2**（`No timeout is provided for Maserati applications`）——
+  **037 以兩個 leaf 承載同一行為之第二例**（其行為由 `-004` 驗到而該條掛 `-001-05`）；
+- `-012` A3（告別音跨螢幕同步）—— 已知（A-PMH23），**惟本表首次使其成為逐斷言之未涵蓋項**。
+
+> `-001-01` A1 與 `-003` A2 之行為**皆有 TC 驗到，只是掛在另一個 leaf**。
+> **二者之別在於追溯，不在於覆蓋。** 未補 TC、未改指派、未提異議（明令）。
+
+### 二、回溯重判 —— **母體 25，翻案 2**
+
+| 處 | DESC 之逐字 | 性質 |
+|---|---|---|
+| `-016` | `within **the 60-second timeout** …, shall **close the popup**. If no other popups remain, shall **shut off the radio**.` | **SYS1 匯出之破句**（同一句話在兩份文件中不一樣） |
+| **`-003`** | `or wait for timeout (**which automatically equals Accept**)` | **037 增寫了 PDF 所無之語義** —— 該語義於 PDF `SU1.)` 中**不存在** |
+
+**`-003` 之成因與 A-PMH25 不同，且更麻煩**：DESC 會**增寫**。
+**13 包當時判「不斷言其等同 Accept」在當時是對的——其所據為 PDF；其在今日不對，是因為判準換了來源。**
+**其修正動到 batch 1，已具名待裁，本包未改。**
+
+### 三、修正與封閉
+
+`-016` 補三斷言（6:6）、`-026` 補二斷言（6:6）、`-032` 計次基準改 `CAN BUS wake-up`；
+batch 2 六條**只補具名**；`-026`／`-033`／`-034` 補引 R-PMH131。
+**依 R-PMH135 記為「繫於 R-PMH133」，不計入輪數上限——本次是判準變了，不是做錯了。**
+
+**追溯維度自本包起封閉為三項**（R-PMH134）：leaf 指派／斷言涵蓋／單位。
+`DR-PMH8` 現 **8 問**（`41926e3de87df5c4`），`PENDING-ON-DR` **14 筆**。

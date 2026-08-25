@@ -27,9 +27,6 @@
   "source_clause_basis": "R-PMH50 —— **一律取自 spec_pdf p8**（R-PMH75 之反轉只及於 9.1）。`-024`／`-026` 之 `source_clause` **含 A-PMH03 所查出、SYS1 0 命中之子句**。",
   "write_back": "凍結 —— 本批只產出 JSON，不寫回工作簿",
   "limits": {
-    "NR1L-DisclaimerScreen-024": [
-      "press the Power Off or Screen Off hard key"
-    ],
     "NR1L-DisclaimerScreen-026": [
       "press the Power Off or Screen Off hard key"
     ],
@@ -38,29 +35,6 @@
     ]
   },
   "tcs": [
-    {
-      "tc_id": "NR1L-DisclaimerScreen-024",
-      "leaf_id": "SWE1-HMI-PM-001-01",
-      "test_group": "Disclaimer screen",
-      "test_set": "Splash Screen",
-      "tc_title": "Splash screen is presented after the startup animation",
-      "test_item": "SU1.) When the vehicle's driver door is closed a startup animation will be presented (3 sec), after the animation (3 sec) a splash screen is presented timeout (1.5 each).\n\n(正常路徑：門關閉 → 動畫 → splash；與 -025 之點火維持關閉路徑成對)",
-      "pre_conditions": "1. Start-up animation and splash screen are supported on this vehicle\n2. The driver door is open and the ignition is on",
-      "input_test_data": "NA",
-      "test_procedure": "1. Do not press the Power Off or Screen Off hard key\n2. Close the driver door and record the animation start\n3. Read the display and record the splash screen\n4. Check that the splash screen is presented after the animation",
-      "expected_result": "1. No Power Off or Screen Off hard key press occurs\n2. The startup animation is presented when the driver door is closed\n3. The splash screen is presented after the animation\n4. Each splash screen times out after 1.5 seconds",
-      "specification_reference": "Power Moding HMI Logic and Flow R1 SR24 2A_7.1",
-      "design_method": "狀態轉換 (State Transition Testing)",
-      "priority": "P1",
-      "functional_safety": "NA",
-      "estimated_test_time": "",
-      "vehicle_models": "",
-      "remarks": "Test Set: Splash Screen",
-      "reasoning": "**P1 —— 主要功能邏輯**（非 P0）：splash 未呈現不阻斷開機，其後仍到 last mode。設計方法 STATE —— 標的為門關閉所引發之畫面序列。⚠ **`source_clause` 含 A-PMH03 之漏句子句** —— `after the animation (3 sec) a splash screen is presented timeout (1.5 each).` **於 SYS1 匯出 0 命中**（13 包查出），**故本批一律取自 PDF**（R-PMH50；R-PMH75 之反轉只及於 9.1）。⚠ **§8.4.1 不造值：動畫之 `(3 sec)` 本條不斷言** —— 其屬**本批啟動動畫時序條**之標的（`SU4.)`）——**此處不以 tc_id 指涉**，理由見檔頭之 R-PMH53 註；本條只斷言其**序**（動畫之後）與 splash 之 `1.5` 逾時。⚠ **流程圖之未涵蓋項（A-PMH28）**：p3–p7 之流程圖文字層逐字載 `If vehicle supports more than 1 Splash screen, toggle them one after another with a 1.5 timeout each`，**`toggle them one after another` 於散文 0 命中**。**本條不斷言其輪替順序**（§8.4.1 不造值）；流程圖之規範性未經裁定（A-PMH04 提案 (a) 未裁）。⚠ **事件層限定一項（R-PMH55(c)／R-PMH126）** —— 其所對之斷言為 **ER3 `Each splash screen times out after 1.5 seconds`**：`SU9.1)` 逐字載按該硬鍵**會重設 splash 畫面之逾時**，與本 ER 之「1.5 秒逾時」**同謂詞取相反值**，而二者之條件**未證互斥**（R-PMH84）。**其為測試員之動作，故置於 procedure**（canon §4.5；對照 R-PMH113 之狀態型限定置於 pre_condition）。其來源 `SU9.)`／`SU9.1)` 為**他 leaf** 且依 R-PMH74 不入 leaf 母體，**故其只出現於步驟之限定子句，不擴入本條之斷言**（R-PMH55 之三判準）。",
-      "distinguishing_axis": "路徑：點火開啟下之正常序列（對 -025 之點火維持關閉）",
-      "source_clause": "SU1.) When the vehicle's driver door is closed a startup animation will be presented (3 sec), after the animation (3 sec) a splash screen is presented timeout (1.5 each).",
-      "source_clause_origin": "spec_pdf p8"
-    },
     {
       "tc_id": "NR1L-DisclaimerScreen-025",
       "leaf_id": "SWE1-HMI-PM-001-01",
@@ -93,8 +67,8 @@
       "test_item": "If ignition is turned on during animation, splash screen(s) are presented (1.5 sec timeout each).\n\n(等價類：點火於動畫期間開啟 —— 與 -025 之維持關閉成對)",
       "pre_conditions": "1. Start-up animation and splash screen are supported on this vehicle\n2. The driver door is open and the ignition is off",
       "input_test_data": "NA",
-      "test_procedure": "1. Do not press the Power Off or Screen Off hard key\n2. Close the driver door and turn the ignition on during the animation\n3. Read the display and record each splash screen and its duration\n4. Check that the splash screens are presented with a 1.5 second timeout",
-      "expected_result": "1. No Power Off or Screen Off hard key press occurs\n2. The ignition is turned on while the animation is playing\n3. The splash screens are presented\n4. Each splash screen times out after 1.5 seconds",
+      "test_procedure": "1. Do not press the Power Off or Screen Off hard key\n2. Close the driver door and turn the ignition on during the animation\n3. Read the display and record whether the animation continues\n4. Read the display and record each splash screen and its duration\n5. Read the display after the splash screens\n6. Check that the splash screens are presented with a 1.5 second timeout",
+      "expected_result": "1. No Power Off or Screen Off hard key press occurs\n2. The ignition is turned on while the animation is playing\n3. The animation is interrupted\n4. The splash screens are presented\n5. The disclaimer screen is displayed after the splash screens\n6. Each splash screen times out after 1.5 seconds",
       "specification_reference": "Power Moding HMI Logic and Flow R1 SR24 2A_7.1",
       "design_method": "等價劃分 (Equivalence Partitioning, EP)",
       "priority": "P1",
@@ -102,7 +76,7 @@
       "estimated_test_time": "",
       "vehicle_models": "",
       "remarks": "Test Set: Splash Screen",
-      "reasoning": "**P1 —— 主要功能邏輯**。設計方法 EP（同 -025 之依據，R-PMH118）。⚠ **`splash screen(s)` 之括號複數本條照抄而不判讀其數** —— ER3 斷言「各 splash 皆呈現」而不斷言其張數。⚠ **流程圖之未涵蓋項（A-PMH28）**：p3–p7 之流程圖文字層逐字載 `If vehicle supports more than 1 Splash screen, toggle them one after another with a 1.5 timeout each`，**`toggle them one after another` 於散文 0 命中**。**本條不斷言其輪替順序**（§8.4.1 不造值）；流程圖之規範性未經裁定（A-PMH04 提案 (a) 未裁）。⚠ **事件層限定一項（R-PMH55(c)／R-PMH126）** —— 其所對之斷言為 **ER3 `Each splash screen times out after 1.5 seconds`**：同 -024 —— `SU9.1)` 之逾時重設與本 ER 之「1.5 秒逾時」**同謂詞取相反值**，而二者之條件**未證互斥**（R-PMH84）。**其為測試員之動作，故置於 procedure**（canon §4.5；對照 R-PMH113 之狀態型限定置於 pre_condition）。其來源 `SU9.)`／`SU9.1)` 為**他 leaf** 且依 R-PMH74 不入 leaf 母體，**故其只出現於步驟之限定子句，不擴入本條之斷言**（R-PMH55 之三判準）。",
+      "reasoning": "**P1 —— 主要功能邏輯**。設計方法 EP（同 -025 之依據，R-PMH118）。⚠ **35 包 §3（R-PMH133）之修正**：本 leaf 之 DESC 逐字為 `If ignition is turned ON during the startup animation, the system **interrupts the animation** and plays splash screens (1.5 sec each), **then proceeds to Disclaimer**.` —— **二項原未斷言，今補為 ER2／ER4**。⚠ **`splash screen(s)` 之括號複數本條照抄而不判讀其數** —— ER3 斷言「各 splash 皆呈現」而不斷言其張數。⚠ **流程圖之未涵蓋項（A-PMH28；34a 之 R-PMH131 已定案）**：p3–p7 之流程圖文字層逐字載 `If vehicle supports more than 1 Splash screen, toggle them one after another with a 1.5 timeout each`，**`toggle them one after another` 於散文 0 命中**。**本條不斷言其輪替順序**（§8.4.1 不造值）。**R-PMH131（34a）已裁：該五類不寫 TC、登記缺口、併入 `DR-PMH8` Q7** —— **本條之「不斷言」自此為裁定而非暫置**。⚠ **流程圖之規範性本身仍未決** —— R-PMH131 只裁「不為其撰寫 TC」；其繫於 `DR-PMH8` Q7，已登記於 `PENDING-ON-DR` 第 12 筆。⚠ **事件層限定一項（R-PMH55(c)／R-PMH126）** —— 其所對之斷言為 **ER3 `Each splash screen times out after 1.5 seconds`**：同 -024 —— `SU9.1)` 之逾時重設與本 ER 之「1.5 秒逾時」**同謂詞取相反值**，而二者之條件**未證互斥**（R-PMH84）。**其為測試員之動作，故置於 procedure**（canon §4.5；對照 R-PMH113 之狀態型限定置於 pre_condition）。其來源 `SU9.)`／`SU9.1)` 為**他 leaf** 且依 R-PMH74 不入 leaf 母體，**故其只出現於步驟之限定子句，不擴入本條之斷言**（R-PMH55 之三判準）。",
       "distinguishing_axis": "等價類：點火於動畫期間開啟（對 -025 之維持關閉）",
       "source_clause": "If ignition is turned on during animation, splash screen(s) are presented (1.5 sec timeout each).",
       "source_clause_origin": "spec_pdf p8"
@@ -229,10 +203,10 @@
       "test_set": "Startup Animation",
       "tc_title": "Animation is played only once while the ignition cycle has not changed",
       "test_item": "SU5.) If ignition cycle has not changed the animation should only be played once.\n\n(計次：ignition cycle 與 CAN BUS wake up —— 與 -033 之跳過路徑成對)",
-      "pre_conditions": "1. Start-up animation is supported on this vehicle\n2. The animation has already been played once in this ignition cycle",
+      "pre_conditions": "1. Start-up animation is supported on this vehicle\n2. The ignition cycle has not changed since the animation was last played\n3. The animation has already been played once in this CAN BUS wake-up",
       "input_test_data": "NA",
-      "test_procedure": "1. Reopen and close the driver door in the same ignition cycle\n2. Check that the animation is not played a second time",
-      "expected_result": "1. The driver door is closed again within the same ignition cycle\n2. The animation is not played a second time",
+      "test_procedure": "1. Reopen and close the driver door in the same CAN BUS wake-up\n2. Check that the animation is not played a second time",
+      "expected_result": "1. The driver door is closed again in the same CAN BUS wake-up\n2. The animation is not played a second time",
       "specification_reference": "Power Moding HMI Logic and Flow R1 SR24 2A_7.6",
       "design_method": "狀態轉換 (State Transition Testing)",
       "priority": "P1",
@@ -240,7 +214,7 @@
       "estimated_test_time": "",
       "vehicle_models": "",
       "remarks": "Test Set: Startup Animation",
-      "reasoning": "**P1 —— 主要功能邏輯**。設計方法 STATE。⚠ **權威文本給二個計次單位** —— `SU5.)` 之 `ignition cycle` 與其子項之 `per CAN BUS wake up upon closing the driver door`。**規格未言二者之關係**，本條以 `ignition cycle` 為 pre_condition 之措詞並於 ER2 具名，**不斷言其與 CAN BUS wake up 等價**（§8.4.1 不造值）。⚠ **本行（L299／L300）於 29 包曾對 batch 2 之啟動音條判為牴觸** —— **對本批而言其為來源** —— 同一行對不同斷言得有不同記法（R-PMH93）。",
+      "reasoning": "**P1 —— 主要功能邏輯**。設計方法 STATE。⚠ **35 包 §4（R-PMH134 之維度三：單位）之修正** —— 本 leaf 之 DESC 逐字為 `If the ignition cycle has not changed, the system shall play the animation only once **per CAN BUS wake-up** upon closing the driver door.` —— **其計次單位為 `CAN BUS wake-up`，而 `ignition cycle` 是其前提**。本條原以 `ignition cycle` 為計次基準，**今改依 DESC**：`ignition cycle` 降為 pre_condition 2，計次基準為 pre_condition 3 與 ER1 之 `CAN BUS wake-up`。**二者之關係規格仍未言，本條不斷言其等價**（§8.4.1）。⚠ **本行（L299／L300）於 29 包曾對 batch 2 之啟動音條判為牴觸** —— **對本批而言其為來源** —— 同一行對不同斷言得有不同記法（R-PMH93）。",
       "distinguishing_axis": "路徑：同週期內重複觸發（對 -033 之點火轉 ACC/RUN/START）",
       "source_clause": "SU5.) If ignition cycle has not changed the animation should only be played once.",
       "source_clause_origin": "spec_pdf p8"
@@ -263,7 +237,7 @@
       "estimated_test_time": "",
       "vehicle_models": "",
       "remarks": "Test Set: Startup Animation",
-      "reasoning": "**P1 —— 主要功能邏輯**。設計方法 EP（門開／門關為同一條件之兩類，R-PMH118）。⚠ **`applicable splash screen` 之 `applicable` 本條不判讀** —— 規格未言其判準（哪一張為 applicable），ER3 照原文用該詞而不指定張數（§8.4.1）。⚠ **流程圖之未涵蓋項（A-PMH28）**：p3–p7 之流程圖文字層逐字載 `If vehicle supports more than 1 Splash screen, toggle them one after another with a 1.5 timeout each`，**`toggle them one after another` 於散文 0 命中**。**本條不斷言其輪替順序**（§8.4.1 不造值）；流程圖之規範性未經裁定（A-PMH04 提案 (a) 未裁）。",
+      "reasoning": "**P1 —— 主要功能邏輯**。設計方法 EP（門開／門關為同一條件之兩類，R-PMH118）。⚠ **`applicable splash screen` 之 `applicable` 本條不判讀** —— 規格未言其判準（哪一張為 applicable），ER3 照原文用該詞而不指定張數（§8.4.1）。⚠ **流程圖之未涵蓋項（A-PMH28；34a 之 R-PMH131 已定案）**：p3–p7 之流程圖文字層逐字載 `If vehicle supports more than 1 Splash screen, toggle them one after another with a 1.5 timeout each`，**`toggle them one after another` 於散文 0 命中**。**本條不斷言其輪替順序**（§8.4.1 不造值）。**R-PMH131（34a）已裁：該五類不寫 TC、登記缺口、併入 `DR-PMH8` Q7** —— **本條之「不斷言」自此為裁定而非暫置**。⚠ **流程圖之規範性本身仍未決** —— R-PMH131 只裁「不為其撰寫 TC」；其繫於 `DR-PMH8` Q7，已登記於 `PENDING-ON-DR` 第 12 筆。",
       "distinguishing_axis": "等價類：門開著時點火開啟（對 -032 之同週期重複門關閉）",
       "source_clause": "-- If vehicle ignition is turned to ACC, RUN or START ON with the door open, the animation screen shall be skipped and start from applicable splash screen.",
       "source_clause_origin": "spec_pdf p8"
@@ -286,7 +260,7 @@
       "estimated_test_time": "",
       "vehicle_models": "",
       "remarks": "Test Set: Startup Animation",
-      "reasoning": "**P1 —— 主要功能邏輯**。設計方法 STATE。⚠ **本條之三個後果（播動畫／顯示 splash／螢幕維持黑）為同一觸發之必然序列**，依 canon §5.7 不拆（對照 §8.2.2 之 bundling —— 該條所禁者為**獨立分支**，**本處為同一分支之連續後果**，二者不同）。⚠ **流程圖之未涵蓋項（A-PMH28）**：p3–p7 之流程圖文字層逐字載 `If vehicle supports more than 1 Splash screen, toggle them one after another with a 1.5 timeout each`，**`toggle them one after another` 於散文 0 命中**。**本條不斷言其輪替順序**（§8.4.1 不造值）；流程圖之規範性未經裁定（A-PMH04 提案 (a) 未裁）。",
+      "reasoning": "**P1 —— 主要功能邏輯**。設計方法 STATE。⚠ **本條之三個後果（播動畫／顯示 splash／螢幕維持黑）為同一觸發之必然序列**，依 canon §5.7 不拆（對照 §8.2.2 之 bundling —— 該條所禁者為**獨立分支**，**本處為同一分支之連續後果**，二者不同）。⚠ **流程圖之未涵蓋項（A-PMH28；34a 之 R-PMH131 已定案）**：p3–p7 之流程圖文字層逐字載 `If vehicle supports more than 1 Splash screen, toggle them one after another with a 1.5 timeout each`，**`toggle them one after another` 於散文 0 命中**。**本條不斷言其輪替順序**（§8.4.1 不造值）。**R-PMH131（34a）已裁：該五類不寫 TC、登記缺口、併入 `DR-PMH8` Q7** —— **本條之「不斷言」自此為裁定而非暫置**。⚠ **流程圖之規範性本身仍未決** —— R-PMH131 只裁「不為其撰寫 TC」；其繫於 `DR-PMH8` Q7，已登記於 `PENDING-ON-DR` 第 12 筆。",
       "distinguishing_axis": "路徑：最後狀態為 Radio OFF（對 -035 之按電源鍵開機）",
       "source_clause": "SU6.) If last state is Radio OFF, play startup animation and show applicable splash screens when driver door closed then screen remains black.",
       "source_clause_origin": "spec_pdf p8"

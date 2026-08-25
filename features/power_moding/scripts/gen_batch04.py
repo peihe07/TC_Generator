@@ -89,14 +89,25 @@ _OLD_R55 = ("⚠ **事件層限定一項（R-PMH55(c)）**：`SU9.1)` 逐字載�
        "其來源 `SU9.)`／`SU9.1)` 為**他 leaf**且依 R-PMH74 不入 leaf 母體，"
        "**故其只出現於步驟之限定子句，不擴入本條之斷言**（R-PMH55 之三判準）。")
 
-DIAG = ("⚠ **流程圖之未涵蓋項（A-PMH28）**：p3–p7 之流程圖文字層逐字載 "
+DIAG = ("⚠ **流程圖之未涵蓋項（A-PMH28；34a 之 R-PMH131 已定案）**：p3–p7 之流程圖文字層逐字載 "
         "`If vehicle supports more than 1 Splash screen, toggle them one after another with a "
         "1.5 timeout each`，**`toggle them one after another` 於散文 0 命中**。"
-        "**本條不斷言其輪替順序**（§8.4.1 不造值）；流程圖之規範性未經裁定（A-PMH04 提案 (a) 未裁）。")
+        "**本條不斷言其輪替順序**（§8.4.1 不造值）。"
+        "**R-PMH131（34a）已裁：該五類不寫 TC、登記缺口、併入 `DR-PMH8` Q7** —— "
+        "**本條之「不斷言」自此為裁定而非暫置**。"
+        "⚠ **流程圖之規範性本身仍未決** —— R-PMH131 只裁「不為其撰寫 TC」；"
+        "其繫於 `DR-PMH8` Q7，已登記於 `PENDING-ON-DR` 第 12 筆。")
 
 TCS = [
  # ===== Splash Screen（3 leaf → 4 條）=====
- dict(leaf="SWE1-HMI-PM-001-01", outline="7.1", ts=SS, src="SU1_splash", dm=STATE, pri="P1",
+ # ⚠ **R-PMH129（34 包）：本條撤除，不寫入交付工作簿。**
+ #   `SU1.)` 之「動畫後呈現 splash，1.5 each」一句於 SYS1 匯出 **0 命中**（A-PMH03），
+ #   037 因而無對應 outline、**無 leaf**；依 R-PMH55(b) 不得為其撰寫 TC。
+ #   **32 包 §4.2(a)（令其 `source_clause` 須含該子句）已撤回。**
+ #   **其定義保留於此（R-PMH44 原文不刪），以 `dropped=True` 排除於輸出**，
+ #   使其後各條之 tc_id 位次不變（provisional，末次統一指派）。
+ dict(dropped=True,
+   leaf="SWE1-HMI-PM-001-01", outline="7.1", ts=SS, src="SU1_splash", dm=STATE, pri="P1",
    lim=("ER3 `Each splash screen times out after 1.5 seconds`",
         "`SU9.1)` 逐字載按該硬鍵**會重設 splash 畫面之逾時**，與本 ER 之「1.5 秒逾時」**同謂詞取相反值**"),
    title="Splash screen is presented after the startup animation",
@@ -143,12 +154,19 @@ TCS = [
    pre=["Start-up animation and splash screen are supported on this vehicle",
         "The driver door is open and the ignition is off"],
    proc=["Close the driver door and turn the ignition on during the animation",
+         "Read the display and record whether the animation continues",
          "Read the display and record each splash screen and its duration",
+         "Read the display after the splash screens",
          "Check that the splash screens are presented with a 1.5 second timeout"],
    er=["The ignition is turned on while the animation is playing",
+       "The animation is interrupted",
        "The splash screens are presented",
+       "The disclaimer screen is displayed after the splash screens",
        "Each splash screen times out after 1.5 seconds"],
    reason=("**P1 —— 主要功能邏輯**。設計方法 EP（同 -025 之依據，R-PMH118）。"
+     "⚠ **35 包 §3（R-PMH133）之修正**：本 leaf 之 DESC 逐字為 `If ignition is turned ON "
+     "during the startup animation, the system **interrupts the animation** and plays splash "
+     "screens (1.5 sec each), **then proceeds to Disclaimer**.` —— **二項原未斷言，今補為 ER2／ER4**。"
      "⚠ **`splash screen(s)` 之括號複數本條照抄而不判讀其數** —— "
      "ER3 斷言「各 splash 皆呈現」而不斷言其張數。" + DIAG),
    axis="等價類：點火於動畫期間開啟（對 -025 之維持關閉）"),
@@ -250,16 +268,20 @@ TCS = [
    title="Animation is played only once while the ignition cycle has not changed",
    item="(計次：ignition cycle 與 CAN BUS wake up —— 與 -033 之跳過路徑成對)",
    pre=["Start-up animation is supported on this vehicle",
-        "The animation has already been played once in this ignition cycle"],
-   proc=["Reopen and close the driver door in the same ignition cycle",
+        "The ignition cycle has not changed since the animation was last played",
+        "The animation has already been played once in this CAN BUS wake-up"],
+   proc=["Reopen and close the driver door in the same CAN BUS wake-up",
          "Check that the animation is not played a second time"],
-   er=["The driver door is closed again within the same ignition cycle",
+   er=["The driver door is closed again in the same CAN BUS wake-up",
        "The animation is not played a second time"],
    reason=("**P1 —— 主要功能邏輯**。設計方法 STATE。"
-     "⚠ **權威文本給二個計次單位** —— `SU5.)` 之 `ignition cycle` 與其子項之 "
-     "`per CAN BUS wake up upon closing the driver door`。**規格未言二者之關係**，"
-     "本條以 `ignition cycle` 為 pre_condition 之措詞並於 ER2 具名，"
-     "**不斷言其與 CAN BUS wake up 等價**（§8.4.1 不造值）。"
+     "⚠ **35 包 §4（R-PMH134 之維度三：單位）之修正** —— 本 leaf 之 DESC 逐字為 "
+     "`If the ignition cycle has not changed, the system shall play the animation only once "
+     "**per CAN BUS wake-up** upon closing the driver door.` —— "
+     "**其計次單位為 `CAN BUS wake-up`，而 `ignition cycle` 是其前提**。"
+     "本條原以 `ignition cycle` 為計次基準，**今改依 DESC**：`ignition cycle` 降為 pre_condition 2，"
+     "計次基準為 pre_condition 3 與 ER1 之 `CAN BUS wake-up`。"
+     "**二者之關係規格仍未言，本條不斷言其等價**（§8.4.1）。"
      "⚠ **本行（L299／L300）於 29 包曾對 batch 2 之啟動音條判為牴觸** —— "
      "**對本批而言其為來源** —— 同一行對不同斷言得有不同記法（R-PMH93）。"),
    axis="路徑：同週期內重複觸發（對 -033 之點火轉 ACC/RUN/START）"),
@@ -355,6 +377,9 @@ def norm_item(s: str) -> str:
 def main() -> None:
     out = []
     for n, t in enumerate(TCS, BASE + 1):
+        # R-PMH129：撤除之條**不入輸出而其位次保留** —— tc_id 不重編。
+        if t.get("dropped"):
+            continue
         # R-PMH126：限定**逐條導出**。有 `lim` 者方插入其步驟與 ER，
         # **編號由此處產生** —— 使增刪一項不必手動重編十四條。
         proc, er = list(t["proc"]), list(t["er"])
@@ -393,7 +418,7 @@ def main() -> None:
         "feature": "power_moding",
         "test_group": "Disclaimer screen",
         # **本批為兩個 Test Set** —— lint 之讀法隨之一般化（32 §4.4(c)）
-        "test_sets": sorted({t["ts"] for t in TCS}),
+        "test_sets": sorted({t["ts"] for t in TCS if not t.get("dropped")}),
         "handoff": "docs/handoff/32_batch4.md",
         "profile": "docs/runtime/profiles/FW036_R1L_PowerModing_Profile.md",
         "selection": ("Test Set `Startup Animation`(9 leaf) ＋ `Splash Screen`(3 leaf)，"
@@ -401,14 +426,15 @@ def main() -> None:
                       "`-001-01` 拆 2（點火開啟／維持關閉）、`-010` 拆 2（開機同步／中斷停止），"
                       "皆依 profile §4 與 canon §8.2.2。"),
         "tc_id_status": "provisional",
-        "leaf_scope": sorted({t["leaf"] for t in TCS}),
+        "leaf_scope": sorted({t["leaf"] for t in TCS if not t.get("dropped")}),
         "source_clause_basis": ("R-PMH50 —— **一律取自 spec_pdf p8**（R-PMH75 之反轉只及於 9.1）。"
                                 "`-024`／`-026` 之 `source_clause` **含 A-PMH03 所查出、"
                                 "SYS1 0 命中之子句**。"),
         "write_back": "凍結 —— 本批只產出 JSON，不寫回工作簿",
         # R-PMH126：**十四筆減為實際導出者** —— 無 `lim` 者不入。
         "limits": {f"NR1L-DisclaimerScreen-{BASE + 1 + i:03d}": LIMIT_TOKENS_B4
-                   for i, x in enumerate(TCS) if x.get("lim")},
+                   for i, x in enumerate(TCS)
+                   if x.get("lim") and not x.get("dropped")},
         "tcs": out,
     }
     p = ROOT / "generated" / "batch04.json"

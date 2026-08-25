@@ -891,7 +891,7 @@ Thank you,
 第三問之覆蓋缺口另記於 `ANOMALIES.md`（R-PMH109 末）。
 
 **狀態**：`DRAFT`　**發出日期**：（待填）　**對象**：（待填）
-　**SHA256（前 16）**：`cbcd34eb07cc5352`
+　**SHA256（前 16）**：`41926e3de87df5c4`
 
 > **29b（R-PMH112）**：首段加入**對上游已作陳述之更正句** —— 2026-08-25 所發之 `DR-PMH5` 逐字載
 > 「我方已暫停 section 9 之 TC 撰寫」，該陳述因 R-PMH111 之限縮解凍而不再成立。
@@ -1001,6 +1001,33 @@ Second, three points where the documents do not define something we need:
       Our test cases for section 9 are written with a pre-condition that no call
       is active, so this combination is not covered by any of them. We would
       rather leave it uncovered than guess which behaviour is intended.
+
+  Q6: The following clause appears in the logic and flow document but not in the
+      SYS1 structured export, and consequently has no requirement in the SWE.1
+      analysis report:
+
+          SU1.) ... after the animation (3 sec) a splash screen is presented
+          timeout (1.5 each).
+
+      Should it be included in the analysis report? At present no test case
+      covers it, because we do not author test cases for behaviour that has no
+      requirement of its own.
+
+  Q7: The flow diagrams on pages 3 to 7 contain statements that do not appear in
+      the prose sections. One example, verbatim:
+
+          If vehicle supports more than 1 Splash screen, toggle them one after
+          another with a 1.5 timeout each
+
+      Two questions: are the flow diagrams normative, and should the statements
+      they contain that are absent from the prose be added as requirements? We
+      have found five such statements and can list them all if useful.
+
+  Q8: SU6 and the related requirement both state that the disclaimer screen is
+      displayed "unless certain phone call scenarios have occurred", without
+      saying which scenarios those are. Could you list them? At present our test
+      case for that requirement does not exclude any call scenario, because we
+      do not know which ones to exclude.
 
 Thank you,
 ```

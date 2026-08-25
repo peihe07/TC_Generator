@@ -125,7 +125,7 @@ TCS = [
      "Maserati 之正常運作**，「永遠停住」不成立。採 15 包 §3.2 之案（甲）降 P1。"
      "同 leaf 之第二條（profile §4 之不同觸發，見 -002）。"
      "設計方法 STATE —— 標的為逾時所引發之狀態離開。"
-     "⚠ §8.4.1 不造值：**規格未載逾時之秒數**，亦**未言逾時等同 Accept** —— "
+     "⚠ ⚠ **35 包步驟 3（R-PMH133 之回溯）—— 本段之後半已被 037 之 DESC 推翻**：本 leaf 之 `Requirement Description` 逐字為 `The system allows the user to either press Accept to go directly to last mode screen, or wait for timeout (**which automatically equals Accept**).` —— **「逾時等同 Accept」在 037 內明載**，故「未言」只在規格 PDF 側成立。**本條之射程因而不足（未斷言其等同 Accept），其修正不在 35 包步驟 4 之七處內，且其動到 batch 1 —— 已具名待裁，本包未改。**⚠ **以下為 13 包當時之陳述，依 R-PMH44 保留，其後半之前提已不成立**：§8.4.1 不造值：**規格未載逾時之秒數**，亦**未言逾時等同 Accept** —— "
      "本條只斷言「畫面移除並顯示 last mode screen」，"
      "**不斷言其等同 Accept**（13 包 §4.4 之更正）。"
      "⚠ §8.5：pre-condition 之 non-Maserati **是必要的** —— 逾時本身即 Maserati "

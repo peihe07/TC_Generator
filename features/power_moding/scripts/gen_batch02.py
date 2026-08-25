@@ -72,7 +72,7 @@ TCS = [
      "⚠ §8.4.1 不造值：**規格未給任何秒數**（`SSND 1)` 只說 `sync`），"
      "故 ER 只斷言「同步」而不斷言任何時間差。"
      "§4.3.1：test_item 上半為 source_clause 之逐字子句。"
-     "⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。" "source_clause 取自 PDF p8 之 SSND 1)（R-PMH50）。"),
+     "⚠ **35 包 §4（R-PMH126 之形式要求）之補具名** —— 本條之限定所對之斷言為 **ER3 `The start-up sound starts when the driver door is closed`**。**其陳述於本條為真**（34 包 §7.1 已逐條實查），**故本條只補具名，不重做**。⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。" "source_clause 取自 PDF p8 之 SSND 1)（R-PMH50）。"),
    axis="觸發路徑：駕駛門關閉（對 -010 之關機動畫）"),
 
  dict(leaf="SWE1-HMI-PM-012", outline="8.1", src="SSND1", dm=STATE, pri="P1",
@@ -105,7 +105,7 @@ TCS = [
      "⚠ **關機動畫之觸發條件不在本條射程** —— `SU4.)`（outline 7.5）載其須 "
      "`KEY OFF 與 radio UI shut down` 之組合，**該條屬 `Startup Animation` 組**，"
      "故本條之步驟 1 只說 `Trigger the shut-down animation` 而不重述其條件（§8.5）。"
-     "⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。" "source_clause 取自 PDF p8 之 SSND 1)（R-PMH50）。"),
+     "⚠ **35 包 §4（R-PMH126 之形式要求）之補具名** —— 本條之限定所對之斷言為 **ER4 `The goodbye sound starts at the start of the animation`**。**其陳述於本條為真**（34 包 §7.1 已逐條實查），**故本條只補具名，不重做**。⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。" "source_clause 取自 PDF p8 之 SSND 1)（R-PMH50）。"),
    axis="觸發路徑：關機動畫開始（對 -009 之駕駛門關閉）"),
 
  dict(leaf="SWE1-HMI-PM-013", outline="8.2", src="SSND2", dm=FUNC, pri="P1",
@@ -154,7 +154,7 @@ TCS = [
      "⚠ **本條之觸發為「開機動畫播放」而非「駕駛門關閉」** —— `SSND 2.1)` 逐字為 "
      "`everytime the startup animation is played`，與 `SSND 1)` 之門關閉觸發不同；"
      "**故其步驟以動畫之播放為觸發，不重述門之操作**（§8.5）。"
-     "⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。" "source_clause 取自 PDF p8 之 SSND 2.1)（R-PMH50）。"),
+     "⚠ **35 包 §4（R-PMH126 之形式要求）之補具名** —— 本條之限定所對之斷言為 **ER3 `The sound was played on both occasions`**。**其陳述於本條為真**（34 包 §7.1 已逐條實查），**故本條只補具名，不重做**。⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。" "source_clause 取自 PDF p8 之 SSND 2.1)（R-PMH50）。"),
    axis="設定值：Always（對 -013 之 Once a Day、-014 之 Never）"),
 
  dict(leaf="SWE1-HMI-PM-015", outline="8.2.2", src="SSND2_2", dm=EP, pri="P1",
@@ -184,7 +184,7 @@ TCS = [
      "故 pre-condition 只寫「今日尚未播放過」而不指任何時刻，"
      "**步驟亦只說 `on the same day` 而不給任何時間值**。"
      "**該未定義已具名，若上游另有定義則本條之步驟須重寫。**"
-     "⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。" "source_clause 取自 PDF p8 之 SSND 2.2)（R-PMH50）。"),
+     "⚠ **35 包 §4（R-PMH126 之形式要求）之補具名** —— 本條之限定所對之斷言為 **ER4 `The sound was played once and not on the second occasion`**。**其陳述於本條為真**（34 包 §7.1 已逐條實查），**故本條只補具名，不重做**。⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。" "source_clause 取自 PDF p8 之 SSND 2.2)（R-PMH50）。"),
    axis="設定值：Once a Day（對 -012 之 Always、-014 之 Never）"),
 
  dict(leaf="SWE1-HMI-PM-016", outline="8.2.3", src="SSND2_3", dm=EP, pri="P1",
@@ -223,7 +223,7 @@ TCS = [
      "**其餘情境未驗，據實記載**（此為 NEG 之固有限度，非本條之疏漏）。"
      "**與 -012／-013 不同級之判斷**：三者皆 P1 —— 其失效之後果同為「音效行為錯誤」，"
      "無 R-PMH59 意義下之級差（本批八條之 priority 依據互不矛盾）。"
-     "⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。 **本條為負向（`Never`）**，其風險形態與正向相反：**靜音會使本條以錯誤之理由通過**（canon §7 之 false pass）——**該限定於本條尤其不可省。**" "source_clause 取自 PDF p8 之 SSND 2.3)（R-PMH50）。"),
+     "⚠ **35 包 §4（R-PMH126 之形式要求）之補具名** —— 本條之限定所對之斷言為 **ER3 `No start-up sound is played when the driver door is closed`（負向）**。**其陳述於本條為真**（34 包 §7.1 已逐條實查），**故本條只補具名，不重做**。⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。 **本條為負向（`Never`）**，其風險形態與正向相反：**靜音會使本條以錯誤之理由通過**（canon §7 之 false pass）——**該限定於本條尤其不可省。**" "source_clause 取自 PDF p8 之 SSND 2.3)（R-PMH50）。"),
    axis="設定值：Never，負向（對 -012 之 Always、-013 之 Once a Day）"),
 
  dict(leaf="SWE1-HMI-PM-017", outline="8.3", src="SSND3", dm=FUNC, pri="P2",
@@ -258,7 +258,7 @@ TCS = [
      "故 ER 只斷言「相符」而不給任何數值或百分比。"
      "**⚠ 本條為本批唯一之 P2** —— 其依據為「其失效不使任何功能缺失」，"
      "與 -012～-014 之「音效行為錯誤」不同量級（R-PMH59：批內依據互不矛盾）。"
-     "⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。" "source_clause 取自 PDF p8 之 SSND 3)（R-PMH50）。"),
+     "⚠ **35 包 §4（R-PMH126 之形式要求）之補具名** —— 本條之限定所對之斷言為 **ER3 `The start-up sound is played and its volume level is recorded`**。**其陳述於本條為真**（34 包 §7.1 已逐條實查），**故本條只補具名，不重做**。⚠ **R-PMH94／R-PMH95（28 包步驟 6 之掃描）—— 事件層限定二項**：本條之 ER 斷言「聲音有／無播放」，而 State Matrix `r45`（`Mute Button Pressed`）之 `Mute --> Active` **使聲音不可聞**，其欄軸 `Key On, Gear != Reverse` **與本條之相位重疊**，**條件互斥未證 → 牴觸**（R-PMH84）。步驟 1 排除之。`r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`）之 `Else: Mute Active` **記法未定義**（A-PMH22）—— 依 **R-PMH95** 納入限定以**涵蓋兩讀**，不判讀該歧義。" "source_clause 取自 PDF p8 之 SSND 3)（R-PMH50）。"),
    axis="謂詞：音量位準（對 -009 之是否播放與是否同步）"),
 ]
 

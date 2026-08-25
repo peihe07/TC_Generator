@@ -1578,7 +1578,7 @@ Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
 
 ---
 
-## A-PMH25 — 9.1 之**權威文本**於逾時處為破句 · 30 包步驟 4 · PENDING
+## A-PMH25 — 9.1 之**權威文本**於逾時處為破句 · 30 包步驟 4 · **RESOLVED（037 之 DESC 為完整句，34 包查出 —— 見本檔末之更正節）**
 
 **依 R-PMH75，9.1 之權威文本為 SYS1 匯出**（PDF 側為未刪淨之舊文字）。
 該權威文本於逾時處逐字為：
@@ -1685,7 +1685,7 @@ Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
 
 ---
 
-## A-PMH28 — p3–p7 流程圖之文字層載有散文所無之行為 · 32 包步驟 3／4 · PENDING
+## A-PMH28 — p3–p7 流程圖之文字層載有散文所無之行為 · 32 包步驟 3／4 · **ACCEPTED（R-PMH131：不寫 TC、登記缺口、入 `DR-PMH8` Q7）**
 
 **A-PMH04 之重驗所得**（32 包步驟 4）。其六則圖片佔位 outline 為
 `2.1`／`3.1`／`4.1`／`5.1`／`6.1`／`12.4`，**無一落在 7.5～7.8**，
@@ -1715,6 +1715,83 @@ Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
 
 **未開 DR** —— 其形態屬「流程圖是否為需求來源」之政策問題，**應併入 A-PMH04 之處置一併裁定**。
 ⚠ **該判斷未經裁定。**
+
+---
+
+## A-PMH29 — `SU1.)` 之「動畫後呈現 splash」一句無 leaf，其行為無 TC 覆蓋 · 34 包 §2.3 · PENDING
+
+**依據**：**R-PMH129**（`-024` 撤除）。
+
+**逐字**（PDF p8，`SU1.)`）：
+
+    after the animation (3 sec) a splash screen is presented timeout (1.5 each).
+
+**該句於 SYS1 匯出 0 命中**（A-PMH03，13 包查出）→ **037 無對應 outline → 無 leaf**
+→ 依 **R-PMH55(b)** 不得為其撰寫 TC。
+
+**其形態與 A-PMH13（`-028`）／A-PMH27（`-002`）相同** ——
+皆為「規格文件中存在、而該內容無 037 需求」者，**處置一致：不寫 TC、登記缺口**。
+**其別在於成因**：`-028`／`-002` 之行為委於外部規格，本項為 **SYS1 匯出漏句**。
+
+**風險具名**：**splash 於動畫後之呈現與其 1.5 秒逾時，不會有任何一條 TC 驗到。**
+⚠ **`-026` 驗的是另一條路徑**（點火於動畫期間開啟 → splash），
+**其 leaf `-001-02` 之 DESC 自有其句**，二者不可互相替代。
+
+**已併入 `DR-PMH8` Q6**，並登記於 `PENDING-ON-DR` 第 11 筆。
+
+---
+
+## A-PMH25 之更正（34 包步驟 3 所得）—— **其前提已被 037 之 DESC 推翻**
+
+A-PMH25 原記「9.1 之權威文本於逾時處為破句，**其秒數無法確定**」，
+`-016` 因而**不斷言任何逾時秒數**。
+
+**34 包以 037 之 `Requirement Description` 複驗，該處為完整句**：
+
+    If the user does not interact with the popup within the 60-second timeout
+    defined in the pop-up list, the system shall close the popup. If no other
+    popups remain, the system shall shut off the radio.
+
+**60 秒之值在 037 內，且其後二句（popup 關閉／radio 關機）亦完整。**
+
+**故 A-PMH25 之「無法確定」不成立** —— 其**只在 SYS1 側不成立**，
+而 **037 為需求單位之權威**（canon §8.2）。
+
+**A-PMH25 狀態改為 `RESOLVED（037 之 DESC 為完整句，34 包查出）`；
+其原文依 R-PMH44 保留。**
+
+⚠ **其連帶**：`-016` 之射程因而**不足**（未斷言 60 秒逾時、未斷言 popup 關閉與 radio 關機）
+—— **停止條件 7 觸發，見上繳 §3**。**本包未自行改，依下放包「不自行改掛」。**
+
+---
+
+## A-PMH30 — 037 於兩個 leaf 重複同一行為，致其一之 DESC 首句無本 leaf 之 TC · 35 包步驟 4 · PENDING（低）
+
+**只記現象，不判其為 037 之缺陷，不對 RD 提異議**（35 包步驟 4 明令）。
+
+| leaf | DESC | 承載之 TC |
+|---|---|---|
+| `SWE1-HMI-PM-001-01` | **A1** `When driver door is closed, the system plays a 3-second startup animation.` | **無本 leaf 之 TC** |
+| | A2 `If ignition remains OFF after animation, the system turns the screen black.` | `-025` |
+| `SWE1-HMI-PM-006-01` | `If start-up animation is supported, the system shall start it upon driver door close and conclude it within 3 seconds.` | `-028` |
+
+**`-001-01` 之 A1 與 `-006-01` 之 DESC 為同一行為**（門關閉 → 3 秒啟動動畫），
+**其行為已由 `-028` 驗到**，惟 `-028` 掛 `-006-01`。
+
+**同型第二例**（本包步驟 2 之涵蓋表另查出）：
+
+| leaf | DESC | 承載之 TC |
+|---|---|---|
+| `SWE1-HMI-PM-003` | **A2** `No timeout is provided for Maserati applications, see CFTS009.` | **無本 leaf 之 TC** |
+| `SWE1-HMI-PM-001-05` | `Exception: For Maserati applications, the system provides no timeout …` | `-004` |
+
+**故本現象非單一** —— **037 於至少二處以兩個 leaf 承載同一行為**。
+
+**其效力**：依 R-PMH133，`-001-01` 之 A1 與 `-003` 之 A2 **在其本 leaf 上為 `未涵蓋`**；
+**惟該行為本身有 TC 驗到**。**二者之別在於追溯，不在於覆蓋。**
+
+**未處置**：不補 TC（其為重複驗證），不改 leaf 指派（037 為權威），不提異議（明令）。
+**若日後之交付要求「每 leaf 之每一斷言於該 leaf 上皆有 TC」，則此二處須補。**
 
 ---
 
