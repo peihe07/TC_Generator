@@ -65,6 +65,11 @@ sign-off = binding as proposed.
 - **⚠ `RESIDUE_VERDICT` 之第二來源尚未建立**: [KNOWN-INCOMPLETE — 19 §14 第 2 項，20 包步驟 7 明令登記] `chapter_bidirectional.py` 之 20 條殘餘人讀結論，其中 13 條為執行層本人所寫，**既是判準之作者也是那個「人」**。其正解為分析層人讀，**已排入下一輪**。本項為已知未完成，非疏漏、亦非 RESOLVED（通則 8）
 - **`10.3`（PITA6）之撰寫方式**: [RULED R-PMH80] `Power Off Behavior` 組（8 leaf）**得開批**。其 `10.3` 之 TC **Pre-Condition 須加「倒車影像未顯示（`Gear != Reverse`）」**（依 R-PMH55 之形態限縮，來源矩陣 `r48c10` 於 `reasoning` 具名）；RVC 情境之 `Popup not displayed over RVC` **只在矩陣有、規格未載**，依 R-PMH55(b) **不撰 TC**，登記為覆蓋缺口並開 `DR-PMH6`。**執行層所提之「PITA4 通則／例外」調和不採** —— `PITA4` 之對象為按鍵輸入，非 popup 之顯示
 - **章 8／章 11 尚未與 State Matrix 對照**: [KNOWN-INCOMPLETE — 21 包 §3／A-PMH18 補記] ch 7 已全對照（30 事件列，牴觸 0），ch 10／12 於 20 包部分對照。**章 8（6 leaf）與章 11（5 leaf）完全未對照**，而矩陣之 `VR button long press without/at Projection`（`r11`／`r12`／`r28`／`r29`）與 ch 11 之 `VRLP1` 顯有共同主題。**該二章開批前應先完成其對照**
+- **batch 1 之覆核線結束（R-PMH103）**: [CLOSED — 28 包步驟 4] batch 1（8 條 TC，7 leaf）之覆核線依 R-PMH103 結束 —— 27 包之六項自評中**三項實質、三項精化**，為 Phase 4 開批十六輪以來首次多數不指向產出可能有錯。三項實質項已於 28 包處理（待判定不再計入已判定／PC 全枚舉 4,176 項／`test_procedure` 逐步驟二分 25 步）。**其殘餘為三項精化 ＋ `-007` 之 `L160` 待確認（`DR-PMH7`）。batch 1 仍不得寫回工作簿，其阻斷改為單一項：`tc_id` 為 provisional，待全 47 leaf 完成後單次指派**（12 包 §五）
+- **KNOWN-INCOMPLETE（一）切分之連接詞仍是列舉**: [R-PMH103 之精化項] `SPLIT_CONNECTIVES` 為五個連接詞之列舉；**以無連接詞之並置表達之複合命題不會被切開**。**風險**：某 TC 之 ER 含兩個命題而只被判為一個，其中一個因而未經掃描 —— **27 包之 `-003` ER2 即此形態之實例（已修）**，惟該次是靠 `while` 被列入才抓到。**不再排程**
+- **KNOWN-INCOMPLETE（二）`SPLIT_REVIEW` 無第二來源**: [R-PMH103 之精化項] R-PMH101(b) 令「人讀複核」，**而產生候選與複核為同一人**。**風險**：某候選被錯判為「非獨立命題」而併回，其斷言因而不入母體。**現行八項複核中兩項判為不接受（`-005`／`-006` PC2.2），其原句確為單一命題，可覆查。不再排程**
+- **KNOWN-INCOMPLETE（三）規格側之全枚舉未做**: [R-PMH103 之精化項] R-PMH98 現只實施矩陣側（174 格 × 各斷言）。規格側之母體已界定並量為 **235 行**（p8–p11 之敘述行，27 包步驟 6），**惟未做逐行判定**。**風險**：規格自身之某行與某斷言取相反值而其用詞未被關鍵詞命中 —— **23 包之 `pop-up` 掃描曾以關鍵詞查出 p9 之兩行（A-PMH21），故該風險非理論**。**不再排程**
+- **batch 2 之產出**: [28 包步驟 5] `Startup Sounds`（ch 8，6 leaf）→ **7 條 TC**（`SWE1-HMI-PM-012` 依 profile §4 拆為 2 條）。**選批理由三項皆可查**：章 8 雙向複驗新漏 0（17 包）／矩陣全對照牴觸 0（26 包）／marker 6/6 全在 SYS1（14 包）；**不受任何 DR 阻斷**。`tc_id` 續為 provisional，**零寫回**
 - BLOCKED batches at start: [AUTO] **0** —— 29/29 章節於 SYS1 命中、48/48 leaf 之 `pdf_page` 已解、無 DR-PMH 待答
 
 ---

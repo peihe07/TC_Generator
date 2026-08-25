@@ -33,6 +33,8 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 24 | 2026-08-25 | **正向記法**、A-PMH21 以渲染改判、ER4(b) 之牴觸 | [handoff/24_positive_form.md](handoff/24_positive_form.md) | [upstream/24_positive_form.md](upstream/24_positive_form.md) | R-PMH91–R-PMH93（逐字抄錄 3/3 相符） | **A-PMH21 改判為「未對照」**（原文保留） | **⚠ 停止條件 7 觸發（`r45` × ER4(b)）；ch 10 牴觸 1（已登記）；總表機器化，六支「未實測」** |
 | 25 | 2026-08-25 | **限定逐斷言導出（4→7）**、欄位以字級座標確認 | [handoff/25_limitation_union.md](handoff/25_limitation_union.md) | [upstream/25_limitation_union.md](upstream/25_limitation_union.md) | R-PMH94–R-PMH96（逐字抄錄 3/3 相符） | **A-PMH22（`Else: Mute Active` 記法未定義）**；A-PMH21 依據更換 | **三條停止條件全未觸發；ER1～5 逐斷言掃描牴觸 0；lint 30/30** |
 | 26 | 2026-08-25 | **斷言二分**、矩陣側全枚舉、限定合併之 lint | [handoff/26_enumeration_over_keywords.md](handoff/26_enumeration_over_keywords.md) | [upstream/26_enumeration_over_keywords.md](upstream/26_enumeration_over_keywords.md) | R-PMH97–R-PMH99（逐字抄錄 3/3 相符） | （無新 A-PMH；`DR-PMH7` 增二問） | **三條停止條件全未觸發；batch 1 涵蓋率 78%→100%；lint 31/31；章 12 全對照完成** |
+| 27 | 2026-08-25 | **落選即判定**、切分以謂詞為準、Pre-Condition 納入 | [handoff/27_verdict_for_every_cell.md](handoff/27_verdict_for_every_cell.md) | [upstream/27_verdict_for_every_cell.md](upstream/27_verdict_for_every_cell.md) | R-PMH100–R-PMH102（逐字抄錄 3/3 相符） | （無新 A-PMH） | **三條停止條件全未觸發；PC 24 斷言牴觸 0；lint 32/32；查出一個先前未被掃描之 SUT 斷言** |
+| 28 | 2026-08-25 | **覆核線收束**、apparatus 凍結、**batch 2（Startup Sounds）** | [handoff/28_batch2.md](handoff/28_batch2.md) | [upstream/28_batch2.md](upstream/28_batch2.md) | R-PMH103–R-PMH104（逐字抄錄 2/2 相符） | （無新 A-PMH） | **⚠ 停止條件 7 觸發並已解（`r45` × 音訊斷言）；batch 2 = 7 TC / 6 leaf，lint 32/32；新增檢查 0** |
 
 ## 01 輪要點
 
@@ -1637,3 +1639,135 @@ shall be displayed` ——**互斥之依據自此為規格文字**。
 **待 Pei**：三筆 DR 之發出（**`DR-PMH7` 現含三問**：`VP`／`Else: Mute Active`／
 `Note:` 之範圍）／關鍵詞仍在決定入選／斷言切分規則之驗證／
 `pre_conditions`・`test_procedure` 之斷言不入母體／26 之 commit 授權（11 路徑）。
+
+---
+
+## 27 包要點
+
+### ⚠ 切分改以謂詞為準後，查出一個**先前完全未被掃描**之 SUT 斷言
+
+`-003` ER2 逐字：`No user input is given while the disclaimer screen times out`
+
+| 切分依據 | 結果 |
+|---|---|
+| ` and `（26 包） | **1 個斷言**，類為**測試執行** → 依 R-PMH97 **不入母體** |
+| **謂詞**（27 包） | **2 個斷言**，後半 `the disclaimer screen times out` 為 **SUT 行為斷言** → **入母體** |
+
+**故該 SUT 斷言先前不是「掃了而未發現」，是「從未被掃」。**
+**連接詞決定切分時，一個 SUT 斷言可以整個消失在一個測試執行斷言背後。**
+
+判定：矩陣無 `timeout`（0 命中），其 `Timer` 8 處全為 `Radio Off Delay` → **未對照**。
+
+### 落選即判定（R-PMH100）—— 174 格全部入表，**偽陰自此可檢查**
+
+| 斷言 | 記法分布 | 「入選而列層未具名 → 須人讀」 | 分類錯誤稽核 |
+|---|---|---:|---:|
+| `popup` | 未對照 174 | **21** | 0 |
+| `audio` | 未對照 165／**牴觸 9** | 0 | 0 |
+| `announcement` | 未對照 174 | 0 | 0 |
+| `popup_after` | 未對照 174 | **21** | 0 |
+
+**must-hit**：令 `audio` 之謂詞域失效 → 稽核由 0 增為 **47 格**，攔下；
+注入 `Event ignored` → 仍 0，不誤報。
+
+**其意義**：改造前，某格因用詞未被想到而**不存在於輸出**，**無從構造任何錨點**；
+改造後其錯誤形態變為「分類錯誤」，**可構造錨點**。
+**R-PMH98 之實質不是消滅列舉，是使列舉之錯誤變成可檢查的。**
+
+### Pre-Condition 納入母體（R-PMH102）—— **24 個斷言，牴觸 0**
+
+三個最接近者皆為 `-008`（`Power Button OFF`／`Key-on`／`Call Active` 三個
+**共同名詞**）—— 判 `未對照` 之依據為**矩陣以其為軸（情境條件）而非斷言**，
+**軸不斷言 SUT 是否可處於該狀態**。
+
+**R-PMH102 所慮之情形（素材斷言「SUT 不可能處於該狀態」→ TC 不可執行）
+實測不存在。**
+
+### 其餘
+
+- **lint 32/32**：新增 R-PMH99(a)「每步限定項數 ≤ 2」之機器判定 ——
+  **26 §12 第 4 項自陳「2/2/2/1 是我自己數的」自此由機器判定**；
+  must-hit 三項全過（刪去 7/7／重複／**一步含三項**）
+- **規格側母體已界定**：PDF 全文 512 行 → **母體（p8–p11 敘述行）235 行**，
+  排除規則逐項具名。**本輪只量不判**（下放包明令）
+- **檢查總表之「未實測」由 8 降為 4** —— `spec_assertion_scan` 已註冊 must-hit
+- `verdict_form.py` 之母體由 176 增為 **964**，未以四詞作結者 0
+
+### ⚠ 本輪自陳之未竟項中，三項須先看（上繳 §12）
+
+1. **`popup`／`popup_after` 之 21 格記 `未對照` 而其實是「尚未判定」** ——
+   我在輸出裡具名了，**但 `verdict_form.py` 之 964 項統計把它們算成已作結之
+   `未對照`**。**一個「待判定」被計入了「已判定」之總數。**
+2. **PC 之 24 個斷言中 21 個之依據是同一組零命中探針，而那組探針是我列的** ——
+   **PC 側之全枚舉尚未做**，只做了關鍵詞式之否定。
+3. **`test_procedure` 全數歸為測試執行斷言而不入母體，該歸類我未逐條驗證** ——
+   `Deliver a traffic announcement…` 之主語為測試員，
+   **但其隱含「SUT 能接收該報導」之前提**。
+
+**另**：規格側之全枚舉仍為 **0%**（只量了母體）。
+
+**待 Pei**：三筆 DR 之發出（第六次）／「待判定」計入「已判定」之總數／
+PC 側之全枚舉／`test_procedure` 之歸類驗證／27 之 commit 授權（9 路徑）。
+
+---
+
+## 28 包要點
+
+### batch 2 —— `Startup Sounds`：**7 條 TC 自 6 leaf**，lint 32/32
+
+`SWE1-HMI-PM-012` 依 profile §4「不同觸發即拆分」拆為 2 條
+（**駕駛門關閉**／**關機動畫開始**）。P1 六條／P2 一條（`-015` 音量位準）。
+六段 `source_clause` 逐字取自 PDF p8。
+
+### ⚠ 停止條件 7 觸發並已解 —— batch 2 之音訊斷言 × `r45`
+
+矩陣 `r45`（`Mute Button Pressed` → **`Mute --> Active`**）與 batch 2 之
+「聲音有／無播放」**取相反值**，其欄軸與本批相位重疊 → **牴觸**。
+
+**六條各加兩項事件層限定**（不按 Mute／Headunit Mode 鍵、不以 VR 變更 mode）。
+`r46`／`r47` 之納入**不是判定其為牴觸**，而是 **R-PMH95 涵蓋兩讀**（A-PMH22）。
+
+**⚠ `-014`（`Never`，負向）之限定不可省，其理由與正向相反** ——
+正向之風險是「靜音使 TC 誤判為失敗」；
+**負向之風險是「靜音使 TC 以錯誤之理由通過」**（canon §7 之 false pass）。
+
+### apparatus 凍結之自檢：**新增 0 支程式、0 項檢查**
+
+**兩處為既有檢查之一般化，不計為新增**：
+`test_set` 與 `leaf` 覆蓋兩項原為 batch-01 專屬之**硬編碼**，
+改為**讀該批之 `test_set`／`leaf_scope` 欄**。
+**檢查項數不變（32）、語意不變；改變者為其取得期望值之方式。**
+
+### 三項實質項已處理
+
+1. **「待判定」不再計入「已判定」** —— `popup`／`popup_after` 之各 21 格
+   由 `未對照` 改記 **`待定義`**
+2. **PC 之全枚舉：4,176 項判定取代 21 個零命中探針** ——
+   查出**十個印證**（`-008` PC1 之 `Power Button remains off`／`Power press OFF`
+   共 6 格；PC3 之 `Call Not Active` 欄 4 格），**牴觸 0**
+3. **`test_procedure` 逐步驟二分：25 步全具名，SUT 斷言 0** ——
+   三處隱含之 SUT 前提（`-003` 步驟 2／`-004` 步驟 2／**`-007` 步驟 5**）
+   **皆已由 ER／PC 承載並入母體**
+
+### batch 1 之覆核線依 R-PMH103 結束
+
+其阻斷改為**單一項**：`tc_id` 為 provisional，待全 47 leaf 完成後單次指派。
+三項精化入 `DECISIONS.md` 之 KNOWN-INCOMPLETE，**各附風險陳述，不再排程**。
+
+### ⚠ 本輪自陳之未竟項中，三項須先看（上繳 §10）
+
+1. **`animation` 斷言之掃描未做** —— `-009`／`-010` 之 ER 含開機／關機動畫之斷言，
+   **依 R-PMH94 它該有自己的一次掃描，而新增斷言即新增檢查項（R-PMH104）**。
+   **我停在這裡並具名，未自行擴充。**
+2. **batch 2 之七條未經任何人讀覆核** —— batch 1 曾在 12 包被判「產出面不通過」。
+   **lint 32/32 只證明其合於已編碼之規則。**
+3. **`-009` 之「跨螢幕同步併入而不另立一條」是我的判斷** ——
+   canon §5.7 支持之，**惟該子句為獨立句，若讀為獨立能力則 leaf 012 應拆為三條**。
+
+**另**：`-013` 之「一日」起算點與 `-011` 之設定路徑皆為**規格未定義**，
+我以「不造值」處理並具名而**未開 DR**——**該判斷與 A-PMH22 一致，惟未經裁定**。
+R-PMH99(c) 之字串檢查**不及於 batch 2 之十二項限定**（擴及即為新增檢查項）。
+
+**待 Pei**：三筆 DR 之發出（第七次）／**batch 2 之人讀覆核**／
+`animation` 斷言之掃描是否授權新增／`-013`・`-011` 之未定義是否開 DR／
+`-009` 是否應拆為三條／**27＋28 兩包之 commit 授權（16 路徑）**。

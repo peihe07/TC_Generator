@@ -7,6 +7,15 @@
   "profile": "docs/runtime/profiles/FW036_R1L_PowerModing_Profile.md",
   "selection": "Test Set `Disclaimer Screen` 之 7 leaf（R-PMH36 之 Layer 2 定版）。**8 條 TC** —— `SWE1-HMI-PM-001-04` 依 profile §4「不同觸發即拆分」拆為 2 條（按 Accept／等待逾時）。",
   "tc_id_status": "provisional",
+  "leaf_scope": [
+    "SWE1-HMI-PM-001-03",
+    "SWE1-HMI-PM-001-04",
+    "SWE1-HMI-PM-001-05",
+    "SWE1-HMI-PM-003",
+    "SWE1-HMI-PM-004",
+    "SWE1-HMI-PM-005",
+    "SWE1-HMI-PM-022-02"
+  ],
   "source_clause_basis": "R-PMH50 —— 取自 spec_pdf（判讀基準，通則 3）。**不取自 SYS1 匯出** —— 本輪逐句對照證實其 7.1 漏一子句。",
   "write_back": "凍結 —— 本批只產出 JSON，不寫回工作簿",
   "tcs": [

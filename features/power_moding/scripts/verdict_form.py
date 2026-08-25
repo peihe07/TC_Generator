@@ -65,9 +65,15 @@ def collect() -> list[tuple[str, str, str]]:
     for k, v in bem.ER_VERDICT.items():
         out.append(("batch_er_vs_matrix.ER_VERDICT", str(k), v[1]))
     import spec_assertion_scan as sas
-    for name in ("LINE_VERDICT", "AUDIO_LINE_VERDICT", "AUDIO_CELL_VERDICT"):
+    for name in ("LINE_VERDICT", "AUDIO_LINE_VERDICT", "ANN_LINE_VERDICT",
+                 "AFTER_LINE_VERDICT", "AUDIO_CELL_VERDICT"):
         for k, v in getattr(sas, name).items():
             out.append((f"spec_assertion_scan.{name}", str(k), v[0]))
+    # R-PMH100（27 包）—— **矩陣側 174 格全部入母體**（× 四斷言），
+    # 「落選」類別已消滅，故其判定與入選者同列於此。
+    for a in sorted(sas.ASSERTION_DOMAIN):
+        for key, kind, _pred, _why in sas.cell_verdicts(a):
+            out.append((f"spec_assertion_scan.cell_verdicts[{a}]", key, kind))
     return out
 
 

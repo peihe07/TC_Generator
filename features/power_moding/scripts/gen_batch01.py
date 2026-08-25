@@ -374,6 +374,8 @@ def main() -> None:
                       "**8 條 TC** —— `SWE1-HMI-PM-001-04` 依 profile §4「不同觸發即拆分」"
                       "拆為 2 條（按 Accept／等待逾時）。"),
         "tc_id_status": "provisional",
+        # 28 包：lint 之 leaf 覆蓋檢查由硬編碼改為讀本欄（R-PMH104 之一般化）
+        "leaf_scope": sorted({t["leaf"] for t in TCS}),
         "source_clause_basis": ("R-PMH50 —— 取自 spec_pdf（判讀基準，通則 3）。"
                                 "**不取自 SYS1 匯出** —— 本輪逐句對照證實其 7.1 漏一子句。"),
         "write_back": "凍結 —— 本批只產出 JSON，不寫回工作簿",

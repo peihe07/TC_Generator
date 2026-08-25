@@ -16,8 +16,8 @@ screen has been removed`）之關係，記法依 R-PMH79。
 """
 
 # R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
-HAS_MUST_HIT = False
-MUST_HIT_NOTE = '**未註冊 must-hit**（24 包 §12）—— 其逐行判定由人寫入'
+HAS_MUST_HIT = True
+MUST_HIT_NOTE = '`--cell-must-hit` 兩項（分類錯誤 → FAIL／無用詞者不誤報）—— R-PMH100 使偽陰自此可檢查；**惟逐行之 `LINE_VERDICT` 仍由人寫入，本錨點不驗其正確**'
 
 import argparse
 import re
@@ -370,7 +370,20 @@ def print_enumeration(assertion: str) -> None:
         why = ("該格無任何謂詞域之詞" if not doms
                else f"該格之謂詞域為 {list(doms)}，與 `{dom}` 不交")
         print(f"    {n:>3} 格  {why}")
-    print(f"\n  **落選之 {len(rej)} 格皆已具名其理由，無靜默略過者。**")
+    vs = cell_verdicts(assertion)
+    from collections import Counter as _C
+    kc = _C(k for _, k, _, _ in vs)
+    print(f"\n  **R-PMH100：{len(vs)} 格全部入判定表** —— 記法分布 {dict(kc)}")
+    n_read = sum(1 for _, _, pr, _ in vs if "而其列未具名記法" in pr)
+    print("  **「落選」類別已消滅** —— 關鍵詞自此只決定人讀之先後。")
+    if n_read:
+        print(f"  ⚠ 其中 **{n_read}** 格記 **`待定義`** —— "
+              f"「**入選而列層未具名，判定尚未作成**」（28 包步驟 2(a)）。")
+        print(f"     （`{assertion}` 之列層記法存於 `matrix_vs_chapter.VERDICT`"
+              f" 之章別判定，非本檔）")
+    au = domain_audit(assertion)
+    print(f"  分類錯誤之稽核（`AUDIT_CORE`）：**{len(au)}** 格"
+          + ("" if not au else f" ← **FAIL** {au[:3]}"))
     # 與關鍵詞篩選之對照（停止條件 8）
     kw = re.compile(ASSERTIONS[assertion][0], re.I)
     kw_cells = [c for c in cells if kw.search(c[5])]
@@ -385,6 +398,107 @@ def print_enumeration(assertion: str) -> None:
             print(f"    只在關鍵詞側：r{c[1]} c{c[3]} = {c[5][:70]}")
         for c in only_en:
             print(f"    只在全枚舉側：r{c[1]} c{c[3]} = {c[5][:70]}")
+
+
+
+# --- R-PMH100（27 包）：**落選即判定** —— 消滅「落選」類別 ---
+# 26 包之落選格其輸出已含具名理由（「該格之謂詞域為 `['state']`，與 `audio` 不交」）
+# —— **該理由即一個 `未對照` 之判定**（R-PMH79：無共同謂詞），只是不在判定表內。
+# 本輪將其入表：**174 格全部有記法**，關鍵詞自此**只決定人讀之先後**。
+#
+# **偽陰之性質隨之改變**：
+#   改造前 —— 某格因用詞未被想到而**不存在於輸出**，**不可檢查**；
+#   改造後 —— 某格因**謂詞域分類錯誤**而得 `未對照`，**可構造 must-hit**。
+#
+# 稽核用之核心關鍵詞（**不含 `background` 等歧義詞**）。
+AUDIT_CORE = {
+    "audio": r"\b(mute[sd]?|unmute[sd]?|audio|sounds?|volume)\b",
+    "popup": r"pop\s*-?\s*ups?",
+    "popup_after": r"pop\s*-?\s*ups?",
+    "announcement": r"\b(traffic\s+announcement|announcements?)\b",
+}
+
+
+def cell_key(lo: int, r: int, c: int) -> str:
+    return f"r{r}c{c}(blk{lo})"
+
+
+def cell_verdicts(assertion: str, extra=None) -> list:
+    """174 格**全部**之判定：(鍵, 記法, 謂詞, 依據)。**無「落選」類別。**"""
+    cells, _, _ = enumerate_matrix(assertion)
+    cells = list(cells) + list(extra or [])
+    dom, rx = ASSERTION_DOMAIN[assertion]
+    sel_re = re.compile(rx, re.I)
+    out = []
+    for lo, r, lbl, c, ax, v in cells:
+        named = AUDIO_CELL_VERDICT.get((lo, r)) if assertion == "audio" else None
+        if named and sel_re.search(v):
+            kind, pred, why = named
+            out.append((cell_key(lo, r, c), kind, pred, f"（列層已具名）{why}"))
+        elif sel_re.search(v):
+            # 28 包步驟 2(a)（27 §12 第 1 項）：其記法**不是 `未對照`** ——
+            # `未對照` 為一個**已作成之判定**，而本格之判定**尚未作成**。
+            # 記 `待定義`（R-PMH85 之第四詞），使統計不再把「待判定」算入「已判定」。
+            out.append((cell_key(lo, r, c), "待定義",
+                        f"本格含 `{assertion}` 之用詞而其列未具名記法",
+                        "**入選而列層未具名 —— 判定尚未作成**。"
+                        f"`{assertion}` 之列層記法存於 `matrix_vs_chapter.VERDICT` "
+                        "之章別判定（如 ch7 之 `r48` 為牴觸），非本檔。**須人讀。**"))
+        else:
+            doms = sorted(d for d, dr in PREDICATE_DOMAIN.items()
+                          if re.search(dr, v, re.I))
+            why = ("該格無任何謂詞域之詞" if not doms
+                   else f"該格之謂詞域為 {doms}，與 `{dom}` 不交")
+            out.append((cell_key(lo, r, c), "未對照",
+                        f"該格之謂詞域 vs 斷言 `{assertion}` 之謂詞域",
+                        f"**無共同謂詞**（R-PMH79）—— {why}。（謂詞域粗篩，R-PMH100）"))
+    return out
+
+
+def domain_audit(assertion: str, extra=None) -> list:
+    """**分類錯誤之稽核** —— 含核心關鍵詞而其謂詞域不含該域者。空清單為 PASS。"""
+    cells, _, _ = enumerate_matrix(assertion)
+    cells = list(cells) + list(extra or [])
+    dom = ASSERTION_DOMAIN[assertion][0]
+    core = re.compile(AUDIT_CORE[assertion], re.I)
+    bad = []
+    for lo, r, lbl, c, ax, v in cells:
+        if not core.search(v):
+            continue
+        doms = {d for d, dr in PREDICATE_DOMAIN.items() if re.search(dr, v, re.I)}
+        if dom and dom not in doms:
+            bad.append((cell_key(lo, r, c), sorted(doms), v[:70]))
+    return bad
+
+
+def cell_must_hit() -> int:
+    """R-PMH100 之 must-hit（27 包步驟 2）。"""
+    print("=== R-PMH100 之 must-hit（27 包步驟 2）===")
+    print("**改造前之偽陰不可檢查**（某格不存在於輸出）；"
+          "**改造後可檢查**（某格分類錯誤而得 `未對照`）。\n")
+    base = domain_audit("audio")
+    print(f"  基線（現況 174 格）之分類錯誤 = **{len(base)}**")
+
+    saved = PREDICATE_DOMAIN["audio"]
+    PREDICATE_DOMAIN["audio"] = r"__never_matches__"
+    a_bad = domain_audit("audio")
+    PREDICATE_DOMAIN["audio"] = saved
+    ok_a = len(a_bad) > len(base)
+    print(f"\n  (a) 令 `audio` 之謂詞域失效（模擬分類錯誤）→ 稽核報 "
+          f"**{len(a_bad)}** 格分類有誤：{ok_a}")
+    for k, d, v in a_bad[:3]:
+        print(f"        {k} 域={d} :: {v}")
+
+    stub = [(99, 99, "測試替身", 1, "（替身軸）", "Event ignored")]
+    b_bad = domain_audit("audio", stub)
+    ok_b = len(b_bad) == len(base)
+    print(f"\n  (b) 注入一格 `Event ignored`（確無 audio 用詞）→ "
+          f"稽核仍為 **{len(b_bad)}** 格：{ok_b}")
+
+    print("\n" + "=" * 62)
+    print(f"(a) 分類錯誤被攔下: {ok_a}；(b) 無用詞者不誤報: {ok_b}；"
+          f"現況分類錯誤: {len(base)}")
+    return 0 if (ok_a and ok_b and not base) else 1
 
 
 
@@ -409,11 +523,71 @@ def matrix_rows(pat: re.Pattern):
     return out
 
 
+# --- R-PMH98 之規格側（27 包步驟 6）：**只界定母體並量其行數，本輪不做判定** ---
+# 排除規則須**具名且逐行可查**。
+SPEC_EXCLUDE = [
+    ("空行", r"^\s*$"),
+    ("純頁碼", r"^\s*\d{1,3}\s*$"),
+    ("純標點或單字元", r"^\s*[\W_]\s*$"),
+    ("封面／文件資訊（p1）", None),          # 以頁次判，非以字樣
+    ("流程圖頁之標籤（p2–p7、p11）", None),  # 同上
+]
+
+
+def spec_population() -> None:
+    """R-PMH98 之規格側母體界定與行數（**本輪只量，不判定**）。"""
+    import yaml
+    cfg = yaml.safe_load((ROOT / "feature.yaml").read_text(encoding="utf-8"))
+    d = fitz.open(ROOT / cfg["paths"]["spec_pdf"])
+    print("=== 規格側全枚舉之母體界定（R-PMH98，27 包步驟 6）===")
+    print("**本輪只界定母體並量其行數，不做判定** —— 規模未知，先量再做。\n")
+    tot = kept = 0
+    per_page = []
+    NARR_PAGES = {8, 9, 10, 11}   # 有 leaf 之章所在之頁（p8–p11）
+    for i in range(d.page_count):
+        lines = d[i].get_text().splitlines()
+        tot += len(lines)
+        n_blank = sum(1 for l in lines if not l.strip())
+        n_num = sum(1 for l in lines if re.fullmatch(r"\s*\d{1,3}\s*", l))
+        n_punct = sum(1 for l in lines if re.fullmatch(r"\s*[\W_]\s*", l))
+        body = len(lines) - n_blank - n_num - n_punct
+        in_scope = i + 1 in NARR_PAGES
+        if in_scope:
+            kept += body
+        per_page.append((i + 1, len(lines), n_blank, n_num, n_punct, body, in_scope))
+    print(f"{'頁':>3} {'總行':>5} {'空行':>5} {'頁碼':>5} {'標點':>5} {'敘述行':>6}  在範圍")
+    for pg, n, b, num, pu, body, ins in per_page:
+        print(f"{pg:>3} {n:>5} {b:>5} {num:>5} {pu:>5} {body:>6}  "
+              f"{'✅' if ins else '—（圖／封面）'}")
+    print(f"\n  PDF 全文行數 = **{tot}**")
+    print(f"  **母體（p8–p11 之敘述行）= {kept}**")
+    print(f"  排除規則（**逐行可查**）：{[n for n, _ in SPEC_EXCLUDE]}")
+    print("\n  ⚠ **`p1–p7` 與 `p11` 之圖標籤以頁次排除，非以字樣** ——"
+          "\n    其依據為 A-PMH04（2.1–6.1 為圖片佔位）與 12.4（`Please refer to the diagram`）。"
+          "\n    **p11 之 `OFF1.)`～`OFF3.)` 在 p11 而 p11 在範圍內** —— 故該頁未被整頁排除。")
+    print(f"\n  **每一斷言 × {kept} 行**之人讀規模已知；"
+          "其分兩層（謂詞層粗篩 ＋ 落選即判定）之作法同矩陣側（R-PMH100）。")
+    d.close()
+
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--assertion", choices=sorted(ASSERTIONS), default="popup",
                     help="R-PMH93 —— 掃描之單位為**斷言**")
+    ap.add_argument("--cell-must-hit", action="store_true",
+                    help="R-PMH100 —— 分類錯誤之 must-hit")
+    ap.add_argument("--spec-population", action="store_true",
+                    help="R-PMH98 規格側 —— 母體界定與行數（只量不判）")
     a = ap.parse_args()
+    if a.spec_population:
+        spec_population()
+        print_limits()
+        sys.exit(0)
+    if a.cell_must_hit:
+        rc = cell_must_hit()
+        print_limits()
+        sys.exit(rc)
     rx, desc = ASSERTIONS[a.assertion]
     pat = re.compile(rx, re.I)
     lv = {"popup": LINE_VERDICT, "audio": AUDIO_LINE_VERDICT,

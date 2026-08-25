@@ -100,11 +100,32 @@ def limit_must_hit() -> int:
                 t["test_procedure"] += "\n8. Do not press the Mute key again"
         ok_dup = run(d)
         print(f"\n  重複 `press the Mute key` → FAIL 被攔下：{ok_dup}")
+
+        # R-PMH99(a) 之錨點：一步含三項 → 須 FAIL
+        d = copy.deepcopy(base)
+        for t in d["tcs"]:
+            if t["tc_id"].endswith("007"):
+                lines = [x for x in t["test_procedure"].split("\n") if x.strip()]
+                lines[0] = ("1. Do not press the ON/OFF key and do not turn key-off "
+                            "and do not open any door")
+                lines[1] = "2. Do not adjust HVAC hard controls"
+                t["test_procedure"] = "\n".join(lines)
+        r3 = subprocess.run([sys.executable, str(Path(__file__).resolve()),
+                             str(tmp.relative_to(ROOT))],
+                            capture_output=True, text=True, cwd=ROOT)
+        tmp.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
+        r3 = subprocess.run([sys.executable, str(Path(__file__).resolve()),
+                             str(tmp.relative_to(ROOT))],
+                            capture_output=True, text=True, cwd=ROOT)
+        ok_three = r3.returncode == 1 and any(
+            "R-PMH99(a)" in ln and "FAIL" in ln for ln in r3.stdout.splitlines())
+        print(f"  一步含三項 → R-PMH99(a) FAIL 被攔下：{ok_three}")
     finally:
         tmp.unlink(missing_ok=True)
     print("\n" + "=" * 60)
-    print(f"刪去 7/7 皆 FAIL: {ok_del}；重複 FAIL: {ok_dup}")
-    return 0 if (ok_del and ok_dup) else 1
+    print(f"刪去 7/7 皆 FAIL: {ok_del}；重複 FAIL: {ok_dup}；"
+          f"一步三項 FAIL: {ok_three}")
+    return 0 if (ok_del and ok_dup and ok_three) else 1
 
 
 def main() -> None:
@@ -183,8 +204,12 @@ def main() -> None:
     # --- profile §5 / R-PMH18：三字串之大小寫 ---
     chk("R-PMH18 test_group = 'Disclaimer screen'（小寫 s）",
         all(t["test_group"] == "Disclaimer screen" for t in tcs))
-    chk("R-PMH36 test_set = 'Disclaimer Screen'（大寫 S）",
-        all(t["test_set"] == "Disclaimer Screen" for t in tcs))
+    # **28 包：由 batch-01 專屬之硬編碼改為讀該批之 `test_set`**
+    # （R-PMH104：**一般化既有檢查，非新增檢查**）。其值仍須 ∈ Layer 2 定版 8 組。
+    bset = d.get("test_set")
+    chk("R-PMH36 各 TC 之 test_set == 該批之 test_set（大小寫敏感）",
+        bool(bset) and all(t["test_set"] == bset for t in tcs),
+        f"批 test_set={bset!r}；相異值={sorted({t['test_set'] for t in tcs})}")
     chk("R-PMH16 tc_id 形態 NR1L-DisclaimerScreen-{NNN}",
         all(re.fullmatch(r"NR1L-DisclaimerScreen-\d{3}", t["tc_id"]) for t in tcs),
         canon="10.3")
@@ -331,6 +356,20 @@ def main() -> None:
                 bad.append((t["tc_id"], tok, n))
     chk("R-PMH99(c) `-007` 之七項限定字串各出現一次", not bad, str(bad))
 
+    # --- R-PMH99(a)（27 包步驟 5）：每一 procedure 步驟所含之限定項數 <= 2 ---
+    # 26 §12 第 4 項自陳：lint 只驗字串各出現一次，**不驗每步幾項**；
+    # 「每步至多兩項」為執行層自行計數之陳述。本檢查使其成為機器判定。
+    bad = []
+    for t in tcs:
+        if not t["tc_id"].endswith("007"):
+            continue
+        for i, step in enumerate(
+                [x for x in t["test_procedure"].split("\n") if x.strip()], 1):
+            k = sum(1 for tok in LIMIT_TOKENS if tok in step)
+            if k > 2:
+                bad.append((t["tc_id"], f"step {i}", k))
+    chk("R-PMH99(a) `-007` 每步之限定項數 <= 2", not bad, str(bad))
+
     # --- 15 包步驟 6：procedure 與 ER 之**編號**逐條對齊（人讀覆核之前置）---
     # 只驗機械可查者：編號自 1 起連號、且兩側逐位相同。
     # **「一步一意圖」與「ER 是否真對應該步」不可機械判定** —— 屬人讀。
@@ -350,15 +389,14 @@ def main() -> None:
     chk("tc_id 唯一", len(set(ids)) == len(ids))
     chk("tc_id_status = provisional", d.get("tc_id_status") == "provisional")
 
-    # --- leaf 覆蓋：本批 leaf 須 ⊆ Disclaimer Screen 之 7 leaf ---
-    want = {k for k, v in l3.items()
-            if v in {"7.1", "7.2", "7.3", "7.4", "10.4"}}
+    # --- leaf 覆蓋：本批 leaf 須等於該批所宣告之 `leaf_scope` ---
+    # **28 包：由 batch-01 專屬之硬編碼改為讀該批之 `leaf_scope`**（R-PMH104：
+    # **一般化既有檢查，非新增檢查**）。batch 1 之 `leaf_scope` 即其原 7 leaf。
     got = {t["leaf_id"] for t in tcs}
-    ds7 = {"SWE1-HMI-PM-001-03", "SWE1-HMI-PM-001-04", "SWE1-HMI-PM-001-05",
-           "SWE1-HMI-PM-003", "SWE1-HMI-PM-004", "SWE1-HMI-PM-005",
-           "SWE1-HMI-PM-022-02"}
-    chk("本批 leaf == Disclaimer Screen 之 7 leaf", got == ds7,
-        f"多 {sorted(got-ds7)} 少 {sorted(ds7-got)}")
+    scope = set(d.get("leaf_scope") or [])
+    chk("本批 leaf == 其宣告之 leaf_scope（且 leaf_scope 非空）",
+        bool(scope) and got == scope,
+        f"leaf_scope {'未宣告' if not scope else ''} 多 {sorted(got-scope)} 少 {sorted(scope-got)}")
 
     w = max(len(n) for n, _, _ in checks)
     for n, ok, det in checks:

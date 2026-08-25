@@ -30,6 +30,7 @@ MUST_HIT_NOTE = "**未註冊 must-hit** —— 本檔只彙整他檢查之結果
 # (顯示名, 模組名, 引數)；**退出碼之含意於此具名**
 CHECKS = [
     ("lint_batch.py generated/batch01.json", "lint_batch", ["generated/batch01.json"], "0"),
+    ("lint_batch.py generated/batch02.json", "lint_batch", ["generated/batch02.json"], "0"),
     ("lint_batch.py <fixture prerework>", "lint_batch", ["tests/fixtures/batch01_prerework.json"], "1"),
     ("lint_batch.py <fixture r2>", "lint_batch", ["tests/fixtures/batch01_r2.json"], "1"),
     ("lint_batch.py --limit-must-hit", "lint_batch", ["--limit-must-hit"], "0"),
@@ -61,6 +62,10 @@ CHECKS = [
      ["--assertion", "announcement"], "0"),
     ("spec_assertion_scan.py --assertion popup_after", "spec_assertion_scan",
      ["--assertion", "popup_after"], "0"),
+    ("spec_assertion_scan.py --cell-must-hit", "spec_assertion_scan",
+     ["--cell-must-hit"], "0"),
+    ("spec_assertion_scan.py --spec-population", "spec_assertion_scan",
+     ["--spec-population"], "0"),
     ("batch_er_vs_matrix.py", "batch_er_vs_matrix", [], "0"),
     ("verdict_form.py", "verdict_form", [], "0"),
     ("verdict_form.py --must-hit", "verdict_form", ["--must-hit"], "0"),
