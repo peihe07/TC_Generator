@@ -122,9 +122,9 @@ def main():
                 verdict = "ONLY_v176"
             fh.write("\t".join([
                 k, verdict,
-                ",".join(str(i) for i, _, _ in a.get(k, [])),
+                " ¦ ".join(str(i) for i, _, _ in a.get(k, [])),
                 " ¦ ".join(sorted(x for _, v, _ in a.get(k, []) for x in v)),
-                ",".join(str(i) for i, _, _ in b.get(k, [])),
+                " ¦ ".join(str(i) for i, _, _ in b.get(k, [])),
                 " ¦ ".join(sorted(x for _, v, _ in b.get(k, []) for x in v)),
             ]) + "\n")
     print(f"\nwrote {out}")

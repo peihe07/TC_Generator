@@ -9,7 +9,7 @@ ACC_DistSwDec	SAME	25	BCM_FD_13.ACC_DistSwDec	25	BCM_FD_13.ACC_DistSwDec
 ACC_DistSwInc	SAME	26	BCM_FD_13.ACC_DistSwInc	26	BCM_FD_13.ACC_DistSwInc
 ACC_On	SAME	27	BCM_FD_13.ACC_On	27	BCM_FD_13.ACC_On
 ACC_WARN_STAT	SAME	28		28	
-ACConlyNA_DASMSts	SAME	36,37	DASM_FD_2.ACCFailSts ¦ DASM_FD_2.DASMFailSts	36,37	DASM_FD_2.ACCFailSts ¦ DASM_FD_2.DASMFailSts
+ACConlyNA_DASMSts	SAME	36 ¦ 37	DASM_FD_2.ACCFailSts ¦ DASM_FD_2.DASMFailSts	36 ¦ 37	DASM_FD_2.ACCFailSts ¦ DASM_FD_2.DASMFailSts
 ACV_FailType	SAME	43	BCM_FD_26.ACV_FailType ¦ STATUS_CLIMATE9.ACV_FailType	43	BCM_FD_26.ACV_FailType ¦ STATUS_CLIMATE9.ACV_FailType
 ACV_Request	SAME	44	STATUS_BH_BCM2.ACV_Request ¦ TBM_FD_1.ACV_Request	44	STATUS_BH_BCM2.ACV_Request ¦ TBM_FD_1.ACV_Request
 ACV_Status	SAME	45	BCM_FD_26.ACV_Status ¦ STATUS_CLIMATE9.ACV_Status	45	BCM_FD_26.ACV_Status ¦ STATUS_CLIMATE9.ACV_Status
@@ -72,7 +72,7 @@ A_Total_Dist_Kilometers	SAME	12		12
 A_Total_Dist_Miles	SAME	13		13	
 AbortCrankingAtc	SAME	14	BCM_FD_29.AbortCrankingAtc ¦ DRIVETRAIN_FD_2.AbortCrankingAtc	14	BCM_FD_29.AbortCrankingAtc ¦ DRIVETRAIN_FD_2.AbortCrankingAtc
 AccDelayAct	SAME	29	N/A	29	N/A
-AccelPdlPosn_OBD	SAME	32,33,34	ENGINE_FD_2.GasPedalPosition ¦ ENGINE_FD_2.GasPedalPositionFailSts ¦ OBD_CONTENT_FRAME.AccelPdlPosn_OBD	32,33,34	ENGINE_FD_2.GasPedalPosition ¦ ENGINE_FD_2.GasPedalPositionFailSts ¦ OBD_CONTENT_FRAME.AccelPdlPosn_OBD
+AccelPdlPosn_OBD	SAME	32 ¦ 33 ¦ 34	ENGINE_FD_2.GasPedalPosition ¦ ENGINE_FD_2.GasPedalPositionFailSts ¦ OBD_CONTENT_FRAME.AccelPdlPosn_OBD	32 ¦ 33 ¦ 34	ENGINE_FD_2.GasPedalPosition ¦ ENGINE_FD_2.GasPedalPositionFailSts ¦ OBD_CONTENT_FRAME.AccelPdlPosn_OBD
 AcceleratorPedalPosition	SAME	30	ENGINE_SIMULATOR1.AccelPdlPosn_OBD_PT1	30	ENGINE_SIMULATOR1.AccelPdlPosn_OBD_PT1
 AcceleratorSts	SAME	31	BCM_FD_13.AcceleratorSts	31	BCM_FD_13.AcceleratorSts
 Act_Damping_Ctrl	SAME	39		39	
@@ -153,7 +153,7 @@ Batt_CabinPriority3	SAME	144	CHARGE_SCHEDULE_HU1.Batt_CabinPriority3	144	CHARGE_
 Batt_CabinPriority3_Sts	SAME	145	CHARGE_SCHEDULE_HCP1.Batt_CabinPriority3_Sts	145	CHARGE_SCHEDULE_HCP1.Batt_CabinPriority3_Sts
 Batt_ST_Crit	SAME	146	BCM_FD_11.Batt_ST_Crit ¦ STATUS_LIN.Batt_ST_Crit	146	BCM_FD_11.Batt_ST_Crit ¦ STATUS_LIN.Batt_ST_Crit
 BatteryLampStatus	SAME	148	BCM_FD_11.Batt_ST_Crit ¦ STATUS_LIN.Batt_ST_Crit	148	BCM_FD_11.Batt_ST_Crit ¦ STATUS_LIN.Batt_ST_Crit
-BatteryTemperature	SAME	149,150		149,150	
+BatteryTemperature	SAME	149 ¦ 150		149 ¦ 150	
 BatteryVoltage	SAME	151	BATTERY_INFO.BatteryVoltageLevelHP ¦ BCM_FD_3.Battery_Volt_1 ¦ BODY9.Battery_Volt_1	151	BATTERY_INFO.BatteryVoltageLevelHP ¦ BCM_FD_3.Battery_Volt_1 ¦ BODY9.Battery_Volt_1
 Battery_charge_stat	SAME	147	IPC_FD_3.BATTERY_CHARGE_STAT	147	IPC_FD_3.BATTERY_CHARGE_STAT
 Bcall_Enable	SAME	152	TBM_FD_2.bcall_enab	152	TBM_FD_2.bcall_enab
@@ -165,7 +165,7 @@ BoostVacGauge	SAME	158	ENGINE_FD_1.BoostVacGauge	158	ENGINE_FD_1.BoostVacGauge
 BrakeFluid	SAME	161	STATUS_BH_BCM1.BrakeFluidLevelSts	161	STATUS_BH_BCM1.BrakeFluidLevelSts
 BrakeIndicationLampStatus	SAME	162	BRAKE_FD_5.EBDSFailSts	162	BRAKE_FD_5.EBDSFailSts
 BrakePdlPosn	SAME	163	BRAKE_FD_7.BrakePdlPosn ¦ GW_B_7.BrakePdlPosn	163	BRAKE_FD_7.BrakePdlPosn ¦ GW_B_7.BrakePdlPosn
-BrakePedal	SAME	164,165	BRAKE_FD_7.BrkPdl_Stat ¦ duplicate of 176	164,165	BRAKE_FD_7.BrkPdl_Stat ¦ duplicate of 176
+BrakePedal	SAME	164 ¦ 165	BRAKE_FD_7.BrkPdl_Stat ¦ duplicate of 176	164 ¦ 165	BRAKE_FD_7.BrkPdl_Stat ¦ duplicate of 176
 BrakePressure	SAME	166	BRAKE_FD_8.BrkPrss_TMC	166	BRAKE_FD_8.BrkPrss_TMC
 Brake_Ind_Stat	SAME	159	IPC_FD_3.BRK_IND_STAT	159	IPC_FD_3.BRK_IND_STAT
 Brake_Pad_stat	SAME	160	IPC_FD_3.BRAKE_PAD_STAT	160	IPC_FD_3.BRAKE_PAD_STAT
@@ -366,7 +366,7 @@ Cchar7	SAME	276	WIFI_CONNECTED_DEVICES.UTF_Char7	276	WIFI_CONNECTED_DEVICES.UTF_
 Cchar8	SAME	2580	WIFI_CONNECTED_DEVICES.UTF_Char8	2582	WIFI_CONNECTED_DEVICES.UTF_Char8
 Cchar9	SAME	2581	WIFI_CONNECTED_DEVICES.UTF_Char9	2583	WIFI_CONNECTED_DEVICES.UTF_Char9
 Cellsignal	SAME	281	TBM_SCHEDULE_FD_2.SignalStrength	281	TBM_SCHEDULE_FD_2.SignalStrength
-Center_Cluster_Button_Function	SAME	282,283	N/A ¦ TELEMATIC_FD_15.Center_Cluster_Button_function	282,283	N/A ¦ TELEMATIC_FD_15.Center_Cluster_Button_function
+Center_Cluster_Button_Function	SAME	282 ¦ 283	N/A ¦ TELEMATIC_FD_15.Center_Cluster_Button_function	282 ¦ 283	N/A ¦ TELEMATIC_FD_15.Center_Cluster_Button_function
 ChargeReq	SAME	315		315	
 ChargeStop	SAME	316	TELEMATIC_FD_19.ChargeStop	316	TELEMATIC_FD_19.ChargeStop
 ChargeUntilFull1	SAME	317	CHARGE_SCHEDULE_HU1.ChargeUntilFull1	317	CHARGE_SCHEDULE_HU1.ChargeUntilFull1
@@ -382,9 +382,9 @@ Charge_Schedule_Type2	SAME	313	CHARGE_SCHEDULE_HU1.Charge_Schedule_Type2	313	CHA
 Charge_Schedule_Type2_Sts	SAME	314	CHARGE_SCHEDULE_HCP1.Charge_Schedule_Type2_Sts	314	CHARGE_SCHEDULE_HCP1.Charge_Schedule_Type2_Sts
 ChargingDestinationPwr	SAME	325	TELEMATIC_FD_15.ChargingDestinationPwr	325	TELEMATIC_FD_15.ChargingDestinationPwr
 ChargingDestinationVoltage	SAME	326	TELEMATIC_FD_15.ChargingDestinationVoltage	326	TELEMATIC_FD_15.ChargingDestinationVoltage
-ChargingLevel	SAME	327,328	HYBRID_DISPLAY.ChargingLevelForDisplay	327,328	HYBRID_DISPLAY.ChargingLevelForDisplay
+ChargingLevel	SAME	327 ¦ 328	HYBRID_DISPLAY.ChargingLevelForDisplay	327 ¦ 328	HYBRID_DISPLAY.ChargingLevelForDisplay
 ChargingSysFault	SAME	329		329	
-ChargingSysSts	SAME	330,331	HYBRID_DISPLAY.ChargeSystemSts_DPT	330,331	HYBRID_DISPLAY.ChargeSystemSts_DPT
+ChargingSysSts	SAME	330 ¦ 331	HYBRID_DISPLAY.ChargeSystemSts_DPT	330 ¦ 331	HYBRID_DISPLAY.ChargeSystemSts_DPT
 Charging_Contract	SAME	323	CHARGE_SCHEDULE_HU1.Charging_Contract	323	CHARGE_SCHEDULE_HU1.Charging_Contract
 Charging_Contract_Sts	SAME	324	CHARGE_SCHEDULE_HCP1.Charging_Contract_Sts	324	CHARGE_SCHEDULE_HCP1.Charging_Contract_Sts
 CheckFuelCap	SAME	332	ENGINE_FD_6.ChkFuelCap	332	ENGINE_FD_6.ChkFuelCap
@@ -422,7 +422,7 @@ Confirm_RestoreDefaultSetting	SAME	383	TBM_SCHEDULE_FD_2.RestoreDefaultSetting	3
 ConnAck	SAME	384	HU_ACK.ConnectedDevices	384	HU_ACK.ConnectedDevices
 Connect_Now	SAME	385	TELEMATIC_FD_15.Connect_Now	385	TELEMATIC_FD_15.Connect_Now
 ConnectedServActive	SAME	386	TBM_FD_1.ConnectedServActive	386	TBM_FD_1.ConnectedServActive
-ConsumptionUnit	SAME	387,388	IPC_VEHICLE_SETUP.ConsumptionUnit	387,388	IPC_VEHICLE_SETUP.ConsumptionUnit
+ConsumptionUnit	SAME	387 ¦ 388	IPC_VEHICLE_SETUP.ConsumptionUnit	387 ¦ 388	IPC_VEHICLE_SETUP.ConsumptionUnit
 Coolent_Level_Stat	SAME	389	IPC_FD_3.COOLENT_LEVEL_STAT	389	IPC_FD_3.COOLENT_LEVEL_STAT
 Cooperative_Status	SAME	391	HCP_CHARGING_STAT.Cooperative_Status	391	HCP_CHARGING_STAT.Cooperative_Status
 Cooperative_Vehicle_Location	SAME	392	TBM_COOP_CHARGING.Cooperative_Vehicle_Location	392	TBM_COOP_CHARGING.Cooperative_Vehicle_Location
@@ -559,17 +559,17 @@ Dist_to_Dest	SAME	455	TELEMATIC_FD_15.DIST_TO_DEST	455	TELEMATIC_FD_15.DIST_TO_D
 DistanceToCharge	SAME	457	TELEMATIC_FD_15.DistanceToCharge	457	TELEMATIC_FD_15.DistanceToCharge
 DistanceToService	SAME	458	SERVICEINFO2.DistanceToService	458	SERVICEINFO2.DistanceToService
 DistanceUnit	SAME	459	IPC_VEHICLE_SETUP.DistanceUnit (see Usage Comment)	459	IPC_VEHICLE_SETUP.DistanceUnit (see Usage Comment)
-Divided_Road_CS	SAME	460,461	TELEMATIC_FD_11.Divided_Road_CS	460,461	TELEMATIC_FD_11.Divided_Road_CS
+Divided_Road_CS	SAME	460 ¦ 461	TELEMATIC_FD_11.Divided_Road_CS	460 ¦ 461	TELEMATIC_FD_11.Divided_Road_CS
 Do_Not_Repeat1	SAME	464	CHARGE_SCHEDULE_HU1.Do_Not_Repeat1	464	CHARGE_SCHEDULE_HU1.Do_Not_Repeat1
 Do_Not_Repeat1_Sts	SAME	465	CHARGE_SCHEDULE_HCP1.Do_Not_Repeat1_Sts	465	CHARGE_SCHEDULE_HCP1.Do_Not_Repeat1_Sts
 Do_Not_Repeat2	SAME	466	CHARGE_SCHEDULE_HU1.Do_Not_Repeat2	466	CHARGE_SCHEDULE_HU1.Do_Not_Repeat2
 Do_Not_Repeat2_Sts	SAME	467	CHARGE_SCHEDULE_HCP1.Do_Not_Repeat2_Sts	467	CHARGE_SCHEDULE_HCP1.Do_Not_Repeat2_Sts
 Do_Not_Repeat3	SAME	468	CHARGE_SCHEDULE_HU1.Do_Not_Repeat3	468	CHARGE_SCHEDULE_HU1.Do_Not_Repeat3
-Do_Not_Repeat3_Sts	SAME	469,470	CHARGE_SCHEDULE_HCP1.Do_Not_Repeat3_Sts	469,470	CHARGE_SCHEDULE_HCP1.Do_Not_Repeat3_Sts
+Do_Not_Repeat3_Sts	SAME	469 ¦ 470	CHARGE_SCHEDULE_HCP1.Do_Not_Repeat3_Sts	469 ¦ 470	CHARGE_SCHEDULE_HCP1.Do_Not_Repeat3_Sts
 DonutMode_Sft_Btn_Req	SAME	471	TELEMATIC_FD_15.DonutMode_Sft_Btn_Req	471	TELEMATIC_FD_15.DonutMode_Sft_Btn_Req
 DonutMode_Sts	SAME	472		472	
 DoorLockStatus	SAME	475	BCM_FD_9.DoorLockLastElSts	475	BCM_FD_9.DoorLockLastElSts
-Door_Ajar_Status	SAME	473,474	N/A ¦ STATUS_BH_BCM1.BonnetSts	473,474	N/A ¦ STATUS_BH_BCM1.BonnetSts
+Door_Ajar_Status	SAME	473 ¦ 474	N/A ¦ STATUS_BH_BCM1.BonnetSts	473 ¦ 474	N/A ¦ STATUS_BH_BCM1.BonnetSts
 DpfDefWarningStatus	SAME	477	IPC_FD_3.DEF_STAT	477	IPC_FD_3.DEF_STAT
 DriftMode_Sft_Btn_Req	SAME	482		482	
 DriftMode_Slip_Limit_Req	SAME	483	TELEMATIC_FD_15.DriftMode_Slip_Limit_Req	483	TELEMATIC_FD_15.DriftMode_Slip_Limit_Req
@@ -619,13 +619,13 @@ EC_MirrStat	SAME	591	BODY_CNTRL3.EC_MirrStat	591	BODY_CNTRL3.EC_MirrStat
 EC_Mirror_SK_Request	SAME	590	TELEMATIC_VEHICLE_SETUP.EC_Mirror_SK_Request	590	TELEMATIC_VEHICLE_SETUP.EC_Mirror_SK_Request
 ECharge_SOC	SAME	593	IPC_VEHICLE_SETUP.ECharge_SOC	593	IPC_VEHICLE_SETUP.ECharge_SOC
 ECharge_SOC_req	SAME	594	TELEMATIC_VEHICLE_SETUP.Echarge_SOC_req	594	TELEMATIC_VEHICLE_SETUP.Echarge_SOC_req
-EDM#1_Power	SAME	600,601	<pending>.EDM#1_Power ¦ pending	600,601	<pending>.EDM#1_Power ¦ pending
-EDM#1_Temp	SAME	602,603	<pending>.EDM#1_Temp ¦ pending	602,603	<pending>.EDM#1_Temp ¦ pending
-EDM#1_Torque	SAME	604,605	<pending>.EDM#1_Torque ¦ pending	604,605	<pending>.EDM#1_Torque ¦ pending
-EDM#2_Power	SAME	606,607	<pending>.EDM#2_Power ¦ pending	606,607	<pending>.EDM#2_Power ¦ pending
-EDM#2_Temp	SAME	608,609	<pending>.EDM#2_Temp ¦ pending	608,609	<pending>.EDM#2_Temp ¦ pending
-EDM#2_Torque	SAME	610,611	<pending>.EDM#2_Torque ¦ pending	610,611	<pending>.EDM#2_Torque ¦ pending
-EModeSwPsd	SAME	624,625	TELEMATIC_FD_15.EModeSwPsd	624,625	TELEMATIC_FD_15.EModeSwPsd
+EDM#1_Power	SAME	600 ¦ 601	<pending>.EDM#1_Power ¦ pending	600 ¦ 601	<pending>.EDM#1_Power ¦ pending
+EDM#1_Temp	SAME	602 ¦ 603	<pending>.EDM#1_Temp ¦ pending	602 ¦ 603	<pending>.EDM#1_Temp ¦ pending
+EDM#1_Torque	SAME	604 ¦ 605	<pending>.EDM#1_Torque ¦ pending	604 ¦ 605	<pending>.EDM#1_Torque ¦ pending
+EDM#2_Power	SAME	606 ¦ 607	<pending>.EDM#2_Power ¦ pending	606 ¦ 607	<pending>.EDM#2_Power ¦ pending
+EDM#2_Temp	SAME	608 ¦ 609	<pending>.EDM#2_Temp ¦ pending	608 ¦ 609	<pending>.EDM#2_Temp ¦ pending
+EDM#2_Torque	SAME	610 ¦ 611	<pending>.EDM#2_Torque ¦ pending	610 ¦ 611	<pending>.EDM#2_Torque ¦ pending
+EModeSwPsd	SAME	624 ¦ 625	TELEMATIC_FD_15.EModeSwPsd	624 ¦ 625	TELEMATIC_FD_15.EModeSwPsd
 ENTMuted	SAME	667	STATUS_TELEMATIC.MuteSts	669	STATUS_TELEMATIC.MuteSts
 EPBHoldSts	SAME	668		670	
 EPBSts	SAME	669	BRAKE_FD_4.EPBSts	671	BRAKE_FD_4.EPBSts
@@ -660,7 +660,7 @@ ETM_Passenger_UpperBack_Massage_Req	SAME	722	Radio_B5.ETM_Pass_UpperBack_Massage
 ETM_ThighBolster_D_Req	SAME	723	Radio_B5.ETM_ThighBolster_D_Req	725	Radio_B5.ETM_ThighBolster_D_Req
 ETM_ThighBolster_P_Req	SAME	724	Radio_B5.ETM_ThighBolster_P_Req	726	Radio_B5.ETM_ThighBolster_P_Req
 EVSE_Power	SAME	743	HCP_CHARGING_STAT.EVSE_Power	745	HCP_CHARGING_STAT.EVSE_Power
-EV_Actual_Torque	SAME	725,726	<pending>.EV_Actual_Torque ¦ pending	727,728	<pending>.EV_Actual_Torque ¦ pending
+EV_Actual_Torque	SAME	725 ¦ 726	<pending>.EV_Actual_Torque ¦ pending	727 ¦ 728	<pending>.EV_Actual_Torque ¦ pending
 EV_Actual_Torque_OptimalCondition	SAME	727	<pending>.EV_Actual_Torque_OptimalCondition	729	<pending>.EV_Actual_Torque_OptimalCondition
 EV_Charge_Current	SAME	728	HCP_CHARGING_STAT.EV_Charge_Current	730	HCP_CHARGING_STAT.EV_Charge_Current
 EV_ConsumptionUnit	SAME	729	IPC_VEHICLE_SETUP.Consum_Unit	731	IPC_VEHICLE_SETUP.Consum_Unit
@@ -668,8 +668,8 @@ EV_Creep_Req	SAME	730	TELEMATIC_FD_19.Creep_Req	732	TELEMATIC_FD_19.Creep_Req
 EV_Creep_Sts	SAME	731	IPC_Vehicle_Setup2.Creep	733	IPC_Vehicle_Setup2.Creep
 EV_LaunchControl_Sft_Btn_Sts	SAME	732		734	
 EV_LaunchControl_Sts	SAME	733		735	
-EV_Potential_Power	SAME	734,735	<pending>.EV_Potential_Power ¦ pending	736,737	<pending>.EV_Potential_Power ¦ pending
-EV_Potential_Torque	SAME	736,737	<pending>.EV_Potential_Torque ¦ pending	738,739	<pending>.EV_Potential_Torque ¦ pending
+EV_Potential_Power	SAME	734 ¦ 735	<pending>.EV_Potential_Power ¦ pending	736 ¦ 737	<pending>.EV_Potential_Power ¦ pending
+EV_Potential_Torque	SAME	736 ¦ 737	<pending>.EV_Potential_Torque ¦ pending	738 ¦ 739	<pending>.EV_Potential_Torque ¦ pending
 EV_Sound	SAME	738	<pending>.EV_Sound	740	<pending>.EV_Sound
 EV_Sound_Type	SAME	739	STATUS_TELEMATIC.EV_Sound_Type ¦ TELEMATIC_FD_13.EV_Sound_Type	741	STATUS_TELEMATIC.EV_Sound_Type ¦ TELEMATIC_FD_13.EV_Sound_Type
 EV_Torque_Derate_DriveMode	SAME	740	<pending>.EV_Torque_Derate_DriveMode	742	<pending>.EV_Torque_Derate_DriveMode
@@ -681,7 +681,7 @@ E_Call_Stat	SAME	580	STATUS_TELEMATIC.E_CALL_STAT	580	STATUS_TELEMATIC.E_CALL_ST
 E_Coasting_Req	SAME	581	TELEMATIC_FD_19.E_Coasting_Req	581	TELEMATIC_FD_19.E_Coasting_Req
 E_Coasting_Sts	SAME	582	<pending message name>.eCoastingTelltale_Status	582	<pending message name>.eCoastingTelltale_Status
 E_Coasting_Sys_Sts	SAME	583	HYBRID_DISPLAY.PopUpMessage12	583	HYBRID_DISPLAY.PopUpMessage12
-Eco_Mode	SAME	596,597	BCM_FD_11.E_Mode_Sts ¦ BCM_FD_26.E_Mode_Sts	596,597	BCM_FD_11.E_Mode_Sts ¦ BCM_FD_26.E_Mode_Sts
+Eco_Mode	SAME	596 ¦ 597	BCM_FD_11.E_Mode_Sts ¦ BCM_FD_26.E_Mode_Sts	596 ¦ 597	BCM_FD_11.E_Mode_Sts ¦ BCM_FD_26.E_Mode_Sts
 EconShftRq	SAME	599	ENGINE_FD_6.GearShiftIndication	599	ENGINE_FD_6.GearShiftIndication
 EffSpdLmtType_CS	SAME	614	TELEMATIC_FD_11.EffSpdLmtType_CS	614	TELEMATIC_FD_11.EffSpdLmtType_CS
 EffSpdLmt_CS	SAME	612	TELEMATIC_FD_11.EffSpdLmt_CS	612	TELEMATIC_FD_11.EffSpdLmt_CS
@@ -708,13 +708,13 @@ End_Time_Hr1_Sts	SAME	635	CHARGE_SCHEDULE_HCP1.End_Time_Hr1_Sts	635	CHARGE_SCHED
 End_Time_Hr2	SAME	636	CHARGE_SCHEDULE_HU1.End_Time_Hr2	636	CHARGE_SCHEDULE_HU1.End_Time_Hr2
 End_Time_Hr2_Sts	SAME	637	CHARGE_SCHEDULE_HCP1.End_Time_Hr2_Sts	637	CHARGE_SCHEDULE_HCP1.End_Time_Hr2_Sts
 End_Time_Hr3	SAME	638	CHARGE_SCHEDULE_HU1.End_Time_Hr3	638	CHARGE_SCHEDULE_HU1.End_Time_Hr3
-End_Time_Hr3_Sts	SAME	639,640	CHARGE_SCHEDULE_HCP1.End_Time_Hr3_Sts	639,640	CHARGE_SCHEDULE_HCP1.End_Time_Hr3_Sts
+End_Time_Hr3_Sts	SAME	639 ¦ 640	CHARGE_SCHEDULE_HCP1.End_Time_Hr3_Sts	639 ¦ 640	CHARGE_SCHEDULE_HCP1.End_Time_Hr3_Sts
 End_Time_Min1	SAME	641	CHARGE_SCHEDULE_HU1.End_Time_Min1	641	CHARGE_SCHEDULE_HU1.End_Time_Min1
 End_Time_Min1_Sts	SAME	642	CHARGE_SCHEDULE_HCP1.End_Time_Min1_Sts	642	CHARGE_SCHEDULE_HCP1.End_Time_Min1_Sts
 End_Time_Min2	SAME	643	CHARGE_SCHEDULE_HU1.End_Time_Min2	643	CHARGE_SCHEDULE_HU1.End_Time_Min2
 End_Time_Min2_Sts	SAME	644	CHARGE_SCHEDULE_HCP1.End_Time_Min2_Sts	644	CHARGE_SCHEDULE_HCP1.End_Time_Min2_Sts
 End_Time_Min3	SAME	645	CHARGE_SCHEDULE_HU1.End_Time_Min3	645	CHARGE_SCHEDULE_HU1.End_Time_Min3
-End_Time_Min3_Sts	SAME	646,647	CHARGE_SCHEDULE_HCP1.End_Time_Min3_Sts	646,647	CHARGE_SCHEDULE_HCP1.End_Time_Min3_Sts
+End_Time_Min3_Sts	SAME	646 ¦ 647	CHARGE_SCHEDULE_HCP1.End_Time_Min3_Sts	646 ¦ 647	CHARGE_SCHEDULE_HCP1.End_Time_Min3_Sts
 Energy_Rate	SAME	648	HCP_CHARGING_STAT.Energy_to_Battery	648	HCP_CHARGING_STAT.Energy_to_Battery
 EngCoolTemp	SAME	651	ENGINE_FD_6.EngineWaterTemp	651	ENGINE_FD_6.EngineWaterTemp
 EngDrvMdStat	SAME	652		652	
@@ -727,7 +727,7 @@ Eng_DrvMd_CfgSts	SAME	649		649
 EngineAspiration	SAME	655		655	
 EngineCoolant	SAME	656	BCM_FD_12.EngCoolTemp	656	BCM_FD_12.EngCoolTemp
 EngineOilOverTemp	SAME	657	ENGINE_FD_3.OIL_TMP_IND_RQ ¦ ENGINE_FD_6.EngineOilTemp	657	ENGINE_FD_3.OIL_TMP_IND_RQ ¦ ENGINE_FD_6.EngineOilTemp
-EngineRPM	DIFFERENT	658	ENGINE_FD_2.EngineSpeed_W ¦ ENGINE_FD_2.EngineSts_W ¦ STATUS_CCAN3.EngineSts ¦ STATUS_CCAN5.EngineSpeed ¦ STATUS_CCAN5.EngineSpeedFailSts ¦ Signals for MASAH:	658,659,660	ENGINE_FD_2.EngRPM ¦ ENGINE_FD_2.EngineSpeed_W ¦ ENGINE_FD_2.EngineSts_W ¦ STATUS_CCAN3.EngineSts ¦ STATUS_CCAN5.EngineSpeed ¦ STATUS_CCAN5.EngineSpeed ¦ STATUS_CCAN5.EngineSpeedFailSts ¦ Signals for MASAH:
+EngineRPM	DIFFERENT	658	ENGINE_FD_2.EngineSpeed_W ¦ ENGINE_FD_2.EngineSts_W ¦ STATUS_CCAN3.EngineSts ¦ STATUS_CCAN5.EngineSpeed ¦ STATUS_CCAN5.EngineSpeedFailSts ¦ Signals for MASAH:	658 ¦ 659 ¦ 660	ENGINE_FD_2.EngRPM ¦ ENGINE_FD_2.EngineSpeed_W ¦ ENGINE_FD_2.EngineSts_W ¦ STATUS_CCAN3.EngineSts ¦ STATUS_CCAN5.EngineSpeed ¦ STATUS_CCAN5.EngineSpeed ¦ STATUS_CCAN5.EngineSpeedFailSts ¦ Signals for MASAH:
 EngineSts	SAME	659	ENGINE_FD_2.EngineSts ¦ STATUS_CCAN3.EngineSts	661	ENGINE_FD_2.EngineSts ¦ STATUS_CCAN3.EngineSts
 EngineTorque	SAME	660	ENGINE_FD_4.EngineTorque	662	ENGINE_FD_4.EngineTorque
 EngineWaterTempWarningLightSts	SAME	661		663	
@@ -821,14 +821,14 @@ FT_PSG_MTC_TEMP	SAME	822	STATUS_CLIMATE2.HVACPSNRelTemp???	824	STATUS_CLIMATE2.H
 FUEL_CAP_STAT	SAME	826		828	
 FUEL_CUT_OFF_STAT	SAME	827		829	
 FVCM_check_healty_sts	SAME	838	<pending>.FVCM_check_healty_sts	840	<pending>.FVCM_check_healty_sts
-FastPulseCounter_Overflow	SAME	752,753,754,755	STATUS_CCAN2.LHF_FastPulseCounter_overflow ¦ STATUS_CCAN2.LHR_FastPulseCounter_overflow ¦ STATUS_CCAN2.RHF_FastPulseCounter_overflow ¦ STATUS_CCAN2.RHR_FastPulseCounter_overflow	754,755,756,757	STATUS_CCAN2.LHF_FastPulseCounter_overflow ¦ STATUS_CCAN2.LHR_FastPulseCounter_overflow ¦ STATUS_CCAN2.RHF_FastPulseCounter_overflow ¦ STATUS_CCAN2.RHR_FastPulseCounter_overflow
+FastPulseCounter_Overflow	SAME	752 ¦ 753 ¦ 754 ¦ 755	STATUS_CCAN2.LHF_FastPulseCounter_overflow ¦ STATUS_CCAN2.LHR_FastPulseCounter_overflow ¦ STATUS_CCAN2.RHF_FastPulseCounter_overflow ¦ STATUS_CCAN2.RHR_FastPulseCounter_overflow	754 ¦ 755 ¦ 756 ¦ 757	STATUS_CCAN2.LHF_FastPulseCounter_overflow ¦ STATUS_CCAN2.LHR_FastPulseCounter_overflow ¦ STATUS_CCAN2.RHF_FastPulseCounter_overflow ¦ STATUS_CCAN2.RHR_FastPulseCounter_overflow
 FilterWarningStatus	SAME	759		761	
 FormOfWay_CS	SAME	772	TELEMATIC_FD_11.FormOfWay_CS	774	TELEMATIC_FD_11.FormOfWay_CS
 Four_WD_Service_Stat	SAME	777		779	
 FrontAxleTrqEst (see Usage Comment)	SAME	795	HYBRID1.FrontAxleTrqEst	797	HYBRID1.FrontAxleTrqEst
 FrontHVACModeButton	SAME	796	CLIMATIC_PANEL.Climate_btn10	798	CLIMATIC_PANEL.Climate_btn10
-FrontLeftLevel	SAME	797,798,799	ASCM_FD_1.FL_Lvl ¦ ASCM_FD_1.FL_Lvl	799,800,801	ASCM_FD_1.FL_Lvl ¦ ASCM_FD_1.FL_Lvl
-FrontRightLevel	SAME	800,801,802	ASCM_FD_1.FR_Lvl ¦ ASCM_FD_1.FR_Lvl	802,803,804	ASCM_FD_1.FR_Lvl ¦ ASCM_FD_1.FR_Lvl
+FrontLeftLevel	SAME	797 ¦ 798 ¦ 799	ASCM_FD_1.FL_Lvl ¦ ASCM_FD_1.FL_Lvl	799 ¦ 800 ¦ 801	ASCM_FD_1.FL_Lvl ¦ ASCM_FD_1.FL_Lvl
+FrontRightLevel	SAME	800 ¦ 801 ¦ 802	ASCM_FD_1.FR_Lvl ¦ ASCM_FD_1.FR_Lvl	802 ¦ 803 ¦ 804	ASCM_FD_1.FR_Lvl ¦ ASCM_FD_1.FR_Lvl
 Front_AxleTorque_Static	SAME	791	ENGINE_SIMULATOR4.Front_AxleTorque_Static_PT1	793	ENGINE_SIMULATOR4.Front_AxleTorque_Static_PT1
 Front_Int_SD_LT_Sw	SAME	792		794	
 Front_Int_SD_RT_Sw	SAME	793		795	
@@ -999,7 +999,7 @@ HVAC_Range_Impact	SAME	977	<pending>.HVAC_Range_Impact	979	<pending>.HVAC_Range_
 HVBatSOCV_HCP	SAME	1004		1006	
 HVBatSOC_HCP	SAME	1003	HYBRID_DISPLAY.HVBatterySOC_Display	1005	HYBRID_DISPLAY.HVBatterySOC_Display
 HVBatSOH	SAME	1005	BATTERY_HV.BMS_HV_SOH, BATTERY_HV.BMS_HV_SOH_Vldty ¦ BATTERY_HV_STATUS1.BPCM_HV_SOH ¦ HVBATTERY2.HVBatterySOH	1007	BATTERY_HV.BMS_HV_SOH, BATTERY_HV.BMS_HV_SOH_Vldty ¦ BATTERY_HV_STATUS1.BPCM_HV_SOH ¦ HVBATTERY2.HVBatterySOH
-HVBatteryTempForDisplay	SAME	1006,1007	<pending>.HVBatteryTempForDisplay ¦ VDCM_HMI.HVBatteryTempForDisplay	1008,1009	<pending>.HVBatteryTempForDisplay ¦ VDCM_HMI.HVBatteryTempForDisplay
+HVBatteryTempForDisplay	SAME	1006 ¦ 1007	<pending>.HVBatteryTempForDisplay ¦ VDCM_HMI.HVBatteryTempForDisplay	1008 ¦ 1009	<pending>.HVBatteryTempForDisplay ¦ VDCM_HMI.HVBatteryTempForDisplay
 HVESS_CHARGE_ACT	SAME	1008	J1979_03_CARB_2.Syst_Actual_Charge_Pwr	1010	J1979_03_CARB_2.Syst_Actual_Charge_Pwr
 HVESS_CHARGE_LIM	SAME	1009	J1979_03_CARB_2.Syst_Actual_Charge_Lim	1011	J1979_03_CARB_2.Syst_Actual_Charge_Lim
 HVY_EXH_STAT	SAME	1010		1012	
@@ -1013,13 +1013,13 @@ HeatedSeatFR	SAME	914	STATUS_CSWM.FR_HS_STATFailSts ¦ STATUS_CSWM.FR_HS_STATSts
 HeatedSeatRL	SAME	915	STATUS_CLIMATE9.RL_HS_STAT	917	STATUS_CLIMATE9.RL_HS_STAT
 HeatedSeatRR	SAME	916	STATUS_CLIMATE9.RR_HS_STAT	918	STATUS_CLIMATE9.RR_HS_STAT
 HighBeamFault	SAME	921		923	
-HillDescentStatus	SAME	923,924	BRAKE_FD_1.HILL_DES_STAT ¦ BRAKE_FD_5.HDCAutoDisabled	925,926	BRAKE_FD_1.HILL_DES_STAT ¦ BRAKE_FD_5.HDCAutoDisabled
+HillDescentStatus	SAME	923 ¦ 924	BRAKE_FD_1.HILL_DES_STAT ¦ BRAKE_FD_5.HDCAutoDisabled	925 ¦ 926	BRAKE_FD_1.HILL_DES_STAT ¦ BRAKE_FD_5.HDCAutoDisabled
 HillHolderFailSts	SAME	925	BRAKE_FD_5.HillHolderFailSts	927	BRAKE_FD_5.HillHolderFailSts
 Hybrid_Dist_Kilometers	SAME	1011		1013	
 Hybrid_Dist_Miles	SAME	1012		1014	
 HydrogenTankLevel	SAME	1013		1015	
 IBS_I_BATT	SAME	1014	BCM_FD_5.IBS_I_BATT	1016	BCM_FD_5.IBS_I_BATT
-IBS_SOC	SAME	1015,1016,1017	IBS3_DATA_2.IBS3_SOC	1017,1018,1019	IBS3_DATA_2.IBS3_SOC
+IBS_SOC	SAME	1015 ¦ 1016 ¦ 1017	IBS3_DATA_2.IBS3_SOC	1017 ¦ 1018 ¦ 1019	IBS3_DATA_2.IBS3_SOC
 IBS_SOC_Accuracy	SAME	1018	IBS3_DATA_2.IBS3_SOC_Accuracy	1020	IBS3_DATA_2.IBS3_SOC_Accuracy
 IBS_V_Batt	SAME	1019	BCM_FD_4.IBS_V_BATT	1021	BCM_FD_4.IBS_V_BATT
 ICSBrowseButton	SAME	1034		1036	
@@ -1047,7 +1047,7 @@ ICS_btn_12	SAME	1021	ENGINE_FD_6.TerrainModeInterfaceButton_ECM	1023	ENGINE_FD_6
 ICS_btn_31	SAME	1022		1024	
 ICS_btn_32	SAME	1023		1025	
 IC_PP_RQ	SAME	1020		1022	
-IMPACTConfirm	SAME	1068,1069	IMPACT_INFO.IMPACTConfim ¦ IMPACT_INFO.IMPACTConfirm	1070,1071	IMPACT_INFO.IMPACTConfim ¦ IMPACT_INFO.IMPACTConfirm
+IMPACTConfirm	SAME	1068 ¦ 1069	IMPACT_INFO.IMPACTConfim ¦ IMPACT_INFO.IMPACTConfirm	1070 ¦ 1071	IMPACT_INFO.IMPACTConfim ¦ IMPACT_INFO.IMPACTConfirm
 IMPACT_A	SAME	1059	IMPACT_INFO.IMPACT_A	1061	IMPACT_INFO.IMPACT_A
 IMPACT_B	SAME	1060	IMPACT_INFO.IMPACT_B	1062	IMPACT_INFO.IMPACT_B
 IMPACT_C	SAME	1061	IMPACT_INFO.IMPACT_C	1063	IMPACT_INFO.IMPACT_C
@@ -1134,7 +1134,7 @@ LaunchRPMsetting2_ESC	SAME	1118	BRAKE_FD_4.LaunchRPMsetting_BSM	1120	BRAKE_FD_4.
 Launch_RPM_Selected_Setting2	SAME	1115	TELEMATIC_FD_11.Launch_RPM_Selected_Setting2	1117	TELEMATIC_FD_11.Launch_RPM_Selected_Setting2
 Launch_Sft_Btn_status	SAME	1116	TELEMATIC_FD_11.Launch_Sft_Btn_status	1118	TELEMATIC_FD_11.Launch_Sft_Btn_status
 Launch_Torque_Sft_Btn_Req	SAME	1117	TELEMATIC_FD_15.Launch_Torque_Sft_Btn_Req	1119	TELEMATIC_FD_15.Launch_Torque_Sft_Btn_Req
-Left_Cluster_Button_Function	SAME	1122,1123	TELEMATIC_FD_15.Left_Cluster_Button_function	1124,1125	TELEMATIC_FD_15.Left_Cluster_Button_function
+Left_Cluster_Button_Function	SAME	1122 ¦ 1123	TELEMATIC_FD_15.Left_Cluster_Button_function	1124 ¦ 1125	TELEMATIC_FD_15.Left_Cluster_Button_function
 Light_Range_Impact	SAME	1131	<pending>.Light_Range_Impact	1133	<pending>.Light_Range_Impact
 Linelock_Sft_Btn_Req	SAME	1132		1134	
 Linelock_Sft_Btn_request	SAME	1133	<pending>.Linelock_Sft_Btn_request	1135	<pending>.Linelock_Sft_Btn_request
@@ -1256,7 +1256,7 @@ Next_External_Charge_End_Time_Hr	SAME	1255	CHARGE_SCHEDULE_NEXT.Nxt_Ext_Charge_E
 Next_External_Charge_End_Time_Min	SAME	1256	CHARGE_SCHEDULE_NEXT.Nxt_Ext_Charge_End_Time_Min	1258	CHARGE_SCHEDULE_NEXT.Nxt_Ext_Charge_End_Time_Min
 Next_External_Charge_ExternalTarget	SAME	1258	CHARGE_SCHEDULE_NEXT.Next_External_Charge_ExternalTarget	1260	CHARGE_SCHEDULE_NEXT.Next_External_Charge_ExternalTarget
 Next_External_Charge_ImmediateTarget	SAME	1259	CHARGE_SCHEDULE_NEXT.Next_External_Charge_ImmediateTarget	1261	CHARGE_SCHEDULE_NEXT.Next_External_Charge_ImmediateTarget
-Next_SchCabin_Temp	SAME	1260,1261	CHARGE_SCHEDULE_NEXT.Next_SchCabin_Temp	1262,1263	CHARGE_SCHEDULE_NEXT.Next_SchCabin_Temp
+Next_SchCabin_Temp	SAME	1260 ¦ 1261	CHARGE_SCHEDULE_NEXT.Next_SchCabin_Temp	1262 ¦ 1263	CHARGE_SCHEDULE_NEXT.Next_SchCabin_Temp
 NumTrlAxles	SAME	1264	Radio_A4.Number_of_Trl_Axles	1266	Radio_A4.Number_of_Trl_Axles
 NumTrlAxles_TTPM	SAME	1265	TPM_A6.Number_of_Trl_Axles_TTPM	1267	TPM_A6.Number_of_Trl_Axles_TTPM
 NumTrlTires	SAME	1266	Radio_A4.Number_of_Trl_Tires	1268	Radio_A4.Number_of_Trl_Tires
@@ -1304,7 +1304,7 @@ POS_LIGHT_STAT	SAME	1355		1357
 PPD_Row2_CSeatSts	SAME	1386	ORC_FD_1.SBR2ndRowCSeatSts	1388	ORC_FD_1.SBR2ndRowCSeatSts
 PPD_Row2_LSeatSts	SAME	1387	ORC_FD_1.SBR2ndRowLSeatSts	1389	ORC_FD_1.SBR2ndRowLSeatSts
 PPD_Row2_RSeatSts	SAME	1388	ORC_FD_1.SBR2ndRowRSeatSts	1390	ORC_FD_1.SBR2ndRowRSeatSts
-PPD_Row3_LSeatSts	SAME	1389,1390	ORC_FD_2.SBR3rdRowLSeatSts ¦ ORC_FD_2.SBR3rdRowLSeatSts	1391,1392	ORC_FD_2.SBR3rdRowLSeatSts ¦ ORC_FD_2.SBR3rdRowLSeatSts
+PPD_Row3_LSeatSts	SAME	1389 ¦ 1390	ORC_FD_2.SBR3rdRowLSeatSts ¦ ORC_FD_2.SBR3rdRowLSeatSts	1391 ¦ 1392	ORC_FD_2.SBR3rdRowLSeatSts ¦ ORC_FD_2.SBR3rdRowLSeatSts
 PPD_Row3_RSeatSts	SAME	1391	ORC_FD_2.SBR3rdRowRSeatSts	1393	ORC_FD_2.SBR3rdRowRSeatSts
 PPPA_STAT	SAME	1392	BCM_FD_12.APARequestSts	1394	BCM_FD_12.APARequestSts
 PRNDL_DISP	SAME	1400	PT_SYSTEM_FD_1.GearEngaged_PT	1402	PT_SYSTEM_FD_1.GearEngaged_PT
@@ -1401,7 +1401,7 @@ PowerShot	SAME	1380	ENGINE_SIMULATOR4.PowerShot_EVCU_PT1	1382	ENGINE_SIMULATOR4.
 PowerShot_Availability	SAME	1381	<pending>.PowerShot_Availability	1383	<pending>.PowerShot_Availability
 PowerSideStep_Req	SAME	1382	RADIO_B3.PowerSideStep_Req	1384	RADIO_B3.PowerSideStep_Req
 PowerTopPosition	SAME	1383		1385	
-PowerUnit	SAME	1384,1385	IPC_VEHICLE_SETUP.HP_Unit	1386,1387	IPC_VEHICLE_SETUP.HP_Unit
+PowerUnit	SAME	1384 ¦ 1385	IPC_VEHICLE_SETUP.HP_Unit	1386 ¦ 1387	IPC_VEHICLE_SETUP.HP_Unit
 Power_Panel_Cargo_Diagn	SAME	1368	<pending>.Power_Panel_Cargo_Diagn	1370	<pending>.Power_Panel_Cargo_Diagn
 Power_Panel_Internal_Fault	SAME	1369	<pending>.Power_Panel_Internal_Fault	1371	<pending>.Power_Panel_Internal_Fault
 Power_Panel_Op_Suspended	SAME	1370	<pending>.Power_Panel_Op_Suspended	1372	<pending>.Power_Panel_Op_Suspended
@@ -1495,7 +1495,7 @@ R_AC_SW_RQ_M	SAME	1461		1463
 R_ATC_TEMP	SAME	1462	N/A for Atlantis High	1464	N/A for Atlantis High
 R_AUTO_STAT	SAME	1463	N/A for Atlantis High	1465	N/A for Atlantis High
 R_AUTO_STAT_M	SAME	1464		1466	
-R_AUTO_SW_RQ	SAME	1465,1466	RADIO_B7.R_AUTO_SW_RQ ¦ RADIO_B7.R_AUTO_SW_RQ	1467,1468	RADIO_B7.R_AUTO_SW_RQ ¦ RADIO_B7.R_AUTO_SW_RQ
+R_AUTO_SW_RQ	SAME	1465 ¦ 1466	RADIO_B7.R_AUTO_SW_RQ ¦ RADIO_B7.R_AUTO_SW_RQ	1467 ¦ 1468	RADIO_B7.R_AUTO_SW_RQ ¦ RADIO_B7.R_AUTO_SW_RQ
 R_AUTO_SW_RQ_M	SAME	1467		1469	
 R_AUTO_SW_RQ_VRM	SAME	1468	VRM_FD_1.R_AUTO_SW_RQ_VRM	1470	VRM_FD_1.R_AUTO_SW_RQ_VRM
 R_BLW_Lock_STAT	SAME	1469		1471	
@@ -1559,10 +1559,10 @@ RearHVACRightTemp	SAME	1558	BCM_FD_12.RearHVACRightTemp ¦ STATUS_CLIMATE8.RearH
 RearHVAC_ModeFloor_Req	SAME	1550	RADIO_B7.RearHVAC_ModeFloor_Req	1552	RADIO_B7.RearHVAC_ModeFloor_Req
 RearHVAC_ModePanel_Req	SAME	1551	RADIO_B7.RearHVAC_ModePanel_Req	1553	RADIO_B7.RearHVAC_ModePanel_Req
 RearHvacMode_Req	SAME	1556		1558	
-RearLeftLevel	SAME	1559,1560	ASCM_FD_1.RL_Lvl	1561,1562	ASCM_FD_1.RL_Lvl
+RearLeftLevel	SAME	1559 ¦ 1560	ASCM_FD_1.RL_Lvl	1561 ¦ 1562	ASCM_FD_1.RL_Lvl
 RearLockLastElSts	SAME	1561		1563	
 RearPAM_Req	SAME	1562	TELEMATIC_FD_11.HU_Rear_PAMRequestSts	1564	TELEMATIC_FD_11.HU_Rear_PAMRequestSts
-RearRightLevel	SAME	1563,1564	ASCM_FD_1.RR_Lvl	1565,1566	ASCM_FD_1.RR_Lvl
+RearRightLevel	SAME	1563 ¦ 1564	ASCM_FD_1.RR_Lvl	1565 ¦ 1566	ASCM_FD_1.RR_Lvl
 RearTrunkEnableLastElSts	SAME	1565	BCM_FD_9.RearTrunkEnableLastElSts	1567	BCM_FD_9.RearTrunkEnableLastElSts
 Rear_AxleTorque_Static	SAME	1535	ENGINE_SIMULATOR4.Rear_AxleTorque_Static_PT1	1537	ENGINE_SIMULATOR4.Rear_AxleTorque_Static_PT1
 Rear_Climate_1	SAME	1536	CENTERSTACK_R.Rear_Climate_1 (BH-CAN)	1538	CENTERSTACK_R.Rear_Climate_1 (BH-CAN)
@@ -1593,11 +1593,11 @@ RestoreDefaultSettingReq	SAME	1583	TELEMATIC_VEHICLE_SETUP.RestoreDefaultSetting
 ResumeSwitch	SAME	1584	BCM_FD_13.ResumeSwitch	1586	BCM_FD_13.ResumeSwitch
 Retr_CS	SAME	1585		1587	
 ReverseGearStatus	SAME	1586	STATUS_CCAN4.ReverseGearSts	1588	STATUS_CCAN4.ReverseGearSts
-Right_Cluster_Button_Function	SAME	1596,1597	TELEMATIC_FD_15.Right_Cluster_Button_function	1598,1599	TELEMATIC_FD_15.Right_Cluster_Button_function
+Right_Cluster_Button_Function	SAME	1596 ¦ 1597	TELEMATIC_FD_15.Right_Cluster_Button_function	1598 ¦ 1599	TELEMATIC_FD_15.Right_Cluster_Button_function
 Right_Temp_Down_Button	SAME	1598	CLIMATIC_PANEL.Climate_btn5	1600	CLIMATIC_PANEL.Climate_btn5
 RoadShieldIcon	SAME	1602	TELEMATIC_FD_16.RoadShieldIcon	1604	TELEMATIC_FD_16.RoadShieldIcon
 RoadShieldText	SAME	1603	TELEMATIC_FD_16.RoadShieldText_IC	1605	TELEMATIC_FD_16.RoadShieldText_IC
-RollAngle	SAME	1604,1605	BCM_FD_4.RollAngle	1606,1607	BCM_FD_4.RollAngle
+RollAngle	SAME	1604 ¦ 1605	BCM_FD_4.RollAngle	1606 ¦ 1607	BCM_FD_4.RollAngle
 RoofTop_Close_RQ	SAME	1607	PTCM_CTRL.Close_Capotte_BurronSts	1609	PTCM_CTRL.Close_Capotte_BurronSts
 RoofTop_Fail	SAME	1608	STATUS_PTCM.CapoteFailSts	1610	STATUS_PTCM.CapoteFailSts
 RoofTop_Open_RQ	SAME	1609	PTCM_CTRL.Open_Capotte_BurronSts	1611	PTCM_CTRL.Open_Capotte_BurronSts
@@ -1623,12 +1623,12 @@ RunFlatTireLow	SAME	1633		1635
 SBRMuteReq	SAME	1637		1639	
 SCCActv	SAME	1638	BODY_CNTRL7.SCCActvSts	1640	BODY_CNTRL7.SCCActvSts
 SDWChimeMode	SAME	1660	IPC_VEHICLE_SETUP.Sdw	1662	IPC_VEHICLE_SETUP.Sdw
-SDWChimeRepRate	SAME	1661,1662	SDW_INFO.SDW_ChimeRepetitionRate_Left ¦ SDW_INFO.SDW_ChimeRepetitionRate_Right	1663,1664	SDW_INFO.SDW_ChimeRepetitionRate_Left ¦ SDW_INFO.SDW_ChimeRepetitionRate_Right
+SDWChimeRepRate	SAME	1661 ¦ 1662	SDW_INFO.SDW_ChimeRepetitionRate_Left ¦ SDW_INFO.SDW_ChimeRepetitionRate_Right	1663 ¦ 1664	SDW_INFO.SDW_ChimeRepetitionRate_Left ¦ SDW_INFO.SDW_ChimeRepetitionRate_Right
 SDWChimeRqLF	SAME	1663	SDW_INFO.SDW_ChimeActivation_LHF	1665	SDW_INFO.SDW_ChimeActivation_LHF
 SDWChimeRqLR	SAME	1664	SDW_INFO.SDW_ChimeActivation_LHR	1666	SDW_INFO.SDW_ChimeActivation_LHR
 SDWChimeRqRF	SAME	1665	SDW_INFO.SDW_ChimeActivation_RHF	1667	SDW_INFO.SDW_ChimeActivation_RHF
 SDWChimeRqRR	SAME	1666	SDW_INFO.SDW_ChimeActivation_RHR	1668	SDW_INFO.SDW_ChimeActivation_RHR
-SDWChimeType	SAME	1667,1668	SDW_INFO.SDW_ChimeType_Left ¦ SDW_INFO.SDW_ChimeType_Right	1669,1670	SDW_INFO.SDW_ChimeType_Left ¦ SDW_INFO.SDW_ChimeType_Right
+SDWChimeType	SAME	1667 ¦ 1668	SDW_INFO.SDW_ChimeType_Left ¦ SDW_INFO.SDW_ChimeType_Right	1669 ¦ 1670	SDW_INFO.SDW_ChimeType_Left ¦ SDW_INFO.SDW_ChimeType_Right
 SDWChimeVolume	SAME	1669	IPC_VEHICLE_SETUP.SdwChimeVolume	1671	IPC_VEHICLE_SETUP.SdwChimeVolume
 SD_LO_Status	SAME	1659		1661	
 SEAT_BELT_STAT	SAME	1670		1672	
@@ -1833,11 +1833,11 @@ Schedule_Type1_Sts	SAME	1653	CHARGE_SCHEDULE_HCP1.Schedule_Type1_Sts	1655	CHARGE
 Schedule_Type2	SAME	1654	CHARGE_SCHEDULE_HU1.Schedule_Type2	1656	CHARGE_SCHEDULE_HU1.Schedule_Type2
 Schedule_Type2_Sts	SAME	1655	CHARGE_SCHEDULE_HCP1.Schedule_Type2_Sts	1657	CHARGE_SCHEDULE_HCP1.Schedule_Type2_Sts
 Schedule_Type3	SAME	1656	CHARGE_SCHEDULE_HU1.Schedule_Type3	1658	CHARGE_SCHEDULE_HU1.Schedule_Type3
-Schedule_Type3_Sts	SAME	1657,1658	CHARGE_SCHEDULE_HCP1.Schedule_Type3_Sts	1659,1660	CHARGE_SCHEDULE_HCP1.Schedule_Type3_Sts
+Schedule_Type3_Sts	SAME	1657 ¦ 1658	CHARGE_SCHEDULE_HCP1.Schedule_Type3_Sts	1659 ¦ 1660	CHARGE_SCHEDULE_HCP1.Schedule_Type3_Sts
 SeatWheel_Comfort_Range_Impact	SAME	1671	<pending>.SeatWheel_Comfort_Range_Impact	1673	<pending>.SeatWheel_Comfort_Range_Impact
-Secure_Idle_Req	SAME	1672,1673	<pending>.Secure_Idle_Req ¦ TELEMATIC_FD_19.Secure_Idle_Req	1674,1675	<pending>.Secure_Idle_Req ¦ TELEMATIC_FD_19.Secure_Idle_Req
-Secure_Idle_Sts	SAME	1674,1675	<pending>.Secure_Idle_Sts ¦ PT_SYSTEM_FD_1.Secure_Idle_Sts_EV ¦ TRANSM_FD_1.Secure_Idle_Sts	1676,1677	<pending>.Secure_Idle_Sts ¦ PT_SYSTEM_FD_1.Secure_Idle_Sts_EV ¦ TRANSM_FD_1.Secure_Idle_Sts
-SelSpdLmp	SAME	1678,1679	BRAKE_FD_1.SelSpdLmp ¦ BRAKE_FD_5.HDCUserFdBck	1680,1681	BRAKE_FD_1.SelSpdLmp ¦ BRAKE_FD_5.HDCUserFdBck
+Secure_Idle_Req	SAME	1672 ¦ 1673	<pending>.Secure_Idle_Req ¦ TELEMATIC_FD_19.Secure_Idle_Req	1674 ¦ 1675	<pending>.Secure_Idle_Req ¦ TELEMATIC_FD_19.Secure_Idle_Req
+Secure_Idle_Sts	SAME	1674 ¦ 1675	<pending>.Secure_Idle_Sts ¦ PT_SYSTEM_FD_1.Secure_Idle_Sts_EV ¦ TRANSM_FD_1.Secure_Idle_Sts	1676 ¦ 1677	<pending>.Secure_Idle_Sts ¦ PT_SYSTEM_FD_1.Secure_Idle_Sts_EV ¦ TRANSM_FD_1.Secure_Idle_Sts
+SelSpdLmp	SAME	1678 ¦ 1679	BRAKE_FD_1.SelSpdLmp ¦ BRAKE_FD_5.HDCUserFdBck	1680 ¦ 1681	BRAKE_FD_1.SelSpdLmp ¦ BRAKE_FD_5.HDCUserFdBck
 SelectSpeedStatus	SAME	1677	BCM_FD_18.SelSpdSts	1679	BCM_FD_18.SelSpdSts
 SelectedTPMTrailer_Number	SAME	1676	Radio_A4.SelectedTPMTrailer_Number	1678	Radio_A4.SelectedTPMTrailer_Number
 ServiceAirSuspension	SAME	1682		1684	
@@ -1848,7 +1848,7 @@ ShiftLeverPositionReq	SAME	1687	ENGINE_SIMULATOR4.ShiftLeverPositionReq_PT1	1689
 ShiftLeverPosition_PT	SAME	1686	PT_SYSTEM_FD_1.ShiftLeverPosition_PT	1688	PT_SYSTEM_FD_1.ShiftLeverPosition_PT
 SmartKeyDel_Stat	SAME	1688	SPAAK_FD.SmartKeyDel_Stat1	1690	SPAAK_FD.SmartKeyDel_Stat1
 SpLmpFault	SAME	1738		1740	
-SpStSwStat	SAME	1741,1742	ENGINE_FD_7.SpStSwStat	1743,1744	ENGINE_FD_7.SpStSwStat
+SpStSwStat	SAME	1741 ¦ 1742	ENGINE_FD_7.SpStSwStat	1743 ¦ 1744	ENGINE_FD_7.SpStSwStat
 SpSt_Pad1	SAME	1739	BCM_FD_10.SpSt_Pad1	1741	BCM_FD_10.SpSt_Pad1
 SpSt_Pad2	SAME	1740	BCM_FD_10.SpSt_Pad2	1742	BCM_FD_10.SpSt_Pad2
 SpaaK_TBM_Comm	SAME	1726	Spaak_TBM_Comm.Spaak_TBM_Comm_Sig	1728	Spaak_TBM_Comm.Spaak_TBM_Comm_Sig
@@ -1860,9 +1860,9 @@ SpeedLimit_Value	SAME	1735		1737
 SpeedUnit	SAME	1737	IPC_VEHICLE_SETUP.Speed_Unit	1739	IPC_VEHICLE_SETUP.Speed_Unit
 Speed_Sign_Shape	SAME	1732	ADAS_FD_INFO2.Speed_Sign_Shape	1734	ADAS_FD_INFO2.Speed_Sign_Shape
 Speedometer	SAME	1736	BRAKE_FD_2.VehicleSpeedVSOSig ¦ STATUS_CCAN3.VehicleSpeedVSOSig 'STATUS_CCAN3.VehicleSpeedVSOSigFailSts	1738	BRAKE_FD_2.VehicleSpeedVSOSig ¦ STATUS_CCAN3.VehicleSpeedVSOSig 'STATUS_CCAN3.VehicleSpeedVSOSigFailSts
-StWh_AudioPresetAdvance	SAME	1859,1860	BCM_FD_10.Command_06Sts ¦ SWC.Command_06Sts	1861,1862	BCM_FD_10.Command_06Sts ¦ SWC.Command_06Sts
+StWh_AudioPresetAdvance	SAME	1859 ¦ 1860	BCM_FD_10.Command_06Sts ¦ SWC.Command_06Sts	1861 ¦ 1862	BCM_FD_10.Command_06Sts ¦ SWC.Command_06Sts
 StWh_AudioPresetAdvance StWhl_ModeAdvance	SAME	1861	SWC.Command_09Sts	1863	SWC.Command_09Sts
-StWhl_AudioModeAdvance	SAME	1862,1863	BCM_FD_10.Command_09Sts ¦ N/A	1864,1865	BCM_FD_10.Command_09Sts ¦ N/A
+StWhl_AudioModeAdvance	SAME	1862 ¦ 1863	BCM_FD_10.Command_09Sts ¦ N/A	1864 ¦ 1865	BCM_FD_10.Command_09Sts ¦ N/A
 StWhl_AudioPresetAdvance	SAME	1864		1866	
 StWhl_ModeAdvance	SAME	1865	BCM_FD_10.Command_09Sts	1867	BCM_FD_10.Command_09Sts
 StWhl_Mute	SAME	1866	BCM_FD_10.Command_03Sts	1868	BCM_FD_10.Command_03Sts
@@ -2077,13 +2077,13 @@ TGW_JUMP_FUNC	SAME	2086	TELEMATIC_FD_12.TGW_JUMP_FUNC	2088	TELEMATIC_FD_12.TGW_J
 TGW_JUMP_FUNC_HVAC	SAME	2087	TELEMATIC_CLIMATE_SETUP.HVACJumpVAL	2089	TELEMATIC_CLIMATE_SETUP.HVACJumpVAL
 TGW_JUMP_FUNC_HVAC_M	SAME	2088		2090	
 TGW_JUMP_FUNC_HVAC_VRM	SAME	2089		2091	
-TGW_PT_CAB_DR	SAME	2090,2091	TGW_PT_CAB_DRSts ¦ TGW_PT_CAB_DRSts	2092,2093	TGW_PT_CAB_DRSts ¦ TGW_PT_CAB_DRSts
+TGW_PT_CAB_DR	SAME	2090 ¦ 2091	TGW_PT_CAB_DRSts ¦ TGW_PT_CAB_DRSts	2092 ¦ 2093	TGW_PT_CAB_DRSts ¦ TGW_PT_CAB_DRSts
 TGW_RQ1	SAME	2099	TGW_Rq1Sts	2101	TGW_Rq1Sts
 TGW_RQ2	SAME	2100	TELEMATIC_FD_5.TGW_Rq2Sts	2102	TELEMATIC_FD_5.TGW_Rq2Sts
 TGW_RQ3	SAME	2101		2103	
 TGW_RQ_FUNC_HVAC	SAME	2093	TELEMATIC_CLIMATE_SETUP.HVACFunc_Req	2095	TELEMATIC_CLIMATE_SETUP.HVACFunc_Req
 TGW_RQ_FUNC_HVAC_M	SAME	2094		2096	
-TGW_RQ_FUNC_R_HVAC	SAME	2095,2096	New signal being created for WL	2097,2098	New signal being created for WL
+TGW_RQ_FUNC_R_HVAC	SAME	2095 ¦ 2096	New signal being created for WL	2097 ¦ 2098	New signal being created for WL
 TGW_RQ_FUNC_R_HVAC_M	SAME	2097		2099	
 TGW_RQ_FUNC_R_HVAC_VRM	SAME	2098	VRM_FD_1.TGW_RQ_FUNC_R_HVAC_VRM	2100	VRM_FD_1.TGW_RQ_FUNC_R_HVAC_VRM
 TGW_RSP	SAME	2102	TELEMATIC_FD_12.TGW_RSP	2104	TELEMATIC_FD_12.TGW_RSP
@@ -2107,16 +2107,16 @@ TRSCEnable_Req	SAME	2205	TELEMATIC_FD_11.TRSC_EnableBtn_Sts	2207	TELEMATIC_FD_11
 TRSC_STAT	SAME	2204	TRSCM_FD_1.TRSC_STAT	2206	TRSCM_FD_1.TRSC_STAT
 TSI_Unit	SAME	2206	IPC_VEHICLE_SETUP.Speed_Unit	2208	IPC_VEHICLE_SETUP.Speed_Unit
 TSRSts	SAME	2207	ADAS_FD_INFO2.TSRSts	2209	ADAS_FD_INFO2.TSRSts
-TX_TEMP	SAME	2215,2216	TRANSM_FD_2.TransmissionTemperature ¦ TRANSM_FD_2.TransmissionTemperatureFailSts	2217,2218	TRANSM_FD_2.TransmissionTemperature ¦ TRANSM_FD_2.TransmissionTemperatureFailSts
+TX_TEMP	SAME	2215 ¦ 2216	TRANSM_FD_2.TransmissionTemperature ¦ TRANSM_FD_2.TransmissionTemperatureFailSts	2217 ¦ 2218	TRANSM_FD_2.TransmissionTemperature ¦ TRANSM_FD_2.TransmissionTemperatureFailSts
 TargetGear	SAME	1910		1912	
 Target_SOC_ChargeSchedule1_Req	SAME	1908	TBM_SCHEDULE_FD_1.TBM_External_ChargeTarget1	1910	TBM_SCHEDULE_FD_1.TBM_External_ChargeTarget1
 Target_SOC_ChargeSchedule2_Req	SAME	1909	TBM_SCHEDULE_FD_1.TBM_External_ChargeTarget2	1911	TBM_SCHEDULE_FD_1.TBM_External_ChargeTarget2
-Tcase2WD_Stat	SAME	2050,2051,2052	DRIVETRAIN_FD_3.Tcase2WD_Stat	2052,2053,2054	DRIVETRAIN_FD_3.Tcase2WD_Stat
-Tcase4Lock	SAME	2053,2054,2055	DRIVETRAIN_FD_3.Tcase4Lock	2055,2056,2057	DRIVETRAIN_FD_3.Tcase4Lock
-Tcase4Low	SAME	2056,2057	DRIVETRAIN_FD_2.TerSt_SWITCH2 ¦ DRIVETRAIN_FD_3.TCASERANGESTATUS	2058,2059	DRIVETRAIN_FD_2.TerSt_SWITCH2 ¦ DRIVETRAIN_FD_3.TCASERANGESTATUS
-TcaseAWD	SAME	2058,2059,2060	DRIVETRAIN_FD_3.TcaseAWD	2060,2061,2062	DRIVETRAIN_FD_3.TcaseAWD
-TcaseLampStatus	SAME	2062,2063		2064,2065	
-TcaseNtrlStat	SAME	2064,2065	DRIVETRAIN_FD_2.TerSt_SWITCH1	2066,2067	DRIVETRAIN_FD_2.TerSt_SWITCH1
+Tcase2WD_Stat	SAME	2050 ¦ 2051 ¦ 2052	DRIVETRAIN_FD_3.Tcase2WD_Stat	2052 ¦ 2053 ¦ 2054	DRIVETRAIN_FD_3.Tcase2WD_Stat
+Tcase4Lock	SAME	2053 ¦ 2054 ¦ 2055	DRIVETRAIN_FD_3.Tcase4Lock	2055 ¦ 2056 ¦ 2057	DRIVETRAIN_FD_3.Tcase4Lock
+Tcase4Low	SAME	2056 ¦ 2057	DRIVETRAIN_FD_2.TerSt_SWITCH2 ¦ DRIVETRAIN_FD_3.TCASERANGESTATUS	2058 ¦ 2059	DRIVETRAIN_FD_2.TerSt_SWITCH2 ¦ DRIVETRAIN_FD_3.TCASERANGESTATUS
+TcaseAWD	SAME	2058 ¦ 2059 ¦ 2060	DRIVETRAIN_FD_3.TcaseAWD	2060 ¦ 2061 ¦ 2062	DRIVETRAIN_FD_3.TcaseAWD
+TcaseLampStatus	SAME	2062 ¦ 2063		2064 ¦ 2065	
+TcaseNtrlStat	SAME	2064 ¦ 2065	DRIVETRAIN_FD_2.TerSt_SWITCH1	2066 ¦ 2067	DRIVETRAIN_FD_2.TerSt_SWITCH1
 TeenKeyPresent	SAME	2068	N/A	2070	N/A
 Telematic_Power	SAME	2069	STATUS_TELEMATIC.PowerSts_Telematic ¦ TELEMATIC_FD_4.PowerSts_Telematic	2071	STATUS_TELEMATIC.PowerSts_Telematic ¦ TELEMATIC_FD_4.PowerSts_Telematic
 TemperatureUnit	SAME	2070	IPC_VEHICLE_SETUP.Temp_Unit	2072	IPC_VEHICLE_SETUP.Temp_Unit
@@ -2153,7 +2153,7 @@ ToneFADE	SAME	2125	CTRL_AMP.FD_LVLSts	2127	CTRL_AMP.FD_LVLSts
 ToneMID	SAME	2126	CTRL_AMP.MID_LVLSts	2128	CTRL_AMP.MID_LVLSts
 ToneTREB	SAME	2127	CTRL_AMP.TREB_LVLSts	2129	CTRL_AMP.TREB_LVLSts
 Torque	SAME	2128	PT_TORQUE_FD_1.SumTorqueStatic	2130	PT_TORQUE_FD_1.SumTorqueStatic
-TorqueUnit	SAME	2130,2131		2132,2133	
+TorqueUnit	SAME	2130 ¦ 2131		2132 ¦ 2133	
 Torque_Stat	SAME	2129		2131	
 Total_AxleTorque_Max	SAME	2132	AXLE_TORQUE_FD_1.Total_AxleTorque_Max	2134	AXLE_TORQUE_FD_1.Total_AxleTorque_Max
 Total_AxleTorque_Min	SAME	2133	AXLE_TORQUE_FD_1.Total_AxleTorque_Min	2135	AXLE_TORQUE_FD_1.Total_AxleTorque_Min
@@ -2223,7 +2223,7 @@ Tunnel_CS	SAME	2209		2211
 TurnInd_LT_ON	SAME	2210	BCM_FD_9.LHTurnSignalSts	2212	BCM_FD_9.LHTurnSignalSts
 TurnInd_ON	SAME	2211		2213	
 TurnInd_RT_ON	SAME	2212	BCM_FD_9.RHTurnSignalSts	2214	BCM_FD_9.RHTurnSignalSts
-TurtleModeSts	SAME	2213,2214	PT_SYSTEM_FD_1.TurtleModeSts_PT ¦ VDCM_PWT.TurtleModeSts	2215,2216	PT_SYSTEM_FD_1.TurtleModeSts_PT ¦ VDCM_PWT.TurtleModeSts
+TurtleModeSts	SAME	2213 ¦ 2214	PT_SYSTEM_FD_1.TurtleModeSts_PT ¦ VDCM_PWT.TurtleModeSts	2215 ¦ 2216	PT_SYSTEM_FD_1.TurtleModeSts_PT ¦ VDCM_PWT.TurtleModeSts
 UConnReq	SAME	2225	U_CONN_REQ_TBM.UConnReq_TBM	2227	U_CONN_REQ_TBM.UConnReq_TBM
 UConnReqAuthCode	SAME	2226	U_CONN_Req.UconnReqAuthxode	2228	U_CONN_Req.UconnReqAuthxode
 UConnReqFOBNum	SAME	2227		2229	
@@ -2241,7 +2241,7 @@ UPchar6	SAME	2238		2240
 UPchar7	SAME	2239		2241	
 USBAudio	SAME	2246		2248	
 USBAudioFeedback	SAME	2247		2249	
-USBAudiorequest	SAME	2248,2249	TBM_FD_2.USB_Audio ¦ TBM_FD_2.USB_Audio	2250,2251	TBM_FD_2.USB_Audio ¦ TBM_FD_2.USB_Audio
+USBAudiorequest	SAME	2248 ¦ 2249	TBM_FD_2.USB_Audio ¦ TBM_FD_2.USB_Audio	2250 ¦ 2251	TBM_FD_2.USB_Audio ¦ TBM_FD_2.USB_Audio
 USFrameID	SAME	2257	Removed with Multi-Frame?	2259	Removed with Multi-Frame?
 USS10_check_healty_sts	SAME	2259	<pending>.USS 10_check_healty_sts	2261	<pending>.USS 10_check_healty_sts
 USS11_check_healty_sts	SAME	2260	<pending>.USS 11_check_healty_sts	2262	<pending>.USS 11_check_healty_sts
@@ -2450,7 +2450,7 @@ VehPerfAccel_X	SAME	2322	BRAKE_FD_2.LongAcceleration_BSM	2324	BRAKE_FD_2.LongAcc
 VehPerfAccel_Y	SAME	2323	BRAKE_FD_2.LatAcceleration_BSM	2325	BRAKE_FD_2.LatAcceleration_BSM
 VehSpdDisp	SAME	2329	IPC_FD_5.VehSpdDisp	2331	IPC_FD_5.VehSpdDisp
 VehSpd_MPH	SAME	2328	IPC_FD_5.VehSpd_MPH	2330	IPC_FD_5.VehSpd_MPH
-VehicleAccelerationOffsets	SAME	2318,2319		2320,2321	
+VehicleAccelerationOffsets	SAME	2318 ¦ 2319		2320 ¦ 2321	
 VehicleArchInfo	SAME	2320	ARCH_INFO.VehicleArchitectureInfo	2322	ARCH_INFO.VehicleArchitectureInfo
 VehicleSpeedVSOSig	SAME	2321	BRAKE_FD_2.VehicleSpeedVSOSig	2323	BRAKE_FD_2.VehicleSpeedVSOSig
 VentedSeatFL	SAME	2330	STATUS_CSWM.FL_VS_STATFailSts ¦ STATUS_CSWM.FL_VS_STATSts	2332	STATUS_CSWM.FL_VS_STATFailSts ¦ STATUS_CSWM.FL_VS_STATSts
@@ -2503,10 +2503,10 @@ WeekendTmHour_Start	SAME	2439		2441
 WeekendTmMinute_End	SAME	2440		2442	
 WeekendTmMinute_Start	SAME	2441		2443	
 WheelPulse (Fail Sts)	SAME	2450	BRAKE_FD_3.LHF_WheelSensorFailSts	2452	BRAKE_FD_3.LHF_WheelSensorFailSts
-Wheel_Pulse_FL	SAME	2442,2443	BRAKE_FD_3.LHF_FastPulseCounter ¦ BRAKE_FD_3.LHF_FastPulseCounter ¦ BRAKE_FD_3.LHF_WheelSensorFailSts ¦ BRAKE_FD_3.LHF_WheelSensorFailSts ¦ STATUS_CCAN2.LHF_FastPulseCounter ¦ STATUS_CCAN2.LHF_FastPulseCounter ¦ STATUS_CCAN2.LHF_WheelSensorFailSts ¦ STATUS_CCAN2.LHF_WheelSensorFailSts	2444,2445	BRAKE_FD_3.LHF_FastPulseCounter ¦ BRAKE_FD_3.LHF_FastPulseCounter ¦ BRAKE_FD_3.LHF_WheelSensorFailSts ¦ BRAKE_FD_3.LHF_WheelSensorFailSts ¦ STATUS_CCAN2.LHF_FastPulseCounter ¦ STATUS_CCAN2.LHF_FastPulseCounter ¦ STATUS_CCAN2.LHF_WheelSensorFailSts ¦ STATUS_CCAN2.LHF_WheelSensorFailSts
-Wheel_Pulse_FR	SAME	2444,2445	BRAKE_FD_3.RHF_FastPulseCounter ¦ BRAKE_FD_3.RHF_FastPulseCounter ¦ BRAKE_FD_3.RHF_WheelSensorFailSts ¦ BRAKE_FD_3.RHF_WheelSensorFailSts ¦ STATUS_CCAN2.RHF_FastPulseCounter ¦ STATUS_CCAN2.RHF_FastPulseCounter ¦ STATUS_CCAN2.RHF_WheelSensorFailSts ¦ STATUS_CCAN2.RHF_WheelSensorFailSts	2446,2447	BRAKE_FD_3.RHF_FastPulseCounter ¦ BRAKE_FD_3.RHF_FastPulseCounter ¦ BRAKE_FD_3.RHF_WheelSensorFailSts ¦ BRAKE_FD_3.RHF_WheelSensorFailSts ¦ STATUS_CCAN2.RHF_FastPulseCounter ¦ STATUS_CCAN2.RHF_FastPulseCounter ¦ STATUS_CCAN2.RHF_WheelSensorFailSts ¦ STATUS_CCAN2.RHF_WheelSensorFailSts
-Wheel_Pulse_RL	SAME	2446,2447	BRAKE_FD_3.LHR_FastPulseCounter ¦ BRAKE_FD_3.LHR_FastPulseCounter ¦ BRAKE_FD_3.LHR_WheelSensorFailSts ¦ BRAKE_FD_3.LHR_WheelSensorFailSts ¦ STATUS_CCAN2.LHR_FastPulseCounter ¦ STATUS_CCAN2.LHR_FastPulseCounter ¦ STATUS_CCAN2.LHR_WheelSensorFailSts ¦ STATUS_CCAN2.LHR_WheelSensorFailSts	2448,2449	BRAKE_FD_3.LHR_FastPulseCounter ¦ BRAKE_FD_3.LHR_FastPulseCounter ¦ BRAKE_FD_3.LHR_WheelSensorFailSts ¦ BRAKE_FD_3.LHR_WheelSensorFailSts ¦ STATUS_CCAN2.LHR_FastPulseCounter ¦ STATUS_CCAN2.LHR_FastPulseCounter ¦ STATUS_CCAN2.LHR_WheelSensorFailSts ¦ STATUS_CCAN2.LHR_WheelSensorFailSts
-Wheel_Pulse_RR	SAME	2448,2449	BRAKE_FD_3.RHR_FastPulseCounter ¦ BRAKE_FD_3.RHR_FastPulseCounter ¦ BRAKE_FD_3.RHR_WheelSensorFailSts ¦ BRAKE_FD_3.RHR_WheelSensorFailSts ¦ STATUS_CCAN2.RHR_FastPulseCounter ¦ STATUS_CCAN2.RHR_FastPulseCounter ¦ STATUS_CCAN2.RHR_WheelSensorFailSts ¦ STATUS_CCAN2.RHR_WheelSensorFailSts	2450,2451	BRAKE_FD_3.RHR_FastPulseCounter ¦ BRAKE_FD_3.RHR_FastPulseCounter ¦ BRAKE_FD_3.RHR_WheelSensorFailSts ¦ BRAKE_FD_3.RHR_WheelSensorFailSts ¦ STATUS_CCAN2.RHR_FastPulseCounter ¦ STATUS_CCAN2.RHR_FastPulseCounter ¦ STATUS_CCAN2.RHR_WheelSensorFailSts ¦ STATUS_CCAN2.RHR_WheelSensorFailSts
+Wheel_Pulse_FL	SAME	2442 ¦ 2443	BRAKE_FD_3.LHF_FastPulseCounter ¦ BRAKE_FD_3.LHF_FastPulseCounter ¦ BRAKE_FD_3.LHF_WheelSensorFailSts ¦ BRAKE_FD_3.LHF_WheelSensorFailSts ¦ STATUS_CCAN2.LHF_FastPulseCounter ¦ STATUS_CCAN2.LHF_FastPulseCounter ¦ STATUS_CCAN2.LHF_WheelSensorFailSts ¦ STATUS_CCAN2.LHF_WheelSensorFailSts	2444 ¦ 2445	BRAKE_FD_3.LHF_FastPulseCounter ¦ BRAKE_FD_3.LHF_FastPulseCounter ¦ BRAKE_FD_3.LHF_WheelSensorFailSts ¦ BRAKE_FD_3.LHF_WheelSensorFailSts ¦ STATUS_CCAN2.LHF_FastPulseCounter ¦ STATUS_CCAN2.LHF_FastPulseCounter ¦ STATUS_CCAN2.LHF_WheelSensorFailSts ¦ STATUS_CCAN2.LHF_WheelSensorFailSts
+Wheel_Pulse_FR	SAME	2444 ¦ 2445	BRAKE_FD_3.RHF_FastPulseCounter ¦ BRAKE_FD_3.RHF_FastPulseCounter ¦ BRAKE_FD_3.RHF_WheelSensorFailSts ¦ BRAKE_FD_3.RHF_WheelSensorFailSts ¦ STATUS_CCAN2.RHF_FastPulseCounter ¦ STATUS_CCAN2.RHF_FastPulseCounter ¦ STATUS_CCAN2.RHF_WheelSensorFailSts ¦ STATUS_CCAN2.RHF_WheelSensorFailSts	2446 ¦ 2447	BRAKE_FD_3.RHF_FastPulseCounter ¦ BRAKE_FD_3.RHF_FastPulseCounter ¦ BRAKE_FD_3.RHF_WheelSensorFailSts ¦ BRAKE_FD_3.RHF_WheelSensorFailSts ¦ STATUS_CCAN2.RHF_FastPulseCounter ¦ STATUS_CCAN2.RHF_FastPulseCounter ¦ STATUS_CCAN2.RHF_WheelSensorFailSts ¦ STATUS_CCAN2.RHF_WheelSensorFailSts
+Wheel_Pulse_RL	SAME	2446 ¦ 2447	BRAKE_FD_3.LHR_FastPulseCounter ¦ BRAKE_FD_3.LHR_FastPulseCounter ¦ BRAKE_FD_3.LHR_WheelSensorFailSts ¦ BRAKE_FD_3.LHR_WheelSensorFailSts ¦ STATUS_CCAN2.LHR_FastPulseCounter ¦ STATUS_CCAN2.LHR_FastPulseCounter ¦ STATUS_CCAN2.LHR_WheelSensorFailSts ¦ STATUS_CCAN2.LHR_WheelSensorFailSts	2448 ¦ 2449	BRAKE_FD_3.LHR_FastPulseCounter ¦ BRAKE_FD_3.LHR_FastPulseCounter ¦ BRAKE_FD_3.LHR_WheelSensorFailSts ¦ BRAKE_FD_3.LHR_WheelSensorFailSts ¦ STATUS_CCAN2.LHR_FastPulseCounter ¦ STATUS_CCAN2.LHR_FastPulseCounter ¦ STATUS_CCAN2.LHR_WheelSensorFailSts ¦ STATUS_CCAN2.LHR_WheelSensorFailSts
+Wheel_Pulse_RR	SAME	2448 ¦ 2449	BRAKE_FD_3.RHR_FastPulseCounter ¦ BRAKE_FD_3.RHR_FastPulseCounter ¦ BRAKE_FD_3.RHR_WheelSensorFailSts ¦ BRAKE_FD_3.RHR_WheelSensorFailSts ¦ STATUS_CCAN2.RHR_FastPulseCounter ¦ STATUS_CCAN2.RHR_FastPulseCounter ¦ STATUS_CCAN2.RHR_WheelSensorFailSts ¦ STATUS_CCAN2.RHR_WheelSensorFailSts	2450 ¦ 2451	BRAKE_FD_3.RHR_FastPulseCounter ¦ BRAKE_FD_3.RHR_FastPulseCounter ¦ BRAKE_FD_3.RHR_WheelSensorFailSts ¦ BRAKE_FD_3.RHR_WheelSensorFailSts ¦ STATUS_CCAN2.RHR_FastPulseCounter ¦ STATUS_CCAN2.RHR_FastPulseCounter ¦ STATUS_CCAN2.RHR_WheelSensorFailSts ¦ STATUS_CCAN2.RHR_WheelSensorFailSts
 Wi-Fifail	SAME	2456	TBM_SCHEDULE_FD_2.WiFiFailSts	2458	TBM_SCHEDULE_FD_2.WiFiFailSts
 Wi-Fistat	SAME	2468	TBM_SCHEDULE_FD_2.WiFiSts	2470	TBM_SCHEDULE_FD_2.WiFiSts
 WiFiClientMode	SAME	2452	GLOB_TLM.WiFi_Client_Mode	2454	GLOB_TLM.WiFi_Client_Mode
@@ -2535,7 +2535,7 @@ WprWash_R_Sw_Posn_V3	SAME	2483		2485
 WprWash_Sts	SAME	2484		2486	
 YawRate	SAME	2485	BRAKE_FD_7.VehYawRate_Raw	2487	BRAKE_FD_7.VehYawRate_Raw
 button_transbrake	SAME	185		185	
-eBoost_Availability	SAME	588,589	<pending>.eBoost_Availability ¦ pending	588,589	<pending>.eBoost_Availability ¦ pending
+eBoost_Availability	SAME	588 ¦ 589	<pending>.eBoost_Availability ¦ pending	588 ¦ 589	<pending>.eBoost_Availability ¦ pending
 eRuptSts	SAME	682	ENGINE_SIMULATOR5.eRUPT_Status	684	ENGINE_SIMULATOR5.eRUPT_Status
 iESS_Call_Setting_Rq	SAME	1045	TELEMATIC_VEHICLE_SETUP.Internal_Sound_Inc_Call_Req	1047	TELEMATIC_VEHICLE_SETUP.Internal_Sound_Inc_Call_Req
 iESS_Call_Setting_Sts	SAME	1046	GW_B_1.Internal_Sound_Inc_Call ¦ IPC_VEHICLE_SETUP.Internal_Sound_Inc_Call	1048	GW_B_1.Internal_Sound_Inc_Call ¦ IPC_VEHICLE_SETUP.Internal_Sound_Inc_Call

@@ -14,6 +14,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 03 | 2026-08-24 | 上繳 02 覆核；覆蓋對照退回重做（錨定法） | [handoff/03_coverage_redo.md](handoff/03_coverage_redo.md) | [upstream/03_coverage_redo.md](upstream/03_coverage_redo.md) | R-DM12–R-DM15（逐字抄錄 4/4 相符，累計 17/17） | A-DM12／A-DM13 新增；**A-DM11 結論撤回並改寫**；A-DM5 適用範圍擴及 036；DR-DM4 開立 | **步驟 1–10 全數執行；十條停止條件全未觸發。舊覆蓋表依 R-TM13 加註保留為 `…RETRACTED.tsv`** |
 | 04 | 2026-08-24 | 參考素材庫（`forms/`）建置；訊號三段解析鏈 | [handoff/04_reference_store.md](handoff/04_reference_store.md) | [upstream/04_reference_store.md](upstream/04_reference_store.md) | R-G12–R-G14（全域，抄入 `docs/fw036/RULINGS_LEDGER.md`）＋ R-DM16／R-DM17（逐字抄錄 5/5，Display 累計 19/19） | A-DM14／A-DM15／A-DM16 新增；**A-DM10 拆為 a（RESOLVED）／b（PENDING）**；A-DM11 之 `[value]` 數字更正；DR-DM5 開立 | **步驟 1–12 全數執行；十三條停止條件全未觸發。`.gitignore` 加一行否定使 `LOOKUP_MISSES.md` 可 tracked** |
 | 05 | 2026-08-24 | `[VALUE]` 定義定案、PROXI 開工、DBC 適用性 | [handoff/05_proxi_and_values.md](handoff/05_proxi_and_values.md) | [upstream/05_proxi_and_values.md](upstream/05_proxi_and_values.md) | R-DM18–R-DM21 ＋ R-G15（全域）（逐字抄錄 5/5，Display 累計 23/23） | A-DM17 新增；A-DM16 結案並記執行結果；A-DM11 之值 token 定案；DR-DM6 開立；LOOKUP_MISSES M-3 | **步驟 1–9 全數執行；十五條停止條件全未觸發。59 vs 44 已調和：擷取無誤，錯在聚合** |
+| 06 | 2026-08-25 | 縮寫錨定案、聚合缺陷通則、037 精讀、Polarion 分頁清償 | [handoff/06_glossary_anchor.md](handoff/06_glossary_anchor.md) | [upstream/06_glossary_anchor.md](upstream/06_glossary_anchor.md) | R-DM22／R-DM23 ＋ R-G16／R-G13 補充（全域）（逐字抄錄 4/4，Display 累計 25/25） | A-DM18／A-DM19／A-DM20 新增；**A-DM4 升級（`_polarion` 字典）**；DR-DM7 開立 | **步驟 1–10 全數執行；十七條停止條件全未觸發。積欠四輪之步驟 8、9 一併清償** |
 
 ## 02 輪要點
 
@@ -101,3 +102,27 @@ Name` 後得 177/446 —— **漏 107 列**，與「以 `ICSPowerButton` 查 DBC
 **LID v1.78 vs v1.76**：2,548 個 LID 中**僅 2 個**相異（`CallAction`、
 `EngineRPM`），單側有 0。兩者皆未出現於任何已交付 TC，停止條件 15 未觸發。
 本 feature 之 15 個訊號在兩版**全部相同**。
+
+## 06 輪要點
+
+**glossary（R-DM22）**：13 個縮寫查得並列，**無一衝突**（停止條件 16 未觸發）。
+`SK`／`TGW`／`SGW`／`ETM` 查無並列，依條文不建條目。
+
+**錨之效果相反（A-DM19）**：SYS2 側 `SWE-DM-007`／`008` 候選 0 → **各 12**；
+PROXI 側**仍為 0** —— 阻塞點是底線 vs 空格（`Rear_View_Camera`），
+非縮寫，R-DM22(c) 禁止再放寬。
+
+**037 精讀（A-DM18，積欠四輪）**：八條全部 —— 數值+單位 0、`$Signal$` 0、
+外部引用 0、句號後併句 8/8。R-DM8 之缺值清單實為八條全無具體值，非四處。
+
+**`_polarion` 分頁（積欠四輪）**：是欄位合法值字典。`Category` 合法值五個，
+而 **117/333 列（35%）之實際值不在字典中**，且違規的是多數拼法
+（`Out of Scope` 116 列）。A-DM4 由此升級並取得逐字權威。
+另證實 `Non Functional Requirement` 合法但 0 列 —— R-DM7 母體未遺漏 NFR。
+
+**R-G16 複查**：六支寫檔腳本之逗號串接全改 ` ¦ `；六份 TSV 之筆數
+（80／446／26／45／13／2548）修正前後**完全一致**，還原檢查通過，
+停止條件 17 未觸發。
+
+**PROXI NODE 欄（A-DM20）**：`Checked by` 6/1058 不可用；`Used by` 500/1058
+結構可用但**缺本專案之 VF 代碼**這把鑰匙 → DR-DM7。

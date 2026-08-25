@@ -59,6 +59,43 @@ token 中命中，已複驗）。
 - 提案處置：本 feature 所有 Category 篩選一律先正規化大小寫，並於腳本
   明示；向上游反映欄值未正規化
 
+---
+
+### 升級（2026-08-24，下放包 06 步驟 9）：匯出檔自帶之值字典證明何者為正典
+
+SYS2 之 `_polarion` 分頁（368 非空列，四輪未看）**是欄位合法值之字典**，
+涵蓋 341 個欄位。`SYS2 分類 Category` 之合法值逐字為五個：
+
+```
+Heading / Information / Functional Requirement /
+Non Functional Requirement / Out of scope
+```
+
+以此為準複驗 `Basic Report` 之 333 列實際用值：
+
+| 實際值 | 列數 | 是否在字典中 |
+|---|---|---|
+| `Out of Scope` | **116** | **否** |
+| `Information` | 85 | 是 |
+| `Functional Requirement` | 79 | 是 |
+| `Heading` | 45 | 是 |
+| `Out of scope` | 7 | 是 |
+| `Functional requirement` | **1** | **否** |
+
+**共 117 列（35%）之 Category 值不在該匯出檔自己的合法值清單中，且
+違規的是多數拼法** —— `Out of Scope` 116 列違規，合法之 `Out of scope`
+只有 7 列。
+
+三項後果：
+
+1. 本條原提案「一律正規化大小寫」**得到逐字之權威依據**，不再只是
+   執行層之便宜行事：字典說 `Out of scope` 才是合法值。
+2. **`Non Functional Requirement` 是合法類別但 0 列**。R-DM7 之覆蓋母體
+   （`Functional Requirement` 80 列）因此可確認**未遺漏 NFR** —— 此前
+   無人驗過這件事。
+3. 向上游反映之內容應改為「值未依 `_polarion` 字典校驗」，而非
+   「大小寫不一致」—— 後者聽起來像格式瑕疵，前者是資料校驗缺口。
+
 ## A-DM5 — 037 `SWE1 Requirements` 表頭含不規則空白  [PENDING]
 
 實測表頭原始字串含尾空格與雙空格：`'SWE-Requirement ID '`、
@@ -479,6 +516,95 @@ DR-DM4）。其餘六份之影響本輪**未逐一評估**。
 - 影響：spec_mode D 之判讀基準本身是一份會外指的文件；BLOCKED 之預估
   不能只看手上四份
 - 提案處置：登記；DR-DM4 開立。其餘六份之影響待 Phase 2 逐一評估
+
+## A-DM18 — 037 八條描述皆無具體值、無訊號、無外部引用；且八條皆為併句  [PENDING]
+
+037 八條 `Requirement Description` 全文逐條精讀（`scripts/read_037_leaves.py`，
+連續四輪積欠，本輪清償）之結構性實測：
+
+| 項 | 八條之實測 |
+|---|---|
+| 數值＋單位（門檻之形態） | **0 / 8**（逐條皆 0 處） |
+| `$Signal$` token | **0 / 8** |
+| 外部文件／id 引用（`{CFTSnnn-mmm}` 等） | **0 / 8** |
+| 句號後缺空格之併句（`x.Y`） | **8 / 8**（每條恰 1 處） |
+
+三項後果：
+
+1. **R-DM8 原只列四處缺值（003/004/005/006），實際為八條全無具體值。**
+   001／002／007／008 之描述同樣只有抽象語句（如「manage display
+   operative states as DISPLAY_ON and DISPLAY_OFF based on system
+   operational requests and **timeout conditions**」—— timeout 之值未載）。
+2. **R-DM14／R-DM17 之「037 不含訊號層資訊」得到全稱之證實**：
+   八條之 `$Signal$` token 皆為 0，非僅抽樣。
+3. **八條皆為兩句併寫**（如 `...timeout conditions.The software shall...`），
+   任何以句號斷句之實作會把兩句併為一句。八條之第二句多為「回復／
+   還原」語意（restore／resume／ensure），併句會使該語意附著於第一句之
+   條件之下。
+
+另記一項命名落差：037 用 `DISPLAY_ON`／`DISPLAY_OFF`（001、002 兩條），
+而 SYS2 與 DBC 側為 `DISP_ON`／`DISP_OFF`。**逐字不等**，且不屬 R-DM22
+之縮寫並列形態（無 `(...)` 並列可引），故 glossary 無法建條目。
+
+- 證據：`scripts/read_037_leaves.py` 之八條全文輸出
+- 提案處置：登記。R-DM8 之缺值清單是否自四處擴為八條，屬 Tier 2；
+  `DISPLAY_ON` ↔ `DISP_ON` 之對應同樣不得由執行層推定
+
+## A-DM19 — glossary 錨解開 SYS2 側，但解不開 PROXI 側（阻塞點不同）  [PENDING]
+
+R-DM22 之縮寫錨在兩處之效果**相反**：
+
+| 標的 | 錨施用前 | 錨施用後 |
+|---|---|---|
+| SYS2 覆蓋對照（80 列 FR 母體） | `SWE-DM-007`／`008` 候選各 **0** | 各 **12**（r37/41/42/44/45/52/53/54/213/217/219/226） |
+| PROXI 對照（446 列） | `related_leaf` 全空 | **仍全空**（`glossary_phrase` 0 命中） |
+
+成因：SYS2 之 `Description` 逐字寫 `Rear View Camera`（空格），
+展開後相符；而 LID／PROXI 寫 **`Rear_View_Camera`（底線）**，
+逐字檢查該分頁：`Rear View Camera` 0 次、`Rear_View_Camera` 2 次。
+
+依 **R-DM22(c)**「展開後仍不逐字相符者，即為不相符，不得再放寬一層」，
+執行層**未**加入底線↔空格之正規化。
+
+- 影響：PROXI 之 leaf 對應仍為 0，`DCSD_cfg`／`RVC_SK_PRSNT` 雖已查得其
+  PROXI 列與值域，卻仍接不到任何 leaf
+- 提案處置：請裁示是否另立一條「分隔符正規化」之錨（底線／連字號／
+  空格互換）。該正規化與縮寫表同屬**封閉且可稽核**之逐字規則，
+  非相似度；但其開放與否屬 Tier 2，執行層不自行採用
+
+## A-DM20 — PROXI `Checked by NODE(CHECK)` 欄近乎全空；`Used by NODE` 可用但缺專案 VF 之鍵  [PENDING]
+
+上繳 05 §9 第 4 項自陳未用之兩欄，本輪實測（母體 1,058 個參數列）：
+
+| 欄 | 非空 | 相異值 | 形態 |
+|---|---|---|---|
+| `Used by NODE(VFXXX)` | **500 / 1058** | 311 | `BSM (VF381_V1); TBM (VF684_V3);` —— 節點名 + 括號內之 VF 清單，分號分隔 |
+| `Checked by NODE(CHECK)` | **6 / 1058** | 4 | `All nodes (1,4)`／`IPC(2), BCM(2)`／`DMSM (6)` |
+
+判定：
+
+- **`Checked by NODE(CHECK)` 不可用** —— 6/1058 之覆蓋率下，其空值不帶
+  任何資訊（R-G13 之涵蓋範圍要件反面）。
+- **`Used by NODE(VFXXX)` 結構上可用，但缺一把鑰匙**：要判「某參數是否
+  適用於本專案」，須先知道**本專案是哪一個 VF**。該資訊不在四份素材內。
+
+本 feature 三個已查得之 PROXI 列，其 `Used by`：
+
+| PROXI 列 | 參數 | Used by NODE(VFXXX) |
+|---|---|---|
+| r37 | `CAN node 31 (DCSD)` | `TBM (VF684_V3); ECC (VF123_V1, VF727_V3, VF727_V1); LTM (VF169_V2, VF727_V3); ETM (VF169_V3, VF727_V3, VF727_V1);` |
+| r401 | `Rear_View_Camera` | `ETM (VF230_V1, VF551_V3, VF551_V4, VF169_V3, VF617_V6, VF561_V3); LTM (...)` |
+| r494 | `Rear_View_Camera_Soft_Button` | `LTM (VF664_V2); ETM (VF664_V3);` |
+
+三列皆含 **`ETM`** —— 而 `ETM` 正是 BHCAN2 中本 feature 三個顯示訊號之
+發送節點（A-DM14）。此為**觀察**，不是「本專案為 ETM 架構」之認定。
+
+> 另記：r401 之清單含 `VF230_V1`，而 `features/vehicle_setting/` 之產出
+> 檔名為 `_vf230_*`。**執行層不推定 VF230 即本專案之 VF** —— 那是跨
+> feature 之推定，且 vehicle_setting 之 VF 未必等於 Display 之 VF。
+
+- 提案處置：開 `DR-DM7` 索本專案之 VF 代碼（或其 PROXI 實例檔）。
+  取得後 `Used by NODE(VFXXX)` 即可用於篩選，本輪之 446 列母體可望大幅收斂
 
 ---
 

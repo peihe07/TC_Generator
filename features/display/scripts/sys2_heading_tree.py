@@ -84,7 +84,7 @@ def main():
                  "child_FR_count\n")
         for n in nodes:
             fh.write(f"{n['row']}\t{n['fid']}\t{n['text']}\t"
-                     f"{','.join(str(c) for c in n['children'])}\t"
+                     f"{' ¦ '.join(str(c) for c in n['children'])}\t"
                      f"{len(n['fr'])}\n")
     print(f"\nwrote {out}")
     print(f"FR rows under a heading: {sum(len(n['fr']) for n in nodes)}")

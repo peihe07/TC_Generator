@@ -47,12 +47,25 @@ F037 = FEAT / "inputs" / \
     "Display_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx"
 
 MIN_PHRASE = 8
+GLOSSARY_TSV = FEAT / "data" / "glossary.tsv"
 KEYWORDS = ["DISP", "DCSD", "RVC", "Camera", "Display", "Touch", "Screen"]
 SEP = " ¦ "
 
 
 def norm(s):
     return " ".join(str(s or "").split())
+
+
+def load_glossary():
+    out = {}
+    if GLOSSARY_TSV.exists():
+        with GLOSSARY_TSV.open(encoding="utf-8") as fh:
+            head = fh.readline().rstrip("\n").split("\t")
+            for line in fh:
+                d = dict(zip(head, line.rstrip("\n").split("\t")))
+                if d.get("usable") == "Y" and len(d["expansion"].split()) >= 2:
+                    out[d["abbrev"]] = d["expansion"]
+    return out
 
 
 def leaf_phrases():
@@ -68,6 +81,11 @@ def leaf_phrases():
                     [p for p in ph if len(p) >= MIN_PHRASE]))
     wb.close()
     return out
+
+
+def atl_name_early(row, idx):
+    """The Atlantis signal-name cell, whitespace-normalised, for matching."""
+    return " ".join(str(row[idx] or "").split()) if len(row) > idx else ""
 
 
 def main():
@@ -108,12 +126,14 @@ def main():
           f"之證據**")
 
     leaves = leaf_phrases()
+    gloss = load_glossary()
+    print(f"\nglossary（R-DM22，usable=Y）: {len(gloss)} 條")
     kw = re.compile("|".join(re.escape(k) for k in KEYWORDS), re.I)
 
     cols = ["lid_row", "logical_identifier", "function",
             "atlantis_signal_name", "lookup_key", "proxi_row",
-            "proxi_values", "related_leaf", "anchor_kind", "note",
-            "keyword_note"]
+            "proxi_values", "related_leaf", "anchor_kind",
+            "empty_semantics", "note", "keyword_note"]
     out, counts = [], {}
     for rn, r in data:
         lid_name = norm(r[0])
@@ -126,6 +146,23 @@ def main():
             m = [p for p in phs if p.lower() in hay]
             if m:
                 hits.append((lid_leaf, m))
+
+        # --- glossary anchor (R-DM22), case-sensitive verbatim substring
+        hay_cs = " | ".join([lid_name, func, objt, atl_name_early(r, atl_i)])
+        gl_hits = []
+        for lid_leaf, phs in leaves:
+            got = []
+            for ab, exp in gloss.items():
+                if not any(re.search(rf"\b{re.escape(ab)}\b", p) for p in phs):
+                    continue
+                if exp in hay_cs:
+                    got.append(f"{ab}->{exp!r}")
+                for p_ in phs:
+                    sub = re.sub(rf"\b{re.escape(ab)}\b", exp, p_)
+                    if sub != p_ and sub in hay_cs:
+                        got.append(repr(sub))
+            if got:
+                gl_hits.append((lid_leaf, sorted(set(got))))
 
         atl_raw = str(r[atl_i] or "") if len(r) > atl_i else ""
         atl_name = norm(atl_raw)
@@ -154,6 +191,8 @@ def main():
 
         if hits:
             kind = "leaf_phrase"
+        elif gl_hits:
+            kind = "glossary_phrase"
         elif cfts:
             kind = "cfts_usage"
         elif pr:
@@ -168,6 +207,9 @@ def main():
                 f"{i}←{'|'.join(repr(x) for x in m)}" for i, m in hits))
         else:
             note.append("無 leaf 片語逐字命中")
+        if gl_hits:
+            note.append("glossary 錨命中：" + "；".join(
+                f"{i}←{'|'.join(m)}" for i, m in gl_hits))
         if cfts:
             note.append(f"Primary CFTS Usage 逐字含 CFTS020"
                         f"（{norm(r[cfts_i])}）")
@@ -184,10 +226,18 @@ def main():
             " ".join([lid_name, func, objt]))})
         out.append(dict(zip(cols, [
             rn, lid_name, func, atl_name, lookup_key,
-            ",".join(str(x[0]) for x in pr),
+            SEP.join(str(x[0]) for x in pr),
             SEP.join(x[1] for x in pr if x[1]),
-            ",".join(h[0] for h in hits), kind, "；".join(note),
-            ("僅揭露，非錨：" + ",".join(khits)) if khits else ""])))
+            SEP.join(sorted({h[0] for h in hits + gl_hits})), kind,
+            # R-DM23: `related_leaf` empty on this sheet is (2) — only the
+            # three A-DM16 starting points were pursued; the rest were never
+            # investigated. It is NOT a finding that they are unrelated.
+            ("" if (hits or gl_hits) else
+             ("(2) 本輪未追查：僅追 A-DM16 指名之三個起點"
+              if kind != "none" else
+              "(2) 本輪未追查；且 PROXI Format 亦未查得其定義")),
+            "；".join(note),
+            ("僅揭露，非錨：" + SEP.join(khits)) if khits else ""])))
 
     p = FEAT / "data" / "proxi_candidates.tsv"
     with p.open("w", encoding="utf-8") as fh:
@@ -196,9 +246,14 @@ def main():
             fh.write("\t".join(str(d[c]).replace("\t", " ") for c in cols) + "\n")
 
     print(f"\n## anchor_kind 分布")
-    for k in ["leaf_phrase", "cfts_usage", "proxi_param", "none"]:
+    for k in ["leaf_phrase", "glossary_phrase", "cfts_usage", "proxi_param",
+              "none"]:
         print(f"  {k}: {counts.get(k, 0)}")
     print(f"  合計 {len(out)}")
+    print(f"\n  R-DM23 語意別：`related_leaf` 為空之 "
+          f"{sum(1 for d in out if not d['related_leaf'])} 列，"
+          f"語意為 **(2) 本輪未追查** —— 只追了 A-DM16 指名之三個起點，"
+          f"其餘從未被調查過，**不是**「已查證與本 feature 無關」")
     print(f"\n  於 PROXI Format 逐字查得定義者: "
           f"{sum(1 for d in out if d['proxi_row'])}/{len(out)}")
     print(f"  keyword 命中（僅揭露）: "

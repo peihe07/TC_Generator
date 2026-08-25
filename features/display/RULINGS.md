@@ -432,6 +432,61 @@ R-DM17 之解析鏈為三段（SYS2 `$Signal$` → LID → DBC）。任何「解
 本條同理適用於 CFTS 條號之解析（A-DM10b）與任何多段查找。
 ```
 
+## 來源：下放包 06
+
+```
+R-DM22（縮寫錨 —— glossary_phrase）
+下放包 03 §七第 10 條之禁令（「不逐字即無錨」）**限縮**：其所禁者為
+token 重疊、相似度、模糊比對；**不禁**封閉且逐條有出處之縮寫對照表。
+
+本 feature 建立 `features/display/data/glossary.tsv`，欄位：
+
+  abbrev | expansion | source_file | source_locator | cooccurrence_quote
+
+**每一條目必須引一處「縮寫與其展開在同一句並列」之來源。**
+查無此種並列者，不得建立條目 —— 那會是以領域常識填入，觸 canon §8.4.1。
+
+首條（分析層已查得）：
+
+  RVC | Rear View Camera | Display_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx
+      | SWE1 Requirements r14 (SWE-DM-007), 亦見 r15 (SWE-DM-008)
+      | "transition display state to Rear View Camera (RVC) mode"
+
+以對照表展開後之比對，其 `anchor_kind` 為 **`glossary_phrase`**，
+與 `verbatim`、`signal`、`value`、`heading` 分列，**不得合併計數**。
+引用時依 R-DM12 須連同 `anchor_kind` 一併引用。
+
+拘束三項：
+(a) 展開後之片語須 **≥ 2 個詞**。單詞展開不得作為錨（鑑別力不足）。
+(b) 比對為**逐字子字串包含**，區分大小寫；大小寫折疊須另行裁定。
+(c) 展開後仍不逐字相符者，即為不相符，**不得再放寬一層**。
+    實例：`RVC` → `Rear View Camera` 後，SYS2 之 heading
+    `Rear Camera Events`（少一個 `View`）仍**不**相符。
+```
+
+## 來源：下放包 06
+
+```
+R-DM23（未追查 ≠ 查無）
+`proxi_candidates.tsv` 之 269 列 `anchor_kind = none`，其狀態為
+**未追查**，非查無。本輪只追了 A-DM16 指名之三個起點。
+
+凡輸出中以 `none`／`無`／空值表示之列，其欄位或說明須明載該值之語意
+屬下列何者：
+
+  (1) 已依 R-G13 三要件查證而確認不存在（= 查無）
+  (2) 本輪未追查（= 未知）
+  (3) 方法之界線所致（= 接不上，非不存在）
+
+三者不得共用同一個表示。本 feature 現有之三處輸出
+（`coverage_sys2_vs_swe_dm.tsv` 之 76 列無候選、
+`proxi_candidates.tsv` 之 269 列、`signal_resolution.tsv` 之
+`resolved = N`）須逐處補上其語意別。
+
+理由：`LOOKUP_MISSES.md` 記的是 (1)，而 (2) 與 (3) 若混入，
+台帳就變成「已查過而沒有」的假象，下一個讀者不會再去查。
+```
+
 ---
 
 ## 抄錄核對表
@@ -461,10 +516,18 @@ R-DM17 之解析鏈為三段（SYS2 `$Signal$` → LID → DBC）。任何「解
 | 21 | R-DM19 | 05 | 681 | `0939e0a7878c49b8` | 是 |
 | 22 | R-DM20 | 05 | 576 | `6caf121fb4def656` | 是 |
 | 23 | R-DM21 | 05 | 270 | `d384fa5b99e3888a` | 是 |
+| 24 | R-DM22 | 06 | 909 | `cdb1b47b562e1a61` | 是 |
+| 25 | R-DM23 | 06 | 466 | `96a2c13ba436a16d` | 是 |
 
 核對方法：抄錄後自 `RULINGS.md` 反向抽取各 fenced 區塊，與下放包原檔
-之對應區塊逐字元 `==` 比對並比對 SHA256；**23 條全數相符**（01 包 8 條、
-02 包 5 條、03 包 4 條、04 包 2 條、05 包 4 條）。
+之對應區塊逐字元 `==` 比對並比對 SHA256；**25 條全數相符**（01 包 8 條、
+02 包 5 條、03 包 4 條、04 包 2 條、05 包 4 條、06 包 2 條）。
+
+> 下放包 06 之 `R-G16` 與 `R-G13 補充` 為全域條文，抄入
+> `docs/fw036/RULINGS_LEDGER.md`，不重複於本檔。
+>
+> 核對式之注意事項：`R-DM\d+（` 匹配不到 `R-DM2′`（編號後接 `′`），
+> 反向驗證須以各包原本之抽取方式為之（上繳 05 §1 之教訓）。
 
 > 下放包 05 之 `R-G15` 為全域條文，依該包 §四之指定抄入
 > `docs/fw036/RULINGS_LEDGER.md`，不重複於本檔。

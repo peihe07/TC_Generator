@@ -18,8 +18,9 @@ Anchors recorded per row (all of them, in their own columns):
 `anchor_kind` names the highest-priority anchor PRESENT, in the R-DM13
 order: signal > value > heading > melco > none.
 
-`candidate_leaf` is only ever produced by the heading anchor, because it is
-the only anchor whose counterpart exists on the 037 side: 037 carries no
+`candidate_leaf` is produced by the heading anchor and, since R-DM22, by
+the glossary anchor. Those are the only anchors whose counterpart exists on
+the 037 side: 037 carries no
 signal-layer information (R-DM14), and Melco hits mark 037's HW exclusions,
 never a leaf. The test is verbatim substring containment of a leaf phrase in
 the heading text, where a leaf phrase is:
@@ -49,6 +50,14 @@ F037 = ROOT / "inputs" / \
 
 MIN_PHRASE = 8
 
+# R-DM22: a closed, per-entry-sourced abbreviation table is not similarity.
+# glossary.tsv is built by scripts/build_glossary.py, which only records a
+# pair when the abbreviation and its expansion stand side by side in one
+# sentence of one source. Matching here is VERBATIM SUBSTRING, CASE
+# SENSITIVE (R-DM22(b)), against the row's Description and its heading
+# ancestor, and expansions of fewer than two words are refused (R-DM22(a)).
+GLOSSARY_TSV = ROOT / "data" / "glossary.tsv"
+
 SIGNAL = re.compile(r"\$([A-Za-z0-9_]+)\$")
 # R-DM18 (supersedes R-DM16): extract with the wide form, then DROP any
 # token containing ':'. The colon is the export's own verbatim marker for
@@ -77,6 +86,20 @@ SEP = " ¦ "
 
 def norm(s):
     return " ".join(str(s or "").split())
+
+
+def load_glossary():
+    """abbrev -> expansion, for usable (>= 2 word) entries only."""
+    out = {}
+    if not GLOSSARY_TSV.exists():
+        return out
+    with GLOSSARY_TSV.open(encoding="utf-8") as fh:
+        head = fh.readline().rstrip("\n").split("\t")
+        for line in fh:
+            d = dict(zip(head, line.rstrip("\n").split("\t")))
+            if d.get("usable") == "Y" and len(d["expansion"].split()) >= 2:
+                out[d["abbrev"]] = d["expansion"]
+    return out
 
 
 def leaves():
@@ -117,6 +140,7 @@ def sys2_rows():
 
 def main():
     lv, excluded = leaves()
+    gloss = load_glossary()
     rows, col = sys2_rows()
     c_fid, c_cat, c_desc = (col("SYS2 Sys-RA-Feature-ID"),
                             col("SYS2 分類 Category"), col("Description"))
@@ -141,6 +165,9 @@ def main():
     print(f"anchors are verbatim only; MIN_PHRASE={MIN_PHRASE} chars")
     print("candidate_leaf is a CANDIDATE (R-DM12): cite it only together "
           "with anchor_kind")
+    print()
+    print(f"glossary（R-DM22，usable=Y）: {len(gloss)} 條 -> "
+          f"{sorted(gloss)}")
     print()
     print("## 037 leaf phrases used for the heading anchor")
     for lf in lv:
@@ -167,25 +194,58 @@ def main():
             if m:
                 hits.append((lf["id"], m))
 
+        # --- glossary anchor (R-DM22), case-sensitive verbatim substring
+        gl_hits = []
+        for lf in lv:
+            got = []
+            for ab, exp in gloss.items():
+                if not any(re.search(rf"\b{re.escape(ab)}\b", p)
+                           for p in lf["phrases"]):
+                    continue
+                # (i) the expansion itself as a phrase
+                for field, txt in (("heading", anc_txt), ("description", desc)):
+                    if exp in txt:
+                        got.append(f"{ab}->{exp!r} @{field}")
+                # (ii) the whole leaf phrase with the abbreviation substituted
+                for p_ in lf["phrases"]:
+                    sub = re.sub(rf"\b{re.escape(ab)}\b", exp, p_)
+                    if sub != p_:
+                        for field, txt in (("heading", anc_txt),
+                                           ("description", desc)):
+                            if sub in txt:
+                                got.append(f"{sub!r} @{field}")
+            if got:
+                gl_hits.append((lf["id"], sorted(set(got))))
+
         if sigs:
             kind = "signal"
         elif vals:
             kind = "value"
         elif anc_txt:
             kind = "heading"
+        elif gl_hits:
+            kind = "glossary_phrase"
         elif mel:
             kind = "melco"
         else:
             kind = "none"
 
+        cand_parts, notes = [], []
         if hits:
-            cand = ",".join(h[0] for h in hits)
-            note = "heading 錨逐字含 leaf 片語：" + "；".join(
-                f"{i}←{'|'.join(repr(x) for x in m)}" for i, m in hits)
+            cand_parts += [h[0] for h in hits]
+            notes.append("heading 錨逐字含 leaf 片語：" + "；".join(
+                f"{i}←{'|'.join(repr(x) for x in m)}" for i, m in hits))
         else:
-            cand = ""
-            note = ("heading 錨無逐字 leaf 片語"
-                    if anc_txt else "無 heading 祖先")
+            notes.append("heading 錨無逐字 leaf 片語"
+                         if anc_txt else "無 heading 祖先")
+        if gl_hits:
+            cand_parts += [h[0] for h in gl_hits]
+            notes.append("glossary 錨（R-DM22，區分大小寫）：" + "；".join(
+                f"{i}←{'|'.join(m)}" for i, m in gl_hits))
+        else:
+            notes.append("glossary 錨無命中")
+        cand = SEP.join(sorted(set(cand_parts)))
+        note = "；".join(notes)
         if mel:
             note += f"；Melco 命中 037 Excluded（HW 排除項）{mel}"
 
@@ -196,21 +256,43 @@ def main():
             "signals": SEP.join(sigs), "values": SEP.join(vals),
             "documents": SEP.join(docs),
             "values_narrow_REPEALED": SEP.join(vals_n),
-            "melco": ",".join(mel), "anchor_kind": kind,
-            "candidate_leaf": cand, "note": note,
+            "melco": SEP.join(mel), "anchor_kind": kind,
+            "candidate_leaf": cand,
+            # R-DM23: an empty candidate_leaf here means (3) — every anchor
+            # was applied and none reached, i.e. NOT reached, not verified
+            # absent. It is never (1) 查無 and never (2) 未追查.
+            "empty_semantics": "" if cand else
+                "(3) 方法之界線：heading／glossary 兩錨皆已施用而未接上；"
+                "非「已查證不存在」，亦非「未追查」",
+            "candidate_from": SEP.join(
+                (["heading"] if hits else []) +
+                (["glossary_phrase"] if gl_hits else [])),
+            "note": note,
             "func_l1": norm(r[c_l1]), "func_l2": norm(r[c_l2]),
             "func_l3": norm(r[c_l3]),
         })
 
     cols = ["sys2_row", "sys_ra_id", "category", "swhw", "heading_ancestor",
             "signals", "values", "documents", "values_narrow_REPEALED",
-            "melco", "anchor_kind", "candidate_leaf", "note",
-            "func_l1", "func_l2", "func_l3"]
+            "melco", "anchor_kind", "candidate_leaf", "candidate_from",
+            "empty_semantics", "note", "func_l1", "func_l2", "func_l3"]
     out = ROOT / "data" / "coverage_sys2_vs_swe_dm.tsv"
     with out.open("w", encoding="utf-8") as fh:
         fh.write("\t".join(cols) + "\n")
         for d in out_rows:
             fh.write("\t".join(str(d[c]) for c in cols) + "\n")
+
+    print()
+    print("## candidate_from 分布（哪一種錨產生了候選）")
+    from collections import Counter as _C2
+    print("  heading only      : "
+          f"{sum(1 for d in out_rows if d['candidate_from'] == 'heading')}")
+    print("  glossary only     : "
+          f"{sum(1 for d in out_rows if d['candidate_from'] == 'glossary_phrase')}")
+    print("  兩者皆有          : "
+          f"{sum(1 for d in out_rows if SEP in d['candidate_from'])}")
+    print("  無候選            : "
+          f"{sum(1 for d in out_rows if not d['candidate_from'])}")
 
     print()
     print("## anchor_kind 分布（最高優先之現存錨）")
@@ -267,12 +349,14 @@ def main():
     cnt = Counter()
     for d in out_rows:
         if d["candidate_leaf"]:
-            for x in d["candidate_leaf"].split(","):
+            for x in d["candidate_leaf"].split(SEP):
                 cnt[x] += 1
     for lf in lv:
         print(f"  {lf['id']} ({lf['sub']}): {cnt.get(lf['id'], 0)}")
     print(f"  有候選之列: {sum(1 for d in out_rows if d['candidate_leaf'])}")
-    print(f"  無候選之列: {sum(1 for d in out_rows if not d['candidate_leaf'])}")
+    print(f"  無候選之列: {sum(1 for d in out_rows if not d['candidate_leaf'])}"
+          f"　—— R-DM23 語意別 **(3) 方法之界線**（兩錨皆施用而未接上），"
+          f"非查無、非未追查")
 
     print()
     print("| sys2_row | sys_ra_id | swhw | heading_ancestor | anchor_kind "

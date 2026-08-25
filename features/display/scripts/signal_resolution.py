@@ -75,6 +75,10 @@ def sys2_signals():
     head = [norm(h) for h in grid[0]]
     c_cat = head.index("SYS2 分類 Category")
     c_desc = head.index("Description")
+    # R-DM23: every `resolved = N` on this sheet is (1) —— R-G13 三要件皆
+    # 齊備（檔名+SHA256、查詢名之種類、涵蓋範圍應含），故為「已查證不存在」，
+    # 且已登入 forms/LOOKUP_MISSES.md。此處不存在 (2) 或 (3)。
+    N_SEM = "(1) 已依 R-G13 三要件查證而確認不存在（見 forms/LOOKUP_MISSES.md）"
     out = []
     for i, r in enumerate(grid):
         if i == 0 or not str(r[0] or "").strip():
@@ -116,7 +120,11 @@ def main():
 
     cols = ["sys2_signal", "lid_row", "atl_high_signal_name", "can", "format",
             "sna", "dbc_file", "dbc_msg_id", "dbc_val_labels", "resolved",
-            "note"]
+            "n_semantics", "note"]
+    # R-DM23: every `resolved = N` on this sheet is (1) —— R-G13 三要件皆
+    # 齊備（檔名+SHA256、查詢名之種類、涵蓋範圍應含），故為「已查證不存在」，
+    # 且已登入 forms/LOOKUP_MISSES.md。此處不存在 (2) 或 (3)。
+    N_SEM = "(1) 已依 R-G13 三要件查證而確認不存在（見 forms/LOOKUP_MISSES.md）"
     out = []
     for sig in sigs:
         rows = lid_idx.get(sig, [])
@@ -138,7 +146,7 @@ def main():
             parts = [p.strip() for p in raw.splitlines() if p.strip()]
             if not parts:
                 out.append(dict(zip(cols, [sig, lr, "", can, fmt, sna, "", "",
-                                           "", "N",
+                                           "", "N", N_SEM,
                                            "LID 有此列，但 Atlantis High 之 "
                                            "Signal Name 欄為空" + note_dup])))
                 continue
@@ -162,7 +170,7 @@ def main():
                     where = [k for k, (s, v, mn) in dbc.items()
                              if msg in mn]
                     out.append(dict(zip(cols, [sig, lr, part, can, fmt, sna,
-                        "", "", "", "N",
+                        "", "", "", "N", N_SEM,
                         "LID 解得 CAN 訊號名，但兩本 DBC（BHCAN2-R1／"
                         "FDCAN8-R1）皆無此 SG_；R-G13(3)：訊息 "
                         f"{msg} 於 {('／'.join(where) + ' 存在') if where else '兩本 DBC 皆不存在'}"
@@ -172,14 +180,17 @@ def main():
                 msgs = hit
                 for h in msgs:
                     lbl = v.get((h["msg_id"], name), "")
-                    note = note_dup
+                    # R-G16(c): record WHY this DBC was chosen, not just
+                    # which one won.
+                    note = (f"選定判準：{'MESSAGE.Signal 兩半皆相等' if any(x['msg'] == msg for x in s.get(name, [])) else '僅訊號名相等（訊息名不符）'}"
+                            f"→ {hit_file}") + note_dup
                     if h["msg"] != msg and msg != name:
                         note += (f"（訊息名不符：LID {msg} vs DBC "
                                  f"{h['msg']}；以訊號名命中，未擇一）")
                     out.append(dict(zip(cols,
                         [sig, lr, part, can, fmt, sna, hit_file,
                          f"{h['msg_id']} {h['msg']} tx={h['tx']}", lbl,
-                         "Y", note])))
+                         "Y", "", note])))
 
     p = FEAT / "data" / "signal_resolution.tsv"
     with p.open("w", encoding="utf-8") as fh:
