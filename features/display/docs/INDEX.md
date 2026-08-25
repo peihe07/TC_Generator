@@ -25,6 +25,8 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 19 | 2026-08-25 | **合併包**：14–18 撤回重排；裁定落地、framework、簽核、pilot-01 | [handoff/19_consolidated.md](handoff/19_consolidated.md) | [upstream/19_consolidated.md](upstream/19_consolidated.md) | R-DM40–46（7 條）＋ R-G26–31（6 條，全域）＋ R-G32（逐條 12/12 PASS，Display 累計 48/48） | A-DM31／A-DM32 新增 | **⚠ 步驟 13 觸發停止條件 46（值無出處），未產出 TC。步驟 1–12、15 完成；簽核已轉錄，Phase 4 解封** |
 | 20 | 2026-08-25 | A-DM32 裁定（R-DM48）；**pilot-01 三條 TC 產出** | [handoff/20_pilot01_tc.md](handoff/20_pilot01_tc.md) | [upstream/20_pilot01_tc.md](upstream/20_pilot01_tc.md) | R-DM47／R-DM48（逐條 2/2 PASS，Display 累計 50/50） | DR-DM9 開立；A-DM32 標已裁 | **步驟 1–6 全數執行；五十二條停止條件全未觸發。lint036 二十項行計皆 0** |
 | 21 | 2026-08-25 | pilot-01 覆核：四項退回、負向補列 | [handoff/21_pilot01_rev2.md](handoff/21_pilot01_rev2.md) | [upstream/21_pilot01_rev2.md](upstream/21_pilot01_rev2.md) | （無新條文） | A-DM33 新增；DR-DM10 開立 | **步驟 1–7 全數執行；五十五條停止條件全未觸發。rev2 三條，lint 二十項行計 0** |
+| 22 | 2026-08-25 | #1 亦受 A-DM33 波及：popup 側分離 deferred | [handoff/22_pilot01_rev3.md](handoff/22_pilot01_rev3.md) | [upstream/22_pilot01_rev3.md](upstream/22_pilot01_rev3.md) | R-DM49 | A-DM34 新增；DR-DM10 阻斷範圍擴至 004 | **步驟 1–6 全數執行；五十八條停止條件全未觸發。rev3 三條，lint 二十項行計 0；寫回前兩項閘皆 PASS** |
+| 23 | 2026-08-25 | pilot-01 收束、揭露義務入條 | [handoff/23_pilot01_closeout.md](handoff/23_pilot01_closeout.md) | [upstream/23_pilot01_closeout.md](upstream/23_pilot01_closeout.md) | R-G33（全域）；R-DM48 之補充 | A-DM34 複驗 PASS | **停止條件 59 觸發且處置完畢；rev4 三條，lint 二十項行計 0** |
 
 ## 02 輪要點
 
@@ -393,3 +395,72 @@ Multi-stage 之第三組**不構成第三個適用流程**（DCSD 側 `Radio:noS
 **rev2 三條**：004 正向、004 邊界（`=85` 不觸發）、005 回復。
 `input_test_data` 三條皆改 `NA`，門檻值移入 `pre_conditions` 之具體值。
 `lint036.py` 二十項行計 0；母本 SHA 未變。
+
+## 22 輪要點
+
+**21 包只指出 #2，而 #1 掛在同一個矛盾上。** #1 原 ER 3 驗 `PU0517`
+顯示十秒，其前提是越過門檻後顯示仍亮著；而組 B `{4820289}` 於越過門檻時
+**即關背光** —— **一個看不見的 popup 顯示十秒，該 ER 不可觀測**，
+#1 在組 B 之實作上恆為 False Fail。
+
+> 我 21 包判「#3 不受影響」（正確）就收手，**沒有回頭檢 #1**。
+> 兩者掛的是同一個矛盾，只是形態不同：#2 的問題在觸發條件（何時關），
+> #1 的問題在**可觀測性**（關了就看不見）。**形態不同使我沒把它們歸為一類。**
+
+**#1 收斂為訊號側**：ER 3／step 3 移除 → 2 步 2 ER；`tc_title` 改為
+`Hot threshold exceeded → Hot state notified to HU`；括號下半明寫
+`the warning popup is deferred`。`test_item` 上半**不動**（需求文依 §4.5 保留），
+其與 ER 之落差以 §7.3 之覆蓋缺口表揭露 —— **004 為部分覆蓋，
+交付時不得以「004 有 TC」表述**。
+
+**R-DM49（新）**：負向條之 ER 為「不發生」時得自「觸發條件未成立」推得，
+須 (a) 正向出處逐字存在、(b) 不引入新值、(c) 記明證據強度差異。
+**其來源是上繳 21 §八第 3 項之自陳** —— 執行層自報「這是最接近越界之一處」，
+分析層把該處置定為規則而非個案。
+
+**寫回前兩項閘（21 包 §八之自陳，本輪閉合）**：
+(a) framework 對 037 **8／8**，組名與簽核逐字相符；
+(b) `4 "DISP_HOT"` 重跑重現。
+
+**A-DM34（新）**：`DISP_HOT` 在 `DCSD_DISP_STAT` 上是 raw **4**，
+在 `FPDM_DISP_STAT`／`TGW_FPDM_DISP_STATSts` 上是 raw **3**
+（FPDM 側少了 `3 "RR_CMRA"`）。**值標籤不是全域名稱，必須連同訊號一起解析。**
+本批未被污染，因 04 輪已把選定判準改為 `MESSAGE.Signal` 兩半皆相等。
+
+lint 二十項行計 0，I-sibling 0 **為實測**（#1 與 #4 同 leaf）；母本 SHA 未變。
+
+## 23 輪要點
+
+**R-G33 立條的當下就抓到兩條違反，其中一條是立條者與執行者雙方都漏掉的。**
+
+下放包 23 步驟 2 只指定複驗 #3（005）。但 **#4（004 邊界條）之 leaf
+同樣在 `deferred` 陣列中** —— 22 輪我自發寫揭露句時只寫了 #1，
+因為當時被 deferred 的是「#1 的 ER 3」，我把它想成「#1 的事」。
+**R-G33 之判準是 leaf 級而非 TC 級，這個差別正是它抓到的東西。**
+
+| TC | 補寫前 | 判定 |
+|---|---|---|
+| #1 | `the warning popup is deferred` | 滿足 |
+| #4 | 無任何 popup 指名 | **違反** |
+| #3 | `not the protective shutdown`（1/2） | **部分違反** —— multi-stage 未指名 |
+
+停止條件 59 觸發 → 補寫 → 全數 PASS，且「補寫後逐字相同」之停手條款
+未觸發（`distinct = 3 of 3`）。
+
+**一次對指示之偏離（§1.1，已具名上報）**：R-DM48 之補充**未**置於
+R-DM48 條下。先照做再量測 —— 字面置放使 `transcribe_rulings.py` 之
+順序驗證由 `全數相符` 轉為 `有不符` 並 **exit 1**；改置檔末（依下放包序）
+則 exit 0。代償：R-DM48 條下留指標、對照表增列。
+**R-TM13 之「原條文不刪不改」兩種置放皆滿足；差別在會不會弄壞
+本檔唯一的機器保證。**
+
+**BACKLOG 增列一項（本層自行判斷）**：deferred 解除時，
+**各 TC 括號下半之揭露句須同步移除** —— 否則工作簿會宣告一個
+已被測的面向沒被測。**R-G33 立條時只想到單向誤讀，其風險是雙向的。**
+
+**A-DM34 複驗 PASS**（三個 raw 值皆與 `dbc_probe.py` 實測相符）。
+
+> §八自陳三項，兩項是本輪自己製造的：R-G33 之「指名 token」對照表
+> 由我自中文對譯（B11，與 B9 同類）；三句 `is deferred` 之正確性有時效
+> 而無機制提醒。第三項最重要：**本輪把落差寫出來，沒有縮小它 ——
+> 004 仍是部分覆蓋，而本輪之後看起來更像已處理完畢。**

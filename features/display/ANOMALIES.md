@@ -1024,6 +1024,105 @@ ER 改驗規格所載之可觀察行為，規格側之標籤記入 `reasoning`�
 
 ---
 
+## A-DM34 — `DISP_HOT` 標籤在不同訊號上是不同 raw 值  [LOW]
+
+22 包步驟 5(b) 之重跑（`dbc_probe.py`，exit 0）所見：
+
+| 訊號 | 訊息 | `VAL_` 中 `DISP_HOT` 之 raw |
+|---|---|---|
+| `DCSD_DISP_STAT` | `BO_ 1445 DIS_CENTERSTACK`（BHCAN2-R1／BHCAN-R4） | **4** |
+| `FPDM_DISP_STAT` | `BO_ 1513 FPDM1` | **3** |
+| `TGW_FPDM_DISP_STATSts` | `BO_ 1282 RADIO_B2` | **3** |
+
+FPDM 側之列舉為 `0 "OFF" 1 "ON" 2 "BLANK" 3 "DISP_HOT" 7 "SNA"`，
+**少了 DCSD 側的 `3 "RR_CMRA"`**，其後之值遂整體前移一位。
+
+### 為何未污染本批
+
+`signal_resolution.py` 之選定判準為 **`MESSAGE.Signal` 兩半皆相等**
+（04 輪之修正，原為「第一個含該訊號名之 DBC」）。若仍用原判準，
+此處極可能取到 FPDM 側而寫出 `3 (DISP_HOT)`。
+
+### 意義
+
+**這是 R-DM48「不可外推」之第二個實證。** R-DM48 原以「同一訊號之六個
+值裡規則就不一致」立論（`[DISP_REAR_CAMERA]` 對 `RR_CMRA`）；本項更強：
+**同一標籤跨訊號亦不一致**。即：值標籤在本專案之 DBC 中**不是全域名稱**，
+必須連同訊號一起解析。
+
+### 處置
+
+- **不阻塞**：本批未用到 FPDM 側任何值（004／005 之標的為 DCSD）
+- 記入 B 類（上繳 22 §七 B7）
+- 若日後有 TC 觸及 FPDM 側（`SWE-DM-001`／`002` 之部分面向可能觸及），
+  **須逐訊號重解，不得沿用 004 之 `4 (DISP_HOT)`**
+
+---
+
+## A-DM35 — DR-DM9 之前提有誤：其四個標籤中三個不是 `DCSD_DISP_STAT` 的值  [HIGH]
+
+007／008 之素材勘查（Pei 2026-08-25 指示「走 007／008」）所見。
+機器抽取式：對 CFTS_020 全文取 `\$([A-Za-z0-9_]+)\$\s*=\s*\[([^\]]+)\]`
+之全部配對，與 `dbc_probe.py` 之 `VAL_` 實測比對。
+
+### DR-DM9 之原文與實測之落差
+
+DR-DM9 問：「`[DISP_OFF]`／`[DISP_ON]`／`[DISP_NORMAL]`／`[DISP_REAR_CAMERA]`
+各對應 **`DCSD_DISP_STAT`** 之哪一個 raw 值」。
+
+實測：規格側之 `$DCSD_DISP_STAT$ = [...]` 配對只有
+`OFF`／`ON`／`BLANK`／`RR_CMRA`／`DISP_HOT`／`SNA`／`DISP_OFF`／`DISP_ON`。
+**`[DISP_NORMAL]` 與 `[DISP_REAR_CAMERA]` 從未出現在 `$DCSD_DISP_STAT$` 上**
+—— 兩者是 **`$TGW_DISP_STAT$`（HU 側）** 的值。
+
+即：**DR-DM9 把 HU 側的兩個標籤問到了 DCSD 側的訊號上。**
+
+### 更重要的：`DCSD_DISP_STAT` 之值大多本來就解得
+
+| 規格側標籤 | DBC `DCSD_DISP_STAT` | R-DM48 判定 |
+|---|---|---|
+| `[OFF]` | `0 "OFF"` | **解得 raw 0** |
+| `[ON]` | `1 "ON"` | **解得 raw 1** |
+| `[BLANK]` | `2 "BLANK"` | **解得 raw 2** |
+| `[RR_CMRA]` | `3 "RR_CMRA"` | **解得 raw 3** |
+| `[DISP_HOT]` | `4 "DISP_HOT"` | 解得 raw 4（既知） |
+| `[SNA]` | `7 "SNA"` | **解得 raw 7** |
+| `[DISP_OFF]`／`[DISP_ON]` | 查無 | **逐字查無**（R-DM48 之原判定僅此二者成立） |
+
+**R-DM48 立條時所據之「六個值裡規則就不一致」仍為真**，但其推論被過度
+適用了：`DCSD_DISP_STAT` 之六個 DBC 值中**有六個都能逐字解得**，
+解不得的是規格另外用的 `[DISP_OFF]`／`[DISP_ON]` 兩個**別名**。
+
+### 對 007／008 之影響
+
+`{4820xxx}` RVC 諸條之 DCSD 側逐字為
+`the DCSD shall send $DCSD_DISP_STAT$ = [RR_CMRA]` 與
+`the DCSD shall send $DCSD_DISP_STAT$ = [ON]` ——
+**兩者皆解得（raw 3／raw 1），依 R-DM48 得寫入 ER 之訊號值。**
+
+即 **A3（DR-DM9 阻斷 007／008 之訊號欄）之範圍應縮小**：
+DCSD 側不受阻，受阻的是 HU 側 `$TGW_DISP_STAT$`。
+
+### HU 側另有一條未走過的路
+
+規格自身在部分段落寫**雙記法**：`DISP_NORMAL / Normal_mode`、
+`DISP_REAR_CAMERA / Rear_Camera_Display`、`ON_BLANK / On_blanked_screen`
+等 13 組。而 DBC `TGW_DISP_STATSts` 之 `VAL_` 正是
+`2 "Normal_mode"`／`7 "Rear_Camera_Display"`／`8 "On_blanked_screen"`。
+
+**即規格自帶了一份 HU 側之對照表**，其右半逐字等於 DBC 標籤。
+本層**不逕行採用**（該對照是否為權威、是否全覆蓋，屬 Tier 2），
+但其存在使 DR-DM9 之 HU 側部分可能不必外求。
+
+### 處置
+
+- **不改 DR-DM9 之文字**（DR 之措辭屬分析層）；本項為其前提之更正
+- 建議分析層重擬 DR-DM9：分成 (a) `[DISP_OFF]`／`[DISP_ON]` 兩個別名
+  對 `DCSD_DISP_STAT` 之對應、(b) 規格雙記法對照表是否為權威
+- **A3 之阻斷範圍待分析層裁定後縮小**；本層不逕改 `BACKLOG.md`
+
+---
+
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-DMnn]`.

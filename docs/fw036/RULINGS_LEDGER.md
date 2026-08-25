@@ -679,3 +679,47 @@ Pei 裁定採 (a)（依 Requirement ID）並指示立為專案適用等級，
 **沿革**：Pei 指正「同一份文件的排在一起照數字順序去排」，
 VF230 已依此重排（457 列，11 段，段內逆序 0）。
 ```
+
+---
+
+## test_item 上半之未涵蓋面向須明寫（R-G33，2026-08-25，全域）
+
+來源：`features/display/docs/handoff/23_pilot01_closeout.md` §三。
+抄錄方式：機器抽取原樣寫入，未經人工轉錄。
+
+```text
+R-G33（test_item 上半之未涵蓋面向須於括號下半明寫 —— 全域）
+canon R-S4 定 `test_item` 為兩段式：上半為需求／規格原句 verbatim，
+下半為作者生成之測試目的或情境標籤。
+
+本條補其一項義務：**上半之 verbatim 若含該 TC 之 ER 不涵蓋之需求面向
+（因 deferred、因 DR 未結、因拆分至他條），該未涵蓋須於括號下半明寫**，
+使僅閱讀工作簿之人看得見。
+
+三項細則：
+(a) 上半**不得因此刪句** —— 刪句會使工作簿上看不出該 leaf 為部分覆蓋。
+    保留並揭露優於刪除。
+(b) 括號下半之揭露須指名其未涵蓋之物（`the warning popup is deferred`），
+    不得只寫泛稱（`partially covered`、`see notes`）。
+(c) 該揭露與 `batch_context.md` 之 `deferred` 陣列須一致；
+    後者為完整表，前者為工作簿上之單行防線。
+
+**機器化之判準**（供 lint 日後接入）：對每一 TC，若其 `leaf_id`
+出現於同批 `batch_context.md` 之 `deferred` 陣列，則其 `test_item`
+括號下半須含該 deferred 項之指名 token。不含即為違反。
+
+理由：`lint036` 沒有、也不容易有一個「test_item 所述是否被 ER 涵蓋」
+之檢查（語意判斷）。而 036 工作簿是交付面，讀者未必看得到
+`batch_context.md`。**上半宣告要測、ER 不測、而工作簿上看不出來** ——
+這是部分覆蓋最可能被誤讀為完整覆蓋之路徑。
+
+實例（上繳 22 §2.3）：Display pilot-01 之 #1，其上半保留
+`shall trigger warning popup requests`，而 ER 已收斂為訊號側。
+執行層自發於括號下半寫 `the warning popup is deferred`，
+本條將該自發處置定為規則。
+
+註（自訂判準之拘束）：凡以自訂詞表實作之停止條件檢查
+（如本 feature 之停止條件 58），其詞表非自 canon 或規格導出者，
+須於使用處具名其非窮盡性；受檢文本規模擴大時，**先擴充詞表再用**，
+不得沿用。
+```
