@@ -55,6 +55,10 @@ CHECKS = [
     ("matrix_vs_chapter.py 10", "matrix_vs_chapter", ["10"], "1"),
     ("spec_assertion_scan.py --assertion popup", "spec_assertion_scan", ["--assertion", "popup"], "0"),
     ("spec_assertion_scan.py --assertion audio", "spec_assertion_scan", ["--assertion", "audio"], "1"),
+    ("spec_assertion_scan.py --assertion announcement", "spec_assertion_scan",
+     ["--assertion", "announcement"], "0"),
+    ("spec_assertion_scan.py --assertion popup_after", "spec_assertion_scan",
+     ["--assertion", "popup_after"], "0"),
     ("batch_er_vs_matrix.py", "batch_er_vs_matrix", [], "0"),
     ("verdict_form.py", "verdict_form", [], "0"),
     ("verdict_form.py --must-hit", "verdict_form", ["--must-hit"], "0"),
@@ -66,8 +70,8 @@ BY_DESIGN = {
     "lint_batch.py <fixture r2>": "must-hit fixture —— 其 FAIL 即其通過",
     "matrix_vs_chapter.py 7": "含**牴觸 1**（`r48` × `SU3.)`）→ 退出碼 1 為設計",
     "matrix_vs_chapter.py 10": "含**牴觸 1**（`10.3` × `r48c10`，已登記 R-PMH80）→ 退出碼 1 為設計",
-    "spec_assertion_scan.py --assertion audio": "**查出牴觸 1**（`r45` × `-007` ER4(b)）→ "
-                                                "**24 包停止條件 7 觸發，須上呈**",
+    "spec_assertion_scan.py --assertion audio": "**查出牴觸 1**（`r45` × `-007` ER4(b)，24 包）"
+                                                "—— **25 包已以第 5～7 項限定排除之，其牴觸記錄保留**",
 }
 
 

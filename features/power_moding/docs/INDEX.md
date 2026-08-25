@@ -31,6 +31,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 22 | 2026-08-25 | **pop-up 組改判**、`VP` 未定義、`-007` 事件層限定 | [handoff/22_popup_conflict.md](handoff/22_popup_conflict.md) ＋ [22a](handoff/22a_007_limitation.md) | [upstream/22_popup_conflict.md](upstream/22_popup_conflict.md) | R-PMH84–R-PMH87（逐字抄錄 4/4 相符） | **A-PMH19（覆蓋缺口三項）**／**A-PMH20（`VP` 未定義）**；**`DR-PMH7` 開立** | **ch 7 牴觸 1／待定義 4；ch 8 牴觸 0；`-007` 已改寫，lint 30/30** |
 | 23 | 2026-08-25 | **規格內部之牴觸**、batch 1 逐條 ER 對照、章 11 × 矩陣 | [handoff/23_spec_internal_conflict.md](handoff/23_spec_internal_conflict.md) | [upstream/23_spec_internal_conflict.md](upstream/23_spec_internal_conflict.md) | R-PMH88–R-PMH90（逐字抄錄 3/3 相符） | **A-PMH21（`SU3.)` × p9 `Pop-ups still shown`）**；`DR-PMH5` 增補 | **三條停止條件全未觸發；ER 牴觸 0／印證 1；ch 11 牴觸 0／印證 2；lint 30/30** |
 | 24 | 2026-08-25 | **正向記法**、A-PMH21 以渲染改判、ER4(b) 之牴觸 | [handoff/24_positive_form.md](handoff/24_positive_form.md) | [upstream/24_positive_form.md](upstream/24_positive_form.md) | R-PMH91–R-PMH93（逐字抄錄 3/3 相符） | **A-PMH21 改判為「未對照」**（原文保留） | **⚠ 停止條件 7 觸發（`r45` × ER4(b)）；ch 10 牴觸 1（已登記）；總表機器化，六支「未實測」** |
+| 25 | 2026-08-25 | **限定逐斷言導出（4→7）**、欄位以字級座標確認 | [handoff/25_limitation_union.md](handoff/25_limitation_union.md) | [upstream/25_limitation_union.md](upstream/25_limitation_union.md) | R-PMH94–R-PMH96（逐字抄錄 3/3 相符） | **A-PMH22（`Else: Mute Active` 記法未定義）**；A-PMH21 依據更換 | **三條停止條件全未觸發；ER1～5 逐斷言掃描牴觸 0；lint 30/30** |
 
 ## 01 輪要點
 
@@ -1505,3 +1506,75 @@ procedure 3→5 步（限定拆為兩步，字數 11／12），ER 3→5 逐位�
 **待 Pei**：**`r45` × ER4(b) 之牴觸如何處置**（阻斷 batch 1 寫回）／
 `Else: Mute Active` 之記法／三筆 DR 之發出（`DR-PMH5` 第三問已附量測答案）／
 `-007` 其餘四條 ER 之反向掃描／24 之 commit 授權（23 路徑）。
+
+---
+
+## 25 包要點
+
+### `-007` 之限定由四項增為七項（R-PMH94）
+
+| # | 限定 | 排除之格 | 斷言 |
+|---|---|---|---|
+| 1 | 不按 ON/OFF 鍵 | `r6`／`r24` | pop-up |
+| 2 | 不轉 key-off | `r15` | pop-up |
+| 3 | 不開啟車門 | `r25` | pop-up |
+| 4 | 不操作 HVAC 硬控 | `r48` | pop-up |
+| **5** | **不按 Mute 鍵** | **`r45`** | **audio** |
+| **6** | **不按 Headunit Mode 鍵** | **`r46`** | **audio** |
+| **7** | **不以 VR 變更 headunit mode** | **`r47`** | **audio** |
+
+**增加之三項全部來自 `audio` 斷言之掃描。** procedure 5→7 步、ER 7:7 對齊、lint 30/30。
+
+**`r46`／`r47` 之納入不是因為判定其為牴觸，而是 R-PMH95** ——
+其 `Else: Mute Active` 之記法未定義（**A-PMH22**），
+**納入限定即涵蓋「維持靜音」與「使之靜音」兩讀，不必判讀該歧義。
+判讀可能判錯，涵蓋兩讀之限定不會。**
+
+### ER1～ER5 之逐斷言掃描全部完成，**牴觸 0**
+
+- **ER1／ER2**：限定之複述，**斷言標的為測試員之行為而非 SUT 之行為，不需反向掃描**（理由已寫入程式之 `NO_SCAN` 常數）
+- **ER3**（`announcement`）：規格側 2 行皆為 `SU3.)` 自身；**矩陣側 0 格**
+- **ER5**（`popup_after`）：25 行，牴觸 0
+
+**七項限定自此對其全部斷言充分**（R-PMH94 之要件已滿足）。
+
+⚠ **一行具名待確認**：`L160` 之 `Note: do not show popup again if popup was shown
+at Radio Off.` 為**否定**，與 ER5 之「顯示」取相反值。判為未對照之依據是
+「其 popup 為 p4 流程圖之 `Geolocation + SOS Popup`」——**若上游確認該句泛指所有
+popup，則為牴觸。**
+
+### A-PMH21 —— 欄位與依據皆自判讀升為量測
+
+**欄位**：以 `get_text("words")` 字級座標複驗（**先算後比，與分析層逐項相符**）——
+`Pop-ups` x=483.0，與同欄之 `Visibile`（442.5）同側，< 右欄基準 596.6
+→ **`HEADUNIT POWER OFF` 欄**。**其論證自此不需要人眼判圖。**
+
+**依據**（R-PMH96）：由「免責畫面必為 head unit 開機中所顯示」（24 包自陳為常識）
+改為 `PITA6.1` 之逐字 `Upon pressing power button to On state disclaimer screen
+shall be displayed` ——**互斥之依據自此為規格文字**。
+
+### 關鍵詞之列舉問題 —— 具名，且有一次量測
+
+**15 個同義表述**（`silent`／`silence`／`no output`／`suppressed`／`inaudible`／
+`no sound`／`quiet`／`dialog`／`prompt`／`message box`／`toast`／`notification`／
+`TA`／`traffic info`／`alert`）於**規格全文與矩陣全簿之命中全部為 0**。
+**就該 15 個候選而言偽陰為 0** —— 惟**那只證明「我想到的 15 個都不在」**。
+
+### 斷言數 vs ER 條數：18 → **23**，比值 1.28
+
+23 < 36 → 停止條件 9 未觸發。**惟 23 包以 ER 條為單位之 18 條判定，
+其涵蓋率為 78%** —— **5 個斷言未被單獨對照**（`-001` ER1／ER3、`-002` ER2、
+`-004` ER2／ER3）。
+
+### ⚠ 本輪自陳之未竟項中，三項須先看（上繳 §12）
+
+1. **那 5 個未單獨對照之斷言，我算出來了但沒有去對照** ——
+   下放包明令不重跑，我照做了，**而它們現在只是一個數字。**
+2. **ER1／ER2 之「不需反向掃描」是我自行加的例外** ——
+   R-PMH94 之 (a)~(c) 並未給這個出口。
+3. **七項限定壓縮於四個 procedure 步驟** —— 一項未刪，
+   **但把兩項合為一步；若某項因合併而在執行時被忽略，其後果與刪去相同。**
+
+**待 Pei**：三筆 DR 之發出（**`DR-PMH7` 建議併問 `Else: Mute Active` 之記法**）／
+5 個未單獨對照之斷言是否重跑／ER1・ER2 之例外是否成立／
+`L160` 之 `Note:` 適用範圍／25 之 commit 授權（9 路徑）。

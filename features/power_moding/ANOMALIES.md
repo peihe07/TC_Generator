@@ -1432,6 +1432,77 @@ Climate GUI: OFF Climate GUI: Forced OFF`）。
 為全稱否定」之事實不變，改變的是**二者之條件已證互斥**。
 **其登記價值在於：該互斥曾被三包（22／23／24）當成未證。**
 
+### 25 包 —— **互斥之依據更換（R-PMH96）**：由常識改為規格逐字
+
+24 包之改判其互斥證明繫於「**免責畫面必為 head unit 開機中所顯示**」，
+而執行層自陳「**它是常識而非引文**」（24 §10 第 4 項）。
+
+**引文存在** —— `PITA6.1`（outline 10.4）逐字：
+
+> `Upon pressing power button to On state disclaimer screen shall be displayed
+> (see SU6.) unless certain phone call scenarios have occurred.`
+
+**免責畫面之顯示條件即 head unit 轉為 On**，故其不可能出現於
+`HEADUNIT POWER OFF` 欄所述之狀態。**互斥之依據自此為規格文字。**
+
+### 25 包 —— **欄位以字級座標確認，不再倚賴渲染判讀**
+
+24 包以 `get_pixmap` 渲染判讀。本輪以 `get_text("words")` 取字級座標複驗
+（**先算後比，與分析層 25 §2.1 逐項相符**）：
+
+| 詞 | x | 欄 |
+|---|---:|---|
+| `HEADUNIT` ＋ `OFF`（y=65.8） | 467.9／**490.5** | 左欄 = `HEADUNIT POWER OFF` |
+| `HEADUNIT` ＋ `ON`（y=65.8） | 641.4／**665.3** | 右欄 = `HEADUNIT POWER ON` |
+| **`Pop-ups`（兩處，y=114.2／213.3）** | **483.0** | **左欄** |
+| `Visibile`（`Not Visibile due to power off`） | 442.5 | **左欄，與 `Pop-ups` 同欄** |
+| `Knobs:`（每列兩次） | 448.5／**596.6** | 左／右欄之 x 基準 |
+
+**`Pop-ups`（483.0）< 右欄基準（596.6），且與同欄之 `Visibile`（442.5）同側。**
+**其論證自此不需要人眼判圖。**
+
+---
+
+## A-PMH22 — 矩陣之 `Else: Mute Active` 記法未定義 · 25 包 · PENDING（低）
+
+**登記日**：2026-08-25（依 **R-PMH95**，24 包 §4.3／§10 第 1 項自陳）
+
+`State Matrix` 之 `r46`（`Headunit Mode Button Pressed`）與 `r47`
+（`Headunit Mode Change via VR`）其格逐字為：
+
+```
+Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
+```
+
+**同一格內有兩種記法**：`Mute --> Inactive`（**有箭頭**）與
+`Mute Active`（**無箭頭**）。
+
+| 讀法 | `Else: Mute Active` 之意 | 後果 |
+|---|---|---|
+| （甲）**維持** | 靜音狀態不變 | 與 `-007` ER4(b) **未對照** |
+| （乙）**使之靜音** | 靜音由否轉是 | 與 `-007` ER4(b) **牴觸** |
+
+**矩陣未定義其記法** —— 24 包以「箭頭之有無」判為（甲），
+**其依據為本層之判讀而非素材之定義**。
+
+### 處置（R-PMH95）—— **不判讀，改以涵蓋兩讀之限定**
+
+`r46`／`r47` 之觸發（`Headunit Mode Button Pressed`／
+`Headunit Mode Change via VR`）**皆為測試員可控之事件**，
+故 `-007` 之限定納入該二事件（第 6、7 項，25 包 §3.4）——
+**無論該詞作何解，該二列皆不適用。**
+
+**本則不因此結清** —— `Else: Mute Active` 之語意仍未定；
+**本則只記其「本 feature 之判定已不再倚賴它」**。
+
+**影響**：低。**不阻斷**。
+**惟若日後有 TC 之斷言涉及 headunit mode 之靜音行為，本則即復活。**
+
+**未開 DR** —— 其為記法之歧義而非缺件，且已由限定涵蓋；
+**若上游另有機會詢問，可併入 `DR-PMH7`（`VP` 之定義）之同一封**。
+
+
+
 **連帶**：
 - **`-007` 之限定與 ER 不受影響**（其四項限定本即涵蓋 HVAC 硬控）；
   其 `reasoning` 之依據須自「矩陣 17 格 ＋ 規格 p9 之 2 行**牴觸**」

@@ -210,16 +210,29 @@ TCS = [
    # 四項缺一即漏一格：State Matrix 之 17 個 pop-up 顯示格全數繫於
    # `ON/OFF button Pressed`／`Key-off`／`Door opened`／`HVAC Hard Control Adjustment`
    # 四個事件（其列標籤即該事件）。
+   # R-PMH94（25 包）—— 限定**逐斷言導出，其總集為聯集**。
+   # 四項（pop-up 斷言）＋ 三項（audio 斷言）= **七項，一項不得刪**：
+   #   1 ON/OFF 鍵      → r6／r24（pop-up）
+   #   2 key-off        → r15（pop-up）
+   #   3 開門           → r25（pop-up）
+   #   4 HVAC 硬控      → r48（pop-up）
+   #   5 Mute 鍵        → r45（audio，24 包查出之牴觸）
+   #   6 Headunit Mode 鍵 → r46（audio；R-PMH95 —— 涵蓋 `Else: Mute Active` 之兩讀）
+   #   7 以 VR 變更 mode  → r47（audio；同上）
    proc=["1. Do not press the ON/OFF key and do not turn key-off",
          "2. Do not open any door and do not adjust HVAC hard controls",
-         "3. Deliver a traffic announcement while the disclaimer screen is displayed",
-         "4. Read the screen and the audio output and record both",
-         "5. Remove the disclaimer screen and check that the pop-up is displayed"],
+         "3. Do not press the Mute key or the Headunit Mode key",
+         "4. Do not change the headunit mode by voice recognition",
+         "5. Deliver a traffic announcement while the disclaimer screen is displayed",
+         "6. Read the screen and the audio output and record both",
+         "7. Remove the disclaimer screen and check that the pop-up is displayed"],
    er=["1. No ON/OFF key press and no key-off transition occurs",
        "2. No door is opened and no HVAC hard control is adjusted",
-       "3. The traffic announcement is delivered",
-       "4. The announcement is heard in the background and no pop-up is displayed",
-       "5. The traffic announcement pop-up is displayed"],
+       "3. No Mute key press and no Headunit Mode key press occurs",
+       "4. The headunit mode is not changed by voice recognition",
+       "5. The traffic announcement is delivered",
+       "6. The announcement is heard in the background and no pop-up is displayed",
+       "7. The traffic announcement pop-up is displayed"],
    reason=("**P1 —— 主要功能邏輯**（非 P0）：pop-up 抑制影響免責畫面之可讀性，"
      "而免責畫面為 legal 要求（`as defined by legal/CFTS009`）——"
      "**惟其失效不阻斷開機**，故不落 boot/recovery。"
@@ -257,12 +270,19 @@ TCS = [
      "限定不必增加**；其依據自此為「矩陣之 17 格 ＋ 規格側 25 行之逐行判定（牴觸 0）」。"
      "⚠ **殘餘風險具名（一）**：四項限定**不含「無來電」**；`PITA9` 之 phone call popup "
      "於免責畫面相位是否顯示，**規格未表態**（其只述 `Power Button Off state`）。"
-     "⚠ **殘餘風險具名（二）—— R-PMH93 之 `audio` 斷言掃描（24 包）查出一處牴觸，未解**："
-     "本條 ER4 之第二個斷言 `The announcement is heard in the background`（音訊可聞）"
-     "與矩陣 `r45`（`Mute Button Pressed`）之 `Mute --> Active`（**使之靜音**）"
-     "**取相反值**，而四項限定**不含「不按 Mute 鍵」**，其欄軸 `Key On, Gear != Reverse` "
-     "**與免責畫面之相位重疊**。**依 R-PMH79 須上呈，不得自行調和** —— "
-     "**本輪未改限定**，待分析層裁（24 包停止條件 7 觸發）。"
+     "⚠ **R-PMH94（25 包）—— 限定由四項增為七項，其增加全部來自 `audio` 斷言之掃描**："
+     "24 包查出矩陣 `r45`（`Mute Button Pressed` → `Mute --> Active`）與本條 "
+     "`The announcement is heard in the background` **取相反值**，而原四項不含 Mute 鍵。"
+     "步驟 3 加「不按 Mute 鍵或 Headunit Mode 鍵」排除 `r45`／`r46`；"
+     "步驟 4 加「不以語音辨識變更 headunit mode」排除 `r47`。"
+     "**`r46`／`r47` 之納入不是因為判定其為牴觸，而是 R-PMH95 —— "
+     "其 `Else: Mute Active` 之記法未定義（A-PMH22），"
+     "納入限定即涵蓋「維持靜音」與「使之靜音」兩讀，不必判讀該歧義。** "
+     "**七項一項不得刪** —— 每項各排除一組格。"
+     "⚠ **ER1～ER5 之逐斷言掃描（R-PMH94）已完成**：ER1／ER2 為限定之複述，"
+     "其斷言標的為測試員之行為而非 SUT 之行為，**不需反向掃描**（已具名）；"
+     "ER3（`announcement`）規格側 2 行皆為 `SU3.)` 自身、矩陣側 **0 格**；"
+     "ER5（`popup_after`）規格側 25 行，**牴觸 0**。**七項限定自此對全部斷言充分。**"
      "**連帶之覆蓋缺口三項見 ANOMALIES A-PMH19。** "
      "source_clause 取自 PDF p8 之 SU3.)（R-PMH50）。"),
    axis="同一觸發之兩後果：視覺抑制 ＋ 音訊照常"),

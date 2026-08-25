@@ -39,12 +39,37 @@ ASSERTIONS = {
     "audio": (r"\b(mute[ds]?|unmute[ds]?|audio|sounds?|volume|background)\b",
               "`-007` ER4(b)：`The announcement is heard in the background`"
               "（免責畫面期間報導之音訊照常可聞）"),
+    # --- 25 包步驟 4（R-PMH94）：`-007` 其餘 ER 之斷言 ---
+    "announcement": (r"\b(traffic\s+announcement|announcements?|received)\b",
+                     "`-007` ER3：`The traffic announcement is delivered`"),
+    "popup_after": (r"pop\s*-?\s*ups?",
+                    "`-007` ER5：`The traffic announcement pop-up is displayed`"
+                    "（免責畫面**移除後** pop-up 顯示）"),
+}
+
+# --- R-PMH94：ER1／ER2 **不需反向掃描**，其理由具名 ---
+# 二者之內容為 procedure 步驟 1、2 之**限定之複述**
+# （`No ON/OFF key press and no key-off transition occurs`／
+#  `No door is opened and no HVAC hard control is adjusted`），
+# **其斷言之標的為「測試過程中該事件未發生」，非 SUT 之行為** ——
+# 素材所述者皆為「某事件發生後 SUT 如何」，二者**無共同謂詞可取相反值**。
+# **此判斷本身即須具名**（本註解即其具名處）。
+NO_SCAN = {
+    "ER1": "限定之複述（不按 ON/OFF 鍵、不轉 key-off）—— 斷言標的為測試員之行為，非 SUT 之行為",
+    "ER2": "限定之複述（不開門、不操作 HVAC 硬控）—— 同上",
 }
 PAT = re.compile(ASSERTIONS["popup"][0], re.I)
 
 LIMITS = [
     "**每次只掃一個斷言**（R-PMH93）—— `--assertion popup`／`audio`；其餘斷言未掃者不在本次輸出內",
-    "**`audio` 斷言之關鍵詞為六個**（`mute`／`unmute`／`audio`／`sound`／`volume`／`background`）—— **其本身是列舉**，同義之表述（如 `silent`／`no output`）不會命中",
+    "**各斷言之關鍵詞皆為列舉，其偽陰未估**（25 包步驟 5 具名）—— "
+    "**R-PMH91 廢止了記法上之列舉，未廢止關鍵詞上之列舉**。"
+    "已知之同義表述（未命中）：`audio` 斷言 → `silent`／`silence`／`no output`／`suppressed`／"
+    "`inaudible`／`no sound`／`quiet`；`popup` 斷言 → `dialog`／`prompt`／`message box`／`toast`／"
+    "`notification`；`announcement` 斷言 → `TA`／`traffic info`／`alert`。"
+    "**惟其偽陰已有一次量測**（25 包步驟 5）：上列 15 個同義表述於**規格全文與矩陣全簿**"
+    "之命中**全部為 0**（大小寫不敏感、字界錨定）——**故就該 15 個候選而言，本判準之偽陰為 0**。"
+    "**該量測不涵蓋未被想到之表述**，列舉之問題本身仍在",
     "**以行為單位** —— PDF 之換行由版面決定；同一句跨兩行者計為兩行（如 `SU3.)` 之 L293／L294）",
     "**只掃文字層** —— p11 之流程圖為影像，其中若有 pop-up 字樣本檔看不見",
     "**記法之判定為人工** —— `LINE_VERDICT` 逐行具名，本檢查只驗其存在，不驗其正確",
@@ -195,6 +220,96 @@ AUDIO_CELL_VERDICT: dict[tuple[int, int], tuple[str, str, str]] = {
 }
 
 
+# --- `announcement`（ER3）之規格側逐行判定 ---
+ANN_LINE_VERDICT: dict[int, tuple[str, str, str]] = {
+    293:
+        ("—", "（`SU3.)` 本身 —— 本斷言之來源）",
+         "**本行即斷言之出處**，不入判定。"),
+    294:
+        ("—", "（`SU3.)` 本身之續行）",
+         "同上。"),
+}
+
+# --- `popup_after`（ER5）之規格側逐行判定 ---
+AFTER_LINE_VERDICT: dict[int, tuple[str, str, str]] = {
+    127:
+        ("未對照", "pop-up 是否顯示（流程圖之 `Geolocation + SOS Popup`）",
+         "未對照 —— 其 popup 為 p4／p6 流程圖之 `Geolocation + SOS Popup`，**與交通報導之 popup 不同**；且其位置在免責畫面之後而 ER5 之情境亦為移除後，**同向而非相反**。"),
+    140:
+        ("未對照", "pop-up 是否顯示（流程圖之 `Geolocation + SOS Popup`）",
+         "未對照 —— 其 popup 為 p4／p6 流程圖之 `Geolocation + SOS Popup`，**與交通報導之 popup 不同**；且其位置在免責畫面之後而 ER5 之情境亦為移除後，**同向而非相反**。"),
+    143:
+        ("未對照", "pop-up 是否顯示（流程圖之 `Geolocation + SOS Popup`）",
+         "未對照 —— 其 popup 為 p4／p6 流程圖之 `Geolocation + SOS Popup`，**與交通報導之 popup 不同**；且其位置在免責畫面之後而 ER5 之情境亦為移除後，**同向而非相反**。"),
+    151:
+        ("未對照", "pop-up 是否顯示（流程圖之 `Geolocation + SOS Popup`）",
+         "未對照 —— 其 popup 為 p4／p6 流程圖之 `Geolocation + SOS Popup`，**與交通報導之 popup 不同**；且其位置在免責畫面之後而 ER5 之情境亦為移除後，**同向而非相反**。"),
+    160:
+        ("未對照", "**該 popup 是否重複顯示** —— `do not show popup again if popup was shown at Radio Off`",
+         "⚠ **最接近者** —— 其為**否定**（不再顯示），與 ER5 之「顯示」取相反值。**惟其 popup 為 p4 流程圖之 `Geolocation + SOS Popup`（同段之上下文），非交通報導之 popup**。**不同 popup → 無共同謂詞。** ⚠ 若上游確認該句泛指所有 popup，則為牴觸；**已具名待確認。**"),
+    257:
+        ("未對照", "pop-up 是否顯示（流程圖之 `Geolocation + SOS Popup`）",
+         "未對照 —— 其 popup 為 p4／p6 流程圖之 `Geolocation + SOS Popup`，**與交通報導之 popup 不同**；且其位置在免責畫面之後而 ER5 之情境亦為移除後，**同向而非相反**。"),
+    293:
+        ("—", "（`SU3.)` 本身 —— ER5 之來源）",
+         "**本行即斷言之出處**（`will not see the pop-up **until the disclaimer screen is removed**`），不入判定。"),
+    294:
+        ("—", "（`SU3.)` 本身之續行）",
+         "同上。"),
+    332:
+        ("未對照", "pop-up 是否顯示（p9 `Pop-ups still shown`）",
+         "未對照 —— 其欄為 `HEADUNIT POWER OFF`（25 §2.1 以字級座標實測：`Pop-ups` x=483.0，與同欄之 `Visibile` x=442.5 同欄；右欄之 x 基準為 596.6）。**免責畫面之顯示條件為 head unit 轉 On（`PITA6.1` 逐字），故其不可能出現於該欄所述之狀態**（R-PMH96）。"),
+    348:
+        ("未對照", "同 L332",
+         "同 L332。"),
+    407:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    409:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    410:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    411:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    413:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    414:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    415:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    417:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    419:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    426:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    428:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    430:
+        ("未對照", "IGN OFF 之 popup 群",
+         "未對照 —— 其相位為 `IGN OFF`（`PM1)` 之 popup 群），**而 ER5 之情境為開機序列中免責畫面移除後**。**條件互斥之依據為 `PM1)` 之逐字 `popups to show at IGN OFF`。**"),
+    443:
+        ("未對照", "HVAC pop-up 是否顯示（`PITA6`）",
+         "未對照 —— 其狀態為 `Power Button Off`，**且其 popup 為 HVAC／phone call，非交通報導**。**不同 popup 且不同相位。**"),
+    445:
+        ("未對照", "HVAC popup 是否顯示（`PITA6.1`）",
+         "未對照 —— `PITA6.1` 之 popup 為 **HVAC**，非交通報導；**且其末句 `disclaimer screen shall be displayed` 與 ER5 之「移除後」為先後關係**。**不同 popup。**"),
+    450:
+        ("未對照", "Phone call popup 是否顯示（`PITA9`）",
+         "未對照 —— 其狀態為 `Power Button Off`，**且其 popup 為 HVAC／phone call，非交通報導**。**不同 popup 且不同相位。**"),
+}
+
+
 def lines(pat: re.Pattern) -> list[tuple[int, str]]:
     cfg = yaml.safe_load((ROOT / "feature.yaml").read_text(encoding="utf-8"))
     d = fitz.open(ROOT / cfg["paths"]["spec_pdf"])
@@ -223,7 +338,8 @@ def main() -> None:
     a = ap.parse_args()
     rx, desc = ASSERTIONS[a.assertion]
     pat = re.compile(rx, re.I)
-    lv = LINE_VERDICT if a.assertion == "popup" else AUDIO_LINE_VERDICT
+    lv = {"popup": LINE_VERDICT, "audio": AUDIO_LINE_VERDICT,
+          "announcement": ANN_LINE_VERDICT, "popup_after": AFTER_LINE_VERDICT}[a.assertion]
     hits = lines(pat)
     n_match = sum(len(pat.findall(l)) for _, l in hits)
     print(f"=== 規格全文之反向掃描（R-PMH90／R-PMH93）—— 斷言 `{a.assertion}` ===")
@@ -244,9 +360,14 @@ def main() -> None:
         print(f"      記法：**{kind}**；謂詞：{pred}")
         print(f"      依據：{why}\n")
     # --- 矩陣側（`audio` 斷言）---
-    if a.assertion == "audio":
+    if a.assertion in ("audio", "announcement"):
         print("\n--- 矩陣側（State Matrix）---\n")
-        for lo, r, lbl, cs in matrix_rows(pat):
+        if a.assertion == "announcement":
+            n_hit = len(matrix_rows(pat))
+            print(f"  命中之事件列 = **{n_hit}**"
+                  + ("  —— **矩陣全簿無 `announcement`／`traffic announcement`／`received`**"
+                     if not n_hit else ""))
+        for lo, r, lbl, cs in (matrix_rows(pat) if a.assertion == "audio" else []):
             v = AUDIO_CELL_VERDICT.get((lo, r))
             print(f"  [區塊 r{lo}] r{r} {lbl}（{len(cs)} 格命中）")
             for c, ax, val in cs[:3]:
@@ -267,7 +388,7 @@ def main() -> None:
     n_conf = counts.get("牴觸", 0)
     print(f"\n  **牴觸 {n_conf} 處**"
           + ("  ← **停止條件觸發，須上呈，不得自行調和（R-PMH79）**" if n_conf else "  —— 無"))
-    if a.assertion == "audio":
+    if a.assertion != "popup":
         print_limits()
         sys.exit(1 if (n_conf or unnamed) else 0)
     print("\n  **與分析層 23 §3.1 之對照**：其報「25 處」，本檔行數 **25** —— **相符**；"
