@@ -32,6 +32,16 @@ reference:
     file: "forms/PROXI_HDCC27_R3_20250424.xlsx"
     sha256: "e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2"
 
+# R-DM24（Q5 定案 B，Pei 2026-08-25）：以人工指定 kind 取代放寬共用分類器。
+# `scripts/intake.py` 之 SHEET_SIGNATURES 一字未動；覆寫僅在下列 sha256
+# 與該檔實際雜湊相符時生效，不符則不套用並警示（不得靜默略過）。
+intake:
+  kind_overrides:
+    "Display_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx":
+      kind: a03_report
+      reason: "R-DM5: no 'Analysis Report' sheet; sheets are SWE1 Requirements / SYS2 Traceability / Excluded NRLs (HW-only)"
+      sha256: "ab3198e81fb21d2182f5dd7a665488aac5eb937481cf6bede9ecc668f3185050"
+
 spec_mode: "D"        # A/B/C/D/E per FO §3
 spec_reference_template: null   # mode D：spec_reference 為查得，非構造（canon §3）
 

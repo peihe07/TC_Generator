@@ -217,16 +217,22 @@ def main():
             if got:
                 gl_hits.append((lf["id"], sorted(set(got))))
 
+        # R-DM26: heading drops to next-to-last. It is present on 80/80
+        # rows, so as a high-priority anchor it masked every anchor below it
+        # — that is why glossary_phrase never surfaced here (upstream 06
+        # §3.2). Its largest node also holds 48 of the 80 FR rows.
+        #   signal > value > glossary_phrase > glossary_phrase_norm
+        #          > melco > heading > none
         if sigs:
             kind = "signal"
         elif vals:
             kind = "value"
-        elif anc_txt:
-            kind = "heading"
         elif gl_hits:
             kind = "glossary_phrase"
         elif mel:
             kind = "melco"
+        elif anc_txt:
+            kind = "heading"
         else:
             kind = "none"
 
@@ -295,7 +301,9 @@ def main():
           f"{sum(1 for d in out_rows if not d['candidate_from'])}")
 
     print()
-    print("## anchor_kind 分布（最高優先之現存錨）")
+    print("## anchor_kind 分布（最高優先之現存錨；R-DM26 新序：")
+    print("##   signal > value > glossary_phrase > glossary_phrase_norm "
+          "> melco > heading > none）")
     from collections import Counter
     for k, n in Counter(d["anchor_kind"] for d in out_rows).most_common():
         print(f"  {k}: {n}")

@@ -20,6 +20,7 @@ Urgency 回報。
 | DR-DM2 | Popup 優先序仲裁規則與 timeout 之來源（CFTS 本文僅有 RVC「high priority」語句，無仲裁順序表或 timeout 值） | OPEN | SWE-DM-006 | popup 仲裁之預期結果無法寫 | — | HIGH |
 | DR-DM3 | `SYS-RA-DISP-*` ↔ SYS2 之對應表，或含 `DISP` id 之 SYS2 版本 | OPEN | 全 8 leaf 之追溯欄 | 追溯鏈斷；spec_reference 無 id 路徑 | A-DM2 / A-DM10 | MEDIUM |
 | DR-DM4 | CFTS_013（條號 `CFTS013-629` Standard/`-633` Standard/`-952` Multi-stage，載 DCSD Display Hot 演算法本體與其分級溫度門檻）— 檔名待查（pattern：`…CFTS_013…docx`） | OPEN | SWE-DM-005（004 部分） | multi-stage 之分級判準無法寫；單級 85 °C 行為可寫 | A-DM13 | HIGH |
+| DR-DM8 | 確認 037 之 `DISPLAY_ON`／`DISPLAY_OFF`（`SWE-DM-001`／`002`）與 SYS2／DBC 之 `DISP_ON`／`DISP_OFF` 是否為同一狀態 | OPEN | SWE-DM-001、SWE-DM-002 | 狀態名無法對應，TC 之預期結果無法引用 DBC 之 `VAL_` 標籤 | A-DM18 | HIGH |
 | DR-DM7 | 本專案（R1LR Atl-H）之 VF 代碼，或其 PROXI 實例檔（已填值之 PROXI，非 `_R3` 空白格式檔） | OPEN | 全 8 leaf 之前置條件 | `Used by NODE(VFXXX)` 無法用於篩選；PROXI 446 列母體無法收斂 | A-DM20 | MEDIUM |
 | DR-DM6 | `Display_OFF_SoftKey_Prsnt` 之 PROXI 定義；或確認其與 `PROXI_HDCC27_R3` `Format` r692 之 `Display_OFF_SoftKey` 為同一參數（LID r63 `DSP_SK_PRSNT`） | OPEN | SWE-DM-001（Screen Off 行為之配備前提） | 該 leaf 之前置條件是否需帶軟鍵存在旗標，無法判定 | A-DM17／`forms/LOOKUP_MISSES.md` M-3 | MEDIUM |
 | DR-DM5 | `RADIO_B4.CCDMF_RQ_DISP_INTS` 之 DBC 定義（訊息 `RADIO_B4` 存在於 `PDT27_E2A_R1_BHCAN2.dbc`，該 `SG_` 不存在）；一併確認 `GW_B_5.Mute_Button` | OPEN | 用到 `$CCDMF_RQ_DISP_INTS$` 之 SYS2 FR 列 | 該訊號之值域與位元定義無法寫 | A-DM10a／`forms/LOOKUP_MISSES.md` M-1、M-2 | MEDIUM |
@@ -34,6 +35,13 @@ R-DM8 列四處缺值。實測（`scripts/probe_missing_values.py`）：
 | 004 | thermal warning threshold 之門檻值與單位 | **查得**：`1.11.2.2 DCSD Display Hot Behavior {4820281}`，另 `1.15.1.5 {4820659}` / `1.15.2.5 {4820937}` / `1.15.4.x` 為各架構之對應節 | 含數值+單位 0 段 | 記章節，不開 DR |
 | 005 | thermal protection 之 critical 判準與回復條件 | **部分查得**：回復條件在 `{4820290}`／`{4820287}`／`{4820288}`；**分級（multi-stage）之 critical 判準轉指 `{CFTS013-952}`，不在手上** | 含數值+單位 0 段 | 回復條件記章節；分級判準 → **DR-DM4** |
 | 006 | popup priority arbitration 之優先序規則與 timeout | 命中 70 段，惟皆為「high priority Rear View Camera screen」之個別語句；無仲裁順序表、無 timeout 值 | 命中 6 段，含數值+單位 0 段 | **DR-DM2** |
+
+> **R-DM27（2026-08-25）：缺值範圍由四處改為八條全稱。** 上繳 06 §8 之
+> 全文精讀實測 —— 八條之「數值＋單位」0/8、`$Signal$` 0/8、外部引用 0/8。
+> 上表之四處為抽樣所得之低估。逐條之未給值抽象量詞見
+> `data/leaf_value_gaps.tsv`（例 `SWE-DM-001` 之 `timeout`、
+> `SWE-DM-002` 之 `previous`／`valid`，二者原不在四處之列）。
+> R-DM8 之禁止回填規定不變，適用範圍擴及八條全部。
 
 > 004/005 之章節為**位置登記**，非值之確認。門檻值之讀出與採用屬 Phase 2，
 > 依 R-DM8 不得由本輪回填（canon §8.4.1）。

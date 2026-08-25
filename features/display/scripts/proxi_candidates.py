@@ -48,6 +48,21 @@ F037 = FEAT / "inputs" / \
 
 MIN_PHRASE = 8
 GLOSSARY_TSV = FEAT / "data" / "glossary.tsv"
+
+# R-DM25: underscore <-> space, applied to BOTH sides before comparing.
+# This is not "relaxing one more level" (which R-DM22(c) still forbids) —
+# it is a declared, symmetric, reversible character-class normalisation of
+# the same kind as case folding. Only this one transformation is allowed;
+# hyphens, dots and camelCase are out of scope until separately ruled.
+# Strict and normalised hits are counted separately and never merged, and a
+# candidate that exists only after normalisation is marked
+# `glossary_phrase_norm` (R-DM25(b)(c)).
+SEP_NORM = re.compile(r"[ _]+")
+
+
+def sep_norm(s):
+    """Collapse runs of underscore/space to a single space. R-DM25."""
+    return SEP_NORM.sub(" ", s)
 KEYWORDS = ["DISP", "DCSD", "RVC", "Camera", "Display", "Touch", "Screen"]
 SEP = " ¦ "
 
@@ -149,20 +164,25 @@ def main():
 
         # --- glossary anchor (R-DM22), case-sensitive verbatim substring
         hay_cs = " | ".join([lid_name, func, objt, atl_name_early(r, atl_i)])
-        gl_hits = []
+        hay_norm = sep_norm(hay_cs)
+        gl_hits, gl_norm_hits = [], []
         for lid_leaf, phs in leaves:
-            got = []
+            got, got_norm = [], []
             for ab, exp in gloss.items():
                 if not any(re.search(rf"\b{re.escape(ab)}\b", p) for p in phs):
                     continue
-                if exp in hay_cs:
-                    got.append(f"{ab}->{exp!r}")
-                for p_ in phs:
-                    sub = re.sub(rf"\b{re.escape(ab)}\b", exp, p_)
-                    if sub != p_ and sub in hay_cs:
-                        got.append(repr(sub))
+                cands = [exp] + [re.sub(rf"\b{re.escape(ab)}\b", exp, p_)
+                                 for p_ in phs
+                                 if re.search(rf"\b{re.escape(ab)}\b", p_)]
+                for c in dict.fromkeys(cands):
+                    if c in hay_cs:                       # strict
+                        got.append(f"{ab}->{c!r}")
+                    elif sep_norm(c) in hay_norm:         # only after R-DM25
+                        got_norm.append(f"{ab}->{c!r} (norm)")
             if got:
                 gl_hits.append((lid_leaf, sorted(set(got))))
+            if got_norm:
+                gl_norm_hits.append((lid_leaf, sorted(set(got_norm))))
 
         atl_raw = str(r[atl_i] or "") if len(r) > atl_i else ""
         atl_name = norm(atl_raw)
@@ -193,6 +213,8 @@ def main():
             kind = "leaf_phrase"
         elif gl_hits:
             kind = "glossary_phrase"
+        elif gl_norm_hits:
+            kind = "glossary_phrase_norm"
         elif cfts:
             kind = "cfts_usage"
         elif pr:
@@ -208,8 +230,11 @@ def main():
         else:
             note.append("無 leaf 片語逐字命中")
         if gl_hits:
-            note.append("glossary 錨命中：" + "；".join(
+            note.append("glossary 錨命中（嚴格）：" + "；".join(
                 f"{i}←{'|'.join(m)}" for i, m in gl_hits))
+        if gl_norm_hits:
+            note.append("glossary 錨命中（R-DM25 正規化後才成立）：" + "；".join(
+                f"{i}←{'|'.join(m)}" for i, m in gl_norm_hits))
         if cfts:
             note.append(f"Primary CFTS Usage 逐字含 CFTS020"
                         f"（{norm(r[cfts_i])}）")
@@ -228,11 +253,12 @@ def main():
             rn, lid_name, func, atl_name, lookup_key,
             SEP.join(str(x[0]) for x in pr),
             SEP.join(x[1] for x in pr if x[1]),
-            SEP.join(sorted({h[0] for h in hits + gl_hits})), kind,
+            SEP.join(sorted({h[0] for h in hits + gl_hits + gl_norm_hits})),
+            kind,
             # R-DM23: `related_leaf` empty on this sheet is (2) — only the
             # three A-DM16 starting points were pursued; the rest were never
             # investigated. It is NOT a finding that they are unrelated.
-            ("" if (hits or gl_hits) else
+            ("" if (hits or gl_hits or gl_norm_hits) else
              ("(2) 本輪未追查：僅追 A-DM16 指名之三個起點"
               if kind != "none" else
               "(2) 本輪未追查；且 PROXI Format 亦未查得其定義")),
@@ -241,13 +267,18 @@ def main():
 
     p = FEAT / "data" / "proxi_candidates.tsv"
     with p.open("w", encoding="utf-8") as fh:
+        fh.write("# R-DM25 正規化之定義：比對前對「兩側」同時施加 "
+                 "re.sub(r'[ _]+', ' ', s)，即底線與空格之連續段一律折為"
+                 "單一空格。僅此一項；連字號、點號、駝峰切分不在範圍內。\n")
+        fh.write("# anchor_kind = glossary_phrase 者為嚴格比對即成立；"
+                 "= glossary_phrase_norm 者為正規化後才成立，兩者不合併計數。\n")
         fh.write("\t".join(cols) + "\n")
         for d in out:
             fh.write("\t".join(str(d[c]).replace("\t", " ") for c in cols) + "\n")
 
     print(f"\n## anchor_kind 分布")
-    for k in ["leaf_phrase", "glossary_phrase", "cfts_usage", "proxi_param",
-              "none"]:
+    for k in ["leaf_phrase", "glossary_phrase", "glossary_phrase_norm",
+              "cfts_usage", "proxi_param", "none"]:
         print(f"  {k}: {counts.get(k, 0)}")
     print(f"  合計 {len(out)}")
     print(f"\n  R-DM23 語意別：`related_leaf` 為空之 "

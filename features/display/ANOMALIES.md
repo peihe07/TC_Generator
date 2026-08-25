@@ -96,6 +96,29 @@ Non Functional Requirement / Out of scope
 3. 向上游反映之內容應改為「值未依 `_polarion` 字典校驗」，而非
    「大小寫不一致」—— 後者聽起來像格式瑕疵，前者是資料校驗缺口。
 
+#### 結清（2026-08-25，下放包 07 §1.3 / 步驟 9，R-G17）
+
+上繳 06 §10 第 4 項所留之待辦「`_polarion` 之其餘 340 個欄位字典完全
+未用」**不存在，本項結案**。分析層更正、執行層獨立複驗：
+
+`_polarion` r4 起之 367 個資料列中，**第一欄含 `:` 者才是欄位列舉字典**：
+
+| 類別 | 列數 | 相異鍵 |
+|---|---|---|
+| 欄位列舉字典（鍵含 `:`） | 27 | **2** |
+| 工作項連結列（鍵無 `:`，如 `NR1L/NRL-163104`） | 340 | 340 |
+
+兩個字典之鍵尾段為 `SYS2 分類 Category` 與 `Type`，而
+**`Basic Report` 之 81 個欄名中能與字典鍵對上者恰為此 2 個**。逐欄校驗：
+
+| 欄 | 字典值數 | 實際用值數 | 違規列數 |
+|---|---|---|---|
+| `SYS2 分類 Category` | 5 | 6 | **117 / 333** |
+| `Type` | 22 | 1（`SYS2_System Requirements Analysis` ×333） | **0** |
+
+**可校驗之欄只有兩個，兩個都已校驗完畢。** 誤把 340 列工作項連結當成
+欄位字典，會產生一個做不完的待辦（R-G17 明文警示此點）。
+
 ## A-DM5 — 037 `SWE1 Requirements` 表頭含不規則空白  [PENDING]
 
 實測表頭原始字串含尾空格與雙空格：`'SWE-Requirement ID '`、
@@ -605,6 +628,70 @@ R-DM22 之縮寫錨在兩處之效果**相反**：
 
 - 提案處置：開 `DR-DM7` 索本專案之 VF 代碼（或其 PROXI 實例檔）。
   取得後 `Used by NODE(VFXXX)` 即可用於篩選，本輪之 446 列母體可望大幅收斂
+
+## A-DM21 — `"Analysis Report"` 寫死於 5 處；Q5-B 只解到其中 1 處  [PENDING]
+
+Q5 定案 B（R-DM24）之目的為使 `recon.py` 可跑。本輪實作覆寫機制並完成
+回歸後實測：**目的未達成**，且成因已定位。
+
+`"Analysis Report"` 這個分頁名在共用腳本中**寫死於 5 處**：
+
+| 位置 | 用途 | Q5-B 是否觸及 |
+|---|---|---|
+| `scripts/intake.py:63` | `SHEET_SIGNATURES` 之判準 | **是**（由覆寫繞過） |
+| `scripts/intake.py:114` | `_swra_profile()` 讀分頁 | 否 |
+| `scripts/intake.py:311` | `cited_documents()` 讀分頁 | 否 |
+| `scripts/recon.py:568` | `survey_a03()` 讀分頁 | 否 |
+| `scripts/compare_req_families.py:41` | `SHEET` 常數 | 否 |
+
+實測二事：
+
+1. **依 R-DM24 之條文所載 `kind: a03_report`**：覆寫生效、
+   `kind_source: override` 正確標記，但下游邏輯完全未被驅動 ——
+   need list 仍輸出 `NO requirement report found`。原因是
+   `a03_report` 是 `feature.yaml` 之 paths 鍵，而 `intake.py` 之 kind
+   詞彙為 `swra_report`（`KIND_TO_YAML` 將後者映至前者）。
+2. **若改為 `kind: swra_report`**（即真正能驅動下游者）：
+   `intake.py` **當場崩潰**於 `cited_documents()` 之
+   `wb["Analysis Report"]`（`intake.py:311`），與 `recon.py:568` 同型。
+
+即：**繞過分類器之後，緊接著就撞上同一個假設的第二個實例。**
+
+`recon.py --feature features/display` 本輪重跑，仍失敗於
+`recon.py:568` `KeyError: 'Worksheet Analysis Report does not exist.'`，
+與上繳 02 之失敗點逐字相同。依 R-DM24 末段未修 `recon.py`。
+
+- 本輪保留條文所載之 `kind: a03_report`（不崩潰、標記正確），
+  **未自行改為 `swra_report`** —— 那會改變條文所指定之值
+- 提案處置：Q5 之選項 B 需要擴充其授權範圍（及於 `cited_documents()`
+  與 `survey_a03()` 之分頁名來源），或改採另一形態。**屬 Tier 2，
+  執行層不裁定。** 本輪之覆寫機制本身完好且已回歸驗證，可保留
+
+## A-DM22 — `anchor_kind` 無論優先序如何都無法顯示候選之來源  [PENDING]
+
+R-DM26 將 heading 由第三位降至倒數第二，理由是其 80/80 之存在性會遮蔽
+其下所有錨。調整後實測：**`glossary_phrase` 仍為 0**。
+
+成因已量明：**16 個產生候選之列（heading 錨 4 列 + glossary 錨 12 列）
+全部同時含 `$signal$`**，而 `signal` 在新舊優先序中皆居首。
+
+| 產生候選之錨 | 列 | 其 `anchor_kind` |
+|---|---|---|
+| heading | r31–r34 | signal ×4 |
+| glossary | r37/41/42/44/45/52/53/54/213/217/219/226 | signal ×12 |
+
+故 `anchor_kind` 分布在 R-DM26 前後皆為 `signal 43 / heading 37`。
+
+**這不是優先序放錯位置，是兩欄在回答不同的問題**：
+`anchor_kind` 答「這列帶有哪些證據」，`candidate_from` 答「是什麼把它
+連到 leaf」。一個欄位無法同時承載兩者。
+
+- R-DM26 之調整仍應保留：heading 之 100% 存在性確實不宜居高位，
+  且該調整使 `melco` 得以在 heading 之前現身（本輪母體中 melco 僅 1 列
+  且該列亦為 signal，故未顯現）
+- 提案處置：引用時一律以 **`candidate_from`** 為準（R-DM12／R-DM26 已
+  規定兩欄並列不合併）。是否要在 `anchor_kind` 之外再立一欄
+  「最高優先之**產生候選**之錨」，屬 Tier 2
 
 ---
 

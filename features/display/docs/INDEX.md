@@ -15,6 +15,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 04 | 2026-08-24 | 參考素材庫（`forms/`）建置；訊號三段解析鏈 | [handoff/04_reference_store.md](handoff/04_reference_store.md) | [upstream/04_reference_store.md](upstream/04_reference_store.md) | R-G12–R-G14（全域，抄入 `docs/fw036/RULINGS_LEDGER.md`）＋ R-DM16／R-DM17（逐字抄錄 5/5，Display 累計 19/19） | A-DM14／A-DM15／A-DM16 新增；**A-DM10 拆為 a（RESOLVED）／b（PENDING）**；A-DM11 之 `[value]` 數字更正；DR-DM5 開立 | **步驟 1–12 全數執行；十三條停止條件全未觸發。`.gitignore` 加一行否定使 `LOOKUP_MISSES.md` 可 tracked** |
 | 05 | 2026-08-24 | `[VALUE]` 定義定案、PROXI 開工、DBC 適用性 | [handoff/05_proxi_and_values.md](handoff/05_proxi_and_values.md) | [upstream/05_proxi_and_values.md](upstream/05_proxi_and_values.md) | R-DM18–R-DM21 ＋ R-G15（全域）（逐字抄錄 5/5，Display 累計 23/23） | A-DM17 新增；A-DM16 結案並記執行結果；A-DM11 之值 token 定案；DR-DM6 開立；LOOKUP_MISSES M-3 | **步驟 1–9 全數執行；十五條停止條件全未觸發。59 vs 44 已調和：擷取無誤，錯在聚合** |
 | 06 | 2026-08-25 | 縮寫錨定案、聚合缺陷通則、037 精讀、Polarion 分頁清償 | [handoff/06_glossary_anchor.md](handoff/06_glossary_anchor.md) | [upstream/06_glossary_anchor.md](upstream/06_glossary_anchor.md) | R-DM22／R-DM23 ＋ R-G16／R-G13 補充（全域）（逐字抄錄 4/4，Display 累計 25/25） | A-DM18／A-DM19／A-DM20 新增；**A-DM4 升級（`_polarion` 字典）**；DR-DM7 開立 | **步驟 1–10 全數執行；十七條停止條件全未觸發。積欠四輪之步驟 8、9 一併清償** |
+| 07 | 2026-08-25 | Q5 定案 B、錨優先序、分隔符正規化；**首次授權改 `scripts/intake.py`** | [handoff/07_pipeline_and_anchors.md](handoff/07_pipeline_and_anchors.md) | [upstream/07_pipeline_and_anchors.md](upstream/07_pipeline_and_anchors.md) | R-DM24–R-DM27 ＋ R-G17（全域）（逐字抄錄 5/5，Display 累計 29/29） | A-DM21／A-DM22 新增；A-DM4 之 `_polarion` 待辦結案；DR-DM8 開立 | **步驟 1–11 全數執行；二十條停止條件全未觸發。回歸 14/14 逐字相同；`recon.py` 仍失敗於同一點，成因已定位（A-DM21）** |
 
 ## 02 輪要點
 
@@ -126,3 +127,28 @@ PROXI 側**仍為 0** —— 阻塞點是底線 vs 空格（`Rear_View_Camera`�
 
 **PROXI NODE 欄（A-DM20）**：`Checked by` 6/1058 不可用；`Used by` 500/1058
 結構可用但**缺本專案之 VF 代碼**這把鑰匙 → DR-DM7。
+
+## 07 輪要點
+
+**`intake.py` 覆寫機制（R-DM24）**：`SHEET_SIGNATURES` 逐字未動；
+缺省惰性經 14 個目錄、82 個檔之回歸驗證，**全部逐字相同**。
+（`_intake/` 多數目錄已被歷次 scaffold 搬空，故另以各 feature 之
+`inputs/` 建 8 個 `_regr_*` 臨時語料，使回歸真正有覆蓋。）
+
+**Q5-B 未達其目的（A-DM21）**：`"Analysis Report"` 寫死於 **5 處**，
+Q5-B 只繞過其中 1 處（`SHEET_SIGNATURES`）。條文所載之
+`kind: a03_report` 不驅動下游（need list 仍報 NO requirement report）；
+改為能驅動下游之 `kind: swra_report` 則 `intake.py` 崩於其自身
+`cited_documents()` 之同一假設。`recon.py` 重跑仍失敗於 `recon.py:568`。
+
+**錨優先序（R-DM26）**：調整後 `glossary_phrase` **仍為 0** ——
+16 個產生候選之列**全部同時含 `$signal$`**，而 signal 居首。
+`anchor_kind` 與 `candidate_from` 回答的是不同問題（A-DM22）。
+
+**分隔符正規化（R-DM25）**：`RVC_SK_PRSNT` → PROXI r401／r494
+（`0 = Absent 1 = Present`），標 `glossary_phrase_norm` ——
+**本 feature 首次出現 leaf ↔ PROXI 之連結**。
+停止條件 19 未觸發：PROXI 1,052 個參數名、LID 429＋2,548 個識別碼，
+正規化後碰撞組**皆為 0**。
+
+**R-DM27**：037 八條之缺值點逐條表入 `data/leaf_value_gaps.tsv`。

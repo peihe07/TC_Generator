@@ -32,6 +32,13 @@ Regression-validated (2026-08-09) against BOTH template families:
   (SWRA-A02 = TC source; the SWE1 037-A03 flagged for role confirmation);
   need list correctly reported as not derivable; spec_mode D proposed
 
+6. Honours `intake.kind_overrides` in the feature's feature.yaml, so a
+   feature whose report does not carry an 'Analysis Report' sheet can name
+   the kind by hand instead of the shared signature table being widened
+   (Q5 settled as option B; Display R-DM24). An override applies only when
+   the file's sha256 matches the declared one, and both INTAKE.md and
+   intake.json record `kind_source: override` with the stated reason.
+
 Tier 0 output: INTAKE.md + intake.json. Obtaining missing files stays
 Tier 3 (Pei).
 
@@ -212,7 +219,34 @@ def sniff_pdf(path: Path) -> tuple[str, str]:
     return "spec_pdf", f"text-layer on {text_pages}/{len(per_page)} pages"
 
 
-def classify(folder: Path) -> list[dict]:
+def load_kind_overrides(root: Path, feature: str) -> dict:
+    """`intake.kind_overrides` out of the feature's feature.yaml, or {}.
+
+    Q5 was settled as option B (Display R-DM24): the sheet-signature table
+    stays untouched and a feature may name a file's kind by hand. Absent the
+    section — and absent the feature directory, as for an ad-hoc drop folder
+    — this returns {} and classification behaves exactly as before.
+    """
+    fy = root / "features" / feature.lower() / "feature.yaml"
+    if not fy.is_file():
+        return {}
+    try:
+        import yaml
+        cfg = yaml.safe_load(fy.read_text(encoding="utf-8")) or {}
+    except Exception as e:                       # malformed yaml is the
+        print(f"WARNING: cannot read {fy}: {e}")  # feature's problem, not
+        return {}                                 # a reason to crash intake
+    ov = (cfg.get("intake") or {}).get("kind_overrides") or {}
+    return ov if isinstance(ov, dict) else {}
+
+
+def _sha256(path: Path) -> str:
+    import hashlib
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def classify(folder: Path, overrides: dict | None = None) -> list[dict]:
+    overrides = overrides or {}
     out = []
     for p in sorted(folder.iterdir()):
         if p.name.startswith(".") or p.is_dir():
@@ -228,7 +262,29 @@ def classify(folder: Path) -> list[dict]:
             kind, note = "cfts_doc", "CFTS/Word candidate (spec_mode D)"
         else:
             kind, note = "unclassified", f"unhandled extension {ext}"
-        out.append({"file": p.name, "kind": kind, "note": note})
+        rec = {"file": p.name, "kind": kind, "note": note,
+               "kind_source": "signature", "reason": ""}
+
+        # An override bypasses the classifier, so it is pinned to exact bits:
+        # it applies only when the file's own sha256 equals the declared one.
+        # A mismatch is announced and the signature result stands — never a
+        # silent skip (R-DM24(b)).
+        ov = overrides.get(p.name)
+        if ov:
+            want = str(ov.get("sha256", "")).strip().lower()
+            got = _sha256(p)
+            if not want:
+                print(f"WARNING: kind_override for `{p.name}` has no sha256 "
+                      f"— NOT applied (R-DM24(a))")
+            elif want != got:
+                print(f"WARNING: kind_override for `{p.name}` NOT applied — "
+                      f"sha256 mismatch (declared {want[:16]}…, "
+                      f"actual {got[:16]}…); signature result `{kind}` stands")
+            else:
+                rec.update(kind=str(ov.get("kind", kind)),
+                           kind_source="override",
+                           reason=str(ov.get("reason", "")))
+        out.append(rec)
     return out
 
 
@@ -367,7 +423,11 @@ def emit(feature: str, folder: Path, files: list[dict], cited,
     lines.append("## Classified files")
     for f in files:
         note = f" — {f['note']}" if f["note"] else ""
-        lines.append(f"- `{f['file']}` → **{f['kind']}**{note}")
+        src = f.get("kind_source", "signature")
+        tag = "" if src == "signature" else f" [kind_source: {src}]"
+        lines.append(f"- `{f['file']}` → **{f['kind']}**{tag}{note}")
+        if src == "override" and f.get("reason"):
+            lines.append(f"  - override reason: {f['reason']}")
     lines.append("")
     swras = [f for f in files if f["kind"] == "swra_report"]
     wbk = next((f for f in files if f["kind"] == "workbook"), None)
@@ -511,7 +571,8 @@ def main() -> None:
     if not folder.is_dir():
         sys.exit(f"drop folder not found: {folder}")
 
-    files = classify(folder)
+    overrides = load_kind_overrides(root, args.feature)
+    files = classify(folder, overrides)
     swras = [f for f in files if f["kind"] == "swra_report"]
     cited, matched, pick = Counter(), [], None
     if swras:
