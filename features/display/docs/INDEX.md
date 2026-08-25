@@ -23,6 +23,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 12 | 2026-08-25 | marker 衝突裁定、已裁常數改為機器檢查 | [handoff/12_assertions.md](handoff/12_assertions.md) | [upstream/12_assertions.md](upstream/12_assertions.md) | R-DM36／R-DM37 ＋ R-G24（全域）（逐字抄錄 3/3，Display 累計 39/39） | A-DM27／A-DM28 新增 | **步驟 1–8 全數執行；三十二條停止條件全未觸發。三項分歧已處置，複驗 24/24 有對應** |
 | 13 | 2026-08-25 | 會說謊的警示補測、綁定範圍收束、不阻塞工作見底 | [handoff/13_honest_guards.md](handoff/13_honest_guards.md) | [upstream/13_honest_guards.md](upstream/13_honest_guards.md) | R-DM38／R-DM39 ＋ R-G25（全域）（逐字抄錄 3/3，Display 累計 41/41） | A-DM29／A-DM30 新增（皆自查）；A-DM27 更正 | **⚠ 步驟 3 觸發停止條件 34（1 項不符）。步驟 1、2、4、5、6 完成。綁定 9/9** |
 | 19 | 2026-08-25 | **合併包**：14–18 撤回重排；裁定落地、framework、簽核、pilot-01 | [handoff/19_consolidated.md](handoff/19_consolidated.md) | [upstream/19_consolidated.md](upstream/19_consolidated.md) | R-DM40–46（7 條）＋ R-G26–31（6 條，全域）＋ R-G32（逐條 12/12 PASS，Display 累計 48/48） | A-DM31／A-DM32 新增 | **⚠ 步驟 13 觸發停止條件 46（值無出處），未產出 TC。步驟 1–12、15 完成；簽核已轉錄，Phase 4 解封** |
+| 20 | 2026-08-25 | A-DM32 裁定（R-DM48）；**pilot-01 三條 TC 產出** | [handoff/20_pilot01_tc.md](handoff/20_pilot01_tc.md) | [upstream/20_pilot01_tc.md](upstream/20_pilot01_tc.md) | R-DM47／R-DM48（逐條 2/2 PASS，Display 累計 50/50） | DR-DM9 開立；A-DM32 標已裁 | **步驟 1–6 全數執行；五十二條停止條件全未觸發。lint036 二十項行計皆 0** |
 
 ## 02 輪要點
 
@@ -341,3 +342,27 @@ RULED 3）；`recon.py` 回 **REFUSED (R-C9)**，兩項複驗皆過。
 `DISP_OFF`／`DISP_NORMAL` **在 DBC 與 LID 皆不存在**（`DISP_HOT` 有，raw 4）。
 規格側寫 `[DISP_OFF]`、訊號側為 `0 (OFF)`，兩者對應**非逐字**。
 以 **A-DM32** 登記，並列三途提案，未裁定。
+
+## 20 輪要點
+
+**A-DM32 已裁（R-DM48）**：不採我所提之三途中任一，改為**按可得性分寫**
+—— 逐字解得 DBC `VAL_` 者寫入訊號值，解不得者 ER 改驗規格所載之
+**可觀察行為**。分析層之關鍵補充：**#2／#3 之阻塞不是缺值，
+是 18 §2.2 指定了它們不需要的值**。
+
+**pilot-01 三條 TC 已產出**（`generated/pilot-01.json`）：
+004 × 1（Hot 門檻 → PU0517 警示，**含** `= 4 (DISP_HOT)`）、
+005 × 2（保護性關閉 → PU0130／溫度回落 → 背光與觸控恢復，**皆不寫訊號值**）。
+
+**`lint036.py --profile display`：A–N 及 P/Q/R/T/U 二十項行計皆 0。**
+首跑 A 檢查 **4 處 FAIL**（`Observe`／`check whether` 為 §5.1 禁用動詞），
+**該 FAIL 是我產出的缺陷不是判準問題**，改為 `Read`／`check that` 後歸零。
+
+> lint 需 xlsx 而本輪禁寫回母本 —— 以 scratchpad 之**拋棄式副本**執行，
+> 母本 SHA 前後複驗未變（`6372fb6be02f48dc…`）。
+
+**R-DM47**：`paths:`（feature 目錄）與 `reference:`（repo 根）之路徑基準
+不同，補 R-DM38 之未涵蓋處。
+
+**DR-DM9 開立**（HIGH）：請上游確認四個規格值標籤各對應哪一個 raw；
+取得後得於既有 ER **增列**訊號值，增列不改變行為驗證，**不構成回修**。

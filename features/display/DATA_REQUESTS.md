@@ -16,6 +16,7 @@ Urgency 回報。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
+| DR-DM9 | SYS2／CFTS 之值標籤 `[DISP_OFF]`／`[DISP_ON]`／`[DISP_NORMAL]`／`[DISP_REAR_CAMERA]` 各對應 `DCSD_DISP_STAT` 之哪一個 raw 值，並提供其並列出處 | OPEN | SWE-DM-005（#2／#3 之訊號值）、007／008 | ER 目前只驗行為不寫訊號值（R-DM48）；取得後依 R-DM22 建值標籤 glossary，得於既有 ER **增列**訊號值（增列不改變行為驗證，非回修） | A-DM32 | HIGH |
 | DR-DM1 | CFTS_009（條號 `{CFTS009-722}`，定義 `Start Up Sequence - Splash/Disclaimer Screen` 之時段）— 檔名待查（pattern：`…CFTS_009…docx`） | OPEN | SWE-DM-003 | splash/sleep 時長之預期結果無法寫 | — | HIGH |
 | DR-DM2 | Popup 優先序仲裁規則與 timeout 之來源（CFTS 本文僅有 RVC「high priority」語句，無仲裁順序表或 timeout 值） | OPEN | SWE-DM-006 | popup 仲裁之預期結果無法寫 | — | HIGH |
 | DR-DM3 | `SYS-RA-DISP-*` ↔ SYS2 之對應表，或含 `DISP` id 之 SYS2 版本 | **OPEN**（2026-08-25 曾兩度被指定而皆不答：① CFTS043 SYSRA —— 實測為 HVAC（`SYS-RA-HVAC-*` × 405，`SYS-RA-DISP` 0 次），見 A-DM31；② SYS3 SYSAD —— 本 feature 之素材且有其他用途，不登為異常，其不答本 DR 一事記於此）| 全 8 leaf 之追溯欄 | 追溯鏈斷；spec_reference 無 id 路徑 | A-DM2 / A-DM10 | MEDIUM |
