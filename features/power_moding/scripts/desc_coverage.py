@@ -48,6 +48,26 @@ LIMITS = [
 ]
 
 FORWARD = {
+    "SWE1-HMI-PM-026-01|1": [
+        "049|3",
+        ""
+    ],
+    "SWE1-HMI-PM-026-02|1": [
+        "050|2",
+        ""
+    ],
+    "SWE1-HMI-PM-026-03|1": [
+        "051|2",
+        ""
+    ],
+    "SWE1-HMI-PM-026-04|1": [
+        "052|2",
+        ""
+    ],
+    "SWE1-HMI-PM-026-05|1": [
+        "053|2",
+        ""
+    ],
     "SWE1-HMI-PM-001-01|1": [
         "未涵蓋-重複",
         "`-028` ER1（掛 `SWE1-HMI-PM-006-01`）—— R-PMH137"
@@ -271,6 +291,50 @@ FORWARD = {
 }
 
 REVERSE = {
+    "049|1": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
+    "049|2": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
+    "049|3": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
+    "050|1": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
+    "050|2": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
+    "051|1": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
+    "051|2": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
+    "052|1": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
+    "052|2": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
+    "053|1": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
+    "053|2": [
+        "A1",
+        "（batch 6：其 leaf 之 DESC 僅一斷言）"
+    ],
     "001|1": [
         "A1",
         "其依據為 A1（`if the system is not ready, it displays \"Loading…\"`）"
@@ -316,8 +380,8 @@ REVERSE = {
         ""
     ],
     "004|3": [
-        "無依據",
-        "**其依據在他 leaf** —— `-001-05` 之 DESC 只載「無逾時、須手動按 Accept」，**未載按下之後之結果**；`The last mode screen is displayed` 之依據在 `-001-04` 之 DESC（`press Accept to go directly to last mode screen`）。**其形態為 canon §8.4.2 之範圍捏造。**"
+        "例外-本體",
+        "**R-PMH139：例外條款之依據取自本體 leaf** —— `-001-05` 之 DESC 只載「無逾時、須手動按 Accept」，**未載按下之後之結果**；`The last mode screen is displayed` 之依據在 `-001-04` 之 DESC（`press Accept to go directly to last mode screen`）。**37 包裁（乙）：依 R-PMH139 不計為 §8.4.2 之範圍捏造** —— 其本體 leaf 已於 `-004` 之 reasoning 具名。"
     ],
     "005|1": [
         "A1",
@@ -907,6 +971,11 @@ def run(tcs: dict, quiet=False) -> tuple:
                 rev_bad.append((f"-{sfx} ER{k}", "**無依據**（未具名其 DESC 依據）", tc["er"][k - 1]))
             elif ent[0] == "無依據":
                 rev_bad.append((f"-{sfx} ER{k}", ent[1], tc["er"][k - 1]))
+            elif ent[0] == "例外-本體":
+                # R-PMH139（37 包）：例外條款之 ER 得以其**本體 leaf** 之 DESC 為依據，
+                # **不計為 §8.4.2 之範圍捏造**。其二條件（行為非新增、本體已具名）
+                # 之檢查屬人讀，本檔只承載其結果。
+                pass
     if not quiet:
         print("=== 正向：DESC 之每一斷言 × 其 leaf 之 TC 集合（R-PMH133）===")
         print(f"  leaf = **{len(leaves)}**；斷言 = **{sum(1 for _ in rows) + len(fwd_bad)}**；"

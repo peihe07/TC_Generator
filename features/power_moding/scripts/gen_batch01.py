@@ -162,7 +162,8 @@ TCS = [
      "設計方法 NEG —— 標的為「逾時**不**發生」。"
      "變體詞 Maserati 逐字取自規格（profile §3.2）。"
      "⚠ §8.4.1 不造值：規格未給任一秒數，故步驟 1 以「長於非 Maserati 之逾時」表述。"
-     "source_clause 取自 PDF p8 之 SU1.)（R-PMH50）。"),
+     "source_clause 取自 PDF p8 之 SU1.)（R-PMH50）。"
+     "⚠ **R-PMH139（37 包）—— 本條 ER3 之依據取自其本體 leaf**：本 leaf `SWE1-HMI-PM-001-05` 之 DESC 以 `Exception:` 起首，其逐字為 `Exception: For Maserati applications, the system provides no timeout (per CFTS009); the user must manually press Accept.` —— **未載按下 Accept 之後之結果**。ER3 之 `The disclaimer screen is removed and the last mode screen is displayed` **其依據為本體 leaf `SWE1-HMI-PM-001-04`** 之 DESC（`press Accept to go directly to last mode screen`）。**依 R-PMH139 不計為 canon §8.4.2 之範圍捏造** —— 例外條款不重述其本體之後續行為，為規格書寫之常態；刪去 ER3 則本條之 procedure 終於「按下 Accept」而無結果，**違 canon §5.5**。**其二條件皆滿足**：(a) 該 ER 所斷言者為本體 leaf 已載之行為，非新增；(b) 本體 leaf 已於此具名。"),
    axis="變體：Maserati（無逾時），對 -003 之非 Maserati 逾時"),
 
  dict(leaf="SWE1-HMI-PM-003", outline="7.2", src="SU2", dm=FUNC, pri="P1",

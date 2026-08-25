@@ -1795,6 +1795,38 @@ A-PMH25 原記「9.1 之權威文本於逾時處為破句，**其秒數無法確
 
 ---
 
+## A-PMH31 — `-044` 之 `hard control` 接聽路徑無 TC 覆蓋（推定同結果故不拆） · 37 包 §3.3 · PENDING（低）
+
+**逐字**（PDF p10，`PITA9`）：
+
+    If a call is answered **either by soft control or hard control** and the user does not
+    change screens during the phone call, the head unit will return to Power Off State
+    upon the call ending.
+
+`-044` 之步驟 1 取 **soft control** 一路，**`hard control` 一路未驗**。
+
+**其不拆之理由為推定，非量測**：規格**只給同一結果**，
+**未言 soft control 與 hard control 之接聽為同一實作路徑**。
+**若二者之實作不同，`hard control` 一路之失效不會被本批任何一條攔到。**
+
+**同型者另有二處**（本批一併具名）：
+
+| 條 | 未驗之一路 | 其推定 |
+|---|---|---|
+| `-038` | `Screen Off` 與 `HU Power button` **二鍵皆驗**（ER1／ER2 各一） | **不適用** —— 本條實際驗了二者 |
+| `-045` | `SOS` 與 `ASSIST` **二鍵皆驗**（ER1／ER2 各一） | **不適用** |
+| `-041` | `ACC` 與 `RUN` —— **步驟 1 之措詞為 `to ACC or RUN`，實測時取其一** | **同 `-044` 之推定** |
+
+**故本項實為二處**：`-044` 之 `hard control`、`-041` 之 `ACC`／`RUN` 未同時驗者。
+
+**處置**：**不補條**（37 包 §3.3 明令）—— 補之即為對同一結果之重複驗證（canon §8.2.1）。
+**登記為覆蓋缺口，其推定於各該條之 `reasoning` 具名。**
+
+⚠ **未開 DR** —— 其為「規格未言實作是否同一」，**而該問題於任何 `or`／`and` 並列處皆成立**，
+**開之即為對規格書寫慣例提問**。**該判斷未經裁定。**
+
+---
+
 ## 開案時之介面實測記錄（非異常，供追溯）
 
 `scripts/new_feature.py` 之實際介面與本 slug 之相合情形：

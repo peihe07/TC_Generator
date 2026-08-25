@@ -3588,3 +3588,74 @@ R-PMH138（第二次解凍 —— 斷言涵蓋表之程式化承載）
 | R-PMH136 | 反向涵蓋（TC 之斷言須有 DESC 依據）；屬維度 (2) 之另一向 | 433 | `0c48178345281323` | `0c48178345281323` | 1 | ✅ 逐字相符 |
 | R-PMH137 | 037 自身重複時之涵蓋認定；A-PMH30 定案 | 697 | `32cb7496eddb0e80` | `32cb7496eddb0e80` | 1 | ✅ 逐字相符 |
 | R-PMH138 | 第二次解凍 —— 涵蓋表之程式化承載；用畢恢復凍結 | 592 | `bac5e5f237cf40f5` | `bac5e5f237cf40f5` | 1 | ✅ 逐字相符 |
+
+## R-PMH139
+
+```
+R-PMH139（例外條款之依據得取其本體 leaf）
+某 leaf 之 DESC 以例外標記起首（`Exception:`／`unless`／`except`／
+`Exception for`），且其**本體 leaf 可資辨識**者，
+其 TC 之 ER 得以**本體 leaf 之 DESC** 為依據，
+**不計為 canon §8.4.2 之範圍捏造**（R-PMH136 之反向涵蓋於此不報 `無依據`）。
+
+**其條件二項**：
+(a) 該 ER 所斷言者須為**本體 leaf 已載之行為**，非新增之行為；
+(b) `reasoning` 須**具名其本體 leaf**，使追溯可循。
+
+現行適用：`-004`（leaf `-001-05`，DESC 為
+`**Exception:** For Maserati applications, the system provides no timeout
+(per CFTS009); the user must manually press Accept.`）之 ER3
+`The disclaimer screen is removed and the last mode screen is displayed`
+—— 其依據為本體 leaf `-001-04` 之 `press Accept to go directly to last mode screen`。
+
+**不採（甲）刪去 ER3 之理由**：例外條款不重述其本體之後續行為，
+為規格書寫之常態；刪之則該條之 procedure 終於「按下 Accept」而無結果，
+**違 canon §5.5**（Final Step 須持有可觀察之驗證標的）。
+```
+
+## R-PMH140
+
+```
+R-PMH140（許可式之斷言處置）
+`source_clause` 以許可式書寫者（`can`／`may`／`is able to`），
+其保證該行為之**容許**，不保證其**必然發生**。
+
+其 ER 之寫法：**以「於本條所述之條件下實測其發生」為之**，
+**並須於 `reasoning` 具名三事**：
+(a) 其來源為許可式；
+(b) 本 TC 所驗者為「於該條件下該行為確實可發生」；
+(c) **其不發生不必然為缺陷** —— 判 fail 前須先確認該條件確已成立。
+
+**不另開 DR** —— 許可式為規格之常見書寫，非未定義之記法；
+其與 A-PMH22（`Else: Mute Active` 之記法未定義）不同類。
+**採認執行層 36 包 §10 第 4 項之判斷（「不值再增一問」），本條使其成為裁定。**
+
+現行適用：`-042`（`PITA9: Phone call popups **can** be displayed …`）、
+`-045`（`PITA10: SOS and ASSIST **can** turn head unit power back on.`）。
+```
+
+## R-PMH141
+
+```
+R-PMH141（priority 之依據與級別須於同一條之內相符）
+R-PMH59 所規之「priority 依據須批內互不矛盾」，**擴及一條之內**：
+該 TC 之 `priority` 欄之值，須與其 `reasoning`／軸註中所載之依據相符。
+
+**檢查方式**：凡 `reasoning` 或軸註中出現 `P0`／`P1`／`P2`／`P3` 之字樣者，
+其與 `priority` 欄比對；不符即 FAIL。**此項不可機械涵蓋於現行 lint
+（apparatus 凍結，R-PMH104），故列為人讀覆核之必查項。**
+
+依據：`-045` 之 `priority` 欄為 `P1`，而其軸註逐字為
+`等價類：緊急呼叫鍵之電源回復（**本批唯一之 P0**）` ——
+**同一條之內，依據寫 P0 而級別填 P1**；
+且 P0 為正解（canon §10.2 之 P0 明列 `safety`／`eCall`）。
+```
+
+
+## 抄錄逐條核對表（37 包步驟 1）
+
+| 條號 | 主旨 | 字數 | handoff SHA256（前 16） | RULINGS **讀回** SHA256（前 16） | 命中數 | 逐字相符 |
+|---|---|---|---|---|---|---|
+| R-PMH139 | 例外條款之依據得取其本體 leaf | 746 | `fd15fbb8599d6d1a` | `fd15fbb8599d6d1a` | 1 | ✅ 逐字相符 |
+| R-PMH140 | 許可式之斷言處置；不另開 DR | 509 | `cf25538cf5c6196a` | `cf25538cf5c6196a` | 1 | ✅ 逐字相符 |
+| R-PMH141 | priority 之依據與級別須於同一條之內相符 | 419 | `b9bbbd71e7cd7248` | `b9bbbd71e7cd7248` | 1 | ✅ 逐字相符 |

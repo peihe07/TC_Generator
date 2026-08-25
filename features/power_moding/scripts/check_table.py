@@ -35,8 +35,10 @@ CHECKS = [
     ("lint_batch.py generated/batch03.json", "lint_batch", ["generated/batch03.json"], "0"),
     ("lint_batch.py generated/batch04.json", "lint_batch", ["generated/batch04.json"], "0"),
     ("lint_batch.py generated/batch05.json", "lint_batch", ["generated/batch05.json"], "0"),
+    ("lint_batch.py generated/batch06.json", "lint_batch", ["generated/batch06.json"], "0"),
     # 36 包（R-PMH138 之解凍）：涵蓋表之程式化承載
-    ("desc_coverage.py", "desc_coverage", [], "1"),
+    # 37 包（R-PMH139）：`-004` ER3 改記 `例外-本體` 後，反向無依據降為 0 → 期望退出碼改 0
+    ("desc_coverage.py", "desc_coverage", [], "0"),
     ("desc_coverage.py --must-hit", "desc_coverage", ["--must-hit"], "0"),
     ("lint_batch.py <fixture prerework>", "lint_batch", ["tests/fixtures/batch01_prerework.json"], "1"),
     ("lint_batch.py <fixture r2>", "lint_batch", ["tests/fixtures/batch01_r2.json"], "1"),
@@ -95,7 +97,7 @@ BY_DESIGN = {
     "lint_batch.py --final-step-must-hit": "R-PMH116 —— 本批五條修正前之 Final Step 須 FAIL／batch 1-2 之 15 條須 PASS／`Compare` 邊界二例",
     "matrix_vs_chapter.py 7": "含**牴觸 1**（`r48` × `SU3.)`）→ 退出碼 1 為設計",
     "matrix_vs_chapter.py 10": "含**牴觸 1**（`10.3` × `r48c10`，已登記 R-PMH80）→ 退出碼 1 為設計",
-    "desc_coverage.py": "含**反向無依據 1**（`-004` ER3，36 包步驟 4 首跑查出）→ 退出碼 1 為設計",
+
     "matrix_vs_chapter.py 9": "含**牴觸 2**（`r31`／`r32` × `PM1)`，29b 步驟 8）→ 退出碼 1 為設計",
     "spec_assertion_scan.py --assertion animation": "含**牴觸 3**（L299／L300／L301 × `-009`，29 步驟 3）→ 退出碼 1 為設計",
     "spec_assertion_scan.py --assertion audio": "**查出牴觸 1**（`r45` × `-007` ER4(b)，24 包）"

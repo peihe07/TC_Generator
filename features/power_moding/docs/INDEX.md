@@ -43,6 +43,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 34 | 2026-08-25 | **射程改以 037 `Requirement Description` 比對**、`-017`／`-018` 改掛、**`-024` 撤除** | [handoff/34_leaf_realign.md](handoff/34_leaf_realign.md) ＋ [34a](handoff/34a_flowchart_and_cutoff.md) | [upstream/34_leaf_realign.md](upstream/34_leaf_realign.md) | R-PMH127–R-PMH132（逐字抄錄 6/6 相符；三處撤回附註，正文 SHA 不變） | **A-PMH29（漏句無 leaf）**；A-PMH25 → `RESOLVED`（**其前提被 037 DESC 推翻**）；A-PMH28 → `ACCEPTED` | **⚠ 停止條件 7 觸發（DESC 射程四處不符）、8 觸發（單位三處不符），皆未自行改；9 未觸發；四批 lint 32/32** |
 | 35 | 2026-08-25 | **DESC 逐斷言涵蓋之一次性總結**、回溯重判、**追溯維度封閉** | [handoff/35_desc_closing_pass.md](handoff/35_desc_closing_pass.md) | [upstream/35_desc_closing_pass.md](upstream/35_desc_closing_pass.md) | R-PMH133–R-PMH135（逐字抄錄 3/3 相符） | **A-PMH30（037 於二處以兩 leaf 承載同一行為）**；A-PMH25 → `RESOLVED` | **三條停止條件全未觸發；42 斷言／30 leaf，未涵蓋 2；回溯母體 25，翻案 2；四批 lint 32/32** |
 | 36 | 2026-08-25 | **反向涵蓋**、`desc_coverage.py`（第二次解凍）、**batch 5（10 條／10 leaf）** | [handoff/36_batch5.md](handoff/36_batch5.md) | [upstream/36_batch5.md](upstream/36_batch5.md) | R-PMH136–R-PMH138（逐字抄錄 3/3 相符） | A-PMH30 定案（R-PMH137） | **⚠ 停止條件 7 觸發（反向 `無依據` 1 處：`-004` ER3），未自行改；8／9 未觸發；五批皆 lint 32/32；解凍用畢已恢復凍結** |
+| 37 | 2026-08-25 | **`-004` 裁乙**、batch 5 三項修正（`-045` → P0）、**batch 6（最後一批）** | [handoff/37_batch6.md](handoff/37_batch6.md) | [upstream/37_batch6.md](upstream/37_batch6.md) | R-PMH139–R-PMH141（逐字抄錄 3/3 相符） | **A-PMH31（`or` 並列處之未驗一路）** | **三條停止條件全未觸發；六批皆 lint 32/32；反向無依據 0；TC 產出完畢 —— 51 條／45 leaf ＋ 停手 3 = 48** |
 
 ## 01 輪要點
 
@@ -2149,3 +2150,42 @@ batch 2 六條**只補具名**；`-026`／`-033`／`-034` 補引 R-PMH131。
 非獨立分支；`-039`／`-040` 依 §5.7 不拆。
 **`-040` 之 PC 含 `Gear is not in Reverse`**（R-PMH80(a)）→ 停止條件 9 未觸發。
 **`-045`（SOS／ASSIST）判 P0——本 feature 至今唯一。**
+
+---
+
+## 37 包要點
+
+
+### 一、`-004` 裁乙（R-PMH139）—— 反向無依據 1 → 0
+
+例外條款之 ER 得以其**本體 leaf** 之 DESC 為依據，不計為 §8.4.2 之範圍捏造；
+`-004` 之 reasoning 已具名其本體 leaf `SWE1-HMI-PM-001-04`。
+
+> ⚠ **我第一次把那段插在 reasoning 開頭，`gen_batch01.py` 之 `self_check()` 立刻攔下**
+> ——它驗「首句須以 `**P?**` 起首」。
+> **R-PMH141 所令之機制在 batch 1 早就有了（12 包所建），而 batch 2～6 的產生器沒有它。**
+> **`-045` 之矛盾能活到 37 包，正是因為它在 batch 5 而不在 batch 1。**
+
+### 二、`-045` —— 同一句話我錯了兩次
+
+| | |
+|---|---|
+| 第一次 | `priority` 欄 P1 而軸註寫「本批唯一之 P0」 —— **37 包 §3.1 所指** |
+| **第二次** | 修正時我寫成「**本 feature 唯一之 P0**」——**而實測全六批 P0 共 4 條** |
+
+**二者皆為「未經量測之陳述」，而第二次是在修第一次的時候犯的。** 已同輪一併更正並記明。
+
+### 三、batch 6（最後一批）—— 5 條／5 leaf
+
+`-049` 為**強制式**（`shall be functional`）→ ER 得無條件斷言；
+`-050`～`-053` 為**許可式**（`depends on outcome` ／ 037 之 `may result in`）→ 各依 R-PMH140 具名三事。
+四個互動結果互斥且獨立，**037 已各立一 leaf，本批逐 leaf 一條**。
+ch 11 × 矩陣之牴觸 0 為 22 包所測，**直接引用未重跑**。
+
+### 四、TC 產出階段完畢
+
+**六批 51 條，涵蓋 45 leaf；停手 3（`-002`／`-023`／`-028`）；45 + 3 = 48。**
+`desc_coverage`：正向 60 斷言／45 leaf，**未涵蓋 3**（皆已具名並入 DR）；反向 155 項，**無依據 0**。
+priority 分布 **P0 4／P1 41／P2 6**，51 條之依據與級別**逐條相符**。
+
+⚠ **該自套為一次性，非常設檢查**（apparatus 凍結）——**下一批不會自動再做**。

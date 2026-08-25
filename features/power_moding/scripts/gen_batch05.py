@@ -119,6 +119,11 @@ TCS = [
      "**其為狀態而非動作，故置於 pre_condition**（canon §4.4；對照 R-PMH113 之同一原則）。"
      "⚠ **連帶之覆蓋缺口**：**倒車情境下 HVAC popup 之行為本條不驗**，"
      "其已由 R-PMH80(b) 登記並入 `DR-PMH6` Q1。"
+     "⚠ **二個後果不拆之依據（canon §5.7）** —— `shall be temporarily displayed` 與 "
+     "`Any interactions ... shall not cancel Power Button Off state` 為**同一觸發"
+     "（HVAC 硬控之操作）之連續後果**，屬一條時序鏈：**popup 未顯示則其互動無從發生**。"
+     "**§8.2.2 之壓力測試於此不觸發** —— 該條所禁者為**兩個獨立分支**之部分失效落在同一判定上；"
+     "**本處後者以前者為前提，非獨立**。"
      "⚠ **`temporarily` 之時長規格未給**（§8.4.1 不造值），ER1 只斷言其為暫時顯示而不給秒數。"),
    axis="謂詞：HVAC popup 於關機狀態（對 -041 之點火轉換觸發）"),
 
@@ -151,11 +156,13 @@ TCS = [
    er=["An incoming call arrives at the paired phone",
        "The phone call pop-up is displayed over the Power Button Off state"],
    reason=("**P1 —— 主要功能邏輯**：其失效使使用者於關機狀態下看不到來電。設計方法 FUNC。"
-     "⚠ **`can be displayed` 為許可式而非強制式** —— 規格用 `can`，"
-     "**本條斷言其顯示**（其為 037 之 DESC 之逐字 `The system may display phone call popups`）。"
-     "**該措詞之強度差異據實記載**：若上游之意為「得而不必」，本條之 ER2 即過強。"
-     "⚠ **其未開 DR** —— 其形態同 A-PMH22（措詞未定義），**惟 `DR-PMH8` 已有八問**；"
-     "**該判斷未經裁定**。"),
+"⚠ **許可式之處置（R-PMH140）** —— 具名三事："
+     "(a) **其來源為許可式** —— `source_clause` 逐字用 `can`，其保證該行為之**容許**，"
+     "不保證其**必然發生**；"
+     "(b) **本 TC 所驗者為「於本條所述之條件下該行為確實可發生」**，非其於任何情形皆發生；"
+     "(c) **其不發生不必然為缺陷** —— **判 fail 前須先確認本條之 pre_condition 確已成立**。"
+     "**不另開 DR**（R-PMH140）—— 許可式為規格之常見書寫，非未定義之記法，與 A-PMH22 不同類。"
+     "⚠ **037 之 DESC 亦為許可式** —— 其逐字為 `The system **may** display phone call popups`。"),
    axis="事件：來電 popup 之顯示（對 -043 之忽略、-044 之通話結束）"),
 
  dict(leaf="SWE1-HMI-PM-024-02", outline="10.6", ts=POB, src="PITA9_b", dm=STATE, pri="P1",
@@ -187,11 +194,15 @@ TCS = [
      "⚠ **`either by soft control or hard control` 為同一等價類之二成員**，"
      "步驟 1 取 soft control 一者；**hard control 一者本條未驗，據實記載為限度**"
      "（其結果依規格為同一，故不另立條 —— 同本批被忽略輸入條之等價類處置）。"
+     "⚠ **該「同結果故不拆」為推定，須具名（37 包 §3.3）** —— "
+     "**規格未言 soft control 與 hard control 之接聽為同一實作路徑**；"
+     "其只給同一結果。**`hard control` 一路因而無 TC 覆蓋，登記為覆蓋缺口**（A-PMH31）。"
+     "**不補條**（37 包明令）—— 補之即為對同一結果之重複驗證（canon §8.2.1）。"
      "⚠ **`does not change screens` 為條件而非斷言** —— 其置於步驟 1 之措詞與 ER1，"
      "**本條不驗「改變畫面時之行為」**（規格未言之，§8.4.1）。"),
    axis="事件：接聽後通話結束（對 -043 之忽略）"),
 
- dict(leaf="SWE1-HMI-PM-025", outline="10.7", ts=POB, src="PITA10", dm=EP, pri="P1",
+ dict(leaf="SWE1-HMI-PM-025", outline="10.7", ts=POB, src="PITA10", dm=EP, pri="P0",
    title="SOS and ASSIST can turn the head unit power back on",
    item="(等價類：可使電源回復之二個呼叫鍵 —— 二者同結果，故為一類)",
    pre=["The head unit power is off",
@@ -203,12 +214,24 @@ TCS = [
        "The head unit power turns back on after the ASSIST control is pressed",
        "Both controls turn the head unit power back on"],
    reason=("**P0 —— 其為緊急呼叫之電源回復路徑**：SOS／ASSIST 於事故時須能喚醒主機，"
-     "**其失效直接影響求救**。**本條為本 feature 至今唯一之 P0**，"
+     "**其失效直接影響求救**。"
+     "**其判 P0 之依據為 canon §10.2 之 `safety`／`eCall` 明列**（37 包 §3.1）。"
+     "⚠ **本條非本批亦非本 feature 唯一之 P0** —— 實測全六批 P0 共 **4 條**"
+     "（batch 1 之三條免責畫面相關者 ＋ 本條；**跨批故不以 tc_id 指涉**，R-PMH53 之限度見 34 包 §6.3）。**其依據各異而互不矛盾**（R-PMH59）："
+     "前三者為開機序列之阻斷（使用者無法離開免責畫面即無法用車），本條為緊急呼叫之電源回復。"
+     "⚠ **前一版之軸註曾寫「本批唯一之 P0」而其 priority 欄填 P1** —— 該矛盾為 37 包 §3.1 所指；"
+     "**修正時我又寫成「本 feature 唯一之 P0」而實測為 4 條，於此一併更正**。"
+     "**修正時我又寫成「本 feature 唯一之 P0」而實測為 4 條，於此一併更正**。"
      "其依據與其餘各條之 P1（功能邏輯失效而不阻斷安全）**不同級而不矛盾**（R-PMH59）。"
      "**設計方法 EP** —— `SOS` 與 `ASSIST` 為同一等價類之二成員（規格以 `and` 並列而給同一結果），"
-     "同 `-038` 之處置。"
-     "⚠ **`can turn ... back on` 為許可式** —— 同本批來電 popup 顯示條之措詞問題，其強度差異據實記載。"),
-   axis="等價類：緊急呼叫鍵之電源回復（本批唯一之 P0）"),
+     "同本批被忽略輸入條之等價類處置。"
+     "⚠ **許可式之處置（R-PMH140）** —— 具名三事："
+     "(a) **其來源為許可式** —— `source_clause` 逐字用 `can`，其保證該行為之**容許**，"
+     "不保證其**必然發生**；"
+     "(b) **本 TC 所驗者為「於本條所述之條件下該行為確實可發生」**，非其於任何情形皆發生；"
+     "(c) **其不發生不必然為缺陷** —— **判 fail 前須先確認本條之 pre_condition 確已成立**。"
+     "**不另開 DR**（R-PMH140）—— 許可式為規格之常見書寫，非未定義之記法，與 A-PMH22 不同類。"),
+   axis="等價類：緊急呼叫鍵之電源回復（P0：canon §10.2 之 eCall）"),
 
  dict(leaf="SWE1-HMI-PM-027", outline="12.1", ts=ORP, src="OFF1", dm=STATE, pri="P1",
    title="Off Road Plus press does not wake the head unit when already in Off Road",
