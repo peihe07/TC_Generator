@@ -31,9 +31,13 @@ MUST_HIT_NOTE = "**未註冊 must-hit** —— 本檔只彙整他檢查之結果
 CHECKS = [
     ("lint_batch.py generated/batch01.json", "lint_batch", ["generated/batch01.json"], "0"),
     ("lint_batch.py generated/batch02.json", "lint_batch", ["generated/batch02.json"], "0"),
+    # 30 包（R-PMH107）：batch 3 之納入 —— **既有檢查對新資料之適用**
+    ("lint_batch.py generated/batch03.json", "lint_batch", ["generated/batch03.json"], "0"),
     ("lint_batch.py <fixture prerework>", "lint_batch", ["tests/fixtures/batch01_prerework.json"], "1"),
     ("lint_batch.py <fixture r2>", "lint_batch", ["tests/fixtures/batch01_r2.json"], "1"),
     ("lint_batch.py --limit-must-hit", "lint_batch", ["--limit-must-hit"], "0"),
+    # 31 包（R-PMH116）：Final Step 檢查之錨點 —— **解凍所產生之唯一新旗標**
+    ("lint_batch.py --final-step-must-hit", "lint_batch", ["--final-step-must-hit"], "0"),
     ("check_granularity.py --self-test", "check_granularity", ["--self-test"], "0"),
     ("check_granularity.py --check-doc-sync", "check_granularity", ["--check-doc-sync"], "0"),
     ("check_granularity.py --doc-sync-must-hit", "check_granularity", ["--doc-sync-must-hit"], "0"),
@@ -56,6 +60,12 @@ CHECKS = [
     ("matrix_vs_chapter.py 12", "matrix_vs_chapter", ["12"], "0"),
     ("matrix_vs_chapter.py 7", "matrix_vs_chapter", ["7"], "1"),
     ("matrix_vs_chapter.py 10", "matrix_vs_chapter", ["10"], "1"),
+    # 29b（R-PMH107）：章 9 解凍後首次對照 —— **既有檢查對新資料之適用**
+    ("matrix_vs_chapter.py 9", "matrix_vs_chapter", ["9"], "1"),
+    ("spec_assertion_scan.py --assertion popup_ignoff", "spec_assertion_scan",
+     ["--assertion", "popup_ignoff"], "0"),
+    ("spec_assertion_scan.py --assertion animation", "spec_assertion_scan",
+     ["--assertion", "animation"], "1"),
     ("spec_assertion_scan.py --assertion popup", "spec_assertion_scan", ["--assertion", "popup"], "0"),
     ("spec_assertion_scan.py --assertion audio", "spec_assertion_scan", ["--assertion", "audio"], "1"),
     ("spec_assertion_scan.py --assertion announcement", "spec_assertion_scan",
@@ -75,8 +85,11 @@ CHECKS = [
 BY_DESIGN = {
     "lint_batch.py <fixture prerework>": "must-hit fixture —— 其 FAIL 即其通過",
     "lint_batch.py <fixture r2>": "must-hit fixture —— 其 FAIL 即其通過",
+    "lint_batch.py --final-step-must-hit": "R-PMH116 —— 本批五條修正前之 Final Step 須 FAIL／batch 1-2 之 15 條須 PASS／`Compare` 邊界二例",
     "matrix_vs_chapter.py 7": "含**牴觸 1**（`r48` × `SU3.)`）→ 退出碼 1 為設計",
     "matrix_vs_chapter.py 10": "含**牴觸 1**（`10.3` × `r48c10`，已登記 R-PMH80）→ 退出碼 1 為設計",
+    "matrix_vs_chapter.py 9": "含**牴觸 2**（`r31`／`r32` × `PM1)`，29b 步驟 8）→ 退出碼 1 為設計",
+    "spec_assertion_scan.py --assertion animation": "含**牴觸 3**（L299／L300／L301 × `-009`，29 步驟 3）→ 退出碼 1 為設計",
     "spec_assertion_scan.py --assertion audio": "**查出牴觸 1**（`r45` × `-007` ER4(b)，24 包）"
                                                 "—— **25 包已以第 5～7 項限定排除之，其牴觸記錄保留**",
 }

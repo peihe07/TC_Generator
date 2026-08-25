@@ -19,6 +19,7 @@ import argparse
 import ast
 import json
 import re
+from functools import lru_cache
 import sys
 from pathlib import Path
 
@@ -64,6 +65,47 @@ def _covered_from_source() -> set[str]:
 COVERED = _covered_from_source()
 
 LAYER3 = ROOT / "data" / "layer3_sections.tsv"
+
+
+def _norm_src(s: str) -> str:
+    """來源比對用之正規化 —— 只吸收空白、匯出轉義與**引號字形**，**不吸收任何字詞**。
+
+    ⚠ **引號字形之正規化為實測所迫**：`sandbox/spec.txt`（`fitz` 之 text 萃取）
+    將 `vehicle’s` 記為直撇 `vehicle's`，而 `gen_batch01.py` 之 `source_clause`
+    保有彎撇 —— **二者為同一份 PDF 之兩種萃取**（30 包步驟 4 首次量測到）。
+    **該差異只在字形，不在字詞**；本檢查因而於兩側同時正規化。
+    **其代價已具名**：若某處之引號本身有意義（如引用之界限），本檢查看不出來。
+    """
+    s = str(s).replace("_x000D_", " ")
+    for a_, b_ in (("\u2018", "'"), ("\u2019", "'"), ("\u201c", '"'),
+                   ("\u201d", '"'), ("\u2013", "-"), ("\u2014", "-"),
+                   ("\u2026", "...")):
+        s = s.replace(a_, b_)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+@lru_cache(maxsize=1)
+def _pdf_blob() -> str:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import chapter_bidirectional as cb
+    return cb.pdf_text()
+
+
+@lru_cache(maxsize=8)
+def _sys1_blob(outline: str) -> str:
+    """SYS1 匯出中該 outline 之 `Description` 欄全文。"""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import chapter_bidirectional as cb
+    import openpyxl
+    wb = openpyxl.load_workbook(cb.SYS1, read_only=True, data_only=True)
+    ws = wb["Basic Report"]
+    out = ""
+    for r in ws.iter_rows(min_row=2, values_only=True):
+        if str(r[2] or "") == outline:
+            out = str(r[3] or "")
+            break
+    wb.close()
+    return out
 
 
 def batch_limits(d: dict) -> dict:
@@ -148,14 +190,82 @@ def limit_must_hit() -> int:
     return 0 if (ok_del and ok_dup and ok_three) else 1
 
 
+def final_step_must_hit() -> int:
+    """R-PMH116(b)(c) —— Final Step 檢查之錨點。
+
+    (b) **must-hit**：batch 3 之五條**修正前**之 Final Step 須 **FAIL**；
+    (c) **範圍向**：batch 1／batch 2 之現行 Final Step 須 **PASS**。
+
+    修正前之五句於此**逐字內嵌**（其來源為 `generated/batch03.json` 於 30 包之版本）
+    —— 不另建 fixture 檔，使錨點與其所攔之缺陷同處一檔。
+    """
+    PRE_FIX = [
+        ("-017", "3. Interact with the pop-up repeatedly beyond ten minutes and "
+                 "record when the radio powers off"),
+        ("-018", "3. Read the display for the FOTA via Wi-Fi and Charge Now pop-ups"),
+        ("-019", "2. Repeat the test, dismiss the update on the FOTA pop-up instead, "
+                 "and read the display"),
+        ("-020", "2. Repeat the test, dismiss the Wi-Fi configuration pop-up instead, "
+                 "and read the display"),
+        ("-021", "3. Read the radio power state"),
+    ]
+    BOUNDARY = [
+        ("-016 之 `Compare … with …`（具名兩造）", True,
+         "4. Compare the recorded duration with the stated maximum"),
+        ("裸 `Compare the values`（不具名兩造）", False, "4. Compare the values"),
+    ]
+    VERIFY = (r"\b(check|checks|confirm|confirms|verify|verifies)\s+that\b"
+              r"|\bto\s+(verify|check|confirm)\b"
+              r"|\bcompare[sd]?\b[^.]*\b(with|against|to)\b")
+
+    def hit(s: str) -> bool:
+        return bool(re.search(VERIFY, s, re.I))
+
+    print("=== R-PMH116 —— Final Step 檢查之錨點（31 包步驟 2）===\n")
+    print("(b) must-hit —— batch 3 五條**修正前**之 Final Step 須 FAIL：")
+    ok_b = True
+    for tag, s in PRE_FIX:
+        f = not hit(s)
+        ok_b &= f
+        print(f"  {tag}  FAIL 被攔下：{f}   {s[:64]}")
+    print("\n(c) 範圍向 —— batch 1／batch 2 之現行 Final Step 須 PASS：")
+    ok_c = True
+    n = 0
+    for bn in ("batch01", "batch02"):
+        d = json.loads((ROOT / "generated" / f"{bn}.json").read_text(encoding="utf-8"))
+        for t in d["tcs"]:
+            fs = [x for x in t["test_procedure"].split("\n") if x.strip()][-1]
+            p_ = hit(fs)
+            ok_c &= p_
+            n += 1
+            if not p_:
+                print(f"  ⚠ {t['tc_id']} 被誤攔：{fs}")
+    print(f"  {n} 條全部 PASS：{ok_c}")
+    print("\n`Compare` 之邊界（R-PMH116 明令具名，其理由一體適用）：")
+    ok_d = True
+    for tag, want, s in BOUNDARY:
+        got = hit(s)
+        ok_d &= (got == want)
+        print(f"  {tag} → {'通過' if got else '不通過'}（期望 "
+              f"{'通過' if want else '不通過'}）：{got == want}")
+    print("\n" + "=" * 60)
+    print(f"must-hit 5/5 FAIL: {ok_b}；範圍向 {n}/{n} PASS: {ok_c}；"
+          f"`Compare` 邊界二例: {ok_d}")
+    return 0 if (ok_b and ok_c and ok_d) else 1
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("batch", nargs="?")
     ap.add_argument("--limit-must-hit", action="store_true",
                     help="R-PMH99(c) 之 must-hit（刪去／重複任一限定項須 FAIL）")
+    ap.add_argument("--final-step-must-hit", action="store_true",
+                    help="R-PMH116 之錨點（本批五條須 FAIL／batch 1-2 須 PASS）")
     a = ap.parse_args()
     if a.limit_must_hit:
         sys.exit(limit_must_hit())
+    if a.final_step_must_hit:
+        sys.exit(final_step_must_hit())
     if a.batch is None:
         raise SystemExit("須給 batch 檔，或用 --limit-must-hit")
     d = json.loads((ROOT / a.batch).read_text(encoding="utf-8"))
@@ -183,9 +293,24 @@ def main() -> None:
     # --- R-PMH50 ---
     miss = [t["tc_id"] for t in tcs if not str(t.get("source_clause", "")).strip()]
     chk("R-PMH50 每 leaf 有 source_clause 且非空", not miss, str(miss))
-    nonpdf = [t["tc_id"] for t in tcs
-              if not str(t.get("source_clause_origin", "")).startswith("spec_pdf")]
-    chk("R-PMH50 source_clause 取自 PDF（非 SYS1）", not nonpdf, str(nonpdf))
+    # 30 包步驟 4（R-PMH107）：**期望值由寫死之「必為 `spec_pdf`」改為
+    # 「必逐字見於其所宣告之來源」** —— 一般化，非新增檢查項。
+    # 其緣由：R-PMH75 令 outline 9.1 之 5 leaf 之來源**反轉為 SYS1**，
+    # 原檢查會把「正確遵守 R-PMH75」判為 FAIL。**新形態更強** ——
+    # 原檢查只看欄位字串，新檢查實際回原文件比對。
+    bad = []
+    for t in tcs:
+        org = str(t.get("source_clause_origin", ""))
+        sc = str(t.get("source_clause", ""))
+        if org.startswith("spec_pdf"):
+            ok = _norm_src(sc) in _norm_src(_pdf_blob())
+        elif org.startswith("sys1_export"):
+            ok = _norm_src(sc) in _norm_src(_sys1_blob(org.split()[-1]))
+        else:
+            ok = False
+        if not ok:
+            bad.append((t["tc_id"], org or "(空)"))
+    chk("R-PMH50／R-PMH75 source_clause 逐字見於其所宣告之來源", not bad, str(bad))
 
     # --- profile §3.1：test_item 下半括號（硬規則）---
     bad = [t["tc_id"] for t in tcs
@@ -274,7 +399,26 @@ def main() -> None:
         canon="5.1")
 
     # C3 §5.2B/§5.5 —— Final Step 須含驗證意圖
-    VERIFY = r"\b(check that|confirm that|verify that|record|compare|read)\b|to verify"
+    #
+    # **31 包（R-PMH116）之強化 —— apparatus 首次解凍，其範圍限於本項。**
+    #
+    # 病灶：原判準為 `check that|confirm that|verify that|record|compare|read`。
+    # **`record`／`read` 是蒐集資料之動詞，不是驗證之動詞** ——
+    # `Read the radio power state` 讀了而未言「讀到什麼才算通過」，
+    # 其含 `read` 故原判準放行。batch 3 之五條即以此通過（31 包 §2.1 實測）。
+    # 裸 `compare` 同病：`Compare the values` 未言與何者比。
+    #
+    # 強化後之判準：**須有明言其判準之驗證子句**——
+    #   `check/confirm/verify that …`／`to verify|check|confirm`／
+    #   `compare … with|against|to …`（**兩個運算元皆具名**者方算）。
+    #
+    # **`Compare` 之處置（R-PMH116 明令具名）**：判**通過**，其理由為
+    # `Compare the recorded duration with the stated maximum` **具名了兩造**
+    # （`the recorded duration` vs `the stated maximum`），其 pass/fail 判準因而確定；
+    # 裸 `Compare the values` 不具名兩造，**不通過**。**該理由一體適用於各批。**
+    VERIFY = (r"\b(check|checks|confirm|confirms|verify|verifies)\s+that\b"
+              r"|\bto\s+(verify|check|confirm)\b"
+              r"|\bcompare[sd]?\b[^.]*\b(with|against|to)\b")
     bad = [t["tc_id"] for t in tcs
            if not re.search(VERIFY,
                             [x for x in t["test_procedure"].split("\n") if x.strip()][-1],
@@ -287,6 +431,10 @@ def main() -> None:
         for a, b in (("‘", "'"), ("’", "'"), ("“", '"'), ("”", '"'),
                      ("…", "..."), ("–", "-"), ("—", "-")):
             s = s.replace(a, b)
+        # 30 包：`[CRnnnnn]` 為**變更請求標記**而非行為內容，且 canon §11 禁止
+        # 方括號出現於交付欄位 —— `test_item` 因而去之，`source_clause` 保留。
+        # **本檢查於兩側同時去之**，使二者仍可比對（A-PMH26）。
+        s = re.sub(r"\s*\[CR\d+\]", "", s)
         return re.sub(r"\s+", " ", s).strip()
     bad = []
     for t in tcs:

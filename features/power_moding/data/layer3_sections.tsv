@@ -4,7 +4,7 @@ SWE1-HMI-PM-001-02	7.1	7	Startup	SU1.) When the vehicle’s driver door is close
 SWE1-HMI-PM-001-03	7.1	7	Startup	SU1.) When the vehicle’s driver door is closed a startup animation will be presented (3 sec), If ignition remains off af	Disclaimer screen	8	
 SWE1-HMI-PM-001-04	7.1	7	Startup	SU1.) When the vehicle’s driver door is closed a startup animation will be presented (3 sec), If ignition remains off af	Disclaimer screen	8	
 SWE1-HMI-PM-001-05	7.1	7	Startup	SU1.) When the vehicle’s driver door is closed a startup animation will be presented (3 sec), If ignition remains off af	Disclaimer screen	8	
-SWE1-HMI-PM-002	7.1.1	7	Startup	SU1.1) While ignition is off, transitions related to the power button to display splash, disclaimers, or radio last mode	Power Management	8	
+SWE1-HMI-PM-002	7.1.1	7	Startup	SU1.1) While ignition is off, transitions related to the power button to display splash, disclaimers, or radio last mode	Power Management	8	EXCLUDED-BY-R-PMH117
 SWE1-HMI-PM-003	7.2	7	Startup	SU2.) For Maserati vehicles, while on the disclaimer screen the user will have access to their comfort controls. No time	Disclaimer screen	8	
 SWE1-HMI-PM-004	7.3	7	Startup	SU2.1) Do not display comfort controls on Maserati disclaimer screen when vehicle is equipped with lower comfort screen.	Disclaimer screen	8	
 SWE1-HMI-PM-005	7.4	7	Startup	SU3.) No pop-ups will appear until the disclaimer screen has been removed. If an item like a traffic announcement is rec	Disclaimer screen	8	

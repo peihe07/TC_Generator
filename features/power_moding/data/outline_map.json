@@ -114,7 +114,8 @@
       "pdf_page": 8,
       "pdf_page_heading": "Startup",
       "page_resolution_method": "描述首 80 字唯一命中",
-      "probe_len": 80
+      "probe_len": 80,
+      "excluded_by": "EXCLUDED-BY-R-PMH117"
     },
     {
       "swe_req_id": "SWE1-HMI-PM-003",

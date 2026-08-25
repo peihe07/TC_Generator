@@ -1154,6 +1154,15 @@ PDF 章 10 內以**全大寫標籤**分節，該等標籤於 SYS1 全簿命中 *
 
 ## A-PMH18 — **Pei 所提供之 State Matrix 與 PDF p9 之矩陣不對應** · 19 包步驟 8 查出 · **停手上呈**
 
+> **29b（R-PMH111）：本 anomaly 維持 `PENDING`，其阻斷範圍限縮。**
+> 原為「`Power Transitions` 組整組不得開批」，改為條件式：
+> **任一 TC 之任一斷言若倚賴 p9 能力矩陣之內容，該條停並登記。**
+> 判別法（受控對象 × 電源狀態之可用性）見 R-PMH111，須逐條套用並具名結果。
+> **29b 步驟 8 之新證據**：章 9 之 20 個關鍵名詞於矩陣全簿之命中為 **2/20**，
+> 且該 2 個命中為 `Radio off Delay`（**非** PM1 所用之 `Power Accessory Delay`）——
+> **`FOTA`／`Wi-Fi`／`Charge Now`／`stay awake`／`IGN OFF`／`XEV`／`Preconditioning` 全部 0 命中**。
+> **本 anomaly 之原判定（二矩陣主題不同）因而再獲一次獨立量測之支持。**
+
 **登記日**：2026-08-24（19 包步驟 8，依 R-PMH73 之明文「不一致即停」）
 
 ### 素材
@@ -1535,6 +1544,126 @@ Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
 （維持步數 1:1）。
 
 **風險具名**：在答覆到達前，該行為**不會有任何一條 TC 驗到**。
+
+---
+
+## A-PMH24 — `Power Accessory Delay` 與 `Radio Off Delay` 之關係未定義 · 29b 步驟 8 · PENDING
+
+**事實**：二詞於本 feature 之素材中並存，**而無一處定義其關係**。
+
+| 出處 | 逐字 |
+|---|---|
+| 規格 9.1（SYS1，權威） | `… the user has set **Power Accessory Delay** to 0 seconds, the head unit should 'stay awake' up to 2.5 minutes to display the popup(s)` |
+| State Matrix `r15` c5／c8／c9 | `If **Radio Off Delay** = 0 minutes then VP turns OFF Else VP stays ON` |
+| State Matrix `r31`／`r32` | `If **Radio off Delay** = 0 or Radio off Delay timer expired, HU OFF` |
+
+**命中量測**：`Power Accessory Delay` 於矩陣全簿 **0 命中**；
+`Radio Off Delay`／`Radio off Delay` 於規格全 11 頁**未見於 9.1**。
+**二者從未同時出現於任一份文件中。**
+
+**其效力**：`r15` 之判定**繫於此** —— 若二者為同一參數，`r15` 與 PM1
+於「延遲為 0 時是否立即關閉」取相反值，即為**牴觸**；若為不同參數，則為 `未對照`。
+**依 R-PMH95（歧義以涵蓋兩讀處置，不以判讀處置）現記 `待定義`。**
+
+**與 A-PMH20（`VP` 未定義）之關係**：`r15` 同時受二者所阻 ——
+**即使 `VP` 之定義到達，本項仍使該列無法判定。**
+
+**處置**：**未開新 DR** —— 其形態與 `DR-PMH5` 之 (1)(2) 同源（皆為「矩陣與規格是否談同一件事」），
+**併入該 DR 之答覆時一併釐清為宜**。⚠ **該處置為我之判斷，未經裁定。**
+
+---
+
+## A-PMH25 — 9.1 之**權威文本**於逾時處為破句 · 30 包步驟 4 · PENDING
+
+**依 R-PMH75，9.1 之權威文本為 SYS1 匯出**（PDF 側為未刪淨之舊文字）。
+該權威文本於逾時處逐字為：
+
+    If the user does not interact with the popup within 60 the timeout defined in
+    pop-up list, the popup should close if no other popups are to be shown the
+    radio should shut off.
+
+**`within 60` 之後直接接 `the timeout defined in pop-up list`** ——
+其單位（秒／分）與該數字是否仍有效**皆無法自權威文本判定**。
+
+**對照**：PDF 側同處為 `within 60 seconds the timeout defined in pop-up list`
+（有 `seconds`）—— **惟 R-PMH75 已裁定 PDF 側為舊文字，不得據以補字。**
+
+**其效力**：`-016` **不斷言任何逾時秒數**，只斷言 `2.5 minutes` 之上限
+（該值於權威文本中完整）。**`-017` 之 `60 seconds` 與 `10 minutes` 不受影響**
+（其於權威文本中皆完整）。
+
+**風險具名**：`PM1)` 之逾時行為**不會有任何一條 TC 驗到其秒數**。
+**其與 R-PMH75 所承擔之風險（`the radio should shut Off` 不被驗到）為同一來源。**
+
+**未開 DR** —— 其形態與 A-PMH24 同（素材本身之缺陷），**惟我未併入 `DR-PMH8`**：
+該 DR 已有五問，而本項之答覆對 batch 3 之產出**不生改變**（不造值之處置於任一答覆下皆成立）。
+⚠ **該判斷未經裁定。**
+
+---
+
+## A-PMH26 — canon §11（禁方括號／彎引號）與 §4.3.1（上半逐字）於 9.1 相衝 · 30 包步驟 4 · PENDING
+
+**事實**：9.1 之權威文本含 `[CR22412]`（變更請求標記，2 處）與彎引號 `‘ ’`。
+
+| canon | 要求 |
+|---|---|
+| §4.3.1 | `test_item` 之上半須為 `source_clause` 之**逐字**子句 |
+| §11 | 交付欄位**禁方括號**、**無彎引號** |
+
+**二者於本批不可同時滿足。**
+
+**本包之處置**（執行層之判斷）：
+- **`source_clause` 保持未經觸碰之逐字** —— 追溯欄不受 §11 拘束（§11 之標的為交付欄位）；
+- **`test_item` 之上半施二項具名之正規化** —— 彎引號 → 直引號、去 `[CRnnnnn]`；
+- lint 之 §4.3.1 檢查於**兩側同時**施同一正規化，使其仍可比對。
+
+**其代價**：`test_item` 之上半**不再是嚴格逐字**。
+**⚠ 該處置未經裁定** —— 另一解為向 profile 申請 §11 之例外（須 Pei 核可，R-PMH46 已用畢）。
+
+---
+
+## A-PMH27 — `SU1.1)`（7.1.1）之行為委於外部規格 CFTS009 · 31 包 §四 · **ACCEPTED（經裁定不寫入）**
+
+**形態同 A-PMH13**（`SWE1-HMI-PM-028`，12.2，`Please refer to CFTS009 for complete behavior.`）。
+
+**逐字**（PDF p8）：
+
+    SU1.1) While ignition is off, transitions related to the power button to display
+    splash, disclaimers, or radio last mode are based on vehicle architecture.
+    See CFTS009 for clarification.
+
+**canon §8.4.2 之三項判準**：
+
+| 判準 | 結果 |
+|---|---|
+| 該行為定義於本 spec 抑或外部 spec？ | **外部（CFTS009）** |
+| 本 feature 是否持有該外部 spec？ | **否**（六筆素材中無此件） |
+| 不取得而撰寫是否須自行指定架構？ | **是 → 造值（§8.4.1）** |
+
+**三項與 `-028` 完全同型。**
+
+**處置（R-PMH117）**：判 out of scope、**不寫入交付工作簿**，比照 R-PMH72。
+**⚠ 其效力起於 Pei 之核可** —— 其動到範圍（有 TC 之 leaf **47 → 46**），而 R-PMH1 為範圍條文。
+**核可前維持停手、不產出、不寫入。**
+
+**若判其應產出**，則須先取得 CFTS009，或由 Pei 裁定一個架構為準。
+
+**連帶（Pei 於 2026-08-25 逐字裁定「核可」，**已於同日全數執行**）**：
+
+| 連帶 | 原 | 現 | 檔 |
+|---|---|---|---|
+| `Power Transitions` 組 | 7 leaf | **6** | `framework.md` |
+| 有 TC 之 leaf | 47 | **46** | `framework.md`／`check_granularity.py` |
+| 台帳標記 | — | `EXCLUDED-BY-R-PMH117` | `layer3_sections.tsv`／`outline_map.json` |
+| granularity | `8/47`／`9/47` | **`8/46 = 0.1739`／`9/46 = 0.1957`** | 全項重跑，G1–G5 全 PASS |
+| **A6 隔離錨點** | `15×3 + 1×2` | **`14×3 + 2×2`** | **不得沿用**（見下） |
+
+> ⚠ **A6 之組態不得沿用** —— 原式於 46 會得 `15×3 + 1×1`，其 `min=1` 使 G2／G5 一併 FAIL，
+> **隔離即失效**（該錨點須只 FAIL G1）。**舊式在新分母下仍會跑，只是不再證明它原本要證明的事。**
+> 已於程式加 `assert min(...) == 2` 攔之。
+
+> ⚠ **`SWE1-HMI-PM-023`（10.5）留在本組** —— 其為「停手待 `DR-PMH5`」（R-PMH111），
+> **非 out of scope**。**二者不同，不得合併處置。**
 
 ---
 

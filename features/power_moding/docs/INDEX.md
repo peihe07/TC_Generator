@@ -35,7 +35,9 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 26 | 2026-08-25 | **斷言二分**、矩陣側全枚舉、限定合併之 lint | [handoff/26_enumeration_over_keywords.md](handoff/26_enumeration_over_keywords.md) | [upstream/26_enumeration_over_keywords.md](upstream/26_enumeration_over_keywords.md) | R-PMH97–R-PMH99（逐字抄錄 3/3 相符） | （無新 A-PMH；`DR-PMH7` 增二問） | **三條停止條件全未觸發；batch 1 涵蓋率 78%→100%；lint 31/31；章 12 全對照完成** |
 | 27 | 2026-08-25 | **落選即判定**、切分以謂詞為準、Pre-Condition 納入 | [handoff/27_verdict_for_every_cell.md](handoff/27_verdict_for_every_cell.md) | [upstream/27_verdict_for_every_cell.md](upstream/27_verdict_for_every_cell.md) | R-PMH100–R-PMH102（逐字抄錄 3/3 相符） | （無新 A-PMH） | **三條停止條件全未觸發；PC 24 斷言牴觸 0；lint 32/32；查出一個先前未被掃描之 SUT 斷言** |
 | 28 | 2026-08-25 | **覆核線收束**、apparatus 凍結、**batch 2（Startup Sounds）** | [handoff/28_batch2.md](handoff/28_batch2.md) ＋ [28a](handoff/28a_dr_final.md) | [upstream/28_batch2.md](upstream/28_batch2.md) | R-PMH103–R-PMH106（逐字抄錄 4/4 相符） | （無新 A-PMH） | **⚠ 停止條件 7 觸發並已解（`r45` × 音訊斷言）；batch 2 = 7 TC / 6 leaf，lint 32/32；新增檢查 0；28a：二條核可生效、三筆 DR 最終全文落檔（`SENT` 仍空）** |
-| 29 | 2026-08-25 | **batch 2 人讀覆核四項修正**、凍結範圍界定、**`animation` 掃描** | [handoff/29_batch2_review.md](handoff/29_batch2_review.md) ＋ [29a](handoff/29a_dr_sent.md) | [upstream/29_batch2_review.md](upstream/29_batch2_review.md) | R-PMH107–R-PMH110（逐字抄錄 4/4 相符） | **A-PMH23（告別音跨螢幕同步無 ER 斷言）**；**`DR-PMH8` 開立**；`DR-PMH5`／`6`／`7` 改 `SENT` | **⚠ 停止條件 7 觸發：`animation` 掃描牴觸 3 處（L299／L300／L301）—— 未自行調和，原樣上呈**；lint 32/32×2、限定 must-hit 19/19、檢查項數維持 32 |
+| 29 | 2026-08-25 | **batch 2 人讀覆核四項修正**、凍結範圍界定、**`animation` 掃描** | [handoff/29_batch2_review.md](handoff/29_batch2_review.md) ＋ [29a](handoff/29a_dr_sent.md) ＋ [29b](handoff/29b_ch9_unfreeze.md) | [upstream/29_batch2_review.md](upstream/29_batch2_review.md) ＋ [29b](upstream/29b_ch9_unfreeze.md) | R-PMH107–R-PMH112（逐字抄錄 6/6 相符） | **A-PMH23（告別音跨螢幕同步無 ER 斷言）**／**A-PMH24（延遲參數名稱歧義）**；**`DR-PMH8` 開立**；`DR-PMH5`／`6`／`7` 改 `SENT` | **⚠ 停止條件 7 觸發：`animation` 掃描牴觸 3 處（L299／L300／L301）—— 未自行調和，原樣上呈**；lint 32/32×2、限定 must-hit 19/19、檢查項數維持 32；**29b：ch 9 限縮解凍，章 9 × 矩陣牴觸 2（`r31`／`r32`）→ 停止條件 10 觸發，batch 3 未產出** |
+| 30 | 2026-08-25 | **batch 3（Power Transitions）**、`PENDING-ON-DR` 登記簿、章 9 規格側全枚舉 | [handoff/30_batch3.md](handoff/30_batch3.md) | [upstream/30_batch3.md](upstream/30_batch3.md) | R-PMH113–R-PMH115（逐字抄錄 3/3 相符） | **A-PMH25（9.1 權威文本破句）**／**A-PMH26（canon §11 × §4.3.1 相衝）**；`DR-PMH8` 增 Q4／Q5 | **三條停止條件全未觸發；batch 3 = 6 TC / 5 leaf，lint 32/32×3；7 leaf 中 2 leaf 停手（`-023` 依 R-PMH111、`-002` 依 §8.4.1）；章 9 規格側 30 行全判定** |
+| 31 | 2026-08-25 | **batch 3 重做（6→8 條）**、**apparatus 首次解凍**、`-002` 判 out of scope | [handoff/31_batch3_rework.md](handoff/31_batch3_rework.md) | [upstream/31_batch3_rework.md](upstream/31_batch3_rework.md) | R-PMH116–R-PMH118（逐字抄錄 3/3 相符；**R-PMH117 經 Pei 同日核可並已生效**） | **A-PMH27（`SU1.1)` 委於 CFTS009，`ACCEPTED`）** | **三條停止條件全未觸發；Final Step 檢查強化：must-hit 5/5 FAIL、範圍向 15/15 PASS；lint 32/32×3；解凍用畢已恢復凍結** |
 
 ## 01 輪要點
 
@@ -1837,3 +1839,109 @@ batch 2 = 6 條 × 2）。must-hit **19/19 刪去皆 FAIL、重複 FAIL**；
 **`SENT` ≠ `ANSWERED` —— ch 9 之阻斷不解除。**
 `DR-PMH8` 新開（三問：一日起算點／設定路徑／`Sounds will sync` 是否涵蓋告別音），
 **狀態 `DRAFT`，不在 R-PMH110 之範圍**。未結 DR **4 筆**。
+
+### 29b（與 29 同輪）—— ch 9 限縮解凍、章 9 × 矩陣全對照
+
+**Pei 之裁定逐字**：「乙」（29a §3.4 之限縮解凍案）。→ R-PMH111、R-PMH112。
+
+| 項 | 內容 |
+|---|---|
+| **R-PMH111** | `Power Transitions` 得開批；A-PMH18 之阻斷由「整組」改為條件式：**任一斷言若倚賴 p9 能力矩陣之內容，該條停並登記**。判別法 = 受控對象 × 電源狀態之可用性 |
+| **章 9 × 矩陣（首次）** | 30 列全具名：**牴觸 2／印證 0／未對照 24／待定義 4**。範圍向：章 9 之 20 個關鍵名詞命中 **2/20**，且該 2 個為 `Radio off Delay`（**非** `PM1)` 所用之 `Power Accessory Delay`） |
+| **⚠ 牴觸 2 列** | `r31`（Call Ended）／`r32`（Projection call ends）：`If Radio off Delay = 0 …, HU OFF` × `PM1)` 之「為顯示 popup 而 stay awake」。**其主語為 `HU` 非 `VP`，故不受 `DR-PMH7` 所阻，判定已作成** |
+| **batch 3 未產出** | **停止條件 10 觸發** —— 步驟 8 逐字令「發現牴觸即停並上呈」，且該牴觸**正落在 batch 3 之射程內**（字面與目的同向） |
+| **印證 0** | 矩陣全簿不含 `FOTA`／`Wi-Fi`／`Charge Now`／`stay awake`／`IGN OFF`／`XEV`／`Preconditioning` —— **與 `DR-PMH5` 所主張者一致** |
+| **A-PMH24** | `Power Accessory Delay` 與 `Radio Off Delay` 從未同時出現於任一份文件。**`r15` 即使 `VP` 定義到達仍無法判定** |
+| **R-PMH112** | `DR-PMH5` 所載「已暫停 section 9」因解凍而不再成立；更正句已加於 `DR-PMH8` 首段（新 SHA256 `162d551eb2861d59`），**狀態維持 `DRAFT`** |
+
+---
+
+## 30 包要點
+
+
+### 一、batch 3 —— **6 條 TC 自 5 leaf**，另 **2 leaf 停手並登記**
+
+| leaf | 處置 | 依據 |
+|---|---|---|
+| `-018-01` | **2 條**（`-016` IGN OFF 本身／`-017` FOTA popup 之互動，profile §4） | R-PMH75：`source_clause` 取自 **SYS1** |
+| `-018-02`～`-05` | 各 1 條 | 同上 |
+| **`-023`（10.5 `PITA8`）** | **停手** | **R-PMH111 判別為「是」** —— 其謂詞正是 `Headunit` 於 `KEY OFF (No ACC)` × `HEADUNIT POWER ON` 下之可用程度；**PDF 中其前一行逐字為 `HEADUNIT POWER ON:`（p9 之欄標題）** |
+| **`-002`（7.1.1 `SU1.1`）** | **停手** | **非因 p9**（判別為「否」）—— 其行為委於 `vehicle architecture` 與 `CFTS009`（未持有），任何 TC 皆須造值。**形態同 `-028`，惟本筆未經裁定** |
+
+**R-PMH113 之限定置於 Pre-Condition 而非 procedure** —— 「無通話進行中」是**狀態**不是**動作**（canon §4.4／§4.5）。**限定之位置由型別決定，非由前例決定。**
+
+### 二、章 9 之規格側全枚舉 —— **做完了**
+
+母體 = 章 9 之 **30 行**（L407–L437）；關鍵詞命中 12、**未命中而逐行判定 18**、**未判定 0**。
+**「落選」類別於規格側亦告消滅**（R-PMH100 首次施於規格側）。`IGNOFF_LINE_VERDICT` 43 項，**牴觸 0**。
+⚠ **只做了本批所需之那一章**，其餘章之 235 行母體仍未做。
+
+### 三、lint 之二項一般化（R-PMH107）—— **檢查項數維持 32**
+
+`R-PMH50 source_clause 取自 PDF` → **`逐字見於其所宣告之來源`**（實際回原文件比對，更強）。
+其首次執行即查出 batch 1 之四條與 `sandbox/spec.txt` **字形不同**（`vehicle’s` vs `vehicle's`、`Loading…` vs `Loading...`）——
+**同一份 PDF 之兩種萃取**；差異只在字形不在字詞，已於 `_norm_src` 具名吸收。
+
+### 四、`PENDING-ON-DR` 登記簿（R-PMH115）—— **8 筆**
+
+每筆四欄，第 (3) 欄**逐值列出**（答為甲則如何、答為乙則如何），不寫「須重看」。
+**其完整性無任何檢查所保證** —— 漏登之判定不會出現於此，亦不會有東西指出它漏了。
+
+---
+
+## 31 包要點
+
+
+### 一、apparatus **首次解凍** —— 病灶：蒐集資料之動詞被當成驗證之動詞
+
+原判準 `check that|confirm that|verify that|record|compare|read`。
+**`record`／`read`／裸 `compare` 是蒐集資料，不是驗證** ——
+`Read the radio power state` 讀了而未言「讀到什麼才算通過」，含 `read` 故放行。
+batch 3 五條全以此通過，而 lint 標 PASS。
+
+**強化後**須有明言判準之驗證子句。
+**`Compare` 判通過**，理由：`Compare the recorded duration with the stated maximum` **具名兩造**，
+pass/fail 因而確定；裸 `Compare the values` 不通過。**該理由一體適用並以二邊界例入錨點。**
+
+錨點：**must-hit 5/5 FAIL、範圍向 15/15 PASS、`Compare` 邊界二例皆符**。
+**新增程式 0、新增檢查項 0、新增旗標 1。用畢已恢復凍結。**
+
+### 二、batch 3 重做 —— 6 條 → **8 條**
+
+| 修正 | 內容 |
+|---|---|
+| Final Step | 五條加驗證子句；`-016` 依 `Compare` 之處置不動 |
+| **拆分（§8.2.2 bundling）** | `-019`／`-020` 各含兩個獨立分支 —— **兩個獨立之部分失效落在同一 pass/fail 判定上**，故各拆為二條 |
+| §4.6 之互斥陳述 | 更正為「未斷言 `stay awake` 之起算 60 秒」；三值（`2.5 minutes`／`for 60 seconds`／`10 minutes`）經**執行層獨立複驗各 1 命中**，`within 60 seconds` **0 命中** |
+| `design_method` | `-018`～`-022` 齊一為 **EP**（R-PMH118）；**`-023` 維持 FUNC** —— 其輸入**自始未被劃分為等價類**，**無劃分即無 EP**，該界線已具名 |
+
+### 三、`-002` 判 out of scope —— **待 Pei 核可**
+
+canon §8.4.2 三項判準與 `-028` 完全同型（外部規格／未持有／須造值）。
+**其效力起於核可**（動到範圍：有 TC 之 leaf **47 → 46**，R-PMH1 為範圍條文）。
+**本包未改任何計數** —— `n_leaf` 仍為 47；核可前重算即為提前執行未生效之條文。登記於 **A-PMH27**。
+
+### 四、`PENDING-ON-DR` 8 → 10 筆，且出現一個新形態
+
+#9（`-017` 二上限之交互）與 #10（A-PMH25）**繫於一個尚未存在之問**。
+R-PMH115 之簿設計為「繫於某 DR 之答覆」，**未預期此形態**。
+**其風險**：必辦機制繫於 DR 之 `ANSWERED`，而此二筆永遠不會有那一刻 ——
+**本簿因而有兩筆是純粹的備忘，不是待辦。**
+
+### 五、R-PMH117 之核可與其連帶（Pei 逐字「核可」，2026-08-25 同日執行）
+
+| 連帶 | 原 | 現 |
+|---|---|---|
+| 有 TC 之 leaf | 47 | **46** |
+| `Power Transitions` 組 | 7 leaf | **6**（outline 由三個降為二個，`7.1.1` 隨 `-002` 移出） |
+| granularity | `8/47`／`9/47` | **`8/46 = 0.1739`／`9/46 = 0.1957`**，G1–G5 全 PASS |
+| 台帳 | — | `layer3_sections.tsv`／`outline_map.json` 二處標 `EXCLUDED-BY-R-PMH117` |
+| **A6 隔離錨點** | `15×3 + 1×2` | **`14×3 + 2×2`** |
+
+**A6 不得沿用**：原式於 46 得 `15×3 + 1×1`，其 `min=1` 使 G2／G5 一併 FAIL，**隔離即失效**。
+**舊式在新分母下仍會跑，只是不再證明它原本要證明的事** —— 已加 `assert min(...) == 2` 攔之。
+
+⚠ **`-023` 留在組內** —— 其為「停手待 `DR-PMH5`」（R-PMH111），**非 out of scope**。
+**二者不同，不得合併處置。**
+
+`R-PMH117` 正文未改一字（SHA256 `896dc34b89c5597a` 前後同值，實測），核可以**勘誤**記於其核對表下方。

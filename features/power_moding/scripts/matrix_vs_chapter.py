@@ -62,6 +62,10 @@ VOCAB = {
          "Key OFF", "ACC position", "ignition", "reinstated", "disclaimer"],
     12: ["Off Road", "Off Road+", "SRT", "hard control", "wake up", "Power Button On",
          "muted", "mute", "launching app", "Power Off State", "CFTS009", "diagram"],
+    9: ["FOTA", "Wi-Fi", "Wi-fi", "Charge Now", "stay awake", "IGN OFF",
+        "Power Accessory Delay", "popup", "popups", "Preconditioning", "XEV",
+        "2.5 minutes", "10 minutes", "60", "priority", "dismiss", "update",
+        "Radio Off Delay", "Radio off Delay", "stay awake'"],
     11: ["VR", "VR HK", "hard key", "SIRI", "Voice Assistants", "long press",
          "Long press", "radio is OFF", "KEY ON", "ACC", "Screen Off",
          "Screen ON", "Audio OFF", "Audio ON", "CFTS009", "interaction"],
@@ -132,6 +136,101 @@ def event_rows(ws) -> list[tuple[int, int, str, list]]:
 # 而每列都「有結論」故檢查不會察覺。形態同於 18→19 包之
 # `RESIDUE_VERDICT` 60 字元鍵碰撞（19 包 §3.3）。**22 包修。**
 VERDICT: dict[tuple[int, int, int], tuple[str, str, str]] = {
+    # --- 29b 包步驟 8（R-PMH111 解凍後首次）：章 9 × 矩陣之全對照 ---
+    # 章 9 之權威文本為 **SYS1 之 9.1**（R-PMH75），其內容為 `PM1)`：IGN OFF 時之
+    # popup 群（FOTA／FOTA via Wi-Fi／XEV key-off）及其 stay-awake 時序。
+    # **p9 之能力矩陣不入本對照**（其來源未明，A-PMH18／`DR-PMH5`）。
+    (9, 1, 6):
+        ("待定義", "**pop-up 是否顯示／`VP` 之電源狀態** vs PM1 之 IGN OFF popup 群",
+         "本列之格由 **`VP`** 承載（`VP Stays ON Pop-up: Cannot Power Off System during active phone call.`），而 `VP` 於規格全 11 頁 **0 命中**（A-PMH20／`DR-PMH7` Q1）。**若 `VP` 為 head unit 之顯示螢幕**，其「Stays ON 並顯示 pop-up」與 PM1 之「IGN OFF 時 stay awake 顯示 popup」為同一謂詞；否則無共同謂詞。**依 R-PMH85(c)，`DR-PMH7` `ANSWERED` 前記 `待定義`。**"),
+    (9, 1, 7):
+        ("未對照", "門開啟之後果（事件忽略／電源鈕狀態）vs IGN OFF 之 popup 時序",
+         "PM1 之觸發為 **IGN OFF**；本列為 key-on 區塊之門開啟。**觸發不同、謂詞不同。**"),
+    (9, 1, 8):
+        ("未對照", "門關閉之後果 vs IGN OFF 之 popup 時序",
+         "同 r7 —— 觸發為門關閉，非 IGN OFF。"),
+    (9, 1, 9):
+        ("未對照", "來電 → 電源開啟 vs IGN OFF 之 popup 時序",
+         "謂詞為**電源因來電而開啟**；PM1 之謂詞為**已 IGN OFF 後為顯示 popup 而延遲關機**。**不同謂詞。**"),
+    (9, 1, 10):
+        ("未對照", "插入 Projection → 電源維持關閉 vs PM1",
+         "觸發為 Projection 之插入，與 IGN OFF 之 popup 無共同謂詞。"),
+    (9, 1, 11):
+        ("未對照", "VR 長按（無 Projection）→ 電源維持關閉 vs PM1",
+         "同上；且其行為另指向 `CFTS009`（本 feature 射程外，R-PMH47(a)）。"),
+    (9, 1, 12):
+        ("未對照", "VR 長按（Projection 中）→ 電源開啟 vs PM1",
+         "同 r11。"),
+    (9, 1, 13):
+        ("未對照", "通話結束 → 回到 Power OFF state vs PM1",
+         "本列在 **key-on 區塊**，其 `Power OFF state` 指電源鈕關閉之狀態，非 IGN OFF。**情境不同。**"),
+    (9, 1, 14):
+        ("未對照", "Projection 通話結束 vs PM1",
+         "同 r13。"),
+    (9, 1, 15):
+        ("待定義", "**IGN OFF（key-off）時延遲參數為 0 → 顯示器是否關閉**",
+         "**本列為 ch 9 之最近鄰**：其 c5／c8／c9 逐字 `If Radio Off Delay = 0 minutes then VP turns OFF Else VP stays ON`，c4 逐字 `VP Turns OFF`；而 PM1 逐字載「若有 popup 待顯示而使用者將 **Power Accessory Delay 設為 0 秒**，head unit 應 `stay awake` 至多 2.5 分鐘以顯示該 popup(s)」——**二者於「延遲為 0 時是否立即關閉」取相反值**。**惟其判定受阻於二項未定義**：(a) `VP` 之所指（`DR-PMH7` Q1）；(b) **`Radio Off Delay` 與 `Power Accessory Delay` 是否同一參數** —— 二詞於素材中並存而無一處定義其關係。**依 R-PMH85(c) 與 R-PMH95（歧義以涵蓋兩讀處置，不以判讀處置），記 `待定義` 而非 `牴觸`。**⚠ **若二問之答覆皆為肯定，本列即為牴觸** —— 該條件式已於此具名。"),
+    (9, 1, 16):
+        ("未對照", "SRT／Off Road+ 硬鍵 → 電源喚醒並靜音 vs PM1",
+         "觸發為硬鍵按壓；且其屬 `Off Road Plus` 組（ch 12）。"),
+    (9, 19, 24):
+        ("待定義", "key-off 狀態下按 ON/OFF 鍵 → `VP` 是否開啟",
+         "其值 `VP On (if ACC position is not available, otherwise VP remains off)` 由 **`VP`** 承載（`DR-PMH7` Q1）。**若 `VP` 為 head unit 之顯示螢幕**，其與 PM1 之 stay awake 期間之顯示狀態同謂詞。**R-PMH85(c)。**"),
+    (9, 19, 25):
+        ("待定義", "key-off 狀態下門開啟 → `VP` 是否關閉",
+         "c5 逐字 `VP Turns Off`、c9 `VP stays ON`、c13 `VP standby mode` —— 皆由 **`VP`** 承載（`DR-PMH7` Q1）。**若 `VP` 為 head unit 之顯示螢幕**，「門開啟即關閉顯示」與 PM1 之 stay awake 期間可同時成立而取相反值。**R-PMH85(c)。**"),
+    (9, 19, 26):
+        ("未對照", "來電 → head unit 維持開啟至計時結束 vs PM1 之為 popup 而 stay awake",
+         "二者皆為「key-off 後 head unit 延遲關閉」，**惟其原因不同**：本列為**通話**，PM1 為**待顯示之 popup**。**同向而非同謂詞** —— 其計時器（`Timer`）與 PM1 之 60 秒／2.5 分／10 分**無一處被關聯**。⚠ **本列為「二者是否為同一機制」之待答點，惟其未取相反值，故不記牴觸。**"),
+    (9, 19, 27):
+        ("未對照", "插入 Projection → head unit 維持關閉 vs PM1",
+         "觸發不同；PM1 未言 Projection。"),
+    (9, 19, 28):
+        ("未對照", "VR 長按（無 Projection）→ head unit 維持關閉 vs PM1",
+         "同上；指向 `CFTS009`。"),
+    (9, 19, 29):
+        ("未對照", "VR 長按（Projection 中）→ head unit 維持關閉 vs PM1",
+         "同上。"),
+    (9, 19, 30):
+        ("未對照", "key-off 狀態下門關閉 → 事件忽略 vs PM1",
+         "謂詞為事件是否被忽略，PM1 未言門之事件。"),
+    (9, 19, 31):
+        ("牴觸", "**key-off 狀態下延遲參數為 0 → head unit 是否關閉**",
+         "本列 c3／c6／c7 逐字 `End Call but: If Radio off Delay = 0 or Radio off Delay timer expired, HU OFF`、c2 逐字 `End Call, HU OFF` —— **其主語為 `HU`（head unit），非 `VP`**，故**不受 `DR-PMH7` 之未定義所阻**。PM1 逐字載 head unit 於 IGN OFF 且有 popup 待顯示時應 `stay awake`；**本列於同一 key-off 情境下令其關閉**。**條件互斥未證**（R-PMH84）：本列之條件為「通話結束」，PM1 之條件為「有 popup 待顯示」——**二者可同時成立**（使用者於 key-off 後結束通話，而 FOTA popup 待顯示），而素材未載何者優先。**停止條件 10 觸發 —— 上呈，不自行調和（R-PMH79）。**"),
+    (9, 19, 32):
+        ("牴觸", "**key-off 狀態下 Projection 通話結束 → head unit 是否關閉**",
+         "c2 逐字 `End Projection Call and HU OFF`、c3 `End Projection Call and HU remains ON End Call but: If Radio off Delay = 0 or Radio off Delay timer expired, HU OFF`。**與 r31 同形態而為另一列**（其事件為 Projection 通話之結束，非一般通話）—— 依 R-PMH98／R-PMH100 **逐列判定，不合併**。**停止條件 10 觸發。**"),
+    (9, 19, 33):
+        ("未對照", "key-on → 回復 `VP` 之最後狀態 vs PM1",
+         "PM1 之射程止於 IGN OFF 後之關機序列；本列之觸發為**重新 key-on**。**觸發不同。**"),
+    (9, 37, 40):
+        ("未對照", "key-on 且非倒車時按 ON/OFF 鍵 vs PM1",
+         "本區塊之軸為 `Key On`，PM1 之情境為 IGN OFF。**情境互斥可證。**"),
+    (9, 37, 41):
+        ("未對照", "key-on 且非倒車時之來電 vs PM1",
+         "同 r40。"),
+    (9, 37, 42):
+        ("未對照", "排入 R 檔 → 顯示倒車影像 vs PM1",
+         "同 r40；且謂詞為倒車影像。"),
+    (9, 37, 43):
+        ("未對照", "退出 R 檔 vs PM1",
+         "同 r40。"),
+    (9, 37, 44):
+        ("未對照", "Screen Off 鍵 vs PM1",
+         "同 r40。"),
+    (9, 37, 45):
+        ("未對照", "Mute 鍵 vs PM1",
+         "同 r40；本列之音訊謂詞已於 ch 8 對照中處理。"),
+    (9, 37, 46):
+        ("未對照", "Headunit Mode 鍵 vs PM1",
+         "同 r40；其 `Else: Mute Active` 之未定義屬 A-PMH22，與 ch 9 無涉。"),
+    (9, 37, 47):
+        ("未對照", "經 VR 變更 Headunit Mode vs PM1",
+         "同 r46。"),
+    (9, 37, 48):
+        ("未對照", "HVAC 硬控調整 → popup vs PM1 之 IGN OFF popup 群",
+         "**二者皆言 popup，惟其 popup 不同種**：本列為 **HVAC pop-up**（`PITA6`／ch 10 之射程），PM1 為 **FOTA／FOTA via Wi-Fi／XEV key-off** 三種。**PM1 逐字列舉其 popup 之優先序而不含 HVAC。**且本區塊之軸為 `Key On`，PM1 為 IGN OFF。**情境互斥可證。**"),
+
     (7, 1, 6):
         ("待定義", "**共同謂詞：pop-up 是否顯示**（`SU3.)` 取「不顯示」／本列 `Pop-up: Cannot Power Off System during active phone call.` 取「顯示」）",
          "**22 包步驟 2 之改判**：原記「未對照（軸不含 disclaimer 狀態）」，依 **R-PMH84** 應為牴觸 —— 免責畫面出現於開機序列（Key-on），本列之條件為 `Key-on × HU on × Call Active`（使用者上車前已通話），**二者可同時成立，其條件未證互斥**。**惟本列之 pop-up 由 `VP` 承載**（`VP Stays ON Pop-up: …`），而 `VP` 於規格全 11 頁 **0 命中**（`DR-PMH7`）—— 若 `VP` 非 head unit 之顯示螢幕，則與 `SU3.)` 無共同謂詞。**依 R-PMH85(c)『本條優先』，記為「待定義」而非「牴觸」**；`DR-PMH7` `ANSWERED` 後即應改判。**此與下放包步驟 2 之字面（五格皆改牴觸）不同，理由與差異已於上繳 §2.2 具名。**"),

@@ -62,7 +62,7 @@ THRESHOLDS = {
 LIMITS = [
     "G1–G5 五項**只看組數與組員數之分布**；**不看任何組之內容** —— 一組 3 個 leaf 是否真屬同一能力，本檢查不判",
     "Layer 2 之**組名**（字面、大小寫、是否與 Test Group 重複）不看 —— 該屬 R-PMH13／R-PMH36／canon §4.2",
-    "**分母 `n_leaf` 為外部給定**（現行 **47** —— R-PMH72 排除 `-028`）；其是否正確不由本檢查驗",
+    "**分母 `n_leaf` 為外部給定**（現行 **46** —— R-PMH72 排除 `-028`、**R-PMH117 排除 `-002`**）；其是否正確不由本檢查驗",
     "leaf 到組之**指派**不看 —— 只要分布合格，指派錯誤仍全綠",
     "`--check-doc-sync` 只驗門檻表與程式同源；**不驗該門檻本身是否恰當**",
     "**R-PMH68 之殘餘盲區**：doc-sync 之錨為**門檻表輸出**之 SHA256，守的是**值**而非**產生該值之邏輯** —— 改 `evaluate()` 之計算方式而門檻值不變者，本檢查不會察覺",
@@ -172,7 +172,14 @@ PROPOSAL = {
     "Startup Animation": ["006-01", "006-02", "006-03", "007", "008-01", "008-02",
                           "009-01", "009-02", "010"],
     "Startup Sounds": ["012", "013", "014", "015", "016", "017"],
-    "Power Transitions": ["002", "018-01", "018-02", "018-03", "018-04", "018-05",
+    # R-PMH117（Pei 2026-08-25「核可」）：`002`（7.1.1，`SU1.1)`）判 out of scope、
+    # 不寫入交付工作簿，比照 R-PMH72 對 `028` 之處置（canon §8.4.2 三項判準同型）。
+    # 其列保留於 `layer3_sections.tsv` 與 `outline_map.json`
+    # （標 `EXCLUDED-BY-R-PMH117`）作為內部台帳。
+    # **有 TC 之 leaf 因而由 47 降為 46**，granularity 之分母隨之改變。
+    # ⚠ `023` **留在本組** —— 其為「停手待 DR-PMH5」（R-PMH111），
+    # **非 out of scope**；二者不同，不得合併處置。
+    "Power Transitions": ["018-01", "018-02", "018-03", "018-04", "018-05",
                           "023"],
     "Power Off Behavior": ["019", "020", "021", "022-01", "024-01", "024-02",
                            "024-03", "025"],
@@ -184,8 +191,8 @@ PROPOSAL = {
     "Off Road Plus": ["027", "029"],
 }
 
-# 有 TC 之 leaf 數 —— granularity 之分母（R-PMH72）
-N_LEAF = 47
+# 有 TC 之 leaf 數 —— granularity 之分母（R-PMH72 ＋ **R-PMH117**）
+N_LEAF = 46
 
 
 def evaluate(groups: dict[str, list], n_leaf: int) -> dict[str, tuple[bool, str]]:
@@ -291,13 +298,13 @@ def self_test() -> int:
                     "必有單 leaf 組，"
                     "故 G2／G5 必然一併 FAIL —— 無法隔離"))
 
-    # A2：每個 leaf 各成一組（47 組）
+    # A2：每個 leaf 各成一組（46 組，R-PMH117 之後）
     anchors.append(("A2 每個 leaf 各成一組",
                     {r["swe_requirement_id"]: [r["swe_requirement_id"]] for r in rows},
                     {"G1", "G2"},
                     "**構造本質使然**：全部組規模為 1，G5 必然一併 FAIL —— 無法隔離"))
 
-    # A3：`Off Road Plus` 拆為三個單 leaf 組（10 組）
+    # A3：`Off Road Plus` 拆為單 leaf 組（其現為 2 leaf，故得 9 組）
     g3 = {k: v for k, v in PROPOSAL.items() if k != "Off Road Plus"}
     for x in PROPOSAL["Off Road Plus"]:
         g3[f"Off Road Plus {x}"] = [x]
@@ -315,20 +322,25 @@ def self_test() -> int:
     anchors.append(("A5 八組併為一組",
                     {"All": [x for v in PROPOSAL.values() for x in v]}, {"G4", "G5"}, ""))
 
-    # A6（R-PMH39）：G1 之**隔離**錨點 —— **47 leaf 分 16 組（15×3 + 1×2）**。
-    # G2 min=2 ✅／G4 max=3/47 ✅／G5 全落 [2,23] ✅／G3 組名無收容簇 ✅，
-    # 僅 G1 = 16/47 = 0.3404 > 1/3 FAIL。此組態即 R-PMH39 所述
+    # A6（R-PMH39）：G1 之**隔離**錨點 —— **46 leaf 分 16 組（14×3 + 2×2）**。
+    # G2 min=2 ✅／G4 max=3/46 ✅／G5 全落 [2,23] ✅／G3 組名無收容簇 ✅，
+    # 僅 G1 = 16/46 = 0.3478 > 1/3 FAIL。此組態即 R-PMH39 所述
     # 「G2/G4/G5 全通過而仍過細」者，證明 G1 不可省。
-    # **分母由 48 改 47 後本錨點須重算** —— 原 20 組於 47 亦 FAIL，
-    # 惟 47 = 15×3 + 2 為最貼近門檻之隔離組態（16/47 = 0.3404，餘裕僅 0.007）。
+    #
+    # **分母由 47 改 46 後本錨點已重算（R-PMH117）** ——
+    # 原式 `15×3 + 1×2` 於 46 會得 `15×3 + 1×1`，**其 min=1 使 G2／G5 一併 FAIL，
+    # 隔離即失效**（本錨點須只 FAIL G1）。故改為 `14×3 + 2×2 = 46`。
+    # **此即「不得沿用舊組態」之實例** —— 舊式在新分母下仍會跑，只是不再隔離。
     leaves = [x for v in PROPOSAL.values() for x in v]
     assert len(leaves) == n, (len(leaves), n)
     g6, i = {}, 0
-    for j in range(15):
+    for j in range(14):
         g6[f"Set{j+1:02d}"] = leaves[i:i+3]; i += 3
+    g6["Set15"] = leaves[i:i+2]; i += 2
     g6["Set16"] = leaves[i:]
-    assert sum(len(v) for v in g6.values()) == n and len(g6) == 16
-    anchors.append((f"A6 {n} leaf 分 16 組（15×3 + 1×2）—— G1 之隔離錨點",
+    assert sum(len(v) for v in g6.values()) == n and len(g6) == 16, (g6, n)
+    assert min(len(v) for v in g6.values()) == 2, "隔離失效：出現單 leaf 組"
+    anchors.append((f"A6 {n} leaf 分 16 組（14×3 + 2×2）—— G1 之隔離錨點",
                     g6, {"G1"}, ""))
 
     all_ok = True

@@ -2862,3 +2862,221 @@ Pei 於 **2026-08-25** 發出 `DR-PMH5`／`DR-PMH6`／`DR-PMH7`，
 | 條號 | 主旨 | 字數 | handoff SHA256（前 16） | RULINGS **讀回** SHA256（前 16） | 命中數 | 逐字相符 |
 |---|---|---|---|---|---|---|
 | R-PMH110 | 三筆 DR 之 `SENT` 落實；`DR-PMH8` 不在其內；`SENT` ≠ `ANSWERED` | 492 | `68b1a265ba8cbe7e` | `68b1a265ba8cbe7e` | 1 | ✅ 逐字相符 |
+
+## R-PMH111
+
+```
+R-PMH111（ch 9 之限縮解凍）
+`Power Transitions` 組**解凍，得開批**。A-PMH18（p9 之能力矩陣無來源）
+**維持 PENDING**，其阻斷範圍由「整組不得開批」限縮為下列條件式：
+
+**任一 TC 之任一斷言若倚賴 p9 能力矩陣之內容，該條停並登記，不得產出。**
+
+**判別法**（須逐條套用並具名結果）：該斷言之謂詞是否為
+「**某受控對象於某電源狀態下是否可用**」——
+受控對象指 `ICS Hard Controls`／`HVAC Knobs`／`Climate GUI`／`Headunit`，
+電源狀態指 `KEY ON ENGINE ON`／`KEY ON ENGINE OFF (ACC or RUN)`／
+`KEY OFF (No ACC position)`／`KEY OFF (ACC position available)` ×
+`HEADUNIT POWER ON`／`OFF`。
+
+**是 → 該條停**；否 → 得產出。
+
+依據：ch 9 之 5 leaf 所依之 `PM1)` 其主題為 **IGN OFF 時之 popup 群**
+（FOTA／Wi-Fi／Charge Now／`stay awake` 之時序），
+**不涉及受控對象於各電源狀態下之可用性**（29a §3.2）。
+二者主題不同，故 p9 之缺口不必然阻斷該 5 leaf。
+
+**`DR-PMH5` 之(1)(2)兩問仍待答** —— 其答覆若確立 p9 之權威來源，
+本組已產出之 TC 須依 R-PMH94 重掃其斷言。
+```
+
+## R-PMH112
+
+```
+R-PMH112（對上游已作陳述之更正義務）
+我方於已發出之文件中對上游所作之作業狀態陳述，若其後因裁定而不再成立，
+**須於下一次對外通信之首段更正之**，不得靜默改變作法。
+
+現行適用：2026-08-25 發出之 `DR-PMH5` 逐字載
+`Until (1) and (2) are clarified we have suspended test case authoring for
+section 9 (Power Moding), which covers 5 requirements
+(SWE1-HMI-PM-018-01 through -05).`
+—— 該陳述因 R-PMH111 之解凍而不再成立。
+
+**更正之載體為 `DR-PMH8`**（其尚未發出，狀態 `DRAFT`），
+於其首段加入更正句；**不另發短箋**，以免對上游造成無謂之往返。
+其逐字見 29b §三。
+
+**更正之發出仍屬 Pei**（R-PMH83）—— 執行層只落檔。
+```
+
+
+## 抄錄逐條核對表（29b 包）
+
+| 條號 | 主旨 | 字數 | handoff SHA256（前 16） | RULINGS **讀回** SHA256（前 16） | 命中數 | 逐字相符 |
+|---|---|---|---|---|---|---|
+| R-PMH111 | ch 9 限縮解凍；A-PMH18 之阻斷改為條件式判別法 | 690 | `94bdfb0c9888cb88` | `94bdfb0c9888cb88` | 1 | ✅ 逐字相符 |
+| R-PMH112 | 對上游已作陳述之更正義務；載體為 `DR-PMH8` 首段 | 439 | `97b33607dd29c166` | `97b33607dd29c166` | 1 | ✅ 逐字相符 |
+
+## R-PMH113
+
+```
+R-PMH113（batch 3 之限定授權）
+`Power Transitions` 組之各 TC，其斷言涉及 head unit 於 key-off 後是否維持
+喚醒者，**加 Pre-Condition**：
+
+    No phone call or projection call is active
+
+**其位置為 Pre-Condition 而非 procedure** —— 「無通話進行中」為一個**狀態**
+（canon §4.4 之合法型態），非測試員之動作。
+**不得為求與 R-PMH87 之七項一致而寫成 `Do not…` 形態** ——
+**限定之位置由其型別決定，非由前例決定。**
+
+其充分性：`r31`（`Call Ended`）與 `r32`（`Projection call ends`）之事件
+**皆以「有一通進行中之通話」為前提**；無之則該事件不可能發生，二格不適用。
+
+**連帶之覆蓋缺口**：「IGN OFF 時通話結束且有 popup 待顯示」之行為
+只在矩陣有、規格未載，依 R-PMH55(b) 不得為其撰寫 TC，
+**登記為覆蓋缺口並併入 `DR-PMH8`**。
+
+**本授權不預判 `Power Accessory Delay` 與 `Radio off Delay` 是否同一**
+（A-PMH24）—— 兩讀皆通向「須加限定」，故限定不待其釐清。
+```
+
+## R-PMH114
+
+```
+R-PMH114（A-PMH24 併入 `DR-PMH8` 為第四問）
+A-PMH24（`Power Accessory Delay` 與 `Radio off Delay` 從未同時出現於任一
+文件，二者是否指同一設定未知）**併入 `DR-PMH8`**，為其第四問。
+
+**執行層所判「與 `DR-PMH5` 同源」不採** —— 三者對象不同：
+`DR-PMH5` 問**文件之缺失**（p9 矩陣之來源）；
+`DR-PMH7` 問**記法之未定義**（`VP`／`Else: Mute Active`／`Note:`）；
+A-PMH24 問**兩個名詞是否指同一物**。
+**其形態屬 `DR-PMH7` 之類，非 `DR-PMH5` 之類。**
+
+`DR-PMH8` 尚未發出，故直接增問，不另發文。
+```
+
+## R-PMH115
+
+```
+R-PMH115（`PENDING-ON-DR` 登記簿）
+凡某項判定之結論**繫於某 DR 之答覆**者，須登記於 `DECISIONS.md` 之
+`PENDING-ON-DR` 一節，每筆四欄：
+
+  (1) 該判定之所在（檔案、條目、格號）；
+  (2) 其所繫之 DR 與其第幾問；
+  (3) **答覆為何值時，該判定改為何** —— 逐值列出，不得只寫「須重看」；
+  (4) 登記日期。
+
+**DR 之狀態改為 `ANSWERED` 時，該簿中對應之各筆為必辦事項**，
+須於該輪之上繳逐筆回報其處置。
+
+**本簿不是檢查** —— 其不判定任何事、不產生 PASS／FAIL、
+不增加「檢查什麼種類的錯誤」，**故不在 R-PMH104 之凍結範圍內**
+（R-PMH107 之判別法）。
+
+現行應登記者至少三筆：
+  `r15` 之條件式判定（繫於 `DR-PMH5` (1)(2) 與 `DR-PMH7` Q1）；
+  `r46`／`r47` 之納入限定（繫於 `DR-PMH7` Q2 —— 若答為「維持靜音」，
+  batch 2 之六條限定即為過度限定）；
+  `-013` 之「一日」與 `-011` 之設定路徑（繫於 `DR-PMH8` (a)(b)）。
+
+依據：29b 上繳 §5 第 3 項 —— 執行層指出該條件式「寫在依據文字裡，
+而依據文字不是機器可判之物，答覆到達時沒有任何東西會提醒我們回來改它」。
+```
+
+
+## 抄錄逐條核對表（30 包步驟 1）
+
+| 條號 | 主旨 | 字數 | handoff SHA256（前 16） | RULINGS **讀回** SHA256（前 16） | 命中數 | 逐字相符 |
+|---|---|---|---|---|---|---|
+| R-PMH113 | batch 3 之限定授權；限定之位置由型別決定，非由前例決定 | 609 | `b64fcc9f090e5e62` | `b64fcc9f090e5e62` | 1 | ✅ 逐字相符 |
+| R-PMH114 | A-PMH24 併入 `DR-PMH8` 第四問；不採「與 `DR-PMH5` 同源」 | 357 | `4c809f779bd6a6bc` | `4c809f779bd6a6bc` | 1 | ✅ 逐字相符 |
+| R-PMH115 | `PENDING-ON-DR` 登記簿；其不是檢查，不在凍結範圍 | 623 | `b97321495dec10ba` | `b97321495dec10ba` | 1 | ✅ 逐字相符 |
+
+## R-PMH116
+
+```
+R-PMH116（apparatus 首次解凍 —— Final Step 檢查之強化）
+依 R-PMH104(a) 解凍，**其範圍嚴格限於 lint 之
+「canon §5.2B／§5.5 Final Step 含驗證意圖」一項之強化**，不及其餘。
+
+**解凍之依據（實測，非可能）**：batch 3 之 `-017`／`-018`／`-019`／`-020`／
+`-021` 五條，其 Final Step **無任何驗證子句**
+（`record when the radio powers off`／`read the display`／
+`Read the radio power state`），而該項檢查標 **PASS**。
+其為 13 包 §4.3 已判過之同一違規類型，其檢查亦於 13 包加入。
+
+**強化之要求三項**：
+(a) 執行層須先查明現行判準為何放行，並具名其病灶；
+(b) **must-hit**：本批五條之現行 Final Step 須 **FAIL**；
+(c) **範圍向**：batch 1／batch 2 之現行 Final Step 須 **PASS**。
+
+`Compare` 之處置**須具名** —— `-016` 之 `Compare the recorded duration with
+the stated maximum` 為 §5.1 之 preferred verb 而未言其判準，
+**其屬邊界**；判其通過或不通過皆可，**但須寫出理由並一體適用**。
+
+**本次解凍用畢即恢復凍結。** 新增之檢查不得泛化至其他 canon 節。
+```
+
+## R-PMH117
+
+```
+R-PMH117（`-002` 之處置 —— 待 Pei 核可）
+`SWE1-HMI-PM-002`（outline 7.1.1，`SU1.1)`）**判為 out of scope，
+不寫入交付工作簿**，比照 R-PMH72 對 `-028` 之處置。
+
+依據三項（與 `-028` 完全同型）：
+(a) 其逐字將行為委於 `based on vehicle architecture. See CFTS009 for
+    clarification.` —— 行為定義於**外部規格**（canon §8.4.2）；
+(b) 本 feature **不持有 CFTS009**；
+(c) 不取得而撰寫，須自行指定「哪一種架構對應哪一種轉換」，
+    **即造值**（canon §8.4.1）。
+
+**本條之效力起於 Pei 之核可** —— 其動到範圍（有 TC 之 leaf 由 47 降為 **46**），
+而 R-PMH1 為範圍條文。**核可前 `-002` 維持停手、不產出、不寫入。**
+
+**若 Pei 判其應產出**，則須先取得 CFTS009，或由 Pei 裁定一個架構為準；
+**二者皆非分析層可代決。**
+
+`Power Transitions` 組因而為 **5 leaf 有 TC**（`-018-01`～`-05`）、
+**2 leaf 停手**（`-023` 依 R-PMH111、`-002` 依本條）。
+```
+
+## R-PMH118
+
+```
+R-PMH118（等價類之數量不決定技術）
+`design_method` 之選定依 canon §12 之 first-match，
+**其判準為輸入是否被劃分為等價類，非該 TC 之內含幾類**。
+
+一條 TC 只涵蓋一個等價類者，其技術仍為 `等價劃分 (Equivalence Partitioning, EP)`；
+**不因其只有一類而改判 `功能測試 (Functional based)`。**
+
+依據：batch 3 之 `-018`（接受 FOTA）標 FUNC，而 `-019`／`-020`
+（排程／取消、設定／取消）標 EP —— 三者同軸（使用者於同一 popup 上之選擇），
+**其差別只在一條之內含幾個類**。canon §12 之
+`Input partitioned valid / invalid → Equivalence Partitioning`
+**未要求一條之內須含多類**。
+執行層 30 包 §10 第 4 項已自陳其一致性可議。
+```
+
+
+## 抄錄逐條核對表（31 包步驟 1）
+
+| 條號 | 主旨 | 字數 | handoff SHA256（前 16） | RULINGS **讀回** SHA256（前 16） | 命中數 | 逐字相符 |
+|---|---|---|---|---|---|---|
+| R-PMH116 | apparatus 首次解凍，限 Final Step 檢查之強化；用畢恢復凍結 | 706 | `a1dca5d4759e0e2c` | `a1dca5d4759e0e2c` | 1 | ✅ 逐字相符 |
+| R-PMH117 | `-002` 判 out of scope，**待 Pei 核可**（核可前不生效） | 626 | `896dc34b89c5597a` | `896dc34b89c5597a` | 1 | ✅ 逐字相符 |
+| R-PMH118 | 等價類之數量不決定技術 | 442 | `782875467a48ebf0` | `782875467a48ebf0` | 1 | ✅ 逐字相符 |
+
+> ~~⚠ **R-PMH117 標「待 Pei 核可」，核可前不生效**（其動到範圍：有 TC 之 leaf 47 → 46，而 R-PMH1 為範圍條文）。**抄錄不等於生效。**~~
+>
+> **勘誤（2026-08-25，正文未改一字，SHA256 不變）**：Pei 逐字裁定「**核可**」——
+> **R-PMH117 已生效**。其連帶已於同日執行：`layer3_sections.tsv` 與 `outline_map.json`
+> 之 `-002` 列標 `EXCLUDED-BY-R-PMH117`；`check_granularity.py` 之 `N_LEAF` 47 → **46** 並全項重跑；
+> `framework.md` 之 Layer 2 表 `Power Transitions` 7 → **6**、合計 47 → **46**；
+> **A6 錨點之組態由 `15×3+1×2` 改為 `14×3+2×2`**（沿用舊式會使 `min=1`，隔離失效）。

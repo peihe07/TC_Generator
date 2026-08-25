@@ -891,7 +891,11 @@ Thank you,
 第三問之覆蓋缺口另記於 `ANOMALIES.md`（R-PMH109 末）。
 
 **狀態**：`DRAFT`　**發出日期**：（待填）　**對象**：（待填）
-　**SHA256（前 16）**：`b4aa530edf320216`
+　**SHA256（前 16）**：`cbcd34eb07cc5352`
+
+> **29b（R-PMH112）**：首段加入**對上游已作陳述之更正句** —— 2026-08-25 所發之 `DR-PMH5` 逐字載
+> 「我方已暫停 section 9 之 TC 撰寫」，該陳述因 R-PMH111 之限縮解凍而不再成立。
+> **更正以本 DR 為載體，不另發短箋。** 原全文（SHA256 `b4aa530edf320216`）已被本版取代。
 
 > ⚠ **本筆不在 R-PMH110 之發出範圍** —— 其於該裁定當下尚未開立（29a §二明載）。
 
@@ -904,14 +908,20 @@ Thank you,
 ### 8.1 可寄出全文（**執行層不得代為發出**，R-PMH83）
 
 ```text
-Subject: Power Moding HMI — three points on the start-up and goodbye sounds (SSND)
+Subject: Power Moding HMI — three points of definition, and an update on our
+section 9 status
 
 Hello,
 
-Three points from our SWE.6 test case work on the SSND section of "Power Moding
-HMI Logic and Flow R1 SR24 2A DCR22412 (January 24 2023)", page 8. None of them
-blocks us; we have written the test cases around the wording, but we would
-rather have the intent confirmed than assume it.
+First, an update to our previous message. We wrote that we had suspended test
+case authoring for section 9 (Power Moding). We have since resumed it: on
+review, the five requirements in that section (SWE1-HMI-PM-018-01 through -05)
+concern the pop-ups shown at ignition off and their timing, and do not depend
+on the page 9 capability matrix, which is what our question was about. We will
+hold back any individual test case whose expected result would depend on that
+matrix, and our two questions about the matrix itself still stand.
+
+Second, three points where the documents do not define something we need:
 
   Q1: What is the start of a "day"?
 
@@ -957,6 +967,40 @@ rather have the intent confirmed than assume it.
       At present our start-up sound test case verifies the sync across all
       supported displays, and our goodbye sound test case does not. If the
       sentence covers both, we will add the same check to the goodbye case.
+
+  Q4: Are "Power Accessory Delay" and "Radio off Delay" the same setting under
+      two names, or two different settings?
+
+      The logic and flow document uses "Power Accessory Delay" (PM1, page 9);
+      the State Matrix uses "Radio off Delay" (rows "Call Ended" and
+      "Projection call ends"). Neither term appears in the other document, so
+      we cannot tell whether they refer to the same value. This matters to us
+      because PM1 says the head unit should stay awake when that value is 0 and
+      there are pop-ups to show, while the matrix says the head unit goes off
+      when that value is 0 and a call ends.
+
+  Q5: Should the head unit stay awake, or go off, when the driver ends a phone
+      call after ignition off and there are pop-ups still to be shown?
+
+      PM1 (page 9) states, verbatim:
+
+          In the event that there are popups to show at IGN OFF but the user has
+          set Power Accessory Delay to 0 seconds, the head unit should 'stay
+          awake' for 60 seconds up to 2.5 minutes to display the popup(s).
+
+      The State Matrix, "Key-off" block, rows "Call Ended" and "Projection call
+      ends", states, verbatim:
+
+          End Call but: If Radio off Delay = 0 or Radio off Delay timer expired,
+          HU OFF
+
+      Both can apply at the same time: the user ends a call after ignition off
+      while a FOTA pop-up is still waiting to be shown. The documents do not say
+      which takes precedence.
+
+      Our test cases for section 9 are written with a pre-condition that no call
+      is active, so this combination is not covered by any of them. We would
+      rather leave it uncovered than guess which behaviour is intended.
 
 Thank you,
 ```
