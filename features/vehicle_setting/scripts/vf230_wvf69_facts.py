@@ -43,9 +43,19 @@ PROXI_CLAUSE_LEAD = re.compile(
 #   (a) `If <param> = [Present], the LTM or ETM shall display …`
 #   (b) `When the HMI receives the value [as] Absent via signal, $P$,
 #        Then the HMI shall not display …`
+#
+# **值之字元類含雙引號（W-VF90，A-VF25／A-VF27 同族第四例）**：
+# 條文之 (b) 式有**帶引號之變體** —— `receives the value as "Absent" via signal`
+# （`SuspensionServiceMode-002/003`）。首版之字元類 `[A-Za-z0-9_ ]` 不含 `"`，
+# 比對遂失敗，**而其失敗回報為「條文未帶值」而非「未比中」** ——
+# 該二條因此被判為抽不出而未進入交付本。
+# **R-VF82 之兩側量測**：偽陰回收 **2**；偽陽引入 **0**
+# （量產 501 條事實逐條比對，**相異 0**）。
+# 引號為條文之引述標點而非值之一部，故於 `_val()` 剝除；
+# 其餘 PROXI 條文之同一值寫作 `Absent`（無引號），剝除後二式歸一。
 PROXI_VALUE = [
     re.compile(r"If .{0,80}?=\s*\[([^\]]+)\]", re.I),
-    re.compile(r"receives the value\s*(?:as\s*)?\[?([A-Za-z0-9_ ]+?)\]?\s*via signal",
+    re.compile(r"receives the value\s*(?:as\s*)?\[?([A-Za-z0-9_ \x22]+?)\]?\s*via signal",
                re.I),
 ]
 # 極性：條文之結論句為 `shall not display` 者為否定分區
@@ -94,7 +104,7 @@ SIG_VALUE_AT = [
 SIG_VALUE = [
     re.compile(r"signal value as\s+\[?([A-Za-z0-9_]+)\]?"),
     re.compile(r"value\s*=\s*\[([^\]]+)\]"),
-    re.compile(r"receives the value\s*(?:as\s*)?\[?([A-Za-z0-9_ ]+?)\]?\s*via signal"),
+    re.compile(r"receives the value\s*(?:as\s*)?\[?([A-Za-z0-9_ \x22]+?)\]?\s*via signal"),
     re.compile(r"shall be\s+\[?([A-Za-z0-9_]+)\]?"),
 ]
 
@@ -220,7 +230,10 @@ def extract(leaf: str, lf: dict, form: str, D: dict) -> tuple[dict | None, str]:
         if not v:
             return None, ("PROXI 型而條文未帶值"
                           "（無 `If … = [ … ]`，亦無 `receives the value … via signal`）")
-        return {**base, "param": m.group(1).strip(), "value": v.group(1).strip(),
+        # 引號為條文之引述標點，非值之一部 —— 剝除後與其餘條文之同一值（`Absent`）歸一。
+        # **只剝成對包夾者**，值內之引號不動。
+        return {**base, "param": m.group(1).strip(),
+                "value": v.group(1).strip().strip('"').strip(),
                 "negative": bool(PROXI_NEG.search(text))}, ""
 
     if form in ("訊號送出型", "訊號上行型"):
@@ -368,8 +381,14 @@ def extract(leaf: str, lf: dict, form: str, D: dict) -> tuple[dict | None, str]:
     return None, f"形態 `{form}` 無對應之書寫式（未經 pilot）"
 
 
-def load_all() -> tuple[list, list]:
-    """回 (facts, skipped)。facts 依選池序。"""
+def load_all(only: set | None = None) -> tuple[list, list]:
+    """回 (facts, skipped)。facts 依選池序。
+
+    `only` 為 None 時行為不變（量產路徑：選池 − pilot）。
+    給定集合時，**候選改為該集合與選池之交集** —— 其為 W-VF90 之補入所需
+    （pilot #1／#2 之 20 條本被 `body = pool - pilots` 扣除）。
+    **不改動 None 之路徑**，故既有九批之產出不受影響。
+    """
     D = dbc()
     forms = {r["leaf_id"]: r["form"]
              for r in json.loads((FEAT / "data/_vf230_forms.json").read_text())["rows"]}
@@ -387,6 +406,13 @@ def load_all() -> tuple[list, list]:
     for f in ("generated/vf230_pilot1.json", "generated/vf230_pilot2.json"):
         pilots |= {t["leaf_id"] for t in json.loads((FEAT / f).read_text())["tcs"]}
     body = pool - pilots
+    if only is not None:
+        # **取交集而非逕用 `only`** —— 選池外之 leaf 不得由此路徑混入；
+        # 其差額於下方具名，不靜默丟棄。
+        outside = only - pool
+        if outside:
+            print(f"  ⚠ `only` 中不在選池者 {len(outside)}：{sorted(outside)}")
+        body = only & pool
 
     facts, skipped = [], []
     for leaf in order:
@@ -420,9 +446,14 @@ def load_all() -> tuple[list, list]:
                 vs.append(v)
         if len(vs) >= 2:
             MULTI[f["leaf_id"]] = vs
-    if MULTI != MULTI_EXPECTED:
+    # **期望值限縮至本次所處理之範圍** —— 子集跑（`only`）時全集之期望必然不符，
+    # 而該不符不表示任何過時。**限縮之依據為 `body`，非 `MULTI` 自身**：
+    # 若以 `MULTI` 反推期望，一個「該拆而未量到」之漏拆將自我消解而無人察覺。
+    expected = {k: v for k, v in MULTI_EXPECTED.items() if k in body}
+    if MULTI != expected:
         raise SystemExit(
-            f"拆列標的之量測與期望不符，停 —— 量測 {MULTI}；期望 {MULTI_EXPECTED}。"
+            f"拆列標的之量測與期望不符，停 —— 量測 {MULTI}；期望 {expected}"
+            f"（本次範圍 {len(body)} 條；全集期望 {len(MULTI_EXPECTED)} 條）。"
             "**其一已過時**：條文若增減多值形態，期望值須隨之更新並具名。")
     expanded = []
     for f in facts:

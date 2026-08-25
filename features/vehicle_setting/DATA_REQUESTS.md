@@ -1759,3 +1759,51 @@ IPC_VEHICLE_SETUP.HeadlightsOffDelay 之 VAL_：
 **本層之處置**：**不自行對應**（`R-VF92` 二：值與值域不符者登記並回報，
 不得改取能容納該值之另一標籤）。**第四列缺席，已具名。**
 若確為錯字，其更正屬 DBC 之維護方；更正後本層重跑即補齊該列。
+
+---
+
+## DR-48（新，**Urgency Medium** —— 二需求以不同措辭描述同一可測行為；W-VF90 開立）
+
+> **開號依據**：全庫最大已用 DR 號為 **DR-47**（R-VF10）。**登記，未送出。**
+
+### 標的
+
+```
+SWE1-VC-SWITCH1Type-002   src_ref VF230_V1_PDT27_VF_6132
+SWE1-VC-SWITCH1Type-029   src_ref VF230_V1_PDT27_VF_6261
+```
+
+**其可執行四欄（`pre_conditions`／`test_procedure`／`expected_result`／
+`input_test_data`）逐字相同，且 `tc_title` 亦逐字相同**：
+
+```
+TELEMATIC_FD_1.AUX1_TYPE_Req is sent as 0 (Latching) when SWITCH 1 Type is Latching
+```
+
+**而其 `test_item`（條文節錄）相異** ——
+
+```
+-002  The HMI layer shall capture the customer selection for the SWITCH 1 Type setting and send the request using the TELEMATIC_FD_1.AUX1_TYPE_Req signal value as LATCHING. The HMI layer shall maintain/upda
+
+-029  The HMI layer shall capture the customer selection for the SWITCH 1 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX1_TYPE_Req signal value as LATCH
+```
+
+**即二者為同一可測行為之二種條文表述**：`-002` 為顧客動作層之寫法，
+`-029` 為 Android 屬性層（`CarPropertyManager.setProperty()`）之寫法。
+
+### 其與 `SWITCH1PowerMode-005/-030` 為同型
+
+**W-VF74 之原案即此形態**（`-005` 屬性層／`-030` 顧客動作層，
+`SYS-RA-VF230_V1-2262`／`-2211`），已循去重處置。**本項為同型第二例。**
+
+### 本層之處置與待決
+
+**已依既有判準剔除 `-002`，保留已寫入之 `-029`**
+（`generated/vf230_backfill.json` 之 `dropped`）——
+**其非本層新立之判準，是 W-VF74 施於新料之結果。**
+
+**待上游確認者**：**上游規格內存在成對之重複需求**，
+其非 TC 之問題而是需求集之問題。**本層不合併、不改寫、不造區辨**（`R-VF92` 二）。
+
+**其影響**：補入之數自 20 降為 **19**；交付本之需求數因而少 1。
+
