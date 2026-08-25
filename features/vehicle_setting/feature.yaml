@@ -93,6 +93,10 @@ lint:
 
 # --- 逐交付之覆寫（無後綴鍵為 CFTS044 之值；此處僅列相異者）---
 # 消費者以交付別（cfts044 / vf230）取用；未列之鍵一律沿用上方共用值。
+# ⚠ **本段現無任何消費者**（R-VF117；A-VF31）——
+# `scripts/feature_config.py:resolve_path()` 直接取 `paths.<key>`，**不經 profile**。
+# 各線改為**直讀具名鍵**（如 VF230 之寫回 dry-run 直讀 `paths.workbook_vf230`）。
+# **本註記使其閒置可見，而非使其消失** —— 其與實際行為之分岔無任何檢查在管。
 profiles:
   cfts044:
     workbook: "workbook_cfts044"
