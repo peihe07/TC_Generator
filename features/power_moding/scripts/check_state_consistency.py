@@ -21,6 +21,11 @@
     python scripts/check_state_consistency.py --feature . --self-test
 """
 
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = True
+MUST_HIT_NOTE = '`--self-test` 之故意注入'
+
+
 import argparse
 import re
 import shutil

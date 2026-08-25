@@ -17,6 +17,11 @@
     python scripts/check_granularity.py --feature . --self-test
 """
 
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = True
+MUST_HIT_NOTE = '`--self-test` 五錨點 ＋ `--doc-sync-must-hit` 兩項故意失敗'
+
+
 import argparse
 import csv
 import hashlib

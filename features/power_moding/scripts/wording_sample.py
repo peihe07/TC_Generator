@@ -11,8 +11,28 @@ R-PMH67 要求列舉式判準附偽陰之抽樣估計：
 
 母體：`docs/upstream/*.md` 中含「對照結論型措詞」而**不含該二詞**之行。
 
+================================================================================
+**⚠ 本檔自 24 包起停用（R-PMH91）**
+================================================================================
+
+**停用之理由**：本檔之形態為**攔截式列舉** —— 攔「無矛盾」「非牴觸」二詞，
+並以抽樣估其偽陰率。**兩層抽樣之偽陰率為 10% → 20%，未見收斂**，
+且其漏網者「**非漏**」正是 `RESIDUE_VERDICT` 20 條中**最常用之起首詞**
+（23 包 §7.2）。
+
+**補上「非漏」只會使本檢查再通過一次，然後在下一個措詞上再漏一次。**
+
+**取代者**：`scripts/verdict_form.py` —— **正向**檢查
+「對照結論是否以四詞之一（`牴觸`／`印證`／`未對照`／`待定義`）作結」。
+其判準與母體皆非列舉：四詞由 R-PMH79／R-PMH85 定義；
+母體為各檢查之**判定表**，其每一項依構造即為一個對照結論。
+
+**本檔不刪**（其兩層抽樣之數據為 R-PMH91 之立條依據），
+**執行時拒跑並印本說明**；`--acknowledge-deprecated` 可強制執行，
+**其輸出不得引為結論**。
+
 用法:
-    python scripts/wording_sample.py
+    python scripts/wording_sample.py --acknowledge-deprecated
 """
 import random
 import re
@@ -128,12 +148,22 @@ def population(layer: int = 1) -> list[tuple[str, int, str]]:
     return out
 
 
+DEPRECATED = True
+
+
 def main() -> None:
     import argparse
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--acknowledge-deprecated", action="store_true",
+                    help="強制執行已停用之本檔；其輸出不得引為結論（R-PMH91）")
     ap.add_argument("--layer2", action="store_true",
                     help="23 包步驟 7 —— 第二層抽樣（母體為不含八候選詞者）")
     a = ap.parse_args()
+    if DEPRECATED and not a.acknowledge_deprecated:
+        print(__doc__)
+        print("**拒跑** —— 本檔已停用（R-PMH91）。"
+              "請改用 `scripts/verdict_form.py`。")
+        sys.exit(2)
     layer = 2 if a.layer2 else 1
     verdicts = SAMPLE_VERDICT_L2 if layer == 2 else SAMPLE_VERDICT
     seed = SAMPLE_SEED + (100 if layer == 2 else 0)

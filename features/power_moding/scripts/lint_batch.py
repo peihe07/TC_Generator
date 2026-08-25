@@ -10,6 +10,11 @@
 且其 `origin` 為 `spec_pdf`。**「是否忠於規格」本身不可機械檢查** ——
 須人讀 PDF 原文與 TC 對照。本檢查只保證覆核所需之材料存在，不保證覆核已做。
 """
+
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = True
+MUST_HIT_NOTE = '外部 fixture 兩份（`batch01_prerework` 21/30、`batch01_r2` 29/30）逐輪實跑並 FAIL'
+
 import argparse
 import ast
 import json

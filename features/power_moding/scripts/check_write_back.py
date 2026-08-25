@@ -24,6 +24,11 @@
     python scripts/check_write_back.py --feature . --self-test
 """
 
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = True
+MUST_HIT_NOTE = '`--self-test` 三項故意失敗全被攔下'
+
+
 import argparse
 import json
 import sys

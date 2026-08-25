@@ -14,6 +14,12 @@ screen has been removed`）之關係，記法依 R-PMH79。
 用法:
     python scripts/spec_assertion_scan.py
 """
+
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = False
+MUST_HIT_NOTE = '**未註冊 must-hit**（24 包 §12）—— 其逐行判定由人寫入'
+
+import argparse
 import re
 import sys
 from pathlib import Path
@@ -22,10 +28,23 @@ import fitz
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-PAT = re.compile(r"pop\s*-?\s*ups?", re.I)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# --- R-PMH93（24 包）：反向掃描之單位為**斷言**，非 TC 亦非 ER 之條 ---
+# `-007` 之 ER4 含兩個斷言：(a) `no pop-up is displayed`、
+# (b) `The announcement is heard in the background`。23 包只掃了 (a)。
+ASSERTIONS = {
+    "popup": (r"pop\s*-?\s*ups?",
+              "`-007` ER4(a)：`no pop-up is displayed`（免責畫面移除前不顯示 pop-up）"),
+    "audio": (r"\b(mute[ds]?|unmute[ds]?|audio|sounds?|volume|background)\b",
+              "`-007` ER4(b)：`The announcement is heard in the background`"
+              "（免責畫面期間報導之音訊照常可聞）"),
+}
+PAT = re.compile(ASSERTIONS["popup"][0], re.I)
 
 LIMITS = [
-    "**只掃 `pop-up` 一類斷言** —— `-007` 之 ER 另斷言「音訊照常播放」，該面未反向掃",
+    "**每次只掃一個斷言**（R-PMH93）—— `--assertion popup`／`audio`；其餘斷言未掃者不在本次輸出內",
+    "**`audio` 斷言之關鍵詞為六個**（`mute`／`unmute`／`audio`／`sound`／`volume`／`background`）—— **其本身是列舉**，同義之表述（如 `silent`／`no output`）不會命中",
     "**以行為單位** —— PDF 之換行由版面決定；同一句跨兩行者計為兩行（如 `SU3.)` 之 L293／L294）",
     "**只掃文字層** —— p11 之流程圖為影像，其中若有 pop-up 字樣本檔看不見",
     "**記法之判定為人工** —— `LINE_VERDICT` 逐行具名，本檢查只驗其存在，不驗其正確",
@@ -63,16 +82,18 @@ LINE_VERDICT: dict[int, tuple[str, str, str]] = {
     257: ("印證", "pop-up 是否顯示（`Geolocation + SOS Popup`）", AFTER),
     293: ("—", "（`SU3.)` 本身）", "**本行即比對之一造**，不入判定。"),
     294: ("—", "（`SU3.)` 本身之續行）", "**本行即比對之一造**，不入判定。"),
-    332: ("牴觸", "**pop-up 是否顯示** —— `SU3.)` 取「不顯示」（免責畫面移除前，"
-                  "**全稱否定**）；本行取「顯示」（`Pop-ups still shown.`，**無條件肯定**）",
-          "**規格內部之牴觸**（R-PMH89）—— 兩造同屬規格 PDF：`SU3.)` 在 p8，本行在 p9 之能力矩陣。"
-          "**其列為 `KEY ON ENGINE ON`、欄為 `HEADUNIT POWER OFF` 之 `HVAC Knobs` 格**"
-          "（座標 x=428 y=81；列標籤 `KEY ON ENGINE ON` 於 y=114）。"
-          "**條件互斥未證** —— 免責畫面之相位正是 `KEY ON`，**二者高度可能重疊**。"),
-    348: ("牴觸", "**pop-up 是否顯示** —— 同 L332",
-          "**規格內部之牴觸**（R-PMH89）—— **其列為 `KEY ON ENGINE OFF (ACC or RUN)`、"
-          "欄為 `HEADUNIT POWER OFF`**（座標 x=428 y=180；列標籤於 y=197）。"
-          "**條件互斥未證**，且其相位（ignition ACC／RUN）正是 `PITA6.1` 所述之開機情境。"),
+    332: ("未對照", "**pop-up 是否顯示** —— `SU3.)` 取「不顯示」（免責畫面移除前，"
+                    "**全稱否定**）；本行取「顯示」（`Pop-ups still shown.`）",
+          "**24 包改判（原記「牴觸」，A-PMH21）** —— **條件互斥已被證明**（R-PMH84 之要件）。"
+          "以 `get_pixmap` 4x 渲染 p9 之矩陣區實見：本格在 **`HEADUNIT POWER OFF` 欄**、"
+          "`KEY ON ENGINE ON` 列。**免責畫面為 head unit 所顯示之畫面，其相位必為 head unit 開機中**；"
+          "而**同一欄之 `Climate GUI` 格逐字為 `Not Visibile due to power off`** —— "
+          "**該欄之語意即「頭端電源關閉」，其時無任何畫面可顯示免責內容。**"
+          "**互斥之依據為欄位之語意 ＋ 同欄之另一格之逐字，非推定。**"),
+    348: ("未對照", "**pop-up 是否顯示** —— 同 L332",
+          "**24 包改判（原記「牴觸」）** —— 同 L332：本格在 **`HEADUNIT POWER OFF` 欄**、"
+          "`KEY ON ENGINE OFF (ACC or RUN)` 列（渲染實見）。**同欄之 `Climate GUI` 格亦為 "
+          "`Not Visibile due to power off`。條件互斥已證。**"),
     407: ("未對照", "pop-up 是否顯示（IGN OFF 之 popup 群）", IGN_OFF),
     409: ("未對照", "pop-up 之顯示時長", IGN_OFF),
     410: ("未對照", "pop-up 之逾時", IGN_OFF),
@@ -96,23 +117,123 @@ LINE_VERDICT: dict[int, tuple[str, str, str]] = {
 }
 
 
-def lines() -> list[tuple[int, str]]:
+# --- R-PMH93 —— `audio` 斷言之規格側逐行判定（24 包步驟 4）---
+AUDIO_LINE_VERDICT: dict[int, tuple[str, str, str]] = {
+    294:
+        ("—", "（`SU3.)` 本身 —— 本斷言之來源）",
+         "**本行即斷言之出處**，不入判定。"),
+    311:
+        ("未對照", "**不同音源** —— `SSND 1)` 之標的為**啟動音／告別音**；本斷言之標的為**交通報導之音訊**",
+         "且其觸發為 `upon driver door close` 並與開機動畫同步 —— **免責畫面在開機動畫之後**（`SU1.)` 之序：animation → splash → disclaimer）。**條件互斥之依據為規格自身之時序。**"),
+    312:
+        ("未對照", "**不同音源** —— 啟動音之跨螢幕同步",
+         "同 L311。"),
+    313:
+        ("未對照", "**不同音源** —— 啟動音／告別音之設定選項",
+         "同 L311。"),
+    314:
+        ("未對照", "**不同音源** —— 設定為 Always 時啟動音之播放",
+         "其條件逐字為 `everytime **the startup animation is played**` —— **免責畫面不在開機動畫期間**（`SU1.)` 之序）。**條件互斥之依據為規格自身。**"),
+    315:
+        ("未對照", "**不同音源** —— 設定為 Once a Day",
+         "同 L314。"),
+    316:
+        ("未對照", "**不同音源** —— 設定為 Never 時啟動音不播放",
+         "⚠ **最接近者**：`should not be played on any situation` 為**全稱否定**。惟其標的仍為**啟動音／告別音**，非交通報導之音訊。**不同謂詞（不同音源），非同一命題之相反值。**"),
+    317:
+        ("未對照", "**音量位準** vs **是否可聞**",
+         "`Sound volume level shall match current entertainment sounds volume` 之謂詞為**位準**；本斷言之謂詞為**是否可聞**。**不同謂詞。**"),
+    457:
+        ("未對照", "VR 長按 SIRI 後 radio 之 audio 狀態",
+         "`VRLP1` 之條件逐字為 `shall be functional when **radio is OFF** and KEY ON or ACC` —— **免責畫面之相位中 radio 已在開機序列中而非 OFF**。**條件互斥之依據為 `VRLP1` 之條件句。**"),
+    458:
+        ("未對照", "同 L457",
+         "同 L457。"),
+    459:
+        ("未對照", "同 L457",
+         "同 L457。"),
+    460:
+        ("未對照", "同 L457",
+         "同 L457。"),
+    519:
+        ("未對照", "**head unit 是否靜音** —— `OFF3.)` 取「靜音」；本斷言取「可聞」",
+         "**共同謂詞成立**，惟其條件逐字為 `when **launching app from Power Off State**` —— **`-007` 之 procedure 不含啟動 app**。**條件互斥由 TC 自身之構造成立**（R-PMH87 之同一形態）。"),
+}
+
+# --- `audio` 斷言之矩陣側逐列判定。鍵為 (區塊起列, 列) ---
+AUDIO_CELL_VERDICT: dict[tuple[int, int], tuple[str, str, str]] = {
+    (1, 16):
+        ("未對照", "**是否靜音** —— `Radio Wakes Up and mutes` 取靜音；本斷言取可聞",
+         "**條件互斥之依據為矩陣自身之欄軸**：本列有值之二格其欄為 `Power Button OFF`（頭端關機中），**而免責畫面顯示時頭端已開機**。⚠ 惟 `-007` 之限定**不含「不按 SRT／Off Road+ 鍵」**——其互斥靠欄軸而非靠 TC 構造。"),
+    (37, 40):
+        ("未對照", "**是否靜音** —— `Power press OFF > Mute Active` 取靜音",
+         "**條件互斥由 TC 自身之構造成立** —— `-007` 之限定 1 逐字為 `Do not press the ON/OFF key and do not turn key-off`（R-PMH87）。"),
+    (37, 41):
+        ("未對照", "**是否靜音** —— `unmute`／`HU Unmute`",
+         "其值為**解除**靜音，與本斷言之「可聞」**同向而非相反**；且其為來電之音訊，**不同音源**。⚠ `-007` 之限定**不含「無來電」**（23 §12 第 1 項之同一缺口）。"),
+    (37, 42):
+        ("未對照", "**是否靜音** —— `maintain mute`／`Mute Inactive`",
+         "其值為**維持**既有靜音狀態，非**使之**靜音；本斷言之前提為未靜音，故維持即維持可聞。**非相反值。**"),
+    (37, 43):
+        ("未對照", "**是否靜音** —— `Mute Active`／`Mute Inactive`",
+         "同 `r42`：**維持**而非**使之**靜音。"),
+    (37, 44):
+        ("未對照", "**是否靜音** —— `Mute Active`／`Mute Inactive`",
+         "同 `r42`：其變化在 `Screen Off` 而 `Mute` 為維持。"),
+    (37, 45):
+        ("牴觸", "**音訊是否可聞（是否靜音）** —— 本斷言取「可聞（未靜音）」；本列取 **`Mute --> Active`**（**使之靜音**）",
+         "**共同謂詞取相反值。** 其觸發為**按 Mute 鍵**（c3／c5／c7／c9 逐字 `Mute --> Active`；c11 逐字 `Mute becomes active if previously unmuted`）。**條件互斥未證** —— `-007` 之四項限定（R-PMH87：ON/OFF 鍵、key-off、開門、HVAC 硬控）**不含「不按 Mute 鍵」**，且其欄軸為 `Key On, Gear != Reverse`，**與免責畫面之相位（`KEY ON`）重疊**。**依 R-PMH84 判為牴觸，須上呈，不得自行調和（R-PMH79）。**"),
+    (37, 46):
+        ("未對照", "**是否靜音** —— `If Radio/Media, Mute --> Inactive. Else: Mute Active`",
+         "其 `Mute --> Inactive` 為**解除**靜音（同向）；`Else: Mute Active` **無箭頭，為維持**而非使之靜音（與 c2 之 `Mute --> Inactive` 之記法對照可見）。**非相反值。** ⚠ 該記法之區辨（有無 `-->`）為本層之判讀。"),
+    (37, 47):
+        ("未對照", "**是否靜音** —— 同 `r46`",
+         "同 `r46`（以 VR 切換 Headunit Mode）。"),
+    (37, 48):
+        ("未對照", "**是否靜音** —— `Screen Off Active Mute Active` 等",
+         "其 `Mute` 皆為**維持**；且 `-007` 之限定 2 已含 `do not adjust HVAC hard controls`。**雙重互斥。**"),
+}
+
+
+def lines(pat: re.Pattern) -> list[tuple[int, str]]:
     cfg = yaml.safe_load((ROOT / "feature.yaml").read_text(encoding="utf-8"))
     d = fitz.open(ROOT / cfg["paths"]["spec_pdf"])
     txt = "\n".join(d[i].get_text() for i in range(d.page_count))
     return [(i + 1, re.sub(r"\s+", " ", l).strip())
-            for i, l in enumerate(txt.splitlines()) if PAT.search(l)]
+            for i, l in enumerate(txt.splitlines()) if pat.search(l)]
+
+
+def matrix_rows(pat: re.Pattern):
+    """矩陣側之命中列（`audio` 斷言須掃素材，`popup` 斷言於 20–22 包已掃）。"""
+    import matrix_vs_chapter as mvc
+    wb, ws = mvc.load_sheet()
+    out = []
+    for lo, r, lbl, cells in mvc.event_rows(ws):
+        hits = [(c, ax, v) for c, ax, v in cells if pat.search(v)]
+        if hits:
+            out.append((lo, r, lbl, hits))
+    wb.close()
+    return out
 
 
 def main() -> None:
-    hits = lines()
-    n_match = sum(len(PAT.findall(l)) for _, l in hits)
-    print("=== 規格全文之 pop-up 反向掃描（R-PMH90）===")
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--assertion", choices=sorted(ASSERTIONS), default="popup",
+                    help="R-PMH93 —— 掃描之單位為**斷言**")
+    a = ap.parse_args()
+    rx, desc = ASSERTIONS[a.assertion]
+    pat = re.compile(rx, re.I)
+    lv = LINE_VERDICT if a.assertion == "popup" else AUDIO_LINE_VERDICT
+    hits = lines(pat)
+    n_match = sum(len(pat.findall(l)) for _, l in hits)
+    print(f"=== 規格全文之反向掃描（R-PMH90／R-PMH93）—— 斷言 `{a.assertion}` ===")
+    print(f"  標的：{desc}")
+    print(f"  關鍵詞：`{rx}`")
     print(f"  **行數 = {len(hits)}**；**匹配數 = {n_match}**"
           "  ← 二者為不同之計數單位，不混用\n")
     counts, unnamed = {}, []
     for i, l in hits:
-        v = LINE_VERDICT.get(i)
+        v = lv.get(i)
         print(f"  L{i}: {l[:110]}")
         if v is None:
             print("      **記法：未具名 ← FAIL**")
@@ -122,11 +243,33 @@ def main() -> None:
         counts[kind] = counts.get(kind, 0) + 1
         print(f"      記法：**{kind}**；謂詞：{pred}")
         print(f"      依據：{why}\n")
+    # --- 矩陣側（`audio` 斷言）---
+    if a.assertion == "audio":
+        print("\n--- 矩陣側（State Matrix）---\n")
+        for lo, r, lbl, cs in matrix_rows(pat):
+            v = AUDIO_CELL_VERDICT.get((lo, r))
+            print(f"  [區塊 r{lo}] r{r} {lbl}（{len(cs)} 格命中）")
+            for c, ax, val in cs[:3]:
+                print(f"      c{c} [{ax}] = {val[:100]}")
+            if len(cs) > 3:
+                print(f"      … 另 {len(cs)-3} 格")
+            if v is None:
+                print("      **記法：未具名 ← FAIL**")
+                unnamed.append((lo, r))
+                continue
+            kind, pred, why = v
+            counts[kind] = counts.get(kind, 0) + 1
+            print(f"      記法：**{kind}**；謂詞：{pred}")
+            print(f"      依據：{why}\n")
+
     print("=== 結果 ===")
     print(f"  {counts}；未具名 **{len(unnamed)}**")
     n_conf = counts.get("牴觸", 0)
-    print(f"\n  **牴觸 {n_conf} 行** —— "
-          + ("**規格內部之牴觸（R-PMH89），A-PMH21**" if n_conf else "無"))
+    print(f"\n  **牴觸 {n_conf} 處**"
+          + ("  ← **停止條件觸發，須上呈，不得自行調和（R-PMH79）**" if n_conf else "  —— 無"))
+    if a.assertion == "audio":
+        print_limits()
+        sys.exit(1 if (n_conf or unnamed) else 0)
     print("\n  **與分析層 23 §3.1 之對照**：其報「25 處」，本檔行數 **25** —— **相符**；"
           "\n  其所報之行號（131／147／155／263／144／164／341／357／416–439／453／455／460）"
           "\n  與本檔（127／143／151／257／140／160／332／348／407–430／443／445／450）**逐一相差 4~13**，"

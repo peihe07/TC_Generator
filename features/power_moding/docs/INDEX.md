@@ -30,6 +30,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 21 | 2026-08-25 | **牴觸之判準**、矩陣 × ch 7 全對照、DR 四級狀態機 | [handoff/21_predicate_criterion.md](handoff/21_predicate_criterion.md) ＋ [21a](handoff/21a_dr_dispatch.md) | [upstream/21_predicate_criterion.md](upstream/21_predicate_criterion.md) | R-PMH79–R-PMH83（逐字抄錄 5/5 相符） | A-PMH18 補記（對照涵蓋數字）；**`DR-PMH6` 開立** | **ch 7 × 矩陣牴觸 0；停止條件 9 一度觸發已解除；canon 1／2／5 觸發（既有）** |
 | 22 | 2026-08-25 | **pop-up 組改判**、`VP` 未定義、`-007` 事件層限定 | [handoff/22_popup_conflict.md](handoff/22_popup_conflict.md) ＋ [22a](handoff/22a_007_limitation.md) | [upstream/22_popup_conflict.md](upstream/22_popup_conflict.md) | R-PMH84–R-PMH87（逐字抄錄 4/4 相符） | **A-PMH19（覆蓋缺口三項）**／**A-PMH20（`VP` 未定義）**；**`DR-PMH7` 開立** | **ch 7 牴觸 1／待定義 4；ch 8 牴觸 0；`-007` 已改寫，lint 30/30** |
 | 23 | 2026-08-25 | **規格內部之牴觸**、batch 1 逐條 ER 對照、章 11 × 矩陣 | [handoff/23_spec_internal_conflict.md](handoff/23_spec_internal_conflict.md) | [upstream/23_spec_internal_conflict.md](upstream/23_spec_internal_conflict.md) | R-PMH88–R-PMH90（逐字抄錄 3/3 相符） | **A-PMH21（`SU3.)` × p9 `Pop-ups still shown`）**；`DR-PMH5` 增補 | **三條停止條件全未觸發；ER 牴觸 0／印證 1；ch 11 牴觸 0／印證 2；lint 30/30** |
+| 24 | 2026-08-25 | **正向記法**、A-PMH21 以渲染改判、ER4(b) 之牴觸 | [handoff/24_positive_form.md](handoff/24_positive_form.md) | [upstream/24_positive_form.md](upstream/24_positive_form.md) | R-PMH91–R-PMH93（逐字抄錄 3/3 相符） | **A-PMH21 改判為「未對照」**（原文保留） | **⚠ 停止條件 7 觸發（`r45` × ER4(b)）；ch 10 牴觸 1（已登記）；總表機器化，六支「未實測」** |
 
 ## 01 輪要點
 
@@ -1424,3 +1425,83 @@ procedure 3→5 步（限定拆為兩步，字數 11／12），ER 3→5 逐位�
 **待 Pei**：三筆 DR 之發出＋日期與對象（**`DR-PMH5` 內容已因 A-PMH21 變更**）／
 `DR-PMH5`／`6` 是否已發出（決定增補或另開 `DR-PMH8`／`9`）／
 `PITA9` 之殘餘風險／章 9・10・12 × 矩陣之全對照／23 之 commit 授權（12 路徑）。
+
+---
+
+## 24 包要點
+
+### ⚠ 停止條件 7 觸發 —— ER4(b) 之 `audio` 掃描查出**新的牴觸**
+
+| | 逐字 |
+|---|---|
+| **`-007` ER4(b)** | `The announcement is heard in the background`（音訊可聞） |
+| **矩陣 `r45`**（`Mute Button Pressed`，`Key On, Gear != Reverse`） | **`Mute --> Active`**（使之靜音） |
+
+**共同謂詞取相反值；`-007` 之四項限定不含「不按 Mute 鍵」，
+且其欄軸與免責畫面之相位（`KEY ON`）重疊。**
+**依 R-PMH79 上呈，未自行調和；`-007` 之限定與 ER 本輪未改。**
+
+⚠ **一項判讀決定牴觸是 1 個還是 3 個**：`r46`／`r47` 之 `Else: Mute Active`
+我判為「**維持**」而非「**使之**靜音」，依據是同列之 `Mute --> Inactive` 用了箭頭
+而它沒有。**矩陣未定義其記法。**
+
+### A-PMH21 之牴觸改判為「未對照」—— **我把 p9 渲染出來看了**
+
+分析層 §2.3 指出「欄位沒有人驗過，而欄位決定這個牴觸有多強」，並列為 `DR-PMH5` 之問題。
+**本層以 `get_pixmap` 4x 渲染 p9 之矩陣區判讀，該問題由量測回答：**
+
+| 項 | 實見 |
+|---|---|
+| `Pop-ups still shown` 之欄 | **`HEADUNIT POWER OFF`** |
+| 右欄同位格 | `HVAC Knobs: Fully functional`（**無 pop-up**） |
+| 同欄之 `Climate GUI` 格 | **`Not Visibile due to power off`** |
+
+**免責畫面為 head unit 所顯示，其相位必為開機中；而該格所在之欄為「頭端電源關閉」。
+條件互斥已證（R-PMH84 之要件），牴觸不成立。**
+`spec_assertion_scan --assertion popup` 之牴觸數 **2 → 0**。
+
+**A-PMH21 不撤銷** —— 事實不變，**其登記價值在於：該互斥曾被 22／23／24 三包當成未證**。
+**R-PMH89 之條文亦不撤銷** —— 判準仍有效，只是本 feature 目前沒有它的實例了。
+
+**⚠ 這件事本可更早做**：p9 之矩陣自 13 包（A-PMH14 新漏 2）起就是已知缺口，
+其「以圖呈現」被記了十一包，**而「把它渲染出來看」到本包才做** ——
+`A-PMH04` 之 render 能力早於 04 包即已實測。
+
+### 攔截式列舉廢止（R-PMH91）
+
+`wording_sample.py` **已停用**（拒跑，退出碼 2；其兩層抽樣 10% → 20% 之數據
+為立條依據，故不刪）。新增 `verdict_form.py` —— **正向**驗
+「對照結論是否以四詞之一（`牴觸`／`印證`／`未對照`／`待定義`）作結」。
+
+**母體非列舉**：其為各檢查之**判定表**，每一項依構造即為對照結論。
+**176 項，未以四詞作結者 0。** 三項 must-hit 全過。
+
+`RESIDUE_VERDICT` 之 20 條已改寫（印證 9／未對照 11），**判斷一字未改**。
+⚠ **一項損失具名**：`漏` 映到 `未對照`，而後者亦用於良性之「無對應列」——
+**一個嚴重發現與一個良性發現自此同詞**；已於四詞後保留原措詞供回溯，
+**惟該補償是措詞而非結構**。
+
+### 檢查總表已機器化（R-PMH92）
+
+新增 `scripts/check_table.py`；各檢查註冊 `HAS_MUST_HIT`。
+**28 列中六支標「未實測」**（`canon_coverage`／`challenge_rulings`／`tsv_vs_pdf`／
+`spec_assertion_scan` 兩模式／`batch_er_vs_matrix`）——
+**23 §12 第 7 項所自陳者，自此由程式標示，不必再自行更正。**
+
+### 章 10 × 矩陣：牴觸 1（**已登記**）／印證 3／未對照 26
+
+`r6`／`r24` 之互斥依據為**素材自身之結構**（矩陣另闢第三區塊處理倒車情境），
+**與 22 包被推翻之「矩陣沒提 disclaimer」（沉默）不同。**
+
+### ⚠ 本輪自陳之未竟項中，三項須先看（上繳 §10）
+
+1. **`Else: Mute Active` 之判讀決定牴觸是 1 還是 3**（見上）。
+2. **`-007` 之 ER 共 5 條，我只掃了 ER4 之兩個斷言** ——
+   R-PMH93 之單位是斷言，**而我只挑了 ER4 的兩個**。
+3. **A-PMH21 之改判建立在「免責畫面必為 head unit 開機中所顯示」上，
+   而該命題我沒有在規格中找到逐字支持——它是常識而非引文。**
+   **`VP` 之未定義正是這個問題的近親。**
+
+**待 Pei**：**`r45` × ER4(b) 之牴觸如何處置**（阻斷 batch 1 寫回）／
+`Else: Mute Active` 之記法／三筆 DR 之發出（`DR-PMH5` 第三問已附量測答案）／
+`-007` 其餘四條 ER 之反向掃描／24 之 commit 授權（23 路徑）。

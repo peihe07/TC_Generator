@@ -1403,6 +1403,44 @@ Climate GUI: OFF Climate GUI: Forced OFF`）。
 
 **狀態**：PENDING。**不阻斷 batch 1**（限定已涵蓋）。
 
+### ⚠ **24 包之改判 —— 牴觸不成立，改為「未對照」**（原文一字未改，R-PMH44）
+
+**成因**：24 包 §2.3 指出「**欄位沒有人驗過，而欄位決定這個牴觸有多強**」。
+執行層以 **`get_pixmap` 4x 渲染 p9 之矩陣區**（`fitz.Rect(340, 40, 760, 260)`）
+實地判讀，該問題**由量測回答**：
+
+| 項 | 實見 |
+|---|---|
+| `HVAC Knobs: Fully functional. Pop-ups still shown.` 之欄 | **`HEADUNIT POWER OFF`**（左欄） |
+| 其列 | `KEY ON ENGINE ON` 與 `KEY ON ENGINE OFF (ACC or RUN)` |
+| 右欄（`HEADUNIT POWER ON`）之同位格 | `HVAC Knobs: Fully functional`（**無 pop-up 之敘述**） |
+
+**條件互斥自此成立，且其依據為量測而非推定**（R-PMH84 之要件）：
+
+1. **免責畫面為 head unit 所顯示之畫面** —— 其相位必為 head unit **開機中**；
+2. 而 `Pop-ups still shown` 所在之欄為 **`HEADUNIT POWER OFF`**；
+3. **同一欄之 `Climate GUI` 格逐字為 `Not Visibile due to power off`**
+   —— **該欄之語意即「頭端電源關閉」，其時無任何畫面可顯示免責內容。**
+
+**故 `SU3.)` 與該格之條件互斥，二者不在同一時刻，非同一命題之相反值。**
+
+**記法由 `牴觸` 改為 `未對照`**（R-PMH79／R-PMH84）。
+`spec_assertion_scan.py` 之 `LINE_VERDICT` L332／L348 已同步改判，
+其全檔之牴觸數由 **2 降為 0**。
+
+**⚠ 本則不撤銷** —— 「p9 之能力矩陣有 `Pop-ups still shown` 而 p8 之 `SU3.)`
+為全稱否定」之事實不變，改變的是**二者之條件已證互斥**。
+**其登記價值在於：該互斥曾被三包（22／23／24）當成未證。**
+
+**連帶**：
+- **`-007` 之限定與 ER 不受影響**（其四項限定本即涵蓋 HVAC 硬控）；
+  其 `reasoning` 之依據須自「矩陣 17 格 ＋ 規格 p9 之 2 行**牴觸**」
+  改為「矩陣 17 格 ＋ 規格 p9 之 2 行**未對照（條件已證互斥）**」。
+- **`DR-PMH5` 之第三問已由量測回答** —— 其欄為 `OFF`。
+  該問**保留於 DR 中供上游確認**，惟已附本量測之答案。
+- **R-PMH89（規格內部之牴觸）之條文不撤銷** —— 其判準與處置方式仍然有效；
+  **只是本 feature 目前沒有它的實例了。**
+
 ---
 
 ## 開案時之介面實測記錄（非異常，供追溯）

@@ -13,6 +13,11 @@ SYS1 匯出（`build_layer3_sections.py` 之 `outline_title`），
 用法:
     python scripts/tsv_vs_pdf.py
 """
+
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = False
+MUST_HIT_NOTE = '**未註冊 must-hit** —— 只做逐字比對之量測'
+
 import argparse
 import csv
 import re

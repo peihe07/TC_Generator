@@ -22,6 +22,11 @@
     python scripts/marker_coverage.py --prefix-scan   # 反向掃描與判定表
     python scripts/marker_coverage.py --self-test
 """
+
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = True
+MUST_HIT_NOTE = '`--self-test` 之 must-hit A／B／C／D'
+
 import argparse
 import re
 import sys

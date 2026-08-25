@@ -327,6 +327,24 @@ Excel 全簿無任何一格描述 `ICS Hard Controls`／`HVAC Knobs`／`Climate 
       是否 `SU3.)` 本該寫成有條件句（排除 HVAC pop-up），
       或該矩陣格本該註明其不適用於免責畫面期間？
 
+### ⚠ 第三問已由**量測**回答（24 包）—— 保留供上游確認
+
+24 包 §2.3 指出「欄位沒有人驗過，而欄位決定這個牴觸有多強」。
+執行層以 **`get_pixmap` 4x 渲染 p9 之矩陣區**實地判讀：
+
+| 項 | 實見 |
+|---|---|
+| `Pop-ups still shown` 之欄 | **`HEADUNIT POWER OFF`**（左欄） |
+| 右欄（`HEADUNIT POWER ON`）之同位格 | `HVAC Knobs: Fully functional`（**無 pop-up 之敘述**） |
+| 同欄之 `Climate GUI` 格 | `Not Visibile due to power off` |
+
+**免責畫面為 head unit 所顯示之畫面，其相位必為開機中；
+而該格所在之欄為「頭端電源關閉」。條件互斥已證，牴觸不成立。**
+（A-PMH21 已改判為「未對照」。）
+
+**本問保留於本 DR 中，惟其性質由「請裁定」降為「請確認」** ——
+若上游確認該欄之語意如上，本項即可結清。
+
 **⚠ 本增補之前提**：`DR-PMH5` **尚未發出**（狀態 `DRAFT`，發出日期欄空白）。
 **若 Pei 實際已發出，則此項須改以 `DR-PMH9` 另開**（同 A-PMH19 之二擇一形態）。
 

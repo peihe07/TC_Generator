@@ -23,6 +23,11 @@ without following the Power Moding State Matrix`），故其與規格章之牴�
     python scripts/matrix_vs_chapter.py 7
     python scripts/matrix_vs_chapter.py 7 --vocab      # 只跑詞彙探針
 """
+
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = True
+MUST_HIT_NOTE = '`--must-hit` 三項正向錨點（R-PMH86）'
+
 import argparse
 import re
 import sys
@@ -52,6 +57,9 @@ VOCAB = {
     8: ["sound", "Sound", "start-up", "startup", "goodbye", "Always",
         "Once a Day", "Never", "volume", "Volume", "entertainment",
         "setting", "Setting", "played", "plays", "sync"],
+    10: ["backup cam", "back-up camera", "Power Button Off", "Power Button OFF",
+         "HVAC pop-ups", "HVAC popups", "Phone call popups", "SOS", "ASSIST",
+         "Key OFF", "ACC position", "ignition", "reinstated", "disclaimer"],
     11: ["VR", "VR HK", "hard key", "SIRI", "Voice Assistants", "long press",
          "Long press", "radio is OFF", "KEY ON", "ACC", "Screen Off",
          "Screen ON", "Audio OFF", "Audio ON", "CFTS009", "interaction"],
@@ -394,6 +402,97 @@ VERDICT: dict[tuple[int, int, int], tuple[str, str, str]] = {
     (11, 37, 48):
         ("未對照", "HVAC Hard Control Adjustment 之後果",
          "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    # ===== 24 包步驟 6：章 10 × 矩陣 =====
+    (10, 1, 6):
+        ("未對照", "按 ON/OFF 鍵之後果（電源／pop-up）vs `PITA4` 之「按鍵被忽略」",
+         "**條件互斥之依據為素材自身之結構，非其沉默**：`PITA4` 之條件為 `while backup cam is being shown`，而矩陣**以第三區塊（`Key On, Gear = Reverse`）專門處理倒車情境**（`r40` c6–c11 皆 `Event ignored`，與 `PITA4` 印證）。故本列（第一／二區塊，無 gear 軸）依矩陣自身之切分不涵蓋倒車情境。"),
+    (10, 1, 7):
+        ("未對照", "門開啟之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (10, 1, 8):
+        ("未對照", "門關閉之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (10, 1, 9):
+        ("未對照", "來電之後果（`Head Unit Power ON`）vs `PITA9`",
+         "**不同謂詞** —— `PITA9` 之標的為 **phone call popup 是否顯示於 Power Button Off 之上**（畫面）；本列之格為 **head unit 之電源狀態**。21 §2 已依 R-PMH79 由「非牴觸」改記為「未對照」。"),
+    (10, 1, 10):
+        ("未對照", "Projection 之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (10, 1, 11):
+        ("未對照", "VR 長按（無 Projection）之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。 VR 屬 ch 11。"),
+    (10, 1, 12):
+        ("未對照", "VR 長按（Projection 中）之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。 VR 屬 ch 11。"),
+    (10, 1, 13):
+        ("未對照", "通話結束之後果",
+         "⚠ **最接近者**：`PITA9` 末句載 `If a call is answered … the head unit will return to Power Off State upon the call ending.` 本列逐字為 `End Call but: If the Call started from Power OFF state --> Go back to Power OFF state unless user changes to another screen during the call` —— **同一謂詞取相同值**，惟其條件不同（`PITA9` 為「以軟／硬鍵接聽且通話中未換畫面」；本列為「通話自 Power OFF state 起始」）。**二者互為補充而非同一命題**；且 `PITA9` 之相位為 Power Button Off，本列為 Key-on 區塊。**記未對照，並具名其為印證之候選，待人讀。**"),
+    (10, 1, 14):
+        ("未對照", "Projection 通話結束之後果",
+         "同 `r13`；且 ch 10 全文無 Projection。"),
+    (10, 1, 15):
+        ("未對照", "Key-off 之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (10, 1, 16):
+        ("未對照", "Off Road+ 按鍵之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。 其屬 ch 12。"),
+    (10, 19, 24):
+        ("未對照", "Key-off 狀態下按 ON/OFF 鍵之後果 vs `PITA4`",
+         "**條件互斥之依據為素材自身之結構，非其沉默**：`PITA4` 之條件為 `while backup cam is being shown`，而矩陣**以第三區塊（`Key On, Gear = Reverse`）專門處理倒車情境**（`r40` c6–c11 皆 `Event ignored`，與 `PITA4` 印證）。故本列（第一／二區塊，無 gear 軸）依矩陣自身之切分不涵蓋倒車情境。"),
+    (10, 19, 25):
+        ("未對照", "門開啟之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (10, 19, 26):
+        ("未對照", "來電之後果 vs `PITA9`",
+         "**不同謂詞** —— `PITA9` 之標的為 **phone call popup 是否顯示於 Power Button Off 之上**（畫面）；本列之格為 **head unit 之電源狀態**。21 §2 已依 R-PMH79 由「非牴觸」改記為「未對照」。"),
+    (10, 19, 27):
+        ("未對照", "Projection 之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (10, 19, 28):
+        ("未對照", "VR 長按（無 Projection）之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。 VR 屬 ch 11。"),
+    (10, 19, 29):
+        ("未對照", "VR 長按（Projection 中）之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。 VR 屬 ch 11。"),
+    (10, 19, 30):
+        ("未對照", "門關閉之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (10, 19, 31):
+        ("未對照", "通話結束之後果",
+         "同 `r13` —— `PITA9` 末句之印證候選，條件不同，記未對照。"),
+    (10, 19, 32):
+        ("未對照", "Projection 通話結束之後果",
+         "同 `r14`。"),
+    (10, 19, 33):
+        ("未對照", "Key-on 之後果（`Recall Last state of VP`）",
+         "⚠ **`PITA6.1` 之相鄰命題**：其載 `If radio is in Power Button Off state upon going from ignition in OFF position to ignition in ACC or RUN, HVAC popups shall display` —— 其謂詞為 **HVAC popup 是否顯示**；本列之格為 **回復何狀態**。**不同謂詞。**"),
+    (10, 37, 40):
+        ("印證", "**按 ON/OFF 鍵之輸入是否被忽略** —— `PITA4` 取「被忽略」（`shall be ignored while backup cam is being shown`）；本列 `Gear = Reverse` 之六欄（c6–c11）取 `Event ignored`",
+         "**同一謂詞取相同值**，且矩陣把 `PITA4` 之「backup cam is being shown」**具體化為 `Gear = Reverse`**。21 §2 之重記已定此項。"),
+    (10, 37, 41):
+        ("未對照", "來電之後果（`Screen on`／`unmute`／`HU Powers on`）vs `PITA9`",
+         "**不同謂詞** —— `PITA9` 之標的為 **phone call popup 是否顯示於 Power Button Off 之上**（畫面）；本列之格為 **head unit 之電源狀態**。21 §2 已依 R-PMH79 由「非牴觸」改記為「未對照」。"),
+    (10, 37, 42):
+        ("未對照", "切入 R 檔之後果（`Show back-up camera…`）vs `PITA5` 之第一、二句",
+         "`PITA5` 前二句（`If backup cam needs to be shown during Power Button OFF state, then it shall be shown. This shall not cancel Power Button Off state.`）**於本列無對應格** —— 本列只有第一區塊（`Gear != Reverse`）之四欄有值，**其 `Power Button State` 欄無值**。**無對應列。**"),
+    (10, 37, 43):
+        ("印證", "**RVC 解除後 Power Button Off 是否回復** —— `PITA5` 第三句取「回復」（`the Power Button Off state shall be reinstated`）；本列 c10（`Power Button State = OFF`）取 `Return to Power OFF state`",
+         "**同一謂詞取相同值。** 21 §2 之重記已定此項。"),
+    (10, 37, 44):
+        ("印證", "**Screen Off 鍵之輸入是否被忽略** —— `PITA4` 取「被忽略」；本列 `Gear = Reverse` 之六欄取 `Event ignored`",
+         "**同一謂詞取相同值**，同 `r40`。"),
+    (10, 37, 45):
+        ("未對照", "Mute 鍵之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。 ⚠ 惟本列於 **`audio` 斷言**之掃描中與 `-007` ER4(b) **牴觸**（24 包 §4）—— **該牴觸之一造為 TC 之 ER，非 ch 10 之規格條文**，故於本表記未對照。"),
+    (10, 37, 46):
+        ("未對照", "Headunit Mode 鍵之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (10, 37, 47):
+        ("未對照", "以 VR 切換 Headunit Mode 之後果",
+         "ch 10（`PITA4`／`5`／`6`／`6.1`／`8`／`9`／`10`）全文無此事件之敘述 —— **無對應之規格敘述**。 VR 屬 ch 11。"),
+    (10, 37, 48):
+        ("牴觸", "**HVAC pop-up 是否顯示** —— `PITA6`（10.3）取「顯示」（`shall be temporarily displayed during Power Button Off state`，**全稱**）；本列 c10（`Gear = Reverse` × `Power Button State = OFF`）取 **`Popup not displayed over RVC`**",
+         "**同一謂詞取相反值，條件互斥未證**（20 §4.2 查出，R-PMH80 處置：限縮 ＋ 揭露，不裁權威；`DR-PMH6` 已擬）。**執行層所提之「`PITA4` 通則／例外」調和不採** —— `PITA4` 之對象為使用者之按鍵輸入（`selections`），非 popup 之顯示。"),
 }
 
 

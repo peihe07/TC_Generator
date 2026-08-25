@@ -14,6 +14,11 @@
 用法:
     python scripts/batch_er_vs_matrix.py
 """
+
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = False
+MUST_HIT_NOTE = '**未註冊 must-hit**（24 包 §12）—— 其逐條判定由人寫入'
+
 import json
 import re
 import sys

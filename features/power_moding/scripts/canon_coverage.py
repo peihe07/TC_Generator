@@ -7,6 +7,11 @@
 實施：以 canon 之節標題產生節號全集，減去 `lint_batch.py` 之
 `COVERED` 常數（該常數為 lint 各檢查所宣告之涵蓋節號），差集即為清單。
 """
+
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = False
+MUST_HIT_NOTE = '**未註冊 must-hit** —— 其只做差集，無刻意構造之反例'
+
 import re
 import sys
 from pathlib import Path

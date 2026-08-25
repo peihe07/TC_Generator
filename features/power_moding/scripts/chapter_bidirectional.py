@@ -11,6 +11,11 @@ R-PMH51 明文：A-PMH03 之其餘三則（8、9.1、11.1）須以雙向法複�
 用法:
     python scripts/chapter_bidirectional.py 8
 """
+
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = True
+MUST_HIT_NOTE = '`--source-must-hit` 之範圍向 ＋ must-hit A／B（R-PMH78）'
+
 import argparse
 import hashlib
 import re
@@ -71,45 +76,45 @@ STARTS = {
 # 改以句之 sha1 前綴為鍵，保留前 48 字元供人閱讀。
 RESIDUE_VERDICT: dict[str, str] = {
     "f431a791 Notes: SU1.) When the vehicle's driver door is c":
-        "**漏 —— A-PMH03 之 7.1 已知漏句（非新）**：`after the animation (3 sec) a splash screen is presented timeout (1.5 each).` 於 SYS1 全 52 則不存在（12 包已證）。句首之 `Notes:` 為章標題之殘留。**batch 1 之 `source_clause` 取自 PDF（R-PMH50），該子句在內，故 batch 1 不受影響。**",
+        "未對照 —— **原記「漏」**；**A-PMH03 之 7.1 已知漏句（非新）**：`after the animation (3 sec) a splash screen is presented timeout (1.5 each).` 於 SYS1 全 52 則不存在（12 包已證）。句首之 `Notes:` 為章標題之殘留。**batch 1 之 `source_clause` 取自 PDF（R-PMH50），該子句在內，故 batch 1 不受影響。**",
     "8ca2a25c SU8.) Show the splash screen and disclaimer scre":
-        "**部分漏 —— A-PMH14 新漏 1（非新）**：`SU8.)` 於 SYS1 之 `7.9` 逐字存在；逐字未命中之因為切分把 `SU8.)` 與 `SU9.)` 併為一句。**`SU9.)` 漏，已由 R-PMH74 裁定 `ACCEPTED（經裁定不補）`。**",
+        "未對照 —— **原記「部分漏」**；**A-PMH14 新漏 1（非新）**：`SU8.)` 於 SYS1 之 `7.9` 逐字存在；逐字未命中之因為切分把 `SU8.)` 與 `SU9.)` 併為一句。**`SU9.)` 漏，已由 R-PMH74 裁定 `ACCEPTED（經裁定不補）`。**",
     "0a66f331 SU9.1) Pressing Power Off or Screen Off hard key":
-        "**漏 —— A-PMH14 新漏 1（非新）**：`SU9.1)` 於 SYS1 全簿命中 0。已由 R-PMH74 裁定 `ACCEPTED（經裁定不補）`；**R-PMH55 之適用因而繼續成立**，batch 1 之 `-003`／`-004` 之「不按任何硬鍵」限定有效。",
+        "未對照 —— **原記「漏」**；**A-PMH14 新漏 1（非新）**：`SU9.1)` 於 SYS1 全簿命中 0。已由 R-PMH74 裁定 `ACCEPTED（經裁定不補）`；**R-PMH55 之適用因而繼續成立**，batch 1 之 `-003`／`-004` 之「不按任何硬鍵」限定有效。",
     "4d281b64 Power Moding Please refer to Power Moding State ":
-        "**漏 —— 新漏 2 之範圍（18 包補記者）**：SYS1 全 52 則探針 `Please refer to Power Moding State Matrix` 命中 0。**其所指之矩陣已由 Pei 提供**（R-PMH73，第六筆素材），惟本輪實測其內容與 p9 之矩陣**不對應**（見上繳 §3.3），故補救來源尚未確定。",
+        "未對照 —— **原記「漏」**；**新漏 2 之範圍（18 包補記者）**：SYS1 全 52 則探針 `Please refer to Power Moding State Matrix` 命中 0。**其所指之矩陣已由 Pei 提供**（R-PMH73，第六筆素材），惟本輪實測其內容與 p9 之矩陣**不對應**（見上繳 §3.3），故補救來源尚未確定。",
     "e8fddcc8 HEADUNIT POWER OFF HEADUNIT POWER ON ICS Hard Co":
-        "**漏 —— A-PMH14 新漏 2**：狀態矩陣之表頭（`HEADUNIT POWER OFF`／`ON` × `ICS Hard Controls`／`HVAC Knobs`）。探針於 SYS1 全簿命中皆 0。",
+        "未對照 —— **原記「漏」**；**A-PMH14 新漏 2**：狀態矩陣之表頭（`HEADUNIT POWER OFF`／`ON` × `ICS Hard Controls`／`HVAC Knobs`）。探針於 SYS1 全簿命中皆 0。",
     "e291bd64 HVAC Knobs: Fully functional Climate GUI: Not Vi":
-        "**漏 —— A-PMH14 新漏 2**：矩陣之 `KEY ON ENGINE ON` 列。",
+        "未對照 —— **原記「漏」**；**A-PMH14 新漏 2**：矩陣之 `KEY ON ENGINE ON` 列。",
     "d79b556b HVAC Knobs: Fully functional Climate GUI: Not Vi":
-        "**混合句**：其尾段之 `PM1) … should 'stay awake' for 60 seconds up to 2.5 minutes` 為 PDF 之未刪淨舊文字（R-PMH75，不驗）；其餘 `ICS Hard Controls:`／`HVAC Knobs:`／`Climate GUI:`／`Headunit:`／`KEY ON ENGINE ON`／`KEY OFF (No ACC position)` 等**全為 p9 狀態矩陣之格**，於 SYS1 全缺 —— **A-PMH14 新漏 2**。",
+        "未對照 —— **原記「混合句」**；**混合句**：其尾段之 `PM1) … should 'stay awake' for 60 seconds up to 2.5 minutes` 為 PDF 之未刪淨舊文字（R-PMH75，不驗）；其餘 `ICS Hard Controls:`／`HVAC Knobs:`／`Climate GUI:`／`Headunit:`／`KEY ON ENGINE ON`／`KEY OFF (No ACC position)` 等**全為 p9 狀態矩陣之格**，於 SYS1 全缺 —— **A-PMH14 新漏 2**。",
     "a186ee1c If the user does not interact with the popup wit":
-        "**PDF 側為未刪淨之舊文字 —— 依 R-PMH75 不驗**：Pei 裁定「以刪掉之後的為主」，outline `9.1` 之權威文本為 SYS1。本句之 `within 60 seconds`／`the radio should shut Off the`／`aofnd` 三處皆為舊文字，SYS1 已刪。**A-PMH16 之原判定（時序漏失／獨立行為結果）已被 R-PMH75 推翻。**",
+        "未對照 —— **原記「PDF 側為未刪淨之舊文字」**；**依 R-PMH75 不驗**：Pei 裁定「以刪掉之後的為主」，outline `9.1` 之權威文本為 SYS1。本句之 `within 60 seconds`／`the radio should shut Off the`／`aofnd` 三處皆為舊文字，SYS1 已刪。**A-PMH16 之原判定（時序漏失／獨立行為結果）已被 R-PMH75 推翻。**",
     "a6ecc7ba FOTA update available - If user accepts FOTA pop":
-        "非漏 —— **條列再流**（**A-PMH03** 原記之形態，A-PMH14 已以方向二確認其於 9.1 成立）：SYS1 `9.1` 作 `1. FOTA update available - - If user accepts…`（多一個破折號），三句內容全在。本結論依 **R-PMH66**(c) 由人讀作成。",
+        "印證 —— **原記「非漏」**；**條列再流**（**A-PMH03** 原記之形態，A-PMH14 已以方向二確認其於 9.1 成立）：SYS1 `9.1` 作 `1. FOTA update available - - If user accepts…`（多一個破折號），三句內容全在。本結論依 **R-PMH66**(c) 由人讀作成。",
     "a7348b50 Charge Now - XEV key off-Pop-ups Charge Now/Summ":
-        "非漏 —— 其散文 `3. XEV key off-Pop-ups Charge Now/Summary; Preconditioning.` 於 SYS1 9.1 逐字存在；句首之 `Charge Now -` 為前一條列項之尾，屬**條列再流**（**A-PMH03** 之形態）。本結論依 **R-PMH66**(c) 由人讀作成。",
+        "印證 —— **原記「非漏」**；其散文 `3. XEV key off-Pop-ups Charge Now/Summary; Preconditioning.` 於 SYS1 9.1 逐字存在；句首之 `Charge Now -` 為前一條列項之尾，屬**條列再流**（**A-PMH03** 之形態）。本結論依 **R-PMH66**(c) 由人讀作成。",
     "21837867 Shut the radio down if user dismisses Charge Now":
-        "非漏（散文側）—— SYS1 作 `Shut the radio down if user dismisses XEV key off Pop-ups.`，逐字存在；句中之 `Charge Now` 為前一條列項之尾，屬**條列再流**（**A-PMH03** 之形態）。本結論依 **R-PMH66**(c) 由人讀作成。",
+        "印證 —— **原記「非漏（散文側）」**；散文側之SYS1 作 `Shut the radio down if user dismisses XEV key off Pop-ups.`，逐字存在；句中之 `Charge Now` 為前一條列項之尾，屬**條列再流**（**A-PMH03** 之形態）。本結論依 **R-PMH66**(c) 由人讀作成。",
     "847ec7c1 [CR22412] VR HK to activate SIRI/Voice assistant":
-        "**漏 —— A-PMH14 新漏 2**：矩陣之 `Headunit:` 列（`VR HK to activate SIRI/Voice assistants shall be functional (See CTS009)`，出現兩次即兩欄）。SYS1 全缺。",
+        "未對照 —— **原記「漏」**；**A-PMH14 新漏 2**：矩陣之 `Headunit:` 列（`VR HK to activate SIRI/Voice assistants shall be functional (See CTS009)`，出現兩次即兩欄）。SYS1 全缺。",
     "fe88e914 Additional Power Moding Behavior Notes: POWER BU":
-        "非漏（需求側）—— 章標題於 SYS1 為 outline `10`、`PITA4:` 本文於 `10.1`，皆逐字存在。逐字未命中之因為**全大寫分節標籤** `POWER BUTTON:` 被切入同句，**而該標籤於 SYS1 全缺**（A-PMH17）。",
+        "印證 —— **原記「非漏（需求側）」**；需求側之章標題於 SYS1 為 outline `10`、`PITA4:` 本文於 `10.1`，皆逐字存在。逐字未命中之因為**全大寫分節標籤** `POWER BUTTON:` 被切入同句，**而該標籤於 SYS1 全缺**（A-PMH17）。",
     "7232af2b KEY OFF, HEADUNIT POWER ON: PITA8: During Key OF":
-        "非漏（需求側）—— `PITA8:` 之本文於 SYS1 `10.5` 逐字存在。逐字未命中之因為 PDF 之**全大寫分節標籤** `KEY OFF, HEADUNIT POWER ON:` 被切入同句，**而該標籤於 SYS1 全缺**（A-PMH17）。",
+        "印證 —— **原記「非漏（需求側）」**；需求側之`PITA8:` 之本文於 SYS1 `10.5` 逐字存在。逐字未命中之因為 PDF 之**全大寫分節標籤** `KEY OFF, HEADUNIT POWER ON:` 被切入同句，**而該標籤於 SYS1 全缺**（A-PMH17）。",
     "2be436a5 VR HARD KEY FOR SIRI/NON-NATIVE VOICE ASSISTANTS":
-        "非漏 —— SYS1 之 outline `11` 逐字為 `VR HARD KEY FOR SIRI/NON-NATIVE VOICE ASSISTANTS`（無尾冒號），`11.1` 逐字為 `VRLP1: VR hard key to…`。逐字未命中之因為 PDF 之節標題帶尾冒號、且切分於 `(eg.` 處斷開。**與 A-PMH17 成對照**：章 11 之全大寫標籤**於 SYS1 有**（即 outline 11），章 10 之兩個則全缺。本結論依 **R-PMH66**(c) 由人讀作成。",
+        "印證 —— **原記「非漏」**；SYS1 之 outline `11` 逐字為 `VR HARD KEY FOR SIRI/NON-NATIVE VOICE ASSISTANTS`（無尾冒號），`11.1` 逐字為 `VRLP1: VR hard key to…`。逐字未命中之因為 PDF 之節標題帶尾冒號、且切分於 `(eg.` 處斷開。**與 A-PMH17 成對照**：章 11 之全大寫標籤**於 SYS1 有**（即 outline 11），章 10 之兩個則全缺。本結論依 **R-PMH66**(c) 由人讀作成。",
     "4a2d1d79 Radio status after interaction with SIRI depends":
-        "非漏 —— 切分假象：句切於 `(i.e.` 處；其全句於 SYS1 11.1 逐字存在。與 **A-PMH03** 之「條列再流」同屬萃取切分之產物。本結論依 **R-PMH66**(c) 由人讀作成。",
+        "印證 —— **原記「非漏」**；切分假象：句切於 `(i.e.` 處；其全句於 SYS1 11.1 逐字存在。與 **A-PMH03** 之「條列再流」同屬萃取切分之產物。本結論依 **R-PMH66**(c) 由人讀作成。",
     "9c2707e8 radio back to off), Screen ON and Audio OFF, Scr":
-        "非漏 —— **條列再流**（A-PMH03 原記之形態，A-PMH14 已以方向二確認）：SYS1 11.1 作 `- Screen Off and Audio OFF (i.e. radio back to off), - Screen ON and Audio OFF, …`，僅條列符號不同，四個 outcome 全在",
+        "印證 —— **原記「非漏」**；**條列再流**（A-PMH03 原記之形態，A-PMH14 已以方向二確認）：SYS1 11.1 作 `- Screen Off and Audio OFF (i.e. radio back to off), - Screen ON and Audio OFF, …`，僅條列符號不同，四個 outcome 全在",
     "c8b75652 (DCR19385) POWER MODING STATE MATRIX: Power Modi":
-        "**漏 —— A-PMH14 新漏 3（既有，非新）**：`POWER MODING STATE MATRIX:` 段於 SYS1 全簿命中 0。句首之 `(DCR19385)` 屬前一句（VRLP1）之尾，SYS1 11.1 有之",
+        "未對照 —— **原記「漏」**；**A-PMH14 新漏 3（既有，非新）**：`POWER MODING STATE MATRIX:` 段於 SYS1 全簿命中 0。句首之 `(DCR19385)` 屬前一句（VRLP1）之尾，SYS1 11.1 有之",
     "afb90aca If this document is not available, please reques":
-        "**漏 —— A-PMH14 新漏 3 之第二句（既有，非新）**",
+        "未對照 —— **原記「漏」**；**A-PMH14 新漏 3 之第二句（既有，非新）**",
     "2abdb5e7 Power Moding - Off Road+ Headunit is On Headunit":
-        "非漏（需求側）—— `OFF1.)` 之本文於 SYS1 `12.1` 逐字存在。其餘 `Customer presses power button`／`Forward Facing Camera Launches`／`Headunit is \"Off\" (Idle)` 等**全為 p11 流程圖之標籤**，SYS1 之 `12.4` 逐字為 `Please refer to the diagram (image: …)` —— **A-PMH04 之圖片佔位，已知，非新漏**。",
+        "印證 —— **原記「非漏（需求側）」**；需求側之`OFF1.)` 之本文於 SYS1 `12.1` 逐字存在。其餘 `Customer presses power button`／`Forward Facing Camera Launches`／`Headunit is \"Off\" (Idle)` 等**全為 p11 流程圖之標籤**，SYS1 之 `12.4` 逐字為 `Please refer to the diagram (image: …)` —— **A-PMH04 之圖片佔位，已知，非新漏**。",
 }
 MIN_SENT = 25          # 最短比對單位（字元），比照 13 包
 GRAM = 6               # 6-gram 覆蓋率，比照 13 包

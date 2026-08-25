@@ -14,6 +14,11 @@ R-PMH62 要求「提出某一判準以質疑某項結論時，須將同一判準
 用法:
     python scripts/challenge_rulings.py
 """
+
+# R-PMH92 —— 本檢查之 must-hit 註冊。**總表之結果欄由此決定，手寫不採認。**
+HAS_MUST_HIT = False
+MUST_HIT_NOTE = '**未註冊 must-hit** —— 其判準為標記列舉，R-PMH67 之抽樣非 must-hit'
+
 import math
 import random
 import re
