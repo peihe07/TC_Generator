@@ -20,7 +20,10 @@ from pathlib import Path
 import docx
 import openpyxl
 
-ROOT = Path(__file__).resolve().parents[1]
+from tsv_meta import write_meta
+
+FEAT = Path(__file__).resolve().parents[1]
+ROOT = FEAT
 CFTS = ROOT / "inputs" / ("R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 "
                           "ICS and DCSD _20260310-1533.docx")
 SYS3 = ROOT / "inputs" / ("SYS3_CFTS_020_display_FM-WI-FSM-011-A01_System "
@@ -35,6 +38,49 @@ ID_PATTERNS = {
     "melco (PSCFTS020-n-n-n)": r"PSCFTS\d{3}-\d+-\d+(?:-\d+)?",
     "outline heading (n.n / n.n.n)": r"(?m)^\s*(\d+(?:\.\d+){1,3})\s+\S",
 }
+
+
+def norm(s):
+    return " ".join(str(s or "").split())
+
+
+def spec_text_layer_rows():
+    """The character counts this file yields under each extractor.
+
+    Three numbers for one file, because `recon.py`'s pipeline probe and this
+    script measure it differently — 854,333 (pymupdf) vs 907,382
+    (python-docx). Neither is wrong; they extract different things from a
+    .docx. The registered value is the pipeline's (下放包 10 §2.1), and the
+    others are kept here so the difference stays visible instead of living
+    in one terminal session's scrollback.
+    """
+    name = CFTS.name
+    rows = []
+    try:
+        import pymupdf as fitz
+    except ImportError:
+        try:
+            import fitz
+        except ImportError:
+            fitz = None
+    if fitz is not None:
+        doc = fitz.open(CFTS)
+        rows.append(("spec_pdf", name, "pymupdf",
+                     str(sum(len(pg.get_text()) for pg in doc)), "Y",
+                     "recon.py survey_spec_text_layer()；跨 feature 之管線探針"))
+        doc.close()
+    d = docx.Document(CFTS)
+    paras = [norm(p.text) for p in d.paragraphs if p.text.strip()]
+    cells = [norm(c.text) for t in d.tables for r in t.rows for c in r.cells
+             if c.text.strip()]
+    rows.append(("spec_pdf", name, "python-docx（段落＋表格格，正規化後）",
+                 str(len("\n".join(paras + cells))), "N",
+                 "features/display/scripts/probe_spec_mode.py；本 feature 自測"))
+    raw = "\n".join([p.text for p in d.paragraphs]
+                    + [c.text for t in d.tables for r in t.rows for c in r.cells])
+    rows.append(("spec_pdf", name, "python-docx（未正規化、含空段）",
+                 str(len(raw)), "N", "同上，另一種計法"))
+    return rows
 
 
 def probe_docx(path, label):
@@ -102,6 +148,28 @@ def main():
               f"{len(set(nonblank))} distinct")
         for v, n in Counter(nonblank).most_common(5):
             print(f"     {v!r} x{n}")
+
+    cols = ["path_key", "file", "extractor", "chars", "registered", "source"]
+    rows = spec_text_layer_rows()
+    out = FEAT / "data" / "spec_text_layer.tsv"
+    with out.open("w", encoding="utf-8") as fh:
+        fh.write("\t".join(cols) + "\n")
+        for r in rows:
+            fh.write("\t".join(r) + "\n")
+    write_meta(out, cols, len(rows),
+               generated_by="features/display/scripts/probe_spec_mode.py",
+               rulings=["R-G19", "R-DM34", "A-DM26"],
+               measurement_conditions=(
+                   "同一份 .docx 由三種計法量得。三數皆由本腳本現算，"
+                   "非人工登記；差異為抽取器不同而非計算錯誤。"),
+               notes=(
+                   "登記值取 pymupdf（下放包 10 §2.1）：該數字之用途是判斷"
+                   "有無文字層（門檻 500 字元），三數皆遠超門檻，導出之結論"
+                   "相同（spec_mode D 成立）；跨 feature 之可比性由管線探針"
+                   "提供。另記 A-DM26：欄名為 spec_pdf 而內容為 .docx。"))
+    print("\n## spec text layer —— 三種計法（寫入 data/spec_text_layer.tsv）")
+    for r in rows:
+        print(f"  {r[2]:38s} {r[3]:>8}  registered={r[4]}")
 
     print("\n## 交叉：SYS2 Melco ID 是否可在 CFTS 本文中定位")
     wb = openpyxl.load_workbook(SYS2, read_only=True, data_only=True)

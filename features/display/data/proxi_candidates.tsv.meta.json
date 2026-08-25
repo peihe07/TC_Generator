@@ -17,7 +17,20 @@
  "data_rows": 446,
  "generated_by": "features/display/scripts/proxi_candidates.py",
  "generated_at": "2026-08-25",
- "inputs": [],
+ "inputs": [
+  {
+   "file": "forms/Logical Identifiers and CAN Mapping v1_78.xlsx",
+   "sha256": "a01e1679c706cd454daf82573a732fe5ad5eedb3865083897cb18c970b312433"
+  },
+  {
+   "file": "forms/PROXI_HDCC27_R3_20250424.xlsx",
+   "sha256": "e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2"
+  },
+  {
+   "file": "inputs/Display_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx",
+   "sha256": "ab3198e81fb21d2182f5dd7a665488aac5eb937481cf6bede9ecc668f3185050"
+  }
+ ],
  "measurement_conditions": "母體＝LID `Proxi & Configuration` 之資料列；R-DM25 正規化＝比對前對兩側同時施加 re.sub(r'[ _]+', ' ', s)，僅此一項（連字號、點號、駝峰切分不在範圍內）",
  "rulings": [
   "R-DM12",

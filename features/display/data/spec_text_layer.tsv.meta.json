@@ -9,13 +9,14 @@
   "source"
  ],
  "data_rows": 3,
- "generated_by": "下放包 10 步驟 3（人工登記；probe_spec_mode.py 原本只印不寫檔）",
+ "generated_by": "features/display/scripts/probe_spec_mode.py",
  "generated_at": "2026-08-25",
  "inputs": [],
- "measurement_conditions": "同一份 .docx 由三種計法量得：pymupdf 854,333（recon.py 之探針）／python-docx 段落+表格格正規化後 907,382（自測）／python-docx 未正規化 910,850。三數皆已由執行層重現，差異為抽取器不同而非計算錯誤。",
+ "measurement_conditions": "同一份 .docx 由三種計法量得。三數皆由本腳本現算，非人工登記；差異為抽取器不同而非計算錯誤。",
  "rulings": [
   "R-G19",
-  "R-DM34"
+  "R-DM34",
+  "A-DM26"
  ],
- "notes": "登記值取 854,333（下放包 10 §2.1）：該數字之用途是判斷有無文字層（門檻 500 字元），三數皆遠超門檻，導出之結論相同（spec_mode D 成立）；跨 feature 之可比性由管線探針提供。907,382 不作廢，並列於此。另記 A-DM26：欄名為 spec_pdf 而內容為 .docx。"
+ "notes": "登記值取 pymupdf（下放包 10 §2.1）：該數字之用途是判斷有無文字層（門檻 500 字元），三數皆遠超門檻，導出之結論相同（spec_mode D 成立）；跨 feature 之可比性由管線探針提供。另記 A-DM26：欄名為 spec_pdf 而內容為 .docx。"
 }

@@ -284,9 +284,21 @@ def main():
         for d in out:
             fh.write("\t".join(str(d[c]).replace("\t", " ") for c in cols) + "\n")
 
+    import hashlib
+
+    def _sha(path):
+        return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
     write_meta(
         p, cols, len(out),
         generated_by="features/display/scripts/proxi_candidates.py",
+        # R-G15/R-G23: this index is only as current as the files it was
+        # built from. Recording their sha256 here does not make it expire on
+        # its own — verify_reference_binding.py is what notices — but it
+        # makes the tie visible instead of implied.
+        inputs=[{"file": str(LID.relative_to(ROOT)), "sha256": _sha(LID)},
+                {"file": str(PROXI.relative_to(ROOT)), "sha256": _sha(PROXI)},
+                {"file": str(F037.relative_to(FEAT)), "sha256": _sha(F037)}],
         rulings=["R-DM12", "R-DM13", "R-DM20", "R-DM22", "R-DM23", "R-DM25",
                  "R-DM33"],
         measurement_conditions=(

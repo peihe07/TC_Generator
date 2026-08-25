@@ -19,6 +19,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 08 | 2026-08-25 | Q5-B 誤診歸屬、警示分支實測、正規化回施 | [handoff/08_recon_and_norm.md](handoff/08_recon_and_norm.md) | [upstream/08_recon_and_norm.md](upstream/08_recon_and_norm.md) | R-DM28／R-DM29 ＋ R-G18（全域）（逐字抄錄 3/3，Display 累計 31/31） | A-DM23 新增 | **步驟 1、2、4–7 執行；步驟 3（選項 D）待 Pei 裁示未做。二十二條停止條件全未觸發** |
 | 09 | 2026-08-25 | 選項 D 執行、sidecar 化、ETM 判準否定 | [handoff/09_recon_crosscheck.md](handoff/09_recon_crosscheck.md) | [upstream/09_recon_crosscheck.md](upstream/09_recon_crosscheck.md) | R-DM30／R-DM31 ＋ R-G19／R-G20（全域）（逐字抄錄 4/4，Display 累計 33/33） | A-DM24（自查，RESOLVED）／A-DM25 新增 | **步驟 1–4、6 執行；步驟 5 觸發停止條件 25 已停。`recon.py` 七輪來首次跑通，回歸 11/12 相同** |
 | 10 | 2026-08-25 | 交叉檢查結案、DECISIONS 合併、PROXI 改需求驅動 | [handoff/10_decisions_merge.md](handoff/10_decisions_merge.md) | [upstream/10_decisions_merge.md](upstream/10_decisions_merge.md) | R-DM32–R-DM34 ＋ R-G21／R-G22（全域）（逐字抄錄 5/5，Display 累計 36/36） | A-DM26 新增 | **步驟 1–7 全數執行；二十七條停止條件全未觸發。Q2／Q3 材料已備，`docs/proxi_triage_proposal.md` SUPERSEDED** |
+| 11 | 2026-08-25 | 綁定檢查、合併複驗、待裁期間之不阻塞工作 | [handoff/11_binding_verify.md](handoff/11_binding_verify.md) | [upstream/11_binding_verify.md](upstream/11_binding_verify.md) | R-DM35 ＋ R-G23（全域）（逐字抄錄 2/2，Display 累計 37/37） | （無新 A-DM） | **⚠ 步驟 3 觸發停止條件 29：合併漏了 3 項，已停於待裁。步驟 1、2、4–6 完成** |
 
 ## 02 輪要點
 
@@ -226,3 +227,32 @@ pymupdf 854,333 vs python-docx 907,382，兩數皆重現，**未擇一**）。
 **Q2／Q3 材料已備**：`docs/Q2_Q3_briefing.md`。Q2 由「暫緩」改為
 `[PEI]` 可提交；Q5 標為已裁定（B）並註明其未達原目的。
 briefing 末列 **6 項未涵蓋者**，逐項標「未查證／未量測」，不補推論。
+
+## 11 輪要點
+
+**⚠ 停止條件 29 觸發** —— 上輪之 `DECISIONS` 合併漏了三項，複驗查出：
+
+| # | 項 | recon | 合併後之 `DECISIONS.md` |
+|---|---|---|---|
+| 1 | `ruled-constant assertions` | `[AUTO] 0 checked, 0 PASS, 0 FAIL` | **無此項** |
+| 2 | `Test Set table (Part N)` | `[PEI]` | `[PROPOSED]` |
+| 3 | `profile [OVERRIDE] clauses` | `[PEI]` | `[PROPOSED]` |
+
+第 2、3 項之 `[PROPOSED]` 出自 `61d1c12`（02 輪），**早於 recon 首次執行**
+—— 是合併未察覺之既存分歧，非合併時降格。三項皆**未自行修正**。
+
+> 上輪 §8 第 2 項我自陳「合併這個動作本身沒有被交叉檢查」。
+> 本輪一驗就查出三項 —— 該自陳不是形式話。
+
+**R-G23 綁定檢查**：`verify_reference_binding.py` 四項 **4/4 相符**；
+另測其失敗分支（蓄意改宣告值），確認印出兩值全碼、退出碼 1、
+且**不改寫宣告值**。狀態已還原並複驗。
+
+**`spec_text_layer.tsv` 改為腳本產出**（`probe_spec_mode.py`），
+三數現算不再人工登記，列數 3→3 未變。
+
+**`proxi_candidates.tsv` sidecar** 加入三份來源之 sha256（LID／PROXI／037），
+使索引與其來源之綁定可見。
+
+**`DECISIONS.new.md`** 依 R-DM35 加註地位；重跑之新舊兩份**逐字相同**，
+舊者改名 `DECISIONS.new.2026-08-25a.md` 保留。
