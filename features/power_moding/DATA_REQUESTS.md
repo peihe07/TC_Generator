@@ -12,10 +12,10 @@ Urgency 回報。
 
 | # | 主旨 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
-| **DR-PMH1** | CFTS009 所定之 Off Road+ power moding 行為 | **CLOSED-BY-RULING**（R-PMH72） | 1（`SWE1-HMI-PM-028`） | `Off Road Plus` 批之 1 條為 `PENDING` 佔位；**含 PENDING 之工作簿不得出貨**（§8.4.3） | **A-PMH13** | **High（交付前阻斷）** |
-| **DR-PMH2** | **Power Moding State Matrix**（獨立 Excel 文件） | **RESOLVED（素材已到）**（R-PMH73）⚠ 見 §DR-PMH2 之落地複驗 | ch 9 之 5 leaf（引 `9.1`）＋ 全 feature 之 power moding 行為 | 規格逐字稱「behavior **shall not be developed without following** the Power Moding State Matrix」——**該文件不在四份素材內** | **A-PMH14** | **High** |
-| **DR-PMH3** | `SU9.)` 與 `SU9.1)` 是否應存在於 037 | **CLOSED-BY-RULING**（R-PMH74） | **0（現無 leaf）** | PDF p8 有該二需求而 SYS1／037 全無 → **不在 48 leaf 內**；其題材落在 `Disclaimer Screen` 且影響逾時語意 | **A-PMH14** | **High** |
-| **DR-PMH5** | **PDF p9 之能力矩陣**之來源文件 | **OPEN** | ch 9 之 5 leaf（引 `9.1`） | **ch 9 不得開批** —— 已提供之 `DCR21421` State Matrix 為**另一主題之矩陣**，不含 p9 之內容（A-PMH18） | **A-PMH18** | **High（阻斷 ch 9 開批）** |
+| **DR-PMH1** | CFTS009 所定之 Off Road+ power moding 行為 | **`CLOSED`**（R-PMH72；**歷程中從未 `SENT`**） | 1（`SWE1-HMI-PM-028`） | `Off Road Plus` 批之 1 條為 `PENDING` 佔位；**含 PENDING 之工作簿不得出貨**（§8.4.3） | **A-PMH13** | **High（交付前阻斷）** |
+| **DR-PMH2** | **Power Moding State Matrix**（獨立 Excel 文件） | **`CLOSED`**（R-PMH73；**歷程中從未 `SENT`**）⚠ 見 §DR-PMH2 之落地複驗與 A-PMH18 | ch 9 之 5 leaf（引 `9.1`）＋ 全 feature 之 power moding 行為 | 規格逐字稱「behavior **shall not be developed without following** the Power Moding State Matrix」——**該文件不在四份素材內** | **A-PMH14** | **High** |
+| **DR-PMH3** | `SU9.)` 與 `SU9.1)` 是否應存在於 037 | **`CLOSED`**（R-PMH74；**歷程中從未 `SENT`**） | **0（現無 leaf）** | PDF p8 有該二需求而 SYS1／037 全無 → **不在 48 leaf 內**；其題材落在 `Disclaimer Screen` 且影響逾時語意 | **A-PMH14** | **High** |
+| **DR-PMH5** | **PDF p9 之能力矩陣**之來源文件 | **`DRAFT`**（R-PMH83 已授權發出，**待 Pei 告知實際發出日期與對象**） | ch 9 之 5 leaf（引 `9.1`） | **ch 9 不得開批** —— 已提供之 `DCR21421` State Matrix 為**另一主題之矩陣**，不含 p9 之內容（A-PMH18） | **A-PMH18** | **High（阻斷 ch 9 開批）** |
 
 ---
 
@@ -142,18 +142,31 @@ Urgency 回報。
 
 ### 未結 DR 清單（每包上繳須附，R-PMH47(c)）
 
-**四筆於 2026-08-24 由 Pei 一次結清**（19a 包，逐字裁定見 §四）。
+**狀態欄自 21 包起用 R-PMH82 之四級**：`DRAFT`／`SENT`／`ANSWERED`／`CLOSED`。
+**未記載發出日期與對象者，一律為 `DRAFT`，不得稱「已發」。**
 
-| DR | 主旨 | 狀態 | 裁定條文 | 阻斷 |
-|---|---|---|---|---|
-| **DR-PMH1** | CFTS009 之 Off Road+ 行為 | **CLOSED-BY-RULING**（未答覆而結案） | R-PMH72 | **解除** —— `-028` 不寫入工作簿，交付不再受其阻斷 |
-| **DR-PMH2** | Power Moding State Matrix Excel | **RESOLVED（素材已到）** | R-PMH73 | **⚠ 未完全解除** —— 見下 |
-| **DR-PMH3** | `SU9.)`／`SU9.1)` 是否應在 037 | **CLOSED-BY-RULING** | R-PMH74 | **解除** —— 不補入，leaf 母體維持 48 列／47 有 TC |
-| **DR-PMH4** | outline 9.1 之 PDF 破句何者為權威 | **CLOSED-BY-RULING**（開立即結案） | R-PMH75 | **解除** —— 以 SYS1 為權威；`Power Transitions` 解凍 |
+| DR | 主旨 | 狀態 | 發出日期 | 發出對象 | 管道 | 結案依據 | 阻斷 |
+|---|---|---|---|---|---|---|---|
+| **DR-PMH1** | CFTS009 之 Off Road+ 行為 | **`CLOSED`** | **（從未發出）** | — | — | R-PMH72 | 解除 |
+| **DR-PMH2** | Power Moding State Matrix Excel | **`CLOSED`** | **（從未發出）** | — | — | R-PMH73 | ⚠ 其素材與 p9 不對應（A-PMH18）→ 另開 `DR-PMH5` |
+| **DR-PMH3** | `SU9.)`／`SU9.1)` 是否應在 037 | **`CLOSED`** | **（從未發出）** | — | — | R-PMH74 | 解除 |
+| **DR-PMH4** | outline 9.1 之 PDF 破句何者為權威 | **`CLOSED`** | **（從未發出）** | — | — | R-PMH75 | 解除 |
+| **DR-PMH5** | **PDF p9 之能力矩陣**之來源文件 | **`DRAFT`** | **（待填）** | （待填） | （待填） | — | **ch 9 開批** |
+| **DR-PMH6** | RVC 情境下 HVAC popup 之規格依據 | **`DRAFT`** | **（待填）** | （待填） | （待填） | — | **否**（R-PMH80 已以限縮＋揭露解除） |
 
-| **DR-PMH5** | **PDF p9 之能力矩陣**之來源文件 | **OPEN**（20 包開立，R-PMH76） | R-PMH76 | **ch 9 開批** |
+**合計未結 2 筆（`DR-PMH5`／`DR-PMH6`），二者皆為 `DRAFT`。**
 
-**合計未結 1 筆（`DR-PMH5`）。**
+**R-PMH82 之回溯記明**：`DR-PMH1`～`4` 自 2026-08-24 開立起，
+經執行層於**六個往返連續重申**而其狀態欄始終為 `OPEN` ——
+**該欄無法分辨「登記了」與「發出了」**，致「尚未發出」這件事
+沒有任何欄位承載它。四者最終由 Pei 之裁定結清，**歷程中從未 `SENT`**。
+
+**`DR-PMH5`／`DR-PMH6` 已由 Pei 於 2026-08-25 授權發出（R-PMH83）**，
+其可寄出全文見 `docs/handoff/21a_dr_dispatch.md` §三，
+並轉錄於本檔 §五、§六。**執行層不得代為發出**；
+Pei 告知實際日期與對象後，狀態方改 `SENT` ——
+**不得以下放包之日期充當發出日期。**
+
 
 ---
 
@@ -303,3 +316,167 @@ Excel 全簿無任何一格描述 `ICS Hard Controls`／`HVAC Knobs`／`Climate 
 | 規格 PDF | `DCR22412` | 2023-01-24 |
 
 **Excel 較早**，且其 `SR24 Change Log` 之末筆為 **2021-10-20**，未及其自稱日期。
+
+---
+
+## DR-PMH6（開立 2026-08-25，依 **R-PMH80(b)**）
+
+**型別**：規範性素材有載而規格未載，且與規格之全稱句字面牴觸。
+
+**成對之 anomaly**：`10.3` 之牴觸（20 包 §4.2 查出，R-PMH80 處置）。
+**狀態**：`DRAFT`（R-PMH83 已授權發出，待 Pei 告知實際日期與對象）。
+**不阻斷** —— `Power Off Behavior` 組已由 R-PMH80 以「限縮 ＋ 揭露」解除。
+
+### 問題摘要
+
+| | 逐字 |
+|---|---|
+| 規格 `PITA6`（outline 10.3） | `HVAC pop-ups shall be temporarily displayed during Power Button Off state.`（**全稱句，無例外**） |
+| 矩陣 `r48c10`（`Key On, Gear = Reverse` × `Power Button State = OFF`） | `Popup not displayed over RVC` |
+
+**執行層曾提「以 `PITA4` 建立之倒車影像優先原則調和」，該調和不採**（R-PMH80）：
+`PITA4` 之逐字為 `Screen Off and HU Power button **selections** shall be ignored
+while backup cam is being shown.` —— **其對象為使用者之按鍵輸入，非 popup 之顯示**。
+
+### 處置（R-PMH80，不待答覆即生效）
+
+(a) `10.3` 之 TC 於 Pre-Condition 加「倒車影像未顯示（`Gear != Reverse`）」，
+    依 R-PMH55 之形態限縮，來源於 `reasoning` 具名；
+(b) RVC 情境之行為**只在矩陣有、規格未載**，依 R-PMH55(b) 不撰 TC，
+    **登記為覆蓋缺口**。
+
+---
+
+## 五、`DR-PMH5` 之可寄出全文（R-PMH83 授權，**執行層不得代為發出**）
+
+```text
+Subject: Power Moding HMI — request for the source of the capability matrix on page 9
+
+Hello,
+
+We are preparing the SWE.6 test cases for Power Moding HMI
+(FM-WI-FSM-037-A03-N1L-SWE1-PowerModing-HMI-V0.1, based on
+"Power Moding HMI Logic and Flow R1 SR24 2A DCR22412 (January 24 2023)").
+
+Page 10 of the logic and flow document states, verbatim:
+
+    POWER MODING STATE MATRIX: Power Moding behavior shall not be developed
+    without following the Power Moding State Matrix, which is in a separate
+    Excel document. If this document is not available, please request a copy
+    from the author of this logic and flow document.
+
+We have received a file named "Power Moding HMI State Matrix R1 SR24 Post 2A
+DCR21421 (August 3 2022).xlsx". However, it does not appear to correspond to
+the matrix printed on page 9 of the logic and flow document. The two differ in
+structure:
+
+  Page 9 matrix
+    Rows    : KEY ON ENGINE ON / KEY OFF (ACC) / KEY OFF (No ACC)
+    Columns : ICS Hard Controls / HVAC Knobs / Climate GUI / Headunit,
+              each split by HEADUNIT POWER OFF and HEADUNIT POWER ON
+    Cells   : whether the item is available in that power state
+
+  Excel "State Matrix" sheet
+    Blocks  : Key-on / Key-off / Key On, Gear <> Reverse
+    Rows    : events (ON/OFF button Pressed, Door opened, Incoming Call,
+              Plug in Projection, VR button long press, Call Ended,
+              SRT or Off Road+ Hard Button press, Screen Off Button Pressed,
+              Mute Button Pressed, HVAC Hard Control Adjustment, ...)
+    Columns : context conditions (Turn Off @ door opening Enabled/Disabled,
+              HU on / HU off / Power Button OFF, Call Active/Not Active,
+              Door Open/Closed)
+    Cells   : the resulting state after the event
+
+We searched the Excel file for the terms used on page 9. The following strings
+return zero matches across all 362 non-empty cells:
+
+    HEADUNIT POWER, ICS Hard Controls, HVAC Knobs, Climate GUI,
+    ENGINE ON, ENGINE OFF, Power Button only is functional,
+    Fully functional, Power Accessory Delay, accessory delay,
+    FOTA, Charge Now, stay awake
+
+No cell in the Excel file describes the availability of ICS Hard Controls,
+HVAC Knobs or Climate GUI in a given power state.
+
+We also note that the page 9 matrix is absent from the SYS1 structured export
+of this document, so it is not available to us in any machine-readable form.
+
+Could you please clarify one of the following:
+
+  (1) Is there a separate document that contains the page 9 capability matrix,
+      and if so may we have a copy; or
+
+  (2) Is the page 9 matrix itself the authoritative source for that content,
+      with the DCR21421 Excel covering a different subject (event-driven power
+      state transitions)?
+
+Until this is clarified we have suspended test case authoring for section 9
+(Power Moding), which covers 5 requirements (SWE1-HMI-PM-018-01 through -05).
+
+One further observation, offered for your information only: the change log in
+the DCR21421 Excel ends at 2021-10-20, which is earlier than the August 3 2022
+date given on its own title sheet.
+
+Thank you,
+```
+
+---
+
+## 六、`DR-PMH6` 之可寄出全文（R-PMH83 授權，**執行層不得代為發出**）
+
+```text
+Subject: Power Moding HMI — PITA6 and the state matrix appear to conflict for the reverse camera case
+
+Hello,
+
+While preparing the SWE.6 test cases for Power Moding HMI we found what appears
+to be a conflict between the logic and flow document and the Power Moding State
+Matrix. We would rather ask than choose one of them.
+
+The logic and flow document, section "Additional Power Moding Behavior Notes",
+states verbatim:
+
+    PITA6: HVAC pop-ups shall be temporarily displayed during Power Button Off
+    state.
+
+This is written without exception.
+
+The Power Moding State Matrix ("State Matrix" sheet, block "Key On, Gear =
+Reverse", row "HVAC Hard Control Adjustment", column "Power Button State = OFF")
+states verbatim:
+
+    Popup not displayed over RVC
+
+For the case where the vehicle is in reverse and the reverse camera is being
+shown, these two cannot both hold: PITA6 says the HVAC pop-up is displayed
+during Power Button Off state, and the matrix says it is not displayed over the
+reverse camera view.
+
+We considered reading PITA6 as a general rule with the reverse camera as an
+exception, on the basis of PITA4. However PITA4 reads, verbatim:
+
+    PITA4: Screen Off and HU Power button selections shall be ignored while
+    backup cam is being shown.
+
+PITA4 concerns user key inputs being ignored, not the display of pop-ups, so we
+do not think it establishes an exception for PITA6. We have therefore not made
+that assumption.
+
+Two questions:
+
+  (1) Should PITA6 be read as conditional, i.e. excluding the case where the
+      reverse camera is being shown? If so, could the wording be updated
+      accordingly?
+
+  (2) The behaviour "Popup not displayed over RVC" appears only in the state
+      matrix and not in the logic and flow document, and consequently has no
+      corresponding requirement in the SWE.1 analysis report. Should it be
+      added as a requirement? At present no test case will cover it, because we
+      do not author test cases for behaviour that has no requirement of its own.
+
+In the meantime we are writing the PITA6 test case with a pre-condition that
+the reverse camera is not being shown, and recording the reverse camera case as
+a coverage gap.
+
+Thank you,
+```

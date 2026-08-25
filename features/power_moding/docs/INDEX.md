@@ -27,6 +27,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 18 | 2026-08-24 | **章 9／11 逐字複驗**、偽陰抽樣、doc-sync 改錨 | [handoff/18_break_the_circle.md](handoff/18_break_the_circle.md) | [upstream/18_break_the_circle.md](upstream/18_break_the_circle.md) | R-PMH66–R-PMH68（逐字抄錄 3/3 相符） | **A-PMH16（SYS1 之 9.1 散文漏字，兩處為時序）** | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；分割檢查未覆蓋段無 marker** |
 | 19 | 2026-08-24 | **Pei 四筆 DR 一次結清**、leaf 48→47、預設來源改 block 層 | [handoff/19_broken_source.md](handoff/19_broken_source.md) ＋ [19a](handoff/19a_pei_dr_rulings.md) | [upstream/19_broken_source.md](upstream/19_broken_source.md) | R-PMH69–R-PMH75（逐字抄錄 7/7 相符） | **A-PMH17（章 10 全大寫標籤全缺）**／**A-PMH18（State Matrix 與 p9 不對應，停手上呈）**；A-PMH13／14／16 狀態更新 | **⚠ 停止條件 canon 2、canon 5、本包 8 觸發；本包 7 為字面／目的分歧；六章全 PASS；lint 30/30** |
 | 20 | 2026-08-25 | **State Matrix 效力範圍更正**、Off Road+ 互補分支、PITA6 牴觸 | [handoff/20_matrix_scope.md](handoff/20_matrix_scope.md) | [upstream/20_matrix_scope.md](upstream/20_matrix_scope.md) | R-PMH76–R-PMH78（逐字抄錄 3/3 相符） | A-PMH18 補記（語意層亦不涵蓋）；**`DR-PMH5` 開立** | **⚠ canon 1／2／5 觸發；本包 7 字面觸發；`--source-must-hit` 改寫後轉綠；TSV 重跑 diff = 0** |
+| 21 | 2026-08-25 | **牴觸之判準**、矩陣 × ch 7 全對照、DR 四級狀態機 | [handoff/21_predicate_criterion.md](handoff/21_predicate_criterion.md) ＋ [21a](handoff/21a_dr_dispatch.md) | [upstream/21_predicate_criterion.md](upstream/21_predicate_criterion.md) | R-PMH79–R-PMH83（逐字抄錄 5/5 相符） | A-PMH18 補記（對照涵蓋數字）；**`DR-PMH6` 開立** | **ch 7 × 矩陣牴觸 0；停止條件 9 一度觸發已解除；canon 1／2／5 觸發（既有）** |
 
 ## 01 輪要點
 
@@ -1217,3 +1218,66 @@ KNOWN-INCOMPLETE（20 條中 **13 條為執行層本人所寫**）。
 
 **待 Pei**：`DR-PMH5` 之發出（阻斷 ch 9）／**`10.3` 之牴觸如何裁**／
 §12 第 2、4 項之兩個「我不該自己做的判斷」／20 之 commit 授權（9 路徑）。
+
+---
+
+## 21 包要點
+
+### ch 7 × State Matrix：**30 事件列全部對照，牴觸 0、印證 0、未對照 30**
+
+母體具名：非空列 43／事件列 **30**／非空格 362／`-` 佔位 93／
+**事件列之有值格 174**（＝可對照之母體）／其餘 95。**每列皆具名記法、謂詞與依據。**
+
+**範圍向**：ch 7 之十七個關鍵名詞（`animation`／`splash`／`disclaimer`／
+`comfort`／`Maserati`／`ignition`／`black`／`timeout`／`CAN BUS`／`3 sec` …）
+**於矩陣全部 0 命中**。**batch 1 不受規範性素材之牴觸影響。**
+
+⚠ 一處必須說明：不敏感之比對會使 `Radio OFF` 誤命中 `Radio Off Delay` **15 次**
+——二者為不同之詞。探針已改大小寫敏感。
+
+**最接近牴觸之三列已具名為須人讀**：`r30`（門關閉 → `Event ignored`）／
+`r48`（HVAC → `Show Pop-Up`）／`r33`（`Recall Last state of VP`）。
+
+### 停止條件 9 一度觸發並已修
+
+`RESIDUE_VERDICT` 20 條中 **5 條未引任何 anomaly 或裁決條號** ——
+**五者皆為「切分／條列再流」型之結論，而該現象本身有登記（A-PMH03），
+我當時只寫了現象，沒寫它登記在哪。一個沒有出處的結論，讀者無從查它
+是不是我當場想的。** 已補引並重跑至 0。
+
+### DR 之四級狀態機落地（R-PMH82）
+
+**`DR-PMH1`～`4` 之狀態欄自始至終為 `OPEN`，而四者從未被發出** ——
+該欄無法分辨「登記了」與「發出了」，致「尚未發出」沒有任何欄位承載它。
+現全表改 `DRAFT`／`SENT`／`ANSWERED`／`CLOSED` 並增
+`發出日期`／`發出對象`／`管道`／`結案依據` 四欄，四者皆記「**（從未發出）**」。
+
+`DR-PMH5`／`DR-PMH6` 標 **`DRAFT`**（R-PMH83 已授權），
+其可寄出全文已逐字轉錄於 `DATA_REQUESTS.md` §五、§六。
+**執行層未代為發出；發出日期欄留白，待 Pei 告知實際日期與對象。**
+
+### 20 §4 七項依 R-PMH79 重記（勘誤，原表一字未改）
+
+印證 **2**（10.1、10.2 第三句）／牴觸 **1**（10.3）／未對照 **5**。
+**`10.5` 由「一致（軸層面）」改為「未對照」——「有同名之軸」不等於
+「有對應之敘述」。** 另 `rmutes` 之依據由 R-PMH26 改為 **R-PMH81**。
+
+### ⚠ 本輪自陳之未竟項中，三項須先看（上繳 §13）
+
+1. **矩陣裡 `VP` 出現數十次而我從未查明它指什麼** ——
+   若 `VP Turns OFF` 之 `VP` 就是 ch 7 所說的螢幕，則 `r15c4` 與 `SU1.)`
+   「螢幕維持黑」**同謂詞**。**我判了 30 列，而其中一個關鍵詞我沒查。**
+2. **pop-up 那一組我判「未對照」而非「牴觸」，該選擇該由分析層覆核** ——
+   全稱否定之涵蓋範圍是**所有時刻**，矩陣之無條件肯定落在其中一個時刻即為牴觸。
+   **我把「矩陣沒說是否在 disclaimer 期間」當成「矩陣不涉及 disclaimer 期間」，
+   那是兩件事。**
+3. **`matrix_vs_chapter.py` 沒有 must-hit** —— 依 R-PMH35(c) 其結果
+   **只得標「未實測」**，不得標 PASS。**而我在總表裡標了 PASS，據實更正。**
+
+**另**：章 **8**（6 leaf）與章 **11**（5 leaf）與矩陣**完全未對照**，
+而矩陣之 `VR button long press`（r11／r12／r28／r29）與 ch 11 之 `VRLP1`
+**顯有共同主題**。已登記 KNOWN-INCOMPLETE。
+
+**待 Pei**：`DR-PMH5`／`6` 之實際發出並告知日期與對象／
+**pop-up 組之記法覆核**／矩陣之 `VP` 指什麼／章 8・11 之對照／
+21 之 commit 授權（11 路徑）。

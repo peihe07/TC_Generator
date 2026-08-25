@@ -87,11 +87,11 @@ RESIDUE_VERDICT: dict[str, str] = {
     "a186ee1c If the user does not interact with the popup wit":
         "**PDF 側為未刪淨之舊文字 —— 依 R-PMH75 不驗**：Pei 裁定「以刪掉之後的為主」，outline `9.1` 之權威文本為 SYS1。本句之 `within 60 seconds`／`the radio should shut Off the`／`aofnd` 三處皆為舊文字，SYS1 已刪。**A-PMH16 之原判定（時序漏失／獨立行為結果）已被 R-PMH75 推翻。**",
     "a6ecc7ba FOTA update available - If user accepts FOTA pop":
-        "非漏 —— **條列再流**：SYS1 `9.1` 作 `1. FOTA update available - - If user accepts…`（多一個破折號），三句內容全在。",
+        "非漏 —— **條列再流**（**A-PMH03** 原記之形態，A-PMH14 已以方向二確認其於 9.1 成立）：SYS1 `9.1` 作 `1. FOTA update available - - If user accepts…`（多一個破折號），三句內容全在。本結論依 **R-PMH66**(c) 由人讀作成。",
     "a7348b50 Charge Now - XEV key off-Pop-ups Charge Now/Summ":
-        "非漏 —— 其散文 `3. XEV key off-Pop-ups Charge Now/Summary; Preconditioning.` 於 SYS1 9.1 逐字存在；句首之 `Charge Now -` 為前一條列項之尾，屬 `-layout` 之切分",
+        "非漏 —— 其散文 `3. XEV key off-Pop-ups Charge Now/Summary; Preconditioning.` 於 SYS1 9.1 逐字存在；句首之 `Charge Now -` 為前一條列項之尾，屬**條列再流**（**A-PMH03** 之形態）。本結論依 **R-PMH66**(c) 由人讀作成。",
     "21837867 Shut the radio down if user dismisses Charge Now":
-        "非漏（散文側）—— SYS1 作 `Shut the radio down if user dismisses XEV key off Pop-ups.`，逐字存在；句中之 `Charge Now` 為前一條列項之尾，屬切分",
+        "非漏（散文側）—— SYS1 作 `Shut the radio down if user dismisses XEV key off Pop-ups.`，逐字存在；句中之 `Charge Now` 為前一條列項之尾，屬**條列再流**（**A-PMH03** 之形態）。本結論依 **R-PMH66**(c) 由人讀作成。",
     "847ec7c1 [CR22412] VR HK to activate SIRI/Voice assistant":
         "**漏 —— A-PMH14 新漏 2**：矩陣之 `Headunit:` 列（`VR HK to activate SIRI/Voice assistants shall be functional (See CTS009)`，出現兩次即兩欄）。SYS1 全缺。",
     "fe88e914 Additional Power Moding Behavior Notes: POWER BU":
@@ -99,9 +99,9 @@ RESIDUE_VERDICT: dict[str, str] = {
     "7232af2b KEY OFF, HEADUNIT POWER ON: PITA8: During Key OF":
         "非漏（需求側）—— `PITA8:` 之本文於 SYS1 `10.5` 逐字存在。逐字未命中之因為 PDF 之**全大寫分節標籤** `KEY OFF, HEADUNIT POWER ON:` 被切入同句，**而該標籤於 SYS1 全缺**（A-PMH17）。",
     "2be436a5 VR HARD KEY FOR SIRI/NON-NATIVE VOICE ASSISTANTS":
-        "非漏 —— SYS1 之 outline `11` 逐字為 `VR HARD KEY FOR SIRI/NON-NATIVE VOICE ASSISTANTS`（無尾冒號），`11.1` 逐字為 `VRLP1: VR hard key to…`。逐字未命中之因為 PDF 之節標題帶尾冒號、且切分於 `(eg.` 處斷開",
+        "非漏 —— SYS1 之 outline `11` 逐字為 `VR HARD KEY FOR SIRI/NON-NATIVE VOICE ASSISTANTS`（無尾冒號），`11.1` 逐字為 `VRLP1: VR hard key to…`。逐字未命中之因為 PDF 之節標題帶尾冒號、且切分於 `(eg.` 處斷開。**與 A-PMH17 成對照**：章 11 之全大寫標籤**於 SYS1 有**（即 outline 11），章 10 之兩個則全缺。本結論依 **R-PMH66**(c) 由人讀作成。",
     "4a2d1d79 Radio status after interaction with SIRI depends":
-        "非漏 —— 切分假象：句切於 `(i.e.` 處；其全句於 SYS1 11.1 逐字存在",
+        "非漏 —— 切分假象：句切於 `(i.e.` 處；其全句於 SYS1 11.1 逐字存在。與 **A-PMH03** 之「條列再流」同屬萃取切分之產物。本結論依 **R-PMH66**(c) 由人讀作成。",
     "9c2707e8 radio back to off), Screen ON and Audio OFF, Scr":
         "非漏 —— **條列再流**（A-PMH03 原記之形態，A-PMH14 已以方向二確認）：SYS1 11.1 作 `- Screen Off and Audio OFF (i.e. radio back to off), - Screen ON and Audio OFF, …`，僅條列符號不同，四個 outcome 全在",
     "c8b75652 (DCR19385) POWER MODING STATE MATRIX: Power Modi":
@@ -324,6 +324,51 @@ def source_must_hit() -> int:
     return 0 if (ok_scope and ok_hit and ok_hit_b) else 1
 
 
+def export_residue() -> int:
+    """21 包步驟 5 —— `RESIDUE_VERDICT` 之**可覆核清單**（20 §12 第 5 項）。
+
+    逐條輸出（章、句之逐字、覆蓋率、結論、其所引之 anomaly 或裁決條號），
+    供分析層人讀 —— **第二來源**（19 §14 第 2 項之已知未完成項）。
+
+    **每條須引至少一個 anomaly（`A-PMH\d+`）或裁決條號（`R-PMH\d+`）**；
+    缺者具名並 FAIL（21 包停止條件 9）。
+    """
+    ref = re.compile(r"A-PMH\d+|R-PMH\d+|A-PW\d+")
+    pdf = pdf_text(SOURCE_DEFAULT)
+    n_total, n_noref, seen = 0, [], set()
+    print("=== `RESIDUE_VERDICT` 可覆核清單（21 包步驟 5）===")
+    print(f"來源 = {SOURCE_DEFAULT} 層；鍵 = `sha1(句)[:8] + 句之前 48 字元`\n")
+    for ch in sorted(STARTS):
+        rows = sys1_chapter(ch)
+        sysc = " ".join(d for _, d in rows)
+        res = [x for x in sentences(pdf_chapter(ch, pdf)) if x not in sysc]
+        if not res:
+            continue
+        print(f"## 章 {ch} —— 殘餘 {len(res)} 句\n")
+        for x in sorted(res, key=lambda y: -coverage(y, sysc)):
+            k = residue_key(x)
+            seen.add(k)
+            n_total += 1
+            v = RESIDUE_VERDICT.get(k, "**未具名**")
+            refs = sorted(set(ref.findall(v)))
+            if not refs:
+                n_noref.append((ch, k))
+            print(f"### {k}")
+            print(f"- 章：{ch}；覆蓋率：{coverage(x, sysc):.1%}")
+            print(f"- 句（逐字）：{x}")
+            print(f"- 結論：{v}")
+            print(f"- 所引之 anomaly／條號：{refs or '**無 ← FAIL**'}\n")
+    stale = [k for k in RESIDUE_VERDICT if k not in seen]
+    print(f"=== 合計 **{n_total}** 條；缺引用者 **{len(n_noref)}**；"
+          f"**未被任何殘餘句用到之鍵 {len(stale)}**（18 包 `-layout` 之遺留） ===")
+    for ch, k in n_noref:
+        print(f"  缺引用：章 {ch} {k}")
+    for k in stale:
+        print(f"  遺留鍵（不影響判定，供追溯）：{k[:60]}")
+    print_limits()
+    return 1 if n_noref else 0
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("chapter", type=int, nargs="?")
@@ -331,10 +376,14 @@ def main() -> None:
                     help="17 §12 第 1 項 —— 章區間之覆蓋／重疊檢查")
     ap.add_argument("--source", choices=("block", "layout"), default=SOURCE_DEFAULT,
                     help="PDF 來源（R-PMH71）—— 預設 block；`layout` 供對照")
+    ap.add_argument("--export-residue", action="store_true",
+                    help="21 包步驟 5 —— 輸出 `RESIDUE_VERDICT` 之可覆核清單")
     ap.add_argument("--source-must-hit", action="store_true",
                     help="R-PMH71 之 must-hit —— 章 9 以兩來源並列，"
                          "`layout` 須查不出 A-PMH16、`block` 須查得出")
     a = ap.parse_args()
+    if a.export_residue:
+        sys.exit(export_residue())
     if a.source_must_hit:
         rc = source_must_hit()
         print_limits()

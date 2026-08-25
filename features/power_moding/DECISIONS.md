@@ -63,6 +63,8 @@ sign-off = binding as proposed.
 - **ch 9（`Power Transitions`）不得開批**: [BLOCKED — A-PMH18／`DR-PMH5`] p9 之能力矩陣仍無來源。所提供之 `DCR21421` State Matrix 經**逐字**與**語意**兩層對照皆不涵蓋 p9（20 包 §2.1）。**R-PMH73 之「該矩陣為 ch 9 之判讀背景」已由 R-PMH76 更正** —— 其真正效力範圍為 ch 12 與 ch 10 之一部
 - **`Off Road Plus` 開批之前置**: [RULED R-PMH76 — 20 包 §三] 該 Excel 列 16（`SRT or Off Road+ Hard Button press.`）對 ch 12 有直接效力。`-027` 之 Pre-Condition **須含「車輛已處於 Off Road state」**，否則其 ER「不喚醒」與矩陣之 `Radio Wakes Up and mutes` 直接衝突（二者為互補之兩支）。**本輪只回報依據，未撰寫 TC**
 - **⚠ `RESIDUE_VERDICT` 之第二來源尚未建立**: [KNOWN-INCOMPLETE — 19 §14 第 2 項，20 包步驟 7 明令登記] `chapter_bidirectional.py` 之 20 條殘餘人讀結論，其中 13 條為執行層本人所寫，**既是判準之作者也是那個「人」**。其正解為分析層人讀，**已排入下一輪**。本項為已知未完成，非疏漏、亦非 RESOLVED（通則 8）
+- **`10.3`（PITA6）之撰寫方式**: [RULED R-PMH80] `Power Off Behavior` 組（8 leaf）**得開批**。其 `10.3` 之 TC **Pre-Condition 須加「倒車影像未顯示（`Gear != Reverse`）」**（依 R-PMH55 之形態限縮，來源矩陣 `r48c10` 於 `reasoning` 具名）；RVC 情境之 `Popup not displayed over RVC` **只在矩陣有、規格未載**，依 R-PMH55(b) **不撰 TC**，登記為覆蓋缺口並開 `DR-PMH6`。**執行層所提之「PITA4 通則／例外」調和不採** —— `PITA4` 之對象為按鍵輸入，非 popup 之顯示
+- **章 8／章 11 尚未與 State Matrix 對照**: [KNOWN-INCOMPLETE — 21 包 §3／A-PMH18 補記] ch 7 已全對照（30 事件列，牴觸 0），ch 10／12 於 20 包部分對照。**章 8（6 leaf）與章 11（5 leaf）完全未對照**，而矩陣之 `VR button long press without/at Projection`（`r11`／`r12`／`r28`／`r29`）與 ch 11 之 `VRLP1` 顯有共同主題。**該二章開批前應先完成其對照**
 - BLOCKED batches at start: [AUTO] **0** —— 29/29 章節於 SYS1 命中、48/48 leaf 之 `pdf_page` 已解、無 DR-PMH 待答
 
 ---
