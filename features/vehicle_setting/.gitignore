@@ -17,3 +17,5 @@ __pycache__/
 *.pyc
 output/
 .DS_Store
+# R-VF135：寫回前之旁備份不入版控（git 歷史較旁檔可靠 —— 旁檔無版本資訊）
+inputs/_*_prewrite_backup.xlsx
