@@ -151,11 +151,23 @@ Urgency 回報。
 | **DR-PMH2** | Power Moding State Matrix Excel | **`CLOSED`** | **（從未發出）** | — | — | R-PMH73 | ⚠ 其素材與 p9 不對應（A-PMH18）→ 另開 `DR-PMH5` |
 | **DR-PMH3** | `SU9.)`／`SU9.1)` 是否應在 037 | **`CLOSED`** | **（從未發出）** | — | — | R-PMH74 | 解除 |
 | **DR-PMH4** | outline 9.1 之 PDF 破句何者為權威 | **`CLOSED`** | **（從未發出）** | — | — | R-PMH75 | 解除 |
-| **DR-PMH5** | **PDF p9 之能力矩陣**之來源文件 | **`DRAFT`** | **（待填）** | （待填） | （待填） | — | **ch 9 開批** |
-| **DR-PMH6** | RVC 情境下 HVAC popup 之規格依據 | **`DRAFT`** | **（待填）** | （待填） | （待填） | — | **否**（R-PMH80 已以限縮＋揭露解除） |
-| **DR-PMH7** | `VP` 之定義（規格全文 0 命中、素材 30 格） | **`DRAFT`** | **（待填）** | （待填） | （待填） | — | **矩陣對照之四列判定**（R-PMH85(c)）；不阻斷 batch 1 |
+| **DR-PMH5** | **PDF p9 之能力矩陣**之來源文件 | **`SENT`** | **2026-08-25** | `HMI Lead: Paolo Visconti` 或其現任接手人 | （待填） | R-PMH110 | **ch 9 開批** —— **`SENT` ≠ `ANSWERED`，阻斷不解除** |
+| **DR-PMH6** | RVC 情境下 HVAC popup 之規格依據 | **`SENT`** | **2026-08-25** | 同上 | （待填） | R-PMH110 | **否**（R-PMH80 已以限縮＋揭露解除） |
+| **DR-PMH7** | `VP` 之定義（規格全文 0 命中、素材 30 格） | **`SENT`** | **2026-08-25** | 同上 | （待填） | R-PMH110 | **矩陣對照之四列判定**（R-PMH85(c)）；不阻斷 batch 1 |
+| **DR-PMH8** | `一日`起算點／設定路徑／`Sounds will sync` 是否涵蓋告別音 | **`DRAFT`** | **（待填）** | （待填） | （待填） | R-PMH108／R-PMH109 | **否** —— 不阻斷 batch 2 |
 
-**合計未結 3 筆（`DR-PMH5`／`DR-PMH6`／`DR-PMH7`），三者皆為 `DRAFT`。**
+**合計未結 4 筆** —— `SENT` **3**（`DR-PMH5`／`6`／`7`）、`DRAFT` **1**（`DR-PMH8`）。
+
+**2026-08-25（R-PMH110）**：Pei 逐字裁定「**發出日期 就今天 然後 `DR-PMH5` 就照你建議**」。
+三筆之 `SENT` 落實：日期 **2026-08-25**，對象依 29a §二 (c)（**若 Pei 所告之實際對象不同，以其為準**），
+**發出管道欄留空**待 Pei 告知。`DR-PMH5` 採 **28a §3.1 之全文**（三問形態）。
+**`DR-PMH8` 不在其內** —— 其於該裁定當下尚未開立（29 包步驟 5 方令），狀態維持 `DRAFT`。
+
+> ⚠ **`SENT` 不等於 `ANSWERED`**（R-PMH82）—— **`DR-PMH5` 對 ch 9 之阻斷於 `ANSWERED` 前不解除**。
+
+**2026-08-25（R-PMH106）**：Pei 逐字裁定「寄 核可」，三筆之發出**已授權**，最終全文見 **§七**。
+**執行層不得代為發出**（R-PMH83）；`SENT` 欄留空，待 Pei 告知**實際發出日期與對象**方填（R-PMH43，**不得以本包日期充當**）。
+**在該日期填入前，三者狀態維持 `DRAFT`** —— 「已授權」不等於「已發出」。
 
 **Pei 於 2026-08-25 逐字表明「`DR-PMH5`／`6`  DR-PMH7 我處理」** —— 三筆之發出由 Pei 為之；**執行層不得代為發出**（R-PMH83），
 狀態欄待其告知**實際日期與對象**後方改 `SENT`。
@@ -304,6 +316,11 @@ Excel 全簿無任何一格描述 `ICS Hard Controls`／`HVAC Knobs`／`Climate 
 
 ### 增補（23 包，依 **R-PMH89** 之連帶 / A-PMH21）—— **p9 矩陣自身與 p8 之 `SU3.)` 相衝**
 
+> **⚠ 本增補之主張已撤回（R-PMH106）** —— A-PMH21 於 24 包改判 `未對照`
+> （`Pop-ups still shown` 位於 `HEADUNIT POWER OFF` 欄，而 `PITA6.1` 逐字載免責畫面顯示於 head unit 轉為 On，二者互斥）。
+> **§7.1 之寄出版本不含此項**（實測 `SU3` 命中 = 0）。原文依 R-PMH44 保留。
+
+
 **本 DR 之問題不只是「該矩陣無來源」** —— 其**自身之內容**與同一份規格 p8 之
 `SU3.)` 取相反值：
 
@@ -416,6 +433,9 @@ while backup cam is being shown.` —— **其對象為使用者之按鍵輸入�
 
 ## 五、`DR-PMH5` 之可寄出全文（R-PMH83 授權，**執行層不得代為發出**）
 
+> **⚠ 已被取代（28a §三，R-PMH106）** —— 寄出之版本為本檔 §七。本節依 R-PMH44 原文保留。
+
+
 ```text
 Subject: Power Moding HMI — request for the source of the capability matrix on page 9
 
@@ -491,6 +511,9 @@ Thank you,
 
 ## 六、`DR-PMH6` 之可寄出全文（R-PMH83 授權，**執行層不得代為發出**）
 
+> **⚠ 已被取代（28a §三，R-PMH106）** —— 寄出之版本為本檔 §七。本節依 R-PMH44 原文保留。
+
+
 ```text
 Subject: Power Moding HMI — PITA6 and the state matrix appear to conflict for the reverse camera case
 
@@ -557,6 +580,8 @@ Thank you,
 **成對之 anomaly**：**A-PMH20**。**狀態**：`DRAFT`（Pei 表明自行處理發出）。
 **阻斷**：矩陣對照之四列判定（`r6`／`r15`／`r24`／`r25`，R-PMH85(c) 標「待定義」）；
 **不阻斷 batch 1**。
+
+> **⚠ 本 DR 之寄出版本為 §7.3（28a §三，R-PMH106）。以下為其開立與增補之歷程，依 R-PMH44 保留。**
 
 ### 增補（26 包步驟 5）—— **另二處記法／範圍未定義，併入本 DR**
 
@@ -632,6 +657,306 @@ Two smaller questions of the same kind, if we may include them here:
 
       Does this apply only to the Geolocation + SOS popup shown in the same
       diagram, or to all pop-ups generally?
+
+Thank you,
+```
+
+
+---
+
+## 七、三份**最終全文**（28a §三，R-PMH106）—— **本節為寄出之版本**
+
+> **§五／§六 及上方 `DR-PMH7` 之草稿全文自此標為「已被取代」**（R-PMH44，原文保留不刪）。
+> **R-PMH106 明令**：`DR-PMH5` 寄出之版本**不得含**「p9 矩陣與 p8 之 `SU3.)` 相衝」一項
+> —— 該主張已於 24 包改判 `未對照`（A-PMH21）。**下方 §7.1 實測 `SU3` 命中 = 0。**
+
+> 收件對象：規格 p1 所載之 `HMI Lead: Paolo Visconti` 或其現任接手人。
+> **凡引規格與素材處皆為逐字。**
+
+### 7.1 `DR-PMH5` —— p9 之能力矩陣
+
+**狀態**：`DRAFT`　**發出日期**：（待填）　**對象**：（待填）
+　**SHA256（前 16）**：`5c0c83ba58f0d132`
+
+```text
+Subject: Power Moding HMI — source of the capability matrix on page 9
+
+Hello,
+
+We are preparing the SWE.6 test cases for Power Moding HMI
+(FM-WI-FSM-037-A03-N1L-SWE1-PowerModing-HMI-V0.1, based on "Power Moding HMI
+Logic and Flow R1 SR24 2A DCR22412 (January 24 2023)").
+
+Page 10 of the logic and flow document states, verbatim:
+
+    POWER MODING STATE MATRIX: Power Moding behavior shall not be developed
+    without following the Power Moding State Matrix, which is in a separate
+    Excel document. If this document is not available, please request a copy
+    from the author of this logic and flow document.
+
+We have received "Power Moding HMI State Matrix R1 SR24 Post 2A DCR21421
+(August 3 2022).xlsx". It does not appear to correspond to the matrix printed
+on page 9. The two differ in structure:
+
+  Page 9 matrix
+    Rows    : KEY ON ENGINE ON / KEY ON ENGINE OFF (ACC or RUN) /
+              KEY OFF (No ACC position) / KEY OFF (ACC position available)
+    Columns : ICS Hard Controls / HVAC Knobs / Climate GUI / Headunit,
+              each split by HEADUNIT POWER OFF and HEADUNIT POWER ON
+    Cells   : whether the item is available in that power state
+
+  Excel "State Matrix" sheet
+    Blocks  : Key-on / Key-off / Key On, Gear <> Reverse
+    Rows    : events (ON/OFF button Pressed, Door opened, Incoming Call,
+              Plug in Projection, VR button long press, Call Ended,
+              SRT or Off Road+ Hard Button press, Screen Off Button Pressed,
+              Mute Button Pressed, HVAC Hard Control Adjustment, ...)
+    Columns : context conditions (Turn Off @ door opening Enabled/Disabled,
+              HU on / HU off / Power Button OFF, Call Active/Not Active,
+              Door Open/Closed)
+    Cells   : the resulting state after the event
+
+We searched all 362 non-empty cells of the Excel file for the terms used on
+page 9. The following return zero matches:
+
+    HEADUNIT POWER, ICS Hard Controls, HVAC Knobs, Climate GUI,
+    ENGINE ON, ENGINE OFF, Power Button only is functional,
+    Fully functional, Power Accessory Delay, accessory delay,
+    FOTA, Charge Now, stay awake
+
+No cell in the Excel file describes the availability of ICS Hard Controls,
+HVAC Knobs or Climate GUI in a given power state.
+
+The page 9 matrix is also absent from the SYS1 structured export of this
+document, so we have it only as a rendered image.
+
+Three questions:
+
+  (1) Is there a separate document that contains the page 9 capability matrix,
+      and if so may we have a copy?
+
+  (2) If not, is the page 9 matrix itself the authoritative source for that
+      content, with the DCR21421 Excel covering a different subject
+      (event-driven power state transitions)?
+
+  (3) Please confirm one reading of the page 9 layout. The text "HVAC Knobs:
+      Fully functional. Pop-ups still shown." appears twice, in the
+      KEY ON ENGINE ON row and in the KEY ON ENGINE OFF (ACC or RUN) row. From
+      the horizontal positions we read both as sitting in the HEADUNIT POWER
+      OFF column, alongside "Climate GUI: Not Visibile due to power off". Is
+      that correct?
+
+Until (1) and (2) are clarified we have suspended test case authoring for
+section 9 (Power Moding), which covers 5 requirements
+(SWE1-HMI-PM-018-01 through -05).
+
+One observation offered for information only: the change log in the DCR21421
+Excel ends at 2021-10-20, which is earlier than the August 3 2022 date on its
+own title sheet.
+
+Thank you,
+```
+
+### 7.2 `DR-PMH6` —— PITA6 與矩陣之衝突，及三項無需求之行為
+
+**狀態**：`DRAFT`　**發出日期**：（待填）　**對象**：（待填）
+　**SHA256（前 16）**：`8dc2fe0c8577b048`
+
+```text
+Subject: Power Moding HMI — PITA6 vs the state matrix, and three behaviours that have no requirement
+
+Hello,
+
+Two related items from our SWE.6 test case work on Power Moding HMI. We would
+rather ask than choose.
+
+--- 1. PITA6 and the state matrix appear to conflict for the reverse camera case
+
+The logic and flow document states, verbatim:
+
+    PITA6: HVAC pop-ups shall be temporarily displayed during Power Button Off
+    state.
+
+This is written without exception.
+
+The Power Moding State Matrix ("State Matrix" sheet, block "Key On, Gear =
+Reverse", row "HVAC Hard Control Adjustment", column "Power Button State =
+OFF") states verbatim:
+
+    Popup not displayed over RVC
+
+Where the vehicle is in reverse and the reverse camera is being shown, these
+two cannot both hold.
+
+We considered reading PITA6 as a general rule with the reverse camera as an
+exception, on the basis of PITA4. However PITA4 reads, verbatim:
+
+    PITA4: Screen Off and HU Power button selections shall be ignored while
+    backup cam is being shown.
+
+PITA4 concerns user key inputs being ignored, not the display of pop-ups, so we
+do not think it establishes an exception for PITA6, and we have not assumed one.
+
+  Q1: Should PITA6 be read as conditional, excluding the case where the reverse
+      camera is being shown? If so, could the wording be updated?
+
+--- 2. Three behaviours appear only in the state matrix
+
+The following cells describe pop-up behaviour that has no corresponding
+statement in the logic and flow document, and therefore no requirement in the
+SWE.1 analysis report:
+
+  (a) Key-on block, row "ON/OFF button Pressed", Call Active:
+      "VP Stays ON Pop-up: Cannot Power Off System during active phone call."
+
+  (b) Key-on block, row "Key-off", Call Active, R1High:
+      "VP display pop-up: 'Power OFF System. Continue call on mobile phone?
+      Yes or NO'"
+
+  (c) "Key On, Gear <> Reverse" block, row "HVAC Hard Control Adjustment":
+      "Show Pop-Up ..."
+
+  Q2: Should these be added as requirements? At present no test case will cover
+      them, because we do not author test cases for behaviour that has no
+      requirement of its own.
+
+In the meantime we are writing the PITA6 test case with a pre-condition that
+the reverse camera is not being shown, and recording the reverse camera case
+and the three behaviours above as coverage gaps.
+
+Thank you,
+```
+
+### 7.3 `DR-PMH7` —— 素材中三處未定義之記法
+
+**狀態**：`DRAFT`　**發出日期**：（待填）　**對象**：（待填）
+　**SHA256（前 16）**：`3de29747dfb6861c`
+
+```text
+Subject: Power Moding HMI State Matrix — three notations we cannot resolve
+
+Hello,
+
+Three items in "Power Moding HMI State Matrix R1 SR24 Post 2A DCR21421
+(August 3 2022).xlsx" that we are unable to interpret from the documents we
+hold. The matrix is normative for us (page 10 of the logic and flow document
+states that Power Moding behavior "shall not be developed without following"
+it), so we would rather ask than guess.
+
+  Q1: What does "VP" stand for?
+
+      The abbreviation appears in 30 cells of the State Matrix, for example:
+          "VP Stays ON" / "VP Turns OFF"
+          "VP display pop-up: 'Power OFF System. Continue call on mobile
+           phone? Yes or NO'"
+          "If Radio Off Delay = 0 minutes then VP turns OFF Else VP stays ON"
+
+      From these we can tell that VP is something that can be on or off and
+      that can display pop-ups, but the term does not appear anywhere in the
+      logic and flow document (zero matches across all 11 pages) and is not
+      defined in any material we hold. Is VP the head unit display?
+
+  Q2: In the rows "Headunit Mode Button Pressed" and "Headunit Mode Change via
+      VR", several cells read:
+
+          "Else: Mute Active"
+
+      Does this mean the mute state is left unchanged, or that mute becomes
+      active as a result of the event? The matrix uses an arrow notation
+      elsewhere (for example "Mute --> Active") but the convention is not
+      stated, so we cannot tell which reading applies here.
+
+  Q3: The logic and flow document contains the note, verbatim:
+
+          Note: do not show popup again if popup was shown at Radio Off.
+
+      Which pop-up does this refer to, and over what scope does it apply
+      (a single ignition cycle, until the next Radio Off, or otherwise)?
+
+None of these three blocks our current work. Q1 and Q2 affect how we classify
+four rows of the matrix against the requirements; Q3 affects one test case.
+
+Thank you,
+```
+
+
+---
+
+## 八、`DR-PMH8`（開立 2026-08-25，依 **R-PMH108** ＋ **R-PMH109**）
+
+**型別**：規格未定義而**已以措詞繞過**者。
+**R-PMH108 之要旨**：**繞過與詢問並行，不互相取代** —— 繞過不使該未定義消失。
+
+**成對之 anomaly**：`-013` 之「一日」與 `-011` 之設定路徑（形態同 **A-PMH22**）；
+第三問之覆蓋缺口另記於 `ANOMALIES.md`（R-PMH109 末）。
+
+**狀態**：`DRAFT`　**發出日期**：（待填）　**對象**：（待填）
+　**SHA256（前 16）**：`b4aa530edf320216`
+
+> ⚠ **本筆不在 R-PMH110 之發出範圍** —— 其於該裁定當下尚未開立（29a §二明載）。
+
+**阻斷**：**否** —— 不阻斷 batch 2。
+**惟其答覆將回頭改寫既有產出**：
+(a) Q1 有定義 → `-013` 之步驟須重寫；
+(b) Q2 有路徑 → `-011` 之 pre_condition 須重寫；
+(c) Q3 為「涵蓋二者」→ `-010` 之 ER 須增一條（跨螢幕同步）。
+
+### 8.1 可寄出全文（**執行層不得代為發出**，R-PMH83）
+
+```text
+Subject: Power Moding HMI — three points on the start-up and goodbye sounds (SSND)
+
+Hello,
+
+Three points from our SWE.6 test case work on the SSND section of "Power Moding
+HMI Logic and Flow R1 SR24 2A DCR22412 (January 24 2023)", page 8. None of them
+blocks us; we have written the test cases around the wording, but we would
+rather have the intent confirmed than assume it.
+
+  Q1: What is the start of a "day"?
+
+      SSND 2.2) states, verbatim:
+
+          SSND 2.2) If the setting is Once a Day, start-up and goodbye sounds
+          should be played only once per day (i.e other valid triggers will not
+          trigger any sound).
+
+      "Once per day" needs a start point to be testable: midnight in vehicle
+      local time, the first ignition cycle of the day, or a rolling 24 hours
+      from the last playback. The three give different results for a vehicle
+      used late at night.
+
+      Our test case currently verifies only that a second trigger on the same
+      day produces no sound, which holds under all three readings.
+
+  Q2: Where is the sound setting located?
+
+      SSND 2) states, verbatim:
+
+          SSND 2) Start-up and goodbye sounds shall have a setting with
+          Always/Once a Day/Never options.
+
+      The document does not say where in the HMI this setting lives. Our test
+      case says "the setting menu" without naming a path. Could you confirm the
+      menu path, or the screen the setting belongs to?
+
+  Q3: Does the display sync statement cover goodbye sounds as well?
+
+      SSND 1) states, verbatim:
+
+          SSND 1) If start-up sounds are supported, it will start upon driver
+          door close and sync with the start-up animation. If goodbye sounds
+          are supported, it shall sync on start with the shut-down animation.
+          Sounds will sync amongst all supported vehicle displays.
+
+      The third sentence follows two sentences that deal with start-up sounds
+      and goodbye sounds respectively. We read "Sounds" as covering both, but
+      the sentence could also be read as continuing only from the goodbye
+      sentence, or only from the start-up one.
+
+      At present our start-up sound test case verifies the sync across all
+      supported displays, and our goodbye sound test case does not. If the
+      sentence covers both, we will add the same check to the goodbye case.
 
 Thank you,
 ```

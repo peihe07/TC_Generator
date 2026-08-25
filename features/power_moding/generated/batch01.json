@@ -16,6 +16,17 @@
     "SWE1-HMI-PM-005",
     "SWE1-HMI-PM-022-02"
   ],
+  "limits": {
+    "NR1L-DisclaimerScreen-007": [
+      "press the ON/OFF key",
+      "turn key-off",
+      "open any door",
+      "adjust HVAC hard controls",
+      "press the Mute key",
+      "the Headunit Mode key",
+      "change the headunit mode by voice recognition"
+    ]
+  },
   "source_clause_basis": "R-PMH50 —— 取自 spec_pdf（判讀基準，通則 3）。**不取自 SYS1 匯出** —— 本輪逐句對照證實其 7.1 漏一子句。",
   "write_back": "凍結 —— 本批只產出 JSON，不寫回工作簿",
   "tcs": [

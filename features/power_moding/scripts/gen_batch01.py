@@ -333,6 +333,14 @@ def self_check() -> list[str]:
     return bad
 
 
+# 29 包步驟 4 —— 本批之事件層限定（R-PMH87／R-PMH94 之七項，逐字同 procedure）
+LIMIT_TOKENS_B1 = [
+    "press the ON/OFF key", "turn key-off", "open any door",
+    "adjust HVAC hard controls", "press the Mute key",
+    "the Headunit Mode key", "change the headunit mode by voice recognition",
+]
+
+
 def main() -> None:
     bad = self_check()
     if bad:
@@ -376,6 +384,9 @@ def main() -> None:
         "tc_id_status": "provisional",
         # 28 包：lint 之 leaf 覆蓋檢查由硬編碼改為讀本欄（R-PMH104 之一般化）
         "leaf_scope": sorted({t["leaf"] for t in TCS}),
+        # 29 包步驟 4（R-PMH107(b)）：本批之**事件層限定清單**，由本檔宣告，
+        # 供 lint 之 R-PMH99(a)(c) 讀取 —— **期望值由寫死改為讀宣告**（28 §5.2 之同型）。
+        "limits": {"NR1L-DisclaimerScreen-007": LIMIT_TOKENS_B1},
         "source_clause_basis": ("R-PMH50 —— 取自 spec_pdf（判讀基準，通則 3）。"
                                 "**不取自 SYS1 匯出** —— 本輪逐句對照證實其 7.1 漏一子句。"),
         "write_back": "凍結 —— 本批只產出 JSON，不寫回工作簿",

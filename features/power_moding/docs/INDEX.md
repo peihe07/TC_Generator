@@ -34,7 +34,8 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 25 | 2026-08-25 | **限定逐斷言導出（4→7）**、欄位以字級座標確認 | [handoff/25_limitation_union.md](handoff/25_limitation_union.md) | [upstream/25_limitation_union.md](upstream/25_limitation_union.md) | R-PMH94–R-PMH96（逐字抄錄 3/3 相符） | **A-PMH22（`Else: Mute Active` 記法未定義）**；A-PMH21 依據更換 | **三條停止條件全未觸發；ER1～5 逐斷言掃描牴觸 0；lint 30/30** |
 | 26 | 2026-08-25 | **斷言二分**、矩陣側全枚舉、限定合併之 lint | [handoff/26_enumeration_over_keywords.md](handoff/26_enumeration_over_keywords.md) | [upstream/26_enumeration_over_keywords.md](upstream/26_enumeration_over_keywords.md) | R-PMH97–R-PMH99（逐字抄錄 3/3 相符） | （無新 A-PMH；`DR-PMH7` 增二問） | **三條停止條件全未觸發；batch 1 涵蓋率 78%→100%；lint 31/31；章 12 全對照完成** |
 | 27 | 2026-08-25 | **落選即判定**、切分以謂詞為準、Pre-Condition 納入 | [handoff/27_verdict_for_every_cell.md](handoff/27_verdict_for_every_cell.md) | [upstream/27_verdict_for_every_cell.md](upstream/27_verdict_for_every_cell.md) | R-PMH100–R-PMH102（逐字抄錄 3/3 相符） | （無新 A-PMH） | **三條停止條件全未觸發；PC 24 斷言牴觸 0；lint 32/32；查出一個先前未被掃描之 SUT 斷言** |
-| 28 | 2026-08-25 | **覆核線收束**、apparatus 凍結、**batch 2（Startup Sounds）** | [handoff/28_batch2.md](handoff/28_batch2.md) | [upstream/28_batch2.md](upstream/28_batch2.md) | R-PMH103–R-PMH104（逐字抄錄 2/2 相符） | （無新 A-PMH） | **⚠ 停止條件 7 觸發並已解（`r45` × 音訊斷言）；batch 2 = 7 TC / 6 leaf，lint 32/32；新增檢查 0** |
+| 28 | 2026-08-25 | **覆核線收束**、apparatus 凍結、**batch 2（Startup Sounds）** | [handoff/28_batch2.md](handoff/28_batch2.md) ＋ [28a](handoff/28a_dr_final.md) | [upstream/28_batch2.md](upstream/28_batch2.md) | R-PMH103–R-PMH106（逐字抄錄 4/4 相符） | （無新 A-PMH） | **⚠ 停止條件 7 觸發並已解（`r45` × 音訊斷言）；batch 2 = 7 TC / 6 leaf，lint 32/32；新增檢查 0；28a：二條核可生效、三筆 DR 最終全文落檔（`SENT` 仍空）** |
+| 29 | 2026-08-25 | **batch 2 人讀覆核四項修正**、凍結範圍界定、**`animation` 掃描** | [handoff/29_batch2_review.md](handoff/29_batch2_review.md) ＋ [29a](handoff/29a_dr_sent.md) | [upstream/29_batch2_review.md](upstream/29_batch2_review.md) | R-PMH107–R-PMH110（逐字抄錄 4/4 相符） | **A-PMH23（告別音跨螢幕同步無 ER 斷言）**；**`DR-PMH8` 開立**；`DR-PMH5`／`6`／`7` 改 `SENT` | **⚠ 停止條件 7 觸發：`animation` 掃描牴觸 3 處（L299／L300／L301）—— 未自行調和，原樣上呈**；lint 32/32×2、限定 must-hit 19/19、檢查項數維持 32 |
 
 ## 01 輪要點
 
@@ -1771,3 +1772,68 @@ R-PMH99(c) 之字串檢查**不及於 batch 2 之十二項限定**（擴及即�
 **待 Pei**：三筆 DR 之發出（第七次）／**batch 2 之人讀覆核**／
 `animation` 斷言之掃描是否授權新增／`-013`・`-011` 之未定義是否開 DR／
 `-009` 是否應拆為三條／**27＋28 兩包之 commit 授權（16 路徑）**。
+
+---
+
+### 28a（與 28 同輪）—— 核可、apparatus 凍結生效、三筆 DR 之最終全文
+
+**Pei 之裁定逐字**：「寄 核可」。→ R-PMH105（核可生效）、R-PMH106（發出授權）。
+
+| 項 | 內容 |
+|---|---|
+| **R-PMH105 之三項效力** | (a) batch 1 覆核線**結束**，殘餘為三項精化＋`-007` 之 `L160`，**不阻斷開批**；(b) apparatus **凍結生效** —— 現有 **32 項 lint／13 支檢查程式**保留並繼續執行，凍結者為其**增長**；(c) batch 2 **開批** |
+| **R-PMH106 之落檔** | 三份最終全文入 `DATA_REQUESTS.md` **§七**，各記 SHA256：`DR-PMH5` `5c0c83ba58f0d132`／`DR-PMH6` `8dc2fe0c8577b048`／`DR-PMH7` `3de29747dfb6861c` |
+| **已撤回主張之核驗** | R-PMH106 明令寄出版本不得含「p9 × `SU3.)` 相衝」——**三份全文實測 `SU3` 命中各為 0**；`DATA_REQUESTS.md` 之 23 包增補與 §五／§六／`DR-PMH7` 舊稿標「已被取代」，**原文依 R-PMH44 保留** |
+| **`SENT` 欄** | **仍留空**（R-PMH43，不得以本包日期充當）。**「已授權」不等於「已發出」——在實際日期填入前，`DR-PMH5` 仍凍結 ch 9 之 5 leaf** |
+| **停止條件 9（新增任何檢查即停）** | **未觸發** —— 本包新增程式 0、檢查項 0；lint batch01 **32/32**、batch02 **32/32**、`verdict_form` 0 failure、`check_table` 13 支程式／4 支「未實測」不變 |
+| **新增 KNOWN-INCOMPLETE** | （四）`animation` 斷言之掃描未做 —— 依 R-PMH94 該有其自己一次掃描，而新增斷言即新增檢查項（R-PMH104）。**不再排程，解凍須依 R-PMH104(a)(b)** |
+
+---
+
+## 29 包要點
+
+
+### 一、batch 2 之四項修正（分析層人讀覆核所指）
+
+| # | 條 | 問題 | 處置 |
+|---|---|---|---|
+| 2.1 | `-015` | PC2 `has been recorded` **含動作而非狀態**（canon §4.4），且本條為 §5.6 之 before／after 比較 | 記錄移為 **procedure 步驟 3**，比較留在 final ER；PC 只留一項。**procedure 5 步 : ER 5 條，1:1 維持（停止條件 9 未觸發）** |
+| 2.2 | `-014` | `design_method` 標 NEG，而 `Never` 是**合法設定值** | 改 **EP**（canon §12 之 first-match）；reasoning 記明 **§7 講覆蓋、§12 講技術，二者不同層** |
+| 2.3 | `-009`／`-010` | PC2 之來源（他 leaf `SSND 2.1)`／`2.3)`）與必要性未具名 | reasoning 各補一句 |
+| 2.4 | `-014` | 步驟 5 之 `no sound was played` 讀來涵蓋三次觸發，而 ER5 只斷言第三次 | 改 `no goodbye sound is played`，步驟與 ER 同範圍 |
+
+### 二、⚠ `animation` 掃描 —— **牴觸 3 處，未自行調和**
+
+矩陣側 174 格全枚舉，**入選 0**（全簿無動畫用詞），174 格全記 `未對照`。
+規格側命中 **23 行**逐行具名：**印證 7／未對照 13／牴觸 3**。
+
+| 行 | 逐字要點 |
+|---|---|
+| **L299** | `SU5.)` —— 同一 ignition cycle 內動畫**只播一次** |
+| **L300** | 同形態，計次單位為 **CAN BUS wake up**（不與 L299 合併） |
+| **L301** | 門開著時 ignition 轉 ACC/RUN/START → 動畫**被跳過** |
+
+**共同結構**：`-009` 之 pre_condition 未界定「本次門關閉是否為該 cycle 之第一次」，
+亦未界定 ignition 之位置 —— **R-PMH84：互斥須證明，未證。**
+
+**下放包步驟 3 逐字令「發現牴觸即停並上呈」，本包無 R-PMH87 之解除授權，故未動 `-009` 一字。**
+
+**判定之不對稱已具名**：L303（按 Power Button）判 `未對照` 而 L299／L301 判牴觸 ——
+**前者之條件是一個測試員可以不做的動作，後者是測試前既存之狀態。**
+
+### 三、R-PMH107 —— 凍結之範圍
+
+**凍結者為「檢查什麼種類的錯誤」之增長，非既有種類對新資料之適用。**
+後者且為**義務**。本包據此做了兩件先前被誤讀為「凍結中」之事：
+`animation` 掃描、限定字串檢查擴及 batch 2 之十二項。**檢查項數維持 32。**
+
+限定檢查之一般化：`d["limits"]` 由各 `gen_batch*.py` 宣告（batch 1 = 1 條 × 7；
+batch 2 = 6 條 × 2）。must-hit **19/19 刪去皆 FAIL、重複 FAIL**；
+**batch 2 之「一步含三項」錨點不適用（其限定僅 2 項）—— 明白印出，不冒充通過。**
+
+### 四、DR
+
+`DR-PMH5`／`6`／`7` 依 R-PMH110 改 **`SENT`**，日期 **2026-08-25**，管道欄留空。
+**`SENT` ≠ `ANSWERED` —— ch 9 之阻斷不解除。**
+`DR-PMH8` 新開（三問：一日起算點／設定路徑／`Sounds will sync` 是否涵蓋告別音），
+**狀態 `DRAFT`，不在 R-PMH110 之範圍**。未結 DR **4 筆**。

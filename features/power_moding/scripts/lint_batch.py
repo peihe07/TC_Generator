@@ -66,64 +66,84 @@ COVERED = _covered_from_source()
 LAYER3 = ROOT / "data" / "layer3_sections.tsv"
 
 
+def batch_limits(d: dict) -> dict:
+    """R-PMH107(b) —— 本批之事件層限定清單。
+
+    **讀該批之 `limits` 宣告**；未宣告者回退為舊之寫死值
+    （`-007` × 七項），使既有 fixture 之期望不變。
+    """
+    if "limits" in d:
+        return d["limits"]
+    return {t["tc_id"]: LIMIT_TOKENS for t in d.get("tcs", [])
+            if t["tc_id"].endswith("007")}
+
+
 def limit_must_hit() -> int:
-    """R-PMH99(c) 之 must-hit（26 包步驟 6）—— 刪去任一項須 FAIL、重複任一項須 FAIL。"""
+    """R-PMH99(c) 之 must-hit —— 刪去任一項須 FAIL、重複任一項須 FAIL。
+
+    **29 包步驟 4（R-PMH107(b)）之一般化**：母體由寫死之 `batch01` × `-007` × 七項
+    改為**逐批讀其 `limits` 宣告**，故 batch 2 之十二項自此同受保護。
+    **檢查項數不變** —— 本函式為既有檢查之 must-hit，非新檢查。
+    """
     import copy
     import subprocess
-    base = json.loads((ROOT / "generated" / "batch01.json").read_text(encoding="utf-8"))
     tmp = ROOT / "tests" / "fixtures" / "_limit_must_hit.json"
 
-    def run(doc) -> bool:
+    def run(doc, rule="R-PMH99(c)") -> bool:
         tmp.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
         r = subprocess.run([sys.executable, str(Path(__file__).resolve()),
                             str(tmp.relative_to(ROOT))],
                            capture_output=True, text=True, cwd=ROOT)
         return r.returncode == 1 and any(
-            "R-PMH99(c)" in ln and "FAIL" in ln for ln in r.stdout.splitlines())
+            rule in ln and "FAIL" in ln for ln in r.stdout.splitlines())
 
-    print("=== R-PMH99(c) 之 must-hit（26 包步驟 6）===")
-    print("**七項限定得合併於同一步驟，故『某項被忽略』與『某項被刪去』"
+    print("=== R-PMH99(c) 之 must-hit（26 包步驟 6；29 包一般化）===")
+    print("**限定得合併於同一步驟，故『某項被忽略』與『某項被刪去』"
           "在文本上難以分辨** —— 本錨點即驗其可分辨。\n")
-    ok_del = True
+    ok_del = ok_dup = ok_three = True
+    n_del = 0
     try:
-        for tok in LIMIT_TOKENS:
+        for bn in ("batch01", "batch02"):
+            base = json.loads((ROOT / "generated" / f"{bn}.json").read_text(encoding="utf-8"))
+            lim = batch_limits(base)
+            print(f"--- {bn}：{len(lim)} 條／{sum(len(v) for v in lim.values())} 項 ---")
+            for tc_id, toks in lim.items():
+                for tok in toks:
+                    d = copy.deepcopy(base)
+                    for x in d["tcs"]:
+                        if x["tc_id"] == tc_id:
+                            x["test_procedure"] = x["test_procedure"].replace(tok, "XXXX")
+                    hit = run(d)
+                    ok_del &= hit
+                    n_del += 1
+                    print(f"  {tc_id} 刪去 `{tok}` → FAIL 被攔下：{hit}")
+            # 重複：取該批之第一條、第一項
+            tc_id, toks = next(iter(lim.items()))
             d = copy.deepcopy(base)
-            for t in d["tcs"]:
-                if t["tc_id"].endswith("007"):
-                    t["test_procedure"] = t["test_procedure"].replace(tok, "XXXX")
+            for x in d["tcs"]:
+                if x["tc_id"] == tc_id:
+                    x["test_procedure"] += f"\n99. Do not {toks[0]} again"
             hit = run(d)
-            ok_del &= hit
-            print(f"  刪去 `{tok}` → FAIL 被攔下：{hit}")
-        d = copy.deepcopy(base)
-        for t in d["tcs"]:
-            if t["tc_id"].endswith("007"):
-                t["test_procedure"] += "\n8. Do not press the Mute key again"
-        ok_dup = run(d)
-        print(f"\n  重複 `press the Mute key` → FAIL 被攔下：{ok_dup}")
-
-        # R-PMH99(a) 之錨點：一步含三項 → 須 FAIL
-        d = copy.deepcopy(base)
-        for t in d["tcs"]:
-            if t["tc_id"].endswith("007"):
-                lines = [x for x in t["test_procedure"].split("\n") if x.strip()]
-                lines[0] = ("1. Do not press the ON/OFF key and do not turn key-off "
-                            "and do not open any door")
-                lines[1] = "2. Do not adjust HVAC hard controls"
-                t["test_procedure"] = "\n".join(lines)
-        r3 = subprocess.run([sys.executable, str(Path(__file__).resolve()),
-                             str(tmp.relative_to(ROOT))],
-                            capture_output=True, text=True, cwd=ROOT)
-        tmp.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
-        r3 = subprocess.run([sys.executable, str(Path(__file__).resolve()),
-                             str(tmp.relative_to(ROOT))],
-                            capture_output=True, text=True, cwd=ROOT)
-        ok_three = r3.returncode == 1 and any(
-            "R-PMH99(a)" in ln and "FAIL" in ln for ln in r3.stdout.splitlines())
-        print(f"  一步含三項 → R-PMH99(a) FAIL 被攔下：{ok_three}")
+            ok_dup &= hit
+            print(f"  {tc_id} 重複 `{toks[0]}` → FAIL 被攔下：{hit}")
+            # R-PMH99(a)：一步含三項（僅對限定項 >= 3 之批有意義）
+            if len(toks) >= 3:
+                d = copy.deepcopy(base)
+                for x in d["tcs"]:
+                    if x["tc_id"] == tc_id:
+                        lines = [y for y in x["test_procedure"].split("\n") if y.strip()]
+                        lines[0] = f"1. Do not {toks[0]} and do not {toks[1]} and do not {toks[2]}"
+                        x["test_procedure"] = "\n".join(lines)
+                hit = run(d, "R-PMH99(a)")
+                ok_three &= hit
+                print(f"  {tc_id} 一步含三項 → R-PMH99(a) FAIL 被攔下：{hit}")
+            else:
+                print(f"  {tc_id} 之限定僅 {len(toks)} 項 —— "
+                      "**一步含三項之錨點於本批不適用**（不計為 PASS，亦不計為 FAIL）")
     finally:
         tmp.unlink(missing_ok=True)
     print("\n" + "=" * 60)
-    print(f"刪去 7/7 皆 FAIL: {ok_del}；重複 FAIL: {ok_dup}；"
+    print(f"刪去 {n_del}/{n_del} 皆 FAIL: {ok_del}；重複 FAIL: {ok_dup}；"
           f"一步三項 FAIL: {ok_three}")
     return 0 if (ok_del and ok_dup and ok_three) else 1
 
@@ -346,29 +366,31 @@ def main() -> None:
     # R-PMH87／R-PMH94 之七項限定得合併於同一步驟（每步至多兩項，R-PMH99(a)），
     # **惟合併使「某項被忽略」與「某項被刪去」在文本上難以分辨** ——
     # 故逐項驗其字串於 procedure 中**恰出現一次**（0 次或 >= 2 次皆 FAIL）。
+    # 29 包步驟 4（R-PMH107(b)）：期望值由**寫死之 `-007` ＋ 七項**改為
+    # **讀該批之 `limits` 宣告** —— 一般化，非新增檢查項；檢查項數不變。
+    limits = batch_limits(d)
     bad = []
     for t in tcs:
-        if not t["tc_id"].endswith("007"):
-            continue
-        for tok in LIMIT_TOKENS:
+        for tok in limits.get(t["tc_id"], []):
             n = t["test_procedure"].count(tok)
             if n != 1:
                 bad.append((t["tc_id"], tok, n))
-    chk("R-PMH99(c) `-007` 之七項限定字串各出現一次", not bad, str(bad))
+    n_tok = sum(len(v) for v in limits.values())
+    chk(f"R-PMH99(c) 本批之限定字串各出現一次（{len(limits)} 條／{n_tok} 項）",
+        not bad, str(bad))
 
     # --- R-PMH99(a)（27 包步驟 5）：每一 procedure 步驟所含之限定項數 <= 2 ---
     # 26 §12 第 4 項自陳：lint 只驗字串各出現一次，**不驗每步幾項**；
     # 「每步至多兩項」為執行層自行計數之陳述。本檢查使其成為機器判定。
     bad = []
     for t in tcs:
-        if not t["tc_id"].endswith("007"):
-            continue
+        toks = limits.get(t["tc_id"], [])
         for i, step in enumerate(
                 [x for x in t["test_procedure"].split("\n") if x.strip()], 1):
-            k = sum(1 for tok in LIMIT_TOKENS if tok in step)
+            k = sum(1 for tok in toks if tok in step)
             if k > 2:
                 bad.append((t["tc_id"], f"step {i}", k))
-    chk("R-PMH99(a) `-007` 每步之限定項數 <= 2", not bad, str(bad))
+    chk(f"R-PMH99(a) 本批每步之限定項數 <= 2（{len(limits)} 條）", not bad, str(bad))
 
     # --- 15 包步驟 6：procedure 與 ER 之**編號**逐條對齊（人讀覆核之前置）---
     # 只驗機械可查者：編號自 1 起連號、且兩側逐位相同。

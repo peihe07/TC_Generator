@@ -45,6 +45,13 @@ ASSERTIONS = {
     "popup_after": (r"pop\s*-?\s*ups?",
                     "`-007` ER5：`The traffic announcement pop-up is displayed`"
                     "（免責畫面**移除後** pop-up 顯示）"),
+    # --- 29 包步驟 3（R-PMH107(a)）：batch 2 之 `-009`／`-010` 之動畫斷言 ---
+    # **既有檢查對新資料之適用，非新增檢查項** —— 判別法見 R-PMH107。
+    "animation": (r"\b(animations?|start-?up\s+animation|shut-?down\s+animation)\b",
+                  "`-009` ER3／ER5：`The start-up sound starts when the driver door is "
+                  "closed`／`… is synchronised with the start-up animation`；"
+                  "`-010` ER3～ER5：`The shut-down animation starts`／"
+                  "`The goodbye sound starts at the start of the animation`"),
 }
 
 # --- R-PMH94：ER1／ER2 **不需反向掃描**，其理由具名 ---
@@ -324,14 +331,95 @@ PREDICATE_DOMAIN = {
     "power":   r"\b(power|wakes?\s+up|standby|powers?\s+on|remain\s+off"
                r"|turns?\s+off|stays?\s+on)\b",
     "state":   r"\b(event ignored|recall|return|end call|go back|reinstat\w*)\b",
+    # 29 包：矩陣 174 格**無一含動畫用詞**（實測 0），故本域之加入
+    # **不改變任何既有斷言之落選理由**（已以輸出逐 byte 比對驗證）。
+    "animation": r"\b(animations?|outro|splash\s+screens?)\b",
 }
 
 # 各斷言之**入選謂詞**（粗篩之判準）。**其仍以詞為之，該限度已具名於 LIMITS。**
+
+# --- 29 包步驟 3（R-PMH107(a)）：`animation` 斷言之規格側逐行記法 ---
+# 母體 = 規格全文命中 `animation` 用詞之行（實測 23 行）。**四詞記法，逐行具名。**
+# **矩陣側實測 0 格含動畫用詞** —— 174 格全部以「無共同謂詞」記 `未對照`（R-PMH100）。
+ANIM_LINE_VERDICT: dict[int, tuple[str, str, str]] = {
+    19: ("未對照",
+         "素材參照 vs 動畫是否播放／是否同步",
+         "**無共同謂詞**（R-PMH79）—— 其述「官方圖形與動畫範例參照 PDO release」，不斷言任何動畫之播放或同步。"),
+    39: ("未對照",
+         "圖／清單之標籤 vs 動畫是否播放",
+         "**無共同謂詞** —— `Vehicle Start Up Animation,` 為圖說／清單項之標籤，**不含謂詞值**。"),
+    91: ("未對照",
+         "圖／清單之標籤 vs 動畫是否播放",
+         "**無共同謂詞** —— `Vehicle Start Up Animation,` 為圖說／清單項之標籤，**不含謂詞值**。"),
+    175: ("未對照",
+         "圖／清單之標籤 vs 動畫是否播放",
+         "**無共同謂詞** —— `Vehicle Start Up Animation,` 為圖說／清單項之標籤，**不含謂詞值**。"),
+    224: ("未對照",
+         "圖／清單之標籤 vs 動畫是否播放",
+         "**無共同謂詞** —— `Vehicle Start Up Animation,` 為圖說／清單項之標籤，**不含謂詞值**。"),
+    269: ("未對照",
+         "圖／清單之標籤 vs 動畫是否播放",
+         "**無共同謂詞** —— `Vehicle Start Up Animation,` 為圖說／清單項之標籤，**不含謂詞值**。"),
+    282: ("印證",
+         "門關閉 → 啟動動畫是否呈現",
+         "**同謂詞同值** —— `SU1.)` 逐字載 `When the vehicle's driver door is closed a startup animation will be presented (3 sec)`，與 `-009` 之「門關閉引發啟動動畫」一致。⚠ 其 `(3 sec)` 為時長，**`-009` 未斷言任何秒數**（§8.4.1 不造值），故該部分不入對照。"),
+    283: ("未對照",
+         "動畫**之後**之畫面 vs 動畫是否播放／同步",
+         "**謂詞不同** —— 其述動畫結束後 screen black／splash screen 之呈現，`-009`／`-010` 未斷言動畫之後之畫面。"),
+    295: ("印證",
+         "門關閉 → 啟動動畫開始；關機動畫開始",
+         "**同謂詞同值** —— `SU4.)` 逐字載 `it shall start upon driver door close` 與 `If shut-down animation is supported, it shall begin playing`，分別印證 `-009` 與 `-010` 之觸發。**其 `conclude by 3 seconds`／`within 10s` 未入對照**（不造值）。"),
+    296: ("未對照",
+         "關機動畫之**觸發條件** vs `-010` 之「動畫已被觸發」",
+         "**謂詞不同** —— 其載關機動畫之開始須 `KEY OFF` 與 `radio UI shut down` 之組合；`-010` 之步驟以 `Trigger the shut-down animation` **抽象該觸發**而不重述其條件（§8.5，其屬 `Startup Animation` 組之 `SU4.)`，已於 `-010` 之 reasoning 具名）。**二者不取相反值** —— 其為同一事之前置條件與其已成立。"),
+    297: ("未對照",
+         "延遲模式之 outro animation 之例 vs 本批之斷言",
+         "**謂詞不同** —— 其為 `SU4.)` 之舉例（先 key off 後 Radio Shut Down），述關機動畫**於何時**被觸發，非其開始後聲音是否同步。"),
+    298: ("未對照",
+         "門被移除 → 不顯示啟動動畫",
+         "**同謂詞相反值，惟條件互斥可證**（R-PMH84）—— 其條件為 `doors are removed/not present`；而 `-009` 之 PC3 為 `The driver door is open` 且其步驟為 `Close the driver door`，**「駕駛門開著並被關上」蘊含該門存在** —— 二條件不可同時成立。故非牴觸。"),
+    299: ("牴觸",
+         "同一 ignition cycle 內第二次觸發 → 啟動動畫是否播放",
+         "**同謂詞相反值，條件互斥未證**（R-PMH84）—— `SU5.)` 逐字載 `If ignition cycle has not changed the animation should only be played once`，即同一 ignition cycle 內第二次門關閉**不再播放動畫**；而 `-009` 之 ER 斷言門關閉後啟動音**與啟動動畫同步**。**`-009` 之 pre_condition 未排除「本 ignition cycle 內動畫已播放過」** —— 該狀態非測試員之動作而是測試前既存之狀態，**不能以「程序不含該動作」排除**。**停止條件 7 觸發，上呈不自行調和（R-PMH79）。**"),
+    300: ("牴觸",
+         "同一 CAN BUS wake up 內重複門關閉 → 啟動動畫是否播放",
+         "**同謂詞相反值，條件互斥未證** —— 逐字 `Animation should only play once per CAN BUS wake up upon closing the driver door.`。**與 L299 同形態而為另一句**（其計次之單位不同：L299 以 ignition cycle，本行以 CAN BUS wake up）—— **二者各自成立，不合併計數**。**停止條件 7 觸發。**"),
+    301: ("牴觸",
+         "門開著時點火轉 ACC/RUN/START → 啟動動畫是否播放",
+         "**同謂詞相反值，條件互斥未證** —— 逐字 `If vehicle ignition is turned to ACC, RUN or START ON with the door open, the animation screen shall be skipped`。`-009` 之 PC3 為 `The driver door is open and the head unit is off`，**未言 ignition 之位置**；門開著時 ignition 已轉 ACC/RUN/START 之情形**未被排除**，而該情形下動畫被跳過，`-009` 之同步斷言即無所附麗。**停止條件 7 觸發。**"),
+    302: ("印證",
+         "最後狀態為 Radio OFF 時門關閉 → 播放啟動動畫",
+         "**同謂詞同值** —— `SU6.)` 逐字載 `If last state is Radio OFF, play startup animation and show applicable splash screens when driver door closed`，與 `-009` 之「門關閉 → 啟動動畫」一致（其 PC3 之 `head unit is off` 落於此情形）。"),
+    303: ("未對照",
+         "按 Power Button 開機 → 不顯示啟動動畫",
+         "**同謂詞相反值，惟條件互斥可證** —— 其條件為 `When Power Button is pressed On`，**該動作為測試員之動作且不在 `-009` 之 procedure 中**（其步驟只有門關閉與讀取）。⚠ **本判與 L299／L301 之差異須具名**：該二者之條件為**測試前既存之狀態**（本 cycle 內是否已播放／ignition 之位置），**不能以「程序不含該動作」排除**；本行之條件為一個動作，可以。"),
+    304: ("印證",
+         "啟動動畫於各螢幕間之同步",
+         "**同謂詞同值** —— `SU7.)` 逐字載 `Start up animation should sync on start up with all capable screen's start up animation`，與 `-009` ER4 之「聲音於各支援螢幕間同步」**同向**（同一次啟動之跨螢幕一致性）。**其為動畫側之同步，聲音側之同步由 `SSND 1)` 承載。**"),
+    305: ("未對照",
+         "動畫被中斷時之行為 vs 未被中斷時之同步",
+         "**謂詞不同** —— 其述 `Animations on all screens should stop … during any interruptions of animation (timeout, ignition button press)`，標的為**中斷情形下動畫如何停**；`-009`／`-010` 未斷言中斷情形。⚠ **中斷情形下聲音是否隨之停止，規格未言，本批亦未驗** —— 登記為限度，不造值。"),
+    307: ("未對照",
+         "動畫期間之硬鍵按壓之效果 vs 動畫是否播放",
+         "**謂詞不同** —— `SU9.)` 述 `Screen Off`／`Power Off` 硬鍵於動畫期間無作用，其標的為按鍵之效果。**該二鍵不在 `-009`／`-010` 之 procedure 中。**"),
+    311: ("印證",
+         "門關閉 → 啟動音開始且與啟動動畫同步",
+         "**同謂詞同值** —— `SSND 1)` 為 `-009` 之 `source_clause` 自身（R-PMH50）。"),
+    312: ("印證",
+         "告別音於關機動畫開始時同步；跨螢幕同步",
+         "**同謂詞同值** —— `SSND 1)` 之後半，為 `-010` 之 `source_clause` 與 `-009` ER4 之依據。"),
+    314: ("印證",
+         "設定為 Always → 每次啟動動畫播放時皆播放聲音",
+         "**同謂詞同值** —— `SSND 2.1)` 逐字載 `should be played everytime the startup animation is played`，與 `-009`／`-010` 之 PC2（設定為 `Always`）一致，**其亦為該 PC2 之來源**（29 §2.3）。"),
+}
+
 ASSERTION_DOMAIN = {
     "audio": ("audio", r"\b(mute[sd]?|unmute[sd]?|audio|sounds?|volume|background)\b"),
     "popup": ("display", r"pop\s*-?\s*ups?"),
     "popup_after": ("display", r"pop\s*-?\s*ups?"),
     "announcement": (None, r"\b(traffic\s+announcement|announcements?|received)\b"),
+    "animation": ("animation",
+                  r"\b(animations?|start-?up\s+animation|shut-?down\s+animation)\b"),
 }
 
 
@@ -416,6 +504,7 @@ AUDIT_CORE = {
     "popup": r"pop\s*-?\s*ups?",
     "popup_after": r"pop\s*-?\s*ups?",
     "announcement": r"\b(traffic\s+announcement|announcements?)\b",
+    "animation": r"\banimations?\b",
 }
 
 
@@ -591,7 +680,8 @@ def main() -> None:
     rx, desc = ASSERTIONS[a.assertion]
     pat = re.compile(rx, re.I)
     lv = {"popup": LINE_VERDICT, "audio": AUDIO_LINE_VERDICT,
-          "announcement": ANN_LINE_VERDICT, "popup_after": AFTER_LINE_VERDICT}[a.assertion]
+          "announcement": ANN_LINE_VERDICT, "popup_after": AFTER_LINE_VERDICT,
+          "animation": ANIM_LINE_VERDICT}[a.assertion]
     hits = lines(pat)
     n_match = sum(len(pat.findall(l)) for _, l in hits)
     print(f"=== 規格全文之反向掃描（R-PMH90／R-PMH93）—— 斷言 `{a.assertion}` ===")
