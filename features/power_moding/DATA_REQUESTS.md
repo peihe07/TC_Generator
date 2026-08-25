@@ -15,6 +15,7 @@ Urgency 回報。
 | **DR-PMH1** | CFTS009 所定之 Off Road+ power moding 行為 | **CLOSED-BY-RULING**（R-PMH72） | 1（`SWE1-HMI-PM-028`） | `Off Road Plus` 批之 1 條為 `PENDING` 佔位；**含 PENDING 之工作簿不得出貨**（§8.4.3） | **A-PMH13** | **High（交付前阻斷）** |
 | **DR-PMH2** | **Power Moding State Matrix**（獨立 Excel 文件） | **RESOLVED（素材已到）**（R-PMH73）⚠ 見 §DR-PMH2 之落地複驗 | ch 9 之 5 leaf（引 `9.1`）＋ 全 feature 之 power moding 行為 | 規格逐字稱「behavior **shall not be developed without following** the Power Moding State Matrix」——**該文件不在四份素材內** | **A-PMH14** | **High** |
 | **DR-PMH3** | `SU9.)` 與 `SU9.1)` 是否應存在於 037 | **CLOSED-BY-RULING**（R-PMH74） | **0（現無 leaf）** | PDF p8 有該二需求而 SYS1／037 全無 → **不在 48 leaf 內**；其題材落在 `Disclaimer Screen` 且影響逾時語意 | **A-PMH14** | **High** |
+| **DR-PMH5** | **PDF p9 之能力矩陣**之來源文件 | **OPEN** | ch 9 之 5 leaf（引 `9.1`） | **ch 9 不得開批** —— 已提供之 `DCR21421` State Matrix 為**另一主題之矩陣**，不含 p9 之內容（A-PMH18） | **A-PMH18** | **High（阻斷 ch 9 開批）** |
 
 ---
 
@@ -150,7 +151,9 @@ Urgency 回報。
 | **DR-PMH3** | `SU9.)`／`SU9.1)` 是否應在 037 | **CLOSED-BY-RULING** | R-PMH74 | **解除** —— 不補入，leaf 母體維持 48 列／47 有 TC |
 | **DR-PMH4** | outline 9.1 之 PDF 破句何者為權威 | **CLOSED-BY-RULING**（開立即結案） | R-PMH75 | **解除** —— 以 SYS1 為權威；`Power Transitions` 解凍 |
 
-**合計未結 0 筆。**
+| **DR-PMH5** | **PDF p9 之能力矩陣**之來源文件 | **OPEN**（20 包開立，R-PMH76） | R-PMH76 | **ch 9 開批** |
+
+**合計未結 1 筆（`DR-PMH5`）。**
 
 ---
 
@@ -244,3 +247,59 @@ Excel 為 `DCR21421`／2022-08-03，PDF 為 `DCR22412`／2023-01-24 —— **Exc
 **待 Pei**：p9 之矩陣是否另有一份文件？或 p9 之矩陣即為 PDF 自身之摘要而
 Excel 為另一主題（開機／關機事件轉移）之矩陣、二者本不對應？
 **不自行取捨。**
+
+---
+
+## DR-PMH5（開立 2026-08-24，依 **R-PMH76**）
+
+**型別**：規範性文件之缺件 —— 規格所引之矩陣**存在**，惟所提供者為另一份。
+
+**成對之 anomaly**：**A-PMH18**。**狀態**：`OPEN`。**阻斷 ch 9 開批。**
+
+### 問題全文
+
+PDF p9 之 `Power Moding` 節含一張**靜態能力矩陣**，其後緊接一句
+`Please refer to Power Moding State Matrix for further specifications.`
+該矩陣於 SYS1 匯出中**整表缺失**（A-PMH14 新漏 2），
+**且該句本身於 SYS1 全 52 則命中 0**。
+
+2026-08-24 所提供之
+`Power Moding HMI State Matrix R1 SR24 Post 2A DCR21421 (August 3 2022).xlsx`
+**不含該矩陣之內容** —— 已做**逐字**與**語意**兩層對照，二者皆不涵蓋：
+
+| | **PDF p9 之矩陣** | **所提供之 Excel** |
+|---|---|---|
+| 型別 | **靜態能力表** | **事件驅動之狀態轉移表** |
+| 列軸 | 電源狀態：`KEY ON ENGINE ON`／`KEY OFF (ACC)`／`KEY OFF (No ACC)` | **事件**：`ON/OFF button Pressed`／`Door opened`／`Incoming Call`／`Gear changes to Reverse`／`Screen Off Button Pressed` … |
+| 欄軸 | 受控對象：`ICS Hard Controls`／`HVAC Knobs`／`Climate GUI`／`Headunit`，各分 `HEADUNIT POWER OFF`／`ON` | **情境條件**：`Turn Off @ door opening Enabled/Disabled` × `HU on`／`HU off`／`Power Button OFF` × `Call Active/Not Active` × `Door Open/Closed`（另一區塊為 `Screen Off × Mute × Gear`） |
+| 格內容 | **是否可用**（`Fully functional`／`Not Visibile due to power off`） | **轉移後之結果**（`Event ignored`／`Radio Wakes Up and mutes` …） |
+| 區塊 | 單一表 | **三塊**：`Key-on`（列 1–16）／`Key-off`（19–33）／`Key On, Gear ≠/= Reverse`（37–48） |
+
+**逐字探針十三個全 0 命中**：`HEADUNIT POWER`／`ICS Hard Controls`／`HVAC Knobs`／
+`Climate GUI`／`ENGINE ON`／`ENGINE OFF`／`Power Button only is functional`／
+`Fully functional`／`Power Accessory Delay`／`accessory delay`／`FOTA`／
+`Charge Now`／`stay awake`。
+
+**語意層亦不涵蓋**：Excel 之 `HU on`／`HU off`／`Power Button OFF` 是**情境條件**，
+不是 p9 之「受控對象在該電源狀態下是否可用」；
+Excel 全簿無任何一格描述 `ICS Hard Controls`／`HVAC Knobs`／`Climate GUI`
+三者之可用性。
+
+### 所需
+
+**PDF p9 那張能力矩陣之可讀來源**：其原始檔，或該矩陣所在頁之高解析輸出。
+
+### 其影響
+
+`9.1` 之 5 個 leaf（`SWE1-HMI-PM-018-01` ～ `-05`，`Power Transitions` 組）
+其判讀背景不完整。**R-PMH75 已定 `9.1` 之 `source_clause` 取自 SYS1，
+惟 SYS1 之 `9.1` 只有 `PM1)` 之散文，不含該矩陣。**
+
+### 版本落差（一併回報）
+
+| 文件 | DCR | 日期 |
+|---|---|---|
+| 所提供之 Excel | `DCR21421` | **2022-08-03**（Title 分頁自載） |
+| 規格 PDF | `DCR22412` | 2023-01-24 |
+
+**Excel 較早**，且其 `SR24 Change Log` 之末筆為 **2021-10-20**，未及其自稱日期。

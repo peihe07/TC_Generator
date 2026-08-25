@@ -126,7 +126,8 @@ LIMITS = [
     "只比對 PDF **文字層**；**圖表不看** —— p9 之狀態矩陣即以圖呈現（A-PMH14 新漏 2）",
     "比對單位為句（>= 25 字元）；**短於 25 字元之句一律不入母體**，章 8 之標題 `Starup R1Low Only` 即屬之",
     "6-gram 覆蓋率**不再參與判定**（R-PMH66）—— 只決定殘餘人讀之優先順序；其門檻值本身未經重驗，故亦不再被倚賴",
-    "`RESIDUE_VERDICT` 之人讀結論**由人寫入，本檢查不驗其正確性** —— 只驗其存在",
+    "`RESIDUE_VERDICT` 之人讀結論**由人寫入，本檢查不驗其正確性** —— 只驗其存在；且其**第二來源尚未建立**（19 §14 第 2 項，已登記於 `DECISIONS.md`）",
+    "`--source-must-hit` 之探針**只取 A-PMH16 一則所引之三段字** —— 其餘 19 條殘餘結論之可重現性未驗",
     "**只驗字之有無，不驗語意** —— 同義改寫會被判為漏句，改寫錯誤會被判為命中",
 ]
 
@@ -241,68 +242,86 @@ def sys1_chapter(ch: int) -> list[tuple[str, str]]:
 
 
 def source_must_hit() -> int:
-    """R-PMH71 之 must-hit（19 包步驟 4）—— 兩來源並列跑章 9。
+    """R-PMH78（20 包步驟 5）—— **改寫後之 must-hit，形式為二值，不涉門檻**。
 
-    A-PMH16 之三處漏字（`for 60 seconds`／`seconds`／`the radio should shut Off the`）
-    皆位於 `PM1)` 之散文中。以 `layout` 為來源時，p9 之散文與矩陣交錯，
-    該三處**不會**以可讀之形態出現於任何殘餘句；以 `block` 為來源時，
-    `PM1)` 為單一區塊，該三處**必然**落在殘餘句內。
+    **19 包所指定者已撤回**（R-PMH78）：其前提「以 `-layout` 跑章 9 →
+    A-PMH16 之三處查不出」**為假** —— 三個探針於 `-layout` 之殘餘中同樣存在
+    （3/3，19 包 §4 實測）。分析層指定該期望值時未先驗證其成立，
+    而 R-PMH35(c) 明訂 must-hit 須「實跑並證明其 FAIL」。
+
+    改寫後所驗者為 **R-PMH71 之本文主張**：
+      範圍向 —— 以**預設設定**重跑，`RESIDUE_VERDICT` 所引之逐字內容
+                須出現於輸出中（即結論之量測可由預設重現）；
+      must-hit —— 將預設來源換為一個**確定不含該內容之替身**
+                （此處取 SYS1 側文字充當 PDF 側），輸出須**不含**該內容而 FAIL。
     """
+    # 探針取自 `RESIDUE_VERDICT` 中 A-PMH16 一則所逐字引用者
     probes = ["for 60 seconds up to 2.5 minutes",
               "within 60 seconds the timeout",
               "the radio should shut Off the popup"]
-    out = {}
-    for src in ("layout", "block"):
-        pdf = pdf_text(src)
+
+    def residue_text(pdf: str) -> str:
         rows = sys1_chapter(9)
         sysc = " ".join(d for _, d in rows)
-        sents = sentences(pdf_chapter(9, pdf))
-        residue = [x for x in sents if x not in sysc]
-        joined = " ".join(residue)
-        out[src] = (len(sents), len(residue),
-                    [p_ for p_ in probes if p_ in joined])
-    print("=== R-PMH71 must-hit —— 章 9 之兩來源並列 ===")
-    print(f"{'來源':<8} {'句數':>4} {'殘餘':>4}  A-PMH16 三探針之命中")
-    for src in ("layout", "block"):
-        n, r, hit = out[src]
-        print(f"{src:<8} {n:>4} {r:>4}  {len(hit)}/3  {hit}")
-    ok_layout = len(out["layout"][2]) == 0
-    ok_block = len(out["block"][2]) == 3
-    print(f"\n  `layout` 查不出（0/3）：{ok_layout}")
-    print(f"  `block` 三處全在殘餘（3/3）：{ok_block}")
-    # --- 真正之鑑別量：對 SYS1 9.1 做字級 diff 之**噪音** ---
-    # 下放包所給之 must-hit 前提（`layout` 查不出）**不成立** ——
-    # 三個探針之字串於 `-layout` 之殘餘中同樣存在（見上表）。
-    # 二來源之實際差別在於：`-layout` 之 p9 散文與矩陣**交錯**，
-    # 故字級 diff 之差異數被矩陣格灌爆，A-PMH16 之三處淹沒其中。
-    import difflib
-    rows = sys1_chapter(9)
-    sys91 = next(d for o, d in rows if o == "9.1")
-    print("\n=== 真正之鑑別量 —— 對 SYS1 `9.1` 之字級 diff 噪音 ===")
-    noise = {}
-    for src in ("layout", "block"):
-        pdf = pdf_text(src)
-        seg = pdf_chapter(9, pdf)
-        a, b = seg.split(), sys91.split()
-        ops = [o for o in difflib.SequenceMatcher(None, a, b, autojunk=False)
-               .get_opcodes() if o[0] != "equal"]
-        words = sum(max(o[2] - o[1], o[4] - o[3]) for o in ops)
-        noise[src] = (len(ops), words)
-        print(f"  {src:<8} 差異段 {len(ops):>3} 個、涉 {words:>4} 詞")
-    print(f"\n  `block` 之差異段為 `layout` 之 "
-          f"{noise['block'][0]/noise['layout'][0]:.0%}；"
-          f"涉詞數為 {noise['block'][1]/noise['layout'][1]:.0%}")
-    print("  **A-PMH16 之三處即由 block 層之字級 diff 讀出** —— "
-          "\n  `layout` 側之差異段被矩陣格灌爆，三處淹沒其中。")
+        return " ".join(x for x in sentences(pdf_chapter(9, pdf)) if x not in sysc)
 
-    print("\n  **此即 R-PMH71 所指之「結論與其量測分離」** —— "
-          "\n  18 包把 A-PMH16 寫進了 `RESIDUE_VERDICT`，"
-          "而其量測所用之來源不是當時之預設。")
-    print("\n  ⚠ **下放包所給之 must-hit 前提不成立，據實回報** —— "
-          "\n  「`-layout` 查不出」為假：三個探針之字串於 `-layout` 之殘餘中同樣存在。"
-          "\n  真正使 18 包漏掉它的不是來源，是 13 包之 **6-gram 門檻**（R-PMH66）。"
-          "\n  **停止條件 8 依其字面觸發，本函式回傳 1。**")
-    return 0 if (ok_layout and ok_block) else 1
+    print("=== R-PMH78 —— 改寫後之 must-hit（二值，不涉門檻）===")
+    print(f"探針（取自 `RESIDUE_VERDICT` 之 A-PMH16 一則）：{probes}\n")
+
+    # --- 範圍向：預設設定 ---
+    txt = residue_text(pdf_text(SOURCE_DEFAULT))
+    hit = [x for x in probes if x in txt]
+    ok_scope = len(hit) == len(probes)
+    print(f"範圍向（預設 `{SOURCE_DEFAULT}`）：{len(hit)}/{len(probes)} 命中 → "
+          f"{'PASS' if ok_scope else '**FAIL**'}")
+    print("  **結論之量測可由預設重現** —— 此即 R-PMH71 所要求者。")
+
+    # --- must-hit：替身來源（SYS1 側文字充當 PDF 側）---
+    # 該替身**確定不含**那三段字（A-PMH16 即「SYS1 無而 PDF 有」）。
+    rows = sys1_chapter(9)
+    stub = " ".join(d for _, d in rows)
+    stub_txt = " ".join(x for x in sentences(stub) if x not in stub)   # 必為空
+    hit2 = [x for x in probes if x in stub_txt]
+    ok_hit = len(hit2) == 0
+    print(f"\nmust-hit（替身來源 = SYS1 側文字）：{len(hit2)}/{len(probes)} 命中 → "
+          f"{'**攔下**' if ok_hit else 'PASS（未攔下）'}")
+    print("  替身之殘餘必為空集（自身對自身逐字全命中），故探針必然 0 命中。")
+
+    # --- must-hit B：**非平凡**之替身 ---
+    # must-hit A 之替身（SYS1 對自身）其殘餘必為空集，**故其攔下是保證而非證明**。
+    # B 取章 8 之 PDF 段充當章 9 之來源 —— 殘餘**非空**（章 8 之句不在 SYS1 之
+    # 9.x 內），而三個探針必然 0 命中。此方證明「探針之命中來自章 9 之內容」，
+    # 非來自「殘餘恰好非空」。
+    pdf_def = pdf_text(SOURCE_DEFAULT)
+    sysc9 = " ".join(d for _, d in sys1_chapter(9))
+    stub_b = [x for x in sentences(pdf_chapter(8, pdf_def)) if x not in sysc9]
+    txt_b = " ".join(stub_b)
+    hit_b = [x for x in probes if x in txt_b]
+    ok_hit_b = len(hit_b) == 0 and len(stub_b) > 0
+    print(f"\nmust-hit B（替身來源 = 章 8 之 PDF 段，**殘餘非空**）："
+          f"殘餘 {len(stub_b)} 句、探針 {len(hit_b)}/{len(probes)} 命中 → "
+          f"{'**攔下**' if ok_hit_b else 'PASS（未攔下）'}")
+    print("  **A 之替身其殘餘必為空集，故其攔下是保證而非證明** —— B 補之。")
+
+    # --- 對照：`-layout` 之表現（**只回報，不參與判定**）---
+    lay = residue_text(pdf_text("layout"))
+    hit3 = [x for x in probes if x in lay]
+    print(f"\n對照（`--source layout`）：{len(hit3)}/{len(probes)} 命中"
+          " —— **19 包所指定之 must-hit 前提即在此為假**（R-PMH78 已撤回）。")
+    print("  block 層之價值不在「查得出／查不出」，在於**使字級 diff 可行**：")
+    import difflib
+    sys91 = next(d for o, d in sys1_chapter(9) if o == "9.1")
+    for src in ("layout", "block"):
+        seg = pdf_chapter(9, pdf_text(src))
+        ops = [o for o in difflib.SequenceMatcher(
+            None, seg.split(), sys91.split(), autojunk=False).get_opcodes()
+            if o[0] != "equal"]
+        print(f"    {src:<8} 章 9 段對 SYS1 `9.1` 之字級 diff：差異段 {len(ops)} 個")
+
+    print("\n" + "=" * 66)
+    print(f"範圍向: {ok_scope}；must-hit A 被攔下: {ok_hit}；"
+          f"must-hit B（非平凡）被攔下: {ok_hit_b}")
+    return 0 if (ok_scope and ok_hit and ok_hit_b) else 1
 
 
 def main() -> None:

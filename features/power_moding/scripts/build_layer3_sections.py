@@ -8,6 +8,7 @@ Layer 3 為**規格章節分群**，取規格自身之 section id（canon §4.1.
 輸出 data/layer3_sections.tsv（48 列 ＋ 表頭）。
 本檔不擬 Layer 2 名稱、不定 granularity —— 該提案屬分析層。
 """
+import argparse
 import csv
 import json
 import re
@@ -23,6 +24,13 @@ EXCLUDED = {"SWE1-HMI-PM-028": "EXCLUDED-BY-R-PMH72"}
 
 
 def main() -> None:
+    # 20 包步驟 6（19 §14 第 4 項）—— **重跑不得靜默覆寫現值**。
+    # `--out` 使重跑之產物落於暫存檔，供與現值逐列 diff。
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--out", default=None,
+                    help="輸出路徑（預設 data/layer3_sections.tsv）；"
+                         "給定他值即只產出不覆寫，供 diff")
+    args = ap.parse_args()
     cfg = yaml.safe_load((ROOT / "feature.yaml").read_text(encoding="utf-8"))
     a = openpyxl.load_workbook(ROOT / cfg["paths"]["a03_report"],
                                data_only=True)["Analysis Report"]
@@ -68,7 +76,7 @@ def main() -> None:
     if missing:
         raise SystemExit(f"停止條件 9：{len(missing)} 個 leaf 無 section id -> {missing}")
 
-    out = ROOT / "data" / "layer3_sections.tsv"
+    out = Path(args.out) if args.out else ROOT / "data" / "layer3_sections.tsv"
     with out.open("w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0]), delimiter="\t")
         w.writeheader()

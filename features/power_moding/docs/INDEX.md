@@ -26,6 +26,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 17 | 2026-08-24 | **章 8 雙向複驗**、五支檢查具名限度、質疑型條文母體 | [handoff/17_scope_of_inventory.md](handoff/17_scope_of_inventory.md) | [upstream/17_scope_of_inventory.md](upstream/17_scope_of_inventory.md) | R-PMH63–R-PMH65（逐字抄錄 3/3 相符） | **A-PMH14 結語更正**（9.1 之「維持」不成立；`8` 之歸因更精確） | **步驟 1–7 全數執行；九條停止條件全未觸發；lint 30/30；章 8 新漏 0；shasum 5/5 OK** |
 | 18 | 2026-08-24 | **章 9／11 逐字複驗**、偽陰抽樣、doc-sync 改錨 | [handoff/18_break_the_circle.md](handoff/18_break_the_circle.md) | [upstream/18_break_the_circle.md](upstream/18_break_the_circle.md) | R-PMH66–R-PMH68（逐字抄錄 3/3 相符） | **A-PMH16（SYS1 之 9.1 散文漏字，兩處為時序）** | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；分割檢查未覆蓋段無 marker** |
 | 19 | 2026-08-24 | **Pei 四筆 DR 一次結清**、leaf 48→47、預設來源改 block 層 | [handoff/19_broken_source.md](handoff/19_broken_source.md) ＋ [19a](handoff/19a_pei_dr_rulings.md) | [upstream/19_broken_source.md](upstream/19_broken_source.md) | R-PMH69–R-PMH75（逐字抄錄 7/7 相符） | **A-PMH17（章 10 全大寫標籤全缺）**／**A-PMH18（State Matrix 與 p9 不對應，停手上呈）**；A-PMH13／14／16 狀態更新 | **⚠ 停止條件 canon 2、canon 5、本包 8 觸發；本包 7 為字面／目的分歧；六章全 PASS；lint 30/30** |
+| 20 | 2026-08-25 | **State Matrix 效力範圍更正**、Off Road+ 互補分支、PITA6 牴觸 | [handoff/20_matrix_scope.md](handoff/20_matrix_scope.md) | [upstream/20_matrix_scope.md](upstream/20_matrix_scope.md) | R-PMH76–R-PMH78（逐字抄錄 3/3 相符） | A-PMH18 補記（語意層亦不涵蓋）；**`DR-PMH5` 開立** | **⚠ canon 1／2／5 觸發；本包 7 字面觸發；`--source-must-hit` 改寫後轉綠；TSV 重跑 diff = 0** |
 
 ## 01 輪要點
 
@@ -1154,3 +1155,65 @@ A6 錨點重算為 **47 分 16 組**（餘裕僅 0.007）；`framework.md` 17 �
 **待 Pei**：**A-PMH18（阻斷 ch 9 開批）**／停止條件 7 之字面-目的分歧／
 停止條件 8 之 must-hit 如何改／19 之 commit 授權（19 路徑）／
 **19a §1.1 之解讀確認**（「拿掉」採（乙））／9.1 之例外是否寫入 profile。
+
+---
+
+## 20 包要點
+
+**R-PMH73 之定位錯誤已更正（R-PMH76）**：所提供之 State Matrix 是
+**事件驅動之狀態轉移表**，PDF p9 是**靜態能力表**——二者主題與粒度皆不同。
+其真正效力範圍為 **ch 12（Off Road+）** 與 **ch 10 之一部**，**非 p9**。
+**A-PMH18 維持 PENDING，已開 `DR-PMH5`**（未結 DR 由 0 回到 **1 筆**，阻斷 ch 9 開批）。
+
+19 §14 第 1 項之自陳結清：語意層對照亦不涵蓋——`HU on`／`HU off` 在 Excel 中是
+**情境條件**，不是 p9 之「受控對象是否可用」；**Excel 全簿無一格描述
+`ICS Hard Controls`／`HVAC Knobs`／`Climate GUI` 之可用性**。
+
+### ⚠ 停止條件 7 字面觸發 —— `10.3`（PITA6）與矩陣 `r48c10` 牴觸
+
+| | |
+|---|---|
+| 規格 `PITA6` | `HVAC pop-ups **shall be** temporarily displayed during Power Button Off state.`（全稱句，無例外） |
+| 矩陣 `r48c10` | `Key On, Gear = Reverse` × `Power Button OFF` ＝ **`Popup not displayed over RVC`** |
+
+可能之調和是「RVC 優先」（PITA4／PITA5 已建立），**惟本層不裁**——
+依 R-PMH77(c)「不得由執行層自行以目的覆蓋字面」。
+**`-008` 所引之 `10.4` 無牴觸，batch 1 不受影響，未改任何 TC。**
+
+**且此為 R-PMH77 之形態第四次出現**：停止條件寫「發現矛盾」，
+而其括號透露所欲攔截者是「**影響 batch 1 之**矛盾」。
+**R-PMH77 才剛立於本包，其所指之缺陷在同一包之停止條件裡又出現一次。**
+
+### `-027` 之 Pre-Condition **必須**含「車輛已處於 Off Road state」
+
+`OFF1.)` 之條件句逐字即為該前提；矩陣列 16 對「非 Off Road state」之同一按鍵
+給出**相反結果**（`Radio Wakes Up and mutes`）。**二者為互補之兩支。**
+且 `OFF3.)` 只說靜音未說喚醒——**喚醒之來源在矩陣裡**。本輪只回報依據，未撰 TC。
+
+**軸之讀法更正下放包一處**：`Power Button OFF`（`J3:M3`）**不在**
+`Turn Off @ door opening Disabled`（`F2:I2`，只到 I 欄）之下，該組**無此限定**。
+`-` 者十欄中**八欄為 `HU on`、兩欄為 `Power Button OFF × Call Active`**。
+`rmutes`（c12）為 `mutes` 之打字損壞，只登記不改寫。
+
+### 其餘
+
+**`--source-must-hit` 改寫後轉綠**（R-PMH78），**且非因調整期望值而轉綠**——
+其所驗之命題已由「一個不成立者」換為 R-PMH71 之本文主張。
+**本層自加 must-hit B**（替身＝章 8 之 PDF 段，殘餘非空）——
+因 A 之替身其殘餘必為空集，**其攔下是保證而非證明**。
+
+**`build_layer3_sections.py` 重跑 diff = 0**（以 `--out` 落暫存檔，未覆寫）——
+19 §14 第 4 項結清。
+
+**`RESIDUE_VERDICT` 之第二來源本輪不做**，已於 `DECISIONS.md` 登記為
+KNOWN-INCOMPLETE（20 條中 **13 條為執行層本人所寫**）。
+
+**⚠ 本輪自陳之未竟項中，三項須先看（上繳 §12）**
+1. **「無對應列」與「無矛盾」不是同一件事** —— 我把後者寫在 `10.5`／`10.7` 之判定欄裡。
+2. **`10.6` 我自行調和，`10.3` 我上呈** —— 同樣是「規格字面 vs 矩陣格」。
+   **二者之差別只在於我覺得後者比較好解釋。這是一個我不該自己做的區分。**
+3. **矩陣 362 格我只逐格讀了 9 列** —— `Key-on`／`Key-off` 區塊與 **ch 7** 之關係
+   **完全未查**，而 batch 1 之 8 條全部出自 ch 7。
+
+**待 Pei**：`DR-PMH5` 之發出（阻斷 ch 9）／**`10.3` 之牴觸如何裁**／
+§12 第 2、4 項之兩個「我不該自己做的判斷」／20 之 commit 授權（9 路徑）。

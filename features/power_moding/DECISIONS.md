@@ -60,6 +60,9 @@ sign-off = binding as proposed.
 - **outline `9.1` 之 `source_clause` 例外**: [RULED R-PMH75 — Pei 2026-08-24「以刪掉之後的為主」] `Power Transitions` 組之 5 leaf（`SWE1-HMI-PM-018-01`～`-05`，引 outline 9.1）其 `source_clause` **取自 SYS1 匯出，非 PDF** —— R-PMH50 於此反轉。`source_clause_origin` 須逐字記 `sys1_export 9.1` 並註 `R-PMH75`。**R-PMH50 於其餘 46 leaf 維持不變。** ⚠ **本輪未改 profile**（R-PMH46 之一次性授權已用畢，profile 之修改須經 Pei 核可）—— 開批前須確認撰寫者知悉本例外，否則會誤用 R-PMH50 之通則。**承擔之風險**：`the radio should shut Off`（逾時後收音機關機）不會有任何一條 TC 驗到
 - **`SWE1-HMI-PM-028` 之排除**: [RULED R-PMH72 — Pei 2026-08-24「DR-PMH1 拿掉」] 不寫入交付工作簿、不產出 TC、不以 `PENDING` 佔位。`Off Road Plus` 3 → **2** leaf；有 TC 之 leaf 48 → **47**；granularity 之分母改 47 並全項重跑（8/47 = 0.1702 G1 ✅、min 2 ✅、9/47 = 0.1915 G4 ✅、[2,9] ⊂ [2,23] G5 ✅；A6 錨點重算為 47 分 16 組）。其列**保留**於 `layer3_sections.tsv`（48 列，增 `excluded_by` 欄）與 `outline_map.json`，標 `EXCLUDED-BY-R-PMH72`
 - **⚠ State Matrix 之內容與 PDF p9 不對應**: [STOPPED — A-PMH18，19 包步驟 8] R-PMH73 定該 Excel 為 ch 9 之規範性判讀背景，**惟實測其軸與 p9 之軸逐字探針全 0**（13 個探針）。依 R-PMH73 明文「不一致者不得自行取捨，停並上呈」——**未將 A-PMH14 新漏 2 改為 `RESOLVED`**（其前提不成立），**ch 9 不得開批**。新漏 3 已改 `RESOLVED（來源已補）`，二者處置不同之理由見 `ANOMALIES.md`
+- **ch 9（`Power Transitions`）不得開批**: [BLOCKED — A-PMH18／`DR-PMH5`] p9 之能力矩陣仍無來源。所提供之 `DCR21421` State Matrix 經**逐字**與**語意**兩層對照皆不涵蓋 p9（20 包 §2.1）。**R-PMH73 之「該矩陣為 ch 9 之判讀背景」已由 R-PMH76 更正** —— 其真正效力範圍為 ch 12 與 ch 10 之一部
+- **`Off Road Plus` 開批之前置**: [RULED R-PMH76 — 20 包 §三] 該 Excel 列 16（`SRT or Off Road+ Hard Button press.`）對 ch 12 有直接效力。`-027` 之 Pre-Condition **須含「車輛已處於 Off Road state」**，否則其 ER「不喚醒」與矩陣之 `Radio Wakes Up and mutes` 直接衝突（二者為互補之兩支）。**本輪只回報依據，未撰寫 TC**
+- **⚠ `RESIDUE_VERDICT` 之第二來源尚未建立**: [KNOWN-INCOMPLETE — 19 §14 第 2 項，20 包步驟 7 明令登記] `chapter_bidirectional.py` 之 20 條殘餘人讀結論，其中 13 條為執行層本人所寫，**既是判準之作者也是那個「人」**。其正解為分析層人讀，**已排入下一輪**。本項為已知未完成，非疏漏、亦非 RESOLVED（通則 8）
 - BLOCKED batches at start: [AUTO] **0** —— 29/29 章節於 SYS1 命中、48/48 leaf 之 `pdf_page` 已解、無 DR-PMH 待答
 
 ---
