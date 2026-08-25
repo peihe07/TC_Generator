@@ -1,458 +1,458 @@
-old_b	new_b	req_id
-305	244	SWE1-VC-4AUXSwitches-028
-414	245	SWE1-VC-6AuxSwitches-002
-422	246	SWE1-VC-6AuxSwitches-003
-319	247	SWE1-VC-AutoDoorLocks-015
-326	248	SWE1-VC-AutoDoorLocks-016
-451	249	SWE1-VC-AutoFoldMirrors-032
-456	250	SWE1-VC-AutoFoldMirrors-033
-461	251	SWE1-VC-AutoFoldMirrors-034
-465	252	SWE1-VC-AutoFoldMirrors-035
-468	253	SWE1-VC-AutoFoldMirrors-036
-484	254	SWE1-VC-AutoHighBeam-084
-486	255	SWE1-VC-AutoHighBeam-085
-589	256	SWE1-VC-AutoHighBeam-086
-591	257	SWE1-VC-AutoHighBeam-087
-593	258	SWE1-VC-AutoHighBeam-088
-498	259	SWE1-VC-AutoOnDriverComfort-2Option-103
-616	260	SWE1-VC-AutoOnDriverComfort-2Option-105
-618	261	SWE1-VC-AutoOnDriverComfort-2Option-106
-620	262	SWE1-VC-AutoOnDriverComfort-2Option-107
-493	263	SWE1-VC-AutoOnDriverComfort-3Option-096
-495	264	SWE1-VC-AutoOnDriverComfort-3Option-097
-604	265	SWE1-VC-AutoOnDriverComfort-3Option-098
-607	266	SWE1-VC-AutoOnDriverComfort-3Option-099
-610	267	SWE1-VC-AutoOnDriverComfort-3Option-100
-613	268	SWE1-VC-AutoOnDriverComfort-3Option-101
-331	269	SWE1-VC-AutoParkBrake-021
-339	270	SWE1-VC-AutoParkBrake-022
-546	271	SWE1-VC-AutoParkBrake-023
-549	272	SWE1-VC-AutoParkBrake-024
-552	273	SWE1-VC-AutoParkBrake-025
-382	274	SWE1-VC-AutoUnlockonExit-040
-393	275	SWE1-VC-AutoUnlockonExit-041
-570	276	SWE1-VC-AutoUnlockonExit-042
-572	277	SWE1-VC-AutoUnlockonExit-043
-575	278	SWE1-VC-AutoUnlockonExit-044
-502	279	SWE1-VC-AutomaticTrailerLight Check-039
-505	280	SWE1-VC-AutomaticTrailerLight Check-040
-583	281	SWE1-VC-AutomaticTrailerLight Check-041
-585	282	SWE1-VC-AutomaticTrailerLight Check-042
-587	283	SWE1-VC-AutomaticTrailerLight Check-043
-686	284	SWE1-VC-Blind Spot with Trailer Detection-045
-692	285	SWE1-VC-Blind Spot with Trailer Detection-046
-245	286	SWE1-VC-Blind Spot with Trailer Detection-047
-249	287	SWE1-VC-Blind Spot with Trailer Detection-048
-697	288	SWE1-VC-Blind Spot with Trailer Detection-049
-683	289	SWE1-VC-BlindSpotAlert-002
-689	290	SWE1-VC-BlindSpotAlert-003
-695	291	SWE1-VC-BlindSpotAlert-004
-247	292	SWE1-VC-BlindSpotAlert-005
-251	293	SWE1-VC-BlindSpotAlert-006
-252	294	SWE1-VC-BlindSpotAlert-007
-352	295	SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-134
-360	296	SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-135
-447	297	SWE1-VC-ChargePowerLevel-046
-452	298	SWE1-VC-ChargePowerLevel-047
-457	299	SWE1-VC-ChargePowerLevel-048
-462	300	SWE1-VC-ChargePowerLevel-049
-466	301	SWE1-VC-ChargePowerLevel-050
-469	302	SWE1-VC-ChargePowerLevel-051
-542	303	SWE1-VC-ConsumptionUnit-031
-299	304	SWE1-VC-CorneringLights-002
-308	305	SWE1-VC-CorneringLights-003
-332	306	SWE1-VC-CorneringLights-006
-297	307	SWE1-VC-DaytimeRunningLights-002
-306	308	SWE1-VC-DaytimeRunningLights-003
-314	309	SWE1-VC-DaytimeRunningLights-004
-329	310	SWE1-VC-DaytimeRunningLights-006
-330	311	SWE1-VC-DaytimeRunningLights-006
-534	312	SWE1-VC-DistanceUnit-021
-254	313	SWE1-VC-DriverEasyExitSeat-038
-258	314	SWE1-VC-DriverEasyExitSeat-039
-262	315	SWE1-VC-DriverEasyExitSeat-040
-264	316	SWE1-VC-DriverEasyExitSeat-041
-266	317	SWE1-VC-DriverEasyExitSeat-042
-470	318	SWE1-VC-E-Save-090
-471	319	SWE1-VC-E-Save-091
-476	320	SWE1-VC-EngineOffPowerDelay-046
-482	321	SWE1-VC-EngineOffPowerDelay-048
-485	322	SWE1-VC-EngineOffPowerDelay-049
-488	323	SWE1-VC-EngineOffPowerDelay-050
-335	324	SWE1-VC-EnhancedDisplaySynchronization-127
-343	325	SWE1-VC-EnhancedDisplaySynchronization-128
-533	326	SWE1-VC-EnhancedDisplaySynchronization-129
-537	327	SWE1-VC-EnhancedDisplaySynchronization-130
-541	328	SWE1-VC-EnhancedDisplaySynchronization-131
-681	329	SWE1-VC-EnhancedDisplaySynchronization-132
-401	330	SWE1-VC-FlashLightWithLock-046
-408	331	SWE1-VC-FlashLightWithLock-047
-577	332	SWE1-VC-FlashLightWithLock-048
-578	333	SWE1-VC-FlashLightWithLock-049
-579	334	SWE1-VC-FlashLightWithLock-050
-257	335	SWE1-VC-ForwardCollisionWarning-034
-261	336	SWE1-VC-ForwardCollisionWarning-035
-269	337	SWE1-VC-ForwardCollisionWarning-039
-455	338	SWE1-VC-ForwardCollisionWarningSensitivity-041
-460	339	SWE1-VC-ForwardCollisionWarningSensitivity-042
-473	340	SWE1-VC-ForwardCollisionWarningSensitivity-046
-340	341	SWE1-VC-GreetingLights-008
-349	342	SWE1-VC-GreetingLights-009
-374	343	SWE1-VC-GreetingLights-012
-338	344	SWE1-VC-HeadlightsOffDelay-008
-347	345	SWE1-VC-HeadlightsOffDelay-009
-356	346	SWE1-VC-HeadlightsOffDelay-010
-364	347	SWE1-VC-HeadlightsOffDelay-011
-372	348	SWE1-VC-HeadlightsOffDelay-012
-381	349	SWE1-VC-HeadlightsOffDelay-013
-390	350	SWE1-VC-HeadlightsOffDelay-014
-391	351	SWE1-VC-HeadlightsOffDelay-014
-392	352	SWE1-VC-HeadlightsOffDelay-014
-501	353	SWE1-VC-HeadlightswithWipers-058
-504	354	SWE1-VC-HeadlightswithWipers-059
-507	355	SWE1-VC-HeadlightswithWipers-060
-510	356	SWE1-VC-HeadlightswithWipers-061
-513	357	SWE1-VC-HeadlightswithWipers-062
-490	358	SWE1-VC-HillStartAssist-052
-492	359	SWE1-VC-HillStartAssist-053
-494	360	SWE1-VC-HillStartAssist-054
-496	361	SWE1-VC-HillStartAssist-055
-499	362	SWE1-VC-HillStartAssist-056
-365	363	SWE1-VC-HornWithLock-033
-373	364	SWE1-VC-HornWithLock-034
-562	365	SWE1-VC-HornWithLock-035
-564	366	SWE1-VC-HornWithLock-036
-566	367	SWE1-VC-HornWithLock-037
-568	368	SWE1-VC-HornWithLock-038
-348	369	SWE1-VC-HornWithRemoteStart-027
-357	370	SWE1-VC-HornWithRemoteStart-028
-555	371	SWE1-VC-HornWithRemoteStart-029
-557	372	SWE1-VC-HornWithRemoteStart-030
-559	373	SWE1-VC-HornWithRemoteStart-031
-530	374	SWE1-VC-HourMode-010
-296	375	SWE1-VC-IlluminatedApproach-002
-304	376	SWE1-VC-IlluminatedApproach-003
-698	377	SWE1-VC-IlluminatedApproach-004
-320	378	SWE1-VC-IlluminatedApproach-005
-327	379	SWE1-VC-IlluminatedApproach-006
-336	380	SWE1-VC-IlluminatedApproach-007
-345	381	SWE1-VC-IlluminatedApproach-008
-424	382	SWE1-VC-LaneSenseStrength-027
-432	383	SWE1-VC-LaneSenseStrength-028
-450	384	SWE1-VC-LaneSenseStrength-032
-684	385	SWE1-VC-LaneSenseWarning-014
-690	386	SWE1-VC-LaneSenseWarning-015
-253	387	SWE1-VC-LaneSenseWarning-019
-699	388	SWE1-VC-Language-059
-522	389	SWE1-VC-Language-062
-368	390	SWE1-VC-MaxPowerLevel140
-547	391	SWE1-VC-MaxPowerLevel141
-550	392	SWE1-VC-MaxPowerLevel142
-553	393	SWE1-VC-MaxPowerLevel143
-415	394	SWE1-VC-NavigationTurnbyTurn-053
-423	395	SWE1-VC-NavigationTurnbyTurn-054
-580	396	SWE1-VC-NavigationTurnbyTurn-055
-581	397	SWE1-VC-NavigationTurnbyTurn-056
-582	398	SWE1-VC-NavigationTurnbyTurn-057
-399	399	SWE1-VC-NewSpeedZoneIndication-037
-406	400	SWE1-VC-NewSpeedZoneIndication-038
-413	401	SWE1-VC-NewSpeedZoneIndication-039
-421	402	SWE1-VC-NewSpeedZoneIndication-040
-429	403	SWE1-VC-NewSpeedZoneIndication-041
-437	404	SWE1-VC-NewSpeedZoneIndication-042
-354	405	SWE1-VC-PaddleShifter-010
-362	406	SWE1-VC-PaddleShifter-011
-370	407	SWE1-VC-PaddleShifter-012
-379	408	SWE1-VC-PaddleShifter-013
-388	409	SWE1-VC-PaddleShifter-014
-687	410	SWE1-VC-ParkSense-084
-693	411	SWE1-VC-ParkSense-085
-436	412	SWE1-VC-ParkSenseBasedCameraActivation-078
-442	413	SWE1-VC-ParkSenseBasedCameraActivation-079
-472	414	SWE1-VC-ParkSenseFrontVolume-079
-474	415	SWE1-VC-ParkSenseFrontVolume-080
-478	416	SWE1-VC-ParkSenseFrontVolume-081
-481	417	SWE1-VC-ParkSenseFrontVolume-082
-449	418	SWE1-VC-ParkSenseRearVolume-072
-454	419	SWE1-VC-ParkSenseRearVolume-073
-459	420	SWE1-VC-ParkSenseRearVolume-074
-464	421	SWE1-VC-ParkSenseRearVolume-075
-298	422	SWE1-VC-PassiveEntry-009
-307	423	SWE1-VC-PassiveEntry-010
-525	424	SWE1-VC-PassiveEntry-011
-528	425	SWE1-VC-PassiveEntry-012
-532	426	SWE1-VC-PassiveEntry-013
-272	427	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-048
-275	428	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-049
-282	429	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-052
-431	430	SWE1-VC-PhoneRepetition-064
-439	431	SWE1-VC-PhoneRepetition-065
-584	432	SWE1-VC-PhoneRepetition-066
-586	433	SWE1-VC-PhoneRepetition-067
-588	434	SWE1-VC-PhoneRepetition-068
-682	435	SWE1-VC-PowerLiftgate/TailgateAlert-016
-688	436	SWE1-VC-PowerLiftgate/TailgateAlert-017
-694	437	SWE1-VC-PowerLiftgate/TailgateAlert-018
-246	438	SWE1-VC-PowerLiftgate/TailgateAlert-019
-250	439	SWE1-VC-PowerLiftgate/TailgateAlert-020
-679	440	SWE1-VC-PowerLiftgate/TailgateAlert-021
-255	441	SWE1-VC-PowerSideStep-051
-259	442	SWE1-VC-PowerSideStep-052
-263	443	SWE1-VC-PowerSideStep-053
-265	444	SWE1-VC-PowerSideStep-054
-267	445	SWE1-VC-PowerSideStep-055
-256	446	SWE1-VC-PowerTailgate-023
-260	447	SWE1-VC-PowerTailgate-024
-268	448	SWE1-VC-PowerTailgate-027
-680	449	SWE1-VC-PowerTailgate-028
-350	450	SWE1-VC-PowerUnit-009
-358	451	SWE1-VC-PowerUnit-010
-366	452	SWE1-VC-PowerUnit-011
-375	453	SWE1-VC-PowerUnit-012
-384	454	SWE1-VC-PowerUnit-013
-395	455	SWE1-VC-PowerUnit-014
-300	456	SWE1-VC-PressureUnit-002
-309	457	SWE1-VC-PressureUnit-003
-316	458	SWE1-VC-PressureUnit-004
-323	459	SWE1-VC-PressureUnit-005
-333	460	SWE1-VC-PressureUnit-006
-341	461	SWE1-VC-PressureUnit-007
-489	462	SWE1-VC-RKELinkedtoMemory-090
-491	463	SWE1-VC-RKELinkedtoMemory-091
-595	464	SWE1-VC-RKELinkedtoMemory-092
-598	465	SWE1-VC-RKELinkedtoMemory-093
-601	466	SWE1-VC-RKELinkedtoMemory-094
-475	467	SWE1-VC-RainSensingWipers-054
-479	468	SWE1-VC-RainSensingWipers-055
-487	469	SWE1-VC-RainSensingWipers-058
-426	470	SWE1-VC-ReadytoDrivePopUp-026
-434	471	SWE1-VC-ReadytoDrivePopUp-027
-440	472	SWE1-VC-ReadytoDrivePopUp-028
-444	473	SWE1-VC-ReadytoDrivePopUp-029
-446	474	SWE1-VC-ReadytoDrivePopUp-030
-463	475	SWE1-VC-RearGuidanceLightStatus-084
-467	476	SWE1-VC-RearGuidanceLightStatus-085
-675	477	SWE1-VC-RearGuidanceLightStatus-086
-677	478	SWE1-VC-RearGuidanceLightStatus-087
-678	479	SWE1-VC-RearGuidanceLightStatus-088
-453	480	SWE1-VC-RearGuidanceLightingwithApproach-078
-458	481	SWE1-VC-RearGuidanceLightingwithApproach-079
-671	482	SWE1-VC-RearGuidanceLightingwithApproach-080
-672	483	SWE1-VC-RearGuidanceLightingwithApproach-081
-674	484	SWE1-VC-RearGuidanceLightingwithApproach-082
-430	485	SWE1-VC-RearGuidanceLightswith\nCargoLights-014
-438	486	SWE1-VC-RearGuidanceLightswith\nCargoLights-015
-443	487	SWE1-VC-RearGuidanceLightswith\nCargoLights-016
-445	488	SWE1-VC-RearGuidanceLightswith\nCargoLights-017
-448	489	SWE1-VC-RearGuidanceLightswith\nCargoLights-018
-477	490	SWE1-VC-RearSeatReminder-055
-480	491	SWE1-VC-RearSeatReminder-056
-483	492	SWE1-VC-RearSeatReminder-057
-503	493	SWE1-VC-RearviewCameraDelay-109
-506	494	SWE1-VC-RearviewCameraDelay-110
-621	495	SWE1-VC-RearviewCameraDelay-111
-623	496	SWE1-VC-RearviewCameraDelay-112
-625	497	SWE1-VC-RearviewCameraDelay-113
-509	498	SWE1-VC-RearviewCameraDynamicGuidelines-115
-512	499	SWE1-VC-RearviewCameraDynamicGuidelines-116
-627	500	SWE1-VC-RearviewCameraDynamicGuidelines-117
-629	501	SWE1-VC-RearviewCameraDynamicGuidelines-118
-631	502	SWE1-VC-RearviewCameraDynamicGuidelines-119
-315	503	SWE1-VC-RemoteDoorUnlock-015
-322	504	SWE1-VC-RemoteDoorUnlock-016
-536	505	SWE1-VC-RemoteDoorUnlock-017
-540	506	SWE1-VC-RemoteDoorUnlock-018
-544	507	SWE1-VC-RemoteDoorUnlock-019
-551	508	SWE1-VC-SWITCH1HoldLastState-018
-554	509	SWE1-VC-SWITCH1HoldLastState-019
-556	510	SWE1-VC-SWITCH1HoldLastState-020
-313	511	SWE1-VC-SWITCH1PowerMode-030
-321	512	SWE1-VC-SWITCH1PowerMode-031
-328	513	SWE1-VC-SWITCH1PowerMode-032
-517	514	SWE1-VC-SWITCH1Type-003
-519	515	SWE1-VC-SWITCH1Type-004
-615	516	SWE1-VC-SWITCH1Type-029
-558	517	SWE1-VC-SWITCH2HoldLastState-022
-561	518	SWE1-VC-SWITCH2HoldLastState-023
-563	519	SWE1-VC-SWITCH2HoldLastState-024
-337	520	SWE1-VC-SWITCH2PowerMode-034
-346	521	SWE1-VC-SWITCH2PowerMode-035
-355	522	SWE1-VC-SWITCH2PowerMode-036
-521	523	SWE1-VC-SWITCH2Type-006
-524	524	SWE1-VC-SWITCH2Type-007
-527	525	SWE1-VC-SWITCH2Type-008
-565	526	SWE1-VC-SWITCH3HoldLastState-026
-567	527	SWE1-VC-SWITCH3HoldLastState-027
-569	528	SWE1-VC-SWITCH3HoldLastState-028
-363	529	SWE1-VC-SWITCH3PowerMode-038
-371	530	SWE1-VC-SWITCH3PowerMode-039
-380	531	SWE1-VC-SWITCH3PowerMode-040
-531	532	SWE1-VC-SWITCH3Type-010
-535	533	SWE1-VC-SWITCH3Type-011
-539	534	SWE1-VC-SWITCH3Type-012
-571	535	SWE1-VC-SWITCH4HoldLastState-030
-574	536	SWE1-VC-SWITCH4HoldLastState-031
-576	537	SWE1-VC-SWITCH4HoldLastState-032
-389	538	SWE1-VC-SWITCH4PowerMode-042
-400	539	SWE1-VC-SWITCH4PowerMode-043
-407	540	SWE1-VC-SWITCH4PowerMode-044
-543	541	SWE1-VC-SWITCH4Type-014
-545	542	SWE1-VC-SWITCH4Type-015
-548	543	SWE1-VC-SWITCH4Type-016
-659	544	SWE1-VC-SWITCH5HoldLastState-070
-661	545	SWE1-VC-SWITCH5HoldLastState-071
-663	546	SWE1-VC-SWITCH5HoldLastState-072
-597	547	SWE1-VC-SWITCH5PowerMode-021
-600	548	SWE1-VC-SWITCH5PowerMode-022
-603	549	SWE1-VC-SWITCH5PowerMode-023
-636	550	SWE1-VC-SWITCH5Type-045
-638	551	SWE1-VC-SWITCH5Type-046
-640	552	SWE1-VC-SWITCH5Type-047
-665	553	SWE1-VC-SWITCH6HoldLastState-074
-667	554	SWE1-VC-SWITCH6HoldLastState-075
-669	555	SWE1-VC-SWITCH6HoldLastState-076
-606	556	SWE1-VC-SWITCH6PowerMode-025
-609	557	SWE1-VC-SWITCH6PowerMode-026
-612	558	SWE1-VC-SWITCH6PowerMode-027
-642	559	SWE1-VC-SWITCH6Type-049
-644	560	SWE1-VC-SWITCH6Type-050
-646	561	SWE1-VC-SWITCH6Type-051
-383	562	SWE1-VC-SignatureLighting-021
-394	563	SWE1-VC-SignatureLighting-022
-416	564	SWE1-VC-SignatureLighting-025
-538	565	SWE1-VC-SpeedUnit-026
-369	566	SWE1-VC-SurroundViewCameraDelay-053
-378	567	SWE1-VC-SurroundViewCameraDelay-054
-387	568	SWE1-VC-SurroundViewCameraGuidelines-059
-398	569	SWE1-VC-SurroundViewCameraGuidelines-060
-270	570	SWE1-VC-SuspensionAutoEntryorExit-091
-273	571	SWE1-VC-SuspensionAutoEntryorExit-092
-291	572	SWE1-VC-SuspensionDefaultRideHeight-021
-292	573	SWE1-VC-SuspensionDefaultRideHeight-022
-293	574	SWE1-VC-SuspensionDefaultRideHeight-023
-294	575	SWE1-VC-SuspensionDefaultRideHeight-024
-295	576	SWE1-VC-SuspensionDefaultRideHeight-025
-301	577	SWE1-VC-SuspensionDisplayMessages-008
-310	578	SWE1-VC-SuspensionDisplayMessages-009
-317	579	SWE1-VC-SuspensionDisplayMessages-010
-324	580	SWE1-VC-SuspensionDisplayMessages-011
-334	581	SWE1-VC-SuspensionDisplayMessages-012
-276	582	SWE1-VC-SuspensionFlashLightsWithLower-002
-278	583	SWE1-VC-SuspensionFlashLightsWithLower-003
-280	584	SWE1-VC-SuspensionFlashLightsWithLower-004
-283	585	SWE1-VC-SuspensionFlashLightsWithLower-005
-285	586	SWE1-VC-SuspensionFlashLightsWithLower-006
-685	587	SWE1-VC-SuspensionServiceMode-002
-691	588	SWE1-VC-SuspensionServiceMode-003
-244	589	SWE1-VC-SuspensionServiceMode-004
-248	590	SWE1-VC-SuspensionServiceMode-005
-696	591	SWE1-VC-SuspensionServiceMode-006
-286	592	SWE1-VC-SuspensionSoundHornWithLower-008
-287	593	SWE1-VC-SuspensionSoundHornWithLower-009
-288	594	SWE1-VC-SuspensionSoundHornWithLower-010
-289	595	SWE1-VC-SuspensionSoundHornWithLower-011
-290	596	SWE1-VC-SuspensionSoundHornWithLower-012
-353	597	SWE1-VC-TemperatureUnit-046
-361	598	SWE1-VC-TemperatureUnit-047
-342	599	SWE1-VC-TiltMirrorinReverse-014
-351	600	SWE1-VC-TiltMirrorinReverse-015
-359	601	SWE1-VC-TiltMirrorinReverse-016
-367	602	SWE1-VC-TiltMirrorinReverse-017
-376	603	SWE1-VC-TiltMirrorinReverse-018
-700	604	SWE1-VC-TimeandDateSettings-002
-303	605	SWE1-VC-TimeandDateSettings-004
-312	606	SWE1-VC-TimeandDateSettings-005
-385	607	SWE1-VC-TireFillAlert-020
-396	608	SWE1-VC-TireFillAlert-021
-403	609	SWE1-VC-TireFillAlert-022
-410	610	SWE1-VC-TireFillAlert-023
-418	611	SWE1-VC-TireFillAlert-024
-402	612	SWE1-VC-TorqueUnit-016
-409	613	SWE1-VC-TorqueUnit-017
-417	614	SWE1-VC-TorqueUnit-018
-425	615	SWE1-VC-TorqueUnit-019
-433	616	SWE1-VC-TorqueUnit-020
-508	617	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-057
-511	618	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-058
-590	619	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-060
-592	620	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-061
-594	621	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-062
-596	622	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-063
-599	623	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-064
-602	624	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-065
-605	625	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-066
-608	626	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-067
-611	627	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-068
-614	628	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-069
-617	629	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-070
-619	630	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-071
-622	631	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-073
-624	632	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-074
-626	633	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-075
-628	634	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-076
-630	635	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-077
-632	636	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-078
-633	637	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-079
-634	638	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-080
-635	639	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-081
-637	640	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-082
-639	641	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-083
-641	642	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-084
-643	643	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-085
-645	644	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-086
-647	645	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-087
-648	646	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-088
-649	647	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-089
-514	648	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-091
-515	649	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-092
-650	650	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-094
-651	651	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-095
-652	652	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-096
-653	653	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-097
-654	654	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-098
-655	655	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-099
-656	656	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-100
-657	657	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-102
-658	658	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-103
-660	659	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-104
-662	660	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-105
-664	661	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-106
-666	662	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-107
-668	663	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-108
-670	664	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-109
-673	665	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-111
-676	666	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-113
-271	667	SWE1-VC-TrafficSignWarning-030
-274	668	SWE1-VC-TrafficSignWarning-031
-277	669	SWE1-VC-TrafficSignWarning-032
-279	670	SWE1-VC-TrafficSignWarning-033
-281	671	SWE1-VC-TrafficSignWarning-034
-284	672	SWE1-VC-TrafficSignWarning-035
-497	673	SWE1-VC-TrailerBrakeType025
-500	674	SWE1-VC-TrailerBrakeType026
-573	675	SWE1-VC-TrailerBrakeType031
-435	676	SWE1-VC-TrailerName-002
-441	677	SWE1-VC-TrailerName-003
-560	678	SWE1-VC-TrailerName-017
-377	679	SWE1-VC-TrailerNumber-059
-386	680	SWE1-VC-TrailerNumber-060
-397	681	SWE1-VC-TrailerNumber-061
-404	682	SWE1-VC-TrailerNumber-062
-411	683	SWE1-VC-TrailerNumber-063
-419	684	SWE1-VC-TrailerNumber-064
-427	685	SWE1-VC-TrailerNumber-066
-405	686	SWE1-VC-TurnSignalActivatedBlindSpotCameraView-065
-412	687	SWE1-VC-TurnSignalActivatedBlindSpotCameraView-066
-420	688	SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-071
-428	689	SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-072
-344	690	SWE1-VC-UnitEnergy-039
-302	691	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115
-311	692	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-116
-516	693	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117
-518	694	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-118
-520	695	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-119
-318	696	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-121
-325	697	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-122
-523	698	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-123
-526	699	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124
-529	700	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125
+b_orig	b_wvf92	b_final	req_id
+414	245	244	SWE1-VC-6AuxSwitches-002
+422	246	245	SWE1-VC-6AuxSwitches-003
+597	547	246	SWE1-VC-SWITCH5PowerMode-021
+600	548	247	SWE1-VC-SWITCH5PowerMode-022
+603	549	248	SWE1-VC-SWITCH5PowerMode-023
+606	556	249	SWE1-VC-SWITCH6PowerMode-025
+609	557	250	SWE1-VC-SWITCH6PowerMode-026
+612	558	251	SWE1-VC-SWITCH6PowerMode-027
+615	516	252	SWE1-VC-SWITCH1Type-029
+636	550	253	SWE1-VC-SWITCH5Type-045
+638	551	254	SWE1-VC-SWITCH5Type-046
+640	552	255	SWE1-VC-SWITCH5Type-047
+642	559	256	SWE1-VC-SWITCH6Type-049
+644	560	257	SWE1-VC-SWITCH6Type-050
+646	561	258	SWE1-VC-SWITCH6Type-051
+659	544	259	SWE1-VC-SWITCH5HoldLastState-070
+661	545	260	SWE1-VC-SWITCH5HoldLastState-071
+663	546	261	SWE1-VC-SWITCH5HoldLastState-072
+665	553	262	SWE1-VC-SWITCH6HoldLastState-074
+667	554	263	SWE1-VC-SWITCH6HoldLastState-075
+669	555	264	SWE1-VC-SWITCH6HoldLastState-076
+453	480	265	SWE1-VC-RearGuidanceLightingwithApproach-078
+458	481	266	SWE1-VC-RearGuidanceLightingwithApproach-079
+671	482	267	SWE1-VC-RearGuidanceLightingwithApproach-080
+672	483	268	SWE1-VC-RearGuidanceLightingwithApproach-081
+674	484	269	SWE1-VC-RearGuidanceLightingwithApproach-082
+463	475	270	SWE1-VC-RearGuidanceLightStatus-084
+467	476	271	SWE1-VC-RearGuidanceLightStatus-085
+675	477	272	SWE1-VC-RearGuidanceLightStatus-086
+677	478	273	SWE1-VC-RearGuidanceLightStatus-087
+678	479	274	SWE1-VC-RearGuidanceLightStatus-088
+470	318	275	SWE1-VC-E-Save-090
+471	319	276	SWE1-VC-E-Save-091
+683	289	277	SWE1-VC-BlindSpotAlert-002
+689	290	278	SWE1-VC-BlindSpotAlert-003
+695	291	279	SWE1-VC-BlindSpotAlert-004
+247	292	280	SWE1-VC-BlindSpotAlert-005
+251	293	281	SWE1-VC-BlindSpotAlert-006
+252	294	282	SWE1-VC-BlindSpotAlert-007
+298	422	283	SWE1-VC-PassiveEntry-009
+307	423	284	SWE1-VC-PassiveEntry-010
+525	424	285	SWE1-VC-PassiveEntry-011
+528	425	286	SWE1-VC-PassiveEntry-012
+532	426	287	SWE1-VC-PassiveEntry-013
+315	503	288	SWE1-VC-RemoteDoorUnlock-015
+322	504	289	SWE1-VC-RemoteDoorUnlock-016
+536	505	290	SWE1-VC-RemoteDoorUnlock-017
+540	506	291	SWE1-VC-RemoteDoorUnlock-018
+544	507	292	SWE1-VC-RemoteDoorUnlock-019
+331	269	293	SWE1-VC-AutoParkBrake-021
+339	270	294	SWE1-VC-AutoParkBrake-022
+546	271	295	SWE1-VC-AutoParkBrake-023
+549	272	296	SWE1-VC-AutoParkBrake-024
+552	273	297	SWE1-VC-AutoParkBrake-025
+348	369	298	SWE1-VC-HornWithRemoteStart-027
+357	370	299	SWE1-VC-HornWithRemoteStart-028
+555	371	300	SWE1-VC-HornWithRemoteStart-029
+557	372	301	SWE1-VC-HornWithRemoteStart-030
+559	373	302	SWE1-VC-HornWithRemoteStart-031
+365	363	303	SWE1-VC-HornWithLock-033
+373	364	304	SWE1-VC-HornWithLock-034
+562	365	305	SWE1-VC-HornWithLock-035
+564	366	306	SWE1-VC-HornWithLock-036
+566	367	307	SWE1-VC-HornWithLock-037
+568	368	308	SWE1-VC-HornWithLock-038
+382	274	309	SWE1-VC-AutoUnlockonExit-040
+393	275	310	SWE1-VC-AutoUnlockonExit-041
+570	276	311	SWE1-VC-AutoUnlockonExit-042
+572	277	312	SWE1-VC-AutoUnlockonExit-043
+575	278	313	SWE1-VC-AutoUnlockonExit-044
+401	330	314	SWE1-VC-FlashLightWithLock-046
+408	331	315	SWE1-VC-FlashLightWithLock-047
+577	332	316	SWE1-VC-FlashLightWithLock-048
+578	333	317	SWE1-VC-FlashLightWithLock-049
+579	334	318	SWE1-VC-FlashLightWithLock-050
+415	394	319	SWE1-VC-NavigationTurnbyTurn-053
+423	395	320	SWE1-VC-NavigationTurnbyTurn-054
+580	396	321	SWE1-VC-NavigationTurnbyTurn-055
+581	397	322	SWE1-VC-NavigationTurnbyTurn-056
+582	398	323	SWE1-VC-NavigationTurnbyTurn-057
+699	388	324	SWE1-VC-Language-059
+522	389	325	SWE1-VC-Language-062
+431	430	326	SWE1-VC-PhoneRepetition-064
+439	431	327	SWE1-VC-PhoneRepetition-065
+584	432	328	SWE1-VC-PhoneRepetition-066
+586	433	329	SWE1-VC-PhoneRepetition-067
+588	434	330	SWE1-VC-PhoneRepetition-068
+449	418	331	SWE1-VC-ParkSenseRearVolume-072
+454	419	332	SWE1-VC-ParkSenseRearVolume-073
+459	420	333	SWE1-VC-ParkSenseRearVolume-074
+464	421	334	SWE1-VC-ParkSenseRearVolume-075
+472	414	335	SWE1-VC-ParkSenseFrontVolume-079
+474	415	336	SWE1-VC-ParkSenseFrontVolume-080
+478	416	337	SWE1-VC-ParkSenseFrontVolume-081
+481	417	338	SWE1-VC-ParkSenseFrontVolume-082
+484	254	339	SWE1-VC-AutoHighBeam-084
+486	255	340	SWE1-VC-AutoHighBeam-085
+589	256	341	SWE1-VC-AutoHighBeam-086
+591	257	342	SWE1-VC-AutoHighBeam-087
+593	258	343	SWE1-VC-AutoHighBeam-088
+489	462	344	SWE1-VC-RKELinkedtoMemory-090
+491	463	345	SWE1-VC-RKELinkedtoMemory-091
+595	464	346	SWE1-VC-RKELinkedtoMemory-092
+598	465	347	SWE1-VC-RKELinkedtoMemory-093
+601	466	348	SWE1-VC-RKELinkedtoMemory-094
+493	263	349	SWE1-VC-AutoOnDriverComfort-3Option-096
+495	264	350	SWE1-VC-AutoOnDriverComfort-3Option-097
+604	265	351	SWE1-VC-AutoOnDriverComfort-3Option-098
+607	266	352	SWE1-VC-AutoOnDriverComfort-3Option-099
+610	267	353	SWE1-VC-AutoOnDriverComfort-3Option-100
+613	268	354	SWE1-VC-AutoOnDriverComfort-3Option-101
+498	259	355	SWE1-VC-AutoOnDriverComfort-2Option-103
+616	260	356	SWE1-VC-AutoOnDriverComfort-2Option-105
+618	261	357	SWE1-VC-AutoOnDriverComfort-2Option-106
+620	262	358	SWE1-VC-AutoOnDriverComfort-2Option-107
+503	493	359	SWE1-VC-RearviewCameraDelay-109
+506	494	360	SWE1-VC-RearviewCameraDelay-110
+621	495	361	SWE1-VC-RearviewCameraDelay-111
+623	496	362	SWE1-VC-RearviewCameraDelay-112
+625	497	363	SWE1-VC-RearviewCameraDelay-113
+509	498	364	SWE1-VC-RearviewCameraDynamicGuidelines-115
+512	499	365	SWE1-VC-RearviewCameraDynamicGuidelines-116
+627	500	366	SWE1-VC-RearviewCameraDynamicGuidelines-117
+629	501	367	SWE1-VC-RearviewCameraDynamicGuidelines-118
+631	502	368	SWE1-VC-RearviewCameraDynamicGuidelines-119
+299	304	369	SWE1-VC-CorneringLights-002
+308	305	370	SWE1-VC-CorneringLights-003
+332	306	371	SWE1-VC-CorneringLights-006
+340	341	372	SWE1-VC-GreetingLights-008
+349	342	373	SWE1-VC-GreetingLights-009
+374	343	374	SWE1-VC-GreetingLights-012
+684	385	375	SWE1-VC-LaneSenseWarning-014
+690	386	376	SWE1-VC-LaneSenseWarning-015
+253	387	377	SWE1-VC-LaneSenseWarning-019
+383	562	378	SWE1-VC-SignatureLighting-021
+394	563	379	SWE1-VC-SignatureLighting-022
+416	564	380	SWE1-VC-SignatureLighting-025
+424	382	381	SWE1-VC-LaneSenseStrength-027
+432	383	382	SWE1-VC-LaneSenseStrength-028
+450	384	383	SWE1-VC-LaneSenseStrength-032
+257	335	384	SWE1-VC-ForwardCollisionWarning-034
+261	336	385	SWE1-VC-ForwardCollisionWarning-035
+269	337	386	SWE1-VC-ForwardCollisionWarning-039
+455	338	387	SWE1-VC-ForwardCollisionWarningSensitivity-041
+460	339	388	SWE1-VC-ForwardCollisionWarningSensitivity-042
+473	340	389	SWE1-VC-ForwardCollisionWarningSensitivity-046
+272	427	390	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-048
+275	428	391	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-049
+282	429	392	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-052
+475	467	393	SWE1-VC-RainSensingWipers-054
+479	468	394	SWE1-VC-RainSensingWipers-055
+487	469	395	SWE1-VC-RainSensingWipers-058
+297	307	396	SWE1-VC-DaytimeRunningLights-002
+306	308	397	SWE1-VC-DaytimeRunningLights-003
+314	309	398	SWE1-VC-DaytimeRunningLights-004
+329	310	399	SWE1-VC-DaytimeRunningLights-006
+330	311	400	SWE1-VC-DaytimeRunningLights-006
+338	344	401	SWE1-VC-HeadlightsOffDelay-008
+347	345	402	SWE1-VC-HeadlightsOffDelay-009
+356	346	403	SWE1-VC-HeadlightsOffDelay-010
+364	347	404	SWE1-VC-HeadlightsOffDelay-011
+372	348	405	SWE1-VC-HeadlightsOffDelay-012
+381	349	406	SWE1-VC-HeadlightsOffDelay-013
+390	350	407	SWE1-VC-HeadlightsOffDelay-014
+391	351	408	SWE1-VC-HeadlightsOffDelay-014
+392	352	409	SWE1-VC-HeadlightsOffDelay-014
+300	456	410	SWE1-VC-PressureUnit-002
+309	457	411	SWE1-VC-PressureUnit-003
+316	458	412	SWE1-VC-PressureUnit-004
+323	459	413	SWE1-VC-PressureUnit-005
+333	460	414	SWE1-VC-PressureUnit-006
+341	461	415	SWE1-VC-PressureUnit-007
+350	450	416	SWE1-VC-PowerUnit-009
+358	451	417	SWE1-VC-PowerUnit-010
+366	452	418	SWE1-VC-PowerUnit-011
+375	453	419	SWE1-VC-PowerUnit-012
+384	454	420	SWE1-VC-PowerUnit-013
+395	455	421	SWE1-VC-PowerUnit-014
+402	612	422	SWE1-VC-TorqueUnit-016
+409	613	423	SWE1-VC-TorqueUnit-017
+417	614	424	SWE1-VC-TorqueUnit-018
+425	615	425	SWE1-VC-TorqueUnit-019
+433	616	426	SWE1-VC-TorqueUnit-020
+296	375	427	SWE1-VC-IlluminatedApproach-002
+304	376	428	SWE1-VC-IlluminatedApproach-003
+698	377	429	SWE1-VC-IlluminatedApproach-004
+320	378	430	SWE1-VC-IlluminatedApproach-005
+327	379	431	SWE1-VC-IlluminatedApproach-006
+336	380	432	SWE1-VC-IlluminatedApproach-007
+345	381	433	SWE1-VC-IlluminatedApproach-008
+354	405	434	SWE1-VC-PaddleShifter-010
+362	406	435	SWE1-VC-PaddleShifter-011
+370	407	436	SWE1-VC-PaddleShifter-012
+379	408	437	SWE1-VC-PaddleShifter-013
+388	409	438	SWE1-VC-PaddleShifter-014
+682	435	439	SWE1-VC-PowerLiftgate/TailgateAlert-016
+688	436	440	SWE1-VC-PowerLiftgate/TailgateAlert-017
+694	437	441	SWE1-VC-PowerLiftgate/TailgateAlert-018
+246	438	442	SWE1-VC-PowerLiftgate/TailgateAlert-019
+250	439	443	SWE1-VC-PowerLiftgate/TailgateAlert-020
+679	440	444	SWE1-VC-PowerLiftgate/TailgateAlert-021
+256	446	445	SWE1-VC-PowerTailgate-023
+260	447	446	SWE1-VC-PowerTailgate-024
+268	448	447	SWE1-VC-PowerTailgate-027
+680	449	448	SWE1-VC-PowerTailgate-028
+271	667	449	SWE1-VC-TrafficSignWarning-030
+274	668	450	SWE1-VC-TrafficSignWarning-031
+277	669	451	SWE1-VC-TrafficSignWarning-032
+279	670	452	SWE1-VC-TrafficSignWarning-033
+281	671	453	SWE1-VC-TrafficSignWarning-034
+284	672	454	SWE1-VC-TrafficSignWarning-035
+399	399	455	SWE1-VC-NewSpeedZoneIndication-037
+406	400	456	SWE1-VC-NewSpeedZoneIndication-038
+413	401	457	SWE1-VC-NewSpeedZoneIndication-039
+421	402	458	SWE1-VC-NewSpeedZoneIndication-040
+429	403	459	SWE1-VC-NewSpeedZoneIndication-041
+437	404	460	SWE1-VC-NewSpeedZoneIndication-042
+447	297	461	SWE1-VC-ChargePowerLevel-046
+452	298	462	SWE1-VC-ChargePowerLevel-047
+457	299	463	SWE1-VC-ChargePowerLevel-048
+462	300	464	SWE1-VC-ChargePowerLevel-049
+466	301	465	SWE1-VC-ChargePowerLevel-050
+469	302	466	SWE1-VC-ChargePowerLevel-051
+477	490	467	SWE1-VC-RearSeatReminder-055
+480	491	468	SWE1-VC-RearSeatReminder-056
+483	492	469	SWE1-VC-RearSeatReminder-057
+377	679	470	SWE1-VC-TrailerNumber-059
+386	680	471	SWE1-VC-TrailerNumber-060
+397	681	472	SWE1-VC-TrailerNumber-061
+404	682	473	SWE1-VC-TrailerNumber-062
+411	683	474	SWE1-VC-TrailerNumber-063
+419	684	475	SWE1-VC-TrailerNumber-064
+427	685	476	SWE1-VC-TrailerNumber-066
+517	514	477	SWE1-VC-SWITCH1Type-003
+519	515	478	SWE1-VC-SWITCH1Type-004
+521	523	479	SWE1-VC-SWITCH2Type-006
+524	524	480	SWE1-VC-SWITCH2Type-007
+527	525	481	SWE1-VC-SWITCH2Type-008
+531	532	482	SWE1-VC-SWITCH3Type-010
+535	533	483	SWE1-VC-SWITCH3Type-011
+539	534	484	SWE1-VC-SWITCH3Type-012
+543	541	485	SWE1-VC-SWITCH4Type-014
+545	542	486	SWE1-VC-SWITCH4Type-015
+548	543	487	SWE1-VC-SWITCH4Type-016
+551	508	488	SWE1-VC-SWITCH1HoldLastState-018
+554	509	489	SWE1-VC-SWITCH1HoldLastState-019
+556	510	490	SWE1-VC-SWITCH1HoldLastState-020
+558	517	491	SWE1-VC-SWITCH2HoldLastState-022
+561	518	492	SWE1-VC-SWITCH2HoldLastState-023
+563	519	493	SWE1-VC-SWITCH2HoldLastState-024
+565	526	494	SWE1-VC-SWITCH3HoldLastState-026
+567	527	495	SWE1-VC-SWITCH3HoldLastState-027
+569	528	496	SWE1-VC-SWITCH3HoldLastState-028
+571	535	497	SWE1-VC-SWITCH4HoldLastState-030
+574	536	498	SWE1-VC-SWITCH4HoldLastState-031
+576	537	499	SWE1-VC-SWITCH4HoldLastState-032
+276	582	500	SWE1-VC-SuspensionFlashLightsWithLower-002
+278	583	501	SWE1-VC-SuspensionFlashLightsWithLower-003
+280	584	502	SWE1-VC-SuspensionFlashLightsWithLower-004
+283	585	503	SWE1-VC-SuspensionFlashLightsWithLower-005
+285	586	504	SWE1-VC-SuspensionFlashLightsWithLower-006
+286	592	505	SWE1-VC-SuspensionSoundHornWithLower-008
+287	593	506	SWE1-VC-SuspensionSoundHornWithLower-009
+288	594	507	SWE1-VC-SuspensionSoundHornWithLower-010
+289	595	508	SWE1-VC-SuspensionSoundHornWithLower-011
+290	596	509	SWE1-VC-SuspensionSoundHornWithLower-012
+430	485	510	SWE1-VC-RearGuidanceLightswith\nCargoLights-014
+438	486	511	SWE1-VC-RearGuidanceLightswith\nCargoLights-015
+443	487	512	SWE1-VC-RearGuidanceLightswith\nCargoLights-016
+445	488	513	SWE1-VC-RearGuidanceLightswith\nCargoLights-017
+448	489	514	SWE1-VC-RearGuidanceLightswith\nCargoLights-018
+291	572	515	SWE1-VC-SuspensionDefaultRideHeight-021
+292	573	516	SWE1-VC-SuspensionDefaultRideHeight-022
+293	574	517	SWE1-VC-SuspensionDefaultRideHeight-023
+294	575	518	SWE1-VC-SuspensionDefaultRideHeight-024
+295	576	519	SWE1-VC-SuspensionDefaultRideHeight-025
+305	244	520	SWE1-VC-4AUXSwitches-028
+313	511	521	SWE1-VC-SWITCH1PowerMode-030
+321	512	522	SWE1-VC-SWITCH1PowerMode-031
+328	513	523	SWE1-VC-SWITCH1PowerMode-032
+337	520	524	SWE1-VC-SWITCH2PowerMode-034
+346	521	525	SWE1-VC-SWITCH2PowerMode-035
+355	522	526	SWE1-VC-SWITCH2PowerMode-036
+363	529	527	SWE1-VC-SWITCH3PowerMode-038
+371	530	528	SWE1-VC-SWITCH3PowerMode-039
+380	531	529	SWE1-VC-SWITCH3PowerMode-040
+389	538	530	SWE1-VC-SWITCH4PowerMode-042
+400	539	531	SWE1-VC-SWITCH4PowerMode-043
+407	540	532	SWE1-VC-SWITCH4PowerMode-044
+685	587	533	SWE1-VC-SuspensionServiceMode-002
+691	588	534	SWE1-VC-SuspensionServiceMode-003
+244	589	535	SWE1-VC-SuspensionServiceMode-004
+248	590	536	SWE1-VC-SuspensionServiceMode-005
+696	591	537	SWE1-VC-SuspensionServiceMode-006
+301	577	538	SWE1-VC-SuspensionDisplayMessages-008
+310	578	539	SWE1-VC-SuspensionDisplayMessages-009
+317	579	540	SWE1-VC-SuspensionDisplayMessages-010
+324	580	541	SWE1-VC-SuspensionDisplayMessages-011
+334	581	542	SWE1-VC-SuspensionDisplayMessages-012
+342	599	543	SWE1-VC-TiltMirrorinReverse-014
+351	600	544	SWE1-VC-TiltMirrorinReverse-015
+359	601	545	SWE1-VC-TiltMirrorinReverse-016
+367	602	546	SWE1-VC-TiltMirrorinReverse-017
+376	603	547	SWE1-VC-TiltMirrorinReverse-018
+385	607	548	SWE1-VC-TireFillAlert-020
+396	608	549	SWE1-VC-TireFillAlert-021
+403	609	550	SWE1-VC-TireFillAlert-022
+410	610	551	SWE1-VC-TireFillAlert-023
+418	611	552	SWE1-VC-TireFillAlert-024
+426	470	553	SWE1-VC-ReadytoDrivePopUp-026
+434	471	554	SWE1-VC-ReadytoDrivePopUp-027
+440	472	555	SWE1-VC-ReadytoDrivePopUp-028
+444	473	556	SWE1-VC-ReadytoDrivePopUp-029
+446	474	557	SWE1-VC-ReadytoDrivePopUp-030
+451	249	558	SWE1-VC-AutoFoldMirrors-032
+456	250	559	SWE1-VC-AutoFoldMirrors-033
+461	251	560	SWE1-VC-AutoFoldMirrors-034
+465	252	561	SWE1-VC-AutoFoldMirrors-035
+468	253	562	SWE1-VC-AutoFoldMirrors-036
+254	313	563	SWE1-VC-DriverEasyExitSeat-038
+258	314	564	SWE1-VC-DriverEasyExitSeat-039
+262	315	565	SWE1-VC-DriverEasyExitSeat-040
+264	316	566	SWE1-VC-DriverEasyExitSeat-041
+266	317	567	SWE1-VC-DriverEasyExitSeat-042
+476	320	568	SWE1-VC-EngineOffPowerDelay-046
+482	321	569	SWE1-VC-EngineOffPowerDelay-048
+485	322	570	SWE1-VC-EngineOffPowerDelay-049
+488	323	571	SWE1-VC-EngineOffPowerDelay-050
+490	358	572	SWE1-VC-HillStartAssist-052
+492	359	573	SWE1-VC-HillStartAssist-053
+494	360	574	SWE1-VC-HillStartAssist-054
+496	361	575	SWE1-VC-HillStartAssist-055
+499	362	576	SWE1-VC-HillStartAssist-056
+501	353	577	SWE1-VC-HeadlightswithWipers-058
+504	354	578	SWE1-VC-HeadlightswithWipers-059
+507	355	579	SWE1-VC-HeadlightswithWipers-060
+510	356	580	SWE1-VC-HeadlightswithWipers-061
+513	357	581	SWE1-VC-HeadlightswithWipers-062
+435	676	582	SWE1-VC-TrailerName-002
+441	677	583	SWE1-VC-TrailerName-003
+560	678	584	SWE1-VC-TrailerName-017
+497	673	585	SWE1-VC-TrailerBrakeType025
+500	674	586	SWE1-VC-TrailerBrakeType026
+573	675	587	SWE1-VC-TrailerBrakeType031
+502	279	588	SWE1-VC-AutomaticTrailerLight Check-039
+505	280	589	SWE1-VC-AutomaticTrailerLight Check-040
+583	281	590	SWE1-VC-AutomaticTrailerLight Check-041
+585	282	591	SWE1-VC-AutomaticTrailerLight Check-042
+587	283	592	SWE1-VC-AutomaticTrailerLight Check-043
+686	284	593	SWE1-VC-Blind Spot with Trailer Detection-045
+692	285	594	SWE1-VC-Blind Spot with Trailer Detection-046
+245	286	595	SWE1-VC-Blind Spot with Trailer Detection-047
+249	287	596	SWE1-VC-Blind Spot with Trailer Detection-048
+697	288	597	SWE1-VC-Blind Spot with Trailer Detection-049
+255	441	598	SWE1-VC-PowerSideStep-051
+259	442	599	SWE1-VC-PowerSideStep-052
+263	443	600	SWE1-VC-PowerSideStep-053
+265	444	601	SWE1-VC-PowerSideStep-054
+267	445	602	SWE1-VC-PowerSideStep-055
+508	617	603	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-057
+511	618	604	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-058
+590	619	605	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-060
+592	620	606	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-061
+594	621	607	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-062
+596	622	608	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-063
+599	623	609	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-064
+602	624	610	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-065
+605	625	611	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-066
+608	626	612	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-067
+611	627	613	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-068
+614	628	614	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-069
+617	629	615	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-070
+619	630	616	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-071
+622	631	617	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-073
+624	632	618	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-074
+626	633	619	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-075
+628	634	620	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-076
+630	635	621	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-077
+632	636	622	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-078
+633	637	623	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-079
+634	638	624	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-080
+635	639	625	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-081
+637	640	626	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-082
+639	641	627	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-083
+641	642	628	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-084
+643	643	629	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-085
+645	644	630	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-086
+647	645	631	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-087
+648	646	632	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-088
+649	647	633	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-089
+514	648	634	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-091
+515	649	635	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-092
+650	650	636	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-094
+651	651	637	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-095
+652	652	638	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-096
+653	653	639	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-097
+654	654	640	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-098
+655	655	641	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-099
+656	656	642	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-100
+657	657	643	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-102
+658	658	644	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-103
+660	659	645	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-104
+662	660	646	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-105
+664	661	647	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-106
+666	662	648	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-107
+668	663	649	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-108
+670	664	650	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-109
+673	665	651	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-111
+676	666	652	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-113
+302	691	653	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115
+311	692	654	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-116
+516	693	655	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117
+518	694	656	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-118
+520	695	657	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-119
+318	696	658	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-121
+325	697	659	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-122
+523	698	660	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-123
+526	699	661	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124
+529	700	662	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125
+335	324	663	SWE1-VC-EnhancedDisplaySynchronization-127
+343	325	664	SWE1-VC-EnhancedDisplaySynchronization-128
+533	326	665	SWE1-VC-EnhancedDisplaySynchronization-129
+537	327	666	SWE1-VC-EnhancedDisplaySynchronization-130
+541	328	667	SWE1-VC-EnhancedDisplaySynchronization-131
+681	329	668	SWE1-VC-EnhancedDisplaySynchronization-132
+352	295	669	SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-134
+360	296	670	SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-135
+368	390	671	SWE1-VC-MaxPowerLevel140
+547	391	672	SWE1-VC-MaxPowerLevel141
+550	392	673	SWE1-VC-MaxPowerLevel142
+553	393	674	SWE1-VC-MaxPowerLevel143
+700	604	675	SWE1-VC-TimeandDateSettings-002
+303	605	676	SWE1-VC-TimeandDateSettings-004
+312	606	677	SWE1-VC-TimeandDateSettings-005
+530	374	678	SWE1-VC-HourMode-010
+319	247	679	SWE1-VC-AutoDoorLocks-015
+326	248	680	SWE1-VC-AutoDoorLocks-016
+534	312	681	SWE1-VC-DistanceUnit-021
+538	565	682	SWE1-VC-SpeedUnit-026
+542	303	683	SWE1-VC-ConsumptionUnit-031
+344	690	684	SWE1-VC-UnitEnergy-039
+353	597	685	SWE1-VC-TemperatureUnit-046
+361	598	686	SWE1-VC-TemperatureUnit-047
+369	566	687	SWE1-VC-SurroundViewCameraDelay-053
+378	567	688	SWE1-VC-SurroundViewCameraDelay-054
+387	568	689	SWE1-VC-SurroundViewCameraGuidelines-059
+398	569	690	SWE1-VC-SurroundViewCameraGuidelines-060
+405	686	691	SWE1-VC-TurnSignalActivatedBlindSpotCameraView-065
+412	687	692	SWE1-VC-TurnSignalActivatedBlindSpotCameraView-066
+420	688	693	SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-071
+428	689	694	SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-072
+436	412	695	SWE1-VC-ParkSenseBasedCameraActivation-078
+442	413	696	SWE1-VC-ParkSenseBasedCameraActivation-079
+687	410	697	SWE1-VC-ParkSense-084
+693	411	698	SWE1-VC-ParkSense-085
+270	570	699	SWE1-VC-SuspensionAutoEntryorExit-091
+273	571	700	SWE1-VC-SuspensionAutoEntryorExit-092

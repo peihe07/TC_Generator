@@ -78,9 +78,10 @@
 **交付本之 B 欄原為公式** `=IF(ISBLANK($D10),"",ROW()-9)`（列 10–246，237 格）。
 
 **本次寫入將該 237 格覆寫為硬值；補入 19 條後全表為 244–700（列 10–466）。**
-**其後於 W-VF92 之全表重排，B 欄 244–700 依重排後之位置全部重寫**
-（值域不變，而**每一列所帶之號幾乎全變** —— 位置未變者僅 12 列）。
-**舊 B 與新 B 之對照見 `data/vf230_id_remap.tsv`（457 列）；
+**其後經二次全表重排（W-VF92 及其更正），B 欄 244–700 依重排後之位置全部重寫。**
+**值域不變，而每一列所帶之號幾乎全變。**
+**三段式對照表見 `data/vf230_id_remap.tsv`（457 列，欄 =
+`b_orig` / `b_wvf92` / `b_final` / `req_id`）；
 凡引用舊 B 之紀錄（pilot、DR、隔離表）須經該表換算。**
 
 **其後果**：**該本之自動編號機制自此失效** —— 日後於該本增刪列，
@@ -302,58 +303,90 @@ HMI receives the value as "Absent" via signal,
 
 ---
 
-## 十、交付列序 —— **依 Requirement ID 升冪**（`R-G32`，W-VF92）
+## 十、交付列序 —— **來源文件 → 文件內編號**（`R-G32` 修正版）
 
-### 10.1 其所改者
+### 10.1 其所改者，與一次已更正之誤
 
 **交付本之列序原為「選池序」** —— 九個 Test Set 依序各取一條再繞回
-（`R-VS58`，其目的為**批次組成**：使每一批涵蓋面廣而 pilot 之取樣不致同質）。
-**該序被直接當成工作簿之列序，其從未經任何裁定明示。**
+（`R-VS58`，其目的為**批次組成**）。**該序被直接當成工作簿之列序，
+其從未經任何裁定明示。** 實測後果：110 個 ID family 被切成 424 段。
 
-**其後果（重排前之實測）**：110 個 Requirement family 被切成 **424 段**，
-**平均每一 family 散在 3.85 處**。**以人眼無從確認涵蓋。**
+**Pei 裁定重排（`R-G32`，2026-08-25）。**
 
-**Pei 裁定 (a)：依 Requirement or Design ID 升冪，並立為專案適用等級**
-（`R-G32`，2026-08-25）。
-
-### 10.2 重排之規格與實測
+**惟該條首版之排序鍵模型為假，已於同日修正（`A-VF34`）**：
 
 ```
-排序鍵    D 欄（Requirement or Design ID）**整字串升冪**，唯一鍵
-          —— 尾碼實測 450 條為三位零填、7 條無數字尾碼，
-             同一 family 內位數不一者 **0** → **字串序即數值序**
-穩定性    stable sort —— 同一 D 值之多列保持原相對序
-          （相異 D 454，資料列 457，差 3 為多值條文之拆列）
-B 欄      依重排後之位置全部重寫，244–700 連號（起點依 R-VF83 之跨本續號）
+首版：「family 名依字母序，數字尾碼依數值序」
+      —— 其預設 ID 之名為分群單位、尾碼為該名下之流水號
+實測：`SWE1-VC-<名>-NNN` 之 **NNN 是該條在其上游 037 分報告內之行號**
+      11 份分報告各自 002 起編至該份長度；同一份內不同名之需求編號連續
+        SYS-RA-VF230_V1-672 → SWE1-VC-BlindSpotAlert-002
+        SYS-RA-VF230_V1-673 → SWE1-VC-BlindSpotAlert-003
+        SYS-RA-VF230_V1-679 → SWE1-VC-PassiveEntry-009   ← 同一份文件
+依名排序之後果：11 份文件被切成 **74 段**（平均每份散在 6.7 處），
+                **文件內編號之逆序 43 處**
 ```
 
+**Pei 之指正**：「同一份文件的排在一起照數字順序去排」。
+
+### 10.2 現行之排序鍵（二層）
+
 ```
-family 段數   重排前 **424** → 重排後 **110**（= family 數，**每 family 恰一段**）
+第一層  **上游來源文件** —— 037 分報告（11 份），依**文件名字母序**
+第二層  **該條在該文件內之編號** —— ID 之結尾數字，不論有無連字號
+        （17 條之連字號缺漏為 DR-29 之標的，本鍵不受其影響）
+穩定性  stable sort —— 同鍵者保持前一輪相對序
+B 欄    依重排後之位置全部重寫，**244–700 連號**
+        （起點依 `R-VF83`／`V73 §1`，**不自 001 起**）
 ```
 
-### 10.3 ID 對照表 —— **舊 B 之引用不因重排而斷鏈**
+**文件之序**（本本所採）：
 
-`data/vf230_id_remap.tsv`（457 列，欄 = `old_b` / `new_b` / `req_id`）。
-**重排使 B 欄幾乎全變（位置未變者 12 列）**，pilot 紀錄、DR、隔離表內
-凡以 B 號指稱某列者，**一律經此表換算**。
+```
+ 1.  33 條  6 Aux Switches, SWITCH 1 Power Mode and E-Save features
+ 2.  92 條  Blind Spot Alert_Passive Entry_Phone Repetition_Park Sense_features
+ 3.  27 條  Cornering Lights_lane_features
+ 4.  14 條  Daytime_Running_Light And Headlights_Off_Delay features^
+ 5.  17 條  Pressure_Unit , Power_Unit And Torque_Unit features
+ 6.  50 條  STLA_Illuminated_Approach - Trailer_Number_Report
+ 7.  23 條  STLA_SWITCH_1_Type - SWITCH 4 Hold_Last_State Features_Report
+ 8.  33 條  STLA_Suspension_Flash_Lights_With_Lower - SWITCH 4_Power_Mode Features_Report
+ 9.  49 條  STLA_Suspension_Service_Mode - Headlights_with_Wipers Features_Report
+10.  93 條  STLA_Trailer_Name - Max_Power_Level_Report
+11.  26 條  Time_Date_Autodoor_Camera_features
+```
+
+**判準（寫關係，不寫實例數）**：
+**每一份來源文件恰佔一段，且段內編號非降序。**
+**實測：文件段數 11 = 份數 11；段內逆序 0。**
+
+### 10.3 ID 對照表 —— **三段式，兩次重排之 B 號皆不斷鏈**
+
+```
+data/vf230_id_remap.tsv   457 列
+  b_orig    量產原序（W-VF92 之前）—— pilot 紀錄、DR、隔離表所引者
+  b_wvf92   W-VF92 之後（依 ID 字串排；曾短暫送達交付路徑）
+  b_final   現行交付本
+  req_id    D 欄
+```
+
+**三欄各自唯一，值域皆 244–700**；`b_orig` 與量產原序之本、
+`b_final` 與現行本，**皆逐條驗證一致**。
 
 ### 10.4 施行工法與閘
 
 **XML 手術式**：只改目標分頁之 `<sheetData>`（`xl/worksheets/sheet6.xml`），
-**openpyxl 未參與存檔**（其剝離 x14 命名空間之既知缺陷於本輪無從發生）。
-**實測：全 48 個 part 中內容相異者恰 1 個，即該分頁。**
+**openpyxl 未參與存檔**。**實測：全 48 個 part 中內容相異者恰 1 個。**
 
 ```
-[閘 0] 資料列 457（列 10–466）｜B 244–700 連號｜尾碼位數一致
-[閘 3] part 級對帳  dataValidation 6｜x14:dataValidation 2｜conditionalFormatting 1
-                    extLst 1｜分頁 10｜drawing rel 6｜chart rel 0｜part 48   **前後全一致**
-[閘 4] 重讀比對 457 列 × 16 欄（B 除外）：**差異 0** —— 重排不得改動任何值
-[新閘] D 欄逐列非降序：**違者 0**
-[獨立] 內容多重集合（B 除外）重排前後相同｜含公式 0｜多行而無 wrap_text 0
+[閘 0] 資料列 457｜B 244–700 連號｜文件 11 份｜文件內編號撞號而 ID 相異者 0
+[閘 3a] xlsx_surgical.verify_structure（共用實作）：**通過**
+[閘 3b] dataValidation 6｜x14 2｜conditionalFormatting 1｜extLst 1｜part 48  前後一致
+[閘 4] 重讀比對 457 列 × 16 欄（B 除外）：**差異 0**
+[新閘] (文件, 編號) 逐列非降序：**違者 0**｜文件段數 11 = 份數 11
+[獨立] 內容多重集合與**量產原序之本**相同（跨兩次重排）：**True**
 ```
 
 **`<row>` 之屬性（列高）留在原位，不隨內容移動** ——
 實測列 10–246 有 `ht="14" customHeight="1"`、列 247–466 無。
-其為**位置之屬性**而非內容之屬性；隨內容移動則使該不一致散入全表。
-**本輪維持現況並具名之**（其為樣板容量 237 列之又一表現）。
-
+其為**位置之屬性**而非內容之屬性。**本輪維持現況並具名之。**
