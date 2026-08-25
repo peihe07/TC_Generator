@@ -24,6 +24,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 13 | 2026-08-25 | 會說謊的警示補測、綁定範圍收束、不阻塞工作見底 | [handoff/13_honest_guards.md](handoff/13_honest_guards.md) | [upstream/13_honest_guards.md](upstream/13_honest_guards.md) | R-DM38／R-DM39 ＋ R-G25（全域）（逐字抄錄 3/3，Display 累計 41/41） | A-DM29／A-DM30 新增（皆自查）；A-DM27 更正 | **⚠ 步驟 3 觸發停止條件 34（1 項不符）。步驟 1、2、4、5、6 完成。綁定 9/9** |
 | 19 | 2026-08-25 | **合併包**：14–18 撤回重排；裁定落地、framework、簽核、pilot-01 | [handoff/19_consolidated.md](handoff/19_consolidated.md) | [upstream/19_consolidated.md](upstream/19_consolidated.md) | R-DM40–46（7 條）＋ R-G26–31（6 條，全域）＋ R-G32（逐條 12/12 PASS，Display 累計 48/48） | A-DM31／A-DM32 新增 | **⚠ 步驟 13 觸發停止條件 46（值無出處），未產出 TC。步驟 1–12、15 完成；簽核已轉錄，Phase 4 解封** |
 | 20 | 2026-08-25 | A-DM32 裁定（R-DM48）；**pilot-01 三條 TC 產出** | [handoff/20_pilot01_tc.md](handoff/20_pilot01_tc.md) | [upstream/20_pilot01_tc.md](upstream/20_pilot01_tc.md) | R-DM47／R-DM48（逐條 2/2 PASS，Display 累計 50/50） | DR-DM9 開立；A-DM32 標已裁 | **步驟 1–6 全數執行；五十二條停止條件全未觸發。lint036 二十項行計皆 0** |
+| 21 | 2026-08-25 | pilot-01 覆核：四項退回、負向補列 | [handoff/21_pilot01_rev2.md](handoff/21_pilot01_rev2.md) | [upstream/21_pilot01_rev2.md](upstream/21_pilot01_rev2.md) | （無新條文） | A-DM33 新增；DR-DM10 開立 | **步驟 1–7 全數執行；五十五條停止條件全未觸發。rev2 三條，lint 二十項行計 0** |
 
 ## 02 輪要點
 
@@ -366,3 +367,29 @@ RULED 3）；`recon.py` 回 **REFUSED (R-C9)**，兩項複驗皆過。
 
 **DR-DM9 開立**（HIGH）：請上游確認四個規格值標籤各對應哪一個 raw；
 取得後得於既有 ER **增列**訊號值，增列不改變行為驗證，**不構成回修**。
+
+## 21 輪要點
+
+**四項退回全數處置**：#2 deferred（§2.1）／欄位歸屬修正（§2.2）／
+`{4820282}` 複驗後保留（§2.3）／邊界負向條補列（§2.4）。
+
+**§2.1 之查證把搜尋面自一節擴到全文，結果改變了處置**：
+warning 與 OFF 兩階段之區分準據，經**四條路徑**（組 A `{4820283}`／
+組 B `{4820289}`／組 C `{4820951}`／Pop Up List `PU0130`）查證**皆不產生
+可觀測之判準**。依分支 3 → #2 deferred、開 **DR-DM10**。與 DR-DM4 不併。
+
+**A-DM33（新）**：`1.11.2.2` 之下有**兩組皆宣告適用於 `R1H`／`Atlantis High`
+且互相排斥**之關閉流程 —— 組 A（HU 下令關背光、關後續送 `[DISP_HOT]`）
+與組 B（DCSD 自主關背光並送 `[DISP_OFF]`、無警示階段）。
+Multi-stage 之第三組**不構成第三個適用流程**（DCSD 側 `Radio:noSys`，
+且該節自載不由 DCSD 供應商實作）。本批 TC 只取兩組皆一致之部分。
+
+> 這是第二次「查得比預期多」而改變處置（第一次是 06 輪之 `_polarion`）。
+> **兩次都是把搜尋面從指定的一節擴到全文才看見的。**
+>
+> 本輪之 A-DM33 初稿曾寫「三組皆適用」，逐條讀屬性行後改正；
+> **結論不變而理由改變，依 R-G19 分別更正。**
+
+**rev2 三條**：004 正向、004 邊界（`=85` 不觸發）、005 回復。
+`input_test_data` 三條皆改 `NA`，門檻值移入 `pre_conditions` 之具體值。
+`lint036.py` 二十項行計 0；母本 SHA 未變。

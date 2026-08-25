@@ -949,6 +949,79 @@ ER 改驗規格所載之可觀察行為，規格側之標籤記入 `reasoning`�
   (b) 裁定 ER 一律寫 DBC 側之 `= 0 (OFF)`，規格側寫法只入 `reasoning`；
   (c) 向上游提 DR，請其確認 `[DISP_OFF]` 所指之 raw 值
 
+## A-DM33 — 本架構之 Display Hot 條款有兩組互相矛盾之完整流程；第三組以 ECU 角色切分且其 DCSD 側標為 `noSys`  [PENDING]
+
+21 包 §2.1 要求逐字查 warning 與 OFF 兩階段之區分條件。查證擴及全文後
+所見如下（屬性行皆為機器抽取之逐字，見上繳 21 §1）。
+
+### 三組條款與其適用性
+
+| 組 | 節 | 關鍵條之屬性行（逐字） | 對本專案（`R1H`／`Atlantis High`）之適用 |
+|---|---|---|---|
+| A | `1.11.2.2` `{4820282}`–`{4820288}` | `{4820283}`：`[Radio:R1H, VP5R120, R1M] [EE Architecture:PowerNet, Atlantis High]` | **適用** |
+| B | `1.11.2.2` `{4820289}`–`{4820292}` | `{4820289}`：`[Radio:R1H] [EE Architecture:Atlantis High]` | **適用**（且**僅**本專案） |
+| C | `1.8.2.5.2` `{4819858}`／`1.15.2.5.2` `{4820947}` Multi-stage | `{4820951}`／`{4819862}`：`[ECU:DCSD] … [Radio:noSys]`；`{4820952}`：`[ECU:ETM, LTM] … [Radio:R1M, R1L-R, R1H, R1L]` | **僅 HU 側適用**；DCSD 側諸條皆 `Radio:noSys`，且 `{4820948}` 逐字為 `The Multi-stage Display Hot algorithm shall not be implemented by the DCSD supplier.` |
+
+### 矛盾之所在（A 對 B）
+
+| 事項 | 組 A | 組 B |
+|---|---|---|
+| 誰關背光 | **HU 判定後下令**：`{4820283}` HU 送 `$TGW_DISP_STAT$ = [DISP_OFF]` ＋ `$RQ_DISP_INTS$ = [0% Intensity]` → `{4820284}` DCSD 收到才關 | **DCSD 自主**：`{4820289}` 越過門檻即 `Turn off the backlight (both top and bottom portion) and disable touch` |
+| 是否有警示階段 | **有**：`{4820283}` 逐字 `When the HU has finished displaying the Display Hot warning screen …` | **無**：`{4820289}` 之四項動作中不含任何警示畫面 |
+| 關背光後之 `$DCSD_DISP_STAT$` | `{4820284}`：`shall continue to send $DCSD_DISP_STAT$ = [DISP_HOT]` | `{4820289}`：`Send CAN signal $DCSD_DISP_STAT$=[DISP_OFF]` |
+
+**兩組對同一觸發（越過 85 degrees C）給出互相排斥之後續。**
+兩組皆逐字宣告適用於 `R1H` ＋ `Atlantis High`。
+
+### 阻斷 pilot-01 原 #2 之直接原因
+
+原 #2（保護性關閉）之觸發條件與 #1 相同（`> 85`）而結果不同。要能寫出
+可執行之步驟，須有「何時看到警示、何時看到關閉」之可觀測準據。查證結果：
+
+1. 走組 A：該準據為 `{4820283}` 之 `has finished displaying the Display Hot
+   warning screen and determines that the DCSD display should now be 'Turned Off'`
+   —— **該條未給任何時長、門檻或可觀測事件**
+2. 走組 B：`{4820289}` 為一無序號時序之動作清單，**未給任一步之時間關係**
+3. 走組 C：其 DCSD 側之判定條逐字為
+   `When the DCSD determines it wants to turn off it's backlighting
+   (see {CFTS013-XXX}), the DCSD shall send $DCSD_DISP_STAT$ = [DISP_OFF].`
+   —— 準據指向 **`{CFTS013-XXX}`，規格自身之未填佔位符**；且該條為 `Radio:noSys`
+4. 走 Pop Up List：`PU0517` 與 `PU0130` 之 `Timeout` 皆為 `10`，`PU0130` 之
+   說明逐字為 `if the screen has not cooled down the display will turn off
+   until it has cooled` —— **「未冷卻」之判準與其觀測時點未給**
+
+**四條路徑皆不產生可觀測之區分準據。** 依 21 包 §2.1 分支 3、停止條件 53：
+**原 #2 deferred，不以推定之時間值補寫**。
+
+### 未填佔位符（次要發現，仍登記）
+
+`{CFTS013-XXX}` 於本文出現 **5 次**（另有 `{CFTS013-XXXX}` 之 FPDM 版 1 次），
+皆為同一句型。其為**已發行規格中的未填欄**，非本 feature 之取材問題。
+另 `{4820949}`／`{4819860}` 指向 `{CFTS013-967}`，與 DR-DM4 所列之
+`-629`／`-633`／`-952` **皆不同號**。
+
+### 處置
+
+- **原 #2 deferred**；`PU0130` 隨之 deferred
+- **DR-DM10 開立**（HIGH）：求 (a) 組 A 與組 B 何者為本架構之準，
+  (b) `{4820283}` 之警示階段時長／終止準據，(c) `{CFTS013-XXX}` 之實際條號。
+  與 DR-DM4 不併 —— DR-DM4 求既有三個條號之內容，
+  **一個尚未編號的條款與一項條款衝突之裁定不在其範圍內**
+- 組 A 與組 B 之矛盾**不由本層裁定何者優先**（Tier 2，屬上游文件之內部矛盾）
+- 本輪之 TC **只取兩組皆一致之部分**：門檻值（`{4820289}` 之 `> 85` /
+  `<= 85`）、`[DISP_HOT]` 之通知（`{4820282}`）、回復行為
+  （`{4820287}`／`{4820288}`／`{4820290}`，兩組對回復側無分歧）
+
+> 這是本 feature 第二次「查得比預期多」而改變處置：第一次是 06 輪之
+> `_polarion`（四輪未看之分頁其實是值字典）。**兩次都是把搜尋面
+> 從指定的一節擴到全文才看見的。**
+>
+> **本節之初稿曾寫「三組皆適用且互不一致」。** 逐條讀屬性行後改正：
+> 組 C 之 DCSD 側為 `Radio:noSys` 且該節自載「不由 DCSD 供應商實作」，
+> 故其不構成第三組適用流程。**改正之後結論不變（#2 仍 deferred），
+> 但理由改變** —— 阻斷者主要是組 A／B 之矛盾與 `{4820283}` 之無時長，
+> 而非 `{CFTS013-XXX}`。依 R-G19，理由與結論分別查證，故分別更正。
+
 ---
 
 ## Assumption markers
