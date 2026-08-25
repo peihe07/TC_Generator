@@ -29,6 +29,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 20 | 2026-08-25 | **State Matrix 效力範圍更正**、Off Road+ 互補分支、PITA6 牴觸 | [handoff/20_matrix_scope.md](handoff/20_matrix_scope.md) | [upstream/20_matrix_scope.md](upstream/20_matrix_scope.md) | R-PMH76–R-PMH78（逐字抄錄 3/3 相符） | A-PMH18 補記（語意層亦不涵蓋）；**`DR-PMH5` 開立** | **⚠ canon 1／2／5 觸發；本包 7 字面觸發；`--source-must-hit` 改寫後轉綠；TSV 重跑 diff = 0** |
 | 21 | 2026-08-25 | **牴觸之判準**、矩陣 × ch 7 全對照、DR 四級狀態機 | [handoff/21_predicate_criterion.md](handoff/21_predicate_criterion.md) ＋ [21a](handoff/21a_dr_dispatch.md) | [upstream/21_predicate_criterion.md](upstream/21_predicate_criterion.md) | R-PMH79–R-PMH83（逐字抄錄 5/5 相符） | A-PMH18 補記（對照涵蓋數字）；**`DR-PMH6` 開立** | **ch 7 × 矩陣牴觸 0；停止條件 9 一度觸發已解除；canon 1／2／5 觸發（既有）** |
 | 22 | 2026-08-25 | **pop-up 組改判**、`VP` 未定義、`-007` 事件層限定 | [handoff/22_popup_conflict.md](handoff/22_popup_conflict.md) ＋ [22a](handoff/22a_007_limitation.md) | [upstream/22_popup_conflict.md](upstream/22_popup_conflict.md) | R-PMH84–R-PMH87（逐字抄錄 4/4 相符） | **A-PMH19（覆蓋缺口三項）**／**A-PMH20（`VP` 未定義）**；**`DR-PMH7` 開立** | **ch 7 牴觸 1／待定義 4；ch 8 牴觸 0；`-007` 已改寫，lint 30/30** |
+| 23 | 2026-08-25 | **規格內部之牴觸**、batch 1 逐條 ER 對照、章 11 × 矩陣 | [handoff/23_spec_internal_conflict.md](handoff/23_spec_internal_conflict.md) | [upstream/23_spec_internal_conflict.md](upstream/23_spec_internal_conflict.md) | R-PMH88–R-PMH90（逐字抄錄 3/3 相符） | **A-PMH21（`SU3.)` × p9 `Pop-ups still shown`）**；`DR-PMH5` 增補 | **三條停止條件全未觸發；ER 牴觸 0／印證 1；ch 11 牴觸 0／印證 2；lint 30/30** |
 
 ## 01 輪要點
 
@@ -1347,3 +1348,79 @@ procedure 3→5 步（限定拆為兩步，字數 11／12），ER 3→5 逐位�
 （決定 A-PMH19 採甲或乙）／三筆 DR 之發出日期與對象／
 §12 第 4、6 項（`-007` 之規格側反向掃描、batch 1 其餘七條）／
 章 11 × 矩陣之對照／22 之 commit 授權（12 路徑）。
+
+---
+
+## 23 包要點
+
+### A-PMH21 —— **規格內部之牴觸**（第一次出現此形態）
+
+| 出處 | 逐字 | 形態 |
+|---|---|---|
+| **p8 `SU3.)`** | `No pop-ups will appear until the disclaimer screen has been removed.` | **全稱否定** |
+| **p9 能力矩陣 `HVAC Knobs` 格（兩處）** | `HVAC Knobs: Fully functional. `**`Pop-ups still shown.`** | **無條件肯定** |
+
+**⚠ 其列位與分析層所報不同，以座標複驗後更正**：兩處在
+**`KEY ON ENGINE ON`** 與 **`KEY ON ENGINE OFF (ACC or RUN)`** 兩列
+（x=428，y=81／180；列標籤 y=114／197），**非** `KEY OFF` 兩列
+（後者之 `HVAC Knobs` 格逐字為 `OFF`）。
+
+**該更正使牴觸更強而非更弱** —— **免責畫面之相位正是 `KEY ON`**，
+二者之條件不僅「未證互斥」，而是**高度可能重疊**。
+
+**不得以「以規格為權威」解之**（R-PMH89）—— 兩造皆是規格。
+處置：限縮 ＋ 揭露；`-007` 之四項限定已含「不操作 HVAC 硬控」，**限定不必增加**。
+
+### batch 1 其餘七條之逐條 ER 對照：**18 條斷言，牴觸 0、印證 1**
+
+唯一印證：**`-008` ER2**（`The radio changes to On state`）× 矩陣 `r6` c12／c13
+（**`Head Unit Power ON`**）—— 同一謂詞取相同值，且 `-008` 之 pre-condition
+「無通話情境進行中」**恰對應 `Call Not Active` 欄**。**矩陣為該 ER 之獨立佐證。**
+
+其餘 17 條之未對照分三類：素材無對應列 13／不同謂詞 3／無可相反之值 1。
+
+### 章 11 × 矩陣：**牴觸 0、印證 2**
+
+`r11`（無 Projection → `Head Unit Remain OFF`）與 `r12`（Projection 中 →
+`Head Unit Power ON`）**皆為 `VRLP1` 四種容許結果之一**。
+**矩陣補上了規格所無之區辨** —— `VRLP1` 只說「結果視互動而定」，
+矩陣以 `Projection` 之有無區辨之（依 R-PMH55(b) 不得為其單獨撰 TC）。
+
+`r28`／`r29` 之互斥依據**由規格自身給出**（`VRLP1` 限 `KEY ON or ACC`，該二列屬 Key-off）。
+
+⚠ **四列與 `VRLP1` 皆註 `See CFTS009`，而該文件我們沒有。**
+
+### 反向掃描（R-PMH90）：25 行，**牴觸 2／印證 5／未對照 16 ＋ `SU3.)` 自身 2**
+
+與分析層之 25 處**行數相符、分類逐項相符**；行號差 4~13 **因萃取來源不同**
+（`pm.txt` vs `fitz`），**差異已查明 → 停止條件 9 未觸發**。
+**計數單位須明說：匹配數 30、行數 25。**
+
+### ⚠ 第二層抽樣查出一整類漏網措詞：**「非漏」**
+
+| 層 | 母體 | 點估計 | Wilson 95% |
+|---|---:|---:|---|
+| 1 | 130 | 10% | [2%, 40%] |
+| 2 | 332 | **20%** | [6%, 51%] |
+
+**`18_break_the_circle.md:107` 之「非漏（散文側）」是對照結論** ——
+**而 `RESIDUE_VERDICT` 現有 20 條多以「非漏」起首，停止條件 8 完全攔不到。**
+**「列舉式判準」之問題不在其漏了幾個詞，在於漏掉的可能正是用最多的那個。**
+
+**另**：第一層母體由 124 增為 130（新增之上繳文件所致），**種子固定而樣本全數更換**
+—— 已寫入 LIMITS：**抽樣結果須與其執行時之母體大小併讀**。第三層未量。
+
+### ⚠ 本輪自陳之未竟項中，三項須先看（上繳 §12）
+
+1. **`-007` 之四項限定不含「無來電」** —— `PITA9` 之 phone call popup 於免責畫面
+   相位是否顯示，**規格未表態**。已具名，**但那是具名不是解決** ——
+   **若上游答「會顯示」，`-007` 之 ER 即不成立。**
+2. **§5 之「素材無對應列」13 條，其依據是我列的一組零命中探針** ——
+   **若矩陣以別的詞說同一件事，該 13 條就不是「無對應列」。`VP` 正是這個問題之
+   現行實例，而它還沒答覆。**
+3. **本包三支新程式無 must-hit** —— 依 R-PMH35(c) 其結果**只得標「未實測」**，
+   **而我在總表標了 PASS，據實更正**。
+
+**待 Pei**：三筆 DR 之發出＋日期與對象（**`DR-PMH5` 內容已因 A-PMH21 變更**）／
+`DR-PMH5`／`6` 是否已發出（決定增補或另開 `DR-PMH8`／`9`）／
+`PITA9` 之殘餘風險／章 9・10・12 × 矩陣之全對照／23 之 commit 授權（12 路徑）。

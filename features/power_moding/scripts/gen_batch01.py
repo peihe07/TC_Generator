@@ -243,6 +243,17 @@ TCS = [
      "不採 `No phone call is active`（`r48` 不涉通話，不充分）、"
      "不採 `Gear != Reverse`（只擋 `r48` 之一部）、"
      "不採以 `R1Low` 限定 `r15`（`SU3.)` 全稱適用於所有變體，違 R-PMH55(a)）。"
+     "⚠ **R-PMH90 —— 規格側之反向掃描（23 包）**：只掃素材不足以主張限定充分。"
+     "以 `pop-up`／`popup`／`pop up` 掃規格 PDF 全文得 **25 行**（匹配 30 次），"
+     "逐行判定：印證 5（`Geolocation + SOS Popup` 於流程圖中位於免責畫面之後；"
+     "`GDPR/SOS popup` 明載其條件為**免責畫面被跳過**）／未對照 16（`PM1)` 之 "
+     "IGN OFF popup 群 12 行、`PITA6`／`6.1`／`9` 之 Power Button Off 相位 3 行、"
+     "重複顯示之謂詞 1 行）／**牴觸 2**（p9 能力矩陣之 "
+     "`HVAC Knobs: Fully functional. Pop-ups still shown.`，見 A-PMH21）。"
+     "**該 2 行之情境為 HVAC 旋鈕之操作，已為本條四項限定中之「不操作 HVAC 硬控」所涵蓋，"
+     "故限定不必增加** —— 惟其依據自此為「矩陣之 17 格 ＋ 規格 p9 之 2 行」。"
+     "⚠ **殘餘風險具名**：四項限定**不含「無來電」**；`PITA9` 之 phone call popup "
+     "於免責畫面相位是否顯示，**規格未表態**（其只述 `Power Button Off state`）。"
      "**連帶之覆蓋缺口三項見 ANOMALIES A-PMH19。** "
      "source_clause 取自 PDF p8 之 SU3.)（R-PMH50）。"),
    axis="同一觸發之兩後果：視覺抑制 ＋ 音訊照常"),

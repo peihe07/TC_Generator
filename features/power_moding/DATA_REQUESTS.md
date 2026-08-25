@@ -302,6 +302,34 @@ PDF p9 之 `Power Moding` 節含一張**靜態能力矩陣**，其後緊接一�
 Excel 全簿無任何一格描述 `ICS Hard Controls`／`HVAC Knobs`／`Climate GUI`
 三者之可用性。
 
+### 增補（23 包，依 **R-PMH89** 之連帶 / A-PMH21）—— **p9 矩陣自身與 p8 之 `SU3.)` 相衝**
+
+**本 DR 之問題不只是「該矩陣無來源」** —— 其**自身之內容**與同一份規格 p8 之
+`SU3.)` 取相反值：
+
+| 出處 | 逐字 |
+|---|---|
+| **p8，`SU3.)`（outline 7.4）** | `No pop-ups will appear until the disclaimer screen has been removed.`（**全稱否定**） |
+| **p9 能力矩陣，`HVAC Knobs` 格（兩處）** | `HVAC Knobs: Fully functional. `**`Pop-ups still shown.`**（**無條件肯定**） |
+
+**其列位（以座標實測）**：
+
+| 出現 | 列 | 欄 |
+|---|---|---|
+| 第 1 次 | **`KEY ON ENGINE ON`** | `HEADUNIT POWER OFF` |
+| 第 2 次 | **`KEY ON ENGINE OFF (ACC or RUN)`** | `HEADUNIT POWER OFF` |
+
+**免責畫面之相位正是 `KEY ON`** —— 二者之條件高度可能重疊。
+
+**故本 DR 之問題增列第三項**：
+
+  (3) p9 之能力矩陣，其 `Pop-ups still shown` 與 p8 之 `SU3.)` 應如何並存？
+      是否 `SU3.)` 本該寫成有條件句（排除 HVAC pop-up），
+      或該矩陣格本該註明其不適用於免責畫面期間？
+
+**⚠ 本增補之前提**：`DR-PMH5` **尚未發出**（狀態 `DRAFT`，發出日期欄空白）。
+**若 Pei 實際已發出，則此項須改以 `DR-PMH9` 另開**（同 A-PMH19 之二擇一形態）。
+
 ### 所需
 
 **PDF p9 那張能力矩陣之可讀來源**：其原始檔，或該矩陣所在頁之高解析輸出。

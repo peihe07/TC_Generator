@@ -29,6 +29,15 @@ CAUGHT = ["無矛盾", "非牴觸"]                    # 停止條件 8 所攔�
 CANDIDATE = ["一致", "相容", "符合", "吻合", "不衝突", "無衝突",
              "無牴觸", "未發現問題"]              # 可能之同義措詞（**本身亦為列舉**）
 
+# --- 第二層（23 包步驟 7）---
+# 22 §12 第 5 項自陳：`CANDIDATE` 之八詞**本身是列舉**，其外之措詞不入母體，
+# **故本抽樣之母體亦有偽陰**。第二層即量該層之偽陰。
+#
+# 第二層母體之界定**仍須某種識別方式** —— 此處取「對照語境之標記」
+# （`矩陣`／`規格`／`素材`／`vs`／`×`／`謂詞`）而**不含** `CAUGHT + CANDIDATE`
+# 之十詞者。**該識別方式本身又是列舉 —— 第三層未量，已具名。**
+CONTEXT = ["矩陣", "規格", "素材", " vs ", " × ", "謂詞", "State Matrix"]
+
 SAMPLE_N = 10
 SAMPLE_SEED = 22                                # = 本包編號，可重現
 
@@ -38,6 +47,11 @@ LIMITS = [
     "只掃 `docs/upstream/*.md`；`ANOMALIES.md`／`DECISIONS.md`／程式輸出不入母體",
     "**行級抽樣** —— 一行可能同時是對照結論與別的敘述；其是否為「對照結論」由人讀判",
     "N = 10 之 Wilson 區間寬達數十個百分點 —— **點估計不得單獨引用**",
+    "⚠ **母體隨每包新增之上繳文件而變** —— 種子固定**不保證樣本固定**："
+    "22 包之母體為 124 行，23 包已為 130 行，抽樣遂全數更換。"
+    "**故本檔之抽樣結果須與其執行時之母體大小併讀。**",
+    "**第二層之母體亦以列舉界定**（`CONTEXT` 六個標記）—— **第三層未量**；"
+    "R-PMH67 之形態在此只套了兩層，其收斂與否未知",
 ]
 
 
@@ -49,55 +63,98 @@ def print_limits() -> None:
 
 
 # 抽樣之人讀判定 —— 鍵為 (檔名, 行號)
+SAMPLE_VERDICT_L2: dict[tuple[str, int], tuple[bool, str]] = {
+    ("03_testgroup_and_dv.md", 182):
+        (True, "**應被攔** —— 此為**對照結論**（`Pairwise / t-wise` vs `Pair-wise / N-wise` 兩組字串）而以「**未造成任何逸出**」作結。該措詞不在八個候選詞內，**亦不在停止條件 8 之二詞內**"),
+    ("11_claim_evidence.md", 34):
+        (False, "R-PMH41 之命中數驗證，非對照結論"),
+    ("13_batch1_rework.md", 365):
+        (False, "自問表之合規判定（「是否越界 §8.4.2」→「否」），非規格×素材之對照"),
+    ("15_marker_prefix_and_priority.md", 51):
+        (False, "規則之敘述（未在表中 → FAIL），非對照結論"),
+    ("18_break_the_circle.md", 107):
+        (True, "**應被攔，且為本層最重要之一項** —— 此為 `RESIDUE_VERDICT` 之**對照結論**（PDF vs SYS1）而以「**非漏（散文側）**」作結。**「非漏」是一整類對照結論之措詞，而停止條件 8 完全攔不到** —— `RESIDUE_VERDICT` 現有 20 條，其中多數以「非漏」起首"),
+    ("19_broken_source.md", 218):
+        (False, "敘述性文字（`-layout` 之交錯現象），非對照結論"),
+    ("20_matrix_scope.md", 256):
+        (False, "程式輸出之同值查核（`48/48`），identity"),
+    ("21_predicate_criterion.md", 61):
+        (False, "章節標題"),
+    ("22_popup_conflict.md", 184):
+        (False, "must-hit 錨點之**謂詞**陳述；其記法（牴觸）在別行，已被三分類涵蓋"),
+    ("22_popup_conflict.md", 188):
+        (False, "同上"),
+}
+
 SAMPLE_VERDICT: dict[tuple[str, int], tuple[bool, str]] = {
-    ("01_intake.md", 535):
-        (False, "非規格×素材之對照結論 —— 其為 `D5` 值於 037／SYS1／封面三方之**同值查核**（identity），且結論為「支持填…惟本包不寫回，待裁」"),
-    ("03_testgroup_and_dv.md", 138):
-        (True, "**應被攔** —— 此為**對照結論**（母本 DV 之 priority 值 vs canon §10.2）而以「三方一致」記之。若該對照實為「只涵蓋前兩項、後兩項無對應」，「一致」二字會掩蓋之。**與 `10.5` 之「一致（軸層面）」同型**（21 §2 已改記為未對照）"),
-    ("03_testgroup_and_dv.md", 148):
-        (False, "停止條件之敘述（「…不一致）未觸發」），非對照結論本身"),
-    ("03_testgroup_and_dv.md", 563):
-        (False, "程式輸出之**同值查核**（`… 與 … 一致 : True`）—— 二者為同一欄位之兩處副本，其「一致」為 identity 而非對照"),
-    ("06_framework_proposal.md", 232):
-        (False, "anomaly 之描述（「表單層之不一致」）—— 其為**指出不一致**，非以「一致」作結"),
-    ("13_batch1_rework.md", 161):
-        (False, "條文名稱之引用（R-PMH53 之「語意相容」），非對照結論"),
-    ("17_scope_of_inventory.md", 406):
-        (False, "lint 之檢查項名稱（程式輸出），非對照結論"),
-    ("19_broken_source.md", 322):
-        (False, "重跑 diff = 0 之**同值查核** —— identity，非對照"),
-    ("21_predicate_criterion.md", 187):
-        (False, "停止條件之**自檢**結論（字面與目的是否一致），非規格×素材之對照"),
-    ("21_predicate_criterion.md", 286):
-        (False, "程式輸出之**同值查核**（靜態彙集 vs 執行期），identity"),
+    ("02_baseline_switch.md", 121):
+        (True, "**應被攔** —— 此為**對照結論**（037 之 `Priority` 實測值 vs `High` 等）而以「二者一致」作結。其後接「本包未實測母本」—— **一個以「一致」作結而其一造未實測之陳述**"),
+    ("03_testgroup_and_dv.md", 349):
+        (False, "章 ↔ FROP 之**分布統計**（「完全一致區」），非規格×素材之對照結論"),
+    ("05_corpus_fix_and_framework_prep.md", 472):
+        (False, "Pei 裁定之逐字引述（「037 的報告命名不一致…」），非本層之對照結論"),
+    ("06_framework_proposal.md", 312):
+        (False, "待決事項之敘述（「是否須一致、由誰主導，**未查**」）—— **其自陳未查，未以「一致」作結**"),
+    ("11_claim_evidence.md", 30):
+        (False, "抄錄核對表之條文主旨欄（R-PMH43 之描述），非對照結論"),
+    ("14_marker_enumeration.md", 211):
+        (False, "程式輸出之**同值查核**（`八條全部一致: True`），identity"),
+    ("15_marker_prefix_and_priority.md", 279):
+        (False, "節標題（「一致性自檢已落為程式之固定步驟」）"),
+    ("15_marker_prefix_and_priority.md", 409):
+        (False, "程式輸出之同值查核（靜態彙集 vs 執行期），identity"),
+    ("19_broken_source.md", 95):
+        (False, "停止條件之**自檢**敘述（字面與目的不一致），非規格×素材之對照"),
+    ("21_predicate_criterion.md", 50):
+        (False, "**重記表之「原記」欄** —— 其「一致（軸層面）」正是被本表改判為「未對照」者。**該行本身即是更正之記錄，不是仍在流通之結論**"),
 }
 
 
-def population() -> list[tuple[str, int, str]]:
+def population(layer: int = 1) -> list[tuple[str, int, str]]:
     out = []
     for f in sorted(UPSTREAM.glob("*.md")):
         for i, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
             if any(c in line for c in CAUGHT):
                 continue                       # 已被停止條件 8 攔下者不入母體
-            if any(c in line for c in CANDIDATE):
-                out.append((f.name, i, line.strip()))
+            if layer == 1:
+                if any(c in line for c in CANDIDATE):
+                    out.append((f.name, i, line.strip()))
+            else:
+                # 第二層：**不含**八個候選詞，惟具對照語境之標記
+                if any(c in line for c in CANDIDATE):
+                    continue
+                if any(c in line for c in CONTEXT) and len(line.strip()) >= 20:
+                    out.append((f.name, i, line.strip()))
     return out
 
 
 def main() -> None:
-    pop = population()
-    print("=== 停止條件 8 之偽陰抽樣（R-PMH67）===")
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--layer2", action="store_true",
+                    help="23 包步驟 7 —— 第二層抽樣（母體為不含八候選詞者）")
+    a = ap.parse_args()
+    layer = 2 if a.layer2 else 1
+    verdicts = SAMPLE_VERDICT_L2 if layer == 2 else SAMPLE_VERDICT
+    seed = SAMPLE_SEED + (100 if layer == 2 else 0)
+    pop = population(layer)
+    print(f"=== 停止條件 8 之偽陰抽樣 —— **第 {layer} 層**（R-PMH67）===")
     print(f"停止條件 8 所攔之詞：{CAUGHT}（**2 個**）")
-    print(f"母體：`docs/upstream/*.md` 中含 {CANDIDATE} 之一"
-          f"**而不含上列二詞**之行 = **{len(pop)}**")
-    rng = random.Random(SAMPLE_SEED)
+    if layer == 1:
+        print(f"母體：`docs/upstream/*.md` 中含 {CANDIDATE} 之一"
+              f"**而不含上列二詞**之行 = **{len(pop)}**")
+    else:
+        print(f"**第二層母體**：**不含**上列二詞**亦不含** {CANDIDATE} 八詞，"
+              f"惟具對照語境標記 {CONTEXT} 之一且長度 >= 20 之行 = **{len(pop)}**")
+        print("  ⚠ **該識別方式本身又是列舉** —— 第三層未量，已具名於 LIMITS。")
+    rng = random.Random(seed)
     n = min(SAMPLE_N, len(pop))
     sample = sorted(rng.sample(pop, n))
-    print(f"抽樣 N = {n}；種子 = {SAMPLE_SEED}"
-          f"（`random.Random({SAMPLE_SEED}).sample`，**可重現**）\n")
+    print(f"抽樣 N = {n}；種子 = {seed}"
+          f"（`random.Random({seed}).sample`，**可重現**）\n")
     named, pos = 0, 0
     for f, i, line in sample:
-        v = SAMPLE_VERDICT.get((f, i))
+        v = verdicts.get((f, i))
         print(f"  {f}:{i}")
         print(f"    {line[:150]}")
         if v is None:

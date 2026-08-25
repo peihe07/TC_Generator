@@ -1334,6 +1334,77 @@ If Radio Off Delay = 0 minutes then VP turns OFF Else VP stays ON
 
 ---
 
+## A-PMH21 — **規格內部之牴觸**：`SU3.)`（p8）× p9 能力矩陣之 `Pop-ups still shown` · 23 包 · PENDING
+
+**登記日**：2026-08-25（依 **R-PMH89**，分析層 23 包 §三查出，執行層複驗並更正其列位）
+
+### 兩造逐字
+
+**一造 —— `SU3.)`（PDF p8，outline 7.4，`Disclaimer Screen` 組之 `-007` 所依）**：
+
+> `No pop-ups will appear until the disclaimer screen has been removed. If an item
+> like a traffic announcement is received like on this screen the user will begin
+> hearing the announcement in the background but will not see the pop-up until the
+> disclaimer screen is removed.`
+
+**全稱否定**，其範圍為「免責畫面移除前之所有時刻」。
+
+**另一造 —— PDF p9 之能力矩陣，`HVAC Knobs` 格（出現兩次）**：
+
+> `HVAC Knobs: Fully functional. `**`Pop-ups still shown.`**
+
+**無條件肯定。**
+
+### ⚠ 其列位與分析層所報不同 —— 執行層以座標複驗後更正
+
+分析層 23 §3.2 記其為「`KEY OFF (ACC)` 與 `KEY OFF (No ACC)` 兩列之
+`HEADUNIT POWER OFF` 欄」。**實測不然**（`fitz` `get_text("blocks")` 之座標）：
+
+| 出現 | 座標 | 所屬列（列標籤之座標） | 欄 |
+|---|---|---|---|
+| 第 1 次（L332） | x=428, y=**81** | **`KEY ON ENGINE ON`**（y=114） | `HEADUNIT POWER OFF` |
+| 第 2 次（L348） | x=428, y=**180** | **`KEY ON ENGINE OFF (ACC or RUN)`**（y=197） | `HEADUNIT POWER OFF` |
+
+**`KEY OFF` 兩列之 `HVAC Knobs` 格逐字為 `OFF`，並無 pop-up 之敘述**
+（21 包 §3 之章 9 殘餘已錄其逐字：`HVAC Knobs: OFF HVAC Knobs: OFF
+Climate GUI: OFF Climate GUI: Forced OFF`）。
+
+**該更正使牴觸更強而非更弱** —— 免責畫面之相位**正是 `KEY ON`**
+（`SU1.)`：駕駛門關閉 → 開機動畫 → splash → 免責畫面；
+`PITA6.1`：ignition 由 OFF 轉 ACC 或 RUN）。
+**二者之條件不僅「未證互斥」，而是高度可能重疊。**
+
+### 判定（R-PMH79／R-PMH84）
+
+- **共同謂詞**：pop-up 是否顯示；
+- **取相反值**：`SU3.)` 不顯示／p9 顯示；
+- **條件互斥？未證，且證據指向重疊。**
+
+→ **牴觸。**
+
+### ⚠ **不得以「以規格為權威」解之**（R-PMH89 明文）
+
+先前之 `10.3`（R-PMH80）與 `r48`（R-PMH87）皆為**規格 vs 素材**，
+其處置得以「規格與素材各在其條件下成立」了結。
+**本處兩造皆是規格**（同一份 PDF，p8 與 p9），該原則在此**無分辨力**。
+
+### 處置
+
+依 R-PMH89（同 R-PMH80 之形態）：**限縮 ＋ 揭露，不裁權威**。
+
+`-007` 之四項事件限定已含「**不操作 HVAC 硬控**」，
+而 p9 之該格所述之情境即 HVAC 旋鈕之操作 —— **限定不必增加**；
+其 `reasoning` 之依據已擴為「矩陣之 17 格 ＋ 規格 p9 之 2 行」（23 包步驟 4）。
+
+### 連帶
+
+**`DR-PMH5` 之問題全文須增列此項** —— p9 之能力矩陣不只「無來源」，
+**其自身之內容與 p8 之 `SU3.)` 相衝**。已增補（其狀態仍為 `DRAFT`）。
+
+**狀態**：PENDING。**不阻斷 batch 1**（限定已涵蓋）。
+
+---
+
 ## 開案時之介面實測記錄（非異常，供追溯）
 
 `scripts/new_feature.py` 之實際介面與本 slug 之相合情形：

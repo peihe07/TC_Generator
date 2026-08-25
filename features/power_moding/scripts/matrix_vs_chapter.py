@@ -52,6 +52,9 @@ VOCAB = {
     8: ["sound", "Sound", "start-up", "startup", "goodbye", "Always",
         "Once a Day", "Never", "volume", "Volume", "entertainment",
         "setting", "Setting", "played", "plays", "sync"],
+    11: ["VR", "VR HK", "hard key", "SIRI", "Voice Assistants", "long press",
+         "Long press", "radio is OFF", "KEY ON", "ACC", "Screen Off",
+         "Screen ON", "Audio OFF", "Audio ON", "CFTS009", "interaction"],
 }
 
 LIMITS = [
@@ -300,6 +303,97 @@ VERDICT: dict[tuple[int, int, int], tuple[str, str, str]] = {
     (8, 37, 48):
         ("未對照", "HVAC 硬控調整之後果（`No effect on mute`／`Show Pop-Up`）",
          "ch 8 全文無 HVAC、無 pop-up 之敘述。`No effect on mute` 之謂詞為靜音狀態不變，**而 `SSND` 諸條之謂詞為特定聲音是否播放**；且本列之條件為 HVAC 硬控調整，與開機動畫無涉。**無共同謂詞且條件互斥。**"),
+    # ===== 23 包步驟 6：章 11 × 矩陣 =====
+    (11, 1, 6):
+        ("未對照", "ON/OFF button Pressed 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 1, 7):
+        ("未對照", "Door opened 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 1, 8):
+        ("未對照", "Door closed 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 1, 9):
+        ("未對照", "Incoming Call 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 1, 10):
+        ("未對照", "Plug in Projection 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 1, 11):
+        ("印證", "**VR 長按（無 Projection）後 radio 之狀態** —— `VRLP1` 列舉四種容許之結果，其一為 `Screen Off and Audio OFF (i.e. radio back to off)`；本列取 `Head Unit Remain OFF`",
+         "**同一謂詞取相同值** —— `Head Unit Remain OFF` 即 `VRLP1` 四種結果中之 `radio back to off`。本列之條件（`Key-on` × `Power Button OFF` × `Call Not Active`）**落在 `VRLP1` 之條件內**（`radio is OFF and KEY ON or ACC`）。⚠ 兩造皆註 `See CFTS009` —— **該文件不在本 feature 之六筆素材內**（A-PMH13 之同型）。"),
+    (11, 1, 12):
+        ("印證", "**VR 長按（Projection 中）後 radio 之狀態** —— `VRLP1` 四種結果之一為 `Screen ON and Audio ON`；本列取 `Head Unit Power ON`",
+         "**同一謂詞取相同值**，且本列之條件落在 `VRLP1` 之條件內。**矩陣補上了規格所無之區辨** —— `VRLP1` 只說「結果視互動而定」而未言何時取何者；矩陣以 `Projection` 之有無區辨之（無 → Remain OFF／有 → Power ON）。⚠ 該區辨**只在矩陣有、規格未載**，依 R-PMH55(b) 不得為其單獨撰 TC。⚠ 兩造皆註 `See CFTS009`。"),
+    (11, 1, 13):
+        ("未對照", "Call Ended 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 1, 14):
+        ("未對照", "Projection call ends 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 1, 15):
+        ("未對照", "Key-off 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 1, 16):
+        ("未對照", "SRT or Off Road+ Hard Button press. 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 19, 24):
+        ("未對照", "ON/OFF button Pressed 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 19, 25):
+        ("未對照", "Door opened 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 19, 26):
+        ("未對照", "Incoming Call 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 19, 27):
+        ("未對照", "Plug in Projection 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 19, 28):
+        ("未對照", "VR 長按（無 Projection）之後果",
+         "**條件互斥，依據為規格文字本身**：`VRLP1` 之條件逐字為 `shall be functional when radio is OFF and **KEY ON or ACC**` —— 本列屬 `Key-off` 區塊，**在其條件之外**（R-PMH84 所要求之互斥證明由規格自身給出）。"),
+    (11, 19, 29):
+        ("未對照", "VR 長按（Projection 中）之後果",
+         "**條件互斥，依據為規格文字本身**：`VRLP1` 之條件逐字為 `shall be functional when radio is OFF and **KEY ON or ACC**` —— 本列屬 `Key-off` 區塊，**在其條件之外**（R-PMH84 所要求之互斥證明由規格自身給出）。"),
+    (11, 19, 30):
+        ("未對照", "Door closed 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 19, 31):
+        ("未對照", "Call Ended 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 19, 32):
+        ("未對照", "Projection call ends 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 19, 33):
+        ("未對照", "Key-on 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 37, 40):
+        ("未對照", "ON/OFF button pressed 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 37, 41):
+        ("未對照", "Incoming or Active Call 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 37, 42):
+        ("未對照", "Gear changes to Reverse 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 37, 43):
+        ("未對照", "Gear changes to not-Reverse 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 37, 44):
+        ("未對照", "Screen Off Button Pressed 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 37, 45):
+        ("未對照", "Mute Button Pressed 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 37, 46):
+        ("未對照", "Headunit Mode Button Pressed (5\" VP2 only) 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
+    (11, 37, 47):
+        ("未對照", "以 VR 切換 Headunit Mode 之後果",
+         "**不同謂詞** —— `VRLP1` 之標的為 **VR 硬鍵長按啟動 SIRI／非原生語音助理**後之 radio 電源狀態；本列為**以 VR 切換 headunit mode**（`Screen Off`／`Mute` 之狀態機），二者為不同之操作與不同之結果面。"),
+    (11, 37, 48):
+        ("未對照", "HVAC Hard Control Adjustment 之後果",
+         "ch 11（outline 11／11.1，`VRLP1`）全文無此事件之敘述 —— **無對應之規格敘述**。"),
 }
 
 
