@@ -112,10 +112,12 @@ TCS = [
         "3. The system has reported ready"],
    proc=["1. Read the screen and record that the disclaimer screen is displayed",
          "2. Press no hard key and no \"Accept\" button until the screen changes",
-         "3. Read the screen and check that the last mode screen is displayed"],
+         "3. Read the screen and record the screen reached after the timeout",
+         "4. Check that the timeout reached the same screen as pressing \"Accept\""],
    er=["1. The disclaimer screen is displayed with the \"Accept\" button",
        "2. No user input is given while the disclaimer screen times out",
-       "3. The last mode screen is displayed"],
+       "3. The last mode screen is displayed",
+       "4. The timeout has the same effect as pressing \"Accept\""],
    reason=("**P1 —— 主要功能邏輯**（非 P0）：逾時為離開免責畫面之被動路徑；"
      "其失效使自動離開路徑失效，**惟 Accept 路徑仍在**（-002 已驗），"
      "**開機仍可完成**，故不落 boot/recovery 之射程。"
@@ -125,7 +127,14 @@ TCS = [
      "Maserati 之正常運作**，「永遠停住」不成立。採 15 包 §3.2 之案（甲）降 P1。"
      "同 leaf 之第二條（profile §4 之不同觸發，見 -002）。"
      "設計方法 STATE —— 標的為逾時所引發之狀態離開。"
-     "⚠ ⚠ **35 包步驟 3（R-PMH133 之回溯）—— 本段之後半已被 037 之 DESC 推翻**：本 leaf 之 `Requirement Description` 逐字為 `The system allows the user to either press Accept to go directly to last mode screen, or wait for timeout (**which automatically equals Accept**).` —— **「逾時等同 Accept」在 037 內明載**，故「未言」只在規格 PDF 側成立。**本條之射程因而不足（未斷言其等同 Accept），其修正不在 35 包步驟 4 之七處內，且其動到 batch 1 —— 已具名待裁，本包未改。**⚠ **以下為 13 包當時之陳述，依 R-PMH44 保留，其後半之前提已不成立**：§8.4.1 不造值：**規格未載逾時之秒數**，亦**未言逾時等同 Accept** —— "
+     "⚠ **36 包步驟 5（R-PMH133）之修正已施行** —— ER4 現斷言其效果等同按下 Accept 鍵。"
+     "**該語義之來源為 037 之 `Requirement Description`，其於 PDF `SU1.)` 中不存在**："
+     "`The system allows the user to either press Accept to go directly to last mode screen, "
+     "or wait for timeout (which automatically equals Accept).`"
+     "**13 包當時之不斷言合於當時之判準**（其所據為 PDF）——**判準於 R-PMH133 換了來源**；"
+     "其修正**依 R-PMH135 不計入 batch 1 之輪數**（判準變了，不是做錯了）。"
+     "⚠ **以下為 13 包當時之陳述，依 R-PMH44 保留，其後半之前提已不成立**："
+     "§8.4.1 不造值：**規格未載逾時之秒數**，亦**未言逾時等同 Accept** —— "
      "本條只斷言「畫面移除並顯示 last mode screen」，"
      "**不斷言其等同 Accept**（13 包 §4.4 之更正）。"
      "⚠ §8.5：pre-condition 之 non-Maserati **是必要的** —— 逾時本身即 Maserati "

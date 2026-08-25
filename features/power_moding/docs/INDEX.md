@@ -42,6 +42,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 33 | 2026-08-25 | **batch 4 重做（限定 14→3 筆）**、TSV 增 `requirement_title`、`NA` 一致化 | [handoff/33_batch4_rework.md](handoff/33_batch4_rework.md) | [upstream/33_batch4_rework.md](upstream/33_batch4_rework.md) | R-PMH122–R-PMH126（逐字抄錄 5/5 相符） | A-PMH13 → `ACCEPTED` | **⚠ 停止條件 8 觸發（五處射程與 037 title 不符，未自行改）；9 字面觸發；7 未觸發；四批皆 lint 32/32** |
 | 34 | 2026-08-25 | **射程改以 037 `Requirement Description` 比對**、`-017`／`-018` 改掛、**`-024` 撤除** | [handoff/34_leaf_realign.md](handoff/34_leaf_realign.md) ＋ [34a](handoff/34a_flowchart_and_cutoff.md) | [upstream/34_leaf_realign.md](upstream/34_leaf_realign.md) | R-PMH127–R-PMH132（逐字抄錄 6/6 相符；三處撤回附註，正文 SHA 不變） | **A-PMH29（漏句無 leaf）**；A-PMH25 → `RESOLVED`（**其前提被 037 DESC 推翻**）；A-PMH28 → `ACCEPTED` | **⚠ 停止條件 7 觸發（DESC 射程四處不符）、8 觸發（單位三處不符），皆未自行改；9 未觸發；四批 lint 32/32** |
 | 35 | 2026-08-25 | **DESC 逐斷言涵蓋之一次性總結**、回溯重判、**追溯維度封閉** | [handoff/35_desc_closing_pass.md](handoff/35_desc_closing_pass.md) | [upstream/35_desc_closing_pass.md](upstream/35_desc_closing_pass.md) | R-PMH133–R-PMH135（逐字抄錄 3/3 相符） | **A-PMH30（037 於二處以兩 leaf 承載同一行為）**；A-PMH25 → `RESOLVED` | **三條停止條件全未觸發；42 斷言／30 leaf，未涵蓋 2；回溯母體 25，翻案 2；四批 lint 32/32** |
+| 36 | 2026-08-25 | **反向涵蓋**、`desc_coverage.py`（第二次解凍）、**batch 5（10 條／10 leaf）** | [handoff/36_batch5.md](handoff/36_batch5.md) | [upstream/36_batch5.md](upstream/36_batch5.md) | R-PMH136–R-PMH138（逐字抄錄 3/3 相符） | A-PMH30 定案（R-PMH137） | **⚠ 停止條件 7 觸發（反向 `無依據` 1 處：`-004` ER3），未自行改；8／9 未觸發；五批皆 lint 32/32；解凍用畢已恢復凍結** |
 
 ## 01 輪要點
 
@@ -2112,3 +2113,39 @@ batch 2 六條**只補具名**；`-026`／`-033`／`-034` 補引 R-PMH131。
 
 **追溯維度自本包起封閉為三項**（R-PMH134）：leaf 指派／斷言涵蓋／單位。
 `DR-PMH8` 現 **8 問**（`41926e3de87df5c4`），`PENDING-ON-DR` **14 筆**。
+
+---
+
+## 36 包要點
+
+
+### 一、`desc_coverage.py` —— 涵蓋表自此有程式承載
+
+正向 **55 斷言／40 leaf**（未涵蓋 3）、反向 **144 ER 斷言**（無依據 1、測試執行 26）。
+
+**其首跑即查出我自己寫錯的一筆**：人讀表把 `-036` 之涵蓋寫成 ER3，而該條只有 2 條 ER。
+**35 包的人讀表沒攔到它，因為人讀表不會回頭去數 ER。**
+
+### 二、⚠ must-hit 錨點 (1) 曾偽陽
+
+原判準「輸出中含 `016` 或 `ER4`」——**而現況本就有一筆不可解析（上述筆誤），使錨點在未攔到任何東西時亦報 True**。
+改為「須較基準線新增，且每一新增之筆須同時指名 `-016` 所掛之 leaf 與 `-016`」。
+
+> **一個錨點在它所要攔的東西之外另有一個常在的失敗時，它會一直是綠的。**
+> 與 31 包之 `record`／`read` 同形態：**判準太寬，而其寬處剛好被別的東西填滿。**
+
+### 三、⚠ 反向涵蓋首跑 —— `無依據` 1 處
+
+**`-004` ER3** `The disclaimer screen is removed and the last mode screen is displayed`：
+其 leaf `-001-05` 之 DESC 只載「無逾時、須手動按 Accept」，**未載按下之後之結果**；
+該結果之依據在 **`-001-04`**。**形態為 canon §8.4.2 之範圍捏造。** 未自行改。
+
+**二路皆須裁**：刪去 ER3（則 `-004` 不驗其離開路徑），或承認其跨 leaf（則 R-PMH136 須加一款）。
+⚠ **`-004` 之 DESC 以 `Exception:` 起首，其在文義上就是 `-001-04` 之例外——故後者有其道理，惟現行條文不容許。**
+
+### 四、batch 5 —— 10 條／10 leaf，**本批無一 leaf 須拆**
+
+`-038`／`-041`／`-044`／`-045` 之多值皆為**同一等價類之成員**（規格以 `and`／`or` 並列而給同一結果），
+非獨立分支；`-039`／`-040` 依 §5.7 不拆。
+**`-040` 之 PC 含 `Gear is not in Reverse`**（R-PMH80(a)）→ 停止條件 9 未觸發。
+**`-045`（SOS／ASSIST）判 P0——本 feature 至今唯一。**
