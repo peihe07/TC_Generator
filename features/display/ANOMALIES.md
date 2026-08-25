@@ -784,6 +784,12 @@ PDF 為前提（其探針依序試 pymupdf 與 `pdftotext`）。
 
 **停止條件 30 未觸發**：無任何一項為 recon 漏測。
 
+> **更正（2026-08-25，下放包 13 步驟 3，見 A-DM29）**：上表之
+> 「10 / 7」係以子字串比對所得，其中兩項映射不成立。更正後為
+> **8 項 recon 有測且量同一件事 / 1 項量不同的東西
+> （`Missing referenced specs`）/ 8 項自測獨有（含 `Header row index`）**。
+> 「停止條件 30 未觸發」之結論不變，但其依據中有兩項是錯的映射。
+
 惟前一類值得登記：那 10 項在 `recon.json` 與／或 `RECON.md` 中**都有**，
 只是 `DECISIONS.new.md` 之模板不列它們。即：
 
@@ -811,6 +817,44 @@ PDF 為前提（其探針依序試 pymupdf 與 `pdftotext`）。
   比沒有警示更糟 —— 它讓人以為有守衛
 - 一般化提案（Tier 2）：凡輸出中含「不會做 X」之宣稱者，
   其測試須含「連跑兩次，第二次仍應出現同一訊息」
+
+## A-DM29 — 上輪之反向比對有兩處映射瑕疵（本輪自查）  [RESOLVED]
+
+R-DM39 要求對 A-DM27 之 10 項逐項比對值。比對時發現**其中兩項之映射
+本身不成立**：
+
+| 項 | 上輪之判定 | 本輪查明 |
+|---|---|---|
+| `Header row index` | 「recon 有測」 | **偽陽性**。我以子字串 `"header"` 掃 `RECON.md`，命中的是 `column mapping: 15 fields resolved from **header** text`。以確切詞組 `"header row"` 重掃為 **0 命中** —— recon **不報**表頭列號 |
+| `Missing referenced specs` | 「recon 有測」 | **量的是不同的東西**。recon 之 `outline_misses` = 「leaf 所引之 outline 章節不在受裁匯出中者」；我的 = 「CFTS_020 本文以 `{CFTSnnn-mmm}` 引用之外部文件」。兩者皆存在，但不是同一個量 |
+
+故 A-DM27 之「10 項 recon 有測 / 7 項自測獨有」應更正為
+**8 項 recon 有測且量同一件事 / 1 項量不同的東西 / 8 項自測獨有**。
+
+- 成因：上輪之分類以**子字串比對**判斷「recon 有沒有測這個」，
+  而子字串會在無關的句子裡命中。與 R-DM13 所禁之 bag-of-words
+  同型 —— 我在判斷「兩個概念是不是同一個」時用了非逐字之方法
+- **這也使上輪「停止條件 30 未觸發」之結論須重述**：結論仍成立
+  （無 recon 漏測），但其依據中有兩項是錯的映射而非正確的判定
+- 提案處置：凡判斷「兩份產出是否在講同一件事」者，
+  須以確切詞組或欄位鍵比對，不得以子字串。屬本 feature 之實作準則
+
+## A-DM30 — 四個 `reference:` 鍵曾靜默落入 `lint:` 之下  [RESOLVED]
+
+依 R-DM38 將 `inputs/` 四份加入 `feature.yaml` 之 `reference:` 節時，
+插入點錯置於檔案末段，四個鍵成了 **`lint:` 之子鍵**。
+
+**YAML 解析無誤、無任何警告**，而 `verify_reference_binding.py` 照常
+輸出 **`5 of 5 match.`** —— 一個通過的檢查，檢查的卻不是我以為的東西。
+
+發現方式：以 `yaml.safe_load` 印出 `reference` 與 `lint` 之鍵清單，
+見四個鍵在 `lint` 之下。修正後為 **9/9 match**。
+
+- 這與 A-DM28 同一族：**輸出看起來正確**。差別在 A-DM28 是訊息說謊，
+  本條是**檢查對象錯了而結果仍是綠的**
+- 提案處置：`verify_reference_binding.py` 之輸出已印 `entries: N`；
+  本輪之 5 與 9 之差即在該行。**該行是唯一能察覺此錯的線索**，
+  應於引用其結果時一併引用，不得只引「N of N match」
 
 ---
 

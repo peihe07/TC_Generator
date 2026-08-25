@@ -38,6 +38,29 @@ reference:
   workbook_master:
     file: "forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
     sha256: "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"
+  # R-DM38：`inputs/` 之四份素材同樣符合 R-DM37 之判準（其變動會使既有
+  # 產出失效）—— 037 決定 leaf 全集與 recon_assertions 之 8；SYS2 決定
+  # 80 列母體、15 個訊號、13 個值 token 與整份覆蓋對照；CFTS_020 為
+  # spec_mode D 之判讀基準與 glossary 13 條之出處；SYS3 為 glossary 之
+  # DPU 一條之出處。其 sha256 原僅記於 data/materials_ledger.tsv 而無腳本
+  # 比對 —— 即 R-G23 所指之「宣告不等於保護」。
+  #
+  # `paths:` 與 `reference:` 之分工：
+  #   paths:      記「檔在哪」（供腳本開檔）
+  #   reference:  記「檔是哪一份」（供 verify_reference_binding.py 比對）
+  # 同一個檔出現在兩節不是重複，是兩個不同的問題。
+  a03_report:
+    file: "features/display/inputs/Display_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx"
+    sha256: "ab3198e81fb21d2182f5dd7a665488aac5eb937481cf6bede9ecc668f3185050"
+  sys2_export:
+    file: "features/display/inputs/SYS2_CFTS_020_DISP_TCH_ICS_20260616_All_HW_System_Accepted & Released.xlsx"
+    sha256: "421c8eef3f5cb01a2d4d4768b41d38897009c53cdfdff2ff1b6ab80ba72adb1d"
+  cfts_doc:
+    file: "features/display/inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and DCSD _20260310-1533.docx"
+    sha256: "8696d1f596e3367754b092ff6d810cccff6258f46d6e90f8c0b30864314a30f3"
+  sys3_sysad:
+    file: "features/display/inputs/SYS3_CFTS_020_display_FM-WI-FSM-011-A01_System Architectural Design_SYSAD_v1.0.docx"
+    sha256: "be9c97af0211a70357d4484fcfbd19b72d3d439ff28e7d09a11dda3146b3c298"
 
 # R-DM24（Q5 定案 B，Pei 2026-08-25）：以人工指定 kind 取代放寬共用分類器。
 # `scripts/intake.py` 之 SHEET_SIGNATURES 一字未動；覆寫僅在下列 sha256

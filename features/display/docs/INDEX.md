@@ -21,6 +21,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 10 | 2026-08-25 | 交叉檢查結案、DECISIONS 合併、PROXI 改需求驅動 | [handoff/10_decisions_merge.md](handoff/10_decisions_merge.md) | [upstream/10_decisions_merge.md](upstream/10_decisions_merge.md) | R-DM32–R-DM34 ＋ R-G21／R-G22（全域）（逐字抄錄 5/5，Display 累計 36/36） | A-DM26 新增 | **步驟 1–7 全數執行；二十七條停止條件全未觸發。Q2／Q3 材料已備，`docs/proxi_triage_proposal.md` SUPERSEDED** |
 | 11 | 2026-08-25 | 綁定檢查、合併複驗、待裁期間之不阻塞工作 | [handoff/11_binding_verify.md](handoff/11_binding_verify.md) | [upstream/11_binding_verify.md](upstream/11_binding_verify.md) | R-DM35 ＋ R-G23（全域）（逐字抄錄 2/2，Display 累計 37/37） | （無新 A-DM） | **⚠ 步驟 3 觸發停止條件 29：合併漏了 3 項，已停於待裁。步驟 1、2、4–6 完成** |
 | 12 | 2026-08-25 | marker 衝突裁定、已裁常數改為機器檢查 | [handoff/12_assertions.md](handoff/12_assertions.md) | [upstream/12_assertions.md](upstream/12_assertions.md) | R-DM36／R-DM37 ＋ R-G24（全域）（逐字抄錄 3/3，Display 累計 39/39） | A-DM27／A-DM28 新增 | **步驟 1–8 全數執行；三十二條停止條件全未觸發。三項分歧已處置，複驗 24/24 有對應** |
+| 13 | 2026-08-25 | 會說謊的警示補測、綁定範圍收束、不阻塞工作見底 | [handoff/13_honest_guards.md](handoff/13_honest_guards.md) | [upstream/13_honest_guards.md](upstream/13_honest_guards.md) | R-DM38／R-DM39 ＋ R-G25（全域）（逐字抄錄 3/3，Display 累計 41/41） | A-DM29／A-DM30 新增（皆自查）；A-DM27 更正 | **⚠ 步驟 3 觸發停止條件 34（1 項不符）。步驟 1、2、4、5、6 完成。綁定 9/9** |
 
 ## 02 輪要點
 
@@ -282,3 +283,33 @@ stdout 0 行、TSV 未被改寫**。串接前後列數 4/4 未變。
 **A-DM28（自查）**：漂移警示首版「說不採納卻採納了」——
 連跑兩次第二次警示即消失。已修正並以連跑兩次驗證。
 **第七次同型缺陷，但形態是新的：宣稱之行為與實際行為不一致。**
+
+## 13 輪要點
+
+**R-G25 補測三處，全數通過**：`verify_reference_binding.py` 之「不更新
+宣告值」、`intake.py` 覆寫之兩條分支（sha 不符／缺 sha）。各連跑兩次、
+訊息不變、標的（`feature.yaml`、該 xlsx）逐字未變。`intake.py` 一行未改。
+
+**⚠ 停止條件 34 觸發**（步驟 3，R-DM39 之 10 項比對）：
+
+| 判定 | 項數 |
+|---|---|
+| 值相符 | **8** |
+| **不符** —— 兩側量的是不同的量 | **1**（`Missing referenced specs`） |
+| **映射不成立**（上輪偽陽性） | **1**（`Header row index`） |
+
+由此立 **A-DM29**：上輪之分類以**子字串比對**判斷「recon 有沒有測這個」，
+而子字串會在無關句子裡命中（`"header"` 命中 `"from header text"`）——
+**與 R-DM13 所禁之 bag-of-words 同型，我在判斷概念是否同一時用了非逐字
+之方法**。A-DM27 之「10/7」更正為 **8/1/8**。
+
+**A-DM30（自查）**：四個新 `reference:` 鍵曾靜默落入 `lint:` 之下 ——
+YAML 解析無誤、檢查照常輸出 `5 of 5 match.`。**一個通過的檢查，
+檢查的卻不是我以為的東西。** 修正後 **9/9**。`entries: N` 那一行是
+唯一能察覺此錯的線索。
+
+**綁定範圍**（R-DM38）：`inputs/` 四份納入，共 **9 項 9/9 相符**。
+`feature.yaml` 加註 `paths:`（檔在哪）與 `reference:`（檔是哪一份）之分工。
+
+**subprocess 成本**：守衛本身中位數 **0.04s**；佔比 0.9%（proxi）～
+**46%（dbc_probe）**。絕對值小，但對快腳本幾乎等於加倍。

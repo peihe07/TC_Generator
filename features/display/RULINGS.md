@@ -786,6 +786,55 @@ R-DM37（036 母本納入 reference: 綁定）
 判準不是「它是不是參考資料庫」，是「它變了以後我們的東西還對不對」。
 ```
 
+## 來源：下放包 13
+
+```
+R-DM38（`inputs/` 之素材納入綁定檢查）
+R-DM37 之判準為「凡其變動會使既有產出失效之素材，皆應在
+`reference:` 節內」。依該判準，`inputs/` 下之四份素材
+（037／SYS2／CFTS_020／SYS3）**符合而尚未納入**：
+
+  037    —— leaf 全集、`recon_assertions` 之 8、八條之缺值判定
+  SYS2   —— 80 列母體、15 個訊號、13 個值 token、覆蓋對照全部
+  CFTS_020 —— spec_mode D 之判讀基準、glossary 13 條之出處
+  SYS3   —— glossary 之 DPU 一條
+
+其 sha256 已記於 `data/materials_ledger.tsv`，**而無腳本比對**
+（上繳 12 §8 第 3 項自陳）。此即 R-G23 所指之「宣告不等於保護」。
+
+處置：於 `feature.yaml` 之 `reference:` 節增
+`a03_report`／`sys2_export`／`cfts_doc`／`sys3_sysad` 四項，
+與既有五項同受 `verify_reference_binding.py` 檢查。
+
+**`reference:` 節與 `paths:` 節之分工自此明確**：
+`paths:` 記「檔在哪」，`reference:` 記「檔是哪一份」。
+同一個檔出現在兩節不是重複，是兩個不同的問題。
+```
+
+## 來源：下放包 13
+
+```
+R-DM39（A-DM27 之 10 項須逐項值比對）
+A-DM27 所指之 10 項，本輪僅判明其「非 recon 漏測」，
+**未比對其值**。判明「有測」與比對「測得相同」是兩件事，
+前者不蘊含後者。
+
+10 項為：Missing referenced specs／Header row index／
+`feature.yaml` column conflicts／Regen-region segments／
+Draft-region disposition／Categorization 欄與分布／
+Covered by done region／Parent-child both-leaf duplications／
+Priority rubric deviations／Authors present
+
+須自 `recon.json` 與 `RECON.md` 取其值，與 `DECISIONS.md` 及自寫腳本
+之對應值逐項比對，結果依上繳 09 §4 之格式列「相符／不符」。
+
+不符者一律停並回報，不得逕以任一方為準（停止條件 20 之延伸）。
+
+理由：上繳 09 §4 之 17 項交叉檢查是本 feature 唯一一次獨立驗證，
+而它漏掉了這 10 項 —— 因為它也是以 `.new.md` 為界。
+交叉檢查之涵蓋面自身未被檢查過。
+```
+
 ---
 
 ## 抄錄核對表
@@ -825,9 +874,9 @@ R-DM37（036 母本納入 reference: 綁定）
 | 31 | R-DM29 | 08 | 482 | `387d90ad885f0c9e` | 是 |
 
 核對方法：抄錄後自 `RULINGS.md` 反向抽取各 fenced 區塊，與下放包原檔
-之對應區塊逐字元 `==` 比對並比對 SHA256；**39 條全數相符**（01 包 8 條、
+之對應區塊逐字元 `==` 比對並比對 SHA256；**41 條全數相符**（01 包 8 條、
 02 包 5 條、03 包 4 條、04 包 2 條、05 包 4 條、06 包 2 條、07 包 4 條、
-08 包 2 條、09 包 2 條、10 包 3 條、11 包 1 條、12 包 2 條）。
+08 包 2 條、09 包 2 條、10 包 3 條、11 包 1 條、12 包 2 條、13 包 2 條）。
 
 > 自下放包 09 起，核對表由 `scripts/transcribe_rulings.py` 直接產出
 > markdown 貼入上繳包（R-G20：報告中之摘要數字須為機器輸出）。
