@@ -43,14 +43,27 @@ def probe_x14(p: Path) -> int:
 
 def restore_extlst(src: Path, dst: Path) -> None:
     """R-VF113：openpyxl 存檔會移除 x14；自原檔補回 `<extLst>`。"""
+    # **命名空間須一併補回** —— `<extLst>` 內用 `x14:`／`xm:` 前綴，
+    # 而 openpyxl 重寫根元素時**丟棄了其 `xmlns:` 宣告**；
+    # 只補 `<extLst>` 而不補宣告，其 XML 為 `unbound prefix` 而不合法。
+    # **首版即如此，於 W-VF86.1 之空跑被閘 4 之 XML 解析攔下。**
+    # **其亦更正本層先前之宣稱**：上繳 V45 §三稱替代路徑「已驗其形」，
+    # 而其時只驗了 `x14dv` 之元素數與 openpyxl 可讀（其解析較寬容），
+    # **未驗 XML 之合法性** —— 該宣稱過強。本函式現以嚴格 parser 自驗。
+    import xml.etree.ElementTree as ET
+
     z = zipfile.ZipFile(src)
-    ext = {}
+    ext, nsdecl = {}, {}
     for n in z.namelist():
-        if n.startswith("xl/worksheets/") and n.endswith(".xml"):
-            m = re.search(r"<extLst>.*?</extLst>",
-                          z.read(n).decode("utf-8", errors="replace"), re.S)
-            if m:
-                ext[n] = m.group(0)
+        if not (n.startswith("xl/worksheets/") and n.endswith(".xml")):
+            continue
+        x = z.read(n).decode("utf-8", errors="replace")
+        m = re.search(r"<extLst>.*?</extLst>", x, re.S)
+        if m:
+            ext[n] = m.group(0)
+            root = re.search(r"<worksheet\b[^>]*>", x)
+            nsdecl[n] = dict(re.findall(r'(xmlns:[A-Za-z0-9_]+)="([^"]+)"',
+                                        root.group(0) if root else ""))
     z.close()
     if not ext:
         return
@@ -61,8 +74,20 @@ def restore_extlst(src: Path, dst: Path) -> None:
         if it.filename in ext:
             x = data.decode("utf-8")
             if "<extLst>" not in x:
-                data = x.replace("</worksheet>",
-                                 ext[it.filename] + "</worksheet>").encode("utf-8")
+                m = re.search(r"<worksheet\b[^>]*>", x)
+                if m:
+                    tag = m.group(0)
+                    add = "".join(f' {k}="{v}"' for k, v in nsdecl[it.filename].items()
+                                  if k not in tag)
+                    if add:
+                        x = x.replace(tag, tag[:-1] + add + ">", 1)
+                x = x.replace("</worksheet>", ext[it.filename] + "</worksheet>")
+                try:
+                    ET.fromstring(x)
+                except ET.ParseError as e:
+                    raise SystemExit(f"x14 補回後之 XML 不合法（{it.filename}）：{e}"
+                                     " —— 停，不寫出")
+                data = x.encode("utf-8")
         zout.writestr(it, data)
     zin.close()
     zout.close()
@@ -83,24 +108,51 @@ def main() -> None:
     rows = DRY.rows_from(DRY.sources(), b_start)
     print(f"          來源 {len(rows)} 列，B {rows[0]['B']}–{rows[-1]['B']}")
 
+    # ---- 閘 2（R-VF115）：分辨「公式」與「資料」----
+    # **首版以非 `data_only` 讀取，將 237 格公式計為「非空」而停手**（上繳 V57 §三）。
+    # 其停手為正 —— 它揭露了 B 欄之公式模型（`R-VF129` 因而撤銷 `R-VF83`／`R-VF114`）。
+    # **`R-VF132` 明令覆寫該 237 格公式**，故本閘須能分辨二者。
+    # **其修正有裁定為據，非逕行放寬**（R-VF130 之判準：
+    # 「修正後本次所攔者是否仍會被攔？」答否 —— **而該放寬經 `R-VF132` 裁定**）。
+    # **二者皆量，僅「資料」使其停。**
     wb = openpyxl.load_workbook(book)
     ws = wb[SHEET]
-    n_before = sum(1 for r in ws.iter_rows(min_row=FIRST_DATA_ROW, values_only=True)
-                   if any(v not in (None, "") for v in r))
-    print(f"\n[閘 2／R-VF115] 目標現有資料列：**{n_before}**")
-    if n_before != 0:
-        raise SystemExit(f"目標非 0 資料列（{n_before}）—— 停手回報。"
+    n_formula = n_data = 0
+    for r in ws.iter_rows(min_row=FIRST_DATA_ROW):
+        vals = [c.value for c in r if c.value not in (None, "")]
+        if not vals:
+            continue
+        if all(isinstance(v, str) and v.lstrip().startswith("=") for v in vals):
+            n_formula += 1
+        else:
+            n_data += 1
+    print(f"\n[閘 2／R-VF115] 目標之列：**資料 {n_data}**｜公式 {n_formula}")
+    if n_data != 0:
+        raise SystemExit(f"目標有 {n_data} 列**資料** —— 停手回報。"
                          "**有人在本層之外寫過，或本檔已寫入。**")
+    print(f"          （{n_formula} 格公式將依 R-VF132 被覆寫；"
+          f"**其自動編號機制自此失效**）")
 
     x14_before = probe_x14(book)
     print(f"[閘 3／R-VF113] 寫入前 x14dv：{x14_before}")
 
+    overwritten = 0
     for i, r in enumerate(rows):
+        row_no = FIRST_DATA_ROW + i
         for c, v in r.items():
             if c.startswith("_") or c not in COL_IDX:
                 continue
-            if str(v).strip():
-                ws.cell(row=FIRST_DATA_ROW + i, column=COL_IDX[c], value=v)
+            if not str(v).strip():
+                continue
+            cell = ws.cell(row=row_no, column=COL_IDX[c])
+            if (c == "B" and isinstance(cell.value, str)
+                    and cell.value.lstrip().startswith("=")):
+                overwritten += 1
+            cell.value = v
+    print(f"          B 欄覆寫之公式格數：**{overwritten}**（預期 {n_formula}）")
+    if overwritten != n_formula:
+        raise SystemExit(f"B 欄覆寫之格數（{overwritten}）與實測之公式格數"
+                         f"（{n_formula}）不符，停")
     wb.save(book)
     wb.close()
     x14_saved = probe_x14(book)
