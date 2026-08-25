@@ -614,6 +614,13 @@ Phase 6／7 之前置阻斷項**：首次填 `Q` 或 `AF` 之前必須處理，
 
 ## A-PMH13 — `SWE1-HMI-PM-028`（12.2）之行為定義在 CFTS009 · **RESOLVED（處置已定，R-PMH47）**
 
+> **19 包更新（R-PMH72）**：Pei 2026-08-24 裁「DR-PMH1 拿掉」——
+> `-028` **不寫入交付工作簿、不產出 TC、不以 `PENDING` 佔位**。
+> R-PMH47 之 (b)（該列仍寫入並揭露）與 (c)（開 DR-PMH1）**撤回**；
+> (a)（判為 out of scope）維持。`DR-PMH1` 標 `CLOSED-BY-RULING`。
+> **本則之內部紀錄保留**（G-D：「不做」與「沒發現」須在紙上分得開）。
+> 連帶：`Off Road Plus` 3 → **2** leaf；有 TC 之 leaf 48 → **47**。
+
 **登記日**：2026-08-24（06 包 §六，查證見步驟 4）
 
 **條文逐字**（SYS1 `Basic Report` outline `12.2` 之 `Description`）：
@@ -1074,6 +1081,130 @@ popup stay-awake 之時序 —— 同一份 SYS1 匯出，同一類內容，兩�
     **改用 block 層為預設來源，屬判準變更，須另立條文。**
 
 **狀態**：PENDING。不阻斷本包。
+
+---
+
+## A-PMH14 之三則新漏 —— 19 包之狀態更新（R-PMH73／R-PMH74）
+
+**原文一字未改**，狀態更新如下（R-PMH44）。
+
+| 新漏 | 內容 | 19 包之狀態 | 依據 |
+|---|---|---|---|
+| **1** | `SU9.)`／`SU9.1)` 兩條需求整段缺失 | **`ACCEPTED（經裁定不補）`** | **R-PMH74** —— Pei「037 沒有納入就不放」。事實不變（PDF 有而 SYS1／037 無），惟不補入 leaf 母體。**R-PMH55 之適用因而繼續成立** |
+| **2** | p9 之狀態矩陣表格全缺 | **`PENDING（來源已到，惟內容不對應）`** | 見 **A-PMH18** —— Pei 所提供之 State Matrix，其軸與 p9 之軸**逐字探針全 0**。**故不改為 `RESOLVED`** |
+| **3** | p10 之 `POWER MODING STATE MATRIX:` 段缺失 | **`RESOLVED（來源已補）`** | **R-PMH73** —— 該段之內容即「矩陣存在於一份獨立 Excel」，該 Excel 確已到齊（`shasum -c` 6/6 OK），其前提成立 |
+
+**新漏 2 與新漏 3 之處置不同，其理由須明說**：新漏 3 缺的是**一句指標**，
+指標所指之物已到 → 結清；新漏 2 缺的是**矩陣之內容**，
+而已到之物**不含該內容** → 不得結清。**二者不可一併處理。**
+
+---
+
+## A-PMH16 之改判 —— 19 包（R-PMH75）
+
+**原文一字未改**（R-PMH44）。其三處判定**逐條被 R-PMH75 推翻**：
+
+| # | A-PMH16 原判 | R-PMH75 之改判 |
+|---|---|---|
+| 1 | `for 60 seconds` 為**時序漏失** | **舊文字，已刪，不驗** |
+| 2 | `seconds`（`within 60 seconds`）為**時序漏失** | **舊文字，已刪，不驗** |
+| 3 | `the radio should shut Off the` 為**獨立行為結果**（19 包 §2.2 之加碼） | **舊文字，已刪，不驗** |
+
+**狀態改為 `RESOLVED（PDF 側為未刪淨之舊文字）`。**
+
+Pei 於 2026-08-24 裁「**以刪掉之後的為主**」→ outline `9.1` 之權威文本為
+**SYS1 匯出**，R-PMH50 於該處反轉（其 `source_clause` 取自 SYS1，
+`source_clause_origin` 記 `sys1_export 9.1` 並註 `R-PMH75`）。
+
+**⚠ 承擔之風險（R-PMH75 已具名，此處重述）**：
+`the radio should shut Off`（逾時後收音機關機）**不會有任何一條 TC 驗到**。
+若上游日後主張該行為仍屬需求，ch 9 之覆蓋即有缺口。
+
+**本則之量測本身不撤銷** —— 「PDF 與 SYS1 於該三處不同」之事實不變，
+改變的是**何者為權威**。
+
+---
+
+## A-PMH17 — PDF 章 10 之全大寫分節標籤於 SYS1 全缺 · 19 包步驟 2 查出 · PENDING（低）
+
+**登記日**：2026-08-24（19 包步驟 2，章 10 之殘餘人讀）
+
+PDF 章 10 內以**全大寫標籤**分節，該等標籤於 SYS1 全簿命中 **0**：
+
+| 標籤 | SYS1 全 52 則 |
+|---|---|
+| `POWER BUTTON:` | **0** |
+| `KEY OFF, HEADUNIT POWER ON:` | **0** |
+
+**與章 11 之對照**：章 11 之 `VR HARD KEY FOR SIRI/NON-NATIVE VOICE ASSISTANTS`
+**於 SYS1 有**（即 outline `11` 本身）。**故並非所有全大寫標籤都被丟掉** ——
+章 11 之標籤成了一個 outline，章 10 之兩個沒有。
+
+**影響：低。** 二者為**分組標籤而非需求**，其下之 `PITA4:`／`PITA8:` 本文
+於 SYS1 之 `10.1`／`10.5` 皆逐字存在（19 包步驟 2 實測）。
+**不對應任何 leaf，不入任何 `source_clause`。**
+
+**惟須登記之理由**：它是「SYS1 之結構化過程會丟東西」之第三個實例
+（前二為 A-PMH03 之 7.1 漏句、A-PMH14 之三則），
+**且此次丟的是「分節結構」而非「句」** —— 形態與前二者不同。
+
+**狀態**：PENDING（低）。不阻斷。
+
+---
+
+## A-PMH18 — **Pei 所提供之 State Matrix 與 PDF p9 之矩陣不對應** · 19 包步驟 8 查出 · **停手上呈**
+
+**登記日**：2026-08-24（19 包步驟 8，依 R-PMH73 之明文「不一致即停」）
+
+### 素材
+
+| 項 | 值 |
+|---|---|
+| 檔名 | `Power Moding HMI State Matrix R1 SR24 Post 2A DCR21421 (August 3 2022).xlsx` |
+| 台帳 | 已入 `inputs/MANIFEST.sha256`，`shasum -c` **6/6 OK** |
+| 分頁 | `Title`／`State Matrix`／`SR24 Change Log` |
+| `State Matrix` | 43 非空列、362 非空格 |
+
+### 逐字探針 —— **PDF p9 之標籤於該 Excel 命中全 0**
+
+`HEADUNIT POWER`／`ICS Hard Controls`／`HVAC Knobs`／`Climate GUI`／
+`ENGINE ON`／`ENGINE OFF`／`Power Button only is functional`／`Fully functional`／
+`Power Accessory Delay`／`accessory delay`／`FOTA`／`Charge Now`／`stay awake`
+—— **十三個探針全部 0 命中**。
+
+### 二者為兩個不同的矩陣
+
+| | 軸 | 列 |
+|---|---|---|
+| **PDF p9** | `HEADUNIT POWER OFF`／`ON` × `ICS Hard Controls`／`HVAC Knobs`／`Climate GUI`／`Headunit` | `KEY ON ENGINE ON`／`KEY OFF (ACC)`／`KEY OFF (No ACC)` |
+| **Excel** | `Key-on`／`Key-off`／`Key On Gear≠Reverse` 三區塊 × `Turn Off @ door opening Enabled/Disabled` × `HU on/off` × `Call Active/Not Active` × `Door Open/Closed` | 事件（`ON/OFF button Pressed`／`Door opened`／`Incoming Call`／`Call Ended` …） |
+
+### 版本落差（R-PMH73 明文要求具名）
+
+| 文件 | DCR | 日期 |
+|---|---|---|
+| Excel State Matrix | `DCR21421` | **2022-08-03**（Title 分頁自載） |
+| 規格 PDF | `DCR22412` | 2023-01-24 |
+
+**Excel 較早。** 且其 `SR24 Change Log` 之**末筆為 2021-10-20**，
+**未及其自稱之 2022-08-03** —— 該檔之變更紀錄與其自稱日期亦不一致。
+
+### 處置 —— **不自行取捨**（R-PMH73 明文）
+
+**未執行之事，逐項具名**：
+
+1. **A-PMH14 新漏 2 未改為 `RESOLVED（來源已補）`** ——
+   R-PMH73 之該項結論建於「內容在另一份素材裡」之前提，**而實測不在**。
+   逕改會使本檔出現一句不實陳述（R-PMH43／R-PMH63）。
+2. **ch 9 之 TC 未以該 Excel 為判讀背景撰寫** ——
+   R-PMH73 定其為「ch 9 之規範性判讀背景」，
+   **惟其內容不涵蓋 p9 之四個維度**，無從據以撰寫該五條。
+
+**待 Pei**：p9 之矩陣是否另有一份文件？
+或 p9 之矩陣本即 PDF 自身之摘要、而該 Excel 為另一主題
+（開機／關機之事件轉移）之矩陣，二者本不對應？
+
+**狀態**：**停手上呈。** 不阻斷本包其餘工作；**阻斷 ch 9 開批**。
 
 ---
 

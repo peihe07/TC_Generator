@@ -57,7 +57,7 @@ THRESHOLDS = {
 LIMITS = [
     "G1–G5 五項**只看組數與組員數之分布**；**不看任何組之內容** —— 一組 3 個 leaf 是否真屬同一能力，本檢查不判",
     "Layer 2 之**組名**（字面、大小寫、是否與 Test Group 重複）不看 —— 該屬 R-PMH13／R-PMH36／canon §4.2",
-    "**分母 `n_leaf` 為外部給定**（現行 48）；其是否正確不由本檢查驗 —— DR-PMH3 若確認，48 → 50 而本檢查不會察覺",
+    "**分母 `n_leaf` 為外部給定**（現行 **47** —— R-PMH72 排除 `-028`）；其是否正確不由本檢查驗",
     "leaf 到組之**指派**不看 —— 只要分布合格，指派錯誤仍全綠",
     "`--check-doc-sync` 只驗門檻表與程式同源；**不驗該門檻本身是否恰當**",
     "**R-PMH68 之殘餘盲區**：doc-sync 之錨為**門檻表輸出**之 SHA256，守的是**值**而非**產生該值之邏輯** —— 改 `evaluate()` 之計算方式而門檻值不變者，本檢查不會察覺",
@@ -172,8 +172,15 @@ PROPOSAL = {
     "Power Off Behavior": ["019", "020", "021", "022-01", "024-01", "024-02",
                            "024-03", "025"],
     "Voice Assistant Key": ["026-01", "026-02", "026-03", "026-04", "026-05"],
-    "Off Road Plus": ["027", "028", "029"],
+    # R-PMH72（Pei 2026-08-24「DR-PMH1 拿掉」）：`028` 不寫入交付工作簿、
+    # 不產出 TC，故**不入 Layer 2 之分組**。其列保留於 `layer3_sections.tsv`
+    # 與 `outline_map.json`（標 `EXCLUDED-BY-R-PMH72`）作為內部台帳。
+    # **有 TC 之 leaf 因而由 48 降為 47**，granularity 之分母隨之改變。
+    "Off Road Plus": ["027", "029"],
 }
+
+# 有 TC 之 leaf 數 —— granularity 之分母（R-PMH72）
+N_LEAF = 47
 
 
 def evaluate(groups: dict[str, list], n_leaf: int) -> dict[str, tuple[bool, str]]:
@@ -263,21 +270,23 @@ def report(title: str, groups: dict, n_leaf: int, expect_fail: set = frozenset()
 
 
 def self_test() -> int:
-    n = 48
+    n = N_LEAF
     print("=== R-PMH35(c) —— must-hit 錨點之實跑（五個，各須 FAIL 其指定判準）===")
     anchors = []
 
     # A1：每個 outline 各成一組（29 組）
-    rows = list(csv.DictReader((ROOT / "data" / "layer3_sections.tsv")
-                               .open(encoding="utf-8"), delimiter="\t"))
+    rows = [r for r in csv.DictReader((ROOT / "data" / "layer3_sections.tsv")
+                                      .open(encoding="utf-8"), delimiter="\t")
+            if not r.get("excluded_by")]          # R-PMH72 —— `-028` 不入分母
     by_outline: dict[str, list] = {}
     for r in rows:
         by_outline.setdefault(r["outline_number"], []).append(r["swe_requirement_id"])
     anchors.append(("A1 每個 outline 各成一組", by_outline, {"G1"},
-                    "**構造本質使然**：29 個 outline 分 48 leaf，必有單 leaf 組，"
+                    f"**構造本質使然**：{len(by_outline)} 個 outline 分 {n} leaf，"
+                    "必有單 leaf 組，"
                     "故 G2／G5 必然一併 FAIL —— 無法隔離"))
 
-    # A2：每個 leaf 各成一組（48 組）
+    # A2：每個 leaf 各成一組（47 組）
     anchors.append(("A2 每個 leaf 各成一組",
                     {r["swe_requirement_id"]: [r["swe_requirement_id"]] for r in rows},
                     {"G1", "G2"},
@@ -301,18 +310,20 @@ def self_test() -> int:
     anchors.append(("A5 八組併為一組",
                     {"All": [x for v in PROPOSAL.values() for x in v]}, {"G4", "G5"}, ""))
 
-    # A6（R-PMH39）：G1 之**隔離**錨點 —— 48 leaf 分 20 組（8×3 + 12×2）。
-    # G2 min=2 ✅／G4 max=3 ✅／G5 全落 [2,24] ✅／G3 組名無收容簇 ✅，
-    # 僅 G1 = 20/48 = 0.4167 > 1/3 FAIL。此組態即 R-PMH39 所述
+    # A6（R-PMH39）：G1 之**隔離**錨點 —— **47 leaf 分 16 組（15×3 + 1×2）**。
+    # G2 min=2 ✅／G4 max=3/47 ✅／G5 全落 [2,23] ✅／G3 組名無收容簇 ✅，
+    # 僅 G1 = 16/47 = 0.3404 > 1/3 FAIL。此組態即 R-PMH39 所述
     # 「G2/G4/G5 全通過而仍過細」者，證明 G1 不可省。
+    # **分母由 48 改 47 後本錨點須重算** —— 原 20 組於 47 亦 FAIL，
+    # 惟 47 = 15×3 + 2 為最貼近門檻之隔離組態（16/47 = 0.3404，餘裕僅 0.007）。
     leaves = [x for v in PROPOSAL.values() for x in v]
+    assert len(leaves) == n, (len(leaves), n)
     g6, i = {}, 0
-    for j in range(8):
+    for j in range(15):
         g6[f"Set{j+1:02d}"] = leaves[i:i+3]; i += 3
-    for j in range(12):
-        g6[f"Set{j+9:02d}"] = leaves[i:i+2]; i += 2
-    assert sum(len(v) for v in g6.values()) == 48 and len(g6) == 20
-    anchors.append(("A6 48 leaf 分 20 組（8×3 + 12×2）—— G1 之隔離錨點",
+    g6["Set16"] = leaves[i:]
+    assert sum(len(v) for v in g6.values()) == n and len(g6) == 16
+    anchors.append((f"A6 {n} leaf 分 16 組（15×3 + 1×2）—— G1 之隔離錨點",
                     g6, {"G1"}, ""))
 
     all_ok = True
@@ -447,7 +458,7 @@ def main() -> None:
         rc = self_test()
         print_limits()
         sys.exit(rc)
-    ok = report("現行提案（8 組）", PROPOSAL, 48)
+    ok = report("現行提案（8 組）", PROPOSAL, N_LEAF)
     print(f"\n結果：{'PASS' if ok else 'FAIL'}")
     print("⚠ 依 R-PMH35(c)，未跑 --self-test 者不得將本結果標為 PASS。")
     print_limits()

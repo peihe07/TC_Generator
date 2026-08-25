@@ -12,9 +12,9 @@ Urgency 回報。
 
 | # | 主旨 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
-| **DR-PMH1** | CFTS009 所定之 Off Road+ power moding 行為 | **OPEN** | 1（`SWE1-HMI-PM-028`） | `Off Road Plus` 批之 1 條為 `PENDING` 佔位；**含 PENDING 之工作簿不得出貨**（§8.4.3） | **A-PMH13** | **High（交付前阻斷）** |
-| **DR-PMH2** | **Power Moding State Matrix**（獨立 Excel 文件） | **OPEN** | ch 9 之 5 leaf（引 `9.1`）＋ 全 feature 之 power moding 行為 | 規格逐字稱「behavior **shall not be developed without following** the Power Moding State Matrix」——**該文件不在四份素材內** | **A-PMH14** | **High** |
-| **DR-PMH3** | `SU9.)` 與 `SU9.1)` 是否應存在於 037 | **OPEN** | **0（現無 leaf）** | PDF p8 有該二需求而 SYS1／037 全無 → **不在 48 leaf 內**；其題材落在 `Disclaimer Screen` 且影響逾時語意 | **A-PMH14** | **High** |
+| **DR-PMH1** | CFTS009 所定之 Off Road+ power moding 行為 | **CLOSED-BY-RULING**（R-PMH72） | 1（`SWE1-HMI-PM-028`） | `Off Road Plus` 批之 1 條為 `PENDING` 佔位；**含 PENDING 之工作簿不得出貨**（§8.4.3） | **A-PMH13** | **High（交付前阻斷）** |
+| **DR-PMH2** | **Power Moding State Matrix**（獨立 Excel 文件） | **RESOLVED（素材已到）**（R-PMH73）⚠ 見 §DR-PMH2 之落地複驗 | ch 9 之 5 leaf（引 `9.1`）＋ 全 feature 之 power moding 行為 | 規格逐字稱「behavior **shall not be developed without following** the Power Moding State Matrix」——**該文件不在四份素材內** | **A-PMH14** | **High** |
+| **DR-PMH3** | `SU9.)` 與 `SU9.1)` 是否應存在於 037 | **CLOSED-BY-RULING**（R-PMH74） | **0（現無 leaf）** | PDF p8 有該二需求而 SYS1／037 全無 → **不在 48 leaf 內**；其題材落在 `Disclaimer Screen` 且影響逾時語意 | **A-PMH14** | **High** |
 
 ---
 
@@ -24,7 +24,7 @@ Urgency 回報。
 
 **成對之 anomaly**：**A-PMH13**（RESOLVED —— 處置已定，本 DR 為其 (c) 項）。
 
-**狀態**：`OPEN`
+**狀態**：`CLOSED-BY-RULING`（2026-08-24，**R-PMH72** —— Pei「DR-PMH1 拿掉」；未答覆而結案）
 
 ### 問題全文
 
@@ -71,7 +71,8 @@ Urgency 回報。
 ## DR-PMH2（開立 2026-08-24，依 **A-PMH14** 新漏 3）
 
 **型別**：素材缺件 —— 規格所指之外部文件不在本 feature 之素材內。
-**成對之 anomaly**：**A-PMH14**。**狀態**：`OPEN`
+**成對之 anomaly**：**A-PMH14**。**狀態**：`RESOLVED（素材已到）`（2026-08-24，**R-PMH73**）
+**⚠ 惟其內容與 PDF p9 不對應 —— 見文末「DR-PMH2 之落地複驗」**
 
 ### 問題全文
 
@@ -103,7 +104,7 @@ Urgency 回報。
 ## DR-PMH3（開立 2026-08-24，依 **A-PMH14** 新漏 1）
 
 **型別**：leaf 母體缺口 —— 規格有需求而 037 無對應列。
-**成對之 anomaly**：**A-PMH14**。**狀態**：`OPEN`
+**成對之 anomaly**：**A-PMH14**。**狀態**：`CLOSED-BY-RULING`（2026-08-24，**R-PMH74** —— Pei「037 沒有納入就不放」）
 
 ### 問題全文
 
@@ -140,10 +141,106 @@ Urgency 回報。
 
 ### 未結 DR 清單（每包上繳須附，R-PMH47(c)）
 
-| DR | 主旨 | 狀態 | 阻斷 |
-|---|---|---|---|
-| **DR-PMH1** | CFTS009 之 Off Road+ 行為 | **OPEN** | **交付**（§8.4.3） |
-| **DR-PMH2** | Power Moding State Matrix Excel | **OPEN** | `Power Transitions` 批之 ch 9 部分 |
-| **DR-PMH3** | `SU9.)`／`SU9.1)` 是否應在 037 | **OPEN** | `Disclaimer Screen` 之覆蓋完整性 |
+**四筆於 2026-08-24 由 Pei 一次結清**（19a 包，逐字裁定見 §四）。
 
-合計未結 **3** 筆。
+| DR | 主旨 | 狀態 | 裁定條文 | 阻斷 |
+|---|---|---|---|---|
+| **DR-PMH1** | CFTS009 之 Off Road+ 行為 | **CLOSED-BY-RULING**（未答覆而結案） | R-PMH72 | **解除** —— `-028` 不寫入工作簿，交付不再受其阻斷 |
+| **DR-PMH2** | Power Moding State Matrix Excel | **RESOLVED（素材已到）** | R-PMH73 | **⚠ 未完全解除** —— 見下 |
+| **DR-PMH3** | `SU9.)`／`SU9.1)` 是否應在 037 | **CLOSED-BY-RULING** | R-PMH74 | **解除** —— 不補入，leaf 母體維持 48 列／47 有 TC |
+| **DR-PMH4** | outline 9.1 之 PDF 破句何者為權威 | **CLOSED-BY-RULING**（開立即結案） | R-PMH75 | **解除** —— 以 SYS1 為權威；`Power Transitions` 解凍 |
+
+**合計未結 0 筆。**
+
+---
+
+## 四、Pei 之裁定逐字（2026-08-24）
+
+```
+DR-PMH1 拿掉
+DR-PMH2 /Users/peihe/Work_Projects/TC_Generator/features/power_moding/inputs/Power Moding HMI State Matrix R1 SR24 Post 2A DCR21421 (August 3 2022).xlsx
+DR-PMH3 037沒有納入就不放
+DR-PMH4 以刪掉之後的為主
+```
+
+**DR-PMH1 之「拿掉」採 19a §1.1 之解讀（乙）** —— 該列不放進工作簿，
+非「該 DR 不發」。**若原意為（甲），一句話即可反轉**（其差別：（甲）該列仍寫入
+並以 `PENDING` 佔位、交付前仍阻斷）。**執行層據此執行，並在此具名該解讀。**
+
+---
+
+## DR-PMH4（開立並同輪結案，2026-08-24）
+
+**型別**：來源本身損壞（R-PMH69）——**兩個來源皆不可逕信**。
+
+**問題**：outline `9.1` 之 PDF 原句含 `aofnd`（非英文字）、
+`the radio should shut Off the popup should close`（兩主謂相連無連接詞）、
+`within 60 seconds the timeout defined in pop-up list`（兩時間條件並列無連接詞）
+—— 形態為一次未完成之編輯，舊文字與新文字疊寫。
+SYS1 之版本恰好刪去該兩段舊文字並將 `aofnd` 改回 `if`。
+
+**裁定（R-PMH75）**：「以刪掉之後的為主」→ **SYS1 為權威**，R-PMH50 於 9.1 反轉。
+
+**承擔之風險已具名**：`the radio should shut Off`（逾時後收音機關機）
+**不會有任何一條 TC 驗到**。
+
+---
+
+## DR-PMH2 之落地複驗（19 包步驟 8）—— **⚠ 素材已到，惟其內容與 p9 不對應**
+
+`shasum -c` **6/6 OK**（第六筆素材已入 `MANIFEST.sha256`）。
+
+| 項 | 值 |
+|---|---|
+| 檔名 | `Power Moding HMI State Matrix R1 SR24 Post 2A DCR21421 (August 3 2022).xlsx` |
+| SHA256 | 見 `inputs/MANIFEST.sha256` |
+| 分頁 | `Title`／`State Matrix`／`SR24 Change Log` |
+| `State Matrix` 之非空列 | 43 列、362 個非空格 |
+| Title 之版本 | `SR24 2A (post). CR21421`／`August 3rd 2022` |
+| Change Log 之末筆 | `SR24 2A DCR21421`／**2021-10-20** |
+
+### **矩陣之軸與 PDF p9 之軸不對應 —— 逐字探針全 0**
+
+| PDF p9 之標籤 | 於 State Matrix |
+|---|---|
+| `HEADUNIT POWER` | **0** |
+| `ICS Hard Controls` | **0** |
+| `HVAC Knobs` | **0** |
+| `Climate GUI` | **0** |
+| `ENGINE ON`／`ENGINE OFF` | **0** |
+| `Power Button only is functional` | **0** |
+| `Fully functional` | **0** |
+| `Power Accessory Delay`／`accessory delay` | **0** |
+| `FOTA`／`Charge Now`／`stay awake` | **0** |
+
+**該 Excel 之軸為**：`Key-on`／`Key-off`／`Key On Gear≠Reverse` 三個區塊
+× `Turn Off @ door opening Enabled/Disabled` × `HU on/off`
+× `Call Active/Not Active` × `Door Open/Closed`；列為事件
+（`ON/OFF button Pressed`／`Door opened`／`Incoming Call`／`Call Ended` …）。
+
+**PDF p9 之矩陣為**：`HEADUNIT POWER OFF`／`ON` ×
+`ICS Hard Controls`／`HVAC Knobs`／`Climate GUI`／`Headunit`，
+列為 `KEY ON ENGINE ON`／`KEY OFF (ACC)`／`KEY OFF (No ACC)`。
+
+**二者為兩個不同的矩陣。**
+
+### 依 R-PMH73 之明文「不一致者不得自行取捨，停並上呈」—— **停手上呈**
+
+**未執行之事（具名）**：
+
+1. **A-PMH14 之新漏 2 未改為 `RESOLVED（來源已補）`** ——
+   該狀態之前提為「內容在另一份素材裡」，而實測**不在**。
+   逕改會使 `ANOMALIES.md` 出現一句不實陳述（R-PMH43／R-PMH63）。
+   **其狀態改為 `PENDING（來源已到，惟內容不對應）`。**
+2. **新漏 3（p10 之 `POWER MODING STATE MATRIX:` 段）之狀態已改為
+   `RESOLVED（來源已補）`** —— 該段之內容即「矩陣存在於一份獨立 Excel」，
+   **該 Excel 確已到齊**，其前提成立。二者不同，故分別處置。
+
+**版本落差之具名（R-PMH73 明文要求）**：
+Excel 為 `DCR21421`／2022-08-03，PDF 為 `DCR22412`／2023-01-24 —— **Excel 較早**。
+且其 Change Log 之末筆為 **2021-10-20**，**未及 2022-08-03**，
+亦即該檔之變更紀錄與其自稱之日期亦不一致。
+
+**待 Pei**：p9 之矩陣是否另有一份文件？或 p9 之矩陣即為 PDF 自身之摘要而
+Excel 為另一主題（開機／關機事件轉移）之矩陣、二者本不對應？
+**不自行取捨。**

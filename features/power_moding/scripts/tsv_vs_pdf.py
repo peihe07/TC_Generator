@@ -59,11 +59,63 @@ def pdf_blocks() -> str:
     return norm(" ".join(b[4] for pg in d for b in pg.get_text("blocks")))
 
 
+def truncation_report() -> int:
+    """18 §11 第 3 項 —— 120 字元截斷之影響量測（19 包步驟 6）。
+
+    `build_layer3_sections.py` 之 `flat(v, n=120)` 把 `section_title` 截於
+    120 字元。**截斷之後的內容從未經任何比對** —— 本函式量其規模。
+    """
+    import openpyxl
+    import yaml
+    cfg = yaml.safe_load((ROOT / "feature.yaml").read_text(encoding="utf-8"))
+    ws = openpyxl.load_workbook(ROOT / cfg["paths"]["sys1_export"],
+                                data_only=True)["Basic Report"]
+    full = {}
+    for r in range(2, ws.max_row + 1):
+        o = str(ws.cell(r, 3).value or "").strip()
+        if o:
+            full[o] = norm(ws.cell(r, 4).value or "")
+    rows = list(csv.DictReader(TSV.open(encoding="utf-8"), delimiter="\t"))
+    import re as _re
+    MARKER = _re.compile(r"\b(SU|SSND|PM|PITA|VRLP|OFF|DS)\s*\d+(?:\.\d+)?\.?[):]")
+    n_trunc, lost, with_marker, detail = 0, 0, 0, []
+    seen = set()
+    for r in rows:
+        o = r["outline_number"]
+        f = full.get(o, "")
+        if len(f) <= 120:
+            continue
+        n_trunc += 1
+        tail = f[120:]
+        ms = MARKER.findall(tail)
+        if ms:
+            with_marker += 1
+        if o not in seen:
+            seen.add(o)
+            lost += len(tail)
+            detail.append((o, len(f), len(tail), len(ms)))
+    print("=== `section_title` 之 120 字元截斷之影響（19 包步驟 6）===")
+    print(f"  台帳列 = {len(rows)}；**被截之列 = {n_trunc}**")
+    print(f"  相異 outline 中被截者 = {len(seen)}；"
+          f"**被截掉之總字元（去重後）= {lost}**")
+    print(f"  被截掉之內容含 marker 之列 = **{with_marker}**\n")
+    print(f"  {'outline':<9} {'全文':>6} {'被截':>6} {'尾段之 marker 數':>8}")
+    for o, a, b, m in sorted(detail, key=lambda x: -x[2]):
+        print(f"  {o:<9} {a:>6} {b:>6} {m:>8}")
+    print("\n  **以上被截掉之內容，`tsv_vs_pdf` 之逐字比對從未看過。**")
+    print_limits()
+    return 0
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--truncation", action="store_true",
+                    help="18 §11 第 3 項 —— 120 字元截斷之影響量測")
     ap.add_argument("--block", action="store_true",
                     help="PDF 側改用 PyMuPDF block 層萃取（不與矩陣交錯）")
     a = ap.parse_args()
+    if a.truncation:
+        sys.exit(truncation_report())
     if a.block:
         pdf = pdf_blocks()
         src = "PyMuPDF block 層"

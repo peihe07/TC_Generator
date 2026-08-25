@@ -187,8 +187,14 @@ write_back:
     - "Power Transitions"      # 7 leaf —— outline 7.1.1, 9.1, 10.5
     - "Power Off Behavior"     # 8 leaf —— outline 10.1, 10.2, 10.3, 10.4(部分), 10.6, 10.7
     - "Voice Assistant Key"    # 5 leaf —— outline 11.1
-    - "Off Road Plus"          # 3 leaf —— outline 12.1, 12.2, 12.3
-  # 合計 48，餘數 0（R-G10）。
+    - "Off Road Plus"          # 2 leaf —— outline 12.1, 12.3
+  # 合計 47，餘數 0（R-G10）。
+  #
+  # **R-PMH72（Pei 2026-08-24「DR-PMH1 拿掉」）**：`SWE1-HMI-PM-028`
+  # （outline 12.2）不寫入交付工作簿、不產出 TC，故 `Off Road Plus`
+  # 由 3 leaf 降為 2、有 TC 之 leaf 總數由 48 降為 **47**。
+  # 其列保留於 `data/layer3_sections.tsv`（48 列）與 `data/outline_map.json`
+  # 並標 `EXCLUDED-BY-R-PMH72` —— **「不做」與「沒發現」須在紙上分得開（G-D）**。
   #
   # ⚠ **R-PMH18 之精神延伸 —— 三個字串刻意不同，不得統一，比對須大小寫敏感**：
   #     Test Group（G 欄）  `Disclaimer screen`   小寫 s（交付夾名原樣，R-PMH13）

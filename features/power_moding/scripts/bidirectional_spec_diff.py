@@ -11,7 +11,36 @@
 摺疊空白、統一彎引號與省略號。命中判定為「正規化後之句為對方全文之子字串」。
 
 輸出：docs/reports/bidirectional_spec_diff.md
+
+================================================================================
+**⚠ 本檔自 19 包起停用（R-PMH70）**
+================================================================================
+
+**停用之理由**：本檔以 6-gram 覆蓋率 < 30% 之門檻**自動判定**何者為真漏、
+何者為「`-layout` 之切分假象」，**而 R-PMH66 明文禁止門檻決定結論**
+（門檻只得分流殘餘，殘餘須人讀）。
+
+**其代價已實測**：A-PMH16（SYS1 之 `9.1` 散文與 PDF 之三處差異）
+即被本檔之門檻濾掉 —— p9 切出之「句」皆為矩陣格與散文之混合串，
+其 6-gram 覆蓋率多 >= 30%，遂被判為切分假象。
+**R-PMH66 之立條依據就是本檔做的這件事。**
+
+**取代者**：`scripts/chapter_bidirectional.py`
+  - 判定為**逐字二值**，門檻不參與；
+  - 殘餘**逐句須有人讀之具名結論**（`RESIDUE_VERDICT`），未具名即 FAIL；
+  - PDF 來源為 **PyMuPDF block 層**（R-PMH71），p9 不再交錯；
+  - 章區間由「下一章之起錨」界定，另有 `--partition` 查未覆蓋段。
+  現行涵蓋章 7–12（全部有 leaf 之章），六章皆 PASS。
+
+**未被取代者（具名）**：本檔曾涵蓋 outline 1–6（p1–p7 之封面與流程圖頁），
+`chapter_bidirectional.py` 之 `STARTS` 未對其建錨。
+該六則於 SYS1 為圖片佔位（**A-PMH04 已知**），不含需求文字。
+
+**其既有產出保留**：`docs/reports/bidirectional_spec_diff.md` 不刪，
+供 13 包之結論追溯。**本檔不刪，執行時即拒跑並印本說明**
+（`--acknowledge-deprecated` 可強制執行，其輸出不得引為結論）。
 """
+import argparse
 import re
 from pathlib import Path
 
@@ -38,7 +67,24 @@ def sentences(t: str) -> list[str]:
     return [s.strip() for s in re.split(r"(?<=[.!?])\s+", t) if s.strip()]
 
 
+DEPRECATED = True
+
+
 def main() -> None:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--acknowledge-deprecated", action="store_true",
+                    help="強制執行已停用之本檔；其輸出不得引為結論（R-PMH70）")
+    a = ap.parse_args()
+    if DEPRECATED and not a.acknowledge_deprecated:
+        import sys as _s
+        print(__doc__)
+        print("**拒跑** —— 本檔已停用（R-PMH70）。"
+              "請改用 `scripts/chapter_bidirectional.py <章>`。")
+        _s.exit(2)
+    _main()
+
+
+def _main() -> None:
     pdf_pages = PDF_TXT.read_text(errors="replace").split(chr(12))[:11]
     pdf_norm = [norm(p) for p in pdf_pages]
     pdf_all = norm(" ".join(pdf_pages))

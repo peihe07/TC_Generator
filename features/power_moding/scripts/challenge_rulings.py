@@ -14,6 +14,7 @@ R-PMH62 要求「提出某一判準以質疑某項結論時，須將同一判準
 用法:
     python scripts/challenge_rulings.py
 """
+import math
 import random
 import re
 import sys
@@ -40,6 +41,16 @@ SAMPLE_SEED = 18          # = 本包編號，固定值，**抽樣可重現**
 
 # 抽樣之人讀判定（R-PMH67）—— 逐條具名，供重跑時比對
 SAMPLE_VERDICT: dict[str, tuple[bool, str]] = {
+    # --- 19 包：母體由 68 增為 75 條，抽樣重抽，新增四條之判定 ---
+    "R-PMH19":
+        (False, "定義型 —— 定「已交付件」語料之母體判準；其 (a) 後由 R-PMH24 撤回，**本條為被質疑者而非質疑者**"),
+    "R-PMH54":
+        (True, "**質疑型（偽陰）** —— 把 13 包之句級雙向 diff **降為輔助**，理由為 marker 枚舉「無門檻、無取樣、無相似度參數」而句級 diff 有。**未命中之因：措詞為「降為輔助」「不受任何可調參數之影響」，無 21 標記中之任一詞**"),
+    "R-PMH56":
+        (True, "**質疑型（偽陰）** —— 其依據逐節指認 13 包所具名之未涵蓋清單漏列七節，且「漏列使『已具名』產生虛假之完整感」。**未命中之因：措詞為「漏列」「虛假之完整感」，而標記中無「漏列」**"),
+    "R-PMH73":
+        (False, "新裁定型 —— Pei 提供素材、定其效力；不推翻既有結論。（**其結論之前提於本包實測不成立，見 A-PMH18 —— 惟那是本包之發現，不是本條自身之質疑**）"),
+    # --- 18 包之判定（其中六條仍在本輪樣本內） ---
     "R-PMH4":
         (False, "定義型 —— 定「到齊」之定義並排除較弱判準（檔名相符／大小相同），未推翻任何既有結論"),
     "R-PMH6":
@@ -69,6 +80,7 @@ LIMITS = [
     "**只判定「是否為質疑型」，不判定「其是否已被雙向自套」** —— 後者須人讀",
     "R-G 系列（跨 feature 通則）不在本檔範圍 —— 其存於他處",
     "**抽樣只估偽陰率，不消滅偽陰** —— 抽中之 10 條外仍可能有質疑型條文未命中",
+    "**N = 10 之 Wilson 區間寬達 60 個百分點** —— 區間本身即本檢查之限度；欲收窄須加大 N，本檢查不自行加大",
 ]
 
 
@@ -77,6 +89,21 @@ def print_limits() -> None:
     for x in LIMITS:
         print(f"  - {x}")
     print("  **以上各項本檢查一律不看** —— 其全綠不含關於該等項之任何資訊。")
+
+
+def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    """Wilson 95% 信賴區間（19 包步驟 7）。
+
+    18 §11 第 4 項之自陳：點估計「**使該數字看起來比它應有的樣子確定**」。
+    N = 10 之樣本，其區間寬得足以改變結論之性質，故每次執行皆帶區間。
+    """
+    if n == 0:
+        return (0.0, 1.0)
+    ph = k / n
+    d = 1 + z * z / n
+    c = (ph + z * z / (2 * n)) / d
+    h = z * math.sqrt(ph * (1 - ph) / n + z * z / (4 * n * n)) / d
+    return (max(0.0, c - h), min(1.0, c + h))
 
 
 def rulings() -> list[tuple[str, str]]:
@@ -130,11 +157,16 @@ def main() -> None:
         pos += 1 if v[0] else 0
         print(f"     {'**應命中**' if v[0] else '不應命中'} —— {v[1]}")
     if named == n:
-        print(f"\n  **偽陰率之估計 = {pos}/{n} = {pos/n:.0%}**"
-              f" —— 推估未命中母體 {len(miss)} 條中約 **{round(len(miss)*pos/n)}** 條為質疑型")
+        lo, hi = wilson(pos, n)
+        print(f"\n  **偽陰率之點估計 = {pos}/{n} = {pos/n:.0%}**；"
+              f"**Wilson 95% 區間 = [{lo:.0%}, {hi:.0%}]**")
+        print(f"  推估未命中母體 {len(miss)} 條中之質疑型："
+              f"點估計 **{round(len(miss)*pos/n)}** 條，"
+              f"**區間 [{round(len(miss)*lo)}, {round(len(miss)*hi)}] 條**")
         print(f"  即真正之質疑型條文約 {len(hits)}（候選，含偽陽）"
-              f" ＋ {round(len(miss)*pos/n)}（未命中之推估） —— "
-              "**判準只抓到其中一部分**")
+              f" ＋ [{round(len(miss)*lo)}, {round(len(miss)*hi)}]（未命中之推估）")
+        print(f"  **N = {n} 之區間寬達 {hi-lo:.0%}** —— "
+              "點估計不得單獨引用（R-PMH67／18 §11 第 4 項）。")
     else:
         print(f"\n  **抽樣未完成：{n - named} 條未具名人讀判定**")
     print_limits()

@@ -1761,3 +1761,200 @@ R-PMH68（doc-sync 之錨取門檻表，不取整支程式）
 | R-PMH66 | 判定為二值（逐字命中），門檻只分流殘餘且殘餘須人讀 | 395 | `a9ed686549088dfc` | `a9ed686549088dfc` | ✅ 逐字相符 |
 | R-PMH67 | 列舉式判準須附偽陰之抽樣估計；補標記不構成滿足 | 479 | `8effc16c06b1800f` | `8effc16c06b1800f` | ✅ 逐字相符 |
 | R-PMH68 | doc-sync 之錨取門檻表輸出，不取整支程式 | 340 | `88c540f9cba69e2b` | `88c540f9cba69e2b` | ✅ 逐字相符 |
+
+---
+
+# 19 包 —— A-PMH16 之複驗、PDF 原句損壞與 Pei 之四項 DR 裁定
+
+## 19 本文（R-PMH69 ~ R-PMH71）
+
+### R-PMH69
+
+```
+R-PMH69（來源本身損壞時之處置）
+當規格 PDF 之原句本身損壞（非英文字、兩個主謂結構相連而無連接詞、
+同一條件之新舊兩版疊寫等），**不得逕以 PDF 為準**，
+R-PMH50「source_clause 取自 PDF」於該處**不適用** ——
+該條之依據為「SYS1 相對 PDF 有偏離」，其預設 PDF 為正確者，
+而此處該預設不成立。
+
+處置三項：
+(a) 該處之欄位以 `PENDING: DR-{n} …` 佔位（§8.4.3），不得留空、不得填 NA；
+(b) 開 DR 向上游詢問**何者為權威**，並附兩版之逐字對照；
+(c) 其所涉之 leaf 所屬 Test Set **不得開批**，直至該 DR 結案。
+
+現行適用：outline `9.1` 之 PDF 句含 `aofnd`（非英文字）、
+`the radio should shut Off the popup should close`（兩主謂相連無連接詞）、
+`within 60 seconds the timeout defined in pop-up list`（兩時間條件並列
+無連接詞）—— 形態為一次未完成之編輯，舊文字與新文字疊寫。
+SYS1 之版本恰好刪去該兩段舊文字並將 `aofnd` 改回 `if`，
+**故其可能是編輯之意圖而非漏字**。
+→ **`DR-PMH4`**；`Power Transitions` 組（5 leaf，`SWE1-HMI-PM-018-01`～`-05`）
+**凍結，不得開批**。
+```
+
+### R-PMH70
+
+```
+R-PMH70（立條後須處置該條所指認之對象）
+新立之條文若其依據指認了某一具體對象（某支程式、某項判準、某份產出）
+之缺陷，**該對象須於同一輪或次一輪內被處置**：改造、停用、或具名標註為
+「已知不合本條而暫留」三者擇一，**不得只立條而讓該對象照原樣繼續運作**。
+
+處置結果須於上繳具名；未處置者列入下一輪之待辦，不得靜默略過。
+
+本條補 R-PMH62：該條只要求「回頭套用於支持該質疑之其他項」，
+**未要求處置該條所指認之對象本身**。
+
+依據：R-PMH66 立於 18 包，其依據即「6-gram 門檻做了本不該由它做的判定」，
+而做那件事的 `bidirectional_spec_diff.py` 於同輪未被改造、未被停用、
+亦未被標註，仍以門檻自動判定（18 包 §11 第 5 項，執行層自陳）。
+```
+
+### R-PMH71
+
+```
+R-PMH71（結論與其量測須可由同一支程式重現）
+任何寫入 `RESIDUE_VERDICT`、`ANOMALIES.md` 或上繳包之人讀結論，
+其**產生該結論之量測**須可由該檢查之預設設定重現。
+
+若結論係以非預設之來源或參數查出（如 block 層萃取而預設為 `-layout`），
+二者擇一：
+(a) 將該來源／參數改為預設，並依 R-PMH35 補其 must-hit；或
+(b) 於該結論處具名「本結論不可由預設設定重現」，並記其實際所用之設定。
+
+**不得只留結論而不留其可重現之量測** —— 此為「宣告與實作分離」
+（A-PMH12 形態）在結論層之同型。
+
+依據：A-PMH16 係以 PyMuPDF block 層萃取查出，
+而 `chapter_bidirectional.py` 之預設來源為 `pdftotext -layout`；
+該程式此刻重跑**查不出 A-PMH16**（18 包 §11 第 1 項，執行層自陳）。
+```
+
+## 19a —— Pei 之四項裁定（R-PMH72 ~ R-PMH75）
+
+### R-PMH72
+
+```
+R-PMH72（`SWE1-HMI-PM-028` 不寫入工作簿）
+Pei 於 2026-08-24 裁定「DR-PMH1 拿掉」。
+
+`SWE1-HMI-PM-028`（outline 12.2，內文為 `OFF2.) Please refer to CFTS009 for
+complete behavior.`）**不寫入交付工作簿**，不產出 TC，不以 `PENDING` 佔位。
+
+**R-PMH47 之 (b)(c) 撤回**：
+(b) 「該列仍寫入工作簿並揭露（比照 R-VF12）」—— 撤回；
+(c) 「開 DR-PMH1」—— 撤回，該 DR 標 `CLOSED-BY-RULING`（未答覆而結案）。
+**R-PMH47 之 (a)（判為 out of scope，不得為其撰寫驗證 CFTS009 行為之 TC）
+維持有效** —— 本裁定只改其揭露方式，不改其 out of scope 之判定。
+
+**repo 內部之紀錄不受本條影響**：`ANOMALIES.md` 之 A-PMH13、
+`DECISIONS.md` 之登記、本條文本身**皆保留** ——
+「拿掉」之範圍為**交付件**，非本 feature 之內部台帳（G-D：
+「不做」與「沒發現」須在紙上分得開）。
+
+**連帶（須重算，不得沿用）**：
+  Layer 2 之 `Off Road Plus` 組由 3 leaf 降為 **2**（`-027`／`-029`）；
+  有 TC 之 leaf 總數由 48 降為 **47**；
+  granularity 之分母 `n_leaf` 隨之改變，G1–G5 須以 47 重跑。
+分析層之對照值：8/47 = 0.170（G1 ✅）、min = 2（G2 ✅）、
+max = 9/47 = 0.191（G4 ✅）、全組落 [2, 23]（G5 ✅）。
+**先算後比，不得引用本行數字為結果。**
+```
+
+### R-PMH73
+
+```
+R-PMH73（Power Moding State Matrix 已到，DR-PMH2 結案）
+Pei 於 2026-08-24 提供 DR-PMH2 所索取之文件：
+
+  features/power_moding/inputs/Power Moding HMI State Matrix R1 SR24 Post 2A
+  DCR21421 (August 3 2022).xlsx
+
+該檔為本 feature 之**第六筆素材**，須依 R-PMH4 補入
+`inputs/MANIFEST.sha256`（SHA256 ＋ `shasum -c` 通過方為到齊）。
+
+**其效力**：PDF p10 逐字載 `Power Moding behavior shall not be developed
+without following the Power Moding State Matrix` —— 該矩陣自此為
+**ch 9（`Power Transitions` 組）之判讀背景，具規範性**，
+非參考資料。ch 9 之 TC 撰寫須以其為據。
+
+**A-PMH14 之新漏 2（p9 狀態矩陣於 SYS1 全缺）與新漏 3（p10 之
+`POWER MODING STATE MATRIX:` 段於 SYS1 全缺）之補救來源自此確定** ——
+二者不再是無解之缺口，而是「內容在另一份素材裡」。
+**其 anomaly 不撤銷**（SYS1 匯出確實缺該內容，該事實不變），
+狀態改為 `RESOLVED（來源已補）`。
+
+**素材真確性**：該檔之 DCR 編號（`DCR21421`）與日期（`August 3 2022`）
+**早於**規格 PDF（`DCR22412`／`January 24 2023`）—— 執行層須於上繳
+具名此一事實並回報矩陣內容與 PDF p9／p10 是否一致；
+**不一致者不得自行取捨，停並上呈。**
+```
+
+### R-PMH74
+
+```
+R-PMH74（`SU9.)`／`SU9.1)` 不納入，DR-PMH3 結案）
+Pei 於 2026-08-24 裁定「037 沒有納入就不放」。
+
+`SU9.)` 與 `SU9.1)` **不補入本 feature 之 leaf 母體**；
+leaf 母體維持 **48**（R-PMH1 不變），`Disclaimer Screen` 維持 **7 leaf**。
+`DR-PMH3` 標 `CLOSED-BY-RULING`。
+
+**A-PMH14 之新漏 1 不撤銷** —— 「PDF 有而 SYS1／037 無」之事實不變，
+其狀態改為 `ACCEPTED（經裁定不補）`。
+
+**R-PMH55 之適用繼續成立** —— 該條原載「若 DR-PMH3 回覆為
+『SU9／SU9.1 應在 037』，則本條之適用即告終止」。
+**本裁定為其反面**，故 batch 1 之 `-003`／`-004` 依 PDF `SU9.1` 所加之
+「不按任何硬鍵」限定**繼續有效**，其三項判準（作用為使既有 leaf 之驗證
+正確、只出現於步驟限定子句、於 reasoning 具名）仍須逐條滿足。
+
+**18 包所預先登記之四項連帶（Layer 2 計數、granularity 分母、
+`layer3_sections.tsv`／`outline_map.json`、batch 1 增 2 條）全部不觸發。**
+```
+
+### R-PMH75
+
+```
+R-PMH75（outline 9.1 以 SYS1 為權威，DR-PMH4 結案）
+Pei 於 2026-08-24 裁定「以刪掉之後的為主」。
+
+outline `9.1` 之權威文本為 **SYS1 匯出之版本**（即已刪去 PDF 疊寫舊文字者），
+**非 PDF**。
+
+**R-PMH50 於 outline 9.1 反轉**：該條「`source_clause` 取自 PDF，
+不取自 SYS1」於 `9.1` 之 5 個 leaf（`SWE1-HMI-PM-018-01`～`-05`）
+**不適用**，其 `source_clause` 取自 SYS1；`source_clause_origin`
+須逐字記 `sys1_export 9.1`，並註 `R-PMH75`。
+**R-PMH50 於其餘 47 leaf 維持不變。**
+
+**A-PMH16 之三處改判**：由「SYS1 漏字」改判為「**編輯後之定稿**」——
+  (1) `for 60 seconds` —— 舊文字，已刪，**不驗**；
+  (2) `seconds`（`within 60 seconds`）—— 舊文字，已刪，**不驗**；
+  (3) `the radio should shut Off the` —— 舊文字，已刪，**不驗**。
+A-PMH16 狀態改為 `RESOLVED（PDF 側為未刪淨之舊文字）`，**原文保留**
+（R-PMH44）；其原判定「(1)(2) 為時序漏失、(3) 為獨立行為結果」
+**逐條標記為已被本條推翻**。
+
+**⚠ 承擔之風險須具名**：依本裁定，`the radio should shut Off`
+（逾時後收音機關機）**不會有任何一條 TC 驗到**。
+若上游日後主張該行為仍屬需求，本 feature 之 ch 9 覆蓋即有缺口 ——
+**該風險由本裁定承擔，已於此具名。**
+
+**`Power Transitions` 組解凍**（R-PMH69 之凍結解除），
+惟其開批仍以 R-PMH73 之矩陣一致性查核通過為前提。
+```
+
+
+## 抄錄逐條核對表（19 包步驟 1）
+
+| 條號 | 來源 | 主旨 | 字數 | handoff SHA256（前 16） | RULINGS SHA256（前 16） | 逐字相符 |
+|---|---|---|---|---|---|---|
+| R-PMH69 | 19 | 來源本身損壞時不得逕以 PDF 為準；開 DR ＋ 凍結該組 | 666 | `acaf24b5400373fc` | `acaf24b5400373fc` | ✅ 逐字相符 |
+| R-PMH70 | 19 | 立條後須處置該條所指認之對象（補 R-PMH62） | 361 | `6340568122683bf1` | `6340568122683bf1` | ✅ 逐字相符 |
+| R-PMH71 | 19 | 結論與其量測須可由同一支程式之預設重現 | 430 | `19fafeda0d151611` | `19fafeda0d151611` | ✅ 逐字相符 |
+| R-PMH72 | 19a | `-028` 不寫入工作簿；R-PMH47(b)(c) 撤回；leaf 47 之連帶 | 823 | `0c4232afd78c4a82` | `0c4232afd78c4a82` | ✅ 逐字相符 |
+| R-PMH73 | 19a | State Matrix 已到，為 ch 9 之規範性判讀背景；第六筆素材 | 831 | `20e0ae860856d0bb` | `20e0ae860856d0bb` | ✅ 逐字相符 |
+| R-PMH74 | 19a | `SU9.)`／`SU9.1)` 不納入；R-PMH55 適用繼續成立 | 612 | `d7fba3b8cafd1d3c` | `d7fba3b8cafd1d3c` | ✅ 逐字相符 |
+| R-PMH75 | 19a | 9.1 以 SYS1 為權威；R-PMH50 於該處反轉；風險具名 | 896 | `0ade6f67a43241e5` | `0ade6f67a43241e5` | ✅ 逐字相符 |

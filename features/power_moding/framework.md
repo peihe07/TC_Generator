@@ -1,8 +1,11 @@
 # framework — FW036 Power Moding HMI（Layer 1 / 2 / 3）
 
 - 產出日：2026-08-24（下放包 06 步驟 3）
-- 資料來源：`data/layer3_sections.tsv`（48 leaf，執行層 05 包產出）
-- Layer 2 提案來源：下放包 06 §5，**經執行層以 TSV 機器複算，48/48 相符、
+- 資料來源：`data/layer3_sections.tsv`（48 列，執行層 05 包產出）——
+  **有 TC 之 leaf 為 47**（R-PMH72 排除 `SWE1-HMI-PM-028`，其列保留於台帳
+  並標 `EXCLUDED-BY-R-PMH72`）
+- Layer 2 提案來源：下放包 06 §5，**經執行層以 TSV 機器複算，48/48 相符（06 包時之
+  分母；R-PMH72 之後為 47/47）、
   各 Test Set 計數與 §5.1 逐項相符、R-G10 餘數 0**
 - **狀態：定版**（2026-08-24，**R-PMH36** —— Pei 裁「甲」）。Layer 2 為 **8 組**，
   第 2 組名為 `Disclaimer Screen`。逐 leaf 歸屬以 `data/layer3_sections.tsv` 為權威。
@@ -57,9 +60,15 @@
 | 5 | **`Power Transitions`** | 7 | 7.1.1, 9.1, 10.5 | Power Management(3)／FOTA Via Wi-fi(2)／WiFi(1)／EV/PHEV Pages(1) |
 | 6 | **`Power Off Behavior`** | 8 | 10.1, 10.2, 10.3, 10.4, 10.6, 10.7 | Bluetooth(3)／Rear View Camera(2)／Climate Control(2)／e-call (private)(1) |
 | 7 | **`Voice Assistant Key`** | 5 | 11.1 | Steering Wheel Controls(5) |
-| 8 | **`Off Road Plus`** | 3 | 12.1, 12.2, 12.3 | Power Management(2)／Audio Management(1) |
+| 8 | **`Off Road Plus`** | **2** | 12.1, 12.3 | Power Management(1)／Audio Management(1) |
 
-**48 = 3 + 7 + 9 + 6 + 7 + 8 + 5 + 3，R-G10 餘數 0。**
+**47 = 3 + 7 + 9 + 6 + 7 + 8 + 5 + 2，R-G10 餘數 0。**
+
+> **由 48 改 47 之依據（R-PMH72，Pei 2026-08-24「DR-PMH1 拿掉」）**：
+> `SWE1-HMI-PM-028`（outline 12.2，`OFF2.) Please refer to CFTS009 for
+> complete behavior.`）**不寫入交付工作簿、不產出 TC**，故不入 Layer 2 之分組。
+> 其列仍在 `data/layer3_sections.tsv`（48 列）與 `data/outline_map.json`，
+> 標 `EXCLUDED-BY-R-PMH72` —— **「不做」與「沒發現」須在紙上分得開（G-D）**。
 
 ### 三處切法之依據（06 §5.3，執行層複驗相符）
 
@@ -84,7 +93,8 @@
 ## Layer 3 —— 規格章節對照
 
 Layer 3 取**規格自身之 section id**（canon §4.1.1），不自創標籤。
-全表見 `data/layer3_sections.tsv`（48 列 × 7 欄）。章層對照：
+全表見 `data/layer3_sections.tsv`（48 列 × **8 欄** —— 19 包增 `excluded_by`）。
+章層對照（**leaf 欄為台帳列數；章 12 之有 TC leaf 為 2**）：
 
 | 章 | 章標題（SYS1 `Outline Number` 之 Description 逐字） | leaf | PDF 頁 |
 |---:|---|---:|---:|
@@ -93,7 +103,7 @@ Layer 3 取**規格自身之 section id**（canon §4.1.1），不自創標籤�
 | 9 | `Power Moding` | 5 | p9 |
 | 10 | `Additional Power Moding Behavior Notes:` | 10 | p10 |
 | 11 | `VR HARD KEY FOR SIRI/NON-NATIVE VOICE ASSISTANTS` | 5 | p10 |
-| 12 | `Power Moding – Off Road+` | 3 | p11 |
+| 12 | `Power Moding – Off Road+` | 3（有 TC **2**） | p11 |
 
 **未被任何 leaf 引用之 outline 23 項**見 `data/uncited_sections.tsv`
 （`chapter_node` 12／`image_placeholder` 6／`assumptions` 5／**`other` 0**）。
@@ -131,18 +141,18 @@ Layer 3 取**規格自身之 section id**（canon §4.1.1），不自創標籤�
 G2 之 `min ≥ 2` 承接「不是一條」之單組下限，**G1 承接其平均** ——
 平均每組不足 3 個 leaf 時，過濾結果多為 1–2 列。
 
-**G1 不可省** —— 存在 G2／G4／G5 全通過而仍過細之組態（48 leaf 分 20 組，
+**G1 不可省** —— 存在 G2／G4／G5 全通過而仍過細之組態（47 leaf 分 16 組，
 每組 2–3），即隔離錨點 **A6**。
 
 ### 現行 8 組之實測
 
 | id | 實測 | 門檻 | 結果 |
 |---|---|---|---|
-| G1 | `8/48 = 0.1667` | `≤ 1/3 = 0.3333` | **PASS**（餘裕 2 倍） |
-| G2 | `min = 3` | `≥ 2` | **PASS** |
+| G1 | `8/47 = 0.1702` | `≤ 1/3 = 0.3333` | **PASS**（餘裕近 2 倍） |
+| G2 | `min = 2` | `≥ 2` | **PASS** |
 | G3 | 零命中 | `= 0` | **PASS** |
-| G4 | `9/48 = 0.1875` | `≤ 1/2` | **PASS** |
-| G5 | 逸出 0（區間 `[3, 9]`） | `= 0` | **PASS** |
+| G4 | `9/47 = 0.1915` | `≤ 1/2` | **PASS** |
+| G5 | 逸出 0（區間 `[2, 9]`，門檻區間 `[2, 23]`） | `= 0` | **PASS** |
 
 > G3 之比對單位為**整詞**（以空白與 `/` 切分），故 `Power Off Behavior`
 > 之 `Off` 不命中 `Other`。
@@ -153,19 +163,19 @@ G2 之 `min ≥ 2` 承接「不是一條」之單組下限，**G1 承接其平�
 
 | 錨點 | 構造 | 指定 FAIL | 實跑 | **隔離度** |
 |---|---|---|---|---|
-| **A1** | 每 outline 各成一組（29 組） | G1 | `0.6042 > 0.3333` ✅ | **結構性連帶** `[G2, G5]` |
-| **A2** | 每 leaf 各成一組（48 組） | G1、G2 | `1.0 > 0.3333`；`min=1` ✅ | **結構性連帶** `[G5]` |
-| **A3** | `Off Road Plus` 拆為三個單 leaf 組（10 組） | G2、G5 | `min=1`；逸出 `[1,1,1]` ✅ | **隔離** |
+| **A1** | 每 outline 各成一組（**28 組**） | G1 | `0.5957 > 0.3333` ✅ | **結構性連帶** `[G2, G5]` |
+| **A2** | 每 leaf 各成一組（**47 組**） | G1、G2 | `1.0 > 0.3333`；`min=1` ✅ | **結構性連帶** `[G5]` |
+| **A3** | `Off Road Plus` 拆為**兩個**單 leaf 組（**9 組**） | G2、G5 | `min=1`；逸出 `[1,1]` ✅ | **隔離** |
 | **A4** | 新增一組名為 `Misc`（**取 2 leaf**） | G3 | 命中 `['Misc']` ✅ | **隔離** |
-| **A5** | 八組併為一組（1 組） | G4、G5 | `1.0 > 0.5`；逸出 `[48]` ✅ | **隔離** |
-| **A6** | 48 leaf 分 **20 組**（8×3 ＋ 12×2） | **G1** | `0.4167 > 0.3333` ✅ | **隔離** —— G2/G3/G4/G5 全 PASS |
+| **A5** | 八組併為一組（1 組） | G4、G5 | `1.0 > 0.5`；逸出 `[47]` ✅ | **隔離** |
+| **A6** | **47 leaf 分 16 組**（15×3 ＋ 1×2） | **G1** | `0.3404 > 0.3333` ✅ | **隔離** —— G2/G3/G4/G5 全 PASS |
 
 **A1／A2 之結構性連帶算式**（由程式判定，非註解）：
 
 > 鴿籠：`n` 個 leaf 分 `k` 組，每組規模 ≥ 2 須 `n ≥ 2k`。
 > 故 `k > floor(n/2)` 時**必有**單 leaf 組 ⇒ G2 必然 FAIL；
 > 且該單 leaf 組必逸出 `[2, floor(n/2)]` ⇒ G5 亦必然 FAIL。
-> A1：`k=29 > 24`，`2k=58 > 48`；A2：`k=48 > 24`，`2k=96 > 48`。
+> A1：`k=28 > 23`，`2k=56 > 47`；A2：`k=47 > 23`，`2k=94 > 47`。
 
 **每一判準至少有一個「隔離」或「結構性連帶」之錨點**（R-PMH38 末段）：
 G1 → **A6（隔離）**；G2 → A3（隔離）；G3 → A4（隔離）；
@@ -208,6 +218,6 @@ Q11 已由 **R-PMH36** 定案為（甲）。惟其定案**不得引本判準為�
 | ~~Q11 —— Test Set #2 之命名~~ | **已結清**（R-PMH36，2026-08-24） |
 | **A-PMH13** —— `SWE1-HMI-PM-028`（12.2）指向 CFTS009 | 見 `ANOMALIES.md`；`features/power` 之涵蓋查證見上繳 06 §4 |
 | A-PMH03 —— outline 7.1 之重排 | Phase 4 指名複核（該節 5 leaf，分屬 Splash 2 ／ #2 3） |
-| A-PMH04 —— 6 則圖片佔位 outline | Phase 4；**48 leaf 無一落在 p3–p7**，不阻斷 |
+| A-PMH04 —— 6 則圖片佔位 outline | Phase 4；**47 leaf 無一落在 p3–p7**，不阻斷 |
 | **granularity 之重驗** | **Phase 4** —— 本檢查驗的是 leaf 分布；TC 生成後須以 TC 分布重驗 |
 

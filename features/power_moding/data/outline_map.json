@@ -647,7 +647,8 @@
       "pdf_page": 11,
       "pdf_page_heading": "Power Moding – Off Road+",
       "page_resolution_method": "描述首 40 字唯一命中",
-      "probe_len": 40
+      "probe_len": 40,
+      "excluded_by": "EXCLUDED-BY-R-PMH72"
     },
     {
       "swe_req_id": "SWE1-HMI-PM-029",

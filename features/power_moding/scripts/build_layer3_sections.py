@@ -18,6 +18,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# R-PMH72 —— 保留於台帳但排除於交付之 leaf
+EXCLUDED = {"SWE1-HMI-PM-028": "EXCLUDED-BY-R-PMH72"}
+
 
 def main() -> None:
     cfg = yaml.safe_load((ROOT / "feature.yaml").read_text(encoding="utf-8"))
@@ -54,6 +57,10 @@ def main() -> None:
             "section_title": outline_title.get(outline, ""),
             "frop": flat(a.cell(r, 8).value, 60),
             "pdf_page": omap.get(sid, {}).get("pdf_page", ""),
+            # R-PMH72（Pei 2026-08-24「DR-PMH1 拿掉」）：該 leaf **不寫入交付
+            # 工作簿、不產出 TC**，惟其列保留於本內部台帳（G-D：「不做」與
+            # 「沒發現」須在紙上分得開）。有 TC 之 leaf 因而為 47。
+            "excluded_by": EXCLUDED.get(sid, ""),
         })
 
     print(f"leaf {len(rows)}；對應到規格自身 section id 者 {len(rows) - len(missing)}"

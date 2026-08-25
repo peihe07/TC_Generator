@@ -25,6 +25,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 16 | 2026-08-24 | `-002` 判錯採認、**萃取等同性判準**、`VERDICT` 誤判偵測 | [handoff/16_verdict_blindspot.md](handoff/16_verdict_blindspot.md) | [upstream/16_verdict_blindspot.md](upstream/16_verdict_blindspot.md) | R-PMH60–R-PMH62（逐字抄錄 3/3 相符） | （無新 A-PMH；查出 **A-PMH14 對 9.1 之記載自相矛盾**） | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；must-hit A–D 全攔下** |
 | 17 | 2026-08-24 | **章 8 雙向複驗**、五支檢查具名限度、質疑型條文母體 | [handoff/17_scope_of_inventory.md](handoff/17_scope_of_inventory.md) | [upstream/17_scope_of_inventory.md](upstream/17_scope_of_inventory.md) | R-PMH63–R-PMH65（逐字抄錄 3/3 相符） | **A-PMH14 結語更正**（9.1 之「維持」不成立；`8` 之歸因更精確） | **步驟 1–7 全數執行；九條停止條件全未觸發；lint 30/30；章 8 新漏 0；shasum 5/5 OK** |
 | 18 | 2026-08-24 | **章 9／11 逐字複驗**、偽陰抽樣、doc-sync 改錨 | [handoff/18_break_the_circle.md](handoff/18_break_the_circle.md) | [upstream/18_break_the_circle.md](upstream/18_break_the_circle.md) | R-PMH66–R-PMH68（逐字抄錄 3/3 相符） | **A-PMH16（SYS1 之 9.1 散文漏字，兩處為時序）** | **步驟 1–6 全數執行；九條停止條件全未觸發；lint 30/30；分割檢查未覆蓋段無 marker** |
+| 19 | 2026-08-24 | **Pei 四筆 DR 一次結清**、leaf 48→47、預設來源改 block 層 | [handoff/19_broken_source.md](handoff/19_broken_source.md) ＋ [19a](handoff/19a_pei_dr_rulings.md) | [upstream/19_broken_source.md](upstream/19_broken_source.md) | R-PMH69–R-PMH75（逐字抄錄 7/7 相符） | **A-PMH17（章 10 全大寫標籤全缺）**／**A-PMH18（State Matrix 與 p9 不對應，停手上呈）**；A-PMH13／14／16 狀態更新 | **⚠ 停止條件 canon 2、canon 5、本包 8 觸發；本包 7 為字面／目的分歧；六章全 PASS；lint 30/30** |
 
 ## 01 輪要點
 
@@ -1066,3 +1067,90 @@ outline 9.1 之所以相符，**是因為 A-PMH16 之漏字落在第 120 字元�
 **待 Pei**：三筆 DR 之發出（**第六度重申**，DR-PMH2 因 A-PMH16 理由更強）／
 18 之 commit 授權（10 路徑）／**章 7／10／12 之殘餘人讀（建議 Phase 5 前）**／
 `chapter_bidirectional.py` 預設來源是否改 block 層／`bidirectional_spec_diff.py` 之處置。
+
+---
+
+## 19 包要點
+
+**四筆 DR 一次結清（R-PMH72–R-PMH75），未結 0 筆。**
+`DR-PMH1` 拿掉（採解讀（乙）：該列不放進工作簿）／
+`DR-PMH2` 素材已到／`DR-PMH3` 不納入／`DR-PMH4` 以刪掉之後的為主。
+
+**⚠ 本輪三項須先看**
+
+### 1. A-PMH18 —— **Pei 所提供之 State Matrix 與 PDF p9 之矩陣不對應**
+
+十三個逐字探針（`HEADUNIT POWER`／`ICS Hard Controls`／`HVAC Knobs`／
+`Climate GUI`／`ENGINE ON`／`Fully functional`／`Power Accessory Delay`／
+`FOTA`／`Charge Now`／`stay awake` …）**全部 0 命中**。
+
+| | 軸 |
+|---|---|
+| PDF p9 | `HEADUNIT POWER OFF/ON` × `ICS Hard Controls`／`HVAC Knobs`／`Climate GUI`／`Headunit` |
+| Excel | `Key-on`／`Key-off` × `Turn Off @ door opening` × `HU on/off` × `Call Active` × `Door Open/Closed` |
+
+**二者為兩個不同的矩陣。** 且 Excel 為 `DCR21421`／2022-08-03（**早於** PDF 之
+`DCR22412`／2023-01-24），其 Change Log 末筆為 2021-10-20（未及其自稱日期）。
+
+依 R-PMH73 明文「不一致者不得自行取捨，停並上呈」——
+**A-PMH14 新漏 2 未改為 `RESOLVED`**（其前提不成立，逕改會寫下一句不實陳述）；
+**新漏 3 已改 `RESOLVED（來源已補）`** —— 它缺的是一句指標，指標所指之物已到。
+**二者處置不同，理由已寫入 `ANOMALIES.md`。ch 9 仍不得開批。**
+
+### 2. 停止條件 8 觸發 —— **下放包所給之 must-hit 前提為假**
+
+下放包令「以 `-layout` 跑章 9 → A-PMH16 之三處查不出」。
+**實測三個探針 3/3 命中** —— `-layout` 只是把散文與矩陣格交錯，並未刪掉那些字。
+
+**真正使 18 包漏掉它的不是來源，是 13 包之 6-gram 門檻**（R-PMH66 之立條依據）。
+block 層之價值不在「查得出／查不出」，在於**使字級 diff 可行**：
+章 9 之字級 diff 差異段 `layout` 26 個 → `block` **10 個（38%）**，
+而 `PM1)` 單一區塊之 diff 只有 4 段。
+
+**未改該 must-hit 去迎合結果**（那會是造假）——
+**故此刻本 feature 有一支永遠紅燈的檢查，其紅燈是對的。**
+
+### 3. `RESIDUE_VERDICT` 之鍵有碰撞缺陷（已修）
+
+原鍵為「句之前 60 字元」。改 block 層後，章 9 之兩句殘餘（284 與 1,075 字元）
+**其前 60 字元完全相同** —— 一句之結論會被另一句**靜默借用**而檢查不會察覺。
+已改為 `sha1(句)[:8] + 前 48 字元`。**未曾造成錯誤結論**（改前未提交）。
+**其形態值得記明：這是由「改進另一件事」而暴露出來的缺陷 ——
+`-layout` 下兩句之前 60 字元恰好不同。判準之正確性有時依賴輸入之偶然性質。**
+
+---
+
+**章 7 之殘餘 3 句全為已知且已裁定者（A-PMH03 之 7.1／A-PMH14 新漏 1），無新漏。**
+**停止條件 7 之字面觸發、目的不觸發** —— batch 1 之 `source_clause` 取自 PDF，
+7.1 之被漏子句在內。**本層判定不重做 batch 1，交分析層裁。**
+
+**leaf 48 → 47（R-PMH72）**：`Off Road Plus` 3 → 2；granularity 全項重跑
+（8/47 = 0.1702／min 2／9/47 = 0.1915／[2,9] ⊂ [2,23]，**與分析層對照值逐項相符**）；
+A6 錨點重算為 **47 分 16 組**（餘裕僅 0.007）；`framework.md` 17 處逐項替換。
+台帳保留該列並標 `EXCLUDED-BY-R-PMH72` —— **「不做」與「沒發現」須在紙上分得開**。
+
+**`bidirectional_spec_diff.py` 已停用**（R-PMH70）：拒跑、退出碼 2、
+停用理由寫入 docstring；既有報告保留供追溯。
+
+**A-PMH17（新，低）**：PDF 章 10 之全大寫分節標籤（`POWER BUTTON:`／
+`KEY OFF, HEADUNIT POWER ON:`）於 SYS1 全缺，**而章 11 之同類標籤有**（成了 outline 11）。
+**丟的是「分節結構」而非「句」，形態與前三例不同。**
+
+**120 字元截斷之三個數字**：被截 **39 列**（20 個相異 outline）、
+**3,913 字元**、含 marker 者 **1 個 outline（`10.4`，且該 marker 為交叉參照 `(see SU6.)`）**。
+`10.4` 正是 batch 1 之 `-008` 所依 —— 其 `source_clause` 取自 PDF，故不受影響。
+
+**偽陰率**：母體 68 → 75，重抽後 **4/10 = 40%，Wilson 95% [17%, 69%]**，
+推估未命中母體 34 條中 **[6, 23] 條**為質疑型。區間已寫入輸出。
+
+**⚠ 本輪自陳之未竟項中，三項須先看（上繳 §14）**
+1. **A-PMH18 我只證明了「軸逐字不對應」，沒證明「內容不涵蓋」** ——
+   `HU on`／`HU off` 確實在該 Excel 裡。**逐字不對應與內容不涵蓋是兩件事。**
+2. **章 7 之方向一只有 7.1 未命中，其餘 18 則未做字級 diff** ——
+   **A-PMH16 正是這樣被查出來的。**
+3. **`build_layer3_sections.py` 已改但未重跑** —— TSV 之現值與其產生程式
+   之輸出未經比對。**與 R-PMH71 同一形態。**
+
+**待 Pei**：**A-PMH18（阻斷 ch 9 開批）**／停止條件 7 之字面-目的分歧／
+停止條件 8 之 must-hit 如何改／19 之 commit 授權（19 路徑）／
+**19a §1.1 之解讀確認**（「拿掉」採（乙））／9.1 之例外是否寫入 profile。
