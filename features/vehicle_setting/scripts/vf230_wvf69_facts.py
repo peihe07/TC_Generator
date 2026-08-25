@@ -173,7 +173,12 @@ def valid_domain(vals: dict[str, str]) -> list[tuple[str, str]]:
 
 
 def dbc() -> dict:
-    d = json.loads((FEAT / "data/_dbc_parsed.json").read_text())
+    # ---- R-VF127：DBC 改引 `forms/` 之二本（BHCAN2 R1 ＋ FDCAN8 R1）----
+    # **二本一併換，不得跨基線混用**（舊組合 BHCAN R4 ＋ FDCAN8 R5 為舊基線）。
+    # `data/_dbc_parsed_new.json` 由 `vf230_wvf84_dbc_parse.py` 自 `forms/` 解出，
+    # **其解析器經自驗與原產生者對舊二本全等方採信**（R-VF92 一）。
+    # `data/_dbc_parsed.json`（舊二本）**標記退役，不刪**（R-VF18）。
+    d = json.loads((FEAT / "data/_dbc_parsed_new.json").read_text())
     out = {}
     for bus in d.values():
         for sig, occ in bus["sigs"].items():

@@ -29,7 +29,8 @@ LEAKED = re.compile(r"propId|setProperty|CarPropertyManager|CarPropertyService|V
 
 
 def dbc_vals() -> dict:
-    d = json.loads((FEAT / "data/_dbc_parsed.json").read_text())
+    # R-VF127：與 `facts` 同源 —— 二處不得分讀新舊二本
+    d = json.loads((FEAT / "data/_dbc_parsed_new.json").read_text())
     out = {}
     for bus in d.values():
         for sig, occ in bus["sigs"].items():

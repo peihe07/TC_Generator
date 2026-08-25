@@ -2554,7 +2554,7 @@ Upstream Verification Method: In which scenario the IPC_VEHICLE_SETUP2.WorksiteI
 
 (read the Vehicle Settings menu and check that the Language setting is displayed as Italian -> The Language setting is displayed as Italian)"	"1. The HU is in the Full-Operation state
 2. FD-CAN8 is connected to the bus simulator with signal tracing enabled
-3. The Vehicle Settings menu is open"	IPC_VEHICLE_SETUP.LanguageSelection = one of [0 (Italian), 1 (Deutsch), 2 (English), 3 (Espanol), 4 (Francais), 5 (Portugues), 6 (Polish), 7 (Dutch), 8 (Brazilian), 9 (Turkish), 10 (Mexican), 11 (English_US), 12 (Canadian), 13 (Russian), 14 (Chinese), 15 (Japanese), 16 (Korean), 17 (Arabic), 18 (Czech), 19 (Slovakian), 20 (Hungarian), 21 (Hindi), 22 (Slovenian)]	"1. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = 1 (Deutsch)
+3. The Vehicle Settings menu is open"	IPC_VEHICLE_SETUP.LanguageSelection = one of [0 (Italian), 1 (Deutsch), 2 (English), 3 (Espanol), 4 (Francais), 5 (Portugues), 6 (Polish), 7 (Dutch), 8 (Brazilian), 9 (Turkish), 10 (Mexican), 11 (English_US), 12 (Canadian), 13 (Russian), 14 (Chinese), 15 (Japanese), 16 (Korean), 17 (Arabic), 18 (Czech), 19 (Slovakian), 20 (Hungarian), 21 (Hindi)]	"1. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = 1 (Deutsch)
 2. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = 0 (Italian)
 3. Read the Vehicle Settings menu and check that the Language setting is displayed as Italian"	"1. IPC_VEHICLE_SETUP.LanguageSelection = 1 (Deutsch) is sent
 2. IPC_VEHICLE_SETUP.LanguageSelection = 0 (Italian) is sent
