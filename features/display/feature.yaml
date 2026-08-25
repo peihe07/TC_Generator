@@ -82,6 +82,13 @@ reference:
   cfts013_sysra:
     file: "features/display/inputs/SYS2_CFTS013_Radio_Error_Management-Associated_Display.xlsx"
     sha256: "1036b2af9f655441cc01bed6e2780a359334d8b10fca5d1bf693fb7137b911b0"
+  # 28 包任務 A1：CFTS_013 **規格本文**（docx）。與 `cfts013_sysra` 分列 ——
+  # 一為規格本文、一為 SYSRA 分析報告，兩份不同檔、不同表單類別。
+  # 其 release 家族為 `26PI2.5 Jun Release`（2026-06-08），與 CFTS_020 之
+  # `26PI1.5 Mar Release` 不同期；是否構成版本錯配屬 Tier 2（A-DM38）。
+  cfts013_doc:
+    file: "features/display/inputs/R1LR_Atl-H_26PI2.5 Jun Release-Activation and Configuration_CFTS_013_Radio Error Management_20260608-1149.docx"
+    sha256: "00d47c9e3bf6e4528d247921c5a82bf76f53d542bf7350ef23c127b9276c892f"
 
 # R-DM24（Q5 定案 B，Pei 2026-08-25）：以人工指定 kind 取代放寬共用分類器。
 # `scripts/intake.py` 之 SHEET_SIGNATURES 一字未動；覆寫僅在下列 sha256

@@ -31,6 +31,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 25 | 2026-08-25 | 揭露句之時效與 token 資料化 | [handoff/25_disclosure_lifecycle.md](handoff/25_disclosure_lifecycle.md) | [upstream/25_disclosure_lifecycle.md](upstream/25_disclosure_lifecycle.md) | R-G34／R-G33(d)（全域）；R-DM53 | B11 結案；B12／B13／A6 新增 | **MISSING 0／STALE 0；R-DM 區塊 55，順序驗證 exit 0** |
 | 26 ＋ 26a | 2026-08-25 | 機器抽取原則入條、A-DM35 補件、**STALE 實測失敗** | [handoff/26_extraction_principle.md](handoff/26_extraction_principle.md)、[26a](handoff/26a_materials_landed.md) | [upstream/26_extraction_principle.md](upstream/26_extraction_principle.md) | R-G35／R-G36（全域）；R-G25 適用註記 | A-DM35 補件；A-DM36 新增；A6 解除；A7／A8 新增 | **停止條件 66／67 皆觸發；24-4／24-5 未執行** |
 | 27 | 2026-08-25 | A8 解除、STALE 乙案修畢、24-4／24-5 完成 | [handoff/27_stale_fix.md](handoff/27_stale_fix.md) | [upstream/27_stale_fix.md](upstream/27_stale_fix.md) | R-DM54；R-G16 口徑指標 | A-DM37 新增；A-DM35 結案；DR-DM9 重擬 | **停止條件全 70 條無一觸發；綁定 entries: 12／12 of 12；STALE 誘發測試報 1** |
+| 28 | 2026-08-25 | CFTS_013 全文驗明、矩陣判讀、**rvc-01（007／008 六條）** | [handoff/28_cfts013_full_and_rvc.md](handoff/28_cfts013_full_and_rvc.md) | [upstream/28_cfts013_full_and_rvc.md](upstream/28_cfts013_full_and_rvc.md) | （無新條文） | A-DM38／A-DM39 新增；DR-DM11 開立；A9／A10、B17–B20 新增 | **停止條件 71 觸發（A3 停手）；rvc-01 六條，lint 20 項行計 0；綁定 entries: 13** |
 
 ## 02 輪要點
 
@@ -621,3 +622,63 @@ LIST/ENTER 停用、觸控忽略）都在那三列。**以編號為唯一判準�
 > §七第 3 項是本輪自己開的缺口：反向查證把 CFTS013 之溫度門檻
 > （56／60）寫進了 `data/` 檔。登記不是代入，`side` 欄與 sidecar
 > 都寫明了 —— **但停止條件 60 只掃 TC 與 `batch_context.md`，不掃 `data/`。**
+
+## 28 輪要點
+
+三項任務互不阻塞：A（CFTS_013）停在 A3，B／C 完成。
+
+### A —— DR-DM4 求的三個條號，是**另一套編號**
+
+CFTS_013 全文之條號 **117 個相異，位數分布 100% 為 7 位**
+（`4819633`…`5423093`）。`629`／`952` 連裸子字串都 0 次。
+
+**佐證**：其集合**含 `4820282`** —— 那正是 CFTS_020 `1.11.2.2` 之
+`{4820282}`。**兩份文件共用同一個 7 位編號空間**（Polarion 全域 id）。
+
+即 **A-DM39：不是「有沒有這一條」，是兩套編號。** 求 3 位條號可能永遠
+查無，DR-DM4 之標的須重擬。**A-DM38**：CFTS_013 為 `26PI2.5 Jun`，
+CFTS_020 為 `26PI1.5 Mar`，晚三個月且屬下一個 PI 家族。
+
+**A4／A5 之副產品**：`{CFTS013-XXX}` 與 `CFTS013-967` 在 CFTS_013 本身
+**0 命中** —— 佔位符是 CFTS_020 側之未填欄，不是 CFTS_013 側之缺頁。
+A-DM37 之兩句樣板殘句於全文 0 命中，**分類不變**（SYSRA 側殘渣）。
+
+> **A3 停手之代價是真的**：本檔有 `1.5.1 Activating the DCSD Display Hot
+> Algorithm {4943080}` —— **標題逐字即 DR-DM4 想要的東西**，而 DR-DM4
+> 已開三輪。停止條件 71 說停 A3，我停了。一句「續行 A3」即可解封。
+
+### B —— 矩陣是類別制，含 **0 個 PU 編號**
+
+交集 0、僅清單有 1332 —— 這三個數字說的是同一件事：**兩份文件以不同的
+鍵在講話**。接合點在**類別碼**：清單 `Main` 欄 5，**1272／1341 = 94.9%**
+帶單一矩陣類別；`PU0517`／`PU0130` 皆為 `1T`。
+
+**DR-DM2 在原理上可機器化**：明序清單（p4）＋ N×N 表（p10）× 欄 5 之類別碼。
+
+B3 之問法須改：矩陣以 id 無關之方式定義優先序，故 popup 增刪**不使其失效**；
+會使其失效的是類別詞彙漂移，實測為 **0**。
+
+**B17（新）**：矩陣對 `Cat. SL` 之位置**三處說法不同** —— p4 排在 `Cat. X`
+之下、p9 稱 `is maximum priority`、p10 稱 `stacked under RVC`。
+**DR-DM2 即使答覆了，這個不一致仍在。**
+
+### C —— `rvc-01` 六條
+
+007 三條（進入／還原／負向）、008 三條（前態 OFF 之進入／目的態 OFF 之還原／
+過渡畫面期間之進入）。**六條皆寫 DCSD 側 raw 值** —— 所引六條之逐字皆為
+短拼法（`[RR_CMRA]` → 3、`[ON]` → 1、`[OFF]` → 0），依 A-DM35 之條款層級判定。
+HU 側 `$TGW_DISP_STAT$` 一律不寫 raw（DR-DM9(b)）。
+
+**007／008 之切分是本層的判斷**：CFTS_020 全文 `static` 0 命中、`dynamic`
+1 命中，SYS2 之 12 列同時錨到兩個 leaf 且錨據相同。本層以「前態／目的態」
+切分並揭露之。**停止條件 72 未觸發，但其判準在本批無標的** ——
+037 八條之外部引用 0/8，不引章節。**不是斷裂，是不可區分**，
+而後者會讓人以為追溯成立。
+
+**DR-DM11（新，HIGH）**：037 之 007 要倒車檔訊號，CFTS_020 之 24 條適用
+條文一律寫 `if the Rear View Camera is to be displayed`。
+2021 矩陣 p8 有逐字之 `Gear in R` —— **看得到而不能用**（HU 側文件，
+不得混引）。**這是本輪最想抄而沒抄的一句。**
+
+lint 二十項行計 0（I-sibling 有母體，0 為實測）；`check_disclosure` 雙向 0；
+綁定 `entries: 13`／13 of 13；母本 sha 未變。
