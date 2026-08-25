@@ -14,7 +14,8 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-VC5 | 下放包 01 §3.3 與 repo 037 複本不一致（A-VC1 之成因）| **RESOLVED（包 02 §一）** | — |
 | A-VC6 | `recon.py` 於 `spec_reference_template: null` 崩潰 | **RESOLVED（R-VC8）** | — |
 | A-VC7 | 規格 PDF 之位元組數與下放包 01 §3.1 不符 | **RESOLVED（R-VC7）** | — |
-| A-VC8 | `recon.py` 缺 `leaf_count` assertion | PENDING | Tier 2（工具修法，不得併入 R-VC8）|
+| A-VC8 | `recon.py` 缺 `leaf_count` assertion | PENDING | 全域排程（包 03 §五）|
+| A-VC9 | 037 Priority 按章節整批賦值 | PENDING | 待 DR-VC7 |
 
 ---
 
@@ -341,7 +342,85 @@ Vehicle Category 為首個使三者分離之 feature。
 （145 / 117 / 79）之註解。**工具修法本身未實作**（R-VC9 明文：
 不得併入 R-VC8 之授權範圍）。
 
-狀態：PENDING。
+**裁定（下放包 03 §五第 4 項，Pei 2026-08-25）—— 維持 PENDING，不排入本 feature**
+
+處置同 A-VC4。理由：117 之守護目前由 T4／T12 之**集合相等**判定承擔
+（非計數相等 —— 「數目對但成員錯」會被抓到），且每包負 R-VC9 之揭露義務。
+此為人工守護，但**不是無守護**；在此前提下，工具修法之急迫性不足以
+插隊全域排程。
+
+**授權邊界再申明**：R-VC8 之修法不得順手併入 A-VC4（`new_feature.py`
+之 abbr 推導）、A-TM04（slugify）、A-VC8（本項）。四者標的各異，
+併案即失去授權邊界。已遵守 —— T13 之修法僅動 R-VC8 所指之二處。
+
+狀態：PENDING（全域排程）。
+
+---
+
+## A-VC9 —— 037 Priority 按章節整批賦值（新立，下放包 03 §三）
+
+條文逐字：
+
+```
+A-VC9（037 Priority 按章節整批賦值）
+
+037 `Analysis Report` 欄 18 `Priority` 於 117 個 leaf 之分布，
+按規格章節完全分群，每章內部無任何例外：
+
+  章  4  Glove Box – Activation         High    4
+  章  5  Glove Box – Activation Error   High    3
+  章  6  Glove Box – Deactivation       High    3
+  章  7  Glove Box – Deactivation Error High    2
+  章 13  Settings Behavior/Ignition     High   16
+  章  2  Vehicle Category Notes         Medium 24
+  章  3  Controls                       Medium 17
+  章 11  Settings Templates / Notes     Medium 20
+  章 12  Settings                       Medium 25
+  章 14  EPB Service Mode               Medium  2
+  章 16  Cabrio Widget                  Low     1
+
+即：Priority 之粒度為「章」，非「leaf」。
+
+佐證其粒度不足之一例：章 14（EPB Service Mode，煞車服務模式，
+含車輛在動時之禁入條件）與章 12（Settings，含字型與清單排列）
+同為 Medium。二者於 IN §10.2 之 rubric 下語意相距甚遠。
+
+另：欄 18 為 037 九個分析欄中**唯一無對應 Description-Action 欄**者
+（欄 10/11、12/13、14/15、16/17 皆成對，欄 18 無配對），
+故 037 未載其判準。
+
+處置：不回報為缺陷 —— 按章賦值可能是上游之刻意作法。
+以 DR-VC7 查詢其判準；在回覆前，依 R-VC11(b) 僅取其為邊界。
+
+狀態：PENDING（待 DR-VC7）。
+```
+
+**執行層獨立重測（2026-08-25）—— 條文所載逐項相符**
+
+量測：以 037 `HMI Source ID` 之章節號分群 117 個 leaf，取欄 18 之值集合。
+
+| 章 | 名稱 | leaf | Priority 分布 | 章內單一值 |
+|---|---|---|---|---|
+| 2 | Vehicle Category Notes | 24 | `{'Medium': 24}` | 是 |
+| 3 | Controls | 17 | `{'Medium': 17}` | 是 |
+| 4 | Glove Box – Activation | 4 | `{'High': 4}` | 是 |
+| 5 | Glove Box – Activation Error | 3 | `{'High': 3}` | 是 |
+| 6 | Glove Box – Deactivation | 3 | `{'High': 3}` | 是 |
+| 7 | Glove Box – Deactivation Error | 2 | `{'High': 2}` | 是 |
+| 11 | Settings Templates / Notes | 20 | `{'Medium': 20}` | 是 |
+| 12 | Settings | 25 | `{'Medium': 25}` | 是 |
+| 13 | Settings Behavior and Ignition | 16 | `{'High': 16}` | 是 |
+| 14 | EPB Service Mode | 2 | `{'Medium': 2}` | 是 |
+| 16 | Cabrio Widget | 1 | `{'Low': 1}` | 是 |
+
+合計 `{'Medium': 88, 'High': 28, 'Low': 1}` —— 與條文逐字相符。
+**十一章全部章內單一值，零例外。**
+
+欄位配對亦已實測：037 之 20 欄中，欄 10/11、12/13、14/15、16/17 皆成對，
+**欄 18 `Priority` 為唯一無 Description-Action 配對者** —— 條文所載成立。
+
+狀態：PENDING（待 DR-VC7）。依 R-VC11(b)，回覆前僅取其為邊界，
+不作映射來源。T24 之草案已依此執行。
 
 ---
 

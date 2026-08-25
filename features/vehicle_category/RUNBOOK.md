@@ -31,9 +31,15 @@ Run recon; outputs `RECON.md` + pre-filled `DECISIONS.md`.
 - [ ] **R-VC6(b)** —— 037 欄 11／13／15／17（Description-Action for
       Feasibility／Impact／Risk Factor／Reusable）之描述文字納入資料建置，
       作為 `reasoning` 與 test_item 括號下半之素材來源
-- [ ] **R-VC6(a)** —— 037 欄 18 `Priority`（leaf 上為 Medium 88 / High 28 /
-      Low 1）對 TC `priority`（IN §10.2 之 P0–P3）之映射規則
-      **待裁**；在裁定前不得忽略該欄本地推導
+- [ ] **R-VC11** —— TC `priority` 之判定（R-VC6(a) 之凍結已解除）。
+      **不得建立 High/Medium/Low → P0–P3 之機械映射表**（A-VC9：該欄
+      粒度為「章」，判準不明）。三層決定：(a) IN §10.2 rubric 逐 TC 判；
+      (b) 037 之值為**邊界** —— High 不得低於 P1、Low 不得高於 P3、
+      Medium 不設界；(c) 語意相悖者於 `reasoning` 記明分歧與依據。
+      草案已備：`data/priority_draft.tsv`（117 leaf，**待裁**，
+      未寫入任何 TC 欄位）
+- [ ] **R-VC12 一** —— 表 B 母體為 **17 節**（非 18；§16.1 已改列 (a)）。
+      草稿：`data/tableB_draft.md`；最終措辭待 DR-VC3 回覆
 
 ## Phase 5 — Pilot (Tier 2)
 - [ ] Pilot batch: ___  → Pei review → prompt adjustments recorded here
