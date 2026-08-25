@@ -184,79 +184,79 @@ SWE1-VC-TimeandDateSettings-006	Units and Cameras	Time and Date Settings	SYS-RA-
 SWE1-VC-TimeandDateSettings-007	Units and Cameras	Time and Date Settings	SYS-RA-VF230_V1-588	W0					0	0
 SWE1-VC-TimeandDateSettings-008	Units and Cameras	Time and Date Settings	SYS-RA-VF230_V1-589	W0					0	0
 SWE1-VC-HourMode-010	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-591	W0					0	0
-SWE1-VC-HourMode-011	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-592	W0					0	0
-SWE1-VC-HourMode-012	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-593	W0					0	0
-SWE1-VC-HourMode-013	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-594	W0					0	0
+SWE1-VC-HourMode-011	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-592	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-HourMode-012	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-593	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-HourMode-013	Units and Cameras	Hour Mode	SYS-RA-VF230_V1-594	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
 SWE1-VC-AutoDoorLocks-015	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-596	W0					0	0
 SWE1-VC-AutoDoorLocks-016	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-597	W0					0	0
-SWE1-VC-AutoDoorLocks-017	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-598	W0					0	0
-SWE1-VC-AutoDoorLocks-018	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-599	W0					0	0
-SWE1-VC-AutoDoorLocks-019	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-600	W0					0	0
+SWE1-VC-AutoDoorLocks-017	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-598	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-AutoDoorLocks-018	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-599	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-AutoDoorLocks-019	Units and Cameras	Auto Door Locks	SYS-RA-VF230_V1-600	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
 SWE1-VC-DistanceUnit-021	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-602	W0					0	0
-SWE1-VC-DistanceUnit-022	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-603	W0					0	0
-SWE1-VC-DistanceUnit-023	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-604	W0					0	0
-SWE1-VC-DistanceUnit-024	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-605	W0					0	0
+SWE1-VC-DistanceUnit-022	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-603	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-DistanceUnit-023	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-604	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-DistanceUnit-024	Units and Cameras	Distance Unit	SYS-RA-VF230_V1-605	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
 SWE1-VC-SpeedUnit-026	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-607	W0					0	0
-SWE1-VC-SpeedUnit-027	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-608	W0					0	0
-SWE1-VC-SpeedUnit-028	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-609	W0					0	0
-SWE1-VC-SpeedUnit-029	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-610	W0					0	0
+SWE1-VC-SpeedUnit-027	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-608	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-SpeedUnit-028	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-609	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-SpeedUnit-029	Units and Cameras	Speed Unit	SYS-RA-VF230_V1-610	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
 SWE1-VC-ConsumptionUnit-031	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-612	W0					0	0
 SWE1-VC-ConsumptionUnit-032	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-613	W0					0	0
-SWE1-VC-ConsumptionUnit-033	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-614	W0					0	0
-SWE1-VC-ConsumptionUnit-034	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-615	W0					0	0
-SWE1-VC-ConsumptionUnit-035	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-616	W0					0	0
-SWE1-VC-ConsumptionUnit-036	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-617	W0					0	0
-SWE1-VC-ConsumptionUnit-037	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-618	W0					0	0
+SWE1-VC-ConsumptionUnit-033	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-614	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-ConsumptionUnit-034	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-615	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-ConsumptionUnit-035	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-616	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-ConsumptionUnit-036	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-617	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-ConsumptionUnit-037	Units and Cameras	Consumption Unit	SYS-RA-VF230_V1-618	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
 SWE1-VC-UnitEnergy-039	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-620	W0					0	0
-SWE1-VC-UnitEnergy-040	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-621	W0					0	0
-SWE1-VC-UnitEnergy-041	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-622	W0					0	0
-SWE1-VC-UnitEnergy-042	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-623	W0					0	0
-SWE1-VC-UnitEnergy-043	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-624	W0					0	0
-SWE1-VC-UnitEnergy-044	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-625	W0					0	0
+SWE1-VC-UnitEnergy-040	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-621	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-UnitEnergy-041	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-622	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-UnitEnergy-042	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-623	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-UnitEnergy-043	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-624	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-UnitEnergy-044	Units and Cameras	Unit Energy	SYS-RA-VF230_V1-625	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
 SWE1-VC-TemperatureUnit-046	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-627	W0					0	0
 SWE1-VC-TemperatureUnit-047	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-628	W0					0	0
-SWE1-VC-TemperatureUnit-048	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-629	W0					0	0
-SWE1-VC-TemperatureUnit-049	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-630	W0					0	0
-SWE1-VC-TemperatureUnit-050	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-631	W0					0	0
+SWE1-VC-TemperatureUnit-048	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-629	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-TemperatureUnit-049	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-630	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-TemperatureUnit-050	Units and Cameras	Temperature Unit	SYS-RA-VF230_V1-631	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
 SWE1-VC-SurroundViewCameraDelay-053	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-845	W0					0	0
 SWE1-VC-SurroundViewCameraDelay-054	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-846	W0					0	0
-SWE1-VC-SurroundViewCameraDelay-055	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-847	W0					0	0
-SWE1-VC-SurroundViewCameraDelay-056	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-848	W0					0	0
-SWE1-VC-SurroundViewCameraDelay-057	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-849	W0					0	0
+SWE1-VC-SurroundViewCameraDelay-055	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-847	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-SurroundViewCameraDelay-056	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-848	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-SurroundViewCameraDelay-057	Units and Cameras	Surround View Camera Delay	SYS-RA-VF230_V1-849	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
 SWE1-VC-SurroundViewCameraGuidelines-059	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-851	W0					0	0
 SWE1-VC-SurroundViewCameraGuidelines-060	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-852	W0					0	0
-SWE1-VC-SurroundViewCameraGuidelines-061	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-853	W0					0	0
-SWE1-VC-SurroundViewCameraGuidelines-062	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-854	W0					0	0
-SWE1-VC-SurroundViewCameraGuidelines-063	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-855	W0					0	0
+SWE1-VC-SurroundViewCameraGuidelines-061	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-853	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-SurroundViewCameraGuidelines-062	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-854	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-SurroundViewCameraGuidelines-063	Units and Cameras	Surround View Camera Guidelines	SYS-RA-VF230_V1-855	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
 SWE1-VC-TurnSignalActivatedBlindSpotCameraView-065	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1094	W0					1	0
 SWE1-VC-TurnSignalActivatedBlindSpotCameraView-066	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1095	W0					1	0
-SWE1-VC-TurnSignalActivatedBlindSpotCameraView-067	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1096	W0					0	0
-SWE1-VC-TurnSignalActivatedBlindSpotCameraView-068	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1097	W0					0	0
-SWE1-VC-TurnSignalActivatedBlindSpotCameraView-069	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1098	W0					1	0
-SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-071	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1100	W1		PROXI 參數之值域無來源：Turn_Signal_Camera_View	PROXI:Turn_Signal_Camera_View=PENDING	DR-34	1	0
-SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-072	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1101	W1		PROXI 參數之值域無來源：Turn_Signal_Camera_View	PROXI:Turn_Signal_Camera_View=PENDING	DR-34	1	0
-SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-073	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1102	W0					0	0
-SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-074	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1103	W0					0	0
-SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-075	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1104	W0					0	0
-SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-076	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1105	W0					1	0
-SWE1-VC-ParkSenseBasedCameraActivation-078	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1107	W1		PROXI 參數之值域無來源：Parksense_Camera_View	PROXI:Parksense_Camera_View=PENDING	DR-34	1	0
-SWE1-VC-ParkSenseBasedCameraActivation-079	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1108	W1		PROXI 參數之值域無來源：Parksense_Camera_View	PROXI:Parksense_Camera_View=PENDING	DR-34	1	0
-SWE1-VC-ParkSenseBasedCameraActivation-080	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1109	W1		PROXI 參數之值域無來源：Parksense_Camera_View	PROXI:Parksense_Camera_View=PENDING	DR-34	0	0
-SWE1-VC-ParkSenseBasedCameraActivation-081	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1110	W0					0	0
-SWE1-VC-ParkSenseBasedCameraActivation-082	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1111	W0					1	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraView-067	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1096	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_FD_1` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraView-068	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1097	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_FD_1` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraView-069	Units and Cameras	Turn Signal Activated Blind Spot Camera View	SYS-RA-VF230_V1-1098	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP2` 一層，條文未指出其下何訊號（DR-37）		DR-37	1	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-071	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1100	W0					1	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-072	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1101	W0					1	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-073	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1102	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_FD_1` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-074	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1103	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_FD_1` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-075	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1104	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_FD_1` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-076	Units and Cameras	Turn Signal Activated Blind Spot Camera View with Trailer Option	SYS-RA-VF230_V1-1105	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP2` 一層，條文未指出其下何訊號（DR-37）		DR-37	1	0
+SWE1-VC-ParkSenseBasedCameraActivation-078	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1107	W0					1	0
+SWE1-VC-ParkSenseBasedCameraActivation-079	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1108	W0					1	0
+SWE1-VC-ParkSenseBasedCameraActivation-080	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1109	W0					0	0
+SWE1-VC-ParkSenseBasedCameraActivation-081	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1110	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_FD_1` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-ParkSenseBasedCameraActivation-082	Units and Cameras	ParkSense Based Camera Activation	SYS-RA-VF230_V1-1111	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP2` 一層，條文未指出其下何訊號（DR-37）		DR-37	1	0
 SWE1-VC-ParkSense-084	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2042	W0					1	0
 SWE1-VC-ParkSense-085	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2043	W0					1	0
-SWE1-VC-ParkSense-086	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2044	W0					0	0
-SWE1-VC-ParkSense-087	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2045	W0					0	0
-SWE1-VC-ParkSense-088	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2046	W0					1	0
+SWE1-VC-ParkSense-086	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2044	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-ParkSense-087	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2045	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-ParkSense-088	Units and Cameras	Park Sense	SYS-RA-VF230_V1-2046	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	1	0
 SWE1-VC-SuspensionAutoEntryorExit-090	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2171	W0					0	0
 SWE1-VC-SuspensionAutoEntryorExit-091	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2172	W0					0	0
 SWE1-VC-SuspensionAutoEntryorExit-092	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2173	W0					0	0
-SWE1-VC-SuspensionAutoEntryorExit-093	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2174	W0					0	0
-SWE1-VC-SuspensionAutoEntryorExit-094	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2175	W0					0	0
-SWE1-VC-SuspensionAutoEntryorExit-095	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2176	W0					0	0
-SWE1-VC-6AuxSwitches-002	Auxiliary Switches	6 Aux Switches	SYS-RA-VF230_V1-2259	W1		PROXI 參數之值域無來源：AUX_Switch_Types	PROXI:AUX_Switch_Types=PENDING	DR-34	1	0
-SWE1-VC-6AuxSwitches-003	Auxiliary Switches	6 Aux Switches	SYS-RA-VF230_V1-2260	W1		PROXI 參數之值域無來源：AUX_Switch_Types	PROXI:AUX_Switch_Types=PENDING	DR-34	1	0
+SWE1-VC-SuspensionAutoEntryorExit-093	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2174	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-SuspensionAutoEntryorExit-094	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2175	W2	B8-signal-incomplete	訊號引用只到 message `TELEMATIC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-SuspensionAutoEntryorExit-095	Suspension and Comfort	Suspension Auto Entry or Exit	SYS-RA-VF230_V1-2176	W2	B8-signal-incomplete	訊號引用只到 message `IPC_VEHICLE_SETUP` 一層，條文未指出其下何訊號（DR-37）		DR-37	0	0
+SWE1-VC-6AuxSwitches-002	Auxiliary Switches	6 Aux Switches	SYS-RA-VF230_V1-2259	W0					1	0
+SWE1-VC-6AuxSwitches-003	Auxiliary Switches	6 Aux Switches	SYS-RA-VF230_V1-2260	W0					1	0
 SWE1-VC-SWITCH1PowerMode-005	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2262	W0			AUX1_PWRMD_Req=2-DBC		0	0
 SWE1-VC-SWITCH1PowerMode-006	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2263	W0			AUX1_PWRMD_Req=2-DBC		0	0
 SWE1-VC-SWITCH1PowerMode-007	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2264	W0			AUX1_PWRMD=2-DBC		1	0
@@ -303,13 +303,13 @@ SWE1-VC-SWITCH5HoldLastState-071	Auxiliary Switches	SWITCH 5 Hold Last State	SYS
 SWE1-VC-SWITCH5HoldLastState-072	Auxiliary Switches	SWITCH 5 Hold Last State	SYS-RA-VF230_V1-2328	W0			AUX5_HLEnbl=2-DBC		1	0
 SWE1-VC-SWITCH6HoldLastState-074	Auxiliary Switches	SWITCH 6 Hold Last State	SYS-RA-VF230_V1-2330	W0			AUX6_HLEnbl_Req=2-DBC		0	0
 SWE1-VC-SWITCH6HoldLastState-075	Auxiliary Switches	SWITCH 6 Hold Last State	SYS-RA-VF230_V1-2331	W0			AUX6_HLEnbl_Req=2-DBC		0	0
-SWE1-VC-RearGuidanceLightingwithApproach-078	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2597	W1		PROXI 參數之值域無來源：Utility_Lighting	PROXI:Utility_Lighting=PENDING	DR-34	0	0
-SWE1-VC-RearGuidanceLightingwithApproach-079	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2598	W1		PROXI 參數之值域無來源：Utility_Lighting	PROXI:Utility_Lighting=PENDING	DR-34	0	0
+SWE1-VC-RearGuidanceLightingwithApproach-078	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2597	W0					0	0
+SWE1-VC-RearGuidanceLightingwithApproach-079	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2598	W0					0	0
 SWE1-VC-RearGuidanceLightingwithApproach-080	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2599	W0			Rear_Lights_with_Approach_Req=2-DBC		0	0
 SWE1-VC-RearGuidanceLightingwithApproach-081	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2600	W0			Rear_Lights_with_Approach_Req=2-DBC		0	0
 SWE1-VC-RearGuidanceLightingwithApproach-082	Auxiliary Switches	Rear Guidance Lighting with Approach	SYS-RA-VF230_V1-2601	W0			Rear_Lights_with_Approach=2-DBC		0	0
-SWE1-VC-RearGuidanceLightStatus-084	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2603	W1		PROXI 參數之值域無來源：Utility_Lighting	PROXI:Utility_Lighting=PENDING	DR-34	0	0
-SWE1-VC-RearGuidanceLightStatus-085	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2604	W1		PROXI 參數之值域無來源：Utility_Lighting	PROXI:Utility_Lighting=PENDING	DR-34	0	0
+SWE1-VC-RearGuidanceLightStatus-084	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2603	W0					0	0
+SWE1-VC-RearGuidanceLightStatus-085	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2604	W0					0	0
 SWE1-VC-RearGuidanceLightStatus-086	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2605	W0			Rear_Guidance_Light_Status_Req=2-DBC		0	0
 SWE1-VC-RearGuidanceLightStatus-087	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2606	W0			Rear_Guidance_Light_Status_Req=2-DBC		0	0
 SWE1-VC-RearGuidanceLightStatus-088	Auxiliary Switches	Rear Guidance Light Status	SYS-RA-VF230_V1-2607	W0			Rear_Guidance_Light_Status=2-DBC		0	0
@@ -334,8 +334,8 @@ SWE1-VC-IlluminatedApproach-005	Approach and Tailgate	Illuminated Approach	SYS-R
 SWE1-VC-IlluminatedApproach-006	Approach and Tailgate	Illuminated Approach	SYS-RA-VF230_V1-2135	W0			Illuminated_Approach_Req=2-DBC		0	0
 SWE1-VC-IlluminatedApproach-007	Approach and Tailgate	Illuminated Approach	SYS-RA-VF230_V1-2136	W0			Illuminated_Approach_Req=2-DBC		0	0
 SWE1-VC-IlluminatedApproach-008	Approach and Tailgate	Illuminated Approach	SYS-RA-VF230_V1-2137	W0			Illuminated_Approach=2-DBC		0	0
-SWE1-VC-PaddleShifter-010	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2139	W1		PROXI 參數之值域無來源：Paddle_Shifter_Menu	PROXI:Paddle_Shifter_Menu=PENDING	DR-34	0	0
-SWE1-VC-PaddleShifter-011	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2140	W1		PROXI 參數之值域無來源：Paddle_Shifter_Menu	PROXI:Paddle_Shifter_Menu=PENDING	DR-34	0	0
+SWE1-VC-PaddleShifter-010	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2139	W0					0	0
+SWE1-VC-PaddleShifter-011	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2140	W0					0	0
 SWE1-VC-PaddleShifter-012	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2141	W0			Paddle_Shifter_Req=2-DBC		0	0
 SWE1-VC-PaddleShifter-013	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2142	W0			Paddle_Shifter_Req=2-DBC		0	0
 SWE1-VC-PaddleShifter-014	Approach and Tailgate	Paddle Shifter	SYS-RA-VF230_V1-2143	W0			Paddle_Shifter=2-DBC		0	0
@@ -371,8 +371,8 @@ SWE1-VC-ChargePowerLevel-048	Approach and Tailgate	Charge Power Level	SYS-RA-VF2
 SWE1-VC-ChargePowerLevel-049	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2391	W0			PwrLevReq=2-DBC		0	0
 SWE1-VC-ChargePowerLevel-050	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2392	W0			PwrLevReq=2-DBC		0	0
 SWE1-VC-ChargePowerLevel-051	Approach and Tailgate	Charge Power Level	SYS-RA-VF230_V1-2393	W0			PwrLev=2-DBC		0	0
-SWE1-VC-RearSeatReminder-053	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2395	W1		PROXI 參數之值域無來源：FOA_Presence	PROXI:FOA_Presence=PENDING	DR-34	0	0
-SWE1-VC-RearSeatReminder-054	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2396	W1		PROXI 參數之值域無來源：FOA_Presence	PROXI:FOA_Presence=PENDING	DR-34	0	0
+SWE1-VC-RearSeatReminder-053	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2395	W0					0	0
+SWE1-VC-RearSeatReminder-054	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2396	W0					0	0
 SWE1-VC-RearSeatReminder-055	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2397	W0			FOA_Alert_Type_Req=2-DBC		0	0
 SWE1-VC-RearSeatReminder-056	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2398	W0			FOA_Alert_Type=2-DBC		0	0
 SWE1-VC-RearSeatReminder-057	Approach and Tailgate	Rear Seat Reminder	SYS-RA-VF230_V1-2399	W0			FOA_Alert_Type_Req=2-DBC		0	0
@@ -430,7 +430,7 @@ SWE1-VC-SuspensionDefaultRideHeight-023	Suspension and Comfort	Suspension Defaul
 SWE1-VC-SuspensionDefaultRideHeight-024	Suspension and Comfort	Suspension Default Ride Height	SYS-RA-VF230_V1-2594	W0			Default_Ride_Height_Req=2-DBC		0	0
 SWE1-VC-SuspensionDefaultRideHeight-025	Suspension and Comfort	Suspension Default Ride Height	SYS-RA-VF230_V1-2595	W0			Default_Ride_Height=2-DBC		0	0
 SWE1-VC-4AUXSwitches-027	Auxiliary Switches	4 AUX Switches	SYS-RA-VF230_V1-2208	W0					1	0
-SWE1-VC-4AUXSwitches-028	Auxiliary Switches	4 AUX Switches	SYS-RA-VF230_V1-2209	W1		PROXI 參數之值域無來源：AUX_Switch_Types	PROXI:AUX_Switch_Types=PENDING	DR-34	1	0
+SWE1-VC-4AUXSwitches-028	Auxiliary Switches	4 AUX Switches	SYS-RA-VF230_V1-2209	W0					1	0
 SWE1-VC-SWITCH1PowerMode-030	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2211	W0			AUX1_PWRMD_Req=2-DBC		0	0
 SWE1-VC-SWITCH1PowerMode-031	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2212	W0			AUX1_PWRMD_Req=2-DBC		0	0
 SWE1-VC-SWITCH1PowerMode-032	Auxiliary Switches	SWITCH 1 Power Mode	SYS-RA-VF230_V1-2213	W0			AUX1_PWRMD=2-DBC		1	0
@@ -530,13 +530,13 @@ SWE1-VC-TrailerBrakeType034	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_
 SWE1-VC-TrailerBrakeType035	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2443	W0			Trail_Brk_Type_Req=2-DBC;Trail_Num_Req=2-DBC		0	0
 SWE1-VC-TrailerBrakeType036	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2444	W0			Trail_Brk_Type_Req=2-DBC		1	0
 SWE1-VC-TrailerBrakeType037	Trailer and Signage	Trailer Brake Type	SYS-RA-VF230_V1-2445	W0			Trail_Brk_Type_Req=2-DBC		0	0
-SWE1-VC-AutomaticTrailerLight Check-039	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2447	W1		PROXI 參數之值域無來源：Trailer_Light_Check	PROXI:Trailer_Light_Check=PENDING	DR-34	1	0
-SWE1-VC-AutomaticTrailerLight Check-040	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2448	W1		PROXI 參數之值域無來源：Trailer_Light_Check	PROXI:Trailer_Light_Check=PENDING	DR-34	1	0
+SWE1-VC-AutomaticTrailerLight Check-039	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2447	W0					1	0
+SWE1-VC-AutomaticTrailerLight Check-040	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2448	W0					1	0
 SWE1-VC-AutomaticTrailerLight Check-041	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2449	W0			Auto_Trailer_Light_Check_Req=2-DBC		0	0
 SWE1-VC-AutomaticTrailerLight Check-042	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2450	W0			Auto_Trailer_Light_Check_Req=2-DBC		0	0
 SWE1-VC-AutomaticTrailerLight Check-043	Trailer and Signage	Automatic Trailer Light Check	SYS-RA-VF230_V1-2451	W0			Trailer_Light_Check=2-DBC		1	0
-SWE1-VC-Blind Spot with Trailer Detection-045	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2465	W1		PROXI 參數之值域無來源：Blindspot_Trailer_Detection	PROXI:Blindspot_Trailer_Detection=PENDING	DR-34	1	0
-SWE1-VC-Blind Spot with Trailer Detection-046	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2466	W1		PROXI 參數之值域無來源：Blindspot_Trailer_Detection	PROXI:Blindspot_Trailer_Detection=PENDING	DR-34	1	0
+SWE1-VC-Blind Spot with Trailer Detection-045	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2465	W0					1	0
+SWE1-VC-Blind Spot with Trailer Detection-046	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2466	W0					1	0
 SWE1-VC-Blind Spot with Trailer Detection-047	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2467	W0			Trailer_detection_blind_spot_Req=2-DBC		0	0
 SWE1-VC-Blind Spot with Trailer Detection-048	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2468	W0			Trailer_detection_blind_spot_Req=2-DBC		0	0
 SWE1-VC-Blind Spot with Trailer Detection-049	Trailer and Signage	Blind Spot with Trailer Detection	SYS-RA-VF230_V1-2469	W0			Trailer_detection_blind_spot=2-DBC		1	0
@@ -601,13 +601,13 @@ SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-110	Trailer and Signage	Traff
 SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-111	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2531	W0			TSI_Offset_Kph_Req=2-DBC		0	0
 SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-112	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2532	W0			TSI_Offset_Kph_Req=2-DBC		0	0
 SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-113	Trailer and Signage	Traffic Sign Assist Offset - non-NAFTA Setting	SYS-RA-VF230_V1-2533	W0			TSI_Offset_Kph=2-DBC		1	0
-SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1119	W1		PROXI 參數之值域無來源：INVM_LIN_Module	PROXI:INVM_LIN_Module=PENDING	DR-34	1	0
-SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-116	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1120	W1		PROXI 參數之值域無來源：INVM_LIN_Module	PROXI:INVM_LIN_Module=PENDING	DR-34	1	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1119	W0					1	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-116	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1120	W0					1	0
 SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1121	W0			WorksiteINVM_Visual_LFW_Req=2-DBC		0	0
 SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-118	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1122	W0			WorksiteINVM_Visual_LFW_Req=2-DBC		0	0
 SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-119	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Visual Warning	SYS-RA-VF230_V1-1123	W0			WorksiteINVM_Visual_LFW=2-DBC		1	0
-SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-121	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1125	W1		PROXI 參數之值域無來源：INVM_LIN_Module	PROXI:INVM_LIN_Module=PENDING	DR-34	1	0
-SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-122	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1126	W1		PROXI 參數之值域無來源：INVM_LIN_Module	PROXI:INVM_LIN_Module=PENDING	DR-34	1	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-121	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1125	W0					1	0
+SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-122	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1126	W0					1	0
 SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-123	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1127	W0			WorksiteINVM_Audible_LFW_Req=2-DBC		0	0
 SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1128	W0			WorksiteINVM_Audible_LFW_Req=2-DBC		0	0
 SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125	Trailer and Signage	Warnings for Low Fuel Inverter Shutdown - Audible Warning	SYS-RA-VF230_V1-1129	W0			WorksiteINVM_Audible_LFW=2-DBC		1	0
@@ -617,8 +617,8 @@ SWE1-VC-EnhancedDisplaySynchronization-129	Trailer and Signage	Enhanced Display 
 SWE1-VC-EnhancedDisplaySynchronization-130	Trailer and Signage	Enhanced Display Synchronization	SYS-RA-VF230_V1-1134	W0			Display_Synch_Req=2-DBC		0	0
 SWE1-VC-EnhancedDisplaySynchronization-131	Trailer and Signage	Enhanced Display Synchronization	SYS-RA-VF230_V1-1135	W0			Display_Synch=2-DBC		1	0
 SWE1-VC-EnhancedDisplaySynchronization-132	Trailer and Signage	Enhanced Display Synchronization	SYS-RA-VF230_V1-1136	W0			Display_Synch=2-DBC		0	0
-SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-134	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1138	W1		PROXI 參數之值域無來源：Digital_CHMSL_Camera_Prsnt	PROXI:Digital_CHMSL_Camera_Prsnt=PENDING	DR-34	0	0
-SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-135	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1139	W1		PROXI 參數之值域無來源：Digital_CHMSL_Camera_Prsnt	PROXI:Digital_CHMSL_Camera_Prsnt=PENDING	DR-34	0	0
+SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-134	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1138	W0					0	0
+SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-135	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1139	W0					0	0
 SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-136	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1140	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
 SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-137	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1141	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0
 SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-138	Trailer and Signage	CHMSL CAMERA DYNAMIC CENTERLINE	SYS-RA-VF230_V1-1142	W2	B5-signal-absent	斷言目標訊號不存在於基線 DBC 且無逐字來源（L-VS2 FAIL）			0	0

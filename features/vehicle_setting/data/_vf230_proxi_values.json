@@ -1,0 +1,4599 @@
+{
+ "CAN node 0 (BCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 1 (ECM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 2 (EPS)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 3 (IPC)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 4 (AGWM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 5 (RRM/LIDAR)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 6 (BSM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 7 (ITM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 8 (DDM/DMM/FDM/UDM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 9 (DPDM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 10 (ECC/ACM/MCM/MHM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 11 (MTA/TCM/DCTM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 12 (SAS/FAD)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 13 (PFTM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 14 (TRSCM/TRSKM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 15 (SRRFR/RDI)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 16 (PAM2/HVRF)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 17 (PDM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 18 (DSM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 19 (ISCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 20 (SRRFL/HEAC)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 21 (ESL)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 22 (GSM/STM/AGSM/DCSM/PESM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 23 (PSM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 24 (PAM/CVADAS)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 25 (EPTO)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 26 (SDM/ORC)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 27 (ASM/ASCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 28 (ADCAM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 29 (AFLM/SLML)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 30 (HALF)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 31  (DCSD)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 32 (TPMS)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 33 (APM4)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 34 (MPAD)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 35 (TBM/FTM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 36 (LTM/ETM/HTM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 37 (DCM/ADCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 38 (MPAD2)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 39 (WCC)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 40 (SPAAK)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 41 (STOM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 42 (FLDHM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 43 (FRDHM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 44 (RLDHM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 45 (RRDHM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 46 (AMP)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 47 (CDM/LSMT)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 48 (CSWM/HMSM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 49 (VTMDMPI)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 50 (ICS/HCPM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 51 (LBSS)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 52 (RBSS)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 53 (SCCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 54 (ASBS)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 55 (CMM/RWSM)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 56 (TTPM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 57 (DASM/PBWM)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 58 (LSMD)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 59 (LSMP)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 60 (GNMM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 61 (CADM2)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 62 (BSM2)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 63 (TTM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 64 (EVCU/EVCU2)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 65 (RFHM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 66 (WCPM2)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 67 (DTCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 68 (FVCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 69 (PLGM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 70 (BPCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 71 (PPIM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 72 (DSCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 73 (OBCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 74 (DALM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 75 (DMSM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 76 (AHLM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 77 (SGCP)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 78 (OCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 79 (NVPM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 80 (TUM/VSIM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 81 (CVPM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 82 (PTGM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 83 (SMMD)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 84 (SMMP)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 85 (VDCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 86 (AHCP)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 87 (MCPC)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 88 (MCPA)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 89 (MCPB)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 90 (ALM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 91 (FPDM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 92 (EBCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 93 (ATMM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 94 (CCDMF)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 95 (ITBM/ITCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 96 (FSM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 97 (PSSM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 98 (HCP)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 99 (APM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 100 (DTV)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 101 (PTCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 102 (CDCM/BTEM)**": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 103 (EMCM/CRCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 104 (TVM/RVCM)**": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 105 (ELSDM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 106 (APM2)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 107 (ECM2/FCPS)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 108 (AAMR/MRGB)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 109 (AAML/FCAPM)*": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 110 (ESEM/EESSM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 111 (LSMRL)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 112 (SGW)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 113 (LSMRR)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 114 (SLMG)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 115 (LRRF)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 116 (NFCD)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 117 (TTEBM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 118 (ANC)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 119 (ICS_R/CCDMR)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 120 (ECC_Rear)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 121 (MSBD/HUDM2)**": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 122 (PHM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 123 (MIM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 124 (CADM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 125 (IDCM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 126 (SLMR)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CAN node 127 (VRM)": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "EOL node 0 (BCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 1 (ECM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 2 (EPS)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 3 (IPC)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 4 (AGWM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 5 (RRM/LIDAR)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 6 (BSM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 7 (ITM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 8 (DDM/DMM/FDM/UDM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 9 (DPDM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 10 (ECC/ACM/MCM/MHM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 11 (MTA/TCM/DCTM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 12 (SAS/FAD)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 13 (PFTM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 14 (TRSCM/TRSKM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 15 (SRRFR/RDI)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 16 (PAM2/HVRF)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 17 (PDM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 18 (DSM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 19 (ISCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 20 (SRRFL/HEAC)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 21 (ESL)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 22 (GSM/STM/AGSM/DCSM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 23 (PSM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 24 (PAM/CVADAS)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 25 (SRRP/EPTO)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 26 (SDM/ORC)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 27 (ASM/ASCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 28 (ADCAM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 29 (AFLM/SLML)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 30 (HALF)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 31  (DCSD)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 32 (TPMS)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 33 (SRRP2/APM4)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 34 (MPAD)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 35 (TBM/FTM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 36 (LTM/ETM/HTM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 37 (DCM/ADCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 38 (MPAD2)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 39 (WCC)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 40 (SPAAK)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 41 (STOM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 42 (FLDHM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 43 (FRDHM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 44 (RLDHM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 45 (RRDHM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 46 (AMP)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 47 (CDM)": {
+  "1": "Has EOL"
+ },
+ "EOL node 48 (CSWM/HMSM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 49 (VTM/DMPI)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 50 (ICS/HCPM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 51 (LBSS)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 52 (RBSS)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 53 (SCCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 54 (ASBS)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 55 (CMM/RWSM)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 56 (TTPM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 57 (DASM/PBWM)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 58 (LSMD)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 59 (LSMP)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 60 (GNMM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 61 (CADM2)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 62 (BSM2)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 63 (TTM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 64 (EVCU/EVCU2)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 65 (RFHM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 66 (WCPM2)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 67 (DTCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 68 (FVCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 69 (PLGM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 70 (BPCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 71 (PPIM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 72 (DSCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 73 (OBCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 74 (DALM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 75 (DMSM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 76 (AHLM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 77 (SGCP)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 78 (OCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 79 (NVPM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 80 (TUM/VSIM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 81 (CVPM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 82 (PTGM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 83 (SMMD)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 84 (SMMP)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 85 (VDCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 86 (AHCP)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 87 (MCPC)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 88 (MCPA)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 89 (MCPB)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 90 (ALM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 91 (FPDM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 92 (EBCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 93 (ATMM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 94 (CCDMF)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 95 (ITBM/ITCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 96 (FSM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 97 (PSSM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 98  (HCP)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 99 (APM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 100 (DTV)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 101 (PTCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 102  (CDCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 103 (EMCM/CRCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 104 (TVM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 105 (ELSDM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 106 (APM2)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 107 (ECM2/FCPS)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 108 (AAMR/MRGB)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 109 (AAML/FCAPM)*": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 110 (ESEM/EESSM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 111 (LSMRL)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 112 (SGW)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 113 (LSMRR)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 114 (SLMG)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 115 (LRRF)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 116 (NFCD)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 117 (TTEBM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 118 (ANC)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 119 (ICS_R/CCDMR)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 120 (ECC_Rear)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 121 (MSBD)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 122 (PHM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 123 (MIM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 124 (CADM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 125 (IDCM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 126 (SLMR)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "EOL node 127 (VRM)": {
+  "0": "Hasn",
+  "1": "Has EOL"
+ },
+ "Stop_And_Start": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Comfort_Closing_Opening": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Trunk_Open_Button_Strategy": {
+  "0": "Type 1",
+  "1": "Type 2"
+ },
+ "Driver_Side": {
+  "0": "Left Side",
+  "1": "Right Side"
+ },
+ "Front_Fog_Light": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Fog_Light_Strategy": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Fog_Light_Configuration": {
+  "0": "No Lights",
+  "1": "Two Lights",
+  "2": "One Right Light",
+  "3": "One Left Light"
+ },
+ "Head_Light_Washer": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Hill_Holder_System": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Heated_Mirror": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Wiper_Motor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Logistic_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Cornering_Light": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rain_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "BiFunctional_Headlamp_Shutter": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DRL": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DRL_Turn_Light_Strategy": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Windshield_Heated_Wiper_Deicer": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Bonnet_Switch": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Open_Roof": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Emergency_Stop_Signalling": {
+  "0": "Enable",
+  "1": "Disable"
+ },
+ "Fuel_Type": {
+  "0": "Invalid",
+  "1": "Gasoline",
+  "2": "Diesel",
+  "3": "CNG",
+  "4": "GPL",
+  "5": "Electric",
+  "6": "Hybrid",
+  "7": "Flex"
+ },
+ "Removable_Ceiling_Light": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Horn_Chirp_Duration": {
+  "0": "Short",
+  "1": "Long"
+ },
+ "Rear_Parking_Lights_Type": {
+  "0": "LightBulb",
+  "1": "LEDs"
+ },
+ "Additional_Tail_Light": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Logistic_Mode_Manual_Procedure": {
+  "0": "Disable",
+  "1": "Enable"
+ },
+ "Heated_Seats": {
+  "0": "Absent",
+  "1": "Front Seats",
+  "2": "Front And Rear Seats",
+  "3": "Not Used"
+ },
+ "Tyre_Pressure_System": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "TPMS_Variant": {
+  "0": "Base",
+  "1": "Premium"
+ },
+ "TPMS_Configuration": {
+  "0": "Logic_1",
+  "1": "Logic_2",
+  "2": "Logic_3",
+  "3": "Logic_4"
+ },
+ "Side_Marker": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Heated_Window": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Battery_Type": {
+  "0": "Battery Not Changed"
+ },
+ "Advanced_Driver_Program_Kind_Button": {
+  "0": "Absent",
+  "1": "City",
+  "2": "Sport",
+  "3": "Eco",
+  "4": "City_Eco",
+  "5": "City_Sport"
+ },
+ "Passive_Entry": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Washer_Fluid_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Dual_Fuel_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Windshield_Type_Variant": {
+  "0": "Absent",
+  "1": "Type1",
+  "2": "Type2"
+ },
+ "Engine_Type": {
+  "0": "Invalid",
+  "1": "Type1 (ESL - 6",
+  "2": "Type2 (ETM - 6",
+  "3": "Type3 (ESD - 6",
+  "4": "Type4 (ETN - 6",
+  "5": "Type5 (EFH - 3",
+  "6": "Type6 (EZH - 5",
+  "7": "Type 7 (EL3 - 800V HT700 FR/RR w/3",
+  "8": "Type8 (ERG - 3",
+  "9": "Type9 (ESG - 6",
+  "10": "Type10 (EZL - 5",
+  "11": "Type11 (EFC - 3",
+  "12": "Type12 (EL5 - 800V HT350 RR w/3",
+  "13": "Type13 (EL2",
+  "14": "Type 14 (ELD - 400V G2500 FR/RR ELEC DRIVE)",
+  "15": "Type 15 (EFE - 3"
+ },
+ "Car_Shape_Configuration": {
+  "0": "Invalid",
+  "1": "Sedan",
+  "2": "Station Wagon",
+  "3": "Cargo",
+  "4": "Combi",
+  "5": "Panorama",
+  "6": "Cabrio",
+  "7": "Hatch",
+  "8": "SUV",
+  "9": "CUV",
+  "10": "Truck"
+ },
+ "AHBM": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Headlamp_Delay_Feature": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Xenon_Headlamp": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Number_Of_Doors": {
+  "0": "No doors (Special Version)"
+ },
+ "Trunk_Door": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Trunk_Door_Kind": {
+  "0": "Lift Gate",
+  "2": "Powered Lift Gate",
+  "3": "Powered Tail Gate"
+ },
+ "Digital_Television_Feature": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "RLS_Auto_Headlamps": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DRL_Fog_Light_Strategy": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Alarm_System": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Remote_Control_Key": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Siren": {
+  "0": "Absent",
+  "1": "Horn",
+  "2": "Siren",
+  "3": "Not Used"
+ },
+ "Ultrasonic_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Antinclination_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Auto_Unlock_Strategy": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Immobilizer": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Max_Vehicle_Capacity": {
+  "0": "Invalid",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Wheelbase": {
+  "0": "Type_1 (140",
+  "1": "Type_2 (144",
+  "2": "Type_3 (153",
+  "3": "Type_4 (149",
+  "4": "Type_5 (169",
+  "5": "Type_6 (160",
+  "6": "Type_7 (143",
+  "7": "Type_8 (172",
+  "8": "Type_9 (167",
+  "9": "Type_10 (168",
+  "10": "Type_11 (192",
+  "11": "Type_12 (204",
+  "12": "Type_13 (173",
+  "13": "Type_14 (197",
+  "14": "Not Use",
+  "15": "Not Use"
+ },
+ "Front_LED_Turn_Signal": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_LED_Turn_Signal": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Global_Window_Down": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "EC_Mirror": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Key_Less_Go": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Relock_Strategy": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Cooled_Seats": {
+  "0": "Absent",
+  "1": "Front Seats",
+  "2": "Front And Rear Seats",
+  "3": "Not Used"
+ },
+ "Front_Psng_Disable_Switch_Via_Menu": {
+  "0": "Not Active",
+  "1": "Active"
+ },
+ "Gear_Shift_Indicator": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Heated_Washer_Nozzle": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Easy_Entry_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Head_Light_Levelling": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Stop_Start_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "IPC_Internal_Light_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Tachograph": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CM_Rif": {
+  "0": "Invalid",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Climate_Type": {
+  "0": "Absent",
+  "1": "Manual",
+  "2": "Automatic"
+ },
+ "Automatic_Recirculation": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Anti_Frost_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Anti_Pollution_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Anti_Fog_Sensor_Humidity": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "PTC": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Max_Def_Strategy": {
+  "0": "Independent Mix",
+  "1": "Dependent Mix"
+ },
+ "Rear_Climate": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Mirrors_System": {
+  "0": "Mirror adjust functions without Convex",
+  "1": "Mirror Adjust with Convex",
+  "2": "Mirror Adjust with Telescope",
+  "3": "Mirror Adjust with Convex"
+ },
+ "Rear_Windows_Lifter": {
+  "0": "Present",
+  "1": "Absent"
+ },
+ "Auto_On_Comfort_Enable": {
+  "0": "False",
+  "1": "True"
+ },
+ "Integrated_Climate_Touchscreen": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Driver_Bag": {
+  "0": "Absent",
+  "1": "Present Monostage",
+  "2": "Present Dual Stage",
+  "3": "Present Tri Stage"
+ },
+ "Front_Passenger_Bag": {
+  "0": "Absent",
+  "1": "Present Monostage",
+  "2": "Present Dual Stage",
+  "3": "Present Tri Stage"
+ },
+ "Left_Window_Bag": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Right_Window_Bag": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Driver_Knee_Bag": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passenger's Knee Bag": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Left_Seat_Bag": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Right_Seat_Bag": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Seat_Bag": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Psng_Disable_Switch": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "SBR_Logic": {
+  "0": "NHTSA",
+  "1": "Europe and Others"
+ },
+ "Lateral_Pressure_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Lateral_B_Pillar_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Lateral_C_Pillar_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Lateral_D_Pillar_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "EPPM": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Driver_Pretensioner": {
+  "0": "Absent",
+  "1": "Present Monostage",
+  "2": "Present Dual Stage",
+  "3": "Present Tri Stage"
+ },
+ "Front_Lateral_Passenger_Pretensioner": {
+  "0": "Absent",
+  "1": "Present Monostage",
+  "2": "Present Dual Stage",
+  "3": "Present Tri Stage"
+ },
+ "Front_Central_Passenger_Pretensioner": {
+  "0": "Absent",
+  "1": "Present Monostage",
+  "2": "Present Dual Stage",
+  "3": "Present Tri Stage"
+ },
+ "Rear_Lateral_Passengers_Pretensioner": {
+  "0": "Absent",
+  "1": "Present Monostage",
+  "2": "Present Dual Stage",
+  "3": "Present Tri Stage"
+ },
+ "Rear_Central_Passenger_Pretensioner": {
+  "0": "Absent",
+  "1": "Present Monostage",
+  "2": "Present Dual Stage",
+  "3": "Present Tri Stage"
+ },
+ "Driver_Buckle_Switch_Pretensioner": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Passenger_Buckle_Switch_Pretensioner": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Lateral_Passengers_Buckle_Switch_Pretensioner": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Central_Passenger_Buckle_Switch_Pretensioner": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Driver_Buckle_Switch": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Passenger_Buckle_Switch": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Lateral_Passenger_Buckle Switches": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Central_Passenger_Buckle_Switch": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Central_Buckle_Switch": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "SBR_Unit": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Lateral_Passenger_Presence_Detection": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Central_Passenger_Presence_Detection": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_PPD_type": {
+  "0": "Weight Sensor",
+  "1": "OCS",
+  "2": "PPD",
+  "3": "SBR"
+ },
+ "Rear_Passenger_Presence_Detection": {
+  "0": "Absent"
+ },
+ "Rear_PPD_type": {
+  "0": "Weight Sensor",
+  "1": "OCS",
+  "2": "PPD",
+  "3": "SBR"
+ },
+ "Driver_Seat_Track_Position": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passenger_Seat_Track_Position": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Driver_Active_Head_Restraints": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passenger_Active_Head_Restraints": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Crash_Sensor": {
+  "0": "Absent",
+  "1": "One Sensor",
+  "2": "Two Sensors"
+ },
+ "Front_Driver_Anchor_Pretensioner": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Lateral_Passenger_Anchor_Pretensioner": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rollover_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Bonnet_Switch_Type": {
+  "0": "Ajar_Not_Diagnosed",
+  "1": "Ajar_Diagnosed"
+ },
+ "Rear_View_Camera": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Adaptive_Cruise_Control": {
+  "0": "Absent",
+  "1": "ACC",
+  "2": "ACC with Stop",
+  "3": "ACC with Stop/Go"
+ },
+ "Forward_Collision_Mitigation": {
+  "0": "Absent",
+  "1": "Full Speed FCW with Pedestrian/Cyclist Emergency Braking",
+  "2": "Full Speed FCW with Pedestrian Emergency Braking",
+  "3": "Full Speed Forward Collision Warning with Mitigation"
+ },
+ "Low_Speed_Collision_Mitigation": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Park_With_Stop": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Side_Distance_Warning": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Electronic_Brake_System_Type_Variant": {
+  "0": "Absent",
+  "1": "ABS",
+  "2": "Not Used",
+  "3": "VDC"
+ },
+ "Hill_Descendent_Control": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Selector_Logic": {
+  "0": "Logic_1",
+  "1": "Logic_2",
+  "2": "Logic_3",
+  "3": "Logic_4"
+ },
+ "Brake_Type_Variant": {
+  "0": "Invalid",
+  "1": "Type 1 (Caliper/Drum)",
+  "2": "Type 2 (Caliper/Caliper)"
+ },
+ "Steering_Ratio_Rack_Pinion_Type": {
+  "0": "Type_1 (Rebel 144",
+  "1": "Type_2 (Base 140",
+  "2": "Type_3 (Base 153"
+ },
+ "Gear_Box_Paddles": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Track_Width_Variant": {
+  "0": "Invalid",
+  "1": "Track 1",
+  "2": "Track 2"
+ },
+ "Drive_Style_Selector": {
+  "0": "Absent",
+  "1": "Drive Selector",
+  "2": "Terrain Selector"
+ },
+ "DST_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Drive_Selector_Type": {
+  "0": "Absent",
+  "1": "Type1",
+  "2": "Type2",
+  "3": "Type3"
+ },
+ "Suspension_Configuration_Rear": {
+  "0": "Not Applicable",
+  "1": "Steel Suspension",
+  "2": "Air Suspension",
+  "3": "Trailhawk Suspension",
+  "4": "Load-leveling (Nivomat) rear shocks (NAW SER)"
+ },
+ "Suspension_Configuration_Front": {
+  "0": "Not Applicable",
+  "1": "RAM Articulink Suspension",
+  "2": "Heavy Duty Suspension",
+  "3": "REBEL Suspension",
+  "4": "Not Used",
+  "5": "Not Used"
+ },
+ "Configuration_Families": {
+  "0": "Invalid",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Parking_Brake_Type": {
+  "0": "Invalid",
+  "1": "Not Used",
+  "2": "Type 2 (25 kN MOC)"
+ },
+ "Quick_Keylock": {
+  "0": "Not_Active",
+  "1": "Active"
+ },
+ "Trunk_Pressure_Type": {
+  "0": "Double Pressure",
+  "1": "Single Pressure"
+ },
+ "Drive_Type_Variant": {
+  "0": "FWD",
+  "1": "RWD",
+  "2": "Single Speed AWD"
+ },
+ "IAM_Unit": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Cruise_Control": {
+  "0": "Absent (Powertrain Cruise Control Absent)",
+  "1": "Present (Powertrain Cruise Control Present)"
+ },
+ "Speed_Limiter": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Alternator_Class": {
+  "1": "Dual Alternators 400 Amps",
+  "2": "Dual Alternators 480 Amps",
+  "3": "Not Used",
+  "4": "Not Used",
+  "5": "Not Used",
+  "6": "Not Used",
+  "7": "Not Used",
+  "8": "Not Used",
+  "9": "Not Used",
+  "10": "Not Used",
+  "11": "Not Used",
+  "12": "Not Used",
+  "13": "Not Used",
+  "14": "Not Used",
+  "15": "Not Used"
+ },
+ "Primary_LIN_Alternator": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Blow_By_Heater": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Final_Ratio": {
+  "0": "Invalid",
+  "1": "Type1 (3",
+  "2": "Type2 (3",
+  "3": "Type3 (4",
+  "4": "Type4 (4"
+ },
+ "Fuel_Heater": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DPF_Rgn_On_Demand": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Ignition_Pre_Start_Logic": {
+  "0": "Disable",
+  "1": "Enable"
+ },
+ "Shifter_Type_Variant": {
+  "0": "Not Applicable / TYPE_NA",
+  "13": "Signal not available/SNA"
+ },
+ "FCW_Soft_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Backup_Vehicle_Start": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_Seat": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Tcase_High_Ratio": {
+  "0": "No Tcase",
+  "1": "Tcase Hi Ratio 1",
+  "2": "Special Tcase Hi Ratio 1",
+  "3": "Special Tcase Hi Ratio 2",
+  "4": "Special Tcase Hi Ratio 3",
+  "7": "SNA"
+ },
+ "Gear_Box_Type_Variant": {
+  "0": "Invalid",
+  "1": "Type1 (8HP75)",
+  "2": "Type2 (850RE)",
+  "3": "Type3 (8HP95)",
+  "4": "Type4 (8HP75 PHEV)",
+  "5": "Type5 (8AP1075)",
+  "6": "Type6 (8AP430)",
+  "7": "Type7 (8AP850)"
+ },
+ "Gear_Box_Type": {
+  "0": "Not valid",
+  "1": "MTX",
+  "2": "MTA (Robotized Gearbox)",
+  "3": "DDCT",
+  "4": "ATX",
+  "5": "CVT"
+ },
+ "ERS_ Autostick _Presence": {
+  "0": "None",
+  "1": "ERS present",
+  "2": "Autostick present"
+ },
+ "SCR_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Selec_Speed_Control_Feature": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Clutch_Interlock_Message": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "BSM_FNCT_0_HSA": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "BSM_FNCT_1_HDC": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "BSM_FNCT_2_TSC": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "BSM_FNCT_3_ACC": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "BSM_FNCT_4_RBS": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "BSM_FNCT_5_DST": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "BSM_FNCT_6_PAS": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "BSM_FNCT_7_MSR": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Fuel_Shut_Off_Type": {
+  "0": "Absent",
+  "1": "Fuel Cut Off",
+  "2": "Fuel Inertial System",
+  "3": "Both FCO And FIS"
+ },
+ "Clutch_Interlock_Enable": {
+  "0": "Disable",
+  "1": "Enable"
+ },
+ "Cold_Start": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "ACC_Variant": {
+  "0": "ShortTimeGap_ kph_160Max",
+  "1": "ShortimeGap_ mph_160Max",
+  "2": "LargeTimeGap_kph_160Max",
+  "3": "LargeTimeGap_mph_160Max",
+  "4": "ShortTimeGap_ kph_200Max",
+  "5": "ShortimeGap_ mph_200Max",
+  "6": "LargeTimeGap_kph_200Max",
+  "7": "LargeTimeGap_mph_200Max"
+ },
+ "Suspension_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "PAM_Tuning_Set": {
+  "0": "None",
+  "1": "Base",
+  "2": "Rebel",
+  "3": "TRX",
+  "4": "Tungsten",
+  "5": "Big Horn/Lone Star",
+  "6": "REPB / BEV"
+ },
+ "Semi_Automatic_Parking_System": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DASM_Tuning_set": {
+  "0": "Type 1",
+  "1": "Type 2"
+ },
+ "DTV_Front_Cam_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DTV_Side_Cam_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Vehicle_Line_Configuration": {
+  "0": "Invalid",
+  "80": "PF (50 Hex)",
+  "81": "KL/K4  (51 Hex)",
+  "82": "UF (52 Hex)",
+  "83": "UT (53 Hex)",
+  "100": "K8 (64 Hex)",
+  "101": "WL (65 Hex)",
+  "104": "WS (68 Hex)",
+  "124": "DT (7C hex)",
+  "130": "HDCC (82 Hex)"
+ },
+ "Country_Code": {
+  "0": "World",
+  "2": "United States of America",
+  "4": "Canada",
+  "14": "Mexico",
+  "16": "China Mainland",
+  "18": "Bahrain",
+  "97": "Iraq",
+  "104": "Jordan",
+  "108": "Kuwait",
+  "112": "Lebanon",
+  "149": "Oman",
+  "160": "Qatar",
+  "165": "Saudi Arabia",
+  "204": "United Arab Emirates",
+  "215": "Yemen"
+ },
+ "Remote_start": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Tip_Start": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Twilight_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Special_Brand_Configuration": {
+  "0": "None",
+  "1": "POS - Point of Service",
+  "2": "ePTO - Elect Power Takeoff",
+  "3": "POS and ePTO"
+ },
+ "Cooling_Fluid_Level_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Greeting_Lights_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Over_Speed_Warning": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Odo_Units_Change": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DPF_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DRL_Menu_Enable": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "Auto_Close_Menu": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "Oil_Information": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "External_Temperature_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "RPM_Dumper_Calibration": {
+  "0": "Invalid",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Turbo_Parameter": {
+  "0": "Absent",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "RKE": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Hill_Start_Menu_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Intrusion_Alarm_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "RRM_VP_LEVEL": {
+  "0": "Absent",
+  "1": "Level 1 (Smart Audio)",
+  "2": "Level 2 (R1 Low)",
+  "3": "Level 3 (R1 High)",
+  "4": "Level 4",
+  "14": "Radio MOPAR",
+  "15": "Radio High Level"
+ },
+ "Cluster_Display_Type": {
+  "0": "Absent",
+  "1": "Base Display (3",
+  "2": "Medium Display (7 inch)",
+  "3": "High Display (12 inch)",
+  "4": "TFT B/W Display",
+  "5": "TFT Color display"
+ },
+ "SRT": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Com_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Digital_Clock": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Temperature_Display": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_View_Camera_Soft_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Audio_System_Type": {
+  "0": "Base",
+  "1": "Fiat Booster",
+  "2": "Premium CAN",
+  "3": "Beats"
+ },
+ "SDARS_Travel_Link": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_Door_Lock": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Disable_Cd_Eject": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Browsing_Enable": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Surround": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DAB_Disable": {
+  "0": "Enabled",
+  "1": "Disabled"
+ },
+ "Phase_Diversity": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Main_Ant_Supply_Cfg": {
+  "0": "Absent",
+  "1": "First Active",
+  "2": "Second Active",
+  "3": "Both Active"
+ },
+ "Acustic_Configuration": {
+  "86": "Standard Cab Premium 1 (",
+  "87": "Quad Cab Premium 2 (",
+  "88": "Crew Cab Premium 2 (",
+  "89": "Mega Cab Premium 2 (",
+  "90": "Crew Cab Premium 4 (",
+  "91": "Crew Cab Premium 3 (",
+  "92": "Mega Cab Premium 3 (",
+  "93": "Quad",
+  "94": "Quad"
+ },
+ "External_Port_Type": {
+  "0": "Absent",
+  "1": "AUX only",
+  "2": "AUX",
+  "3": "AUX",
+  "4": "AUX",
+  "5": "AUX",
+  "6": "AUX",
+  "7": "USB Only"
+ },
+ "Wi-Fi_Cfg": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Microphone_Tuning_Parameter": {
+  "0": "Absent",
+  "1": "Mic Tuning set 1"
+ },
+ "Dead_Reckoning_Availability": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Switch_Off_Time": {
+  "3": "Not Used"
+ },
+ "TMC_Pro": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "RRM_VPx_Steering_Wheel_Command_Type": {
+  "0": "Absent",
+  "1": "Standard 6 Buttons",
+  "2": "Standard 8 Buttons",
+  "3": "Standrad 10 Buttons"
+ },
+ "Microphone_Type": {
+  "0": "Peiker 300mV",
+  "1": "Type 2",
+  "2": "Type 3",
+  "3": "Type 4"
+ },
+ "Clima_Zone": {
+  "0": "Mono Zone"
+ },
+ "PAM_Configuration": {
+  "0": "Rear",
+  "1": "Front And Rear"
+ },
+ "IR_Remote_Ctrl_Cfg": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Blinking_At_CDL": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Combined_Rear_Lighting": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Dead_Lock": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Horn_Chirp_Enables": {
+  "0": "Disabled",
+  "1": "Access_Only",
+  "2": "Alarm_Only",
+  "3": "Both_Access_Alarm"
+ },
+ "Horn_Chirp_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Key_In_Warning": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Auto_Decklid_Release": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Additional Languages": {
+  "0": "Default Languages"
+ },
+ "Compass_Display": {
+  "0": "Absent",
+  "1": "Present on VP",
+  "2": "Present on IPC",
+  "3": "Present on IPC and VP"
+ },
+ "NAV_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Audio_Car_Lay_Out": {
+  "0": "Invalid",
+  "1": "Not Used",
+  "2": "Not Used",
+  "3": "Not Used",
+  "4": "Not Used",
+  "5": "Front Full Range",
+  "6": "Front Tweeter and Midwoofer",
+  "7": "Front Full Range",
+  "8": "Front Tweeter and Midwoofer/Full Range",
+  "9": "Front Tweeter and Midwoofer/Full Range",
+  "10": "Front Tweeter and Midwoofer",
+  "11": "Front Tweeter and Midwoofer",
+  "12": "Front Tweeter MidRange and Midwoofer",
+  "13": "Front Tweeter MidRange and Midwoofer",
+  "14": "Front Tweeter and Midwoofer",
+  "15": "Front Tweeter and Midwoofer"
+ },
+ "Audio_Repetition": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Exterior_Mirror_Turn_Signals": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Exterior_Mirror_Courtesy_Lamps": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "FOB_Safe": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Memory_System": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_Folding_Mirror": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "UGDO": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Fleet": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Ambient_Dimmer_Switch": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "AM_FM1_Antenna_Type": {
+  "0": "Passive",
+  "1": "Active"
+ },
+ "FM2_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DAB_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Sdars_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "GPS_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Cell_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Nav_Repetition": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Phone_Repetition": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Passenger_Seat_Bin": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DRL_Type": {
+  "0": "LightBulb",
+  "1": "LEDs"
+ },
+ "Seat_Material": {
+  "0": "Invalid",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Heated_Steering_Wheel": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Steering_Wheel_Material": {
+  "0": "Invalid",
+  "1": "Type 1 (Leather)",
+  "2": "Type  2 (Vinyl)",
+  "3": "Type 3 (Wood)"
+ },
+ "Front_Tow_Hooks": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Sky_Slider": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Half_HMI_Setting": {
+  "0": "Level 1",
+  "1": "Level 2",
+  "2": "Level 3",
+  "3": "Level 4"
+ },
+ "Half_Torque_Sensibility": {
+  "0": "Level 1",
+  "1": "Level 2",
+  "2": "Level 3",
+  "3": "Level 4"
+ },
+ "After_Wipe": {
+  "0": "Enable",
+  "1": "Disable"
+ },
+ "WCPM": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Panic": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Compass_Mounting_Orientation": {
+  "0": "Right side up",
+  "1": "Right side down"
+ },
+ "Brake_System_Families": {
+  "0": "Invalid",
+  "1": "Type 1 (T60/T48 4",
+  "2": "Type 2 (T60/T48 5",
+  "3": "Type 3 (T60/T51 5",
+  "4": "Type 4 (T60/T51 Max Tow 5",
+  "5": "Type 5 (DP 5"
+ },
+ "Terrain_Selector_Modes": {
+  "0": "Invalid"
+ },
+ "4_Low_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Brand_Configuration_2": {
+  "0": "Unbranded",
+  "1": "Fiat",
+  "2": "Lancia",
+  "3": "Alfa Romeo",
+  "4": "Fiat Professional",
+  "5": "Abarth",
+  "6": "Maserati",
+  "7": "Ferrari",
+  "8": "Chrysler",
+  "9": "Dodge",
+  "10": "Jeep",
+  "11": "RAM",
+  "12": "SRT",
+  "13": "PSA (Citroen)",
+  "14": "PSA (Peugeot)",
+  "15": "Ford"
+ },
+ "Off_Road_Pages": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Turbo_Pressure_Display": {
+  "0": "Absent",
+  "1": "Present on VP",
+  "2": "Present on IPC",
+  "3": "Present on IPC and VP"
+ },
+ "Smart_Wiper_Motor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Internal_Lighting_With_Dimming": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Lock_With_Door_Open": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Doors_Relock": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CRVMM_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passive_Entry_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Remote_Door_Unlock_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Sound_Horn_Remote_Start_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Auto_Park_Brake_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Automatic_Reset_TripB_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Nav_Repetition_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Phone_Repetition_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Audio_Repetition_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Tyre_Pressure_Unit_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Flash_Light_With_Lock_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "EPB_Maintenance_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Auto_Door_Unlock_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "AHBM_Feature_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "GSI_Type": {
+  "0": "Not_present",
+  "1": "GSI",
+  "2": "GSI II",
+  "3": "Enhanced GSI"
+ },
+ "Auto_Veh_Hold_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Stop_And_Start_Type": {
+  "0": "FGA Type",
+  "1": "CG Type"
+ },
+ "ASBM_LIN_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Stop_And_Start_Button_Source": {
+  "0": "Hardwired",
+  "1": "From CAN"
+ },
+ "ECO_Mode_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ECO_Mode_Latch": {
+  "0": "ECO Mode Not Available",
+  "1": "Reset To OFF",
+  "2": "Reset to ON",
+  "3": "Remember Previous State"
+ },
+ "Ambient_Lighting_Function": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Special_Package_VP": {
+  "0": "No Package/None",
+  "141": "DT Base",
+  "142": "DT Limited",
+  "143": "DT Longhorn Brown",
+  "144": "DT Longhorn Black",
+  "145": "DT Rebel",
+  "146": "DT TRX",
+  "147": "DT Tungsten"
+ },
+ "Audio_Brand": {
+  "0": "No Audio Brand",
+  "1": "Beats",
+  "2": "Alpine",
+  "3": "Harman",
+  "4": "McIntosh"
+ },
+ "Welcome_Movement": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "RPM_Shift_In_Progress": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DMS_Redirect_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Acceleration_Display": {
+  "0": "Absent",
+  "1": "Present on VP",
+  "2": "Present on IPC",
+  "3": "Present on IPC and VP"
+ },
+ "Engine_Torque_Display": {
+  "0": "Absent",
+  "1": "Present on VP",
+  "2": "Present on IPC",
+  "3": "Present on IPC and VP"
+ },
+ "GG_Diagram_Display": {
+  "0": "Absent",
+  "1": "Present on VP",
+  "2": "Present on IPC",
+  "3": "Present on IPC and VP"
+ },
+ "Torque_Distribution_Display": {
+  "0": "Absent",
+  "1": "Present on VP",
+  "2": "Present on IPC",
+  "3": "Present on IPC and VP"
+ },
+ "APPS_Presence": {
+  "0": "False",
+  "1": "True"
+ },
+ "Remote_Headlights_Off_Delay": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Connected_Services_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ECSB_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Starter_Type": {
+  "0": "Invalid",
+  "1": "Type_1",
+  "2": "Type_2"
+ },
+ "Safety_Engine_Off_Strategy": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Hybrid_Type": {
+  "0": "Not Applicable",
+  "1": "Battery Electric Vehicle (BEV)",
+  "2": "Hybrid Electric Vehicle",
+  "3": "Plugin Hybrid Electric Vehicle",
+  "6": "Range Electric Paradigm Breaker (REPB)",
+  "7": "Fuel Cell Electric Vehicle (FCEV)"
+ },
+ "Signature_Lighting": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Dimming_Level_Selector_Type": {
+  "0": "Absent",
+  "1": "Eight_Levels",
+  "2": "Nine_Levels"
+ },
+ "Language_Selection": {
+  "0": "Absent",
+  "1": "Present on VP",
+  "2": "Present on IPC"
+ },
+ "Half_Configuration_Families": {
+  "0": "Invalid",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Neutral_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "HLS_Command_Type": {
+  "0": "Absent",
+  "1": "Type1 (Headlamp_without_OFF-AUTO middle)",
+  "2": "Type2 (Headlamp_with_OFF)",
+  "3": "Type3 (Headlamp_without_OFF-AUTO right)"
+ },
+ "Puddle_Light": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Model_Equipement": {
+  "0": "non - Rebel",
+  "1": "Rebel"
+ },
+ "Headlamp_LED_Management": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Centralized_Lock_Unlock_Key_Cylinder": {
+  "0": "Not_Active",
+  "1": "Active"
+ },
+ "Increasing_Speed_Constant": {
+  "0": "Increasing_0",
+  "1": "Increasing_1",
+  "2": "Increasing_2",
+  "3": "Increasing_3",
+  "4": "Increasing_4",
+  "5": "Increasing_5",
+  "6": "Increasing_6",
+  "7": "Increasing_7"
+ },
+ "Front_WSS_Type": {
+  "0": "Without Direction (2  levels)",
+  "1": "With Direction (3  levels)"
+ },
+ "Rear_WSS_Type": {
+  "0": "Without Direction (2  levels)",
+  "1": "With Direction (3  levels)"
+ },
+ "PAM_Push_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Heated_Cold_Start_System": {
+  "0": "Absent",
+  "1": "Glow Plug",
+  "2": "HCSS",
+  "3": "Auxiliary Fuel Tank"
+ },
+ "EC_Mirror_Hard_Button_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "FPMM_Immo": {
+  "0": "Disable",
+  "1": "Enable"
+ },
+ "Head_Up_Display_Type": {
+  "0": "Absent",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Auto_Power_Folding_Mirrors": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Trunk_Button_Location": {
+  "0": "Not Present",
+  "1": "Internal",
+  "2": "External",
+  "3": "Both Internal and External"
+ },
+ "Battery_Type_II": {
+  "0": "None",
+  "1": "Battery 1",
+  "2": "Battery 2"
+ },
+ "AUX_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "SD_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "USB_Presence": {
+  "0": "Absent"
+ },
+ "Auto_On_Comfort_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Illuminated_Approach_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "HFRM_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "AGS_Unit": {
+  "0": "Absent",
+  "1": "Single Actuator",
+  "2": "Double Actuator"
+ },
+ "Street_Bending_Light_Type": {
+  "0": "Type1",
+  "1": "Type2"
+ },
+ "Driver_Door_Ajar_Switch_Type": {
+  "0": "Digital",
+  "1": "Analog"
+ },
+ "Passenger_Door_Ajar_Switch_Type": {
+  "0": "Digital",
+  "1": "Analog"
+ },
+ "Redundant_Door_Ajar_Switch_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Lit_Front_Sill_Plates": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DRL_Lamp_Location": {
+  "0": "None/Position DRL",
+  "1": "High Beam DRL",
+  "2": "Low Beam DRL",
+  "3": "Turn Signal DRL",
+  "4": "Fog Lamp DRL",
+  "5": "Dedicated DRL",
+  "6": "SRT Light Bar DRL",
+  "7": "Turn and Position DRL"
+ },
+ "Driver_EC_Mirror": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passenger_EC_Mirror": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Pull_Out_Control_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Parking_Lights_Type": {
+  "0": "LightBulb",
+  "1": "LEDs"
+ },
+ "Front_Fog_Lights_Type": {
+  "0": "LightBulb",
+  "1": "LEDs"
+ },
+ "Unit_Set_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Custom_Units_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Right_Front_Open_Circuit_Disable": {
+  "0": "Not Set",
+  "1": "Set"
+ },
+ "Left_Front_Open_Circuit_Disable": {
+  "0": "Not Set",
+  "1": "Set"
+ },
+ "Right_Rear_Open_Circuit_Disable": {
+  "0": "Not Set",
+  "1": "Set"
+ },
+ "Left_Rear_Open_Circuit_Disable": {
+  "0": "Not Set",
+  "1": "Set"
+ },
+ "Head_Lamp_Dip_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Steering_Directed_Lights_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Depth_Lights": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Gear_Box_Paddles_Logic": {
+  "0": "Logic 0 (Standard Type)",
+  "1": "Logic 1",
+  "2": "Logic 2",
+  "3": "Logic 3"
+ },
+ "Rear_Door_Lock_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CHDM_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Projection_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Consumption_Bar_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_Liftgate_Setting_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "EPS_Configuration_Families": {
+  "0": "Invalid",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "IPC_Theme_Selector": {
+  "0": "none",
+  "1": "Theme 1 (BIGHORN)",
+  "2": "Theme 2 (LARAMIE)",
+  "3": "Theme 3 (LIMITED)",
+  "4": "Theme 4 (LONESTAR)",
+  "5": "Theme 5 (LONGHORN BLACK)",
+  "6": "Theme 6 ( LONGHORN BROWN)",
+  "7": "THEME 7 (ORT)",
+  "8": "THEME 8 (RAM_TRX)",
+  "9": "THEME 9 (REM_1500)",
+  "10": "Theme 10 (RED)",
+  "11": "Theme 11 (SPORT)",
+  "12": "Theme 12 (Tungsten)",
+  "13": "Theme 13 (POWER WAGON)",
+  "14": "Theme 14 (RAM_2500)",
+  "15": "Theme 15 (RAM_3500)",
+  "16": "Theme 16 (RAM_4500)",
+  "17": "Theme 17 (RAM_5500)"
+ },
+ "Tire_Fill_Alert": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "Traffic_Sign_Recognition": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Traffic_Sign_Recognition_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Market_Area": {
+  "0": "NAFTA",
+  "1": "EMEA",
+  "2": "LATAM",
+  "3": "APAC"
+ },
+ "Separated_Lighting_Brake_Lamp_Dropout": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Reverse_Lights_Type": {
+  "0": "LightBulb",
+  "1": "LEDs"
+ },
+ "Direct_Tyre_Pressure_System": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Plate_Lights_Type": {
+  "0": "LightBulb",
+  "1": "LEDs"
+ },
+ "Wiper_Lever_Type": {
+  "0": "Type 1",
+  "1": "Type 2"
+ },
+ "Projection_Mode_Selection": {
+  "0": "No Selection"
+ },
+ "Stop_And_Start_Level": {
+  "0": "High",
+  "1": "Medium",
+  "2": "Low"
+ },
+ "Reverse_Light_Configuration": {
+  "0": "Single Light",
+  "1": "Double Lights"
+ },
+ "Additional_Front_Light_Mng": {
+  "0": "Configuration 1",
+  "1": "Configuration 2",
+  "2": "Configuration 3",
+  "3": "Configuration 4"
+ },
+ "Boost_Pressure_Sensor_Type": {
+  "0": "Absent",
+  "1": "Digital",
+  "2": "Analog"
+ },
+ "Emergency_Call": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Multimedia_Command_Type": {
+  "0": "Type 1",
+  "1": "Type 2"
+ },
+ "Performance_Pages": {
+  "0": "Absent",
+  "1": "Present on VP",
+  "2": "Present on IPC",
+  "3": "Present on IPC and VP"
+ },
+ "Display_OFF_SoftKey": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Psng_Disable_Suppression": {
+  "0": "Not Active",
+  "1": "Active"
+ },
+ "PAM_Radio_Display": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "GPF_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Steering_Customer_Settings": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Nav_Map_In_Cluster": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Album_Art_In_cluster": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Ready_To_Drive_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Audio_Steering_Wheel_Controls_on_IPC": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Tachometer_Filtering_Type": {
+  "0": "Disabled",
+  "1": "Type 1",
+  "2": "Type 2",
+  "3": "Type 3"
+ },
+ "Climate_Panel_Type": {
+  "0": "Only blower knob",
+  "1": "Only temp knob",
+  "2": "Only mode knob",
+  "3": "Temp and mode knobs",
+  "4": "Blower and mode knobs",
+  "5": "Temp and blower knobs",
+  "7": "No knobs"
+ },
+ "ARTS_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Indipendent_Rear_Fan": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Additional_Heater": {
+  "0": "Absent",
+  "1": "Automatic",
+  "2": "Programmable"
+ },
+ "Rear_Defrost_Hardwired_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Driver_Drowsy_Alert": {
+  "0": "Absent",
+  "1": "Present on VP",
+  "2": "Present on IPC",
+  "3": "Present on IPC and VP"
+ },
+ "Highway_Assist": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Intelligent_Speed_Function": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Lane_Assist": {
+  "0": "Not Present",
+  "1": "Lane Departure Warning",
+  "2": "Lane Departure Warning",
+  "3": "Active Lane Management"
+ },
+ "Blind_Spot_Monitoring": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Traffic_Jam_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "IBS_Type": {
+  "0": "Type 1",
+  "1": "Type 2"
+ },
+ "Headlamp_On_With_Wiper": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "SWSM_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Glove_Box_Lock": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Fuel_Lid_Management": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Glare_Free_Feature": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Tourist_Mode_Feature": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ORC_Configuration_Families": {
+  "1": "Type 1 - D2",
+  "2": "Type 2 - DD",
+  "3": "Type 3 - DF",
+  "4": "Type 4 - DJ",
+  "5": "Type 5 - DP",
+  "6": "Type 6 - DX",
+  "7": "Type 7 - Not Used"
+ },
+ "GLONASS_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "GALILEO_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "BeiDeu_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Truck_Cab_Type": {
+  "0": "Regular",
+  "1": "Quad",
+  "2": "Crew",
+  "3": "Mega"
+ },
+ "External_BuB_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "AM_Presence": {
+  "0": "Present",
+  "1": "Absent"
+ },
+ "AM_Tuner_Band": {
+  "0": "Medium Wave",
+  "1": "Medium Wave and Long Wave"
+ },
+ "ACN_Hardwire": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Assist_Call_Button_Config": {
+  "0": "Absent",
+  "1": "Hard-wired",
+  "2": "Hard-wired",
+  "3": "Remote",
+  "4": "Remote"
+ },
+ "Ecall_Button_Config": {
+  "0": "Absent",
+  "1": "Hardwired",
+  "2": "Virtual (CAN/LIN)",
+  "3": "Hardwire - only TBM call"
+ },
+ "External_LTE_Diversity_Antenna": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "External_Speaker_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "USB_Connection_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Geolocation_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Cruise_Control_Logic": {
+  "0": "Logic 1 (ADAS Normal Cruise Control Absent )",
+  "1": "Logic 2 (ADAS Normal Cruise Control  Present )"
+ },
+ "eSave_Menu": {
+  "0": "Absent",
+  "1": "Without Target",
+  "2": "With Target"
+ },
+ "FOTA_Type": {
+  "0": "Absent",
+  "1": "Type 1",
+  "2": "Type 2",
+  "3": "Type 3",
+  "4": "Type 4",
+  "5": "Type 5",
+  "6": "Type 6",
+  "7": "Type 7"
+ },
+ "TBM_Audio_Config": {
+  "0": "Type 1",
+  "1": "Type 2"
+ },
+ "Blind_Spot_Type": {
+  "0": "Normal",
+  "1": "Active"
+ },
+ "CVPAM_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Run_Flat_Tire_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Selectable_Tire_Fill_Alert": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "Intersection_Collision_Assist": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Pedestrian_Protection": {
+  "0": "None",
+  "1": "Passive",
+  "2": "Active-Integrated",
+  "3": "Active-Standalone"
+ },
+ "Park_Assist_Volume_Strategy": {
+  "0": "Customer Selectable Setting",
+  "1": "Gear Position Based"
+ },
+ "Beam_Shaping_Feature": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Street_Bending_Light": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "RVDM_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Drive_Modes": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Proximity_PE_Wakeup": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "QVPM_Configuration": {
+  "0": "Absent",
+  "1": "Present Front",
+  "2": "Present Rear",
+  "3": "Present Front And Rear"
+ },
+ "Front_Fog_Light_with_DRL": {
+  "0": "DRL Active",
+  "1": "DRL Not Active"
+ },
+ "Seat_Material_Front": {
+  "0": "Absent",
+  "1": "Type 1 (Cloth)",
+  "2": "Type 2 (Perf Leather)",
+  "3": "Type 3 (Perf Leather Premium)",
+  "4": "Type 4 (Cloth Premium)",
+  "5": "Type 5 (Perf Quilt Premium)"
+ },
+ "Seat_Material_Rear": {
+  "0": "Absent",
+  "1": "Type 1 (Perf Leather)",
+  "2": "Type 2 (Perf Leather Premium)",
+  "3": "Type 3 (Perf Quilt Premium)"
+ },
+ "Power_Adjustable_Pedals": {
+  "0": "Absent",
+  "1": "Non-Memory Present",
+  "2": "Memory Present"
+ },
+ "Driver_Power_Headrest": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passenger_Power_Headrest": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Park_Lamp_Loadshed": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Lock_With_Engine_On_Warning": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Surround_View_Camera": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Forward_Facing_Camera": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Autonomy_Level": {
+  "0": "None/Level 1",
+  "1": "Level 2",
+  "2": "Level 2 Plus"
+ },
+ "Full_Automatic_Parking_System": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Intelligent_Speed_Function_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "LKA_Mode_Latch": {
+  "0": "Not Latched",
+  "1": "Latched"
+ },
+ "Damping_Tuning_Set": {
+  "0": "None",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Tilt_Telescope_Column": {
+  "0": "Absent",
+  "1": "Power Non Memory",
+  "2": "Power Memory"
+ },
+ "Auto_Vehicle_Hold": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Axle_Disconnect": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "TPMS_Regulation_Config": {
+  "0": "Logic 1 NHTSA Enable Warning",
+  "1": "Logic 2 NAFTA Disable Warning",
+  "2": "Logic 3 ECE Enable Warning",
+  "3": "Logic 4 Other Disable Warning",
+  "4": "Logic 5 CHINA Enable Warning"
+ },
+ "Full_Size_Matching_Spare": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "SRU_LIN_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "RCU_LIN_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Interior_Monitoring_Camera": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Wizard_Feature": {
+  "0": "Off",
+  "1": "Present on TLM",
+  "2": "Present on IPC",
+  "3": "Present on IPC and TLM"
+ },
+ "Independent_Heated_Seats": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Headrest_Dump_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Immediate_Door_Unlock_After_EARS": {
+  "0": "Unlock Doors after Vehicle Speed",
+  "1": "Unlock Doors Immediately below 512kph"
+ },
+ "FOA _Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Proximity_Configuration": {
+  "0": "Absent",
+  "1": "Light_Only",
+  "2": "Both_Light_Access"
+ },
+ "DSSM_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "PDSSM_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Brake_Pedal_Sensor_Type": {
+  "0": "Absent",
+  "1": "Digital",
+  "2": "Analog"
+ },
+ "Exterior_EC_Mirrors": {
+  "0": "Absent",
+  "1": "Driver Present",
+  "2": "Driver and Passenger Present"
+ },
+ "Tilt_in_Reverse_Mirror": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Day_Night_Backlight_Strategy": {
+  "0": "Type 1",
+  "1": "Type 2"
+ },
+ "Emergency_Switch": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Driver_Power_Seat_Variants": {
+  "0": "Absent",
+  "1": "cushion",
+  "2": "cushion",
+  "3": "cushion",
+  "4": "cushion",
+  "5": "cushion",
+  "6": "cushion"
+ },
+ "Passenger_Power_Seat_Variants": {
+  "0": "Absent",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Driver_Seat_Power_Cushion_Extension_With_Memory": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passenger_Seat_Power_Cushion_Extension_With_Memory": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Driver_Seat_Power_Lumbar_Support_Variants": {
+  "0": "Absent",
+  "1": "Horizontal without Memory",
+  "2": "Horizontal and Vertical without Memory",
+  "3": "Horizontal and Vertical with Memory"
+ },
+ "Passenger_Seat_Power_Lumbar_Support_Variants": {
+  "0": "Absent",
+  "1": "Horizontal without Memory",
+  "2": "Horizontal and Vertical without Memory",
+  "3": "Horizontal and Vertical with Memory"
+ },
+ "Passenger_Memory_System": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Door_Ambient_Lighting": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Radio_Display_Type": {
+  "0": "Absent"
+ },
+ "Adaptive_Front_Light_system_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Reverse_Mute_Enable": {
+  "0": "Disable",
+  "1": "Enable"
+ },
+ "Glove_Box_Soft_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Screens_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Intelligent_Cruise_Control": {
+  "0": "None",
+  "1": "ACC with TSI Support",
+  "2": "ACC with TSI and Predictive Curve Support"
+ },
+ "Active_Spot_Light_Feature": {
+  "0": "Asent",
+  "1": "Present"
+ },
+ "LOT_Function": {
+  "0": "Enable",
+  "1": "Disable"
+ },
+ "TIPL_Function": {
+  "0": "Enable",
+  "1": "Disable"
+ },
+ "AEB_Domain_Controller": {
+  "0": "Radar",
+  "1": "Front Camera"
+ },
+ "Blindspot_Trailer_Detection": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Active_Driving_Assist": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Gear_Box_Paddles_Types": {
+  "0": "Type 1",
+  "1": "Type 2"
+ },
+ "Vehicle_Lifter": {
+  "0": "Absent",
+  "1": "Present_2_Actuators",
+  "2": "Present_4_Actuators"
+ },
+ "Extended_Steering_Ratio_Rack_Pinion_Type": {
+  "0": "Absent",
+  "1": "Type 1",
+  "2": "Type 2",
+  "3": "Type 3"
+ },
+ "Off_Road_Corner_Assist": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Creeping_Feature": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Launch_Control": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "SCRM_HMI_Logic": {
+  "0": "Absent",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Idle_Preset_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rough_Road_Cruise_Control": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ASBM_Type": {
+  "0": "None",
+  "1": "Type 1"
+ },
+ "Express_Windows": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "CHMSL_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Inadvertent_Light_PWM_Enable": {
+  "0": "Enable",
+  "1": "Disable"
+ },
+ "Inadvertent_Light_2_PWM_Enable": {
+  "0": "Enable",
+  "1": "Disable"
+ },
+ "Automatic_Vertical_Aim_Control": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "HV_Battery_Pack": {
+  "0": "None"
+ },
+ "Charge_Port_Type": {
+  "0": "None",
+  "1": "Type1",
+  "2": "Type2"
+ },
+ "VSM_LIN_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Parking_Turn_Light_Strategy": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Lights_Diagnosis": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "Rear_Lights_Diagnosis": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "Front_Lights_PWM_Enable": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "Rear_Lights_PWM_Enable": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "Load_Compartment_Doors_Unlock": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Key_In_Warning_Trigger": {
+  "0": "Only Driver Door",
+  "1": "Front Doors",
+  "2": "All Doors"
+ },
+ "Driver_Swivel_Seat": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passenger_Swivel_Seat": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Central_Buckle_Switch_Pretensioner": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Roll_Over_Head_Protection_Bars": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Third_Row_Lateral_Passenger_Buckle Switches": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Third_Row_Central_Passenger_Buckle_Switch": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Central_2_Passenger_Buckle_Switch": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Ambient_Lighting_Type": {
+  "0": "Type_0",
+  "1": "Type_1",
+  "2": "Type_2",
+  "3": "Type_3"
+ },
+ "Power_2nd_Row_Fold_Flat": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_2nd_Row_Easy_Entry": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_3rd_Row_Fold_Unfold": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_3rd_Row_Recline": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Passenger_Doors_Ajars_Switch_Type": {
+  "0": "Digital",
+  "1": "Analog"
+ },
+ "Headlamp_Type": {
+  "0": "Type1 - Base",
+  "1": "Type2 - Premium",
+  "2": "Type3 - Not Use",
+  "3": "Type4 - Not Use"
+ },
+ "Power_Inverter_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_Windows_Configuration": {
+  "0": "All BCM",
+  "1": "Front BCM - None Rear",
+  "2": "Front Smart - None Rear",
+  "3": "Front BCM - Rear Smart",
+  "4": "Front Smart - Rear BCM",
+  "5": "All Smart"
+ },
+ "Neck_Warmer_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Themed_Sounds": {
+  "0": "Not present",
+  "1": "Default Synthesized",
+  "2": "Default Wave",
+  "4": "Follow Brand_Configuration_2",
+  "5": "Fiat LATAM"
+ },
+ "Illuminated_Brand_Badge": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Audio_Media_Expander_Setting": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Audio_Tuning_Mode_Setting": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Audio_Surround_Setting": {
+  "0": "Not present",
+  "1": "Type 1",
+  "2": "Type 2",
+  "3": "Type 3"
+ },
+ "Audio_Equalizer_Setting": {
+  "0": "Absent",
+  "1": "Type 1",
+  "2": "Type 2",
+  "3": "Type 3"
+ },
+ "Relax_Mode_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Paddle_Shifter_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Sound_Generator_Profile": {
+  "0": "Not Present",
+  "1": "Default",
+  "16": "LB 2 Door BEV 400V 340kW Premium",
+  "17": "LB 2 Door BEV 400V 340kW High Premium",
+  "18": "LB 2 Door BEV 400V 440kW Premium",
+  "19": "LB 2 Door BEV 400V 440kW High Premium",
+  "20": "LB 2 Door BEV 800V 600kW Premium",
+  "21": "LB 2 Door BEV 800V 600kW High Premium",
+  "22": "LB 4 Door BEV 400V 340kW Premium",
+  "23": "LB 4 Door BEV 400V 340kW High Premium",
+  "24": "LB 4 Door BEV 400V 440kW Premium",
+  "25": "LB 4 Door BEV 400V 440kW High Premium",
+  "26": "LB 4 Door BEV 800V 600kW Premium",
+  "27": "LB 4 Door BEV 800V 600kW High Premium",
+  "32": "LB 2 Door T6 HO Premium",
+  "33": "LB 2 Door T6 HO High Premium",
+  "34": "LB 2 Door T6 SO Premium",
+  "35": "LB 2 Door T6 SO High Premium",
+  "36": "LB 4 Door T6 HO Premium",
+  "37": "LB 4 Door T6 HO High Premium",
+  "38": "LB 4 Door T6 SO Premium",
+  "39": "LB 4 Door T6 SO High Premium",
+  "48": "WL74 T4 EVO Premium",
+  "49": "WL74 T4 EVO High Premium",
+  "50": "WL75 T4 EVO Premium",
+  "51": "WL75 T4 EVO High Premium",
+  "52": "WL74 I4 PHEV Premium",
+  "53": "WL74 I4 PHEV High Premium",
+  "54": "WL75 I4 PHEV Premium",
+  "55": "WL75 I4 PHEV High Premium",
+  "64": "C6X 400V 300kW Premium",
+  "65": "C6X 400V 300kW High Premium",
+  "66": "C6X 800V 400kW Premium",
+  "67": "C6X 800V 400kW High Premium",
+  "208": "M182 Base L4",
+  "209": "M182 Base V6",
+  "210": "M182 Premium L4",
+  "211": "M182 Premium V6",
+  "212": "M182 Premium BEV",
+  "213": "M182 High Premium L4",
+  "214": "M182 High Premium V6",
+  "215": "M182 High Premium BEV",
+  "216": "M189 Coup",
+  "217": "M189 Coup",
+  "218": "M189 Coup",
+  "219": "M189 Coup",
+  "220": "M189 Cabrio Premium V6",
+  "221": "M189 Cabrio Premium BEV",
+  "222": "M189 Cabrio High Premium V6",
+  "223": "M189 Cabrio High Premium BEV",
+  "224": "M240 V6 Premium",
+  "225": "M240 BEV Premium",
+  "226": "M240 RHT V6 Premium",
+  "227": "M240 BEV RHT Premium",
+  "228": "M240 BEV Base",
+  "229": "M240 RHT BEV Base",
+  "230": "M240 V6 Base",
+  "231": "M240 RHT V6 Base",
+  "232": "M183 BEV 2MOT Premium (Alpine 17ch) NA",
+  "233": "M183 BEV 2MOT Premium (Alpine 17ch)",
+  "234": "M183 BEV 2MOT High Premium (Alpine 24ch) NA",
+  "235": "M183 BEV 2MOT High Premium (Alpine 24ch)",
+  "236": "M183 BEV 3MOT Premium (Alpine 17ch) NA",
+  "237": "M183 BEV 3MOT Premium (Alpine 17ch)",
+  "238": "M183 BEV 3MOT High Premium (Alpine 24ch) NA",
+  "239": "M183 BEV 3MOT High Premium (Alpine 24ch)",
+  "241": "M182 Premium BEV NA",
+  "242": "M182 High Premium BEV NA",
+  "243": "M189 Coup",
+  "244": "M189 Coup",
+  "245": "M189 Cabrio Premium BEV NA",
+  "246": "M189 Cabrio High Premium BEV NA"
+ },
+ "FOA_Type": {
+  "0": "Absent",
+  "1": "Type1",
+  "2": "Type2",
+  "3": "Type3"
+ },
+ "Rear_Door_Right_Switch_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_Door_Left_Switch_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ASBM_3_LIN_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Lateral_Direction_Lights": {
+  "0": "Type 1",
+  "1": "Type 2",
+  "2": "Type 3",
+  "3": "Type 4"
+ },
+ "PFDM_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Ecall_Button_Variant": {
+  "0": "SOS Button",
+  "1": "HELP Button"
+ },
+ "FOTA_Server_Region": {
+  "0": "Absent",
+  "1": "NA",
+  "2": "EMEA",
+  "3": "LATAM",
+  "4": "APAC"
+ },
+ "Sound_Generator_setting": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Intercom_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Driver_Drowsy_Alert_Incremental_Chime": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "HV_Battery_Capacity": {
+  "1": "Type 1 - 11 kW IDCM",
+  "2": "Type 2 - 22 kW IDCM",
+  "3": "Type 3",
+  "4": "Type 4",
+  "5": "Type 5"
+ },
+ "Charge_Schedule_Type": {
+  "0": "Absent",
+  "1": "Type 1",
+  "2": "Type 2",
+  "3": "Type 3"
+ },
+ "Plug_And_Charge_Feature": {
+  "0": "Absent",
+  "1": "Step 1",
+  "2": "Step 2"
+ },
+ "Fuel_Cell_Presence": {
+  "0": "Fuel_Cell_Absent",
+  "1": "Fuel_Cell_Present"
+ },
+ "HVAC_Mode_Type": {
+  "0": "No Trimode",
+  "1": "Trimode_5 modes",
+  "2": "Trimode_7 modes"
+ },
+ "Virtual_Memory_Seats_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ADAS_Enhanced_Visualization": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "WeChat_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ADASIS_Mini_Full": {
+  "0": "Absent",
+  "1": "ADASIS_Mini",
+  "2": "ADASIS_Full"
+ },
+ "Audio_Virtual_Concert_Halls_Setting": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Traffic_Sign_Offset_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Tailgate_Ajar_Indication": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "iTPMS_Reset": {
+  "0": "Button",
+  "1": "Selection on Cluster",
+  "2": "Reserved",
+  "3": "Reserved"
+ },
+ "Plug_Lock_Behavior_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Perception_of_Speed_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Chime_Audio_Management": {
+  "0": "By IPC",
+  "1": "By HU"
+ },
+ "Light_Fade_PWM_Enable": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Roof_Height": {
+  "0": "H1",
+  "1": "H2",
+  "2": "H3",
+  "3": "H4"
+ },
+ "Mirrors_Type": {
+  "0": "Type_1",
+  "1": "Type_2",
+  "2": "Type_3",
+  "3": "Type_4"
+ },
+ "Phone_As_A_Key": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Trailer_TPMS": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Roll_Up_Door": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Trailer_Light_Check": {
+  "0": "Absent",
+  "1": "Type 1 (Radio)",
+  "2": "Type 2",
+  "3": "Type 3"
+ },
+ "Power_Outlet_Type": {
+  "0": "Absent"
+ },
+ "Off_Road_Plus_Button": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Backup_Alarm": {
+  "0": "Absent",
+  "1": "Not Configurable",
+  "2": "Configurable"
+ },
+ "TCSM_LIN_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Axle_Locker_Presence": {
+  "0": "Absent",
+  "1": "Rear Locker",
+  "2": "Front and Rear Locker"
+ },
+ "Tcase_Type": {
+  "0": "Absent",
+  "1": "Active",
+  "2": "Part Time",
+  "3": "SRT"
+ },
+ "Hydraulic_Pressure_Overlay": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Fog_Light_Memory": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passive_Entry_Passenger_Side": {
+  "0": "Present",
+  "1": "Absent"
+ },
+ "MOCO_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Status_Bar_Defaults": {
+  "0": "Absent"
+ },
+ "AUX_Switch_Types": {
+  "0": "Absent",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "Start_Button_Type": {
+  "0": "Type_1",
+  "1": "Type_2",
+  "2": "Type_3",
+  "3": "Type_4"
+ },
+ "Snow_Plow": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "INVM_LIN_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Red_Key": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Special_Package_FPDM": {
+  "0": "Default"
+ },
+ "Performance_Shift_Indicator": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Super_Track_Pack_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Clearpath_Camera": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Evasive_Steer_Assist": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Auxiliary_Trailer_Camera": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Trailer_Reverse_Guidance_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Turn_Signal_Camera_View": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Parksense_Camera_View": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Trailer_Surround_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Trailer_Reverse_Steering_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "TBM_Default_DRM_Level": {
+  "0": "Level 0 - TBM SR21 and earlier",
+  "1": "Level 1 - TBM SR22 and beyond"
+ },
+ "Transmission_Drive_Mode_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ESC_Drive_Mode_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Engine_Power_Drive_Mode_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rear_View_Camera_Type": {
+  "0": "Analogic",
+  "1": "Digital"
+ },
+ "After_Run_Cooling_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Trailer_Hitch_Assist_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Memory_Seat_Positions": {
+  "0": "Two memory seat positions",
+  "1": "Three memory seat positions",
+  "2": "Four memory seat positions",
+  "3": "Five memory seat positions"
+ },
+ "Track_Mapping": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Drag_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Track_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Sport_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Puddle_Light_Type": {
+  "0": "Puddle Lights Only",
+  "1": "Logo Lights"
+ },
+ "CHMSL_Type": {
+  "0": "LightBulb",
+  "1": "LEDs"
+ },
+ "Bed_Lighting_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Unintended_Idle_Alert_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "WCPM_3": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "LMTM_LIN_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Pocket_Door": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Utility_Lighting": {
+  "0": "Abesent",
+  "1": "Type 1",
+  "2": "Type 2",
+  "3": "Type 3"
+ },
+ "Auxiliary_Switches_Configuration": {
+  "0": "None",
+  "1": "Four_Cutoff",
+  "2": "Four",
+  "3": "Five",
+  "4": "Six"
+ },
+ "Rear_Lights_Configuration_Type": {
+  "0": "Type1",
+  "1": "Type2"
+ },
+ "CVADAS_Ethernet_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "MOIS_Moving_Off_Information_System": {
+  "0": "Absent",
+  "1": "Logic 1"
+ },
+ "BSIS_Blindspot_Information_System": {
+  "0": "Absent",
+  "1": "Logic 1"
+ },
+ "Traffic_Sign_Connected_Service": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Manual_Speed_Limit_Adjust": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Vehicle_Category": {
+  "0": "M1",
+  "1": "M2 max mass",
+  "2": "M2 max mass",
+  "3": "N1",
+  "4": "N2"
+ },
+ "Regulation_Type": {
+  "0": "Absent",
+  "1": "GSR Variant",
+  "2": "China Variant",
+  "3": "Korea Variant"
+ },
+ "Automatic_Assisted_Lane_Change": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Driver_Lateral_Pressure_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Driver_Lateral_B_Pillar_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passenger_Lateral_Pressure_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passenger_Lateral_B_Pillar_Sensor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Passenger_Seat_Move_Away": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Analog_Crash_Outputs_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Analog_Crash_Output_Presence_1": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_Convex_Mirrors_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_Tow_Mirrors_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Power_Telescoping_Mirrors_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ORVR_Strategy": {
+  "0": "Absent",
+  "1": "Strategy 1",
+  "2": "Strategy 2",
+  "3": "Future use"
+ },
+ "Status_LED_Enable": {
+  "0": "Enabled",
+  "1": "Disabled"
+ },
+ "Illuminated_Air_Vents": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Car_Wash_Feature_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "HVAC_Unit_Configuration": {
+  "0": "Type 1",
+  "1": "Type 2",
+  "2": "Type 3",
+  "3": "Type 4"
+ },
+ "HVAC_AUTO_ECO_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Ionizer": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Camera_Blindness_Filtering": {
+  "0": "Absent"
+ },
+ "Auto_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Wet_Snow_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Tow_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Custom_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Snow_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Mud_Sand_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Baja_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Rock_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Donut_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Drift_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Race_Options": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Line_Lock": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "WiFi_2_BT_BLE_External_Antenna_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Active_Spot_Light_Feature_Menu": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "RVDM_4_Cameras": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Digital_CHMSL_Camera_Prsnt": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Onboard_PowerPanel_Types": {
+  "0": "None",
+  "1": "Type 1",
+  "2": "Type 2",
+  "3": "Type 3",
+  "4": "Type 4"
+ },
+ "Regen_Levels": {
+  "0": "Absent"
+ },
+ "ePTO_Type": {
+  "0": "Absent",
+  "1": "Type 1"
+ },
+ "Emergency_Corridor_Assist": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Drowsy_Driver_Type": {
+  "0": "Absent",
+  "1": "Direct",
+  "2": "Indirect"
+ },
+ "Front_Camera_Heater": {
+  "0": "Disabled",
+  "1": "Enabled"
+ },
+ "Augmented_Reality": {
+  "0": "Absent",
+  "1": "Type 1",
+  "2": "Type 2"
+ },
+ "ECall_Type": {
+  "0": "Absent",
+  "1": "Private",
+  "2": "PAN-EU eCall",
+  "3": "ERA-GLONASS",
+  "4": "SASO",
+  "5": "JPN",
+  "6": "NextGen-PAN-EU"
+ },
+ "McIntosh_Premium_Audio": {
+  "0": "Absent",
+  "1": "P2",
+  "2": "P3",
+  "3": "P4"
+ },
+ "CHMCM_LIN_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "V2X_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "V2X_External_Antenna1_Presence": {
+  "0": "Absent",
+  "1": "Present Active",
+  "2": "Present Passive"
+ },
+ "V2X_External_Antenna2_Presence": {
+  "0": "Absent",
+  "1": "Present Active",
+  "2": "Present Passive"
+ },
+ "RTCU_Installation_Angle_Alpha_Sign": {
+  "0": "Minus",
+  "1": "Plus"
+ },
+ "RTCU_Installation_Angle_Beta_Sign": {
+  "0": "Minus",
+  "1": "Plus"
+ },
+ "RTCU_Installation_Angle_Gamma_Sign": {
+  "0": "Minus",
+  "1": "Plus"
+ },
+ "Dimmable_Sunroof": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Traction_Control_Plus": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Dual_Rear_Wheels_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Non_Regulatory_TPMS": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Box_Delete": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Wired_Remote_Start_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "SWLM_LIN_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Lighted_Door_Handles": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Body_Types": {
+  "0": "Absent",
+  "1": "Type 1 - D2",
+  "2": "Type 2 - DD",
+  "3": "Type 3 - DF",
+  "4": "Type 4 - DJ",
+  "5": "Type 5 - DP",
+  "6": "Type 6 - DX",
+  "7": "Type 7 - DT"
+ },
+ "FPDSM_LIN_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "RAM_Box_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Seat_Massage": {
+  "0": "Absent",
+  "1": "Front Seats",
+  "2": "Front and Rear Seats"
+ },
+ "RTCU_Installation_V2X_Longitudinal_Sign": {
+  "0": "Minus",
+  "1": "Plus"
+ },
+ "RTCU_Installation_V2X_Lateral_Sign": {
+  "0": "Minus",
+  "1": "Plus"
+ },
+ "RTCU_Installation_V2X_Vertical_Sign": {
+  "0": "Minus",
+  "1": "Plus"
+ },
+ "V2V_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "V2H_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "V2L_Present": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "SGW_ETH_Configuration": {
+  "0": "Config1_R1_Radio",
+  "1": "Config2_R2_Radio"
+ },
+ "Propulsion_Systems_Configuration": {
+  "0": "Not Set",
+  "1": "Type 1",
+  "2": "Type 2",
+  "3": "Type 3",
+  "4": "Type 4",
+  "5": "Type 5",
+  "6": "Type 6",
+  "7": "Type 7",
+  "8": "Type 8",
+  "9": "Type 9",
+  "10": "Type 10",
+  "11": "Type 11",
+  "12": "Type 12",
+  "13": "Type 13",
+  "14": "Type 14",
+  "15": "Type 15"
+ },
+ "VGT_Presence": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Underhood_Compartment": {
+  "0": "Engine",
+  "1": "Storage"
+ },
+ "Ambient_Ligth_RGB_Bicolor": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Ambient_Light_RGB_Brand_Selection": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Front_Sweep_Turn_Indicator": {
+  "0": "Not Active",
+  "1": "Active"
+ },
+ "Rear_Sweep_Turn_Indicator": {
+  "0": "Not Active",
+  "1": "Active"
+ },
+ "Ambient_Lighting_Day_Mode": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Ambient_Ligth_RGB_Slider": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ESS_Type": {
+  "0": "Turn Indicator",
+  "1": "Stop Lamp"
+ },
+ "ESC_Btn_Location": {
+  "0": "Absent",
+  "1": "Location1 (ESC on ASBM)",
+  "2": "Location2 (ESC on DCSD)",
+  "3": "Location3 (ESC on ICS)",
+  "4": "Location4",
+  "5": "Location5",
+  "6": "Location6",
+  "7": "Location7"
+ },
+ "Emission_Regulation_Type": {
+  "0": "Not requested",
+  "1": "Emission Regulation Type_1"
+ },
+ "ESVU_LIN_Module": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "RWS_Rack_Travel_Limits": {
+  "0": "Limit_1",
+  "1": "Limit_2"
+ },
+ "Hill_Descendent_Control_Button_Location": {
+  "0": "Absent",
+  "1": "Location1 (HDC button on ASBM)",
+  "2": "Location2 (HDC button on TCSM)",
+  "3": "Location3"
+ },
+ "Loose_Wheel_Indicator": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "ECO_Hibernation_2": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "DRL_LUX_Strategy": {
+  "0": "Disabled",
+  "1": "Below_LUX_Target",
+  "2": "All_LUX_Target"
+ },
+ "CARB_Regulation_Type": {
+  "0": "Not requested",
+  "1": "CARB_Regulation_Type_1"
+ },
+ "Front_Park_With_Stop": {
+  "0": "Absent",
+  "1": "Present"
+ },
+ "Lvds_Display_Diversity": {
+  "0": "Not Used",
+  "1": "Lvds_Display_Diversity_1",
+  "2": "Lvds_Display_Diversity_2",
+  "3": "Lvds_Display_Diversity_3",
+  "4": "Lvds_Display_Diversity_4"
+ },
+ "Architecture_Type": {
+  "0": "Atlantis High",
+  "1": "Atlantis Mid",
+  "2": "STLA Job_1",
+  "3": "STLA Job_3"
+ }
+}

@@ -1,10 +1,11 @@
 {
   "dist": {
-    "W0": 592,
-    "W1": 28,
-    "W2": 7
+    "W0": 572,
+    "W1": 2,
+    "W2": 53
   },
   "blocker": {
+    "B8-signal-incomplete": 46,
     "B5-signal-absent": 6,
     "B7-no-testable-content": 1
   },
@@ -23,32 +24,30 @@
       "W0": 17
     },
     "Units and Cameras": {
-      "W0": 68,
-      "W1": 5
+      "W0": 30,
+      "W2": 43
     },
     "Suspension and Comfort": {
-      "W0": 74
+      "W0": 71,
+      "W2": 3
     },
     "Auxiliary Switches": {
-      "W1": 7,
-      "W0": 104,
+      "W0": 111,
       "W2": 4
     },
     "Approach and Tailgate": {
-      "W0": 45,
-      "W1": 4
+      "W0": 49
     },
     "Trailer and Signage": {
-      "W0": 126,
-      "W1": 10,
+      "W0": 136,
       "W2": 3
     }
   },
   "chain_used": {
-    "3-PROXI": 87,
+    "3-PROXI": 113,
     "2-DBC": 370,
     "1-LID": 4,
-    "3-PROXI(未解)": 28,
+    "3-PROXI(未解)": 2,
     "(無來源)": 6
   },
   "vcvm_only": [],
