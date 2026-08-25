@@ -58,6 +58,16 @@ MIN_PHRASE = 8
 # ancestor, and expansions of fewer than two words are refused (R-DM22(a)).
 GLOSSARY_TSV = ROOT / "data" / "glossary.tsv"
 
+# R-DM25, applied to this side too (handoff 08 step 4). Upstream 07 §11.6
+# guessed that SYS2's Description, being prose, would rarely use
+# underscores — a guess is not a measurement, so the normalised pass runs
+# here as well and both counts are reported.
+SEP_NORM = re.compile(r"[ _]+")
+
+
+def sep_norm(s):
+    return SEP_NORM.sub(" ", s)
+
 SIGNAL = re.compile(r"\$([A-Za-z0-9_]+)\$")
 # R-DM18 (supersedes R-DM16): extract with the wide form, then DROP any
 # token containing ':'. The colon is the export's own verbatim marker for
@@ -195,27 +205,29 @@ def main():
                 hits.append((lf["id"], m))
 
         # --- glossary anchor (R-DM22), case-sensitive verbatim substring
-        gl_hits = []
+        gl_hits, gl_norm_hits = [], []
+        fields = (("heading", anc_txt), ("description", desc))
         for lf in lv:
-            got = []
+            got, got_norm = [], []
             for ab, exp in gloss.items():
                 if not any(re.search(rf"\b{re.escape(ab)}\b", p)
                            for p in lf["phrases"]):
                     continue
-                # (i) the expansion itself as a phrase
-                for field, txt in (("heading", anc_txt), ("description", desc)):
-                    if exp in txt:
-                        got.append(f"{ab}->{exp!r} @{field}")
-                # (ii) the whole leaf phrase with the abbreviation substituted
-                for p_ in lf["phrases"]:
-                    sub = re.sub(rf"\b{re.escape(ab)}\b", exp, p_)
-                    if sub != p_:
-                        for field, txt in (("heading", anc_txt),
-                                           ("description", desc)):
-                            if sub in txt:
-                                got.append(f"{sub!r} @{field}")
+                # (i) the expansion itself, (ii) each leaf phrase with the
+                # abbreviation substituted
+                cands = [exp] + [re.sub(rf"\b{re.escape(ab)}\b", exp, p_)
+                                 for p_ in lf["phrases"]
+                                 if re.search(rf"\b{re.escape(ab)}\b", p_)]
+                for c in dict.fromkeys(cands):
+                    for field, txt in fields:
+                        if c in txt:                             # strict
+                            got.append(f"{ab}->{c!r} @{field}")
+                        elif sep_norm(c) in sep_norm(txt):       # R-DM25
+                            got_norm.append(f"{ab}->{c!r} @{field} (norm)")
             if got:
                 gl_hits.append((lf["id"], sorted(set(got))))
+            if got_norm:
+                gl_norm_hits.append((lf["id"], sorted(set(got_norm))))
 
         # R-DM26: heading drops to next-to-last. It is present on 80/80
         # rows, so as a high-priority anchor it masked every anchor below it
@@ -229,6 +241,8 @@ def main():
             kind = "value"
         elif gl_hits:
             kind = "glossary_phrase"
+        elif gl_norm_hits:
+            kind = "glossary_phrase_norm"
         elif mel:
             kind = "melco"
         elif anc_txt:
@@ -246,10 +260,14 @@ def main():
                          if anc_txt else "無 heading 祖先")
         if gl_hits:
             cand_parts += [h[0] for h in gl_hits]
-            notes.append("glossary 錨（R-DM22，區分大小寫）：" + "；".join(
+            notes.append("glossary 錨（R-DM22，嚴格，區分大小寫）：" + "；".join(
                 f"{i}←{'|'.join(m)}" for i, m in gl_hits))
         else:
-            notes.append("glossary 錨無命中")
+            notes.append("glossary 錨（嚴格）無命中")
+        if gl_norm_hits:
+            cand_parts += [h[0] for h in gl_norm_hits]
+            notes.append("glossary 錨（R-DM25 正規化後才成立）：" + "；".join(
+                f"{i}←{'|'.join(m)}" for i, m in gl_norm_hits))
         cand = SEP.join(sorted(set(cand_parts)))
         note = "；".join(notes)
         if mel:
@@ -272,7 +290,8 @@ def main():
                 "非「已查證不存在」，亦非「未追查」",
             "candidate_from": SEP.join(
                 (["heading"] if hits else []) +
-                (["glossary_phrase"] if gl_hits else [])),
+                (["glossary_phrase"] if gl_hits else []) +
+                (["glossary_phrase_norm"] if gl_norm_hits else [])),
             "note": note,
             "func_l1": norm(r[c_l1]), "func_l2": norm(r[c_l2]),
             "func_l3": norm(r[c_l3]),
@@ -293,9 +312,11 @@ def main():
     from collections import Counter as _C2
     print("  heading only      : "
           f"{sum(1 for d in out_rows if d['candidate_from'] == 'heading')}")
-    print("  glossary only     : "
+    print("  glossary only（嚴格）: "
           f"{sum(1 for d in out_rows if d['candidate_from'] == 'glossary_phrase')}")
-    print("  兩者皆有          : "
+    print("  glossary_norm only（R-DM25 正規化後才成立）: "
+          f"{sum(1 for d in out_rows if d['candidate_from'] == 'glossary_phrase_norm')}")
+    print("  多錨並存          : "
           f"{sum(1 for d in out_rows if SEP in d['candidate_from'])}")
     print("  無候選            : "
           f"{sum(1 for d in out_rows if not d['candidate_from'])}")

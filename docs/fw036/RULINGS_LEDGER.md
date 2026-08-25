@@ -301,3 +301,37 @@ Polarion 匯出之工作簿常帶一個列舉值字典分頁（本案為 `_polar
 | R-G17 | 394 | `8e1a45c80c9a46a2` | 是 |
 
 首個適用之 feature：`display`（2026-08-25，SYS2 `_polarion` 分頁）。
+
+---
+
+## `--scaffold` 搬移之後果（R-G18，2026-08-25，全域）
+
+來源：`features/display/docs/handoff/08_recon_and_norm.md` §四。
+抄錄方式：機器抽取原樣寫入，未經人工轉錄。
+
+```text
+R-G18（`--scaffold` 之搬移使 intake 不可重現 —— 全域）
+`intake.py --scaffold` 以 `shutil.move` 將素材自 `_intake/<Feature>/`
+搬入 `features/<f>/inputs/`。搬移後該 `_intake/` 目錄為空，
+**該 feature 之 intake 分類結果不再可重現**。
+
+實測（上繳 07 §3.1）：`_intake/` 六個目錄中四個
+（AMFM／Comfort／Privacy／Time_Management）之可分類檔為 **0**。
+
+三項拘束：
+(a) 凡於空目錄上執行之檢查，其 PASS 一律不成立，須標「未實測」
+    （canon §5a：不可能失敗之檢查項不標 PASS）
+(b) 需要回歸驗證分類器時，須先自各 feature 之 `inputs/` 重建語料
+    （hard link 即可，不複製位元），並於報告中載明語料為重建者
+(c) 重建之臨時目錄用後刪除；`_intake/` 全域被 `.gitignore` 排除，
+    不入 git
+
+本條不要求改變 `--scaffold` 之行為 —— 搬移而非複製有其理由
+（避免兩份來源）。本條要求的是**知道它的後果**。
+```
+
+| 條號 | 字元數 | SHA256（前 16 碼） | 逐字相符 |
+|---|---|---|---|
+| R-G18 | 564 | `f003d7f9833cb671` | 是 |
+
+首個適用之 feature：`display`（2026-08-25，上繳 07 §3.1 之回歸語料重建）。

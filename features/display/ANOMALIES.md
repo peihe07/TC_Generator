@@ -693,6 +693,26 @@ R-DM26 將 heading 由第三位降至倒數第二，理由是其 80/80 之存在
   規定兩欄並列不合併）。是否要在 `anchor_kind` 之外再立一欄
   「最高優先之**產生候選**之錨」，屬 Tier 2
 
+## A-DM23 — TSV 檔頭之 `#` 註解行使標準 `csv.DictReader` 讀不到表頭  [PENDING]
+
+R-DM25(d) 要求正規化之定義逐字寫入產出檔之檔頭，我於上輪以 `#` 起首之
+註解行實作。本輪讀回 `data/proxi_candidates.tsv` 時，
+`csv.DictReader` **把第一行註解當成表頭**，得到 0 筆可用資料
+（欄名變成 `# R-DM25 正規化之定義：…`）。
+
+- 影響：`features/display/data/` 下唯一帶註解行者為
+  `proxi_candidates.tsv`（3 行）；另 `coverage_sys2_vs_swe_dm.PRE_GLOSSARY.tsv`／
+  `.PRE_PRIORITY.tsv`／`coverage_sys2_vs_swe_dm.RETRACTED.tsv`／
+  `leaf_value_gaps.tsv` 亦各有註解行。現行之讀取者（本 feature 之腳本）
+  皆自行處理，但**任何以預設方式讀 TSV 之消費者會靜默取到錯誤欄名**
+- 這與 R-G16 同型：**擷取正確、序列化正確，讀回那一步錯**，
+  且錯得「看起來像空資料」而非報錯
+- 提案處置二選一，屬 Tier 2：
+  (a) 註解行保留，於 `FORMS.md` 或 canon 明定「本專案之 TSV 得以 `#`
+      起首之註解行開頭，讀取者須略過」，並在每個讀取點落實；
+  (b) 註解移出資料檔，改置於同名 `.meta.md`，資料檔只有表頭與資料。
+  **執行層不自行擇一** —— 這會影響此後所有 feature 之 TSV 慣例
+
 ---
 
 ## Assumption markers

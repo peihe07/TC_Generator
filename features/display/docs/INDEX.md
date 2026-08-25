@@ -16,6 +16,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 05 | 2026-08-24 | `[VALUE]` 定義定案、PROXI 開工、DBC 適用性 | [handoff/05_proxi_and_values.md](handoff/05_proxi_and_values.md) | [upstream/05_proxi_and_values.md](upstream/05_proxi_and_values.md) | R-DM18–R-DM21 ＋ R-G15（全域）（逐字抄錄 5/5，Display 累計 23/23） | A-DM17 新增；A-DM16 結案並記執行結果；A-DM11 之值 token 定案；DR-DM6 開立；LOOKUP_MISSES M-3 | **步驟 1–9 全數執行；十五條停止條件全未觸發。59 vs 44 已調和：擷取無誤，錯在聚合** |
 | 06 | 2026-08-25 | 縮寫錨定案、聚合缺陷通則、037 精讀、Polarion 分頁清償 | [handoff/06_glossary_anchor.md](handoff/06_glossary_anchor.md) | [upstream/06_glossary_anchor.md](upstream/06_glossary_anchor.md) | R-DM22／R-DM23 ＋ R-G16／R-G13 補充（全域）（逐字抄錄 4/4，Display 累計 25/25） | A-DM18／A-DM19／A-DM20 新增；**A-DM4 升級（`_polarion` 字典）**；DR-DM7 開立 | **步驟 1–10 全數執行；十七條停止條件全未觸發。積欠四輪之步驟 8、9 一併清償** |
 | 07 | 2026-08-25 | Q5 定案 B、錨優先序、分隔符正規化；**首次授權改 `scripts/intake.py`** | [handoff/07_pipeline_and_anchors.md](handoff/07_pipeline_and_anchors.md) | [upstream/07_pipeline_and_anchors.md](upstream/07_pipeline_and_anchors.md) | R-DM24–R-DM27 ＋ R-G17（全域）（逐字抄錄 5/5，Display 累計 29/29） | A-DM21／A-DM22 新增；A-DM4 之 `_polarion` 待辦結案；DR-DM8 開立 | **步驟 1–11 全數執行；二十條停止條件全未觸發。回歸 14/14 逐字相同；`recon.py` 仍失敗於同一點，成因已定位（A-DM21）** |
+| 08 | 2026-08-25 | Q5-B 誤診歸屬、警示分支實測、正規化回施 | [handoff/08_recon_and_norm.md](handoff/08_recon_and_norm.md) | [upstream/08_recon_and_norm.md](upstream/08_recon_and_norm.md) | R-DM28／R-DM29 ＋ R-G18（全域）（逐字抄錄 3/3，Display 累計 31/31） | A-DM23 新增 | **步驟 1、2、4–7 執行；步驟 3（選項 D）待 Pei 裁示未做。二十二條停止條件全未觸發** |
 
 ## 02 輪要點
 
@@ -152,3 +153,26 @@ Q5-B 只繞過其中 1 處（`SHEET_SIGNATURES`）。條文所載之
 正規化後碰撞組**皆為 0**。
 
 **R-DM27**：037 八條之缺值點逐條表入 `data/leaf_value_gaps.tsv`。
+
+## 08 輪要點
+
+**R-DM24(b) 警示分支實測（步驟 2）**：以 SYS2 檔冒名頂替 037 之檔名，
+三項各自成立 —— 警示印出（含兩側雜湊前 16 碼）、signature 結果
+`polarion_export` 保留、exit 0 不崩潰。另補測「缺 sha256」分支亦如預期。
+狀態已還原並複驗（`ab3198e8…`，覆寫恢復生效）。
+
+**正規化回施 SYS2（步驟 4）**：新增候選 **0**。**但我上輪的推測是錯的**
+—— 80 列中 **66 列含底線**（40 個相異底線 token），不是「散文，底線少見」。
+0 之真正原因：那些底線 token 是識別碼形態之訊號名，
+`DISP_REAR_CAMERA` 正規化為 `DISP REAR CAMERA`，與 `Rear View Camera`
+仍不等（少 `View`、多 `DISP` 前綴、大小寫不同）。
+
+**`compare_req_families.py`（步驟 6）**：**無任何腳本或管線呼叫它**，
+為手動 CLI 工具；唯一使用紀錄在 AMFM。其 `SHEET` 用法有 guard
+（`sys.exit` 而非 `KeyError`），與 `recon.py:568`／`intake.py:311` 不同型。
+Display 用不到它（它比較兩份同範圍需求報告，本 feature 只有一份）。
+
+**A-DM23（新）**：我上輪加的 TSV `#` 註解行使 `csv.DictReader` 讀不到表頭，
+且錯得像空資料而非報錯。
+
+**步驟 3（選項 D）未執行** —— 待 Pei 裁示。
