@@ -61,6 +61,8 @@ NO_SCAN = {
 PAT = re.compile(ASSERTIONS["popup"][0], re.I)
 
 LIMITS = [
+    "**粗篩之判準仍以詞為之**（R-PMH98 允許之兩層作法）—— 其與關鍵詞之差別在於"
+    "**落選之格逐格具名其落選理由，非靜默略過**；**判準本身之偽陰仍在**",
     "**每次只掃一個斷言**（R-PMH93）—— `--assertion popup`／`audio`；其餘斷言未掃者不在本次輸出內",
     "**各斷言之關鍵詞皆為列舉，其偽陰未估**（25 包步驟 5 具名）—— "
     "**R-PMH91 廢止了記法上之列舉，未廢止關鍵詞上之列舉**。"
@@ -310,6 +312,82 @@ AFTER_LINE_VERDICT: dict[int, tuple[str, str, str]] = {
 }
 
 
+# --- R-PMH98（26 包）：矩陣側之母體改為**全枚舉**，關鍵詞降為排序輔助 ---
+# **母體 = 事件列之全部有值格（174，21 包 §3 已量）**，非關鍵詞命中之子集。
+# 分兩層：機器以**謂詞域**粗篩，**落選者逐格具名其落選理由**（非靜默略過）。
+#
+# 謂詞域之定義 —— 每一格依其自身之動詞／名詞歸入零至多個域。
+PREDICATE_DOMAIN = {
+    "audio":   r"\b(mute[sd]?|unmute[sd]?|audio|sounds?|volume)\b",
+    "display": r"\b(screen|VP|display(?:ed|s)?|pop-?ups?|shown|show|camera|GUI"
+               r"|visibile|visible)\b",
+    "power":   r"\b(power|wakes?\s+up|standby|powers?\s+on|remain\s+off"
+               r"|turns?\s+off|stays?\s+on)\b",
+    "state":   r"\b(event ignored|recall|return|end call|go back|reinstat\w*)\b",
+}
+
+# 各斷言之**入選謂詞**（粗篩之判準）。**其仍以詞為之，該限度已具名於 LIMITS。**
+ASSERTION_DOMAIN = {
+    "audio": ("audio", r"\b(mute[sd]?|unmute[sd]?|audio|sounds?|volume|background)\b"),
+    "popup": ("display", r"pop\s*-?\s*ups?"),
+    "popup_after": ("display", r"pop\s*-?\s*ups?"),
+    "announcement": (None, r"\b(traffic\s+announcement|announcements?|received)\b"),
+}
+
+
+def enumerate_matrix(assertion: str) -> tuple[list, list, list]:
+    """回傳（全部有值格, 入選格, 落選格及其理由）。"""
+    import matrix_vs_chapter as mvc
+    wb, ws = mvc.load_sheet()
+    cells = [(lo, r, lbl, c, ax, v)
+             for lo, r, lbl, cs in mvc.event_rows(ws) for c, ax, v in cs]
+    wb.close()
+    dom, rx = ASSERTION_DOMAIN[assertion]
+    sel_re = re.compile(rx, re.I)
+    sel, rej = [], []
+    for cell in cells:
+        v = cell[5]
+        if sel_re.search(v):
+            sel.append(cell)
+        else:
+            doms = sorted(d for d, dr in PREDICATE_DOMAIN.items()
+                          if re.search(dr, v, re.I))
+            rej.append((cell, doms))
+    return cells, sel, rej
+
+
+def print_enumeration(assertion: str) -> None:
+    cells, sel, rej = enumerate_matrix(assertion)
+    dom, rx = ASSERTION_DOMAIN[assertion]
+    print(f"\n--- 矩陣側之**全枚舉**（R-PMH98）—— 斷言 `{assertion}` ---\n")
+    print(f"  母體 = 事件列之**全部有值格 {len(cells)}**（非關鍵詞命中之子集）")
+    print(f"  入選（謂詞域 `{dom}`，判準 `{rx}`）= **{len(sel)}** 格，"
+          f"分布於 **{len({(a, b) for a, b, *_ in sel})}** 列")
+    print(f"  落選 = **{len(rej)}** 格 —— **逐格具名其落選理由**：\n")
+    from collections import Counter
+    agg = Counter(tuple(d) for _, d in rej)
+    for doms, n in agg.most_common():
+        why = ("該格無任何謂詞域之詞" if not doms
+               else f"該格之謂詞域為 {list(doms)}，與 `{dom}` 不交")
+        print(f"    {n:>3} 格  {why}")
+    print(f"\n  **落選之 {len(rej)} 格皆已具名其理由，無靜默略過者。**")
+    # 與關鍵詞篩選之對照（停止條件 8）
+    kw = re.compile(ASSERTIONS[assertion][0], re.I)
+    kw_cells = [c for c in cells if kw.search(c[5])]
+    same_rows = {(a, b) for a, b, *_ in sel} == {(a, b) for a, b, *_ in kw_cells}
+    print(f"\n  === 與關鍵詞篩選之對照（26 包停止條件 8）===")
+    print(f"    關鍵詞篩選得 **{len(kw_cells)}** 格；全枚舉入選 **{len(sel)}** 格")
+    print(f"    **其所在之列是否相同：{same_rows}**")
+    if len(kw_cells) != len(sel):
+        only_kw = [c for c in kw_cells if c not in sel]
+        only_en = [c for c in sel if c not in kw_cells]
+        for c in only_kw:
+            print(f"    只在關鍵詞側：r{c[1]} c{c[3]} = {c[5][:70]}")
+        for c in only_en:
+            print(f"    只在全枚舉側：r{c[1]} c{c[3]} = {c[5][:70]}")
+
+
+
 def lines(pat: re.Pattern) -> list[tuple[int, str]]:
     cfg = yaml.safe_load((ROOT / "feature.yaml").read_text(encoding="utf-8"))
     d = fitz.open(ROOT / cfg["paths"]["spec_pdf"])
@@ -360,8 +438,10 @@ def main() -> None:
         print(f"      記法：**{kind}**；謂詞：{pred}")
         print(f"      依據：{why}\n")
     # --- 矩陣側（`audio` 斷言）---
+    if a.assertion in ASSERTION_DOMAIN:
+        print_enumeration(a.assertion)
     if a.assertion in ("audio", "announcement"):
-        print("\n--- 矩陣側（State Matrix）---\n")
+        print("\n--- 矩陣側之逐列記法（已具名者）---\n")
         if a.assertion == "announcement":
             n_hit = len(matrix_rows(pat))
             print(f"  命中之事件列 = **{n_hit}**"

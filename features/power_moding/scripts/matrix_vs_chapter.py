@@ -60,6 +60,8 @@ VOCAB = {
     10: ["backup cam", "back-up camera", "Power Button Off", "Power Button OFF",
          "HVAC pop-ups", "HVAC popups", "Phone call popups", "SOS", "ASSIST",
          "Key OFF", "ACC position", "ignition", "reinstated", "disclaimer"],
+    12: ["Off Road", "Off Road+", "SRT", "hard control", "wake up", "Power Button On",
+         "muted", "mute", "launching app", "Power Off State", "CFTS009", "diagram"],
     11: ["VR", "VR HK", "hard key", "SIRI", "Voice Assistants", "long press",
          "Long press", "radio is OFF", "KEY ON", "ACC", "Screen Off",
          "Screen ON", "Audio OFF", "Audio ON", "CFTS009", "interaction"],
@@ -493,6 +495,97 @@ VERDICT: dict[tuple[int, int, int], tuple[str, str, str]] = {
     (10, 37, 48):
         ("牴觸", "**HVAC pop-up 是否顯示** —— `PITA6`（10.3）取「顯示」（`shall be temporarily displayed during Power Button Off state`，**全稱**）；本列 c10（`Gear = Reverse` × `Power Button State = OFF`）取 **`Popup not displayed over RVC`**",
          "**同一謂詞取相反值，條件互斥未證**（20 §4.2 查出，R-PMH80 處置：限縮 ＋ 揭露，不裁權威；`DR-PMH6` 已擬）。**執行層所提之「`PITA4` 通則／例外」調和不採** —— `PITA4` 之對象為使用者之按鍵輸入（`selections`），非 popup 之顯示。"),
+    # ===== 26 包步驟 7：章 12 × 矩陣 =====
+    (12, 1, 6):
+        ("未對照", "ON/OFF button Pressed 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 1, 7):
+        ("未對照", "Door opened 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 1, 8):
+        ("未對照", "Door closed 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 1, 9):
+        ("未對照", "Incoming Call 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 1, 10):
+        ("未對照", "Plug in Projection 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 1, 11):
+        ("未對照", "VR button long press without Projection 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 1, 12):
+        ("未對照", "VR button long press at Projection 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 1, 13):
+        ("未對照", "Call Ended 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 1, 14):
+        ("未對照", "Projection call ends 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 1, 15):
+        ("未對照", "Key-off 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 1, 16):
+        ("印證", "**Off Road+ 鍵之後果（是否靜音）** —— `OFF3.)` 取「靜音」；本列 c12／c13 取 `Radio Wakes Up and rmutes`／`Radio Wakes Up and mutes`",
+         "**同一謂詞取相同值。** 且**矩陣補上了規格所無之另一半** —— `OFF3.)` 只說「靜音」而未言「喚醒」，本列逐字為 `Radio Wakes Up and mutes`（**喚醒 ＋ 靜音**）。**與 `OFF1.)` 不衝突**：`OFF1.)` 之條件為「按壓前已在 Off Road state」→ 不喚醒；本列之軸（`Power Button OFF` × `Call Not Active` × `Door`）**未含 Off Road state** → 喚醒並靜音。**二者為互補之兩支**（20 包 §3 已定，本輪以四詞記法重記）。⚠ `rmutes`（c12）為 `mutes` 之打字損壞（R-PMH81：只登記不改寫）。"),
+    (12, 19, 24):
+        ("未對照", "ON/OFF button Pressed 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 19, 25):
+        ("未對照", "Door opened 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 19, 26):
+        ("未對照", "Incoming Call 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 19, 27):
+        ("未對照", "Plug in Projection 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 19, 28):
+        ("未對照", "VR button long press without Projection 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 19, 29):
+        ("未對照", "VR button long press at Projection 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 19, 30):
+        ("未對照", "Door closed 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 19, 31):
+        ("未對照", "Call Ended 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 19, 32):
+        ("未對照", "Projection call ends 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 19, 33):
+        ("未對照", "Key-on 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 37, 40):
+        ("未對照", "ON/OFF button pressed 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 37, 41):
+        ("未對照", "Incoming or Active Call 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 37, 42):
+        ("未對照", "Gear changes to Reverse 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 37, 43):
+        ("未對照", "Gear changes to not-Reverse 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 37, 44):
+        ("未對照", "Screen Off Button Pressed 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 37, 45):
+        ("未對照", "Mute 鍵之後果 vs `OFF3.)` 之靜音",
+         "**共同謂詞（是否靜音）**，惟 `OFF3.)` 之條件逐字為 `when launching app from Power Off State` —— 本列之觸發為**使用者按 Mute 鍵**，其欄軸為 `Key On, Gear != Reverse`（頭端已開機）。**條件互斥之依據為 `OFF3.)` 之條件句本身。**"),
+    (12, 37, 46):
+        ("未對照", "Headunit Mode Button Pressed (5\" VP2 only) 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 37, 47):
+        ("未對照", "Headunit Mode Change via VR 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
+    (12, 37, 48):
+        ("未對照", "HVAC Hard Control Adjustment 之後果",
+         "ch 12（`OFF1.)`／`OFF2.)`／`OFF3.)`）全文無此事件之敘述 —— **無對應之規格敘述**。⚠ `OFF2.)` 逐字為 `Please refer to CFTS009 for complete behavior.` —— **其所指之 CFTS009 不在本 feature 之六筆素材內**（A-PMH13／R-PMH72：該 leaf 已不寫入工作簿）。"),
 }
 
 

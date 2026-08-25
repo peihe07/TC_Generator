@@ -27,6 +27,13 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 SPEC = "Power Moding HMI Logic and Flow R1 SR24 2A"
 
+# R-PMH99(c)（26 包）—— `-007` 之七項事件層限定，其字串須於 procedure 各出現一次。
+LIMIT_TOKENS = [
+    "press the ON/OFF key", "turn key-off", "open any door",
+    "adjust HVAC hard controls", "press the Mute key",
+    "the Headunit Mode key", "change the headunit mode by voice recognition",
+]
+
 # **R-PMH58（15 包）—— `COVERED` 不得手寫，須自各檢查點自動彙集。**
 #
 # 各 `chk(...)` 於其呼叫處以 `canon=` 具名其所檢查之 canon 節號；
@@ -59,10 +66,57 @@ COVERED = _covered_from_source()
 LAYER3 = ROOT / "data" / "layer3_sections.tsv"
 
 
+def limit_must_hit() -> int:
+    """R-PMH99(c) 之 must-hit（26 包步驟 6）—— 刪去任一項須 FAIL、重複任一項須 FAIL。"""
+    import copy
+    import subprocess
+    base = json.loads((ROOT / "generated" / "batch01.json").read_text(encoding="utf-8"))
+    tmp = ROOT / "tests" / "fixtures" / "_limit_must_hit.json"
+
+    def run(doc) -> bool:
+        tmp.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
+        r = subprocess.run([sys.executable, str(Path(__file__).resolve()),
+                            str(tmp.relative_to(ROOT))],
+                           capture_output=True, text=True, cwd=ROOT)
+        return r.returncode == 1 and any(
+            "R-PMH99(c)" in ln and "FAIL" in ln for ln in r.stdout.splitlines())
+
+    print("=== R-PMH99(c) 之 must-hit（26 包步驟 6）===")
+    print("**七項限定得合併於同一步驟，故『某項被忽略』與『某項被刪去』"
+          "在文本上難以分辨** —— 本錨點即驗其可分辨。\n")
+    ok_del = True
+    try:
+        for tok in LIMIT_TOKENS:
+            d = copy.deepcopy(base)
+            for t in d["tcs"]:
+                if t["tc_id"].endswith("007"):
+                    t["test_procedure"] = t["test_procedure"].replace(tok, "XXXX")
+            hit = run(d)
+            ok_del &= hit
+            print(f"  刪去 `{tok}` → FAIL 被攔下：{hit}")
+        d = copy.deepcopy(base)
+        for t in d["tcs"]:
+            if t["tc_id"].endswith("007"):
+                t["test_procedure"] += "\n8. Do not press the Mute key again"
+        ok_dup = run(d)
+        print(f"\n  重複 `press the Mute key` → FAIL 被攔下：{ok_dup}")
+    finally:
+        tmp.unlink(missing_ok=True)
+    print("\n" + "=" * 60)
+    print(f"刪去 7/7 皆 FAIL: {ok_del}；重複 FAIL: {ok_dup}")
+    return 0 if (ok_del and ok_dup) else 1
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("batch")
+    ap.add_argument("batch", nargs="?")
+    ap.add_argument("--limit-must-hit", action="store_true",
+                    help="R-PMH99(c) 之 must-hit（刪去／重複任一限定項須 FAIL）")
     a = ap.parse_args()
+    if a.limit_must_hit:
+        sys.exit(limit_must_hit())
+    if a.batch is None:
+        raise SystemExit("須給 batch 檔，或用 --limit-must-hit")
     d = json.loads((ROOT / a.batch).read_text(encoding="utf-8"))
     cfg = yaml.safe_load((ROOT / "feature.yaml").read_text(encoding="utf-8"))
     voc = set(cfg["lint"]["design_method_vocabulary"])
@@ -262,6 +316,20 @@ def main() -> None:
         print(f"  （R-PMH53 末段：本批交叉引用 {len(refs)} 處，逐處列出供人讀）")
         for a, f, r in refs:
             print(f"      {a} .{f} → {r}")
+
+    # --- R-PMH99(c)（26 包）：`-007` 之七項事件層限定，其字串須各出現一次 ---
+    # R-PMH87／R-PMH94 之七項限定得合併於同一步驟（每步至多兩項，R-PMH99(a)），
+    # **惟合併使「某項被忽略」與「某項被刪去」在文本上難以分辨** ——
+    # 故逐項驗其字串於 procedure 中**恰出現一次**（0 次或 >= 2 次皆 FAIL）。
+    bad = []
+    for t in tcs:
+        if not t["tc_id"].endswith("007"):
+            continue
+        for tok in LIMIT_TOKENS:
+            n = t["test_procedure"].count(tok)
+            if n != 1:
+                bad.append((t["tc_id"], tok, n))
+    chk("R-PMH99(c) `-007` 之七項限定字串各出現一次", not bad, str(bad))
 
     # --- 15 包步驟 6：procedure 與 ER 之**編號**逐條對齊（人讀覆核之前置）---
     # 只驗機械可查者：編號自 1 起連號、且兩側逐位相同。

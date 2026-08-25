@@ -558,6 +558,21 @@ Thank you,
 **阻斷**：矩陣對照之四列判定（`r6`／`r15`／`r24`／`r25`，R-PMH85(c) 標「待定義」）；
 **不阻斷 batch 1**。
 
+### 增補（26 包步驟 5）—— **另二處記法／範圍未定義，併入本 DR**
+
+本 DR 之型別為「素材使用規格未定義之術語」。**同型者另有二處**，
+併入同一封詢問（同一問題不重複發文）：
+
+| # | 出處 | 逐字 | 未定義者 |
+|---|---|---|---|
+| 2 | State Matrix `r46`／`r47`（`Headunit Mode Button Pressed`／`… via VR`） | `Screen Off Inactive If Radio/Media, Mute --> Inactive. **Else: Mute Active**` | **`Else: Mute Active` 之記法** —— 同格內 `Mute --> Inactive` 有箭頭而 `Mute Active` 無；**「維持靜音」抑或「使之靜音」未定**（A-PMH22） |
+| 3 | 規格 PDF p4（流程圖區） | `Note: do not show popup again if popup was shown at Radio Off.` | **該 `Note:` 之適用範圍** —— 其僅適用於同段之 `Geolocation + SOS Popup`，抑或泛指所有 popup？（25 §12 第 5 項） |
+
+**二者皆已由限定或判定繞過，不阻斷**：
+`Else: Mute Active` 已由 `-007` 之第 6、7 項限定涵蓋兩讀（R-PMH95）；
+`Note:` 之範圍本層判為「僅適用於該段之 popup」，**惟若泛指所有 popup 則
+`-007` 之 ER7 有牴觸**。**故本項為「請確認」而非「請裁定」。**
+
 ### 可寄出全文
 
 ```text
@@ -599,6 +614,24 @@ different display, they are not in conflict.
 
 Could you please confirm what VP refers to? Specifically: is VP the head unit
 display screen, or something else?
+
+Two smaller questions of the same kind, if we may include them here:
+
+  (2) In the "State Matrix" sheet, rows "Headunit Mode Button Pressed" and
+      "Headunit Mode Change via VR" contain, verbatim:
+
+          Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
+
+      Within the same cell, "Mute --> Inactive" uses an arrow and "Mute Active"
+      does not. Should "Else: Mute Active" be read as "mute stays active" or as
+      "mute becomes active"? The two readings lead to different test cases.
+
+  (3) On page 4 of the logic and flow document there is a note, verbatim:
+
+          Note: do not show popup again if popup was shown at Radio Off.
+
+      Does this apply only to the Geolocation + SOS popup shown in the same
+      diagram, or to all pop-ups generally?
 
 Thank you,
 ```

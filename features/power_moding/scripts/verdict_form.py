@@ -59,8 +59,11 @@ def collect() -> list[tuple[str, str, str]]:
     for k, v in mvc.VERDICT.items():
         out.append(("matrix_vs_chapter.VERDICT", str(k), v[0]))
     import batch_er_vs_matrix as bem
+    # ⚠ 26 包：`ER_VERDICT` 之值由 (記法, 謂詞, 依據) 改為
+    # **(類, 記法, 謂詞, 依據)**（R-PMH97 之二分）—— 記法自 `v[0]` 移至 `v[1]`。
+    # **本檔於改造當輪即以 23 項全 FAIL 攔下該不同步**（26 包 §7）。
     for k, v in bem.ER_VERDICT.items():
-        out.append(("batch_er_vs_matrix.ER_VERDICT", str(k), v[0]))
+        out.append(("batch_er_vs_matrix.ER_VERDICT", str(k), v[1]))
     import spec_assertion_scan as sas
     for name in ("LINE_VERDICT", "AUDIO_LINE_VERDICT", "AUDIO_CELL_VERDICT"):
         for k, v in getattr(sas, name).items():

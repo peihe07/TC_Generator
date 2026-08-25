@@ -32,6 +32,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 23 | 2026-08-25 | **規格內部之牴觸**、batch 1 逐條 ER 對照、章 11 × 矩陣 | [handoff/23_spec_internal_conflict.md](handoff/23_spec_internal_conflict.md) | [upstream/23_spec_internal_conflict.md](upstream/23_spec_internal_conflict.md) | R-PMH88–R-PMH90（逐字抄錄 3/3 相符） | **A-PMH21（`SU3.)` × p9 `Pop-ups still shown`）**；`DR-PMH5` 增補 | **三條停止條件全未觸發；ER 牴觸 0／印證 1；ch 11 牴觸 0／印證 2；lint 30/30** |
 | 24 | 2026-08-25 | **正向記法**、A-PMH21 以渲染改判、ER4(b) 之牴觸 | [handoff/24_positive_form.md](handoff/24_positive_form.md) | [upstream/24_positive_form.md](upstream/24_positive_form.md) | R-PMH91–R-PMH93（逐字抄錄 3/3 相符） | **A-PMH21 改判為「未對照」**（原文保留） | **⚠ 停止條件 7 觸發（`r45` × ER4(b)）；ch 10 牴觸 1（已登記）；總表機器化，六支「未實測」** |
 | 25 | 2026-08-25 | **限定逐斷言導出（4→7）**、欄位以字級座標確認 | [handoff/25_limitation_union.md](handoff/25_limitation_union.md) | [upstream/25_limitation_union.md](upstream/25_limitation_union.md) | R-PMH94–R-PMH96（逐字抄錄 3/3 相符） | **A-PMH22（`Else: Mute Active` 記法未定義）**；A-PMH21 依據更換 | **三條停止條件全未觸發；ER1～5 逐斷言掃描牴觸 0；lint 30/30** |
+| 26 | 2026-08-25 | **斷言二分**、矩陣側全枚舉、限定合併之 lint | [handoff/26_enumeration_over_keywords.md](handoff/26_enumeration_over_keywords.md) | [upstream/26_enumeration_over_keywords.md](upstream/26_enumeration_over_keywords.md) | R-PMH97–R-PMH99（逐字抄錄 3/3 相符） | （無新 A-PMH；`DR-PMH7` 增二問） | **三條停止條件全未觸發；batch 1 涵蓋率 78%→100%；lint 31/31；章 12 全對照完成** |
 
 ## 01 輪要點
 
@@ -1578,3 +1579,61 @@ shall be displayed` ——**互斥之依據自此為規格文字**。
 **待 Pei**：三筆 DR 之發出（**`DR-PMH7` 建議併問 `Else: Mute Active` 之記法**）／
 5 個未單獨對照之斷言是否重跑／ER1・ER2 之例外是否成立／
 `L160` 之 `Note:` 適用範圍／25 之 commit 授權（9 路徑）。
+
+---
+
+## 26 包要點
+
+### batch 1 之涵蓋率 **78% → 100%**（18 條 ER → **23 個斷言**）
+
+25 §12 第 1 項所指之 5 個未單獨對照之斷言已逐一對照，**牴觸 0**。
+
+**R-PMH97 之二分實測**：SUT 行為斷言 **21**／測試執行斷言 **2**
+（`No user input is given` × 2）。**二者之歸類與理由已寫入程式常數，非只在上繳包。**
+
+### 矩陣側之全枚舉（R-PMH98）—— 母體 174 格
+
+| 斷言 | 入選 | 落選（**逐格具名理由**） | 與關鍵詞篩選之列集合相同 |
+|---|---:|---:|---|
+| `popup` | 21（5 列） | 153 | **True** |
+| `audio` | 48（10 列） | 126 | **True** |
+| `announcement` | 0 | 174 | **True** |
+| `popup_after` | 21（5 列） | 153 | **True** |
+
+**停止條件 8 未觸發 —— 惟其讀法須明說**：
+**這不證明關鍵詞篩選沒問題**，只證明「本輪之粗篩與原關鍵詞選出同一批」——
+**二者本就以詞為之**。真正之改變是**落選之 153／126／174 格現在各有一句
+具名之理由，而非不存在於輸出中**。**母體自此可見；判準之偽陰仍在。**
+
+### 限定合併之可驗性（R-PMH99(c)）—— lint 第 31 項
+
+驗七項限定之字串於 procedure 中**各出現一次**。
+**must-hit：刪去 7/7 皆 FAIL、重複亦 FAIL**，已落為可重跑之
+`lint_batch.py --limit-must-hit` 並註冊入總表。
+
+### 章 12 × 矩陣全對照：**牴觸 0／印證 1／未對照 29**
+
+唯一印證：`r16` × `OFF3.)` —— **同一謂詞取相同值**，且**矩陣補上了規格所無之
+另一半**（`OFF3.)` 只說靜音而未言喚醒；矩陣為 `Radio Wakes Up and mutes`）。
+**章 7／8／10／11／12 全部完成全對照；章 9 待 `DR-PMH5`。**
+
+### ⚠ `verdict_form.py` 在改造當輪就攔下一次不同步
+
+`ER_VERDICT` 之值由三元組改為四元組（R-PMH97 之二分），**記法自 `v[0]` 移至 `v[1]`**，
+而 `verdict_form.py` 仍讀 `v[0]` —— **以 23 項全數 FAIL 攔下**（其讀到 `SUT`／`測試執行`）。
+**一個結構變更破壞了下游讀取，而檢查在同一輪內就報了出來。** 已修並具名其成因。
+
+### ⚠ 本輪自陳之未竟項中，三項須先看（上繳 §12）
+
+1. **「關鍵詞降為排序輔助」我沒有做到** —— 粗篩判準與原關鍵詞**皆以詞為之**，
+   **二者選出同一批是可預期的，不是驗證**。R-PMH98 現只實施了一半
+   （規格側之全枚舉未做，下放包明令本輪只做矩陣側）。
+2. **斷言之切分以 ` and ` 為之，該規則本身未經驗證** ——
+   `-002` ER1 `The disclaimer screen is displayed with the "Accept" button`
+   含兩個可分之斷言卻**未被切開**（連接詞為 `with`）。**23 這個數字是該規則之產物。**
+3. **R-PMH99(a) 之「每步至多兩項」我報 2/2/2/1 —— 而那是我自己數的**；
+   lint 只驗字串各出現一次，**不驗每步幾項**。
+
+**待 Pei**：三筆 DR 之發出（**`DR-PMH7` 現含三問**：`VP`／`Else: Mute Active`／
+`Note:` 之範圍）／關鍵詞仍在決定入選／斷言切分規則之驗證／
+`pre_conditions`・`test_procedure` 之斷言不入母體／26 之 commit 授權（11 路徑）。
