@@ -124,13 +124,31 @@ hit = sum(1 for r in leaf_rows if norm(r[vm_col]).startswith(PREFIX))
 check("Verification Method 起首一致（117 leaf）", 117, hit,
       f"母體={len(leaf_rows)} 起首={PREFIX!r}")
 
-# --- A-VC1：第 10–18 欄全為 NBSP
-nbsp_cols = []
+# --- 第 10–18 欄之形態。
+# 基準已由 R-VC6（下放包 02 §二）取代下放包 01 §3.3 —— 後者為分析層
+# 未經全表掃描之全稱斷言，作廢；A-VC1 一併撤銷。
+# R-VC6 所裁之形態：117 個 leaf 皆有實質內容；28 個「有子之父」為 `\xa0`；
+# 欄 16／17 之該 28 列中另有 3 列為 None（VC-034 / VC-052 / VC-063）。
+NONE_ROWS = {"SWE1-HMI-VC-034", "SWE1-HMI-VC-052", "SWE1-HMI-VC-063"}
+parents_all = set(has_child) | set(no_child)
+non_leaf = {i for i in ids if i not in leaves}          # 28 個有子之父
+rvc6_cols, rvc6_detail = [], []
 for idx in range(9, 18):                       # 0-based 9..17 = 第 10..18 欄
-    vals = {str(r[idx]) if r[idx] is not None else "" for r in data}
-    if vals == {NBSP}:
-        nbsp_cols.append(hdr[idx])
-check("第 10–18 欄全 145 列皆為 \\xa0（欄數）", 9, len(nbsp_cols), f"欄={nbsp_cols}")
+    filled = {norm(r[0]) for r in data
+              if idx < len(r) and r[idx] is not None and str(r[idx]) != NBSP}
+    nbsp = {norm(r[0]) for r in data if idx < len(r) and str(r[idx]) == NBSP}
+    none_ = {norm(r[0]) for r in data if idx < len(r) and r[idx] is None}
+    ok = (filled == leaves
+          and nbsp | none_ == non_leaf
+          and none_ == (NONE_ROWS if hdr[idx].startswith(
+              ("Reusable", "Description/Action for Reusable")) else set()))
+    if ok:
+        rvc6_cols.append(hdr[idx])
+    else:
+        rvc6_detail.append(
+            f"{hdr[idx]}: filled={len(filled)} nbsp={len(nbsp)} none={sorted(none_)}")
+check("第 10–18 欄符合 R-VC6 所裁之形態（欄數）", 9, len(rvc6_cols),
+      "; ".join(rvc6_detail) if rvc6_detail else "九欄全符")
 
 # ---------------------------------------------------------------- SYS1
 wb1 = openpyxl.load_workbook(SYS1, read_only=True, data_only=True)

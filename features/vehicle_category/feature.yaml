@@ -17,12 +17,13 @@ paths:
   a03_report: "inputs/FM-WI-FSM-037-A03-N1L-SWE1-VehicleCategory-HMI-V0.1 STLA 報告.xlsx"
   sys1_export: "inputs/SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023).xlsx"
   spec_pdf: "inputs/Vehicle Category HMI Logic and Flow R1 SR24 Post 2A (December 27 2023).pdf"
-  # ⚠ 下放包 §八 草案將此二鍵置於 `inputs/`（即複製入 feature 目錄）；
-  #   Pei 之 T1 指示為「forms/ 兩份不複製，僅綁定」。二者衝突，未自行裁決 ——
-  #   本輪留 null，僅於 `reference:` 綁定並記 SHA256。待裁後補填。
-  #   （T6 之查詢直接讀 forms/ 原件，不經本鍵。）
-  popup_list: null
-  settings_list: null
+  # R-VC10 —— 素材一律複製入 `inputs/`，路徑以本 feature 目錄為基準。
+  # 下放包 01 §五 T1 之「forms/ 兩份不複製，僅綁定」已作廢。
+  # 依據：`paths:` 之 glob 由 `resolve_glob(feature_dir, pat)` 解析，
+  # 填入 forms/ 之 repo 相對路徑會使 recon.py 以 input not found 中止
+  # （display 已記載此坑）。二檔為 forms/ 原件之逐位元複本，雜湊見 reference:。
+  popup_list:    "inputs/Pop Up List HMI R1 (26PI).xlsx"
+  settings_list: "inputs/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx"
 
 # R-VC1／下放包 §八：037 之 `Analysis Report` 分頁存在，intake sniffer 正常命中
 # （T2 實測：命中 swra_report，145 列，req family SWE1-HMI-VC）。
@@ -81,15 +82,29 @@ lint:
   popup_ids: []                 # T6 查得後填入
   extra_rules: []
 
-# R-VC3 之機器化：leaf 全集與覆蓋落差之數字宣告於此，使其於每次
-# recon.py 執行時被機器比對，而非靠注意力維持。
+# R-VC9 —— 本節**只宣告 recon.py 之 run_assertions() 真正實作的鍵**。
+# 下放包 01 §八 所草擬之 `leaf_count: 117` 與 `uncovered_content_sections: 18`
+# 已刪除：二者無對應實作，宣告不生效。
+#
+#   宣告一個不被讀取的鍵，比不宣告更糟 —— 不宣告至少誠實，宣告則製造
+#   一個永不失敗之檢查，並使讀者誤認該值已受保護。
+#
+# ⚠ 揭露義務（R-VC9）：R-VC3 之 leaf 全集 **117** 與覆蓋落差 **18**，
+#   在對應 assertion 落地前（見 A-VC8）**僅靠 T4 重測與上繳包交叉檢查
+#   守護，非機器保證**。此事實須逐包揭露，
+#   **不得因本檔有寫而視為已守 —— 本檔正是為此把它們刪掉的**。
+#
+# leaf 判準三者並存之事實（本 feature 為首個使三者分離者）：
+#   145 —— Categorization == Functional        （recon.py 在用）
+#   117 —— 子需求 ∪ 無子之父                    （R-VC3 所裁之驗證母體）
+#    79 —— id-suffix `-NN`                      （recon.py 明記不生效）
+# display 未暴露此分歧，因其 037 之三值恰皆為 8。
+#
 # PASS 證明的是「該值仍未改變」，不是「該值是對的」——
-# 其正確性來自 T4 之重測與上繳包之交叉檢查。
+# 其正確性來自 T4／T12 之重測與上繳包之交叉檢查。
 recon_assertions:
-  leaf_count: 117
   functional_requirement_count: 145
-  distinct_spec_sections: 66
-  uncovered_content_sections: 18
+  distinct_spec_sections: 66      # 保留：該鍵有實作，T14 重跑 PASS
 
 # R-G15 / R-DM37 判準：其變動會使既有產出失效者一律綁定。
 # paths: 記「檔在哪」（供腳本開檔）；reference: 記「檔是哪一份」
@@ -107,9 +122,24 @@ reference:
   workbook_master:
     file: "forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
     sha256: "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"
+  # R-VC10 —— `workbook_master` / `popup_list` / `settings_list` 三者所綁
+  # 為 **forms/ 之原件**（非 inputs/ 之複本）。`inputs/` 內之三份複本與
+  # 原件逐位元相同，其雜湊即下列之值；綁原件是因為原件變動才是需要偵測
+  # 的事件，複本只會跟著變。
   popup_list:
     file: "forms/Pop Up List HMI R1 (26PI).xlsx"
     sha256: "ff47b7be63e5824cafe35deda9f9ddd0a63f6ea458169ef73689a1c559ea13ea"
   settings_list:
     file: "forms/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx"
     sha256: "41daac0048d2afe15fe9aeee52a6197a28efdd2a71da44d2b836b4da3e9d4cf9"
+
+# R-VC10 —— **明文排除四項**：`dbc_b` / `dbc_fd` / `lid` / `proxi` 不綁定。
+# 依據：037 全文掃描之 CAN 訊號、PROXI 參數、VF 引用命中數皆為 0；
+# 規格本文之 VF507 / VF352 落在 037 未涵蓋之 18 節內（DR-VC4 為條件性）。
+# 本 feature 之產出不觸及該四檔，不符 R-G15「其變動會使既有產出失效」之判準。
+# 記於此，以免日後有人問為何本 feature 較 display 少綁四項 —— 少綁是裁定，
+# 不是遺漏。
+#
+# `reference:` 共 **六項**。下放包 01 §五 T9 所記之「七項」為分析層計數錯誤；
+# 執行層曾推定第七項為下放包全文並依 R-G15 排除 —— 推定過程正確，
+# 惟正解為「本無第七項」。下放包全文不入 `reference:`。

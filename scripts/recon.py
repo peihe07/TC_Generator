@@ -607,6 +607,15 @@ def survey_a03(a03_path: Path, sheet: str = "Analysis Report") -> dict:
     # Polarion item ids on the lines below. Only line 1 takes part in section
     # parsing; the rest is audit evidence, kept but never parsed.
     sections: dict[str, str] = {}
+    # R-VC8(a) — the ORIGINAL first line, kept alongside the parsed section.
+    # `sections` holds only the trailing outline number, so the anchor string
+    # the report actually carries is unrecoverable from it: reconstructing it
+    # as `stem + "_" + sec` splits at the wrong underscore whenever the stem
+    # itself ends in `_<digits>` (Vehicle Category's stem ends
+    # `..._Post_2A_(December_27_2023)`). A feature whose ruling says the
+    # spec_reference is LOOKED UP rather than constructed (R-VC4) needs this
+    # verbatim value, so it is captured at parse time, not derived later.
+    citations: dict[str, str] = {}
     stems: Counter = Counter()
     multiline, unparsed = 0, []
     for r in rows[hdr + 1:]:
@@ -624,6 +633,8 @@ def survey_a03(a03_path: Path, sheet: str = "Analysis Report") -> dict:
             if "\n" in raw.strip():
                 multiline += 1
             first = raw.split("\n")[0].strip()
+            if first:
+                citations[rid] = first          # R-VC8(a)
             m = re.match(r"^(?P<stem>.+)_(?P<sec>\d+(?:\.\d+)*)$", first)
             if m:
                 stems[m.group("stem")] += 1
@@ -652,6 +663,7 @@ def survey_a03(a03_path: Path, sheet: str = "Analysis Report") -> dict:
             "categorization_distribution": dict(cat_dist.most_common()),
             "source_col": idx_to_letter(src_i) if src_i is not None else None,
             "sections": sections,
+            "citations": citations,
             "distinct_sections": sorted(set(sections.values()), key=outline_key),
             "citation_stems": dict(stems),
             "multiline_citations": multiline,
@@ -892,12 +904,22 @@ region / replace / re-map) is a ruling, not a detection.
     # ---- outline map: req_id -> section -> the exact spec_reference string
     (feature_dir / "data").mkdir(exist_ok=True)
     tsv = ["req_id\toutline\tpolarion_id\tspec_reference\ttitle"]
+    # R-VC8 — `dict.get`'s default fires only when the KEY IS ABSENT, so a
+    # feature that declares `spec_reference_template: null` (R-VC4: the
+    # reference is LOOKED UP, never constructed) got `None` here and crashed
+    # on `.replace`. The fix is not to fall back to "{outline}": that emits a
+    # bare section number where the ruling demands the report's full anchor
+    # string, and a wrong value in a data artifact outlives a crash. When the
+    # key is present and null, the column takes the 037 citation VERBATIM.
+    # Features that never declare the key keep the old default path untouched.
     tpl = cfg.get("spec_reference_template", "{outline}")
+    citations = a03res.get("citations", {})
     for rid in sorted(a03res["sections"]):
         sec = a03res["sections"][rid]
         hit = omap.get(sec, {})
+        ref = citations.get(rid, "") if tpl is None else tpl.replace("{outline}", sec)
         tsv.append("\t".join([rid, sec, hit.get("id", ""),
-                              tpl.replace("{outline}", sec), hit.get("title", "")]))
+                              ref, hit.get("title", "")]))
     # R-G4 (2026-08-17) — this table is the leaf->section map and is written
     # under its own name. It used to be written as `spec_id_to_outline.tsv`,
     # which belongs to each feature's `build_outline_map.py` and holds a

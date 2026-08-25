@@ -7,17 +7,25 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 
 | A | 內容 | 狀態 | Tier |
 |---|---|---|---|
-| A-VC1 | 037 第 10–18 欄全為 `\xa0` —— **本輪重測未重現** | **NOT REPRODUCED** | Tier 2（條文須重裁）|
-| A-VC2 | 037 封面 `Reviewer：` 空、`Date：` 為 2020/09/05 | PENDING | Tier 2（是否回報上游）|
+| A-VC1 | 037 第 10–18 欄全為 `\xa0` | **撤銷（R-VC6）** | — |
+| A-VC2 | 037 封面 `Reviewer：` 空、`Date：` 為 2020/09/05 | PENDING | 附於 DR-VC2（包 02 §四）|
 | A-VC3 | §16.2 之 `SWE1-HMI-VC-066` 僅涵蓋標題一句 | PENDING | 併入 DR-VC3 |
-| A-VC4 | `new_feature.py` 之 abbr 推導得 `VE`，非 R-VC1 之 `VC` | PENDING | Tier 2（工具修法）|
-| A-VC5 | 下放包 §3.3 與 repo 037 複本不一致（A-VC1 之成因）| PENDING | **Tier 2（阻斷 T4 收斂）** |
-| A-VC6 | `recon.py` 於 `spec_reference_template: null` 崩潰 | PENDING | **Tier 2（阻斷 T3 產出）** |
-| A-VC7 | 規格 PDF 之位元組數與下放包 §3.1 不符 | PENDING | Tier 2 |
+| A-VC4 | `new_feature.py` 之 abbr 推導得 `VE`，非 R-VC1 之 `VC` | PENDING | 全域排程（包 02 §四）|
+| A-VC5 | 下放包 01 §3.3 與 repo 037 複本不一致（A-VC1 之成因）| **RESOLVED（包 02 §一）** | — |
+| A-VC6 | `recon.py` 於 `spec_reference_template: null` 崩潰 | **RESOLVED（R-VC8）** | — |
+| A-VC7 | 規格 PDF 之位元組數與下放包 01 §3.1 不符 | **RESOLVED（R-VC7）** | — |
+| A-VC8 | `recon.py` 缺 `leaf_count` assertion | PENDING | Tier 2（工具修法，不得併入 R-VC8）|
 
 ---
 
-## A-VC1 —— 037 第 10–18 欄之 `\xa0`（下放包 §七原文；**本輪重測未重現**）
+## A-VC1 —— 037 第 10–18 欄之 `\xa0` —— **撤銷（R-VC6，Pei 2026-08-25）**
+
+> **本項已撤銷，不得沿用或引述為判準。**
+> 依 R-VC6（下放包 02 §二，`RULINGS.md:157`）：下放包 01 §3.3 所記
+> 「第 10–18 欄全 145 列皆為 `\xa0`，無內容」為分析層**未經全表掃描之
+> 全稱斷言**，作廢；據其所立之 A-VC1 一併撤銷。
+> 九欄之正確定性為**有效上游輸入**，於 117 個 leaf 上皆有實質內容。
+> 下列原文與重測記錄保留為軌跡，不再具效力。
 
 **下放包原登記內容**：037 `Analysis Report` 第 10–18 欄（`Feasibility` …
 `Priority`）全 145 列皆為 `\xa0`（U+00A0），非空字串。
@@ -59,6 +67,19 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
     錯的是「不視為已填」之推論：這九欄在 117 個 leaf 上**是已填的**。
 (c) 成因見 A-VC5。在 A-VC5 裁定前，本項不得標為 RESOLVED。
 
+**裁定（R-VC6，Pei 2026-08-25）—— 提案 (a)(b) 全採，(c) 已解**
+
+(a) 採：A-VC1 撤銷，不得沿用或引述。
+(b) 採：R-VC6(d) 逐字保留「strip 含 `\xa0` 之技術手段」，
+    作廢的只是「不視為已填」之推論。
+(c) 已解：A-VC5 之成因由下放包 02 §一裁明，標為 RESOLVED。
+
+R-VC6 立四項拘束，其 (a)(b)(c) **不屬本異常之處置而屬 Phase 4 之範圍**：
+欄 18 `Priority` 之 P0–P3 映射規則另裁，**在該裁定落地前 priority 欄
+不得產出**；欄 11/13/15/17 之描述文字須納入 Phase 4 資料建置；
+欄 14 `Risk Factor` 與欄 12 `Impact` 為 §10.2 映射之佐證，
+不單獨作為 priority 之依據。三者已寫入 `RUNBOOK.md` Phase 4。
+
 ---
 
 ## A-VC2 —— 037 封面之 Reviewer 空白與日期矛盾（下放包 §七原文）
@@ -69,7 +90,13 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 **提案處置**：判為表單樣板殘留。登記留痕；**不得引用該日期為版本依據**。
 是否回報上游由 Pei 定。
 
-狀態：PENDING。本輪未對封面另作重測（不在 T4 之列舉範圍）。
+**裁定（下放包 02 §四，Pei 2026-08-25）—— 不單獨發 DR**
+
+裁：**不單獨發 DR**。於 DR-VC2 發出時（同為對 037 作者之查詢）
+附帶一句提及即可。理由：封面欄位不阻斷任何 Phase，
+單獨往返一輪之成本高於其資訊價值。維持 PENDING 至 DR-VC2 回覆。
+
+狀態：PENDING（附於 DR-VC2）。本輪未對封面另作重測（不在 T4 之列舉範圍）。
 
 ---
 
@@ -104,11 +131,23 @@ PENDING / Tier 2）同批處理 —— 兩者同源，皆為 `new_feature.py` �
 且本包 §五明文「不得預先改腳本」。
 ```
 
-狀態：PENDING。T0b 之字串更正已完成，驗證 grep 命中數 0（見上繳包 §1）。
+**裁定（下放包 02 §四，Pei 2026-08-25）—— 不排入本 feature 之任何 Phase**
+
+裁：A-VC4 與 A-TM04 **兩者維持 PENDING**。理由：A-VC4 已由 T0b 之事後
+字串更正繞開，A-TM04 已由甲案傳參繞開 —— **繞開不是壓制**，二者皆無阻斷。
+工具修法之時程屬全域議題，待 Pei 於 FW036 全域排程時一併處理，
+本 feature 不代為決定。
+
+**R-VC8 之修法不得順手併入 A-VC4 / A-TM04** —— 三者標的不同
+（`recon.py` 之 template 處理 vs `new_feature.py` 之命名推導），
+併案會使 R-VC8 之授權範圍失去邊界。已遵守：T13 之修法僅動 R-VC8 所指之處。
+
+狀態：PENDING（全域排程）。T0b 之字串更正已完成，驗證 grep 命中數 0
+（見上繳包 01 §1）。
 
 ---
 
-## A-VC5 —— 下放包 §3.3 之量測對象與 repo 內複本不一致
+## A-VC5 —— 下放包 01 §3.3 之量測對象與 repo 內複本不一致 —— **RESOLVED（包 02 §一）**
 
 **證據**
 
@@ -138,11 +177,43 @@ PENDING / Tier 2）同批處理 —— 兩者同源，皆為 `new_feature.py` �
 (c) 在裁定前，任何依賴「這九欄無內容」之判準（例如把 `Priority` 欄
     視為未填而改由本地推導）一律不得建立。
 
-狀態：PENDING —— **阻斷 T4 之收斂**。本輪依「任一 ≠ 即停」停於此。
+**裁定（下放包 02 §一，Pei 2026-08-25）—— 二可能皆非，成因為第三種**
+
+本項曾列二種可能：(a) 附件傳遞失值；(b) §3.3 之量測方法判讀有誤。
+分析層回報其附件雜湊，037 為
+`cb80a77e8d57721ef0851c4ce263c46d3cbf5d028bd1a03c89c9d7debfd877ed`、
+SYS1 為 `1fcc87116ac3893602f933ea10b2116895265ea0375ed88d0bf02ebcdeb091d6`
+—— 與 repo 內複本**逐字相同**，(a) 由此排除。
+分析層重跑量測，結果與本項之重測表**逐格相同**，(b) 亦不成立。
+
+裁定之成因：**分析層之全稱斷言未經全表掃描。**
+下放包 01 起草時之量測程式只取索引 `0, 1, 3, 5, 6, 7, 8` 七欄，
+索引 `9`–`17`（即第 10–18 欄）**未被讀取過一次**；
+§3.3 之「全 145 列皆為 `\xa0`」係自表頭附近之局部觀察推廣為全稱斷言，
+再以實測值之形式寫入表格。
+
+**不是量錯，是根本沒量。** 本項原提案 (b)「請分析層對其附件複本重跑並
+回報 SHA256」已由分析層執行且已回報，請求結案。
+
+提案 (a)（以 repo 內複本之實測為準）已由 R-VC6 全採；
+提案 (c)（裁定前不得建立依賴「這九欄無內容」之判準）已被 R-VC6 反轉為
+**正向要求**：該九欄是必須使用的上游輸入，見 R-VC6(a)(b)。
+
+**此事之實質後果（分析層之判讀，逐字記錄）**
+
+037 於 117 個 leaf 上提供完整之 Feasibility / Impact / Risk Factor /
+Reusable / Priority 判斷，另有四欄逐條分析文字。下放包 01 不僅漏記，
+且據該漏記立 A-VC1 指示「不視為已填」。若未經 T4 攔下，後果為 Phase 6 之
+`priority` 欄失去上游依據而僅能本地推導 —— 即 IN §8.4.1 所禁之造值，
+且影響全部 117 列。
+
+狀態：**RESOLVED**。**T4 之停點解除** —— 30 項中原判 ≠ 之第 23 項，
+其比對基準（下放包 01 §3.3）已作廢，實測值即為正解，無待調和之差異。
+T12 已以 R-VC6 之條文為基準重跑，見上繳包 02 §3。
 
 ---
 
-## A-VC6 —— `recon.py` 於 `spec_reference_template: null` 崩潰
+## A-VC6 —— `recon.py` 於 `spec_reference_template: null` 崩潰 —— **RESOLVED（R-VC8）**
 
 **證據**
 
@@ -181,11 +252,23 @@ AttributeError: 'NoneType' object has no attribute 'replace'
 (c) 於 (a)(b) 裁定前，**不得**為了讓 `recon.py` 跑完而把
     `spec_reference_template` 填成任何字串 —— 那會違反 R-VC4。
 
-狀態：PENDING —— **阻斷 T3 之 `recon.json` 與 `recon_leaf_to_section.tsv`**。
+**裁定（R-VC8，Pei 2026-08-25）—— 採提案 (b)，不採 (a)**
+
+採 (b)：`spec_reference_template` 為 null 時，`recon_leaf_to_section.tsv`
+之 `spec_reference` 欄改**逐字取 037 `HMI Source ID` 欄之原值**。
+不採 (a)：其產出為光禿之章節號，與 R-VC4 所裁之全名不同 ——
+「崩潰會停，錯值不會，後者為害更甚」（R-VC8 原文）。
+
+R-VC8 為 Tier 2 修法之授權，另立三項實作拘束（保留 `first` 之原值而
+不得以 `stem + "_" + sec` 還原；未宣告該鍵之 feature 行為不變；
+修法後須對既有 feature 回歸確認逐字不變）。
+修法與回歸證據見上繳包 02 §4（T13）。
+
+狀態：**RESOLVED**。T3 之三件已於 T14 產出。
 
 ---
 
-## A-VC7 —— 規格 PDF 之位元組數與下放包 §3.1 不符
+## A-VC7 —— 規格 PDF 之位元組數與下放包 01 §3.1 不符 —— **RESOLVED（R-VC7）**
 
 **證據**
 
@@ -210,6 +293,53 @@ SYS1 = 47,458 B），故「附件傳遞會改變位元組數」不足以解釋�
     其章節號本身已由 T4 自 SYS1 outline 獨立驗明（42 節清單逐項相符），
     受影響的只有「該節寫了什麼」這一層。
 (c) 本輪不更換 PDF —— 磁碟上不存在其他候選。
+
+**裁定（R-VC7，Pei 2026-08-25）—— repo 內複本為權威**
+
+分析層回報其附件 PDF 為 3,552,260 B，SHA256
+`216cfa84dfb84c0b3c44e24881407521412e16d16728aaa49e90ff3b3275a455`
+—— 確為與 repo 內複本**不同之檔**。裁：附件之份為 Project 上傳時
+**重新渲染之衍生物**，`repo` 內複本為權威，衍生物不得作為任何判準之來源。
+
+連帶拘束（R-VC7 末段）：下放包 01 §4.2(b) 之 18 節「規格內容摘要」
+係讀該衍生 PDF 所寫，其**章節號**已由 T4 驗明相符，
+**摘要文字未經權威複本確認**。DR-VC3 發出前須以 repo `inputs/` 之 PDF
+逐節重驗（T17）；重驗前該摘要不得引為 DR 之措辭依據，亦不得寫入表 B。
+
+狀態：**RESOLVED**。T17 之逐節重驗結果見上繳包 02 §7。
+
+---
+
+## A-VC8 —— `recon.py` 缺 `leaf_count` assertion（新立，下放包 02 §三）
+
+條文逐字：
+
+```
+A-VC8（recon.py 缺 leaf_count assertion）
+
+`scripts/recon.py` 之 `run_assertions()` 僅實作
+`functional_requirement_count`（以 Categorization 計，本 feature = 145）、
+`distinct_spec_sections`、`spec_reference_stem` 三鍵。
+R-VC3 所裁之驗證母體為 leaf 全集 117（子需求 ∪ 無子之父），
+該值無對應之 assertion 鍵，於 feature.yaml 宣告亦不生效。
+
+leaf 判準三者並存且分歧：145 / 117 / 79。
+display 未暴露此分歧，因其 037 之三值恰皆為 8；
+Vehicle Category 為首個使三者分離之 feature。
+
+提案處置：`recon.py` 增設 `leaf_count` assertion，判準取 R-VC3 之定義
+（子需求 ∪ 無子之父），與現行 `functional_requirement_count` 併列而非
+取代 —— 二者為兩個不同的量，皆應可宣告。
+屬 Tier 2 工具修法，**與 R-VC8 之修法非同一件，不得併案順手為之**。
+在其落地前，117 之守護僅靠 T4 重測與上繳交叉檢查（R-VC9 之揭露義務）。
+
+狀態：PENDING。
+```
+
+**執行層回報**：本項已由 T15 落實其揭露面 —— `feature.yaml` 之
+`recon_assertions` 已刪去無實作之二鍵，並補記 leaf 判準三者並存
+（145 / 117 / 79）之註解。**工具修法本身未實作**（R-VC9 明文：
+不得併入 R-VC8 之授權範圍）。
 
 狀態：PENDING。
 

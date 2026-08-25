@@ -1,0 +1,146 @@
+req_id	outline	polarion_id	spec_reference	title
+SWE1-HMI-VC-001	2.2	NRL-171043	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.2	VC1.) The Vehicle Category will contain the Controls and Settings tabs. On first
+SWE1-HMI-VC-001-01	2.2	NRL-171043	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.2	VC1.) The Vehicle Category will contain the Controls and Settings tabs. On first
+SWE1-HMI-VC-001-02	2.2	NRL-171043	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.2	VC1.) The Vehicle Category will contain the Controls and Settings tabs. On first
+SWE1-HMI-VC-001-03	2.2	NRL-171043	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.2	VC1.) The Vehicle Category will contain the Controls and Settings tabs. On first
+SWE1-HMI-VC-002	2.3	NRL-171044	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.3	VC2.) If the vehicle is equipped with Specialty features, they will appear as ta
+SWE1-HMI-VC-003	2.3.1	NRL-171045	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.3.1	VC2.0.1.) The priority order for the tabs will be: 1) My Car, 2) Cameras, 3) Oth
+SWE1-HMI-VC-004	2.3.2	NRL-171046	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.3.2	VC2.0.2.) The tab name for the Controls tab is Controls.
+SWE1-HMI-VC-005	2.3.3	NRL-171047	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.3.3	VC2.0.3.) The tab name for the Vehicle Settings is Settings.
+SWE1-HMI-VC-006	2.3.4	NRL-171048	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.3.4	VC2.1.) The specialty features include, but are not limited to: Off Road, PHEV, 
+SWE1-HMI-VC-007	2.4	NRL-171049	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.4	VC2.2.) Vehicle Tab Labels and Order Note | Specialty Feature | Tab Name | Order
+SWE1-HMI-VC-007-01	2.4	NRL-171049	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.4	VC2.2.) Vehicle Tab Labels and Order Note | Specialty Feature | Tab Name | Order
+SWE1-HMI-VC-007-02	2.4	NRL-171049	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.4	VC2.2.) Vehicle Tab Labels and Order Note | Specialty Feature | Tab Name | Order
+SWE1-HMI-VC-007-03	2.4	NRL-171049	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.4	VC2.2.) Vehicle Tab Labels and Order Note | Specialty Feature | Tab Name | Order
+SWE1-HMI-VC-007-04	2.4	NRL-171049	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.4	VC2.2.) Vehicle Tab Labels and Order Note | Specialty Feature | Tab Name | Order
+SWE1-HMI-VC-007-05	2.4	NRL-171049	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.4	VC2.2.) Vehicle Tab Labels and Order Note | Specialty Feature | Tab Name | Order
+SWE1-HMI-VC-008	2.5	NRL-393807	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.5	VC3.) If the vehicle has the Camera App (see Camera HMI Logic and Flow), Cameras
+SWE1-HMI-VC-009	2.5.1	NRL-393808	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.5.1	VC3.1.) If the Camera tab is present, remove Cameras from the Controls tab.
+SWE1-HMI-VC-010	2.6	NRL-393809	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6	VC4.) Only show apps under the Dashboard tab that the vehicle is equipped with.
+SWE1-HMI-VC-011	2.6.1	NRL-393810	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.1	VC4.1) Within the Dashboard tab, display the applicable content in order of the 
+SWE1-HMI-VC-012	2.6.2	NRL-393811	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.2	VC4.2)For landscape displays: If there is only one feature, display it in the si
+SWE1-HMI-VC-012-01	2.6.2	NRL-393811	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.2	VC4.2)For landscape displays: If there is only one feature, display it in the si
+SWE1-HMI-VC-012-02	2.6.2	NRL-393811	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.2	VC4.2)For landscape displays: If there is only one feature, display it in the si
+SWE1-HMI-VC-012-03	2.6.2	NRL-393811	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.2	VC4.2)For landscape displays: If there is only one feature, display it in the si
+SWE1-HMI-VC-013	2.6.3	NRL-393812	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.3	VC4.3) For portrait displays: for up to three features, display each in a single
+SWE1-HMI-VC-013-01	2.6.3	NRL-393812	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.3	VC4.3) For portrait displays: for up to three features, display each in a single
+SWE1-HMI-VC-013-02	2.6.3	NRL-393812	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.3	VC4.3) For portrait displays: for up to three features, display each in a single
+SWE1-HMI-VC-013-03	2.6.3	NRL-393812	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.3	VC4.3) For portrait displays: for up to three features, display each in a single
+SWE1-HMI-VC-013-04	2.6.3	NRL-393812	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.3	VC4.3) For portrait displays: for up to three features, display each in a single
+SWE1-HMI-VC-014	3.1	NRL-171051	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.1	CO2.) Possible items to be placed in the Controls tab include, but are not limit
+SWE1-HMI-VC-015	3.1.1	NRL-171052	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.1.1	CO2.1) The Cargo Camera, Backup Camera, and Surround View Camera should be group
+SWE1-HMI-VC-016	3.1.2	NRL-171053	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.1.2	CO2.2.) Settings should only appear as a Control if the Settings Tab has been su
+SWE1-HMI-VC-017	3.2	NRL-171054	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.2	CO4.) Changes are indicated on the CONTROLS screen, and in the status bar where 
+SWE1-HMI-VC-018	3.3	NRL-171055	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.3	CO5.1.) A shortcut to settings is available from the App drawer.
+SWE1-HMI-VC-019	3.4	NRL-171056	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.4	CO7.) Headrest fold will not be able to show status, the user will simply be abl
+SWE1-HMI-VC-019-01	3.4	NRL-171056	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.4	CO7.) Headrest fold will not be able to show status, the user will simply be abl
+SWE1-HMI-VC-019-02	3.4	NRL-171056	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.4	CO7.) Headrest fold will not be able to show status, the user will simply be abl
+SWE1-HMI-VC-020	3.5	NRL-171057	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.5	CO12.) Exhaust Sound Loud/Quiet status should follow the system status in the ev
+SWE1-HMI-VC-021	3.6	NRL-171058	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.6	CO13.) When the Glove Box Lock button is pressed, open PUXXXX (Privacy Lock). Re
+SWE1-HMI-VC-022	3.7	NRL-171059	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.7	CO14.) For vehicles with a lower non-articulating screen, remove any redundant c
+SWE1-HMI-VC-023	3.8	NRL-171060	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.8	CO15.) Electrochromic state does not latch over key cycles and will return to “t
+SWE1-HMI-VC-024	3.8.1	NRL-171061	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.8.1	CO15.1.) When the roof is open, Electrochromic is not available and the button i
+SWE1-HMI-VC-025	3.9	NRL-171062	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.9	C1.) Controls Button Table_x000D_ Button | Button Status_x000D_ Rear Sunshade | 
+SWE1-HMI-VC-025-01	3.9	NRL-171062	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.9	C1.) Controls Button Table_x000D_ Button | Button Status_x000D_ Rear Sunshade | 
+SWE1-HMI-VC-025-02	3.9	NRL-171062	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.9	C1.) Controls Button Table_x000D_ Button | Button Status_x000D_ Rear Sunshade | 
+SWE1-HMI-VC-025-03	3.9	NRL-171062	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.9	C1.) Controls Button Table_x000D_ Button | Button Status_x000D_ Rear Sunshade | 
+SWE1-HMI-VC-025-04	3.9	NRL-171062	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.9	C1.) Controls Button Table_x000D_ Button | Button Status_x000D_ Rear Sunshade | 
+SWE1-HMI-VC-025-05	3.9	NRL-171062	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.9	C1.) Controls Button Table_x000D_ Button | Button Status_x000D_ Rear Sunshade | 
+SWE1-HMI-VC-026	4.1	NRL-171064	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_4.1	Selecting «Glove Box» option a popup is displayed explaining what actions are ne
+SWE1-HMI-VC-026-01	4.1	NRL-171064	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_4.1	Selecting «Glove Box» option a popup is displayed explaining what actions are ne
+SWE1-HMI-VC-026-02	4.1	NRL-171064	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_4.1	Selecting «Glove Box» option a popup is displayed explaining what actions are ne
+SWE1-HMI-VC-026-03	4.1	NRL-171064	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_4.1	Selecting «Glove Box» option a popup is displayed explaining what actions are ne
+SWE1-HMI-VC-027	4.2	NRL-171065	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_4.2	Once the PIN has been inserted twice, a pop up message is displayed in order to 
+SWE1-HMI-VC-028	5.1	NRL-171067	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_5.1	If, during the second attempt, user digits a wrong PIN code, a popup will be dis
+SWE1-HMI-VC-028-01	5.1	NRL-171067	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_5.1	If, during the second attempt, user digits a wrong PIN code, a popup will be dis
+SWE1-HMI-VC-028-02	5.1	NRL-171067	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_5.1	If, during the second attempt, user digits a wrong PIN code, a popup will be dis
+SWE1-HMI-VC-029	5.2	NRL-171068	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_5.2	If, after N wrong inputs and N warning popups, user digits the right PIN code (t
+SWE1-HMI-VC-030	6.1	NRL-171070	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_6.1	To deactivate the Glove Box Mode user has to tap on the «Glove Box» button withi
+SWE1-HMI-VC-031	6.2	NRL-171071	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_6.2	Once the PlN code has been entered, a pop up message is displayed to confirm tha
+SWE1-HMI-VC-032	6.3	NRL-171072	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_6.3	Pressing «OK» on the pop up the system goes back to Controls main page.
+SWE1-HMI-VC-033	7.1	NRL-171074	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_7.1	If during the "Glove Box" deactivation process the user_x000D_ 1. Inserts the wr
+SWE1-HMI-VC-033-01	7.1	NRL-171074	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_7.1	If during the "Glove Box" deactivation process the user_x000D_ 1. Inserts the wr
+SWE1-HMI-VC-033-02	7.1	NRL-171074	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_7.1	If during the "Glove Box" deactivation process the user_x000D_ 1. Inserts the wr
+SWE1-HMI-VC-034	11.1	NRL-171088	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.1	STN2.) Settings not contained within a specific vehicle will not be displayed in
+SWE1-HMI-VC-034-01	11.1	NRL-171088	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.1	STN2.) Settings not contained within a specific vehicle will not be displayed in
+SWE1-HMI-VC-034-02	11.1	NRL-171088	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.1	STN2.) Settings not contained within a specific vehicle will not be displayed in
+SWE1-HMI-VC-035	11.2	NRL-171089	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.2	STN3.) Selecting yes to restoring defaults will reset their settings to default.
+SWE1-HMI-VC-035-01	11.2	NRL-171089	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.2	STN3.) Selecting yes to restoring defaults will reset their settings to default.
+SWE1-HMI-VC-035-02	11.2	NRL-171089	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.2	STN3.) Selecting yes to restoring defaults will reset their settings to default.
+SWE1-HMI-VC-035-03	11.2	NRL-171089	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.2	STN3.) Selecting yes to restoring defaults will reset their settings to default.
+SWE1-HMI-VC-036	11.3	NRL-171090	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.3	STN4.) Selecting yes to clearing personal data will clear their personal data, a
+SWE1-HMI-VC-036-01	11.3	NRL-171090	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.3	STN4.) Selecting yes to clearing personal data will clear their personal data, a
+SWE1-HMI-VC-036-02	11.3	NRL-171090	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.3	STN4.) Selecting yes to clearing personal data will clear their personal data, a
+SWE1-HMI-VC-037	11.4	NRL-171091	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.4	STN5.) Under suspension, the user can only have one of the suspension modes on a
+SWE1-HMI-VC-037-01	11.4	NRL-171091	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.4	STN5.) Under suspension, the user can only have one of the suspension modes on a
+SWE1-HMI-VC-037-02	11.4	NRL-171091	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.4	STN5.) Under suspension, the user can only have one of the suspension modes on a
+SWE1-HMI-VC-038	11.5	NRL-171092	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.5	STN6.) If the user selects to change languages, a pop-up will appear stating ‘La
+SWE1-HMI-VC-038-01	11.5	NRL-171092	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.5	STN6.) If the user selects to change languages, a pop-up will appear stating ‘La
+SWE1-HMI-VC-038-02	11.5	NRL-171092	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.5	STN6.) If the user selects to change languages, a pop-up will appear stating ‘La
+SWE1-HMI-VC-038-03	11.5	NRL-171092	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.5	STN6.) If the user selects to change languages, a pop-up will appear stating ‘La
+SWE1-HMI-VC-038-04	11.5	NRL-171092	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.5	STN6.) If the user selects to change languages, a pop-up will appear stating ‘La
+SWE1-HMI-VC-038-05	11.5	NRL-171092	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.5	STN6.) If the user selects to change languages, a pop-up will appear stating ‘La
+SWE1-HMI-VC-039	11.6	NRL-171093	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.6	STN15.) If user changes language to Chinese, display pop-up, “Language updates i
+SWE1-HMI-VC-040	11.7	NRL-171094	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.7	STN16.) Left Menu Rail: If the Settings List layout includes a Left Menu Rail, t
+SWE1-HMI-VC-041	11.7.1	NRL-171095	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.7.1	STN16.1.) No Left Menu Rail: If the Settings List layout does not include a Left
+SWE1-HMI-VC-042	11.8	NRL-171096	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.8	STN17.) If the options for a Setting are long enough to cause truncation of the 
+SWE1-HMI-VC-042-01	11.8	NRL-171096	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.8	STN17.) If the options for a Setting are long enough to cause truncation of the 
+SWE1-HMI-VC-042-02	11.8	NRL-171096	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.8	STN17.) If the options for a Setting are long enough to cause truncation of the 
+SWE1-HMI-VC-043	11.8.1	NRL-171097	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.8.1	STN17.1.) On the level with the Setting name, the currently selected options sho
+SWE1-HMI-VC-044	12.1	NRL-171103	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.1	S1.) Do not show settings as a numbered list, but list items in the order given 
+SWE1-HMI-VC-045	12.2	NRL-171104	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.2	S2.) SETTINGS screens do not time out when no changes are made or close after se
+SWE1-HMI-VC-046	12.3	NRL-171105	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3	S3.) Select a list item by pressing on it. If list item shows arrow next to it (
+SWE1-HMI-VC-046-01	12.3	NRL-171105	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3	S3.) Select a list item by pressing on it. If list item shows arrow next to it (
+SWE1-HMI-VC-046-02	12.3	NRL-171105	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3	S3.) Select a list item by pressing on it. If list item shows arrow next to it (
+SWE1-HMI-VC-046-03	12.3	NRL-171105	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3	S3.) Select a list item by pressing on it. If list item shows arrow next to it (
+SWE1-HMI-VC-046-04	12.3	NRL-171105	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3	S3.) Select a list item by pressing on it. If list item shows arrow next to it (
+SWE1-HMI-VC-046-05	12.3	NRL-171105	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3	S3.) Select a list item by pressing on it. If list item shows arrow next to it (
+SWE1-HMI-VC-047	12.3.1	NRL-171106	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3.1	S3.1) When on a line with a single checkbox, pressing the knob selects/deselects
+SWE1-HMI-VC-047-01	12.3.1	NRL-171106	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3.1	S3.1) When on a line with a single checkbox, pressing the knob selects/deselects
+SWE1-HMI-VC-047-02	12.3.1	NRL-171106	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3.1	S3.1) When on a line with a single checkbox, pressing the knob selects/deselects
+SWE1-HMI-VC-047-03	12.3.1	NRL-171106	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3.1	S3.1) When on a line with a single checkbox, pressing the knob selects/deselects
+SWE1-HMI-VC-047-04	12.3.1	NRL-171106	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3.1	S3.1) When on a line with a single checkbox, pressing the knob selects/deselects
+SWE1-HMI-VC-048	12.3.2	NRL-171107	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3.2	S3.2) When selecting an object in a settings list, cursor shall move to that lin
+SWE1-HMI-VC-048-01	12.3.2	NRL-171107	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3.2	S3.2) When selecting an object in a settings list, cursor shall move to that lin
+SWE1-HMI-VC-048-02	12.3.2	NRL-171107	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3.2	S3.2) When selecting an object in a settings list, cursor shall move to that lin
+SWE1-HMI-VC-049	12.3.3	NRL-171108	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.3.3	S3.3.) For Clock, equalizer, Balance/Fade, Engine Off Idle Timer, and Fleet Vehi
+SWE1-HMI-VC-050	12.4	NRL-171109	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.4	S4.) For Brightness Settings, press & hold of longer than 500 ms causes the syst
+SWE1-HMI-VC-051	12.5	NRL-171110	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.5	S6.) When selecting a setting, the checkmark/level will move to the selected ite
+SWE1-HMI-VC-051-01	12.5	NRL-171110	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.5	S6.) When selecting a setting, the checkmark/level will move to the selected ite
+SWE1-HMI-VC-051-02	12.5	NRL-171110	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.5	S6.) When selecting a setting, the checkmark/level will move to the selected ite
+SWE1-HMI-VC-051-03	12.5	NRL-171110	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.5	S6.) When selecting a setting, the checkmark/level will move to the selected ite
+SWE1-HMI-VC-052	12.6	NRL-171111	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.6	S7.) When entering Settings or entering a subcategory the user is always taken t
+SWE1-HMI-VC-052-01	12.6	NRL-171111	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.6	S7.) When entering Settings or entering a subcategory the user is always taken t
+SWE1-HMI-VC-052-02	12.6	NRL-171111	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.6	S7.) When entering Settings or entering a subcategory the user is always taken t
+SWE1-HMI-VC-053	12.7	NRL-171112	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.7	S8.) If a Setting has a Definition, an “info icon” (represented here as an “i” i
+SWE1-HMI-VC-054	12.7.1	NRL-171113	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.7.1	S8.1.) Pressing the info icon, opens a popup with the description, the associate
+SWE1-HMI-VC-055	12.7.2	NRL-171114	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.7.2	S8.2) The info icon and corresponding pop up will be available while the vehicle
+SWE1-HMI-VC-056	12.8	NRL-171115	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.8	S9.) The user can change the setting option from the info pop up. When the optio
+SWE1-HMI-VC-056-01	12.8	NRL-171115	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.8	S9.) The user can change the setting option from the info pop up. When the optio
+SWE1-HMI-VC-056-02	12.8	NRL-171115	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_12.8	S9.) The user can change the setting option from the info pop up. When the optio
+SWE1-HMI-VC-057	13.1	NRL-171117	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.1	SBIS1.) The Settings tab is unavailable while the vehicle is in Key Off, Timed M
+SWE1-HMI-VC-058	13.1.1	NRL-171118	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.1.1	SBIS1.1) When a user attempts to access the Settings tab while in Key Off, Timed
+SWE1-HMI-VC-058-01	13.1.1	NRL-171118	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.1.1	SBIS1.1) When a user attempts to access the Settings tab while in Key Off, Timed
+SWE1-HMI-VC-058-02	13.1.1	NRL-171118	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.1.1	SBIS1.1) When a user attempts to access the Settings tab while in Key Off, Timed
+SWE1-HMI-VC-058-03	13.1.1	NRL-171118	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.1.1	SBIS1.1) When a user attempts to access the Settings tab while in Key Off, Timed
+SWE1-HMI-VC-059	13.2	NRL-171119	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.2	SBIS2.) The user is able to access Phone settings through the Phone screens. Pho
+SWE1-HMI-VC-059-01	13.2	NRL-171119	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.2	SBIS2.) The user is able to access Phone settings through the Phone screens. Pho
+SWE1-HMI-VC-059-02	13.2	NRL-171119	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.2	SBIS2.) The user is able to access Phone settings through the Phone screens. Pho
+SWE1-HMI-VC-060	13.3	NRL-171120	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.3	SBIS3.) The user is able to access Audio settings through the Media. Audio setti
+SWE1-HMI-VC-060-01	13.3	NRL-171120	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.3	SBIS3.) The user is able to access Audio settings through the Media. Audio setti
+SWE1-HMI-VC-060-02	13.3	NRL-171120	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.3	SBIS3.) The user is able to access Audio settings through the Media. Audio setti
+SWE1-HMI-VC-061	13.4	NRL-171121	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.4	SBIS5.) Software Updates are available while the vehicle is in Key Off or ACC.
+SWE1-HMI-VC-062	13.4.1	NRL-171122	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.4.1	SBIS5.1.) If user presses the setting ‘Software Downloads Over Wi-Fi’ while vehi
+SWE1-HMI-VC-062-01	13.4.1	NRL-171122	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.4.1	SBIS5.1.) If user presses the setting ‘Software Downloads Over Wi-Fi’ while vehi
+SWE1-HMI-VC-062-02	13.4.1	NRL-171122	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.4.1	SBIS5.1.) If user presses the setting ‘Software Downloads Over Wi-Fi’ while vehi
+SWE1-HMI-VC-063	13.4.2	NRL-171123	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.4.2	SBIS5.2.) If the user is in the middle of any of the logic for FOTA via Wi-Fi an
+SWE1-HMI-VC-063-01	13.4.2	NRL-171123	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.4.2	SBIS5.2.) If the user is in the middle of any of the logic for FOTA via Wi-Fi an
+SWE1-HMI-VC-063-02	13.4.2	NRL-171123	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.4.2	SBIS5.2.) If the user is in the middle of any of the logic for FOTA via Wi-Fi an
+SWE1-HMI-VC-064	13.5	NRL-171124	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.5	SBIS4.) If Settings tab or a Settings category is opened which is not available 
+SWE1-HMI-VC-064-01	13.5	NRL-171124	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.5	SBIS4.) If Settings tab or a Settings category is opened which is not available 
+SWE1-HMI-VC-064-02	13.5	NRL-171124	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.5	SBIS4.) If Settings tab or a Settings category is opened which is not available 
+SWE1-HMI-VC-064-03	13.5	NRL-171124	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_13.5	SBIS4.) If Settings tab or a Settings category is opened which is not available 
+SWE1-HMI-VC-065	14.1	NRL-171126	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_14.1	EPB1.) Service mode option will be greyed out if the vehicle is in motion. If th
+SWE1-HMI-VC-065-01	14.1	NRL-171126	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_14.1	EPB1.) Service mode option will be greyed out if the vehicle is in motion. If th
+SWE1-HMI-VC-065-02	14.1	NRL-171126	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_14.1	EPB1.) Service mode option will be greyed out if the vehicle is in motion. If th
+SWE1-HMI-VC-066	16.2	NRL-171131	SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_16.2	W0.) Widget title for this feature is Cabrio._x000D_ (image: image23.png) 

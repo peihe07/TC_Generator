@@ -153,3 +153,160 @@ R-VC5（037 之 Source Requirement ID 不作為錨點）
 
 ---
 
+```
+R-VC6（037 分析九欄為有效上游輸入；A-VC1 撤銷）
+
+037 `Analysis Report` 第 10–18 欄 ——
+Feasibility / Description-Action for Feasibility / Impact /
+Description-Action for Impact / Risk Factor /
+Description-Action for Risk Factor / Reusable /
+Description-Action for Reusable / Priority ——
+於 117 個 leaf 上皆有實質內容；於 28 個「有子之父」為 `\xa0`（U+00A0）。
+欄 16 `Reusable` 與欄 17 `Description-Action for Reusable` 另有 3 列為
+`None`（真空儲存格）：SWE1-HMI-VC-034、SWE1-HMI-VC-052、SWE1-HMI-VC-063。
+
+下放包 01 §3.3 所記「第 10–18 欄全 145 列皆為 `\xa0`，無內容」為分析層
+未經全表掃描之全稱斷言，**作廢**。據其所立之 A-VC1 一併**撤銷**，
+其條文不得於任何場合沿用或引述為判準。
+
+拘束四項：
+(a) 欄 18 `Priority`（實測分布 Medium 88 / High 28 / Low 1）為上游對各
+    leaf 之優先級判斷。TC 之 `priority` 欄（IN §10.2 之 P0–P3）
+    **不得於忽略本欄之情況下本地推導**。P0–P3 與 High/Medium/Low 之
+    映射規則另裁，在該裁定落地前，priority 欄不得產出。
+(b) 欄 11 / 13 / 15 / 17 之描述文字為 `reasoning` 與 test_item 括號下半
+    之素材來源，須納入 Phase 4 之資料建置範圍。
+(c) 欄 14 `Risk Factor` 與欄 12 `Impact` 為 §10.2 映射之佐證，
+    不單獨作為 priority 之依據。
+(d) 「讀取時 strip 含 `\xa0`」之技術手段**保留**（A-VC1 之正確部分）。
+    作廢者為「不視為已填」之推論 —— 這九欄在 117 個 leaf 上是已填的。
+```
+
+---
+
+```
+R-VC7（規格 PDF 之權威複本）
+
+分析層 Claude Project 附件之規格 PDF 為
+3,552,260 B，SHA256
+`216cfa84dfb84c0b3c44e24881407521412e16d16728aaa49e90ff3b3275a455`。
+repo 內複本及全機 7 份複本一律為 2,828,253 B，SHA256
+`3a6752c83bed1582485ad5e1aa7052ae63e6f0bb94304839beaf0e0b12776a76`。
+
+二者為不同之檔。**repo 內複本為權威**；附件之份判為 Project 上傳時
+重新渲染之衍生物，不得作為任何判準之來源。
+（`scripts/recon.py` 檔頭已預告此情形：re-rendered copy 之文字層探測
+結果會與原件不同，一律以 repo `inputs/` 之複本為準。）
+
+連帶拘束：下放包 01 §4.2(b) 之 18 節「規格內容摘要」欄係讀該衍生 PDF
+所寫。其**章節號**已由 T4 驗明相符，**摘要文字未經權威複本確認**。
+DR-VC3 發出前須以 repo `inputs/` 之 PDF 逐節重驗；重驗前該摘要不得
+引為 DR 之措辭依據，亦不得寫入表 B。
+```
+
+---
+
+```
+R-VC8（recon.py 於 spec_reference_template 為 null 時之行為；Tier 2 修法授權）
+
+`scripts/recon.py:894` 之 `tpl = cfg.get("spec_reference_template", "{outline}")`
+在鍵存在而值為 `None` 時取得 `None`，於 `:900` 之 `tpl.replace()` 崩潰。
+R-VC4 明文要求該鍵為 `null`，故本 feature 必然觸發。
+
+採上繳包 A-VC6 之提案 (b)：**`spec_reference_template` 為 null 時，
+`data/recon_leaf_to_section.tsv` 之 `spec_reference` 欄改逐字取 037
+`HMI Source ID` 欄之原值**，使資料件與 R-VC4 一致。
+
+提案 (a)（`... or "{outline}"`）**不採**：其產出為光禿之章節號，
+與 R-VC4 所裁之全名不同，等於在資料件中埋一個與裁決相左的值。
+崩潰會停，錯值不會 —— 後者為害更甚。
+
+實作拘束三項：
+(a) `survey_a03()` 現將 citation 拆為 stem 與 sec 後僅保留 sec
+    （`sections[rid] = m.group("sec")`），原值已丟失。修法須**同時保留
+    `first` 之原值**（例如新增 `citations[rid] = first`），
+    **不得**以 `stem + "_" + sec` 還原 —— 該還原式在 stem 本身以底線
+    接數字結尾時會取錯切點。
+(b) 未宣告 `spec_reference_template` 之 feature 行為不變（`dict.get`
+    之預設值路徑保留），使其他 12 個 feature 之既有產出基線不動。
+(c) 修法後須對至少一個既有 feature（建議 `home` 或 `comfort`，
+    其 recon 有回歸基線）重跑並確認產出逐字不變，再對本 feature 重跑。
+
+本條為 Tier 2 工具修法之授權，範圍僅限上述。
+`recon.py` 之其他行為一律不動。
+```
+
+---
+
+```
+R-VC9（recon_assertions 之宣告範圍與未機器化之揭露義務）
+
+`scripts/recon.py` 之 `run_assertions()` 僅實作三個鍵：
+`functional_requirement_count`、`distinct_spec_sections`、
+`spec_reference_stem`。`leaf_count` 與 `uncovered_content_sections`
+**無對應實作，宣告不生效**。
+
+本 feature 之 `recon_assertions` 僅宣告：
+
+    recon_assertions:
+      functional_requirement_count: 145
+
+下放包 01 §八 所草擬之 `leaf_count: 117`、`distinct_spec_sections: 66`、
+`uncovered_content_sections: 18` 三鍵中，`leaf_count` 與
+`uncovered_content_sections` **刪除**；`distinct_spec_sections: 66`
+得保留（該鍵有實作），由執行層於重跑後確認其 PASS 再定去留。
+
+依據：宣告一個不被讀取之鍵，比不宣告更糟 —— 不宣告至少誠實，
+宣告則製造一個永不失敗之檢查，並使讀者誤認該值已受保護。
+此與 display 之「宣告必然為 0 之 assertion 只會製造一個不可能失敗之
+檢查（canon §5a）」同源，本案為其鏡像。
+
+揭露義務：R-VC3 之 leaf 全集 117 與覆蓋落差 18，在對應 assertion
+落地前**僅靠 T4 重測與上繳包交叉檢查守護，非機器保證**。
+此事實須逐包揭露，**不得因 feature.yaml 有寫而視為已守**。
+
+leaf 判準三者並存之事實一併記於 feature.yaml 註解：
+  145 —— Categorization == Functional（recon.py 在用）
+  117 —— 子需求 ∪ 無子之父（R-VC3 所裁之驗證母體）
+   79 —— id-suffix（recon.py 明記不生效）
+display 未暴露此分歧，因其 037 之三值恰皆為 8。
+```
+
+---
+
+```
+R-VC10（素材之 paths / reference 分工）
+
+**`paths:` —— 素材一律複製入 `features/vehicle_category/inputs/`，
+路徑以本 feature 目錄為基準。**
+
+    paths:
+      popup_list:    "inputs/Pop Up List HMI R1 (26PI).xlsx"
+      settings_list: "inputs/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx"
+
+下放包 01 §五 T1 之「forms/ 兩份不複製，僅綁定」**作廢**。
+依據：`features/display/feature.yaml` 已記載此坑 —— 將 forms/ 之 repo
+相對路徑填入 `paths:`，`recon.py` 隨即以 `input not found … under
+features/display` 中止。素材複製入 `inputs/` 為 home / display / comfort /
+power_moding 之一致慣例。執行層留 `null` 為正確之保守處置。
+
+**`reference:` —— 六項，路徑以 repo 根為基準。**
+
+    a03_report / sys1_export / spec_pdf   → features/vehicle_category/inputs/…
+    workbook_master / popup_list / settings_list → forms/…（或 inputs/ 之複本，
+      擇一並於註解記明所綁者為何份）
+
+下放包 01 §五 T9 所記之「七項」為分析層計數錯誤，**正解為六項**。
+執行層推定第七項為下放包全文並依 R-G15 判準排除 —— 推定過程正確，
+惟結論應為「本無第七項」。下放包全文不入 `reference:`。
+
+**明文排除四項**：`dbc_b` / `dbc_fd` / `lid` / `proxi` 不綁定。
+依據：037 全文掃描之 CAN 訊號、PROXI 參數、VF 引用命中數皆為 0；
+規格本文之 VF507 / VF352 落在 037 未涵蓋之 18 節內。
+本 feature 之產出不觸及該四檔，不符 R-G15「其變動會使既有產出失效」
+之判準。**此排除須寫入 feature.yaml 註解** —— 否則日後必有人問
+為何本 feature 較 display 少綁四項。
+```
+
+---
+
