@@ -56,7 +56,7 @@ REPO_ROOT = next(p for p in Path(__file__).resolve().parents
                  if (p / "pyproject.toml").is_file())
 sys.path.insert(0, str(REPO_ROOT))
 from backend.xlsx_surgical import (  # noqa: E402
-    StructureError, surgical_save, verify_structure)
+    StructureError, surgical_save, surgical_restyle, verify_structure)
 
 FIRST_DATA_ROW = 10          # rev C 版面；表頭列 9
 
@@ -457,7 +457,43 @@ def run(args) -> int:
     check_written_back(out, sheet, cols, plan["expected"])   # G-TM3
     print(f"\nwrote         : {out}")
     print(f"SHA256        : {sha256_file(out)}")
+
+    # W-TM-26 T5 —— 樣式通道。**opt-in**：feature.yaml 未寫 data_alignment
+    # 者行為與本條加入前逐位元相同（Q2(a) 之立論即在此 —— 新增一條明示
+    # 啟用才生效之通道，不改既有預設）。
+    align = (cfg.get("write_back") or {}).get("data_alignment")
+    if align:
+        rep = apply_data_alignment(out, sheet, cols, align,
+                                   plan["first_row"], plan["last_row"])
+        print(f"restyle       : {rep['cells_repointed']} 格重掛，"
+              f"新增 cellXfs {rep['xfs_appended']} 筆 "
+              f"({', '.join(f'{k}={v}' for k, v in align.items() if k != 'columns')})")
+        print(f"SHA256        : {sha256_file(out)}")
     return 0
+
+
+def apply_data_alignment(out: Path, sheet: str, cols: dict, align: dict,
+                         first_row: int, last_row: int) -> dict:
+    """D5 —— 內容欄資料列之對齊。
+
+    置中之多行文字，每行編號前會出現寬窄不一之視覺空白，被讀成
+    「編號前有空格」。**文字層無前導空白**（raw sharedStrings 已逐字驗證），
+    故處置在樣式而不在文字 —— 改文字會把一個排版問題修成一個內容錯誤。
+    """
+    names = align.get("columns")
+    if not names:
+        raise WriteBackError("data_alignment 缺 columns —— 不得預設套用全欄")
+    missing = [n for n in names if n not in cols]
+    if missing:
+        raise WriteBackError(f"data_alignment.columns 有未解析之欄：{missing}")
+    override = {k: v for k, v in align.items() if k != "columns"}
+    if not override:
+        raise WriteBackError("data_alignment 未指定任何 alignment 屬性")
+    cells = [(r, cols[n]) for r in range(first_row, last_row + 1) for n in names]
+    tmp = out.with_name(out.stem + ".restyle-tmp.xlsx")
+    rep = surgical_restyle(out, tmp, {sheet: (cells, override)})
+    tmp.replace(out)
+    return rep
 
 
 def main() -> int:

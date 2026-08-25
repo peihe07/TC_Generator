@@ -71,7 +71,7 @@ LEAF_COUNT = 22                  # B2 —— 037 之 leaf 全集
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tm_rulings import (                      # noqa: E402
     SPEC_GAP_LEAVES, SPEC_GAP, SPEC_GAP_DR, TEST_SETS, BOUNDARY_SIGNALS,
-    load_ee_arch, load_lid_table, lid_columns_for)
+    load_ee_arch, load_lid_table, lid_columns_for, ARCH_HI, ARCH_MID)
 
 SPEC_REF_RE = re.compile(r"^CFTS015-(\d{7})$")      # B7(i) —— canon §10.7(a)
 
@@ -139,6 +139,25 @@ def load_authorities(feature_dir: Path) -> dict:
     }
     auth["ee_arch"] = load_ee_arch(feature_dir)   # R-TM63 之單一來源
     auth["lid_table"] = load_lid_table(feature_dir)   # A-TM26
+    # W-TM-26 T4 —— §8.7.5 v3 之後，內文以「可觀察 CAN 訊號全名」書寫，
+    # LID 別名（$DateTmHour$）已不出現。本閘門原以別名為偵測判準，
+    # 若不同步改判準，v3 改寫會使 arch-column 檢查**靜默失效**
+    # （實測覆蓋 11 條 → 0 條）。依 R-TM69(3)：條文變更須檢查以該欄位
+    # 為判準之既有閘門。**兩架構之訊號名皆納入** —— 偵測之目的是
+    # 「本條是否談及訊號」，與該訊號屬哪個架構無關（架構之對錯正是
+    # 本閘門要判的，不能拿它當偵測前提）。
+    names: set[str] = set()
+    for arch in (ARCH_HI, ARCH_MID):
+        for lid_name, row in load_lid_table(feature_dir, arch).items():
+            names.add(lid_name)
+            sig = str(row.get("signal") or "")
+            if row.get("no_signal"):
+                continue
+            for part in sig.split("/"):
+                part = part.strip()
+                if part and not part.startswith("("):
+                    names.add(part)
+    auth["lid_tokens"] = names
     return auth
 
 
@@ -423,7 +442,8 @@ def lint_arch_column(tc: dict, auth: dict, where: str) -> list[tuple[str, str]]:
     lid = auth.get("lid_table")
     if not lid:
         return []
-    if not any(f"${n}$" in authored_text(tc) for n in lid):
+    tokens = auth.get("lid_tokens") or set(lid)
+    if not any(f"${n}$" in authored_text(tc) for n in tokens):
         return []
     rsn = str(tc.get("reasoning") or "")
     m = re.search(r"The vehicle is an (Atlantis (?:High|Mid)) architecture variant",

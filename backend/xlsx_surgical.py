@@ -472,3 +472,150 @@ def surgical_insert_rows(src: Path, out: Path, insertions: dict[int, int],
     if verify:
         report.update(verify_structure(src, out, {member}))
     return report
+
+
+# ------------------------------------------------------- surgical restyling
+#
+# `surgical_save` is a *value* patcher: `diff_cells` compares openpyxl values
+# and `_cell_xml` copies the source cell's `s="…"` through untouched. That is
+# deliberate — it is what keeps every style, and the x14 validation extension
+# that rides alongside them, byte-for-byte intact.
+#
+# Alignment therefore has no channel at all on that path. `surgical_restyle`
+# adds one, and adds it the same way: it never edits an existing `<xf>` (that
+# would silently restyle every other cell sharing the id). It *derives* a new
+# cellXfs entry from the one a cell already uses, appends it, and repoints only
+# the named cells at it. Cells not named in the plan keep their id, so the
+# blast radius is exactly the plan.
+
+STYLES_MEMBER = "xl/styles.xml"
+CELLXFS_RE = re.compile(r'(<cellXfs count=")(\d+)(">)(.*?)(</cellXfs>)', re.S)
+XF_RE = re.compile(r"<xf\b(?:[^>]*?/>|.*?</xf>)", re.S)
+ALIGNMENT_RE = re.compile(r"<alignment\b[^>]*?/>", re.S)
+
+
+def _derive_xf(xf: str, override: dict) -> str:
+    """`xf` with its `<alignment>` attributes overridden by `override`.
+
+    Attributes the caller does not name are carried over from the source xf,
+    so overriding `horizontal` never silently drops `wrapText`.
+    """
+    m = ALIGNMENT_RE.search(xf)
+    attrs: dict[str, str] = {}
+    if m:
+        attrs = dict(re.findall(r'(\w+)="([^"]*)"', m.group(0)))
+    attrs.update({k: str(v) for k, v in override.items()})
+    align = "<alignment " + " ".join(
+        f'{k}="{v}"' for k, v in attrs.items()) + "/>"
+
+    if m:
+        body = xf[:m.start()] + align + xf[m.end():]
+    elif xf.endswith("/>"):
+        body = xf[:-2] + ">" + align + "</xf>"
+    else:
+        body = xf.replace("</xf>", align + "</xf>")
+    if "applyAlignment=" not in body:
+        body = body.replace("<xf ", '<xf applyAlignment="1" ', 1)
+    return body
+
+
+def surgical_restyle(src: Path, out: Path, plan: dict, *,
+                     verify: bool = True) -> dict:
+    """Repoint the named cells at derived styles carrying `override`.
+
+    `plan` is `{sheet name: (cells, override)}` where `cells` is an iterable of
+    `(row, col)` 1-based pairs and `override` names `<alignment>` attributes,
+    e.g. `{"horizontal": "left", "vertical": "top"}`.
+
+    Every zip member but `xl/styles.xml` and the named sheets is copied
+    byte-for-byte, so `sharedStrings.xml` — and with it the cell text — is
+    provably untouched by this pass.
+    """
+    import openpyxl
+
+    src, out = Path(src), Path(out)
+    members = sheet_members(src)
+    with zipfile.ZipFile(src) as z:
+        styles = z.read(STYLES_MEMBER).decode("utf-8")
+        sheet_xml = {}
+        for name in plan:
+            member = members.get(name)
+            if member is None:
+                raise StructureError(f"no zip member resolved for sheet {name!r}")
+            sheet_xml[name] = (member, z.read(member).decode("utf-8"))
+
+    cm = CELLXFS_RE.search(styles)
+    if cm is None:
+        raise StructureError("no <cellXfs> block in styles.xml")
+    xfs = XF_RE.findall(cm.group(4))
+    if len(xfs) != int(cm.group(2)):
+        raise StructureError(
+            f"cellXfs count={cm.group(2)} but {len(xfs)} <xf> parsed — refusing "
+            "to append against a miscounted table")
+
+    derived: dict[tuple[int, str], int] = {}   # (source id, override key) → new id
+    appended: list[str] = []
+    patched: dict[str, str] = {}
+    repoints = 0
+
+    for name, (member, xml) in sheet_xml.items():
+        cells, override = plan[name]
+        want = {(int(r), int(c)) for r, c in cells}
+        key = repr(sorted(override.items()))
+
+        def repoint(mo, _want=want, _key=key, _override=override):
+            nonlocal repoints
+            col, row, attrs = mo.group(1), int(mo.group(2)), mo.group(3)
+            ci = openpyxl.utils.column_index_from_string(col)
+            if (row, ci) not in _want:
+                return mo.group(0)
+            sm = re.search(r's="(\d+)"', attrs)
+            sid = int(sm.group(1)) if sm else 0
+            new = derived.get((sid, _key))
+            if new is None:
+                new = len(xfs) + len(appended)
+                appended.append(_derive_xf(xfs[sid], _override))
+                derived[(sid, _key)] = new
+            repoints += 1
+            if sm:
+                attrs = attrs[:sm.start()] + f's="{new}"' + attrs[sm.end():]
+            else:
+                attrs = f' s="{new}"' + attrs
+            # The pattern ends at a lookahead, so group(0) is exactly the
+            # opening `<c r="…" …` — rebuild it and let the tail stand.
+            return f'<c r="{col}{row}"{attrs}'
+
+        patched[member] = re.sub(r'<c r="([A-Z]+)(\d+)"([^>]*?)(?=/>|>)',
+                                 repoint, xml)
+
+    if appended:
+        total = len(xfs) + len(appended)
+        styles = (styles[:cm.start()]
+                  + f'<cellXfs count="{total}">'
+                  + cm.group(4) + "".join(appended)
+                  + "</cellXfs>" + styles[cm.end():])
+        patched[STYLES_MEMBER] = styles
+
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(src) as zin, zipfile.ZipFile(
+            out, "w", zipfile.ZIP_DEFLATED) as zout:
+        for info in zin.infolist():
+            data = (patched[info.filename].encode("utf-8")
+                    if info.filename in patched else zin.read(info.filename))
+            zout.writestr(info, data)
+
+    report = {"cells_repointed": repoints, "xfs_appended": len(appended),
+              "members_patched": sorted(patched)}
+    if verify:
+        # styles.xml is in the allowed set here — that widening IS this
+        # channel. The invariants that matter are asserted separately below:
+        # the x14/classic validation counts (inside verify_structure) and the
+        # text store, which this pass must never touch.
+        report.update(verify_structure(src, out, set(patched)))
+        with zipfile.ZipFile(src) as a, zipfile.ZipFile(out) as b:
+            for m in ("xl/sharedStrings.xml",):
+                if m in a.namelist() and a.read(m) != b.read(m):
+                    raise StructureError(
+                        f"{m} changed during a restyle pass — alignment must "
+                        "not touch cell text")
+    return report

@@ -3082,3 +3082,73 @@ R-TM80（分析層裁定，2026-08-22）—— 寫回指令一律帶 --out
 **執行層回報（2026-08-22）**：已落檔。`24` 之寫回已以 `--out` 重跑至
 `output/`，誤落 `inputs/` 之檔已刪（兩次 SHA256 相同，內容無異）。
 本條自 A-TM29 修畢前為唯一迴避手段，下次寫回時適用。
+
+
+## R-TM81 — 本 feature 之 Clock 設定狀態不得寫於 Pre-Condition
+
+（分析層裁定，2026-08-25，依 Pei 同日指示。上游包
+`docs/handoff/26_pei_review_remediation.md` §2。發現者為 Pei 之交付後
+審查第 (1) 項：「Setting 操作應放步驟並給入口路徑」。）
+
+```
+R-TM81（分析層裁定，2026-08-25，依 Pei 同日指示）
+
+本 feature 之 Clock 設定項狀態（Sync Time with GPS、Time Format 等
+§7 Clock 節項目）不得寫於 Pre-Condition；一律以 Procedure 步驟建立，
+入口固定
+
+    1. Open the "Clock" settings
+    2. Set "<項名>" to <值>
+
+項名逐字取 HMI Settings List R1L-R (Feb 13 2026) §7。
+
+理由：Clock 設定即本 feature 之受測物，寫入 J 欄同時觸犯 canon §4.4
+之「feature under test as premise」與「step-controlled state」兩禁，
+且前提式寫法無從承載入口路徑，執行者不知從何按起。
+
+Proxi 配置行不在射程 —— 車輛配置屬外部環境，為合法 PC，
+僅記法正規化為 canon §8.7.5(c)。
+
+頁名沿用既有常數字面 "Clock"（DR-12b 之佔位語意不變，A-TM28 未裁前照留）。
+```
+
+**執行層回報（2026-08-25）**：已套用。37 條之 Clock 設定狀態全數遷入
+Procedure（14 條補入口、23 條併入既有入口步），J 欄殘留 0 行。
+清單原記 35 條，執行層反驗為 37 條（漏列 #041 #042），見
+`docs/handoff/26_pei_review_remediation.md` §6 C3。#041 #042 含次序約束
+（設定須先於 sleep），依 Pei 2026-08-25 之 Q1(a) 裁定成四步式。
+Proxi 行之正規化對象為 5 條（原記 4 條，漏 #021），見同文 §6 C4。
+回繳見 `docs/handoff/27_wtm26_return.md`。
+
+
+## R-TM82 — §8.7.5 之適用版本隨 repo canon 現行版
+
+（分析層裁定，2026-08-25。上游包
+`docs/handoff/26_pei_review_remediation.md` §2。發現者為 Pei 之交付後
+審查第 (2) 項所連帶之逐列稽核 —— D4：22 條 29 處仍為已撤銷之 v1 三件組。）
+
+```
+R-TM82（分析層裁定，2026-08-25）
+
+§8.7.5 於本 feature 之適用版本隨 repo canon 現行版（v3）。
+
+R-TM48 之引用為**動態引用** —— charter 明訂 repo 版為權威且持續演進，
+故該條之生效客體是 §8.7.5 本身，而非其 2026-08-21 前之文字。canon 已於
+2026-08-21 撤銷 v1/v2 改行 v3，且 `docs/runtime/profiles/` 無
+TimeManagement profile、無 cited override，依 FO §0 本 feature 從現行 v3。
+
+R-TM49 之 segment 缺件處理隨 v3 失所附麗（v3 不寫網段，segment 缺件
+不復存在），條文保留為軌跡不刪（R-TM13）。DR-6 佔位依
+`26_pei_review_remediation.md` D4 處置：#035 之佔位隨 v3 消滅，
+DATA_REQUESTS #6 降轉為「僅供追溯，不再阻塞」，加註不刪列。
+```
+
+**執行層回報（2026-08-25）**：已套用。22 條 29 處 v1 三件組全數改為 v3，
+網段字樣殘留 0。#035 之 `PENDING: DR-6` 佔位隨 v3 消滅，`DATA_REQUESTS.md`
+已加註降轉為僅供追溯、不刪列。
+
+**連帶發現一項閘門失效（R-TM69(3)）**：lint 之 `arch-column` 檢查以 LID
+別名為「本條是否談及訊號」之偵測判準，v3 改寫後別名消失，該閘門覆蓋
+由 11 條掉到 0 條而不報錯 —— 改寫後第一次 lint 之「0 項」有一部分是
+閘門失效而非真的乾淨。判準已擴充為「LID 別名 ∪ 兩架構訊號全名」，
+覆蓋還原為同一組 11 條。回繳見 `docs/handoff/27_wtm26_return.md` §3。

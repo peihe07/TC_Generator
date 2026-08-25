@@ -48,7 +48,14 @@ write_back:
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"
   tc_id_format: "NR1L-TimeAndDate-{n:03d}"   # R-TM32
-  fill_test_group_set: true      # BLANK per R-TM5，依 canon §2
+  fill_test_group_set: true
+  # D5 / W-TM-26 T5 —— 內容欄資料列之對齊。置中使多行文字之每行編號前
+  # 出現視覺空白（文字層無前導空白，已逐字驗證）。交付基準
+  # （UserProfiles 0824）同欄為預設靠左。wrapText 由來源 xf 帶過不動。
+  data_alignment:
+    columns: [test_item, pre_conditions, input_test_data, test_procedure, expected_result]
+    horizontal: left
+    vertical: top      # BLANK per R-TM5，依 canon §2
 
 lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary
