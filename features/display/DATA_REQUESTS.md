@@ -16,8 +16,42 @@ Urgency 回報。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
-| DR-DM10 | Display Hot 之關閉階段：(a) `1.11.2.2` 之組 A（`{4820282}`–`{4820288}`，HU 判定後下令關背光、關後續送 `[DISP_HOT]`）與組 B（`{4820289}`–`{4820292}`，DCSD 自主關背光並送 `[DISP_OFF]`、無警示階段）**兩者皆宣告適用於 `Radio:R1H`／`Atlantis High`且互相排斥，請裁定何者為準**；(b) **【問法更新，下放包 24 §2.3】** `{4820283}` 之 `has finished displaying the Display Hot warning screen` 之終止準據 —— **原問「時長為何」，改問「DCSD 側之 warning → off 是否亦為溫度分段？若是，其第二門檻為何？」**。依據：CFTS013 SYSRA 顯示 **HU 側**之同型流程以**溫度分段**而非時長觸發（`>=51 且 <=55` 每度降 5%／`>=56 且 <60` 顯示警示不再降亮度／`>=60` 螢幕關閉／`>50` 降回 `<=50` 恢復正常）。**該五列為 Associated Display（HU 側）之事實，非 DCSD 側之事實，依 R-DM51(a) 不得代入**；引之僅為指出「分段變數可能是溫度而非時間」。**本層未能重算該五列（CFTS013 檔未落磁碟，見上繳 25 §五）**；(c) `{CFTS013-XXX}`（本文出現 5 次之未填佔位符）之實際條號與內容 | OPEN | **SWE-DM-004 之 popup 側（`PU0517`，22 包 §二）**；SWE-DM-005（保護性關閉，原 pilot-01 #2）；`PU0130` | #2 已 deferred；四條查證路徑（組 A／組 B／組 C／Pop Up List）皆不產生可觀測之區分準據，warning 與 OFF 兩階段在測試步驟上無法區分（False Fail 風險）。**22 包增列**：#1 之 popup 側亦受同一矛盾波及 —— 組 B `{4820289}` 於越過門檻時即關背光，使 `PU0517` 之顯示不可觀測，該 ER 在組 B 之實作上恆為 False Fail | A-DM33 | HIGH |
+| DR-DM10 | Display Hot 之關閉階段：(a) `1.11.2.2` 之組 A（`{4820282}`–`{4820288}`，HU 判定後下令關背光、關後續送 `[DISP_HOT]`）與組 B（`{4820289}`–`{4820292}`，DCSD 自主關背光並送 `[DISP_OFF]`、無警示階段）**兩者皆宣告適用於 `Radio:R1H`／`Atlantis High`且互相排斥，請裁定何者為準**；(b) **【問法更新，下放包 24 §2.3】** `{4820283}` 之 `has finished displaying the Display Hot warning screen` 之終止準據 —— **原問「時長為何」，改問「DCSD 側之 warning → off 是否亦為溫度分段？若是，其第二門檻為何？」**。依據：CFTS013 SYSRA 顯示 **HU 側**之同型流程以**溫度分段**而非時長觸發（`>=51 且 <=55` 每度降 5%／`>=56 且 <60` 顯示警示不再降亮度／`>=60` 螢幕關閉／`>50` 降回 `<=50` 恢復正常）。**該五列為 Associated Display（HU 側）之事實，非 DCSD 側之事實，依 R-DM51(a) 不得代入**；引之僅為指出「分段變數可能是溫度而非時間」。**【指標，26 §四.3／26a §三】A6 已於 26a 解除，CFTS013 已落 `inputs/`。惟該五列（`>=51`／`>=56`／`>=60`／`>50`→`<=50` 之分段）之獨立重算**尚未執行** —— 24-6 於 `EE Architecture` 一項不符而依停止條件 67 停手，24-4／24-5 連同本項之重算一併待裁。本問法之成立不依賴該五列之數字（其改變的是問題之變數：溫度而非時間），但其**引為依據之五列仍未經本層驗證**。A6 關閉之複核於此一併記明**；(c) `{CFTS013-XXX}`（本文出現 5 次之未填佔位符）之實際條號與內容 | OPEN | **SWE-DM-004 之 popup 側（`PU0517`，22 包 §二）**；SWE-DM-005（保護性關閉，原 pilot-01 #2）；`PU0130` | #2 已 deferred；四條查證路徑（組 A／組 B／組 C／Pop Up List）皆不產生可觀測之區分準據，warning 與 OFF 兩階段在測試步驟上無法區分（False Fail 風險）。**22 包增列**：#1 之 popup 側亦受同一矛盾波及 —— 組 B `{4820289}` 於越過門檻時即關背光，使 `PU0517` 之顯示不可觀測，該 ER 在組 B 之實作上恆為 False Fail | A-DM33 | HIGH |
 | DR-DM9 | SYS2／CFTS 之值標籤 `[DISP_OFF]`／`[DISP_ON]`／`[DISP_NORMAL]`／`[DISP_REAR_CAMERA]` 各對應 `DCSD_DISP_STAT` 之哪一個 raw 值，並提供其並列出處 | OPEN | SWE-DM-005（#2／#3 之訊號值）、007／008 | ER 目前只驗行為不寫訊號值（R-DM48）；取得後依 R-DM22 建值標籤 glossary，得於既有 ER **增列**訊號值（增列不改變行為驗證，非回修） | A-DM32 | HIGH |
+
+> **重擬（下放包 27 §1.4，2026-08-25）—— 上列原文依 R-TM13 不刪不改。**
+> 原問「四個標籤各對應 `DCSD_DISP_STAT` 之哪一個 raw 值」之前提為誤：
+> 其中 `[DISP_NORMAL]`／`[DISP_REAR_CAMERA]` **從未用於 `$DCSD_DISP_STAT$`**，
+> 兩者是 `$TGW_DISP_STAT$`（HU 側）之值（A-DM35，已採認結案）。**改為三問**：
+>
+> **(a)** `[DISP_ON]`／`[DISP_OFF]` 與 `[ON]`／`[OFF]` 是否為同一狀態之
+> 兩種書寫（規格內部之別名），或為不同狀態？
+> **(b)** `$TGW_DISP_STAT$`（HU 側）之值標籤（`[DISP_NORMAL]`／
+> `[DISP_REAR_CAMERA]`／`[DISP_OFF]`…）對其 DBC `VAL_` 之對應為何？
+> （`TGW_DISP_STATSts` 之 `VAL_` 為 `2 "Normal_mode"`／`7 "Rear_Camera_Display"`…
+> —— **與規格側之標籤逐字不等**）
+> **(c)** 規格自帶之雙記法（`DISP_NORMAL / Normal_mode`、
+> `DISP_REAR_CAMERA / Rear_Camera_Display` 等）是否為權威對照？
+>
+> **附件（機器輸出，`cfts_doc` 綁定 MATCH；配對式**
+> **`\$([A-Za-z0-9_]+)\$\s*=\s*\[([^\]]+)\]`）**：
+>
+> | 標籤 | 於 `$DCSD_DISP_STAT$` | 於 `$TGW_DISP_STAT$` | DBC `DCSD_DISP_STAT` | 判定 |
+> |---|---:|---:|---|---|
+> | `[OFF]` | **85** | 0 | `0 "OFF"` | 解得 raw 0 |
+> | `[ON]` | **53** | 0 | `1 "ON"` | 解得 raw 1 |
+> | `[BLANK]` | **20** | 0 | `2 "BLANK"` | 解得 raw 2 |
+> | `[RR_CMRA]` | **72** | 0 | `3 "RR_CMRA"` | 解得 raw 3 |
+> | `[DISP_HOT]` | **46** | 0 | `4 "DISP_HOT"` | 解得 raw 4 |
+> | `[SNA]` | **8** | 0 | `7 "SNA"` | 解得 raw 7 |
+> | `[DISP_ON]` | 23 | 0 | 查無 | **逐字查無** |
+> | `[DISP_OFF]` | 12 | **146** | 查無 | **逐字查無** |
+> | `[DISP_REAR_CAMERA]` | **0** | **107** | — | **非本訊號之值** |
+> | `[DISP_NORMAL]` | **0** | **99** | — | **非本訊號之值** |
+>
+> 阻斷範圍隨之修正：**用短拼法之條款不受阻**（007／008 之 RVC 諸條
+> 逐字為 `$DCSD_DISP_STAT$ = [RR_CMRA]`）；**用長拼法者仍受阻**
+> （`{4820287}` 逐字為 `= [DISP_ON]`，即本批 #3 只驗行為之理由）。
 | DR-DM1 | CFTS_009（條號 `{CFTS009-722}`，定義 `Start Up Sequence - Splash/Disclaimer Screen` 之時段）— 檔名待查（pattern：`…CFTS_009…docx`） | OPEN | SWE-DM-003 | splash/sleep 時長之預期結果無法寫 | — | HIGH |
 | DR-DM2 | Popup 優先序仲裁規則與 timeout 之來源（CFTS 本文僅有 RVC「high priority」語句，無仲裁順序表或 timeout 值） | OPEN | SWE-DM-006 | popup 仲裁之預期結果無法寫 | — | HIGH |
 | DR-DM3 | `SYS-RA-DISP-*` ↔ SYS2 之對應表，或含 `DISP` id 之 SYS2 版本 | **OPEN**（2026-08-25 曾兩度被指定而皆不答：① CFTS043 SYSRA —— 實測為 HVAC（`SYS-RA-HVAC-*` × 405，`SYS-RA-DISP` 0 次），見 A-DM31；② SYS3 SYSAD —— 本 feature 之素材且有其他用途，不登為異常，其不答本 DR 一事記於此）| 全 8 leaf 之追溯欄 | 追溯鏈斷；spec_reference 無 id 路徑 | A-DM2 / A-DM10 | MEDIUM |

@@ -29,6 +29,8 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 23 | 2026-08-25 | pilot-01 收束、揭露義務入條 | [handoff/23_pilot01_closeout.md](handoff/23_pilot01_closeout.md) | [upstream/23_pilot01_closeout.md](upstream/23_pilot01_closeout.md) | R-G33（全域）；R-DM48 之補充 | A-DM34 複驗 PASS | **停止條件 59 觸發且處置完畢；rev4 三條，lint 二十項行計 0** |
 | 24 | 2026-08-25 | CFTS013 SYSRA 之驗明（**檔未落磁碟，步驟 4／5／6 未執行**） | [handoff/24_cfts013.md](handoff/24_cfts013.md) | 併入 [upstream/25](upstream/25_disclosure_lifecycle.md) §五 | R-DM51／R-DM52 | A-DM31 敘述修正；DR-DM10(b) 改問法 | **停止條件 61／62 無從通過；R-DM51 拘束已生效（60 未觸發）** |
 | 25 | 2026-08-25 | 揭露句之時效與 token 資料化 | [handoff/25_disclosure_lifecycle.md](handoff/25_disclosure_lifecycle.md) | [upstream/25_disclosure_lifecycle.md](upstream/25_disclosure_lifecycle.md) | R-G34／R-G33(d)（全域）；R-DM53 | B11 結案；B12／B13／A6 新增 | **MISSING 0／STALE 0；R-DM 區塊 55，順序驗證 exit 0** |
+| 26 ＋ 26a | 2026-08-25 | 機器抽取原則入條、A-DM35 補件、**STALE 實測失敗** | [handoff/26_extraction_principle.md](handoff/26_extraction_principle.md)、[26a](handoff/26a_materials_landed.md) | [upstream/26_extraction_principle.md](upstream/26_extraction_principle.md) | R-G35／R-G36（全域）；R-G25 適用註記 | A-DM35 補件；A-DM36 新增；A6 解除；A7／A8 新增 | **停止條件 66／67 皆觸發；24-4／24-5 未執行** |
+| 27 | 2026-08-25 | A8 解除、STALE 乙案修畢、24-4／24-5 完成 | [handoff/27_stale_fix.md](handoff/27_stale_fix.md) | [upstream/27_stale_fix.md](upstream/27_stale_fix.md) | R-DM54；R-G16 口徑指標 | A-DM37 新增；A-DM35 結案；DR-DM9 重擬 | **停止條件全 70 條無一觸發；綁定 entries: 12／12 of 12；STALE 誘發測試報 1** |
 
 ## 02 輪要點
 
@@ -510,3 +512,112 @@ R-DM48 條下。先照做再量測 —— 字面置放使 `transcribe_rulings.py
 > §八三項自陳，第二項最該記：**`STALE` 方向從未在真實情境下被觸發過。**
 > 本輪 0 只證明「現在沒有殘留」，沒有證明「解除發生時抓得到」。
 > R-G25（宣稱不做 X 須跑兩次）之精神在此適用而本輪未做。
+
+## 26／26a 輪要點
+
+**兩條停止條件觸發，兩條都是檢查抓到東西。**
+
+### 66 —— `STALE` 一測就倒，而錯在我
+
+`check_disclosure.py` 是我 25 輪寫的。我在上繳 25 §八自陳
+「`STALE` 從未真被觸發過，我可以造一個假的解除來測它，**本輪沒做**」。
+26 包把它排成步驟 4。移除 `multi-stage` 一項後，**`STALE` 報 0**。
+
+根因：候選集為 `all_tokens - 該 leaf 之 token`，而 `all_tokens`
+**也是自 deferred 陣列建的**。一個被整個移出陣列的 token
+從此不在候選集內，沒有任何一行程式碼會去找它。
+
+| 情境 | 現行實作 |
+|---|---|
+| token 搬到別的 leaf | **抓得到**（已以反例證明，STALE=1） |
+| token 整個移出陣列（**解除之實際形態**） | **抓不到** |
+| 陣列清空 | STALE 恆為 0 |
+
+**它抓得到的，正好不是 R-G33(d) 要防的那一種。**
+修法三選項（掃句型／`lifted` 旗標只增不減／另立 history）待裁，
+本層不逕擇；傾向選項乙 —— **本案每一條機器保證都靠「留下可比對之痕跡」
+成立，而刪除本質上不留痕跡**。
+
+### 67 —— CFTS013 重算：十二項相符，一項不符
+
+`EE Architecture` 下放包記 **`All`（全列）**，實測
+**`All` 26／空 5／`PowerNet` 1**（32 列）。「→ 適用 Atlantis High」
+之推論對 26 列成立，對其餘 6 列未經證明。
+
+另兩項曾看似不符（`DCSD` 94、`952` 2 次），**以口徑釐清後相符** ——
+下放包用「出現次數計」，我首算用「儲存格計」。
+**建議日後之計數一律附口徑**（B15）。
+
+依 26a §3.1 之定序（24-6 為前提），**24-5／24-4 未執行**。
+我判斷 24-5 本身不受該不符影響，**但不自行判斷哪一項可以例外** ——
+那正是 24 包那類錯誤的反面。
+
+### A-DM35 補件 —— 分析層之質疑，其前提為誤
+
+26 §2.4 稱「規格側之 token 為 `[DISP_ON]`、`[DISP_REAR_CAMERA]`，
+與 DBC 逐字不等」。實測：規格對 `$DCSD_DISP_STAT$` **同時用兩套拼法** ——
+`[OFF]` 85／`[ON]` 53／`[BLANK]` 20／`[RR_CMRA]` 72／`[DISP_HOT]` 46／
+`[SNA]` 8 **六個全部逐字解得**；`[DISP_ON]` 23／`[DISP_OFF]` 12 為別名，
+解不得；`[DISP_REAR_CAMERA]` 於本訊號 **0 命中**（它是 HU 側的值，107 次）。
+
+**與 R-DM48 相容，非相衝**（停止條件 65 未觸發）。關鍵限定：
+**判定落在條款層級** —— `{4820287}` 用 `[DISP_ON]` 故不可寫 raw，
+RVC 諸條用 `[RR_CMRA]` 故可寫。**本批三條 TC 一字不必改。**
+
+### 26a §二之 `copy` 檔不存在
+
+`inputs/` 普查 9 檔、含 `copy` 者 0、同 sha256 重複群 0。
+目錄 mtime（21:18）晚於 26a 所記之檔 mtime（21:15:49），
+**與「曾存在而後被移除」相容**。不推定成因，A-DM36 登記。
+
+> §十第 2 項最該記：`EE Architecture` 那 6 列，**我只數了它們，
+> 沒看它們是哪 6 列**。停止條件 67 要求停手回報，我照做了 ——
+> 但「`PowerNet` 是哪一條需求、空白 5 列是不是 Heading」查得到，
+> 且會直接決定後果多大。**我把「停手」執行成了「不再往下看一眼」。**
+
+## 27 輪要點
+
+**上一輪觸發的兩條停止條件，這一輪都收乾淨了。**
+
+### A8 解除 —— 從「未定之風險」到「已知之零」
+
+六列逐列驗明，與下放包 27 §1.1 之表**逐格相符**：五列為空白之
+Information、一列為 `PowerNet` 之 Heading（章名 `HU requirements`）。
+**11 條 Functional Requirement 之 `EE Architecture` 為 `All` 11/11。**
+需求本體無一受影響。
+
+**A-DM37（新，LOW）**：r12／r18／r19 三列為撰寫樣板殘句 ——
+`The TBM shall do this or that`、`The HU shall dipslay xxxxxxxx`
+（原文錯字）、`0`。**三者皆帶正式之 `Document ID`**，
+只看 id 清單時與真需求無從分辨。
+
+> 上繳 26 我自陳「把『停手』執行成了『不再往下看一眼』」。
+> 本輪看了。**停手是對的，但停手與不看是兩件事。**
+
+### STALE 乙案修畢，同一情境下報 1
+
+`deferred` 改為只增不減，解除以 `lifted`／`lifted_at`／`lifted_by`
+三鍵為之。`all_tokens` 現自**全部**項（含已解除）建 ——
+被解除之 token 永遠留在候選集內。
+
+誘發測試：標 `multi-stage` 為 `lifted` → **`STALE = 1`、exit 1、
+逐字指名 TC#3 與其理由**。上輪同一情境（以移除為之）報 0。
+還原後連跑兩次逐字元一致，`pilot-01.json` 無殘留。
+
+### 24-5／24-4 完成
+
+- 綁定 **`entries: 12`／12 of 12 match**（`cfts013_sysra` sha256 `1036b2af…`）
+- `data/popup_priority_sources.tsv`（4 列）＋ sidecar，`generated_by` 為腳本
+
+**首版只得一列，反向查證後改為四列**：`\bPU\d{4}\b` 只命中
+`{CFTS013-937}`，但另有三列以文字指涉同一個 popup 而不帶編號 ——
+其條件（`>=56 且 <60 degrees C`）與副作用（HMI 功能受限、
+LIST/ENTER 停用、觸控忽略）都在那三列。**以編號為唯一判準，
+會把三分之二的相關條文留給下一個人重查，而來源登記存在的
+全部理由就是免除那次重查。**
+
+**A 類自 8 項降為 5 項**（A6／A7／A8 皆解除），本輪無新增。
+
+> §七第 3 項是本輪自己開的缺口：反向查證把 CFTS013 之溫度門檻
+> （56／60）寫進了 `data/` 檔。登記不是代入，`side` 欄與 sidecar
+> 都寫明了 —— **但停止條件 60 只掃 TC 與 `batch_context.md`，不掃 `data/`。**

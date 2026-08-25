@@ -75,6 +75,13 @@ reference:
   popup_priority_matrix:
     file: "features/display/inputs/Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf"
     sha256: "dc078763c67b52388eba8edf5c461515cfd2d92dd3a78dba0ce4e365e43ccc2f"
+  # 24 包步驟 5（27 包解封）：CFTS013 SYSRA 分析報告。R-DM37 之判準——
+  # 其為 R-DM51／R-DM52 兩條裁決之事實依據，其變動會使該兩條所據之
+  # 量測（32 列／Document ID 全集／629-633-952 之落點）失效，故納入綁定。
+  # **納入綁定不等於得自其取值**：R-DM51(a) 之禁止代入不受本項影響。
+  cfts013_sysra:
+    file: "features/display/inputs/SYS2_CFTS013_Radio_Error_Management-Associated_Display.xlsx"
+    sha256: "1036b2af9f655441cc01bed6e2780a359334d8b10fca5d1bf693fb7137b911b0"
 
 # R-DM24（Q5 定案 B，Pei 2026-08-25）：以人工指定 kind 取代放寬共用分類器。
 # `scripts/intake.py` 之 SHEET_SIGNATURES 一字未動；覆寫僅在下列 sha256

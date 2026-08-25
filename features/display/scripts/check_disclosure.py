@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
-"""R-G33(c) 之雙向檢查（R-G33(d)(2)）。
+"""R-G33(c) 之雙向檢查（R-G33(d)(2)），乙案實作（R-DM54）。
 
-方向一 MISSING：`deferred` 陣列有某 leaf 之項，而該 leaf 之 TC
-              括號下半未含其 `token` 逐字 → R-G33(b) 之違反。
-方向二 STALE  ：括號下半含某 `token`，而 `deferred` 陣列已無該 leaf
-              之該項 → R-G33(d) 之違反（deferred 已解除而揭露句未移除）。
+`deferred` 陣列自 R-DM54 起**只增不減**：項之解除不刪除該物件，
+改增 `lifted` / `lifted_at` / `lifted_by` 三鍵。兩向據此定義：
+
+  MISSING —— **未解除項**之 token 不見於其 leaf 各 TC 之括號下半
+  STALE   —— **已解除項**之 token 仍見於其 leaf 任一 TC 之括號下半
+             （另含跨 leaf 誤置：他 leaf 之 token 出現於本 leaf）
+
+原實作之 STALE 候選集自當前陣列建，被整個移出陣列之 token 從此
+無人檢查 —— **它抓得到的，正好不是 R-G33(d) 要防的那一種**
+（上繳 26 §5.2）。乙案把「解除」變成一次寫入，token 永遠在候選集內。
 
 `token` 取自 `deferred` 項之 `token` 鍵（R-DM53）。**本檢查為純字串
-比對，無對譯、無判斷成分** —— 這正是 R-DM53 把 token 自檢查端移到
-宣告端所要買的東西。
+比對，無對譯、無判斷成分。**
 
 feature 自有腳本；接入共用 `lint036` 屬 Tier 2（BACKLOG B10）。
 """
@@ -31,8 +36,7 @@ def main() -> int:
     ap.add_argument("batch", nargs="?", default="generated/pilot-01.json")
     args = ap.parse_args()
 
-    path = FEAT / args.batch
-    data = json.loads(path.read_text(encoding="utf-8"))
+    data = json.loads((FEAT / args.batch).read_text(encoding="utf-8"))
     tcs = data["tcs"]
     deferred = data.get("deferred", [])
 
@@ -40,39 +44,53 @@ def main() -> int:
         print("deferred 陣列尚未依 R-DM53 物件化，本檢查不適用", file=sys.stderr)
         return 2
 
-    print(f"# R-G33(c) 雙向檢查（R-G33(d)(2)）")
+    active, lifted = {}, {}
+    for item in deferred:
+        bucket = lifted if item.get("lifted") else active
+        bucket.setdefault(item["leaf_id"], []).append(item["token"])
+    all_tokens = {i["token"] for i in deferred}
+
+    print("# R-G33(c) 雙向檢查（R-G33(d)(2)；乙案 R-DM54）")
     print(f"batch: {args.batch}")
-    print(f"tcs: {len(tcs)}   deferred entries: {len(deferred)}")
+    print(f"tcs: {len(tcs)}   deferred entries: {len(deferred)}"
+          f"   （未解除 {sum(len(v) for v in active.values())}"
+          f" / 已解除 {sum(len(v) for v in lifted.values())}）")
     print()
 
-    tokens = {}                      # leaf -> [token, ...]
-    for item in deferred:
-        tokens.setdefault(item["leaf_id"], []).append(item["token"])
-    all_tokens = {t for v in tokens.values() for t in v}
-
     missing, stale = [], []
-    print("| TC | leaf | token | 方向 | 判定 |")
-    print("|---|---|---|---|---|")
+    print("| TC | leaf | token | 項之狀態 | 方向 | 判定 |")
+    print("|---|---|---|---|---|---|")
     for n, tc in enumerate(tcs, 1):
         leaf = tc["leaf_id"]
         low = lower_half(tc["test_item"]).lower()
-        for tok in tokens.get(leaf, []):
+        own = set(active.get(leaf, [])) | set(lifted.get(leaf, []))
+
+        for tok in active.get(leaf, []):
             ok = tok.lower() in low
             if not ok:
-                missing.append((n, leaf, tok))
-            print(f"| #{n} | {leaf} | `{tok}` | MISSING | "
+                missing.append((n, leaf, tok, "未解除項之 token 不見於括號下半"))
+            print(f"| #{n} | {leaf} | `{tok}` | 未解除 | MISSING | "
                   f"{'含' if ok else '**不含**'} |")
-        for tok in sorted(all_tokens - set(tokens.get(leaf, []))):
+
+        for tok in lifted.get(leaf, []):
+            bad = tok.lower() in low
+            if bad:
+                stale.append((n, leaf, tok, "項已解除而括號下半仍載其 token"))
+            print(f"| #{n} | {leaf} | `{tok}` | **已解除** | STALE | "
+                  f"{'**仍含**' if bad else '已移除'} |")
+
+        for tok in sorted(all_tokens - own):
             if tok.lower() in low:
-                stale.append((n, leaf, tok))
-                print(f"| #{n} | {leaf} | `{tok}` | STALE | **含（陣列無）** |")
+                stale.append((n, leaf, tok, "他 leaf 之 token 誤置於本 leaf"))
+                print(f"| #{n} | {leaf} | `{tok}` | 他 leaf | STALE | "
+                      f"**含（非本 leaf 之項）** |")
 
     print()
     print(f"MISSING = {len(missing)}   STALE = {len(stale)}")
-    for n, leaf, tok in missing:
-        print(f"  MISSING  TC#{n} {leaf} 缺 token {tok!r}")
-    for n, leaf, tok in stale:
-        print(f"  STALE    TC#{n} {leaf} 有 token {tok!r} 而 deferred 陣列無此項")
+    for n, leaf, tok, why in missing:
+        print(f"  MISSING  TC#{n} {leaf} token {tok!r} —— {why}")
+    for n, leaf, tok, why in stale:
+        print(f"  STALE    TC#{n} {leaf} token {tok!r} —— {why}")
     return 1 if (missing or stale) else 0
 
 

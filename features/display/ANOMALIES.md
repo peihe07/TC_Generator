@@ -905,6 +905,13 @@ Display 之任何 id**。
 >
 > **本層之限定**：修正之依據為下放包 24 對**另一份** CFTS013 檔案之
 > 量測（該檔未落磁碟，見上繳 25 §五），本層無法重算其表單編號。
+> **指標（下放包 26 §四.3，經 26a §三修正）**：A6（CFTS013 未落磁碟）
+> **已於 26a 解除**，檔案現位於 `inputs/`。本項之依據已由 24-6 之獨立重算
+> 覆核 —— **表單編號實測為 `FM-WI-FSM-035-A02`，且逐字見於該檔五個分頁**
+> （`封面`／`修訂履歷`／`Product Document 記錄封面頁`／`Analysis Report`／
+> `Instructions`）。**本項至此不再是繞道，已為實測所支持。**
+> 惟 24-6 另有一項不符（`EE Architecture` 非全列 `All`），見上繳 26 §六。
+>
 > 惟本項所修正者為**命名慣例之讀法**，而 `FM-WI-FSM-035-A02` 一詞
 > **逐字見於本 feature 已持有之 CFTS043 檔名**（`inputs/` 內，
 > 綁定外），該處可自證。故採認。
@@ -1073,67 +1080,186 @@ FPDM 側之列舉為 `0 "OFF" 1 "ON" 2 "BLANK" 3 "DISP_HOT" 7 "SNA"`，
 
 ---
 
-## A-DM35 — DR-DM9 之前提有誤：其四個標籤中三個不是 `DCSD_DISP_STAT` 的值  [HIGH]
+## A-DM35 — DR-DM9 之前提有誤：其四個標籤中兩個不是 `DCSD_DISP_STAT` 的值；且該訊號之六個 DBC 值皆逐字解得  [HIGH]
 
-007／008 之素材勘查（Pei 2026-08-25 指示「走 007／008」）所見。
-機器抽取式：對 CFTS_020 全文取 `\$([A-Za-z0-9_]+)\$\s*=\s*\[([^\]]+)\]`
-之全部配對，與 `dbc_probe.py` 之 `VAL_` 實測比對。
+> **已採認結案（下放包 27 §1.3，2026-08-25）**：分析層覆核採認 ——
+> 「相容非相衝；**判定落在條款層級**（該條逐字用哪一套拼法，決定該 TC
+> 可否寫 raw）」。並認段落 1742 之一句兩訊號為決定性：
+> **`[DISP_*]` 長拼法是 HU 側訊號之值域，`[RR_CMRA]` 等短拼法是 DCSD 側的。**
+> 其於 26 §2.4 之質疑，其前提（規格只用一套拼法）為誤。
+> **A3 之縮小自此有據**：用短拼法之條款（007／008 之 RVC 諸條）其訊號值
+> 不受 DR-DM9 阻斷；用長拼法者（`{4820287}`）仍受阻，待 DR-DM9(a)。
+> 本批三條 TC 一字不必改。
+>
+> **補件（下放包 26 §2.4 要求，2026-08-25）**：本節於 25 輪首登時未附
+> 逐字出處，致分析層無從覆核而質疑其與 R-DM48 相衝。**本次補齊全部
+> 出處與計數，並判定二者相容。** 原判定不變。
 
-### DR-DM9 之原文與實測之落差
+素材：`features/display/inputs/R1LR_Atl-H_…CFTS_020 ICS and DCSD _20260310-1533.docx`
+（`reference:` 之 `cfts_doc`，綁定 MATCH）。
+抽取式：`python-docx` 段落序，配對式 `\$([A-Za-z0-9_]+)\$\s*=\s*\[([^\]]+)\]`。
+DBC 側：`dbc_probe.py`（入口呼叫 `_verify_bindings()`）。
 
-DR-DM9 問：「`[DISP_OFF]`／`[DISP_ON]`／`[DISP_NORMAL]`／`[DISP_REAR_CAMERA]`
-各對應 **`DCSD_DISP_STAT`** 之哪一個 raw 值」。
+### 一、規格側 `$DCSD_DISP_STAT$` 之值標籤 —— 逐字命中數
 
-實測：規格側之 `$DCSD_DISP_STAT$ = [...]` 配對只有
-`OFF`／`ON`／`BLANK`／`RR_CMRA`／`DISP_HOT`／`SNA`／`DISP_OFF`／`DISP_ON`。
-**`[DISP_NORMAL]` 與 `[DISP_REAR_CAMERA]` 從未出現在 `$DCSD_DISP_STAT$` 上**
-—— 兩者是 **`$TGW_DISP_STAT$`（HU 側）** 的值。
+| 標籤 | 命中段落數 | DBC `DCSD_DISP_STAT` 之 `VAL_` | R-DM48 判定 |
+|---|---:|---|---|
+| `[OFF]` | **85** | `0 "OFF"` | **解得 raw 0** |
+| `[ON]` | **53** | `1 "ON"` | **解得 raw 1** |
+| `[BLANK]` | **20** | `2 "BLANK"` | **解得 raw 2** |
+| `[RR_CMRA]` | **72** | `3 "RR_CMRA"` | **解得 raw 3** |
+| `[DISP_HOT]` | **46** | `4 "DISP_HOT"` | 解得 raw 4（既知） |
+| `[SNA]` | **8** | `7 "SNA"` | **解得 raw 7** |
+| `[DISP_ON]` | 23 | 查無 | **逐字查無** |
+| `[DISP_OFF]` | 12 | 查無 | **逐字查無** |
+| `[DISP_REAR_CAMERA]` | **0** | — | **該標籤從未用於本訊號** |
 
-即：**DR-DM9 把 HU 側的兩個標籤問到了 DCSD 側的訊號上。**
+逐字例（段落序）：
 
-### 更重要的：`DCSD_DISP_STAT` 之值大多本來就解得
+> `[629]  For limp-in action, the HU shall assume $DCSD_DISP_STAT$ = [ON].`
+> `[1742] When the DCSD screen is in the 'DCSD Screen ON' state and the HU transitions to the high priority Rear View Camera screen ($TGW_DISP_STAT$ = [DISP_REAR_CAMERA]), the DCSD shall send $DCSD_DISP_STAT$ = [RR_CMRA].`
 
-| 規格側標籤 | DBC `DCSD_DISP_STAT` | R-DM48 判定 |
+### 二、`[DISP_NORMAL]`／`[DISP_REAR_CAMERA]` 是 HU 側的值
+
+| 標籤 | 於 `$TGW_DISP_STAT$` 之命中 | 於 `$DCSD_DISP_STAT$` 之命中 |
+|---|---:|---:|
+| `[DISP_REAR_CAMERA]` | **107** | **0** |
+| `[DISP_NORMAL]` | **99** | 0 |
+| `[DISP_OFF]` | 146 | 12 |
+
+**DR-DM9 把兩個 HU 側標籤問到了 DCSD 側的訊號上。**
+
+### 三、與 R-DM48 之關係 —— **相容，非相衝**（停止條件 65 未觸發）
+
+R-DM48 之規則為：**逐字解得 DBC `VAL_` 者寫入 `= <raw> (<label>)`；
+解不得者不寫入訊號值，ER 改驗可觀察行為。**
+
+本項所增之事實不修改該規則，只修正對「解不得者有多少」之估計：
+
+- 解**得**者：`[OFF]`／`[ON]`／`[BLANK]`／`[RR_CMRA]`／`[DISP_HOT]`／`[SNA]` **六個**
+- 解**不得**者：`[DISP_ON]`／`[DISP_OFF]` **兩個別名**
+
+R-DM48 立條時之理由（「六個值裡規則就不一致」）**仍為真** ——
+`[DISP_REAR_CAMERA]` 對 `RR_CMRA` 確實不是前綴規則所能外推者。
+本項指出的是：**規格對同一訊號同時使用兩套拼法**，
+一套與 DBC 逐字相同（`ON`／`OFF`／`RR_CMRA`…），
+一套是 `DISP_` 前綴之別名（`DISP_ON`／`DISP_OFF`）。
+
+### 四、**關鍵之限定：可寫與否取決於「該條款用哪一種拼法」**
+
+R-DM48 是逐字規則，故其判定落在**條款層級**而非訊號層級：
+
+| 條款 | 其逐字寫法 | 可否寫 raw |
 |---|---|---|
-| `[OFF]` | `0 "OFF"` | **解得 raw 0** |
-| `[ON]` | `1 "ON"` | **解得 raw 1** |
-| `[BLANK]` | `2 "BLANK"` | **解得 raw 2** |
-| `[RR_CMRA]` | `3 "RR_CMRA"` | **解得 raw 3** |
-| `[DISP_HOT]` | `4 "DISP_HOT"` | 解得 raw 4（既知） |
-| `[SNA]` | `7 "SNA"` | **解得 raw 7** |
-| `[DISP_OFF]`／`[DISP_ON]` | 查無 | **逐字查無**（R-DM48 之原判定僅此二者成立） |
+| `{4820287}`（005 回復，本批 #3） | `$DCSD_DISP_STAT$ = [DISP_ON]` | **否** —— 該條用的是別名 |
+| RVC 諸條（007／008） | `$DCSD_DISP_STAT$ = [RR_CMRA]` | **是**（raw 3） |
+| `{4820282}`（004，本批 #1） | `$DCSD_DISP_STAT$ = [DISP_HOT]` | 是（raw 4） |
 
-**R-DM48 立條時所據之「六個值裡規則就不一致」仍為真**，但其推論被過度
-適用了：`DCSD_DISP_STAT` 之六個 DBC 值中**有六個都能逐字解得**，
-解不得的是規格另外用的 `[DISP_OFF]`／`[DISP_ON]` 兩個**別名**。
+**故本批之三條 TC 一字不必改**：#3 所引之 `{4820287}` 用的正是
+解不得的 `[DISP_ON]`，其 ER 只驗行為 —— **rev4 之處置事後仍然正確。**
 
-### 對 007／008 之影響
+### 五、對 DR-DM9 之影響（**本層未逕改**）
 
-`{4820xxx}` RVC 諸條之 DCSD 側逐字為
-`the DCSD shall send $DCSD_DISP_STAT$ = [RR_CMRA]` 與
-`the DCSD shall send $DCSD_DISP_STAT$ = [ON]` ——
-**兩者皆解得（raw 3／raw 1），依 R-DM48 得寫入 ER 之訊號值。**
+- `DATA_REQUESTS.md` 之 DR-DM9 **文字未被本層修改，範圍未縮小**
+  （25 輪之縮小只出現在上繳 25 §六之 A 類表，即報告側，非 DR 記錄）
+- 建議分析層重擬為三問：(a) `[DISP_ON]`／`[DISP_OFF]` 兩別名與
+  `[ON]`／`[OFF]` 是否為同一狀態；(b) `$TGW_DISP_STAT$` 之值對應
+  （其標籤與 `TGW_DISP_STATSts` 之 `VAL_` 逐字不等）；
+  (c) 規格自帶之雙記法對照（`DISP_NORMAL / Normal_mode`、
+  `DISP_REAR_CAMERA / Rear_Camera_Display` 等）是否為權威
+- **裁定屬 Tier 2，本層不逕行採用該雙記法**
 
-即 **A3（DR-DM9 阻斷 007／008 之訊號欄）之範圍應縮小**：
-DCSD 側不受阻，受阻的是 HU 側 `$TGW_DISP_STAT$`。
 
-### HU 側另有一條未走過的路
+## A-DM36 — 26a §二 所述之 `copy` 重複檔，於本層量測時不存在  [LOW]
 
-規格自身在部分段落寫**雙記法**：`DISP_NORMAL / Normal_mode`、
-`DISP_REAR_CAMERA / Rear_Camera_Display`、`ON_BLANK / On_blanked_screen`
-等 13 組。而 DBC `TGW_DISP_STATSts` 之 `VAL_` 正是
-`2 "Normal_mode"`／`7 "Rear_Camera_Display"`／`8 "On_blanked_screen"`。
+下放包 26a §二 記 `inputs/` 出現
+`SYS2_CFTS_020_DISP_TCH_ICS_20260616_All_HW_System_Accepted & Released copy.xlsx`
+（size 193,683、mtime 2026-08-25 21:15:49），並要求本層**只登記不處置**、
+且不得納入任何量測母體（停止條件 68）。
 
-**即規格自帶了一份 HU 側之對照表**，其右半逐字等於 DBC 標籤。
-本層**不逕行採用**（該對照是否為權威、是否全覆蓋，屬 Tier 2），
-但其存在使 DR-DM9 之 HU 側部分可能不必外求。
+### 實測（`features/display/inputs/` 全目錄普查）
+
+| 項 | 實測 |
+|---|---|
+| 檔案數 | **9** |
+| 檔名含 `copy` 者 | **0** |
+| 同 sha256 之重複群 | **0** |
+| 全 repo 檔名含 `copy`（排除 `.git`） | 僅 `node_modules/`、`.venv/` 之無關檔 |
+
+**該檔於本層量測時不存在。**
+
+### 時序
+
+| 時點 | 事件 |
+|---|---|
+| 2026-08-25 21:15:49 | 26a 所記之 `copy` 檔 mtime |
+| 2026-08-25 21:18 | `inputs/` 目錄之 mtime（本層 `ls` 所見） |
+| 其後 | 本層普查：9 檔、無 `copy` |
+
+目錄 mtime 晚於該檔之 mtime，**與「該檔曾存在而後被移除」相容**，
+亦與「本層量測時該檔已不在」相容。**本層不推定其成因**
+（同 26a §二「分析層不推定其成因」之分寸）。
 
 ### 處置
 
-- **不改 DR-DM9 之文字**（DR 之措辭屬分析層）；本項為其前提之更正
-- 建議分析層重擬 DR-DM9：分成 (a) `[DISP_OFF]`／`[DISP_ON]` 兩個別名
-  對 `DCSD_DISP_STAT` 之對應、(b) 規格雙記法對照表是否為權威
-- **A3 之阻斷範圍待分析層裁定後縮小**；本層不逕改 `BACKLOG.md`
+- **不刪除、不移動、不改名** —— 本無可動之物
+- 26a §二之三個選項（甲刪除／乙裁定版本／丙移出）**現無標的**；
+  若該檔係 Pei 於此期間刪除，即為選項甲已執行，本項可逕行關閉
+- **停止條件 68 未觸發**：本輪之量測母體（上表 9 檔）不含任何 `copy` 檔
+- `sys2_export` 之綁定不受影響：`entries` 之該項 sha256 為
+  `421c8eef3f5cb01a…`，本輪普查所得相同
+
+### 一項仍然成立之觀察（26a §2.1，與該檔是否存在無關）
+
+> 綁定保護的是「這一份是不是原來那一份」，**不保護「旁邊有沒有第二份」**。
+
+`verify_reference_binding.py` 綁確切路徑，故不會發現 `inputs/` 多出檔案；
+`inputs/` 又由 `.gitignore` 排除，重複不會進入任何 diff。
+**現有每一道機器檢查都會放過這種情形。** 本輪之目錄普查是首次有人實測它，
+但那是一次性腳本，非常設檢查 —— 記入 B 類（B14）。
+
+---
+
+## A-DM37 — CFTS013 之 Information 列含三句樣板殘渣  [LOW]
+
+27 包步驟 1 之獨立重算（`openpyxl` read_only／data_only，
+`Analysis Report` 表頭列 5、資料自第 6 列）。**與下放包 27 §1.1
+之六列表逐格相符。**
+
+| 列 | Document ID | Category | EE Architecture | Description（逐字） |
+|---|---|---|---|---|
+| r8 | `CFTS013-752` | Information | （空） | `Date \| Author \| Description…`（修訂履歷） |
+| r9 | `0` | Information | （空） | `Change Identifier \| Review Readiness Date \| Approved Date…`（表頭） |
+| **r12** | `CFTS013-1192` | Information | （空） | **`The TBM shall do this or that`** |
+| r17 | `CFTS013-1196` | **Heading** | **`PowerNet`** | `HU requirements`（章名） |
+| **r18** | `CFTS013-1197` | Information | （空） | **`The HU shall dipslay xxxxxxxx`**（`dipslay` 為原文之錯字） |
+| **r19** | `CFTS013-1194` | Information | （空） | **`0`** |
+
+### 三句殘渣
+
+r12／r18／r19 三列之 Description 為**撰寫樣板未清之殘句**：
+`do this or that`、`dipslay xxxxxxxx`（含錯字）、`0`。
+**三者皆帶正式之 `Document ID`（`-1192`／`-1197`／`-1194`）**，
+在只看 id 清單時與真需求無從分辨。
+
+### 為何登記而不阻斷
+
+- 三列之 `Category` 皆為 `Information`，**非 Functional Requirement**
+- 本 feature 之 TC 不取 CFTS013 之任何值（R-DM51(a) 禁止代入），
+  故其內容不入任何 TC
+- **11 條 FR 之 `EE Architecture` 為 `All` 11/11**（實測），
+  需求本體無一受影響
+
+### 其與 A8 之關係
+
+A8（「`EE Architecture` 6 列適用性未定」）**於本輪解除**：
+六列已逐列驗明，其中五列為空白之 Information、一列為 `PowerNet` 之
+Heading（章名 `HU requirements`）。**無一為需求本體，適用性之疑慮消滅。**
+
+> 上繳 26 §十第 2 項自陳「我把『停手』執行成了『不再往下看一眼』」。
+> 本輪看了 —— **而看了之後，A8 從一個未定之風險變成一個已知之零。**
+> 停手是對的（不得以下放包之數字覆蓋實測值），
+> **但停手與不看，是兩件事。**
 
 ---
 

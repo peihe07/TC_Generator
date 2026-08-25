@@ -15,7 +15,7 @@
 
 | # | 項 | 原出處 | 擋住什麼 | 現況 |
 |---|---|---|---|---|
-| A1 | `popup_priority.tsv`（Pop Up List xlsx 與 Priority Matrix PDF 之詞彙比對） | 15 §四.5 | **擋 SWE-DM-006**（Pop Up Handling 之仲裁順序）。**不擋 pilot-01**（004／005 只取 PU 之 timeout／category，不取仲裁序） | 未做；DR-DM2 OPEN |
+| A1 | `popup_priority.tsv`（Pop Up List xlsx 與 Priority Matrix PDF 之詞彙比對）**＋ CFTS013 側之抽取標的：`{CFTS013-937}` 之優先序行為（RVC／SOS／Emergency Calls 高於 `PU0130`）與 `PU0130` 之需求側逐字出處。依 R-G36 須機器抽取，sidecar 之 `generated_by` 須為腳本；**24-4 已於 27 輪完成** —— `data/popup_priority_sources.tsv`（4 列，`popup_priority_sources.py` 機器抽取，sidecar 齊備）。**仲裁順序表本體仍待 DR-DM2** | 15 §四.5；24 §四.4 | **擋 SWE-DM-006**（Pop Up Handling 之仲裁順序）。**不擋 pilot-01**（004／005 只取 PU 之 timeout／category，不取仲裁序） | **來源登記已完成**（27 輪，4 列）；**仲裁順序表未做，阻斷者為 DR-DM2** |
 | A2 | `sysad_allocation.tsv`（SYS3 之軟體分派 id 層級證據） | 16 §五.3 | **Q2 之揭露義務**（R-DM41(c)）—— 交付時須附「037 leaf ↔ SYS2 列」對照 | 未做 |
 
 > A1／A2 皆**不擋 pilot-01 之生成**，但**擋整批交付**。
@@ -32,6 +32,10 @@
 | B3 | SYS3 之獨立重算 | 16 §五.2 | SYS3 之數值目前全部來自下放包，未經執行層重算 |
 | B4 | subprocess 成本量測之冷讀情況 | 13 §八 | 已量熱讀（0.04s 中位數），冷讀未量 |
 | B5 | `recon_assertions` 增 `workbook_state` | 13 §三 | Tier 2，待 Pei；`run_assertions()` 現僅支援三鍵，加此項須改共用腳本 |
+
+---
+
+| B16 | `deferred` 只增不減之長度未實測 | 27 §七.1 | R-DM54 定「逾百項再議」，而 8 leaf 全做完之實數未估；006／007／008 之 deferred 面向可能遠多於 004／005 |
 
 ---
 

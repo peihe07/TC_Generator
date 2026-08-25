@@ -1,0 +1,28 @@
+{
+ "data_file": "popup_priority_sources.tsv",
+ "columns": [
+  "source_locator",
+  "document_id",
+  "category",
+  "matched_by",
+  "popup_ids",
+  "matched_phrases",
+  "side",
+  "verbatim"
+ ],
+ "data_rows": 4,
+ "generated_by": "features/display/scripts/popup_priority_sources.py",
+ "generated_at": "2026-08-25",
+ "inputs": [
+  "SYS2_CFTS013_Radio_Error_Management-Associated_Display.xlsx (reference: cfts013_sysra)"
+ ],
+ "measurement_conditions": "openpyxl read_only data_only；sheet='Analysis Report'；表頭列 5，資料自第 6 列；popup id 之抽取式 r'\\bPU\\d{4}\\b'；verbatim 欄為 Description 之空白正規化（' '.join(split())），未改動任何字元內容；綁定檢查 entries: 12",
+ "rulings": [
+  "R-G36",
+  "R-DM51",
+  "R-DM30",
+  "R-G23",
+  "R-G26"
+ ],
+ "notes": "**來源登記，非仲裁順序表。** 仲裁表待 DR-DM2（BACKLOG A1）。本檔之全部內容為 Associated Display（HU 側）之事實；依 R-DM51(a) 不得代入 DCSD 標的 —— `verbatim` 欄內之溫度值（56／60 degrees C 等）為 HU 顯示器之門檻，**與 DCSD 之 85 無關**。以編號為唯一判準只得 1 列；反向查證後改為二擇一，得 4 列。"
+}
