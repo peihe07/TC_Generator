@@ -509,7 +509,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
    "tc_title": "TELEMATIC_FD_5.WorksiteINVM_Visual_LFW_Req is sent as 0 (OFF)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF -> The Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF)",
+   "test_item": "The HMI layer shall capture the customer selection for the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_5.WorksiteINVM_Visual_LFW_Req signal value as OFF.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF -> The Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Warnings for Low Fuel Inverter Shutdown - Visual Warning\" customer setting is set to ON",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Warnings for Low Fuel Inverter Shutdown - Visual Warning\" customer setting to OFF and check that TELEMATIC_FD_5.WorksiteINVM_Visual_LFW_Req = 0 (OFF) is transmitted\n3. Read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF",
@@ -523,7 +523,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `WorksiteINVM_Visual_LFW_Req` 之 `VAL_` 內 raw 0 = `OFF`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `WorksiteINVM_Visual_LFW_Req` 之 `VAL_` 內 raw 0 = `OFF`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH1Type-003",
@@ -531,7 +531,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 1 Type",
    "tc_title": "TELEMATIC_FD_1.AUX1_TYPE_Req is sent as 1 (Momentary) when SWITCH 1 Type is Momentary",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Momentary -> The SWITCH 1 Type setting is displayed as Momentary)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 1 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX1_TYPE_Req signal value as MOMENTARY and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Momentary -> The SWITCH 1 Type setting is displayed as Momentary)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 1 Type\" customer setting is set to Latching",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 1 Type\" customer setting to Momentary and check that TELEMATIC_FD_1.AUX1_TYPE_Req = 1 (Momentary) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Momentary",
@@ -545,7 +545,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX1_TYPE_Req` 之 `VAL_` 內 raw 1 = `Momentary`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX1_TYPE_Req` 之 `VAL_` 內 raw 1 = `Momentary`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-118",
@@ -553,7 +553,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
    "tc_title": "TELEMATIC_FD_5.WorksiteINVM_Visual_LFW_Req is sent as 1 (ON)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as ON -> The Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as ON)",
+   "test_item": "The HMI layer shall capture the customer selection for the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_5.WorksiteINVM_Visual_LFW_Req signal value as On.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as ON -> The Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as ON)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Warnings for Low Fuel Inverter Shutdown - Visual Warning\" customer setting is set to OFF",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Warnings for Low Fuel Inverter Shutdown - Visual Warning\" customer setting to ON and check that TELEMATIC_FD_5.WorksiteINVM_Visual_LFW_Req = 1 (ON) is transmitted\n3. Read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as ON",
@@ -567,7 +567,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `WorksiteINVM_Visual_LFW_Req` 之 `VAL_` 內 raw 1 = `ON`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `WorksiteINVM_Visual_LFW_Req` 之 `VAL_` 內 raw 1 = `ON`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH1Type-004",
@@ -575,7 +575,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 1 Type",
    "tc_title": "SWITCH 1 Type is displayed as Latching when AUX1_TYPE is 0 (Latching)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Latching -> The SWITCH 1 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX1_TYPE signal and update/display the SWITCH 1 Type setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Latching -> The SWITCH 1 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX1_TYPE = one of [0 (Latching), 1 (Momentary)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX1_TYPE = 1 (Momentary)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX1_TYPE = 0 (Latching)\n3. Read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Latching",
@@ -597,7 +597,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Visual Warning",
    "tc_title": "Warnings for Low Fuel Inverter Shutdown - Visual Warning is displayed as OFF",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF -> The Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW signal and update/display the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF -> The Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW = one of [0 (OFF), 1 (ON)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW = 1 (ON)\n2. Send CAN: IPC_VEHICLE_SETUP2.WorksiteINVM_Visual_LFW = 0 (OFF)\n3. Read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is displayed as OFF",
@@ -619,7 +619,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 2 Type",
    "tc_title": "TELEMATIC_FD_1.AUX2_TYPE_Req is sent as 0 (Latching) when SWITCH 2 Type is Latching",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Latching -> The SWITCH 2 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 2 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX2_TYPE_Req signal value as LATCHING and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Latching -> The SWITCH 2 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 2 Type\" customer setting is set to Momentary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 2 Type\" customer setting to Latching and check that TELEMATIC_FD_1.AUX2_TYPE_Req = 0 (Latching) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Latching",
@@ -633,7 +633,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX2_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX2_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-Language-062",
@@ -641,7 +641,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Language",
    "tc_title": "Language is displayed as Italian when LanguageSelection is 0 (Italian)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Language setting is displayed as Italian -> The Language setting is displayed as Italian)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.LanguageSelection signal and update/display the Language information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Language setting is displayed as Italian -> The Language setting is displayed as Italian)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.LanguageSelection = one of [0 (Italian), 1 (Deutsch), 2 (English), 3 (Espanol), 4 (Francais), 5 (Portugues), 6 (Polish), 7 (Dutch), 8 (Brazilian), 9 (Turkish), 10 (Mexican), 11 (English_US), 12 (Canadian), 13 (Russian), 14 (Chinese), 15 (Japanese), 16 (Korean), 17 (Arabic), 18 (Czech), 19 (Slovakian), 20 (Hungarian), 21 (Hindi), 22 (Slovenian)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = 1 (Deutsch)\n2. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = 0 (Italian)\n3. Read the Vehicle Settings menu and check that the Language setting is displayed as Italian",
@@ -663,7 +663,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
    "tc_title": "TELEMATIC_FD_5.WorksiteINVM_Audible_LFW_Req is sent as 0 (OFF)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF -> The Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF)",
+   "test_item": "The HMI layer shall capture the customer selection for the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_5.WorksiteINVM_Audible_LFW_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF -> The Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Warnings for Low Fuel Inverter Shutdown - Audible Warning\" customer setting is set to ON",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Warnings for Low Fuel Inverter Shutdown - Audible Warning\" customer setting to OFF and check that TELEMATIC_FD_5.WorksiteINVM_Audible_LFW_Req = 0 (OFF) is transmitted\n3. Read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF",
@@ -677,7 +677,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `WorksiteINVM_Audible_LFW_Req` 之 `VAL_` 內 raw 0 = `OFF`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `WorksiteINVM_Audible_LFW_Req` 之 `VAL_` 內 raw 0 = `OFF`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH2Type-007",
@@ -685,7 +685,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 2 Type",
    "tc_title": "TELEMATIC_FD_1.AUX2_TYPE_Req is sent as 1 (Momentary) when SWITCH 2 Type is Momentary",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Momentary -> The SWITCH 2 Type setting is displayed as Momentary)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 2 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX2_TYPE_Req signal value as MOMENTARY and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Momentary -> The SWITCH 2 Type setting is displayed as Momentary)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 2 Type\" customer setting is set to Latching",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 2 Type\" customer setting to Momentary and check that TELEMATIC_FD_1.AUX2_TYPE_Req = 1 (Momentary) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Momentary",
@@ -699,7 +699,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX2_TYPE_Req` 之 `VAL_` 內 raw 1 = `Momentary`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX2_TYPE_Req` 之 `VAL_` 內 raw 1 = `Momentary`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PassiveEntry-011",
@@ -707,7 +707,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Passive Entry",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req is sent as 1 (Off) when Passive Entry is Off",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Passive Entry setting is displayed as Off -> The Passive Entry setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the Passive Entry setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Passive Entry setting is displayed as Off -> The Passive Entry setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Passive Entry\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Passive Entry\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req = 1 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Passive Entry setting is displayed as Off",
@@ -721,7 +721,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PassiveEntry_Req` 之 `VAL_` 內 raw 1 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PassiveEntry_Req` 之 `VAL_` 內 raw 1 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124",
@@ -729,7 +729,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
    "tc_title": "TELEMATIC_FD_5.WorksiteINVM_Audible_LFW_Req is sent as 1 (ON)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as ON -> The Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as ON)",
+   "test_item": "The HMI layer shall capture the customer selection for the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_5.WorksiteINVM_Audible_LFW_Req signal value as On.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as ON -> The Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as ON)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Warnings for Low Fuel Inverter Shutdown - Audible Warning\" customer setting is set to OFF",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Warnings for Low Fuel Inverter Shutdown - Audible Warning\" customer setting to ON and check that TELEMATIC_FD_5.WorksiteINVM_Audible_LFW_Req = 1 (ON) is transmitted\n3. Read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as ON",
@@ -743,7 +743,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `WorksiteINVM_Audible_LFW_Req` 之 `VAL_` 內 raw 1 = `ON`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `WorksiteINVM_Audible_LFW_Req` 之 `VAL_` 內 raw 1 = `ON`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH2Type-008",
@@ -751,7 +751,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 2 Type",
    "tc_title": "SWITCH 2 Type is displayed as Latching when AUX2_TYPE is 0 (Latching)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Latching -> The SWITCH 2 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX2_TYPE signal and update/display the SWITCH 2 Type setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Latching -> The SWITCH 2 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX2_TYPE = one of [0 (Latching), 1 (Momentary)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX2_TYPE = 1 (Momentary)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX2_TYPE = 0 (Latching)\n3. Read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Latching",
@@ -773,7 +773,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Passive Entry",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req is sent as 0 (On) when Passive Entry is On",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Passive Entry setting is displayed as On -> The Passive Entry setting is displayed as On)",
+   "test_item": "The HMI layer shall capture the customer selection for the Passive Entry setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req signal value as On.\n\n(read the Vehicle Settings menu and check that the Passive Entry setting is displayed as On -> The Passive Entry setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Passive Entry\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Passive Entry\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req = 0 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Passive Entry setting is displayed as On",
@@ -787,7 +787,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PassiveEntry_Req` 之 `VAL_` 內 raw 0 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PassiveEntry_Req` 之 `VAL_` 內 raw 0 = `On`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125",
@@ -795,7 +795,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Warnings for Low Fuel Inverter Shutdown - Audible Warning",
    "tc_title": "Warnings for Low Fuel Inverter Shutdown - Audible Warning is displayed as OFF",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF -> The Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW signal and update/display the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF -> The Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW = one of [0 (OFF), 1 (ON)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW = 1 (ON)\n2. Send CAN: IPC_VEHICLE_SETUP2.WorksiteINVM_Audible_LFW = 0 (OFF)\n3. Read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting is displayed as OFF",
@@ -839,7 +839,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 3 Type",
    "tc_title": "TELEMATIC_FD_1.AUX3_TYPE_Req is sent as 0 (Latching) when SWITCH 3 Type is Latching",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Latching -> The SWITCH 3 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 3 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX3_TYPE_Req signal value as LATCHING and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Latching -> The SWITCH 3 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 3 Type\" customer setting is set to Momentary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 3 Type\" customer setting to Latching and check that TELEMATIC_FD_1.AUX3_TYPE_Req = 0 (Latching) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Latching",
@@ -853,7 +853,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX3_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX3_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PassiveEntry-013",
@@ -861,7 +861,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Passive Entry",
    "tc_title": "Passive Entry is displayed as On when PassiveEntry is 0 (On)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Passive Entry setting is displayed as On -> The Passive Entry setting is displayed as On)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.PassiveEntry signal and update/display the Passive Entry information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Passive Entry setting is displayed as On -> The Passive Entry setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.PassiveEntry = one of [0 (On), 1 (Off)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.PassiveEntry = 1 (Off)\n2. Send CAN: IPC_VEHICLE_SETUP.PassiveEntry = 0 (On)\n3. Read the Vehicle Settings menu and check that the Passive Entry setting is displayed as On",
@@ -883,7 +883,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Enhanced Display Synchronization",
    "tc_title": "TELEMATIC_FD_1.Display_Synch_Req is sent as 1 (ON) when Enhanced Display Synchronization is ON",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as ON -> The Enhanced Display Synchronization setting is displayed as ON)",
+   "test_item": "The HMI layer shall capture the customer selection for the Enhanced Display Synchronization setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.Display_Synch_Req signal value as ON.\n\n(read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as ON -> The Enhanced Display Synchronization setting is displayed as ON)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Enhanced Display Synchronization\" customer setting is set to OFF",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Enhanced Display Synchronization\" customer setting to ON and check that TELEMATIC_FD_1.Display_Synch_Req = 1 (ON) is transmitted\n3. Read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as ON",
@@ -897,7 +897,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Display_Synch_Req` 之 `VAL_` 內 raw 1 = `ON`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Display_Synch_Req` 之 `VAL_` 內 raw 1 = `ON`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-DistanceUnit-021",
@@ -927,7 +927,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 3 Type",
    "tc_title": "TELEMATIC_FD_1.AUX3_TYPE_Req is sent as 1 (Momentary) when SWITCH 3 Type is Momentary",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Momentary -> The SWITCH 3 Type setting is displayed as Momentary)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 3 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX3_TYPE_Req signal value as MOMENTARY and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Momentary -> The SWITCH 3 Type setting is displayed as Momentary)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 3 Type\" customer setting is set to Latching",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 3 Type\" customer setting to Momentary and check that TELEMATIC_FD_1.AUX3_TYPE_Req = 1 (Momentary) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Momentary",
@@ -941,7 +941,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX3_TYPE_Req` 之 `VAL_` 內 raw 1 = `Momentary`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX3_TYPE_Req` 之 `VAL_` 內 raw 1 = `Momentary`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RemoteDoorUnlock-017",
@@ -949,7 +949,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Remote Door Unlock",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req is sent as 0 (Driver) when Remote Door Unlock is Driver",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as Driver -> The Remote Door Unlock setting is displayed as Driver)",
+   "test_item": "The HMI layer shall capture the customer selection for the Remote Door Unlock setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req signal value as Driver.\n\n(read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as Driver -> The Remote Door Unlock setting is displayed as Driver)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Remote Door Unlock\" customer setting is set to All",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Remote Door Unlock\" customer setting to Driver and check that TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req = 0 (Driver) is transmitted\n3. Read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as Driver",
@@ -963,7 +963,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemoteDoorUnlock_Req` 之 `VAL_` 內 raw 0 = `Driver`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemoteDoorUnlock_Req` 之 `VAL_` 內 raw 0 = `Driver`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-130",
@@ -971,7 +971,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Enhanced Display Synchronization",
    "tc_title": "TELEMATIC_FD_1.Display_Synch_Req is sent as 0 (OFF) when Enhanced Display Synchronization is OFF",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as OFF -> The Enhanced Display Synchronization setting is displayed as OFF)",
+   "test_item": "The HMI layer shall capture the customer selection for the Enhanced Display Synchronization setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.Display_Synch_Req signal value as OFF.\n\n(read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as OFF -> The Enhanced Display Synchronization setting is displayed as OFF)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Enhanced Display Synchronization\" customer setting is set to ON",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Enhanced Display Synchronization\" customer setting to OFF and check that TELEMATIC_FD_1.Display_Synch_Req = 0 (OFF) is transmitted\n3. Read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as OFF",
@@ -985,7 +985,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Display_Synch_Req` 之 `VAL_` 內 raw 0 = `OFF`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Display_Synch_Req` 之 `VAL_` 內 raw 0 = `OFF`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SpeedUnit-026",
@@ -1015,7 +1015,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 3 Type",
    "tc_title": "SWITCH 3 Type is displayed as Latching when AUX3_TYPE is 0 (Latching)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Latching -> The SWITCH 3 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX3_TYPE signal and update/display the SWITCH 3 Type setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Latching -> The SWITCH 3 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX3_TYPE = one of [0 (Latching), 1 (Momentary)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX3_TYPE = 1 (Momentary)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX3_TYPE = 0 (Latching)\n3. Read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Latching",
@@ -1037,7 +1037,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Remote Door Unlock",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req is sent as 1 (All) when Remote Door Unlock is All",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as All -> The Remote Door Unlock setting is displayed as All)",
+   "test_item": "The HMI layer shall capture the customer selection for the Remote Door Unlock setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req signal value as All.\n\n(read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as All -> The Remote Door Unlock setting is displayed as All)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Remote Door Unlock\" customer setting is set to Driver",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Remote Door Unlock\" customer setting to All and check that TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req = 1 (All) is transmitted\n3. Read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as All",
@@ -1051,7 +1051,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemoteDoorUnlock_Req` 之 `VAL_` 內 raw 1 = `All`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemoteDoorUnlock_Req` 之 `VAL_` 內 raw 1 = `All`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-EnhancedDisplaySynchronization-131",
@@ -1059,7 +1059,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Enhanced Display Synchronization",
    "tc_title": "Enhanced Display Synchronization is displayed as OFF when Display_Synch is 0 (OFF)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as OFF -> The Enhanced Display Synchronization setting is displayed as OFF)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.Display_Synch signal and update/display the Enhanced Display Synchronization setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as OFF -> The Enhanced Display Synchronization setting is displayed as OFF)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.Display_Synch = one of [0 (OFF), 1 (ON)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.Display_Synch = 1 (ON)\n2. Send CAN: IPC_VEHICLE_SETUP2.Display_Synch = 0 (OFF)\n3. Read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as OFF",
@@ -1103,7 +1103,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 4 Type",
    "tc_title": "TELEMATIC_FD_1.AUX4_TYPE_Req is sent as 0 (Latching) when SWITCH 4 Type is Latching",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Type setting is displayed as Latching -> The SWITCH 4 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 4 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX4_TYPE_Req signal value as LATCHING and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Type setting is displayed as Latching -> The SWITCH 4 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 4 Type\" customer setting is set to Momentary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 4 Type\" customer setting to Latching and check that TELEMATIC_FD_1.AUX4_TYPE_Req = 0 (Latching) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 4 Type setting is displayed as Latching",
@@ -1117,7 +1117,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX4_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX4_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   }
  ]
 }

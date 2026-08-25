@@ -23,7 +23,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 2 (2)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 2 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 2)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 2 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 2 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 2)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 2 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 2 (2) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 2",
@@ -37,7 +37,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 2 = `2`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 2 = `2`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RKELinkedtoMemory-092",
@@ -45,7 +45,7 @@
    "test_set": "Driver Convenience",
    "layer3": "RKE Linked to Memory",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.RKEMemoryLinkEnable_Req is sent as 0 (Off) when RKE Linked to Memory is Off",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the RKE Linked to Memory setting is displayed as Off -> The RKE Linked to Memory setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the RKE Linked to Memory setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.RKEMemoryLinkEnable_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the RKE Linked to Memory setting is displayed as Off -> The RKE Linked to Memory setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"RKE Linked to Memory\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"RKE Linked to Memory\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.RKEMemoryLinkEnable_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the RKE Linked to Memory setting is displayed as Off",
@@ -59,7 +59,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RKEMemoryLinkEnable_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RKEMemoryLinkEnable_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-063",
@@ -67,7 +67,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 3 (3)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 3 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 3)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 3 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 3 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 3)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 3 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 3 (3) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 3",
@@ -81,7 +81,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 3 = `3`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 3 = `3`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH5PowerMode-021",
@@ -89,7 +89,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 5 Power Mode",
    "tc_title": "TELEMATIC_FD_1.AUX5_PWRMD_Req is sent as 0 (IGNITION) when SWITCH 5 Power Mode is IGNITION",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Power Mode setting is displayed as IGNITION -> The SWITCH 5 Power Mode setting is displayed as IGNITION)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 5 Power Mode setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX5_PWRMD_Req signal value as IGNITION.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Power Mode setting is displayed as IGNITION -> The SWITCH 5 Power Mode setting is displayed as IGNITION)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 5 Power Mode\" customer setting is set to BATTERY",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 5 Power Mode\" customer setting to IGNITION and check that TELEMATIC_FD_1.AUX5_PWRMD_Req = 0 (IGNITION) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 5 Power Mode setting is displayed as IGNITION",
@@ -103,7 +103,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX5_PWRMD_Req` 之 `VAL_` 內 raw 0 = `IGNITION`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX5_PWRMD_Req` 之 `VAL_` 內 raw 0 = `IGNITION`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RKELinkedtoMemory-093",
@@ -111,7 +111,7 @@
    "test_set": "Driver Convenience",
    "layer3": "RKE Linked to Memory",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.RKEMemoryLinkEnable_Req is sent as 1 (On) when RKE Linked to Memory is On",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the RKE Linked to Memory setting is displayed as On -> The RKE Linked to Memory setting is displayed as On)",
+   "test_item": "The HMI layer shall capture the customer selection for the RKE Linked to Memory setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.RKEMemoryLinkEnable_Req signal value as On.\n\n(read the Vehicle Settings menu and check that the RKE Linked to Memory setting is displayed as On -> The RKE Linked to Memory setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"RKE Linked to Memory\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"RKE Linked to Memory\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.RKEMemoryLinkEnable_Req = 1 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the RKE Linked to Memory setting is displayed as On",
@@ -125,7 +125,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RKEMemoryLinkEnable_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RKEMemoryLinkEnable_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-064",
@@ -133,7 +133,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 4 (4)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 4 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 4)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 4 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 4 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 4)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 4 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 4 (4) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 4",
@@ -147,7 +147,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 4 = `4`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 4 = `4`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH5PowerMode-022",
@@ -155,7 +155,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 5 Power Mode",
    "tc_title": "TELEMATIC_FD_1.AUX5_PWRMD_Req is sent as 1 (BATTERY) when SWITCH 5 Power Mode is BATTERY",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Power Mode setting is displayed as BATTERY -> The SWITCH 5 Power Mode setting is displayed as BATTERY)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 5 Power Mode setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX5_PWRMD_Req signal value as BATTERY.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Power Mode setting is displayed as BATTERY -> The SWITCH 5 Power Mode setting is displayed as BATTERY)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 5 Power Mode\" customer setting is set to IGNITION",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 5 Power Mode\" customer setting to BATTERY and check that TELEMATIC_FD_1.AUX5_PWRMD_Req = 1 (BATTERY) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 5 Power Mode setting is displayed as BATTERY",
@@ -169,7 +169,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX5_PWRMD_Req` 之 `VAL_` 內 raw 1 = `BATTERY`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX5_PWRMD_Req` 之 `VAL_` 內 raw 1 = `BATTERY`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RKELinkedtoMemory-094",
@@ -177,7 +177,7 @@
    "test_set": "Driver Convenience",
    "layer3": "RKE Linked to Memory",
    "tc_title": "RKE Linked to Memory is displayed as Off when RKEMemoryLinkEnable is 0 (Off)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the RKE Linked to Memory setting is displayed as Off -> The RKE Linked to Memory setting is displayed as Off)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.RKEMemoryLinkEnable signal and update/display the RKE Linked to Memory information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the RKE Linked to Memory setting is displayed as Off -> The RKE Linked to Memory setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.RKEMemoryLinkEnable = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.RKEMemoryLinkEnable = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.RKEMemoryLinkEnable = 0 (Off)\n3. Read the Vehicle Settings menu and check that the RKE Linked to Memory setting is displayed as Off",
@@ -199,7 +199,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 5 (5)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 5 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 5)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 5 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 5 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 5)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 5 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 5 (5) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 5",
@@ -213,7 +213,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 5 = `5`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 5 = `5`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH5PowerMode-023",
@@ -221,7 +221,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 5 Power Mode",
    "tc_title": "SWITCH 5 Power Mode is displayed as IGNITION when AUX5_PWRMD is 0 (IGNITION)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Power Mode setting is displayed as IGNITION -> The SWITCH 5 Power Mode setting is displayed as IGNITION)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX5_PWRMD signal and update/display the SWITCH 5 Power Mode information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Power Mode setting is displayed as IGNITION -> The SWITCH 5 Power Mode setting is displayed as IGNITION)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX5_PWRMD = one of [0 (IGNITION), 1 (BATTERY)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX5_PWRMD = 1 (BATTERY)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX5_PWRMD = 0 (IGNITION)\n3. Read the Vehicle Settings menu and check that the SWITCH 5 Power Mode setting is displayed as IGNITION",
@@ -243,7 +243,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto On Driver Comfort - 3 Option",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req is sent as 0 (Off)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Off -> The Auto On Driver Comfort - 3 Option setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto On Driver Comfort - 3 Option setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Off -> The Auto On Driver Comfort - 3 Option setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto On Driver Comfort - 3 Option\" customer setting is set to Remote_Start_Only",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto On Driver Comfort - 3 Option\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Off",
@@ -257,7 +257,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemStNrmlStEnbl_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemStNrmlStEnbl_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-066",
@@ -265,7 +265,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 6 (6)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 6 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 6)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 6 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 6 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 6)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 6 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 6 (6) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 6",
@@ -279,7 +279,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 6 = `6`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 6 = `6`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH6PowerMode-025",
@@ -287,7 +287,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 6 Power Mode",
    "tc_title": "TELEMATIC_FD_1.AUX6_PWRMD_Req is sent as 0 (IGNITION) when SWITCH 6 Power Mode is IGNITION",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 6 Power Mode setting is displayed as IGNITION -> The SWITCH 6 Power Mode setting is displayed as IGNITION)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 6 Power Mode setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX6_PWRMD_Req signal value as IGNITION.\n\n(read the Vehicle Settings menu and check that the SWITCH 6 Power Mode setting is displayed as IGNITION -> The SWITCH 6 Power Mode setting is displayed as IGNITION)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 6 Power Mode\" customer setting is set to BATTERY",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 6 Power Mode\" customer setting to IGNITION and check that TELEMATIC_FD_1.AUX6_PWRMD_Req = 0 (IGNITION) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 6 Power Mode setting is displayed as IGNITION",
@@ -301,7 +301,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX6_PWRMD_Req` 之 `VAL_` 內 raw 0 = `IGNITION`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX6_PWRMD_Req` 之 `VAL_` 內 raw 0 = `IGNITION`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoOnDriverComfort-3Option-099",
@@ -309,7 +309,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto On Driver Comfort - 3 Option",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req is sent as 1 (Remote_Start_Only)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Remote_Start_Only -> The Auto On Driver Comfort - 3 Option setting is displayed as Remote_Start_Only)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto On Driver Comfort - 3 Option setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req signal value as Remote_Start_Only.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Remote_Start_Only -> The Auto On Driver Comfort - 3 Option setting is displayed as Remote_Start_Only)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto On Driver Comfort - 3 Option\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto On Driver Comfort - 3 Option\" customer setting to Remote_Start_Only and check that TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req = 1 (Remote_Start_Only) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Remote_Start_Only",
@@ -323,7 +323,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemStNrmlStEnbl_Req` 之 `VAL_` 內 raw 1 = `Remote_Start_Only`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemStNrmlStEnbl_Req` 之 `VAL_` 內 raw 1 = `Remote_Start_Only`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-067",
@@ -331,7 +331,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 7 (7)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 7 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 7)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 7 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 7 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 7)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 7 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 7 (7) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 7",
@@ -345,7 +345,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 7 = `7`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 7 = `7`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH6PowerMode-026",
@@ -353,7 +353,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 6 Power Mode",
    "tc_title": "TELEMATIC_FD_1.AUX6_PWRMD_Req is sent as 1 (BATTERY) when SWITCH 6 Power Mode is BATTERY",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 6 Power Mode setting is displayed as BATTERY -> The SWITCH 6 Power Mode setting is displayed as BATTERY)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 6 Power Mode setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX6_PWRMD_Req signal value as BATTERY.\n\n(read the Vehicle Settings menu and check that the SWITCH 6 Power Mode setting is displayed as BATTERY -> The SWITCH 6 Power Mode setting is displayed as BATTERY)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 6 Power Mode\" customer setting is set to IGNITION",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 6 Power Mode\" customer setting to BATTERY and check that TELEMATIC_FD_1.AUX6_PWRMD_Req = 1 (BATTERY) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 6 Power Mode setting is displayed as BATTERY",
@@ -367,7 +367,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX6_PWRMD_Req` 之 `VAL_` 內 raw 1 = `BATTERY`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX6_PWRMD_Req` 之 `VAL_` 內 raw 1 = `BATTERY`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoOnDriverComfort-3Option-100",
@@ -375,7 +375,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto On Driver Comfort - 3 Option",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req is sent as 2 (Remote_And_Normal_Start )",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Remote_And_Normal_Start -> The Auto On Driver Comfort - 3 Option setting is displayed as Remote_And_Normal_Start)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto On Driver Comfort - 3 Option setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req signal value as Remote_And_Normal_Start.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Remote_And_Normal_Start -> The Auto On Driver Comfort - 3 Option setting is displayed as Remote_And_Normal_Start)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto On Driver Comfort - 3 Option\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto On Driver Comfort - 3 Option\" customer setting to Remote_And_Normal_Start  and check that TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req = 2 (Remote_And_Normal_Start ) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Remote_And_Normal_Start ",
@@ -389,7 +389,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemStNrmlStEnbl_Req` 之 `VAL_` 內 raw 2 = `Remote_And_Normal_Start `；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemStNrmlStEnbl_Req` 之 `VAL_` 內 raw 2 = `Remote_And_Normal_Start `；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-068",
@@ -397,7 +397,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 8 (8)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 8 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 8)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 8 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 8 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 8)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 8 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 8 (8) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 8",
@@ -411,7 +411,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 8 = `8`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 8 = `8`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH6PowerMode-027",
@@ -419,7 +419,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 6 Power Mode",
    "tc_title": "SWITCH 6 Power Mode is displayed as IGNITION when AUX6_PWRMD is 0 (IGNITION)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 6 Power Mode setting is displayed as IGNITION -> The SWITCH 6 Power Mode setting is displayed as IGNITION)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX6_PWRMD signal and update/display the SWITCH 6 Power Mode information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 6 Power Mode setting is displayed as IGNITION -> The SWITCH 6 Power Mode setting is displayed as IGNITION)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX6_PWRMD = one of [0 (IGNITION), 1 (BATTERY)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX6_PWRMD = 1 (BATTERY)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX6_PWRMD = 0 (IGNITION)\n3. Read the Vehicle Settings menu and check that the SWITCH 6 Power Mode setting is displayed as IGNITION",
@@ -441,7 +441,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto On Driver Comfort - 3 Option",
    "tc_title": "RemStNrmlStEnbl = 0 (Off) updates the Auto On Driver Comfort - 3 Option setting",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Off -> The Auto On Driver Comfort - 3 Option setting is displayed as Off)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.RemStNrmlStEnbl signal and update/display the Auto On Driver Comfort - 3 Option information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Off -> The Auto On Driver Comfort - 3 Option setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.RemStNrmlStEnbl = one of [0 (Off), 1 (Remote_Start_Only), 2 (Remote_And_Normal_Start), 3 (Normal_Start_Only)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.RemStNrmlStEnbl = 1 (Remote_Start_Only)\n2. Send CAN: IPC_VEHICLE_SETUP.RemStNrmlStEnbl = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Off",
@@ -463,7 +463,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 9 (9)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 9 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 9)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 9 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 9 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 9)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 9 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 9 (9) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 9",
@@ -477,7 +477,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 9 = `9`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 9 = `9`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH1Type-029",
@@ -485,7 +485,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 1 Type",
    "tc_title": "TELEMATIC_FD_1.AUX1_TYPE_Req is sent as 0 (Latching) when SWITCH 1 Type is Latching",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Latching -> The SWITCH 1 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 1 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX1_TYPE_Req signal value as LATCHING.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Latching -> The SWITCH 1 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 1 Type\" customer setting is set to Momentary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 1 Type\" customer setting to Latching and check that TELEMATIC_FD_1.AUX1_TYPE_Req = 0 (Latching) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Latching",
@@ -499,7 +499,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX1_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX1_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoOnDriverComfort-2Option-105",
@@ -507,7 +507,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto On Driver Comfort - 2 Option",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req is sent as 0 (Off)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 2 Option setting is displayed as Off -> The Auto On Driver Comfort - 2 Option setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto On Driver Comfort - 2 Option setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 2 Option setting is displayed as Off -> The Auto On Driver Comfort - 2 Option setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto On Driver Comfort - 2 Option\" customer setting is set to Remote_Start_Only",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto On Driver Comfort - 2 Option\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto On Driver Comfort - 2 Option setting is displayed as Off",
@@ -521,7 +521,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemStNrmlStEnbl_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemStNrmlStEnbl_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-070",
@@ -529,7 +529,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 10 (10)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 10 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 10)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 10 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 10 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 10)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 10 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 10 (10) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 10",
@@ -543,7 +543,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 10 = `10`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 10 = `10`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoOnDriverComfort-2Option-106",
@@ -551,7 +551,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto On Driver Comfort - 2 Option",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req is sent as 3 (Normal_Start_Only)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 2 Option setting is displayed as Normal_Start_Only -> The Auto On Driver Comfort - 2 Option setting is displayed as Normal_Start_Only)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto On Driver Comfort - 2 Option setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req signal value as Normal_Start_Only.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 2 Option setting is displayed as Normal_Start_Only -> The Auto On Driver Comfort - 2 Option setting is displayed as Normal_Start_Only)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto On Driver Comfort - 2 Option\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto On Driver Comfort - 2 Option\" customer setting to Normal_Start_Only and check that TELEMATIC_VEHICLE_SETUP.RemStNrmlStEnbl_Req = 3 (Normal_Start_Only) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto On Driver Comfort - 2 Option setting is displayed as Normal_Start_Only",
@@ -565,7 +565,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemStNrmlStEnbl_Req` 之 `VAL_` 內 raw 3 = `Normal_Start_Only`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `RemStNrmlStEnbl_Req` 之 `VAL_` 內 raw 3 = `Normal_Start_Only`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-071",
@@ -573,7 +573,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TSI_Offset_Mph = 0 (0) updates the Traffic Sign Assist Offset - NAFTA Setting setting",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.TSI_Offset_Mph signal and update/display the Traffic_Sign_Assist setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.TSI_Offset_Mph = one of [0 (0), 1 (1), 2 (2), 3 (3), 4 (4), 5 (5), 6 (6), 7 (7), 8 (8), 9 (9), 10 (10)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.TSI_Offset_Mph = 1 (1)\n2. Send CAN: IPC_VEHICLE_SETUP2.TSI_Offset_Mph = 0 (0)\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0",
@@ -595,7 +595,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto On Driver Comfort - 2 Option",
    "tc_title": "RemStNrmlStEnbl = 0 (Off) updates the Auto On Driver Comfort - 2 Option setting",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 2 Option setting is displayed as Off -> The Auto On Driver Comfort - 2 Option setting is displayed as Off)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.RemStNrmlStEnbl signal and update/display the Auto On Driver Comfort - 2 Option information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Auto On Driver Comfort - 2 Option setting is displayed as Off -> The Auto On Driver Comfort - 2 Option setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.RemStNrmlStEnbl = one of [0 (Off), 1 (Remote_Start_Only), 2 (Remote_And_Normal_Start), 3 (Normal_Start_Only)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.RemStNrmlStEnbl = 1 (Remote_Start_Only)\n2. Send CAN: IPC_VEHICLE_SETUP.RemStNrmlStEnbl = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Auto On Driver Comfort - 2 Option setting is displayed as Off",
@@ -617,7 +617,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Rearview Camera Delay",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Backup_Cam_Delay_Req is sent as 0 (Off) when Rearview Camera Delay is Off",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Delay setting is displayed as Off -> The Rearview Camera Delay setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the Rearview Camera Delay setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Backup_Cam_Delay_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Delay setting is displayed as Off -> The Rearview Camera Delay setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Rearview Camera Delay\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Rearview Camera Delay\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.Backup_Cam_Delay_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Rearview Camera Delay setting is displayed as Off",
@@ -631,7 +631,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Backup_Cam_Delay_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Backup_Cam_Delay_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-073",
@@ -639,7 +639,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 0 (0)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 0 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 1",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 0 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 0 (0) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0",
@@ -653,7 +653,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 0 = `0`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 0 = `0`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RearviewCameraDelay-112",
@@ -661,7 +661,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Rearview Camera Delay",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Backup_Cam_Delay_Req is sent as 1 (On) when Rearview Camera Delay is On",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Delay setting is displayed as On -> The Rearview Camera Delay setting is displayed as On)",
+   "test_item": "The HMI layer shall capture the customer selection for the Rearview Camera Delay setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Backup_Cam_Delay_Req signal value as On.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Delay setting is displayed as On -> The Rearview Camera Delay setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Rearview Camera Delay\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Rearview Camera Delay\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.Backup_Cam_Delay_Req = 1 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Rearview Camera Delay setting is displayed as On",
@@ -675,7 +675,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Backup_Cam_Delay_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Backup_Cam_Delay_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-074",
@@ -683,7 +683,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 1 (1)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 1 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 1)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 1 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 1 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 1)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 1 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 1 (1) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 1",
@@ -697,7 +697,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 1 = `1`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 1 = `1`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RearviewCameraDelay-113",
@@ -705,7 +705,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Rearview Camera Delay",
    "tc_title": "Rearview Camera Delay is displayed as Off when Backup_Cam_Delay is 0 (Off)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Delay setting is displayed as Off -> The Rearview Camera Delay setting is displayed as Off)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.Backup_Cam_Delay signal and update/display the Rearview Camera Delay information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Delay setting is displayed as Off -> The Rearview Camera Delay setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Backup_Cam_Delay = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Backup_Cam_Delay = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.Backup_Cam_Delay = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Rearview Camera Delay setting is displayed as Off",
@@ -727,7 +727,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 2 (2)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 2 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 2)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 2 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 2 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 2)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 2 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 2 (2) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 2",
@@ -741,7 +741,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 2 = `2`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 2 = `2`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-117",
@@ -749,7 +749,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Rearview Camera Dynamic Guidelines",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req is sent as 0 (Dynamic Gridlines OFF)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines OFF -> The Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines OFF)",
+   "test_item": "The HMI layer shall capture the customer selection for the Rearview Camera Dynamic Guidelines setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req signal value as Dynamic Gridlines OFF.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines OFF -> The Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines OFF)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Rearview Camera Dynamic Guidelines\" customer setting is set to Dynamic Gridlines ON",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Rearview Camera Dynamic Guidelines\" customer setting to Dynamic Gridlines OFF and check that TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req = 0 (Dynamic Gridlines OFF) is transmitted\n3. Read the Vehicle Settings menu and check that the Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines OFF",
@@ -763,7 +763,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `DynamicGrid_Req` 之 `VAL_` 內 raw 0 = `Dynamic Gridlines OFF`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `DynamicGrid_Req` 之 `VAL_` 內 raw 0 = `Dynamic Gridlines OFF`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-076",
@@ -771,7 +771,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 3 (3)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 3 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 3)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 3 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 3 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 3)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 3 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 3 (3) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 3",
@@ -785,7 +785,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 3 = `3`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 3 = `3`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-118",
@@ -793,7 +793,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Rearview Camera Dynamic Guidelines",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req is sent as 1 (Dynamic Gridlines ON)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines ON -> The Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines ON)",
+   "test_item": "The HMI layer shall capture the customer selection for the Rearview Camera Dynamic Guidelines setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req signal value as Dynamic Gridlines ON.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines ON -> The Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines ON)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Rearview Camera Dynamic Guidelines\" customer setting is set to Dynamic Gridlines OFF",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Rearview Camera Dynamic Guidelines\" customer setting to Dynamic Gridlines ON and check that TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req = 1 (Dynamic Gridlines ON) is transmitted\n3. Read the Vehicle Settings menu and check that the Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines ON",
@@ -807,7 +807,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `DynamicGrid_Req` 之 `VAL_` 內 raw 1 = `Dynamic Gridlines ON`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `DynamicGrid_Req` 之 `VAL_` 內 raw 1 = `Dynamic Gridlines ON`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-077",
@@ -815,7 +815,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 4 (4)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 4 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 4)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 4 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 4 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 4)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 4 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 4 (4) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 4",
@@ -829,7 +829,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 4 = `4`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 4 = `4`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RearviewCameraDynamicGuidelines-119",
@@ -837,7 +837,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Rearview Camera Dynamic Guidelines",
    "tc_title": "DynamicGrid = 0 (Dynamic Gridlines OFF) updates the Rearview Camera Dynamic Guidelines setting",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines OFF -> The Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines OFF)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.DynamicGrid signal and update/display the Rearview Camera Dynamic Guidelines information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines OFF -> The Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines OFF)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.DynamicGrid = one of [0 (Dynamic Gridlines OFF), 1 (Dynamic Gridlines ON)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.DynamicGrid = 1 (Dynamic Gridlines ON)\n2. Send CAN: IPC_VEHICLE_SETUP.DynamicGrid = 0 (Dynamic Gridlines OFF)\n3. Read the Vehicle Settings menu and check that the Rearview Camera Dynamic Guidelines setting is displayed as Dynamic Gridlines OFF",
@@ -859,7 +859,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 5 (5)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 5 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 5)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 5 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 5 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 5)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 5 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 5 (5) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 5",
@@ -873,7 +873,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 5 = `5`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 5 = `5`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-079",
@@ -881,7 +881,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 6 (6)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 6 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 6)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 6 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 6 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 6)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 6 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 6 (6) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 6",
@@ -895,7 +895,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 6 = `6`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 6 = `6`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-080",
@@ -903,7 +903,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 7 (7)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 7 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 7)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 7 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 7 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 7)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 7 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 7 (7) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 7",
@@ -917,7 +917,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 7 = `7`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 7 = `7`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-081",
@@ -925,7 +925,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 8 (8)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 8 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 8)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 8 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 8 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 8)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 8 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 8 (8) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 8",
@@ -939,7 +939,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 8 = `8`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 8 = `8`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH5Type-045",
@@ -947,7 +947,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 5 Type",
    "tc_title": "TELEMATIC_FD_1.AUX5_TYPE_Req is sent as 0 (Latching) when SWITCH 5 Type is Latching",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Type setting is displayed as Latching -> The SWITCH 5 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 5 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX5_TYPE_Req signal value as LATCHING.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Type setting is displayed as Latching -> The SWITCH 5 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 5 Type\" customer setting is set to Momentary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 5 Type\" customer setting to Latching and check that TELEMATIC_FD_1.AUX5_TYPE_Req = 0 (Latching) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 5 Type setting is displayed as Latching",
@@ -961,7 +961,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX5_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX5_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-082",
@@ -969,7 +969,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 9 (9)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 9 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 9)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 9 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 9 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 9)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 9 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 9 (9) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 9",
@@ -983,7 +983,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 9 = `9`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 9 = `9`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH5Type-046",
@@ -991,7 +991,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 5 Type",
    "tc_title": "TELEMATIC_FD_1.AUX5_TYPE_Req is sent as 1 (Momentary) when SWITCH 5 Type is Momentary",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Type setting is displayed as Momentary -> The SWITCH 5 Type setting is displayed as Momentary)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 5 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX5_TYPE_Req signal value as MOMENTARY.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Type setting is displayed as Momentary -> The SWITCH 5 Type setting is displayed as Momentary)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 5 Type\" customer setting is set to Latching",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 5 Type\" customer setting to Momentary and check that TELEMATIC_FD_1.AUX5_TYPE_Req = 1 (Momentary) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 5 Type setting is displayed as Momentary",
@@ -1005,7 +1005,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX5_TYPE_Req` 之 `VAL_` 內 raw 1 = `Momentary`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX5_TYPE_Req` 之 `VAL_` 內 raw 1 = `Momentary`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-083",
@@ -1013,7 +1013,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 10 (10)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 10 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 10)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 10 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 10 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 10)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 10 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 10 (10) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 10",
@@ -1027,7 +1027,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 10 = `10`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 10 = `10`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH5Type-047",
@@ -1035,7 +1035,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 5 Type",
    "tc_title": "SWITCH 5 Type is displayed as Latching when AUX5_TYPE is 0 (Latching)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Type setting is displayed as Latching -> The SWITCH 5 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX5_TYPE signal and update/display the SWITCH 5 Type information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 5 Type setting is displayed as Latching -> The SWITCH 5 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX5_TYPE = one of [0 (Latching), 1 (Momentary)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX5_TYPE = 1 (Momentary)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX5_TYPE = 0 (Latching)\n3. Read the Vehicle Settings menu and check that the SWITCH 5 Type setting is displayed as Latching",
@@ -1057,7 +1057,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 11 (11)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 11 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 11)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 11 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 11 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 11)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 11 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 11 (11) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 11",
@@ -1071,7 +1071,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 11 = `11`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 11 = `11`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH6Type-049",
@@ -1079,7 +1079,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 6 Type",
    "tc_title": "TELEMATIC_FD_1.AUX6_TYPE_Req is sent as 0 (Latching) when SWITCH 6 Type is Latching",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 6 Type setting is displayed as Latching -> The SWITCH 6 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 6 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX6_TYPE_Req signal value as LATCHING.\n\n(read the Vehicle Settings menu and check that the SWITCH 6 Type setting is displayed as Latching -> The SWITCH 6 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 6 Type\" customer setting is set to Momentary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 6 Type\" customer setting to Latching and check that TELEMATIC_FD_1.AUX6_TYPE_Req = 0 (Latching) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 6 Type setting is displayed as Latching",
@@ -1093,7 +1093,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX6_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX6_TYPE_Req` 之 `VAL_` 內 raw 0 = `Latching`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-085",
@@ -1101,7 +1101,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Kph_Req is sent as 12 (12)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 12 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 12)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Kph_Req signal value as 12 kph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 12 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 12)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 12 and check that TELEMATIC_FD_1.TSI_Offset_Kph_Req = 12 (12) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 12",
@@ -1115,7 +1115,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 12 = `12`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Kph_Req` 之 `VAL_` 內 raw 12 = `12`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   }
  ]
 }

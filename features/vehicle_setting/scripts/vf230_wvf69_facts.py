@@ -398,8 +398,27 @@ def load_all() -> tuple[list, list]:
     # (b) **僅改 label 而未改 raw**，產出 `is 0 (30sec)` 之自相矛盾標題。
     # 於此層展開則 `raw`／`label` 由 DBC 一併取得，`build()` 自然產出正確之對。
     # **其值取自條文逐字**（`receives the value as X via signal`），非本層所造。
-    MULTI = {"SWE1-VC-HeadlightsOffDelay-014": ["0sec", "30sec", "60sec", "90sec"],
-             "SWE1-VC-DaytimeRunningLights-006": ["False", "True"]}
+    # ---- W-VF83 §5：白名單與量測之分岔對治 ----
+    # **首版以 `MULTI` 白名單寫死拆列標的**，而其由量測導出；
+    # **二者之分岔無檢查在管**（上繳 V52 §九-3 具名）。
+    # 改為**由量測直接導出**，白名單降為**交叉驗證之期望值** —— 不符即停。
+    MULTI_EXPECTED = {"SWE1-VC-HeadlightsOffDelay-014": ["0sec", "30sec", "60sec", "90sec"],
+                      "SWE1-VC-DaytimeRunningLights-006": ["False", "True"]}
+    VALRX = re.compile(r"receives the value as\s+\[?([A-Za-z0-9_ ]+?)\]?\s*via signal", re.I)
+    MULTI = {}
+    for f in facts:
+        vs, seen_v = [], set()
+        for m in VALRX.finditer(f.get("text", "")):
+            v = m.group(1).strip()
+            if v.lower() not in seen_v:
+                seen_v.add(v.lower())
+                vs.append(v)
+        if len(vs) >= 2:
+            MULTI[f["leaf_id"]] = vs
+    if MULTI != MULTI_EXPECTED:
+        raise SystemExit(
+            f"拆列標的之量測與期望不符，停 —— 量測 {MULTI}；期望 {MULTI_EXPECTED}。"
+            "**其一已過時**：條文若增減多值形態，期望值須隨之更新並具名。")
     expanded = []
     for f in facts:
         vals = MULTI.get(f["leaf_id"])

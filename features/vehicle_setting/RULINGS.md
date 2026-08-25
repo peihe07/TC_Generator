@@ -6506,6 +6506,78 @@ R-VF-甲（VF230 之實寫授權，Pei 裁定 2026-08-25）
 
 ---
 
+## VF230 線 —— V53 包
+
+分析層裁定 2026-08-25，逐字落檔。所據下放包：`docs/handoff/V53_excerpt_blocker.md`。
+**全量九項全綠，而摘句選錯句 174／438；實寫條件二不成就。**
+
+> **編號回報（R-VF102 一）**：落檔時實測最大 **`R-VF124`**，實得 **`R-VF125`**，與所令之 +1 相符。
+
+---
+
+### R-VF125 —— 摘句之判準（V53 §3，分析層裁定 2026-08-25）
+
+逐字轉錄：
+
+```
+R-VF-甲（摘句之判準，分析層裁定 2026-08-25）
+【落檔取實測最大 +1】
+
+**現行判準（含結論動詞 ＋ 與 `tc_title` 關鍵詞重疊最多）不足，須加排除層。**
+
+**其失效之機制**：伴隨句同時滿足二條件（含結論動詞、與 `tc_title` 重疊），
+**故評分式判準無法將其排除 —— 評分只能排序，不能排除。**
+
+**改為二層**：
+
+  **第一層（排除，先行）** —— 下列形態之句**不得作為上半**：
+    (a) 無主詞指涉本 TC 之驗證對象者
+        （`Any invalid value shall be considered invalid by HMI.`）
+    (b) 泛稱之維持／更新句
+        （`The HMI layer shall maintain/update the displayed setting
+          according to the requested value…`）
+    **本清單為已知集合，非全集（R-VF95 二）** —— 新形態由人讀補入並具名其輪次。
+
+  **第二層（評分）** —— 於排除後之候選句中，行現行之評分式。
+
+  **二層皆無候選者** → 退回末句並**逐條具名**（現有 182 條之機制保留）。
+
+**驗收條件**：施行後，**上半為 (a)(b) 二形態者須為 0**；
+其餘退回末句者之數逐條回報。
+
+**錨點（R-VF92 一，須以獨立路徑確認其不命中之因）**：
+  必命中   `B 252` 之 `Any invalid value shall be considered invalid by HMI.` → 須被排除
+  必不命中 `B 390` 之 `The LTM or ETM application layer shall update the
+           Headlights Off Delay setting information displayed on the HMI.` → 須保留
+  **鑑別**   含 `maintain/update` 而其主詞確為本 TC 驗證對象者（若存在）
+           → **須保留** —— 一條以 `maintain/update` 為鍵之規則會誤殺之；
+           **不存在則具名「不存在」，不得以他句充數。**
+```
+
+**執行層註（W-VF83）**：已施行，**驗收條件達成：上半為 (a)(b) 二形態者 0**
+（施行前 174／438）。上半之 distinct 由 265 升為 **427**；退回末句者 182 → **178**。
+
+**三錨點之實測，其一與本條所引不符，以實測為準**：
+  **必命中** `B252` 之 `Any invalid value shall be considered invalid by HMI.` → 排除 ✅
+  **必不命中** `B390` —— **本條引其上半為 `The LTM or ETM application layer shall
+    update the Headlights Off Delay setting information displayed on the HMI.`，
+    而實測為 `The update of Headlights Off Delay setting information is displayed .`**
+    （seq 414 相符，上半不符）。**以實測為準，其須保留 → 保留 ✅**
+  **鑑別** 含 `maintain/update` 而主詞確為本 TC 驗證對象者 —— **實測不存在**：
+    全庫含 `maintain/update` 之句**僅 1 種**，即本條 (b) 所欲排除者。
+    **依本條之令具名「不存在」，未以他句充數。**
+    **其副效為：(b) 之 pattern 不可能誤殺**（無他句可殺）。
+
+**另補一變體，本條之 174 未含**：`Any invalid **signal** value shall be considered
+invalid by the HMI.`（2 條）—— **逐字寫死之排除式，其變體即漏**。
+已改為 `^Any invalid\b.{0,40}?shall be considered invalid`，並加假陽之防錨點
+（`The invalid value is displayed as Off.` 不得排除）。**五錨點全過。**
+
+**實作層自查一錯**：排除式首版之 `\b` 於外層字串中被解為退格字元寫入檔案，
+致 (a) 恆不命中而 (b) 正常 —— **錨點於施行前即攔下之**（本條令「錨點不符即停」）。
+
+---
+
 ## 主線 —— 25 包（W-P2；R-G14 綠色通道之生效起點）
 
 Pei 裁定 2026-08-24。取號實測：`RULINGS.sha.tsv` 現行最大 `R-VS81`，

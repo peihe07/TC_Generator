@@ -46,7 +46,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Blind Spot with Trailer Detection",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req is sent as 0 (Auto) when Blind Spot with Trailer Detection is Auto",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Auto -> The Blind Spot with Trailer Detection setting is displayed as Auto)",
+   "test_item": "The HMI layer shall capture the customer selection for the Blind Spot with Trailer Detection setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req signal value as Auto.\n\n(read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Auto -> The Blind Spot with Trailer Detection setting is displayed as Auto)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Blind Spot with Trailer Detection\" customer setting is set to Max",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Blind Spot with Trailer Detection\" customer setting to Auto and check that TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req = 0 (Auto) is transmitted\n3. Read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Auto",
@@ -60,7 +60,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Trailer_detection_blind_spot_Req` 之 `VAL_` 內 raw 0 = `Auto`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Trailer_detection_blind_spot_Req` 之 `VAL_` 內 raw 0 = `Auto`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-019",
@@ -90,7 +90,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Blind Spot Alert",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.BSDEnable_Req is sent as 1 (Enable_LED) when Blind Spot Alert is Enable_LED",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Enable_LED -> The Blind Spot Alert setting is displayed as Enable_LED)",
+   "test_item": "The HMI layer shall capture the customer selection for the Blind Spot Alert setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.BSDEnable_Req signal value as Enable_LED.\n\n(read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Enable_LED -> The Blind Spot Alert setting is displayed as Enable_LED)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Blind Spot Alert\" customer setting is set to Not_Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Blind Spot Alert\" customer setting to Enable_LED and check that TELEMATIC_VEHICLE_SETUP.BSDEnable_Req = 1 (Enable_LED) is transmitted\n3. Read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Enable_LED",
@@ -104,7 +104,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `BSDEnable_Req` 之 `VAL_` 內 raw 1 = `Enable_LED`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `BSDEnable_Req` 之 `VAL_` 內 raw 1 = `Enable_LED`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SuspensionServiceMode-005",
@@ -134,7 +134,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Blind Spot with Trailer Detection",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req is sent as 1 (Max) when Blind Spot with Trailer Detection is Max",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Max -> The Blind Spot with Trailer Detection setting is displayed as Max)",
+   "test_item": "The HMI layer shall capture the customer selection for the Blind Spot with Trailer Detection setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req signal value as Max.\n\n(read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Max -> The Blind Spot with Trailer Detection setting is displayed as Max)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Blind Spot with Trailer Detection\" customer setting is set to Auto",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Blind Spot with Trailer Detection\" customer setting to Max and check that TELEMATIC_VEHICLE_SETUP.Trailer_detection_blind_spot_Req = 1 (Max) is transmitted\n3. Read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Max",
@@ -148,7 +148,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Trailer_detection_blind_spot_Req` 之 `VAL_` 內 raw 1 = `Max`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Trailer_detection_blind_spot_Req` 之 `VAL_` 內 raw 1 = `Max`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PowerLiftgate/TailgateAlert-020",
@@ -178,7 +178,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Blind Spot Alert",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.BSDEnable_Req is sent as 2 (Enable_ LED_Chime) when Blind Spot Alert is Enable_ LED_Chime",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Enable_ LED_Chime -> The Blind Spot Alert setting is displayed as Enable_ LED_Chime)",
+   "test_item": "The HMI layer shall capture the customer selection for the Blind Spot Alert setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.BSDEnable_Req signal value as Enable_LED_Chime.\n\n(read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Enable_ LED_Chime -> The Blind Spot Alert setting is displayed as Enable_ LED_Chime)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Blind Spot Alert\" customer setting is set to Not_Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Blind Spot Alert\" customer setting to Enable_ LED_Chime and check that TELEMATIC_VEHICLE_SETUP.BSDEnable_Req = 2 (Enable_ LED_Chime) is transmitted\n3. Read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Enable_ LED_Chime",
@@ -192,7 +192,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `BSDEnable_Req` 之 `VAL_` 內 raw 2 = `Enable_ LED_Chime`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `BSDEnable_Req` 之 `VAL_` 內 raw 2 = `Enable_ LED_Chime`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-BlindSpotAlert-007",
@@ -200,7 +200,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Blind Spot Alert",
    "tc_title": "Blind Spot Alert is displayed as Not_Enable when BSDEnable is 0 (Not_Enable)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Not_Enable -> The Blind Spot Alert setting is displayed as Not_Enable)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.BSDEnable signal and update/display the Blind Spot Alert information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Not_Enable -> The Blind Spot Alert setting is displayed as Not_Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.BSDEnable = one of [0 (Not_Enable), 1 (Enable_LED), 2 (Enable_ LED_Chime)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.BSDEnable = 1 (Enable_LED)\n2. Send CAN: IPC_VEHICLE_SETUP.BSDEnable = 0 (Not_Enable)\n3. Read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Not_Enable",
@@ -442,7 +442,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Power Side Step",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req is sent as 0 (Auto) when Power Side Step is Auto",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto -> The Power Side Step setting is displayed as Auto)",
+   "test_item": "The HMI layer shall capture the customer selection for the Power Side Step setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req signal value as auto.\n\n(read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto -> The Power Side Step setting is displayed as Auto)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Power Side Step\" customer setting is set to Store",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Power Side Step\" customer setting to Auto and check that TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req = 0 (Auto) is transmitted\n3. Read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto",
@@ -456,7 +456,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Power_Side_Step_Req` 之 `VAL_` 內 raw 0 = `Auto`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Power_Side_Step_Req` 之 `VAL_` 內 raw 0 = `Auto`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-DriverEasyExitSeat-041",
@@ -486,7 +486,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Power Side Step",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req is sent as 1 (Store) when Power Side Step is Store",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Store -> The Power Side Step setting is displayed as Store)",
+   "test_item": "The HMI layer shall capture the customer selection for the Power Side Step setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req signal value as store.\n\n(read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Store -> The Power Side Step setting is displayed as Store)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Power Side Step\" customer setting is set to Auto",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Power Side Step\" customer setting to Store and check that TELEMATIC_VEHICLE_SETUP.Power_Side_Step_Req = 1 (Store) is transmitted\n3. Read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Store",
@@ -500,7 +500,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Power_Side_Step_Req` 之 `VAL_` 內 raw 1 = `Store`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Power_Side_Step_Req` 之 `VAL_` 內 raw 1 = `Store`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-DriverEasyExitSeat-042",
@@ -530,7 +530,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Power Side Step",
    "tc_title": "Power Side Step is displayed as Auto when Power_Side_Step is 0 (Auto)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto -> The Power Side Step setting is displayed as Auto)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.Power_Side_Step signal and update/display the Power Side Step setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto -> The Power Side Step setting is displayed as Auto)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Power_Side_Step = one of [0 (Auto), 1 (Store)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Power_Side_Step = 1 (Store)\n2. Send CAN: IPC_VEHICLE_SETUP.Power_Side_Step = 0 (Auto)\n3. Read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto",

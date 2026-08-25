@@ -134,7 +134,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Rear Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req is sent as 0 (Low) when Park Sense Rear Volume is Low",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Low -> The Park Sense Rear Volume setting is displayed as Low)",
+   "test_item": "The HMI layer shall capture the customer selection for the Park Sense Rear Volume setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req signal value as Low.\n\n(read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Low -> The Park Sense Rear Volume setting is displayed as Low)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Park Sense Rear Volume\" customer setting is set to Medium",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Park Sense Rear Volume\" customer setting to Low and check that TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req = 0 (Low) is transmitted\n3. Read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Low",
@@ -148,7 +148,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeRear_Req` 之 `VAL_` 內 raw 0 = `Low`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeRear_Req` 之 `VAL_` 內 raw 0 = `Low`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-LaneSenseStrength-032",
@@ -244,7 +244,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Rear Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req is sent as 1 (Medium) when Park Sense Rear Volume is Medium",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Medium -> The Park Sense Rear Volume setting is displayed as Medium)",
+   "test_item": "The HMI layer shall capture the customer selection for the Park Sense Rear Volume setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req signal value as Medium.\n\n(read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Medium -> The Park Sense Rear Volume setting is displayed as Medium)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Park Sense Rear Volume\" customer setting is set to Low",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Park Sense Rear Volume\" customer setting to Medium and check that TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req = 1 (Medium) is transmitted\n3. Read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Medium",
@@ -258,7 +258,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeRear_Req` 之 `VAL_` 內 raw 1 = `Medium`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeRear_Req` 之 `VAL_` 內 raw 1 = `Medium`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-041",
@@ -354,7 +354,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Rear Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req is sent as 2 (High) when Park Sense Rear Volume is High",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as High -> The Park Sense Rear Volume setting is displayed as High)",
+   "test_item": "The HMI layer shall capture the customer selection for the Park Sense Rear Volume setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req signal value as High.\n\n(read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as High -> The Park Sense Rear Volume setting is displayed as High)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Park Sense Rear Volume\" customer setting is set to Low",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Park Sense Rear Volume\" customer setting to High and check that TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req = 2 (High) is transmitted\n3. Read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as High",
@@ -368,7 +368,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeRear_Req` 之 `VAL_` 內 raw 2 = `High`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeRear_Req` 之 `VAL_` 內 raw 2 = `High`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-042",
@@ -464,7 +464,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Rear Volume",
    "tc_title": "Park Sense Rear Volume is displayed as Low when PamChimeVolumeRear is 0 (Low)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Low -> The Park Sense Rear Volume setting is displayed as Low)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.PamChimeVolumeRear signal and update/display the Park Sense Rear Volume information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Low -> The Park Sense Rear Volume setting is displayed as Low)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.PamChimeVolumeRear = one of [0 (Low), 1 (Medium), 2 (High)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.PamChimeVolumeRear = 1 (Medium)\n2. Send CAN: IPC_VEHICLE_SETUP.PamChimeVolumeRear = 0 (Low)\n3. Read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Low",
@@ -640,7 +640,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Front Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req is sent as 0 (Low) when Park Sense Front Volume is Low",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Low -> The Park Sense Front Volume setting is displayed as Low)",
+   "test_item": "The HMI layer shall capture the customer selection for the Park Sense Front Volume setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req signal value as Low.\n\n(read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Low -> The Park Sense Front Volume setting is displayed as Low)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Park Sense Front Volume\" customer setting is set to Medium",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Park Sense Front Volume\" customer setting to Low and check that TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req = 0 (Low) is transmitted\n3. Read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Low",
@@ -654,7 +654,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeFront_Req` 之 `VAL_` 內 raw 0 = `Low`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeFront_Req` 之 `VAL_` 內 raw 0 = `Low`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-ForwardCollisionWarningSensitivity-046",
@@ -684,7 +684,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Front Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req is sent as 1 (Medium) when Park Sense Front Volume is Medium",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Medium -> The Park Sense Front Volume setting is displayed as Medium)",
+   "test_item": "The HMI layer shall capture the customer selection for the Park Sense Front Volume setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req signal value as Medium.\n\n(read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Medium -> The Park Sense Front Volume setting is displayed as Medium)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Park Sense Front Volume\" customer setting is set to Low",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Park Sense Front Volume\" customer setting to Medium and check that TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req = 1 (Medium) is transmitted\n3. Read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Medium",
@@ -698,7 +698,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeFront_Req` 之 `VAL_` 內 raw 1 = `Medium`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeFront_Req` 之 `VAL_` 內 raw 1 = `Medium`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RainSensingWipers-054",
@@ -772,7 +772,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Front Volume",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req is sent as 2 (High) when Park Sense Front Volume is High",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as High -> The Park Sense Front Volume setting is displayed as High)",
+   "test_item": "The HMI layer shall capture the customer selection for the Park Sense Front Volume setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req signal value as High.\n\n(read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as High -> The Park Sense Front Volume setting is displayed as High)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Park Sense Front Volume\" customer setting is set to Low",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Park Sense Front Volume\" customer setting to High and check that TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req = 2 (High) is transmitted\n3. Read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as High",
@@ -786,7 +786,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeFront_Req` 之 `VAL_` 內 raw 2 = `High`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PamChimeVolumeFront_Req` 之 `VAL_` 內 raw 2 = `High`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-RainSensingWipers-055",
@@ -838,7 +838,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Park Sense Front Volume",
    "tc_title": "Park Sense Front Volume is displayed as Low when PamChimeVolumeFront is 0 (Low)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Low -> The Park Sense Front Volume setting is displayed as Low)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.PamChimeVolumeFront signal and update/display the Park Sense Front Volume information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Low -> The Park Sense Front Volume setting is displayed as Low)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.PamChimeVolumeFront = one of [0 (Low), 1 (Medium), 2 (High)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.PamChimeVolumeFront = 1 (Medium)\n2. Send CAN: IPC_VEHICLE_SETUP.PamChimeVolumeFront = 0 (Low)\n3. Read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Low",

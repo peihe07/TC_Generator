@@ -23,7 +23,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Remote Door Unlock",
    "tc_title": "Remote Door Unlock is displayed as Driver when RemoteDoorUnlock is 0 (Driver)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as Driver -> The Remote Door Unlock setting is displayed as Driver)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.RemoteDoorUnlock signal and update/display the Remote Door Unlock information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as Driver -> The Remote Door Unlock setting is displayed as Driver)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.RemoteDoorUnlock = one of [0 (Driver), 1 (All)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.RemoteDoorUnlock = 1 (All)\n2. Send CAN: IPC_VEHICLE_SETUP.RemoteDoorUnlock = 0 (Driver)\n3. Read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as Driver",
@@ -45,7 +45,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 4 Type",
    "tc_title": "TELEMATIC_FD_1.AUX4_TYPE_Req is sent as 1 (Momentary) when SWITCH 4 Type is Momentary",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Type setting is displayed as Momentary -> The SWITCH 4 Type setting is displayed as Momentary)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 4 Type setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX4_TYPE_Req signal value as MOMENTARY and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Type setting is displayed as Momentary -> The SWITCH 4 Type setting is displayed as Momentary)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 4 Type\" customer setting is set to Latching",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 4 Type\" customer setting to Momentary and check that TELEMATIC_FD_1.AUX4_TYPE_Req = 1 (Momentary) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 4 Type setting is displayed as Momentary",
@@ -59,7 +59,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX4_TYPE_Req` 之 `VAL_` 內 raw 1 = `Momentary`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX4_TYPE_Req` 之 `VAL_` 內 raw 1 = `Momentary`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoParkBrake-023",
@@ -67,7 +67,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto Park Brake",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req is sent as 1 (Off) when Auto Park Brake is Off",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto Park Brake setting is displayed as Off -> The Auto Park Brake setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto Park Brake setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Auto Park Brake setting is displayed as Off -> The Auto Park Brake setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto Park Brake\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto Park Brake\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req = 1 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto Park Brake setting is displayed as Off",
@@ -81,7 +81,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoParkBrake_Req` 之 `VAL_` 內 raw 1 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoParkBrake_Req` 之 `VAL_` 內 raw 1 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-MaxPowerLevel141",
@@ -89,7 +89,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Max Power Level",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.SOC_Max_Lev_Req is sent as 0 (Level1) when Max Power Level is Level1",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Max Power Level setting is displayed as Level1 -> The Max Power Level setting is displayed as Level1)",
+   "test_item": "The HMI layer shall capture the customer selection for the Max SOC Level setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.SOC_Max_Lev_Req signal value as Level 1.\n\n(read the Vehicle Settings menu and check that the Max Power Level setting is displayed as Level1 -> The Max Power Level setting is displayed as Level1)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Max Power Level\" customer setting is set to Level2",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Max Power Level\" customer setting to Level1 and check that TELEMATIC_VEHICLE_SETUP.SOC_Max_Lev_Req = 0 (Level1) is transmitted\n3. Read the Vehicle Settings menu and check that the Max Power Level setting is displayed as Level1",
@@ -103,7 +103,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SOC_Max_Lev_Req` 之 `VAL_` 內 raw 0 = `Level1`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SOC_Max_Lev_Req` 之 `VAL_` 內 raw 0 = `Level1`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH4Type-016",
@@ -111,7 +111,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 4 Type",
    "tc_title": "SWITCH 4 Type is displayed as Latching when AUX4_TYPE is 0 (Latching)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Type setting is displayed as Latching -> The SWITCH 4 Type setting is displayed as Latching)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX4_TYPE signal and update/display the SWITCH 4 Type setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Type setting is displayed as Latching -> The SWITCH 4 Type setting is displayed as Latching)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX4_TYPE = one of [0 (Latching), 1 (Momentary)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX4_TYPE = 1 (Momentary)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX4_TYPE = 0 (Latching)\n3. Read the Vehicle Settings menu and check that the SWITCH 4 Type setting is displayed as Latching",
@@ -133,7 +133,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto Park Brake",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req is sent as 0 (On) when Auto Park Brake is On",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto Park Brake setting is displayed as On -> The Auto Park Brake setting is displayed as On)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto Park Brake setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req signal value as On.\n\n(read the Vehicle Settings menu and check that the Auto Park Brake setting is displayed as On -> The Auto Park Brake setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto Park Brake\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto Park Brake\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req = 0 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto Park Brake setting is displayed as On",
@@ -147,7 +147,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoParkBrake_Req` 之 `VAL_` 內 raw 0 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoParkBrake_Req` 之 `VAL_` 內 raw 0 = `On`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-MaxPowerLevel142",
@@ -155,7 +155,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Max Power Level",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.SOC_Max_Lev_Req is sent as 1 (Level2) when Max Power Level is Level2",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Max Power Level setting is displayed as Level2 -> The Max Power Level setting is displayed as Level2)",
+   "test_item": "The HMI layer shall capture the customer selection for the Max SOC Level setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.SOC_Max_Lev_Req signal value as Level 2.\n\n(read the Vehicle Settings menu and check that the Max Power Level setting is displayed as Level2 -> The Max Power Level setting is displayed as Level2)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Max Power Level\" customer setting is set to Level1",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Max Power Level\" customer setting to Level2 and check that TELEMATIC_VEHICLE_SETUP.SOC_Max_Lev_Req = 1 (Level2) is transmitted\n3. Read the Vehicle Settings menu and check that the Max Power Level setting is displayed as Level2",
@@ -169,7 +169,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SOC_Max_Lev_Req` 之 `VAL_` 內 raw 1 = `Level2`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SOC_Max_Lev_Req` 之 `VAL_` 內 raw 1 = `Level2`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH1HoldLastState-018",
@@ -177,7 +177,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 1 Hold Last State",
    "tc_title": "TELEMATIC_FD_1.AUX1_HLEnbl_Req is sent as 0 (Disable) when SWITCH 1 Hold Last State is Disable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Hold Last State setting is displayed as Disable -> The SWITCH 1 Hold Last State setting is displayed as Disable)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 1 Hold Last State setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX1_HLEnbl_Req signal value as DISABLE and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Hold Last State setting is displayed as Disable -> The SWITCH 1 Hold Last State setting is displayed as Disable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 1 Hold Last State\" customer setting is set to Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 1 Hold Last State\" customer setting to Disable and check that TELEMATIC_FD_1.AUX1_HLEnbl_Req = 0 (Disable) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 1 Hold Last State setting is displayed as Disable",
@@ -191,7 +191,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX1_HLEnbl_Req` 之 `VAL_` 內 raw 0 = `Disable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX1_HLEnbl_Req` 之 `VAL_` 內 raw 0 = `Disable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoParkBrake-025",
@@ -199,7 +199,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto Park Brake",
    "tc_title": "Auto Park Brake is displayed as On when AutoParkBrake is 0 (On)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto Park Brake setting is displayed as On -> The Auto Park Brake setting is displayed as On)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.AutoParkBrake signal and update/display the Auto Park Brake information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Auto Park Brake setting is displayed as On -> The Auto Park Brake setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.AutoParkBrake = one of [0 (On), 1 (Off)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.AutoParkBrake = 1 (Off)\n2. Send CAN: IPC_VEHICLE_SETUP.AutoParkBrake = 0 (On)\n3. Read the Vehicle Settings menu and check that the Auto Park Brake setting is displayed as On",
@@ -221,7 +221,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Max Power Level",
    "tc_title": "Max Power Level is displayed as Level1 when SOC_Max_Lev is 0 (Level1)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Max Power Level setting is displayed as Level1 -> The Max Power Level setting is displayed as Level1)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.SOC_Max_Lev signal and update/display the Max SOC Level setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Max Power Level setting is displayed as Level1 -> The Max Power Level setting is displayed as Level1)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.SOC_Max_Lev = one of [0 (Level1), 1 (Level2)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.SOC_Max_Lev = 1 (Level2)\n2. Send CAN: IPC_VEHICLE_SETUP.SOC_Max_Lev = 0 (Level1)\n3. Read the Vehicle Settings menu and check that the Max Power Level setting is displayed as Level1",
@@ -243,7 +243,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 1 Hold Last State",
    "tc_title": "TELEMATIC_FD_1.AUX1_HLEnbl_Req is sent as 1 (Enable) when SWITCH 1 Hold Last State is Enable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Hold Last State setting is displayed as Enable -> The SWITCH 1 Hold Last State setting is displayed as Enable)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 1 Hold Last State setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX1_HLEnbl_Req signal value as ENABLE and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Hold Last State setting is displayed as Enable -> The SWITCH 1 Hold Last State setting is displayed as Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 1 Hold Last State\" customer setting is set to Disable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 1 Hold Last State\" customer setting to Enable and check that TELEMATIC_FD_1.AUX1_HLEnbl_Req = 1 (Enable) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 1 Hold Last State setting is displayed as Enable",
@@ -257,7 +257,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX1_HLEnbl_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX1_HLEnbl_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-HornWithRemoteStart-029",
@@ -265,7 +265,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Horn With Remote Start",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.SoundHornRemoteStart_Req is sent as 1 (Off) when Horn With Remote Start is Off",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Horn With Remote Start setting is displayed as Off -> The Horn With Remote Start setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the Horn With Remote Start setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.SoundHornRemoteStart_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Horn With Remote Start setting is displayed as Off -> The Horn With Remote Start setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Horn With Remote Start\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Horn With Remote Start\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.SoundHornRemoteStart_Req = 1 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Horn With Remote Start setting is displayed as Off",
@@ -279,7 +279,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SoundHornRemoteStart_Req` 之 `VAL_` 內 raw 1 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SoundHornRemoteStart_Req` 之 `VAL_` 內 raw 1 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH1HoldLastState-020",
@@ -287,7 +287,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 1 Hold Last State",
    "tc_title": "SWITCH 1 Hold Last State is displayed as Disable when AUX1_HLEnbl is 0 (Disable)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Hold Last State setting is displayed as Disable -> The SWITCH 1 Hold Last State setting is displayed as Disable)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX1_HLEnbl signal and update/display the SWITCH 1 Hold Last State setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 1 Hold Last State setting is displayed as Disable -> The SWITCH 1 Hold Last State setting is displayed as Disable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX1_HLEnbl = one of [0 (Disable), 1 (Enable)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX1_HLEnbl = 1 (Enable)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX1_HLEnbl = 0 (Disable)\n3. Read the Vehicle Settings menu and check that the SWITCH 1 Hold Last State setting is displayed as Disable",
@@ -309,7 +309,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Horn With Remote Start",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.SoundHornRemoteStart_Req is sent as 0 (On) when Horn With Remote Start is On",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Horn With Remote Start setting is displayed as On -> The Horn With Remote Start setting is displayed as On)",
+   "test_item": "The HMI layer shall capture the customer selection for the Horn With Remote Start setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.SoundHornRemoteStart_Req signal value as On.\n\n(read the Vehicle Settings menu and check that the Horn With Remote Start setting is displayed as On -> The Horn With Remote Start setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Horn With Remote Start\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Horn With Remote Start\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.SoundHornRemoteStart_Req = 0 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Horn With Remote Start setting is displayed as On",
@@ -323,7 +323,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SoundHornRemoteStart_Req` 之 `VAL_` 內 raw 0 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SoundHornRemoteStart_Req` 之 `VAL_` 內 raw 0 = `On`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH2HoldLastState-022",
@@ -331,7 +331,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 2 Hold Last State",
    "tc_title": "TELEMATIC_FD_1.AUX2_HLEnbl_Req is sent as 0 (Disable) when SWITCH 2 Hold Last State is Disable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Hold Last State setting is displayed as Disable -> The SWITCH 2 Hold Last State setting is displayed as Disable)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 2 Hold Last State setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX2_HLEnbl_Req signal value as DISABLE and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Hold Last State setting is displayed as Disable -> The SWITCH 2 Hold Last State setting is displayed as Disable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 2 Hold Last State\" customer setting is set to Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 2 Hold Last State\" customer setting to Disable and check that TELEMATIC_FD_1.AUX2_HLEnbl_Req = 0 (Disable) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 2 Hold Last State setting is displayed as Disable",
@@ -345,7 +345,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX2_HLEnbl_Req` 之 `VAL_` 內 raw 0 = `Disable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX2_HLEnbl_Req` 之 `VAL_` 內 raw 0 = `Disable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-HornWithRemoteStart-031",
@@ -353,7 +353,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Horn With Remote Start",
    "tc_title": "Horn With Remote Start is displayed as On when SoundHornRemoteStart is 0 (On)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Horn With Remote Start setting is displayed as On -> The Horn With Remote Start setting is displayed as On)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.SoundHornRemoteStart signal and update/display the Horn With Remote Start information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Horn With Remote Start setting is displayed as On -> The Horn With Remote Start setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.SoundHornRemoteStart = one of [0 (On), 1 (Off)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.SoundHornRemoteStart = 1 (Off)\n2. Send CAN: IPC_VEHICLE_SETUP.SoundHornRemoteStart = 0 (On)\n3. Read the Vehicle Settings menu and check that the Horn With Remote Start setting is displayed as On",
@@ -375,7 +375,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Trailer Name",
    "tc_title": "Trailer Name is displayed as Trailer when Trail_Name is 0 (Trailer)",
-   "test_item": "Any invalid signal value shall be considered invalid by the HMI.\n\n(read the Vehicle Settings menu and check that the Trailer Name setting is displayed as Trailer -> The Trailer Name setting is displayed as Trailer)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.Trail_Name signal and update/display the Trailer Name information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Trailer Name setting is displayed as Trailer -> The Trailer Name setting is displayed as Trailer)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Trail_Name = one of [0 (Trailer), 1 (Boat), 2 (Car), 3 (Cargo), 4 (Dump), 5 (Equipment), 6 (Flatbed), 7 (Gooseneck), 8 (Horse), 9 (Livestock), 10 (Motorcycle), 11 (Snow_Mobile), 12 (Travel), 13 (Utility), 14 (Fifth_Wheel)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Trail_Name = 1 (Boat)\n2. Send CAN: IPC_VEHICLE_SETUP.Trail_Name = 0 (Trailer)\n3. Read the Vehicle Settings menu and check that the Trailer Name setting is displayed as Trailer",
@@ -397,7 +397,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 2 Hold Last State",
    "tc_title": "TELEMATIC_FD_1.AUX2_HLEnbl_Req is sent as 1 (Enable) when SWITCH 2 Hold Last State is Enable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Hold Last State setting is displayed as Enable -> The SWITCH 2 Hold Last State setting is displayed as Enable)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 2 Hold Last State setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX2_HLEnbl_Req signal value as ENABLE and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Hold Last State setting is displayed as Enable -> The SWITCH 2 Hold Last State setting is displayed as Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 2 Hold Last State\" customer setting is set to Disable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 2 Hold Last State\" customer setting to Enable and check that TELEMATIC_FD_1.AUX2_HLEnbl_Req = 1 (Enable) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 2 Hold Last State setting is displayed as Enable",
@@ -411,7 +411,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX2_HLEnbl_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX2_HLEnbl_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-HornWithLock-035",
@@ -419,7 +419,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Horn With Lock",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req is sent as 0 (Off) when Horn With Lock is Off",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as Off -> The Horn With Lock setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the Horn With Lock setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as Off -> The Horn With Lock setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Horn With Lock\" customer setting is set to 1st Press",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Horn With Lock\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as Off",
@@ -433,7 +433,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SoundHornLock_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SoundHornLock_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH2HoldLastState-024",
@@ -441,7 +441,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 2 Hold Last State",
    "tc_title": "SWITCH 2 Hold Last State is displayed as Disable when AUX2_HLEnbl is 0 (Disable)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Hold Last State setting is displayed as Disable -> The SWITCH 2 Hold Last State setting is displayed as Disable)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX2_HLEnbl signal and update/display the SWITCH 2 Hold Last State setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 2 Hold Last State setting is displayed as Disable -> The SWITCH 2 Hold Last State setting is displayed as Disable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX2_HLEnbl = one of [0 (Disable), 1 (Enable)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX2_HLEnbl = 1 (Enable)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX2_HLEnbl = 0 (Disable)\n3. Read the Vehicle Settings menu and check that the SWITCH 2 Hold Last State setting is displayed as Disable",
@@ -463,7 +463,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Horn With Lock",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req is sent as 1 (1st Press) when Horn With Lock is 1st Press",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as 1st Press -> The Horn With Lock setting is displayed as 1st Press)",
+   "test_item": "The HMI layer shall capture the customer selection for the Horn With Lock setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req signal value as 1st Press.\n\n(read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as 1st Press -> The Horn With Lock setting is displayed as 1st Press)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Horn With Lock\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Horn With Lock\" customer setting to 1st Press and check that TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req = 1 (1st Press) is transmitted\n3. Read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as 1st Press",
@@ -477,7 +477,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SoundHornLock_Req` 之 `VAL_` 內 raw 1 = `1st Press`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SoundHornLock_Req` 之 `VAL_` 內 raw 1 = `1st Press`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH3HoldLastState-026",
@@ -485,7 +485,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 3 Hold Last State",
    "tc_title": "TELEMATIC_FD_1.AUX3_HLEnbl_Req is sent as 0 (Disable) when SWITCH 3 Hold Last State is Disable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Hold Last State setting is displayed as Disable -> The SWITCH 3 Hold Last State setting is displayed as Disable)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 3 Hold Last State setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX3_HLEnbl_Req signal value as DISABLE and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Hold Last State setting is displayed as Disable -> The SWITCH 3 Hold Last State setting is displayed as Disable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 3 Hold Last State\" customer setting is set to Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 3 Hold Last State\" customer setting to Disable and check that TELEMATIC_FD_1.AUX3_HLEnbl_Req = 0 (Disable) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 3 Hold Last State setting is displayed as Disable",
@@ -499,7 +499,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX3_HLEnbl_Req` 之 `VAL_` 內 raw 0 = `Disable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX3_HLEnbl_Req` 之 `VAL_` 內 raw 0 = `Disable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-HornWithLock-037",
@@ -507,7 +507,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Horn With Lock",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req is sent as 2 (2nd Press) when Horn With Lock is 2nd Press",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as 2nd Press -> The Horn With Lock setting is displayed as 2nd Press)",
+   "test_item": "The HMI layer shall capture the customer selection for the Horn With Lock setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req signal value as 2nd Press.\n\n(read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as 2nd Press -> The Horn With Lock setting is displayed as 2nd Press)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Horn With Lock\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Horn With Lock\" customer setting to 2nd Press and check that TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req = 2 (2nd Press) is transmitted\n3. Read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as 2nd Press",
@@ -521,7 +521,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SoundHornLock_Req` 之 `VAL_` 內 raw 2 = `2nd Press`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `SoundHornLock_Req` 之 `VAL_` 內 raw 2 = `2nd Press`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH3HoldLastState-027",
@@ -529,7 +529,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 3 Hold Last State",
    "tc_title": "TELEMATIC_FD_1.AUX3_HLEnbl_Req is sent as 1 (Enable) when SWITCH 3 Hold Last State is Enable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Hold Last State setting is displayed as Enable -> The SWITCH 3 Hold Last State setting is displayed as Enable)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 3 Hold Last State setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX3_HLEnbl_Req signal value as ENABLE and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Hold Last State setting is displayed as Enable -> The SWITCH 3 Hold Last State setting is displayed as Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 3 Hold Last State\" customer setting is set to Disable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 3 Hold Last State\" customer setting to Enable and check that TELEMATIC_FD_1.AUX3_HLEnbl_Req = 1 (Enable) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 3 Hold Last State setting is displayed as Enable",
@@ -543,7 +543,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX3_HLEnbl_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX3_HLEnbl_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-HornWithLock-038",
@@ -551,7 +551,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Horn With Lock",
    "tc_title": "Horn With Lock is displayed as Off when SoundHornLock is 0 (Off)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as Off -> The Horn With Lock setting is displayed as Off)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.SoundHornLock signal and update/display the Horn With Lock information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as Off -> The Horn With Lock setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.SoundHornLock = one of [0 (Off), 1 (1st Press), 2 (2nd Press)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.SoundHornLock = 1 (1st Press)\n2. Send CAN: IPC_VEHICLE_SETUP.SoundHornLock = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as Off",
@@ -573,7 +573,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 3 Hold Last State",
    "tc_title": "SWITCH 3 Hold Last State is displayed as Disable when AUX3_HLEnbl is 0 (Disable)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Hold Last State setting is displayed as Disable -> The SWITCH 3 Hold Last State setting is displayed as Disable)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX3_HLEnbl signal and update/display the SWITCH 3 Hold Last State setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 3 Hold Last State setting is displayed as Disable -> The SWITCH 3 Hold Last State setting is displayed as Disable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX3_HLEnbl = one of [0 (Disable), 1 (Enable)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX3_HLEnbl = 1 (Enable)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX3_HLEnbl = 0 (Disable)\n3. Read the Vehicle Settings menu and check that the SWITCH 3 Hold Last State setting is displayed as Disable",
@@ -595,7 +595,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto Unlock on Exit",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.AutoUnlockDoorExit_Req is sent as 0 (Not_Enable) when Auto Unlock on Exit is Not_Enable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto Unlock on Exit setting is displayed as Not_Enable -> The Auto Unlock on Exit setting is displayed as Not_Enable)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto Unlock on Exit setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.AutoUnlockDoorExit_Req signal value as Not_Enable.\n\n(read the Vehicle Settings menu and check that the Auto Unlock on Exit setting is displayed as Not_Enable -> The Auto Unlock on Exit setting is displayed as Not_Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto Unlock on Exit\" customer setting is set to Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto Unlock on Exit\" customer setting to Not_Enable and check that TELEMATIC_VEHICLE_SETUP.AutoUnlockDoorExit_Req = 0 (Not_Enable) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto Unlock on Exit setting is displayed as Not_Enable",
@@ -609,7 +609,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoUnlockDoorExit_Req` 之 `VAL_` 內 raw 0 = `Not_Enable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoUnlockDoorExit_Req` 之 `VAL_` 內 raw 0 = `Not_Enable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-SWITCH4HoldLastState-030",
@@ -617,7 +617,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 4 Hold Last State",
    "tc_title": "TELEMATIC_FD_1.AUX4_HLEnbl_Req is sent as 0 (Disable) when SWITCH 4 Hold Last State is Disable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Hold Last State setting is displayed as Disable -> The SWITCH 4 Hold Last State setting is displayed as Disable)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 4 Hold Last State setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX4_HLEnbl_Req signal value as DISABLE and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Hold Last State setting is displayed as Disable -> The SWITCH 4 Hold Last State setting is displayed as Disable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 4 Hold Last State\" customer setting is set to Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 4 Hold Last State\" customer setting to Disable and check that TELEMATIC_FD_1.AUX4_HLEnbl_Req = 0 (Disable) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 4 Hold Last State setting is displayed as Disable",
@@ -631,7 +631,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX4_HLEnbl_Req` 之 `VAL_` 內 raw 0 = `Disable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX4_HLEnbl_Req` 之 `VAL_` 內 raw 0 = `Disable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoUnlockonExit-043",
@@ -639,7 +639,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto Unlock on Exit",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.AutoUnlockDoorExit_Req is sent as 1 (Enable) when Auto Unlock on Exit is Enable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto Unlock on Exit setting is displayed as Enable -> The Auto Unlock on Exit setting is displayed as Enable)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto Unlock on Exit setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.AutoUnlockDoorExit_Req signal value as Enable.\n\n(read the Vehicle Settings menu and check that the Auto Unlock on Exit setting is displayed as Enable -> The Auto Unlock on Exit setting is displayed as Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto Unlock on Exit\" customer setting is set to Not_Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto Unlock on Exit\" customer setting to Enable and check that TELEMATIC_VEHICLE_SETUP.AutoUnlockDoorExit_Req = 1 (Enable) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto Unlock on Exit setting is displayed as Enable",
@@ -653,7 +653,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoUnlockDoorExit_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoUnlockDoorExit_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrailerBrakeType031",
@@ -661,7 +661,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Trailer Brake Type",
    "tc_title": "Trailer Brake Type is displayed as Light_Electric when Trail_Brk_Type is 0 (Light_Electric)",
-   "test_item": "Any invalid signal value shall be considered invalid by the HMI.\n\n(read the Vehicle Settings menu and check that the Trailer Brake Type setting is displayed as Light_Electric -> The Trailer Brake Type setting is displayed as Light_Electric)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.Trail_Brk_Type signal and update/display the Trailer Brake Type information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Trailer Brake Type setting is displayed as Light_Electric -> The Trailer Brake Type setting is displayed as Light_Electric)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.Trail_Brk_Type = one of [0 (Light_Electric), 1 (Heavy_Electric), 2 (Light_Electric_Over_Hydraulic), 3 (Heavy_Electric_Over_Hydraulic)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.Trail_Brk_Type = 1 (Heavy_Electric)\n2. Send CAN: IPC_VEHICLE_SETUP.Trail_Brk_Type = 0 (Light_Electric)\n3. Read the Vehicle Settings menu and check that the Trailer Brake Type setting is displayed as Light_Electric",
@@ -683,7 +683,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 4 Hold Last State",
    "tc_title": "TELEMATIC_FD_1.AUX4_HLEnbl_Req is sent as 1 (Enable) when SWITCH 4 Hold Last State is Enable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Hold Last State setting is displayed as Enable -> The SWITCH 4 Hold Last State setting is displayed as Enable)",
+   "test_item": "The HMI layer shall capture the customer selection for the SWITCH 4 Hold Last State setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.AUX4_HLEnbl_Req signal value as ENABLE and send the signal to IPC within.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Hold Last State setting is displayed as Enable -> The SWITCH 4 Hold Last State setting is displayed as Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"SWITCH 4 Hold Last State\" customer setting is set to Disable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"SWITCH 4 Hold Last State\" customer setting to Enable and check that TELEMATIC_FD_1.AUX4_HLEnbl_Req = 1 (Enable) is transmitted\n3. Read the Vehicle Settings menu and check that the SWITCH 4 Hold Last State setting is displayed as Enable",
@@ -697,7 +697,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX4_HLEnbl_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AUX4_HLEnbl_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoUnlockonExit-044",
@@ -705,7 +705,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto Unlock on Exit",
    "tc_title": "Auto Unlock on Exit is displayed as Not_Enable when AutoUnlockDoorExit is 0 (Not_Enable)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto Unlock on Exit setting is displayed as Not_Enable -> The Auto Unlock on Exit setting is displayed as Not_Enable)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.AutoUnlockDoorExit signal and update/display the Auto Unlock on Exit information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Auto Unlock on Exit setting is displayed as Not_Enable -> The Auto Unlock on Exit setting is displayed as Not_Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.AutoUnlockDoorExit = one of [0 (Not_Enable), 1 (Enable)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.AutoUnlockDoorExit = 1 (Enable)\n2. Send CAN: IPC_VEHICLE_SETUP.AutoUnlockDoorExit = 0 (Not_Enable)\n3. Read the Vehicle Settings menu and check that the Auto Unlock on Exit setting is displayed as Not_Enable",
@@ -727,7 +727,7 @@
    "test_set": "Auxiliary Switches",
    "layer3": "SWITCH 4 Hold Last State",
    "tc_title": "SWITCH 4 Hold Last State is displayed as Disable when AUX4_HLEnbl is 0 (Disable)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Hold Last State setting is displayed as Disable -> The SWITCH 4 Hold Last State setting is displayed as Disable)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.AUX4_HLEnbl signal and update/display the SWITCH 4 Hold Last State setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the SWITCH 4 Hold Last State setting is displayed as Disable -> The SWITCH 4 Hold Last State setting is displayed as Disable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.AUX4_HLEnbl = one of [0 (Disable), 1 (Enable)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.AUX4_HLEnbl = 1 (Enable)\n2. Send CAN: IPC_VEHICLE_SETUP2.AUX4_HLEnbl = 0 (Disable)\n3. Read the Vehicle Settings menu and check that the SWITCH 4 Hold Last State setting is displayed as Disable",
@@ -749,7 +749,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Flash Light With Lock",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.FlashLightWLock_Req is sent as 0 (Off) when Flash Light With Lock is Off",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Flash Light With Lock setting is displayed as Off -> The Flash Light With Lock setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the Flash Light with Lock setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.FlashLightWLock_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Flash Light With Lock setting is displayed as Off -> The Flash Light With Lock setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Flash Light With Lock\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Flash Light With Lock\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.FlashLightWLock_Req = 0 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Flash Light With Lock setting is displayed as Off",
@@ -763,7 +763,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `FlashLightWLock_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `FlashLightWLock_Req` 之 `VAL_` 內 raw 0 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-FlashLightWithLock-049",
@@ -771,7 +771,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Flash Light With Lock",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.FlashLightWLock_Req is sent as 1 (On) when Flash Light With Lock is On",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Flash Light With Lock setting is displayed as On -> The Flash Light With Lock setting is displayed as On)",
+   "test_item": "The HMI layer shall capture the customer selection for the Flash Light with Lock setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.FlashLightWLock_Req signal value as On.\n\n(read the Vehicle Settings menu and check that the Flash Light With Lock setting is displayed as On -> The Flash Light With Lock setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Flash Light With Lock\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Flash Light With Lock\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.FlashLightWLock_Req = 1 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Flash Light With Lock setting is displayed as On",
@@ -785,7 +785,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `FlashLightWLock_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `FlashLightWLock_Req` 之 `VAL_` 內 raw 1 = `On`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-FlashLightWithLock-050",
@@ -793,7 +793,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Flash Light With Lock",
    "tc_title": "Flash Light With Lock is displayed as Off when FlashLightWLock is 0 (Off)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Flash Light With Lock setting is displayed as Off -> The Flash Light With Lock setting is displayed as Off)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.FlashLightWLock signal and update/display the Flash Light with Lock information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Flash Light With Lock setting is displayed as Off -> The Flash Light With Lock setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.FlashLightWLock = one of [0 (Off), 1 (On)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.FlashLightWLock = 1 (On)\n2. Send CAN: IPC_VEHICLE_SETUP.FlashLightWLock = 0 (Off)\n3. Read the Vehicle Settings menu and check that the Flash Light With Lock setting is displayed as Off",
@@ -815,7 +815,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Navigation Turn by Turn",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.NavigationRepetition_Req is sent as 1 (Off) when Navigation Turn by Turn is Off",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Navigation Turn by Turn setting is displayed as Off -> The Navigation Turn by Turn setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the Navigation Turn by Turn setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.NavigationRepetition_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Navigation Turn by Turn setting is displayed as Off -> The Navigation Turn by Turn setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Navigation Turn by Turn\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Navigation Turn by Turn\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.NavigationRepetition_Req = 1 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Navigation Turn by Turn setting is displayed as Off",
@@ -829,7 +829,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `NavigationRepetition_Req` 之 `VAL_` 內 raw 1 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `NavigationRepetition_Req` 之 `VAL_` 內 raw 1 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-NavigationTurnbyTurn-056",
@@ -837,7 +837,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Navigation Turn by Turn",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.NavigationRepetition_Req is sent as 0 (On) when Navigation Turn by Turn is On",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Navigation Turn by Turn setting is displayed as On -> The Navigation Turn by Turn setting is displayed as On)",
+   "test_item": "The HMI layer shall capture the customer selection for the Navigation Turn by Turn setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.NavigationRepetition_Req signal value as On.\n\n(read the Vehicle Settings menu and check that the Navigation Turn by Turn setting is displayed as On -> The Navigation Turn by Turn setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Navigation Turn by Turn\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Navigation Turn by Turn\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.NavigationRepetition_Req = 0 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Navigation Turn by Turn setting is displayed as On",
@@ -851,7 +851,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `NavigationRepetition_Req` 之 `VAL_` 內 raw 0 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `NavigationRepetition_Req` 之 `VAL_` 內 raw 0 = `On`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-NavigationTurnbyTurn-057",
@@ -859,7 +859,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Navigation Turn by Turn",
    "tc_title": "Navigation Turn by Turn is displayed as Absent when NavRepetition is 0 (Absent)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Navigation Turn by Turn setting is displayed as Absent -> The Navigation Turn by Turn setting is displayed as Absent)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.NavRepetition signal and update/display the Navigation Turn by Turn information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Navigation Turn by Turn setting is displayed as Absent -> The Navigation Turn by Turn setting is displayed as Absent)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.NavRepetition = one of [0 (Absent), 1 (Present)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.NavRepetition = 1 (Present)\n2. Send CAN: IPC_VEHICLE_SETUP.NavRepetition = 0 (Absent)\n3. Read the Vehicle Settings menu and check that the Navigation Turn by Turn setting is displayed as Absent",
@@ -881,7 +881,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Automatic Trailer Light Check",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Auto_Trailer_Light_Check_Req is sent as 0 (Disable) when Automatic Trailer Light Check is Disable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Automatic Trailer Light Check setting is displayed as Disable -> The Automatic Trailer Light Check setting is displayed as Disable)",
+   "test_item": "The HMI layer shall capture the customer selection for the Automatic Trailer Light Check setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Auto_Trailer_Light_Check_Req signal value as Disable.\n\n(read the Vehicle Settings menu and check that the Automatic Trailer Light Check setting is displayed as Disable -> The Automatic Trailer Light Check setting is displayed as Disable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Automatic Trailer Light Check\" customer setting is set to Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Automatic Trailer Light Check\" customer setting to Disable and check that TELEMATIC_VEHICLE_SETUP.Auto_Trailer_Light_Check_Req = 0 (Disable) is transmitted\n3. Read the Vehicle Settings menu and check that the Automatic Trailer Light Check setting is displayed as Disable",
@@ -895,7 +895,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Auto_Trailer_Light_Check_Req` 之 `VAL_` 內 raw 0 = `Disable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Auto_Trailer_Light_Check_Req` 之 `VAL_` 內 raw 0 = `Disable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PhoneRepetition-066",
@@ -903,7 +903,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Phone Repetition",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PhoneRepetition_Req is sent as 1 (Off) when Phone Repetition is Off",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Phone Repetition setting is displayed as Off -> The Phone Repetition setting is displayed as Off)",
+   "test_item": "The HMI layer shall capture the customer selection for the Phone Repetition setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PhoneRepetition_Req signal value as Off.\n\n(read the Vehicle Settings menu and check that the Phone Repetition setting is displayed as Off -> The Phone Repetition setting is displayed as Off)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Phone Repetition\" customer setting is set to On",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Phone Repetition\" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.PhoneRepetition_Req = 1 (Off) is transmitted\n3. Read the Vehicle Settings menu and check that the Phone Repetition setting is displayed as Off",
@@ -917,7 +917,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PhoneRepetition_Req` 之 `VAL_` 內 raw 1 = `Off`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PhoneRepetition_Req` 之 `VAL_` 內 raw 1 = `Off`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutomaticTrailerLight Check-042",
@@ -925,7 +925,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Automatic Trailer Light Check",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.Auto_Trailer_Light_Check_Req is sent as 1 (Enable) when Automatic Trailer Light Check is Enable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Automatic Trailer Light Check setting is displayed as Enable -> The Automatic Trailer Light Check setting is displayed as Enable)",
+   "test_item": "The HMI layer shall capture the customer selection for the Automatic Trailer Light Check setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.Auto_Trailer_Light_Check_Req signal value as Enable.\n\n(read the Vehicle Settings menu and check that the Automatic Trailer Light Check setting is displayed as Enable -> The Automatic Trailer Light Check setting is displayed as Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Automatic Trailer Light Check\" customer setting is set to Disable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Automatic Trailer Light Check\" customer setting to Enable and check that TELEMATIC_VEHICLE_SETUP.Auto_Trailer_Light_Check_Req = 1 (Enable) is transmitted\n3. Read the Vehicle Settings menu and check that the Automatic Trailer Light Check setting is displayed as Enable",
@@ -939,7 +939,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Auto_Trailer_Light_Check_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `Auto_Trailer_Light_Check_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-PhoneRepetition-067",
@@ -947,7 +947,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Phone Repetition",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.PhoneRepetition_Req is sent as 0 (On) when Phone Repetition is On",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Phone Repetition setting is displayed as On -> The Phone Repetition setting is displayed as On)",
+   "test_item": "The HMI layer shall capture the customer selection for the Phone Repetition setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PhoneRepetition_Req signal value as On.\n\n(read the Vehicle Settings menu and check that the Phone Repetition setting is displayed as On -> The Phone Repetition setting is displayed as On)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Phone Repetition\" customer setting is set to Off",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Phone Repetition\" customer setting to On and check that TELEMATIC_VEHICLE_SETUP.PhoneRepetition_Req = 0 (On) is transmitted\n3. Read the Vehicle Settings menu and check that the Phone Repetition setting is displayed as On",
@@ -961,7 +961,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PhoneRepetition_Req` 之 `VAL_` 內 raw 0 = `On`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `PhoneRepetition_Req` 之 `VAL_` 內 raw 0 = `On`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutomaticTrailerLight Check-043",
@@ -969,7 +969,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Automatic Trailer Light Check",
    "tc_title": "Automatic Trailer Light Check is displayed as Disable when Trailer_Light_Check is 0 (Disable)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Automatic Trailer Light Check setting is displayed as Disable -> The Automatic Trailer Light Check setting is displayed as Disable)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP2.Trailer_Light_Check signal and update/display the Automatic Trailer Light Check setting information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Automatic Trailer Light Check setting is displayed as Disable -> The Automatic Trailer Light Check setting is displayed as Disable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP2.Trailer_Light_Check = one of [0 (Disable), 1 (Enable)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP2.Trailer_Light_Check = 1 (Enable)\n2. Send CAN: IPC_VEHICLE_SETUP2.Trailer_Light_Check = 0 (Disable)\n3. Read the Vehicle Settings menu and check that the Automatic Trailer Light Check setting is displayed as Disable",
@@ -991,7 +991,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Phone Repetition",
    "tc_title": "Phone Repetition is displayed as Absent when PhoneRepetition is 0 (Absent)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Phone Repetition setting is displayed as Absent -> The Phone Repetition setting is displayed as Absent)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.PhoneRepetition signal and update/display the Audio Repetition information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Phone Repetition setting is displayed as Absent -> The Phone Repetition setting is displayed as Absent)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.PhoneRepetition = one of [0 (Absent), 1 (Present)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.PhoneRepetition = 1 (Present)\n2. Send CAN: IPC_VEHICLE_SETUP.PhoneRepetition = 0 (Absent)\n3. Read the Vehicle Settings menu and check that the Phone Repetition setting is displayed as Absent",
@@ -1013,7 +1013,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto High Beam",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req is sent as 0 (Not_Enable) when Auto High Beam is Not_Enable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto High Beam setting is displayed as Not_Enable -> The Auto High Beam setting is displayed as Not_Enable)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto High Beam setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req signal value as Not_Enable.\n\n(read the Vehicle Settings menu and check that the Auto High Beam setting is displayed as Not_Enable -> The Auto High Beam setting is displayed as Not_Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto High Beam\" customer setting is set to Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto High Beam\" customer setting to Not_Enable and check that TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req = 0 (Not_Enable) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto High Beam setting is displayed as Not_Enable",
@@ -1027,7 +1027,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoHighBeamEnable_Req` 之 `VAL_` 內 raw 0 = `Not_Enable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoHighBeamEnable_Req` 之 `VAL_` 內 raw 0 = `Not_Enable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-060",
@@ -1035,7 +1035,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 0 (0)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 0 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 1",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 0 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 0 (0) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 0",
@@ -1049,7 +1049,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 0 = `0`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 0 = `0`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoHighBeam-087",
@@ -1057,7 +1057,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto High Beam",
    "tc_title": "TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req is sent as 1 (Enable) when Auto High Beam is Enable",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto High Beam setting is displayed as Enable -> The Auto High Beam setting is displayed as Enable)",
+   "test_item": "The HMI layer shall capture the customer selection for the Auto High Beam setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req signal value as Enable.\n\n(read the Vehicle Settings menu and check that the Auto High Beam setting is displayed as Enable -> The Auto High Beam setting is displayed as Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Auto High Beam\" customer setting is set to Not_Enable",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Auto High Beam\" customer setting to Enable and check that TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req = 1 (Enable) is transmitted\n3. Read the Vehicle Settings menu and check that the Auto High Beam setting is displayed as Enable",
@@ -1071,7 +1071,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoHighBeamEnable_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `AutoHighBeamEnable_Req` 之 `VAL_` 內 raw 1 = `Enable`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-TrafficSignAssistOffset - NAFTASetting-061",
@@ -1079,7 +1079,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Traffic Sign Assist Offset - NAFTA Setting",
    "tc_title": "TELEMATIC_FD_1.TSI_Offset_Mph_Req is sent as 1 (1)",
-   "test_item": "The HMI layer shall maintain/update the displayed setting according to the requested value and any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 1 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 1)",
+   "test_item": "The HMI layer shall capture the customer selection for the Traffic Sign Assist Offset setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_FD_1.TSI_Offset_Mph_Req signal value as 1 mph.\n\n(read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 1 -> The Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 1)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting is set to 0",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Vehicle Settings menu and wait until it is fully rendered\n2. Set the \"Traffic Sign Assist Offset - NAFTA Setting\" customer setting to 1 and check that TELEMATIC_FD_1.TSI_Offset_Mph_Req = 1 (1) is transmitted\n3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 1",
@@ -1093,7 +1093,7 @@
    "remarks": "",
    "value_source": "2-DBC",
    "clause_form": "訊號送出型",
-   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 1 = `1`；條文逐字指名該值。 `test_item` 之上半取結論句（R-VF118；canon §4.3.1）。"
+   "reasoning": "值域來源 **2-DBC**（R-VF13）—— `TSI_Offset_Mph_Req` 之 `VAL_` 內 raw 1 = `1`；條文逐字指名該值。 `test_item` 之上半取**無結論句，退回末句**（R-VF118；canon §4.3.1）。"
   },
   {
    "leaf_id": "SWE1-VC-AutoHighBeam-088",
@@ -1101,7 +1101,7 @@
    "test_set": "Driver Convenience",
    "layer3": "Auto High Beam",
    "tc_title": "Auto High Beam is displayed as Not_Enable when AutoHighBeamEnable is 0 (Not_Enable)",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Auto High Beam setting is displayed as Not_Enable -> The Auto High Beam setting is displayed as Not_Enable)",
+   "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP.AutoHighBeamEnable signal and update/display the Auto High Beam information accordingly within <TDisplay>.\n\n(read the Vehicle Settings menu and check that the Auto High Beam setting is displayed as Not_Enable -> The Auto High Beam setting is displayed as Not_Enable)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. FD-CAN8 is connected to the bus simulator with signal tracing enabled\n3. The Vehicle Settings menu is open",
    "input_test_data": "IPC_VEHICLE_SETUP.AutoHighBeamEnable = one of [0 (Not_Enable), 1 (Enable)]",
    "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.AutoHighBeamEnable = 1 (Enable)\n2. Send CAN: IPC_VEHICLE_SETUP.AutoHighBeamEnable = 0 (Not_Enable)\n3. Read the Vehicle Settings menu and check that the Auto High Beam setting is displayed as Not_Enable",

@@ -221,6 +221,32 @@ def _sents(x: str) -> list[str]:
     return [t.strip() for t in re.split(r"(?<=\.)\s+", x.strip()) if t.strip()]
 
 
+# ---- R-VF125：摘句之排除層（W-VF83）----
+# **評分只能排序，不能排除**（V53 §3 逐字）—— 伴隨句同時滿足「含結論動詞」與
+# 「與 `tc_title` 重疊」二條件，故評分式判準反而優先選中它。
+# **實測 174／438（39.7%）之上半為伴隨句**，其上半在講「無效值之處置」
+# 而下半在驗「設定之顯示」，**與 canon §4.3.1 之「直接相關」相反**。
+#
+# **本清單為已知集合，非全集**（R-VF95 二）—— 新形態由人讀補入並具名其輪次。
+EXCLUDE_UPPER = [
+    # (a) 無主詞指涉本 TC 之驗證對象者。
+    #     **其變體須一併收**：V53 所報之 174 未含 `Any invalid **signal** value …`
+    #     （2 條），本層實測補之 —— 收窄之判準若逐字寫死，其變體即漏。
+    (re.compile(r"^Any invalid\b.{0,40}?shall be considered invalid", re.I),
+     "(a) 無主詞指涉本 TC 之驗證對象"),
+    # (b) 泛稱之維持／更新句。
+    (re.compile(r"^The HMI layer shall maintain/update the displayed setting", re.I),
+     "(b) 泛稱之維持／更新句"),
+]
+
+
+def excluded_upper(sent: str) -> str | None:
+    for rx, why in EXCLUDE_UPPER:
+        if rx.match(sent.strip()):
+            return why
+    return None
+
+
 def summarise(item: str, title: str) -> tuple[str, str]:
     """上半：取與測試目的直接相關之句。回 (句, 依據)。
 
@@ -230,12 +256,16 @@ def summarise(item: str, title: str) -> tuple[str, str]:
     """
     ss = _sents(item)
     key = set(re.findall(r"[A-Za-z0-9_]{4,}", title))
-    cand = [x for x in ss if _CONCL.search(x)]
+    # **第一層：排除，先行** —— 於評分之前剔除，故評分無從再選中它。
+    ss_ok = [x for x in ss if not excluded_upper(x)]
+    pool = ss_ok or ss          # 全數被排除者，退回原集合再由評分處理
+    cand = [x for x in pool if _CONCL.search(x)]
     if cand:
         best = max(cand, key=lambda x: (len(key & set(re.findall(r"[A-Za-z0-9_]{4,}", x))),
                                         cand.index(x)))
         return best, "結論句"
-    return ss[-1], "**無結論句，退回末句**"
+    # 二層皆無候選 → 退回末句（**排除後之末句**，非原末句）並具名
+    return pool[-1], "**無結論句，退回末句**"
 
 
 def bracket(proc: str, er: str) -> str:

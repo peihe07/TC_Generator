@@ -59,7 +59,7 @@
    "test_set": "Trailer and Signage",
    "layer3": "Enhanced Display Synchronization",
    "tc_title": "Enhanced Display Synchronization defaults to ON",
-   "test_item": "Any invalid value shall be considered invalid by HMI.\n\n(read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as ON -> The Enhanced Display Synchronization setting is displayed as ON)",
+   "test_item": "The HMI layer shall initialise and display the setting with the default value of ON for IPC_VEHICLE_SETUP2.Display_Synch.\n\n(read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as ON -> The Enhanced Display Synchronization setting is displayed as ON)",
    "pre_conditions": "1. The HU is in the Full-Operation state\n2. The HU has been reset to factory settings",
    "input_test_data": "NA",
    "test_procedure": "1. Power cycle the HU after the factory reset\n2. Open the Vehicle Settings menu and wait until it is fully rendered\n3. Read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as ON",

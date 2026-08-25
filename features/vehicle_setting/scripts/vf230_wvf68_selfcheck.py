@@ -337,6 +337,19 @@ def c19_lower_arrow(tcs, ctx):
             if "\n\n(" in t["test_item"] and " -> " not in t["test_item"].split("\n\n(", 1)[1]]
 
 
+def c20_upper_not_excluded(tcs, ctx):
+    """R-VF125：上半不得為排除清單之形態（伴隨句）。
+
+    **其判準自 `batches.EXCLUDE_UPPER` 匯入，為單一權威** ——
+    二處各寫一份則其分岔不會被任何檢查攔下（同 R-VF101 之必要句）。
+    """
+    return [f"seq {t['seq']}：上半為排除清單之形態 {why} —— "
+            f"`{t['test_item'].split(chr(10) * 2 + '(')[0][:56]}…`"
+            for t in tcs
+            for why in [BATCHES.excluded_upper(t["test_item"].split("\n\n(")[0])]
+            if why]
+
+
 def c12_placeholder_sentence(tcs, ctx):
     """W-VF71 第 2 項：R-VF91 二末之必要句，缺之即 FAIL。
 
@@ -440,6 +453,7 @@ CHECKS = [
     ("17 上半 token <= 50", c17_upper_tokens),
     ("18 同上半之下半不得逐字相同", c18_lower_unique),
     ("19 括號下半含 ' -> '", c19_lower_arrow),
+    ("20 上半不得為排除清單之形態", c20_upper_not_excluded),
 ]
 
 # 逐項之刻意破壞 —— 施於副本，用以證明該項**能夠**失敗。
@@ -489,6 +503,9 @@ MUTATIONS = {
                       ts[0].__setitem__("test_item", "Same upper.\n\n(do x -> X)"),
                       ts[1].__setitem__("test_item", "Same upper.\n\n(do x -> X)")),
     "19": lambda ts: ts[0].__setitem__("test_item", "Upper.\n\n(do x ; X happens)"),
+    "20": lambda ts: ts[0].__setitem__(
+        "test_item", "Any invalid value shall be considered invalid by HMI."
+                     "\n\n(do x -> X happens)"),
     "15": lambda ts: ts[0].__setitem__(
         "test_item", "The HMI shall display the setting.VHAL shall forward the "
                      "updated value to CarPropertyService."),
