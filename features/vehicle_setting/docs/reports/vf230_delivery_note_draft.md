@@ -107,7 +107,34 @@ PROXI PROXI_HDCC27_R3_20250424.xlsx
 
 ---
 
-## 七、本說明未涵蓋者
+## 七、R-VF12／R-VF16 之揭露（**本輪已自來源複驗**）
 
-- **R-VF12 之 460 條揭露**與 **R-VF16 之 8 列偏離** —— 其原始數據為前輪之產物，
-  **本草稿未複驗之**，具名待補。
+### 7.1 R-VF12 —— 460 條不在交付範圍
+
+> **035 有 1087 條 `Functional Requirement`，其中 460 條於上游尚無 SWE.1 分析，
+> 不在本次交付範圍。**
+
+**複驗（自 035／037 原檔）**：
+```
+035 Basic Report 之 Functional Requirement   **1087**
+037 之 11 份分報告所收（619 ＋ 8）             **627**
+未收                                          **460**（42.3%）
+```
+
+**「覆蓋率」之分母為 627（037 所涵蓋者），非 035 之 1087**（R-VF12）。
+
+### 7.2 R-VF16 —— leaf 母體 627，其中 8 列為刻意之偏離
+
+**複驗（自 035／037 原檔）**：
+```
+037 之 745 列   Heading 126 ／ Functional Requirement 619
+其中 037 判 `Heading` 而 035 判 `Functional Requirement`：**8**
+   SWITCH2HoldLastState-058／SWITCH3HoldLastState-063／SWITCH3PowerMode-014
+   SWITCH3Type-039／SWITCH5Type-045／SWITCH6HoldLastState-076
+   SWITCH6PowerMode-026／SWITCH6Type-051      （**八者集中於 SWITCH 族**）
+619 ＋ 8 = **627**，與 `data/vf230_leaves.tsv` 之 627 列**逐一對上**
+```
+
+**該 8 列計入可測 leaf 為裁定之偏離，非錯配之修正** ——
+其 037 條文逐字為需求形態，而 037 為權威來源，**故本方之分類於該 8 列與 037 相左，
+此為刻意且已具名**（R-VF16）。
