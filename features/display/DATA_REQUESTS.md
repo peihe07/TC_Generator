@@ -18,7 +18,7 @@ Urgency 回報。
 |---|---|---|---|---|---|---|
 | DR-DM1 | CFTS_009（條號 `{CFTS009-722}`，定義 `Start Up Sequence - Splash/Disclaimer Screen` 之時段）— 檔名待查（pattern：`…CFTS_009…docx`） | OPEN | SWE-DM-003 | splash/sleep 時長之預期結果無法寫 | — | HIGH |
 | DR-DM2 | Popup 優先序仲裁規則與 timeout 之來源（CFTS 本文僅有 RVC「high priority」語句，無仲裁順序表或 timeout 值） | OPEN | SWE-DM-006 | popup 仲裁之預期結果無法寫 | — | HIGH |
-| DR-DM3 | `SYS-RA-DISP-*` ↔ SYS2 之對應表，或含 `DISP` id 之 SYS2 版本 | OPEN | 全 8 leaf 之追溯欄 | 追溯鏈斷；spec_reference 無 id 路徑 | A-DM2 / A-DM10 | MEDIUM |
+| DR-DM3 | `SYS-RA-DISP-*` ↔ SYS2 之對應表，或含 `DISP` id 之 SYS2 版本 | **OPEN**（2026-08-25 曾兩度被指定而皆不答：① CFTS043 SYSRA —— 實測為 HVAC（`SYS-RA-HVAC-*` × 405，`SYS-RA-DISP` 0 次），見 A-DM31；② SYS3 SYSAD —— 本 feature 之素材且有其他用途，不登為異常，其不答本 DR 一事記於此）| 全 8 leaf 之追溯欄 | 追溯鏈斷；spec_reference 無 id 路徑 | A-DM2 / A-DM10 | MEDIUM |
 | DR-DM4 | CFTS_013（條號 `CFTS013-629` Standard/`-633` Standard/`-952` Multi-stage，載 DCSD Display Hot 演算法本體與其分級溫度門檻）— 檔名待查（pattern：`…CFTS_013…docx`） | OPEN | SWE-DM-005（004 部分） | multi-stage 之分級判準無法寫；單級 85 °C 行為可寫 | A-DM13 | HIGH |
 | DR-DM8 | 確認 037 之 `DISPLAY_ON`／`DISPLAY_OFF`（`SWE-DM-001`／`002`）與 SYS2／DBC 之 `DISP_ON`／`DISP_OFF` 是否為同一狀態 | OPEN | SWE-DM-001、SWE-DM-002 | 狀態名無法對應，TC 之預期結果無法引用 DBC 之 `VAL_` 標籤 | A-DM18 | HIGH |
 | DR-DM7 | 本專案（R1LR Atl-H）之 VF 代碼，或其 PROXI 實例檔（已填值之 PROXI，非 `_R3` 空白格式檔） | OPEN | 全 8 leaf 之前置條件 | `Used by NODE(VFXXX)` 無法用於篩選；PROXI 446 列母體無法收斂 | A-DM20 | MEDIUM |

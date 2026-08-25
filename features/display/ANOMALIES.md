@@ -856,6 +856,89 @@ R-DM39 要求對 A-DM27 之 10 項逐項比對值。比對時發現**其中兩�
   本輪之 5 與 9 之差即在該行。**該行是唯一能察覺此錯的線索**，
   應於引用其結果時一併引用，不得只引「N of N match」
 
+## A-DM31 — DR-DM3 所指之 CFTS043 SYSRA 內容為 HVAC，不答本 DR  [PENDING]
+
+`features/display/inputs/SYS2_CFTS043_FM-WI-FSM-035-A02 …SYSRA_CFTS043_V01.xlsx`
+係為答 DR-DM3（`SYS-RA-DISP-*` ↔ SYS2 之對應）而指定，**實測不含
+Display 之任何 id**。
+
+執行層獨立複驗（未照抄下放包，`openpyxl` 唯讀、三分頁全格掃描）：
+
+| 項 | 實測 |
+|---|---|
+| 分頁 | `Basic Report`／`Polarion`／`_polarion` |
+| 資料列 | **406** |
+| `SYS2 Sys-RA-Feature-ID` 為 `SYS-RA-HVAC-{n}` | **405**（另 1 列空） |
+| 全檔逐字 `SYS-RA-DISP` | **0** |
+| 全檔逐字 `SYS-DISP` | **0** |
+| 全檔逐字 `SWE-DM` / `SWE1-DM` | **0 / 0** |
+| sha256（前 16 碼） | `1c0b2abf659f4911…` |
+
+> **一處與下放包 15 §2.3 不符**：`Display` 一字之出現次數，
+> 下放包記 **477**，本輪實測 **480**。差異為掃描範圍 ——
+> 我掃三個分頁之全部儲存格，下放包疑似只掃 `Basic Report`。
+> **兩數皆非結論所依**（結論所依為 id 命名空間之 0 命中，該項逐字相符），
+> 故不觸發停止條件；記此以免日後被當成同一個量引用。
+
+**該檔為 CFTS_043（HVAC）之技術安全需求分析報告。** `Display` 一字雖
+出現數百次，**全部在 Description 之散文中**，與 id 命名空間無關。
+
+處置（依 15 包 §四步驟 4）：
+- **不納入 `paths:`／`reference:`／素材台帳，不自其取任何值**
+- **DR-DM3 維持 OPEN**，其 `Status` 欄加註本次指定與其實測結果
+- 該檔現位於 `features/display/inputs/` 而**不在任何綁定內** ——
+  這是本 feature 目前唯一一份「在 inputs/ 卻不受 R-DM38 綁定」之檔，
+  其理由正是「不得自其取值」。此例外須隨 A-DM31 一併引用
+
+> 這是本 feature 第二次「檔名看起來對而內容不是」——第一次是 02 輪之
+> 037 檔名連字號（R-DM11）。差別在於**這次檔名確實是一份真實存在且
+> 相關領域的文件**，只是 CFTS 號不同。若不逐字驗 id 命名空間就收下，
+> DR-DM3 會被錯誤結案，而追溯鏈仍然是斷的。
+
+## A-DM32 — 規格側之 `[DISP_OFF]`／`[DISP_ON]` 在 DBC 與 LID 皆不存在  [PENDING]
+
+`DCSD_DISP_STAT` 之值域，兩個權威逐字一致：
+
+| 來源 | 值域 |
+|---|---|
+| DBC `VAL_`（`PDT27_E2A_R1_BHCAN2.dbc`，`BO_ 1445`） | `0 "OFF" 1 "ON" 2 "BLANK" 3 "RR_CMRA" 4 "DISP_HOT" 7 "SNA"` |
+| LID `CAN Mapping` r420 `Format`（Atlantis High） | `0 = OFF 1 = ON 2 = BLANK 3 = RR_CMRA 4 = DISP_HOT 7 = SNA` |
+
+而規格側（CFTS `{4820287}`／`{4820288}`／`{4820289}`／`{4820290}`、
+SYS2 r31–r34）逐字寫 `$DCSD_DISP_STAT$=[DISP_OFF]`／`=[DISP_ON]`。
+
+| 標籤 | DBC | LID | 全 DBC 逐字掃描 |
+|---|---|---|---|
+| `DISP_HOT` | **有**（raw 4） | **有** | BHCAN2 3 次、BHCAN-R4 1 次 |
+| `DISP_OFF` | 無 | 無 | **0** |
+| `DISP_ON` | 無 | 無 | **0** |
+| `DISP_NORMAL` | 無 | 無 | **0 行** |
+
+**這是本 feature 第四個命名落差**，且與前三個都不同型：
+
+| # | 落差 | 型態 | 處置 |
+|---|---|---|---|
+| 1 | `SWE-DM` vs `SWE1-DM` | 同一文件兩分頁 | A-DM1／R-DM42 |
+| 2 | `RVC` vs `Rear View Camera` | 縮寫 | R-DM22 glossary |
+| 3 | `DISPLAY_ON` vs `DISP_ON` | 037 vs SYS2/DBC 之**訊號狀態名** | R-DM43（取訊號側） |
+| 4 | **`[DISP_OFF]` vs `OFF`** | **規格所引之值標籤 vs 該訊號之實際值標籤** | **本條，未裁** |
+
+R-DM43 之裁定為「以訊號名稱為主」，而**本條之問題不是名稱而是值**：
+訊號側確實有一個 raw 0，其標籤是 `OFF`；規格側寫的是 `DISP_OFF`。
+把兩者對上需要一個判斷 —— **該訊號只有一個「關」語意之值，
+故 `[DISP_OFF]` 幾乎必然指 raw 0** —— 但「幾乎必然」正是本專案
+一貫拒絕的東西（R-DM13／停止條件 14／§8.4.1）。
+
+- **影響**：pilot-01 之三條 TC 中，**#2（005 → 顯示關閉）與 #3
+  （005 → 回復）皆須引用該對應方能寫出 Expected Result**；
+  #1（004 → PU0517 ＋ `DISP_HOT`）之訊號值為 raw 4，**不受影響**
+- **本輪未作該對應**，未產出任何 TC（停止條件 46）
+- 提案處置（不裁定）：三途 ——
+  (a) 立一條「規格值標籤 ↔ DBC 值標籤」之對照表，形態同 R-DM22 之
+      glossary（封閉、逐條有出處、可稽核），本條之三筆即其首批；
+  (b) 裁定 ER 一律寫 DBC 側之 `= 0 (OFF)`，規格側寫法只入 `reasoning`；
+  (c) 向上游提 DR，請其確認 `[DISP_OFF]` 所指之 raw 值
+
 ---
 
 ## Assumption markers

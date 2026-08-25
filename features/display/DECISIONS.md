@@ -38,9 +38,18 @@ An unsigned sheet blocks Phase 4+.
 - Source files present: `[AUTO]`（**相符** —— recon 報 5 present）→ 4 份，逐份 SHA256 見
   `data/materials_ledger.tsv`；`shasum -c` 4/4 OK。另 036 母本
   （R-G1）`6372fb6b…825b2`
-- Missing referenced specs: `[AUTO]` → **CFTS_009**（CFTS_020 以
-  `{CFTS009-722}` 引用，定義 Splash/Disclaimer 時段）→ DR-DM1，
-  影響 SWE-DM-003
+- Cited outline sections absent from the ruled export: **未實測**
+  （R-DM40(a)）—— `recon.py` 之 `outline_misses` 為 `[]`，但該 0 是
+  **空的 0**：本 feature `citation column: NOT FOUND`、`sections: 0`，
+  此檢查不可能失敗。依 canon §5a 標「未實測」，**不標 PASS 亦不標 0**
+- External CFTS documents cited by the body: `[AUTO]` → 已評估者二 ——
+  **CFTS_009**（`{CFTS009-722}`，Splash/Disclaimer 時段）→ DR-DM1，
+  影響 SWE-DM-003；**CFTS_013**（`{CFTS013-629/633/952}`）→ DR-DM4，
+  影響 SWE-DM-005 之 multi-stage。**另 6 份未評估**（A-DM13）
+  > **R-DM40**：以上兩項原並存於 `Missing referenced specs` 一名之下。
+  > 拆分後兩者皆保留，**不得合併、不得擇一** —— 一個是「查不到缺口，
+  > 因為沒有東西可查」，另一個是「查到兩份缺件並已開 DR」；
+  > 合併會使後者被前者的 0 蓋掉。
 - Ruled-constant assertions: `[AUTO]`（recon）→ **1 checked, 1 PASS, 0 FAIL**
   （`functional_requirement_count: 8`，依 **R-DM36** 宣告於
   `feature.yaml` 之 `recon_assertions`）。
@@ -87,9 +96,14 @@ An unsigned sheet blocks Phase 4+.
   逐項相同）→ **8**（`SWE-DM-001`…`008`，皆 `Functional Requirement`）
 - Categorization 欄與分布: `[AUTO]`（**相符** —— recon 欄 F、
   `{'Functional Requirement': 8}`；自測第 6 欄 = F、同分布）
-- Safety attributes (ASIL/FTTI): `[PROPOSED]`（recon 所增）→ 受裁之來源
-  不帶 ASIL／FTTI 欄，故 SYS2／SYSRA 之安全層**不進入追溯鏈**。
-  自測未測此項
+- Safety attributes (ASIL/FTTI): `[PROPOSED]` → 安全層**不進入追溯鏈**。
+  > **依據更正（R-DM46）**：原敘述為「受裁之來源不帶 ASIL／FTTI 欄」。
+  > 實測：037 確無該欄；**SYS3 表 6 有 `ASIL Level` 欄，31/31 為 `QM`**，
+  > 另 `SG ID`／`FSR ID` 兩欄之非空列數皆為 **0**。
+  > 即安全目標與功能安全需求**未掛於這些條上**。
+  > **結論不變，依據由「查不到」改為「查到了，答案是沒有」** ——
+  > 依 R-G19，一個正確的結論配一個錯誤的理由，會使下一個人依那個
+  > 理由去推論別的事。
 - Covered by done region: `[AUTO]` → 0（無 done region）
 - Regen targets: `[AUTO]` → 8 leaf 全數
 - Leaves covered nowhere: `[AUTO]`（**相符**）→ 8 = 全部 leaf。
@@ -115,12 +129,16 @@ An unsigned sheet blocks Phase 4+.
 - Test Item shape: `[PROPOSED]` → 標準 IN §4.3 tc_title（BLANK 無先例可循）
 - Test Group / Test Set columns: `[PROPOSED]` → **FILL**（canon §2.1 之
   BLANK 綁定；`feature.yaml` 之 `fill_test_group_set` 已設 `true`）
-- spec_reference format: **`[PEI]`** —— **無法提案**。mode D 要求查得，但自
-  SWE-DM leaf 到 CFTS 條號之鏈路每一段皆無 id 橋樑（A-DM10b、A-DM2）。
-  > **分歧（R-DM32）**：`recon.py` 標 `[PROPOSED: None]`，係依
-  > `spec_reference_template` 為 null 之機械讀出。**維持 `[PEI]`，
-  > 不降格** —— `[PROPOSED]` 未經修改即生效，會使一個無法提案之項在
-  > 簽核時無聲通過。
+- spec_reference format: `[PROPOSED: CFTS020-{7 位 ObjectID}]` ——
+  逐 leaf 之 ObjectID 於 Phase 2 查得。canon §10.7(a)；CFTS_020 本文
+  條號 `{4820281}` 等實測為 7 位。
+  > **自 `[PEI]` 改為 `[PROPOSED]` 之依據（19 包步驟 6）**：本項原標
+  > `[PEI]` 之理由是「無法提案」—— 而**格式**現已可提案（分析層已提出
+  > 具體形態），故降格條件消失。此非 R-DM32 所禁之「機器降格」，
+  > 是提案內容出現後之正常轉換。
+  > **A-DM10b 不因此結案** —— 缺的是逐 leaf 之 ObjectID 對應，
+  > 不是格式。Phase 2 若查不到某 leaf 之 ObjectID，該 leaf 之
+  > `spec_reference` 仍無值可填。
 - Author value on new rows: `[PROPOSED: PeiPYHsu]`
 - Exemplar source: `[PROPOSED]` → cross-feature style only（BLANK，
   且每個字面值須回溯本 feature 之規格）
@@ -138,14 +156,20 @@ An unsigned sheet blocks Phase 4+.
 
 ## 6. Framework & profile
 
-- Test Set table (Part N draft): **`[PEI]`** → 待 Phase 3，須由 Pei 決定
+- Test Set table (Part N draft): **`[RULED]`** → **四組**：`Operative State`／
+  `Thermal Management`／`Pop Up Handling`／`Rear View Camera`。
+  定義與 Layer 3 見 `framework.md`。**Pei 2026-08-25 簽核所結**（§Sign-off 第 2 項）
   > **更正（2026-08-25，R-G24）**：本項於 02 輪（`61d1c12`）由分析層
   > 自填為 `[PROPOSED]`，而 `recon.py` 標 `[PEI]`。依 R-G24「marker 衝突
   > 取較嚴者，不問在哪一側」改為 `[PEI]`。原標記依 R-TM13 記於此，不刪除。
   > **機器是對的**：`FEATURE_ONBOARDING` 已定 framework 之 Test Set 表
   > 屬 Tier 2；標成 `[PROPOSED]` 會使其在簽核時無聲通過。
-- Contested attributions: `[PEI]` → Q3；Q2 已改為**暫緩**（見下方）
-- Profile [OVERRIDE] clauses needed: **`[PEI]`** → 待 Phase 3，須由 Pei 決定
+- Contested attributions: **`[RULED]`** → Q2 由 **R-DM41**、Q3 由 **R-DM42**
+  裁定（Pei 2026-08-25），兩者皆已結。本項所指之爭議標的因此消滅
+- Profile [OVERRIDE] clauses needed: **`[RULED]`** → **無 override，全採 canon 預設**。
+  canon §1 之 `[OVERRIDE-R5]` 限 BT／Projection；§8.7.5 之 override 限
+  `vehicle_setting`。Display 為新 feature，**不得援引他 feature 之既存
+  制度性格式**（canon §1 末句）。**Pei 2026-08-25 簽核所結**（§Sign-off 第 3 項）
   > **更正（2026-08-25，R-G24）**：同上項。02 輪自填 `[PROPOSED]`，
   > recon 標 `[PEI]`，取較嚴者。profile override 條款屬 Tier 2。
 
@@ -167,8 +191,8 @@ An unsigned sheet blocks Phase 4+.
 | # | 事項 | 層級 | 本輪實測對該題之影響 |
 |---|---|---|---|
 | Q1 | 036 母本與 `workbook_state` | `[PROPOSED]` | 實測 `BLANK`（1402 列 filled = 0）；交付夾內亦無 036。提案成立 |
-| Q2 | 驗證範圍：8 leaf，或含 SYS2 之 80 個 Functional Requirement | **`[PEI]`，材料已備**（`docs/Q2_Q3_briefing.md`，下放包 10 步驟 6） | 原提法之前提（037 leaf 與 SYS2 FR 是兩組不同的東西）不成立：037 之 `Hot Algorithm` 與 SYS2 r30 之 `Multi-stage' DCSD Display Hot Algorithm` 為同一件事之兩個抽象層級。依下放包 03 §4.2，於錨定法之兩項限制（heading 在 r72 退化、RVC 縮寫不逐字，見 A-DM11）有處置前不得提交 —— 以無錨之數字請求裁決即為拿錯誤的量級問 Pei |
-| Q3 | `req_id` 寫 `SWE-DM-001` 或 `SWE1-DM-001` | **`[PEI]`，材料已備**（同上） | 兩種寫法各出現 8 次：`SWE-DM-nnn` 在 `SWE1 Requirements`（需求本體）、`SWE1-DM-nnn` 在 `SYS2 Traceability`（衍生索引）；**兩者在 SYS2／CFTS／SYS3 三份素材中皆 0 次**。A-DM1 不因裁定而結案 |
+| Q2 | 驗證範圍：8 leaf，或含 SYS2 之 80 個 Functional Requirement | **已裁定（R-DM41）** | **Pei 2026-08-25 裁定取 037 之 8 個 leaf，選項 B 排除。** 理由：037 界定的不只「測什麼」，還包含**「要不要測」**——一條 SYS 層需求未進 037，可能正是已分派給系統測試層級，而 SWE.6 之標的是軟體。三項隨附拘束見 R-DM41：SYS2 仍為內容來源；借其內容不得使該列之驗證目的進入 TC；**揭露義務不因範圍縮小而消失** |
+| Q3 | `req_id` 寫 `SWE-DM-001` 或 `SWE1-DM-001` | **已裁定（R-DM42）** | **Pei 裁定取 `SWE1-DM-{nnn}`**（`SYS2 Traceability` 分頁之寫法），填 036 之 D 欄。`SWE-DM-{nnn}` **不入任何交付欄位**，其於 `reasoning`／`ANOMALIES.md`／內部資料檔之引用不受限但須明確區分。**A-DM1 不因此結案**（上游文件內部不一致與「我們採哪一個」是兩件事）|
 | Q4 | `Verification Criteria` / `Verification Method` 之地位 | `[PROPOSED]` | 本輪一律未用（R-DM8 末段），二欄內容亦未檢視 |
 | Q5 | `intake.py` sniffer 之修法 | **已裁定（B）並執行** | Pei 2026-08-25 採 B；`kind_overrides` 已實作並回歸（R-DM24）。**惟其未達原目的** —— `recon.py` 之阻塞另由選項 D 解決（R-DM31／A-DM21） |
 | Q6 | `D5`（範圍 Scope）欄之內容 | `[PROPOSED]`，Phase 3 | 未動 |
@@ -225,6 +249,41 @@ An unsigned sheet blocks Phase 4+.
 
 ## Sign-off
 
-- Reviewed by: ____________  Date: ____________
-- Overridden items (list numbers): ____________
-- Ruling notes:
+- Reviewed by: **PeiPYHsu**   Date: **2026-08-25**
+- Overridden items (list numbers): **無**
+- Ruling notes: 口頭裁示「簽核」（2026-08-25），由分析層轉錄。
+  轉錄範圍即下列三項 `[PEI]` 之結案；`[PROPOSED]` 各項未經修改，
+  依 canon §4 生效。
+
+### 本次簽核所結之三項 `[PEI]`
+
+| # | 項 | 結案內容 | 內容之出處 |
+|---|---|---|---|
+| 1 | `spec_reference` | **`CFTS020-{7 位 ObjectID}`**，逐 leaf 之 ObjectID 於 Phase 2 查得 | 分析層提案。canon §10.7(a)；CFTS_020 本文條號 `{4820281}` 等實測為 7 位。**A-DM10b 不因此結案** —— 缺的是逐 leaf 對應，非格式 |
+| 2 | `Test Set table (Part N)` | **四組**：`Operative State`／`Thermal Management`／`Pop Up Handling`／`Rear View Camera`（定義見 `framework.md`） | 分析層草案。§4.1.3 自檢已附；`Pop Up Handling` 為單 leaf，依 §4.2「genuine outlier」例外 |
+| 3 | `profile [OVERRIDE] clauses` | **無 override，全採 canon 預設** | canon §1 之 `[OVERRIDE-R5]` 限 BT／Projection；§8.7.5 之 override 限 `vehicle_setting`。Display 為新 feature，不得援引他 feature 之既存制度性格式（canon §1 末句） |
+
+> **轉錄之限定（R-DM32／R-G24）**：三項之內容皆係分析層提出，
+> Pei 之「簽核」係對該提案之核可，非其自撰。三項已於同日對話中
+> 逐項向 Pei 陳明。**若任一項與 Pei 本意不符，以 Pei 之更正為準，
+> 本轉錄作廢重寫。**
+
+### DR 現況（8 項，全列）
+
+| DR | 狀態 | 依據 |
+|---|---|---|
+| DR-DM1 | OPEN | CFTS_009 未取得 |
+| DR-DM2 | OPEN | Pop Up List 已取得，仲裁順序待 Priority Matrix 併讀 |
+| DR-DM3 | OPEN | 兩度指定之檔（CFTS043 SYSRA、SYS3 SYSAD）皆不含 `SYS-RA-DISP` |
+| DR-DM4 | OPEN | CFTS_013 未取得；005 之 multi-stage 因此 deferred |
+| DR-DM5 | OPEN | LID 與 BHCAN2 對 `RADIO_B4`／`GW_B_5` 之配置不一致 |
+| DR-DM6 | OPEN | `DSP_SK_PRSNT` vs PROXI r692 尾綴差異 |
+| DR-DM7 | **CLOSED** | R-DM44 —— 所求之用途已由 R-DM33 取消，非取得所求之物 |
+| DR-DM8 | **CLOSED** | R-DM43 —— Pei 裁「以訊號名稱為主」 |
+
+### 簽核之效力
+
+- Phase 4（TC 生成）之封鎖解除
+- `recon.py` 此後對本 feature 回 `REFUSED`（已簽核之守衛，A-TM15），
+  此為正常行為；如需重跑須經 Pei 另行裁示
+- 不受本簽核影響者：**開放 DR 6 項**、**A-DM1**、**A-DM10b**

@@ -835,6 +835,176 @@ Priority rubric deviations／Authors present
 交叉檢查之涵蓋面自身未被檢查過。
 ```
 
+## 來源：下放包 19（原出處 `14_mapping_audit.md`）
+
+```
+R-DM40（`Missing referenced specs` 拆為兩名）
+本 feature 之 `DECISIONS.md` 中，`Missing referenced specs` 一名之下
+並存兩個不同的量，拆分如下：
+
+(a) **`Cited outline sections absent from the ruled export`**
+    —— `recon.py` 之 `outline_misses`。本 feature 之值為 **0**，
+    且該 0 為**空的 0**：`citation column: NOT FOUND`、`sections: 0`，
+    故此檢查在本 feature 不可能失敗。
+    依 canon §5a **標「未實測」，不標 PASS 亦不標 0**。
+
+(b) **`External CFTS documents cited by the body`**
+    —— CFTS_020 本文以 `{CFTSnnn-mmm}` 引用之外部文件。
+    已評估者二：CFTS_009（`{CFTS009-722}`，→ DR-DM1）、
+    CFTS_013（→ DR-DM4）；**另 6 份未評估**（A-DM13）。
+
+兩者皆為有效之量，皆保留。**不得合併、不得擇一** ——
+一個是「查不到缺口，因為沒有東西可查」，另一個是
+「查到兩份缺件並已開 DR」，合併會使後者被前者的 0 蓋掉。
+```
+
+## 來源：下放包 19（原出處 `15_scope_settled.md`）
+
+```
+R-DM41（Q2 定案 —— 範圍取 037 之 8 個 leaf）
+Pei 2026-08-25 裁定：驗證範圍取 037 之 8 個 leaf
+（`SWE-DM-001`…`008`）。**選項 B（以 SYS2 之 80 列 FR 為母體）排除。**
+
+裁定理由（Pei 原話）：「037 也界定要不要測才對啊，因為有可能 SYS2
+的範圍已經判給 SYSTEM 測試，而我這裡是 software」。
+
+即：037 為 SWE.1 之交付物，其界定者不只「測什麼」，亦包含
+**「要不要測」** —— 一條 SYS 層需求未進入 037，可能正是因為它已
+分派給系統測試層級，而 SWE.6 之標的是軟體。
+
+三項隨附拘束：
+
+(a) **SYS2 仍為內容來源**，不因本條而失效。R-DM14（值域來源）、
+    R-DM17（三段解析鏈）、R-DM8 再判定（hot 行為之併讀）皆維持有效。
+    037 界定「測什麼／要不要測」，SYS2 供給「怎麼測」。
+
+(b) **借用 SYS2 某列之內容，不得使該列之驗證目的進入 TC。**
+    TC 之驗證目標一律為其所屬之 SWE-DM leaf；SYS2 列僅供其訊號名、
+    值域、狀態轉換之取材（§8.2.1、§8.4.2）。
+
+(c) **揭露義務不因範圍縮小而消失**（R-DM7 之揭露義務未廢止）。
+    交付時須附「037 leaf ↔ SYS2 列」之對照表，並載明：
+      - 以 id 為據之對應 **0 列**（A-DM2）
+      - 候選：004／005 各 4 列、007／008 各 12 列、其餘四 leaf **0 列**
+      - **64 列無候選之語意為 R-DM23 之 (3) 方法界線**，
+        不等於「不屬於本 feature 範圍」
+      - SYS2 之 `SW/HW/System` 欄對 80 列 FR 之分布：
+        System 47／HW 26／SW 7；**該欄之語意為「由誰實現」，
+        非「由哪個測試層級驗證」**，故不得以其單獨論證範圍
+```
+
+## 來源：下放包 19（原出處 `15_scope_settled.md`）
+
+```
+R-DM42（Q3 定案 —— req_id 形態）
+Pei 2026-08-25 裁定：`req_id` 取 **`SWE1-DM-{nnn}`** 形態
+（037 `SYS2 Traceability` 分頁之寫法），填入 036 之 D 欄
+`Requirement or Design ID`。
+
+八個值為 `SWE1-DM-001` … `SWE1-DM-008`。
+
+三項隨附：
+(a) `SWE-DM-{nnn}`（`SWE1 Requirements` 分頁之寫法）**不入任何交付欄位**；
+    其於 `reasoning`、`ANOMALIES.md`、內部資料檔中之引用不受限制，
+    但須與 `SWE1-DM-` 明確區分，不得混用。
+(b) **A-DM1 不因本裁定結案** —— 該條記的是「037 兩個分頁對同一物件
+    使用兩種寫法」，屬上游文件內部不一致，與「我們採哪一個」是兩件事。
+    仍須向上游反映。
+(c) `recon_assertions` 之 `functional_requirement_count: 8` 不受影響
+    （leaf 數未變，僅書寫形態改變）。
+```
+
+## 來源：下放包 19（原出處 `15_scope_settled.md`）
+
+```
+R-DM43（DR-DM8 定案 —— 以訊號名稱為主）
+Pei 2026-08-25 裁定：037 之 `DISPLAY_ON`／`DISPLAY_OFF`
+與 SYS2／DBC 之 `DISP_ON`／`DISP_OFF`，**以訊號名稱為主**。
+
+即：TC 之 Procedure 與 Expected Result 一律採 `DISP_ON`／`DISP_OFF`
+（DBC `DCSD_DISP_STAT` 之 `VAL_` 標籤側）。
+
+本條與 R-6 之既有規定一致：「訊號名以 DBC 為準；來源文件與 DBC
+大小寫不一致時，步驟採 DBC 寫法，verbatim 上半仍保留來源原文」。
+**037 原文於 `test_item` 上半之 verbatim 摘句中仍寫 `DISPLAY_ON`**，
+不得改寫 —— 本條規制的是步驟與預期結果，不是引文。
+
+DR-DM8 **結案**。A-DM18 之該項隨之結案；A-DM18 之其餘部分
+（八條無值、八條併句）不受影響。
+```
+
+## 來源：下放包 19（原出處 `15_scope_settled.md`）
+
+```
+R-DM44（DR-DM7 結案 —— 需求已由 R-DM33 消滅）
+`forms/PROXI_HDCC27_R3_20250424.xlsx` 經實測為**格式／標準文件**
+（`Cover`：`27MY HDCC SPECIFIC PROXI TABLE`、`Support Document`；
+`Header`：`HDCC27 - Draft`），不含任一具體車輛之已填值，
+亦不載本專案之 VF 代碼。
+
+DR-DM7 原求「本專案之 VF 代碼，或已填值之 PROXI 實例檔」，
+其目的為**收斂 446 列之供給側母體**（`Used by NODE(VFXXX)` 之篩選）。
+**該目的已由 R-DM33 消滅** —— PROXI 改為需求驅動後，
+不再需要對 446 列分類，只在某 leaf 需要某參數時查該一個參數。
+
+處置：**DR-DM7 結案**，理由記為「所求之用途已由 R-DM33 取消，
+非取得所求之物」。A-DM20 改標 RESOLVED-BY-SCOPE-CHANGE，
+不標 RESOLVED。
+
+**重開條件**：若 Phase 2 之逐 leaf 查詢中，某參數之值域在
+PROXI 中依 VF 而異，則 VF 代碼重新成為必要，DR-DM7 以新編號重開。
+```
+
+## 來源：下放包 19（原出處 `16_sysad_allocation.md`）
+
+```
+R-DM45（SYS3 之地位：軟體分派之 id 層級證據）
+`SYS3_CFTS_020_display_…SYSAD_v1.0.docx` 表 31（`System Requirement
+ID` → `SYSAD-ID` → `% of allocation`）為本 feature 目前**唯一**
+id 層級逐字之軟體分派證據。
+
+實測（分析層 2026-08-25，執行層須獨立重算）：
+  9 個 SYSAD 元件、31 個相異 `SYS-RA-DM-*` id、分派比例皆 100%
+  31/31 落在 SYS2 之 80 列 FR 母體內，0 查無、0 非 FR
+  16 個候選列中 12 個在分派表內（未在者 4 個皆為 `SYS2-RA-*` 區段）
+
+用途二項：
+(a) 供 R-DM41(c) 之揭露 —— 以「80 列中 31 列明確分派至軟體元件」
+    取代（並非廢止）`SW/HW/System` 欄之 System 47／HW 26／SW 7。
+    兩個量並列揭露，因其回答的是不同的問題。
+(b) 供 Phase 2 判定某 SYS2 列之內容是否可取用於某 leaf 之 TC ——
+    **僅為佐證，非授權**。取用之正當性仍依 R-DM41(a)(b)。
+
+三項不得為之：
+(1) 不得以 SYSAD 元件名與 037 之 Sub Categorization 語意相近
+    建立 leaf ↔ 元件映射（R-DM13／R-G27）
+(2) 不得以「未出現於分派表」推論該列不屬軟體範圍 ——
+    未出現之 49 列其成因未量測
+(3) 不得以本表取代 037 之範圍界定（R-DM41 已定範圍為 8 leaf）
+```
+
+## 來源：下放包 19（原出處 `16_sysad_allocation.md`）
+
+```
+R-DM46（`Safety attributes` 之依據更正）
+`DECISIONS.md` §3 之 `Safety attributes (ASIL/FTTI)` 一項，
+其敘述「受裁之來源不帶 ASIL／FTTI 欄」**須更正**。
+
+實測：037 確無該欄；**SYS3 表 6 有 `ASIL Level` 欄，31/31 為 `QM`**，
+另有 `SG ID`／`FSR ID` 兩欄，兩欄之非空列數皆為 **0**。
+
+更正後之敘述：
+  037（受裁之範圍界定來源）不帶 ASIL／FTTI 欄；
+  SYS3 帶 `ASIL Level` 欄，其值於 31 個被分派之需求上皆為 `QM`，
+  且 `SG ID`／`FSR ID` 全空 ——
+  即安全目標與功能安全需求未掛於這些條上。
+  故安全層不進入追溯鏈。
+
+`[PROPOSED]` 之結論不變，**依據由「查不到」改為「查到了，答案是沒有」**。
+依 R-G19，理由與數字須分別成立；一個正確的結論配一個錯誤的理由，
+會使下一個人依那個理由去推論別的事。
+```
+
 ---
 
 ## 抄錄核對表
@@ -874,9 +1044,12 @@ Priority rubric deviations／Authors present
 | 31 | R-DM29 | 08 | 482 | `387d90ad885f0c9e` | 是 |
 
 核對方法：抄錄後自 `RULINGS.md` 反向抽取各 fenced 區塊，與下放包原檔
-之對應區塊逐字元 `==` 比對並比對 SHA256；**41 條全數相符**（01 包 8 條、
-02 包 5 條、03 包 4 條、04 包 2 條、05 包 4 條、06 包 2 條、07 包 4 條、
-08 包 2 條、09 包 2 條、10 包 3 條、11 包 1 條、12 包 2 條、13 包 2 條）。
+之對應區塊逐字元 `==` 比對並比對 SHA256；**48 條全數相符**（01 包 8、02 包 5、03 包 4、04 包 2、05 包 4、
+06 包 2、07 包 4、08 包 2、09 包 2、10 包 3、11 包 1、12 包 2、13 包 2、
+**19 包 7**）。
+
+> 19 包為合併包：14–18 五包之編號作廢，其條文由 19 包之執行序抄錄，
+> 各條之「原出處」逐條註明於其標題行。
 
 > 自下放包 09 起，核對表由 `scripts/transcribe_rulings.py` 直接產出
 > markdown 貼入上繳包（R-G20：報告中之摘要數字須為機器輸出）。

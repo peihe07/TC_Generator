@@ -22,6 +22,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 11 | 2026-08-25 | 綁定檢查、合併複驗、待裁期間之不阻塞工作 | [handoff/11_binding_verify.md](handoff/11_binding_verify.md) | [upstream/11_binding_verify.md](upstream/11_binding_verify.md) | R-DM35 ＋ R-G23（全域）（逐字抄錄 2/2，Display 累計 37/37） | （無新 A-DM） | **⚠ 步驟 3 觸發停止條件 29：合併漏了 3 項，已停於待裁。步驟 1、2、4–6 完成** |
 | 12 | 2026-08-25 | marker 衝突裁定、已裁常數改為機器檢查 | [handoff/12_assertions.md](handoff/12_assertions.md) | [upstream/12_assertions.md](upstream/12_assertions.md) | R-DM36／R-DM37 ＋ R-G24（全域）（逐字抄錄 3/3，Display 累計 39/39） | A-DM27／A-DM28 新增 | **步驟 1–8 全數執行；三十二條停止條件全未觸發。三項分歧已處置，複驗 24/24 有對應** |
 | 13 | 2026-08-25 | 會說謊的警示補測、綁定範圍收束、不阻塞工作見底 | [handoff/13_honest_guards.md](handoff/13_honest_guards.md) | [upstream/13_honest_guards.md](upstream/13_honest_guards.md) | R-DM38／R-DM39 ＋ R-G25（全域）（逐字抄錄 3/3，Display 累計 41/41） | A-DM29／A-DM30 新增（皆自查）；A-DM27 更正 | **⚠ 步驟 3 觸發停止條件 34（1 項不符）。步驟 1、2、4、5、6 完成。綁定 9/9** |
+| 19 | 2026-08-25 | **合併包**：14–18 撤回重排；裁定落地、framework、簽核、pilot-01 | [handoff/19_consolidated.md](handoff/19_consolidated.md) | [upstream/19_consolidated.md](upstream/19_consolidated.md) | R-DM40–46（7 條）＋ R-G26–31（6 條，全域）＋ R-G32（逐條 12/12 PASS，Display 累計 48/48） | A-DM31／A-DM32 新增 | **⚠ 步驟 13 觸發停止條件 46（值無出處），未產出 TC。步驟 1–12、15 完成；簽核已轉錄，Phase 4 解封** |
 
 ## 02 輪要點
 
@@ -313,3 +314,30 @@ YAML 解析無誤、檢查照常輸出 `5 of 5 match.`。**一個通過的檢查
 
 **subprocess 成本**：守衛本身中位數 **0.04s**；佔比 0.9%（proxi）～
 **46%（dbc_probe）**。絕對值小，但對快腳本幾乎等於加倍。
+
+## 19 輪要點
+
+**14–18 五包編號作廢**，其內容由 19 包之 15 步執行序取代。
+
+**12 條逐條抄錄 12/12 PASS**（各自獨立比對，停止條件 49 未觸發）。
+
+**裁定落地**：Q2 取 037 之 8 leaf（**R-DM41** —— 037 界定的不只「測什麼」，
+還包含「要不要測」）；Q3 取 `SWE1-DM-{nnn}`（**R-DM42**）；
+DR-DM8／DR-DM7 結案（**R-DM43／R-DM44**）；
+`Safety attributes` 之依據由「查不到」改為「**查到了，答案是沒有**」
+（**R-DM46**：SYS3 表 6 有 `ASIL Level`，31/31 為 `QM`，`SG ID`／`FSR ID` 全空）。
+
+**簽核已轉錄**：實質 `[PEI]` 殘留 **0**（標記分布 AUTO 28／PROPOSED 12／
+RULED 3）；`recon.py` 回 **REFUSED (R-C9)**，兩項複驗皆過。
+
+**綁定 11/11**（Pop Up List 兩檔納入）。過程中查出 `paths:` 與
+`reference:` 之**路徑基準不同**（feature 目錄 vs repo 根）——
+首次宣告即令 recon 以 `input not found` 中止，依 `home` 之先例改置
+`inputs/`。
+
+**framework.md 落檔**：四組 Test Set 涵蓋 8 leaf，無重複無遺漏。
+
+**⚠ 停止條件 46 觸發，未產出 TC**：18 §二.2 指定之值標籤
+`DISP_OFF`／`DISP_NORMAL` **在 DBC 與 LID 皆不存在**（`DISP_HOT` 有，raw 4）。
+規格側寫 `[DISP_OFF]`、訊號側為 `0 (OFF)`，兩者對應**非逐字**。
+以 **A-DM32** 登記，並列三途提案，未裁定。

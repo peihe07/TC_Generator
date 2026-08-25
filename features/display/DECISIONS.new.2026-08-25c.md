@@ -1,3 +1,10 @@
+<!-- R-DM35(b)：本檔為 2026-08-25（12 包）之 recon 產出。19 包步驟 11(b)
+     之複驗重跑 recon 時，我**未先依 R-DM35(b) 改名**即讓其覆寫
+     `DECISIONS.new.md`；察覺後自 `git show HEAD:` 取回本版保留。
+     與新版之唯一差異：`source files` 由 5 present 變為 7 present
+     （Pop Up List 兩檔於本輪納入 paths:）。
+     此為 R-DM35(b) 之一次違反，已補救；記於上繳包 19 §5.2。 -->
+
 # DECISIONS — Display (FW036)
 
 Pre-filled by recon.py. Markers per FEATURE_ONBOARDING §4; an
@@ -7,7 +14,7 @@ sign-off = binding as proposed.
 ## 1. Intake
 - spec_mode: [AUTO] D
 - spec text layer: [AUTO] text-layer: 854333 chars (via pymupdf)
-- source files: [AUTO] 7 present (SHA256 in RECON.md)
+- source files: [AUTO] 5 present (SHA256 in RECON.md)
 - ruled-constant assertions: [AUTO] 1 checked, 1 PASS, 0 FAIL (measured values in RECON.md)
 
 ## 2. Workbook survey

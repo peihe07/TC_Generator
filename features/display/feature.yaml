@@ -11,7 +11,12 @@ paths:
   sys1_export: "inputs/SYS2_CFTS_020_DISP_TCH_ICS_20260616_All_HW_System_Accepted & Released.xlsx"        # null if spec_mode has no export
   spec_pdf: "inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and DCSD _20260310-1533.docx"   # CFTS 本文；spec_mode D 之判讀基準
   sys3_sysad: "inputs/SYS3_CFTS_020_display_FM-WI-FSM-011-A01_System Architectural Design_SYSAD_v1.0.docx"   # 追溯/架構參考，非判讀基準（intake.py A-TM10 未填入）
-  popup_list: null                       # 交付夾內無 Pop Up List
+  popup_list: "inputs/Pop Up List HMI R1 (26PI).xlsx"   # PU0517／PU0130 之值域來源
+  popup_priority_matrix: "inputs/Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf"   # 仲裁順序（DR-DM2 之併讀對象）
+  # 注意：`paths:` 之基準為本 feature 目錄，`reference:` 之基準為 repo 根。
+  # 兩節之路徑寫法不同不是筆誤 —— 首次宣告時我把 forms/ 之 repo 相對路徑
+  # 填進 paths:，recon.py 隨即以 `input not found ... under features/display`
+  # 中止。素材依既有慣例（同 home 之 popup_list）複製入 inputs/。
 
 # R-G15（2026-08-24，全域）：參考資料庫之版本綁定。逐項記檔名與 SHA256，
 # 使跨 feature 之版本差異可見 —— vehicle_setting 用 LID v1_76、display 用
@@ -61,6 +66,15 @@ reference:
   sys3_sysad:
     file: "features/display/inputs/SYS3_CFTS_020_display_FM-WI-FSM-011-A01_System Architectural Design_SYSAD_v1.0.docx"
     sha256: "be9c97af0211a70357d4484fcfbd19b72d3d439ff28e7d09a11dda3146b3c298"
+  # 19 包步驟 7（R-DM38 之判準）：PU0517／PU0130 之 timeout 與 category
+  # 直接進 TC 之 Input Test Data 與 Expected Result，故此二檔之變動會使
+  # 既有產出失效 —— 納入綁定。
+  popup_list:
+    file: "features/display/inputs/Pop Up List HMI R1 (26PI).xlsx"
+    sha256: "ff47b7be63e5824cafe35deda9f9ddd0a63f6ea458169ef73689a1c559ea13ea"
+  popup_priority_matrix:
+    file: "features/display/inputs/Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf"
+    sha256: "dc078763c67b52388eba8edf5c461515cfd2d92dd3a78dba0ce4e365e43ccc2f"
 
 # R-DM24（Q5 定案 B，Pei 2026-08-25）：以人工指定 kind 取代放寬共用分類器。
 # `scripts/intake.py` 之 SHEET_SIGNATURES 一字未動；覆寫僅在下列 sha256
