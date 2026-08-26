@@ -85,7 +85,7 @@ def main() -> None:
                         r"\b\d+\.$", line.rstrip()):
                     bad(tc, f"{key} line ends in a period")
         for line in tc["expected_result"].split("\n"):
-            if MODALS.search(line):
+            if MODALS.search(re.sub(r"\bCAN\b", "", line)):
                 bad(tc, f"expected_result uses a modal verb: {line[:50]}")
         proc = tc["test_procedure"].split("\n")
         for step in proc:

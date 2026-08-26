@@ -200,7 +200,10 @@ def main() -> int:
             if m:
                 fails.append(f"{tag}: step opens with {m.group(1)!r} (5.1)")
         for line in er:                                              # B
-            outside = re.sub(r'"[^"]*"', "", line)
+            # "CAN amplified" is the bus, not the modal. Drop all-caps
+            # technical tokens before the modal test rather than letting a
+            # case-insensitive \bcan\b flag every CAN system reference.
+            outside = re.sub(r"\bCAN\b", "", re.sub(r'"[^"]*"', "", line))
             if MODALS.search(outside):
                 fails.append(f"{tag}: ER carries a modal verb (6): {line[:50]}")
         if len(proc) != len(er):                                     # E
