@@ -106,6 +106,15 @@ Urgency 回報。
 > | `[DISP_REAR_CAMERA]` | **0** | **107** | — | **非本訊號之值** |
 > | `[DISP_NORMAL]` | **0** | **99** | — | **非本訊號之值** |
 >
+> **附件三（下放包 32 §三.2）—— 第三種書寫形態**：`{4819344}`
+> （`§1.4.2.1 Other Requirements`，適用本專案）逐字為
+> `When the HU has a loss of communication condition with the ICS, the HU shall set TGW_DISP_STAT = [Fh: sna].`
+> —— **十六進位形態 `[Fh: sna]`**，與 `TGW_DISP_STATSts` 之 `VAL_ 15 "SNA"` 對得上。
+> **單一用例，本層未外推至 `[DISP_NORMAL]` 等其他 HU 側標籤**（R-DM48）。
+> 即規格對 HU 側值至少有三種書寫：長拼法 `[DISP_NORMAL]`、
+> 雙記法 `DISP_NORMAL / Normal_mode`、十六進位 `[Fh: sna]`。
+> **請上游一併說明何者為權威。**
+>
 > 阻斷範圍隨之修正：**用短拼法之條款不受阻**（007／008 之 RVC 諸條
 > 逐字為 `$DCSD_DISP_STAT$ = [RR_CMRA]`）；**用長拼法者仍受阻**
 > （`{4820287}` 逐字為 `= [DISP_ON]`，即本批 #3 只驗行為之理由）。
@@ -140,6 +149,13 @@ Urgency 回報。
 > **其中含 `4820282`（CFTS_020 之條號）**，即兩份共用同一 Polarion 編號空間；
 > 而 CFTS013 SYSRA 之 `Document ID` 欄為 3 位形態（`CFTS013-602` 等）。
 > **請提供 3 位 ↔ 7 位之對應，或確認 3 位號已作廢。**
+>
+> **附件二（下放包 32 §三.3）—— 3 位號亦出現於診斷章**：`{4819273}`
+> （`§1.4.1.2.6 Disassociated Center Stack Display (DCSD) - Display Hot`，
+> `[Radio:R1M, R1H, R1L, R1L-R] [EE Architecture:All]`，**適用本專案**）逐字為
+> `Execute 'Display is Hot' portion of DCSD Display Hot Algorithm - See CFTS013-629.`
+> —— 即 **3 位號不只出現在 `1.11.2.2`，也出現在診斷章，且該條適用本專案**。
+> 該條被舊適用性判準排除十輪（A-DM40／R-G37）。
 >
 > **29 輪 A3 之實測（停止條件 76 觸發，見上繳 29 §二）**：§1.5.3 之 13 條
 > **全部適用本專案**（`Radio` 含 `R1H`、`EE Architecture:All`），其門檻為

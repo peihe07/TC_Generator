@@ -36,6 +36,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 29 | 2026-08-26 | A3 解封、DM2 降級、007／008 切分裁定 | [handoff/29_a3_and_arbitration.md](handoff/29_a3_and_arbitration.md) | [upstream/29_a3_and_arbitration.md](upstream/29_a3_and_arbitration.md) | R-DM55 | A-DM40 新增（CLOSED）；DR-DM12 開立；A12／B22／B23 新增；B20 解除 | **停止條件 76 觸發 —— CFTS_013 之 50 vs CFTS_020 之 85；未改任何 TC** |
 | 30 ＋ 30a | 2026-08-26 | 追五個轉指條號；R-DM51 依據補驗；DR-DM7 結案 | [handoff/30_crossref_chase.md](handoff/30_crossref_chase.md)、[30a](handoff/30a_vf169.md) | [upstream/30_crossref_chase.md](upstream/30_crossref_chase.md) | R-G37（全域）；R-G27 指標 | A11 關閉；A13／B24／B25 新增；B23 解除；DR-DM7 CLOSED；A-DM20 改標 | **停止條件 79／80／81 皆未觸發；TC 一字未動** |
 | 31 | 2026-08-26 | 讀 71 條漏網；自陳即驗入條 | [handoff/31_missed_clauses.md](handoff/31_missed_clauses.md) | [upstream/31_missed_clauses.md](upstream/31_missed_clauses.md) | R-G38（全域）；R-G22 指標 | A-DM33 母體加註；A14／B26／B27 新增；B24 解除 | **停止條件 84／85／86 皆未觸發；三項重測皆不變；TC 一字未動** |
+| 32 | 2026-08-26 | 開第三批 `ops-01` 之勘查（**停止條件 87 觸發，未生成**） | [handoff/32_ops01.md](handoff/32_ops01.md) | [upstream/32_ops01.md](upstream/32_ops01.md) | （無新條文；PLAYBOOK §5a 慣例） | A-DM37 增列；A-DM33 加註複核；A15／A16／B28／B29 新增；B26 併入 | **T1b 適用條文 172 條 > 30 → 停手不生成** |
 
 ## 02 輪要點
 
@@ -913,3 +914,49 @@ monitor rate／limp-in action）。
 > **R-G38 規制自陳欄之項，而本例不在自陳欄** —— 它是正文裡的一句判定。
 > **R-G22 規制它，而 R-G22 已經在了。問題不在缺條文，
 > 在我讀自己寫的句子時不夠警覺。**
+
+## 32 輪要點
+
+### 停止條件 87 觸發 —— 172 條，逾 30，未生成
+
+以三條需求文之逐字內容導出九個詞掃 CFTS_020（R-G37 新判準），
+**命中 172 條**。下放包 §2.2 定「逾 30 條 → 停並回報（不生成）」。
+**`ops-01` 未生成，T2／T3 未執行。**
+
+### 但 172 有一半是我的詞表造成的
+
+九個詞裡有三個是**訊號提及詞**（`disp stat` 126／`intensity req` 77／
+`touch coord` 38）—— **凡提及該訊號者皆命中**，而 `$DCSD_DISP_STAT$`
+是三個批次共用的訊號。故母體**與另兩批重疊：RVC 48 條、Display Hot 18 條**。
+
+| 界定 | 條數 | 87 |
+|---|---:|---|
+| (A) 主題詞 **或** 訊號提及詞（本輪所用） | **172** | 觸發 |
+| (B) 僅主題詞 | **88** | 仍逾 30 |
+| (C) 主題詞且不含任何訊號提及 | **18** | 未逾 |
+
+**本層不自行擇一** —— 縮窄母體等於自行改變任務範圍。
+**但三種各有其漏**：(C) 最小，**而它排除的恰好是 001 需求文逐字要求的
+「send appropriate display state and brightness requests to DCSD」那些條文**。
+登為 **A16**。
+
+### 兩項既有阻斷在本組立即現形
+
+- **A15（新）**：037 三條全用 `DISPLAY_ON`／`DISPLAY_OFF`，DBC 為
+  `1 "ON"`／`0 "OFF"`，規格側另有別名 `[DISP_ON]`／`[DISP_OFF]` ——
+  **三者兩兩逐字不等**。DR-DM8 問的正是這個，**SENT 未答**。
+  **DR-DM8 不是新問題，但這是它第一次直接擋住一整批 TC。**
+- **003 之 Splash 時段**轉指 `{CFTS009-722}` —— DR-DM1 SENT 未答，
+  003 之時長面向可預見為 deferred。
+
+### 附帶五項全數執行
+
+`{4819344}` 之 `[Fh: sna]` 入 DR-DM9(b) 附件三（**規格對 HU 側值至少有
+三種書寫**：長拼法／雙記法／十六進位）；`{4819273}` 入 DR-DM4 附件二
+（**3 位號亦在診斷章且適用本專案**）；`{4819233}`／`{4819234}`
+（`Ethernet Cable`／空字串）併入 A-DM37；A-DM33 加註複核（A14 併入）。
+
+**`PLAYBOOK.md` 新增 §5a 寫作慣例（建議，非條文）**：
+凡寫「全在／皆為／不含」之句，其**正上方**應緊接該句所據之腳本輸出。
+附兩例 —— 29 §2.2 之 `All`、31 §5.2 初稿之「主題為診斷行為」，
+**兩次皆為 R-G22 所規制，而 R-G22 已經在了**。
