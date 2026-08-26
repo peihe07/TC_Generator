@@ -10,10 +10,16 @@
 
 本檔以二層解之：第一層候選偵測（風險 1）、第二層內容驗證（風險 2）。
 
+**第三層（下放包 23 §2.2）**：`resolved-by-structure` 之聲稱驗證 ——
+登記 `resolution=PC`／`Step` 者，其 `resolution_key` 須真的出現於
+該 leaf 之 TC 之對應欄位。**聲稱「結構會解」而結構裡沒有 → FAIL。**
+第三個風險至此有承載者：**判準之擴充自帶其檢查**。
+
 **self-test 前置**（PLAYBOOK §7.1.1，下放包 20 §1.1）——
-main 先跑四個斷言，任一不過即非零碼退出且**不輸出正式結果**。
+main 先跑八個斷言，任一不過即非零碼退出且**不輸出正式結果**。
 「先」由紀律變為程式結構。
 """
+import json
 import re
 import sys
 from pathlib import Path
@@ -41,6 +47,14 @@ PRONOUN = re.compile(r"^(It|They|This|These|That|Those)\b")
 # 60 字元之耦合隨之解除：CONT 不再用該數字，該清單即 §8 之清單。
 SHORT = 60
 SHORT_OUT = ROOT / "data/short_source_leaves.tsv"
+GEN = ROOT / "generated"
+
+# 第三層之欄位對照 —— `resolution` 之值決定**看哪個欄位**。
+# 這張表是第三層之全部語意：`PC` 看 pre_conditions、`Step` 看 test_procedure。
+# 分開查是本層之要義 —— 若改為「整份 TC 的 JSON 裡有沒有這個詞」，
+# 則聲稱 `Step` 而其實只寫在 PC 者會被放過，
+# **而那正是層次 2 所要區分的二種承載方式**（self-test 8 即測此）。
+RES_FIELD = {"PC": "pre_conditions", "Step": "test_procedure"}
 
 
 def strip_prefix(s):
@@ -171,6 +185,66 @@ def layer2(src, sys1, cont_rows):
     return bad
 
 
+def load_generated():
+    """generated/*.json → leaf_id → [tc, ...]（拆分者多筆）。"""
+    out = {}
+    for f in sorted(GEN.glob("*.json")):
+        for t in json.loads(f.read_text("utf-8")).get("tcs", []):
+            out.setdefault(t["leaf_id"], []).append(t)
+    return out
+
+
+def layer3(cont_rows, by_leaf):
+    """`resolved-by-structure` 之聲稱驗證（profile §9.2／§9.4）。
+
+    回傳 `(bad, applied, pending)`：
+      bad     —— 聲稱與 TC 結構不符者
+      applied —— 已生成且已驗者
+      pending —— 已登記但該 leaf 尚未生成（**非 FAIL，但須顯示**）
+
+    `pending` 獨立成一態之理由同 20a §2.1 之三態：
+    「尚未生成」與「驗過了」不得看起來一樣。
+    """
+    bad, applied, pending = [], [], []
+    for row in cont_rows:
+        res = (row.get("resolution") or "").strip()
+        if not res:
+            continue
+        lid = row["leaf"]
+        key = (row.get("resolution_key") or "").strip()
+        head = res.split("-")[0]
+        if not key or head not in RES_FIELD:
+            bad.append((lid, res, key, "登記不完整（resolution 未知或 key 空）"))
+            continue
+        tcs = by_leaf.get(lid)
+        if not tcs:
+            pending.append((lid, res, key))
+            continue
+        field = RES_FIELD[head]
+        m = re.fullmatch(r"\w+-(\d+)", res)
+        for t in tcs:
+            text = t.get(field, "")
+            if m:                        # `Step-n` —— 限該步驟
+                n = int(m.group(1))
+                lines = [x for x in text.split("\n") if x.strip()]
+                text = lines[n - 1] if 1 <= n <= len(lines) else ""
+            if key not in text:          # **逐字**，不做大小寫／連字號寬鬆（profile §9.3）
+                bad.append((lid, res, key, f"{field} 未含該 key"))
+            else:
+                applied.append((lid, res, key))
+    return bad, applied, pending
+
+
+# 第三層之 self-test 夾具 —— **TC 之欄位形狀**，非裸字串。
+# 用真實欄位名之理由：若第三層查錯欄位（如查 `preconditions`），
+# 裸字串夾具測不出來，欄位形狀之夾具測得出來。
+FIX_TC = {
+    "leaf_id": "FIXTURE-01",
+    "pre_conditions": "1. The language-change pop-up is displayed",
+    "test_procedure": "1. Press the X button on the dialog\n2. Record the screen",
+}
+
+
 def self_test(src, sys1):
     """五個斷言（20a §2.4 ＋ 下放包 22 §二之錯句斷言）。任一不過即非零碼退出。"""
     ok = True
@@ -210,6 +284,28 @@ def self_test(src, sys1):
     print(f"  self-test 5  第二層(a) 反向 013-02→§2.6.3 s1 應 FAIL "
           f"{'PASS' if a5 else '**FAIL**'}")
     ok &= a5
+    # ── 第三層（下放包 23 §2.2）——夾具三斷言 ────────────────────
+    fx = {"FIXTURE-01": [FIX_TC]}
+    r_pos = [{"leaf": "FIXTURE-01", "resolution": "PC",
+              "resolution_key": "pop-up"}]
+    a6 = not layer3(r_pos, fx)[0]
+    print(f"  self-test 6  第三層(b) 已知標的 PC 含 key 應過        "
+          f"{'PASS' if a6 else '**FAIL**'}")
+    ok &= a6
+    r_neg = [{"leaf": "FIXTURE-01", "resolution": "PC",
+              "resolution_key": "thermostat"}]
+    a7 = bool(layer3(r_neg, fx)[0])
+    print(f"  self-test 7  第三層(a) 反向 key 不在 PC 應 FAIL       "
+          f"{'PASS' if a7 else '**FAIL**'}")
+    ok &= a7
+    # 反向之二：**欄位須分開查** —— key 只在 PC，卻聲稱 Step，應 FAIL。
+    # 此斷言所測者為「第三層有沒有查對欄位」，非「有沒有找到字」。
+    r_fld = [{"leaf": "FIXTURE-01", "resolution": "Step",
+              "resolution_key": "pop-up"}]
+    a8 = bool(layer3(r_fld, fx)[0])
+    print(f"  self-test 8  第三層(a) 反向 key 只在 PC 而聲稱 Step 應 FAIL "
+          f"{'PASS' if a8 else '**FAIL**'}")
+    ok &= a8
     return ok
 
 
@@ -219,7 +315,7 @@ def main():
     if not self_test(src, sys1):
         print("\n**self-test 未全過 —— 不輸出正式結果，非零碼退出。**")
         return 2
-    print("  → 五個斷言全過，開始跑正式母體\n")
+    print("  → 八個斷言全過，開始跑正式母體\n")
 
     cont_rows = read_tsv(CONT)
     excl_rows = read_tsv(EXCL)
@@ -254,9 +350,17 @@ def main():
     print(f"\n第二層 —— 內容驗證（CONT 表 {len(cont_rows)} 條）")
     print(f"  不符 {len(bad2)} 條 {bad2 or '無'}")
 
-    failed = bool(unhandled) or bool(bad2)
+    by_leaf = load_generated()
+    bad3, ap3, pd3 = layer3(cont_rows, by_leaf)
+    print(f"\n第三層 —— `resolved-by-structure` 之聲稱驗證"
+          f"（profile §9.2；已生成 {len(by_leaf)} leaf）")
+    print(f"  已驗 {len(ap3)} 條 {ap3 or '無'}；"
+          f"待生成 {len(pd3)} 條 {pd3 or '無'}；不符 {len(bad3)} 條 {bad3 or '無'}")
+
+    failed = bool(unhandled) or bool(bad2) or bool(bad3)
     print(f"\n{'**FAIL**' if failed else 'PASS'} —— "
-          f"未處置候選 {len(unhandled)}；內容不符 {len(bad2)}")
+          f"未處置候選 {len(unhandled)}；內容不符 {len(bad2)}；"
+          f"結構聲稱不符 {len(bad3)}")
     return 1 if failed else 0
 
 

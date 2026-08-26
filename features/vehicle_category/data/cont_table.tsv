@@ -1,7 +1,9 @@
-leaf	kind	sys1_section	sentence_index	note
-SWE1-HMI-VC-012-02	continuation	2.6.2	3	037 為 SYS1 §2.6.2 第 3 句之前半
-SWE1-HMI-VC-012-03	continuation	2.6.2	3	037 為 SYS1 §2.6.2 第 3 句之續行（小寫起首）
-SWE1-HMI-VC-013-02	continuation	2.6.3	2	037 於句中補句號並刪 and，實為 SYS1 §2.6.3 第 2 句之前半
-SWE1-HMI-VC-013-03	continuation	2.6.3	2	037 為 SYS1 §2.6.3 第 2 句之續行（小寫起首）
-SWE1-HMI-VC-019-02	reference	3.4	*	037 為完整句但 `It` 之先行詞（Headrest fold）在 019-01；SYS1 §3.4 為一段二句，上半取整段
-SWE1-HMI-VC-038-02	reference	11.5	1-2	037 之 `It` 先行詞（pop-up）在 s1；取 s1-s2 共 33 token，未逾 R-3 之 50
+leaf	kind	sys1_section	sentence_index	resolution	resolution_key	note
+SWE1-HMI-VC-012-02	continuation	2.6.2	3			037 為 SYS1 §2.6.2 第 3 句之前半
+SWE1-HMI-VC-012-03	continuation	2.6.2	3			037 為 SYS1 §2.6.2 第 3 句之續行（小寫起首）
+SWE1-HMI-VC-013-02	continuation	2.6.3	2			037 於句中補句號並刪 and，實為 SYS1 §2.6.3 第 2 句之前半
+SWE1-HMI-VC-013-03	continuation	2.6.3	2			037 為 SYS1 §2.6.3 第 2 句之續行（小寫起首）
+SWE1-HMI-VC-019-02	reference	3.4	*			037 為完整句但 `It` 之先行詞（Headrest fold）在 019-01；SYS1 §3.4 為一段二句，上半取整段
+SWE1-HMI-VC-038-02	reference	11.5	1-2			037 之 `It` 先行詞（pop-up）在 s1；取 s1-s2 共 33 token，未逾 R-3 之 50
+SWE1-HMI-VC-038-03	reference	11.5	3	PC	pop-up	`This pop-up` 先行詞（pop-up）在 s1；連續 s1-3 為 54 token 逾 R-3 之 50，且先行詞為本 TC 結構必然建立之狀態 → profile §9.2 層次 2，單句 s3 ＋ PC 承載
+SWE1-HMI-VC-038-04	reference	11.5	4	Step	pop-up	`then` 承接 s3 之「按 X 或系統完成」（第一層偽陰性之第二實例，上繳包 22 §6）；該關閉動作為本 TC 之必然步驟 → profile §9.2 層次 2，單句 s4 ＋ Step 承載
