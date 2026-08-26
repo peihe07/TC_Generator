@@ -240,6 +240,27 @@ Forbidden: modals (`should`, `will`, `shall`), hedges (`properly`, `successfully
 
 **Sibling-distinction:** two sibling tc_titles that read identically (or differ only `displayed` vs `hidden`) = FAIL.
 
+### 4.3.1 test_item 兩段式（R-S4）
+test_item 分上下兩半：
+- 上半 = 需求／規格原句 verbatim。摘句以「與括號下半之測試目的
+  直接相關之句」為限；上半 token 數上限 50（R-3）。超限須摘句，
+  全文以 specification_reference 指回，不得整段傾倒。
+- 下半 = 作者生成之測試目的或情境標籤，獨立成行，格式 `(...)`。
+  **下半一律英文** —— `test_item` 為工作簿交付欄位，適用 §1 之
+  `TC workbook fields: English only`。下半為作者生成而非 verbatim，
+  易被誤認為 reasoning 而寫成繁中；**§1 之許可僅及於 `reasoning`／
+  `distinguishing_axis` 等不入工作簿之欄位，不及於此**。
+  本節未重述其他 §1 之細目，**不得據其未述而推論為放寬**。
+  BT／Projection 之 `[OVERRIDE-R5]` 雙語豁免係就**上半之 verbatim**
+  而言（中文 AC ＋ 英譯），**不及於下半** —— 下半為作者生成之工作備註，
+  依該 override 末句「工作備註中文一律不得留於交付欄」，同為英文。
+同一 Requirement ID 衍生之多列，其括號下半內容不得逐字相同
+（sibling 區分 token）。缺括號下半 = FAIL，不得出貨。
+**下半含中文 = FAIL，不得出貨**（`power_moding` R-PMH153：
+該 feature 51 條中 50 條之下半為繁中，歷經多次 lint 全綠未被察覺 ——
+其 lint 只檢查括號之存在，不檢查其語言）。
+verbatim 自原句中段起抄時，句首字母轉大寫屬排版正規化，允許（R-4）。
+
 ### 4.4 Pre-Condition
 Starting **state / environment** only. Never actions, checks, reads, data-presence.
 
