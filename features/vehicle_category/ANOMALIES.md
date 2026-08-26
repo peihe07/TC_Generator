@@ -20,6 +20,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-VC11 | `recon.py` 之 DECISIONS 顯示層將 null 印為字面 `None` | PENDING | 全域排程（包 05 §一）|
 | A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |
 | A-VC13 | 送簽稿含自我描述之狀態元資料 | 本 feature 已處置；通則 PENDING | 全域排程（包 08 §一）|
+| A-VC14 | 037 Title 與 Description 之數值矛盾（`VC-033-01`）| PENDING | 待 DR-VC8 |
 
 ---
 
@@ -606,6 +607,61 @@ A-VC13（送簽稿含自我描述之狀態元資料）
 
 狀態：本 feature 已處置；通則 PENDING（全域排程，與 A-VC4／A-VC8／
 A-VC11 同批）。
+
+---
+
+## A-VC14 —— 037 Title 與 Description 之數值矛盾（新立，下放包 09 §三）
+
+條文逐字：
+
+```
+A-VC14（037 Title 與 Description 之數值矛盾）
+
+`SWE1-HMI-VC-033-01`（§7.1，Glove Box 停用之錯誤鎖定）：
+
+  Requirement Title       : After three sequential wrong PINs …
+                            → 第 3 次觸發
+  Requirement Description : more than three times in sequence …
+                            → 第 4 次觸發
+
+二欄之數值相差一次，為**可測門檻之分歧**，非措辭差異。
+
+與 A-VC10 之區別：A-VC10 為「Title 多載 Description 未載之條件」，
+其處置為取二欄之**聯集**；本案為「二欄之數值相互矛盾」，
+聯集無法消解，故另立本條，不併入。
+
+拘束：
+(a) TC 作者**不得**自行取 3 或 4，不得以「取較嚴者」、「以 Title 為準」
+    或任何一般性規則消解之。來源分歧時之職責為登記與查詢
+    （DR-VC8），非選擇。
+(b) 缺件期間該 TC 之門檻欄填
+    `PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3）。
+(c) 本條之範圍限於 `VC-033-01`。**未掃描其餘 116 個 leaf 是否存在
+    同型矛盾** —— 本條不得被讀為「全表僅此一例」。
+    全表掃描列為 T52。
+
+狀態：PENDING（待 DR-VC8）。
+```
+
+**執行層回報 —— (c) 之全表掃描已完成（T52）**
+
+條文 (c) 明文「未掃描其餘 116 個 leaf 是否存在同型矛盾，本條不得被讀為
+『全表僅此一例』」。**T52 已掃描全部 117 leaf**，結果：
+
+- 二欄至少一方含數值者 **38 leaf**（117 leaf 母體）
+- 同類別而 (值, 比較器) 不一致之候選 **10 筆**
+- 逐筆人工判讀後，**真陽性 1 筆 —— 即 `VC-033-01` 本身**；
+  其餘 9 筆為假陽性（6 筆為 `VC2.2.4` 等章節標記滲入數字抽取、
+  3 筆為同義措辭差異如 `exactly one` vs `only one`）
+
+**故「全表僅此一例」現在可以說了 —— 但僅以 T52 之方法為限**，
+其偽陰性見上繳包 10 §3.4。掃描腳本：`scripts/t52_numeric_conflict_scan.py`。
+
+⚠ **掃描器初版漏抓本案自身**（類別切分錯誤，詳見上繳包 10 §3.2）。
+修正後始命中。此事記於此，以免日後有人以「掃過了」為由信任該腳本
+而不看其判準。
+
+狀態：PENDING（待 DR-VC8）。
 
 ---
 

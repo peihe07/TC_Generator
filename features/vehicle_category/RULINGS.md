@@ -603,3 +603,36 @@ R-VC17（一對一之主張須以成員比對為據）
 
 ---
 
+```
+R-VC18（Phase 4 pilot：Glove Box）
+
+（Pei 2026-08-26 裁定。）
+
+pilot Test Set ＝ **#3 `Glove Box`**（R-VC16）。
+
+範圍：12 leaf（117 leaf 母體）／ 8 section（66 section 母體）——
+  4.1  SWE1-HMI-VC-026-01 / -026-02 / -026-03
+  4.2  SWE1-HMI-VC-027
+  5.1  SWE1-HMI-VC-028-01 / -028-02
+  5.2  SWE1-HMI-VC-029
+  6.1  SWE1-HMI-VC-030
+  6.2  SWE1-HMI-VC-031
+  6.3  SWE1-HMI-VC-032
+  7.1  SWE1-HMI-VC-033-01 / -033-02
+
+**產出 12 筆 TC，一 leaf 一 TC。**
+
+`SWE1-HMI-VC-033-01` 之 boundary 拆分（§8.3：門檻−1 / =門檻 /
+鎖定期滿）**本輪不做** —— 其門檻因 A-VC14 而未定，拆分點無從定值。
+本輪就該 leaf 產 1 筆 TC，其門檻欄填
+`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3）。
+DR-VC8 回覆後另裁是否補拆為 2–3 筆。
+
+**本輪不寫回工作簿。** 產出為 JSON，置於 `generated/`。
+寫回屬 Phase 6，另裁。
+
+pilot 之收斂條件見下放包 10 §四。收斂後始得議 Phase 4 之全量批次。
+```
+
+---
+
