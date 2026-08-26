@@ -1,0 +1,137 @@
+# feature.yaml — pipeline configuration for Bed Lowering Mode
+# 全部 feature 專屬常數集中於此；共用腳本讀本檔，不含 per-feature literal。
+#
+# 來源：下放包 02（features/bed_lowering/docs/handoff/02_wiring_workbook.md）§二。
+# **本檔之形制與該 §二 之草案不同**，差異與其依據逐項見 A-BLM6／A-BLM7；
+# 摘要：§二 之草案為扁平鍵（slug／profile／form_template／spec_pdf…），
+# 而 `scripts/feature_config.py` 之 `load_feature_config()` 讀
+# `cfg["workbook"]["columns"]` 與 `cfg["paths"]`，草案形制會以 KeyError 中止。
+# 本檔依實際 loader 形制落檔，並逐鍵標明其消費者。
+#
+# 未實測者一律留 null／TBD，不猜（沿 vehicle_category 之檔頭慣例）。
+
+feature: "Bed Lowering Mode"        # R-BLM1
+test_group: "Bed Lowering Mode"     # R-BLM1，工作簿 G 欄
+
+# R-BLM1：FROP 為上游功能推出計畫之歸屬，非 repo 之 feature 切分。
+# 記於此保留該事實；不進入 test_group、不進入任何 TC 欄位。
+# 實測：037 之 FROP 欄 218/218 列皆為 "Vehicle Settings"，相異值數 1。
+# 本鍵之 py 消費者為 0 —— 沿 vehicle_category 之同名鍵慣例保留為事實登記，
+# 非供腳本讀取（R-VC9 之例外，其理由即「保留該事實」本身）。
+frop: "Vehicle Settings"
+
+paths:
+  # R-G1 全域母本之工作副本。**與 forms/ 原件逐位元相同**
+  # （cmp 全等，sha256 6372fb6b…825b2），故非「另存」而是複製。
+  # 母本 R 欄 design_method 之下拉為 x14 擴充，openpyxl 存回即摧毀
+  # （R-G1 註／A-UP09）；本副本自始未經 openpyxl 存回。
+  workbook: "workbook/bed_lowering_00.xlsx"
+  a03_report: "inputs/FM-WI-FSM-037-A03-N1L-SWE1-BedLoweringMode-HMI-V0.1 STLA 報告.xlsx"
+  sys1_export: "inputs/SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(June_21_2021).xlsx"
+  # R-BLM4：無後手標註之原始輸出。spec-index/sources/ 之同名檔不得取用。
+  spec_pdf: "inputs/Bed Lowering Mode HMI Logic and Flow R1 SR24 1A (June 21 2021).pdf"
+
+# 037 之 `Analysis Report` 分頁存在且命名標準，intake sniffer 正常命中
+# （下放包 01 §一-4）。本 feature 不需 intake.kind_overrides，
+# 亦不需 paths_meta.a03_sheet（取預設 "Analysis Report"）。
+
+# ⚠ **未定 —— 不猜**（A-BLM7）。
+# 下放包 02 §二 填 "hmi_logic_and_flow"，但 FO §3 之 spec_mode 值域為
+# 單一字母 A–E，無此值。而本 feature 之歸類本身有兩讀：
+#   來源形態為 A（SYS1 Polarion export 齊備，70 物件）；
+#   但 spec_reference 之行為為 D（"looked up, never constructed"，R-BLM5），
+#   且 A 所需之 outline map 在本 feature 建不起來 ——
+#   037 `HMI Source ID` 與 SYS1 `SYSRE_HMI_Source ID` 之相交為空（A-BLM4）。
+# 兩讀並存 → 非「既有條文之機械套用」→ 屬 Tier 2（FO §0）。留 null 待裁。
+# 佐證（本包實測）：PDF 文字層 21/21 頁皆有，總 8,157 字元，平均 388/頁，
+# <200 字元之頁 4/21 —— Mode B 於技術上可行，惟是否採用屬同一裁定。
+spec_mode: null
+
+# R-BLM5：spec_reference 為**查得**（逐字抄 037 `HMI Source ID` 欄），非構造。
+# `null` 為本管線既有之「查得而不構造」編碼，非新增枚舉 ——
+# `scripts/recon.py:915` 之 R-VC8 註明載：鍵存在且為 null 時，
+# 該欄取 037 citation 之逐字值。R-BLM5 自陳與 R-VC4 為同一條文，
+# 而 R-VC4 於 vehicle_category/feature.yaml 之編碼即為 null。
+#
+# ⚠ 下放包 02 §二 填 `literal_037_hmi_source_id`。**該值不可用**（A-BLM6）：
+# 它不會被拒絕，而會落入 `tpl.replace("{outline}", sec)` 之構造分支；
+# 因該字串不含 `{outline}`，replace 為 no-op，結果是 176 列之 N 欄
+# 全部寫入字面字串 "literal_037_hmi_source_id"。**不中止、不報錯。**
+spec_reference_template: null
+
+workbook:
+  sheet: "Test Case Specification 測試用例規範"   # 本包實測自副本
+  header_row: 9                                   # 本包實測自副本
+  # 下列字母為本包自 `bed_lowering_00.xlsx` 第 9 列表頭實測所得，
+  # 非自他 feature 轉錄。recon.py 之表頭解析與之不符時會逐項報衝突。
+  columns:
+    no: "B"
+    req_id_polarion: "C"
+    req_id: "D"
+    tc_id_testrail: "E"
+    tc_id: "F"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    estimated_test_time: "Q"
+    design_method: "R"
+    functional_safety: "S"
+    author: "AA"
+    test_version: "AB"
+
+done_region:
+  detection: "author"
+  author_value: null            # R-BLM3：workbook_state = BLANK，本節不生效
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: true     # R-BLM3：BLANK -> FILL
+
+lint:
+  design_method_source: "dropdown_sheet"
+  popup_ids: []
+  extra_rules: []
+
+# 只宣告 `recon.py` 之 run_assertions() 真正實作之鍵（R-VC9）。
+# 實作之三鍵為 functional_requirement_count／distinct_spec_sections／
+# spec_reference_stem；本檔宣告其中兩鍵 ——
+# `distinct_spec_sections` **不宣告**，因本包未實測其值，
+# 而宣告一個未實測之期望值等同製造一個假的保護。
+recon_assertions:
+  # 本包實測：037 218 資料列中，Categorization=="Functional Requirement"
+  # 者 176，且與「req_id 帶 -NN 尾碼」之判準 176/176 完全重合。
+  functional_requirement_count: 176
+  # R-BLM5 之基線。實測：037 `HMI Source ID` 相異值數 = 1。
+  spec_reference_stem: "SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(June_21_2021)"
+
+# R-G15（RULINGS_LEDGER 版）：其變動會使既有產出失效者一律綁定。
+# paths: 記「檔在哪」（供腳本開檔）；reference: 記「檔是哪一份」
+# （供綁定檢查比對）。同一檔出現於兩節不是重複。
+# ⚠ 下放包 02 §二 之草案無本節。本節依 R-G15 補入（A-BLM9）。
+reference:
+  a03_report:
+    file: "features/bed_lowering/inputs/FM-WI-FSM-037-A03-N1L-SWE1-BedLoweringMode-HMI-V0.1 STLA 報告.xlsx"
+    sha256: "8d09ab46e69da3ad804703c6ed33e113aef8f47e06ac32363040212cab59b9ab"
+  sys1_export:
+    file: "features/bed_lowering/inputs/SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(June_21_2021).xlsx"
+    sha256: "487354fa935dbc5397428dc633d1fa707fc77f7e5250db3f00c0aa310299a7fa"
+  spec_pdf:
+    file: "features/bed_lowering/inputs/Bed Lowering Mode HMI Logic and Flow R1 SR24 1A (June 21 2021).pdf"
+    sha256: "0277ed00beab2d05d3a95a68d996c8297bfc9ae09ce0d43c4158ea667750e9d0"
+  workbook_master:
+    file: "forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
+    sha256: "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"
+  # ⚠ `dbc_b` / `dbc_fd` / `lid` / `proxi` **未綁定，且此處非裁定為不需要**。
+  # 與 vehicle_category 之 R-VC10（明文排除，依據為訊號命中數 0）不同：
+  # 本 feature 之下放包 02 §七-2／§七-4 已具名 PROXI 車型參數與 DBC 訊號
+  # 為生成期必需。四檔於本包尚未擇定版本，故無從綁 sha256。
+  # **生成期首批開工前須先擇定並補綁**，否則 R-G15 之保護對該四項為空。

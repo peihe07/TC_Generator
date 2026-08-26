@@ -2,11 +2,28 @@
 inputs/*
 !inputs/INPUTS.sha256
 
+# Working copies of the customer's controlled 036 form. bed_lowering_00.xlsx is
+# a byte-identical copy of the R-G1 master, which forms/* already keeps out of
+# git; the copy carries the same company document. No feature in this repo
+# tracks a workbook — audio_mgmt and projection both exclude theirs for this
+# reason. The delivery digest belongs in the tag annotation, not in a file.
+workbook/
+
 # Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
 # own data/*.json artefacts here as Step 1 starts emitting them.
 data/recon.json
 batches/
 lint_report.json
+
+# Carry customer prose rather than derived structure - same policy as inputs/.
+# leaf_inventory.tsv embeds the 037's Requirement Description and Verification
+# Criteria verbatim; heading_ledger.tsv embeds its Requirement Title. Both are
+# rebuilt by scripts/build_inventory.py, so excluding them costs nothing.
+# data/test_set_map.tsv IS tracked on purpose: heading_id -> Test Set -> count
+# is derived structure with no customer text, and it is the artefact a reviewer
+# needs to see a diff on when the locked framework moves underneath us.
+data/leaf_inventory.tsv
+data/heading_ledger.tsv
 
 # data/spec_id_to_outline.tsv IS tracked on purpose where a feature builds
 # one: it is the traceability lookup every spec_reference is linted against,
