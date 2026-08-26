@@ -479,3 +479,127 @@ IN §10.2 之 P0 類目含 `data-loss risk`。該款於「使用者資料之清�
 
 ---
 
+```
+R-VC15（母體標註義務）
+
+本 feature 之文件、條文、下放包、上繳包中，凡引用計數，
+**必須標註其母體**。母體之命名限於下列四者，不得省略、不得混用：
+
+  145 列    —— 037 `Analysis Report` 之全部資料列（列 8–152）
+  117 leaf  —— R-VC3 所裁之驗證母體（子需求 ∪ 無子之父）
+   66 section —— 037 `HMI Source ID` 之相異章節號
+  108 outline —— SYS1 `Basic Report` 之有效 `Outline Number`
+
+**不同母體之數字，不得互援為等同性、對應性或涵蓋性之依據。**
+兩個數字相等而母體不同者，為巧合，不構成任何論證。
+欲主張跨母體之對應關係，須逐項比對其**成員集合**，
+不得以計數相等代替。
+
+實例（本條之立條由來）：
+  「章 13 全 16 筆（leaf 母體）恰等於 FROP = Power Management
+    之 16 筆（列母體）」—— 兩個 16 落在不同母體，`恰等於` 不成立。
+    正確之論證為：FROP = PM 之 16 列，其章別分布為 {'13': 16}，
+    即全部落在章 13 —— 此為成員集合之比對，不倚賴計數相等。
+
+適用範圍：本 feature 全部產出，含已交付之包。既交付者不改原文
+（R-TM13），以 `docs/REVISIONS.md` 加註。
+
+本條同時拘束分析層與執行層。分析層之下放包若違反本條，
+執行層應據以停並回報，不得沿用。
+```
+
+---
+
+```
+R-VC16（Layer 2 定案：8 個 Test Set）
+
+（Pei 2026-08-26 裁定：邊界准、#5 名稱采 `Settings List`。）
+
+Layer 1 Test Group ＝ `Vehicle Category`（R-VC1）。
+Layer 2 Test Set ＝ **8 組**，其邊界以**可執行之規則**定義如下，
+規則為權威，節次清單為其展開結果：
+
+    章 2                → `Category Structure`
+    章 3                → `Controls`
+    章 4 / 5 / 6 / 7    → `Glove Box`
+    章 11，次級節號 ≤ 6 → `Settings Behavior`
+    章 11，次級節號 ≥ 7 → `Settings List`
+    章 12               → `Settings List`
+    章 13               → `Ignition Availability`
+    章 14               → `Brake Service`
+    章 16               → `Cabrio Widget`
+
+其中「章」取 037 `HMI Source ID` 尾段章節號之首段，
+「次級節號」取其第二段（`11.7.1` 之次級節號為 7）。
+
+驗算目標（**母體標註依 R-VC15**）：
+
+  # 1 `Category Structure`   24 leaf ／ 13 section
+  # 2 `Controls`             17 leaf ／ 12 section
+  # 3 `Glove Box`            12 leaf ／  8 section
+  # 4 `Settings Behavior`    15 leaf ／  6 section
+  # 5 `Settings List`        30 leaf ／ 17 section
+  # 6 `Ignition Availability` 16 leaf ／  8 section
+  # 7 `Brake Service`         2 leaf ／  1 section
+  # 8 `Cabrio Widget`         1 leaf ／  1 section
+  ── 合計                   117 leaf ／ 66 section
+
+拘束五項：
+
+(a) **Layer 3（spec section）不入工作簿**（IN §4.1.5）。不得存為任何
+    欄值，不得串接進 Test Set 名稱（不寫 `Settings List 12.3`）。
+    section 與 TC 之關聯由 `specification_reference` 承載（R-VC4），
+    那是 traceability 欄位，不是 Layer 3 欄位。
+
+(b) **#4 / #5 之分界（11.6｜11.7）為本 framework 唯一有二來源交叉驗證
+    之邊界** —— 規格目次 ＋ 037 `Sub Categorization`（章 11 為唯一混章，
+    切換次數 = 1，Service 15 ／ HMI 5）。其餘 7 個邊界僅有規格目次
+    單一來源支撐。此弱點須記於 `framework.md`，不得因已簽署而略去。
+
+(c) **#7（2 leaf）與 #8（1 leaf）之保留，非 outlier 特許**，而係
+    二者皆為「待補節會使其長大」之組（#7 待 14.2 與 §15；#8 待 16.2.1
+    與 16.2.2）。DR-VC3 回覆為「應補」時，此二組之邊界**須重審**：
+    屆時章 8／9 之 Cabrio 本體（7 節）應另立 `Cabrio Rooftop`，
+    不得併入 #8。
+
+(d) **11.9 群（11.9／11.9.1／11.9.2／11.9.3）歸 #5**（下放包 06 §二預裁，
+    以權威複本實測為據）。上開規則之「章 11，次級節號 ≥ 7」已涵蓋之，
+    不需另設例外。條件性生效，待 DR-VC3。
+
+(e) **FROP 之對應**：FROP = `Power Management` 之 16 列（**145 列母體**）
+    其章別分布為 `{'13': 16}`，即全部落在 #6 `Ignition Availability`；
+    FROP = `Audio Management` 之 1 列（`VC-048-02`，§12.3.2）落在 #5。
+    R-VC3 表 A 據此編製。**此為成員集合之比對結果，非計數相等之推論**
+    （R-VC15）。
+```
+
+---
+
+```
+R-VC17（一對一之主張須以成員比對為據）
+
+凡主張二集合為「一對一」、「恰等於」、「完全對應」、「全部落在」
+或任何等同性關係者，**須以成員層之比對為據**，不得以計數相等代替。
+本條**不論二集合是否同母體**皆適用 —— 同母體之計數相等更具說服力
+之外觀，故更易誤用。
+
+計數相等為等同性之**必要非充分條件**。兩集合大小相同而成員不同者，
+其計數比對必然通過。
+
+書寫要求：主張等同性時，須一併載明所用之成員比對方法及其結果
+（例如「逐字集合比對，差集為空」、「一對多者 0 筆」）。
+僅寫「n 恰等於 n」而無成員層證據者，視為論證不足，
+須補驗或改寫為較弱之陳述。
+
+本條與 R-VC15 之分工：
+  R-VC15 —— 拘束**跨母體**之數字互援（不同母體之數字不可互援）
+  R-VC17 —— 拘束**等同性主張之論證形式**（不論母體是否相同）
+二者可同時適用，亦可各自單獨適用。
+
+立條由來：執行層於 T45 自查所得（REV-12）。
+分析層同期之 REV-11 為 R-VC15 之由來，二者為同一病灶之跨母體版與
+同母體版。
+```
+
+---
+
