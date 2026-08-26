@@ -32,6 +32,19 @@
    該二章節由 Projection feature 之需求命名空間（SWE1-PROJ）承接，
    屬跨 feature 分工而非 coverage gap；於交付揭露表加註一行。
 
+> **【部分撤回 2026-08-26（R-AM14，Pei 裁「准」）】**
+> 上述第 2 項中「1.3.3.11 無對應葉、歸 Projection」**之判定錯誤，撤回**。
+> B2 錨定時實測：SWE1_AMM_286 對應 4866817（Alternate Audio 與 Main Audio
+> 混音）、SWE1_AMM_287 對應 4866818（帶 Ducking 請求時依 `<vent off>` 衰減
+> Main Audio），逐條精確對上。誤判根因：原掃描僅用 CarPlay／
+> Android Auto／Projection 三詞，而需求原文寫 Alternate Audio，
+> 關鍵詞過窄（分析層之誤，非上游問題）。
+> 現行：286／287 在 audio_mgmt 範圍內，Test Set = Focus and Ducking，
+> Layer 3 增列 1.3.3.11。`Projection Audio` 集仍不設立（二葉行為屬
+> 混音與衰減，不另立集）。
+> **仍屬 coverage gap（維持揭露）**：4866819（細節指向 Apple AIS）、
+> 1.3.3.14 Android Auto Certification —— 這兩項確無 SWE.1 葉。
+
 ## 二、317 葉逐條歸位表
 
 欄位：SWE ID｜Source ID｜Title（截 58 字）｜SWE.1 子類｜Test Set。

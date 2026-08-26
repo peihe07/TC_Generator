@@ -26,7 +26,14 @@ Audio Management
 
 ## 備註
 - 1.3.4 Arbitration Conditions Tables：條件表素材，隨 Audio Arbitration 引用，不獨立成集。
-- 1.3.3.11 / 1.3.3.14（CarPlay Alternate Audio / AA Certification）：本 SWE.1 零葉，
-  由 Projection feature（SWE1-PROJ 命名空間）承接，跨 feature 分工，非 gap。
+- **1.3.3.11 Carplay Alternate Audio：在範圍內（R-AM14，2026-08-26 Pei 裁「准」）。**
+  SWE1_AMM_286（→4866817 混音）、SWE1_AMM_287（→4866818 `<vent off>` 衰減）
+  均為本 SWE.1 之葉，Layer 2 = Focus and Ducking。章節標題掛 CarPlay 僅說明
+  觸發來源型別，需求本體為混音與衰減之音訊行為。
+  ~~原註「本 SWE.1 零葉，由 Projection feature（SWE1-PROJ）承接」~~ **已撤回**：
+  該判定係以 CarPlay／Android Auto／Projection 三詞掃描而得，而原文寫
+  Alternate Audio，關鍵詞過窄致誤（分析層之誤）。
+- 殘留 coverage gap（維持揭露，不擴編）：4866819（細節指向 Apple AIS）、
+  1.3.3.14 Android Auto Certification —— 確無 SWE.1 葉。
 - 新 RD 進場：先歸位本表；無適集者先修本檔再寫 TC（IN §4.1）。
 - 逐葉明細：`docs/handoff/02_framework_assignment.md` §二。

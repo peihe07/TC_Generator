@@ -189,3 +189,20 @@ patch 過程被剝除，三項檢查**全數通過**。
 true）。其價值在於未來換用含 CF 之母本時能攔下，不宜以本次綠燈為其有效性
 之佐證。
 
+## [A-AM07] CFTS019-4866123 將行為本體外包至 `{CFTS020}`，該文件不在 `inputs/`
+
+SWE1_AMM_061（Power Button Mute Handling）之錨 4866123 全文為：
+
+> `IF the HU receives the signal/value $ICSPowerButton$ = [pressed] THEN the
+> HU shall apply the mute logic as described in {CFTS020}.`
+
+錨定本身無誤 —— 該物件是 CFTS019 中唯一述及 `$ICSPowerButton$` 者。問題在
+**行為本體不在本 feature 之來源範圍內**：葉描述之音量/靜音狀態評估、
+螢幕 On/Off 狀態、螢幕優先權判斷，於 CFTS019 全文（1,730 物件）皆無對應文字。
+
+處置：錨照定，TC 之行為步驟就 CFTS019 可佐證者撰寫，外包部分掛
+`PENDING: DR-AM6`，不臆造 CFTS020 之內容（IN §8.4.1）。已開 DR-AM6 請補件。
+
+附註：此為**跨文件外包**型缺口，與 A-AM03（匯出遺漏）、A-AM04（參數未定義）
+根因均不同 —— 前二者之內容在 CFTS019 內，本件不在。三者不可混為一談。
+
