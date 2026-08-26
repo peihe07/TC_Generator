@@ -38,8 +38,55 @@ chk(1, "12 筆 JSON 完整，10 個必要 key 齊備（IN §10.1）",
     f"TC 數 {len(TCS)}；缺 key {bad or '無'}")
 
 # 2 —— IN §9 十七項：見上繳包逐項；此處只驗可機械化之子項
-chk(2, "IN §9 十七項自檢（機械化子項見第 3–8 項；全項見上繳包）",
+chk(2, "IN §9 十七項自檢（機械化子項見第 3–8、11、12 項；全項見上繳包）",
     True, "本腳本不代替逐項判讀，見上繳包 10 §4.2")
+
+
+# 11 —— §4.4 之三類禁項（下放包 12 §四.1）。
+# ⚠ 前一輪之第 3 項人工判讀**只驗了三類中的一類**（feature under test as
+# premise），漏掉 system defaults 與 step-controlled state，
+# 導致 12/12 帶錯往下走。判準太鬆之漏檢，與前三件「太嚴而誤報」方向相反。
+PC_DEFAULT = re.compile(
+    r"\b(head unit|HU)\b.*\b(powered on|booted|on)\b|\bignition is on\b",
+    re.I)
+PC_PREMISE = re.compile(
+    r"\b(is accessible|is available|can be reached)\b", re.I)
+# 第三類最難機械化：「該狀態是否步驟可達成」需語意判斷。
+# 可機械化之近似 —— 該 pre_condition 之文字若與任一 procedure 步驟之標的
+# 重疊（共用一個引號標的），即列為候選並人工判讀。
+QUOTED = re.compile(r'"([^"]+)"')
+c11 = {"default": [], "premise": [], "step_overlap": []}
+for t in TCS:
+    for ln in t["pre_conditions"].split("\n"):
+        s = re.sub(r"^\d+\.\s*", "", ln).strip()
+        if not s:
+            continue
+        if PC_DEFAULT.search(s):
+            c11["default"].append(f"{t['leaf_id']}: {s[:56]}")
+        if PC_PREMISE.search(s):
+            c11["premise"].append(f"{t['leaf_id']}: {s[:56]}")
+        pcq = set(QUOTED.findall(s))
+        prq = set(QUOTED.findall(t["test_procedure"]))
+        if pcq & prq:
+            c11["step_overlap"].append(
+                f"{t['leaf_id']}: 共用標的 {sorted(pcq & prq)}")
+chk(11, "pre_conditions 無 §4.4 三類禁項（system defaults／premise／step-controlled）",
+    not any(c11.values()),
+    "；".join(f"{k} {len(v)}" for k, v in c11.items())
+    + (f" -- {sum(c11.values(), [])[:3]}" if any(c11.values()) else ""))
+
+# 12 —— 對他筆之值的隱性依賴（下放包 12 §五）
+RE_CROSSREF = re.compile(
+    r"\b(comparable|corresponding|similar|equivalent)\b[^.]{0,40}"
+    r"\b(ceiling|threshold|limit|count|timeout|duration|interval)\b", re.I)
+c12 = []
+for t in TCS:
+    for f in ("test_procedure", "expected_result", "pre_conditions",
+              "input_test_data", "test_item"):
+        for m in RE_CROSSREF.finditer(t[f]):
+            c12.append(f"{t['leaf_id']}/{f}: {m.group(0)[:50]}")
+chk(12, "無對他筆之值的隱性依賴（comparable/corresponding/... ＋ 門檻類名詞）",
+    not c12, f"命中 {len(c12)} 處 {c12 or '無'}")
 
 # 3 —— test_item 括號下半 12 筆兩兩不同
 low = {}
@@ -107,13 +154,40 @@ chk(7, "尾句號／方括號／單引號／行首尾空白（IN §11，作者�
     f"尾句號 {len(trail)}；單引號 {len(sq)}；方括號角括號 {len(br)}；"
     f"空白 {len(ws)}" + (f" -- {trail[:2]}{sq[:2]}{br[:2]}" if (trail or sq or br) else ""))
 
-# 7b —— test_item 上半之來源記法（§11 例外為 profile-scoped，VC 無 profile）
-srcq = [t["leaf_id"] for t in TCS
-        if re.search(r"«|»|(?<![A-Za-z])'[^']+'(?![A-Za-z])",
-                     t["test_item"].split("\n\n")[0])]
-chk("7b", "test_item 上半之 verbatim 是否帶非 \"...\" 之來源記法",
-    not srcq,
-    f"帶來源記法者 {len(srcq)} 筆 {srcq}")
+# 7b —— test_item 上半之來源記法。
+# ⚠ 本項之判準已由「禁止」改為「驗證來源」—— **不是為了讓結果變綠**，
+# 是其前提改變了：R-VC19 落條、profile
+# `docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md` §1 已啟動
+# IN §11 之例外。該例外之啟動條件為「when the feature profile says so」，
+# 前一輪 profile 不存在故例外未啟動、本項判「禁止」；
+# 現在 profile 存在且明文，故依 R-VC19(c)「lint 之職責由禁止改為驗證其來源」
+# 改判。**判準改變之依據是裁決，不是結果。**
+SRC = {}
+try:
+    import openpyxl
+    _wb = openpyxl.load_workbook(
+        ROOT / "inputs/FM-WI-FSM-037-A03-N1L-SWE1-VehicleCategory-HMI-V0.1 STLA 報告.xlsx",
+        read_only=True, data_only=True)
+    for r in list(_wb["Analysis Report"].iter_rows(values_only=True))[7:]:
+        if r[0] not in (None, ""):
+            SRC[str(r[0]).strip()] = (str(r[3]).strip(), str(r[4]).strip())
+except Exception as e:                      # noqa: BLE001
+    SRC = {}
+    print(f"（警告：037 不可讀，7b 退化為僅計數：{e}）", file=sys.stderr)
+
+TOKEN = re.compile(r"«[^»]*»|(?<![A-Za-z])'[^']+'(?![A-Za-z])")
+kept, unsourced = [], []
+for t in TCS:
+    for tok in TOKEN.findall(t["test_item"].split("\n\n")[0]):
+        kept.append((t["leaf_id"], tok))
+        ti, de = SRC.get(t["leaf_id"], ("", ""))
+        if tok not in ti and tok not in de:
+            unsourced.append((t["leaf_id"], tok))
+chk("7b", "test_item 上半保留之來源記法對得上其來源列（R-VC19(c)）",
+    bool(SRC) and not unsourced,
+    f"保留 token {len(kept)} 個；未對上來源 {len(unsourced)} 個 "
+    f"{unsourced or ''}"
+    + ("" if SRC else "；**037 不可讀，本項未實測**"))
 
 # 8 —— VC-033-01 帶且僅帶一處 PENDING
 pat = "PENDING: DR-VC8 Glove Box lockout threshold"

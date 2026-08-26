@@ -24,7 +24,9 @@ Run recon; outputs `RECON.md` + pre-filled `DECISIONS.md`.
 
 ## Phase 3 — Framework & profile (Tier 2)
 - [ ] `docs/fw036/framework.md` Part N appended
-- [ ] `docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md` written
+- [x] `docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md` written
+      —— R-VC19（包 11）。最小內容四節；§1 啟動 IN §11 之引號例外，
+      §2 記 lint 無法實作 (c)「驗證來源」之已知限制（A-VC15）
 
 ## Phase 4 — Data build (Tier 1)
 - [ ] Data artifacts built per feature.yaml; misses filed to ANOMALIES.md

@@ -21,6 +21,8 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |
 | A-VC13 | 送簽稿含自我描述之狀態元資料 | 本 feature 已處置；通則 PENDING | 全域排程（包 08 §一）|
 | A-VC14 | 037 Title 與 Description 之數值矛盾（`VC-033-01`）| PENDING | 待 DR-VC8 |
+| A-VC15 | `lint036.py --profile` 不讀 profile 內容，無法實作 R-VC19(c) | PENDING | 全域排程（工具修法）|
+| A-VC16 | pilot 之 §9 判讀漏檢二形態（檢查覆蓋不足，非規則缺失）| **RESOLVED（包 12）** | — |
 
 ---
 
@@ -640,6 +642,22 @@ A-VC14（037 Title 與 Description 之數值矛盾）
     同型矛盾** —— 本條不得被讀為「全表僅此一例」。
     全表掃描列為 T52。
 
+**加註（下放包 12 §一，2026-08-26）—— 分歧之精確形態，原文不改（R-TM13）**
+
+本條原記為「二欄之數值相差一次」，並以「第 3 次 vs 第 4 次」表述。
+上繳包 11 §4.2 查明其**更精確之形態**：
+
+> **二欄之數字同為 `three`，差別在比較器。**
+> `After three sequential wrong PINs` —— 觸發於第 3 次
+> `more than three times in sequence` —— 觸發於第 4 次
+
+即：**只比數字會漏掉這個矛盾**（二者皆為 3）。T52 之掃描器初版正是
+因此而漏抓本案 —— 它比的是 (類別, 值)，比較器是後來才加入判準的。
+
+分析層下裁時所知者為「數值 3 vs 4」，此加註記其實測所得。
+**條文原文不改**，其 (a)(b)(c) 三項拘束不受影響。
+
+
 狀態：PENDING（待 DR-VC8）。
 ```
 
@@ -662,6 +680,90 @@ A-VC14（037 Title 與 Description 之數值矛盾）
 而不看其判準。
 
 狀態：PENDING（待 DR-VC8）。
+
+---
+
+## A-VC15 —— `lint036.py --profile` 不讀 profile 內容（新立，包 11 §2.3 第 3 項）
+
+**登記依據**：R-VC19 §2.3 第 3 項明文「先查 `lint036.py` 對 `--profile` 之
+現有支援程度並如實回報；若現況只能『禁止或放行』而無法驗證來源，
+**據實記為 profile 之已知限制並登記 A-VC{n}，不得改 lint**」。
+
+**實測（本輪 T61）**
+
+| # | 事實 | 證據 |
+|---|---|---|
+| 1 | `--profile FEATURE` **不讀取任何 profile 檔案** | `grep 'profile\s*==\|profile.lower()\|profile in '` **零命中**；該值僅作真值使用（`lint036.py:185`／`:189`／`:195`／`:496`／`:740`）|
+| 2 | 其字串內容從未被讀取 → 傳 `vehicle_category` 與傳任意非空字串**等效** | 同上 |
+| 3 | 其作用固定為：`P` 改採 R-1 v3、另啟 `Q`／`R`／`T` 三項 | `check_order()`／`PROFILE_CHECKS` |
+| 4 | **輸入為 `.xlsx`**，非 `generated/*.json` | `argparse` 之 `files` metavar「一個或多個 .xlsx 路徑」；`openpyxl.load_workbook` |
+| 5 | 既有 `quoted_spans()`（`:294`）只認 `" "` 與 `“ ”`，且僅供檢查 B（ER 情態詞豁免）| 無禁止 `'...'`／`«...»` 之檢查，亦無驗證來源之機制 |
+
+**後果**：R-VC19(c)「lint 之職責由禁止改為驗證其來源」**現階段無承載者**。
+profile 之內容無法影響 lint —— 本 feature 之 profile 寫了什麼，
+`lint036` 都看不到。
+
+**提案處置（Tier 2 工具修法，本輪未實作）**
+
+(a) `--profile` 改為讀取 `docs/runtime/profiles/` 之對應檔，
+    使 profile 之 `[OVERRIDE]` 條款可驅動檢查之開關；
+(b) 新增「保留 token 之來源驗證」檢查：對 `test_item` 上半之
+    非 `"..."` token，比對其是否逐字出現於該 leaf 之 037 二欄。
+(c) 二者**與 R-VC8 之授權非同一件，不得併案**（同 A-VC8／A-VC11 之邊界）。
+    R-VC8 之授權範圍為 `recon.py`，不涵蓋 `lint036.py`。
+
+**在限制解除前之替代**：由 `scripts/t62_verbatim_source_check.py` 以人工
+流程承擔，**不隨 lint 執行**，須逐輪明列於上繳包。
+本輪結果：6 token / 0 未對上來源（上繳包 11 §3）。
+
+狀態：PENDING（全域排程）。與 A-VC4／A-VC8／A-VC11／A-VC13 通則同批。
+
+---
+
+## A-VC16 —— pilot 之 §9 判讀漏檢二形態 —— **RESOLVED（下放包 12）**
+
+**不立新條** —— IN §4.4 與 §8.4.1 皆已明文，**缺的是檢查覆蓋，不是規則**
+（下放包 12 T72 之明文）。本條登記其漏檢實例，供日後校準判準。
+
+### 漏檢一 —— §4.4 之三類禁項只驗了一類
+
+12 筆之 `pre_conditions` 第 1 條全為
+`The head unit is powered on and the Vehicle Category screen is displayed
+with the "Controls" tab active`，**12/12 逐字命中** §4.4 之 Forbidden
+首例（`system defaults (HU is powered on.)`），其後半另觸
+`step-controlled state`。
+
+**我當時之判讀（上繳包 10 §4 第 3 項）**：
+
+> 人工：二式（未啟用／已啟用且 PIN 已知）＋ 進入畫面；**未寫**「Glove Box is accessible」
+
+—— 只檢查了三類禁項中的**一類**（feature under test as premise）。
+該句寫得像驗過了整條 §4.4，實際只驗了三分之一。
+
+### 漏檢二 —— 對他筆之值的隱性依賴
+
+`VC-028-02` 之 Procedure 曾寫 `beyond the point at which a comparable
+attempt ceiling would apply` —— 指向 `-033-01` 之停用門檻，
+而該門檻正由 DR-VC8 爭議。**該依賴是隱性的**：該筆未帶 `PENDING`，
+收斂條件第 8 項驗「他筆帶 PENDING 無」而通過，恰好驗不到這個反面。
+
+### 方向：與前三件相反
+
+| 件 | 形態 | 後果 |
+|---|---|---|
+| T52 初版／modal／ER 序號 | 判準**太嚴** → 誤報 | 停下來看一眼，虛驚 |
+| **本條之二** | 判準**太鬆／看不到** → **漏檢** | **12 筆帶錯往下走** |
+
+**太嚴會浪費時間，太鬆會讓錯誤通過。** 前者自己會現形（FAIL 逼人去看），
+後者只有靠外部複核 —— 本次是分析層複核抓到的，不是我自己。
+
+### 處置（已完成）
+
+`verify_pilot.py` 新增第 11 項（§4.4 三類齊備）與第 12 項（隱性依賴），
+二項皆已**以反向輸入實測會 FAIL**（上繳包 12 §4.2），非僅文件宣稱。
+12 筆之 `pre_conditions` 與 `VC-028-02` 之 Procedure 已修（T67／T68）。
+
+狀態：**RESOLVED**。
 
 ---
 

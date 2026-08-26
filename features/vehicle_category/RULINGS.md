@@ -636,3 +636,70 @@ pilot 之收斂條件見下放包 10 §四。收斂後始得議 Phase 4 之全�
 
 ---
 
+```
+R-VC19（VC profile 之設立；§11 引號例外之啟動）
+
+（Pei 授權範圍內之 Tier 2 裁定，2026-08-26。）
+
+本 feature 設立 profile：
+  `docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md`
+命名依既有慣例（CamelCase 無分隔，同 `VehicleSetting`／`PowerModing`／
+`UserProfiles`）—— 該慣例非由 `feature` 字串機械推導，見 R-VC1 之註。
+
+profile 之**首要條款**為啟動 IN §11 之引號例外，其範圍嚴格限定：
+
+(a) **僅 `test_item` 上半之 verbatim 區段**得保留來源記法。
+    037 `Requirement Title` 之 `'...'` 與 `Requirement Description` 之
+    `«...»` 皆為來源記法，於該區段內逐字保留，不改寫。
+(b) **作者之散文一律 `"..."`** —— procedure 之按壓標的、
+    非引用之 ER 行、括號下半、reasoning，無例外。
+    上繳包 10 §3 第 7 項已驗此層全數合規，該狀態須維持。
+(c) 保留之記法**須對得上所引之來源列** —— 即該 token 確實逐字出現於
+    該 leaf 之 `Title` 或 `Description`。lint 之職責由「禁止」
+    改為「驗證其來源」（IN §11 例外末句之明文）。
+(d) 本例外**不及於**任何其他欄位、不及於 `«...»` 以外之新記法。
+    若日後出現第三種來源記法，須另裁後始得納入，**不得類推**。
+
+依據：IN §11 之例外其啟動條件為「when the feature profile says so」。
+在 profile 存在並載明之前，該例外未啟動 —— 執行層拒絕自行援用
+（上繳包 10 §5.3 第 2 項）為正確處置。
+
+本條不改任何既有全域條文。R-4 之範圍不變，引號記法**不屬**
+排版正規化 —— 其改寫會使讀者無法自 TC 反推規格原文之記法，
+損及 verbatim 之證據力。
+```
+
+---
+
+```
+R-VC20（verbatim 上半含爭議值之處置）
+
+`test_item` 上半之 verbatim 若含一個正由 DR 爭議之值
+（其值於 037 二欄不一致，或與規格／DBC 不一致），處置三項：
+
+(a) **verbatim 照抄，不改寫、不迴避、不換欄取值。**
+    上半為引用而非斷言；改寫損及 R-S4 所要之規格原句，
+    換取另一欄之值則只是換一個爭議值（上繳包 10 §6(a) 已指出）。
+
+(b) **該爭議須於 `reasoning` 明文揭露**，四項齊備：
+    二欄各自之逐字內容、其分歧點、以何欄為 verbatim 上半及其理由
+    （R-S4 要規格原句，非採信其值）、阻斷之 DR 編號。
+    **括號下半之提示（如 `threshold value pending`）不構成揭露** ——
+    其為 sibling 區分 token，欄位性質不同（上繳包 10 §6(b) 之自陳正確）。
+
+(c) **該爭議值不得出現於 `expected_result` 之判準位置。**
+    ER 是 pass/fail 之依據；一個未定之值不得成為判準。
+    ER 應以行為表述（「the deactivation feature is blocked」），
+    次數門檻由 procedure 之 `PENDING` 承載。
+
+即時適用：`SWE1-HMI-VC-033-01` 依 (a) 保留 Title 之
+`After three sequential wrong PINs` 為 verbatim 上半；
+依 (b) 補 `reasoning` 之四項揭露；依 (c) **須複查其 ER 是否出現
+`third`／`three`／`fourth` 等次數判準**，出現即改為行為表述。
+
+DR-VC8 回覆後，本筆依其值 Revise，並依 R-VC18 另裁是否補拆
+boundary 之 2–3 筆。
+```
+
+---
+
