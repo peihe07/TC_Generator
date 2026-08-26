@@ -16,6 +16,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-VC7 | 規格 PDF 之位元組數與下放包 01 §3.1 不符 | **RESOLVED（R-VC7）** | — |
 | A-VC8 | `recon.py` 缺 `leaf_count` assertion | PENDING | 全域排程（包 03 §五）|
 | A-VC9 | 037 Priority 按章節整批賦值 | PENDING | 待 DR-VC7 |
+| A-VC10 | 037 Title 之資訊量大於 Description | PENDING | 併 DR-VC7（同批 A）|
 
 ---
 
@@ -421,6 +422,62 @@ A-VC9（037 Priority 按章節整批賦值）
 
 狀態：PENDING（待 DR-VC7）。依 R-VC11(b)，回覆前僅取其為邊界，
 不作映射來源。T24 之草案已依此執行。
+
+---
+
+## A-VC10 —— 037 Requirement Title 之資訊量大於 Requirement Description（新立，下放包 04 §四）
+
+條文逐字：
+
+```
+A-VC10（037 Requirement Title 之資訊量大於 Requirement Description）
+
+037 於部分 leaf 上，`Requirement Title` 所載之條件多於
+`Requirement Description`。實例：
+
+  SWE1-HMI-VC-035-03
+    Title : Selecting 'Cancel' on the restore-defaults prompt returns the
+            user to the previous screen **without changing any settings**
+    Desc  : Selecting cancel will take the user back to the previous screen.
+
+  SWE1-HMI-VC-036-02
+    Title : Selecting 'Cancel' on the clear-personal-data prompt returns the
+            user to the previous screen **without clearing any data**
+    Desc  : Selecting cancel will take the user back to the previous screen.
+
+二例之 Title 皆含「不變更／不清除」之明文，Description 則僅述
+「回上一頁」。該差額正是二筆判定 P0 之依據（R-VC14(a)）。
+
+判讀：Description 疑為規格原文之逐字轉錄，Title 為 037 作者之
+需求化改寫，改寫時補入了規格他處或圖中之條件。
+**兩欄皆為 037 之正式欄位**，本 feature 之判定以二者之聯集為據，
+不以任一單欄為唯一來源。
+
+影響：TC 生成時，`test_item` 上半之 verbatim 取材須同時檢視二欄；
+僅取 Description 會遺漏 Title 所載之條件，僅取 Title 則失去規格原句。
+
+處置：不回報為缺陷（Title 補條件可能是上游之刻意作法）。
+併入 DR-VC7 之同批查詢（同為 037 欄位語意之說明性問題）。
+
+狀態：PENDING（併 DR-VC7，同批 A）。
+```
+
+**執行層獨立重測（2026-08-25）—— 條文所舉二例逐字相符**
+
+| req_id | 欄 | 原值 |
+|---|---|---|
+| `SWE1-HMI-VC-035-03` | Title | `Selecting 'Cancel' on the restore-defaults prompt returns the user to the previous screen without changing any settings` |
+| | Description | `Selecting cancel will take the user back to the previous screen.` |
+| `SWE1-HMI-VC-036-02` | Title | `Selecting 'Cancel' on the clear-personal-data prompt returns the user to the previous screen without clearing any data` |
+| | Description | `Selecting cancel will take the user back to the previous screen.` |
+
+二例之 Description **逐字相同**（同一句），而 Title 各自載明
+「without changing any settings」與「without clearing any data」——
+差額成立，且正是該二筆定案 P0 之依據（R-VC14(a)）。
+
+**執行層另行盤點全 117 leaf 之同型情形**，結果見上繳包 04 §6。
+
+狀態：PENDING（併 DR-VC7，同批 A）。
 
 ---
 

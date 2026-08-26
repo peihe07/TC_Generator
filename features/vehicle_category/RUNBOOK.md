@@ -31,13 +31,15 @@ Run recon; outputs `RECON.md` + pre-filled `DECISIONS.md`.
 - [ ] **R-VC6(b)** —— 037 欄 11／13／15／17（Description-Action for
       Feasibility／Impact／Risk Factor／Reusable）之描述文字納入資料建置，
       作為 `reasoning` 與 test_item 括號下半之素材來源
-- [ ] **R-VC11** —— TC `priority` 之判定（R-VC6(a) 之凍結已解除）。
-      **不得建立 High/Medium/Low → P0–P3 之機械映射表**（A-VC9：該欄
-      粒度為「章」，判準不明）。三層決定：(a) IN §10.2 rubric 逐 TC 判；
-      (b) 037 之值為**邊界** —— High 不得低於 P1、Low 不得高於 P3、
-      Medium 不設界；(c) 語意相悖者於 `reasoning` 記明分歧與依據。
-      草案已備：`data/priority_draft.tsv`（117 leaf，**待裁**，
-      未寫入任何 TC 欄位）
+- [x] **R-VC11(a) / R-VC13 / R-VC14** —— TC `priority` 已定案：
+      `data/priority_final.tsv`（117 leaf，**P0 5 / P1 32 / P2 45 / P3 35**）。
+      **不得建立 High/Medium/Low → P0–P3 之機械映射表**（A-VC9：該欄粒度
+      為「章」）。上游約束**作用於章**（R-VC13）：High 之章至少一筆 ≥P1、
+      Low 之章不得高於 P3、Medium 不設約束；某章不滿足時**不得逐筆抬升**，
+      停並回報。草案 `data/priority_draft.tsv` 保留為軌跡。
+- [ ] **R-VC11(c)** —— 生成時，5 個 P0 中與 037 語意相悖者
+      （`VC-035-03`／`VC-036-02`，037=Medium）及 `VC-036-01`
+      （R-VC14(b)，其隱私外洩風險）須於 `reasoning` 記明分歧與 §10.2 對應款
 - [ ] **R-VC12 一** —— 表 B 母體為 **17 節**（非 18；§16.1 已改列 (a)）。
       草稿：`data/tableB_draft.md`；最終措辭待 DR-VC3 回覆
 

@@ -19,8 +19,9 @@ DR。**DR 由 Pei 發出（Tier 3）；本檔僅登記，執行層不發送。**
 
 **七筆全為未結。**
 
-**發送批次（下放包 03 §四）**：DR-VC2、DR-VC7 與 A-VC2 之封面一問
-同為對 037 作者之說明性查詢，**同批發送，一次往返**。
+**發送批次（下放包 03 §四、04 §四）—— 同批 A**：DR-VC2、DR-VC7、
+A-VC2 之封面一問、**A-VC10 之 Title／Description 語意一問**，
+四者同為對 037 作者之說明性查詢，**同批發送，一次往返**。
 DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定。
 
 ---
@@ -117,4 +118,16 @@ DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定�
   請說明其賦值判準，及 Medium 一格（88 筆）內是否有更細之區辨。
 - **阻斷範圍**：不阻斷 —— R-VC11 已裁定其僅作**邊界**使用，非映射來源。
   回覆到後 R-VC11(b) 之邊界重審。
-- **批次**：與 DR-VC2、A-VC2 之封面一問同批發送。
+- **批次**：同批 A —— 與 DR-VC2、A-VC2 之封面一問、A-VC10 之一問同發。
+
+- **附帶一問（A-VC10，下放包 04 §四）**：037 於部分 leaf 上，
+  `Requirement Title` 所載之條件多於 `Requirement Description`。
+  最鮮明之一例：`SWE1-HMI-VC-035-03` 與 `SWE1-HMI-VC-036-02` 之
+  Description **逐字相同**（`Selecting cancel will take the user back to
+  the previous screen.`），而 Title 分別載明
+  `without changing any settings` 與 `without clearing any data`。
+  執行層實測：117 個 leaf 之 Description 相異值為 **116**，
+  **唯一之重複組即此二筆** —— 即該欄單獨無法區辨此二需求，Title 可以。
+  請說明二欄之分工：Description 是否為規格原文之逐字轉錄，
+  Title 是否為需求化改寫並得補入規格他處或圖中之條件？
+  **不單獨發 DR**（同 A-VC2 之處理）。

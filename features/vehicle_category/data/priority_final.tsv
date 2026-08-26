@@ -1,0 +1,118 @@
+req_id	section	chapter	037_priority	local_p	final_p	note	basis	requirement_title
+SWE1-HMI-VC-001-01	2.2	2	Medium	P1	P1		主要導覽結構：頁籤集不成立則整個 feature 不可達	Vehicle Category screen exposes the Controls and Settings tabs as its primary tab set
+SWE1-HMI-VC-001-02	2.2	2	Medium	P2	P2		首次進入之預設頁籤，錯了仍可手動切換	On the user's first entry into the Vehicle Category, default the active tab to Controls
+SWE1-HMI-VC-001-03	2.2	2	Medium	P2	P2		回復上次頁籤，屬便利性	On subsequent entries into the Vehicle Category, restore the last viewed tab rather than defaulting to Controls
+SWE1-HMI-VC-002	2.3	2	Medium	P2	P2		Specialty 頁籤之位置，錯位不阻斷取用	When the vehicle is equipped with Specialty features, render them as tabs positioned to the left of Controls and Settings
+SWE1-HMI-VC-003	2.3.1	2	Medium	P2	P2		頁籤排序	Order the Vehicle Category tabs by the fixed priority: 1) My Car, 2) Cameras, 3) other equipped Specialty features, 4) Controls, 5) Settings
+SWE1-HMI-VC-004	2.3.2	2	Medium	P3	P3		字面標籤	The user-visible label for the Controls tab is the literal string 'Controls'
+SWE1-HMI-VC-005	2.3.3	2	Medium	P3	P3		字面標籤	The user-visible label for the Vehicle Settings tab is the literal string 'Settings'
+SWE1-HMI-VC-006	2.3.4	2	Medium	P3	P3		可列入之 Specialty 列舉，開放式	Specialty features eligible to appear as tabs include Off Road, PHEV, and SRT, with the list being open-ended (not limited to these examples)
+SWE1-HMI-VC-007-01	2.4	2	Medium	P2	P2		採用對照表為權威來源	Adopt the Vehicle Tab Label and Order mapping table as the authoritative source for Specialty tab naming and position
+SWE1-HMI-VC-007-02	2.4	2	Medium	P3	P3		對照表單列：命名與位置	Map PHEV/MEV/HEV to the 'E. Hybrid' tab at position Fourth, and Performance Pages / Race Options / Drive Modes DXR / Off Road Pages / GPS Trail Logs / Adventure Guides / Trailer Tow Pages / Power Panel to the Dashboard tab at position Seventh
+SWE1-HMI-VC-007-03	2.4	2	Medium	P3	P3		對照表單列	Map Trip to the 'Trip' tab at position Fourth, Camera App to 'Cameras' at position Second, and Vehicle Info to 'My Car' at position First
+SWE1-HMI-VC-007-04	2.4	2	Medium	P3	P3		對照表單列	Map BEV to 'Electric Vehicle' at position Fifth, ARM Performance Pages to 'Performance' at position Sixth, and Maserati Drive Modes to 'Drive Modes' at position Seventh
+SWE1-HMI-VC-007-05	2.4	2	Medium	P3	P3		對照表單列	Map Fuel Cell to the 'Electric' tab at position Fifth, and Active Driving Assist Pages to the 'Autonomy' tab at position Third
+SWE1-HMI-VC-008	2.5	2	Medium	P2	P2		失敗＝少一個頁籤，非攝影機功能失效	When the vehicle is equipped with the Camera App, surface Cameras as a top-level tab inside Vehicle Category
+SWE1-HMI-VC-009	2.5.1	2	Medium	P3	P3		去重複，重複只是冗餘	When the Cameras tab is present at the Vehicle Category level, suppress the Cameras entry from inside the Controls tab to avoid duplication
+SWE1-HMI-VC-010	2.6	2	Medium	P2	P2		依配備過濾，未過濾則出現不可用項	Filter the Dashboard tab so only the apps for which the vehicle is actually equipped are displayed
+SWE1-HMI-VC-011	2.6.1	2	Medium	P3	P3		Dashboard 內容排序	Within the Dashboard tab, display the applicable content in the fixed order defined by the Dashboard content table
+SWE1-HMI-VC-012-01	2.6.2	2	Medium	P3	P3		橫向版面配置	On landscape displays, when exactly one feature is present render it as a single full-width banner
+SWE1-HMI-VC-012-02	2.6.2	2	Medium	P3	P3		橫向版面配置	On landscape displays, when two or more features are present render the first two as paired half banners with the topmost on the left and the next on the right
+SWE1-HMI-VC-012-03	2.6.2	2	Medium	P3	P3		橫向版面配置	On landscape displays, place additional features below the half-banner row following the PDO graphics reference
+SWE1-HMI-VC-013-01	2.6.3	2	Medium	P3	P3		直向版面配置	On portrait displays, when up to three features are present render each as its own single banner stacked in rows
+SWE1-HMI-VC-013-02	2.6.3	2	Medium	P3	P3		直向版面配置	On portrait displays, when four or more features are present render the first two as single banners and the next two as half banners sharing one row
+SWE1-HMI-VC-013-03	2.6.3	2	Medium	P3	P3		直向版面配置	On portrait displays, render any remaining features as tiles placed below the half-banner row
+SWE1-HMI-VC-013-04	2.6.3	2	Medium	P3	P3		直向版面之尺寸與溢位	The portrait Dashboard layout shall follow the PDO graphics reference for sizing, ordering, and overflow behavior
+SWE1-HMI-VC-014	3.1	3	Medium	P2	P2		Controls 可列入項目之清單	Items eligible to appear in the Controls tab include (not limited to) Headrest Fold, Auto-dimming Mirror, Cargo Camera, Backup Camera, Surround View Camera, Rear View Camera, Eco, Drive Modes, Outlet, Sport, Settings, and Screen Off (only shown if the vehicle is not equipped), per the Controls table
+SWE1-HMI-VC-015	3.1.1	3	Medium	P3	P3		攝影機項目之分組	When the vehicle has two or more of Cargo Camera, Backup Camera, or Surround View Camera, group them together within the Controls menu
+SWE1-HMI-VC-016	3.1.2	3	Medium	P3	P3		條件式項目出現規則，罕用情境	The Settings entry only appears as a Controls item when the Settings tab itself has been substituted by another tab
+SWE1-HMI-VC-017	3.2	3	Medium	P1	P1		狀態回報：失敗則使用者依錯誤狀態操作車輛	Reflect Controls-state changes both on the CONTROLS screen and, where applicable, in the status bar
+SWE1-HMI-VC-018	3.3	3	Medium	P2	P2		捷徑，非唯一路徑	Expose a shortcut to Settings from the App drawer so the user can reach Settings without leaving the current app context
+SWE1-HMI-VC-019-01	3.4	3	Medium	P2	P2		無狀態按鍵之語意	The Headrest Fold button is a stateless action button; it does not surface a status indication to the user
+SWE1-HMI-VC-019-02	3.4	3	Medium	P3	P3		按壓時不高亮，外觀細節	The Headrest Fold button does not visually highlight when the user presses it
+SWE1-HMI-VC-020	3.5	3	Medium	P1	P1		HMI 狀態須跟隨實際系統狀態，否則顯示與車態相悖	When the vehicle is equipped with a hard control for Exhaust Sound, the HMI Loud/Quiet status shall follow the underlying system status
+SWE1-HMI-VC-021	3.6	3	Medium	P1	P1		置物箱鎖之 Privacy Lock 彈窗，屬存取控制入口	When the Glove Box Lock button is pressed, open the Privacy Lock popup (PUXXXX), following the Glove Box Lock section for downstream behavior
+SWE1-HMI-VC-022	3.7	3	Medium	P3	P3		雙螢幕之內容去重	On vehicles equipped with a lower non-articulating screen, remove from the head unit any content that is already displayed on the lower screen
+SWE1-HMI-VC-023	3.8	3	Medium	P2	P2		電控玻璃不跨鑰匙循環記憶	Electrochromic glass state does not latch across key cycles; on each new key cycle the state returns to 'tinted'
+SWE1-HMI-VC-024	3.8.1	3	Medium	P2	P2		車頂開啟時標為不可用並灰化	When the roof is open, mark Electrochromic as unavailable and render its button as greyed out
+SWE1-HMI-VC-025-01	3.9	3	Medium	P2	P2		採用 Controls Button Table 為權威來源	Adopt the Controls Button Table as the authoritative source for each Controls button's status semantics
+SWE1-HMI-VC-025-02	3.9	3	Medium	P2	P2		按鍵狀態語意對照	Map Rear Sunshade to highlight-on-press (activates feature), Screen Off to turn-screen-off, and the camera-family entries (Cargo, Surround, Rear View, FamCam, Forward Facing, Aux 1, Aux 2, Trlr Gdnc) to their respective camera-feature shortcuts
+SWE1-HMI-VC-025-03	3.9	3	Medium	P2	P2		按鍵狀態語意對照	Map Mirror Dimmer to Off/On (greyed when unavailable), Headrest Fold 2nd Row and 3rd Row to highlight-on-press activation, Power Side Step to Deploy/Retract, and Outlet to On/Off
+SWE1-HMI-VC-025-04	3.9	3	Medium	P2	P2		按鍵狀態語意對照	Map Pass Screen Screen Off to toggle the passenger screen on/off, Pass Screen Power Off to toggle passenger screen power on/off, Exhaust Sound to Loud/Quiet, Glove Box Lock to Off/On (greyed when unavailable), Start & Stop OFF to Off/On (greyed when unavailable), and Settings to a Settings-tab shortcut
+SWE1-HMI-VC-025-05	3.9	3	Medium	P2	P2		按鍵狀態語意對照	Map Bed Lowering to highlight-when-engaged activation, Driver/Passenger Blind Spot View to their side-camera shortcuts, Electrochromic to Off (tinted)/On (clear) (greyed when unavailable), Cabrio to its popup entry, Memory Seats to its second-level screen, and Ambient Lighting to its app shortcut
+SWE1-HMI-VC-026-01	4.1	4	High	P1	P1		啟用流程之入口彈窗	On selecting the 'Glove Box' option, present a popup explaining the actions required to activate the function
+SWE1-HMI-VC-026-02	4.1	4	High	P1	P1		PIN 輸入彈窗，存取控制主流程	On tapping 'Yes' from the Glove Box activation popup, present a PIN request popup
+SWE1-HMI-VC-026-03	4.1	4	High	P1	P1		兩次輸入確認，PIN 設定之核心邏輯	Require the user to enter the PIN twice on the keypad popup to confirm Glove Box activation, varying only the instruction text between the two prompts
+SWE1-HMI-VC-027	4.2	4	High	P2	P2		啟用成功之確認彈窗，屬回饋	After the activation PIN has been entered twice and matched, display the 'Glove Box Activated' confirmation popup
+SWE1-HMI-VC-028-01	5.1	5	High	P1	P1		錯誤 PIN 之警示，存取控制回饋	When the user enters a wrong PIN on the second Glove Box activation attempt, display the 'Incorrect PIN. Please try again' warning popup
+SWE1-HMI-VC-028-02	5.1	5	High	P1	P1		啟用流程不限制錯誤次數 —— 存取控制之明文性質	Glove Box PIN entry enforces no upper limit on the number of incorrect attempts during the activation flow
+SWE1-HMI-VC-029	5.2	5	High	P1	P1		正確 PIN 後啟用，主流程終點	When the user finally enters the correct (first-entered) PIN after any number of wrong attempts, activate the Glove Box feature
+SWE1-HMI-VC-030	6.1	6	High	P1	P1		停用需同一 PIN，存取控制主流程	To begin Glove Box deactivation, tapping the 'Glove Box' button within Controls opens a popup that prompts for the same PIN used to activate the function
+SWE1-HMI-VC-031	6.2	6	High	P2	P2		停用成功之確認彈窗，屬回饋	After the deactivation PIN has been accepted, display the 'Glove Box Mode deactivated' confirmation popup
+SWE1-HMI-VC-032	6.3	6	High	P3	P3		按 OK 關閉彈窗並返回，導覽細節	When the user presses 'OK' on the Glove Box confirmation popup, dismiss the popup and return the user to the Controls main page
+SWE1-HMI-VC-033-01	7.1	7	High	P1	P1		三次錯誤鎖定 30 分鐘 —— 防暴力嘗試之核心規則	After three sequential wrong PINs during Glove Box deactivation, block the deactivation feature for 30 minutes
+SWE1-HMI-VC-033-02	7.1	7	High	P2	P2		位數不足之驗證彈窗	On a 3-digit PIN entry followed by Enter during Glove Box deactivation, display the 'PIN must be 4 digits / OK' popup
+SWE1-HMI-VC-034-01	11.1	11	Medium	P2	P2		不適用之設定隱藏	Hide from a vehicle's Settings list any setting that does not apply to that vehicle
+SWE1-HMI-VC-034-02	11.1	11	Medium	P2	P2		key-off 不可用者灰化而非隱藏	Grey out, rather than hide, any setting that is available to the vehicle but unavailable while the system is in key-off
+SWE1-HMI-VC-035-01	11.2	11	Medium	P1	P1		回復預設值確實生效	Selecting 'Yes' on the restore-defaults prompt resets the user's settings to their default values
+SWE1-HMI-VC-035-02	11.2	11	Medium	P2	P2		回復完成之確認彈窗	After defaults are restored, display the 'Settings reset to default' confirmation popup
+SWE1-HMI-VC-035-03	11.2	11	Medium	P0	P0		**資料遺失風險**：Cancel 若未攔住，使用者設定被靜默清空	Selecting 'Cancel' on the restore-defaults prompt returns the user to the previous screen without changing any settings
+SWE1-HMI-VC-036-01	11.3	11	Medium	P0	P1	R-VC14(b) 執行失效：該清而未清，資料仍在，非 data-loss；隱私外洩風險依 R-VC11(c) 記於 reasoning	**資料遺失風險**：清除個人資料之執行	Selecting 'Yes' on the clear-personal-data prompt clears the user's personal data and displays the 'Personal data cleared' popup with an X close button in the top right
+SWE1-HMI-VC-036-02	11.3	11	Medium	P0	P0		**資料遺失風險**：Cancel 若未攔住，個人資料被靜默清除	Selecting 'Cancel' on the clear-personal-data prompt returns the user to the previous screen without clearing any data
+SWE1-HMI-VC-037-01	11.4	11	Medium	P1	P1		懸吊模式互斥 —— 車輛動態設定之關鍵邏輯	Under Suspension, only one of the suspension modes may be active at any time
+SWE1-HMI-VC-037-02	11.4	11	Medium	P1	P1		啟用一者即停用其餘，同上	When the user activates one suspension mode, automatically deactivate all other suspension modes
+SWE1-HMI-VC-038-01	11.5	11	Medium	P2	P2		語言變更之進度彈窗	On a language change, display the 'Language updated, voice command change in process...' popup
+SWE1-HMI-VC-038-02	11.5	11	Medium	P3	P3		彈窗以新語言呈現	Render the language-change popup in the newly selected language rather than always in English
+SWE1-HMI-VC-038-03	11.5	11	Medium	P2	P2		彈窗持續至完成或使用者關閉	Keep the language-change popup on screen until either voice command updating completes or the user presses X
+SWE1-HMI-VC-038-04	11.5	11	Medium	P3	P3		關閉後返回語言設定頁	After the language-change popup is dismissed, return the user to the language settings screen
+SWE1-HMI-VC-038-05	11.5	11	Medium	P3	P3		更新期間其餘語言灰化	While voice command updating is in progress, render the current language as checked and grey out the other language options until updating completes
+SWE1-HMI-VC-039	11.6	11	Medium	P3	P3		中文之特定彈窗文字	When the user changes language to Chinese, display the 'Language updates in progress... Driver screen only will display language in Chinese.' popup with an X/Close button
+SWE1-HMI-VC-040	11.7	11	Medium	P2	P2		左側選單列標題取自 HMI Settings List	When the Settings List layout includes a Left Menu Rail, use the HMI Settings List categories as the titles of that Left Menu Rail
+SWE1-HMI-VC-041	11.7.1	11	Medium	P2	P2		無選單列時之第一層呈現	When the Settings List layout does not include a Left Menu Rail, surface the HMI Settings List categories as the first level of the Settings
+SWE1-HMI-VC-042-01	11.8	11	Medium	P3	P3		文字截斷時改以箭號下推	If a Setting's option text would truncate, replace the inline options with an arrow (>) and push the options to the next sub-level
+SWE1-HMI-VC-042-02	11.8	11	Medium	P3	P3		下一層之單選列呈現	On the new sub-level created by the arrow (>), list each option on its own line with one radio button per line (Language-setting style)
+SWE1-HMI-VC-043	11.8.1	11	Medium	P3	P3		父層括號顯示目前選項	When a Setting has been moved to a sub-level via the arrow (>), show the currently selected option in parentheses next to the arrow at the parent level (e.g. Language (English) >)
+SWE1-HMI-VC-044	12.1	12	Medium	P2	P2		清單順序依 HMI Settings List	Render the Settings list following the HMI Settings List order rather than as a numbered list
+SWE1-HMI-VC-045	12.2	12	Medium	P2	P2		SETTINGS 不逾時、選擇後不關閉	SETTINGS screens do not time out when idle and do not close after a selection, to permit consecutive adjustments
+SWE1-HMI-VC-046-01	12.3	12	Medium	P1	P1		按壓選取 —— 設定之主要互動	Select an item in the Settings list by pressing on it
+SWE1-HMI-VC-046-02	12.3	12	Medium	P1	P1		箭號開啟次層清單，主要導覽	When a list item shows an arrow, pressing it opens a new Settings list with further choices (unless overridden by a specific Settings spec)
+SWE1-HMI-VC-046-03	12.3	12	Medium	P3	P3		首次進入之游標位置	On first entry into a browse list, position the cursor on the first item in the list
+SWE1-HMI-VC-046-04	12.3	12	Medium	P1	P1		直接觸碰內嵌選項調整，主要互動	When a list item exposes inline adjustment options, allow the user to change the setting by directly touching those inline options
+SWE1-HMI-VC-046-05	12.3	12	Medium	P1	P1		旋鈕與方向鍵操作，主要互動之替代路徑	Allow scroll-knob rotation and up/down arrow presses to move the cursor through the Settings list, and treat a knob press as selection of the current item
+SWE1-HMI-VC-047-01	12.3.1	12	Medium	P2	P2		旋鈕於核取列之切換	When the cursor is on a single-checkbox line, pressing the knob toggles that checkbox
+SWE1-HMI-VC-047-02	12.3.1	12	Medium	P2	P2		旋鈕於多選列之循環	When the cursor is on a line with multiple radio buttons, each knob press cycles to the next option left-to-right
+SWE1-HMI-VC-047-03	12.3.1	12	Medium	P2	P2		旋鈕於 -/+ 列之下壓態	When the cursor is on a -/+ selector line, pressing the knob enters the down-state and knob rotation left/right decreases/increases the value
+SWE1-HMI-VC-047-04	12.3.1	12	Medium	P2	P2		下壓態之解除	Pressing the knob again, or touching the screen, releases the down-state cursor and returns it to up/down list navigation
+SWE1-HMI-VC-048-01	12.3.2	12	Medium	P3	P3		選取後游標移至該列	When the user selects an object in the Settings list, move the cursor to that line item
+SWE1-HMI-VC-048-02	12.3.2	12	Medium	P2	P2		設定變更確認音及其例外清單	Play the confirmation tone whenever a settings value is modified, except for Clock Hours/Minutes, Audio Settings, and Phone/Bluetooth Settings
+SWE1-HMI-VC-049	12.3.3	12	Medium	P2	P2		長按連續增減之速率（500ms／200ms）	For Clock, Equalizer, Balance/Fade, Engine Off Idle Timer, and Fleet Vehicle Settings, a press-and-hold longer than 500 ms shall increment/decrement at a rate of one step per 200 ms
+SWE1-HMI-VC-050	12.4	12	Medium	P2	P2		亮度長按連續增減之速率（500ms／500ms）	For Brightness settings, a press-and-hold longer than 500 ms shall increment/decrement at a rate of one step per 500 ms
+SWE1-HMI-VC-051-01	12.5	12	Medium	P2	P2		選取後指示標移動	When the user selects a setting, move the checkmark/level indicator to the selected item
+SWE1-HMI-VC-051-02	12.5	12	Medium	P1	P1		設定被拒時指示標須退回 —— 否則 HMI 顯示車輛未接受之狀態	If the setting change is rejected, move the checkmark/level indicator back to reflect the current (unchanged) state
+SWE1-HMI-VC-051-03	12.5	12	Medium	P2	P2		離開頁面後才收到拒絕之補救彈窗	If the user has already left the Settings screen when a setting rejection arrives, display the 'Setting not saved, please try again' popup with a close button and return the user to the relevant settings screen
+SWE1-HMI-VC-052-01	12.6	12	Medium	P3	P3		進入時視圖置頂	When the user enters Settings or enters a subcategory, position the view at the top of the list
+SWE1-HMI-VC-052-02	12.6	12	Medium	P3	P3		Back 返回原位置而非置頂	When the user presses Back within a subcategory, return them one level up to the exact position they entered from rather than to the top of the list
+SWE1-HMI-VC-053	12.7	12	Medium	P3	P3		資訊圖示之呈現	When a Setting has an associated Definition, render an info icon (an 'i' icon) on the line next to the setting
+SWE1-HMI-VC-054	12.7.1	12	Medium	P2	P2		資訊彈窗之內容組成	When the user presses a Setting's info icon, open a popup containing the setting's description, the associated telltale (if applicable), and the setting options
+SWE1-HMI-VC-055	12.7.2	12	Medium	P2	P2		資訊圖示於行進中仍可用	The Setting info icon and its corresponding info popup remain available even while the vehicle is in motion
+SWE1-HMI-VC-056-01	12.8	12	Medium	P2	P2		自資訊彈窗直接變更選項	Allow the user to change the setting option directly from the info popup
+SWE1-HMI-VC-056-02	12.8	12	Medium	P3	P3		選畢關閉並返回清單	When an option is chosen from the info popup, close the popup and return the user to the Settings List
+SWE1-HMI-VC-057	13.1	13	High	P1	P1		Key Off／Timed／ACC 下 Settings 不可用 —— 電源狀態之關鍵邏輯	The Settings tab is unavailable while the vehicle is in Key Off, Timed Mode, or ACC
+SWE1-HMI-VC-058-01	13.1.1	13	High	P1	P1		不可用時之提示彈窗	When the user attempts to open the Settings tab while in Key Off, Timed Mode, or ACC, display the 'Turn vehicle to Run or Key On to access menu.' popup with OK and X options
+SWE1-HMI-VC-058-02	13.1.1	13	High	P2	P2		該彈窗不逾時	The Settings Key-Off access popup does not time out and persists until the user dismisses it
+SWE1-HMI-VC-058-03	13.1.1	13	High	P2	P2		關閉後返回原畫面	Closing the Settings Key-Off access popup via X or OK returns the user to the screen they were on when they attempted to enter Settings
+SWE1-HMI-VC-059-01	13.2	13	High	P1	P1		Phone 設定之取用路徑	Allow the user to access Phone settings through the Phone screens
+SWE1-HMI-VC-059-02	13.2	13	High	P1	P1		Phone 設定於 Key Off／ACC 仍可用 —— 例外規則	Phone settings remain available while the vehicle is in Key Off or ACC
+SWE1-HMI-VC-060-01	13.3	13	High	P1	P1		Audio 設定之取用路徑	Allow the user to access Audio settings through the Media screens
+SWE1-HMI-VC-060-02	13.3	13	High	P1	P1		Audio 設定於 Key Off／ACC 仍可用 —— 例外規則	Audio settings remain available while the vehicle is in Key Off or ACC
+SWE1-HMI-VC-061	13.4	13	High	P1	P1		軟體更新於 Key Off／ACC 仍可用 —— 例外規則	Software Updates remain available while the vehicle is in Key Off or ACC
+SWE1-HMI-VC-062-01	13.4.1	13	High	P0	P0		**行車中禁入**：Wi-Fi 軟體下載之行進中攔阻，駕駛分心	When the user presses 'Software Downloads Over Wi-Fi' while the vehicle is in motion, display the 'Feature not available while vehicle is in motion' popup (PU0091)
+SWE1-HMI-VC-062-02	13.4.1	13	High	P2	P2		攔阻彈窗關閉後之返回目標	When the user presses OK or X on the in-motion popup launched from Software Downloads Over Wi-Fi, return them to the Settings list
+SWE1-HMI-VC-063-01	13.4.2	13	High	P0	P0		**行車中禁入**：FOTA 流程中車輛起步之攔阻，駕駛分心	When the vehicle starts moving while the user is mid-flow in FOTA via Wi-Fi, display the 'Feature not available while vehicle is in motion' popup (PU0091)
+SWE1-HMI-VC-063-02	13.4.2	13	High	P2	P2		攔阻彈窗關閉後之返回目標	When the user presses OK or X on the in-motion popup launched from a FOTA via Wi-Fi flow, return them to the screen that was in context before they entered the FOTA via Wi-Fi flow
+SWE1-HMI-VC-064-01	13.5	13	High	P1	P1		行進間轉入 Key Off 時之強制彈窗	When a Settings tab or category that is unavailable in Key Off/Timed Mode/ACC is open and the vehicle transitions to Key Off, Timed Mode, or ACC, display the 'Turn vehicle to Run or Key On to access menu.' popup
+SWE1-HMI-VC-064-02	13.5	13	High	P1	P1		該彈窗不逾時且不可關閉 —— 可關閉即進入無效狀態	This Key-Off transition popup does not time out and cannot be dismissed by the user
+SWE1-HMI-VC-064-03	13.5	13	High	P1	P1		回到 Run／Key On 時自動關閉並還原	When the vehicle returns to Run or Key On while the Key-Off transition popup is on screen, automatically dismiss the popup and restore the Settings screen the user was on before the transition
+SWE1-HMI-VC-065-01	14.1	14	Medium	P0	P0		**安全**：行進中煞車服務模式須灰化	While the vehicle is in motion, render the EPB Service mode option as greyed out
+SWE1-HMI-VC-065-02	14.1	14	Medium	P1	P1		按下灰化項之提示彈窗	When the user presses the greyed-out EPB Service mode line, display the 'Feature not available while vehicle is in motion' popup
+SWE1-HMI-VC-066	16.2	16	Low	P3	P3		widget 標題字面	The widget title for the Vehicle Category feature is the literal string 'Cabrio'
