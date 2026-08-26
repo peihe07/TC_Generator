@@ -122,21 +122,57 @@ def layer1(src, cont_leaves, excl_leaves, defer_leaves=frozenset()):
     return all_cand, unhandled
 
 
+SENT_SPLIT = re.compile(r"(?<=\.)\s+(?=[A-Z])")
+
+
+def sentence(sys1_text, idx):
+    """取指定句；支援單句 `3`、**範圍 `1-2`**、`*`／空值取整段。
+
+    範圍為下放包 22 §二所明文（「reference 型：登記為**範圍**或 `*`」）——
+    指涉型之先行詞常在前句，取單句不足以解其指涉，取整段又可能逾
+    R-3 之 50 token。
+    """
+    if idx in ("*", "", None):
+        return sys1_text
+    parts = [s.strip() for s in SENT_SPLIT.split(sys1_text.strip())]
+    m = re.fullmatch(r"(\d+)\s*-\s*(\d+)", str(idx).strip())
+    if m:
+        a, b = int(m.group(1)), int(m.group(2))
+        if 1 <= a <= b <= len(parts):
+            return " ".join(parts[a - 1:b])
+        return ""
+    try:
+        n = int(idx)
+    except ValueError:
+        return sys1_text
+    return parts[n - 1] if 1 <= n <= len(parts) else ""
+
+
 def layer2(src, sys1, cont_rows):
-    """內容驗證 —— 037 片段（正規化）須為登記節之子串。"""
+    """內容驗證 —— 037 片段（正規化）須為登記**句**之子串。
+
+    **句級（下放包 22 §二）**：句序由程式硬推改為表中 `sentence_index`
+    登記，驗證隨之自節級細化至句級 —— 指錯句則子串關係不成立
+    （同節他句之文字不同）。**sentence_index 之正確性至此有機器承載者。**
+    """
     bad = []
     for row in cont_rows:
         lid, sec = row["leaf"], row["sys1_section"]
+        idx = row.get("sentence_index", "*")
+        raw = sys1.get(sec, "")
+        if not raw:
+            bad.append((lid, sec, idx, "節不存在"))
+            continue
+        tgt = norm(sentence(raw, idx))
         frag = norm(src.get(lid, ("", ""))[1])
-        target = norm(sys1.get(sec, ""))
-        if not frag or not target or frag not in target:
-            bad.append((lid, sec, frag[:48], "節不存在" if not target
-                        else "片段非該節之子串"))
+        if not frag or not tgt or frag not in tgt:
+            bad.append((lid, f"{sec} s{idx}", frag[:44],
+                        "指定句不存在" if not tgt else "片段非該句之子串"))
     return bad
 
 
 def self_test(src, sys1):
-    """四個斷言（20a §2.4）。任一不過即非零碼退出。"""
+    """五個斷言（20a §2.4 ＋ 下放包 22 §二之錯句斷言）。任一不過即非零碼退出。"""
     ok = True
     # 第一層 (b) 已知標的：019-02 為指涉型，未登記時應被列為候選
     h = classify(src["SWE1-HMI-VC-019-02"][1])
@@ -159,12 +195,21 @@ def self_test(src, sys1):
     print(f"  self-test 3  第二層(b) 第 1 批四筆登記應全過      "
           f"{'PASS' if a3 else '**FAIL**'}  母體={len(base)} 不符={bad}")
     ok &= a3
-    # 第二層 (a) 反向：把 012-03 之登記改指 2.5 → 應 FAIL
-    probe = [{"leaf": "SWE1-HMI-VC-012-03", "sys1_section": "2.5"}]
-    a4 = bool(layer2(src, sys1, probe))
+    # 第二層 (a) 反向之一：錯節
+    p1 = [{"leaf": "SWE1-HMI-VC-012-03", "sys1_section": "2.5",
+           "sentence_index": "3"}]
+    a4 = bool(layer2(src, sys1, p1))
     print(f"  self-test 4  第二層(a) 反向 012-03→§2.5 應 FAIL   "
           f"{'PASS' if a4 else '**FAIL**'}")
     ok &= a4
+    # 第二層 (a) 反向之二：**錯句**（下放包 22 §二之新斷言）——
+    # 節對而句序錯，句級細化後應被抓到；節級時抓不到。
+    p2 = [{"leaf": "SWE1-HMI-VC-013-02", "sys1_section": "2.6.3",
+           "sentence_index": "1"}]
+    a5 = bool(layer2(src, sys1, p2))
+    print(f"  self-test 5  第二層(a) 反向 013-02→§2.6.3 s1 應 FAIL "
+          f"{'PASS' if a5 else '**FAIL**'}")
+    ok &= a5
     return ok
 
 
@@ -174,7 +219,7 @@ def main():
     if not self_test(src, sys1):
         print("\n**self-test 未全過 —— 不輸出正式結果，非零碼退出。**")
         return 2
-    print("  → 四個斷言全過，開始跑正式母體\n")
+    print("  → 五個斷言全過，開始跑正式母體\n")
 
     cont_rows = read_tsv(CONT)
     excl_rows = read_tsv(EXCL)

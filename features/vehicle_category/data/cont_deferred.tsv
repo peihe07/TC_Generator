@@ -1,5 +1,4 @@
 leaf	batch	reason
-SWE1-HMI-VC-038-02	4	指涉型候選（`It` 之先行詞在 038-01）。第 4 批 Settings Behavior 尚未勘查，其類別與 SYS1 節之對應待該批勘查 (d) 判定
-SWE1-HMI-VC-038-03	4	指涉型候選（`This pop-up` 指 038-01 之彈窗）。同上
+SWE1-HMI-VC-038-03	4	指涉型已確認（`This pop-up` 先行詞在 SYS1 §11.5 s1），但**登記範圍待裁**：連續 s1-s3 為 54 token，逾 R-3 之 50；非連續 s1+s3 為 42 token 但破壞 verbatim 之連續性。見上繳包 22 §4.2
 SWE1-HMI-VC-058-02	5	指涉型候選（`This pop-up` 指 058-01 之彈窗）。第 5 批 Ignition Availability 尚未勘查
 SWE1-HMI-VC-064-02	5	指涉型候選（`This pop-up` 指 064-01 之彈窗）。同上

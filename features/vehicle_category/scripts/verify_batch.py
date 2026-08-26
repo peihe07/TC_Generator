@@ -417,11 +417,11 @@ if _ct.exists():
         if not _l.strip():
             continue
         _r = dict(zip(_hd, _l.split("\t")))
-        # 續行型：取該節之句序（012-* 為第 3 句 idx 2、013-* 為第 2 句 idx 1）
-        # 指涉型：取整段（idx None）
-        _idx = None if _r["kind"] == "reference" else (
-            2 if _r["sys1_section"] == "2.6.2" else 1)
-        CONT[_r["leaf"]] = (_r["sys1_section"], _idx)
+        # 句序**自表中 `sentence_index` 讀取**（下放包 22 §二）——
+        # 原為由節號硬推（`2.6.2`→第 3 句、`2.6.3`→第 2 句），該推導無檢查。
+        # `*` 或空值 = 取整段（指涉型）。
+        _si = (_r.get("sentence_index") or "*").strip()
+        CONT[_r["leaf"]] = (_r["sys1_section"], _si)   # 原樣傳遞，含範圍
 targets = [k for k in CONT if any(x["leaf_id"] == k for x in TCS)]
 if not targets:
     chk(16, "續行型 leaf 之上半取 SYS1 完整句（本批無適用對象）", True, "N/A")
@@ -446,10 +446,15 @@ else:
         sec, idx = CONT[lid]
         if sec not in SENT:
             want = None
-        elif idx is None:
-            want = " ".join(SENT[sec]).strip()      # 指涉型：整段
+        elif idx in ("*", ""):
+            want = " ".join(SENT[sec]).strip()      # 整段
+        elif re.fullmatch(r"\d+\s*-\s*\d+", idx):
+            _a, _b = (int(x) for x in idx.split("-"))
+            want = (" ".join(SENT[sec][_a - 1:_b])
+                    if 1 <= _a <= _b <= len(SENT[sec]) else None)
         else:
-            want = SENT[sec][idx] if idx < len(SENT[sec]) else None
+            _n = int(idx) - 1
+            want = SENT[sec][_n] if 0 <= _n < len(SENT[sec]) else None
         got = next(x for x in TCS if x["leaf_id"] == lid)[
             "test_item"].split("\n\n")[0].strip()
         if want is None or got != want:
