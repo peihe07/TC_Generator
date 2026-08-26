@@ -11,11 +11,15 @@ this script refuses to guess:
     python features/audio_mgmt/scripts/lint_tcs.py --profile audio_mgmt
 
 Checks implemented here, lettered as in PREVENTION_ARCHITECTURE:
-  A  forbidden step verbs (5.1)          G  test_set closed vocabulary (4.2)
-  B  modal verbs in ER (6)               M  required-field three-state (8.4.3)
-  E  step to ER alignment (6)            N  trailing period (11)
-  I  test_item bracket tail (S4)         O  spec_reference format (R-2)
-  K  CJK in delivery columns (1)         P  signal notation (8.7.5 v3)
+  A  forbidden step verbs (5.1)          H  vague ER wording (6)
+  B  modal verbs in ER (6)               I  test_item bracket tail (S4)
+  C  test_item hedges and modals (4.3)   J  line-opening capital (R-4)
+  D  pre-condition shape (4.4)           K  CJK in delivery columns (1)
+  E  step to ER alignment (6)            L  verbatim half token cap (R-3)
+  F  square brackets (11)                M  required-field three-state (8.4.3)
+  G  test_set closed vocabulary (4.2)    N  trailing period (11)
+                                         O  spec_reference format (R-2)
+                                         P  signal notation (8.7.5 v3)
 
 Usage:
     python features/audio_mgmt/scripts/lint_tcs.py --profile audio_mgmt
@@ -51,6 +55,43 @@ QUALIFIED = re.compile(r"^[A-Za-z][A-Za-z0-9_]*\.[A-Za-z][A-Za-z0-9_]*$")
 VALUE_FORM = re.compile(r"=\s*-?\d+\s*\([A-Za-z0-9_]+\)")
 # v3(c): PROXI parameters never take $.
 PROXI_DOLLAR = re.compile(r"\bPROXI\s+\$")
+
+# ---- check C, canon 4.3 -----------------------------------------------------
+# The canon names three: properly, successfully, within reasonable time.
+# Listed one-for-one so the list can be diffed against its authority.
+HEDGES = ("properly", "successfully", "within reasonable time")
+HEDGE_RE = re.compile(r"\b(" + "|".join(HEDGES) + r")\b", re.I)
+# 4.3 also bars modals from the title half; MODALS above is reused.
+
+# ---- check D, canon 4.4 -----------------------------------------------------
+# A pre-condition is starting state or environment. The canon's forbidden set
+# is system defaults, the feature under test as premise, actions, and
+# step-controlled state, with the self-test: if it needs doing, checking or
+# confirming, it is not a pre-condition.
+PC_DEFAULT = re.compile(r"\b(powered on|power(ed)? up|switched on|booted|"
+                        r"ignition is on|system is (on|ready))\b", re.I)
+PC_ACTION = re.compile(r"^\s*(insert|connect|open|press|select|start|play|"
+                       r"launch|enable|disable|set|trigger|activate|do|check|"
+                       r"confirm|read|verify)\w*\b", re.I)
+
+# ---- check H, canon 6 -------------------------------------------------------
+VAGUE = re.compile(r"\b(as expected|normally|normal behaviou?r|correctly|"
+                   r"appropriately|properly)\b", re.I)
+
+# ---- check F, canon 11 ------------------------------------------------------
+# UI labels take double quotes, never square brackets. audio_mgmt writes
+# signal values as `= <raw> (<label>)` under 8.7.5 v3, so unlike the v2-era
+# features there is no source-quoted `$SIG$ = [value]` form to exempt here.
+BRACKET = re.compile(r"[\[\]]")
+
+# ---- check J, R-4 -----------------------------------------------------------
+# A content line opens with a capital. Exempt: a technical token, camelCase,
+# an opening quote, and a $signal$ — all of which carry their own casing.
+LINE_LOWER_OK = re.compile(r'^\s*(\d+\.\s*)?(["\$<\[(]|[a-z]+[A-Z]|'
+                           r'[a-z]+[_.][a-z]|PROXI\b)')
+
+# ---- check L, R-3 -----------------------------------------------------------
+VERBATIM_TOKEN_CAP = 50
 
 DELIVERY = ("test_item", "pre_conditions", "input_test_data",
             "test_procedure", "expected_result", "remarks")
@@ -170,6 +211,44 @@ def main() -> int:
         for line in tc["spec_reference"].split("\n"):                # O
             if not SPEC_REF.match(line):
                 fails.append(f"{tag}: spec_reference line {line!r} (R-2)")
+
+        upper, _, bracket = tc["test_item"].partition("\n\n")
+        m = HEDGE_RE.search(bracket)                                 # C
+        if m:
+            fails.append(f"{tag}: test_item bracket hedges on "
+                         f"{m.group(1)!r} (4.3)")
+        m = MODALS.search(bracket)
+        if m:
+            fails.append(f"{tag}: test_item bracket uses the modal "
+                         f"{m.group(1)!r} (4.3)")
+        n_tok = len(upper.split())                                   # L
+        if n_tok > VERBATIM_TOKEN_CAP:
+            fails.append(f"{tag}: verbatim half is {n_tok} tokens, over the "
+                         f"{VERBATIM_TOKEN_CAP} R-3 allows")
+        pc = str(tc["pre_conditions"]).strip()                       # D
+        if pc.upper() != "NA":
+            for line in pc.split("\n"):
+                if PC_DEFAULT.search(line):
+                    fails.append(f"{tag}: pre_condition states a system "
+                                 f"default (4.4): {line[:46]}")
+                if PC_ACTION.match(line):
+                    fails.append(f"{tag}: pre_condition is an action or a "
+                                 f"check (4.4): {line[:46]}")
+        for line in tc["expected_result"].split("\n"):               # H
+            m = VAGUE.search(line)
+            if m:
+                fails.append(f"{tag}: ER is vague on {m.group(1)!r} (6): "
+                             f"{line[:46]}")
+        for key in DELIVERY:                                         # F
+            if BRACKET.search(str(tc[key])):
+                fails.append(f"{tag}/{key}: square bracket — UI labels take "
+                             f'double quotes (11)')
+        for key in ("test_procedure", "expected_result"):            # J
+            for line in str(tc[key]).split("\n"):
+                body = re.sub(r"^\s*\d+\.\s*", "", line)
+                if body and body[0].islower() and not LINE_LOWER_OK.match(line):
+                    fails.append(f"{tag}/{key}: line opens lower case (R-4): "
+                                 f"{line[:46]}")
 
         check_p(tc, dbc, fails, notes)                               # P
 
