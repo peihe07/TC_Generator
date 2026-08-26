@@ -86,6 +86,14 @@ workbook:
     author: "AA"
     test_version: "AB"
 
+# TC ID 之格式（IN §10.3 `{project}-{abbr}-{NNN}`）。
+# 鍵名沿 amfm 之既有 `tc_id_format`（`newR1L-AMFM-{n:03d}`）——
+# 下放包 07 §二-2 稱「project 前綴依 feature.yaml」，而本檔原無任何 project 鍵；
+# 全案之 project 前綴為 `newR1L`，其權威為工作簿 D2 儲存格（本包實測 = "newR1L"），
+# amfm 交付本之 `newR1L-AMFM-001…143` 為既有實例。不另立 `project:` 裸鍵，
+# 因為真正被讀的是完整格式字串，拆成兩鍵會多一個無人讀的鍵（R-VC9）。
+tc_id_format: "newR1L-BLM-{n:03d}"
+
 done_region:
   detection: "author"
   author_value: null            # R-BLM3：workbook_state = BLANK，本節不生效

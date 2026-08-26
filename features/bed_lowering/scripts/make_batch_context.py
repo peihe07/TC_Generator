@@ -44,6 +44,29 @@ def sha256(p: Path) -> str:
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
+
+
+def _spec_context_for(spec_ref: str, signals: dict) -> str:
+    """Per-row spec context: the ruled reference constant + verified signals.
+
+    Kept identical for every row of the batch on purpose -- R-BLM5 makes the
+    reference a single constant, and the signal set was looked up for the
+    Test Set as a whole, not per leaf. Emitting it per row is what the
+    prompt_builder contract requires, not a claim that it differs per row.
+    """
+    lines = [f"specification_reference (verbatim, R-BLM5): {spec_ref}"]
+    if signals:
+        lines.append("")
+        lines.append("Verified CAN signals available for this Test Set "
+                     "(R-BLM11 bound databases; use $MESSAGE.Signal$ = raw "
+                     "(label) per IN 8.7.5(a), never invent a name):")
+        for label, e in signals.items():
+            cands = e.get("dbc") or []
+            if cands:
+                lines.append(f"- {label}: {', '.join(cands[:8])}")
+    return "\n".join(lines)
+
+
 def build(test_set: str) -> dict:
     cfg = yaml.safe_load((FEAT / "feature.yaml").read_text(encoding="utf-8"))
     inv = load_tsv(FEAT / "data" / "leaf_inventory.tsv")
@@ -68,6 +91,13 @@ def build(test_set: str) -> dict:
     for r in batch:
         leaves.append({
             "req_id": r["req_id"],
+            # `test_item` 為 `backend.prompt_builder.build_batch_prompt` 之
+            # **必要鍵**（`row['test_item']`，非 .get，缺鍵即 KeyError）。
+            # 上繳 07 §三-1 之實跑才發現此契約 —— 在此之前 adapter 只餵
+            # `requirement_text`，組 prompt 會當場炸掉。生成輸入取 037 之
+            # Requirement Description（即 R-S4 上半之來源），不取已成品之
+            # tc_title —— 那是輸出不是輸入。
+            "test_item": r["description"],
             "heading_id": r["heading_id"],
             "test_set": r["test_set"],
             "requirement_title": r["title"],
@@ -77,6 +107,14 @@ def build(test_set: str) -> dict:
             "sub_categorization": r["sub_categorization"],
             "priority_037": r["priority_037"],
             "spec_reference": spec_ref,
+            # `build_batch_prompt` 只把 `_get_spec_context(row, spec_index)`
+            # 之輸出放進 prompt，而該函式讀的是 `row["matched_spec_context"]`。
+            # 不填此鍵，prompt 之每條 Spec 欄皆為 "N/A" —— 上繳 07 §三-1 實測。
+            # 後果不是報錯而是**訊號資訊整段不進 prompt**：生成端看不到
+            # $ASCM_FD_2.*$ 之候選與 VAL_ 列舉，只能省略訊號或造名（IN §8.4）。
+            # 故本鍵承載本 feature 之兩項語料：R-BLM5 之 N 欄常數，
+            # 與 R-BLM11 四庫預查所得之訊號候選。
+            "matched_spec_context": _spec_context_for(spec_ref, signals),
         })
 
     in_batch = {r["req_id"] for r in batch}
@@ -86,8 +124,14 @@ def build(test_set: str) -> dict:
                 for r in inv
                 if r["heading_id"] in set(heads) and r["req_id"] not in in_batch]
 
+    # `project` 為 build_batch_prompt 之必要鍵（`context['project']`）。
+    # 取 `tc_id_format` 之前綴為單一真相源，不另立 `project:` 裸鍵 ——
+    # 兩處各寫一次即可能不一致。
+    project = cfg["tc_id_format"].split("-")[0]
+
     ctx = {
         "feature": cfg["feature"],
+        "project": project,
         "test_group": cfg["test_group"],
         "test_set": test_set,
         "spec_mode": cfg["spec_mode"],
