@@ -2,8 +2,11 @@
 
 - feature：`power_moding`　**Test Group**：`Disclaimer screen`
 - 交付基底：`FM-WI-FSM-036-A01 …_SWQT_20260817_ext.xlsx`（R-PMH7，SHA256 `6372fb6b…`）
-- 工作副本：`output/…_PowerModing_20260826_writeback_rev2.xlsx`
-  （SHA256 `01e917b88e050ce1f164db1f1121ea9fe665bae34bcfa5e153c03d1f322f248c`）
+- 工作副本：`output/…_PowerModing_20260826_writeback_rev3.xlsx`
+  （SHA256 `8f471ddf27c4a6b5f9b9c368de33f08512cc24e4a696dd341629e2c5314612cb`）
+  —— **`rev2` 作廢，不得出貨**（R-PMH153：其 I 欄 51 列中 50 列之括號下半
+  為繁體中文，違反 canon `TC workbook fields: English only`）。
+  `rev2` 依既有慣例不覆寫、不刪除，其為 39 包上繳所載之對象。
 - 產生日：2026-08-26　撰寫依據：39 包 §四步驟 7（R-PMH149）
 
 > **本文件與「已知未決清單」併為一份**（39 包步驟 8 令執行層擇一）。

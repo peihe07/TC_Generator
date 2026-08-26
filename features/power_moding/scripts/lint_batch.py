@@ -325,6 +325,16 @@ def main() -> None:
            if not re.search(r"\n\n\(.+\)$", t["test_item"], re.S)]
     chk("profile §3.1 test_item 具下半括號（硬規則）", not bad, str(bad))
 
+    # --- R-PMH153：六個交付欄位一律英文（canon `TC workbook fields: English only`）---
+    # 繁中僅許於 `reasoning`／`distinguishing_axis` 等不入工作簿之欄位。
+    DELIV_EN = ("tc_title", "test_item", "pre_conditions", "input_test_data",
+                "test_procedure", "expected_result")
+    bad = [(t["tc_id"], f, re.findall(r"[\u4e00-\u9fff]+", str(t.get(f, "")))[:3])
+           for t in tcs for f in DELIV_EN
+           if re.search(r"[\u4e00-\u9fff]", str(t.get(f, "")))]
+    chk("R-PMH153 交付六欄不含中文（canon English only）", not bad,
+        f"{len(bad)} 處 " + str(bad[:3]))
+
     # --- profile §3.3：design_method ∈ 9 詞條 ---
     bad = [(t["tc_id"], t["design_method"]) for t in tcs if t["design_method"] not in voc]
     chk("profile §3.3 design_method ∈ 下拉選單 9 詞條", not bad, str(bad))
@@ -496,34 +506,48 @@ def main() -> None:
     # axis** 至少共用一個實詞（長度 >= 2 之 CJK 詞或英文字）。
     # `-005`（配備：未配備 lower comfort screen）引 `-004`（變體：Maserati（無逾時））
     # 二者零共用 → FAIL。**無法機械判定者於下方逐處列出供人讀**（R-PMH53 末段）。
+    #
+    # R-PMH153 連帶 3：pattern 原為 `` `-\d{3}` ``（**帶反引號**），而 `test_item`
+    # 括號下半之引用不帶反引號（`paired with -026`）—— 實測其 50 處交叉引用
+    # 從未進入本檢查。今納入，**惟不帶反引號者只列人讀、不計 FAIL**：
+    # 本 lint 之母體為**單一批次**，而括號下半之引用跨批（全 feature 共用
+    # 一個 `-\d{3}` 編號空間），批內查無即報「不存在」將全為假陽性。
+    # 依 R-PMH53 末段「無法機械判定者逐處列出供人讀」處置；
+    # 母體是否應改為全 feature，屬 R-PMH53 之作用域問題，另案，本處不預判。
     by_suffix = {t["tc_id"][-3:]: t for t in tcs}
 
     def toks(s):
         s = str(s)
         return {w for w in re.findall(r"[\u4e00-\u9fff]{2,}|[A-Za-z]{3,}", s)}
 
-    bad, refs = [], []
+    bad, refs, soft = [], [], []
     for t in tcs:
         for f in ("test_item", "reasoning", "distinguishing_axis"):
-            for m in re.finditer(r"`-(\d{3})`", str(t.get(f, ""))):
-                sfx = m.group(1)
+            for m in re.finditer(r"(`?)-(\d{3})\1(?![\d-])", str(t.get(f, ""))):
+                quoted, sfx = bool(m.group(1)), m.group(2)
                 refs.append((t["tc_id"], f, m.group(0)))
+                sink = bad if quoted else soft
                 tgt = by_suffix.get(sfx)
                 if tgt is None:
-                    bad.append((t["tc_id"], f, m.group(0), "不存在"))
+                    sink.append((t["tc_id"], f, m.group(0), "批內不存在"))
                     continue
                 shared = toks(t.get("distinguishing_axis", "")) & \
                     toks(tgt.get("distinguishing_axis", ""))
                 if not shared:
-                    bad.append((t["tc_id"], f, m.group(0),
-                                f"axis 零共用：{t.get('distinguishing_axis','')!r}"
-                                f" vs {tgt.get('distinguishing_axis','')!r}"))
-    chk("R-PMH53 交叉引用存在且語意相容", not bad,
+                    sink.append((t["tc_id"], f, m.group(0),
+                                 f"axis 零共用：{t.get('distinguishing_axis','')!r}"
+                                 f" vs {tgt.get('distinguishing_axis','')!r}"))
+    chk("R-PMH53 交叉引用存在且語意相容（帶反引號者）", not bad,
         f"{len(bad)} 處 " + str([(a, c, d[:40]) for a, _, c, d in bad[:3]]))
     if refs:
         print(f"  （R-PMH53 末段：本批交叉引用 {len(refs)} 處，逐處列出供人讀）")
         for a, f, r in refs:
             print(f"      {a} .{f} → {r}")
+    if soft:
+        print(f"  ⚠ R-PMH153 連帶 3：不帶反引號之引用 {len(soft)} 處未能機械判定"
+              f"（跨批或 axis 零共用），**不計 FAIL，須人讀**：")
+        for a, f, r, why in soft:
+            print(f"      {a} .{f} → {r}：{why[:60]}")
 
     # --- R-PMH99(c)（26 包）：`-007` 之七項事件層限定，其字串須各出現一次 ---
     # R-PMH87／R-PMH94 之七項限定得合併於同一步驟（每步至多兩項，R-PMH99(a)），

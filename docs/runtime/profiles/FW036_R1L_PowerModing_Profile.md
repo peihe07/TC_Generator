@@ -148,6 +148,18 @@ granularity 判準（G1–G5 ＋ 六個 must-hit 錨點）見
 `test_item` 之下半括號（測試目的／區別 sibling 之標籤，獨立一行之 `(...)`）
 為**硬規則**，於每一條產出與覆核時檢查，不因當輪提示未提及而豁免。
 
+**語言（R-PMH153）**：括號下半**一律英文**。`test_item` 為工作簿 I 欄，
+屬交付欄位，適用 canon 之 `TC workbook fields: English only`
+（`PROJECT_INSTRUCTION.md` 第 106 行）；繁中之許可僅及於 `reasoning`／
+`distinguishing_axis` 等不入工作簿之欄位。§4.3.1 述括號下半時未重述此限，
+**不得據其未述而推論為放寬**。
+
+**形態（R-PMH153）**：「等價類／情境標籤 ＋ sibling 交叉引用」，
+如 `(Equivalence class: ignition stays off -- paired with -026, ignition
+turned on during the animation)`。**不採 Power feature 之 V2 形態**
+（`(觀察動作 -> 預期結果)`）—— 該形態不含 sibling 引用，
+改採將丟失 R-PMH53 所令維護之交叉引用。
+
 ### 3.2 Pre-Conditions [ADD]
 
 僅述狀態／環境（§4.4），不得含動作。本 feature 之常見合法型態：

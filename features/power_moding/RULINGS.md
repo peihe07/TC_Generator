@@ -3933,3 +3933,76 @@ DR-PMH8 不增列 Q10／Q11，二筆之(丙)路（未開問、風險續存）
 
 > **本包只追加，既有條文一 byte 未改**（含 R-PMH72／R-PMH117）——
 > **R-PMH151 以沿革語句取代其「待 CFTS009」之等待語義，不回改原文**（R-PMH44）。
+
+---
+
+# 40 包 —— `test_item` 括號下半之語言違規改判
+
+來源：Pei 於 2026-08-26 之直接指示（無上游 handoff 包；本節由執行層依實測落檔）。
+
+## R-PMH153
+
+```
+R-PMH153（`test_item` 括號下半一律英文 —— 50／51 條之語言違規改判）
+
+**實測事實**：本 feature 已產出之 51 條 TC，其 `test_item` 括號下半
+**50 條為繁體中文**，1 條（`NR1L-DisclaimerScreen-004`）為英文。
+`generated/batch0[1-6].json` 與 `generated/final/batch0[1-6].json`
+二處數字一致（8/7、7/7、8/8、13/13、10/10、5/5）；
+`output/..._20260826_writeback_rev2.xlsx` I 欄實測同為 50／51。
+
+**判為違規**，依據為 canon 逐字：
+  `PROJECT_INSTRUCTION.md` 第 106 行 ＝ `ASPICE_SWE6_AI_Instruction.md`
+  第 5 行：「TC workbook fields: English only. Reasoning fields:
+  Traditional Chinese allowed. No emoji.」
+`test_item` 為工作簿 I 欄（`Test Item`），屬交付欄位，適用 English only；
+繁中之許可僅及於 `reasoning`／`distinguishing_axis` 等不入工作簿之欄位。
+
+**改判**：括號下半一律英文。**僅改語言，不改結構、不改語意** ——
+現行之「等價類／情境標籤 ＋ sibling 交叉引用」形態維持，
+sibling 之 `-\d{3}` 交叉引用**全數保留**（R-PMH53 之交叉引用義務因而不受影響）。
+  改前：`(等價類：點火維持關閉 —— 與 -026 之動畫期間點火開啟成對)`
+  改後：`(Equivalence class: ignition stays off -- paired with -026,
+        ignition turned on during animation)`
+**不收斂為 Power feature 之 V2 形態**（`(觀察動作 -> 預期結果)`）——
+該形態不含 sibling 引用，改採將丟失 R-PMH53 所令維護之交叉引用。
+`-004` 之現行英文下半即為本形態之既有範本，該條不動。
+
+**成因（三處把關同時落空，非單一疏漏）**：
+(a) canon §4.3.1 述括號下半之定義時未重述語言限制，語言規定另置於同檔
+    第 5 行，二處無互相指涉；
+(b) profile §3.1 將括號下半訂為硬規則，惟只規範其**存在**，未規範語言；
+(c) `scripts/lint_batch.py:325` 只檢查 `\n\n\(.+\)$` 之存在，不檢查其語言；
+    生成器逕將繁中之 `distinguishing_axis.delta` 複製入括號，
+    lint 因而永遠全綠 —— 此即 R-PMH52 之同一形狀：
+    lint 全綠不構成 TC 可用之證據。
+    **另有一項於本條落檔時一併查得（非語言問題，惟同源）**：
+    R-PMH53 之 C7（`lint_batch.py:508`）以 `` `-\d{3}` ``（**帶反引號**）
+    為交叉引用之 pattern，而括號下半之引用不帶反引號（`與 -026 之……`）
+    —— 實測 C7 於 51 條之 `test_item` 命中 **0 處**，僅於 `reasoning`
+    命中 3 處。**括號下半之 50 處 sibling 交叉引用從未受 R-PMH53 之機械檢查**，
+    其中 `-040` 之引用指向自身（位移遺留），即為未受檢查之實例。
+
+**連帶修改（三處，隨本條同批施行）**：
+1. profile §3.1 增列語言與形態條款，明指 canon 之 English only；
+2. `lint_batch.py` 增一項硬檢查：六個交付欄位（`test_item`／
+   `pre_conditions`／`input_test_data`／`test_procedure`／
+   `expected_result`／`tc_title`）不得含 `[一-鿿]`；
+3. `lint_batch.py` C7 之 pattern 須涵蓋**不帶反引號**之 `-\d{3}` 形態，
+   使括號下半之 50 處交叉引用進入 R-PMH53 之檢查範圍。
+   **英文化本身不影響 C7 之語意相容比對** —— 其比對雙方皆為繁中之
+   `distinguishing_axis`（不入工作簿，不在本條範圍），非 `test_item`。
+   C7 納入該 50 處後所暴露之位移（如 `-040` 之自我引用）屬 R-PMH53 之
+   既有義務，逐處人讀後另案處置，不由本條預判。
+
+**交付連帶**：改寫後須重跑 `write_back.py` 產出新一版工作簿；
+`20260826_writeback_rev2.xlsx` 之 I 欄 50 列為已知違規版本，不得出貨。
+
+**適用範圍**：本條為 canon 既有規則之執行，非例外或放寬，
+**適用於本 feature 其後之全部產出**，亦不限於 disclaimer 之 7 條。
+他 feature 若有同一形狀，各自依 canon 處理，本條不為其依據。
+
+裁定：Pei，2026-08-26（經執行層實測回報 50／51 之違規後，
+Pei 指示「先開 ruling 記錄改判依據，再改這 50 條」；
+括號形態之三個候選中，Pei 選定「保留結構，只換語言」）。
+```
