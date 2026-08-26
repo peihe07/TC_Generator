@@ -29,14 +29,17 @@ NEGATIVE = "負向測試 (Negative / Invalid)"
 
 TDISP = "at most 100 ms"          # CFTS019, <Tdisp> Max = 100 ms
 VENT_NAV_OFF = "9 steps"          # CFTS019-4867783, <Vent Nav Off> = 9 steps
+# Ruled by Pei 2026-08-26 (R-AM17). Not spec-sourced: <vent off> appears once
+# in CFTS019, at its own anchor, and is defined nowhere in the document, so a
+# reader grepping the spec for this number will not find it. Provenance is
+# the ruling, recorded in RULINGS.md.
+VENT_OFF = "-16 dB"
 
 # Every signal B2 touches is absent from the supplied DBC — only SOSCallType
 # is there, and B2 does not use it — so each keeps the specification's own
 # name under 8.7.5 v3 (g) and carries the DR-AM4 note.
 PEND_SIG = ("PENDING: DR-AM4 signal not found in the supplied DBC; name kept "
             "as written in CFTS019 per R-13 (g)")
-PEND_VENT = ("PENDING: DR-AM8 <vent off> value not defined in available "
-             "sources")
 PEND_CFTS020 = ("PENDING: DR-AM6 mute logic defined in CFTS020, document not "
                 "available")
 
@@ -413,20 +416,23 @@ tc("SWE1_AMM_286",
 
 tc("SWE1_AMM_287",
    "Confirm a ducking request attenuates Main Audio while Alternate Audio holds its level",
-   ["Play a Main Audio source",
+   ["Play a Main Audio source at a known level",
     "Activate an Alternate Audio source that carries a ducking request",
-    "Record the Main Audio level and the Alternate Audio level"],
-   ["The Main Audio source plays",
+    "Measure the Main Audio level against its starting level and record it",
+    "Record the Alternate Audio level"],
+   ["The Main Audio source plays at the set level",
     "The Alternate Audio source becomes active with a ducking request",
-    "The Main Audio level is attenuated and the Alternate Audio holds its level"],
+    f"The Main Audio level is {VENT_OFF} below its starting level",
+    "The Alternate Audio holds its level"],
    desc=("When an active Alternate Audio source requests ducking, the Audio Management software shall apply the configured ducking attenuation to the active Main Audio source within <vent off>"),
-   prio="P0", method=FUNC, remarks=PEND_VENT,
-   reasoning="4866818, in scope under R-AM14. The attenuation amount is "
-             "<vent off>, which appears exactly once in CFTS019 and is defined "
-             "nowhere, so the value carries a PENDING rather than a number. It "
-             "is a different parameter from <Vent Nav Off>, which is defined at "
-             "9 steps and belongs to the navigation chain. Out-of-pool anchor, "
-             "corroborated by the full text (R-AM2').")
+   prio="P0", method=FUNC,
+   reasoning="4866818, in scope under R-AM14. The attenuation is <vent off>, "
+             "which appears once in CFTS019 and is defined nowhere in it; the "
+             "value comes from R-AM17 rather than from the document, so a "
+             "reader searching the spec for it will not find it. It stays "
+             "distinct from <Vent Nav Off> at 9 steps, which belongs to the "
+             "navigation chain. Out-of-pool anchor, corroborated by the full "
+             "text (R-AM2\').")
 
 tc("SWE1_AMM_309",
    "Confirm a pausable playback source is paused for the duration of a hands-free call",

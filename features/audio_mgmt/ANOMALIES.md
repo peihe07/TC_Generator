@@ -206,7 +206,7 @@ SWE1_AMM_061（Power Button Mute Handling）之錨 4866123 全文為：
 附註：此為**跨文件外包**型缺口，與 A-AM03（匯出遺漏）、A-AM04（參數未定義）
 根因均不同 —— 前二者之內容在 CFTS019 內，本件不在。三者不可混為一談。
 
-## [A-AM08] `<vent off>` 全文未定義 — 掛 PENDING，開 DR-AM8
+## [A-AM08] `<vent off>` 全文未定義 — CLOSED（R-AM17，Pei 2026-08-26 定值）
 
 CFTS019-4866818 之 Main Audio 衰減量寫作 `<vent off>`。全文檢索：**出現 1 次
 （即該錨本身），無定義列**。
@@ -216,8 +216,14 @@ CFTS019-4866818 之 Main Audio 衰減量寫作 `<vent off>`。全文檢索：**�
 `<vent off>` 與 `<Vent Nav Off>`（4867671／4867783，= **9 steps**）為
 **不同參數，勿互代**，故不得以後者之值代入。
 
-處置：SWE1_AMM_287 之衰減量填 `PENDING: DR-AM8`，行為面（Main Audio 被衰減、
-Alternate Audio 維持其位準）照常驗證。
+處置（原）：SWE1_AMM_287 之衰減量填 `PENDING: DR-AM8`，行為面照常驗證。
+
+**結案（R-AM17）：** Pei 定 `<vent off>` = **−16 dB**，已回填 287，PENDING 撤除，
+DR-AM8 撤回。ER 改為量測式：以起始位準為基準，Main Audio 較之低 16 dB。
+
+**留存之揭露：** 該值仍**不在 CFTS019 內** —— 結案的是 TC 之可執行性，
+不是文件之完整性。以規格全文檢索 −16 dB 者仍將查無，故 287 之 reasoning
+明寫出處為 R-AM17。若日後上游補入定義且與本值不符，287 須依文件回改。
 
 對照：本批另兩個參數皆有實值並已入 TC —— `<Tdisp>` Max = 100 ms（VSIM 五葉）、
 `<Vent Nav Off>` = 9 steps（314／316）。三者處置不同係因證據不同，非標準不一。
