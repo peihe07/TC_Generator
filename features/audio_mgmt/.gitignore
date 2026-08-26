@@ -6,6 +6,11 @@ inputs/
 # confidentiality as the PDF itself while being regenerable in one command.
 data/cfts019_text.txt
 
+# Written-back workbooks. These are copies of the customer's controlled form
+# with our rows in them, so they carry the customer's content; no feature in
+# this repo tracks one. The delivery digest lives in the tag annotation.
+generated/*.xlsx
+
 # Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
 # own data/*.json artefacts here as Step 1 starts emitting them.
 data/recon.json

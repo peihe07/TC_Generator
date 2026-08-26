@@ -168,3 +168,24 @@ DBC `VAL_`。本批涉及之訊號實測結果：
 （全大寫）。交付採 CFTS019 之拼法，因 R-AM2 定 CFTS019 為錨且 DBC 無第三
 來源可裁。
 
+## [A-AM06] `backend.xlsx_surgical.verify_structure` 不計 `<conditionalFormatting>` — 本 feature 自補，建議上收
+
+`verify_structure` 驗三件事：zip 成員集不變、classic `<dataValidation>` 與
+`x14:dataValidation` 計數不變、非 patched 成員不得有位元組差異。
+
+缺口：**`<conditionalFormatting>` 不在計數之列**，且該缺口無法由既有三項
+補起 —— 目標 sheet 本來就在 patched 集合內、允許位元組差異，故 CF 元素若於
+patch 過程被剝除，三項檢查**全數通過**。
+
+處置：`features/audio_mgmt/scripts/write_back.py` 之
+`check_conditional_formatting` 於 feature 端自補此計數，寫回前後比對，
+不符即 raise。
+
+**未逕改共用模組。** `backend/xlsx_surgical.py` 為十五個 feature 共用，
+新增一道 raise 型硬 gate 可能使其他 feature 之既有寫回失敗（若其 CF 計數
+本就會合法變動）。建議由掌握全案者評估後上收為通案，本 feature 先行自保。
+
+附註：本次寫回之母本 CF 計數為 0，故該檢查**實際上未被考驗**（vacuously
+true）。其價值在於未來換用含 CF 之母本時能攔下，不宜以本次綠燈為其有效性
+之佐證。
+
