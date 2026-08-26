@@ -781,6 +781,180 @@ vehicle condition`，而 CFTS_020 之 24 條適用條文一律寫
 **看得到而不能用**：其為 HU 側 HMI 文件，依 28 包 §3.2.5 與 R-DM51
 之分寸不得混引。**這是本輪最想抄而沒抄的一句。**
 
+
+---
+
+## 三之二、下放包 28a 之三項（D1／D2／D3）
+
+### D1 —— 十筆 DR 之狀態改 `SENT (2026-08-25)`
+
+**已改十筆**：DR-DM10／DM9／DM4／DM1／DM3／DM8／DM5／DM6／DM7／**DM2**。
+**阻斷範圍欄一字未動**（§2.1(a)）。
+
+#### D1.1 兩處與 28a 之封別表不符，具名
+
+**(1) 封別表列九筆，內文稱「十筆」，`DR-DM2` 不在表內。**
+28a §二之表為：封1 DM10／DM9、封2 DM4／DM1、封3 DM3／DM8、封4 DM5／DM6／DM7
+= **9 筆**。而 §三之表逐字寫 `任務 B ⋯ **DM2 已發**`。
+**本層以 §三之逐字為據，將 DM2 一併改 SENT** —— 若其實未發，請告知，本層還原。
+
+**(2) `DR-DM11` 維持 `OPEN`。** 其於 **28 輪任務 C 開立**（倒車檔訊號），
+時序在 28a 之後，**不在其涵蓋內**。現行 DR 共 **11 筆**：10 筆 SENT、1 筆 OPEN。
+
+#### D1.2 `DR-DM4` 之但書（§2.1(b)）
+
+其 `Status` 逐字為：
+
+> `SENT (2026-08-25) — 或由 28 包任務 A 之抽取先行結案，以先到者為準。`
+> `**28 輪任務 A2 之實測：該檔之條號全為 7 位，629／633／952 以條號錨定皆查無**（A-DM39）`
+> `—— 兩條路徑皆未結，**結案之裁定屬分析層**，執行層不逕結`
+
+即 §2.1(b) 所設想之「由任務 A 先行結案」**未發生** —— A2 之結果是查無，
+且其原因是編號體系不同（A-DM39），非文件缺頁。
+
+#### D1.3 一處我改壞了又補回
+
+改 `DR-DM3` 時我把整個 `Status` 格換成 `SENT`，**連帶刪掉了該格內
+「2026-08-25 曾兩度被指定而皆不答」之沿革**（CFTS043 實測為 HVAC；
+SYS3 SYSAD 不答本 DR）。
+
+**已自 `git diff` 逐字取回並補入該格**，標為「沿革保留」。
+記此，因為那正是 R-TM13 所防之事，而我在一個看似機械的欄位替換裡犯了。
+
+### D2 —— A-DM36 結案，B14 續列
+
+A-DM36 之標題改 `[CLOSED]`，結案註記逐字採 28a §一之全文（含
+「保留之教訓不隨結案消滅」一段）。
+
+**B14 續列於 `BACKLOG.md` 之 B 類** —— 但本輪發現一件須一併更正者：
+
+> **`BACKLOG.md` 之 B 編號與各上繳包 §分流之 B 編號是兩套**，
+> 而 **27 輪本層誤將上繳分流之 `B16` 逕放入 `BACKLOG.md`**，
+> 使其與該節原有之 `B1`–`B5`（鷹架品質常設待辦）並列而語意不同。
+
+已於該節加「編號之界」註記，並改為本節序：
+`B6（＝上繳分流之 B16）`、`B7（＝上繳分流之 B14）`。
+**28a §一之「B14 維持 B 類」由 `B7` 承載**，其說明逐字含
+「A-DM36 已 CLOSED，本項不隨之勾銷 —— 前者是『那一次的重複檔』，
+本項是『重複檔沒有常設檢查』」。
+
+### D3 —— `DR-DM7` 之對帳（**只報不處置**）
+
+四項資料如下（機器抽取，未經轉錄）：
+
+```text
+=== R-DM44 逐字全文（RULINGS.md） ===
+R-DM44（DR-DM7 結案 —— 需求已由 R-DM33 消滅）
+`forms/PROXI_HDCC27_R3_20250424.xlsx` 經實測為**格式／標準文件**
+（`Cover`：`27MY HDCC SPECIFIC PROXI TABLE`、`Support Document`；
+`Header`：`HDCC27 - Draft`），不含任一具體車輛之已填值，
+亦不載本專案之 VF 代碼。
+
+DR-DM7 原求「本專案之 VF 代碼，或已填值之 PROXI 實例檔」，
+其目的為**收斂 446 列之供給側母體**（`Used by NODE(VFXXX)` 之篩選）。
+**該目的已由 R-DM33 消滅** —— PROXI 改為需求驅動後，
+不再需要對 446 列分類，只在某 leaf 需要某參數時查該一個參數。
+
+處置：**DR-DM7 結案**，理由記為「所求之用途已由 R-DM33 取消，
+非取得所求之物」。A-DM20 改標 RESOLVED-BY-SCOPE-CHANGE，
+不標 RESOLVED。
+
+**重開條件**：若 Phase 2 之逐 leaf 查詢中，某參數之值域在
+PROXI 中依 VF 而異，則 VF 代碼重新成為必要，DR-DM7 以新編號重開。
+
+=== DR-DM7 現行文字（DATA_REQUESTS.md 第 61 列） ===
+| DR-DM7 | 本專案（R1LR Atl-H）之 VF 代碼，或其 PROXI 實例檔（已填值之 PROXI，非 `_R3` 空白格式檔） | OPEN | 全 8 leaf 之前置條件 | `Used by NODE(VFXXX)` 無法用於篩選；PROXI 446 列母體無法收斂 | A-DM20 | MEDIUM |
+
+=== A-DM20 現行狀態 ===
+## A-DM20 — PROXI `Checked by NODE(CHECK)` 欄近乎全空；`Used by NODE` 可用但缺專案 VF 之鍵  [PENDING]
+
+上繳 05 §9 第 4 項自陳未用之兩欄，本輪實測（母體 1,058 個參數列）：
+
+| 欄 | 非空 | 相異值 | 形態 |
+|---|---|---|---|
+| `Used by NODE(VFXXX)` | **500 / 1058** | 311 | `BSM (VF381_V1); TBM (VF684_V3);` —— 節點名 + 括號內之 VF 清單，分號分隔 |
+| `Checked by NODE(CHECK)` | **6 / 1058** | 4 | `All nodes (1,4)`／`IPC(2), BCM(2)`／`DMSM (6)` |
+
+判定：
+
+- **`Checked by NODE(CHECK)` 不可用** —— 6/1058 之覆蓋率下，其空值不帶
+  任何資訊（R-G13 之涵蓋範圍要件反面）。
+- **`Used by NODE(VFXXX)` 結構上可用，但缺一把鑰匙**：要判「某參數是否
+  適用於本專案」，須先知道**本專案是哪一個 VF**。該資訊不在四份素材內。
+
+本 feature 三個已查得之 PROXI 列，其 `Used by`：
+
+| PROXI 列 | 參數 | Used by NODE(VFXXX) |
+|---|---|---|
+| r37 | `CAN node 31 (DCSD)` | `TBM (VF684_V3); ECC (VF123_V1, VF727_V3, VF727_V1); LTM (VF169_V2, VF727_V3); ETM (VF169_V3, VF727_V3, VF727_V1);` |
+| r401 | `Rear_View_Camera` | `ETM (VF230_V1, VF551_V3, VF551_V4, VF169_V3, VF617_V6, VF561_V3); LTM (...)` |
+| r494 | `Rear_View_Camera_Soft_Button` | `LTM (VF664_V2); ETM (VF664_V3);` |
+
+三列皆含 **`ETM`** —— 而 `ETM` 正是 BHCAN2 中本 feature 三個顯示訊號之
+發送節點（A-DM14）。此為**觀察**，不是「本專案為 ETM 架構」之認定。
+
+> 另記：r401 之清單含 `VF230_V1`，而 `features/vehicle_setting/` 之產出
+> 檔名為 `_vf230_*`。**執行層不推定 VF230 即本專案之 VF** —— 那是跨
+> feature 之推定，且 vehicle_setting 之 VF 未必等於 Display 之 VF。
+```
+
+#### D3.1 判定：**不相衝，且為全案結案**（停止條件 75 未觸發）
+
+| 比對項 | R-DM44 | DR-DM7 現行文字 | 同一？ |
+|---|---|---|---|
+| 所求之物 | `本專案之 VF 代碼，或已填值之 PROXI 實例檔` | `本專案（R1LR Atl-H）之 VF 代碼，或其 PROXI 實例檔（已填值之 PROXI，非 _R3 空白格式檔）` | **是**（R-DM44 引的就是 DR-DM7 之原文） |
+| 所求之用途 | `收斂 446 列之供給側母體（Used by NODE(VFXXX) 之篩選）` | `Used by NODE(VFXXX) 無法用於篩選；PROXI 446 列母體無法收斂` | **是**（逐字相同之表述） |
+
+**故非部分結案** —— 28a §2.1(c) 所設想之「R-DM44 只結 VF 代碼、
+DR-DM7 兼求 PROXI 實例檔」之情形**不成立**：R-DM44 明文涵蓋兩者。
+
+**兩者不相衝。真正的不一致是台帳未依裁決更新**：
+
+| 位置 | 應為（依 R-DM44） | 現況 |
+|---|---|---|
+| `DATA_REQUESTS.md` DR-DM7 | 結案 | 本輪前為 `OPEN`，本輪改 `SENT` |
+| `ANOMALIES.md` A-DM20 | `RESOLVED-BY-SCOPE-CHANGE` | **仍為 `[PENDING]`** |
+
+即 **R-DM44 立於 16 輪，其所指示之兩處台帳動作從未執行**。
+這與 18 輪之「宣稱已執行而未執行」同型，只是方向相反 ——
+**那次是聲明超前事實，這次是事實落後裁決。**
+
+#### D3.2 本層之處置：只在 DR-DM7 之 `Status` 加但書，不改其實質
+
+其 `Status` 逐字為：
+
+> `SENT (2026-08-25) — **但書（28a §2.1(c) 對帳，本輪只報不處置）：R-DM44 已裁定本 DR 結案**`
+> `（理由為「所求之用途已由 R-DM33 取消，非取得所求之物」），`
+> `**其標的與本列逐字相同，為全案結案而非部分結案**。本列之 SENT 只記錄 Pei 之發信事實，`
+> `**不表示本 DR 仍屬未結**。兩處之不一致待分析層裁定（上繳 28 §D3）`
+
+**A-DM20 未動**（其改標屬 R-DM44 之指示，而該指示之執行與 DR-DM7 之
+結案是同一件事，不宜只做一半）。
+
+#### D3.3 一項須提請注意者
+
+R-DM44 之**重開條件**逐字為：
+
+> 若 Phase 2 之逐 leaf 查詢中，某參數之值域在 PROXI 中依 VF 而異，
+> 則 VF 代碼重新成為必要，DR-DM7 以新編號重開。
+
+**本輪之 `rvc-01` 已觸及 PROXI 之 RVC 參數**（A-DM20 之表列
+`r401 Rear_View_Camera`、`r494 Rear_View_Camera_Soft_Button`，
+其 `Used by` 皆為長串 VF 清單）。**本批之六條 TC 未用到任何 PROXI 值**
+（前置條件皆為顯示狀態，非配備旗標），故重開條件**尚未成立** ——
+但 007／008 若日後要驗「無 RVC 配備之車型」，即會踩到。
+
+### D4 —— 停止條件 74 之自我複核
+
+74：「任一 TC、值、ER 之產出若以『DR 已發（SENT）』為據放行 → 停」。
+
+**本輪之 `rvc-01` 六條，其每一個值之依據逐條可溯**（上繳 §3.2 之
+`reasoning`）：`3 (RR_CMRA)`／`1 (ON)`／`0 (OFF)` 皆為 CFTS_020 條文之
+短拼法逐字 ＋ DBC `VAL_` 逐字解得。**無一以「DR 已發」為由放行。**
+
+反面之證據：HU 側 `$TGW_DISP_STAT$` 之值 **DR-DM9 已 SENT 而本批仍不寫**
+—— 若本層曾以 SENT 為放行理由，該處是最容易鬆手的地方。**未鬆手。**
+
 ---
 
 ## 四、未驗項分流（A／B，R-G29）
@@ -797,7 +971,12 @@ vehicle condition`，而 CFTS_020 之 24 條適用條文一律寫
 | **A9** | **倒車檔訊號與 `static vehicle condition` 之判準** | **007 之觸發面向** | **DR-DM11（新，HIGH）** |
 | **A10** | **DR-DM4 之標的須重擬（3 位 vs 7 位編號）** | DR-DM4 之答覆本身 | **A-DM39** |
 
-A9／A10 為本輪新增。**A4 之可行性本輪大幅提升**（判讀完成，待裁降級）。
+| **A11** | **R-DM44 所指示之兩處台帳動作從未執行**（DR-DM7 結案、A-DM20 改標） | DR-DM7 之真實狀態；PROXI 母體之收斂前提 | **28a §2.1(c) 對帳，待分析層裁定** |
+
+A9／A10／A11 為本輪新增。**A4 之可行性本輪大幅提升**（判讀完成，待裁降級）。
+
+> **十筆 DR 已 `SENT (2026-08-25)`，A 類之阻斷範圍一字未動**（28a §2.1(a)）。
+> **SENT 不是答覆** —— 停止條件 74 之自我複核見 §D4。
 
 ### B 類 —— 不阻斷交付
 
@@ -809,7 +988,9 @@ A9／A10 為本輪新增。**A4 之可行性本輪大幅提升**（判讀完成�
 | **B19** | **清單欄 5 之 69 列複合／無類別值** | `RVC-X` 5、`2 SL` 4、`RVC\n2` 1 須另定解析規則；`---` 52、`Custom` 2 為無類別 |
 | **B20** | **CFTS_013 `1.5.1` 之內容未讀** | A3 依停止條件 71 停手；一句「續行 A3」即可解封 |
 
-B17–B20 為本輪新增。
+| **B21** | **`BACKLOG.md` 之 B 編號與上繳分流之 B 編號為兩套，27 輪本層曾混用** | 已於 `BACKLOG.md` 加「編號之界」註記並改為本節序（`B6`＝分流 `B16`、`B7`＝分流 `B14`） |
+
+B17–B21 為本輪新增。
 
 ---
 
@@ -822,7 +1003,9 @@ git add \
   features/display/ANOMALIES.md \
   features/display/DATA_REQUESTS.md \
   features/display/docs/INDEX.md \
+  features/display/BACKLOG.md \
   features/display/docs/handoff/28_cfts013_full_and_rvc.md \
+  features/display/docs/handoff/28a_dr_sent.md \
   features/display/docs/upstream/28_cfts013_full_and_rvc.md
 ```
 
@@ -844,6 +1027,12 @@ feat(display): add the RVC batch, and find that CFTS_013 uses other clause numbe
 - read the 2021 priority matrix: it carries no popup ids at all, it ranks
   categories, and the pop-up list carries a category on 1272 of 1341 rows
 - lint036 --profile display: all twenty checks report zero
+- mark ten data requests as sent, leaving every blocking scope untouched,
+  and note that DR-DM11 was opened after that batch went out
+- close A-DM36 now that the duplicate file is confirmed deleted, and keep
+  the missing directory census on the backlog
+- reconcile DR-DM7 against R-DM44: the ruling closed the whole request, not
+  part of it, so the ledger has been out of step since round 16
 ```
 
 > `batches/rvc-01/batch_context.md` 不入 pathspec（`.gitignore` 已排除）。
@@ -870,3 +1059,11 @@ feat(display): add the RVC batch, and find that CFTS_013 uses other clause numbe
    那是對的（Tier 2）。**但 `SWE-DM-006` 之全部價值就是仲裁順序**，
    而其權威文件內部就不一致 —— **DR-DM2 即使答覆了，這個不一致仍在。**
    我判斷這件事應該現在就讓上游知道，不要等到 006 動工。
+
+4. **R-DM44 之台帳動作我也沒做。**
+   §D3 查明 R-DM44 自 16 輪起就指示了兩件事（DR-DM7 結案、A-DM20 改標
+   `RESOLVED-BY-SCOPE-CHANGE`），十二輪來沒有人做。**本輪我也只加了但書，
+   沒有做。** 理由是 28a §2.1(c) 逐字寫「只回報不處置」，我認為該指示
+   優先 —— **但那個指示的前提是「可能是部分結案」，而我查出來不是。**
+   前提不成立時是否仍該原地不動，我判斷仍該不動（裁決條文與台帳之衝突
+   屬 Tier 2），**但這一次我沒有把握。**

@@ -32,6 +32,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 26 ＋ 26a | 2026-08-25 | 機器抽取原則入條、A-DM35 補件、**STALE 實測失敗** | [handoff/26_extraction_principle.md](handoff/26_extraction_principle.md)、[26a](handoff/26a_materials_landed.md) | [upstream/26_extraction_principle.md](upstream/26_extraction_principle.md) | R-G35／R-G36（全域）；R-G25 適用註記 | A-DM35 補件；A-DM36 新增；A6 解除；A7／A8 新增 | **停止條件 66／67 皆觸發；24-4／24-5 未執行** |
 | 27 | 2026-08-25 | A8 解除、STALE 乙案修畢、24-4／24-5 完成 | [handoff/27_stale_fix.md](handoff/27_stale_fix.md) | [upstream/27_stale_fix.md](upstream/27_stale_fix.md) | R-DM54；R-G16 口徑指標 | A-DM37 新增；A-DM35 結案；DR-DM9 重擬 | **停止條件全 70 條無一觸發；綁定 entries: 12／12 of 12；STALE 誘發測試報 1** |
 | 28 | 2026-08-25 | CFTS_013 全文驗明、矩陣判讀、**rvc-01（007／008 六條）** | [handoff/28_cfts013_full_and_rvc.md](handoff/28_cfts013_full_and_rvc.md) | [upstream/28_cfts013_full_and_rvc.md](upstream/28_cfts013_full_and_rvc.md) | （無新條文） | A-DM38／A-DM39 新增；DR-DM11 開立；A9／A10、B17–B20 新增 | **停止條件 71 觸發（A3 停手）；rvc-01 六條，lint 20 項行計 0；綁定 entries: 13** |
+| 28a | 2026-08-26 | 附件：A-DM36 結案、DR 十筆改 SENT、DR-DM7 對帳 | [handoff/28a_dr_sent.md](handoff/28a_dr_sent.md) | 併入 [upstream/28](upstream/28_cfts013_full_and_rvc.md) §三之二 | （無新條文） | A-DM36 CLOSED；A11／B21 新增 | **停止條件 74／75 皆未觸發；DR-DM7 判定為全案結案而非部分結案** |
 
 ## 02 輪要點
 
@@ -682,3 +683,44 @@ HU 側 `$TGW_DISP_STAT$` 一律不寫 raw（DR-DM9(b)）。
 
 lint 二十項行計 0（I-sibling 有母體，0 為實測）；`check_disclosure` 雙向 0；
 綁定 `entries: 13`／13 of 13；母本 sha 未變。
+
+## 28a 輪要點
+
+**十筆 DR 改 `SENT (2026-08-25)`，阻斷範圍一字未動。** `DR-DM11` 維持
+`OPEN` —— 其於 28 輪任務 C 開立，時序在 28a 之後，不在其涵蓋內。
+另具名：28a 之封別表列九筆而內文稱十筆，`DR-DM2` 只見於 §三；
+本層以 §三之逐字為據一併改 SENT。
+
+### DR-DM7 對帳 —— **不相衝，是台帳落後裁決十二輪**
+
+28a §2.1(c) 設想「R-DM44 只結 VF 代碼、DR-DM7 兼求 PROXI 實例檔 →
+部分結案」。**實測不成立**：R-DM44 引的就是 DR-DM7 之原文，
+所求之物與所求之用途兩項逐字相同，**為全案結案**。
+
+真正的不一致是：**R-DM44 立於 16 輪，其指示之兩處台帳動作從未執行** ——
+`DATA_REQUESTS.md` 之 DR-DM7 仍列未結、`ANOMALIES.md` 之 A-DM20 仍
+`[PENDING]` 而非 `RESOLVED-BY-SCOPE-CHANGE`。
+
+> 這與 18 輪之「宣稱已執行而未執行」同型，**只是方向相反 ——
+> 那次是聲明超前事實，這次是事實落後裁決。** 登為 **A11**。
+
+**一項提請注意**：R-DM44 之重開條件為「某參數之值域在 PROXI 中依 VF 而異」。
+本輪之 `rvc-01` 已觸及 PROXI 之 `r401 Rear_View_Camera`／
+`r494 Rear_View_Camera_Soft_Button`（其 `Used by` 皆為長串 VF 清單），
+**但六條 TC 未用到任何 PROXI 值，故重開條件尚未成立** ——
+007／008 若日後要驗「無 RVC 配備之車型」即會踩到。
+
+### 兩處我做壞了
+
+1. **改 `DR-DM3` 之狀態時整格替換，連帶刪掉了「兩度被指定而皆不答」之沿革**
+   （CFTS043 實測為 HVAC；SYS3 SYSAD 不答本 DR）。已自 `git diff` 逐字取回。
+   **那正是 R-TM13 所防之事，而我在一個看似機械的欄位替換裡犯了。**
+2. **27 輪我把上繳分流之 `B16` 逕放入 `BACKLOG.md`** —— 該節原有之
+   `B1`–`B5` 是常設鷹架待辦，兩套編號語意不同。已加「編號之界」註記並
+   改為本節序（`B6`＝分流 `B16`、`B7`＝分流 `B14`）。登為 **B21**。
+
+### 停止條件 74 之自我複核
+
+`rvc-01` 六條之每一個值皆可逐條溯至 CFTS_020 之短拼法 ＋ DBC `VAL_`，
+**無一以「DR 已發」為由放行**。反面證據：**HU 側 `$TGW_DISP_STAT$` 之值
+DR-DM9 已 SENT 而本批仍不寫** —— 那是最容易鬆手的地方，未鬆手。
