@@ -226,6 +226,7 @@ tc("SWE1_AMM_159",
     "The guidance prompt ends",
     f"The Information level decreases within {RAMP}",
     "The Information audio is at volume level 0"],
+   pre="No audio source is active",
    prio="P0", method=STATE,
    reasoning="4866528 states volume level 0 as the ramp-down target, which is stronger "
              "than mute and is therefore checked as a level rather than as silence.",
@@ -435,6 +436,7 @@ tc("SWE1_AMM_224",
     "The Voice Recognition session starts",
     "The cabin mode settings are stored",
     "The Navigation audio ramps down on all channels and the Voice Recognition audio starts afterwards"],
+   pre="No audio source is active",
    prio="P0", method=STATE,
    desc="When an Information source is in use as the cabin audio source and another "
         "Information source becomes active, the Audio Management software shall store the "
@@ -470,6 +472,9 @@ for sid, label, direction, anchor_extra in [
         ("SWE1_AMM_276", "Entertainment", "down", "4867767"),
         ("SWE1_AMM_277", "Information", "up", "4867768"),
         ("SWE1_AMM_278", "Information", "down", "4867769")]:
+    pre = ("No audio source is active" if sid in ("SWE1_AMM_275", "SWE1_AMM_277")
+           else "An Entertainment source is active" if sid == "SWE1_AMM_276"
+           else "An Information source is active")
     trigger = ("Activate an Entertainment source" if sid == "SWE1_AMM_275" else
                "Switch from one Entertainment source to another" if sid == "SWE1_AMM_276" else
                "Trigger a Navigation guidance prompt" if sid == "SWE1_AMM_277" else
@@ -482,7 +487,7 @@ for sid, label, direction, anchor_extra in [
        [f"The {label} source ramp-{direction} starts",
         f"The ramp-{direction} duration is measured",
         "The measured duration is 25 ms or longer"],
-       prio="P1", method=BVA,
+       prio="P1", method=BVA, pre=pre,
        reasoning=f"Lower bound of the {RAMP} window at CFTS019-{anchor_extra}. Package 03 "
                  f"marks 275 to 278 as the boundary value candidates, so each leaf is split "
                  f"into a minimum case and a maximum case.")
@@ -494,7 +499,7 @@ for sid, label, direction, anchor_extra in [
        [f"The {label} source ramp-{direction} starts",
         f"The ramp-{direction} duration is measured",
         "The measured duration is 50 ms or shorter"],
-       prio="P1", method=BVA,
+       prio="P1", method=BVA, pre=pre,
        reasoning=f"Upper bound of the same window at CFTS019-{anchor_extra}.")
 
 # ---------------------------------------------------------------- Audio Arbitration
@@ -506,6 +511,7 @@ tc("SWE1_AMM_123",
    ["The S2 signal source is active",
     "The S1 signal source is requested",
     "The S1 signal source is active and the S2 signal source is not active"],
+   pre="No signal source is active",
    prio="P0", method=DECISION,
    reasoning="4866451 defines priority by lower numeric value, so S1 over S2 is the "
              "smallest pair that exercises the rule.")
@@ -530,6 +536,7 @@ tc("SWE1_AMM_129",
    ["The confirmation tone plays",
     "The Entertainment request is accepted and held",
     "The Entertainment source starts after the confirmation tone has completed"],
+   pre="No audio source is active",
    prio="P1", method=STATE,
    reasoning="4866457 delays entertainment and information alerts behind a signal source or "
              "a confirmation tone; the tone is the shorter of the two and makes the delay "
@@ -547,6 +554,7 @@ tc("SWE1_AMM_130",
     "The lower priority request produces no audio",
     "The high priority source ends",
     "The queued request plays"],
+   pre="No audio source is active",
    prio="P0", method=STATE,
    reasoning="4866465 and 4866488 carry the same clause text at two anchors. This case "
              "takes the queue-until-eligible reading; SWE1_AMM_139 takes the re-evaluation "
@@ -564,6 +572,7 @@ tc("SWE1_AMM_139",
     "The high priority source ends",
     "The higher priority queued request plays",
     "The remaining queued request plays after the previous one ends"],
+   pre="No audio source is active",
    prio="P0", method=STATE,
    reasoning="Same clause text as 4866465 at a second anchor. Two queued requests are used "
              "so the ordering, and not merely the release, is what the case observes.")
@@ -576,6 +585,7 @@ tc("SWE1_AMM_166",
    ["Both sources are requested and the high priority source is active",
     "The high priority source ends",
     "The next highest priority source is active"],
+   pre="No audio source is active",
    prio="P1", method=STATE,
    reasoning="4866538 states the activation half of the activate/re-mix clause; the re-mix "
              "half is covered by SWE1_AMM_167 at its own anchor.")
@@ -588,6 +598,7 @@ tc("SWE1_AMM_167",
    ["Both sources play together",
     "The higher priority source ends",
     "The remaining sources are re-mixed on the configured channels"],
+   pre="No audio source is active",
    prio="P1", method=STATE,
    reasoning="4866590 repeats the activate/re-mix clause at the mixing anchor, so this case "
              "keeps two sources concurrent to make the re-mix, rather than an activation, "
@@ -629,6 +640,7 @@ tc("SWE1_AMM_199",
    ["The audio sources below \"TBM Mute Request\" in priority are muted",
     "$TBM_FD_1.SOSCallType$ reports 1 (No_active_SOS_call)",
     "The audio sources below \"TBM Mute Request\" in priority are unmuted"],
+   pre="An Entertainment source is active and $TBM_FD_1.SOSCallType$ = 1 (No_active_SOS_call)",
    prio="P0", method=DECISION,
    reasoning="4866727 is the ELSE branch of 4866726. The restore is written against the "
              "No_active_SOS_call value rather than against call termination, because the "
@@ -679,6 +691,7 @@ tc("SWE1_AMM_219",
    ["The audio sources below \"TBM Mute Request\" in priority are muted",
     "$TBM_FD_1.SOSCallType$ reports 1 (No_active_SOS_call)",
     "The audio sources below \"TBM Mute Request\" in priority are unmuted"],
+   pre="An Entertainment source is active and $TBM_FD_1.SOSCallType$ = 1 (No_active_SOS_call)",
    prio="P0", method=DECISION,
    reasoning="4866886 is the ELSE branch at the second anchor. The callback call type is "
              "used so the pair 199 and 219 covers the third call type as well.")
@@ -693,6 +706,7 @@ tc("SWE1_AMM_226",
     "The Voice Recognition request is accepted",
     "The Navigation audio is cancelled",
     "The Voice Recognition audio is active"],
+   pre="No audio source is active",
    prio="P0", method=SCENARIO,
    reasoning="4866902 covers TA or NAV against Phone or VR. The NAV against VR pairing is "
              "taken here; the TA against call pairing is SWE1_AMM_227 at its own anchor, so "
@@ -708,6 +722,7 @@ tc("SWE1_AMM_227",
     "The incoming call is accepted",
     "The traffic announcement audio is cancelled",
     "The hands-free call audio is active"],
+   pre="No audio source is active and no call is in progress",
    prio="P0", method=SCENARIO,
    reasoning="4866903 is the accepted-call case, distinct from 4866902 which keys on the "
              "Phone or VR button press.")
@@ -770,6 +785,7 @@ tc("SWE1_AMM_157",
     "The Voice Recognition session starts",
     "The Information 1 ramp-down and the Information 2 ramp-up are observed",
     "The sequence matches the Information 1 to Information 2 transition figure"],
+   pre="No audio source is active",
    prio="P0", method=STATE,
    reasoning="Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866522 is the "
              "\"Information 1 Active -> Information 2 Active\" figure. Paired with "
@@ -835,6 +851,7 @@ tc("SWE1_AMM_241",
     "The higher priority Information source is raised",
     "The arbitration and the routing are observed",
     "The sequence matches the arbitrated Information source transition diagram"],
+   pre="No audio source is active",
    prio="P0", method=STATE,
    reasoning="Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866967 is the "
              "arbitrated Info to Info diagram. Pairs with SWE1_AMM_157 on the same sibling "
