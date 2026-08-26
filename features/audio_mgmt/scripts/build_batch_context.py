@@ -32,7 +32,33 @@ from feature_config import load_feature_config, resolve_path  # noqa: E402
 
 HANDOFF = {"B1": ROOT / "docs" / "handoff" / "03_batch_B1_handoff.md",
            "B2": ROOT / "docs" / "handoff" / "08_B2_final_anchors.md",
-           "B3": ROOT / "docs" / "handoff" / "12_B3_final_anchors.md"}
+           "B3": ROOT / "docs" / "handoff" / "12_B3_final_anchors.md",
+           "B4": ROOT / "docs" / "handoff" / "13_B4_anchor_candidates.md"}
+
+# B4 runs under the R-AM20 green channel, so its leaf set is assembled from
+# package 13's A and B tables plus route 2's own resolutions rather than from
+# a single ruled table. Held back: 002 and 122, where the two routes
+# disagree — R-AM15 bars a single route from settling an anchor, and the
+# green channel does not lift that.
+B4_HELD = {"SWE1_AMM_002", "SWE1_AMM_122"}
+B4_ROUTE2 = {
+    # Resolved by route 2 and reported in package 15 sections 3.1 and 3.2:
+    # both are their own objects, so neither needs a shared-anchor argument.
+    "SWE1_AMM_145": ["4866497"],
+    "SWE1_AMM_155": ["4866513"],
+    # No object found in either corpus; ship with PENDING as 026 and 076a did.
+    "SWE1_AMM_020": [], "SWE1_AMM_024": [], "SWE1_AMM_146": [],
+}
+B4_SET = {  # test set per leaf, from package 13's section headings
+    **{k: "Volume Control" for k in
+       ("194", "196", "197", "220", "262", "272", "273", "274",
+        "264", "266", "306", "307", "308", "024", "146")},
+    **{k: "Audio Sources" for k in
+       ("001", "005", "006", "007", "010", "108", "148", "149", "151", "152",
+        "162", "163", "164", "165", "175", "176", "210", "214", "217", "256",
+        "257", "311", "003", "009", "013", "202", "204", "207", "228", "263",
+        "020", "145", "155")},
+}
 
 # Package 03 section 5. Each leaf carries the axes it belongs to so the
 # generator can differentiate tc_title tokens within a family.
@@ -112,6 +138,18 @@ def parse_handoff(batch: str) -> list[dict]:
                  "anchors": [m.group(5)], "coverage": "完整",
                  "anchor_note": m.group(6)}
                 for m in ROW_RE.finditer(text)]
+
+    if batch == "B4":
+        a = text[text.index("## 一、A 級"):text.index("## 二、B 級")]
+        b = text[text.index("## 二、B 級"):text.index("## 三、C 級")]
+        pat = r"\|\s*(SWE1_AMM_\d+)\s*\|\s*(?:CFTS019-)?(48\d{5})\s*\|\s*([✓✗])"
+        rows = {m.group(1): ([m.group(2)], m.group(3) == "✓")
+                for m in re.finditer(pat, a + b)}
+        rows.update({k: (v, bool(v)) for k, v in B4_ROUTE2.items()})
+        return [{"swe_id": k, "anchors": v[0], "anchor_in_pool_ruled": v[1],
+                 "coverage": "完整" if v[0] else "PENDING: DR-AM1",
+                 "test_set": B4_SET[k.split("_")[-1]]}
+                for k, v in sorted(rows.items()) if k not in B4_HELD]
 
     head = "## 一、定案錨表" if "## 一、定案錨表" in text else "## 二、定案錨表"
     tail = ("## 二、逐案處置" if "## 二、逐案處置" in text

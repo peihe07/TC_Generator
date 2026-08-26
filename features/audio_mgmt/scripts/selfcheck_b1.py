@@ -48,6 +48,20 @@ DELIVERY = ("test_item", "pre_conditions", "input_test_data",
             "test_procedure", "expected_result", "remarks")
 
 
+
+def bracket_tail(test_item: str) -> str:
+    """The authored bracket half, not the first parenthesis in the string.
+
+    Splitting on the first "(" reaches into the verbatim upper half whenever
+    the requirement text contains its own parentheses — SWE1_AMM_256's
+    "(navigation prompts, warnings, chimes, etc.)" is one — so the
+    sibling-distinction check was comparing fragments of the specification
+    instead of the tails it exists to compare.
+    """
+    _, sep, tail = test_item.rpartition("\n\n(")
+    return tail if sep else test_item
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--batch", default="B1")
@@ -117,7 +131,7 @@ def main() -> None:
 
     brackets = defaultdict(list)
     for tc in data["tcs"]:
-        brackets[tc["req_id"]].append(tc["test_item"].split("(", 1)[1])
+        brackets[tc["req_id"]].append(bracket_tail(tc["test_item"]))
     for req, xs in brackets.items():
         if len(xs) != len(set(xs)):
             fails.append(f"{req}: two rows share the same bracket text")
