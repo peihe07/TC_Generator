@@ -34,6 +34,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 28 | 2026-08-25 | CFTS_013 全文驗明、矩陣判讀、**rvc-01（007／008 六條）** | [handoff/28_cfts013_full_and_rvc.md](handoff/28_cfts013_full_and_rvc.md) | [upstream/28_cfts013_full_and_rvc.md](upstream/28_cfts013_full_and_rvc.md) | （無新條文） | A-DM38／A-DM39 新增；DR-DM11 開立；A9／A10、B17–B20 新增 | **停止條件 71 觸發（A3 停手）；rvc-01 六條，lint 20 項行計 0；綁定 entries: 13** |
 | 28a | 2026-08-26 | 附件：A-DM36 結案、DR 十筆改 SENT、DR-DM7 對帳 | [handoff/28a_dr_sent.md](handoff/28a_dr_sent.md) | 併入 [upstream/28](upstream/28_cfts013_full_and_rvc.md) §三之二 | （無新條文） | A-DM36 CLOSED；A11／B21 新增 | **停止條件 74／75 皆未觸發；DR-DM7 判定為全案結案而非部分結案** |
 | 29 | 2026-08-26 | A3 解封、DM2 降級、007／008 切分裁定 | [handoff/29_a3_and_arbitration.md](handoff/29_a3_and_arbitration.md) | [upstream/29_a3_and_arbitration.md](upstream/29_a3_and_arbitration.md) | R-DM55 | A-DM40 新增（CLOSED）；DR-DM12 開立；A12／B22／B23 新增；B20 解除 | **停止條件 76 觸發 —— CFTS_013 之 50 vs CFTS_020 之 85；未改任何 TC** |
+| 30 ＋ 30a | 2026-08-26 | 追五個轉指條號；R-DM51 依據補驗；DR-DM7 結案 | [handoff/30_crossref_chase.md](handoff/30_crossref_chase.md)、[30a](handoff/30a_vf169.md) | [upstream/30_crossref_chase.md](upstream/30_crossref_chase.md) | R-G37（全域）；R-G27 指標 | A11 關閉；A13／B24／B25 新增；B23 解除；DR-DM7 CLOSED；A-DM20 改標 | **停止條件 79／80／81 皆未觸發；TC 一字未動** |
 
 ## 02 輪要點
 
@@ -794,3 +795,71 @@ DR-DM12 開立（037 作者），`BACKLOG.md` 新增其重審節。
 > 條號**就是 warning → off 之訊號序列，也就是 pilot-01 原 #2 被 deferred
 > 的那個東西**。本輪停手範圍內未追是對的，**但它們現在位置已知、可取得、
 > 且直接對應一個開了四輪的 DR。**
+
+## 30／30a 輪要點
+
+### 五條轉指全部是 CUSW —— 假說否證，而否證的方式指出了答案
+
+`{4821587}`／`{4821589}`／`{4821590}`／`{4821591}`／`{4821592}` **全部**
+`[Radio:VP4R84] [EE Architecture:CUSW]`，落在 `§1.15.5.5.2`。
+既非組 A 亦非組 B（停止條件 80 未觸發）。**A1／A2 不能因此自解。**
+
+**但補測（§1.7）把「查不到」變成「查到了」**：五條各有**逐架構之孿生**。
+以三元組為例，本專案之孿生為 `{4819862}`／`{4819863}`／`{4819864}`：
+
+| 成員 | 角色 | 對本專案 |
+|---|---|---|
+| `{4819862}` | DCSD 決定關背光 → 送 `[DISP_OFF]` | **`noSys`** |
+| **`{4819863}`** | HU 見 `[DISP_HOT]→[DISP_OFF]` → 送 `[DISP_OFF]`＋`[0%]` | **適用** |
+| `{4819864}` | DCSD 收 HU 之 `[DISP_OFF]` → 關背光 | **`noSys`** |
+
+即：**multi-stage 之 HU 側對本專案有定義、DCSD 側沒有；
+而 CFTS_013 §1.5.3（13/13 適用）補的正是 DCSD 側。**
+兩份文件之分工在此對得上。**本層不作此裁定**（DR-DM10(a)，Tier 2）。
+
+另一項並列（**後件逐字相同、前件不同**）：組 A 之 `{4820283}` 缺的
+「何時算顯示完畢」，multi-stage 版本給了 ——
+**DCSD 送出 `[DISP_HOT] → [DISP_OFF]` 之轉換**，而 CFTS_013 `{4943104}`
+說那發生在 popup 顯示 **10 秒**後（`Only DCSD shall implement 10 sec timer`）。
+
+### R-G37 ＋ 一項我自己的更正
+
+**R-G37（全域）**：適用性判準須自該檔之值域導出，含通配值之檢查，
+不得沿用他檔之判準。R-G27 條下留指標 —— **R-G27 防過寬，R-G37 防過嚴。**
+
+**而本輪第一件事就是它抓到我**：上繳 29 §2.2 我寫「CFTS_020 之
+`EE Architecture` 值域**不含 `All`**」，並以此證明 21／28 兩輪未受
+A-DM40 影響。**本輪實測：`All` 出現 83 次，舊判準漏網 71 條。**
+
+重做回溯：21 輪之標的（`4820282`–`4820292`）與 28 輪之標的
+（RVC × `$DCSD_DISP_STAT$`）**皆不在漏網內** —— **結論仍成立，
+但理由是假的**。真正的理由是「那兩組條文恰好逐一列舉架構名」。
+登為 **B25**：**R-G22 立於 12 輪規制的正是這件事，
+而我在一份宣告自己在做回溯檢查的文件裡犯了。**
+
+### `{CFTS013-930}` 補驗 —— R-DM51 之依據成立
+
+逐字取得（`Document ID` 錨定，1 列）。`Associated`／`Disassociated`／
+`DCSD`／`_ADspl`／`_DDspl` 五項俱在，與 R-DM51 之表述逐字相符。
+**上繳 29 §九第 2 項之自陳至此閉合。** 停止條件 81 未觸發。
+
+### DR-DM7 CLOSED、A-DM20 改標、A11 關閉
+
+依 R-DM44（16 輪）：DR-DM7 標 **CLOSED**，A-DM20 標
+`RESOLVED-BY-SCOPE-CHANGE`（**不標 `RESOLVED`** —— 所求之物未取得，
+是用途被 R-DM33 消滅）。**十二輪未執行之事實記於 A-DM20。**
+
+DR 現況 12 筆：**9 SENT、1 CLOSED、1 OPEN、1 待發**。
+
+### `pilot-01` 凍結
+
+三條之 `85 degrees C` 登記為**條件性正確** ——
+其正確性以「本專案走組 B」為前提，而 CFTS_013 §1.5.3 之出現使該前提
+**待證而非已證**。**維持現狀、不改、不寫回。**
+
+30a 之 VF169 **未落磁碟**，T1 完成（確認不存在）、T2–T5 待置入；
+綁定維持 13 項。
+
+> §九第 3 項最該記：**自陳欄不該是待辦清單的傾倒處。**
+> 初稿寫「我沒有查」，寫完去查，五分鐘。**本輪是第二次**
+> （27 輪反向查證是第一次）**「自陳未驗」在寫下的當下就變成可驗**。

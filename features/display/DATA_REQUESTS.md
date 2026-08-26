@@ -91,7 +91,7 @@ Urgency 回報。
 > **50／51–55／56–<60 degrees C**，與 CFTS_020 `{4820289}` 之 **85 degrees C** 不符。
 > **本層未併算、未判何者為準**（屬 DR-DM10(a)）。
 | DR-DM8 | 確認 037 之 `DISPLAY_ON`／`DISPLAY_OFF`（`SWE-DM-001`／`002`）與 SYS2／DBC 之 `DISP_ON`／`DISP_OFF` 是否為同一狀態 | SENT (2026-08-25) | SWE-DM-001、SWE-DM-002 | 狀態名無法對應，TC 之預期結果無法引用 DBC 之 `VAL_` 標籤 | A-DM18 | HIGH |
-| DR-DM7 | 本專案（R1LR Atl-H）之 VF 代碼，或其 PROXI 實例檔（已填值之 PROXI，非 `_R3` 空白格式檔） | SENT (2026-08-25) — **但書（28a §2.1(c) 對帳，本輪只報不處置）：R-DM44 已裁定本 DR 結案**（理由為「所求之用途已由 R-DM33 取消，非取得所求之物」），**其標的與本列逐字相同，為全案結案而非部分結案**。本列之 `SENT` 只記錄 Pei 之發信事實，**不表示本 DR 仍屬未結**。兩處之不一致待分析層裁定（上繳 28 §D3） | 全 8 leaf 之前置條件 | `Used by NODE(VFXXX)` 無法用於篩選；PROXI 446 列母體無法收斂 | A-DM20 | MEDIUM |
+| DR-DM7 | 本專案（R1LR Atl-H）之 VF 代碼，或其 PROXI 實例檔（已填值之 PROXI，非 `_R3` 空白格式檔） | **CLOSED（R-DM44，16 輪）**（下放包 30 §四.4 之更正）—— 其所求之用途已由 R-DM33 消滅（PROXI 改需求驅動），**非取得所求之物**。28a §2.1(c) 之對帳判定為**全案結案而非部分結案**（R-DM44 引的就是本列原文，所求之物與所求之用途兩項逐字相同）。**Pei 2026-08-25 曾於封 4 發出本 DR** —— 該發信事實記此，惟本 DR 自 16 輪起即已結案。**重開條件（R-DM44）**：某參數之值域在 PROXI 中依 VF 而異時，以新編號重開 | 全 8 leaf 之前置條件 | `Used by NODE(VFXXX)` 無法用於篩選；PROXI 446 列母體無法收斂 | A-DM20 | MEDIUM |
 | DR-DM6 | `Display_OFF_SoftKey_Prsnt` 之 PROXI 定義；或確認其與 `PROXI_HDCC27_R3` `Format` r692 之 `Display_OFF_SoftKey` 為同一參數（LID r63 `DSP_SK_PRSNT`） | SENT (2026-08-25) | SWE-DM-001（Screen Off 行為之配備前提） | 該 leaf 之前置條件是否需帶軟鍵存在旗標，無法判定 | A-DM17／`forms/LOOKUP_MISSES.md` M-3 | MEDIUM |
 | DR-DM5 | `RADIO_B4.CCDMF_RQ_DISP_INTS` 之 DBC 定義（訊息 `RADIO_B4` 存在於 `PDT27_E2A_R1_BHCAN2.dbc`，該 `SG_` 不存在）；一併確認 `GW_B_5.Mute_Button` | SENT (2026-08-25) | 用到 `$CCDMF_RQ_DISP_INTS$` 之 SYS2 FR 列 | 該訊號之值域與位元定義無法寫 | A-DM10a／`forms/LOOKUP_MISSES.md` M-1、M-2 | MEDIUM |
 
