@@ -35,17 +35,17 @@ paths:
 # （下放包 01 §一-4）。本 feature 不需 intake.kind_overrides，
 # 亦不需 paths_meta.a03_sheet（取預設 "Analysis Report"）。
 
-# ⚠ **未定 —— 不猜**（A-BLM7）。
-# 下放包 02 §二 填 "hmi_logic_and_flow"，但 FO §3 之 spec_mode 值域為
-# 單一字母 A–E，無此值。而本 feature 之歸類本身有兩讀：
-#   來源形態為 A（SYS1 Polarion export 齊備，70 物件）；
-#   但 spec_reference 之行為為 D（"looked up, never constructed"，R-BLM5），
-#   且 A 所需之 outline map 在本 feature 建不起來 ——
-#   037 `HMI Source ID` 與 SYS1 `SYSRE_HMI_Source ID` 之相交為空（A-BLM4）。
-# 兩讀並存 → 非「既有條文之機械套用」→ 屬 Tier 2（FO §0）。留 null 待裁。
-# 佐證（本包實測）：PDF 文字層 21/21 頁皆有，總 8,157 字元，平均 388/頁，
-# <200 字元之頁 4/21 —— Mode B 於技術上可行，惟是否採用屬同一裁定。
-spec_mode: null
+# **R-BLM7（Pei 2026-08-26 裁定，回應 A-BLM7）：採 D。**
+# D = "looked up, never constructed"（FO §3）。三者中唯一自洽：
+#   A 建不起來 —— 其 outline map 需 037 `HMI Source ID` ∩ SYS1
+#     `SYSRE_HMI_Source ID`，實測為空（A-BLM4）；
+#   B 技術可行（PDF 文字層 21/21 頁、8,157 字元、平均 388/頁）但會為批次語料
+#     引入第二真相源，而 037 每 leaf 已帶完整 Requirement Description；
+#   D 與 R-BLM5 已裁之行為同族（null 編碼，R-VC8）。
+# 後果：批次語料取 `data/leaf_inventory.tsv`（037 側）；
+# **規格 PDF 降為人讀參考，不入 prompt 語料。**
+# 下放包 02 §二 之 "hmi_logic_and_flow" 作廢 —— FO §3 值域為單一字母 A–E。
+spec_mode: "D"
 
 # R-BLM5：spec_reference 為**查得**（逐字抄 037 `HMI Source ID` 欄），非構造。
 # `null` 為本管線既有之「查得而不構造」編碼，非新增枚舉 ——
