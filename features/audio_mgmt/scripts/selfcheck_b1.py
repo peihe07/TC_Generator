@@ -86,7 +86,8 @@ def main() -> None:
         if tc["design_method"] not in vocab:
             bad(tc, f"design_method outside the dropdown vocabulary")
         for line in tc["spec_reference"].split("\n"):
-            if not re.fullmatch(r"CFTS019-48\d{5}", line):
+            if not (re.fullmatch(r"CFTS019-48\d{5}", line)
+                    or re.match(r"^PENDING: DR-\w+\b", line)):
                 bad(tc, f"spec_reference line malformed: {line!r}")
         if not re.fullmatch(r"SWE1_AMM_\d{3}", tc["req_id"]):
             bad(tc, "req_id is not the underscore form R-AM7 requires")

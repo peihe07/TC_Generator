@@ -31,7 +31,8 @@ sys.path.insert(0, str(ROOT.parent.parent / "scripts"))
 from feature_config import load_feature_config, resolve_path  # noqa: E402
 
 HANDOFF = {"B1": ROOT / "docs" / "handoff" / "03_batch_B1_handoff.md",
-           "B2": ROOT / "docs" / "handoff" / "08_B2_final_anchors.md"}
+           "B2": ROOT / "docs" / "handoff" / "08_B2_final_anchors.md",
+           "B3": ROOT / "docs" / "handoff" / "12_B3_final_anchors.md"}
 
 # Package 03 section 5. Each leaf carries the axes it belongs to so the
 # generator can differentiate tc_title tokens within a family.
@@ -70,6 +71,19 @@ SIBLING_AXES = {
         "SWE1_AMM_031", "SWE1_AMM_032"],
     "TLM mute without ICS node": ["SWE1_AMM_068", "SWE1_AMM_069",
                                   "SWE1_AMM_078", "SWE1_AMM_079"],
+    # Package 12 section 4.
+    "VSIM mute group (B3 remainder)": ["SWE1_AMM_183"],
+    "VSIM unmute group (B3)": ["SWE1_AMM_185", "SWE1_AMM_186",
+                               "SWE1_AMM_187"],
+    "Fade/Balance HMI update, same text different anchor": [
+        "SWE1_AMM_114", "SWE1_AMM_119"],
+    "market enumeration pair, must ship together": [
+        "SWE1_AMM_081", "SWE1_AMM_082"],
+    "SCV setup chain": ["SWE1_AMM_088", "SWE1_AMM_089", "SWE1_AMM_090",
+                        "SWE1_AMM_091"],
+    "reverse mute chain": ["SWE1_AMM_288", "SWE1_AMM_289", "SWE1_AMM_290",
+                           "SWE1_AMM_291"],
+    "information volume store and recall": ["SWE1_AMM_147", "SWE1_AMM_158"],
 }
 
 ROW_RE = re.compile(
@@ -78,10 +92,15 @@ ROW_RE = re.compile(
 # Package 08 tabulates leaf, anchor, pool and coverage, under a heading per
 # test set. A leaf may carry more than one anchor (SWE1_AMM_032 under R-AM16),
 # so the anchor cell is parsed as a list rather than a single id.
+# The anchor cell may hold one id, two joined by a return mark (R-AM16 shared
+# anchors and dual citations), or an em dash where the leaf has no anchor at
+# all and ships as PENDING. The pool cell likewise carries one mark or two.
 ROW_RE_B2 = re.compile(
-    r"^\|\s*(SWE1_AMM_\d+)\s*\|\s*((?:CFTS019-\d+[^|]*?))\|\s*([✓✗])\s*\|"
+    r"^\|\s*(SWE1_AMM_\d+)\s*\|\s*([^|]*?)\s*\|\s*([^|]*?)\s*\|"
     r"\s*([^|]+?)\s*\|", re.M)
-SET_RE = re.compile(r"^### (.+?)（\d+ 葉）", re.M)
+# Headings differ per package: "### Audio Arbitration（13 葉）" in 08,
+# "### Mute Requests 後 13" in 12. Take the leading words either way.
+SET_RE = re.compile(r"^### ([A-Za-z][A-Za-z /]+?)\s*(?:（|後|前|$)", re.M)
 
 
 def parse_handoff(batch: str) -> list[dict]:
@@ -94,7 +113,10 @@ def parse_handoff(batch: str) -> list[dict]:
                  "anchor_note": m.group(6)}
                 for m in ROW_RE.finditer(text)]
 
-    section = text[text.index("## 一、定案錨表"):text.index("## 二、逐案處置")]
+    head = "## 一、定案錨表" if "## 一、定案錨表" in text else "## 二、定案錨表"
+    tail = ("## 二、逐案處置" if "## 二、逐案處置" in text
+            else "## 三、逐案裁定明細")
+    section = text[text.index(head):text.index(tail)]
     # Walk the section so each row picks up the test set heading above it.
     bounds = [(m.start(), m.group(1)) for m in SET_RE.finditer(section)]
     out = []
@@ -104,7 +126,7 @@ def parse_handoff(batch: str) -> list[dict]:
         out.append({
             "swe_id": m.group(1),
             "anchors": re.findall(r"CFTS019-(\d+)", m.group(2)),
-            "anchor_in_pool_ruled": m.group(3) == "✓",
+            "anchor_in_pool_ruled": "✓" in m.group(3),
             "coverage": " ".join(m.group(4).split()),
             "test_set": test_set.strip()})
     return out
@@ -189,11 +211,15 @@ def main() -> None:
         if row is None:
             raise SystemExit(f"{leaf['swe_id']} not found in SWE.1")
         anchors = leaf["anchors"]
+        # A leaf ruled to ship without an anchor (PENDING: DR-AM1) still gets
+        # a row — the completeness invariant runs both ways — so it is carried
+        # here with an empty anchor list rather than dropped.
         out.append({**leaf,
                     "source_id": leaf.get("source_id") or row["source_id"],
                     "title": leaf.get("title") or row["title"],
-                    "anchor": anchors[0],
-                    "anchor_in_pool": all(a in pool for a in anchors),
+                    "anchor": anchors[0] if anchors else "",
+                    "anchor_in_pool": bool(anchors) and all(a in pool
+                                                            for a in anchors),
                     "swe": row,
                     "spec_text": "\n\n".join(
                         f"[{a}] {blocks.get(a, '')}" for a in anchors),

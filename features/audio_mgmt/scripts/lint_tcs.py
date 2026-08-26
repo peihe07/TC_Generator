@@ -43,6 +43,10 @@ STEP_HEAD = re.compile(
 MODALS = re.compile(r"\b(shall|should|must|will|would|may|might)\b", re.I)
 CJK = re.compile(r"[一-鿿]")
 SPEC_REF = re.compile(r"^CFTS019-48\d{5}$")
+# A leaf ruled to ship with no anchor at all (package 12 section 3.5) carries
+# a PENDING here instead of an id. 8.4.3 makes that legal now and illegal at
+# delivery, which is check M's job, not this one's.
+SPEC_REF_PENDING = re.compile(r"^PENDING: DR-\w+\b.*$")
 
 # ---- check P, 8.7.5 v3 -----------------------------------------------------
 # v1's triple and v2's prefix are both revoked; text carrying either is stale.
@@ -209,7 +213,7 @@ def main() -> int:
                         r"\b\d+\.$", line.rstrip()):
                     fails.append(f"{tag}/{key}: line ends in a period (11)")
         for line in tc["spec_reference"].split("\n"):                # O
-            if not SPEC_REF.match(line):
+            if not (SPEC_REF.match(line) or SPEC_REF_PENDING.match(line)):
                 fails.append(f"{tag}: spec_reference line {line!r} (R-2)")
 
         upper, _, bracket = tc["test_item"].partition("\n\n")
