@@ -1827,6 +1827,38 @@ A-PMH25 原記「9.1 之權威文本於逾時處為破句，**其秒數無法確
 
 ---
 
+## A-PMH32 — `-012`／`-013` 之告別音側未驗（`and` 並列之一讀未涵蓋） · 38 包步驟 3 · PENDING
+
+**R-PMH144 之全批掃描所得**（34 個 `and`／`or` 並列候選中之唯一實質缺口）。
+
+| | 逐字 |
+|---|---|
+| `-012` 之 `source_clause` | `SSND 2.1) If the setting is Always, **start-up and goodbye sounds** should be played everytime the startup animation is played.` |
+| `-013` 之 `source_clause` | `SSND 2.2) If the setting is Once a Day, **start-up and goodbye sounds** should be played only once per day …` |
+| 二條之觸發 | **只有 startup animation**（步驟 3／4） |
+| 二條之斷言 | 泛稱 `the sound`，**未分辨啟動音與告別音** |
+
+**對照 `-014`（`Never`）**：其步驟 5 逐字為
+`Trigger the shut-down animation and check that no goodbye sound is played`
+—— **同軸三值之中，只有 `Never` 一條驗了告別音側。**
+
+**其成因可辨**：`SSND 2.1)`／`2.2)` 之句子本身即不一致 ——
+**其主語為「啟動音**與**告別音」，而其觸發只寫「startup animation」**；
+告別音依 `SSND 1)` 是與**關機**動畫同步的。
+**我當時取了字面之觸發（startup animation），而未取字面之主語（二者）。**
+
+**其形態同 R-PMH95 之歧義** —— 惟本項**未以涵蓋兩讀處置**，
+**只取其一讀**；**該取捨當時未被具名**（其 `reasoning` 只記「不斷言任何次數上限」）。
+
+**處置**：**本包不補條**（`tc_id` 指派與寫回同輪進行，改動 TC 內容會使映射表與寫回不同步）。
+**入 `PENDING-ON-DR` 第 16 筆**（**無所繫之 DR**）。
+
+⚠ **R-PMH144 令「採其一讀而另一讀未涵蓋者，入 `PENDING-ON-DR`」，
+而本項無所繫之 DR** —— 其與第 9／10 筆同形（36 包已具名該形態），
+**該簿之必辦機制繫於 DR 之 `ANSWERED`，故本筆亦無觸發點。**
+
+---
+
 ## 開案時之介面實測記錄（非異常，供追溯）
 
 `scripts/new_feature.py` 之實際介面與本 slug 之相合情形：

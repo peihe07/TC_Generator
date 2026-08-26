@@ -81,6 +81,7 @@ TCS = [
    axis="謂詞：VR 硬鍵之可用性（對四個互動結果狀態條）"),
 
  dict(leaf="SWE1-HMI-PM-026-02", outline="11.1", src="S_OFF_A_OFF", dm=EP, pri="P2",
+   blocked=True,
    title="Radio returns to off when the interaction ends with screen off and audio off",
    item="(四個互動結果之第一 —— 螢幕關、音訊關，即回到關閉狀態)",
    pre=["The radio was OFF and the voice assistant was activated by the VR hard key",
@@ -96,10 +97,12 @@ TCS = [
      "**各為一條**（依 R-PMH118，一條只含一類者其技術仍為 EP）。"
      "⚠ **四條之拆分依 §8.2.2** —— 四者**互斥且獨立**，"
      "併為一條則「其一失效」之 pass/fail 判定不明確。"
+     + "⚠ **R-PMH142（38 包）：本條標 `BLOCKED-UNTIL-DR`，其狀態為「已產出、不可執行」。** 本條與其餘三個互動結果條之 `test_procedure` **逐字相同**而其 `expected_result` **互斥** （螢幕開關 × 音訊開關之四個組合）—— **同一組步驟執行一次只會落在一類，四條之中至多一條能通過，其餘三條必然 fail**，其為 canon §7 之 **false fail**。**成因不在撰寫**：`VRLP1` 與 037 之 DESC **皆未言如何使互動之結果落在某一類**，於無條件可寫時未造值（§8.4.1）。**其代價記為封鎖，不記為通過。****解封繫於 `DR-PMH8` Q9**（`PENDING-ON-DR` 第 15 筆）。"
      + perm("螢幕關閉且音訊關閉") + CH11),
    axis="互動結果之等價類：螢幕關／音訊關（對 -051／-052／-053 之其餘三類）"),
 
  dict(leaf="SWE1-HMI-PM-026-03", outline="11.1", src="S_ON_A_OFF", dm=EP, pri="P2",
+   blocked=True,
    title="Screen stays on with audio off after the voice assistant interaction",
    item="(四個互動結果之第二 —— 螢幕開、音訊關)",
    pre=["The radio was OFF and the voice assistant was activated by the VR hard key",
@@ -109,10 +112,12 @@ TCS = [
    er=["The screen is on after the interaction",
        "The audio is off after the interaction"],
    reason=("**P2 —— 同本批第一個互動結果條之依據**（R-PMH59：批內依據互不矛盾）。設計方法 EP。"
+     + "⚠ **R-PMH142（38 包）：本條標 `BLOCKED-UNTIL-DR`，其狀態為「已產出、不可執行」。** 本條與其餘三個互動結果條之 `test_procedure` **逐字相同**而其 `expected_result` **互斥** （螢幕開關 × 音訊開關之四個組合）—— **同一組步驟執行一次只會落在一類，四條之中至多一條能通過，其餘三條必然 fail**，其為 canon §7 之 **false fail**。**成因不在撰寫**：`VRLP1` 與 037 之 DESC **皆未言如何使互動之結果落在某一類**，於無條件可寫時未造值（§8.4.1）。**其代價記為封鎖，不記為通過。****解封繫於 `DR-PMH8` Q9**（`PENDING-ON-DR` 第 15 筆）。"
      + perm("螢幕開啟且音訊關閉") + CH11),
    axis="互動結果之等價類：螢幕開／音訊關（對 -050／-052／-053 之其餘三類）"),
 
  dict(leaf="SWE1-HMI-PM-026-04", outline="11.1", src="S_OFF_A_ON", dm=EP, pri="P2",
+   blocked=True,
    title="Audio stays on with the screen off after the voice assistant interaction",
    item="(四個互動結果之第三 —— 螢幕關、音訊開)",
    pre=["The radio was OFF and the voice assistant was activated by the VR hard key",
@@ -122,10 +127,12 @@ TCS = [
    er=["The screen is off after the interaction",
        "The audio is on after the interaction"],
    reason=("**P2 —— 同本批第一個互動結果條之依據**。設計方法 EP。"
+     + "⚠ **R-PMH142（38 包）：本條標 `BLOCKED-UNTIL-DR`，其狀態為「已產出、不可執行」。** 本條與其餘三個互動結果條之 `test_procedure` **逐字相同**而其 `expected_result` **互斥** （螢幕開關 × 音訊開關之四個組合）—— **同一組步驟執行一次只會落在一類，四條之中至多一條能通過，其餘三條必然 fail**，其為 canon §7 之 **false fail**。**成因不在撰寫**：`VRLP1` 與 037 之 DESC **皆未言如何使互動之結果落在某一類**，於無條件可寫時未造值（§8.4.1）。**其代價記為封鎖，不記為通過。****解封繫於 `DR-PMH8` Q9**（`PENDING-ON-DR` 第 15 筆）。"
      + perm("螢幕關閉且音訊開啟") + CH11),
    axis="互動結果之等價類：螢幕關／音訊開（對 -050／-051／-053 之其餘三類）"),
 
  dict(leaf="SWE1-HMI-PM-026-05", outline="11.1", src="S_ON_A_ON", dm=EP, pri="P2",
+   blocked=True,
    title="Screen and audio both stay on after the voice assistant interaction",
    item="(四個互動結果之第四 —— 螢幕開、音訊開)",
    pre=["The radio was OFF and the voice assistant was activated by the VR hard key",
@@ -135,6 +142,7 @@ TCS = [
    er=["The screen is on after the interaction",
        "The audio is on after the interaction"],
    reason=("**P2 —— 同本批第一個互動結果條之依據**。設計方法 EP。"
+     + "⚠ **R-PMH142（38 包）：本條標 `BLOCKED-UNTIL-DR`，其狀態為「已產出、不可執行」。** 本條與其餘三個互動結果條之 `test_procedure` **逐字相同**而其 `expected_result` **互斥** （螢幕開關 × 音訊開關之四個組合）—— **同一組步驟執行一次只會落在一類，四條之中至多一條能通過，其餘三條必然 fail**，其為 canon §7 之 **false fail**。**成因不在撰寫**：`VRLP1` 與 037 之 DESC **皆未言如何使互動之結果落在某一類**，於無條件可寫時未造值（§8.4.1）。**其代價記為封鎖，不記為通過。****解封繫於 `DR-PMH8` Q9**（`PENDING-ON-DR` 第 15 筆）。"
      + perm("螢幕開啟且音訊開啟") + CH11),
    axis="互動結果之等價類：螢幕開／音訊開（對 -050／-051／-052 之其餘三類）"),
 ]
@@ -168,6 +176,11 @@ def main() -> None:
             "vehicle_models": "",
             "remarks": f"Test Set: {VAK}",
             "reasoning": t["reason"],
+            # R-PMH142：封鎖旗標入 JSON，**其為交付時之揭露依據**，非散文。
+            "blocked": t.get("blocked", False),
+            "blocked_reason": ("[BLOCKED-UNTIL-DR] DR-PMH8 Q9 — applicable condition "
+                               "for each outcome not stated in the specification.")
+            if t.get("blocked") else "",
             "distinguishing_axis": t["axis"],
             "source_clause": PDF[t["src"]],
             "source_clause_origin": "spec_pdf p10",

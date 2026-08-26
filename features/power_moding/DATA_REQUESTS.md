@@ -891,7 +891,7 @@ Thank you,
 第三問之覆蓋缺口另記於 `ANOMALIES.md`（R-PMH109 末）。
 
 **狀態**：`DRAFT`　**發出日期**：（待填）　**對象**：（待填）
-　**SHA256（前 16）**：`41926e3de87df5c4`
+　**SHA256（前 16）**：`a553fc762dddbb5e`
 
 > **29b（R-PMH112）**：首段加入**對上游已作陳述之更正句** —— 2026-08-25 所發之 `DR-PMH5` 逐字載
 > 「我方已暫停 section 9 之 TC 撰寫」，該陳述因 R-PMH111 之限縮解凍而不再成立。
@@ -1028,6 +1028,24 @@ Second, three points where the documents do not define something we need:
       saying which scenarios those are. Could you list them? At present our test
       case for that requirement does not exclude any call scenario, because we
       do not know which ones to exclude.
+
+  Q9: VRLP1 lists four possible radio states after an interaction with SIRI:
+
+          Screen Off and Audio OFF (i.e. radio back to off),
+          Screen ON and Audio OFF,
+          Screen Off, and Audio ON,
+          Screen ON and Audio ON.
+
+      Under what condition does each of the four occur? The document says the
+      status "depends on outcome of the interaction" without saying which
+      outcome leads to which state.
+
+      We ask because we cannot make these four testable as they stand. Each of
+      the four is a separate requirement in the analysis report, so we have
+      written one test case for each; but with no condition to set up, all four
+      test cases have the same steps and mutually exclusive expected results, so
+      at most one of them can pass on any given run. We have marked all four as
+      blocked rather than deliver test cases that fail by construction.
 
 Thank you,
 ```

@@ -44,6 +44,7 @@ feature 之交付夾為 `ASW-R2/Disclaimer screen/`（FROP 標籤），
 | 35 | 2026-08-25 | **DESC 逐斷言涵蓋之一次性總結**、回溯重判、**追溯維度封閉** | [handoff/35_desc_closing_pass.md](handoff/35_desc_closing_pass.md) | [upstream/35_desc_closing_pass.md](upstream/35_desc_closing_pass.md) | R-PMH133–R-PMH135（逐字抄錄 3/3 相符） | **A-PMH30（037 於二處以兩 leaf 承載同一行為）**；A-PMH25 → `RESOLVED` | **三條停止條件全未觸發；42 斷言／30 leaf，未涵蓋 2；回溯母體 25，翻案 2；四批 lint 32/32** |
 | 36 | 2026-08-25 | **反向涵蓋**、`desc_coverage.py`（第二次解凍）、**batch 5（10 條／10 leaf）** | [handoff/36_batch5.md](handoff/36_batch5.md) | [upstream/36_batch5.md](upstream/36_batch5.md) | R-PMH136–R-PMH138（逐字抄錄 3/3 相符） | A-PMH30 定案（R-PMH137） | **⚠ 停止條件 7 觸發（反向 `無依據` 1 處：`-004` ER3），未自行改；8／9 未觸發；五批皆 lint 32/32；解凍用畢已恢復凍結** |
 | 37 | 2026-08-25 | **`-004` 裁乙**、batch 5 三項修正（`-045` → P0）、**batch 6（最後一批）** | [handoff/37_batch6.md](handoff/37_batch6.md) | [upstream/37_batch6.md](upstream/37_batch6.md) | R-PMH139–R-PMH141（逐字抄錄 3/3 相符） | **A-PMH31（`or` 並列處之未驗一路）** | **三條停止條件全未觸發；六批皆 lint 32/32；反向無依據 0；TC 產出完畢 —— 51 條／45 leaf ＋ 停手 3 = 48** |
+| 38 | 2026-08-25 | **Phase 5：`tc_id` 單次指派、首次寫回（51 列）**、`-050`～`-053` 封鎖 | [handoff/38_phase5.md](handoff/38_phase5.md) ＋ [38a](handoff/38a_q10_and_profile.md) | [upstream/38_phase5.md](upstream/38_phase5.md) | R-PMH142–R-PMH146（逐字抄錄 5/5 相符） | **A-PMH32（`-012`／`-013` 告別音側未驗）** | **三條停止條件全未觸發；四項不變量全同；母本未被動過；六批 lint 32/32** |
 
 ## 01 輪要點
 
@@ -2189,3 +2190,43 @@ ch 11 × 矩陣之牴觸 0 為 22 包所測，**直接引用未重跑**。
 priority 分布 **P0 4／P1 41／P2 6**，51 條之依據與級別**逐條相符**。
 
 ⚠ **該自套為一次性，非常設檢查**（apparatus 凍結）——**下一批不會自動再做**。
+
+---
+
+## 38 包要點
+
+
+### 一、首次寫回 —— 51 列，母本未被動過
+
+| 項 | 值 |
+|---|---|
+| 產出 | `output/…_PowerModing_20260825_writeback.xlsx`（SHA256 `070ef73cea7b6ed9`） |
+| 寫入 | **51 列自 r10** |
+| 四項不變量 | 分頁 9／DV 組數（含 x14）／`last_capacity_row` 1411／B 欄公式 —— **全同** |
+| zip 48 members | **僅 `sheet6.xml` 相異**（目標分頁） |
+| 母本 | SHA256 前後同為 `6372fb6b…` —— **未被動過**（實測） |
+
+**`openpyxl.save()` 未被呼叫**（R-G3），只經 `backend/xlsx_surgical.surgical_save`。
+**`check_write_back` 之三項自 04 包實作以來首次上場**，其故意失敗**三項全被攔下**。
+
+### 二、`tc_id` 單次指派 —— 51 → 51，空位 0
+
+順序依 R-PMH36 之 Layer 2 定版順序，組內依 037 列序。**`-024` 之空位未保留。**
+**產出寫入 `generated/final/`，不覆寫 `generated/batchNN.json`**——
+後者為產生器之產物，**就地改寫會在下次執行時被無聲還原**。
+
+### 三、⚠ `and`／`or` 全批掃描查出 A-PMH32
+
+`-012`／`-013` 之 `source_clause` 主語為 `start-up **and** goodbye sounds`，
+而二條**只以 startup animation 為觸發、斷言用泛稱 `the sound`**——**告別音側未驗**。
+**同軸三值中只有 `-014`（`Never`）驗了它。**
+
+**成因可辨**：`SSND 2.1)`／`2.2)` 之句子自身不一致（主語是二者、觸發只寫 startup animation）。
+**我當時取了字面之觸發，而未取字面之主語。**
+
+### 四、一項代價已先具名
+
+**A-PMH32 之修正會改動 TC 內容，而 TC 一改，本次寫回之 51 列即與 `generated/final/` 不同步。**
+**本包選擇先寫回、後補條——其代價是必然要再寫一次。**
+
+Q10 定案不填（R-PMH145，語料少數側，須揭露）；profile §1.2 已落檔（R-PMH146，**§1 原文未改一字**）。

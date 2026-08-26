@@ -82,6 +82,28 @@ Time Management 20260822，r9 表頭 34/34 逐欄相等（R-PMH9）。
   內容只在 PDF p3–p7 流程圖。render 能力實測：**150 DPI 足供流程圖判讀，
   300 DPI 方能辨讀內嵌 UI 截圖內文**。48 leaf 無一落在 p3–p7。
 
+### 1.2 R-PMH50 之例外 —— outline 9.1 [ADD]
+
+outline `9.1`（`SWE1-HMI-PM-018-01`～`-05`，5 leaf）之 `source_clause`
+**取自 SYS1 匯出，非 PDF** —— R-PMH50 於此反轉。
+
+依據：R-PMH75（Pei 裁定 2026-08-25，`DR-PMH4` 之答覆「以刪掉之後的為主」）。
+PDF 之該句本身損壞（含 `aofnd`、兩個主謂結構相連而無連接詞、
+新舊兩版疊寫），而 SYS1 之版本恰為刪去舊文字後之定稿。
+
+`source_clause_origin` 逐字為 `sys1_export 9.1`。
+
+**R-PMH50 於其餘 40 leaf 維持不變** —— 本例外**只此一處**。
+
+⚠ **不得依 §1 之通則「修正」此 5 leaf**：依 §1 改回 PDF，
+即把 A-PMH16 所查出、SYS1 已刪之舊文字放回
+（`for 60 seconds`／`the radio should shut Off the`），
+**其為已被裁定排除之內容**。
+
+**承擔之風險已具名**（R-PMH75）：`the radio should shut Off`
+（逾時後收音機關機）不會有任何一條 TC 驗到；
+若上游日後主張該行為仍屬需求，ch 9 之覆蓋即有缺口。
+
 ## 2. Test Set vocabulary [OVERRIDE §4.1.3／§4.2]
 
 Layer 1 Test Group = **`Disclaimer screen`**（R-PMH13 —— 取**交付夾名**，

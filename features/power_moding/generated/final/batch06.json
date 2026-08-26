@@ -8,7 +8,7 @@
   "handoff": "docs/handoff/37_batch6.md",
   "profile": "docs/runtime/profiles/FW036_R1L_PowerModing_Profile.md",
   "selection": "Test Set `Voice Assistant Key`（ch 11，5 leaf）—— **本 feature 之最後一批**。**5 條 TC** —— 037 已將 `VRLP1` 之四個互動結果各立一 leaf，本批逐 leaf 一條，無須再拆。",
-  "tc_id_status": "provisional",
+  "tc_id_status": "final",
   "leaf_scope": [
     "SWE1-HMI-PM-026-01",
     "SWE1-HMI-PM-026-02",
@@ -21,7 +21,7 @@
   "limits": {},
   "tcs": [
     {
-      "tc_id": "NR1L-DisclaimerScreen-049",
+      "tc_id": "NR1L-DisclaimerScreen-045",
       "leaf_id": "SWE1-HMI-PM-026-01",
       "test_group": "Disclaimer screen",
       "test_set": "Voice Assistant Key",
@@ -43,10 +43,11 @@
       "blocked_reason": "",
       "distinguishing_axis": "謂詞：VR 硬鍵之可用性（對四個互動結果狀態條）",
       "source_clause": "VRLP1: VR hard key to activate SIRI/non-native Voice Assistants (eg. Long press of VR HK) shall be functional when radio is OFF and KEY ON or ACC.",
-      "source_clause_origin": "spec_pdf p10"
+      "source_clause_origin": "spec_pdf p10",
+      "provisional_tc_id": "NR1L-DisclaimerScreen-049"
     },
     {
-      "tc_id": "NR1L-DisclaimerScreen-050",
+      "tc_id": "NR1L-DisclaimerScreen-046",
       "leaf_id": "SWE1-HMI-PM-026-02",
       "test_group": "Disclaimer screen",
       "test_set": "Voice Assistant Key",
@@ -68,10 +69,11 @@
       "blocked_reason": "[BLOCKED-UNTIL-DR] DR-PMH8 Q9 — applicable condition for each outcome not stated in the specification.",
       "distinguishing_axis": "互動結果之等價類：螢幕關／音訊關（對 -051／-052／-053 之其餘三類）",
       "source_clause": "Screen Off and Audio OFF (i.e. radio back to off),",
-      "source_clause_origin": "spec_pdf p10"
+      "source_clause_origin": "spec_pdf p10",
+      "provisional_tc_id": "NR1L-DisclaimerScreen-050"
     },
     {
-      "tc_id": "NR1L-DisclaimerScreen-051",
+      "tc_id": "NR1L-DisclaimerScreen-047",
       "leaf_id": "SWE1-HMI-PM-026-03",
       "test_group": "Disclaimer screen",
       "test_set": "Voice Assistant Key",
@@ -93,10 +95,11 @@
       "blocked_reason": "[BLOCKED-UNTIL-DR] DR-PMH8 Q9 — applicable condition for each outcome not stated in the specification.",
       "distinguishing_axis": "互動結果之等價類：螢幕開／音訊關（對 -050／-052／-053 之其餘三類）",
       "source_clause": "Screen ON and Audio OFF,",
-      "source_clause_origin": "spec_pdf p10"
+      "source_clause_origin": "spec_pdf p10",
+      "provisional_tc_id": "NR1L-DisclaimerScreen-051"
     },
     {
-      "tc_id": "NR1L-DisclaimerScreen-052",
+      "tc_id": "NR1L-DisclaimerScreen-048",
       "leaf_id": "SWE1-HMI-PM-026-04",
       "test_group": "Disclaimer screen",
       "test_set": "Voice Assistant Key",
@@ -118,10 +121,11 @@
       "blocked_reason": "[BLOCKED-UNTIL-DR] DR-PMH8 Q9 — applicable condition for each outcome not stated in the specification.",
       "distinguishing_axis": "互動結果之等價類：螢幕關／音訊開（對 -050／-051／-053 之其餘三類）",
       "source_clause": "Screen Off, and Audio ON,",
-      "source_clause_origin": "spec_pdf p10"
+      "source_clause_origin": "spec_pdf p10",
+      "provisional_tc_id": "NR1L-DisclaimerScreen-052"
     },
     {
-      "tc_id": "NR1L-DisclaimerScreen-053",
+      "tc_id": "NR1L-DisclaimerScreen-049",
       "leaf_id": "SWE1-HMI-PM-026-05",
       "test_group": "Disclaimer screen",
       "test_set": "Voice Assistant Key",
@@ -143,7 +147,9 @@
       "blocked_reason": "[BLOCKED-UNTIL-DR] DR-PMH8 Q9 — applicable condition for each outcome not stated in the specification.",
       "distinguishing_axis": "互動結果之等價類：螢幕開／音訊開（對 -050／-051／-052 之其餘三類）",
       "source_clause": "Screen ON and Audio ON.",
-      "source_clause_origin": "spec_pdf p10"
+      "source_clause_origin": "spec_pdf p10",
+      "provisional_tc_id": "NR1L-DisclaimerScreen-053"
     }
-  ]
+  ],
+  "tc_id_assignment": "R-PMH143（38 包步驟 4）—— 連續編號不留空；順序依 Test Set 之 R-PMH36 定版順序，組內依 037 列序。映射表：data/tc_id_map.tsv"
 }

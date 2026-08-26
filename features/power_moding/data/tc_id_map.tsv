@@ -1,0 +1,52 @@
+provisional_tc_id	final_tc_id	leaf_id	test_set	batch
+NR1L-DisclaimerScreen-025	NR1L-DisclaimerScreen-001	SWE1-HMI-PM-001-01	Splash Screen	batch04
+NR1L-DisclaimerScreen-026	NR1L-DisclaimerScreen-002	SWE1-HMI-PM-001-02	Splash Screen	batch04
+NR1L-DisclaimerScreen-027	NR1L-DisclaimerScreen-003	SWE1-HMI-PM-011	Splash Screen	batch04
+NR1L-DisclaimerScreen-001	NR1L-DisclaimerScreen-004	SWE1-HMI-PM-001-03	Disclaimer Screen	batch01
+NR1L-DisclaimerScreen-002	NR1L-DisclaimerScreen-005	SWE1-HMI-PM-001-04	Disclaimer Screen	batch01
+NR1L-DisclaimerScreen-003	NR1L-DisclaimerScreen-006	SWE1-HMI-PM-001-04	Disclaimer Screen	batch01
+NR1L-DisclaimerScreen-004	NR1L-DisclaimerScreen-007	SWE1-HMI-PM-001-05	Disclaimer Screen	batch01
+NR1L-DisclaimerScreen-005	NR1L-DisclaimerScreen-008	SWE1-HMI-PM-003	Disclaimer Screen	batch01
+NR1L-DisclaimerScreen-006	NR1L-DisclaimerScreen-009	SWE1-HMI-PM-004	Disclaimer Screen	batch01
+NR1L-DisclaimerScreen-007	NR1L-DisclaimerScreen-010	SWE1-HMI-PM-005	Disclaimer Screen	batch01
+NR1L-DisclaimerScreen-008	NR1L-DisclaimerScreen-011	SWE1-HMI-PM-022-02	Disclaimer Screen	batch01
+NR1L-DisclaimerScreen-028	NR1L-DisclaimerScreen-012	SWE1-HMI-PM-006-01	Startup Animation	batch04
+NR1L-DisclaimerScreen-029	NR1L-DisclaimerScreen-013	SWE1-HMI-PM-006-02	Startup Animation	batch04
+NR1L-DisclaimerScreen-030	NR1L-DisclaimerScreen-014	SWE1-HMI-PM-006-03	Startup Animation	batch04
+NR1L-DisclaimerScreen-031	NR1L-DisclaimerScreen-015	SWE1-HMI-PM-007	Startup Animation	batch04
+NR1L-DisclaimerScreen-032	NR1L-DisclaimerScreen-016	SWE1-HMI-PM-008-01	Startup Animation	batch04
+NR1L-DisclaimerScreen-033	NR1L-DisclaimerScreen-017	SWE1-HMI-PM-008-02	Startup Animation	batch04
+NR1L-DisclaimerScreen-034	NR1L-DisclaimerScreen-018	SWE1-HMI-PM-009-01	Startup Animation	batch04
+NR1L-DisclaimerScreen-035	NR1L-DisclaimerScreen-019	SWE1-HMI-PM-009-02	Startup Animation	batch04
+NR1L-DisclaimerScreen-036	NR1L-DisclaimerScreen-020	SWE1-HMI-PM-010	Startup Animation	batch04
+NR1L-DisclaimerScreen-037	NR1L-DisclaimerScreen-021	SWE1-HMI-PM-010	Startup Animation	batch04
+NR1L-DisclaimerScreen-009	NR1L-DisclaimerScreen-022	SWE1-HMI-PM-012	Startup Sounds	batch02
+NR1L-DisclaimerScreen-010	NR1L-DisclaimerScreen-023	SWE1-HMI-PM-012	Startup Sounds	batch02
+NR1L-DisclaimerScreen-011	NR1L-DisclaimerScreen-024	SWE1-HMI-PM-013	Startup Sounds	batch02
+NR1L-DisclaimerScreen-012	NR1L-DisclaimerScreen-025	SWE1-HMI-PM-014	Startup Sounds	batch02
+NR1L-DisclaimerScreen-013	NR1L-DisclaimerScreen-026	SWE1-HMI-PM-015	Startup Sounds	batch02
+NR1L-DisclaimerScreen-014	NR1L-DisclaimerScreen-027	SWE1-HMI-PM-016	Startup Sounds	batch02
+NR1L-DisclaimerScreen-015	NR1L-DisclaimerScreen-028	SWE1-HMI-PM-017	Startup Sounds	batch02
+NR1L-DisclaimerScreen-016	NR1L-DisclaimerScreen-029	SWE1-HMI-PM-018-01	Power Transitions	batch03
+NR1L-DisclaimerScreen-017	NR1L-DisclaimerScreen-030	SWE1-HMI-PM-018-02	Power Transitions	batch03
+NR1L-DisclaimerScreen-018	NR1L-DisclaimerScreen-031	SWE1-HMI-PM-018-03	Power Transitions	batch03
+NR1L-DisclaimerScreen-019	NR1L-DisclaimerScreen-032	SWE1-HMI-PM-018-03	Power Transitions	batch03
+NR1L-DisclaimerScreen-020	NR1L-DisclaimerScreen-033	SWE1-HMI-PM-018-03	Power Transitions	batch03
+NR1L-DisclaimerScreen-021	NR1L-DisclaimerScreen-034	SWE1-HMI-PM-018-04	Power Transitions	batch03
+NR1L-DisclaimerScreen-022	NR1L-DisclaimerScreen-035	SWE1-HMI-PM-018-04	Power Transitions	batch03
+NR1L-DisclaimerScreen-023	NR1L-DisclaimerScreen-036	SWE1-HMI-PM-018-05	Power Transitions	batch03
+NR1L-DisclaimerScreen-038	NR1L-DisclaimerScreen-037	SWE1-HMI-PM-019	Power Off Behavior	batch05
+NR1L-DisclaimerScreen-039	NR1L-DisclaimerScreen-038	SWE1-HMI-PM-020	Power Off Behavior	batch05
+NR1L-DisclaimerScreen-040	NR1L-DisclaimerScreen-039	SWE1-HMI-PM-021	Power Off Behavior	batch05
+NR1L-DisclaimerScreen-041	NR1L-DisclaimerScreen-040	SWE1-HMI-PM-022-01	Power Off Behavior	batch05
+NR1L-DisclaimerScreen-042	NR1L-DisclaimerScreen-041	SWE1-HMI-PM-024-01	Power Off Behavior	batch05
+NR1L-DisclaimerScreen-043	NR1L-DisclaimerScreen-042	SWE1-HMI-PM-024-02	Power Off Behavior	batch05
+NR1L-DisclaimerScreen-044	NR1L-DisclaimerScreen-043	SWE1-HMI-PM-024-03	Power Off Behavior	batch05
+NR1L-DisclaimerScreen-045	NR1L-DisclaimerScreen-044	SWE1-HMI-PM-025	Power Off Behavior	batch05
+NR1L-DisclaimerScreen-049	NR1L-DisclaimerScreen-045	SWE1-HMI-PM-026-01	Voice Assistant Key	batch06
+NR1L-DisclaimerScreen-050	NR1L-DisclaimerScreen-046	SWE1-HMI-PM-026-02	Voice Assistant Key	batch06
+NR1L-DisclaimerScreen-051	NR1L-DisclaimerScreen-047	SWE1-HMI-PM-026-03	Voice Assistant Key	batch06
+NR1L-DisclaimerScreen-052	NR1L-DisclaimerScreen-048	SWE1-HMI-PM-026-04	Voice Assistant Key	batch06
+NR1L-DisclaimerScreen-053	NR1L-DisclaimerScreen-049	SWE1-HMI-PM-026-05	Voice Assistant Key	batch06
+NR1L-DisclaimerScreen-046	NR1L-DisclaimerScreen-050	SWE1-HMI-PM-027	Off Road Plus	batch05
+NR1L-DisclaimerScreen-047	NR1L-DisclaimerScreen-051	SWE1-HMI-PM-029	Off Road Plus	batch05
