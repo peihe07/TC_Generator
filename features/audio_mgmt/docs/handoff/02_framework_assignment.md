@@ -382,13 +382,19 @@ SWE1_AMM_076 兩列均列（R-AM6：交付欄均照抄 SWE1_AMM_076，
 | B2 | Audio Arbitration 後 13＋ Focus and Ducking（18）＋ Mute Requests 前 19 | 50 |
 | B3 | Mute Requests 後 13＋ Volume Control 前 37 | 50 |
 | —— 首繳（3 批）＋ Pei 抽查；乾淨則啟 R-G14 綠色通道 —— | | |
-| B4 | Volume Control 後 13＋ Audio Sources（37） | 50 |
+| B4 | Volume Control 後 13（**含自 B3 遞延之 SWE1_AMM_194**，見 12 包 §七）＋ Audio Sources（37） | 50 |
 | B5 | Tones and Alerts（32）＋ Audio Processing 前 18 | 50 |
 | B6 | Audio Processing 後 16＋ Surround and Fade（24）＋ Power and Persistence 前 10 | 50 |
 | B7 | Power and Persistence 後 15＋ Logistic Mode（3）＋ sibling 溢出回收 | ~18+溢出 |
 
 註：葉→TC 拆分係數落地後（估 1.3–1.6），實際批數 9–10；
 B7 起吸收前批 sibling 拆分溢出列。
+
+> **【批次算術防線 2026-08-26，12 包 §七 裁定】**
+> 076a（無獨立列之碰號葉）使本表算術與 framework 計數差 1，
+> B3 因而擠出 SWE1_AMM_194（遞延 B4，已明載上列）。
+> 自 B4 起，每批下放前須核對「已交付葉集 ∪ 本批葉集」對 framework
+> 全 318 列之差集，確認無葉因批次算術而靜默消失；此檢查為下放包必要項。
 
 ## 四、待 Pei 確認事項（一次回畢即開 B1）
 

@@ -29,10 +29,11 @@ NEGATIVE = "負向測試 (Negative / Invalid)"
 
 TDISP = "at most 100 ms"          # CFTS019, <Tdisp> Max = 100 ms
 VENT_NAV_OFF = "9 steps"          # CFTS019-4867783, <Vent Nav Off> = 9 steps
-# Ruled by Pei 2026-08-26 (R-AM17). Not spec-sourced: <vent off> appears once
-# in CFTS019, at its own anchor, and is defined nowhere in the document, so a
-# reader grepping the spec for this number will not find it. Provenance is
-# the ruling, recorded in RULINGS.md.
+# Spec-sourced: CFTS019-4867782 (1.5.4 Variables) gives <Vent off> = -16 dB,
+# with R1L-R in its Radio list. An earlier revision here claimed the value was
+# defined nowhere and came from the ruling instead — that was a case-sensitive
+# search matching only the lowercase <vent off>, which occurs once, while the
+# capitalised <Vent off> occurs eight times and carries the definition.
 VENT_OFF = "-16 dB"
 
 # Every signal B2 touches is absent from the supplied DBC — only SOSCallType
@@ -426,13 +427,11 @@ tc("SWE1_AMM_287",
     "The Alternate Audio holds its level"],
    desc=("When an active Alternate Audio source requests ducking, the Audio Management software shall apply the configured ducking attenuation to the active Main Audio source within <vent off>"),
    prio="P0", method=FUNC,
-   reasoning="4866818, in scope under R-AM14. The attenuation is <vent off>, "
-             "which appears once in CFTS019 and is defined nowhere in it; the "
-             "value comes from R-AM17 rather than from the document, so a "
-             "reader searching the spec for it will not find it. It stays "
-             "distinct from <Vent Nav Off> at 9 steps, which belongs to the "
-             "navigation chain. Out-of-pool anchor, corroborated by the full "
-             "text (R-AM2\').")
+   reasoning="4866818, in scope under R-AM14. The attenuation <Vent off> is "
+             "defined at CFTS019-4867782 as -16 dB, so the value is "
+             "spec-sourced. It stays distinct from <Vent Nav Off> at 9 steps, "
+             "which belongs to the navigation chain. Out-of-pool anchor, "
+             "corroborated by the full text (R-AM2\').")
 
 tc("SWE1_AMM_309",
    "Confirm a pausable playback source is paused for the duration of a hands-free call",

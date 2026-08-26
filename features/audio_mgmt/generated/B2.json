@@ -555,7 +555,7 @@
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "remarks": "",
-      "reasoning": "4866818, in scope under R-AM14. The attenuation is <vent off>, which appears once in CFTS019 and is defined nowhere in it; the value comes from R-AM17 rather than from the document, so a reader searching the spec for it will not find it. It stays distinct from <Vent Nav Off> at 9 steps, which belongs to the navigation chain. Out-of-pool anchor, corroborated by the full text (R-AM2')."
+      "reasoning": "4866818, in scope under R-AM14. The attenuation <Vent off> is defined at CFTS019-4867782 as -16 dB, so the value is spec-sourced. It stays distinct from <Vent Nav Off> at 9 steps, which belongs to the navigation chain. Out-of-pool anchor, corroborated by the full text (R-AM2')."
     },
     {
       "req_id": "SWE1_AMM_309",
