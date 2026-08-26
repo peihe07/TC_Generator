@@ -152,19 +152,23 @@ tc("SWE1_AMM_013",
              "named in step 1 rather than left open.")
 
 tc("SWE1_AMM_020",
-   "Confirm alert audio reaches at least the front channels",
+   "Confirm alert audio reaches the front channels at minimum",
    ["Play no audio source",
     "Trigger an Entertainment alert",
     "Record the output channels carrying the alert"],
    ["No audio source is active",
-    "The alert is triggered",
+    "The alert plays",
     "The front output channels carry the alert"],
-   prio="P1", method=FUNC, remarks=PEND_NOANCHOR,
-   reasoning="No anchor. Both routes searched their own corpus: the nearest "
-             "object, 4865981, says alerts can be played on all channels where "
-             "the leaf says at least the front channels, a different scope, so "
-             "it was read and rejected rather than accepted for proximity. The "
-             "case is written to the SWE.1 description alone.")
+   prio="P1", method=FUNC,
+   reasoning="Anchored at package 16 section 3 to 4865981 and 4866286 as a "
+             "pair: 4865981 sets the minimum — alerts may play on all "
+             "channels but at a minimum on the front — and 4866286 states the "
+             "front-speaker routing for the feature. Route 2 had rejected "
+             "4865981 for saying all channels where the leaf says front; that "
+             "reading came from a truncated view of the row, whose next clause "
+             "is exactly the minimum the leaf states. The enablement 4866286 "
+             "defers to {CFTS024} is a settings concern, so this case checks "
+             "routing and not the setting, and takes no DR.")
 
 tc("SWE1_AMM_024",
    "Confirm the three source streams reach an external amplifier on their own paths",
@@ -174,12 +178,16 @@ tc("SWE1_AMM_024",
    ["The external amplifier configuration is active",
     "Both sources are active",
     "The Entertainment stream and the Information 1 stream reach the amplifier on their own paths"],
-   prio="P1", method=FUNC, remarks=PEND_NOANCHOR,
-   reasoning="No anchor. External amplifier and an output mapping never occur "
-             "together anywhere in either corpus, and 4866289, which package "
-             "13 suspected, never mentions an external amplifier at all — it "
-             "is general channel assignment, which is leaf 108. Sharing it "
-             "would have no textual support.")
+   prio="P1", method=FUNC,
+   reasoning="Anchored at package 16 section 3 to 4866001, which the leaf's "
+             "own SWE.1 description names outright — the strongest trace "
+             "available, the upstream stating the ObjectID itself. Route 2 "
+             "returned nothing because 4866001 is an embedded table: its "
+             "exported Description is an image reference, so no text search "
+             "of either corpus could reach it, the same mechanism as A-AM03 "
+             "except that this object is in the pool. The output mapping "
+             "lives in that table, so the case observes that each stream "
+             "arrives on its own path and does not restate the table.")
 
 tc("SWE1_AMM_108",
    "Confirm channel assignment runs after the per-source gain stage",
@@ -210,19 +218,24 @@ tc("SWE1_AMM_145",
              "which channels are left alone as much as which ramp.")
 
 tc("SWE1_AMM_146",
-   "Confirm the channels outside the applied set follow the configured handling",
+   "Confirm the channels outside the applied set ramp down on their own parameter",
    ["Play an Entertainment source",
     "Trigger an Information source that applies to a subset of channels",
-    "Record the audio on the channels outside the applied set"],
+    "Measure the ramp-down on the channels outside the applied set and record it"],
    ["Entertainment audio plays",
     "The Information source becomes active",
-    "The channels outside the applied set follow the configured handling"],
-   prio="P1", method=FUNC, remarks=PEND_NOANCHOR, pre="No audio source is active",
-   reasoning="No anchor. Remaining channel returns nothing in either corpus, "
-             "and the HALF and SDW channel-subset objects package 13 suspected "
-             "carry no clause about adjusting the remaining channels. The case "
-             "is written to the SWE.1 description alone and states the "
-             "handling as configured rather than inventing a rule.")
+    "The Entertainment audio on the remaining channels ramps down within 25 ms to 50 ms"],
+   prio="P1", method=FUNC, pre="No audio source is active",
+   reasoning="Anchored at package 16 section 3 to 4866498, which runs "
+             "consecutively with 145's 4866497 as the two halves of the "
+             "attenuate branch: applied channels first, remaining channels "
+             "after. Route 2 missed it by searching the singular remaining "
+             "channel where the spec writes remaining audio channels. The "
+             "parameter here is <Tent Ramp Down>, which is defined at "
+             "4867767, so the bound is real — it is not the undefined "
+             "<Temp Ramp Down> that 204 and 207 carry a PENDING for. The "
+             "channel set itself is defined in {CIP Radio DSPPP}, outside "
+             "this feature's scope under R-AM5, so it is not restated.")
 
 for sid, anchor, sig, val, path, emphasis in (
         ("SWE1_AMM_148", "4866501", "$INFO1Active$", "the active state",
@@ -464,6 +477,37 @@ tc("SWE1_AMM_311",
              "other, the mirror of 228 where the call moves to the passenger "
              "side. Out-of-pool anchor, single-source corroboration under "
              "R-AM18.")
+
+tc("SWE1_AMM_002",
+   "Confirm an Entertainment stream is assigned to both the left and right paths",
+   ["Play an Entertainment source",
+    "Record the audio paths the Entertainment stream is assigned to"],
+   ["Entertainment audio plays",
+    "The Entertainment stream is assigned to the Entertainment Left and Right audio paths"],
+   prio="P1", method=FUNC,
+   reasoning="Re-anchored at package 16 section 2 to 4865913, adopting route "
+             "2's proposal. The earlier candidate 4867570 reads the left or "
+             "right drive, which 4867569's $DriverSide$ LHD and RHD test "
+             "shows to be the steering position rather than the audio "
+             "channels — the two collide on the words left, right and audio "
+             "output channels while meaning different things. Distinct from "
+             "001, which observes stereo reproduction: this observes the path "
+             "assignment that makes it possible.")
+
+tc("SWE1_AMM_122",
+   "Confirm arbitration and routing follow the approved routing table",
+   ["Play an Entertainment source and activate an Information source",
+    "Record the arbitration outcome and the channels each source is routed to"],
+   ["Both sources are active",
+    "The arbitration outcome and the routing match the approved Audio Routing Table"],
+   prio="P1", method=FUNC, pre="No audio source is active",
+   reasoning="Re-anchored at package 16 section 2 to 4866444 with partial "
+             "coverage. The earlier candidate 4865895 is a table's title, not "
+             "a requirement. 4866444 refers the routing table out to the "
+             "component technical specification, the same shape as 076b and "
+             "087, so the case observes that arbitration follows the table "
+             "and writes none of the table's own content; that goes to "
+             "DR-AM1.")
 
 # ----------------------------------------------------------- Volume Control
 for sid, anchor, sig, path in (

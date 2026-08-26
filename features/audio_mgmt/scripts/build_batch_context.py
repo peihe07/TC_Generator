@@ -40,14 +40,23 @@ HANDOFF = {"B1": ROOT / "docs" / "handoff" / "03_batch_B1_handoff.md",
 # a single ruled table. Held back: 002 and 122, where the two routes
 # disagree — R-AM15 bars a single route from settling an anchor, and the
 # green channel does not lift that.
-B4_HELD = {"SWE1_AMM_002", "SWE1_AMM_122"}
+# Package 16 ruled both, adopting route 2's proposals, so nothing is held.
+B4_HELD: set[str] = set()
 B4_ROUTE2 = {
-    # Resolved by route 2 and reported in package 15 sections 3.1 and 3.2:
-    # both are their own objects, so neither needs a shared-anchor argument.
+    # Route 2's own resolutions, ruled at package 16 section 2.
     "SWE1_AMM_145": ["4866497"],
     "SWE1_AMM_155": ["4866513"],
-    # No object found in either corpus; ship with PENDING as 026 and 076a did.
-    "SWE1_AMM_020": [], "SWE1_AMM_024": [], "SWE1_AMM_146": [],
+    "SWE1_AMM_002": ["4865913"],
+    "SWE1_AMM_122": ["4866444"],
+    # Package 16 section 3 overturned all three of route 2's PENDINGs. Each
+    # failure had a findable cause: 020's rejection rested on a truncated
+    # read, 024's anchor is named in the leaf's own description and its
+    # export row is an embedded table with no extractable text, and 146 was
+    # searched for "remaining channel" where the spec writes "remaining
+    # audio channels".
+    "SWE1_AMM_020": ["4865981", "4866286"],
+    "SWE1_AMM_024": ["4866001"],
+    "SWE1_AMM_146": ["4866498"],
 }
 B4_SET = {  # test set per leaf, from package 13's section headings
     **{k: "Volume Control" for k in
@@ -57,7 +66,7 @@ B4_SET = {  # test set per leaf, from package 13's section headings
        ("001", "005", "006", "007", "010", "108", "148", "149", "151", "152",
         "162", "163", "164", "165", "175", "176", "210", "214", "217", "256",
         "257", "311", "003", "009", "013", "202", "204", "207", "228", "263",
-        "020", "145", "155")},
+        "020", "145", "155", "002", "122")},
 }
 
 # Package 03 section 5. Each leaf carries the axes it belongs to so the
