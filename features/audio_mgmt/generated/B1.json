@@ -2,7 +2,7 @@
   "batch": "B1",
   "feature": "Audio Management",
   "test_group": "Audio Management",
-  "n_tcs": 57,
+  "n_tcs": 70,
   "leaves_authored": 50,
   "out_of_pool_anchors": [
     {
@@ -85,6 +85,21 @@
       "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
       "remarks": "",
       "reasoning": "Second function from the 4866468 list, kept separate so a pass on seek cannot mask a failure on scan."
+    },
+    {
+      "req_id": "SWE1_AMM_132",
+      "test_group": "Audio Management",
+      "test_set": "Source Transition",
+      "test_item": "Before initiating an audio source transition, the Audio Management software shall terminate all active media operations, including mute, seek, fast-forward, rewind, scan, tuning, PTY operations, disc operations, and audio setup activities\n\n(Confirm a disc operation is cancelled by the same pre-transition sweep)",
+      "pre_conditions": "NA",
+      "input_test_data": "NA",
+      "test_procedure": "1. Play a disc and start a disc up operation\n2. Select a different audio source while the disc operation is running\n3. Record the state of the disc operation",
+      "expected_result": "1. The disc plays and the disc up operation runs\n2. The source selection is accepted\n3. The disc operation is cancelled",
+      "spec_reference": "CFTS019-4866468",
+      "priority": "P1",
+      "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+      "remarks": "",
+      "reasoning": "Third member of the 4866468 function list, after seek and scan. Disc operations run on a different subsystem from tuner operations, so they can survive a sweep that clears the others."
     },
     {
       "req_id": "SWE1_AMM_133",
@@ -192,6 +207,21 @@
       "reasoning": "4866493 repeats the 4866468 function list at the deactivation point; PTY SEEK is used here so this case does not duplicate the SWE1_AMM_132 pair."
     },
     {
+      "req_id": "SWE1_AMM_143",
+      "test_group": "Audio Management",
+      "test_set": "Source Transition",
+      "test_item": "Prior to Entertainment source deactivation, the Audio Management software shall terminate all active media control operations, including seek, scan, fast-forward, rewind, tuning, PTY operations, disc operations, and audio setup activities\n\n(Confirm a manual tuning operation is cancelled before deactivation)",
+      "pre_conditions": "NA",
+      "input_test_data": "NA",
+      "test_procedure": "1. Play an FM station and start a manual tuning operation\n2. Select a different Entertainment source\n3. Record the order of the tuning cancellation and the Entertainment source deactivation",
+      "expected_result": "1. FM audio plays and the tuning operation runs\n2. The new source selection is accepted\n3. The tuning operation is cancelled before the Entertainment source is deactivated",
+      "spec_reference": "CFTS019-4866493",
+      "priority": "P1",
+      "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+      "remarks": "",
+      "reasoning": "Second function from the 4866493 list at the deactivation point, after PTY SEEK. Tuning is user-driven where PTY SEEK is automatic, so the two exercise different cancellation paths."
+    },
+    {
       "req_id": "SWE1_AMM_144",
       "test_group": "Audio Management",
       "test_set": "Source Transition",
@@ -297,6 +327,21 @@
       "reasoning": "4866844 writes <Temt Ramp Down>, which the specification never defines; the only defined entertainment ramp-down is <Tent Ramp Down> at 4867767. The execution layer does not infer, so the bound is left to the PENDING and the reading is proposed as A-AM04."
     },
     {
+      "req_id": "SWE1_AMM_203",
+      "test_group": "Audio Management",
+      "test_set": "Source Transition",
+      "test_item": "When an Entertainment or Information audio source becomes inactive, the Audio Management software shall ramp down the corresponding audio output using the configured Entertainment Ramp Down or Information Ramp Down duration through the VolumeShaper API\n\n(Confirm an Information source deactivating ramps down on its own parameter)",
+      "pre_conditions": "No audio source is active",
+      "input_test_data": "NA",
+      "test_procedure": "1. Trigger a Navigation guidance prompt\n2. End the guidance prompt\n3. Measure the Information ramp-down time and record it",
+      "expected_result": "1. The Navigation guidance prompt plays\n2. The guidance prompt ends\n3. The measured ramp-down time is within 25 ms to 50 ms",
+      "spec_reference": "CFTS019-4866844\nCFTS019-4867769",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": "",
+      "reasoning": "4866844 binds Entertainment and Information to different parameters. The Entertainment leg carries the DR-AM5 PENDING because <Temt Ramp Down> is undefined; the Information leg resolves at 4867769, so this case can state a real bound."
+    },
+    {
       "req_id": "SWE1_AMM_206",
       "test_group": "Audio Management",
       "test_set": "Source Transition",
@@ -387,6 +432,21 @@
       "reasoning": "Second row of the 4866875 mapping table."
     },
     {
+      "req_id": "SWE1_AMM_213",
+      "test_group": "Audio Management",
+      "test_set": "Source Transition",
+      "test_item": "When a TA/PTY31 Entertainment source becomes active, the Audio Management software shall update HUModeStatus according to the active radio source (DAB, SDAR, or FM), transmit the current TA/PTY31 volume, and route the audio stream to the amplifier\n\n(Confirm a satellite radio traffic announcement sets the mode status to the SDAR value)",
+      "pre_conditions": "NA",
+      "input_test_data": "NA",
+      "test_procedure": "1. Tune an SDAR station with traffic announcements enabled\n2. Trigger a traffic announcement\n3. Read $HUModeStatus$ and record it",
+      "expected_result": "1. The SDAR station is tuned and traffic announcements are enabled\n2. The traffic announcement starts\n3. $HUModeStatus$ reports \"SDAR1_Selected\"",
+      "spec_reference": "CFTS019-4866875",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)",
+      "remarks": "PENDING: DR-AM4 $HUModeStatus$ not found in the supplied DBC; signal name kept as written in CFTS019 per R-13 (g)",
+      "reasoning": "Third and last row of the 4866875 mapping table, after the DAB and FM rows. Each row maps a different radio source onto a different status value, so one row passing says nothing about the others."
+    },
+    {
       "req_id": "SWE1_AMM_216",
       "test_group": "Audio Management",
       "test_set": "Source Transition",
@@ -400,6 +460,21 @@
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "PENDING: DR-AM4 $HUModeStatus$ not found in the supplied DBC; signal name kept as written in CFTS019 per R-13 (g)",
       "reasoning": "4866880 gives the label as \"HU_Off\"; the SWE.1 description writes HU_OFF. The clause spelling is used because R-AM2 makes CFTS019 the anchor and the DBC offers no third reading."
+    },
+    {
+      "req_id": "SWE1_AMM_216",
+      "test_group": "Audio Management",
+      "test_set": "Source Transition",
+      "test_item": "When an Entertainment source becomes inactive, the Audio Management software shall update HUModeStatus to HU_OFF\n\n(Confirm a TA or PTY31 source ending drives the same status as any other Entertainment source)",
+      "pre_conditions": "No audio source is active",
+      "input_test_data": "NA",
+      "test_procedure": "1. Trigger a TA/PTY31 Entertainment source\n2. End the TA/PTY31 source\n3. Read $HUModeStatus$ and record it",
+      "expected_result": "1. The TA/PTY31 source is active\n2. The TA/PTY31 source ends\n3. $HUModeStatus$ reports \"HU_Off\"",
+      "spec_reference": "CFTS019-4866880",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": "PENDING: DR-AM4 $HUModeStatus$ not found in the supplied DBC; signal name kept as written in CFTS019 per R-13 (g)",
+      "reasoning": "4866880 names TA/PTY31 separately from \"any other entertainment source\". The first case takes a plain Entertainment source; this takes the named one, since the clause distinguishes them."
     },
     {
       "req_id": "SWE1_AMM_223",
@@ -597,6 +672,21 @@
       "reasoning": "4866452 is the general pre-emption rule that the rest of the arbitration set specialises."
     },
     {
+      "req_id": "SWE1_AMM_124",
+      "test_group": "Audio Management",
+      "test_set": "Audio Arbitration",
+      "test_item": "When a higher-priority audio source requests activation while a lower-priority source is active, the Audio Management software shall interrupt the lower-priority source and activate the higher-priority source\n\n(Confirm a lower priority request does not displace an active higher priority source)",
+      "pre_conditions": "No audio source is active",
+      "input_test_data": "NA",
+      "test_procedure": "1. Trigger a high priority audio source\n2. Request a lower priority audio source while the high priority source is active\n3. Record which source is audible",
+      "expected_result": "1. The high priority source is active\n2. The lower priority request is accepted\n3. The high priority source stays audible and the lower priority source is not audible",
+      "spec_reference": "CFTS019-4866452",
+      "priority": "P0",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "remarks": "",
+      "reasoning": "4866452 states one direction of the override rule. A system that let any new request take over would pass the positive case and fail here, so the converse is tested rather than assumed."
+    },
+    {
       "req_id": "SWE1_AMM_129",
       "test_group": "Audio Management",
       "test_set": "Audio Arbitration",
@@ -612,6 +702,21 @@
       "reasoning": "4866457 delays entertainment and information alerts behind a signal source or a confirmation tone; the tone is the shorter of the two and makes the delay observable without a second arbitration."
     },
     {
+      "req_id": "SWE1_AMM_129",
+      "test_group": "Audio Management",
+      "test_set": "Audio Arbitration",
+      "test_item": "When a Signal source or Confirmation Tone is active, the Audio Management software shall defer activation of Entertainment and Information Alert sources until the active event has completed\n\n(Confirm an Information Alert also waits behind an active signal source)",
+      "pre_conditions": "No audio source is active",
+      "input_test_data": "NA",
+      "test_procedure": "1. Trigger a signal source\n2. Request an Information Alert while the signal source is still active\n3. Record when the Information Alert plays",
+      "expected_result": "1. The signal source is active\n2. The Information Alert request is accepted and held\n3. The Information Alert plays after the signal source event has completed",
+      "spec_reference": "CFTS019-4866457",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": "",
+      "reasoning": "4866457 is two conditions crossed with two deferred source types. The first case takes confirmation tone against Entertainment; this takes signal source against Information Alert, the opposite corner."
+    },
+    {
       "req_id": "SWE1_AMM_130",
       "test_group": "Audio Management",
       "test_set": "Audio Arbitration",
@@ -625,6 +730,21 @@
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
       "reasoning": "4866465 and 4866488 carry the same clause text at two anchors. This case takes the queue-until-eligible reading; SWE1_AMM_139 takes the re-evaluation reading, so the pair is distinguishable in the workbook as package 03 requires."
+    },
+    {
+      "req_id": "SWE1_AMM_130",
+      "test_group": "Audio Management",
+      "test_set": "Audio Arbitration",
+      "test_item": "The Audio Management software shall evaluate the priority of each audio source request before activation. Requests that cannot be activated immediately due to lower priority shall be queued until they become eligible for playback or are discarded according to the configured queue management policy\n\n(Confirm a queued request is dropped when its own source goes inactive first)",
+      "pre_conditions": "No audio source is active",
+      "input_test_data": "NA",
+      "test_procedure": "1. Trigger a high priority audio source\n2. Request a lower priority audio source\n3. End the lower priority source while it is still queued\n4. End the high priority source\n5. Record the audio produced after the high priority source ends",
+      "expected_result": "1. The high priority source is active\n2. The lower priority request is accepted and produces no audio\n3. The lower priority source is inactive\n4. The high priority source ends\n5. No audio is produced for the withdrawn request",
+      "spec_reference": "CFTS019-4866465",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": "",
+      "reasoning": "4866465 gives the queue two exits: gaining priority, or the source becoming inactive. The first case takes the first exit; this takes the second, which a queue that only ever replays would fail."
     },
     {
       "req_id": "SWE1_AMM_139",
@@ -687,6 +807,21 @@
       "reasoning": "4866715 only states the muting of lower priority sources; the case adds the higher priority observation so that a blanket mute would fail rather than pass."
     },
     {
+      "req_id": "SWE1_AMM_189",
+      "test_group": "Audio Management",
+      "test_set": "Audio Arbitration",
+      "test_item": "Upon activation of TBM mute, the Audio Management software shall mute or pause all audio sources having lower priority than the TBM source according to the configured source priority policy\n\n(Confirm a pausable source is paused rather than muted under the same mute request)",
+      "pre_conditions": "NA",
+      "input_test_data": "NA",
+      "test_procedure": "1. Play a USB media track and a higher priority audio source\n2. Trigger the TBM mute\n3. Read the transport state of the USB media source and record it",
+      "expected_result": "1. The USB media track plays and the higher priority source is active\n2. The TBM mute is active\n3. The USB media source reports the paused state",
+      "spec_reference": "CFTS019-4866715",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)",
+      "remarks": "",
+      "reasoning": "4866715 offers two treatments, pause or mute. The first case observes muting on a non-pausable source; a pausable source takes the other branch, and the clause is only satisfied if both hold."
+    },
+    {
       "req_id": "SWE1_AMM_198",
       "test_group": "Audio Management",
       "test_set": "Audio Arbitration",
@@ -700,6 +835,21 @@
       "design_method": "決策表 (Decision Table Testing)",
       "remarks": "",
       "reasoning": "4866726 names $SOSCallType$, which the supplied DBC does carry, in TBM_FD_1 with a VAL_ table whose labels match the clause verbatim, so the signal is written in full with its raw value and label per IN 8.7.5 v3. 198 and 218 are the near-duplicate pair package 03 flags; this one takes the manual call."
+    },
+    {
+      "req_id": "SWE1_AMM_198",
+      "test_group": "Audio Management",
+      "test_set": "Audio Arbitration",
+      "test_item": "Upon detection of Manual SOS, Automatic SOS, or Callback SOS requests, the Audio Management software shall mute all audio sources having lower priority than the SOS audio request\n\n(Confirm a callback emergency call mutes by the same priority rule as the other call types)",
+      "pre_conditions": "NA",
+      "input_test_data": "NA",
+      "test_procedure": "1. Play an Entertainment source\n2. Set $TBM_FD_1.SOSCallType$ = 4 (Callback_SOS_call)\n3. Record the mute state of the audio sources below \"TBM Mute Request\" in priority",
+      "expected_result": "1. Entertainment audio plays\n2. $TBM_FD_1.SOSCallType$ reports 4 (Callback_SOS_call)\n3. The audio sources below \"TBM Mute Request\" in priority are muted",
+      "spec_reference": "CFTS019-4866726",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)",
+      "remarks": "",
+      "reasoning": "4866726 lists three call types in one OR. 198 and 218 take the manual and automatic values; this adds the callback value on the mute side so all three enumerated values are exercised rather than two."
     },
     {
       "req_id": "SWE1_AMM_199",
@@ -747,6 +897,21 @@
       "reasoning": "4866879 restates the scenarios as A and B. The coexistence scenario is taken here so this case is not a duplicate of SWE1_AMM_211."
     },
     {
+      "req_id": "SWE1_AMM_215",
+      "test_group": "Audio Management",
+      "test_set": "Audio Arbitration",
+      "test_item": "The Audio Management software shall activate audio sources according to the configured routing tables and priority rules when a source becomes active, regardless of whether it is the only active source or coexists with other active sources\n\n(Confirm a combination the routing table disallows does not play concurrently)",
+      "pre_conditions": "NA",
+      "input_test_data": "NA",
+      "test_procedure": "1. Play an audio source\n2. Activate a second audio source that the routing table does not allow alongside the first\n3. Record which sources are audible",
+      "expected_result": "1. The first audio source plays\n2. The second audio source is requested\n3. Only one of the two sources is audible",
+      "spec_reference": "CFTS019-4866879",
+      "priority": "P1",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "remarks": "",
+      "reasoning": "4866879 scopes activation to what the routing tables allow. The first case takes an allowed combination; a system that mixed everything would pass it and fail here."
+    },
+    {
       "req_id": "SWE1_AMM_218",
       "test_group": "Audio Management",
       "test_set": "Audio Arbitration",
@@ -777,6 +942,21 @@
       "reasoning": "4866886 is the ELSE branch at the second anchor. The callback call type is used so the pair 199 and 219 covers the third call type as well."
     },
     {
+      "req_id": "SWE1_AMM_219",
+      "test_group": "Audio Management",
+      "test_set": "Audio Arbitration",
+      "test_item": "When no SOS call condition exists, the Audio Management software shall unmute all audio sources previously muted due to the TBM Mute Request according to the configured priority rules\n\n(Confirm the unmute follows an automatic emergency call ending as well)",
+      "pre_conditions": "An Entertainment source is active and $TBM_FD_1.SOSCallType$ = 1 (No_active_SOS_call)",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set $TBM_FD_1.SOSCallType$ = 3 (Automatic_SOS_call) while an Entertainment source plays\n2. Set $TBM_FD_1.SOSCallType$ = 1 (No_active_SOS_call)\n3. Record the mute state of the audio sources below \"TBM Mute Request\" in priority",
+      "expected_result": "1. The audio sources below \"TBM Mute Request\" in priority are muted\n2. $TBM_FD_1.SOSCallType$ reports 1 (No_active_SOS_call)\n3. The audio sources below \"TBM Mute Request\" in priority are unmuted",
+      "spec_reference": "CFTS019-4866886",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)",
+      "remarks": "",
+      "reasoning": "Restore side of the automatic call type. With 199 on manual and the first 219 case on callback, the ELSE branch is now exercised from all three entry values."
+    },
+    {
       "req_id": "SWE1_AMM_226",
       "test_group": "Audio Management",
       "test_set": "Audio Arbitration",
@@ -790,6 +970,21 @@
       "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
       "remarks": "",
       "reasoning": "4866902 covers TA or NAV against Phone or VR. The NAV against VR pairing is taken here; the TA against call pairing is SWE1_AMM_227 at its own anchor, so the two cases do not overlap."
+    },
+    {
+      "req_id": "SWE1_AMM_226",
+      "test_group": "Audio Management",
+      "test_set": "Audio Arbitration",
+      "test_item": "When Traffic Announcement (TA) or Navigation audio is active and a Phone or Voice Recognition (VR) request is initiated, the Audio Management software shall cancel the currently active TA or Navigation audio session and transition to the Phone or VR audio session according to the configured audio priority policy\n\n(Confirm a phone request cancels an active traffic announcement)",
+      "pre_conditions": "No audio source is active",
+      "input_test_data": "NA",
+      "test_procedure": "1. Trigger a traffic announcement\n2. Press the Phone button while the traffic announcement is playing\n3. Record the state of the traffic announcement audio",
+      "expected_result": "1. The traffic announcement plays\n2. The Phone request is accepted\n3. The traffic announcement audio is cancelled",
+      "spec_reference": "CFTS019-4866902",
+      "priority": "P1",
+      "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+      "remarks": "",
+      "reasoning": "4866902 crosses TA or NAV with Phone or VR, four combinations. The first case takes NAV against VR; this takes TA against Phone, the opposite corner, so neither source type nor request type is left untested."
     },
     {
       "req_id": "SWE1_AMM_227",

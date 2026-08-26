@@ -14,24 +14,35 @@
 |---|---|
 | 批次 | B1 |
 | 葉數 | 50／50（Source Transition 34 ＋ Audio Arbitration 16） |
-| TC 數 | 57 |
-| Test Set 分佈 | Source Transition 41，Audio Arbitration 16 |
-| Priority 分佈 | P0 32，P1 25 |
+| TC 數 | 70 |
+| Test Set 分佈 | Source Transition 48，Audio Arbitration 22 |
+| Priority 分佈 | P0 33，P1 37 |
 | 帶 PENDING 之 TC | 8（DR-AM4 五條、DR-AM5 三條） |
 | 池外錨（R-AM2′） | 7 |
 | TC JSON | `features/audio_mgmt/generated/B1.json`（十鍵全備） |
 | 寫回簿 | `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext_B1.xlsx` |
-| 寫回簿 SHA256 | `55a72f1ae948e84e298740aaab72a5e34df051430be19fd396dbb6f175611405` |
+| 寫回簿 SHA256 | `5cb02ecd1933a3890897f6c157ed376520c2f3b2b5453e46113d861951a239af` |
 
-**產出量之揭露：** 03 包 §六 估 50 葉產 60–75 TC，實交 57 條，**低於估計區間**。
-原因為多數葉係單一 shall 陳述，強拆會產生逐字相同之括號內容而違 R-S4；
-僅 sibling 家族、邊界值組與多輸出條款拆為 2 條。此為拆分密度之判斷，非漏做；
-若分析層要求更密之覆蓋（如每個 SOS call type 各一條、每個 media function
-各一條），可加密至 70 條上下，不需重寫既有條目。
+**產出量（rev 2，2026-08-26）：** 首版交 57 條，低於 03 包 §六 之 60–75 估計。
+經加密至 **70 條**，落入估計區間。加密之取捨原則：只在條款本身帶有分支、
+列舉成員或方向而首版僅覆蓋其一處增列，**不為湊數而拆**——每一條新增皆命名
+一個「其 sibling 通過時它仍可能單獨失敗」之行為。實例：
+
+- 4866875 之來源對應表三列（DAB／FM／SDAR）補齊第三列；
+- 4866726 之三種 SOS call type 由二種補至三種，回復側亦同；
+- 4866452 補反向（低優先權不得取代高優先權）與 4866879 補不允許之組合，
+  二者皆為負向測試——只驗正向者，一個「照單全收」之實作會通過；
+- 4866465 之佇列兩個出口（取得優先權／來源轉為非作用）補齊第二個；
+- 4866468／4866493 之媒體功能清單補至三種（seek／scan／disc、PTY seek／tuning）；
+- 4866715 之 pause 與 mute 兩種處置補齊；
+- 4866844 之 Information 分支補入（該分支錨值可解，不必如 Entertainment
+  分支掛 DR-AM5 之 PENDING）。
+
+未加密者亦有理由：單一 shall 陳述之葉強拆會產生逐字相同之括號下半而違 R-S4。
 
 ## 二、§9 自檢通過聲明
 
-`features/audio_mgmt/scripts/selfcheck_b1.py`，57 條全數通過。檢查項：
+`features/audio_mgmt/scripts/selfcheck_b1.py`，70 條全數通過。檢查項：
 
 尾句號禁令、ER 無情態動詞、canon §5.1 步驟禁用動詞、canon §5.5 末步須持
 可觀察標的、步數↔ER 對齊、design_method 屬下拉選單詞彙、spec_reference
@@ -55,10 +66,16 @@ pre_conditions，現提示為 0。
 
 `features/audio_mgmt/scripts/lint_tcs.py --profile audio_mgmt` → **green**。
 
-檢查 A（§5.1 步驟禁用動詞）、B（ER 情態詞）、E（步驟↔ER 對齊）、
-G（test_set 封閉詞彙，讀自 `framework.md` Layer 2）、I（test_item 括號尾）、
-K（交付欄 CJK）、M（必填欄三態）、N（行尾句號）、O（spec_reference 格式）、
-P（訊號寫法 §8.7.5 **v3**）。
+**十六項全實作**（rev 2）：A（§5.1 步驟禁用動詞）、B（ER 情態詞）、
+C（test_item hedge 與情態詞）、D（Pre-Condition 形態 §4.4）、E（步驟↔ER 對齊）、
+F（方括號 §11）、G（test_set 封閉詞彙）、H（ER 模糊詞 §6）、I（括號尾）、
+J（行首大寫 R-4）、K（交付欄 CJK）、L（verbatim 上半 token 上限 R-3）、
+M（必填欄三態）、N（行尾句號）、O（spec_reference 格式）、P（§8.7.5 **v3**）。
+
+**首版之揭露：** rev 1 交付時 C／D／F／H／J／L **六項尚未實作**，
+故當時之「lint green」所涵蓋之範圍小於其字面。六項補實作後 B1 重跑
+——**七十條在十六項下全綠，無新違規**。八個 must-hit 反證確認六項各自
+攔得住其標的且不誤報正常條目（未曾觸發過之檢查不構成證據）。
 
 **`--profile` 為必填之理由：** 共用 lint 之檢查 P 仍以 §8.7.5 **v2** 判準
 實作（`Send CAN:` 前綴，該版已於 2026-08-21 撤銷）。本 feature 用全域 v3

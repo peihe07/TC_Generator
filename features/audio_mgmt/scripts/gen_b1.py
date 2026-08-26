@@ -25,6 +25,7 @@ STATE = "狀態轉換 (State Transition Testing)"
 DECISION = "決策表 (Decision Table Testing)"
 BVA = "邊界值分析 (Boundary Value Analysis, BVA)"
 SCENARIO = "情境 / 用例 (Scenario / Use Case Testing)"
+NEGATIVE = "負向測試 (Negative / Invalid)"
 
 # Spec-sourced timing, CFTS019-4867766..4867769 and 4867773.
 RAMP = "25 ms to 50 ms"
@@ -857,6 +858,191 @@ tc("SWE1_AMM_241",
              "arbitrated Info to Info diagram. Pairs with SWE1_AMM_157 on the same sibling "
              "axis, 157 non-arbitrated and 241 arbitrated, so the two bracket lines stay "
              "distinguishable.")
+
+
+# ------------------------------------------------------- density pass
+# Package 03 section 6 estimated 60-75 TCs for 50 leaves; the first pass came
+# in at 57. These 13 are added where a clause carries a branch, a list member
+# or a direction the first pass covered only once — never to pad a count, so
+# each one names a behaviour that could fail on its own while its siblings
+# pass. Bracket tails stay distinct per R-S4.
+
+tc("SWE1_AMM_213",
+   "Confirm a satellite radio traffic announcement sets the mode status to the SDAR value",
+   ["Tune an SDAR station with traffic announcements enabled",
+    "Trigger a traffic announcement",
+    "Read $HUModeStatus$ and record it"],
+   ["The SDAR station is tuned and traffic announcements are enabled",
+    "The traffic announcement starts",
+    "$HUModeStatus$ reports \"SDAR1_Selected\""],
+   prio="P1", method=DECISION, remarks=PEND_SIG,
+   reasoning="Third and last row of the 4866875 mapping table, after the DAB and "
+             "FM rows. Each row maps a different radio source onto a different "
+             "status value, so one row passing says nothing about the others.")
+
+tc("SWE1_AMM_198",
+   "Confirm a callback emergency call mutes by the same priority rule as the other call types",
+   ["Play an Entertainment source",
+    "Set $TBM_FD_1.SOSCallType$ = 4 (Callback_SOS_call)",
+    "Record the mute state of the audio sources below \"TBM Mute Request\" in priority"],
+   ["Entertainment audio plays",
+    "$TBM_FD_1.SOSCallType$ reports 4 (Callback_SOS_call)",
+    "The audio sources below \"TBM Mute Request\" in priority are muted"],
+   prio="P1", method=DECISION,
+   reasoning="4866726 lists three call types in one OR. 198 and 218 take the manual "
+             "and automatic values; this adds the callback value on the mute side so "
+             "all three enumerated values are exercised rather than two.")
+
+tc("SWE1_AMM_219",
+   "Confirm the unmute follows an automatic emergency call ending as well",
+   ["Set $TBM_FD_1.SOSCallType$ = 3 (Automatic_SOS_call) while an Entertainment source plays",
+    "Set $TBM_FD_1.SOSCallType$ = 1 (No_active_SOS_call)",
+    "Record the mute state of the audio sources below \"TBM Mute Request\" in priority"],
+   ["The audio sources below \"TBM Mute Request\" in priority are muted",
+    "$TBM_FD_1.SOSCallType$ reports 1 (No_active_SOS_call)",
+    "The audio sources below \"TBM Mute Request\" in priority are unmuted"],
+   prio="P1", method=DECISION,
+   pre="An Entertainment source is active and $TBM_FD_1.SOSCallType$ = 1 (No_active_SOS_call)",
+   reasoning="Restore side of the automatic call type. With 199 on manual and the "
+             "first 219 case on callback, the ELSE branch is now exercised from all "
+             "three entry values.")
+
+tc("SWE1_AMM_129",
+   "Confirm an Information Alert also waits behind an active signal source",
+   ["Trigger a signal source",
+    "Request an Information Alert while the signal source is still active",
+    "Record when the Information Alert plays"],
+   ["The signal source is active",
+    "The Information Alert request is accepted and held",
+    "The Information Alert plays after the signal source event has completed"],
+   prio="P1", method=STATE, pre="No audio source is active",
+   reasoning="4866457 is two conditions crossed with two deferred source types. The "
+             "first case takes confirmation tone against Entertainment; this takes "
+             "signal source against Information Alert, the opposite corner.")
+
+tc("SWE1_AMM_124",
+   "Confirm a lower priority request does not displace an active higher priority source",
+   ["Trigger a high priority audio source",
+    "Request a lower priority audio source while the high priority source is active",
+    "Record which source is audible"],
+   ["The high priority source is active",
+    "The lower priority request is accepted",
+    "The high priority source stays audible and the lower priority source is not audible"],
+   prio="P0", method=NEGATIVE, pre="No audio source is active",
+   reasoning="4866452 states one direction of the override rule. A system that let "
+             "any new request take over would pass the positive case and fail here, "
+             "so the converse is tested rather than assumed.")
+
+tc("SWE1_AMM_216",
+   "Confirm a TA or PTY31 source ending drives the same status as any other Entertainment source",
+   ["Trigger a TA/PTY31 Entertainment source",
+    "End the TA/PTY31 source",
+    "Read $HUModeStatus$ and record it"],
+   ["The TA/PTY31 source is active",
+    "The TA/PTY31 source ends",
+    "$HUModeStatus$ reports \"HU_Off\""],
+   prio="P1", method=STATE, remarks=PEND_SIG, pre="No audio source is active",
+   reasoning="4866880 names TA/PTY31 separately from \"any other entertainment "
+             "source\". The first case takes a plain Entertainment source; this takes "
+             "the named one, since the clause distinguishes them.")
+
+tc("SWE1_AMM_189",
+   "Confirm a pausable source is paused rather than muted under the same mute request",
+   ["Play a USB media track and a higher priority audio source",
+    "Trigger the TBM mute",
+    "Read the transport state of the USB media source and record it"],
+   ["The USB media track plays and the higher priority source is active",
+    "The TBM mute is active",
+    "The USB media source reports the paused state"],
+   prio="P1", method=DECISION,
+   reasoning="4866715 offers two treatments, pause or mute. The first case observes "
+             "muting on a non-pausable source; a pausable source takes the other "
+             "branch, and the clause is only satisfied if both hold.")
+
+tc("SWE1_AMM_130",
+   "Confirm a queued request is dropped when its own source goes inactive first",
+   ["Trigger a high priority audio source",
+    "Request a lower priority audio source",
+    "End the lower priority source while it is still queued",
+    "End the high priority source",
+    "Record the audio produced after the high priority source ends"],
+   ["The high priority source is active",
+    "The lower priority request is accepted and produces no audio",
+    "The lower priority source is inactive",
+    "The high priority source ends",
+    "No audio is produced for the withdrawn request"],
+   prio="P1", method=STATE, pre="No audio source is active",
+   reasoning="4866465 gives the queue two exits: gaining priority, or the source "
+             "becoming inactive. The first case takes the first exit; this takes the "
+             "second, which a queue that only ever replays would fail.")
+
+tc("SWE1_AMM_203",
+   "Confirm an Information source deactivating ramps down on its own parameter",
+   ["Trigger a Navigation guidance prompt",
+    "End the guidance prompt",
+    "Measure the Information ramp-down time and record it"],
+   ["The Navigation guidance prompt plays",
+    "The guidance prompt ends",
+    f"The measured ramp-down time is within {RAMP}"],
+   prio="P1", method=STATE, pre="No audio source is active",
+   reasoning="4866844 binds Entertainment and Information to different parameters. "
+             "The Entertainment leg carries the DR-AM5 PENDING because <Temt Ramp "
+             "Down> is undefined; the Information leg resolves at 4867769, so this "
+             "case can state a real bound.",
+   extra_refs=["4867769"])
+
+tc("SWE1_AMM_132",
+   "Confirm a disc operation is cancelled by the same pre-transition sweep",
+   ["Play a disc and start a disc up operation",
+    "Select a different audio source while the disc operation is running",
+    "Record the state of the disc operation"],
+   ["The disc plays and the disc up operation runs",
+    "The source selection is accepted",
+    "The disc operation is cancelled"],
+   prio="P1", method=SCENARIO,
+   reasoning="Third member of the 4866468 function list, after seek and scan. Disc "
+             "operations run on a different subsystem from tuner operations, so they "
+             "can survive a sweep that clears the others.")
+
+tc("SWE1_AMM_143",
+   "Confirm a manual tuning operation is cancelled before deactivation",
+   ["Play an FM station and start a manual tuning operation",
+    "Select a different Entertainment source",
+    "Record the order of the tuning cancellation and the Entertainment source deactivation"],
+   ["FM audio plays and the tuning operation runs",
+    "The new source selection is accepted",
+    "The tuning operation is cancelled before the Entertainment source is deactivated"],
+   prio="P1", method=SCENARIO,
+   reasoning="Second function from the 4866493 list at the deactivation point, after "
+             "PTY SEEK. Tuning is user-driven where PTY SEEK is automatic, so the two "
+             "exercise different cancellation paths.")
+
+tc("SWE1_AMM_226",
+   "Confirm a phone request cancels an active traffic announcement",
+   ["Trigger a traffic announcement",
+    "Press the Phone button while the traffic announcement is playing",
+    "Record the state of the traffic announcement audio"],
+   ["The traffic announcement plays",
+    "The Phone request is accepted",
+    "The traffic announcement audio is cancelled"],
+   prio="P1", method=SCENARIO, pre="No audio source is active",
+   reasoning="4866902 crosses TA or NAV with Phone or VR, four combinations. The "
+             "first case takes NAV against VR; this takes TA against Phone, the "
+             "opposite corner, so neither source type nor request type is left "
+             "untested.")
+
+tc("SWE1_AMM_215",
+   "Confirm a combination the routing table disallows does not play concurrently",
+   ["Play an audio source",
+    "Activate a second audio source that the routing table does not allow alongside the first",
+    "Record which sources are audible"],
+   ["The first audio source plays",
+    "The second audio source is requested",
+    "Only one of the two sources is audible"],
+   prio="P1", method=NEGATIVE,
+   reasoning="4866879 scopes activation to what the routing tables allow. The first "
+             "case takes an allowed combination; a system that mixed everything would "
+             "pass it and fail here.")
 
 
 def main() -> None:
