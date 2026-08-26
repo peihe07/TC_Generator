@@ -912,7 +912,12 @@ def main() -> None:
            "test_group": "Audio Management", "n_tcs": len(tcs),
            "leaves_authored": len(AUTHORED),
            "out_of_pool_anchors": [
-               {"swe_id": k, "anchor": f"CFTS019-{ctx[k]['anchor']}",
+               {"swe_id": k,
+                # List the ids that are actually out of pool, not the first
+                # anchor: a dual-anchor leaf can have one of each, and naming
+                # the in-pool one reads as if the whole leaf were outside.
+                "anchor": ", ".join(
+                    f"CFTS019-{a}" for a in ctx[k]["anchors"]),
                 "title": ctx[k]["swe"]["title"], "test_set": ctx[k]["test_set"],
                 "corroboration": "single-source (R-AM18): the export omits "
                                  "this object, so route 2 had no independent "

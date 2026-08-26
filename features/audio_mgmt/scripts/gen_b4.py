@@ -583,7 +583,7 @@ for sid, anchor, present, state, what in (
                  f"present enables the menu, absent removes it and bars any "
                  f"change. Both must ship, since a system that ignored the "
                  f"configuration would pass whichever half matched its "
-                 f"default. Out-of-pool anchor, single-source under R-AM18.")
+                 f"default. Reported out of pool in package 15; that was wrong — 4867598 and 4867604 are in the expanded pool (A-AM12), so package 16 section 1 was right and A-AM10 is withdrawn.")
 
 for sid, anchor, param, value, subject in (
         ("SWE1_AMM_272", "4867751", "<ENT Key Vol>", "15 steps",
@@ -711,7 +711,12 @@ def main() -> None:
            "test_group": "Audio Management", "n_tcs": len(tcs),
            "leaves_authored": len(AUTHORED),
            "out_of_pool_anchors": [
-               {"swe_id": k, "anchor": f"CFTS019-{ctx[k]['anchor']}",
+               {"swe_id": k,
+                # List the ids that are actually out of pool, not the first
+                # anchor: a dual-anchor leaf can have one of each, and naming
+                # the in-pool one reads as if the whole leaf were outside.
+                "anchor": ", ".join(
+                    f"CFTS019-{a}" for a in ctx[k]["anchors"]),
                 "title": ctx[k]["swe"]["title"], "test_set": ctx[k]["test_set"],
                 "corroboration": "single-source (R-AM18): the export omits "
                                  "this object, so route 2 had no independent "

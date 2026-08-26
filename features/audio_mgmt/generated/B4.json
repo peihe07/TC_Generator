@@ -6,20 +6,6 @@
   "leaves_authored": 50,
   "out_of_pool_anchors": [
     {
-      "swe_id": "SWE1_AMM_264",
-      "anchor": "CFTS019-4867598",
-      "title": "Audio Management - Enable Surround Sound HMI",
-      "test_set": "Volume Control",
-      "corroboration": "single-source (R-AM18): the export omits this object, so route 2 had no independent corpus and could only re-read the full text"
-    },
-    {
-      "swe_id": "SWE1_AMM_266",
-      "anchor": "CFTS019-4867604",
-      "title": "Audio Management - Disable Surround Sound Feature",
-      "test_set": "Volume Control",
-      "corroboration": "single-source (R-AM18): the export omits this object, so route 2 had no independent corpus and could only re-read the full text"
-    },
-    {
       "swe_id": "SWE1_AMM_306",
       "anchor": "CFTS019-4866207",
       "title": "Audio Management - Default Alert Volume during Active Cabin Audio",
@@ -693,7 +679,7 @@
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
       "remarks": "PENDING: DR-AM4 signal not found in the supplied DBC; name kept as written in CFTS019 per R-13 (g)",
-      "reasoning": "4867598 is one half of the section 7 enumeration pair: present enables the menu, absent removes it and bars any change. Both must ship, since a system that ignored the configuration would pass whichever half matched its default. Out-of-pool anchor, single-source under R-AM18."
+      "reasoning": "4867598 is one half of the section 7 enumeration pair: present enables the menu, absent removes it and bars any change. Both must ship, since a system that ignored the configuration would pass whichever half matched its default. Reported out of pool in package 15; that was wrong — 4867598 and 4867604 are in the expanded pool (A-AM12), so package 16 section 1 was right and A-AM10 is withdrawn."
     },
     {
       "req_id": "SWE1_AMM_266",
@@ -708,7 +694,7 @@
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
       "remarks": "PENDING: DR-AM4 signal not found in the supplied DBC; name kept as written in CFTS019 per R-13 (g)",
-      "reasoning": "4867604 is one half of the section 7 enumeration pair: present enables the menu, absent removes it and bars any change. Both must ship, since a system that ignored the configuration would pass whichever half matched its default. Out-of-pool anchor, single-source under R-AM18."
+      "reasoning": "4867604 is one half of the section 7 enumeration pair: present enables the menu, absent removes it and bars any change. Both must ship, since a system that ignored the configuration would pass whichever half matched its default. Reported out of pool in package 15; that was wrong — 4867598 and 4867604 are in the expanded pool (A-AM12), so package 16 section 1 was right and A-AM10 is withdrawn."
     },
     {
       "req_id": "SWE1_AMM_272",

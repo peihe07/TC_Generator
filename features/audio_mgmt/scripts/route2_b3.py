@@ -49,8 +49,8 @@ def pool() -> dict[str, dict]:
         cat_i = next((i for i, h in enumerate(header) if "category" in h
                       and "sub" not in h), None)
         for r in rows[1:]:
-            oid = str(r[oid_i] or "").strip()
-            if re.fullmatch(r"48\d{5}", oid):
+            # A-AM12: take every id in the cell, not only a lone one.
+            for oid in re.findall(r"\b(48\d{5})\b", str(r[oid_i] or "")):
                 out[oid] = {"desc": " ".join(str(r[desc_i] or "").split()),
                             "cat": str(r[cat_i] or "") if cat_i else "",
                             "src": key}

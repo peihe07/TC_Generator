@@ -752,7 +752,7 @@ tc("SWE1_AMM_138",
     "The ramp-down, the mute hold and the ramp-up are observed",
     "The three phases occur in the order the transition figure gives"],
    prio="P0", method=STATE,
-   reasoning="Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866479 is "
+   reasoning="Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866479 is "
              "State:Approved in CFTS019 but absent from both Basic Reports under A-AM03. "
              "The object is the \"Entertainment Active -> Entertainment Active\" figure, so "
              "the case checks phase ordering, which the caption states, rather than the "
@@ -770,7 +770,7 @@ tc("SWE1_AMM_156",
     "The Entertainment ramp-down and the Information ramp-up are observed",
     "The sequence matches the Entertainment to Information transition figure"],
    prio="P0", method=STATE,
-   reasoning="Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866520 is the "
+   reasoning="Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866520 is the "
              "\"Entertainment Active -> Information Active\" figure. This is the Ent to Info "
              "sibling axis; SWE1_AMM_224 covers the same axis from the cabin-settings angle, "
              "so the bracket lines differ on what each observes.",
@@ -788,7 +788,7 @@ tc("SWE1_AMM_157",
     "The sequence matches the Information 1 to Information 2 transition figure"],
    pre="No audio source is active",
    prio="P0", method=STATE,
-   reasoning="Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866522 is the "
+   reasoning="Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866522 is the "
              "\"Information 1 Active -> Information 2 Active\" figure. Paired with "
              "SWE1_AMM_241 on the Info1 to Info2 axis; 157 takes the non-arbitrated "
              "ordering and 241 the arbitrated one.",
@@ -805,7 +805,7 @@ tc("SWE1_AMM_200",
     "The transition sequence is observed",
     "The sequence matches the non-arbitrated source transition diagram with no arbitration step"],
    prio="P1", method=STATE,
-   reasoning="Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866839 is the "
+   reasoning="Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866839 is the "
              "no-source-active diagram. The absence of an arbitration step is the "
              "distinguishing observation against the arbitrated diagrams at 4866956 and "
              "4866967, so the expected result states it explicitly.")
@@ -821,7 +821,7 @@ tc("SWE1_AMM_205",
     "The transition sequence is observed",
     "The sequence matches the non-arbitrated Entertainment to Entertainment diagram"],
    prio="P0", method=STATE,
-   reasoning="Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866850 heads the "
+   reasoning="Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866850 heads the "
              "Ent to Ent axis whose steps 206, 208, 209 and 212 carry in-pool anchors. This "
              "case checks the sequence as a whole, which is what the diagram adds over the "
              "individual step clauses.")
@@ -837,7 +837,7 @@ tc("SWE1_AMM_240",
     "The arbitration and the routing are observed",
     "The sequence matches the arbitrated source transition diagram"],
    prio="P0", method=STATE,
-   reasoning="Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866956 is the "
+   reasoning="Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866956 is the "
              "arbitrated diagram for a chime over entertainment or information. Distinct "
              "from 4866839 in that arbitration runs, which is the observation the case "
              "turns on.")
@@ -854,7 +854,7 @@ tc("SWE1_AMM_241",
     "The sequence matches the arbitrated Information source transition diagram"],
    pre="No audio source is active",
    prio="P0", method=STATE,
-   reasoning="Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866967 is the "
+   reasoning="Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866967 is the "
              "arbitrated Info to Info diagram. Pairs with SWE1_AMM_157 on the same sibling "
              "axis, 157 non-arbitrated and 241 arbitrated, so the two bracket lines stay "
              "distinguishable.")

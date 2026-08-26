@@ -79,8 +79,10 @@ def pool_rows(cfg: dict) -> list[dict]:
                         if re.fullmatch(r"\s*48\d{5}\s*", str(r[i] or ""))))
         desc_i = next(i for i, h in enumerate(header) if h == "description")
         for row in rows[1:]:
-            oid = str(row[oid_i] or "").strip()
-            if re.fullmatch(r"48\d{5}", oid):
+            # A-AM12: 58 cells hold more than one ObjectID; a fullmatch test
+            # sees only the lone ones and drops 86 ids, which is what produced
+            # the false out-of-pool findings across B1-B4.
+            for oid in re.findall(r"\b(48\d{5})\b", str(row[oid_i] or "")):
                 out.append({"oid": oid,
                             "desc": " ".join(str(row[desc_i] or "").split()),
                             "src": key})

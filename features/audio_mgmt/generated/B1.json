@@ -4,57 +4,7 @@
   "test_group": "Audio Management",
   "n_tcs": 70,
   "leaves_authored": 50,
-  "out_of_pool_anchors": [
-    {
-      "swe_id": "SWE1_AMM_138",
-      "anchor": "CFTS019-4866479",
-      "title": "Entertainment Source Transition Timing",
-      "test_set": "Source Transition",
-      "basis": "State:Approved in the CFTS019 full text; absent from both Basic Reports (A-AM03 / DR-AM3)"
-    },
-    {
-      "swe_id": "SWE1_AMM_156",
-      "anchor": "CFTS019-4866520",
-      "title": "Entertainment to Information Transition Timing",
-      "test_set": "Source Transition",
-      "basis": "State:Approved in the CFTS019 full text; absent from both Basic Reports (A-AM03 / DR-AM3)"
-    },
-    {
-      "swe_id": "SWE1_AMM_157",
-      "anchor": "CFTS019-4866522",
-      "title": "Information 1 to Information 2 Transition Timing",
-      "test_set": "Source Transition",
-      "basis": "State:Approved in the CFTS019 full text; absent from both Basic Reports (A-AM03 / DR-AM3)"
-    },
-    {
-      "swe_id": "SWE1_AMM_200",
-      "anchor": "CFTS019-4866839",
-      "title": "Non-Arbitrated Source Transition",
-      "test_set": "Source Transition",
-      "basis": "State:Approved in the CFTS019 full text; absent from both Basic Reports (A-AM03 / DR-AM3)"
-    },
-    {
-      "swe_id": "SWE1_AMM_205",
-      "anchor": "CFTS019-4866850",
-      "title": "Entertainment-to-Entertainment Source Transition",
-      "test_set": "Source Transition",
-      "basis": "State:Approved in the CFTS019 full text; absent from both Basic Reports (A-AM03 / DR-AM3)"
-    },
-    {
-      "swe_id": "SWE1_AMM_240",
-      "anchor": "CFTS019-4866956",
-      "title": "Arbitrated Signal Source Transition",
-      "test_set": "Source Transition",
-      "basis": "State:Approved in the CFTS019 full text; absent from both Basic Reports (A-AM03 / DR-AM3)"
-    },
-    {
-      "swe_id": "SWE1_AMM_241",
-      "anchor": "CFTS019-4866967",
-      "title": "Arbitrated Information Source Transition",
-      "test_set": "Source Transition",
-      "basis": "State:Approved in the CFTS019 full text; absent from both Basic Reports (A-AM03 / DR-AM3)"
-    }
-  ],
+  "out_of_pool_anchors": [],
   "tcs": [
     {
       "req_id": "SWE1_AMM_132",
@@ -1014,7 +964,7 @@
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
-      "reasoning": "Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866479 is State:Approved in CFTS019 but absent from both Basic Reports under A-AM03. The object is the \"Entertainment Active -> Entertainment Active\" figure, so the case checks phase ordering, which the caption states, rather than the durations, which only the figure body carries."
+      "reasoning": "Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866479 is State:Approved in CFTS019 but absent from both Basic Reports under A-AM03. The object is the \"Entertainment Active -> Entertainment Active\" figure, so the case checks phase ordering, which the caption states, rather than the durations, which only the figure body carries."
     },
     {
       "req_id": "SWE1_AMM_156",
@@ -1029,7 +979,7 @@
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
-      "reasoning": "Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866520 is the \"Entertainment Active -> Information Active\" figure. This is the Ent to Info sibling axis; SWE1_AMM_224 covers the same axis from the cabin-settings angle, so the bracket lines differ on what each observes."
+      "reasoning": "Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866520 is the \"Entertainment Active -> Information Active\" figure. This is the Ent to Info sibling axis; SWE1_AMM_224 covers the same axis from the cabin-settings angle, so the bracket lines differ on what each observes."
     },
     {
       "req_id": "SWE1_AMM_157",
@@ -1044,7 +994,7 @@
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
-      "reasoning": "Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866522 is the \"Information 1 Active -> Information 2 Active\" figure. Paired with SWE1_AMM_241 on the Info1 to Info2 axis; 157 takes the non-arbitrated ordering and 241 the arbitrated one."
+      "reasoning": "Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866522 is the \"Information 1 Active -> Information 2 Active\" figure. Paired with SWE1_AMM_241 on the Info1 to Info2 axis; 157 takes the non-arbitrated ordering and 241 the arbitrated one."
     },
     {
       "req_id": "SWE1_AMM_200",
@@ -1059,7 +1009,7 @@
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
-      "reasoning": "Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866839 is the no-source-active diagram. The absence of an arbitration step is the distinguishing observation against the arbitrated diagrams at 4866956 and 4866967, so the expected result states it explicitly."
+      "reasoning": "Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866839 is the no-source-active diagram. The absence of an arbitration step is the distinguishing observation against the arbitrated diagrams at 4866956 and 4866967, so the expected result states it explicitly."
     },
     {
       "req_id": "SWE1_AMM_205",
@@ -1074,7 +1024,7 @@
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
-      "reasoning": "Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866850 heads the Ent to Ent axis whose steps 206, 208, 209 and 212 carry in-pool anchors. This case checks the sequence as a whole, which is what the diagram adds over the individual step clauses."
+      "reasoning": "Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866850 heads the Ent to Ent axis whose steps 206, 208, 209 and 212 carry in-pool anchors. This case checks the sequence as a whole, which is what the diagram adds over the individual step clauses."
     },
     {
       "req_id": "SWE1_AMM_240",
@@ -1089,7 +1039,7 @@
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
-      "reasoning": "Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866956 is the arbitrated diagram for a chime over entertainment or information. Distinct from 4866839 in that arbitration runs, which is the observation the case turns on."
+      "reasoning": "Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866956 is the arbitrated diagram for a chime over entertainment or information. Distinct from 4866839 in that arbitration runs, which is the observation the case turns on."
     },
     {
       "req_id": "SWE1_AMM_241",
@@ -1104,7 +1054,7 @@
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
-      "reasoning": "Out-of-pool anchor, corroborated by the full text (R-AM2'): 4866967 is the arbitrated Info to Info diagram. Pairs with SWE1_AMM_157 on the same sibling axis, 157 non-arbitrated and 241 arbitrated, so the two bracket lines stay distinguishable."
+      "reasoning": "Reported out of pool in the B1 submission; that was wrong, and the correction is A-AM12: 4866967 is the arbitrated Info to Info diagram. Pairs with SWE1_AMM_157 on the same sibling axis, 157 non-arbitrated and 241 arbitrated, so the two bracket lines stay distinguishable."
     }
   ]
 }

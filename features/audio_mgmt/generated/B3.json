@@ -7,7 +7,7 @@
   "out_of_pool_anchors": [
     {
       "swe_id": "SWE1_AMM_147",
-      "anchor": "CFTS019-4866527",
+      "anchor": "CFTS019-4866527, CFTS019-4866878",
       "title": "Audio Management - Information Volume Recall",
       "test_set": "Volume Control",
       "corroboration": "single-source (R-AM18): the export omits this object, so route 2 had no independent corpus and could only re-read the full text"

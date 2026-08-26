@@ -213,16 +213,27 @@ def spec_blocks(cfg: dict) -> dict[str, str]:
 
 
 def anchor_pool(cfg: dict) -> set[str]:
-    """The R-AM2 anchor pool: ObjectIDs the two Basic Reports carry."""
-    pool = set()
+    """The R-AM2 anchor pool: ObjectIDs the two Basic Reports export.
+
+    Expanded pool v2, 891 ids. Two things this gets wrong if done naively:
+
+    - A-AM12: 58 cells hold more than one ObjectID. Testing each cell with a
+      fullmatch sees only the lone ones and drops 86 ids, which is what
+      produced the false out-of-pool findings across B1-B4.
+    - Membership is read from the ObjectID column alone. Scanning every cell
+      picks up prose references such as {CFTS019-5129} in comment columns and
+      counts 897 — but a mention is not an exported object.
+    """
+    pool: set[str] = set()
     for key in ("sys1_export", "sys1_export_part2"):
         wb = openpyxl.load_workbook(resolve_path(cfg, key), read_only=True)
         ws = wb[wb.sheetnames[0]]
-        for row in ws.iter_rows(values_only=True):
-            for cell in row:
-                if cell is not None and re.fullmatch(r"\s*48\d{5}\s*",
-                                                     str(cell)):
-                    pool.add(str(cell).strip())
+        rows = list(ws.iter_rows(values_only=True))
+        oid_i = max(range(len(rows[0])), key=lambda i: sum(
+            1 for r in rows[1:]
+            if re.fullmatch(r"\s*48\d{5}\s*", str(r[i] or ""))))
+        for row in rows[1:]:
+            pool.update(re.findall(r"\b(48\d{5})\b", str(row[oid_i] or "")))
     return pool
 
 
