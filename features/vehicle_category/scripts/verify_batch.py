@@ -166,14 +166,22 @@ chk(7, "尾句號／方括號／單引號／行首尾空白（IN §11，作者�
     f"尾句號 {len(trail)}；單引號 {len(sq)}；方括號角括號 {len(br)}；"
     f"空白 {len(ws)}" + (f" -- {trail[:2]}{sq[:2]}{br[:2]}" if (trail or sq or br) else ""))
 
-# 7b —— test_item 上半之來源記法。
-# ⚠ 本項之判準已由「禁止」改為「驗證來源」—— **不是為了讓結果變綠**，
-# 是其前提改變了：R-VC19 落條、profile
-# `docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md` §1 已啟動
-# IN §11 之例外。該例外之啟動條件為「when the feature profile says so」，
-# 前一輪 profile 不存在故例外未啟動、本項判「禁止」；
-# 現在 profile 存在且明文，故依 R-VC19(c)「lint 之職責由禁止改為驗證其來源」
-# 改判。**判準改變之依據是裁決，不是結果。**
+# 7b —— R-VC23：來源記法之通則化後，本項為**唯一實質保護**。
+#
+# 判準：`test_item` 上半之 verbatim 區段內，凡非直雙引號之引號／括號 token，
+# **逐 token**（非逐 TC）比對其是否逐字出現於該 leaf 之
+# 037 `Title`／`Description`，或 R-VC7 所定之 SYS1 對應句。
+#
+# R-VC19(d)「新記法須另裁」已由 R-VC23 作廢 —— 故 token 之樣式表為**開放式**，
+# 新記法不需改條文，但**必須對得上來源**。R-VC23(c) 明文「須逐 token 為之，
+# 不得抽樣」。
+TOKEN = re.compile(
+    r"«[^»]*»"
+    r"|\u201c[^\u201d]*\u201d"
+    r"|\u2018[^\u2019]*\u2019"
+    r"|\[[^\]]*\]"
+    r"|<[^>\s][^>]*>"
+    r"|(?<![A-Za-z])'[^']+'(?![A-Za-z])")
 SRC = {}
 try:
     import openpyxl
@@ -185,17 +193,29 @@ try:
             SRC[str(r[0]).strip()] = (str(r[3]).strip(), str(r[4]).strip())
 except Exception as e:                      # noqa: BLE001
     SRC = {}
-    print(f"（警告：037 不可讀，7b 退化為僅計數：{e}）", file=sys.stderr)
+    print(f"（警告：037 不可讀，7b 未實測：{e}）", file=sys.stderr)
 
-TOKEN = re.compile(r"«[^»]*»|(?<![A-Za-z])'[^']+'(?![A-Za-z])")
+SYS1_TXT = ""
+_s1 = ROOT / ("inputs/SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_"
+              "R1_SR24_Post_2A_(December_27_2023).xlsx")
+if _s1.exists():
+    import openpyxl as _o2
+    _rr = list(_o2.load_workbook(_s1, read_only=True, data_only=True)
+               ["Basic Report"].iter_rows(values_only=True))
+    _hh = [str(c).strip() if c else "" for c in _rr[0]]
+    _dd = _hh.index("Description")
+    SYS1_TXT = "\n".join((str(x[_dd]) if x[_dd] else "") for x in _rr[1:])
+    SYS1_TXT = SYS1_TXT.replace("_x000D_\n", "\n").replace("_x000D_", " ")
+
 kept, unsourced = [], []
 for t in TCS:
-    for tok in TOKEN.findall(t["test_item"].split("\n\n")[0]):
+    top = t["test_item"].split("\n\n")[0]
+    for tok in TOKEN.findall(top):
         kept.append((t["leaf_id"], tok))
         ti, de = SRC.get(t["leaf_id"], ("", ""))
-        if tok not in ti and tok not in de:
+        if tok not in ti and tok not in de and tok not in SYS1_TXT:
             unsourced.append((t["leaf_id"], tok))
-chk("7b", "test_item 上半保留之來源記法對得上其來源列（R-VC19(c)）",
+chk("7b", "test_item 上半之保留 token 逐一對得上來源列（R-VC23(c)，逐 token）",
     bool(SRC) and not unsourced,
     f"保留 token {len(kept)} 個；未對上來源 {len(unsourced)} 個 "
     f"{unsourced or ''}"
@@ -207,7 +227,11 @@ cnt = {t["leaf_id"]: json.dumps(t, ensure_ascii=False).count("PENDING:")
        for t in TCS}
 others = {k: v for k, v in cnt.items() if k != "SWE1-HMI-VC-033-01" and v}
 one = cnt.get("SWE1-HMI-VC-033-01") == 1
-exact = pat in TCS[10]["test_procedure"]
+# ⚠ 原為 `TCS[10]` —— **硬編位置索引**，只在該批恰有 ≥11 筆且
+# `VC-033-01` 恰在第 11 位時才對。1 筆之探針即 IndexError。
+# 改為依 leaf_id 查，位置無關。
+_t331 = next((x for x in TCS if x["leaf_id"] == "SWE1-HMI-VC-033-01"), None)
+exact = bool(_t331) and pat in _t331["test_procedure"]
 chk(8, "PENDING 之分布與其字串（pilot 專屬；他批以第 8b 項驗）",
     (one and exact and not others) if "SWE1-HMI-VC-033-01" in cnt else True,
     f"033-01 之 PENDING 數 {cnt.get('SWE1-HMI-VC-033-01')}；"
@@ -269,27 +293,123 @@ chk(13, "該批 Test Set 全筆一致且與 framework.md §2 逐字相符",
     f"批內 test_set={sorted(batch_ts)}；framework §2 之 8 組="
     f"{len(fw_names)} 個；相符={batch_ts <= fw_names}")
 
-# 14 —— setup 片語取自 profile §5 之常數表（下放包 13 §三）
-#      常數**自 profile 解析**，非硬編 —— profile §5.2(a) 之「二處不得分歧」
-#      由解析保證，不靠人記得。
+# 14 —— §5.3 所防者為**變體擴散，不是位置**（下放包 16 §2.1）。
+#
+# 前一版判「Procedure 首步是否為常數」，隱含「首步必為 setup」之假設。
+# 該假設對 `VC-001-02` 不成立 —— 其首步 `Open the Vehicle Category screen`
+# **本身即受測動作**（「進入」正是該需求之觸發）。
+#
+# 新判準不問位置、不問角色，只問「**用到常數就不許走樣**」：
+#   正規化 = 小寫 + 去標點（含引號）+ 壓縮連續空白 + 去首尾空白
+#   任一步驟之正規化形式若等於某常數之正規化形式，
+#   而其原字串與該常數**不逐字相同** → FAIL
+#
+# 零閾值。**不用編輯距離作硬判準** —— `Open the Vehicle Category screen`
+# 與 `…and select the "Controls" tab` 之距離大，但其關係是**前綴**不是變體；
+# 閾值鬆則誤報、緊則漏報，因為它量錯了東西（同 R-G39 對停止條件 87 之判詞）。
 PROF = ROOT.parent.parent / "docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md"
-consts = set()
+consts: set[str] = set()
 if PROF.exists():
-    m = re.search(r"### 5\.1 常數\s*\n\s*```\n(.*?)```", PROF.read_text("utf-8"),
-                  re.S)
+    ptxt = PROF.read_text("utf-8")
+    m = re.search(r"### 5\.1 常數\s*\n\s*```\n(.*?)```", ptxt, re.S)
     if m:
-        for blk in re.split(r"\n(?=\S)", m.group(1).strip()):
-            body = "\n".join(x.strip() for x in blk.split("\n")[1:] if x.strip())
-            if body:
-                consts.add(body)
-first_steps = {re.sub(r"^1\.\s*", "", t["test_procedure"].split("\n")[0]).strip()
-               for t in TCS}
-off = sorted(first_steps - consts)
-chk(14, "本批 setup 片語（Procedure 首步）皆取自 profile §5 常數表",
-    bool(consts) and not off,
-    f"profile 常數 {len(consts)} 條；批內相異首步 {len(first_steps)} 種；"
-    f"不在表中 {off or '無'}"
-    + ("" if consts else "；**profile §5 未解析到常數**"))
+        blk = m.group(1)
+        # 值域自機讀行解析（profile §5.1 之 `values(<p>) = A | B`）
+        domains = {p_: [v.strip() for v in vals.split("|")]
+                   for p_, vals in re.findall(
+                       r"values\(<(\w+)>\)\s*=\s*(.+)", blk)}
+        for chunk in re.split(r"\n(?=\S)", blk.strip()):
+            lines = [x for x in chunk.split("\n")]
+            if not lines or ":" not in lines[0]:
+                continue
+            body = [x.strip() for x in lines[1:]
+                    if x.strip() and not x.strip().startswith(("<", "values("))]
+            if not body:
+                continue
+            tmpl = body[0]
+            holes = re.findall(r"<(\w+)>", tmpl)
+            if not holes:
+                consts.add(tmpl)
+            else:
+                h = holes[0]
+                for v in domains.get(h, []):
+                    consts.add(tmpl.replace(f"<{h}>", v))
+
+
+def _norm(s: str) -> str:
+    s = s.lower()
+    s = re.sub(r"[^\w\s]", " ", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+norm_const = {_norm(c): c for c in consts}
+variants, soft = [], []
+for t in TCS:
+    for ln in t["test_procedure"].split("\n"):
+        step = re.sub(r"^\d+\.\s*", "", ln).strip()
+        if not step:
+            continue
+        c = norm_const.get(_norm(step))
+        if c is not None and step != c:
+            variants.append(f"{t['leaf_id']}: {step[:60]!r} ≠ {c[:60]!r}")
+        elif c is None:
+            # 軟檢查：近似但正規化後不等者，列為候選供人工判讀，**不自動 FAIL**
+            for cn, co in norm_const.items():
+                a, b = set(_norm(step).split()), set(cn.split())
+                if a and b and len(a & b) / len(a | b) >= 0.7:
+                    soft.append(f"{t['leaf_id']}: {step[:52]!r} ~ {co[:52]!r}")
+                    break
+chk(14, "常數之變體擴散（正規化後相等而原字不同 → FAIL；§5.3）",
+    bool(consts) and not variants,
+    f"profile 常數（展開後）{len(consts)} 條；變體 {len(variants)} 處 "
+    f"{variants or '無'}"
+    + (f"；軟檢查候選 {len(soft)} 處（人工判讀，不 FAIL）{soft}" if soft else "")
+    + ("" if consts else "；**profile §5.1 未解析到常數**"))
+
+# 15 —— 母體為本批 a 段之筆數（R-VC22(b)）。
+#      已由 EXPECT_N 貫穿第 1／3／4／5／6 項，此處另立一項使其顯式可見。
+chk(15, f"收斂母體為本批 a 段之筆數（R-VC22(b)）= {EXPECT_N}",
+    len(TCS) == EXPECT_N == len(J["leaf_scope"]),
+    f"tcs={len(TCS)}；leaf_scope={len(J['leaf_scope'])}；"
+    f"held={len(J.get('held_leaves', []))}（b 段不計入母體）")
+
+# 16 —— 續行型 leaf 之 test_item 上半須與 SYS1 之完整句逐字相符
+#      （下放包 15 §5.3 第 16 項）。SYS1 為權威複本（R-VC7）。
+SENT = {}
+_sys1 = ROOT / ("inputs/SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_"
+                "R1_SR24_Post_2A_(December_27_2023).xlsx")
+CONT = {"SWE1-HMI-VC-012-02": ("2.6.2", 2), "SWE1-HMI-VC-012-03": ("2.6.2", 2),
+        "SWE1-HMI-VC-013-02": ("2.6.3", 1), "SWE1-HMI-VC-013-03": ("2.6.3", 1)}
+targets = [k for k in CONT if any(x["leaf_id"] == k for x in TCS)]
+if not targets:
+    chk(16, "續行型 leaf 之上半取 SYS1 完整句（本批無適用對象）", True, "N/A")
+elif not _sys1.exists():
+    chk(16, "續行型 leaf 之上半取 SYS1 完整句", False, "**SYS1 不可讀**")
+else:
+    import openpyxl as _ox
+    _r = list(_ox.load_workbook(_sys1, read_only=True, data_only=True)
+              ["Basic Report"].iter_rows(values_only=True))
+    _h = [str(c).strip() if c else "" for c in _r[0]]
+    _oi, _di = _h.index("Outline Number"), _h.index("SYSRE_HMI_Source ID")
+    _di = _h.index("Description")
+    for _row in _r[1:]:
+        _o = str(_row[_oi]).strip() if _row[_oi] else ""
+        if _o in {v[0] for v in CONT.values()}:
+            _txt = (str(_row[_di]) if _row[_di] else "").replace(
+                "_x000D_\n", "\n").replace("_x000D_", " ").strip()
+            SENT[_o] = [s.strip() for s in
+                        re.split(r"(?<=\.)\s+(?=[A-Z])", _txt)]
+    bad16 = []
+    for lid in targets:
+        sec, idx = CONT[lid]
+        want = SENT.get(sec, [None] * 9)[idx] if sec in SENT else None
+        got = next(x for x in TCS if x["leaf_id"] == lid)[
+            "test_item"].split("\n\n")[0].strip()
+        if want is None or got != want:
+            bad16.append(f"{lid}: 上半 {got[:48]!r} ≠ SYS1 {str(want)[:48]!r}")
+    chk(16, "續行型 leaf 之 test_item 上半與 SYS1 完整句逐字相符（R-VC7）",
+        not bad16,
+        f"適用 {len(targets)} 筆；不符 {len(bad16)} 筆 {bad16 or '無'}")
 
 print(f"verify_batch — {BATCH.name}（收斂條件；下放包 10 §四 ＋ 13 §4.4）")
 print(f"{'#':>3}  {'條件':<62} 判")

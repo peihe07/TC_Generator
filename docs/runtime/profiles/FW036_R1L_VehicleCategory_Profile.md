@@ -127,12 +127,60 @@ IN §5.3 要求標準 setup 片語**逐字重用**。本節為本 feature 之常
 ### 5.1 常數
 
 ```
-ENTER_CONTROLS_TAB:
-  Open the Vehicle Category screen and select the "Controls" tab
+ENTER_VEHICLE_CATEGORY:
+  Open the Vehicle Category screen
+
+ENTER_VC_TAB(<tab>):
+  Open the Vehicle Category screen and select the "<tab>" tab
+  <tab> 之值域：framework §2 所載之 Test Set 對應頁籤名
+                （現為 Controls、Settings；Specialty 諸名待其批次時擴充）
+  values(<tab>) = Controls | Settings
 ```
 
-首次使用：`generated/pilot_glovebox.json` 之 12 筆 Procedure 首步
-（下放包 12 T67 之導覽移入）。
+> 末行 `values(<tab>) = …` 為**機讀行**（下放包 16 §四 T90 增設、
+> 下放包 17 §二 **准**）。其上之中文值域說明為裁定之措辭，二者須一致；
+> 機讀行存在之理由同 §5.3 —— **值域之擴充須同時改二處，而「須同時」
+> 若無承載者就只是規定**。`verify_batch.py` 自機讀行解析。
+
+### 5.1.2 機讀行之格式（固定，下放包 17 §二 T95）
+
+```
+values(<參數名>) = 值1 | 值2 | 值3
+```
+
+**五項固定**：
+
+1. 前綴逐字為 `values(`，小寫，無空白；
+2. 參數名以 `<` `>` 包覆，與其模板中之洞**逐字相同**；
+3. 分隔符為 ` = `（等號前後各一空白）；
+4. 值以 ` | ` 分隔（豎線前後各一空白），值本身不得含 `|`；
+5. **一常數一行**，不換行、不續行。
+
+**理由**：若格式不固定，日後另一個帶參數常數會出現第二種寫法 ——
+**分歧從值域移到了格式**，而 §5.2(a) 之「二處不得分歧」是對值域說的，
+攔不到格式分歧。
+
+**現行僅 `ENTER_VC_TAB` 一個帶參數常數**（§5.1.1 之「不再擴大參數化」）。
+本節之格式即為其唯一實例所定，日後若另有需求須另裁（同 §5.1.1）。
+
+原 `ENTER_CONTROLS_TAB` 成為 `ENTER_VC_TAB(Controls)` 之實例，
+**其字串不變** —— 第 1 批已生成之 22 筆不需因此改動。
+
+首次使用：`generated/pilot_glovebox.json`（12 筆，`ENTER_VC_TAB(Controls)`）
+與 `generated/batch1_category_structure.json`
+（22 筆，含 `ENTER_VEHICLE_CATEGORY` 與 `ENTER_VC_TAB(Settings)`）。
+
+### 5.1.1 帶參數常數之凍結語意（§5.2(c) 之補充，非重寫）
+
+```
+帶參數之常數，其**模板**凍結；其**值域**得擴充，但擴充須經裁定並記於 profile。
+模板之修改與無參數常數同 —— 須經裁定並回溯既有 TC。
+```
+
+**不再擴大參數化**：僅 `ENTER_VC_TAB` 一個常數帶參數，且參數只有一個、
+值域為枚舉。**不引入巢狀、不引入條件、不引入預設值** ——
+保持其為「一個有洞的字串」，不使本節成為 DSL。
+若日後另有常數需參數化，**須另裁**。
 
 ### 5.2 擴充規則
 
@@ -191,5 +239,45 @@ DISPLAY_PORTRAIT:
 若某批以其他措辭表達同一前提（`The display is in portrait orientation`），
 本項看不到 —— 那正是常數表要防的變體，卻也是它抓不到的。
 **故 §4.4 之三類禁項檢查（第 11 項）仍為主防線，本表為輔。**
+
+---
+
+---
+
+## 7. `PENDING` 之內嵌書寫（**提案，自第 2 批起適用**）
+
+下放包 16 §三之建議措辭，**採納**，逐字登記：
+
+```
+PENDING 之內嵌書寫：
+  缺件僅影響某一步驟之某個值時，得內嵌於該步驟，
+  但須使其可讀為**標註**而非句子成分 —— 建議以獨立子行或括號標示。
+  缺件影響整個欄位時，該欄逕填 PENDING 佔位。
+```
+
+### 7.1 適用範圍與不回溯
+
+**自第 2 批（`Settings List`）起適用。**
+`pilot_glovebox.json`（`VC-033-01`）與 `batch1_category_structure.json`
+（`VC-011`／`VC-012-03`）**不回溯改寫** —— R-TM13 之精神：
+既交付者加註不改寫。三筆之現行形態為 IN §8.4.3 之合法佔位，
+其問題是可讀性而非合規性（下放包 16 §三之三項理由）。
+
+### 7.2 現行形態之留痕
+
+```
+3. ... and compare it against PENDING: DR-VC9 Dashboard content table
+```
+
+內嵌後 `PENDING:` 在語法上成為介詞之受詞，讀來像「與『PENDING:…』比較」。
+**不阻斷**，理由三項（下放包 16 §三）：pilot 已用同形態並通過收斂、
+整欄標 PENDING 過度、內嵌之定位精確度較高。
+
+### 7.3 未機器化
+
+本節**無對應之檢查項**。「可讀為標註而非句子成分」需語意判斷，
+其可機械化之近似（如「`PENDING:` 前一字元須為 `(` 或行首」）
+會把現行三筆判為違規 —— 而它們依 §7.1 不回溯。
+**故本節為書寫慣例，靠審閱承擔，不靠檢查器。** 記明以免誤以為已受保護。
 
 ---

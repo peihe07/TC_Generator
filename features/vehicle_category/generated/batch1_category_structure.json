@@ -7,6 +7,8 @@
  "ruling": "R-VC21（批次計畫）／R-VC22（DR 保留段）",
  "segment": "a",
  "segment_note": "R-VC22 之 a 段 —— 地位確定之 leaf，本輪生成 22 筆。b 段 2 筆（`SWE1-HMI-VC-007-01`／`SWE1-HMI-VC-013-04`）保留不生成，阻斷於 DR-VC9(二)，其地位待確認。**本批之收斂條件以 a 段之 22 為母體**（R-VC22(b)）——收斂不等於 `Category Structure` 完成，該 Test Set 之 leaf 數仍為 24（R-VC22(c)，`framework.md` 不因分段而改動）。",
+ "status": "converged",
+ "status_note": "第 1 批 a 段收斂（下放包 16 §四 T94）。收斂條件實跑 **19 項全過**（`scripts/verify_batch.py`，`BATCH` 指向本檔）。**本檔其後不再修改**，除非 (1) DR-VC9 回覆觸發 Revise —— 屆時之異動限於 `VC-011`（`the table` 之指涉）與 `VC-012-03`（PDO graphics 之版面細節）二筆；或 (2) b 段 2 筆補生成時，依 R-VC22(d) 複驗 a 段未因補入而失效（特別是 `test_item` 括號下半之兩兩不同須以 a＋b 全集重驗）。其餘 20 筆不動。",
  "tc_id_status": "provisional",
  "leaf_scope": [
   "SWE1-HMI-VC-001-01",
