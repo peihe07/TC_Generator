@@ -17,6 +17,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-VC8 | `recon.py` 缺 `leaf_count` assertion | PENDING | 全域排程（包 03 §五）|
 | A-VC9 | 037 Priority 按章節整批賦值 | PENDING | 待 DR-VC7 |
 | A-VC10 | 037 Title 之資訊量大於 Description | PENDING | 併 DR-VC7（同批 A）|
+| A-VC11 | `recon.py` 之 DECISIONS 顯示層將 null 印為字面 `None` | PENDING | 全域排程（包 05 §一）|
 
 ---
 
@@ -478,6 +479,44 @@ A-VC10（037 Requirement Title 之資訊量大於 Requirement Description）
 **執行層另行盤點全 117 leaf 之同型情形**，結果見上繳包 04 §6。
 
 狀態：PENDING（併 DR-VC7，同批 A）。
+
+---
+
+## A-VC11 —— `recon.py` 之 DECISIONS 顯示層將 null 印為字面 `None`（新立，下放包 05 §一）
+
+條文逐字：
+
+```
+A-VC11（recon.py 之 DECISIONS 顯示層將 null 印為字面 None）
+
+`scripts/recon.py` 產生 `DECISIONS.new.md` 之 §4 Style bindings 時，
+以 f-string 直接內插 `cfg.get("spec_reference_template")`，
+該鍵之值為 `null` 時印出 Python 之 `None`，成為
+`- spec_reference: [PROPOSED: None]`。
+
+`None` 非裁定值 —— 它是「未宣告 template」之內部表示被洩漏到產出檔。
+簽署者若照簽，簽到的是字面 `None`。
+
+範圍：非本 feature 獨有。凡宣告 `spec_reference_template: null` 之
+feature 皆會複現（`display` 之 feature.yaml 同此宣告）。
+
+處置：本 feature 採**簽署時手動覆蓋**（下放包 05 §一），不修腳本。
+根治須改顯示層，屬 Tier 2 工具修法，**與 R-VC8 之資料層修法非同一件，
+不得併案**（同 A-VC8 之邊界）。與 A-VC4／A-VC8 併入全域排程。
+
+狀態：PENDING（全域排程）。
+```
+
+**執行層回報**
+
+1. **本 feature 之處置已依裁定執行**：採簽署時手動覆蓋，**未修 `recon.py`**。
+   覆蓋文字見 `docs/upstream/05_partN.md` §3 之送簽稿 §4。
+2. **跨 feature 範圍已獨立查證** —— 見上繳包 05 §5。條文所稱
+   「`display` 之 feature.yaml 同此宣告」成立。
+3. 根治屬 Tier 2 工具修法，**與 R-VC8 之資料層修法非同一件，不得併案**
+   （同 A-VC8 之邊界）。與 A-VC4／A-VC8 併入全域排程。
+
+狀態：PENDING（全域排程）。
 
 ---
 
