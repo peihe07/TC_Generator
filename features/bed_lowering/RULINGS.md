@@ -304,3 +304,26 @@ R-BLM13（「偵測／接收」類 leaf 之錨定 —— 斷言層級錯開）
 出路 3（登 DR）未採：其他 TC 以 HU 實體按鍵觸發，請求訊號對照
 除解鎖本四條外無他用，且上游未必給得出。
 ```
+
+---
+
+```
+R-BLM14（pilot 退出、寫回授權、reasoning 單位定式）
+
+（Pei 2026-08-26 裁定「准」，回應分析層對上繳包 06 之複審。）
+
+(1) **pilot 退出審通過**：13/13 過，授權寫回工作簿（XML 外科式，
+    R-BLM3 之保全條款不變）。
+(2) **reasoning 單位定式**（採上繳包 06 §5.1 選項 3 之定式化）：
+    profile 立 [OVERRIDE IN §10.4] —— top-level reasoning 為批次摘要
+    （必有）；per-TC reasoning 僅於裁定要求逐 leaf 內容時存在
+    （R-BLM13(b) 委派、IN §8.2.1 縮窄委派），其餘 TC 不補。
+    per-TC reasoning 之存在本身即為「本條涉及委派」之訊號。
+    未採選項 1（對應模糊化）與選項 2（九條補寫屬審後重構，
+    內容只能從頂層倒推，造敘事風險）。
+(3) 038-04 Pre-Condition 6 改寫為可用性狀態句：
+    `The SYS1 normalised text of NRL-193702 is available to the tester
+    as the wording baseline`（§4.4：狀態非定義）。
+(4) 工程債三件（generator 實跑、lint_tcs、recon）不擋寫回，
+    **續批開工前須收**。
+```
