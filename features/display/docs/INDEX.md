@@ -35,6 +35,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 28a | 2026-08-26 | 附件：A-DM36 結案、DR 十筆改 SENT、DR-DM7 對帳 | [handoff/28a_dr_sent.md](handoff/28a_dr_sent.md) | 併入 [upstream/28](upstream/28_cfts013_full_and_rvc.md) §三之二 | （無新條文） | A-DM36 CLOSED；A11／B21 新增 | **停止條件 74／75 皆未觸發；DR-DM7 判定為全案結案而非部分結案** |
 | 29 | 2026-08-26 | A3 解封、DM2 降級、007／008 切分裁定 | [handoff/29_a3_and_arbitration.md](handoff/29_a3_and_arbitration.md) | [upstream/29_a3_and_arbitration.md](upstream/29_a3_and_arbitration.md) | R-DM55 | A-DM40 新增（CLOSED）；DR-DM12 開立；A12／B22／B23 新增；B20 解除 | **停止條件 76 觸發 —— CFTS_013 之 50 vs CFTS_020 之 85；未改任何 TC** |
 | 30 ＋ 30a | 2026-08-26 | 追五個轉指條號；R-DM51 依據補驗；DR-DM7 結案 | [handoff/30_crossref_chase.md](handoff/30_crossref_chase.md)、[30a](handoff/30a_vf169.md) | [upstream/30_crossref_chase.md](upstream/30_crossref_chase.md) | R-G37（全域）；R-G27 指標 | A11 關閉；A13／B24／B25 新增；B23 解除；DR-DM7 CLOSED；A-DM20 改標 | **停止條件 79／80／81 皆未觸發；TC 一字未動** |
+| 31 | 2026-08-26 | 讀 71 條漏網；自陳即驗入條 | [handoff/31_missed_clauses.md](handoff/31_missed_clauses.md) | [upstream/31_missed_clauses.md](upstream/31_missed_clauses.md) | R-G38（全域）；R-G22 指標 | A-DM33 母體加註；A14／B26／B27 新增；B24 解除 | **停止條件 84／85／86 皆未觸發；三項重測皆不變；TC 一字未動** |
 
 ## 02 輪要點
 
@@ -863,3 +864,52 @@ DR 現況 12 筆：**9 SENT、1 CLOSED、1 OPEN、1 待發**。
 > §九第 3 項最該記：**自陳欄不該是待辦清單的傾倒處。**
 > 初稿寫「我沒有查」，寫完去查，五分鐘。**本輪是第二次**
 > （27 輪反向查證是第一次）**「自陳未驗」在寫下的當下就變成可驗**。
+
+## 31 輪要點
+
+### 71 條漏網全在診斷章 —— 十輪無害是運氣，不是設計
+
+68 條 SFR ／ 3 條 Description，章節集中於 **`§1.4.x`**
+（Lost Communication／Component fault／Implausible values）。
+其中 **51 條**為同一種四句式樣板（DTC matrix／monitor type／
+monitor rate／limp-in action）。
+
+**本 feature 之每一次量測其標的皆在行為章**（`1.11.2.2`／`1.15.x`／
+`1.8.2.5.x`），**而漏網之 71 條全在診斷章 —— 兩者不相交。**
+
+> **若當初某一輪之標的落在 `§1.4.x`，該輪之結論就是錯的，
+> 而且沒有任何機制會發現。**
+
+**T4 三項重測皆不變**：RVC 24→24、組 A 7→7／組 B 4→4、
+`turn off … backlight` 2→2；兩批次所引 11 個條號之適用性**無一改變**。
+**T5**：`coverage_map.py` 不讀架構欄（其母體判準是 SYS2 之 `Category`），
+**不需重跑**。
+
+### 三條要緊的
+
+- **`{4819273}`**（§1.4.1.2.6「DCSD - Display Hot」，`[EE:All]`，**適用本專案**）
+  逐字 `Execute 'Display is Hot' portion of DCSD Display Hot Algorithm -
+  See CFTS013-629.` —— **被舊判準排除十輪，且其轉指正是 DR-DM4 之標的。**
+  A-DM33 之母體已加註（結論不變，**但 `1.11.2.2` 不是全部**）。登為 **A14**。
+- **`{4819353}`**：`$DCSD_DISP_STAT$` 之 **5／6 為不合理值** ——
+  與 DBC `VAL_`（定義 0,1,2,3,4,7）互相印證，A-DM35／R-DM48 之獨立佐證。
+- **`{4819134}`**（`§1.2`，`Artifact Type: Description`）：
+  **CFTS_020 自己也載 Associated／Disassociated 之區分** ——
+  30 輪補驗 R-DM51 時我只在 SYSRA 找到它。**R-DM51 因此多一個獨立來源，
+  且該來源正是本 feature 之主要規格。**
+  而它是「不重要的 3 條 Description」之一 —— **T2 之分列計數若被拿來衡量份量，
+  會把它算掉。**
+
+### 我在同一份文件裡把同一個錯犯了第二次
+
+§5.2 之初稿：我用八個關鍵詞去計數，**59/63 零命中**，
+然後在那份輸出**正下方**寫了一句「其主題為診斷行為」——
+**從章節標題推的，而我計數的是本體。**
+
+**第一次是上繳 29 §2.2 的 `All` 那句，本輪才剛把它寫成 R-G22 的指標。**
+這次當場被自己的輸出打臉（零命中就在那句話上面），遂逐條讀了全部 63 條。
+**但那是輸出恰好擺在旁邊，不是我先想到要驗。**
+
+> **R-G38 規制自陳欄之項，而本例不在自陳欄** —— 它是正文裡的一句判定。
+> **R-G22 規制它，而 R-G22 已經在了。問題不在缺條文，
+> 在我讀自己寫的句子時不夠警覺。**

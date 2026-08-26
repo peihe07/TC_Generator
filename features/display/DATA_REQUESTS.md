@@ -19,6 +19,61 @@ Urgency 回報。
 | DR-DM12 | `SWE1-DM-007` 之 `static vehicle condition` 與 `SWE1-DM-008` 之 `dynamic vehicle state transition`，**其區分軸為何**？三個候選：(i) 車輛靜止 vs 行進；(ii) 顯示器前態穩定 vs 過渡；(iii) 其他。**附本層現行切分之對照表**（007＝前態 `DCSD Screen ON`、釋放後還原回 ON，`{4819642}`／`{4819645}`；008＝前態非 ON 或過渡畫面、釋放後目的態不同，`{4819668}`／`{4819671}`／`{4820265}`），請確認或更正。實測依據：CFTS_020 全文 `static` **0 命中**、`dynamic` **1 命中**；SYS2 之 12 列 RVC **同時錨到兩個 leaf 且錨據完全相同** | **待 Pei 發**（收件方同 DR-DM8，037 作者） | `rvc-01` 六條之 `leaf_id` 欄 | 切分為分析層之分類（R-DM55）；**錯誤可逆 —— 只需改 `leaf_id` 一欄，TC 內容不受影響** | R-DM55 | HIGH |
 | DR-DM11 | `SWE-DM-007` 之觸發訊號 —— 037 逐字為 `when reverse gear signal is detected under static vehicle condition`，而 **CFTS_020 之 RVC 諸條（24 條適用本專案者）一律以抽象之 `if the Rear View Camera is to be displayed` 為觸發，全文查無倒車檔訊號之定義**。請提供：(a) 該訊號之名稱與其 DBC 定義；(b) `static vehicle condition` 之判準（車速門檻？排檔？）；(c) 其與 `$TGW_DISP_STAT$ = [DISP_REAR_CAMERA]` 之關係（何者為因） | OPEN | SWE-DM-007（`rvc-01` 六條之觸發皆為「RVC 被請求」，非倒車檔） | 007 之倒車檔面向未被驗證；交付時不得以「007 有 TC」表述該面向已驗 | — | HIGH |
 | DR-DM10 | Display Hot 之關閉階段：(a) `1.11.2.2` 之組 A（`{4820282}`–`{4820288}`，HU 判定後下令關背光、關後續送 `[DISP_HOT]`）與組 B（`{4820289}`–`{4820292}`，DCSD 自主關背光並送 `[DISP_OFF]`、無警示階段）**兩者皆宣告適用於 `Radio:R1H`／`Atlantis High`且互相排斥，請裁定何者為準**；(b) **【問法更新，下放包 24 §2.3】** `{4820283}` 之 `has finished displaying the Display Hot warning screen` 之終止準據 —— **原問「時長為何」，改問「DCSD 側之 warning → off 是否亦為溫度分段？若是，其第二門檻為何？」**。依據：CFTS013 SYSRA 顯示 **HU 側**之同型流程以**溫度分段**而非時長觸發（`>=51 且 <=55` 每度降 5%／`>=56 且 <60` 顯示警示不再降亮度／`>=60` 螢幕關閉／`>50` 降回 `<=50` 恢復正常）。**該五列為 Associated Display（HU 側）之事實，非 DCSD 側之事實，依 R-DM51(a) 不得代入**；引之僅為指出「分段變數可能是溫度而非時間」。**【指標，26 §四.3／26a §三】A6 已於 26a 解除，CFTS013 已落 `inputs/`。惟該五列（`>=51`／`>=56`／`>=60`／`>50`→`<=50` 之分段）之獨立重算**尚未執行** —— 24-6 於 `EE Architecture` 一項不符而依停止條件 67 停手，24-4／24-5 連同本項之重算一併待裁。本問法之成立不依賴該五列之數字（其改變的是問題之變數：溫度而非時間），但其**引為依據之五列仍未經本層驗證**。A6 關閉之複核於此一併記明**；(c) `{CFTS013-XXX}`（本文出現 5 次之未填佔位符）之實際條號與內容 | SENT (2026-08-25) | **SWE-DM-004 之 popup 側（`PU0517`，22 包 §二）**；SWE-DM-005（保護性關閉，原 pilot-01 #2）；`PU0130` | #2 已 deferred；四條查證路徑（組 A／組 B／組 C／Pop Up List）皆不產生可觀測之區分準據，warning 與 OFF 兩階段在測試步驟上無法區分（False Fail 風險）。**22 包增列**：#1 之 popup 側亦受同一矛盾波及 —— 組 B `{4820289}` 於越過門檻時即關背光，使 `PU0517` 之顯示不可觀測，該 ER 在組 B 之實作上恆為 False Fail | A-DM33 | HIGH |
+
+> **補充二（下放包 31 §四，待 Pei 發）—— 補充一不撤回，兩者並列。**
+> 上列原文與補充一皆依 R-TM13 不刪不改。
+>
+> **Supplement 2 to DR-DM10 — the two documents appear to divide the work**
+>
+> Further to our previous supplement, we have now traced the three clauses
+> that CFTS_013 `{4943104}` defers the shutdown behaviour to
+> (`{4821589}`, `{4821590}`, `{4821591}`), together with `{4821587}` and
+> `{4821592}`.
+>
+> **All five are declared `[Radio:VP4R84] [EE Architecture:CUSW]`**, in
+> section `1.15.5.5.2`. They do not apply to R1H / Atlantis High.
+>
+> However, the same five sentences recur verbatim across **five parallel
+> "Multi-stage' DCSD Display Hot Algorithm" sections** (`1.8.2.5.2`,
+> `1.15.1.5.2`, `1.15.2.5.2`, `1.15.4.5.2`, `1.15.5.5.2`). Examining the
+> variants that **do** carry `R1H` and `Atlantis High`:
+>
+> | Role in the sequence | Clause | Applies to R1H / Atlantis High |
+> |---|---|---|
+> | DCSD decides to turn off its backlight, sends `[DISP_OFF]` | `{4819862}` / `{4820951}` | **No — `Radio:noSys`** |
+> | HU sees `[DISP_HOT]` → `[DISP_OFF]`, sends `$TGW_DISP_STAT$ = [DISP_OFF]` and `$RQ_DISP_INTS$ = [0% Intensity]` | **`{4819863}` / `{4820952}`** | **Yes** |
+> | DCSD sees the HU's `[DISP_OFF]`, stops displaying and turns off backlight | `{4819864}` / `{4820953}` | **No — `Radio:noSys`** |
+>
+> That is: **within CFTS_020, the multi-stage algorithm's HU side is defined
+> for this programme and its DCSD side is marked `noSys`.** Meanwhile
+> CFTS_013 §1.5.3 — thirteen clauses, all `[EE Architecture:All]` and all
+> naming `R1H` — defines exactly that DCSD side: the once-per-minute
+> monitoring, the 50 / 51–55 / 56–below-60 staging, the 10 second timer, and
+> `Note: Only DCSD shall implement 10 sec timer.`
+>
+> **Revised question (a):** are CFTS_020 and CFTS_013 intended to **compose**
+> for R1H / Atlantis High — CFTS_020 defining the HU side and CFTS_013 §1.5.3
+> the DCSD side — with `{4820289}`–`{4820292}` (the single 85 °C threshold)
+> being an alternative rather than the governing behaviour? Or does
+> `{4820289}` govern and CFTS_013 §1.5.3 not apply despite its `All`?
+>
+> **New question (e):** `{4820283}` states that the HU sends
+> `$TGW_DISP_STAT$ = [DISP_OFF]` when it `has finished displaying the Display
+> Hot warning screen and determines that the DCSD display should now be
+> 'Turned Off'`. `{4821590}` states the **same consequent, word for word**,
+> with the antecedent `When the HU sees the transition from
+> $DCSD_DISP_STAT$ = [DISP_HOT] to $DCSD_DISP_STAT$ = [DISP_OFF]`.
+> Is the latter the criterion the former leaves unstated?
+>
+> **本層之補測（上繳 31 §二 T4）**：以 R-G37 新判準重跑三項既有量測 ——
+> RVC × `$DCSD_DISP_STAT$` 24→**24**、組 A 7→**7**／組 B 4→**4**、
+> `turn off … backlight` 2→**2**，**皆不變**；`pilot-01`／`rvc-01` 所引之
+> 11 個條號其適用性判定**無一改變**（停止條件 84 未觸發）。
+> **另新發現一條**：`{4819273}`（§1.4.1.2.6 `Disassociated Center Stack
+> Display (DCSD) - Display Hot`，`[Radio:R1M, R1H, R1L, R1L-R] [EE:All]`，
+> **適用本專案**）逐字為 `Execute 'Display is Hot' portion of DCSD Display
+> Hot Algorithm - See CFTS013-629.` —— **該條被舊判準排除十輪，
+> 且其轉指正是 DR-DM4 之標的。**
 | DR-DM9 | SYS2／CFTS 之值標籤 `[DISP_OFF]`／`[DISP_ON]`／`[DISP_NORMAL]`／`[DISP_REAR_CAMERA]` 各對應 `DCSD_DISP_STAT` 之哪一個 raw 值，並提供其並列出處 | SENT (2026-08-25) | SWE-DM-005（#2／#3 之訊號值）、007／008 | ER 目前只驗行為不寫訊號值（R-DM48）；取得後依 R-DM22 建值標籤 glossary，得於既有 ER **增列**訊號值（增列不改變行為驗證，非回修） | A-DM32 | HIGH |
 
 > **重擬（下放包 27 §1.4，2026-08-25）—— 上列原文依 R-TM13 不刪不改。**
