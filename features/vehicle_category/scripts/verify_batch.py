@@ -19,6 +19,7 @@ import json
 import re
 import sys
 import os
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,7 +27,11 @@ BATCH = Path(os.environ.get(
     "BATCH", ROOT / "generated" / "pilot_glovebox.json"))
 J = json.loads(BATCH.read_text("utf-8"))
 # R-VC22(b)：收斂條件之母體為**本批 a 段之筆數**，非 Test Set 之 leaf 總數。
-EXPECT_N = len(J["leaf_scope"])
+# R-VC22(b)：母體為本批 a 段之筆數。
+# ⚠ 第 2 批起 `tcs ≠ leaf_scope` —— 拆分使 TC 數多於 leaf 數（IN §8.2.2）。
+# `split_delta` 須於 JSON 明列且可驗（下放包 18 §4.4）。
+SPLIT_DELTA = J.get("split_delta", 0)
+EXPECT_N = len(J["leaf_scope"]) + SPLIT_DELTA
 TCS = J["tcs"]
 
 REQ_KEYS = ["tc_title", "pre_conditions", "input_test_data", "test_procedure",
@@ -166,23 +171,20 @@ chk(7, "尾句號／方括號／單引號／行首尾空白（IN §11，作者�
     f"尾句號 {len(trail)}；單引號 {len(sq)}；方括號角括號 {len(br)}；"
     f"空白 {len(ws)}" + (f" -- {trail[:2]}{sq[:2]}{br[:2]}" if (trail or sq or br) else ""))
 
-# 7b —— R-VC23：來源記法之通則化後，本項為**唯一實質保護**。
+# 7b —— **整段子串比對**（下放包 18 §二；T99 之 34/34 通過後改採）。
 #
-# 判準：`test_item` 上半之 verbatim 區段內，凡非直雙引號之引號／括號 token，
-# **逐 token**（非逐 TC）比對其是否逐字出現於該 leaf 之
-# 037 `Title`／`Description`，或 R-VC7 所定之 SYS1 對應句。
+# 前一版為逐 token 比對，其保護建立在一張樣式表上 —— R-VC23 通則化後
+# **掃不到即等於未受保護**（`「…」`／`｢…｣`／任何未來記法皆在其外）。
+# 而 R-VC23(c) 是通則化後之唯一實質保護。
 #
-# R-VC19(d)「新記法須另裁」已由 R-VC23 作廢 —— 故 token 之樣式表為**開放式**，
-# 新記法不需改條文，但**必須對得上來源**。R-VC23(c) 明文「須逐 token 為之，
-# 不得抽樣」。
-TOKEN = re.compile(
-    r"«[^»]*»"
-    r"|\u201c[^\u201d]*\u201d"
-    r"|\u2018[^\u2019]*\u2019"
-    r"|\[[^\]]*\]"
-    r"|<[^>\s][^>]*>"
-    r"|(?<![A-Za-z])'[^']+'(?![A-Za-z])")
-SRC = {}
+# 新判準：上半（去首尾空白、首字母大小寫正規化）須為
+#   037 `Title` ∪ 037 `Description` ∪ SYS1 對應節全文
+# 之**逐字子串**。依據：R-S4 上半為規格原句 verbatim、R-3 得摘句、
+# R-4 得轉首字母大小寫。
+#
+# 三項優於 token 比對：不需樣式表（任何記法自動受驗）、
+# token 對得上而其間文字被竄改者亦抓得到、零閾值無語意判斷。
+SRC, SYS1 = {}, {}
 try:
     import openpyxl
     _wb = openpyxl.load_workbook(
@@ -191,35 +193,53 @@ try:
     for r in list(_wb["Analysis Report"].iter_rows(values_only=True))[7:]:
         if r[0] not in (None, ""):
             SRC[str(r[0]).strip()] = (str(r[3]).strip(), str(r[4]).strip())
+    _s1 = ROOT / ("inputs/SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_"
+                  "R1_SR24_Post_2A_(December_27_2023).xlsx")
+    if _s1.exists():
+        _rr = list(openpyxl.load_workbook(_s1, read_only=True, data_only=True)
+                   ["Basic Report"].iter_rows(values_only=True))
+        _hh = [str(c).strip() if c else "" for c in _rr[0]]
+        _oi, _di = _hh.index("Outline Number"), _hh.index("Description")
+        for _x in _rr[1:]:
+            _o = str(_x[_oi]).strip() if _x[_oi] else ""
+            if _o:
+                SYS1[_o] = ((str(_x[_di]) if _x[_di] else "")
+                            .replace("_x000D_\n", "\n").replace("_x000D_", " "))
 except Exception as e:                      # noqa: BLE001
     SRC = {}
-    print(f"（警告：037 不可讀，7b 未實測：{e}）", file=sys.stderr)
+    print(f"（警告：來源不可讀，7b 未實測：{e}）", file=sys.stderr)
 
-SYS1_TXT = ""
-_s1 = ROOT / ("inputs/SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_"
-              "R1_SR24_Post_2A_(December_27_2023).xlsx")
-if _s1.exists():
-    import openpyxl as _o2
-    _rr = list(_o2.load_workbook(_s1, read_only=True, data_only=True)
-               ["Basic Report"].iter_rows(values_only=True))
-    _hh = [str(c).strip() if c else "" for c in _rr[0]]
-    _dd = _hh.index("Description")
-    SYS1_TXT = "\n".join((str(x[_dd]) if x[_dd] else "") for x in _rr[1:])
-    SYS1_TXT = SYS1_TXT.replace("_x000D_\n", "\n").replace("_x000D_", " ")
 
-kept, unsourced = [], []
+def _vars(s):
+    s = s.strip()
+    return {s, s[:1].upper() + s[1:], s[:1].lower() + s[1:]} if s else {s}
+
+
+origins, unsourced = {}, []
 for t in TCS:
-    top = t["test_item"].split("\n\n")[0]
-    for tok in TOKEN.findall(top):
-        kept.append((t["leaf_id"], tok))
-        ti, de = SRC.get(t["leaf_id"], ("", ""))
-        if tok not in ti and tok not in de and tok not in SYS1_TXT:
-            unsourced.append((t["leaf_id"], tok))
-chk("7b", "test_item 上半之保留 token 逐一對得上來源列（R-VC23(c)，逐 token）",
+    top = t["test_item"].split("\n\n")[0].strip()
+    ti, de = SRC.get(t["leaf_id"], ("", ""))
+    sec = t["specification_reference"].rsplit("_", 1)[-1]
+    s1 = SYS1.get(sec, "")
+    hit = None
+    for v in _vars(top):
+        if v and v in ti:
+            hit = "Title"
+        elif v and v in de:
+            hit = "Description"
+        elif v and v in s1:
+            hit = "SYS1"
+        if hit:
+            break
+    origins[t["leaf_id"]] = hit
+    if hit is None:
+        unsourced.append(t["leaf_id"])
+from collections import Counter as _C
+chk("7b", "test_item 上半為來源之逐字子串（R-VC23(c)；整段，不倚樣式表）",
     bool(SRC) and not unsourced,
-    f"保留 token {len(kept)} 個；未對上來源 {len(unsourced)} 個 "
-    f"{unsourced or ''}"
-    + ("" if SRC else "；**037 不可讀，本項未實測**"))
+    f"取材來源分布 {dict(_C(v for v in origins.values() if v))}；"
+    f"未對上來源 {len(unsourced)} 筆 {unsourced or '無'}"
+    + ("" if SRC else "；**來源不可讀，本項未實測**"))
 
 # 8 —— VC-033-01 帶且僅帶一處 PENDING
 pat = "PENDING: DR-VC8 Glove Box lockout threshold"
@@ -368,10 +388,18 @@ chk(14, "常數之變體擴散（正規化後相等而原字不同 → FAIL；§
 
 # 15 —— 母體為本批 a 段之筆數（R-VC22(b)）。
 #      已由 EXPECT_N 貫穿第 1／3／4／5／6 項，此處另立一項使其顯式可見。
-chk(15, f"收斂母體為本批 a 段之筆數（R-VC22(b)）= {EXPECT_N}",
-    len(TCS) == EXPECT_N == len(J["leaf_scope"]),
+# 15 —— 母體 ＝ leaf_scope ＋ split_delta，且 split_delta 須與實際拆分相符。
+#      「實際拆分」＝ 同一 leaf_id 出現多筆之超額數，自 tcs 直接數得。
+_lc = Counter(x["leaf_id"] for x in TCS)
+actual_delta = sum(v - 1 for v in _lc.values() if v > 1)
+split_detail = {k: v for k, v in _lc.items() if v > 1}
+chk(15, f"母體 = leaf_scope + split_delta = {len(J['leaf_scope'])} + "
+        f"{SPLIT_DELTA} = {EXPECT_N}（R-VC22(b)／IN §8.2.2）",
+    len(TCS) == EXPECT_N and SPLIT_DELTA == actual_delta,
     f"tcs={len(TCS)}；leaf_scope={len(J['leaf_scope'])}；"
-    f"held={len(J.get('held_leaves', []))}（b 段不計入母體）")
+    f"宣告 split_delta={SPLIT_DELTA}；實際拆分增量={actual_delta}"
+    + (f"（{split_detail}）" if split_detail else "")
+    + f"；held={len(J.get('held_leaves', []))}（b 段不計入母體）")
 
 # 16 —— 續行型 leaf 之 test_item 上半須與 SYS1 之完整句逐字相符
 #      （下放包 15 §5.3 第 16 項）。SYS1 為權威複本（R-VC7）。
