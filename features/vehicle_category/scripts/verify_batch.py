@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""T58 —— pilot 收斂條件之驗證（下放包 10 §四，十項）。
+"""收斂條件之驗證 —— pilot 與全量批次共用（`verify_batch.py`）。
+
+**更名（T75，下放包 13）**：原名 `verify_pilot.py`。自第 13、14 項加入後
+其已非 pilot 專用 —— 第 13 項驗「該批之 Test Set 與 framework §2 相符」、
+第 14 項驗「setup 片語取自 profile §5」，二者皆為**每批**之收斂條件
+（下放包 13 §4.4）。名實相符優於相容性，故更名。
+
+沿用之路徑：`BATCH` 常數指向待驗之批次 JSON，預設為 pilot。
 
 第 3–8 項可機械化者一律機械化；第 2、9、10 項含人工判斷成分，
 本腳本只驗其**可機械化之部分**，其餘於上繳包標明主觀範圍。
@@ -11,10 +18,15 @@ import csv
 import json
 import re
 import sys
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-J = json.loads((ROOT / "generated" / "pilot_glovebox.json").read_text("utf-8"))
+BATCH = Path(os.environ.get(
+    "BATCH", ROOT / "generated" / "pilot_glovebox.json"))
+J = json.loads(BATCH.read_text("utf-8"))
+# R-VC22(b)：收斂條件之母體為**本批 a 段之筆數**，非 Test Set 之 leaf 總數。
+EXPECT_N = len(J["leaf_scope"])
 TCS = J["tcs"]
 
 REQ_KEYS = ["tc_title", "pre_conditions", "input_test_data", "test_procedure",
@@ -33,8 +45,8 @@ def chk(n, name, ok, detail):
 # 1 —— 10 個必要 key（IN §10.1）
 missing = {t["leaf_id"]: [k for k in REQ_KEYS if k not in t] for t in TCS}
 bad = {k: v for k, v in missing.items() if v}
-chk(1, "12 筆 JSON 完整，10 個必要 key 齊備（IN §10.1）",
-    len(TCS) == 12 and not bad,
+chk(1, f"{EXPECT_N} 筆 JSON 完整，10 個必要 key 齊備（IN §10.1）",
+    len(TCS) == EXPECT_N and not bad,
     f"TC 數 {len(TCS)}；缺 key {bad or '無'}")
 
 # 2 —— IN §9 十七項：見上繳包逐項；此處只驗可機械化之子項
@@ -98,8 +110,8 @@ for t in TCS:
     else:
         low.setdefault(m.group(1).strip(), []).append(t["leaf_id"])
 dup = {k: v for k, v in low.items() if len(v) > 1}
-chk(3, "test_item 括號下半 12 筆兩兩不同（機械）",
-    not nobracket and not dup and len(low) == 12,
+chk(3, f"test_item 括號下半 {EXPECT_N} 筆兩兩不同（機械）",
+    not nobracket and not dup and len(low) == EXPECT_N,
     f"缺括號 {nobracket or '無'}；重複 {dup or '無'}；相異 {len(low)}")
 
 # 3b —— 下半一律英文（R-S4 / R-PMH153）
@@ -115,7 +127,7 @@ ref = {r[0]: r[3] for r in csv.reader(
     delimiter="\t")}
 bad4 = [(t["leaf_id"], t["specification_reference"], ref.get(t["leaf_id"]))
         for t in TCS if t["specification_reference"] != ref.get(t["leaf_id"])]
-chk(4, "specification_reference 12 筆與 recon_leaf_to_section.tsv 逐字相符",
+chk(4, f"specification_reference {EXPECT_N} 筆與 recon_leaf_to_section.tsv 逐字相符",
     not bad4, f"不符 {len(bad4)} 筆 {bad4 or ''}")
 
 # 5 —— priority 與 priority_final.tsv 逐字相符
@@ -124,14 +136,14 @@ pf = {r["req_id"]: r["final_p"] for r in csv.DictReader(
     delimiter="\t")}
 bad5 = [(t["leaf_id"], t["priority"], pf.get(t["leaf_id"]))
         for t in TCS if t["priority"] != pf.get(t["leaf_id"])]
-chk(5, "priority 12 筆與 priority_final.tsv 逐字相符",
+chk(5, f"priority {EXPECT_N} 筆與 priority_final.tsv 逐字相符",
     not bad5, f"不符 {len(bad5)} 筆 {bad5 or ''}")
 
 # 6 —— Test Set 皆為 Glove Box，無變體
 ts = {t["test_set"] for t in TCS}
 tg = {t["test_group"] for t in TCS}
-chk(6, "Test Set 12 筆皆為 `Glove Box`，Test Group 皆為 `Vehicle Category`",
-    ts == {"Glove Box"} and tg == {"Vehicle Category"},
+chk(6, f"Test Set {EXPECT_N} 筆一致，Test Group 皆為 `Vehicle Category`",
+    len(ts) == 1 and tg == {"Vehicle Category"},
     f"test_set={sorted(ts)}；test_group={sorted(tg)}")
 
 # 7 —— 尾句號、引號規則
@@ -196,25 +208,31 @@ cnt = {t["leaf_id"]: json.dumps(t, ensure_ascii=False).count("PENDING:")
 others = {k: v for k, v in cnt.items() if k != "SWE1-HMI-VC-033-01" and v}
 one = cnt.get("SWE1-HMI-VC-033-01") == 1
 exact = pat in TCS[10]["test_procedure"]
-chk(8, "`VC-033-01` 帶且僅帶一處 PENDING，字串逐字相符",
-    one and exact and not others,
+chk(8, "PENDING 之分布與其字串（pilot 專屬；他批以第 8b 項驗）",
+    (one and exact and not others) if "SWE1-HMI-VC-033-01" in cnt else True,
     f"033-01 之 PENDING 數 {cnt.get('SWE1-HMI-VC-033-01')}；"
     f"字串相符 {exact}；他筆帶 PENDING {others or '無'}")
 
 # 9 —— 流程區分（機械部分：括號下半須含 activation / deactivation）
 f9 = []
 for lid in ("SWE1-HMI-VC-028-02", "SWE1-HMI-VC-033-01"):
-    t = next(x for x in TCS if x["leaf_id"] == lid)
+    t = next((x for x in TCS if x["leaf_id"] == lid), None)
+    if t is None:
+        continue
     b = re.search(r"\(([^()]*)\)\s*$", t["test_item"].strip()).group(1).lower()
     if "activation" not in b and "deactivation" not in b:
         f9.append(lid)
-chk(9, "`028-02`／`033-01` 之括號下半明載其流程（機械：含 activation/deactivation）",
+chk(9, "`028-02`／`033-01` 之括號下半明載其流程（pilot 專屬）",
     not f9, f"未載者 {f9 or '無'}")
 
 # 10 —— VC-021 委派載於各 TC 之 reasoning
-f10 = [t["leaf_id"] for t in TCS if "VC-021" not in t.get("reasoning", "")]
-chk(10, "`VC-021` 之委派載於全部 12 筆之 reasoning（§8.2.1）",
-    not f10, f"未載者 {f10 or '無'}")
+if any(x["leaf_id"].startswith("SWE1-HMI-VC-02") and "Glove Box" in x["test_set"]
+       for x in TCS):
+    f10 = [t["leaf_id"] for t in TCS if "VC-021" not in t.get("reasoning", "")]
+    chk(10, f"`VC-021` 之委派載於全部 {EXPECT_N} 筆之 reasoning（§8.2.1）",
+        not f10, f"未載者 {f10 or '無'}")
+else:
+    chk(10, "`VC-021` 之委派（pilot 專屬；本批不適用）", True, "N/A")
 
 # 另：test_procedure ≥ 2 步、Procedure ↔ ER 1:1、ER 無 modal
 p2 = [t["leaf_id"] for t in TCS
@@ -241,7 +259,39 @@ chk("A", "Procedure ≥2 步 ∧ Procedure↔ER 1:1 ∧ ER 無 modal ∧ 步驟�
     f"步數不足 {p2 or '無'}；1:1 不符 {mism or '無'}；"
     f"ER 含 modal {modal or '無'}；禁用起首動詞 {verb or '無'}")
 
-print("verify_pilot — Glove Box pilot（R-VC18，下放包 10 §四）")
+# 13 —— 該批之 Test Set 與 framework.md §2 逐字相符（下放包 13 §4.4）
+#      名稱自 framework 解析，**不硬編** —— 硬編會使本項只驗到腳本自己。
+FW = (ROOT / "framework.md").read_text("utf-8")
+fw_names = set(re.findall(r"^\|\s*\d+\s*\|\s*`([^`]+)`\s*\|", FW, re.M))
+batch_ts = {t["test_set"] for t in TCS}
+chk(13, "該批 Test Set 全筆一致且與 framework.md §2 逐字相符",
+    len(batch_ts) == 1 and batch_ts <= fw_names,
+    f"批內 test_set={sorted(batch_ts)}；framework §2 之 8 組="
+    f"{len(fw_names)} 個；相符={batch_ts <= fw_names}")
+
+# 14 —— setup 片語取自 profile §5 之常數表（下放包 13 §三）
+#      常數**自 profile 解析**，非硬編 —— profile §5.2(a) 之「二處不得分歧」
+#      由解析保證，不靠人記得。
+PROF = ROOT.parent.parent / "docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md"
+consts = set()
+if PROF.exists():
+    m = re.search(r"### 5\.1 常數\s*\n\s*```\n(.*?)```", PROF.read_text("utf-8"),
+                  re.S)
+    if m:
+        for blk in re.split(r"\n(?=\S)", m.group(1).strip()):
+            body = "\n".join(x.strip() for x in blk.split("\n")[1:] if x.strip())
+            if body:
+                consts.add(body)
+first_steps = {re.sub(r"^1\.\s*", "", t["test_procedure"].split("\n")[0]).strip()
+               for t in TCS}
+off = sorted(first_steps - consts)
+chk(14, "本批 setup 片語（Procedure 首步）皆取自 profile §5 常數表",
+    bool(consts) and not off,
+    f"profile 常數 {len(consts)} 條；批內相異首步 {len(first_steps)} 種；"
+    f"不在表中 {off or '無'}"
+    + ("" if consts else "；**profile §5 未解析到常數**"))
+
+print(f"verify_batch — {BATCH.name}（收斂條件；下放包 10 §四 ＋ 13 §4.4）")
 print(f"{'#':>3}  {'條件':<62} 判")
 print("-" * 96)
 failed = 0

@@ -5,6 +5,8 @@
  "test_set": "Glove Box",
  "handoff": "docs/handoff/10_pilot_tc.md",
  "ruling": "R-VC18",
+ "status": "converged",
+ "status_note": "pilot 收斂並放行（下放包 13 §一，Pei 2026-08-26）。收斂條件實跑 17 項全過（`scripts/verify_batch.py`）。**本檔其後不再修改**，除非 DR-VC8 回覆觸發 Revise —— 屆時之異動限於 `VC-033-01`（門檻值與 R-VC18 之 boundary 拆分），其餘 11 筆不動。",
  "tc_id_status": "provisional",
  "leaf_scope": [
   "SWE1-HMI-VC-026-01",

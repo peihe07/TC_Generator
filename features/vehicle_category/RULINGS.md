@@ -703,3 +703,72 @@ boundary 之 2–3 筆。
 
 ---
 
+```
+R-VC21（Phase 4 全量批次計畫）
+
+（Pei 2026-08-26 裁定：順序准、規模准。）
+
+pilot（`Glove Box`，12 TC）已收斂放行（下放包 13 §一）。
+剩餘 105 leaf（117 leaf 母體）分 **7 批**，一 Test Set 一批，
+**不跨組合批** —— Test Set 為 framework 所定之能力群，
+跨組會使 `Test Set` 欄在同一批內分歧，批次即失去作為審閱單位之意義。
+
+順序（排序判準依序為：DR 阻斷程度 → 格式形態新舊 → 規模）：
+
+  1  `Category Structure`      24 leaf   無 DR 阻斷
+  2  `Settings List`           30 leaf   無 DR 阻斷
+  3  `Controls`                17 leaf   DR-VC1（僅 `VC-021` 一筆）
+  4  `Settings Behavior`       15 leaf   無 DR 阻斷；含 2 個 P0 ＋ R-VC14 揭露
+  5  `Ignition Availability`   16 leaf   DR-VC5（FROP 跨域全 16 筆）
+  6  `Brake Service`            2 leaf   DR-VC3（邊界待重審）
+  7  `Cabrio Widget`            1 leaf   DR-VC3（同上）
+
+第 4 批不更前之理由：其含本 feature 5 個 P0 中之 2 個
+（`035-03`／`036-02`）與 R-VC14 之分歧揭露義務（`036-01`）；
+第 1、2 批將首次驗證非 Glove Box 形態之格式，待其穩定再做第 4 批風險最低。
+
+第 6／7 批置末之理由：R-VC16(c) 明文其邊界待 DR-VC3 重審，
+且屆時章 8／9 之 Cabrio 本體應另立 `Cabrio Rooftop`。重審前生成，
+其結論可能被推翻。
+
+每批之收斂條件：pilot 之十二項（實跑 15 項）＋ 二項：
+  13. 該批之 `Test Set` 全筆一致，且與 `framework.md` §2 逐字相符
+  14. 該批所用之 setup 片語皆取自 VC profile §5 之常數表
+
+**每批之生成前須先勘查。** pilot 之 `Glove Box` 為純流程需求，
+其素材全在文字層，故未設勘查步驟；其餘各組不得據此免除
+（下放包 14 §二即為第 1 批之勘查所發現）。
+```
+
+---
+
+```
+R-VC22（批次之 DR 保留段）
+
+批次內若有 leaf 之**地位**（是否為需求）待 DR 確認者，
+該批分二段生成：
+
+  **a 段** —— 地位確定之 leaf，本輪生成。帶 PENDING 者屬之
+              （值或素材未到不影響其為需求）。
+  **b 段** —— 地位待確認之 leaf，**保留不生成**，
+              待 DR 回覆後另裁生成或剔除。
+
+分段之判準為「該 leaf 是否可能整筆消失」，**不是「是否帶 PENDING」** ——
+值不明者仍應生成並以 `PENDING: DR-{n}` 佔位（IN §8.4.3）；
+地位不明者生成即可能全數作廢。
+
+拘束四項：
+(a) b 段之 leaf 須於該批之上繳包**逐筆列名**，載其阻斷之 DR 與保留理由。
+(b) 該批之收斂條件以 **a 段之筆數**為母體，不以 Test Set 之 leaf 總數為母體。
+    收斂不等於該 Test Set 完成。
+(c) `framework.md` 之該 Test Set 不因分段而改動 —— 其 leaf 數仍為原數。
+    分段是生成之安排，不是 Layer 2 之變更。
+(d) b 段解除後之補生成，其收斂條件與 a 段同，且須複驗 a 段未因補入而失效
+    （特別是 `test_item` 括號下半之兩兩不同須以 a＋b 全集重驗）。
+
+第 1 批之適用：a 段 22 筆、b 段 2 筆（`VC-007-01`／`VC-013-04`，
+阻斷於 DR-VC9(二)）。
+```
+
+---
+

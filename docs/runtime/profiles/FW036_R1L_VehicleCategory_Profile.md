@@ -107,6 +107,89 @@ R-VC19 §2.3 第 3 項要求「先查 `scripts/lint036.py` 對 `--profile` 之
 - `[OVERRIDE]` 之其他條款 —— 本 feature 目前只需 §1 一項
 - `design_method` 之 feature 專屬分流 —— 採 canon §12 首匹配，無偏差
 - `test_item` 上半之 token 上限 —— 採 R-3 之 50，無偏差
+- 其他 Pre-Condition 措辭之常數（§6 現僅二則，只登記已實際使用者）
 - 寫回相關之條款 —— Phase 6 未啟，另裁
 
 **未寫入不等於已裁定為預設。** 需要時另立，不得由本節之沉默推論。
+
+---
+
+## 5. 標準 setup 片語（常數表）
+
+IN §5.3 要求標準 setup 片語**逐字重用**。本節為本 feature 之常數表。
+
+設立時機：pilot 之 12 筆 Procedure 首步逐字完全相同，但該片語當時
+**只存在於 JSON 裡，未進任何常數表**。全量批次時 `Category Structure`／
+`Controls`／`Settings List` 等組亦需導覽首步，各自書寫即產生變體
+（IN §5.3 所禁之 case／hyphenation／spacing／wording variants）。
+**pilot 是建表的最好時機 —— 現在只有一個片語，且已驗證可用。**
+
+### 5.1 常數
+
+```
+ENTER_CONTROLS_TAB:
+  Open the Vehicle Category screen and select the "Controls" tab
+```
+
+首次使用：`generated/pilot_glovebox.json` 之 12 筆 Procedure 首步
+（下放包 12 T67 之導覽移入）。
+
+### 5.2 擴充規則
+
+**(a)** 新增常數時，須**同時**更新本節與 `verify_batch.py` 之常數表，
+**二處不得分歧**。
+
+**(b)** 新片語之加入須先確認既有片語不敷用 ——
+**不得為措辭偏好而增設近義常數**。
+
+**(c)** 常數之措辭**一經登記即凍結**；其修改須經裁定並**回溯既有 TC**。
+
+### 5.3 本表之機器化
+
+`verify_batch.py` 第 14 項驗「該批所用之 setup 片語皆取自本表」。
+其常數**自本檔解析**（讀 §5.1 之 code fence），非硬編於腳本 ——
+故 (a) 之「二處不得分歧」由解析保證，不靠人記得。
+
+**偽陰性**：只驗**首步**是否為表中常數。若某批把導覽寫在第二步，
+或把常數拆成兩步，本項看不到。屆時須擴充判準。
+
+---
+
+## 6. 標準 Pre-Condition 措辭
+
+**與 §5 分立**（下放包 15 §3.3）：§5 之標的為 IN §5.3 之
+「Standard Setup **Snippets**」，其例皆為 **Procedure 步驟**；
+本節之標的為 **Pre-Condition**，其規制來源為 **IN §4.4** 而非 §5.3。
+二者之判準與禁項不同，混為一表會使 §4.4 之三類禁項失去對應。
+
+### 6.1 常數
+
+```
+DISPLAY_LANDSCAPE:
+  The vehicle is equipped with a landscape display
+DISPLAY_PORTRAIT:
+  The vehicle is equipped with a portrait display
+```
+
+**§4.4 之類別：hardware / peripheral。**
+自檢（`requires do / check / confirm` → NOT a Pre-Condition）為**否** ——
+測試者不會把螢幕轉成直向，而是換一台配直向螢幕的車。
+故其為車輛之硬體配置，非步驟可切換之狀態。
+
+首次使用：第 1 批 `Category Structure` 之 `VC-012-*`／`VC-013-*`
+（下放包 15 §5.2 之方向前提）。
+
+### 6.2 擴充規則
+
+**沿用 §5.2 之三項**：(a) 二處同步（本節與 `verify_batch.py`）、
+(b) 不為措辭偏好增設近義常數、(c) 一經登記即凍結，修改須經裁定並回溯。
+
+### 6.3 本表之機器化
+
+同 §5.3 —— 常數自本檔解析，非硬編。
+**偽陰性**：只驗「Pre-Condition 若涉顯示器方向，是否用表中措辭」；
+若某批以其他措辭表達同一前提（`The display is in portrait orientation`），
+本項看不到 —— 那正是常數表要防的變體，卻也是它抓不到的。
+**故 §4.4 之三類禁項檢查（第 11 項）仍為主防線，本表為輔。**
+
+---

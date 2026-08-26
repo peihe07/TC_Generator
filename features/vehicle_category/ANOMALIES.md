@@ -23,6 +23,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-VC14 | 037 Title 與 Description 之數值矛盾（`VC-033-01`）| PENDING | 待 DR-VC8 |
 | A-VC15 | `lint036.py --profile` 不讀 profile 內容，無法實作 R-VC19(c) | PENDING | 全域排程（工具修法）|
 | A-VC16 | pilot 之 §9 判讀漏檢二形態（檢查覆蓋不足，非規則缺失）| **RESOLVED（包 12）** | — |
+| A-VC17 | 037 之 leaf 中存在純交叉引用／表格題名者（3 筆）| PENDING | 待 DR-VC9 |
 
 ---
 
@@ -764,6 +765,66 @@ attempt ceiling would apply` —— 指向 `-033-01` 之停用門檻，
 12 筆之 `pre_conditions` 與 `VC-028-02` 之 Procedure 已修（T67／T68）。
 
 狀態：**RESOLVED**。
+
+---
+
+## A-VC17 —— 037 之 leaf 中存在純交叉引用／表格題名者（新立，下放包 14 §2.1）
+
+**形態**：037 之某 leaf，其 `Description` 僅為交叉引用或表格題名，
+**無自身可測內容** —— 該 leaf 不指向任何可觀察之行為。
+
+分析層於下放包 14 §2.1 以 `VC-013-04` 舉例，並明文
+「**未掃描其餘 116 leaf 是否另有同型**，該掃描列為 T79」。
+
+### T79 之全表掃描結果（117 leaf 母體）
+
+腳本：`scripts/t79_crossref_scan.py`。三段判準（引用詞 → 引用後殘餘 →
+人工判讀 Title 是否另行補入可測內容）。
+
+```
+A 段 — Description 命中引用詞: 6 leaf
+B 段 — 候選（引用後殘餘不足／表頭形態）: 4 leaf
+```
+
+**C 段人工判讀 —— 確認 3 筆，推翻 1 筆**：
+
+| leaf | § | `Description` | 判 |
+|---|---|---|---|
+| `VC-007-01` | 2.4 | `Vehicle Tab Labels and Order.` | **確認** —— 表格題名。SYS1 為 `VC2.2.) Vehicle Tab Labels and Order`，其下即四欄表 |
+| `VC-013-04` | 2.6.3 | `Refer to PDO graphics.` | **確認** —— 引用後殘餘為空 |
+| `VC-025-01` | 3.9 | `C1.) Controls Button Table.` | **確認** —— 表格題名。**分析層未點名，本掃描新得**；屬第 3 批 `Controls`，不在第 1 批 |
+| `VC-012-03` | 2.6.2 | `continuing with additional features below the banners (refer to PDO Graphics)` | **推翻** —— 去掉引用片語後殘餘為 `continuing with additional features below the banners`，**有可測內容**。其問題為句子片段（下放包 14 §2.2），非純交叉引用 |
+
+**三筆之共同形態**：其 `Title` 皆由 037 作者改寫為
+「Adopt X as the authoritative source」或「shall follow X」之句式，
+**讀來像需求，實則仍是指路** —— 可測之內容在其下之對照列
+（`007-02`~`-05`／`025-02`~`-05`）或在未到手之 PDO Graphics。
+
+> A-VC10（Title 資訊量大於 Description）在此顯出其**另一面**：
+> Title 之改寫可以把一個題名寫成看似可測之需求。
+> **只讀 Title 會漏掉這三筆的真實地位。**
+
+### ⚠ 掃描器初版漏抓 `VC-007-01`
+
+初版之「表頭形態」以「VERB 未命中」為條件，而
+`Vehicle Tab Labels and Order.` 之 **`Order` 是名詞卻命中了動詞表**，
+故未被列為候選 —— **漏掉了分析層 §2.3(a) 已點名的其中一筆**。
+
+改以**題名形態**判定（去條號前綴後，字母 token 多數為 Title-Case
+且無小寫功能詞連接成句）後始命中。
+另移除裸 `per`（其命中 `one radio button per line` 之「每」而非「依據」，
+造成 `VC-042-02` 之假陽性）。
+
+**與 T52 同型**：掃描器初版漏抓它被造出來要抓的那一筆。
+記於此，以免日後有人以「掃過了」為由信任該腳本而不看其判準。
+
+### 處置
+
+- **不得自行剔除該三 leaf** —— 117 母體為 R-VC3 所裁，剔除屬 Tier 2。
+- 三筆之 TC 帶 `PENDING: DR-VC9 PDO graphics`。
+- 以 **DR-VC9** 索取 PDO Graphics 並詢問三筆之 leaf 地位。
+
+狀態：PENDING（待 DR-VC9）。
 
 ---
 
