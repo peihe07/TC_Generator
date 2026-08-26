@@ -1,0 +1,6 @@
+leaf	kind	sys1_section	note
+SWE1-HMI-VC-012-02	continuation	2.6.2	037 為 SYS1 §2.6.2 第 3 句之前半
+SWE1-HMI-VC-012-03	continuation	2.6.2	037 為 SYS1 §2.6.2 第 3 句之續行（小寫起首）
+SWE1-HMI-VC-013-02	continuation	2.6.3	037 於句中補句號並刪 and，實為 SYS1 §2.6.3 第 2 句之前半
+SWE1-HMI-VC-013-03	continuation	2.6.3	037 為 SYS1 §2.6.3 第 2 句之續行（小寫起首）
+SWE1-HMI-VC-019-02	reference	3.4	037 為完整句但 `It` 之先行詞（Headrest fold）在 019-01；SYS1 §3.4 為一段二句，上半取整段

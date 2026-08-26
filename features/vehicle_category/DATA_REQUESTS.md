@@ -181,9 +181,31 @@ DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定�
   請確認**其是否應登記為需求 leaf** —— 若為表格題名之誤登，
   其下之對照列（`007-02`~`-05`／`025-02`~`-05`）已各自成 leaf。
 
-- **阻斷範圍**：三筆之 TC 帶 `PENDING: DR-VC9 PDO graphics`（IN §8.4.3）。
-  **不阻斷該三筆以外者** —— `VC-013-04` 屬第 1 批、`VC-007-01` 屬第 1 批、
-  `VC-025-01` 屬第 3 批（`Controls`）。
+  **(三) `VC-014` 之 `(See table above)`（下放包 20 §2.2）**：
+  §3.1 之 Description 逐字為
+  `CO2.) Possible items to be placed in the Controls tab include, but are not
+  limited to (See table above): …`。
+
+  **執行層已實測 SYS1**（R-VC7 之權威複本）：
+  - SYS1 **§3 僅為章標題**（逐字 `Controls`），**其下無任何表**；
+  - 章 3 之唯一表在 **§3.9**（`C1.) Controls Button Table`，二欄 28 列），
+    **位於 §3.1 之後方**；
+  - 章 2 之 §2.4 雖有表，但其為 Vehicle Tab Labels and Order（頁籤名與位置），
+    **與 Controls 項目無關**。
+
+  即 **`above` 於規格自身即不成立**。請確認該引用之標的為何。
+
+  > 本問之措辭刻意載明實測 —— 上游需要知道的是「**查過了、沒有**」，
+  > 而非「我們沒找到」（下放包 20 §2.2）。
+
+- **阻斷範圍**：
+  - **(二) 阻斷三筆 b 段**：`VC-007-01`／`VC-013-04`（第 1 批）、
+    `VC-025-01`（第 3 批）—— 三筆皆**保留不生成**，其地位待確認。
+  - **(一)(三) 不阻斷生成**：`VC-011`／`VC-012-03`（第 1 批）與
+    `VC-014`（第 3 批）帶 `PENDING` 生成，其字串分別為
+    `PENDING: DR-VC9 Dashboard content table`／
+    `PENDING: DR-VC9 PDO graphics`／
+    `PENDING: DR-VC9 Controls table reference`。
 - **不得自行剔除該三 leaf** —— 117 母體為 R-VC3 所裁，剔除屬 Tier 2
   （下放包 14 §2.1 之明文）。
 - **批次（下放包 15 §3.1 已裁）—— 維持單一編號，雙標的分送**：

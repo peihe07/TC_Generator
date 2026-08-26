@@ -406,8 +406,22 @@ chk(15, f"母體 = leaf_scope + split_delta = {len(J['leaf_scope'])} + "
 SENT = {}
 _sys1 = ROOT / ("inputs/SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_"
                 "R1_SR24_Post_2A_(December_27_2023).xlsx")
-CONT = {"SWE1-HMI-VC-012-02": ("2.6.2", 2), "SWE1-HMI-VC-012-03": ("2.6.2", 2),
-        "SWE1-HMI-VC-013-02": ("2.6.3", 1), "SWE1-HMI-VC-013-03": ("2.6.3", 1)}
+# CONT 表**自 `data/cont_table.tsv` 讀取**，不再硬編（下放包 21 T116-5）。
+# 句序仍需指定 —— 續行型取其所屬句、指涉型取整段（sec_idx = None）。
+CONT = {}
+_ct = ROOT / "data/cont_table.tsv"
+if _ct.exists():
+    _ln = _ct.read_text("utf-8").splitlines()
+    _hd = _ln[0].split("\t")
+    for _l in _ln[1:]:
+        if not _l.strip():
+            continue
+        _r = dict(zip(_hd, _l.split("\t")))
+        # 續行型：取該節之句序（012-* 為第 3 句 idx 2、013-* 為第 2 句 idx 1）
+        # 指涉型：取整段（idx None）
+        _idx = None if _r["kind"] == "reference" else (
+            2 if _r["sys1_section"] == "2.6.2" else 1)
+        CONT[_r["leaf"]] = (_r["sys1_section"], _idx)
 targets = [k for k in CONT if any(x["leaf_id"] == k for x in TCS)]
 if not targets:
     chk(16, "續行型 leaf 之上半取 SYS1 完整句（本批無適用對象）", True, "N/A")
@@ -430,7 +444,12 @@ else:
     bad16 = []
     for lid in targets:
         sec, idx = CONT[lid]
-        want = SENT.get(sec, [None] * 9)[idx] if sec in SENT else None
+        if sec not in SENT:
+            want = None
+        elif idx is None:
+            want = " ".join(SENT[sec]).strip()      # 指涉型：整段
+        else:
+            want = SENT[sec][idx] if idx < len(SENT[sec]) else None
         got = next(x for x in TCS if x["leaf_id"] == lid)[
             "test_item"].split("\n\n")[0].strip()
         if want is None or got != want:
@@ -438,6 +457,21 @@ else:
     chk(16, "續行型 leaf 之 test_item 上半與 SYS1 完整句逐字相符（R-VC7）",
         not bad16,
         f"適用 {len(targets)} 筆；不符 {len(bad16)} 筆 {bad16 or '無'}")
+
+# 17 —— CONT 表之二層防護常駐（下放包 21 T116-5）。
+#      其 self-test 前置由 cont_guard 自帶；本項只收其結果。
+import subprocess as _sp
+_cg = ROOT / "scripts" / "cont_guard.py"
+if _cg.exists():
+    _p = _sp.run([sys.executable, str(_cg)], capture_output=True, text=True)
+    _tail = [x for x in _p.stdout.splitlines()
+             if x.startswith(("PASS —", "**FAIL** —"))]
+    chk(17, "CONT 表二層防護（候選無未處置 ∧ 內容驗證全過；含 self-test）",
+        _p.returncode == 0,
+        (_tail[-1] if _tail else f"cont_guard 離開碼 {_p.returncode}")
+        + f"；離開碼 {_p.returncode}")
+else:
+    chk(17, "CONT 表二層防護", False, "**cont_guard.py 不存在**")
 
 print(f"verify_batch — {BATCH.name}（收斂條件；下放包 10 §四 ＋ 13 §4.4）")
 print(f"{'#':>3}  {'條件':<62} 判")

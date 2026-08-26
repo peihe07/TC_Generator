@@ -1,0 +1,12 @@
+leaf	len	description
+SWE1-HMI-VC-001-03	42	After that, return to the Last Viewed tab.
+SWE1-HMI-VC-004	46	The tab name for the Controls tab is Controls.
+SWE1-HMI-VC-005	50	The tab name for the Vehicle Settings is Settings.
+SWE1-HMI-VC-007-01	29	Vehicle Tab Labels and Order.
+SWE1-HMI-VC-013-04	22	Refer to PDO graphics.
+SWE1-HMI-VC-018	56	A shortcut to settings is available from the App drawer.
+SWE1-HMI-VC-019-02	22	It will not highlight.
+SWE1-HMI-VC-025-01	22	Controls Button Table.
+SWE1-HMI-VC-028-02	44	There's not a limit for the incorrect input.
+SWE1-HMI-VC-046-01	37	Select a list item by pressing on it.
+SWE1-HMI-VC-058-02	30	This pop-up does not time out.
