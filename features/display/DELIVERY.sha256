@@ -1,0 +1,62 @@
+# DELIVERY — features/display/output/ 產出台帳（append-only）
+# ─────────────────────────────────────────────────────────────────────────
+# 記帳規則：**逐次追加，不覆蓋、不刪除、不改寫既有條目。**
+# 每產出一份 xlsx 就在檔尾新增一個 ENTRY 區塊。舊條目即使其檔案已從
+# output/ 消失，該區塊仍留著 —— 台帳記的是「產出過什麼」，不是「現在有什麼」。
+#
+# 為什麼存在：`output/` 由 `.gitignore` 排除，產出永遠不進版控。
+# 沒有台帳時，「那份交付件到底是什麼」只能從 commit 訊息拼湊。
+# 本檔之格式承 `features/privacy/DELIVERY.sha256`（R27-1／R27-2）。
+#
+# 驗證（自 features/display/ 執行）：
+#     shasum -a 256 -c --ignore-missing DELIVERY.sha256
+#
+# **旗標的代價（R27-1）**：`--ignore-missing` 使本台帳**無法偵測「產出被刪除」**。
+# 它驗的是「還在磁碟上的產出有沒有被動過」，不驗「產出還在不在」。
+#   內容被竄改 → FAILED，exit 1
+#   檔案不存在 → 靜默略過，exit 0
+# **台帳綠燈不等於產出俱在**，日後不得如此誤讀。
+# ─────────────────────────────────────────────────────────────────────────
+#
+# ENTRY 001 — 2026-08-26 — 交付件（23 TC）
+#   狀態      **已複製至交付路徑**（Pei 2026-08-26 指示）。
+#             下放包 34／34a 之收尾產出；R-DM57 收尾凍結期內。
+#   來源      inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA
+#             Test Case Specification & Result_SWQT_20260817_ext.xlsx
+#             SHA256 6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2
+#             **產製後重驗未變** —— 未就地覆寫（`reference:` 之 workbook_master
+#             綁定維持 13/13）
+#   寫入路徑  features/display/scripts/write_back_036.py（XML 外科式，R-VC2 同款）
+#             只改 xl/worksheets/sheet6.xml，其餘 47 個 zip 部件逐 byte 原樣重打包
+#   內容      23 TC，資料列 10–32，TC-DM-001 … TC-DM-023
+#             pilot-01 3（004×2／005×1）＋ rvc-01 6（007×3／008×3）
+#             ＋ ops-01 14（001×9／002×3／003×2）
+#             欄：B 序號／D leaf_id／F TC ID／G,H Group,Set／I–N 六欄／
+#             O=NEW／P priority／R design_method／S functional_safety／AA=PeiPYHsu
+#   結構驗證  zip 成員 48 → 48（零增零減）；classic DV 4 → 4；x14 DV 2 → 2；
+#             worksheets 9 → 9；drawings 6 → 6；rels 16 → 16；
+#             conditionalFormatting 0 → 0 —— **逐項相等**
+#             R 欄下拉：x14 xm:sqref = R10:R1411，寫入列在其內
+#   回讀驗證  openpyxl 讀回 23 列 × 15 欄，與 generated/*.json 逐欄比對
+#             **不符 0**；第 33 列為空（未溢寫）
+#   靜態檢查  lint036.py --profile display（合併母體 23）
+#             **二十項行計皆 0**，I-sibling 有母體且為 0
+#             check_disclosure.py 雙向 **MISSING 0／STALE 0**
+#   覆蓋      7/8 leaf 有 TC，**全部為部分覆蓋**；SWE1-DM-006 未覆蓋
+#             （CFTS_020 之適用條文含逐字 popup 編號者 0 條；
+#              唯一含 pop-up 一詞者轉指不在手上的 HMI core spec requirement H4）
+#             每一 leaf 之 deferred token 皆於其各 TC 括號下半逐字指名（R-G33）
+#   未結 DR   **11 筆**（DR-DM1／2／3／4／5／6／8／9／10／11／12），
+#             清單見 docs/upstream/34_closeout.md §五。**交付包必附。**
+#   未驗      尚未由人以 Excel 實際開啟確認。開啟後應檢：無「修復」提示、
+#             R／P／AE 下拉可用、分頁數 9。**此項未完成前不得視為 P7 完成。**
+#   未列入    lint 用之拋棄式複本（scratchpad）—— 同一次操作內之中間檔，
+#             不構成一個工作簿狀態，不符本台帳之記錄單位（R27-2）
+4528b93783ad52af9a51aded4ee1e7497ddc8c527e5687b807888b52081fbf7a  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Display_20260826.xlsx
+#   ── 交付副本（客戶樹絕對路徑；其雜湊行指向交付副本本身，非 repo 內副本，
+#      否則該行與上一行重複，成為不可能獨立失敗之檢查）────────────────
+#   路徑    /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/
+#           ASW-R2/Display/
+#   複製    2026-08-26，`cp` ＋ `cmp` 逐位元比對相同
+#   同名檔  複製前該目錄**無** 036 —— 首次交付，無覆寫
+4528b93783ad52af9a51aded4ee1e7497ddc8c527e5687b807888b52081fbf7a  /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/ASW-R2/Display/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Display_20260826.xlsx

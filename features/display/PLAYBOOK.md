@@ -166,5 +166,28 @@ Remarks = reason + anomaly id.
 - [ ] P4 data artifacts built
 - [ ] P5 pilot batch ____ reviewed; verdict: ____; corrections: ____
 - [ ] P6 all batches generated; lint green; placeholders: ____
-- [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: ____
+- [x] **P5 pilot batch `pilot-01` reviewed**（rev1 → rev5）; verdict: 核可;
+      corrections: #2 deferred（DR-DM10）、欄位歸屬、邊界負向條、#1 收斂為訊號側
+- [x] **P6 all batches generated; lint green**
+      `pilot-01` 3 ＋ `rvc-01` 6 ＋ `ops-01` 14 = **23 TC**;
+      `lint036 --profile display` 二十項行計皆 0（合併母體 23）;
+      `check_disclosure.py` 雙向 0／0;
+      placeholders: **無 `PENDING:` 佔位**；未涵蓋面向以 deferred 四鍵 ＋
+      R-G33 括號下半指名承載（8 項 token）
+- [~] **P7 交付件已產出並複製至交付路徑（2026-08-26）**；
+      **tag 未打、Excel 實開未確認、RD-1 未發**
+      - 交付路徑 `/Users/peihe/Work/02_Project_R1LR/10_Reviewing/
+        00_TestCase/ASW-R2/Display/`
+      - 交付檔名 `…_SWQT_Display_20260826.xlsx`（與 Privacy 之
+        `…_SWQT_Privacy_20260813.xlsx` 命名一致）
+      - 交付副本 SHA256 `4528b937…` 與 repo `output/` 副本
+        **逐位元相同**（`cmp` 實測）；台帳兩行皆 `OK`
+      - `DELIVERY.sha256` **ENTRY 001** 已建；其第二行指向交付副本本身
+      - **來源母本 sha `6372fb6be02f48dc…` 未變** —— 未就地覆寫，
+        `reference:` 綁定維持 13/13
+      - **未完成者**：Excel 實開確認（無「修復」提示、R／P／AE 下拉可用、
+        分頁數 9）；`fw036-display-v1` tag；RD-1
+      - **交付包必附未結 DR 11 筆**（見 `docs/upstream/34_closeout.md` §五）
+      - **覆蓋為 7/8 leaf 且全部部分覆蓋** —— `SWE1-DM-006` 未覆蓋。
+        交付時不得表述為「八條全覆蓋」
 - Open PENDING rulings: ____
