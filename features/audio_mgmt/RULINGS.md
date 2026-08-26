@@ -104,3 +104,23 @@ Audio Arbitration 前 16 葉，共 50 葉。
    另註兩組易混欄位：C 為 `Requirement or Design ID (Polarion)`、D 才是
    R-AM7 所指之 `Requirement or Design ID`；E 為 `Test Case ID (TestRail)`、
    F 才是 `Test Case ID`。
+
+---
+
+## Pei 裁定（2026-08-26，原文：「1准 2准 3照辦 4代行准」）
+
+1. **R-AM8（定案）**：`spec_mode = D`。上述提案第 1 項全文照採，
+   [PROPOSED] 撤銘。
+2. **R-AM9（定案）**：`tc_id_format = NR1L-AMM-{n:03d}`。上述提案第 2 項
+   全文照採，[PROPOSED] 撤銘。舊 AudioAACP 簿之底線式不遵循（R-AM3：
+   新簿與舊簿無延續義務）。
+3. **第 3 項（欄位字母）**：Pei 裁「照辦」＝不猜待實測之行為準則成立；
+   實測已於同日完成並結案（見上段），實測值為準。scaffold 預設 rev A/B
+   之三處誤值更正納入本裁定效力。
+4. **R-AM10（定案）**：R-G1 母本複本自 `forms/` 複入 `inputs/` 之一次性
+   代行授權成立（純 repo 內檔案搬移，非客戶來源置檔亦非 git 操作，
+   不在「檔案放置屬 Pei」範圍）。sha256 與 `forms/` 母本逐字相同已驗。
+   本授權僅及此一次搬移，不擴張為通案。
+
+備註：包 03 §一 已補遺第 5 項（R-G1 母本複本）並改「五件在位」；
+四件客戶來源之置檔仍屬 Pei，不在 R-AM10 授權內。

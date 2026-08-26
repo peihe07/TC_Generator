@@ -9,7 +9,9 @@
 feature: "Audio Management"
 test_group: "Audio Management"    # framework.md Layer 1；03 包 §二「Test Group 欄一律 Audio Management」
 
-# 四件來源之檔名逐字取自 03 包 §一（Pei 手動置入 inputs/，屬 Pei 之 Git 操作）。
+# 四件來源之檔名為 **inputs/ 之實際檔名**（2026-08-26 實測），非 01/03 包
+# 所記之正規化寫法 —— 兩者在點/連字號/空白處不同，照包抄則 resolve_path
+# 全部 glob 到 0 檔。見 A-AM01。
 # feature_config.resolve_path 要求每鍵恰好 glob 到 1 檔，故兩本 CFTS 錨源
 # 不得以單鍵表達 —— 比照 vehicle_setting 之具名後綴鍵慣例（R-VS60 型）。
 paths:
@@ -20,17 +22,33 @@ paths:
   workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
   # 檔 1 —— SWE.1 分析報告，驗證範圍主驅動（R-AM5：318 列全入範圍）。
   # 分頁名非標準（Part 01–04，無 Analysis Report），sniffer 必誤判 → R-AM1。
-  a03_report: "inputs/SWE_1_Audio_Management_Pending_For_Review.xlsx"
+  a03_report: "inputs/SWE.1_Audio_Management_Pending_For_Review.xlsx"
   # 檔 3 —— 錨源 Part 1（R-AM2）：245 物件，OID 4865821–4866154。
-  sys1_export: "inputs/CFTS019AudioManagementPart1_released_20260415.xlsx"
+  sys1_export: "inputs/CFTS019-AudioManagement-Part1_released_20260415.xlsx"
   # 檔 4 —— 錨源 Part 2（R-AM2）：566 物件，OID 4866155–4867787。
   # B1 全批之錨落在此本（4866451–4867769）。
-  sys1_export_part2: "inputs/CFTS_019_Part2_All_AcceptedExceptDTCrework.xlsx"
-  # 檔 2 —— 副檔名 .pdf 但內容實為純文字（Requirement Specification Report
-  # 匯出），01 包 §一實測。供章節上下文查閱，不作錨源。
-  spec_pdf: "inputs/R1LR_Atl-H_25PI3_5_Multimedia_-_Radio_and_Audio_CFTS_019_Audio_Management_20250910_1235.pdf"
+  sys1_export_part2: "inputs/CFTS 019_Part2 -All Accepted-Except-DTC-rework.xlsx"
+  # 檔 2 —— **真 PDF**，文字層完好（pdftotext 13,887 行、1,964 個唯一
+  # ObjectID、範圍 4865821–4867784，涵蓋 Part1+Part2 全文）。
+  # 01 包 §一 之「實為純文字，非 PDF」「副檔名與內容不符」與「234 個
+  # ObjectID」三項均與實測不符 —— 見 A-AM02。供章節上下文查閱，不作錨源。
+  spec_pdf: "inputs/R1LR_Atl-H_25PI3.5_Multimedia - Radio and Audio_CFTS 019_Audio Management_20250910_1235.pdf"
   # intake 未命中 Pop Up 素材；03 包亦未引用。
   popup_list: null
+
+# SWE.1 之 318 列散在四個分頁（Part 01=76、02=203、03=18、04=21），而
+# scripts/recon.py 之 survey_a03 只吃單一分頁。比照 vehicle_setting（R-VS4）：
+# recon 取列數最多者為代表，**leaf 全集以 `data/leaves.tsv` 為準**
+# （318 列／317 唯一 SWE ID，由 scripts/build_leaves.py 產）。
+# 故 RECON.md 之 leaf 數僅反映代表分頁，不可當作覆蓋率基準。
+paths_meta:
+  a03_sheet: "Audio-Management Part 02"
+  a03_header_row: 1        # 實測；資料自第 2 列起
+  a03_all_sheets:          # 全集之來源，供 build_leaves.py 與末站校驗
+    - "Audio-Management Part 01"
+    - "Audio-Management Part 02"
+    - "Audio-Management Part 03"
+    - "Audio-Management Part 04"
 
 spec_mode: "D"        # [PROPOSED] A/B/C/D/E per FEATURE_ONBOARDING §3
                       # 依據：錨定「looked up, never constructed」—— 錨值逐葉取自

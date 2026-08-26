@@ -7,6 +7,11 @@ data/recon.json
 batches/
 lint_report.json
 
+# data/leaves.tsv IS tracked on purpose: recon only surveys the representative
+# SWE.1 sheet (paths_meta.a03_sheet), so this file — not RECON.md — is the
+# authority for the 318-leaf set R-AM5 rules in scope. A diff on it is the
+# signal that the SWE.1 export moved underneath us.
+
 # data/spec_id_to_outline.tsv IS tracked on purpose where a feature builds
 # one: it is the traceability lookup every spec_reference is linted against,
 # and a diff on it is the signal that the spec export moved underneath us.
