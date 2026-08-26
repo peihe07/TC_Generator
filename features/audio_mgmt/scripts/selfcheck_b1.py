@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Package 03 section 3.8 self-check for a generated audio_mgmt batch.
 
+Covers canon 5.1 (forbidden step verbs) and 5.5 (the final step must observe
+something), plus an advisory hint on whether step 1 establishes state.
+
 Mechanical checks only — every rule here is one the handoff package states
 outright, so a failure is a defect and not a judgement call.
 
@@ -17,6 +20,30 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MODALS = re.compile(r"\b(shall|should|must|will|would|can|may|might)\b", re.I)
+
+# Canon 5.1, check A. Copied one-for-one from the canon so the two can be
+# diffed by eye — nine entries there, nine here. "observe whether" is
+# subsumed by "observe" as a matcher, but a list carrying eight where the
+# canon says nine cannot be checked against its own authority.
+FORBIDDEN_VERBS = ("observe whether", "observe", "see if", "check whether",
+                   "confirm whether", "verify", "watch", "monitor", "inspect")
+# Anchored at the step's own start. 5.1 allows `verify` inside a purpose
+# clause ("... to verify that ..."), so a substring test would fail legal
+# usage, and a gate that fails legal usage teaches authors to route around it
+# rather than to fix anything. Longest-first, so the reported verb is the
+# fullest phrase that matched.
+STEP_HEAD = re.compile(
+    r"^\s*\d+\.\s*(" + "|".join(sorted(FORBIDDEN_VERBS, key=len, reverse=True))
+    + r")\b", re.I)
+
+# Canon 5.5 — the final step must hold an observable verification target.
+# A PROXY, NOT THE CRITERION: the criterion is whether the step names
+# something a tester can actually read off the system, and that stays human
+# reviewed. This only catches a final step that performs an action and
+# observes nothing.
+OBSERVATION_VERBS = ("read", "measure", "record", "compare", "confirm")
+FINAL_STEP = re.compile(
+    r"^\s*\d+\.\s*(" + "|".join(OBSERVATION_VERBS) + r")\b", re.I)
 DELIVERY = ("test_item", "pre_conditions", "input_test_data",
             "test_procedure", "expected_result", "remarks")
 
@@ -47,8 +74,13 @@ def main() -> None:
             if MODALS.search(line):
                 bad(tc, f"expected_result uses a modal verb: {line[:50]}")
         proc = tc["test_procedure"].split("\n")
-        if not re.match(r"^\d+\.\s+Verify\b", proc[-1]):
-            bad(tc, "final step is not a Verify step")
+        for step in proc:
+            m = STEP_HEAD.match(step)
+            if m:
+                bad(tc, f"step opens with the 5.1 verb {m.group(1)!r}: "
+                        f"{step[:60]}")
+        if not FINAL_STEP.match(proc[-1]):
+            bad(tc, f"final step observes nothing (canon 5.5): {proc[-1][:60]}")
         if len(proc) != len(tc["expected_result"].split("\n")):
             bad(tc, "step count does not match expected-result count")
         if tc["design_method"] not in vocab:
@@ -65,6 +97,23 @@ def main() -> None:
         if tc["priority"] not in ("P0", "P1", "P2"):
             bad(tc, f"priority is {tc['priority']!r}")
 
+    # Advisory, not a gate. Calibrated against the time_management corpus:
+    # a first draft flagged any step 1 that was not Confirm/Read/Record and
+    # fired on 53 of 57 cases here and 27 of 35 there — it was flagging the
+    # dominant legitimate shape ("1. Open the ... settings"), so it was noise.
+    # What actually costs a tester is a case whose starting state is stated
+    # nowhere: pre_conditions says NA and step 1 goes straight to a stimulus.
+    # That reads 0/35 on time_management and isolates the real gaps here.
+    hints = []
+    for tc in data["tcs"]:
+        first = tc["test_procedure"].split("\n")[0]
+        if (str(tc["pre_conditions"]).strip().upper() == "NA"
+                and re.match(r"^\s*\d+\.\s*(Trigger|Activate|Press|Receive"
+                             r"|Switch|Set)\b", first)):
+            hints.append(f"{tc['req_id']}: pre_conditions is NA and step 1 "
+                         f"applies a stimulus, so the starting state is "
+                         f"stated nowhere: {first[:50]}")
+
     brackets = defaultdict(list)
     for tc in data["tcs"]:
         brackets[tc["req_id"]].append(tc["test_item"].split("(", 1)[1])
@@ -74,12 +123,17 @@ def main() -> None:
 
     print(f"{args.batch}: {len(data['tcs'])} TCs over "
           f"{data['leaves_authored']} leaves")
+    if hints:
+        print(f"\n{len(hints)} hint(s) — advisory, not a gate:")
+        for h in hints:
+            print(f"  {h}")
+
     if fails:
         print(f"\n{len(fails)} check(s) failed:")
         for f in fails:
             print(f"  {f}")
         sys.exit(1)
-    print("all checks pass")
+    print("\nall checks pass")
 
 
 if __name__ == "__main__":
