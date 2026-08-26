@@ -1,0 +1,89 @@
+# feature.yaml — pipeline configuration for Audio_Mgmt
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals. Regenerate nothing by editing code.
+#
+# 本檔之值一律回溯至 docs/handoff/01_intake_recon.md §三（R-AM1–R-AM7，
+# Pei 2026-08-26 裁）與 docs/handoff/03_batch_B1_handoff.md。未經裁定者
+# 標 [PROPOSED]，依 FEATURE_ONBOARDING §4：簽核時未動即成定案。
+
+feature: "Audio Management"
+test_group: "Audio Management"    # framework.md Layer 1；03 包 §二「Test Group 欄一律 Audio Management」
+
+# 四件來源之檔名逐字取自 03 包 §一（Pei 手動置入 inputs/，屬 Pei 之 Git 操作）。
+# feature_config.resolve_path 要求每鍵恰好 glob 到 1 檔，故兩本 CFTS 錨源
+# 不得以單鍵表達 —— 比照 vehicle_setting 之具名後綴鍵慣例（R-VS60 型）。
+paths:
+  # R-AM3：BLANK 起建。此鍵指向 R-G1 母本之複本，非既存 AudioAACP 舊簿。
+  # [BLOCKED] 母本尚未複入 inputs/ —— 03 包 §一只列了四件，漏列此第五件。
+  # 母本在 repo forms/ 下，但 resolve_path 之 glob 基準為本 feature 目錄，
+  # 故必須複製一份進 inputs/，不能跨目錄指涉。
+  workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
+  # 檔 1 —— SWE.1 分析報告，驗證範圍主驅動（R-AM5：318 列全入範圍）。
+  # 分頁名非標準（Part 01–04，無 Analysis Report），sniffer 必誤判 → R-AM1。
+  a03_report: "inputs/SWE_1_Audio_Management_Pending_For_Review.xlsx"
+  # 檔 3 —— 錨源 Part 1（R-AM2）：245 物件，OID 4865821–4866154。
+  sys1_export: "inputs/CFTS019AudioManagementPart1_released_20260415.xlsx"
+  # 檔 4 —— 錨源 Part 2（R-AM2）：566 物件，OID 4866155–4867787。
+  # B1 全批之錨落在此本（4866451–4867769）。
+  sys1_export_part2: "inputs/CFTS_019_Part2_All_AcceptedExceptDTCrework.xlsx"
+  # 檔 2 —— 副檔名 .pdf 但內容實為純文字（Requirement Specification Report
+  # 匯出），01 包 §一實測。供章節上下文查閱，不作錨源。
+  spec_pdf: "inputs/R1LR_Atl-H_25PI3_5_Multimedia_-_Radio_and_Audio_CFTS_019_Audio_Management_20250910_1235.pdf"
+  # intake 未命中 Pop Up 素材；03 包亦未引用。
+  popup_list: null
+
+spec_mode: "D"        # [PROPOSED] A/B/C/D/E per FEATURE_ONBOARDING §3
+                      # 依據：錨定「looked up, never constructed」—— 錨值逐葉取自
+                      # 03 包 §四表，執行層不得自行改錨。雖來源形態為 Polarion
+                      # xlsx export（近 A），但無 outline 可構造、無橋接欄可走
+                      # （F1），行為與 time_management / sxm 之 D 同型。
+spec_reference_template: "CFTS019-{object_id}"   # R-AM2 / IN §10.7(a)；一 ID 一行
+
+workbook:
+  # [PENDING] 以下版面參數待新簿建立後由 recon header match 實測確認。
+  # 母本與 time_management 同（forms/ 之 …_20260817_ext.xlsx），故預期為
+  # rev C 版面；但 scaffold 預設值為 rev A/B，兩者 design_method / author /
+  # remarks 欄位不同。yaml 原註明訓「do not guess」—— 此處不猜，
+  # 先鏡射 TM 之 rev C 實測值並標記待驗，recon 後回填。
+  sheet: "Test Case Specification 測試用例規範"   # rev C 版面，見 forms/FORMS.md
+  header_row: 9
+  # column letters, verified by recon header match — do not guess
+  columns:
+    req_id: "D"       # R-AM7：照抄 SWE1_AMM_{NNN} 底線式
+    tc_id: "F"        # rev C；Test Case ID
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    design_method: "R"      # rev C；Q 為 Estimated Test Time (mins)
+    functional_safety: "S"  # rev C
+    author: "AA"            # rev C；Z 為 Fastack (376) Atl-Mi
+    remarks: "AH"           # rev C
+
+done_region:
+  # detection: "author" (author-cell match) or "rows" (explicit ranges)
+  detection: "none"         # BLANK per R-AM3；新簿空白起建，無 done region
+  # author_value: 不適用 —— BLANK 下無 done region，留值會使 content_hash 在 0 列上恆真
+  # invariant: "content_hash" (interleaved-safe) or "positional"
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"     # 無 legacy 列可繼承大小寫（舊簿依 R-AM3 不續寫）
+  # [PROPOSED] 03 包 §二只給 `{project}-AMM-{NNN}`（IN §10.3），並註明
+  # 「project token 循 repo 既有慣例」。repo 既有慣例為 NR1L
+  # （舊 AudioAACP 簿之 NR1L_AudioMgnt_*、TM 之 NR1L-TimeManagement-*）。
+  # 分隔符取連字號以從 TM／canon，不從舊簿之底線式。待 Pei 確認。
+  tc_id_format: "NR1L-AMM-{n:03d}"
+  fill_test_group_set: true  # canon §2 —— true under BLANK
+
+lint:
+  design_method_source: "dropdown_sheet"   # exact-string vocabulary
+  popup_ids: []                            # 本 feature 無 Pop Up 引用
+  extra_rules: []                          # feature-specific lint hooks
