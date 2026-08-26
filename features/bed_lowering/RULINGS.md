@@ -144,3 +144,92 @@ SWE.6 範圍。不生成 TC、不列 coverage gap、不登 DR 向上游查詢。
 文件上區別不出來」，該結論不因本裁定而改變 —— 改變的是**由誰承擔該判斷**。
 留此註記使日後稽核讀得出本條之來源。
 ```
+
+---
+
+```
+R-BLM7（spec_mode —— 採 D）
+
+（Pei 2026-08-26 裁定，回應 A-BLM7。）
+
+`feature.yaml` 之 `spec_mode = D`（looked up, never constructed）。
+
+理由：A 建不起來 —— 其所需 outline map 需 037 `HMI Source ID` ∩
+SYS1 `SYSRE_HMI_Source ID`，實測為空（A-BLM4）。B 技術可行
+（PDF 文字層 21/21 頁、8,157 字元）但會為批次語料引入第二真相源，
+而 037 每 leaf 已帶完整 Requirement Description。D 與 R-BLM5 已裁之
+行為同族（null 編碼，R-VC8），三者中唯一自洽。
+
+後果：批次語料取 `data/leaf_inventory.tsv`（037 側）；規格 PDF 降為
+人讀參考，不入 prompt 語料。
+```
+
+---
+
+```
+R-BLM8（feature.yaml 實際形制與 spec_reference_template: null 之追認）
+
+（Pei 2026-08-26 裁定，回應 A-BLM6。）
+
+追認執行層已落檔之形制：巢狀 yaml（`cfg["workbook"]["columns"]` 與
+`cfg["paths"]`，依 `scripts/feature_config.py` 實際 loader），且
+`spec_reference_template: null` —— 該值為管線既有之「查得而不構造」
+編碼（recon.py:908 之 R-VC8 註），非新增枚舉，不改 schema。
+
+下放包 02 §二之字面指示（扁平鍵 + `literal_037_hmi_source_id`）作廢：
+實測該字串不含 `{outline}`，replace 為 no-op，176 列 N 欄會被靜默寫入
+字面字串；鍵省略亦非安全（預設 `{outline}` → 裸章節號）。
+null 為唯一合於 R-BLM5 之編碼。
+```
+
+---
+
+```
+R-BLM9（參考資料庫之版本綁定 —— 沿 vehicle_setting）
+
+（Pei 2026-08-26 裁定，回應 A-BLM9。）
+
+`dbc_b`／`dbc_fd`／`lid`／`proxi` 四庫沿 `vehicle_setting` 現綁之版本
+（同 FROP、同 N1L 車系）。執行層自 `features/vehicle_setting/feature.yaml`
+之 `reference:` 節逐字抄綁定並實算 sha256 回報；
+vehicle_setting 若未綁全四項，缺項列出停下回報待 Pei 點名，不得自擇。
+```
+
+---
+
+```
+R-BLM10（R-G 引用之臨時讀法 —— 本 feature 一律 FO）
+
+（Pei 2026-08-26 裁定，回應 A-BLM8。）
+
+R-G12 ~ R-G20 於 FO 與 RULINGS_LEDGER 兩份權威間撞號（A-BLM8 實測）。
+本 feature 期間，該段號之引用**一律取 FO 讀法**（下放包 02 已如此
+執行，追認）。撞號本身屬全域線，另開全域收尾包擇一側重編號，
+不在 feature 線解。
+```
+
+---
+
+```
+R-BLM11（四庫點名 —— 採乙）
+
+（Pei 2026-08-26 裁定，回應上繳包 03 §三之停下請示。）
+
+採讀法乙：四庫綁 `vehicle_setting` 實際在用之四檔 ——
+
+  lid    = Logical Identifiers and CAN Mapping v1_76.xlsx
+           ffceac36e9db145dc0311a25435b15249835e077bab264e71a95b0fb37a98ef4
+  dbc_b  = PDT27_E2A_R4_BHCAN.dbc
+           9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0
+  dbc_fd = PDT27_E2A_R5_FDCAN8.dbc
+           51c8fd6092925071bbf443711e5161d78df292de232dc7427b1cceaa8f181cd2
+  proxi  = PROXI_HDCC27_R3_20250424.xlsx
+           e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2
+
+（上列雜湊為上繳包 03 §3.3 之實算值，供對帳；寫入時仍自實體檔重算，
+不符即停，下放包 03 §三-2 之規定不變。）
+
+與 `display` 現綁版本三項相異（LID v1_76 vs v1_78、兩支 DBC 皆異），
+為已知且被接受之後果（R-G15 立條之既存歧異），非新分叉。
+台架基線若日後換版，四庫改綁另裁，不回溯本條。
+```
