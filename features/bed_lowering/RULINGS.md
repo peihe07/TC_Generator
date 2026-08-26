@@ -327,3 +327,26 @@ R-BLM14（pilot 退出、寫回授權、reasoning 單位定式）
 (4) 工程債三件（generator 實跑、lint_tcs、recon）不擋寫回，
     **續批開工前須收**。
 ```
+
+---
+
+```
+R-BLM15（上繳 07 四題之裁）
+
+（Pei 2026-08-26 裁定：「准 2 准 3 准 4 送」。）
+
+(1) recon 兩條 assertion 採選項 1（改宣告）：下放包 02 之
+    recon_assertions 兩鍵重宣為 R-BLM5 一致之期望 ——
+    `N 欄原值相異數 = 1 且 = R-BLM5 常數`、`可解析章節數 = 0`。
+    原宣告量錯對象（解析後 stem 非欄位原值），作廢留痕。
+    不動全域腳本（選項 2 屬全域線）、不留恒 FAIL（選項 3 為
+    警報疲勞來源）。DECISIONS.md 回復產出，定位為機器摘要；
+    RULINGS.md 維持本 feature 裁決權威。
+(2) `functional_safety`／`test_version` 兩常數不直接追認：
+    執行層自 AMFM 已交付本（v1 tagged）與 SWC 0708 實測該兩欄
+    值域回報；查得既定值則 13 列 patch，查無則 Pei 點名。
+(3) 續批順序照下放包 07 §四表准（B1 = Restore And Exit 9 leaf 起）。
+(4) DR-1 裁定送出。送出動作由 Pei 執行，送出日由 Pei 回填
+    DATA_REQUESTS.md；未復前 B1 依 IN §8.4.3 落
+    `PENDING: DR-1 BLM operating speed threshold value`。
+```
