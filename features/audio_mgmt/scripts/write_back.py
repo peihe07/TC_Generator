@@ -158,8 +158,26 @@ def first_free_row(ws, cols: dict, header_row: int) -> int:
     return row
 
 
+def next_tc_seq(ws, cols: dict, header_row: int) -> int:
+    """Continue the tc_id sequence rather than restarting it per batch.
+
+    Deriving the next number from the rows already in the workbook is the
+    only way that holds across batches: taking it from the batch's own
+    offset gave B2 the same NR1L-AMM-001..066 that B1 had already used.
+    """
+    seq = 0
+    row = header_row + 1
+    while ws.cell(row=row, column=cols["req_id"]).value not in (None, ""):
+        val = str(ws.cell(row=row, column=cols["tc_id"]).value or "")
+        m = re.search(r"(\d+)\s*$", val)
+        if m:
+            seq = max(seq, int(m.group(1)))
+        row += 1
+    return seq + 1
+
+
 def write_rows(ws, cols: dict, tcs: list[dict], cfg: dict,
-               start_row: int) -> dict:
+               start_row: int, start_seq: int) -> dict:
     wb_cfg = cfg["write_back"]
     fmt = wb_cfg.get("tc_id_format")
     if not fmt or "{n" not in fmt:
@@ -171,11 +189,14 @@ def write_rows(ws, cols: dict, tcs: list[dict], cfg: dict,
         row = start_row + offset
         for key in DELIVERY_KEYS:
             ws.cell(row=row, column=cols[key]).value = tc.get(key, "")
-        ws.cell(row=row, column=cols["tc_id"]).value = fmt.format(n=offset + 1)
+        ws.cell(row=row, column=cols["tc_id"]).value = fmt.format(
+            n=start_seq + offset)
         ws.cell(row=row, column=cols["tc_ref_id"]).value = wb_cfg["tc_ref_id_value"]
         ws.cell(row=row, column=cols["author"]).value = wb_cfg["author_value"]
     return {"rows": len(tcs), "first_row": start_row,
-            "last_row": start_row + len(tcs) - 1, "tc_id_format": fmt}
+            "last_row": start_row + len(tcs) - 1, "tc_id_format": fmt,
+            "first_tc_id": fmt.format(n=start_seq),
+            "last_tc_id": fmt.format(n=start_seq + len(tcs) - 1)}
 
 
 def check_written_back(out: Path, sheet: str, cols: dict, plan: dict,
@@ -210,12 +231,20 @@ def main() -> int:
     ap.add_argument("--write", action="store_true",
                     help="actually write; without it this is a dry run")
     ap.add_argument("--out", default=None)
+    # A batch writes into the previous batch's output, not into a fresh copy
+    # of the master: the delivered workbook is cumulative, and starting from
+    # the master again would silently drop every row already written.
+    ap.add_argument("--source", default=None,
+                    help="workbook to append into (default: paths.workbook)")
     args = ap.parse_args()
 
     cfg = yaml.safe_load((FEATURE / "feature.yaml").read_text(encoding="utf-8"))
     sheet = cfg["workbook"]["sheet"]
     header_row = int(cfg["workbook"]["header_row"])
-    src = next(FEATURE.glob(cfg["paths"]["workbook"]))
+    src = (Path(args.source) if args.source
+           else next(FEATURE.glob(cfg["paths"]["workbook"])))
+    if not src.is_file():
+        raise WriteBackError(f"source workbook not found: {src}")
     data = json.loads((FEATURE / "generated" / f"{args.batch}.json")
                       .read_text(encoding="utf-8"))
     tcs = data["tcs"]
@@ -224,7 +253,8 @@ def main() -> int:
     ws = wb[sheet]
     cols = resolve_columns(ws, header_row, cfg)
     start = first_free_row(ws, cols, header_row)
-    plan = write_rows(ws, cols, tcs, cfg, start)
+    seq = next_tc_seq(ws, cols, header_row)
+    plan = write_rows(ws, cols, tcs, cfg, start, seq)
 
     print(f"source     : {src.name}")
     print(f"  sha256   : {sha256_file(src)}")
@@ -232,7 +262,7 @@ def main() -> int:
     print(f"columns    : resolved from header text, {len(cols)} fields")
     print(f"batch      : {args.batch}, {plan['rows']} TCs -> rows "
           f"{plan['first_row']}-{plan['last_row']}")
-    print(f"tc_id      : {plan['tc_id_format']}")
+    print(f"tc_id      : {plan['first_tc_id']} .. {plan['last_tc_id']}")
 
     if not args.write:
         print("\ndry run — nothing written. Pass --write to emit.")
@@ -244,7 +274,10 @@ def main() -> int:
     cf = check_conditional_formatting(src, out)
     check_written_back(out, sheet, cols, plan, tcs)
 
-    print(f"\nwrote      : {out.relative_to(REPO_ROOT)}")
+    shown = out.resolve()
+    shown = (shown.relative_to(REPO_ROOT)
+             if shown.is_relative_to(REPO_ROOT) else shown)
+    print(f"\nwrote      : {shown}")
     print(f"  sha256   : {sha256_file(out)}")
     print(f"  members  : {report['members']}, patched "
           f"{report['members_patched']}")

@@ -35,4 +35,5 @@ DR 送出屬 Pei；分析層僅代擬。
 | DR-AM4 | 供應之兩本 DBC（PDT27_E2A_R1_FDCAN8／BHCAN2）缺 `$HUModeStatus$` 與 `$VolumeENT$`，且無任何命名變體或 volume 類訊號。請補 HU 側 CAN 定義或指明正確 DBC | 待 Pei 送出 | B1 之 6 條 TC；全簿凡引 HU 模式／音量訊號者 | **不卡批** —— 依 R-13 (g) 保留 CFTS 原文名交付，DBC 到位後回填全名與 label | A-AM05 | 中 |
 | DR-AM5 | CFTS019 以 `<Temp Ramp Down>` / `<Temt Ramp Down>` 指涉一個全文未定義之參數（出現 10 次），疑為 `<Tent Ramp Down>`（4867767）之拼寫錯誤。請上游確認或更正 | 待 Pei 送出 | B1 之 3 條 TC（SWE1_AMM_203／206／208） | **不卡批** —— 行為面已驗證，僅時序界值待補 | A-AM04 | 中 |
 | DR-AM6 | `{CFTS020}` 不在 `inputs/`。CFTS019-4866123（$ICSPowerButton$ 靜音邏輯）將行為本體外包至該文件，SWE1_AMM_061 之音量/靜音狀態、螢幕 On/Off、螢幕優先權判斷於 CFTS019 全文皆無對應。請補件或指明替代來源 | 待 Pei 送出 | B2 之 SWE1_AMM_061 | 不卡批（錨可定，行為細節掛 PENDING） | A-AM07 | 中 |
+| DR-AM8 | `<vent off>`（CFTS019-4866818，Alternate Audio 之 Main Audio 衰減量）全文僅出現一次且無定義列。與 `<Vent Nav Off>`（= 9 steps，4867783）為不同參數，不得互代。請上游補定義 | 待 Pei 送出 | B2 之 SWE1_AMM_287 | 不卡批（行為面已驗，僅衰減量待補） | A-AM08 | 中 |
 
