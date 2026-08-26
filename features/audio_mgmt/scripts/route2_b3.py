@@ -27,7 +27,8 @@ FEATURE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(FEATURE.parent.parent / "scripts"))
 from feature_config import load_feature_config, resolve_path  # noqa: E402
 
-HANDOFF = FEATURE / "docs" / "handoff" / "10_B3_anchor_candidates.md"
+HANDOFFS = {"B3": "10_B3_anchor_candidates.md",
+            "B4": "13_B4_anchor_candidates.md"}
 
 
 def pool() -> dict[str, dict]:
@@ -69,16 +70,20 @@ def swe_rows() -> dict[str, list[dict]]:
     return out
 
 
-def grades() -> dict[str, list[tuple[str, str]]]:
-    t = HANDOFF.read_text(encoding="utf-8")
+def grades(batch: str) -> dict[str, list[tuple[str, str]]]:
+    t = (FEATURE / "docs" / "handoff" / HANDOFFS[batch]).read_text(
+        encoding="utf-8")
     a = t[t.index("## 一、A 級"):t.index("## 二、B 級")]
     b = t[t.index("## 二、B 級"):t.index("## 三、C 級")]
-    return {"A": re.findall(r"\|\s*(SWE1_AMM_\d+)\s*\|\s*CFTS019-(\d+)", a),
-            "B": re.findall(r"\|\s*(SWE1_AMM_\d+)\s*\|\s*CFTS019-(\d+)", b)}
+    # Package 10 writes the anchor as CFTS019-nnnnnnn, package 13 as the bare
+    # id. Accept either rather than assuming one house style holds.
+    pat = r"\|\s*(SWE1_AMM_\d+)\s*\|\s*(?:CFTS019-)?(48\d{5})"
+    return {"A": re.findall(pat, a), "B": re.findall(pat, b)}
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--batch", default="B4", choices=["B3", "B4"])
     ap.add_argument("--grade", choices=["A", "B"])
     ap.add_argument("--leaf")
     ap.add_argument("--oid", help="print one pool row and stop")
@@ -93,7 +98,7 @@ def main() -> int:
         return 0
 
     swe = swe_rows()
-    g = grades()
+    g = grades(args.batch)
     pairs = ([(args.leaf, o) for gr in g.values() for s, o in gr if s == args.leaf]
              if args.leaf else g[args.grade])
     for sid, oid in pairs:
