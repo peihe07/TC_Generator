@@ -33,7 +33,22 @@ from feature_config import load_feature_config, resolve_path  # noqa: E402
 HANDOFF = {"B1": ROOT / "docs" / "handoff" / "03_batch_B1_handoff.md",
            "B2": ROOT / "docs" / "handoff" / "08_B2_final_anchors.md",
            "B3": ROOT / "docs" / "handoff" / "12_B3_final_anchors.md",
-           "B4": ROOT / "docs" / "handoff" / "13_B4_anchor_candidates.md"}
+           "B4": ROOT / "docs" / "handoff" / "13_B4_anchor_candidates.md",
+           "B5": ROOT / "docs" / "handoff" / "18_B5_anchor_candidates.md"}
+
+# B5: package 18's A and B tables, with package 20's rulings applied. 293 is
+# held — package 20 section 2.3 authorised writing it only if route 2 found
+# an in-pool anchor, and 4866193 is out of pool, so it goes back as a single
+# item rather than being written on one route.
+B5_HELD = {"SWE1_AMM_293"}
+B5_SET = {"011": "Tones and Alerts", "012": "Tones and Alerts", "016": "Audio Processing", "017": "Tones and Alerts", "018": "Tones and Alerts", "019": "Tones and Alerts", "021": "Tones and Alerts", "022": "Tones and Alerts", "023": "Tones and Alerts", "025": "Audio Processing", "029": "Audio Processing", "033": "Tones and Alerts", "034": "Tones and Alerts", "035": "Audio Processing", "036": "Tones and Alerts", "037": "Tones and Alerts", "038": "Tones and Alerts", "039": "Tones and Alerts", "040": "Tones and Alerts", "041": "Audio Processing", "042": "Audio Processing", "043": "Audio Processing", "045": "Audio Processing", "046": "Audio Processing", "047": "Audio Processing", "048": "Audio Processing", "049": "Audio Processing", "080": "Tones and Alerts", "106": "Tones and Alerts", "107": "Tones and Alerts", "109": "Audio Processing", "125": "Audio Processing", "126": "Audio Processing", "127": "Tones and Alerts", "128": "Tones and Alerts", "160": "Audio Processing", "168": "Audio Processing", "222": "Audio Processing", "279": "Tones and Alerts", "280": "Tones and Alerts", "281": "Tones and Alerts", "282": "Tones and Alerts", "283": "Tones and Alerts", "284": "Tones and Alerts", "285": "Tones and Alerts", "292": "Tones and Alerts", "293": "Tones and Alerts", "294": "Tones and Alerts", "304": "Tones and Alerts", "305": "Tones and Alerts"}
+B5_RULED = {
+    "SWE1_AMM_021": ["4865986"], "SWE1_AMM_023": ["4865986"],
+    "SWE1_AMM_040": ["4865982"], "SWE1_AMM_292": ["4866173"],
+    "SWE1_AMM_294": ["4866173"], "SWE1_AMM_025": ["4866311"],
+    "SWE1_AMM_168": ["4866594"], "SWE1_AMM_281": ["4865984"],
+    "SWE1_AMM_304": ["4866200"], "SWE1_AMM_305": ["4866201"],
+}
 
 # B4 runs under the R-AM20 green channel, so its leaf set is assembled from
 # package 13's A and B tables plus route 2's own resolutions rather than from
@@ -148,17 +163,24 @@ def parse_handoff(batch: str) -> list[dict]:
                  "anchor_note": m.group(6)}
                 for m in ROW_RE.finditer(text)]
 
-    if batch == "B4":
+    if batch in ("B4", "B5"):
+        held = B4_HELD if batch == "B4" else B5_HELD
+        ruled = B4_ROUTE2 if batch == "B4" else B5_RULED
         a = text[text.index("## 一、A 級"):text.index("## 二、B 級")]
         b = text[text.index("## 二、B 級"):text.index("## 三、C 級")]
         pat = r"\|\s*(SWE1_AMM_\d+)\s*\|\s*(?:CFTS019-)?(48\d{5})\s*\|\s*([✓✗])"
         rows = {m.group(1): ([m.group(2)], m.group(3) == "✓")
                 for m in re.finditer(pat, a + b)}
-        rows.update({k: (v, bool(v)) for k, v in B4_ROUTE2.items()})
+        # Package 18 writes its B table as a prose shorthand, 034->4866058,
+        # rather than as table rows; take both forms.
+        rows.update({f"SWE1_AMM_{n}": ([o], None)
+                     for n, o in re.findall(r"\b(\d{3})→(48\d{5})\b", b)})
+        rows.update({k: (v, bool(v)) for k, v in ruled.items()})
+        sets = B4_SET if batch == "B4" else B5_SET
         return [{"swe_id": k, "anchors": v[0], "anchor_in_pool_ruled": v[1],
                  "coverage": "完整" if v[0] else "PENDING: DR-AM1",
-                 "test_set": B4_SET[k.split("_")[-1]]}
-                for k, v in sorted(rows.items()) if k not in B4_HELD]
+                 "test_set": sets.get(k.split("_")[-1], "")}
+                for k, v in sorted(rows.items()) if k not in held]
 
     head = "## 一、定案錨表" if "## 一、定案錨表" in text else "## 二、定案錨表"
     tail = ("## 二、逐案處置" if "## 二、逐案處置" in text
