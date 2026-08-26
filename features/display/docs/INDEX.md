@@ -37,7 +37,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 30 ＋ 30a | 2026-08-26 | 追五個轉指條號；R-DM51 依據補驗；DR-DM7 結案 | [handoff/30_crossref_chase.md](handoff/30_crossref_chase.md)、[30a](handoff/30a_vf169.md) | [upstream/30_crossref_chase.md](upstream/30_crossref_chase.md) | R-G37（全域）；R-G27 指標 | A11 關閉；A13／B24／B25 新增；B23 解除；DR-DM7 CLOSED；A-DM20 改標 | **停止條件 79／80／81 皆未觸發；TC 一字未動** |
 | 31 | 2026-08-26 | 讀 71 條漏網；自陳即驗入條 | [handoff/31_missed_clauses.md](handoff/31_missed_clauses.md) | [upstream/31_missed_clauses.md](upstream/31_missed_clauses.md) | R-G38（全域）；R-G22 指標 | A-DM33 母體加註；A14／B26／B27 新增；B24 解除 | **停止條件 84／85／86 皆未觸發；三項重測皆不變；TC 一字未動** |
 | 32 | 2026-08-26 | 開第三批 `ops-01` 之勘查（**停止條件 87 觸發，未生成**） | [handoff/32_ops01.md](handoff/32_ops01.md) | [upstream/32_ops01.md](upstream/32_ops01.md) | （無新條文；PLAYBOOK §5a 慣例） | A-DM37 增列；A-DM33 加註複核；A15／A16／B28／B29 新增；B26 併入 | **T1b 適用條文 172 條 > 30 → 停手不生成** |
-| 33 ＋ 34 | 2026-08-26 | `ops-01` 生成；**22 條寫回 036**；收尾 | [handoff/33_ops01_scoped.md](handoff/33_ops01_scoped.md)、[34](handoff/34_closeout.md) | [upstream/33](upstream/33_ops01_scoped.md)、[34](upstream/34_closeout.md) | R-G39（全域）；R-DM56／R-DM57 | B30–B33 入 BACKLOG（R-DM57(b)） | **lint 22 條全 0；完整性計數逐項相等；回讀 22×15 不符 0** |
+| 33 ＋ 34 | 2026-08-26 | `ops-01` 生成；**23 條寫回 036**；收尾（含 B20 追補） | [handoff/33_ops01_scoped.md](handoff/33_ops01_scoped.md)、[34](handoff/34_closeout.md) | [upstream/33](upstream/33_ops01_scoped.md)、[34](upstream/34_closeout.md) | R-G39（全域）；R-DM56／R-DM57 | B30–B33 入 BACKLOG（R-DM57(b)） | **lint 23 條全 0；完整性計數逐項相等；回讀 23×15 不符 0** |
 
 ## 02 輪要點
 
@@ -993,11 +993,11 @@ monitor rate／limp-in action）。
 
 | 項 | 值 |
 |---|---|
-| 寫入列 | 10 – 31（22 列），`TC-DM-001` … `TC-DM-022` |
+| 寫入列 | 10 – 32（23 列），`TC-DM-001` … `TC-DM-023` |
 | 方式 | **XML 外科式** —— 只改 `sheet6.xml`，其餘 47 個 zip 部件逐 byte 原樣重打包 |
 | 完整性 | dataValidation 4/4、x14 2/2、worksheets 9/9、drawings 6/6、rels 16/16、zip 48/48 —— **逐項相等** |
 | R 欄下拉 | `x14:dataValidation` `xm:sqref = R10:R1411` —— 寫入列在其內 |
-| 回讀 | 22 列 × 15 欄，**不符 0**；第 32 列為空 |
+| 回讀 | 23 列 × 15 欄，**不符 0**；第 33 列為空 |
 | 來源 sha | `6372fb6be02f48dc…` **未變** |
 
 ### 覆蓋：7/8 leaf 有 TC，**無一為全覆蓋**
@@ -1008,3 +1008,44 @@ monitor rate／limp-in action）。
 
 其餘七 leaf 皆為部分覆蓋，每一 deferred token 皆於各 TC 括號下半逐字指名
 （雙向檢查 0／0）。**未結 DR 11 筆**，清單見上繳 34 §五。
+
+## 33／34 輪之追補（B20，Pei 裁「補」）
+
+讀 `33_ops01_resume.md`（同日之另一份 33 包，對 A16 給 (D) 而非 (B)）時發現：
+**本輪 `ops-01` 之 E3 排除規則誤殺兩條。**
+
+規則為「`sleep/wake` 命中而本體無 `Sleep Mode` 者判為偽陽性」，
+而 `{4819710}`／`{4820824}`（架構副本，`[Radio:R1M, R1H][EE:Atlantis High]`，
+**適用本專案**）寫的是 `While vehicle is asleep` —— 不含 `Sleep Mode` 四字。
+
+> `Wake Up by DCSD Power Button Pressed: … pressing Power button on DCSD shall
+> cause the radio to turn on and enter "Timed Mode". … the DCSD shall wake CAN
+> and send signal $DCSD_Power$ = [Pressed] **for 250 ms** after CAN wake.`
+
+**它不是偽陽性** —— 主題正是 sleep → wake 之轉換，且**帶具體值 `250 ms`**
+（本 feature 罕見：037 八條之數值＋單位為 0/8）。
+
+**兩份 33 包之相容性（實測）**：本輪實際保留 **52** 條、`_resume` 之 (D) 為 **55** 條，
+**52 為 55 之真子集**，差集恰為 E3 之三條；**(D) 未多排除任何一條**。
+修訂後之停止條件 87（`30 × leaf 數` = 90）在兩種裁定下皆不觸線。
+
+**補軸之 leaf（34a §一.1 裁定）**：歸 **`SWE1-DM-001`** 而非 003 ——
+理由為「001 需求文逐字含 `timeout conditions`」。本層原擬歸 003，依裁定改列。
+
+**【具名】34a §一.1 之條號有誤**：其寫「`{4819710}`（＝`{4819820}` 架構副本）」，
+而 **`{4819820}` 實為 `§1.8.2.3.10 Haptic Buttons Audio feedback`**
+（`$HSW_DCSD$ = [Pressed]` → 播確認音 CONF1），**與喚醒無關**。
+真正之副本為 **`{4820824}`**（`§1.15.2.2`，逐字相同）。故並列 `{4819710}`／`{4820824}`，
+**不引 `{4819820}`** —— 引之會把一條觸覺回饋音需求放進喚醒軸之追溯欄。
+
+**補軸之拼法判定**：`$DCSD_Power$ = [Pressed]`，而 DBC `DIS_CENTERSTACK.DCSD_Power`
+之 `VAL_` 為 `0 "Button_Not_Pressed" 1 "Button_Pressed"` —— **逐字不等**
+（規格他處另寫 `[Power Button Pressed]`／`[pressed]`，**三種書寫皆不等**）。
+依 R-DM48 **不寫 raw**，ER 只驗可觀察行為與 `250 ms` 之發送時長。
+
+**全套重驗**：`ops-01` 13→14 條、合計 **23** 條；lint 二十項全 0；
+雙向 0／0；完整性逐項相等；回讀 23×15 不符 0；來源母本 sha 仍未變。
+**`SWE1-DM-001` 由 8 條增為 9 條**（34a §二）；`SWE1-DM-003` 維持 2 條。
+`output/` 之 xlsx **不入 git**（Pei 明示；34a §一.4 建議入，兩者相左，以 Pei 為準）。
+
+另一條被 E3 排除者 `{4819253}`（FPDM 之 DTC 監測參數）**排除正確**。

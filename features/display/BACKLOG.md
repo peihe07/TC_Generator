@@ -23,6 +23,27 @@
 
 ---
 
+> **A16 結案（`33_ops01_resume` §二，2026-08-26）**：ops-01 之母體界定
+> **裁定採 (D) ＝ (B) − 已為 rvc-01／pilot-01 支撐條文者**（機械層＋原則層）。
+> (A) 否決：提及共用訊號 ≠ 屬於本批主題。
+> (C) 否決：001 以「發送訊號請求」為主要動作，「不含訊號提及」之定義
+> 把核心動作篩掉是**必然結果，非巧合**。
+>
+> **本輪實測之相容性**：本層執行 `33_ops01_scoped` 之 (B)＋E1/E2/E3 得
+> **52 條**；依 (D) 之定義重算得 **55 條**。**52 為 55 之真子集**，
+> 差集恰為 E3 之三條（其中兩條為誤殺，見 B20）。**(D) 未多排除任何一條。**
+>
+> **停止條件 87 之修訂**（`33_ops01_resume` §三）：
+> **逾 `30 × 批內 leaf 數` → 停**。ops-01（3 leaf）之線 = **90**。
+> (B) 88 ≤ 90、(D+E3) 52 ≤ 90 —— **兩種裁定下本批皆不觸線**，
+> 而 32 輪之停手係因原 87 未隨 leaf 數縮放（分析層自認之病灶）。
+> **本修訂不溯及前兩批。**
+>
+> **§2.4 之指令缺陷（併 A16 記錄）**：包 32 之指令未區分「界定詞」與
+> 「標註詞」；三個訊號提及詞應為勘查表之**標註欄**而非母體界定條件。
+> **本輪之勘查表未加該標註欄**（`ops-01` 已生成，其 `reasoning` 之
+> 逐條拼法判定承載了同等資訊）。
+
 ## B 類 —— 鷹架品質
 
 > **編號之界（2026-08-26 更正）**：本節之 `B1`… 與**各上繳包 §分流之
@@ -56,6 +77,39 @@
 | B16（＝分流 B31） | `{4819575}` 轉指之 `HMI core specification requirement H4` 未取得 | 34 §2.4 | **未開 DR** —— R-DM57(a) 禁開新異常；惟此為新的未取得素材，解凍後應補 |
 | B17（＝分流 B32） | `ops-01` 之 14 軸由本層自 52 條歸納 | 34 §七 | **歸納過程無第二來源核對**。R-G39 定「行為軸產出 TC」而**未定「軸如何歸納」** |
 | B18（＝分流 B33） | 037 之範圍未涵蓋 FPDM／CCDMF／CCDMR | 33 §五 (ii) | 七條 `[Radio:R1H][EE:Atlantis High]` 之專條**適用本車而不在 037 八條內**。非本 feature 之缺陷（範圍由 037 界定），交付面應知悉 |
+
+| B19（＝分流 B29，**已消解**） | `sleep/wake` 命中 RVC 之 `wake up the DCSD` | 32 §2.4；**33_resume §2.3 消解** | ~~偽陽性~~ **隨 (D) 之原則層消解** —— RVC 條文全數被「行為由 007／008 擁有」排除，該詞本身不撤 |
+| ~~B20~~ | ~~本輪之 E3 規則誤殺兩條~~ **已補（Pei 2026-08-26 裁「補」）** | 34 輪執行後、讀 `33_ops01_resume` 時發現 | **已補為 `ops-01` 之第 14 軸**（`TC-DM-023`）；`ops-01` 13→14 條、寫回 22→23 條。詳見下方框註與上繳 34 §八 |
+
+> **B20 之內容（`{4819710}`／`{4820824}`）**
+>
+> 本輪 `ops-01` 之 E3 排除規則為「`sleep/wake` 命中而本體無 `Sleep Mode` 者
+> 判為偽陽性」。該規則誤殺兩條逐字相同之架構副本：
+>
+> > `Wake Up by DCSD Power Button Pressed: While vehicle is asleep (or awake
+> > with ignition in off state) pressing Power button on DCSD shall cause the
+> > radio to turn on and enter "Timed Mode". When Power button is pressed on
+> > DCSD, the DCSD shall wake CAN and send signal $DCSD_Power$ = [Pressed]
+> > for 250 ms after CAN wake.`
+>
+> —— `[Radio:R1M, R1H] [EE Architecture:Atlantis High]`，**適用本專案**。
+>
+> **它不是偽陽性**：其主題正是 sleep → wake 之轉換，且**帶具體值 `250 ms`**
+> （本 feature 罕見 —— 037 八條之數值＋單位為 0/8）。誤殺之原因是我的
+> 規則要求本體逐字含 `Sleep Mode`，而該條寫的是 `While vehicle is asleep`。
+>
+> `33_ops01_resume` §2.3 對此有明文：「該詞本身不撤：003 之
+> `sleep-to-wakeup transition` 是逐字需求文，其命中**非 RVC 之**條文
+> （如 Startup Sequence）仍屬本批。」**若採該包之 (D)，這兩條會被保留。**
+>
+> **處置（Pei 2026-08-26 裁「補」）**：已補為 `ops-01` 之第 14 軸（`TC-DM-023`，leaf 003）。
+> 拼法判定：`$DCSD_Power$ = [Pressed]` 與 DBC 之 `Button_Pressed` **逐字不等**，
+> 依 R-DM48 **不寫 raw**；ER 只驗可觀察行為與 `250 ms` 之發送時長。
+> 新增 deferred `power button signal value`（DR-DM9），003 三條之括號下半皆已指名。
+> **全套重驗**：lint 23 條二十項全 0、雙向 0／0、完整性逐項相等、回讀 23×15 不符 0。
+>
+> 另一條 `{4819253}`（FPDM 之 `For monitor type … After ECU Wake-up`）
+> **排除正確** —— 其為 FPDM 之 DTC 監測參數，非 DCSD 顯示狀態。
 
 ---
 

@@ -368,3 +368,122 @@ feat(display): generate the operative state batch and write all 22 cases back
 - **B33**：未用材料表之 (ii) 七條 FPDM／CCDMF／CCDMR 條文為
   `[Radio:R1H][EE:Atlantis High]` 之專條、**適用本車而不在 037 八條內** ——
   037 之範圍未涵蓋該三個顯示模組。
+
+---
+
+## 八、追補（下放包 34a 之裁定）
+
+### 8.1 34a 之六項裁定 —— 逐項處置
+
+| # | 裁定 | 處置 |
+|---|---|---|
+| 1 | 補 1 條，leaf **`SWE1-DM-001`** | **已補**（`TC-DM-023`）。本層原擬歸 003（`sleep-to-wakeup`），依裁定改列 001 |
+| 2 | 重跑寫回 22 → 23，§3.2／3.3／3.4 全套重做 | **已重做**，見 §8.4 |
+| 3 | `output/` 之偏離**追認**，34 包 §3.1 由本件更正 | 已知悉；本層 §3.1 之記載維持（其為當時之偏離紀錄） |
+| 4 | `output/` 之 xlsx **入 git** | **未入** —— **Pei 2026-08-26 於本輪明示「不入 commit」**。34a 亦載「執行仍屬 Pei」，以 Pei 之明示為準。**兩者相左，具名於此** |
+| 5 | B31 之 H4 於 DR-DM2 補充函末追加一行 | **已加**（`DATA_REQUESTS.md` 之 DR-DM2 補充函 (c)） |
+| 6 | 33 包重號為平行會話碰撞，處置正確 | 已在 BACKLOG，不另動作 |
+
+### 8.2 【具名】34a §一.1 之條號有誤
+
+34a 寫「`{4819710}`（＝`{4819820}` 架構副本擇一引用，兩號並列）」。
+
+**實測：`{4819820}` 不是該架構副本。**
+
+| 條 | 章節 | 逐字 |
+|---|---|---|
+| `{4819710}` | `§1.8.2.2 Wake Up for DCSD Power Button` | `Wake Up by DCSD Power Button Pressed: While vehicle is asleep …` |
+| **`{4819820}`** | **`§1.8.2.3.10 Haptic Buttons Audio feedback`** | **`When the HU receives $HSW_DCSD$ = [Pressed], the HU shall play the confirmation tone CONF1.`** |
+| **`{4820824}`** | **`§1.15.2.2 Wake Up for DCSD Power Button`** | 與 `{4819710}` **逐字相同**（真正之架構副本） |
+
+三者皆 `[Radio:R1M, R1H] [EE:Atlantis High]`、皆適用本專案。
+**`specification_reference` 並列 `{4819710}`／`{4820824}`，不引 `{4819820}`** ——
+引之會把一條觸覺回饋音需求放進喚醒軸之追溯欄。
+
+### 8.3 補軸之全文（`TC-DM-023`，leaf `SWE1-DM-001`）
+
+`spec_ref` CFTS020-4819710 / CFTS020-4820824　`design_method` 狀態轉換 (State Transition Testing)　`priority` P1　`functional_safety` NA
+
+```text
+[test_item]
+The Display Management software shall manage display operative states as DISPLAY_ON and DISPLAY_OFF based on system operational requests and timeout conditions.The software shall send appropriate display state and brightness requests to DCSD during state transition handling.
+
+(Sleep to wake-up path by the power button — the DISPLAY_ON and DISPLAY_OFF naming and the power button signal value are deferred)
+
+[pre_conditions]
+1. The vehicle is asleep
+2. The ignition is in the off state
+
+[input_test_data]
+NA
+
+[test_procedure]
+1. Read the operating state of the radio and record it
+2. Press the Power button on the DCSD
+3. Read the operating state of the radio and record it
+4. Read the signal $DIS_CENTERSTACK.DCSD_Power$ and record how long it is sent after the CAN wake
+
+[expected_result]
+1. The radio is off
+2. The DCSD wakes the CAN bus
+3. The radio turns on and enters Timed Mode
+4. The signal $DIS_CENTERSTACK.DCSD_Power$ is sent for 250 ms after the CAN wake
+
+```
+
+**拼法判定（R-DM48）**：`$DCSD_Power$ = [Pressed]`；DBC `DIS_CENTERSTACK.DCSD_Power`
+之 `VAL_` 為 `0 "Button_Not_Pressed" 1 "Button_Pressed"` —— **`[Pressed]` 逐字不等於
+`Button_Pressed`**；規格他處另寫 `[Power Button Pressed]`／`[pressed]`，**三種書寫皆不等**。
+依 R-DM48 **不寫 raw**；ER 只驗可觀察行為（radio 開機 → Timed Mode、CAN 喚醒）與
+**`250 ms` 之發送時長**（條文逐字，非值標籤，不受 R-1 v3 賦值格式規制）。
+新增 deferred `power button signal value`（`blocking_dr: DR-DM9`），
+**leaf 001 之九條括號下半皆已逐字指名**（雙向檢查 0／0）。
+
+### 8.4 全套重驗
+
+```text
+| 項 | before | after | 相等 |
+|---|---:|---:|---|
+| <dataValidation | 4 | 4 | 相等 |
+| x14:dataValidation | 2 | 2 | 相等 |
+| <conditionalFormatting | 0 | 0 | 相等 |
+| worksheets | 9 | 9 | 相等 |
+| drawings | 6 | 6 | 相等 |
+| charts | 0 | 0 | 相等 |
+| rels | 16 | 16 | 相等 |
+| zip entries | 48 | 48 | 相等 |
+
+**完整性：PASS —— 逐項相等**
+
+回讀：23 列 × 15 欄，不符 = 0 → PASS；第 33 列 = None
+
+覆蓋：合計 23 條；001=9 002=3 003=2 004=2 005=1 006=0 007=3 008=3
+```
+
+| 項 | 值 |
+|---|---|
+| `lint036 --profile display`（母體 **23**） | **二十項行計皆 0** |
+| `check_disclosure.py` | **MISSING 0／STALE 0** |
+| 寫入列 | **10 – 32**（23 列），`TC-DM-001` … `TC-DM-023` |
+| 來源母本 sha | `6372fb6be02f48dc…` **仍未變**（綁定 13/13） |
+| 輸出 sha | `4528b93783ad52af9a51aded4ee1e7497ddc8c527e5687b807888b52081fbf7a` |
+
+**覆蓋總表更新**：`SWE1-DM-001` 由 8 → **9** 條（34a §二之要求），合計 **23** 條。
+7/8 leaf 有 TC、全部部分覆蓋、`SWE1-DM-006` 未覆蓋 —— 三項不變。
+
+### 8.5 pathspec 終版
+
+```bash
+git add \
+  features/display/generated/ops-01.json \
+  features/display/BACKLOG.md \
+  features/display/DATA_REQUESTS.md \
+  features/display/docs/INDEX.md \
+  features/display/docs/handoff/33_ops01_resume.md \
+  features/display/docs/handoff/34a_add_one.md \
+  features/display/docs/upstream/34_closeout.md
+```
+
+> **`features/display/output/` 之 xlsx 不入** —— Pei 2026-08-26 明示「不入 commit」。
+> 34a §一.4 建議入，**兩者相左，以 Pei 之明示為準**（34a 自載「執行仍屬 Pei」）。
+> 該目錄亦未出現於 `git status`（已被 ignore）。

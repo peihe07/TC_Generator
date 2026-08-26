@@ -132,6 +132,10 @@ Urgency 回報。
 > （`1T`／`1P`／`SL`／`RVC`／`VR`／`X`）與 26PI Pop Up List 欄 5 之值域**完全相符**，
 > 即**詞彙未漂移**；惟**語意是否漂移無法以逐字比對證明**。
 >
+> **(c)（下放包 34a §一.5 追加）**：`Also, {4819575} defers pop-up handling to
+> "HMI core specification requirement H4" — please provide that document or its
+> popup list.`　—— 該轉指為 `SWE1-DM-006` 未覆蓋之直接原因之一（B31；依 R-DM57 凍結不另開 DR）。
+>
 > **本 DR 之狀態自此由「索件」降為「確認」**（29 包 §三.1）：
 > `popup_priority.tsv` 已建（1341 列，1272 已解析／69 `UNRESOLVED`），
 > 帶三項強制揭露（B17／B18／B19）。
