@@ -233,3 +233,74 @@ R-BLM11（四庫點名 —— 採乙）
 為已知且被接受之後果（R-G15 立條之既存歧異），非新分叉。
 台架基線若日後換版，四庫改綁另裁，不回溯本條。
 ```
+
+---
+
+```
+R-BLM12（pilot 審查裁定 —— A／B／C 三類照建議核准）
+
+（Pei 2026-08-26 裁定「准」，回應分析層對 pilot 13 TC 之逐條審。）
+
+A 類（機械修正，執行層逐條執行）：
+(1) 禁用動詞 `Observe` 作主動詞之步驟全數改寫為 `Check that ...`／
+    `... record ...`（IN §5.1）；037-03 步 1 之 `record whether` 與 ER
+    單態斷言之矛盾一併消除。
+(2) 011-02 之 $ASCM_FD_1.RL_Lvl$／$RR_Lvl$ 回 DBC 驗名：驗有則補入
+    manifest 預查清單；查無則依 IN §8.7.5(d)/(g) 處置，不得以近似
+    訊號代入。「沒查」之訊號不得存於交付 TC。
+(3) 038-04 design_method 改 `Fault Injection`（IN §12 first-match：
+    含 simulated fault 即命中）。
+(4) Pre-Condition 之 `DT model` 限定全數改為
+    `equipped with the air suspension system`：037 fault 群未分車型，
+    限 DT 為縮窄。
+
+B 類（迴路驗證之改錨）：
+011-01、011-02、037-02（及 037-01 部分）之最終檢查對象現為自身
+注入之 ASCM 訊號，驗的是注入非 DUT。授權執行層查 DBC／LID 之
+HU→ASCM 請求訊號（GW_C_I_11 線索）並以 DUT 可觀察物改錨四條；
+改錨不得越界至 sibling 持有之觀察物（EVIC 訊息屬 011-03／038-01，
+highlight 屬 037-03）。某 leaf 若查到底無獨立可觀察物，
+該 leaf 停下個案回報，不硬寫。
+
+C 類（維持現狀之確認）：
+(5) 兩對近重複（011-03/038-01、011-04/038-03）保留四條不合併
+    （§8.2.1；trigger 相異，括號下半已載區分 token）。
+(6) 懸吊角度門檻不登 DR：注入點為故障回報，角度值非本群所需。
+(7) EVIC 破折號採 hyphen；038-04 加註文字基準取 SYS1 正規化文字
+    （NRL-193702），圖僅供版面。
+```
+
+---
+
+```
+R-BLM13（「偵測／接收」類 leaf 之錨定 —— 斷言層級錯開）
+
+（Pei 2026-08-26 裁定「准」，回應上繳包 05 §二-5 之三選一；
+採出路 2 之限定形。）
+
+「偵測／接收」類 leaf（其 SWE.6 層唯一可觀察證據為下游反應，
+而該反應已被拆為別的 leaf 者）得以 sibling 持有之觀察物為錨，
+但斷言層級必須錯開：
+
+(a) 本類 TC 只得斷言**反應之存在**（a fault indication appears／
+    the highlight state changes）；逐字文字與規定狀態之正確性斷言
+    仍歸持有 leaf。
+(b) reasoning 必載委派（IN §8.2.1 工作流第 4 步之句式，具名持有
+    leaf 號）。
+(c) 可用 trigger 區分者優先用 trigger 區分，不動用本條。
+(d) 本條不改變上游分解（§8.2.2）；其代價——交付本內出現觀察物
+    重疊之 TC 對，靠括號下半與 reasoning 區分——為已知且被接受
+    （與 R-BLM12 C(5) 同族）。
+
+落到 pilot 四條：
+- 011-01：注入後 EVIC 出現 Bed Lowering 故障指示（不驗文字）
+- 011-02：保留角落高度 baseline，final = EVIC unsuccessful 指示出現
+- 037-01：以 trigger 區分（fault 先於按鍵 vs 037-03 之 fault 後於
+  啟動），錨 highlight 不亮／不維持，不動用 (a)
+- 037-02：與 037-03 同 trigger，依 (a) 錯開斷言層級（反應存在 vs
+  規定行為）
+
+出路 1（coverage gap）未採：行為可證，宣告不可驗會高報缺口。
+出路 3（登 DR）未採：其他 TC 以 HU 實體按鍵觸發，請求訊號對照
+除解鎖本四條外無他用，且上游未必給得出。
+```
