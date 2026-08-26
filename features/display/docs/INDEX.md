@@ -33,6 +33,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 27 | 2026-08-25 | A8 解除、STALE 乙案修畢、24-4／24-5 完成 | [handoff/27_stale_fix.md](handoff/27_stale_fix.md) | [upstream/27_stale_fix.md](upstream/27_stale_fix.md) | R-DM54；R-G16 口徑指標 | A-DM37 新增；A-DM35 結案；DR-DM9 重擬 | **停止條件全 70 條無一觸發；綁定 entries: 12／12 of 12；STALE 誘發測試報 1** |
 | 28 | 2026-08-25 | CFTS_013 全文驗明、矩陣判讀、**rvc-01（007／008 六條）** | [handoff/28_cfts013_full_and_rvc.md](handoff/28_cfts013_full_and_rvc.md) | [upstream/28_cfts013_full_and_rvc.md](upstream/28_cfts013_full_and_rvc.md) | （無新條文） | A-DM38／A-DM39 新增；DR-DM11 開立；A9／A10、B17–B20 新增 | **停止條件 71 觸發（A3 停手）；rvc-01 六條，lint 20 項行計 0；綁定 entries: 13** |
 | 28a | 2026-08-26 | 附件：A-DM36 結案、DR 十筆改 SENT、DR-DM7 對帳 | [handoff/28a_dr_sent.md](handoff/28a_dr_sent.md) | 併入 [upstream/28](upstream/28_cfts013_full_and_rvc.md) §三之二 | （無新條文） | A-DM36 CLOSED；A11／B21 新增 | **停止條件 74／75 皆未觸發；DR-DM7 判定為全案結案而非部分結案** |
+| 29 | 2026-08-26 | A3 解封、DM2 降級、007／008 切分裁定 | [handoff/29_a3_and_arbitration.md](handoff/29_a3_and_arbitration.md) | [upstream/29_a3_and_arbitration.md](upstream/29_a3_and_arbitration.md) | R-DM55 | A-DM40 新增（CLOSED）；DR-DM12 開立；A12／B22／B23 新增；B20 解除 | **停止條件 76 觸發 —— CFTS_013 之 50 vs CFTS_020 之 85；未改任何 TC** |
 
 ## 02 輪要點
 
@@ -724,3 +725,72 @@ lint 二十項行計 0（I-sibling 有母體，0 為實測）；`check_disclosur
 `rvc-01` 六條之每一個值皆可逐條溯至 CFTS_020 之短拼法 ＋ DBC `VAL_`，
 **無一以「DR 已發」為由放行**。反面證據：**HU 側 `$TGW_DISP_STAT$` 之值
 DR-DM9 已 SENT 而本批仍不寫** —— 那是最容易鬆手的地方，未鬆手。
+
+## 29 輪要點
+
+### 停止條件 76 觸發 —— 第三種讀法出現了
+
+CFTS_013 §1.5.3 之 **13 條全部適用本專案**（`Radio` 含 `R1H`、
+`EE Architecture:All`），其門檻為 **50／51–55／56–<60 degrees C**。
+而 CFTS_020 `{4820289}` 對同一專案給 **85 degrees C**。
+
+最尖銳的一組並列：
+
+> `{4820290}`：`When the DCSD Display transitions from a Hot state (> 85 deg C) to a non-Hot state (<= 85 deg C) …`
+> `{4943107}`：`When the DCSD Display transitions from a Hot state (> 50 degrees C) to a non-Hot state (<= 50 degrees C) …`
+
+**同一主詞、同一句型、同一轉換、不同數字。** 我原先寫「或許量的是
+不同的東西」，補驗後**該說法站不住，已具名更正**（R-G19）。
+
+21 輪 A-DM33 曾記「若答覆顯示存在第三種讀法，#4 之 ER 3 須重估」——
+**它出現了**。`pilot-01` 三條之 `85 degrees C` **一字未動**（停止條件 76）。
+
+### A-DM40 —— 我的判準把 13 條適用條文判成 0 條
+
+首算用 `"R1H" in Radio and "Atlantis High" in EE`。該判準在 CFTS_020 上
+**兩輪都正確**（該檔逐一列舉架構名）。**而 CFTS_013 對 1.5.3 全節寫
+`EE Architecture:All`。**
+
+| | 首算 | 更正後 |
+|---|---:|---:|
+| §1.5.3 適用條數 | **0** | **13** |
+
+**結論完全相反，而抓到它的不是機器** —— 是「一份被 CFTS_020 轉指五次的
+文件不可能完全不適用」這個不合理感。全檔 EE 值域實測
+`All` 68／`PowerNet` 16／…／`Atlantis High` **1**，該分布本身就是線索。
+
+形態同 A-DM29 與 STALE 候選集：**判準寫得像在量測，
+實際上編碼了一個未被檢查的假設。** R-G27 防過寬，本項是過嚴。
+回溯檢查：21／28 兩輪皆針對 CFTS_020，該檔 EE 值域不含 `All`，未受影響。
+
+### 補驗 R-DM51 之依據 —— 成立，但事實變了
+
+SYSRA 全檔 **`the DCSD shall` 0 列、`the HU shall` 6 列**，
+其回復條寫 `the **HU Display** transitions from a Hot state (> 50 …)`。
+**R-DM51 之依據經本層重算確認。**
+
+**新事實**：CFTS_013 **docx** §1.5.3 以 `the DCSD shall`／
+`the DCSD Display` 為主詞，給了**同一組數字**。
+即 R-DM51(a) 之禁止仍有效且未被違反，
+**但「DCSD 側沒有 50 這組數字」本輪起不再為真。**
+
+### DM2 降級 —— `popup_priority.tsv` 已建
+
+**1341 列 = PU 母體（相符）**，1272 已解析／69 `UNRESOLVED`。
+鍵為**類別碼**（矩陣全篇 0 個 PU 編號），序取矩陣 p4 之九列明序清單
+（逐字存於 sidecar 之 `ladder_verbatim`）。
+`PU0517`／`PU0130` 皆 `1T` → rank 5。
+
+三項強制揭露俱全：**26 列 SL 逐列標 `PENDING: DR-DM2 Cat SL precedence`**、
+語意漂移前提未證、69 列標 `UNRESOLVED` 不省略。
+
+### R-DM55 ＋ DR-DM12
+
+007／008 之切分**維持，六條不動** —— 素材內確無區分依據，
+且**錯誤可逆：只需改 `leaf_id` 一欄，TC 內容不受影響**。
+DR-DM12 開立（037 作者），`BACKLOG.md` 新增其重審節。
+
+> §九第 3 項最該接著做：`{4821589}`／`{4821590}`／`{4821591}` 等五個轉指
+> 條號**就是 warning → off 之訊號序列，也就是 pilot-01 原 #2 被 deferred
+> 的那個東西**。本輪停手範圍內未追是對的，**但它們現在位置已知、可取得、
+> 且直接對應一個開了四輪的 DR。**

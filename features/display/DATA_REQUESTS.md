@@ -16,6 +16,7 @@ Urgency 回報。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
+| DR-DM12 | `SWE1-DM-007` 之 `static vehicle condition` 與 `SWE1-DM-008` 之 `dynamic vehicle state transition`，**其區分軸為何**？三個候選：(i) 車輛靜止 vs 行進；(ii) 顯示器前態穩定 vs 過渡；(iii) 其他。**附本層現行切分之對照表**（007＝前態 `DCSD Screen ON`、釋放後還原回 ON，`{4819642}`／`{4819645}`；008＝前態非 ON 或過渡畫面、釋放後目的態不同，`{4819668}`／`{4819671}`／`{4820265}`），請確認或更正。實測依據：CFTS_020 全文 `static` **0 命中**、`dynamic` **1 命中**；SYS2 之 12 列 RVC **同時錨到兩個 leaf 且錨據完全相同** | **待 Pei 發**（收件方同 DR-DM8，037 作者） | `rvc-01` 六條之 `leaf_id` 欄 | 切分為分析層之分類（R-DM55）；**錯誤可逆 —— 只需改 `leaf_id` 一欄，TC 內容不受影響** | R-DM55 | HIGH |
 | DR-DM11 | `SWE-DM-007` 之觸發訊號 —— 037 逐字為 `when reverse gear signal is detected under static vehicle condition`，而 **CFTS_020 之 RVC 諸條（24 條適用本專案者）一律以抽象之 `if the Rear View Camera is to be displayed` 為觸發，全文查無倒車檔訊號之定義**。請提供：(a) 該訊號之名稱與其 DBC 定義；(b) `static vehicle condition` 之判準（車速門檻？排檔？）；(c) 其與 `$TGW_DISP_STAT$ = [DISP_REAR_CAMERA]` 之關係（何者為因） | OPEN | SWE-DM-007（`rvc-01` 六條之觸發皆為「RVC 被請求」，非倒車檔） | 007 之倒車檔面向未被驗證；交付時不得以「007 有 TC」表述該面向已驗 | — | HIGH |
 | DR-DM10 | Display Hot 之關閉階段：(a) `1.11.2.2` 之組 A（`{4820282}`–`{4820288}`，HU 判定後下令關背光、關後續送 `[DISP_HOT]`）與組 B（`{4820289}`–`{4820292}`，DCSD 自主關背光並送 `[DISP_OFF]`、無警示階段）**兩者皆宣告適用於 `Radio:R1H`／`Atlantis High`且互相排斥，請裁定何者為準**；(b) **【問法更新，下放包 24 §2.3】** `{4820283}` 之 `has finished displaying the Display Hot warning screen` 之終止準據 —— **原問「時長為何」，改問「DCSD 側之 warning → off 是否亦為溫度分段？若是，其第二門檻為何？」**。依據：CFTS013 SYSRA 顯示 **HU 側**之同型流程以**溫度分段**而非時長觸發（`>=51 且 <=55` 每度降 5%／`>=56 且 <60` 顯示警示不再降亮度／`>=60` 螢幕關閉／`>50` 降回 `<=50` 恢復正常）。**該五列為 Associated Display（HU 側）之事實，非 DCSD 側之事實，依 R-DM51(a) 不得代入**；引之僅為指出「分段變數可能是溫度而非時間」。**【指標，26 §四.3／26a §三】A6 已於 26a 解除，CFTS013 已落 `inputs/`。惟該五列（`>=51`／`>=56`／`>=60`／`>50`→`<=50` 之分段）之獨立重算**尚未執行** —— 24-6 於 `EE Architecture` 一項不符而依停止條件 67 停手，24-4／24-5 連同本項之重算一併待裁。本問法之成立不依賴該五列之數字（其改變的是問題之變數：溫度而非時間），但其**引為依據之五列仍未經本層驗證**。A6 關閉之複核於此一併記明**；(c) `{CFTS013-XXX}`（本文出現 5 次之未填佔位符）之實際條號與內容 | SENT (2026-08-25) | **SWE-DM-004 之 popup 側（`PU0517`，22 包 §二）**；SWE-DM-005（保護性關閉，原 pilot-01 #2）；`PU0130` | #2 已 deferred；四條查證路徑（組 A／組 B／組 C／Pop Up List）皆不產生可觀測之區分準據，warning 與 OFF 兩階段在測試步驟上無法區分（False Fail 風險）。**22 包增列**：#1 之 popup 側亦受同一矛盾波及 —— 組 B `{4820289}` 於越過門檻時即關背光，使 `PU0517` 之顯示不可觀測，該 ER 在組 B 之實作上恆為 False Fail | A-DM33 | HIGH |
 | DR-DM9 | SYS2／CFTS 之值標籤 `[DISP_OFF]`／`[DISP_ON]`／`[DISP_NORMAL]`／`[DISP_REAR_CAMERA]` 各對應 `DCSD_DISP_STAT` 之哪一個 raw 值，並提供其並列出處 | SENT (2026-08-25) | SWE-DM-005（#2／#3 之訊號值）、007／008 | ER 目前只驗行為不寫訊號值（R-DM48）；取得後依 R-DM22 建值標籤 glossary，得於既有 ER **增列**訊號值（增列不改變行為驗證，非回修） | A-DM32 | HIGH |
@@ -55,8 +56,40 @@ Urgency 回報。
 > （`{4820287}` 逐字為 `= [DISP_ON]`，即本批 #3 只驗行為之理由）。
 | DR-DM1 | CFTS_009（條號 `{CFTS009-722}`，定義 `Start Up Sequence - Splash/Disclaimer Screen` 之時段）— 檔名待查（pattern：`…CFTS_009…docx`） | SENT (2026-08-25) | SWE-DM-003 | splash/sleep 時長之預期結果無法寫 | — | HIGH |
 | DR-DM2 | Popup 優先序仲裁規則與 timeout 之來源（CFTS 本文僅有 RVC「high priority」語句，無仲裁順序表或 timeout 值） | SENT (2026-08-25) | SWE-DM-006 | popup 仲裁之預期結果無法寫 | — | HIGH |
+
+> **補充函（下放包 29 §3.3，待 Pei 發）—— 上列原文依 R-TM13 不刪不改。**
+>
+> **(a) `Cat. SL` 之優先位置**：矩陣 page 4 之明序清單置其於 `Cat. X` **之下**；
+> page 9 逐字稱其 `This category is maximum priority`；page 10 稱
+> `Cat. SL is stacked under RVC`。**三處說法不同，請裁定其正確位置。**
+> （`data/popup_priority.tsv` 之 26 列 SL 現標 `PENDING: DR-DM2 Cat SL precedence`。）
+>
+> **(b) 2021 之 SR24 1A 矩陣對 26PI 是否仍為權威？** 佐證：其六個類別 token
+> （`1T`／`1P`／`SL`／`RVC`／`VR`／`X`）與 26PI Pop Up List 欄 5 之值域**完全相符**，
+> 即**詞彙未漂移**；惟**語意是否漂移無法以逐字比對證明**。
+>
+> **本 DR 之狀態自此由「索件」降為「確認」**（29 包 §三.1）：
+> `popup_priority.tsv` 已建（1341 列，1272 已解析／69 `UNRESOLVED`），
+> 帶三項強制揭露（B17／B18／B19）。
 | DR-DM3 | `SYS-RA-DISP-*` ↔ SYS2 之對應表，或含 `DISP` id 之 SYS2 版本 | SENT (2026-08-25)（**沿革保留**：2026-08-25 曾兩度被指定而皆不答：① CFTS043 SYSRA —— 實測為 HVAC（`SYS-RA-HVAC-*` × 405，`SYS-RA-DISP` 0 次），見 A-DM31；② SYS3 SYSAD —— 本 feature 之素材且有其他用途，不登為異常，其不答本 DR 一事記於此）| 追溯鏈斷；spec_reference 無 id 路徑 | A-DM2 / A-DM10 | MEDIUM |
 | DR-DM4 | CFTS_013（條號 `CFTS013-629` Standard/`-633` Standard/`-952` Multi-stage，載 DCSD Display Hot 演算法本體與其分級溫度門檻）— 檔名待查（pattern：`…CFTS_013…docx`） | SENT (2026-08-25) — 或由 28 包任務 A 之抽取先行結案，以先到者為準。**28 輪任務 A2 之實測：該檔之條號全為 7 位，`629`／`633`／`952` 以條號錨定皆查無**（A-DM39）—— 兩條路徑皆未結，**結案之裁定屬分析層**，執行層不逕結 | SWE-DM-005（004 部分） | multi-stage 之分級判準無法寫；單級 85 °C 行為可寫 | A-DM13 | HIGH |
+
+> **重擬（下放包 29 §3.4，待 Pei 發）—— 上列原文依 R-TM13 不刪不改。**
+>
+> 標的由 3 位條號改為：CFTS_013（`26PI2.5 Jun Release`，2026-06-08）之
+> **§1.5.1 `Activating the DCSD Display Hot Algorithm {4943080}`** 與
+> **§1.5.3 `Multi-stage HU and DCSD Display Hot' … {4943095}`** 之內容，
+> 是否即 CFTS_020 所引之 `{CFTS013-629}`／`{-633}`／`{-952}`？
+>
+> 附實測：CFTS_013 docx 之條號 **117 個相異、全為 7 位**（`4819633`…`5423093`），
+> **其中含 `4820282`（CFTS_020 之條號）**，即兩份共用同一 Polarion 編號空間；
+> 而 CFTS013 SYSRA 之 `Document ID` 欄為 3 位形態（`CFTS013-602` 等）。
+> **請提供 3 位 ↔ 7 位之對應，或確認 3 位號已作廢。**
+>
+> **29 輪 A3 之實測（停止條件 76 觸發，見上繳 29 §二）**：§1.5.3 之 13 條
+> **全部適用本專案**（`Radio` 含 `R1H`、`EE Architecture:All`），其門檻為
+> **50／51–55／56–<60 degrees C**，與 CFTS_020 `{4820289}` 之 **85 degrees C** 不符。
+> **本層未併算、未判何者為準**（屬 DR-DM10(a)）。
 | DR-DM8 | 確認 037 之 `DISPLAY_ON`／`DISPLAY_OFF`（`SWE-DM-001`／`002`）與 SYS2／DBC 之 `DISP_ON`／`DISP_OFF` 是否為同一狀態 | SENT (2026-08-25) | SWE-DM-001、SWE-DM-002 | 狀態名無法對應，TC 之預期結果無法引用 DBC 之 `VAL_` 標籤 | A-DM18 | HIGH |
 | DR-DM7 | 本專案（R1LR Atl-H）之 VF 代碼，或其 PROXI 實例檔（已填值之 PROXI，非 `_R3` 空白格式檔） | SENT (2026-08-25) — **但書（28a §2.1(c) 對帳，本輪只報不處置）：R-DM44 已裁定本 DR 結案**（理由為「所求之用途已由 R-DM33 取消，非取得所求之物」），**其標的與本列逐字相同，為全案結案而非部分結案**。本列之 `SENT` 只記錄 Pei 之發信事實，**不表示本 DR 仍屬未結**。兩處之不一致待分析層裁定（上繳 28 §D3） | 全 8 leaf 之前置條件 | `Used by NODE(VFXXX)` 無法用於篩選；PROXI 446 列母體無法收斂 | A-DM20 | MEDIUM |
 | DR-DM6 | `Display_OFF_SoftKey_Prsnt` 之 PROXI 定義；或確認其與 `PROXI_HDCC27_R3` `Format` r692 之 `Display_OFF_SoftKey` 為同一參數（LID r63 `DSP_SK_PRSNT`） | SENT (2026-08-25) | SWE-DM-001（Screen Off 行為之配備前提） | 該 leaf 之前置條件是否需帶軟鍵存在旗標，無法判定 | A-DM17／`forms/LOOKUP_MISSES.md` M-3 | MEDIUM |

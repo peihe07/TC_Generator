@@ -1355,6 +1355,59 @@ CFTS_020 之 Display Hot 條文轉指 `{CFTS013-629}`／`{-633}`／`{-952}`
 
 ---
 
+## A-DM40 — 本層之適用性判準漏了 `EE Architecture:All`，一度把 13 條適用條文判成不適用  [CLOSED]
+
+29 包步驟 2（A3）之首算，本層以
+
+```python
+"R1H" in Radio and "Atlantis High" in EE
+```
+
+判條文是否適用本專案。**CFTS_020 之條文逐一列舉架構名**（`Atlantis High, PowerNet` 等），
+該判準在 CFTS_020 上一直正確 —— 21／28 兩輪皆用它。
+
+**而 CFTS_013 對 1.5.3 全節寫 `EE Architecture:All`。**
+`All` 涵蓋 Atlantis High，判準卻要求字面相等，遂全數判「否」。
+
+| | 首算（錯） | 更正後 |
+|---|---:|---:|
+| §1.5.1 適用條數 | 1 | **1** |
+| §1.5.2 適用條數 | 0 | **0** |
+| **§1.5.3 適用條數** | **0** | **13** |
+
+即：**首算之結論是「CFTS_013 之 DCSD Display Hot 全部不適用本專案」，
+更正後是「Multi-stage 全節 13 條全部適用」。結論完全相反。**
+
+### 為何被抓到
+
+首算之輸出「1.5.2 與 1.5.3 全部 13＋11 條皆不適用」與該節標題
+（`Multi-stage HU and DCSD Display Hot`）在直覺上不合 —— 一份 CFTS_013
+若對本專案完全不適用，CFTS_020 不會五次轉指它。**是不合理感觸發複驗，
+不是機器抓到的。** 全檔 `EE Architecture` 之值域實測為
+`All` 68／`PowerNet` 16／`Atlantis Mid` 4／`Small/Compact` 2／`CUSW` 2／
+**`Atlantis High` 1** —— 該分布本身就是線索。
+
+### 與既有條文之關係
+
+同 A-DM29（子字串偽陽性）、上繳 26 §5.2（STALE 候選集）之形態：
+**判準寫得像在量測，實際上編碼了一個未被檢查的假設** ——
+此處之假設是「架構欄一定逐一列舉」。
+
+**R-G27（概念映射須以確切詞組為據）之反面**：R-G27 防的是**過寬**
+（子字串命中），本項是**過嚴**（要求字面相等而漏了涵蓋語意之 `All`）。
+兩者同源：**比對之語意未被明文界定。**
+
+### 處置
+
+- **已更正**，兩次結果並列於上繳 29 §二，**不刪首算**（R-G19：理由與數字分別查證）
+- 判準改為 `"R1H" in Radio and ("Atlantis High" in EE or "All" in EE)`
+- **回溯檢查**：21／28 兩輪之適用性量測皆針對 **CFTS_020**，
+  該檔之 `EE Architecture` 值域實測**不含 `All`**（21 輪之 24 條 RVC
+  判定與 A-DM33 之三組判定皆逐一列舉架構名），**故未受本項影響**
+- 狀態 CLOSED（本輪內發現、更正、回溯檢查完畢）
+
+---
+
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-DMnn]`.

@@ -1,0 +1,42 @@
+{
+ "data_file": "popup_priority.tsv",
+ "columns": [
+  "popup_id",
+  "category_raw",
+  "category_code",
+  "priority_rank",
+  "ladder_label",
+  "note"
+ ],
+ "data_rows": 1341,
+ "generated_by": "features/display/scripts/popup_priority.py",
+ "generated_at": "2026-08-25",
+ "inputs": [
+  "Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf (reference: popup_priority_matrix)",
+  "Pop Up List HMI R1 (26PI).xlsx (reference: popup_list)"
+ ],
+ "measurement_conditions": "序來源：矩陣 page 4 之 `Window Pop-up priorities (higher to lower)` 明序清單，逐字九列；對應來源：`Pop Up List HMI R1 (26PI).xlsx` `Main` 分頁**欄 5（無表頭）**；popup 列之判準為欄 0 以 `PU` 起始；`1P`/`1T` 依矩陣 page 7 之逐字定義併入 `Cat. 1`；綁定檢查 entries: 13",
+ "rulings": [
+  "R-G36",
+  "R-DM30",
+  "R-G23",
+  "R-G26",
+  "R-G33"
+ ],
+ "notes": "**三項強制揭露（29 包 §三.2），缺一不得交付：**\n(1) **B17 —— `Cat. SL` 之位置未裁定**：矩陣 page 4 之明序清單置其於 `Cat. X` 之下；page 9 逐字稱其 `This category is maximum priority`；page 10 稱 `Cat. SL is stacked under RVC`。**三處說法不同。** 本表暫依 page 4 給 rank 3，並於該 26 列之 `note` 標 `PENDING: DR-DM2 Cat SL precedence`。凡涉 SL 之仲裁不得逕用本表。\n(2) **B18 —— 類別語意漂移未測**：本表之效力以「2021 SR24 1A 之類別定義於 26PI 仍適用」為前提。**該前提未經證明** —— 逐字比對只能證明六個類別 token 之詞彙未漂移，不能證明同一個 `1T` 在 2021 與 2026 指同一件事。\n(3) **B19 —— 69 列未覆蓋**，於表中標 `UNRESOLVED`，未省略。其值為 `---`／`RVC-X`／空／`2 SL`／`Custom`／`RVC\\n2`／`-`；**複合值須另定解析規則，本輪不定**。\n\n**本表之鍵為類別碼，非 popup id** —— 矩陣全篇 0 個 PU 編號。",
+ "ladder_verbatim": [
+  "Pop-up Categories (Priorities)",
+  "Window Pop-up priorities (higher to lower):",
+  "RVC",
+  "Cat. X",
+  "Cat. SL",
+  "Anti-Theft  (Keypad and Anti-Theft pop-ups)",
+  "Cat. 1",
+  "Display off (black curtain, which is not a pop-up but a window layer)",
+  "Cat. 2  and Cat. VR",
+  "Cat. 3",
+  "Activity Pop-up",
+  "Activity pop-ups are all in the same category and can be overlaped by Window pop-ups.",
+  "4"
+ ]
+}

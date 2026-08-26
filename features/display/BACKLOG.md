@@ -15,7 +15,7 @@
 
 | # | 項 | 原出處 | 擋住什麼 | 現況 |
 |---|---|---|---|---|
-| A1 | `popup_priority.tsv`（Pop Up List xlsx 與 Priority Matrix PDF 之詞彙比對）**＋ CFTS013 側之抽取標的：`{CFTS013-937}` 之優先序行為（RVC／SOS／Emergency Calls 高於 `PU0130`）與 `PU0130` 之需求側逐字出處。依 R-G36 須機器抽取，sidecar 之 `generated_by` 須為腳本；**24-4 已於 27 輪完成** —— `data/popup_priority_sources.tsv`（4 列，`popup_priority_sources.py` 機器抽取，sidecar 齊備）。**仲裁順序表本體仍待 DR-DM2** | 15 §四.5；24 §四.4 | **擋 SWE-DM-006**（Pop Up Handling 之仲裁順序）。**不擋 pilot-01**（004／005 只取 PU 之 timeout／category，不取仲裁序） | **來源登記已完成**（27 輪，4 列）；**仲裁順序表未做，阻斷者為 DR-DM2** |
+| A1 | `popup_priority.tsv` | 15 §四.5；24 §四.4；**29 §三.1 降級** | **已建**（29 輪，1341 列：1272 已解析／69 `UNRESOLVED`）—— DM2 自「索件阻斷」降為「確認」。**惟帶三項強制揭露，凡涉 `Cat. SL` 之仲裁不得逕用**（B17 未裁） | `data/popup_priority.tsv` ＋ sidecar；`popup_priority_sources.tsv`（CFTS013 側 4 列，27 輪）。**DM2 補充函待 Pei 發** |
 | A2 | `sysad_allocation.tsv`（SYS3 之軟體分派 id 層級證據） | 16 §五.3 | **Q2 之揭露義務**（R-DM41(c)）—— 交付時須附「037 leaf ↔ SYS2 列」對照 | 未做 |
 
 > A1／A2 皆**不擋 pilot-01 之生成**，但**擋整批交付**。
@@ -41,6 +41,23 @@
 
 | B6（＝上繳分流之 B16） | `deferred` 只增不減之長度未實測 | 27 §七.1 | R-DM54 定「逾百項再議」，而 8 leaf 全做完之實數未估；006／007／008 之 deferred 面向可能遠多於 004／005 |
 | B7（＝上繳分流之 B14） | `inputs/` 之目錄普查非常設檢查 | 26 §7.3；**28a §一指定續列** | 綁定綁確切路徑，**不會發現目錄多出檔案**；`inputs/` 又由 `.gitignore` 排除，重複不進 diff。**A-DM36 已 CLOSED，本項不隨之勾銷** —— 前者是「那一次的重複檔」，本項是「重複檔沒有常設檢查」 |
+
+---
+
+## DR-DM12 回覆後重審（007／008 之切分軸）
+
+**非未驗項，不入 A／B 分流** —— 條件性待辦，觸發條件為 DR-DM12 之答覆到達。
+
+依 **R-DM55**：切分為分析層之分類，維持並揭露；**錯誤可逆** ——
+若上游之區分軸為他物（如車速），**受影響者僅 `leaf_id` 一欄，
+TC 內容不受影響**。
+
+| 項 | 重審內容 | 現況 |
+|---|---|---|
+| `rvc-01` 六條之 `leaf_id` | 全批重審。現行：#1／#2／#3 → `SWE1-DM-007`；#4／#5／#6 → `SWE1-DM-008` | 依前態／目的態分類 |
+| `batch_context.md` §二之切分表 | 隨之更新 | 已標「本層之判斷，非規格明載」 |
+| 各交付面之標明 | R-DM55 之拘束：**不得表述為規格所載** | `reasoning`／`batch_context` 兩處已標 |
+| `framework.md` 第四組 | 若區分軸為車速，Test Set 之分組理由須複核 | 現以 037 標題分組，8/8 已驗 |
 
 ---
 
