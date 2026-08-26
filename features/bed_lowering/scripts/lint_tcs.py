@@ -26,6 +26,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
 import openpyxl                                                    # noqa: E402
 from feature_config import load_feature_config, resolve_path       # noqa: E402
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from make_batch_context import _spec_reference_constant             # noqa: E402
+
 FEAT = Path(__file__).resolve().parents[1]
 
 FORBIDDEN = re.compile(
@@ -68,7 +71,11 @@ def main() -> int:
     wb = openpyxl.load_workbook(wbp, read_only=True, data_only=True)
     ws = wb[cfg["workbook"]["sheet"]]
     rows = rows_of(ws, cfg)
-    const = cfg["recon_assertions"]["spec_reference_stem"]
+    # 取 037 `HMI Source ID` 欄之原值，不取任何宣告。
+    # 原寫法讀 `recon_assertions["spec_reference_stem"]`，該鍵已由
+    # R-BLM15(1) 作廢 —— 改讀另一個宣告只會把同一個錯誤搬家，
+    # 故與 adapter 共用同一支「讀來源欄並斷言唯一」之函式。
+    const = _spec_reference_constant()
 
     findings: list[tuple[str, str]] = []
 

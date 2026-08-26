@@ -13,7 +13,9 @@ import sys
 from pathlib import Path
 
 FEAT = Path(__file__).resolve().parents[1]
-BATCH = FEAT / "batches" / "pilot" / "pilot_tcs.json"
+import os
+BATCH = Path(os.environ.get("BL_BATCH",
+                             FEAT / "batches" / "pilot" / "pilot_tcs.json"))
 
 TEXT_FIELDS = ["pre_conditions", "input_test_data", "test_procedure",
                "expected_result"]

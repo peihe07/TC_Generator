@@ -9,11 +9,11 @@
 
 ## Assertions — ruled constants, checked mechanically
 - PASS — leaf count == Functional Requirement rows: expected `176`, measured `176` — categorization distribution: {'Functional Requirement': 176, 'Heading': 42}; the banned id-suffix criterion would have selected 176 (0 parent-shaped requirements dropped)
-- **FAIL** — citation stem is the ruled baseline, and only that: expected `['SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(June_21_2021)']`, measured `[]` — a second stem means the report cites more than one baseline
+- PASS — distinct spec sections after citation parse: expected `0`, measured `0` — 0 citation cells carry extra lines below the section (Polarion item ids), not parsed
 - PASS — cited sections found in the ruled SYS1 outline: expected `0`, measured `0` — 0 cited / 70 outline entries in the export
 - **FAIL** — every leaf's citation parses to a section: expected `0`, measured `176` — samples: [('SWE1-HMI-BLM-001-01', 'SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(Ju'), ('SWE1-HMI-BLM-001-02', 'SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(Ju'), ('SWE1-HMI-BLM-001-03', 'SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(Ju'), ('SWE1-HMI-BLM-001-04', 'SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(Ju'), ('SWE1-HMI-BLM-002-01', 'SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(Ju')]
 
-**2 failed / 4 checked.**
+**1 failed / 4 checked.**
 An assertion failure blocks DECISIONS.md; RECON.md is still written because it is the evidence.
 
 ## Spec outline map

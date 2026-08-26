@@ -118,8 +118,33 @@ recon_assertions:
   # 本包實測：037 218 資料列中，Categorization=="Functional Requirement"
   # 者 176，且與「req_id 帶 -NN 尾碼」之判準 176/176 完全重合。
   functional_requirement_count: 176
-  # R-BLM5 之基線。實測：037 `HMI Source ID` 相異值數 = 1。
-  spec_reference_stem: "SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(June_21_2021)"
+
+  # ── R-BLM15(1)：下列一鍵作廢，留痕 ──────────────────────────────
+  # spec_reference_stem: "SYS1_HMI_Bed_Lowering_Mode_..._(June_21_2021)"
+  #   **superseded by R-BLM15(1)**（下放包 02 宣告，2026-08-26 作廢）。
+  #   作廢理由：該 assertion 量的是 recon **解析後**之 citation stem，
+  #   不是 N 欄之欄位原值。本 feature 之 037 `HMI Source ID` 無章節號，
+  #   recon 解析不出 (stem, section)，`citation_stems` 因而為空 ——
+  #   原值只有 1 個而解析後是 0 個，兩者量的不是同一件事。
+  #   宣告當時誤把後者當前者，故恆 FAIL。
+  # ────────────────────────────────────────────────────────────────
+
+  # R-BLM15(1) 之「可解析章節數 = 0」。本鍵有實作
+  # （recon.py:369，比對 len(a03res["distinct_sections"])），
+  # 對本 feature 之期望值即 0：無章節號可解析，正是 R-BLM5 之後果。
+  distinct_spec_sections: 0
+
+  # ⚠ R-BLM15(1) 另指定之「N 欄原值相異數 = 1」**未宣告為 assertion 鍵**。
+  # 理由：`recon.py` 之 run_assertions() 只實作三鍵
+  # （functional_requirement_count／distinct_spec_sections／
+  # spec_reference_stem，見 recon.py:361/369/375），無承接該語意者。
+  # 宣告一個不被讀取的鍵即製造一個永不失敗之檢查（R-VC9）——
+  # 那正是 spec_reference_stem 這次出事的同一形態，不重蹈。
+  # 該值改由本 feature 自有之檢查承接：
+  #   `scripts/build_inventory.py` 印出「N 欄相異值數」；
+  #   `scripts/selfcheck_pilot.py` 逐批比對；
+  #   `scripts/lint_tcs.py` 之 gate F-specref 逐列比對工作簿實值。
+  # 三者皆實跑且會紅，保護強於一個無人讀的宣告。
 
 # R-G15（RULINGS_LEDGER 版）：其變動會使既有產出失效者一律綁定。
 # paths: 記「檔在哪」（供腳本開檔）；reference: 記「檔是哪一份」
@@ -176,7 +201,13 @@ fingerprint:
     - "docs/runtime/profiles/FW036_R1L_BedLowering_Profile.md"
     - "features/bed_lowering/framework.md"
     - "features/bed_lowering/RULINGS.md"
-    - "features/bed_lowering/batches/pilot/context.json"
+    # ⚠ `batches/pilot/context.json` 已自本清單移除（下放包 08 實測發現）。
+    # 理由：`prompt_sources` 是 **per-feature** 宣告，而 context 是
+    # **per-batch** 工件。B1 之 manifest 蓋指紋時，該清單仍指向 pilot 之
+    # context，於是 B1 之 prompt_template 指紋**描述的是別批的語料**，
+    # 且比對照樣回報「相符」—— 一個永遠相符的指紋不是保護。
+    # 每批之語料改由該批 manifest 自身之 `context_sha256` 承載
+    # （B1 已記；pilot 亦記），本清單只留跨批不變之四源。
   # 本批**未使用任何 exemplar**（本 feature 為 BLANK 起建，無既有 TC 可引，
   # 亦未跨 feature 借用 —— 跨 feature exemplar 之採認屬 Tier 2）。
   # 空清單是實況，不是遺漏；下一批若引入 exemplar，指紋即變，應當變。

@@ -46,6 +46,27 @@ def sha256(p: Path) -> str:
 
 
 
+
+
+def _spec_reference_constant() -> str:
+    """The 037's `HMI Source ID`, asserted to be a single distinct value."""
+    import openpyxl
+    a03 = FEAT / "inputs" / ("FM-WI-FSM-037-A03-N1L-SWE1-BedLoweringMode-HMI-V0.1"
+                             " STLA 報告.xlsx")
+    wb = openpyxl.load_workbook(a03, read_only=True, data_only=True)
+    rows = list(wb["Analysis Report"].iter_rows(values_only=True))
+    wb.close()
+    header = [str(c).replace("\xa0", " ").strip() if c else "" for c in rows[6]]
+    hmi = header.index("HMI Source ID")
+    rid = header.index("SWE-Requirement ID")
+    vals = {str(r[hmi]).strip() for r in rows[7:]
+            if r[rid] not in (None, "") and r[hmi] not in (None, "")}
+    if len(vals) != 1:
+        sys.exit(f"R-BLM5 premise broken: HMI Source ID has {len(vals)} "
+                 f"distinct values, expected 1: {sorted(vals)[:4]}")
+    return vals.pop()
+
+
 def _spec_context_for(spec_ref: str, signals: dict) -> str:
     """Per-row spec context: the ruled reference constant + verified signals.
 
@@ -80,9 +101,18 @@ def build(test_set: str) -> dict:
     if heads != declared:
         sys.exit(f"heading mismatch: inventory {heads} vs test_set_map {declared}")
 
-    # R-BLM5: one constant for every row. Read it from the recon assertion so
-    # the context cannot drift from what the ruling pinned.
-    spec_ref = cfg["recon_assertions"]["spec_reference_stem"]
+    # R-BLM5: one constant for every row, taken VERBATIM from the 037's
+    # `HMI Source ID` column.
+    #
+    # This used to read `cfg["recon_assertions"]["spec_reference_stem"]`.
+    # R-BLM15(1) retired that key -- it declared a value recon measured
+    # differently (parsed stem vs raw column value), which is why it could
+    # never go green. Re-pointing at another declaration would repeat the
+    # mistake in a new place, so this reads the SOURCE COLUMN itself and
+    # asserts the ruling's premise (exactly one distinct value) while it is
+    # at it. A declaration can drift from the file; the file cannot drift
+    # from itself.
+    spec_ref = _spec_reference_constant()
 
     pre = FEAT / "batches" / "pilot" / "signal_prelookup.json"
     signals = json.loads(pre.read_text(encoding="utf-8")) if pre.exists() else {}
@@ -172,7 +202,7 @@ def main() -> int:
     print(f"leaves     {ctx['leaf_count']}")
     print(f"siblings   {len(ctx['siblings'])}")
     print(f"spec_ref   {ctx['spec_reference_constant']}")
-    print(f"out        {out.relative_to(ROOT)}  sha256 {sha256(out)}")
+    print(f"out        {out}  sha256 {sha256(out)}")
     return 0
 
 

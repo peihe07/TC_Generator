@@ -29,7 +29,7 @@ from backend.xlsx_surgical import surgical_save                    # noqa: E402
 from feature_config import load_feature_config, resolve_path       # noqa: E402
 
 FEAT = Path(__file__).resolve().parents[1]
-BATCH = FEAT / "batches" / "pilot" / "pilot_tcs.json"
+DEFAULT_BATCH = FEAT / "batches" / "pilot" / "pilot_tcs.json"
 
 # 工作簿常數欄。功能安全欄全案填 "NA"（本 feature 無 FuSa 需求，
 # 037 之 Categorization 亦無安全相關標記）。
@@ -83,13 +83,26 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(FEAT / "workbook" / "bed_lowering_01.xlsx"))
     ap.add_argument("--verify", action="store_true")
+    ap.add_argument("--batch", default=str(DEFAULT_BATCH))
+    ap.add_argument("--src", help="來源工作簿；預設取 feature.yaml paths.workbook")
+    # IN §8.4.3：含 PENDING 之工作簿不得出貨。故帶 PENDING 之列不寫回，
+    # 停在 batch json 待 DR 回覆。此旗標使該過濾**顯式且可回報**，
+    # 而不是靠寫回時忘記處理。
+    ap.add_argument("--skip-pending", action="store_true")
+    ap.add_argument("--start-id", type=int, default=1)
     a = ap.parse_args()
 
     cfg = load_feature_config(FEAT)
-    src = resolve_path(cfg, "workbook")
-    batch = json.loads(BATCH.read_text(encoding="utf-8"))
-    tcs = batch["tcs"]
+    src = Path(a.src) if a.src else resolve_path(cfg, "workbook")
+    batch = json.loads(Path(a.batch).read_text(encoding="utf-8"))
+    all_tcs = batch["tcs"]
     test_set = batch["test_set"]
+    if a.skip_pending:
+        held = [t["req_id"] for t in all_tcs if t.get("has_pending")]
+        tcs = [t for t in all_tcs if not t.get("has_pending")]
+        print(f"IN §8.4.3 保留不寫回 {len(held)} 條: {held}")
+    else:
+        tcs = all_tcs
     fmt = cfg["tc_id_format"]
 
     wb = openpyxl.load_workbook(src)
@@ -100,7 +113,7 @@ def main() -> int:
 
     written = []
     for i, tc in enumerate(tcs):
-        tc_id = fmt.format(n=i + 1)
+        tc_id = fmt.format(n=a.start_id + i)
         row = start + i
         for cidx, val in cell_values(tc, cfg, tc_id, test_set).items():
             ws.cell(row, cidx + 1).value = val
@@ -108,7 +121,7 @@ def main() -> int:
 
     out = Path(a.out)
     report = surgical_save(wb, src, out)
-    print(f"\n寫入 {out.relative_to(Path.cwd())}")
+    print(f"\n寫入 {out}")
     print(f"  sheets_patched  {report['sheets_patched']}")
     print(f"  zip members     {report['members']}")
     print(f"  differing       {report['differing']}")
@@ -126,7 +139,7 @@ def main() -> int:
         bad = 0
         for i, tc in enumerate(tcs):
             row = start + i
-            want = cell_values(tc, cfg, fmt.format(n=i + 1), test_set)
+            want = cell_values(tc, cfg, fmt.format(n=a.start_id + i), test_set)
             for cidx, val in want.items():
                 got = rws.cell(row, cidx + 1).value
                 if str(got if got is not None else "") != str(val):
