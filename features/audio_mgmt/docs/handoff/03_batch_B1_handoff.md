@@ -17,8 +17,12 @@
 3. `CFTS_019_Part2_All_AcceptedExceptDTCrework.xlsx`（錨源，R-AM2）
 4. `R1LR_Atl-H_..._CFTS_019_Audio_Management_20250910_1235.pdf`
    （注意：實為純文字，非 PDF；供章節上下文查閱）
+5. **【補遺 2026-08-26】**R-G1 母本複本（`forms/` 下之 036 母本，與
+   time_management 同源）——寫回需基底簿，`resolve_path` glob 不跨目錄，
+   須複製一份入 `inputs/`。本項為原包漏列，執行層 scaffold 回報時查出，
+   已登記 DATA_REQUESTS.md 第 5 列；複製之授權依 Pei 對該回報之裁定。
 
-執行層開工第一步：`list_directory` 確認四件在位；缺件即停，回報分析層。
+執行層開工第一步：`list_directory` 確認五件在位；缺件即停，回報分析層。
 
 ## 二、工作簿（R-AM3）
 

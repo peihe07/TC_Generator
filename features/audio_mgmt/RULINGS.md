@@ -94,8 +94,13 @@ Audio Arbitration 前 16 葉，共 50 葉。
    既有慣例之 project token 為 `NR1L`（舊 AudioAACP 簿之 `NR1L_AudioMgnt_*`、
    time_management 之 `NR1L-TimeManagement-*`）。分隔符取連字號以從
    time_management／canon，不從舊簿之底線式。
-3. **workbook 版面 = rev C**。母本與 time_management 同一份
-   （`forms/…_SWQT_20260817_ext.xlsx`），故 `sheet` / `design_method` /
-   `functional_safety` / `author` / `remarks` 欄位鏡射 TM 之 rev C 實測值。
-   **此三項欄位字母標 [PENDING]，待新簿建立後由 recon header match 實測回填**
-   —— scaffold 預設值為 rev A/B，與 rev C 不同，yaml 原註明訓「do not guess」。
+3. ~~**workbook 版面 = rev C**（原標 [PENDING]）~~ **已結案，非提案。**
+   2026-08-26 母本複入 `inputs/`（sha256 `6372fb6b…6fb825b2`，與 `forms/` 母本
+   及 time_management 所記逐字相同）後直讀第 9 列表頭實測，16 個宣告欄位
+   全數對上，`feature.yaml` 已改註「實測」。無須等 recon，亦非鏡射 TM。
+   scaffold 預設之 rev A/B 值在三處為誤，已更正：`design_method` 應為 R
+   （Q 實為 Estimated Test Time (mins)）、`author` 應為 AA（Z 實為
+   Fastack (376) Atl-Mi）、且預設無 `tc_id` 鍵（實為 F）。
+   另註兩組易混欄位：C 為 `Requirement or Design ID (Polarion)`、D 才是
+   R-AM7 所指之 `Requirement or Design ID`；E 為 `Test Case ID (TestRail)`、
+   F 才是 `Test Case ID`。

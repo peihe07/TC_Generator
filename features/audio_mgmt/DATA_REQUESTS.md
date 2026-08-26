@@ -12,7 +12,7 @@ Urgency 回報。
 
 ## 一、置檔清單（03 包 §一；執行層開工前置）
 
-實測 2026-08-26：`inputs/` 為 scaffold 新建之空目錄，以下五件**全部未在位**。
+實測 2026-08-26：五件中第 5 件（R-G1 母本）已複入，**其餘四件仍未在位**。
 03 包 §一 明訂「缺件即停，回報分析層」，故 B1 現為 BLOCKED。
 
 | # | 檔案 — 全名 | Status | Batch impact | Urgency |
@@ -21,7 +21,7 @@ Urgency 回報。
 | 2 | `CFTS019AudioManagementPart1_released_20260415.xlsx` | MISSING | 錨源 Part 1（R-AM2） | 阻塞 B1 |
 | 3 | `CFTS_019_Part2_All_AcceptedExceptDTCrework.xlsx` | MISSING | 錨源 Part 2（R-AM2）；B1 全 50 葉之錨落在此本 | 阻塞 B1 |
 | 4 | `R1LR_Atl-H_25PI3_5_Multimedia_-_Radio_and_Audio_CFTS_019_Audio_Management_20250910_1235.pdf`（實為純文字，非 PDF） | MISSING | 章節上下文查閱 | 阻塞 B1 |
-| 5 | `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx` | MISSING（**03 包 §一漏列**） | R-G1 母本複本 = 新簿基底（R-AM3）；缺則無簿可寫回。母本在 repo `forms/` 下，但 `resolve_path` 之 glob 基準為本 feature 目錄，故須複製一份進 `inputs/` | 阻塞寫回 |
+| 5 | `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx` | **IN PLACE**（2026-08-26 自 `forms/` 複入，sha256 `6372fb6b…6fb825b2` 與母本相同；原為 03 包 §一漏列） | R-G1 母本複本 = 新簿基底（R-AM3）；缺則無簿可寫回。母本在 repo `forms/` 下，但 `resolve_path` 之 glob 基準為本 feature 目錄，故須複製一份進 `inputs/` | 阻塞寫回 |
 
 ## 二、上游資料請求（DR；01 包 §五、03 包 §七）
 

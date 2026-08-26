@@ -40,17 +40,17 @@ spec_mode: "D"        # [PROPOSED] A/B/C/D/E per FEATURE_ONBOARDING §3
 spec_reference_template: "CFTS019-{object_id}"   # R-AM2 / IN §10.7(a)；一 ID 一行
 
 workbook:
-  # [PENDING] 以下版面參數待新簿建立後由 recon header match 實測確認。
-  # 母本與 time_management 同（forms/ 之 …_20260817_ext.xlsx），故預期為
-  # rev C 版面；但 scaffold 預設值為 rev A/B，兩者 design_method / author /
-  # remarks 欄位不同。yaml 原註明訓「do not guess」—— 此處不猜，
-  # 先鏡射 TM 之 rev C 實測值並標記待驗，recon 後回填。
-  sheet: "Test Case Specification 測試用例規範"   # rev C 版面，見 forms/FORMS.md
+  # rev C 版面，2026-08-26 實測確認（非鏡射、非推定）：母本已複入 inputs/
+  # （sha256 6372fb6b…6fb825b2，與 forms/ 母本及 time_management 所記相同），
+  # 直讀第 9 列表頭，16 個宣告欄位全數對上。scaffold 預設之 rev A/B 值在
+  # design_method / author 兩處為誤，且無 tc_id 鍵 —— 已更正。
+  sheet: "Test Case Specification 測試用例規範"   # 實測；見 forms/FORMS.md
   header_row: 9
   # column letters, verified by recon header match — do not guess
   columns:
-    req_id: "D"       # R-AM7：照抄 SWE1_AMM_{NNN} 底線式
-    tc_id: "F"        # rev C；Test Case ID
+    req_id: "D"       # 實測 "Requirement or Design ID"；C 為 (Polarion) 版，勿混
+                      # R-AM7：照抄 SWE1_AMM_{NNN} 底線式
+    tc_id: "F"        # 實測 "Test Case ID"；E 為 Test Case ID (TestRail)
     test_group: "G"
     test_set: "H"
     test_item: "I"
@@ -61,10 +61,10 @@ workbook:
     spec_reference: "N"
     tc_ref_id: "O"
     priority: "P"
-    design_method: "R"      # rev C；Q 為 Estimated Test Time (mins)
-    functional_safety: "S"  # rev C
-    author: "AA"            # rev C；Z 為 Fastack (376) Atl-Mi
-    remarks: "AH"           # rev C
+    design_method: "R"      # 實測 "Test Case Design Methods"；Q 為 Estimated Test Time (mins)
+    functional_safety: "S"  # 實測 "Functional Safety"
+    author: "AA"            # 實測 "Test Case Author"；Z 為 Fastack (376) Atl-Mi
+    remarks: "AH"           # 實測 "Remarks"；AG 為 Defect ID
 
 done_region:
   # detection: "author" (author-cell match) or "rows" (explicit ranges)
