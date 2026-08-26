@@ -57,3 +57,57 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-AMnn]`.
+
+## [A-AM03] B1 之 50 錨有 7 個不在 R-AM2 錨源池內（圖表型物件遭匯出遺漏）— PENDING，阻塞 7 葉
+
+2026-08-26 開工前置查核：以 03 包 §四 之 50 個錨值比對 R-AM2 所定之錨源池
+（兩本 Basic Report，實測 811 個 ObjectID＝Part1 245＋Part2 566，與 01 包
+§一 記載相符），**43/50 命中，7 個不在池內**：
+
+| SWE ID | 錨 | Test Set |
+|---|---|---|
+| SWE1_AMM_138 | CFTS019-4866479 | Source Transition |
+| SWE1_AMM_156 | CFTS019-4866520 | Source Transition |
+| SWE1_AMM_157 | CFTS019-4866522 | Source Transition |
+| SWE1_AMM_200 | CFTS019-4866839 | Source Transition |
+| SWE1_AMM_205 | CFTS019-4866850 | Source Transition |
+| SWE1_AMM_240 | CFTS019-4866956 | Source Transition |
+| SWE1_AMM_241 | CFTS019-4866967 | Source Transition |
+
+**這 7 個不是分析層錯配。** 七者於 CFTS019 全文 PDF 中均為
+`[Artifact Type:Subsystem Functional Requirement] [State:Approved]` 之正式
+需求，語意亦與各自 SWE 葉相符（例：4866479 = "Source Transition:
+Entertainment Active -> Entertainment Active" 圖，對 SWE1_AMM_138
+"Entertainment Source Transition Timing"）。錨本身正確，缺的是匯出。
+
+根因（實測，非推測）：**兩本 Basic Report 系統性遺漏圖表型需求物件。**
+
+- 圖表型物件（正文為 "Refer to the … figure" / "Following diagram refers to"）
+  在池率 **1/13 = 7.7%**
+- 非圖表型物件在池率 **670/1717 = 39.0%**
+- 池外之圖表型物件共 12 個，本批 7 個全在其中
+
+已排除之替代解釋：EE Architecture 過濾。其中 4 個僅掛 `Atlantis Mid`
+（本案為 Atlantis High），一度疑為範圍過濾所致；但全文中僅掛 Atl-Mid 之
+物件共 491 個、其中 229 個在池內，匯出並不依 EE Architecture 篩選。
+另 3 個（4866479/4866520/4866522）本就掛 `Atlantis High`。假設推翻。
+
+此即 FEATURE_ONBOARDING §3 所載之 **Mode A blind spot**（Polarion 匯出
+靜默丟內容），canon 明訂處置為「packaged as ONE chapter-level re-export
+request upstream」，不作逐物件修補。
+
+**處置：待 Pei 裁定（Tier 2），執行層不自裁。** 三個選項：
+
+1. 依 R-AM2 字面，7 葉填
+   `PENDING: DR-AM1 SWE1-to-CFTS ObjectID mapping unresolved for this leaf`。
+   代價：7 條 TC 之 specification_reference 空懸，且 DR-AM1 之回件（正式
+   對照表）未必能解 —— 問題不在對照表缺失，而在匯出缺物件，回件後仍缺。
+2. 錨值照 03 包 §四 寫入（值已於全文 PDF 逐一驗證為正確且 Approved），
+   於 reasoning 註明「錨在 R-AM2 池外、經全文佐證」。代價：與 R-AM2
+   「錨定物件池 = 兩本 Basic Report」之字面牴觸，需 Pei 明文放寬。
+3. 7 葉暫緩，B1 先出 43 葉，待 DR-AM3 補件後補做。
+
+執行層建議選項 2 併發 DR-AM3：錨值已具全文佐證，其可信度高於填 PENDING；
+且選項 1 之 PENDING 指向 DR-AM1 屬誤導 —— 兩者根因不同。
+
+---
