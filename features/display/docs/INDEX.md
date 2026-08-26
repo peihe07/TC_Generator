@@ -37,6 +37,7 @@ feature 之交付夾為 `10_Reviewing/00_TestCase/ASW-R2/Display/`（R-DM9），
 | 30 ＋ 30a | 2026-08-26 | 追五個轉指條號；R-DM51 依據補驗；DR-DM7 結案 | [handoff/30_crossref_chase.md](handoff/30_crossref_chase.md)、[30a](handoff/30a_vf169.md) | [upstream/30_crossref_chase.md](upstream/30_crossref_chase.md) | R-G37（全域）；R-G27 指標 | A11 關閉；A13／B24／B25 新增；B23 解除；DR-DM7 CLOSED；A-DM20 改標 | **停止條件 79／80／81 皆未觸發；TC 一字未動** |
 | 31 | 2026-08-26 | 讀 71 條漏網；自陳即驗入條 | [handoff/31_missed_clauses.md](handoff/31_missed_clauses.md) | [upstream/31_missed_clauses.md](upstream/31_missed_clauses.md) | R-G38（全域）；R-G22 指標 | A-DM33 母體加註；A14／B26／B27 新增；B24 解除 | **停止條件 84／85／86 皆未觸發；三項重測皆不變；TC 一字未動** |
 | 32 | 2026-08-26 | 開第三批 `ops-01` 之勘查（**停止條件 87 觸發，未生成**） | [handoff/32_ops01.md](handoff/32_ops01.md) | [upstream/32_ops01.md](upstream/32_ops01.md) | （無新條文；PLAYBOOK §5a 慣例） | A-DM37 增列；A-DM33 加註複核；A15／A16／B28／B29 新增；B26 併入 | **T1b 適用條文 172 條 > 30 → 停手不生成** |
+| 33 ＋ 34 | 2026-08-26 | `ops-01` 生成；**22 條寫回 036**；收尾 | [handoff/33_ops01_scoped.md](handoff/33_ops01_scoped.md)、[34](handoff/34_closeout.md) | [upstream/33](upstream/33_ops01_scoped.md)、[34](upstream/34_closeout.md) | R-G39（全域）；R-DM56／R-DM57 | B30–B33 入 BACKLOG（R-DM57(b)） | **lint 22 條全 0；完整性計數逐項相等；回讀 22×15 不符 0** |
 
 ## 02 輪要點
 
@@ -960,3 +961,50 @@ monitor rate／limp-in action）。
 凡寫「全在／皆為／不含」之句，其**正上方**應緊接該句所據之腳本輸出。
 附兩例 —— 29 §2.2 之 `All`、31 §5.2 初稿之「主題為診斷行為」，
 **兩次皆為 R-G22 所規制，而 R-G22 已經在了**。
+
+## 33／34 輪要點（收尾）
+
+**兩包合併執行** —— 34 包落檔時 33 尚未執行，其 §2.1 明文指示執行 33 之步驟 2–8。
+
+### `ops-01`：88 → 52 → 14 軸 → 13 條
+
+排除 36 條（E1 已被兩批引用 6、E2 主題屬 Display Hot／RVC 27、E3 `wake` 偽陽性 3），
+逐條具名理由。**R-G39 之兩段式生效** —— 母體 52 與產出 13 之間隔著行為軸。
+
+### 一處內容實錯，本輪抓到並改
+
+合併 lint 首跑報 **P = 3**。根因二項：
+
+1. **值 5／6／201 之所以是「不合理值」，正是因為它們沒有 `VAL_` 標籤** ——
+   我把不合理值寫成訊號賦值，**這在定義上就不可能合格**。
+2. `$RADIO_B3.RQ_DISP_INTS$` 之訊息名**來自 VF169**，而 30a 明文
+   「只登記不採用」（停止條件 83 之標的）。**首跑之 83 掃描沒抓到，
+   因為我掃的詞表漏了它。**
+
+處置：#7／#8 之 ER 改為只驗可觀察行為（注入動作留在 procedure）；
+**#12 移除**，其軸併入 `brightness context` 之 deferred。修正後 **P = 0**。
+
+### 寫回 —— 一處具名偏離
+
+下放包定標的為「`inputs/` 之母本複本」，**本層改寫入 `output/`**：
+母本是客戶素材且受 `reference:` 綁定，就地覆寫會毀去唯一原件、
+並使綁定由 13/13 轉為 12/13。他 feature 之慣例亦為 `output/`。
+**若要求就地覆寫，請明示。**
+
+| 項 | 值 |
+|---|---|
+| 寫入列 | 10 – 31（22 列），`TC-DM-001` … `TC-DM-022` |
+| 方式 | **XML 外科式** —— 只改 `sheet6.xml`，其餘 47 個 zip 部件逐 byte 原樣重打包 |
+| 完整性 | dataValidation 4/4、x14 2/2、worksheets 9/9、drawings 6/6、rels 16/16、zip 48/48 —— **逐項相等** |
+| R 欄下拉 | `x14:dataValidation` `xm:sqref = R10:R1411` —— 寫入列在其內 |
+| 回讀 | 22 列 × 15 欄，**不符 0**；第 32 列為空 |
+| 來源 sha | `6372fb6be02f48dc…` **未變** |
+
+### 覆蓋：7/8 leaf 有 TC，**無一為全覆蓋**
+
+`SWE1-DM-006` **未覆蓋** —— CFTS_020 之適用條文中**含逐字 popup 編號者 0 條**，
+唯一含 `pop-up` 一詞者轉指不在手上的 `HMI core specification requirement H4`；
+而 `popup_priority.tsv` 之權威性本身待 DR-DM2(b)。依 34 §2.2 **不強生**。
+
+其餘七 leaf 皆為部分覆蓋，每一 deferred token 皆於各 TC 括號下半逐字指名
+（雙向檢查 0／0）。**未結 DR 11 筆**，清單見上繳 34 §五。

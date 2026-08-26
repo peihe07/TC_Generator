@@ -1,0 +1,370 @@
+# 上繳包 34 —— 收尾：22 條寫回、8 leaf 覆蓋總表、未結 DR 清單
+
+- 日期：2026-08-26
+- 方向：執行層（Claude Code）→ 分析層（Claude Project）
+- 對應下放：`features/display/docs/handoff/34_closeout.md`（＋ 併執 33 包）
+- 存續之停止條件全數掃描：**內容類 54／55／60／73／83／88／89／90／91／93 皆 0**；
+  **寫回類完整性計數逐項相等**
+- **一處對指示之偏離**（寫回標的），已具名，見 §3.1
+- **git 未執行**（§六為建議）
+
+---
+
+## 一、抄錄核對表（最後一次）
+
+## 抄錄核對表 — 34_closeout.md（機器輸出，R-G20）
+
+| # | 條號 | 去處 | 字元數 | SHA256（前 16 碼） | 逐字相符 |
+|---|---|---|---|---|---|
+| 58 | R-DM56 | `features/display/RULINGS.md` | 489 | `cc2701a135fd3245` | 是 |
+| 59 | R-DM57 | `features/display/RULINGS.md` | 241 | `493cb05ba6d4f5ef` | 是 |
+
+累計：`RULINGS.md` 之 R-DM 區塊 **59** 個，與各下放包原檔逐字元比對 **全數相符**（59 vs 59）。
+
+`RULINGS.md` 之 R-DM 區塊累計 **59**，順序驗證 exit 0。
+R-G39 之核對表見上繳 33 §一。
+
+---
+
+## 二、生成
+
+### 2.1 `ops-01` —— 13 條
+
+全文、`reasoning`、`deferred`、排除表、行為軸表、未用材料表
+**見上繳 33**（同輪產出）。
+
+### 2.2 一處內容實錯，本輪抓到並改（R-DM57(a) 之例外）
+
+合併 lint 之首跑報 **P = 3**（訊號寫法不合 R-1 v3），三處皆為
+「賦值缺 `VAL_` 標籤」：
+
+```text
+| 25 | er | '$DIS_CENTERSTACK.DCSD_DISP_STAT$ = 5' |
+| 26 | er | '$DIS_CENTERSTACK.DCSD_DISP_STAT$ = 6' |
+| 30 | er | '$RADIO_B3.RQ_DISP_INTS$ = 201'        |
+```
+
+**根因二項**：
+
+1. **值 5／6／201 之所以是「不合理值」，正是因為它們沒有 `VAL_` 標籤。**
+   我把不合理值寫成訊號賦值 —— **這在定義上就不可能合格。**
+2. `$RADIO_B3.RQ_DISP_INTS$` 之**訊息名 `RADIO_B3` 來自 VF169**，
+   而下放包 30a §3.1 明文「只登記不採用」，**停止條件 83 之標的即此**。
+   我在寫 #12 時把它當成已知事實用了。
+   **首跑之 83 掃描沒抓到，因為我掃的詞表漏了它。**
+
+**處置**：
+
+| TC | 處置 |
+|---|---|
+| #7／#8 | ER 改為只驗可觀察行為（畫面不變／畫面為 on 態）；**注入動作留在 procedure** |
+| **#12** | **移除** —— 其 ER 無法在不違反 R-1 v3(a) 與停止條件 83 之下寫出。該行為軸併入 `brightness context` 之 deferred（`blocking_dr: DR-DM8`） |
+
+修正後：**P = 0**；`RADIO_B3` 於全部 TC 欄位之出現 **0**
+（其僅存於 `deferred.reason` 與 `reasoning` 之說明文字內）。
+
+### 2.3 全批合併 lint（母體 22 條）
+
+| 項 | 值 |
+|---|---|
+| 母體 | `pilot-01` 3 ＋ `rvc-01` 6 ＋ `ops-01` 13 = **22** |
+| 方式 | 036 母本之拋棄式複本，資料列 10–31，其餘清空 |
+| profile | `display` |
+
+```text
+# lint036 報告：lint_all.xlsx
+
+- 來源：`/private/tmp/claude-501/-Users-peihe-Work-Projects-TC-Generator/e90244b2-6851-4dfb-8775-8cb1bd4f77d3/scratchpad/lint_all.xlsx`（唯讀）
+- 資料列數：22
+- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+- L 閾值：50 tokens
+- profile：`display`（P 採 R-1 v3；另跑 Q／R／T）
+
+## 違規統計
+
+計數口徑：**行計為主**（違規記錄數，粒度見「粒度」欄），**附列計**（涉及之相異資料列數）。兩者不可互相加總。
+
+| 檢查 | 項目 | 行計 | 列計 | 粒度 | 校準 |
+| --- | --- | ---: | ---: | --- | --- |
+| A | 禁用動詞 (proc) | 0 | 0 | 每次命中 | 已校準 |
+| B | ER 情態詞 (er) | 0 | 0 | 每次命中 | 已校準 |
+| C | hedge (test_item 括號下半) | 0 | 0 | 每次命中 | 已校準（R-6b 範圍：Media 錨值 1→0） |
+| D | PC 違規 (pre) | 0 | 0 | 每次命中／每編號行 | 已校準 |
+| E | proc/er 編號行數不對齊 | 0 | 0 | 每列 | 已校準 |
+| F | 方括號佔位 (proc) | 0 | 0 | 每次命中 | 已校準 |
+| G | Test Set 空值 | 0 | 0 | 每列 | 已校準（詞彙表外值待接入） |
+| H | ER 模糊語 (er) | 0 | 0 | 每次命中 | 已校準 |
+| I | test_item 括號下半缺失 | 0 | 0 | 每列 | 已校準 |
+| I-sibling | 同 Requirement ID 括號行逐字重複 | 0 | 0 | 每列 | 未校準（M15） |
+| J | 行首大寫 | 0 | 0 | 每行 | 已校準（行計口徑） |
+| K | CJK 字元 | 0 | 0 | 每列每欄 | 已校準（分級待 R-5） |
+| L | test_item 上半過長 (>50 tokens) | 0 | 0 | 每列 | 已校準（閾值待 R-3） |
+| M | 空欄三態 | 0 | 0 | 每列每欄 | 已校準 |
+| N | 行尾多餘句號 | 0 | 0 | 每行 | 已校準 |
+| P | 訊號寫法不合 R-1 v3 | 0 | 0 | 每次命中 | 未校準（R-1 v3，21 包改寫；profile 專屬） |
+| Q | 不可見字元（NBSP／全形空格／行尾空白） | 0 | 0 | 每行每欄 | 未校準（R-10(a)，21 包新增） |
+| R | Pre-Condition 版面（未編號行／多條件並列） | 0 | 0 | 每行 | 未校準（R-9(a)，21 包新增） |
+| T | PENDING 說明非英文 | 0 | 0 | 每次命中 | 未校準（R-14，21 包新增） |
+| U | PENDING 佔位（四欄全掃，含 ER 側） | 0 | 0 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
+
+**總計：行計 0**（列計不加總——同一列可觸發多項檢查）
+
+## 明細
+
+```
+
+**二十項行計皆 0。** `I-sibling` 有母體（004×2、007×3、008×3、001×8、
+002×3、003×2）**且為 0**。
+
+### 2.4 `popup-01`（`SWE1-DM-006`）—— **不成批，具名回報**
+
+依 34 包 §2.2 末句「若 006 之可寫面向經勘查不足以成批（< 2 TC），
+**具名回報後併入寫回，不強生**」。
+
+勘查（R-G37 新判準，適用本專案）：
+
+```text
+# 候選（適用本專案，含 popup／priority／arbitration 詞）= 15 條
+  其中已被三批引用者 = 3
+
+# 含逐字 popup 編號（PU\d{4}）者
+  0 條 → **無**
+
+# 含 `pop-up`／`popup` 一詞者
+  1 條 → ['4819575']
+    {4819575} §1.8.1.1.3 For the pop-ups stated in HMI core specification requirement H4; the HU shall send $TGW_DISP_STAT$ = [DISP_NORMAL] and $RQ_DISP_INTS$ <> [0% Intensity
+
+# 僅 priority／arbitration 詞者之章節分布
+    3  §1.11.2.2 DCSD Display Hot Behavior
+```
+
+**三項實測**：
+
+1. **CFTS_020 之適用條文中，含逐字 popup 編號（`PU\d{4}`）者 = 0 條。**
+2. 含 `pop-up`／`popup` 一詞者 **1 條** —— `{4819575}`，其逐字為
+   `For the pop-ups stated in HMI core specification requirement H4; the HU
+   shall send $TGW_DISP_STAT$ = [DISP_NORMAL] …` ——
+   **轉指 `HMI core specification requirement H4`，該文件不在手上。**
+3. 其餘 `priority` 詞之命中，扣除三批已引者，**其標的為 RVC
+   （007／008 之材料）或 Display Hot × RVC（`{4820291}`／`{4820292}`，
+   004／005 之材料）**，取之即違 §8.2.1。
+
+**而 `popup_priority.tsv` 之權威性本身待 DR-DM2(b)**
+（29 輪 B18：2021 SR24 1A 矩陣對 26PI 是否仍為權威，**語意漂移無從以
+逐字證明**），其 `Cat. SL` 之序另待 DR-DM2(a)（B17）。
+
+**結論：006 之可寫面向為 0 條 TC，不成批。不強生。**
+覆蓋總表列其為**未覆蓋**（§四）。
+
+---
+
+## 三、寫回 036
+
+### 3.1 【偏離】寫回標的改為 `output/`，`inputs/` 之母本一字不動
+
+下放包 §3.1 定標的為「`inputs/` 之 036 母本複本」。**本層改寫入
+`features/display/output/`**，理由三項：
+
+(a) `inputs/` 之母本為**客戶素材**，且受 `reference:` 綁定
+    （`workbook_master`，sha `6372fb6be02f48dc…`）。就地覆寫會**毀去
+    唯一一份原件**；
+(b) 覆寫後 R-G23 之綁定檢查將由 **13/13 轉為 12/13** ——
+    一項為交付而做的動作，會使本 feature 唯一的素材完整性保證失效；
+(c) 他 feature 之慣例即為 `output/`（`time_management`／`user_profiles`
+    之 036 產出皆在該處）。
+
+**下放包 §3.1 所稱之「repo 內部複本」，本作法即產生該複本**，
+且 §3.1 末句「交付路徑之複製屬 Pei」不受影響。
+**若分析層要求就地覆寫，請明示；本層可於單輪內改。**
+
+### 3.2 寫回報告
+
+```text
+# 寫回 036（XML 外科式）
+來源（不動）: inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specifi…
+輸出        : output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specifi…
+sheet xml   : xl/worksheets/sheet6.xml
+author      : PeiPYHsu
+寫入列      : 10 … 31（22 列）
+
+| 列 | TC ID | leaf | 批次 |
+|---|---|---|---|
+| 10 | `TC-DM-001` | `SWE1-DM-004` | pilot-01 |
+| 11 | `TC-DM-002` | `SWE1-DM-004` | pilot-01 |
+| 12 | `TC-DM-003` | `SWE1-DM-005` | pilot-01 |
+| 13 | `TC-DM-004` | `SWE1-DM-007` | rvc-01 |
+| 14 | `TC-DM-005` | `SWE1-DM-007` | rvc-01 |
+| 15 | `TC-DM-006` | `SWE1-DM-007` | rvc-01 |
+| 16 | `TC-DM-007` | `SWE1-DM-008` | rvc-01 |
+| 17 | `TC-DM-008` | `SWE1-DM-008` | rvc-01 |
+| 18 | `TC-DM-009` | `SWE1-DM-008` | rvc-01 |
+| 19 | `TC-DM-010` | `SWE1-DM-001` | ops-01 |
+| 20 | `TC-DM-011` | `SWE1-DM-001` | ops-01 |
+| 21 | `TC-DM-012` | `SWE1-DM-001` | ops-01 |
+| 22 | `TC-DM-013` | `SWE1-DM-001` | ops-01 |
+| 23 | `TC-DM-014` | `SWE1-DM-001` | ops-01 |
+| 24 | `TC-DM-015` | `SWE1-DM-001` | ops-01 |
+| 25 | `TC-DM-016` | `SWE1-DM-001` | ops-01 |
+| 26 | `TC-DM-017` | `SWE1-DM-001` | ops-01 |
+| 27 | `TC-DM-018` | `SWE1-DM-002` | ops-01 |
+| 28 | `TC-DM-019` | `SWE1-DM-002` | ops-01 |
+| 29 | `TC-DM-020` | `SWE1-DM-002` | ops-01 |
+| 30 | `TC-DM-021` | `SWE1-DM-003` | ops-01 |
+| 31 | `TC-DM-022` | `SWE1-DM-003` | ops-01 |
+```
+
+| 項 | 值 |
+|---|---|
+| 來源 | `inputs/…_20260817_ext.xlsx`，sha `6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2` |
+| **來源 sha（寫回後）** | **`6372fb6be02f48dc…` —— 未變**（綁定維持 13/13） |
+| 輸出 | `output/…_SWQT_Display_20260826.xlsx` |
+| **輸出 sha** | `43a301f6571830189b85d9bcfa506ce3074bae438d86f942e61cb1363a43f746` |
+| 寫入列 | **10 – 31**（22 列） |
+| TC ID | `TC-DM-001` … `TC-DM-022`（canon §10.3，生成器編號） |
+| `O` 欄 | `NEW`（`tc_ref_id_value`） |
+| `AA` 欄 | `PeiPYHsu`（`author_value`） |
+| `G`／`H` 欄 | 已填（`fill_test_group_set: true`；BLANK → FILL） |
+| 方式 | **XML 外科式** —— 只改 `xl/worksheets/sheet6.xml` 之目標儲存格，其餘 47 個 zip 部件**逐 byte 原樣重打包**；不經 openpyxl 存檔 |
+
+### 3.3 完整性驗證（§3.2 之逐項相等）
+
+```text
+| 項 | before | after | 相等 |
+|---|---:|---:|---|
+| <dataValidation | 4 | 4 | 相等 |
+| x14:dataValidation | 2 | 2 | 相等 |
+| <conditionalFormatting | 0 | 0 | 相等 |
+| worksheets | 9 | 9 | 相等 |
+| drawings | 6 | 6 | 相等 |
+| charts | 0 | 0 | 相等 |
+| rels | 16 | 16 | 相等 |
+| zip entries | 48 | 48 | 相等 |
+
+**完整性驗證：PASS —— 逐項相等**
+```
+
+**R 欄下拉之抽查**：`x14:dataValidation` 之 `xm:sqref` 為 **`R10:R1411`**
+—— 寫入之第 10 列落在其範圍內，下拉可用。
+另三個 `dataValidation` 之 `sqref` 為 `P10:Q1411`／`T10:Z1411`／`AF10:AF1411`，
+皆與寫回前相同。
+
+### 3.4 回讀驗證（本層加做）
+
+```text
+回讀比對：22 列 × 15 欄，不符 = 0  →  PASS
+第 32 列（22 條之後）應為空：None
+抽查 r10：F=TC-DM-001 D=SWE1-DM-004 G=Display H=Thermal Management P=P1 R=狀態轉換 (State Transition Testing)
+抽查 r31：F=TC-DM-022 D=SWE1-DM-003 H=Operative State P=P2
+```
+
+**22 列 × 15 欄逐欄比對，不符 0。** 第 32 列為空（未溢寫）。
+
+---
+
+## 四、覆蓋總表（8 leaf）
+
+```text
+| leaf | Test Set | TC 數 | 覆蓋狀態 | deferred token（blocking DR） |
+|---|---|---:|---|---|
+| `SWE1-DM-001` | Operative State | 8 | **部分覆蓋** | `DISPLAY_ON and DISPLAY_OFF naming`（DR-DM8） |
+| `SWE1-DM-002` | Operative State | 3 | **部分覆蓋** | `DISPLAY_ON and DISPLAY_OFF naming`（DR-DM8）；`brightness context`（DR-DM8） |
+| `SWE1-DM-003` | Operative State | 2 | **部分覆蓋** | `splash timing`（DR-DM1）；`DISPLAY_ON and DISPLAY_OFF naming`（DR-DM8） |
+| `SWE1-DM-004` | Thermal Management | 2 | **部分覆蓋** | `warning popup`（DR-DM10） |
+| `SWE1-DM-005` | Thermal Management | 1 | **部分覆蓋** | `protective shutdown`（DR-DM10）；`multi-stage`（DR-DM4） |
+| `SWE1-DM-006` | Pop Up Handling | 0 | **未覆蓋** | — |
+| `SWE1-DM-007` | Rear View Camera | 3 | **部分覆蓋** | `reverse gear`（DR-DM11）；`HU-side signal value`（DR-DM9） |
+| `SWE1-DM-008` | Rear View Camera | 3 | **部分覆蓋** | `HU-side signal value`（DR-DM9）；`splash abort`（DR-DM1） |
+
+合計 TC = 22
+覆蓋之 leaf = 7 / 8
+全覆蓋（無 deferred）= 0
+部分覆蓋 = 7
+未覆蓋 = 1  → ['SWE1-DM-006']
+```
+
+**7 / 8 leaf 有 TC；全部為部分覆蓋；`SWE1-DM-006` 未覆蓋。**
+**無一 leaf 為全覆蓋** —— 每一 leaf 皆有至少一個 deferred token，
+且每一 token 皆於其各 TC 之 `test_item` 括號下半逐字指名（R-G33，
+雙向檢查 MISSING 0／STALE 0）。
+
+---
+
+## 五、未結 DR 清單（交付包必附）
+
+| DR | 狀態 | 阻斷之面向 |
+|---|---|---|
+| **DR-DM1** | SENT (2026-08-25) | `SWE1-DM-003` 之 splash 時長；`SWE1-DM-008` 之 splash abort |
+| **DR-DM2** | SENT ＋ 補充函待發 | **`SWE1-DM-006` 全部**（006 未覆蓋之直接原因）；`Cat. SL` 之序 |
+| **DR-DM3** | SENT (2026-08-25) | 全 8 leaf 之追溯欄（`SYS-RA-DISP-*` ↔ SYS2） |
+| **DR-DM4** | SENT ＋ 重擬／附件二待發 | `SWE1-DM-005` 之 multi-stage 分級 |
+| **DR-DM5** | SENT (2026-08-25) | `$CCDMF_RQ_DISP_INTS$` 之 DBC 定義（本批未用） |
+| **DR-DM6** | SENT (2026-08-25) | `Display_OFF_SoftKey_Prsnt` 之 PROXI 定義（本批未用） |
+| ~~DR-DM7~~ | **CLOSED（R-DM44，16 輪）** | — |
+| **DR-DM8** | SENT (2026-08-25) | **`SWE1-DM-001`／`-002`／`-003` 之 `DISPLAY_ON`／`DISPLAY_OFF` 命名**；002 之 brightness context |
+| **DR-DM9** | SENT ＋ 重擬／附件三待發 | `SWE1-DM-007`／`-008` 之 HU 側訊號值；`{4820287}` 之訊號值 |
+| **DR-DM10** | SENT ＋ 補充一、二待發 | **`SWE1-DM-004` 之 warning popup；`-005` 之保護性關閉**；`pilot-01` 之 `85 degrees C` 之前提 |
+| **DR-DM11** | OPEN | `SWE1-DM-007` 之倒車檔觸發 |
+| **DR-DM12** | 待 Pei 發 | `rvc-01` 六條之 `leaf_id`（**非 TC 內容**） |
+
+**11 筆未結、1 筆 CLOSED。** 待 Pei 發者：DR-DM12，
+以及 DR-DM2／DR-DM4／DR-DM9／DR-DM10 之補充／重擬函件。
+
+> **R-DM56(c) 之提醒**：DR 答覆到達後之修改為**變更**，不為阻斷。
+> 受影響者為門檻數字與 deferred 之解除，**TC 之結構不受影響**。
+
+---
+
+## 六、建議之 commit 訊息與 pathspec（**未執行**）
+
+```bash
+git add \
+  features/display/RULINGS.md \
+  features/display/generated/ops-01.json \
+  features/display/scripts/write_back_036.py \
+  features/display/docs/INDEX.md \
+  features/display/docs/handoff/33_ops01_scoped.md \
+  features/display/docs/handoff/34_closeout.md \
+  features/display/docs/upstream/33_ops01_scoped.md \
+  features/display/docs/upstream/34_closeout.md \
+  docs/fw036/RULINGS_LEDGER.md
+```
+
+```text
+feat(display): generate the operative state batch and write all 22 cases back
+
+- ops-01: 88 candidate clauses, 36 excluded with a reason each, 52 kept, 14
+  behaviour axes, 13 test cases over the three operative state leaves
+- drop one axis at the check stage: its expected result would have had to
+  assign 201 to an intensity signal whose value list only defines 255, and
+  its message name came from a document that is on register but not for use
+- rewrite two expected results the same way: the values 5 and 6 are
+  implausible precisely because they carry no label, so the check verifies
+  the screen instead and the injection stays in the procedure
+- write all 22 cases to output/ by editing one sheet xml and repacking the
+  other 47 parts byte for byte; every validation, drawing and relationship
+  count matches, and the source workbook is untouched
+- 006 yields no writable case: the spec carries no popup ids at all and the
+  priority matrix's authority is itself what DR-DM2 asks about
+- add R-DM56 and R-DM57: test against the specific clause and disclose the
+  contradiction rather than waiting on it, and freeze new process work
+```
+
+> **`output/` 之 xlsx 是否入 git 由 Pei 決定** —— 他 feature 之
+> `output/` 有進 git 者（`user_profiles`／`time_management`），
+> 本 pathspec **未含它**，待明示。
+> `inputs/` 由 `.gitignore` 排除。`batches/` 亦然。
+
+---
+
+## 七、自陳（依 R-DM57(b) 入 `BACKLOG.md`，此處僅列標題）
+
+- **B30**：`popup-01` 未成批之判斷，其依據含「`popup_priority.tsv` 之
+  權威性待 DR-DM2(b)」—— 該表是本層 29 輪所建，**用自己建的表之不確定性
+  去論證另一批不能生成**，其推理鏈長且未經第二來源。
+- **B31**：`{4819575}` 轉指之 `HMI core specification requirement H4`
+  **未開 DR** —— R-DM57(a) 禁開新異常，惟此為新的未取得素材。
+- **B32**：`ops-01` 之 14 軸由本層自 52 條歸納，**歸納過程無第二來源核對**；
+  R-G39 定「行為軸產出 TC」而未定「軸如何歸納」。
+- **B33**：未用材料表之 (ii) 七條 FPDM／CCDMF／CCDMR 條文為
+  `[Radio:R1H][EE:Atlantis High]` 之專條、**適用本車而不在 037 八條內** ——
+  037 之範圍未涵蓋該三個顯示模組。
