@@ -39,9 +39,11 @@ FIRST_ROW = 10
 SRC = FEATURE / "inputs" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx")
 SRC_SHA = "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"
+# 39 包步驟 4 —— **第二次寫回**：自**母本**重新產生，不在第一次之產出上疊改。
+# 其檔名以 `rev2` 標其性質；**第一次之產出不覆寫、不刪除**（其為 38 包上繳所載之對象）。
 OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_"
-                            "PowerModing_20260825_writeback.xlsx")
+                            "PowerModing_20260826_writeback_rev2.xlsx")
 
 # profile §0.1（rev C 34 欄）—— 38 §四步驟 6 所明定者
 COLS = {"D": "leaf_id", "F": "tc_id", "G": None, "H": "test_set",

@@ -137,17 +137,20 @@ TCS = [
         "2. Start-up sounds are supported on this vehicle"],
    proc=["1. Do not press the Mute key or the Headunit Mode key",
          "2. Do not change the headunit mode by voice recognition",
-         "3. Play the startup animation and record the sound output",
+         "3. Play the startup animation and record the start-up sound output",
          "4. Play the startup animation a second time and record the sound output",
-         "5. Check that the sound was played on both occasions"],
+         "5. Trigger the shut-down animation and record the goodbye sound output",
+         "6. Check that both sounds were played on every occasion"],
 
    er=["1. No Mute key press and no Headunit Mode key press occurs",
        "2. The headunit mode is not changed by voice recognition",
-       "3. The sound is played the first time the startup animation is played",
-       "4. The sound is played the second time the startup animation is played",
-       "5. The sound was played every time the startup animation was played"],
+       "3. The start-up sound is played the first time the animation is played",
+       "4. The start-up sound is played the second time the animation is played",
+       "5. The goodbye sound is played when the shut-down animation is triggered",
+       "6. Both the start-up and the goodbye sounds were played every time"],
 
-   reason=("**P1 —— 主要功能邏輯**（非 P0）。設計方法 EP —— "
+   reason=("⚠ **R-PMH147（39 包）—— A-PMH32 之處置：擴而不拆**。本條原只以 startup animation 為觸發，其 ER 以泛稱 `the sound` 斷言，**告別音側未驗**；而其 `source_clause` 之主語逐字為 `start-up and goodbye sounds`。**成因**：`SSND 2.1)`／`2.2)` 之句子自身不一致 —— 主語為二者而觸發只寫 `startup animation`；**我當時取了字面之觸發而未取字面之主語**。**擴而不拆之三項依據**：(1) **同軸之驗證單位須一致** —— 本軸為 `SSND 2)` 之設定三值，其單位為「該設定值對**兩種聲音**之效果」，而 -014 已於一條之內涵蓋二者；拆本條而不拆 -014 將使三條之單位不一（R-PMH59 之精神）。(2) **與 canon §5.7 之張力具名** —— 門關閉與關機動畫確為兩個觸發，惟此處之驗證單位由**設定值**定義而非由觸發定義。(3) 拆分將使 -014 亦須拆為兩條幾近同義之負向條，而 **canon §7 只要求「至少一條負向」**。**不開 DR** —— 擴涵蓋後兩讀皆被涵蓋（R-PMH95 之形態）。"
+     "**P1 —— 主要功能邏輯**（非 P0）。設計方法 EP —— "
      "`Always`／`Once a Day`／`Never` 為設定值之三個等價類，本條驗第一類。"
      "**`everytime` 以「連續兩次播放」承載** —— 兩次為證明「非只一次」之最小次數；"
      "⚠ **不斷言任何次數上限**（規格只說 `everytime`，§8.4.1 不造值）。"
@@ -167,17 +170,20 @@ TCS = [
         "2. No start-up or goodbye sound has been played today"],
    proc=["1. Do not press the Mute key or the Headunit Mode key",
          "2. Do not change the headunit mode by voice recognition",
-         "3. Play the startup animation and record the sound output",
+         "3. Play the startup animation and record the start-up sound output",
          "4. Play the startup animation a second time on the same day",
-         "5. Check that the sound was played once and not on the second occasion"],
+         "5. Trigger the shut-down animation on the same day and record the sound",
+         "6. Check that each sound was played once and not a second time"],
 
    er=["1. No Mute key press and no Headunit Mode key press occurs",
        "2. The headunit mode is not changed by voice recognition",
-       "3. The sound is played the first time the startup animation is played",
-       "4. No sound is played the second time on the same day",
-       "5. The sound was played only once on that day"],
+       "3. The start-up sound is played the first time the animation is played",
+       "4. No start-up sound is played the second time on the same day",
+       "5. The goodbye sound is played once on that day and not a second time",
+       "6. Each sound was played only once on that day"],
 
-   reason=("**P1 —— 主要功能邏輯**（非 P0）。設計方法 EP —— 三個等價類之第二類。"
+   reason=("⚠ **R-PMH147（39 包）—— A-PMH32 之處置：擴而不拆**。本條原只以 startup animation 為觸發，其 ER 以泛稱 `the sound` 斷言，**告別音側未驗**；而其 `source_clause` 之主語逐字為 `start-up and goodbye sounds`。**成因**：`SSND 2.1)`／`2.2)` 之句子自身不一致 —— 主語為二者而觸發只寫 `startup animation`；**我當時取了字面之觸發而未取字面之主語**。**擴而不拆之三項依據**：(1) **同軸之驗證單位須一致** —— 本軸為 `SSND 2)` 之設定三值，其單位為「該設定值對**兩種聲音**之效果」，而 -014 已於一條之內涵蓋二者；拆本條而不拆 -014 將使三條之單位不一（R-PMH59 之精神）。(2) **與 canon §5.7 之張力具名** —— 門關閉與關機動畫確為兩個觸發，惟此處之驗證單位由**設定值**定義而非由觸發定義。(3) 拆分將使 -014 亦須拆為兩條幾近同義之負向條，而 **canon §7 只要求「至少一條負向」**。**不開 DR** —— 擴涵蓋後兩讀皆被涵蓋（R-PMH95 之形態）。"
+     "**P1 —— 主要功能邏輯**（非 P0）。設計方法 EP —— 三個等價類之第二類。"
      "**`only once per day` 以「同日內兩次觸發」承載**，其括號之逐字 "
      "`i.e other valid triggers will not trigger any sound` 由 ER2 承載。"
      "⚠ §8.4.1 不造值：**規格未定義「一日」之起算點**（午夜？點火週期？），"

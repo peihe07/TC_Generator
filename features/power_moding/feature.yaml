@@ -165,6 +165,24 @@ workbook:
 # 公式外之非空儲存格 = 0（掃 A–AH 全 34 欄）。
 workbook_state: "BLANK"
 
+# --- R-PMH148（39 包步驟 3）---
+# `workbook_state` **維持 `BLANK`，不因寫回而改** —— 其描述之對象為
+# **交付基底之初始狀態**（R-PMH8：母本資料區非空儲存格 0），其為歷史事實；
+# 改之則日後無從得知本 feature 起始於空白母本。
+#
+# 寫回之狀態另立於此。
+delivery_state: "WRITTEN"
+delivery:
+  copy: "output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_PowerModing_20260826_writeback_rev2.xlsx"
+  sha256: "01e917b88e050ce1f164db1f1121ea9fe665bae34bcfa5e153c03d1f322f248c"
+  rows_written: 51
+  first_row: 10
+  written_on: "2026-08-26"
+  supersedes: "…_PowerModing_20260825_writeback.xlsx (sha256 070ef73c…, 38 包)"
+  master_sha256_unchanged: "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"
+  # **交付路徑之複製屬 Pei**（R-G5）—— 本欄只記 repo 內之工作副本。
+  delivery_path_copy: "PENDING — Pei"
+
 done_region:
   detection: "author"
   author_value: null             # R-PMH8 —— done_region 不適用

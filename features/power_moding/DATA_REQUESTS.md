@@ -891,7 +891,7 @@ Thank you,
 第三問之覆蓋缺口另記於 `ANOMALIES.md`（R-PMH109 末）。
 
 **狀態**：`DRAFT`　**發出日期**：（待填）　**對象**：（待填）
-　**SHA256（前 16）**：`a553fc762dddbb5e`
+　**SHA256（前 16）**：`0ed8d781cc27e996`
 
 > **29b（R-PMH112）**：首段加入**對上游已作陳述之更正句** —— 2026-08-25 所發之 `DR-PMH5` 逐字載
 > 「我方已暫停 section 9 之 TC 撰寫」，該陳述因 R-PMH111 之限縮解凍而不再成立。
@@ -1002,6 +1002,7 @@ Second, three points where the documents do not define something we need:
       is active, so this combination is not covered by any of them. We would
       rather leave it uncovered than guess which behaviour is intended.
 
+  〔告知性附註 —— 不待覆，通報性質。本問為通報上游漏項之附註，其答覆不改變本輪交付物；若上游日後裁納入，屬新 leaf 之變更申請，於 Revise 批次另案處理。（R-PMH150）〕
   Q6: The following clause appears in the logic and flow document but not in the
       SYS1 structured export, and consequently has no requirement in the SWE.1
       analysis report:
@@ -1013,6 +1014,7 @@ Second, three points where the documents do not define something we need:
       covers it, because we do not author test cases for behaviour that has no
       requirement of its own.
 
+  〔告知性附註 —— 不待覆，通報性質。本問為通報上游漏項之附註，其答覆不改變本輪交付物；若上游日後裁納入，屬新 leaf 之變更申請，於 Revise 批次另案處理。（R-PMH150）〕
   Q7: The flow diagrams on pages 3 to 7 contain statements that do not appear in
       the prose sections. One example, verbatim:
 

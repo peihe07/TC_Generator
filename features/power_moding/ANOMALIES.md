@@ -1578,7 +1578,11 @@ Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
 
 ---
 
-## A-PMH25 — 9.1 之**權威文本**於逾時處為破句 · 30 包步驟 4 · **RESOLVED（037 之 DESC 為完整句，34 包查出 —— 見本檔末之更正節）**
+## A-PMH25 — 9.1 之**權威文本**於逾時處為破句 · 30 包步驟 4 · **ACCEPTED-RISK（R-PMH152，2026-08-26）**
+
+> **39a（R-PMH152）**：34 包已以 037 之 DESC 推翻其「無法確定」之前提（原標 `RESOLVED`），**而 `-016` 之逾時秒數本身仍無任何 TC 驗到**。
+> **Pei 裁定不另開問，其風險依裁定為終態** —— 狀態詞改 `ACCEPTED-RISK`，並於 `DELIVERY_NOTE.md` §9 第 8 項具名。
+> **`RESOLVED` 一詞於此不成立** —— 被解決者為「前提」，非「缺口」。
 
 **依 R-PMH75，9.1 之權威文本為 SYS1 匯出**（PDF 側為未刪淨之舊文字）。
 該權威文本於逾時處逐字為：
@@ -1685,7 +1689,10 @@ Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
 
 ---
 
-## A-PMH28 — p3–p7 流程圖之文字層載有散文所無之行為 · 32 包步驟 3／4 · **ACCEPTED（R-PMH131：不寫 TC、登記缺口、入 `DR-PMH8` Q7）**
+## A-PMH28 — p3–p7 流程圖之文字層載有散文所無之行為 · 32 包步驟 3／4 · **ACCEPTED（裁定排除，R-PMH150，2026-08-26）**
+
+> **39a（R-PMH150）**：照既定預設排除 —— **範圍以 037 之 leaf 全集為界，037 未載者不納入本輪交付**，**永久登記為覆蓋缺口**。`DR-PMH8` **Q7 降格為〔告知性附註〕**，其答覆不改變本輪交付物。
+> `PENDING-ON-DR` 第 12 筆結案（`CLOSED-BY-RULING`）。
 
 **A-PMH04 之重驗所得**（32 包步驟 4）。其六則圖片佔位 outline 為
 `2.1`／`3.1`／`4.1`／`5.1`／`6.1`／`12.4`，**無一落在 7.5～7.8**，
@@ -1718,7 +1725,9 @@ Screen Off Inactive If Radio/Media, Mute --> Inactive. Else: Mute Active
 
 ---
 
-## A-PMH29 — `SU1.)` 之「動畫後呈現 splash」一句無 leaf，其行為無 TC 覆蓋 · 34 包 §2.3 · PENDING
+## A-PMH29 — `SU1.)` 之「動畫後呈現 splash」一句無 leaf，其行為無 TC 覆蓋 · 34 包 §2.3 · **ACCEPTED（裁定排除，R-PMH150，2026-08-26）**
+
+> **39a（R-PMH150）**：同 A-PMH28 之處置 —— 037 未載者不納入本輪交付，永久登記為覆蓋缺口；`DR-PMH8` **Q6 降格為〔告知性附註〕**。`PENDING-ON-DR` 第 11 筆結案（`CLOSED-BY-RULING`）。
 
 **依據**：**R-PMH129**（`-024` 撤除）。
 
@@ -1827,7 +1836,10 @@ A-PMH25 原記「9.1 之權威文本於逾時處為破句，**其秒數無法確
 
 ---
 
-## A-PMH32 — `-012`／`-013` 之告別音側未驗（`and` 並列之一讀未涵蓋） · 38 包步驟 3 · PENDING
+## A-PMH32 — `-012`／`-013` 之告別音側未驗（`and` 並列之一讀未涵蓋） · 38 包步驟 3 · **RESOLVED（R-PMH147，39 包步驟 2 已執行）**
+
+> **39a §二之實測**：`desc_coverage` 正向報告中，`SWE1-HMI-PM-014` A1 由 `-012` **ER6** 涵蓋、`-015` A1 由 `-013` **ER6** 涵蓋；**二條之告別音側各另有明確之 ER5**（`The goodbye sound is played when the shut-down animation is triggered`／`The goodbye sound is played once on that day and not a second time`）。
+> `PENDING-ON-DR` 第 16 筆結案（`RESOLVED-BY-R-PMH147`）。
 
 **R-PMH144 之全批掃描所得**（34 個 `and`／`or` 並列候選中之唯一實質缺口）。
 
