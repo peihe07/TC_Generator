@@ -58,7 +58,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-AMnn]`.
 
-## [A-AM03] B1 之 50 錨有 7 個不在 R-AM2 錨源池內（圖表型物件遭匯出遺漏）— PENDING，阻塞 7 葉
+## [A-AM03] B1 之 50 錨有 7 個不在 R-AM2 錨源池內（圖表型物件遭匯出遺漏）— RESOLVED（R-AM2′，Pei 2026-08-26）
 
 2026-08-26 開工前置查核：以 03 包 §四 之 50 個錨值比對 R-AM2 所定之錨源池
 （兩本 Basic Report，實測 811 個 ObjectID＝Part1 245＋Part2 566，與 01 包
@@ -110,4 +110,48 @@ request upstream」，不作逐物件修補。
 執行層建議選項 2 併發 DR-AM3：錨值已具全文佐證，其可信度高於填 PENDING；
 且選項 1 之 PENDING 指向 DR-AM1 屬誤導 —— 兩者根因不同。
 
+**裁定（Pei 2026-08-26：「2採 R-AM2′准 DR-AM3發」）：採選項 2。** 七葉之錨
+照 §四 寫入，reasoning 逐條註明「池外錨，全文佐證」，上繳包附池外錨登記表
+（七列，由 `scripts/gen_b1.py` 產於 `generated/B1.json` 之
+`out_of_pool_anchors` 鍵）。七葉屬「Refer to figure」型，行為序列以圖說附文
+＋SWE.1 Description 為據；時序值仍循 IN §8.4.1 不造值 —— 僅於具名參數可解者
+（4867766／4867767／4867768／4867769／4867773）引用，其餘只驗相位順序。
+B1 因此回到完整 50 葉，無葉暫緩。
+
 ---
+
+## [A-AM04] CFTS019 以 `<Temp Ramp Down>` / `<Temt Ramp Down>` 指涉一個從未定義的參數 — 待分析層採認
+
+全文實測：`<Temp Ramp Down>` 與 `<Temt Ramp Down>` 於 CFTS019 出現 10 次
+（含 4866844、4866853、4866855 三個 B1 錨），但**全文無其定義列**。
+1.5.4 Variables 章只定義 `<Tent Ramp Down>`（4867767，Max 50ms／Min 25ms）。
+
+判讀：`Temp` / `Temt` 幾乎確定為 `Tent` 之拼寫錯誤 —— 三者字母僅差一位，
+語境（entertainment 來源之 ramp down）亦完全吻合。
+
+**執行層未代換。** 包 03 前言明訂「機械套用，不自行裁量，查無之值一律
+`PENDING: DR-{n}`，禁止推斷」。故 SWE1_AMM_203／206／208 三條 TC 之時序
+以 `PENDING: DR-AM5` 交付，判讀僅記於此並上呈，不入交付欄。
+
+影響：3 條 TC 之時序界值待補。行為面（ramp down 先於新來源、輸出全程靜音）
+不依賴該值，已正常驗證。若分析層採認拼寫錯誤之判讀，三條 TC 可直接以
+4867767 之 25–50ms 回填，無須重寫。
+
+## [A-AM05] 供應之 DBC 缺 `$HUModeStatus$` 與 `$VolumeENT$` — 依 R-13 (g) 保留原文名
+
+包 03 §三.5 要求訊號寫成 `$MESSAGE.Signal$ = raw (label)`，label 逐字取
+DBC `VAL_`。本批涉及之訊號實測結果：
+
+| CFTS 原文訊號 | DBC 查詢結果 | 處置 |
+|---|---|---|
+| `$SOSCallType$` | **查得** —— `TBM_FD_1.SOSCallType`，`VAL_` 標籤與 CFTS 原文逐字相符（2=Manual_SOS_call、3=Automatic_SOS_call、4=Callback_SOS_call） | 補全名，依 §三.5 全式寫入 |
+| `$HUModeStatus$` | 查無，且無任何命名變體（已掃 FDCAN8 1,916 訊號＋BHCAN2 344 訊號） | 依 R-13 (g) 保留原文名，記 DR-AM4 |
+| `$VolumeENT$` | 查無；兩本 DBC **無任何 volume 類訊號** | 同上 |
+
+未以近似訊號代換（§三.5 明令禁止）。`HU_Off` / `DAB_Selected` / `FM_Selected`
+等 label 因 DBC 無對應項可核，逐字取自 CFTS019 原文並加引號。
+
+附帶一致性註記：4866880 之 label 為 `"HU_Off"`，而 SWE.1 描述寫 `HU_OFF`
+（全大寫）。交付採 CFTS019 之拼法，因 R-AM2 定 CFTS019 為錨且 DBC 無第三
+來源可裁。
+

@@ -44,6 +44,12 @@
 4. specification_reference：一 ID 一行、前綴逐行 `CFTS019-{ObjectID}`
    （IN §10.7），值取 §四表「CFTS 錨」欄；**執行層不得自行改錨**，
    認為錨有誤者記入 reasoning 回報，不改值。
+   **【R-AM2′ 2026-08-26】**§四表中七葉（138、156、157、200、205、
+   240、241）之錨不在主池（兩本 Basic Report）、而取自全文 PDF 之
+   State:Approved 物件，已經雙路核驗。這七條照寫，reasoning 逐條註明
+   「池外錨，全文佐證」，且上繳包需附池外錨登記表（七列）。
+   七葉屬「Refer to figure」型：行為序列以圖說附文及 SWE.1 Description
+   為據，時序值仍循 IN §8.4.1 不造值。
 5. 訊號寫法：IN §8.7.5 v3 全域預設（audio_mgmt 無 override）。
    `$MESSAGE.Signal$ = raw (label)`，label 逐字取 DBC `VAL_`（forms/ 查表）；
    CFTS 原文之 `$HUModeStatus$`、`$INFO1Active$`、`$INFO2Active$`、
@@ -138,3 +144,4 @@ DR-AM1（正式對照表）仍未結，回件後末站統一校驗回填。
 |---|---|---|
 | DR-AM1 | SWE1↔CFTS ObjectID 正式對照表缺失；過渡採 R-AM2 內容對位 | 待 Pei 送出 |
 | DR-AM2 | SWE1_AMM_076 編號碰撞（-242/-246 同號），請上游改號 | 待 Pei 送出 |
+| DR-AM3 | 兩本 Basic Report 系統性遺漏圖表型需求物件（在池率 7.7% vs 39.0%），請上游 chapter-level 重匯 | Pei 已裁發（2026-08-26） |

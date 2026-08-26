@@ -1,6 +1,11 @@
 # Customer source files - never commit
 inputs/
 
+# Derived from customer source material — never commit. This is the full
+# CFTS019 spec text pdftotext extracts from inputs/, so it carries the same
+# confidentiality as the PDF itself while being regenerable in one command.
+data/cfts019_text.txt
+
 # Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
 # own data/*.json artefacts here as Step 1 starts emitting them.
 data/recon.json
