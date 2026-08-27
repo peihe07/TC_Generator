@@ -193,7 +193,7 @@ DR-3 另牽動 `033-02`／`034-02` 之複驗（其比對基準為草稿圖，PDO
 ## 7. 操作化判斷清單
 
 下列判準為**執行層將 037 之定性描述轉為可判準則**所定，**非規格明載**。
-散見各批自陳，於此集中：
+散見各批上繳之自陳節，於此集中：
 
 | # | 條目 | 037 原文之限度 | 執行層所定之判準 |
 |---|---|---|---|
@@ -227,10 +227,10 @@ round-trip 不符 0、保全計數全等、全簿 151 列 lint clean。
 
 | DR | 項目 | 狀態 |
 |---|---|---|
-| DR-1 | BLM operating speed threshold value | 送出核准，Pei 執行；7 條 PENDING + 8 項暫定車速值待複驗 |
-| DR-2 | Off-Road 2／Easy Entry ride-height 對映 | 草案已登記，送否 Pei 決；牽動 §7-2 |
-| DR-3 | Bed Lowering cluster graphics definition（PDO）| 草擬完成，送出待 Pei；1 條 PENDING + 2 條連動複驗 |
-| DR-4 | 三份 HMI_BP 指引（W-01／X-01／L-34）| 執行層登記，草擬待分析層；4 條 PENDING |
+| DR-1 | BLM operating speed threshold value | **Pei 已送出 2026-08-27**；7 條 PENDING ＋ 各批暫定車速值待複驗 |
+| DR-2 | Off-Road 2／Easy Entry ride-height 對映 | **Pei 已送出 2026-08-27**；牽動 §7-2，不阻斷交付 |
+| DR-3 | Bed Lowering cluster graphics definition（PDO）| **Pei 已送出 2026-08-27**；1 條 PENDING ＋ 2 條連動複驗 |
+| DR-4 | 三份 HMI_BP 指引（W-01／X-01／L-34）| **Pei 已送出 2026-08-27**；4 條 PENDING；017-05 不因此重新分流 |
 
 ---
 
@@ -246,3 +246,45 @@ round-trip 不符 0、保全計數全等、全簿 151 列 lint clean。
 **本 feature 為 BLANK 起建、無既有 TestRail 案例**，故 `testrail_new.tsv` 為
 新建清單而非新舊對照。若實有既有案例需對映，**停下回報，不自行推定對映關係**
 （下放包 14 §三）。
+
+---
+
+## 10. 交付檔（Tier 1 產出，2026-08-27）
+
+| 項 | 值 |
+|---|---|
+| 檔名 | `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_BedLowering_20260827.xlsx` |
+| 落點 | `features/bed_lowering/output/`（gitignored，FO §6 守則 2）|
+| SHA256 | `efa1da4c8f59c98d3dc2096041df87fded93c9e7173731003c9ed8ea46bc4b69` |
+| 產生器 | `scripts/emit_delivery.py`（來源 `workbook/bed_lowering_11.xlsx`）|
+| sidecar | 同名 `.sha256`，同目錄 |
+
+### 10.1 產出後驗收
+
+| 檢查 | 結果 |
+|---|---|
+| 正規化前後結構計數 | members 48／sheets 9／legacy DV 4／**x14 DV 1**／extLst 3 —— **全等** |
+| digest 冪等 | 重跑正規化後 SHA256 不變 —— 可重現，足以綁定 tag |
+| 交付檔 lint（跑在 `output/` 之檔，非工作副本）| **clean — 0 findings**，151 列 |
+| 逐列 vs `data/testrail_new.tsv` | 151／151，差異 **0** |
+| `PENDING` 殘留 | **0**（IN §8.4.3 成立，可出貨）|
+| FO §6 守則 2 | `output/` 由 `.gitignore:35` 排除，產出未碰任何 tracked 檔 |
+
+**正規化會重建整個 zip**（成員依檔名重排、時戳歸零），故結構計數於正規化**之後**
+再驗一次 —— 一次靜默掉了 x14 下拉之重建，其產物與正常產物同樣讀得開，
+差別只在客戶開啟時 R 欄下拉不見了。
+
+### 10.2 Tier 3 —— 尚未執行
+
+**受控文件提交與 release tag 均屬 Pei（FO §0 Tier 3，不可委派）。**
+執行層產出交付檔並備妥 tag 所需之值，未請求授權、未代為提交、未建 tag。
+
+tag 建議名 `fw036-bedlowering-v1`，annotation 應載：
+輸出檔名、上表之 SHA256、`done-region hash: N/A - BLANK start (R-BLM3)`、
+`rows: 0 preserved / 151 new (0 placeholder) / 151 total`、
+`coverage: 176/176 leaves`、lint 結果、四筆未結 DR、
+以及 §2 之文件級追溯粒度。
+
+**tag 應指向本交付紀錄所在之 commit**，非分支 tip ——
+tip 隨時可能被併行 session 推進（`fw036-display-v1` 即為此特意往回指一個 commit）。
+
