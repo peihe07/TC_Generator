@@ -80,3 +80,17 @@ SYS1_HMI_Bed_Lowering_Mode_HMI_Logic_and_Flow_R1_SR24_1A_(June_21_2021)
 依 **R-BLM2**：42 個 Heading 列入覆蓋台帳並標
 `No TC — Heading; refer to child IDs`，不生成 TC。
 TC 生成母體為 176 leaf。
+
+---
+
+## 4. `[OVERRIDE IN §10.4]` — reasoning 單位（R-BLM14(2)）
+
+IN §10.4 定 reasoning 為 top-level field（"not per-TC"）。本 feature：
+
+- **top-level reasoning**：批次摘要，必有。
+- **per-TC reasoning**：僅於裁定要求逐 leaf 內容時存在 ——
+  R-BLM13(b) 之委派句、IN §8.2.1 之縮窄委派。其餘 TC 不補。
+- per-TC reasoning 之存在本身即為「本條涉及委派」之訊號；
+  審查者見該欄即知需對照持有 leaf。
+- reasoning 不入交付欄（工作簿無此欄），本 override 只管批次
+  JSON 工件與審查流程。
