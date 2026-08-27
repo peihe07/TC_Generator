@@ -7,7 +7,7 @@
  "ruling": "R-VC21／R-VC22／R-VC23／R-VC24／R-VC25 ＋ profile §9.2 第三處置類",
  "segment": "a",
  "segment_note": "**本批無 b 段** —— 15 leaf 全數生成，為首個 a 段即全批之批次。`held_leaves` 為空。",
- "split_delta": 1,
+ "split_delta": 2,
  "tc_id_status": "provisional",
  "leaf_scope": [
   "SWE1-HMI-VC-034-01",
@@ -28,7 +28,7 @@
  ],
  "held_leaves": [],
  "write_back": "凍結 —— 本輪只產出 JSON，不寫回工作簿",
- "reasoning": "**驗證目標**：Settings 之行為面 —— 清單可見性（隱藏／灰化）、回復預設與清除個人資料之確認與取消、懸吊模式互斥、語言變更之彈窗流程與中文之特定彈窗。**為什麼這樣切**：15 leaf 中 14 筆一 leaf 一 TC；`038-05` 因 s5 自身即二個 if 分支而拆 2（`split_delta: 1`）。**PENDING 0** —— 本批為首個全潔批：15 筆皆僅需 037／SYS1 文字層。**取材分布之預期**：`Title` 2 筆（`035-03`／`036-02`，R-VC25 例外路徑之首次動用）、`SYS1` 3 筆（CONT 之 `038-02`／`038-03`／`038-04`）、其餘 `Description`。**未涵蓋**：Settings 清單之版面與操作（屬 `Settings List`）、點火可用性之狀態規則（屬 `Ignition Availability`）、`039` 所涉之叢集中文顯示（§8.4.2 委派）。",
+ "reasoning": "**驗證目標**：Settings 之行為面 —— 清單可見性（隱藏／灰化）、回復預設與清除個人資料之確認與取消、懸吊模式互斥、語言變更之彈窗流程與中文之特定彈窗。**為什麼這樣切**：15 leaf 中 14 筆一 leaf 一 TC；`038-05` 因 s5 自身即二個 if 分支而拆 2；`038-03` 依下放包 24 §1.3 之裁定拆 2（X 路徑／完成路徑）—— 判準為覆蓋洞而非形式論。`split_delta: 2`。**PENDING 0** —— 本批為首個全潔批：15 筆皆僅需 037／SYS1 文字層。**`split_flag` 恆 `False`、`split_reason` 恆空**（下放包 24 §1.4 裁甲，profile §11）—— 拆分之權威紀錄為 `split_delta` 與 req_id 重複。**取材分布之預期**：`Title` 2 筆（`035-03`／`036-02`，R-VC25 例外路徑之首次動用）、`SYS1` 3 筆（CONT 之 `038-02`／`038-03`／`038-04`）、其餘 `Description`。**未涵蓋**：Settings 清單之版面與操作（屬 `Settings List`）、點火可用性之狀態規則（屬 `Ignition Availability`）、`039` 所涉之叢集中文顯示（§8.4.2 委派）。",
  "tcs": [
   {
    "leaf_id": "SWE1-HMI-VC-034-01",
@@ -243,8 +243,8 @@
    "leaf_id": "SWE1-HMI-VC-038-03",
    "test_group": "Vehicle Category",
    "test_set": "Settings Behavior",
-   "tc_title": "Pop-up stays until completion or X",
-   "test_item": "This pop-up will stay on the screen until either the system completes changing the voice commands or the user presses X.\n\n(Persistence -- the pop-up leaves only on completion or on X)",
+   "tc_title": "Pop-up stays until the user presses X",
+   "test_item": "This pop-up will stay on the screen until either the system completes changing the voice commands or the user presses X.\n\n(Persistence -- the user-action exit, the pop-up leaves on X)",
    "pre_conditions": "1. The language-change pop-up is displayed and the system has not completed changing the voice commands",
    "input_test_data": "NA",
    "test_procedure": "1. Record the screen while the system is still changing the voice commands\n2. Press the X button on the pop-up\n3. Record the screen again",
@@ -255,8 +255,27 @@
    "split_flag": false,
    "split_reason": "",
    "functional_safety": "NA",
-   "reasoning": "**驗證目標**：彈窗持續顯示，直到系統完成或使用者按 X。**⚠ 取材為第三處置類 `resolved-by-structure`（profile §9.2 層次 2，下放包 23 §2.2）**：`This pop-up` 之先行詞在 SYS1 §11.5 s1，而連續 `1-3` 為 **54 token，逾 R-3 之 50**（profile §10 之工作定義）；非連續 `1,3` 為 42 但破壞 verbatim 之連續性，使第 7b 項與第二層之子串判準對本筆失效。**採單句 s3 ＋ 指涉由 TC 結構承載** —— 其先行詞「語言變更彈窗已顯示」**本即本 TC 驗證持續性之前提**，不解指涉也必須建立它。CONT 登記 `resolution=PC`／`resolution_key=pop-up`，**第三檢查點驗其 pre_conditions 確含該詞**。**⚠ 不拆之判讀（人工，記明）**：本筆含二個離開條件（系統完成、使用者按 X）。§8.3 壓測下二者為同一規則「彈窗不自行消失」之二個邊界，而非二個獨立觸發，故依授權不拆；惟此為人工判讀，若上游認為應拆，本筆為第一候選。",
-   "distinguishing_axis": "語言變更五段：彈窗之持續與離開條件（對 -01 之出現、-04 之返回）"
+   "reasoning": "**驗證目標**：彈窗持續顯示，直到使用者按 X 才離開。**⚠ 取材為第三處置類 `resolved-by-structure`（profile §9.2 層次 2，下放包 23 §2.2）**：`This pop-up` 之先行詞在 SYS1 §11.5 s1，而連續 `1-3` 為 **54 token，逾 R-3 之 50**（profile §10 之工作定義）；非連續 `1,3` 為 42 但破壞 verbatim 之連續性，使第 7b 項與第二層之子串判準對本筆失效。**採單句 s3 ＋ 指涉由 TC 結構承載** —— 其先行詞「語言變更彈窗已顯示」**本即本 TC 驗證持續性之前提**，不解指涉也必須建立它。CONT 登記 `resolution=PC`／`resolution_key=pop-up`，**第三檢查點驗其 pre_conditions 確含該詞**。**⚠ 拆 2（下放包 24 §1.3 之裁定，推翻上繳包 23 §5 之不拆判讀）**：上繳包 23 我判二個離開條件為同一規則之二個邊界而不拆，**分析層以覆蓋洞推翻** —— 不拆之實質後果是「系統完成時彈窗不消失」這個失效**現有 16 筆無一會 FAIL**（本筆之 Procedure 只走 X 路徑；`038-05` 未完成支第 3 步記錄的是語言清單非彈窗）。**判準不是「二觸發」之形式論，是「這個失效哪一筆會 FAIL」。**本筆改為 X 路徑，完成路徑另立一筆。",
+   "distinguishing_axis": "離開條件：使用者動作（對完成路徑之時間性離開）"
+  },
+  {
+   "leaf_id": "SWE1-HMI-VC-038-03",
+   "test_group": "Vehicle Category",
+   "test_set": "Settings Behavior",
+   "tc_title": "Pop-up leaves when updating completes",
+   "test_item": "This pop-up will stay on the screen until either the system completes changing the voice commands or the user presses X.\n\n(Persistence -- the system-completion exit, the pop-up leaves with no user action)",
+   "pre_conditions": "1. The language-change pop-up is displayed and the system has not completed changing the voice commands",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the screen while the system is still changing the voice commands\n2. Wait until the system has completed changing the voice commands, without pressing any control on the pop-up\n3. Record the screen again",
+   "expected_result": "1. The pop-up is still displayed\n2. The voice command change runs to completion\n3. The pop-up is no longer displayed",
+   "specification_reference": "SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_11.5",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "priority": "P2",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "reasoning": "**驗證目標**：系統完成語音命令變更時，彈窗自行離開，不需使用者動作。**⚠ 本筆為下放包 24 §1.3 所補之覆蓋洞**：第 4 批原 16 筆中，「完成時彈窗不消失」這個失效**無一筆會 FAIL**。**取材同 X 路徑筆**：第三處置類，單句 s3，CONT 登記 `resolution=PC`／`resolution_key=pop-up`。**連帶之實益（下放包 24 §1.3）**：`038-05` 未完成支第 3 步等到完成後驗「選項不再灰」—— 若彈窗該消失而未消失，它可能正擋著清單，該步之 FAIL 原因會混淆（灰化未解 vs 彈窗未關）。本筆使「完成 → 彈窗消失」成為該步之明確前置。**第 2 步之 `without pressing any control`**：離開須由系統完成所致，不得由使用者動作促成 —— 否則本筆與 X 路徑筆驗的是同一件事。",
+   "distinguishing_axis": "離開條件：系統完成（對 X 路徑之使用者動作離開）"
   },
   {
    "leaf_id": "SWE1-HMI-VC-038-04",

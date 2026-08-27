@@ -18,14 +18,17 @@ DR。**DR 由 Pei 發出（Tier 3）；本檔僅登記，執行層不發送。**
 | DR-VC7 | **未結** | 037 作者 | 不阻斷（R-VC11 已裁其僅作邊界）|
 | DR-VC8 | **未結** | 037 作者 | 僅 `SWE1-HMI-VC-033-01` |
 | DR-VC9 | **未結** | 規格／037 作者 | `VC-013-04`／`VC-007-01`／`VC-025-01` 三筆 |
+| **DR-VC10** | **未結** | 規格作者／HMI 彈窗清單維護者 | 第 5 批 `062-01`／`062-02`／`063-01`／`063-02` 四筆之 ER 文字 |
 
-**九筆全為未結。**
+**十筆全為未結。**
 
 **發送批次（下放包 03 §四、04 §四、09 §二）—— 同批 A，現為五項**：
 DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之
 Title／Description 語意一問 —— 五者同為對 037 作者之查詢，
 **同批發送，一次往返**。
 DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定。
+**DR-VC10（下放包 24 T128 新立）之批次未指定** —— 其對象為規格作者
+與彈窗清單維護者，與同批 A 之 037 作者不同，**不宜併入同批 A**。
 
 ---
 
@@ -221,3 +224,32 @@ DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定�
 
   **編號不拆**：DR 之編號是追蹤單位，一件事拆二號會使本檔之未結數失真。
   分送屬**發送安排**，非編號問題。
+
+---
+
+## DR-VC10 —— `PU0091` 之權威彈窗字串（新立，下放包 24 T128(c)）
+
+**由來**：A-VC18。同一彈窗，規格側作 `Feature not available while vehicle
+is in motion`，`Pop Up List HMI R1 (26PI)` 與 `HMI Settings List R1 SR25
+Post R1L-R` **二份獨立來源**一致作 `Function not available while vehicle is
+in motion.`（且有句末句點）。
+
+**已實測，非「我們沒找到」**：`Pop Up List` `Main` 分頁全 1344 列已搜
+`PU0091`，**唯一命中第 93 列**，其 `String/Popup Message` 欄逐字為
+`Function not available while vehicle is in motion.`。
+
+### 問
+
+1. `PU0091` 之**權威字串**為 `Feature` 或 `Function`？句末是否含句點？
+2. 若彈窗清單為準，SYS1 §13.4.1／§13.4.2 之引文是否應更正？
+   （若是，037 之 `062-01`／`063-01` `Description` 隨之）
+3. `PU0091` 之 `Description` 欄作 `Driver Lockout: Function / Some functions
+   are lock while vehicle is in motion` —— 該彈窗是否為**通用**之行進中攔阻
+   彈窗（非本 feature 專屬）？若是，其字串之變更歸誰。
+
+### 阻斷範圍
+
+第 5 批 `062-01`／`062-02`／`063-01`／`063-02` 四筆之 ER 文字。
+**不阻斷該四筆之生成** —— 依 IN §8.4.3 帶 `PENDING` 佔位。
+
+狀態：**未結**。

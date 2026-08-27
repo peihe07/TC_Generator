@@ -313,8 +313,8 @@ SPEC = [
           "（profile §9.2 層次 1 之預設處置對本筆成立，故不採第三處置類）。"
           "上半即 s1＋s2 之逐字，收斂第 16 項逐字比對。"),
  dict(leaf="SWE1-HMI-VC-038-03", upper=("S", "11.5", 3), dm=STATE,
-      title="Pop-up stays until completion or X",
-      low="Persistence -- the pop-up leaves only on completion or on X",
+      title="Pop-up stays until the user presses X",
+      low="Persistence -- the user-action exit, the pop-up leaves on X",
       pc=["The language-change pop-up is displayed and the system has not "
           "completed changing the voice commands"],
       data="NA",
@@ -324,8 +324,8 @@ SPEC = [
       er=["The pop-up is still displayed",
           "The X press is accepted",
           "The pop-up is no longer displayed"],
-      axis="語言變更五段：彈窗之持續與離開條件（對 -01 之出現、-04 之返回）",
-      why="**驗證目標**：彈窗持續顯示，直到系統完成或使用者按 X。"
+      axis="離開條件：使用者動作（對完成路徑之時間性離開）",
+      why="**驗證目標**：彈窗持續顯示，直到使用者按 X 才離開。"
           "**⚠ 取材為第三處置類 `resolved-by-structure`（profile §9.2 層次 2，"
           "下放包 23 §2.2）**：`This pop-up` 之先行詞在 SYS1 §11.5 s1，"
           "而連續 `1-3` 為 **54 token，逾 R-3 之 50**（profile §10 之工作定義）；"
@@ -335,10 +335,40 @@ SPEC = [
           "**本即本 TC 驗證持續性之前提**，不解指涉也必須建立它。"
           "CONT 登記 `resolution=PC`／`resolution_key=pop-up`，"
           "**第三檢查點驗其 pre_conditions 確含該詞**。"
-          "**⚠ 不拆之判讀（人工，記明）**：本筆含二個離開條件"
-          "（系統完成、使用者按 X）。§8.3 壓測下二者為同一規則"
-          "「彈窗不自行消失」之二個邊界，而非二個獨立觸發，故依授權不拆；"
-          "惟此為人工判讀，若上游認為應拆，本筆為第一候選。"),
+          "**⚠ 拆 2（下放包 24 §1.3 之裁定，推翻上繳包 23 §5 之不拆判讀）**："
+          "上繳包 23 我判二個離開條件為同一規則之二個邊界而不拆，"
+          "**分析層以覆蓋洞推翻** —— 不拆之實質後果是「系統完成時彈窗不消失」"
+          "這個失效**現有 16 筆無一會 FAIL**（本筆之 Procedure 只走 X 路徑；"
+          "`038-05` 未完成支第 3 步記錄的是語言清單非彈窗）。"
+          "**判準不是「二觸發」之形式論，是「這個失效哪一筆會 FAIL」。**"
+          "本筆改為 X 路徑，完成路徑另立一筆。"),
+ dict(leaf="SWE1-HMI-VC-038-03", upper=("S", "11.5", 3), dm=STATE,
+      title="Pop-up leaves when updating completes",
+      low="Persistence -- the system-completion exit, the pop-up leaves with no user action",
+      pc=["The language-change pop-up is displayed and the system has not "
+          "completed changing the voice commands"],
+      data="NA",
+      pr=["Record the screen while the system is still changing the voice commands",
+          "Wait until the system has completed changing the voice commands, "
+          "without pressing any control on the pop-up",
+          "Record the screen again"],
+      er=["The pop-up is still displayed",
+          "The voice command change runs to completion",
+          "The pop-up is no longer displayed"],
+      axis="離開條件：系統完成（對 X 路徑之使用者動作離開）",
+      why="**驗證目標**：系統完成語音命令變更時，彈窗自行離開，"
+          "不需使用者動作。"
+          "**⚠ 本筆為下放包 24 §1.3 所補之覆蓋洞**："
+          "第 4 批原 16 筆中，「完成時彈窗不消失」這個失效**無一筆會 FAIL**。"
+          "**取材同 X 路徑筆**：第三處置類，單句 s3，"
+          "CONT 登記 `resolution=PC`／`resolution_key=pop-up`。"
+          "**連帶之實益（下放包 24 §1.3）**：`038-05` 未完成支第 3 步"
+          "等到完成後驗「選項不再灰」—— 若彈窗該消失而未消失，"
+          "它可能正擋著清單，該步之 FAIL 原因會混淆"
+          "（灰化未解 vs 彈窗未關）。本筆使「完成 → 彈窗消失」"
+          "成為該步之明確前置。"
+          "**第 2 步之 `without pressing any control`**：離開須由系統完成所致，"
+          "不得由使用者動作促成 —— 否則本筆與 X 路徑筆驗的是同一件事。"),
  dict(leaf="SWE1-HMI-VC-038-04", upper=("S", "11.5", 4), dm=STATE,
       title="Return to the language settings screen",
       low="Return target -- the screen the user lands on once the pop-up is gone",
@@ -471,7 +501,7 @@ doc = {
     "segment": "a",
     "segment_note": "**本批無 b 段** —— 15 leaf 全數生成，"
                     "為首個 a 段即全批之批次。`held_leaves` 為空。",
-    "split_delta": 1,
+    "split_delta": 2,
     "tc_id_status": "provisional",
     "leaf_scope": [x["leaf"] for i, x in enumerate(SPEC)
                    if x["leaf"] not in [y["leaf"] for y in SPEC[:i]]],
@@ -481,8 +511,12 @@ doc = {
                  "回復預設與清除個人資料之確認與取消、懸吊模式互斥、"
                  "語言變更之彈窗流程與中文之特定彈窗。"
                  "**為什麼這樣切**：15 leaf 中 14 筆一 leaf 一 TC；"
-                 "`038-05` 因 s5 自身即二個 if 分支而拆 2（`split_delta: 1`）。"
+                 "`038-05` 因 s5 自身即二個 if 分支而拆 2；"
+                 "`038-03` 依下放包 24 §1.3 之裁定拆 2（X 路徑／完成路徑）"
+                 "—— 判準為覆蓋洞而非形式論。`split_delta: 2`。"
                  "**PENDING 0** —— 本批為首個全潔批：15 筆皆僅需 037／SYS1 文字層。"
+                 "**`split_flag` 恆 `False`、`split_reason` 恆空**（下放包 24 §1.4 裁甲，"
+                 "profile §11）—— 拆分之權威紀錄為 `split_delta` 與 req_id 重複。"
                  "**取材分布之預期**：`Title` 2 筆（`035-03`／`036-02`，"
                  "R-VC25 例外路徑之首次動用）、`SYS1` 3 筆（CONT 之 "
                  "`038-02`／`038-03`／`038-04`）、其餘 `Description`。"

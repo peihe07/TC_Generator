@@ -920,6 +920,104 @@ B 段 — 候選（引用後殘餘不足／表頭形態）: 4 leaf
 
 ---
 
+## A-VC18 —— `PU0091` 之彈窗文字：規格作 `Feature`，彈窗清單作 `Function`（新立，下放包 24 T128(c)）
+
+**形態**：同一個彈窗，二份**皆為權威**之來源給出**不同的字**。
+
+### 逐字實測
+
+| 來源 | 逐字 |
+|---|---|
+| SYS1 §13.4.1 s1 | `the user shall be presented with the “**Feature** not available while vehicle is in motion” popup (PU0091)` |
+| SYS1 §13.4.2 s1 | `…the “**Feature** not available while vehicle is in motion” popup (PU0091)`（同上）|
+| 037 `062-01`／`063-01` `Description` | 同 SYS1，作 `**Feature**` |
+| **`Pop Up List HMI R1 (26PI).xlsx`** `Main` 第 93 列 `String/Popup Message` | `**Function** not available while vehicle is in motion**.**` |
+| **`HMI Settings List R1 SR25 Post R1L-R`** `Settings` 第 150 列 | `display "**Function** not available while vehicle is in motion" popup` |
+
+**二處差異**：
+1. **`Feature` vs `Function`** —— 規格側二節一致作 `Feature`；
+   彈窗清單與設定清單**二份獨立來源**一致作 `Function`。
+2. **句末句點** —— 彈窗清單有 `.`，規格所引之字串無。
+
+### 為什麼這不是「引號內容之小差異」
+
+`PU0091` 之 `String/Popup Message` 欄**就是該彈窗的字**——
+它不是對彈窗的描述，是彈窗本身。而 `062-01`／`063-01` 皆為 **P0**
+（行進中攔阻，safety 型），其 ER 之驗證標的**正是該彈窗出現且文字為何**。
+
+**二選一都會錯一邊**：取 `Feature` 則 ER 與實機不符（若實機依彈窗清單實作）；
+取 `Function` 則 ER 與其 `specification_reference` 所指之規格原句不符。
+**且 §8.4.1 禁止自行認定** —— 這不是可由執行層擇一的事。
+
+### 附帶查得（同列，非異常）
+
+| 欄 | 值 | 用途 |
+|---|---|---|
+| `Timeout (sec)` | `N/A` | 佐證該彈窗不逾時 |
+| `Exit Conditions` | `<X>` / `<OK>` | 佐證 `062-02`／`063-02` 之二個離開鍵 |
+
+### 處置
+
+- **不自行擇一**（§8.4.1）。
+- 第 5 批生成時，`062-01`／`063-01`／`062-02`／`063-02` 四筆之 ER
+  **帶 `PENDING: DR-VC10 PU0091 popup string`**，
+  其 `reasoning` 逐字載本節之五列實測。
+- 以 **DR-VC10** 詢問：`PU0091` 之權威字串為何，及規格側是否需更正。
+
+**⚠ 本批因此不再是全潔批** —— 上繳包 23 之「首個全潔批」限於第 4 批。
+
+狀態：PENDING（待 DR-VC10）。
+
+---
+
+## A-VC19 —— `061` 之 Software Updates 於 Key Off 之進入路徑未載（新立，下放包 24 T128(b)）
+
+**形態**：章 13 為三個「他路徑仍可用」之需求給出路徑，**獨缺其一**。
+
+| leaf | 斷言 | 路徑是否明載 |
+|---|---|---|
+| `059-01`／`059-02` | Phone settings 於 Key Off／ACC 可用 | ✅ §13.2 明載 `through the Phone screens` |
+| `060-01`／`060-02` | Audio settings 於 Key Off／ACC 可用 | ✅ §13.3 明載 `through the Media` |
+| **`061`** | **Software Updates 於 Key Off／ACC 可用** | ❌ §13.4 **只斷言可用，未載經何路徑** |
+
+### 為什麼這影響可執行性
+
+§13.1 於 Key Off 擋住 **Settings 頁籤**（上繳包 22 §2 之路徑解）。
+而 `Software Updates` **實測為 Settings 清單之第 27 類**
+（`HMI Settings List` `Settings` 分頁第 650 列 `27. Software Updates`），
+即它本來就在頁籤後方。§13.5 之 `Settings tab **or a Settings category**`
+承認 category 可獨立於 tab 被開啟 —— **但沒有任何一節說明用什麼開它**。
+
+Phone 有 Phone screens、Audio 有 Media，**Software Updates 沒有對應的畫面**。
+`061` 為 **P1**，其 TC 之 Pre-Condition／Procedure 需要一條可走的路。
+
+### 已實測之範圍
+
+- SYS1 全表搜 `Software Update|FOTA|Wi-Fi` —— **僅命中 §13.4／§13.4.1／§13.4.2**，
+  三節皆未載路徑。
+- `HMI Settings List` 搜同樣式 —— 命中 4 列，其中第 651 列為
+  `Software Downloads over Wi-Fi | See Software Updates Logic and Flow for logic`
+  —— **委派至另一份文件**（本 feature 未持有）。
+
+### 附帶（記法，非本節之標的）
+
+`HMI Settings List` 作 `Software Downloads **over** Wi-Fi`（小寫 o），
+SYS1／037 作 `‘Software Downloads **Over** Wi-Fi’`（大寫 O）。
+取材時以 SYS1／037 為準（R-VC7），記明以免日後誤判為抄錯。
+
+### 處置（提案）
+
+- **不自行指定路徑**（§8.4.1）—— 沿 `034-02` 之既有處置
+  （下放包 23 §3.2：查得則具名、查無則以規格語言之通稱表述）。
+- `061` 之 Pre-Condition／Procedure 以通稱表述其進入，
+  `reasoning` 逐字載本節之實測範圍。
+- **不新立 DR** —— 其形態與 `034-02` 同，該案分析層已裁為「通稱即可」。
+  若分析層認為此處應發 DR，本節即其素材。
+
+狀態：**已登記，待分析層裁處置**（提案為通稱表述，不阻斷生成）。
+
+---
+
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-VCnn]`.

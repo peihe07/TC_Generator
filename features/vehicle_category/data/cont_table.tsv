@@ -7,3 +7,5 @@ SWE1-HMI-VC-019-02	reference	3.4	*			037 為完整句但 `It` 之先行詞（Hea
 SWE1-HMI-VC-038-02	reference	11.5	1-2			037 之 `It` 先行詞（pop-up）在 s1；取 s1-s2 共 33 token，未逾 R-3 之 50
 SWE1-HMI-VC-038-03	reference	11.5	3	PC	pop-up	`This pop-up` 先行詞（pop-up）在 s1；連續 s1-3 為 54 token 逾 R-3 之 50，且先行詞為本 TC 結構必然建立之狀態 → profile §9.2 層次 2，單句 s3 ＋ PC 承載
 SWE1-HMI-VC-038-04	reference	11.5	4	Step	pop-up	`then` 承接 s3 之「按 X 或系統完成」（第一層偽陰性之第二實例，上繳包 22 §6）；該關閉動作為本 TC 之必然步驟 → profile §9.2 層次 2，單句 s4 ＋ Step 承載
+SWE1-HMI-VC-058-02	reference	13.1.1	1-2			`This pop-up` 先行詞（Settings key-off 存取彈窗）在 s1；s1-s2 共 43 token，未逾 R-3 之 50 → profile §9.2 層次 1 之預設處置成立，不採第三處置類
+SWE1-HMI-VC-064-02	reference	13.5	2	PC	pop-up	`This pop-up` 先行詞在 s1；s1-s2 共 54 token，逾 R-3 之 50，且先行詞為本 TC 結構必然建立之狀態 → profile §9.2 層次 2，單句 s2 ＋ PC 承載
