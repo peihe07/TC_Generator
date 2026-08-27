@@ -60,3 +60,62 @@
 #   複製    2026-08-26，`cp` ＋ `cmp` 逐位元比對相同
 #   同名檔  複製前該目錄**無** 036 —— 首次交付，無覆寫
 4528b93783ad52af9a51aded4ee1e7497ddc8c527e5687b807888b52081fbf7a  /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/ASW-R2/Display/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Display_20260826.xlsx
+#
+# ENTRY 002 — 2026-08-27 — 交付件（23 TC，**版面修正版**；下放包 34b 裁定「乙」）
+#   狀態      **尚未複製至交付路徑**（交付路徑之複製屬 Pei）。
+#             ENTRY 001 之交付副本仍留在客戶樹，內容為 34a 版且已經 Excel 重存
+#             —— 見下方「ENTRY 001 之現況」。
+#   來源      inputs/…_SWQT_20260817_ext.xlsx
+#             SHA256 6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2
+#             **產製後重驗未變**（reference: workbook_master 綁定 13/13）
+#   寫入路徑  features/display/scripts/write_back_036.py（XML 外科式）
+#             48 個 zip 部件中**內容有差異者僅 xl/worksheets/sheet6.xml 一個**，
+#             其餘 47 個逐 byte 相同（本輪逐部件實測）
+#   內容      23 TC ＋ 1 空列，資料列 10–33（24 列），TC-DM-001 … TC-DM-023
+#             **列序 = Requirement ID 升冪**（34b）：
+#               001×9 (10–18)  002×3 (19–21)  003×2 (22–23)  004×2 (24–25)
+#               005×1 (26)     006 空列 (27)  007×3 (28–30)  008×3 (31–33)
+#             r27 = SWE1-DM-006 之空列：**僅 D 欄有值，其餘 14 欄皆空**
+#             欄：**15 欄寫入**（D F G H I J K L M N O P R S AA）
+#             **B 欄不寫**（R-DM15；ENTRY 001 曾誤寫，本版改正）
+#   版面修正  三項（詳見 docs/upstream/34_closeout.md §9.2）：
+#             (a) 寫入格保留原 s= 樣式索引；<row> 之 spans/s/customFormat 留存
+#             (b) B 欄不賦值 —— 母本 B11 為共用公式宿主
+#                 <f t="shared" ref="B11:B74" si="0">，ENTRY 001 毀之
+#             (c) 回讀口徑自此名實相符（15 欄寫入、15 欄回讀）
+#   結構驗證  zip 成員 48 → 48；classic DV 4 → 4；x14 DV 1 → 1（本輪口徑，
+#             不計容器；ENTRY 001 記 2 為含容器之口徑，非回歸）；
+#             worksheets 9 → 9；drawings 6 → 6；rels 16 → 16；CF 0 → 0
+#             —— **逐項相等**
+#             R 欄下拉：x14 xm:sqref = R10:R1411，涵蓋 10–33
+#   回讀驗證  openpyxl 讀回 24 列 × 15 欄，與 generated/*.json 逐欄比對
+#             **不符 0**；r27 之 14 欄皆 None；第 34 列為空（未溢寫）
+#             B 欄抽查 r10/r11/r27 皆為 =IF(ISBLANK($D…),"",ROW()-9)（公式復原）
+#   靜態檢查  lint036.py --profile display **二十項行計皆 0**，母體 **23**
+#             （r27 為結構性排除：test_item/proc/er 三欄皆空，不入取列條件）
+#             check_disclosure.py 雙向：pilot-01 0/0、rvc-01 0/0、ops-01 0/0
+#   覆蓋      **TC 數與 ENTRY 001 完全相同**（本包 TC 內容一字不動）。
+#             7/8 leaf 有 TC，全部部分覆蓋；SWE1-DM-006 未覆蓋 ——
+#             差別僅在其自本版起**在工作簿上顯為一列空列**
+#   未結 DR   11 筆，同 ENTRY 001；清單見 docs/upstream/34_closeout.md §五
+#   未驗      尚未由人以 Excel 實際開啟確認。**本版修了共用公式之宿主，
+#             實開確認之價值因而更高** —— 應檢：無「修復」提示、
+#             R／P／AE 下拉可用、分頁數 9、B 欄序號自動出現
+#   ── ENTRY 001 之現況（**具名，不改寫 ENTRY 001 本身**）────────────────
+#   1) repo 副本 output/…_Display_20260826.xlsx **已被本版同名覆蓋**
+#      （檔名不變為 34a §二之要求）。故 `shasum -c` 對 ENTRY 001 之
+#      repo 行**必然報 FAILED** —— 此為「append-only 台帳」與
+#      「同名覆蓋輸出」相乘之必然，非竄改。日後不得誤讀為內容被動過。
+#   2) 交付副本（客戶樹）實測 SHA256
+#      **b12bd37856a85c0a0336cfb2547f9bb11b6692ba5bceb630a942bdde43bf71d3**
+#      —— 與 ENTRY 001 所記之 4528b937… **不同**。
+#      內容比對：仍為 34a 之 23 條（TC-DM-001…023，舊批次列序），
+#      但**已經 Excel 開啟並重存**（inlineStr → sharedStrings、
+#      樣式索引重編、共用公式宿主由 B11:B74 移為 B75:B138）。
+#      **本層未動該檔**；交付路徑之複製與處置屬 Pei。
+#      故 `shasum -c` 對 ENTRY 001 之交付行亦報 FAILED。
+#   3) 上述二行之 FAILED **自本次起為預期狀態**。台帳之綠燈判準須改以
+#      ENTRY 002 之兩行為準（交付行待 Pei 複製後補）。
+069724551474a06e1deedcc18642bddb53251ea1e79ca9187be27b2043527995  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Display_20260826.xlsx
+#   ── 交付副本（客戶樹絕對路徑）────────────────────────────────────────
+#   **本版尚未複製** —— Pei 複製並 `cmp` 比對後，於此補一行雜湊。

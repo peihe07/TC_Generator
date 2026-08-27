@@ -487,3 +487,200 @@ git add \
 > **`features/display/output/` 之 xlsx 不入** —— Pei 2026-08-26 明示「不入 commit」。
 > 34a §一.4 建議入，**兩者相左，以 Pei 之明示為準**（34a 自載「執行仍屬 Pei」）。
 > 該目錄亦未出現於 `git status`（已被 ignore）。
+
+---
+
+## 九、追補（下放包 34b 之裁定「乙」—— 交付版面修正）
+
+**性質**：34 包之附件，補記於此，不另出上繳。
+**TC 內容一字不動** —— 本節之全部變動限於版面（列序、列布局、TC ID 重編）
+與寫回機制之三項缺陷修正。
+
+### 9.1 新列序（34b §一之裁定「乙」，實作結果）
+
+工作簿骨架 = 037 之 8 條需求，`SWE1-DM-001` → `-008` 升冪。
+同一需求之多條 TC 依其行為軸序接續（穩定排序，批次內順序不變）。
+
+```text
+| 列 | TC ID | leaf | 批次（僅供追溯，不出現在交付版面） |
+|---|---|---|---|
+| 10–18 | TC-DM-001 … TC-DM-009 | SWE1-DM-001 | ops-01 × 9 |
+| 19–21 | TC-DM-010 … TC-DM-012 | SWE1-DM-002 | ops-01 × 3 |
+| 22–23 | TC-DM-013 … TC-DM-014 | SWE1-DM-003 | ops-01 × 2 |
+| 24–25 | TC-DM-015 … TC-DM-016 | SWE1-DM-004 | pilot-01 × 2 |
+| 26    | TC-DM-017             | SWE1-DM-005 | pilot-01 × 1 |
+| 27    | （無）                | SWE1-DM-006 | **空列，僅 D 欄** |
+| 28–30 | TC-DM-018 … TC-DM-020 | SWE1-DM-007 | rvc-01 × 3 |
+| 31–33 | TC-DM-021 … TC-DM-023 | SWE1-DM-008 | rvc-01 × 3 |
+```
+
+**與 34b §一之列布局逐列相符。** TC ID 依新列序重編 `TC-DM-001` … `TC-DM-023`
+（O 欄全 `NEW`，重編無代價）。
+
+需求全集之來源不寫死：`_leaf_order()` 取自 `data/recon.json` 之 `leaves`
+（8 筆），前綴以 TC 實際所用者為準（recon 記 `SWE-DM-`、TC 用 `SWE1-DM-`，
+兩者不同）；TC 之 leaf 若不在全集內即中止。
+
+### 9.2 【實錯三項】寫回機制之缺陷，本輪抓到並改
+
+三項皆為**寫回機制**之缺陷（非 TC 內容），於執行 34b 之版面比對時抓到。
+其中 (a)(b) 直接屬本包之標的（版面），(c) 為既有條文之違反。
+
+**(a) 寫入格喪失樣式 —— 版面缺陷**
+
+`_set_row()` 重建 `<c>` 時未保留原 `s=` 樣式索引，
+且 `<row>` 標籤被重建為 `<row r="10">`，母本之
+`spans="1:34" s="84" customFormat="1"` 全數丟失。
+影響範圍為既有交付本之 23 列 × 16 欄 —— 框線、換行、列高設定隨寫入消失。
+
+處置：改寫時保留原儲存格之 `s=`，`<row>` 之開標籤原樣留存。
+實測 after `r10` = `<row r="10" spans="1:34" s="84" customFormat="1">`、
+`<c r="D10" s="81" t="inlineStr">`。
+
+**(b) B 欄被賦值 —— 違反 R-DM15，且毀去共用公式之宿主**
+
+母本 `B11` 為共用公式之**宿主**：
+`<f t="shared" ref="B11:B74" si="0">IF(ISBLANK($D11),"",ROW()-9)</f>`。
+既有寫回把 `B10`–`B32` 全寫成 inlineStr 死值，宿主隨之消失，
+`B33`–`B74` 只剩 `si="0"` 而無定義 —— Excel 開檔有判損毀／掉公式之虞。
+R-DM15 明文「寫回一律不得對 B 欄賦值」，`feature.yaml` 之註記亦已在，
+**條文在、註記在，腳本仍寫了**。
+
+處置（**Pei 2026-08-27 裁定：依 R-DM15 不寫 B**）：
+`COLS` 移除 `B` 鍵。實測 after 之宿主字串與母本逐字相同。
+
+**其代價，明列**：
+序號由 D 欄之填寫經公式自動產生，故
+
+- `r27`（`SWE1-DM-006` 空列）之 **B 欄由公式算出 `18`**，非留空。
+  34b §一「其餘欄一律留空」就**我們寫入的欄**成立；B 欄不由我們寫入。
+- `r27` 之後，**B 欄序號與 TC ID 永久差 1**（`B28 = 19` 對 `TC-DM-018`）。
+  此為母本公式（`ROW()-9`）與「空列佔一列」兩者相乘之必然結果。
+
+**(c) 回讀驗證之欄數**
+
+B 欄移出 `COLS` 後，寫入欄為 **15 欄**（`D F G H I J K L M N O P R S AA`）——
+與 §3.4／§8.4 一路沿用之「15 欄」口徑自此**名實相符**
+（此前為 16 欄寫入而 15 欄回讀）。
+
+### 9.3 全套重驗（34b §二.2）
+
+```text
+| 項 | before | after | 相等 |
+|---|---:|---:|---|
+| <dataValidation | 4 | 4 | 相等 |
+| x14:dataValidation | 1 | 1 | 相等 |
+| <conditionalFormatting | 0 | 0 | 相等 |
+| worksheets | 9 | 9 | 相等 |
+| drawings | 6 | 6 | 相等 |
+| charts | 0 | 0 | 相等 |
+| rels | 16 | 16 | 相等 |
+| zip entries | 48 | 48 | 相等 |
+
+**完整性：PASS —— 逐項相等**
+```
+
+> `x14:dataValidation` 之 **1** 為本輪計數口徑（`<x14:dataValidation\b`，
+> 不計 `<x14:dataValidations>` 容器）；§3.3／§8.4 之 **2** 含容器。
+> **口徑不同，before／after 相等之結論不受影響**；此處具名以免日後誤讀為回歸。
+
+**逐部件比對**：48 個 zip 部件中**內容有差異者僅 `xl/worksheets/sheet6.xml` 一個**，
+其餘 47 個逐 byte 相同。
+`R` 欄下拉 `xm:sqref` = `R10:R1411`（涵蓋 10–33）；
+另三個 `dataValidation` 之 `sqref` = `P10:Q1411`／`T10:Z1411`／`AF10:AF1411`，皆未變。
+
+**回讀驗證**
+
+```text
+回讀比對：24 列 × 15 欄，不符 = 0  →  PASS
+r27 空列：D = 'SWE1-DM-006'，其餘 14 欄皆 None  →  PASS
+第 34 列（24 列之後）應為空：D = None、F = None
+抽查 r10：F=TC-DM-001 D=SWE1-DM-001 G=Display H=Operative State P=P1 R=狀態轉換 (State Transition Testing)
+抽查 r33：F=TC-DM-023 D=SWE1-DM-008 H=Rear View Camera P=P1
+B 欄（不寫入，抽查）：r10／r11／r27 皆為 =IF(ISBLANK($D…),"",ROW()-9)
+未寫欄逐 byte 不變（r10 之 A／C／E／Q／T／AH）：六欄皆同
+```
+
+**合併 lint 與揭露檢查**
+
+| 項 | 值 |
+|---|---|
+| `lint036 --profile display` | **二十項行計皆 0**（`A…U`） |
+| lint 母體 | **23**（報告之「資料列數：23」） |
+| **r27 之排除** | **具名**：`lint_sheet()` 之取列條件為 `test_item`／`proc`／`er` 三欄任一非空；r27 三欄皆空，故**結構性排除**，非人工剔除。母體 23 = TC 條數，空列不入 |
+| `check_disclosure.py` 雙向 | `pilot-01` **MISSING 0／STALE 0**；`rvc-01` **0／0**；`ops-01` **0／0** |
+| `verify_reference_binding.py` | **13 of 13 match** |
+
+**sha**
+
+| 項 | 值 |
+|---|---|
+| 來源母本（寫回後） | `6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2` —— **未變**（綁定 13/13） |
+| 輸出（34b 版） | `069724551474a06e1deedcc18642bddb53251ea1e79ca9187be27b2043527995` |
+| 輸出（34a 版，已被覆蓋） | `4528b93783ad52af9a51aded4ee1e7497ddc8c527e5687b807888b52081fbf7a` |
+
+**輸出檔名不變**（34a §二之要求）：`…_SWQT_Display_20260826.xlsx`。
+
+### 9.4 覆蓋總表（34b §二.3 之補記）—— **TC 數全部不變**
+
+```text
+| leaf | Test Set | TC 數 | 交付列 | 覆蓋狀態 |
+|---|---|---:|---|---|
+| SWE1-DM-001 | Operative State      | 9 | 10–18 | 部分覆蓋 |
+| SWE1-DM-002 | Operative State      | 3 | 19–21 | 部分覆蓋 |
+| SWE1-DM-003 | Operative State      | 2 | 22–23 | 部分覆蓋 |
+| SWE1-DM-004 | Thermal Management   | 2 | 24–25 | 部分覆蓋 |
+| SWE1-DM-005 | Thermal Management   | 1 | 26    | 部分覆蓋 |
+| SWE1-DM-006 | —                    | 0 | 27    | **未覆蓋（空列，僅 D 欄）** |
+| SWE1-DM-007 | Rear View Camera     | 3 | 28–30 | 部分覆蓋 |
+| SWE1-DM-008 | Rear View Camera     | 3 | 31–33 | 部分覆蓋 |
+| 合計        |                      | 23 | 10–33（24 列） | 7/8 leaf 有 TC |
+```
+
+deferred token 與 blocking DR 之對照**逐項不變**，見 §四；
+**交付時仍不得表述為「八條全覆蓋」**。
+`SWE1-DM-006` 之差別僅在於：此前它在工作簿上**不存在**，
+自本包起它**存在且顯為空** —— 未覆蓋一事由「讀者須自行比對 037」
+變為「打開工作簿即見」。
+
+### 9.5 防再犯（34b §三，一句，不立條 —— R-DM57 凍結）
+
+已記入 `PLAYBOOK.md` §5b（交付慣例）：
+
+> `write_back_036.py` 之列序自 34b 起以 **Requirement ID 升冪**為預設；
+> 批次序僅為生成時之內部順序，不得出現在交付版面。
+
+### 9.6 §六 pathspec 之補記（**未執行；全部 git 操作屬 Pei**）
+
+```bash
+git add \
+  features/display/scripts/write_back_036.py \
+  features/display/DELIVERY.sha256 \
+  features/display/PLAYBOOK.md \
+  features/display/BACKLOG.md \
+  features/display/docs/handoff/34b_layout_fix.md \
+  features/display/docs/upstream/34_closeout.md
+```
+
+建議之 commit 訊息：
+
+```text
+fix(display): deliver layout by requirement ID order, restore master styles
+
+- rows sorted by Requirement ID ascending; SWE1-DM-006 gets a D-only blank row
+- TC IDs renumbered TC-DM-001..023 to follow the new row order
+- stop writing column B (R-DM15): it hosts the B11:B74 shared formula
+- preserve cell style indices and row attributes when writing cells
+```
+
+> `features/display/output/` 之 xlsx **仍不入**（Pei 2026-08-26 明示，§8.5 之理由不變）。
+
+### 9.7 尚待 Pei 者（**執行層不動**）
+
+1. **交付路徑之副本已過時** —— `/Users/peihe/Work/…/ASW-R2/Display/` 之
+   `…_SWQT_Display_20260826.xlsx` 為 34a 版（`4528b937…`），
+   與 repo `output/` 之 34b 版（`06972455…`）**不同**。
+   **交付路徑之複製屬 Pei**，本層未動。台帳 ENTRY 002 已具名此狀態。
+2. **Excel 實開確認**未完成（無「修復」提示、R／P／AE 下拉可用、分頁數 9）。
+   本包修了 (b) 之共用公式宿主 —— **實開確認之價值因而更高，不是更低**。
+3. `fw036-display-v1` tag、RD-1 —— 皆未動。
