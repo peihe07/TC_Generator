@@ -53,6 +53,11 @@ LATAM 章之需求上。** 此為量測，**非結論** —— 判斷屬上游�
 
 ---
 
+> **編號歸屬（下放包 03 §二）**：台帳**先登先得**。
+> 包 01 §二文中之候選編號 `A-DD2`／`A-DD3` 已由該包 §二 重配，**以本台帳為準**。
+> `A-DD2` = PARK_BRK 件（執行層所登，定案）；`A-DD3` 見下；
+> 包 01 之「`_x000D_` 正規化」候選**作廢，不登異常**（下放包 03 §二-3 自認之分析層一誤）。
+
 ## [A-DD2] `$PARK_BRK_EGD$` 四庫皆查無；來源自身之註記欄指其應為 `PARK_BRK_EDG`（新立，T6）
 
 R-DD5 之五訊號查對，**唯一四庫皆查無者**：
@@ -116,3 +121,38 @@ CFTS022 `Basic Report` r129（`-128`）逐欄：
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-DRnn]`.
+
+---
+
+## [A-DD3] 狀態命名兩制（CFTS `Locked/Unlocked` vs 037 `RESTRICTED/NOT_RESTRICTED`）—— **RESOLVED**
+
+**形態**：同一個狀態變數，二份上游各用一套列舉名。
+
+| 來源 | 措辭 |
+|---|---|
+| CFTS022（`-126`~`-129`／`-132`／`-133`）| `"Lock Out State" variable to "Locked"／"Unlocked"` |
+| 037（`Verification Criteria`／`Description`）| `Lock Out State is RESTRICTED／NOT_RESTRICTED`、`Listener receives a RESTRICTED callback` |
+
+### 處置（下放包 03 §二-2，登記即結案）
+
+**R-DD3 已定 ER 之主錨為 HMI 現象** —— 故：
+
+- **兩套列舉皆不得出現於 `expected_result`**（R-DD3(b)：callback／內部狀態
+  非 SWQT 觀察面）。
+- `test_item` 上半 **verbatim 照 037 原文**（含 `RESTRICTED` 措辭），**不改字**。
+
+**即：二制之衝突不落到產出上** —— 一個在 ER 被 R-DD3 擋掉，
+另一個在上半以 verbatim 保留。**無待決事項。**
+
+狀態：**RESOLVED**（下放包 03 §二-2）。
+
+---
+
+## 台帳之編號拘束（下放包 03 §一-5）
+
+`Sub Categorization` 欄之實測值為 `Driver_Distraction `（**末有一個空白**）。
+
+```
+日後任何以該欄為鍵之比對一律 verbatim 含尾空白，
+或於比對端明文 rstrip 並揭露；**不得靜默修資料**。
+```
