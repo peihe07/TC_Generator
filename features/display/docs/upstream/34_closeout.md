@@ -677,10 +677,14 @@ fix(display): deliver layout by requirement ID order, restore master styles
 
 ### 9.7 尚待 Pei 者（**執行層不動**）
 
-1. **交付路徑之副本已過時** —— `/Users/peihe/Work/…/ASW-R2/Display/` 之
-   `…_SWQT_Display_20260826.xlsx` 為 34a 版（`4528b937…`），
-   與 repo `output/` 之 34b 版（`06972455…`）**不同**。
-   **交付路徑之複製屬 Pei**，本層未動。台帳 ENTRY 002 已具名此狀態。
+1. ~~**交付路徑之副本已過時**~~ **← 已了結（2026-08-27，Pei 指示，本層執行）**
+   `/Users/peihe/Work/…/ASW-R2/Display/` 之 `…_SWQT_Display_20260826.xlsx`
+   已以 34b 版覆蓋，`cp` ＋ `cmp` 逐位元相同，兩副本皆 `06972455…`；
+   台帳 ENTRY 002 之兩行實測皆 `OK`。
+   **覆蓋前該檔實測 `b12bd378…`** —— 非 ENTRY 001 所記之 `4528b937…`，
+   內容為 34a 之 23 條但**已經 Excel 開啟並重存**（inlineStr → sharedStrings、
+   樣式重編、共用公式宿主移為 `B75:B138`）。該狀態已具名於台帳，其複本
+   僅留於 session scratchpad（拋棄式，不入台帳）。
 2. **Excel 實開確認**未完成（無「修復」提示、R／P／AE 下拉可用、分頁數 9）。
    本包修了 (b) 之共用公式宿主 —— **實開確認之價值因而更高，不是更低**。
 3. `fw036-display-v1` tag、RD-1 —— 皆未動。

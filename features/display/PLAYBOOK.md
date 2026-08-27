@@ -206,10 +206,13 @@ B 欄為公式欄（R-DM15，條文早已在），母本 `B11` 更是
         （sha `06972455…`，24 列 = 23 TC ＋ `SWE1-DM-006` 空列，
         列序改為 Requirement ID 升冪）。**TC 內容一字不動。**
         `DELIVERY.sha256` **ENTRY 002** 已建。
-      - **交付路徑之副本尚未更新，且已與台帳不符** ——
-        客戶樹之檔實測 sha `b12bd378…`（非 ENTRY 001 所記之 `4528b937…`），
-        內容仍為 34a 之 23 條但**已經 Excel 開啟並重存**。
-        **複製與處置屬 Pei**；本層未動。
+      - **交付路徑之副本已更新（2026-08-27，Pei 指示，本層執行）** ——
+        `cp` ＋ `cmp` 逐位元相同，兩副本皆 sha `06972455…`；
+        `DELIVERY.sha256` ENTRY 002 兩行皆 `OK`。
+        覆蓋前該檔實測 `b12bd378…`（非 ENTRY 001 所記之 `4528b937…`）——
+        內容為 34a 之 23 條但**已經 Excel 開啟並重存**，已被覆蓋。
+      - **Excel 實開確認仍未完成**，且交付副本自此為腳本產出之原始 zip。
+        實開後若存檔，ENTRY 002 之雜湊即失效，須另立 ENTRY。
       - 交付路徑 `/Users/peihe/Work/02_Project_R1LR/10_Reviewing/
         00_TestCase/ASW-R2/Display/`
       - 交付檔名 `…_SWQT_Display_20260826.xlsx`（與 Privacy 之

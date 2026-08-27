@@ -118,4 +118,14 @@
 #      ENTRY 002 之兩行為準（交付行待 Pei 複製後補）。
 069724551474a06e1deedcc18642bddb53251ea1e79ca9187be27b2043527995  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Display_20260826.xlsx
 #   ── 交付副本（客戶樹絕對路徑）────────────────────────────────────────
-#   **本版尚未複製** —— Pei 複製並 `cmp` 比對後，於此補一行雜湊。
+#   路徑    /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/
+#           ASW-R2/Display/
+#   複製    2026-08-27，`cp` ＋ `cmp` 逐位元比對相同（Pei 指示，本層執行）
+#   同名檔  複製前該目錄之同名檔為 **34a 版且已經 Excel 開啟重存**
+#           （sha `b12bd378…`，非 ENTRY 001 所記之 `4528b937…`）。
+#           **已被本版覆蓋**；覆蓋前之複本留於本次 session 之 scratchpad
+#           `delivered_34a_excel_resaved.xlsx`（**拋棄式，不入台帳、不可依賴**）。
+#   ⚠ 交付副本自此為**腳本產出之原始 zip**，未經 Excel 重存 ——
+#     ENTRY 002「未驗」欄之 Excel 實開確認**仍未完成**。
+#     若實開後存檔，本行雜湊即失效（同 ENTRY 001 之遭遇），須另立 ENTRY。
+069724551474a06e1deedcc18642bddb53251ea1e79ca9187be27b2043527995  /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/ASW-R2/Display/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Display_20260826.xlsx
