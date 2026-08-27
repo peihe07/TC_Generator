@@ -1,0 +1,102 @@
+[
+  {
+    "tc_id": "newR1L-POP-001",
+    "req_id": "SWE1-POP-002-01",
+    "test_group": "Popup",
+    "test_set": "Pop-up Close",
+    "test_item": "Pop-ups can be closed after time-out (timeout is defined in Pop-up List document)\n(Time-out closure of PU0942, 5 s)",
+    "pre_conditions": "1. The vehicle is stationary with the ignition in RUN\n2. The Home Screen is displayed",
+    "input_test_data": "Time-out = 5 s, as defined by PU0942 Timeout (sec)",
+    "test_procedure": "1. Enter the Home Screen page-management view and add a home screen page\n2. Leave the screen and all buttons untouched for 10 seconds after the pop-up appears\n3. Read the pop-up display status and the elapsed time at the moment the pop-up disappears",
+    "expected_result": "1. The pop-up is displayed showing `<X>` and `Page added! [Reorder]`, as defined by PU0942 String/Popup Message\n2. No user interaction is registered during the 10-second window\n3. The pop-up closes by itself 5 seconds after it appeared, matching the Time-out defined by PU0942 Timeout (sec), and the Home Screen is shown without the pop-up",
+    "spec_reference": "SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)_5.6",
+    "tc_ref_id": "NEW",
+    "priority": "P1",
+    "design_method": "狀態轉換 (State Transition Testing)",
+    "functional_safety": "NA",
+    "author": "PeiPYHsu",
+    "pu_citation": {
+      "id": "PU0942",
+      "Timeout (sec)": "5",
+      "String/Popup Message": "<X>\nPage added! [Reorder]",
+      "Module": "Home Screen"
+    },
+    "reasoning": "驗證目標單一：GP4 第 1 途徑（time-out 自動關閉）。PU 之選定理由 —— (a) 類 240 列中取 PU0942：Timeout (sec) 為純數值 `5`（非 `5 seconds` 之帶單位寫法，量測不需再解析），觸發路徑純屬 HMI（新增 home screen 頁），台架上不需車輛運動、外接裝置或雲端連線即可重現。步驟 2 之觀察窗設為 10 秒（2× 標稱值）而非剛好 5 秒 —— 只看到 5 秒時仍在，分不出「還沒關」與「不會關」。timeout 值不落 PENDING：DR-POP1 已由 R-POP6 結案，值有來源可引。"
+  },
+  {
+    "tc_id": "newR1L-POP-002",
+    "req_id": "SWE1-POP-002-02",
+    "test_group": "Popup",
+    "test_set": "Pop-up Close",
+    "test_item": "Pop-ups can be closed after pressing button that opened pop-up again (eg. Tracks popups)\n(Second press of the opening control `<Trks>`, PU0215)",
+    "pre_conditions": "1. The vehicle is stationary with the ignition in RUN\n2. A media source containing at least one track list is available\n3. The Media screen is displayed",
+    "input_test_data": "NA",
+    "test_procedure": "1. On the Media screen, press the Track list button `<Trks>`\n2. Press `<Trks>` a second time while the pop-up is displayed\n3. Read the pop-up display status immediately after the second press",
+    "expected_result": "1. The `Tracks List` pop-up is displayed, as defined by PU0215 String/Popup Message\n2. The second press lands on the same `<Trks>` button that opened the pop-up\n3. The pop-up is closed and the Media screen is shown without the pop-up",
+    "spec_reference": "SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)_5.5\nSYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)_5.6",
+    "tc_ref_id": "NEW",
+    "priority": "P1",
+    "design_method": "狀態轉換 (State Transition Testing)",
+    "functional_safety": "NA",
+    "author": "PeiPYHsu",
+    "pu_citation": {
+      "id": "PU0215",
+      "Exit Conditions": "<Trks>",
+      "String/Popup Message": "Tracks List",
+      "Description": "Display when user is in Media screen and presses Track list button",
+      "Module": "Media"
+    },
+    "reasoning": "驗證目標單一：GP4 第 2 途徑（再按開啟鍵關閉）。spec_reference 併列 `_5.5`＋`_5.6`（R-POP8）—— 5.5（GP3）與 5.6 第 2 途徑為同一行為之兩處敘述，037 K8 逐字 `Duplicated feature of SWE1-POP-002-02`。PU0215 為全表唯一 Exit Conditions 即開啟鍵本身者（`<Trks>`），且 037 E 欄自舉 `eg. Tracks popups`，來源與例證對得上。input_test_data = `NA`：`<Trks>` 屬互動資料，依 IN §4.5 歸 Procedure，不重複列於本欄。**device 軸未拆，理由如下**：037 S11 逐字 `a physical hard button or a specific UI button on the screen` 是真軸（IN §8.3），但 Pop Up List 全表僅 PU0215 之開啟鍵為 UI 按鍵可用；hard-button 分支之最近候選 PU0229 之 Exit Conditions 雖為 `Press of VR button again`，其 Description 為 `Displayed when the user asks to call for a number` —— 開啟者是語音請求而非該按鍵，把它指派給 hard-button 分支是來源沒有承載的推定（IN §8.4.1）。拆成兩條會有一條無實例可填。登 A-POP7，待補件或 RD-1 回覆後再拆。"
+  },
+  {
+    "tc_id": "newR1L-POP-003",
+    "req_id": "SWE1-POP-002-03",
+    "test_group": "Popup",
+    "test_set": "Pop-up Close",
+    "test_item": "Pop-ups can be closed when touching screen outside of pop-up\n(Touch outside the pop-up bounds, PU0580)",
+    "pre_conditions": "1. The vehicle is stationary with the ignition in RUN\n2. At least two driver Profiles exist on the head unit\n3. The All Profiles tab is reachable from the current screen",
+    "input_test_data": "Time-out = 5 s, as defined by PU0580 Timeout (sec)",
+    "test_procedure": "1. Open the All Profiles tab and switch manually to another Profile\n2. Within 5 seconds of the pop-up appearing, tap an area of the screen outside the pop-up window frame\n3. Read the pop-up display status immediately after the tap",
+    "expected_result": "1. The pop-up is displayed showing `\"Welcome [username]\", \"X\"`, as defined by PU0580 String/Popup Message\n2. The tap lands outside the pop-up window frame and activates no pop-up control\n3. The pop-up is closed, and the closure occurs before the 5-second Time-out defined by PU0580 Timeout (sec) elapses",
+    "spec_reference": "SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)_5.6",
+    "tc_ref_id": "NEW",
+    "priority": "P1",
+    "design_method": "狀態轉換 (State Transition Testing)",
+    "functional_safety": "NA",
+    "author": "PeiPYHsu",
+    "pu_citation": {
+      "id": "PU0580",
+      "Exit Conditions": "Timeout, Touch outside of popup, X",
+      "Timeout (sec)": "5 seconds",
+      "String/Popup Message": "\"Welcome [username]\", \"X\"",
+      "Module": "Personal Account/Driver Profiles"
+    },
+    "reasoning": "驗證目標單一：GP4 第 3 途徑（點 popup 外關閉）。037 K12 自陳該機制 `default to disable, requester should call the API to enable`，故受測 popup 必須是**明載已啟用**者 —— (b) 類 102 列即以 `Exit Conditions` 含 `outside` 為判準，PU0580 在列。選它而非其他 101 列：其 Exit Conditions 僅 `Timeout, Touch outside of popup, X` 三項，無雲端往返、無 keyboard，台架以切換 Profile 即可重現。步驟 2 之「5 秒內」與 ER 3 之「早於 time-out」為必要設計 —— PU0580 同時具 time-out，不設時窗則觀察到的關閉分不出是哪一條途徑造成。"
+  },
+  {
+    "tc_id": "newR1L-POP-004",
+    "req_id": "SWE1-POP-002-04",
+    "test_group": "Popup",
+    "test_set": "Pop-up Close",
+    "test_item": "Pop-ups can be closed after making a selection inside the pop-up if applicable\n(Selection `<OK>` inside the pop-up, PU0949)",
+    "pre_conditions": "1. The vehicle is stationary with the ignition in RUN\n2. No mobile phone is paired with the head unit\n3. The Home Screen Shortcuts view is displayed",
+    "input_test_data": "Time-out = 3 s, as defined by PU0949 Timeout (sec)",
+    "test_procedure": "1. On the Home Screen Shortcuts view, press the grayed out \"Make a Call\" button\n2. Within 3 seconds of the pop-up appearing, press `<OK>` inside the pop-up\n3. Read the pop-up display status immediately after the press",
+    "expected_result": "1. The pop-up is displayed showing `No Phone is Connected.        <OK>    <X>`, as defined by PU0949 String/Popup Message\n2. The `<OK>` press is registered while the pop-up is still displayed\n3. The pop-up is closed, and the closure occurs before the 3-second Time-out defined by PU0949 Timeout (sec) elapses",
+    "spec_reference": "SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)_5.6",
+    "tc_ref_id": "NEW",
+    "priority": "P1",
+    "design_method": "狀態轉換 (State Transition Testing)",
+    "functional_safety": "NA",
+    "author": "PeiPYHsu",
+    "pu_citation": {
+      "id": "PU0949",
+      "Exit Conditions": "<OK>\n<X>",
+      "Timeout (sec)": "3",
+      "String/Popup Message": "No Phone is Connected.        <OK>    <X>",
+      "Description": "This popup will be displayed if user presses the grayed out \"Make a Call\" button on Shortcuts when there is no connected phone.",
+      "Module": "Home Screen"
+    },
+    "reasoning": "驗證目標單一：GP4 第 4 途徑（選擇後關閉）。受測對象取 `<OK>` 而非 `<X>`：037 S11 之 VC 逐字舉例 `tap an option or press a \"Confirm\"/\"Cancel\" button inside the pop-up`，`<X>` 是關閉鍵不是選項，測 `<X>` 測不到本 leaf 的命題。PU0949 之 Exit Conditions 逐字含 `<OK>` 與 `<X>` 兩者，故「選 `<OK>` 會關」有來源明載，非推定。時窗設計同 -002-03：PU0949 之 time-out 為 3 秒，不設時窗則關閉原因不可辨。"
+  }
+]

@@ -28,6 +28,308 @@ R-G25	ruling	50be5127	50be5127ce261473a8576d55b10d92e8489e32b651cf321ba78b5a22b0
 R-G26	ruling	ce4fdff2	ce4fdff27c0dbeaf7d5a38a632ca2648336538a897aec171172a64a844101a07	docs/fw036/FEATURE_ONBOARDING.md	1034	12	9. 全域條文與通則（整併落點）	工作區清理制
 R-G27	ruling	2bd39a12	2bd39a1228b991e946fc8e833b71f9d541301ea22d1a5ec2423bab1b0d3ac445	docs/fw036/FEATURE_ONBOARDING.md	1049	13	9. 全域條文與通則（整併落點）	來源集中制（`sources/`）
 R-G4	group	9551aa3b	9551aa3b6223406b9c874993986332c91fc67a823d373d28f6f0a1985ff0d453	docs/fw036/FEATURE_ONBOARDING.md	1065	11	9. 全域條文與通則（整併落點）	／R-G7 之原文與 R-G12 之來源
+R-AM1	ruling	212e0cf0	212e0cf0c11d79963dd14f5a143c97299a9b4ef577c407639128d71501965590	features/audio_mgmt/RULINGS.md	12	6	R-AM1（Q6）：Phase 0 人工分類	（Q6）：Phase 0 人工分類
+R-AM2	ruling	21957d7f	21957d7fa5540080f9e09f77dfe3c3adab018bb1770115f9476a5032db4a06a6	features/audio_mgmt/RULINGS.md	21	31	R-AM2（Q2）：錨源 = 兩本 CFTS Basic Report	（Q2）：錨源 = 兩本 CFTS Basic Report
+R-AM2′	ruling	447e2316	447e2316c27a290b78af4f489d9036b0e641c852b45fe086584365271d97a6f7	features/audio_mgmt/RULINGS.md	33	19	R-AM2（Q2）：錨源 = 兩本 CFTS Basic Report	（修訂，2026-08-26，Pei 裁：「2採 R-AM2′准 DR-AM3發」）
+R-AM3	ruling	77bb5285	77bb5285a5f36d39d1e30bcb0e557ceb5f8eac29a7543c22963cc4c45c0bc031	features/audio_mgmt/RULINGS.md	55	9	R-AM3（Q1）：工作簿基底 = BLANK + R-G1 模板	（Q1）：工作簿基底 = BLANK + R-G1 模板
+R-AM5	ruling	d146db15	d146db15a721e30c7859cc14f7a853d47fe7516be54a00fa4fed8bcdefc21b29	features/audio_mgmt/RULINGS.md	67	3	R-AM5（Q3）：驗證範圍 = SWE.1 之 318 葉	（Q3）：驗證範圍 = SWE.1 之 318 葉
+R-AM6	ruling	2851840a	2851840a296f6b98ac63148eb636d86824ba1fad621e1ee09ab4502630d9c685	features/audio_mgmt/RULINGS.md	73	6	R-AM6（Q4）：SWE1_AMM_076 碰撞之交付欄處置	（Q4）：SWE1_AMM_076 碰撞之交付欄處置
+R-AM7	ruling	8cc0256f	8cc0256fe7ff7a9db3e6c124920dc2300edd206c6b8ee378910c01db8e1a9b76	features/audio_mgmt/RULINGS.md	82	2	R-AM7（Q5）：req_id 欄格式	（Q5）：req_id 欄格式
+R-C1	group	0f5430ae	0f5430ae0e98162e12fadf7ce95d4507b4ab4628569488fd59c67c38c6f7e85a	features/comfort/RULINGS.md	14	61	R-C1 ~ R-C5 —— 下放包 01 §3（Pei 裁定，2026-08-14）	~ R-C5 —— 下放包 01 §3（Pei 裁定，2026-08-14）
+R-C5	ruling	5c5ba91c	5c5ba91c5912127db3e4f09e4f42d791df3e44626eded5fda69cc9d4a69305b0	features/comfort/RULINGS.md	80	20	R-C5-1 —— 下放包 05 §2（分析層訂正自身錯誤，2026-08-14，即時生效）	1 —— 下放包 05 §2（分析層訂正自身錯誤，2026-08-14，即時生效）
+R-C4	ruling	4c297718	4c29771861c77057c49c227db220687b51f74fe8634cd21313abf19f77cf832a	features/comfort/RULINGS.md	105	15	R-C4-1 —— 下放包 03 §2（分析層自裁，2026-08-14，即時生效）	1 —— 下放包 03 §2（分析層自裁，2026-08-14，即時生效）
+R-C6	group	8b678433	8b678433acec72dad2a028e5ef937bd42352ce12c637665a2284d68841f1935a	features/comfort/RULINGS.md	125	20	R-C6 ~ R-C7 —— 下放包 02 補遺（Pei 裁定，2026-08-14）	~ R-C7 —— 下放包 02 補遺（Pei 裁定，2026-08-14）
+R-C8	group	e24753cf	e24753cfff98188db924cf01302e61bf5080f44d9b266a83ab4c864212ca34bd	features/comfort/RULINGS.md	150	50	R-C8 ~ R-C10 —— 下放包 04 §1（Pei 裁定，2026-08-14）	~ R-C10 —— 下放包 04 §1（Pei 裁定，2026-08-14）
+R-C11	ruling	2ca4c893	2ca4c893547a2e31fd28ef9e2b1b81067664d4bda3af36ceb655b66aba35b535	features/comfort/RULINGS.md	205	21	R-C11 —— 下放包 06 §1（Pei 裁定，2026-08-14）	下放包 06 §1（Pei 裁定，2026-08-14）
+R-C12	group	f7c99832	f7c9983263bece4ab2f7cacedac3008a3a120b308795eb277a00410c5119553d	features/comfort/RULINGS.md	231	45	R-C12 ~ R-C14 —— 下放包 07 §1（Pei 裁定，2026-08-14）	~ R-C14 —— 下放包 07 §1（Pei 裁定，2026-08-14）
+R-C15	group	665195f2	665195f27b44db298c8b0dcef05c576a9314ab39daa6d3f691f77020035111db	features/comfort/RULINGS.md	281	41	R-C15 ~ R-C16 —— 下放包 09 §2／§3（Pei 裁定，2026-08-14）	~ R-C16 —— 下放包 09 §2／§3（Pei 裁定，2026-08-14）
+R-C17	ruling	cd144349	cd144349aa39f304cc5add46c328b353023cece8f95f705b45e2f971cd1bd688	features/comfort/RULINGS.md	327	17	R-C17 —— 下放包 10 §1（Pei 裁定，2026-08-14）	下放包 10 §1（Pei 裁定，2026-08-14）
+R-C18	ruling	44dba5b9	44dba5b99061d31ead452709669d1fe958e0f08d979800b77e81cdaf753ac1c5	features/comfort/RULINGS.md	349	16	R-C18 —— 下放包 13 §1（Pei 裁定，2026-08-15）	下放包 13 §1（Pei 裁定，2026-08-15）
+R-C19	ruling	0780ca99	0780ca99d080e17ece4971e830be2943be7ea55513c66ee83746198078d9f20c	features/comfort/RULINGS.md	370	21	R-C19 —— 下放包 14 §3（Pei 裁定，2026-08-15）	下放包 14 §3（Pei 裁定，2026-08-15）
+R-C20	ruling	66a6796c	66a6796cc17610bf7a1edbaa972cb38d3cefa171b08fd83f7dbe32c5f40e7cb2	features/comfort/RULINGS.md	396	19	R-C20 —— 下放包 17 §2（Pei 裁定，2026-08-15）	下放包 17 §2（Pei 裁定，2026-08-15）
+R-C21	group	53f254a0	53f254a0cf6d406a03fee6efbbd281ab2d66504f813ef1f91eaaf3b0303912fc	features/comfort/RULINGS.md	420	25	R-C21 ~ R-C22 —— 下放包 19 §1／§5（Pei 裁定，2026-08-15）	~ R-C22 —— 下放包 19 §1／§5（Pei 裁定，2026-08-15）
+R-C23	group	b4419722	b44197225d4006c2d10e7656c02e486e7d13a6f29dcbedd50c06016c4a35f637	features/comfort/RULINGS.md	450	43	R-C23 ~ R-C24 —— 下放包 21 §3／§1.3（Pei 裁定，2026-08-15）	~ R-C24 —— 下放包 21 §3／§1.3（Pei 裁定，2026-08-15）
+R-C25	group	a33b5607	a33b56078ecdd71b4b934df77cf5972bde1b7a4310deb4eaf046da869a6fb1f1	features/comfort/RULINGS.md	498	36	R-C25 ~ R-C26 —— 下放包 22 §1.1／§2（Pei 裁定，2026-08-15）	~ R-C26 —— 下放包 22 §1.1／§2（Pei 裁定，2026-08-15）
+R-C27	ruling	b823fecb	b823fecb68a5a8633b6ce707dcf4602d32366e8f47ebb38f7b743df68f7096aa	features/comfort/RULINGS.md	539	16	R-C27 —— 下放包 23 §3（Pei 裁定，2026-08-15）	下放包 23 §3（Pei 裁定，2026-08-15）
+R-C27	ruling	6ee04303	6ee0430340247bffed09e3c52865ed004b57b485de0d5ee5914fa1e2cff00365	features/comfort/RULINGS.md	560	26	R-C27-1 —— 下放包 80 §1（分析層裁定，2026-08-16）	1 —— 下放包 80 §1（分析層裁定，2026-08-16）
+R-C28	ruling	1c05657e	1c05657e48598457dce1ad7e7c2973ea1bd7962f79e4254147f74c5bb42cf1a8	features/comfort/RULINGS.md	591	266	R-C28 —— 下放包 24 §1（Pei 裁定，2026-08-15）	下放包 24 §1（Pei 裁定，2026-08-15）
+R-C38	ruling	d099e177	d099e177be53b6a9f819de460247d0bcb5563a7f1bb3f49336bdf6eb38b8497a	features/comfort/RULINGS.md	862	40	R-C38 —— 下放包 41 §1.2（分析層裁定，2026-08-15）	下放包 41 §1.2（分析層裁定，2026-08-15）
+R-C39	ruling	0f40f7fa	0f40f7fa23d3bd847ae590015e1a7a77faa99e0ca39a7ee43dc2d16679d3b03f	features/comfort/RULINGS.md	907	30	R-C39 —— 下放包 44 §2（分析層裁定，2026-08-15）	下放包 44 §2（分析層裁定，2026-08-15）
+R-C40	ruling	8fdd4394	8fdd4394704df4193d93b6e34cf3f4f879cc987c268bffbf738ee6e21dd62038	features/comfort/RULINGS.md	942	22	R-C40 —— 下放包 58 §1（分析層裁定，2026-08-15）	下放包 58 §1（分析層裁定，2026-08-15）
+R-C41	ruling	867e365d	867e365d05f64c6cfa97ec51b8fc139936320cdfc582b5dea006ae51bb26f902	features/comfort/RULINGS.md	967	21	R-C41 —— 下放包 62 §1（分析層裁定，2026-08-16）	下放包 62 §1（分析層裁定，2026-08-16）
+R-C42	ruling	1be1a1ec	1be1a1ece81735e2aaa04438fb60b2fa6e2bf82f8d057370626ea9c35f4b1b60	features/comfort/RULINGS.md	993	26	R-C42 —— 下放包 64 §1（分析層裁定，2026-08-16）	下放包 64 §1（分析層裁定，2026-08-16）
+R-C42	ruling	3861d3fb	3861d3fb524ab4fc396f5aee267a9f5d7d21f1ac0cfd9b0c0b8554d98df707d3	features/comfort/RULINGS.md	1024	27	R-C42-1 —— 下放包 65 §1（分析層裁定，2026-08-16）	1 —— 下放包 65 §1（分析層裁定，2026-08-16）
+R-C45	ruling	0bd7e121	0bd7e121c9a07422e6b9fb3413313a245a849fa0242bdddce6df0dcdaa256991	features/comfort/RULINGS.md	1056	31	R-C45 —— 下放包 81 §1（分析層裁定，2026-08-16）	下放包 81 §1（分析層裁定，2026-08-16）
+R-C44	ruling	02a1c076	02a1c076f5f9d97f363383d76b029c1197184e9488bec68ce3790084001da986	features/comfort/RULINGS.md	1092	34	R-C44 —— 下放包 77 §1（分析層裁定，2026-08-16）	下放包 77 §1（分析層裁定，2026-08-16）
+R-C43	ruling	ed20a882	ed20a882cde2549184e6eb1106a66dbee4900573fde8ed7d3fe65b332c6000a9	features/comfort/RULINGS.md	1131	21	R-C43 —— 下放包 76 §1（分析層裁定，2026-08-16）	下放包 76 §1（分析層裁定，2026-08-16）
+R-C1	report	ded9fcc9	ded9fcc98684b2dd85483617ec5b2ce62c6f527a116dd49930536862984b7433	features/comfort/RULINGS.md	1163	7	執行層回報（2026-08-14，Phase 0 → Phase 1）	落實於三處，非僅文件
+R-C3	report	c64cf3ae	c64cf3ae7a5f8c0fa4daf8cc830fac07c56865eea063d733873b85f175cb7b83	features/comfort/RULINGS.md	1173	11	執行層回報（2026-08-14，Phase 0 → Phase 1）	機械強制已就位（條文明文要求）
+R-C4	report	0eb77aca	0eb77aca9fb225fc36e35cb250d2f70259c48d9e2666b3df801bca8af4ce82ec	features/comfort/RULINGS.md	1187	10	執行層回報（2026-08-14，Phase 0 → Phase 1）	129 已查得，且逐節對 SR24 export 查核
+R-C6	group	fc0b9446	fc0b9446dffc19ac50c1474f02dd0206bf260007cc96192eb4fecfb6ba5a0504	features/comfort/RULINGS.md	1200	2	執行層回報（2026-08-14，Phase 0 → Phase 1）	/ R-C7 —— 已寫入 `feature.yaml`
+R-C4	report	1f03941f	1f03941fd208827b5a0ca48cabab69d4314f681a35f045a5422095416e095127	features/comfort/RULINGS.md	1209	7	執行層回報（2026-08-14，下放包 03／04）	1 —— 兩個母體皆已實測復現
+R-C9	report	4c9aabfc	4c9aabfcc7de2bdf6e20d8ce493a947d25bdd50de42768cac9c4bc9081f8f93a	features/comfort/RULINGS.md	1219	24	執行層回報（2026-08-14，下放包 03／04）	已實作於 writer，含反向驗證三項
+R-C10	report	abb94516	abb94516208f2962222c38cbee06a716cf4d8f26e102d8132953e4cb23941a57	features/comfort/RULINGS.md	1246	27	執行層回報（2026-08-14，下放包 03／04）	已實作（非阻塞），且對 04 §2 之前提有一處實測訂正
+R-C5	report	69bd0261	69bd0261c6a36800581b25f3ee9c8ef0f28f08024a1c76d0687129dee525b31d	features/comfort/RULINGS.md	1280	4	執行層回報（2026-08-14，下放包 05／06）	1 —— 已生效，A-CF08 已更新
+R-C11	report	921c262e	921c262e80786e75fe8104218e534504edac247e41af2189672a06bbd656eb5d	features/comfort/RULINGS.md	1287	18	執行層回報（2026-08-14，下放包 05／06）	已執行刪除，前提逐項確認在先
+R-C12	report	b1e06f44	b1e06f44fd9cba729a3c3e32c7cff37c4b3802c7a63b4a9a83f63c08b37878ff	features/comfort/RULINGS.md	1326	7	執行層回報（2026-08-14，下放包 07／08）	10 節已降級，依據全數保留
+R-C13	report	0b64f050	0b64f0500410acf7f841d7d463714df0a5554638e28a3985d6941da113b005b6	features/comfort/RULINGS.md	1336	11	執行層回報（2026-08-14，下放包 07／08）	A-CF11 已升格，且本輪再次派上用場
+R-C14	report	5c1a2ef4	5c1a2ef42997e74bef0081efaa9ffdbb4439ba4d14fde3a1c6a509654072bf1b	features/comfort/RULINGS.md	1350	12	執行層回報（2026-08-14，下放包 07／08）	本輪對 Market Configuration Table 之取用即依此條
+R-C18	report	1abb4f7b	1abb4f7badba682581dccc98c8a37416aa8dfe7148d0ebf0dfe3bd1c29db4c99	features/comfort/RULINGS.md	1369	19	執行層回報（2026-08-15，下放包 13）	已貼入，並已建立其所需之基礎設施
+R-POP1	ruling	61145b5f	61145b5f874f6dba76dd75aa4e7f5b2e01bee739f73752e725ee2a773bb3e5bb	features/popup/RULINGS.md	7	4		slug 與目錄（Pei 裁，2026-08-27）
+R-POP2	ruling	93a0e937	93a0e937a7e1c3c3c87fd09346f6d81cc99a4439a800370d374e78865ab2c9a0	features/popup/RULINGS.md	14	6		生成範圍照 037 為準（Pei 裁，2026-08-27）
+R-POP3	ruling	6f6a3531	6f6a3531e75d7b752152414ad48f22c1a1866da9f208d9e98d902cc2e405a0e5	features/popup/RULINGS.md	23	3		DR 三件開立（Pei 裁，2026-08-27）
+R-POP4	ruling	1555a8f1	1555a8f13e754c5029b7543dc345256a2d5cb2c1d13d7b9105ac8f4c8a0f5cbe	features/popup/RULINGS.md	29	4		框架（Pei 裁，2026-08-27）
+R-POP5	ruling	896b4b84	896b4b84e7a0225015fabbef44ff8b7f94256ea2ea2cb0cb1cef7accbca080ec	features/popup/RULINGS.md	36	5		Heading 列之台帳處置 [DEFAULT]（分析層先裁，待 Pei 追認）
+R-POP6	ruling	66f64b48	66f64b48f5038c39990fd1cd57190ddf9902bfa84969525d4bdd885cbb7126bc	features/popup/RULINGS.md	44	12		Pop Up List 納入為素材（Pei 裁，2026-08-27，A-POP2 甲半）
+R-POP7	ruling	f6d6e22c	f6d6e22cff98b0a38b45f3ed06bdd55cc1dd254413b865e00d4294f3a78d3408	features/popup/RULINGS.md	59	4		Priority Matrix 不納入（Pei 裁，2026-08-27，A-POP2 乙半）
+R-POP8	ruling	7425f059	7425f059330762027934932a230bab008296e566cff4a9cc7eb285ad361dced0	features/popup/RULINGS.md	66	9		-002-02 之 spec_reference 併列兩節（Pei 裁，2026-08-27，A-POP3 採甲）
+R-POP9	ruling	a899c245	a899c24530cf3b0e7cb6790eaf9770ccc9c3dc0d158d28912c491dc33c6a9a3f	features/popup/RULINGS.md	78	4		A-POP1 修正追認＋傳染性掃描（Pei 裁，2026-08-27）
+R-POP10	ruling	a2237932	a22379321dcc8476b99a47d05fb95df0941aaae4bec2689ef35e99f963d8b17c	features/popup/RULINGS.md	85	5		lint 跳號檢查改前綴自動抽取（Pei 裁，2026-08-27，A-POP4 處置）
+R-POP11	ruling	a6b5301b	a6b5301bc9a7c67d3575ba0d17a8cbefff9164a51d475b1c2a7a71f88c0ee697	features/popup/RULINGS.md	93	5		rulings_hash 範圍納 feature RULINGS（Pei 裁，2026-08-27）
+R-PMH1	ruling	9cca6b1e	9cca6b1ec8f94446c4450970b8b8081b6034613ebdf359e8d20f70fbabc38c62	features/power_moding/RULINGS.md	13	15	R-PMH1 —— 範圍 = 037 `Functional Requirement` 全集	範圍 = 037 `Functional Requirement` 全集
+R-PMH2	ruling	d0cdeeb4	d0cdeeb48b009e305c819a7d1c1a93f96ab64d591ae18f456a57df91e84d6dc0	features/power_moding/RULINGS.md	31	11	R-PMH2 —— feature 身分與 `test_group`，交付夾名不入欄位	feature 身分與 `test_group`，交付夾名不入欄位
+R-PMH3	ruling	b41bd8c6	b41bd8c6a351d6666fb4b86e3c76d0a24189ea3d92f9f8159cb1d5634c126728	features/power_moding/RULINGS.md	45	14	R-PMH3 —— 與 `features/power` 之分離（欄位／前綴／glob 三項）	與 `features/power` 之分離（欄位／前綴／glob 三項）
+R-PMH4	ruling	6556777f	6556777f865ebc06a28f6829acafb9b1908185f241e59b965d4e8feba4c37094	features/power_moding/RULINGS.md	62	10	R-PMH4 —— 素材台帳之到齊定義	素材台帳之到齊定義
+R-PMH5	ruling	70f149bd	70f149bdf2da0981724f8fd3f22fdb302f4f92e6c68a731cf044c76f5c642639	features/power_moding/RULINGS.md	75	15	R-PMH5 —— 既有 48 列非 done region，視為草稿列	既有 48 列非 done region，視為草稿列
+R-PMH6	ruling	a54c3a1a	a54c3a1ac517f02ac84405720b3ff28702ebe1dd73c705f32d9cee9c4c504cf4	features/power_moding/RULINGS.md	93	16	R-PMH6 —— G/H 兩欄之處置延後至 Phase 3	G/H 兩欄之處置延後至 Phase 3
+R-PMH7	ruling	094734d4	094734d46864645e66d06f39f2fcbf62590a4dc33e40b4d5205285d0a89733fe	features/power_moding/RULINGS.md	136	16	R-PMH7 —— 交付母本為 forms ext；客戶那份降為來源複本	交付母本為 forms ext；客戶那份降為來源複本
+R-PMH8	ruling	4ee6df13	4ee6df13a9cb96fdc1ceb3cf56f9c848d6648d5cb4945e6199c258d404c39d3e	features/power_moding/RULINGS.md	155	15	R-PMH8 —— `workbook_state` = `BLANK`；撤回 `PREFILLED_DRAFT`	`workbook_state` = `BLANK`；撤回 `PREFILLED_DRAFT`
+R-PMH9	ruling	feb49039	feb49039471fadfcc4b0af0df463c8353ae9d6391acbed8593e16b712597102a	features/power_moding/RULINGS.md	173	13	R-PMH9 —— 欄位對應作廢重測，四方交叉佐證	欄位對應作廢重測，四方交叉佐證
+R-PMH10	ruling	69cfddb6	69cfddb64f951a01e024c0e2b2180778ecef9efd535105b25a6ee7e4588a07d3	features/power_moding/RULINGS.md	189	34	R-PMH10 —— D3／D4／D5 一律留空	D3／D4／D5 一律留空
+R-PMH11	ruling	e6b55703	e6b5570394c5498b7ba2606184ff767f9ac432e3ef65a93cfc6b8b2856c9cb58	features/power_moding/RULINGS.md	226	23	R-PMH11 —— `MANIFEST.sha256` 入版控	`MANIFEST.sha256` 入版控
+R-PMH12	ruling	03ccd4b7	03ccd4b703a528102f84da35d5fd8725e8321a33f6b3ca76931a53277f6b7fa2	features/power_moding/RULINGS.md	252	7	R-PMH12 —— 跨表列號以 id 實測，不以位移推算	跨表列號以 id 實測，不以位移推算
+R-PMH13	ruling	ffd3bb5a	ffd3bb5aac6d35aec38392bd66b3848f15e52548392e3dd89216914c49d3a654	features/power_moding/RULINGS.md	287	18	R-PMH13 —— G 欄填交付夾名；撤回 R-PMH2 後半	G 欄填交付夾名；撤回 R-PMH2 後半
+R-PMH14	ruling	4a2763de	4a2763ded1c560d8b42b18b754a3f734ebe03cc1fe8bd708c82669c95af42b10	features/power_moding/RULINGS.md	308	12	R-PMH14 —— 語料之鑑別力口徑（分母為能分辨者）	語料之鑑別力口徑（分母為能分辨者）
+R-PMH15	ruling	e8bd8304	e8bd8304fbf86ce6f768be671124df927653ef9d94d2f43305434a7b7fd5ff2e	features/power_moding/RULINGS.md	323	16	R-PMH15 —— `.gitignore` 之 `inputs/*` 形態與四項雙向驗證	`.gitignore` 之 `inputs/*` 形態與四項雙向驗證
+R-PMH13	ruling	3b18336f	3b18336f858dafcf6f178e1d29e1694176ace1ee489406652c8cd6fa86fae498	features/power_moding/RULINGS.md	351	8	R-PMH13 之生效 —— 核可生效，G 欄停止條件解除	之生效 —— 核可生效，G 欄停止條件解除
+R-PMH16	ruling	e12a59e9	e12a59e9617f96e01e12e1402919c062e03fdde8c84e01eeb39c251bf2c74f26	features/power_moding/RULINGS.md	362	17	R-PMH16 —— `tc_id_format` = `NR1L-DisclaimerScreen-{NNN}`，附已知反例	`tc_id_format` = `NR1L-DisclaimerScreen-{NNN}`，附已知反例
+R-PMH17	ruling	7e218fd0	7e218fd0be347458eab1b0865ce73445d71b0bb5a2bf0f629704938b5c9a0be8	features/power_moding/RULINGS.md	382	8	R-PMH17 —— A-PMH06 之追認，RESOLVED	A-PMH06 之追認，RESOLVED
+R-PMH18	ruling	8479ca4c	8479ca4c7da4a18141fedf6b2f92c9615387a38d59abc8ef7ebf10429335bce8	features/power_moding/RULINGS.md	393	11	R-PMH18 —— 兩個字面常數之大小寫保真	兩個字面常數之大小寫保真
+R-PMH19	ruling	e2acb9d5	e2acb9d59a4b276711005c8998689765f8bc1fbd128d9ca621ff870fb2118aca	features/power_moding/RULINGS.md	433	43	R-PMH19 —— 已交付件語料之母體判準（三條排除規則 ＋ 揭露義務）	已交付件語料之母體判準（三條排除規則 ＋ 揭露義務）
+R-PMH20	ruling	1f0bfeb8	1f0bfeb8c82a25251868ceff3bfe651c7a415ec059b15102723fdc6e23e17a3b	features/power_moding/RULINGS.md	479	14	R-PMH20 —— 量詞與量測範圍須一致	量詞與量測範圍須一致
+R-PMH21	ruling	d1feb52b	d1feb52b3af9d224f4a94153994d67cf5b8ae971f552bd1eb682cf8fce75b03a	features/power_moding/RULINGS.md	496	11	R-PMH21 —— 規格文字量不作完整性判準	規格文字量不作完整性判準
+R-PMH22	ruling	3dda421e	3dda421e5ba25569cda7ddcc2e8624a5f1e915ecb8c0c61c5171266d31dd98a8	features/power_moding/RULINGS.md	510	18	R-PMH22 —— `write_back` 之機器檢查（含故意失敗之驗證要求）	`write_back` 之機器檢查（含故意失敗之驗證要求）
+R-PMH23	ruling	8f2dba0d	8f2dba0d92136afd174f784201653fad93a409f429fd99569679dde9ba26adcd	features/power_moding/RULINGS.md	531	15	R-PMH23 —— 客戶那份之封面五頁禁用	客戶那份之封面五頁禁用
+R-PMH24	ruling	73a75543	73a7554315a91df5c7f2b275d9344b88f588a64e7fd647579036fcf56be49918	features/power_moding/RULINGS.md	573	19	R-PMH24 —— 母體判準以用途目錄排除，非以深度；新增反向驗證義務	母體判準以用途目錄排除，非以深度；新增反向驗證義務
+R-PMH25	ruling	912a7f02	912a7f023d80b8c52d9c99392f0513083f2c8a1179ee476c99b78d32c1d799f9	features/power_moding/RULINGS.md	595	13	R-PMH25 —— `design_method` vocabulary 取自 x14 所指 source，非同名分頁	`design_method` vocabulary 取自 x14 所指 source，非同名分頁
+R-PMH26	ruling	b82632b5	b82632b506fcaf675ec9c5d246149dec6e73a18d74228fad9ed63aa12f6dc167	features/power_moding/RULINGS.md	630	18	R-PMH26 —— 上游 037 命名不在範圍（四項拘束）	上游 037 命名不在範圍（四項拘束）
+R-PMH27	ruling	24c9aed6	24c9aed641a87d14ea77e4fe2606ccaf343f279efa620868f2ca55944f4f12cf	features/power_moding/RULINGS.md	668	39	R-PMH27 —— Q3 重裁定案：三欄留空，依據更換為母體實測	Q3 重裁定案：三欄留空，依據更換為母體實測
+R-PMH28	ruling	cf3ce0dc	cf3ce0dc1a9240a08d449dcd581ed428fab07e329c5ff076591ea48a48b52dbf	features/power_moding/RULINGS.md	726	14	R-PMH28 —— 多層目錄之交付夾判準（取最上層）	多層目錄之交付夾判準（取最上層）
+R-PMH29	ruling	4227c3c5	4227c3c5367efbd6cf9646d721da8853a1b9e2d25e7244159ef5126bee1ce390	features/power_moding/RULINGS.md	743	16	R-PMH29 —— 不確定性以敏感度處置，量測全部候選	不確定性以敏感度處置，量測全部候選
+R-PMH30	ruling	1019c307	1019c30768a30b3ac5bfb70ef0a21c229a3c4077866187bdc63afc168709c645	features/power_moding/RULINGS.md	762	8	R-PMH30 —— 母體揭露須含量測時點	母體揭露須含量測時點
+R-PMH31	ruling	a5198224	a5198224e8e750dbd52649dd9176b19643115a7b6202f888ec434249c0df885d	features/power_moding/RULINGS.md	773	11	R-PMH31 —— (b) 清單移除 `_Rebuilt` 與 `(done)`	(b) 清單移除 `_Rebuilt` 與 `(done)`
+R-PMH32	ruling	ef0f3bd2	ef0f3bd2aec85e6c690a8e3ea516d8f0d83318398818ef8a0aae36705f17b7a4	features/power_moding/RULINGS.md	806	17	R-PMH32 —— (c) 平手時不擇一，改敏感度處置；三種 tie-break 明文禁止	(c) 平手時不擇一，改敏感度處置；三種 tie-break 明文禁止
+R-PMH33	ruling	deea5f5a	deea5f5a14bb750a220f01af4d7604a1c8f97069e12b97167deb635ccc847233	features/power_moding/RULINGS.md	826	12	R-PMH33 —— 條文修訂之連帶檢查（移除一項須驗接手者接得住）	條文修訂之連帶檢查（移除一項須驗接手者接得住）
+R-PMH34	ruling	02fd3615	02fd3615a80fff602d8d2c2f0d6cc9b3a238d83804bb2613d9b70e4797559db7	features/power_moding/RULINGS.md	858	14	R-PMH34 —— 涵蓋率陳述之分母（排除無內容者、平手只計一份、盲區聲明）	涵蓋率陳述之分母（排除無內容者、平手只計一份、盲區聲明）
+R-PMH35	ruling	28832497	28832497eb8ce78d0b3b396f7fb433a066b675ac14ad277089ad0bd66a4f4f73	features/power_moding/RULINGS.md	875	18	R-PMH35 —— 判準須有可執行門檻 ＋ must-hit 錨點實跑；無鑑別力須明示	判準須有可執行門檻 ＋ must-hit 錨點實跑；無鑑別力須明示
+R-PMH36	ruling	bdd0044c	bdd0044ca446a2272e74f3e5a7df5812a57bf9718b83222201cea5f3daa0db5a	features/power_moding/RULINGS.md	914	24	R-PMH36 —— Q11 定案 —— Test Set #2 = `Disclaimer Screen`；Layer 2 定版 8 組	Q11 定案 —— Test Set #2 = `Disclaimer Screen`；Layer 2 定版 8 組
+R-PMH37	ruling	bd688c0a	bd688c0aab7f87463f97cdc5f7b12f0412b9c8890877e7e8f96cc6a36ae6d645	features/power_moding/RULINGS.md	941	44	R-PMH37 —— git 一次性窄口授權（八路徑、逐字訊息、明文不授權清單）	git 一次性窄口授權（八路徑、逐字訊息、明文不授權清單）
+R-PMH38	ruling	4223e50e	4223e50ea4b68d78fb705107dd5dedc63d23bcbdb8afc573e1f0aacdc2ccecea	features/power_moding/RULINGS.md	1005	21	R-PMH38 —— must-hit 之隔離度三級，結構性連帶須有算式	must-hit 之隔離度三級，結構性連帶須有算式
+R-PMH39	ruling	1b7b1513	1b7b1513d1d61b2596daf800b94bb6513ea4bf95af1f9db38b39937c3c5ecca0	features/power_moding/RULINGS.md	1029	17	R-PMH39 —— G1 門檻改 `1/3` 並附推導；`0.35` 作廢	G1 門檻改 `1/3` 並附推導；`0.35` 作廢
+R-PMH40	ruling	e3dd0a0b	e3dd0a0b5b4efc66f608de4b8ba64edde03c11b2d799c79c2dbf9666993a8c96	features/power_moding/RULINGS.md	1049	17	R-PMH40 —— 判準門檻之單一來源	判準門檻之單一來源
+R-PMH41	ruling	1874e7ba	1874e7ba29608a6f6ca925ec40f8b21581c5e291036bc2052e9b205db77afa17	features/power_moding/RULINGS.md	1087	15	R-PMH41 —— 就地替換須驗命中數；驗證標的須為所欲狀態非代理量	就地替換須驗命中數；驗證標的須為所欲狀態非代理量
+R-PMH42	ruling	20767631	207676316a5c1092246608acd246934116a185adf2eb8c4be5acc0883f5642bc	features/power_moding/RULINGS.md	1105	13	R-PMH42 —— R-PMH40 之落實須為可執行檢查，附故意失敗驗證	R-PMH40 之落實須為可執行檢查，附故意失敗驗證
+R-PMH43	ruling	110c3909	110c390951762175679e07d50850c3b107cff064d5137fe04b8a1638de3475f7	features/power_moding/RULINGS.md	1138	16	R-PMH43 —— 已發生變更之陳述須附實測證據；同包舉證標準須一致	已發生變更之陳述須附實測證據；同包舉證標準須一致
+R-PMH44	ruling	28edc0df	28edc0dfef2cfcd3cebd8193708a2d683b0ac8963724d3014c9ac27e728c8d3b	features/power_moding/RULINGS.md	1157	16	R-PMH44 —— 已提交之往返包原文不改字，以檔末勘誤節處理	已提交之往返包原文不改字，以檔末勘誤節處理
+R-PMH45	ruling	a2fbe3fd	a2fbe3fdb36a22c290d40e94d78ab3e8bbe7e10c7f1f0b0342407391d7273247	features/power_moding/RULINGS.md	1176	16	R-PMH45 —— 同檔內互斥狀態陳述之一致性檢查	同檔內互斥狀態陳述之一致性檢查
+R-PMH46	ruling	7926c9f8	7926c9f8165b47b338320c07c9b3713d05095e9fb30ceca5a6a201c4817fdcfc	features/power_moding/RULINGS.md	1214	17	R-PMH46 —— profile 落檔一次性授權（含明文不授權清單）	profile 落檔一次性授權（含明文不授權清單）
+R-PMH47	ruling	bdb0be32	bdb0be323d2c57a20076f1686b0c2594a20fdbbad9a043a6adf99e93d66c473d	features/power_moding/RULINGS.md	1234	35	R-PMH47 —— A-PMH13 定案 (ii)＋(iii)：out of scope ＋ 揭露列 ＋ DR-PMH1	A-PMH13 定案 (ii)＋(iii)：out of scope ＋ 揭露列 ＋ DR-PMH1
+R-PMH48	ruling	ed6500d9	ed6500d9747c664c48cdfd9a89a5aa4ff60b45d3c4fa2154d6c8d6b6b8c5e387	features/power_moding/RULINGS.md	1272	13	R-PMH48 —— 下放包不載 git 提交狀態	下放包不載 git 提交狀態
+R-PMH49	ruling	43b6afe7	43b6afe78f16b1b3f41d3282f80b4cbe859910f78124f9d9d38e70140244bc36	features/power_moding/RULINGS.md	1288	17	R-PMH49 —— 互斥對擴充至八組 ＋ 按條號切分實作	互斥對擴充至八組 ＋ 按條號切分實作
+R-PMH50	ruling	8f849b85	8f849b85d8f72045f6147d2629f8e86deffe102d28dc3c6f2164bdb8330f3d82	features/power_moding/RULINGS.md	1308	20	R-PMH50 —— 每批 JSON 之 `source_clause` 須取自 PDF	每批 JSON 之 `source_clause` 須取自 PDF
+R-PMH51	ruling	ccbd9934	ccbd99347afd0627b43b9d7ee48a87fa1de98f2353ea5d38941ae4ac0a3dc0ca	features/power_moding/RULINGS.md	1351	17	R-PMH51 —— A-PMH03 之 7.1 改判為漏句；規格比對一律雙向	A-PMH03 之 7.1 改判為漏句；規格比對一律雙向
+R-PMH52	ruling	468f856c	468f856c3221e0bb0d491501edd5e19258d50d77882aa8baff1a2c02b8037add	features/power_moding/RULINGS.md	1371	14	R-PMH52 —— lint 須具名未涵蓋節號；全綠不構成 TC 可用之證據	lint 須具名未涵蓋節號；全綠不構成 TC 可用之證據
+R-PMH53	ruling	af7cb5ad	af7cb5ad8f558988b2c78a8df0a051f2f4c73b920d4e0054a15345a9ae175747	features/power_moding/RULINGS.md	1388	13	R-PMH53 —— 拆分後之交叉引用連帶更新	拆分後之交叉引用連帶更新
+R-PMH54	ruling	5b146842	5b146842bb28c82b47dd239c89190ac362456b912256bd037473fb21fcc7320e	features/power_moding/RULINGS.md	1422	17	R-PMH54 —— 規格覆蓋以 marker 枚舉為權威（無門檻）；句級 diff 降為輔助	規格覆蓋以 marker 枚舉為權威（無門檻）；句級 diff 降為輔助
+R-PMH55	ruling	649dc45b	649dc45b9ab3bc7d0fe107d01254e7b592d305a6dfa475e443cb099bbee44557	features/power_moding/RULINGS.md	1442	21	R-PMH55 —— 無 leaf 之規格內容得限縮條件、不得新增涵蓋（三項判準）	無 leaf 之規格內容得限縮條件、不得新增涵蓋（三項判準）
+R-PMH56	ruling	c3ef2e97	c3ef2e97eb3d6ec5ee839189af027f8b68101b747cac99146690a63222a6b870	features/power_moding/RULINGS.md	1466	14	R-PMH56 —— 未涵蓋清單須由程式自 canon 節號全集產生	未涵蓋清單須由程式自 canon 節號全集產生
+R-PMH57	ruling	e749ed80	e749ed8072783b9b3dc6f68381abbb3e1ed01c17ea6018d782dbbca8bb0ee329	features/power_moding/RULINGS.md	1497	16	R-PMH57 —— marker 前綴清單須由反向掃描產生	marker 前綴清單須由反向掃描產生
+R-PMH58	ruling	794a28ae	794a28ae266e0125bff476498da6328fb288ce52afd9cf2235ab8a4c183aafa1	features/power_moding/RULINGS.md	1516	11	R-PMH58 —— `COVERED` 須自檢查點自動產生	`COVERED` 須自檢查點自動產生
+R-PMH59	ruling	ef8039e9	ef8039e952027412ad69f71c1d59020b039c872646cea32919d8b78fc7b8c7d5	features/power_moding/RULINGS.md	1530	13	R-PMH59 —— priority 之依據須批內互不矛盾	priority 之依據須批內互不矛盾
+R-PMH60	ruling	dc622b01	dc622b0120d3c19013481ff96a5b01580645b695f6f8cd011327d9a73eb23dd9	features/power_moding/RULINGS.md	1559	16	R-PMH60 —— 兩份萃取之等同性判準	兩份萃取之等同性判準
+R-PMH61	ruling	3695368d	3695368dab9c0c170ec8aecf0368a9ce5782e4a6e6b0c4857eebea5df47399c3	features/power_moding/RULINGS.md	1578	14	R-PMH61 —— `VERDICT` 誤判之偵測	`VERDICT` 誤判之偵測
+R-PMH62	ruling	8921468c	8921468c9384ff806ede4dfee9fbd1bcf054d3f329bfe91c1a6118a9a64bdd31	features/power_moding/RULINGS.md	1595	15	R-PMH62 —— 自訂判準須雙向自套	自訂判準須雙向自套
+R-PMH63	ruling	aef5f58e	aef5f58e93f75ca2d2657d41f043fb8be80e43a0af54d3ea03a44024cfe4a195	features/power_moding/RULINGS.md	1626	17	R-PMH63 —— 「只列不改」之適用範圍	「只列不改」之適用範圍
+R-PMH64	ruling	4311cd8e	4311cd8ed9f54e909981fbe0dbcdd7aa165ac6e34ef697b728bd3c2aac20c36d	features/power_moding/RULINGS.md	1646	17	R-PMH64 —— 質疑型條文之機械判準	質疑型條文之機械判準
+R-PMH65	ruling	fc943599	fc94359916720e810045c8845e5ac70118505360b80169f927f7f7ea8db2b950	features/power_moding/RULINGS.md	1666	16	R-PMH65 —— 下放包只得記載分析層自身之行為	下放包只得記載分析層自身之行為
+R-PMH66	ruling	bd527c9f	bd527c9fb406b93192a5ea1926772f235cae4e55ff85032550cceffebafc090d	features/power_moding/RULINGS.md	1698	17	R-PMH66 —— 判定為二值，門檻只分流殘餘	判定為二值，門檻只分流殘餘
+R-PMH67	ruling	a03125ee	a03125ee4f974eddcd8cde756eb09e8e469b34e0ed4126366f973b7702a68786	features/power_moding/RULINGS.md	1718	19	R-PMH67 —— 列舉式判準須附偽陰之抽樣估計	列舉式判準須附偽陰之抽樣估計
+R-PMH68	ruling	6804a75a	6804a75add3c6015bf83737524edd16df1cf3841986a0bf5223f91ec1453e129	features/power_moding/RULINGS.md	1740	13	R-PMH68 —— doc-sync 之錨取門檻表，不取整支程式	doc-sync 之錨取門檻表，不取整支程式
+R-PMH69	ruling	f9e19946	f9e199462030d96f16747ff03129a72685ff4c36287c45243407bb176d465548	features/power_moding/RULINGS.md	1771	22	19 本文（R-PMH69 ~ R-PMH71）	
+R-PMH70	ruling	12e4fe64	12e4fe642b8d673c330b308e50e974e7d3b8db59603ea675e90d2964303ef5e6	features/power_moding/RULINGS.md	1796	15	19 本文（R-PMH69 ~ R-PMH71）	
+R-PMH71	ruling	6276e9b3	6276e9b374e7ef397573af9e73b444d2101a84405ae3f80a45f79ff2bfec0e64	features/power_moding/RULINGS.md	1814	17	19 本文（R-PMH69 ~ R-PMH71）	
+R-PMH72	ruling	8d65cbbc	8d65cbbc9a0ae9e5d3b10aebb72f0b2fe1862e80edd482271f5faa24d317a923	features/power_moding/RULINGS.md	1836	26	19a —— Pei 之四項裁定（R-PMH72 ~ R-PMH75）	
+R-PMH73	ruling	52c3b28f	52c3b28f6eb35b9efd3514ccd94937e09969bfc0de8682370c73f3f9b8412b76	features/power_moding/RULINGS.md	1865	26	19a —— Pei 之四項裁定（R-PMH72 ~ R-PMH75）	
+R-PMH74	ruling	882eeeff	882eeeff0f0335cc601149ce5c1f159d05b5185b33459907a5525430a3f975d7	features/power_moding/RULINGS.md	1894	20	19a —— Pei 之四項裁定（R-PMH72 ~ R-PMH75）	
+R-PMH75	ruling	69d33efe	69d33efe438022dde3284dcd439d428f8bf96b44cabb38b2a972ac7d9981a91b	features/power_moding/RULINGS.md	1917	29	19a —— Pei 之四項裁定（R-PMH72 ~ R-PMH75）	
+R-PMH76	ruling	8893ec6e	8893ec6e553104585a2457a71914bd222803d61097f3ddef86685da26a7ce656	features/power_moding/RULINGS.md	1966	27	R-PMH76	
+R-PMH77	ruling	4eaf41f4	4eaf41f4b0167b0e36117aa86c4e30f97d646b56eb6f5a38a4c7f2ff27d72917	features/power_moding/RULINGS.md	1996	18	R-PMH77	
+R-PMH78	ruling	9107f8fa	9107f8fa4278fca0e1433757e80bce0da922ae4c5d9d31da834e1b4420de3bbd	features/power_moding/RULINGS.md	2017	20	R-PMH78	
+R-PMH79	ruling	5a93a636	5a93a636c3f3bf35752802ee9064dc399e66570f5525765c122e2de21cd51e0a	features/power_moding/RULINGS.md	2055	20	21 本文（R-PMH79 ~ R-PMH81）	
+R-PMH80	ruling	cd270c53	cd270c53c91579f5aea090f979ee6056794c0915b5e0a407bee194ff1a6909a9	features/power_moding/RULINGS.md	2078	21	21 本文（R-PMH79 ~ R-PMH81）	
+R-PMH81	ruling	a4f9b7a5	a4f9b7a53b9a1b3f8aacfdaadd943f9eedb995582f1dea6cdc135ef558401b74	features/power_moding/RULINGS.md	2102	16	21 本文（R-PMH79 ~ R-PMH81）	
+R-PMH82	ruling	41f679ca	41f679cad62c9ff4469276e7badbc13f11514c52f38960988fe3f793b74a7930	features/power_moding/RULINGS.md	2123	20	21a —— Pei 之發出授權（R-PMH82 ~ R-PMH83）	
+R-PMH83	ruling	51c583ed	51c583edbaa8a7a78b77308dd1a574356fca1f6dab090cf0a9ba4a4eb2022411	features/power_moding/RULINGS.md	2146	13	21a —— Pei 之發出授權（R-PMH82 ~ R-PMH83）	
+R-PMH84	ruling	7de0f807	7de0f80757f3df1a45bb862a9b291466934ed7bba5a9eb3cca7dd1f3dd722aed	features/power_moding/RULINGS.md	2177	22	R-PMH84	
+R-PMH85	ruling	c26f7f63	c26f7f63d11f8fab97c9e3fc75fbda4d26669960a9b0d5716fb059f23fa8a9f6	features/power_moding/RULINGS.md	2202	21	R-PMH85	
+R-PMH86	ruling	1ffe6745	1ffe67458ddf0776dbea0e3fd52dd99fd18cef1c3b497233898f2ef41477c894	features/power_moding/RULINGS.md	2226	14	R-PMH86	
+R-PMH88	ruling	81bd6a88	81bd6a8851924c4f09f300bbf8091edfe9ee5436608cc9eb4263fa6a8e1987ab	features/power_moding/RULINGS.md	2289	14	R-PMH88	
+R-PMH89	ruling	b0cef039	b0cef0391fecd6811dff9681adf910b31fc7a51e313b2cdad312120164f7336d	features/power_moding/RULINGS.md	2306	17	R-PMH89	
+R-PMH90	ruling	87ab0185	87ab018567d39ad35d030f61b6c0dc6285b2f93b7c102faf98caa2874b43fce6	features/power_moding/RULINGS.md	2326	16	R-PMH90	
+R-PMH91	ruling	5bcb819f	5bcb819f93414f342f987136434ab3265f293818ccc93ad87cb377bd532f9b94	features/power_moding/RULINGS.md	2358	18	R-PMH91	
+R-PMH92	ruling	43ce7565	43ce75650e406c7abe5f50d8ca6c96ded887eaaac51173d6dc7adf36be3b6246	features/power_moding/RULINGS.md	2379	15	R-PMH92	
+R-PMH93	ruling	e2897ffc	e2897ffca9cc4905f1a4e7a82be4ad4596fe043340a43aae9d9812b217591288	features/power_moding/RULINGS.md	2397	12	R-PMH93	
+R-PMH94	ruling	2e37cb92	2e37cb92956700436043d0ba3838ede033d260bce48b4092a394410d1b4de1e6	features/power_moding/RULINGS.md	2425	19	R-PMH94	
+R-PMH95	ruling	f083bedb	f083bedb2a385763ea533b66c58e1d79c31ec64dafa229a76959eab3153d9789	features/power_moding/RULINGS.md	2447	18	R-PMH95	
+R-PMH96	ruling	a1830e40	a1830e40ae8eb3bc886285eca3000da92fa429a6bc0bf47c291c32cee8aa2076	features/power_moding/RULINGS.md	2468	13	R-PMH96	
+R-PMH97	ruling	3b322d80	3b322d80e5112cf113148d94b53eed3b6ddfc77f0ce347c21a10e13bfb907cba	features/power_moding/RULINGS.md	2497	23	R-PMH97	
+R-PMH98	ruling	43fcbd1b	43fcbd1b22353d85458b39761c0bf547e27e5dd6a1bf374ed44c9dcab2441518	features/power_moding/RULINGS.md	2523	22	R-PMH98	
+R-PMH99	ruling	5b27e96a	5b27e96a65632b61d9a148a7f4c224c681a4810762109feb9dd65812b1ee9b53	features/power_moding/RULINGS.md	2548	18	R-PMH99	
+R-PMH100	ruling	b1fd0d80	b1fd0d805d0ebe1c9f97c8a32251ff0023e72190b84802d57fa8021e8f0a88d2	features/power_moding/RULINGS.md	2582	22	R-PMH100	
+R-PMH101	ruling	f0c1cf29	f0c1cf29826ccfa058deb202ab82d7a60b3e7e60f7ec0ca58d68755e402f3108	features/power_moding/RULINGS.md	2607	17	R-PMH101	
+R-PMH102	ruling	ca57e6bd	ca57e6bd519395312a7eaf41dd6c9e4f6b073c188dd5d84ffab3b68407d4445f	features/power_moding/RULINGS.md	2627	16	R-PMH102	
+R-PMH103	ruling	81df1fbe	81df1fbed4a505769eb9325ec37d7102a6a9e7dca28fe6b5c954e4dbd19f7cfd	features/power_moding/RULINGS.md	2659	17	R-PMH103	
+R-PMH104	ruling	a9e59d80	a9e59d80a5856bd7821e84fc6ee4b10ff889ad92b98d23d6e8ad179fdf670552	features/power_moding/RULINGS.md	2679	17	R-PMH104	
+R-PMH105	ruling	117987a5	117987a5afefc4c9b7b1a63901a9c6e0360266424916a59841c117e215aeac61	features/power_moding/RULINGS.md	2707	17	R-PMH105	
+R-PMH106	ruling	c1043f15	c1043f1597c3dd9b7eb4121ae7cd62b0ffd293f5322d8e8f4313dbd1a27fbc01	features/power_moding/RULINGS.md	2727	18	R-PMH106	
+R-PMH107	ruling	64a75b97	64a75b974582af37ddadd716c99db623d796fd7e42b248ca4099e5cdb0cb4d41	features/power_moding/RULINGS.md	2756	23	R-PMH107	
+R-PMH108	ruling	8be8d0b7	8be8d0b76267215a6e120066b3f975aed9b9425a16b4e38e7ac69994f7e4771f	features/power_moding/RULINGS.md	2782	19	R-PMH108	
+R-PMH109	ruling	1803b643	1803b6436f9f43bbe531c3923dd7663e4e80d4c35585c0ad5512d9169cf43cd1	features/power_moding/RULINGS.md	2804	21	R-PMH109	
+R-PMH110	ruling	854fceac	854fceacc7132eab68f2a32c85312484b38b49ce196e69acee0b8b996c2d9063	features/power_moding/RULINGS.md	2837	19	R-PMH110	
+R-PMH111	ruling	3457565b	3457565b25fb5829603a5b1e2618871170bdfc63ae1a388dd738bba30143fc81	features/power_moding/RULINGS.md	2866	24	R-PMH111	
+R-PMH112	ruling	decf346b	decf346b7d08755622e4271b4d1e52017dafc00dd79e7c6c06f9f8d3bb9a464a	features/power_moding/RULINGS.md	2893	17	R-PMH112	
+R-PMH113	ruling	b8f38ac9	b8f38ac9839f45e477a3378ece0140c2e76c1d2486834f47950a5d0eb9b76572	features/power_moding/RULINGS.md	2921	22	R-PMH113	
+R-PMH114	ruling	d9f02243	d9f022431f6800e560a571919eb348ce717fcd5934c140f46fec3015d4f7ecb7	features/power_moding/RULINGS.md	2946	13	R-PMH114	
+R-PMH115	ruling	352a985f	352a985f74b14d8d03029caf4b1a46cc27ac425eeffd86e0d90ea2ae4f55eeb3	features/power_moding/RULINGS.md	2962	26	R-PMH115	
+R-PMH116	ruling	dae6614f	dae6614f06ef07ee47c4ac97a07399a9ccda60d0cb37af6ec16d87cb991fe2c9	features/power_moding/RULINGS.md	3000	22	R-PMH116	
+R-PMH117	ruling	5ad90e72	5ad90e72fa596b5ba26ff3101712b8120b2f728c3f57efbcd49df85a97eff9da	features/power_moding/RULINGS.md	3025	21	R-PMH117	
+R-PMH118	ruling	7e42092d	7e42092dced136e94fec749b6f03430376de3804412e7f3a6ea50c6927ed70a9	features/power_moding/RULINGS.md	3049	15	R-PMH118	
+R-PMH119	ruling	3c218744	3c21874477978f245cb19705555ed044a7e1c466026df1aeb75626db2673b6b0	features/power_moding/RULINGS.md	3084	16	R-PMH119	
+R-PMH120	ruling	f834ab1f	f834ab1f80ef3267678cffcbc3fc55a41819d92155eb8d8a3dc5efcc88459cf6	features/power_moding/RULINGS.md	3103	18	R-PMH120	
+R-PMH121	ruling	3cbb630e	3cbb630ea4644e85aee2ce3c629f191a41171789e48c1b9f26c494e550be6e66	features/power_moding/RULINGS.md	3124	20	R-PMH121	
+R-PMH122	ruling	4c546a77	4c546a775aa13bf13924c4fa3f64f8624d3956f9b239ca1fefbe9f7bc6d03e31	features/power_moding/RULINGS.md	3162	18	R-PMH122	
+R-PMH123	ruling	d73afb0f	d73afb0f3a077628fb11fbe1214a0821559dac9f520bdd6ba94c12a0738cf08e	features/power_moding/RULINGS.md	3183	18	R-PMH123	
+R-PMH124	ruling	3a7828d5	3a7828d56024093f20da108aab0124b937c017c7cc2984d4c1683bafa395c2db	features/power_moding/RULINGS.md	3204	17	R-PMH124	
+R-PMH125	ruling	9ec0e1f4	9ec0e1f4b2e5e75046b319da848fc8f98171d1e3b5a70e8f25fd04e70b68e847	features/power_moding/RULINGS.md	3224	24	R-PMH125	
+R-PMH126	ruling	3953fd3e	3953fd3e107d8c996e6e4cf6262b3cb09dbfde5dd7223378ea6bbc1641bede07	features/power_moding/RULINGS.md	3251	18	R-PMH126	
+R-PMH127	ruling	41a1a980	41a1a980f345c8f69b67dbd885bbb8af9f22352418ca2d740d388265450b2f20	features/power_moding/RULINGS.md	3283	21	R-PMH127	
+R-PMH128	ruling	d17cf98e	d17cf98efed0aba6fd89f7bce148b4f63f2d31616e71e0da58ab16640065f6c8	features/power_moding/RULINGS.md	3307	20	R-PMH128	
+R-PMH129	ruling	721e83c3	721e83c34217ed51b2e810b43a54eaaacdadbb68e6777a690ba4c788ed0d3f7e	features/power_moding/RULINGS.md	3330	23	R-PMH129	
+R-PMH130	ruling	ec0c5bbc	ec0c5bbc0d1664101f468fa82b89eb32fe8c957ccaab26aaca496e2644af2494	features/power_moding/RULINGS.md	3356	14	R-PMH130	
+R-PMH131	ruling	d6c7b583	d6c7b5839c058b39637c3ddc7585140615ac7a4292bcd057c302d7d388a466a8	features/power_moding/RULINGS.md	3373	25	R-PMH131	
+R-PMH132	ruling	5146bf1f	5146bf1ff7c6100aa4d089c1421a607400a8e0b7acbd4a7b1f5f7ba53ab752a8	features/power_moding/RULINGS.md	3401	19	R-PMH132	
+R-PMH133	ruling	f7049b78	f7049b785963bea3dba6e4f44325c09a84c78d34cbfa899d901ca5faf9d05459	features/power_moding/RULINGS.md	3435	23	R-PMH133	
+R-PMH134	ruling	52dbb9c4	52dbb9c4063d394258efe886d824de9bcdbffec49e1d90f976f660817cb5f946	features/power_moding/RULINGS.md	3461	20	R-PMH134	
+R-PMH135	ruling	690355b8	690355b854c5400ca61b73843be6cd4a2e20566fbc7f5484bf5f96235a591a3c	features/power_moding/RULINGS.md	3484	16	R-PMH135	
+R-PMH136	ruling	67d063ff	67d063ff107ba14f93f0f35623b330fe86123103a3f7cf17a877ce4979720b71	features/power_moding/RULINGS.md	3512	17	R-PMH136	
+R-PMH137	ruling	29cfc891	29cfc8914535c58a1d945f83dae47ab1104555ad11d73a9fea6a4419e3b55044	features/power_moding/RULINGS.md	3532	24	R-PMH137	
+R-PMH138	ruling	5aa937ef	5aa937ef821186ef23f32992e31a6767894c3d1b392a21c2f9033119f21b4798	features/power_moding/RULINGS.md	3559	21	R-PMH138	
+R-PMH139	ruling	6ad53cca	6ad53ccaec69080c69d0ac65182997e9d17b5a4520d297d7eb441c390b4bc744	features/power_moding/RULINGS.md	3592	21	R-PMH139	
+R-PMH140	ruling	72da7ed1	72da7ed1653f7d419f027b15f1f181fd2581cd17f44d1cf916f98a1c183980cf	features/power_moding/RULINGS.md	3616	18	R-PMH140	
+R-PMH141	ruling	6837eb35	6837eb3597af60dacbbd1b0199339719c0471942db0c628021c55ed2a33790d3	features/power_moding/RULINGS.md	3637	14	R-PMH141	
+R-PMH142	ruling	0a317295	0a317295450e260b3abdcd3c6b8770c05a3221c4ec1b4baaebf8d54fd8a381e5	features/power_moding/RULINGS.md	3663	24	R-PMH142	
+R-PMH143	ruling	417e2afe	417e2afe5e827c9cb344a3df8f37e86370f606cecc33590aca8aec98ee878a82	features/power_moding/RULINGS.md	3690	18	R-PMH143	
+R-PMH144	ruling	66395a74	66395a7438ace982be771baf61f79d3367fc3e1d5a0ddd9e0aba754e97967212	features/power_moding/RULINGS.md	3711	13	R-PMH144	
+R-PMH145	ruling	0e2ce896	0e2ce89681fddc90f886f88a0d57887f8fbc3c9c8c68d16189d3312656415e0e	features/power_moding/RULINGS.md	3736	19	R-PMH145	
+R-PMH146	ruling	ec9ef18c	ec9ef18c14e0e4c1e2610f60b2b24e26e8153eba1752d0b23d2def81da80935c	features/power_moding/RULINGS.md	3758	21	R-PMH146	
+R-PMH147	ruling	f53ea301	f53ea301161cd679a29b01d1f5505fffdd62263229ee26328a7c30ebd85294ad	features/power_moding/RULINGS.md	3790	20	R-PMH147	
+R-PMH148	ruling	6aec735a	6aec735a15877bf954079227345db0a9172f2c1b339d8627c5cbadb334b09bd2	features/power_moding/RULINGS.md	3813	13	R-PMH148	
+R-PMH149	ruling	738d596b	738d596b989d2d289c7b0bc68e648e9e431d05577fb2bde0213d3c2765b5b02d	features/power_moding/RULINGS.md	3829	16	R-PMH149	
+R-PMH150	ruling	b3484b9c	b3484b9cee1d35391ed9207d561ceba1cde6c67941d902e54ca768611efcd8dc	features/power_moding/RULINGS.md	3857	17	R-PMH150	
+R-PMH151	ruling	7bc87c77	7bc87c77f0d68429d96198ff45ebc80f13ca5cbc857d9c4d6ccd7d30b6b0b7f9	features/power_moding/RULINGS.md	3877	25	R-PMH151	
+R-PMH152	ruling	17336471	17336471e40b5e07078dac0f6c8199c03cf4247388e9b7ff06b4227b70f38a07	features/power_moding/RULINGS.md	3905	17	R-PMH152	
+R-PMH153	ruling	b9293f04	b9293f04ee6c47c1667a7688aeb92338c20a7992feeeb6542299ee14243cc52c	features/power_moding/RULINGS.md	3943	70	R-PMH153	
+R-TM1	ruling	811ff60c	811ff60c8ba10d137fcaaf0e58a1adfb5fc3e12c8bbd6ef19674eeafd36e6175	features/time_management/RULINGS.md	11	27	R-TM1（Pei, 2026-08-20）—— feature 定名	（Pei, 2026-08-20）—— feature 定名
+R-TM2	ruling	bdf01e7e	bdf01e7edd86dea8b2505adfa54af8f92f02344e78fa48dc97716cf246a552e6	features/time_management/RULINGS.md	43	19	R-TM2（Pei, 2026-08-20）—— test_group 暫定值與其推翻條件	（Pei, 2026-08-20）—— test_group 暫定值與其推翻條件
+R-TM3	ruling	0074ce96	0074ce96076bc270b66c91557e58b9c798a44567fc05115353128b4b4aa3f88a	features/time_management/RULINGS.md	67	24	R-TM3（分析層自裁，2026-08-20）—— CLI 參數字面值與 anomaly 縮寫	（分析層自裁，2026-08-20）—— CLI 參數字面值與 anomaly 縮寫
+R-TM4	ruling	3c312f00	3c312f000e8b82638b6dc124965a6aea0ece1afc096f1bccd626f1a4486a25c0	features/time_management/RULINGS.md	96	15	R-TM4（分析層自裁，2026-08-20）—— 解析結果之舉證形式	（分析層自裁，2026-08-20）—— 解析結果之舉證形式
+R-TM5	ruling	28276d49	28276d4950fb9b16da36457e482ba64acbaf2950cb945c31067a4db17c3d0acd	features/time_management/RULINGS.md	116	19	R-TM5（Pei, 2026-08-20）—— 036 工作簿以母本為之	（Pei, 2026-08-20）—— 036 工作簿以母本為之
+R-TM6	ruling	5f7639dc	5f7639dc93b904ed433de3ec2786bcd8ade84bd951f59503da13ef40a7bc444d	features/time_management/RULINGS.md	140	27	R-TM6（Pei, 2026-08-20）—— 覆蓋稽核分母，並分拆 A-TM02	（Pei, 2026-08-20）—— 覆蓋稽核分母，並分拆 A-TM02
+R-TM7	ruling	4e7d6003	4e7d6003add433b4d467bda4273749dc8e185a51815988cfe4b31ebbe3e8c7e8	features/time_management/RULINGS.md	172	21	R-TM7（分析層自裁，2026-08-20）—— 下放包之指令須經實測	（分析層自裁，2026-08-20）—— 下放包之指令須經實測
+R-TM8	ruling	fc2432af	fc2432afb4b84002d1b1134d7087c2afc69832f94a4758cf3cb1f1a5a2094685	features/time_management/RULINGS.md	198	33	R-TM8（Pei 授權分析層裁定，2026-08-20）—— test_group = "Time and Date"	（Pei 授權分析層裁定，2026-08-20）—— test_group = "Time and Date"
+R-TM9	ruling	14d3d4f9	14d3d4f9aecc7dcace2bf4adc38e178d2f282518f2b660aea59c7da2f15bfebf	features/time_management/RULINGS.md	236	23	R-TM9（Pei 授權分析層裁定，2026-08-20）—— 母本 Scope 欄（`D5`）之值	（Pei 授權分析層裁定，2026-08-20）—— 母本 Scope 欄（`D5`）之值
+R-TM9	ruling	b16d7bde	b16d7bde2406d1018cb048d46fda903b89692b8968bdb0be7b90b5fbe0ea424e	features/time_management/RULINGS.md	264	29	R-TM9-A1（分析層，2026-08-20）—— Scope 值之前綴段改為待決	A1（分析層，2026-08-20）—— Scope 值之前綴段改為待決
+R-TM10	ruling	82d2334a	82d2334a92c7de0cd8f07499720db9ff8ed405286c6ccddd043a4bdd42a4cbd7	features/time_management/RULINGS.md	298	40	R-TM10（Pei 授權分析層裁定，2026-08-20）—— 跨 feature 樣式參照	（Pei 授權分析層裁定，2026-08-20）—— 跨 feature 樣式參照
+R-TM10	ruling	e139fcf1	e139fcf1a43cd8b9b6dd5ac72977e9163fbf852135df457d1d6cb6e13db077eb	features/time_management/RULINGS.md	343	31	R-TM10-A1（分析層，2026-08-20）—— 樣式參照暫停生效	A1（分析層，2026-08-20）—— 樣式參照暫停生效
+R-TM9	ruling	54c12889	54c12889a068bc5ff4ce06b134224134bd7b5925f77cd3be4565bc96ad84fb6c	features/time_management/RULINGS.md	379	24	R-TM9-A2 — 撤回 R-TM9 之 D5 內容，改綁 A-TM02a	A2 — 撤回 R-TM9 之 D5 內容，改綁 A-TM02a
+R-TM11	ruling	bdabd953	bdabd953fc1588306dbb2ab014d99d0eb37049673ad4842f24c8671d03271f4e	features/time_management/RULINGS.md	406	11	R-TM11 — 驗收條件不得預設 commit 節奏	驗收條件不得預設 commit 節奏
+R-TM12	ruling	831cfd67	831cfd67d008c763aec818f5f94cbc6c10c6cce76ed6f520b6a0948fa2567877	features/time_management/RULINGS.md	420	11	R-TM12 — 下放包一律附可執行指令段	下放包一律附可執行指令段
+R-TM13	ruling	19d17718	19d17718c8fa7555c0d5a8055bab95c166afdd3effd9867ab8b8d8fe0cddcb24	features/time_management/RULINGS.md	434	20	R-TM13 — 條文之作廢一律加註保留，不刪除	條文之作廢一律加註保留，不刪除
+R-TM14	ruling	336073b1	336073b1e8c81e33fb39bc6cd79d5c6ad80499e0e61816cf94264a3ced46df52	features/time_management/RULINGS.md	457	10	R-TM14 — 自檢表與指令段須一一對應	自檢表與指令段須一一對應
+R-TM15	ruling	d9662e28	d9662e28609a1923a7347c80496832a507746243098531e0a2aba9e010b5c704	features/time_management/RULINGS.md	470	13	R-TM15 — Layer 3 訊號之判讀限制	Layer 3 訊號之判讀限制
+R-TM17	ruling	d4e94bec	d4e94bece2846533a1985f920363a6a1f07418d9266458213723369dceaea00c	features/time_management/RULINGS.md	486	30	R-TM17 — framework Part VII Layer 2 簽核	framework Part VII Layer 2 簽核
+R-TM18	ruling	1784eb29	1784eb29963e8907a465f5d5a3b0ee79cace34f01cfdb8d143ebff9d8e9a192d	features/time_management/RULINGS.md	519	23	R-TM18 — features/vehicle setting/ 移入 archive	features/vehicle setting/ 移入 archive
+R-TM19	ruling	2566495a	2566495abfbe904c6a6eb621568af87488df6e80f7d0b1ec6a13cebc38536365	features/time_management/RULINGS.md	545	33	R-TM19 — 五項工具修法授權，A-TM15 優先	五項工具修法授權，A-TM15 優先
+R-TM16	ruling	cfcd7b89	cfcd7b89a1c446c7c45d7f5c4b14011c7234ef278940cc238734f9da26b43d47	features/time_management/RULINGS.md	581	47	R-TM16 — framework 併入全域檔	framework 併入全域檔
+R-TM20	ruling	27c23c23	27c23c23a81b7fca66efdb0971d13d0917972038d48fa341d747645228740b29	features/time_management/RULINGS.md	631	19	R-TM20 — 下放包不得依賴未上繳之前包	下放包不得依賴未上繳之前包
+R-TM21	ruling	da2c519e	da2c519ec209e7689fd31c0faac0591d35dc92077dd2077cf0e239889c128060	features/time_management/RULINGS.md	653	17	R-TM21 — 跨 feature 共用檔之驗證判準須唯一定錨	跨 feature 共用檔之驗證判準須唯一定錨
+R-TM22	ruling	1d6c0969	1d6c09694dafd3b6dc193c35bbbe43511b081b91e1e5ec1885dc5daa81f64670	features/time_management/RULINGS.md	673	39	R-TM22 — R-TM19 階段一、二 HOLD	R-TM19 階段一、二 HOLD
+R-TM23	ruling	3c976375	3c976375968cc2b2818f9191807379c92b27f491abdb92e794dc8bebc69e538b	features/time_management/RULINGS.md	715	42	R-TM23 — Part VII §8.2.1 界線表增列第四、五條	Part VII §8.2.1 界線表增列第四、五條
+R-TM24	ruling	70c6650b	70c6650b5ad9aad163f6a1281e587091ff6bfd1d7a602ab50329839cf8dd6184	features/time_management/RULINGS.md	760	19	R-TM24 — 整理式簡寫不得與逐字原文混用	整理式簡寫不得與逐字原文混用
+R-TM25	ruling	8b88a8e6	8b88a8e64c7cdb506dbe9cc4a3bb9a574311f953f54db2dd119a8137c23a18d5	features/time_management/RULINGS.md	782	14	R-TM25 — R-TM23 兩條新界線簽核	R-TM23 兩條新界線簽核
+R-TM26	ruling	88e375cc	88e375cc4032cc0a6f39ebb9f381a11ef8562399ecce20cf57cfd9c9ff756efa	features/time_management/RULINGS.md	799	26	R-TM26 — 不得升級自裁範圍內之事項	不得升級自裁範圍內之事項
+R-TM27	ruling	24eeb20a	24eeb20a6766e0614a3c1e9c492bf20455e346c3c12e34226c199fb01f66b9e7	features/time_management/RULINGS.md	828	25	R-TM27 — A-TM15 修法範圍追認為三分支	A-TM15 修法範圍追認為三分支
+R-TM28	ruling	cab44bd0	cab44bd0851648b8904d8314466ffd5f7822f6a5169af2e57470a493a0735435	features/time_management/RULINGS.md	856	24	R-TM28 — R-TM22 條件 2 收緊（宣告路徑齊全 + signed=False）	R-TM22 條件 2 收緊（宣告路徑齊全 + signed=False）
+R-TM29	ruling	7eba98ea	7eba98eab70ce65a8995265a8de70e9e56554a1803f64696eefdd0da3e6df889	features/time_management/RULINGS.md	883	31	R-TM29 — R-TM10-A1 之射程限於 TC 內容，不及於工具腳本	R-TM10-A1 之射程限於 TC 內容，不及於工具腳本
+R-TM30	ruling	202c5ccd	202c5ccd6bac43c6f30dcdce58e8113e2ee70e305a98aad3bb00784ce5db78d8	features/time_management/RULINGS.md	917	21	R-TM30 — 回歸測試遺留物移入本 feature，不刪除	回歸測試遺留物移入本 feature，不刪除
+R-TM31	ruling	a8b751c8	a8b751c80e64c5547254e1a80dd57653757bdb2dc4cd7501d2f11f808dbd9c37	features/time_management/RULINGS.md	941	44	R-TM31 — 驗證判準須輸出可歸屬之明細，不只計數	驗證判準須輸出可歸屬之明細，不只計數
+R-TM32	ruling	310ad694	310ad6943c73f652f899fa8f9eddefcaf8ef8392fdfc23966099ec1669ca2de7	features/time_management/RULINGS.md	988	25	R-TM32 — tc_id 格式	tc_id 格式
+R-TM33	ruling	88b6863a	88b6863a1348544eaaace9ed7a4484dbededcbb37169a1db7fa1a0ecc1939822	features/time_management/RULINGS.md	1045	29	R-TM33 — 產出物須帶可 grep 之來源標記	產出物須帶可 grep 之來源標記
+R-TM34	ruling	59fa9ca4	59fa9ca443c06372aa2e64d80e5492bf9cfa49959af67351d313632a58e0f722	features/time_management/RULINGS.md	1077	18	R-TM34 — columns 補 tc_id	columns 補 tc_id
+R-TM35	ruling	1a45a504	1a45a504faba82ae791b17e3cee6212d16371664c342451b3fc918f788f22d36	features/time_management/RULINGS.md	1098	22	R-TM35 — 凍結中之產出物以複製保全，不以 commit	凍結中之產出物以複製保全，不以 commit
+R-TM36	ruling	49cdf1b4	49cdf1b467583f4565c3806dc5ac5405904efd997e2af01a4f7bca70e7758f3a	features/time_management/RULINGS.md	1203	22	R-TM36 — git 授權之唯一來源	git 授權之唯一來源
+R-TM37	ruling	a8f738cd	a8f738cdc2ce327e022e53d021158d24af6956f261d310127999c0457ec50d7c	features/time_management/RULINGS.md	1228	64	R-TM37 — commit message 之草擬與其查證義務	commit message 之草擬與其查證義務
+R-TM38	ruling	e326d17d	e326d17d4a68327e17f1300b83968dc3374d91e2d3e3d140a4bf63d05dc0fb34	features/time_management/RULINGS.md	1295	40	R-TM38 — 引用條文須引至規範性句末	引用條文須引至規範性句末
+R-TM39	ruling	b5e02432	b5e024324b93dafe3bcd55874199c43d0a685d144349cef659b8003bbe0b2808	features/time_management/RULINGS.md	1338	24	R-TM39 — 不觸碰優於主動保護	不觸碰優於主動保護
+R-TM40	ruling	ce38b35c	ce38b35ca375c461db45fd854522df28ad2319c804059f2757b9f5669859c443	features/time_management/RULINGS.md	1399	96	R-TM40 — spec_reference 之格式	spec_reference 之格式
+R-TM40	ruling	f2c23203	f2c23203ef26a1c39c68ed0ea9ce3a2026a8868303251b5a2b44d8eabfdae76b	features/time_management/RULINGS.md	1419	53	R-TM40 — spec_reference 之格式	之連鎖後果（六項，`04Z-A4` §2）
+R-TM41	ruling	3fcb8240	3fcb8240f79a6f912a676b01a3266e846125f160f7d7310013ca51688e4b9e02	features/time_management/RULINGS.md	1498	59	R-TM41 — A-TM13 兩物件不得寫入 spec_reference	A-TM13 兩物件不得寫入 spec_reference
+R-TM42	ruling	8056286f	8056286f6e464dcbe23b7f31affd2738d4a490319c920b2f1018216621080730	features/time_management/RULINGS.md	1560	27	R-TM42 — 受測物之鑑別力須先於測試本身確認	受測物之鑑別力須先於測試本身確認
+R-TM43	ruling	89cae5e8	89cae5e88a6ff26dc8e4a524de555c042d1f6ec024919e4862e5c68e30507cc4	features/time_management/RULINGS.md	1590	25	R-TM43 — A-TM23 之處置	A-TM23 之處置
+R-TM44	ruling	d49d64f4	d49d64f418d12499ad62545245aa266d4626c49ac174ccf3d285e11f731da2d2	features/time_management/RULINGS.md	1618	31	R-TM44 — features/time_management/ 由本 session 續持	features/time_management/ 由本 session 續持
+R-TM45	ruling	3cb69c5f	3cb69c5fc5c228edf2dc095871b3d5a48650590d475046b0f2d9bf696ad27a08	features/time_management/RULINGS.md	1652	24	R-TM45 — 同包內多項修法之驗證構造須考慮層序	同包內多項修法之驗證構造須考慮層序
+R-TM46	ruling	a20e5b09	a20e5b091fa33d720a0fde0272236bddfd09d595823b340920fd2db3806c22e5	features/time_management/RULINGS.md	1679	17	R-TM46 — 條數期望以增量表示	條數期望以增量表示
+R-TM47	ruling	ac633180	ac633180cf0492e0fc7e720f28f64a7784a1ad5c3a53ba62e113bae82541b5fe	features/time_management/RULINGS.md	1699	95	R-TM47 — R-TM43(a) 之落點	R-TM43(a) 之落點
+R-TM41	ruling	23815142	23815142578ed0d723b256239f05553034208204450266a15c18c79b82c6535d	features/time_management/RULINGS.md	1764	30	R-TM47 — R-TM43(a) 之落點	處置訂正（2026-08-21，依 canon §8.4.3 / R-TM48）
+R-TM48	ruling	6c332201	6c332201d2b06223ad17e37868c205282a896918f747659ea07c417d9242be9e	features/time_management/RULINGS.md	1797	43	R-TM48 — canon 新增三節於本 feature 生效	canon 新增三節於本 feature 生效
+R-TM49	ruling	14e4d36e	14e4d36ed43b3737304f0b17b7dfa169984484ea75cf24fcc5ac0f5912538d37	features/time_management/RULINGS.md	1843	78	R-TM49 — 訊號三件組之缺件處理	訊號三件組之缺件處理
+R-TM50	ruling	a0a28d30	a0a28d30253ac9e7317730e2985677790d4691fb7fe89646bddd7785a4191a74	features/time_management/RULINGS.md	1924	27	R-TM50 — 引用 Project 層 charter 須逐字引入	引用 Project 層 charter 須逐字引入
+R-TM51	ruling	32697c91	32697c915514122d7f07bf339e9095e8f3e8b194a1f333ca81b9c9549340a331	features/time_management/RULINGS.md	1954	77	R-TM51 — R-TM49 例外之可操作判準	R-TM49 例外之可操作判準
+R-TM52	ruling	988ab4ba	988ab4ba917b2ae55ee2b1bebedfbdbccecdb74a9ec485912e37812f1ca8f418	features/time_management/RULINGS.md	2034	51	R-TM52 — 綠向須驗內容非退化，不得只驗鍵存在	綠向須驗內容非退化，不得只驗鍵存在
+R-TM53	ruling	250cd879	250cd879fb839ed27173db868a9259d9d5b591ff1a3cc0267932a6dcbdcbff5a	features/time_management/RULINGS.md	2088	117	R-TM53 — §8.2.1 界線改以鄰接對編號	§8.2.1 界線改以鄰接對編號
+R-TM54	ruling	3751da49	3751da495b4ac7063ffd5429eee2d4e992a6954b02719d4a36d294d62d713eff	features/time_management/RULINGS.md	2208	24	R-TM54 — 未驗清單須三分，不得混列	未驗清單須三分，不得混列
+R-TM55	ruling	0d0694a6	0d0694a6ad7e006ff9fee2ff7310d7f8c1af2865c2825662d299546fa6d08504	features/time_management/RULINGS.md	2235	37	R-TM55 — BOUNDARY_SIGNALS 增列 018 與 017	BOUNDARY_SIGNALS 增列 018 與 017
+R-TM56	ruling	8a568ea7	8a568ea7c9e8279f50d6f010673207329cce9fa0f3bd96ccdb5ac1393b60770b	features/time_management/RULINGS.md	2275	23	R-TM56 — 守衛須抽為可獨立呼叫之函式	守衛須抽為可獨立呼叫之函式
+R-TM57	ruling	243ddc25	243ddc25dae87c100a19eba5c6cf96009d7e76d98e7d7e15f2126b1da89b74e1	features/time_management/RULINGS.md	2301	32	R-TM57 — functional_safety = "NA"	functional_safety = "NA"
+R-TM58	ruling	c074eb13	c074eb13e544f1927f7012b8fdd2919846ba5c2429bdc12f1c1cf8d491e54e4a	features/time_management/RULINGS.md	2336	35	R-TM58 — D5 維持空白，撤回 PENDING 佔位	D5 維持空白，撤回 PENDING 佔位
+R-TM59	ruling	201ddef4	201ddef4020a975c77793720a75516f14e3c62c7744f3b8a3f6591efaffb18be	features/time_management/RULINGS.md	2374	47	R-TM59 — 死常數處置採 (b)	死常數處置採 (b)
+R-TM60	ruling	a5310ec2	a5310ec25db3d71abe3c40b4203b902cef6b9a583508de01ead11cc1206652a6	features/time_management/RULINGS.md	2424	38	R-TM60 — 常數表 v3：刪除三條手動時區/DST 常數	常數表 v3：刪除三條手動時區/DST 常數
+R-TM61	ruling	58fee458	58fee4584d5982095ccf8be0418e95c6241d2e0aadc13e6bc1a32c2d5b9d1c12	features/time_management/RULINGS.md	2465	24	R-TM61 — 搜尋未決項須兼搜識別字與字面量鍵	搜尋未決項須兼搜識別字與字面量鍵
+R-TM64	ruling	d8b8eac0	d8b8eac0801162dfa5a75563f27be47ebab53740e61b3296f0c63331958a60a5	features/time_management/RULINGS.md	2581	34	R-TM64 — spec_reference 只放真值，佔位放 Remarks	spec_reference 只放真值，佔位放 Remarks
+R-TM65	ruling	dbc6b546	dbc6b546556bdbba9b900d5f4724642722318523343102cc9628a1ba083dafd7	features/time_management/RULINGS.md	2618	30	R-TM65 — 欄位鍵名統一為 feature.yaml 之宣告	欄位鍵名統一為 feature.yaml 之宣告
+R-TM66	ruling	1cca94f5	1cca94f532e928e99b02577062fd891aadb94815f24bf990e25c88ff8c48b45b	features/time_management/RULINGS.md	2651	23	R-TM66 — §4.5 之判準為資料性質，非字串形態	§4.5 之判準為資料性質，非字串形態
+R-TM67	ruling	8baae336	8baae336956ab17f40a8d2a28b9565f735a1aa5468aaf1c03710384a284646aa	features/time_management/RULINGS.md	2677	21	R-TM67 — 紅向須先證明壞值確實壞	紅向須先證明壞值確實壞
+R-TM68	ruling	6d9bc58d	6d9bc58deb6625c11e7621889fd845230f185a4b6d3de959f81d62b450d8ca29	features/time_management/RULINGS.md	2701	20	R-TM68 — Remarks 內多種佔位之排列	Remarks 內多種佔位之排列
+R-TM69	ruling	c616ed65	c616ed653ac752925275950770998e92e0c3fa3d5978cb152c691cb0a6a30e9b	features/time_management/RULINGS.md	2724	37	R-TM69 — 佔位之閘門須驗特定 DR 號，並增齊全性閘	佔位之閘門須驗特定 DR 號，並增齊全性閘
+R-TM70	ruling	bdd05c84	bdd05c8458221dfe0d3c8829e69953ba1db12c10943d7ddec02b1c7be33d7570	features/time_management/RULINGS.md	2764	32	R-TM70 — §8.2.1 界線不及於 verbatim 上半	§8.2.1 界線不及於 verbatim 上半
+R-TM71	ruling	cf72786c	cf72786cbe0f6f4ac9d45ac62c19a52ea97753e6e7e8f33c547045d2f2a88e77	features/time_management/RULINGS.md	2799	19	R-TM71 — R-TM67 之適用範圍	R-TM67 之適用範圍
+R-TM72	ruling	8149a2d6	8149a2d6305215881c58748e5354d2862b17129e47b8164d6a9afc9cad6ed0b9	features/time_management/RULINGS.md	2821	35	R-TM72 — 齊全性閘改以 leaf 為單位	齊全性閘改以 leaf 為單位
+R-TM73	ruling	617bd572	617bd572d0fe097dcf10d2ed580f1009b99208fa20bd16e1afda501d53d36a52	features/time_management/RULINGS.md	2859	28	R-TM73 — 自檢之臨時判準須與對應 lint 閘同範圍	自檢之臨時判準須與對應 lint 閘同範圍
+R-TM74	ruling	de8d870b	de8d870b8eefe671746b43e559c278ab39980e616bc2e950ae0f17cd28296a63	features/time_management/RULINGS.md	2890	21	R-TM74 — 上繳須含逐 T 項對照表	上繳須含逐 T 項對照表
+R-TM75	ruling	c39cd7e0	c39cd7e01cc6f80ac8e156e93f69f39cac595733453858257e2888ebbd00cae0	features/time_management/RULINGS.md	2914	44	R-TM75 — 本 feature 涵蓋 Atl-Hi 與 Atl-Mid 兩架構	本 feature 涵蓋 Atl-Hi 與 Atl-Mid 兩架構
+R-TM76	ruling	5f7a7e75	5f7a7e75dc5b9ee45664430c9bbf203f65bf882e8cc65ee14212d723a5cc735b	features/time_management/RULINGS.md	2961	27	R-TM76 — 架構限定之 Pre-Condition 措辭	架構限定之 Pre-Condition 措辭
+R-TM77	ruling	64e29227	64e2922710f8a7f3db674058dca253dcf23c6237544ec9bb4998dd4acdb955a9	features/time_management/RULINGS.md	2991	18	R-TM77 — T–Z 車型欄留空	T–Z 車型欄留空
+R-TM78	ruling	d2bd45de	d2bd45de97229f01922826d1b7f9b9abda91ffd75a585c78afad4393d5c2b3f0	features/time_management/RULINGS.md	3012	26	R-TM78 — dry-run 為寫回之必要前置	dry-run 為寫回之必要前置
+R-TM79	ruling	ffa597a3	ffa597a390e5782a2e3eec995aff918b52ec41f99aa1d9055674effbbed71a08	features/time_management/RULINGS.md	3041	18	R-TM79 — 條數檢查須兼計撤回條	條數檢查須兼計撤回條
+R-TM80	ruling	2fe9c045	2fe9c045988390493c5d68d2b05e986f40d04bb7f7529cd308acabc5c0191a1a	features/time_management/RULINGS.md	3063	20	R-TM80 — 寫回指令一律帶 `--out`	寫回指令一律帶 `--out`
+R-TM81	ruling	5ec8760b	5ec8760b07a0df35143c69a842e37b2965e6652ad3e38f60a3fcabdf9ad3ceba	features/time_management/RULINGS.md	3087	33	R-TM81 — 本 feature 之 Clock 設定狀態不得寫於 Pre-Condition	本 feature 之 Clock 設定狀態不得寫於 Pre-Condition
+R-TM82	ruling	3f983436	3f9834369b4e78f8a031ad1507c6d3d8bf96b17a3d86e0a746ad3cd296e6d6de	features/time_management/RULINGS.md	3124	29	R-TM82 — §8.7.5 之適用版本隨 repo canon 現行版	§8.7.5 之適用版本隨 repo canon 現行版
+R-TM84	ruling	78dbbdfe	78dbbdfef5104ed8b3541c6d9d32e740b8d08ac30573496d284faedc733cbcd2	features/time_management/RULINGS.md	3157	20	R-TM84 — test_item 下半之格式定式	test_item 下半之格式定式
+R-TM85	ruling	fa8522a4	fa8522a44e72a100e6a437daf213293d2a624bc7d5acd7f8e76d44f1a804551e	features/time_management/RULINGS.md	3181	22	R-TM85 — TC ID family 與 Test Group 回改定案	TC ID family 與 Test Group 回改定案
+R-TM86	ruling	5827259a	5827259abb4f210725f2e507822fdc40a1fba386d52a2ec346189645e4880b7b	features/time_management/RULINGS.md	3207	13	R-TM86 — VES 供電行 KEEP	VES 供電行 KEEP
+R-G4	ruling	2b2d6356	2b2d63560cdf31f53d2322f7c9efe2124ca51e2b48e98852099af84ce65d31f1	features/user_profiles/RULINGS.md	474	26	第六輪條文	1 —— R-G4 之修訂（**R-G4 原文不改，保留其漏數之痕跡**）
+R-G7	ruling	96960cdd	96960cdd60bdbf6161f22229a44040ab2da99e42a288a32285b26430c362c2e7	features/user_profiles/RULINGS.md	623	32	第八輪條文（Phase 1 收尾）	1 —— R-G7 之修訂（**R-G7 原文不改**）
+R-U8	ruling	d68ee245	d68ee245545d6f0b6527aba929d6ea7ab27718e1adaf3dc00200557d5c2b3018	features/user_profiles/RULINGS.md	834	6	第十輪條文（Phase 2 開工）	之歸類（R-U43）
 R-VS6+解釋	ruling	87ae1e8f	87ae1e8fe166d7cb07370ec5ea6f10aadbc44dfb551085376b47fd29b27afbe8	features/vehicle_setting/RULINGS.md	70	27	VF230 線八條之永久編號對照（R-VF45 §三；24 包 §C 裁定 3 執行完成 2026-08-24）	逐字以**所顯示之字元**為準（86 包 §1，分析層裁定 2026-08-23）
 R-VS9(1)′	ruling	6c0f0347	6c0f034701817a0458d18691d4d3c5de51aef2ac72d8ab62d73228fe905574be	features/vehicle_setting/RULINGS.md	331	20	14／15 包裁決條文（Pei 2026-08-20，第二批）	signal 拼寫以 DBC 為權威、對映以 LID 為權威；L-VS2
 R-VS25	ruling	b0266026	b02660260c8a0c108e458fdc472ad7c80bdd354f7459840ce053d20487a51e61	features/vehicle_setting/RULINGS.md	354	12	14／15 包裁決條文（Pei 2026-08-20，第二批）	單輪作業上限三項

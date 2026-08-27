@@ -11,8 +11,9 @@
 | NN | 日期 | 主題 | 下放 | 上繳 | 產生之裁決 | 產生之異常 | 結果 |
 |---|---|---|---|---|---|---|---|
 | 01 | 2026-08-27 | Phase 0 intake → `sources/` 落檔 → scaffold → Phase 1 RECON → 工作簿起建 | [handoff/01_intake_recon.md](handoff/01_intake_recon.md) | [upstream/01_intake_recon.md](upstream/01_intake_recon.md) | （無新條文；R-POP1~R-POP5 為下放包同包新立） | A-POP1 ~ A-POP4 | **PASS（作業面 6/6）；4 項待裁已由 R-POP6~R-POP11 處分，見 §2** |
+| 02 | 2026-08-27 | P2 簽署 → R-POP11／R-POP10／R-POP9 工具三支 → 值來源接線 → **Pilot 全量批** | [handoff/02_wiring_tooling_pilot.md](handoff/02_wiring_tooling_pilot.md) | [upstream/02_wiring_tooling_pilot.md](upstream/02_wiring_tooling_pilot.md) | （無新條文；R-POP6~R-POP11 為前一輪覆核所立） | A-POP5 ~ A-POP8 | **4 條 TC，lint 21 項全 0**；`-002-05` 觸發 §八 升級停下 |
 
-## 2. 覆核結果（Pei，2026-08-27，上繳包 01 之後）
+## 2. 上繳包 01 之覆核結果（Pei，2026-08-27）
 
 分析層於本包上繳後落 **R-POP6 ～ R-POP11**（全文見 `features/popup/RULINGS.md`，
 R-G13：引用者自 repo 讀原文）。四件 anomaly 全數處分：
@@ -28,17 +29,28 @@ R-G13：引用者自 repo 讀原文）。四件 anomaly 全數處分：
 
 R-POP10／R-POP11 標「全域效力之工具政策，候升格 R-G」。
 
-## 3. 下一包（02）待辦 —— 本包未做，逐項列明
+## 3. 上繳包 01 待辦七項之結案對帳（下放包 02 執行）
 
 | # | 事項 | 依據 | 現況 |
 |---|---|---|---|
-| 1 | `feature.yaml` 之 `paths.popup_list` 指向 `forms/Pop Up List HMI R1 (26PI).xlsx` | R-POP6 | **仍為 `null`** —— 本包 commit 之內容早於該裁 |
-| 2 | `DATA_REQUESTS.md`：DR-POP1 改結案、DR-POP2 改記新措辭 | R-POP6／R-POP7 | 未改 |
-| 3 | `spec_reference_template` 之併列規則落實 | R-POP8 | 未改 |
-| 4 | 抽取類腳本之名稱正規化函式傳染性掃描 | R-POP9 | 未做 |
-| 5 | `lint_docs036.py` 前綴自動抽取 ＋ 注入跳號之轉紅實證 | R-POP10 | 未做 |
-| 6 | `rulings_hash.py` 擴範圍 ＋ 重產 tsv ＋ R-G sha 不變之 invariant | R-POP11 | 未做 |
-| 7 | `sources/` 版控條文之 R- 取號（本包已落 `.gitignore`＋`README.md`，條文無號）| Pei 2026-08-27 口裁 | 待分析層取號 |
+| 1 | `paths.popup_list` 指向 Pop Up List | R-POP6 | **完** —— glob 自 feature 目錄實測命中 1 |
+| 2 | DR-POP1 結案、DR-POP2 改措辭 | R-POP6／R-POP7 | **完**（分析層已改，執行層另附回報段）|
+| 3 | `spec_reference` 併列規則落實 | R-POP8 | **完** —— `newR1L-POP-002` 之 N 欄兩行，回讀實測 |
+| 4 | sanitizer 傳染性掃描 | R-POP9 | **完** —— D1∧D2 於 `scripts/` 僅 1 支（已修），範圍外 0 |
+| 5 | lint 前綴自動抽取 ＋ 注入轉紅實證 | R-POP10 | **完** —— 迴歸兩向實跑；副作用登 A-POP6 |
+| 6 | `rulings_hash` 擴範圍 ＋ invariant | R-POP11 | **完** —— 246→548 列，既有列 sha 變動 **0** |
+| 7 | `sources/` 版控條文之 R- 取號 | Pei 2026-08-27 口裁 | **未** —— 待分析層取號 |
+
+## 3b. 下一包（03）待辦
+
+| # | 事項 | 待誰 |
+|---|---|---|
+| 1 | A-POP8 三提案擇一 → `-002-05` 之第 5 條 TC | Pei |
+| 2 | A-POP7 → hard-button 分支是否併入 RD-1、是否補第 6 條 TC | Pei |
+| 3 | A-POP6 → `編號重複` 與前綴抽取之判準精修範圍 | Pei |
+| 4 | Priority P1／P0、Estimated Test Time 欄之政策 | Pei |
+| 5 | pilot review（唯一人工閘，無 done region 可仲裁）| Pei |
+| 6 | `sources/` 版控條文取號 | 分析層 |
 
 ## 4. 仍未結
 

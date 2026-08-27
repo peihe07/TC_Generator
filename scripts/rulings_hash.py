@@ -46,7 +46,11 @@ RE_GROUP = re.compile(r"^\s*(?:[~～、／/,]|及|與|至)\s*R-[A-Z]{0,3}\d")
 OUT_DEFAULT = "docs/fw036/RULINGS.sha.tsv"
 COLUMNS = ["ruling_id", "kind", "sha8", "sha256", "source", "line", "body_lines", "ancestor", "slug"]
 # W-P1 §4：本輪結構化範圍為 canon §9 與 vehicle_setting；其餘 feature 延後
-SCOPE_DEFAULT = ["docs/fw036/FEATURE_ONBOARDING.md", "features/vehicle_setting/RULINGS.md"]
+# R-POP11（Pei 2026-08-27）：預設範圍納入**全部** `features/*/RULINGS.md`。
+# 理由 —— R-G13 明定條文落各 feature 之 RULINGS.md，tsv 不涵蓋則引用制半殘：
+# 下放包引 `R-XX@<sha8>`，而執行層無從自 tracked 表查證該 sha8。
+# 原 W-P1 之兩檔窄範圍保留於 `SCOPE_W_P1`，供追溯與比對用，非預設。
+SCOPE_W_P1 = ["docs/fw036/FEATURE_ONBOARDING.md", "features/vehicle_setting/RULINGS.md"]
 
 
 @dataclass(frozen=True)
@@ -180,10 +184,14 @@ def collect(root: Path, targets: list[str]) -> tuple[list[Ruling], list[str]]:
     return rulings, dupes
 
 
-def default_targets(root: Path, all_features: bool) -> list[str]:
-    """預設為 W-P1 之結構化範圍；`--all-features` 擴及全部 feature（調查用）。"""
-    if not all_features:
-        return list(SCOPE_DEFAULT)
+def default_targets(root: Path, w_p1_only: bool = False) -> list[str]:
+    """預設為 canon ＋ 全部 feature 之 `RULINGS.md`（R-POP11）。
+
+    `w_p1_only=True` 取回原 W-P1 之兩檔窄範圍 —— 保留是為了能回答
+    「擴範圍前後某條之 sha 是否變動」，不是預設路徑。
+    """
+    if w_p1_only:
+        return list(SCOPE_W_P1)
     targets = ["docs/fw036/FEATURE_ONBOARDING.md"]
     targets += sorted(
         str(p.relative_to(root)) for p in (root / "features").glob("*/RULINGS.md")
@@ -197,12 +205,15 @@ def main() -> int:
     ap.add_argument("--out", default=OUT_DEFAULT, help="輸出 tsv")
     ap.add_argument("--target", action="append", default=None, help="指定來源檔（可重複）")
     ap.add_argument("--check", action="store_true", help="只比對既有 tsv，不寫入")
-    ap.add_argument("--all-features", action="store_true", help="擴及全部 feature（調查用，非 W-P1 範圍）")
+    ap.add_argument("--all-features", action="store_true",
+                    help="（R-POP11 後為預設行為；旗標保留為 no-op，不破既有呼叫）")
+    ap.add_argument("--w-p1-only", action="store_true",
+                    help="取回原 W-P1 之兩檔窄範圍（canon ＋ vehicle_setting），比對用")
     ap.add_argument("--gate", action="store_true", help="有重複 id 之本體歧異時 exit 1")
     args = ap.parse_args()
 
     root = Path(args.root).resolve()
-    targets = args.target or default_targets(root, args.all_features)
+    targets = args.target or default_targets(root, args.w_p1_only)
     rulings, dupes = collect(root, targets)
 
     body = "\n".join(["\t".join(COLUMNS)] + [r.row() for r in rulings]) + "\n"

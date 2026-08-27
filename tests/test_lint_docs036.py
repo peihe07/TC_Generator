@@ -137,3 +137,74 @@ def test_row_missing_trailing_pipe(tmp_path: Path) -> None:
 def test_well_formed_row_passes(tmp_path: Path) -> None:
     root = write(tmp_path, dr=DR_OK)
     assert ld.check_malformed_rows(root, "features/power/DATA_REQUESTS.md") == []
+
+
+# --- R-POP10：前綴自動抽取（A-POP4 之處置）------------------------------------
+#
+# G-N —— 缺陷原文以字面釘入，不以當前語料為案例：下列 fixture 逐字寫死
+# `A-POP` 與 `DR-POP` 兩個前綴。硬寫時代之清單為
+# `("DR-PW", "A-PW", "A-PM")`，兩者皆不在其中，故本組 fixture 即
+# A-POP4 之缺陷原文 —— 整輪 gate 全綠而該兩系列一次未受檢。
+# repo 內 popup 之台帳日後如何改寫，都不影響本組測試之證明力。
+
+ANOM_POP_GAP = """# ANOMALIES
+
+| A | 內容 | 狀態 |
+|---|---|---|
+| A-POP1 | 甲 | RESOLVED |
+| A-POP2 | 乙 | PENDING |
+| A-POP9 | 丙 | PENDING |
+"""
+
+ANOM_POP_OK = ANOM_POP_GAP.replace("A-POP9", "A-POP3")
+
+DR_POP_OK = """# DATA REQUESTS
+
+| DR | 項目 |
+|---|---|
+| DR-POP1 | 甲 |
+| DR-POP2 | 乙 |
+"""
+
+
+def test_未列於硬寫清單之前綴一樣受跳號檢查(tmp_path: Path) -> None:
+    """A-POP4 之缺陷本體：`A-POP` 不在硬寫清單內，整輪不受檢而 gate 全綠。"""
+    root = write(tmp_path, anom=ANOM_POP_GAP)
+    found = ld.check_series(root, "features/power/ANOMALIES.md")
+    assert "A-POP_series" in checks(found)
+    # 回報之編號須是語料裡真的寫得出來的字串 —— `A-POP-3` grep 不到東西
+    assert {f.where for f in found} == {"A-POP3", "A-POP4", "A-POP5",
+                                        "A-POP6", "A-POP7", "A-POP8"}
+
+
+def test_修正後不得再命中(tmp_path: Path) -> None:
+    """G-N 之回歸向：同一 fixture 補齊連號後，同一支檢查須沉默。"""
+    root = write(tmp_path, anom=ANOM_POP_OK, dr=DR_POP_OK)
+    assert ld.check_series(root, "features/power/ANOMALIES.md") == []
+    assert ld.check_series(root, "features/power/DATA_REQUESTS.md") == []
+
+
+def test_硬寫時代之前綴不因改為自動抽取而漏檢(tmp_path: Path) -> None:
+    """對照向：舊清單涵蓋得到的案例，新機制須同樣抓得到。"""
+    root = write(tmp_path, dr=DR_OK.replace("| DR-PW2 | 乙 |\n", ""))
+    assert "DR-PW_series" in checks(
+        ld.check_series(root, "features/power/DATA_REQUESTS.md"))
+
+
+def test_G_B_差集列出硬寫清單外之新受檢前綴(tmp_path: Path) -> None:
+    root = write(tmp_path, anom=ANOM_POP_OK, dr=DR_POP_OK)
+    seen, newly, skipped = ld.prefix_reconciliation(
+        root, ["features/power/DATA_REQUESTS.md", "features/power/ANOMALIES.md"])
+    assert seen == ["A-POP", "DR-POP"]
+    assert newly == ["A-POP", "DR-POP"]
+    # G-D —— 被略過之首格須報數；表頭 `A`／`DR` 兩格即為此處之被抑制條數
+    assert skipped == 2
+
+
+def test_前綴抽取不吞掉單字母系列(tmp_path: Path) -> None:
+    """`R-27` 與 `A-POP4` 之分界：交替須讓單字母分支先試而後回溯。"""
+    assert ld.RE_SERIES.match("R-27").group("prefix") == "R"
+    assert ld.RE_SERIES.match("R-POP5").group("prefix") == "R-POP"
+    assert ld.RE_SERIES.match("A-POP4").group("prefix") == "A-POP"
+    assert ld.RE_SERIES.match("DR-PW3").group("prefix") == "DR-PW"
+    assert ld.RE_SERIES.match("S3").group("prefix") == "S"

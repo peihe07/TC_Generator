@@ -1,0 +1,352 @@
+# source	forms/Pop Up List HMI R1 (26PI).xlsx
+# source_sha256	ff47b7be63e5824cafe35deda9f9ddd0a63f6ea458169ef73689a1c559ea13ea
+# baseline	Main!A1 = SR24 Post 2A CR25802
+# 母體	Main r3 起，A 欄 ^PU\d，逐列 = 1340
+# 類別判準	a: C 欄 strip 後 ^\d+(\.\d+)?$ ／ b: D 欄含 outside（不分大小寫，子字串） ／ c: D|E|G 任一含 keyboard（同上）
+# 一列可屬多類；class 欄以 + 併記
+row	pu_id	module	timeout_sec	exit_conditions	string_60	class
+6	PU0003	Media	5	Timeout	Media file \nnot found	a
+9	PU0006	CD	5	Timeout	Media                                <X>\n\nNo media device av	a
+13	PU0010	Settings	5			a
+14	PU0011	Settings	5			a
+19	PU0016	SDARS	5	Timeout \n<X>\n<Cancel>\n<Remove Sel.>	Gamezone                <X>\n\nList Full\n\nYour favorite teams 	a
+20	PU0017	SDARS	3	Timeout	Skipped channel	a
+22	PU0019	SDARS	3	Timeout	Subscription\nUpdated	a
+25	PU0022	Media	N/A	User selects a letter or Number or <X> button	ABC    <Language Swap Buttons>     <X>\n\n<A> <B> <C> <D> <E> 	c
+26	PU0023	Media	N/A	User selects a letter or Number or <X> button	ABC    <Language Swap Buttons>     <X>\n\n<Other Language Keyb	c
+31	PU0028	Anti-Theft	2	Timeout	Radio enabled	a
+41	PU0038	SDARS	20	Timeout\n<Switch to Garme> \nor <Cancel> or <X>	(Game Score/Start Alert)             <X>\n\n(Away Team Name)  	a
+73	PU0070	VR	5	<X>\n<OK>	<X>\nVoice command not successful.\n<OK>	a
+76	PU0073	VR	3	After the system cancels the VR prompt	(Cancelled Animation Talking Head Icon) Cancelled...	a
+78	PU0075	Bluetooth	5	<X>\n<OK>	Device Unavailable                     <X>\n\nMake sure device	a
+95	PU0092	Audio	2 3	Timeout, press outside of the popup.	(Volume Bar) (Volume value)	b
+96	PU0093	SDARS	2	Timeout	Fav Artist Added\n\n<Artist Name>	a
+97	PU0094	SDARS	2	Timeout	Fav Song Added\n\n(Song Name)	a
+98	PU0095	SDARS	5	Timeout	<X>\n\nAlready a favorite.	a
+99	PU0096	SDARS	2	Timeout	Team Added\n\n(Team Name)	a
+133	PU0130	Temperature	10	Timeout\nor when display turns off\nSystems Team	Screen is Hot.\nDisplay turning off to cool down.	a
+167	PU0164	Media	3			a
+169	PU0166	Phone	5	Timeout\n<X>\n<OK>	<X>\n\nCannot Power OFF System during active phone call.  \n\n<O	a
+185	PU0182	DNA	5	X	<X>	a
+186	PU0183	DNA	5	X	<X>	a
+187	PU0184	DNA	5	X	<X>	a
+188	PU0185	DNA	5	X	dna Drive Mode Selector                                     	a
+203	PU0200	KeySense	5	Timeout\nuser buckles seatbelt	KeySense\n[icon]\nBuckle Seatbelt to unmute music.	a
+204	PU0201	KeySense	5	Timeout\nvolume is decreased	KeySense\n[icon]\nMax volume limit reached.\nKeySense in use.	a
+227	PU0224\nPU0126	SDARS	4		Song Tagged \n\nTagged song list is full.  Connect compatible 	a
+234	PU0231	General	3	Timeout	N/A	a
+235	PU0232	General	N/A	<X>\n<OK>	<X>\nKeyboard unavailable while vehicle is in motion. Press '	c
+243	PU0240	Climate Comfort	3	Timeout	Following text string is applicable to BEV/REPB vehicles wit	a
+244	PU0241	Media	10		Browse,\nBrowse list is being built. Larger media collections	a
+247	PU0244	SDARS	20	Timeout\n<X>\n<Add Fav Artist>\n<Add Fav Song>\n<Add Fav Artist and Song>	Favorites          <X>\n<Add Fav Artist>\n<Add Fav Song>\n<Add 	a
+256	PU0252	Projection Device	5	<X>\n<Yes>\n<No>\n\n\nFor R1 Low 7", do not display <No> option, follow template 14 with YES and [X} to dismiss	<X>\n\n<Device Name> detected. Do you want to switch devices a	a
+285	PU0281	Nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Camera Warning <x>\n\nATTENTION\nPolice potentially trapp	a
+286	PU0282	nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Camera Warning <x>\n\nATTENTION\nFixed Speed Camera in th	a
+287	PU0283	nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Camera Warning <x>\n\nATTENTION\nOne or More Speed Camera	a
+288	PU0284	nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Camera Warning <x>\n\nATTENTION\nAverage Speed Cameras ah	a
+289	PU0285	nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Camera Warning <x>\n\nATTENTION\nRed Light and Speed Came	a
+290	PU0286	nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Camera Warning <x>\n\nATTENTION\nTemporary Speed Camera i	a
+291	PU0287	nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Camera Warning <x>\n\nATTENTION\nRed Light Camera monitor	a
+292	PU0288	nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Camera Warning <x>\n\nATTENTION\nDanger Area\n\n<Close>  <D	a
+293	PU0289	nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Camera Warning <x>\n\nATTENTION\nAccident Blackspot in th	a
+294	PU0290	nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Camera Warning <x>\n\nATTENTION\nTemporary Danger area\n\n<	a
+295	PU0291	nav	5	<X>\n<Close>\n<Disable Alerts>	Traffic Warning <x>\n\nATTENTION\nTraffic Jam in this area\n\n<Cl	a
+296	PU0292	nav	5	<X>\n<Close>\n<Disable Alerts>	Speed Warning <x>\n\nATTENTION\nVehicle over speed limit\n\n<Clos	a
+300	PU0297	Comfort	3	timeout\npressing another control	NA\nFor standard level heated vented seats (off, HI, LO) disp	a
+333	PU0330	Projection Device	5	Timeout or Close/X	<X>\n\nAndroid Auto connected.\nPrevious Bluetooth \ndevice disc	a
+336	PU0333	VR	5	X	Body Message Text: "Voice Command not available during SOS C	a
+353	PU0350	Phone	5	Timeout\n[X]	Favorites                                                   	a
+364	PU0361	Cargo Camera	10	X\nTimeout	<X>	a
+365	PU0362	Surround View Camera	10	X\nTimeout\nExceed 8mph	Check Entire Surroundings\nTop View\nRear View(Front View)\n<X>	a
+366	PU0363	Surround  View Camera	10	X\nTimeout\nExceed 8mph	Rear Cross Path View\n(Front Cross Path View)\n<X>	a
+367	PU0364	Climate Comfort	3	Timeout\nuser presses another control	For standard level heated vented seats (off, HI, LO) display	a
+368	PU0365	Climate Comfort	1	Timeout	Display temperature in degrees based on temp set	a
+372	PU0369	VP4--Performance Pages APP	5	X'; 'OK'	Performance Pages Application is currently not available.'	a
+373	PU0370	VP4--Performance Pages APP	5	X'; 'OK'	No Storage Media Installed.  Check for Proper Installation o	a
+374	PU0371	VP4--Performance Pages APP	5	X'; 'OK'	No Storage Media Installed.'	a
+375	PU0372	VP4--Performance Pages APP	5	X'; 'OK'	Cannot Write to Storage Media.  Check that Write Protection 	a
+376	PU0373	VP4--Performance Pages APP	5	X'; 'OK'	Cannot Write to Storage Media.'	a
+377	PU0374	VP4--Performance Pages APP	5	X'; 'OK'	Unable to Write to Uconnect Account.  Check that User Accoun	a
+378	PU0375	VP4--Performance Pages APP	5	X'; 'OK'	Unable to Write to Uconnect Account.'	a
+379	PU0376	VP4--Performance Pages APP	5	X'; 'OK'	No Data Connection to Uconnect Available.  Try Again When Da	a
+380	PU0377	VP4--Performance Pages APP	5	X'; 'OK'	No Data Connection to Uconnect Available.'	a
+381	PU0378	VP4--Performance Pages APP	5	X'; 'OK'	Dyno Data Collection in Process.  Feature not Available whil	a
+382	PU0379	VP4--Performance Pages APP	5	X'; 'OK'	Performance Pages app is currently loading, button will beco	a
+384	PU0381	VP4--Drive Modes, D171	5	OK'	Drag Mode Activated'\n\n(show animation)	a
+385	PU0382	VP4--Drive Modes	5	X'	Drag Mode Active                   <X>\n\nAir conditioning not	a
+386	PU0383	VP4--Drive Modes	5	OK'	Level Currently Unavailable'	a
+387	PU0384	VP4--Drive Modes	5	OK'	Level unavailable in current mode.	a
+388	PU0385	VP4--Drive Modes	5	OK'	Track and Sport Transmission Levels are only available with 	a
+389	PU0386	VP4--Drive Modes	5	OK'	Level unavailable in Default Mode. Select Sport Mode to chan	a
+390	PU0387	VP4--Drive Modes	5	OK'	“xxx power level not available while Black Key in use.”	a
+393	PU0390	VP4--Drive Modes	5	OK'	“Valet Mode Activated. Vehicle Performance Limited”	a
+394	PU0391	VP4--Drive Modes, D170	5	OK'	“Valet Mode Deactivated”	a
+396	PU0393	VP4--Drive Modes, D170	5	OK'	“Turn on Shift Light to use Shift Light RPM Set-Up”	a
+397	PU0394	VP4-Drive Modes	5	OK'; 'X'	“Function not available while Valet Mode is active.  Valet M	a
+398	PU0395	VP4-Drive Modes	5	OK'; 'X'	"Function not available while Valet Mode is active.  Valet M	a
+399	PU0396	VP4--Drive Modes	5	OK'	“Feature not available while cruise control active.”	a
+400	PU0397	VP4--Drive Modes	5	OK'	Drive Mode cannot change while Launch Control is active.	a
+401	PU0398	VP4--Drive Modes	5	OK'	Mode cannot change while Line Lock is active”	a
+402	PU0399	VP4-Drive Modes	5	OK'	Mode cannot change while Trans Brake is active	a
+405	PU0402	VP4--Drive Modes, D170	5	X'; 'OK'	Valet Mode Activating'\n\n(show animation + show animation for	a
+406	PU0403	VP4--Drive Modes, D170	5	X'; 'OK'	Valet Mode Activated'\n\n(green 'check mark' next to items exe	a
+407	PU0404	VP4--Drive Modes, D170	N/A	X'; 'GO'	Valet Mode Activation\n\nEnter a 4 digit pin to be used for ac	c
+408	PU0405	VP4--Drive Modes, D170	N/A	X'; 'GO'	Valet Mode Deactivation\n\nEnter pin used for Valet Mode activ	c
+409	PU0406	VP4-Drive Modes	5	X'	High Octane feature not equipped.  Please contact your local	a
+410	PU0407	VP4-Drive Modes	5	X'	High Octane feature can only be deactivated using the ('HO s	a
+411	PU0408	VP4-Drive Modes	5	X'	High Octane feature can only be activated using the ('HO sym	a
+412	PU0409	Back up Camera	10	X\nTimeout\nExceed 8mph	<Magnifying glass>\n<X>	a
+437	PU0434	Wi-Fi HotSpot	5	<X>\n<OK>	Wi-Fi                             <X>                       	a
+438	PU0435	Modem Reset	5	<X>\n<OK>	<X>\n\nThe modem could not be reset.\nTry again later.\n\n<OK>	a
+439	PU0436	Drive Modes	5	<X>\n<OK>	Drive Modes                                              <X>	a
+440	PU0437	Media	5	<X>\n<OK>	<X>                              \nA new device is connected.	a
+441	PU0438	Media	5	<X>\n<OK>	<X>                              \n(Phone Name) is connected.	a
+442	PU0439	Media	5	<X>\n<OK>	<X> \n\n[Phone Name #2] detected as charge only.\n\nTo fully con	a
+443	PU0440	Projection Device	5	<X>\n<OK>	<X>                              \n\nYou must use Android Auto	a
+450	PU0447	Rearview Camera with all features	10	X\nTimeout\nExceed 8mph	Check Entire Surroundings                                 <X	a
+465	PU0462	VP4--Drive Modes	5	X'; 'OK'	Chiller Temporarily Unavailable	a
+466	PU0463	VP4--Drive Modes, D170	5	X'; 'OK'	Air Conditioning Unavailable to Enhance Intercooler Cooling	a
+467	PU0464	VP4--Drive Modes	5	X'; 'OK'	Air Conditioning and Chiller Feature Temporarily Unavailable	a
+468	PU0465	VP4--Drive Modes	5	X'; 'OK'	Power cannot change while Cruise Control is Active	a
+469	PU0466	VP4--Drive Modes	5	X'; 'OK'	Power cannot change while Throttle is being Applied	a
+470	PU0467	Surround View Camera	10	X\nTimeout\nExceed 8mph	Check Entire Surroundings  \nTop View\nRear View(Front View)\n<	a
+502	PU0499	TBM	60	X, Update now, Update Later, Timeout	(TBM Name TBD) Update <X>\n(TBM Name TBD) will be updated.\nEs	a
+503	PU0500	TBM	60	X, Update now,  Timeout	(TBM Name TBD) Update\n(TBM Name TBD) Update will start in 1 	a
+507	PU0505	Media	3	User closes, presses Ok, or popup times out	<X>\n\nMap overlay not available while navigation map is\ndispl	a
+508	PU0505	Media	3	User closes, presses Ok, or popup times out	<X>\n\nMap overlay not available while navigation map is\ndispl	a
+520	PU0517	Temperature	10	Timeout\n<X>\n<OK>	Screen is Hot.\nDisplay brightness has been reduced.	a
+554	PU0551	TBM/Assist call	5	<X> <OK> <Timeout>	Emergency Call              <X>\nSOS Call in progress!\n\nFunct	a
+565	PU0562	TBM	60	X, Update now, Update Later, Timeout	(TBM Name TBD) Update <X>\n(TBM Name TBD) will be updated.\nEs	a
+566	PU0563	TBM	60	X, Update now,  Timeout	(TBM Name TBD) Update\n(TBM Name TBD) Update will start in 1 	a
+568	PU0565	TBM	10	<OK>\nTimeout	Geolocation: On\nWhen Geolocation is On, vehicle position is 	a
+569	PU0566	TBM	10	<OK>\nTimeout	Geolocation: Off\nWhen Geolocation is Off, vehicle position i	a
+578	PU0575	Personal Account/Driver Profiles	30 seconds	Timeout, Vehicle in Motion, Touch outside of popup, X, Start Setup Get Started, Switch Profiles	"Welcome Driver [1]", "Start Setup Get Started", "Switch Use	b
+579	PU0576	Personal Account/Driver Profiles	30 seconds	Timeout, Vehicle in Motion, Touch outside of popup, X, Start Setup Get Started, Switch Profiles	"Welcome Driver [1]", "Start Setup Get Started", "Switch Use	b
+580	PU0577	Personal Account/Driver Profiles	30 seconds	Timeout, Vehicle in Motion, Touch outside of popup, X, Switch Profiles	"Welcome [username]", "Switch Users", X	b
+581	PU0578	Personal Account/Driver Profiles	30 seconds	Timeout, Vehicle in Motion, Touch outside of popup, X, Switch Profiles	"Welcome [username]", "More Options", X	b
+582	PU0579	Personal Account/Driver Profiles	30 seconds	Timeout, Vehicle in Motion, Touch outside of popup, X, "Exit Valet Mode"	"Valet Mode Active", Exit Valet Mode", X	b
+583	PU0580	Personal Account/Driver Profiles	5 seconds	Timeout, Touch outside of popup, X	"Welcome [username]", "X"	b
+585	PU0583	Personal Account/Driver Profiles	5 seconds	Timeout, Touch outside of popup, OK, X	"The memory seat position linked to this Profile cannot be r	b
+587	PU0585	Personal Account/Driver Profiles	N/A	Touch outside of popup, Next Continue, X	"Enter a Username", keyboard, Next Continue, X	b+c
+588	PU0586	Personal Account/Driver Profiles	N/A	Touch outside of popup, Save, X	"Select an Avatar for your Profile on this vehicle", "Save &	b
+589	PU0587	Personal Account/Driver Profiles	N/A	Touch outside of popup, X,  "Yes, Exit", "No, Continue"	"Are you sure you want to cancel your Profile Setup?", "Yes,	b
+590	PU0588	Personal Account/Driver Profiles	5	Timeout, Touch outside of popup,  X	"New memory seat position saved for [username].Would you lik	a+b
+591	PU0589	Personal Account/Driver Profiles Connected Personal Account	5	Touch outside of popup, X	"Your Profile is now Connected to your Uconnect <Brand> Acco	a+b
+592	PU0590	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,   "Yes", "No, Create New Mopar Account"	Do you have an existing Mopar account you would like to link	b
+593	PU0591	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  Save	"Input an email address", keyboard, Save, X	b+c
+594	PU0592	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  OK	"Please enter a valid email address", OK, X	b
+595	PU0593	Personal Account/Driver Profiles	N/A	Touch outside of popup, X,  Save	"Choose a password for your Mopar account", Save, X	b
+596	PU0594	Personal Account/Driver Profiles	N/A	Touch outside of popup, X,  OK	"Password must be at least 8 characters, alphanumeric.", OK,	b
+597	PU0595	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  OK	"To save your updated Profile to the cloud, please enter you	b+c
+598	PU0596	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  OK	"Incorrect password. Please try again", OK, X	b
+599	PU0597	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  OK	"Your Profile has been saved to the cloud", OK, X	b
+600	PU0598	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  OK	"To download your last saved Profile preferences from the cl	b+c
+601	PU0600	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  Yes, Cancel	"Downloading your last saved Profile from the cloud will may	b
+602	PU0601	Personal Account/Driver Profiles Connected Personal Account	5 seconds	Touch outside of popup, X	"Your Profile is being updated from the cloud", OK, X	b
+603	PU0602	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  OK	"To disconnect this Profile from the Mopar account, please e	b+c
+604	PU0603	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  Yes, Cancel	"Are you sure you want to disconnect this Profile from the M	b
+605	PU0604	Personal Account/Driver Profiles Connected Personal Account	5 seconds	Touch outside of popup, X	"Your Profile has been disconnected from the cloud", X	b
+606	PU0605	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  OK	"To delete this Profile from the cloud, please enter the pas	b+c
+607	PU0606	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X,  Yes/Delete, Cancel	"Deleting this Profile from the cloud will delete it from ev	b
+608	PU0607	Personal Account/Driver Profiles Connected Personal Account	5 seconds	Touch outside of popup, OK, X	"Your Profile has been deleted from the cloud", OK, X	b
+609	PU0608	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X, "Yes, Download existing", "No, I'm a new user Proceed with customization"	"Download existing online account or Proceed to customize th	b
+610	PU0609	Connected Personal Account\nPersonal Account	5 seconds	Timeout, Touch outside of popup, X	"Setting saved for [username]'s Profile"	b
+611	PU0611	Personal Account/Driver Profiles	10 seconds	Timeout, Touch outside of popup,  "Remind me Later", "Don't Show me Again"	"Remind me Later", "Don't Show me Again"	b
+612	PU0612	Personal Account/Driver Profiles	N/A	Touch outside of popup, "Yes Keep Current", "No Restore Defaults", X	“Do you want to apply the current preferences to your profil	b
+613	PU0613	Personal Account/Driver Profiles	N/A	Touch outside of popup, Yes,  Cancel, X	Text String for Melco:\n\nValet Mode\n\n"Valet Mode will lock ou	b
+614	PU0614	Personal Account/Driver Profiles	5 seconds	Timeout, Touch outside of popup, X	"Valet Mode not activated", X	b
+615	PU0615	Personal Account/Driver Profiles	N/A	Touch outside of popup, Go, X	"Valet Mode activation PIN; Enter a 4 digit PIN to activate 	b
+616	PU0616	Personal Account/Driver Profiles	N/A	Touch outside of popup, Go, X	"Valet Mode deactivation PIN; Enter PIN used for Valet Mode 	b
+617	PU0617	Personal Account/Driver Profiles	5 seconds	Timeout, Touch outside of popup, X	"Valet Mode deactivated", X	b
+618	PU0618	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X, OK	"Enter the email address associated with your Mopar Cloud Ac	b+c
+619	PU0619	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X, OK	"Enter the password associated with your Mopar Cloud Account	b+c
+620	PU0620	Personal Account/Driver Profiles Connected Personal Account	5 seconds	Touch outside of popup, X, OK	"An account associated with the email and password you enter	b
+621	PU0621	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup,  "Yes, use this Profile", Cancel, X	"Account found. Would you like to load this Profile onto thi	b
+622	PU0622	Personal Account/Driver Profiles	5 seconds	Timeout, Touch outside of popup,  OK, Cancel, X	"Your avatar is unavailable on this vehicle. Please choose a	b
+623	PU0623	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup,  "Keep Current", "Download from cloud", X	"Do you want to keep the current preferences saved to this v	b
+625	PU0625	Notifications	5 seconds	Timeout, Touch outside of popup, X	"You will no longer see that type of Notification.", X	b
+627	PU0627	App Store	10 seconds	Timeout, Touch outside of popup, X, Yes	“<App Name> installed. Would you like to open it?” Yes, X	b
+628	PU0628	App Store	10 seconds	Timeout, Touch outside of popup, X, Yes	“<App Name> has an update available. Would you like to go to	b
+629	PU0629	Personal Account/Driver Profiles Connected Personal Account	N/A	Touch outside of popup, X, OK	"Some of your Profile preferences are not compatible with th	b
+639	PU0639	Notifications	5 seconds	Timeout, Touch outside of popup, Undo, X	"Your Notifications have all been deleted.", <Undo>, <X>	b
+640	PU0640	Notifications	5 seconds	Timeout, Touch outside of popup, Undo, X	"Notification deleted.", <Undo>, <X>	b
+641	PU0641	Profiles\nConnected Personal Account	5	Touch outside of popup, OK, X	"Please check your email to confirm and complete the Connect	a+b
+642	PU0642	Profiles	N/A	Touch outside of popup, OK, Cancel, X	"There is already an account associated with this email. Wou	b
+643	PU0643	Profiles	N/A	<X>\n<Yes>\n<No>, Touch outside of popup	"Do you also want to delete this Profile from the vehicle? "	b
+644	PU0644	Profiles	N/A	Save, Cancel, X, Touch outside of popup	"Which Profile do you want to link memory seat position 2 to	b
+645	PU0645	Profiles	N/A	Save, Cancel, X, Touch outside of popup	"The maximum number of Profiles have been saved to your onli	b
+646	PU0646	Profiles	Up to 10 seconds	X, Touch outside of popup	"Loading [Username]'s Profile. Please Wait.", X	b
+671	PU0671	Settings	10	<X>	You can now start a voice session by saying "Hi, Uconnect" b	a
+672	PU0672	VR	10	<X>, <Device Manager>	Please start Apple CarPlay to use voice commands.\n[Device Ma	a
+673	PU0673	VR	5	<X>	Voice commands are not supported by the connected device.	a
+679	PU0679	Nav	5	Timeout\n<Accept>\n<Ignore>\n<x>	Faster Route found\nVia <road name>, time saved\n<Accept>\n<Ign	a
+680	PU0680	Nav	5	Timeout\n<view>\n<x>	Speed Camera Ahead\nSpeed Limit <#> <mph/kph>\n<View>\n<x>	a
+681	PU0681	Nav	5	Timeout\n<View>\n<Drive>\n<x>	Find nearby gas Station\nLow Fuel Level\n<View>\n<Drive>\n<x>	a
+683	PU0683	Passenger Screen	5	Timeout, X	Message Sent to <contact>	a
+684	PU0684	Passenger Screen	5	Timeout, X	Message sent to <contact>  End future passenger reply	a
+685	PU0685	CVPM	5	Timeout\n<X>	Active ParkSense Unavailable \nShift to Drive to Continue Act	a
+686	PU0686	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nService Required\n\nor if FIAT, 	a
+687	PU0687	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nFront Sensors Blocked\n\nor if F	a
+688	PU0688	CVPM	5	Timeout\n<X>	Active Parksense Unavailable\nRear Sensors Blocked\n\nor if FIA	a
+689	PU0689	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nTrailer Detected\n\nor if FIAT, 	a
+690	PU0690	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nDoor Open\n\nor if FIAT, ALFA, M	a
+691	PU0691	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nLiftgate Open\n\nor if FIAT, ALF	a
+692	PU0692	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nSpeed Too High\n\nor if FIAT, AL	a
+693	PU0693	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nButton Pressed\n\nor if FIAT, AL	a
+694	PU0694	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \n4Low Active\n\nor if FIAT, ALFA,	a
+695	PU0695	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nElocker Active\n\nor if FIAT, AL	a
+696	PU0696	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nManual Park Required\n\nor if FI	a
+697	PU0697	CVPM	5	Timeout\n<X>	Active Parksense Temporarily Unavailable\n\nor if FIAT, ALFA, 	a
+698	PU0698	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nParking Space Too Small\n\nor if	a
+699	PU0699	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nPedal Pressed \n\nor if FIAT, AL	a
+700	PU0700	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nVehicle in Park\n\nor if FIAT, A	a
+701	PU0701	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nObstacle Detected\n\nor if FIAT,	a
+702	PU0702	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nPark Button Released\n\nor if FI	a
+703	PU0703	CVPM	5	Timeout\n<X>	Active Parksense Unavailable \nDriver Seatbelt Not Fastened\n\n	a
+704	PU0704	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nService Required\n\nor if FIAT, ALFA	a
+705	PU0705	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nHands on Wheel\n\nor if FIAT, ALFA, 	a
+706	PU0706	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nFront Sensors Blocked\n\nor if FIAT,	a
+707	PU0707	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nRear Sensors Blocked\n\nor if FIAT, 	a
+708	PU0708	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nTrailer Detected\n\nor if FIAT, ALFA	a
+709	PU0709	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nDoor Open\n\nor if FIAT, ALFA, Maser	a
+710	PU0710	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nLiftgate Open\n\nor if FIAT, ALFA, M	a
+711	PU0711	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nSpeed Too High\n\nor if FIAT, ALFA, 	a
+712	PU0712	CVPM	5	Timeout\n<X>	Active Parksense Cancelled\nButton Pressed\n\nor if FIAT, ALFA,	a
+713	PU0713	CVPM	5	Timeout\n<X>	Active Parksense Canceled\n4Low Active\n\nor if FIAT, ALFA, Mas	a
+714	PU0714	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nElocker Active\n\nor if FIAT, ALFA, 	a
+715	PU0715	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nManual Park Required\n\nor if FIAT, 	a
+716	PU0716	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nParking Space Too Small\n\nor if FIA	a
+717	PU0717	CVPM	5	Timeout\n<X>	Active Parksense Canceled\nPark Button Released Over 600secs\n	a
+730	PU0730	Notifications	N/A	Touch outside of popup	<X>\n<Delete> <Don't Show Again>	b
+731	PU0731	Status Bar	5 seconds	Touch outside of popup	Media, Phone, Nav, VR\n<->, <scrubber bar>, <+>  (Volume leve	b
+732	PU0732	Comfort	5 seconds	Touch outside of popup, X	5 Massage Settings, 3 Intensity levels and Off Seat.\nFor WS,	b
+733	PU0733	Comfort	5 seconds	Touch outside of popup, X	Lumbar adjust up/down, in/out.  Back Bolster, Thigh Bolster 	b
+804	PU0804	Personal Account/Driver Profiles Connected Personal Account	NA	<Yes>, <No>, <X>, Touch outside of popup	"Your Mopar Uconnect account is no longer syncing. Would you	b
+806	PU0806	Home	5	Timeout\n<X>	Maximum number of Home screen pages has been reached. <X>	a
+807	PU0807	Home	5	Timeout\n<Undo>\n<X>	Home screen page has been deleted. [Undo] [X]	a
+808	PU0808	Home	5	Timeout\n<X>	Home screen updates saved.	a
+818	PU0818	WCPS	5	<X>\n<OK>	Wireless Charging Pad    <X>\n\nCharging phone.\n\n<OK>	a
+819	PU819	WCSP	5	<X>\n<OK>	Wireless Charging Pad    <X>\n\nPhone charging completed.\n\n<OK	a
+820	PU820	WCSP	5	<X>\n<OK>	Wireless Charging Pad      <X>\n\nPhone charging interrupted. 	a
+821	PU821	WCSP	5	<X>\n<OK>	Wireless Charging Pad    <X>\n\nPhone charging interrupted for	a
+822	PU822	WCSP	5	<X>\n<OK>	Wireless Charging Pad   <X>\n\nA Foreign object  detected. Ple	a
+831	PU0831	Personal Account/Driver Profiles	N/A	Touch outside of popup, Yes,  Cancel, X	Valet Mode will lock out all Driver Profiles, limit Drive Mo	b
+832	PU0832	Personal Account/Driver Profiles	N/A	Touch outside of popup, Yes,  Cancel, X	Valet Mode will lock out all Driver Profiles, lock the Glove	b
+834	PU0834	Personal Account/Driver Profiles	N/A	Touch outside of popup, Yes,  Cancel, X	Valet Mode will lock out all Driver Profiles, lock the Glove	b
+835	PU0835	Profile Setup Assistant	N/A	Touch outside of popup, vehicle in motion, <Continue>, <X>	[Title: Setup Assistant] [List: Media, Status Bar, Home Scre	b
+836	PU0836	Profile Setup Assistant	N/A	Touch outside of popup, vehicle in motion, <Next>, <X>, <Back Button>	[Title: Setup Assistant] [Subtitle: Media] Pin your favorite	b
+837	PU0837	Profile Setup Assistant	N/A	Touch outside of popup, vehicle in motion, <Next>, <X>, <Back Button>	[Title: Setup Assistant] [Subtitle: Arrange Status Bar] The 	b
+838	PU0838	Profile Setup Assistant	N/A	Touch outside of popup, vehicle in motion, <Next>, <X>, <Back Button>	[Title: Setup Assistant] [Subtitle: Home Screen Setup] Custo	b
+839	PU0839	Profile Setup Assistant	N/A	Touch outside of popup, vehicle in motion, <Finish>, <X>, <Back Button>	[Title: Setup Assistant] [Subtitle: Connect Multiple Devices	b
+840	PU0840	Profile Setup Assistant	N/A	Touch outside of popup, Vehicle in Motion,  <Exit>, <Resume>, <X>	Are you sure you want to Exit? Your profile has been saved. 	b
+841	PU0841	Personal Account/Driver Profiles	30 seconds	Timeout, Vehicle in Motion, Touch outside of popup. <Start Setup Get Started>, <Switch Users>, <X>	"Welcome [username]", <Start Setup Get Started>, <Switch Use	b
+842	PU0842	Personal Account/Driver Profiles	N/A	Touch outside of popup, Vehicle in Motion, <Next> <X> <Back Button>	[Title: Profile Created] Welcome [username]! Your Profile ha	b
+843	PU0843	Profile Setup Assistant	N/A	Touch outside of popup, Vehicle in Motion, <Exit> <Pair Phone> <Back Button>	[Title: Setup Assistant] Setup Assistant is Complete! You ca	b
+861	PU0861	Camera App	N/A	<X>\n<OK>	<X>\n<entry spot for camera name> <Back space>\nFull Qwerty Ke	c
+885	PU0885	SiriusXM 360 L	8 sec	Timeout, press outside of the popup, <X>	[Dynamic content defined by SiriusXM]	b
+886	PU0886	SiriusXM 360 L	8 sec	Timeout, press outside of the popup, <X>, <OK>	<X>\n\nYou have reached your maximum number of favorites able 	b
+923	PU0924	Glove Box	N/A	Touch outside of popup, 'X'	Glove Box                                               <X>\n	b
+924	PU0925	Glove Box	N/A	Touch outside of popup, 'X'	Glove Box Mode                                           <X>	b
+925	PU0926	Glove Box	N/A	Touch outside of popup, 'X'	Glove Box Mode                                           <X>	b
+926	PU0927	Glove Box	N/A	Touch outside of popup, 'X'	Glove Box Mode                                              	b
+927	PU0928	Glove Box	N/A	Touch outside of popup, 'X'	Glove Box Mode                                         <X>\n\n	b
+928	PU0929	Glove Box	N/A	Touch outside of popup, 'X'	Glove Box Mode                                         <X>\n\n	b
+929	PU0930	Glove Box	N/A	Touch outside of popup, 'X'	Glove Box Mode                                         <X>\n\n	b
+930	PU0931	Glove Box	N/A	Touch outside of popup, 'X'	Glove Box Mode                                         <X>\n\n	b
+931	PU0932	Glove Box	N/A	Touch outside of popup, 'X'	Glove Box Mode                                       <X>\n\n  	b
+932	PU0933	Glove Box	N/A	Touch outside of popup, 'X'	Glove Box Mode                                       <X>\n\nGl	b
+933	PU0934	Valet Mode	5	<Yes>,<No>, <X>	Title: Valet Mode                                           	a
+935	PU0936	Surround  View Camera	10	X\nTimeout\nExceed 8mph	Top View\nRear Cross Path View\n(Front Cross Path View)\n<X>	a
+940	PU0941	Geolocation	10	Touching outside of popup, X, Timeout	Geolocation                                                 	a+b
+941	PU0942	Home Screen	5	Timeout, <Reorder> <X>	<X>\nPage added! [Reorder]	a
+948	PU0949	Home Screen	3	<OK>\n<X>	No Phone is Connected.        <OK>    <X>	a
+950	PU0951	Keyboard	N/A	<X>	You must have between 1 and 3 languages selected.	c
+951	PU0952	Factory Reset	5	Yes, Cancel, X	Factory Reset                                               	a
+958	PU0959	Passenger\nAirbag\nORC DNA	5	<Yes>\n<No>	Front Passenger Airbag\n\nAre you sure you want to set Front P	a
+959	PU0960	Passenger\nAirbag\nORC DNA	5	<OK>\n<X>	Front Passenger Airbag       <X>\n\nRequest sent. Please verif	a
+960	PU0961	Passenger\nAirbag\nORC DNA PHEV	5	<OK>\n<X>	Front Passenger Airbag       <X>\n\nRequest Canceled. Please v	a
+961	PU0962	Passenger\nAirbag\nORC DNA PHEV	5	<OK>\n<X>	Front Passenger Airbag       <X>\n\nFront Passenger Airbag pro	a
+980	PU0981	Home Screen	5	<OK>\n<X>\nTimeout	Add Contact <X>\n\nOne contact allowed per routine.\n\n<OK>	a
+981	PU0983	Home Screen	5	<OK>\n<X>\nTimeout	Add Route <X>\n\nOne route allowed per routine.\n\n<OK>	a
+982	PU0984	Home Screen	5	<Undo> <Cancel>\n<X>\nTimeout	Routine not saved. \n<Back> <Cancel> <X>	a
+983	PU0986	Home Screen	5	<OK>\n<X>\nTimeout	Unavailable Shortcut <X>\n\nThis selection conflicts with a pr	a
+988	PU1091	Settings	5	Timeout, <OK>	<X>\n\nPersonal data cleared\n\n<OK>	a
+989	PU1102	Turn Signal Activated Blind Spot View	5	X\nTimeout	Check Entire Surroundings                                 <X	a
+992	PU1113	Camera	5	X	Panning capability is locked out at or above 8MPH     <X>	a
+1008	PU1192	Home Screen	5	<Cancel>\n<Continue>\n<X>\nTimeout	Launch multiple shortcuts at once <X>\n\n\n<Continue> <Cancel>\n	a
+1018	PU1204	TBM	60	X, Update now, Update Later, Timeout	(TBM Name TBD) Update <X>\n(TBM Name TBD) will be updated.\nEs	a
+1019	PU1205	TBM	60	X, Update now,  Timeout	(TBM Name TBD) Update\n(TBM Name TBD) Update will start in 1 	a
+1021	PU1207	TBM/Assist call	5	<X> <OK> <Timeout>	Emergency Call              <X>\nHELP Call in progress!\n\nFunc	a
+1025	PU1211	TBM	60	X, Update now, Update Later, Timeout	(TBM Name TBD) Update <X>\n(TBM Name TBD) will be updated.\nEs	a
+1026	PU1212	TBM	60	X, Update now,  Timeout	(TBM Name TBD) Update\n(TBM Name TBD) Update will start in 1 	a
+1029	PU1215	TBM FOTA	60	<Update Now>\n<Update Later>\n<X>\nInteraction with menu bar or status bar	Title:<TBM Name > Update \nText: <TBM Name> will be updated. 	a
+1030	PU1216	TBM FOTA	60	<Update Now>\n<X>\nInteraction with menu bar or status bar	Title:<TBM Name > Update \nText: <TBM Name> Update will start	a
+1031	PU1217	TBM FOTA	60	<Update Now>\n<Update Later>\n<X>\nInteraction with menu bar or status bar	Title:<TBM Name > Update \nText: <TBM Name> will be updated. 	a
+1032	PU1218	TBM FOTA	60	<Update Now>\n<X>\nInteraction with menu bar or status bar	Title:<TBM Name > Update \nText: <TBM Name> Update will start	a
+1038	PU1224	e-Call	10	Timeout\n<Ok>\n<X>\nInteraction with menu bar or status bar	Title:Emergency Call Error\nText: HELP Call Service Expired. 	a
+1041	PU1227	TBM Assist Call	5	<OK>,\n<X>	Title: Emergency Call\n\nHELP Call in progress!\nFunction not a	a
+1042	PU1228	Factory Reset	5	Yes, Cancel, X	Factory Reset                                               	a
+1043	PU1229	Geolocation	5	<X>\n<OK>	Geolocation setting is On: vehicle position is tracked to en	a
+1044	PU1230	Geolocation	5	<X>\n<OK>	Geolocation setting is Off: vehicle position is tracked for 	a
+1045	PU1231	Geolocation	5	<X>\n<OK>	Geolocation setting is On: vehicle position is tracked to en	a
+1046	PU1232	Geolocation	5	<X>\n<OK>	Geolocation setting is Off: vehicle position is tracked for 	a
+1051	PU1244	Head Unit Video Player	5	X\nOK\nTimeout	<X>\n\nNo USB device connected.\n\n<OK>	a
+1058	PU1266	Comfort	5	<Unlock>, <X>	Rear Comfort                   <X>\n\nSystem is locked.\n\n<Unlo	a
+1059	PU1267	Comfort	5	<Turn On>, <X>	Rear Comfort                   <X>\n\nSystem is locked.\n\n<Turn	a
+1060	PU1268	Comfort	5	<Yes>, <X>	Rear Comfort Activation                   <X>\n\nAllow rear co	a
+1066	PU1274	Projection Device	5	OK, Cancel, X	<X>\nNo Apple CarPlay Android Auto device connected.\nDo you w	a
+1067	PU1275	Connected Personal Account	N/A	Touch outside of popup, X,  OK	"Turning ON Auto-Save will turn ON Auto-Load" <OK> <X>	b
+1068	PU1276	Connected Personal Account	N/A	Touch outside of popup, X,  OK	"Turning OFF Auto-Load will turn OFF Auto-Save" <OK> <X>	b
+1071	PU1279	Trip	3	<X>\nTimeout	Reset Failed <X>\nYou need to press for 2 seconds to reset th	a
+1075	PU1283	CarLife	5	Switch, X, Timeout	CarLife                                                     	a
+1077	PU1285	App Drawer	3	Timeout, X	System Loading                            <X>\n\nApp  is unava	a
+1078	PU1287	Home Screen	5	<Cancel>\n<Continue>\n<X>\nTimeout	"A routine allows you to launch multiple actions at once <X>	a
+1079	PU1288	Home Screen	5	<OK>\n<X>\nTimeout	No available shortcuts <X>\n\nThis shortcut cannot be combined	a
+1080	PU1289	Home Screen	3	<X>\nTimeout	<Routine Name> activated <X>	a
+1081	PU1290	Home Screen	5	<OK>\n<X>\nTimeout	Select multiple shortcuts <X>\n\nTwo or more shortcuts are req	a
+1082	PU1291	Home Screen	3	<OK>\n<X>\nTimeout	<X>\nWidget cannot be moved here. \n\n<OK>	a
+1088	PU1297	In-Vehicle Activation	10	<OK>,\n<X>,\ntimeout,\nVehicle in Motion	Title: <Activate Services>\n\nData connection temporarily not 	a
+1089	PU1298	In-Vehicle Activation	10	<OK>,\n<X>,\ntimeout	Title: <Activate Services>\n\nFeature not available while vehi	a
+1090	PU1299	In-Vehicle Activation	10	<OK>,\n<X>,\ntimeout,\nVehicle in Motion	Title: <Activate Services>\n\nFeature not available in Valet M	a
+1096	PU1307	Connected Personal Account	N/A	Touch outside of popup, OK	"Connecting your account requires a data connection which is	b
+1102	PU1313	FPDM	3	<X>\nTimeout	In use by driver, unavailable.	a
+1103	PU1314	FPDM	3	<X>\nTimeout	Passenger Screen permissions disabled	a
+1104	PU1315	FPDM	3	<X>\nTimeout	Message sent to <contact>	a
+1105	PU1316	FPDM	3	<X>\nTimeout	Message sent to <contact> “end future passenger reply”	a
+1106	PU1317	FPDM	3	<X>\nTimeout	Source in use.	a
+1107	PU1318	FPDM	3	<X>\nTimeout	Source not available while driver is listening to USB, Bluet	a
+1108	PU1319	FPDM	3	<X>\nTimeout	Bluetooth pairing successful	a
+1109	PU1320	FPDM	3	<X>\nTimeout	Bluetooth pairing failed	a
+1110	PU1321	FPDM	3	<X>\nTimeout	Driver Profile is changing.	a
+1111	PU1322	FPDM	3	<X>\nTimeout	System is Hot.\nPlease wait for the system to function.\nIf is	a
+1112	PU1323	FPDM	3	<X>\nTimeout	HDMI Device was disconnected.	a
+1113	PU1324	FPDM	5	<X>\nTimeout	Touch display to tun back on	a
+1114	PU1325	FPDM	3	<x>\nTimeout	Phone Disconnected	a
+1116	PU1327	SiriusXM 360 L	8	<X>\n<OK>	<X>\n\n<Icon>\nUnable to sync SiriusXM Favorites.\n\nYour SiriusX	a
+1118	PU1329	SiriusXM 360 L	8	<X>\n<OK>	<X>\n\n<Tile>\nNot Allowed while driving\n\nPlease park your vehi	a
+1120	PU1331	Forward Collision Warning	5	<X>\n<OK>	<X>\nIf we have km/h unit: \n"This setting can not be disabled	a
+1133	PU1349	Legislative Ecall	10	<OK>, <X>	Title: EMERGENCY CALL\n\nASSIST Call ended\nThe system is start	a
+1134	PU1350	Virtual Memory Seats	5	<X>, <OK>, timeout	Memory Seats    <X>\n\nMemory 1 recalled. \n\nOr\n\nMemory 2 recal	a
+1135	PU1351	Virtual Memory Seats	5	<X>, <OK>, timeout	Memory Seats    <X>\n\nMemory 1 saved. \n\nOr\n\nMemory 2 saved. \n	a
+1177	PU1394	Home Screen	5	<OK>\n <X>\n Timeout	Add Media <X>\n \nOne media shortcut allowed per routine.\n \n <	a
+1178	PU1395	Home Screen	5	<OK>\n <X>\n Timeout	Save your current climate <X>\n\nThese are your current climat	a
+1179	PU1396	ADAP	10	<Show me> <X> Timeout	Sensor [Insert name] [#] needs to be cleaned.	a
+1180	PU1397	ADAP	10	<Show me> <X> Timeout	Sensor [Insert name] [#] needs to be serviced.	a
+1181	PU1398	ADAP	10	<Show me> <X> Timeout	[#] sensors need to be cleaned.	a
+1182	PU1399	ADAP	10	<Show me> <X> Timeout	[#] sensors require your attention.	a
+1183	PU1400	ADAP	10	<Take me there>, <Don't Show Again>, <X>	Active Driving Assist Quick Start Guide is available.	a
+1192	PU1409	BEV/PHEV	5 sec.	Timeout, Touch outside of popup,<X>	<X>\n\nThe maximum battery level is currently set to 80%. Chan	b
+1199	PU1416	Power Panel	N/A	Touch outside of popup,<X>	<X>\n\nSystem Fault. Restart vehicle to reset the Power Panel.	b
+1200	PU1417	Power Panel	10 sec.	Touch outside of popup,<OK>,<X>	<X>\n\nGenerator Mode is enabled. While in use, all non-essent	b
+1201	PU1418	Power Panel	10 sec.	Touch outside of popup,<OK>,<X>	<X>\n\nGenerator Mode is enabled with Secure Idle. While in us	b
+1202	PU1419	Power Panel	10 sec.	Touch outside of popup,<OK>,<X>	<X>\n\nSecure Idle is enabled. While in use, the shifter is lo	b
+1204	PU1421	Power Panel	30 sec.	Touch outside of popup,<X>	<X>\n\nThe Power Panel is disabled due to a high power draw. R	b
+1205	PU1422	Power Panel	N/A	Touch outside of popup,<X>	<X>\n\nPower Panel temporarily unavailable.	b
+1281	PU1498	PHEV/BEV	10 sec.	Timeout, Touch outside of popup,<X>	<X>\n\nPlug & Charge available contracts list has been updated	b
+1282	PU1499	PHEV/BEV	10 sec.	Timeout, Touch outside of popup,<X>	<X>\n\nPlug & Charge available contracts list cannot be update	b
+1283	PU1500	PHEV/BEV	10 sec.	Timeout, Touch outside of popup,<X>	<X>\n\nPlug & Charge is disabled. The selected contract is exp	b
+1288	PU1505	Remote Diagnosis Assistant	5 sec.	<See Safety Instructions>\nTimeout\nTap outside popup	Make sure your vehicle is in park and park brake is activate	b
+1294	PU1511	R1AP	10	<Take me there>, <Don't Show Again>, <X>	AutoDrive Quick Start Guide is available.	a
+1295	PU1512	BEV	10 sec.	Timeout, Touch outside of popup, <X>	<X>\n\nBattery regeneration levels unavailable.	b
+1300	PU1517	Camera	3	<X>\n<Ok>	[X]\nWireless Cameras disabled.\n\n<OK>	a
+1312	PU1529	Status Bar	2	<X>	No available audio.                              <X>	a

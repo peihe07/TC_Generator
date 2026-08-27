@@ -23,10 +23,18 @@ paths:
   a03_report: "../../sources/raw/popup_037_v0_2/*.xlsx"
   sys1_export: "../../sources/raw/core_hmi_lf_sys1/*.xlsx"
   spec_pdf: "../../sources/raw/core_hmi_lf_pdf/*.pdf"
-  popup_list: null            # DR-POP1 未結；forms/ 之候選件見上繳包 01 §六
+  # R-POP6（Pei 2026-08-27）：Pop Up List 納入為素材，**引用原位不搬**。
+  # Main A1 逐字 `SR24 Post 2A CR25802`，與本 feature 規格基線同代。
+  # 只取規格明文委派之欄位（GP4 timeout／touch-outside 啟用／multi-task 例外），
+  # 不吸收該表之其他規則（profile §1，IN §8.4.2）。
+  popup_list: "../../forms/Pop Up List HMI R1 (26PI).xlsx"
 
 spec_mode: "A+C"      # FO §3：文字走 SYS1 匯出（A）；PDF 無文字層，圖面走 C
 spec_reference_template: "SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)_{outline}"
+
+# TC ID（IN §10.3；framework Part IV）。project 前綴之權威為工作簿 D2 ——
+# `sandbox/base/` 之母本副本實測：C2 = "專案名稱 Project  Name：" ／ D2 = "newR1L"。
+tc_id_format: "newR1L-POP-{n:03d}"
 
 workbook_state: "BLANK"       # 母本零填列（本包實測）
 
@@ -66,7 +74,7 @@ write_back:
 
 lint:
   design_method_source: "dropdown_sheet"   # 母本 `下拉選單` A1:A9，9 值
-  popup_ids: []                            # DR-POP1 未結，無可具名之 PU 編號
+  popup_ids: []                            # pilot 選定後以實選 PU 逐字回填
   extra_rules: []
 
 recon_assertions:

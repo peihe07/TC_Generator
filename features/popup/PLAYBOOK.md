@@ -144,16 +144,25 @@ Remarks = reason + anomaly id.
 - [x] P1 recon complete；workbook_state: **BLANK**；leaves: **5**；
   targets: **5**；assertions 4/4 PASS；`RECON.md`＋`DECISIONS.md`
   ＋`data/recon.json`＋`data/recon_leaf_to_section.tsv` 已產
-- [ ] P2 DECISIONS signed (date: ____) —— `DECISIONS.md` 為 recon 預填，
-  [PROPOSED]／[PEI] 未裁，Sign-off 未填
-- [ ] P3 framework Part N + profile approved
-      （`docs/runtime/profiles/FW036_R1L_Popup_Profile.md` 尚未存在）
-- [ ] P4 data artifacts built
-- [ ] P5 pilot batch ____ reviewed; verdict: ____; corrections: ____
+- [x] P2 DECISIONS signed (date: **2026-08-27**, PeiPYHsu)。§6 兩筆 [PEI]
+      由 Pei 回填；[PROPOSED] 8 筆未動即照案生效；Sign-off 由執行層轉錄，
+      值由 Pei 指定
+- [x] P3 framework Part N + profile approved ——
+      `features/popup/framework.md`（LOCKED）＋
+      `docs/runtime/profiles/FW036_R1L_Popup_Profile.md`（3,813 B）
+- [x] P4 data artifacts built —— `data/popup_list_candidates.tsv`（345 列，
+      帶來源 sha ＋ baseline）；`paths.popup_list` 接線（R-POP6）
+- [ ] P5 pilot batch **全量一批（上繳包 02）** reviewed; verdict: ____;
+      corrections: ____
+      —— 已生成 **4 條**（`newR1L-POP-001`～`-004`），lint **21 項全 0**，
+      `PENDING:` 佔位 0。`-002-05` 觸發 §八 升級**停下不生成**（A-POP8）；
+      `-002-02` device 軸判定不拆（A-POP7）。
+      **本 feature 無 done region，pilot review 是唯一人工閘，無第二道**
 - [ ] P6 all batches generated; lint green; placeholders: ____
 - [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: ____
-- Open PENDING rulings: **A-POP1（覆核）／A-POP2／A-POP3／A-POP4**；
-  R-POP5 [DEFAULT] 待 Pei 追認；DR-POP1／2/3 已登記未送出
+- Open PENDING: **A-POP6／A-POP7／A-POP8**（A-POP1～A-POP5 已 RESOLVED）；
+  R-POP5 [DEFAULT] 待 Pei 追認；DR-POP2／DR-POP3 已登記未送出
+  （**DR-POP1 已 RESOLVED**，R-POP6）
 
 ### 工作簿
 
@@ -164,3 +173,8 @@ Remarks = reason + anomaly id.
 - 版面為 **Revision C**（Q = Estimated Test Time）——
   design_method/functional_safety/author 較 Revision A/B 右移一欄
   （R／S／AA，非 Q／R／Z）
+- **`R10:R1411` 之設計方法下拉為 x14 擴充**（`下拉選單!$A$1:$A$9`）——
+  `openpyxl` 讀不到，`save()` 會靜默刪除（**A-POP5**）。
+  本 feature 之工作簿寫入一律走 `backend/xlsx_surgical.surgical_save`
+- pilot 輸出：`sandbox/pilot01/`（4 列 × 15 欄，60 格），
+  來源 `sandbox/base/` 之 sha 跑後未變

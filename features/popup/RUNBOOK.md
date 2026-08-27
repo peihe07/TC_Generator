@@ -21,21 +21,27 @@ Run recon; outputs `RECON.md` + pre-filled `DECISIONS.md`.
 - [x] Coverage: **5** leaves total / **0** done / **5** regen targets
 - [x] assertions 4/4 PASS
 
-## Phase 2 — Rulings (Tier 2)
-- [ ] DECISIONS.md signed by Pei —— 現為 `recon.py` 預填，
-      [PROPOSED]／[PEI] 未裁，Sign-off 為未填佔位
-- [ ] 待裁四件：A-POP1（覆核）／A-POP2／A-POP3／A-POP4；
-      R-POP5 [DEFAULT] 待追認。見 `docs/INDEX.md` §2
+## Phase 2 — Rulings (Tier 2)（完，2026-08-27）
+- [x] DECISIONS.md signed by Pei（`PeiPYHsu` / 2026-08-27）
+- [x] R-POP6 ～ R-POP11 落 `RULINGS.md`；A-POP1～A-POP4 全數處分
 
-## Phase 3 — Framework & profile (Tier 2)
-- [ ] `docs/fw036/framework.md` Part N appended
-- [ ] `docs/runtime/profiles/FW036_R1L_Popup_Profile.md` written
+## Phase 3 — Framework & profile (Tier 2)（完）
+- [x] `features/popup/framework.md`（Part I～V，LOCKED；R-G10 餘數驗證全綠）
+- [x] `docs/runtime/profiles/FW036_R1L_Popup_Profile.md`（3,813 B）——
+      §2 PU 引文規則＋IN §11 記法例外、§3 唯一 [OVERRIDE]（IN §12 輸出串
+      限 9 個下拉字串）、§1 權威鏈與 Pop Up List 之納入邊界、§4 無 §10.7 override
 
-## Phase 4 — Data build (Tier 1)
-- [ ] Data artifacts built per feature.yaml; misses filed to ANOMALIES.md
+## Phase 4 — Data build (Tier 1)（完）
+- [x] `data/popup_list_candidates.tsv` —— 345 列，(a)240／(b)102／(c)15，
+      首三行帶 source／source_sha256／baseline（G-F）
+- [x] `feature.yaml`：`paths.popup_list` 接線、`tc_id_format`（D2 實測 `newR1L`）
 
-## Phase 5 — Pilot (Tier 2)
-- [ ] Pilot batch: ___  → Pei review → prompt adjustments recorded here
+## Phase 5 — Pilot (Tier 2)（生成完，**待 Pei review**）
+- [x] Pilot batch = **全量一批**：4 條（`newR1L-POP-001`～`-004`）
+      → `generated/pilot_01.json` ＋ `sandbox/pilot01/`
+- [x] lint036 `--profile popup`：**21 項全 0**；`PENDING:` 佔位 0
+- [ ] Pei review → verdict / corrections recorded here
+- **未生成**：`SWE1-POP-002-05`（A-POP8，§八 升級停下，不改用他例）
 
 ## Phase 6 — Batch generation (Tier 1)
 - [ ] Batches generated → lint green → write-back invariants pass
