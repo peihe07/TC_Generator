@@ -134,6 +134,16 @@ recon_assertions:
   # 對本 feature 之期望值即 0：無章節號可解析，正是 R-BLM5 之後果。
   distinct_spec_sections: 0
 
+  # R-BLM16(1)。`recon.py` 之「every leaf's citation parses to a section」
+  # 原為無條件 assertion（期望值寫死 0），本 feature 因 R-BLM5 而 176 條
+  # citation 全數無章節可解析，遂恆 FAIL 且無宣告可解。該條已改為 want 閘控
+  # （未宣告者維持期望 0 之現行行為），本 feature 據實宣告其母體數。
+  #
+  # **176 不是「容許 176 個錯」，是「本 feature 依裁定就該有 176 個」** ——
+  # 母體即 176 leaf，全數不帶章節號。若日後 037 改版帶了章節號，
+  # 此數會下降並使本條 FAIL —— 那正是應該被叫住的事件。
+  unparsed_citations: 176
+
   # ⚠ R-BLM15(1) 另指定之「N 欄原值相異數 = 1」**未宣告為 assertion 鍵**。
   # 理由：`recon.py` 之 run_assertions() 只實作三鍵
   # （functional_requirement_count／distinct_spec_sections／

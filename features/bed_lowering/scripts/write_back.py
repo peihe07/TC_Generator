@@ -33,7 +33,11 @@ DEFAULT_BATCH = FEAT / "batches" / "pilot" / "pilot_tcs.json"
 
 # 工作簿常數欄。功能安全欄全案填 "NA"（本 feature 無 FuSa 需求，
 # 037 之 Categorization 亦無安全相關標記）。
-CONST = {"functional_safety": "NA", "test_version": "1.0"}
+# R-BLM16(2)(3)：兩欄一律留空，隨交付多數。
+# 原填 "NA" / "1.0" 係上繳 07 §二-5 之造值 —— 全案四本 775 列實測，
+# AB 欄無一列填過，S 欄僅 privacy 之 11 列填 NA（764/775 為空）。
+# 空字典保留於此而非刪除，使「兩欄刻意不寫」這件事在程式裡看得見。
+CONST: dict[str, str] = {}
 
 
 def cell_values(tc: dict, cfg: dict, tc_id: str, test_set: str) -> dict[int, object]:
@@ -60,9 +64,7 @@ def cell_values(tc: dict, cfg: dict, tc_id: str, test_set: str) -> dict[int, obj
         col["tc_ref_id"]: wb_cfg["tc_ref_id_value"],
         col["priority"]: tc["priority"],
         col["design_method"]: tc["design_method"],
-        col["functional_safety"]: CONST["functional_safety"],
         col["author"]: wb_cfg["author_value"],
-        col["test_version"]: CONST["test_version"],
     }
     return {k: val for k, val in v.items() if val is not None}
 
@@ -90,6 +92,8 @@ def main() -> int:
     # 而不是靠寫回時忘記處理。
     ap.add_argument("--skip-pending", action="store_true")
     ap.add_argument("--start-id", type=int, default=1)
+    # 覆寫既有列（修訂既寫回之批次）。不給則自首個空列往下追加。
+    ap.add_argument("--start-row", type=int)
     a = ap.parse_args()
 
     cfg = load_feature_config(FEAT)
@@ -107,9 +111,11 @@ def main() -> int:
 
     wb = openpyxl.load_workbook(src)
     ws = wb[cfg["workbook"]["sheet"]]
-    start = first_free_row(ws, cfg)
+    start = a.start_row or first_free_row(ws, cfg)
     print(f"來源 {src.name}")
-    print(f"首個空列 {start}（表頭第 {cfg['workbook']['header_row']} 列）")
+    print(f"起始列 {start}"
+          + ("（--start-row 指定，覆寫既有列）" if a.start_row
+             else f"（首個空列，表頭第 {cfg['workbook']['header_row']} 列）"))
 
     written = []
     for i, tc in enumerate(tcs):

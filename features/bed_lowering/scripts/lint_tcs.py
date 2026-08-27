@@ -87,6 +87,13 @@ def main() -> int:
         tag = f"row{r} {c['req_id']}"
 
         # A. 十鍵齊備（工作簿側之對應欄非空）
+        #
+        # `functional_safety`（S）與 `test_version`（AB）**刻意不在本清單內**：
+        # R-BLM16(2)(3) 裁定兩欄留空（隨交付多數，775 列實測 AB 無一列填過、
+        # S 僅 privacy 11 列填 NA）。空是裁定，不是缺漏。
+        # 反之 `test_set` 必須在清單內 —— 上繳 07 §二-4 之 13 列全空正是
+        # 本 gate 抓到而 round-trip 抓不到的缺陷。
+        # **兩者都是「欄位為空」，一個是對的一個是錯的，差別只在有沒有裁定。**
         for k in ["req_id", "tc_id", "test_group", "test_set", "test_item",
                   "pre_conditions", "test_procedure", "expected_result",
                   "spec_reference", "priority", "design_method", "author"]:
