@@ -40,8 +40,49 @@ FEATURE = Path(__file__).resolve().parents[1]
 REPO_ROOT = next(p for p in FEATURE.resolve().parents
                  if (p / "pyproject.toml").is_file())
 sys.path.insert(0, str(REPO_ROOT))
+import backend.xlsx_surgical as _surgical  # noqa: E402
 from backend.xlsx_surgical import (  # noqa: E402
     StructureError, surgical_save, verify_structure)
+
+
+def _sparse_diff_cells(original, mutated):
+    """diff_cells over the cells that exist, not over the sheet's extent.
+
+    A-AM18: the shared diff_cells walks 1..max_row x 1..max_column with
+    `ws.cell(r, c)`, and on a writable worksheet that call *creates* the cell
+    rather than reading it. This form's template reports max_row 1411 against
+    377 rows of data, so each pass instantiated some 35,000 empty cells in
+    both workbooks; the second load never finished inside ten minutes.
+
+    openpyxl already stores cells sparsely in `ws._cells`, so taking the
+    union of the two sheets' populated coordinates gives the same answer:
+    a coordinate absent from both holds None on both sides and cannot be a
+    change. Equivalence is not assumed — rebuilding the B1-B6 workbook with
+    this in place reproduces the delivered file byte for byte.
+
+    Filed as a recommendation against backend/xlsx_surgical.py, which fifteen
+    features share; patched here rather than there for the same reason
+    A-AM06 was.
+    """
+    changes = {}
+    for name in mutated.sheetnames:
+        if name not in original.sheetnames:
+            raise StructureError(f"sheet {name!r} is new; surgical emit only "
+                                 "patches sheets that exist in the source")
+        old, new = original[name], mutated[name]
+        coords = set(old._cells) | set(new._cells)
+        sheet_changes = {}
+        for coord in coords:
+            a = old._cells[coord].value if coord in old._cells else None
+            b = new._cells[coord].value if coord in new._cells else None
+            if a != b:
+                sheet_changes[coord] = b
+        if sheet_changes:
+            changes[name] = sheet_changes
+    return changes
+
+
+_surgical.diff_cells = _sparse_diff_cells
 
 CF_RE = re.compile(r"<conditionalFormatting[ >]")
 # The ten delivery keys plus reasoning; reasoning stays in the JSON and is
