@@ -100,6 +100,20 @@ write_back:
   # 分隔符取連字號以從 TM／canon，不從舊簿之底線式。待 Pei 確認。
   tc_id_format: "NR1L-AMM-{n:03d}"
   fill_test_group_set: true  # canon §2 —— true under BLANK
+  # Comfort 96 §1（Pei 裁定）：**列序依 req_id 遞增**。此條自 user_profiles
+  # 起即存在（其 feature.yaml row_order，抽為參數「改值不改程式」），但從未
+  # 提升至共用層 —— 本 repo 每個 feature 各有一份 write_back.py，audio_mgmt
+  # 這份移植自 time_management，而 TM 本無此鍵，整條裁定隨移植掉失。
+  # B1–B7 交付初版遂為生成序（批內依 test set 分組、批間累加），369 列
+  # 有 39 處遞減。2026-08-27 由 reorder_rows.py 更正並於此宣告。
+  # 宣告在這裡，是為了讓下一次移植看得見它 —— 沒有宣告的規則不會被漏掉，
+  # 它會被「看起來從來沒有存在過」。
+  row_order:
+    value: "req_id"
+    applied: true
+    why: "Comfort 96 §1（Pei 裁定）；2026-08-27 Pei 裁 (b)：列序重排之外
+      tc_id 一併重編，使 D 欄與 F 欄同時遞增。舊→新對照見
+      data/tc_id_remap.tsv。"
 
 lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary

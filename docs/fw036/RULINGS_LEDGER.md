@@ -992,3 +992,64 @@ R-G39（關鍵詞產出候選，行為軸產出 TC —— 全域）
 其行為已由他軸涵蓋／值不可解）。**不得默默丟棄** ——
 該表是覆蓋分析之唯一憑據。
 ```
+
+---
+
+## 列序為交付屬性（R-G40，Pei 2026-08-27，全域）
+
+來源：Pei 於 audio_mgmt 交付後之直接裁定（「Requirement or Design ID 要照順序
+排列」＋「(b) 重排並重編 tc_id」＋「把這個更正正式寫回專案內」）；
+實作與實測見 `features/audio_mgmt/docs/upstream/33_row_order.md`。
+本條非自下放包抽取，係就地裁決後由執行層落檔。
+
+```text
+R-G40（列序為交付屬性；宣告與讀者須成對 —— 全域）
+
+一、列序
+工作簿之寫回列序**依 `req_id` 遞增**，不得任由批次執行序或
+test set 分組序決定（Comfort 96 §1 之 Pei 裁定升格；原僅落於
+`features/user_profiles/feature.yaml` 之 `row_order`）。
+
+二、宣告
+各 feature 之 `feature.yaml` 於 `write_back` 段**必須**宣告
+`row_order: {value, applied, why}`。未宣告即為缺陷，不得以
+「預設如此」代替——列序是交付屬性，須是被決定的，不是被剩下的。
+
+三、讀者
+該 feature 之寫回腳本**必須實作讀取此鍵之閘**（WB-ORDER）：
+  (a) 未宣告 → ABORT；
+  (b) `applied: false` → 跳過檢查而非失敗（那是決定，不是缺陷）；
+  (c) `applied: true` → 驗交付簿之 `req_id` 欄非遞減。
+**一條沒有讀者的規則，與沒有規則無法區分。** 宣告與閘須成對，
+缺一即等於無——本條之立法緣由即為此：Comfort 96 §1 已裁定近月，
+`user_profiles` 亦已宣告，但因無任何其他 feature 之腳本讀取該鍵，
+`time_management`／`power_moding`／`audio_mgmt` 三者皆以生成序交付
+而無人察覺（audio_mgmt 實測 369 列 39 處遞減）。
+
+四、tc_id 之連動
+列序重排時 `tc_id` 是否一併重編，屬**逐案裁定**，不預設：
+  - 重編 → `req_id` 與 `tc_id` 兩欄同時遞增，但既有具名 tc_id 全數失效；
+  - 不重編 → tc_id 隨列移動而於表上跳號（`user_profiles` 之先例）。
+擇重編者須產 `old_tc_id → new_tc_id` 對照表隨交付，
+且**歷史上繳包不回改**——其所載為當時之交付事實，改之即失其為記錄之用。
+
+五、移植
+自他 feature 移植寫回腳本時，本條所列之宣告與閘**須隨同移植**；
+移植檢查表應逐項對照 `write_back` 段之鍵，缺鍵即補，不得默默沿用。
+```
+
+| 條號 | 字元數 | SHA256（前 16 碼） | 逐字相符 |
+|---|---|---|---|
+| R-G40 | 992 | `0e8615660b73d32c` | 是 |
+
+首個適用之 feature：`audio_mgmt`（2026-08-27，上繳 33）；
+`user_profiles` 之 `row_order` 保留為軌跡（本條之來源），不刪。
+
+**未合規之 feature（本條生效時實測，逐項揭露，回溯與否待裁）**：
+
+| feature | `row_order` 宣告 | WB-ORDER 閘 | 交付簿列序 |
+|---|---|---|---|
+| `audio_mgmt` | ✓ | ✓ | 已更正為 `req_id` 遞增 |
+| `user_profiles` | ✓ | ✓（其 `order()`） | 依 `req_id` |
+| `time_management` | ✗ | ✗ | 生成序，**未更正** |
+| `power_moding` | ✗ | ✗ | 生成序，**未更正** |

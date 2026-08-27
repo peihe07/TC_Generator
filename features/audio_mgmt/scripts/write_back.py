@@ -266,6 +266,55 @@ def check_written_back(out: Path, sheet: str, cols: dict, plan: dict,
             f"extra {sorted(leaves_out - leaves_in)}")
 
 
+def check_row_order(out: Path, sheet: str, cols: dict, header_row: int,
+                    cfg: dict) -> dict:
+    """WB-ORDER: the delivered rows are in the order feature.yaml declares.
+
+    Comfort 96 section 1 (Pei) has required req_id order since user_profiles,
+    where it is declared as `row_order` — and it stayed there, because no
+    write_back outside that feature ever read the key. audio_mgmt shipped
+    369 rows with 39 inversions and nothing noticed, so the declaration now
+    has a reader. A rule nobody checks is indistinguishable from no rule.
+
+    Declared-but-not-applied is honoured: `applied: false` skips the check
+    rather than failing it, since that is a decision, not a defect.
+    """
+    ro = cfg.get("write_back", {}).get("row_order")
+    if ro is None:
+        raise WriteBackError(
+            "feature.yaml write_back.row_order is not declared — row order is "
+            "a delivery property and is never left to whatever order the "
+            "batches happened to run in (Comfort 96 section 1)")
+    if isinstance(ro, dict):
+        if not ro.get("applied"):
+            return {"row_order": ro.get("value"), "applied": False}
+        ro = ro["value"]
+    if ro != "req_id":
+        raise WriteBackError(f"unknown row_order {ro!r}")
+
+    ws = openpyxl.load_workbook(out, read_only=True)[sheet]
+    seq = []
+    for row in ws.iter_rows(min_row=header_row + 1, values_only=True):
+        rid = str(row[cols["req_id"] - 1] or "").strip()
+        tid = str(row[cols["tc_id"] - 1] or "").strip()
+        if not rid:
+            continue
+        seq.append((int(re.search(r"(\d+)$", rid).group(1)),
+                    int(re.search(r"(\d+)$", tid).group(1)), rid, tid))
+    bad = [(a, b) for a, b in zip(seq, seq[1:]) if a[0] > b[0]]
+    if bad:
+        raise WriteBackError(
+            f"{len(bad)} row(s) out of req_id order, first at {bad[0][0][3]} "
+            f"{bad[0][0][2]} followed by {bad[0][1][2]}")
+    gaps = [(a, b) for a, b in zip(seq, seq[1:]) if b[1] != a[1] + 1]
+    if gaps:
+        raise WriteBackError(
+            f"tc_id is not consecutive: {gaps[0][0][3]} followed by "
+            f"{gaps[0][1][3]}")
+    return {"row_order": "req_id", "applied": True, "rows": len(seq),
+            "inversions": 0}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--batch", default="B1")
@@ -314,6 +363,7 @@ def main() -> int:
     report = surgical_save(wb, src, out, verify=True)
     cf = check_conditional_formatting(src, out)
     check_written_back(out, sheet, cols, plan, tcs)
+    ro = check_row_order(out, sheet, cols, header_row, cfg)
 
     shown = out.resolve()
     shown = (shown.relative_to(REPO_ROOT)
@@ -324,6 +374,7 @@ def main() -> int:
           f"{report['members_patched']}")
     print(f"  dv counts unchanged (classic, x14): {report['dv_counts']}")
     print(f"  conditionalFormatting unchanged  : {cf}")
+    print(f"  row order (WB-ORDER)             : {ro}")
     print("  traceability and completeness verified on the written file")
     return 0
 
