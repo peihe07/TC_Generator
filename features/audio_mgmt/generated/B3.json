@@ -369,11 +369,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Play an Entertainment source at a known volume step\n2. Send a volume increase request\n3. Read the resulting volume step and record it",
       "expected_result": "1. Entertainment audio plays at the set volume step\n2. The volume increase request is accepted\n3. The resulting volume step is one step above the starting step",
-      "spec_reference": "PENDING: DR-AM1 no CFTS019 object found for this leaf",
+      "spec_reference": "NA",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
-      "remarks": "PENDING: DR-AM1 no CFTS019 object found for this leaf",
-      "reasoning": "Ruled at package 12 section 3.5 to ship without an anchor. Both routes searched their own corpus and found nothing: target volume matches only 4866011 and 4866015, which define the ramp functions' linear travel, and package 12 bars substituting them because their verification object is ramp continuity, not the decision of a target. The case is written to the SWE.1 description alone and the spec_reference carries the PENDING."
+      "remarks": "DR-AM1 open: no CFTS019 object found for this leaf after all four gates; spec_reference downgraded to NA under R-AM23",
+      "reasoning": "Ruled at package 12 section 3.5 to ship without an anchor. Both routes searched their own corpus and found nothing: target volume matches only 4866011 and 4866015, which define the ramp functions' linear travel, and package 12 bars substituting them because their verification object is ramp continuity, not the decision of a target. The case is written to the SWE.1 description alone and the spec_reference carries the PENDING. No CFTS019 object was found for this leaf after all four gates; the anchor is downgraded to NA under R-AM23 so the workbook carries no PENDING value at the section 8.4.3 gate. DR-AM1 remains open and the real anchor is to be filled in when it is answered."
     },
     {
       "req_id": "SWE1_AMM_076",
@@ -384,11 +384,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Activate an Information source at a known volume step\n2. Send a steering wheel volume increase request\n3. Read the resulting Information source volume step and record it",
       "expected_result": "1. The Information source is active at the set volume step\n2. The steering wheel volume increase request is accepted\n3. The resulting volume step is one step above the starting step",
-      "spec_reference": "PENDING: DR-AM1 no CFTS019 object found for this leaf",
+      "spec_reference": "NA",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
-      "remarks": "PENDING: DR-AM1 no CFTS019 object found for this leaf",
-      "reasoning": "This is 076a, source SYS-RA-AMM-242; 076b, SYS-RA-AMM-246, shipped in B2 against 4866155. Both rows read SWE1_AMM_076 in the delivery column under R-AM6, and they are told apart by content and by anchor. Ruled to ship without an anchor at package 12 section 3.5: StWhl_Volume and steering wheel volume return nothing in either corpus, so the behaviour is likely specified in a separate steering-wheel-controls CFTS."
+      "remarks": "DR-AM1 open: no CFTS019 object found for this leaf after all four gates; spec_reference downgraded to NA under R-AM23",
+      "reasoning": "This is 076a, source SYS-RA-AMM-242; 076b, SYS-RA-AMM-246, shipped in B2 against 4866155. Both rows read SWE1_AMM_076 in the delivery column under R-AM6, and they are told apart by content and by anchor. Ruled to ship without an anchor at package 12 section 3.5: StWhl_Volume and steering wheel volume return nothing in either corpus, so the behaviour is likely specified in a separate steering-wheel-controls CFTS. No CFTS019 object was found for this leaf after all four gates; the anchor is downgraded to NA under R-AM23 so the workbook carries no PENDING value at the section 8.4.3 gate. DR-AM1 remains open and the real anchor is to be filled in when it is answered."
     },
     {
       "req_id": "SWE1_AMM_044",

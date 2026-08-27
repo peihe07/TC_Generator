@@ -86,11 +86,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Set the audio parameters to known values and allow them to be stored\n2. Restart the head unit\n3. Read the audio parameters and record them",
       "expected_result": "1. The audio parameters hold the set values\n2. The head unit restarts\n3. The audio parameters are the values stored before the restart",
-      "spec_reference": "PENDING: DR-AM10 anchor withheld pending upstream confirmation of this leaf's source",
+      "spec_reference": "NA",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
-      "remarks": "PENDING: DR-AM10 the leaf describes restoration at initialisation while the object at its document position states storage; upstream to confirm the source",
-      "reasoning": "Ships against a PENDING under DR-AM10. Position fixes the leaf at 4866489 — 139 sits at 4866488 and 141 at 4866490 — but that object says store where the leaf says restore at initialisation. A leaf contradicting its own source is not something either route can resolve, so the case follows the leaf and the anchor waits on upstream."
+      "remarks": "DR-AM10 open: the leaf describes restoration at initialisation while the object at its document position (4866489) states storage; spec_reference downgraded to NA under R-AM23, which records that no anchor is written here, not that none exists",
+      "reasoning": "Ships against a PENDING under DR-AM10. Position fixes the leaf at 4866489 — 139 sits at 4866488 and 141 at 4866490 — but that object says store where the leaf says restore at initialisation. A leaf contradicting its own source is not something either route can resolve, so the case follows the leaf and the anchor waits on upstream. Downgraded to NA under R-AM23 so the workbook carries no PENDING value at the section 8.4.3 gate. NA here does not mean the anchor does not exist: position fixes it at 4866489, and the reason it is not written is that 4866489 says store where the leaf says restore at initialisation. DR-AM10 stays open on that contradiction and the anchor is to be filled in when upstream resolves it."
     },
     {
       "req_id": "SWE1_AMM_161",

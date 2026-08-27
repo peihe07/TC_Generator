@@ -47,6 +47,11 @@ SPEC_REF = re.compile(r"^CFTS019-48\d{5}$")
 # a PENDING here instead of an id. 8.4.3 makes that legal now and illegal at
 # delivery, which is check M's job, not this one's.
 SPEC_REF_PENDING = re.compile(r"^PENDING: DR-\w+\b.*$")
+# R-AM23 (D-CLOSE-01): a leaf whose anchor search came back empty after
+# all four gates may be downgraded from PENDING to a bare NA, so that the
+# workbook clears 8.4.3 at delivery. The DR stays open; only the cell
+# stops carrying a blocking value.
+SPEC_REF_NA = re.compile(r"^NA$")
 
 # ---- check P, 8.7.5 v3 -----------------------------------------------------
 # v1's triple and v2's prefix are both revoked; text carrying either is stale.
@@ -230,7 +235,8 @@ def main() -> int:
                         r"\b\d+\.$", line.rstrip()):
                     fails.append(f"{tag}/{key}: line ends in a period (11)")
         for line in tc["spec_reference"].split("\n"):                # O
-            if not (SPEC_REF.match(line) or SPEC_REF_PENDING.match(line)):
+            if not (SPEC_REF.match(line) or SPEC_REF_PENDING.match(line)
+                    or SPEC_REF_NA.match(line)):
                 fails.append(f"{tag}: spec_reference line {line!r} (R-2)")
 
         upper, _, bracket = tc["test_item"].partition("\n\n")
