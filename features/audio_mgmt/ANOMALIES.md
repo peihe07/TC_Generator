@@ -555,3 +555,69 @@ sha256 `9c6a274f0834d40bb4daa9714d6f10149925176f5f2fc1c086a1736a3fe9d5df`
 
 **回溯站不再受阻**：R-AM18 之六項寫回（上繳包 25 §八）已無此阻塞。
 
+## [A-AM19] SWE1_AMM_174 之「共錨」不是共錨 —— 4866632 為未被認領之同文孿生
+
+包 26 §三 與上繳包 27 §一.2 將 174 → **4866662** 申報為與 176 之跨批共錨，
+稱二者為「同一 recall 句之兩次上游分解」。
+
+**實測：那不是同一句，是兩個逐字相同的物件，而其中一個沒有人認領。**
+
+### 區段實讀（`route2_b7.py --scan 4866629-4866662`，全物件 30 條，未截斷）
+
+| ObjectID | 池 | 逐字 | 已交付之葉 |
+|---|---|---|---|
+| **4866629** | ✓ | `When HU needs to activate audio on **at least one loudspeaker** according to the table above, HU shall store the current audio mode settings (volume, tone controls, Fade and Balance controls)` | **173**（SYS-RA 471）|
+| **4866632** | ✓ | `Then, HU shall recall last audio settings` | **無 —— 未被任何葉使用** |
+| **4866659** | ✓ | `When HU needs to activate audio on **front or rear loudspeakers** according to the signals above, HU shall store the current audio mode settings (volume, tone controls, Fade and Balance controls)` | **175**（SYS-RA 489）|
+| **4866662** | ✓ | `Then, HU shall recall last audio settings` | **176**（SYS-RA 492）**＋ 174（本批新增）** |
+
+**規格之形態為 store→recall 成對**：`(4866629, 4866632)` 與 `(4866659, 4866662)`。
+174 之 SYS-RA 為 **474**，夾於 173（471）與 175（489）之間 ——
+**其 recall 屬第一對，即 4866632。**
+
+### 位置閘（`route2_b7.py` gate 4）
+
+```
+SWE1_AMM_174  package 26 anchor CFTS019-4866662
+  SYS-RA: 474
+  WINDOW: SWE1_AMM_173@4866629 (SYS-RA 471)  <  CFTS019-4866662
+                                              <  SWE1_AMM_175@4866659 (SYS-RA 489)
+          -> **OUTSIDE**
+```
+
+**4866632 落於窗內，4866662 在窗外。**
+
+### 文本閘
+
+174 之葉文為 `After completion of the **speaker activation sequence** …
+restore the previously stored audio settings`。
+其所指之 store 為 4866629 之「**at least one loudspeaker** 啟用」——
+即第一對；而 176 所觀察者為 4866659 之「front or rear loudspeakers」一對。
+**二葉本就各有其 recall，不需共用。**
+
+### 為何此件恰為 D-B6-01 之適用範圍
+
+4866632 與 4866662 **逐字相同**。依 **D-B6-01（同文場合文本核驗必然一致，
+位置法為唯一區辨依據）**，此處文本閘無區辨力，**位置法即唯一依據** ——
+而位置法給出 4866632。
+
+**包 26 §一 對 268 正是援 D-B6-01 定案的**（4867640 vs 4867647 同文，以位置夾定）。
+**同一份下放包，同一個判準，在 174 這一筆沒有被施用。**
+
+### 連帶
+
+- **R-AM21 之共錨申報（上繳包 27 §一.2、§四.1「待核可」）若採本件，即不必要** ——
+  沒有共錨，也就沒有括號下半分野之需求。
+- 174 已隨 B7 交付並寫回（`spec_reference` 為交付欄）→ 若改錨為**真回修**，
+  宜**併入 R-AM18 回溯站**（同 264／268 之處置），不單項回修。
+
+### 執行層處置
+
+**未自改。** R-AM15 禁單路定案，且 174 → 4866662 為包 26 §三 之申報並經
+上繳包 27 正式提出；**已裁／已申報之錨非執行層可逕改**
+（同包 26 §一 對 268 所肯認之分寸）。
+
+**本件為單件回送**（沿包 20 §二.3 之程序）：證據在此，裁定在分析層。
+
+狀態：**待裁**。
+
