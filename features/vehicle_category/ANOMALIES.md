@@ -1027,6 +1027,59 @@ SYS1／037 作 `‘Software Downloads **Over** Wi-Fi’`（大寫 O）。
 
 ---
 
+## A-VC20 —— 「§10.1／§10.2／§15 之內容僅存於圖，SYS1 匯出未帶文字」不成立（新立，下放包 27 T143）
+
+**形態**：一項**裁定所依據之實測前提**，於本輪重測時不成立。
+
+### 逐字實測（SYS1 `Basic Report`，SHA256 `1fcc8711…`；`/` 表換行）
+
+| 節 | `Description` 之逐字 |
+|---|---|
+| §10.1 | `The flow of pressing the Aux settings from Controls / (image: image9.png) / (image: image10.png) / **Refer to the HMI Settings list for settings location.** / **All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously** / Graphics are visual aids only. Please see PDO release for official graphics` |
+| §10.2 | 同上，首句作 `…from **Apps**`，圖檔為 `image11`／`image12`；**其餘三句逐字相同** |
+| §15 | `Electronic Park Brake Service Mode Pop-up / (image: image20.png) / (image: image21.png) / (image: image22.png)` |
+
+### 三節之嚴重程度不同 —— 須分別看
+
+| 節 | 文字之性質 | 判 |
+|---|---|---|
+| **§15** | **僅標題句 ＋ 三個圖佔位** | 原措辭**substantively 成立**，惟字面「未帶文字」不精確（有標題句）|
+| **§10.1／§10.2** | 標題句 ＋ 圖佔位 ＋ **三句實質文字**，其一為需求敘述：<br>`All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously` | **原措辭不成立** |
+
+### 為什麼 §10.1／§10.2 這一項要緊
+
+**表 B 之用途正是揭露覆蓋落差。**
+而該二列之原措辭「內容僅存於圖」**把一句可讀、可測的需求敘述整句藏起來** ——
+在這個位置，該措辭**反向作用**：它讓讀表的人以為那裡沒有文字可看。
+
+`Aux 1`／`Aux 2` 之字面另與 R-VC24 已判之 `VC-025-02`（`Aux Camera 1`／`2`）
+**用詞相近**。**二者是否同一子系統本輪未查證，不主張任何關聯** ——
+記於此僅為提示日後查證時勿混用。
+
+### 對既有裁定與 DR 之影響
+
+- **R-VC12 二(a)** 之措辭以「匯出未帶文字」為其實測前提 —— 該前提於二節不成立。
+  **其修訂屬 Tier 2，本輪未改。**
+- **DR-VC6**（索取「僅存於圖」三節之可讀來源）之前提亦受影響 ——
+  其中二節本就有文字，**該 DR 之問法宜隨之調整**。
+
+### 本輪之處置
+
+- 裁定用語**保留不改**（R-TM13／Tier 2）。
+- 於表 B 該三列**並列實測逐字** —— 引用非摘要，同 R-VC12 二(c) 對 §8.3 之作法。
+- 登記本節待裁。
+
+### ⚠ 本項之由來值得記
+
+該三節之措辭自下放包 03 起沿用至今，**歷經 24 個包無人重測** ——
+它被當成已實測之事實引用（R-VC12 二(a) 即以它為據立條），
+而本輪是**第一次有人回去讀那三格**。與 REV-14 同族：
+**台帳上的一筆，久到沒人記得它是量出來的還是抄來的。**
+
+狀態：**已登記，待裁**（提案：修訂 R-VC12 二(a) 之措辭並調整 DR-VC6 之問法）。
+
+---
+
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-VCnn]`.
