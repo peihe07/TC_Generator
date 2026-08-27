@@ -173,21 +173,32 @@ def norm(s):
     return re.sub(r"[^a-z0-9]+", " ", (s or "").lower()).strip()
 
 
+# ── 詞集比對之參數與函式 —— **T18d 與 T19 共用同一支** ────────────────
+# 下放包 06 §四之方法拘束：「詞集重疊比之參數與 T18d **完全一致**」。
+# 提到模組層，是因為**規定二處一致而讓二處各寫一份，那只是規定**；
+# 共用一支則其一致由呼叫保證（同 vehicle_category 之機讀行原則）。
+# **本次重構未改 T18d 之行為** —— 其輸出經 byte-level diff 證明未變。
+STOP = {"the", "a", "of", "and", "for", "to", "in", "on", "is", "shall",
+        "with", "requirements", "requirement"}
+THRESHOLD = 0.34
+
+
+def toks(s):
+    return {w for w in norm(s).split() if w not in STOP and len(w) > 2}
+
+
+def best(target, cands, key):
+    tt = toks(target)
+    if not tt:
+        return None, 0.0
+    sc = [(c, len(tt & toks(key(c))) / len(tt | toks(key(c)))) for c in cands]
+    sc.sort(key=lambda x: -x[1])
+    return sc[0] if sc else (None, 0.0)
+
+
 def t18d(groups, tops, secs):
     """標題語意對應候選。詞集重疊比，門檻 0.34；不達即 `?`，不強配。"""
     print("\n## T18d —— 三源對照草表（草料，非結論）\n")
-    STOP = {"the", "a", "of", "and", "for", "to", "in", "on", "is", "shall", "with", "requirements", "requirement"}
-
-    def toks(s):
-        return {w for w in norm(s).split() if w not in STOP and len(w) > 2}
-
-    def best(target, cands, key):
-        tt = toks(target)
-        if not tt:
-            return None, 0.0
-        sc = [(c, len(tt & toks(key(c))) / len(tt | toks(key(c)))) for c in cands]
-        sc.sort(key=lambda x: -x[1])
-        return sc[0] if sc else (None, 0.0)
 
     print("| Heading id | 037 標題 | SYS1 候選 | 分 | CFTS 候選 | 分 |")
     print("|---|---|---|---:|---|---:|")
@@ -197,8 +208,8 @@ def t18d(groups, tops, secs):
             continue
         s, ss = best(g["title"], tops, lambda x: x[1])
         c, cs = best(g["title"], secs, lambda x: x["title"])
-        s_txt = f"`{s[0]}` {s[1][:30]}" if s and ss >= 0.34 else "**?**"
-        c_txt = f"{c['num']} {c['title'][:30]}" if c and cs >= 0.34 else "**?**"
+        s_txt = f"`{s[0]}` {s[1][:30]}" if s and ss >= THRESHOLD else "**?**"
+        c_txt = f"{c['num']} {c['title'][:30]}" if c and cs >= THRESHOLD else "**?**"
         n_s += s_txt != "**?**"
         n_c += c_txt != "**?**"
         print(f"| `{g['id']}` | {g['title'][:40]} | {s_txt} | {ss:.2f} | {c_txt} | {cs:.2f} |")
@@ -209,12 +220,133 @@ def t18d(groups, tops, secs):
           "\n> Test Set 名稱與 Layer 2 分群由分析層起草，執行層不逕定（下放包 05 §三 T18d）。")
 
 
+# ── T19a–e —— 定稿前置量測（下放包 06 §四）────────────────────────────
+# **只量測，不分群、不命名。** 分數僅為排序工具，不作對應之結論
+# （下放包 06 §四之方法拘束）——結論由分析層下。
+#
+# T18d 為**逐 Heading** 之比對；T19 為**逐列**（每列之 Requirement Title
+# 對 87 個 CFTS 章節）。二者共用 STOP／toks／best／THRESHOLD。
+
+def row_id(r):
+    return str(r[C_ID]).strip()
+
+
+def row_best(r, secs):
+    c, cs = best(str(r[C_TITLE] or ""), secs, lambda x: x["title"])
+    return (c, cs) if (c and cs >= THRESHOLD) else (None, cs)
+
+
+def find_group(groups, hid):
+    for g in groups:
+        if g["id"] == hid:
+            return g
+    return None
+
+
+def dump_group(groups, secs, hid, label):
+    """逐列傾印 + 每列之最佳 CFTS 候選；併計其橫跨幾個章。"""
+    g = find_group(groups, hid)
+    print(f"\n### {label} —— `{hid}` {g['title'] if g else '**群不存在**'}\n")
+    if g is None:
+        print("**該 Heading id 不存在於 037** —— 停")
+        return {}
+    print(f"所轄 in-scope 列 **{len(g['rows'])}** 筆（id 區間 {id_span(g['rows'])}）\n")
+    print("| id | Requirement Title | Sub Cat | Source Requirement ID | 最佳 CFTS 候選 | 分 |")
+    print("|---|---|---|---|---|---:|")
+    hit = Counter()
+    for r in g["rows"]:
+        c, cs = row_best(r, secs)
+        ctxt = f"{c['num']} {c['title'][:26]}" if c else "**?**"
+        if c:
+            hit[c["num"]] += 1
+        sub = r[C_SUB] if r[C_SUB] not in (None, "") else "—"
+        src = str(r[C_SRC] or "—")
+        print(f"| `{row_id(r)}` | {str(r[C_TITLE] or '')[:52]} | {sub} | {src[:26]} "
+              f"| {ctxt} | {cs:.2f} |")
+    n_q = len(g["rows"]) - sum(hit.values())
+    print(f"\n**跨章測度**：命中 {sum(hit.values())} 列 / 未達門檻 `?` {n_q} 列；"
+          f"**相異候選章 {len(hit)} 個** —— {dict(hit) or '無'}")
+    return hit
+
+
+def t19abce(groups, secs):
+    print("\n## T19a —— `SWE1-FOTA-309` 群逐列傾印")
+    dump_group(groups, secs, "SWE1-FOTA-309", "T19a")
+    print("\n## T19b —— `SWE1-FOTA-291` 與 `SWE1-FOTA-259` 群")
+    dump_group(groups, secs, "SWE1-FOTA-291", "T19b-1")
+    dump_group(groups, secs, "SWE1-FOTA-259", "T19b-2")
+    print("\n## T19c —— `SWE1-FOTA-214` 與 `SWE1-FOTA-137` 群")
+    dump_group(groups, secs, "SWE1-FOTA-214", "T19c-1")
+    dump_group(groups, secs, "SWE1-FOTA-137", "T19c-2")
+    print("\n## T19e —— `SWE1-FOTA-178` 群")
+    dump_group(groups, secs, "SWE1-FOTA-178", "T19e")
+
+
+def t19d(groups, secs):
+    """全 311 列之逐列 CFTS 對照；統計列與其 Heading 之候選章不一致者。
+
+    **本項為跨章問題之全域測度**（下放包 06 §四 T19d）。
+    `?`（未達門檻）之列**不計入不一致** —— 未達門檻不表示無對應，
+    把它算成不一致會使測度膨脹（同 T18d 之 `?` 語意）。
+    """
+    print("\n## T19d —— 全 311 列之 CFTS 逐列對照\n")
+    rows_all, mismatch, q_row, q_head = [], [], 0, 0
+    for g in groups:
+        if g["id"] is None:
+            continue
+        hc, hcs = best(g["title"], secs, lambda x: x["title"])
+        h_num = hc["num"] if (hc and hcs >= THRESHOLD) else None
+        for r in g["rows"]:
+            c, cs = row_best(r, secs)
+            rows_all.append(r)
+            if c is None:
+                q_row += 1
+                continue
+            if h_num is None:
+                q_head += 1
+                continue
+            if c["num"] != h_num:
+                mismatch.append((g["id"], g["title"], h_num, row_id(r),
+                                 str(r[C_TITLE] or ""), c["num"], c["title"], cs))
+    n = len(rows_all)
+    print(f"**母體**：{n} 列（應 311）—— "
+          f"{'閉合 ✅' if n == 311 else '**不閉合 ❌**'}\n")
+    print("| 量 | 列數 |")
+    print("|---|---:|")
+    print(f"| 列之最佳候選未達門檻（`?`）| {q_row} |")
+    print(f"| 其 Heading 之候選未達門檻（無可比對象）| {q_head} |")
+    print(f"| **可比且不一致** | **{len(mismatch)}** |")
+    print(f"| 可比且一致 | {n - q_row - q_head - len(mismatch)} |")
+    print(f"\n**閉合**：{q_row} + {q_head} + {len(mismatch)} + "
+          f"{n - q_row - q_head - len(mismatch)} = {n} ✅\n")
+    print("### 不一致列清單（本輪最關鍵之產出）\n")
+    print("| Heading id | Heading 之候選章 | 列 id | 列標題 | 列之候選章 | 分 |")
+    print("|---|---|---|---|---|---:|")
+    for hid, htitle, hnum, rid, rtitle, cnum, ctitle, cs in mismatch:
+        print(f"| `{hid}` | {hnum} | `{rid}` | {rtitle[:44]} | {cnum} {ctitle[:26]} "
+              f"| {cs:.2f} |")
+    by_h = Counter(m[0] for m in mismatch)
+    print(f"\n**不一致之 Heading 分布**（{len(by_h)} 個 Heading）：")
+    for hid, k in by_h.most_common():
+        g = find_group(groups, hid)
+        print(f"- `{hid}` {g['title'][:44] if g else ''} —— **{k}** 列")
+    print("\n> 分數為詞集重疊比（Jaccard，停用詞表 13 字、門檻 0.34），"
+          "\n> **與 T18d 共用同一支函式**。`?` 只表示自動比對不達門檻，"
+          "\n> 不表示無對應。**本表為量測，不是對應之結論。**")
+
+
 if __name__ == "__main__":
     want = set(sys.argv[1:]) or {"18a", "18b", "18c", "18d", "18e"}
-    groups = t18a() if {"18a", "18d", "18e"} & want else None
+    T19 = {"19", "19a", "19b", "19c", "19d", "19e"}
+    need_g = {"18a", "18d", "18e"} | T19
+    need_s = {"18c", "18d"} | T19
+    groups = t18a() if need_g & want else None
     tops = t18b() if {"18b", "18d"} & want else None
-    secs = t18c() if {"18c", "18d"} & want else None
+    secs = t18c() if need_s & want else None
     if "18e" in want:
         t18e(groups)
     if "18d" in want:
         t18d(groups, tops, secs)
+    if T19 & want:
+        t19abce(groups, secs)
+        t19d(groups, secs)

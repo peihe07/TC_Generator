@@ -21,6 +21,8 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 | R-SU7 | **v2** | Description 物件不入池；錨點池 574 = 章節 87 + 需求 487，Description 137 | 04 §1.2 |
 | R-SU8 | v1 | 本表之判準：v 字尾最大者為現行；檔首須維持索引表 | 05 §二 |
 | R-SU9 | v1 | recon 產物之重生條件（未簽佔位得刪檔重生並揭露；已簽或含人手內容不得刪） | 05 §二 |
+| R-SU10 | v1 | Layer 2 分群鍵為 Heading id（非標題字串）；Test Set 名稱另命名 | 06 §二 |
+| R-SU11 | v1 | framework Layer 3 主軸為 CFTS_57；SYS1 不作章對章橋接，其接點為 HMI 87 列 | 06 §二 |
 
 **留存之被取代條文（依 R-TM13 不刪不改，不得引用）**：
 
@@ -318,4 +320,40 @@ R-SU9（recon 產物之重生條件）
 (c) 判定不確定時一律走 (b)。
 
 本條同理適用於其他「已存在即改寫 .new」之腳本產物。
+```
+
+```
+R-SU10（Layer 2 分群鍵）
+
+037 之 `Categorization == Heading` 45 列，其標題僅 41 unique ——
+`Critical Updates`、`OTA Architecture Requirements`、
+`OTA Client Configuration options`、`User initiated sessions`
+各出現兩次而轄不同區間（上繳包 04 §3.1 實測）。
+
+裁定：
+(a) framework 之分群鍵一律為 **Heading id**（`SWE1-FOTA-{n}`），
+    不得以標題字串為鍵。
+(b) Test Set 名稱由分析層另行命名（IN §4.2：能力叢集名詞，1–3 字），
+    **不得逕取 Heading 標題**；Heading 標題僅為命名之素材。
+(c) `framework.md` 之 Layer 3 欄須同時記 Heading id 與其標題原文，
+    俾碰撞可見。
+```
+
+---
+
+```
+R-SU11（SYS1 之橋接軸）
+
+037 Heading 與 SYS1 章之標題對照率僅 2/45（上繳包 04 §3.2 實測），
+且 2 筆同對一章。成因：SYS1 之 28 章為 **HMI 畫面／流程視角**，
+037 之 45 Heading 為**需求功能視角**，兩者非同一骨架之兩份副本。
+
+裁定：
+(a) framework 之 Layer 3 **主軸為 CFTS_57 章節**（對照率 42/45）。
+(b) SYS1 **不作章對章之橋接**。SYS1 之接點為 037 之 **HMI 87 列**
+    ——逐列（非逐 Heading）對 SYS1 之 120 個 outline entry 定位。
+    此定位屬 Phase 2/3 之錨定協定，本條只定其軸，不定其方法。
+(c) 純 Service 之 28 個 Heading 群（224 列）無 SYS1 接點，
+    其 spec_reference 走 CFTS 家族單軌（R-SU4 v2(a)）；
+    此為**預期狀態**，不因缺 HMI 錨而登記異常。
 ```
