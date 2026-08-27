@@ -350,3 +350,31 @@ R-BLM15（上繳 07 四題之裁）
     DATA_REQUESTS.md；未復前 B1 依 IN §8.4.3 落
     `PENDING: DR-1 BLM operating speed threshold value`。
 ```
+
+---
+
+```
+R-BLM16（上繳 08 四題之裁）
+
+（Pei 2026-08-26 裁定「裁」，四項照分析層建議核准。）
+
+(1) recon 剩餘 1 FAIL：准改 `scripts/recon.py`，將該無條件 assertion
+    納入 want 閘控 —— **未宣告時維持現行無條件行為**（與 lint
+    `--profile` 前例同型，既有各本基線不動）。驗收條件：
+    無宣告之回歸跑須重現現行 1-FAIL 行為；本 feature 宣告後全綠，
+    DECISIONS.md 產出。
+(2) `test_version` 清空：775 列全案無人填過，`1.0` 為造值。
+    現行 19 列 AB 欄 patch 為空。
+(3) `functional_safety` 留空：隨交付多數（764/775，含 Arif done
+    region 237 列）；privacy 之 `NA` 屬孤例。現行 19 列 S 欄
+    patch 為空。
+(4) 兩處 5 Km/h（022-01、027-05）追認為**暫定測試輸入**：
+    複驗義務掛於 DR-1 結案動作 —— 門檻回覆若 ≤ 5 Km/h，
+    該兩條改值。登記於 DATA_REQUESTS.md 與 manifest。
+
+另記：分析層對 B1 審出三項 A 類（022 群入口改 HU 按鍵、
+022-02 步 1 指涉、027-03 隱藏狀態前置），屬機械修正隨下放包 09
+執行，不另立條。B1 首審含 A 類，不計入 R-G14 連續乾淨批數；
+修訂複審通過後亦不回計，計數自 B2 起。B1 修訂複審通過後，
+B2 由分析層逐包下放，不另經 Pei 關卡（R-BLM15(3) 已准順序）。
+```
