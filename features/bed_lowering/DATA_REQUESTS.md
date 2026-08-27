@@ -6,10 +6,10 @@ DR 之登記屬 Tier 1（執行層可自行 register）；草擬與送出決定�
 
 | DR | 項目 | 影響範圍 | 來源依據 | 狀態 | 送出日 | 結案日 |
 |---|---|---|---|---|---|---|
-| DR-1 | BLM operating speed threshold value（spec placeholder `*XX MPH`；owner: chassis engineering）| 7 條 PENDING 未寫回：B1 之 022-02/03/04、B2 之 007-03/04、B3 之 021-04/05。另各批 `provisional_inputs` 暫定車速待結案複驗 | SYS1 Outline 3.2.3 / 4.7.2 / 4.7.2.2 / 10.1.5（"Speed threshold to be defined by chassis engineering"）| **送出核准**（R-BLM15(4)，2026-08-26）；送出動作由 Pei 執行 | | |
-| DR-2 | Off-Road 2 與 Easy Entry Mode 對應之 ride-height level 值（`ASCM_FD_1.*_Lvl` 物理值對映；owner: suspension calibration）| 2 條（041-01／041-02）：現以「highest／lowest reported value」書寫，查得對映後可收緊為具體值。**不阻斷交付** | 037 之 041-01/02 原文（`Off-Road 2`、`Easy Entry Mode`）；DBC VAL_ 僅 254/255，無模式列舉（上繳 11 §七-3）| 草案已登記（2026-08-27），未送出；送否由 Pei 決 | | |
-| DR-3 | Bed Lowering cluster graphics definition（最終圖形；owner: PDO）| 1 條 PENDING（033-04）**＋ 連動 2 條**（033-02／034-02 現以草稿 image5.png 為基準，PDO 完稿後須複驗）| SYS1 NRL-193740 逐字載 "Final graphics to be completed by PDO."；037 之 033-04 同 | 執行層登記（上繳 12）；**分析層草擬完成 2026-08-27，送出待 Pei** | | |
-| DR-4 | 三份 HMI_BP 指引文件：`HMI_BP_W-01`（label）、`HMI_BP_X-01_Hand_Anthropometry_A.Mar-6-2013`（手部人體計測）、`HMI_BP_L-34`（soft button）；owner: HMI 指引文件持有單位 | 4 條 PENDING（016-04／016-05／023-01／023-02）**＋ 連動 1 條**：017-05 引 X-01 但已判 coverage gap，取得指引後仍需人因試驗，不因本 DR 轉為可測 | 三份指引於全 repo 零命中（上繳 13）；037 之 016-04/05、023-01/02 逐字引其文件名 | 執行層登記（上繳 13）；**分析層草擬完成 2026-08-27，送出待 Pei** | | |
+| DR-1 | BLM operating speed threshold value（spec placeholder `*XX MPH`；owner: chassis engineering）| 7 條 PENDING 未寫回：B1 之 022-02/03/04、B2 之 007-03/04、B3 之 021-04/05。另各批 `provisional_inputs` 暫定車速待結案複驗 | SYS1 Outline 3.2.3 / 4.7.2 / 4.7.2.2 / 10.1.5（"Speed threshold to be defined by chassis engineering"）| **送出核准**（R-BLM15(4)）；**Pei 已送出 2026-08-27** | 2026-08-27 | |
+| DR-2 | Off-Road 2 與 Easy Entry Mode 對應之 ride-height level 值（`ASCM_FD_1.*_Lvl` 物理值對映；owner: suspension calibration）| 2 條（041-01／041-02）：現以「highest／lowest reported value」書寫，查得對映後可收緊為具體值。**不阻斷交付** | 037 之 041-01/02 原文（`Off-Road 2`、`Easy Entry Mode`）；DBC VAL_ 僅 254/255，無模式列舉（上繳 11 §七-3）| 草案已登記（2026-08-27）；**Pei 已送出 2026-08-27** | 2026-08-27 | |
+| DR-3 | Bed Lowering cluster graphics definition（最終圖形；owner: PDO）| 1 條 PENDING（033-04）**＋ 連動 2 條**（033-02／034-02 現以草稿 image5.png 為基準，PDO 完稿後須複驗）| SYS1 NRL-193740 逐字載 "Final graphics to be completed by PDO."；037 之 033-04 同 | 執行層登記（上繳 12）；分析層草擬 2026-08-27；**Pei 已送出 2026-08-27** | 2026-08-27 | |
+| DR-4 | 三份 HMI_BP 指引文件：`HMI_BP_W-01`（label）、`HMI_BP_X-01_Hand_Anthropometry_A.Mar-6-2013`（手部人體計測）、`HMI_BP_L-34`（soft button）；owner: HMI 指引文件持有單位 | 4 條 PENDING（016-04／016-05／023-01／023-02）**＋ 連動 1 條**：017-05 引 X-01 但已判 coverage gap，取得指引後仍需人因試驗，不因本 DR 轉為可測 | 三份指引於全 repo 零命中（上繳 13）；037 之 016-04/05、023-01/02 逐字引其文件名 | 執行層登記（上繳 13）；分析層草擬 2026-08-27；**Pei 已送出 2026-08-27** | 2026-08-27 | |
 
 ---
 
