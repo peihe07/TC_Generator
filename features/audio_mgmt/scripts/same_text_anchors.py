@@ -60,12 +60,20 @@ def main() -> int:
     data = json.loads(src.read_text(encoding="utf-8"))
     leaves = data if args.context else data["tcs"]
 
+    # The position window must be built from every leaf delivered so far,
+    # not this batch alone: 131's neighbours 130 and 132 live in B1, and a
+    # per-batch map leaves the window open-ended and useless there.
     used = {}
+    for f in sorted((FEATURE / "generated").glob("B*.json")):
+        for tc in json.loads(f.read_text(encoding="utf-8"))["tcs"]:
+            used.setdefault(tc["req_id"], []).extend(
+                re.findall(r"CFTS019-(48\d{5})", tc["spec_reference"]))
     for row in leaves:
         sid = row["swe_id"] if args.context else row["req_id"]
         anchors = (row["anchors"] if args.context else
                    re.findall(r"CFTS019-(48\d{5})", row["spec_reference"]))
-        used.setdefault(sid, []).extend(anchors)
+        used.setdefault(sid, [])
+        used[sid] = sorted(set(used[sid]) | set(anchors))
 
     flagged = []
     for sid, anchors in sorted(used.items()):

@@ -34,7 +34,16 @@ HANDOFF = {"B1": ROOT / "docs" / "handoff" / "03_batch_B1_handoff.md",
            "B2": ROOT / "docs" / "handoff" / "08_B2_final_anchors.md",
            "B3": ROOT / "docs" / "handoff" / "12_B3_final_anchors.md",
            "B4": ROOT / "docs" / "handoff" / "13_B4_anchor_candidates.md",
-           "B5": ROOT / "docs" / "handoff" / "18_B5_anchor_candidates.md"}
+           "B5": ROOT / "docs" / "handoff" / "18_B5_anchor_candidates.md",
+           "B6": ROOT / "docs" / "handoff" / "22_B6_anchor_candidates.md"}
+
+# B6: package 22's B table with package 24's rulings applied throughout —
+# the eight returned leaves, the three cluster resolutions, D-B6-01's 131
+# correction, and A-AM14-b's Surround re-ordering. 140 ships PENDING against
+# DR-AM10: its description says restore at initialisation while the object
+# its position fixes says store, and neither route may reconcile that.
+B6_ANCHORS = {"052": "4866100", "057": "4866117", "062": "4866124", "092": "4866251", "093": "4866254", "094": "4866256", "095": "4866257", "096": "4866259", "097": "4866260", "098": "4867602", "099": "4867601", "100": "4866264", "101": "4866261", "102": "4866266", "103": "4866267", "104": "4866268", "105": "4866271", "110": "4866295", "111": "4866296", "112": "4866297", "113": "4866298", "115": "4866300", "116": "4866301", "117": "4866304", "118": "4866305", "120": "4866310", "121": "4866311", "131": "4866466", "140": None, "161": "4866530", "170": "4866607", "171": "4866616", "172": "4866620", "173": "4866629", "248": "4867484", "249": "4867486", "250": "4867487", "251": "4867507", "252": "4867508", "253": "4867510", "254": "4867517", "255": "4867518", "258": "4867577", "261": "4867581", "265": "4866263", "267": "4867639", "268": "4867647", "269": "4867641", "270": "4867643", "271": "4867648"}
+B6_SET = {"052": "Power and Persistence", "057": "Power and Persistence", "062": "Power and Persistence", "092": "Surround and Fade", "093": "Surround and Fade", "094": "Surround and Fade", "095": "Surround and Fade", "096": "Surround and Fade", "097": "Surround and Fade", "098": "Surround and Fade", "099": "Surround and Fade", "100": "Surround and Fade", "101": "Surround and Fade", "102": "Surround and Fade", "103": "Surround and Fade", "104": "Surround and Fade", "105": "Surround and Fade", "110": "Surround and Fade", "111": "Surround and Fade", "112": "Surround and Fade", "113": "Surround and Fade", "115": "Surround and Fade", "116": "Surround and Fade", "117": "Surround and Fade", "118": "Surround and Fade", "120": "Surround and Fade", "121": "Surround and Fade", "131": "Power and Persistence", "140": "Power and Persistence", "161": "Power and Persistence", "170": "Power and Persistence", "171": "Power and Persistence", "172": "Power and Persistence", "173": "Power and Persistence", "248": "Audio Processing", "249": "Audio Processing", "250": "Audio Processing", "251": "Audio Processing", "252": "Audio Processing", "253": "Audio Processing", "254": "Audio Processing", "255": "Audio Processing", "258": "Audio Processing", "261": "Audio Processing", "265": "Audio Processing", "267": "Audio Processing", "268": "Audio Processing", "269": "Audio Processing", "270": "Audio Processing", "271": "Audio Processing"}
 
 # B5: package 18's A and B tables, with package 20's rulings applied. 293 is
 # held — package 20 section 2.3 authorised writing it only if route 2 found
@@ -162,6 +171,13 @@ def parse_handoff(batch: str) -> list[dict]:
                  "anchors": [m.group(5)], "coverage": "完整",
                  "anchor_note": m.group(6)}
                 for m in ROW_RE.finditer(text)]
+
+    if batch == "B6":
+        return [{"swe_id": f"SWE1_AMM_{k}", "anchors": [v] if v else [],
+                 "anchor_in_pool_ruled": None,
+                 "coverage": "完整" if v else "PENDING: DR-AM10",
+                 "test_set": B6_SET[k]}
+                for k, v in sorted(B6_ANCHORS.items())]
 
     if batch in ("B4", "B5"):
         held = B4_HELD if batch == "B4" else B5_HELD
