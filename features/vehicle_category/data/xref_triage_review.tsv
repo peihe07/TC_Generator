@@ -184,7 +184,6 @@ section	10.1	DATA_REQUESTS.md	147	| **正解** | 本欄（T17）| §10.1／10.2 
 section	10.1	data/tableB_draft.md	42	| 8 | §10.1 | Aux Switch | **逐字引錄**（`/` 為換行，不摘要、不省略）：`The flow of pressing the Aux settings from Controls /  (image: image9.png)  /  (image: image10.png)  / Refer to the HMI Settings list for settings location.  / All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously / Graphics are visual aids only. Please see PDO release for official graphics`| 037 未涵蓋，本次不產出 TC | — |
 section	10.1	data/tableB_draft.md	62	原措辭「該節內容僅存於圖，SYS1 匯出未帶文字」**於 §10.1／§10.2 實測不成立**
 section	10.2	RULINGS.md	419	> 作廢之事實：`§10.1`／`§10.2` 之 SYS1 `Description` **有文字**，
-section	10.2	RULINGS.md	470	IN §10.2 之 P0 類目含 `data-loss risk`。該款於「使用者資料之清除」
 section	10.2	RULINGS.md	959	**未讀 SYS1 之對應儲存格**；實測 §10.1／§10.2 之 SYS1 `Description`
 section	10.2	RULINGS.md	970	§10.2     不摘要、不省略（同 R-VC12 二(c) 對 §8.3 之作法）。
 section	10.2	RULINGS.md	979	**連帶**：DR-VC6 之問法須調整 —— 其原問「§15／§10.1／§10.2 之內容
@@ -196,10 +195,6 @@ section	10.2	DATA_REQUESTS.md	103	僅存於圖，請提供文字版本」——*
 section	10.2	DATA_REQUESTS.md	114	**(二) §10.1／§10.2 之圖內容** —— 該二節之**文字部分已有，不需索取**。
 section	10.2	data/tableB_draft.md	43	| 9 | §10.2 | Aux Switch | **逐字引錄**（`/` 為換行，不摘要、不省略）：`The flow of pressing the Aux settings from Apps /  (image: image11.png)  /  (image: image12.png)  / Refer to the HMI Settings list for settings location.  / All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously / Graphics are visual aids only. Please see PDO release for official graphics`| 037 未涵蓋，本次不產出 TC | — |
 section	10.2	data/tableB_draft.md	62	原措辭「該節內容僅存於圖，SYS1 匯出未帶文字」**於 §10.1／§10.2 實測不成立**
-section	11	RULINGS.md	688	改為「驗證其來源」（IN §11 例外末句之明文）。
-section	11	RULINGS.md	692	依據：IN §11 之例外其啟動條件為「when the feature profile says so」。
-section	11	docs/REVISIONS.md	260	profile §11（`split_flag` 恆 `False` 無檢查）之家族：
-section	11	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	29	IN §11 之例外其啟動條件為「**when the feature profile says so**」。
 section	11.9	DATA_REQUESTS.md	64	- **內容**：規格 §8.1–8.5、§9.1–9.2、§10.1–10.2、§11.9–11.9.3、§14.2、§15、
 section	11.9	data/tableB_draft.md	44	| 10 | §11.9 | Settings 通則邏輯 | General logic for setting with options | 037 未涵蓋，本次不產出 TC | ⚠ §11.9 群 |
 section	11.9	data/tableB_draft.md	45	| 11 | §11.9.1 | Settings 通則邏輯 | In a setting line with many options: - pressing on option currently not selected (no check selection in option) move the selection and change the option accordingly. - pressing on option already selected (with selection) do not perform action (maintain the option selection). | 037 未涵蓋，本次不產出 TC | ⚠ §11.9 群 |
@@ -237,72 +232,23 @@ section	16.2.1	data/tableB_draft.md	50	| 16 | §16.2.1 | Cabrio Widget | Convert
 section	16.2.2	DATA_REQUESTS.md	65	§16.1、§16.2.1、§16.2.2 共 **18 節**有實質需求內容而 037 無對應需求。
 section	16.2.2	data/tableB_draft.md	51	| 17 | §16.2.2 | Cabrio Widget | Wind draught deflector/backliight top operations: • Low up wind draught deflector: push and hold button B1 • Raise down wind draught deflector: push and hold button B2 | 037 未涵蓋，本次不產出 TC | ✅ Cabrio Widget |
 section	2	RULINGS.md	775	13. 該批之 `Test Set` 全筆一致，且與 `framework.md` §2 逐字相符
-section	2	ANOMALIES.md	1119	16 個 feature 之 `feature.yaml` 宣告與已交付工作簿實測（上繳包 28 §2）：
-section	2	ANOMALIES.md	1142	### 執行層之補充實測（上繳包 28 §2 之來源）
 section	2	framework.md	25	H 欄之值恆為 §2 表之八個名稱之一，無後綴、無章節號。
 section	2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	41	「驗證其來源」。**⚠ 現行 lint 無法實作本項，見 §2。**
 section	2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	135	<tab> 之值域：framework §2 所載之 Test Set 對應頁籤名
-section	2.1	ANOMALIES.md	697	簽出時之逐字一致是**已發生的事實**，記於上繳包 07 §2.1，
-section	2.1	ANOMALIES.md	863	## A-VC17 —— 037 之 leaf 中存在純交叉引用／表格題名者（新立，下放包 14 §2.1）
-section	2.1	DECISIONS.md	6	> 簽出時之逐字一致驗證見上繳包 07 §2.1（`diff -q` 無輸出）。
-section	2.1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	353	### 9.1 二類（下放包 20 §2.1，逐字）
-section	2.2	ANOMALIES.md	479	| 四 · **改寫跨越 leaf 邊界** | Title 之敘述涵蓋**他 leaf 所擁有之行為** | `025-02`（Title 之 `Aux 1, Aux 2` 屬 `-03` 之 Description）| 下放包 19 §2.2 |
-section	2.2	ANOMALIES.md	543	| 四 · **改寫跨越 leaf 邊界** | Title 之敘述涵蓋**他 leaf 所擁有之行為** | `025-02`（Title 之 `Aux 1, Aux 2` 屬 `-03` 之 Description）| 下放包 19 §2.2 |
-section	2.2	ANOMALIES.md	888	| `VC-012-03` | 2.6.2 | `continuing with additional features below the banners (refer to PDO Graphics)` | **推翻** —— 去掉引用片語後殘餘為 `continuing with additional features below the banners`，**有可測內容**。其問題為句子片段（下放包 14 §2.2），非純交叉引用 |
-section	2.2	data/tableB_draft.md	72	5. **§11.9 群為執行層補列之第四處待 DR-VC3**（下放包 27 §2.2 只列三處）——
-section	2.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	363	### 9.2 第三處置類 `resolved-by-structure`（下放包 23 §2.2，逐字）
-section	2.3	ANOMALIES.md	779	## A-VC15 —— `lint036.py --profile` 不讀 profile 內容（新立，包 11 §2.3 第 3 項）
 section	2.3	ANOMALIES.md	903	故未被列為候選 —— **漏掉了分析層 §2.3(a) 已點名的其中一筆**。
 section	2.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	8	- **本檔只寫當前需要者，不預先設計未來條款**（R-VC19 §2.3）——
 section	2.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	105	下列各項**刻意未寫入**，因其現無需要（R-VC19 §2.3）：
-section	3	RULINGS.md	124	（模式為查得，非構造）。`spec_mode` 之字母由執行層依 FO §3 實測後填入，
 section	3	ANOMALIES.md	611	覆蓋文字見 `docs/upstream/05_partN.md` §3 之送簽稿 §4。
-section	3	ANOMALIES.md	810	本輪結果：6 token / 0 未對上來源（上繳包 11 §3）。
 section	3	DATA_REQUESTS.md	232	- SYS1 **§3 僅為章標題**（逐字 `Controls`），**其下無任何表**；
-section	3	DECISIONS.md	17	（FO §3 實測：SYS1 export 齊備、outline map 可建、037 之 66 個
-section	3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	84	`Title`／`Description`，結果見上繳包 11 §3。該比對**不在 lint 之內**，
-section	3.1	RULINGS.md	929	> **適用說明（下放包 26 §3.1，T138；原文不改，R-TM13）**
-section	3.1	DATA_REQUESTS.md	227	§3.1 之 Description 逐字為
-section	3.3	RULINGS.md	168	下放包 01 §3.3 所記「第 10–18 欄全 145 列皆為 `\xa0`，無內容」為分析層
-section	3.3	ANOMALIES.md	159	## A-VC5 —— 下放包 01 §3.3 之量測對象與 repo 內複本不一致 —— **RESOLVED（包 02 §一）**
-section	3.3	ANOMALIES.md	164	2. 內容不一致：§3.3 記第 10–18 欄「全 145 列皆為 `\xa0`，無內容」；
-section	3.3	ANOMALIES.md	177	(b) §3.3 之量測方法在該九欄上判讀有誤（例如以 `data_only=False`
-section	3.3	ANOMALIES.md	191	本項曾列二種可能：(a) 附件傳遞失值；(b) §3.3 之量測方法判讀有誤。
-section	3.3	ANOMALIES.md	201	§3.3 之「全 145 列皆為 `\xa0`」係自表頭附近之局部觀察推廣為全稱斷言，
-section	3.3	ANOMALIES.md	220	其比對基準（下放包 01 §3.3）已作廢，實測值即為正解，無待調和之差異。
-section	3.3	ANOMALIES.md	1112	## A-VC21 —— TC ID 之 `{project}` 前綴，全域三種並存（新立，下放包 29 §3.3）
-section	3.3	ANOMALIES.md	1114	**逐字（下放包 29 §3.3）**：
-section	3.3	docs/REVISIONS.md	9	## REV-01 —— 下放包 01 §3.3「第 10–18 欄全為 `\xa0`」作廢
 section	4	ANOMALIES.md	611	覆蓋文字見 `docs/upstream/05_partN.md` §3 之送簽稿 §4。
 section	4	ANOMALIES.md	700	**本體（§1–§8）逐字未動** —— 已以 diff 驗證，含 §4 之
 section	4	DECISIONS.md	9	Markers per FEATURE_ONBOARDING §4；未簽之表阻斷 Phase 4+。
-section	4	DECISIONS.md	102	無 leaf 落於二組或零組（上繳包 05 §4）
 section	4.2	RULINGS.md	91	逐節列出 §4.2(b) 之 18 個「有實質規格內容而 037 無對應需求」之章節，
-section	4.2	RULINGS.md	201	連帶拘束：下放包 01 §4.2(b) 之 18 節「規格內容摘要」欄係讀該衍生 PDF
 section	4.2	RULINGS.md	368	R-VC12（§4.2 分類之修訂；圖內內容之處置）
 section	4.2	RULINGS.md	375	其為**交叉引用**，非該節自身之實質需求內容，與 §4.2(a) 之
-section	4.2	RULINGS.md	388	**二、下放包 01 §4.2(b) 之摘要文字，就下列各節作廢。**
 section	4.2	ANOMALIES.md	299	判讀（尤其 §4.2(b) 之 18 節摘要、§4.4 之題材判讀）之來源即非本 PDF，
 section	4.2	ANOMALIES.md	301	(b) 在此之前，**§4.2(b) 之 18 節「規格內容摘要」不得引為事實**；
-section	4.2	ANOMALIES.md	313	連帶拘束（R-VC7 末段）：下放包 01 §4.2(b) 之 18 節「規格內容摘要」
-section	4.2	ANOMALIES.md	856	二項皆已**以反向輸入實測會 FAIL**（上繳包 12 §4.2），非僅文件宣稱。
-section	4.2	DATA_REQUESTS.md	70	重驗**（結果見上繳包 02 §7）。下放包 01 §4.2(b) 之原摘要係讀 Project 附件
-section	4.2	DATA_REQUESTS.md	153	- **不得引述**：下放包 01 §4.2(b) 對該三節之摘要文字已由 R-VC12 二作廢，
-section	4.2	docs/REVISIONS.md	72	## REV-07 —— 下放包 01 §4.2(b) 之摘要文字，三節作廢
 section	4.2	framework.md	122	八個名稱皆為 §4.2 所要之英文名詞片語、無 Test Group 前綴、無動作標籤。
-section	4.2	data/tableB_draft.md	7	> （SHA256 `1fcc8711…b091d6`）—— **不引用下放包 01 §4.2(b) 之摘要**
-section	4.2	data/tableB_draft.md	57	1. **§8.3** 於下放包 01 §4.2(b) 之摘要中漏列，本表依 R-VC12 二(c) 補入，
-section	4.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	290	下放包 26 §4.2 追認，並自認該表列為「套了一個未經檢視的預設」。
-section	4.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	458	**此定義使既有量測自近似值升為正式值**：上繳包 22 §4.2 之
-section	6	RULINGS.md	722	換取另一欄之值則只是換一個爭議值（上繳包 10 §6(a) 已指出）。
-section	6	RULINGS.md	860	判別須人工，無機械替代（上繳包 19 §6：字面比對之候選 6 中 5 為
-section	6	docs/REVISIONS.md	226	- **正解**：本組於**七筆既有 DR** 之下無波及（執行層上繳包 08 §6 已覆核
-section	6	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	110	- 其他 Pre-Condition 措辭之常數（§6 現僅二則，只登記已實際使用者）
-section	7	DATA_REQUESTS.md	70	重驗**（結果見上繳包 02 §7）。下放包 01 §4.2(b) 之原摘要係讀 Project 附件
-section	7	docs/REVISIONS.md	167	## REV-12 —— 上繳包 01 §7 之「66 恰等於 66」：同母體，但當時未比成員
-section	7	docs/REVISIONS.md	170	- **原文**（`docs/upstream/01_intake_recon.md` §7 T4 專項）：
-section	7.1	DATA_REQUESTS.md	184	- **內容**：`SWE1-HMI-VC-033-01`（§7.1）之鎖定門檻，二欄相差一次：
-section	7.1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	342	且依 PLAYBOOK §7.1 雙向實測。記明以免誤以為已受保護。
 section	8.1	DATA_REQUESTS.md	64	- **內容**：規格 §8.1–8.5、§9.1–9.2、§10.1–10.2、§11.9–11.9.3、§14.2、§15、
 section	8.1	data/tableB_draft.md	35	| 1 | §8.1 | Cabrio 車頂開闔 | Convertible top operations: • Open rooftop operation: operation for start and complete rooftop opening (when is closed), for start operation push and hold (for entire operation) button A1 When rooftop in moving present graphic popup (3D render animation) • Close rooftop operation: operation for … | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |
 section	8.3	RULINGS.md	402	(c) §8.3 為**摘要漏列**而非錯誤（權威素材另載
@@ -313,8 +259,6 @@ section	8.3	data/tableB_draft.md	37	| 3 | §8.3 | Cabrio 車頂開闔 | A graphi
 section	8.3	data/tableB_draft.md	57	1. **§8.3** 於下放包 01 §4.2(b) 之摘要中漏列，本表依 R-VC12 二(c) 補入，
 section	8.4	DATA_REQUESTS.md	82	- **內容**：規格 §8.4 之 Cabrio 前提條件引 **VF507**、§14 之 EPB 逾時引
 section	8.4	data/tableB_draft.md	38	| 4 | §8.4 | Cabrio 車頂開闔 | Convertible top opera ions are available with this conditions: • Car speed below 50 kmlh (see VF507 for official reference) • The A 1 / A2 button has to be pressed and hold until movement is completed, that will last up to 15s (see VF507 for reference) • For all the preconditions and fall status … | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |
-section	8.4.3	DATA_REQUESTS.md	43	`PENDING: DR-VC1 Privacy Lock popup ID`（IN §8.4.3），不得留空、不得填 NA。
-section	8.4.3	docs/REVISIONS.md	225	- **原文**：本組無 `PENDING: DR-{n}` 之佔位需求（IN §8.4.3）。
 section	9.1	DATA_REQUESTS.md	64	- **內容**：規格 §8.1–8.5、§9.1–9.2、§10.1–10.2、§11.9–11.9.3、§14.2、§15、
 section	9.1	data/tableB_draft.md	40	| 6 | §9.1 | Cabrio 擋風板 | Wind draught deflector/backlight top operations: • Low up wind draught deflector: push and hold button B1 • Raise down wind draught deflector: push and hold button B2  (image: image8.png) | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |
 section	9.2	data/tableB_draft.md	41	| 7 | §9.2 | Cabrio 擋風板 | If user release the button when wind draught deflector during moving (up/down), the window will stop to the user desiderate position. The roof controls are greyed if the system detect a fail (service required) | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |

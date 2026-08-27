@@ -71,7 +71,6 @@ section	10.1	DATA_REQUESTS.md	147	| **正解** | 本欄（T17）| §10.1／10.2 
 section	10.1	data/tableB_draft.md	42	| 8 | §10.1 | Aux Switch | **逐字引錄**（`/` 為換行，不摘要、不省略）：`The flow of pressing the Aux settings from Controls /  (image: image9.png)  /  (image: image10.png)  / Refer to the HMI Settings list for settings location.  / All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously / Graphics are visual aids only. Please see PDO release for official graphics`| 037 未涵蓋，本次不產出 TC | — |	yes		2
 section	10.1	data/tableB_draft.md	62	原措辭「該節內容僅存於圖，SYS1 匯出未帶文字」**於 §10.1／§10.2 實測不成立**	yes		2
 section	10.2	RULINGS.md	419	> 作廢之事實：`§10.1`／`§10.2` 之 SYS1 `Description` **有文字**，		yes	1
-section	10.2	RULINGS.md	470	IN §10.2 之 P0 類目含 `data-loss risk`。該款於「使用者資料之清除」		yes	1
 section	10.2	RULINGS.md	959	**未讀 SYS1 之對應儲存格**；實測 §10.1／§10.2 之 SYS1 `Description`			1
 section	10.2	RULINGS.md	970	§10.2     不摘要、不省略（同 R-VC12 二(c) 對 §8.3 之作法）。			1
 section	10.2	RULINGS.md	979	**連帶**：DR-VC6 之問法須調整 —— 其原問「§15／§10.1／§10.2 之內容			1
@@ -102,46 +101,15 @@ section	16.2.1	data/tableB_draft.md	50	| 16 | §16.2.1 | Cabrio Widget | Convert
 section	16.2.2	DATA_REQUESTS.md	65	§16.1、§16.2.1、§16.2.2 共 **18 節**有實質需求內容而 037 無對應需求。	yes	yes	0
 section	16.2.2	data/tableB_draft.md	51	| 17 | §16.2.2 | Cabrio Widget | Wind draught deflector/backliight top operations: • Low up wind draught deflector: push and hold button B1 • Raise down wind draught deflector: push and hold button B2 | 037 未涵蓋，本次不產出 TC | ✅ Cabrio Widget |	yes		0
 section	2	RULINGS.md	775	13. 該批之 `Test Set` 全筆一致，且與 `framework.md` §2 逐字相符			0
-section	2	ANOMALIES.md	1119	16 個 feature 之 `feature.yaml` 宣告與已交付工作簿實測（上繳包 28 §2）：			0
-section	2	ANOMALIES.md	1142	### 執行層之補充實測（上繳包 28 §2 之來源）			0
 section	2	framework.md	25	H 欄之值恆為 §2 表之八個名稱之一，無後綴、無章節號。	yes		0
 section	2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	41	「驗證其來源」。**⚠ 現行 lint 無法實作本項，見 §2。**	yes		0
 section	2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	135	<tab> 之值域：framework §2 所載之 Test Set 對應頁籤名		yes	0
-section	3.3	RULINGS.md	168	下放包 01 §3.3 所記「第 10–18 欄全 145 列皆為 `\xa0`，無內容」為分析層	yes		3
-section	3.3	ANOMALIES.md	159	## A-VC5 —— 下放包 01 §3.3 之量測對象與 repo 內複本不一致 —— **RESOLVED（包 02 §一）**			3
-section	3.3	ANOMALIES.md	164	2. 內容不一致：§3.3 記第 10–18 欄「全 145 列皆為 `\xa0`，無內容」；	yes		3
-section	3.3	ANOMALIES.md	177	(b) §3.3 之量測方法在該九欄上判讀有誤（例如以 `data_only=False`		yes	3
-section	3.3	ANOMALIES.md	191	本項曾列二種可能：(a) 附件傳遞失值；(b) §3.3 之量測方法判讀有誤。		yes	3
-section	3.3	ANOMALIES.md	201	§3.3 之「全 145 列皆為 `\xa0`」係自表頭附近之局部觀察推廣為全稱斷言，			3
-section	3.3	ANOMALIES.md	220	其比對基準（下放包 01 §3.3）已作廢，實測值即為正解，無待調和之差異。	yes	yes	3
-section	3.3	ANOMALIES.md	1112	## A-VC21 —— TC ID 之 `{project}` 前綴，全域三種並存（新立，下放包 29 §3.3）			3
-section	3.3	ANOMALIES.md	1114	**逐字（下放包 29 §3.3）**：			3
-section	3.3	docs/REVISIONS.md	9	## REV-01 —— 下放包 01 §3.3「第 10–18 欄全為 `\xa0`」作廢			3
-section	4	ANOMALIES.md	611	覆蓋文字見 `docs/upstream/05_partN.md` §3 之送簽稿 §4。			0
-section	4	ANOMALIES.md	700	**本體（§1–§8）逐字未動** —— 已以 diff 驗證，含 §4 之		yes	0
-section	4	DECISIONS.md	9	Markers per FEATURE_ONBOARDING §4；未簽之表阻斷 Phase 4+。			0
-section	4	DECISIONS.md	102	無 leaf 落於二組或零組（上繳包 05 §4）	yes		0
-section	4.2	RULINGS.md	91	逐節列出 §4.2(b) 之 18 個「有實質規格內容而 037 無對應需求」之章節，	yes	yes	4
-section	4.2	RULINGS.md	201	連帶拘束：下放包 01 §4.2(b) 之 18 節「規格內容摘要」欄係讀該衍生 PDF			4
-section	4.2	RULINGS.md	368	R-VC12（§4.2 分類之修訂；圖內內容之處置）			4
-section	4.2	RULINGS.md	375	其為**交叉引用**，非該節自身之實質需求內容，與 §4.2(a) 之			4
-section	4.2	RULINGS.md	388	**二、下放包 01 §4.2(b) 之摘要文字，就下列各節作廢。**			4
-section	4.2	ANOMALIES.md	299	判讀（尤其 §4.2(b) 之 18 節摘要、§4.4 之題材判讀）之來源即非本 PDF，			4
-section	4.2	ANOMALIES.md	301	(b) 在此之前，**§4.2(b) 之 18 節「規格內容摘要」不得引為事實**；			4
-section	4.2	ANOMALIES.md	313	連帶拘束（R-VC7 末段）：下放包 01 §4.2(b) 之 18 節「規格內容摘要」			4
-section	4.2	ANOMALIES.md	856	二項皆已**以反向輸入實測會 FAIL**（上繳包 12 §4.2），非僅文件宣稱。			4
-section	4.2	DATA_REQUESTS.md	70	重驗**（結果見上繳包 02 §7）。下放包 01 §4.2(b) 之原摘要係讀 Project 附件			4
-section	4.2	DATA_REQUESTS.md	153	- **不得引述**：下放包 01 §4.2(b) 對該三節之摘要文字已由 R-VC12 二作廢，			4
-section	4.2	docs/REVISIONS.md	72	## REV-07 —— 下放包 01 §4.2(b) 之摘要文字，三節作廢			4
-section	4.2	framework.md	122	八個名稱皆為 §4.2 所要之英文名詞片語、無 Test Group 前綴、無動作標籤。	yes		4
-section	4.2	data/tableB_draft.md	7	> （SHA256 `1fcc8711…b091d6`）—— **不引用下放包 01 §4.2(b) 之摘要**			4
-section	4.2	data/tableB_draft.md	57	1. **§8.3** 於下放包 01 §4.2(b) 之摘要中漏列，本表依 R-VC12 二(c) 補入，			4
-section	4.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	290	下放包 26 §4.2 追認，並自認該表列為「套了一個未經檢視的預設」。			4
-section	4.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	458	**此定義使既有量測自近似值升為正式值**：上繳包 22 §4.2 之		yes	4
-section	6	RULINGS.md	722	換取另一欄之值則只是換一個爭議值（上繳包 10 §6(a) 已指出）。			1
-section	6	RULINGS.md	860	判別須人工，無機械替代（上繳包 19 §6：字面比對之候選 6 中 5 為	yes		1
-section	6	docs/REVISIONS.md	226	- **正解**：本組於**七筆既有 DR** 之下無波及（執行層上繳包 08 §6 已覆核	yes	yes	1
-section	6	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	110	- 其他 Pre-Condition 措辭之常數（§6 現僅二則，只登記已實際使用者）			1
+section	4.2	RULINGS.md	91	逐節列出 §4.2(b) 之 18 個「有實質規格內容而 037 無對應需求」之章節，	yes	yes	1
+section	4.2	RULINGS.md	368	R-VC12（§4.2 分類之修訂；圖內內容之處置）			1
+section	4.2	RULINGS.md	375	其為**交叉引用**，非該節自身之實質需求內容，與 §4.2(a) 之			1
+section	4.2	ANOMALIES.md	299	判讀（尤其 §4.2(b) 之 18 節摘要、§4.4 之題材判讀）之來源即非本 PDF，			1
+section	4.2	ANOMALIES.md	301	(b) 在此之前，**§4.2(b) 之 18 節「規格內容摘要」不得引為事實**；			1
+section	4.2	framework.md	122	八個名稱皆為 §4.2 所要之英文名詞片語、無 Test Group 前綴、無動作標籤。	yes		1
 section	8.3	RULINGS.md	402	(c) §8.3 為**摘要漏列**而非錯誤（權威素材另載		yes	0
 section	8.3	RULINGS.md	970	§10.2     不摘要、不省略（同 R-VC12 二(c) 對 §8.3 之作法）。			0
 section	8.3	ANOMALIES.md	1069	- 於表 B 該三列**並列實測逐字** —— 引用非摘要，同 R-VC12 二(c) 對 §8.3 之作法。			0
