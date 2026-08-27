@@ -1,14 +1,19 @@
-# ANCHOR_POOL — CFTS_57 Reflash 錨點池結構驗證（T10）
+# ANCHOR_POOL — CFTS_57 Reflash 錨點池結構驗證（T10／T12）
 
-依 R-SU4 v2 (a2)（`RULINGS.md`）：裸 7 位數之 regex 命中**不逕入池**，
+依 R-SU4 v2 (a2) 與 R-SU7（`RULINGS.md`）：裸 7 位數之 regex 命中**不逕入池**，
 須逐一以其在 `word/document.xml` 之結構脈絡驗證後分類。本檔為該驗證之全記錄。
 
 - 素材：`inputs/R1LR_Atl-H_25PI4.5 Dec Release-xOTA_CFTS_57 Reflash_20251202-2111.docx`
   sha256 `9aa9400b3c97bfd893d13a4ba583c402e39ef415f5c517bcc4a0c9fe47336fb6`（133,530 B，真 OOXML）
 - 方法：以 `<w:p>` 為段落單位切分（1,742 段），取 `w:pStyle` 為結構判準。
   heading style `1`–`4` 之 `{7位}` 為章節物件；TOC style `10`–`40` 為其鏡像，
-  **不獨立入池**（否則每章重複計數）；其餘段落之 7 位數依其右鄰之
-  `: [Artifact Type:…]` 宣告或左鄰文句歸類。
+  **不獨立入池**（否則每章重複計數）；其餘 7 位數依其右鄰之
+  `: [Artifact Type:…]` 宣告歸類，無宣告者依左鄰文句歸「不可歸類」。
+- **宣告優先於文序**（下放包 03 T12 之修正）：凡文件中任一處帶
+  `[Artifact Type:…]` 宣告之 id，一律以該宣告定其類，不論其是否先以
+  內文引用形態出現。初版（上繳包 01 T10）採「首見為準」，
+  致 `4907923`、`4907934` 二者因先以 `Requirement ID {id}` 之內文形態
+  出現而誤歸「不可歸類」。本檔為修正後之數，詳見 §七。
 - **只分類不對應** —— 037 列與錨點之對應屬 Phase 2/3（R-SU4 v2 末段）。
 - 偽陽性風險揭露（R-G8）：`w:pStyle` 為版面屬性，理論上可被手動套用而與語意脫節；
   已以「每個章節物件皆在 TOC 有對應 PAGEREF 項」交叉驗證（87 = 87）。
@@ -18,13 +23,14 @@
 | 類型 | unique id | 入池 |
 |---|---:|---|
 | 章節物件 | 87 | ✅ 入池 |
-| 需求物件 | 478 | ✅ 入池 |
-| Description 物件 | 135 | ❌ 排除 |
-| 不可歸類 | 21 | ❌ 排除 |
-| **合計** | **721** | 入池 565 |
+| 需求物件 | 487 | ✅ 入池 |
+| Description 物件 | 137 | ❌ 排除 |
+| 不可歸類 | 10 | ❌ 排除 |
+| **合計** | **721** | 入池 **574** |
 
-錨點池 = **565 個**（章節物件 87 + 需求物件 478）。
+錨點池 = **574 個**（章節物件 87 + 需求物件 487）。
 TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節物件 ID（R-SU4 v2 (a2)）。
+Description 物件依 R-SU7 **不入池**，其對照見 §六。
 
 
 ## 二、章節物件（87）
@@ -119,11 +125,12 @@ TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節�
 | `4907935` | 10.4 Post-Installation | heading style 2：`10.4 Post-Installation {4907935}` |
 | `4907938` | 10.5 Security (Hopefully remove and reference to Rej | heading style 2：`10.5 Security (Hopefully remove and reference to Rejani/Ansaf spec) {4907938}` |
 
-## 三、需求物件（478）
+## 三、需求物件（487）
 
 | ObjectID | 所屬章節 | 驗證脈絡 |
 |---|---|---|
 | `4907243` | 2 Common Reflash Requirements | `4907243: [Artifact Type:Subsystem Functional Requirement]` 於「2 Common Reflash Requirements」下 |
+| `4907244` | 1.1 Revision Notes | `4907244: [Artifact Type:Subsystem Functional Requirement]` 於「1.1 Revision Notes」下 |
 | `4907245` | 2 Common Reflash Requirements | `4907245: [Artifact Type:Subsystem Functional Requirement]` 於「2 Common Reflash Requirements」下 |
 | `4907246` | 2 Common Reflash Requirements | `4907246: [Artifact Type:Subsystem Functional Requirement]` 於「2 Common Reflash Requirements」下 |
 | `4907247` | 2 Common Reflash Requirements | `4907247: [Artifact Type:Subsystem Functional Requirement]` 於「2 Common Reflash Requirements」下 |
@@ -226,6 +233,7 @@ TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節�
 | `4907393` | 4.5.5 Bus communications | `4907393: [Artifact Type:Subsystem Functional Requirement]` 於「4.5.5 Bus communications」下 |
 | `4907394` | 4.5.5 Bus communications | `4907394: [Artifact Type:Subsystem Functional Requirement]` 於「4.5.5 Bus communications」下 |
 | `4907396` | 4.6 OTA download via Wi-Fi | `4907396: [Artifact Type:Subsystem Functional Requirement]` 於「4.6 OTA download via Wi-Fi」下 |
+| `4907397` | 1.1 Revision Notes | `4907397: [Artifact Type:Subsystem Functional Requirement]` 於「1.1 Revision Notes」下 |
 | `4907398` | 4.6 OTA download via Wi-Fi | `4907398: [Artifact Type:Subsystem Functional Requirement]` 於「4.6 OTA download via Wi-Fi」下 |
 | `4907399` | 4.6 OTA download via Wi-Fi | `4907399: [Artifact Type:Subsystem Functional Requirement]` 於「4.6 OTA download via Wi-Fi」下 |
 | `4907400` | 4.6 OTA download via Wi-Fi | `4907400: [Artifact Type:Subsystem Functional Requirement]` 於「4.6 OTA download via Wi-Fi」下 |
@@ -524,6 +532,7 @@ TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節�
 | `4907812` | 6 TBM Algorithm Requirements | `4907812: [Artifact Type:Subsystem Functional Requirement]` 於「6 TBM Algorithm Requirements」下 |
 | `4907813` | 6 TBM Algorithm Requirements | `4907813: [Artifact Type:Subsystem Functional Requirement]` 於「6 TBM Algorithm Requirements」下 |
 | `4907814` | 6 TBM Algorithm Requirements | `4907814: [Artifact Type:Subsystem Functional Requirement]` 於「6 TBM Algorithm Requirements」下 |
+| `4907816` | 1.1 Revision Notes | `4907816: [Artifact Type:Subsystem Functional Requirement]` 於「1.1 Revision Notes」下 |
 | `4907817` | 7 Firmware Over-the-air Updates (FOTA) | `4907817: [Artifact Type:Subsystem Functional Requirement]` 於「7 Firmware Over-the-air Updates (FOTA)」下 |
 | `4907818` | 7 Firmware Over-the-air Updates (FOTA) | `4907818: [Artifact Type:Subsystem Functional Requirement]` 於「7 Firmware Over-the-air Updates (FOTA)」下 |
 | `4907819` | 7 Firmware Over-the-air Updates (FOTA) | `4907819: [Artifact Type:Subsystem Functional Requirement]` 於「7 Firmware Over-the-air Updates (FOTA)」下 |
@@ -536,9 +545,12 @@ TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節�
 | `4907827` | 7.1 Critical Updates | `4907827: [Artifact Type:Subsystem Functional Requirement]` 於「7.1 Critical Updates」下 |
 | `4907828` | 7.1 Critical Updates | `4907828: [Artifact Type:Subsystem Functional Requirement]` 於「7.1 Critical Updates」下 |
 | `4907829` | 7.1 Critical Updates | `4907829: [Artifact Type:Subsystem Functional Requirement]` 於「7.1 Critical Updates」下 |
+| `4907830` | 1.1 Revision Notes | `4907830: [Artifact Type:Subsystem Functional Requirement]` 於「1.1 Revision Notes」下 |
 | `4907831` | 7.1 Critical Updates | `4907831: [Artifact Type:Subsystem Functional Requirement]` 於「7.1 Critical Updates」下 |
+| `4907832` | 1.1 Revision Notes | `4907832: [Artifact Type:Subsystem Functional Requirement]` 於「1.1 Revision Notes」下 |
 | `4907837` | 8 Maps Over-the-air Updates (MOTA) | `4907837: [Artifact Type:Subsystem Functional Requirement]` 於「8 Maps Over-the-air Updates (MOTA)」下 |
 | `4907838` | 8 Maps Over-the-air Updates (MOTA) | `4907838: [Artifact Type:Subsystem Functional Requirement]` 於「8 Maps Over-the-air Updates (MOTA)」下 |
+| `4907839` | 1.1 Revision Notes | `4907839: [Artifact Type:Subsystem Functional Requirement]` 於「1.1 Revision Notes」下 |
 | `4907841` | 8.1 Non-Critical Updates | `4907841: [Artifact Type:Subsystem Functional Requirement]` 於「8.1 Non-Critical Updates」下 |
 | `4907842` | 8.1 Non-Critical Updates | `4907842: [Artifact Type:Subsystem Functional Requirement]` 於「8.1 Non-Critical Updates」下 |
 | `4907843` | 8.1 Non-Critical Updates | `4907843: [Artifact Type:Subsystem Functional Requirement]` 於「8.1 Non-Critical Updates」下 |
@@ -548,6 +560,8 @@ TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節�
 | `4907847` | 8.1 Non-Critical Updates | `4907847: [Artifact Type:Subsystem Functional Requirement]` 於「8.1 Non-Critical Updates」下 |
 | `4907848` | 8.1 Non-Critical Updates | `4907848: [Artifact Type:Subsystem Functional Requirement]` 於「8.1 Non-Critical Updates」下 |
 | `4907849` | 8.1 Non-Critical Updates | `4907849: [Artifact Type:Subsystem Functional Requirement]` 於「8.1 Non-Critical Updates」下 |
+| `4907850` | 1.1 Revision Notes | `4907850: [Artifact Type:Subsystem Functional Requirement]` 於「1.1 Revision Notes」下 |
+| `4907851` | 1.1 Revision Notes | `4907851: [Artifact Type:Subsystem Functional Requirement]` 於「1.1 Revision Notes」下 |
 | `4907852` | 8.1 Non-Critical Updates | `4907852: [Artifact Type:Subsystem Functional Requirement]` 於「8.1 Non-Critical Updates」下 |
 | `4907853` | 8.1 Non-Critical Updates | `4907853: [Artifact Type:Subsystem Functional Requirement]` 於「8.1 Non-Critical Updates」下 |
 | `4907854` | 8.1 Non-Critical Updates | `4907854: [Artifact Type:Subsystem Functional Requirement]` 於「8.1 Non-Critical Updates」下 |
@@ -595,6 +609,7 @@ TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節�
 | `4907903` | 9.2 Installation Progress | `4907903: [Artifact Type:Subsystem Functional Requirement]` 於「9.2 Installation Progress」下 |
 | `4907904` | 9.2 Installation Progress | `4907904: [Artifact Type:Subsystem Functional Requirement]` 於「9.2 Installation Progress」下 |
 | `4907906` | 9.3 Post-Installation | `4907906: [Artifact Type:Subsystem Functional Requirement]` 於「9.3 Post-Installation」下 |
+| `4907907` | 1.1 Revision Notes | `4907907: [Artifact Type:Subsystem Functional Requirement]` 於「1.1 Revision Notes」下 |
 | `4907908` | 9.3 Post-Installation | `4907908: [Artifact Type:Subsystem Functional Requirement]` 於「9.3 Post-Installation」下 |
 | `4907909` | 9.3 Post-Installation | `4907909: [Artifact Type:Subsystem Functional Requirement]` 於「9.3 Post-Installation」下 |
 | `4907910` | 9.3 Post-Installation | `4907910: [Artifact Type:Subsystem Functional Requirement]` 於「9.3 Post-Installation」下 |
@@ -602,7 +617,7 @@ TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節�
 | `4907914` | 9.4.1 Pre-Installation | `4907914: [Artifact Type:Subsystem Functional Requirement]` 於「9.4.1 Pre-Installation」下 |
 | `4907915` | 9.4.1 Pre-Installation | `4907915: [Artifact Type:Subsystem Functional Requirement]` 於「9.4.1 Pre-Installation」下 |
 
-## 四、Description 物件（135）
+## 四、Description 物件（137）
 
 | ObjectID | 所屬章節 | 驗證脈絡 |
 |---|---|---|
@@ -727,6 +742,7 @@ TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節�
 | `4907920` | 10.2 Wi-Fi | `4907920: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
 | `4907921` | 10.2 Wi-Fi | `4907921: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
 | `4907922` | 10.2 Wi-Fi | `4907922: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
+| `4907923` | 1.1 Revision Notes | `4907923: [Artifact Type:Description]` 於「1.1 Revision Notes」下 |
 | `4907924` | 10.2 Wi-Fi | `4907924: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
 | `4907925` | 10.2 Wi-Fi | `4907925: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
 | `4907926` | 10.2 Wi-Fi | `4907926: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
@@ -736,13 +752,14 @@ TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節�
 | `4907931` | 10.3 Installation | `4907931: [Artifact Type:Description]` 於「10.3 Installation」下 |
 | `4907932` | 10.3 Installation | `4907932: [Artifact Type:Description]` 於「10.3 Installation」下 |
 | `4907933` | 10.3 Installation | `4907933: [Artifact Type:Description]` 於「10.3 Installation」下 |
+| `4907934` | 1.1 Revision Notes | `4907934: [Artifact Type:Description]` 於「1.1 Revision Notes」下 |
 | `4907936` | 10.4 Post-Installation | `4907936: [Artifact Type:Description]` 於「10.4 Post-Installation」下 |
 | `4907937` | 10.4 Post-Installation | `4907937: [Artifact Type:Description]` 於「10.4 Post-Installation」下 |
 | `4907939` | 10.5 Security (Hopefully remove and reference to Rej | `4907939: [Artifact Type:Description]` 於「10.5 Security (Hopefully remove and reference to Rejani/Ansaf spec)」下 |
 | `4907940` | 10.5 Security (Hopefully remove and reference to Rej | `4907940: [Artifact Type:Description]` 於「10.5 Security (Hopefully remove and reference to Rejani/Ansaf spec)」下 |
 | `5423873` | 1.1 Revision Notes | `5423873: [Artifact Type:Description]` 於「1.1 Revision Notes」下 |
 
-## 五、不可歸類（21）
+## 五、不可歸類（10）
 
 | ObjectID | 所屬章節 | 驗證脈絡 |
 |---|---|---|
@@ -755,15 +772,207 @@ TC 錨定以需求物件 ID 為先；驗證對象為章節整體時方用章節�
 | `4615847` | 7 Firmware Over-the-air Updates (FOTA) | 圖檔名：`4615847- CFTSMV057_CIP_R1_O3579_92_inline.rtf` |
 | `4615848` | 4.3 High Level FOTA Diagram | 圖檔名：`4615848- CFTSMV057_CIP_R1_O3714_89_inline.rtf` |
 | `4762830` | 4.6 OTA download via Wi-Fi | 內文散見：`…rement Kindly see section ID4762830 : Wi-Fi Client Mode Connect…` |
-| `4907244` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907244… |
-| `4907397` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907397… |
-| `4907816` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907816… |
-| `4907830` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907830… |
-| `4907832` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907832… |
-| `4907839` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907839… |
-| `4907850` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907850… |
-| `4907851` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907851… |
-| `4907907` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907907… |
-| `4907923` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907923… |
-| `4907934` | 1.1 Revision Notes | 內文交叉引用：…Requirement ID 4907934… |
 | `4915105` | 9.3 Post-Installation | 內文交叉引用：…vior defined in Requirement ID 4915105… |
+
+
+## 六、Description 物件 → 所屬物件對照（T12，R-SU7 配套）
+
+R-SU7 裁定 Description 物件不入池；其內容被取用時錨落**所屬之需求／章節物件**。
+
+判定法：依文件序維持「當前章節物件」與「當前需求物件」兩游標；遇 heading
+style `1`–`4` 即更新章節游標並**清空需求游標**（跨章不繼承）。Description
+歸於同章節內其前方最近之需求物件；該章尚未出現需求物件者，歸該章節物件。
+
+偽陽性風險揭露（R-G8）：本法以**文件序鄰接**為依據，非 Polarion 之 parent
+欄位 —— 該欄未出現於本 docx 之任何 XML part（已查 `word/*.xml` 全部七份）。
+表格內之 Description 若其宿主需求排在表格之後會被誤歸前一需求；已以
+「跨章清空游標」限制誤差不越章。取用前仍應以下表「判定脈絡」欄覆核。
+
+| 統計 | 數 |
+|---|---:|
+| Description 物件總數 | 137 |
+| 歸需求物件 | 45 |
+| 歸章節物件 | 92 |
+| **不可解** | **0** |
+
+| Description ID | 所屬物件 | 上位型 | 所屬章節 | 判定脈絡 |
+|---|---|---|---|---|
+| `4907234` | `4907233` | 章節物件 | 1.2 Introduction | 章節「1.2 Introduction」下、該章第一個需求物件之前 |
+| `4907235` | `4907233` | 章節物件 | 1.2 Introduction | 章節「1.2 Introduction」下、該章第一個需求物件之前 |
+| `4907236` | `4907233` | 章節物件 | 1.2 Introduction | 章節「1.2 Introduction」下、該章第一個需求物件之前 |
+| `4907237` | `4907233` | 章節物件 | 1.2 Introduction | 章節「1.2 Introduction」下、該章第一個需求物件之前 |
+| `4907238` | `4907233` | 章節物件 | 1.2 Introduction | 章節「1.2 Introduction」下、該章第一個需求物件之前 |
+| `4907239` | `4907233` | 章節物件 | 1.2 Introduction | 章節「1.2 Introduction」下、該章第一個需求物件之前 |
+| `4907240` | `4907233` | 章節物件 | 1.2 Introduction | 章節「1.2 Introduction」下、該章第一個需求物件之前 |
+| `4907242` | `4907241` | 章節物件 | 2 Common Reflash Requirements | 章節「2 Common Reflash Requirements」下、該章第一個需求物件之前 |
+| `4907260` | `4907259` | 章節物件 | 3 Media Reflash Requirements | 章節「3 Media Reflash Requirements」下、該章第一個需求物件之前 |
+| `4907262` | `4907261` | 章節物件 | 4 FOTA Reflash Requirements | 章節「4 FOTA Reflash Requirements」下、該章第一個需求物件之前 |
+| `4907263` | `4907261` | 章節物件 | 4 FOTA Reflash Requirements | 章節「4 FOTA Reflash Requirements」下、該章第一個需求物件之前 |
+| `4907264` | `4907261` | 章節物件 | 4 FOTA Reflash Requirements | 章節「4 FOTA Reflash Requirements」下、該章第一個需求物件之前 |
+| `4907265` | `4907261` | 章節物件 | 4 FOTA Reflash Requirements | 章節「4 FOTA Reflash Requirements」下、該章第一個需求物件之前 |
+| `4907266` | `4907261` | 章節物件 | 4 FOTA Reflash Requirements | 章節「4 FOTA Reflash Requirements」下、該章第一個需求物件之前 |
+| `4907268` | `4907267` | 章節物件 | 4.1 This Document | 章節「4.1 This Document」下、該章第一個需求物件之前 |
+| `4907270` | `4907269` | 章節物件 | 4.1.1 Related Documents and Specifications | 章節「4.1.1 Related Documents and Specifications」下、該章第一個需求物件之前 |
+| `4907271` | `4907269` | 章節物件 | 4.1.1 Related Documents and Specifications | 章節「4.1.1 Related Documents and Specifications」下、該章第一個需求物件之前 |
+| `4907274` | `4907273` | 章節物件 | 4.2.1 Over The Air (OTA) Deployment of Softw | 章節「4.2.1 Over The Air (OTA) Deployment of Software」下、該章第一個需求物件之前 |
+| `4907276` | `4907275` | 章節物件 | 4.2.2 Local Deployment of Software | 章節「4.2.2 Local Deployment of Software」下、該章第一個需求物件之前 |
+| `4907283` | `4907282` | 章節物件 | 4.2.4 Software Configuration Reporting | 章節「4.2.4 Software Configuration Reporting」下、該章第一個需求物件之前 |
+| `4907285` | `4907284` | 章節物件 | 4.3 High Level FOTA Diagram | 章節「4.3 High Level FOTA Diagram」下、該章第一個需求物件之前 |
+| `4907286` | `4907284` | 章節物件 | 4.3 High Level FOTA Diagram | 章節「4.3 High Level FOTA Diagram」下、該章第一個需求物件之前 |
+| `4907288` | `4907287` | 章節物件 | 4.4 OTA Client Architecture | 章節「4.4 OTA Client Architecture」下、該章第一個需求物件之前 |
+| `4907289` | `4907287` | 章節物件 | 4.4 OTA Client Architecture | 章節「4.4 OTA Client Architecture」下、該章第一個需求物件之前 |
+| `4907290` | `4907287` | 章節物件 | 4.4 OTA Client Architecture | 章節「4.4 OTA Client Architecture」下、該章第一個需求物件之前 |
+| `4907318` | `4907317` | 需求物件 | 4.4.1 OTA Architecture Requirements | 同章節「4.4.1 OTA Architecture Requirements」內，緊接於需求物件 `4907317` 之後 |
+| `4907319` | `4907317` | 需求物件 | 4.4.1 OTA Architecture Requirements | 同章節「4.4.1 OTA Architecture Requirements」內，緊接於需求物件 `4907317` 之後 |
+| `4907324` | `4907323` | 需求物件 | 4.4.1 OTA Architecture Requirements | 同章節「4.4.1 OTA Architecture Requirements」內，緊接於需求物件 `4907323` 之後 |
+| `4907325` | `4907323` | 需求物件 | 4.4.1 OTA Architecture Requirements | 同章節「4.4.1 OTA Architecture Requirements」內，緊接於需求物件 `4907323` 之後 |
+| `4907356` | `4907355` | 需求物件 | 4.5.1 OTA Communication Protocols | 同章節「4.5.1 OTA Communication Protocols」內，緊接於需求物件 `4907355` 之後 |
+| `4907357` | `4907355` | 需求物件 | 4.5.1 OTA Communication Protocols | 同章節「4.5.1 OTA Communication Protocols」內，緊接於需求物件 `4907355` 之後 |
+| `4907363` | `4907362` | 章節物件 | 4.5.3 Vehicle initiated sessions | 章節「4.5.3 Vehicle initiated sessions」下、該章第一個需求物件之前 |
+| `4907383` | `4907382` | 章節物件 | 4.5.5 Bus communications | 章節「4.5.5 Bus communications」下、該章第一個需求物件之前 |
+| `4907384` | `4907382` | 章節物件 | 4.5.5 Bus communications | 章節「4.5.5 Bus communications」下、該章第一個需求物件之前 |
+| `4907390` | `4907389` | 需求物件 | 4.5.5 Bus communications | 同章節「4.5.5 Bus communications」內，緊接於需求物件 `4907389` 之後 |
+| `4907391` | `4907389` | 需求物件 | 4.5.5 Bus communications | 同章節「4.5.5 Bus communications」內，緊接於需求物件 `4907389` 之後 |
+| `4907445` | `4907444` | 需求物件 | 4.7.2 OTA client Flows | 同章節「4.7.2 OTA client Flows」內，緊接於需求物件 `4907444` 之後 |
+| `4907446` | `4907444` | 需求物件 | 4.7.2 OTA client Flows | 同章節「4.7.2 OTA client Flows」內，緊接於需求物件 `4907444` 之後 |
+| `4907511` | `4907510` | 需求物件 | 4.8.2 OMA-DM Security | 同章節「4.8.2 OMA-DM Security」內，緊接於需求物件 `4907510` 之後 |
+| `4907540` | `4907539` | 需求物件 | 4.9.1 Update Agent Requirements | 同章節「4.9.1 Update Agent Requirements」內，緊接於需求物件 `4907539` 之後 |
+| `4907541` | `4907539` | 需求物件 | 4.9.1 Update Agent Requirements | 同章節「4.9.1 Update Agent Requirements」內，緊接於需求物件 `4907539` 之後 |
+| `4907543` | `4907542` | 章節物件 | 4.9.2 ECU Module specific considerations | 章節「4.9.2 ECU Module specific considerations」下、該章第一個需求物件之前 |
+| `4907544` | `4907542` | 章節物件 | 4.9.2 ECU Module specific considerations | 章節「4.9.2 ECU Module specific considerations」下、該章第一個需求物件之前 |
+| `4907545` | `4907542` | 章節物件 | 4.9.2 ECU Module specific considerations | 章節「4.9.2 ECU Module specific considerations」下、該章第一個需求物件之前 |
+| `4907546` | `4907542` | 章節物件 | 4.9.2 ECU Module specific considerations | 章節「4.9.2 ECU Module specific considerations」下、該章第一個需求物件之前 |
+| `4907547` | `4907542` | 章節物件 | 4.9.2 ECU Module specific considerations | 章節「4.9.2 ECU Module specific considerations」下、該章第一個需求物件之前 |
+| `4907548` | `4907542` | 章節物件 | 4.9.2 ECU Module specific considerations | 章節「4.9.2 ECU Module specific considerations」下、該章第一個需求物件之前 |
+| `4907549` | `4907542` | 章節物件 | 4.9.2 ECU Module specific considerations | 章節「4.9.2 ECU Module specific considerations」下、該章第一個需求物件之前 |
+| `4907550` | `4907542` | 章節物件 | 4.9.2 ECU Module specific considerations | 章節「4.9.2 ECU Module specific considerations」下、該章第一個需求物件之前 |
+| `4907637` | `4907636` | 需求物件 | 4.10.5.1 Installation and Download Condition | 同章節「4.10.5.1 Installation and Download Conditions」內，緊接於需求物件 `4907636` 之後 |
+| `4907674` | `4907673` | 需求物件 | 4.12 Interrupt Handling | 同章節「4.12 Interrupt Handling」內，緊接於需求物件 `4907673` 之後 |
+| `4907675` | `4907673` | 需求物件 | 4.12 Interrupt Handling | 同章節「4.12 Interrupt Handling」內，緊接於需求物件 `4907673` 之後 |
+| `4907694` | `4907693` | 章節物件 | 4.13.1 SCOMO Support | 章節「4.13.1 SCOMO Support」下、該章第一個需求物件之前 |
+| `4907695` | `4907693` | 章節物件 | 4.13.1 SCOMO Support | 章節「4.13.1 SCOMO Support」下、該章第一個需求物件之前 |
+| `4907696` | `4907693` | 章節物件 | 4.13.1 SCOMO Support | 章節「4.13.1 SCOMO Support」下、該章第一個需求物件之前 |
+| `4907697` | `4907693` | 章節物件 | 4.13.1 SCOMO Support | 章節「4.13.1 SCOMO Support」下、該章第一個需求物件之前 |
+| `4907698` | `4907693` | 章節物件 | 4.13.1 SCOMO Support | 章節「4.13.1 SCOMO Support」下、該章第一個需求物件之前 |
+| `4907699` | `4907693` | 章節物件 | 4.13.1 SCOMO Support | 章節「4.13.1 SCOMO Support」下、該章第一個需求物件之前 |
+| `4907708` | `4907707` | 需求物件 | 4.13.1 SCOMO Support | 同章節「4.13.1 SCOMO Support」內，緊接於需求物件 `4907707` 之後 |
+| `4907709` | `4907707` | 需求物件 | 4.13.1 SCOMO Support | 同章節「4.13.1 SCOMO Support」內，緊接於需求物件 `4907707` 之後 |
+| `4907710` | `4907707` | 需求物件 | 4.13.1 SCOMO Support | 同章節「4.13.1 SCOMO Support」內，緊接於需求物件 `4907707` 之後 |
+| `4907712` | `4907711` | 章節物件 | 4.13.2 LAWMO Support | 章節「4.13.2 LAWMO Support」下、該章第一個需求物件之前 |
+| `4907713` | `4907711` | 章節物件 | 4.13.2 LAWMO Support | 章節「4.13.2 LAWMO Support」下、該章第一個需求物件之前 |
+| `4907714` | `4907711` | 章節物件 | 4.13.2 LAWMO Support | 章節「4.13.2 LAWMO Support」下、該章第一個需求物件之前 |
+| `4907715` | `4907711` | 章節物件 | 4.13.2 LAWMO Support | 章節「4.13.2 LAWMO Support」下、該章第一個需求物件之前 |
+| `4907716` | `4907711` | 章節物件 | 4.13.2 LAWMO Support | 章節「4.13.2 LAWMO Support」下、該章第一個需求物件之前 |
+| `4907717` | `4907711` | 章節物件 | 4.13.2 LAWMO Support | 章節「4.13.2 LAWMO Support」下、該章第一個需求物件之前 |
+| `4907718` | `4907711` | 章節物件 | 4.13.2 LAWMO Support | 章節「4.13.2 LAWMO Support」下、該章第一個需求物件之前 |
+| `4907719` | `4907711` | 章節物件 | 4.13.2 LAWMO Support | 章節「4.13.2 LAWMO Support」下、該章第一個需求物件之前 |
+| `4907720` | `4907711` | 章節物件 | 4.13.2 LAWMO Support | 章節「4.13.2 LAWMO Support」下、該章第一個需求物件之前 |
+| `4907722` | `4907721` | 章節物件 | 4.13.2.1 Lock | 章節「4.13.2.1 Lock」下、該章第一個需求物件之前 |
+| `4907723` | `4907721` | 章節物件 | 4.13.2.1 Lock | 章節「4.13.2.1 Lock」下、該章第一個需求物件之前 |
+| `4907724` | `4907721` | 章節物件 | 4.13.2.1 Lock | 章節「4.13.2.1 Lock」下、該章第一個需求物件之前 |
+| `4907725` | `4907721` | 章節物件 | 4.13.2.1 Lock | 章節「4.13.2.1 Lock」下、該章第一個需求物件之前 |
+| `4907726` | `4907721` | 章節物件 | 4.13.2.1 Lock | 章節「4.13.2.1 Lock」下、該章第一個需求物件之前 |
+| `4907727` | `4907721` | 章節物件 | 4.13.2.1 Lock | 章節「4.13.2.1 Lock」下、該章第一個需求物件之前 |
+| `4907728` | `4907721` | 章節物件 | 4.13.2.1 Lock | 章節「4.13.2.1 Lock」下、該章第一個需求物件之前 |
+| `4907729` | `4907721` | 章節物件 | 4.13.2.1 Lock | 章節「4.13.2.1 Lock」下、該章第一個需求物件之前 |
+| `4907731` | `4907730` | 章節物件 | 4.13.2.2 Unlock | 章節「4.13.2.2 Unlock」下、該章第一個需求物件之前 |
+| `4907732` | `4907730` | 章節物件 | 4.13.2.2 Unlock | 章節「4.13.2.2 Unlock」下、該章第一個需求物件之前 |
+| `4907733` | `4907730` | 章節物件 | 4.13.2.2 Unlock | 章節「4.13.2.2 Unlock」下、該章第一個需求物件之前 |
+| `4907735` | `4907734` | 章節物件 | 4.13.2.3 Wipe Data | 章節「4.13.2.3 Wipe Data」下、該章第一個需求物件之前 |
+| `4907736` | `4907734` | 章節物件 | 4.13.2.3 Wipe Data | 章節「4.13.2.3 Wipe Data」下、該章第一個需求物件之前 |
+| `4907737` | `4907734` | 章節物件 | 4.13.2.3 Wipe Data | 章節「4.13.2.3 Wipe Data」下、該章第一個需求物件之前 |
+| `4907739` | `4907738` | 章節物件 | 4.13.3 Additional Support Objects | 章節「4.13.3 Additional Support Objects」下、該章第一個需求物件之前 |
+| `4907740` | `4907738` | 章節物件 | 4.13.3 Additional Support Objects | 章節「4.13.3 Additional Support Objects」下、該章第一個需求物件之前 |
+| `4907745` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907746` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907747` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907748` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907749` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907750` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907751` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907752` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907753` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907754` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907755` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907756` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907757` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907758` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907759` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907760` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907761` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907762` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907763` | `4907744` | 需求物件 | 4.13.4.1 Appendix A Download Descriptor Form | 同章節「4.13.4.1 Appendix A Download Descriptor Format」內，緊接於需求物件 `4907744` 之後 |
+| `4907766` | `4907765` | 需求物件 | 4.13.4.2 Appendix B Configurable Parameters | 同章節「4.13.4.2 Appendix B Configurable Parameters」內，緊接於需求物件 `4907765` 之後 |
+| `4907767` | `4907765` | 需求物件 | 4.13.4.2 Appendix B Configurable Parameters | 同章節「4.13.4.2 Appendix B Configurable Parameters」內，緊接於需求物件 `4907765` 之後 |
+| `4907770` | `4907769` | 需求物件 | 4.13.4.3 Appendix C OTA Commands | 同章節「4.13.4.3 Appendix C OTA Commands」內，緊接於需求物件 `4907769` 之後 |
+| `4907771` | `4907769` | 需求物件 | 4.13.4.3 Appendix C OTA Commands | 同章節「4.13.4.3 Appendix C OTA Commands」內，緊接於需求物件 `4907769` 之後 |
+| `4907773` | `4907772` | 章節物件 | 4.13.4.4 Appendix D Terms and Abbreviations | 章節「4.13.4.4 Appendix D Terms and Abbreviations」下、該章第一個需求物件之前 |
+| `4907774` | `4907772` | 章節物件 | 4.13.4.4 Appendix D Terms and Abbreviations | 章節「4.13.4.4 Appendix D Terms and Abbreviations」下、該章第一個需求物件之前 |
+| `4907799` | `4907798` | 章節物件 | 6 TBM Algorithm Requirements | 章節「6 TBM Algorithm Requirements」下、該章第一個需求物件之前 |
+| `4907800` | `4907798` | 章節物件 | 6 TBM Algorithm Requirements | 章節「6 TBM Algorithm Requirements」下、該章第一個需求物件之前 |
+| `4907834` | `4907833` | 章節物件 | 8 Maps Over-the-air Updates (MOTA) | 章節「8 Maps Over-the-air Updates (MOTA)」下、該章第一個需求物件之前 |
+| `4907835` | `4907833` | 章節物件 | 8 Maps Over-the-air Updates (MOTA) | 章節「8 Maps Over-the-air Updates (MOTA)」下、該章第一個需求物件之前 |
+| `4907836` | `4907833` | 章節物件 | 8 Maps Over-the-air Updates (MOTA) | 章節「8 Maps Over-the-air Updates (MOTA)」下、該章第一個需求物件之前 |
+| `4907893` | `4907892` | 需求物件 | 9.1 Pre-Installation | 同章節「9.1 Pre-Installation」內，緊接於需求物件 `4907892` 之後 |
+| `4907918` | `4907917` | 章節物件 | 10.1 Shipping/Logistic mode | 章節「10.1 Shipping/Logistic mode」下、該章第一個需求物件之前 |
+| `4907920` | `4907919` | 章節物件 | 10.2 Wi-Fi | 章節「10.2 Wi-Fi」下、該章第一個需求物件之前 |
+| `4907921` | `4907919` | 章節物件 | 10.2 Wi-Fi | 章節「10.2 Wi-Fi」下、該章第一個需求物件之前 |
+| `4907922` | `4907919` | 章節物件 | 10.2 Wi-Fi | 章節「10.2 Wi-Fi」下、該章第一個需求物件之前 |
+| `4907923` | `4907907` | 需求物件 | 1.1 Revision Notes | 同章節「1.1 Revision Notes」內，緊接於需求物件 `4907907` 之後 |
+| `4907924` | `4907919` | 章節物件 | 10.2 Wi-Fi | 章節「10.2 Wi-Fi」下、該章第一個需求物件之前 |
+| `4907925` | `4907919` | 章節物件 | 10.2 Wi-Fi | 章節「10.2 Wi-Fi」下、該章第一個需求物件之前 |
+| `4907926` | `4907919` | 章節物件 | 10.2 Wi-Fi | 章節「10.2 Wi-Fi」下、該章第一個需求物件之前 |
+| `4907927` | `4907919` | 章節物件 | 10.2 Wi-Fi | 章節「10.2 Wi-Fi」下、該章第一個需求物件之前 |
+| `4907928` | `4907919` | 章節物件 | 10.2 Wi-Fi | 章節「10.2 Wi-Fi」下、該章第一個需求物件之前 |
+| `4907929` | `4907919` | 章節物件 | 10.2 Wi-Fi | 章節「10.2 Wi-Fi」下、該章第一個需求物件之前 |
+| `4907931` | `4907930` | 章節物件 | 10.3 Installation | 章節「10.3 Installation」下、該章第一個需求物件之前 |
+| `4907932` | `4907930` | 章節物件 | 10.3 Installation | 章節「10.3 Installation」下、該章第一個需求物件之前 |
+| `4907933` | `4907930` | 章節物件 | 10.3 Installation | 章節「10.3 Installation」下、該章第一個需求物件之前 |
+| `4907934` | `4907907` | 需求物件 | 1.1 Revision Notes | 同章節「1.1 Revision Notes」內，緊接於需求物件 `4907907` 之後 |
+| `4907936` | `4907935` | 章節物件 | 10.4 Post-Installation | 章節「10.4 Post-Installation」下、該章第一個需求物件之前 |
+| `4907937` | `4907935` | 章節物件 | 10.4 Post-Installation | 章節「10.4 Post-Installation」下、該章第一個需求物件之前 |
+| `4907939` | `4907938` | 章節物件 | 10.5 Security (Hopefully remove and referenc | 章節「10.5 Security (Hopefully remove and reference to Rejani/Ansaf spec)」下、該章第 |
+| `4907940` | `4907938` | 章節物件 | 10.5 Security (Hopefully remove and referenc | 章節「10.5 Security (Hopefully remove and reference to Rejani/Ansaf spec)」下、該章第 |
+| `5423873` | `4907231` | 章節物件 | 1.1 Revision Notes | 章節「1.1 Revision Notes」下、該章第一個需求物件之前 |
+
+**不可解者：0 筆** —— 137 個 Description 全數有上位物件可歸。
+
+
+## 七、與上繳包 01 T10 之差異（分類法修正）
+
+| 類型 | 上繳包 01 T10（首見為準） | 本檔（宣告優先） | 差 |
+|---|---:|---:|---|
+| 章節物件 | 87 | 87 | — |
+| 需求物件 | 478 | **487** | **+9** |
+| Description 物件 | 135 | **137** | **+2** |
+| 不可歸類 | 21 | **10** | **−11** |
+| 合計 | 721 | 721 | — |
+| **錨點池** | **565** | **574** | **+9** |
+
+移動之 11 個 id 全部自「不可歸類」移出，成因單一：其在 §4 區先以內文
+`Requirement ID {id}` 形態出現，`[Artifact Type:…]` 宣告排在後方，
+初版之「首見為準」因而誤歸。
+
+| ObjectID | 初版 | 修正後 | 首見脈絡 |
+|---|---|---|---|
+| `4907244` | 不可歸類 | 需求物件 | `Requirement ID 4907244` |
+| `4907397` | 不可歸類 | 需求物件 | `Requirement ID 4907397` |
+| `4907816` | 不可歸類 | 需求物件 | `Requirement ID 4907816` |
+| `4907830` | 不可歸類 | 需求物件 | `Requirement ID 4907830` |
+| `4907832` | 不可歸類 | 需求物件 | `Requirement ID 4907832` |
+| `4907839` | 不可歸類 | 需求物件 | `Requirement ID 4907839` |
+| `4907850` | 不可歸類 | 需求物件 | `Requirement ID 4907850` |
+| `4907851` | 不可歸類 | 需求物件 | `Requirement ID 4907851` |
+| `4907907` | 不可歸類 | 需求物件 | `Requirement ID 4907907` |
+| `4907923` | 不可歸類 | Description 物件 | `Requirement ID 4907923` |
+| `4907934` | 不可歸類 | Description 物件 | `Requirement ID 4907934` |
+
+**兩項須裁**（執行層不逕改裁決正本）：
+
+1. **錨點池由 565 改為 574。** R-SU7 條文載「池維持 565 = 章節 87 + 需求 478」
+   —— 該數承自上繳包 01 T10 之誤分類。正確值為
+   **574 = 章節 87 + 需求 487**。R-SU4 v2 (a2) 未載具體數字，不受影響。
+2. **R-SU7 之「Description 物件 135 個」應為 137。**
+
+二者皆為分類法之修正，非素材變動；`ANCHOR_POOL.md` 已改記正確值，
+裁決正本待分析層修訂。

@@ -32,7 +32,11 @@ intake:
 paths_meta:
   a03_sheet: "AnalysisReport_FULL"   # 037 之需求分頁，表頭列 7、資料列 8 起
 
-spec_mode: "A"                    # FO §3：SYS1 spec export 在場（附圖形 PDF）；intake.py 提案 A，實測採認
+# ⚠ T13（下放包 03）逐條核對結果：本 feature 實為 **A + B + D**，
+# 現值 "A" 為 intake.py 之提案（其 propose_spec_mode() 於 sys1 命中即
+# `return "A"`，結構上無法報出組合，見上繳包 02 §一 T13）。
+# 依 T13「不符即停」，執行層**不逕改**，待分析層裁定後回填。
+spec_mode: "A"                    # [待裁 —— 實測為 A+B+D]
 spec_reference_template: null     # R-SU4 v2：查得（CFTS ObjectID／SYS1 欄原值），非構造
 
 workbook:

@@ -8,8 +8,8 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A | 內容 | 狀態 | Tier |
 |---|---|---|---|
 | A-SU1 | 下放包 01 §三 3.1 之素材身分判定與 repo 側原件不符（PDF 有完整文字層；三份 docx 皆真 OOXML）—— 使 R-SU6 全條與 R-SU4(a) 之揭露段前提失效 | **RESOLVED（下放包 02 §一；R-SU6 v2／R-SU4 v2）** | — |
-| A-SU2 | 037 `Source Requirement ID` 欄非單一形態：3 格以 `/` 併記兩個 id、10 格為 `SYS-RA-VF747_V2/V6-{n}` 族 —— R-SU5 之形態陳述與其 (a) 之理由對該 10 列不成立 | PENDING | Tier 2（R-SU5 是否修訂） |
-| A-SU3 | 規格 PDF p.46 之 `PU971`（3 位）於 `forms/Pop Up List HMI R1 (26PI).xlsx` 查無 | PENDING | Tier 2（是否認定為 PU0971 之筆誤） |
+| A-SU2 | 037 `Source Requirement ID` 欄非單一形態：3 格以 `/` 併記兩個 id、10 格為 `SYS-RA-VF747_V2/V6-{n}` 族 | **形態面 RESOLVED（R-SU5 v2）；家族面 PENDING** | Tier 2（VF747 是否另立第三錨點家族，掛 T11） |
+| A-SU3 | 規格 PDF p.46 之 `PU971`（3 位）於 `forms/Pop Up List HMI R1 (26PI).xlsx` 查無 | **RESOLVED（下放包 03 §2.3：原文筆誤，作 `PU0971`）** | — |
 
 ---
 
@@ -100,7 +100,11 @@ brace 形 `{7位}` 出現 **174 次／unique 87**（與 §三 3.5 完全相符�
 
 ---
 
-## A-SU2 —— 037 `Source Requirement ID` 欄之三形態 —— PENDING
+## A-SU2 —— 037 `Source Requirement ID` 欄之三形態 —— **形態面 RESOLVED／家族面 PENDING**
+
+> **形態面結案（下放包 03 §2.1）**：以 **R-SU5 v2** 更正形態陳述，三形態逐項入條文。
+> **家族面待裁**：VF747 族 10 列是否另立第三錨點家族 —— T11 已量測，結果見
+> `docs/upstream/02_pending_closeout.md` §一 T11，待分析層裁。
 
 **登記時點**：T4' 重測，下放包 01 §三 3.4 之 `373 / 364 / 9-dup` 三數字比對。
 
@@ -147,7 +151,7 @@ col1 非空者計入（383 列）；形態判定用 `re.fullmatch`（非 `re.sea
 
 ---
 
-## A-SU3 —— 規格 PDF 之 `PU971` 於 Pop Up List 查無 —— PENDING
+## A-SU3 —— 規格 PDF 之 `PU971` 於 Pop Up List 查無 —— **RESOLVED**
 
 **登記時點**：T5' 兩源掃描。
 
@@ -166,6 +170,49 @@ col1 非空者計入（383 列）；形態判定用 `re.fullmatch`（非 `re.sea
 
 **提案處置**：目視 p.46 頁圖確認原文字面（R-SU6 v2(c)），再裁其為
 `PU0971` 之筆誤或獨立 id。
+
+### 處分（下放包 03 §2.3，逐字）
+
+```
+A-SU3 處分（2026-08-27，分析層裁）：`PU971`（p.46，全文件僅 1 見，
+FOTAFU4 段）認定為 `PU0971` 之**原文筆誤**，非文字層抽取漏字。
+
+證據：
+(i)  分析層目視 p.46 頁面 render：原文自身印作 `PU971` ——
+     同頁同段落三處（頁題「Forced Update Available 2 (PU0971)
+     for EMEA」、FOTAFU4、FOTAFU4.1）以 `PU0971` 指同一彈窗
+     「ROV Forced Update Available 2」，`PU971` 所指亦為同名彈窗
+(ii) `PU971` 不在 Pop Up List 之 1,341 個 unique PU 內；
+     3 位數形態逸出全清單之編號型態
+(iii) 量測出處：附件頁圖 46.jpeg（分析層）；repo 側複證交 T14
+
+處置：
+- `lint.popup_ids` 維持 51（`PU0971` 已在內），不新增 id
+- 任何 TC 欄位引用該彈窗一律作 `PU0971`
+- 例外：test_item 上半之 verbatim 摘句若含該句，逐字保留 `PU971`
+  （R-4 之 verbatim 紀律；IN §11 例外同型 —— lint 對引文段之
+  保留 token 對來源驗證，不作 ban）
+- 不改規格、不發 DR —— 觀察記錄即止
+```
+
+### 執行層複證（T14，2026-08-27）—— 證據鏈閉合
+
+對 `inputs/` 之 PDF 原件（sha256 `faa58c3131df…`）第 46 頁：
+
+- 文字層抽取（PyMuPDF `page.get_text()`）：該頁 PU 命中
+  `PU0298`、`PU0410`、`PU0411`、`PU0971`、`PU971`
+- `PU971` 僅 1 見，原句逐字：
+  > `Available 2” (PU971) and “Scheduler” popup (PU0411), only`
+  （上句為 `…‘Set Time’ button (PU0411). The same anti-theft behavior will
+  apply for the “ROV Forced` —— 即所指為「ROV Forced Update Available 2」）
+- 同頁 `PU0971` 3 見（L17、L27、L44），皆指同一彈窗，
+  L44 為頁題 `Forced Update Available 2 (PU0971) for EMEA`
+- **render 目視複證**：以 `page.get_pixmap(dpi=400)` 裁切該 token 所在矩形
+  （`Rect(482.54, 188.93, 518.77, 199.97)`）放大檢視，
+  版面上原字面確為 `(PU971)` 三位數 —— 同一裁切區內之
+  `(PU0410)` 顯為四位數，二者字距一致。**排除文字層抽取漏字**。
+
+處分之 (i)(ii) 於 repo 側完全複現，(iii) 之 repo 側複證即本節。
 
 ---
 
