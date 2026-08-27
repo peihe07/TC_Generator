@@ -171,6 +171,23 @@ def test_superseded_heading_scope_ends_at_same_level(tmp_path):
     assert got["R-VF71"].kind == "ruling"
 
 
+def test_details_mentioned_in_prose_does_not_open_a_fold(tmp_path):
+    """敘述行以反引號談論 `<details>` 標籤時，不得計為開啟摺疊區。
+
+    未剝除行內程式碼者，巢深永不歸零，其後全部條文遭誤判 superseded ——
+    W-27 實測：VS RULINGS 之兩行敘述使 R-VF96 以降 46 條全數誤判，
+    且 R-VS82／R-VS83／R-VF95 之誤判早已隨舊 tsv 入版控。
+    """
+    write(tmp_path, "R.md",
+          "### R-VS82 —— 現行甲\n\n本體甲。\n\n"
+          "### R-VS83 —— 談論摺疊區者\n\n"
+          "(b) 已作廢之痕收在 `<details>` 摺疊區內，其保留係依 R-VF18 留痕。\n"
+          "其判別依 `<details>` 摺疊區之邊界（L4429-L4557）為之 ——\n\n"
+          "### R-VF95 —— 現行乙\n\n本體乙。\n")
+    got = by_id(rh.extract(tmp_path / "R.md", tmp_path))
+    assert [got[k].kind for k in ("R-VS82", "R-VS83", "R-VF95")] == ["ruling"] * 3
+
+
 # --- 5. 真碰撞須照報（範圍向之另一端，G-K）-------------------------------
 
 def test_genuine_collision_is_reported(tmp_path):

@@ -1,0 +1,59 @@
+path	suffix	reason
+features/audio_mgmt/batches/B1_context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/audio_mgmt/batches/B2_anchor_proposal.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/audio_mgmt/batches/B2_context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/audio_mgmt/batches/B3_context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/audio_mgmt/batches/B4_context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/audio_mgmt/batches/B5_context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/audio_mgmt/batches/B6_context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/audio_mgmt/batches/B7_context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/audio_mgmt/generated/SWQT_AudioMgmt_B1-B7.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 generated/
+features/bed_lowering/batches/B1/b1_tcs.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B1/context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B1/lint_report.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B1/manifest.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B2/b2_tcs.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B2/context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B2/lint_report.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B2/manifest.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B3/b3_tcs.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B3/context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B3/lint_report.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B3/manifest.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B4/b4_tcs.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B4/context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B4/lint_report.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B4/manifest.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B5/b5_tcs.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B5/context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B5/manifest.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B6/b6_tcs.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B6/context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B6/manifest.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B7/b7_tcs.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B7/lint_report.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/B7/manifest.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/_ctx_Access_Ergonomics.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/_ctx_Display_Legibility.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/_ctx_Feature_Entry.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/_ctx_HU_Feedback.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/pilot/context.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/pilot/lint_report.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/pilot/manifest.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/pilot/pilot_tcs.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/batches/pilot/signal_prelookup.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 batches/
+features/bed_lowering/workbook/bed_lowering_00.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_01.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_02.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_03.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_04.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_05.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_06.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_07.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_08.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_09.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_10.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/bed_lowering/workbook/bed_lowering_11.xlsx	.xlsx	.xlsx 之合法落點為 ['delivered', 'inputs', 'sandbox']，實為 workbook/
+features/power_moding/tests/fixtures/batch01_prerework.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 tests/
+features/power_moding/tests/fixtures/batch01_r2.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 tests/
+features/vehicle_setting/tests/anchor_samples/selfcheck_anchor.json	.json	.json 之合法落點為 ['data', 'generated', 'inputs', 'sandbox']，實為 tests/

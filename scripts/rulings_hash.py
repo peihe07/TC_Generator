@@ -74,6 +74,11 @@ class Ruling:
 
 # 章節分隔線 —— 其不屬任何條文，卻落在前一條之本體範圍內
 RE_HRULE = re.compile(r"^\s*(?:-{3,}|\*{3,}|_{3,})\s*$")
+# 行內程式碼片段 —— `<details>` 於敘述文字中被反引號括起時是**談論**該標籤，
+# 不是開啟一個摺疊區。計數前一律剝除，否則巢深永不歸零，
+# 其後全部條文遭誤判 superseded（W-27 實測：VS RULINGS L5301／L5325 之敘述行
+# 使 R-VF96 以降 46 條全數誤判）。
+RE_INLINE_CODE = re.compile(r"`[^`]*`")
 
 
 def body_sha(lines: list[str]) -> tuple[str, int]:
@@ -110,7 +115,8 @@ def extract(path: Path, root: Path) -> list[Ruling]:
             continue
         if in_fence:
             continue
-        details += line.count("<details") - line.count("</details>")
+        bare = RE_INLINE_CODE.sub("", line)
+        details += bare.count("<details") - bare.count("</details>")
         h = RE_HEADING.match(line)
         if h:
             level = len(h.group(1))

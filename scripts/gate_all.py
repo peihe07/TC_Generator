@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""上繳前之四支必跑閘（26 包 §C 裁定 2；S3 啟用）。
+"""上繳前之必跑閘（26 包 §C 裁定 2；S3 啟用）。
 
-依序跑四支、**逐支列出 exit code**、任一非零則總 exit 1。
+依序跑各支、**逐支列出 exit code**、任一非零則總 exit 1。
 FO §8.2 令上繳包附本工具之輸出。
 
 | 閘 | 管什麼 |
@@ -10,6 +10,7 @@ FO §8.2 令上繳包附本工具之輸出。
 | `canon_refs.py --waiver --gate` | canon 引用之唯一可解析（R-G18）|
 | `rulings_hash.py --check` | 條文指紋表與現行條文相符（R-G13）|
 | `gates_tsv.py --check` | 閘登錄簿與現行閘相符（R-G17）|
+| `lint_paths.py --gate` | 產出物落點與 delivered/ 之 sha 對照（R-G25，27 包接入）|
 
 **`expected_numbers.py --gate` 不在其列**（26 包 §C 裁定 2）：其現為紅，
 且成因為基準未落檔而非語料有誤。**先接一支已知會紅而被容忍之閘，
@@ -31,6 +32,7 @@ GATES = [
     ("canon_refs", ["scripts/canon_refs.py", "--waiver", "--gate"]),
     ("rulings_hash", ["scripts/rulings_hash.py", "--check"]),
     ("gates_tsv", ["scripts/gates_tsv.py", "--check"]),
+    ("lint_paths", ["scripts/lint_paths.py", "--gate"]),
 ]
 
 
@@ -44,7 +46,7 @@ def run_one(root: Path, argv: list[str]) -> tuple[int, str]:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="上繳前四支必跑閘（S3）")
+    ap = argparse.ArgumentParser(description="上繳前必跑閘（S3）")
     ap.add_argument("--root", default=".")
     ap.add_argument("--verbose", action="store_true", help="附各閘之完整輸出")
     args = ap.parse_args()

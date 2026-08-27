@@ -48,6 +48,7 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import re
 import shutil
@@ -490,6 +491,32 @@ KIND_TO_YAML = {
 }
 
 
+# --- sources/ 讀取路徑（R-G27，27 包 §D-7）-----------------------------------
+
+SOURCES_MANIFEST = "sources/MANIFEST.tsv"
+
+
+def sources_ref(root: Path, filename: str) -> str | None:
+    """該檔已在 `sources/` 者，回傳其 repo 相對路徑；否則 None。
+
+    **既有 feature 之舊路徑一律 fallback**（R-G27：舊副本不搬）——
+    本函式回 None 時，呼叫端之行為與本輪之前完全相同。
+    比對以 sha256 為之，同名而內容不同者不算命中。
+    """
+    manifest = root / SOURCES_MANIFEST
+    if not manifest.exists():
+        return None
+    for row in manifest.read_text(encoding="utf-8").splitlines()[1:]:
+        cells = row.split("\t")
+        if len(cells) < 3 or cells[1] != filename:
+            continue
+        candidate = root / "sources" / "raw" / cells[0] / filename
+        if candidate.exists() and hashlib.sha256(
+                candidate.read_bytes()).hexdigest() == cells[2]:
+            return f"sources/raw/{cells[0]}/{filename}"
+    return None
+
+
 def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
              root: Path, a03_pick: dict | None = None) -> None:
     """Create features/<feature>/, move classified files in, pre-fill feature.yaml.
@@ -517,13 +544,22 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
     inputs = feat_dir / "inputs"
     inputs.mkdir(exist_ok=True)
     conflicts: list[str] = []
+    duplicates: list[str] = []
     yaml_path = feat_dir / "feature.yaml"
     text = yaml_path.read_text(encoding="utf-8")
     swras = [f for f in files if f["kind"] == "swra_report"]
     for f in files:
         if f["kind"] in ("unclassified", "unreadable"):
             continue
-        shutil.move(str(folder / f["file"]), str(inputs / f["file"]))
+        shared = sources_ref(root, f["file"])
+        if shared:
+            # R-G27：原檔全 repo 一份 —— 不再搬入 inputs/，改以 sources/ 引用。
+            # _intake/ 之副本留原地，其為重複檔，由 Pei 依 R-G26 之清單處置。
+            duplicates.append(f'{f["file"]} —— 已在 {shared}，未搬入 inputs/')
+            rel_path = shared
+        else:
+            shutil.move(str(folder / f["file"]), str(inputs / f["file"]))
+            rel_path = f'inputs/{f["file"]}'
         key = KIND_TO_YAML.get(f["kind"])
         if key == "a03_report" and a03_pick and f["file"] != a03_pick["file"]:
             continue          # not the Scope-designated TC source
@@ -534,13 +570,13 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
             # template's own `<...>` form.
             cur = re.search(rf'{key}:\s*"([^"]*)"', text)
             if cur and not re.search(r"<[^>]*>", cur.group(1)):
-                if cur.group(1) != f"inputs/{f['file']}":
+                if cur.group(1) != rel_path:
                     conflicts.append(
                         f"{key}: kept `{cur.group(1)}`, did NOT overwrite with "
-                        f"`inputs/{f['file']}` ({f['kind']})")
+                        f"`{rel_path}` ({f['kind']})")
                 continue
             text = re.sub(
-                rf'({key}:\s*)"[^"]*"', rf'\g<1>"inputs/{f["file"]}"', text)
+                rf'({key}:\s*)"[^"]*"', lambda m: m.group(1) + f'"{rel_path}"', text)
     if len(swras) > 1:
         others = "\n".join(f'  #   inputs/{s["file"]}'
                            for s in swras if not a03_pick
@@ -558,6 +594,8 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
           f"feature.yaml paths + spec_mode pre-filled")
     for c in conflicts:
         print(f"CONFLICT (A-TM10): {c}")
+    for d in duplicates:
+        print(f"SOURCES (R-G27): {d}")
 
 
 def main() -> None:

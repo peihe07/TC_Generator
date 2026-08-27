@@ -577,7 +577,7 @@ def test_profile_off_by_default() -> None:
 def test_check_order_extends_only_with_profile() -> None:
     assert lint036.check_order(None) == lint036.CHECK_ORDER
     assert lint036.check_order("power") == \
-        lint036.CHECK_ORDER + ["Q", "R", "T", "U"]
+        lint036.CHECK_ORDER + ["Q", "R", "T", "U", "V"]
 
 
 # Q —— 不可見字元（R-10(a)），全欄位含 verbatim 上半
@@ -594,6 +594,42 @@ def test_q_ideographic_space_and_trailing_ws() -> None:
 
 def test_q_clean_row_passes() -> None:
     assert "Q" not in run_profile()
+
+
+# V —— 行首空白（IN §11，27 包 §D-4）
+
+def test_v_leading_space_on_body_and_numbered_lines() -> None:
+    assert "V" in run_profile(test_item="  The system shall display it\n\n(shown)")
+    assert "V" in run_profile(proc="1. Press the button\n 2. Release it")
+    assert "V" in run_profile(er="\t1. The screen is shown")
+
+
+def test_v_whitespace_only_line() -> None:
+    assert "V" in run_profile(pre="1. The TLM is in Idle state\n   \n2. Ignition On")
+
+
+def test_v_in_6_1_and_5_4_indents_are_exempt() -> None:
+    """IN §11 之唯二例外不得判紅（G-9 範圍向）。"""
+    assert "V" not in run_profile(proc="1. Press the button\n   a. Hold for 3 s")
+    assert "V" not in run_profile(proc="1. Press the button\n      - the LED turns on")
+    assert "V" not in run_profile(proc="1. Run the tool\n   $ adb shell dumpsys")
+
+
+def test_v_near_miss_indents_still_red() -> None:
+    """例外是**定格**，不是「有縮排就放行」—— 格數或記號不符者照紅。"""
+    assert "V" in run_profile(proc="1. Press the button\n  a. Hold for 3 s")
+    assert "V" in run_profile(proc="1. Press the button\n    - the LED turns on")
+    assert "V" in run_profile(proc="1. Press the button\n   b) Hold for 3 s")
+
+
+def test_v_clean_row_passes() -> None:
+    assert "V" not in run_profile()
+
+
+def test_v_does_not_double_count_trailing_ws_with_q() -> None:
+    """行尾空白屬 Q，V 不重複計 —— 否則量化矩陣之命中數雙倍膨脹。"""
+    checks = run_profile(er="1. The screen is shown   ")
+    assert "Q" in checks and "V" not in checks
 
 
 # R —— Pre-Condition 版面（R-9(a)）

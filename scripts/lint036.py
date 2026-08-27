@@ -117,6 +117,13 @@ RE_P3_SEND_CAN = re.compile(r"\bSend CAN:")
 RE_P3_PROXI_DOLLAR = re.compile(r"\bPROXI\s+\$")
 # Q（R-10(a)）
 RE_Q_TRAILING_WS = re.compile(r"[ \t]+$")
+# V 行首空白（IN §11）。**行尾空白不在本檢查**——其已由 Q 覆蓋，
+# 兩處同時計數會使量化矩陣之命中數雙倍膨脹（G-D：數字須可解釋）。
+RE_V_LEADING_WS = re.compile(r"^[ \t]+")
+RE_V_BLANK_WS = re.compile(r"^\s+$")
+# IN §11 之唯二例外：§6.1 子層記法（`a./b./c.` 縮排 3 格、`-` 子彈 6 格）
+# 與 §5.4 之 `$` 命令行（縮排 3 格）。
+RE_V_EXEMPT = re.compile(r"^(?: {3}(?:[a-z]\.\s|\$ )| {6}- )")
 # R（R-9(a)）：多條件並列之謂詞計數
 RE_R_PREDICATE = re.compile(r"\b(is|are|was|were|reads?|holds?|has|have)\b")
 R_TOOL_PHRASE = "tool is available on HU"
@@ -154,6 +161,7 @@ CHECK_TITLES = {
     "R": "Pre-Condition 版面（未編號行／多條件並列）",
     "T": "PENDING 說明非英文",
     "U": "PENDING 佔位（四欄全掃，含 ER 側）",
+    "V": "行首空白（IN §11）",
 }
 # `--profile` 啟用時 P 改以 R-1 v3 判準，標題隨之替換
 CHECK_TITLE_PROFILE = {"P": "訊號寫法不合 R-1 v3"}
@@ -171,13 +179,14 @@ CHECK_STATUS = {
     "R": "未校準（R-9(a)，21 包新增）",
     "T": "未校準（R-14，21 包新增）",
     "U": "計數用（A-PM16：ER 側原不受任何檢查覆蓋）",
+    "V": "未校準（IN §11，27 包新增）",
 }
 CHECK_STATUS_PROFILE = {"P": "未校準（R-1 v3，21 包改寫；profile 專屬）"}
 CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
                "J", "K", "L", "M", "N", "P"]
 # profile 專屬檢查：僅於 `--profile <feature>` 指定時啟用。
 # 未指定時 CHECK_ORDER 不變 —— 既有八本之報告基線因而完全不動。
-PROFILE_CHECKS = ["Q", "R", "T", "U"]
+PROFILE_CHECKS = ["Q", "R", "T", "U", "V"]
 
 
 def check_order(profile: str | None) -> list[str]:
@@ -204,6 +213,7 @@ CHECK_GRANULARITY = {
     "J": "每行", "K": "每列每欄", "L": "每列", "M": "每列每欄", "N": "每行",
     "P": "每次命中",
     "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
+    "V": "每行每欄",
 }
 
 
@@ -517,6 +527,14 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
                 hits.append("行尾空白")
             if hits:
                 add("Q", key, "／".join(hits), line.strip()[:80])
+
+    # V 行首空白（IN §11，27 包 §D-4）
+    for key in Q_FIELDS:
+        for line in fields.get(key, "").split("\n"):
+            if RE_V_BLANK_WS.match(line):
+                add("V", key, "整行僅空白", "")
+            elif RE_V_LEADING_WS.match(line) and not RE_V_EXEMPT.match(line):
+                add("V", key, "行首空白", line[:80])
 
     # R Pre-Condition 版面（R-9(a)）
     for line in split_lines(pre):

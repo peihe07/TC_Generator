@@ -1,0 +1,54 @@
+ruling_id	舊 sha8	新 sha8	kind	source	變動原因
+R-G24	—	bd9a8cc0	ruling	docs/fw036/FEATURE_ONBOARDING.md	bed_lowering 01 包落檔（Pei 裁定 2026-08-26），本包前已在工作區
+R-G25	—	50be5127	ruling	docs/fw036/FEATURE_ONBOARDING.md	本包 §D-2 新落檔（27 包 §C，換號後）
+R-G26	—	ce4fdff2	ruling	docs/fw036/FEATURE_ONBOARDING.md	本包 §D-2 新落檔（27 包 §C，換號後）
+R-G27	—	2bd39a12	ruling	docs/fw036/FEATURE_ONBOARDING.md	本包 §D-2 新落檔（27 包 §C，換號後）
+R-VF100	—	5e7dba48	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF101	—	a9a777a8	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF102	—	c4f4f3ea	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF103	—	464396cd	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF104	—	699a4db0	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF105	—	fd481f7b	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF106	—	545031bc	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF107	—	deda79da	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF108	—	365a0a65	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF109	—	9c1a23ef	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF110	—	30209fe3	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF111	—	750b9fbd	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF112	—	6104b2f4	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF113	—	67ef2e65	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF114	—	8bd77e49	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF115	—	b8b47a93	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF116	—	b7e71940	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF117	—	26653b53	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF118	—	48a572dd	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF119	—	446ade94	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF120	—	b10e964c	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF121	—	2ff66e54	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF122	—	18b75e43	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF123	—	25165e97	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF124	—	43047d0b	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF125	—	a17366cd	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF126	—	808dd72b	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF127	—	fce008f4	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF128	—	78bb5a5a	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF129	—	b05f6f08	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF130	—	a152d37b	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF131	—	2dbc4748	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF132	—	b05d4582	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF133	—	f853cbd1	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF134	—	3df00b46	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF135	—	f6ad9943	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF136	—	df62fc6f	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF137	—	1a9d3d72	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF138	—	681b3ea3	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF139	—	26c01f14	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF140	—	f2afc86f	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF141	—	3561aa7f	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF142	—	88a3c9a5	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF96	—	a9a84fe8	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF97	—	d9f44e3e	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF98	—	3a5f2be8	ruling	features/vehicle_setting/RULINGS.md	VS 線 V34–V70 之落檔，舊 tsv 產於其前（本包不動其內容）
+R-VF95	876654d9	876654d9	superseded→ruling	features/vehicle_setting/RULINGS.md	`rulings_hash.py` 之 `<details>` 巢深誤計已修 —— 敘述行以反引號談論該標籤者不再計為開啟摺疊區；本筆之 superseded 為誤判，sha 未變
+R-VS82	12177e4f	12177e4f	superseded→ruling	features/vehicle_setting/RULINGS.md	`rulings_hash.py` 之 `<details>` 巢深誤計已修 —— 敘述行以反引號談論該標籤者不再計為開啟摺疊區；本筆之 superseded 為誤判，sha 未變
+R-VS83	1936a6ab	1936a6ab	superseded→ruling	features/vehicle_setting/RULINGS.md	`rulings_hash.py` 之 `<details>` 巢深誤計已修 —— 敘述行以反引號談論該標籤者不再計為開啟摺疊區；本筆之 superseded 為誤判，sha 未變

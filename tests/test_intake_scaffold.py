@@ -120,3 +120,34 @@ def test_unclassified_files_are_left_in_the_drop_folder(tmp_path):
     intake.scaffold("AMFM", folder, files, "D", tmp_path, a03_pick=files[0])
     assert (folder / "RULINGS.md").exists()
     assert not (feat / "inputs" / "RULINGS.md").exists()
+
+
+# --- sources/ 讀取路徑（R-G27，27 包 §D-7）-----------------------------------
+
+def _sources_root(tmp_path, doc_id: str, name: str, payload: bytes):
+    import hashlib
+    raw = tmp_path / "sources" / "raw" / doc_id
+    raw.mkdir(parents=True)
+    (raw / name).write_bytes(payload)
+    sha = hashlib.sha256(payload).hexdigest()
+    (tmp_path / "sources" / "MANIFEST.tsv").write_text(
+        "doc_id\tfilename\tsha256\tversion\tfeatures\tnote\n"
+        f"{doc_id}\t{name}\t{sha}\t—\t—\t—\n", encoding="utf-8")
+    return sha
+
+
+def test_sources_ref_hits_on_matching_sha(tmp_path):
+    _sources_root(tmp_path, "DD_2026", "dd.xlsx", b"payload")
+    assert intake.sources_ref(tmp_path, "dd.xlsx") == "sources/raw/DD_2026/dd.xlsx"
+
+
+def test_sources_ref_misses_when_content_differs(tmp_path):
+    """同名而內容不同者不算命中 —— 否則會把 feature 指向另一份文件。"""
+    _sources_root(tmp_path, "DD_2026", "dd.xlsx", b"payload")
+    (tmp_path / "sources" / "raw" / "DD_2026" / "dd.xlsx").write_bytes(b"changed")
+    assert intake.sources_ref(tmp_path, "dd.xlsx") is None
+
+
+def test_sources_ref_returns_none_without_manifest(tmp_path):
+    """既有 feature 之舊路徑 fallback —— 無 manifest 時行為與本輪之前相同。"""
+    assert intake.sources_ref(tmp_path, "dd.xlsx") is None
