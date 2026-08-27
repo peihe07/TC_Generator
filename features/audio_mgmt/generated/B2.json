@@ -551,11 +551,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Play a Main Audio source at a known level\n2. Activate an Alternate Audio source that carries a ducking request\n3. Measure the Main Audio level against its starting level and record it\n4. Record the Alternate Audio level",
       "expected_result": "1. The Main Audio source plays at the set level\n2. The Alternate Audio source becomes active with a ducking request\n3. The Main Audio level is -16 dB below its starting level\n4. The Alternate Audio holds its level",
-      "spec_reference": "CFTS019-4866818",
+      "spec_reference": "CFTS019-4866818\nCFTS019-4867782",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "remarks": "",
-      "reasoning": "4866818, in scope under R-AM14. The attenuation <Vent off> is defined at CFTS019-4867782 as -16 dB, so the value is spec-sourced. It stays distinct from <Vent Nav Off> at 9 steps, which belongs to the navigation chain. Out-of-pool anchor, corroborated by the full text (R-AM2')."
+      "reasoning": "4866818, in scope under R-AM14. The attenuation <Vent off> is defined at CFTS019-4867782 as -16 dB, so the value is spec-sourced. It stays distinct from <Vent Nav Off> at 9 steps, which belongs to the navigation chain. Out-of-pool anchor, corroborated by the full text (R-AM2'). R-AM18 retro station item 1: <Vent off> = -16 dB is defined at CFTS019-4867782, which is appended so the case cites the object defining the value it reads as well as the behaviour object."
     },
     {
       "req_id": "SWE1_AMM_309",
@@ -581,11 +581,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Set Navigation Entertainment Fade Out to \"Fixed\"\n2. Play an Entertainment source at a fixed volume step\n3. Trigger a Navigation guidance prompt\n4. Record the Entertainment volume step",
       "expected_result": "1. Navigation Entertainment Fade Out is \"Fixed\"\n2. Entertainment audio plays at the set volume step\n3. The Navigation guidance prompt starts\n4. The Entertainment volume step follows the customer selection and does not track the Navigation volume",
-      "spec_reference": "CFTS019-4867669",
+      "spec_reference": "CFTS019-4867669\nCFTS019-4867783",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
       "remarks": "",
-      "reasoning": "4867669 is the Fixed branch of the fade-out configuration; 313 is the Relative branch. The two are mutually exclusive settings, so each needs its own row. Out-of-pool anchor, corroborated by the full text (R-AM2')."
+      "reasoning": "4867669 is the Fixed branch of the fade-out configuration; 313 is the Relative branch. The two are mutually exclusive settings, so each needs its own row. Out-of-pool anchor, corroborated by the full text (R-AM2'). R-AM18 retro station item 2: <Vent Nav Off> is defined at CFTS019-4867783, which is appended so the case cites the object defining the value it reads as well as the behaviour object."
     },
     {
       "req_id": "SWE1_AMM_313",
@@ -596,11 +596,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Set Navigation Entertainment Fade Out to \"Relative\"\n2. Play an Entertainment source\n3. Trigger a Navigation guidance prompt\n4. Record the Entertainment volume step against the Navigation level",
       "expected_result": "1. Navigation Entertainment Fade Out is \"Relative\"\n2. Entertainment audio plays\n3. The Navigation guidance prompt starts\n4. The Entertainment volume step follows the Navigation level",
-      "spec_reference": "CFTS019-4867670",
+      "spec_reference": "CFTS019-4867670\nCFTS019-4867783",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
       "remarks": "",
-      "reasoning": "4867670, the Relative branch against 312's Fixed branch. Out-of-pool anchor, corroborated by the full text (R-AM2')."
+      "reasoning": "4867670, the Relative branch against 312's Fixed branch. Out-of-pool anchor, corroborated by the full text (R-AM2'). R-AM18 retro station item 2: <Vent Nav Off> is defined at CFTS019-4867783, which is appended so the case cites the object defining the value it reads as well as the behaviour object."
     },
     {
       "req_id": "SWE1_AMM_314",
@@ -611,11 +611,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Play an Entertainment source\n2. Trigger a Navigation guidance prompt\n3. Read the Information source volume level and the Entertainment volume level and record them",
       "expected_result": "1. Entertainment audio plays\n2. The Navigation guidance prompt starts\n3. The Entertainment volume level is 9 steps below the Information source volume level",
-      "spec_reference": "CFTS019-4867671",
+      "spec_reference": "CFTS019-4867671\nCFTS019-4867783",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "remarks": "",
-      "reasoning": "4867671 gives the attenuation as <Vent Nav Off>, defined at 9 steps near 4867783, so the expected result carries the real value rather than a placeholder. Out-of-pool anchor, corroborated by the full text (R-AM2')."
+      "reasoning": "4867671 gives the attenuation as <Vent Nav Off>, defined at 9 steps near 4867783, so the expected result carries the real value rather than a placeholder. Out-of-pool anchor, corroborated by the full text (R-AM2'). R-AM18 retro station item 2: <Vent Nav Off> is defined at CFTS019-4867783, which is appended so the case cites the object defining the value it reads as well as the behaviour object."
     },
     {
       "req_id": "SWE1_AMM_315",
@@ -626,11 +626,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Play an Entertainment source at a volume step below the attenuation amount\n2. Trigger a Navigation guidance prompt\n3. Record the audio on every Entertainment output channel",
       "expected_result": "1. Entertainment audio plays at the set volume step\n2. The Navigation guidance prompt starts\n3. Every Entertainment output channel is muted",
-      "spec_reference": "CFTS019-4867672",
+      "spec_reference": "CFTS019-4867672\nCFTS019-4867783",
       "priority": "P0",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
       "remarks": "",
-      "reasoning": "4867672 is the floor of the 4867671 attenuation, so it is a boundary case: the step reaches 0 and the behaviour changes from attenuate to mute. Out-of-pool anchor, corroborated by the full text (R-AM2')."
+      "reasoning": "4867672 is the floor of the 4867671 attenuation, so it is a boundary case: the step reaches 0 and the behaviour changes from attenuate to mute. Out-of-pool anchor, corroborated by the full text (R-AM2'). R-AM18 retro station item 2: <Vent Nav Off> is defined at CFTS019-4867783, which is appended so the case cites the object defining the value it reads as well as the behaviour object."
     },
     {
       "req_id": "SWE1_AMM_315",
@@ -641,11 +641,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Play an Entertainment source at a volume step below the attenuation amount\n2. Trigger a Navigation guidance prompt\n3. Read the transport state of the Entertainment source and record it",
       "expected_result": "1. Entertainment audio plays at the set volume step\n2. The Navigation guidance prompt starts\n3. The Entertainment source reports the playing state",
-      "spec_reference": "CFTS019-4867672",
+      "spec_reference": "CFTS019-4867672\nCFTS019-4867783",
       "priority": "P0",
       "design_method": "負向測試 (Negative / Invalid)",
       "remarks": "",
-      "reasoning": "4867672 says without PAUSE, which package 08 section 3.1 flags as the key separation from the pause behaviour at 032 and 309. A system that paused the source would satisfy the mute observation and still be wrong, so the transport state is checked on its own."
+      "reasoning": "4867672 says without PAUSE, which package 08 section 3.1 flags as the key separation from the pause behaviour at 032 and 309. A system that paused the source would satisfy the mute observation and still be wrong, so the transport state is checked on its own. R-AM18 retro station item 2: <Vent Nav Off> is defined at CFTS019-4867783, which is appended so the case cites the object defining the value it reads as well as the behaviour object."
     },
     {
       "req_id": "SWE1_AMM_316",
@@ -656,11 +656,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Play an Entertainment source at a known customer-selected volume step\n2. Trigger a Navigation guidance prompt\n3. Read $VolumeENT$ and record it",
       "expected_result": "1. Entertainment audio plays at the customer-selected volume step\n2. The Navigation guidance prompt starts\n3. $VolumeENT$ reports the customer-selected volume step minus 9 steps",
-      "spec_reference": "CFTS019-4867673",
+      "spec_reference": "CFTS019-4867673\nCFTS019-4867783",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "remarks": "PENDING: DR-AM4 signal not found in the supplied DBC; name kept as written in CFTS019 per R-13 (g)",
-      "reasoning": "4867673 is the transmission counterpart of the attenuation at 4867671 — the same subtraction, observed on the bus rather than in the output. $VolumeENT$ is absent from the supplied DBC, so the name stays as CFTS019 writes it under v3 (g). Out-of-pool anchor, corroborated by the full text (R-AM2')."
+      "reasoning": "4867673 is the transmission counterpart of the attenuation at 4867671 — the same subtraction, observed on the bus rather than in the output. $VolumeENT$ is absent from the supplied DBC, so the name stays as CFTS019 writes it under v3 (g). Out-of-pool anchor, corroborated by the full text (R-AM2'). R-AM18 retro station item 2: <Vent Nav Off> is defined at CFTS019-4867783, which is appended so the case cites the object defining the value it reads as well as the behaviour object."
     },
     {
       "req_id": "SWE1_AMM_317",
@@ -671,11 +671,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Trigger a Navigation guidance prompt while an Entertainment source plays\n2. Increase the Navigation volume by 2 steps\n3. Read the Entertainment volume step and record it",
       "expected_result": "1. The Navigation guidance prompt plays over the Entertainment source\n2. The Navigation volume increases by 2 steps\n3. The Entertainment volume step increases by 2 steps",
-      "spec_reference": "CFTS019-4867674",
+      "spec_reference": "CFTS019-4867674\nCFTS019-4867783",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "remarks": "",
-      "reasoning": "4867674 uses an increase of 2 steps as its own example, so the case follows the clause rather than inventing a figure. Out-of-pool anchor, corroborated by the full text (R-AM2')."
+      "reasoning": "4867674 uses an increase of 2 steps as its own example, so the case follows the clause rather than inventing a figure. Out-of-pool anchor, corroborated by the full text (R-AM2'). R-AM18 retro station item 2: <Vent Nav Off> is defined at CFTS019-4867783, which is appended so the case cites the object defining the value it reads as well as the behaviour object."
     },
     {
       "req_id": "SWE1_AMM_317",
@@ -686,11 +686,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Trigger a Navigation guidance prompt while an Entertainment source plays\n2. Decrease the Navigation volume by 2 steps\n3. Read the Entertainment volume step and record it",
       "expected_result": "1. The Navigation guidance prompt plays over the Entertainment source\n2. The Navigation volume decreases by 2 steps\n3. The Entertainment volume step decreases by 2 steps",
-      "spec_reference": "CFTS019-4867674",
+      "spec_reference": "CFTS019-4867674\nCFTS019-4867783",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "remarks": "",
-      "reasoning": "The clause says the same adjustment, which covers both directions; an implementation that only tracked increases would pass the first case."
+      "reasoning": "The clause says the same adjustment, which covers both directions; an implementation that only tracked increases would pass the first case. R-AM18 retro station item 2: <Vent Nav Off> is defined at CFTS019-4867783, which is appended so the case cites the object defining the value it reads as well as the behaviour object."
     },
     {
       "req_id": "SWE1_AMM_027",

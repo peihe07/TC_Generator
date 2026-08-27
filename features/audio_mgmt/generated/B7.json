@@ -66,11 +66,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Play an Entertainment source with known volume, tone, fade and balance values\n2. Trigger a signal source that activates a loudspeaker\n3. Wait until the signal source ends\n4. Read the volume, tone, fade and balance values and record them",
       "expected_result": "1. Entertainment audio plays with the set values\n2. The signal source activates a loudspeaker\n3. The signal source ends\n4. The four settings are the values held before",
-      "spec_reference": "CFTS019-4866662",
+      "spec_reference": "CFTS019-4866632",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
-      "reasoning": "Shares 4866662 with B4's leaf 176 across batches, declared under the package 22 section 3 procedure and approved at package 26 section 3. 176 observes the recall after a routing change; this row observes it after the speaker activation sequence, the two upstream decompositions of one recall sentence. All four settings are read because a partial restore is what the word settings guards against."
+      "reasoning": "Shares 4866662 with B4's leaf 176 across batches, declared under the package 22 section 3 procedure and approved at package 26 section 3. 176 observes the recall after a routing change; this row observes it after the speaker activation sequence, the two upstream decompositions of one recall sentence. All four settings are read because a partial restore is what the word settings guards against. R-AM18 retro station item 5: re-anchored from CFTS019-4866662 to CFTS019-4866632."
     },
     {
       "req_id": "SWE1_AMM_177",

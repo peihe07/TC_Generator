@@ -716,11 +716,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Play an Entertainment source and activate an Information source\n2. Enable loudness\n3. Record the effect on each source",
       "expected_result": "1. Both sources play\n2. Loudness is enabled\n3. The Entertainment audio reflects loudness and the Information audio does not",
-      "spec_reference": "CFTS019-4867647",
+      "spec_reference": "CFTS019-4867640",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
       "remarks": "",
-      "reasoning": "4867647 restricts the processing to Entertainment. Both sources are read because the restriction is only visible against the one it must not reach."
+      "reasoning": "4867647 restricts the processing to Entertainment. Both sources are read because the restriction is only visible against the one it must not reach. R-AM18 retro station item 4: re-anchored from CFTS019-4867647 to CFTS019-4867640."
     },
     {
       "req_id": "SWE1_AMM_269",

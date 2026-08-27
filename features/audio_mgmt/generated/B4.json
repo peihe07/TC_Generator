@@ -675,11 +675,11 @@
       "input_test_data": "NA",
       "test_procedure": "1. Configure the vehicle so that $Surround$ = 1\n2. Open the audio settings\n3. Record the state of the surround sound setting",
       "expected_result": "1. $Surround$ reports 1\n2. The audio settings open\n3. The surround sound setting is enabled",
-      "spec_reference": "CFTS019-4867598",
+      "spec_reference": "CFTS019-4867603",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
       "remarks": "PENDING: DR-AM4 signal not found in the supplied DBC; name kept as written in CFTS019 per R-13 (g)",
-      "reasoning": "4867598 is one half of the section 7 enumeration pair: present enables the menu, absent removes it and bars any change. Both must ship, since a system that ignored the configuration would pass whichever half matched its default. Reported out of pool in package 15; that was wrong — 4867598 and 4867604 are in the expanded pool (A-AM12), so package 16 section 1 was right and A-AM10 is withdrawn."
+      "reasoning": "4867598 is one half of the section 7 enumeration pair: present enables the menu, absent removes it and bars any change. Both must ship, since a system that ignored the configuration would pass whichever half matched its default. Reported out of pool in package 15; that was wrong — 4867598 and 4867604 are in the expanded pool (A-AM12), so package 16 section 1 was right and A-AM10 is withdrawn. R-AM18 retro station item 3: re-anchored from CFTS019-4867598 to CFTS019-4867603."
     },
     {
       "req_id": "SWE1_AMM_266",

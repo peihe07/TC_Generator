@@ -229,7 +229,7 @@
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "",
-      "reasoning": "4866603 states the ramp-up and the channel restriction; the channel set is left as \"indicated\" because the clause points at a table rather than naming channels."
+      "reasoning": "4866603 states the ramp-up and the channel restriction; the channel set is left as \"indicated\" because the clause points at a table rather than naming channels. The anchor is the first of four verbatim parallel instances and the leaf is an abstraction across the sub-sections, so the position window is too wide to discriminate here (package 30 section 2 item 6)."
     },
     {
       "req_id": "SWE1_AMM_201",
