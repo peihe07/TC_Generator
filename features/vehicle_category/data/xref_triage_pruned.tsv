@@ -1,0 +1,654 @@
+kind	target	file	line	text	prune_class
+anomaly	A-VC1	RULINGS.md	157	R-VC6（037 分析九欄為有效上游輸入；A-VC1 撤銷）	a 純編號引用
+anomaly	A-VC1	ANOMALIES.md	14	| A-VC5 | 下放包 01 §3.3 與 repo 037 複本不一致（A-VC1 之成因）| **RESOLVED（包 02 §一）** | — |	b 清單成員
+anomaly	A-VC1	ANOMALIES.md	30	## A-VC1 —— 037 第 10–18 欄之 `\xa0` —— **撤銷（R-VC6，Pei 2026-08-25）**	a 純編號引用
+anomaly	A-VC1	ANOMALIES.md	35	> 全稱斷言**，作廢；據其所立之 A-VC1 一併撤銷。	a 純編號引用
+anomaly	A-VC1	ANOMALIES.md	81	(a) 採：A-VC1 撤銷，不得沿用或引述。	a 純編號引用
+anomaly	A-VC1	docs/REVISIONS.md	18	- **連帶**：A-VC1 撤銷。九欄改為**有效上游輸入**，並生 R-VC6(a)–(d) 四項拘束。	a 純編號引用
+anomaly	A-VC10	RULINGS.md	881	而為本 TC 驗證標的之條件，A-VC10 第一面）；	a 純編號引用
+anomaly	A-VC10	RULINGS.md	893	本條不改 A-VC10 之「二欄皆為正式欄位」 —— Title 仍為合法來源，	a 純編號引用
+anomaly	A-VC10	DATA_REQUESTS.md	26	DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之	a 純編號引用
+anomaly	A-VC10	DATA_REQUESTS.md	166	- **批次**：同批 A —— 與 DR-VC2、A-VC2 之封面一問、A-VC10 之一問同發。	a 純編號引用
+anomaly	A-VC10	DATA_REQUESTS.md	168	- **附帶一問（A-VC10，下放包 04 §四）**：037 於部分 leaf 上，	a 純編號引用
+anomaly	A-VC10	DECISIONS.md	119	＋ A-VC2 ＋ A-VC10。	a 純編號引用
+anomaly	A-VC11	ANOMALIES.md	20	| A-VC11 | `recon.py` 之 DECISIONS 顯示層將 null 印為字面 `None` | PENDING | 全域排程（包 05 §一）|	b 清單成員
+anomaly	A-VC11	ANOMALIES.md	583	## A-VC11 —— `recon.py` 之 DECISIONS 顯示層將 null 印為字面 `None`（新立，下放包 05 §一）	a 純編號引用
+anomaly	A-VC11	ANOMALIES.md	588	A-VC11（recon.py 之 DECISIONS 顯示層將 null 印為字面 None）	a 純編號引用
+anomaly	A-VC11	ANOMALIES.md	685	與 A-VC4／A-VC8／A-VC11 同批）。	a 純編號引用
+anomaly	A-VC11	ANOMALIES.md	704	A-VC11 同批）。	a 純編號引用
+anomaly	A-VC11	ANOMALIES.md	805	(c) 二者**與 R-VC8 之授權非同一件，不得併案**（同 A-VC8／A-VC11 之邊界）。	a 純編號引用
+anomaly	A-VC11	ANOMALIES.md	812	狀態：PENDING（全域排程）。與 A-VC4／A-VC8／A-VC11／A-VC13 通則同批。	a 純編號引用
+anomaly	A-VC11	ANOMALIES.md	1137	—— 屬全域排程，與 A-VC4／A-VC8／A-VC11／A-VC13 同批。	a 純編號引用
+anomaly	A-VC11	ANOMALIES.md	1156	狀態：**PENDING（全域排程）**。與 A-VC4／A-VC8／A-VC11／A-VC13 同批。	a 純編號引用
+anomaly	A-VC11	DECISIONS.md	70	> 非裁定值（A-VC11）。依下放包 05 §一裁定：**簽署時手動覆蓋，不修腳本**。	a 純編號引用
+anomaly	A-VC12	ANOMALIES.md	21	| A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |	b 清單成員
+anomaly	A-VC12	ANOMALIES.md	621	## A-VC12 —— §11.9 群與 §12.3 群之行為重疊（條件性，新立，下放包 06 §二）	a 純編號引用
+anomaly	A-VC12	ANOMALIES.md	626	A-VC12（11.9 群與 12.3 群之行為重疊，條件性）	a 純編號引用
+anomaly	A-VC12	framework.md	181	連帶之行為重疊（11.9.1 ↔ 12.3、11.9.3 ↔ 12.3.1）已登記 **A-VC12**，	a 純編號引用
+anomaly	A-VC13	ANOMALIES.md	812	狀態：PENDING（全域排程）。與 A-VC4／A-VC8／A-VC11／A-VC13 通則同批。	a 純編號引用
+anomaly	A-VC13	ANOMALIES.md	1137	—— 屬全域排程，與 A-VC4／A-VC8／A-VC11／A-VC13 同批。	a 純編號引用
+anomaly	A-VC13	ANOMALIES.md	1156	狀態：**PENDING（全域排程）**。與 A-VC4／A-VC8／A-VC11／A-VC13 同批。	a 純編號引用
+anomaly	A-VC14	ANOMALIES.md	477	| 二 · **數值矛盾** | 二欄之可測門檻相互矛盾 | `033-01`（`After three` vs `more than three`）| **A-VC14** |	b 清單成員
+anomaly	A-VC14	ANOMALIES.md	541	| 二 · **數值矛盾** | 二欄之可測門檻相互矛盾 | `033-01`（`After three` vs `more than three`）| **A-VC14** |	b 清單成員
+anomaly	A-VC14	docs/REVISIONS.md	227	成立）；惟 `VC-033-01` 因 **A-VC14／DR-VC8** 而帶**一筆 PENDING**。	a 純編號引用
+anomaly	A-VC15	docs/REVISIONS.md	259	條文不會自己執行 —— 同 A-VC15（`lint036 --profile` 不讀 profile）、	a 純編號引用
+anomaly	A-VC15	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	80	→ 登記為 **A-VC15**（`features/vehicle_category/ANOMALIES.md`）。	a 純編號引用
+anomaly	A-VC16	ANOMALIES.md	25	| A-VC16 | pilot 之 §9 判讀漏檢二形態（檢查覆蓋不足，非規則缺失）| **RESOLVED（包 12）** | — |	b 清單成員
+anomaly	A-VC16	ANOMALIES.md	816	## A-VC16 —— pilot 之 §9 判讀漏檢二形態 —— **RESOLVED（下放包 12）**	a 純編號引用
+anomaly	A-VC18	DATA_REQUESTS.md	279	**由來**：A-VC18。同一彈窗，規格側作 `Feature not available while vehicle	a 純編號引用
+anomaly	A-VC19	DATA_REQUESTS.md	308	**由來**：A-VC19。章 13 為三個「他路徑仍可用」之需求給出路徑，**獨缺其一**：	a 純編號引用
+anomaly	A-VC2	DATA_REQUESTS.md	8	下放包 02 §四之裁定已併入：A-VC2 附於 DR-VC2，不單獨發。	a 純編號引用
+anomaly	A-VC2	DATA_REQUESTS.md	26	DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之	a 純編號引用
+anomaly	A-VC2	DATA_REQUESTS.md	166	- **批次**：同批 A —— 與 DR-VC2、A-VC2 之封面一問、A-VC10 之一問同發。	a 純編號引用
+anomaly	A-VC2	DATA_REQUESTS.md	178	**不單獨發 DR**（同 A-VC2 之處理）。	a 純編號引用
+anomaly	A-VC2	DECISIONS.md	119	＋ A-VC2 ＋ A-VC10。	a 純編號引用
+anomaly	A-VC20	RULINGS.md	421	> simultaneously` 為實質需求敘述（上繳包 27 §2，A-VC20）。	a 純編號引用
+anomaly	A-VC20	DATA_REQUESTS.md	137	記於此，因為它改變了 A-VC20 之教訓：光是「重測」不夠，	a 純編號引用
+anomaly	A-VC20	DATA_REQUESTS.md	140	- **本欄正式列為 A-VC20 之成因補充（下放包 29 §四，T156）**：	a 純編號引用
+anomaly	A-VC20	data/tableB_draft.md	76	6. **A-VC20 已解**（R-VC27，下放包 28 §一）。其成因值得留在這裡：	a 純編號引用
+anomaly	A-VC3	DATA_REQUESTS.md	68	- **關聯**：A-VC3 併入本 DR，不單獨發。	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	13	| A-VC4 | `new_feature.py` 之 abbr 推導得 `VE`，非 R-VC1 之 `VC` | PENDING | 全域排程（包 02 §四）|	b 清單成員
+anomaly	A-VC4	ANOMALIES.md	145	裁：A-VC4 與 A-TM04 **兩者維持 PENDING**。理由：A-VC4 已由 T0b 之事後	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	150	**R-VC8 之修法不得順手併入 A-VC4 / A-TM04** —— 三者標的不同	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	355	處置同 A-VC4。理由：117 之守護目前由 T4／T12 之**集合相等**判定承擔	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	360	**授權邊界再申明**：R-VC8 之修法不得順手併入 A-VC4（`new_feature.py`	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	603	不得併案**（同 A-VC8 之邊界）。與 A-VC4／A-VC8 併入全域排程。	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	615	（同 A-VC8 之邊界）。與 A-VC4／A-VC8 併入全域排程。	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	685	與 A-VC4／A-VC8／A-VC11 同批）。	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	703	狀態：本 feature 已處置；通則 PENDING（全域排程，與 A-VC4／A-VC8／	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	812	狀態：PENDING（全域排程）。與 A-VC4／A-VC8／A-VC11／A-VC13 通則同批。	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	1137	—— 屬全域排程，與 A-VC4／A-VC8／A-VC11／A-VC13 同批。	a 純編號引用
+anomaly	A-VC4	ANOMALIES.md	1156	狀態：**PENDING（全域排程）**。與 A-VC4／A-VC8／A-VC11／A-VC13 同批。	a 純編號引用
+anomaly	A-VC5	ANOMALIES.md	14	| A-VC5 | 下放包 01 §3.3 與 repo 037 複本不一致（A-VC1 之成因）| **RESOLVED（包 02 §一）** | — |	b 清單成員
+anomaly	A-VC5	ANOMALIES.md	77	(c) 成因見 A-VC5。在 A-VC5 裁定前，本項不得標為 RESOLVED。	a 純編號引用
+anomaly	A-VC5	ANOMALIES.md	84	(c) 已解：A-VC5 之成因由下放包 02 §一裁明，標為 RESOLVED。	a 純編號引用
+anomaly	A-VC6	RULINGS.md	216	採上繳包 A-VC6 之提案 (b)：**`spec_reference_template` 為 null 時，	a 純編號引用
+anomaly	A-VC6	ANOMALIES.md	15	| A-VC6 | `recon.py` 於 `spec_reference_template: null` 崩潰 | **RESOLVED（R-VC8）** | — |	b 清單成員
+anomaly	A-VC6	ANOMALIES.md	225	## A-VC6 —— `recon.py` 於 `spec_reference_template: null` 崩潰 —— **RESOLVED（R-VC8）**	a 純編號引用
+anomaly	A-VC7	ANOMALIES.md	16	| A-VC7 | 規格 PDF 之位元組數與下放包 01 §3.1 不符 | **RESOLVED（R-VC7）** | — |	b 清單成員
+anomaly	A-VC7	ANOMALIES.md	280	## A-VC7 —— 規格 PDF 之位元組數與下放包 01 §3.1 不符 —— **RESOLVED（R-VC7）**	a 純編號引用
+anomaly	A-VC7	docs/REVISIONS.md	29	- **連帶**：A-VC7 RESOLVED；衍生物不得作為任何判準之來源。	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	17	| A-VC8 | `recon.py` 缺 `leaf_count` assertion | PENDING | 全域排程（包 03 §五）|	b 清單成員
+anomaly	A-VC8	ANOMALIES.md	322	## A-VC8 —— `recon.py` 缺 `leaf_count` assertion（新立，下放包 02 §三）	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	327	A-VC8（recon.py 缺 leaf_count assertion）	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	361	之 abbr 推導）、A-TM04（slugify）、A-VC8（本項）。四者標的各異，	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	603	不得併案**（同 A-VC8 之邊界）。與 A-VC4／A-VC8 併入全域排程。	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	615	（同 A-VC8 之邊界）。與 A-VC4／A-VC8 併入全域排程。	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	685	與 A-VC4／A-VC8／A-VC11 同批）。	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	703	狀態：本 feature 已處置；通則 PENDING（全域排程，與 A-VC4／A-VC8／	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	805	(c) 二者**與 R-VC8 之授權非同一件，不得併案**（同 A-VC8／A-VC11 之邊界）。	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	812	狀態：PENDING（全域排程）。與 A-VC4／A-VC8／A-VC11／A-VC13 通則同批。	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	1137	—— 屬全域排程，與 A-VC4／A-VC8／A-VC11／A-VC13 同批。	a 純編號引用
+anomaly	A-VC8	ANOMALIES.md	1156	狀態：**PENDING（全域排程）**。與 A-VC4／A-VC8／A-VC11／A-VC13 同批。	a 純編號引用
+anomaly	A-VC8	docs/REVISIONS.md	55	並負 R-VC9 之逐包揭露義務。A-VC8 記其工具面缺口。	a 純編號引用
+anomaly	A-VC8	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	9	避免 A-VC8 家族之「宣告一個不被讀的東西」。	a 純編號引用
+anomaly	A-VC9	RULINGS.md	319	**該欄係按規格章節整批賦值，非逐 leaf 判斷**（證據見 A-VC9）：	a 純編號引用
+anomaly	A-VC9	RULINGS.md	439	作廢理由：A-VC9 已證 037 `Priority` 之粒度為**章**（十一章章內單一值，	a 純編號引用
+anomaly	A-VC9	ANOMALIES.md	18	| A-VC9 | 037 Priority 按章節整批賦值 | PENDING | 待 DR-VC7 |	b 清單成員
+anomaly	A-VC9	ANOMALIES.md	368	## A-VC9 —— 037 Priority 按章節整批賦值（新立，下放包 03 §三）	a 純編號引用
+anomaly	A-VC9	ANOMALIES.md	373	A-VC9（037 Priority 按章節整批賦值）	a 純編號引用
+anomaly	A-VC9	DECISIONS.md	92	- **不得建立 High/Medium/Low → P0–P3 之機械映射表**（A-VC9：037 該欄	a 純編號引用
+anomaly	A-VC9	docs/REVISIONS.md	106	- **作廢理由**：A-VC9 已證 037 `Priority` 之粒度為**章**（十一章章內單一值、	a 純編號引用
+dr	DR-VC1	DATA_REQUESTS.md	36	## DR-VC1 —— Privacy Lock 彈窗之實際 PU 編號	a 純編號引用
+dr	DR-VC10	ANOMALIES.md	963	**帶 `PENDING: DR-VC10 PU0091 popup string`**，	a 純編號引用
+dr	DR-VC10	ANOMALIES.md	965	- 以 **DR-VC10** 詢問：`PU0091` 之權威字串為何，及規格側是否需更正。	a 純編號引用
+dr	DR-VC10	ANOMALIES.md	969	狀態：PENDING（待 DR-VC10）。	a 純編號引用
+dr	DR-VC10	ANOMALIES.md	1023	`061` 之 Procedure 帶 `PENDING: DR-VC10 Software Updates entry path in Key Off`；	a 純編號引用
+dr	DR-VC10	ANOMALIES.md	1024	本節之否定性判斷與其搜尋範圍併入 **DR-VC10 第（二）問**。	a 純編號引用
+dr	DR-VC10	ANOMALIES.md	1026	狀態：PENDING（待 DR-VC10(二)）。	a 純編號引用
+dr	DR-VC10	DATA_REQUESTS.md	30	**DR-VC10（下放包 24 T128 新立）獨立發送**（下放包 25 §2.5 裁定）——	a 純編號引用
+dr	DR-VC10	DATA_REQUESTS.md	269	## DR-VC10 —— 章 13 之二問：`PU0091` 之字 ＋ `061` 之進入路徑	a 純編號引用
+dr	DR-VC10	DATA_REQUESTS.md	336	`PENDING: DR-VC10 Software Updates entry path in Key Off`。	a 純編號引用
+dr	DR-VC2	RULINGS.md	151	惟交付前須有 DR-VC2 之答覆以完成雙向追溯。	a 純編號引用
+dr	DR-VC2	ANOMALIES.md	104	裁：**不單獨發 DR**。於 DR-VC2 發出時（同為對 037 作者之查詢）	a 純編號引用
+dr	DR-VC2	ANOMALIES.md	106	單獨往返一輪之成本高於其資訊價值。維持 PENDING 至 DR-VC2 回覆。	a 純編號引用
+dr	DR-VC2	DATA_REQUESTS.md	8	下放包 02 §四之裁定已併入：A-VC2 附於 DR-VC2，不單獨發。	a 純編號引用
+dr	DR-VC2	DATA_REQUESTS.md	26	DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之	a 純編號引用
+dr	DR-VC2	DATA_REQUESTS.md	45	## DR-VC2 —— `SYS-HMI-RA-VC-###` 之來源系統與對應關係	a 純編號引用
+dr	DR-VC2	DATA_REQUESTS.md	166	- **批次**：同批 A —— 與 DR-VC2、A-VC2 之封面一問、A-VC10 之一問同發。	a 純編號引用
+dr	DR-VC3	RULINGS.md	401	(b) DR-VC3 對該三節之提問同此措辭（執行層已實作，予以追認）。	a 純編號引用
+dr	DR-VC3	RULINGS.md	582	不需另設例外。條件性生效，待 DR-VC3。	a 純編號引用
+dr	DR-VC3	RULINGS.md	763	6  `Brake Service`            2 leaf   DR-VC3（邊界待重審）	a 純編號引用
+dr	DR-VC3	RULINGS.md	764	7  `Cabrio Widget`            1 leaf   DR-VC3（同上）	a 純編號引用
+dr	DR-VC3	RULINGS.md	770	第 6／7 批置末之理由：R-VC16(c) 明文其邊界待 DR-VC3 重審，	a 純編號引用
+dr	DR-VC3	ANOMALIES.md	21	| A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |	b 清單成員
+dr	DR-VC3	ANOMALIES.md	117	**提案處置**：併入 DR-VC3 一併查詢，**不單獨發 DR**。	a 純編號引用
+dr	DR-VC3	ANOMALIES.md	645	狀態：PENDING（條件性，待 DR-VC3）。	a 純編號引用
+dr	DR-VC3	ANOMALIES.md	658	狀態：PENDING（條件性，待 DR-VC3）。	a 純編號引用
+dr	DR-VC3	DATA_REQUESTS.md	85	DR-VC3 回覆前不催。	a 純編號引用
+dr	DR-VC3	DATA_REQUESTS.md	127	DR-VC3 回覆前不催。	a 純編號引用
+dr	DR-VC3	DATA_REQUESTS.md	257	| **(一)** 索取 PDO Graphics | **規格作者** | **獨立發，不等 DR-VC3** |	b 清單成員
+dr	DR-VC3	DATA_REQUESTS.md	260	(一) 不併入 DR-VC4／DR-VC6 之理由：該二筆為**條件性**（待 DR-VC3 回覆為	a 純編號引用
+dr	DR-VC3	DECISIONS.md	121	- 表 B（覆蓋落差揭露，17 節）為草稿，最終措辭待 DR-VC3 回覆。	a 純編號引用
+dr	DR-VC3	framework.md	171	**17 section**（66 section 母體外）。若 DR-VC3 回覆「應補」而該群進入範圍：	a 純編號引用
+dr	DR-VC3	framework.md	324	草稿見 `data/tableB_draft.md`，最終措辭待 DR-VC3 回覆。	a 純編號引用
+dr	DR-VC3	data/tableB_draft.md	3	> **草稿，非交付件。** 最終措辭待 DR-VC3 回覆（R-VC12 二(b)、下放包 03 T23）。	a 純編號引用
+dr	DR-VC3	data/tableB_draft.md	20	### ⚠ 待 DR-VC3 之**四處**（下放包 28 §2.1 追認；下放包 27 §2.2 原列三處）	a 純編號引用
+dr	DR-VC3	data/tableB_draft.md	22	| 處 | 涉及列 | 若 DR-VC3 回覆「應補」之後果 |	b 清單成員
+dr	DR-VC3	data/tableB_draft.md	27	| **§11.9 群**（執行層補列，下放包 28 §2.1 **追認**）| 10–13 | 其歸 #5 為**條件性生效**，待 DR-VC3（R-VC16(d)）|	b 清單成員
+dr	DR-VC3	data/tableB_draft.md	73	R-VC16(d) 明文「11.9 群歸 #5 …**條件性生效，待 DR-VC3**」。	a 純編號引用
+dr	DR-VC4	DATA_REQUESTS.md	260	(一) 不併入 DR-VC4／DR-VC6 之理由：該二筆為**條件性**（待 DR-VC3 回覆為	a 純編號引用
+dr	DR-VC5	RULINGS.md	762	5  `Ignition Availability`   16 leaf   DR-VC5（FROP 跨域全 16 筆）	a 純編號引用
+dr	DR-VC5	DATA_REQUESTS.md	87	## DR-VC5 —— FROP 跨域 17 列之承接單位	a 純編號引用
+dr	DR-VC6	ANOMALIES.md	1106	- **DR-VC6 之問法改為三問**（R-VC27 末段，T148 已落）。	a 純編號引用
+dr	DR-VC6	DATA_REQUESTS.md	260	(一) 不併入 DR-VC4／DR-VC6 之理由：該二筆為**條件性**（待 DR-VC3 回覆為	a 純編號引用
+dr	DR-VC6	data/tableB_draft.md	65	**DR-VC6 之問法隨之改為三問**（見 `DATA_REQUESTS.md`）。	a 純編號引用
+dr	DR-VC7	ANOMALIES.md	18	| A-VC9 | 037 Priority 按章節整批賦值 | PENDING | 待 DR-VC7 |	b 清單成員
+dr	DR-VC7	ANOMALIES.md	403	狀態：PENDING（待 DR-VC7）。	a 純編號引用
+dr	DR-VC7	ANOMALIES.md	467	併入 DR-VC7 之同批查詢（同為 037 欄位語意之說明性問題）。	a 純編號引用
+dr	DR-VC7	ANOMALIES.md	515	狀態：PENDING（併 DR-VC7，同批 A）。	a 純編號引用
+dr	DR-VC7	ANOMALIES.md	579	狀態：PENDING（併 DR-VC7，同批 A）。	a 純編號引用
+dr	DR-VC7	DATA_REQUESTS.md	26	DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之	a 純編號引用
+dr	DR-VC7	DATA_REQUESTS.md	156	## DR-VC7 —— 037 Priority 欄之賦值判準	a 純編號引用
+dr	DR-VC8	RULINGS.md	657	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3）。	a 純編號引用
+dr	DR-VC8	RULINGS.md	658	DR-VC8 回覆後另裁是否補拆為 2–3 筆。	a 純編號引用
+dr	DR-VC8	RULINGS.md	740	DR-VC8 回覆後，本筆依其值 Revise，並依 R-VC18 另裁是否補拆	a 純編號引用
+dr	DR-VC8	ANOMALIES.md	731	（DR-VC8），非選擇。	a 純編號引用
+dr	DR-VC8	ANOMALIES.md	733	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3）。	a 純編號引用
+dr	DR-VC8	ANOMALIES.md	754	狀態：PENDING（待 DR-VC8）。	a 純編號引用
+dr	DR-VC8	ANOMALIES.md	775	狀態：PENDING（待 DR-VC8）。	a 純編號引用
+dr	DR-VC8	DATA_REQUESTS.md	26	DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之	a 純編號引用
+dr	DR-VC8	DATA_REQUESTS.md	180	## DR-VC8 —— `VC-033-01` 之鎖定門檻與計時起點	a 純編號引用
+dr	DR-VC8	DATA_REQUESTS.md	194	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3），	a 純編號引用
+dr	DR-VC8	docs/REVISIONS.md	227	成立）；惟 `VC-033-01` 因 **A-VC14／DR-VC8** 而帶**一筆 PENDING**。	a 純編號引用
+dr	DR-VC9	RULINGS.md	810	阻斷於 DR-VC9(二)）。	a 純編號引用
+dr	DR-VC9	ANOMALIES.md	916	- 三筆之 TC 帶 `PENDING: DR-VC9 PDO graphics`。	a 純編號引用
+dr	DR-VC9	ANOMALIES.md	917	- 以 **DR-VC9** 索取 PDO Graphics 並詢問三筆之 leaf 地位。	a 純編號引用
+dr	DR-VC9	ANOMALIES.md	919	狀態：PENDING（待 DR-VC9）。	a 純編號引用
+dr	DR-VC9	DATA_REQUESTS.md	202	## DR-VC9 —— PDO Graphics 素材，及純交叉引用型 leaf 之地位	a 純編號引用
+dr	DR-VC9	DATA_REQUESTS.md	248	`PENDING: DR-VC9 Dashboard content table`／	a 純編號引用
+dr	DR-VC9	DATA_REQUESTS.md	249	`PENDING: DR-VC9 PDO graphics`／	a 純編號引用
+dr	DR-VC9	DATA_REQUESTS.md	250	`PENDING: DR-VC9 Controls table reference`。	a 純編號引用
+dr	DR-VC9	DATA_REQUESTS.md	271	> **範圍於下放包 25 §2.1 擴為二問**（沿 DR-VC9 之雙標的先例，一封信兩問）——	a 純編號引用
+dr	DR-VC9	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	269	3. ... and compare it against PENDING: DR-VC9 Dashboard content table	a 純編號引用
+dr	DR-VC9	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	328	| `VC-013-04` | **24 字元**（`Refer to PDO graphics.`）| 第 1 批 b 段，待 DR-VC9(二) |	b 清單成員
+dr	DR-VC9	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	329	| `VC-007-01` | **30 字元**（`Vehicle Tab Labels and Order.`）| 第 1 批 b 段，待 DR-VC9(二) |	b 清單成員
+dr	DR-VC9	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	330	| `VC-025-01` | **27 字元**（`C1.) Controls Button Table.`）| 第 3 批 b 段，待 DR-VC9(二) |	b 清單成員
+leaf	SWE1-HMI-VC-013-04	DATA_REQUESTS.md	218	| `SWE1-HMI-VC-013-04` | 2.6.3 | `Refer to PDO graphics.` | 純交叉引用 |	b 清單成員
+leaf	SWE1-HMI-VC-021	DATA_REQUESTS.md	41	`PUXXXX`**，非實 id；037 `SWE1-HMI-VC-021` 原樣沿用。請提供實際 PU 編號。	a 純編號引用
+leaf	SWE1-HMI-VC-025-01	DATA_REQUESTS.md	220	| `SWE1-HMI-VC-025-01` | 3.9 | `C1.) Controls Button Table.` | 表格題名 |	b 清單成員
+leaf	SWE1-HMI-VC-026-01	RULINGS.md	643	4.1  SWE1-HMI-VC-026-01 / -026-02 / -026-03	a 純編號引用
+leaf	SWE1-HMI-VC-027	RULINGS.md	644	4.2  SWE1-HMI-VC-027	a 純編號引用
+leaf	SWE1-HMI-VC-028-01	RULINGS.md	645	5.1  SWE1-HMI-VC-028-01 / -028-02	a 純編號引用
+leaf	SWE1-HMI-VC-029	RULINGS.md	646	5.2  SWE1-HMI-VC-029	a 純編號引用
+leaf	SWE1-HMI-VC-030	RULINGS.md	647	6.1  SWE1-HMI-VC-030	a 純編號引用
+leaf	SWE1-HMI-VC-031	RULINGS.md	648	6.2  SWE1-HMI-VC-031	a 純編號引用
+leaf	SWE1-HMI-VC-032	RULINGS.md	649	6.3  SWE1-HMI-VC-032	a 純編號引用
+leaf	SWE1-HMI-VC-033-01	RULINGS.md	650	7.1  SWE1-HMI-VC-033-01 / -033-02	a 純編號引用
+leaf	SWE1-HMI-VC-033-01	RULINGS.md	654	`SWE1-HMI-VC-033-01` 之 boundary 拆分（§8.3：門檻−1 / =門檻 /	a 純編號引用
+leaf	SWE1-HMI-VC-033-01	RULINGS.md	735	即時適用：`SWE1-HMI-VC-033-01` 依 (a) 保留 Title 之	a 純編號引用
+leaf	SWE1-HMI-VC-033-01	ANOMALIES.md	715	`SWE1-HMI-VC-033-01`（§7.1，Glove Box 停用之錯誤鎖定）：	a 純編號引用
+leaf	SWE1-HMI-VC-034	ANOMALIES.md	68	（列 70 `SWE1-HMI-VC-034`、列 118 `SWE1-HMI-VC-052`、列 142 `SWE1-HMI-VC-063`）	a 純編號引用
+leaf	SWE1-HMI-VC-035-03	RULINGS.md	488	SWE1-HMI-VC-035-03（restore-defaults 之 Cancel）—— (a)，維持 **P0**	a 純編號引用
+leaf	SWE1-HMI-VC-035-03	ANOMALIES.md	445	SWE1-HMI-VC-035-03	a 純編號引用
+leaf	SWE1-HMI-VC-035-03	ANOMALIES.md	522	| `SWE1-HMI-VC-035-03` | Title | `Selecting 'Cancel' on the restore-defaults prompt returns the user to the previous screen without changing any settings` |	b 清單成員
+leaf	SWE1-HMI-VC-035-03	DATA_REQUESTS.md	170	最鮮明之一例：`SWE1-HMI-VC-035-03` 與 `SWE1-HMI-VC-036-02` 之	a 純編號引用
+leaf	SWE1-HMI-VC-036-01	RULINGS.md	486	SWE1-HMI-VC-036-01（選 Yes 清除個人資料並顯示確認彈窗）	a 純編號引用
+leaf	SWE1-HMI-VC-036-02	RULINGS.md	489	SWE1-HMI-VC-036-02（clear-personal-data 之 Cancel）—— (a)，維持 **P0**	a 純編號引用
+leaf	SWE1-HMI-VC-036-02	ANOMALIES.md	450	SWE1-HMI-VC-036-02	a 純編號引用
+leaf	SWE1-HMI-VC-036-02	ANOMALIES.md	524	| `SWE1-HMI-VC-036-02` | Title | `Selecting 'Cancel' on the clear-personal-data prompt returns the user to the previous screen without clearing any data` |	b 清單成員
+leaf	SWE1-HMI-VC-036-02	DATA_REQUESTS.md	170	最鮮明之一例：`SWE1-HMI-VC-035-03` 與 `SWE1-HMI-VC-036-02` 之	a 純編號引用
+leaf	SWE1-HMI-VC-048-02	framework.md	134	（`SWE1-HMI-VC-048-02`，§12.3.2）落在 **#5 `Settings List`**。	a 純編號引用
+leaf	SWE1-HMI-VC-052	ANOMALIES.md	68	（列 70 `SWE1-HMI-VC-034`、列 118 `SWE1-HMI-VC-052`、列 142 `SWE1-HMI-VC-063`）	a 純編號引用
+leaf	SWE1-HMI-VC-063	ANOMALIES.md	68	（列 70 `SWE1-HMI-VC-034`、列 118 `SWE1-HMI-VC-052`、列 142 `SWE1-HMI-VC-063`）	a 純編號引用
+revision	REV-02	docs/REVISIONS.md	22	## REV-02 —— 下放包 01 §3.1 規格 PDF 之位元組數	a 純編號引用
+revision	REV-03	docs/REVISIONS.md	31	## REV-03 —— 下放包 01 §五 T9「reference 七項」	a 純編號引用
+revision	REV-05	docs/REVISIONS.md	46	## REV-05 —— 下放包 01 §八 `recon_assertions` 四鍵	a 純編號引用
+revision	REV-06	docs/REVISIONS.md	57	## REV-06 —— 下放包 01 §4.2 之分類計數（24 ＋ 18 → 25 ＋ 17）	a 純編號引用
+revision	REV-07	data/tableB_draft.md	8	> （R-VC12 二已就 §15／§10.1／§10.2 作廢之，見 `docs/REVISIONS.md` REV-07）。	a 純編號引用
+revision	REV-08	docs/REVISIONS.md	91	## REV-08 —— 下放包 01 §五 T5「16 列」之口徑	a 純編號引用
+revision	REV-08	docs/REVISIONS.md	163	- **與 REV-08 同型**（T5 指令寫「16 列」而 id 區間 `057~064` 實為 22 列）。	a 純編號引用
+revision	REV-09	docs/REVISIONS.md	101	## REV-09 —— R-VC11(b) 作廢：粒度錯配	a 純編號引用
+revision	REV-10	docs/REVISIONS.md	120	## REV-10 —— priority 定案：八筆抬升撤銷、一筆改判	a 純編號引用
+revision	REV-11	RULINGS.md	629	分析層同期之 REV-11 為 R-VC15 之由來，二者為同一病灶之跨母體版與	a 純編號引用
+revision	REV-11	DECISIONS.md	127	> 章 13 之 leaf 母體為 **PM 12 ＋ VS 4**（REV-11／REV-14）。	a 純編號引用
+revision	REV-11	docs/REVISIONS.md	145	## REV-11 —— 下放包 05 §2.3「章 13 恰等於 FROP=PM 之 16 筆」：跨母體互援	a 純編號引用
+revision	REV-11	docs/REVISIONS.md	173	- **判讀**：二者**同屬 section 母體**，故非 REV-11 之跨母體互援。	a 純編號引用
+revision	REV-11	docs/REVISIONS.md	219	（REV-11 跨母體版、REV-12 同母體版），二者皆已處置並各自立條	a 純編號引用
+revision	REV-11	docs/REVISIONS.md	241	## REV-14 —— 下放包 24 §3.1「FROP = Power Management 全批」：REV-11 之病灶再現	a 純編號引用
+revision	REV-11	docs/REVISIONS.md	254	且已具名該四筆）。**REV-11 就是為同一個病灶而立的。**	a 純編號引用
+revision	REV-11	framework.md	147	> 為跨母體互援，已由 R-VC15 作廢（`docs/REVISIONS.md` REV-11）。	a 純編號引用
+revision	REV-11	docs/TABLE_A_frop_crossdomain.md	47	本節之設立是因為第二個 17 是本輪新算出來的 —— **REV-11／REV-14 兩次教訓	a 純編號引用
+revision	REV-12	RULINGS.md	628	立條由來：執行層於 T45 自查所得（REV-12）。	a 純編號引用
+revision	REV-12	docs/REVISIONS.md	219	（REV-11 跨母體版、REV-12 同母體版），二者皆已處置並各自立條	a 純編號引用
+revision	REV-14	RULINGS.md	600	> 本輪為其**第二次被重新量出來**（REV-14）。	a 純編號引用
+revision	REV-14	ANOMALIES.md	1076	而本輪是**第一次有人回去讀那三格**。與 REV-14 同族：	a 純編號引用
+revision	REV-14	ANOMALIES.md	1096	**與 REV-14 之分野**（本輪定性）：	a 純編號引用
+revision	REV-14	ANOMALIES.md	1097	REV-14 是**台帳寫對而沒人讀**；本件是**台帳本身就寫錯了**。	a 純編號引用
+revision	REV-14	DECISIONS.md	127	> 章 13 之 leaf 母體為 **PM 12 ＋ VS 4**（REV-11／REV-14）。	a 純編號引用
+revision	REV-14	docs/REVISIONS.md	241	## REV-14 —— 下放包 24 §3.1「FROP = Power Management 全批」：REV-11 之病灶再現	a 純編號引用
+revision	REV-14	docs/REVISIONS.md	264	記明以免誤以為 REV-14 之後同型不會再犯。	a 純編號引用
+revision	REV-14	docs/TABLE_A_frop_crossdomain.md	7	- **本表不引用任何既有敘述之數字** —— 承 REV-14，全部重測	a 純編號引用
+revision	REV-14	docs/TABLE_A_frop_crossdomain.md	47	本節之設立是因為第二個 17 是本輪新算出來的 —— **REV-11／REV-14 兩次教訓	a 純編號引用
+revision	REV-14	docs/TABLE_A_frop_crossdomain.md	75	## 2. 對照 —— 章 13 之 FROP 組成（REV-14 之標的）	a 純編號引用
+ruling	R-VC1	RULINGS.md	14	R-VC1（feature 身分與 test_group）	a 純編號引用
+ruling	R-VC1	RULINGS.md	533	Layer 1 Test Group ＝ `Vehicle Category`（R-VC1）。	a 純編號引用
+ruling	R-VC1	RULINGS.md	676	`UserProfiles`）—— 該慣例非由 `feature` 字串機械推導，見 R-VC1 之註。	a 純編號引用
+ruling	R-VC1	ANOMALIES.md	13	| A-VC4 | `new_feature.py` 之 abbr 推導得 `VE`，非 R-VC1 之 `VC` | PENDING | 全域排程（包 02 §四）|	b 清單成員
+ruling	R-VC1	framework.md	17	| Layer 1 — Test Group | `Vehicle Category`（R-VC1）| 工作簿 **G 欄** |	b 清單成員
+ruling	R-VC1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	5	`UserProfiles`）—— 該慣例非由 `feature` 字串機械推導，見 R-VC1 之註。	a 純編號引用
+ruling	R-VC1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	17	| feature | `Vehicle Category` | R-VC1 |	b 清單成員
+ruling	R-VC1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	18	| slug | `vehicle_category` | R-VC1 |	b 清單成員
+ruling	R-VC1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	19	| `test_group`（工作簿 G 欄）| `Vehicle Category` | R-VC1 |	b 清單成員
+ruling	R-VC10	RULINGS.md	278	R-VC10（素材之 paths / reference 分工）	a 純編號引用
+ruling	R-VC10	DATA_REQUESTS.md	211	已窮舉，見 R-VC10）。請提供該件，或說明其取得方式。	a 純編號引用
+ruling	R-VC10	docs/REVISIONS.md	33	- **修訂依據**：R-VC10（下放包 02 §二）	a 純編號引用
+ruling	R-VC10	docs/REVISIONS.md	42	- **修訂依據**：R-VC10（下放包 02 §二）	a 純編號引用
+ruling	R-VC10	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	92	（下放包 02 R-VC10 之明文排除依據；`feature.yaml` 之 `reference:`	a 純編號引用
+ruling	R-VC11	RULINGS.md	314	R-VC11（TC priority 之判定；R-VC6(a) 之落地）	a 純編號引用
+ruling	R-VC11	RULINGS.md	434	R-VC13（R-VC11(b) 之修訂：上游約束改為章級）	a 純編號引用
+ruling	R-VC11	RULINGS.md	459	R-VC11 之 (a) 主判準與 (c) 分歧揭露**不變**，繼續適用。	a 純編號引用
+ruling	R-VC11	RULINGS.md	483	該風險依 R-VC11(c) 記於該 TC 之 `reasoning`。	a 純編號引用
+ruling	R-VC11	DATA_REQUESTS.md	165	回覆到後 R-VC11(b) 之邊界重審。	a 純編號引用
+ruling	R-VC11	DECISIONS.md	89	- 判準：R-VC11(a) 之 IN §10.2 rubric 逐 TC 判 ＋ R-VC13 之**章級**	a 純編號引用
+ruling	R-VC11	DECISIONS.md	94	- 生成時之附帶義務（R-VC11(c)）：`VC-035-03`／`VC-036-02`（本地 P0	a 純編號引用
+ruling	R-VC11	docs/REVISIONS.md	101	## REV-09 —— R-VC11(b) 作廢：粒度錯配	a 純編號引用
+ruling	R-VC11	docs/REVISIONS.md	115	- **不變**：R-VC11 之 (a) 主判準與 (c) 分歧揭露繼續適用。	a 純編號引用
+ruling	R-VC11	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	23	| `priority` | `data/priority_final.tsv`（P0 5／P1 32／P2 45／P3 35）| R-VC11／R-VC13／R-VC14 |	b 清單成員
+ruling	R-VC12	RULINGS.md	976	R-VC12 之二(b)(c)(d) 與其餘各款**不變**。	a 純編號引用
+ruling	R-VC12	ANOMALIES.md	1081	**R-VC12 二(a) 是用它自己所禁之方法立的。**	a 純編號引用
+ruling	R-VC12	ANOMALIES.md	1083	R-VC12 之立條由來，為分析層於下放包 06 §一自認之第二次同類錯誤 ——	a 純編號引用
+ruling	R-VC12	DATA_REQUESTS.md	152	self-test 之已知標的（§10.1 應同時列出本欄與 R-VC12 二(a) 二處）。	a 純編號引用
+ruling	R-VC12	docs/REVISIONS.md	59	- **修訂依據**：R-VC12 一（下放包 03 §二）	a 純編號引用
+ruling	R-VC12	docs/REVISIONS.md	74	- **修訂依據**：R-VC12 二（下放包 03 §二）	a 純編號引用
+ruling	R-VC12	docs/REVISIONS.md	268	## 通則（R-VC12 三）	a 純編號引用
+ruling	R-VC12	framework.md	323	（R-VC12 一之修訂計數）。後者為 R-VC3 之表 B 母體，	a 純編號引用
+ruling	R-VC12	data/tableB_draft.md	3	> **草稿，非交付件。** 最終措辭待 DR-VC3 回覆（R-VC12 二(b)、下放包 03 T23）。	a 純編號引用
+ruling	R-VC12	data/tableB_draft.md	8	> （R-VC12 二已就 §15／§10.1／§10.2 作廢之，見 `docs/REVISIONS.md` REV-07）。	a 純編號引用
+ruling	R-VC12	data/tableB_draft.md	10	### ⚠ 本表全體之效力限制（R-VC12 二(d)；下放包 27 §2.2 要求寫在表上）	a 純編號引用
+ruling	R-VC12	data/tableB_draft.md	59	2. **§10.1／10.2／§15** 三節 —— **R-VC12 二(a) 已作廢，改依 R-VC27**	a 純編號引用
+ruling	R-VC13	RULINGS.md	356	> **⚠ (b) 已作廢 —— 見 R-VC13（下放包 04，Pei 2026-08-25）。**	a 純編號引用
+ruling	R-VC13	RULINGS.md	362	> **新 (b) 見 R-VC13：上游約束作用於章，不作用於 leaf。**	a 純編號引用
+ruling	R-VC13	RULINGS.md	434	R-VC13（R-VC11(b) 之修訂：上游約束改為章級）	a 純編號引用
+ruling	R-VC13	RULINGS.md	491	037 對此三筆皆為 Medium，依 R-VC13 之新 (b) 章級不設約束，	a 純編號引用
+ruling	R-VC13	DECISIONS.md	89	- 判準：R-VC11(a) 之 IN §10.2 rubric 逐 TC 判 ＋ R-VC13 之**章級**	a 純編號引用
+ruling	R-VC13	docs/REVISIONS.md	103	- **修訂依據**：R-VC13（下放包 04 §二）	a 純編號引用
+ruling	R-VC13	docs/REVISIONS.md	110	- **正解（新 (b)，R-VC13）**：上游約束**作用於章，不作用於 leaf**。	a 純編號引用
+ruling	R-VC13	docs/REVISIONS.md	117	於其後加註「(b) 已作廢，見 R-VC13」。加註後條文本體經 byte-level diff	a 純編號引用
+ruling	R-VC13	docs/REVISIONS.md	122	- **修訂依據**：R-VC13（八筆）＋ R-VC14（一筆），下放包 04 §三第 1／2 項	a 純編號引用
+ruling	R-VC13	docs/REVISIONS.md	129	| `VC-027` | 4.2 | High | P1 | **P2** | R-VC13 |	b 清單成員
+ruling	R-VC13	docs/REVISIONS.md	130	| `VC-031` | 6.2 | High | P1 | **P2** | R-VC13 |	b 清單成員
+ruling	R-VC13	docs/REVISIONS.md	131	| `VC-032` | 6.3 | High | P1 | **P3** | R-VC13 |	b 清單成員
+ruling	R-VC13	docs/REVISIONS.md	132	| `VC-033-02` | 7.1 | High | P1 | **P2** | R-VC13 |	b 清單成員
+ruling	R-VC13	docs/REVISIONS.md	134	| `VC-058-02` | 13.1.1 | High | P1 | **P2** | R-VC13 |	b 清單成員
+ruling	R-VC13	docs/REVISIONS.md	135	| `VC-058-03` | 13.1.1 | High | P1 | **P2** | R-VC13 |	b 清單成員
+ruling	R-VC13	docs/REVISIONS.md	136	| `VC-062-02` | 13.4.1 | High | P1 | **P2** | R-VC13 |	b 清單成員
+ruling	R-VC13	docs/REVISIONS.md	137	| `VC-063-02` | 13.4.2 | High | P1 | **P2** | R-VC13 |	b 清單成員
+ruling	R-VC13	docs/REVISIONS.md	139	八筆 R-VC13 者全部**回歸本地判定**（非另行判過）；	a 純編號引用
+ruling	R-VC13	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	23	| `priority` | `data/priority_final.tsv`（P0 5／P1 32／P2 45／P3 35）| R-VC11／R-VC13／R-VC14 |	b 清單成員
+ruling	R-VC14	RULINGS.md	468	R-VC14（P0 之判準：攔阻失效與執行失效之區分）	a 純編號引用
+ruling	R-VC14	RULINGS.md	767	（`035-03`／`036-02`）與 R-VC14 之分歧揭露義務（`036-01`）；	a 純編號引用
+ruling	R-VC14	ANOMALIES.md	456	「回上一頁」。該差額正是二筆判定 P0 之依據（R-VC14(a)）。	a 純編號引用
+ruling	R-VC14	ANOMALIES.md	529	差額成立，且正是該二筆定案 P0 之依據（R-VC14(a)）。	a 純編號引用
+ruling	R-VC14	DECISIONS.md	91	＋ R-VC14 之攔阻／執行失效區分	a 純編號引用
+ruling	R-VC14	DECISIONS.md	95	而 037=Medium）與 `VC-036-01`（R-VC14(b)，隱私外洩風險）	a 純編號引用
+ruling	R-VC14	docs/REVISIONS.md	122	- **修訂依據**：R-VC13（八筆）＋ R-VC14（一筆），下放包 04 §三第 1／2 項	a 純編號引用
+ruling	R-VC14	docs/REVISIONS.md	133	| `VC-036-01` | 11.3 | Medium | P0 | **P1** | R-VC14 |	b 清單成員
+ruling	R-VC14	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	23	| `priority` | `data/priority_final.tsv`（P0 5／P1 32／P2 45／P3 35）| R-VC11／R-VC13／R-VC14 |	b 清單成員
+ruling	R-VC15	RULINGS.md	498	R-VC15（母體標註義務）	a 純編號引用
+ruling	R-VC15	RULINGS.md	550	驗算目標（**母體標註依 R-VC15**）：	a 純編號引用
+ruling	R-VC15	RULINGS.md	588	（R-VC15）。	a 純編號引用
+ruling	R-VC15	RULINGS.md	623	本條與 R-VC15 之分工：	a 純編號引用
+ruling	R-VC15	RULINGS.md	624	R-VC15 —— 拘束**跨母體**之數字互援（不同母體之數字不可互援）	a 純編號引用
+ruling	R-VC15	RULINGS.md	629	分析層同期之 REV-11 為 R-VC15 之由來，二者為同一病灶之跨母體版與	a 純編號引用
+ruling	R-VC15	ANOMALIES.md	652	母體標註（R-VC15）：9 為 **leaf 母體**之數。	a 純編號引用
+ruling	R-VC15	docs/REVISIONS.md	147	- **修訂依據**：R-VC15（下放包 06 §一）	a 純編號引用
+ruling	R-VC15	docs/REVISIONS.md	169	- **修訂依據**：R-VC15（本輪 T38 覆核所得，執行層自查）	a 純編號引用
+ruling	R-VC15	docs/REVISIONS.md	174	但其論證形式為**計數相等**，R-VC15 明文「不得以計數相等代替成員比對」。	a 純編號引用
+ruling	R-VC15	docs/REVISIONS.md	185	- 性質：**非錯誤，是論證強度不足**。列此以示 R-VC15 之適用不限於	a 純編號引用
+ruling	R-VC15	docs/REVISIONS.md	220	（R-VC15、R-VC17）。	a 純編號引用
+ruling	R-VC15	docs/REVISIONS.md	243	- **修訂依據**：R-VC15；下放包 25 §一（分析層自認）	a 純編號引用
+ruling	R-VC15	docs/REVISIONS.md	258	- **性質**：R-VC15 立條後之**第一次違反**（下放包 25 §一，分析層自認）。	a 純編號引用
+ruling	R-VC15	framework.md	5	- 母體標註依 **R-VC15**：本檔凡引用計數必標母體，限	a 純編號引用
+ruling	R-VC15	framework.md	137	（R-VC15）。	a 純編號引用
+ruling	R-VC15	framework.md	147	> 為跨母體互援，已由 R-VC15 作廢（`docs/REVISIONS.md` REV-11）。	a 純編號引用
+ruling	R-VC15	docs/TABLE_A_frop_crossdomain.md	12	## 0. 母體標註（R-VC15）	a 純編號引用
+ruling	R-VC15	docs/TABLE_A_frop_crossdomain.md	35	### 0.2 ⚠ 兩個 17，落在不同母體（R-VC15／R-VC17）	a 純編號引用
+ruling	R-VC15	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	6	- 母體標註依 **R-VC15**：本檔凡引用計數必標母體，限	a 純編號引用
+ruling	R-VC16	RULINGS.md	529	R-VC16（Layer 2 定案：8 個 Test Set）	a 純編號引用
+ruling	R-VC16	RULINGS.md	640	pilot Test Set ＝ **#3 `Glove Box`**（R-VC16）。	a 純編號引用
+ruling	R-VC16	RULINGS.md	770	第 6／7 批置末之理由：R-VC16(c) 明文其邊界待 DR-VC3 重審，	a 純編號引用
+ruling	R-VC16	framework.md	3	- 裁決依據：**R-VC16**（Pei 2026-08-26，下放包 07 §一）——	a 純編號引用
+ruling	R-VC16	framework.md	9	**規則為權威，本檔之節次清單為其展開結果**（R-VC16）。	a 純編號引用
+ruling	R-VC16	framework.md	50	### 邊界規則（R-VC16，規則為權威）	a 純編號引用
+ruling	R-VC16	framework.md	91	### 3.2 ⚠ 弱點揭露（R-VC16(b)，不得因已簽署而略去）	a 純編號引用
+ruling	R-VC16	framework.md	129	### 3.6 FROP 之對應（R-VC16(e)）	a 純編號引用
+ruling	R-VC16	framework.md	151	## 4. 待補節對 #7／#8 之影響（R-VC16(c)）	a 純編號引用
+ruling	R-VC16	framework.md	168	### 4.1 11.9 群之條件性歸屬（R-VC16(d)）	a 純編號引用
+ruling	R-VC16	framework.md	188	分組以 `partn.test_set()`（R-VC16 之規則）實作，**不硬編 leaf 清單**。	a 純編號引用
+ruling	R-VC16	framework.md	194	| 3 | 各組 leaf 數與 section 數與 R-VC16 驗算目標逐組相符 | PASS |	b 清單成員
+ruling	R-VC16	data/tableB_draft.md	24	| 章 8／9 Cabrio 本體 | 1–7（§8.1–§9.2）| 另立 Test Set `Cabrio Rooftop`，**framework 由 8 組變 9 組**（R-VC16(c)）|	b 清單成員
+ruling	R-VC16	data/tableB_draft.md	27	| **§11.9 群**（執行層補列，下放包 28 §2.1 **追認**）| 10–13 | 其歸 #5 為**條件性生效**，待 DR-VC3（R-VC16(d)）|	b 清單成員
+ruling	R-VC16	data/tableB_draft.md	73	R-VC16(d) 明文「11.9 群歸 #5 …**條件性生效，待 DR-VC3**」。	a 純編號引用
+ruling	R-VC16	docs/TABLE_A_frop_crossdomain.md	92	**R-VC16(e) 之正確讀法**：`Power Management` 之 16 **列**全部落在章 13	a 純編號引用
+ruling	R-VC16	docs/TABLE_A_frop_crossdomain.md	105	**本表之 `Test Set` 欄須重編**（R-VC16(c)）。	a 純編號引用
+ruling	R-VC16	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	20	| Layer 2 Test Set（H 欄）| 8 組 | **R-VC16** |	b 清單成員
+ruling	R-VC17	RULINGS.md	608	R-VC17（一對一之主張須以成員比對為據）	a 純編號引用
+ruling	R-VC17	RULINGS.md	625	R-VC17 —— 拘束**等同性主張之論證形式**（不論母體是否相同）	a 純編號引用
+ruling	R-VC17	docs/REVISIONS.md	220	（R-VC15、R-VC17）。	a 純編號引用
+ruling	R-VC17	framework.md	139	**成員比對方法（R-VC17 之書寫要求）**：取 145 列母體中	a 純編號引用
+ruling	R-VC17	docs/TABLE_A_frop_crossdomain.md	35	### 0.2 ⚠ 兩個 17，落在不同母體（R-VC15／R-VC17）	a 純編號引用
+ruling	R-VC18	RULINGS.md	636	R-VC18（Phase 4 pilot：Glove Box）	a 純編號引用
+ruling	R-VC18	RULINGS.md	740	DR-VC8 回覆後，本筆依其值 Revise，並依 R-VC18 另裁是否補拆	a 純編號引用
+ruling	R-VC19	RULINGS.md	669	R-VC19（VC profile 之設立；§11 引號例外之啟動）	a 純編號引用
+ruling	R-VC19	RULINGS.md	816	R-VC23（R-VC19 之擴充：來源記法之通則化）	a 純編號引用
+ruling	R-VC19	RULINGS.md	827	R-VC19(b)(c)(d) 之其餘拘束**不變且更形吃重**：	a 純編號引用
+ruling	R-VC19	ANOMALIES.md	781	**登記依據**：R-VC19 §2.3 第 3 項明文「先查 `lint036.py` 對 `--profile` 之	a 純編號引用
+ruling	R-VC19	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	3	- 設立依據：**R-VC19**（下放包 11 §2.2，Pei 2026-08-26）	a 純編號引用
+ruling	R-VC19	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	50	（R-VC19 末段）。本節為 feature-scoped 之例外啟動，非全域鬆綁。	a 純編號引用
+ruling	R-VC19	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	56	R-VC19 §2.3 第 3 項要求「先查 `scripts/lint036.py` 對 `--profile` 之	a 純編號引用
+ruling	R-VC19	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	77	依 R-VC19 §2.3 第 3 項「如實記為 profile 之已知限制並登記 A-VC{n}，	a 純編號引用
+ruling	R-VC2	RULINGS.md	43	R-VC2（036 母本與 workbook_state）	a 純編號引用
+ruling	R-VC2	DECISIONS.md	30	- workbook_state: `[AUTO]` **BLANK**（R-VC2 所裁；done 0 / draft 0 / authors none）	a 純編號引用
+ruling	R-VC2	DECISIONS.md	59	（R-VC2(a) 已裁 `fill_test_group_set: true`）	a 純編號引用
+ruling	R-VC2	DECISIONS.md	62	- author on new rows: `[PROPOSED: PeiPYHsu]`（R-VC2(b) 已裁，一致）	a 純編號引用
+ruling	R-VC21	RULINGS.md	747	R-VC21（Phase 4 全量批次計畫）	a 純編號引用
+ruling	R-VC22	RULINGS.md	786	R-VC22（批次之 DR 保留段）	a 純編號引用
+ruling	R-VC23	RULINGS.md	701	> **⚠ (a) 已擴充、(d) 已作廢 —— 見 R-VC23（下放包 17 §3.2）。**	a 純編號引用
+ruling	R-VC23	RULINGS.md	816	R-VC23（R-VC19 之擴充：來源記法之通則化）	a 純編號引用
+ruling	R-VC23	ANOMALIES.md	505	**第三面之後果落在 R-VC23(c)**：`test_item` 上半取哪一欄，	a 純編號引用
+ruling	R-VC23	ANOMALIES.md	569	**第三面之後果落在 R-VC23(c)**：`test_item` 上半取哪一欄，	a 純編號引用
+ruling	R-VC24	RULINGS.md	850	R-VC24（Title 越界之判別：情境脈絡 vs 行為主張）	a 純編號引用
+ruling	R-VC24	RULINGS.md	882	(b) 逐筆施 R-VC24 之判別並記其結果（防第四面）；	a 純編號引用
+ruling	R-VC24	RULINGS.md	883	(c) 該 Title 不得為 R-VC24 所判之行為主張型。	a 純編號引用
+ruling	R-VC24	RULINGS.md	890	既有 TC 不回溯：pilot 之 8 筆 Title 取材已經 R-VC24 判別	a 純編號引用
+ruling	R-VC24	ANOMALIES.md	1055	`Aux 1`／`Aux 2` 之字面另與 R-VC24 已判之 `VC-025-02`（`Aux Camera 1`／`2`）	a 純編號引用
+ruling	R-VC25	RULINGS.md	873	R-VC25（test_item 上半之取材優先序）	a 純編號引用
+ruling	R-VC26	RULINGS.md	900	R-VC26（拆分之第四個充分條件：互相消耗）	a 純編號引用
+ruling	R-VC27	RULINGS.md	417	> **本條之二(a) 作廢，見 R-VC27。**	a 純編號引用
+ruling	R-VC27	ANOMALIES.md	1101	### 處置（下放包 28 §一，R-VC27）	a 純編號引用
+ruling	R-VC27	ANOMALIES.md	1106	- **DR-VC6 之問法改為三問**（R-VC27 末段，T148 已落）。	a 純編號引用
+ruling	R-VC27	ANOMALIES.md	1108	狀態：**已解**（R-VC27）。其成因記錄保留為常設參照。	a 純編號引用
+ruling	R-VC27	data/tableB_draft.md	59	2. **§10.1／10.2／§15** 三節 —— **R-VC12 二(a) 已作廢，改依 R-VC27**	a 純編號引用
+ruling	R-VC27	data/tableB_draft.md	76	6. **A-VC20 已解**（R-VC27，下放包 28 §一）。其成因值得留在這裡：	a 純編號引用
+ruling	R-VC28	RULINGS.md	989	R-VC28（本 feature 之 TC ID）	a 純編號引用
+ruling	R-VC28	ANOMALIES.md	1135	本 feature 依 R-VC28 採 `newR1L-`（與 D2 及 amfm 既有實例一致）。	a 純編號引用
+ruling	R-VC3	RULINGS.md	73	R-VC3（驗證範圍與兩張強制揭露表）	a 純編號引用
+ruling	R-VC3	RULINGS.md	264	揭露義務：R-VC3 之 leaf 全集 117 與覆蓋落差 18，在對應 assertion	a 純編號引用
+ruling	R-VC3	RULINGS.md	382	R-VC3 所稱「表 B｜覆蓋落差揭露」之母體隨之改為 **17 節**：	a 純編號引用
+ruling	R-VC3	RULINGS.md	386	R-VC3 之其餘部分（117 leaf 全取、表 A、兩表為出貨門檻）**不變**。	a 純編號引用
+ruling	R-VC3	RULINGS.md	587	R-VC3 表 A 據此編製。**此為成員集合之比對結果，非計數相等之推論**	a 純編號引用
+ruling	R-VC3	ANOMALIES.md	339	提案處置：`recon.py` 增設 `leaf_count` assertion，判準取 R-VC3 之定義	a 純編號引用
+ruling	R-VC3	ANOMALIES.md	636	現況：11.9 群為 037 零涵蓋（R-VC3 表 B 之 17 節之一），	a 純編號引用
+ruling	R-VC3	ANOMALIES.md	915	- **不得自行剔除該三 leaf** —— 117 母體為 R-VC3 所裁，剔除屬 Tier 2。	a 純編號引用
+ruling	R-VC3	DATA_REQUESTS.md	67	- **阻斷範圍**：不阻斷本次交付（R-VC3）。惟表 B 之措辭取決於此答覆。	a 純編號引用
+ruling	R-VC3	DATA_REQUESTS.md	93	- **阻斷範圍**：不阻斷（R-VC3 已裁全取）。答覆到後若需縮限，以 `[OVERRIDE]`	a 純編號引用
+ruling	R-VC3	DATA_REQUESTS.md	251	- **不得自行剔除該三 leaf** —— 117 母體為 R-VC3 所裁，剔除屬 Tier 2	a 純編號引用
+ruling	R-VC3	DECISIONS.md	52	即 R-VC3 之「有子之父」28，數字一致	a 純編號引用
+ruling	R-VC3	docs/REVISIONS.md	66	- **連帶**：**R-VC3 之「表 B｜覆蓋落差揭露」母體由 18 節改為 17 節**：	a 純編號引用
+ruling	R-VC3	docs/REVISIONS.md	69	R-VC3 之其餘部分（117 leaf 全取、表 A、兩表為出貨門檻）**不變**。	a 純編號引用
+ruling	R-VC3	framework.md	136	R-VC3 之表 A 據此編製。**此為成員集合之比對結果，非計數相等之推論**	a 純編號引用
+ruling	R-VC3	framework.md	323	（R-VC12 一之修訂計數）。後者為 R-VC3 之表 B 母體，	a 純編號引用
+ruling	R-VC3	data/tableB_draft.md	69	4. 本表為 **R-VC3 之出貨門檻二表之一**，缺之不得出貨。表 A（FROP 跨域，	a 純編號引用
+ruling	R-VC3	docs/TABLE_A_frop_crossdomain.md	3	> **出貨門檻二表之一**（R-VC3）。缺之不得出貨。	a 純編號引用
+ruling	R-VC3	docs/TABLE_A_frop_crossdomain.md	19	| **117 leaf** | 其中之 leaf（R-VC3 全取）| 117 |	b 清單成員
+ruling	R-VC3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	22	| 驗證母體 | **117 leaf** | R-VC3 |	b 清單成員
+ruling	R-VC4	RULINGS.md	102	R-VC4（spec_reference 之錨點形態）	a 純編號引用
+ruling	R-VC4	RULINGS.md	145	(a) 本 feature 之 `spec_reference` 一律取 `HMI Source ID` 欄（R-VC4），	a 純編號引用
+ruling	R-VC4	RULINGS.md	218	`HMI Source ID` 欄之原值**，使資料件與 R-VC4 一致。	a 純編號引用
+ruling	R-VC4	RULINGS.md	221	與 R-VC4 所裁之全名不同，等於在資料件中埋一個與裁決相左的值。	a 純編號引用
+ruling	R-VC4	ANOMALIES.md	260	驗明對 SYS1 命中 66/66），使資料件與 R-VC4 一致。	a 純編號引用
+ruling	R-VC4	ANOMALIES.md	262	`spec_reference_template` 填成任何字串 —— 那會違反 R-VC4。	a 純編號引用
+ruling	R-VC4	ANOMALIES.md	268	不採 (a)：其產出為光禿之章節號，與 R-VC4 所裁之全名不同 ——	a 純編號引用
+ruling	R-VC4	DECISIONS.md	76	> 本 feature 之情形不同 —— R-VC4 已裁明其值，故採實值覆蓋而非留 `[PEI]`。	a 純編號引用
+ruling	R-VC5	RULINGS.md	134	R-VC5（037 之 Source Requirement ID 不作為錨點）	a 純編號引用
+ruling	R-VC5	DATA_REQUESTS.md	52	- **阻斷範圍**：不阻斷生成（R-VC5(c)）。**交付前須有答覆**以完成雙向追溯。	a 純編號引用
+ruling	R-VC6	RULINGS.md	157	R-VC6（037 分析九欄為有效上游輸入；A-VC1 撤銷）	a 純編號引用
+ruling	R-VC6	RULINGS.md	314	R-VC11（TC priority 之判定；R-VC6(a) 之落地）	a 純編號引用
+ruling	R-VC6	RULINGS.md	343	此為 R-VC6(a)「不得於忽略本欄之情況下本地推導」之落地形式：	a 純編號引用
+ruling	R-VC6	RULINGS.md	351	R-VC6(a) 之「priority 欄不得產出」之凍結，於本條落地後**解除**。	a 純編號引用
+ruling	R-VC6	ANOMALIES.md	30	## A-VC1 —— 037 第 10–18 欄之 `\xa0` —— **撤銷（R-VC6，Pei 2026-08-25）**	a 純編號引用
+ruling	R-VC6	ANOMALIES.md	33	> 依 R-VC6（下放包 02 §二，`RULINGS.md:157`）：下放包 01 §3.3 所記	a 純編號引用
+ruling	R-VC6	ANOMALIES.md	79	**裁定（R-VC6，Pei 2026-08-25）—— 提案 (a)(b) 全採，(c) 已解**	a 純編號引用
+ruling	R-VC6	ANOMALIES.md	86	R-VC6 立四項拘束，其 (a)(b)(c) **不屬本異常之處置而屬 Phase 4 之範圍**：	a 純編號引用
+ruling	R-VC6	ANOMALIES.md	209	**正向要求**：該九欄是必須使用的上游輸入，見 R-VC6(a)(b)。	a 純編號引用
+ruling	R-VC6	ANOMALIES.md	221	T12 已以 R-VC6 之條文為基準重跑，見上繳包 02 §3。	a 純編號引用
+ruling	R-VC6	docs/REVISIONS.md	11	- **修訂依據**：R-VC6（下放包 02 §二）	a 純編號引用
+ruling	R-VC6	docs/REVISIONS.md	18	- **連帶**：A-VC1 撤銷。九欄改為**有效上游輸入**，並生 R-VC6(a)–(d) 四項拘束。	a 純編號引用
+ruling	R-VC7	RULINGS.md	188	R-VC7（規格 PDF 之權威複本）	a 純編號引用
+ruling	R-VC7	ANOMALIES.md	16	| A-VC7 | 規格 PDF 之位元組數與下放包 01 §3.1 不符 | **RESOLVED（R-VC7）** | — |	b 清單成員
+ruling	R-VC7	ANOMALIES.md	280	## A-VC7 —— 規格 PDF 之位元組數與下放包 01 §3.1 不符 —— **RESOLVED（R-VC7）**	a 純編號引用
+ruling	R-VC7	ANOMALIES.md	306	**裁定（R-VC7，Pei 2026-08-25）—— repo 內複本為權威**	a 純編號引用
+ruling	R-VC7	ANOMALIES.md	1006	取材時以 SYS1／037 為準（R-VC7），記明以免日後誤判為抄錯。	a 純編號引用
+ruling	R-VC7	docs/REVISIONS.md	24	- **修訂依據**：R-VC7（下放包 02 §二）	a 純編號引用
+ruling	R-VC8	RULINGS.md	210	R-VC8（recon.py 於 spec_reference_template 為 null 時之行為；Tier 2 修法授權）	a 純編號引用
+ruling	R-VC8	ANOMALIES.md	15	| A-VC6 | `recon.py` 於 `spec_reference_template: null` 崩潰 | **RESOLVED（R-VC8）** | — |	b 清單成員
+ruling	R-VC8	ANOMALIES.md	150	**R-VC8 之修法不得順手併入 A-VC4 / A-TM04** —— 三者標的不同	a 純編號引用
+ruling	R-VC8	ANOMALIES.md	225	## A-VC6 —— `recon.py` 於 `spec_reference_template: null` 崩潰 —— **RESOLVED（R-VC8）**	a 純編號引用
+ruling	R-VC8	ANOMALIES.md	264	**裁定（R-VC8，Pei 2026-08-25）—— 採提案 (b)，不採 (a)**	a 純編號引用
+ruling	R-VC8	ANOMALIES.md	271	R-VC8 為 Tier 2 修法之授權，另立三項實作拘束（保留 `first` 之原值而	a 純編號引用
+ruling	R-VC8	ANOMALIES.md	342	屬 Tier 2 工具修法，**與 R-VC8 之修法非同一件，不得併案順手為之**。	a 純編號引用
+ruling	R-VC8	ANOMALIES.md	351	不得併入 R-VC8 之授權範圍）。	a 純編號引用
+ruling	R-VC8	ANOMALIES.md	360	**授權邊界再申明**：R-VC8 之修法不得順手併入 A-VC4（`new_feature.py`	a 純編號引用
+ruling	R-VC8	ANOMALIES.md	602	根治須改顯示層，屬 Tier 2 工具修法，**與 R-VC8 之資料層修法非同一件，	a 純編號引用
+ruling	R-VC8	ANOMALIES.md	614	3. 根治屬 Tier 2 工具修法，**與 R-VC8 之資料層修法非同一件，不得併案**	a 純編號引用
+ruling	R-VC8	ANOMALIES.md	805	(c) 二者**與 R-VC8 之授權非同一件，不得併案**（同 A-VC8／A-VC11 之邊界）。	a 純編號引用
+ruling	R-VC8	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	78	**不得改 lint**」（R-VC8 之授權邊界不涵蓋 lint）：	a 純編號引用
+ruling	R-VC9	ANOMALIES.md	356	（非計數相等 —— 「數目對但成員錯」會被抓到），且每包負 R-VC9 之揭露義務。	a 純編號引用
+ruling	R-VC9	DECISIONS.md	45	> —— R-VC9 之揭露義務，簽署時請一併確認。	a 純編號引用
+ruling	R-VC9	docs/REVISIONS.md	48	- **修訂依據**：R-VC9（下放包 02 §二）	a 純編號引用
+ruling	R-VC9	docs/REVISIONS.md	55	並負 R-VC9 之逐包揭露義務。A-VC8 記其工具面缺口。	a 純編號引用
+section	1	ANOMALIES.md	155	（見上繳包 01 §1）。	a 純編號引用
+section	1	ANOMALIES.md	694	修改前後之 SHA256 與 diff 見上繳包 08 §1。	a 純編號引用
+section	1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	62	但其能力與 §1(c) 所需相距三層：	a 純編號引用
+section	1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	82	**在該限制解除前，§1(c) 由人工承擔** ——	a 純編號引用
+section	1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	338	本節為**產出之形式要求**（上半該長什麼樣），與 §1 之引號例外同類，	a 純編號引用
+section	1.2	RULINGS.md	423	> **⚠ 本加註最該記的一點**（下放包 28 §1.2）：	a 純編號引用
+section	1.2	ANOMALIES.md	1079	### ⚠ 成因（下放包 28 §1.2 之自認，T149 補記）	a 純編號引用
+section	1.3	RULINGS.md	910	判別之問法（下放包 24 §1.3）：	a 純編號引用
+section	1.4	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	468	## 11. `split_flag`／`split_reason` 於本 feature 不使用（下放包 24 §1.4，裁甲）	a 純編號引用
+section	1.4	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	475	**三項理由（下放包 24 §1.4）**：	a 純編號引用
+section	10	RULINGS.md	407	（FO §3 Mode A 之盲點，執行層已於上繳包 02 §10 揭露）。	a 純編號引用
+section	10.1	RULINGS.md	391	§10.1／10.2 —— 「Type / Power Source / Last State 之四種組合、	a 純編號引用
+section	10.1	ANOMALIES.md	1038	| §10.1 | `The flow of pressing the Aux settings from Controls / (image: image9.png) / (image: image10.png) / **Refer to the HMI Settings list for settings location.** / **All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously** / Graphics are visual aids only. Please see PDO release for official graphics` |	b 清單成員
+section	10.1	ANOMALIES.md	1049	### 為什麼 §10.1／§10.2 這一項要緊	a 純編號引用
+section	10.1	DATA_REQUESTS.md	152	self-test 之已知標的（§10.1 應同時列出本欄與 R-VC12 二(a) 二處）。	a 純編號引用
+section	10.1	docs/REVISIONS.md	77	- §10.1／10.2 —— 「Type / Power Source / Last State 之四種組合、	a 純編號引用
+section	10.1	data/tableB_draft.md	8	> （R-VC12 二已就 §15／§10.1／§10.2 作廢之，見 `docs/REVISIONS.md` REV-07）。	a 純編號引用
+section	10.1	data/tableB_draft.md	59	2. **§10.1／10.2／§15** 三節 —— **R-VC12 二(a) 已作廢，改依 R-VC27**	a 純編號引用
+section	10.2	RULINGS.md	174	leaf 之優先級判斷。TC 之 `priority` 欄（IN §10.2 之 P0–P3）	a 純編號引用
+section	10.2	RULINGS.md	179	(c) 欄 14 `Risk Factor` 與欄 12 `Impact` 為 §10.2 映射之佐證，	a 純編號引用
+section	10.2	RULINGS.md	333	(a) **主判準** —— IN §10.2 之 P0–P3 rubric，逐 TC 判定。	a 純編號引用
+section	10.2	RULINGS.md	349	引 §10.2 之對應款。**不得為求一致而遷就任一方。**	a 純編號引用
+section	10.2	RULINGS.md	480	其嚴重性不因本條而被否認；惟 §10.2 之 P0 類目	a 純編號引用
+section	10.2	ANOMALIES.md	89	欄 14 `Risk Factor` 與欄 12 `Impact` 為 §10.2 映射之佐證，	a 純編號引用
+section	10.2	ANOMALIES.md	394	同為 Medium。二者於 IN §10.2 之 rubric 下語意相距甚遠。	a 純編號引用
+section	10.2	ANOMALIES.md	1049	### 為什麼 §10.1／§10.2 這一項要緊	a 純編號引用
+section	10.2	DECISIONS.md	89	- 判準：R-VC11(a) 之 IN §10.2 rubric 逐 TC 判 ＋ R-VC13 之**章級**	a 純編號引用
+section	10.2	DECISIONS.md	96	須於 `reasoning` 記明分歧與 §10.2 對應款	a 純編號引用
+section	10.2	data/tableB_draft.md	8	> （R-VC12 二已就 §15／§10.1／§10.2 作廢之，見 `docs/REVISIONS.md` REV-07）。	a 純編號引用
+section	10.3	RULINGS.md	998	—— 與 req_id 之 `SWE1-HMI-VC-###` 一致；IN §10.3 之範例	a 純編號引用
+section	10.7	RULINGS.md	23	母文件為 spec，`spec_reference` 走 IN §10.7(a) 之	a 純編號引用
+section	10.7	RULINGS.md	127	排列一律依 IN §10.7 之「一個章節號一行、前綴逐行重述」，	a 純編號引用
+section	11	RULINGS.md	669	R-VC19（VC profile 之設立；§11 引號例外之啟動）	a 純編號引用
+section	11	RULINGS.md	678	profile 之**首要條款**為啟動 IN §11 之引號例外，其範圍嚴格限定：	a 純編號引用
+section	11	RULINGS.md	839	**IN §11 之方括號禁令於本例外之範圍內讓位** ——	a 純編號引用
+section	11	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	27	## 1. `[OVERRIDE]` —— IN §11 引號例外之啟動	a 純編號引用
+section	11.9	ANOMALIES.md	21	| A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |	b 清單成員
+section	11.9	ANOMALIES.md	621	## A-VC12 —— §11.9 群與 §12.3 群之行為重疊（條件性，新立，下放包 06 §二）	a 純編號引用
+section	11.9	ANOMALIES.md	628	規格 §11.9 群（11.9／11.9.1／11.9.2／11.9.3，「General logic for	a 純編號引用
+section	11.9	data/tableB_draft.md	27	| **§11.9 群**（執行層補列，下放包 28 §2.1 **追認**）| 10–13 | 其歸 #5 為**條件性生效**，待 DR-VC3（R-VC16(d)）|	b 清單成員
+section	12.3	ANOMALIES.md	21	| A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |	b 清單成員
+section	12.3	ANOMALIES.md	621	## A-VC12 —— §11.9 群與 §12.3 群之行為重疊（條件性，新立，下放包 06 §二）	a 純編號引用
+section	12.3	ANOMALIES.md	629	setting with options」）與 §12.3 群（12.3／12.3.1，設定列之按壓與	a 純編號引用
+section	12.3.2	RULINGS.md	586	FROP = `Audio Management` 之 1 列（`VC-048-02`，§12.3.2）落在 #5。	a 純編號引用
+section	12.3.2	framework.md	134	（`SWE1-HMI-VC-048-02`，§12.3.2）落在 **#5 `Settings List`**。	a 純編號引用
+section	13.1	ANOMALIES.md	985	§13.1 於 Key Off 擋住 **Settings 頁籤**（上繳包 22 §2 之路徑解）。	a 純編號引用
+section	13.1	DATA_REQUESTS.md	322	（第 650 列），即在被 §13.1 擋住的 Settings 頁籤後方；	a 純編號引用
+section	13.2	DATA_REQUESTS.md	309	`059-*` 有 §13.2 之 `through the Phone screens`、	a 純編號引用
+section	13.2	DATA_REQUESTS.md	331	或告知 §13.4 是否應比照 §13.2／§13.3 補寫路徑。	a 純編號引用
+section	13.3	DATA_REQUESTS.md	310	`060-*` 有 §13.3 之 `through the Media`、	a 純編號引用
+section	13.3	DATA_REQUESTS.md	331	或告知 §13.4 是否應比照 §13.2／§13.3 補寫路徑。	a 純編號引用
+section	13.4	DATA_REQUESTS.md	331	或告知 §13.4 是否應比照 §13.2／§13.3 補寫路徑。	a 純編號引用
+section	13.4.1	ANOMALIES.md	931	| SYS1 §13.4.1 s1 | `the user shall be presented with the “**Feature** not available while vehicle is in motion” popup (PU0091)` |	b 清單成員
+section	13.4.1	DATA_REQUESTS.md	291	2. 若彈窗清單為準，SYS1 §13.4.1／§13.4.2 之引文是否應更正？	a 純編號引用
+section	13.4.1	docs/TABLE_A_frop_crossdomain.md	87	- `VC-062-01`（§13.4.1） —— When the user presses 'Software Downloads Over Wi-Fi' while the …	a 純編號引用
+section	13.4.1	docs/TABLE_A_frop_crossdomain.md	88	- `VC-062-02`（§13.4.1） —— When the user presses OK or X on the in-motion popup launched fr…	a 純編號引用
+section	13.4.2	ANOMALIES.md	932	| SYS1 §13.4.2 s1 | `…the “**Feature** not available while vehicle is in motion” popup (PU0091)`（同上）|	b 清單成員
+section	13.4.2	DATA_REQUESTS.md	291	2. 若彈窗清單為準，SYS1 §13.4.1／§13.4.2 之引文是否應更正？	a 純編號引用
+section	13.4.2	docs/TABLE_A_frop_crossdomain.md	89	- `VC-063-01`（§13.4.2） —— When the vehicle starts moving while the user is mid-flow in FOT…	a 純編號引用
+section	13.4.2	docs/TABLE_A_frop_crossdomain.md	90	- `VC-063-02`（§13.4.2） —— When the user presses OK or X on the in-motion popup launched fr…	a 純編號引用
+section	13.5	ANOMALIES.md	988	即它本來就在頁籤後方。§13.5 之 `Settings tab **or a Settings category**`	a 純編號引用
+section	14.2	framework.md	158	| #7 `Brake Service` | 2 leaf | §14.2（彈窗優先序）、§15（EPB 彈窗）| 2 + N |	b 清單成員
+section	14.2	data/tableB_draft.md	25	| `Brake Service` 待補節 | 14–15（§14.2／§15）| 併入 #7，該組由 2 leaf 長大 |	b 清單成員
+section	15	ANOMALIES.md	1040	| §15 | `Electronic Park Brake Service Mode Pop-up / (image: image20.png) / (image: image21.png) / (image: image22.png)` |	b 清單成員
+section	15	framework.md	158	| #7 `Brake Service` | 2 leaf | §14.2（彈窗優先序）、§15（EPB 彈窗）| 2 + N |	b 清單成員
+section	15	data/tableB_draft.md	8	> （R-VC12 二已就 §15／§10.1／§10.2 作廢之，見 `docs/REVISIONS.md` REV-07）。	a 純編號引用
+section	15	data/tableB_draft.md	25	| `Brake Service` 待補節 | 14–15（§14.2／§15）| 併入 #7，該組由 2 leaf 長大 |	b 清單成員
+section	15	data/tableB_draft.md	59	2. **§10.1／10.2／§15** 三節 —— **R-VC12 二(a) 已作廢，改依 R-VC27**	a 純編號引用
+section	16.2.1	framework.md	159	| #8 `Cabrio Widget` | 1 leaf | §16.2.1、§16.2.2 | 3 |	b 清單成員
+section	16.2.1	data/tableB_draft.md	26	| `Cabrio Widget` 待補節 | 16–17（§16.2.1／§16.2.2）| 併入 #8，該組由 1 leaf 長大 |	b 清單成員
+section	16.2.2	framework.md	159	| #8 `Cabrio Widget` | 1 leaf | §16.2.1、§16.2.2 | 3 |	b 清單成員
+section	16.2.2	data/tableB_draft.md	26	| `Cabrio Widget` 待補節 | 16–17（§16.2.1／§16.2.2）| 併入 #8，該組由 1 leaf 長大 |	b 清單成員
+section	2	RULINGS.md	9	逐條字面一致核對結果見 `docs/upstream/01_intake_recon.md` §2。	a 純編號引用
+section	2	RULINGS.md	421	> simultaneously` 為實質需求敘述（上繳包 27 §2，A-VC20）。	a 純編號引用
+section	2	ANOMALIES.md	985	§13.1 於 Key Off 擋住 **Settings 頁籤**（上繳包 22 §2 之路徑解）。	a 純編號引用
+section	2	framework.md	18	| Layer 2 — Test Set | **8 組**（§2）| 工作簿 **H 欄** |	b 清單成員
+section	2	framework.md	174	§2 之規則「章 11，次級節號 ≥ 7」已涵蓋之，不需另設例外。	a 純編號引用
+section	2	framework.md	207	> **本節為規則之展開結果，非權威。** 二者若不一致，以 §2 之規則為準，	a 純編號引用
+section	2	docs/TABLE_A_frop_crossdomain.md	103	- **`Test Set` 取自 `data/test_set_map.tsv`**（framework §2 之 8 組）——	a 純編號引用
+section	2.1	RULINGS.md	55	(a) `write_back.fill_test_group_set = true`（canon §2.1，BLANK -> FILL）	a 純編號引用
+section	2.1	ANOMALIES.md	868	分析層於下放包 14 §2.1 以 `VC-013-04` 舉例，並明文	a 純編號引用
+section	2.1	ANOMALIES.md	1017	### 處置（下放包 25 §2.1 之裁定 —— **推翻上開提案**）	a 純編號引用
+section	2.1	DATA_REQUESTS.md	252	（下放包 14 §2.1 之明文）。	a 純編號引用
+section	2.1	DATA_REQUESTS.md	271	> **範圍於下放包 25 §2.1 擴為二問**（沿 DR-VC9 之雙標的先例，一封信兩問）——	a 純編號引用
+section	2.1	DATA_REQUESTS.md	306	### （二）`061` 之 Software Updates 於 Key Off 之進入路徑（下放包 25 §2.1）	a 純編號引用
+section	2.1	DATA_REQUESTS.md	313	**為何不能以通稱表述帶過**（下放包 25 §2.1 之裁定）：	a 純編號引用
+section	2.1	DECISIONS.md	135	- Verification:  diff -q vs docs/DECISIONS_signoff_draft.md → 一致（上繳包 07 §2.1）	a 純編號引用
+section	2.1	data/tableB_draft.md	20	### ⚠ 待 DR-VC3 之**四處**（下放包 28 §2.1 追認；下放包 27 §2.2 原列三處）	a 純編號引用
+section	2.1	data/tableB_draft.md	27	| **§11.9 群**（執行層補列，下放包 28 §2.1 **追認**）| 10–13 | 其歸 #5 為**條件性生效**，待 DR-VC3（R-VC16(d)）|	b 清單成員
+section	2.1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	346	## 9. `CONT` 表之收錄判準（下放包 20 §2.1 ＋ 23 §2.2）	a 純編號引用
+section	2.1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	348	**本節之由來須先記明**：收錄判準自下放包 20 §2.1 明文起，	a 純編號引用
+section	2.2	DATA_REQUESTS.md	226	**(三) `VC-014` 之 `(See table above)`（下放包 20 §2.2）**：	a 純編號引用
+section	2.2	DATA_REQUESTS.md	241	> 而非「我們沒找到」（下放包 20 §2.2）。	a 純編號引用
+section	2.2	data/tableB_draft.md	10	### ⚠ 本表全體之效力限制（R-VC12 二(d)；下放包 27 §2.2 要求寫在表上）	a 純編號引用
+section	2.2	data/tableB_draft.md	20	### ⚠ 待 DR-VC3 之**四處**（下放包 28 §2.1 追認；下放包 27 §2.2 原列三處）	a 純編號引用
+section	2.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	3	- 設立依據：**R-VC19**（下放包 11 §2.2，Pei 2026-08-26）	a 純編號引用
+section	2.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	346	## 9. `CONT` 表之收錄判準（下放包 20 §2.1 ＋ 23 §2.2）	a 純編號引用
+section	2.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	416	### 9.4.1 第一層之已知偽陰性 —— 三型、六實例（下放包 25 §2.2）	a 純編號引用
+section	2.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	432	**本 feature 不擴充第一層**（下放包 25 §2.2 裁定），理由：	a 純編號引用
+section	2.3	RULINGS.md	867	本條由來：上繳包 19 §2.3，執行層提出之判別，分析層採為正式判準。	a 純編號引用
+section	2.3	RULINGS.md	995	`newR1L`（上繳包 28 §2.3：VC 母本、display／privacy／sxm 交付本、	a 純編號引用
+section	2.3	ANOMALIES.md	781	**登記依據**：R-VC19 §2.3 第 3 項明文「先查 `lint036.py` 對 `--profile` 之	a 純編號引用
+section	2.3	docs/REVISIONS.md	145	## REV-11 —— 下放包 05 §2.3「章 13 恰等於 FROP=PM 之 16 筆」：跨母體互援	a 純編號引用
+section	2.3	framework.md	146	> 「章 13 之 16 leaf 恰等於 FROP=PM 之 16 列」曾被寫入下放包 05 §2.3，	a 純編號引用
+section	2.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	56	R-VC19 §2.3 第 3 項要求「先查 `scripts/lint036.py` 對 `--profile` 之	a 純編號引用
+section	2.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	77	依 R-VC19 §2.3 第 3 項「如實記為 profile 之已知限制並登記 A-VC{n}，	a 純編號引用
+section	2.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	449	## 10. R-3 之 `token` 工作定義（下放包 23 §2.3）	a 純編號引用
+section	2.4	DATA_REQUESTS.md	235	- 章 2 之 §2.4 雖有表，但其為 Vehicle Tab Labels and Order（頁籤名與位置），	a 純編號引用
+section	2.5	DATA_REQUESTS.md	30	**DR-VC10（下放包 24 T128 新立）獨立發送**（下放包 25 §2.5 裁定）——	a 純編號引用
+section	2.6.2	DATA_REQUESTS.md	208	**(一) 素材**：`PDO Graphics` 於規格 §2.6.2／§2.6.3 被引為版面之權威來源	a 純編號引用
+section	2.6.3	DATA_REQUESTS.md	208	**(一) 素材**：`PDO Graphics` 於規格 §2.6.2／§2.6.3 被引為版面之權威來源	a 純編號引用
+section	3	RULINGS.md	407	（FO §3 Mode A 之盲點，執行層已於上繳包 02 §10 揭露）。	a 純編號引用
+section	3	RULINGS.md	685	上繳包 10 §3 第 7 項已驗此層全數合規，該狀態須維持。	a 純編號引用
+section	3	ANOMALIES.md	166	3. 其餘 §三／§四 之 29 項數字**全部相符**（見上繳包 §3 之比對表）——	a 純編號引用
+section	3	ANOMALIES.md	221	T12 已以 R-VC6 之條文為基準重跑，見上繳包 02 §3。	a 純編號引用
+section	3	DATA_REQUESTS.md	200	（其餘 9 筆候選為假陽性）。掃描方法與其偽陰性見上繳包 10 §3。	a 純編號引用
+section	3	docs/REVISIONS.md	19	- **軌跡**：`docs/upstream/01_intake_recon.md` §3 之比對表第 23 項判 `≠`	a 純編號引用
+section	3	docs/REVISIONS.md	87	（FO §3 Mode A 之盲點）。	a 純編號引用
+section	3	data/tableB_draft.md	16	FO §3 之 Mode A 盲點：匯出可能靜默漏句，而本法看不見 ——	a 純編號引用
+section	3	data/tableB_draft.md	67	**非「與規格原件相符」** —— FO §3 之 Mode A 盲點（匯出可能靜默漏句）	a 純編號引用
+section	3.1	ANOMALIES.md	16	| A-VC7 | 規格 PDF 之位元組數與下放包 01 §3.1 不符 | **RESOLVED（R-VC7）** | — |	b 清單成員
+section	3.1	ANOMALIES.md	163	1. 檔案大小一致：下放包 §3.1 記 037 為 100,475 B；repo 內複本亦為 100,475 B。	a 純編號引用
+section	3.1	ANOMALIES.md	280	## A-VC7 —— 規格 PDF 之位元組數與下放包 01 §3.1 不符 —— **RESOLVED（R-VC7）**	a 純編號引用
+section	3.1	ANOMALIES.md	284	下放包 §3.1 記規格 PDF 為 **3,552,260 B**。	a 純編號引用
+section	3.1	DATA_REQUESTS.md	234	**位於 §3.1 之後方**；	a 純編號引用
+section	3.1	DATA_REQUESTS.md	253	- **批次（下放包 15 §3.1 已裁）—— 維持單一編號，雙標的分送**：	a 純編號引用
+section	3.1	docs/REVISIONS.md	22	## REV-02 —— 下放包 01 §3.1 規格 PDF 之位元組數	a 純編號引用
+section	3.1	docs/REVISIONS.md	241	## REV-14 —— 下放包 24 §3.1「FROP = Power Management 全批」：REV-11 之病灶再現	a 純編號引用
+section	3.1	docs/TABLE_A_frop_crossdomain.md	77	下放包 24 §3.1 曾稱「章 13 之 FROP = Power Management **全批**」，	a 純編號引用
+section	3.2	RULINGS.md	701	> **⚠ (a) 已擴充、(d) 已作廢 —— 見 R-VC23（下放包 17 §3.2）。**	a 純編號引用
+section	3.2	ANOMALIES.md	478	| 三 · **記法不對稱** | 同一字串在二欄用不同引號記法 | `051-03`（彎單 vs 直單）、`053`（`“info icon”`／`“i”` vs `'i'`）| 下放包 18 §3.2 |	b 清單成員
+section	3.2	ANOMALIES.md	542	| 三 · **記法不對稱** | 同一字串在二欄用不同引號記法 | `051-03`（彎單 vs 直單）、`053`（`“info icon”`／`“i”` vs `'i'`）| 下放包 18 §3.2 |	b 清單成員
+section	3.2	ANOMALIES.md	771	⚠ **掃描器初版漏抓本案自身**（類別切分錯誤，詳見上繳包 10 §3.2）。	a 純編號引用
+section	3.3	ANOMALIES.md	14	| A-VC5 | 下放包 01 §3.3 與 repo 037 複本不一致（A-VC1 之成因）| **RESOLVED（包 02 §一）** | — |	b 清單成員
+section	3.3	ANOMALIES.md	33	> 依 R-VC6（下放包 02 §二，`RULINGS.md:157`）：下放包 01 §3.3 所記	a 純編號引用
+section	3.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	208	**與 §5 分立**（下放包 15 §3.3）：§5 之標的為 IN §5.3 之	a 純編號引用
+section	3.4	ANOMALIES.md	769	其偽陰性見上繳包 10 §3.4。掃描腳本：`scripts/t52_numeric_conflict_scan.py`。	a 純編號引用
+section	3.8	RULINGS.md	924	本條由來：執行層於上繳包 24 §3.8 提出，並回頭驗證四筆既有處置	a 純編號引用
+section	3.9	DATA_REQUESTS.md	233	- 章 3 之唯一表在 **§3.9**（`C1.) Controls Button Table`，二欄 28 列），	a 純編號引用
+section	4	ANOMALIES.md	274	修法與回歸證據見上繳包 02 §4（T13）。	a 純編號引用
+section	4	ANOMALIES.md	590	`scripts/recon.py` 產生 `DECISIONS.new.md` 之 §4 Style bindings 時，	a 純編號引用
+section	4	ANOMALIES.md	651	共 9 leaf）」已重測 —— 見上繳包 06 §4，**9 leaf 相符**。	a 純編號引用
+section	4	ANOMALIES.md	829	**我當時之判讀（上繳包 10 §4 第 3 項）**：	a 純編號引用
+section	4	framework.md	198	**5 checked / 0 failed。** 原始輸出見 `docs/upstream/07_framework.md` §4。	a 純編號引用
+section	4.1.2	framework.md	71	### 3.1 §4.1.2 之二來源：先退化，再由 `Sub Categorization` 救回	a 純編號引用
+section	4.1.2	framework.md	73	IN §4.1.2 要求 Layer 2 候選取二來源之交集：	a 純編號引用
+section	4.1.3	framework.md	153	#7（2 leaf）與 #8（1 leaf）觸 §4.1.3 之「filter 後應得有意義之群」測試。	a 純編號引用
+section	4.1.5	framework.md	21	### Layer 3 之二禁（IN §4.1.5）	a 純編號引用
+section	4.2	RULINGS.md	378	下放包 01 §4.2 之計數修訂為：	a 純編號引用
+section	4.2	ANOMALIES.md	741	上繳包 11 §4.2 查明其**更精確之形態**：	a 純編號引用
+section	4.2	docs/REVISIONS.md	57	## REV-06 —— 下放包 01 §4.2 之分類計數（24 ＋ 18 → 25 ＋ 17）	a 純編號引用
+section	4.2	framework.md	109	「too granular」。依 §4.2「Prefer broader shared capability when unsure」	a 純編號引用
+section	4.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	276	### 7.2.1 `PENDING` 之**位置**依其所影響之欄位而定（下放包 26 §4.2）	a 純編號引用
+section	4.3	DECISIONS.md	57	- test item shape: `[PROPOSED: standard §4.3 tc_title]`	a 純編號引用
+section	4.4	ANOMALIES.md	818	**不立新條** —— IN §4.4 與 §8.4.1 皆已明文，**缺的是檢查覆蓋，不是規則**	a 純編號引用
+section	4.4	ANOMALIES.md	855	`verify_pilot.py` 新增第 11 項（§4.4 三類齊備）與第 12 項（隱性依賴），	a 純編號引用
+section	4.4	docs/REVISIONS.md	97	與下放包 01 §4.4 逐項相符；其餘 6 列（`-062`、`-063` 及其子，	a 純編號引用
+section	4.4	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	210	本節之標的為 **Pre-Condition**，其規制來源為 **IN §4.4** 而非 §5.3。	a 純編號引用
+section	4.4	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	211	二者之判準與禁項不同，混為一表會使 §4.4 之三類禁項失去對應。	a 純編號引用
+section	4.4	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	222	**§4.4 之類別：hardware / peripheral。**	a 純編號引用
+section	4.4	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	241	**故 §4.4 之三類禁項檢查（第 11 項）仍為主防線，本表為輔。**	a 純編號引用
+section	5	RULINGS.md	262	檢查（canon §5a）」同源，本案為其鏡像。	a 純編號引用
+section	5	RULINGS.md	776	14. 該批所用之 setup 片語皆取自 VC profile §5 之常數表	a 純編號引用
+section	5	ANOMALIES.md	612	2. **跨 feature 範圍已獨立查證** —— 見上繳包 05 §5。條文所稱	a 純編號引用
+section	5	framework.md	7	- 驗算腳本：`scripts/verify_partn.py`（五個 assertion，見 §5）。	a 純編號引用
+section	5	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	208	**與 §5 分立**（下放包 15 §3.3）：§5 之標的為 IN §5.3 之	a 純編號引用
+section	5.1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	198	其常數**自本檔解析**（讀 §5.1 之 code fence），非硬編於腳本 ——	a 純編號引用
+section	5.1.1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	164	本節之格式即為其唯一實例所定，日後若另有需求須另裁（同 §5.1.1）。	a 純編號引用
+section	5.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	160	**分歧從值域移到了格式**，而 §5.2(a) 之「二處不得分歧」是對值域說的，	a 純編號引用
+section	5.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	173	### 5.1.1 帶參數常數之凍結語意（§5.2(c) 之補充，非重寫）	a 純編號引用
+section	5.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	228	（下放包 15 §5.2 之方向前提）。	a 純編號引用
+section	5.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	232	**沿用 §5.2 之三項**：(a) 二處同步（本節與 `verify_batch.py`）、	a 純編號引用
+section	5.3	RULINGS.md	694	（上繳包 10 §5.3 第 2 項）為正確處置。	a 純編號引用
+section	5.3	docs/REVISIONS.md	191	> 之處，而 851 這個數字正好落在上繳包 07 §5.3 裡，最容易被單獨引用。	a 純編號引用
+section	5.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	124	（IN §5.3 所禁之 case／hyphenation／spacing／wording variants）。	a 純編號引用
+section	5.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	208	**與 §5 分立**（下放包 15 §3.3）：§5 之標的為 IN §5.3 之	a 純編號引用
+section	5.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	210	本節之標的為 **Pre-Condition**，其規制來源為 **IN §4.4** 而非 §5.3。	a 純編號引用
+section	5.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	237	同 §5.3 —— 常數自本檔解析，非硬編。	a 純編號引用
+section	5.4	docs/REVISIONS.md	202	### 三型偽陰性（上繳包 07 §5.4，本包追認保留）	a 純編號引用
+section	6	RULINGS.md	728	其為 sibling 區分 token，欄位性質不同（上繳包 10 §6(b) 之自陳正確）。	a 純編號引用
+section	6	RULINGS.md	887	為字面比對之盲區（上繳包 19 §6 第 2 型），機器防不住 ——	a 純編號引用
+section	6	ANOMALIES.md	531	**執行層另行盤點全 117 leaf 之同型情形**，結果見上繳包 04 §6。	a 純編號引用
+section	6.1	docs/REVISIONS.md	123	- **原**：`docs/upstream/03_rulings.md` §6.1 之定案 P0 6 / P1 39 / P2 38 / P3 34	a 純編號引用
+section	6.2	RULINGS.md	441	「章內善後步驟被主流程之優先級抬起」—— 上繳包 03 §6.2 之八筆	a 純編號引用
+section	6.3	RULINGS.md	487	上繳包 03 §6.3 判 P0，依本條 (b) **改判 P1**。	a 純編號引用
+section	6.4	DECISIONS.md	85	> （上繳包 04 §6.4）。依該節建議增列，否則 117 筆定案不在決策表之視野內。	a 純編號引用
+section	7	RULINGS.md	926	（上繳包 24 §7 已揭露），故本條為新增判準而非對既有處置之追認。	a 純編號引用
+section	7	ANOMALIES.md	318	狀態：**RESOLVED**。T17 之逐節重驗結果見上繳包 02 §7。	a 純編號引用
+section	7	DECISIONS.md	109	> 若 §7 之 8 組 Test Set 獲簽，建議改為依 Test Set 分批	a 純編號引用
+section	7	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	337	PLAYBOOK §7 為**操作慣例**（怎麼做事），其違反不構成停止條件；	a 純編號引用
+section	7.1	ANOMALIES.md	715	`SWE1-HMI-VC-033-01`（§7.1，Glove Box 停用之錯誤鎖定）：	a 純編號引用
+section	7.1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	303	會把現行三筆判為違規 —— 而它們依 §7.1 不回溯。	a 純編號引用
+section	8	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	460	其中 54 逾 50 之判定隨之為正式判定（該包 §8 原標其為近似值）。	a 純編號引用
+section	8.1	framework.md	160	| （另）Cabrio 本體 | 0 leaf | §8.1–8.5、§9.1、§9.2（7 節）| 7 節 |	b 清單成員
+section	8.1	data/tableB_draft.md	24	| 章 8／9 Cabrio 本體 | 1–7（§8.1–§9.2）| 另立 Test Set `Cabrio Rooftop`，**framework 由 8 組變 9 組**（R-VC16(c)）|	b 清單成員
+section	8.2	RULINGS.md	81	依 FROP 扣列等同分析層自行改寫上游之需求單元，違 IN §8.2	a 純編號引用
+section	8.2.1	RULINGS.md	858	test_item 上半之取材（取之即違 IN §8.2.1，產生重複追溯）。	a 純編號引用
+section	8.2.1	ANOMALIES.md	483	所擁有之行為，違 **IN §8.2.1** 並產生重複追溯。	a 純編號引用
+section	8.2.1	ANOMALIES.md	547	所擁有之行為，違 **IN §8.2.1** 並產生重複追溯。	a 純編號引用
+section	8.2.1	ANOMALIES.md	641	將產生重複追溯，觸 IN §8.2.1。屆時須裁定其分工	a 純編號引用
+section	8.2.1	framework.md	182	屆時須裁其分工以免觸 IN §8.2.1 之重複追溯。	a 純編號引用
+section	8.2.2	RULINGS.md	1001	拆分筆各佔一個獨立序號（IN §8.2.2：TC IDs remain independently	a 純編號引用
+section	8.3	RULINGS.md	654	`SWE1-HMI-VC-033-01` 之 boundary 拆分（§8.3：門檻−1 / =門檻 /	a 純編號引用
+section	8.4.1	RULINGS.md	329	即 IN §8.4.1 所禁之造值換一種形式。	a 純編號引用
+section	8.4.1	ANOMALIES.md	818	**不立新條** —— IN §4.4 與 §8.4.1 皆已明文，**缺的是檢查覆蓋，不是規則**	a 純編號引用
+section	8.4.1	ANOMALIES.md	950	**且 §8.4.1 禁止自行認定** —— 這不是可由執行層擇一的事。	a 純編號引用
+section	8.4.1	ANOMALIES.md	961	- **不自行擇一**（§8.4.1）。	a 純編號引用
+section	8.4.1	ANOMALIES.md	1010	- **不自行指定路徑**（§8.4.1）—— 沿 `034-02` 之既有處置	a 純編號引用
+section	8.4.2	framework.md	327	（IN §8.4.2「真覆蓋洞須浮現、不得默默吸收」）。	a 純編號引用
+section	8.4.3	RULINGS.md	657	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3）。	a 純編號引用
+section	8.4.3	RULINGS.md	797	值不明者仍應生成並以 `PENDING: DR-{n}` 佔位（IN §8.4.3）；	a 純編號引用
+section	8.4.3	ANOMALIES.md	733	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3）。	a 純編號引用
+section	8.4.3	DATA_REQUESTS.md	194	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3），	a 純編號引用
+section	8.4.3	DATA_REQUESTS.md	300	**不阻斷該四筆之生成** —— 依 IN §8.4.3 帶 `PENDING` 佔位。	a 純編號引用
+section	8.4.3	DATA_REQUESTS.md	335	`061` 之 Procedure。**不阻斷生成** —— 依 IN §8.4.3 帶	a 純編號引用
+section	8.4.3	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	263	既交付者加註不改寫。三筆之現行形態為 IN §8.4.3 之合法佔位，	a 純編號引用
+section	9	ANOMALIES.md	25	| A-VC16 | pilot 之 §9 判讀漏檢二形態（檢查覆蓋不足，非規則缺失）| **RESOLVED（包 12）** | — |	b 清單成員
+section	9	ANOMALIES.md	816	## A-VC16 —— pilot 之 §9 判讀漏檢二形態 —— **RESOLVED（下放包 12）**	a 純編號引用
+section	9	docs/REVISIONS.md	20	即此事之攔截點；同包 §9 為當時之後記。	a 純編號引用
+section	9.1	framework.md	160	| （另）Cabrio 本體 | 0 leaf | §8.1–8.5、§9.1、§9.2（7 節）| 7 節 |	b 清單成員
+section	9.1	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	390	| `kind` | `continuation`／`reference`（§9.1 之二類）|	b 清單成員
+section	9.2	framework.md	160	| （另）Cabrio 本體 | 0 leaf | §8.1–8.5、§9.1、§9.2（7 節）| 7 節 |	b 清單成員
+section	9.2	data/tableB_draft.md	24	| 章 8／9 Cabrio 本體 | 1–7（§8.1–§9.2）| 另立 Test Set `Cabrio Rooftop`，**framework 由 8 組變 9 組**（R-VC16(c)）|	b 清單成員
+section	9.2	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	414	後者仍為人工判讀。記明以免誤以為 §9.2 之層次 2 已全機器化。	a 純編號引用
