@@ -399,9 +399,24 @@ def run_assertions(cfg: dict, a03res: dict, omap: dict,
                 "verified against any baseline")
 
     if a03res["unparsed_citations"]:
-        a.check("every leaf's citation parses to a section", 0,
+        # R-BLM16(1) — this check used to be unconditional, which made it
+        # unreachable for a feature whose citations carry no section at all.
+        # bed_lowering's 037 `HMI Source ID` is a bare filename (R-BLM5), so
+        # all 176 citations are "unparsed" BY RULING, and no declaration could
+        # clear the FAIL: the expected value was hard-coded to 0.
+        #
+        # The default is deliberately unchanged: a feature that does not
+        # declare the key still gets `expected 0`, so every existing baseline
+        # reports exactly what it reported before. Only a feature that states
+        # the number out loud in feature.yaml gets a different expectation —
+        # the same shape as lint's `--profile` opt-in.
+        a.check("every leaf's citation parses to a section",
+                want.get("unparsed_citations", 0),
                 len(a03res["unparsed_citations"]),
-                f"samples: {a03res['unparsed_citations'][:5]}")
+                f"samples: {a03res['unparsed_citations'][:5]}"
+                + ("; expected count is declared in feature.yaml "
+                   "recon_assertions.unparsed_citations"
+                   if "unparsed_citations" in want else ""))
     return a, misses
 
 
