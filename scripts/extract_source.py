@@ -39,9 +39,19 @@ def sha256_of(path: Path) -> str:
 
 
 def safe_name(text: str) -> str:
-    """sheet 名 → 檔名 —— 路徑分隔與空白一律換掉，不得逃出目標目錄。"""
+    """sheet 名 → 檔名 —— 路徑分隔與空白一律換掉，不得逃出目標目錄。
+
+    A-POP1：原本以 `strip("._")` 剝掉**前導**底線，`_polarion` 遂與同簿之
+    `Polarion` 撞名；macOS 之 APFS 大小寫不敏感，後寫者靜默覆蓋前者，
+    而 §F-6 自驗回讀的是自己剛寫的檔，測不到這種遺失。改為只剝尾端 ——
+    前導 `_` 不會逃出目標目錄，`..` 則因 `.` 不在保留集以外而由下方
+    的 `startswith(".")` 檔掉。
+    """
     out = "".join(ch if ch.isalnum() or ch in "-_." else "_" for ch in text.strip())
-    return out.strip("._") or "sheet"
+    out = out.rstrip("._")
+    if out.startswith("."):
+        out = "sheet_" + out.lstrip(".")
+    return out or "sheet"
 
 
 def cell_text(value) -> str:
@@ -72,7 +82,16 @@ def extract_xlsx(path: Path, out_dir: Path, source_sha: str) -> list[tuple[str, 
 
     sheets = read_all()
     written: list[tuple[str, int, int]] = []
+    taken: dict[str, str] = {}
     for name, rows in sheets.items():
+        # A-POP1：撞名一律停，不靜默覆蓋。比對以 casefold 為之 ——
+        # 檔案系統（APFS／NTFS）不敏感，只比原字串測不到。
+        key = safe_name(name).casefold()
+        if key in taken:
+            raise ExtractionMismatch(
+                f"{path.name}：sheet {name!r} 與 {taken[key]!r} 之抽取檔名"
+                f"皆為 {safe_name(name)!r}（大小寫不敏感檔案系統下會互相覆蓋）")
+        taken[key] = name
         n_rows, n_filled = measure(rows)
         body = "\n".join(
             [f"# source_sha256\t{source_sha}\t sheet\t{name}"]

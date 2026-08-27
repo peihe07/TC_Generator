@@ -1,0 +1,18 @@
+# source_sha256	cdf0812fb9f74b710a723a73b72b141ade7f97a99f60d5059696f65477fb7eef	 sheet	ChangeHistory 修訂履歷
+修訂履歷  Revision History				
+				
+				
+版本 Ver.	修訂内容 Revision Content	修訂人Reviser	日期 Date	核准者 Approver
+A	初版發行\nNew Release.	NikKMLiu劉耕銘	2025-12-26 00:00:00	AllenACLiu劉安哲
+B	將品質特性轉至審核清單執行，非模糊性移動至需求屬性與分類。(35-19)\nQuality characteristics are implemented via the audit checklist, and ambiguity is eliminated through requirement attributes and categorization.(35-19)	YuShen Chen陳禹伸	2026-01-20 00:00:00	Johnson Yang楊人豪
+C	新增指示說明頁面。(19-18)\nAdd an instruction and guidance page.(19-18)	NikKMLiu劉耕銘	2026-02-09 00:00:00	AllenACLiu劉安哲
+D	增加HMI Source ID、FROP 欄位。 (18-20)\nAdd the HMI Source ID and FROP field.(18-20)	NikKMLiu劉耕銘	2026-04-27 00:00:00	AllenACLiu劉安哲
+				
+				
+				
+				
+				
+				
+				
+				FM-WI-FSM-037-A03
+				

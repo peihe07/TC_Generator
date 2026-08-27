@@ -81,3 +81,45 @@ def test_不支援之型別具名拒絕(tmp_path: Path) -> None:
     (raw / "bus.dbc").write_text("x", encoding="utf-8")
     with pytest.raises(ValueError, match="dbc"):
         es.extract_one(tmp_path, raw / "bus.dbc")
+
+
+# --- A-POP1：抽取檔名撞名之靜默覆蓋 -------------------------------------------
+
+def test_前導底線不被剝掉() -> None:
+    """`_polarion` 與 `Polarion` 同簿；剝前導底線會讓兩者撞名。"""
+    assert es.safe_name("_polarion") == "_polarion"
+    assert es.safe_name("Polarion") == "Polarion"
+
+
+def test_撞名之_sheet_停下而非靜默覆蓋(monkeypatch, tmp_path: Path) -> None:
+    """大小寫不敏感之檔案系統上，後寫者會覆蓋前者；§F-6 自驗測不到。"""
+    monkeypatch.setattr(es, "safe_name", lambda name: "same")
+    fake = {"Polarion": [("a",)], "_polarion": [("b",)]}
+
+    import openpyxl
+    monkeypatch.setattr(openpyxl, "load_workbook",
+                        lambda *a, **k: _Stub(fake))
+    with pytest.raises(es.ExtractionMismatch, match="覆蓋"):
+        es.extract_xlsx(Path("fake.xlsx"), tmp_path, "deadbeef")
+
+
+class _Stub:
+    """openpyxl workbook 之最小替身 —— 只供撞名測試用。"""
+
+    def __init__(self, sheets: dict[str, list[tuple]]) -> None:
+        self._sheets = sheets
+        self.sheetnames = list(sheets)
+
+    def __getitem__(self, name: str) -> "_Sheet":
+        return _Sheet(self._sheets[name])
+
+    def close(self) -> None:
+        pass
+
+
+class _Sheet:
+    def __init__(self, rows: list[tuple]) -> None:
+        self._rows = rows
+
+    def iter_rows(self, values_only: bool = True):
+        return iter(self._rows)

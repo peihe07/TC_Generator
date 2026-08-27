@@ -1,0 +1,16 @@
+# source_sha256	d9a16eed89203e4c110fd4882f84124c4e6c86654ef3bc2cc6d99732456e2e11	 sheet	Polarion
+Property	Value
+New Work Item Type	sys0201
+New Comments Column	Comments by (.*)
+	
+Column	Field
+ID	id
+Title	title
+Severity	severity
+Type	type
+Source Id	sourceId
+Outline Number	outlineNumber
+Space / Document	module
+_polarion	_polarion
+SYSRE_HMI_Source ID	sys020701
+Description	description

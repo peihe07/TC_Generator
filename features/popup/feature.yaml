@@ -1,0 +1,79 @@
+# feature.yaml — pipeline configuration for Popup
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals.
+#
+# 下放包 01 §六-4：來源以 `sources/` 之 doc_id 引用（R-G27），
+# **本 feature 不存原檔副本** —— `paths.*` 為指向 `sources/raw/<doc_id>/`
+# 之相對 glob，`inputs/` 於本 feature 恆空。
+# 每一鍵於本包逐鍵實測；sha256 自實體檔重算，不抄他 feature 之宣告值。
+
+feature: "Popup"
+test_group: "Popup"          # R-POP4（Pei 2026-08-27 裁）
+
+sources:
+  # R-G27 之 doc_id ↔ `sources/MANIFEST.tsv`。目前無腳本以 doc_id 解析路徑，
+  # 故 `paths.*` 另以相對 glob 具名；兩者所指須為同一檔（本包實測相符）。
+  a03_report: "popup_037_v0_2"
+  sys1_export: "core_hmi_lf_sys1"
+  spec_pdf: "core_hmi_lf_pdf"
+
+paths:
+  # 工作簿自 R-G1 母本起建，落 sandbox/（R-G25：xlsx 只准在此改）
+  workbook: "sandbox/base/FM-WI-FSM-036-A01*_SWQT_20260817_ext.xlsx"
+  a03_report: "../../sources/raw/popup_037_v0_2/*.xlsx"
+  sys1_export: "../../sources/raw/core_hmi_lf_sys1/*.xlsx"
+  spec_pdf: "../../sources/raw/core_hmi_lf_pdf/*.pdf"
+  popup_list: null            # DR-POP1 未結；forms/ 之候選件見上繳包 01 §六
+
+spec_mode: "A+C"      # FO §3：文字走 SYS1 匯出（A）；PDF 無文字層，圖面走 C
+spec_reference_template: "SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)_{outline}"
+
+workbook_state: "BLANK"       # 母本零填列（本包實測）
+
+workbook:
+  sheet: "Test Case Specification 測試用例規範"
+  header_row: 9
+  first_data_row: 10
+  # 欄字母皆由 r9 表頭逐格實測（母本為 Revision C 版面：Q = Estimated
+  # Test Time，其後之欄較 Revision A/B 右移一欄）
+  columns:
+    req_id: "D"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    estimated_test_time: "Q"
+    design_method: "R"
+    functional_safety: "S"
+    author: "AA"
+    remarks: "AH"
+
+done_region:
+  detection: "author"
+  author_value: null          # BLANK：無 done region，style authority 走 FO §2.1
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: true   # BLANK 之綁定（FO §2 表）
+
+lint:
+  design_method_source: "dropdown_sheet"   # 母本 `下拉選單` A1:A9，9 值
+  popup_ids: []                            # DR-POP1 未結，無可具名之 PU 編號
+  extra_rules: []
+
+recon_assertions:
+  # 只宣告已實測者
+  functional_requirement_count: 5
+  # **1，非 2** —— recon 之 section 統計只取 leaf 列。5 個 leaf 之 C 欄
+  # 一律為 `_5.6`；`_5.5` 僅由 Heading `SWE1-POP-001` 引用，而該列依
+  # R-POP5 標 No TC。詳上繳包 01 §五。
+  distinct_spec_sections: 1
+  spec_reference_stem: "SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)"

@@ -1,1 +1,4 @@
 doc_id	filename	sha256	version	features	note
+core_hmi_lf_pdf	Core HMI Logic and Flow R1 SR24 Post 2A (February 2 2023).pdf	a9d0be2f13e4c44cc1f5086865d7f6bf0eb2a738a88640523ccf01737fca9c75	R1_SR24_Post_2A_(February_2_2023)	popup	無文字層（pdftotext 全 21 頁非空白字元 0；pdfplumber 同）；spec_mode C 之圖面來源
+core_hmi_lf_sys1	SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023).xlsx	d9a16eed89203e4c110fd4882f84124c4e6c86654ef3bc2cc6d99732456e2e11	R1_SR24_Post_2A_(February_2_2023)	popup	Core HMI Logic and Flow 全文件 Polarion 匯出；popup 為第 5 章。spec_mode A 之文字權威
+popup_037_v0_2	FM-WI-FSM-037-A03-N1L-SWE1-Popup-HMI-V0.2 STLA 報告.xlsx	cdf0812fb9f74b710a723a73b72b141ade7f97a99f60d5059696f65477fb7eef	V0.2	popup	SWE1 Analysis Report；TC 生成範圍之來源（R-POP2）

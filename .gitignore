@@ -109,3 +109,14 @@ forms/*
 archive/forms_superseded/*
 !archive/forms_superseded/.gitkeep
 !archive/forms_superseded/BASELINE.sha256
+
+# sources/raw/ —— R-G27 之來源集中制原檔（Pei 裁，2026-08-27，popup 上繳包 01
+# 覆核時）。與 `features/*/inputs/`、`forms/*` 同一政策：客戶／公司文件本體
+# 不入 git，只入其身分與其文字形。
+#
+# 具體而言 —— `sources/raw/` 不入；`sources/extracted/`（逐 sheet tsv／逐頁 md）
+# 與 `sources/MANIFEST.tsv` **入**。extracted 之每份首列帶來源 sha256，
+# MANIFEST 逐檔釘住 sha256，故 raw 雖不在 git 內，其身分仍可自 repo 查證，
+# 且抽取物與現行原檔是否對得上是可機檢的（R-G27「raw 為權威，extracted 為
+# 衍生物」不因此改變 —— 改變的只是 raw 存放在磁碟而非 git）。
+sources/raw/
