@@ -984,3 +984,37 @@ R-VC12 二(a) 之原文依 R-TM13 不刪除，加註「作廢，見 R-VC27」。
 ```
 
 ---
+
+```
+R-VC28（本 feature 之 TC ID）
+
+本 feature 之 TC ID ＝ `newR1L-VC-001` … `newR1L-VC-120`。
+
+  {project} = newR1L
+    —— 與工作簿自身之 D2（專案名稱）一致。五份工作簿之 D2 實測皆為
+       `newR1L`（上繳包 28 §2.3：VC 母本、display／privacy／sxm 交付本、
+       forms/ 之母本），且 amfm 交付本已有 `newR1L-AMFM-001…143` 之既有實例。
+  {abbr}    = VC
+    —— 與 req_id 之 `SWE1-HMI-VC-###` 一致；IN §10.3 之範例
+       `PROJ-DM-001` 亦為短 abbr。
+  序號      = 1 起算、連續、**依 TC 順序（非 leaf 順序）**。
+       拆分筆各佔一個獨立序號（IN §8.2.2：TC IDs remain independently
+       sequenced）。
+
+**不跟隨 `NR1L-` 之理由**：`NR1L-` 為 8 個 feature 之宣告，
+**但它與該檔自己的 D2 不符** —— `privacy`／`sxm` 之交付本，
+D2 寫 `newR1L` 而 F 欄寫 `NR1L-`。跟隨它等於複製一個已知的不一致。
+而 `bed_lowering` 之 `feature.yaml` 註解已載明其量測與權威來源（工作簿 D2）
+—— **已經有人量過並寫對了，本 feature 依其結論。**
+
+**未主張者**：跨 feature 之序號唯一性。本裁定之「1 起算連續」係依三份
+交付本之各自形態（各自 1 起算、各自連續）；`amfm`／`home`／`comfort` 等
+未見 `output/` 之 xlsx，其實際值未量到。**若日後發現跨 feature 需唯一，
+本條重審。**
+
+全域三種前綴並存之登記見 A-VC21（PENDING，全域排程）。
+
+本條由來：下放包 29 §三，條文依該節文字成文。
+```
+
+---

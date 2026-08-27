@@ -143,3 +143,12 @@ reference:
 # `reference:` 共 **六項**。下放包 01 §五 T9 所記之「七項」為分析層計數錯誤；
 # 執行層曾推定第七項為下放包全文並依 R-G15 排除 —— 推定過程正確，
 # 惟正解為「本無第七項」。下放包全文不入 `reference:`。
+
+# TC ID 之格式（IN §10.3 `{project}-{abbr}-{NNN}`）—— **R-VC28**（下放包 29 §三）。
+# `{project}` 取 `newR1L`：與工作簿自身之 D2（專案名稱）一致，五份工作簿實測皆然；
+# amfm 交付本之 `newR1L-AMFM-001…143` 為既有實例。
+# **不取 `NR1L-`** —— 該值為 8 個 feature 之宣告，但與其所在檔案之 D2 不符
+# （privacy／sxm 之交付本 D2 寫 newR1L 而 F 欄寫 NR1L-）；跟隨它等於複製一個
+# 已知的不一致。全域三種前綴並存之登記見 A-VC21（PENDING，全域排程）。
+# 鍵名沿多數 feature 之 `tc_id_format`（非 user_profiles 之 `tc_id_pattern`）。
+tc_id_format: "newR1L-VC-{n:03d}"

@@ -1,0 +1,1056 @@
+kind	target	owner	file	line	text
+anomaly	A-VC1		RULINGS.md	157	R-VC6（037 分析九欄為有效上游輸入；A-VC1 撤銷）
+anomaly	A-VC1		RULINGS.md	169	未經全表掃描之全稱斷言，**作廢**。據其所立之 A-VC1 一併**撤銷**，
+anomaly	A-VC1		RULINGS.md	181	(d) 「讀取時 strip 含 `\xa0`」之技術手段**保留**（A-VC1 之正確部分）。
+anomaly	A-VC1		ANOMALIES.md	10	| A-VC1 | 037 第 10–18 欄全為 `\xa0` | **撤銷（R-VC6）** | — |
+anomaly	A-VC1		ANOMALIES.md	14	| A-VC5 | 下放包 01 §3.3 與 repo 037 複本不一致（A-VC1 之成因）| **RESOLVED（包 02 §一）** | — |
+anomaly	A-VC1		ANOMALIES.md	30	## A-VC1 —— 037 第 10–18 欄之 `\xa0` —— **撤銷（R-VC6，Pei 2026-08-25）**
+anomaly	A-VC1		ANOMALIES.md	35	> 全稱斷言**，作廢；據其所立之 A-VC1 一併撤銷。
+anomaly	A-VC1		ANOMALIES.md	73	(a) A-VC1 之條文以其前提為據（「無內容」），該前提在 repo 複本上不成立，
+anomaly	A-VC1		ANOMALIES.md	81	(a) 採：A-VC1 撤銷，不得沿用或引述。
+anomaly	A-VC1		ANOMALIES.md	165	repo 內複本之同九欄於 117 個 leaf 皆有實質內容（見 A-VC1 之重測表）。
+anomaly	A-VC1		ANOMALIES.md	184	實測結果為準，A-VC1 條文重裁（見該項 (a)）。
+anomaly	A-VC1		ANOMALIES.md	215	且據該漏記立 A-VC1 指示「不視為已填」。若未經 T4 攔下，後果為 Phase 6 之
+anomaly	A-VC1		docs/REVISIONS.md	18	- **連帶**：A-VC1 撤銷。九欄改為**有效上游輸入**，並生 R-VC6(a)–(d) 四項拘束。
+anomaly	A-VC10		RULINGS.md	881	而為本 TC 驗證標的之條件，A-VC10 第一面）；
+anomaly	A-VC10		RULINGS.md	893	本條不改 A-VC10 之「二欄皆為正式欄位」 —— Title 仍為合法來源，
+anomaly	A-VC10		ANOMALIES.md	19	| A-VC10 | 037 Title 之資訊量大於 Description | PENDING | 併 DR-VC7（同批 A）|
+anomaly	A-VC10		ANOMALIES.md	435	## A-VC10 —— 037 Requirement Title 之資訊量大於 Requirement Description（新立，下放包 04 §四）
+anomaly	A-VC10		ANOMALIES.md	440	A-VC10（037 Requirement Title 之資訊量大於 Requirement Description）
+anomaly	A-VC10		ANOMALIES.md	724	與 A-VC10 之區別：A-VC10 為「Title 多載 Description 未載之條件」，
+anomaly	A-VC10		ANOMALIES.md	895	> A-VC10（Title 資訊量大於 Description）在此顯出其**另一面**：
+anomaly	A-VC10		DATA_REQUESTS.md	26	DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之
+anomaly	A-VC10		DATA_REQUESTS.md	166	- **批次**：同批 A —— 與 DR-VC2、A-VC2 之封面一問、A-VC10 之一問同發。
+anomaly	A-VC10		DATA_REQUESTS.md	168	- **附帶一問（A-VC10，下放包 04 §四）**：037 於部分 leaf 上，
+anomaly	A-VC10		DECISIONS.md	119	＋ A-VC2 ＋ A-VC10。
+anomaly	A-VC10		DECISIONS.md	120	- **A 七筆未結**：A-VC2、A-VC3、A-VC4、A-VC8、A-VC9、A-VC10、A-VC11。
+anomaly	A-VC11		ANOMALIES.md	20	| A-VC11 | `recon.py` 之 DECISIONS 顯示層將 null 印為字面 `None` | PENDING | 全域排程（包 05 §一）|
+anomaly	A-VC11		ANOMALIES.md	583	## A-VC11 —— `recon.py` 之 DECISIONS 顯示層將 null 印為字面 `None`（新立，下放包 05 §一）
+anomaly	A-VC11		ANOMALIES.md	588	A-VC11（recon.py 之 DECISIONS 顯示層將 null 印為字面 None）
+anomaly	A-VC11		ANOMALIES.md	685	與 A-VC4／A-VC8／A-VC11 同批）。
+anomaly	A-VC11		ANOMALIES.md	704	A-VC11 同批）。
+anomaly	A-VC11		ANOMALIES.md	805	(c) 二者**與 R-VC8 之授權非同一件，不得併案**（同 A-VC8／A-VC11 之邊界）。
+anomaly	A-VC11		ANOMALIES.md	812	狀態：PENDING（全域排程）。與 A-VC4／A-VC8／A-VC11／A-VC13 通則同批。
+anomaly	A-VC11		ANOMALIES.md	1137	—— 屬全域排程，與 A-VC4／A-VC8／A-VC11／A-VC13 同批。
+anomaly	A-VC11		ANOMALIES.md	1156	狀態：**PENDING（全域排程）**。與 A-VC4／A-VC8／A-VC11／A-VC13 同批。
+anomaly	A-VC11		DECISIONS.md	70	> 非裁定值（A-VC11）。依下放包 05 §一裁定：**簽署時手動覆蓋，不修腳本**。
+anomaly	A-VC11		DECISIONS.md	120	- **A 七筆未結**：A-VC2、A-VC3、A-VC4、A-VC8、A-VC9、A-VC10、A-VC11。
+anomaly	A-VC12		ANOMALIES.md	21	| A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |
+anomaly	A-VC12		ANOMALIES.md	621	## A-VC12 —— §11.9 群與 §12.3 群之行為重疊（條件性，新立，下放包 06 §二）
+anomaly	A-VC12		ANOMALIES.md	626	A-VC12（11.9 群與 12.3 群之行為重疊，條件性）
+anomaly	A-VC12		framework.md	181	連帶之行為重疊（11.9.1 ↔ 12.3、11.9.3 ↔ 12.3.1）已登記 **A-VC12**，
+anomaly	A-VC13		ANOMALIES.md	22	| A-VC13 | 送簽稿含自我描述之狀態元資料 | 本 feature 已處置；通則 PENDING | 全域排程（包 08 §一）|
+anomaly	A-VC13		ANOMALIES.md	662	## A-VC13 —— 送簽稿含自我描述之狀態元資料（新立，下放包 08 §一）
+anomaly	A-VC13		ANOMALIES.md	667	A-VC13（送簽稿含自我描述之狀態元資料）
+anomaly	A-VC13		ANOMALIES.md	812	狀態：PENDING（全域排程）。與 A-VC4／A-VC8／A-VC11／A-VC13 通則同批。
+anomaly	A-VC13		ANOMALIES.md	1137	—— 屬全域排程，與 A-VC4／A-VC8／A-VC11／A-VC13 同批。
+anomaly	A-VC13		ANOMALIES.md	1156	狀態：**PENDING（全域排程）**。與 A-VC4／A-VC8／A-VC11／A-VC13 同批。
+anomaly	A-VC14		RULINGS.md	655	鎖定期滿）**本輪不做** —— 其門檻因 A-VC14 而未定，拆分點無從定值。
+anomaly	A-VC14		ANOMALIES.md	23	| A-VC14 | 037 Title 與 Description 之數值矛盾（`VC-033-01`）| PENDING | 待 DR-VC8 |
+anomaly	A-VC14		ANOMALIES.md	477	| 二 · **數值矛盾** | 二欄之可測門檻相互矛盾 | `033-01`（`After three` vs `more than three`）| **A-VC14** |
+anomaly	A-VC14		ANOMALIES.md	541	| 二 · **數值矛盾** | 二欄之可測門檻相互矛盾 | `033-01`（`After three` vs `more than three`）| **A-VC14** |
+anomaly	A-VC14		ANOMALIES.md	708	## A-VC14 —— 037 Title 與 Description 之數值矛盾（新立，下放包 09 §三）
+anomaly	A-VC14		ANOMALIES.md	713	A-VC14（037 Title 與 Description 之數值矛盾）
+anomaly	A-VC14		DATA_REQUESTS.md	195	不得留空、不得填 NA、**不得自行取 3 或 4**（A-VC14(a)）。
+anomaly	A-VC14		docs/REVISIONS.md	227	成立）；惟 `VC-033-01` 因 **A-VC14／DR-VC8** 而帶**一筆 PENDING**。
+anomaly	A-VC15		ANOMALIES.md	24	| A-VC15 | `lint036.py --profile` 不讀 profile 內容，無法實作 R-VC19(c) | PENDING | 全域排程（工具修法）|
+anomaly	A-VC15		ANOMALIES.md	779	## A-VC15 —— `lint036.py --profile` 不讀 profile 內容（新立，包 11 §2.3 第 3 項）
+anomaly	A-VC15		docs/REVISIONS.md	259	條文不會自己執行 —— 同 A-VC15（`lint036 --profile` 不讀 profile）、
+anomaly	A-VC15		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	80	→ 登記為 **A-VC15**（`features/vehicle_category/ANOMALIES.md`）。
+anomaly	A-VC16		ANOMALIES.md	25	| A-VC16 | pilot 之 §9 判讀漏檢二形態（檢查覆蓋不足，非規則缺失）| **RESOLVED（包 12）** | — |
+anomaly	A-VC16		ANOMALIES.md	816	## A-VC16 —— pilot 之 §9 判讀漏檢二形態 —— **RESOLVED（下放包 12）**
+anomaly	A-VC17		ANOMALIES.md	26	| A-VC17 | 037 之 leaf 中存在純交叉引用／表格題名者（3 筆）| PENDING | 待 DR-VC9 |
+anomaly	A-VC17		ANOMALIES.md	863	## A-VC17 —— 037 之 leaf 中存在純交叉引用／表格題名者（新立，下放包 14 §2.1）
+anomaly	A-VC18		ANOMALIES.md	923	## A-VC18 —— `PU0091` 之彈窗文字：規格作 `Feature`，彈窗清單作 `Function`（新立，下放包 24 T128(c)）
+anomaly	A-VC18		DATA_REQUESTS.md	279	**由來**：A-VC18。同一彈窗，規格側作 `Feature not available while vehicle
+anomaly	A-VC19		ANOMALIES.md	973	## A-VC19 —— `061` 之 Software Updates 於 Key Off 之進入路徑未載（新立，下放包 24 T128(b)）
+anomaly	A-VC19		DATA_REQUESTS.md	308	**由來**：A-VC19。章 13 為三個「他路徑仍可用」之需求給出路徑，**獨缺其一**：
+anomaly	A-VC2		ANOMALIES.md	11	| A-VC2 | 037 封面 `Reviewer：` 空、`Date：` 為 2020/09/05 | PENDING | 附於 DR-VC2（包 02 §四）|
+anomaly	A-VC2		ANOMALIES.md	94	## A-VC2 —— 037 封面之 Reviewer 空白與日期矛盾（下放包 §七原文）
+anomaly	A-VC2		DATA_REQUESTS.md	8	下放包 02 §四之裁定已併入：A-VC2 附於 DR-VC2，不單獨發。
+anomaly	A-VC2		DATA_REQUESTS.md	26	DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之
+anomaly	A-VC2		DATA_REQUESTS.md	55	- **附帶一問（A-VC2，下放包 02 §四裁定）**：037 封面 `Reviewer：` 為空、
+anomaly	A-VC2		DATA_REQUESTS.md	166	- **批次**：同批 A —— 與 DR-VC2、A-VC2 之封面一問、A-VC10 之一問同發。
+anomaly	A-VC2		DATA_REQUESTS.md	178	**不單獨發 DR**（同 A-VC2 之處理）。
+anomaly	A-VC2		DECISIONS.md	119	＋ A-VC2 ＋ A-VC10。
+anomaly	A-VC2		DECISIONS.md	120	- **A 七筆未結**：A-VC2、A-VC3、A-VC4、A-VC8、A-VC9、A-VC10、A-VC11。
+anomaly	A-VC20		RULINGS.md	421	> simultaneously` 為實質需求敘述（上繳包 27 §2，A-VC20）。
+anomaly	A-VC20		ANOMALIES.md	1030	## A-VC20 —— 「§10.1／§10.2／§15 之內容僅存於圖，SYS1 匯出未帶文字」不成立（新立，下放包 27 T143）
+anomaly	A-VC20		DATA_REQUESTS.md	103	僅存於圖，請提供文字版本」——**其前提於 §10.1／§10.2 不成立**（A-VC20）。
+anomaly	A-VC20		DATA_REQUESTS.md	134	（下放包 28 §一／A-VC20）。**同一 repo 內，正解與錯解並存了 24 個包** ——
+anomaly	A-VC20		DATA_REQUESTS.md	137	記於此，因為它改變了 A-VC20 之教訓：光是「重測」不夠，
+anomaly	A-VC20		DATA_REQUESTS.md	140	- **本欄正式列為 A-VC20 之成因補充（下放包 29 §四，T156）**：
+anomaly	A-VC20		DATA_REQUESTS.md	141	A-VC20 原記其成因為「R-VC12 二(a) 是用它自己所禁之方法立的」；
+anomaly	A-VC20		data/tableB_draft.md	63	（A-VC20）—— 該二節之文字含實質需求敘述
+anomaly	A-VC20		data/tableB_draft.md	76	6. **A-VC20 已解**（R-VC27，下放包 28 §一）。其成因值得留在這裡：
+anomaly	A-VC21		RULINGS.md	1015	全域三種前綴並存之登記見 A-VC21（PENDING，全域排程）。
+anomaly	A-VC21		ANOMALIES.md	1112	## A-VC21 —— TC ID 之 `{project}` 前綴，全域三種並存（新立，下放包 29 §3.3）
+anomaly	A-VC21		ANOMALIES.md	1117	A-VC21（TC ID 之 {project} 前綴，全域三種並存）
+anomaly	A-VC3		ANOMALIES.md	12	| A-VC3 | §16.2 之 `SWE1-HMI-VC-066` 僅涵蓋標題一句 | PENDING | 併入 DR-VC3 |
+anomaly	A-VC3		ANOMALIES.md	112	## A-VC3 —— §16.2 之需求涵蓋不足（下放包 §七原文）
+anomaly	A-VC3		DATA_REQUESTS.md	68	- **關聯**：A-VC3 併入本 DR，不單獨發。
+anomaly	A-VC3		DECISIONS.md	120	- **A 七筆未結**：A-VC2、A-VC3、A-VC4、A-VC8、A-VC9、A-VC10、A-VC11。
+anomaly	A-VC4		ANOMALIES.md	13	| A-VC4 | `new_feature.py` 之 abbr 推導得 `VE`，非 R-VC1 之 `VC` | PENDING | 全域排程（包 02 §四）|
+anomaly	A-VC4		ANOMALIES.md	123	## A-VC4 —— `new_feature.py` 之 abbr 推導無法產生規定之前綴
+anomaly	A-VC4		ANOMALIES.md	128	A-VC4（new_feature.py 之 abbr 推導無法產生規定之前綴）
+anomaly	A-VC4		ANOMALIES.md	145	裁：A-VC4 與 A-TM04 **兩者維持 PENDING**。理由：A-VC4 已由 T0b 之事後
+anomaly	A-VC4		ANOMALIES.md	150	**R-VC8 之修法不得順手併入 A-VC4 / A-TM04** —— 三者標的不同
+anomaly	A-VC4		ANOMALIES.md	355	處置同 A-VC4。理由：117 之守護目前由 T4／T12 之**集合相等**判定承擔
+anomaly	A-VC4		ANOMALIES.md	360	**授權邊界再申明**：R-VC8 之修法不得順手併入 A-VC4（`new_feature.py`
+anomaly	A-VC4		ANOMALIES.md	603	不得併案**（同 A-VC8 之邊界）。與 A-VC4／A-VC8 併入全域排程。
+anomaly	A-VC4		ANOMALIES.md	615	（同 A-VC8 之邊界）。與 A-VC4／A-VC8 併入全域排程。
+anomaly	A-VC4		ANOMALIES.md	685	與 A-VC4／A-VC8／A-VC11 同批）。
+anomaly	A-VC4		ANOMALIES.md	703	狀態：本 feature 已處置；通則 PENDING（全域排程，與 A-VC4／A-VC8／
+anomaly	A-VC4		ANOMALIES.md	812	狀態：PENDING（全域排程）。與 A-VC4／A-VC8／A-VC11／A-VC13 通則同批。
+anomaly	A-VC4		ANOMALIES.md	1137	—— 屬全域排程，與 A-VC4／A-VC8／A-VC11／A-VC13 同批。
+anomaly	A-VC4		ANOMALIES.md	1156	狀態：**PENDING（全域排程）**。與 A-VC4／A-VC8／A-VC11／A-VC13 同批。
+anomaly	A-VC4		DECISIONS.md	120	- **A 七筆未結**：A-VC2、A-VC3、A-VC4、A-VC8、A-VC9、A-VC10、A-VC11。
+anomaly	A-VC5		ANOMALIES.md	14	| A-VC5 | 下放包 01 §3.3 與 repo 037 複本不一致（A-VC1 之成因）| **RESOLVED（包 02 §一）** | — |
+anomaly	A-VC5		ANOMALIES.md	77	(c) 成因見 A-VC5。在 A-VC5 裁定前，本項不得標為 RESOLVED。
+anomaly	A-VC5		ANOMALIES.md	84	(c) 已解：A-VC5 之成因由下放包 02 §一裁明，標為 RESOLVED。
+anomaly	A-VC5		ANOMALIES.md	159	## A-VC5 —— 下放包 01 §3.3 之量測對象與 repo 內複本不一致 —— **RESOLVED（包 02 §一）**
+anomaly	A-VC5		docs/REVISIONS.md	232	- **性質**：與 A-VC5（未量測即下全稱斷言）、R-VC12 二（以衍生物判讀充當
+anomaly	A-VC6		RULINGS.md	216	採上繳包 A-VC6 之提案 (b)：**`spec_reference_template` 為 null 時，
+anomaly	A-VC6		ANOMALIES.md	15	| A-VC6 | `recon.py` 於 `spec_reference_template: null` 崩潰 | **RESOLVED（R-VC8）** | — |
+anomaly	A-VC6		ANOMALIES.md	225	## A-VC6 —— `recon.py` 於 `spec_reference_template: null` 崩潰 —— **RESOLVED（R-VC8）**
+anomaly	A-VC7		ANOMALIES.md	16	| A-VC7 | 規格 PDF 之位元組數與下放包 01 §3.1 不符 | **RESOLVED（R-VC7）** | — |
+anomaly	A-VC7		ANOMALIES.md	280	## A-VC7 —— 規格 PDF 之位元組數與下放包 01 §3.1 不符 —— **RESOLVED（R-VC7）**
+anomaly	A-VC7		docs/REVISIONS.md	29	- **連帶**：A-VC7 RESOLVED；衍生物不得作為任何判準之來源。
+anomaly	A-VC8		ANOMALIES.md	17	| A-VC8 | `recon.py` 缺 `leaf_count` assertion | PENDING | 全域排程（包 03 §五）|
+anomaly	A-VC8		ANOMALIES.md	322	## A-VC8 —— `recon.py` 缺 `leaf_count` assertion（新立，下放包 02 §三）
+anomaly	A-VC8		ANOMALIES.md	327	A-VC8（recon.py 缺 leaf_count assertion）
+anomaly	A-VC8		ANOMALIES.md	361	之 abbr 推導）、A-TM04（slugify）、A-VC8（本項）。四者標的各異，
+anomaly	A-VC8		ANOMALIES.md	603	不得併案**（同 A-VC8 之邊界）。與 A-VC4／A-VC8 併入全域排程。
+anomaly	A-VC8		ANOMALIES.md	615	（同 A-VC8 之邊界）。與 A-VC4／A-VC8 併入全域排程。
+anomaly	A-VC8		ANOMALIES.md	685	與 A-VC4／A-VC8／A-VC11 同批）。
+anomaly	A-VC8		ANOMALIES.md	703	狀態：本 feature 已處置；通則 PENDING（全域排程，與 A-VC4／A-VC8／
+anomaly	A-VC8		ANOMALIES.md	805	(c) 二者**與 R-VC8 之授權非同一件，不得併案**（同 A-VC8／A-VC11 之邊界）。
+anomaly	A-VC8		ANOMALIES.md	812	狀態：PENDING（全域排程）。與 A-VC4／A-VC8／A-VC11／A-VC13 通則同批。
+anomaly	A-VC8		ANOMALIES.md	1137	—— 屬全域排程，與 A-VC4／A-VC8／A-VC11／A-VC13 同批。
+anomaly	A-VC8		ANOMALIES.md	1156	狀態：**PENDING（全域排程）**。與 A-VC4／A-VC8／A-VC11／A-VC13 同批。
+anomaly	A-VC8		DECISIONS.md	43	> **117 與覆蓋落差 17 無對應之 assertion 實作（A-VC8），
+anomaly	A-VC8		DECISIONS.md	120	- **A 七筆未結**：A-VC2、A-VC3、A-VC4、A-VC8、A-VC9、A-VC10、A-VC11。
+anomaly	A-VC8		docs/REVISIONS.md	55	並負 R-VC9 之逐包揭露義務。A-VC8 記其工具面缺口。
+anomaly	A-VC8		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	9	避免 A-VC8 家族之「宣告一個不被讀的東西」。
+anomaly	A-VC9		RULINGS.md	319	**該欄係按規格章節整批賦值，非逐 leaf 判斷**（證據見 A-VC9）：
+anomaly	A-VC9		RULINGS.md	439	作廢理由：A-VC9 已證 037 `Priority` 之粒度為**章**（十一章章內單一值，
+anomaly	A-VC9		ANOMALIES.md	18	| A-VC9 | 037 Priority 按章節整批賦值 | PENDING | 待 DR-VC7 |
+anomaly	A-VC9		ANOMALIES.md	368	## A-VC9 —— 037 Priority 按章節整批賦值（新立，下放包 03 §三）
+anomaly	A-VC9		ANOMALIES.md	373	A-VC9（037 Priority 按章節整批賦值）
+anomaly	A-VC9		DATA_REQUESTS.md	161	（High 28 / Medium 88 / Low 1，每章內部無例外，證據見 A-VC9），
+anomaly	A-VC9		DECISIONS.md	92	- **不得建立 High/Medium/Low → P0–P3 之機械映射表**（A-VC9：037 該欄
+anomaly	A-VC9		DECISIONS.md	120	- **A 七筆未結**：A-VC2、A-VC3、A-VC4、A-VC8、A-VC9、A-VC10、A-VC11。
+anomaly	A-VC9		docs/REVISIONS.md	106	- **作廢理由**：A-VC9 已證 037 `Priority` 之粒度為**章**（十一章章內單一值、
+dr	DR-VC1		RULINGS.md	760	3  `Controls`                17 leaf   DR-VC1（僅 `VC-021` 一筆）
+dr	DR-VC1		DATA_REQUESTS.md	12	| DR-VC1 | **未結** | 037 作者 | 僅 `SWE1-HMI-VC-021` |
+dr	DR-VC1		DATA_REQUESTS.md	29	DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定。
+dr	DR-VC1		DATA_REQUESTS.md	36	## DR-VC1 —— Privacy Lock 彈窗之實際 PU 編號
+dr	DR-VC1		DATA_REQUESTS.md	43	`PENDING: DR-VC1 Privacy Lock popup ID`（IN §8.4.3），不得留空、不得填 NA。
+dr	DR-VC1		DECISIONS.md	118	- **DR 七筆全未結**（DR-VC1 ~ DR-VC7）。同批 A ＝ DR-VC2 ＋ DR-VC7
+dr	DR-VC10		ANOMALIES.md	963	**帶 `PENDING: DR-VC10 PU0091 popup string`**，
+dr	DR-VC10		ANOMALIES.md	965	- 以 **DR-VC10** 詢問：`PU0091` 之權威字串為何，及規格側是否需更正。
+dr	DR-VC10		ANOMALIES.md	969	狀態：PENDING（待 DR-VC10）。
+dr	DR-VC10		ANOMALIES.md	1023	`061` 之 Procedure 帶 `PENDING: DR-VC10 Software Updates entry path in Key Off`；
+dr	DR-VC10		ANOMALIES.md	1024	本節之否定性判斷與其搜尋範圍併入 **DR-VC10 第（二）問**。
+dr	DR-VC10		ANOMALIES.md	1026	狀態：PENDING（待 DR-VC10(二)）。
+dr	DR-VC10		DATA_REQUESTS.md	21	| **DR-VC10** | **未結** | 規格作者／HMI 彈窗清單維護者 | **二問**：(一) 四筆之 ER 文字；(二) `061` 之進入路徑 |
+dr	DR-VC10		DATA_REQUESTS.md	30	**DR-VC10（下放包 24 T128 新立）獨立發送**（下放包 25 §2.5 裁定）——
+dr	DR-VC10		DATA_REQUESTS.md	269	## DR-VC10 —— 章 13 之二問：`PU0091` 之字 ＋ `061` 之進入路徑
+dr	DR-VC10		DATA_REQUESTS.md	336	`PENDING: DR-VC10 Software Updates entry path in Key Off`。
+dr	DR-VC2		RULINGS.md	151	惟交付前須有 DR-VC2 之答覆以完成雙向追溯。
+dr	DR-VC2		ANOMALIES.md	11	| A-VC2 | 037 封面 `Reviewer：` 空、`Date：` 為 2020/09/05 | PENDING | 附於 DR-VC2（包 02 §四）|
+dr	DR-VC2		ANOMALIES.md	104	裁：**不單獨發 DR**。於 DR-VC2 發出時（同為對 037 作者之查詢）
+dr	DR-VC2		ANOMALIES.md	106	單獨往返一輪之成本高於其資訊價值。維持 PENDING 至 DR-VC2 回覆。
+dr	DR-VC2		ANOMALIES.md	108	狀態：PENDING（附於 DR-VC2）。本輪未對封面另作重測（不在 T4 之列舉範圍）。
+dr	DR-VC2		DATA_REQUESTS.md	8	下放包 02 §四之裁定已併入：A-VC2 附於 DR-VC2，不單獨發。
+dr	DR-VC2		DATA_REQUESTS.md	13	| DR-VC2 | **未結** | 037 作者 | 不阻斷生成；交付前須有答覆 |
+dr	DR-VC2		DATA_REQUESTS.md	26	DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之
+dr	DR-VC2		DATA_REQUESTS.md	45	## DR-VC2 —— `SYS-HMI-RA-VC-###` 之來源系統與對應關係
+dr	DR-VC2		DATA_REQUESTS.md	166	- **批次**：同批 A —— 與 DR-VC2、A-VC2 之封面一問、A-VC10 之一問同發。
+dr	DR-VC2		DECISIONS.md	118	- **DR 七筆全未結**（DR-VC1 ~ DR-VC7）。同批 A ＝ DR-VC2 ＋ DR-VC7
+dr	DR-VC3		RULINGS.md	203	DR-VC3 發出前須以 repo `inputs/` 之 PDF 逐節重驗；重驗前該摘要不得
+dr	DR-VC3		RULINGS.md	401	(b) DR-VC3 對該三節之提問同此措辭（執行層已實作，予以追認）。
+dr	DR-VC3		RULINGS.md	576	與 16.2.2）。DR-VC3 回覆為「應補」時，此二組之邊界**須重審**：
+dr	DR-VC3		RULINGS.md	582	不需另設例外。條件性生效，待 DR-VC3。
+dr	DR-VC3		RULINGS.md	763	6  `Brake Service`            2 leaf   DR-VC3（邊界待重審）
+dr	DR-VC3		RULINGS.md	764	7  `Cabrio Widget`            1 leaf   DR-VC3（同上）
+dr	DR-VC3		RULINGS.md	770	第 6／7 批置末之理由：R-VC16(c) 明文其邊界待 DR-VC3 重審，
+dr	DR-VC3		ANOMALIES.md	12	| A-VC3 | §16.2 之 `SWE1-HMI-VC-066` 僅涵蓋標題一句 | PENDING | 併入 DR-VC3 |
+dr	DR-VC3		ANOMALIES.md	21	| A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |
+dr	DR-VC3		ANOMALIES.md	117	**提案處置**：併入 DR-VC3 一併查詢，**不單獨發 DR**。
+dr	DR-VC3		ANOMALIES.md	315	**摘要文字未經權威複本確認**。DR-VC3 發出前須以 repo `inputs/` 之 PDF
+dr	DR-VC3		ANOMALIES.md	640	風險：若 DR-VC3 回覆為「應補」而 11.9 群進入範圍，兩群各自產 TC
+dr	DR-VC3		ANOMALIES.md	645	狀態：PENDING（條件性，待 DR-VC3）。
+dr	DR-VC3		ANOMALIES.md	658	狀態：PENDING（條件性，待 DR-VC3）。
+dr	DR-VC3		DATA_REQUESTS.md	14	| DR-VC3 | **未結** | 037 作者 | 不阻斷本次交付；表 B 措辭取決於此 |
+dr	DR-VC3		DATA_REQUESTS.md	15	| DR-VC4 | **未結** | 規格作者 | 條件性 —— 待 DR-VC3 回覆 |
+dr	DR-VC3		DATA_REQUESTS.md	17	| DR-VC6 | **未結** | 規格作者 | 條件性 —— 待 DR-VC3 回覆 |
+dr	DR-VC3		DATA_REQUESTS.md	29	DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定。
+dr	DR-VC3		DATA_REQUESTS.md	60	## DR-VC3 —— 18 節有內容而 037 零涵蓋
+dr	DR-VC3		DATA_REQUESTS.md	84	- **阻斷範圍**：**條件性** —— DR-VC3 回覆為「應補」時始為必要素材。
+dr	DR-VC3		DATA_REQUESTS.md	85	DR-VC3 回覆前不催。
+dr	DR-VC3		DATA_REQUESTS.md	126	依 R-VC3 本次不產出 TC。**僅當 DR-VC3 回覆為「應補」時始為必要素材**；
+dr	DR-VC3		DATA_REQUESTS.md	127	DR-VC3 回覆前不催。
+dr	DR-VC3		DATA_REQUESTS.md	257	| **(一)** 索取 PDO Graphics | **規格作者** | **獨立發，不等 DR-VC3** |
+dr	DR-VC3		DATA_REQUESTS.md	260	(一) 不併入 DR-VC4／DR-VC6 之理由：該二筆為**條件性**（待 DR-VC3 回覆為
+dr	DR-VC3		DECISIONS.md	121	- 表 B（覆蓋落差揭露，17 節）為草稿，最終措辭待 DR-VC3 回覆。
+dr	DR-VC3		framework.md	164	DR-VC3 回覆為「應補」時，此二組之邊界**須重審**：屆時章 8／9 之
+dr	DR-VC3		framework.md	171	**17 section**（66 section 母體外）。若 DR-VC3 回覆「應補」而該群進入範圍：
+dr	DR-VC3		framework.md	324	草稿見 `data/tableB_draft.md`，最終措辭待 DR-VC3 回覆。
+dr	DR-VC3		data/tableB_draft.md	3	> **草稿，非交付件。** 最終措辭待 DR-VC3 回覆（R-VC12 二(b)、下放包 03 T23）。
+dr	DR-VC3		data/tableB_draft.md	20	### ⚠ 待 DR-VC3 之**四處**（下放包 28 §2.1 追認；下放包 27 §2.2 原列三處）
+dr	DR-VC3		data/tableB_draft.md	22	| 處 | 涉及列 | 若 DR-VC3 回覆「應補」之後果 |
+dr	DR-VC3		data/tableB_draft.md	27	| **§11.9 群**（執行層補列，下放包 28 §2.1 **追認**）| 10–13 | 其歸 #5 為**條件性生效**，待 DR-VC3（R-VC16(d)）|
+dr	DR-VC3		data/tableB_draft.md	33	| # | 章節 | 群 | 內容（SYS1 `Description`） | 處置 | 待 DR-VC3 |
+dr	DR-VC3		data/tableB_draft.md	72	5. **§11.9 群為執行層補列之第四處待 DR-VC3**（下放包 27 §2.2 只列三處）——
+dr	DR-VC3		data/tableB_draft.md	73	R-VC16(d) 明文「11.9 群歸 #5 …**條件性生效，待 DR-VC3**」。
+dr	DR-VC3		docs/TABLE_A_frop_crossdomain.md	104	若 DR-VC3 回覆為「應補」，章 8／9 另立 `Cabrio Rooftop` 將使組數變 9，
+dr	DR-VC4		DATA_REQUESTS.md	15	| DR-VC4 | **未結** | 規格作者 | 條件性 —— 待 DR-VC3 回覆 |
+dr	DR-VC4		DATA_REQUESTS.md	78	## DR-VC4 —— VF507 / VF352 兩份未附文件
+dr	DR-VC4		DATA_REQUESTS.md	260	(一) 不併入 DR-VC4／DR-VC6 之理由：該二筆為**條件性**（待 DR-VC3 回覆為
+dr	DR-VC5		RULINGS.md	762	5  `Ignition Availability`   16 leaf   DR-VC5（FROP 跨域全 16 筆）
+dr	DR-VC5		DATA_REQUESTS.md	16	| DR-VC5 | **未結** | 037 作者 | 不阻斷（R-VC3 已裁全取）|
+dr	DR-VC5		DATA_REQUESTS.md	29	DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定。
+dr	DR-VC5		DATA_REQUESTS.md	87	## DR-VC5 —— FROP 跨域 17 列之承接單位
+dr	DR-VC5		docs/TABLE_A_frop_crossdomain.md	102	**DR-VC5（FROP 跨域 17 列之承接單位）仍未結**，其回覆可能改變本表之解讀。
+dr	DR-VC6		RULINGS.md	979	**連帶**：DR-VC6 之問法須調整 —— 其原問「§15／§10.1／§10.2 之內容
+dr	DR-VC6		ANOMALIES.md	1063	- **DR-VC6**（索取「僅存於圖」三節之可讀來源）之前提亦受影響 ——
+dr	DR-VC6		ANOMALIES.md	1106	- **DR-VC6 之問法改為三問**（R-VC27 末段，T148 已落）。
+dr	DR-VC6		DATA_REQUESTS.md	17	| DR-VC6 | **未結** | 規格作者 | 條件性 —— 待 DR-VC3 回覆 |
+dr	DR-VC6		DATA_REQUESTS.md	29	DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定。
+dr	DR-VC6		DATA_REQUESTS.md	98	## DR-VC6 —— §15 與 §10.1／10.2 之圖內內容
+dr	DR-VC6		DATA_REQUESTS.md	260	(一) 不併入 DR-VC4／DR-VC6 之理由：該二筆為**條件性**（待 DR-VC3 回覆為
+dr	DR-VC6		docs/REVISIONS.md	88	- **連帶**：DR-VC6 新立；表 B 該三節之「內容」欄一律書
+dr	DR-VC6		data/tableB_draft.md	65	**DR-VC6 之問法隨之改為三問**（見 `DATA_REQUESTS.md`）。
+dr	DR-VC7		RULINGS.md	353	DR-VC7 之回覆若載明 037 之 Priority 判準，本條 (b) 之邊界重審。
+dr	DR-VC7		ANOMALIES.md	18	| A-VC9 | 037 Priority 按章節整批賦值 | PENDING | 待 DR-VC7 |
+dr	DR-VC7		ANOMALIES.md	19	| A-VC10 | 037 Title 之資訊量大於 Description | PENDING | 併 DR-VC7（同批 A）|
+dr	DR-VC7		ANOMALIES.md	401	以 DR-VC7 查詢其判準；在回覆前，依 R-VC11(b) 僅取其為邊界。
+dr	DR-VC7		ANOMALIES.md	403	狀態：PENDING（待 DR-VC7）。
+dr	DR-VC7		ANOMALIES.md	430	狀態：PENDING（待 DR-VC7）。依 R-VC11(b)，回覆前僅取其為邊界，
+dr	DR-VC7		ANOMALIES.md	467	併入 DR-VC7 之同批查詢（同為 037 欄位語意之說明性問題）。
+dr	DR-VC7		ANOMALIES.md	515	狀態：PENDING（併 DR-VC7，同批 A）。
+dr	DR-VC7		ANOMALIES.md	579	狀態：PENDING（併 DR-VC7，同批 A）。
+dr	DR-VC7		DATA_REQUESTS.md	18	| DR-VC7 | **未結** | 037 作者 | 不阻斷（R-VC11 已裁其僅作邊界）|
+dr	DR-VC7		DATA_REQUESTS.md	26	DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之
+dr	DR-VC7		DATA_REQUESTS.md	156	## DR-VC7 —— 037 Priority 欄之賦值判準
+dr	DR-VC7		DECISIONS.md	118	- **DR 七筆全未結**（DR-VC1 ~ DR-VC7）。同批 A ＝ DR-VC2 ＋ DR-VC7
+dr	DR-VC8		RULINGS.md	657	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3）。
+dr	DR-VC8		RULINGS.md	658	DR-VC8 回覆後另裁是否補拆為 2–3 筆。
+dr	DR-VC8		RULINGS.md	740	DR-VC8 回覆後，本筆依其值 Revise，並依 R-VC18 另裁是否補拆
+dr	DR-VC8		ANOMALIES.md	23	| A-VC14 | 037 Title 與 Description 之數值矛盾（`VC-033-01`）| PENDING | 待 DR-VC8 |
+dr	DR-VC8		ANOMALIES.md	731	（DR-VC8），非選擇。
+dr	DR-VC8		ANOMALIES.md	733	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3）。
+dr	DR-VC8		ANOMALIES.md	754	狀態：PENDING（待 DR-VC8）。
+dr	DR-VC8		ANOMALIES.md	775	狀態：PENDING（待 DR-VC8）。
+dr	DR-VC8		ANOMALIES.md	840	而該門檻正由 DR-VC8 爭議。**該依賴是隱性的**：該筆未帶 `PENDING`，
+dr	DR-VC8		DATA_REQUESTS.md	19	| DR-VC8 | **未結** | 037 作者 | 僅 `SWE1-HMI-VC-033-01` |
+dr	DR-VC8		DATA_REQUESTS.md	26	DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之
+dr	DR-VC8		DATA_REQUESTS.md	180	## DR-VC8 —— `VC-033-01` 之鎖定門檻與計時起點
+dr	DR-VC8		DATA_REQUESTS.md	194	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3），
+dr	DR-VC8		docs/REVISIONS.md	227	成立）；惟 `VC-033-01` 因 **A-VC14／DR-VC8** 而帶**一筆 PENDING**。
+dr	DR-VC9		RULINGS.md	810	阻斷於 DR-VC9(二)）。
+dr	DR-VC9		ANOMALIES.md	26	| A-VC17 | 037 之 leaf 中存在純交叉引用／表格題名者（3 筆）| PENDING | 待 DR-VC9 |
+dr	DR-VC9		ANOMALIES.md	916	- 三筆之 TC 帶 `PENDING: DR-VC9 PDO graphics`。
+dr	DR-VC9		ANOMALIES.md	917	- 以 **DR-VC9** 索取 PDO Graphics 並詢問三筆之 leaf 地位。
+dr	DR-VC9		ANOMALIES.md	919	狀態：PENDING（待 DR-VC9）。
+dr	DR-VC9		DATA_REQUESTS.md	20	| DR-VC9 | **未結** | 規格／037 作者 | `VC-013-04`／`VC-007-01`／`VC-025-01` 三筆 |
+dr	DR-VC9		DATA_REQUESTS.md	202	## DR-VC9 —— PDO Graphics 素材，及純交叉引用型 leaf 之地位
+dr	DR-VC9		DATA_REQUESTS.md	248	`PENDING: DR-VC9 Dashboard content table`／
+dr	DR-VC9		DATA_REQUESTS.md	249	`PENDING: DR-VC9 PDO graphics`／
+dr	DR-VC9		DATA_REQUESTS.md	250	`PENDING: DR-VC9 Controls table reference`。
+dr	DR-VC9		DATA_REQUESTS.md	271	> **範圍於下放包 25 §2.1 擴為二問**（沿 DR-VC9 之雙標的先例，一封信兩問）——
+dr	DR-VC9		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	269	3. ... and compare it against PENDING: DR-VC9 Dashboard content table
+dr	DR-VC9		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	328	| `VC-013-04` | **24 字元**（`Refer to PDO graphics.`）| 第 1 批 b 段，待 DR-VC9(二) |
+dr	DR-VC9		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	329	| `VC-007-01` | **30 字元**（`Vehicle Tab Labels and Order.`）| 第 1 批 b 段，待 DR-VC9(二) |
+dr	DR-VC9		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	330	| `VC-025-01` | **27 字元**（`C1.) Controls Button Table.`）| 第 3 批 b 段，待 DR-VC9(二) |
+leaf	SWE1-HMI-VC-007-01		DATA_REQUESTS.md	219	| `SWE1-HMI-VC-007-01` | 2.4 | `Vehicle Tab Labels and Order.` | 表格題名（SYS1 為 `VC2.2.) Vehicle Tab Labels and Order`）|
+leaf	SWE1-HMI-VC-013-04		DATA_REQUESTS.md	218	| `SWE1-HMI-VC-013-04` | 2.6.3 | `Refer to PDO graphics.` | 純交叉引用 |
+leaf	SWE1-HMI-VC-021		DATA_REQUESTS.md	12	| DR-VC1 | **未結** | 037 作者 | 僅 `SWE1-HMI-VC-021` |
+leaf	SWE1-HMI-VC-021		DATA_REQUESTS.md	41	`PUXXXX`**，非實 id；037 `SWE1-HMI-VC-021` 原樣沿用。請提供實際 PU 編號。
+leaf	SWE1-HMI-VC-021		DATA_REQUESTS.md	42	- **阻斷範圍**：僅 `SWE1-HMI-VC-021`。缺件期間該 TC 之對應欄填
+leaf	SWE1-HMI-VC-025-01		DATA_REQUESTS.md	220	| `SWE1-HMI-VC-025-01` | 3.9 | `C1.) Controls Button Table.` | 表格題名 |
+leaf	SWE1-HMI-VC-026-01		RULINGS.md	643	4.1  SWE1-HMI-VC-026-01 / -026-02 / -026-03
+leaf	SWE1-HMI-VC-027		RULINGS.md	644	4.2  SWE1-HMI-VC-027
+leaf	SWE1-HMI-VC-028-01		RULINGS.md	645	5.1  SWE1-HMI-VC-028-01 / -028-02
+leaf	SWE1-HMI-VC-029		RULINGS.md	646	5.2  SWE1-HMI-VC-029
+leaf	SWE1-HMI-VC-030		RULINGS.md	647	6.1  SWE1-HMI-VC-030
+leaf	SWE1-HMI-VC-031		RULINGS.md	648	6.2  SWE1-HMI-VC-031
+leaf	SWE1-HMI-VC-032		RULINGS.md	649	6.3  SWE1-HMI-VC-032
+leaf	SWE1-HMI-VC-033-01		RULINGS.md	650	7.1  SWE1-HMI-VC-033-01 / -033-02
+leaf	SWE1-HMI-VC-033-01		RULINGS.md	654	`SWE1-HMI-VC-033-01` 之 boundary 拆分（§8.3：門檻−1 / =門檻 /
+leaf	SWE1-HMI-VC-033-01		RULINGS.md	735	即時適用：`SWE1-HMI-VC-033-01` 依 (a) 保留 Title 之
+leaf	SWE1-HMI-VC-033-01		ANOMALIES.md	715	`SWE1-HMI-VC-033-01`（§7.1，Glove Box 停用之錯誤鎖定）：
+leaf	SWE1-HMI-VC-033-01		DATA_REQUESTS.md	19	| DR-VC8 | **未結** | 037 作者 | 僅 `SWE1-HMI-VC-033-01` |
+leaf	SWE1-HMI-VC-033-01		DATA_REQUESTS.md	184	- **內容**：`SWE1-HMI-VC-033-01`（§7.1）之鎖定門檻，二欄相差一次：
+leaf	SWE1-HMI-VC-033-01		DATA_REQUESTS.md	193	- **阻斷範圍**：**僅 `SWE1-HMI-VC-033-01`**。缺件期間該 TC 之門檻欄填
+leaf	SWE1-HMI-VC-034		RULINGS.md	166	`None`（真空儲存格）：SWE1-HMI-VC-034、SWE1-HMI-VC-052、SWE1-HMI-VC-063。
+leaf	SWE1-HMI-VC-034		ANOMALIES.md	68	（列 70 `SWE1-HMI-VC-034`、列 118 `SWE1-HMI-VC-052`、列 142 `SWE1-HMI-VC-063`）
+leaf	SWE1-HMI-VC-035-03		RULINGS.md	488	SWE1-HMI-VC-035-03（restore-defaults 之 Cancel）—— (a)，維持 **P0**
+leaf	SWE1-HMI-VC-035-03		ANOMALIES.md	445	SWE1-HMI-VC-035-03
+leaf	SWE1-HMI-VC-035-03		ANOMALIES.md	522	| `SWE1-HMI-VC-035-03` | Title | `Selecting 'Cancel' on the restore-defaults prompt returns the user to the previous screen without changing any settings` |
+leaf	SWE1-HMI-VC-035-03		DATA_REQUESTS.md	170	最鮮明之一例：`SWE1-HMI-VC-035-03` 與 `SWE1-HMI-VC-036-02` 之
+leaf	SWE1-HMI-VC-036-01		RULINGS.md	486	SWE1-HMI-VC-036-01（選 Yes 清除個人資料並顯示確認彈窗）
+leaf	SWE1-HMI-VC-036-02		RULINGS.md	489	SWE1-HMI-VC-036-02（clear-personal-data 之 Cancel）—— (a)，維持 **P0**
+leaf	SWE1-HMI-VC-036-02		ANOMALIES.md	450	SWE1-HMI-VC-036-02
+leaf	SWE1-HMI-VC-036-02		ANOMALIES.md	524	| `SWE1-HMI-VC-036-02` | Title | `Selecting 'Cancel' on the clear-personal-data prompt returns the user to the previous screen without clearing any data` |
+leaf	SWE1-HMI-VC-036-02		DATA_REQUESTS.md	170	最鮮明之一例：`SWE1-HMI-VC-035-03` 與 `SWE1-HMI-VC-036-02` 之
+leaf	SWE1-HMI-VC-048-02		framework.md	134	（`SWE1-HMI-VC-048-02`，§12.3.2）落在 **#5 `Settings List`**。
+leaf	SWE1-HMI-VC-052		RULINGS.md	166	`None`（真空儲存格）：SWE1-HMI-VC-034、SWE1-HMI-VC-052、SWE1-HMI-VC-063。
+leaf	SWE1-HMI-VC-052		ANOMALIES.md	68	（列 70 `SWE1-HMI-VC-034`、列 118 `SWE1-HMI-VC-052`、列 142 `SWE1-HMI-VC-063`）
+leaf	SWE1-HMI-VC-057		docs/REVISIONS.md	94	- **原文**：`SWE1-HMI-VC-057` ~ `-064`（含子，**16 列**）。
+leaf	SWE1-HMI-VC-063		RULINGS.md	166	`None`（真空儲存格）：SWE1-HMI-VC-034、SWE1-HMI-VC-052、SWE1-HMI-VC-063。
+leaf	SWE1-HMI-VC-063		ANOMALIES.md	68	（列 70 `SWE1-HMI-VC-034`、列 118 `SWE1-HMI-VC-052`、列 142 `SWE1-HMI-VC-063`）
+leaf	SWE1-HMI-VC-066		ANOMALIES.md	12	| A-VC3 | §16.2 之 `SWE1-HMI-VC-066` 僅涵蓋標題一句 | PENDING | 併入 DR-VC3 |
+leaf	SWE1-HMI-VC-066		ANOMALIES.md	114	**內容**：規格 §16.2 之對應需求 `SWE1-HMI-VC-066` 僅涵蓋「widget 標題為
+revision	REV-01		docs/REVISIONS.md	9	## REV-01 —— 下放包 01 §3.3「第 10–18 欄全為 `\xa0`」作廢
+revision	REV-02		docs/REVISIONS.md	22	## REV-02 —— 下放包 01 §3.1 規格 PDF 之位元組數
+revision	REV-03		docs/REVISIONS.md	31	## REV-03 —— 下放包 01 §五 T9「reference 七項」
+revision	REV-04		docs/REVISIONS.md	40	## REV-04 —— 下放包 01 §五 T1「forms/ 兩份不複製，僅綁定」作廢
+revision	REV-05		docs/REVISIONS.md	46	## REV-05 —— 下放包 01 §八 `recon_assertions` 四鍵
+revision	REV-06		docs/REVISIONS.md	57	## REV-06 —— 下放包 01 §4.2 之分類計數（24 ＋ 18 → 25 ＋ 17）
+revision	REV-07		docs/REVISIONS.md	72	## REV-07 —— 下放包 01 §4.2(b) 之摘要文字，三節作廢
+revision	REV-07		data/tableB_draft.md	8	> （R-VC12 二已就 §15／§10.1／§10.2 作廢之，見 `docs/REVISIONS.md` REV-07）。
+revision	REV-08		docs/REVISIONS.md	91	## REV-08 —— 下放包 01 §五 T5「16 列」之口徑
+revision	REV-08		docs/REVISIONS.md	163	- **與 REV-08 同型**（T5 指令寫「16 列」而 id 區間 `057~064` 實為 22 列）。
+revision	REV-09		docs/REVISIONS.md	101	## REV-09 —— R-VC11(b) 作廢：粒度錯配
+revision	REV-10		docs/REVISIONS.md	120	## REV-10 —— priority 定案：八筆抬升撤銷、一筆改判
+revision	REV-11		RULINGS.md	599	> 該實測**早已載於 `docs/REVISIONS.md` REV-11 之對照表**，非本輪新得；
+revision	REV-11		RULINGS.md	629	分析層同期之 REV-11 為 R-VC15 之由來，二者為同一病灶之跨母體版與
+revision	REV-11		DECISIONS.md	127	> 章 13 之 leaf 母體為 **PM 12 ＋ VS 4**（REV-11／REV-14）。
+revision	REV-11		docs/REVISIONS.md	145	## REV-11 —— 下放包 05 §2.3「章 13 恰等於 FROP=PM 之 16 筆」：跨母體互援
+revision	REV-11		docs/REVISIONS.md	173	- **判讀**：二者**同屬 section 母體**，故非 REV-11 之跨母體互援。
+revision	REV-11		docs/REVISIONS.md	219	（REV-11 跨母體版、REV-12 同母體版），二者皆已處置並各自立條
+revision	REV-11		docs/REVISIONS.md	241	## REV-14 —— 下放包 24 §3.1「FROP = Power Management 全批」：REV-11 之病灶再現
+revision	REV-11		docs/REVISIONS.md	252	- **⚠ 本項最該記的一點**：上開正解**早已載於本檔 REV-11 之對照表**
+revision	REV-11		docs/REVISIONS.md	254	且已具名該四筆）。**REV-11 就是為同一個病灶而立的。**
+revision	REV-11		docs/REVISIONS.md	256	執行層以逐列實測發現，**而非以查閱 REV-11 發現**。
+revision	REV-11		framework.md	147	> 為跨母體互援，已由 R-VC15 作廢（`docs/REVISIONS.md` REV-11）。
+revision	REV-11		docs/TABLE_A_frop_crossdomain.md	47	本節之設立是因為第二個 17 是本輪新算出來的 —— **REV-11／REV-14 兩次教訓
+revision	REV-11		docs/TABLE_A_frop_crossdomain.md	78	**實測不成立**。REV-11／REV-14 已記其成因（母體混用）。本節為表 A 之佐證欄。
+revision	REV-12		RULINGS.md	628	立條由來：執行層於 T45 自查所得（REV-12）。
+revision	REV-12		docs/REVISIONS.md	167	## REV-12 —— 上繳包 01 §7 之「66 恰等於 66」：同母體，但當時未比成員
+revision	REV-12		docs/REVISIONS.md	219	（REV-11 跨母體版、REV-12 同母體版），二者皆已處置並各自立條
+revision	REV-13		docs/REVISIONS.md	222	## REV-13 —— 下放包 08 §4.3「本組無 PENDING」：涵蓋範圍小於其字面
+revision	REV-14		RULINGS.md	600	> 本輪為其**第二次被重新量出來**（REV-14）。
+revision	REV-14		ANOMALIES.md	1076	而本輪是**第一次有人回去讀那三格**。與 REV-14 同族：
+revision	REV-14		ANOMALIES.md	1096	**與 REV-14 之分野**（本輪定性）：
+revision	REV-14		ANOMALIES.md	1097	REV-14 是**台帳寫對而沒人讀**；本件是**台帳本身就寫錯了**。
+revision	REV-14		DECISIONS.md	127	> 章 13 之 leaf 母體為 **PM 12 ＋ VS 4**（REV-11／REV-14）。
+revision	REV-14		docs/REVISIONS.md	241	## REV-14 —— 下放包 24 §3.1「FROP = Power Management 全批」：REV-11 之病灶再現
+revision	REV-14		docs/REVISIONS.md	264	記明以免誤以為 REV-14 之後同型不會再犯。
+revision	REV-14		docs/TABLE_A_frop_crossdomain.md	7	- **本表不引用任何既有敘述之數字** —— 承 REV-14，全部重測
+revision	REV-14		docs/TABLE_A_frop_crossdomain.md	47	本節之設立是因為第二個 17 是本輪新算出來的 —— **REV-11／REV-14 兩次教訓
+revision	REV-14		docs/TABLE_A_frop_crossdomain.md	75	## 2. 對照 —— 章 13 之 FROP 組成（REV-14 之標的）
+revision	REV-14		docs/TABLE_A_frop_crossdomain.md	78	**實測不成立**。REV-11／REV-14 已記其成因（母體混用）。本節為表 A 之佐證欄。
+ruling	R-VC1		RULINGS.md	14	R-VC1（feature 身分與 test_group）
+ruling	R-VC1		RULINGS.md	533	Layer 1 Test Group ＝ `Vehicle Category`（R-VC1）。
+ruling	R-VC1		RULINGS.md	676	`UserProfiles`）—— 該慣例非由 `feature` 字串機械推導，見 R-VC1 之註。
+ruling	R-VC1		ANOMALIES.md	13	| A-VC4 | `new_feature.py` 之 abbr 推導得 `VE`，非 R-VC1 之 `VC` | PENDING | 全域排程（包 02 §四）|
+ruling	R-VC1		ANOMALIES.md	131	對 `Vehicle_Category` 產出 `VE`，而 R-VC1 規定之前綴為 `VC`。
+ruling	R-VC1		framework.md	17	| Layer 1 — Test Group | `Vehicle Category`（R-VC1）| 工作簿 **G 欄** |
+ruling	R-VC1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	5	`UserProfiles`）—— 該慣例非由 `feature` 字串機械推導，見 R-VC1 之註。
+ruling	R-VC1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	17	| feature | `Vehicle Category` | R-VC1 |
+ruling	R-VC1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	18	| slug | `vehicle_category` | R-VC1 |
+ruling	R-VC1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	19	| `test_group`（工作簿 G 欄）| `Vehicle Category` | R-VC1 |
+ruling	R-VC10		RULINGS.md	278	R-VC10（素材之 paths / reference 分工）
+ruling	R-VC10		DATA_REQUESTS.md	211	已窮舉，見 R-VC10）。請提供該件，或說明其取得方式。
+ruling	R-VC10		docs/REVISIONS.md	33	- **修訂依據**：R-VC10（下放包 02 §二）
+ruling	R-VC10		docs/REVISIONS.md	42	- **修訂依據**：R-VC10（下放包 02 §二）
+ruling	R-VC10		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	92	（下放包 02 R-VC10 之明文排除依據；`feature.yaml` 之 `reference:`
+ruling	R-VC11		RULINGS.md	314	R-VC11（TC priority 之判定；R-VC6(a) 之落地）
+ruling	R-VC11		RULINGS.md	360	> R-VC11 之立論本為「不採機械映射，因粒度不匹配」，原 (b) 自身重犯該錯，
+ruling	R-VC11		RULINGS.md	434	R-VC13（R-VC11(b) 之修訂：上游約束改為章級）
+ruling	R-VC11		RULINGS.md	436	R-VC11(b) 原文「037 = High → 該 leaf 所衍生之 TC 不得低於 P1；
+ruling	R-VC11		RULINGS.md	444	R-VC11 之立論本為「不採機械映射，因粒度不匹配」，
+ruling	R-VC11		RULINGS.md	459	R-VC11 之 (a) 主判準與 (c) 分歧揭露**不變**，繼續適用。
+ruling	R-VC11		RULINGS.md	483	該風險依 R-VC11(c) 記於該 TC 之 `reasoning`。
+ruling	R-VC11		RULINGS.md	492	故 (a) 之二筆定案 P0 不受上游值影響（R-VC11(c) 之分歧揭露義務仍存）。
+ruling	R-VC11		ANOMALIES.md	401	以 DR-VC7 查詢其判準；在回覆前，依 R-VC11(b) 僅取其為邊界。
+ruling	R-VC11		ANOMALIES.md	430	狀態：PENDING（待 DR-VC7）。依 R-VC11(b)，回覆前僅取其為邊界，
+ruling	R-VC11		DATA_REQUESTS.md	18	| DR-VC7 | **未結** | 037 作者 | 不阻斷（R-VC11 已裁其僅作邊界）|
+ruling	R-VC11		DATA_REQUESTS.md	164	- **阻斷範圍**：不阻斷 —— R-VC11 已裁定其僅作**邊界**使用，非映射來源。
+ruling	R-VC11		DATA_REQUESTS.md	165	回覆到後 R-VC11(b) 之邊界重審。
+ruling	R-VC11		DECISIONS.md	89	- 判準：R-VC11(a) 之 IN §10.2 rubric 逐 TC 判 ＋ R-VC13 之**章級**
+ruling	R-VC11		DECISIONS.md	94	- 生成時之附帶義務（R-VC11(c)）：`VC-035-03`／`VC-036-02`（本地 P0
+ruling	R-VC11		docs/REVISIONS.md	101	## REV-09 —— R-VC11(b) 作廢：粒度錯配
+ruling	R-VC11		docs/REVISIONS.md	104	- **原文（R-VC11(b)）**：037 = High → 該 **leaf** 所衍生之 TC 不得低於 P1；
+ruling	R-VC11		docs/REVISIONS.md	108	R-VC11 之立論本為「不採機械映射，因粒度不匹配」，
+ruling	R-VC11		docs/REVISIONS.md	115	- **不變**：R-VC11 之 (a) 主判準與 (c) 分歧揭露繼續適用。
+ruling	R-VC11		docs/REVISIONS.md	116	- **落點**：`RULINGS.md` 之 R-VC11 條文**原字未改**（R-TM13），
+ruling	R-VC11		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	23	| `priority` | `data/priority_final.tsv`（P0 5／P1 32／P2 45／P3 35）| R-VC11／R-VC13／R-VC14 |
+ruling	R-VC12		RULINGS.md	368	R-VC12（§4.2 分類之修訂；圖內內容之處置）
+ruling	R-VC12		RULINGS.md	953	R-VC27（R-VC12 二(a) 之修訂：三節之內容欄改為逐節實測）
+ruling	R-VC12		RULINGS.md	955	R-VC12 二(a) 原文「該三節之『內容』欄一律書『該節內容僅存於圖，
+ruling	R-VC12		RULINGS.md	961	simultaneously`）。R-VC12 立條之由來即為「不得以衍生物之判讀充當實測值」，
+ruling	R-VC12		RULINGS.md	970	§10.2     不摘要、不省略（同 R-VC12 二(c) 對 §8.3 之作法）。
+ruling	R-VC12		RULINGS.md	976	R-VC12 之二(b)(c)(d) 與其餘各款**不變**。
+ruling	R-VC12		RULINGS.md	977	R-VC12 二(a) 之原文依 R-TM13 不刪除，加註「作廢，見 R-VC27」。
+ruling	R-VC12		ANOMALIES.md	1061	- **R-VC12 二(a)** 之措辭以「匯出未帶文字」為其實測前提 —— 該前提於二節不成立。
+ruling	R-VC12		ANOMALIES.md	1069	- 於表 B 該三列**並列實測逐字** —— 引用非摘要，同 R-VC12 二(c) 對 §8.3 之作法。
+ruling	R-VC12		ANOMALIES.md	1075	它被當成已實測之事實引用（R-VC12 二(a) 即以它為據立條），
+ruling	R-VC12		ANOMALIES.md	1081	**R-VC12 二(a) 是用它自己所禁之方法立的。**
+ruling	R-VC12		ANOMALIES.md	1083	R-VC12 之立條由來，為分析層於下放包 06 §一自認之第二次同類錯誤 ——
+ruling	R-VC12		ANOMALIES.md	1099	**能攔本件的只有回到權威素材重測**，而那正是 R-VC12 三、通則所要求者。
+ruling	R-VC12		ANOMALIES.md	1103	- **R-VC12 二(a) 作廢**，代以 R-VC27：表 B 之「內容」欄一律**逐字引錄
+ruling	R-VC12		ANOMALIES.md	1105	- R-VC12 二(a) 之原文依 R-TM13 不刪除，加註作廢（T147 已落）。
+ruling	R-VC12		DATA_REQUESTS.md	133	- **⚠ 本欄自 T17 起即為正確，而 R-VC12 二(a) 與表 B 同期寫成「未帶文字」**
+ruling	R-VC12		DATA_REQUESTS.md	141	A-VC20 原記其成因為「R-VC12 二(a) 是用它自己所禁之方法立的」；
+ruling	R-VC12		DATA_REQUESTS.md	148	| **錯解** | R-VC12 二(a)、表 B | 「SYS1 匯出未帶文字」| 衍生 PDF 之判讀 |
+ruling	R-VC12		DATA_REQUESTS.md	152	self-test 之已知標的（§10.1 應同時列出本欄與 R-VC12 二(a) 二處）。
+ruling	R-VC12		DATA_REQUESTS.md	153	- **不得引述**：下放包 01 §4.2(b) 對該三節之摘要文字已由 R-VC12 二作廢，
+ruling	R-VC12		docs/REVISIONS.md	59	- **修訂依據**：R-VC12 一（下放包 03 §二）
+ruling	R-VC12		docs/REVISIONS.md	74	- **修訂依據**：R-VC12 二（下放包 03 §二）
+ruling	R-VC12		docs/REVISIONS.md	232	- **性質**：與 A-VC5（未量測即下全稱斷言）、R-VC12 二（以衍生物判讀充當
+ruling	R-VC12		docs/REVISIONS.md	268	## 通則（R-VC12 三）
+ruling	R-VC12		framework.md	323	（R-VC12 一之修訂計數）。後者為 R-VC3 之表 B 母體，
+ruling	R-VC12		data/tableB_draft.md	3	> **草稿，非交付件。** 最終措辭待 DR-VC3 回覆（R-VC12 二(b)、下放包 03 T23）。
+ruling	R-VC12		data/tableB_draft.md	4	> 母體依 **R-VC12 一**：未引用 42 節 ＝ 非需求性質 25 ＋ 有實質內容 **17**。
+ruling	R-VC12		data/tableB_draft.md	8	> （R-VC12 二已就 §15／§10.1／§10.2 作廢之，見 `docs/REVISIONS.md` REV-07）。
+ruling	R-VC12		data/tableB_draft.md	10	### ⚠ 本表全體之效力限制（R-VC12 二(d)；下放包 27 §2.2 要求寫在表上）
+ruling	R-VC12		data/tableB_draft.md	57	1. **§8.3** 於下放包 01 §4.2(b) 之摘要中漏列，本表依 R-VC12 二(c) 補入，
+ruling	R-VC12		data/tableB_draft.md	59	2. **§10.1／10.2／§15** 三節 —— **R-VC12 二(a) 已作廢，改依 R-VC27**
+ruling	R-VC12		data/tableB_draft.md	77	R-VC12 二(a) 之措辭係讀**衍生 PDF** 所得而**從未讀 SYS1 那三格**，
+ruling	R-VC12		data/tableB_draft.md	78	而 R-VC12 **三、通則**所禁者正是「以衍生物之判讀充當實測值」——
+ruling	R-VC13		RULINGS.md	356	> **⚠ (b) 已作廢 —— 見 R-VC13（下放包 04，Pei 2026-08-25）。**
+ruling	R-VC13		RULINGS.md	362	> **新 (b) 見 R-VC13：上游約束作用於章，不作用於 leaf。**
+ruling	R-VC13		RULINGS.md	434	R-VC13（R-VC11(b) 之修訂：上游約束改為章級）
+ruling	R-VC13		RULINGS.md	491	037 對此三筆皆為 Medium，依 R-VC13 之新 (b) 章級不設約束，
+ruling	R-VC13		DECISIONS.md	89	- 判準：R-VC11(a) 之 IN §10.2 rubric 逐 TC 判 ＋ R-VC13 之**章級**
+ruling	R-VC13		docs/REVISIONS.md	103	- **修訂依據**：R-VC13（下放包 04 §二）
+ruling	R-VC13		docs/REVISIONS.md	110	- **正解（新 (b)，R-VC13）**：上游約束**作用於章，不作用於 leaf**。
+ruling	R-VC13		docs/REVISIONS.md	117	於其後加註「(b) 已作廢，見 R-VC13」。加註後條文本體經 byte-level diff
+ruling	R-VC13		docs/REVISIONS.md	122	- **修訂依據**：R-VC13（八筆）＋ R-VC14（一筆），下放包 04 §三第 1／2 項
+ruling	R-VC13		docs/REVISIONS.md	129	| `VC-027` | 4.2 | High | P1 | **P2** | R-VC13 |
+ruling	R-VC13		docs/REVISIONS.md	130	| `VC-031` | 6.2 | High | P1 | **P2** | R-VC13 |
+ruling	R-VC13		docs/REVISIONS.md	131	| `VC-032` | 6.3 | High | P1 | **P3** | R-VC13 |
+ruling	R-VC13		docs/REVISIONS.md	132	| `VC-033-02` | 7.1 | High | P1 | **P2** | R-VC13 |
+ruling	R-VC13		docs/REVISIONS.md	134	| `VC-058-02` | 13.1.1 | High | P1 | **P2** | R-VC13 |
+ruling	R-VC13		docs/REVISIONS.md	135	| `VC-058-03` | 13.1.1 | High | P1 | **P2** | R-VC13 |
+ruling	R-VC13		docs/REVISIONS.md	136	| `VC-062-02` | 13.4.1 | High | P1 | **P2** | R-VC13 |
+ruling	R-VC13		docs/REVISIONS.md	137	| `VC-063-02` | 13.4.2 | High | P1 | **P2** | R-VC13 |
+ruling	R-VC13		docs/REVISIONS.md	139	八筆 R-VC13 者全部**回歸本地判定**（非另行判過）；
+ruling	R-VC13		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	23	| `priority` | `data/priority_final.tsv`（P0 5／P1 32／P2 45／P3 35）| R-VC11／R-VC13／R-VC14 |
+ruling	R-VC14		RULINGS.md	468	R-VC14（P0 之判準：攔阻失效與執行失效之區分）
+ruling	R-VC14		RULINGS.md	761	4  `Settings Behavior`       15 leaf   無 DR 阻斷；含 2 個 P0 ＋ R-VC14 揭露
+ruling	R-VC14		RULINGS.md	767	（`035-03`／`036-02`）與 R-VC14 之分歧揭露義務（`036-01`）；
+ruling	R-VC14		ANOMALIES.md	456	「回上一頁」。該差額正是二筆判定 P0 之依據（R-VC14(a)）。
+ruling	R-VC14		ANOMALIES.md	529	差額成立，且正是該二筆定案 P0 之依據（R-VC14(a)）。
+ruling	R-VC14		DECISIONS.md	91	＋ R-VC14 之攔阻／執行失效區分
+ruling	R-VC14		DECISIONS.md	95	而 037=Medium）與 `VC-036-01`（R-VC14(b)，隱私外洩風險）
+ruling	R-VC14		docs/REVISIONS.md	122	- **修訂依據**：R-VC13（八筆）＋ R-VC14（一筆），下放包 04 §三第 1／2 項
+ruling	R-VC14		docs/REVISIONS.md	133	| `VC-036-01` | 11.3 | Medium | P0 | **P1** | R-VC14 |
+ruling	R-VC14		docs/REVISIONS.md	140	一筆 R-VC14 者為 data-loss 之**執行失效**（該清而未清，資料仍在），
+ruling	R-VC14		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	23	| `priority` | `data/priority_final.tsv`（P0 5／P1 32／P2 45／P3 35）| R-VC11／R-VC13／R-VC14 |
+ruling	R-VC15		RULINGS.md	498	R-VC15（母體標註義務）
+ruling	R-VC15		RULINGS.md	550	驗算目標（**母體標註依 R-VC15**）：
+ruling	R-VC15		RULINGS.md	588	（R-VC15）。
+ruling	R-VC15		RULINGS.md	623	本條與 R-VC15 之分工：
+ruling	R-VC15		RULINGS.md	624	R-VC15 —— 拘束**跨母體**之數字互援（不同母體之數字不可互援）
+ruling	R-VC15		RULINGS.md	629	分析層同期之 REV-11 為 R-VC15 之由來，二者為同一病灶之跨母體版與
+ruling	R-VC15		ANOMALIES.md	652	母體標註（R-VC15）：9 為 **leaf 母體**之數。
+ruling	R-VC15		docs/REVISIONS.md	147	- **修訂依據**：R-VC15（下放包 06 §一）
+ruling	R-VC15		docs/REVISIONS.md	164	**同型犯了兩次**，故本次立條文 R-VC15（母體標註義務）而非僅記修訂。
+ruling	R-VC15		docs/REVISIONS.md	169	- **修訂依據**：R-VC15（本輪 T38 覆核所得，執行層自查）
+ruling	R-VC15		docs/REVISIONS.md	174	但其論證形式為**計數相等**，R-VC15 明文「不得以計數相等代替成員比對」。
+ruling	R-VC15		docs/REVISIONS.md	185	- 性質：**非錯誤，是論證強度不足**。列此以示 R-VC15 之適用不限於
+ruling	R-VC15		docs/REVISIONS.md	220	（R-VC15、R-VC17）。
+ruling	R-VC15		docs/REVISIONS.md	243	- **修訂依據**：R-VC15；下放包 25 §一（分析層自認）
+ruling	R-VC15		docs/REVISIONS.md	258	- **性質**：R-VC15 立條後之**第一次違反**（下放包 25 §一，分析層自認）。
+ruling	R-VC15		framework.md	5	- 母體標註依 **R-VC15**：本檔凡引用計數必標母體，限
+ruling	R-VC15		framework.md	137	（R-VC15）。
+ruling	R-VC15		framework.md	147	> 為跨母體互援，已由 R-VC15 作廢（`docs/REVISIONS.md` REV-11）。
+ruling	R-VC15		docs/TABLE_A_frop_crossdomain.md	12	## 0. 母體標註（R-VC15）
+ruling	R-VC15		docs/TABLE_A_frop_crossdomain.md	35	### 0.2 ⚠ 兩個 17，落在不同母體（R-VC15／R-VC17）
+ruling	R-VC15		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	6	- 母體標註依 **R-VC15**：本檔凡引用計數必標母體，限
+ruling	R-VC16		RULINGS.md	529	R-VC16（Layer 2 定案：8 個 Test Set）
+ruling	R-VC16		RULINGS.md	640	pilot Test Set ＝ **#3 `Glove Box`**（R-VC16）。
+ruling	R-VC16		RULINGS.md	770	第 6／7 批置末之理由：R-VC16(c) 明文其邊界待 DR-VC3 重審，
+ruling	R-VC16		DECISIONS.md	126	> 表 A 之編製**依 leaf 母體之實測**，不得沿用任何由 R-VC16(e) 反推之敘述。
+ruling	R-VC16		docs/REVISIONS.md	248	- **成因**：母體混用。R-VC16(e) 之結論為「FROP = PM 之 **16 列**（145 列母體）
+ruling	R-VC16		docs/REVISIONS.md	262	- **落點**：下放包 24 之原文未改（R-TM13）；R-VC16(e) 加註（T129）。
+ruling	R-VC16		framework.md	3	- 裁決依據：**R-VC16**（Pei 2026-08-26，下放包 07 §一）——
+ruling	R-VC16		framework.md	9	**規則為權威，本檔之節次清單為其展開結果**（R-VC16）。
+ruling	R-VC16		framework.md	50	### 邊界規則（R-VC16，規則為權威）
+ruling	R-VC16		framework.md	91	### 3.2 ⚠ 弱點揭露（R-VC16(b)，不得因已簽署而略去）
+ruling	R-VC16		framework.md	129	### 3.6 FROP 之對應（R-VC16(e)）
+ruling	R-VC16		framework.md	151	## 4. 待補節對 #7／#8 之影響（R-VC16(c)）
+ruling	R-VC16		framework.md	168	### 4.1 11.9 群之條件性歸屬（R-VC16(d)）
+ruling	R-VC16		framework.md	188	分組以 `partn.test_set()`（R-VC16 之規則）實作，**不硬編 leaf 清單**。
+ruling	R-VC16		framework.md	194	| 3 | 各組 leaf 數與 section 數與 R-VC16 驗算目標逐組相符 | PASS |
+ruling	R-VC16		data/tableB_draft.md	24	| 章 8／9 Cabrio 本體 | 1–7（§8.1–§9.2）| 另立 Test Set `Cabrio Rooftop`，**framework 由 8 組變 9 組**（R-VC16(c)）|
+ruling	R-VC16		data/tableB_draft.md	27	| **§11.9 群**（執行層補列，下放包 28 §2.1 **追認**）| 10–13 | 其歸 #5 為**條件性生效**，待 DR-VC3（R-VC16(d)）|
+ruling	R-VC16		data/tableB_draft.md	73	R-VC16(d) 明文「11.9 群歸 #5 …**條件性生效，待 DR-VC3**」。
+ruling	R-VC16		docs/TABLE_A_frop_crossdomain.md	92	**R-VC16(e) 之正確讀法**：`Power Management` 之 16 **列**全部落在章 13
+ruling	R-VC16		docs/TABLE_A_frop_crossdomain.md	105	**本表之 `Test Set` 欄須重編**（R-VC16(c)）。
+ruling	R-VC16		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	20	| Layer 2 Test Set（H 欄）| 8 組 | **R-VC16** |
+ruling	R-VC17		RULINGS.md	608	R-VC17（一對一之主張須以成員比對為據）
+ruling	R-VC17		RULINGS.md	625	R-VC17 —— 拘束**等同性主張之論證形式**（不論母體是否相同）
+ruling	R-VC17		docs/REVISIONS.md	220	（R-VC15、R-VC17）。
+ruling	R-VC17		framework.md	139	**成員比對方法（R-VC17 之書寫要求）**：取 145 列母體中
+ruling	R-VC17		docs/TABLE_A_frop_crossdomain.md	35	### 0.2 ⚠ 兩個 17，落在不同母體（R-VC15／R-VC17）
+ruling	R-VC18		RULINGS.md	636	R-VC18（Phase 4 pilot：Glove Box）
+ruling	R-VC18		RULINGS.md	740	DR-VC8 回覆後，本筆依其值 Revise，並依 R-VC18 另裁是否補拆
+ruling	R-VC19		RULINGS.md	669	R-VC19（VC profile 之設立；§11 引號例外之啟動）
+ruling	R-VC19		RULINGS.md	816	R-VC23（R-VC19 之擴充：來源記法之通則化）
+ruling	R-VC19		RULINGS.md	818	R-VC19(a) 之「037 `Title` 之 `'...'` 與 `Description` 之 `«...»`」
+ruling	R-VC19		RULINGS.md	827	R-VC19(b)(c)(d) 之其餘拘束**不變且更形吃重**：
+ruling	R-VC19		ANOMALIES.md	24	| A-VC15 | `lint036.py --profile` 不讀 profile 內容，無法實作 R-VC19(c) | PENDING | 全域排程（工具修法）|
+ruling	R-VC19		ANOMALIES.md	781	**登記依據**：R-VC19 §2.3 第 3 項明文「先查 `lint036.py` 對 `--profile` 之
+ruling	R-VC19		ANOMALIES.md	795	**後果**：R-VC19(c)「lint 之職責由禁止改為驗證其來源」**現階段無承載者**。
+ruling	R-VC19		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	3	- 設立依據：**R-VC19**（下放包 11 §2.2，Pei 2026-08-26）
+ruling	R-VC19		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	8	- **本檔只寫當前需要者，不預先設計未來條款**（R-VC19 §2.3）——
+ruling	R-VC19		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	30	本節即該啟動，其範圍**嚴格限定於下列四項**，逐字採 R-VC19 (a)–(d)：
+ruling	R-VC19		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	50	（R-VC19 末段）。本節為 feature-scoped 之例外啟動，非全域鬆綁。
+ruling	R-VC19		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	56	R-VC19 §2.3 第 3 項要求「先查 `scripts/lint036.py` 對 `--profile` 之
+ruling	R-VC19		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	77	依 R-VC19 §2.3 第 3 項「如實記為 profile 之已知限制並登記 A-VC{n}，
+ruling	R-VC19		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	105	下列各項**刻意未寫入**，因其現無需要（R-VC19 §2.3）：
+ruling	R-VC2		RULINGS.md	43	R-VC2（036 母本與 workbook_state）
+ruling	R-VC2		DECISIONS.md	30	- workbook_state: `[AUTO]` **BLANK**（R-VC2 所裁；done 0 / draft 0 / authors none）
+ruling	R-VC2		DECISIONS.md	59	（R-VC2(a) 已裁 `fill_test_group_set: true`）
+ruling	R-VC2		DECISIONS.md	62	- author on new rows: `[PROPOSED: PeiPYHsu]`（R-VC2(b) 已裁，一致）
+ruling	R-VC20		RULINGS.md	715	R-VC20（verbatim 上半含爭議值之處置）
+ruling	R-VC21		RULINGS.md	747	R-VC21（Phase 4 全量批次計畫）
+ruling	R-VC22		RULINGS.md	786	R-VC22（批次之 DR 保留段）
+ruling	R-VC23		RULINGS.md	701	> **⚠ (a) 已擴充、(d) 已作廢 —— 見 R-VC23（下放包 17 §3.2）。**
+ruling	R-VC23		RULINGS.md	816	R-VC23（R-VC19 之擴充：來源記法之通則化）
+ruling	R-VC23		ANOMALIES.md	505	**第三面之後果落在 R-VC23(c)**：`test_item` 上半取哪一欄，
+ruling	R-VC23		ANOMALIES.md	569	**第三面之後果落在 R-VC23(c)**：`test_item` 上半取哪一欄，
+ruling	R-VC24		RULINGS.md	850	R-VC24（Title 越界之判別：情境脈絡 vs 行為主張）
+ruling	R-VC24		RULINGS.md	882	(b) 逐筆施 R-VC24 之判別並記其結果（防第四面）；
+ruling	R-VC24		RULINGS.md	883	(c) 該 Title 不得為 R-VC24 所判之行為主張型。
+ruling	R-VC24		RULINGS.md	890	既有 TC 不回溯：pilot 之 8 筆 Title 取材已經 R-VC24 判別
+ruling	R-VC24		ANOMALIES.md	1055	`Aux 1`／`Aux 2` 之字面另與 R-VC24 已判之 `VC-025-02`（`Aux Camera 1`／`2`）
+ruling	R-VC25		RULINGS.md	873	R-VC25（test_item 上半之取材優先序）
+ruling	R-VC26		RULINGS.md	900	R-VC26（拆分之第四個充分條件：互相消耗）
+ruling	R-VC27		RULINGS.md	417	> **本條之二(a) 作廢，見 R-VC27。**
+ruling	R-VC27		RULINGS.md	953	R-VC27（R-VC12 二(a) 之修訂：三節之內容欄改為逐節實測）
+ruling	R-VC27		RULINGS.md	977	R-VC12 二(a) 之原文依 R-TM13 不刪除，加註「作廢，見 R-VC27」。
+ruling	R-VC27		ANOMALIES.md	1101	### 處置（下放包 28 §一，R-VC27）
+ruling	R-VC27		ANOMALIES.md	1103	- **R-VC12 二(a) 作廢**，代以 R-VC27：表 B 之「內容」欄一律**逐字引錄
+ruling	R-VC27		ANOMALIES.md	1106	- **DR-VC6 之問法改為三問**（R-VC27 末段，T148 已落）。
+ruling	R-VC27		ANOMALIES.md	1108	狀態：**已解**（R-VC27）。其成因記錄保留為常設參照。
+ruling	R-VC27		DATA_REQUESTS.md	102	- **⚠ 問法已改（下放包 28 §一 R-VC27 末段，T148）**。原問「該三節之內容
+ruling	R-VC27		data/tableB_draft.md	59	2. **§10.1／10.2／§15** 三節 —— **R-VC12 二(a) 已作廢，改依 R-VC27**
+ruling	R-VC27		data/tableB_draft.md	76	6. **A-VC20 已解**（R-VC27，下放包 28 §一）。其成因值得留在這裡：
+ruling	R-VC28		RULINGS.md	989	R-VC28（本 feature 之 TC ID）
+ruling	R-VC28		ANOMALIES.md	1135	本 feature 依 R-VC28 採 `newR1L-`（與 D2 及 amfm 既有實例一致）。
+ruling	R-VC3		RULINGS.md	73	R-VC3（驗證範圍與兩張強制揭露表）
+ruling	R-VC3		RULINGS.md	264	揭露義務：R-VC3 之 leaf 全集 117 與覆蓋落差 18，在對應 assertion
+ruling	R-VC3		RULINGS.md	270	117 —— 子需求 ∪ 無子之父（R-VC3 所裁之驗證母體）
+ruling	R-VC3		RULINGS.md	382	R-VC3 所稱「表 B｜覆蓋落差揭露」之母體隨之改為 **17 節**：
+ruling	R-VC3		RULINGS.md	386	R-VC3 之其餘部分（117 leaf 全取、表 A、兩表為出貨門檻）**不變**。
+ruling	R-VC3		RULINGS.md	504	117 leaf  —— R-VC3 所裁之驗證母體（子需求 ∪ 無子之父）
+ruling	R-VC3		RULINGS.md	587	R-VC3 表 A 據此編製。**此為成員集合之比對結果，非計數相等之推論**
+ruling	R-VC3		ANOMALIES.md	332	R-VC3 所裁之驗證母體為 leaf 全集 117（子需求 ∪ 無子之父），
+ruling	R-VC3		ANOMALIES.md	339	提案處置：`recon.py` 增設 `leaf_count` assertion，判準取 R-VC3 之定義
+ruling	R-VC3		ANOMALIES.md	636	現況：11.9 群為 037 零涵蓋（R-VC3 表 B 之 17 節之一），
+ruling	R-VC3		ANOMALIES.md	915	- **不得自行剔除該三 leaf** —— 117 母體為 R-VC3 所裁，剔除屬 Tier 2。
+ruling	R-VC3		DATA_REQUESTS.md	16	| DR-VC5 | **未結** | 037 作者 | 不阻斷（R-VC3 已裁全取）|
+ruling	R-VC3		DATA_REQUESTS.md	67	- **阻斷範圍**：不阻斷本次交付（R-VC3）。惟表 B 之措辭取決於此答覆。
+ruling	R-VC3		DATA_REQUESTS.md	93	- **阻斷範圍**：不阻斷（R-VC3 已裁全取）。答覆到後若需縮限，以 `[OVERRIDE]`
+ruling	R-VC3		DATA_REQUESTS.md	126	依 R-VC3 本次不產出 TC。**僅當 DR-VC3 回覆為「應補」時始為必要素材**；
+ruling	R-VC3		DATA_REQUESTS.md	251	- **不得自行剔除該三 leaf** —— 117 母體為 R-VC3 所裁，剔除屬 Tier 2
+ruling	R-VC3		DECISIONS.md	41	> ⚠ **此為 `Categorization == Functional` 判準之 145，非 R-VC3 所裁之
+ruling	R-VC3		DECISIONS.md	52	即 R-VC3 之「有子之父」28，數字一致
+ruling	R-VC3		docs/REVISIONS.md	66	- **連帶**：**R-VC3 之「表 B｜覆蓋落差揭露」母體由 18 節改為 17 節**：
+ruling	R-VC3		docs/REVISIONS.md	69	R-VC3 之其餘部分（117 leaf 全取、表 A、兩表為出貨門檻）**不變**。
+ruling	R-VC3		framework.md	136	R-VC3 之表 A 據此編製。**此為成員集合之比對結果，非計數相等之推論**
+ruling	R-VC3		framework.md	323	（R-VC12 一之修訂計數）。後者為 R-VC3 之表 B 母體，
+ruling	R-VC3		data/tableB_draft.md	69	4. 本表為 **R-VC3 之出貨門檻二表之一**，缺之不得出貨。表 A（FROP 跨域，
+ruling	R-VC3		docs/TABLE_A_frop_crossdomain.md	3	> **出貨門檻二表之一**（R-VC3）。缺之不得出貨。
+ruling	R-VC3		docs/TABLE_A_frop_crossdomain.md	19	| **117 leaf** | 其中之 leaf（R-VC3 全取）| 117 |
+ruling	R-VC3		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	22	| 驗證母體 | **117 leaf** | R-VC3 |
+ruling	R-VC4		RULINGS.md	102	R-VC4（spec_reference 之錨點形態）
+ruling	R-VC4		RULINGS.md	145	(a) 本 feature 之 `spec_reference` 一律取 `HMI Source ID` 欄（R-VC4），
+ruling	R-VC4		RULINGS.md	214	R-VC4 明文要求該鍵為 `null`，故本 feature 必然觸發。
+ruling	R-VC4		RULINGS.md	218	`HMI Source ID` 欄之原值**，使資料件與 R-VC4 一致。
+ruling	R-VC4		RULINGS.md	221	與 R-VC4 所裁之全名不同，等於在資料件中埋一個與裁決相左的值。
+ruling	R-VC4		RULINGS.md	566	section 與 TC 之關聯由 `specification_reference` 承載（R-VC4），
+ruling	R-VC4		ANOMALIES.md	242	`dict.get` 之預設值僅在**鍵不存在**時生效；R-VC4 明文要求該鍵為
+ruling	R-VC4		ANOMALIES.md	256	與 R-VC4 所裁之「逐字抄 037 `HMI Source ID` 欄原值」不同，
+ruling	R-VC4		ANOMALIES.md	260	驗明對 SYS1 命中 66/66），使資料件與 R-VC4 一致。
+ruling	R-VC4		ANOMALIES.md	262	`spec_reference_template` 填成任何字串 —— 那會違反 R-VC4。
+ruling	R-VC4		ANOMALIES.md	268	不採 (a)：其產出為光禿之章節號，與 R-VC4 所裁之全名不同 ——
+ruling	R-VC4		DECISIONS.md	63	- **spec_reference**：**逐字取 037 `HMI Source ID` 欄原值（R-VC4）。**
+ruling	R-VC4		DECISIONS.md	76	> 本 feature 之情形不同 —— R-VC4 已裁明其值，故採實值覆蓋而非留 `[PEI]`。
+ruling	R-VC4		framework.md	28	其值逐字取 037 `HMI Source ID` 欄原值（R-VC4）。
+ruling	R-VC4		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	21	| `spec_reference`（N 欄）| 逐字取 037 `HMI Source ID` 欄原值，不構造 | **R-VC4** |
+ruling	R-VC5		RULINGS.md	134	R-VC5（037 之 Source Requirement ID 不作為錨點）
+ruling	R-VC5		DATA_REQUESTS.md	52	- **阻斷範圍**：不阻斷生成（R-VC5(c)）。**交付前須有答覆**以完成雙向追溯。
+ruling	R-VC6		RULINGS.md	157	R-VC6（037 分析九欄為有效上游輸入；A-VC1 撤銷）
+ruling	R-VC6		RULINGS.md	314	R-VC11（TC priority 之判定；R-VC6(a) 之落地）
+ruling	R-VC6		RULINGS.md	343	此為 R-VC6(a)「不得於忽略本欄之情況下本地推導」之落地形式：
+ruling	R-VC6		RULINGS.md	351	R-VC6(a) 之「priority 欄不得產出」之凍結，於本條落地後**解除**。
+ruling	R-VC6		ANOMALIES.md	10	| A-VC1 | 037 第 10–18 欄全為 `\xa0` | **撤銷（R-VC6）** | — |
+ruling	R-VC6		ANOMALIES.md	30	## A-VC1 —— 037 第 10–18 欄之 `\xa0` —— **撤銷（R-VC6，Pei 2026-08-25）**
+ruling	R-VC6		ANOMALIES.md	33	> 依 R-VC6（下放包 02 §二，`RULINGS.md:157`）：下放包 01 §3.3 所記
+ruling	R-VC6		ANOMALIES.md	79	**裁定（R-VC6，Pei 2026-08-25）—— 提案 (a)(b) 全採，(c) 已解**
+ruling	R-VC6		ANOMALIES.md	82	(b) 採：R-VC6(d) 逐字保留「strip 含 `\xa0` 之技術手段」，
+ruling	R-VC6		ANOMALIES.md	86	R-VC6 立四項拘束，其 (a)(b)(c) **不屬本異常之處置而屬 Phase 4 之範圍**：
+ruling	R-VC6		ANOMALIES.md	207	提案 (a)（以 repo 內複本之實測為準）已由 R-VC6 全採；
+ruling	R-VC6		ANOMALIES.md	208	提案 (c)（裁定前不得建立依賴「這九欄無內容」之判準）已被 R-VC6 反轉為
+ruling	R-VC6		ANOMALIES.md	209	**正向要求**：該九欄是必須使用的上游輸入，見 R-VC6(a)(b)。
+ruling	R-VC6		ANOMALIES.md	221	T12 已以 R-VC6 之條文為基準重跑，見上繳包 02 §3。
+ruling	R-VC6		docs/REVISIONS.md	11	- **修訂依據**：R-VC6（下放包 02 §二）
+ruling	R-VC6		docs/REVISIONS.md	18	- **連帶**：A-VC1 撤銷。九欄改為**有效上游輸入**，並生 R-VC6(a)–(d) 四項拘束。
+ruling	R-VC7		RULINGS.md	188	R-VC7（規格 PDF 之權威複本）
+ruling	R-VC7		RULINGS.md	394	依 R-VC7，該等文字係讀 Project 附件之衍生 PDF 所得，
+ruling	R-VC7		RULINGS.md	822	（037 `Title`／`Description`，或 R-VC7 所定之 SYS1 權威複本）
+ruling	R-VC7		ANOMALIES.md	16	| A-VC7 | 規格 PDF 之位元組數與下放包 01 §3.1 不符 | **RESOLVED（R-VC7）** | — |
+ruling	R-VC7		ANOMALIES.md	280	## A-VC7 —— 規格 PDF 之位元組數與下放包 01 §3.1 不符 —— **RESOLVED（R-VC7）**
+ruling	R-VC7		ANOMALIES.md	306	**裁定（R-VC7，Pei 2026-08-25）—— repo 內複本為權威**
+ruling	R-VC7		ANOMALIES.md	313	連帶拘束（R-VC7 末段）：下放包 01 §4.2(b) 之 18 節「規格內容摘要」
+ruling	R-VC7		ANOMALIES.md	1006	取材時以 SYS1／037 為準（R-VC7），記明以免日後誤判為抄錯。
+ruling	R-VC7		DATA_REQUESTS.md	69	- **措辭依據（R-VC7）**：18 節之內容摘要**已於 T17 以 repo 內權威素材逐節
+ruling	R-VC7		DATA_REQUESTS.md	231	**執行層已實測 SYS1**（R-VC7 之權威複本）：
+ruling	R-VC7		docs/REVISIONS.md	24	- **修訂依據**：R-VC7（下放包 02 §二）
+ruling	R-VC7		docs/REVISIONS.md	79	- **理由**：該等文字係讀 Project 附件之衍生 PDF 所得（R-VC7 所禁）；
+ruling	R-VC8		RULINGS.md	210	R-VC8（recon.py 於 spec_reference_template 為 null 時之行為；Tier 2 修法授權）
+ruling	R-VC8		ANOMALIES.md	15	| A-VC6 | `recon.py` 於 `spec_reference_template: null` 崩潰 | **RESOLVED（R-VC8）** | — |
+ruling	R-VC8		ANOMALIES.md	150	**R-VC8 之修法不得順手併入 A-VC4 / A-TM04** —— 三者標的不同
+ruling	R-VC8		ANOMALIES.md	152	併案會使 R-VC8 之授權範圍失去邊界。已遵守：T13 之修法僅動 R-VC8 所指之處。
+ruling	R-VC8		ANOMALIES.md	225	## A-VC6 —— `recon.py` 於 `spec_reference_template: null` 崩潰 —— **RESOLVED（R-VC8）**
+ruling	R-VC8		ANOMALIES.md	264	**裁定（R-VC8，Pei 2026-08-25）—— 採提案 (b)，不採 (a)**
+ruling	R-VC8		ANOMALIES.md	269	「崩潰會停，錯值不會，後者為害更甚」（R-VC8 原文）。
+ruling	R-VC8		ANOMALIES.md	271	R-VC8 為 Tier 2 修法之授權，另立三項實作拘束（保留 `first` 之原值而
+ruling	R-VC8		ANOMALIES.md	342	屬 Tier 2 工具修法，**與 R-VC8 之修法非同一件，不得併案順手為之**。
+ruling	R-VC8		ANOMALIES.md	351	不得併入 R-VC8 之授權範圍）。
+ruling	R-VC8		ANOMALIES.md	360	**授權邊界再申明**：R-VC8 之修法不得順手併入 A-VC4（`new_feature.py`
+ruling	R-VC8		ANOMALIES.md	362	併案即失去授權邊界。已遵守 —— T13 之修法僅動 R-VC8 所指之二處。
+ruling	R-VC8		ANOMALIES.md	602	根治須改顯示層，屬 Tier 2 工具修法，**與 R-VC8 之資料層修法非同一件，
+ruling	R-VC8		ANOMALIES.md	614	3. 根治屬 Tier 2 工具修法，**與 R-VC8 之資料層修法非同一件，不得併案**
+ruling	R-VC8		ANOMALIES.md	805	(c) 二者**與 R-VC8 之授權非同一件，不得併案**（同 A-VC8／A-VC11 之邊界）。
+ruling	R-VC8		ANOMALIES.md	806	R-VC8 之授權範圍為 `recon.py`，不涵蓋 `lint036.py`。
+ruling	R-VC8		DECISIONS.md	66	（145/145 逐字相符，R-VC8 修法後之產出）。
+ruling	R-VC8		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	78	**不得改 lint**」（R-VC8 之授權邊界不涵蓋 lint）：
+ruling	R-VC9		RULINGS.md	242	R-VC9（recon_assertions 之宣告範圍與未機器化之揭露義務）
+ruling	R-VC9		ANOMALIES.md	343	在其落地前，117 之守護僅靠 T4 重測與上繳交叉檢查（R-VC9 之揭露義務）。
+ruling	R-VC9		ANOMALIES.md	350	（145 / 117 / 79）之註解。**工具修法本身未實作**（R-VC9 明文：
+ruling	R-VC9		ANOMALIES.md	356	（非計數相等 —— 「數目對但成員錯」會被抓到），且每包負 R-VC9 之揭露義務。
+ruling	R-VC9		DECISIONS.md	45	> —— R-VC9 之揭露義務，簽署時請一併確認。
+ruling	R-VC9		docs/REVISIONS.md	48	- **修訂依據**：R-VC9（下放包 02 §二）
+ruling	R-VC9		docs/REVISIONS.md	55	並負 R-VC9 之逐包揭露義務。A-VC8 記其工具面缺口。
+section	0	FO	RULINGS.md	148	屬 FO §0 逸出觸發第 1 條「規格查找未解」，須停並回報，
+section	1	上繳包	ANOMALIES.md	155	（見上繳包 01 §1）。
+section	1	上繳包	ANOMALIES.md	694	修改前後之 SHA256 與 diff 見上繳包 08 §1。
+section	1		ANOMALIES.md	700	**本體（§1–§8）逐字未動** —— 已以 diff 驗證，含 §4 之
+section	1		docs/REVISIONS.md	93	- **修訂依據**：`docs/upstream/01_intake_recon.md` §1 T5（執行層實測，未經另裁）
+section	1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	54	## 2. lint 之 profile 分流 —— **現行機制無法實作 §1(c)**
+section	1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	62	但其能力與 §1(c) 所需相距三層：
+section	1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	76	§1(c) 之「驗證其來源」**現階段無承載者**。
+section	1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	82	**在該限制解除前，§1(c) 由人工承擔** ——
+section	1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	107	- `[OVERRIDE]` 之其他條款 —— 本 feature 目前只需 §1 一項
+section	1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	338	本節為**產出之形式要求**（上半該長什麼樣），與 §1 之引號例外同類，
+section	1.1	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	316	**處置（下放包 19 §1.1，逐字）**：
+section	1.2	下放包	RULINGS.md	423	> **⚠ 本加註最該記的一點**（下放包 28 §1.2）：
+section	1.2	下放包	ANOMALIES.md	1079	### ⚠ 成因（下放包 28 §1.2 之自認，T149 補記）
+section	1.3	下放包	RULINGS.md	910	判別之問法（下放包 24 §1.3）：
+section	1.4	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	468	## 11. `split_flag`／`split_reason` 於本 feature 不使用（下放包 24 §1.4，裁甲）
+section	1.4	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	475	**三項理由（下放包 24 §1.4）**：
+section	10	上繳包	RULINGS.md	407	（FO §3 Mode A 之盲點，執行層已於上繳包 02 §10 揭露）。
+section	10.1		RULINGS.md	391	§10.1／10.2 —— 「Type / Power Source / Last State 之四種組合、
+section	10.1		RULINGS.md	419	> 作廢之事實：`§10.1`／`§10.2` 之 SYS1 `Description` **有文字**，
+section	10.1		RULINGS.md	959	**未讀 SYS1 之對應儲存格**；實測 §10.1／§10.2 之 SYS1 `Description`
+section	10.1		RULINGS.md	969	§10.1  —— 逐字引錄其 SYS1 `Description` 全文（含二句文字與圖佔位），
+section	10.1		RULINGS.md	979	**連帶**：DR-VC6 之問法須調整 —— 其原問「§15／§10.1／§10.2 之內容
+section	10.1		RULINGS.md	981	(一) §15 之三圖內容；(二) §10.1／§10.2 之圖內容（其文字部分已有，
+section	10.1		ANOMALIES.md	1030	## A-VC20 —— 「§10.1／§10.2／§15 之內容僅存於圖，SYS1 匯出未帶文字」不成立（新立，下放包 27 T143）
+section	10.1		ANOMALIES.md	1038	| §10.1 | `The flow of pressing the Aux settings from Controls / (image: image9.png) / (image: image10.png) / **Refer to the HMI Settings list for settings location.** / **All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously** / Graphics are visual aids only. Please see PDO release for official graphics` |
+section	10.1		ANOMALIES.md	1047	| **§10.1／§10.2** | 標題句 ＋ 圖佔位 ＋ **三句實質文字**，其一為需求敘述：<br>`All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously` | **原措辭不成立** |
+section	10.1		ANOMALIES.md	1049	### 為什麼 §10.1／§10.2 這一項要緊
+section	10.1		DATA_REQUESTS.md	64	- **內容**：規格 §8.1–8.5、§9.1–9.2、§10.1–10.2、§11.9–11.9.3、§14.2、§15、
+section	10.1		DATA_REQUESTS.md	73	- **T17 之實質發現（發出前須知）**：18 節中 **§15 與 §10.1／10.2 之關鍵內容
+section	10.1		DATA_REQUESTS.md	98	## DR-VC6 —— §15 與 §10.1／10.2 之圖內內容
+section	10.1		DATA_REQUESTS.md	103	僅存於圖，請提供文字版本」——**其前提於 §10.1／§10.2 不成立**（A-VC20）。
+section	10.1		DATA_REQUESTS.md	114	**(二) §10.1／§10.2 之圖內容** —— 該二節之**文字部分已有，不需索取**。
+section	10.1		DATA_REQUESTS.md	129	`(image: image20–22.png)`；§10.1／10.2 僅存「Refer to the HMI Settings
+section	10.1		DATA_REQUESTS.md	147	| **正解** | 本欄（T17）| §10.1／10.2 存有二句文字 ＋ 圖佔位 | SYS1 `Description` |
+section	10.1		DATA_REQUESTS.md	152	self-test 之已知標的（§10.1 應同時列出本欄與 R-VC12 二(a) 二處）。
+section	10.1		docs/REVISIONS.md	77	- §10.1／10.2 —— 「Type / Power Source / Last State 之四種組合、
+section	10.1		data/tableB_draft.md	8	> （R-VC12 二已就 §15／§10.1／§10.2 作廢之，見 `docs/REVISIONS.md` REV-07）。
+section	10.1		data/tableB_draft.md	42	| 8 | §10.1 | Aux Switch | **逐字引錄**（`/` 為換行，不摘要、不省略）：`The flow of pressing the Aux settings from Controls /  (image: image9.png)  /  (image: image10.png)  / Refer to the HMI Settings list for settings location.  / All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously / Graphics are visual aids only. Please see PDO release for official graphics`| 037 未涵蓋，本次不產出 TC | — |
+section	10.1		data/tableB_draft.md	59	2. **§10.1／10.2／§15** 三節 —— **R-VC12 二(a) 已作廢，改依 R-VC27**
+section	10.1		data/tableB_draft.md	62	原措辭「該節內容僅存於圖，SYS1 匯出未帶文字」**於 §10.1／§10.2 實測不成立**
+section	10.2	IN	RULINGS.md	174	leaf 之優先級判斷。TC 之 `priority` 欄（IN §10.2 之 P0–P3）
+section	10.2		RULINGS.md	179	(c) 欄 14 `Risk Factor` 與欄 12 `Impact` 為 §10.2 映射之佐證，
+section	10.2	IN	RULINGS.md	333	(a) **主判準** —— IN §10.2 之 P0–P3 rubric，逐 TC 判定。
+section	10.2		RULINGS.md	349	引 §10.2 之對應款。**不得為求一致而遷就任一方。**
+section	10.2		RULINGS.md	419	> 作廢之事實：`§10.1`／`§10.2` 之 SYS1 `Description` **有文字**，
+section	10.2	IN	RULINGS.md	470	IN §10.2 之 P0 類目含 `data-loss risk`。該款於「使用者資料之清除」
+section	10.2		RULINGS.md	480	其嚴重性不因本條而被否認；惟 §10.2 之 P0 類目
+section	10.2		RULINGS.md	959	**未讀 SYS1 之對應儲存格**；實測 §10.1／§10.2 之 SYS1 `Description`
+section	10.2		RULINGS.md	970	§10.2     不摘要、不省略（同 R-VC12 二(c) 對 §8.3 之作法）。
+section	10.2		RULINGS.md	979	**連帶**：DR-VC6 之問法須調整 —— 其原問「§15／§10.1／§10.2 之內容
+section	10.2		RULINGS.md	981	(一) §15 之三圖內容；(二) §10.1／§10.2 之圖內容（其文字部分已有，
+section	10.2		ANOMALIES.md	89	欄 14 `Risk Factor` 與欄 12 `Impact` 為 §10.2 映射之佐證，
+section	10.2	IN	ANOMALIES.md	394	同為 Medium。二者於 IN §10.2 之 rubric 下語意相距甚遠。
+section	10.2		ANOMALIES.md	1030	## A-VC20 —— 「§10.1／§10.2／§15 之內容僅存於圖，SYS1 匯出未帶文字」不成立（新立，下放包 27 T143）
+section	10.2		ANOMALIES.md	1039	| §10.2 | 同上，首句作 `…from **Apps**`，圖檔為 `image11`／`image12`；**其餘三句逐字相同** |
+section	10.2		ANOMALIES.md	1047	| **§10.1／§10.2** | 標題句 ＋ 圖佔位 ＋ **三句實質文字**，其一為需求敘述：<br>`All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously` | **原措辭不成立** |
+section	10.2		ANOMALIES.md	1049	### 為什麼 §10.1／§10.2 這一項要緊
+section	10.2		DATA_REQUESTS.md	103	僅存於圖，請提供文字版本」——**其前提於 §10.1／§10.2 不成立**（A-VC20）。
+section	10.2		DATA_REQUESTS.md	114	**(二) §10.1／§10.2 之圖內容** —— 該二節之**文字部分已有，不需索取**。
+section	10.2	IN	DECISIONS.md	89	- 判準：R-VC11(a) 之 IN §10.2 rubric 逐 TC 判 ＋ R-VC13 之**章級**
+section	10.2		DECISIONS.md	96	須於 `reasoning` 記明分歧與 §10.2 對應款
+section	10.2		data/tableB_draft.md	8	> （R-VC12 二已就 §15／§10.1／§10.2 作廢之，見 `docs/REVISIONS.md` REV-07）。
+section	10.2		data/tableB_draft.md	43	| 9 | §10.2 | Aux Switch | **逐字引錄**（`/` 為換行，不摘要、不省略）：`The flow of pressing the Aux settings from Apps /  (image: image11.png)  /  (image: image12.png)  / Refer to the HMI Settings list for settings location.  / All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used simultaneously / Graphics are visual aids only. Please see PDO release for official graphics`| 037 未涵蓋，本次不產出 TC | — |
+section	10.2		data/tableB_draft.md	62	原措辭「該節內容僅存於圖，SYS1 匯出未帶文字」**於 §10.1／§10.2 實測不成立**
+section	10.3	IN	RULINGS.md	998	—— 與 req_id 之 `SWE1-HMI-VC-###` 一致；IN §10.3 之範例
+section	10.7	IN	RULINGS.md	23	母文件為 spec，`spec_reference` 走 IN §10.7(a) 之
+section	10.7		RULINGS.md	25	走 §10.7(b) 之 `{檔名}_{章節號}`。同一 feature 內並存兩種錨點形態，
+section	10.7	IN	RULINGS.md	117	(b) 逐字抄欄則不需構造，IN §10.7(b) 之「全案逐字一致，禁止同檔名
+section	10.7	IN	RULINGS.md	127	排列一律依 IN §10.7 之「一個章節號一行、前綴逐行重述」，
+section	11		RULINGS.md	669	R-VC19（VC profile 之設立；§11 引號例外之啟動）
+section	11	IN	RULINGS.md	678	profile 之**首要條款**為啟動 IN §11 之引號例外，其範圍嚴格限定：
+section	11	IN	RULINGS.md	688	改為「驗證其來源」（IN §11 例外末句之明文）。
+section	11	IN	RULINGS.md	692	依據：IN §11 之例外其啟動條件為「when the feature profile says so」。
+section	11	IN	RULINGS.md	839	**IN §11 之方括號禁令於本例外之範圍內讓位** ——
+section	11		docs/REVISIONS.md	260	profile §11（`split_flag` 恆 `False` 無檢查）之家族：
+section	11	IN	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	27	## 1. `[OVERRIDE]` —— IN §11 引號例外之啟動
+section	11	IN	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	29	IN §11 之例外其啟動條件為「**when the feature profile says so**」。
+section	11.5		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	401	故本 feature 一律登記 `pop-up`（沿 SYS1 §11.5 之原文記法）。
+section	11.9		ANOMALIES.md	21	| A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |
+section	11.9		ANOMALIES.md	621	## A-VC12 —— §11.9 群與 §12.3 群之行為重疊（條件性，新立，下放包 06 §二）
+section	11.9		ANOMALIES.md	628	規格 §11.9 群（11.9／11.9.1／11.9.2／11.9.3，「General logic for
+section	11.9		DATA_REQUESTS.md	64	- **內容**：規格 §8.1–8.5、§9.1–9.2、§10.1–10.2、§11.9–11.9.3、§14.2、§15、
+section	11.9		data/tableB_draft.md	27	| **§11.9 群**（執行層補列，下放包 28 §2.1 **追認**）| 10–13 | 其歸 #5 為**條件性生效**，待 DR-VC3（R-VC16(d)）|
+section	11.9		data/tableB_draft.md	44	| 10 | §11.9 | Settings 通則邏輯 | General logic for setting with options | 037 未涵蓋，本次不產出 TC | ⚠ §11.9 群 |
+section	11.9		data/tableB_draft.md	45	| 11 | §11.9.1 | Settings 通則邏輯 | In a setting line with many options: - pressing on option currently not selected (no check selection in option) move the selection and change the option accordingly. - pressing on option already selected (with selection) do not perform action (maintain the option selection). | 037 未涵蓋，本次不產出 TC | ⚠ §11.9 群 |
+section	11.9		data/tableB_draft.md	46	| 12 | §11.9.2 | Settings 通則邏輯 | When in a setting line with one option only: -If on/off setting (e.g. ‘Touchscreen beep’) pressing on option select/deselect the option (check appear/disappear). For driver distraction the same behavior is performed pressing on the entire row area. -If one-of-many option setting (e.g. ‘English’ u… | 037 未涵蓋，本次不產出 TC | ⚠ §11.9 群 |
+section	11.9		data/tableB_draft.md	47	| 13 | §11.9.3 | Settings 通則邏輯 | General logic for setting with +/- options:  - When in a line with +/- buttons: if press on a +/- button, increment or decrement the option’s value depending on the button selected. Pressing outside the +/- buttons do not perform action. - At max values + greys out, at min values - greys out. | 037 未涵蓋，本次不產出 TC | ⚠ §11.9 群 |
+section	11.9		data/tableB_draft.md	72	5. **§11.9 群為執行層補列之第四處待 DR-VC3**（下放包 27 §2.2 只列三處）——
+section	11.9.1		data/tableB_draft.md	45	| 11 | §11.9.1 | Settings 通則邏輯 | In a setting line with many options: - pressing on option currently not selected (no check selection in option) move the selection and change the option accordingly. - pressing on option already selected (with selection) do not perform action (maintain the option selection). | 037 未涵蓋，本次不產出 TC | ⚠ §11.9 群 |
+section	11.9.2		data/tableB_draft.md	46	| 12 | §11.9.2 | Settings 通則邏輯 | When in a setting line with one option only: -If on/off setting (e.g. ‘Touchscreen beep’) pressing on option select/deselect the option (check appear/disappear). For driver distraction the same behavior is performed pressing on the entire row area. -If one-of-many option setting (e.g. ‘English’ u… | 037 未涵蓋，本次不產出 TC | ⚠ §11.9 群 |
+section	11.9.3		data/tableB_draft.md	47	| 13 | §11.9.3 | Settings 通則邏輯 | General logic for setting with +/- options:  - When in a line with +/- buttons: if press on a +/- button, increment or decrement the option’s value depending on the button selected. Pressing outside the +/- buttons do not perform action. - At max values + greys out, at min values - greys out. | 037 未涵蓋，本次不產出 TC | ⚠ §11.9 群 |
+section	12	canon	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	108	- `design_method` 之 feature 專屬分流 —— 採 canon §12 首匹配，無偏差
+section	12.3		ANOMALIES.md	21	| A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |
+section	12.3		ANOMALIES.md	621	## A-VC12 —— §11.9 群與 §12.3 群之行為重疊（條件性，新立，下放包 06 §二）
+section	12.3		ANOMALIES.md	629	setting with options」）與 §12.3 群（12.3／12.3.1，設定列之按壓與
+section	12.3.2		RULINGS.md	586	FROP = `Audio Management` 之 1 列（`VC-048-02`，§12.3.2）落在 #5。
+section	12.3.2		framework.md	134	（`SWE1-HMI-VC-048-02`，§12.3.2）落在 **#5 `Settings List`**。
+section	13.1		ANOMALIES.md	985	§13.1 於 Key Off 擋住 **Settings 頁籤**（上繳包 22 §2 之路徑解）。
+section	13.1		DATA_REQUESTS.md	322	（第 650 列），即在被 §13.1 擋住的 Settings 頁籤後方；
+section	13.2		ANOMALIES.md	979	| `059-01`／`059-02` | Phone settings 於 Key Off／ACC 可用 | ✅ §13.2 明載 `through the Phone screens` |
+section	13.2		DATA_REQUESTS.md	309	`059-*` 有 §13.2 之 `through the Phone screens`、
+section	13.2		DATA_REQUESTS.md	331	或告知 §13.4 是否應比照 §13.2／§13.3 補寫路徑。
+section	13.3		ANOMALIES.md	980	| `060-01`／`060-02` | Audio settings 於 Key Off／ACC 可用 | ✅ §13.3 明載 `through the Media` |
+section	13.3		DATA_REQUESTS.md	310	`060-*` 有 §13.3 之 `through the Media`、
+section	13.3		DATA_REQUESTS.md	331	或告知 §13.4 是否應比照 §13.2／§13.3 補寫路徑。
+section	13.4		ANOMALIES.md	981	| **`061`** | **Software Updates 於 Key Off／ACC 可用** | ❌ §13.4 **只斷言可用，未載經何路徑** |
+section	13.4		ANOMALIES.md	996	- SYS1 全表搜 `Software Update|FOTA|Wi-Fi` —— **僅命中 §13.4／§13.4.1／§13.4.2**，
+section	13.4		DATA_REQUESTS.md	319	- SYS1 全表搜 `Software Update|FOTA|Wi-Fi` —— **僅命中 §13.4／§13.4.1／§13.4.2**，
+section	13.4		DATA_REQUESTS.md	331	或告知 §13.4 是否應比照 §13.2／§13.3 補寫路徑。
+section	13.4.1		ANOMALIES.md	931	| SYS1 §13.4.1 s1 | `the user shall be presented with the “**Feature** not available while vehicle is in motion” popup (PU0091)` |
+section	13.4.1		ANOMALIES.md	996	- SYS1 全表搜 `Software Update|FOTA|Wi-Fi` —— **僅命中 §13.4／§13.4.1／§13.4.2**，
+section	13.4.1		DATA_REQUESTS.md	291	2. 若彈窗清單為準，SYS1 §13.4.1／§13.4.2 之引文是否應更正？
+section	13.4.1		DATA_REQUESTS.md	319	- SYS1 全表搜 `Software Update|FOTA|Wi-Fi` —— **僅命中 §13.4／§13.4.1／§13.4.2**，
+section	13.4.1		docs/TABLE_A_frop_crossdomain.md	87	- `VC-062-01`（§13.4.1） —— When the user presses 'Software Downloads Over Wi-Fi' while the …
+section	13.4.1		docs/TABLE_A_frop_crossdomain.md	88	- `VC-062-02`（§13.4.1） —— When the user presses OK or X on the in-motion popup launched fr…
+section	13.4.2		ANOMALIES.md	932	| SYS1 §13.4.2 s1 | `…the “**Feature** not available while vehicle is in motion” popup (PU0091)`（同上）|
+section	13.4.2		ANOMALIES.md	996	- SYS1 全表搜 `Software Update|FOTA|Wi-Fi` —— **僅命中 §13.4／§13.4.1／§13.4.2**，
+section	13.4.2		DATA_REQUESTS.md	291	2. 若彈窗清單為準，SYS1 §13.4.1／§13.4.2 之引文是否應更正？
+section	13.4.2		DATA_REQUESTS.md	319	- SYS1 全表搜 `Software Update|FOTA|Wi-Fi` —— **僅命中 §13.4／§13.4.1／§13.4.2**，
+section	13.4.2		docs/TABLE_A_frop_crossdomain.md	89	- `VC-063-01`（§13.4.2） —— When the vehicle starts moving while the user is mid-flow in FOT…
+section	13.4.2		docs/TABLE_A_frop_crossdomain.md	90	- `VC-063-02`（§13.4.2） —— When the user presses OK or X on the in-motion popup launched fr…
+section	13.5		ANOMALIES.md	988	即它本來就在頁籤後方。§13.5 之 `Settings tab **or a Settings category**`
+section	14		DATA_REQUESTS.md	82	- **內容**：規格 §8.4 之 Cabrio 前提條件引 **VF507**、§14 之 EPB 逾時引
+section	14.2		DATA_REQUESTS.md	64	- **內容**：規格 §8.1–8.5、§9.1–9.2、§10.1–10.2、§11.9–11.9.3、§14.2、§15、
+section	14.2		framework.md	158	| #7 `Brake Service` | 2 leaf | §14.2（彈窗優先序）、§15（EPB 彈窗）| 2 + N |
+section	14.2		data/tableB_draft.md	25	| `Brake Service` 待補節 | 14–15（§14.2／§15）| 併入 #7，該組由 2 leaf 長大 |
+section	14.2		data/tableB_draft.md	48	| 14 | §14.2 | EPB 彈窗優先序 | EPB Service Mode Pop-up Priority:  E-Call  Incoming Call /Text Message System Errors EPB Service Mode  System Feedback (e.g. Mute Pop-up)  (image: image19.png) | 037 未涵蓋，本次不產出 TC | ✅ Brake Service |
+section	15		RULINGS.md	390	§15         —— 「PU0132…PU0275 之訊息文字與逾時」
+section	15		RULINGS.md	575	二者皆為「待補節會使其長大」之組（#7 待 14.2 與 §15；#8 待 16.2.1
+section	15		RULINGS.md	966	§15    —— SYS1 `Description` 僅標題句 ＋ 三個圖佔位。
+section	15		RULINGS.md	979	**連帶**：DR-VC6 之問法須調整 —— 其原問「§15／§10.1／§10.2 之內容
+section	15		RULINGS.md	981	(一) §15 之三圖內容；(二) §10.1／§10.2 之圖內容（其文字部分已有，
+section	15		ANOMALIES.md	1030	## A-VC20 —— 「§10.1／§10.2／§15 之內容僅存於圖，SYS1 匯出未帶文字」不成立（新立，下放包 27 T143）
+section	15		ANOMALIES.md	1040	| §15 | `Electronic Park Brake Service Mode Pop-up / (image: image20.png) / (image: image21.png) / (image: image22.png)` |
+section	15		ANOMALIES.md	1046	| **§15** | **僅標題句 ＋ 三個圖佔位** | 原措辭**substantively 成立**，惟字面「未帶文字」不精確（有標題句）|
+section	15		DATA_REQUESTS.md	64	- **內容**：規格 §8.1–8.5、§9.1–9.2、§10.1–10.2、§11.9–11.9.3、§14.2、§15、
+section	15		DATA_REQUESTS.md	73	- **T17 之實質發現（發出前須知）**：18 節中 **§15 與 §10.1／10.2 之關鍵內容
+section	15		DATA_REQUESTS.md	98	## DR-VC6 —— §15 與 §10.1／10.2 之圖內內容
+section	15		DATA_REQUESTS.md	107	**(一) §15 之三圖內容** —— 其 SYS1 `Description` 逐字為
+section	15		DATA_REQUESTS.md	128	- **實測佐證（T17）**：SYS1 `Description` 於 §15 僅存標題 +
+section	15		docs/REVISIONS.md	76	- §15 —— 「PU0132…PU0275 之訊息文字與逾時」
+section	15		framework.md	158	| #7 `Brake Service` | 2 leaf | §14.2（彈窗優先序）、§15（EPB 彈窗）| 2 + N |
+section	15		data/tableB_draft.md	8	> （R-VC12 二已就 §15／§10.1／§10.2 作廢之，見 `docs/REVISIONS.md` REV-07）。
+section	15		data/tableB_draft.md	25	| `Brake Service` 待補節 | 14–15（§14.2／§15）| 併入 #7，該組由 2 leaf 長大 |
+section	15		data/tableB_draft.md	49	| 15 | §15 | EPB 彈窗 | 標題句 `Electronic Park Brake Service Mode Pop-up`，其餘內容為三個圖佔位（image20／21／22），SYS1 匯出未帶其文字。**逐字**：`Electronic Park Brake Service Mode Pop-up /  (image: image20.png)  /  (image: image21.png)  /  (image: image22.png)`| 037 未涵蓋，本次不產出 TC | ✅ Brake Service |
+section	15		data/tableB_draft.md	59	2. **§10.1／10.2／§15** 三節 —— **R-VC12 二(a) 已作廢，改依 R-VC27**
+section	16.1		DATA_REQUESTS.md	65	§16.1、§16.2.1、§16.2.2 共 **18 節**有實質需求內容而 037 無對應需求。
+section	16.1		docs/REVISIONS.md	62	- **異動之單一節**：**§16.1 由 (b) 改列 (a)**。其 SYS1 `Description` 為
+section	16.1		data/tableB_draft.md	5	> §16.1 已由 (b) 改列 (a)（交叉引用，非實質需求內容），故非 18 節。
+section	16.2		ANOMALIES.md	12	| A-VC3 | §16.2 之 `SWE1-HMI-VC-066` 僅涵蓋標題一句 | PENDING | 併入 DR-VC3 |
+section	16.2		ANOMALIES.md	112	## A-VC3 —— §16.2 之需求涵蓋不足（下放包 §七原文）
+section	16.2		ANOMALIES.md	114	**內容**：規格 §16.2 之對應需求 `SWE1-HMI-VC-066` 僅涵蓋「widget 標題為
+section	16.2.1		DATA_REQUESTS.md	65	§16.1、§16.2.1、§16.2.2 共 **18 節**有實質需求內容而 037 無對應需求。
+section	16.2.1		framework.md	159	| #8 `Cabrio Widget` | 1 leaf | §16.2.1、§16.2.2 | 3 |
+section	16.2.1		data/tableB_draft.md	26	| `Cabrio Widget` 待補節 | 16–17（§16.2.1／§16.2.2）| 併入 #8，該組由 1 leaf 長大 |
+section	16.2.1		data/tableB_draft.md	50	| 16 | §16.2.1 | Cabrio Widget | Convertible top operations: • Open rooftop opera ion: operation for start and complete rooftop opening (when is closed) for s art operation push and hold (for entire operation) button A1 When rooftop in moving present graphic popup on cluster • Close rooftop operation: operation for start and com… | 037 未涵蓋，本次不產出 TC | ✅ Cabrio Widget |
+section	16.2.2		DATA_REQUESTS.md	65	§16.1、§16.2.1、§16.2.2 共 **18 節**有實質需求內容而 037 無對應需求。
+section	16.2.2		framework.md	159	| #8 `Cabrio Widget` | 1 leaf | §16.2.1、§16.2.2 | 3 |
+section	16.2.2		data/tableB_draft.md	26	| `Cabrio Widget` 待補節 | 16–17（§16.2.1／§16.2.2）| 併入 #8，該組由 1 leaf 長大 |
+section	16.2.2		data/tableB_draft.md	51	| 17 | §16.2.2 | Cabrio Widget | Wind draught deflector/backliight top operations: • Low up wind draught deflector: push and hold button B1 • Raise down wind draught deflector: push and hold button B2 | 037 未涵蓋，本次不產出 TC | ✅ Cabrio Widget |
+section	2		RULINGS.md	9	逐條字面一致核對結果見 `docs/upstream/01_intake_recon.md` §2。
+section	2	上繳包	RULINGS.md	421	> simultaneously` 為實質需求敘述（上繳包 27 §2，A-VC20）。
+section	2		RULINGS.md	775	13. 該批之 `Test Set` 全筆一致，且與 `framework.md` §2 逐字相符
+section	2	上繳包	ANOMALIES.md	985	§13.1 於 Key Off 擋住 **Settings 頁籤**（上繳包 22 §2 之路徑解）。
+section	2	上繳包	ANOMALIES.md	1119	16 個 feature 之 `feature.yaml` 宣告與已交付工作簿實測（上繳包 28 §2）：
+section	2	上繳包	ANOMALIES.md	1142	### 執行層之補充實測（上繳包 28 §2 之來源）
+section	2		framework.md	18	| Layer 2 — Test Set | **8 組**（§2）| 工作簿 **H 欄** |
+section	2		framework.md	25	H 欄之值恆為 §2 表之八個名稱之一，無後綴、無章節號。
+section	2		framework.md	174	§2 之規則「章 11，次級節號 ≥ 7」已涵蓋之，不需另設例外。
+section	2		framework.md	207	> **本節為規則之展開結果，非權威。** 二者若不一致，以 §2 之規則為準，
+section	2		docs/TABLE_A_frop_crossdomain.md	103	- **`Test Set` 取自 `data/test_set_map.tsv`**（framework §2 之 8 組）——
+section	2		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	41	「驗證其來源」。**⚠ 現行 lint 無法實作本項，見 §2。**
+section	2		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	135	<tab> 之值域：framework §2 所載之 Test Set 對應頁籤名
+section	2.1	canon	RULINGS.md	55	(a) `write_back.fill_test_group_set = true`（canon §2.1，BLANK -> FILL）
+section	2.1	上繳包	ANOMALIES.md	697	簽出時之逐字一致是**已發生的事實**，記於上繳包 07 §2.1，
+section	2.1	下放包	ANOMALIES.md	863	## A-VC17 —— 037 之 leaf 中存在純交叉引用／表格題名者（新立，下放包 14 §2.1）
+section	2.1	下放包	ANOMALIES.md	868	分析層於下放包 14 §2.1 以 `VC-013-04` 舉例，並明文
+section	2.1	下放包	ANOMALIES.md	1017	### 處置（下放包 25 §2.1 之裁定 —— **推翻上開提案**）
+section	2.1	下放包	DATA_REQUESTS.md	252	（下放包 14 §2.1 之明文）。
+section	2.1	下放包	DATA_REQUESTS.md	271	> **範圍於下放包 25 §2.1 擴為二問**（沿 DR-VC9 之雙標的先例，一封信兩問）——
+section	2.1	下放包	DATA_REQUESTS.md	306	### （二）`061` 之 Software Updates 於 Key Off 之進入路徑（下放包 25 §2.1）
+section	2.1	下放包	DATA_REQUESTS.md	313	**為何不能以通稱表述帶過**（下放包 25 §2.1 之裁定）：
+section	2.1	上繳包	DECISIONS.md	6	> 簽出時之逐字一致驗證見上繳包 07 §2.1（`diff -q` 無輸出）。
+section	2.1	上繳包	DECISIONS.md	135	- Verification:  diff -q vs docs/DECISIONS_signoff_draft.md → 一致（上繳包 07 §2.1）
+section	2.1	下放包	data/tableB_draft.md	20	### ⚠ 待 DR-VC3 之**四處**（下放包 28 §2.1 追認；下放包 27 §2.2 原列三處）
+section	2.1	下放包	data/tableB_draft.md	27	| **§11.9 群**（執行層補列，下放包 28 §2.1 **追認**）| 10–13 | 其歸 #5 為**條件性生效**，待 DR-VC3（R-VC16(d)）|
+section	2.1	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	346	## 9. `CONT` 表之收錄判準（下放包 20 §2.1 ＋ 23 §2.2）
+section	2.1	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	348	**本節之由來須先記明**：收錄判準自下放包 20 §2.1 明文起，
+section	2.1	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	353	### 9.1 二類（下放包 20 §2.1，逐字）
+section	2.2	下放包	ANOMALIES.md	479	| 四 · **改寫跨越 leaf 邊界** | Title 之敘述涵蓋**他 leaf 所擁有之行為** | `025-02`（Title 之 `Aux 1, Aux 2` 屬 `-03` 之 Description）| 下放包 19 §2.2 |
+section	2.2	下放包	ANOMALIES.md	543	| 四 · **改寫跨越 leaf 邊界** | Title 之敘述涵蓋**他 leaf 所擁有之行為** | `025-02`（Title 之 `Aux 1, Aux 2` 屬 `-03` 之 Description）| 下放包 19 §2.2 |
+section	2.2	下放包	ANOMALIES.md	888	| `VC-012-03` | 2.6.2 | `continuing with additional features below the banners (refer to PDO Graphics)` | **推翻** —— 去掉引用片語後殘餘為 `continuing with additional features below the banners`，**有可測內容**。其問題為句子片段（下放包 14 §2.2），非純交叉引用 |
+section	2.2	下放包	DATA_REQUESTS.md	226	**(三) `VC-014` 之 `(See table above)`（下放包 20 §2.2）**：
+section	2.2	下放包	DATA_REQUESTS.md	241	> 而非「我們沒找到」（下放包 20 §2.2）。
+section	2.2	下放包	data/tableB_draft.md	10	### ⚠ 本表全體之效力限制（R-VC12 二(d)；下放包 27 §2.2 要求寫在表上）
+section	2.2	下放包	data/tableB_draft.md	20	### ⚠ 待 DR-VC3 之**四處**（下放包 28 §2.1 追認；下放包 27 §2.2 原列三處）
+section	2.2	下放包	data/tableB_draft.md	72	5. **§11.9 群為執行層補列之第四處待 DR-VC3**（下放包 27 §2.2 只列三處）——
+section	2.2	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	3	- 設立依據：**R-VC19**（下放包 11 §2.2，Pei 2026-08-26）
+section	2.2		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	346	## 9. `CONT` 表之收錄判準（下放包 20 §2.1 ＋ 23 §2.2）
+section	2.2	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	363	### 9.2 第三處置類 `resolved-by-structure`（下放包 23 §2.2，逐字）
+section	2.2	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	416	### 9.4.1 第一層之已知偽陰性 —— 三型、六實例（下放包 25 §2.2）
+section	2.2	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	432	**本 feature 不擴充第一層**（下放包 25 §2.2 裁定），理由：
+section	2.3	上繳包	RULINGS.md	867	本條由來：上繳包 19 §2.3，執行層提出之判別，分析層採為正式判準。
+section	2.3	上繳包	RULINGS.md	995	`newR1L`（上繳包 28 §2.3：VC 母本、display／privacy／sxm 交付本、
+section	2.3	包	ANOMALIES.md	779	## A-VC15 —— `lint036.py --profile` 不讀 profile 內容（新立，包 11 §2.3 第 3 項）
+section	2.3		ANOMALIES.md	781	**登記依據**：R-VC19 §2.3 第 3 項明文「先查 `lint036.py` 對 `--profile` 之
+section	2.3		ANOMALIES.md	903	故未被列為候選 —— **漏掉了分析層 §2.3(a) 已點名的其中一筆**。
+section	2.3	下放包	docs/REVISIONS.md	145	## REV-11 —— 下放包 05 §2.3「章 13 恰等於 FROP=PM 之 16 筆」：跨母體互援
+section	2.3	下放包	framework.md	146	> 「章 13 之 16 leaf 恰等於 FROP=PM 之 16 列」曾被寫入下放包 05 §2.3，
+section	2.3		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	8	- **本檔只寫當前需要者，不預先設計未來條款**（R-VC19 §2.3）——
+section	2.3		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	56	R-VC19 §2.3 第 3 項要求「先查 `scripts/lint036.py` 對 `--profile` 之
+section	2.3		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	77	依 R-VC19 §2.3 第 3 項「如實記為 profile 之已知限制並登記 A-VC{n}，
+section	2.3		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	105	下列各項**刻意未寫入**，因其現無需要（R-VC19 §2.3）：
+section	2.3	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	449	## 10. R-3 之 `token` 工作定義（下放包 23 §2.3）
+section	2.4		DATA_REQUESTS.md	235	- 章 2 之 §2.4 雖有表，但其為 Vehicle Tab Labels and Order（頁籤名與位置），
+section	2.5	下放包	DATA_REQUESTS.md	30	**DR-VC10（下放包 24 T128 新立）獨立發送**（下放包 25 §2.5 裁定）——
+section	2.6.2		DATA_REQUESTS.md	208	**(一) 素材**：`PDO Graphics` 於規格 §2.6.2／§2.6.3 被引為版面之權威來源
+section	2.6.3		DATA_REQUESTS.md	208	**(一) 素材**：`PDO Graphics` 於規格 §2.6.2／§2.6.3 被引為版面之權威來源
+section	3	FO	RULINGS.md	124	（模式為查得，非構造）。`spec_mode` 之字母由執行層依 FO §3 實測後填入，
+section	3	FO	RULINGS.md	407	（FO §3 Mode A 之盲點，執行層已於上繳包 02 §10 揭露）。
+section	3	上繳包	RULINGS.md	685	上繳包 10 §3 第 7 項已驗此層全數合規，該狀態須維持。
+section	3	上繳包	ANOMALIES.md	166	3. 其餘 §三／§四 之 29 項數字**全部相符**（見上繳包 §3 之比對表）——
+section	3	上繳包	ANOMALIES.md	221	T12 已以 R-VC6 之條文為基準重跑，見上繳包 02 §3。
+section	3		ANOMALIES.md	611	覆蓋文字見 `docs/upstream/05_partN.md` §3 之送簽稿 §4。
+section	3	上繳包	ANOMALIES.md	810	本輪結果：6 token / 0 未對上來源（上繳包 11 §3）。
+section	3	上繳包	DATA_REQUESTS.md	200	（其餘 9 筆候選為假陽性）。掃描方法與其偽陰性見上繳包 10 §3。
+section	3		DATA_REQUESTS.md	232	- SYS1 **§3 僅為章標題**（逐字 `Controls`），**其下無任何表**；
+section	3	FO	DECISIONS.md	17	（FO §3 實測：SYS1 export 齊備、outline map 可建、037 之 66 個
+section	3		docs/REVISIONS.md	19	- **軌跡**：`docs/upstream/01_intake_recon.md` §3 之比對表第 23 項判 `≠`
+section	3	FO	docs/REVISIONS.md	87	（FO §3 Mode A 之盲點）。
+section	3	FO	data/tableB_draft.md	16	FO §3 之 Mode A 盲點：匯出可能靜默漏句，而本法看不見 ——
+section	3	FO	data/tableB_draft.md	67	**非「與規格原件相符」** —— FO §3 之 Mode A 盲點（匯出可能靜默漏句）
+section	3	上繳包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	84	`Title`／`Description`，結果見上繳包 11 §3。該比對**不在 lint 之內**，
+section	3.1	下放包	RULINGS.md	929	> **適用說明（下放包 26 §3.1，T138；原文不改，R-TM13）**
+section	3.1	下放包	ANOMALIES.md	16	| A-VC7 | 規格 PDF 之位元組數與下放包 01 §3.1 不符 | **RESOLVED（R-VC7）** | — |
+section	3.1	下放包	ANOMALIES.md	163	1. 檔案大小一致：下放包 §3.1 記 037 為 100,475 B；repo 內複本亦為 100,475 B。
+section	3.1	下放包	ANOMALIES.md	280	## A-VC7 —— 規格 PDF 之位元組數與下放包 01 §3.1 不符 —— **RESOLVED（R-VC7）**
+section	3.1	下放包	ANOMALIES.md	284	下放包 §3.1 記規格 PDF 為 **3,552,260 B**。
+section	3.1		DATA_REQUESTS.md	227	§3.1 之 Description 逐字為
+section	3.1		DATA_REQUESTS.md	234	**位於 §3.1 之後方**；
+section	3.1	下放包	DATA_REQUESTS.md	253	- **批次（下放包 15 §3.1 已裁）—— 維持單一編號，雙標的分送**：
+section	3.1	下放包	docs/REVISIONS.md	22	## REV-02 —— 下放包 01 §3.1 規格 PDF 之位元組數
+section	3.1	下放包	docs/REVISIONS.md	241	## REV-14 —— 下放包 24 §3.1「FROP = Power Management 全批」：REV-11 之病灶再現
+section	3.1	下放包	docs/TABLE_A_frop_crossdomain.md	77	下放包 24 §3.1 曾稱「章 13 之 FROP = Power Management **全批**」，
+section	3.2	下放包	RULINGS.md	701	> **⚠ (a) 已擴充、(d) 已作廢 —— 見 R-VC23（下放包 17 §3.2）。**
+section	3.2	下放包	ANOMALIES.md	469	**加註（下放包 18 §3.2，2026-08-26）—— 三面，原文不改（R-TM13）**
+section	3.2	下放包	ANOMALIES.md	478	| 三 · **記法不對稱** | 同一字串在二欄用不同引號記法 | `051-03`（彎單 vs 直單）、`053`（`“info icon”`／`“i”` vs `'i'`）| 下放包 18 §3.2 |
+section	3.2	下放包	ANOMALIES.md	533	**加註（下放包 18 §3.2，2026-08-26）—— 三面，原文不改（R-TM13）**
+section	3.2	下放包	ANOMALIES.md	542	| 三 · **記法不對稱** | 同一字串在二欄用不同引號記法 | `051-03`（彎單 vs 直單）、`053`（`“info icon”`／`“i”` vs `'i'`）| 下放包 18 §3.2 |
+section	3.2	上繳包	ANOMALIES.md	771	⚠ **掃描器初版漏抓本案自身**（類別切分錯誤，詳見上繳包 10 §3.2）。
+section	3.2	下放包	ANOMALIES.md	1011	（下放包 23 §3.2：查得則具名、查無則以規格語言之通稱表述）。
+section	3.3	下放包	RULINGS.md	168	下放包 01 §3.3 所記「第 10–18 欄全 145 列皆為 `\xa0`，無內容」為分析層
+section	3.3	下放包	ANOMALIES.md	14	| A-VC5 | 下放包 01 §3.3 與 repo 037 複本不一致（A-VC1 之成因）| **RESOLVED（包 02 §一）** | — |
+section	3.3	下放包	ANOMALIES.md	33	> 依 R-VC6（下放包 02 §二，`RULINGS.md:157`）：下放包 01 §3.3 所記
+section	3.3	下放包	ANOMALIES.md	159	## A-VC5 —— 下放包 01 §3.3 之量測對象與 repo 內複本不一致 —— **RESOLVED（包 02 §一）**
+section	3.3		ANOMALIES.md	164	2. 內容不一致：§3.3 記第 10–18 欄「全 145 列皆為 `\xa0`，無內容」；
+section	3.3		ANOMALIES.md	177	(b) §3.3 之量測方法在該九欄上判讀有誤（例如以 `data_only=False`
+section	3.3		ANOMALIES.md	191	本項曾列二種可能：(a) 附件傳遞失值；(b) §3.3 之量測方法判讀有誤。
+section	3.3		ANOMALIES.md	201	§3.3 之「全 145 列皆為 `\xa0`」係自表頭附近之局部觀察推廣為全稱斷言，
+section	3.3	下放包	ANOMALIES.md	220	其比對基準（下放包 01 §3.3）已作廢，實測值即為正解，無待調和之差異。
+section	3.3	下放包	ANOMALIES.md	1112	## A-VC21 —— TC ID 之 `{project}` 前綴，全域三種並存（新立，下放包 29 §3.3）
+section	3.3	下放包	ANOMALIES.md	1114	**逐字（下放包 29 §3.3）**：
+section	3.3	下放包	docs/REVISIONS.md	9	## REV-01 —— 下放包 01 §3.3「第 10–18 欄全為 `\xa0`」作廢
+section	3.3	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	208	**與 §5 分立**（下放包 15 §3.3）：§5 之標的為 IN §5.3 之
+section	3.4	上繳包	ANOMALIES.md	769	其偽陰性見上繳包 10 §3.4。掃描腳本：`scripts/t52_numeric_conflict_scan.py`。
+section	3.6		DATA_REQUESTS.md	40	- **內容**：規格 §3.6（CO13）之 Privacy Lock 彈窗 id 於**規格原文即為字面
+section	3.8	上繳包	RULINGS.md	924	本條由來：執行層於上繳包 24 §3.8 提出，並回頭驗證四筆既有處置
+section	3.9		DATA_REQUESTS.md	233	- 章 3 之唯一表在 **§3.9**（`C1.) Controls Button Table`，二欄 28 列），
+section	4	上繳包	ANOMALIES.md	274	修法與回歸證據見上繳包 02 §4（T13）。
+section	4		ANOMALIES.md	590	`scripts/recon.py` 產生 `DECISIONS.new.md` 之 §4 Style bindings 時，
+section	4		ANOMALIES.md	611	覆蓋文字見 `docs/upstream/05_partN.md` §3 之送簽稿 §4。
+section	4	上繳包	ANOMALIES.md	651	共 9 leaf）」已重測 —— 見上繳包 06 §4，**9 leaf 相符**。
+section	4		ANOMALIES.md	700	**本體（§1–§8）逐字未動** —— 已以 diff 驗證，含 §4 之
+section	4	上繳包	ANOMALIES.md	829	**我當時之判讀（上繳包 10 §4 第 3 項）**：
+section	4		DECISIONS.md	9	Markers per FEATURE_ONBOARDING §4；未簽之表阻斷 Phase 4+。
+section	4	上繳包	DECISIONS.md	102	無 leaf 落於二組或零組（上繳包 05 §4）
+section	4		framework.md	198	**5 checked / 0 failed。** 原始輸出見 `docs/upstream/07_framework.md` §4。
+section	4.1.2		framework.md	71	### 3.1 §4.1.2 之二來源：先退化，再由 `Sub Categorization` 救回
+section	4.1.2	IN	framework.md	73	IN §4.1.2 要求 Layer 2 候選取二來源之交集：
+section	4.1.3		framework.md	108	setup pattern 與 UI entry path 共用。若獨立成組僅 5 leaf，觸 §4.1.3
+section	4.1.3		framework.md	153	#7（2 leaf）與 #8（1 leaf）觸 §4.1.3 之「filter 後應得有意義之群」測試。
+section	4.1.5	IN	RULINGS.md	564	(a) **Layer 3（spec section）不入工作簿**（IN §4.1.5）。不得存為任何
+section	4.1.5	IN	framework.md	21	### Layer 3 之二禁（IN §4.1.5）
+section	4.2		RULINGS.md	91	逐節列出 §4.2(b) 之 18 個「有實質規格內容而 037 無對應需求」之章節，
+section	4.2	下放包	RULINGS.md	201	連帶拘束：下放包 01 §4.2(b) 之 18 節「規格內容摘要」欄係讀該衍生 PDF
+section	4.2		RULINGS.md	368	R-VC12（§4.2 分類之修訂；圖內內容之處置）
+section	4.2		RULINGS.md	375	其為**交叉引用**，非該節自身之實質需求內容，與 §4.2(a) 之
+section	4.2	下放包	RULINGS.md	378	下放包 01 §4.2 之計數修訂為：
+section	4.2	下放包	RULINGS.md	388	**二、下放包 01 §4.2(b) 之摘要文字，就下列各節作廢。**
+section	4.2		ANOMALIES.md	299	判讀（尤其 §4.2(b) 之 18 節摘要、§4.4 之題材判讀）之來源即非本 PDF，
+section	4.2		ANOMALIES.md	301	(b) 在此之前，**§4.2(b) 之 18 節「規格內容摘要」不得引為事實**；
+section	4.2	下放包	ANOMALIES.md	313	連帶拘束（R-VC7 末段）：下放包 01 §4.2(b) 之 18 節「規格內容摘要」
+section	4.2	上繳包	ANOMALIES.md	741	上繳包 11 §4.2 查明其**更精確之形態**：
+section	4.2	上繳包	ANOMALIES.md	856	二項皆已**以反向輸入實測會 FAIL**（上繳包 12 §4.2），非僅文件宣稱。
+section	4.2	下放包	DATA_REQUESTS.md	70	重驗**（結果見上繳包 02 §7）。下放包 01 §4.2(b) 之原摘要係讀 Project 附件
+section	4.2	下放包	DATA_REQUESTS.md	153	- **不得引述**：下放包 01 §4.2(b) 對該三節之摘要文字已由 R-VC12 二作廢，
+section	4.2	下放包	docs/REVISIONS.md	57	## REV-06 —— 下放包 01 §4.2 之分類計數（24 ＋ 18 → 25 ＋ 17）
+section	4.2	下放包	docs/REVISIONS.md	72	## REV-07 —— 下放包 01 §4.2(b) 之摘要文字，三節作廢
+section	4.2		framework.md	109	「too granular」。依 §4.2「Prefer broader shared capability when unsure」
+section	4.2		framework.md	122	八個名稱皆為 §4.2 所要之英文名詞片語、無 Test Group 前綴、無動作標籤。
+section	4.2	下放包	data/tableB_draft.md	7	> （SHA256 `1fcc8711…b091d6`）—— **不引用下放包 01 §4.2(b) 之摘要**
+section	4.2	下放包	data/tableB_draft.md	57	1. **§8.3** 於下放包 01 §4.2(b) 之摘要中漏列，本表依 R-VC12 二(c) 補入，
+section	4.2	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	276	### 7.2.1 `PENDING` 之**位置**依其所影響之欄位而定（下放包 26 §4.2）
+section	4.2	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	290	下放包 26 §4.2 追認，並自認該表列為「套了一個未經檢視的預設」。
+section	4.2	上繳包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	458	**此定義使既有量測自近似值升為正式值**：上繳包 22 §4.2 之
+section	4.3		DECISIONS.md	57	- test item shape: `[PROPOSED: standard §4.3 tc_title]`
+section	4.3	下放包	docs/REVISIONS.md	222	## REV-13 —— 下放包 08 §4.3「本組無 PENDING」：涵蓋範圍小於其字面
+section	4.4		ANOMALIES.md	299	判讀（尤其 §4.2(b) 之 18 節摘要、§4.4 之題材判讀）之來源即非本 PDF，
+section	4.4	IN	ANOMALIES.md	818	**不立新條** —— IN §4.4 與 §8.4.1 皆已明文，**缺的是檢查覆蓋，不是規則**
+section	4.4		ANOMALIES.md	821	### 漏檢一 —— §4.4 之三類禁項只驗了一類
+section	4.4		ANOMALIES.md	825	with the "Controls" tab active`，**12/12 逐字命中** §4.4 之 Forbidden
+section	4.4		ANOMALIES.md	834	該句寫得像驗過了整條 §4.4，實際只驗了三分之一。
+section	4.4		ANOMALIES.md	855	`verify_pilot.py` 新增第 11 項（§4.4 三類齊備）與第 12 項（隱性依賴），
+section	4.4	下放包	docs/REVISIONS.md	97	與下放包 01 §4.4 逐項相符；其餘 6 列（`-062`、`-063` 及其子，
+section	4.4	IN	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	210	本節之標的為 **Pre-Condition**，其規制來源為 **IN §4.4** 而非 §5.3。
+section	4.4		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	211	二者之判準與禁項不同，混為一表會使 §4.4 之三類禁項失去對應。
+section	4.4		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	222	**§4.4 之類別：hardware / peripheral。**
+section	4.4		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	241	**故 §4.4 之三類禁項檢查（第 11 項）仍為主防線，本表為輔。**
+section	402	IN	RULINGS.md	902	IN §402 之既有拆分判準為「不同觸發／不同輸入／不同範圍」。
+section	5	canon	RULINGS.md	262	檢查（canon §5a）」同源，本案為其鏡像。
+section	5		RULINGS.md	776	14. 該批所用之 setup 片語皆取自 VC profile §5 之常數表
+section	5	上繳包	ANOMALIES.md	612	2. **跨 feature 範圍已獨立查證** —— 見上繳包 05 §5。條文所稱
+section	5		framework.md	7	- 驗算腳本：`scripts/verify_partn.py`（五個 assertion，見 §5）。
+section	5		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	208	**與 §5 分立**（下放包 15 §3.3）：§5 之標的為 IN §5.3 之
+section	5.1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	198	其常數**自本檔解析**（讀 §5.1 之 code fence），非硬編於腳本 ——
+section	5.1.1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	163	**現行僅 `ENTER_VC_TAB` 一個帶參數常數**（§5.1.1 之「不再擴大參數化」）。
+section	5.1.1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	164	本節之格式即為其唯一實例所定，日後若另有需求須另裁（同 §5.1.1）。
+section	5.2		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	160	**分歧從值域移到了格式**，而 §5.2(a) 之「二處不得分歧」是對值域說的，
+section	5.2		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	173	### 5.1.1 帶參數常數之凍結語意（§5.2(c) 之補充，非重寫）
+section	5.2	下放包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	228	（下放包 15 §5.2 之方向前提）。
+section	5.2		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	232	**沿用 §5.2 之三項**：(a) 二處同步（本節與 `verify_batch.py`）、
+section	5.3	上繳包	RULINGS.md	694	（上繳包 10 §5.3 第 2 項）為正確處置。
+section	5.3	上繳包	docs/REVISIONS.md	191	> 之處，而 851 這個數字正好落在上繳包 07 §5.3 裡，最容易被單獨引用。
+section	5.3	IN	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	119	IN §5.3 要求標準 setup 片語**逐字重用**。本節為本 feature 之常數表。
+section	5.3	IN	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	124	（IN §5.3 所禁之 case／hyphenation／spacing／wording variants）。
+section	5.3		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	142	> 機讀行存在之理由同 §5.3 —— **值域之擴充須同時改二處，而「須同時」
+section	5.3	IN	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	208	**與 §5 分立**（下放包 15 §3.3）：§5 之標的為 IN §5.3 之
+section	5.3		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	210	本節之標的為 **Pre-Condition**，其規制來源為 **IN §4.4** 而非 §5.3。
+section	5.3		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	237	同 §5.3 —— 常數自本檔解析，非硬編。
+section	5.4	上繳包	docs/REVISIONS.md	202	### 三型偽陰性（上繳包 07 §5.4，本包追認保留）
+section	527		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	289	會與其驗證點重複（IN §8.2.1／§527）。**文字在該四筆只用於辨識按的是哪個彈窗。**
+section	6	上繳包	RULINGS.md	722	換取另一欄之值則只是換一個爭議值（上繳包 10 §6(a) 已指出）。
+section	6	上繳包	RULINGS.md	728	其為 sibling 區分 token，欄位性質不同（上繳包 10 §6(b) 之自陳正確）。
+section	6	上繳包	RULINGS.md	860	判別須人工，無機械替代（上繳包 19 §6：字面比對之候選 6 中 5 為
+section	6	上繳包	RULINGS.md	887	為字面比對之盲區（上繳包 19 §6 第 2 型），機器防不住 ——
+section	6	上繳包	ANOMALIES.md	531	**執行層另行盤點全 117 leaf 之同型情形**，結果見上繳包 04 §6。
+section	6	上繳包	docs/REVISIONS.md	226	- **正解**：本組於**七筆既有 DR** 之下無波及（執行層上繳包 08 §6 已覆核
+section	6		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	110	- 其他 Pre-Condition 措辭之常數（§6 現僅二則，只登記已實際使用者）
+section	6.1		docs/REVISIONS.md	123	- **原**：`docs/upstream/03_rulings.md` §6.1 之定案 P0 6 / P1 39 / P2 38 / P3 34
+section	6.2	上繳包	RULINGS.md	361	> 僅由「等於」放寬為「不低於」。其必然輸出即上繳包 03 §6.2 之八筆抬升。
+section	6.2	上繳包	RULINGS.md	441	「章內善後步驟被主流程之優先級抬起」—— 上繳包 03 §6.2 之八筆
+section	6.3	上繳包	RULINGS.md	487	上繳包 03 §6.3 判 P0，依本條 (b) **改判 P1**。
+section	6.4	上繳包	DECISIONS.md	85	> （上繳包 04 §6.4）。依該節建議增列，否則 117 筆定案不在決策表之視野內。
+section	7	上繳包	RULINGS.md	926	（上繳包 24 §7 已揭露），故本條為新增判準而非對既有處置之追認。
+section	7	上繳包	ANOMALIES.md	318	狀態：**RESOLVED**。T17 之逐節重驗結果見上繳包 02 §7。
+section	7	上繳包	DATA_REQUESTS.md	70	重驗**（結果見上繳包 02 §7）。下放包 01 §4.2(b) 之原摘要係讀 Project 附件
+section	7		DECISIONS.md	109	> 若 §7 之 8 組 Test Set 獲簽，建議改為依 Test Set 分批
+section	7	上繳包	docs/REVISIONS.md	167	## REV-12 —— 上繳包 01 §7 之「66 恰等於 66」：同母體，但當時未比成員
+section	7		docs/REVISIONS.md	170	- **原文**（`docs/upstream/01_intake_recon.md` §7 T4 專項）：
+section	7	PLAYBOOK	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	337	PLAYBOOK §7 為**操作慣例**（怎麼做事），其違反不構成停止條件；
+section	7.1		ANOMALIES.md	715	`SWE1-HMI-VC-033-01`（§7.1，Glove Box 停用之錯誤鎖定）：
+section	7.1		DATA_REQUESTS.md	184	- **內容**：`SWE1-HMI-VC-033-01`（§7.1）之鎖定門檻，二欄相差一次：
+section	7.1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	303	會把現行三筆判為違規 —— 而它們依 §7.1 不回溯。
+section	7.1	PLAYBOOK	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	342	且依 PLAYBOOK §7.1 雙向實測。記明以免誤以為已受保護。
+section	7.4	上繳包	RULINGS.md	372	上繳包 02 §7.4 之觀察成立：SYS1 `Description` 所載 16.1 之內容為
+section	8		ANOMALIES.md	700	**本體（§1–§8）逐字未動** —— 已以 diff 驗證，含 §4 之
+section	8	包	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	460	其中 54 逾 50 之判定隨之為正式判定（該包 §8 原標其為近似值）。
+section	8.1		DATA_REQUESTS.md	64	- **內容**：規格 §8.1–8.5、§9.1–9.2、§10.1–10.2、§11.9–11.9.3、§14.2、§15、
+section	8.1		framework.md	160	| （另）Cabrio 本體 | 0 leaf | §8.1–8.5、§9.1、§9.2（7 節）| 7 節 |
+section	8.1		data/tableB_draft.md	24	| 章 8／9 Cabrio 本體 | 1–7（§8.1–§9.2）| 另立 Test Set `Cabrio Rooftop`，**framework 由 8 組變 9 組**（R-VC16(c)）|
+section	8.1		data/tableB_draft.md	35	| 1 | §8.1 | Cabrio 車頂開闔 | Convertible top operations: • Open rooftop operation: operation for start and complete rooftop opening (when is closed), for start operation push and hold (for entire operation) button A1 When rooftop in moving present graphic popup (3D render animation) • Close rooftop operation: operation for … | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |
+section	8.2	IN	RULINGS.md	81	依 FROP 扣列等同分析層自行改寫上游之需求單元，違 IN §8.2
+section	8.2		data/tableB_draft.md	36	| 2 | §8.2 | Cabrio 車頂開闔 | If user release the button when folding top in moving (opening/closing), the rooftop stops (warning in cluster for complete operation indication to the user and on head unit a specific 30 render animation in head unit) | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |
+section	8.2.1	IN	RULINGS.md	858	test_item 上半之取材（取之即違 IN §8.2.1，產生重複追溯）。
+section	8.2.1	IN	ANOMALIES.md	483	所擁有之行為，違 **IN §8.2.1** 並產生重複追溯。
+section	8.2.1	IN	ANOMALIES.md	547	所擁有之行為，違 **IN §8.2.1** 並產生重複追溯。
+section	8.2.1	IN	ANOMALIES.md	641	將產生重複追溯，觸 IN §8.2.1。屆時須裁定其分工
+section	8.2.1	IN	framework.md	182	屆時須裁其分工以免觸 IN §8.2.1 之重複追溯。
+section	8.2.1	IN	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	289	會與其驗證點重複（IN §8.2.1／§527）。**文字在該四筆只用於辨識按的是哪個彈窗。**
+section	8.2.2	IN	RULINGS.md	1001	拆分筆各佔一個獨立序號（IN §8.2.2：TC IDs remain independently
+section	8.3		RULINGS.md	402	(c) §8.3 為**摘要漏列**而非錯誤（權威素材另載
+section	8.3		RULINGS.md	654	`SWE1-HMI-VC-033-01` 之 boundary 拆分（§8.3：門檻−1 / =門檻 /
+section	8.3		RULINGS.md	970	§10.2     不摘要、不省略（同 R-VC12 二(c) 對 §8.3 之作法）。
+section	8.3		ANOMALIES.md	1069	- 於表 B 該三列**並列實測逐字** —— 引用非摘要，同 R-VC12 二(c) 對 §8.3 之作法。
+section	8.3		docs/REVISIONS.md	82	- **補正**：§8.3 為**摘要漏列**而非錯誤，表 B 補入
+section	8.3		data/tableB_draft.md	37	| 3 | §8.3 | Cabrio 車頂開闔 | A graphic representation of the vehicle status will be present on pop up (when top is open there will be a open vehicle, when top is closed there will be a closed vehicle) | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |
+section	8.3		data/tableB_draft.md	57	1. **§8.3** 於下放包 01 §4.2(b) 之摘要中漏列，本表依 R-VC12 二(c) 補入，
+section	8.4		DATA_REQUESTS.md	82	- **內容**：規格 §8.4 之 Cabrio 前提條件引 **VF507**、§14 之 EPB 逾時引
+section	8.4		data/tableB_draft.md	38	| 4 | §8.4 | Cabrio 車頂開闔 | Convertible top opera ions are available with this conditions: • Car speed below 50 kmlh (see VF507 for official reference) • The A 1 / A2 button has to be pressed and hold until movement is completed, that will last up to 15s (see VF507 for reference) • For all the preconditions and fall status … | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |
+section	8.4.1	IN	RULINGS.md	329	即 IN §8.4.1 所禁之造值換一種形式。
+section	8.4.1	IN	ANOMALIES.md	216	`priority` 欄失去上游依據而僅能本地推導 —— 即 IN §8.4.1 所禁之造值，
+section	8.4.1		ANOMALIES.md	818	**不立新條** —— IN §4.4 與 §8.4.1 皆已明文，**缺的是檢查覆蓋，不是規則**
+section	8.4.1		ANOMALIES.md	950	**且 §8.4.1 禁止自行認定** —— 這不是可由執行層擇一的事。
+section	8.4.1		ANOMALIES.md	961	- **不自行擇一**（§8.4.1）。
+section	8.4.1		ANOMALIES.md	1010	- **不自行指定路徑**（§8.4.1）—— 沿 `034-02` 之既有處置
+section	8.4.2	IN	RULINGS.md	92	註明「037 未涵蓋，本次不產出 TC」。本表為 IN §8.4.2 末段
+section	8.4.2	IN	framework.md	327	（IN §8.4.2「真覆蓋洞須浮現、不得默默吸收」）。
+section	8.4.3	IN	RULINGS.md	657	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3）。
+section	8.4.3	IN	RULINGS.md	797	值不明者仍應生成並以 `PENDING: DR-{n}` 佔位（IN §8.4.3）；
+section	8.4.3	IN	ANOMALIES.md	733	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3）。
+section	8.4.3	IN	DATA_REQUESTS.md	43	`PENDING: DR-VC1 Privacy Lock popup ID`（IN §8.4.3），不得留空、不得填 NA。
+section	8.4.3	IN	DATA_REQUESTS.md	194	`PENDING: DR-VC8 Glove Box lockout threshold`（IN §8.4.3），
+section	8.4.3	IN	DATA_REQUESTS.md	300	**不阻斷該四筆之生成** —— 依 IN §8.4.3 帶 `PENDING` 佔位。
+section	8.4.3	IN	DATA_REQUESTS.md	335	`061` 之 Procedure。**不阻斷生成** —— 依 IN §8.4.3 帶
+section	8.4.3	IN	docs/REVISIONS.md	225	- **原文**：本組無 `PENDING: DR-{n}` 之佔位需求（IN §8.4.3）。
+section	8.4.3	IN	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	263	既交付者加註不改寫。三筆之現行形態為 IN §8.4.3 之合法佔位，
+section	8.5		data/tableB_draft.md	39	| 5 | §8.5 | Cabrio 車頂開闔 | The roof controls are greyed if the system detect a fail (service required) | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |
+section	8.7.5	IN	docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	89	## 3. IN §8.7.5（訊號寫法）—— 本 feature 無適用對象
+section	8.7.5		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	95	故 §8.7.5 之訊號寫法條款於本 feature **無適用對象**，記明以免日後誤引。
+section	9		ANOMALIES.md	25	| A-VC16 | pilot 之 §9 判讀漏檢二形態（檢查覆蓋不足，非規則缺失）| **RESOLVED（包 12）** | — |
+section	9		ANOMALIES.md	816	## A-VC16 —— pilot 之 §9 判讀漏檢二形態 —— **RESOLVED（下放包 12）**
+section	9	包	docs/REVISIONS.md	20	即此事之攔截點；同包 §9 為當時之後記。
+section	9.1		DATA_REQUESTS.md	64	- **內容**：規格 §8.1–8.5、§9.1–9.2、§10.1–10.2、§11.9–11.9.3、§14.2、§15、
+section	9.1		framework.md	160	| （另）Cabrio 本體 | 0 leaf | §8.1–8.5、§9.1、§9.2（7 節）| 7 節 |
+section	9.1		data/tableB_draft.md	40	| 6 | §9.1 | Cabrio 擋風板 | Wind draught deflector/backlight top operations: • Low up wind draught deflector: push and hold button B1 • Raise down wind draught deflector: push and hold button B2  (image: image8.png) | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |
+section	9.1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	390	| `kind` | `continuation`／`reference`（§9.1 之二類）|
+section	9.2		framework.md	160	| （另）Cabrio 本體 | 0 leaf | §8.1–8.5、§9.1、§9.2（7 節）| 7 節 |
+section	9.2		data/tableB_draft.md	24	| 章 8／9 Cabrio 本體 | 1–7（§8.1–§9.2）| 另立 Test Set `Cabrio Rooftop`，**framework 由 8 組變 9 組**（R-VC16(c)）|
+section	9.2		data/tableB_draft.md	41	| 7 | §9.2 | Cabrio 擋風板 | If user release the button when wind draught deflector during moving (up/down), the window will stop to the user desiderate position. The roof controls are greyed if the system detect a fail (service required) | 037 未涵蓋，本次不產出 TC | ✅ 章 8／9 |
+section	9.2		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	393	| `resolution` | **§9.2 專用**：`PC` 或 `Step`；不適用者留空 |
+section	9.2		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	394	| `resolution_key` | **§9.2 專用**：先行詞之關鍵詞，逐字 |
+section	9.2		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	414	後者仍為人工判讀。記明以免誤以為 §9.2 之層次 2 已全機器化。

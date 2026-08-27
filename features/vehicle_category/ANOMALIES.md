@@ -1109,6 +1109,54 @@ REV-14 是**台帳寫對而沒人讀**；本件是**台帳本身就寫錯了**�
 
 ---
 
+## A-VC21 —— TC ID 之 `{project}` 前綴，全域三種並存（新立，下放包 29 §3.3）
+
+**逐字（下放包 29 §3.3）**：
+
+```
+A-VC21（TC ID 之 {project} 前綴，全域三種並存）
+
+16 個 feature 之 `feature.yaml` 宣告與已交付工作簿實測（上繳包 28 §2）：
+
+  `newR1L-`  amfm、bed_lowering
+  `NR1L-`    audio_mgmt、comfort、power、power_moding、privacy、
+             sxm、time_management、user_profiles（8 個）
+  `TC-`      display（交付本實測 `TC-DM-001…023`）
+  未宣告      display、home、projection、sw_update、vehicle_category、
+             vehicle_setting（6 個）
+
+**五份工作簿之 D2（專案名稱）實測皆為 `newR1L`** ——
+`NR1L-` 與 `TC-` 皆與其所在檔案之該格不符。
+`privacy`／`sxm` 之交付本已出貨，其 F 欄與 D2 不一致。
+
+另：`user_profiles` 之鍵名為 `tc_id_pattern` 而非 `tc_id_format`
+（鍵名亦不一致）。
+
+本 feature 依 R-VC28 採 `newR1L-`（與 D2 及 amfm 既有實例一致）。
+**全域是否統一、已交付之 privacy／sxm 是否回溯，非本 feature 可決**
+—— 屬全域排程，與 A-VC4／A-VC8／A-VC11／A-VC13 同批。
+
+狀態：PENDING（全域排程）。
+```
+
+### 執行層之補充實測（上繳包 28 §2 之來源）
+
+- 宣告值取自 **16 個 `feature.yaml`**，逐檔讀。
+- 實際值取自**三份 `output/` 交付本**之 `F` 欄，逐列讀
+  （`display` 23／24 列、`privacy` 11／11、`sxm` 215／215，各自 1 起算連續）。
+- `E`（Test Case ID (TestRail)）三份**皆 0 筆有值**。
+- D2 取自**五份工作簿**，逐檔讀，**皆為 `newR1L`**。
+
+### ⚠ 未量到者
+
+`amfm`／`home`／`comfort` 等已 tag 之 feature **未見 `output/` 之 xlsx** ——
+其實際值未量到。**「三種前綴」係就宣告值與已量到之三份交付本而言**，
+不排除另有第四種存在於未量到之交付本中。
+
+狀態：**PENDING（全域排程）**。與 A-VC4／A-VC8／A-VC11／A-VC13 同批。
+
+---
+
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-VCnn]`.
