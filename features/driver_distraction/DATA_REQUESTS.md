@@ -14,8 +14,10 @@ Urgency 回報。
 |---|---|---|---|---|---|---|
 | **DR-DD1** | 037 作者／上游 | **DRAFTED**（待 Pei 發送）| `-025`~`-028`（4） | 該 4 leaf **凍結**，不入任何批次 | A-DD1 | 高 —— framework 組 6 之歸屬待此 |
 | **DR-DD2** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-021`~`-024`（4） | 不阻斷生成；ER／Pre-Condition 之訊號名待定 | **A-DD2** | 中 |
+| **DR-DD3** | 上游（素材提供）| **ANSWERED-PENDING-CONFIRM** | `-017`~`-028`（12） | **值已查得（91）；識別待 Q9** | — | 中 |
 
-**二筆皆為 DRAFTED，尚未發送。**
+**DR-DD1／DR-DD2 為 DRAFTED 未發送；DR-DD3 之標的已到位，狀態
+ANSWERED-PENDING-CONFIRM。**
 
 ---
 
@@ -24,6 +26,9 @@ Urgency 回報。
 - **標的**：037 作者／上游
 - **狀態**：DRAFTED（下放包 02 §三 之文稿，逐字保留；待 Pei 發送）
 - **阻斷範圍**：`-025`~`-028` 四 leaf 凍結（A-DD1 暫行處置）
+- **⚠ 與 DR-DD3 為二個獨立阻斷，不可互抵**（下放包 05 §四 採認執行層所指）：
+  **DR-DD1 裁 HK 只定「市場為何」，仍不給出 `Country_Code` 之值。**
+  即使 DR-DD1 先回，HK 段（`-017`~`-028`）仍卡於 DR-DD3。**二者須分別追。**
 
 ### 文稿（下放包 02 §三，逐字）
 
@@ -111,3 +116,75 @@ Urgency 回報。
 - R-DD5 明文「查無者逐項登 DR，**不得代以語意相近之他訊號**」（R-13）。
 
 **故本輪保留 `$PARK_BRK_EGD$` 原名並登 DR。**
+
+---
+
+## DR-DD3 —— `CIP Market Configuration Table v*.xlsx`（標的為具名檔）
+
+- **標的**：上游（素材提供）
+- **狀態**：DRAFTED（下放包 05 §四；待 Pei 發送）
+- **由來**：T9b／T10d
+- **阻斷範圍**：`-017`~`-028`（HK 全段 12 leaf）之 Pre-Condition 缺
+  `Country_Code` 之值
+
+### 這不是問句，是索取一個具名檔
+
+**指名來源**（逐字，`LID Proxi & Configuration r43` c7）：
+
+> `See latest version of 'CIP Market Configuration Table v*.xlsx',
+>  worksheet 'Marke…'`
+
+### 實測依據
+
+1. **PROXI `Format` r468** 之 `Country_Code` 值表**無 Hong Kong**：
+   `0 = World／2 = USA／4 = Canada／14 = Mexico／16 = China Mainland／
+   18 = Bahrain／97 = Iraq／104 = Jordan／108 = Kuwait／112 = Lebanon／
+   149 = Oman／160 = Qatar／165 = Saudi Arabia／204 = UAE／215 = Yemen`
+2. **該列 c18 自陳為部分列舉**：`See Country Code Table`
+3. **該檔不在 `inputs/`、不在 `forms/`、不在任何已綁之 `reference`**
+
+### 問
+
+> Please provide the latest `CIP Market Configuration Table v*.xlsx`
+> (worksheet 'Market…'), which `Logical Identifiers and CAN Mapping v1_76`
+> (sheet `Proxi & Configuration`, row 43) names as the authoritative source
+> for the `Country_Code` value domain.
+>
+> The PROXI file we hold (`PROXI_HDCC27_R3_20250424.xlsx`, sheet `Format`,
+> row 468) lists 15 country values and **does not include Hong Kong**; that
+> same row states `See Country Code Table`, i.e. its list is partial.
+>
+> Rows `SWE1-RA-Driver_Distraction-017` ~ `-028` require the Hong Kong value
+> to state their Pre-Condition.
+
+### ⚠ 與 DR-DD1 之關係
+
+**二個獨立阻斷，不可互抵。** DR-DD1 定「市場為何」，DR-DD3 給「值為何」。
+**本註記維持** —— DR-DD3 之值到位**不使 DR-DD1 得解**（下放包 06 §三 T-登）。
+
+---
+
+### 狀態更新（下放包 06，T-登）—— **ANSWERED-PENDING-CONFIRM**
+
+**Pei 已置入 `forms/SR24 R1 Market Configuration Table v1.6.xlsx`**（2026-08-27）。
+
+**`$Country_Code$` 之 Hong Kong 值 = `91`（十進位；Hex `5B`）** ——
+執行層獨立重讀複核（T11b），六欄值與下放包 §1.1 **全數相符**：
+
+| 欄（Excel）| 表頭 | 值 |
+|---|---|---|
+| H | `Destination Country` | `HONG KONG` |
+| P | `Region (Ref-only for FGA Default Regional Settings)` | `APAC` |
+| Q | `Value in <Dest> Signal - Hex` | `5B` |
+| R | `Value in <Dest> Signal - Decimal` | `91` |
+| **S** | **`PROXI3 <Country_Code>Signal - Decimal`** | **`91`** |
+| BF | `Navigation Driver Distraction Lockout Disabled (Y=Yes, N=No)` | `N` |
+
+**⚠ 尚未 RESOLVED** —— **Q9 待 Pei 確認**：本檔與 LID
+`Proxi & Configuration r43` c7 所指名之 `CIP Market Configuration Table v*.xlsx`
+**檔名不同**，二者是否同一屬文件識別之裁定。
+
+- **Q9 = 是** → 本 DR **RESOLVED**，`Country_Code = 91` 入 profile §3
+- **Q9 = 否／不確定** → 值仍取 `91` 但標 `[ASSUMPTION A-DD5]`，本 DR 續開
+
+狀態：**ANSWERED-PENDING-CONFIRM**。

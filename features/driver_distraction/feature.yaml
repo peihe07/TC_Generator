@@ -65,6 +65,15 @@ reference:
     # 綁 `forms/` 之**原件**（非本 feature 之副本）—— 原件變動才是需偵測之事件。
     file: "forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
     sha256: "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"
+  market_config:
+    # T11a（下放包 06 §三）—— 綁 `forms/` 之**原件**，**不複製入 feature inputs/**
+    # （同 R-DD5 之理：原件變動才是需偵測之事件）。
+    # sha256 **自實體檔重算**，未抄下放包之宣告值。
+    # ⚠ 其與 LID `Proxi & Configuration r43` c7 所指名之
+    # `CIP Market Configuration Table v*.xlsx` **檔名不同** —— 二者是否同一
+    # 屬 **Q9（待 Pei 確認）**，本檔之綁定不預設其同一。
+    file: "forms/SR24 R1 Market Configuration Table v1.6.xlsx"
+    sha256: "7e865d557e42c8b00fbb92ed58ae4e94bb1d561c5fdf01c6af32a70821fe7dc9"
   proxi:
     file: "features/vehicle_setting/inputs/PROXI_HDCC27_R3_20250424.xlsx"
     sha256: "e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2"

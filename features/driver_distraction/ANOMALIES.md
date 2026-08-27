@@ -156,3 +156,43 @@ None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-DRnn]`.
 日後任何以該欄為鍵之比對一律 verbatim 含尾空白，
 或於比對端明文 rstrip 並揭露；**不得靜默修資料**。
 ```
+
+---
+
+## [A-DD4] 共用路徑之寫入歸屬（新立，下放包 05 §二 逐字）
+
+`docs/runtime/profiles/FW036_R1L_DriverDistraction_Profile.md` 檔首出現
+一行**非分析層所寫**之落檔註記，且其所述之「ENOENT 後重寫」對該檔不成立
+（該情形發生於下放包 04，非 profile）。
+
+**Pei 2026-08-27 告知：三個 feature session 平行進行中。**
+
+- 事實：分析層送出之稿與磁碟內容差一行；`features/driver_distraction/docs/handoff/` 無競包
+- **成因未量測，不臆斷寫入者**
+- 已於 profile 檔首更正該行（保留痕跡，非刪除；R-TM13 精神）
+
+### 處置拘束（隨本包生效）
+
+`features/{slug}/` 為該線私有，撞寫風險低；
+**`docs/runtime/`、`docs/fw036/`、`forms/`、`scripts/` 為共用路徑**，
+三線皆可觸及。於共用路徑之寫入：
+
+1. **一律 `edit_file` 局部改，不得整檔 `write_file` 覆寫** —— 覆寫會湮滅他線之字
+2. 改動前 `read_multiple_files` 回讀現況，改動後回讀驗 diff
+3. 發現非本線所寫之內容：**保留並註記**，不刪除、不逕改其語意
+
+狀態：OPEN（成因未明；拘束已生效，不待成因查明）。
+
+---
+
+### 執行層之遵行紀錄（本輪）
+
+本輪之寫入**全在 `features/driver_distraction/` 私有路徑**
+（`ANOMALIES.md`／`DATA_REQUESTS.md`／`docs/upstream/`／`scripts/`），
+**未觸及任何共用路徑** —— 故 §處置拘束 之三項於本輪無適用對象。
+
+**上一輪（下放包 04）曾寫入共用路徑**
+`docs/runtime/profiles/FW036_R1L_DriverDistraction_Profile.md`：
+該次為 `git add` 既有檔案（分析層所落），**執行層未改其內容一字**。
+
+**拘束自本包生效，往後於共用路徑一律 `edit_file` 局部改。**
