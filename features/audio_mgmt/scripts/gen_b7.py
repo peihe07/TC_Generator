@@ -101,6 +101,31 @@ tc("SWE1_AMM_188",
              "of them: storing one and dropping the other would pass a "
              "single-source check and lose a level on restore.")
 
+tc("SWE1_AMM_221",
+   "Confirm the Entertainment cabin settings are stored as the source is displaced",
+   ["Play an Entertainment source as the cabin audio source with known volume, tone and mode settings",
+    "Activate another source that takes the cabin audio path",
+    "Read the stored mode settings and record them"],
+   ["Entertainment audio is the cabin source with the set values",
+    "The other source takes the cabin audio path",
+    "The stored mode settings are the values held before"],
+   prio="P1", method=STATE,
+   reasoning="4866489, ruled at package 26 section 2: it and 4866466 carry the "
+             "same sentence in the Entertainment and Information sequences, "
+             "and 131 holds the Information one, so the two leaves take one "
+             "sequence each. Text agreement between the routes cannot "
+             "separate them — the sentences are identical — which is the "
+             "boundary package 24 section 3 records.\n\n"
+             "Partial coverage, and route 2's dissent is recorded rather than "
+             "acted on: the leaf also names display settings, which 4866489 "
+             "never mentions (4866490 does, and 141 holds it), so the case "
+             "stops at the mode settings. Route 2 had proposed 4866893, which "
+             "covers both halves and sits between 220 at 4866891 and 222 at "
+             "4866894 where 221's SYS-RA of 563 places it. The ruling stands; "
+             "this note exists so the dissent is findable if the display half "
+             "is queried later (A-AM16).")
+
+
 # ------------------------------------------------ diagnostics and status
 tc("SWE1_AMM_245",
    "Confirm an electrical fault on a loudspeaker line is detected and reported",

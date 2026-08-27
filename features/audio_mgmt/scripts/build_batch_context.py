@@ -181,15 +181,10 @@ def parse_handoff(batch: str) -> list[dict]:
                 for m in ROW_RE.finditer(text)]
 
     if batch == "B7":
-        # 221 is held: package 26 anchors it at 4866489, but route 2 finds
-        # 4866893 matching word for word and sitting between its neighbours'
-        # anchors, where 4866489 fails both tests. R-AM15 bars one route from
-        # settling an anchor, so it returns rather than shipping wrong.
         return [{"swe_id": f"SWE1_AMM_{k}", "anchors": [v],
                  "anchor_in_pool_ruled": None, "coverage": "完整",
                  "test_set": B7_SET[k]}
-                for k, v in sorted(B7_ANCHORS.items())
-                if k != "221"]
+                for k, v in sorted(B7_ANCHORS.items())]
 
     if batch == "B6":
         return [{"swe_id": f"SWE1_AMM_{k}", "anchors": [v] if v else [],

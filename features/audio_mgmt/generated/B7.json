@@ -2,8 +2,8 @@
   "batch": "B7",
   "feature": "Audio Management",
   "test_group": "Audio Management",
-  "n_tcs": 17,
-  "leaves_authored": 17,
+  "n_tcs": 18,
+  "leaves_authored": 18,
   "out_of_pool_anchors": [
     {
       "swe_id": "SWE1_AMM_297",
@@ -116,6 +116,21 @@
       "design_method": "狀態轉換 (State Transition Testing)",
       "remarks": "PENDING: DR-AM4 signal not found in the supplied DBC; name kept as written in CFTS019 per R-13 (g)",
       "reasoning": "4866714 says all currently active sources, so the case runs two of them: storing one and dropping the other would pass a single-source check and lose a level on restore."
+    },
+    {
+      "req_id": "SWE1_AMM_221",
+      "test_group": "Audio Management",
+      "test_set": "Power and Persistence",
+      "test_item": "When an Entertainment source is being used as the cabin audio source and another source becomes active, the Audio Management software shall store the current cabin audio settings and display settings before performing the source transition\n\n(Confirm the Entertainment cabin settings are stored as the source is displaced)",
+      "pre_conditions": "NA",
+      "input_test_data": "NA",
+      "test_procedure": "1. Play an Entertainment source as the cabin audio source with known volume, tone and mode settings\n2. Activate another source that takes the cabin audio path\n3. Read the stored mode settings and record them",
+      "expected_result": "1. Entertainment audio is the cabin source with the set values\n2. The other source takes the cabin audio path\n3. The stored mode settings are the values held before",
+      "spec_reference": "CFTS019-4866489",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": "",
+      "reasoning": "4866489, ruled at package 26 section 2: it and 4866466 carry the same sentence in the Entertainment and Information sequences, and 131 holds the Information one, so the two leaves take one sequence each. Text agreement between the routes cannot separate them — the sentences are identical — which is the boundary package 24 section 3 records.\n\nPartial coverage, and route 2's dissent is recorded rather than acted on: the leaf also names display settings, which 4866489 never mentions (4866490 does, and 141 holds it), so the case stops at the mode settings. Route 2 had proposed 4866893, which covers both halves and sits between 220 at 4866891 and 222 at 4866894 where 221's SYS-RA of 563 places it. The ruling stands; this note exists so the dissent is findable if the display half is queried later (A-AM16)."
     },
     {
       "req_id": "SWE1_AMM_245",
