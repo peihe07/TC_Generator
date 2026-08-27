@@ -1,0 +1,13 @@
+req_id	dr	batch	batch_json	action_on_close
+SWE1-HMI-BLM-022-02	DR-1	B1	features/bed_lowering/batches/B1/b1_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-022-03	DR-1	B1	features/bed_lowering/batches/B1/b1_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-022-04	DR-1	B1	features/bed_lowering/batches/B1/b1_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-007-03	DR-1	B2	features/bed_lowering/batches/B2/b2_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-007-04	DR-1	B2	features/bed_lowering/batches/B2/b2_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-021-04	DR-1	B3	features/bed_lowering/batches/B3/b3_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-021-05	DR-1	B3	features/bed_lowering/batches/B3/b3_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-033-04	DR-3	B4	features/bed_lowering/batches/B4/b4_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-016-04	DR-4	B7	features/bed_lowering/batches/B7/b7_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-016-05	DR-4	B7	features/bed_lowering/batches/B7/b7_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-023-01	DR-4	B7	features/bed_lowering/batches/B7/b7_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
+SWE1-HMI-BLM-023-02	DR-4	B7	features/bed_lowering/batches/B7/b7_tcs.json	代入實值 → 機檢 + lint → 以 write_back.py 追加寫回（不覆蓋既有列）
