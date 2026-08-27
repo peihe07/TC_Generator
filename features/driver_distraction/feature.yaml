@@ -1,0 +1,84 @@
+# feature.yaml — pipeline configuration for driver_distraction
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals.
+#
+# 本檔之每一鍵於下放包 02 落檔時**逐鍵實測**（T2）：型別以 `file`＋magic 驗、
+# sha256 自實體檔重算（**不抄他 feature 之宣告值**，R-DD5 明文）。
+
+feature: "driver_distraction"
+test_group: "Driver Distraction"          # R-DD1；取 037 `Project Name` 欄實值（實測 r3 = "Driver Distraction"）
+
+paths:
+  # ⚠ **036 母本不在 inputs/** —— 下放包 01 T2 只列 S1–S4（＋S5 依 Q5）。
+  # R-DD2 之「project 前綴權威為工作簿 D2」**因此尚不可實測**（上繳包 01 §6）。
+  workbook: null
+  a03_report: "inputs/DD_SWE1_0807_EN.xlsx"
+  sys1_export: "inputs/SYS1_HMI_Driver_Lockout_HMI_Logic_and_Flow_R1_SR24_1A_(May_3_2021).xlsx"
+  spec_pdf: "inputs/Driver Lockout HMI Logic and Flow R1 SR24 1A (May 3 2021).pdf"
+  popup_list: null                         # 037 未引 PU 編號（T3 實測 0 處）
+
+spec_mode: "A"        # FO §3：SYS1 有 Polarion 匯出（19 outline），走 Mode A
+spec_reference_template: null              # R-DD1 未裁；錨定協定屬 Phase 2/3
+
+# TC ID 之格式（IN §10.3）—— **R-DD2**（Pei 2026-08-27 裁定）。
+# project 前綴之權威為工作簿 D2 儲存格；**036 母本到位後須實測確認為 `newR1L`**，
+# 不符即停並回報，不得逕改本字串。
+tc_id_format: "newR1L-DD-{n:03d}"
+
+workbook_state: null                       # 036 母本未到，未量
+
+reference:
+  # S1–S5。**sha256 自實體檔重算**（T2）。
+  a03_report:
+    file: "features/driver_distraction/inputs/DD_SWE1_0807_EN.xlsx"
+    sha256: "f0acfbac68b1c7a49d8b406b426156d03055bcd7275a26e5592536c96fbd2add"
+  cfts022_sysra:
+    file: "features/driver_distraction/inputs/CFTS022_Driver_Distraction-FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA.xlsx"
+    sha256: "81052306af593bbe28326932557cf3aa1c1330d250515afafc658ec8c9201724"
+  sys1_export:
+    file: "features/driver_distraction/inputs/SYS1_HMI_Driver_Lockout_HMI_Logic_and_Flow_R1_SR24_1A_(May_3_2021).xlsx"
+    sha256: "505a06ce6a9a35422411dad0219673e10a8d2808002e66ded95cbbeb028f7b7c"
+  spec_pdf:
+    file: "features/driver_distraction/inputs/Driver Lockout HMI Logic and Flow R1 SR24 1A (May 3 2021).pdf"
+    sha256: "a7144602b7fb28df2dd5d0d6a0459553e389dc0f13bf14bdeae80cb4374be889"
+  sysad:
+    # R-DD4：**人讀參考**，不入批次語料、不入 prompt 指紋。
+    file: "features/driver_distraction/inputs/SYS3_Driver_Distraction_FM-WI-FSM-015-A01 系統架構設計 System Architectural Design_SYSAD_V1 (1).docx"
+    sha256: "025ed9acbb263e8bf324c9fc552d6b5bbb8a95ed9fa01362b12cad6c3711c8de"
+  # R-DD5：四庫**綁 vehicle_setting/inputs/ 之原件，不複製入本 feature**。
+  lid:
+    file: "features/vehicle_setting/inputs/Logical Identifiers and CAN Mapping v1_76.xlsx"
+    sha256: "ffceac36e9db145dc0311a25435b15249835e077bab264e71a95b0fb37a98ef4"
+  dbc_bhcan:
+    file: "features/vehicle_setting/inputs/PDT27_E2A_R4_BHCAN.dbc"
+    sha256: "9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0"
+  dbc_fdcan8:
+    file: "features/vehicle_setting/inputs/PDT27_E2A_R5_FDCAN8.dbc"
+    sha256: "51c8fd6092925071bbf443711e5161d78df292de232dc7427b1cceaa8f181cd2"
+  proxi:
+    file: "features/vehicle_setting/inputs/PROXI_HDCC27_R3_20250424.xlsx"
+    sha256: "e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2"
+
+fingerprint:
+  # R-DD4：SYSAD **不入** prompt_sources。
+  prompt_sources: ["a03_report", "cfts022_sysra", "sys1_export", "spec_pdf"]
+
+a03:
+  sheet: "Analysis Report"
+  header_row: 8
+  first_data_row: 9
+  columns:
+    req_id: 0
+    source_req_id: 1
+    title: 2
+    description: 3
+    status: 4
+    categorization: 14
+    sub_categorization: 15
+    priority: 16
+    verification_criteria: 17
+    verification_method: 18
+
+recon_assertions:
+  # 只宣告已實測者（R-VC9 家族；下放包 01 T3 明文）
+  functional_requirement_count: 28
