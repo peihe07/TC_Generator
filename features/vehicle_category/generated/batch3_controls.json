@@ -30,6 +30,18 @@
  "held_leaves": [
   "SWE1-HMI-VC-025-01"
  ],
+ "pending_scope": [
+  {
+   "leaf": "SWE1-HMI-VC-014",
+   "dr": "DR-VC9",
+   "marker": "Controls table reference"
+  },
+  {
+   "leaf": "SWE1-HMI-VC-021",
+   "dr": "DR-VC1",
+   "marker": "Privacy Lock popup ID"
+  }
+ ],
  "write_back": "凍結 —— 本輪只產出 JSON，不寫回工作簿",
  "reasoning": "**驗證目標**：Controls 頁籤之成員、分組、狀態顯示、各按鍵之狀態語意對照表。**為什麼這樣切**：一 leaf 一 TC（勘查 (g)：拆分 0）。**PENDING 二筆**：`014`（DR-VC9 之 `table above`）、`021`（DR-VC1 之 `PUXXXX`）。**未涵蓋**：Glove Box 之行為（屬 pilot）、Cabrio 與 Memory Seats 之內容（§8.4.2 委派）。",
  "tcs": [

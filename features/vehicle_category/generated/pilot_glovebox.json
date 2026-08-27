@@ -24,6 +24,13 @@
  ],
  "write_back": "凍結 —— 本輪只產出 JSON，不寫回工作簿（R-VC18）",
  "reasoning": "**驗證目標**：Glove Box 之啟用／啟用錯誤／停用／停用錯誤四階段流程。**關鍵情境條件**：自 Controls 頁籤進入，PIN 為 4 位。**為什麼這樣切**：R-VC18 明文一 leaf 一 TC，12 leaf 產 12 筆；`VC-033-01` 之 §8.3 boundary 拆分本輪不做（門檻因 A-VC14 未定）。**未涵蓋**：`VC-021`（§3.6）之 Privacy Lock 彈窗行為 —— 依 §8.2.1 委派予該 leaf，本批各 TC 之 ER 皆不驗證之。",
+ "pending_scope": [
+  {
+   "leaf": "SWE1-HMI-VC-033-01",
+   "dr": "DR-VC8",
+   "marker": "Glove Box lockout threshold"
+  }
+ ],
  "tcs": [
   {
    "leaf_id": "SWE1-HMI-VC-026-01",

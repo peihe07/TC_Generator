@@ -43,6 +43,7 @@
   "SWE1-HMI-VC-056-02"
  ],
  "held_leaves": [],
+ "pending_scope": [],
  "write_back": "凍結 —— 本輪只產出 JSON，不寫回工作簿",
  "reasoning": "**驗證目標**：Settings 清單之版面、順序、觸控與旋鈕互動、確認音、長按速率、指示標退回、info 圖示與彈窗。**為什麼這樣切**：一 leaf 一 TC，二筆依 §8.2.2 各拆 2 —— 30 leaf → 32 TC。**未涵蓋**：`046-02` 之 `unless otherwise stated in the Settings List` 所指之個別例外（§8.4.2）。",
  "tcs": [

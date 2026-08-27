@@ -18,7 +18,7 @@ DR。**DR 由 Pei 發出（Tier 3）；本檔僅登記，執行層不發送。**
 | DR-VC7 | **未結** | 037 作者 | 不阻斷（R-VC11 已裁其僅作邊界）|
 | DR-VC8 | **未結** | 037 作者 | 僅 `SWE1-HMI-VC-033-01` |
 | DR-VC9 | **未結** | 規格／037 作者 | `VC-013-04`／`VC-007-01`／`VC-025-01` 三筆 |
-| **DR-VC10** | **未結** | 規格作者／HMI 彈窗清單維護者 | 第 5 批 `062-01`／`062-02`／`063-01`／`063-02` 四筆之 ER 文字 |
+| **DR-VC10** | **未結** | 規格作者／HMI 彈窗清單維護者 | **二問**：(一) 四筆之 ER 文字；(二) `061` 之進入路徑 |
 
 **十筆全為未結。**
 
@@ -27,8 +27,9 @@ DR-VC2、DR-VC7、**DR-VC8**、A-VC2 之封面一問、A-VC10 之
 Title／Description 語意一問 —— 五者同為對 037 作者之查詢，
 **同批發送，一次往返**。
 DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定。
-**DR-VC10（下放包 24 T128 新立）之批次未指定** —— 其對象為規格作者
-與彈窗清單維護者，與同批 A 之 037 作者不同，**不宜併入同批 A**。
+**DR-VC10（下放包 24 T128 新立）獨立發送**（下放包 25 §2.5 裁定）——
+其對象為規格作者與彈窗清單維護者，與同批 A 之 037 作者不同，**不併同批 A**。
+其範圍為二問（見該節）。
 
 ---
 
@@ -227,7 +228,15 @@ DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定�
 
 ---
 
-## DR-VC10 —— `PU0091` 之權威彈窗字串（新立，下放包 24 T128(c)）
+## DR-VC10 —— 章 13 之二問：`PU0091` 之字 ＋ `061` 之進入路徑
+
+> **範圍於下放包 25 §2.1 擴為二問**（沿 DR-VC9 之雙標的先例，一封信兩問）——
+> 二者對象同為規格作者，且皆源於章 13 之同一組需求。
+> **不併同批 A**（同批 A 之對象為 037 作者，非規格作者）。
+
+---
+
+### （一）`PU0091` 之權威彈窗字串（原文，下放包 24 T128(c)）
 
 **由來**：A-VC18。同一彈窗，規格側作 `Feature not available while vehicle
 is in motion`，`Pop Up List HMI R1 (26PI)` 與 `HMI Settings List R1 SR25
@@ -253,3 +262,41 @@ in motion.`（且有句末句點）。
 **不阻斷該四筆之生成** —— 依 IN §8.4.3 帶 `PENDING` 佔位。
 
 狀態：**未結**。
+
+---
+
+### （二）`061` 之 Software Updates 於 Key Off 之進入路徑（下放包 25 §2.1）
+
+**由來**：A-VC19。章 13 為三個「他路徑仍可用」之需求給出路徑，**獨缺其一**：
+`059-*` 有 §13.2 之 `through the Phone screens`、
+`060-*` 有 §13.3 之 `through the Media`、
+**`061` 只斷言「Key Off／ACC 可用」，未載經何路徑**。
+
+**為何不能以通稱表述帶過**（下放包 25 §2.1 之裁定）：
+`034-02` 所缺者為**測試資料**（通稱後 Procedure 仍可執行）；
+本項所缺者為**進入路徑** ——
+「經一條於 Key Off 仍可用之路徑進入」**不是可執行的步驟**。
+
+**已實測，非「我們沒找到」**：
+- SYS1 全表搜 `Software Update|FOTA|Wi-Fi` —— **僅命中 §13.4／§13.4.1／§13.4.2**，
+  三節皆未載路徑。
+- `HMI Settings List` `Settings` 分頁：`Software Updates` 為**第 27 類**
+  （第 650 列），即在被 §13.1 擋住的 Settings 頁籤後方；
+  其第 651 列作 `See Software Updates Logic and Flow for logic`
+  —— **委派至我方未持有之文件**。
+
+### 問
+
+1. 使用者於 Key Off／ACC 下，**經何路徑**到達 Software Updates？
+   （Phone 有 Phone screens、Audio 有 Media —— Software Updates 之對應者為何）
+2. 若該路徑載於 `Software Updates Logic and Flow`，**請提供該件**；
+   或告知 §13.4 是否應比照 §13.2／§13.3 補寫路徑。
+
+### 阻斷範圍
+
+`061` 之 Procedure。**不阻斷生成** —— 依 IN §8.4.3 帶
+`PENDING: DR-VC10 Software Updates entry path in Key Off`。
+
+**⚠ 本項之揭露強度**：「SYS1 未載其路徑」為**否定性判斷**，
+其強度限於已搜之樣式與 `HMI Settings List` 之 `Settings` 分頁。
+**若路徑載於未持有之 `Software Updates Logic and Flow`，本判斷不成立。**

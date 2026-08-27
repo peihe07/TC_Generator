@@ -38,6 +38,18 @@
   "SWE1-HMI-VC-007-01",
   "SWE1-HMI-VC-013-04"
  ],
+ "pending_scope": [
+  {
+   "leaf": "SWE1-HMI-VC-011",
+   "dr": "DR-VC9",
+   "marker": "Dashboard content table"
+  },
+  {
+   "leaf": "SWE1-HMI-VC-012-03",
+   "dr": "DR-VC9",
+   "marker": "PDO graphics"
+  }
+ ],
  "write_back": "凍結 —— 本輪只產出 JSON，不寫回工作簿",
  "reasoning": "**驗證目標**：Vehicle Category 之頁籤結構、Specialty 對照表、Camera 頁籤、Dashboard 之過濾與版面。**為什麼這樣切**：一 leaf 一 TC（R-VC18 之先例），22 筆。**未涵蓋**：b 段 2 筆（見 `held_leaves`）；`VC-008` 委派之 Camera App 行為（§8.4.2）。",
  "tcs": [

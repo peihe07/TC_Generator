@@ -257,6 +257,50 @@ chk(8, "PENDING 之分布與其字串（pilot 專屬；他批以第 8b 項驗）
     f"033-01 之 PENDING 數 {cnt.get('SWE1-HMI-VC-033-01')}；"
     f"字串相符 {exact}；他筆帶 PENDING {others or '無'}")
 
+# 8b —— PENDING 之字串與其 DR 編號（下放包 25 §3.1）。
+#
+# ⚠ **本項至此才實作。** 第 8 項之名稱自下放包 10 起即寫著
+# 「pilot 專屬；他批以第 8b 項驗」—— **而第 8b 項從來不存在**。
+# 第 2／3／4 批之 PENDING（`014`／`021`／`033-01`）因此**只受第 8 項之
+# pilot 專屬分支保護，即等於未受檢查**。與「17 項當成 19 項交」同型：
+# 名稱寫了，承載者沒有。
+#
+# 判準三件（零閾值，無語意判斷）：
+#   (a) 每一處 `PENDING:` 皆須匹配 `PENDING: DR-VC<n> <text>`，`<text>` 非空
+#   (b) 其 `DR-VC<n>` 須實際存在於 `DATA_REQUESTS.md` 之 `## DR-VC<n>` 標題
+#   (c) JSON 頂層之 `pending_scope` 須與實際出現者**逐筆相符**
+#       —— 宣告與實際之比對，同第 15 項對 `split_delta` 之作法
+RE_PEND = re.compile(r"PENDING:\s*(DR-VC\d+)\s+([^\n\"]*)")
+DRDOC = (ROOT / "DATA_REQUESTS.md").read_text("utf-8")
+known_dr = set(re.findall(r"^##\s+(DR-VC\d+)", DRDOC, re.M))
+found8b, bad8b = [], []
+for t in TCS:
+    for f in FIELDS + ["test_item", "tc_title"]:
+        for m in RE_PEND.finditer(t[f]):
+            dr, txt = m.group(1), m.group(2).strip()
+            found8b.append((t["leaf_id"], f, dr, txt))
+            if not txt:
+                bad8b.append(f"{t['leaf_id']}/{f}: {dr} 無說明文字")
+            if dr not in known_dr:
+                bad8b.append(f"{t['leaf_id']}/{f}: {dr} 不存在於 DATA_REQUESTS.md")
+    # 裸 `PENDING` 而不合樣式者（含 `PENDING: DR-XX` 之他 feature 前綴）
+    blob = json.dumps({k: t[k] for k in FIELDS + ["test_item", "tc_title"]},
+                      ensure_ascii=False)
+    if blob.count("PENDING") != len(RE_PEND.findall(blob)):
+        bad8b.append(f"{t['leaf_id']}: 有 PENDING 不合 `PENDING: DR-VC<n> <text>` 樣式")
+decl = J.get("pending_scope")
+if decl is not None:
+    got = sorted((a, c, d) for a, _, c, d in found8b)
+    want = sorted((x["leaf"], x["dr"], x["marker"]) for x in decl)
+    if got != want:
+        bad8b.append(f"pending_scope 宣告 {len(want)} 筆與實際 {len(got)} 筆不符")
+chk("8b", "PENDING 之樣式、DR 存在性、與 pending_scope 之宣告相符",
+    not bad8b and (decl is not None or not found8b),
+    f"實際 {len(found8b)} 處；宣告 {'無' if decl is None else len(decl)} 筆；"
+    f"DR 分布 {dict(Counter(d for _, _, d, _ in found8b)) or '無'}；"
+    f"不符 {len(bad8b)} 處 {bad8b or '無'}"
+    + ("" if decl is not None or not found8b else "；**有 PENDING 而 JSON 未宣告 pending_scope**"))
+
 # 9 —— 流程區分（機械部分：括號下半須含 activation / deactivation）
 f9 = []
 for lid in ("SWE1-HMI-VC-028-02", "SWE1-HMI-VC-033-01"):
