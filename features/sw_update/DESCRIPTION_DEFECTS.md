@@ -9,7 +9,8 @@ verbatim 抄其原文（含缺字），錨由其他路徑定，並於 `reasoning
 | # | 037 列 | 形態 | 狀態 |
 |---|---|---|---|
 | D-1 | `SWE1-FOTA-319` | 缺字 —— 條件名脫落 | **已確認**（下放包 11 §3.2） |
-| D-2 | `SWE1-FOTA-248` | 缺字 —— 受詞脫落 | 待判定 |
+| D-2 | `SWE1-FOTA-248` | 缺字 —— 受詞脫落 | **已確認**（下放包 12 §4.3） |
+| D-3 | `SWE1-FOTA-128` | **贅餘殘留** —— `control from below` | 待判定 |
 
 ---
 
@@ -38,17 +39,38 @@ CFTS `4907671`（4.12 之第 5 項）`5. Loss of power(battery disconnect)`。
 
 ---
 
-## D-2 —— `SWE1-FOTA-248`：受詞脫落 —— 待判定
+## D-2 —— `SWE1-FOTA-248`：受詞脫落 —— **已確認**
 
 T24d 語形掃描所得（形態「冠詞後直接接介詞」）。原句片段（逐字）：
 
 > …forwarded from the OTA server through the TC communication channel,
 > then notify **the to** start server initiated session.
 
-`notify the to start` —— `the` 之後受詞脫落。與 D-1 同族（缺字），
-惟未經分析層裁定，**列為待判定**。
+`notify the to start` —— `the` 之後受詞脫落。與 D-1 同族（缺字）。
 
-**執行層不裁定何者構成缺陷**（下放包 11 §五 T24d）。
+**裁定（下放包 12 §4.3）**：冠詞後直接接不定式，受詞脫落，形態明確，
+**確認為缺陷**。處置同 D-1：不改 037、不臆補，TC 之 `test_item` 上半
+仍 verbatim 抄原文。
+
+---
+
+## D-3 —— `SWE1-FOTA-128`：贅餘殘留 —— 待判定
+
+出處：下放包 12 §4.1（`128` 之統攝型判定過程中另見）。
+
+原句片段（逐字）：
+
+> The SWMC shall use the extracted parameters and metadata from below
+> mentioned parameters **to control from below and** execute the OTA update workflow.
+
+`control from below` 為殘句，疑為 `to control the flow` 之類原句經編輯殘留。
+
+**與 D-1／D-2 不同型**：後二者為**缺字**（成分脫落），本項為**贅餘殘留**
+（多餘成分未刪淨）。二型之語形特徵相反 —— 缺字型可由「介詞後無名詞」
+類形態偵測，贅餘型則語法完整而語意不通，**語形掃描對其無能為力**。
+
+**同列另經裁定非統攝型**（下放包 12 §4.1）：`below mentioned parameters`
+所指之十個參數逐一列於該列自身 Description 之內，非指涉他處定義之需求。
 
 ---
 
