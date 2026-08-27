@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """第 5 批 `Ignition Availability` 之生成（下放包 25 T134）。
 
-16 leaf → 20 TC（`058-03`／`062-02`／`063-02`／`064-01` 各拆 2，R-VC26）。
+16 leaf → 21 TC（`058-03`／`062-02`／`063-02`／`064-01`／`064-03` 各拆 2，R-VC26）。
 a 段 16、b 段 0、**PENDING 7 筆**（皆為 DR-VC10）。
 
 上半之取材一律**自來源檔逐字取出**，不在本檔內手抄 ——
@@ -477,7 +477,7 @@ SPEC = [
           "**觀察期之 5 分鐘為測試設計參數，非來源所載**。" + PU0319),
  dict(leaf="SWE1-HMI-VC-064-03", upper=("S", "13.5", 3), dm=STATE,
       title="Returning to Run clears the transition pop-up",
-      low="Return to Run -- the pop-up clears itself and the prior Settings screen comes back",
+      low="Leaving the blocked state via Run -- the pop-up clears and the prior Settings screen returns",
       pc=["The Key Off transition pop-up is displayed, and the Settings screen "
           "the user was on before the transition is known"],
       data="NA",
@@ -488,20 +488,47 @@ SPEC = [
           "The vehicle is in Run",
           "The pop-up is no longer displayed and the Settings screen recorded in "
           "step 1 is displayed"],
-      axis="轉換彈窗之解除：回到 Run（對 -02 之持續）",
+      axis="解除之目標狀態：Run（對 Key On 支）",
       why="**驗證目標**：車輛回到 Run 時彈窗自動關閉，並回到轉換前之 Settings 畫面。"
           "**⚠ 取材為第三處置類**：037 之 `while **pop-up** is on screen` 為"
-          "**無冠詞名詞回指**；整段 s1-s3 為 **83 token，逾 R-3 之 50** →"
+          "**無冠詞名詞回指**；整段 s1-s3 為 **83 token，逾 R-3 之 50** → "
           "單句 s3 ＋ `resolution=PC`／`resolution_key=pop-up`。"
           "**⚠ 本筆為第一層之偽陰性**（無冠詞名詞回指）——由勘查 (d) 發現。"
           "**ER 之 baseline（§5.6）**：「回到轉換前之畫面」須先記錄那是哪一個。"
-          "**⚠ 未涵蓋者，請上游注意**：來源作 `turned to Run **or Key On**` ——"
-          "本筆只走 Run。二者**互相消耗**（轉到 Run 後彈窗已消失，"
-          "須整輪重建才能走 Key On），依 R-VC26 應拆 2；"
-          "**惟本包授權為 20 筆，其拆分清單未含本筆**，故不自行增筆。"
-          "若上游認 Run 與 Key On 為同一等價類（「離開受阻狀態」），"
-          "則本筆之涵蓋完整；若認為二個狀態，則此處為覆蓋洞。**請裁。**"
-          + PU0319),
+          "**⚠ 拆 2（下放包 26 §三之裁定）**：來源作 "
+          "`turned to **Run or Key On**`。上繳包 25 §4.3 我已施 R-VC26 之問法"
+          "（「轉到 Key On 時彈窗不消失，哪一筆會 FAIL？」——沒有）"
+          "但**未自行增筆**，因授權為 20 筆而拆分清單無本筆；"
+          "分析層裁定拆，第 5 批 21 筆。"
+          "**互相消耗之形態**：轉到 Run 後彈窗已消失，"
+          "須整輪點火循環重建才能走 Key On。"
+          "**⚠ 與 `057` 之界線（R-VC26 之適用說明，下放包 26 §3.1）**："
+          "本筆之標的為**一次性事件**（彈窗消失）故拆；"
+          "`057` 之標的為**持續狀態**（tab 不可用），情境不因觀察而消耗，"
+          "切換狀態即可續驗，故其三態不拆。"
+          "**R-VC26 不得被讀成「凡 or 列舉皆拆」。**" + PU0319),
+ dict(leaf="SWE1-HMI-VC-064-03", upper=("S", "13.5", 3), dm=STATE,
+      title="Returning to Key On clears the transition pop-up",
+      low="Leaving the blocked state via Key On -- the pop-up clears and the prior Settings screen returns",
+      pc=["The Key Off transition pop-up is displayed, and the Settings screen "
+          "the user was on before the transition is known"],
+      data="NA",
+      pr=["Record the Settings screen the user was on before the pop-up was triggered",
+          "Turn the vehicle to Key On",
+          "Record the screen that is displayed"],
+      er=["The Settings screen before the transition is recorded as the baseline",
+          "The vehicle is in Key On",
+          "The pop-up is no longer displayed and the Settings screen recorded in "
+          "step 1 is displayed"],
+      axis="解除之目標狀態：Key On（對 Run 支）",
+      why="**驗證目標**：車輛回到 Key On 時彈窗自動關閉，並回到轉換前之 Settings 畫面。"
+          "**取材同 Run 支**（第三處置類，單句 s3，`resolution=PC`／`pop-up`）。"
+          "**本筆即下放包 26 §三所補之覆蓋洞** —— 拆前「轉到 Key On 時彈窗不消失」"
+          "無任何一筆會 FAIL。"
+          "**Procedure 自 Pre-Condition 完整重建情境**：本支不接續 Run 支之結果，"
+          "其彈窗須重新觸發（互相消耗之直接後果，下放包 25 §三）。"
+          "**等價性不需另判**（下放包 26 §三）：Run 與 Key On 是否同一等價類，"
+          "不改互相消耗之判準所定之拆分結論。" + PU0319),
 ]
 
 def upper_of(sp, leaf):
@@ -550,7 +577,7 @@ doc = {
     "ruling": "R-VC21／R-VC22／R-VC23／R-VC24／R-VC25／**R-VC26** ＋ profile §9.2 第三處置類",
     "segment": "a",
     "segment_note": "**本批無 b 段** —— 16 leaf 全數生成，`held_leaves` 為空。",
-    "split_delta": 4,
+    "split_delta": 5,
     "tc_id_status": "provisional",
     "leaf_scope": [x["leaf"] for i, x in enumerate(SPEC)
                    if x["leaf"] not in [y["leaf"] for y in SPEC[:i]]],
@@ -569,10 +596,10 @@ doc = {
                  "頁籤於 Key Off／Timed Mode／ACC 之受阻與其彈窗、"
                  "Phone／Audio／Software Updates 三條他路徑之續可用、"
                  "行進中之二個攔阻、開啟中途轉入受阻狀態之彈窗與其解除。"
-                 "**為什麼這樣切**：16 leaf 中 12 筆一 leaf 一 TC；"
-                 "`058-03`／`062-02`／`063-02`／`064-01` 各拆 2 —— "
+                 "**為什麼這樣切**：16 leaf 中 11 筆一 leaf 一 TC；"
+                 "`058-03`／`062-02`／`063-02`／`064-01`／`064-03` 各拆 2 —— "
                  "**依 R-VC26 之互相消耗**（走了其一，另一之情境須重建），"
-                 "`split_delta: 4`。"
+                 "`split_delta: 5`。"
                  "**PENDING 7 筆 TC**（皆為 DR-VC10）：`062-*`／`063-*` 六筆之"
                  "彈窗字（A-VC18）＋ `061` 之進入路徑（A-VC19）。"
                  "**本批非全潔批。**"

@@ -522,6 +522,66 @@ if _cg.exists():
 else:
     chk(17, "CONT 表二層防護", False, "**cont_guard.py 不存在**")
 
+# 18 —— 項號指涉之存在性（下放包 26 §一，T136）。
+#
+# 由來：第 8 項之名稱自下放包 10 起寫著「他批以**第 8b 項**驗」，
+# **而第 8b 項不存在**，直到下放包 25 才實作。五處 PENDING 走完三個批次無人看過。
+#
+# ⚠ **其形態異於「17 項當成 19 項交」**：那次是清單上的項沒做，一數即現形；
+# 本次是**該項做了且 PASS，而它的名稱指涉一個不存在的項** ——
+# **數量對、狀態綠，只有讀名稱的人會發現**。故需一項機械檢查。
+#
+# 判準：檢查之名稱／說明中凡出現 `第<id>項`（含範圍 `3–8` 與頓號列舉），
+# 該 `<id>` 須存在於**本次執行之檢查清單**。不存在 → FAIL。零閾值。
+RE_REF = re.compile(r"第\s*([0-9][0-9a-zA-Z]*(?:\s*[–—-]\s*[0-9][0-9a-zA-Z]*)?"
+                    r"(?:\s*[、,]\s*[0-9][0-9a-zA-Z]*)*)\s*項")
+
+
+def _ids(txt):
+    """自一段文字取出其所引之項號（展開範圍與頓號列舉）。"""
+    out = set()
+    for grp in RE_REF.findall(txt):
+        for part in re.split(r"[、,]", grp):
+            part = part.strip()
+            m = re.fullmatch(r"([0-9]+)\s*[–—-]\s*([0-9]+)", part)
+            if m:                       # 範圍 —— 純數字者才展開
+                out.update(str(x) for x in range(int(m.group(1)),
+                                                int(m.group(2)) + 1))
+            elif part:
+                out.add(part)
+    return out
+
+
+def refcheck(items):
+    """items = [(id, name, detail), …] → 回傳無主之項號。"""
+    have = {str(i) for i, _, _ in items}
+    dangling = []
+    for i, name, detail in items:
+        for ref in sorted(_ids(f"{name} {detail}")):
+            if ref not in have:
+                dangling.append(f"第{i}項 之名稱／說明引用不存在之「第{ref}項」")
+    return dangling
+
+
+# self-test 前置（PLAYBOOK §7.1.1）—— 不過則本項直接 FAIL，不看正式母體
+_items = [(n, str(nm), str(dt)) for n, nm, ok_, dt in res]
+_st_b = not refcheck(_items)                       # (a) 反向：現行全部名稱應全過
+_probe = list(_items)
+_probe[0] = (_probe[0][0], _probe[0][1] + "（見第 99 項）", _probe[0][2])
+_st_a = bool(refcheck(_probe))                     # (b) 已知標的：插入第 99 項應 FAIL
+print("第 18 項 —— self-test 前置（PLAYBOOK §7.1.1）")
+print(f"  self-test 1  (b) 已知標的 插入「見第 99 項」應 FAIL  "
+      f"{'PASS' if _st_a else '**FAIL**'}")
+print(f"  self-test 2  (a) 反向 現行全部名稱應全過          "
+      f"{'PASS' if _st_b else '**FAIL**'}")
+_dangling = refcheck(_items)
+chk(18, "檢查之名稱／說明所引之項號皆存在（下放包 26 §一）",
+    _st_a and _st_b and not _dangling,
+    f"self-test {'全過' if _st_a and _st_b else '**未過**'}；"
+    f"掃描 {len(_items)} 項；引用之項號 "
+    f"{sorted(set().union(*[_ids(f'{n} {d}') for _, n, d in _items]) or set())}；"
+    f"無主 {len(_dangling)} 處 {_dangling or '無'}")
+
 print(f"verify_batch — {BATCH.name}（收斂條件；下放包 10 §四 ＋ 13 §4.4）")
 print(f"{'#':>3}  {'條件':<62} 判")
 print("-" * 96)
