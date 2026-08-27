@@ -35,7 +35,12 @@ HANDOFF = {"B1": ROOT / "docs" / "handoff" / "03_batch_B1_handoff.md",
            "B3": ROOT / "docs" / "handoff" / "12_B3_final_anchors.md",
            "B4": ROOT / "docs" / "handoff" / "13_B4_anchor_candidates.md",
            "B5": ROOT / "docs" / "handoff" / "18_B5_anchor_candidates.md",
-           "B6": ROOT / "docs" / "handoff" / "22_B6_anchor_candidates.md"}
+           "B6": ROOT / "docs" / "handoff" / "22_B6_anchor_candidates.md",
+           "B7": ROOT / "docs" / "handoff" / "26_B7_final_batch.md"}
+
+# B7, the final batch: package 26's ruled table, verified by route 2.
+B7_ANCHORS = {"174": "4866662", "177": "4866674", "178": "4866677", "188": "4866714", "221": "4866489", "242": "4867027", "243": "4867028", "244": "4867029", "245": "4867162", "246": "4867426", "247": "4867457", "297": "4866141", "298": "4866142", "299": "4866143", "300": "4866144", "301": "4866145", "302": "4866146", "303": "4866147"}
+B7_SET = {"174": "Power and Persistence", "177": "Power and Persistence", "178": "Power and Persistence", "188": "Power and Persistence", "221": "Power and Persistence", "242": "Logistic Mode", "243": "Logistic Mode", "244": "Logistic Mode", "245": "Power and Persistence", "246": "Power and Persistence", "247": "Power and Persistence", "297": "Power and Persistence", "298": "Power and Persistence", "299": "Power and Persistence", "300": "Power and Persistence", "301": "Power and Persistence", "302": "Power and Persistence", "303": "Power and Persistence"}
 
 # B6: package 22's B table with package 24's rulings applied throughout —
 # the eight returned leaves, the three cluster resolutions, D-B6-01's 131
@@ -49,7 +54,9 @@ B6_SET = {"052": "Power and Persistence", "057": "Power and Persistence", "062":
 # held — package 20 section 2.3 authorised writing it only if route 2 found
 # an in-pool anchor, and 4866193 is out of pool, so it goes back as a single
 # item rather than being written on one route.
-B5_HELD = {"SWE1_AMM_293"}
+# 293 was held pending a ruling; the ruling landed with the B5 delivery
+# review — 4866193, out of pool, partial coverage — so nothing is held now.
+B5_HELD: set[str] = set()
 B5_SET = {"011": "Tones and Alerts", "012": "Tones and Alerts", "016": "Audio Processing", "017": "Tones and Alerts", "018": "Tones and Alerts", "019": "Tones and Alerts", "021": "Tones and Alerts", "022": "Tones and Alerts", "023": "Tones and Alerts", "025": "Audio Processing", "029": "Audio Processing", "033": "Tones and Alerts", "034": "Tones and Alerts", "035": "Audio Processing", "036": "Tones and Alerts", "037": "Tones and Alerts", "038": "Tones and Alerts", "039": "Tones and Alerts", "040": "Tones and Alerts", "041": "Audio Processing", "042": "Audio Processing", "043": "Audio Processing", "045": "Audio Processing", "046": "Audio Processing", "047": "Audio Processing", "048": "Audio Processing", "049": "Audio Processing", "080": "Tones and Alerts", "106": "Tones and Alerts", "107": "Tones and Alerts", "109": "Audio Processing", "125": "Audio Processing", "126": "Audio Processing", "127": "Tones and Alerts", "128": "Tones and Alerts", "160": "Audio Processing", "168": "Audio Processing", "222": "Audio Processing", "279": "Tones and Alerts", "280": "Tones and Alerts", "281": "Tones and Alerts", "282": "Tones and Alerts", "283": "Tones and Alerts", "284": "Tones and Alerts", "285": "Tones and Alerts", "292": "Tones and Alerts", "293": "Tones and Alerts", "294": "Tones and Alerts", "304": "Tones and Alerts", "305": "Tones and Alerts"}
 B5_RULED = {
     "SWE1_AMM_021": ["4865986"], "SWE1_AMM_023": ["4865986"],
@@ -57,6 +64,7 @@ B5_RULED = {
     "SWE1_AMM_294": ["4866173"], "SWE1_AMM_025": ["4866311"],
     "SWE1_AMM_168": ["4866594"], "SWE1_AMM_281": ["4865984"],
     "SWE1_AMM_304": ["4866200"], "SWE1_AMM_305": ["4866201"],
+    "SWE1_AMM_293": ["4866193"],
 }
 
 # B4 runs under the R-AM20 green channel, so its leaf set is assembled from
@@ -171,6 +179,17 @@ def parse_handoff(batch: str) -> list[dict]:
                  "anchors": [m.group(5)], "coverage": "完整",
                  "anchor_note": m.group(6)}
                 for m in ROW_RE.finditer(text)]
+
+    if batch == "B7":
+        # 221 is held: package 26 anchors it at 4866489, but route 2 finds
+        # 4866893 matching word for word and sitting between its neighbours'
+        # anchors, where 4866489 fails both tests. R-AM15 bars one route from
+        # settling an anchor, so it returns rather than shipping wrong.
+        return [{"swe_id": f"SWE1_AMM_{k}", "anchors": [v],
+                 "anchor_in_pool_ruled": None, "coverage": "完整",
+                 "test_set": B7_SET[k]}
+                for k, v in sorted(B7_ANCHORS.items())
+                if k != "221"]
 
     if batch == "B6":
         return [{"swe_id": f"SWE1_AMM_{k}", "anchors": [v] if v else [],

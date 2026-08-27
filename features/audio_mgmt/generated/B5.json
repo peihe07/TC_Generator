@@ -2,8 +2,8 @@
   "batch": "B5",
   "feature": "Audio Management",
   "test_group": "Audio Management",
-  "n_tcs": 50,
-  "leaves_authored": 49,
+  "n_tcs": 51,
+  "leaves_authored": 50,
   "out_of_pool_anchors": [
     {
       "swe_id": "SWE1_AMM_021",
@@ -58,6 +58,13 @@
       "swe_id": "SWE1_AMM_292",
       "anchor": "CFTS019-4866173",
       "title": "Audio Management - Customer Selectable Park Assist Chime Volume",
+      "test_set": "Tones and Alerts",
+      "corroboration": "single-source (R-AM18): the export omits this object, so route 2 had no independent corpus and could only re-read the full text"
+    },
+    {
+      "swe_id": "SWE1_AMM_293",
+      "anchor": "CFTS019-4866193",
+      "title": "Audio Management - Gear Position Based Park Assist Volume Strategy",
       "test_set": "Tones and Alerts",
       "corroboration": "single-source (R-AM18): the export omits this object, so route 2 had no independent corpus and could only re-read the full text"
     },
@@ -834,6 +841,21 @@
       "design_method": "決策表 (Decision Table Testing)",
       "remarks": "",
       "reasoning": "4866201 is the inactive-cabin branch of the pair with 4866200, and its figure is step 8 where the VP-family object at 4866199 says step 6 — the leaf says 8, which is the second confirmation that the R1L pair is ours. Out-of-pool anchor, single-source under R-AM18."
+    },
+    {
+      "req_id": "SWE1_AMM_293",
+      "test_group": "Audio Management",
+      "test_set": "Tones and Alerts",
+      "test_item": "When $Park_Assist_Volume_Strategy$ is configured as Gear Position Based, the Audio Management software shall disable user adjustment of Park Assist and Side Distance chime volume levels and shall operate the chime volume according to the configured Gear Position Based volume strategy\n\n(Confirm the gear-based strategy takes the volume from the chime request)",
+      "pre_conditions": "No audio source is active",
+      "input_test_data": "NA",
+      "test_procedure": "1. Configure the vehicle so that $Park_Assist_Volume_Strategy$ is Gear Position Based\n2. Trigger a park assist chime carrying a requested volume\n3. Read the chime volume and record it",
+      "expected_result": "1. The gear position based strategy is configured\n2. The park assist chime plays\n3. The chime volume is the level the chime request carried",
+      "spec_reference": "CFTS019-4866193",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)",
+      "remarks": "PENDING: DR-AM4 signal not found in the supplied DBC; name kept as written in CFTS019 per R-13 (g)",
+      "reasoning": "4866193, found by the gate-4 range scan package 20 section 2.3 authorised and ruled at the B5 delivery review. Partial coverage: the leaf also says user adjustment is disabled, which the anchor never states — that is an inference on the SWE.1 side, so it is disclosed here and kept out of the expected result under 8.4. Out-of-pool anchor, single-source under R-AM18."
     }
   ]
 }

@@ -686,6 +686,24 @@ tc("SWE1_AMM_305",
              "that the R1L pair is ours. Out-of-pool anchor, single-source "
              "under R-AM18.")
 
+tc("SWE1_AMM_293",
+   "Confirm the gear-based strategy takes the volume from the chime request",
+   ["Configure the vehicle so that $Park_Assist_Volume_Strategy$ is Gear Position Based",
+    "Trigger a park assist chime carrying a requested volume",
+    "Read the chime volume and record it"],
+   ["The gear position based strategy is configured",
+    "The park assist chime plays",
+    "The chime volume is the level the chime request carried"],
+   prio="P1", method=DECISION, remarks=PEND_SIG,
+   pre="No audio source is active",
+   reasoning="4866193, found by the gate-4 range scan package 20 section 2.3 "
+             "authorised and ruled at the B5 delivery review. Partial "
+             "coverage: the leaf also says user adjustment is disabled, which "
+             "the anchor never states — that is an inference on the SWE.1 "
+             "side, so it is disclosed here and kept out of the expected "
+             "result under 8.4. Out-of-pool anchor, single-source under "
+             "R-AM18.")
+
 
 def main() -> None:
     ctx = {l["swe_id"]: l for l in json.loads(

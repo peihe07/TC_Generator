@@ -34,7 +34,7 @@ def bracket_tail(test_item: str) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--batches", nargs="*",
-                    default=["B1", "B2", "B3", "B4", "B5"])
+                    default=["B1", "B2", "B3", "B4", "B5", "B6", "B7"])
     args = ap.parse_args()
 
     index: dict[str, list[dict]] = defaultdict(list)
