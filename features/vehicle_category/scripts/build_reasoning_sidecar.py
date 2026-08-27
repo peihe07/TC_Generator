@@ -26,9 +26,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 GEN = ROOT / "generated"
 OUT = ROOT / "docs/REASONING_sidecar.md"
+# ⚠ **新批次須加入本表** —— 漏加者其 TC 不入側檔，而 `--verify` 之
+# 母體亦自本表推導，故「側檔與 JSON 相符」會照樣 PASS：
+# **二者同源，比不出漏批。** 下放包 34 即發生一次（第 6／7 批漏加，
+# 側檔 123 筆而全簿 125 筆，`--verify` 仍 PASS）。
+# 故 `--verify` 另驗**本表是否涵蓋 generated/ 之全部批檔**。
 BATCH_ORDER = ["pilot_glovebox", "batch1_category_structure",
                "batch2_settings_list", "batch3_controls",
-               "batch4_settings_behavior", "batch5_ignition_availability"]
+               "batch4_settings_behavior", "batch5_ignition_availability",
+               "batch6_brake_service", "batch7_cabrio_widget"]
 
 
 def load():
@@ -89,6 +95,11 @@ def verify(rows):
     empty = [k for k, _, t in rows if not t.get("reasoning", "").strip()]
     if empty:
         bad.append(f"reasoning 為空之 TC {empty}")
+    # 漏批之偵測 —— 本表與側檔同源，故須另對 `generated/` 之實際檔案比對
+    on_disk = {p.stem for p in GEN.glob("*.json")}
+    missing = on_disk - set(BATCH_ORDER)
+    if missing:
+        bad.append(f"BATCH_ORDER 未涵蓋之批檔 {sorted(missing)}")
     return bad
 
 

@@ -1,0 +1,42 @@
+{
+ "batch": "batch6_brake_service",
+ "feature": "vehicle_category",
+ "test_group": "Vehicle Category",
+ "test_set": "Brake Service",
+ "handoff": "docs/handoff/34_tail_batches.md",
+ "ruling": "R-VC22／R-VC25／R-VC26／R-VC30",
+ "segment": "a",
+ "segment_note": "**a 段 1 筆、b 段 1 筆**。`065-02` 因勘查命中停止條件 (b) 而留置（CONT 之二個層次其標的皆夾帶 `(image: image18.png)`，三處置類皆不合），待分析層裁。",
+ "split_delta": 0,
+ "tc_id_status": "provisional",
+ "leaf_scope": [
+  "SWE1-HMI-VC-065-01"
+ ],
+ "held_leaves": [
+  "SWE1-HMI-VC-065-02"
+ ],
+ "pending_scope": [],
+ "write_back": "凍結 —— 本輪只產出 JSON，不寫回工作簿",
+ "reasoning": "**驗證目標**：EPB Service mode 於車輛行進中之灰化。**為什麼只有 1 筆**：`065-02`（按下灰化列之彈窗）留置 ——其 CONT 之標的夾帶圖佔位，見上繳包 34 §3。**未涵蓋**：§14.2（EPB 彈窗優先序）與 §15（EPB 彈窗）為 037 未涵蓋之待補節（表 B 第 14／15 列，待 DR-VC3）——**其內容不得預納**（§8.4.2）。",
+ "tcs": [
+  {
+   "leaf_id": "SWE1-HMI-VC-065-01",
+   "test_group": "Vehicle Category",
+   "test_set": "Brake Service",
+   "tc_title": "Service mode greys out while the vehicle moves",
+   "test_item": "Service mode option will be greyed out if the vehicle is in motion.\n\n(In-motion lockout -- the Service mode option is rendered grey)",
+   "pre_conditions": "1. The vehicle under test is equipped with the EPB Service mode option",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Vehicle Category screen and select the \"Controls\" tab\n2. Open the Brake Service screen while the vehicle is stationary and record how the Service mode option is rendered\n3. Set the vehicle in motion and record how the Service mode option is rendered",
+   "expected_result": "1. The Vehicle Category screen is displayed with the \"Controls\" tab active\n2. The Service mode option is rendered as normal while stationary\n3. The Service mode option is rendered grey while the vehicle is in motion",
+   "specification_reference": "SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_14.1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "priority": "P0",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "reasoning": "**驗證目標**：車輛行進中，EPB Service mode 選項呈灰。**取材（R-VC25）**：上半取自 037 `Description`（優先序第 1）——`Service mode option will be greyed out if the vehicle is in motion.`，**非 CONT**（其為完整可讀句，無指涉）。**ER 之 baseline（§5.6）**：「行進中呈灰」須有靜止時之呈現可比 ——否則「一直都是灰的」與「因行進而變灰」不可分。**P0 之依據**：行進中之攔阻屬 safety 型（同 `062-01`／`063-01`）。**與 `065-02` 之分工（IN §8.2.1）**：本筆驗**呈現**（灰化），`-02` 驗**按下之後果**（彈窗）—— 二個不同驗證點。**未涵蓋**：§14.2 之彈窗優先序（037 未涵蓋，表 B 第 14 列）。",
+   "distinguishing_axis": "行進中之呈現：灰化（對 -02 之按下後果，留置）"
+  }
+ ]
+}

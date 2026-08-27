@@ -1,7 +1,7 @@
 kind	target	bare_section	n_files	n_mentions	files
 ruling	R-VC3	yes	9	26	ANOMALIES.md; DATA_REQUESTS.md; DECISIONS.md; RULINGS.md; data/tableB_draft.md; docs/REVISIONS.md; docs/TABLE_A_frop_crossdomain.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md; framework.md
-dr	DR-VC3	yes	7	38	ANOMALIES.md; DATA_REQUESTS.md; DECISIONS.md; RULINGS.md; data/tableB_draft.md; docs/TABLE_A_frop_crossdomain.md; framework.md
-ruling	R-VC12	yes	7	35	ANOMALIES.md; DATA_REQUESTS.md; RULINGS.md; data/tableB_draft.md; docs/REVISIONS.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md; framework.md
+dr	DR-VC3	yes	7	39	ANOMALIES.md; DATA_REQUESTS.md; DECISIONS.md; RULINGS.md; data/tableB_draft.md; docs/TABLE_A_frop_crossdomain.md; framework.md
+ruling	R-VC12	yes	7	36	ANOMALIES.md; DATA_REQUESTS.md; RULINGS.md; data/tableB_draft.md; docs/REVISIONS.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md; framework.md
 ruling	R-VC16	yes	7	21	DECISIONS.md; RULINGS.md; data/tableB_draft.md; docs/REVISIONS.md; docs/TABLE_A_frop_crossdomain.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md; framework.md
 dr	DR-VC6	yes	6	10	ANOMALIES.md; DATA_REQUESTS.md; RULINGS.md; data/tableB_draft.md; docs/REVISIONS.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md
 ruling	R-VC11	yes	6	21	ANOMALIES.md; DATA_REQUESTS.md; DECISIONS.md; RULINGS.md; docs/REVISIONS.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md
@@ -26,11 +26,12 @@ ruling	R-VC1	yes	4	10	ANOMALIES.md; RULINGS.md; docs/runtime/profiles/FW036_R1L_
 ruling	R-VC10	yes	4	5	DATA_REQUESTS.md; RULINGS.md; docs/REVISIONS.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md
 ruling	R-VC13	yes	4	19	DECISIONS.md; RULINGS.md; docs/REVISIONS.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md
 ruling	R-VC17	yes	4	5	RULINGS.md; docs/REVISIONS.md; docs/TABLE_A_frop_crossdomain.md; framework.md
-ruling	R-VC27	yes	4	15	ANOMALIES.md; DATA_REQUESTS.md; RULINGS.md; data/tableB_draft.md
+ruling	R-VC27	yes	4	16	ANOMALIES.md; DATA_REQUESTS.md; RULINGS.md; data/tableB_draft.md
 ruling	R-VC7	yes	4	12	ANOMALIES.md; DATA_REQUESTS.md; RULINGS.md; docs/REVISIONS.md
 ruling	R-VC8	yes	4	18	ANOMALIES.md; DECISIONS.md; RULINGS.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md
 ruling	R-VC9	yes	4	7	ANOMALIES.md; DECISIONS.md; RULINGS.md; docs/REVISIONS.md
 section	2	yes	4	9	RULINGS.md; docs/TABLE_A_frop_crossdomain.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md; framework.md
+section	7.1	yes	4	4	ANOMALIES.md; DATA_REQUESTS.md; RULINGS.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md
 section	8.3	yes	4	7	ANOMALIES.md; RULINGS.md; data/tableB_draft.md; docs/REVISIONS.md
 section	9.1	yes	4	4	DATA_REQUESTS.md; data/tableB_draft.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md; framework.md
 anomaly	A-VC1	yes	3	13	ANOMALIES.md; RULINGS.md; docs/REVISIONS.md
@@ -56,7 +57,6 @@ section	3	yes	3	3	ANOMALIES.md; DATA_REQUESTS.md; docs/REVISIONS.md
 section	4	yes	3	5	ANOMALIES.md; DECISIONS.md; framework.md
 section	4.2	yes	3	7	ANOMALIES.md; RULINGS.md; framework.md
 section	5	yes	3	3	RULINGS.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md; framework.md
-section	7.1	yes	3	3	ANOMALIES.md; DATA_REQUESTS.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md
 section	8.1	yes	3	4	DATA_REQUESTS.md; data/tableB_draft.md; framework.md
 section	9.2	yes	3	6	data/tableB_draft.md; docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md; framework.md
 anomaly	A-VC11	yes	2	11	ANOMALIES.md; DECISIONS.md

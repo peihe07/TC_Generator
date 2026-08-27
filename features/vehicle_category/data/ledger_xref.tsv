@@ -177,6 +177,7 @@ dr	DR-VC3		RULINGS.md	582	不需另設例外。條件性生效，待 DR-VC3。
 dr	DR-VC3		RULINGS.md	763	6  `Brake Service`            2 leaf   DR-VC3（邊界待重審）
 dr	DR-VC3		RULINGS.md	764	7  `Cabrio Widget`            1 leaf   DR-VC3（同上）
 dr	DR-VC3		RULINGS.md	770	第 6／7 批置末之理由：R-VC16(c) 明文其邊界待 DR-VC3 重審，
+dr	DR-VC3		RULINGS.md	1039	致 DR-VC3 之「發出前須知」段（明文指示該 DR 之措辭）帶著已被推翻的
 dr	DR-VC3		ANOMALIES.md	12	| A-VC3 | §16.2 之 `SWE1-HMI-VC-066` 僅涵蓋標題一句 | PENDING | 併入 DR-VC3 |
 dr	DR-VC3		ANOMALIES.md	21	| A-VC12 | §11.9 群與 §12.3 群之行為重疊 | PENDING | 條件性，待 DR-VC3 |
 dr	DR-VC3		ANOMALIES.md	117	**提案處置**：併入 DR-VC3 一併查詢，**不單獨發 DR**。
@@ -392,6 +393,7 @@ ruling	R-VC12		RULINGS.md	961	simultaneously`）。R-VC12 立條之由來即為�
 ruling	R-VC12		RULINGS.md	970	§10.2     不摘要、不省略（同 R-VC12 二(c) 對 §8.3 之作法）。
 ruling	R-VC12		RULINGS.md	976	R-VC12 之二(b)(c)(d) 與其餘各款**不變**。
 ruling	R-VC12		RULINGS.md	977	R-VC12 二(a) 之原文依 R-TM13 不刪除，加註「作廢，見 R-VC27」。
+ruling	R-VC12		RULINGS.md	1038	由來：R-VC27 作廢 R-VC12 二(a) 時，未查 `DATA_REQUESTS.md`，
 ruling	R-VC12		ANOMALIES.md	1061	- **R-VC12 二(a)** 之措辭以「匯出未帶文字」為其實測前提 —— 該前提於二節不成立。
 ruling	R-VC12		ANOMALIES.md	1069	- 於表 B 該三列**並列實測逐字** —— 引用非摘要，同 R-VC12 二(c) 對 §8.3 之作法。
 ruling	R-VC12		ANOMALIES.md	1075	它被當成已實測之事實引用（R-VC12 二(a) 即以它為據立條），
@@ -534,6 +536,7 @@ ruling	R-VC26		RULINGS.md	900	R-VC26（拆分之第四個充分條件：互相�
 ruling	R-VC27		RULINGS.md	417	> **本條之二(a) 作廢，見 R-VC27。**
 ruling	R-VC27		RULINGS.md	953	R-VC27（R-VC12 二(a) 之修訂：三節之內容欄改為逐節實測）
 ruling	R-VC27		RULINGS.md	977	R-VC12 二(a) 之原文依 R-TM13 不刪除，加註「作廢，見 R-VC27」。
+ruling	R-VC27		RULINGS.md	1038	由來：R-VC27 作廢 R-VC12 二(a) 時，未查 `DATA_REQUESTS.md`，
 ruling	R-VC27		ANOMALIES.md	1101	### 處置（下放包 28 §一，R-VC27）
 ruling	R-VC27		ANOMALIES.md	1103	- **R-VC12 二(a) 作廢**，代以 R-VC27：表 B 之「內容」欄一律**逐字引錄
 ruling	R-VC27		ANOMALIES.md	1106	- **DR-VC6 之問法改為三問**（R-VC27 末段，T148 已落）。
@@ -548,6 +551,7 @@ ruling	R-VC27		data/tableB_draft.md	59	2. **§10.1／10.2／§15** 三節 ——
 ruling	R-VC27		data/tableB_draft.md	76	6. **A-VC20 已解**（R-VC27，下放包 28 §一）。其成因值得留在這裡：
 ruling	R-VC28		RULINGS.md	989	R-VC28（本 feature 之 TC ID）
 ruling	R-VC28		ANOMALIES.md	1135	本 feature 依 R-VC28 採 `newR1L-`（與 D2 及 amfm 既有實例一致）。
+ruling	R-VC29		RULINGS.md	1023	R-VC29（條文修訂之波及檢查，指定承載者）
 ruling	R-VC3		RULINGS.md	73	R-VC3（驗證範圍與兩張強制揭露表）
 ruling	R-VC3		RULINGS.md	264	揭露義務：R-VC3 之 leaf 全集 117 與覆蓋落差 18，在對應 assertion
 ruling	R-VC3		RULINGS.md	270	117 —— 子需求 ∪ 無子之父（R-VC3 所裁之驗證母體）
@@ -859,9 +863,13 @@ section	6		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	110	- 其�
 section	6.1		docs/REVISIONS.md	123	- **原**：`docs/upstream/03_rulings.md` §6.1 之定案 P0 6 / P1 39 / P2 38 / P3 34
 section	7		DECISIONS.md	109	> 若 §7 之 8 組 Test Set 獲簽，建議改為依 Test Set 分批
 section	7		docs/REVISIONS.md	170	- **原文**（`docs/upstream/01_intake_recon.md` §7 T4 專項）：
+section	7.1		RULINGS.md	1044	§7.1／§7.3／§7.4／§7.5 仍為紀律，無承載者。
 section	7.1		ANOMALIES.md	715	`SWE1-HMI-VC-033-01`（§7.1，Glove Box 停用之錯誤鎖定）：
 section	7.1		DATA_REQUESTS.md	225	- **內容**：`SWE1-HMI-VC-033-01`（§7.1）之鎖定門檻，二欄相差一次：
 section	7.1		docs/runtime/profiles/FW036_R1L_VehicleCategory_Profile.md	303	會把現行三筆判為違規 —— 而它們依 §7.1 不回溯。
+section	7.3		RULINGS.md	1044	§7.1／§7.3／§7.4／§7.5 仍為紀律，無承載者。
+section	7.4		RULINGS.md	1044	§7.1／§7.3／§7.4／§7.5 仍為紀律，無承載者。
+section	7.5		RULINGS.md	1044	§7.1／§7.3／§7.4／§7.5 仍為紀律，無承載者。
 section	8		ANOMALIES.md	700	**本體（§1–§8）逐字未動** —— 已以 diff 驗證，含 §4 之
 section	8.1		DATA_REQUESTS.md	64	- **內容**：規格 §8.1–8.5、§9.1–9.2、§10.1–10.2、§11.9–11.9.3、§14.2、§15、
 section	8.1		framework.md	160	| （另）Cabrio 本體 | 0 leaf | §8.1–8.5、§9.1、§9.2（7 節）| 7 節 |

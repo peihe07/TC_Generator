@@ -5,8 +5,8 @@
  "test_set": "Controls",
  "handoff": "docs/handoff/20_batch3_tc.md ＋ 20a ＋ 21",
  "ruling": "R-VC21／R-VC22／R-VC24／R-VC25",
- "segment": "a",
- "segment_note": "R-VC22 之 a 段 16 筆。**b 段 1 筆**：`SWE1-HMI-VC-025-01`（`C1.) Controls Button Table.`，疑為表格題名之誤登，A-VC17），阻斷於 **DR-VC9(二)**。收斂母體為 a 段之 16（R-VC22(b)）—— `Controls` 之 leaf 數仍為 17，framework 不因分段而改動（R-VC22(c)）。",
+ "segment": "a+b",
+ "segment_note": "**b 段已併入**（R-VC30，Pei 2026-08-27 裁定 (a)；R-VC22(d) 補生成併入原批）。`held_leaves` 為空，母體即該 Test Set 之 leaf 全集。",
  "split_delta": 0,
  "tc_id_status": "provisional",
  "leaf_scope": [
@@ -25,11 +25,10 @@
   "SWE1-HMI-VC-025-02",
   "SWE1-HMI-VC-025-03",
   "SWE1-HMI-VC-025-04",
-  "SWE1-HMI-VC-025-05"
- ],
- "held_leaves": [
+  "SWE1-HMI-VC-025-05",
   "SWE1-HMI-VC-025-01"
  ],
+ "held_leaves": [],
  "pending_scope": [
   {
    "leaf": "SWE1-HMI-VC-014",
@@ -348,6 +347,25 @@
    "functional_safety": "NA",
    "reasoning": "**驗證目標**：本 leaf 所載對照列之按鍵狀態語意。**表格取材（勘查 §3.7）**：值之權威為 **SYS1 §3.9 之二欄表**（`Button | Button Status`，28 資料列），037 之扁平化格僅為索引。**逐字引用整格，不自行拆分**；ER 逐列表述 —— 此為勘查 (g) 判其不拆之前提。 **⚠ 二處外部委派（§8.4.2）**：`Cabrio | Opens Cabrio pop up (see Cabrio requirements)` 與 `Memory Seats | Opens Memory Seats second level screen (see Virtual Memory Seats L&F)`。本 TC 之範圍**僅及於「按下該鈕後有對應之彈窗／次層畫面開啟」，不驗其內容**。**二者性質不同**：Cabrio 之標的（章 8／9）**在本 feature 內但 037 零涵蓋**（R-VC3 表 B 之 17 節，待 DR-VC3）；Memory Seats 之標的在**他 feature 之規格**且不在素材清單（R-VC10）。 **取材（R-VC25）**：上半取自 037 `Description`（優先序第 1）。",
    "distinguishing_axis": "對照列範圍：Table rows for Bed Lowering, blind spot views, Electrochromic, Cabrio, Memory Seats and Ambient Lighting"
+  },
+  {
+   "leaf_id": "SWE1-HMI-VC-025-01",
+   "test_group": "Vehicle Category",
+   "test_set": "Controls",
+   "tc_title": "Controls button set matches the button table as a whole",
+   "test_item": "C1.) Controls Button Table.\n\n(Whole-set layer -- the Controls button set as a whole against the button table, no table row missing and no button outside it)",
+   "pre_conditions": "1. The vehicle under test is equipped with the Controls features listed in the button table",
+   "input_test_data": "The Controls Button Table of SYS1 section 3.9, whose rows are the 28 buttons from Rear Sunshade to Ambient Lighting",
+   "test_procedure": "1. Open the Vehicle Category screen and select the \"Controls\" tab\n2. Record every button that is present in the Controls tab\n3. Compare the recorded set against the rows of the button table named in the test data",
+   "expected_result": "1. The Vehicle Category screen is displayed with the \"Controls\" tab active\n2. The recorded set is the baseline for the comparison in step 3\n3. Every table row whose Controls feature the vehicle is equipped with has a button present, and no button is present that the table does not name",
+   "specification_reference": "SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_3.9",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "priority": "P2",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "reasoning": "**驗證目標**：Controls 按鈕之**全集**與 SYS1 §3.9 之 `Controls Button Table` 相符。**⚠ 本筆為 b 段，依 R-VC30 生成**（同 `007-01`，DR-VC9(二) 之查證維持發送）。**⚠ 與 sibling 之層次分工（IN §8.2.1）**：本筆為**全集層**（成員之完整性與排他性）；`-02`~`-05` 為**逐列層**（各按鈕之**狀態語意**，如 `Activates Feature`／`Off, On (if unavailable – greyed out)`）。**二者為不同驗證點** —— 每個按鈕之狀態都對而少一個按鈕，逐列層不會 FAIL，本筆會。**取材（profile §8 短來源）**：037 `Description` 為 `C1.) Controls Button Table.`，**27 字元**，上半取其完整句，須人工複核。**測試資料之表為實測**：SYS1 §3.9 之按鈕列實測為 **28 列**，自 `Rear Sunshade` 至 `Ambient Lighting`。**⚠ 範圍（§8.4.2）**：本筆不驗各按鈕之狀態語意（屬 `-02`~`-05`），亦不驗表外項目於他處之行為。",
+   "distinguishing_axis": "表之層次：全集（對 -02～-05 之逐列狀態語意）"
   }
  ]
 }

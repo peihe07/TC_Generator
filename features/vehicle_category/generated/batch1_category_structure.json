@@ -5,8 +5,8 @@
  "test_set": "Category Structure",
  "handoff": "docs/handoff/15_batch1_tc.md",
  "ruling": "R-VC21（批次計畫）／R-VC22（DR 保留段）",
- "segment": "a",
- "segment_note": "R-VC22 之 a 段 —— 地位確定之 leaf，本輪生成 22 筆。b 段 2 筆（`SWE1-HMI-VC-007-01`／`SWE1-HMI-VC-013-04`）保留不生成，阻斷於 DR-VC9(二)，其地位待確認。**本批之收斂條件以 a 段之 22 為母體**（R-VC22(b)）——收斂不等於 `Category Structure` 完成，該 Test Set 之 leaf 數仍為 24（R-VC22(c)，`framework.md` 不因分段而改動）。",
+ "segment": "a+b",
+ "segment_note": "**b 段已併入**（R-VC30，Pei 2026-08-27 裁定 (a)；R-VC22(d) 補生成併入原批）。`held_leaves` 為空，母體即該 Test Set 之 leaf 全集。",
  "status": "converged",
  "status_note": "第 1 批 a 段收斂（下放包 16 §四 T94）。收斂條件實跑 **19 項全過**（`scripts/verify_batch.py`，`BATCH` 指向本檔）。**本檔其後不再修改**，除非 (1) DR-VC9 回覆觸發 Revise —— 屆時之異動限於 `VC-011`（`the table` 之指涉）與 `VC-012-03`（PDO graphics 之版面細節）二筆；或 (2) b 段 2 筆補生成時，依 R-VC22(d) 複驗 a 段未因補入而失效（特別是 `test_item` 括號下半之兩兩不同須以 a＋b 全集重驗）。其餘 20 筆不動。",
  "tc_id_status": "provisional",
@@ -23,6 +23,7 @@
   "SWE1-HMI-VC-007-03",
   "SWE1-HMI-VC-007-04",
   "SWE1-HMI-VC-007-05",
+  "SWE1-HMI-VC-007-01",
   "SWE1-HMI-VC-008",
   "SWE1-HMI-VC-009",
   "SWE1-HMI-VC-010",
@@ -32,12 +33,10 @@
   "SWE1-HMI-VC-012-03",
   "SWE1-HMI-VC-013-01",
   "SWE1-HMI-VC-013-02",
-  "SWE1-HMI-VC-013-03"
- ],
- "held_leaves": [
-  "SWE1-HMI-VC-007-01",
+  "SWE1-HMI-VC-013-03",
   "SWE1-HMI-VC-013-04"
  ],
+ "held_leaves": [],
  "pending_scope": [
   {
    "leaf": "SWE1-HMI-VC-011",
@@ -46,6 +45,11 @@
   },
   {
    "leaf": "SWE1-HMI-VC-012-03",
+   "dr": "DR-VC9",
+   "marker": "PDO graphics"
+  },
+  {
+   "leaf": "SWE1-HMI-VC-013-04",
    "dr": "DR-VC9",
    "marker": "PDO graphics"
   }
@@ -282,6 +286,25 @@
    "distinguishing_axis": "對照列範圍：VC2.2.10 and VC2.2.11 of the Vehicle Tab Labels and Order table"
   },
   {
+   "leaf_id": "SWE1-HMI-VC-007-01",
+   "test_group": "Vehicle Category",
+   "test_set": "Category Structure",
+   "tc_title": "Vehicle Tab set matches the mapping table as a whole",
+   "test_item": "Vehicle Tab Labels and Order.\n\n(Whole-set layer -- the tab set as a whole against the mapping table, no table row missing and no tab outside it)",
+   "pre_conditions": "1. The vehicle under test is equipped with the Specialty features listed in the mapping table",
+   "input_test_data": "The Vehicle Tab Labels and Order table of SYS1 section 2.4, whose rows are VC2.2.2 to VC2.2.11",
+   "test_procedure": "1. Open the Vehicle Category screen and select the \"Controls\" tab\n2. Record every Specialty tab that is present, with its name and its left-to-right position\n3. Compare the recorded set against the rows of the mapping table named in the test data",
+   "expected_result": "1. The Vehicle Category screen is displayed with the \"Controls\" tab active\n2. The recorded set is the baseline for the comparison in step 3\n3. Every table row whose Specialty feature the vehicle is equipped with has a tab present, and no tab is present that the table does not name",
+   "specification_reference": "SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.4",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "priority": "P2",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "reasoning": "**驗證目標**：Vehicle Tab 之**全集**與 SYS1 §2.4 之對照表相符 ——表內該有的都在、表外不該有的都不在。**⚠ 本筆為 b 段，依 R-VC30（Pei 2026-08-27 裁定 (a)）生成** ——裁為需求 leaf，維持於 117 母體。**DR-VC9(二) 之查證維持發送**；若上游回覆與本裁定相反（確認為表頭誤登），依 `docs/RESUME_PLAN.md` §4.1 由 Pei 再裁。**⚠ 與 sibling 之層次分工（IN §8.2.1）**：本筆為**全集層**（完整性與排他性）；`-02`~`-05` 為**逐列層**（各列之名稱與位置）。**二者為不同驗證點，不重複** ——逐列全對而少一列，逐列層不會 FAIL，本筆會。**取材（profile §8 短來源）**：037 `Description` 為 `Vehicle Tab Labels and Order.`，**29 字元** —— 該長度下子串判準幾近無保護，故上半取其**完整句**，且依 profile §8 須人工複核。**測試資料之表為實測**：SYS1 §2.4 之 `VC2.2.x` 列實測為 **VC2.2.2–VC2.2.11 共 10 列**（無 VC2.2.1）。",
+   "distinguishing_axis": "表之層次：全集（對 -02～-05 之逐列）"
+  },
+  {
    "leaf_id": "SWE1-HMI-VC-008",
    "test_group": "Vehicle Category",
    "test_set": "Category Structure",
@@ -470,6 +493,25 @@
    "functional_safety": "NA",
    "reasoning": "**驗證目標**：直向版面下，超出前四個之 feature 以磚塊置於半幅列下方。**test_item 上半取 SYS1 之完整句**：037 之 `013-03` 逐字為 `follow with remaining features as tiles below the half banners` —— **小寫起首之句中片段**。同 -013-02 之處置，取完整句（下放包 14 §2.2）。**本 leaf 之驗證範圍以括號下半為準**。",
    "distinguishing_axis": "數量段：五個以上之剩餘置放（對 -013-02 之恰四個）"
+  },
+  {
+   "leaf_id": "SWE1-HMI-VC-013-04",
+   "test_group": "Vehicle Category",
+   "test_set": "Category Structure",
+   "tc_title": "Portrait Dashboard layout follows the PDO graphics",
+   "test_item": "Refer to PDO graphics.\n\n(Portrait Dashboard -- the layout as a whole against the PDO graphics reference)",
+   "pre_conditions": "1. The vehicle is equipped with a portrait display\n2. The Dashboard tab holds features to display",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Vehicle Category screen and select the \"Controls\" tab\n2. Select the Dashboard tab and record the layout as displayed\n3. Compare the recorded layout against PENDING: DR-VC9 PDO graphics",
+   "expected_result": "1. The Vehicle Category screen is displayed with the \"Controls\" tab active\n2. The Dashboard layout is displayed on the portrait display\n3. The recorded layout matches the PDO graphics reference",
+   "specification_reference": "SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_2.6.3",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "priority": "P3",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "reasoning": "**驗證目標**：直向 Dashboard 之版面與 PDO graphics 相符。**⚠ 本筆為 R-VC30 所裁之殼 TC** —— PDO graphics **不在素材**（DR-VC9(一) 未結），故 Procedure 之比對標的以 `PENDING: DR-VC9 PDO graphics` 佔位（IN §8.4.3）。**其為三筆 b 段中唯一之殼** —— `007-01`／`025-01` 之表皆在 SYS1。**⚠ 與 sibling 之分工（IN §8.2.1）**：`013-01`~`-03` 驗**已載於規格之具體版面規則**（三則以下各一橫幅／四則以上之拆分／其餘以磚塊置於下方）；本筆驗**版面整體與 PDO 之相符**，即規格文字未載而委由圖說者。二者不重複。**Pre-Condition 之方向**：`DISPLAY_PORTRAIT`（profile §6 常數，逐字重用）—— 本 leaf 明載 `For portrait displays`。**取材（profile §8 短來源）**：037 `Description` 為 `Refer to PDO graphics.`，**22 字元**，上半取其完整句，須人工複核。",
+   "distinguishing_axis": "直向 Dashboard：版面整體對 PDO（對 -01～-03 之具體規則）"
   }
  ]
 }

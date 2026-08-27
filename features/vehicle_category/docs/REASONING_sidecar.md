@@ -5,7 +5,7 @@
 
 - 產出：`scripts/build_reasoning_sidecar.py`，下放包 28 T150
 - 鍵：`leaf_id#n`，`n` 為該 leaf 於其批內之 TC 序（拆分筆據此區分）
-- 筆數：**120**，與六批 JSON 之 TC 總數相同（`--verify` 驗之）
+- 筆數：**125**，與六批 JSON 之 TC 總數相同（`--verify` 驗之）
 - `split_flag`／`split_reason` 不入本檔（profile §11）
 
 ---
@@ -160,6 +160,12 @@
 - **`distinguishing_axis`**：對照列範圍：VC2.2.10 and VC2.2.11 of the Vehicle Tab Labels and Order table
 - **`reasoning`**：**驗證目標**：本 leaf 所載對照列之頁籤名與位置。**取材（下放包 15 §5.2）**：值取自 **SYS1 §2.4 之四欄表**（`Note | Specialty Feature | Tab Name | Order`，11 資料列，每列 4 欄），037 之扁平化格僅為索引。**為什麼這樣切**：037 已將表切為四 leaf，依 R-VC18 不合併。
 
+### `SWE1-HMI-VC-007-01#1` — Vehicle Tab set matches the mapping table as a whole
+
+- **`test_set`**：Category Structure　**`priority`**：P2　**`spec_ref`**：`…_2.4`
+- **`distinguishing_axis`**：表之層次：全集（對 -02～-05 之逐列）
+- **`reasoning`**：**驗證目標**：Vehicle Tab 之**全集**與 SYS1 §2.4 之對照表相符 ——表內該有的都在、表外不該有的都不在。**⚠ 本筆為 b 段，依 R-VC30（Pei 2026-08-27 裁定 (a)）生成** ——裁為需求 leaf，維持於 117 母體。**DR-VC9(二) 之查證維持發送**；若上游回覆與本裁定相反（確認為表頭誤登），依 `docs/RESUME_PLAN.md` §4.1 由 Pei 再裁。**⚠ 與 sibling 之層次分工（IN §8.2.1）**：本筆為**全集層**（完整性與排他性）；`-02`~`-05` 為**逐列層**（各列之名稱與位置）。**二者為不同驗證點，不重複** ——逐列全對而少一列，逐列層不會 FAIL，本筆會。**取材（profile §8 短來源）**：037 `Description` 為 `Vehicle Tab Labels and Order.`，**29 字元** —— 該長度下子串判準幾近無保護，故上半取其**完整句**，且依 profile §8 須人工複核。**測試資料之表為實測**：SYS1 §2.4 之 `VC2.2.x` 列實測為 **VC2.2.2–VC2.2.11 共 10 列**（無 VC2.2.1）。
+
 ### `SWE1-HMI-VC-008#1` — Cameras tab surfaced when Camera App is equipped
 
 - **`test_set`**：Category Structure　**`priority`**：P2　**`spec_ref`**：`…_2.5`
@@ -219,6 +225,12 @@
 - **`test_set`**：Category Structure　**`priority`**：P3　**`spec_ref`**：`…_2.6.3`
 - **`distinguishing_axis`**：數量段：五個以上之剩餘置放（對 -013-02 之恰四個）
 - **`reasoning`**：**驗證目標**：直向版面下，超出前四個之 feature 以磚塊置於半幅列下方。**test_item 上半取 SYS1 之完整句**：037 之 `013-03` 逐字為 `follow with remaining features as tiles below the half banners` —— **小寫起首之句中片段**。同 -013-02 之處置，取完整句（下放包 14 §2.2）。**本 leaf 之驗證範圍以括號下半為準**。
+
+### `SWE1-HMI-VC-013-04#1` — Portrait Dashboard layout follows the PDO graphics
+
+- **`test_set`**：Category Structure　**`priority`**：P3　**`spec_ref`**：`…_2.6.3`
+- **`distinguishing_axis`**：直向 Dashboard：版面整體對 PDO（對 -01～-03 之具體規則）
+- **`reasoning`**：**驗證目標**：直向 Dashboard 之版面與 PDO graphics 相符。**⚠ 本筆為 R-VC30 所裁之殼 TC** —— PDO graphics **不在素材**（DR-VC9(一) 未結），故 Procedure 之比對標的以 `PENDING: DR-VC9 PDO graphics` 佔位（IN §8.4.3）。**其為三筆 b 段中唯一之殼** —— `007-01`／`025-01` 之表皆在 SYS1。**⚠ 與 sibling 之分工（IN §8.2.1）**：`013-01`~`-03` 驗**已載於規格之具體版面規則**（三則以下各一橫幅／四則以上之拆分／其餘以磚塊置於下方）；本筆驗**版面整體與 PDO 之相符**，即規格文字未載而委由圖說者。二者不重複。**Pre-Condition 之方向**：`DISPLAY_PORTRAIT`（profile §6 常數，逐字重用）—— 本 leaf 明載 `For portrait displays`。**取材（profile §8 短來源）**：037 `Description` 為 `Refer to PDO graphics.`，**22 字元**，上半取其完整句，須人工複核。
 
 
 ## 批次 `batch2_settings_list`
@@ -514,6 +526,12 @@
 - **`distinguishing_axis`**：對照列範圍：Table rows for Bed Lowering, blind spot views, Electrochromic, Cabrio, Memory Seats and Ambient Lighting
 - **`reasoning`**：**驗證目標**：本 leaf 所載對照列之按鍵狀態語意。**表格取材（勘查 §3.7）**：值之權威為 **SYS1 §3.9 之二欄表**（`Button | Button Status`，28 資料列），037 之扁平化格僅為索引。**逐字引用整格，不自行拆分**；ER 逐列表述 —— 此為勘查 (g) 判其不拆之前提。 **⚠ 二處外部委派（§8.4.2）**：`Cabrio | Opens Cabrio pop up (see Cabrio requirements)` 與 `Memory Seats | Opens Memory Seats second level screen (see Virtual Memory Seats L&F)`。本 TC 之範圍**僅及於「按下該鈕後有對應之彈窗／次層畫面開啟」，不驗其內容**。**二者性質不同**：Cabrio 之標的（章 8／9）**在本 feature 內但 037 零涵蓋**（R-VC3 表 B 之 17 節，待 DR-VC3）；Memory Seats 之標的在**他 feature 之規格**且不在素材清單（R-VC10）。 **取材（R-VC25）**：上半取自 037 `Description`（優先序第 1）。
 
+### `SWE1-HMI-VC-025-01#1` — Controls button set matches the button table as a whole
+
+- **`test_set`**：Controls　**`priority`**：P2　**`spec_ref`**：`…_3.9`
+- **`distinguishing_axis`**：表之層次：全集（對 -02～-05 之逐列狀態語意）
+- **`reasoning`**：**驗證目標**：Controls 按鈕之**全集**與 SYS1 §3.9 之 `Controls Button Table` 相符。**⚠ 本筆為 b 段，依 R-VC30 生成**（同 `007-01`，DR-VC9(二) 之查證維持發送）。**⚠ 與 sibling 之層次分工（IN §8.2.1）**：本筆為**全集層**（成員之完整性與排他性）；`-02`~`-05` 為**逐列層**（各按鈕之**狀態語意**，如 `Activates Feature`／`Off, On (if unavailable – greyed out)`）。**二者為不同驗證點** —— 每個按鈕之狀態都對而少一個按鈕，逐列層不會 FAIL，本筆會。**取材（profile §8 短來源）**：037 `Description` 為 `C1.) Controls Button Table.`，**27 字元**，上半取其完整句，須人工複核。**測試資料之表為實測**：SYS1 §3.9 之按鈕列實測為 **28 列**，自 `Rear Sunshade` 至 `Ambient Lighting`。**⚠ 範圍（§8.4.2）**：本筆不驗各按鈕之狀態語意（屬 `-02`~`-05`），亦不驗表外項目於他處之行為。
+
 
 ## 批次 `batch4_settings_behavior`
 
@@ -747,4 +765,22 @@
 - **`test_set`**：Ignition Availability　**`priority`**：P1　**`spec_ref`**：`…_13.5`
 - **`distinguishing_axis`**：解除之目標狀態：Key On（對 Run 支）
 - **`reasoning`**：**驗證目標**：車輛回到 Key On 時彈窗自動關閉，並回到轉換前之 Settings 畫面。**取材同 Run 支**（第三處置類，單句 s3，`resolution=PC`／`pop-up`）。**本筆即下放包 26 §三所補之覆蓋洞** —— 拆前「轉到 Key On 時彈窗不消失」無任何一筆會 FAIL。**Procedure 自 Pre-Condition 完整重建情境**：本支不接續 Run 支之結果，其彈窗須重新觸發（互相消耗之直接後果，下放包 25 §三）。**等價性不需另判**（下放包 26 §三）：Run 與 Key On 是否同一等價類，不改互相消耗之判準所定之拆分結論。**追溯佐證（不入 ER）**：`Pop Up List` 第 321 列 `PU0319` 之文字與本筆逐字相同，其 `Timeout (sec)` = `N/A`、**`Exit Conditions` = `N/A`**，其 `Description` 作 `Ignition Status: In RUN and then turned to Key Off or ACC … Pop-up is shown and is unable to be closed`。**`058` 與 `064` 確為二個不同彈窗**（文字相同、行為不同）。PU 編號未載於 SYS1／037，只入本欄。
+
+
+## 批次 `batch6_brake_service`
+
+### `SWE1-HMI-VC-065-01#1` — Service mode greys out while the vehicle moves
+
+- **`test_set`**：Brake Service　**`priority`**：P0　**`spec_ref`**：`…_14.1`
+- **`distinguishing_axis`**：行進中之呈現：灰化（對 -02 之按下後果，留置）
+- **`reasoning`**：**驗證目標**：車輛行進中，EPB Service mode 選項呈灰。**取材（R-VC25）**：上半取自 037 `Description`（優先序第 1）——`Service mode option will be greyed out if the vehicle is in motion.`，**非 CONT**（其為完整可讀句，無指涉）。**ER 之 baseline（§5.6）**：「行進中呈灰」須有靜止時之呈現可比 ——否則「一直都是灰的」與「因行進而變灰」不可分。**P0 之依據**：行進中之攔阻屬 safety 型（同 `062-01`／`063-01`）。**與 `065-02` 之分工（IN §8.2.1）**：本筆驗**呈現**（灰化），`-02` 驗**按下之後果**（彈窗）—— 二個不同驗證點。**未涵蓋**：§14.2 之彈窗優先序（037 未涵蓋，表 B 第 14 列）。
+
+
+## 批次 `batch7_cabrio_widget`
+
+### `SWE1-HMI-VC-066#1` — Cabrio widget carries its title
+
+- **`test_set`**：Cabrio Widget　**`priority`**：P3　**`spec_ref`**：`…_16.2`
+- **`distinguishing_axis`**：widget 之標題文字（本組唯一 leaf）
+- **`reasoning`**：**驗證目標**：該 widget 之標題文字為 `Cabrio`。**取材（R-VC25）**：上半取自 037 `Description` 之**首句**`W0.) Widget title for this feature is Cabrio.` ——其後之 `(image: image23.png)` 為圖佔位，**不入上半**（上半仍為 Description 之逐字子串，第 7b 項通過）。**非 CONT** —— 該句完整可讀，無指涉。**⚠ 委派之兩態（下放包 34 §3.3）**：widget 所開啟之 Cabrio 功能（車頂開闔、擋風板）屬**章 8／9**，037 未涵蓋，見表 B 第 1–7 列。**若 DR-VC3 回覆「應補」，章 8／9 另立 `Cabrio Rooftop` 組（R-VC16(c)），本委派之標的即改指該組** ——二態預先寫明，回覆後只需確認，不需改寫本欄。**範圍（§8.4.2）**：本筆只驗標題文字，不驗 widget 之開啟行為、不驗其所開啟之功能。
 

@@ -1,0 +1,40 @@
+{
+ "batch": "batch7_cabrio_widget",
+ "feature": "vehicle_category",
+ "test_group": "Vehicle Category",
+ "test_set": "Cabrio Widget",
+ "handoff": "docs/handoff/34_tail_batches.md",
+ "ruling": "R-VC22／R-VC25／R-VC26／R-VC30",
+ "segment": "a（無 b 段）",
+ "segment_note": "**本批無 b 段**，1 leaf → 1 TC。勘查五項停止條件皆未命中。",
+ "split_delta": 0,
+ "tc_id_status": "provisional",
+ "leaf_scope": [
+  "SWE1-HMI-VC-066"
+ ],
+ "held_leaves": [],
+ "pending_scope": [],
+ "write_back": "凍結 —— 本輪只產出 JSON，不寫回工作簿",
+ "reasoning": "**驗證目標**：本 feature 之 widget 標題為 `Cabrio`。**為什麼只有 1 筆**：framework §2 之 #8 `Cabrio Widget` 現為 1 leaf（§16.2）。**未涵蓋**：§16.2.1／§16.2.2（widget 所開啟之 Cabrio 車頂與擋風板操作）為 037 未涵蓋之待補節（表 B 第 16／17 列，待 DR-VC3）——**其內容不得預納**（§8.4.2）。",
+ "tcs": [
+  {
+   "leaf_id": "SWE1-HMI-VC-066",
+   "test_group": "Vehicle Category",
+   "test_set": "Cabrio Widget",
+   "tc_title": "Cabrio widget carries its title",
+   "test_item": "W0.) Widget title for this feature is Cabrio.\n\n(Widget title -- the literal string shown as this feature's widget title)",
+   "pre_conditions": "1. The vehicle under test is equipped with the Cabrio feature\n2. The widget for this feature is placed where widgets are displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Display the screen that holds this feature's widget\n2. Record the title text shown on that widget",
+   "expected_result": "1. The widget for this feature is displayed\n2. The widget title reads \"Cabrio\"",
+   "specification_reference": "SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_16.2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "priority": "P3",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "reasoning": "**驗證目標**：該 widget 之標題文字為 `Cabrio`。**取材（R-VC25）**：上半取自 037 `Description` 之**首句**`W0.) Widget title for this feature is Cabrio.` ——其後之 `(image: image23.png)` 為圖佔位，**不入上半**（上半仍為 Description 之逐字子串，第 7b 項通過）。**非 CONT** —— 該句完整可讀，無指涉。**⚠ 委派之兩態（下放包 34 §3.3）**：widget 所開啟之 Cabrio 功能（車頂開闔、擋風板）屬**章 8／9**，037 未涵蓋，見表 B 第 1–7 列。**若 DR-VC3 回覆「應補」，章 8／9 另立 `Cabrio Rooftop` 組（R-VC16(c)），本委派之標的即改指該組** ——二態預先寫明，回覆後只需確認，不需改寫本欄。**範圍（§8.4.2）**：本筆只驗標題文字，不驗 widget 之開啟行為、不驗其所開啟之功能。",
+   "distinguishing_axis": "widget 之標題文字（本組唯一 leaf）"
+  }
+ ]
+}
