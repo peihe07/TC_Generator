@@ -5,7 +5,7 @@ unsigned sheet blocks Phase 4+. `[PROPOSED]` untouched at
 sign-off = binding as proposed.
 
 ## 1. Intake
-- spec_mode: [AUTO] A
+- spec_mode: [AUTO] ['A', 'B', 'D']
 - spec text layer: [AUTO] text-layer: 83356 chars (via pymupdf)
 - source files: [AUTO] 8 present (SHA256 in RECON.md)
 - ruled-constant assertions: [AUTO] 2 checked, 2 PASS, 0 FAIL (measured values in RECON.md)

@@ -8,7 +8,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A | 內容 | 狀態 | Tier |
 |---|---|---|---|
 | A-SU1 | 下放包 01 §三 3.1 之素材身分判定與 repo 側原件不符（PDF 有完整文字層；三份 docx 皆真 OOXML）—— 使 R-SU6 全條與 R-SU4(a) 之揭露段前提失效 | **RESOLVED（下放包 02 §一；R-SU6 v2／R-SU4 v2）** | — |
-| A-SU2 | 037 `Source Requirement ID` 欄非單一形態：3 格以 `/` 併記兩個 id、10 格為 `SYS-RA-VF747_V2/V6-{n}` 族 | **形態面 RESOLVED（R-SU5 v2）；家族面 PENDING** | Tier 2（VF747 是否另立第三錨點家族，掛 T11） |
+| A-SU2 | 037 `Source Requirement ID` 欄非單一形態：3 格以 `/` 併記兩個 id、10 格為 `SYS-RA-VF747_V2/V6-{n}` 族 | **RESOLVED（形態面 R-SU5 v2；家族面 下放包 04 §1.1）** | — |
 | A-SU3 | 規格 PDF p.46 之 `PU971`（3 位）於 `forms/Pop Up List HMI R1 (26PI).xlsx` 查無 | **RESOLVED（下放包 03 §2.3：原文筆誤，作 `PU0971`）** | — |
 
 ---
@@ -100,11 +100,11 @@ brace 形 `{7位}` 出現 **174 次／unique 87**（與 §三 3.5 完全相符�
 
 ---
 
-## A-SU2 —— 037 `Source Requirement ID` 欄之三形態 —— **形態面 RESOLVED／家族面 PENDING**
+## A-SU2 —— 037 `Source Requirement ID` 欄之三形態 —— **RESOLVED**
 
 > **形態面結案（下放包 03 §2.1）**：以 **R-SU5 v2** 更正形態陳述，三形態逐項入條文。
-> **家族面待裁**：VF747 族 10 列是否另立第三錨點家族 —— T11 已量測，結果見
-> `docs/upstream/02_pending_closeout.md` §一 T11，待分析層裁。
+> **家族面結案（下放包 04 §1.1，Pei 准）**：VF747 不立為第三錨點家族。
+> 處分文見本節末。
 
 **登記時點**：T4' 重測，下放包 01 §三 3.4 之 `373 / 364 / 9-dup` 三數字比對。
 
@@ -148,6 +148,38 @@ col1 非空者計入（383 列）；形態判定用 `re.fullmatch`（非 `re.sea
 2. R-SU5(a) 之理由對 VF747 族 10 列另裁：仍不取為 spec_reference，
    或改認 VF747 為第三錨點家族
 3. 併記格之第二 id（334、361、507）是否入 037 內部追溯，一併裁
+
+### 五、處分（下放包 04 §1.1，逐字）
+
+```
+A-SU2 處分（2026-08-27，Pei 准）：
+
+形態面：R-SU5 v2 已結（上繳包 02 §二核對 OK）。
+
+家族面：**VF747 不立為第三錨點家族**，R-SU5 v2 (a) 對 (iii) 之
+「暫行維持」轉**確定維持**。依據：T11 三項獨立事實同向 ——
+(a) 在手 VF747_V1_R3 無 Polarion 物件宣告、(b) 無任何 7 位
+ObjectID、(c) 037 引用 V2／V6 與在手 V1_R3 為不同大版，
+10/10 目標 id 於全文 0 命中（上繳包 02 §一 T11、§三）。
+
+該 10 列（SWE1-FOTA-225, 226, 227, 228, 230, 239, 240, 241, 242,
+243）之 spec_reference 於 Phase 2/3 錨定時走既有兩家族
+（R-SU4 v2 (a)(b)）；屆時仍無錨可落者，個案依 IN §8.4.3 掛
+PENDING 並發 DR。
+
+休眠線索（記錄即止，不納素材、不開檔、不發 DR）：
+`~/Work/02_Project_R1LR/9_ASPICE/SYS.1 Requirement Elicitation/
+SYS1_VF_with source ID/HDCC27/VF747_V1_R3_PHDCC27.xlsx` 及
+`SYS1_DT27_VF_Diff_HDCC27/VF747_V1_R3_PDT27_DiffHDCC27.xlsx`。
+若上述個案 DR 發生，優先向此線索取 V2／V6 對應之 export，
+屆時為新素材、新登記。
+```
+
+**處分之 1、2 已結**（R-SU5 v2 + 本處分）。**提案 3（併記格之第二 id
+334／361／507 是否入 037 內部追溯）未見於處分文** —— 依 R-SU5 v2 (b)
+「本欄僅作 037 內部追溯保留，不進入任何 TC 欄位」，該三 id 之歸屬
+不影響任何 TC 產出；執行層以台帳所記之全集數（unique 366，含該三 id）
+為準，不另請裁。若分析層另有意見，下輪逕令。
 
 ---
 

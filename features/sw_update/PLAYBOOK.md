@@ -134,12 +134,39 @@ Remarks = reason + anomaly id.
 
 ## 6. Status board — SW Update
 
-- [ ] P0 intake complete; INTAKE.md reviewed; missing files: ____
-- [ ] P1 recon complete; workbook_state: ____; leaves: ____; targets: ____
+- [x] P0 intake complete; INTAKE.md reviewed; missing files: **無**（六份素材 + 036 母本 + Pop Up List 全在場）
+- [x] P1 recon complete; workbook_state: **BLANK**; leaves: **307**; targets: **307**
 - [ ] P2 DECISIONS signed (date: ____)
 - [ ] P3 framework Part N + profile approved
 - [ ] P4 data artifacts built
 - [ ] P5 pilot batch ____ reviewed; verdict: ____; corrections: ____
 - [ ] P6 all batches generated; lint green; placeholders: ____
 - [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: ____
-- Open PENDING rulings: ____
+- Open PENDING rulings: **無**（A-SU1／A-SU2／A-SU3 皆 RESOLVED）
+- 驗證母體（R-SU3）: **311** = FR 307 + NFR 4；錨點池（R-SU7 v2）: **574**
+
+## 7. 操作慣例（建議，非條文）
+
+> 本節為實際發生過之錯所留下的教訓，逐則記其出處。
+> **違反不構成停止條件**，但照做可省一輪。
+
+**(1) 分類型產出，每一類都要有一路獨立計數 —— 不能只驗最好驗的那類。**
+
+出處：上繳包 02 §六（自評 #1），T10／T12 案例。
+
+T10 對 CFTS_57 之 7 位 id 做四分類（章節／需求／Description／不可歸類），
+交付時只做了一路交叉驗證：「章節物件 87 = TOC PAGEREF 87」。
+該路只守章節物件 —— 對「需求物件」與「不可歸類」之邊界完全無獨立覆核。
+
+缺陷因此存活：分類採「首見為準」，而 11 個帶 `[Artifact Type:…]` 宣告之
+id 在文件中**先以內文 `Requirement ID {id}` 形態出現**，宣告排在後方，
+遂被誤歸「不可歸類」。錨點池因而少了 9 個（565 而非 574）。
+
+錯數之所以被抓到，是因為下一包（T12）從 **Description 側**重數一次而對不上
+（137 ≠ 135）—— 屬僥倖，不屬設計。若 R-SU7 未恰好要求 Description 對照，
+565 會一路帶進 Phase 2/3 之錨定。
+
+**作法**：分類產出交付前，對每一類各找一路與分類邏輯**不同源**的計數
+（如：宣告數 vs 文序走訪數、正向分類 vs 反向對照），並令各類之和
+閉合到母體總數。本例修正後之閉合式為 `87 + 487 + 137 + 10 = 721`
+= 裸命中 unique 總數。

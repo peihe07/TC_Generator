@@ -32,11 +32,12 @@ intake:
 paths_meta:
   a03_sheet: "AnalysisReport_FULL"   # 037 之需求分頁，表頭列 7、資料列 8 起
 
-# ⚠ T13（下放包 03）逐條核對結果：本 feature 實為 **A + B + D**，
-# 現值 "A" 為 intake.py 之提案（其 propose_spec_mode() 於 sys1 命中即
-# `return "A"`，結構上無法報出組合，見上繳包 02 §一 T13）。
-# 依 T13「不符即停」，執行層**不逕改**，待分析層裁定後回填。
-spec_mode: "A"                    # [待裁 —— 實測為 A+B+D]
+# 下放包 04 §1.3 裁定（依 T13 之 FO §3 逐條核對）：
+#   A —— SYS1 export 之 outline map（HMI 家族，R-SU4 v2(b)）
+#   B —— PDF 文字層之抽取管線（R-SU6 v2(b)）；其 `{filename}_{section}`
+#        之 reference 形態**不採** —— reference 由 R-SU4 v2 專管
+#   D —— CFTS/Word，reference 查得而非構造（CFTS 家族，R-SU4 v2(a)）
+spec_mode: [A, B, D]
 spec_reference_template: null     # R-SU4 v2：查得（CFTS ObjectID／SYS1 欄原值），非構造
 
 workbook:
