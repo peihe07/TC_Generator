@@ -216,7 +216,11 @@ B 欄為公式欄（R-DM15，條文早已在），母本 `B11` 更是
         ENTRY 002 之兩行仍有效（台帳末「ENTRY 002 之後記」）。
         **界**：本層只證得「檔未被改動」；無修復提示／下拉可用／分頁數 9
         三項為 Pei 目視，未經機器覆核，不得轉述為機器已驗。
-      - **尚餘**：`fw036-display-v1` tag、RD-1。
+      - **`fw036-display-v1` tag：已打（2026-08-27，annotated）**，
+        指向 `0fd174a`（三個 display commit 之末）。**刻意不指分支頂端** ——
+        打 tag 當下頂端已是併行 session 之 vehicle_category commit。
+        **未 push。**
+      - **尚餘**：RD-1。
       - 交付路徑 `/Users/peihe/Work/02_Project_R1LR/10_Reviewing/
         00_TestCase/ASW-R2/Display/`
       - 交付檔名 `…_SWQT_Display_20260826.xlsx`（與 Privacy 之
