@@ -742,7 +742,7 @@ Description 物件依 R-SU7 **不入池**，其對照見 §六。
 | `4907920` | 10.2 Wi-Fi | `4907920: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
 | `4907921` | 10.2 Wi-Fi | `4907921: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
 | `4907922` | 10.2 Wi-Fi | `4907922: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
-| `4907923` | 1.1 Revision Notes | `4907923: [Artifact Type:Description]` 於「1.1 Revision Notes」下 |
+| `4907923` | — | 章節物件 | 10.2 | **A-SU5 更正**：原表誤歸宿主 `4907907`（T12 游標被文件前置之 `Requirement ID nnn` 清單移動）；以宣告段位置定歸屬應為章節級 |
 | `4907924` | 10.2 Wi-Fi | `4907924: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
 | `4907925` | 10.2 Wi-Fi | `4907925: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
 | `4907926` | 10.2 Wi-Fi | `4907926: [Artifact Type:Description]` 於「10.2 Wi-Fi」下 |
@@ -752,7 +752,7 @@ Description 物件依 R-SU7 **不入池**，其對照見 §六。
 | `4907931` | 10.3 Installation | `4907931: [Artifact Type:Description]` 於「10.3 Installation」下 |
 | `4907932` | 10.3 Installation | `4907932: [Artifact Type:Description]` 於「10.3 Installation」下 |
 | `4907933` | 10.3 Installation | `4907933: [Artifact Type:Description]` 於「10.3 Installation」下 |
-| `4907934` | 1.1 Revision Notes | `4907934: [Artifact Type:Description]` 於「1.1 Revision Notes」下 |
+| `4907934` | — | 章節物件 | 10.3 | **A-SU5 更正**：原表誤歸宿主 `4907907`（T12 游標被文件前置之 `Requirement ID nnn` 清單移動）；以宣告段位置定歸屬應為章節級 |
 | `4907936` | 10.4 Post-Installation | `4907936: [Artifact Type:Description]` 於「10.4 Post-Installation」下 |
 | `4907937` | 10.4 Post-Installation | `4907937: [Artifact Type:Description]` 於「10.4 Post-Installation」下 |
 | `4907939` | 10.5 Security (Hopefully remove and reference to Rej | `4907939: [Artifact Type:Description]` 於「10.5 Security (Hopefully remove and reference to Rejani/Ansaf spec)」下 |
@@ -791,8 +791,8 @@ style `1`–`4` 即更新章節游標並**清空需求游標**（跨章不繼承
 | 統計 | 數 |
 |---|---:|
 | Description 物件總數 | 137 |
-| 歸需求物件 | 45 |
-| 歸章節物件 | 92 |
+| 歸需求物件 | **43** ⚠A-SU5 更正（原 45） |
+| 歸章節物件 | **94** ⚠A-SU5 更正（原 92） |
 | **不可解** | **0** |
 
 | Description ID | 所屬物件 | 上位型 | 所屬章節 | 判定脈絡 |
