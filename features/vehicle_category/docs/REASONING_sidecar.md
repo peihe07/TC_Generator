@@ -5,7 +5,7 @@
 
 - 產出：`scripts/build_reasoning_sidecar.py`，下放包 28 T150
 - 鍵：`leaf_id#n`，`n` 為該 leaf 於其批內之 TC 序（拆分筆據此區分）
-- 筆數：**125**，與六批 JSON 之 TC 總數相同（`--verify` 驗之）
+- 筆數：**126**，與六批 JSON 之 TC 總數相同（`--verify` 驗之）
 - `split_flag`／`split_reason` 不入本檔（profile §11）
 
 ---
@@ -774,6 +774,12 @@
 - **`test_set`**：Brake Service　**`priority`**：P0　**`spec_ref`**：`…_14.1`
 - **`distinguishing_axis`**：行進中之呈現：灰化（對 -02 之按下後果，留置）
 - **`reasoning`**：**驗證目標**：車輛行進中，EPB Service mode 選項呈灰。**取材（R-VC25）**：上半取自 037 `Description`（優先序第 1）——`Service mode option will be greyed out if the vehicle is in motion.`，**非 CONT**（其為完整可讀句，無指涉）。**ER 之 baseline（§5.6）**：「行進中呈灰」須有靜止時之呈現可比 ——否則「一直都是灰的」與「因行進而變灰」不可分。**P0 之依據**：行進中之攔阻屬 safety 型（同 `062-01`／`063-01`）。**與 `065-02` 之分工（IN §8.2.1）**：本筆驗**呈現**（灰化），`-02` 驗**按下之後果**（彈窗）—— 二個不同驗證點。**未涵蓋**：§14.2 之彈窗優先序（037 未涵蓋，表 B 第 14 列）。
+
+### `SWE1-HMI-VC-065-02#1` — Pressing the greyed Service mode line is refused
+
+- **`test_set`**：Brake Service　**`priority`**：P1　**`spec_ref`**：`…_14.1`
+- **`distinguishing_axis`**：行進中之按下後果：彈窗（對 -01 之呈現）
+- **`reasoning`**：**驗證目標**：按下行進中呈灰之 EPB Service mode 列，操作被攔阻並顯示彈窗。**⚠ 取材為 CONT 層次 2 ＋ profile §9.3.1 之佔位剝除**：037 之 `the greyed out line` 為**定冠詞回指**（其先行詞「灰化之 Service mode 列」在 `065-01`），第一層特徵不命中（profile §9.4.1 第三型之已登記偽陰性）。SYS1 §14.1 之切分把 `(image: image18.png)` 黏在 s2 句尾，**層次 1（整段 s1-2，39 token 未逾 50）與層次 2（單句 s2）之標的原皆夾帶該佔位** —— 下放包 35 §二裁為佔位剝除通則，上半止於佔位之前。CONT 登記 `resolution=PC`／`resolution_key=greyed out line`，第三檢查點驗其 PC 確含該詞。**⚠ R-VC20 之四項揭露（爭議值之 verbatim）**：**(一) 二源逐字** —— SYS1 §14.1 與 037 作 `‘Feature not available while vehicle is in motion’`；`Pop Up List HMI R1 (26PI)` 第 93 列 `PU0091` 之 `String/Popup Message` 作 `Function not available while vehicle is in motion.`（含句末句點），`HMI Settings List` 第 150 列亦作 `Function`。**(二) 分歧點** —— `Feature` vs `Function`，及句末句點之有無。**(三) 取 SYS1 為 verbatim 上半之理由** —— R-S4 要**規格原句**，非採信其值；換取彈窗清單之值只是換一個爭議值（R-VC20(a)）。**(四) 阻斷之 DR** —— **DR-VC10(一)**，A-VC18。**依 R-VC20(c)，爭議值不入 ER 之判準位** —— ER 驗「未進入 ＋ 彈窗出現」，其文字判準以 `PENDING: DR-VC10 PU0091 popup string` 承載（位置在 ER：缺件影響「怎麼判」，profile §7.2.1）。**不需 baseline** —— 攔的是動作後果（是否進入、彈窗是否出現），非值比對（同 `062-01`／`063-01` 型）。**與 `065-01` 之分工（IN §8.2.1）**：`-01` 驗**呈現**（灰化），本筆驗**按下之後果**（攔阻＋彈窗）—— 二個不同驗證點。**未涵蓋**：§14.2 之彈窗優先序（037 未涵蓋，表 B 第 14 列）。
 
 
 ## 批次 `batch7_cabrio_widget`

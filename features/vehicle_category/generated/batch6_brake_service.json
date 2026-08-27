@@ -5,19 +5,24 @@
  "test_set": "Brake Service",
  "handoff": "docs/handoff/34_tail_batches.md",
  "ruling": "R-VC22／R-VC25／R-VC26／R-VC30",
- "segment": "a",
- "segment_note": "**a 段 1 筆、b 段 1 筆**。`065-02` 因勘查命中停止條件 (b) 而留置（CONT 之二個層次其標的皆夾帶 `(image: image18.png)`，三處置類皆不合），待分析層裁。",
+ "segment": "a（無 b 段）",
+ "segment_note": "**本批無 b 段**（`065-02` 於下放包 35 §二解除留置）。其原留置之理由為 CONT 之二層次標的皆夾帶 `(image: image18.png)`；裁定為 profile §9.3.1 之佔位剝除取材通則，非第四處置類。",
  "split_delta": 0,
  "tc_id_status": "provisional",
  "leaf_scope": [
-  "SWE1-HMI-VC-065-01"
- ],
- "held_leaves": [
+  "SWE1-HMI-VC-065-01",
   "SWE1-HMI-VC-065-02"
  ],
- "pending_scope": [],
+ "held_leaves": [],
+ "pending_scope": [
+  {
+   "leaf": "SWE1-HMI-VC-065-02",
+   "dr": "DR-VC10",
+   "marker": "PU0091 popup string"
+  }
+ ],
  "write_back": "凍結 —— 本輪只產出 JSON，不寫回工作簿",
- "reasoning": "**驗證目標**：EPB Service mode 於車輛行進中之灰化。**為什麼只有 1 筆**：`065-02`（按下灰化列之彈窗）留置 ——其 CONT 之標的夾帶圖佔位，見上繳包 34 §3。**未涵蓋**：§14.2（EPB 彈窗優先序）與 §15（EPB 彈窗）為 037 未涵蓋之待補節（表 B 第 14／15 列，待 DR-VC3）——**其內容不得預納**（§8.4.2）。",
+ "reasoning": "**驗證目標**：EPB Service mode 於行進中之灰化（`-01`）與按下該灰化列之後果（`-02`）。**`065-02` 之取材**：profile §9.3.1 之佔位剝除通則，CONT 層次 2（`resolved-by-structure`）。**未涵蓋**：§14.2（EPB 彈窗優先序）與 §15（EPB 彈窗）為 037 未涵蓋之待補節（表 B 第 14／15 列，待 DR-VC3）——**其內容不得預納**（§8.4.2）。",
  "tcs": [
   {
    "leaf_id": "SWE1-HMI-VC-065-01",
@@ -37,6 +42,25 @@
    "functional_safety": "NA",
    "reasoning": "**驗證目標**：車輛行進中，EPB Service mode 選項呈灰。**取材（R-VC25）**：上半取自 037 `Description`（優先序第 1）——`Service mode option will be greyed out if the vehicle is in motion.`，**非 CONT**（其為完整可讀句，無指涉）。**ER 之 baseline（§5.6）**：「行進中呈灰」須有靜止時之呈現可比 ——否則「一直都是灰的」與「因行進而變灰」不可分。**P0 之依據**：行進中之攔阻屬 safety 型（同 `062-01`／`063-01`）。**與 `065-02` 之分工（IN §8.2.1）**：本筆驗**呈現**（灰化），`-02` 驗**按下之後果**（彈窗）—— 二個不同驗證點。**未涵蓋**：§14.2 之彈窗優先序（037 未涵蓋，表 B 第 14 列）。",
    "distinguishing_axis": "行進中之呈現：灰化（對 -02 之按下後果，留置）"
+  },
+  {
+   "leaf_id": "SWE1-HMI-VC-065-02",
+   "test_group": "Vehicle Category",
+   "test_set": "Brake Service",
+   "tc_title": "Pressing the greyed Service mode line is refused",
+   "test_item": "If the user presses on the greyed out line they will receive a pop-up stating ‘Feature not available while vehicle is in motion’\n\n(In-motion lockout -- the press on the greyed line is answered with the pop-up)",
+   "pre_conditions": "1. The vehicle is in motion and the greyed out line for EPB Service mode is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the greyed out line for EPB Service mode\n2. Record whether the Service mode screen is entered, and record the pop-up that is displayed and its text",
+   "expected_result": "1. The press on the greyed out line is registered\n2. The Service mode screen is not entered and a pop-up is displayed whose text is PENDING: DR-VC10 PU0091 popup string",
+   "specification_reference": "SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023)_14.1",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "reasoning": "**驗證目標**：按下行進中呈灰之 EPB Service mode 列，操作被攔阻並顯示彈窗。**⚠ 取材為 CONT 層次 2 ＋ profile §9.3.1 之佔位剝除**：037 之 `the greyed out line` 為**定冠詞回指**（其先行詞「灰化之 Service mode 列」在 `065-01`），第一層特徵不命中（profile §9.4.1 第三型之已登記偽陰性）。SYS1 §14.1 之切分把 `(image: image18.png)` 黏在 s2 句尾，**層次 1（整段 s1-2，39 token 未逾 50）與層次 2（單句 s2）之標的原皆夾帶該佔位** —— 下放包 35 §二裁為佔位剝除通則，上半止於佔位之前。CONT 登記 `resolution=PC`／`resolution_key=greyed out line`，第三檢查點驗其 PC 確含該詞。**⚠ R-VC20 之四項揭露（爭議值之 verbatim）**：**(一) 二源逐字** —— SYS1 §14.1 與 037 作 `‘Feature not available while vehicle is in motion’`；`Pop Up List HMI R1 (26PI)` 第 93 列 `PU0091` 之 `String/Popup Message` 作 `Function not available while vehicle is in motion.`（含句末句點），`HMI Settings List` 第 150 列亦作 `Function`。**(二) 分歧點** —— `Feature` vs `Function`，及句末句點之有無。**(三) 取 SYS1 為 verbatim 上半之理由** —— R-S4 要**規格原句**，非採信其值；換取彈窗清單之值只是換一個爭議值（R-VC20(a)）。**(四) 阻斷之 DR** —— **DR-VC10(一)**，A-VC18。**依 R-VC20(c)，爭議值不入 ER 之判準位** —— ER 驗「未進入 ＋ 彈窗出現」，其文字判準以 `PENDING: DR-VC10 PU0091 popup string` 承載（位置在 ER：缺件影響「怎麼判」，profile §7.2.1）。**不需 baseline** —— 攔的是動作後果（是否進入、彈窗是否出現），非值比對（同 `062-01`／`063-01` 型）。**與 `065-01` 之分工（IN §8.2.1）**：`-01` 驗**呈現**（灰化），本筆驗**按下之後果**（攔阻＋彈窗）—— 二個不同驗證點。**未涵蓋**：§14.2 之彈窗優先序（037 未涵蓋，表 B 第 14 列）。",
+   "distinguishing_axis": "行進中之按下後果：彈窗（對 -01 之呈現）"
   }
  ]
 }

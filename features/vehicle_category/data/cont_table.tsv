@@ -13,3 +13,4 @@ SWE1-HMI-VC-058-03	reference	13.1.1	3	PC	pop-up	定冠詞回指 `the pop-up`，�
 SWE1-HMI-VC-062-02	reference	13.4.1	1-2			非句首代名詞 `they`（句首為 If），其所按之標的為 s1 之彈窗（第一層不命中）；s1+s2 共 46 token，未逾 R-3 之 50 → profile §9.2 層次 1，不採第三處置類
 SWE1-HMI-VC-063-02	reference	13.4.2	2	PC	popup	非句首代名詞 `they`，其所按之標的為 s1 之彈窗（第一層不命中）；s1+s2 共 68 token，逾 R-3 之 50 → profile §9.2 層次 2，單句 s2 ＋ PC 承載。**key 為 `popup` 非 `pop-up`** —— SYS1 §13.4.2 原文即作 `popup`（§13.1.1／§13.5 作 `pop-up`），依 §9.3 逐字不寬鬆
 SWE1-HMI-VC-064-03	reference	13.5	3	PC	pop-up	無冠詞名詞回指 `while pop-up is on screen`（第一層不命中）；整段 s1-s3 為 83 token，逾 R-3 之 50 → profile §9.2 層次 2，單句 s3 ＋ PC 承載
+SWE1-HMI-VC-065-02	reference	14.1	2	PC	greyed out line	定冠詞回指 `the greyed out line`，先行詞在 065-01（第一層不命中，profile §9.4.1 第三型）；SYS1 §14.1 之 s2 句尾黏 `(image: image18.png)`，層次 1 與 2 之標的原皆夾帶之 → 下放包 35 §二裁為 profile §9.3.1 佔位剝除通則，取單句 s2 剝除後之文字 ＋ PC 承載

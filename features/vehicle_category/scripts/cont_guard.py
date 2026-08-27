@@ -138,6 +138,18 @@ def layer1(src, cont_leaves, excl_leaves, defer_leaves=frozenset()):
 
 SENT_SPLIT = re.compile(r"(?<=\.)\s+(?=[A-Z])")
 
+# profile §9.3.1（下放包 35 §2.2）—— `(image: imageNN.png)` 為 SYS1 匯出之
+# 插圖標記，**不屬句子文字**，任何層次之取材其標的一律止於佔位之前。
+#
+# **只剝尾部**：居中剝除會造出來源沒有的相鄰關係（前後文字被接在一起），
+# 那是偽造 verbatim。故僅在佔位位於剩餘文字之末時剝除。
+IMAGE_TAIL = re.compile(r"(?:\s*\(image:[^)]*\)\s*)+$")
+
+
+def strip_image_tail(s: str) -> str:
+    """尾部之 `(image: …)` 佔位剝除。verify_batch 第 16 項共用本函式。"""
+    return IMAGE_TAIL.sub("", s).rstrip()
+
 
 def sentence(sys1_text, idx):
     """取指定句；支援單句 `3`、**範圍 `1-2`**、`*`／空值取整段。
@@ -147,8 +159,9 @@ def sentence(sys1_text, idx):
     R-3 之 50 token。
     """
     if idx in ("*", "", None):
-        return sys1_text
-    parts = [s.strip() for s in SENT_SPLIT.split(sys1_text.strip())]
+        return strip_image_tail(sys1_text)
+    parts = [strip_image_tail(s.strip())
+             for s in SENT_SPLIT.split(sys1_text.strip())]
     m = re.fullmatch(r"(\d+)\s*-\s*(\d+)", str(idx).strip())
     if m:
         a, b = int(m.group(1)), int(m.group(2))

@@ -483,7 +483,14 @@ else:
         if _o in {v[0] for v in CONT.values()}:
             _txt = (str(_row[_di]) if _row[_di] else "").replace(
                 "_x000D_\n", "\n").replace("_x000D_", " ").strip()
-            SENT[_o] = [s.strip() for s in
+            # profile §9.3.1 —— 佔位不入上半。**與 cont_guard 共用同一支函式**
+            # （二處分歧即為錯，同機讀行之原則）。
+            import importlib.util as _ilu
+            _sp = _ilu.spec_from_file_location(
+                "cont_guard", ROOT / "scripts" / "cont_guard.py")
+            _cg_mod = _ilu.module_from_spec(_sp)
+            _sp.loader.exec_module(_cg_mod)
+            SENT[_o] = [_cg_mod.strip_image_tail(s.strip()) for s in
                         re.split(r"(?<=\.)\s+(?=[A-Z])", _txt)]
     bad16 = []
     for lid in targets:

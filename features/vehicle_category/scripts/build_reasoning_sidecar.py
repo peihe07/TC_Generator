@@ -100,7 +100,45 @@ def verify(rows):
     missing = on_disk - set(BATCH_ORDER)
     if missing:
         bad.append(f"BATCH_ORDER 未涵蓋之批檔 {sorted(missing)}")
+    bad += verify_workbook(rows)
     return bad
+
+
+def verify_workbook(rows):
+    """側檔之鍵集合 == 工作簿 D 欄 ∪ 拆分序（下放包 28 §2.2 第三項）。
+
+    **上繳包 28 §4.2 曾記本項未機器化** —— 當時工作簿未產出，
+    只能驗側檔對六批 JSON，而**二者同源**。工作簿寫出後，
+    本項成為**不同源**之比對：一邊是 JSON、一邊是 xlsx 之實際儲存格。
+
+    工作簿不存在時回傳空（非 FAIL）——其產出在寫回之後。
+    """
+    import re
+    from collections import Counter
+    out = ROOT / "output"
+    books = sorted(out.glob("*_working.xlsx")) if out.exists() else []
+    if not books:
+        return []
+    try:
+        import openpyxl
+        wb = openpyxl.load_workbook(books[-1], read_only=True)
+        ws = wb["Test Case Specification 測試用例規範"]
+        seen, keys = Counter(), []
+        for row in ws.iter_rows(min_row=10, max_col=4, values_only=True):
+            if row[3] not in (None, ""):
+                seen[str(row[3])] += 1
+                keys.append(f"{row[3]}#{seen[str(row[3])]}")
+        wb.close()
+    except Exception as e:                                  # noqa: BLE001
+        return [f"工作簿不可讀：{type(e).__name__}: {e}"]
+    txt = OUT.read_text("utf-8") if OUT.exists() else ""
+    side = set(re.findall(r"^### `([^`]+)` — ", txt, re.M))
+    b = []
+    if side - set(keys):
+        b.append(f"側檔有而工作簿無 {sorted(side - set(keys))}")
+    if set(keys) - side:
+        b.append(f"工作簿有而側檔無 {sorted(set(keys) - side)}")
+    return b
 
 
 def main():
@@ -113,7 +151,10 @@ def main():
         print(f"{OUT.relative_to(ROOT)} —— {len(rows)} 筆")
     bad = verify(rows)
     n_split = sum(1 for k, _, _ in rows if not k.endswith("#1"))
+    out = ROOT / "output"
+    nbook = len(sorted(out.glob("*_working.xlsx"))) if out.exists() else 0
     print(f"對應驗證：鍵 {len(rows)} 個（其中拆分之第 2 筆以上 {n_split} 個）；"
+          f"工作簿 {'已比對' if nbook else '**未產出，該項略過**'}；"
           f"{'PASS' if not bad else '**FAIL**'} {bad or ''}")
     return 1 if bad else 0
 

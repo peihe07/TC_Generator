@@ -1,0 +1,53 @@
+# DELIVERY — features/vehicle_category/output/ 產出台帳（append-only）
+# ─────────────────────────────────────────────────────────────────────────
+# 記帳規則：**逐次追加，不覆蓋、不刪除、不改寫既有條目。**
+# 每產出一份 xlsx 就在檔尾新增一個 ENTRY 區塊。舊條目即使其檔案已從
+# output/ 消失，該區塊仍留著 —— 台帳記的是「產出過什麼」，不是「現在有什麼」。
+#
+# 為什麼存在：`output/` 由 `.gitignore` 排除，產出永遠不進版控。
+# 沒有台帳時，「那份產出到底是什麼」只能從 commit 訊息拼湊。
+# 本檔之格式承 `features/display/DELIVERY.sha256`（其承 privacy 之 R27-1／R27-2）。
+#
+# **本檔為 2026-08-27 補建** —— 本 feature 產出第一份 xlsx 時才發現沒有台帳，
+# 而 `output/` 早已在 `.gitignore` 內。記明其為補建，非自始存在。
+#
+# 驗證（自 features/vehicle_category/ 執行）：
+#     shasum -a 256 -c --ignore-missing DELIVERY.sha256
+#
+# **旗標的代價（承 display R27-1）**：`--ignore-missing` 使本台帳
+# **無法偵測「產出被刪除」**。它驗的是「還在磁碟上的產出有沒有被動過」，
+# 不驗「產出還在不在」。
+#   內容被竄改 → FAILED，exit 1
+#   檔案不存在 → 靜默略過，exit 0
+# **台帳綠燈不等於產出俱在**，日後不得如此誤讀。
+# ─────────────────────────────────────────────────────────────────────────
+#
+# ENTRY 001 — 2026-08-27 — **工作版**（126 TC）
+#   狀態      **工作版，非交付件。** 14 處 PENDING 依 IN §8.4.3 內嵌佔位、
+#             表 B 仍為草稿。**出貨版仍卡 PENDING 結案**（IN §8.4.3）。
+#             **Excel 人工驗收未過**（DELIVERY_CHECKLIST 第 1／2 項）。
+#   授權      Pei 2026-08-27 直接指示「寫回工作版」（非編號下放包）。
+#   來源      inputs/…_20260817_ext.xlsx
+#             SHA256 6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2
+#             **產製後重驗未變** —— 未就地覆寫
+#   寫入路徑  features/vehicle_category/scripts/write_back.py
+#             **方法為丙″**（上繳包 29）：openpyxl 寫入 → 自母本注入
+#             `<extLst>`（x14 DV）與 printerSettings → 補宣告 `xmlns:xr`
+#             → 重打包
+#   內容      126 TC，資料列 10–135，newR1L-VC-001 … newR1L-VC-126（R-VC28）
+#             列序 = spec section 序（2.2 → 16.2，66 節）
+#             欄：C polarion／D leaf_id／F TC ID／G,H Group,Set／I–N 六欄／
+#             P priority／R design_method／S functional_safety（14 欄）
+#             E／O／Q／T–Z／AA／AB–AH 留空（無來源，上繳包 27 §3.2）
+#   結構驗證  x14 DV 1 → 1；extLst 1 → 1；classic DV 3 → 3；printerSettings 5 → 5
+#             **⚠ zip 部件 48 → 52**（6 消失／10 新增）
+#             **⚠ 共用公式 t="shared" 1401 → 0**（openpyxl 展開為獨立公式；
+#             B 欄逐列回讀與母本相同，行為保留，結構不同）
+#             **⚠ media 2 → 9**（內容逐位元組相同，僅複製與更名）
+#             詳見上繳包 36 §5 —— **display 之外科式寫回可達 48 → 48**
+#   回讀驗證  openpyxl 讀回 126 列 × 14 欄，與 generated/*.json 逐格比對
+#             **不符 0**（1764 格）；第 136 列為空（未溢寫）
+#             側檔↔工作簿之鍵集合比對 **PASS**（126/126）
+#   八批回歸  22 checked / 0 failed ×8
+#
+c470defd66c5b84c7e58d5eb8ae562af0f9d37142f458609f865d6bac88dd004  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_VehicleCategory_20260827_working.xlsx
