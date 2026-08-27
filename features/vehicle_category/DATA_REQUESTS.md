@@ -99,12 +99,29 @@ DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定�
 
 - **標的**：規格作者
 - **狀態**：未結
-- **內容**：規格 §15（EPB 彈窗表：PU0132 / 0133 / 0134 / 0136 / 0139 /
-  0141 / 0143 / 0144 / 0145 / 0202 / 0275 之訊息與逾時）與
-  §10.1／10.2（Aux Switch 之 Type / Power Source / Last State 組合表
-  及 Last State 之可用條件）之內容**僅存於投影片圖中**，
-  SYS1 Polarion 匯出未帶文字（`(image: imageNN.png)` 佔位）。
-  若該二節需納入測試範圍，請提供其文字版本或可讀之來源。
+- **⚠ 問法已改（下放包 28 §一 R-VC27 末段，T148）**。原問「該三節之內容
+  僅存於圖，請提供文字版本」——**其前提於 §10.1／§10.2 不成立**（A-VC20）。
+
+- **內容（三問）**：
+
+  **(一) §15 之三圖內容** —— 其 SYS1 `Description` 逐字為
+  `Electronic Park Brake Service Mode Pop-up / (image: image20.png) /
+  (image: image21.png) / (image: image22.png)`，
+  即**標題句以外之內容確實只在三張圖裡**。請提供其文字版本
+  （EPB 彈窗表：PU0132 / 0133 / 0134 / 0136 / 0139 / 0141 / 0143 /
+  0144 / 0145 / 0202 / 0275 之訊息與逾時）。
+
+  **(二) §10.1／§10.2 之圖內容** —— 該二節之**文字部分已有，不需索取**。
+  其 SYS1 `Description` 逐字含
+  `Refer to the HMI Settings list for settings location.`、
+  `All four Aux switches (Aux 1 Aux 2, Aux 3, and Aux 4) can be used
+  simultaneously`、`Graphics are visual aids only. Please see PDO release
+  for official graphics`。**僅索取 image9–12 四張圖之內容**
+  （Aux Switch 之 Type / Power Source / Last State 組合表及其可用條件）。
+
+  **(三) `All four Aux switches … simultaneously` 一句之地位** ——
+  該句是否**即為該二節之完整需求**，抑或**圖中另有其他規則**？
+  此問決定該二節於表 B 之「覆蓋落差」是整節或僅圖內部分。
 - **阻斷範圍**：**條件性** —— 該二節皆在 037 未涵蓋之 17 節內，
   依 R-VC3 本次不產出 TC。**僅當 DR-VC3 回覆為「應補」時始為必要素材**；
   DR-VC3 回覆前不催。
@@ -112,6 +129,13 @@ DR-VC6 待 DR-VC3 回覆後另批。DR-VC1／DR-VC3／DR-VC5 之批次未指定�
   `(image: image20–22.png)`；§10.1／10.2 僅存「Refer to the HMI Settings
   list」「All four Aux switches … simultaneously」與 image9–12 佔位。
   repo PDF 之文字層於對應頁（p15–18、p25–27）僅存投影片標題與頁碼。
+
+- **⚠ 本欄自 T17 起即為正確，而 R-VC12 二(a) 與表 B 同期寫成「未帶文字」**
+  （下放包 28 §一／A-VC20）。**同一 repo 內，正解與錯解並存了 24 個包** ——
+  本欄逐字記著那二句，而錯的那一份被引用。
+  **不是沒人讀過那三格；是讀了、記對了，然後沒有任何機制去比對二者。**
+  記於此，因為它改變了 A-VC20 之教訓：光是「重測」不夠，
+  **既有台帳之互相牴觸也要有人看見**。
 - **不得引述**：下放包 01 §4.2(b) 對該三節之摘要文字已由 R-VC12 二作廢，
   本 DR 不引用之。
 
