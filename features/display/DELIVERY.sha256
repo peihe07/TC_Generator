@@ -129,3 +129,18 @@
 #     ENTRY 002「未驗」欄之 Excel 實開確認**仍未完成**。
 #     若實開後存檔，本行雜湊即失效（同 ENTRY 001 之遭遇），須另立 ENTRY。
 069724551474a06e1deedcc18642bddb53251ea1e79ca9187be27b2043527995  /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/ASW-R2/Display/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Display_20260826.xlsx
+#
+# ── ENTRY 002 之後記 — 2026-08-27 — Excel 實開確認 ──────────────────────
+#   台帳為 append-only，故不改寫 ENTRY 002 之「未驗」欄，於此追記其了結。
+#   **本後記取代 ENTRY 002「未驗」欄之敘述。**
+#
+#   確認人  Pei（人工開啟交付副本，回覆「確認了可以沒問題」）
+#   機器側  確認後重測交付副本 SHA256 **069724551474a06e…（未變）**
+#           —— 即**開啟後未存檔**，ENTRY 002 之兩行雜湊仍然有效。
+#           （反例在同一份台帳裡：ENTRY 001 之交付副本因 Excel 重存而
+#             由 4528b937… 變為 b12bd378…，台帳行隨之失效。）
+#   界      本層所能證的只有「檔未被改動」。**「無修復提示、R／P／AE
+#           下拉可用、分頁數 9」三項為 Pei 目視所見，本層未逐項覆核**
+#           —— 不得日後轉述為機器已驗。
+#   結果    **P7 之 Excel 實開確認：完成。**
+#           尚餘 `fw036-display-v1` tag 與 RD-1，皆未動。
