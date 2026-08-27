@@ -117,6 +117,13 @@ Markers per FEATURE_ONBOARDING §4；未簽之表阻斷 Phase 4+。
 
 - **DR 七筆全未結**（DR-VC1 ~ DR-VC7）。同批 A ＝ DR-VC2 ＋ DR-VC7
   ＋ A-VC2 ＋ A-VC10。
+
+  > **加註（下放包 32 §3.2，T166；簽署本文不改，R-TM13／A-TM15）** ——
+  > （截至簽署日 2026-08-26 為七筆；現為十筆，見 DATA_REQUESTS.md）
+  >
+  > 同批 A 亦已自四項擴為六項（＋ DR-VC8、DR-VC9(二)）。
+  > **本節為時點紀錄**：其各行於簽署日為真，**不隨後續變動更新**；
+  > 現況一律以 `DATA_REQUESTS.md` 與 `ANOMALIES.md` 為準。
 - **A 七筆未結**：A-VC2、A-VC3、A-VC4、A-VC8、A-VC9、A-VC10、A-VC11。
 - 表 B（覆蓋落差揭露，17 節）為草稿，最終措辭待 DR-VC3 回覆。
 - 表 A（FROP 跨域揭露）之母體為 145 列中之 17 列（PM 16 ＋ Audio 1）。
