@@ -143,5 +143,141 @@ def main():
     return resolved, gmap, num
 
 
+# ── T30c —— 孤島列檢查（R-SU20）────────────────────────────────────────
+SEED_ISLANDS = {338, 339, 357, 358, 359, 360, 361}   # 上繳包 15 §6.1 之 7 個
+NAME_STOP = {"of", "and", "via", "the", "for", "to", "a", "an"}
+
+
+def _owner_map(resolved, groups, num):
+    o = {}
+    for name, ids, *_ in resolved:
+        for n in ids:
+            o[n] = name
+    return o
+
+
+def islands(resolved, groups, num, strict=True):
+    """孤島列 = 同一 Heading 群內，其組與前鄰、後鄰皆不同者（R-SU20(a)）。
+
+    `strict=True`：**只取內部列**（前後鄰皆存在者）。群首／群尾／單列群
+    無法評估「前鄰與後鄰皆不同」，故不計 —— 此為執行層之解讀，見上繳包 16。
+    `strict=False`：缺鄰視為「不同」（上繳包 15 §6.1 之原式）。
+    """
+    own = _owner_map(resolved, groups, num)
+    out = []
+    for g in groups:
+        ns = sorted(num(r) for r in g["rows"])
+        for i, n in enumerate(ns):
+            prev = ns[i - 1] if i else None
+            nxt = ns[i + 1] if i + 1 < len(ns) else None
+            if strict and (prev is None or nxt is None):
+                continue
+            if ((prev is None or own[prev] != own[n])
+                    and (nxt is None or own[nxt] != own[n])):
+                out.append((n, g["id"], own[n],
+                            (prev, own.get(prev)), (nxt, own.get(nxt))))
+    return out, own
+
+
+def _kw_overlap(title, setname):
+    """R-SU20(d) 之機器化：組名之實詞是否出現於該列標題（循環之**風險**）。"""
+    tw = set(re.findall(r"[A-Za-z]+", (title or "").lower()))
+    sw = [w for w in re.findall(r"[A-Za-z-]+", setname.lower()) if w not in NAME_STOP]
+    hit = [w for w in sw if w in tw or w.rstrip("s") in tw or w + "s" in tw]
+    return hit
+
+
+def t30c(resolved, gmap, num):
+    from itertools import groupby
+    rows = a03_rows()
+    title = {num(r): str(r[C_TITLE] or "").strip()
+             for r in rows if r[C_CAT] in IN_SCOPE}
+    groups = list(gmap.values())
+
+    print("\n\n## T30c —— 孤島列檢查（R-SU20）\n")
+
+    # ── 種子回測（PLAYBOOK §7(10)；未過即停）
+    isl, own = islands(resolved, groups, num, strict=True)
+    got = {n for n, *_ in isl}
+    print("### 種子回測（R-SU20 之偵測器；未過即停）\n")
+    print(f"已知種子（上繳包 15 §6.1，`309` 群內之 7 個孤島）："
+          + "、".join(f"`{n}`" for n in sorted(SEED_ISLANDS)) + "\n")
+    miss, extra = SEED_ISLANDS - got, got - SEED_ISLANDS
+    print(f"- 本偵測器（strict）抓到 **{len(got)}** 個；其中種子 "
+          f"**{len(SEED_ISLANDS & got)}/{len(SEED_ISLANDS)}**")
+    print(f"- 種子未被抓到者：**{len(miss)}**" + (f" —— {sorted(miss)}" if miss else " ✅"))
+    print(f"- 種子外之新發現：**{len(extra)}**"
+          + (f" —— {sorted(extra)}" if extra else "（無）"))
+    if miss:
+        sys.exit("T30c 種子回測未過，停（PLAYBOOK §7(10)）")
+    print("\n**種子回測通過** —— 7 個已知孤島全數重現。\n")
+
+    # ── 解讀之敏感度
+    isl2, _ = islands(resolved, groups, num, strict=False)
+    print("### ⚠ 「前鄰與後鄰皆不同」之解讀（須分析層確認）\n")
+    print("| 解讀 | 孤島數 | 說明 |")
+    print("|---|---:|---|")
+    print(f"| **strict（採）**：只取內部列（前後鄰皆存在） | **{len(isl)}** | "
+          "群首／群尾／單列群無法評估此條件，故不計 |")
+    print(f"| loose：缺鄰視為「不同」 | {len(isl2)} | "
+          "使**每個單列群與每個群首／群尾**只要與鄰居不同即成孤島 —— "
+          "其中多數為 Test Set 之正常邊界，非證據 |")
+    print(f"\n二者相差 **{len(isl2)-len(isl)}** 列。strict 之產出全落於 "
+          f"`{isl[0][1] if isl else '—'}` 等跨章群之內部，"
+          "即 R-SU20(b) 所指「被自連續段中抽出」之情形。\n")
+
+    # ── (a) 孤島清單 + (d) 之機器化
+    print("### (a) 孤島清單，含 R-SU20(d) 之循環風險機器檢查\n")
+    print("| 037 列 | 標題 | 其組 | 前鄰 | 後鄰 | 組名實詞見於標題 |")
+    print("|---|---|---|---|---|---|")
+    for n, gid, o, (p, po), (nx, no) in isl:
+        hit = _kw_overlap(title.get(n, ""), o)
+        print(f"| `{n}` | {title.get(n,'')[:44]} | `{o}` | {p}(`{po}`) | {nx}(`{no}`) | "
+              + (f"**⚠ {'／'.join(hit)}**" if hit else "—") + " |")
+    flagged = [n for n, _, o, *_ in isl if _kw_overlap(title.get(n, ""), o)]
+    print(f"\n**{len(flagged)}/{len(isl)}** 個孤島之組名實詞出現於其標題。\n")
+    print("> ⚠ **此檢查測得的是「循環之風險」，不是「循環之事實」**（見上繳包 16 §自評）："
+          "關鍵詞相符**未必**表示依據是關鍵詞 —— 下放包 17 §四即裁 `339`／`358` "
+          "之依據為「其對象為回報訊息」而**維持**，儘管二者皆被本檢查標記。\n")
+
+    # ── (b) 連續段數
+    print("### (b) 各組於各跨章 Heading 群內之連續段數\n")
+    print("| Heading 群 | Test Set | 段數 | 各段 |")
+    print("|---|---|---:|---|")
+    for gid in sorted({g["id"] for g in groups
+                       if len({own[num(r)] for r in g["rows"]}) > 1}):
+        ns = sorted(num(r) for r in gmap[gid]["rows"])
+        segs = {}
+        for k, grp in groupby(ns, key=lambda n: own[n]):
+            segs.setdefault(k, []).append(list(grp))
+        for k, v in sorted(segs.items(), key=lambda kv: -len(kv[1])):
+            print(f"| `{gid}` | `{k}` | {'**' + str(len(v)) + '**' if len(v) > 1 else len(v)} "
+                  f"| {'、'.join(f'{s[0]}–{s[-1]}' if len(s) > 1 else str(s[0]) for s in v)} |")
+
+    # ── (c) 聚集分佈
+    print("\n### (c) 聚集分佈\n")
+    ns = sorted(got)
+    runs, cur = [], [ns[0]]
+    for a, b in zip(ns, ns[1:]):
+        (cur.append(b) if b - a <= 2 else (runs.append(cur), cur := [b]))
+    runs.append(cur)
+    print("| 聚集 | 037 列 | 個數 | 跨度 |")
+    print("|---:|---|---:|---:|")
+    for i, r in enumerate(runs, 1):
+        print(f"| {i} | {'、'.join(f'`{x}`' for x in r)} | {len(r)} | "
+              f"{r[-1]-r[0]+1} 列 |")
+    print(f"\n**{len(isl)} 個孤島聚為 {len(runs)} 處**"
+          f"（判準：孤島間之 037 列距 ≤ 2）。"
+          f"若切分照能力，錯誤應散開；**聚於少數幾處表示該段有系統性成因**"
+          f"（R-SU20(c)）。\n")
+    print("> **R-SU20(e) 之限度（隨檢查一併陳述）**：孤島列指出"
+          "「該處之依據需高於相鄰之先驗」，**不是「該處錯了」**。"
+          "規格作者確有可能在連續數列中交替寫數種能力。判其對錯仍須讀該列之描述。")
+    return isl
+
+
+
 if __name__ == "__main__":
-    main()
+    r, g, n = main()
+    if "30c" in sys.argv[1:]:
+        t30c(r, g, n)
