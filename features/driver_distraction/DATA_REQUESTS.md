@@ -16,19 +16,26 @@ Urgency 回報。
 | **DR-DD2** | 上游（CFTS022 作者）| **DRAFTED（格式更正件，緩發）** | `-021`~`-024`（4） | **不阻斷** —— 施加名依 **R-DD18** 採認為 `PARK_BRK_EDG`；所問改為規範欄之更正 | **A-DD2** | 低 |
 | ~~**DR-DD3**~~ | 上游（素材提供）| **RESOLVED**（Pei 2026-08-28 確認識別）| `-017`~`-028`（12） | **解除** —— `Country_Code = 91` 為確定值，A-DD5 撤銷 | ~~A-DD5~~ | — |
 | **DR-DD4** | 上游（CFTS022／037 作者）| **PARTIALLY ANSWERED**（單位 km/h）／縮為一問，**緩發** | **9 列書 MPH 門檻者**：`-003`／`-005`／`-007`／`-009`／`-011`／`-013`／`-015`（7，可生成）＋ `-025`／`-027`（2，另因 A-DD1 凍結）| 不阻斷生成；ER 之 raw 數值標 A-DD6 | **A-DD6** | 中 |
-| **DR-DD5** | 上游（LID 維護者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入批次**；`$VC_Trans_Equipped$` 有無施加路徑未定 | — | **必發** —— 與 DR-DD6 並列 |
-| **DR-DD6** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入批次**；`$VC_Trans_Equipped$` 之列舉對應未定 | — | **必發** —— 組 1／2 待此 |
+| **DR-DD5** | 上游（LID 維護者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **已由 R-DD19 乙案解凍**，B2 八則（`-017`~`-024`）已產出並掛 `[ASSUMPTION A-DD8]`；回覆不符時回修為機械換值 | — | **必發** —— 與 DR-DD6 並列 |
+| **DR-DD6** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **已由 R-DD19 乙案解凍**，B2 八則已產出並掛 `[ASSUMPTION A-DD9]`；`MTA(2)`／`DDCT(3)` 仍為 R-DD19(c) 硬邊界 | — | **必發** —— 組 1／2 待此 |
 | **DR-DD7** | 上游（037 作者）| **DRAFTED**（待 Pei 發送）| 文稿問 `-010`／`-012`；**實測涉 11 leaf** | **不阻斷** —— 品質旗標；**緩發** | **A-DD7** | 低 |
+| **DR-DD8** | 上游（CFTS022 作者／素材提供）| **DRAFTED**（待 Pei 發送）| `-021`~`-024` 之負向側（表外功能）| **不阻斷生成** —— 負向側記為 `[CG-DD1]` 涵蓋缺口 | **[CG-DD1]** | **必發** —— 驗證方法步驟 4 待此 |
+| **DR-DD9** | 上游（CFTS022／037 作者）| **DRAFTED**（待 Pei 發送）| `-001`／`-002`（2）| **不阻斷** —— 依 R-DD20 掛 A-DD10 生成（**惟生成待包 17**）；`-002` 之 `$` 指令行留 `PENDING: DR-DD9` | **A-DD10** | **必發** —— 與 DD1／DD5／DD6 並列 |
 
 **發送清單（下放包 13 §六）**：
 
 | 級 | DR | 狀態 |
 |---|---|---|
-| **必發** | **DD1**（改稿含 SYSAD 引文）、**DD5**、**DD6** | 卡 `-017`~`-028` 共 12 leaf |
+| **必發** | **DD1**（改稿含 SYSAD 引文）、**DD5**、**DD6**、**DD8**、**DD9** | DD1 卡 `-025`~`-028` 共 4 leaf；DD5／DD6 已由 R-DD19 乙案解凍生成（**必發等級不減**，R-DD19(e)）；DD8 卡 `-120`／`-121` 之負向側；DD9 卡 `-001`／`-002` 之施加識別碼與 process 名 |
 | 緩發 | DD2（格式更正件）、DD4（縮為一問）、DD7（品質旗標）| 皆非阻斷 |
 | **結案** | **DD3** | **RESOLVED**（下放包 13 §二）|
 
-**六筆未發送；DD3 已結案。**
+**八筆未發送；DD3 已結案。**
+
+> **DD5／DD6 之「阻斷」欄已於本輪改寫**（下放包 16 §七 之拘束：
+> 不得向上游或台帳陳述已失實之狀態）。上繳 12 §2.3 改的是 **DR 文稿末行**，
+> 本表之 `Batch impact` 欄當時未同步 —— 仍書「該 8 leaf 不入批次」，
+> 而 B2 八則已於上輪產出。**同一過期陳述之第二處，本輪補正。**
 
 > **DR-DD5 已於下放包 09 §二 裁定建檔**（保留號轉正式條目）。
 > 裁定所據者為 T13a 之「**不合慣例**」量測，非「哪一列看起來對」。
@@ -668,3 +675,116 @@ ER 不得斷言 128（不應鎖）／78（不應解）之邊界格 —— 除非
 
 本 DR 之台帳對應項為 **A-DD7**（`ANOMALIES.md`）——
 該條為執行層 Tier 1 登記（record + propose），本 DR 為其 Tier 2 處置。
+---
+
+## DR-DD8 —— Driver Distraction Lockout Table 之機器可讀本（`[CG-DD1]`）
+
+**狀態：DRAFTED**（下放包 16 §二，T-登建檔；待 Pei 發送）。等級：**必發**。
+
+### 形態
+
+CFTS022 `-120`／`-121` 之 verification criteria 明載負向側
+（`Features not listed in the table remain accessible and unaffected` ／
+`Features not included in the table remain accessible and function normally`），
+其 verification method 更有 `4. Verify allowed features — Access features
+not in the table`。而該表在需求本文中**只以內嵌物件引用**
+（`image: 1-_3bc8e108-12c5-4694-a9e9-80b1f915b9af.rtf`），
+交付之 SYSRA 工作簿**無任何內嵌物件**，HMI Logic and Flow（May 3 2021）
+**只列 `L/O` 列** —— 即所有列皆為上鎖，**無一列可充當「表外功能」**。
+
+**故負向側之測試步驟無來源可書**，非「未做」而是「做不了」。
+
+### 文稿（下放包 16 §二，逐字）
+
+> **DR-DD8 — Machine-readable copy of the Driver Distraction Lockout Table**
+>
+> CFTS022 rows `SYS-RA-Driver_Distraction-120` / `-121` require the HU to
+> apply lockout to "the features in the The Driver Distraction Lockout
+> Table", and their verification criteria explicitly include the negative
+> side: `Features not listed in the table remain accessible and unaffected`
+> (row `-120`) / `Features not included in the table remain accessible and
+> function normally` (row `-121`), with verification method step
+> `4. Verify allowed features — Access features not in the table`.
+>
+> The table itself is referenced in the requirement text only as an embedded
+> object (`image: 1-_3bc8e108-12c5-4694-a9e9-80b1f915b9af.rtf`); the
+> delivered SYSRA workbook contains no embedded objects, and the HMI Logic
+> and Flow document (May 3 2021) lists only rows marked `L/O` — it contains
+> no row that is *not* locked out, so no "feature not in the table" can be
+> identified from the bound sources.
+>
+> Request: please provide the Driver Distraction Lockout Table in a
+> machine-readable form (the referenced `.rtf`, or an equivalent
+> spreadsheet/text export), so that verification method step 4 (allowed
+> features remain accessible) can be implemented. Until then this negative
+> aspect is recorded as a coverage gap ([CG-DD1]) in SWQT test case
+> generation.
+
+### 與 [CG-DD1] 之連結
+
+本 DR 之台帳對應項為 **[CG-DD1]**（`COVERAGE_GAPS.md`）——
+該缺口在 DR-DD8 回覆前不關閉；回覆到達且表中確有非 `L/O` 列時，
+`-021`~`-024` 須補負向側 TC。
+
+---
+
+## DR-DD9 —— Body OFF 電源時序之具名激勵（`-001`／`-002`；A-DD10）
+
+**狀態：DRAFTED**（下放包 16 §三，T-登建檔；待 Pei 發送）。等級：**必發**。
+
+### 形態
+
+`-001`／`-002`（source `SYS-RA-Driver_Distraction-113`，CFTS022-4915104）
+之激勵為「Body OFF power sequence（進入 sleep／喚醒）」，`-002` 另加
+「terminate the DD process in the test environment」。
+**037 與 CFTS022 皆未給該時序之 logical identifier／signal／parameter**；
+Logical Identifier 表、PROXI 檔、二綁定 DBC 與 SYSAD 皆查無。
+
+`-002` 之 process 名同樣無來源 —— 依 **R-DD20(c)**，其 `$` 指令行
+（IN §5.4）寫 `PENDING: DR-DD9 <DD process 終止指令>`，
+**不得自 SYSAD 取服務名充之**（R-DD4：SYSAD 不入語料）。
+
+### 文稿（下放包 16 §三，逐字）
+
+> **DR-DD9 — Named stimulus for the Body OFF power sequence
+> (`SWE1-RA-Driver_Distraction-001` / `-002`)**
+>
+> Rows `-001` and `-002` (source `SYS-RA-Driver_Distraction-113`,
+> CFTS022-4915104) are stimulated by the "Body OFF power sequence"
+> (enter sleep / wake) and, for `-002`, by terminating the DD process in
+> the test environment. Neither FM-WI-FSM-037-A03 nor CFTS022 names a
+> logical identifier, signal, or parameter for this power sequence; the
+> Logical Identifier table, PROXI file, both bound DBCs and the SYSAD were
+> searched without result.
+>
+> Two questions:
+> 1. What is the named identifier (LID / signal / parameter / bench
+>    command) for driving the Body OFF sleep and wake sequence on the test
+>    bench for these rows?
+> 2. What is the process or service name (and the accepted termination
+>    method) intended by "terminate the DD process in the test environment"
+>    in row `-002`?
+>
+> SWQT test case generation for these rows proceeds under a documented
+> assumption (the sequence is driven via the platform power-moding
+> procedures already established for CFTS009, marked `[ASSUMPTION A-DD10]`);
+> the affected test cases will be revised if the answer differs, and the
+> process-termination command line is held as `PENDING: DR-DD9` until
+> question 2 is answered.
+
+### 與 A-DD10 之連結
+
+本 DR 之台帳對應項為 **A-DD10**（`ANOMALIES.md`）。
+**不減其必發等級**（R-DD20(d)）：回覆與 R-DD20(a) 相符 → 撤 A-DD10；
+不符 → 回修範圍為 2 TC 之電源時序步驟，`test_item` verbatim 不動。
+
+### ⚠ 執行層之揭露 —— 文稿第 1 問所指之「已建立程序」，power 線查無
+
+文稿末段書：`the sequence is driven via the platform power-moding procedures
+already established for CFTS009`。**T22c 唯讀傾印之實測**（上繳 13 §六）：
+power 線之狀態進入步驟**全為通稱式**（`Bring the HU to Timed mode`、
+`Bring the TLM through the switch on sequence` 等），
+**無一則帶訊號名／值／格式**；`Body OFF` 之 sleep／wake 亦無任何施加步驟。
+
+**故 R-DD20(b) 之「只得逐字取自 power 線已裁之施加式」目前無可取之物。**
+本輪依 T22c 拘束**不判、不代擬**，僅傾印並回報；包 17 之規格須據此重定。

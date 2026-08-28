@@ -141,7 +141,8 @@ CFTS022 `Basic Report` r129（`-128`）逐欄：
 
 ## Assumption markers
 
-None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-DRnn]`.
+現行 marker：`A-DD2`／`A-DD6`／`A-DD7`／`A-DD8`／`A-DD9`／`A-DD10`。
+Inline format in generated JSON reasoning: `[ASSUMPTION A-DDnn]`.
 
 ---
 
@@ -541,3 +542,68 @@ MTA/DDCT 之歸屬未決（DR-DD6），不入任何 TC。
 > **乙案未推翻該判斷** —— 它只在**兩極**上採認，邊界仍懸，故立為硬邊界。
 
 狀態：**OPEN**（撤銷條件：DR-DD6 回覆確認）。
+---
+
+## [A-DD10] 假設：Body OFF 之同一性（新立，下放包 16 §一 R-DD20(a)；**基礎於下放包 17 §二 R-DD20 v2(a) 改述**）
+
+**條目逐字**（下放包 16 §一）：
+
+```
+A-DD10（假設：Body OFF 之同一性）
+狀態 OPEN。內容：依 R-DD20(a)，CFTS022 之 Body OFF HU System Sleep Mode
+與 power 線 BODY OFF 狀態族採認為同一概念；-001/-002 之電源時序步驟
+沿 power 線已裁程序。撤銷條件：DR-DD9 回覆確認。
+用及之 TC 標 [ASSUMPTION A-DD10]。
+```
+
+### 採認基礎（**R-DD20 v2(a) 逐字；下放包 17 §二**）
+
+> CFTS022 `-113` 之 `Body OFF HU System Sleep Mode` 與 CFTS009 §1.3 所定義之
+> `Body Off HU System Sleep Mode`（文字層錨點 4941238，逐字同名；
+> `OFF`／`Off` 之大小寫差屬排版正規化，R-4 同型）採認為同一。
+> v2 之基礎為**定義級**：CFTS009 4941238 定義該模式、CFTS022 -113 引用之。
+> **殘餘假設（本 marker 所標者）＝台架實現與 DR-DD9 回覆之一致性。**
+
+**CFTS009 4941238 逐字**（`features/power/data/textlayer/cfts009_plain.txt`，唯讀）：
+
+```
+In the system transitions to the Body OFF mode, the A&T system shall go into
+Standby Mode and then if there is no CAN-I and no CAN-C activity, the A&T system
+shall go to Body Off HU System Sleep Mode.
+```
+
+### ~~⚠ 執行層之實測與所書不符 —— 「78 處命中」未能重現~~ —— **已結案**
+
+> 上繳包 13 §6.1 所報之不符（`features/power/RULINGS.md` 之 `BODY OFF` 命中為 **0**，
+> 11 處皆為 `BODY OFF-TIMED`）**已由分析層採認並改條**：
+> 下放包 17 §一-1 記明該數為關鍵詞**族**之計數（含 `BODY ON`／`BODY OFF-TIMED`），
+> 分析層在 v1 條文中把它具體化為單一詞之計數，**成因與 D8 同族**
+> —— 把一個母體不同的數字搬進新語境而未重測。
+> **R-DD20 v2(a) 已撤該引數，改採定義級基礎**（見上）。
+> v1 依 R-TM13 留存於 `RULINGS.md`（`## R-DD20 v1`，`sha8 00912428`），不得引用。
+
+**本節於本輪（包 17）結案。** A-DD10 之狀態不因改條而變 —— 見末段。
+
+### 與 DR-DD9 之關係
+
+**不減其必發等級**（R-DD20(d)）。DR-DD9 所問者為施加識別碼與 process 名，
+本 marker 所記者為「未回覆期間之同一性採認」。**二者並存，非互斥。**
+
+### 適用範圍
+
+`-001`／`-002`（`SWE1-RA-Driver_Distraction-001`／`-002`）。
+**二則已於包 17（T23a）生成**，其電源時序步驟依 R-DD20 v2(b)(4) 標
+`[ASSUMPTION A-DD10]`；產物 `generated/batch_body_off_init.json`。
+
+### 殘餘假設之範圍（v2 之收窄）
+
+| | v1 | **v2（現行）** |
+|---|---|---|
+| 所假設者 | **同一性本身**（跨文件同名之採認）| **台架實現與 DR-DD9 回覆之一致性** |
+| 基礎 | 命中計數（**已撤**）| CFTS009 `4941238` 之**定義**，CFTS022 `-113` 引用之 |
+| 回覆不符時之回修 | 2 TC 之電源時序步驟 | **不變**（R-DD20 v2(d)）|
+
+**同一性已不在假設之列** —— marker 現所標者為「照 CFTS009 所定義之時序在台架上
+確實可如此驅動」。此為**收窄**，非撤銷。
+
+狀態：**OPEN**（撤銷條件：DR-DD9 回覆確認）。

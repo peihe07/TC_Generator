@@ -1,0 +1,54 @@
+[
+  {
+    "tc_id": "newR1L-DD-D001",
+    "req_id": "SWE1-RA-Driver_Distraction-001",
+    "test_group": "Driver Distraction",
+    "test_set": "Body Off Init",
+    "test_item": "AC1:\nWhen the vehicle exits Body OFF sleep, DD Service provides Lock Out State initialization and state notification capabilities\nCase [Normal]normal wake-up from Body OFF\nThen DD Service sets all Lock Out States to NOT_RESTRICTED\n(a normal wake-up from Body OFF leaves the locked-out features reachable)",
+    "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
+    "input_test_data": "NA",
+    "test_procedure": "1. Bring the HU through the Body OFF power down [ASSUMPTION A-DD10]\n2. Start CAN activity on Body CAN to wake the HU [ASSUMPTION A-DD10]\n3. Open \"Player Song, artist, title, etc. (speller search)\" and check that it opens",
+    "expected_result": "1. The HU periodic messages are no longer present on the bus\n2. The HU broadcasts all its periodic messages within 400 msec of wakeup\n3. \"Player Song, artist, title, etc. (speller search)\" opens and its view is displayed",
+    "spec_reference": "CFTS022-4915104",
+    "tc_ref_id": "NEW",
+    "priority": "P1",
+    "design_method": "狀態轉換 (State Transition Testing)",
+    "functional_safety": "NA",
+    "author": "PeiPYHsu",
+    "split_flag": false,
+    "split_reason": "NA",
+    "upper_half_provenance": {
+      "source": "037 Analysis Report r9 c3 (Requirement Description)",
+      "mode": "full",
+      "tokens": 35,
+      "cap": 50
+    },
+    "reasoning": "驗證目標：出眠後之 Lock Out State 初始化 —— 斷言錨取 profile §2.1 觀察面 A，取樣 \"Player Song, artist, title, etc. (speller search)\"（p7 top=330（Player 列），非黃標、非 NAV 系）。037 VC 之 `all Lock Out States are NOT_RESTRICTED` 依 profile §2.3 之四禁詞不入 ER，改以該 feature 之可及性承載。電源時序依 **R-DD20 v2(b)**：步驟以 power 線之通稱式風格新編（該線無本序列之施加步驟，上繳 13 §6.3 已實測），條件與觀察錨定 CFTS009 逐字 —— 入眠 `4941238`（Body OFF → Standby → 無 CAN-I/CAN-C → Body Off HU System Sleep Mode）、喚醒 `4941100`（`With the Body Off mode and CAN bus activity is initiated by any CAN module, all modules shall wake up`）、醒後可觀察現象 `4941103`（`Within 400 msec of wakeup mode, each module shall broadcast all periodic messages`）；Body OFF 之定義為 `4941028` 之 `$PowerMode$` 五值 —— **該值以方括號書之，依 profile §2.5 不入四交付欄**，故錨定記於此。電源時序二步標 [ASSUMPTION A-DD10]（R-DD20 v2 之殘餘假設＝台架實現與 DR-DD9 回覆之一致性）。速度訊號源壓於 `0 (0.0000 km/h)` —— 使觀察可歸因於初始化值，非基準速度規則；0 非門檻值，**不掛 A-DD6**。PC 不含 Gear／PARK_BRK／Country_Code —— `-113` 未條件於市場與檔位，引入即擴入（IN §8.2.1）。**TLM_Status.Info 與 $Telematic_Power$ 不用**（R-DD20 v2(f)）。"
+  },
+  {
+    "tc_id": "newR1L-DD-D002",
+    "req_id": "SWE1-RA-Driver_Distraction-002",
+    "test_group": "Driver Distraction",
+    "test_set": "Body Off Init",
+    "test_item": "AC2:\nWhen the DD process is terminated during Body OFF sleep, DD Service provides cold-start state initialization capability after wake-up\nCase [Exception]the process is terminated during sleep\nThen DD Service starts with the default NOT_RESTRICTED state and initializes all states to NOT_RESTRICTED\n(a cold start after the process was terminated during sleep leaves the locked-out features reachable)",
+    "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
+    "input_test_data": "NA",
+    "test_procedure": "1. Bring the HU through the Body OFF power down [ASSUMPTION A-DD10]\n2. Terminate the DD process in the test environment\n$ PENDING: DR-DD9 <DD process termination command>\n3. Start CAN activity on Body CAN to wake the HU [ASSUMPTION A-DD10]\n4. Open \"DND Customize auto reply message\" and check that it opens",
+    "expected_result": "1. The HU periodic messages are no longer present on the bus\n2. The DD process is no longer running in the test environment\n3. The HU broadcasts all its periodic messages within 400 msec of wakeup\n4. \"DND Customize auto reply message\" opens and its view is displayed",
+    "spec_reference": "CFTS022-4915104",
+    "tc_ref_id": "NEW",
+    "priority": "P1",
+    "design_method": "狀態轉換 (State Transition Testing)",
+    "functional_safety": "NA",
+    "author": "PeiPYHsu",
+    "split_flag": false,
+    "split_reason": "NA",
+    "upper_half_provenance": {
+      "source": "037 Analysis Report r10 c3 (Requirement Description)",
+      "mode": "full",
+      "tokens": 42,
+      "cap": 50
+    },
+    "reasoning": "驗證目標：sleep 中 DD process 被終止後之冷啟初始化 —— 斷言錨與取樣同 `-001` 之體例，取樣改為 \"DND Customize auto reply message\"（p7 top=317（DND 列））使二則於 ER 可區辨（IN §8.7）。終止步驟之**業務行照 037 Method（r10 c18）逐字承載** —— 原文 `terminate the DD process in the test environment`（首字母大寫為步驟書寫之排版正規化，實詞未改）；其 `$` 指令行依 **R-DD20 v2(c) ＋ IN §8.4.3** 留 `PENDING: DR-DD9 <DD process termination command>`（**佔位內文亦須為英文** —— R-DD22(a)；R-DD20 v1(c) 原書之中文佔位違 IN §1，下放包 18 §1.2 已裁改），**不得自 SYSAD 取服務名充之**（R-DD4：SYSAD 不入語料）。**本則因含 PENDING 而不得出貨**（IN §8.4.3），生成與台帳照常。電源時序、marker、PC 之處置同 `-001`。"
+  }
+]
