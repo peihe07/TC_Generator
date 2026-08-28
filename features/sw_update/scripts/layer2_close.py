@@ -161,9 +161,19 @@ def _owner_map(resolved, groups, num):
 def islands(resolved, groups, num, strict=True):
     """孤島列 = 同一 Heading 群內，其組與前鄰、後鄰皆不同者（R-SU20(a)）。
 
-    `strict=True`：**只取內部列**（前後鄰皆存在者）。群首／群尾／單列群
-    無法評估「前鄰與後鄰皆不同」，故不計 —— 此為執行層之解讀，見上繳包 16。
-    `strict=False`：缺鄰視為「不同」（上繳包 15 §6.1 之原式）。
+    **R-SU20 v2(a) 已裁採 strict**：孤島列僅就「群內部列」評估 ——
+    某列之前鄰與後鄰**皆存在且皆與其不同組**者為孤島；
+    群首、群尾、單列群**不評估**。
+
+    採 strict 而不採 loose 之理由（R-SU20 v2(a)）：loose 得 13 列，
+    其中 8 列為 **Test Set 之正常邊界**，非證據 —— 該檢查將被邊界淹沒
+    而失去鑑別力。
+
+    ⚠ **已知盲區（R-SU20 v2(a) 令隨檢查陳述）**：
+    **本檢查不覆蓋群邊界之錯分。** 位於 Heading 群首尾之列若被錯置，
+    孤島檢查**不會報警**。此為採 strict 之代價，非疏漏。
+
+    `strict=False`（loose）僅供對照，不作判準。
     """
     own = _owner_map(resolved, groups, num)
     out = []
@@ -234,17 +244,18 @@ def t30c(resolved, gmap, num):
 
     # ── 解讀之敏感度
     isl2, _ = islands(resolved, groups, num, strict=False)
-    print("### ⚠ 「前鄰與後鄰皆不同」之解讀（須分析層確認）\n")
+    print("### 「前鄰與後鄰皆不同」之評估範圍（R-SU20 v2(a) 已裁採 strict）\n")
     print("| 解讀 | 孤島數 | 說明 |")
     print("|---|---:|---|")
-    print(f"| **strict（採）**：只取內部列（前後鄰皆存在） | **{len(isl)}** | "
-          "群首／群尾／單列群無法評估此條件，故不計 |")
+    print(f"| **strict（R-SU20 v2(a) 所裁）**：只取內部列 | **{len(isl)}** | "
+          "群首／群尾／單列群不評估 |")
     print(f"| loose：缺鄰視為「不同」 | {len(isl2)} | "
           "使**每個單列群與每個群首／群尾**只要與鄰居不同即成孤島 —— "
           "其中多數為 Test Set 之正常邊界，非證據 |")
-    print(f"\n二者相差 **{len(isl2)-len(isl)}** 列。strict 之產出全落於 "
-          f"`{isl[0][1] if isl else '—'}` 等跨章群之內部，"
-          "即 R-SU20(b) 所指「被自連續段中抽出」之情形。\n")
+    print(f"\n二者相差 **{len(isl2)-len(isl)}** 列，該差全為 Test Set 之正常邊界。\n")
+    print("> ⚠ **已知盲區（R-SU20 v2(a) 令隨檢查陳述）**："
+          "**本檢查不覆蓋群邊界之錯分** —— 位於 Heading 群首尾之列若被錯置，"
+          "孤島檢查**不會報警**。此為採 strict 之代價，非疏漏。\n")
 
     # ── (a) 孤島清單 + (d) 之機器化
     print("### (a) 孤島清單，含 R-SU20(d) 之循環風險機器檢查\n")

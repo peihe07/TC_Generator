@@ -12,7 +12,22 @@ Urgency 回報。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
-| — | **本輪 0 筆** | — | — | — | — | — |
+| **DR-SU1** | **靜默期間之安全相關通知條件清單**（pattern：規格側之 safety-related notification 條件表；來源未定，得為 CFTS_57 之補件或 SYSAD 之安全需求節） | **OPEN** | `SWE1-FOTA-176`（facet B） | `newR1L-SU-003` 之 `pre`／`proc`／`er` 三欄各掛一 `PENDING`；該 TC 不可執行 | — | **High** —— pilot 批已受阻，Silent Update 之 9 列尚有 5 列未撰 |
+
+## DR-SU1 —— 詳（下放包 19 §四 TC-3）
+
+`CFTS057-4907477` 與 037 `SWE1-FOTA-176` 皆僅稱
+「necessary for **safety requirements**」，**未列舉何者為安全相關條件**。
+無此清單則**無可執行之觸發步驟** —— TC-3 之 Procedure 第 3 步
+（「觸發一項安全相關條件」）無從寫成實機可跑之動作。
+
+依 IN §8.4.3 掛 `PENDING`，**不得自行舉例**（如 eCall、碰撞偵測）
+—— 舉例即造值（下放包 19 §四）。
+
+**執行層之補充實測**（上繳包 18 §T32b）：本列於 lint 觸發
+**K=3（CJK 字元）／T=3（PENDING 說明非英文）／U=3（PENDING 佔位）**，
+其中 **K 與 T 為草案本身之缺陷（PENDING 說明以中文書寫，違 R-14）**，
+與 DR 之有無無關；U 為計數用，屬預期。
 
 ## 本輪（下放包 01 + 02，2026-08-27）之結案記錄
 
