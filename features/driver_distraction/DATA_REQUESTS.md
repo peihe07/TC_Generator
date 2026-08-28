@@ -12,16 +12,23 @@ Urgency 回報。
 
 | # | 標的 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
-| **DR-DD1** | 037 作者／上游 | **DRAFTED**（待 Pei 發送）| `-025`~`-028`（4） | 該 4 leaf **凍結**，不入任何批次 | A-DD1 | 高 —— framework 組 6 之歸屬待此 |
-| **DR-DD2** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-021`~`-024`（4） | 不阻斷生成；ER／Pre-Condition 之訊號名待定 | **A-DD2** | 中 |
-| **DR-DD3** | 上游（素材提供）| **ANSWERED-PENDING-CONFIRM** | `-017`~`-028`（12） | **值已查得（91）；識別仍懸，標 A-DD5** | **A-DD5** | 中 |
-| **DR-DD4** | 上游（CFTS022／037 作者）| **DRAFTED**（待 Pei 發送）| **9 列書 MPH 門檻者**：`-003`／`-005`／`-007`／`-009`／`-011`／`-013`／`-015`（7，可生成）＋ `-025`／`-027`（2，另因 A-DD1 凍結）| 不阻斷生成；ER 之 raw 數值標 A-DD6 | **A-DD6** | 中 |
-| **DR-DD5** | 上游（LID 維護者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入 pilot**；`$VC_Trans_Equipped$` 有無施加路徑未定 | — | 高 —— 與 DR-DD6 並列 |
-| **DR-DD6** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入 pilot**；`$VC_Trans_Equipped$` 之列舉對應未定 | — | 高 —— 組 1／2 待此 |
-| **DR-DD7** | 上游（037 作者）| **DRAFTED**（待 Pei 發送）| `-010`／`-012`（2）| **不阻斷** —— 二 TC 皆保留（追溯要求）；驗證目標實質相同 | **A-DD7** | 中 |
+| **DR-DD1** | 037 作者／上游 | **DRAFTED（改稿含 SYSAD 引文）**（待 Pei 發送）| `-025`~`-028`（4） | 該 4 leaf **凍結**，不入任何批次 | A-DD1 | **必發** —— framework 組 6 之歸屬待此 |
+| **DR-DD2** | 上游（CFTS022 作者）| **DRAFTED（格式更正件，緩發）** | `-021`~`-024`（4） | **不阻斷** —— 施加名依 **R-DD18** 採認為 `PARK_BRK_EDG`；所問改為規範欄之更正 | **A-DD2** | 低 |
+| ~~**DR-DD3**~~ | 上游（素材提供）| **RESOLVED**（Pei 2026-08-28 確認識別）| `-017`~`-028`（12） | **解除** —— `Country_Code = 91` 為確定值，A-DD5 撤銷 | ~~A-DD5~~ | — |
+| **DR-DD4** | 上游（CFTS022／037 作者）| **PARTIALLY ANSWERED**（單位 km/h）／縮為一問，**緩發** | **9 列書 MPH 門檻者**：`-003`／`-005`／`-007`／`-009`／`-011`／`-013`／`-015`（7，可生成）＋ `-025`／`-027`（2，另因 A-DD1 凍結）| 不阻斷生成；ER 之 raw 數值標 A-DD6 | **A-DD6** | 中 |
+| **DR-DD5** | 上游（LID 維護者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入批次**；`$VC_Trans_Equipped$` 有無施加路徑未定 | — | **必發** —— 與 DR-DD6 並列 |
+| **DR-DD6** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入批次**；`$VC_Trans_Equipped$` 之列舉對應未定 | — | **必發** —— 組 1／2 待此 |
+| **DR-DD7** | 上游（037 作者）| **DRAFTED**（待 Pei 發送）| 文稿問 `-010`／`-012`；**實測涉 11 leaf** | **不阻斷** —— 品質旗標；**緩發** | **A-DD7** | 低 |
 
-**DR-DD1／DR-DD2／DR-DD4／DR-DD5／DR-DD6／DR-DD7 為 DRAFTED 未發送；DR-DD3 之標的已到位，狀態
-ANSWERED-PENDING-CONFIRM（下放包 07 §三 R-DD8(c) 明定不結案）。**
+**發送清單（下放包 13 §六）**：
+
+| 級 | DR | 狀態 |
+|---|---|---|
+| **必發** | **DD1**（改稿含 SYSAD 引文）、**DD5**、**DD6** | 卡 `-017`~`-028` 共 12 leaf |
+| 緩發 | DD2（格式更正件）、DD4（縮為一問）、DD7（品質旗標）| 皆非阻斷 |
+| **結案** | **DD3** | **RESOLVED**（下放包 13 §二）|
+
+**六筆未發送；DD3 已結案。**
 
 > **DR-DD5 已於下放包 09 §二 裁定建檔**（保留號轉正式條目）。
 > 裁定所據者為 T13a 之「**不合慣例**」量測，非「哪一列看起來對」。
@@ -66,6 +73,15 @@ ANSWERED-PENDING-CONFIRM（下放包 07 §三 R-DD8(c) 明定不結案）。**
 > whether separate SWE1 rows for the LATAM side will be added, since the
 > current four rows carry Hong Kong wording only.
 >
+> Additionally, the System Architectural Design (FM-WI-FSM-015-A01)
+> describes the speed-hysteresis judgment (separate lock and unlock
+> thresholds) as a market-specific processor type **for LATAM**
+> (`ProcessorType4to6 … for LATAM`; "Market-specific types (such as LATAM)
+> evaluate restriction using speed hysteresis thresholds"), while the
+> Hong Kong logic is described in terms of parking-brake state and gear
+> selection. This is consistent with the CFTS022 section structure and
+> inconsistent with the Hong Kong wording of SWE1 rows -025 ~ -028.
+>
 > Until clarified, the four rows are on hold in SWQT test case generation.
 
 ---
@@ -87,13 +103,45 @@ ANSWERED-PENDING-CONFIRM（下放包 07 §三 R-DD8(c) 明定不結案）。**
 
 ---
 
-## DR-DD2 —— `$PARK_BRK_EGD$` 之 LID 名稱拼法（`-021`~`-024`）
+## DR-DD2 —— `$PARK_BRK_EGD$` 之拼法（`-021`~`-024`）—— **降轉為格式更正件**
 
 - **標的**：上游（CFTS022 作者）
-- **狀態**：DRAFTED（待 Pei 發送）
+- **狀態**：**DRAFTED（格式更正件，緩發）**（下放包 13 §三；原為「請確認名稱」）
 - **由來**：A-DD2；R-DD5 之 T6 逐訊號查對，五訊號中**唯一四庫皆查無者**
-- **阻斷範圍**：不阻斷生成 —— 該 4 leaf 之 ER／Pre-Condition 於訊號名定案前
-  依 IN §8.7.5(d)(g) **保留來源名稱**（`$PARK_BRK_EGD$`），不代以他訊號（R-13）
+- **阻斷範圍**：**不阻斷**
+
+### 降轉之依據 —— R-DD18
+
+**R-DD18 已裁**：上游於其自身文件內留有**書面回覆**者，得採認該回覆所指之名
+為**施加名**（此為 lookup ＋ 上游書面確認，非 R-DD5／R-13 所禁之語意代換）。
+
+本案之書面回覆（CFTS022 `Basic Report` r129，逐字）：
+
+```
+SYS2 HARMAN Comments : …looks incorret. Does the expected LID name is "PARK_BRK_EDG".
+SYS2 MD Feedback     : The LID which is referred here is $PARK_BRK_EDG$
+```
+
+**故本 DR 所問已非「名稱為何」（R-DD18 已答），而是「規範欄何時更正」** ——
+
+| | 降轉前 | 降轉後 |
+|---|---|---|
+| 所問 | 請確認正確識別碼為何 | **請將規範欄與 `-129` 之 `EGD` 更正為 `EDG`** |
+| 性質 | 名稱未定，施加路徑待決 | **格式更正件** |
+| 級別 | 待發送 | **緩發**（§六 發送清單）|
+
+### R-DD18(b) 之採認界線（逐條落實）
+
+| 界線 | 落實 |
+|---|---|
+| 僅及於**施加路徑**（Procedure／ER 之訊號名）| `-021`~`-024` 之 Procedure／ER 用 `PARK_BRK_EDG` |
+| `test_item` 上半 verbatim 照原文（含 `EGD`），不改字 | 上半不動 |
+| 施加名之 CAN 對應**仍須自 LID 該列實測查得** | **T19c 已查**（見 §T19c；不因勘誤成立而略過查證）|
+| 規範欄未更正前，用及該施加路徑之 TC 標 `[ASSUMPTION A-DD2]` | 待 `-021`~`-024` 生成時施行 |
+| 上游正式更正後撤該 marker | 待本 DR 之回覆 |
+
+> **R-DD18(c) 不得反向援引**：本案之採認**全部**繫於「有書面回覆」這一件事。
+> 無書面回覆之「看起來像筆誤」仍依 R-DD5／R-13 登 DR。
 
 ### 問
 
@@ -121,14 +169,23 @@ ANSWERED-PENDING-CONFIRM（下放包 07 §三 R-DD8(c) 明定不結案）。**
 > `Description` columns of `-128` and `-129` (and the SWE1 rows derived from
 > them, `-021`~`-024`) be corrected?
 
-### ⚠ 執行層未自行採用 `EDG`
+### ⚠ 執行層當時未自行採用 `EDG` —— 其理由與 R-DD18 之關係
 
-**答案看起來就在來源自己的欄位裡**，但：
+當時之三項理由（保留為軌跡，**不刪**）：
 - `Description` 為**規範欄**，其餘為註記／回饋欄 —— **二者位階不同**；
 - `-129` **未被更正**，故「已定案」之推定不成立；
 - R-DD5 明文「查無者逐項登 DR，**不得代以語意相近之他訊號**」（R-13）。
 
-**故本輪保留 `$PARK_BRK_EGD$` 原名並登 DR。**
+**R-DD18 未推翻上述任何一項**，而是把「採認」與「代換」分開：
+
+- 第 1、2 項所指者為**規範欄之效力** —— R-DD18(b) 因此把採認**限於施加路徑**，
+  `test_item` 上半仍照原文之 `EGD`，且未更正前須標 `[ASSUMPTION A-DD2]`。
+  **三項理由在其各自的範圍內仍然成立。**
+- 第 3 項所禁者為**自行推定**；本案有上游之書面回覆，**不屬自行推定**（R-DD18(a)）。
+
+> 即：**當時不採是對的**（R-DD18 尚未存在，且採認之界線未定）；
+> **現在採也是對的**（界線已由 R-DD18 劃出，且限於施加路徑）。
+> 二者不衝突。
 
 ---
 
@@ -200,7 +257,27 @@ ANSWERED-PENDING-CONFIRM（下放包 07 §三 R-DD8(c) 明定不結案）。**
 - **Q9 = 是** → 本 DR **RESOLVED**，`Country_Code = 91` 入 profile §3
 - **Q9 = 否／不確定** → 值仍取 `91` 但標 `[ASSUMPTION A-DD5]`，本 DR 續開
 
-狀態：**ANSWERED-PENDING-CONFIRM**。
+狀態：~~**ANSWERED-PENDING-CONFIRM**~~ → **RESOLVED**（下放包 13 §二）。
+
+### 結案（下放包 13 §二；Pei 2026-08-28 確認識別）
+
+**結案依據**（逐字）：
+
+```
+Pei 2026-08-28 確認 SR24 R1 MCT v1.6 即 LID 所指之 CIP MCT（取檔出處為其發佈渠道）
+```
+
+| 項 | 處置 |
+|---|---|
+| 本 DR | **RESOLVED** |
+| **A-DD5** | **撤銷** —— 識別已確認，assumption 不復存在（條目不刪，狀態改 RESOLVED）|
+| `Country_Code = 91` | 由 assumption 轉**確定值** |
+| profile §3 該列 | 「凡用及者標 `[ASSUMPTION A-DD5]`」**移除**（分析層自辦）|
+| 影響 leaf | `-017`~`-028` 之 A-DD5 標記義務解除；**pilot 四則與 B1 十則皆未用及，無回修** |
+
+> **與 DR-DD1 之獨立性註記，其效力隨本 DR 結案而終** ——
+> 該註記所防者為「以 DD3 之值到位推論 DD1 得解」。DD3 已結，
+> **`-025`~`-028` 之凍結僅餘 A-DD1／DR-DD1 一個成因。**
 
 ---
 
@@ -235,7 +312,7 @@ Q9 已由 Pei 下放、分析層即裁為 **R-DD8**。**所裁者為「處置」
 ## DR-DD4 —— 速度門檻之判定單位與取整規則（A-DD6）
 
 - **標的**：上游（CFTS022／037 作者）
-- **狀態**：**DRAFTED**（下放包 07 §二 R-DD7(f) 所命；待 Pei 發送）
+- **狀態**：**PARTIALLY ANSWERED (unit: km/h, per SYSAD)** ／ 改稿後 **DRAFTED（縮為一問，緩發）**（下放包 13 §五）
 - **由來**：A-DD6；R-DD7(c) 之 raw 邊界為**分析層依 DBC 實測值所推導**
 - **阻斷範圍**：**不阻斷生成** —— 依 R-DD7 產出之 TC 標 `[ASSUMPTION A-DD6]` 即可入批次
 - **適用 leaf（本輪實測）**：037 `Analysis Report` 全 28 列中**書有 MPH 字樣者 9 列**
@@ -320,6 +397,45 @@ STATUS_CCAN3.VehicleSpeedVSOSig   13 bit, factor 0.0625, unit Km/h
 > The difference is one raw step (~0.04 MPH) but it decides the verdict of
 > the boundary-value test cases directly. Until answered, the affected test
 > cases carry an explicit assumption marker.
+
+### 縮問改稿（下放包 13 §五）—— 三問 → 一問
+
+**第一問（判定單位）已由 SYSAD 答**：分析層 SYSAD 全文掃描（母體 2,075 單元／
+281,916 字元）得具名常數 **`VEHICLE_SPEED_THREE_MPH_TO_KMPH`** ——
+**判定單位為 km/h，門檻由 MPH 換算而來**。
+
+| 原三問 | 處置 |
+|---|---|
+| 1. DUT 以何單位判定（raw／km/h／MPH）| **已答：km/h**（SYSAD 具名常數）→ 記 `PARTIALLY ANSWERED` |
+| 2. 換算係數與取整規則 | **保留** —— 即改稿後之唯一一問 |
+| 3. 邊界 raw 129／77 是否正確 | **併入第 2 問** —— 其答案由取整規則決定 |
+
+**改稿後之問**：
+
+> **DR-DD4 (revised) — Value and rounding of `VEHICLE_SPEED_THREE_MPH_TO_KMPH`**
+>
+> The System Architectural Design (FM-WI-FSM-015-A01) names the constant
+> `VEHICLE_SPEED_THREE_MPH_TO_KMPH`, indicating that the Driver Distraction
+> thresholds are evaluated in km/h after conversion from MPH.
+>
+> Question: what is the implemented value of that constant (and of its 5 MPH
+> counterpart), and what rounding rule is applied — is 3 MPH stored as
+> `4.828032`, `4.83`, or `4.8` km/h, and 5 MPH as `8.04672`, `8.05`, or
+> `8.0` km/h?
+>
+> The value decides whether raw 128 (8.0000 km/h) falls on the locked or the
+> unlocked side of the 5 MPH threshold, which in turn decides the verdict of
+> the boundary test cases.
+
+**降為非阻斷、緩發**，其前提為以下拘束隨包生效（下放包 13 §五）：
+
+```
+B1 拘束補（併入包 12 §6.2）：
+ER 不得斷言 128（不應鎖）／78（不應解）之邊界格 —— 除非 037 該列明書。
+跨越側（129／77）之斷言不受限。A-DD6 marker 維持至 DR-DD4 回覆。
+```
+
+**本輪已生成之 14 TC 對該拘束之符合性，見上繳包之自檢第 12 項與 §6.3。**
 
 ### ⚠ 分析層之自認
 

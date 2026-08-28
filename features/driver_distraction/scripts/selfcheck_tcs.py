@@ -359,6 +359,21 @@ add("+", "R-DD16(b)", "輸出 split_flag／split_reason；未拆者 false／\"NA
     not miss and not badv, f"缺鍵 {miss or '無'}；值不合 {badv or '無'}；"
     "鍵名依 R-DD16(a) 用 test_item／spec_reference（既有寫回形制）")
 
+# ── 追加：B1 拘束補（下放包 13 §五）—— ER 不得斷言 128／78 邊界格 ────
+edge = []
+for tc in TCS:
+    k = leaf(tc)
+    src_txt = " ".join(str(c) for c in SRC[k] if c is not None)
+    for v in ("128", "78"):
+        if re.search(rf"(?<![\d.]){v}(?![\d.])", tc["expected_result"]):
+            # 037 該列明書者不在此限
+            if not re.search(rf"(?<![\d.]){v}(?![\d.])", src_txt):
+                edge.append((tc["tc_id"], v))
+add("+", "包 13 §五", "ER 不得斷言 128（不應鎖）／78（不應解）之邊界格"
+    "（037 該列明書者不在此限）；跨越側 129／77 不受限",
+    not edge, f"{edge or '0 命中'}；"
+    f"用及跨越側者 {[leaf(t) for t in TCS if re.search(r'= (129|77) ', t['test_procedure'])]}")
+
 # ── 輸出 ───────────────────────────────────────────────────────────
 print("=" * 84)
 print("TC 自檢 —— IN §9 十七項全跑 ＋ 追加項（骨幹；產物由 SC_ARTIFACT 指定）")
