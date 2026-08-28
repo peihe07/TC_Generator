@@ -314,3 +314,58 @@ profile §3（`docs/runtime/profiles/FW036_R1L_DriverDistraction_Profile.md`）
   （為核 DR-DD6 文稿所引之版本，見 DATA_REQUESTS）——
   **`read_only=True` 開啟，未寫入**。A-DD4 之拘束為**寫入**之拘束，讀不受限
 - 四庫（LID v1_76／二 DBC／PROXI）全程唯讀
+
+---
+
+## [A-DD7] `-010` 與 `-012` 之 20 欄中 18 欄逐字全等，其 AC2 未隨 source 分化（新立，執行層登記，T15）
+
+**形態**：同一 AC2 被套用於二個不同之 source requirement，**未隨之調整**。
+
+### 實測（037 `Analysis Report`，逐欄比對）
+
+| 比較對 | 相異欄數／全欄 | 相異之欄 |
+|---|---|---|
+| **`-010`（r18）vs `-012`（r20）** | **2 / 20** | c0 leaf id、c1 Source Requirement ID |
+| 對照：`-009`（r17）vs `-011`（r19） | **4 / 20** | c0、c1、**c3 Requirement Description**、**c17 Verification Criteria** |
+
+即：**AC1 之一對隨 source 分化，AC2 之一對沒有。**
+
+### 何以是問題
+
+二列所引之 source 不同，而該二 source 之斷言面本身不同：
+
+| source | 其 AC1 衍生列之 Then 句（逐字）|
+|---|---|
+| `-117` | `Then DD Service outputs RESTRICTED and HMI prevents access to the feature` |
+| `-118` | `Then DD Service reports RESTRICTED and HMI displays the driver-distraction lockout notification` |
+
+**`-117` 為存取阻擋面，`-118` 為通知呈現面。**
+而 `-012`（源自 `-118`）之 AC2 逐字為：
+
+```
+Then DD Service outputs RESTRICTED and HMI keeps the corresponding feature locked
+```
+
+—— **是 `-117` 之存取阻擋面，非 `-118` 之通知面。**
+
+### 處置 —— 執行層未代上游改寫
+
+- `newR1L-DD-004`（`-012`）**依 037 原文斷言存取阻擋**，
+  **不改寫為通知面**（IN §8.4.2：不得造範圍）
+- 二列之區別落在**取樣 feature 與 spec_reference**，非斷言內容 ——
+  此為 037 現狀之忠實反映，非 TC 之設計缺陷
+- **`-012` 之 `test_item` 上半與 `-010` 逐字全等**（各 47 token，皆未逾 50 而全文照錄）。
+  下放包 09 §6.2-1 之「同一 Requirement ID 衍生之列不得逐字相同」
+  **不及於本對**（二者 Requirement ID 不同），故非違規；
+  **但二 TC 之上半確實一字不差**，記於此以免日後被讀為生成之疏漏
+
+### 待上游
+
+`-012` 之 AC2 是否應改為 `-118` 之通知面（即「訊號逾時後，
+lockout 通知仍呈現／該 feature 仍不可用」）？
+若是，`-012` 之 TC 須隨之重寫其 ER 錨（觀察面 A → 觀察面 B）。
+
+**本項為 Tier 1 登記（record + propose），處置屬 Tier 2。
+是否另立 DR 由分析層定 —— 執行層不代登。**
+
+狀態：**PENDING**（待分析層）。

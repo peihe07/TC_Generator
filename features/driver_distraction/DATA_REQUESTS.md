@@ -16,14 +16,20 @@ Urgency 回報。
 | **DR-DD2** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-021`~`-024`（4） | 不阻斷生成；ER／Pre-Condition 之訊號名待定 | **A-DD2** | 中 |
 | **DR-DD3** | 上游（素材提供）| **ANSWERED-PENDING-CONFIRM** | `-017`~`-028`（12） | **值已查得（91）；識別仍懸，標 A-DD5** | **A-DD5** | 中 |
 | **DR-DD4** | 上游（CFTS022／037 作者）| **DRAFTED**（待 Pei 發送）| **9 列書 MPH 門檻者**：`-003`／`-005`／`-007`／`-009`／`-011`／`-013`／`-015`（7，可生成）＋ `-025`／`-027`（2，另因 A-DD1 凍結）| 不阻斷生成；ER 之 raw 數值標 A-DD6 | **A-DD6** | 中 |
-| **DR-DD5** | —（保留號）| **未建檔** | — | 保留給 r420／r421 件；T13a 後由分析層定建或不建 | — | — |
+| **DR-DD5** | 上游（LID 維護者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入 pilot**；`$VC_Trans_Equipped$` 有無施加路徑未定 | — | 高 —— 與 DR-DD6 並列 |
 | **DR-DD6** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入 pilot**；`$VC_Trans_Equipped$` 之列舉對應未定 | — | 高 —— 組 1／2 待此 |
 
 **DR-DD1／DR-DD2／DR-DD4／DR-DD6 為 DRAFTED 未發送；DR-DD3 之標的已到位，狀態
 ANSWERED-PENDING-CONFIRM（下放包 07 §三 R-DD8(c) 明定不結案）。**
 
-> **DR-DD5 為保留號，非跳號。** 下放包 08 §五：號隨事項配，不隨時序配 ——
-> 該號保留給 §四 之 r420／r421 件，T13a 之後由分析層定建或不建。
+> **DR-DD5 已於下放包 09 §二 裁定建檔**（保留號轉正式條目）。
+> 裁定所據者為 T13a 之「**不合慣例**」量測，非「哪一列看起來對」。
+>
+> **DR-DD5 與 DR-DD6 為獨立阻斷**：DD5 定「**有無施加路徑**」，
+> DD6 定「**值如何對應**」。任一單獨回覆仍不解另一 —— 即使 DD5 裁定
+> r421 為準（有路徑），`[Manual]` 對 `Gear_Box_Type` 六值制之歸屬仍懸；
+> 即使 DD6 給出歸屬，r420 為準時該歸屬無處施加。**二者須分別追**
+> （同 DR-DD1／DR-DD3 之理）。
 
 ---
 
@@ -354,7 +360,7 @@ STATUS_CCAN3.VehicleSpeedVSOSig   13 bit, factor 0.0625, unit Km/h
 > CFTS022 SYSRA rows `SYS-RA-Driver_Distraction-126` ~ `-129` specify the
 > condition as `$VC_Trans_Equipped$ = [Automatic]` or `= [Manual]` — a
 > two-valued domain, consistent with the Powernet-side format recorded in
-> `Logical Identifiers and CAN Mapping v1_78`, sheet `Proxi & Configuration`,
+> `Logical Identifiers and CAN Mapping v1_76`, sheet `Proxi & Configuration`,
 > row 421, Powernet band `Format` column: `Transmission equipped:
 > 0 = Automatic & 1 = Manual`.
 >
@@ -399,3 +405,70 @@ STATUS_CCAN3.VehicleSpeedVSOSig   13 bit, factor 0.0625, unit Km/h
 - 發送前請分析層擇一：**(甲) 文稿改書 `v1_76`**，或
   **(乙) 依 R-DD5 重綁 `v1_78` 並重算 sha256**
 - **執行層不逕改，也不逕綁**（R-DD5 之綁定為裁決事項）
+
+
+---
+
+## DR-DD5 —— `VC_Trans_Equipped` 之 r420／r421 互斥（`-017`~`-024`）
+
+- **標的**：上游（LID 維護者）
+- **狀態**：**DRAFTED**（下放包 09 §二 之文稿，逐字保留；待 Pei 發送）
+- **由來**：T13a 之分布量測（上繳包 06 §3.2–§3.5）
+- **阻斷範圍**：`-017`~`-024`（8 leaf）**不入 pilot**
+
+### 裁定所據 —— 「不合慣例」，非「哪一列看起來對」
+
+| 判準 | r420／r421 |
+|---|---|
+| 配對系統性 | 合（17 組全 2 列）|
+| 主形態（G 欄 `CAN-C`→`CAN-B`）| **部分合** —— G 欄合，但另有 F／K／P 三欄衝突，為 17 組中衝突欄最多者 |
+| 衝突值含 `Not Applicable` | **全分頁唯一** |
+| CUSW 與 Atlantis 訊號名同時衝突 | **全分頁唯一** |
+
+**主形態解釋不了 K／P 欄之衝突** —— CUSW 與 Atlantis 是**架構**欄，
+同一 LID 不會因 Powernet 走 C 或 B 而變成 `Not Applicable`；
+11 組只差 G 欄者，其 K／P 欄全部一致或全空。
+
+> **不以「r421 較完整」裁之**（形態當證據，同下放包 08 §一 誤 2）；
+> **不以 PROXI 側證據反推**（循環論證，上繳 05 §5.3）。
+
+### 文稿（下放包 09 §二，逐字）
+
+> **DR-DD5 — Conflicting rows for LID `VC_Trans_Equipped` in the Logical
+> Identifier table**
+>
+> In `Logical Identifiers and CAN Mapping v1_76`, sheet
+> `Proxi & Configuration`, the logical identifier `VC_Trans_Equipped`
+> appears twice, in rows 420 and 421, with conflicting content:
+>
+> - Row 420 — Powernet `Signal Name` = `VC_Trans_Equipped`, Powernet `CAN`
+>   = `CAN-C`; CUSW `Signal Name` = `Not Applicable`;
+>   Atlantis & Atlantis High `Signal Name` = `Not Applicable`.
+> - Row 421 — Powernet `Signal Name` = `VehCfg7.VC_Trans_Equipped`,
+>   Powernet `CAN` = `CAN-B`, Powernet `Format` = `Transmission equipped:
+>   0 = Automatic & 1 = Manual`; CUSW `Signal Name` = `Gear_Box_Type`;
+>   Atlantis & Atlantis High `Signal Name` = `Gear_Box_Type`.
+>
+> The sheet contains 17 logical identifiers that appear on two rows each.
+> In 14 of those pairs the difference is confined to the Powernet `CAN`
+> column (11 of them differ in that column only), following a consistent
+> `CAN-C` → `CAN-B` pattern. `VC_Trans_Equipped` is the only pair whose
+> conflict extends to the CUSW and Atlantis signal-name columns, and the
+> only pair where one row states `Not Applicable` while the other names a
+> parameter.
+>
+> Question: for the Atlantis architecture, which row governs
+> `VC_Trans_Equipped` — is the identifier not applicable (row 420), or is
+> it realised through the PROXI parameter `Gear_Box_Type` (row 421)?
+>
+> Until clarified, requirements conditioned on `$VC_Trans_Equipped$` are on
+> hold in SWQT test case generation.
+
+### 與 DR-DD6 之關係 —— 二個獨立阻斷，不可互抵
+
+| | 所定者 | 若單獨回覆 |
+|---|---|---|
+| **DR-DD5** | `$VC_Trans_Equipped$` 在 Atlantis 架構下**有無施加路徑** | 即使裁 r421（有路徑），`[Manual]` 之歸屬仍懸 |
+| **DR-DD6** | `[Manual]`／`[Automatic]` 對 `Gear_Box_Type` 六值制**如何對應** | 即使給出歸屬，r420 為準時該歸屬無處施加 |
+
+**須分別追**（同 DR-DD1／DR-DD3 之理）。
