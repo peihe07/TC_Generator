@@ -12,7 +12,7 @@ Urgency 回報。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
-| **DR-SU2** | **105 列（內部服務主體且 `Verification Criteria` 亦無外部面者）於系統測層級之觀測手段**（pattern：log tag 清單／診斷 DID 表／服務介面定義／HMI 間接後果之對照） | **OPEN** | 初始 5 列（`363`–`367`，`Telematics Client`）；**滾動清單**，隨批次增列 | 全部 21 個 Test Set 之撰寫（`Telematics Client` 5/5 全落此類） | — | **High** |
+| **DR-SU2** | **105 列（內部服務主體且 `Verification Criteria` 亦無外部面者）於系統測層級之觀測手段**（pattern：log tag 清單／診斷 DID 表／服務介面定義／HMI 間接後果之對照） | **OPEN**｜**確認進度 5 / 105** | **已確認段 5 列**（`363`–`367`，`Telematics Client`） | **未確認母群 105 列**（含該 5 列，佔驗證母體 34%）—— **尚未逐列判定**；滾動增列 | — | **High** |
 | **DR-SU1** | **靜默期間之安全相關通知條件清單**（pattern：規格側之 safety-related notification 條件表；來源未定，得為 CFTS_57 之補件或 SYSAD 之安全需求節） | **OPEN** | `SWE1-FOTA-176`（facet B） | `newR1L-SU-003`（v2）之 `pre`／`proc`／`er` 三欄各掛一**英文** `PENDING`；該 TC 不可執行 | — | **High** —— pilot 批已受阻，Silent Update 之 9 列尚有 5 列未撰 |
 
 ## DR-SU2 —— 詳（下放包 23 §3.1）
@@ -46,11 +46,23 @@ Urgency 回報。
 | `366` | FOTA Update Availability Check | Unit/Integration/**System** | the OTA server **is queried** ❌ |
 | `367` | Server-Initiated Session Forwarding from TC | Unit/Integration/**System** | the request **is forwarded**／**queued** ❌ |
 
-**⚠ 清單之語意（R-SU29(c)，且見上繳包 22 §自評）**：
-本清單為**滾動**清單，其列為**「撰寫該列 TC 時取不到觀測面」者**。
-**「已在清單上」= 已逐列試過且取不到**；
-**「不在清單上」≠ 已確認有解** —— 105 列中之其餘 100 列**尚未逐列試過**。
-二者不可互推。
+### ⚠ 二段式台帳（**R-SU30**）
+
+| 段 | 定義（R-SU30(a)(b)） | 現況 |
+|---|---|---:|
+| **(a) 已確認段** | 該列已由分析層**逐列判定**，其外部可觀測後果**取不到**。**此段之列方為 DR 之實際標的** | **5 列**（`363`–`367`） |
+| **(b) 未確認之母群** | 符合同一語形條件（內部服務主體且 VC 亦無外部面）但**尚未逐列判定**之列 | **105 列**（含 (a) 之 5 列） |
+| **確認進度**（R-SU30(d)） | (a) / (b) | **5 / 105（5%）** |
+
+**記法之拘束（R-SU30(b)）**：不得只寫母群數而使人誤以為 105 列皆已確認。
+
+**二段之語意逐次載明**：
+- **「已在 (a) 段」= 已逐列試過且取不到**
+- **「不在 (a) 段」≠ 已確認有解** —— 其餘 100 列**尚未逐列試過**
+- **二者不可互推。** 且 (b) 為 (a) 之**潛在上界**：DR-SU2 之規模可能達 105 列（母體 34%），
+  而非現有之 5 列
+
+> **進度為 5/105 —— 本 DR 不得被陳述為「已盤點完成」**（R-SU30(d)）。
 
 ---
 
