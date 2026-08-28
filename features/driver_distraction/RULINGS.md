@@ -21,6 +21,9 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 | R-DD3 | v1 | ER 之斷言錨層級：HMI 現象為主錨；callback／Listener 依 reaction presence 降階 | 02 §一 |
 | R-DD4 | v1 | SYSAD 為人讀參考，不入語料、不入 prompt 指紋 | 02 §一 |
 | R-DD5 | v1 | 四庫綁 `vehicle_setting/inputs/` 原件；sha256 自實體檔重算；查無者逐項登 DR | 02 §一 |
+| R-DD6 | v1 | 訊號名之架構軸：一律取 ATLANTIS 欄（繫於 R-DD5 之綁定）；引 LID 須標架構欄 | 07 §一 |
+| R-DD7 | v1 | MPH 門檻於 km/h 匯流排之 raw 邊界：上鎖 129／解鎖 77；全標 A-DD6，登 DR-DD4 | 07 §二 |
+| R-DD8 | v1 | Market Configuration Table 之採用與保留：取 Country_Code=91、標 A-DD5、DR-DD3 不結案 | 07 §三 |
 
 **留存之被取代條文**：無（本 feature 自始無改版）。
 
@@ -91,3 +94,77 @@ sha256 由執行層自實體檔重算，不抄他 feature 之宣告值。
 不得代以語意相近之他訊號（R-13）。
 （Pei 2026-08-27 裁定，下放包 02）
 ```
+
+```
+R-DD6（訊號名之架構軸）
+
+實測（上繳包 03 T9a）：綁定之二 DBC（PDT27_E2A_R4_BHCAN 155 訊息、
+PDT27_E2A_R5_FDCAN8 323 訊息）為 ATLANTIS 側；LID 之 Powernet 欄名
+（GW_C1.VEH_SPEED／GW_C1.Gr／VehCfg7.*）於二 DBC 皆不存在。
+
+裁定：
+(a) profile §3 之訊號名一律取 **ATLANTIS 欄**。理由非「ATLANTIS 較佳」，
+    而是**台架庫已綁定於此** —— 綁定之庫決定何者可施加，
+    Powernet 名於本台架上寫得出來也送不出去。
+(b) 本條之效力繫於 R-DD5 之四庫綁定。**若日後改綁他架構之庫，
+    本條隨之失效並須重裁**，不得沿用。
+(c) LID 為多架構對照表。引其列時**須同時標明所取之架構欄**，
+    格式 `LID {分頁名} r{n} [{架構}欄]`；只標列號者視同未標
+    （下放包 05 §1.1 之誤一之延伸）。
+```
+（Pei 下放，分析層即裁，下放包 07 §一）
+---
+
+```
+R-DD7（MPH 門檻於 km/h 匯流排上之邊界定義）
+
+spec 門檻以 MPH 表述（5 MPH 上鎖／3 MPH 解鎖），而綁定匯流排之
+速度訊號單位為 Km/h、factor 0.0625（raw = km/h × 16）。
+
+(a) `1 MPH = 1.609344 km/h` 為單位定義，屬 IN §8.4.1 之 domain constant，
+    援用不構成造值。
+(b) 換算結果不落於整數 raw：
+      5 MPH = 8.04672 km/h → raw 128.74752
+      3 MPH = 4.828032 km/h → raw 77.248512
+    即此匯流排上**不存在「等於 5 MPH」之格**。
+(c) 邊界依**條文之不等號方向**取跨越側之第一個可表示格：
+      「equal or greater than 5MPH」→ 上鎖之最小 raw = **129**
+        （129 × 0.0625 = 8.0625 km/h = 5.0097 MPH ≥ 5 ✓
+         128 × 0.0625 = 8.0000 km/h = 4.9710 MPH < 5 ✗）
+      「equal or less than 3MPH」→ 解鎖之最大 raw = **77**
+        （77 × 0.0625 = 4.8125 km/h = 2.9903 MPH ≤ 3 ✓
+         78 × 0.0625 = 4.8750 km/h = 3.0292 MPH > 3 ✗）
+(d) TC 內**一律具名 raw 並附其 km/h 與 MPH 實值**，
+    不得只寫「5 MPH」而讓執行者自行換算。
+(e) BVA（IN §12）之 limit±1 依 (c) 定義：
+      上鎖側 128（不應鎖）／129（應鎖）
+      解鎖側 77（應解）／78（不應解）
+(f) (c) 之推導為**分析層依 DBC 實測值所為**，DUT 內部之取整可能相異
+    （±1 raw ≈ 0.04 MPH）。故**全部依本條產出之 TC 標
+    `[ASSUMPTION A-DD6]`**，並登 DR-DD4 向上游確認判定單位與取整規則。
+    DR 回覆若與 (c) 不同，回修範圍為速度類 leaf 之 ER 數值，
+    不動其結構。
+```
+（Pei 下放，分析層即裁，下放包 07 §二；採丙）
+---
+
+```
+R-DD8（Market Configuration Table 之採用與其保留）
+
+LID `Proxi & Configuration` r43 c7 指名 `CIP Market Configuration Table
+v*.xlsx`；到位者為 `SR24 R1 Market Configuration Table v1.6.xlsx`。
+**檔名不同，二者是否同一份為事實問題，分析層無證據可定。**
+
+裁定（處置）：
+(a) 採其值 —— `$Country_Code$` Hong Kong = `91`（十進位，Hex 5B），
+    取自 `Market Config - R1` r97 c19，表頭逐字
+    `PROXI3  <Country_Code>Signal - Decimal`。
+(b) 凡用及該值之 TC 一律標 `[ASSUMPTION A-DD5]`。
+(c) **DR-DD3 不結案**，狀態 `ANSWERED-PENDING-CONFIRM` ——
+    值已得、識別未確認。上游確認後始轉 RESOLVED 並撤 A-DD5。
+(d) 本條不改變 A-DD1／DR-DD1：市場歸屬仍懸，二者為獨立阻斷。
+    亦不得以該表 c58（Navigation DD Lockout Disable）推論 A-DD1 ——
+    該欄對應 CFTS022 -136（Out of scope），範圍不同（下放包 06 §1.2）。
+```
+（Pei 下放，分析層即裁，下放包 07 §三；所裁者為處置，非識別）
+---

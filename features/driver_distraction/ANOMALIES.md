@@ -196,3 +196,103 @@ None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-DRnn]`.
 該次為 `git add` 既有檔案（分析層所落），**執行層未改其內容一字**。
 
 **拘束自本包生效，往後於共用路徑一律 `edit_file` 局部改。**
+
+---
+
+## [A-DD5] `SR24 R1 Market Configuration Table v1.6.xlsx` 之識別未確認（新立，下放包 07 §三 R-DD8）
+
+**形態**：值已得，來源身分未定。
+
+**`LID Proxi & Configuration r43 [Powernet 欄]`**（R-DD6(c) 之引用格式）
+c7 `Format`（Powernet 帶 c5–c9 之 `Format` 欄）逐字指名之權威來源為：
+
+```
+See latest version of 'CIP Market Configuration Table v*.xlsx', worksheet 'Market Configuration'.
+```
+
+到位者為 `forms/SR24 R1 Market Configuration Table v1.6.xlsx`。
+**檔名不同（`CIP` vs `SR24 R1`）；二者是否同一份為事實問題，分析層無證據可定。**
+
+### 處置（R-DD8 逐字所裁，本台帳僅登記）
+
+- **採其值** —— `$Country_Code$` Hong Kong = `91`（十進位，Hex `5B`），
+  取自 `Market Config - R1` r97 c19，表頭逐字 `PROXI3  <Country_Code>Signal - Decimal`
+- 凡用及該值之 TC **一律標 `[ASSUMPTION A-DD5]`**
+- **DR-DD3 不結案**，狀態 `ANSWERED-PENDING-CONFIRM` —— 值已得、識別未確認；
+  上游確認後始轉 RESOLVED 並撤本 marker
+- 本條**不改變 A-DD1／DR-DD1**：市場歸屬仍懸，二者為獨立阻斷；
+  亦不得以該表 c58（Navigation DD Lockout Disable）推論 A-DD1
+  —— 該欄對應 CFTS022 `-136`（Out of scope），範圍不同
+
+**適用範圍**：`-017`~`-028`（HK 全段 12 leaf）之 Pre-Condition。
+（其中 `-025`~`-028` 另因 A-DD1 凍結 —— 二阻斷並存，不互抵。）
+
+狀態：**PENDING**（待 DR-DD3 之上游確認）。
+
+---
+
+## [A-DD6] 速度門檻之 raw 邊界為分析層推導，非上游所給（新立，下放包 07 §二 R-DD7(f)）
+
+**形態**：spec 之門檻單位（MPH）與可施加訊號之單位（km/h, factor 0.0625）
+不共格 —— 此匯流排上**不存在「等於 5 MPH」之格**。
+
+```
+5 MPH = 8.04672 km/h  → raw 128.74752
+3 MPH = 4.828032 km/h → raw  77.248512
+```
+
+R-DD7(c) 依條文之不等號方向取跨越側之第一個可表示格：
+
+| 條文 | raw | km/h | MPH | 判 |
+|---|---|---|---|---|
+| `equal or greater than 5MPH` | **129** | 8.0625 | 5.0097 | ≥ 5 ✓ |
+| （其下一格）| 128 | 8.0000 | 4.9710 | < 5 ✗ |
+| `equal or less than 3MPH` | **77** | 4.8125 | 2.9903 | ≤ 3 ✓ |
+| （其上一格）| 78 | 4.8750 | 3.0292 | > 3 ✗ |
+
+### 為何登異常
+
+**(c) 之推導為分析層依 DBC 實測值所為，DUT 內部之取整可能相異**
+（±1 raw ≈ 0.04 MPH）。上游未給判定單位與取整規則。
+
+### 處置（R-DD7 逐字所裁，本台帳僅登記）
+
+- **全部依 R-DD7 產出之 TC 標 `[ASSUMPTION A-DD6]`**
+- TC 內**一律具名 raw 並附其 km/h 與 MPH 實值**，不得只寫「5 MPH」
+  而讓執行者自行換算（R-DD7(d)）
+- BVA（IN §12）之 limit±1 依 (c)：上鎖側 128（不應鎖）／129（應鎖）；
+  解鎖側 77（應解）／78（不應解）
+- **DR-DD4** 已建檔（DRAFTED）向上游確認判定單位與取整規則
+- **回修範圍受限**：DR 回覆若與 (c) 不同，只動速度類 leaf 之 ER 數值，
+  **不動其結構**
+
+> `1 MPH = 1.609344 km/h` 為單位定義，屬 IN §8.4.1 之 domain constant，
+> 援用**不構成造值** —— 本異常所指者非換算本身，而是取整規則之未定。
+
+### 適用範圍（本輪實測，037 `Analysis Report` 全 28 列）
+
+**書有 MPH 字樣者 9 列**：
+
+| 可生成（7）| 另因 A-DD1 凍結（2）|
+|---|---|
+| `-003`（r11，`5`／`3`）`-005`（r13，`3`）`-007`（r15，`5`）`-009`（r17，`5`）`-011`（r19，`5`）`-013`（r21，`5`）`-015`（r23，`5`）| `-025`（r33，`5`）`-027`（r35，`3`）|
+
+偶數配對列（`-004`／`-006`／`-008`／`-026`／`-028`）為 **AC2 之訊號失效／
+逾時分支**，文中無門檻值 —— **A-DD6 不及於彼**。
+
+> **A-DD6 之波及面比 A-DD1 廣** —— 7 列不在凍結名單內卻須帶 marker。
+> 此 7 列即 pilot 最先會碰到者。
+
+狀態：**PENDING**（待 DR-DD4）。
+
+---
+
+## [A-DD4] 遵行紀錄（本輪，下放包 07）
+
+本輪之寫入全在 `features/driver_distraction/` 私有路徑
+（`RULINGS.md`／`ANOMALIES.md`／`DATA_REQUESTS.md`／`docs/upstream/`），
+**未觸及 `docs/runtime/`、`docs/fw036/`、`forms/`、`scripts/` 任一共用路徑**。
+
+profile §3（`docs/runtime/profiles/FW036_R1L_DriverDistraction_Profile.md`）
+**本輪未寫入一字** —— 拘束一（T12 只量測，不寫 profile）。
+四庫（LID／DBC／PROXI）**全程唯讀開啟**（`read_only=True`），未落任何寫入。

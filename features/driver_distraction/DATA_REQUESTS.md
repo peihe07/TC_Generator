@@ -14,10 +14,11 @@ Urgency 回報。
 |---|---|---|---|---|---|---|
 | **DR-DD1** | 037 作者／上游 | **DRAFTED**（待 Pei 發送）| `-025`~`-028`（4） | 該 4 leaf **凍結**，不入任何批次 | A-DD1 | 高 —— framework 組 6 之歸屬待此 |
 | **DR-DD2** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-021`~`-024`（4） | 不阻斷生成；ER／Pre-Condition 之訊號名待定 | **A-DD2** | 中 |
-| **DR-DD3** | 上游（素材提供）| **ANSWERED-PENDING-CONFIRM** | `-017`~`-028`（12） | **值已查得（91）；識別待 Q9** | — | 中 |
+| **DR-DD3** | 上游（素材提供）| **ANSWERED-PENDING-CONFIRM** | `-017`~`-028`（12） | **值已查得（91）；識別仍懸，標 A-DD5** | **A-DD5** | 中 |
+| **DR-DD4** | 上游（CFTS022／037 作者）| **DRAFTED**（待 Pei 發送）| **9 列書 MPH 門檻者**：`-003`／`-005`／`-007`／`-009`／`-011`／`-013`／`-015`（7，可生成）＋ `-025`／`-027`（2，另因 A-DD1 凍結）| 不阻斷生成；ER 之 raw 數值標 A-DD6 | **A-DD6** | 中 |
 
-**DR-DD1／DR-DD2 為 DRAFTED 未發送；DR-DD3 之標的已到位，狀態
-ANSWERED-PENDING-CONFIRM。**
+**DR-DD1／DR-DD2／DR-DD4 為 DRAFTED 未發送；DR-DD3 之標的已到位，狀態
+ANSWERED-PENDING-CONFIRM（下放包 07 §三 R-DD8(c) 明定不結案）。**
 
 ---
 
@@ -188,3 +189,128 @@ ANSWERED-PENDING-CONFIRM。**
 - **Q9 = 否／不確定** → 值仍取 `91` 但標 `[ASSUMPTION A-DD5]`，本 DR 續開
 
 狀態：**ANSWERED-PENDING-CONFIRM**。
+
+---
+
+### 狀態確認（下放包 07 §三 R-DD8(c)，T-登）—— 維持 **ANSWERED-PENDING-CONFIRM**
+
+Q9 已由 Pei 下放、分析層即裁為 **R-DD8**。**所裁者為「處置」，非「識別」** ——
+
+| 項 | 結果 |
+|---|---|
+| 值 | `91`（十進位，Hex `5B`）**採用** |
+| marker | 用及該值之 TC 一律標 `[ASSUMPTION A-DD5]`（新立，見 ANOMALIES） |
+| 本 DR 狀態 | **不結案**，維持 `ANSWERED-PENDING-CONFIRM` |
+| 轉 RESOLVED 之條件 | **上游確認二檔為同一份**；確認後始撤 A-DD5 |
+| 與 DR-DD1 | **不變** —— 市場歸屬仍懸，二者為獨立阻斷，不互抵 |
+
+> **不得以該表 c58（`Navigation Driver Distraction Lockout Disabled`）推論 A-DD1**
+> —— 該欄對應 CFTS022 `-136`（Out of scope），範圍不同（下放包 06 §1.2）。
+
+### ⚠ 引用格式之補正（R-DD6(c)，隨下放包 07 生效）
+
+本節上文（§「這不是問句」、§「問」、§「⚠ 尚未 RESOLVED」）之
+`LID Proxi & Configuration r43 c7` **只標列號、未標架構欄**，
+依 R-DD6(c) **視同未標**。
+
+- **保留原文不改**（DR 問稿為待發送之逐字文稿；R-TM13 精神：留痕不湮滅）
+- **正確引用為**：`LID Proxi & Configuration r43 [Powernet 欄]`
+  —— c7 屬 Powernet 帶（表頭 r2 c5 `Powernet`，涵 c5–c9）之 `Format` 欄（r3 c7）
+- 往後新寫之引用一律具架構欄
+
+---
+
+## DR-DD4 —— 速度門檻之判定單位與取整規則（A-DD6）
+
+- **標的**：上游（CFTS022／037 作者）
+- **狀態**：**DRAFTED**（下放包 07 §二 R-DD7(f) 所命；待 Pei 發送）
+- **由來**：A-DD6；R-DD7(c) 之 raw 邊界為**分析層依 DBC 實測值所推導**
+- **阻斷範圍**：**不阻斷生成** —— 依 R-DD7 產出之 TC 標 `[ASSUMPTION A-DD6]` 即可入批次
+- **適用 leaf（本輪實測）**：037 `Analysis Report` 全 28 列中**書有 MPH 字樣者 9 列**
+
+| leaf | 037 列 | MPH 字樣 | 備註 |
+|---|---|---|---|
+| `-003` | r11 | `5 MPH`／`3 MPH` | 可生成 |
+| `-005` | r13 | `3 MPH` | 可生成 |
+| `-007` | r15 | `5 MPH` | 可生成 |
+| `-009` | r17 | `5 MPH` | 可生成 |
+| `-011` | r19 | `5 MPH` | 可生成 |
+| `-013` | r21 | `5 MPH` | 可生成 |
+| `-015` | r23 | `5 MPH` | 可生成 |
+| `-025` | r33 | `5 MPH` | **另因 A-DD1 凍結** |
+| `-027` | r35 | `3 MPH` | **另因 A-DD1 凍結** |
+
+  其偶數配對列（`-004`／`-006`／`-008`／`-026`／`-028`）為 **AC2 之
+  訊號失效／逾時分支**，文中無門檻值 —— **A-DD6 不及於彼**。
+
+  > **即：A-DD6 之波及面比 A-DD1 廣。** 7 列不在凍結名單內卻要帶 marker，
+  > 這 7 列是 pilot 會先碰到的。
+- **回修範圍（受限）**：DR 回覆若與 R-DD7(c) 不同，
+  **只動速度類 leaf 之 ER 數值，不動其結構**
+
+### 實測依據
+
+綁定匯流排之速度訊號（`LID Proxi & Configuration` 之 `$Speedometer$`，
+ATLANTIS 欄，下放包 03 T9a 實測）：
+
+```
+STATUS_CCAN3.VehicleSpeedVSOSig   13 bit, factor 0.0625, unit Km/h
+```
+
+`1 MPH = 1.609344 km/h`（單位定義，IN §8.4.1 domain constant，援用不構成造值）：
+
+```
+5 MPH = 8.04672 km/h  → raw 128.74752   ← 不落於整數格
+3 MPH = 4.828032 km/h → raw  77.248512  ← 不落於整數格
+```
+
+**即此匯流排上不存在「等於 5 MPH」之格。**
+
+### 問
+
+> **DR-DD4 — Evaluation unit and rounding rule for the 5 MPH / 3 MPH
+> Driver Distraction lockout thresholds**
+>
+> CFTS022 SYSRA (FM-WI-FSM-035-A02) rows `-132` / `-133`, and the SWE1 rows
+> derived from them, state the lockout thresholds in **MPH**
+> ("equal or greater than 5MPH" to lock, "equal or less than 3MPH" to unlock).
+>
+> The vehicle-speed signal bound to our test bench is
+> `STATUS_CCAN3.VehicleSpeedVSOSig` (13 bit, factor **0.0625**, unit **Km/h**),
+> i.e. raw = km/h x 16. Converting with the SI definition
+> `1 MPH = 1.609344 km/h`:
+>
+> ```
+> 5 MPH = 8.04672 km/h   -> raw 128.74752
+> 3 MPH = 4.828032 km/h  -> raw  77.248512
+> ```
+>
+> **Neither threshold lands on a representable raw value**, so there is no
+> bus value that is exactly 5 MPH or exactly 3 MPH. For test-case generation
+> we currently take the first representable step on the crossing side implied
+> by each inequality:
+>
+> | Requirement | raw | km/h | MPH |
+> |---|---|---|---|
+> | lock, `>= 5 MPH`   | **129** | 8.0625 | 5.0097 |
+> | (step below)       | 128 | 8.0000 | 4.9710 |
+> | unlock, `<= 3 MPH` | **77**  | 4.8125 | 2.9903 |
+> | (step above)       | 78  | 4.8750 | 3.0292 |
+>
+> Questions:
+> 1. In what unit does the DUT evaluate the thresholds — raw counts, km/h,
+>    or MPH after an internal conversion?
+> 2. What conversion factor and rounding rule does the DUT apply
+>    (truncate / round-half-up / a fixed integer km/h threshold)?
+> 3. Are the boundary raw values 129 (lock) and 77 (unlock) correct for
+>    pass/fail judgement, or should different values be used?
+>
+> The difference is one raw step (~0.04 MPH) but it decides the verdict of
+> the boundary-value test cases directly. Until answered, the affected test
+> cases carry an explicit assumption marker.
+
+### ⚠ 分析層之自認
+
+**R-DD7(c) 之邊界是推導，不是上游所給。** 產出上以 `[ASSUMPTION A-DD6]`
+使其可見（R-DD7(f)），並依 R-DD7(d) 於 TC 內具名 raw 並附 km/h 與 MPH 實值
+—— **不讓執行者自行換算**，換算之責留在分析層且可被回查。
