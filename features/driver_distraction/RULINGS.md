@@ -34,6 +34,7 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 | R-DD16 | v1 | 輸出鍵名依既有寫回形制（test_item／spec_reference）；split_flag／split_reason 仍須輸出 | 12 §三 |
 | R-DD17 | v1 | Pre-Condition 之訊號源行只書訊號源本身，不兼作觸發條件之主張 | 12 §三 |
 | R-DD18 | v1 | 上游書面勘誤之採認界線：有書面回覆者得採認為施加名（僅及施加路徑）；無回覆者仍登 DR | 13 §三 |
+| R-DD19 | v1 | DR-DD5／DD6 未回覆期間之假設生成（乙案）：施加路徑 A-DD8、代表值 A-DD9；**MTA(2)／DDCT(3) 為硬邊界，不得入任何 TC** | 15 §一 |
 
 **留存之被取代條文（依 R-TM13 不刪不改，不得引用）**：
 
@@ -451,5 +452,32 @@ R-DD5 禁「查無者代以語意相近之他訊號」；R-13 禁以推定代缺
 (c) 本條不得反向援引：無書面回覆之「看起來像筆誤」仍依 R-DD5／R-13
     登 DR，不得採認。書面回覆之有無是本條與代換之**全部**界線。
 （Pei 2026-08-28 准落，下放包 13 §三）
+```
+---
+
+## R-DD19
+
+```
+R-DD19（DR-DD5／DD6 未回覆期間之假設生成 —— Pei 2026-08-28 裁乙）
+
+(a) 施加路徑假設（marker A-DD8）：$VC_Trans_Equipped$ 依 LID
+    `Proxi & Configuration` r421 之 Atlantis 欄採 PROXI 參數
+    `Gear_Box_Type`（`Powertrain_Configuration_4`，byte 101，bit 0–2）。
+    採認基礎：r420／r421 之三種自洽讀法中二種收斂於此
+    （新舊列讀法、訊號/參數分答讀法），唯一阻斷之讀法（r421 該格為孤立
+    筆誤）無任何形態支持 —— 此為讀法收斂之採認，非文件記載，故掛 marker。
+(b) 代表值假設（marker A-DD9）：
+      [Manual]    → PROXI Gear_Box_Type = 1 (MTX)
+      [Automatic] → PROXI Gear_Box_Type = 4 (ATX)
+    採認基礎：MTX／ATX 為兩極之無疑義代表 —— MTX 之 M 為業界命名之
+    manual（IN §8.4.1 domain constant 家族），PROXI Annotation 之
+    `manual` 舉例對應之；ATX 同理。
+(c) **邊界（硬）**：`MTA`（2）與 `DDCT`（3）之歸屬為 DR-DD6 之未決問題，
+    **不得以該二值作任何 TC 之 Pre-Condition 或輸入** ——
+    乙案採認之範圍止於兩極，不及於邊界。
+(d) 回覆後之處置：DR-DD5／DD6 之回覆與 (a)(b) 相符 → 撤 marker；
+    不符 → 回修範圍為 8 TC 之 PROXI 值（機械性換值），結構不動。
+(e) 本條不減 DR-DD5／DD6 之必發等級，不影響 DD1 之凍結。
+（Pei 2026-08-28 裁乙，下放包 15 §一）
 ```
 ---

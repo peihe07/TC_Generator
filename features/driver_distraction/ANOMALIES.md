@@ -465,3 +465,79 @@ lockout 通知仍呈現／該 feature 仍不可用」）？
   **執行層本輪未觸及該檔一字**（拘束四）—— 僅唯讀回讀以取 §2.5／§2.6 之判準
 - 037／DBC／LID 全程唯讀
 - **未寫回工作簿、未執行 git**
+
+
+---
+
+## [A-DD8] 假設：`$VC_Trans_Equipped$` 之施加路徑（新立，下放包 15 §一，R-DD19(a)）
+
+**條目逐字**（下放包 15 §一）：
+
+```
+A-DD8（假設：VC_Trans_Equipped 之施加路徑）
+狀態 OPEN。內容：依 R-DD19(a)，-017~-024 之生成假設 r421 為準
+（PROXI Gear_Box_Type）。撤銷條件：DR-DD5 回覆確認。
+用及之 TC 標 [ASSUMPTION A-DD8]。
+```
+
+### 採認基礎（R-DD19(a) 逐字）
+
+> r420／r421 之三種自洽讀法中**二種收斂於此**（新舊列讀法、訊號/參數分答讀法），
+> 唯一阻斷之讀法（r421 該格為孤立筆誤）**無任何形態支持**
+> —— 此為**讀法收斂之採認，非文件記載**，故掛 marker。
+
+**施加路徑**：LID `Proxi & Configuration r421 [Atlantis 欄]` → PROXI 參數
+`Gear_Box_Type`（`Powertrain_Configuration_4`，byte 101，bit 0–2）
+—— 該定義為上繳包 05 §3.1 之實測（PROXI `Format` r443）。
+
+### 與 DR-DD5 之關係
+
+**不減其必發等級**（R-DD19(e)）。DR-DD5 所問者為「r420／r421 何者為準」，
+本 marker 所記者為「未回覆期間之生成假設」。**二者並存，非互斥。**
+
+狀態：**OPEN**（撤銷條件：DR-DD5 回覆確認）。
+
+---
+
+## [A-DD9] 假設：`[Manual]`／`[Automatic]` 之兩極代表值（新立，下放包 15 §一，R-DD19(b)）
+
+**條目逐字**（下放包 15 §一）：
+
+```
+A-DD9（假設：Manual/Automatic 之兩極代表值）
+狀態 OPEN。內容：依 R-DD19(b)，[Manual]=1 (MTX)、[Automatic]=4 (ATX)。
+MTA/DDCT 之歸屬未決（DR-DD6），不入任何 TC。
+撤銷條件：DR-DD6 回覆確認。用及之 TC 標 [ASSUMPTION A-DD9]。
+```
+
+### 採認基礎（R-DD19(b) 逐字）
+
+> `MTX`／`ATX` 為**兩極之無疑義代表** —— MTX 之 M 為業界命名之 manual
+> （IN §8.4.1 domain constant 家族），PROXI Annotation 之 `manual` 舉例對應之；
+> ATX 同理。
+
+對照上繳包 05 §3.5(甲) 之量測 —— PROXI `Format` r443 c8 `Table` 逐字六值：
+
+```
+0 = Not valid ／ 1 = MTX ／ 2 = MTA (Robotized Gearbox) ／
+3 = DDCT ／ 4 = ATX ／ 5 = CVT
+```
+
+### ⚠ R-DD19(c) —— **硬邊界**
+
+```
+`MTA`（2）與 `DDCT`（3）之歸屬為 DR-DD6 之未決問題，
+**不得以該二值作任何 TC 之 Pre-Condition 或輸入** ——
+乙案採認之範圍止於兩極，不及於邊界。
+```
+
+**執行層之落實**：B2 八則之 PROXI 值只出現 `1 (MTX)` 與 `4 (ATX)`；
+自檢新增一項**逐產物掃 `Gear_Box_Type = 2`／`= 3`／`MTA`／`DDCT`**，命中即 FAIL。
+
+> 上繳包 05 §3.5(甲) 當時所指者正是此處：
+> 「PROXI `Annotation` 逐字 `(ex: manual, MTA, automatic, DDTC)`
+> 把 manual 與 MTA **並列為不同項**，恰是反證；但 Annotation 為舉例、
+> 非歸屬定義，**故亦不得反過來據以排除**。」
+> **乙案未推翻該判斷** —— 它只在**兩極**上採認，邊界仍懸，故立為硬邊界。
+
+狀態：**OPEN**（撤銷條件：DR-DD6 回覆確認）。

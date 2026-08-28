@@ -82,6 +82,12 @@ Urgency 回報。
 > selection. This is consistent with the CFTS022 section structure and
 > inconsistent with the Hong Kong wording of SWE1 rows -025 ~ -028.
 >
+> If the answer is (b) LATAM: please also specify how the market condition
+> is expressed for these rows — as a list of `$Country_Code$` values, or
+> via the `Regulation_type` property referenced in the System Architectural
+> Design. "LATAM" is a region, not a single country code, and the test
+> cases need a concrete precondition value.
+>
 > Until clarified, the four rows are on hold in SWQT test case generation.
 
 ---
@@ -494,7 +500,17 @@ ER 不得斷言 128（不應鎖）／78（不應解）之邊界格 —— 除非
 > annotation (`General gear box (ex: manual, MTA, automatic, DDTC)`) lists
 > manual and MTA as separate items but does not define the grouping.
 >
-> Until clarified, the affected rows are on hold in SWQT test case generation.
+> For reference: the decision-relevant criterion appears to be encoded in
+> the requirement structure itself — rows `-126`/`-127` condition on
+> `$PresentGear$ = [P]` (a Park position must exist), while `-128`/`-129`
+> condition on the parking brake (no Park position). The question therefore
+> reduces to: do `MTA` and `DDCT` gearboxes have a Park position for the
+> purpose of these requirements?
+>
+> SWQT test case generation for the affected rows proceeds under a
+> documented assumption (parameter path per row 421; `MTX`/`ATX` as the
+> representative Manual/Automatic values); the affected test cases carry
+> assumption markers and will be revised if the answer differs.
 
 ### ⚠ 執行層之揭露 —— 文稿引之 LID 版本非 R-DD5 所綁
 
@@ -578,8 +594,10 @@ ER 不得斷言 128（不應鎖）／78（不應解）之邊界格 —— 除非
 > `VC_Trans_Equipped` — is the identifier not applicable (row 420), or is
 > it realised through the PROXI parameter `Gear_Box_Type` (row 421)?
 >
-> Until clarified, requirements conditioned on `$VC_Trans_Equipped$` are on
-> hold in SWQT test case generation.
+> SWQT test case generation for the affected rows proceeds under a
+> documented assumption (parameter path per row 421; `MTX`/`ATX` as the
+> representative Manual/Automatic values); the affected test cases carry
+> assumption markers and will be revised if the answer differs.
 
 ### 與 DR-DD6 之關係 —— 二個獨立阻斷，不可互抵
 

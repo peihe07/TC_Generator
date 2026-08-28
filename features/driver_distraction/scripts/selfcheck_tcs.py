@@ -254,15 +254,61 @@ SCOPE = ["seat belt", "seatbelt", "passenger detection", "Are you the passenger"
          "occupant", "ADAS", "Level 3", "per-key-cycle", "key cycle", "Fullscreen"]
 leak = [(tc["tc_id"], w) for tc in TCS for w in SCOPE
         for f in FOUR + ["test_item"] if w.lower() in tc[f].lower()]
-# §8.4.1 造值：ER／Procedure 內之數值須見於 profile §3.1 或 DBC
-nums = {n for tc in TCS for f in ("test_procedure", "expected_result")
-        for n in re.findall(r"(?<![\w.])(\d+(?:\.\d+)?)(?![\w])", tc[f])}
-ALLOWED = {"1", "2", "3", "4", "129", "8.0625", "77", "4.8125", "0", "0.0000", "5", "3"}
-fab = nums - ALLOWED
-add(12, "§8.1/§8.2/§8.4", "追溯 Req/SWRA；不擴入 sibling；無造值；無範圍捏造",
+# §8.4.1 造值 —— **改為溯源檢**（前版之手建白名單換一批 leaf 即失效）：
+# 四交付欄內每一個 `= <raw> (<label>)` 之 (raw, label) 須可溯至
+#   (i) 該訊號之 DBC `VAL_`（R-DD9(a)）、
+#   (ii) profile §3.1 之 raw 表（R-DD9(b)：連續量，label 為物理值＋單位）、或
+#   (iii) PROXI `Format` 之 Table 列舉（PROXI 參數）。
+def _dbc_vals(sig):
+    """`$MSG.Signal$` → {raw: label}，自二綁定 DBC 實讀。"""
+    q = sig.strip("$")
+    if "." not in q:
+        return {}
+    msg, sg = q.split(".", 1)
+    for dp in (ROOT.parent / "vehicle_setting" / "inputs" / "PDT27_E2A_R4_BHCAN.dbc",
+               ROOT.parent / "vehicle_setting" / "inputs" / "PDT27_E2A_R5_FDCAN8.dbc"):
+        txt = dp.read_text("utf-8", errors="replace")
+        bo = re.search(rf"^BO_ (\d+) {re.escape(msg)}\b", txt, re.M)
+        if not bo:
+            continue
+        for m in re.finditer(rf"^VAL_\s+{bo.group(1)}\s+{re.escape(sg)}\s+(.*);\s*$",
+                             txt, re.M):
+            return {int(k): v for k, v in re.findall(r'(\d+)\s+"([^"]*)"', m.group(1))}
+    return {}
+
+PROFILE_RAW = {129: "8.0625 km/h", 77: "4.8125 km/h", 0: "0.0000 km/h"}
+PROXI_TBL = {0: "Not valid", 1: "MTX", 2: "MTA (Robotized Gearbox)",
+             3: "DDCT", 4: "ATX", 5: "CVT"}
+fab, prov = [], []
+for tc in TCS:
+    for f in FOUR:
+        body = tc[f]
+        # (a) CAN 訊號：`$MSG.Sig$ … = N (Label)` 或 `at N (Label)`
+        for m in re.finditer(r"(\$[\w.]+\$)[^\n]*?(?:=|at) (\d+) \(([^)]+)\)", body):
+            sig, raw, lab = m.group(1), int(m.group(2)), m.group(3)
+            vals = _dbc_vals(sig)
+            if raw in vals and vals[raw] == lab:
+                prov.append((raw, lab, "DBC VAL_")); continue
+            if PROFILE_RAW.get(raw) == lab:
+                prov.append((raw, lab, "profile §3.1")); continue
+            fab.append((tc["tc_id"], f, sig, raw, lab))
+        # (b) PROXI 參數：`PROXI Gear_Box_Type = N (Label)`
+        for m in re.finditer(r"PROXI Gear_Box_Type = (\d+) \(([^)]+)\)", body):
+            raw, lab = int(m.group(1)), m.group(2)
+            if PROXI_TBL.get(raw) == lab:
+                prov.append((raw, lab, "PROXI Format r443"))
+            else:
+                fab.append((tc["tc_id"], f, "Gear_Box_Type", raw, lab))
+        # (c) 裸 raw（無括號標籤）—— R-DD9 要求一律帶標籤
+        for m in re.finditer(r"(?:=|at) (\d+)(?! \()(?![\w.])", body):
+            if m.group(1) not in ("91",):        # PROXI Country_Code 為純數值，無列舉標籤
+                fab.append((tc["tc_id"], f, "（裸 raw，無括號標籤）", m.group(1), ""))
+from collections import Counter as _C
+add(12, "§8.1/§8.2/§8.4", "追溯 Req/SWRA；不擴入 sibling；**每一 raw 值可溯至 DBC VAL_／"
+    "profile §3.1／PROXI Format**；無範圍捏造",
     trace and not leak and not fab,
     f"req_id 形制 {trace}；§8.4.2 禁詞 {leak or '0 命中'}；"
-    f"數值母體 {sorted(nums)}，逾 profile §3.1／編號者 {fab or '無'}")
+    f"溯源 {dict(_C(x[2] for x in prov))}；不可溯 {fab or '無'}")
 
 # ── 13 Design Method（§12 first-match）──────────────────────────────
 MENU = {"功能測試 (Functional based ; no specific technique)",
@@ -272,12 +318,27 @@ MENU = {"功能測試 (Functional based ; no specific technique)",
         "組合測試 (Combinatorial Testing ; Pairwise / t-wise)",
         "情境 / 用例 (Scenario / Use Case Testing)", "負向測試 (Negative / Invalid)",
         "基礎故障注入 (Fault Injection Lite)"}
-# §12 first-match：AC2（停送→逾時）為 simulated fault，序在 State Transition 之前；
-# AC1（跨門檻）為 A→B 轉換。以 037 原文之 AC 別判，非以 leaf 號硬編。
+# §12 first-match **機械化**：自 procedure 之形態推導，非以 AC 別或 leaf 號硬編。
+#   Simulated fault（停送／逾時）→ Fault Injection
+#   同一訊號送二個相異值      → State Transition
+#   否則若條件 ≥2（PC 之組態列 ＋ procedure 之施加）→ Decision Table
 def _want(tc):
-    k = leaf(tc)
-    return ("基礎故障注入 (Fault Injection Lite)"
-            if str(SRC[k][3]).startswith("AC2") else "狀態轉換 (State Transition Testing)")
+    proc = tc["test_procedure"]
+    if re.search(r"Stop transmitting|timeout", proc, re.I):
+        return "基礎故障注入 (Fault Injection Lite)"
+    sends = re.findall(r"Send the signal (\$[\w.]+\$) = ([^\n\[]+)", proc)
+    by_sig = {}
+    # PC 之訊號源行（R-DD17）亦為該訊號之一個值 —— 轉換之「before」載於 PC
+    for m in re.finditer(r"The signal (\$[\w.]+\$) is transmitted on the bus at ([^\n\[]+)",
+                         tc["pre_conditions"]):
+        by_sig.setdefault(m.group(1), set()).add(m.group(2).strip())
+    for s, v in sends:
+        by_sig.setdefault(s, set()).add(v.strip())
+    if any(len(v) >= 2 for v in by_sig.values()):
+        return "狀態轉換 (State Transition Testing)"
+    nconds = len([l for l in items(tc["pre_conditions"]) if "PROXI" in l]) + len(sends)
+    return ("決策表 (Decision Table Testing)" if nconds >= 2
+            else "功能測試 (Functional based ; no specific technique)")
 WANT = {leaf(tc): _want(tc) for tc in TCS}
 inmenu = all(tc["design_method"] in MENU for tc in TCS)
 firstmatch = all(tc["design_method"] == WANT[leaf(tc)] for tc in TCS)
@@ -327,17 +388,27 @@ add(15, "§11 + R-DD12(c)", "UI 標籤用 `\"...\"`；方括號僅限 037 逐字
      if not brk else str(brk)) + f"；單引號／角括號 {sq or '無'}")
 
 # ── 16 spec_reference（§10.7）───────────────────────────────────────
-# profile §1 之 SYS-RA → ObjectID 對照（逐字）
+# profile §1 之 SYS-RA → ObjectID 對照（逐字）。雙引 leaf（`-017`~`-028`）之
+# spec_reference 為「HK 章閘 `CFTS022-4915120` 一行 ＋ 條文 ObjectID 一行」，升冪。
 _OBJ = {"113": "CFTS022-4915104", "114": "CFTS022-4915105", "115": "CFTS022-4915106",
         "116": "CFTS022-4915107", "117": "CFTS022-4915108", "118": "CFTS022-4915109",
-        "120": "CFTS022-4915112", "121": "CFTS022-4915115"}
-WANTS = {leaf(tc): _OBJ[re.search(r"-(\d+)$", str(SRC[leaf(tc)][1]).strip()).group(1)]
-         for tc in TCS}
-ok16 = all(tc["spec_reference"] == WANTS[leaf(tc)] for tc in TCS)
-ok16 &= all("\n" not in tc["spec_reference"] and not re.search(r"[,、;]", tc["spec_reference"])
-            for tc in TCS)
-add(16, "§10.7", "spec_reference 列出所驗之每一 spec 節；一行一 ObjectID、無串接",
-    ok16, "／".join(f"{leaf(tc)}={tc['spec_reference']}" for tc in TCS))
+        "120": "CFTS022-4915112", "121": "CFTS022-4915115", "125": "CFTS022-4915120",
+        "126": "CFTS022-4915121", "127": "CFTS022-4915122", "128": "CFTS022-4915123",
+        "129": "CFTS022-4915124"}
+det16, ok16 = [], True
+for tc in TCS:
+    srcs = [m.group(1) for m in
+            re.finditer(r"SYS-RA-Driver_Distraction-(\d+)", str(SRC[leaf(tc)][1]))]
+    want = [_OBJ[s] for s in srcs]
+    got = tc["spec_reference"].split("\n")
+    good = (got == want                                   # 逐行對應該列之 source，順序即升冪
+            and got == sorted(got)                        # 升冪
+            and not re.search(r"[,、;]", tc["spec_reference"]))
+    ok16 &= good
+    det16.append(f"{leaf(tc)}: source {srcs} → {got}{'' if good else ' **不符**'}")
+add(16, "§10.7 + profile §1",
+    "spec_reference 逐行對應該 leaf 之每一 source；一行一 ObjectID、升冪、無串接",
+    ok16, "；".join(det16))
 
 # ── 17 來源優先與門檻具體值（§8.6／§8.7）────────────────────────────
 # 用及 profile §3.1 raw 者，須標 [ASSUMPTION A-DD6]（R-DD7(f)）
@@ -401,6 +472,33 @@ add("+", "包 13 §五", "ER 不得斷言 128（不應鎖）／78（不應解）
     "（037 該列明書者不在此限）；跨越側 129／77 不受限",
     not edge, f"{edge or '0 命中'}；"
     f"用及跨越側者 {[leaf(t) for t in TCS if re.search(r'= (129|77) ', t['test_procedure'])]}")
+
+# ── 追加：R-DD19(c) 硬邊界 —— MTA(2)／DDCT(3) 不得作 PC 或輸入 ────────
+# 其所禁者為「作 Pre-Condition 或輸入」，故掃四個交付欄；reasoning 得載明其被排除。
+edge19 = [(tc["tc_id"], f, m.group(0))
+          for tc in TCS for f in FOUR
+          for pat in (r"Gear_Box_Type\s*=\s*[23]\b", r"\bMTA\b", r"\bDDCT\b")
+          for m in re.finditer(pat, tc[f])]
+gb = sorted({m.group(0) for tc in TCS for f in FOUR
+             for m in re.finditer(r"Gear_Box_Type\s*=\s*\d+ \([A-Z]+\)", tc[f])})
+add("+", "R-DD19(c)", "硬邊界：MTA(2)／DDCT(3) 不得出現於四交付欄之任一處",
+    not edge19, f"{edge19 or '0 命中'}；四欄所用之 Gear_Box_Type 值 {gb or '（未用）'}")
+
+# 追加：A-DD8／A-DD9／A-DD2 之 marker 義務（用及即須標）
+mk = []
+for tc in TCS:
+    body = " ".join(tc[f] for f in FOUR)
+    for tok, req in ((r"Gear_Box_Type\s*=", ["A-DD8", "A-DD9"]),
+                     (r"\$BCM_FD_9\.ParkBrakeSts\$", ["A-DD2"])):
+        if re.search(tok, body):
+            for r_ in req:
+                if f"[ASSUMPTION {r_}]" not in body:
+                    mk.append((tc["tc_id"], tok, r_))
+used = sorted({r_ for tc in TCS for r_ in re.findall(r"\[ASSUMPTION (A-DD\d)\]",
+                                                     " ".join(tc[f] for f in FOUR))})
+add("+", "R-DD19/R-DD18", "用及 PROXI Gear_Box_Type 者標 A-DD8＋A-DD9；"
+    "用及 $BCM_FD_9.ParkBrakeSts$ 者標 A-DD2",
+    not mk, f"缺標 {mk or '無'}；本產物所用之 marker {used or '（無）'}")
 
 # ── 輸出 ───────────────────────────────────────────────────────────
 print("=" * 84)
