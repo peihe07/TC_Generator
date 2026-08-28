@@ -8,6 +8,10 @@ Feature slug：`sw_update`
 FO §0（Tier 2：framework Test Set derivation 屬 Pei 簽核）、
 R-SU1／**R-SU10 v2**／R-SU18／**R-SU19**
 
+> **素材欄位全覽**（R-SU26）另存 **`SOURCE_COLUMNS.md`** ——
+> 其射程為來源檔之欄位，非本檔之三層框架，故不並入本檔。
+> 現況：58 欄中已用 27／不用 7／**未定 24**。
+
 ---
 
 ## 效力分級（R-SU18(d) 之揭露義務）
