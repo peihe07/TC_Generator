@@ -88,10 +88,29 @@ R-POP10／R-POP11 標「全域效力之工具政策，候升格 R-G」。
 | §五 | gate 與複驗 | **完** —— lint036 21 項全 0、`ledger_xref` PASS、tsv 重產；`gates_tsv`／`lint_paths` 之紅為 driver_distraction，非本包 |
 | — | **R-POP25 第 3 點（Pei 附加）** | **完** —— 兩件 Pop Up 已補登 `forms/FORMS.md`；另 3 件未登錄者具名回報，未代登 |
 
-## 4. 仍未結
+## 4. 仍未結（2026-08-28 逐項複驗後重寫，非沿用）
 
 | 項 | 內容 | 待誰 |
 |---|---|---|
-| R-POP5 | Heading 列之台帳處置 [DEFAULT]，待 Pei 追認 | Pei |
-| DR-POP2／DR-POP3 | 已登記，未送出 | Pei（Tier 3）|
-| `DECISIONS.md` | [PROPOSED]／[PEI] 未裁，Sign-off 未填 —— **P2 未過，P3 以後不得起跑** | Pei |
+| 交付候選 | `output/…_SWQT_Popup_20260828.xlsx`（sha256 `dc0963d7…`）之**人工抽查** —— 上繳包 05 之唯一出口 | Pei |
+| tsv | R-POP5／R-POP13 之額外 sha 變動，執行層判「成因具名而未停下」（上繳包 05 §六-2）| Pei（得否決）|
+| `forms/` | 另 3 件未登錄（HMI Settings List／Market Configuration Table／Default Settings），R-POP25 第 3 點未竟之部分 | 各該 feature 之首個採用者 |
+| E 欄 | TestRail 建號後之回填時點與負責人 | Pei |
+| DR-POP2／3／4 | 已登記，未送出；皆不阻斷交付，已載於 `DELIVERY_NOTE.md` §4 | Pei（Tier 3）|
+
+**已結，自本表移除**（附結案依據，供追溯）：
+
+| 原項 | 結案 |
+|---|---|
+| R-POP5 [DEFAULT] 待追認 | **Pei 追認 2026-08-28**（R-POP5 現行文之「追認」段）|
+| `DECISIONS.md` 未簽 | **實測已簽** —— `Reviewed by: PeiPYHsu  Date: 2026-08-27`；§6 兩筆 `[PEI 2026-08-27]` 已回填（上繳包 04 §六）|
+| `-002-05` 之 design_method | R-POP23 —— 維持狀態轉換 |
+| `ledger_xref` 合併／接入 | R-POP24 —— 不合併、不接入 `gate_all.py` |
+| Q 欄政策 | R-POP22 —— 留空（875/875 實測）|
+| `forms/` 落點政策 | R-POP25 —— 承認現狀、補登記，不搬檔 |
+| **交付產物是否入 git** | **Pei 口裁 2026-08-28：不入 git，維持現狀**（`features/popup/.gitignore` 之 `output/` 不動）。連帶：交付簿之唯一入庫紀錄為其 sha256（`DELIVERY_NOTE.md` §6、上繳包 05 §二-2／§六 三處）；檔案遺失只能以 `scripts/gen_delivery.py` 自 `sandbox/pilot01/` 重產，重產物之 sha256 須與該值相等。**待分析層取 R- 號** |
+
+**純他 feature，不入本表**：vehicle_setting 31 項、`gates_tsv` 之
+driver_distraction 未登錄（連帶使 `test_gates_tsv::test_check_detects_drift`
+轉紅）、`lint_paths` 之 driver_distraction 在製品、`media` 之 G-D 盲區、
+`R-DD6` 同號兩體、tsv 內 14 列 R-DD 之未凍結狀態。
