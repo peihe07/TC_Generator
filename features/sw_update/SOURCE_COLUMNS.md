@@ -18,13 +18,26 @@
 
 | 素材 | 欄數 | 已用 | 不用 | **未定** |
 |---|---:|---:|---:|---:|
-| 037 `AnalysisReport_FULL` | 18 | **8** | **6** | **4** |
+| 037 `AnalysisReport_FULL` | 18 | **8** | **9** | **1** |
 | SYS1 `Basic Report` | 7 | 2 | 0 | **5** |
 | 036 母本 TC 分頁（非空標頭） | 33 | **17** | 1 | **15** |
-| **合計** | **58** | **27** | **7** | **24** |
+| **合計** | **58** | **27** | **10** | **21** |
 
-**未定 24 欄（41%）** —— R-SU26(b) 令下一輪全部裁為 `已用` 或 `不用（理由）`。
-其中 037 之 4 欄已備抽樣材料（T35b）、036 之 `T`–`Z` 七欄已備他 feature 之填值實測（T35c）。
+**未定 21 欄（36%）** —— R-SU26(b) 令下一輪全部裁為 `已用` 或 `不用（理由）`。
+
+### 未定 21 欄之來源分佈（供分析層排裁定順序）
+
+| 來源 | 未定欄數 | 欄 | 備註 |
+|---|---:|---|---|
+| **037** | **1** | 14 `Description/Action for Reusable` | **延展一輪，下輪必裁**（R-SU28 v2）；材料已備 |
+| **SYS1** `Basic Report` | **5** | 0 `ID`、1 `Space / Document`、4 `SYSRE_HMI_Source ID`、5 `Type`、6 `_polarion` | 其中 1／5 為**常數欄**（`Requirements / SYS`／`SYSRE_HMI`），依 R-SU28(a) 之判準**可逕裁不用**；0／4／6 為 unique=120 之識別碼 |
+| **036 母本** | **15** | `C`、`E`、`T`–`Z`（7）、`AB`–`AG`（6） | `T`–`Z` 已備他 feature 實測（6/6 留空）；`AB`–`AG` 為**測試結果面之欄**（Test Version／Test Vehicle／Test Period／Tester／Test Result／Defect ID），其填寫者為測試執行端而非產出端 |
+| **合計** | **21** | | |
+
+**依難易排序之建議（陳報，不裁）**：SYS1 之 1／5 二欄與 036 之 `AB`–`AG` 六欄
+**可依值型態或欄位語意逕裁**；037 之欄 14 材料已備；
+餘 `C`／`E`（Polarion／TestRail 之 id 欄）與 SYS1 之三個識別碼欄
+須先確認其在交付流程中之角色。
 
 ---
 
@@ -42,28 +55,32 @@
 | 5 | `Categorization` | 382 | 311 | 枚舉 `Functional Requirement`／`Heading`／`Information`／`Non Functional Re | **已用** —— in-scope 判定（FR／NFR／Heading，R-SU3） |
 | 6 | `Sub Categorization` | 310 | 310 | 枚舉 `HMI`／`Service` | **已用** —— HMI／Service 之分面（T28c、原則 3） |
 | 7 | `Feasibility` | 311 | 311 | 枚舉 `Yes` | **不用** —— **R-SU28(a)**：常數欄（全 `Yes`），無鑑別力 |
-| 8 | `Description/Action for Feasibility` | 311 | 311 | 自由文字，unique 138，長度中位 66 | **未定** —— **R-SU28(b)：待抽樣後裁**（自由文字且 unique 高；「其母欄為常數」不蘊含「其說明欄無內容」） |
+| 8 | `Description/Action for Feasibility` | 311 | 311 | 自由文字，unique 138，長度中位 66 | **不用** —— **R-SU28 v2**：**讀其內容後裁**（非依母欄）。171/311 為同一樣板句；其餘為**實作可行性之理由**（「可用既有 HMI event handling」「可經定義之介面整合安全模組」）。其對象為實作之可行性，非需求之驗證面或可觀測後果，與 TC 之任一欄位無供給關係 |
 | 9 | `Impact` | 311 | 311 | 枚舉 `Yes` | **不用** —— **R-SU28(a)**：常數欄（全 `Yes`），無鑑別力 |
-| 10 | `Description/Action for Impact` | 311 | 311 | 自由文字，unique 191，長度中位 129 | **未定** —— **R-SU28(b)：待抽樣後裁**（自由文字且 unique 高；「其母欄為常數」不蘊含「其說明欄無內容」） |
+| 10 | `Description/Action for Impact` | 311 | 311 | 自由文字，unique 191，長度中位 129 | **不用** —— **R-SU28 v2**：**讀其內容後裁**。118/311 為同一樣板句；其餘為實作面之影響（事件源整合、訊號解碼、UI 渲染同步、排程與逾時監督）。偶提及畫面者係**複述需求本文既有之外部面**，**不提供需求本文以外之觀測資訊** —— 對 R-SU25(c) 之供給為零 |
 | 11 | `Risk Factor` | 311 | 311 | 枚舉 `Medium` | **不用** —— **R-SU28(a)**：常數欄（全 `Medium`），無鑑別力 |
-| 12 | `Description/Action for Risk Factor` | 311 | 311 | 枚舉 `The requirement is abl` | **未定** —— **R-SU28(b)：待抽樣後裁**（自由文字且 unique 高；「其母欄為常數」不蘊含「其說明欄無內容」） |
+| 12 | `Description/Action for Risk Factor` | 311 | 311 | 枚舉 `The requirement is abl` | **不用** —— **R-SU28 v2**：實測 unique = **1**（全 311 列同句），為**常數欄**，依 v1(a) 判準成立。另記：其內容 `The requirement is able to reuse upto 50%` 之語意屬 `Reusable`，填在 `Risk Factor` 之說明欄 —— **037 之欄內容錯置，記錄即止，不立案** |
 | 13 | `Reusable` | 311 | 311 | 枚舉 `Fully (100%)`／`High (>= 50%)` | **不用** —— **R-SU28(a)**：SWE.1 之再用性評估，與 TC 之驗證內容無關 |
-| 14 | `Description/Action for Reusable` | 311 | 311 | 自由文字，unique 115，長度中位 85 | **未定** —— **R-SU28(b)：待抽樣後裁**（自由文字且 unique 高；「其母欄為常數」不蘊含「其說明欄無內容」） |
+| 14 | `Description/Action for Reusable` | 311 | 311 | 自由文字，unique 115，長度中位 85 | **未定（延展一輪）** —— **R-SU28 v2**：材料已產出（`21a`／上繳包 22 §2），分析層本輪未讀畢。**一次性延展**，理由為分析層之閱讀順序，非默許跨輪；**下一輪必裁** |
 | 15 | `Priority` | 311 | 311 | 枚舉 `High`／`Low`／`Medium` | **已用** —— R-SU22：僅作參考訊號，不作 P 值之唯一依據 |
 | 16 | `Verification Criteria` | 310 | 310 | 自由文字，unique 309，長度中位 365 | **已用** —— **R-SU27(a)：R-SU25(c) 外部可觀測後果之候選來源**（本輪起） |
 | 17 | `Verification Method` | 311 | 311 | 自由文字，unique 26，長度中位 42 | **已用** —— **R-SU27(b)：測試層級之參考訊號**（本輪起） |
 
 
-### ⚠ `未定` 清單（037，4 欄）—— R-SU28(b)：待抽樣後裁
+### ⚠ `未定` 清單（037，**1 欄**）—— R-SU28 v2 之延展
 
-| 欄 | 標頭原文 | 非空（311 母體） | unique |
-|---:|---|---:|---:|
-| 8 | `Description/Action for Feasibility` | 311 | 138 |
-| 10 | `Description/Action for Impact` | 311 | 191 |
-| 12 | `Description/Action for Risk Factor` | 311 | 1 |
-| 14 | `Description/Action for Reusable` | 311 | 115 |
+| 欄 | 標頭原文 | 非空（311 母體） | unique | 狀態 |
+|---:|---|---:|---:|---|
+| 14 | `Description/Action for Reusable` | 311 | 115 | **延展一輪，下輪必裁** |
 
-抽樣材料見 `docs/upstream/21_coverage_split.md` §T35b。
+抽樣材料見 `docs/upstream/21a_desc_columns_material.md` §欄 14
+與 `docs/upstream/22_dr2_batch.md` §2（重列）。
+
+> **延展之記明（R-SU28 v2）**：本次為**一次性延展**，理由為分析層之閱讀順序，
+> **非默許跨輪**。**延展須逐次記明，不得累積。**
+
+**欄 8／10／12 已於本輪裁「不用」**（其理由逐欄載於上表，
+且皆**讀其內容後**方裁 —— 依 R-SU28(c)：欄之「不用」不得因其母欄之值型態成立）。
 
 ### SYS1 export（`Basic Report`，120 資料列，7 欄）
 

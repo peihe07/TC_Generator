@@ -12,7 +12,47 @@ Urgency 回報。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
+| **DR-SU2** | **105 列（內部服務主體且 `Verification Criteria` 亦無外部面者）於系統測層級之觀測手段**（pattern：log tag 清單／診斷 DID 表／服務介面定義／HMI 間接後果之對照） | **OPEN** | 初始 5 列（`363`–`367`，`Telematics Client`）；**滾動清單**，隨批次增列 | 全部 21 個 Test Set 之撰寫（`Telematics Client` 5/5 全落此類） | — | **High** |
 | **DR-SU1** | **靜默期間之安全相關通知條件清單**（pattern：規格側之 safety-related notification 條件表；來源未定，得為 CFTS_57 之補件或 SYSAD 之安全需求節） | **OPEN** | `SWE1-FOTA-176`（facet B） | `newR1L-SU-003`（v2）之 `pre`／`proc`／`er` 三欄各掛一**英文** `PENDING`；該 TC 不可執行 | — | **High** —— pilot 批已受阻，Silent Update 之 9 列尚有 5 列未撰 |
+
+## DR-SU2 —— 詳（下放包 23 §3.1）
+
+**其標的為上游文件之內在不一致，非我方之困難** ——
+此為本輪對該 DR 立論之關鍵改變：
+
+> 037 自身將該 105 列之 **85% 標為含 `System Test`**，
+> 而其 `Verification Criteria` **未指出任何外部可觀測面**。
+> **文件說要做系統測，卻沒說系統測時要看哪裡。**
+
+（先前之立論為「我們找不到通道」—— 對上游而言那是我方之困難，
+非其文件之缺陷。上繳包 21 §2 之實測把它變成了文件內在之不一致。）
+
+**佐證之三項實測**：
+
+| 項 | 實測 | 出處 |
+|---|---|---|
+| 需求本文未提外部面之列 | **126／311（41%）** | 上繳包 19 §T33b |
+| 其中 `Verification Criteria` 亦未提者 | **105／126（83%）** | 上繳包 20 §2.0 |
+| 三源素材之觀測通道語形（`adb`／`logcat`／`dumpsys`／`debug`／`shell`） | **皆 0** | 上繳包 19 §4.1 |
+| 105 列中標「僅 `Integration Test`」者 | **15%**（對照：非內部列 35%） | 上繳包 21 §T35a |
+
+**初始清單（5 列，`Telematics Client`）**：
+
+| 037 列 | 標題 | `Verification Method` | VC 之檢查對象 |
+|---|---|---|---|
+| `363` | TC Communication Establishment | Unit/Integration/**System** | communication **is established** ❌ |
+| `364` | TC Subscription for OTA Updates | Unit/Integration/**System** | the **callback is registered** ❌ |
+| `365` | Server-Initiated Session Handling from TC | Unit/Integration/**System** | the request **is received**／**forwarded** ❌ |
+| `366` | FOTA Update Availability Check | Unit/Integration/**System** | the OTA server **is queried** ❌ |
+| `367` | Server-Initiated Session Forwarding from TC | Unit/Integration/**System** | the request **is forwarded**／**queued** ❌ |
+
+**⚠ 清單之語意（R-SU29(c)，且見上繳包 22 §自評）**：
+本清單為**滾動**清單，其列為**「撰寫該列 TC 時取不到觀測面」者**。
+**「已在清單上」= 已逐列試過且取不到**；
+**「不在清單上」≠ 已確認有解** —— 105 列中之其餘 100 列**尚未逐列試過**。
+二者不可互推。
+
+---
 
 ## DR-SU1 —— 詳（下放包 19 §四 TC-3）
 

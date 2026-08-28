@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
-"""T33a —— pilot 批 v2（下放包 20 §四，4 列 → 5 TC）之工作簿產出，供 lint 用。
+"""T36d —— pilot 批 v3（下放包 23 §五）之工作簿產出，供 lint 用。
 
-**v2 全面改寫 5 個 TC**（下放包 20 §四），成因為 R-SU25（可觀測面）：
-v1 之「Read <內部服務> 收到的 X」類步驟在台架上不可執行（上繳包 18 §7.1）。
-v1 之產出留於 `sandbox/pilot01/`，**不作交付**；v2 出 `sandbox/pilot02/`。
+沿革：
+- **v1**（`pilot01`，下放包 19 §四）：5 個 TC 皆含「Read <內部服務> 收到的 X」類
+  步驟，台架上不可執行（上繳包 18 §7.1）；PENDING 說明為中文（違 R-14）。
+- **v2**（`pilot02`，下放包 20 §四）：5 個 TC 全面改寫（R-SU25 可觀測面）+
+  PENDING 英文化。lint K=0／T=0／U=3。
+- **v3**（`pilot03`，下放包 23 §四）：**TC 內容逐字沿 v2 不動**，
+  僅補齊寫回欄集 —— `S`（functional_safety）填 **`NA`**（他 feature 5/6 之實務）、
+  **`T`–`Z` 七個車型旗標留空**（他 feature 6/6 之實務）。
+
+前一版之產出一律保留，**不覆寫**。
 
 **本檔為 lint 之受檢物，不是交付本**：輸出落 `sandbox/pilot01/`（R-G25），
 `inputs/` 之母本一字不動。TC 內容**逐字取自下放包 19 §四**，
@@ -15,8 +22,7 @@ v1 之產出留於 `sandbox/pilot01/`，**不作交付**；v2 出 `sandbox/pilot
 TC ID 依 **R-SU24**：`{project}-SU-{NNN}`，`{project}` 取自 036 母本
 **D2 實測值**（T32a），不推定。
 
-未寫之欄：`S`（functional_safety —— 其值域未裁，缺項 5）、
-`AH`（remarks）。**留空而非填值**，見上繳包 18 §5。
+未寫之欄：`T`–`Z`（車型適用旗標，**留空**，下放包 23 §四）、`AH`（remarks）。
 """
 import re
 import sys
@@ -26,7 +32,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from write_back_036 import _set_row, MASTER, SHEET_NAME, HEADER_ROW, FEAT  # noqa: E402
 
-TAG = "pilot02"                    # v1 為 pilot01（下放包 19），不覆寫
+TAG = "pilot03"                    # v1/v2 為 pilot01/pilot02，不覆寫
 OUT = FEAT / "sandbox" / TAG / MASTER
 TEST_GROUP, TEST_SET = "SW Update", "Silent Update"
 AUTHOR = "PeiPYHsu"
@@ -143,7 +149,9 @@ def main():
                 "I": "\n".join(t["item"]), "J": "\n".join(t["pre"]),
                 "K": "NA", "L": "\n".join(t["proc"]), "M": "\n".join(t["er"]),
                 "N": t["spec"], "O": "NEW", "P": t["prio"], "R": t["dm"],
+                "S": "NA",              # 下放包 23 §四：從他 feature 5/6 之實務
                 "AA": AUTHOR}
+        # `T`–`Z`（車型適用旗標）**留空**：他 feature 6/6 一律留空（下放包 23 §四）
         sx = _set_row(sx, HEADER_ROW + n, vals)
         rows.append((HEADER_ROW + n, tcid, t["req"], t["spec"]))
 
@@ -161,7 +169,7 @@ def main():
     print("|---|---|---|---|")
     for r, tid, req, sp in rows:
         print(f"| {r} | `{tid}` | `{req}` | `{sp}` |")
-    print(f"\n未寫之欄：`S`（functional_safety，值域未裁）、`AH`（remarks）。")
+    print(f"\n- `S`（functional_safety）填 **`NA`**；`T`–`Z`（車型旗標）**留空**；`AH`（remarks）未寫。")
     return 0
 
 
