@@ -16,9 +16,14 @@ Urgency 回報。
 | **DR-DD2** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-021`~`-024`（4） | 不阻斷生成；ER／Pre-Condition 之訊號名待定 | **A-DD2** | 中 |
 | **DR-DD3** | 上游（素材提供）| **ANSWERED-PENDING-CONFIRM** | `-017`~`-028`（12） | **值已查得（91）；識別仍懸，標 A-DD5** | **A-DD5** | 中 |
 | **DR-DD4** | 上游（CFTS022／037 作者）| **DRAFTED**（待 Pei 發送）| **9 列書 MPH 門檻者**：`-003`／`-005`／`-007`／`-009`／`-011`／`-013`／`-015`（7，可生成）＋ `-025`／`-027`（2，另因 A-DD1 凍結）| 不阻斷生成；ER 之 raw 數值標 A-DD6 | **A-DD6** | 中 |
+| **DR-DD5** | —（保留號）| **未建檔** | — | 保留給 r420／r421 件；T13a 後由分析層定建或不建 | — | — |
+| **DR-DD6** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入 pilot**；`$VC_Trans_Equipped$` 之列舉對應未定 | — | 高 —— 組 1／2 待此 |
 
-**DR-DD1／DR-DD2／DR-DD4 為 DRAFTED 未發送；DR-DD3 之標的已到位，狀態
+**DR-DD1／DR-DD2／DR-DD4／DR-DD6 為 DRAFTED 未發送；DR-DD3 之標的已到位，狀態
 ANSWERED-PENDING-CONFIRM（下放包 07 §三 R-DD8(c) 明定不結案）。**
+
+> **DR-DD5 為保留號，非跳號。** 下放包 08 §五：號隨事項配，不隨時序配 ——
+> 該號保留給 §四 之 r420／r421 件，T13a 之後由分析層定建或不建。
 
 ---
 
@@ -314,3 +319,83 @@ STATUS_CCAN3.VehicleSpeedVSOSig   13 bit, factor 0.0625, unit Km/h
 **R-DD7(c) 之邊界是推導，不是上游所給。** 產出上以 `[ASSUMPTION A-DD6]`
 使其可見（R-DD7(f)），並依 R-DD7(d) 於 TC 內具名 raw 並附 km/h 與 MPH 實值
 —— **不讓執行者自行換算**，換算之責留在分析層且可被回查。
+
+
+---
+
+## DR-DD6 —— `$VC_Trans_Equipped$` 之列舉對應（`-017`~`-024`）
+
+- **標的**：上游（CFTS022 作者）
+- **狀態**：**DRAFTED**（下放包 08 §五 之文稿，逐字保留；待 Pei 發送）
+- **由來**：上繳包 05 §3.5(甲) —— 值域不共格，分析層全採
+- **阻斷範圍**：`-017`~`-024`（8 leaf）**不入 pilot**
+- **編號**：**號隨事項配，不隨時序配**。DR-DD5 保留給 r420／r421 件
+  （下放包 08 §四，T13a 後定），本件取 DR-DD6，不因 DD5 未建而順移
+
+### 形態 —— 二值制對六值制
+
+| 來源 | 值域 | 值數 |
+|---|---|---|
+| CFTS022 規範欄 `-126`~`-129` | `[Automatic]`／`[Manual]` | 2 |
+| `LID Proxi & Configuration r421 [Powernet 欄]` H 欄 `Format` | `0 = Automatic & 1 = Manual` | 2 |
+| `PROXI Format r443` I 欄 `Table` | `0=Not valid／1=MTX／2=MTA (Robotized Gearbox)／3=DDCT／4=ATX／5=CVT` | **6** |
+
+**規範文係對著二值制寫的**；六值制中 `MTA`／`DDCT` 歸於何側，**無任一庫載明**。
+
+> `MTX` 對上 `Manual` 順、raw 又恰同為 `1` —— **順與對是兩件事**。
+> PROXI G 欄 `Annotation` 逐字 `General gear box (ex: manual, MTA, automatic, DDTC)`
+> 把 manual 與 MTA **並列為不同項**，恰是反證；但 Annotation 為舉例、
+> 非歸屬定義，**故亦不得反過來據以排除**。兩個方向都不足以定案。
+
+### 文稿（下放包 08 §五，逐字）
+
+> **DR-DD6 — Enumeration mapping for `$VC_Trans_Equipped$` = `[Manual]` / `[Automatic]`**
+>
+> CFTS022 SYSRA rows `SYS-RA-Driver_Distraction-126` ~ `-129` specify the
+> condition as `$VC_Trans_Equipped$ = [Automatic]` or `= [Manual]` — a
+> two-valued domain, consistent with the Powernet-side format recorded in
+> `Logical Identifiers and CAN Mapping v1_78`, sheet `Proxi & Configuration`,
+> row 421, Powernet band `Format` column: `Transmission equipped:
+> 0 = Automatic & 1 = Manual`.
+>
+> On the Atlantis side the same LID row points to the PROXI parameter
+> `Gear_Box_Type` (`PROXI_HDCC27_R3_20250424.xlsx`, sheet `Format`, row 443:
+> parameter group `Powertrain_Configuration_4`, byte 101, bits 0–2), whose
+> table is six-valued: `0 = Not valid / 1 = MTX / 2 = MTA (Robotized Gearbox)
+> / 3 = DDCT / 4 = ATX / 5 = CVT`.
+>
+> Question: for the purpose of the Hong Kong market requirements above,
+> which `Gear_Box_Type` values constitute `[Manual]` and which constitute
+> `[Automatic]`? In particular, do `2 = MTA (Robotized Gearbox)` and
+> `3 = DDCT` fall on the `[Manual]` or the `[Automatic]` side? The parameter
+> annotation (`General gear box (ex: manual, MTA, automatic, DDTC)`) lists
+> manual and MTA as separate items but does not define the grouping.
+>
+> Until clarified, the affected rows are on hold in SWQT test case generation.
+
+### ⚠ 執行層之揭露 —— 文稿引之 LID 版本非 R-DD5 所綁
+
+文稿書 `Logical Identifiers and CAN Mapping **v1_78**`；
+**R-DD5 所綁者為 `v1_76`**（`features/vehicle_setting/inputs/`），
+`v1_78` 在 `forms/`，未入本 feature 之 reference 綁定。
+
+**本輪實測二版之該列**（`Proxi & Configuration`，皆 449 列）：
+
+| | v1_76（綁定）| v1_78（文稿所引）|
+|---|---|---|
+| r421 A `Logical Identifier` | `VC_Trans_Equipped` | `VC_Trans_Equipped` |
+| r421 F `Signal Name`（Powernet）| `VehCfg7.VC_Trans_Equipped` | 同 |
+| r421 G `CAN`（Powernet）| `CAN-B` | 同 |
+| r421 H `Format`（Powernet）| `Transmission equipped: 0 = Automatic & 1 = Manual` | 同 |
+| r421 K `Signal Name`（CUSW）| `Gear_Box_Type` | 同 |
+| r421 P `Signal Name`（Atlantis & Atlantis High）| `Gear_Box_Type` | 同 |
+| `VC_Trans_Equipped` 所在列 | r420／r421 | r420／r421 |
+| `Country_Code` 所在列 | r43 | r43 |
+
+**所引各欄逐字相同，列號未位移 —— 文稿之內容不誤。**
+但**所引版本與綁定版本不一致**，此屬綁定之事，非文稿之事：
+
+- **文稿逐字照錄，不改** —— 改之即非「Pei 發送之版本」
+- 發送前請分析層擇一：**(甲) 文稿改書 `v1_76`**，或
+  **(乙) 依 R-DD5 重綁 `v1_78` 並重算 sha256**
+- **執行層不逕改，也不逕綁**（R-DD5 之綁定為裁決事項）

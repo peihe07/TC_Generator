@@ -283,6 +283,11 @@ R-DD7(c) 依條文之不等號方向取跨越側之第一個可表示格：
 > **A-DD6 之波及面比 A-DD1 廣** —— 7 列不在凍結名單內卻須帶 marker。
 > 此 7 列即 pilot 最先會碰到者。
 
+**覆核（T13b，下放包 08 §七）**：上輪僅掃 `MPH` 字樣，為自陳之已知邊界。
+本輪以 **`MPH`／`mph`／`mile`／`km/h`／`kph` 五組**重掃 037 全 28 列 ——
+**命中集合不變，仍為同 9 列**；`mph`／`mile`／`km/h`／`kph` 四組**全 28 列 0 命中**。
+即 037 之門檻**只以大寫 `MPH` 表述**，無其他措辭。**該邊界關閉。**
+
 狀態：**PENDING**（待 DR-DD4）。
 
 ---
@@ -296,3 +301,16 @@ R-DD7(c) 依條文之不等號方向取跨越側之第一個可表示格：
 profile §3（`docs/runtime/profiles/FW036_R1L_DriverDistraction_Profile.md`）
 **本輪未寫入一字** —— 拘束一（T12 只量測，不寫 profile）。
 四庫（LID／DBC／PROXI）**全程唯讀開啟**（`read_only=True`），未落任何寫入。
+
+---
+
+### 遵行紀錄（下放包 08 之輪）
+
+本輪寫入亦全在私有路徑（`RULINGS.md`／`DATA_REQUESTS.md`／`ANOMALIES.md`／
+`docs/upstream/`／`scripts/`）。
+
+- profile §3 由**分析層自辦**（下放包 08 §六），**執行層本輪未觸及該檔一字**
+- 本輪**讀**了一個共用路徑檔：`forms/Logical Identifiers and CAN Mapping v1_78.xlsx`
+  （為核 DR-DD6 文稿所引之版本，見 DATA_REQUESTS）——
+  **`read_only=True` 開啟，未寫入**。A-DD4 之拘束為**寫入**之拘束，讀不受限
+- 四庫（LID v1_76／二 DBC／PROXI）全程唯讀

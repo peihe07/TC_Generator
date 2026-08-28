@@ -21,11 +21,17 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 | R-DD3 | v1 | ER 之斷言錨層級：HMI 現象為主錨；callback／Listener 依 reaction presence 降階 | 02 §一 |
 | R-DD4 | v1 | SYSAD 為人讀參考，不入語料、不入 prompt 指紋 | 02 §一 |
 | R-DD5 | v1 | 四庫綁 `vehicle_setting/inputs/` 原件；sha256 自實體檔重算；查無者逐項登 DR | 02 §一 |
-| R-DD6 | v1 | 訊號名之架構軸：一律取 ATLANTIS 欄（繫於 R-DD5 之綁定）；引 LID 須標架構欄 | 07 §一 |
+| R-DD6 | **v2** | 訊號名之架構軸：匯流排訊號取 Atlantis High 欄；(e) 限匯流排訊號，PROXI 參數以 PROXI 檔為權威 | 08 §二 |
 | R-DD7 | v1 | MPH 門檻於 km/h 匯流排之 raw 邊界：上鎖 129／解鎖 77；全標 A-DD6，登 DR-DD4 | 07 §二 |
 | R-DD8 | v1 | Market Configuration Table 之採用與保留：取 Country_Code=91、標 A-DD5、DR-DD3 不結案 | 07 §三 |
+| R-DD9 | v1 | 訊號值之書寫形式：有 VAL_ 者取逐字列舉，連續量改置物理值與單位，SNA 分流 | 08 §三 |
+| R-DD10 | v1 | 外部表格之引用格式：Excel 書欄名不書 c{n}；LID 須標架構欄；計數須書母體判準與排除項；列號 1-based | 08 §三 |
 
-**留存之被取代條文**：無（本 feature 自始無改版）。
+**留存之被取代條文（依 R-TM13 不刪不改，不得引用）**：
+
+| 條號版本 | 已被取代於 | 其所載之失效值 |
+|---|---|---|
+| `R-DD6`（v1） | R-DD6 v2（下放包 08 §二）| (a) 只書「取 **ATLANTIS 欄**」—— 未區分 `Atlantis` 與 `Atlantis High` 二欄，亦未載二欄不同字時之取捨；**無 (b)**（Atlantis High 優先）、**無 (e)**（本條限匯流排訊號；PROXI 參數以 PROXI 檔為權威）。其 (a) 之理由（可施加性）對非匯流排標的不成立 |
 
 ---
 
@@ -167,4 +173,72 @@ v*.xlsx`；到位者為 `SR24 R1 Market Configuration Table v1.6.xlsx`。
     該欄對應 CFTS022 -136（Out of scope），範圍不同（下放包 06 §1.2）。
 ```
 （Pei 下放，分析層即裁，下放包 07 §三；所裁者為處置，非識別）
+---
+
+```
+R-DD6 v2（訊號名之架構軸）
+
+實測（上繳包 04 T10c）：綁定之二 DBC（PDT27_E2A_R4_BHCAN 155 訊息、
+PDT27_E2A_R5_FDCAN8 323 訊息）為 ATLANTIS 側；LID 之 Powernet 欄名
+（GW_C1.VEH_SPEED／GW_C1.Gr／VehCfg7.*）於二 DBC 皆不存在。
+
+(a) 匯流排訊號之名一律取 **Atlantis High 欄**。理由非「該架構較佳」，
+    而是**台架庫已綁定於此**：綁定件含 FD CAN（R5_FDCAN8），而 LID 中
+    FD 側之名（PT_SYSTEM_FD_1.*、BRAKE_FD_2.*）**僅見於 Atlantis High 欄**，
+    Atlantis 欄無 FD 條目。Powernet 名於本台架上寫得出來也送不出去。
+(b) `Atlantis` 與 `Atlantis High` 二欄同字時無差別；**不同字時取
+    Atlantis High**。實例：$Speedometer$ 二欄同字（STATUS_CCAN3.*）；
+    $PresentGear$ 二欄不同字，Atlantis 欄之三名於二 DBC 皆不在，
+    Atlantis High 欄之 PT_SYSTEM_FD_1.GearEngagedForDisplay_PT 在。
+(c) 本條之效力繫於 R-DD5 之四庫綁定。若日後改綁他架構之庫，
+    本條隨之失效並須重裁，不得沿用。
+(d) LID 為多架構對照表。引其列時須同時標明所取之架構欄，
+    格式 `LID {分頁名} r{n} [{架構}欄]`；只標列號者視同未標。
+(e) **本條之適用範圍限於匯流排訊號。** PROXI 參數不經匯流排施加，
+    (a) 之理由（可施加性）在其上不咬合；PROXI 參數以 **PROXI 檔為權威**，
+    LID 僅為指標。LID 各架構欄對同一 PROXI 參數所載不一致者，
+    登 DR，不逕選。
+    （立此項之由來：上繳包 05 §5.4 —— v1 之失效條件只寫了「改綁」，
+      未涵蓋「標的根本不走匯流排」；該案結論恰好不受影響，
+      但理由不成立即應更正。）
+（Pei 下放，分析層即裁，下放包 08 §二）
+```
+---
+
+```
+R-DD9（訊號值之書寫形式：列舉量與連續量）
+
+IN §8.7.5(a) 之 `= <raw> (<label>)`，其 <label> 定為 DBC VAL_ 之逐字列舉。
+實測（上繳包 04）：綁定件中部分訊號無 VAL_ 列舉（連續量），
+部分僅列舉 SNA。故分流：
+
+(a) **有 VAL_ 列舉者**：`= <raw> (<VAL_ 逐字>)`。
+    例：`$PT_SYSTEM_FD_1.GearEngagedForDisplay_PT$ = 12 (Park)`
+(b) **無 VAL_ 之連續量**：<label> 位改置**物理值與單位**，
+    並以 DBC 之 factor／offset 換算，換算式須可覆算。
+    例：`$STATUS_CCAN3.VehicleSpeedVSOSig$ = 129 (8.0625 km/h)`
+    物理值以 DBC 單位書寫（本件為 km/h）；spec 之 MPH 值另依
+    R-DD7(d) 併記，不取代 DBC 單位。
+(c) **僅列舉 SNA 者**（如 VehicleSpeedVSOSig 之 8191 "SNA"）：
+    正常值依 (b)，失效值依 (a) 書 `= 8191 (SNA)`。
+(d) 任一寫法之 raw 皆須為 DBC 可表示之整數格；
+    不可表示者依 R-DD7(c) 取跨越側第一格，並具名之。
+（Pei 下放，分析層即裁，下放包 08 §三）
+```
+---
+
+```
+R-DD10（外部表格之引用格式）
+
+(a) **Excel 欄一律書欄名**（`H`／`S`／`BF`），不書 `c{n}` ——
+    後者有 0-based／1-based 二種起點，本案已實際發生二層各用一種
+    而看似不符之情形（上繳包 04 §4A.2(a)）。
+(b) LID 之列一律書 `LID {分頁名} r{n} [{架構}欄]`（R-DD6(d)）。
+(c) **凡書計數，須同時書其母體判準與排除項。**
+    本案先例：`Market Config - R1` 之國別列計數 223 係排除 `WORLD`
+    （非目的地國，Country_Code = 0）後之值；未書明即被讀為差 1 之錯
+    （上繳包 04 §5.4）。
+(d) 列號一律 Excel 之 1-based。
+（Pei 下放，分析層即裁，下放包 08 §三）
+```
 ---
