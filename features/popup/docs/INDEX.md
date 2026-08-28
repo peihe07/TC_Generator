@@ -14,6 +14,7 @@
 | 02 | 2026-08-27 | P2 簽署 → R-POP11／R-POP10／R-POP9 工具三支 → 值來源接線 → **Pilot 全量批** | [handoff/02_wiring_tooling_pilot.md](handoff/02_wiring_tooling_pilot.md) | [upstream/02_wiring_tooling_pilot.md](upstream/02_wiring_tooling_pilot.md) | （無新條文；R-POP6~R-POP11 為前一輪覆核所立） | A-POP5 ~ A-POP8 | **4 條 TC，lint 21 項全 0**；`-002-05` 觸發 §八 升級停下 |
 | 03 | 2026-08-28 | pilot 六件修正（R-POP15 F1~F6）→ TC ID 重排（R-POP13）→ `-002-05` 補生成（R-POP14）→ 工具二修（R-POP16 乙丙／R-POP17-2）→ 台帳一致性 | [handoff/03_pilot_fixes.md](handoff/03_pilot_fixes.md) | [upstream/03_pilot_fixes.md](upstream/03_pilot_fixes.md) | （無新條文；R-POP12~R-POP17 為前一輪覆核所立） | A-POP10、A-POP11 | **5 條 TC 齊，lint 21 項全 0，x14 DV 存活**；`rulings_hash` 轉綠（既有列 sha 變動 0）；§十升級條件命中 1 項（sxm 兩筆假陽性，未代改）|
 | 04 | 2026-08-28 | F7 回調（R-POP20）→ 主表辨識改內容判準（R-POP18）→ A-POP6 甲類訂正（R-POP19）→ 台帳收斂 ＋ 03 §十三 逐項複驗 | [handoff/04_f7_ledger_close.md](handoff/04_f7_ledger_close.md) | [upstream/04_f7_ledger_close.md](upstream/04_f7_ledger_close.md) | （無新條文；R-POP18~R-POP20 新立、R-POP13／R-POP15 修訂，皆分析層本輪落檔） | （無新登）—— A-POP10／A-POP11 於本輪結案 | **五條 Final Step 全 ≤ 18 words 且全含 check that，ER 一字未減**；判準回收 74 筆漏檢（sxm 4／audio_mgmt 7／projection 63 → 0），新浮現 3 筆真缺陷已只造清單（vehicle_setting 31 項未複驗未寫入，回報）；升級條件 5 項全未命中；`gates_tsv` 由綠轉紅屬他 feature 未登錄之新腳本 |
+| 05 | 2026-08-28 | 交付候選簿產出 → TestRail 空表 → `DELIVERY_NOTE.md` → **R-POP25 第 3 點：兩件 Pop Up 補登 `forms/FORMS.md`**（Pei 附加，不另開包） | [handoff/05_delivery_prep.md](handoff/05_delivery_prep.md) | [upstream/05_delivery_prep.md](upstream/05_delivery_prep.md) | （無新條文；R-POP21~R-POP25 新立、R-POP5／13／18／20 修訂，皆分析層本輪落檔） | （無新登）—— 本包未開任何 anomaly／DR | **交付候選已出**（sha256 `dc0963d7…`，與 sandbox 版位元相同）；15 項回讀複驗全符、lint 21 項全 0、x14 DV 存活；`canon_refs` **本包 +0**；§八升級條件命中 1 項（R-POP5／R-POP13 之 sha，成因已逐條具名，未停下）|
 
 ## 2. 上繳包 01 之覆核結果（Pei，2026-08-27）
 
@@ -76,6 +77,16 @@ R-POP10／R-POP11 標「全域效力之工具政策，候升格 R-G」。
 | §五 | `ledger_xref` 處置 | **完** —— 追認、未接入 gate_all、續用 `--feature popup`（PASS）|
 | §六 | 03 §十三 複驗 | **完** —— 12 項逐項複驗，**僅第 9 項失準**，無第二項；歷史文未改 |
 | §七 | 寫回與 gate | **完** —— x14 DV 存活、lint036 21 項全 0、tsv 新增 3／變動 2／其餘 0 |
+
+## 3e. 下放包 05 之結案對帳（上繳包 05）
+
+| # | 事項 | 現況 |
+|---|---|---|
+| §二 | 交付簿產出 | **完** —— `features/popup/output/…_SWQT_Popup_20260828.xlsx`；產出前 `list_directory` 實測為空，未觸發覆寫升級條件；15 項回讀複驗全符 |
+| §三 | TestRail 對映表 | **完** —— 空表加說明（BLANK 起建，五條皆 NEW，E 欄待建號回填）|
+| §四 | `DELIVERY_NOTE.md` | **完** —— 五項必載齊；§3 之 queue／priority 範圍缺口以引言塊醒目上報（R-POP2）|
+| §五 | gate 與複驗 | **完** —— lint036 21 項全 0、`ledger_xref` PASS、tsv 重產；`gates_tsv`／`lint_paths` 之紅為 driver_distraction，非本包 |
+| — | **R-POP25 第 3 點（Pei 附加）** | **完** —— 兩件 Pop Up 已補登 `forms/FORMS.md`；另 3 件未登錄者具名回報，未代登 |
 
 ## 4. 仍未結
 

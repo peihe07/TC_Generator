@@ -75,26 +75,45 @@ R-C12	report	b1e06f44	b1e06f44fd9cba729a3c3e32c7cff37c4b3802c7a63b4a9a83f63c08b3
 R-C13	report	0b64f050	0b64f0500410acf7f841d7d463714df0a5554638e28a3985d6941da113b005b6	features/comfort/RULINGS.md	1336	11	執行層回報（2026-08-14，下放包 07／08）	A-CF11 已升格，且本輪再次派上用場
 R-C14	report	5c1a2ef4	5c1a2ef42997e74bef0081efaa9ffdbb4439ba4d14fde3a1c6a509654072bf1b	features/comfort/RULINGS.md	1350	12	執行層回報（2026-08-14，下放包 07／08）	本輪對 Market Configuration Table 之取用即依此條
 R-C18	report	1abb4f7b	1abb4f7badba682581dccc98c8a37416aa8dfe7148d0ebf0dfe3bd1c29db4c99	features/comfort/RULINGS.md	1369	19	執行層回報（2026-08-15，下放包 13）	已貼入，並已建立其所需之基礎設施
+R-DD1	ruling	a9b76e4b	a9b76e4b141ee5e91740d867556753a6b198fff8ad462a7b025c30990a98aa53	features/driver_distraction/RULINGS.md	41	9	R-DD1	
+R-DD2	ruling	da3cd8ec	da3cd8eccb72d332047b3a8d3d95c3b676652f1857a990a9d9524b7d30fa1603	features/driver_distraction/RULINGS.md	54	8	R-DD2	
+R-DD3	ruling	cc7aea6c	cc7aea6ccddae82c59d8ccc52e5af10e7db88e451f81a1d9d70b07868f227037	features/driver_distraction/RULINGS.md	66	17	R-DD3	
+R-DD4	ruling	8d4f36bf	8d4f36bf5aaf5dad0a1594aac2c4a4d9bea4837c6f0a57a1037e2b0136cd69c0	features/driver_distraction/RULINGS.md	87	10	R-DD4	
+R-DD5	ruling	75513f31	75513f3141365ce0b2995c36e2ed8596c5a6d89d57ed496a6052526a7d2a3bb5	features/driver_distraction/RULINGS.md	101	13	R-DD5	
+R-DD6	ruling	f28ee265	f28ee2657027475ef4be76f835d7ac3f512ec97e137fb158f4cbcf98337e65cf	features/driver_distraction/RULINGS.md	117	18	R-DD6 v1	v1
+R-DD7	ruling	f33ed793	f33ed79349358f479a0702e987d07004963268c5d2493d1ef4e8a3f2aaf22b5c	features/driver_distraction/RULINGS.md	139	31	R-DD7	
+R-DD8	ruling	5dca74aa	5dca74aacff2d427e0fcde6fa7fa70f1838e227cc246fd43ec23196b842b1ba8	features/driver_distraction/RULINGS.md	174	19	R-DD8	
+R-DD6	ruling	a5cbaf9c	a5cbaf9c60d2c9abbdf49a2e837b56e6e5fe2e0a5cd6b7285449723211559532	features/driver_distraction/RULINGS.md	197	28	R-DD6	
+R-DD9	ruling	965b6d4c	965b6d4c3e779faabd19783907ae7fdb10e3c9b91f906b484277f8b4cef3fc93	features/driver_distraction/RULINGS.md	229	20	R-DD9	
+R-DD10	ruling	6f601dd1	6f601dd1fe2a9b27fe87815e9c079f91953385333b5b75561f97b4b4242f0313	features/driver_distraction/RULINGS.md	253	14	R-DD10	
+R-DD11	ruling	872344f4	872344f46f297a6f87253f7480d6e9d8575a11d3dfe7f69ff94487524c7d4006	features/driver_distraction/RULINGS.md	271	18	R-DD11	
+R-DD12	ruling	42ddd946	42ddd946d78810ce5971401108b3eca496ca36e7706a3c787211950ac58d95ce	features/driver_distraction/RULINGS.md	293	16	R-DD12	
+R-DD13	ruling	d46f4c85	d46f4c85489577f2b58aa9544fe5d8e0976d8fd7360dd3eb264880ac70dc4990	features/driver_distraction/RULINGS.md	313	16	R-DD13	
 R-POP1	ruling	61145b5f	61145b5f874f6dba76dd75aa4e7f5b2e01bee739f73752e725ee2a773bb3e5bb	features/popup/RULINGS.md	7	4		slug 與目錄（Pei 裁，2026-08-27）
 R-POP2	ruling	93a0e937	93a0e937a7e1c3c3c87fd09346f6d81cc99a4439a800370d374e78865ab2c9a0	features/popup/RULINGS.md	14	6		生成範圍照 037 為準（Pei 裁，2026-08-27）
 R-POP3	ruling	6f6a3531	6f6a3531e75d7b752152414ad48f22c1a1866da9f208d9e98d902cc2e405a0e5	features/popup/RULINGS.md	23	3		DR 三件開立（Pei 裁，2026-08-27）
 R-POP4	ruling	1555a8f1	1555a8f13e754c5029b7543dc345256a2d5cb2c1d13d7b9105ac8f4c8a0f5cbe	features/popup/RULINGS.md	29	4		框架（Pei 裁，2026-08-27）
-R-POP5	ruling	896b4b84	896b4b84e7a0225015fabbef44ff8b7f94256ea2ea2cb0cb1cef7accbca080ec	features/popup/RULINGS.md	36	5		Heading 列之台帳處置 [DEFAULT]（分析層先裁，待 Pei 追認）
-R-POP6	ruling	66f64b48	66f64b48f5038c39990fd1cd57190ddf9902bfa84969525d4bdd885cbb7126bc	features/popup/RULINGS.md	44	12		Pop Up List 納入為素材（Pei 裁，2026-08-27，A-POP2 甲半）
-R-POP7	ruling	f6d6e22c	f6d6e22cff98b0a38b45f3ed06bdd55cc1dd254413b865e00d4294f3a78d3408	features/popup/RULINGS.md	59	4		Priority Matrix 不納入（Pei 裁，2026-08-27，A-POP2 乙半）
-R-POP8	ruling	7425f059	7425f059330762027934932a230bab008296e566cff4a9cc7eb285ad361dced0	features/popup/RULINGS.md	66	9		-002-02 之 spec_reference 併列兩節（Pei 裁，2026-08-27，A-POP3 採甲）
-R-POP9	ruling	a899c245	a899c24530cf3b0e7cb6790eaf9770ccc9c3dc0d158d28912c491dc33c6a9a3f	features/popup/RULINGS.md	78	4		A-POP1 修正追認＋傳染性掃描（Pei 裁，2026-08-27）
-R-POP10	ruling	a2237932	a22379321dcc8476b99a47d05fb95df0941aaae4bec2689ef35e99f963d8b17c	features/popup/RULINGS.md	85	5		lint 跳號檢查改前綴自動抽取（Pei 裁，2026-08-27，A-POP4 處置）
-R-POP11	ruling	a6b5301b	a6b5301bc9a7c67d3575ba0d17a8cbefff9164a51d475b1c2a7a71f88c0ee697	features/popup/RULINGS.md	93	5		rulings_hash 範圍納 feature RULINGS（Pei 裁，2026-08-27）
-R-POP12	ruling	e323360d	e323360db836114fe73d21175b199a44edcf5e66c16fca2f625d72f217f41d86	features/popup/RULINGS.md	101	14		-002-02 不拆，軸不存在（分析層裁 [DEFAULT]，2026-08-27，**A-POP7**）
-R-POP13	ruling	bcd97ba8	bcd97ba8d2ab254af73baa6d6a770f36a52306280af0e82608b4c1b947dcadf9	features/popup/RULINGS.md	118	31		TC ID 前綴定值（分析層裁 [DEFAULT]，2026-08-27，**A-POP9**）
-R-POP14	ruling	e025ab99	e025ab99584bd803c35a4eb06d28f3552e07f00df4ba4ceabc7355250ce85db7	features/popup/RULINGS.md	152	7		-002-05 採規格原句生成（分析層裁 [DEFAULT]，2026-08-27，**A-POP8**）
-R-POP15	ruling	2c712b56	2c712b565246ee53f53e142fdf34b3588e9d52ccf65a341a5d2d973550c0201f	features/popup/RULINGS.md	162	21		Pilot 修正六件之判準（分析層裁，2026-08-27）
-R-POP16	ruling	36e1ed0a	36e1ed0a59f27cc55ae2002cb0c1bb41fb963993451e292443a96e2109443337	features/popup/RULINGS.md	186	14		lint 新規命中之三分法處置（分析層裁 [DEFAULT]，2026-08-27，A-POP6）
-R-POP17	ruling	7b7868ec	7b7868ec96488c9a33d12810e2642eb1863484eff8bcda1a8f1c40ef63ad857e	features/popup/RULINGS.md	203	10		上繳回報與 repo 台帳不符之登記（分析層裁，2026-08-27，A-POP9）
-R-POP18	ruling	18ddf460	18ddf4600fbbed8d98548ce70cee08069a66c40cd2ddc2e8b9e75fce536de7aa	features/popup/RULINGS.md	216	18		主表辨識改內容判準（分析層裁，2026-08-28，A-POP10）
-R-POP19	ruling	5d9764bc	5d9764bca70bf0d858f382a3aeaf4a92171b019c7e15876bcb457eb46afc0ba9	features/popup/RULINGS.md	237	8		A-POP6 甲類之 sxm 兩筆撤回（分析層裁，2026-08-28，A-POP11）
-R-POP20	ruling	7ac862b3	7ac862b39bc5744149dfa9d4fb0b507f95d93cb7abb619a0c74110dd4c35c021	features/popup/RULINGS.md	248	19		F1 修正過長之回調（分析層裁，2026-08-28，編號 F7）
+R-POP5	ruling	a6816cb1	a6816cb12198f45368fddf0c73a70468e262a38186b97cfddff630899ccea4e8	features/popup/RULINGS.md	36	7		Heading 列之台帳處置（分析層先裁；**Pei 追認 2026-08-28**）
+R-POP6	ruling	66f64b48	66f64b48f5038c39990fd1cd57190ddf9902bfa84969525d4bdd885cbb7126bc	features/popup/RULINGS.md	46	12		Pop Up List 納入為素材（Pei 裁，2026-08-27，A-POP2 甲半）
+R-POP7	ruling	f6d6e22c	f6d6e22cff98b0a38b45f3ed06bdd55cc1dd254413b865e00d4294f3a78d3408	features/popup/RULINGS.md	61	4		Priority Matrix 不納入（Pei 裁，2026-08-27，A-POP2 乙半）
+R-POP8	ruling	7425f059	7425f059330762027934932a230bab008296e566cff4a9cc7eb285ad361dced0	features/popup/RULINGS.md	68	9		-002-02 之 spec_reference 併列兩節（Pei 裁，2026-08-27，A-POP3 採甲）
+R-POP9	ruling	a899c245	a899c24530cf3b0e7cb6790eaf9770ccc9c3dc0d158d28912c491dc33c6a9a3f	features/popup/RULINGS.md	80	4		A-POP1 修正追認＋傳染性掃描（Pei 裁，2026-08-27）
+R-POP10	ruling	a2237932	a22379321dcc8476b99a47d05fb95df0941aaae4bec2689ef35e99f963d8b17c	features/popup/RULINGS.md	87	5		lint 跳號檢查改前綴自動抽取（Pei 裁，2026-08-27，A-POP4 處置）
+R-POP11	ruling	a6b5301b	a6b5301bc9a7c67d3575ba0d17a8cbefff9164a51d475b1c2a7a71f88c0ee697	features/popup/RULINGS.md	95	5		rulings_hash 範圍納 feature RULINGS（Pei 裁，2026-08-27）
+R-POP12	ruling	e323360d	e323360db836114fe73d21175b199a44edcf5e66c16fca2f625d72f217f41d86	features/popup/RULINGS.md	103	14		-002-02 不拆，軸不存在（分析層裁 [DEFAULT]，2026-08-27，**A-POP7**）
+R-POP13	ruling	89306542	893065420a65ee8cd11741eb5db909a09339539d5604f47207567df664dd1eac	features/popup/RULINGS.md	120	31		TC ID 前綴定值（分析層裁 [DEFAULT]，2026-08-27，**A-POP9**）
+R-POP14	ruling	e025ab99	e025ab99584bd803c35a4eb06d28f3552e07f00df4ba4ceabc7355250ce85db7	features/popup/RULINGS.md	154	7		-002-05 採規格原句生成（分析層裁 [DEFAULT]，2026-08-27，**A-POP8**）
+R-POP15	ruling	2c712b56	2c712b565246ee53f53e142fdf34b3588e9d52ccf65a341a5d2d973550c0201f	features/popup/RULINGS.md	164	21		Pilot 修正六件之判準（分析層裁，2026-08-27）
+R-POP16	ruling	36e1ed0a	36e1ed0a59f27cc55ae2002cb0c1bb41fb963993451e292443a96e2109443337	features/popup/RULINGS.md	188	14		lint 新規命中之三分法處置（分析層裁 [DEFAULT]，2026-08-27，A-POP6）
+R-POP17	ruling	7b7868ec	7b7868ec96488c9a33d12810e2642eb1863484eff8bcda1a8f1c40ef63ad857e	features/popup/RULINGS.md	205	10		上繳回報與 repo 台帳不符之登記（分析層裁，2026-08-27，A-POP9）
+R-POP18	ruling	bfbb3167	bfbb3167318296450aacd82d35da1363004e55b67fb2a2da5932e87ddc2c7ee4	features/popup/RULINGS.md	218	30		主表辨識改內容判準（分析層裁，2026-08-28，A-POP10）
+R-POP19	ruling	5d9764bc	5d9764bca70bf0d858f382a3aeaf4a92171b019c7e15876bcb457eb46afc0ba9	features/popup/RULINGS.md	251	8		A-POP6 甲類之 sxm 兩筆撤回（分析層裁，2026-08-28，A-POP11）
+R-POP20	ruling	2894aa0c	2894aa0cbc3df9ed1755ca213774c37c665a1e5be76c7e8f575525d82061673a	features/popup/RULINGS.md	262	30		F1 修正過長之回調（分析層裁，2026-08-28，編號 F7）
+R-POP21	ruling	bd4637b8	bd4637b831f3cbf219d53bf31214b55fe12519497267c1f8af25bfe5fe3acf6b	features/popup/RULINGS.md	295	8		節號列舉不得省略 canon 前綴（分析層裁，2026-08-28）
+R-POP22	ruling	1bb746f6	1bb746f62b30f130a64c0f845a2a0bb6131593c52e3aa3670ab73392fb0836bc	features/popup/RULINGS.md	306	15		Estimated Test Time（Q 欄）留空（分析層裁 [DEFAULT]，2026-08-28）
+R-POP23	ruling	c5655c80	c5655c8032d7b0f1bcd9118503cca2b72acfd98d9afa7e227a793fa81183c1bf	features/popup/RULINGS.md	324	8		-002-05 之 design_method 維持狀態轉換（Pei 追認，2026-08-28）
+R-POP24	ruling	e362b2b6	e362b2b6b83637641244f73e15037b3705a6b1be55ddb2f79fe1bb5ddfb19ad8	features/popup/RULINGS.md	335	10		`scripts/ledger_xref.py` 之存續與接入（Pei 追認，2026-08-28）
+R-POP25	ruling	ec88e973	ec88e973a45216d2e4ac67da7b79e351dd19f34bb5ed2d0816c745c4cfbddda1	features/popup/RULINGS.md	348	22		`forms/` 落點政策（分析層裁 [DEFAULT]，2026-08-28）
 R-PMH1	ruling	9cca6b1e	9cca6b1ec8f94446c4450970b8b8081b6034613ebdf359e8d20f70fbabc38c62	features/power_moding/RULINGS.md	13	15	R-PMH1 —— 範圍 = 037 `Functional Requirement` 全集	範圍 = 037 `Functional Requirement` 全集
 R-PMH2	ruling	d0cdeeb4	d0cdeeb48b009e305c819a7d1c1a93f96ab64d591ae18f456a57df91e84d6dc0	features/power_moding/RULINGS.md	31	11	R-PMH2 —— feature 身分與 `test_group`，交付夾名不入欄位	feature 身分與 `test_group`，交付夾名不入欄位
 R-PMH3	ruling	b41bd8c6	b41bd8c6a351d6666fb4b86e3c76d0a24189ea3d92f9f8159cb1d5634c126728	features/power_moding/RULINGS.md	45	14	R-PMH3 —— 與 `features/power` 之分離（欄位／前綴／glob 三項）	與 `features/power` 之分離（欄位／前綴／glob 三項）

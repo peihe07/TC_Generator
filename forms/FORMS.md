@@ -538,3 +538,84 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 - **(e) 取代關係**：`features/vehicle_setting/` 另有其自用之 PROXI 取值
   （`data/_vf230_proxi_values.json`），來源檔非本檔，兩者關係未測
 - **(f) 首個採用**：**尚無**。本輪僅登台帳
+
+---
+
+## 共用參考件 —— Pop Up（R-POP25 第 3 點）
+
+依 **R-POP25**（分析層裁 [DEFAULT]，2026-08-28）：`forms/` 定位為
+「跨 feature 共用參考件之單一落點」，**每一項須登錄於本檔**。
+本節補登兩件 Pop Up —— 補登前 `grep -i "pop up" forms/FORMS.md` 命中 **0**。
+**R-POP25 之實作限於「登錄」：本輪不移動、不刪除、不改任何檔。**
+
+欄位形制沿上節「參考資料庫（DBC / PROXI / LID）」之六項 (a)–(f)。
+
+### `Pop Up List HMI R1 (26PI).xlsx`
+
+> **使用中之 feature（R-G15 反向記載）**：`popup`（**R-POP6** 裁定納入為素材，**引用原位不搬**；`features/popup/feature.yaml` 之 `paths.popup_list` 以相對 glob 指向本檔）。
+
+- **(a)** SHA256 `ff47b7be63e5824cafe35deda9f9ddd0a63f6ea458169ef73689a1c559ea13ea`
+  · 2,951,835 bytes · mtime 2026-08-25T13:51:21
+- **(b) 涵蓋範圍**（執行層 2026-08-28 實測，`openpyxl` read_only／data_only）：
+  3 個分頁。主分頁 `Main` 1,344 列 × 17 欄 —— **r1 = 基線字串
+  `SR24 Post 2A CR25802`**、r2 為欄名、**資料自 r3 起，`^PU\d` 之 ID 列
+  共 1,340 筆**（`PU0001` ～ `PU1579`，編號不連續）。
+  r2 之 12 個具名欄逐字：`ID Number`／`Module`／`Timeout (sec)`／
+  `Exit Conditions`／`Description`／`Category`／`String/Popup Message`／
+  `Template 8.4" 10.1" 12"`／`Template 7"`／`Template 10.25"/12.3"`／
+  `Stored in Notifications Inbox`／`Reference Documentation`（其後 5 欄無欄名）。
+  另 `Templates` 34 列 × 5 欄、`Drop Down Fields` 73 列 × 8 欄
+- **(c) 版次**：`Main!A1` 逐字 `SR24 Post 2A CR25802`；檔名另載 `HMI R1 (26PI)`
+- **(d) 已知不涵蓋**：
+  1. **popup 只取規格明文委派之欄位**（GP4 timeout／touch-outside 啟用／
+     multi-task 例外），**不吸收本表之其他規則**
+     （`features/popup/feature.yaml` `paths.popup_list` 註；IN §8.4.2）
+  2. **`search keyboard` 無對應列** —— 三分頁全欄實測：連續詞組命中 **0**、
+     同列兼含 `keyboard` 與 `search` 之 PU 列 **0**（詳
+     `features/popup/ANOMALIES.md` A-POP8）。故不得以本檔為據主張
+     GP4-4 所舉之 search keyboard popup 存在或不存在
+  3. **hard-button 分支無實例** —— 以 `again|second time|re-?press|toggle`
+     掃 `Exit Conditions`（不分大小寫）命中 13 列，逐列判讀後僅
+     `PU0215`（UI button）與本命題相關；`PU0229` 之開啟者為語音請求而非
+     該按鍵（詳 A-POP7）
+- **(e) 取代關係**：與同目錄之
+  `Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf` **非同一文件**
+  且**非同代**（該件為 SR24 1A，早於本檔之 SR24 Post 2A 兩代）。
+  兩者不互相取代。本檔亦非 `forms/` 之 036 母本，與 R-G1／R-G2 無涉
+- **(f) 首個採用**：`popup`，2026-08-27（R-POP6；DR-POP1 據此結案）。
+  殘留兩點隨 RD-1 確認：CR 版位（`CR25802` vs `CR22510`）與 `(26PI)` 之適用性
+
+### `Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf`
+
+> **使用中之 feature（R-G15 反向記載）**：**無** —— `popup` 於 **R-POP7** 裁定**不納入**（版次早於基線兩代）；`DR-POP2` 續開，向上游索 SR24 Post 2A 現版。
+
+- **(a)** SHA256 `dc078763c67b52388eba8edf5c461515cfd2d92dd3a78dba0ce4e365e43ccc2f`
+  · 1,035,049 bytes · mtime 2026-08-25T13:50:34
+- **(b) 涵蓋範圍**（執行層 2026-08-28 實測，**只取結構事實**）：
+  **10 頁**（`/Type /Pages` 之 `/Count` 與 `/Type /Page` 計數皆為 10）。
+  含字型物件（`/Font` 79 處）與影像物件（`/Image` 66 處）。
+  **內容未解析** —— 見 (d)
+- **(c) 版次**：`SR24 1A`，日期 `May 3 2021`（皆檔名所載）。
+  popup 之規格基線為 `SR24 Post 2A (February 2 2023)`，**本件早兩代**
+- **(d) 已知不涵蓋**：**本輪未解析其內容，且不得解析** ——
+  R-POP7 已裁定不納入為素材；逕行解析即等於把被裁定排除之件讀進判斷。
+  故 popup 之 queue／priority 行為**不以本件為據**，
+  spec 5.1 所引之 Priority Matrix 仍為缺件（DR-POP2）
+- **(e) 取代關係**：**被上游之 SR24 Post 2A 現版取代**（該現版尚未到件，
+  即 DR-POP2 之標的）。與同目錄之 `Pop Up List HMI R1 (26PI).xlsx`
+  非同一文件，不互相取代
+- **(f) 首個採用**：**尚無**。本輪僅登台帳（R-POP25 第 3 點）
+
+### 本節之範圍限制（誠實揭露）
+
+本輪只補登上列**兩件**（Pei 2026-08-28 指定）。
+`forms/` 尚有 **3 件未登錄**，依 R-POP25 第 3 點皆應補，但不在本包指定範圍：
+
+| 未登錄檔 | 目測用途 | 誰該補 |
+|---|---|---|
+| `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | HMI 設定清單 | 其首個採用之 feature |
+| `SR24 R1 Market Configuration Table v1.6.xlsx` | 市場配置表 | 同上 |
+| `SR26 Default Settings and PNet ECU Configuration v1_0.xlsx` | 預設值／PNet ECU 配置 | 同上 |
+
+**未代登** —— 六項 (a)–(f) 之 (b) 涵蓋範圍與 (f) 首個採用須由實際使用者
+實測填寫，由未使用它的 feature 代填會產出無人負責的登錄。

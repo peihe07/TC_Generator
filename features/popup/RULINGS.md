@@ -33,13 +33,15 @@ capability，IN §4.1.3 granularity test 通過）。Queue／priority 若日後
 補件（037 增補或 RD-1 回覆）再增 Test Set。Layer 3 見 framework.md
 Part N（落檔於 framework 鎖定時）。
 
-### R-POP5 — Heading 列之台帳處置 [DEFAULT]（分析層先裁，待 Pei 追認）
+### R-POP5 — Heading 列之台帳處置（分析層先裁；**Pei 追認 2026-08-28**）
 
 覆蓋台帳收錄 Analysis Report 全部 7 列。Heading 2 列處置：
 - SWE1-POP-002 標 `No TC — Heading; refer to child IDs -002-01..-05`
 - SWE1-POP-001 標 `No TC — Heading; duplicated of SWE1-POP-002-02`
   （037 原文 K8 逐字：「Duplicated feature of SWE1-POP-002-02」）
-沿 bed_lowering R-BLM2 前例形制。Pei 得於審查時否決改裁。
+沿 bed_lowering R-BLM2 前例形制。
+
+**追認（2026-08-28，Pei「都裁過了」）**：照現裁確定，不再為 [DEFAULT]。
 
 ### R-POP6 — Pop Up List 納入為素材（Pei 裁，2026-08-27，A-POP2 甲半）
 
@@ -133,7 +135,7 @@ pilot 現值 `newR1L-POP-{NNN}` 兩處皆錯（`newR1L`≠`NR1L`；
 縮寫 `POP`≠全名 `Popup`），全數重排，NNN 序不變。
 
 **修訂（2026-08-28，上繳包 03 §一-1）**：原末句「feature.yaml 之 `project`
-模板殘值 `PROJ` 同步修正」**作廃** —— `features/popup/feature.yaml` 無
+模板殘值 `PROJ` 同步修正」**不再適用，此句撤回** —— `features/popup/feature.yaml` 無
 `project` 鍵，全檔亦無 `PROJ` 字串（執行層 grep 實測命中 0）。
 該句係分析層將 A-POP9(4) 所記之**錯誤述值**連同處分寫入本條，
 致 A-POP9 之錯誤於其自身之處分條文內再現 —— **分析層之誤**。
@@ -224,7 +226,7 @@ A-POP5 未提、傳染性掃描結論相反、TC ID 前綴述值與語料不同�
 **改採內容判準**（不以位置辨識）：一張表格若其**首欄有 ≥ 2 列
 匹配 `^(A|DR|R)-[A-Z]+\d+$`**（去除包覆之 `[]`、粗體記號後），
 即視為登記表，受跳號檢查；一檔可有多張登記表（power 之切段情形），
-同檔各登記表之編號合並為一個序列後再判跳號。
+同檔各登記表之編號收為一個序列後再判跳號。
 非登記表（指紋表、計數表、欄位值表）自然排除 —— `privacy` 之假前綴
 `S` 以本判準亦排除（需實證，不得推定）。
 
@@ -233,6 +235,18 @@ A-POP5 未提、傳染性掃描結論相反、TC ID 前綴述值與語料不同�
 
 **本條不及於 `ledger_xref.py`** —— 存在性檢查不需先認定主表，
 該工具跨全檔收集之現行作法正確，二者分野維持（已記於其檔頭）。
+
+**實作二項追認（2026-08-28，上繳包 04 §三）**：
+
+1. **第二條門檻：單列但佔該表首欄非空格 ≥ 50% 者亦算登記表**。
+   理由正確：power 之 `A-PW` 主表被空行切段，其中有單列續段；
+   只用 ≥ 2 列會把續段丟掉 —— 那是以另一種方式重蹈 A-POP10。
+   兩條門檻皆擋得住 privacy 之欄位值表（`S10` 1/6 = 17%）。
+2. **標題式登記只作存在性佐證，不參與重複判定**。
+   執行層已實證兩個方向皆會出錯：一併算重複 → popup 之
+   「主表一列 ＋ `## A-POPn` 明細節一節」每號皆變跨表同號（11 筆 note）；
+   有表格就不看標題 → sxm 之 A-SX18／19 又被判跳號（A-POP11 之重現）。
+   先證偽兩方向再定案，而非定案後找支持。
 
 ### R-POP19 — A-POP6 甲類之 sxm 兩筆撤回（分析層裁，2026-08-28，A-POP11）
 
@@ -266,3 +280,92 @@ F1 之實作使四條之 Final Step 超出 IN §5.2B 之 **≤ 18 words**。
 
 本條不推翻 F1 —— check target 仍必須；只限制其長度。
 R-POP15 F1 之條文需同步加註「且受 IN §5.2B ≤ 18 words 拘束」。
+
+**詞數算法之訂正（2026-08-28，上繳包 04 §二-1）**：上表措辭
+「`(sec)` 括弧不計」**有誤** —— 執行層三種算法實測顯示，唯將
+`(sec)` **計為一詞**方重現得出 31／19／29／29／17。
+正確算法：**去 `N. ` 序號後 `str.split()`，`(sec)` 計為一詞**。
+分析層之誤 —— 寫條文時未回測自身所列數字之可重現性。
+執行層揭露出入而不自改條文，處置正確。
+
+**001 之例外追認**：回調後保留 `the elapsed time`（未逐字照抄
+本條示例）**正確** —— 該條之受測量本就有二（顯示狀態 ＋ 經過時間），
+只留其一會使步驟讀不出要量時間。本條之示例為形制，非逐字模板。
+
+### R-POP21 — 節號列舉不得省略 canon 前綴（分析層裁，2026-08-28）
+
+下放包／上繳包／台帳內列舉多個節號時，**每一個節號皆須冠 canon
+前綴**（`IN §4.5`、`IN §5.2B`…）。縮寫式 `IN §4.5／§5.2B／§5.5`
+之第二個以後成為**裸引用**，`canon_refs` 判為 FO／IN 兩 canon
+共用之歧義引用而計入未解決數。
+
+來源：上繳包 04 §八-5 —— 執行層於作業中自產此錯（canon_refs 471）
+並自修回 470，一併記錄。這是可複製之寫作陷阱，不是一次性筆誤；
+分析層寫包同受此規。**全域效力之寫作規約，候升格 R-G。**
+
+### R-POP22 — Estimated Test Time（Q 欄）留空（分析層裁 [DEFAULT]，2026-08-28）
+
+Q 欄（`Estimated Test Time`）**留空，不寫入**。
+依據：分析層 2026-08-28 實測五本交付／產出簿（以表頭含
+`Estimated` 定位得欄序 16，逐列，以 TC ID 欄非空為母體）：
+
+| 簿 | Q 欄非空列 | 母體列數 |
+|---|---|---|
+| `features/power/delivered/pm_29.xlsx` | 0 | 389 |
+| SXM 20260813 | 0 | 215 |
+| UserProfiles 20260819 | 0 | 189 |
+| TimeManagement 20260825 | 0 | 59 |
+| Display 20260826 | 0 | 23 |
+| **合計** | **0** | **875** |
+
+875/875 留空、零例外 —— 此為既定實務而非待決政策，不需上呼。
+P 欄（Priority，欄序 15）照常寫入（IN §10.2）。Pei 得否決改裁。
+
+### R-POP23 — -002-05 之 design_method 維持狀態轉換（Pei 追認，2026-08-28）
+
+`NR1L-Popup-005` 之 `design_method` **維持 `狀態轉換 (State Transition
+Testing)`**，不改負向測試。理由：受測者為同一台 popup 狀態機於
+**合法輸入下不發生轉移**，仍屬 state-change focus；IN §12 之
+Negative / Invalid 指**非法輸入或非法操作**，而 GP4-4 所述之按鍵
+是合法操作。五條同法亦便對讀。
+
+執行層於上繳包 03 §四 已將本選擇及其候補（負向測試）揭露備查，
+揭露處置正確。
+
+### R-POP24 — `scripts/ledger_xref.py` 之存續與接入（Pei 追認，2026-08-28）
+
+1. **不合併** —— `scripts/ledger_xref.py`（跨 feature 機械對照）與
+   `features/vehicle_category/scripts/ledger_xref.py`（同一標的多處記載
+   並列供人判讀）**用途不同**，各自存續。同名之混淆風險以兩檔檔頭
+   各自聲明其問題形態化解。
+2. **不接入 `gate_all.py`** —— 跨 feature 實測 6 綠／6 紅
+   （power_moding 7、driver_distraction 7、projection 24、
+   time_management 29、audio_mgmt 43、vehicle_setting 473），
+   接入即全 repo 轉紅。**接一支已知會紅而被容忍之閘，等於讓該閘失效**。
+   待各 feature 台帳收斂至可接受水位後再議，屆時需先定基線。
+3. 現階段以 `--feature <f>` 手動調用為主，各包之收斂複驗必跑。
+
+### R-POP25 — `forms/` 落點政策（分析層裁 [DEFAULT]，2026-08-28）
+
+**取號與權限聲明**：Pei 於 2026-08-28 之「都裁過了」未攜帶本項之
+方向（分析層於下放包 05 §九-4 亦未提意見）。為不再以同一問題
+上呼，分析層以 [DEFAULT] 裁之，Pei 得隨時否決。
+
+`forms/` 實存 12 項，而 R-G2 字面只允 `…_SWQT_20260817_ext.xlsx`
+一件。二者之差以**承認現狀、補登記**解，不以搬檔解：
+
+1. **不搬入 `sources/raw/`**。`sources/` 之組織單位為 doc_id，
+   `MANIFEST.tsv` 綁 feature intake；而 `forms/` 之 12 項為**跨 feature
+   共用參考件**（DBC、PROXI、HMI Settings List、LID、Pop Up List…）。
+   搬檔將斷掉至少 popup（`paths.popup_list`）、sw_update（A-SU3）、
+   display／vehicle_category（`inputs/` 副本）之現行路徑，
+   改動面遠大於所解之問題。
+2. **`forms/` 定位為「跨 feature 共用參考件之單一落點」**；
+   R-G2 字面之範圍陳述已不符實務，**候升格 R-G 時一併修辭**。
+3. **每一項須登錄於 `forms/FORMS.md`**，至少載檔名、sha256、
+   版次／基線、引用之 feature。**現有兩件 Pop Up 未登錄**
+   （`grep -i "pop up" forms/FORMS.md` 命中 0），須補。
+4. **feature 專用檔不得放 `forms/`** —— 歸該 feature 之 `inputs/`
+   或 `sources/`。
+
+本條之實作限於「登錄」，**不移動、不刪除任何檔**。
