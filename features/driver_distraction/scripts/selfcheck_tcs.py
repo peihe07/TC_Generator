@@ -20,9 +20,12 @@ from pathlib import Path
 import openpyxl
 
 ROOT = Path(__file__).resolve().parent.parent
-TCS = json.loads((ROOT / "generated" / "pilot_group3.json").read_text("utf-8"))
+import os
+ART = os.environ.get("SC_ARTIFACT", "pilot_group3.json")
+TCS = json.loads((ROOT / "generated" / ART).read_text("utf-8"))
 A03 = ROOT / "inputs" / "DD_SWE1_0807_EN.xlsx"
-ROW = {"009": 17, "010": 18, "011": 19, "012": 20}
+_ALL = {f"{n:03d}": 8 + n for n in range(1, 29)}      # leaf → 037 `Analysis Report` 列
+ROW = {t["req_id"][-3:]: _ALL[t["req_id"][-3:]] for t in TCS}
 FOUR = ["pre_conditions", "input_test_data", "test_procedure", "expected_result"]
 MULTILINE = FOUR + ["test_item", "spec_reference"]
 
@@ -64,7 +67,7 @@ def words(item):
 
 # ── 1 Test Set（§4.1／§4.2）──────────────────────────────────────────
 sets = {tc["test_set"] for tc in TCS}
-ok = (sets == {"Lockout Enforcement"}
+ok = (sets <= {"Lockout Enforcement", "Speed Threshold Judgment"}
       and not any(s.startswith("Driver Distraction") for s in sets)
       and not (sets & {"Unclassified", "Misc"}))
 add(1, "§4.1/§4.2", "Test Set 名詞片語、能力層級、無 Test Group 前綴、拼寫一致",
@@ -226,7 +229,7 @@ leak = [(tc["tc_id"], w) for tc in TCS for w in SCOPE
 # §8.4.1 造值：ER／Procedure 內之數值須見於 profile §3.1 或 DBC
 nums = {n for tc in TCS for f in ("test_procedure", "expected_result")
         for n in re.findall(r"(?<![\w.])(\d+(?:\.\d+)?)(?![\w])", tc[f])}
-ALLOWED = {"1", "2", "3", "129", "8.0625", "0", "0.0000"}
+ALLOWED = {"1", "2", "3", "4", "129", "8.0625", "77", "4.8125", "0", "0.0000", "5", "3"}
 fab = nums - ALLOWED
 add(12, "§8.1/§8.2/§8.4", "追溯 Req/SWRA；不擴入 sibling；無造值；無範圍捏造",
     trace and not leak and not fab,
@@ -241,10 +244,13 @@ MENU = {"功能測試 (Functional based ; no specific technique)",
         "組合測試 (Combinatorial Testing ; Pairwise / t-wise)",
         "情境 / 用例 (Scenario / Use Case Testing)", "負向測試 (Negative / Invalid)",
         "基礎故障注入 (Fault Injection Lite)"}
-WANT = {"009": "狀態轉換 (State Transition Testing)",
-        "010": "基礎故障注入 (Fault Injection Lite)",
-        "011": "狀態轉換 (State Transition Testing)",
-        "012": "基礎故障注入 (Fault Injection Lite)"}
+# §12 first-match：AC2（停送→逾時）為 simulated fault，序在 State Transition 之前；
+# AC1（跨門檻）為 A→B 轉換。以 037 原文之 AC 別判，非以 leaf 號硬編。
+def _want(tc):
+    k = leaf(tc)
+    return ("基礎故障注入 (Fault Injection Lite)"
+            if str(SRC[k][3]).startswith("AC2") else "狀態轉換 (State Transition Testing)")
+WANT = {leaf(tc): _want(tc) for tc in TCS}
 inmenu = all(tc["design_method"] in MENU for tc in TCS)
 firstmatch = all(tc["design_method"] == WANT[leaf(tc)] for tc in TCS)
 add(13, "§12", "Design Method 於 procedure 定稿後指派，且合 first-match 序",
@@ -293,8 +299,12 @@ add(15, "§11 + R-DD12(c)", "UI 標籤用 `\"...\"`；方括號僅限 037 逐字
      if not brk else str(brk)) + f"；單引號／角括號 {sq or '無'}")
 
 # ── 16 spec_reference（§10.7）───────────────────────────────────────
-WANTS = {"009": "CFTS022-4915108", "010": "CFTS022-4915108",
-         "011": "CFTS022-4915109", "012": "CFTS022-4915109"}
+# profile §1 之 SYS-RA → ObjectID 對照（逐字）
+_OBJ = {"113": "CFTS022-4915104", "114": "CFTS022-4915105", "115": "CFTS022-4915106",
+        "116": "CFTS022-4915107", "117": "CFTS022-4915108", "118": "CFTS022-4915109",
+        "120": "CFTS022-4915112", "121": "CFTS022-4915115"}
+WANTS = {leaf(tc): _OBJ[re.search(r"-(\d+)$", str(SRC[leaf(tc)][1]).strip()).group(1)]
+         for tc in TCS}
 ok16 = all(tc["spec_reference"] == WANTS[leaf(tc)] for tc in TCS)
 ok16 &= all("\n" not in tc["spec_reference"] and not re.search(r"[,、;]", tc["spec_reference"])
             for tc in TCS)
@@ -302,11 +312,16 @@ add(16, "§10.7", "spec_reference 列出所驗之每一 spec 節；一行一 Obj
     ok16, "／".join(f"{leaf(tc)}={tc['spec_reference']}" for tc in TCS))
 
 # ── 17 來源優先與門檻具體值（§8.6／§8.7）────────────────────────────
-thr = all("129 (8.0625 km/h)" in tc["test_procedure"] for tc in TCS if leaf(tc) in ("009", "011"))
-mark = all("[ASSUMPTION A-DD6]" in tc["expected_result"] for tc in TCS if leaf(tc) in ("009", "011"))
-amb = all(('"Pairing (1st time)"' in tc["expected_result"]
-           or '"Reconfigurable menu bar"' in tc["expected_result"]
-           or "Standard Lockout Popup" in tc["expected_result"]) for tc in TCS)
+# 用及 profile §3.1 raw 者，須標 [ASSUMPTION A-DD6]（R-DD7(f)）
+_uses = [tc for tc in TCS if re.search(r"= (129|77) \(", tc["test_procedure"])]
+thr = all(re.search(r"= (129 \(8\.0625 km/h\)|77 \(4\.8125 km/h\))", tc["test_procedure"])
+          for tc in _uses)
+mark = all("[ASSUMPTION A-DD6]" in tc["expected_result"] for tc in _uses)
+# ER 須具名取樣 feature（profile §2.1 禁泛稱）或逐字引 Standard Lockout Popup
+VAGUE = r"some restricted feature|a locked-out feature|the restricted feature\b"
+amb = all((re.search(r'"[^"]+"', tc["expected_result"])
+           or "Standard Lockout Popup" in tc["expected_result"])
+          and not re.search(VAGUE, tc["expected_result"], re.I) for tc in TCS)
 add(17, "§8.6/§8.7", "門檻為 spec 溯源之具體值；相似操作於 ER 具名區辨；來源規格勝於索引匯出",
     thr and mark and amb,
     f"門檻具名 raw {thr}（profile §3.1 依 R-DD7(c)）；A-DD6 marker {mark}；ER 取樣具名 {amb}")
@@ -323,7 +338,9 @@ add("+", "profile §2.3", "ER 不含 RESTRICTED／NOT_RESTRICTED／Locked／Unlo
     not h4, "0 命中" if not h4 else str(h4))
 
 # ── 追加：priority（§10.2 + profile §4）─────────────────────────────
-WP = {"009": "P0", "010": "P1", "011": "P0", "012": "P1"}
+# profile §4：P0（8）＝007,009,011,013,015,019,023,025，其餘 P1
+_P0 = {"007", "009", "011", "013", "015", "019", "023", "025"}
+WP = {leaf(tc): ("P0" if leaf(tc) in _P0 else "P1") for tc in TCS}
 add("+", "§10.2", "priority 為 P0–P3 且合 profile §4",
     all(tc["priority"] == WP[leaf(tc)] for tc in TCS),
     "／".join(f"{leaf(tc)}={tc['priority']}" for tc in TCS))
@@ -344,7 +361,7 @@ add("+", "R-DD16(b)", "輸出 split_flag／split_reason；未拆者 false／\"NA
 
 # ── 輸出 ───────────────────────────────────────────────────────────
 print("=" * 84)
-print("pilot 自檢 —— IN §9 十七項全跑 ＋ 追加項（下放包 10 §八 T16b）")
+print("TC 自檢 —— IN §9 十七項全跑 ＋ 追加項（骨幹；產物由 SC_ARTIFACT 指定）")
 print("=" * 84)
 nfail = nna = 0
 for no, sec, name, v, det in res:

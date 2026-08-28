@@ -68,7 +68,7 @@ def main():
             "leaf": "009",
             "test_set": "Lockout Enforcement",
             "pre_conditions": (
-                "1. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)"
+                "1. The signal " + SPEED + " is transmitted on the bus at 0 (0.0000 km/h)"
             ),
             "input_test_data": "NA",
             "test_procedure": (
@@ -105,7 +105,7 @@ def main():
             "leaf": "010",
             "test_set": "Lockout Enforcement",
             "pre_conditions": (
-                "1. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)"
+                "1. The signal " + SPEED + " is transmitted on the bus at 0 (0.0000 km/h)"
             ),
             "input_test_data": "NA",
             "test_procedure": (
@@ -139,7 +139,7 @@ def main():
             "leaf": "011",
             "test_set": "Lockout Enforcement",
             "pre_conditions": (
-                "1. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)"
+                "1. The signal " + SPEED + " is transmitted on the bus at 0 (0.0000 km/h)"
             ),
             "input_test_data": "NA",
             "test_procedure": (
@@ -171,7 +171,7 @@ def main():
             "leaf": "012",
             "test_set": "Lockout Enforcement",
             "pre_conditions": (
-                "1. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)"
+                "1. The signal " + SPEED + " is transmitted on the bus at 0 (0.0000 km/h)"
             ),
             "input_test_data": "NA",
             "test_procedure": (
@@ -229,6 +229,8 @@ def main():
             "design_method": tc["design_method"],
             "functional_safety": "NA",
             "author": "PeiPYHsu",
+            "split_flag": False,
+            "split_reason": "NA",
             "upper_half_provenance": {
                 "source": f"037 Analysis Report r{ROW[k]} c3 (Requirement Description)",
                 "mode": mode,
