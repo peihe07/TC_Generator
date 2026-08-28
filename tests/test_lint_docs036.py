@@ -208,3 +208,96 @@ def test_前綴抽取不吞掉單字母系列(tmp_path: Path) -> None:
     assert ld.RE_SERIES.match("A-POP4").group("prefix") == "A-POP"
     assert ld.RE_SERIES.match("DR-PW3").group("prefix") == "DR-PW"
     assert ld.RE_SERIES.match("S3").group("prefix") == "S"
+
+
+# --- R-POP16 乙／丙：跨表降 note、前綴限主表、盲區明示 -------------------------
+#
+# G-N —— 缺陷原文以字面釘入。下列 fixture 逐字重現 A-POP6 乙類之兩個誤傷
+# 形態（主表一列＋回顧表一列的同號），與丙類之盲區形態（主表首格非編號）。
+# repo 內 power_moding／projection／privacy 之台帳日後如何改寫，
+# 都不影響本組測試之證明力。
+
+ANOM_CROSS_TABLE_DUP = """# ANOMALIES
+
+| A | 內容 | 狀態 |
+|---|---|---|
+| A-PJ36 | 甲 | RESOLVED |
+| A-PJ37 | 乙 | RESOLVED |
+
+## 狀態彙整（回顧表）
+
+| A | 現況 |
+|---|---|
+| A-PJ37 | 已結案 |
+"""
+
+ANOM_SAME_TABLE_DUP = """# ANOMALIES
+
+| A | 內容 | 狀態 |
+|---|---|---|
+| A-PJ36 | 甲 | RESOLVED |
+| A-PJ37 | 乙 | RESOLVED |
+| A-PJ37 | 乙（誤貼一次） | RESOLVED |
+"""
+
+ANOM_BLIND = """# ANOMALIES
+
+| SHA256（前 8） | size | 路徑 |
+|---|---|---|
+| ff47b7be | 91234 | `forms/x.xlsx` |
+
+## 明細
+
+| A | 內容 |
+|---|---|
+| A-PV1 | 甲 |
+| A-PV3 | 丙 |
+"""
+
+
+def test_跨表同號降為_note_不判紅(tmp_path: Path) -> None:
+    """A-POP6 乙之誤傷本體：主表一列、回顧表一列，舊判準判紅。"""
+    root = write(tmp_path, anom=ANOM_CROSS_TABLE_DUP)
+    found = ld.check_series(root, "features/power/ANOMALIES.md")
+    assert [f.severity for f in found] == ["note"]
+    assert found[0].where == "A-PJ37"
+
+
+def test_同一表格內真重複仍判紅(tmp_path: Path) -> None:
+    """放寬只及於跨表 —— 主表內寫了兩次，仍須轉紅（注入向，G-K）。"""
+    root = write(tmp_path, anom=ANOM_SAME_TABLE_DUP)
+    found = ld.check_series(root, "features/power/ANOMALIES.md")
+    reds = [f for f in found if f.severity != "note"]
+    assert [(f.check, f.where) for f in reds] == [("A-PJ_id", "A-PJ37")]
+
+
+def test_跨表同號不因降_note_而變成跳號(tmp_path: Path) -> None:
+    """回顧表之列仍算「該號存在」；把它排除掉會生出新的誤報。"""
+    root = write(tmp_path, anom=ANOM_CROSS_TABLE_DUP)
+    assert not [f for f in ld.check_series(root, "features/power/ANOMALIES.md")
+                if f.check.endswith("_series")]
+
+
+def test_前綴抽取限於首個表格_假前綴不入集(tmp_path: Path) -> None:
+    """privacy 之假前綴 `S`（欄位值表）形態：首表非登記表即整檔不受檢。"""
+    root = write(tmp_path, anom=ANOM_BLIND)
+    found, _, off = ld.series_in(ANOM_BLIND)
+    assert found == {}          # 主表首格為 SHA256／size／路徑，抽不到前綴
+    assert off == 2             # A-PV1／A-PV3 落在主表外，須報數而非靜默吞掉
+    assert ld.check_series(root, "features/power/ANOMALIES.md") == []
+
+
+def test_盲區於_main_明示_no_series_detected(tmp_path: Path, capsys) -> None:
+    """R-POP16 丙：抽不到前綴時不得靜默 PASS。"""
+    root = write(tmp_path, anom=ANOM_BLIND, dr="")
+    assert ld.main(["--root", str(root), "--feature", "power"]) == 0
+    out = capsys.readouterr().out
+    assert "no series detected" in out
+    assert "PASS ≠ 已驗" in out
+
+
+def test_有系列可驗時不印_no_series_detected(tmp_path: Path, capsys) -> None:
+    """反向：主表即登記表者，輸出不得出現盲區告示。"""
+    root = write(tmp_path, anom=ANOM_POP_OK, dr=DR_POP_OK)
+    assert ld.main(["--root", str(root), "--feature", "power"]) == 0
+    assert "no series detected" not in capsys.readouterr().out

@@ -12,6 +12,7 @@
 |---|---|---|---|---|---|---|---|
 | 01 | 2026-08-27 | Phase 0 intake → `sources/` 落檔 → scaffold → Phase 1 RECON → 工作簿起建 | [handoff/01_intake_recon.md](handoff/01_intake_recon.md) | [upstream/01_intake_recon.md](upstream/01_intake_recon.md) | （無新條文；R-POP1~R-POP5 為下放包同包新立） | A-POP1 ~ A-POP4 | **PASS（作業面 6/6）；4 項待裁已由 R-POP6~R-POP11 處分，見 §2** |
 | 02 | 2026-08-27 | P2 簽署 → R-POP11／R-POP10／R-POP9 工具三支 → 值來源接線 → **Pilot 全量批** | [handoff/02_wiring_tooling_pilot.md](handoff/02_wiring_tooling_pilot.md) | [upstream/02_wiring_tooling_pilot.md](upstream/02_wiring_tooling_pilot.md) | （無新條文；R-POP6~R-POP11 為前一輪覆核所立） | A-POP5 ~ A-POP8 | **4 條 TC，lint 21 項全 0**；`-002-05` 觸發 §八 升級停下 |
+| 03 | 2026-08-28 | pilot 六件修正（R-POP15 F1~F6）→ TC ID 重排（R-POP13）→ `-002-05` 補生成（R-POP14）→ 工具二修（R-POP16 乙丙／R-POP17-2）→ 台帳一致性 | [handoff/03_pilot_fixes.md](handoff/03_pilot_fixes.md) | [upstream/03_pilot_fixes.md](upstream/03_pilot_fixes.md) | （無新條文；R-POP12~R-POP17 為前一輪覆核所立） | A-POP10、A-POP11 | **5 條 TC 齊，lint 21 項全 0，x14 DV 存活**；`rulings_hash` 轉綠（既有列 sha 變動 0）；§十升級條件命中 1 項（sxm 兩筆假陽性，未代改）|
 
 ## 2. 上繳包 01 之覆核結果（Pei，2026-08-27）
 
@@ -51,6 +52,17 @@ R-POP10／R-POP11 標「全域效力之工具政策，候升格 R-G」。
 | 4 | Priority P1／P0、Estimated Test Time 欄之政策 | Pei |
 | 5 | pilot review（唯一人工閘，無 done region 可仲裁）| Pei |
 | 6 | `sources/` 版控條文取號 | 分析層 |
+
+## 3c. 下放包 03 待辦六項之結案對帳（上繳包 03）
+
+| # | 事項 | 待誰 | 現況 |
+|---|---|---|---|
+| 1 | A-POP8 三提案擇一 → `-002-05` 之第 5 條 TC | Pei | **完** —— R-POP14 採乙案改良，`NR1L-Popup-005` 已生成（不引 PU、不落 PENDING）|
+| 2 | A-POP7 → hard-button 分支是否併入 RD-1 | Pei | **完** —— R-POP12 判不拆、不開 DR；語料 reasoning 已改寫（F6）|
+| 3 | A-POP6 → 判準精修範圍 | Pei | **完（但生 A-POP10／A-POP11）** —— R-POP16 乙丙已落實，實測顯示「首個表格」判準另丟掉真陽性 |
+| 4 | Priority P1／P0、Estimated Test Time 欄之政策 | Pei | **未** —— Q 欄本包未寫入 |
+| 5 | pilot review（唯一人工閘）| Pei | **未** |
+| 6 | `sources/` 版控條文取號 | 分析層 | **未** |
 
 ## 4. 仍未結
 

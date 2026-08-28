@@ -86,6 +86,12 @@ R-POP8	ruling	7425f059	7425f059330762027934932a230bab008296e566cff4a9cc7eb285ad3
 R-POP9	ruling	a899c245	a899c24530cf3b0e7cb6790eaf9770ccc9c3dc0d158d28912c491dc33c6a9a3f	features/popup/RULINGS.md	78	4		A-POP1 修正追認＋傳染性掃描（Pei 裁，2026-08-27）
 R-POP10	ruling	a2237932	a22379321dcc8476b99a47d05fb95df0941aaae4bec2689ef35e99f963d8b17c	features/popup/RULINGS.md	85	5		lint 跳號檢查改前綴自動抽取（Pei 裁，2026-08-27，A-POP4 處置）
 R-POP11	ruling	a6b5301b	a6b5301bc9a7c67d3575ba0d17a8cbefff9164a51d475b1c2a7a71f88c0ee697	features/popup/RULINGS.md	93	5		rulings_hash 範圍納 feature RULINGS（Pei 裁，2026-08-27）
+R-POP12	ruling	e323360d	e323360db836114fe73d21175b199a44edcf5e66c16fca2f625d72f217f41d86	features/popup/RULINGS.md	101	14		-002-02 不拆，軸不存在（分析層裁 [DEFAULT]，2026-08-27，**A-POP7**）
+R-POP13	ruling	9b835066	9b8350668c62a7c223ccf8a82ca053ad19319816b846fafe4d15186b023f2f5f	features/popup/RULINGS.md	118	15		TC ID 前綴定值（分析層裁 [DEFAULT]，2026-08-27，**A-POP9**）
+R-POP14	ruling	e025ab99	e025ab99584bd803c35a4eb06d28f3552e07f00df4ba4ceabc7355250ce85db7	features/popup/RULINGS.md	136	7		-002-05 採規格原句生成（分析層裁 [DEFAULT]，2026-08-27，**A-POP8**）
+R-POP15	ruling	298237c3	298237c3752b64dff1611c0eda1e0c21cc7d575e19630d2c8196423c330c433b	features/popup/RULINGS.md	146	20		Pilot 修正六件之判準（分析層裁，2026-08-27）
+R-POP16	ruling	36e1ed0a	36e1ed0a59f27cc55ae2002cb0c1bb41fb963993451e292443a96e2109443337	features/popup/RULINGS.md	169	14		lint 新規命中之三分法處置（分析層裁 [DEFAULT]，2026-08-27，A-POP6）
+R-POP17	ruling	7b7868ec	7b7868ec96488c9a33d12810e2642eb1863484eff8bcda1a8f1c40ef63ad857e	features/popup/RULINGS.md	186	10		上繳回報與 repo 台帳不符之登記（分析層裁，2026-08-27，A-POP9）
 R-PMH1	ruling	9cca6b1e	9cca6b1ec8f94446c4450970b8b8081b6034613ebdf359e8d20f70fbabc38c62	features/power_moding/RULINGS.md	13	15	R-PMH1 —— 範圍 = 037 `Functional Requirement` 全集	範圍 = 037 `Functional Requirement` 全集
 R-PMH2	ruling	d0cdeeb4	d0cdeeb48b009e305c819a7d1c1a93f96ab64d591ae18f456a57df91e84d6dc0	features/power_moding/RULINGS.md	31	11	R-PMH2 —— feature 身分與 `test_group`，交付夾名不入欄位	feature 身分與 `test_group`，交付夾名不入欄位
 R-PMH3	ruling	b41bd8c6	b41bd8c6a351d6666fb4b86e3c76d0a24189ea3d92f9f8159cb1d5634c126728	features/power_moding/RULINGS.md	45	14	R-PMH3 —— 與 `features/power` 之分離（欄位／前綴／glob 三項）	與 `features/power` 之分離（欄位／前綴／glob 三項）

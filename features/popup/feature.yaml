@@ -32,9 +32,16 @@ paths:
 spec_mode: "A+C"      # FO §3：文字走 SYS1 匯出（A）；PDF 無文字層，圖面走 C
 spec_reference_template: "SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)_{outline}"
 
-# TC ID（IN §10.3；framework Part IV）。project 前綴之權威為工作簿 D2 ——
-# `sandbox/base/` 之母本副本實測：C2 = "專案名稱 Project  Name：" ／ D2 = "newR1L"。
-tc_id_format: "newR1L-POP-{n:03d}"
+# TC ID（IN §10.3；framework Part IV）。**R-POP13（2026-08-27）定值為
+# `NR1L-Popup-{NNN}`** —— 依五本交付／產出簿之欄 F 實測，4/5 為
+# `NR1L-{FeatureName}-{NNN}`（power／SXM／UserProfiles／TimeManagement），
+# Display 之 `TC-DM` 為離群不取。
+#
+# **不取工作簿 D2 之 `newR1L`**：`sandbox/base/` 母本副本實測 C2 =
+# "專案名稱 Project  Name：" ／ D2 = "newR1L"，即 D2 為專案名稱欄而非
+# TC ID 前綴欄；下放包 02 誤以 D2 為前綴之權威，兩處皆錯
+# （`newR1L` ≠ `NR1L`；縮寫 `POP` ≠ 全名 `Popup`）。
+tc_id_format: "NR1L-Popup-{n:03d}"
 
 workbook_state: "BLANK"       # 母本零填列（本包實測）
 

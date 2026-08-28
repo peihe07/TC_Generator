@@ -97,3 +97,101 @@ DR-POP 須轉為受檢，並以「注入跳號即 FAIL」實證其會轉紅。
 因本次擴範圍而變（變動即停下回報）。理由：R-G13 明定條文落各 feature
 之 RULINGS.md，tsv 不涵蓋則引用制半殘。
 **全域效力之工具政策，候升格 R-G。**
+
+### R-POP12 — -002-02 不拆，軸不存在（分析層裁 [DEFAULT]，2026-08-27，**A-POP7**）
+
+SWE1-POP-002-02 **不拆** device 軸，理由採「**規格側無此分支**」一說：
+SYS1 5.6 逐字為 `pressing the button a second time`，未區分按鍵型別；
+037 S11 之 `a physical hard button or a specific UI button on the screen`
+是 VC 對「button」之列舉性註解，非規格分支；037 本身亦未拆為兩個
+sub-id。依 IN §8.2（RD 為需求單位之權威）與 §8.4.2（規則定義地測試），
+判一條 TC。
+
+**本裁同時否決語料 reasoning 之另一套理由**（「是真軸，但 Pop Up List
+無 hard-button 實例可填」）—— 那套理由蘊含「欠一條待補件」之結論，
+與本裁不相容。語料之 reasoning 須改寫為本裁之理由（下放包 03 F6）。
+不開 DR。037 VC 之措辭仍記 Remarks 供 RD-1 順帶確認（不阻斷）。
+
+Pei 得於審查時否決改裁；若改採「真軸缺件」說，則須開 DR 並將
+-002-02 視為未完成（欠 hard-button 一條）。
+
+### R-POP13 — TC ID 前綴定值（分析層裁 [DEFAULT]，2026-08-27，**A-POP9**）
+
+TC ID 採 `NR1L-Popup-{NNN}`。依據：分析層 2026-08-27 實測五本交付／
+產出簿之欄 F（Test Case ID）：
+
+| 簿 | 前綴 | 列數 |
+|---|---|---|
+| `features/power/delivered/pm_29.xlsx` | `NR1L-PowerManagement` | 389 |
+| SXM 20260813 | `NR1L-SXM` | 215 |
+| UserProfiles 20260819 | `NR1L-UserProfiles` | 189 |
+| TimeManagement 20260825 | `NR1L-TimeManagement` | 59 |
+| Display 20260826 | `TC-DM` | 23 |
+
+4/5 為 `NR1L-{FeatureName}-{NNN}`，Display 為離群（不取為基準）。
+pilot 現值 `newR1L-POP-{NNN}` 兩處皆錯（`newR1L`≠`NR1L`；
+縮寫 `POP`≠全名 `Popup`），全數重排，NNN 序不變。
+feature.yaml 之 `project` 模板殘值 `PROJ` 同步修正。
+
+### R-POP14 — -002-05 採規格原句生成（分析層裁 [DEFAULT]，2026-08-27，**A-POP8**）
+
+**A-POP8** 三案採**乙案改良**：-002-05 照 GP4-4 規格原句生成，
+`spec_reference` 單行 `_5.6`，**不引 PU**。理由：GP4-4 為規格自載之行為
+陳述，`e.g in the search keyboard` 是規格自己的舉例，**不是向 Pop Up List
+之委派**（對照 GP4-1 逐字 `timeout is defined in Pop-up List document`
+才是委派）。故不適用 R-POP6 之值引用規則，亦無須 PENDING。
+另開 **DR-POP4** 索 multi-task popup 之完整例外清單（不阻斷；
+回覆前不得自行列舉 search keyboard 以外之實例，IN §8.4.1）。
+
+### R-POP15 — Pilot 修正六件之判準（分析層裁，2026-08-27）
+
+分析層於 pilot 覆核所立之判準，逐件適用於本 feature 全簿：
+
+- **F1** Final Step 須含 check target：`Read <對象> and check that <可觀察結果>`
+  （IN §5.5；形制取 canon §8.7.5(b) 之 `Read the signal ... and check that ...`）。
+  單寫 `Read <對象> status` 而將判斷全數推給 ER，不合格。
+- **F2** Procedure 之按壓標的一律 `"..."` 雙引號；PU 控制記法
+  （`<OK>`、`<Trks>`）之保留**僅及於 ER 引文段與 test_item**
+  （profile §2 自訂之界）。反引號等 Markdown 記號不得進交付欄（IN §11）。
+- **F3** `The vehicle is stationary with the ignition in RUN` 類前提句**刪除**：
+  popup 關閉行為之規格側無運動狀態觸發，屬 IN §8.5 之環境穩定性前提。
+  （Home profile §3.2 得寫是因 HSD2/HSS2 使其成為規格觸發，本 feature 無此依據。）
+- **F4** timeout 值單一欄位歸屬（IN §4.5）：內聯於 Procedure／ER，
+  `input_test_data` 一律 `NA`（SWC 基準 285/286）。不得同值兩欄並存。
+- **F5** 語料 reasoning 引用之 anomaly 號須與 ANOMALIES.md 一致（本例
+  `pilot_01.json` 之 POP-002 reasoning 寫「登 A-POP7」但引用之事實屬
+  A-POP7 本身，參照循環）。**號碼一律 live 查 ANOMALIES.md 後再寫，
+  不得轉抄上繳包摘要之號碼**（分析層於 2026-08-27 即因轉抄而誤將
+  R-POP12／13／14 掛錯 anomaly，已更正 —— 分析層之誤）。
+- **F6** 語料 reasoning 與上繳包回報之理由不得為兩套；不一致時以裁定
+  （本例 R-POP12）為準，語料改寫。
+
+### R-POP16 — lint 新規命中之三分法處置（分析層裁 [DEFAULT]，2026-08-27，A-POP6）
+
+A-POP6 三類逐類處置：
+
+- **甲（真陽性 5 筆，sxm／audio_mgmt／time_management）**：屬各該 feature
+  之台帳，**本 feature 不代改**（R-G 之單一擁有者原則）。逐筆登入各該
+  feature 之 BACKLOG，於其下一次開工時處理。本包只造清單不碰檔。
+- **乙（誤傷 2 筆，power_moding／projection）**：採其提案 1＋2。
+  「編號重複」改為**同一表格內**重複才判紅，跨表重複降為 note；
+  前綴抽取限定於**檔內首個表格**（辨識方式定為此 —— 不採「表頭首欄
+  字面」，因各 feature 表頭不一致，而首個表格為三簿體例之不變量）。
+- **丙（盲區 4 feature，amfm／home／media／user_profiles）**：登為 G-D
+  盲區，**不強制統一版面**。lint 須於抽得前綴集為空時
+  **明示回報「no series detected」而非靜默 PASS**（G-D：PASS 不得
+  與「已驗」混同）。`privacy` 之假前綴 `S` 於改限首個表格後自然排除，
+  需實證。
+
+### R-POP17 — 上繳回報與 repo 台帳不符之登記（分析層裁，2026-08-27，A-POP9）
+
+下放包 02 之上繳回報與 repo 台帳實況於四點不符（anomaly 編號錯置、
+A-POP5 未提、傳染性掃描結論相反、TC ID 前綴述值與語料不同）。
+登為 **A-POP9**（詳 ANOMALIES.md）。處置：
+
+1. 上繳包之摘要須自 repo 台帳 live 產，不得手寫重述；號碼與狀態兩項
+   尤其。
+2. `ledger_xref.py` 增一檢：下放包／上繳包內之 `A-\w+\d+`／`DR-\w+\d+`
+   引用，與該 feature 台帳之實存號碼及其標題對不上即回報。
+   這正是 `ledger_xref` 設計目的內而未涵蓋之型態。
+3. 分析層同受此規（見 R-POP15 F5 之註）。

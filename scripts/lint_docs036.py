@@ -41,12 +41,18 @@ LEGACY_PREFIXES = ("DR-PW", "A-PW", "A-PM")
 # 以首次見到者為準；跳號回報照它重組編號，回報出來的字串才 grep 得到。
 SEPARATORS: dict[str, str] = {}
 
+# `prefix_reconciliation` 最近一次跑之「主表外前綴命中數」（A-POP10）。
+LAST_OFF_PRIMARY = 0
+
 
 @dataclass
 class Finding:
     check: str
     where: str
     detail: str
+    # R-POP16 乙：跨表重複降為 note。note 照印但不計入 `--gate` 之 exit ——
+    # 「印出來」與「擋下來」是兩件事，混為一談就只剩得下其中一件。
+    severity: str = "red"
 
 
 def cells(line: str) -> list[str]:
@@ -159,18 +165,40 @@ def check_malformed_rows(root: Path, rel: str) -> list[Finding]:
     return out
 
 
-def series_in(text: str) -> tuple[dict[str, list[int]], int]:
-    """`(前綴 → 編號清單, 被略過之首格數)`。
+def series_in(text: str) -> tuple[dict[str, list[tuple[int, int]]], int, int]:
+    """`(前綴 → [(編號, 表序)], 被略過之首格數, 非主表前綴之命中數)`。
+
+    **R-POP16 乙（Pei 2026-08-27）**：前綴抽取限定於**檔內首個表格**。
+    主表之辨識方式定為此而非「表頭首欄字面」—— 各 feature 表頭不一致
+    （`| A |`／`| DR |`／`| 編號 |` 都有），而「首個表格即登記主表」
+    是三簿體例之不變量。`privacy` 之假前綴 `S`（欄位值表，
+    `ANOMALIES.md` 中段）即由此自然排除。
+
+    **編號仍跨全檔收集**，只是併記其表序：回顧／彙整表之列仍算「該號
+    存在」，否則把它們排除掉會把回顧表獨有的號碼變成跳號 —— 修一個
+    誤報生一個誤報。同號是否判紅，由 `check_series` 依表序決定。
 
     逐列掃描，不跳過表首 —— 長條目常被空行切成獨立表格，
     若跳過首列即會漏掉其編號並誤報跳號（本工具開發時實際踩到）。
 
     第二個回傳值為 **G-D 之被抑制條數**：首格非空但不合系列編號形態者。
-    不報它，一個永遠空的前綴集與一個壞掉的抽取器輸出相同。
+    第三個為合系列形態但其前綴不在主表內者 —— 同屬 G-D，須報數，
+    否則「限定首表」到底扔掉了多少東西，在紙上看不見。
     """
-    found: dict[str, list[int]] = {}
+    all_tables = tables(text)
+    if not all_tables:
+        return {}, 0, 0
+
+    primary: set[str] = set()
+    for row in all_tables[0]:
+        m = RE_SERIES.match(bare(row[0]))
+        if m:
+            primary.add(m.group("prefix"))
+
+    found: dict[str, list[tuple[int, int]]] = {p: [] for p in primary}
     skipped = 0
-    for table in tables(text):
+    off_primary = 0
+    for ti, table in enumerate(all_tables):
         for row in table:
             cell = bare(row[0])
             if not cell:
@@ -180,29 +208,46 @@ def series_in(text: str) -> tuple[dict[str, list[int]], int]:
                 skipped += 1
                 continue
             pfx = m.group("prefix")
-            found.setdefault(pfx, [])
+            if pfx not in primary:
+                off_primary += 1
+                continue
             SEPARATORS.setdefault(pfx, cell[len(pfx):-len(m.group("num"))])
-            found[pfx].append(int(m.group("num")))
-    return found, skipped
+            found[pfx].append((int(m.group("num")), ti))
+    return found, skipped, off_primary
 
 
 def check_series(root: Path, rel: str, prefix: str | None = None) -> list[Finding]:
-    """跳號檢查。`prefix=None`（預設）＝ 自語料抽取之**每個**前綴都查。"""
+    """跳號檢查。`prefix=None`（預設）＝ 自主表抽取之**每個**前綴都查。
+
+    R-POP16 乙：`編號重複` 之判準改為**同一表格內**重複才判紅；
+    同號分散於不同表格（主表一列、回顧表一列）降為 note。
+    放寬只及於「跨表」這一項 —— 主表內真的寫了兩次，仍判紅。
+    """
     path = root / rel
     if not path.is_file():
         return [Finding("docs_structure", rel, "檔案不存在")]
-    found, _ = series_in(path.read_text(encoding="utf-8"))
+    found, _, _ = series_in(path.read_text(encoding="utf-8"))
     if prefix is not None:
         found = {prefix: found.get(prefix, [])}
 
     out: list[Finding] = []
-    for pfx, nums in sorted(found.items()):
-        seen: set[int] = set()
-        dup = next((n for n in nums if n in seen or seen.add(n)), None)
-        if dup is not None:
-            out.append(Finding(f"{pfx}_id", f"{pfx}{dup}", "編號重複"))
-            continue
-        out += gaps(f"{pfx}_series", pfx, sorted(nums), SEPARATORS.get(pfx, "-"))
+    for pfx, entries in sorted(found.items()):
+        where: dict[int, list[int]] = {}
+        for num, ti in entries:
+            where.setdefault(num, []).append(ti)
+        for num in sorted(where):
+            tis = where[num]
+            if len(tis) == 1:
+                continue
+            if len(set(tis)) < len(tis):
+                out.append(Finding(f"{pfx}_id", f"{pfx}{num}",
+                                   "編號重複（同一表格內）"))
+            else:
+                out.append(Finding(
+                    f"{pfx}_id", f"{pfx}{num}",
+                    f"同號見於 {len(tis)} 個表格（回顧／彙整表；R-POP16 乙降 note）",
+                    severity="note"))
+        out += gaps(f"{pfx}_series", pfx, sorted(where), SEPARATORS.get(pfx, "-"))
     return out
 
 
@@ -210,15 +255,27 @@ def prefix_reconciliation(root: Path, rels: list[str]) -> tuple[list[str], list[
     """G-B 對照：抽得之前綴集 vs 硬寫時代清單。回傳 `(抽得, 差集, 略過數)`。"""
     seen: set[str] = set()
     skipped = 0
+    off_primary = 0
     for rel in rels:
         path = root / rel
         if not path.is_file():
             continue
-        found, n = series_in(path.read_text(encoding="utf-8"))
+        found, n, off = series_in(path.read_text(encoding="utf-8"))
         seen |= set(found)
         skipped += n
+        off_primary += off
     newly = sorted(seen - set(LEGACY_PREFIXES))
-    return sorted(seen), newly, skipped
+    # 第三個回傳值仍為「被抑制」總數（向下相容既有測試），
+    # `LAST_OFF_PRIMARY` 另記其中屬「主表外前綴」者 —— R-POP16 乙
+    # 之限縮到底扔掉了多少東西，不另計就看不見（A-POP10）。
+    global LAST_OFF_PRIMARY
+    LAST_OFF_PRIMARY = off_primary
+    return sorted(seen), newly, skipped + off_primary
+
+
+def prefix_reconciliation_off() -> int:
+    """R-POP16 乙之限縮所丟棄的條目數（A-POP10 之量）。"""
+    return LAST_OFF_PRIMARY
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -245,15 +302,31 @@ def main(argv: list[str] | None = None) -> int:
     # G-B 餘數對照 ＋ G-D 被抑制條數。**恆印**，PASS 與否都印 ——
     # 一個抓不到任何前綴的抽取器，其 PASS 與真的沒有跳號長得一樣。
     seen, newly, skipped = prefix_reconciliation(root, series_files)
-    print(f"前綴（自 {f} 之 DR／ANOMALIES 抽取）：{seen or '（無）'}"
+    print(f"前綴（自 {f} 之 DR／ANOMALIES 主表抽取）：{seen or '（無）'}"
           f"　新受檢（硬寫清單外）：{newly or '（無）'}"
-          f"　首格不合系列形態而略過：{skipped}")
+          f"　首格不合系列形態而略過：{skipped - prefix_reconciliation_off()}"
+          f"　合系列形態但前綴不在主表而略過：{prefix_reconciliation_off()}")
 
-    if not findings:
-        print(f"docs_structure：PASS（台帳＋{f} 之 DR／ANOMALIES）")
+    # R-POP16 丙（G-D）：抽得前綴集為空時**明示回報**，不得靜默 PASS。
+    # 「沒有跳號」與「沒有東西受檢」在舊輸出裡是同一行字。
+    blind = not seen
+    if blind:
+        print(f"no series detected —— {f} 之 DR／ANOMALIES 主表首格不是系列編號，"
+              f"本輪跳號／重複兩檢**未涵蓋任何條目**（G-D 盲區；PASS ≠ 已驗）")
+
+    reds = [x for x in findings if x.severity != "note"]
+    notes = [x for x in findings if x.severity == "note"]
+    if notes:
+        print(f"note（不判紅，R-POP16 乙）：{len(notes)} 項")
+        for x in notes:
+            print(f"  [{x.check}] {x.where}：{x.detail}")
+
+    if not reds:
+        tail = "（**未涵蓋任何條目**，見上 no series detected）" if blind else ""
+        print(f"docs_structure：PASS（台帳＋{f} 之 DR／ANOMALIES）{tail}")
         return 0
-    print(f"docs_structure：{len(findings)} 項")
-    for x in findings:
+    print(f"docs_structure：{len(reds)} 項")
+    for x in reds:
         print(f"  [{x.check}] {x.where}：{x.detail}")
     return 1 if args.gate else 0
 
