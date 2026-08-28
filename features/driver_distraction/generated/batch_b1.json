@@ -3,7 +3,7 @@
     "tc_id": "newR1L-DD-B001",
     "req_id": "SWE1-RA-Driver_Distraction-003",
     "test_group": "Driver Distraction",
-    "test_set": "Speed Threshold Judgment",
+    "test_set": "Speed Monitoring",
     "test_item": "Case [Normal]vehicle speed changes within the valid range\nThen DD Service outputs the restriction state according to the 5/3 MPH rule, and HMI can control the corresponding features based on the state output by DD\n(Both boundaries of the 5/3 MPH rule, exercised in one sequence)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",
@@ -23,13 +23,13 @@
       "tokens": 35,
       "cap": 50
     },
-    "reasoning": "驗證目標：037 本列之 `5/3 MPH rule` —— 其 VC 二項分別為 5 MPH 之受限與 3 MPH 之解除，**同一能力之二個後果**，依 IN §5.7 歸一條 TC，不拆。關鍵情境條件：raw 129 與 raw 77 皆取 profile §3.1（R-DD7(c)），標 [ASSUMPTION A-DD6]；取樣 feature 取 \"Reconfigurable menu bar\"（p7 top=356（Menu Bar 列）），非黃標、非 NAV 系。**未取「above 3 MPH」之任意中間值** —— profile §3.1 只給 129 與 77 二個 spec 溯源之格，另擇一值即造值（IN §8.4.1）；raw 129（5.0097 MPH）本身即在 3 MPH 之上，足以起算。刻意略過：BVA 之另一側（raw 128／78）037 未書，不擴入（IN §8.2.1）；個別方向之轉換分由 `-007`（上鎖）與 `-005`（解鎖）依其各自 source 承載。"
+    "reasoning": "驗證目標：037 本列之 `5/3 MPH rule`。其 source `-114` 所命者為「**監看 `$Speedometer$` 以啟閉受限 feature**」之能力，驗證對象為**規則整體**。**5/3 之雙門檻即遲滯（hysteresis）** —— 遲滯之定義為「上行門檻 ≠ 下行門檻」，**任一單邊皆無法承載該性質**；故本則之驗證點為一，非二，步驟 2 與步驟 4 合為該單一驗證點之組成，不拆（`split_flag: false`）。關鍵情境條件：raw 129 與 raw 77 皆取 profile §3.1（R-DD7(c)），標 [ASSUMPTION A-DD6]；取樣 feature 取 \"Reconfigurable menu bar\"（p7 top=356（Menu Bar 列）），非黃標、非 NAV 系。**未取「above 3 MPH」之任意中間值** —— profile §3.1 只給 129 與 77 二個 spec 溯源之格，另擇一值即造值（IN §8.4.1）；raw 129（5.0097 MPH）本身即在 3 MPH 之上，足以起算。刻意略過：BVA 之另一側（raw 128／78）037 未書，不擴入（IN §8.2.1）；個別方向之轉換分由 `-007`（`-116`，上鎖）與 `-005`（`-115`，解鎖）依其各自 source 承載 —— **拆本則即產出與該二者幾近重複之 TC，而 `-114` 所命之遲滯性質反而無人驗**。"
   },
   {
     "tc_id": "newR1L-DD-B002",
     "req_id": "SWE1-RA-Driver_Distraction-004",
     "test_group": "Driver Distraction",
-    "test_set": "Speed Threshold Judgment",
+    "test_set": "Speed Monitoring",
     "test_item": "AC2:\nWhen DD Service can no longer obtain a valid $Speedometer$ value through CarPropertyService\nAnd DD Service provides speed-input timeout monitoring and fail-safe restriction capability\nCase [Exception]the speed input is unavailable\nThen DD Service sets the Lock Out State to RESTRICTED after the input timeout\n(Fail-safe: the speed message is stopped and the menu-bar view is retried)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",
@@ -55,7 +55,7 @@
     "tc_id": "newR1L-DD-B003",
     "req_id": "SWE1-RA-Driver_Distraction-005",
     "test_group": "Driver Distraction",
-    "test_set": "Speed Threshold Judgment",
+    "test_set": "Speed Monitoring",
     "test_item": "AC1:\nWhen DD Service receives a valid $Speedometer$ value through CarPropertyService\nAnd DD Service provides speed monitoring, restriction-state judgment, and state notification capabilities\nCase [Normal]vehicle speed decreases from above 3 MPH to 3 MPH or below\nThen DD Service sets the Lock Out State to NOT_RESTRICTED\n(Unlock at the 3 MPH boundary, approached from above)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",
@@ -81,7 +81,7 @@
     "tc_id": "newR1L-DD-B004",
     "req_id": "SWE1-RA-Driver_Distraction-006",
     "test_group": "Driver Distraction",
-    "test_set": "Speed Threshold Judgment",
+    "test_set": "Speed Monitoring",
     "test_item": "AC2:\nWhen DD Service can no longer obtain a valid $Speedometer$ value through CarPropertyService\nAnd DD Service provides speed-input timeout monitoring and fail-safe restriction capability\nCase [Exception]the speed input is unavailable\nThen DD Service sets the Lock Out State to RESTRICTED after the input timeout\n(Fail-safe: the speed message is stopped and the phone book is retried)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",
@@ -107,7 +107,7 @@
     "tc_id": "newR1L-DD-B005",
     "req_id": "SWE1-RA-Driver_Distraction-007",
     "test_group": "Driver Distraction",
-    "test_set": "Speed Threshold Judgment",
+    "test_set": "Speed Monitoring",
     "test_item": "AC1:\nWhen DD Service receives a valid $Speedometer$ value through CarPropertyService\nAnd DD Service provides speed monitoring, restriction-state judgment, and state notification capabilities\nCase [Normal]vehicle speed increases from below 5 MPH to 5 MPH or above\nThen DD Service sets the Lock Out State to RESTRICTED\n(Lock at the 5 MPH boundary, approached from below)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",
@@ -133,7 +133,7 @@
     "tc_id": "newR1L-DD-B006",
     "req_id": "SWE1-RA-Driver_Distraction-008",
     "test_group": "Driver Distraction",
-    "test_set": "Speed Threshold Judgment",
+    "test_set": "Speed Monitoring",
     "test_item": "AC2:\nWhen DD Service can no longer obtain a valid $Speedometer$ value through CarPropertyService\nAnd DD Service provides speed-input timeout monitoring and fail-safe restriction capability\nCase [Exception]the speed input is unavailable\nThen DD Service sets the Lock Out State to RESTRICTED after the input timeout\n(Fail-safe: the speed message is stopped and the auto reply editor is retried)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",
@@ -159,7 +159,7 @@
     "tc_id": "newR1L-DD-B007",
     "req_id": "SWE1-RA-Driver_Distraction-013",
     "test_group": "Driver Distraction",
-    "test_set": "Lockout Enforcement",
+    "test_set": "Lockout Tables",
     "test_item": "Case [Normal]HMI has selected the applicable lockout table and judgment Type for the All architecture\nThen DD Service outputs RESTRICTED and HMI locks features marked L/O in the table\n(Lockout of a table entry sampled from the Player row)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",
@@ -179,13 +179,13 @@
       "tokens": 29,
       "cap": 50
     },
-    "reasoning": "驗證目標：受限態下，Lockout Table 標 `L/O` 之 feature 被鎖 —— 取樣 \"Player Song, artist, title, etc. (speller search)\"，所據為 HMI spec p7 top=330（Player 列），**非黃標（黃標三項為 Player / RSE、Messaging、SRT Options，以 PDF 填色實測定位）、非 NAV 系（p7 註記逐字 `Embedded NAV for R1L is applicable to LATAM region only`）**。關鍵情境條件：037 本列之 Method 逐字 `send a speed above 5 MPH`，故取 profile §3.1 之上鎖側 raw 129，標 [ASSUMPTION A-DD6]。一條 TC 即足：037 本列只有一條常態路徑。刻意略過：**不逐一遍歷表列全部 feature** —— 037 本列未要求窮舉，以具名單一樣本承載（profile §2.1 禁泛稱，未禁單樣本）；解鎖方向與 BVA 另一側不擴入（§8.2.1）。"
+    "reasoning": "驗證目標：受限態下，Lockout Table 標 `L/O` 之 feature 被鎖 —— 取樣 \"Player Song, artist, title, etc. (speller search)\"，所據為 HMI spec p7 top=330（Player 列），**非黃標（黃標三項為 Player / RSE、Messaging、SRT Options，以 PDF 填色實測定位）、非 NAV 系（p7 註記逐字 `Embedded NAV for R1L is applicable to LATAM region only`）**。關鍵情境條件：037 本列之 Method 逐字 `send a speed above 5 MPH`，故取 profile §3.1 之上鎖側 raw 129，標 [ASSUMPTION A-DD6]。一條 TC 即足：037 本列只有一條常態路徑。刻意略過：**不逐一遍歷表列全部 feature** —— 037 本列未要求窮舉，以具名單一樣本承載（profile §2.1 禁泛稱，未禁單樣本）；解鎖方向與 BVA 另一側不擴入（§8.2.1）。**負向面（不在表內之 feature 仍可存取）本則未涵蓋** —— 見 `COVERAGE_GAPS.md` [CG-DD1]：該行為明載於 CFTS022 `-120`／`-121` 之驗證標準欄（`Features not listed in the table remain accessible`），**屬上游所有而非本層所造**；惟其樣本須具名一個「不在表內」之 feature，而 HMI spec p7 之 16 列**全部標 L/O**（表內無非 L/O 之列），CFTS022 之表本體又以圖片參照且該 xlsx 無任何嵌入物件（實測 0）——**權威表之內容於綁定來源中不存在，故無從確認任一 feature 不在表內**，具名即造值（§8.4.1）。表可機讀後即應於本則加該斷言（同一 trigger 之另一後果，§5.7）。"
   },
   {
     "tc_id": "newR1L-DD-B008",
     "req_id": "SWE1-RA-Driver_Distraction-014",
     "test_group": "Driver Distraction",
-    "test_set": "Lockout Enforcement",
+    "test_set": "Lockout Tables",
     "test_item": "AC2:\nWhen the signal simulation tool stops transmitting a vehicle message required for DD judgment\nAnd DD Service provides signal-timeout fail-safe behavior, and HMI applies lockout for RESTRICTED\nCase [Exception]a required vehicle signal is unavailable\nThen DD Service outputs RESTRICTED and HMI keeps the corresponding feature locked\n(Fail-safe: the speed message is stopped and the player search is retried)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",
@@ -211,7 +211,7 @@
     "tc_id": "newR1L-DD-B009",
     "req_id": "SWE1-RA-Driver_Distraction-015",
     "test_group": "Driver Distraction",
-    "test_set": "Lockout Enforcement",
+    "test_set": "Lockout Tables",
     "test_item": "AC1:\nWhen the signal simulation tool sends vehicle signals that change the Lock Out State to RESTRICTED\nAnd DD Service provides restriction-state judgment and notification, and HMI provides feature lockout\nCase [Normal]DD Service outputs RESTRICTED and HMI locks features marked L/O in the table\n(Lockout of a table entry sampled from the Phone row)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",
@@ -231,13 +231,13 @@
       "tokens": 44,
       "cap": 50
     },
-    "reasoning": "驗證目標：受限態下，Lockout Table 標 `L/O` 之 feature 被鎖 —— 取樣 \"Pairing (1st time)\"，所據為 HMI spec p7 top=304（Phone 列），**非黃標（黃標三項為 Player / RSE、Messaging、SRT Options，以 PDF 填色實測定位）、非 NAV 系（p7 註記逐字 `Embedded NAV for R1L is applicable to LATAM region only`）**。關鍵情境條件：037 本列之 Method 逐字 `send a speed above 5 MPH`，故取 profile §3.1 之上鎖側 raw 129，標 [ASSUMPTION A-DD6]。一條 TC 即足：037 本列只有一條常態路徑。刻意略過：**不逐一遍歷表列全部 feature** —— 037 本列未要求窮舉，以具名單一樣本承載（profile §2.1 禁泛稱，未禁單樣本）；解鎖方向與 BVA 另一側不擴入（§8.2.1）。"
+    "reasoning": "驗證目標：受限態下，Lockout Table 標 `L/O` 之 feature 被鎖 —— 取樣 \"Pairing (1st time)\"，所據為 HMI spec p7 top=304（Phone 列），**非黃標（黃標三項為 Player / RSE、Messaging、SRT Options，以 PDF 填色實測定位）、非 NAV 系（p7 註記逐字 `Embedded NAV for R1L is applicable to LATAM region only`）**。關鍵情境條件：037 本列之 Method 逐字 `send a speed above 5 MPH`，故取 profile §3.1 之上鎖側 raw 129，標 [ASSUMPTION A-DD6]。一條 TC 即足：037 本列只有一條常態路徑。刻意略過：**不逐一遍歷表列全部 feature** —— 037 本列未要求窮舉，以具名單一樣本承載（profile §2.1 禁泛稱，未禁單樣本）；解鎖方向與 BVA 另一側不擴入（§8.2.1）。**負向面（不在表內之 feature 仍可存取）本則未涵蓋** —— 見 `COVERAGE_GAPS.md` [CG-DD1]：該行為明載於 CFTS022 `-120`／`-121` 之驗證標準欄（`Features not listed in the table remain accessible`），**屬上游所有而非本層所造**；惟其樣本須具名一個「不在表內」之 feature，而 HMI spec p7 之 16 列**全部標 L/O**（表內無非 L/O 之列），CFTS022 之表本體又以圖片參照且該 xlsx 無任何嵌入物件（實測 0）——**權威表之內容於綁定來源中不存在，故無從確認任一 feature 不在表內**，具名即造值（§8.4.1）。表可機讀後即應於本則加該斷言（同一 trigger 之另一後果，§5.7）。"
   },
   {
     "tc_id": "newR1L-DD-B010",
     "req_id": "SWE1-RA-Driver_Distraction-016",
     "test_group": "Driver Distraction",
-    "test_set": "Lockout Enforcement",
+    "test_set": "Lockout Tables",
     "test_item": "AC2:\nWhen the signal simulation tool stops transmitting a vehicle message required for DD judgment\nAnd DD Service provides signal-timeout fail-safe behavior, and HMI applies lockout for RESTRICTED\nCase [Exception]a required vehicle signal is unavailable\nThen DD Service outputs RESTRICTED and HMI keeps the corresponding feature locked\n(Fail-safe: the speed message is stopped and pairing is retried)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",

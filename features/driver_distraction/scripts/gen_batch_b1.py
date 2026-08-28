@@ -107,14 +107,19 @@ TCS["003"] = {
         f"4. {f} opens and its view is displayed"),
     "design_method": "狀態轉換 (State Transition Testing)",
     "reasoning": (
-        "驗證目標：037 本列之 `5/3 MPH rule` —— 其 VC 二項分別為 5 MPH 之受限與 "
-        "3 MPH 之解除，**同一能力之二個後果**，依 IN §5.7 歸一條 TC，不拆。"
+        "驗證目標：037 本列之 `5/3 MPH rule`。其 source `-114` 所命者為"
+        "「**監看 `$Speedometer$` 以啟閉受限 feature**」之能力，驗證對象為**規則整體**。"
+        "**5/3 之雙門檻即遲滯（hysteresis）** —— 遲滯之定義為「上行門檻 ≠ 下行門檻」，"
+        "**任一單邊皆無法承載該性質**；故本則之驗證點為一，非二，"
+        "步驟 2 與步驟 4 合為該單一驗證點之組成，不拆（`split_flag: false`）。"
         f"關鍵情境條件：raw 129 與 raw 77 皆取 profile §3.1（R-DD7(c)），標 [ASSUMPTION A-DD6]；"
         f"取樣 feature 取 {f}（{src}），非黃標、非 NAV 系。"
         "**未取「above 3 MPH」之任意中間值** —— profile §3.1 只給 129 與 77 二個 spec 溯源之格，"
         "另擇一值即造值（IN §8.4.1）；raw 129（5.0097 MPH）本身即在 3 MPH 之上，足以起算。"
         "刻意略過：BVA 之另一側（raw 128／78）037 未書，不擴入（IN §8.2.1）；"
-        "個別方向之轉換分由 `-007`（上鎖）與 `-005`（解鎖）依其各自 source 承載。"),
+        "個別方向之轉換分由 `-007`（`-116`，上鎖）與 `-005`（`-115`，解鎖）"
+        "依其各自 source 承載 —— **拆本則即產出與該二者幾近重複之 TC，"
+        "而 `-114` 所命之遲滯性質反而無人驗**。"),
 }
 
 # ── -005（-115 AC1）：解鎖方向 ────────────────────────────────────────
@@ -195,7 +200,15 @@ for lf, fam in (("013", "120"), ("015", "121")):
             "一條 TC 即足：037 本列只有一條常態路徑。"
             "刻意略過：**不逐一遍歷表列全部 feature** —— 037 本列未要求窮舉，"
             "以具名單一樣本承載（profile §2.1 禁泛稱，未禁單樣本）；"
-            "解鎖方向與 BVA 另一側不擴入（§8.2.1）。"),
+            "解鎖方向與 BVA 另一側不擴入（§8.2.1）。"
+            "**負向面（不在表內之 feature 仍可存取）本則未涵蓋** —— 見 `COVERAGE_GAPS.md` "
+            "[CG-DD1]：該行為明載於 CFTS022 `-120`／`-121` 之驗證標準欄"
+            "（`Features not listed in the table remain accessible`），"
+            "**屬上游所有而非本層所造**；惟其樣本須具名一個「不在表內」之 feature，"
+            "而 HMI spec p7 之 16 列**全部標 L/O**（表內無非 L/O 之列），"
+            "CFTS022 之表本體又以圖片參照且該 xlsx 無任何嵌入物件（實測 0）——"
+            "**權威表之內容於綁定來源中不存在，故無從確認任一 feature 不在表內**，"
+            "具名即造值（§8.4.1）。表可機讀後即應於本則加該斷言（同一 trigger 之另一後果，§5.7）。"),
     }
 
 # ── AC2 逾時族（-004／-006／-008／-014／-016）──────────────────────────
@@ -251,9 +264,11 @@ def main():
             "tc_id": f"newR1L-DD-B{n:03d}",
             "req_id": f"SWE1-RA-Driver_Distraction-{lf}",
             "test_group": "Driver Distraction",
-            "test_set": "Speed Threshold Judgment" if lf in
+            # framework.md Part II（Layer 2，經核准）—— 組 2 `Speed Monitoring`（003–008）、
+            # 組 4 `Lockout Tables`（013–016）。**不以 TC 欄位既成事實變更之**（包 14 §二）。
+            "test_set": "Speed Monitoring" if lf in
                         ("003", "004", "005", "006", "007", "008")
-                        else "Lockout Enforcement",
+                        else "Lockout Tables",
             "test_item": half + "\n" + lower[lf],
             "pre_conditions": t["pre_conditions"],
             "input_test_data": t["input_test_data"],

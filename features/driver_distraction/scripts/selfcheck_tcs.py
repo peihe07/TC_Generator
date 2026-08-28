@@ -65,13 +65,41 @@ def words(item):
     return len(re.sub(r"^\d+\.\s*", "", item).split())
 
 
-# ── 1 Test Set（§4.1／§4.2）──────────────────────────────────────────
-sets = {tc["test_set"] for tc in TCS}
-ok = (sets <= {"Lockout Enforcement", "Speed Threshold Judgment"}
-      and not any(s.startswith("Driver Distraction") for s in sets)
-      and not (sets & {"Unclassified", "Misc"}))
-add(1, "§4.1/§4.2", "Test Set 名詞片語、能力層級、無 Test Group 前綴、拼寫一致",
-    ok, f"{sets}；4 則同一值")
+# ── 1 Test Set（§4.1／§4.2）—— **對 framework.md 實際比對**（T20b）────
+# IN §9-1 之原文為「matches `framework.md`」。前版之標籤誠實載明其未比對
+# framework，惟該檔當時不存在（下放包 14 §1.3）。本版讀檔取 Layer 2 之
+# (Test Set, leaf 範圍) 集合，逐 TC 驗其 test_set ∈ 該集合**且與其 leaf 之分組相符**。
+FW = ROOT / "framework.md"
+if not FW.exists():
+    add(1, "§4.1/§4.2", "Test Set 對 framework.md Layer 2 之比對",
+        False, f"**{FW.name} 不存在** —— IN §4.1：framework 為 Test Set 之前提，"
+               "須先於 TC 撰寫存在")
+else:
+    _fw = FW.read_text("utf-8")
+    # Part II 之表列：| # | `Test Set` | leaf 範圍 (n) | … |
+    L2 = {}
+    for m in re.finditer(r"^\|\s*\d+\s*\|\s*`([^`]+)`\s*\|\s*(\d{3})[–-](\d{3})",
+                         _fw, re.M):
+        name, lo, hi = m.group(1), int(m.group(2)), int(m.group(3))
+        L2[name] = set(range(lo, hi + 1))
+    bad, det = [], []
+    for tc in TCS:
+        n = int(leaf(tc))
+        ts = tc["test_set"]
+        if ts not in L2:
+            bad.append((tc["tc_id"], ts, "不在 framework Layer 2"))
+        elif n not in L2[ts]:
+            want = next((k for k, v in L2.items() if n in v), "（無組涵蓋）")
+            bad.append((tc["tc_id"], ts, f"leaf {n:03d} 應屬 `{want}`"))
+    used = sorted({tc["test_set"] for tc in TCS})
+    pre = [s for s in used if s.startswith("Driver Distraction")]
+    junk = [s for s in used if s in ("Unclassified", "Misc", "General")]
+    add(1, "§4.1/§4.2 + framework.md",
+        "Test Set ∈ framework.md Layer 2，且與其 leaf 之分組相符；"
+        "無 Test Group 前綴、無 Misc／Unclassified",
+        not bad and not pre and not junk,
+        f"framework Layer 2 共 {len(L2)} 組 {sorted(L2)}；本產物用 {used}；"
+        f"不符 {bad or '無'}；前綴 {pre or '無'}；泛稱組 {junk or '無'}")
 
 # ── 2 test_item（§4.3／§4.3.1 R-S4）─────────────────────────────────
 d = []

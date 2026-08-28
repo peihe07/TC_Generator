@@ -593,7 +593,7 @@ ER 不得斷言 128（不應鎖）／78（不應解）之邊界格 —— 除非
 
 ---
 
-## DR-DD7 —— `-010` 與 `-012` 之 AC2 逐字全等（A-DD7）
+## DR-DD7 —— AC2 逐字全等（**4 組、11/28 leaf**）（A-DD7）
 
 - **標的**：上游（037 作者）
 - **狀態**：**DRAFTED**（下放包 10 §四 之文稿，逐字保留；待 Pei 發送）
@@ -615,27 +615,36 @@ ER 不得斷言 128（不應鎖）／78（不應解）之邊界格 —— 除非
   實質相同，區別僅在取樣 feature 與追溯 ID」；`newR1L-DD-002` 亦互指
 - **不得以取樣 feature 之不同偽稱為不同之驗證目標**
 
-### 文稿（下放包 10 §四，逐字）
+### 文稿（**下放包 14 §五 之改稿，整段替換**，逐字）
 
-> **DR-DD7 — Identical AC2 text for `SWE1-RA-Driver_Distraction-010` and `-012`**
+> 舊稿（包 10 §四）只問 `-010`／`-012`；執行層以 18 欄為鍵之分組實測得
+> **4 組、11/28 leaf**（上繳 09 §5）。**稿由分析層改**，本輪整段替換。
+
+> **DR-DD7 — Identical AC2 text across multiple leaf pairs in FM-WI-FSM-037-A03**
 >
-> In FM-WI-FSM-037-A03, rows `-010` and `-012` are byte-identical across 18
-> of 20 columns; they differ only in the leaf id and the Source Requirement
-> ID. `-010` traces to `SYS-RA-Driver_Distraction-117`, whose normal-case
-> outcome is `HMI prevents access to the feature`; `-012` traces to `-118`,
-> whose normal-case outcome is `HMI displays the driver-distraction lockout
-> notification`.
+> Four groups of leaves in FM-WI-FSM-037-A03 are byte-identical across all
+> 18 content columns, differing only in the leaf id and the Source
+> Requirement ID:
 >
-> The AC1 pair derived from the same two sources (`-009` and `-011`) does
-> differ in Requirement Description and Verification Criteria, each following
-> its own source. The AC2 pair does not: both state
+> - `-004` / `-006` / `-008` — sources `SYS-RA-Driver_Distraction-114`,
+>   `-115`, `-116`
+> - `-010` / `-012` / `-014` / `-016` — sources `-117`, `-118`, `-120`, `-121`
+> - `-018` / `-020` — sources `-125`+`-126`, `-125`+`-127`
+> - `-022` / `-024` — sources `-125`+`-128`, `-125`+`-129`
+>
+> In total 11 of the 28 leaves, all of them AC2 rows. The corresponding AC1
+> rows do differ from one another, each following the wording of its own
+> source requirement.
+>
+> The effect is most visible for `-012`: its source `-118` specifies the
+> lockout-notification behaviour, but its AC2 text states
 > `HMI keeps the corresponding feature locked`, which is the `-117` outcome.
 >
-> Question: for `-012`, should the AC2 outcome be the notification behaviour
-> of `-118` (i.e. the lockout notification is presented when a required
-> signal is unavailable), or is the access-blocking wording intended as
-> written? As it stands, the two rows yield test cases with the same
-> verification target, distinguished only by traceability.
+> Question: are these AC2 rows intended to be identical (i.e. a single
+> fail-safe behaviour restated once per source requirement), or should each
+> follow the outcome of its own source requirement? As written, each group
+> yields test cases with the same verification target, distinguished only by
+> traceability.
 
 ### 與 A-DD7 之連結
 
