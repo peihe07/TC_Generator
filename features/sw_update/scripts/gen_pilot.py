@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""T32b —— pilot 批（下放包 19 §四，4 列 → 5 TC）之工作簿產出，供 lint 用。
+"""T33a —— pilot 批 v2（下放包 20 §四，4 列 → 5 TC）之工作簿產出，供 lint 用。
+
+**v2 全面改寫 5 個 TC**（下放包 20 §四），成因為 R-SU25（可觀測面）：
+v1 之「Read <內部服務> 收到的 X」類步驟在台架上不可執行（上繳包 18 §7.1）。
+v1 之產出留於 `sandbox/pilot01/`，**不作交付**；v2 出 `sandbox/pilot02/`。
 
 **本檔為 lint 之受檢物，不是交付本**：輸出落 `sandbox/pilot01/`（R-G25），
 `inputs/` 之母本一字不動。TC 內容**逐字取自下放包 19 §四**，
@@ -22,7 +26,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from write_back_036 import _set_row, MASTER, SHEET_NAME, HEADER_ROW, FEAT  # noqa: E402
 
-OUT = FEAT / "sandbox" / "pilot01" / MASTER
+TAG = "pilot02"                    # v1 為 pilot01（下放包 19），不覆寫
+OUT = FEAT / "sandbox" / TAG / MASTER
 TEST_GROUP, TEST_SET = "SW Update", "Silent Update"
 AUTHOR = "PeiPYHsu"
 FN = "功能測試 (Functional based ; no specific technique)"
@@ -33,68 +38,68 @@ TCS = [
   item=["When the update type is identified as Silent Update, the WiFi Update Service shall automatically execute the update in background mode.",
         "(Silent update runs in background with no HMI interaction)"],
   pre=["1. The head unit is connected to a Wi-Fi network with internet access",
-       "2. An update package classified as Silent Update is available on the OTA Server"],
-  proc=["1. Trigger an update availability check to the OTA Server",
-        "2. Read the update metadata received by the WiFi Update Service and record the update type",
-        "3. Record the head unit screen content throughout the update execution",
-        "4. Check that the update completes in background and no SW Update HMI prompt or progress notification is displayed"],
-  er=["1. The update availability check completes and an update is reported as available",
-      "2. The recorded update type is Silent Update",
-      "3. The head unit screen content throughout the update execution is recorded",
-      "4. The update completes in background mode; no SW Update HMI screen, prompt, or progress notification appears on the head unit"]),
+       "2. An update package with update type Silent Update is staged on the OTA Server for this head unit"],
+  proc=["1. Read the software version shown on the head unit and record it as Version_initial",
+        "2. Trigger an update availability check to the OTA Server",
+        "3. Record the head unit screen content continuously until the update finishes",
+        "4. Read the software version shown on the head unit and record it as Version_after",
+        "5. Check that Version_after differs from Version_initial and that no SW Update prompt or progress notification appears in the recorded screen content"],
+  er=["1. Version_initial is recorded",
+      "2. The update availability check completes and an update is reported as available",
+      "3. The head unit screen content until the update finishes is recorded",
+      "4. Version_after is recorded",
+      "5. Version_after differs from Version_initial; the recorded screen content contains no SW Update prompt and no progress notification"]),
  dict(req="SWE1-FOTA-176", spec="CFTS057-4907476", dm=FN, prio="P1",
   item=["During a Silent Update session, the WiFi Update Service shall not trigger the SW Update HMI for update progress notifications.",
         "(No progress notification during a silent session)"],
   pre=["1. The head unit is connected to a Wi-Fi network with internet access",
-       "2. An update package classified as Silent Update is available on the OTA Server"],
-  proc=["1. Trigger an update availability check to the OTA Server",
-        "2. Read the update type received by the WiFi Update Service and record it",
-        "3. Record the head unit screen content from download start to installation end",
-        "4. Check that no update progress notification is displayed on the head unit during the session"],
-  er=["1. The update availability check completes and an update is reported as available",
-      "2. The recorded update type is Silent Update",
-      "3. The head unit screen content from download start to installation end is recorded",
-      "4. No update progress notification is displayed on the head unit at any point of the silent session"]),
+       "2. An update package with update type Silent Update is staged on the OTA Server for this head unit"],
+  proc=["1. Read the software version shown on the head unit and record it as Version_initial",
+        "2. Trigger an update availability check to the OTA Server",
+        "3. Record the head unit screen content continuously until the software version changes",
+        "4. Check that no update progress notification appears anywhere in the recorded screen content"],
+  er=["1. Version_initial is recorded",
+      "2. The update availability check completes and an update is reported as available",
+      "3. The head unit screen content until the software version changes is recorded",
+      "4. The recorded screen content contains no update progress notification at any point of the session"]),
  dict(req="SWE1-FOTA-176", spec="CFTS057-4907477", dm=FN, prio="P1",
   item=["During a Silent Update session, the WiFi Update Service shall allow user notification only when required to satisfy safety-related requirements.",
         "(Safety-required notification is permitted during a silent session)"],
   pre=["1. The head unit is connected to a Wi-Fi network with internet access",
-       "2. An update package classified as Silent Update is available on the OTA Server",
-       "3. PENDING: DR-SU1 靜默期間之安全相關通知條件清單"],
+       "2. An update package with update type Silent Update is staged on the OTA Server for this head unit",
+       "3. PENDING: DR-SU1 list of safety-related notification conditions applicable during a silent session"],
   proc=["1. Trigger an update availability check to the OTA Server",
-        "2. Read the update type received by the WiFi Update Service and record it",
-        "3. PENDING: DR-SU1 觸發一項安全相關條件之步驟",
-        "4. Check that the safety-related notification is displayed on the head unit during the silent session"],
+        "2. Record the head unit screen content continuously from the start of the session",
+        "3. PENDING: DR-SU1 step to bring one safety-related condition into effect",
+        "4. Check that the safety-related notification is displayed on the head unit while the session continues"],
   er=["1. The update availability check completes and an update is reported as available",
-      "2. The recorded update type is Silent Update",
-      "3. PENDING: DR-SU1 安全相關條件之成立狀態",
-      "4. The safety-related notification is displayed on the head unit while the silent session continues"]),
+      "2. The head unit screen content from the start of the session is recorded",
+      "3. PENDING: DR-SU1 observable state showing the safety-related condition is in effect",
+      "4. The safety-related notification is displayed on the head unit and the session continues"]),
  dict(req="SWE1-FOTA-177", spec="CFTS057-4907478", dm=NEG, prio="P2",
   item=["If the SW Update HMI is available, the assigned update service shall not present the user with options to opt out of or defer the update.",
         "(No opt-out or defer option offered when HMI is available)"],
   pre=["1. The head unit is connected to a Wi-Fi network with internet access",
-       "2. The SW Update HMI is available on the head unit",
-       "3. An update package classified as Silent Update is available on the OTA Server"],
+       "2. An update package with update type Silent Update is staged on the OTA Server for this head unit",
+       "3. The SW Update HMI is available on the head unit"],
   proc=["1. Trigger an update availability check to the OTA Server",
-        "2. Read the update type received by the update service and record it",
-        "3. Record every SW Update screen displayed on the head unit during the session",
-        "4. Check that no screen offers an opt-out control or a defer control to the user"],
+        "2. Record every SW Update screen shown on the head unit until the update finishes",
+        "3. Check that none of the recorded screens offers an opt-out control or a defer control"],
   er=["1. The update availability check completes and an update is reported as available",
-      "2. The recorded update type is Silent Update",
-      "3. Every SW Update screen displayed during the session is recorded",
-      "4. None of the recorded screens offers an opt-out control or a defer control"]),
+      "2. Every SW Update screen shown until the update finishes is recorded",
+      "3. None of the recorded screens offers an opt-out control or a defer control"]),
  dict(req="SWE1-FOTA-183", spec="CFTS057-4907485", dm=FN, prio="P2",
   item=["When the update completes, the OTA client will display a success notification and what's new details.",
         "(Completion notification with What's New shown after a silent update)"],
   pre=["1. The head unit is connected to a Wi-Fi network with internet access",
-       "2. An update package classified as Silent Update is available on the OTA Server"],
-  proc=["1. Trigger an update availability check to the OTA Server",
-        "2. Wait for the silent update deployment to complete",
-        "3. Read the deployment status reported to the update service and record it",
+       "2. An update package with update type Silent Update is staged on the OTA Server for this head unit"],
+  proc=["1. Read the software version shown on the head unit and record it as Version_initial",
+        "2. Trigger an update availability check to the OTA Server",
+        "3. Read the software version shown on the head unit until it differs from Version_initial",
         "4. Check that the head unit displays the update success notification together with the What's New details"],
-  er=["1. The update availability check completes and an update is reported as available",
-      "2. The silent update deployment completes",
-      "3. The recorded deployment status is success",
+  er=["1. Version_initial is recorded",
+      "2. The update availability check completes and an update is reported as available",
+      "3. The software version shown on the head unit differs from Version_initial",
       "4. The head unit displays the update success notification and the What's New details of the deployed package"]),
 ]
 
@@ -151,7 +156,7 @@ def main():
             zo.writestr(item, data)
 
     print(f"## pilot 批之產出（受檢物，非交付本）\n")
-    print(f"- 輸出：`sandbox/pilot01/…_ext.xlsx`（R-G25）｜母本未動\n")
+    print(f"- 輸出：`sandbox/{TAG}/…_ext.xlsx`（R-G25）｜母本未動\n")
     print("| 列 | TC ID | 037 列 | spec_reference |")
     print("|---|---|---|---|")
     for r, tid, req, sp in rows:

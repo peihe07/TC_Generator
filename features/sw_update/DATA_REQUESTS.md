@@ -12,7 +12,7 @@ Urgency 回報。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
-| **DR-SU1** | **靜默期間之安全相關通知條件清單**（pattern：規格側之 safety-related notification 條件表；來源未定，得為 CFTS_57 之補件或 SYSAD 之安全需求節） | **OPEN** | `SWE1-FOTA-176`（facet B） | `newR1L-SU-003` 之 `pre`／`proc`／`er` 三欄各掛一 `PENDING`；該 TC 不可執行 | — | **High** —— pilot 批已受阻，Silent Update 之 9 列尚有 5 列未撰 |
+| **DR-SU1** | **靜默期間之安全相關通知條件清單**（pattern：規格側之 safety-related notification 條件表；來源未定，得為 CFTS_57 之補件或 SYSAD 之安全需求節） | **OPEN** | `SWE1-FOTA-176`（facet B） | `newR1L-SU-003`（v2）之 `pre`／`proc`／`er` 三欄各掛一**英文** `PENDING`；該 TC 不可執行 | — | **High** —— pilot 批已受阻，Silent Update 之 9 列尚有 5 列未撰 |
 
 ## DR-SU1 —— 詳（下放包 19 §四 TC-3）
 
@@ -24,10 +24,22 @@ Urgency 回報。
 依 IN §8.4.3 掛 `PENDING`，**不得自行舉例**（如 eCall、碰撞偵測）
 —— 舉例即造值（下放包 19 §四）。
 
-**執行層之補充實測**（上繳包 18 §T32b）：本列於 lint 觸發
-**K=3（CJK 字元）／T=3（PENDING 說明非英文）／U=3（PENDING 佔位）**，
-其中 **K 與 T 為草案本身之缺陷（PENDING 說明以中文書寫，違 R-14）**，
-與 DR 之有無無關；U 為計數用，屬預期。
+**執行層之補充實測**：
+
+| 版 | lint | 說明 |
+|---|---|---|
+| v1（`sandbox/pilot01`，上繳包 18 §T32b） | **K=3／T=3／U=3** | K 與 T 為草案本身之缺陷（PENDING 說明以中文書寫，違 R-14）；U 為計數用 |
+| **v2（`sandbox/pilot02`，上繳包 19 §T33a）** | **K=0／T=0／U=3** | 下放包 20 §四已英文化，K 與 T 清零；**U=3 為 DR-SU1 之三個佔位，仍在** |
+
+v2 之三行佔位（逐字）：
+
+```
+pre  3. PENDING: DR-SU1 list of safety-related notification conditions applicable during a silent session
+proc 3. PENDING: DR-SU1 step to bring one safety-related condition into effect
+er   3. PENDING: DR-SU1 observable state showing the safety-related condition is in effect
+```
+
+**U=3 唯有 DR-SU1 落地方能清零** —— 其為 DR 之直接量度，非格式問題。
 
 ## 本輪（下放包 01 + 02，2026-08-27）之結案記錄
 
