@@ -13,7 +13,9 @@
 
 **下放包 03（R-POP13／14／15）之六件修正**，逐件落於本檔之語料：
 
-- **F1** 末步驟一律 `Read <對象> ... and check that <可觀察結果>`（IN §5.5）
+- **F1** 末步驟一律 `Read <對象> ... and check that <可觀察結果>`（IN §5.5），
+  **且 ≤ 18 words（IN §5.2B；R-POP20 之 F7 回調）** —— 時限、PU 欄位出處、
+  時窗對照等細節一律留於 ER，不進 Final Step
 - **F2** Procedure 之按壓標的一律 `"..."`；PU 控制記法（`<OK>`／`<Trks>`）
   **只保留於 ER 引文段與 test_item**；反引號等 Markdown 記號不進交付欄（IN §11）
 - **F3** 刪 `The vehicle is stationary with the ignition in RUN` 類環境穩定性
@@ -66,9 +68,8 @@ TCS = [
             "Enter the Home Screen page-management view and add a home screen page",
             "Leave the screen and all buttons untouched for 10 seconds after the "
             "pop-up appears",
-            "Read the pop-up display status and the elapsed time and check that "
-            "the pop-up has closed by itself 5 seconds after it appeared, "
-            "matching the Time-out defined by PU0942 Timeout (sec)",
+            "Read the pop-up display status and the elapsed time, and check "
+            "that the pop-up has closed",
         ],
         "expected": [
             'The pop-up is displayed showing "<X>" and "Page added! [Reorder]", '
@@ -109,7 +110,7 @@ TCS = [
             'On the Media screen, press the Track list button "Trks"',
             'Press "Trks" a second time while the pop-up is displayed',
             "Read the pop-up display status immediately after the second press "
-            "and check that the pop-up is no longer displayed",
+            "and check that the pop-up is closed",
         ],
         "expected": [
             'The "Tracks List" pop-up is displayed, as defined by '
@@ -157,8 +158,7 @@ TCS = [
             "Within 5 seconds of the pop-up appearing, tap an area of the screen "
             "outside the pop-up window frame",
             "Read the pop-up display status immediately after the tap and check "
-            "that the pop-up is no longer displayed, before the 5-second Time-out "
-            "defined by PU0580 Timeout (sec) has elapsed",
+            "that the pop-up is closed",
         ],
         "expected": [
             'The pop-up is displayed showing "Welcome [username]", "X", '
@@ -207,8 +207,7 @@ TCS = [
             "button",
             'Within 3 seconds of the pop-up appearing, press "OK" inside the pop-up',
             "Read the pop-up display status immediately after the press and check "
-            "that the pop-up is no longer displayed, before the 3-second Time-out "
-            "defined by PU0949 Timeout (sec) has elapsed",
+            "that the pop-up is closed",
         ],
         "expected": [
             "The pop-up is displayed showing "
@@ -370,8 +369,23 @@ def audit(tcs: list[dict]) -> None:
     def items(v):
         return [x for x in str(v).split("\n") if x.strip()]
 
+    def final_step(t):
+        """末步驟之本文（去掉 `N. ` 之序號）。
+
+        詞數以空白切。**`(sec)` 計為一詞** —— R-POP20 之表雖寫「括弧不計」，
+        但其 31／19／29／29／17 五個數字唯有把 `(sec)` 計入才重現得出來，
+        故以能重現該表之算法為準，並在此記明兩者之出入。
+        """
+        return [x for x in t["test_procedure"].split("\n") if x.strip()][-1].split(". ", 1)[1]
+
     rows = [
         ("TC 總數", len(tcs), 5),
+        ("Final Step 詞數 ≤ 18 之條數（R-POP20 F7）",
+         sum(len(final_step(t).split()) <= 18 for t in tcs), 5),
+        ("ER 3 含時限字樣之條數",
+         sum(any(k in t["expected_result"] for k in ("5-second", "5 seconds",
+                                                     "3-second", "3 seconds"))
+             for t in tcs), 3),
         ("PENDING 佔位", sum("PENDING:" in str(v) for t in tcs
                              for v in t.values() if isinstance(v, str)), 0),
         ("`newR1L` 殘留", sum("newR1L" in str(t) for t in tcs), 0),
@@ -396,6 +410,12 @@ def audit(tcs: list[dict]) -> None:
     print("|---|---|---|---|")
     for name, got, want in rows:
         print(f"| {name} | {got} | {want} | {'相符' if got == want else '**不符**'} |")
+    print("\nFinal Step 逐條詞數（R-POP20）")
+    print("| 條 | 詞數 | 本文 |")
+    print("|---|---|---|")
+    for t in tcs:
+        fs = final_step(t)
+        print(f"| {t['tc_id']} | {len(fs.split())} | {fs} |")
 
 
 def main() -> int:

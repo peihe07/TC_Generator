@@ -13,12 +13,12 @@ verbatim. Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-POP3 | 5 個 leaf 之引用一律 `_5.6`；`_5.5` 僅由 Heading `SWE1-POP-001`（標 No TC）引用 —— 下放包 §五 Layer 3「PC1 = spec 5.5～5.6」之 5.5 半無 leaf 依託 | **RESOLVED（R-POP8：-002-02 之 spec_reference 併列 `_5.5`＋`_5.6`）** | — |
 | A-POP4 | `lint_docs036.py` 之序號跳號檢查僅認 `DR-PW`／`A-PW`／`A-PM` 三前綴，本 feature 之 `DR-POP`／`A-POP` 不受檢；骨架之 `A-POnn` 綴亦與裁決系列不一致 | **RESOLVED（R-POP10：改前綴自動抽取；下放包 02 §六-2 落實，迴歸兩向實跑）** | — |
 | A-POP5 | 036 母本 design_method 欄（`R10:R1411`）之下拉為 **x14 擴充**，`openpyxl` 讀不到且 `save()` 會靜默刪除 —— 上繳包 01 §五-3 之「R 欄無 data validation」為誤述 | **RESOLVED（本包更正＋寫入路徑改 `xlsx_surgical`；輸出實測 x14 存活）** | Tier 1 |
-| A-POP6 | R-POP10 之前綴自動抽取使既有台帳浮現 8 個 feature 之新命中；其中兩類為誤判（recap 表之 id 被判「編號重複」、`S` 為假前綴），四個 feature 抽不到任何前綴 | **RESOLVED（R-POP16：甲不代改入各 feature BACKLOG；乙採提案 1+2，首個表格為抽取界；丙登 G-D 並須明示 no series detected）** | Tier 2（判準精修範圍）|
+| A-POP6 | R-POP10 之前綴自動抽取使既有台帳浮現 8 個 feature 之新命中；其中兩類為誤判（recap 表之 id 被判「編號重複」、`S` 為假前綴），四個 feature 抽不到任何前綴 | **RESOLVED（R-POP16：甲不代改入各 feature BACKLOG；乙採提案 1+2；丙登 G-D 並須明示 no series detected。**乙之「首個表格為抽取界」一項已由 R-POP18 取代為內容判準（A-POP10）；甲類之筆數已由 R-POP19 訂正為2 個 feature／2 筆（A-POP11）**）** | Tier 2（判準精修範圍）|
 | A-POP7 | `SWE1-POP-002-02` 之 device 軸（physical hard button／UI button）為真軸，但 Pop Up List 無「同一實體鍵開啟並關閉」之實例 —— 拆軸會有一分支無實例可填 | **RESOLVED（R-POP12：不拆，理由改採「規格側無此分支」；不開 DR；語料 reasoning 須改寫）** | Tier 2（拆軸與 RD-1）|
 | A-POP8 | `SWE1-POP-002-05` 之 `search keyboard` 於 Pop Up List **查無對應列**（三 sheet 全欄實測），觸發下放包 02 §八 升級條件 —— 該 leaf 本包未生成 TC | **RESOLVED（R-POP14：採乙案改良，照 GP4-4 規格原句生成、不引 PU；另開 DR-POP4）** | Tier 2／3（改判例證或向上游索件）|
 | A-POP9 | 下放包 02 之上繳回報與 repo 台帳於四點不符：(1) anomaly 編號錯置（回報之 A-POP5／6／7／8 ≠ 台帳之 A-POP5／6／7／8）；(2) 台帳 A-POP5（x14 下拉靜默刪除）回報未提；(3) 傳染性掃描結論相反（回報稱 intake.py 有同缺陷，台帳 A-POP1 §四 稱 `scripts/` D1∧D2 僅 extract_source 一支）；(4) TC ID 前綴回報稱 `PROJ-POP-*`，語料實為 `newR1L-POP-*` | **RESOLVED（R-POP17：上繳摘要改 live 產；`ledger_xref.py` 增包內引用對照檢。其 (4) 另由 R-POP13 處分 —— TC ID 前綴定值）** | Tier 2 |
-| A-POP10 | R-POP16 乙之「首個表格」判準使數個 feature 之台帳**整本脫檢** —— 其登記主表不在檔內第一張表（sxm／audio_mgmt／projection），或被空行切成多段（power 之 A-PW）。放寬跨表誤傷的同時，也丟掉了真陽性 | **PENDING** | Tier 2（判準之辨識方式）|
-| A-POP11 | R-POP16 甲所列之 sxm `A-SX18`／`A-SX19` **為假陽性** —— 該二號以 `## [A-SXnn]` 標題式登記於 `features/sxm/ANOMALIES.md`，實存；A-POP6 甲類係抽取器只看表格首格所致。§十 升級條件命中：未代改、未寫入 sxm BACKLOG，只回報 | **PENDING** | Tier 2 |
+| A-POP10 | R-POP16 乙之「首個表格」判準使數個 feature 之台帳**整本脫檢** —— 其登記主表不在檔內第一張表（sxm／audio_mgmt／projection），或被空行切成多段（power 之 A-PW）。放寬跨表誤傷的同時，也丟掉了真陽性 | **RESOLVED（R-POP18：改內容判準 —— 首欄 ≥ 2 列合系列形態者即登記表；一檔可多張，編號合併為一序列；標題式兩式皆認）** | Tier 2（判準之辨識方式）|
+| A-POP11 | R-POP16 甲所列之 sxm `A-SX18`／`A-SX19` **為假陽性** —— 該二號以 `## [A-SXnn]` 標題式登記於 `features/sxm/ANOMALIES.md`，實存；A-POP6 甲類係抽取器只看表格首格所致。§十 升級條件命中：未代改、未寫入 sxm BACKLOG，只回報 | **RESOLVED（R-POP19：兩筆撤回；A-POP6 甲類訂正為 2 個 feature／2 筆）** | Tier 2 |
 
 ---
 
@@ -253,11 +253,22 @@ R-POP10 落實後（下放包 02 §六-2），對 19 個 feature 逐一實跑
 `lint_docs036.py --feature <f>`。**`--feature power`（`gate_all.py` 之預設）
 維持 PASS，故 gate 不因本次改動轉紅。** 其餘結果三分：
 
-### 甲、真陽性（4 個 feature，5 筆）—— 非誤傷
+### 甲、真陽性（~~4 個 feature，5 筆~~ → **訂正為 2 個 feature／2 筆**）
+
+**三個數字並陳（R-POP19，2026-08-28；R-TM13 形制 —— 加註保留，不刪原數）**：
+
+| 出處 | 數字 | 何以如此 |
+|---|---|---|
+| 本節原標題 | 4 個 feature，5 筆 | 落檔時之寫法，與其自身表列即不符（分析層之誤）|
+| 本節原表列 | 3 個 feature，4 筆 | sxm 2 ＋ audio_mgmt 1 ＋ time_management 1 |
+| **訂正後（以此為準）** | **2 個 feature，2 筆** | sxm 兩筆為假陽性，依 **R-POP19 撤回**（詳 A-POP11）—— 餘 audio_mgmt `DR-AM7`、time_management `A-TM2`，已入兩本 BACKLOG |
+
+下表之 sxm 一列**保留**（劃線示撤回），供追溯抽取器缺陷之形態。
+
 
 | feature | 命中 | 佐證 |
 |---|---|---|
-| sxm | `A-SX18`／`A-SX19` 跳號 | 首格所見編號集為 `{15,16,17,20}`，18/19 確實不在 |
+| ~~sxm~~ | ~~`A-SX18`／`A-SX19` 跳號~~ | **撤回（R-POP19）** —— 「首格所見編號集為 `{15,16,17,20}`」正是缺陷本身：sxm 以 `## [A-SXnn]` 標題式登記，`A-SX` 實存集為 **1–30 連續**，兩號皆實存且皆 RESOLVED |
 | audio_mgmt | `DR-AM7` 跳號 | 同法 |
 | time_management | `A-TM2` 跳號 | 同法 |
 | — | | 屬各該 feature 之台帳，本包**不代改** |
@@ -396,7 +407,7 @@ R-POP17：(1) 上繳摘要一律自 repo 台帳 live 產；(2) `ledger_xref.py`
 
 ---
 
-## A-POP10 —— 「首個表格」判準使數個 feature 之台帳整本脫檢 —— PENDING
+## A-POP10 —— 「首個表格」判準使數個 feature 之台帳整本脫檢 —— **RESOLVED（R-POP18）**
 
 **登記時點**：下放包 03 §五-1 落實 R-POP16 乙之後、迴歸兩向實跑之際。
 **Tier 1（登記＋提案），不自裁** —— R-POP16 乙已明文把主表之辨識方式
@@ -451,7 +462,7 @@ R-POP16 乙之理由逐字為「首個表格為三簿體例之不變量」。
 
 ---
 
-## A-POP11 —— A-POP6 甲類之 sxm 兩筆為假陽性 —— PENDING
+## A-POP11 —— A-POP6 甲類之 sxm 兩筆為假陽性 —— **RESOLVED（R-POP19）**
 
 **登記時點**：下放包 03 §六（甲類清單寫入）執行時。
 **§十 升級條件命中**：「甲類清單寫入時發現該 feature 之台帳與 popup 側

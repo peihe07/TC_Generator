@@ -131,7 +131,23 @@ TC ID 採 `NR1L-Popup-{NNN}`。依據：分析層 2026-08-27 實測五本交付�
 4/5 為 `NR1L-{FeatureName}-{NNN}`，Display 為離群（不取為基準）。
 pilot 現值 `newR1L-POP-{NNN}` 兩處皆錯（`newR1L`≠`NR1L`；
 縮寫 `POP`≠全名 `Popup`），全數重排，NNN 序不變。
-feature.yaml 之 `project` 模板殘值 `PROJ` 同步修正。
+
+**修訂（2026-08-28，上繳包 03 §一-1）**：原末句「feature.yaml 之 `project`
+模板殘值 `PROJ` 同步修正」**作廃** —— `features/popup/feature.yaml` 無
+`project` 鍵，全檔亦無 `PROJ` 字串（執行層 grep 實測命中 0）。
+該句係分析層將 A-POP9(4) 所記之**錯誤述值**連同處分寫入本條，
+致 A-POP9 之錯誤於其自身之處分條文內再現 —— **分析層之誤**。
+實際標的為 `tc_id_format`，已由 `"newR1L-POP-{n:03d}"` 改為
+`"NR1L-Popup-{n:03d}"`。
+
+**量測界之訂正（同上，§一-2）**：下放包 03 §三「全簿掃 `newR1L`／
+`PROJ`／`POP-` 命中須為 0」**不可達成且不應達成**：
+`D2` 為專案名稱欄（母本自帶 `newR1L`，清成 0 等於改動專案名稱）；
+`D10:D14` 為 req_id `SWE1-POP-002-0n`（掃到 0 即 req_id 被抹）。
+正確量測界採執行層之改定：`newR1L`／`PROJ` 限**本包產出之語料
+與儲存格**；`POP-` 限 **TC ID 欄 F10:F1411**。
+順帶：`D2` = `newR1L`（專案名稱）與交付簿欄 F = `NR1L-*`（TC ID）
+為不同層之值，**不得以 D2 為 TC ID 前綴之權威**。
 
 ### R-POP14 — -002-05 採規格原句生成（分析層裁 [DEFAULT]，2026-08-27，**A-POP8**）
 
@@ -150,6 +166,7 @@ feature.yaml 之 `project` 模板殘值 `PROJ` 同步修正。
 - **F1** Final Step 須含 check target：`Read <對象> and check that <可觀察結果>`
   （IN §5.5；形制取 canon §8.7.5(b) 之 `Read the signal ... and check that ...`）。
   單寫 `Read <對象> status` 而將判斷全數推給 ER，不合格。
+  **且受 IN §5.2B ≤ 18 words 拘束（R-POP20）** —— 細節留 ER。
 - **F2** Procedure 之按壓標的一律 `"..."` 雙引號；PU 控制記法
   （`<OK>`、`<Trks>`）之保留**僅及於 ER 引文段與 test_item**
   （profile §2 自訂之界）。反引號等 Markdown 記號不得進交付欄（IN §11）。
@@ -195,3 +212,57 @@ A-POP5 未提、傳染性掃描結論相反、TC ID 前綴述值與語料不同�
    引用，與該 feature 台帳之實存號碼及其標題對不上即回報。
    這正是 `ledger_xref` 設計目的內而未涵蓋之型態。
 3. 分析層同受此規（見 R-POP15 F5 之註）。
+
+### R-POP18 — 主表辨識改內容判準（分析層裁，2026-08-28，A-POP10）
+
+**R-POP16 乙之「首個表格為三簿體例之不變量」一語經實測不成立**，本條取代
+其中「抽取限於檔內首個表格」一項（其餘兩項不變）。依據：上繳包 03
+§七 A-POP10 實測 —— sxm／audio_mgmt／projection／privacy 之首個表格
+皆非登記表，power 之登記表又被空行切段；因此丟棄之真陽性為
+**sxm 4／audio_mgmt 7／projection 63**。
+
+**改採內容判準**（不以位置辨識）：一張表格若其**首欄有 ≥ 2 列
+匹配 `^(A|DR|R)-[A-Z]+\d+$`**（去除包覆之 `[]`、粗體記號後），
+即視為登記表，受跳號檢查；一檔可有多張登記表（power 之切段情形），
+同檔各登記表之編號合並為一個序列後再判跳號。
+非登記表（指紋表、計數表、欄位值表）自然排除 —— `privacy` 之假前綴
+`S` 以本判準亦排除（需實證，不得推定）。
+
+另採標題式登記：`## A-XXn` 與 `## [A-XXn]` 兩式皆認
+（audio_mgmt／driver_distraction／sxm 之體例）。
+
+**本條不及於 `ledger_xref.py`** —— 存在性檢查不需先認定主表，
+該工具跨全檔收集之現行作法正確，二者分野維持（已記於其檔頭）。
+
+### R-POP19 — A-POP6 甲類之 sxm 兩筆撤回（分析層裁，2026-08-28，A-POP11）
+
+A-POP6 甲類之 `A-SX18`／`A-SX19` **為假陽性，撤回**：sxm 以標題式
+登記，`A-SX` 實存集為 1–30 連續零跳號，兩號皆實存且皆 RESOLVED。
+執行層未寫入 sxm BACKLOG、未建該檔、未代改，處置正確。
+
+A-POP6 甲類之訂正後數字：**2 個 feature／2 筆**
+（audio_mgmt `DR-AM7`、time_management `A-TM2`），已入兩本 BACKLOG。
+A-POP6 §甲 原標題「4 個 feature，5 筆」與其自身表列「3 個 feature、4 筆」
+亦不符 —— 三個數字並陳，以本條之 **2／2** 為準。
+
+### R-POP20 — F1 修正過長之回調（分析層裁，2026-08-28，編號 F7）
+
+F1 之實作使四條之 Final Step 超出 IN §5.2B 之 **≤ 18 words**。
+分析層逐條數詞（以空白切詞，`(sec)` 之括弧不計）：
+
+| 條 | Final Step 詞數 | 判 |
+|---|---|---|
+| NR1L-Popup-001 | 31 | 超 |
+| NR1L-Popup-002 | 19 | 超 |
+| NR1L-Popup-003 | 29 | 超 |
+| NR1L-Popup-004 | 29 | 超 |
+| NR1L-Popup-005 | 17 | 合格 |
+
+**回調原則**：Final Step 只留「動作 ＋ check that ＋ 主要可觀察結果」；
+**時限、PU 欄位出處、時窗對照等細節全數留於 ER**（ER 已載，不損資訊）。
+例：001 之 Final Step 改為
+`Read the pop-up display status and check that the pop-up has closed by itself`（13 words），
+「5 秒、PU0942 Timeout (sec)」由 ER 3 承載（現行 ER 3 即已具足，不需改）。
+
+本條不推翻 F1 —— check target 仍必須；只限制其長度。
+R-POP15 F1 之條文需同步加註「且受 IN §5.2B ≤ 18 words 拘束」。

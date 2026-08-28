@@ -165,39 +165,73 @@ def check_malformed_rows(root: Path, rel: str) -> list[Finding]:
     return out
 
 
+# 標題式登記：`## A-POP9 —— …` 與 `## [A-AM01] …` 兩式皆認（R-POP18）。
+# audio_mgmt／driver_distraction／sxm 用方括號式，不認它就會把整本簿子
+# 看成空的 —— A-POP11 之 sxm 兩筆假陽性即由此而來。
+RE_HEAD_ID = re.compile(r"^#{2,4}\s+\[?((?:A|DR|R)-[A-Z]{1,6}-?\d+)\]?(?:\s|$|—|\|)")
+
+# 登記表之門檻。**兩條任一成立即算**：
+#   (1) 首欄有 ≥ 2 列合系列編號形態（R-POP18 之明文判準）
+#   (2) 只有 1 列，但它佔該表首欄非空格之 ≥ 50%
+# (2) 是為了接住**被空行切成單列的續段**（power 之 A-PW 主表即如此）——
+# 只用 (1) 會把續段整段丟掉，等於用另一種方式重蹈 A-POP10。
+# 兩條都擋得住 `privacy` 之 `| S10 | \`NA\`（Functional Safety）|`：
+# 該表首欄 6 格中只有 `S10` 一格合形態（1/6 = 17%），兩條皆不過。
+REGISTER_MIN_ROWS = 2
+REGISTER_MIN_RATIO = 0.5
+
+HEAD_TABLE = -1        # 標題式登記之虛擬表序（與任何真表格皆不同表）
+
+
+def register_tables(all_tables: list) -> list[int]:
+    """**內容判準**（R-POP18）：首欄有 ≥ 2 列合系列編號形態者即登記表。
+
+    取代 R-POP16 乙之「檔內首個表格」—— 那條的理由「首個表格為三簿體例
+    之不變量」經實測不成立（A-POP10）：sxm／audio_mgmt／projection／privacy
+    之首個表格皆非登記表，而 power 之登記表又被空行切成多段。
+    **位置不是不變量，內容才是。**
+
+    一檔可有多張登記表（power 之切段情形），其編號由 `series_in` 合併為
+    同一序列後再判跳號 —— 不合併就會把切段處判成跳號。
+    """
+    out = []
+    for i, table in enumerate(all_tables):
+        cells_ = [bare(row[0]) for row in table if bare(row[0])]
+        hits = sum(1 for c in cells_ if RE_SERIES.match(c))
+        if hits >= REGISTER_MIN_ROWS:
+            out.append(i)
+        elif hits and hits / len(cells_) >= REGISTER_MIN_RATIO:
+            out.append(i)
+    return out
+
+
 def series_in(text: str) -> tuple[dict[str, list[tuple[int, int]]], int, int]:
-    """`(前綴 → [(編號, 表序)], 被略過之首格數, 非主表前綴之命中數)`。
+    """`(前綴 → [(編號, 表序)], 被略過之首格數, 合系列形態但不在登記表者)`。
 
-    **R-POP16 乙（Pei 2026-08-27）**：前綴抽取限定於**檔內首個表格**。
-    主表之辨識方式定為此而非「表頭首欄字面」—— 各 feature 表頭不一致
-    （`| A |`／`| DR |`／`| 編號 |` 都有），而「首個表格即登記主表」
-    是三簿體例之不變量。`privacy` 之假前綴 `S`（欄位值表，
-    `ANOMALIES.md` 中段）即由此自然排除。
+    收集之來源有二，**兩者皆收，但角色不同**：
 
-    **編號仍跨全檔收集**，只是併記其表序：回顧／彙整表之列仍算「該號
-    存在」，否則把它們排除掉會把回顧表獨有的號碼變成跳號 —— 修一個
-    誤報生一個誤報。同號是否判紅，由 `check_series` 依表序決定。
+    1. 登記表（`register_tables`）之首欄 —— 記其表序，參與重複判定與跳號
+    2. 標題式登記（`## A-XXn`／`## [A-XXn]`）—— 表序記為 `HEAD_TABLE`，
+       **只作存在性佐證，不參與重複判定**（見 `check_series`）
+
+    「不參與重複判定」是必要的：popup 那種「主表一列 ＋ `## A-POPn`
+    明細節一節」兩式併存，若一併算進重複，每一號都會變成跨表同號。
+    而若反過來「有表格就不看標題」，則 sxm 那種「回顧表只列部分號、
+    完整登記在標題」的檔會把未列於回顧表的號判成跳號 —— A-POP11 之
+    `A-SX18`／`A-SX19` 兩筆假陽性正是此形。**兩式都要收，只是用途分開。**
 
     逐列掃描，不跳過表首 —— 長條目常被空行切成獨立表格，
     若跳過首列即會漏掉其編號並誤報跳號（本工具開發時實際踩到）。
 
     第二個回傳值為 **G-D 之被抑制條數**：首格非空但不合系列編號形態者。
-    第三個為合系列形態但其前綴不在主表內者 —— 同屬 G-D，須報數，
-    否則「限定首表」到底扔掉了多少東西，在紙上看不見。
+    第三個為合系列形態卻不在任何登記表、亦無標題式可回退者 —— 同屬 G-D。
     """
     all_tables = tables(text)
-    if not all_tables:
-        return {}, 0, 0
+    reg = set(register_tables(all_tables))
 
-    primary: set[str] = set()
-    for row in all_tables[0]:
-        m = RE_SERIES.match(bare(row[0]))
-        if m:
-            primary.add(m.group("prefix"))
-
-    found: dict[str, list[tuple[int, int]]] = {p: [] for p in primary}
+    found: dict[str, list[tuple[int, int]]] = {}
     skipped = 0
-    off_primary = 0
+    stray: dict[str, int] = {}
     for ti, table in enumerate(all_tables):
         for row in table:
             cell = bare(row[0])
@@ -208,20 +242,38 @@ def series_in(text: str) -> tuple[dict[str, list[tuple[int, int]]], int, int]:
                 skipped += 1
                 continue
             pfx = m.group("prefix")
-            if pfx not in primary:
-                off_primary += 1
+            if ti not in reg:
+                stray[pfx] = stray.get(pfx, 0) + 1
                 continue
+            found.setdefault(pfx, [])
             SEPARATORS.setdefault(pfx, cell[len(pfx):-len(m.group("num"))])
             found[pfx].append((int(m.group("num")), ti))
-    return found, skipped, off_primary
+
+    for line in text.splitlines():
+        h = RE_HEAD_ID.match(line)
+        if h is None:
+            continue
+        m = RE_SERIES.match(bare(h.group(1)))
+        if m is None:
+            continue
+        pfx = m.group("prefix")
+        ident = bare(h.group(1))
+        SEPARATORS.setdefault(pfx, ident[len(pfx):-len(m.group("num"))])
+        found.setdefault(pfx, []).append((int(m.group("num")), HEAD_TABLE))
+        stray.pop(pfx, None)
+
+    return found, skipped, sum(n for p, n in stray.items() if p not in found)
 
 
 def check_series(root: Path, rel: str, prefix: str | None = None) -> list[Finding]:
-    """跳號檢查。`prefix=None`（預設）＝ 自主表抽取之**每個**前綴都查。
+    """跳號檢查。`prefix=None`（預設）＝ 自登記表／標題式抽取之**每個**前綴都查。
 
     R-POP16 乙：`編號重複` 之判準改為**同一表格內**重複才判紅；
     同號分散於不同表格（主表一列、回顧表一列）降為 note。
     放寬只及於「跨表」這一項 —— 主表內真的寫了兩次，仍判紅。
+    R-POP18 只換掉「哪些表算登記表」，本函式之兩段判準不變；
+    另加一條：**標題式登記（`HEAD_TABLE`）不參與重複判定**，只計入跳號之
+    存在性。理由見 `series_in` 之 docstring。
     """
     path = root / rel
     if not path.is_file():
@@ -236,8 +288,10 @@ def check_series(root: Path, rel: str, prefix: str | None = None) -> list[Findin
         for num, ti in entries:
             where.setdefault(num, []).append(ti)
         for num in sorted(where):
-            tis = where[num]
-            if len(tis) == 1:
+            # 標題式登記不參與重複判定：一號只在標題出現（tis 為空）或
+            # 只在一張表格出現，皆非重複。
+            tis = [t for t in where[num] if t != HEAD_TABLE]
+            if len(tis) <= 1:
                 continue
             if len(set(tis)) < len(tis):
                 out.append(Finding(f"{pfx}_id", f"{pfx}{num}",
@@ -302,16 +356,16 @@ def main(argv: list[str] | None = None) -> int:
     # G-B 餘數對照 ＋ G-D 被抑制條數。**恆印**，PASS 與否都印 ——
     # 一個抓不到任何前綴的抽取器，其 PASS 與真的沒有跳號長得一樣。
     seen, newly, skipped = prefix_reconciliation(root, series_files)
-    print(f"前綴（自 {f} 之 DR／ANOMALIES 主表抽取）：{seen or '（無）'}"
+    print(f"前綴（自 {f} 之 DR／ANOMALIES 登記表／標題式抽取）：{seen or '（無）'}"
           f"　新受檢（硬寫清單外）：{newly or '（無）'}"
           f"　首格不合系列形態而略過：{skipped - prefix_reconciliation_off()}"
-          f"　合系列形態但前綴不在主表而略過：{prefix_reconciliation_off()}")
+          f"　合系列形態但不在登記表而略過：{prefix_reconciliation_off()}")
 
     # R-POP16 丙（G-D）：抽得前綴集為空時**明示回報**，不得靜默 PASS。
     # 「沒有跳號」與「沒有東西受檢」在舊輸出裡是同一行字。
     blind = not seen
     if blind:
-        print(f"no series detected —— {f} 之 DR／ANOMALIES 主表首格不是系列編號，"
+        print(f"no series detected —— {f} 之 DR／ANOMALIES 抽不到任何登記表或標題式登記，"
               f"本輪跳號／重複兩檢**未涵蓋任何條目**（G-D 盲區；PASS ≠ 已驗）")
 
     reds = [x for x in findings if x.severity != "note"]

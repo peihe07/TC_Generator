@@ -278,18 +278,29 @@ def test_跨表同號不因降_note_而變成跳號(tmp_path: Path) -> None:
                 if f.check.endswith("_series")]
 
 
-def test_前綴抽取限於首個表格_假前綴不入集(tmp_path: Path) -> None:
-    """privacy 之假前綴 `S`（欄位值表）形態：首表非登記表即整檔不受檢。"""
-    root = write(tmp_path, anom=ANOM_BLIND)
-    found, _, off = ld.series_in(ANOM_BLIND)
-    assert found == {}          # 主表首格為 SHA256／size／路徑，抽不到前綴
-    assert off == 2             # A-PV1／A-PV3 落在主表外，須報數而非靜默吞掉
+def test_首格非登記表之檔抽不到前綴(tmp_path: Path) -> None:
+    """真盲區：既無登記表、亦無標題式登記者，仍須抽不到東西。"""
+    blind = """# ANOMALIES
+
+| SHA256（前 8） | size | 路徑 |
+|---|---|---|
+| ff47b7be | 91234 | `forms/x.xlsx` |
+"""
+    root = write(tmp_path, anom=blind)
+    found, _, _ = ld.series_in(blind)
+    assert found == {}
     assert ld.check_series(root, "features/power/ANOMALIES.md") == []
 
 
 def test_盲區於_main_明示_no_series_detected(tmp_path: Path, capsys) -> None:
     """R-POP16 丙：抽不到前綴時不得靜默 PASS。"""
-    root = write(tmp_path, anom=ANOM_BLIND, dr="")
+    blind = """# ANOMALIES
+
+| cell | 值 |
+|---|---|
+| B10 / B11 | `1` / `2` |
+"""
+    root = write(tmp_path, anom=blind, dr="")
     assert ld.main(["--root", str(root), "--feature", "power"]) == 0
     out = capsys.readouterr().out
     assert "no series detected" in out
@@ -297,7 +308,130 @@ def test_盲區於_main_明示_no_series_detected(tmp_path: Path, capsys) -> Non
 
 
 def test_有系列可驗時不印_no_series_detected(tmp_path: Path, capsys) -> None:
-    """反向：主表即登記表者，輸出不得出現盲區告示。"""
+    """反向：抽得到登記表者，輸出不得出現盲區告示。"""
     root = write(tmp_path, anom=ANOM_POP_OK, dr=DR_POP_OK)
     assert ld.main(["--root", str(root), "--feature", "power"]) == 0
     assert "no series detected" not in capsys.readouterr().out
+
+
+# --- R-POP18：登記表改內容判準（A-POP10 之處置）-------------------------------
+#
+# G-N —— 缺陷原文字面入測。`PRIVACY_FIELD_TABLE` 逐字取自
+# `features/privacy/ANOMALIES.md` 之欄位值表（假前綴 `S` 之來源），
+# `SXM_HEADING_STYLE` 逐字取自 `features/sxm/ANOMALIES.md:710`／`:526`
+# 之標題式登記（A-POP11 兩筆假陽性之來源）。
+# 兩檔日後如何改寫，都不影響本組測試之證明力。
+
+PRIVACY_FIELD_TABLE = """# ANOMALIES
+
+| A | 內容 | 狀態 |
+|---|---|---|
+| A-PV1 | 甲 | RESOLVED |
+| A-PV2 | 乙 | RESOLVED |
+
+`Test Case Specification 測試用例規範` 分頁第 10–11 列帶範本示例殘留：
+
+| cell | 值 |
+|---|---|
+| B10 / B11 | `1` / `2`（No.# 序號）|
+| D10 / D11 | `xxx` / `xxx`（Requirement or Design ID）|
+| F10 | `NR1L-AntiTheft-001`（Test Case ID）|
+| G10 | `AntiTheft`（Test Group）|
+| S10 | `NA`（Functional Safety）|
+"""
+
+SXM_HEADING_STYLE = """# ANOMALIES — FW036 SXM
+
+Marker format: `[A-SXnn]`.
+
+| token group | searched in | result |
+|---|---|---|
+| `favorite` | §1.5 | 12 |
+
+## [A-SX18] `4872919` restates leaf 120's score-update branch and contradicts it — RESOLVED: 4872918 governs (2026-08-11)
+
+內文。
+
+## [A-SX19] Five clauses carry a VR trigger path their 037 titles also declare — RESOLVED (2026-08-12)
+
+內文。
+
+## [A-SX20] 又一件 — REGISTERED
+
+內文。
+"""
+
+POWER_SPLIT_REGISTER = """# ANOMALIES
+
+| A | 內容 |
+|---|---|
+| A-PW01 | 甲 |
+| A-PW02 | 乙 |
+
+| A-PW03 | 丙 |
+
+| A-PW04 | 丁 |
+"""
+
+
+def test_登記表以內容辨識_不以位置(tmp_path: Path) -> None:
+    """A-POP10 之本體：登記表不在檔內第一張時仍須受檢。"""
+    found, _, stray = ld.series_in(PRIVACY_FIELD_TABLE)
+    assert sorted(found) == ["A-PV"]
+    # `S10` 落在登記表外且無標題式可回退 —— 須計入被丟棄之數，不得靜默吞掉
+    assert stray == 1
+
+
+def test_假前綴_S_之欄位值表不算登記表(tmp_path: Path) -> None:
+    """欄位值表之首欄 6 格中只有 `S10` 一格合形態（1/6），不得算登記表。"""
+    assert "S" not in ld.series_in(PRIVACY_FIELD_TABLE)[0]
+
+
+def test_標題式登記受檢_方括號式亦然(tmp_path: Path) -> None:
+    """A-POP11 之本體：sxm 以 `## [A-SXnn]` 登記，舊判準整本抽不到。"""
+    root = write(tmp_path, anom=SXM_HEADING_STYLE)
+    found, _, _ = ld.series_in(SXM_HEADING_STYLE)
+    assert sorted(found) == ["A-SX"]
+    assert sorted(n for n, _ in found["A-SX"]) == [18, 19, 20]
+    # 18／19／20 連續 —— 舊判準把它們報成跳號，新判準須沉默
+    assert ld.check_series(root, "features/power/ANOMALIES.md") == []
+
+
+def test_標題式之跳號仍抓得到(tmp_path: Path) -> None:
+    """回歸向：同一體例下真的缺一號，仍須轉紅。"""
+    drop = ("## [A-SX19] Five clauses carry a VR trigger path their 037 titles "
+            "also declare — RESOLVED (2026-08-12)" + "\n\n內文。\n\n")
+    assert drop in SXM_HEADING_STYLE
+    anom = SXM_HEADING_STYLE.replace(drop, "")
+    root = write(tmp_path, anom=anom)
+    found = ld.check_series(root, "features/power/ANOMALIES.md")
+    assert [(f.check, f.where) for f in found] == [("A-SX_series", "A-SX19")]
+
+
+def test_同檔多張登記表之編號合併為一序列(tmp_path: Path) -> None:
+    """power 之空行切段：不合併就會把切段處判成跳號。"""
+    root = write(tmp_path, anom=POWER_SPLIT_REGISTER)
+    assert ld.check_series(root, "features/power/ANOMALIES.md") == []
+    found, _, _ = ld.series_in(POWER_SPLIT_REGISTER)
+    assert sorted(n for n, _ in found["A-PW"]) == [1, 2, 3, 4]
+
+
+def test_表格式存在時標題式不重複計(tmp_path: Path) -> None:
+    """popup 之「主表列 ＋ `## A-POPn` 明細節」不得把每一號判成跨表重複。"""
+    both = """# ANOMALIES
+
+| A | 內容 | 狀態 |
+|---|---|---|
+| A-POP1 | 甲 | RESOLVED |
+| A-POP2 | 乙 | RESOLVED |
+
+## A-POP1 —— 甲
+
+內文。
+
+## A-POP2 —— 乙
+
+內文。
+"""
+    root = write(tmp_path, anom=both)
+    assert ld.check_series(root, "features/power/ANOMALIES.md") == []

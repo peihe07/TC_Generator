@@ -13,6 +13,7 @@
 | 01 | 2026-08-27 | Phase 0 intake → `sources/` 落檔 → scaffold → Phase 1 RECON → 工作簿起建 | [handoff/01_intake_recon.md](handoff/01_intake_recon.md) | [upstream/01_intake_recon.md](upstream/01_intake_recon.md) | （無新條文；R-POP1~R-POP5 為下放包同包新立） | A-POP1 ~ A-POP4 | **PASS（作業面 6/6）；4 項待裁已由 R-POP6~R-POP11 處分，見 §2** |
 | 02 | 2026-08-27 | P2 簽署 → R-POP11／R-POP10／R-POP9 工具三支 → 值來源接線 → **Pilot 全量批** | [handoff/02_wiring_tooling_pilot.md](handoff/02_wiring_tooling_pilot.md) | [upstream/02_wiring_tooling_pilot.md](upstream/02_wiring_tooling_pilot.md) | （無新條文；R-POP6~R-POP11 為前一輪覆核所立） | A-POP5 ~ A-POP8 | **4 條 TC，lint 21 項全 0**；`-002-05` 觸發 §八 升級停下 |
 | 03 | 2026-08-28 | pilot 六件修正（R-POP15 F1~F6）→ TC ID 重排（R-POP13）→ `-002-05` 補生成（R-POP14）→ 工具二修（R-POP16 乙丙／R-POP17-2）→ 台帳一致性 | [handoff/03_pilot_fixes.md](handoff/03_pilot_fixes.md) | [upstream/03_pilot_fixes.md](upstream/03_pilot_fixes.md) | （無新條文；R-POP12~R-POP17 為前一輪覆核所立） | A-POP10、A-POP11 | **5 條 TC 齊，lint 21 項全 0，x14 DV 存活**；`rulings_hash` 轉綠（既有列 sha 變動 0）；§十升級條件命中 1 項（sxm 兩筆假陽性，未代改）|
+| 04 | 2026-08-28 | F7 回調（R-POP20）→ 主表辨識改內容判準（R-POP18）→ A-POP6 甲類訂正（R-POP19）→ 台帳收斂 ＋ 03 §十三 逐項複驗 | [handoff/04_f7_ledger_close.md](handoff/04_f7_ledger_close.md) | [upstream/04_f7_ledger_close.md](upstream/04_f7_ledger_close.md) | （無新條文；R-POP18~R-POP20 新立、R-POP13／R-POP15 修訂，皆分析層本輪落檔） | （無新登）—— A-POP10／A-POP11 於本輪結案 | **五條 Final Step 全 ≤ 18 words 且全含 check that，ER 一字未減**；判準回收 74 筆漏檢（sxm 4／audio_mgmt 7／projection 63 → 0），新浮現 3 筆真缺陷已只造清單（vehicle_setting 31 項未複驗未寫入，回報）；升級條件 5 項全未命中；`gates_tsv` 由綠轉紅屬他 feature 未登錄之新腳本 |
 
 ## 2. 上繳包 01 之覆核結果（Pei，2026-08-27）
 
@@ -63,6 +64,18 @@ R-POP10／R-POP11 標「全域效力之工具政策，候升格 R-G」。
 | 4 | Priority P1／P0、Estimated Test Time 欄之政策 | Pei | **未** —— Q 欄本包未寫入 |
 | 5 | pilot review（唯一人工閘）| Pei | **未** |
 | 6 | `sources/` 版控條文取號 | 分析層 | **未** |
+
+## 3d. 下放包 04 之結案對帳（上繳包 04）
+
+| # | 事項 | 現況 |
+|---|---|---|
+| §二 | F7 回調（R-POP20）| **完** —— 31/19/29/29/17 → 16/17/16/16/17，皆 ≤ 18 且皆含 `check that`；ER 五條全同前輪 |
+| §三 | 判準改內容判準（R-POP18）| **完** —— 迴歸四向全過；(d) 回收 74 筆；測試 23 → 29 支全綠 |
+| §三-(d) | 回收後之新缺陷只造清單 | **完** —— audio_mgmt `A-AM12`、projection `A-PJ46`／`A-PJ06` 入其 BACKLOG；**vehicle_setting 31 項未複驗未寫入，回報** |
+| §四 | A-POP6 甲類訂正（R-POP19）| **完** —— 三數並陳、sxm 一列劃線保留；A-POP10／11 主表與明細節同步 RESOLVED |
+| §五 | `ledger_xref` 處置 | **完** —— 追認、未接入 gate_all、續用 `--feature popup`（PASS）|
+| §六 | 03 §十三 複驗 | **完** —— 12 項逐項複驗，**僅第 9 項失準**，無第二項；歷史文未改 |
+| §七 | 寫回與 gate | **完** —— x14 DV 存活、lint036 21 項全 0、tsv 新增 3／變動 2／其餘 0 |
 
 ## 4. 仍未結
 
