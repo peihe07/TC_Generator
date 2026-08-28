@@ -11,6 +11,7 @@ verbatim 抄其原文（含缺字），錨由其他路徑定，並於 `reasoning
 | D-1 | `SWE1-FOTA-319` | 缺字 —— 條件名脫落 | **已確認**（下放包 11 §3.2） |
 | D-2 | `SWE1-FOTA-248` | 缺字 —— 受詞脫落 | **已確認**（下放包 12 §4.3） |
 | D-3 | `SWE1-FOTA-128` | **贅餘殘留** —— `control from below` | 待判定 |
+| D-4 | `SWE1-FOTA-180` | **拼寫殘留** —— `shalll` | **已確認**（下放包 26 §五 TC-6） |
 
 ---
 
@@ -71,6 +72,33 @@ T24d 語形掃描所得（形態「冠詞後直接接介詞」）。原句片段
 
 **同列另經裁定非統攝型**（下放包 12 §4.1）：`below mentioned parameters`
 所指之十個參數逐一列於該列自身 Description 之內，非指涉他處定義之需求。
+
+---
+
+## D-4 —— `SWE1-FOTA-180`：拼寫殘留 —— **已確認**
+
+出處：下放包 26 §五 TC-6（batch 1 起草時遇）。
+
+原句（逐字，`upstream/24_batch1_relist.md` §2 之 Description 全文首句）：
+
+> When the update type is identified as Silent Update, the WiFi Update Service
+> **shalll** not trigger the SW Update HMI to display a download confirmation screen.
+
+`shalll` —— `shall` 之三個 `l`。
+
+**第三型，與 D-1／D-2（缺字）、D-3（贅餘殘留）皆不同**：
+本項為**拼寫殘留**，其成分不缺不贅，**語意完全無損** ——
+讀者一眼看懂它是 `shall`。
+
+**處置（IN §8.4.1）**：`test_item` 上半 **verbatim 保留 `shalll`**。
+R-4 僅允許句首大寫之正規化，拼寫不在其列。
+`newR1L-SU-006` 之 `test_item` 已照原文寫入，**未改正**。
+
+> ⚠ **本型之偵測性與前三型相反**：缺字型語形不穩（見下節）、贅餘型語法完整而語意不通，
+> **拼寫型則是唯一一個拼字檢查抓得到的** —— 然而
+> **037 之交付流程顯然沒有跑過拼字檢查**，否則它不會留到這裡。
+> 即：本項之存在，其資訊量不在本列，**在於它揭示上游無此道關卡** ——
+> 故同型缺陷應假設**尚有未發現者**，本台帳所載仍為下界。
 
 ---
 
