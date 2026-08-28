@@ -26,6 +26,9 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 | R-DD8 | v1 | Market Configuration Table 之採用與保留：取 Country_Code=91、標 A-DD5、DR-DD3 不結案 | 07 §三 |
 | R-DD9 | v1 | 訊號值之書寫形式：有 VAL_ 者取逐字列舉，連續量改置物理值與單位，SNA 分流 | 08 §三 |
 | R-DD10 | v1 | 外部表格之引用格式：Excel 書欄名不書 c{n}；LID 須標架構欄；計數須書母體判準與排除項；列號 1-based | 08 §三 |
+| R-DD11 | v1 | 引號內字串之終端標點：逐字 UI 字串自身之句點保留；判準為移除引號後是否以作者句點結尾 | 10 §三 |
+| R-DD12 | v1 | IN §11 方括號例外之啟用（profile-scoped）：僅及 test_item 上半之 037 逐字；lint 以「是否為來源逐字」判 | 10 §三 |
+| R-DD13 | v1 | 訊號一格載多名時之取捨：先以綁定 DBC 篩，再取同見於 Atlantis 與 Atlantis High 二欄者；未取者記為備援 | 10 §三 |
 
 **留存之被取代條文（依 R-TM13 不刪不改，不得引用）**：
 
@@ -240,5 +243,61 @@ R-DD10（外部表格之引用格式）
     （上繳包 04 §5.4）。
 (d) 列號一律 Excel 之 1-based。
 （Pei 下放，分析層即裁，下放包 08 §三）
+```
+---
+
+```
+R-DD11（引號內字串之終端標點）
+
+IN §11 之「無行尾句號」，其規制對象為**作者所書句子之句末標點**。
+逐字引用之 UI 字串，其自身之終端標點屬該字串之一部分，**保留**。
+
+例（合規）：
+  The Standard Lockout Popup is displayed, showing
+  "Feature not available while the vehicle is in motion."
+  —— 句點在引號內，屬 HMI spec p4 之原字串；item 之末字元為 `"`，非 `.`
+
+例（違規）：
+  … showing "Feature not available while the vehicle is in motion.".
+  —— 引號外另加句點，該句點為作者所書
+
+判準：**移除引號後，該 item 是否以作者之句點結尾**。是即違規。
+（Pei 下放，分析層即裁，下放包 10 §三）
+```
+---
+
+```
+R-DD12（IN §11 方括號例外之啟用；profile-scoped）
+
+依 IN §11 之 Exception，本 feature 啟用之：
+
+(a) `test_item` **上半**（需求原句 verbatim）中，源自 037 之方括號記法
+    （`Case [Normal]`／`Case [Exception]`／`$VC_Trans_Equipped$ = [Manual]` 等）
+    **保留原樣**，不得改寫為雙引號 —— 改之即違 R-S4 之逐字。
+(b) 例外**僅及於上半**。`test_item` 之括號下半（作者所書之測試目的）、
+    以及 `pre_conditions`／`input_test_data`／`test_procedure`／
+    `expected_result` 四欄，**一律依 IN §11 用 `"..."`，不得出現方括號**。
+    唯一例外為裁決所命之 `[ASSUMPTION A-DDn]` marker（標記，非 UI 標籤）。
+(c) lint／自檢對 `test_item` 之方括號，須以「該 token 是否為所引來源列
+    之逐字」為判準（比對 037 原文），非一律禁。
+（Pei 下放，分析層即裁，下放包 10 §三）
+```
+---
+
+```
+R-DD13（訊號一格載多名時之取捨）
+
+LID 之單一儲存格載多個訊號名者（如 `LID CAN Mapping r1738 [Atlantis High 欄]`
+同時載 STATUS_CCAN3.VehicleSpeedVSOSig 與 BRAKE_FD_2.VehicleSpeedVSOSig）：
+
+(a) 先以「該名存在於綁定 DBC」為篩。篩後唯一者即取之。
+(b) 篩後仍多於一者，取**同時見於 `Atlantis` 與 `Atlantis High` 二欄者**
+    —— 其不因架構欄之取捨而變，施加路徑最穩定。
+    實例：STATUS_CCAN3.VehicleSpeedVSOSig 見於 P 欄與 Z 欄二者；
+    BRAKE_FD_2.VehicleSpeedVSOSig 僅見於 Z 欄。故取前者。
+(c) (b) 仍無法區別者，登 DR，不逕選。
+(d) 未取之名於 profile §3 記為**備援**並註其匯流排，不得逕自替換；
+    台架若無主路徑之匯流排，須先報再換。
+（Pei 下放，分析層即裁，下放包 10 §三）
 ```
 ---

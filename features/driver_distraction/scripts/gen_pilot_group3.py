@@ -68,28 +68,23 @@ def main():
             "leaf": "009",
             "test_set": "Lockout Enforcement",
             "pre_conditions": (
-                "1. The head unit is powered on and the Driver Distraction service is running\n"
-                "2. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)\n"
-                '3. The Phone screen is displayed and "Pairing (1st time)" is offered on it'
+                "1. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)"
             ),
-            "input_test_data": (
-                SPEED + " = 129 (8.0625 km/h = 5.0097 MPH) [ASSUMPTION A-DD6]"
-            ),
+            "input_test_data": "NA",
             "test_procedure": (
-                "1. Send the signal " + SPEED + " = 129 (8.0625 km/h) and keep the message cycling\n"
-                '2. On the Phone screen, attempt to start "Pairing (1st time)"\n'
-                "3. Read the Phone screen and check whether the pairing flow has been entered"
+                "1. Send the signal " + SPEED + " = 129 (8.0625 km/h)\n"
+                '2. Open the Phone screen and select "Pairing (1st time)"\n'
+                "3. Read the Phone screen and check that the pairing flow has not started"
             ),
             "expected_result": (
-                "1. The vehicle-speed signal is carried on the bus at raw 129, which is 8.0625 km/h "
-                "and 5.0097 MPH, the first representable step at or above the 5 MPH threshold "
-                "[ASSUMPTION A-DD6]\n"
-                '2. The "Pairing (1st time)" entry does not act as an available control and the '
-                "pairing flow does not start\n"
-                "3. The pairing flow is not entered and the Phone screen stays as it was before the attempt"
+                "1. The vehicle-speed signal is carried on the bus at raw 129, which is "
+                "8.0625 km/h [ASSUMPTION A-DD6]\n"
+                '2. The Phone screen is displayed and the "Pairing (1st time)" entry is selected\n'
+                "3. The pairing flow does not start and the Phone screen stays as it was "
+                "before the attempt"
             ),
             "priority": "P0",
-            "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+            "design_method": "狀態轉換 (State Transition Testing)",
             "reasoning": (
                 "驗證目標：速度達上鎖門檻時，Lockout Table 所列之受限 feature 其存取被阻 —— "
                 "斷言錨取 profile §2.1 觀察面 A（存取阻擋），取樣 feature 具名為 "
@@ -101,25 +96,22 @@ def main():
                 "刻意略過：解鎖方向（raw 77／78）屬 -013／-015，門檻下側 raw 128 之不應鎖屬 BVA 之另一半，"
                 "本列不擴入（IN §8.2.1）；p7 黃標三項（Player / RSE、Messaging、SRT Options）不取樣，"
                 "Embedded NAV 系（含 Destination Entry）因僅適用 LATAM 亦不取。"
+                "設計方法依 IN §12 首合原則取狀態轉換 —— 觸發為車速由 0 跨越門檻之 A→B 轉換，"
+                "於 Scenario 之前命中；且 §12 tie-break 之 Scenario 判準為「≥3 steps crossing features」，"
+                "本列為單一 feature 之存取嘗試，不合。"
             ),
         },
         {
             "leaf": "010",
             "test_set": "Lockout Enforcement",
             "pre_conditions": (
-                "1. The head unit is powered on and the Driver Distraction service is running\n"
-                "2. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)\n"
-                '3. The Phone screen is displayed and "Pairing (1st time)" can be started'
+                "1. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)"
             ),
-            "input_test_data": (
-                SPEED + " = 0 (0.0000 km/h) up to the moment the carrying message is stopped"
-            ),
+            "input_test_data": "NA",
             "test_procedure": (
-                '1. On the Phone screen, start "Pairing (1st time)", confirm the pairing screen '
-                "appears, then leave it and return to the Phone screen\n"
-                '2. Stop transmitting the message "STATUS_CCAN3" that carries ' + SPEED
-                + ", and let the signal timeout elapse\n"
-                '3. Attempt to start "Pairing (1st time)" again and read the Phone screen'
+                '1. Start "Pairing (1st time)" from the Phone screen, then leave it\n'
+                '2. Stop transmitting the message "STATUS_CCAN3" and let the signal timeout elapse\n'
+                '3. Select "Pairing (1st time)" again and check that the pairing flow does not start'
             ),
             "expected_result": (
                 '1. The "Pairing (1st time)" pairing screen is shown, and the Phone screen is '
@@ -140,31 +132,26 @@ def main():
                 "步驟 1 先確認該 feature 在訊號正常時可啟動，"
                 "否則步驟 3 之「不可啟動」分不出「fail-safe 生效」與「本來就不可用」（IN §5.6 基準）。"
                 "刻意略過：SNA（raw 8191）之路徑本列不涵蓋 —— 037 本列未書該形態，寫入即造值。"
+                "另：本列與 newR1L-DD-004 之驗證目標實質相同（見該列 reasoning 與 A-DD7／DR-DD7）。"
             ),
         },
         {
             "leaf": "011",
             "test_set": "Lockout Enforcement",
             "pre_conditions": (
-                "1. The head unit is powered on and the Driver Distraction service is running\n"
-                "2. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)\n"
-                '3. The menu-bar configuration view for "Reconfigurable menu bar" can be opened'
+                "1. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)"
             ),
-            "input_test_data": (
-                SPEED + " = 129 (8.0625 km/h = 5.0097 MPH) [ASSUMPTION A-DD6]"
-            ),
+            "input_test_data": "NA",
             "test_procedure": (
-                '1. Open the menu-bar configuration view and begin editing "Reconfigurable menu bar"\n'
-                "2. While that view is still open, send the signal " + SPEED
-                + " = 129 (8.0625 km/h) and keep the message cycling\n"
-                "3. Read the screen and check the notification that is presented to the user"
+                '1. Open the menu-bar configuration view for "Reconfigurable menu bar"\n'
+                "2. Send the signal " + SPEED + " = 129 (8.0625 km/h)\n"
+                "3. Read the screen and check that the Standard Lockout Popup is displayed"
             ),
             "expected_result": (
                 '1. The menu-bar configuration view for "Reconfigurable menu bar" is displayed '
                 "and accepts editing input\n"
-                "2. The vehicle-speed signal is carried on the bus at raw 129, which is 8.0625 km/h "
-                "and 5.0097 MPH, the first representable step at or above the 5 MPH threshold "
-                "[ASSUMPTION A-DD6]\n"
+                "2. The vehicle-speed signal is carried on the bus at raw 129, which is "
+                "8.0625 km/h [ASSUMPTION A-DD6]\n"
                 '3. The Standard Lockout Popup is displayed, showing "' + POPUP + '"'
             ),
             "priority": "P0",
@@ -184,19 +171,13 @@ def main():
             "leaf": "012",
             "test_set": "Lockout Enforcement",
             "pre_conditions": (
-                "1. The head unit is powered on and the Driver Distraction service is running\n"
-                "2. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)\n"
-                '3. The menu-bar configuration view for "Reconfigurable menu bar" can be opened'
+                "1. The vehicle is stationary and " + SPEED + " is transmitted at 0 (0.0000 km/h)"
             ),
-            "input_test_data": (
-                SPEED + " = 0 (0.0000 km/h) up to the moment the carrying message is stopped"
-            ),
+            "input_test_data": "NA",
             "test_procedure": (
-                '1. Open the menu-bar configuration view for "Reconfigurable menu bar", confirm it '
-                "accepts editing input, then leave the view\n"
-                '2. Stop transmitting the message "STATUS_CCAN3" that carries ' + SPEED
-                + ", and let the signal timeout elapse\n"
-                "3. Attempt to open the menu-bar configuration view again and read the screen"
+                '1. Open the "Reconfigurable menu bar" configuration view, then leave it\n'
+                '2. Stop transmitting the message "STATUS_CCAN3" and let the signal timeout elapse\n'
+                "3. Open the menu-bar configuration view again and check that it does not open"
             ),
             "expected_result": (
                 '1. The menu-bar configuration view for "Reconfigurable menu bar" is displayed '
@@ -216,6 +197,11 @@ def main():
                 "其 Then 句書 `HMI keeps the corresponding feature locked` 而非 -118 之通知面；"
                 "本 TC 依原文斷言存取阻擋，**不代上游改寫為通知**（IN §8.4.2）。"
                 "區別二列者為取樣 feature 與 spec_reference，非斷言內容。"
+                "**本列與 newR1L-DD-002 之驗證目標實質相同** —— 依 IN §4.6 之等價判準"
+                "（same trigger + outcome + input + verification target）四者皆同，"
+                "其區別僅在取樣 feature 與追溯 ID，而取樣 feature 係作者所選、非 spec 所定。"
+                "二列皆保留係追溯要求（每 leaf 須有 TC），"
+                "**不得以取樣 feature 之不同偽稱為不同之驗證目標**；成因見 A-DD7／DR-DD7。"
             ),
         },
     ]

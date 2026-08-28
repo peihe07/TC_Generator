@@ -368,4 +368,31 @@ lockout 通知仍呈現／該 feature 仍不可用」）？
 **本項為 Tier 1 登記（record + propose），處置屬 Tier 2。
 是否另立 DR 由分析層定 —— 執行層不代登。**
 
-狀態：**PENDING**（待分析層）。
+### 處分（下放包 10 §四）—— **立 DR-DD7**
+
+分析層採認執行層之處置（依原文斷言存取阻擋，不代上游改寫），並補一項後果：
+
+> 二列之 037 原文 18/20 欄全等 → 其衍生之二 TC，**區別僅在於取樣 feature，
+> 而取樣 feature 是作者所選、非 spec 所定**。依 **IN §4.6** 之等價判準
+> （same trigger + outcome + input + verification target）**四者皆同** ——
+> 若非追溯需求，其為重複。
+
+- 二 TC **皆保留**（追溯要求每 leaf 有 TC）
+- `newR1L-DD-004` 之 `reasoning` 已明記其與 `newR1L-DD-002` 之實質同一，
+  `newR1L-DD-002` 亦互指（T16c）
+- **不得以取樣 feature 之不同偽稱為不同之驗證目標**
+- **DR-DD7 已建檔**（DRAFTED，見 `DATA_REQUESTS.md`）
+
+狀態：**PENDING**（待 DR-DD7）。
+
+---
+
+### 遵行紀錄（下放包 10 之輪）
+
+本輪寫入全在私有路徑（`RULINGS.md`／`DATA_REQUESTS.md`／`ANOMALIES.md`／
+`docs/upstream/`／`scripts/`／`generated/`）。
+
+- profile §2.5（R-DD12）／§2.6（R-DD11）由**分析層自辦**，
+  **執行層本輪未觸及該檔一字**（拘束四）—— 僅唯讀回讀以取 §2.5／§2.6 之判準
+- 037／DBC／LID 全程唯讀
+- **未寫回工作簿、未執行 git**

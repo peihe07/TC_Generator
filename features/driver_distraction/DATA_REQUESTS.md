@@ -18,8 +18,9 @@ Urgency 回報。
 | **DR-DD4** | 上游（CFTS022／037 作者）| **DRAFTED**（待 Pei 發送）| **9 列書 MPH 門檻者**：`-003`／`-005`／`-007`／`-009`／`-011`／`-013`／`-015`（7，可生成）＋ `-025`／`-027`（2，另因 A-DD1 凍結）| 不阻斷生成；ER 之 raw 數值標 A-DD6 | **A-DD6** | 中 |
 | **DR-DD5** | 上游（LID 維護者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入 pilot**；`$VC_Trans_Equipped$` 有無施加路徑未定 | — | 高 —— 與 DR-DD6 並列 |
 | **DR-DD6** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **該 8 leaf 不入 pilot**；`$VC_Trans_Equipped$` 之列舉對應未定 | — | 高 —— 組 1／2 待此 |
+| **DR-DD7** | 上游（037 作者）| **DRAFTED**（待 Pei 發送）| `-010`／`-012`（2）| **不阻斷** —— 二 TC 皆保留（追溯要求）；驗證目標實質相同 | **A-DD7** | 中 |
 
-**DR-DD1／DR-DD2／DR-DD4／DR-DD6 為 DRAFTED 未發送；DR-DD3 之標的已到位，狀態
+**DR-DD1／DR-DD2／DR-DD4／DR-DD5／DR-DD6／DR-DD7 為 DRAFTED 未發送；DR-DD3 之標的已到位，狀態
 ANSWERED-PENDING-CONFIRM（下放包 07 §三 R-DD8(c) 明定不結案）。**
 
 > **DR-DD5 已於下放包 09 §二 裁定建檔**（保留號轉正式條目）。
@@ -472,3 +473,55 @@ STATUS_CCAN3.VehicleSpeedVSOSig   13 bit, factor 0.0625, unit Km/h
 | **DR-DD6** | `[Manual]`／`[Automatic]` 對 `Gear_Box_Type` 六值制**如何對應** | 即使給出歸屬，r420 為準時該歸屬無處施加 |
 
 **須分別追**（同 DR-DD1／DR-DD3 之理）。
+
+
+---
+
+## DR-DD7 —— `-010` 與 `-012` 之 AC2 逐字全等（A-DD7）
+
+- **標的**：上游（037 作者）
+- **狀態**：**DRAFTED**（下放包 10 §四 之文稿，逐字保留；待 Pei 發送）
+- **由來**：**A-DD7**（執行層 T15 生成過程所登，下放包 10 §四 採認並命立 DR）
+- **阻斷範圍**：**不阻斷** —— 二 TC 皆保留（追溯要求每 leaf 有 TC）
+
+### 分析層所補之後果（下放包 10 §四）
+
+`-010` 與 `-012` 之 037 原文 18/20 欄全等 → 其衍生之二 TC，
+**區別僅在於「取樣 feature」，而取樣 feature 是作者所選、非 spec 所定**。
+
+依 **IN §4.6 之等價判準**（same trigger + outcome + input + verification target）
+**四者皆同** —— 若非追溯需求，其為重複。
+
+### 處置
+
+- 二 TC **皆保留**
+- `newR1L-DD-004` 之 `reasoning` **已明記**「本列與 `newR1L-DD-002` 之驗證目標
+  實質相同，區別僅在取樣 feature 與追溯 ID」；`newR1L-DD-002` 亦互指
+- **不得以取樣 feature 之不同偽稱為不同之驗證目標**
+
+### 文稿（下放包 10 §四，逐字）
+
+> **DR-DD7 — Identical AC2 text for `SWE1-RA-Driver_Distraction-010` and `-012`**
+>
+> In FM-WI-FSM-037-A03, rows `-010` and `-012` are byte-identical across 18
+> of 20 columns; they differ only in the leaf id and the Source Requirement
+> ID. `-010` traces to `SYS-RA-Driver_Distraction-117`, whose normal-case
+> outcome is `HMI prevents access to the feature`; `-012` traces to `-118`,
+> whose normal-case outcome is `HMI displays the driver-distraction lockout
+> notification`.
+>
+> The AC1 pair derived from the same two sources (`-009` and `-011`) does
+> differ in Requirement Description and Verification Criteria, each following
+> its own source. The AC2 pair does not: both state
+> `HMI keeps the corresponding feature locked`, which is the `-117` outcome.
+>
+> Question: for `-012`, should the AC2 outcome be the notification behaviour
+> of `-118` (i.e. the lockout notification is presented when a required
+> signal is unavailable), or is the access-blocking wording intended as
+> written? As it stands, the two rows yield test cases with the same
+> verification target, distinguished only by traceability.
+
+### 與 A-DD7 之連結
+
+本 DR 之台帳對應項為 **A-DD7**（`ANOMALIES.md`）——
+該條為執行層 Tier 1 登記（record + propose），本 DR 為其 Tier 2 處置。
