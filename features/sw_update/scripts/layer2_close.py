@@ -36,10 +36,10 @@ SETS = [
     ("Configurable Parameters", ["125", "127"]),
     ("FOTA Overview",          ["001"]),
     ("Integrity Verification", ["022", R(171, 174), R(310, 312), R(338)]),
-    ("Interruption Handling",  [R(313), R(315, 329), R(357), R(360)]),
+    ("Interruption Handling",  [R(313), R(315, 329), R(357), R(359, 360)]),
     ("Status Reporting",       [R(330, 334), R(339), R(358)]),
     ("Deployment Conditions",  [R(336, 337), R(340, 341), R(343, 346)]),
-    ("Session Management",     [R(347, 356), R(359), R(361), R(368, 369)]),
+    ("Session Management",     [R(347, 356), R(361), R(368, 369)]),
     ("Telematics Client",      [R(363, 367)]),
     ("Update Agent",           [R(370, 383)]),
 ]
@@ -79,7 +79,8 @@ def main():
     print("### (i) 列數閉合\n")
     print("| # | Test Set | 所轄 (Heading id, 列區間) | 列數 | 下放包 16 §4.1 | |")
     print("|---:|---|---|---:|---:|:--:|")
-    DECL = [29, 17, 9, 26, 16, 35, 16, 20, 14, 36, 5, 6, 2, 6, 8, 18, 7, 8, 14, 5, 14]
+    DECL = [29, 17, 9, 26, 16, 35, 16, 20, 14, 36, 5, 6, 2, 6, 8, 19, 7, 8, 13, 5, 14]
+    # 下放包 18 §2.1：`359` 改置 → Interruption 18→19、Session Management 14→13
     tot = 0
     for i, ((name, ids, heads, items), want) in enumerate(zip(resolved, DECL), 1):
         tot += len(ids)
@@ -144,7 +145,8 @@ def main():
 
 
 # ── T30c —— 孤島列檢查（R-SU20）────────────────────────────────────────
-SEED_ISLANDS = {338, 339, 357, 358, 359, 360, 361}   # 上繳包 15 §6.1 之 7 個
+SEED_ISLANDS = {338, 339, 357, 358, 361}   # 下放包 18 §二定案後之預期（原 7，`359`／`360` 因改組解除）
+PREV_ISLANDS = {338, 339, 357, 358, 359, 360, 361}   # 上繳包 15 §6.1 之 7 個（改組前）
 NAME_STOP = {"of", "and", "via", "the", "for", "to", "a", "an"}
 
 
@@ -200,7 +202,7 @@ def t30c(resolved, gmap, num):
     isl, own = islands(resolved, groups, num, strict=True)
     got = {n for n, *_ in isl}
     print("### 種子回測（R-SU20 之偵測器；未過即停）\n")
-    print(f"已知種子（上繳包 15 §6.1，`309` 群內之 7 個孤島）："
+    print(f"預期種子（下放包 18 §二定案後之 {len(SEED_ISLANDS)} 個）："
           + "、".join(f"`{n}`" for n in sorted(SEED_ISLANDS)) + "\n")
     miss, extra = SEED_ISLANDS - got, got - SEED_ISLANDS
     print(f"- 本偵測器（strict）抓到 **{len(got)}** 個；其中種子 "
@@ -210,7 +212,25 @@ def t30c(resolved, gmap, num):
           + (f" —— {sorted(extra)}" if extra else "（無）"))
     if miss:
         sys.exit("T30c 種子回測未過，停（PLAYBOOK §7(10)）")
-    print("\n**種子回測通過** —— 7 個已知孤島全數重現。\n")
+    print(f"\n**種子回測通過** —— {len(SEED_ISLANDS)} 個預期孤島全數重現，"
+          f"且無非預期之孤島。\n")
+
+    # ── 改組前後之對照（T31a：新產生之孤島列須明列）
+    print("### 改組前後之孤島變化（T31a）\n")
+    solved, brandnew = PREV_ISLANDS - got, got - PREV_ISLANDS
+    print("| | 列數 | 037 列 |")
+    print("|---|---:|---|")
+    print(f"| 改組前（上繳包 15 §6.1） | {len(PREV_ISLANDS)} | "
+          + "、".join(f"`{n}`" for n in sorted(PREV_ISLANDS)) + " |")
+    print(f"| 改組後（本輪） | **{len(got)}** | "
+          + "、".join(f"`{n}`" for n in sorted(got)) + " |")
+    print(f"| **解除** | {len(solved)} | "
+          + ("、".join(f"`{n}`" for n in sorted(solved)) or "—") + " |")
+    print(f"| **新產生** | **{len(brandnew)}** | "
+          + ("、".join(f"`{n}`" for n in sorted(brandnew)) or "**無**") + " |")
+    print(f"\n`359` 改置 `Interruption Handling` 後，**`359` 與 `360` 之孤島身分同時解除**"
+          f"（`359` 之後鄰 `360` 與其同組、`360` 之前鄰 `359` 與其同組）；"
+          f"**未製造任何新孤島**。\n")
 
     # ── 解讀之敏感度
     isl2, _ = islands(resolved, groups, num, strict=False)
@@ -276,8 +296,35 @@ def t30c(resolved, gmap, num):
     return isl
 
 
+# ── T31d —— 0 列 Heading 群清單之程式化（R-SU21 v2(b)）─────────────────
+def t31d(gmap):
+    """0 列群清單由程式產生，並與 `framework.md` 所載比對；不符即停。
+
+    R-SU21 v2(b)：**寫「關於零之條文」時，其列舉須以程式產生，不得人手列。**
+    """
+    zero = sorted(g["id"] for g in gmap.values() if not g["rows"])
+    fw = (Path(__file__).resolve().parent.parent / "framework.md").read_text()
+    sec = fw[fw.index("### 0 列 Heading 群"):fw.index("之加註（逐字）")]
+    listed = sorted(set(re.findall(r"`(SWE1-FOTA-\d+)`", sec)))
+    print("\n\n## T31d —— 0 列 Heading 群清單之程式化（R-SU21 v2(b)）\n")
+    print(f"- 程式產生：**{len(zero)}** 群 —— " + "、".join(f"`{x}`" for x in zero))
+    print(f"- `framework.md` 所載：**{len(listed)}** 群")
+    miss, extra = set(zero) - set(listed), set(listed) - set(zero)
+    print(f"- 檔載而實測非 0：**{len(extra)}**" + (f" —— {sorted(extra)}" if extra else " ✅"))
+    print(f"- 實測為 0 而檔未載：**{len(miss)}**" + (f" —— {sorted(miss)}" if miss else " ✅"))
+    ok = not miss and not extra
+    print(f"\n**比對結果：{'相符 ✅' if ok else '**不符 ❌**'}**"
+          f"（R-SU21 v2(b)：{len(zero)} 群）")
+    if not ok:
+        sys.exit("T31d 0 列群清單與 framework.md 不符，停")
+    return zero
+
+
+
 
 if __name__ == "__main__":
     r, g, n = main()
+    if "31d" in sys.argv[1:]:
+        t31d(g)
     if "30c" in sys.argv[1:]:
         t30c(r, g, n)

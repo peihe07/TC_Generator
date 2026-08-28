@@ -15,7 +15,7 @@ R-SU1／**R-SU10 v2**／R-SU18／**R-SU19**
 | 層 | 效力 | 進工作簿 | 變更成本 |
 |---|---|:--:|---|
 | **Layer 1**（Test Group） | **定稿** | ✅ | 須 Pei 裁 |
-| **Layer 2**（Test Set） | **全定稿**（21 組）；**5 列標 `PROVISIONAL-ROW`** | ✅ | 須分析層裁並記依據；已寫回者視同修訂 |
+| **Layer 2**（Test Set） | **全定稿**（21 組，**無 provisional 列**） | ✅ | 須分析層裁並記依據；已寫回者視同修訂 |
 | **Layer 3**（spec 章節分群） | **PROVISIONAL** | ❌（IN §4.1.5） | 階段二逐列人裁時就地修正，不須另發裁決；須記於該列 `reasoning` 並回寫本檔 |
 
 > ⚠ **R-SU18(c) 之拘束**：Layer 3 之 provisional 狀態**不得外溢至
@@ -108,13 +108,13 @@ CFTS_57 Reflash —— 交付面統一取 `SW Update`（Pei 2026-08-27 裁定 Q6
 | | | *Heading 標題原文*（R-SU10 v2(c)）：001 Firmware Over-the-air Updates (FOTA) | | | | |
 | 15 | `Integrity Verification` | 驗證與加密：OMA-DM 訊息完整性、DM Tree 加密、部署包完整性與簽章 | (`SWE1-FOTA-170`, 171–174)、(`SWE1-FOTA-309`, 310–312/338)、(`SWE1-FOTA-022`, 0 列) | 8 | 0 | 8 |
 | | | *Heading 標題原文*（R-SU10 v2(c)）：022 Communication Security；170 Deployment Package Security；309 OMA-DM Security | | | | |
-| 16 | `Interruption Handling` | 中斷處理與續傳：六種中斷、復原、儲存、併發 | (`SWE1-FOTA-309`, 313/315–329/357/360) | 18 | 0 | 18 |
+| 16 | `Interruption Handling` | 中斷處理與續傳：六種中斷、復原、儲存、併發 | (`SWE1-FOTA-309`, 313/315–329/357/359–360) | 19 | 0 | 19 |
 | | | *Heading 標題原文*（R-SU10 v2(c)）：309 OMA-DM Security | | | | |
 | 17 | `Status Reporting` | 回報：session 完成／重試／重送、backchannel 狀態 | (`SWE1-FOTA-309`, 330–334/339/358) | 7 | 0 | 7 |
 | | | *Heading 標題原文*（R-SU10 v2(c)）：309 OMA-DM Security | | | | |
 | 18 | `Deployment Conditions` | 部署前條件：可組態安裝條件、評估、車輛條件提供 | (`SWE1-FOTA-309`, 336–337/340–341/343–346) | 8 | 0 | 8 |
 | | | *Heading 標題原文*（R-SU10 v2(c)）：309 OMA-DM Security | | | | |
-| 19 | `Session Management` | 輪詢與 session 管理：間隔、前提、伺服器發起流程、佇列 | (`SWE1-FOTA-309`, 347–356/359/361/368–369) | 14 | 0 | 14 |
+| 19 | `Session Management` | 輪詢與 session 管理：間隔、前提、伺服器發起流程、佇列 | (`SWE1-FOTA-309`, 347–356/361/368–369) | 13 | 0 | 13 |
 | | | *Heading 標題原文*（R-SU10 v2(c)）：309 OMA-DM Security | | | | |
 | 20 | `Telematics Client` | TC 介接：通訊建立、訂閱、session 接收與轉送 | (`SWE1-FOTA-309`, 363–367) | 5 | 0 | 5 |
 | | | *Heading 標題原文*（R-SU10 v2(c)）：309 OMA-DM Security | | | | |
@@ -122,63 +122,70 @@ CFTS_57 Reflash —— 交付面統一取 `SW Update`（Pei 2026-08-27 裁定 Q6
 | | | *Heading 標題原文*（R-SU10 v2(c)）：309 OMA-DM Security | | | | |
 | | **小計** | | **21 組／45 群** | **311** | **87** | **223**（+1 blank） |
 
-### 孤島列檢查（R-SU20）—— 7 個，2 處聚集
+### 孤島列檢查（R-SU20）—— 5 個，3 處聚集
 
-實測 2026-08-28，`python3 scripts/layer2_close.py 30c`（種子回測 7/7 通過）。
+實測 2026-08-28，`python3 scripts/layer2_close.py 30c`（種子回測 5/5 通過，
+**種子外 0 個新發現**）。
 
-| 037 列 | 標題 | 其組 | 前鄰 | 後鄰 | 裁定（下放包 17 §四） |
+| 037 列 | 標題 | 其組 | 前鄰 | 後鄰 | 記名依據（下放包 18 §二） |
 |---|---|---|---|---|---|
-| `338` | Pre-Deployment Package Authenticity Verification | `Integrity Verification` | 337 `Deployment Conditions` | 339 `Status Reporting` | **`PROVISIONAL-ROW`** |
-| `339` | OTA Status Reporting via Backchannel | `Status Reporting` | 338 `Integrity Verification` | 340 `Deployment Conditions` | **維持** —— 其對象為回報訊息之通道，與 `330`–`334` 同一觀察面 |
-| `357` | Installation Interruption State Management | `Interruption Handling` | 356 `Session Management` | 358 `Status Reporting` | **`PROVISIONAL-ROW`** |
-| `358` | Update Status Reporting to SWMC | `Status Reporting` | 357 `Interruption Handling` | 359 `Session Management` | **維持** —— 對象為對 SWMC 之狀態回報 |
-| `359` | OTA Flow Concurrency Control | `Session Management` | 358 `Status Reporting` | 360 `Interruption Handling` | **`PROVISIONAL-ROW`** |
-| `360` | Download Interruption Recovery | `Interruption Handling` | 359 `Session Management` | 361 `Session Management` | **`PROVISIONAL-ROW`** |
-| `361` | Server-Initiated OTA Background Execution | `Session Management` | 360 `Interruption Handling` | 363 `Telematics Client` | **`PROVISIONAL-ROW`** |
+| `338` | Pre-Deployment Package Authenticity Verification | `Integrity Verification` | 337 `Deployment Conditions` | 339 `Status Reporting` | 其述「verify the **authenticity of the deployment package**」與 `312`「**integrity verification of the deployment package**」為**同一驗證對象**之一對；前鄰 `337` 之對象為工作流而非驗證。**從對象走，不從流程走** |
+| `339` | OTA Status Reporting via Backchannel | `Status Reporting` | 338 `Integrity Verification` | 340 `Deployment Conditions` | 其**對象**為回報訊息之通道，與 `330`–`334` 同一觀察面 |
+| `357` | Installation Interruption State Management | `Interruption Handling` | 356 `Session Management` | 358 `Status Reporting` | 首句 save→resume 與 `360`（detect→save→resume）、`325`（suspend→record→wait）為**同一三段結構** |
+| `358` | Update Status Reporting to SWMC | `Status Reporting` | 357 `Interruption Handling` | 359 `Interruption Handling` | 對象為對 SWMC 之狀態回報 |
+| `361` | Server-Initiated OTA Background Execution | `Session Management` | 360 `Interruption Handling` | 363 `Telematics Client` | 其約束對象為 **server-initiated OTA update flows**，與 `351`／`368`／`369` 同一流程族；「背景執行不阻斷前景」為該流程之執行約束，非獨立能力 |
 
-**聚集**：7 個孤島聚為 **2 處**（`338`–`339`、`357`–`361`），非散布 ——
-依 R-SU20(c)，聚集本身為證據，指向該段有系統性成因。
+**每列之依據皆取自 Description 之內容，非其標題關鍵詞**（R-SU20(d)）。
+
+**聚集**：5 個孤島聚為 **3 處**（`338`–`339`、`357`–`358`、`361`）。
+
+**改組前後**（`359` 自 `Session Management` 改置 `Interruption Handling`）：
+
+| | 列數 | 037 列 |
+|---|---:|---|
+| 改組前（上繳包 15 §6.1） | 7 | `338`、`339`、`357`、`358`、`359`、`360`、`361` |
+| **改組後（本輪）** | **5** | `338`、`339`、`357`、`358`、`361` |
+| 解除 | 2 | `359`、`360`（二者互為鄰居且同組，孤島身分同時解除） |
+| **新產生** | **0** | **無** |
 
 > **R-SU20(e) 之限度**：孤島列指出「該處之依據需高於相鄰之先驗」，
 > **不是「該處錯了」**。規格作者確有可能在連續數列中交替寫數種能力。
 
-### `PROVISIONAL-ROW`（5 列）—— 待 Description 定案
+### 五列定案之記錄（下放包 18 §二）
 
-| 037 列 | 現置組 | 待決之候選組 | 分析層之傾向（下放包 17 §四） |
+| 037 列 | 前 | 後 | 變動 |
 |---|---|---|---|
-| `338` | `Integrity Verification` | `Integrity Verification` / `Deployment Conditions` | **傾向維持** —— 其驗證對象與 `312` 同為部署包 |
-| `357` | `Interruption Handling` | `Interruption Handling` / `Session Management` / `Status Reporting` | 未表示 —— 標題同時含 `Interruption` 與 `State Management`，指派用的是關鍵詞相符，違 R-SU20(d) |
-| `359` | `Session Management` | `Session Management` / `Interruption Handling` | 未表示 —— 與 `323 Concurrent NIA Handling` 疑為同族 |
-| `360` | `Interruption Handling` | `Interruption Handling` / `Session Management` | 未表示 —— 上繳包 14 §7.1 已宣告 `321`／`325`／`360` 三近義標題不可由標題判別 |
-| `361` | `Session Management` | `Session Management` / `Telematics Client` | 未表示 —— 前鄰 `360` 待定、後鄰 `363` 跨組邊界，連帶待定 |
+| `338` | `Integrity Verification` | `Integrity Verification` | 維持 |
+| `357` | `Interruption Handling` | `Interruption Handling` | 維持。⚠ **雙職**：其次句「report the installation status … to the SWMC」屬回報 —— 撰寫 TC 時依 IN §8.2.2 得拆為 2 TC，二者皆 trace 本列 |
+| `359` | `Session Management` | **`Interruption Handling`** | **改置** —— 與 `323`（作用中 session 期間之外來請求／不中斷現行 session）同一觸發面與保護目標，差別僅在處置動作（ignore vs queue） |
+| `360` | `Interruption Handling` | `Interruption Handling` | 維持 |
+| `361` | `Session Management` | `Session Management` | 維持 |
 
-材料見 `docs/upstream/16_islands.md` §T30a（九列全文）。
+**`PROVISIONAL-ROW` 全數解除。Layer 2 自下放包 18 起無 provisional 列，
+R-SU20(f)（不得帶入寫回）之要求已滿足。**
 
-> ⚠ **R-SU20(f)**：Layer 2 進工作簿（R-SU18(b)），
-> 故 **`PROVISIONAL-ROW` 不得帶入寫回 —— 寫回前須全數解除**。
-> 現有 5 列未決，**本 feature 尚不得寫回 Layer 2**。
+### 0 列 Heading 群（**9 群**）—— R-SU21 v2(b)(c)
 
-### 0 列 Heading 群（**實測 9 群**）—— R-SU21(b)(c) 之標記
+**本清單由程式產生並與本檔比對**（`scripts/layer2_close.py 31d`，不符即停）——
+R-SU21 v2(b)：**寫「關於零之條文」時，其列舉須以程式產生，不得人手列**。
 
-| Heading id | 標題原文 | 所屬 Test Set | R-SU21(b) 列舉 |
-|---|---|---|:--:|
-| `SWE1-FOTA-016` | Session Flows | `Session Flows` | ✅ |
-| `SWE1-FOTA-017` | Deployment Flow | `Session Flows` | ✅ |
-| `SWE1-FOTA-020` | Re-Flashing Requirements | `USB Update` | ✅ |
-| `SWE1-FOTA-022` | Communication Security | `Integrity Verification` | ✅ |
-| `SWE1-FOTA-072` | OTA Client Architecture | `Client Architecture` | ✅ |
-| `SWE1-FOTA-073` | Operating Environment | `Client Architecture` | ✅ |
-| `SWE1-FOTA-074` | Over The Air (OTA) Deployment of Software | `USB Update` | ✅ |
-| `SWE1-FOTA-076` | Local Deployment of Software | `USB Update` | ✅ |
-| **`SWE1-FOTA-085`** | **FOTA ROV Reflash Requirements** | `ROV Installation` | **❌ 未列** |
+| Heading id | 標題原文 | 所屬 Test Set |
+|---|---|---|
+| `SWE1-FOTA-016` | Session Flows | `Session Flows` |
+| `SWE1-FOTA-017` | Deployment Flow | `Session Flows` |
+| `SWE1-FOTA-020` | Re-Flashing Requirements | `USB Update` |
+| `SWE1-FOTA-022` | Communication Security | `Integrity Verification` |
+| `SWE1-FOTA-072` | OTA Client Architecture | `Client Architecture` |
+| `SWE1-FOTA-073` | Operating Environment | `Client Architecture` |
+| `SWE1-FOTA-074` | Over The Air (OTA) Deployment of Software | `USB Update` |
+| `SWE1-FOTA-076` | Local Deployment of Software | `USB Update` |
+| `SWE1-FOTA-085` | FOTA ROV Reflash Requirements | `ROV Installation` |
 
-> ⚠ **R-SU21(b) 稱「本案 45 群中有 8 群所轄 in-scope 列為 0」並列舉 8 個。
-> 實測為 9 群** —— `SWE1-FOTA-085`（`FOTA ROV Reflash Requirements`，0 列，
-> 屬 `ROV Installation`）未列（上繳包 16 §T30d）。本檔採 **9**，
-> R-SU21(b)(c) 之效力一體適用於該群。
-
-> **R-SU21(c) 之加註（逐字）**：「0 列群之歸屬依據為標題字面，無列證據，
+> **R-SU21 v1(c) 之加註（逐字）**：「0 列群之歸屬依據為標題字面，無列證據，
 > **不具交付效力**，亦**不得作為其他歸屬之類比依據**。」
+>
+> R-SU21 v1(b) 誤載為 8 群並漏列 `SWE1-FOTA-085`，**v2(b) 更正為 9 群**
+> （上繳包 16 §6.1）。
 
 ---
 
@@ -244,7 +251,7 @@ PROVISIONAL — 得於階段二逐列人裁時就地修正（R-SU18(c)）
 | `Client Architecture` | `4.4`, `4.4.1`, `4.5` | **GT**（`257`,`260`,`261`,`262`） |
 | `Bearer Selection` | `4.6`, `4.6.1`, `4.7.3` | **GT**（`292`，信度 M） |
 | `Update Policy` | `4.7.3`, `4.7.3.1` | **GT**（`034`；GT-B `030`,`031`） |
-| `Session Management` | `4.10.2`, `4.10.3` | **GT**（`347`）+ 推定 |
+| `Session Management` | `4.10.2`, `4.10.3`；**`361` 另併列 `4.7.1` 之可能** | **GT**（`347`）+ 推定 |
 | `TBM Reflash` | `5`（TBM FOTA Reflash Requirements） | 標題全詞重疊（下放包 07 §1.4） |
 | `HU FOTA via TBM` | `4.2.3` + `5` | **GT**（`215`,`216`） |
 | `USB Update` | `3`（Media Reflash Requirements） | 推定 |
