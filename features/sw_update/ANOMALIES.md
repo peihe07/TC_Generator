@@ -12,6 +12,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-SU3 | 規格 PDF p.46 之 `PU971`（3 位）於 `forms/Pop Up List HMI R1 (26PI).xlsx` 查無 | **RESOLVED（下放包 03 §2.3：原文筆誤，作 `PU0971`）** | — |
 | A-SU4 | T20a 之需求物件全文抽取未以 Description 宣告為停界：14/487 物件吞併 43 個 Description，佔需求物件文字之 19.5% | **RESOLVED（下放包 09 §二：語料 v2）** | — |
 | A-SU5 | T12 之 Description 歸屬以「首見」定之，其游標被文件前置之 `Requirement ID nnn` 清單移動，致 `4907923`／`4907934` 誤歸宿主 `4907907`。正確為 **43 歸需求 / 94 歸章節**，非 45/92 | **RESOLVED（下放包 10 §二）** | — |
+| **A-SU6** | **commit 分包壞損（執行層）**：`c3f31f6`（T53 之執行產出）之 pathspec 用整個 `features/sw_update/` 目錄，**將下放包 39／40 之落檔一併掃入**（各 225／481 行）。此前各輪皆分「落檔」與「執行」二 commit —— **本輪二者混於一個 `feat:` 中**，致「哪條裁定隨哪包進來」之追溯於此斷一節 | **RESOLVED（加註，不改寫歷史）** | — |
 
 ---
 
@@ -460,3 +461,39 @@ A-SU5 → RESOLVED。
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-SUnn]`.
+
+
+---
+
+## A-SU6 —— commit 分包壞損（執行層自陳）
+
+**事實**：`c3f31f6` `feat(sw_update): execute T53 …` 之檔案清單為 10 檔，其中
+
+| 檔 | 應屬 |
+|---|---|
+| `docs/handoff/39_batch1_audit.md`（225 行） | **落檔 commit** |
+| `docs/handoff/40_batch3_update_hmi.md`（481 行） | **落檔 commit** |
+| 其餘 8 檔（`BACKLOG.md`／`R_SU43_AUDIT.md`／`DATA_REQUESTS.md`／`gen_batch03.py`／`gen_pilot.py`／`docs/upstream/35_batch3.md`／二份 lint 報告） | 執行 commit |
+
+**成因**：pathspec 用 `features/sw_update/` 而非逐檔列舉。
+此前各輪皆逐檔列 pathspec，故未發生。
+
+**其後果不在內容，在追溯**：本 repo 之慣例為「落檔」與「執行」分二 commit，
+使 `git log` 可回答「某條裁定是隨哪一包進來的、其執行在哪一筆」。
+**39／40 之落檔與 T53 之執行混於一筆，該問題於此處答不出來。**
+
+**處置（Pei 裁 2026-08-29）：加註，不改寫歷史。**
+
+其理由二：
+1. 本 repo 之通例為**原文不改、加註**（同 A-PW21 之處置）；
+2. **同一分支上有併行 session 在提交**（`c3f31f6` 前後即有
+   `ce977e8` `feat(ics_management)` 等他 feature 之 commit）——
+   `reset --soft` 重切之風險與其所修正者不對稱。
+
+**故 `c3f31f6` 維持原狀，本節即其加註。**
+
+> **執行層另記一項可作為防線者**（入 `BACKLOG.md` 而非立條，凍結中）：
+> 前幾輪之所以沒出事，靠的是**每次手動逐檔列 pathspec**，
+> 而那是一個「記得就對、忘了就錯」之作法 —— **它不是防線，是習慣。**
+> 真正的防線應為：**commit 前比對「本次 stage 之檔案」與「本輪任務所應觸及之檔案」**，
+> 二者不符即停。本輪若有此步，`39`／`40` 會被當場擋下。
