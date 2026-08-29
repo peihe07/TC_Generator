@@ -138,7 +138,7 @@ TCS = [
         "6. Check that Version_after equals Version_initial after the host system connection has been lost and restored, and that the head unit remains operable"],
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
-      "3. The head unit loses the host system connection",
+      "3. The host system connector is disconnected",
       "4. The host system connector is reconnected and the head unit screen responds to user input",
       "5. Version_after is recorded",
       "6. Version_after equals Version_initial after the host system connection has been lost and restored; the head unit remains operable and its screen responds to user input"]),
