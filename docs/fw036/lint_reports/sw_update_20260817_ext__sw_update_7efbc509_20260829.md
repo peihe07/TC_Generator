@@ -19,7 +19,7 @@
 | E | proc/er 編號行數不對齊 | 0 | 0 | 每列 | 已校準 |
 | F | 方括號佔位 (proc) | 0 | 0 | 每次命中 | 已校準 |
 | G | Test Set 空值 | 0 | 0 | 每列 | 已校準（詞彙表外值待接入） |
-| H | ER 模糊語 (er) | 1 | 1 | 每次命中 | 已校準 |
+| H | ER 模糊語 (er) | 0 | 0 | 每次命中 | 已校準 |
 | I | test_item 括號下半缺失 | 0 | 0 | 每列 | 已校準 |
 | I-sibling | 同 Requirement ID 括號行逐字重複 | 0 | 0 | 每列 | 未校準（M15） |
 | J | 行首大寫 | 0 | 0 | 每行 | 已校準（行計口徑） |
@@ -36,15 +36,9 @@
 | I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 7 | 7 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
 | W | ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6） | 3 | 2 | 每次命中 | **待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述 |
 
-**總計：行計 11**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 10**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
-
-### H — ER 模糊語 (er)（行計 1／列計 1）
-
-| 列 | TC ID | 欄位 | 說明 | 片段 |
-| ---: | --- | --- | --- | --- |
-| 12 | newR1L-SU-041 | er | 關係模糊語 'corresponds to' | d ⏎ 4. Time_remaining corresponds to the interval between Time_now and Time_schedu |
 
 ### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 7／列計 7）
 
@@ -64,5 +58,5 @@
 | ---: | --- | --- | --- | --- |
 | 10 | newR1L-SU-039 | er | 比較關係 'greater than'，而 test_item 上半無數值 | strument cluster is greater than zero ⏎ 2. The "Update Now" selection is made on t |
 | 10 | newR1L-SU-039 | er | 比較關係 'greater than'，而 test_item 上半無數值 | strument cluster is greater than zero |
-| 12 | newR1L-SU-041 | er | 比較關係 'corresponds to'，而 test_item 上半無數值 | d ⏎ 4. Time_remaining corresponds to the interval between Time_now and Time_schedu |
+| 12 | newR1L-SU-041 | er | 比較關係 'equals'，而 test_item 上半無數值 | d ⏎ 3. Time_remaining equals the difference between Time_scheduled and Time_now, c |
 

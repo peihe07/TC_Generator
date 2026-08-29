@@ -34,8 +34,9 @@
 | U | PENDING 佔位（四欄全掃，含 ER 側） | 3 | 1 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
 | V | 行首空白（IN §11） | 0 | 0 | 每行每欄 | 未校準（IN §11，27 包新增） |
 | I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 8 | 8 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
+| W | ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6） | 1 | 1 | 每次命中 | **待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述 |
 
-**總計：行計 11**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 12**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
@@ -59,4 +60,10 @@
 | 16 | newR1L-SU-024 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 18 | newR1L-SU-026 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 19 | newR1L-SU-027 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+
+### W — ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6）（行計 1／列計 1）
+
+| 列 | TC ID | 欄位 | 說明 | 片段 |
+| ---: | --- | --- | --- | --- |
+| 14 | newR1L-SU-022 | er | 比較關係 'equals'，而 test_item 上半無數值 | ions; Version_after equals Version_initial |
 

@@ -90,6 +90,12 @@ RE_F = re.compile(r"\[[A-Za-z][^\]]{0,30}\]")
 # 未指定 `--profile` 時本例外不生效 —— 既有八本之基線因而完全不動。
 RE_F_SIGNAL_VALUE = re.compile(r"\$[A-Za-z][A-Za-z0-9_.]*\$\s*=\s*(\[[^\]]{0,60}\])")
 RE_H = re.compile(r"\b(as expected|works? normally|normal(ly)? operation)\b", re.I)
+# `--profile` 專屬（下放包 47 §二 #6）：**關係模糊詞** ——
+# 其與上式之**程度／狀態模糊詞**不同族，現行詞表**整族未收**。
+# 程度模糊詞（`properly`）一望即知其模糊；**關係模糊詞看起來很具體** ——
+# 它指名了二個被比較的量，只是沒說「相符」到什麼程度算相符。
+RE_H_RELATION = re.compile(
+    r"\b(corresponds? to|matches?|is consistent with|in line with|aligns? with)\b", re.I)
 RE_PAREN_LINE = re.compile(r"^\(.+\)$")
 RE_PAREN_TAIL = re.compile(r"\([^)]{3,}\)\s*$")
 RE_CJK = re.compile(r"[一-鿿]")
@@ -174,6 +180,7 @@ CHECK_TITLES = {
     "U": "PENDING 佔位（四欄全掃，含 ER 側）",
     "V": "行首空白（IN §11）",
     "I-cross": "跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）",
+    "W": "ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6）",
 }
 # `--profile` 啟用時 P 改以 R-1 v3 判準，標題隨之替換
 CHECK_TITLE_PROFILE = {"P": "訊號寫法不合 R-1 v3"}
@@ -193,13 +200,14 @@ CHECK_STATUS = {
     "U": "計數用（A-PM16：ER 側原不受任何檢查覆蓋）",
     "V": "未校準（IN §11，27 包新增）",
     "I-cross": "警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL",
+    "W": "**待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述",
 }
 CHECK_STATUS_PROFILE = {"P": "未校準（R-1 v3，21 包改寫；profile 專屬）"}
 CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
                "J", "K", "L", "M", "N", "P"]
 # profile 專屬檢查：僅於 `--profile <feature>` 指定時啟用。
 # 未指定時 CHECK_ORDER 不變 —— 既有八本之報告基線因而完全不動。
-PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross"]
+PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W"]
 
 
 def check_order(profile: str | None) -> list[str]:
@@ -228,6 +236,7 @@ CHECK_GRANULARITY = {
     "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
     "V": "每行每欄",
     "I-cross": "每列每配對（一組命中記二列）",
+    "W": "每次命中",
 }
 
 
@@ -458,6 +467,14 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
     if n_proc > 0 and n_er > 0 and n_proc != n_er:
         add("E", "proc/er", f"proc {n_proc} 步 vs er {n_er} 步", "")
 
+    # W：ER 有比較而上半無數值（profile 專屬）
+    if profile:
+        _up = split_lines(fields["test_item"])
+        if _up and not RE_W_NUMERAL.search(_up[0]):
+            for m in RE_W_COMPARE.finditer(er):
+                add("W", "er", f"比較關係 {m.group(0)!r}，而 test_item 上半無數值",
+                    snippet_of(er, m.start()))
+
     # F 方括號 —— profile 啟用時，`$<name>$ = [值]` 之值不判（下放包 43 §二 #1）
     exempt = {m.span(1) for m in RE_F_SIGNAL_VALUE.finditer(proc)} if profile else set()
     for m in RE_F.finditer(proc):
@@ -472,6 +489,9 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
     # H ER 模糊
     for m in RE_H.finditer(er):
         add("H", "er", f"模糊語 {m.group(0)!r}", snippet_of(er, m.start()))
+    if profile:
+        for m in RE_H_RELATION.finditer(er):
+            add("H", "er", f"關係模糊語 {m.group(0)!r}", snippet_of(er, m.start()))
 
     # I 括號下半（缺括號）
     if item.strip():
@@ -679,6 +699,16 @@ def check_sibling_parens(rows: list[tuple[int, str, str, str]]) -> list[Violatio
                 content.replace("\n", " ⏎ ")[:80],
             ))
     return out
+
+
+# --- W：ER 含比較關係而 `test_item` 上半無數值（下放包 47 §二 #6）------------
+#
+# 其形態為「指名二個被比較的量，而規格未給任何數值」—— **精度遂由讀者決定**。
+# **待人裁非 FAIL**：有些列之精度由畫面粒度給出（`041` 改寫後即是），合法。
+RE_W_COMPARE = re.compile(
+    r"\b(corresponds? to|equals?|differs? from|matches?|greater than|less than|"
+    r"same as|identical to)\b", re.I)
+RE_W_NUMERAL = re.compile(r"\d")
 
 
 # --- I-cross（R-SU34 v3）------------------------------------------------------
