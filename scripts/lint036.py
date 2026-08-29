@@ -162,6 +162,7 @@ CHECK_TITLES = {
     "T": "PENDING 說明非英文",
     "U": "PENDING 佔位（四欄全掃，含 ER 側）",
     "V": "行首空白（IN §11）",
+    "I-cross": "跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）",
 }
 # `--profile` 啟用時 P 改以 R-1 v3 判準，標題隨之替換
 CHECK_TITLE_PROFILE = {"P": "訊號寫法不合 R-1 v3"}
@@ -180,13 +181,14 @@ CHECK_STATUS = {
     "T": "未校準（R-14，21 包新增）",
     "U": "計數用（A-PM16：ER 側原不受任何檢查覆蓋）",
     "V": "未校準（IN §11，27 包新增）",
+    "I-cross": "警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL",
 }
 CHECK_STATUS_PROFILE = {"P": "未校準（R-1 v3，21 包改寫；profile 專屬）"}
 CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
                "J", "K", "L", "M", "N", "P"]
 # profile 專屬檢查：僅於 `--profile <feature>` 指定時啟用。
 # 未指定時 CHECK_ORDER 不變 —— 既有八本之報告基線因而完全不動。
-PROFILE_CHECKS = ["Q", "R", "T", "U", "V"]
+PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross"]
 
 
 def check_order(profile: str | None) -> list[str]:
@@ -214,6 +216,7 @@ CHECK_GRANULARITY = {
     "P": "每次命中",
     "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
     "V": "每行每欄",
+    "I-cross": "每列每配對（一組命中記二列）",
 }
 
 
@@ -651,6 +654,94 @@ def check_sibling_parens(rows: list[tuple[int, str, str, str]]) -> list[Violatio
     return out
 
 
+# --- I-cross（R-SU34 v3）------------------------------------------------------
+#
+# `I-sibling` 之分組鍵含 `req_id`，故跨 `Requirement ID` 之偽通過**結構上永不觸發**。
+# 本檢查補該缺口，其指標為 **觀測窗 × 違例類**（非行文相似度 —— v1 之比率指標
+# 經回測與欲測性質負相關而作廢，見 `features/sw_update/scripts/i_cross.py`）。
+#
+# ⚠ **本檢查有一處前提被寫死在檢查裡**（R-SU34 v3(b) 之明令、PLAYBOOK (33)）：
+#   `IX_NORMALISE` 把「未指定之起點」正規化為可用性查詢、
+#   把 `until the update finishes` 正規化為版本號改變。
+#   **其來源為下放包 30 §2.1 之裁定，不是 TC 之文字。**
+#   **若該裁定改動，本表須同步改** —— 否則本檢查會沉默地沿用一個已失效之前提。
+
+IX_START = [(r"from the availability check", "availability-check"),
+            (r"from the start of the session", "session-start")]
+IX_END = [(r"until the software version changes", "version-change"),
+          (r"until the update finishes", "update-finish")]
+IX_NORMALISE = {None: "availability-check", "update-finish": "version-change"}
+# 取最細之類；交集以上下位關係判（R-SU34 v3(b)）
+IX_VIOLATION = [
+    (r"download confirmation screen", "confirmation-screen/download"),
+    (r"deployment confirmation screen", "confirmation-screen/deployment"),
+    (r"\bconfirmation screen", "confirmation-screen"),
+    (r"SW Update prompt", "prompt"),
+    (r"progress notification", "progress-notification"),
+    (r"opt-out control", "opt-out"),
+    (r"defer control", "defer"),
+]
+IX_NEG = re.compile(r"contains no |no SW Update prompt|no progress notification"
+                    r"|no download confirmation|no deployment confirmation"
+                    r"|no confirmation screen|no opt-out|no defer")
+
+
+def _ix_window(proc: str, er: str) -> tuple[str | None, str | None]:
+    txt = proc + " " + er
+    s = next((v for p, v in IX_START if re.search(p, txt)), None)
+    e = next((v for p, v in IX_END if re.search(p, txt)), None)
+    return IX_NORMALISE.get(s, s), IX_NORMALISE.get(e, e)
+
+
+def _ix_violations(er: str) -> set[str]:
+    """僅取**否定式**之 ER 行；同行命中概括式與子類時只留子類。"""
+    out: set[str] = set()
+    for ln in er.split("\n"):
+        if not IX_NEG.search(ln):
+            continue
+        hit = {v for p, v in IX_VIOLATION if re.search(p, ln)}
+        out |= {v for v in hit
+                if not any(o != v and o.startswith(v + "/") for o in hit)}
+    return out
+
+
+def _ix_subsumes(a: str, b: str) -> bool:
+    return a == b or a.startswith(b + "/") or b.startswith(a + "/")
+
+
+def check_cross(rows: list[tuple[int, str, str, str, str, str]]) -> list[Violation]:
+    """I-cross：**同一 Test Set 內**，觀測窗相同且違例類有交集之跨 req_id 配對。
+
+    **警示器非判準**（R-SU34 v3(c)）—— 窗同而違例類不同者合法。
+    人裁所問為「本 TC 是否有屬於其需求單元之驗證點」，
+    **不是**「其驗證點是否被他 TC 涵蓋」——**覆蓋是允許的**（R-SU34 v3(e)）。
+    """
+    out: list[Violation] = []
+    info = []
+    for row_no, tc_id, req_id, test_set, proc, er in rows:
+        w = _ix_window(proc, er)
+        if w == (None, None):
+            continue
+        info.append((row_no, tc_id, req_id, test_set, w, _ix_violations(er)))
+    for i, (ra, ta, qa, sa, wa, va) in enumerate(info):
+        for rb, tb, qb, sb, wb, vb in info[i + 1:]:
+            if qa.strip() == qb.strip() or sa.strip() != sb.strip():
+                continue          # 同 req_id 由 I-sibling 管；跨 Test Set 不比
+            if wa != wb:
+                continue
+            inter = {min(x, y, key=len) for x in va for y in vb
+                     if _ix_subsumes(x, y)}
+            if not inter:
+                continue
+            for rn, tid, other in ((ra, ta, tb), (rb, tb, ta)):
+                out.append(Violation(
+                    "I-cross", rn, tid, "expected_result",
+                    f"與 {other} 之觀測窗相同（{wa[0]} → {wa[1]}）且違例類有交集",
+                    "／".join(sorted(inter))[:80],
+                ))
+    return out
+
+
 # --- 工作簿層 ----------------------------------------------------------------
 
 
@@ -682,6 +773,7 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
 
     result = SheetResult(sheet=ws.title, header_row=header_row, data_rows=0)
     sibling_input: list[tuple[int, str, str, str]] = []
+    cross_input: list[tuple[int, str, str, str, str, str]] = []
 
     for offset, raw in enumerate(rows[header_row:], start=header_row + 1):
         fields = {key: cell_text(raw[idx]) if idx < len(raw) else ""
@@ -694,8 +786,14 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
         result.violations.extend(
             check_row(fields, offset, tc_id, length_limit, profile))
         sibling_input.append((offset, tc_id, req_id, fields["test_item"]))
+        test_set = (cell_text(raw[columns["test_set"]])
+                    if "test_set" in columns else "")
+        cross_input.append((offset, tc_id, req_id, test_set,
+                            fields["proc"], fields["er"]))
 
     result.violations.extend(check_sibling_parens(sibling_input))
+    if profile:                       # I-cross 為 profile 專屬（PROFILE_CHECKS）
+        result.violations.extend(check_cross(cross_input))
     order = check_order(profile)
     result.violations.sort(key=lambda v: (order.index(v.check), v.row))
     return result

@@ -14,6 +14,12 @@
   **TC-4 之 `Record every SW Update screen …` 依 R-SU36(c) 改寫**
   （`every` 是一個宣稱不是一個動作），其 ER 二行對應改。
   **TC 之驗證單元不變**，改動限於觀測手段之具體化。
+- **v5**（`pilot05`，T45c／下放包 32）：**TC-3 之窗起點改**（下放包 31 §四）——
+  `the start of the session` 依 **R-SU33 v3(c1)** 為**原理上不可觀測**
+  （靜默 session 無外部表徵），改為**可用性查詢**（測試者主動觸發，可觀測）；
+  其 `continuously` 一併明文化為 `as continuous video capture`，
+  **雖其 ER 為肯定式**（R-SU36(a) 不強制）—— 理由為所驗之安全通知
+  其持續時間未知（DR-SU1 未答），**肯定式之「有出現」同樣可能因取樣不足而漏看**。
 
 前一版之產出一律保留，**不覆寫**。
 
@@ -37,7 +43,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from write_back_036 import _set_row, MASTER, SHEET_NAME, HEADER_ROW, FEAT  # noqa: E402
 
-TAG = "pilot04"                    # v1–v3 為 pilot01–03，**不覆寫**
+TAG = "pilot05"                    # v1–v4 為 pilot01–04，**不覆寫**
 OUT = FEAT / "sandbox" / TAG / MASTER
 TEST_GROUP, TEST_SET = "SW Update", "Silent Update"
 AUTHOR = "PeiPYHsu"
@@ -80,11 +86,11 @@ TCS = [
        "2. An update package with update type Silent Update is staged on the OTA Server for this head unit",
        "3. PENDING: DR-SU1 list of safety-related notification conditions applicable during a silent session"],
   proc=["1. Trigger an update availability check to the OTA Server",
-        "2. Record the head unit screen content continuously from the start of the session",
+        "2. Record the head unit screen content as continuous video capture from the availability check",
         "3. PENDING: DR-SU1 step to bring one safety-related condition into effect",
         "4. Check that the safety-related notification is displayed on the head unit while the session continues"],
   er=["1. The update availability check completes and an update is reported as available",
-      "2. The head unit screen content from the start of the session is recorded",
+      "2. The head unit screen content from the availability check is recorded as continuous video capture",
       "3. PENDING: DR-SU1 observable state showing the safety-related condition is in effect",
       "4. The safety-related notification is displayed on the head unit and the session continues"]),
  dict(req="SWE1-FOTA-177", spec="CFTS057-4907478", dm=NEG, prio="P2",

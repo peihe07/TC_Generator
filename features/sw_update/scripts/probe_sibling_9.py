@@ -6,8 +6,14 @@
 （`175` 在 `sandbox/pilot03`、`184` 在 `sandbox/batch01`），
 **sibling 檢查在任一本內都比不到它們** —— 該 0 對本問題無發言權。
 
-本探針把 pilot 5 列與 batch 1 之 4 列寫進同一本（共 9 列）再跑 lint，
-使 sibling 檢查首次能跨批比對。
+本探針把 pilot 5 列與 batch 1 之 5 列寫進同一本（共 **10** 列）再跑 lint，
+使跨批之檢查得以比對。
+
+**T45b 之用途（下放包 32）**：`I-cross` 併入 `lint036.py` 後，
+其回測須與獨立腳本 `i_cross_v2.py` **逐項相同**。而獨立腳本以
+「現有 10 TC」為一個集合，`lint036.py` 則**逐簿**執行 ——
+pilot 與 batch 1 分屬二簿，**跨簿之配對逐簿跑不出來**。
+本探針即其等價執行環境。
 
 **本簿為探針，不是交付本、不是受檢物** —— 落 `sandbox/probe_sibling9/`。
 """
@@ -21,7 +27,7 @@ from write_back_036 import _set_row, MASTER, SHEET_NAME, HEADER_ROW, FEAT  # noq
 from gen_pilot import TCS as PILOT_TCS, TEST_GROUP, TEST_SET, AUTHOR       # noqa: E402
 from gen_batch01 import TCS as BATCH_TCS                                   # noqa: E402
 
-OUT = FEAT / "sandbox" / "probe_sibling9" / MASTER
+OUT = FEAT / "sandbox" / "probe_all10" / MASTER
 
 
 def main():
@@ -60,7 +66,7 @@ def main():
                 data = sx.encode("utf-8")
             zo.writestr(item, data)
 
-    print("## 併簿探針 —— pilot 5 列 + batch 1 之 4 列 = 9 列\n")
+    print("## 併簿探針 —— pilot 5 列 + batch 1 之 5 列 = 10 列\n")
     print("| 列 | TC ID | 037 列 |")
     print("|---|---|---|")
     for r, tid, req in rows:

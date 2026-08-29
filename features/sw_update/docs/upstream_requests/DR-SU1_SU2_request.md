@@ -4,6 +4,7 @@
 - **Date**: 2026-08-28
 - **Subject**: Two data requests blocking system-level test case authoring for FOTA / SW Update
 - **Open items**: DR-SU1 (1 requirement), DR-SU2 v2 (3 sub-requests)
+- **Revision**: 2026-08-29 — DR-SU2 (c) now lists three requirements (`184` added)
 
 ---
 
@@ -85,13 +86,15 @@ the 106 is an upper bound on this category, not a count of confirmed cases.
 
 ### 3.4 (c) Means of distinguishing two specific requirements
 
-Two requirements have external consequences that we cannot separate from an adjacent
-requirement's consequences. Both are currently `PENDING`.
+Three requirements have external consequences we cannot separate from an adjacent
+requirement's consequences, or qualifiers we cannot measure. All three are currently
+`PENDING`.
 
 | Requirement | Title | What we cannot distinguish | What would resolve it |
 |---|---|---|---|
 | `SWE1-FOTA-179` | Start Silent Update Download Automatically | The automatic download request is indistinguishable from the overall silent background execution already covered by `SWE1-FOTA-175` — both present as "no user action, update completes on its own" | Either an observable sign that the download request was issued, **or** your confirmation that this requirement's verification may be folded into `175` |
 | `SWE1-FOTA-181` | Start Silent Update Installation Immediately After Download | The qualifier "**immediately** after download" requires (i) the download-completion instant to be observable and (ii) a timing threshold for "immediately". Neither exists | Either an observable download-completion indication and a timing threshold, **or** your confirmation that the timing qualifier is not to be verified |
+| `SWE1-FOTA-184` | Apply Silent Update Rules Across All Session Flows | The requirement states the silent rules apply "across update check, deployment package download and installation processing". On a bench the three phases have **no observable boundary** — a silent update shows nothing on screen, so nothing marks where the check ends and the download begins. Each individual violation this requirement would catch (prompt, progress notification, confirmation screen) is already covered by the test cases for `175`, `180` and `182` | Either an observable way to tell the three phases apart, **or** your confirmation that this requirement's verification may be folded into `SWE1-FOTA-175` |
 
 **We are not merging requirements on our own initiative.** Folding one requirement's
 verification into another is a specification-side decision; if that is the right answer,
@@ -135,4 +138,4 @@ definition for FOTA exists, it is in a document we have not been given.
 | DR-SU1 | List of safety-related notification conditions for silent updates | 1 test case, 3 placeholders |
 | DR-SU2 (a) | How error codes are surfaced on the head unit | Every step that reads a code |
 | DR-SU2 (b) | Positive-state observation for the Wi-Fi FOTA session | 5 confirmed rows, up to 106 in the same profile |
-| DR-SU2 (c) | Distinguishing means for `SWE1-FOTA-179` and `SWE1-FOTA-181` | 2 test cases, 5 placeholders |
+| DR-SU2 (c) | Distinguishing means for `SWE1-FOTA-179`, `181` and `184` | 3 test cases, 8 placeholders |
