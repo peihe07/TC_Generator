@@ -187,3 +187,58 @@
 - **其區分位於判定對象內**（`offers … an option` vs `offers … no option`），
   滿足 R-SU41(b)。
 - 標點依 037 原文逐字保留（`Silent Install flag ␣.`）。
+
+---
+
+## ROV-A（`ROV Installation` 首四列）
+
+### `newR1L-SU-028` ← `SWE1-FOTA-090`
+
+- **`PU0303` 於本 TC 僅為時點指標，不是驗證對象**（下放包 43 §3.1(i)）——
+  其作用是告訴測試者「更新已成功、可以切 Body OFF 了」。
+  **該彈窗本身之驗證屬 `SWE1-FOTA-088`**（IN §8.2.1，不擴入 sibling）。
+- **取彈窗而不取 `$FOTA_Status$` 之依據**（同 §3.1(ii)）：
+  後者為 CarPropertyManager 之車輛屬性，**台架不可觀測**（R-SU25(b)）；
+  前者之對應關係**載於彈窗清單**（`PU0303` Description 逐字：
+  `Shown after a successful update.`），**非推想**。
+- `test_item` 上半之 `$FOTA_Status$` 記法**依 037 逐字保留**（R-S4）——
+  **上半是需求原文，步驟與 ER 是可執行之描述，二者不必同形。**
+
+### `newR1L-SU-029` ← `SWE1-FOTA-092`
+
+- proc 3 之限定子句 `while $FOTA_Status$ = [Installing FOTA Update]` **已刪** ——
+  其為不可觀測之限定，**且刪後 ER 3 仍可判**（錄影中有無安裝進度畫面）。
+- 上半保留該訊號寫法（037 逐字）。
+
+### `newR1L-SU-030`／`031` ← `SWE1-FOTA-093`／`094`
+
+- **第四型（R-SU39）：觸發手段不可得** —— 其觀測面（`"Reverted"`／
+  `"Walk Home Scenario"` 二彈窗）明確，缺者為**使更新失敗之手段**。
+  DR-SU2(d) 之第四型段由 2 列增為 4 列。
+- **二者須可互相區辨**：`093` 要求回退**成功**、`094` 要求**失敗未回退**。
+  若上游只給「使更新失敗」之單一手段而不能控制回退之成敗，**二列仍不可分**。
+
+---
+
+## 未起草者之預先記錄
+
+### `SWE1-FOTA-104`／`105`／`106` —— 彈窗編號於**二側皆為佔位**
+
+037 引 `PUXXX3`（`104`／`105`）與 `PUxxx1`（`106`，**大小寫與前者不一致**）。
+
+**實測**：二者於 `Pop Up List HMI R1 (26PI).xlsx` **皆非任何一列之 `ID Number`**，
+只出現於他列 `Description` 之敘述文字中
+（`show TBM Update Popup (PUXXX1)`／`TBM Ongoing Update Popup (PUXXX3)`；
+另有 `PUXXX2`、`PUXXX1 b`、`PUXXX3 b`）。
+
+> ### ⚠ **與 A-SU3 形態相同而處置相反，不得比照**
+>
+> **A-SU3**：一個**已存在**之彈窗被寫錯編號（`PU971` → `PU0971`）——**可推定正解**。
+> **本項**：一個**尚未被指派編號**之彈窗 —— **沒有正解可推。**
+>
+> 二者於清單中皆表現為「查無」。**若台帳只記「查無」，日後會有人比照 A-SU3
+> 去推一個不存在的編號。**
+
+**處置（下放包 43 §二 #2）**：其 ER **以彈窗之功能描述指稱**
+（如 `the schedule update pop-up`），**不引任何編號**；
+**不開 DR**（不阻斷交付），列 `DELIVERY_CHECKLIST.md` **D-9**。

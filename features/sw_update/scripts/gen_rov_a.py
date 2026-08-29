@@ -6,8 +6,17 @@
 **選定依據（三軸，下放包 42 §1.1）**：
   可觀測性 佳（105 列 0）／錨定確定性 **無**（GT 0）／觸發可行性 **半**。
 
-**訊號記法依來源逐字**（`$FOTA_Status$ = [值]`）——
-本 feature 未綁 DBC，依 R-1 v3(d) 保留來源名稱，不改寫。
+**`test_item` 上半之訊號記法依 037 逐字**（`$FOTA_Status$ = [值]`，R-S4）——
+惟 **`$FOTA_Status$` 為 CarPropertyManager 之車輛屬性，台架不可觀測**（R-SU25(b)），
+故 **`procedure`／`expected_result` 不以其為步驟或判定對象**（下放包 43 §三）：
+
+- `028`：`wait until $FOTA_Status$ = [Successful FOTA Update]` 改為
+  **等待更新成功之彈窗 `PU0303`** —— 其對應關係載於彈窗清單
+  （`PU0303` Description：`Shown after a successful update.`），**非推想**。
+  ⚠ **本 TC 不驗該彈窗**，其僅作為「更新已成功」之可觀測時點指標；
+  該彈窗之驗證屬 `SWE1-FOTA-088`（IN §8.2.1）。
+- `029`：proc 3 刪去 `while $FOTA_Status$ = [Installing FOTA Update]` 之限定子句
+  —— 其為不可觀測之限定，**且刪後 ER 3 仍可判**（錄影中有無安裝進度畫面）。
 
 **引號**：`test_item` 上半依 037 逐字（彎引號）；
 `test_procedure`／`expected_result` 依 IN §11（直引號）。
@@ -41,11 +50,11 @@ TCS = [
   pre=[WIFI,
        "2. An update package whose deployment package contains What's New details is staged on the OTA Server for this head unit",
        BODY_ON],
-  proc=["1. Trigger an ROV update and wait until $FOTA_Status$ = [Successful FOTA Update]",
+  proc=["1. Trigger an ROV update and wait until the head unit displays the update success pop-up PU0303",
         "2. Set the vehicle to Body OFF mode",
         "3. Set the vehicle to Body ON mode",
         "4. Check that the head unit displays the What's New details of the deployed package"],
-  er=["1. $FOTA_Status$ = [Successful FOTA Update] is reported",
+  er=["1. The head unit displays the update success pop-up PU0303",
       "2. The vehicle is in Body OFF mode and the head unit screen is off",
       "3. The vehicle is in Body ON mode and the head unit completes start-up",
       "4. The head unit displays the What's New details of the deployed package"]),
@@ -57,7 +66,7 @@ TCS = [
        BODY_ON],
   proc=["1. Trigger an ROV update and accept it on the head unit",
         "2. Record the head unit screen content as continuous video capture until the installation ends",
-        "3. Check that the recorded screen content shows the installation progress screens while $FOTA_Status$ = [Installing FOTA Update]"],
+        "3. Check that the recorded screen content shows the installation progress screens for the active update session"],
   er=["1. The ROV update is accepted and the installation starts",
       "2. The head unit screen content until the installation ends is recorded as continuous video capture",
       "3. The recorded screen content shows the installation progress screens for the active update session"]),

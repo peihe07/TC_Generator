@@ -85,6 +85,10 @@ RE_D_VERB = re.compile(
     re.I,
 )
 RE_F = re.compile(r"\[[A-Za-z][^\]]{0,30}\]")
+# `--profile` 專屬例外（下放包 43 §二 #1）：緊接於 `$<name>$ =` 之後之方括號
+# **不是未填佔位，是車輛屬性之值**（037 逐字之訊號記法 `$FOTA_Status$ = [值]`）。
+# 未指定 `--profile` 時本例外不生效 —— 既有八本之基線因而完全不動。
+RE_F_SIGNAL_VALUE = re.compile(r"\$[A-Za-z][A-Za-z0-9_.]*\$\s*=\s*(\[[^\]]{0,60}\])")
 RE_H = re.compile(r"\b(as expected|works? normally|normal(ly)? operation)\b", re.I)
 RE_PAREN_LINE = re.compile(r"^\(.+\)$")
 RE_PAREN_TAIL = re.compile(r"\([^)]{3,}\)\s*$")
@@ -115,6 +119,13 @@ RE_P3_BARE_ASSIGN = re.compile(
     r"(?<!\$)\b[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\s*=")
 RE_P3_SEND_CAN = re.compile(r"\bSend CAN:")
 RE_P3_PROXI_DOLLAR = re.compile(r"\bPROXI\s+\$")
+# 下放包 43 §二 #1：無點之車輛屬性記法 `$<Name>$ = [值]`（037 逐字）。
+# **P v3 之二式皆要求訊號名含一個點，故本形態原本不被任何式命中** ——
+# `P=0` 是沉默不是核可（上繳包 37 §2.2）。本式使其**被檢查**：
+# `$` 包覆之名、`=`、方括號包覆之值，三者齊備即通過；缺一即報。
+RE_P3_PROP_OK = re.compile(r"\$[A-Za-z][A-Za-z0-9_]*\$\s*=\s*\[[^\]]{1,60}\]")
+# 候選：`$` 包覆之無點名後接 `=`，其值形態不拘 —— 用以偵測「有名有等號而值不合式」
+RE_P3_PROP_ANY = re.compile(r"\$([A-Za-z][A-Za-z0-9_]*)\$\s*=\s*(?P<val>\S+)")
 # Q（R-10(a)）
 RE_Q_TRAILING_WS = re.compile(r"[ \t]+$")
 # V 行首空白（IN §11）。**行尾空白不在本檢查**——其已由 Q 覆蓋，
@@ -447,8 +458,11 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
     if n_proc > 0 and n_er > 0 and n_proc != n_er:
         add("E", "proc/er", f"proc {n_proc} 步 vs er {n_er} 步", "")
 
-    # F 方括號
+    # F 方括號 —— profile 啟用時，`$<name>$ = [值]` 之值不判（下放包 43 §二 #1）
+    exempt = {m.span(1) for m in RE_F_SIGNAL_VALUE.finditer(proc)} if profile else set()
     for m in RE_F.finditer(proc):
+        if m.span() in exempt:
+            continue
         add("F", "proc", f"方括號佔位 {m.group(0)!r}", snippet_of(proc, m.start()))
 
     # G Test Set 空值
@@ -632,6 +646,17 @@ def check_signal_line_v3(line: str, field: str, row_no: int, tc_id: str
             f"{m.group(0).strip()!r}")
     for m in RE_P3_PROXI_DOLLAR.finditer(line):
         add("PROXI 不加 `$`（R-1 v3(c)）")
+    # (6) 無點之車輛屬性 `$<Name>$ = [值]`（下放包 43 §二 #1）——
+    #     使其**被檢查而非被忽略**：值須以方括號包覆。
+    ok = {m.start() for m in RE_P3_PROP_OK.finditer(line)}
+    for m in RE_P3_PROP_ANY.finditer(line):
+        if "." in m.group(1):          # 含點者由 RE_P3_DOLLAR_ASSIGN 管
+            continue
+        if m.start() in ok:
+            continue
+        if m.group("val").startswith("PENDING"):
+            continue
+        add(f"車輛屬性之值須以 `[…]` 包覆（037 逐字記法）：{m.group(0).strip()!r}")
     return out
 
 
@@ -670,14 +695,40 @@ def check_sibling_parens(rows: list[tuple[int, str, str, str]]) -> list[Violatio
 
 IX_START = [(r"from the availability check", "availability-check"),
             (r"from the start of the session", "session-start")]
-IX_END = [(r"until the software version changes", "version-change"),
-          (r"until the update finishes", "update-finish")]
+
+# ── 訖點之抽取（下放包 43 §二 #4：改語形抽取，不寫死片語）────────────────
+#
+# **首版為一張寫死之片語表**（`until the software version changes`／
+# `until the update finishes`），二者皆出自 `Silent Update` 那一批。
+# `ROV Installation` 之 `until the installation ends` 二者皆不匹配，
+# 遂被靜默算成半窗（上繳包 37 §2.3）。**每進一個新 Test Set 該表即落後一次。**
+#
+# **正規化規則（須隨結果揭露）**：
+#   1. 取 `until` 之後至行尾／逗號／分號為止之整段子句；
+#   2. 去冠詞（`the`／`a`／`an`）、轉小寫、空白收斂為單一連字號；
+#   3. 查 `IX_END_ALIAS` —— **其只收「由裁定導出之等價」**，不收語形近似。
+RE_IX_UNTIL = re.compile(r"\buntil\s+([^,;]+?)(?=[,;]|$)", re.M)
+IX_END_ALIAS = {
+    # 下放包 30 §2.1 之裁定：更新完成之唯一外部表徵為版本號改變，
+    # 故「更新結束」與「版本改變」為同一訖點。**此為裁定，非語形。**
+    "update-finishes": "software-version-changes",
+    "update-finish": "software-version-changes",
+}
+
+
+def _ix_end_label(txt: str) -> str | None:
+    m = RE_IX_UNTIL.search(txt)
+    if not m:
+        return None
+    s = re.sub(r"\b(the|a|an)\b", " ", m.group(1).lower())
+    lab = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+    return IX_END_ALIAS.get(lab, lab) or None
 # ⚠ **正規化之射程限於「起點」**（下放包 30 §2.1 所裁者為起點）。
 # **首版誤把同一規則同時套在訖點上**，致無 `until …` 片語之 TC 之窗
 # 退化為 `availability-check → availability-check` —— **它長得像一個窗，
 # 故沒有任何檢查會攔它**（下放包 34 §1.2）。訖點缺失時**不正規化**。
 IX_NORMALISE_START = {None: "availability-check"}      # 未指定之起點 → 唯一可觀測者
-IX_NORMALISE_END = {"update-finish": "version-change"}  # 更新完成之唯一外部表徵
+# 訖點之等價由 `IX_END_ALIAS` 承擔（見上），此處不再另設對照
 # 取最細之類；交集以上下位關係判（R-SU34 v3(b)）
 IX_VIOLATION = [
     (r"download confirmation screen", "confirmation-screen/download"),
@@ -697,8 +748,8 @@ def _ix_window(proc: str, er: str) -> tuple[str | None, str | None]:
     """回傳 (起, 訖)。訖點無片語可抽時為 `None` —— **半窗，不參與比對**。"""
     txt = proc + " " + er
     s = next((v for p, v in IX_START if re.search(p, txt)), None)
-    e = next((v for p, v in IX_END if re.search(p, txt)), None)
-    return IX_NORMALISE_START.get(s, s), IX_NORMALISE_END.get(e, e)
+    e = _ix_end_label(txt)
+    return IX_NORMALISE_START.get(s, s), e
 
 
 def _ix_violations(er: str) -> set[str]:
