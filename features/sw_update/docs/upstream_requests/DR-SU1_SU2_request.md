@@ -3,7 +3,7 @@
 - **From**: Pei (SW Test / SWE.6, SW Update feature)
 - **Date**: 2026-08-28
 - **Subject**: Two data requests blocking system-level test case authoring for FOTA / SW Update
-- **Open items**: DR-SU1 (1 requirement), DR-SU2 v3 (4 sub-requests), DR-SU3 (2 requirements)
+- **Open items**: DR-SU1 (1 requirement), DR-SU2 v3 (4 sub-requests), DR-SU3 (2 requirements), **DR-SU4 (6 requirements — highest priority)**
 - **Revision**: 2026-08-29 — DR-SU2 (c) now lists three requirements (`184` added);
   DR-SU2 (d) added (trigger means for `315`/`318`); DR-SU3 added (umbrella requirements)
 
@@ -146,6 +146,73 @@ verify that their listed requirements do not.
 
 ---
 
+## 3B. DR-SU4 — What counts as "handled" for an interruption, and how to judge it on a bench
+
+**High priority — this blocks all six interruption-handling test cases.**
+
+`SWE1-FOTA-315` through `320` each require the system to *detect and handle* an
+interruption (socket error, network loss, user-disabled network, emergency state,
+power loss, host disconnection). We can trigger four of the six and observe that the
+update does not complete. **What we cannot determine from the specification is what
+"handled" looks like from outside the head unit.**
+
+### 3B.1 Request 1 — the observable form of "the OTA client continues operation"
+
+`CFTS057-4907673` states, immediately before Table 4-6:
+
+> These are RECOMMENDED actions; however the interrupts themselves **shall be
+> gracefully handled so that the OTA client continues operation**.
+
+This is the closest requirement we found to a pass criterion, and its timing matches
+(it is about the interruption itself, not about recovery afterwards). **But its subject
+is the OTA client, and a system test observes the head unit.**
+
+The only requirement we found about the head unit is `CFTS057-4907440`:
+
+> OTA client shall be a low priority process **when active** such that it does not
+> impact normal functionality of the host system (ex, navigation/radio shall not be
+> impacted).
+
+Its subject matches, but its timing does not — it governs the normal path while an
+update is running, not the state after an interruption.
+
+**The two requirements each cover one half and their scopes do not overlap.** We are
+not willing to combine them into a statement neither document makes.
+
+**Please confirm:** what is the observable indication, on the head unit, that
+"the OTA client continues operation" after an interruption?
+
+### 3B.2 Request 2 — how to judge when the phase of the interruption cannot be determined
+
+Table 4-6 prescribes different actions depending on the session state when the
+interruption occurred:
+
+| State when interrupted | Action | Software version afterwards |
+|---|---|---|
+| Before / during management session | Abort, retry at next polling interval | unchanged |
+| During download session, before update agent starts | Save state, abort, **retry when the vehicle recovers** | may change |
+| **During deployment or update process** | **Complete the deployment** | **changes** |
+
+A silent update displays nothing, so **there is no external indication of which phase
+the update was in when the interruption occurred.** The tester can neither choose the
+phase nor determine afterwards which one applied.
+
+Our test cases therefore cannot assert that the software version is unchanged: a system
+that follows the third row is compliant, and that assertion would fail it.
+
+**Please confirm:** at system test level, how should correct interruption handling be
+judged, given that the tester can neither control nor determine which phase the
+interruption fell in?
+
+### 3B.3 What we did instead, pending your answer
+
+We removed the version comparison from the pass criterion and kept it as a recorded
+value. The pass criterion itself is now marked `PENDING` in all six test cases.
+**None of the six is deliverable until this is answered.** We would rather hand you
+six visibly blocked test cases than six that quietly pass the wrong thing.
+
+---
+
 ## 4. Evidence — the diagnostics side has been exhausted
 
 Before raising §3.3, we checked every diagnostics-side source available to us for a
@@ -180,3 +247,4 @@ definition for FOTA exists, it is in a document we have not been given.
 | DR-SU2 (c) | Distinguishing means for `SWE1-FOTA-179`, `181` and `184` | 3 test cases, 8 placeholders |
 | DR-SU2 (d) | **Trigger** means for `SWE1-FOTA-315` and `318` | 2 test cases, 6 placeholders |
 | DR-SU3 | Confirmation that `SWE1-FOTA-313` and `327` fold into the requirements they list | 1 test case, 3 placeholders (`327` not yet drafted) |
+| **DR-SU4** | **What "handled" looks like on the head unit, and how to judge it when the interruption's phase is undeterminable** | **6 test cases — none deliverable** |

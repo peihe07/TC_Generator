@@ -21,7 +21,7 @@ TC 內容**逐字取自下放包 33 §四**，執行層不改寫（T32b）。
 **中斷解除後之復原屬 `321`（`4907673`），本批不涵蓋** ——
 故 ER 之終點為「更新未完成且系統未損毀」，不寫「恢復後續行」。
 
-預期 lint：**U=9**（`011` 3 + `014` 3 + `017` 3）。
+預期 lint：**U=21**。
 """
 import re
 import sys
@@ -51,14 +51,27 @@ READ_AFTER = "4. Read the software version shown on the head unit and record it 
 ER_READ_AFTER = "4. Version_after is recorded"
 
 
-def tail(check: str) -> list[str]:
-    return [READ_AFTER, f"5. Check that Version_after equals Version_initial {check}, "
-                        "and that the head unit remains operable"]
+# **R-SU43(f)：版本比對由判定核心降為記錄步驟**（下放包 38 §3.1）——
+# `Version_after equals Version_initial` **不是規格所允許之唯一結果**：
+# `4907673` Table 4-6 對「中斷落於 deployment 階段」建議 `Complete the deployment`
+# （版本會變），故一個依該建議實作之**合規**系統會被原 ER 判 fail。
+# 版本之讀取與記錄保留（其為證據），**判定核心改掛 `PENDING: DR-SU4`**。
+#
+# ⚠ **`check`／`state` 參數（各列之 (a2) 觸發側狀態）自 Final Step 移除** ——
+# 其仍留於 ER 第 3 行。**故六列之區分暫時退回前置條件，違 R-SU41(a)(b)** ——
+# **為暫態，DR-SU4 回覆後須依 R-SU41(c) 重建並重跑遮蔽測試**（下放包 38 §3.4）。
+PEND_PROC = ("PENDING: DR-SU4 step to check the observable state showing that "
+             "the head unit continues operation after the interruption")
+PEND_ER = ("PENDING: DR-SU4 observable state showing that the head unit "
+           "continues operation after the interruption")
 
 
-def er_tail(state: str) -> list[str]:
-    return [ER_READ_AFTER, f"5. Version_after equals Version_initial {state}; "
-                           "the head unit remains operable and its screen responds to user input"]
+def tail(_check: str) -> list[str]:
+    return [READ_AFTER, f"5. {PEND_PROC}"]
+
+
+def er_tail(_state: str) -> list[str]:
+    return [ER_READ_AFTER, f"5. {PEND_ER}"]
 
 TCS = [
  dict(req="SWE1-FOTA-315", spec="CFTS057-4907667", prio="P1",
@@ -119,13 +132,13 @@ TCS = [
         "3. Disconnect the head unit battery supply while the update session is in progress",
         "4. Reconnect the battery supply and wait until the head unit screen responds to user input",
         "5. Read the software version shown on the head unit and record it as Version_after",
-        "6. Check that Version_after equals Version_initial after the head unit has powered off and started up again, and that the head unit remains operable"],
+        f"6. {PEND_PROC}"],
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
       "3. The head unit powers off",
       "4. The head unit completes start-up and its screen responds to user input",
       "5. Version_after is recorded",
-      "6. Version_after equals Version_initial after the head unit has powered off and started up again; the head unit remains operable and its screen responds to user input"]),
+      f"6. {PEND_ER}"]),
  dict(req="SWE1-FOTA-320", spec="CFTS057-4907672", prio="P1",
   item=["The WiFiUpdateService shall detect end-user physical disconnection of the host system (HU/TBM) during OTA server communication, flashing, or software component update and notify SWMC.",
         "(Host system physically disconnected during an update session)"],
@@ -135,13 +148,13 @@ TCS = [
         "3. Physically disconnect the host system connector while the update session is in progress",
         "4. Reconnect the host system connector and wait until the head unit screen responds to user input",
         "5. Read the software version shown on the head unit and record it as Version_after",
-        "6. Check that Version_after equals Version_initial after the host system connection has been lost and restored, and that the head unit remains operable"],
+        f"6. {PEND_PROC}"],
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
       "3. The host system connector is disconnected",
       "4. The host system connector is reconnected and the head unit screen responds to user input",
       "5. Version_after is recorded",
-      "6. Version_after equals Version_initial after the host system connection has been lost and restored; the head unit remains operable and its screen responds to user input"]),
+      f"6. {PEND_ER}"]),
  # `313` —— 統攝列，餘量為空（R-SU37 v2(b)）；全欄 PENDING: DR-SU3
  dict(req="SWE1-FOTA-313",
       spec="CFTS057-4907667 / 4907668 / 4907669 / 4907670 / 4907671 / 4907672",
@@ -210,16 +223,18 @@ def main():
                 data = sx.encode("utf-8")
             zo.writestr(item, data)
 
-    TYPE = {"SWE1-FOTA-315": "**第四型**（觸發手段不可得，R-SU39）",
-            "SWE1-FOTA-318": "**第四型**（觸發手段不可得，R-SU39）",
+    TYPE = {"SWE1-FOTA-315": "**第四型**（R-SU39）＋ 判定核心 `PENDING`（R-SU43）",
+            "SWE1-FOTA-318": "**第四型**（R-SU39）＋ 判定核心 `PENDING`（R-SU43）",
             "SWE1-FOTA-313": "**統攝列・餘量為空**（R-SU37 v2(b)），DR-SU3",
             }
     print("| 列 | TC ID | 037 列 | spec_reference | PENDING | 型 |")
     print("|---|---|---|---|---:|---|")
     for r, tid, req, sp, pd in rows:
         print(f"| {r} | `{tid}` | `{req}` | `{sp}` | {pd} | {TYPE.get(req, '可寫')} |")
-    print(f"\n- **PENDING 合計 {sum(r[4] for r in rows)}**"
-          f"（`011` 之 3 + `014` 之 3 + `017` 之 3）")
+    print(f"\n- **PENDING 合計 {sum(r[4] for r in rows)}** —— "
+          + "；".join(f"`{tid[-3:]}` {pd}" for _, tid, _, _, pd in rows if pd))
+    print("- **本批無一列可交付**（`017` 待 DR-SU3，餘六列待 DR-SU4）——"
+          "其成因為規格對本組之驗證面未定義到可判之程度，非產出品質不足。")
     return 0
 
 
