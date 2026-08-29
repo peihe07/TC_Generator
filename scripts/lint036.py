@@ -253,6 +253,8 @@ class SheetResult:
     header_row: int
     data_rows: int
     violations: list[Violation] = dc_field(default_factory=list)
+    # I-cross 之原料（`--merge` 用）：(列, TC id, req id, Test Set, proc, er)
+    cross_rows: list[tuple] = dc_field(default_factory=list)
 
 
 # --- 工具函式 ----------------------------------------------------------------
@@ -670,7 +672,12 @@ IX_START = [(r"from the availability check", "availability-check"),
             (r"from the start of the session", "session-start")]
 IX_END = [(r"until the software version changes", "version-change"),
           (r"until the update finishes", "update-finish")]
-IX_NORMALISE = {None: "availability-check", "update-finish": "version-change"}
+# ⚠ **正規化之射程限於「起點」**（下放包 30 §2.1 所裁者為起點）。
+# **首版誤把同一規則同時套在訖點上**，致無 `until …` 片語之 TC 之窗
+# 退化為 `availability-check → availability-check` —— **它長得像一個窗，
+# 故沒有任何檢查會攔它**（下放包 34 §1.2）。訖點缺失時**不正規化**。
+IX_NORMALISE_START = {None: "availability-check"}      # 未指定之起點 → 唯一可觀測者
+IX_NORMALISE_END = {"update-finish": "version-change"}  # 更新完成之唯一外部表徵
 # 取最細之類；交集以上下位關係判（R-SU34 v3(b)）
 IX_VIOLATION = [
     (r"download confirmation screen", "confirmation-screen/download"),
@@ -687,10 +694,11 @@ IX_NEG = re.compile(r"contains no |no SW Update prompt|no progress notification"
 
 
 def _ix_window(proc: str, er: str) -> tuple[str | None, str | None]:
+    """回傳 (起, 訖)。訖點無片語可抽時為 `None` —— **半窗，不參與比對**。"""
     txt = proc + " " + er
     s = next((v for p, v in IX_START if re.search(p, txt)), None)
     e = next((v for p, v in IX_END if re.search(p, txt)), None)
-    return IX_NORMALISE.get(s, s), IX_NORMALISE.get(e, e)
+    return IX_NORMALISE_START.get(s, s), IX_NORMALISE_END.get(e, e)
 
 
 def _ix_violations(er: str) -> set[str]:
@@ -717,10 +725,14 @@ def check_cross(rows: list[tuple[int, str, str, str, str, str]]) -> list[Violati
     **不是**「其驗證點是否被他 TC 涵蓋」——**覆蓋是允許的**（R-SU34 v3(e)）。
     """
     out: list[Violation] = []
-    info = []
+    info: list = []
+    half: list = []          # 窗未完整宣告者（待補），不參與比對
     for row_no, tc_id, req_id, test_set, proc, er in rows:
         w = _ix_window(proc, er)
-        if w == (None, None):
+        if w[0] is None or w[1] is None:
+            # **半窗**：R-SU36(b)／R-SU33 v1(b) 令 ER 須明載窗之起訖，
+            # 抽不出訖點者其窗未完整宣告 —— **不參與比對，列為待補**。
+            half.append((row_no, tc_id, w))
             continue
         info.append((row_no, tc_id, req_id, test_set, w, _ix_violations(er)))
     for i, (ra, ta, qa, sa, wa, va) in enumerate(info):
@@ -739,6 +751,13 @@ def check_cross(rows: list[tuple[int, str, str, str, str, str]]) -> list[Violati
                     f"與 {other} 之觀測窗相同（{wa[0]} → {wa[1]}）且違例類有交集",
                     "／".join(sorted(inter))[:80],
                 ))
+    for rn, tid, w in half:
+        out.append(Violation(
+            "I-cross", rn, tid, "expected_result",
+            "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對"
+            "（R-SU33(b)：ER 須明載窗之起訖）",
+            f"起 {w[0] or '—'} → 訖 **未載**",
+        ))
     return out
 
 
@@ -792,6 +811,7 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
                             fields["proc"], fields["er"]))
 
     result.violations.extend(check_sibling_parens(sibling_input))
+    result.cross_rows = cross_input
     if profile:                       # I-cross 為 profile 專屬（PROFILE_CHECKS）
         result.violations.extend(check_cross(cross_input))
     order = check_order(profile)
@@ -957,6 +977,11 @@ def build_parser() -> argparse.ArgumentParser:
                         help="另輸出機讀 json")
     parser.add_argument("--length-limit", type=int, default=DEFAULT_LENGTH_LIMIT,
                         help=f"L 檢查 token 閾值（預設 {DEFAULT_LENGTH_LIMIT}）")
+    parser.add_argument("--merge", action="store_true",
+                        help="把所有 FILES 之列視為同一本簿再跑一次 I-cross —— "
+                             "使比對範圍等同**交付簿**。開發期之 sandbox 分簿"
+                             "會使跨簿配對逐簿比不到（PLAYBOOK (36)）。"
+                             "逐簿之報告不受影響。")
     parser.add_argument("--profile", default=None, metavar="FEATURE",
                         help="feature 專屬判準：P 改採 R-1 v3，另跑 Q／R／T。"
                              "未指定時行為與既有八本之報告基線完全一致")
@@ -1012,6 +1037,28 @@ def main(argv: list[str] | None = None) -> int:
             json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2),
                                  encoding="utf-8")
             print(f"  -> {json_path}")
+
+    # --- `--merge`：跨簿之 I-cross（R-SU34 v1(d)／PLAYBOOK (36)）-------------
+    if args.merge:
+        if not args.profile:
+            print("錯誤：--merge 須與 --profile 併用（I-cross 為 profile 專屬）",
+                  file=sys.stderr)
+            return 2
+        pooled: list[tuple] = []
+        for raw_path in args.files:
+            for r in lint_workbook(Path(raw_path), args.length_limit, args.profile):
+                pooled.extend(r.cross_rows)
+        merged_v = check_cross(pooled)
+        pairs = sorted({tuple(sorted((v.tc_id, v.detail.split("與 ")[1].split(" 之")[0])))
+                        for v in merged_v if v.detail.startswith("與 ")})
+        half = sorted({v.tc_id for v in merged_v if "窗未完整宣告" in v.detail})
+        print(f"\n=== --merge：{len(args.files)} 簿併為一，共 {len(pooled)} 列 ===")
+        print(f"  I-cross(merged) = {len(merged_v)}"
+              f"（配對 {len(pairs)} 組；窗未完整宣告 {len(half)} 列）")
+        for a, b in pairs:
+            print(f"    · {a} ↔ {b}")
+        if half:
+            print("    窗未完整宣告（不參與比對，待補）：" + "、".join(half))
 
     if args.gate and total_violations:
         return 1

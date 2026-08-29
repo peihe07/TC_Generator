@@ -33,9 +33,9 @@
 | T | PENDING 說明非英文 | 0 | 0 | 每次命中 | 未校準（R-14，21 包新增） |
 | U | PENDING 佔位（四欄全掃，含 ER 側） | 3 | 1 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
 | V | 行首空白（IN §11） | 0 | 0 | 每行每欄 | 未校準（IN §11，27 包新增） |
-| I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 2 | 2 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
+| I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 4 | 4 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
 
-**總計：行計 5**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 7**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
@@ -47,10 +47,12 @@
 | 12 | newR1L-SU-003 | proc | PENDING 佔位（DR-SU1） | 3. PENDING: DR-SU1 step to bring one safety-related condition into effect |
 | 12 | newR1L-SU-003 | er | PENDING 佔位（DR-SU1） | 3. PENDING: DR-SU1 observable state showing the safety-related condition is in e |
 
-### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 2／列計 2）
+### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 4／列計 4）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
 | 10 | newR1L-SU-001 | expected_result | 與 newR1L-SU-002 之觀測窗相同（availability-check → version-change）且違例類有交集 | progress-notification |
 | 11 | newR1L-SU-002 | expected_result | 與 newR1L-SU-001 之觀測窗相同（availability-check → version-change）且違例類有交集 | progress-notification |
+| 12 | newR1L-SU-003 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 14 | newR1L-SU-005 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 

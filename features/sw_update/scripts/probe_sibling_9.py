@@ -9,6 +9,8 @@
 本探針把 pilot 5 列與 batch 1 之 5 列寫進同一本（共 **10** 列）再跑 lint，
 使跨批之檢查得以比對。
 
+**T47e 之用途（下放包 34）**：`--merge` 之回測基準 —— 其結果須與本探針逐項相同。
+
 **T45b 之用途（下放包 32）**：`I-cross` 併入 `lint036.py` 後，
 其回測須與獨立腳本 `i_cross_v2.py` **逐項相同**。而獨立腳本以
 「現有 10 TC」為一個集合，`lint036.py` 則**逐簿**執行 ——
@@ -26,8 +28,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from write_back_036 import _set_row, MASTER, SHEET_NAME, HEADER_ROW, FEAT  # noqa: E402
 from gen_pilot import TCS as PILOT_TCS, TEST_GROUP, TEST_SET, AUTHOR       # noqa: E402
 from gen_batch01 import TCS as BATCH_TCS                                   # noqa: E402
+from gen_batch02a import TCS as B2A_TCS, FI_LITE                           # noqa: E402
 
-OUT = FEAT / "sandbox" / "probe_all10" / MASTER
+OUT = FEAT / "sandbox" / "probe_all17" / MASTER
 
 
 def main():
@@ -48,12 +51,14 @@ def main():
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     rows = []
-    for n, t in enumerate(list(PILOT_TCS) + list(BATCH_TCS), 1):
+    for n, t in enumerate(list(PILOT_TCS) + list(BATCH_TCS) + list(B2A_TCS), 1):
         tcid = f"{proj}-SU-{n:03d}"
         vals = {"D": t["req"], "F": tcid, "G": TEST_GROUP, "H": TEST_SET,
                 "I": "\n".join(t["item"]), "J": "\n".join(t["pre"]),
                 "K": "NA", "L": "\n".join(t["proc"]), "M": "\n".join(t["er"]),
-                "N": t["spec"], "O": "NEW", "P": t["prio"], "R": t["dm"],
+                "N": t["spec"], "O": "NEW", "P": t["prio"],
+                # batch 2a 之 TCS 無 `dm` 鍵（其 design_method 於產出時自母本清單實測取得）
+                "R": t.get("dm", FI_LITE),
                 "S": "NA", "AA": AUTHOR}
         sx = _set_row(sx, HEADER_ROW + n, vals)
         rows.append((HEADER_ROW + n, tcid, t["req"]))
@@ -66,7 +71,7 @@ def main():
                 data = sx.encode("utf-8")
             zo.writestr(item, data)
 
-    print("## 併簿探針 —— pilot 5 列 + batch 1 之 5 列 = 10 列\n")
+    print("## 併簿探針 —— pilot 5 + batch 1 之 5 + batch 2a 之 7 = 17 列\n")
     print("| 列 | TC ID | 037 列 |")
     print("|---|---|---|")
     for r, tid, req in rows:

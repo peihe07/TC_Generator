@@ -1,7 +1,7 @@
 # lint036 報告：FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx
 
-- 來源：`features/sw_update/sandbox/probe_all10/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx`（唯讀）
-- 資料列數：10
+- 來源：`features/sw_update/sandbox/probe_all17/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx`（唯讀）
+- 資料列數：17
 - sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
 - L 閾值：50 tokens
 - profile：`sw_update`（P 採 R-1 v3；另跑 Q／R／T）
@@ -31,15 +31,15 @@
 | Q | 不可見字元（NBSP／全形空格／行尾空白） | 0 | 0 | 每行每欄 | 未校準（R-10(a)，21 包新增） |
 | R | Pre-Condition 版面（未編號行／多條件並列） | 0 | 0 | 每行 | 未校準（R-9(a)，21 包新增） |
 | T | PENDING 說明非英文 | 0 | 0 | 每次命中 | 未校準（R-14，21 包新增） |
-| U | PENDING 佔位（四欄全掃，含 ER 側） | 11 | 4 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
+| U | PENDING 佔位（四欄全掃，含 ER 側） | 20 | 7 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
 | V | 行首空白（IN §11） | 0 | 0 | 每行每欄 | 未校準（IN §11，27 包新增） |
-| I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 13 | 8 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
+| I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 20 | 15 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
 
-**總計：行計 24**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 40**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
-### U — PENDING 佔位（四欄全掃，含 ER 側）（行計 11／列計 4）
+### U — PENDING 佔位（四欄全掃，含 ER 側）（行計 20／列計 7）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
@@ -54,8 +54,17 @@
 | 18 | newR1L-SU-009 | er | PENDING 佔位（DR-SU2） | 2. PENDING: DR-SU2 observable evidence that the download request has been issued |
 | 19 | newR1L-SU-010 | proc | PENDING 佔位（DR-SU2） | 4. PENDING: DR-SU2 step to observe the point at which deployment package downloa |
 | 19 | newR1L-SU-010 | er | PENDING 佔位（DR-SU2） | 4. PENDING: DR-SU2 observable evidence of the download completion point |
+| 20 | newR1L-SU-011 | pre | PENDING 佔位（DR-SU2） | 3. PENDING: DR-SU2 means of injecting a socket read or write error during OTA se |
+| 20 | newR1L-SU-011 | proc | PENDING 佔位（DR-SU2） | 3. PENDING: DR-SU2 step to inject a socket read or write error during the update |
+| 20 | newR1L-SU-011 | er | PENDING 佔位（DR-SU2） | 3. PENDING: DR-SU2 observable evidence that the socket error has occurred |
+| 23 | newR1L-SU-014 | pre | PENDING 佔位（DR-SU2） | 3. PENDING: DR-SU2 means of placing the vehicle into the emergency state (accide |
+| 23 | newR1L-SU-014 | proc | PENDING 佔位（DR-SU2） | 3. PENDING: DR-SU2 step to place the vehicle into the emergency state while the  |
+| 23 | newR1L-SU-014 | er | PENDING 佔位（DR-SU2） | 3. PENDING: DR-SU2 observable evidence that the vehicle is in the emergency stat |
+| 26 | newR1L-SU-017 | pre | PENDING 佔位（DR-SU3） | 3. PENDING: DR-SU3 upstream confirmation whether this requirement's verification |
+| 26 | newR1L-SU-017 | proc | PENDING 佔位（DR-SU3） | 1. PENDING: DR-SU3 step to exercise the coordination behaviour separately from t |
+| 26 | newR1L-SU-017 | er | PENDING 佔位（DR-SU3） | 1. PENDING: DR-SU3 observable outcome attributable to the coordination behaviour |
 
-### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 13／列計 8）
+### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 20／列計 15）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
@@ -72,4 +81,11 @@
 | 17 | newR1L-SU-008 | expected_result | 與 newR1L-SU-006 之觀測窗相同（availability-check → version-change）且違例類有交集 | confirmation-screen |
 | 17 | newR1L-SU-008 | expected_result | 與 newR1L-SU-007 之觀測窗相同（availability-check → version-change）且違例類有交集 | confirmation-screen |
 | 18 | newR1L-SU-009 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 20 | newR1L-SU-011 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 21 | newR1L-SU-012 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 22 | newR1L-SU-013 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 23 | newR1L-SU-014 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 24 | newR1L-SU-015 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 25 | newR1L-SU-016 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 26 | newR1L-SU-017 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 

@@ -3,8 +3,9 @@
 - **From**: Pei (SW Test / SWE.6, SW Update feature)
 - **Date**: 2026-08-28
 - **Subject**: Two data requests blocking system-level test case authoring for FOTA / SW Update
-- **Open items**: DR-SU1 (1 requirement), DR-SU2 v2 (3 sub-requests)
-- **Revision**: 2026-08-29 — DR-SU2 (c) now lists three requirements (`184` added)
+- **Open items**: DR-SU1 (1 requirement), DR-SU2 v3 (4 sub-requests), DR-SU3 (2 requirements)
+- **Revision**: 2026-08-29 — DR-SU2 (c) now lists three requirements (`184` added);
+  DR-SU2 (d) added (trigger means for `315`/`318`); DR-SU3 added (umbrella requirements)
 
 ---
 
@@ -105,6 +106,44 @@ we need it from you.
 mention external behaviour, so it was never in that set, yet it is still not fully
 verifiable. **The size of this category has not been surveyed.**
 
+### 3.5 (d) Means of *triggering* two conditions on the bench — **not** means of observing them
+
+Two requirements describe conditions we can observe the outcome of, but **cannot bring
+about** on a test bench. This is the opposite problem from §3.3: there we can make it
+happen but cannot see it; here we can see it but cannot make it happen.
+
+| Requirement | Title | What we cannot trigger | What would resolve it |
+|---|---|---|---|
+| `SWE1-FOTA-315` | Socket Read/Write Error Handling | A socket read or write error during OTA server communication. The outcome is observable (the update does not complete and the head unit stays operable); we have no way to inject the error | A fault-injection tool or a test mode that forces a socket read/write failure during an update session |
+| `SWE1-FOTA-318` | Emergency State Handling | The vehicle emergency state (accident detection). We have no accident-detection signal available on the bench, and this feature has no CAN database binding, so we cannot construct one | A means of placing the vehicle into the emergency state on the bench — a test mode, a simulated signal with a documented name and value range, or a bench procedure |
+
+**We will not fabricate a signal.** Naming a CAN signal we cannot trace to a source
+document would put an invented value into a delivered test case.
+
+---
+
+## 3A. DR-SU3 — Confirmation that two requirements' verification may be folded in
+
+Two requirements are written as *umbrella* statements: they say a component shall
+coordinate the handling of conditions that are themselves defined in other requirements,
+and they list those requirements by ID.
+
+| Requirement | Title | Lists | What we are asking |
+|---|---|---|---|
+| `SWE1-FOTA-313` | Interruption Condition Coordination | `4907667`–`4907672` (the six interruption conditions, i.e. `SWE1-FOTA-315`–`320`) | Whether this requirement's verification is fully covered by the test cases for those six, or whether it has a verification point of its own we have missed |
+| `SWE1-FOTA-327` | Download Resume Condition Handling | `4907683`, `4907684` (i.e. `SWE1-FOTA-328`, `329`) | The same question |
+
+**Why we are asking rather than deciding.** Taking `313` apart sentence by sentence,
+everything it states is carried by the six requirements it lists, or by
+`SWE1-FOTA-358` (status reporting). What remains is the coordination itself — and we
+could not identify any situation where all six pass individually yet coordination fails,
+that is also grounded in the wording of `313`. But **folding one requirement's
+verification into others is a specification-side decision**, not ours to make.
+
+If you confirm, these requirements will have no test case of their own and we will
+record where their coverage sits. If you disagree, please tell us what `313` and `327`
+verify that their listed requirements do not.
+
 ---
 
 ## 4. Evidence — the diagnostics side has been exhausted
@@ -139,3 +178,5 @@ definition for FOTA exists, it is in a document we have not been given.
 | DR-SU2 (a) | How error codes are surfaced on the head unit | Every step that reads a code |
 | DR-SU2 (b) | Positive-state observation for the Wi-Fi FOTA session | 5 confirmed rows, up to 106 in the same profile |
 | DR-SU2 (c) | Distinguishing means for `SWE1-FOTA-179`, `181` and `184` | 3 test cases, 8 placeholders |
+| DR-SU2 (d) | **Trigger** means for `SWE1-FOTA-315` and `318` | 2 test cases, 6 placeholders |
+| DR-SU3 | Confirmation that `SWE1-FOTA-313` and `327` fold into the requirements they list | 1 test case, 3 placeholders (`327` not yet drafted) |
