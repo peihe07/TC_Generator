@@ -16,3 +16,7 @@ __pycache__/
 *.pyc
 output/
 .DS_Store
+
+# 本 feature 之暫存工作區（pilot／batch／probe 之 036 表單工作副本）。
+# 與 forms/*、power_moding/sandbox/ 同一政策：公司表單本體不入版控。
+sandbox/
