@@ -1,27 +1,39 @@
 {
- "batch": "b01",
+ "batch": "b02",
  "feature": "ICS Management",
  "date": "2026-08-29",
  "generator": "Claude Code session, canon-direct — 未經 backend/prompt_builder.py，未呼叫 backend/generator.py",
  "counts": {
-  "tcs": 6,
-  "parents": 3,
-  "test_sets": 2,
-  "pending_placeholders": 1
+  "tcs": 2,
+  "parents": 1,
+  "test_sets": 1,
+  "pending_placeholders": 2
  },
  "parents": {
-  "SWE-ICS-010": 3,
-  "SWE-ICS-001": 2,
-  "SWE-ICS-002": 1
+  "SWE-ICS-010": 2
  },
  "anchors": [
-  "CFTS022-4914956",
-  "CFTS022-4914957",
-  "CFTS022-4914958",
-  "CFTS022-4914974",
-  "CFTS022-4914975",
-  "CFTS022-4914976"
+  "CFTS020-4819617"
  ],
+ "signal_resolution": {
+  "lid": "forms/Logical Identifiers and CAN Mapping v1_78.xlsx / 'CAN Mapping' r1038 / 群組列 2 'Atlantis High' / 表頭列 3 / Signal Name = c26、Format = c28",
+  "candidates": [
+   "CLIMATIC_PANEL.Radio_btn4",
+   "GW_B_5.Mute_Button",
+   "DIS_CENTERSTACK.DCSD_Mute"
+  ],
+  "dbc_filter": {
+   "PDT27_E2A_R4_BHCAN.dbc": {
+    "CLIMATIC_PANEL": "BO_ 1050 node=ICS, SG_ Radio_btn4 有",
+    "GW_B_5": "BO_ 1449 node=BCM, SG_ Mute_Button **無**",
+    "DIS_CENTERSTACK": "BO_ 1445 node=DCSD, SG_ DCSD_Mute 有"
+   },
+   "PDT27_E2A_R5_FDCAN8.dbc": "三訊息皆無"
+  },
+  "selected": "CLIMATIC_PANEL.Radio_btn4",
+  "fallback": "DIS_CENTERSTACK.DCSD_Mute",
+  "val": "VAL_ 1050 Radio_btn4: 0 \"Not_Pressed\" 1 \"Pressed\""
+ },
  "context_sha256": {
   "canon": "0b0cea006552a2f244ba8e733ef6227b132b591a34defb65234934985fe2598e",
   "canon_concat": "68b2c446d3ee0a48c10e7a1b00300ccfcf484e6d0526bf4a2314040470698334",
@@ -37,19 +49,10 @@
   "dbc_b": "9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0",
   "dbc_fd": "51c8fd6092925071bbf443711e5161d78df292de232dc7427b1cceaa8f181cd2"
  },
- "tcs_sha256": "f38882a9108023f4f5004d38de9988d654691a4e7f631f1828b82af459d289fe",
+ "tcs_sha256": "f5db81a92bbf62042598037a2b5cb5019f36e9782550a1addebe9ef99fa8a657",
  "checks": {
-  "selfcheck_b01.py": "PASS — 機檢 16 項 FAIL 0，人工 5 項",
-  "verify_verbatim_b01.py": "PASS — 6 條逐字命中 6"
+  "selfcheck_b01.py": "PASS — b01+b02 合檢，機檢 17 項 FAIL 0",
+  "verify_verbatim_b01.py": "PASS — 8 條逐字命中 8"
  },
- "note": "tcs_sha256 為本檔寫入前之值；b01_tcs.json 若再動，本檔須重算。",
- "revision": {
-  "date": "2026-08-29",
-  "by": "下放包 02 作業 A／B",
-  "changes": [
-   "DR-ICS8 佔位 3 處 → 0 處（R-ICS8 實測 $CLIMATIC_PANEL.Radio_btn4$）",
-   "S1 步驟 2 加註 DTC mature time；S2 增步驟 5（de-mature 8 ms）",
-   "S1/S2/S3 之 DTC 具名為 B14DA-2A（DTCs Matrix r57）"
-  ]
- }
+ "note": "tcs_sha256 為本檔寫入前之值；b02_tcs.json 若再動，本檔須重算。"
 }

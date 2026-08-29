@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""b01 之自檢（IN §9 逐項），對 generated/b01/b01_tcs.json 實跑。
+"""批次自檢（IN §9 逐項）。預設對 generated/b01 與 generated/b02 兩批合併實跑。
 
 本 feature 尚無 lint_tcs.py（無 DBC 綁定、無 outline map，lint 之 F/K/T/U 閘
 皆無母體），故本包以自檢腳本承接 IN §9 中可機檢之項次，並逐項印出。
 **不可機檢者印 MANUAL 而非 PASS** —— 不可能失敗之檢查項不得標 PASS
 （charter §工作形態）。
 
-用法：python3 features/ics_management/scripts/selfcheck_b01.py
+用法：python3 features/ics_management/scripts/selfcheck_b01.py [batch.json ...]
 """
 from __future__ import annotations
 
@@ -16,7 +16,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BATCH = ROOT / "generated" / "b01" / "b01_tcs.json"
+DEFAULT_BATCHES = [ROOT / "generated" / "b01" / "b01_tcs.json",
+                   ROOT / "generated" / "b02" / "b02_tcs.json"]
 
 TEN_KEYS = ["tc_title", "pre_conditions", "input_test_data", "test_procedure",
             "expected_result", "specification_reference", "design_method",
@@ -64,8 +65,15 @@ def items(field: str) -> list[str]:
 
 
 def main() -> int:
-    data = json.loads(BATCH.read_text())
-    tcs = data["tcs"]
+    paths = [Path(a) for a in sys.argv[1:]] or DEFAULT_BATCHES
+    paths = [p for p in paths if p.exists()]
+    tcs = []
+    for bp in paths:
+        for t in json.loads(bp.read_text())["tcs"]:
+            t["_batch"] = json.loads(bp.read_text())["batch"]
+            tcs.append(t)
+    print("受檢批次：" + "、".join(f'{p.parent.name}（{len(json.loads(p.read_text())["tcs"])} 條）'
+                                   for p in paths))
 
     # 1 Test Set
     sets = sorted({t["test_set"] for t in tcs})
@@ -85,7 +93,7 @@ def main() -> int:
     if len(set(titles)) != len(titles):
         bad.append("重複 tc_title")
     add("§9-2 tc_title", not bad,
-        f"6 條字數 {[len(t['tc_title'].split()) for t in tcs]}；違規 {bad or 0}")
+        f"{len(tcs)} 條字數 {[len(t['tc_title'].split()) for t in tcs]}；違規 {bad or 0}")
 
     # 4.3.1 test_item 兩段式
     bad = []
@@ -105,7 +113,7 @@ def main() -> int:
     for rid, ls in per_parent.items():
         if len(set(ls)) != len(ls):
             bad.append(f"{rid}: 括號下半逐字相同")
-    add("§4.3.1 test_item 兩段式", not bad, f"6 條皆有下半、皆英文；違規 {bad or 0}")
+    add("§4.3.1 test_item 兩段式", not bad, f"{len(tcs)} 條皆有下半、皆英文；違規 {bad or 0}")
 
     # 10.1 十鍵
     missing = {t["tc_title"]: [k for k in TEN_KEYS if k not in t] for t in tcs}
@@ -214,11 +222,29 @@ def main() -> int:
     add("§8.4.3 PENDING 佔位", flagged == carrying,
         f"佔位 {len(pend)} 處，涉 {len(carrying)} 條；has_pending 標記 {sorted(flagged)}")
 
+    # 交付欄與 test_item 之非 ASCII（R-DD22 同族；下放包 02 §5 第 10 項）
+    bad = []
+    for t in tcs:
+        for f in NO_WS_FIELDS:
+            for ch in t[f]:
+                if ord(ch) > 127:
+                    bad.append(f'{t["tc_title"]}/{f}: U+{ord(ch):04X} {ch!r}')
+    add("§1 交付欄無非 ASCII", not bad, f"掃六欄逐字元；命中 {sorted(set(bad)) or 0}")
+
+    # 角括號之出現（非 FAIL，逐處列出供覆核）
+    ang = []
+    for t in tcs:
+        for f in NO_WS_FIELDS:
+            for m in re.findall(r"<[^>]{1,60}>", t[f]):
+                ang.append(f'{t["tc_title"]}/{f}: {m}')
+    add("§11 角括號之出現（列示，非 FAIL）", None,
+        f"{len(ang)} 處：{sorted(set(ang))}")
+
     # 不可機檢者
-    add("§9-3 Pre-Condition 為狀態/環境", None, "人工：6 條之 PC 皆為狀態或連接之器材，無動作、無檢查")
-    add("§9-5 Final Step 擁有驗證", None, "人工：6 條之末步皆含 check that")
-    add("§9-11 無 FP/FF", None, "人工：S3 為 S1 之負向對；V1/V2 為方向對")
-    add("§9-12 追溯 Req/SWRA", None, "人工：req_id 3 個（010×3、001×2、002×1），皆為 SWRA 需求分頁實列之 ID")
+    add("§9-3 Pre-Condition 為狀態/環境", None, f"人工：{len(tcs)} 條之 PC 皆為狀態或連接之器材，無動作、無檢查")
+    add("§9-5 Final Step 擁有驗證", None, f"人工：{len(tcs)} 條之末步皆含 check that")
+    add("§9-11 無 FP/FF", None, "人工：S3 為 S1 之負向對；V1/V2 為方向對；I1/I2 為 stuck 中／解除後之對")
+    add("§9-12 追溯 Req/SWRA", None, f"人工：req_id {len({t['req_id'] for t in tcs})} 個 —— " + str({r: sum(1 for t in tcs if t['req_id']==r) for r in sorted({t['req_id'] for t in tcs})}) + "，皆為 SWRA 需求分頁實列之 ID")
     add("§9-17 來源 spec 勝過索引輸出", None, "人工：R-ICS4 之分流已套用，V3 之上半取 SWRA（002 未受 A-ICS1 位移）")
 
     w = max(len(r[0]) for r in results)

@@ -1,0 +1,53 @@
+{
+ "batch": "b02",
+ "feature": "ICS Management",
+ "test_group": "ICS",
+ "handoff": "features/ics_management/docs/handoff/02_signal_resolution_and_ignore_face.md",
+ "reasoning": "本批為 SWE-ICS-010 之第二行為面（ignore 面，R-ICS9(c)(ii)），錨 CFTS020-4819617 —— 即 SWRA 010 之 Verification Criteria `Verify actions are ignored after configured stuck button timeout condition` 之本體，b01 三條（DTC 面）無一涵蓋。關鍵情境條件為按鍵持續按下逾 <Tstuck_button>；該門檻於 CFTS020 亦為符號而無數值，全數以 PENDING: DR-ICS10 佔位，**不挪用 CFTS022-4914956 之 120 s**（R-ICS9(d)）。切分為 2 條：條文含「忽略」與「恢復」二獨立 partial failure（IN §8.2.2），併一條時前者失敗即掩蓋後者。刻意未涵蓋：Display／Browse／Navigation 三面依 R-ICS9(e) 本批只偵察不生 TC；ICSMuteButton 之具體 HU 回應屬 CFTS019（DR-ICS4），故以前後基線比較取代指名。",
+ "tcs": [
+  {
+   "req_id": "SWE-ICS-010",
+   "tc_title": "Press ignored during stuck condition",
+   "test_group": "ICS",
+   "test_set": "Stuck Button",
+   "test_item": "When the HU receives a physical button press signal with a continuous button pressed for more than <Tstuck_button>, the HU shall ignore the press request until a signal has been received that the button has been released\n(The held press request is not acted on again while the button stays continuously pressed)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. The HU is in HU Audio Mode ON mode\n3. A CAN trace tool is connected and able to log the ICS button status messages",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press and hold the ICS \"Mute\" button\n2. Read the HU state and record it once the initial press has been processed\n3. Keep the button pressed for more than PENDING: DR-ICS10 <Tstuck_button value>\n4. Read the signal $CLIMATIC_PANEL.Radio_btn4$ and check that it is 1 (Pressed)\n5. Check that the HU state is the same as the state recorded in step 2",
+   "expected_result": "1. The \"Mute\" button enters and remains in the pressed state\n2. The HU state after the initial press is recorded\n3. The button remains in the pressed state beyond the stuck button timeout\n4. The signal value $CLIMATIC_PANEL.Radio_btn4$ = 1 (Pressed) is received\n5. The HU state is the same as the baseline recorded in step 2",
+   "specification_reference": "CFTS020-4819617",
+   "design_method": "Fault Injection",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "stuck 持續中之忽略；解除後之恢復由 I2 承擔"
+   },
+   "reasoning": "驗證目標為 CFTS020-4819617 之 ignore 面：持續按壓逾 <Tstuck_button> 後，該按壓請求不再被 HU 處理。關鍵情境條件為按鍵維持按下且逾門檻，門檻無數值故以 PENDING: DR-ICS10 佔位（R-ICS9(d)，**不得挪用 DTC 面之 120 s**）。與 b01 之 S1／S2／S3 分列之依據為 R-ICS9(c)：010 有二行為面，DTC 面與 ignore 面各自成立（IN §8.2.2）。觀察面不指名具體 HU 動作而以「與步驟 2 之基線相同」表述：ICSMuteButton 之具體回應定義於 CFTS019（DR-ICS4 未到），指名即造值（IN §8.4.1）；前後比較不需該資料即可判定（IN §5.6）。4819617 末句轉引之 {CFTS020-479} 為短號需求 ID 而非 ObjectID，依 IN §10.7(a) 不作錨，僅此註明。刻意未涵蓋：放開後之恢復（I2）；DTC 之置位與清除（b01 之 S1／S2）。"
+  },
+  {
+   "req_id": "SWE-ICS-010",
+   "tc_title": "Button responsive after release",
+   "test_group": "ICS",
+   "test_set": "Stuck Button",
+   "test_item": "When the HU receives a physical button press signal with a continuous button pressed for more than <Tstuck_button>, the HU shall ignore the press request until a signal has been received that the button has been released\n(The button is acted on again once the released signal has been received)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. The HU is in HU Audio Mode ON mode\n3. A CAN trace tool is connected and able to log the ICS button status messages",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press and hold the ICS \"Mute\" button for more than PENDING: DR-ICS10 <Tstuck_button value>\n2. Release the ICS \"Mute\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn4$ and check that it is 0 (Not_Pressed)\n4. Read the HU state and record it\n5. Press and release the ICS \"Mute\" button once and check that the HU state differs from step 4",
+   "expected_result": "1. The button remains in the pressed state beyond the stuck button timeout\n2. The \"Mute\" button returns to the not pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn4$ = 0 (Not_Pressed) is received\n4. The HU state after the release is recorded\n5. The HU state changes from the baseline recorded in step 4",
+   "specification_reference": "CFTS020-4819617",
+   "design_method": "Fault Injection",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "收到 released 訊號後之恢復；stuck 持續中之忽略由 I1 承擔"
+   },
+   "reasoning": "驗證目標為 4819617 條文之後半：`until a signal has been received that the button has been released` —— 收到放開訊號後，按鍵恢復被處理。關鍵情境條件為先以逾門檻之持續按壓進入 stuck 狀態，再放開產生 released 訊號。與 I1 分列之依據為 IN §8.2.2：「忽略」與「恢復」為同一條文下之二獨立 partial failure，併為一條時前者失敗即掩蓋後者是否成立。門檻同以 PENDING: DR-ICS10 佔位（R-ICS9(d)）。HU 動作同 I1 以前後比較表述，理由同（CFTS019 未到，DR-ICS4）。刻意未涵蓋：DTC 之清除（b01 之 S2 已涵蓋，其錨為 CFTS022-4914957／58，非本條）。"
+  }
+ ]
+}

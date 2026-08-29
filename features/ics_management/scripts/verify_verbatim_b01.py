@@ -4,6 +4,7 @@
 比對對象自**原檔**重抽，不用任何暫存副本（charter §探測與工具）：
   - CFTS022 = features/privacy/inputs/R1LR_Atl-H_25PI3.5_Privacy_CFTS_022 …docx
   - SWRA    = features/ics_management/inputs/ICS_Management_…_SWRA.xlsx
+  - CFTS020 = features/ics_management/inputs/R1LR_Atl-H_26PI1.5 … CFTS_020 …docx
 
 正規化條件（逐項揭露，比對前雙方同套）：
   1. 彎引號 “ ” ‘ ’ → 直引號 " '  —— 排版正規化，IN §11 令 UI 標籤用直雙引號
@@ -31,7 +32,10 @@ REPO = ROOT.parents[1]
 CFTS022 = REPO / ("features/privacy/inputs/R1LR_Atl-H_25PI3.5_Privacy_CFTS_022 "
                   "Functional Specification_20250910_1708.docx")
 SWRA = ROOT / "inputs/ICS_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx"
-BATCH = ROOT / "generated/b01/b01_tcs.json"
+CFTS020 = ROOT / ("inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and "
+                  "DCSD _20260310-1533.docx")
+DEFAULT_BATCHES = [ROOT / "generated/b01/b01_tcs.json",
+                   ROOT / "generated/b02/b02_tcs.json"]
 
 
 def docx_text(path: Path) -> str:
@@ -54,11 +58,19 @@ def main() -> int:
     swra = {norm(r[3]) for r in ws.iter_rows(values_only=True)
             if r[0] and str(r[0]).startswith("SWE-ICS") and r[3]}
 
-    tcs = json.loads(BATCH.read_text())["tcs"]
+    src020 = norm(docx_text(CFTS020))
+    paths = [Path(a) for a in sys.argv[1:]] or DEFAULT_BATCHES
+    paths = [p for p in paths if p.exists()]
+    tcs = []
+    for bp in paths:
+        tcs += json.loads(bp.read_text())["tcs"]
+    print("受檢批次：" + "、".join(p.parent.name for p in paths))
     bad = []
     for t in tcs:
         upper = norm(t["test_item"].split("\n")[0])
-        origin = "CFTS022" if upper in src else ("SWRA" if upper in swra else None)
+        origin = ("CFTS022" if upper in src else
+                  "CFTS020" if upper in src020 else
+                  "SWRA" if upper in swra else None)
         print(f'{t["tc_title"]:46} {t["req_id"]:13} '
               f'{origin or "**MISS**"}  {t["specification_reference"].splitlines()[0]}')
         if origin is None:
