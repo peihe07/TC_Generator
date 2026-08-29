@@ -44,10 +44,21 @@ PRE_STD = [
     "1. The head unit is connected to a Wi-Fi network with internet access",
     "2. An update package with update type Silent Update is staged on the OTA Server for this head unit",
 ]
-TAIL = ["4. Read the software version shown on the head unit and record it as Version_after",
-        "5. Check that Version_after equals Version_initial and that the head unit remains operable"]
-ER_TAIL = ["4. Version_after is recorded",
-           "5. Version_after equals Version_initial; the head unit remains operable and its screen responds to user input"]
+# **末步不再共用**（R-SU41(c)，下放包 35 §三／下放包 36 §三）——
+# 各 TC 之 Final Step 須把**其觸發側之可觀測狀態**帶進判定對象，
+# 否則二 sibling 之判定對象逐字相同，讀 TC 之人看不出驗的是不同的事。
+READ_AFTER = "4. Read the software version shown on the head unit and record it as Version_after"
+ER_READ_AFTER = "4. Version_after is recorded"
+
+
+def tail(check: str) -> list[str]:
+    return [READ_AFTER, f"5. Check that Version_after equals Version_initial {check}, "
+                        "and that the head unit remains operable"]
+
+
+def er_tail(state: str) -> list[str]:
+    return [ER_READ_AFTER, f"5. Version_after equals Version_initial {state}; "
+                           "the head unit remains operable and its screen responds to user input"]
 
 TCS = [
  dict(req="SWE1-FOTA-315", spec="CFTS057-4907667", prio="P1",
@@ -56,40 +67,48 @@ TCS = [
   pre=PRE_STD + ["3. PENDING: DR-SU2 means of injecting a socket read or write error during OTA server communication"],
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. Trigger an update availability check to the OTA Server",
-        "3. PENDING: DR-SU2 step to inject a socket read or write error during the update session"] + TAIL,
+        "3. PENDING: DR-SU2 step to inject a socket read or write error during the update session"]
+       + tail("after the socket read/write error has been injected"),
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
-      "3. PENDING: DR-SU2 observable evidence that the socket error has occurred"] + ER_TAIL),
+      "3. PENDING: DR-SU2 observable evidence that the socket error has occurred"]
+     + er_tail("after the socket read/write error has been injected")),
  dict(req="SWE1-FOTA-316", spec="CFTS057-4907668", prio="P1",
   item=["The SWMC shall detect network loss conditions, including network errors, no data coverage, loss of Wi-Fi connection, phone tether disconnection, and embedded modem roaming, during OTA server communication, flashing, or software component update, and shall report the network loss status to WiFiUpdateService.",
         "(Wi-Fi access point switched off during an update session)"],
   pre=PRE_STD,
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. Trigger an update availability check to the OTA Server",
-        "3. Switch off the Wi-Fi access point while the update session is in progress"] + TAIL,
+        "3. Switch off the Wi-Fi access point while the update session is in progress"]
+       + tail("while the head unit settings still show Wi-Fi as enabled"),
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
-      "3. The Wi-Fi access point is switched off and the head unit shows no Wi-Fi connection"] + ER_TAIL),
+      "3. The Wi-Fi access point is switched off and the head unit shows no Wi-Fi connection"]
+     + er_tail("while the head unit settings still show Wi-Fi as enabled with no connection present")),
  dict(req="SWE1-FOTA-317", spec="CFTS057-4907669", prio="P1",
   item=["The WiFiUpdateService shall handle user-initiated deactivation of mobile data usage or an active Wi-Fi connection reported by SWMC during OTA server communication, flashing, or software component update.",
         "(User switches off the Wi-Fi connection during an update session)"],
   pre=PRE_STD,
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. Trigger an update availability check to the OTA Server",
-        "3. Switch off the Wi-Fi connection in the head unit settings while the update session is in progress"] + TAIL,
+        "3. Switch off the Wi-Fi connection in the head unit settings while the update session is in progress"]
+       + tail("while the head unit settings show Wi-Fi as disabled"),
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
-      "3. The Wi-Fi connection is switched off and the head unit settings show Wi-Fi as disabled"] + ER_TAIL),
+      "3. The Wi-Fi connection is switched off and the head unit settings show Wi-Fi as disabled"]
+     + er_tail("while the head unit settings show Wi-Fi as disabled")),
  dict(req="SWE1-FOTA-318", spec="CFTS057-4907670", prio="P1",
   item=["The WiFiUpdateService shall handle the vehicle emergency state (accident detection) notified by the appropriate system component during OTA server communication, flashing, or software component update.",
         "(Vehicle enters emergency state during an update session)"],
   pre=PRE_STD + ["3. PENDING: DR-SU2 means of placing the vehicle into the emergency state (accident detection) on the test bench"],
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. Trigger an update availability check to the OTA Server",
-        "3. PENDING: DR-SU2 step to place the vehicle into the emergency state while the update session is in progress"] + TAIL,
+        "3. PENDING: DR-SU2 step to place the vehicle into the emergency state while the update session is in progress"]
+       + tail("while the vehicle is in the emergency state"),
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
-      "3. PENDING: DR-SU2 observable evidence that the vehicle is in the emergency state"] + ER_TAIL),
+      "3. PENDING: DR-SU2 observable evidence that the vehicle is in the emergency state"]
+     + er_tail("while the vehicle is in the emergency state")),
  # `319` —— test_item 上半 verbatim 保留 D-1 之缺字（`the handling of condition`）
  dict(req="SWE1-FOTA-319", spec="CFTS057-4907671", prio="P1",
   item=["The WiFiUpdateService shall coordinate the handling of condition during OTA server communication, flashing, or software component update by interacting with SWMC and the appropriate installer component.",
@@ -98,15 +117,15 @@ TCS = [
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. Trigger an update availability check to the OTA Server",
         "3. Disconnect the head unit battery supply while the update session is in progress",
-        "4. Reconnect the battery supply and wait until the head unit completes start-up",
+        "4. Reconnect the battery supply and wait until the head unit screen responds to user input",
         "5. Read the software version shown on the head unit and record it as Version_after",
-        "6. Check that Version_after equals Version_initial and that the head unit remains operable"],
+        "6. Check that Version_after equals Version_initial after the head unit has powered off and started up again, and that the head unit remains operable"],
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
       "3. The head unit powers off",
-      "4. The head unit completes start-up and its home screen is displayed",
+      "4. The head unit completes start-up and its screen responds to user input",
       "5. Version_after is recorded",
-      "6. Version_after equals Version_initial; the head unit remains operable and its screen responds to user input"]),
+      "6. Version_after equals Version_initial after the head unit has powered off and started up again; the head unit remains operable and its screen responds to user input"]),
  dict(req="SWE1-FOTA-320", spec="CFTS057-4907672", prio="P1",
   item=["The WiFiUpdateService shall detect end-user physical disconnection of the host system (HU/TBM) during OTA server communication, flashing, or software component update and notify SWMC.",
         "(Host system physically disconnected during an update session)"],
@@ -114,15 +133,15 @@ TCS = [
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. Trigger an update availability check to the OTA Server",
         "3. Physically disconnect the host system connector while the update session is in progress",
-        "4. Reconnect the host system connector and wait until the head unit completes start-up",
+        "4. Reconnect the host system connector and wait until the head unit screen responds to user input",
         "5. Read the software version shown on the head unit and record it as Version_after",
-        "6. Check that Version_after equals Version_initial and that the head unit remains operable"],
+        "6. Check that Version_after equals Version_initial after the host system connection has been lost and restored, and that the head unit remains operable"],
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
       "3. The head unit loses the host system connection",
-      "4. The head unit completes start-up and its home screen is displayed",
+      "4. The host system connector is reconnected and the head unit screen responds to user input",
       "5. Version_after is recorded",
-      "6. Version_after equals Version_initial; the head unit remains operable and its screen responds to user input"]),
+      "6. Version_after equals Version_initial after the host system connection has been lost and restored; the head unit remains operable and its screen responds to user input"]),
  # `313` —— 統攝列，餘量為空（R-SU37 v2(b)）；全欄 PENDING: DR-SU3
  dict(req="SWE1-FOTA-313",
       spec="CFTS057-4907667 / 4907668 / 4907669 / 4907670 / 4907671 / 4907672",

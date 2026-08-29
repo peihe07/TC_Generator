@@ -87,7 +87,7 @@ Polarion `NRL-` 不同族，強行對應即造值）—— 本句**維持有效*
 
 #### 036 `E` 欄「不用」之理由
 
-**15 本簿 2167 列全空**、母本無 DV／無條件式格式；
+**15 本簿 2167 列全空**、**`E` 欄於母本無標準 DV 亦無 x14 DV**／無條件式格式；
 其語意為 TestRail 之測試管理端 id，**填寫者非 TC 產出端**
 （同 `AB`–`AG` 之判準，且有 2167 列之實測佐證）。
 
@@ -116,6 +116,19 @@ Polarion `NRL-` 不同族，強行對應即造值）—— 本句**維持有效*
 故 sw_update 之 037 列是否有對應之 Polarion id、
 以及該對應是否經 SYS1 之 120 列可得，**未查**。
 **`C` 欄能否填、該不該填，取決於該對應之存在與否，屬分析層之裁定。**
+
+> ### ⚠ **「無 DV」一語之射程**（T49d，下放包 36 §四）
+>
+> 本檔各處之「無 DV」**皆為欄範圍內之陳述**（`C`／`E`／`S` 三欄確實不在
+> 母本任一 DV 範圍內），**逐項覆核為真，非誤**。
+>
+> **惟其易被讀成全簿之陳述，而全簿之事實是**：
+> **標準 `<dataValidation>` 有 4 處；x14 DV 有 1 處 —— `R10:R1411`。**
+> 只掃 `<dataValidation>` 元素**掃不到後者**，而 `R` 正是下放包 33
+> 填入清單外之值的那一欄。
+>
+> **全簿之 DV 盤點與各欄值域全文見 `CONTROLLED_VOCAB.md`。**
+> 本檔管「有哪些欄」，該檔管「該欄能填什麼」（R-SU40(e)）。
 
 ## 已查・不用之來源（**查過而無內容者，須留跡**）
 
@@ -199,7 +212,7 @@ Polarion `NRL-` 不同族，強行對應即造值）—— 本句**維持有效*
 | `B` | No.# ／ 序號 | **不用** —— 共用公式之宿主（`t="shared"` 1401 處），賦值即毀 |
 | `C` | Requirement or Design ／ ID (Polarion) ／ 設計/需求 ID (Po | **不用（留空）** —— **下放包 26 §2.1**：037 為 18 欄舊版面無 `HMI Source ID`，鏈路第一環不存在；替代鍵三欄交集皆 0。**留空為裁定，不是遺漏**；日後要填須新開 DR，不得以推定值填入 |
 | `D` | Requirement or Design ID ／ 需求/設計 ID | **已用** —— `req_id`（`feature.yaml` §workbook.columns） |
-| `E` | Test Case ID (TestRail) ／ 測試用例 ID (TestRail) | **不用** —— **下放包 26 §2.2**：15 本簿 2167 列全空、無 DV；其語意為 TestRail 之測試管理端 id，填寫者非 TC 產出端 |
+| `E` | Test Case ID (TestRail) ／ 測試用例 ID (TestRail) | **不用** —— **下放包 26 §2.2**：15 本簿 2167 列全空、**該欄無標準 DV 亦無 x14 DV**；其語意為 TestRail 之測試管理端 id，填寫者非 TC 產出端 |
 | `F` | Test Case ID ／ 測試用例ID | **已用** —— TC ID（R-SU24；`feature.yaml` 未列，實測 `F9`） |
 | `G` | Test Group ／ 測試組 | **已用** —— `test_group`（`feature.yaml` §workbook.columns） |
 | `H` | Test Set ／ 測試集 | **已用** —— `test_set`（`feature.yaml` §workbook.columns） |
@@ -213,7 +226,7 @@ Polarion `NRL-` 不同族，強行對應即造值）—— 本句**維持有效*
 | `P` | Test Case Priority ／ 測試用例優先級別 | **已用** —— `priority`（`feature.yaml` §workbook.columns） |
 | `Q` | Estimated Test Time (mins) ／ 預估測試時間 ／ （分鐘） | **已用（工具側）** —— `RECON.md` §Workbook 已解析 `estimated_test_time = Q`；**`feature.yaml` 未列**，寫回是否填未裁 |
 | `R` | Test Case Design  ／ Methods ／ 測試用例設計方法 | **已用** —— `design_method`（`feature.yaml` §workbook.columns） |
-| `S` | Functional Safety ／ 功能安全 | **已用（欄已映射）** —— `functional_safety`；**母本無 DV**（T35c 實測）；他 feature 之交付本 5/6 填 `NA`。本 feature pilot 未填，值域未裁 |
+| `S` | Functional Safety ／ 功能安全 | **已用（欄已映射）** —— `functional_safety`；**該欄不在母本任一 DV 範圍內**（T35c 實測；DV 之全簿盤點見 `CONTROLLED_VOCAB.md`）；他 feature 之交付本 5/6 填 `NA`。本 feature pilot 未填，值域未裁 |
 | `T` | HDCC27 ／ Atl-Hi | **不用（留空）** —— **下放包 23 §四**：車型適用旗標，DV `T10:Z1411` = `"0,1"`；他 feature 6/6 一律留空，**沿既有實務**。⚠ 若 Pei 要求填，本裁定失效並須重裁（其值須有來源，不得推定） |
 | `U` | DT27 ／ Atl-Hi | **不用（留空）** —— **下放包 23 §四**：車型適用旗標，DV `T10:Z1411` = `"0,1"`；他 feature 6/6 一律留空，**沿既有實務**。⚠ 若 Pei 要求填，本裁定失效並須重裁（其值須有來源，不得推定） |
 | `V` | VF(ProMaster)637 ／ Atl-Mi | **不用（留空）** —— **下放包 23 §四**：車型適用旗標，DV `T10:Z1411` = `"0,1"`；他 feature 6/6 一律留空，**沿既有實務**。⚠ 若 Pei 要求填，本裁定失效並須重裁（其值須有來源，不得推定） |
