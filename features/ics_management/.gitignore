@@ -1,0 +1,27 @@
+# Customer source files - never commit
+inputs/
+
+# 036 表單之工作副本（落點依 R-G25 為 sandbox/，見 feature.yaml 之註）。
+# 與 forms/* 同一政策：公司表單本體不入版控。本副本與 forms/ 母本
+# 逐位元相同（cmp 全等，sha256 6372fb6b…825b2），故非「另存」而是複製。
+sandbox/
+
+# Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
+# own data/*.json artefacts here as Step 1 starts emitting them.
+data/recon.json
+lint_report.json
+
+# generated/b01/ **不排除**（下放包 01 §四 令上繳附 TC JSON 路徑，
+# 而 b01 之 TC 為 Claude Code session 依 canon 直接撰寫、非腳本可重建）。
+# 落點取 generated/ 而非下放包所令之 batches/，同為 R-G25 之故
+# （.json 之合法落點為 data／generated／inputs／sandbox）。
+
+# data/spec_id_to_outline.tsv IS tracked on purpose where a feature builds
+# one: it is the traceability lookup every spec_reference is linted against,
+# and a diff on it is the signal that the spec export moved underneath us.
+
+# Local noise
+__pycache__/
+*.pyc
+output/
+.DS_Store

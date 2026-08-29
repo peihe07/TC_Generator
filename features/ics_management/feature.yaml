@@ -1,0 +1,148 @@
+# feature.yaml — pipeline configuration for ICS Management
+# 建檔：2026-08-29（下放包 01 §一-1，執行層）
+#
+# 形制沿 features/bed_lowering/feature.yaml（下放包 01 明令「比照」），
+# 即 `scripts/feature_config.py:load_feature_config()` 實際讀取之形制
+# （`cfg["workbook"]["columns"]`、`cfg["paths"]`），非扁平鍵草案。
+#
+# **未實測者一律留 null／TBD，不猜**（沿 bed_lowering／vehicle_category 檔頭慣例）。
+# 本檔之每一數值皆為本包自實體檔實測所得，非自他 feature 轉錄；
+# 量測條件逐項見 docs/upstream/01_onboarding_first_batch.md §二。
+
+feature: "ICS Management"     # R-ICS1
+test_group: "ICS"             # R-ICS1，工作簿 G 欄
+
+paths:
+  # R-G1 全域母本之工作副本。**與 forms/ 原件逐位元相同**
+  # （cmp 全等，sha256 6372fb6b…825b2），故非「另存」而是複製。
+  # 母本 R 欄 design_method 之下拉為 x14 擴充，openpyxl 存回即摧毀
+  # （R-G1 註／A-UP09）；本副本自始未經 openpyxl 存回。
+  # ⚠ 落點為 `sandbox/` 而非下放包 §一-1 所令之 `workbook/`：R-G25 之落點政策
+  # 令 .xlsx 之合法落點為 delivered／inputs／sandbox，`workbook/` 不在其列，
+  # 實跑 `scripts/lint_paths.py` 即紅（上繳包 §五-2）。bed_lowering 之
+  # `workbook/` 在 PATH_POLICY_BASELINE.tsv 內為既存凍結，非新件之許可。
+  workbook: "sandbox/ics_management_00.xlsx"
+  a03_report: "inputs/ICS_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx"
+  sysad: "inputs/SYS3_CFTS020_ICS_FM-WI-FSM-011-A01_System Architectural Design_SYSAD_v1.0.docx"
+  sys2_export: "inputs/SYS2_CFTS_020_DISP_TCH_ICS_20260616_All_HW_System_Accepted & Released.xlsx"
+  cfts020_fs: "inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and DCSD _20260310-1533.docx"
+  # ⚠ **CFTS022 不在本 feature 之 inputs/**（上繳包 01 §三-1，A-ICS8）。
+  # b01 六條之錨全數取自該檔，其實體位於 privacy 之 inputs/。
+  # 綁原件而不複製 —— 原件變動才是需要偵測的事件，複本只會跟著變
+  # （同 bed_lowering R-BLM11 綁 vehicle_setting 原件之理由）。
+  # 素材補入超出既定根目錄屬 Pei 裁定事項（charter §觸點），故本包只綁不搬。
+  cfts022_fs: "../privacy/inputs/R1LR_Atl-H_25PI3.5_Privacy_CFTS_022 Functional Specification_20250910_1708.docx"
+
+# FO §3：CFTS／Word，reference 為 **looked up, never constructed**。
+# b01 之 specification_reference 全數逐字取自 CFTS022 之 ObjectID（IN §10.7(a)），
+# 無任何構造成分。
+spec_mode: "D"
+
+# spec_reference 為查得而非構造。`null` 為本管線既有之「查得而不構造」編碼
+# （scripts/recon.py 之 R-VC8 註），非新增枚舉。
+spec_reference_template: null
+
+# FO §2：本包實測 `workbook/ics_management_00.xlsx` 之
+# `Test Case Specification 測試用例規範` 分頁第 10–1411 列（1402 列），
+# I 欄（Test Item）或 F 欄（Test Case ID）非空者 **0**，
+# AA 欄（Test Case Author）非空者 **0** → `BLANK`。
+workbook_state: "BLANK"
+
+workbook:
+  sheet: "Test Case Specification 測試用例規範"   # 本包實測自副本
+  header_row: 9                                   # 本包實測自副本
+  # 下列字母為本包自 `ics_management_00.xlsx` 第 9 列表頭實測所得，
+  # 非自他 feature 轉錄。
+  columns:
+    no: "B"
+    req_id_polarion: "C"
+    req_id: "D"
+    tc_id_testrail: "E"
+    tc_id: "F"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    estimated_test_time: "Q"
+    design_method: "R"
+    functional_safety: "S"
+    author: "AA"
+    test_version: "AB"
+
+# 下放包 01 §二 指定 `NR1L-ICS-{NNN}`；framework.md 載其循 popup 之
+# `NR1L-Popup-{NNN}` 既例。本包實測 popup/feature.yaml:44 =
+# `NR1L-Popup-{n:03d}`，故本檔取同形。
+# 全案之 project 前綴另有 `newR1L` 一式（工作簿 D2 儲存格實測 = "newR1L"，
+# amfm／bed_lowering／driver_distraction／vehicle_category 用之）；
+# 兩式並存為既有實況 —— 本包實測（`grep -h "^[[:space:]]*tc_id_format"
+# features/*/feature.yaml`，本檔落檔前）：18 個既有 feature.yaml 中
+# 12 個宣告本鍵，其中 NR1L 式 8、newR1L 式 4。非本 feature 新開之分叉。
+tc_id_format: "NR1L-ICS-{n:03d}"
+
+done_region:
+  detection: "author"
+  author_value: null            # workbook_state = BLANK，本節不生效
+  invariant: "content_hash"
+
+write_back:
+  author_value: null            # 未裁；交付形式屬 Pei 裁定事項
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: true     # FO §2.1：BLANK -> FILL
+
+lint:
+  design_method_source: "dropdown_sheet"
+  popup_ids: []
+  extra_rules: []
+
+# 只宣告確有實作且本包已實測之鍵（R-VC9）。
+# 本包**未跑 recon.py**（本 feature 之來源為 CFTS／SWRA 而非 037 leaf 表，
+# recon 之三項 assertion 皆無對應母體），故本節留空而非填未實測之期望值 ——
+# 宣告一個未實測之期望值等同製造一個假的保護。
+recon_assertions: {}
+
+# R-G15：其變動會使既有產出失效者一律綁定。
+# paths 記「檔在哪」，reference 記「檔是哪一份」。同一檔出現於兩節不是重複。
+# 下列 sha256 皆本包自實體檔重算（`shasum -a 256`），非抄他處宣告值。
+reference:
+  a03_report:
+    file: "features/ics_management/inputs/ICS_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx"
+    sha256: "b853c336c28e51f8591672a8440980ad308f4ea0a6b05afa7a27a3bff7d0fda7"
+  sysad:
+    file: "features/ics_management/inputs/SYS3_CFTS020_ICS_FM-WI-FSM-011-A01_System Architectural Design_SYSAD_v1.0.docx"
+    sha256: "f1a1c2a598d0750b6faac4424e2cf17338c2b5f9170e2cce54476d6b5426879a"
+  sys2_export:
+    file: "features/ics_management/inputs/SYS2_CFTS_020_DISP_TCH_ICS_20260616_All_HW_System_Accepted & Released.xlsx"
+    sha256: "421c8eef3f5cb01a2d4d4768b41d38897009c53cdfdff2ff1b6ab80ba72adb1d"
+  cfts020_fs:
+    file: "features/ics_management/inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and DCSD _20260310-1533.docx"
+    sha256: "8696d1f596e3367754b092ff6d810cccff6258f46d6e90f8c0b30864314a30f3"
+  # b01 六條之錨全數出自本檔。綁 privacy 之原件（見 paths.cfts022_fs 之註）。
+  cfts022_fs:
+    file: "features/privacy/inputs/R1LR_Atl-H_25PI3.5_Privacy_CFTS_022 Functional Specification_20250910_1708.docx"
+    sha256: "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  workbook_master:
+    file: "forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
+    sha256: "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"
+  # 四庫（LID／DBC×2／PROXI）**本包未綁**：DR-ICS8 開著，本 feature 尚無
+  # 綁定 DBC，b01 之訊號欄一律 PENDING 佔位。綁一組未經裁定之庫，
+  # 會讓「本 feature 有 DBC 可查」看起來成立 —— 那正是 DR-ICS8 在問的事。
+
+# R-G19 批次指紋之來源宣告。b01 之 TC 由 Claude Code session 依 canon
+# 直接撰寫，未經 `backend/prompt_builder.py`、未呼叫 `backend/generator.py`，
+# 故不列入慣例預設之該二檔 —— 把未參與生成之檔列入指紋，
+# 會讓它的變動看起來影響產出、而它的不變看起來是保證，兩者都不實。
+fingerprint:
+  prompt_sources:
+    - "docs/runtime/ASPICE_SWE6_AI_Instruction.md"
+    - "features/ics_management/framework.md"
+    - "features/ics_management/RULINGS.md"
+    - "features/ics_management/docs/handoff/01_onboarding_first_batch.md"
+  # 本 feature 無 profile（`docs/runtime/profiles/` 下無 ICS 檔，本包實測）。
+  # 空清單是實況，不是遺漏。
+  exemplar_sources: []

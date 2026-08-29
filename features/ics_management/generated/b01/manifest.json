@@ -1,0 +1,40 @@
+{
+ "batch": "b01",
+ "feature": "ICS Management",
+ "date": "2026-08-29",
+ "generator": "Claude Code session, canon-direct — 未經 backend/prompt_builder.py，未呼叫 backend/generator.py",
+ "counts": {
+  "tcs": 6,
+  "parents": 3,
+  "test_sets": 2,
+  "pending_placeholders": 4
+ },
+ "parents": {
+  "SWE-ICS-010": 3,
+  "SWE-ICS-001": 2,
+  "SWE-ICS-002": 1
+ },
+ "anchors": [
+  "CFTS022-4914956",
+  "CFTS022-4914957",
+  "CFTS022-4914958",
+  "CFTS022-4914974",
+  "CFTS022-4914975",
+  "CFTS022-4914976"
+ ],
+ "context_sha256": {
+  "canon": "0b0cea006552a2f244ba8e733ef6227b132b591a34defb65234934985fe2598e",
+  "canon_concat": "68b2c446d3ee0a48c10e7a1b00300ccfcf484e6d0526bf4a2314040470698334",
+  "framework": "07ad6418a29c3e372345f2efefea088dbf828559661d49263194db1fa5ef9345",
+  "rulings": "1f8329b5613dc922e38275d61cba7fccf4d887e2cc2f67baf60295dfc4e22e81",
+  "handoff_01": "ba686c3546e4a451050a4c77ac10b29811b8aa6f2aecd26cccd482c8039d9268",
+  "cfts022_fs": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78",
+  "a03_report": "b853c336c28e51f8591672a8440980ad308f4ea0a6b05afa7a27a3bff7d0fda7"
+ },
+ "tcs_sha256": "fb60e728cad657cf5d03c32f4abd8f04ff55808a0ca9013235bb1b5a3cba9fe2",
+ "checks": {
+  "selfcheck_b01.py": "PASS — 機檢 16 項 FAIL 0，人工 5 項",
+  "verify_verbatim_b01.py": "PASS — 6 條逐字命中 6"
+ },
+ "note": "tcs_sha256 為本檔寫入前之值；b01_tcs.json 若再動，本檔須重算。"
+}
