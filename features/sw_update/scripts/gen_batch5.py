@@ -130,27 +130,33 @@ TCS = [
         "(Download falls back to the mobile network after the Wi-Fi attempt period)"],
   pre=[NOWIFI, BODY,
        "3. A non-critical update package is staged on the OTA Server for this head unit",
-       "4. PENDING: DR-SU2 means of reaching the end of the one week Wi-Fi attempt period on the test bench"],
+       "4. PENDING: DR-SU2 means of reaching the end of the one week Wi-Fi attempt period on the test bench",
+       "5. PENDING: DR-SU2 means of observing which network bearer the head unit is using for the download"],
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. PENDING: DR-SU2 step to reach the end of the one week Wi-Fi attempt period",
         "3. Read the software version shown on the head unit and record it as Version_after",
-        "4. Check that Version_after differs from Version_initial after the Wi-Fi attempt period has elapsed"],
+        "4. PENDING: DR-SU2 step to observe the network bearer used for the download after the Wi-Fi attempt period has elapsed",
+        "5. Check that Version_after differs from Version_initial after the Wi-Fi attempt period has elapsed"],
   er=["1. Version_initial is recorded",
       "2. PENDING: DR-SU2 observable state showing that the Wi-Fi attempt period has elapsed",
       "3. Version_after is recorded",
-      "4. Version_after differs from Version_initial after the Wi-Fi attempt period has elapsed"]),
- dict(req="SWE1-FOTA-030", spec="CFTS057-4907470", dm=FN, prio="P1", conf="高",
-      note="與 `006`（`180`，Silent）之區分在更新類型，且該類型已入判定對象",
+      "4. PENDING: DR-SU2 observable evidence of the network bearer used for the download",
+      "5. Version_after differs from Version_initial after the Wi-Fi attempt period has elapsed"]),
+ dict(req="SWE1-FOTA-030", spec="CFTS057-4907470", dm=FN, prio="P1", conf="低",
+      note="**第三型**：與 `006`（`180`）之判定對象逐字相同，其區分全繫於類型標籤；而類型於 HU 上無標記，可用之區分皆為他列所轄（下放包 51 §一 #2／#3）",
   item=["During Critical Update execution, the WiFi Update Service shall not trigger the SW Update HMI to display a download confirmation screen.",
         "(No download confirmation screen shown for a critical update)"],
   pre=[WIFI, BODY,
-       "3. A critical update package is staged on the OTA Server for this head unit"],
+       "3. A critical update package is staged on the OTA Server for this head unit",
+       "4. PENDING: DR-SU2 means of distinguishing a critical update session from a silent update session on the head unit"],
   proc=["1. Record the head unit screen content as continuous video capture from the availability check until the software version changes",
         "2. Trigger an update availability check to the OTA Server",
-        "3. Check that no download confirmation screen appears in the recorded screen content for this critical update"],
+        "3. PENDING: DR-SU2 step to observe that the session in progress is a critical update session",
+        "4. Check that no download confirmation screen appears in the recorded screen content"],
   er=["1. The head unit screen content from the availability check until the software version changes is recorded as continuous video capture",
       "2. The update availability check completes and a critical update is reported as available",
-      "3. The recorded screen content contains no download confirmation screen for this critical update"]),
+      "3. PENDING: DR-SU2 observable evidence that the session in progress is a critical update session",
+      "4. The recorded screen content contains no download confirmation screen"]),
  dict(req="SWE1-FOTA-031", spec="CFTS057-4907471", dm=FN, prio="P1", conf="中",
       note="其更新類型未見於 037 列文，來自錨 `4907471` 之章別（4.7.3.1，GT-B 已裁）",
   item=["Upon receiving deployment package download completion status, the WiFi Update Service shall notify the SW Update HMI to display the deployment confirmation screen.",
@@ -253,13 +259,44 @@ def main():
     print("|---|---|---|:--:|---:|")
     for r, tid, req, cf, pd in rows:
         print(f"| {r} | `{tid}` | `{req[-3:]}` | **{cf}** | {pd} |")
+    # ── 分層抽驗（下放包 50 §二 #4 ＋ 51 §一 #5 之條件式排除）──
+    #
+    # **僅當該列 `低` 之理由已逐項由 `PENDING` 承載時，方得排除。**
+    # `PENDING` 是**逐行**掛的，自信度標記是**逐列**的 —— 二者粒度不同；
+    # 以逐行之物排除逐列之物，**必然漏掉同一列中未被佔位覆蓋的部分**（B-21）。
+    LOW_REASONS = {
+        "SWE1-FOTA-012": [("bearer 於外部無表徵", True)],
+        "SWE1-FOTA-014": [("bearer 於外部無表徵", True)],
+        "SWE1-FOTA-015": [("bearer 於外部無表徵", True)],
+        "SWE1-FOTA-028": [("一週之等待不可觸發", True),
+                          ("bearer 於外部無表徵", True),
+                          ("錨 `4907462` 為首選而未經 GT 驗證", False)],
+        "SWE1-FOTA-030": [("與 `006` 不可區辨（類型無標記）", True)],
+    }
     from collections import Counter
     c = Counter(t["conf"] for t in TCS)
     print(f"\n- **`PENDING` 合計 {sum(r[4] for r in rows)}**｜TC **{len(rows)}**")
-    print(f"- **自信度**：高 {c['高']}／中 {c['中']}／**低 {c['低']}**"
-          f" —— 抽驗組成「全部低＋全部中」= **{c['低']+c['中']}** 列"
-          + ("**（逾 8 —— 觸發「該批應退回重檢」之訊號）**"
-             if c['低'] + c['中'] > 8 else ""))
+    excl, keep = [], []
+    for i, t in enumerate(TCS, START_N):
+        if t["conf"] != "低":
+            continue
+        rs = LOW_REASONS.get(t["req"], [])
+        (excl if rs and all(ok for _, ok in rs) else keep).append((i, t["req"], rs))
+    mid = [(i, t["req"]) for i, t in enumerate(TCS, START_N) if t["conf"] == "中"]
+    print(f"\n### 分層抽驗（新制：條件式排除 ＋ 訊號只看 `低`）\n")
+    print(f"- 自信度：高 {c['高']}／中 {c['中']}／低 {c['低']}")
+    print(f"- **可排除之 `低`（理由已逐項由 `PENDING` 承載）**：{len(excl)} 列 —— "
+          + "、".join(f"`SU-{i:03d}`" for i, _, _ in excl))
+    for i, req, rs in keep:
+        un = [r for r, ok in rs if not ok]
+        print(f"- ⚠ **`SU-{i:03d}`（`{req[-3:]}`）不可排除** —— 其 `低` 之理由有 "
+              f"{len(un)} 項未由 `PENDING` 承載：" + "、".join(f"**{r}**" for r in un))
+    low_after = len(keep)
+    print(f"- **抽驗組成** = 全部 `中`（{len(mid)}）＋ 未能排除之 `低`（{low_after}）"
+          f" = **{len(mid)+low_after}** 列")
+    print(f"- **退回訊號**：扣除後 `低` = **{low_after}** "
+          + ("**> 3 → 觸發，該批應退回重檢**" if low_after > 3
+             else "≤ 3 → **不觸發**"))
     return 0
 
 
