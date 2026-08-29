@@ -1,0 +1,881 @@
+{
+  "generated_by": "features/ics_management/scripts/lid_dbc_probe.py",
+  "ruling_basis": "R-ICS13",
+  "scan_conditions": {
+    "xlsx": "forms/Logical Identifiers and CAN Mapping v1_78.xlsx",
+    "sheet": "CAN Mapping",
+    "header": {
+      "group_row": 2,
+      "group_col_atlantis_high": 26,
+      "header_name_row": 3,
+      "data_start_row": 4,
+      "lid_col": 1,
+      "usage_comment_col": 31,
+      "atlantis_high_cols": {
+        "Signal Name": 26,
+        "CAN": 27,
+        "Format": 28,
+        "SNA": 29,
+        "VFs": 30
+      }
+    },
+    "dbc": {
+      "R4_BHCAN": {
+        "path": "features/vehicle_setting/inputs/PDT27_E2A_R4_BHCAN.dbc",
+        "sha256": "9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0",
+        "message_count": 155
+      },
+      "R5_FDCAN8": {
+        "path": "features/vehicle_setting/inputs/PDT27_E2A_R5_FDCAN8.dbc",
+        "sha256": "51c8fd6092925071bbf443711e5161d78df292de232dc7427b1cceaa8f181cd2",
+        "message_count": 323
+      }
+    }
+  },
+  "lids": [
+    {
+      "lid": "ICS_KNOB1_DIR",
+      "rows_found": [
+        1024
+      ],
+      "row": 1024,
+      "atlantis_high": {
+        "signal_name_raw": "CLIMATIC_PANEL.Radio_Knob1_DIR\nDIS_CENTERSTACK.DCSD_VOLKNOB_DIR",
+        "can": "CAN-B",
+        "format": "Atlantis\n2 bit signal\n0 = Knob_no_change\n1 = Knob_increment\n2 = Knob_decrement\n3 = Knob_enter",
+        "sna": null,
+        "vfs": "169"
+      },
+      "usage_comment": "For Atlantis High, 14.4\" and 12\" DCSD on DT24 Truck uses the DIS_CENTERSTACK signal which is equivalent to the CLIMATIC_PANEL signal",
+      "candidates": [
+        "CLIMATIC_PANEL.Radio_Knob1_DIR",
+        "DIS_CENTERSTACK.DCSD_VOLKNOB_DIR"
+      ],
+      "candidate_checks": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_Knob1_DIR",
+          "message": "CLIMATIC_PANEL",
+          "signal": "Radio_Knob1_DIR",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1050,
+              "message_node": "ICS",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1050 Radio_Knob1_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";",
+              "signal_raw": "SG_ Radio_Knob1_DIR : 23|2@0+ (1,0) [0|3] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_VOLKNOB_DIR",
+          "message": "DIS_CENTERSTACK",
+          "signal": "DCSD_VOLKNOB_DIR",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1445,
+              "message_node": "DCSD",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1445 DCSD_VOLKNOB_DIR 0 \"KNOB_NO_CHNG\" 1 \"KNOB_INC_POS\" 2 \"KNOB_DEC_NEG\" 3 \"KNOB_ENTER\";",
+              "signal_raw": "SG_ DCSD_VOLKNOB_DIR : 9|2@0+ (1,0) [0|3] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        }
+      ],
+      "hits": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_Knob1_DIR",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1050,
+          "message_node": "ICS",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1050 Radio_Knob1_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";",
+          "signal_raw": "SG_ Radio_Knob1_DIR : 23|2@0+ (1,0) [0|3] \"\" SGW"
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_VOLKNOB_DIR",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1445 DCSD_VOLKNOB_DIR 0 \"KNOB_NO_CHNG\" 1 \"KNOB_INC_POS\" 2 \"KNOB_DEC_NEG\" 3 \"KNOB_ENTER\";",
+          "signal_raw": "SG_ DCSD_VOLKNOB_DIR : 9|2@0+ (1,0) [0|3] \"\" SGW"
+        }
+      ],
+      "status": "RESOLVED",
+      "primary": {
+        "candidate": "CLIMATIC_PANEL.Radio_Knob1_DIR",
+        "dbc": "R4_BHCAN",
+        "message_present": true,
+        "message_id": 1050,
+        "message_node": "ICS",
+        "signal_in_message": true,
+        "val_verbatim": "VAL_ 1050 Radio_Knob1_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";",
+        "signal_raw": "SG_ Radio_Knob1_DIR : 23|2@0+ (1,0) [0|3] \"\" SGW"
+      },
+      "fallbacks": [
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_VOLKNOB_DIR",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1445 DCSD_VOLKNOB_DIR 0 \"KNOB_NO_CHNG\" 1 \"KNOB_INC_POS\" 2 \"KNOB_DEC_NEG\" 3 \"KNOB_ENTER\";",
+          "signal_raw": "SG_ DCSD_VOLKNOB_DIR : 9|2@0+ (1,0) [0|3] \"\" SGW"
+        }
+      ],
+      "val_verbatim": "VAL_ 1050 Radio_Knob1_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";"
+    },
+    {
+      "lid": "ICS_KNOB1_VAL",
+      "rows_found": [
+        1025
+      ],
+      "row": 1025,
+      "atlantis_high": {
+        "signal_name_raw": "CLIMATIC_PANEL.Radio_Knob1_VAL\nDIS_CENTERSTACK.DCSD_VOLKNOB_VAL",
+        "can": "CAN-B",
+        "format": "Atlantis\n6 bit signal\n0 - +63\nresolution = 1",
+        "sna": null,
+        "vfs": "169"
+      },
+      "usage_comment": "For Atlantis High, 14.4\" and 12\" DCSD on DT24 Truck uses the DIS_CENTERSTACK signal which is equivalent to the CLIMATIC_PANEL signal",
+      "candidates": [
+        "CLIMATIC_PANEL.Radio_Knob1_VAL",
+        "DIS_CENTERSTACK.DCSD_VOLKNOB_VAL"
+      ],
+      "candidate_checks": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_Knob1_VAL",
+          "message": "CLIMATIC_PANEL",
+          "signal": "Radio_Knob1_VAL",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1050,
+              "message_node": "ICS",
+              "signal_in_message": true,
+              "val_verbatim": null,
+              "signal_raw": "SG_ Radio_Knob1_VAL : 21|6@0+ (1,0) [0|63] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_VOLKNOB_VAL",
+          "message": "DIS_CENTERSTACK",
+          "signal": "DCSD_VOLKNOB_VAL",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1445,
+              "message_node": "DCSD",
+              "signal_in_message": true,
+              "val_verbatim": null,
+              "signal_raw": "SG_ DCSD_VOLKNOB_VAL : 21|6@0+ (1,0) [0|63] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        }
+      ],
+      "hits": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_Knob1_VAL",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1050,
+          "message_node": "ICS",
+          "signal_in_message": true,
+          "val_verbatim": null,
+          "signal_raw": "SG_ Radio_Knob1_VAL : 21|6@0+ (1,0) [0|63] \"\" SGW"
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_VOLKNOB_VAL",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": null,
+          "signal_raw": "SG_ DCSD_VOLKNOB_VAL : 21|6@0+ (1,0) [0|63] \"\" SGW"
+        }
+      ],
+      "status": "RESOLVED",
+      "primary": {
+        "candidate": "CLIMATIC_PANEL.Radio_Knob1_VAL",
+        "dbc": "R4_BHCAN",
+        "message_present": true,
+        "message_id": 1050,
+        "message_node": "ICS",
+        "signal_in_message": true,
+        "val_verbatim": null,
+        "signal_raw": "SG_ Radio_Knob1_VAL : 21|6@0+ (1,0) [0|63] \"\" SGW"
+      },
+      "fallbacks": [
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_VOLKNOB_VAL",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": null,
+          "signal_raw": "SG_ DCSD_VOLKNOB_VAL : 21|6@0+ (1,0) [0|63] \"\" SGW"
+        }
+      ],
+      "val_verbatim": "無 VAL_"
+    },
+    {
+      "lid": "ICS_KNOB2_DIR",
+      "rows_found": [
+        1026
+      ],
+      "row": 1026,
+      "atlantis_high": {
+        "signal_name_raw": "CLIMATIC_PANEL.Radio_Knob2_DIR\nDIS_CENTERSTACK.DCSD_TUNEKNOB_DIR",
+        "can": "CAN-B",
+        "format": "Atlantis\n2 bit signal\n0 = Knob_no_change\n1 = Knob_increment\n2 = Knob_decrement\n3 = Knob_enter",
+        "sna": null,
+        "vfs": "169"
+      },
+      "usage_comment": "For Atlantis High, 14.4\" and 12\" DCSD on DT24 Truck uses the DIS_CENTERSTACK signal which is equivalent to the CLIMATIC_PANEL signal",
+      "candidates": [
+        "CLIMATIC_PANEL.Radio_Knob2_DIR",
+        "DIS_CENTERSTACK.DCSD_TUNEKNOB_DIR"
+      ],
+      "candidate_checks": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_Knob2_DIR",
+          "message": "CLIMATIC_PANEL",
+          "signal": "Radio_Knob2_DIR",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1050,
+              "message_node": "ICS",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";",
+              "signal_raw": "SG_ Radio_Knob2_DIR : 31|2@0+ (1,0) [0|3] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_TUNEKNOB_DIR",
+          "message": "DIS_CENTERSTACK",
+          "signal": "DCSD_TUNEKNOB_DIR",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1445,
+              "message_node": "DCSD",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1445 DCSD_TUNEKNOB_DIR 0 \"KNOB_NO_CHNG\" 1 \"KNOB_INC_POS\" 2 \"KNOB_DEC_NEG\" 3 \"KNOB_ENTER\";",
+              "signal_raw": "SG_ DCSD_TUNEKNOB_DIR : 23|2@0+ (1,0) [0|3] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        }
+      ],
+      "hits": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_Knob2_DIR",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1050,
+          "message_node": "ICS",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";",
+          "signal_raw": "SG_ Radio_Knob2_DIR : 31|2@0+ (1,0) [0|3] \"\" SGW"
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_TUNEKNOB_DIR",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1445 DCSD_TUNEKNOB_DIR 0 \"KNOB_NO_CHNG\" 1 \"KNOB_INC_POS\" 2 \"KNOB_DEC_NEG\" 3 \"KNOB_ENTER\";",
+          "signal_raw": "SG_ DCSD_TUNEKNOB_DIR : 23|2@0+ (1,0) [0|3] \"\" SGW"
+        }
+      ],
+      "status": "RESOLVED",
+      "primary": {
+        "candidate": "CLIMATIC_PANEL.Radio_Knob2_DIR",
+        "dbc": "R4_BHCAN",
+        "message_present": true,
+        "message_id": 1050,
+        "message_node": "ICS",
+        "signal_in_message": true,
+        "val_verbatim": "VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";",
+        "signal_raw": "SG_ Radio_Knob2_DIR : 31|2@0+ (1,0) [0|3] \"\" SGW"
+      },
+      "fallbacks": [
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_TUNEKNOB_DIR",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1445 DCSD_TUNEKNOB_DIR 0 \"KNOB_NO_CHNG\" 1 \"KNOB_INC_POS\" 2 \"KNOB_DEC_NEG\" 3 \"KNOB_ENTER\";",
+          "signal_raw": "SG_ DCSD_TUNEKNOB_DIR : 23|2@0+ (1,0) [0|3] \"\" SGW"
+        }
+      ],
+      "val_verbatim": "VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";"
+    },
+    {
+      "lid": "ICS_KNOB2_VAL",
+      "rows_found": [
+        1027
+      ],
+      "row": 1027,
+      "atlantis_high": {
+        "signal_name_raw": "CLIMATIC_PANEL.Radio_Knob2_VAL\nDIS_CENTERSTACK.DCSD_TUNEKNOB_VAL",
+        "can": "CAN-B",
+        "format": "Atlantis\n6 bit signal\n0-63\nresolution = 1",
+        "sna": null,
+        "vfs": "169"
+      },
+      "usage_comment": "For Atlantis High, 14.4\" and 12\" DCSD on DT24 Truck uses the DIS_CENTERSTACK signal which is equivalent to the CLIMATIC_PANEL signal",
+      "candidates": [
+        "CLIMATIC_PANEL.Radio_Knob2_VAL",
+        "DIS_CENTERSTACK.DCSD_TUNEKNOB_VAL"
+      ],
+      "candidate_checks": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_Knob2_VAL",
+          "message": "CLIMATIC_PANEL",
+          "signal": "Radio_Knob2_VAL",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1050,
+              "message_node": "ICS",
+              "signal_in_message": true,
+              "val_verbatim": null,
+              "signal_raw": "SG_ Radio_Knob2_VAL : 29|6@0+ (1,0) [0|63] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_TUNEKNOB_VAL",
+          "message": "DIS_CENTERSTACK",
+          "signal": "DCSD_TUNEKNOB_VAL",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1445,
+              "message_node": "DCSD",
+              "signal_in_message": true,
+              "val_verbatim": null,
+              "signal_raw": "SG_ DCSD_TUNEKNOB_VAL : 29|6@0+ (1,0) [0|63] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        }
+      ],
+      "hits": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_Knob2_VAL",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1050,
+          "message_node": "ICS",
+          "signal_in_message": true,
+          "val_verbatim": null,
+          "signal_raw": "SG_ Radio_Knob2_VAL : 29|6@0+ (1,0) [0|63] \"\" SGW"
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_TUNEKNOB_VAL",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": null,
+          "signal_raw": "SG_ DCSD_TUNEKNOB_VAL : 29|6@0+ (1,0) [0|63] \"\" SGW"
+        }
+      ],
+      "status": "RESOLVED",
+      "primary": {
+        "candidate": "CLIMATIC_PANEL.Radio_Knob2_VAL",
+        "dbc": "R4_BHCAN",
+        "message_present": true,
+        "message_id": 1050,
+        "message_node": "ICS",
+        "signal_in_message": true,
+        "val_verbatim": null,
+        "signal_raw": "SG_ Radio_Knob2_VAL : 29|6@0+ (1,0) [0|63] \"\" SGW"
+      },
+      "fallbacks": [
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_TUNEKNOB_VAL",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": null,
+          "signal_raw": "SG_ DCSD_TUNEKNOB_VAL : 29|6@0+ (1,0) [0|63] \"\" SGW"
+        }
+      ],
+      "val_verbatim": "無 VAL_"
+    },
+    {
+      "lid": "ICSPowerButton",
+      "rows_found": [
+        1039
+      ],
+      "row": 1039,
+      "atlantis_high": {
+        "signal_name_raw": "CLIMATIC_PANEL.Radio_btn0\nDIS_CENTERSTACK.DCSD_Power",
+        "can": "CAN-B",
+        "format": "1 bit signal\n0 = Button NOT pressed\n1 = Button pressed",
+        "sna": "N/A",
+        "vfs": "169"
+      },
+      "usage_comment": "For Atlantis High, 14.4\" and 12\" DCSD on DT24 Truck uses the DIS_CENTERSTACK signal which is equivalent to the CLIMATIC_PANEL signal",
+      "candidates": [
+        "CLIMATIC_PANEL.Radio_btn0",
+        "DIS_CENTERSTACK.DCSD_Power"
+      ],
+      "candidate_checks": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_btn0",
+          "message": "CLIMATIC_PANEL",
+          "signal": "Radio_btn0",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1050,
+              "message_node": "ICS",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1050 Radio_btn0 0 \"Not_Pressed\" 1 \"Pressed\";",
+              "signal_raw": "SG_ Radio_btn0 : 44|1@0+ (1,0) [0|1] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_Power",
+          "message": "DIS_CENTERSTACK",
+          "signal": "DCSD_Power",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1445,
+              "message_node": "DCSD",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1445 DCSD_Power 0 \"Button_Not_Pressed\" 1 \"Button_Pressed\";",
+              "signal_raw": "SG_ DCSD_Power : 10|1@0+ (1,0) [0|1] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        }
+      ],
+      "hits": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_btn0",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1050,
+          "message_node": "ICS",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1050 Radio_btn0 0 \"Not_Pressed\" 1 \"Pressed\";",
+          "signal_raw": "SG_ Radio_btn0 : 44|1@0+ (1,0) [0|1] \"\" SGW"
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_Power",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1445 DCSD_Power 0 \"Button_Not_Pressed\" 1 \"Button_Pressed\";",
+          "signal_raw": "SG_ DCSD_Power : 10|1@0+ (1,0) [0|1] \"\" SGW"
+        }
+      ],
+      "status": "RESOLVED",
+      "primary": {
+        "candidate": "CLIMATIC_PANEL.Radio_btn0",
+        "dbc": "R4_BHCAN",
+        "message_present": true,
+        "message_id": 1050,
+        "message_node": "ICS",
+        "signal_in_message": true,
+        "val_verbatim": "VAL_ 1050 Radio_btn0 0 \"Not_Pressed\" 1 \"Pressed\";",
+        "signal_raw": "SG_ Radio_btn0 : 44|1@0+ (1,0) [0|1] \"\" SGW"
+      },
+      "fallbacks": [
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_Power",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1445 DCSD_Power 0 \"Button_Not_Pressed\" 1 \"Button_Pressed\";",
+          "signal_raw": "SG_ DCSD_Power : 10|1@0+ (1,0) [0|1] \"\" SGW"
+        }
+      ],
+      "val_verbatim": "VAL_ 1050 Radio_btn0 0 \"Not_Pressed\" 1 \"Pressed\";"
+    },
+    {
+      "lid": "ICSScreenOffButton",
+      "rows_found": [
+        1044
+      ],
+      "row": 1044,
+      "atlantis_high": {
+        "signal_name_raw": "CLIMATIC_PANEL.Radio_btn2\nDIS_CENTERSTACK.DCSD_Screen_Off",
+        "can": "CAN-B",
+        "format": " 1 bit signal\n0 = Not_Pressed (Screen Off button)\n1 = Pressed (Screen Off button)",
+        "sna": null,
+        "vfs": "169"
+      },
+      "usage_comment": "For Atlantis High, 14.4\" and 12\" DCSD on DT24 Truck uses the DIS_CENTERSTACK signal which is equivalent to the CLIMATIC_PANEL signal",
+      "candidates": [
+        "CLIMATIC_PANEL.Radio_btn2",
+        "DIS_CENTERSTACK.DCSD_Screen_Off"
+      ],
+      "candidate_checks": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_btn2",
+          "message": "CLIMATIC_PANEL",
+          "signal": "Radio_btn2",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1050,
+              "message_node": "ICS",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1050 Radio_btn2 0 \"Not_Pressed\" 1 \"Pressed\";",
+              "signal_raw": "SG_ Radio_btn2 : 42|1@0+ (1,0) [0|1] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_Screen_Off",
+          "message": "DIS_CENTERSTACK",
+          "signal": "DCSD_Screen_Off",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1445,
+              "message_node": "DCSD",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1445 DCSD_Screen_Off 0 \"Screen_Off_Not_Pressed\" 1 \"Screen_Off_Pressed\";",
+              "signal_raw": "SG_ DCSD_Screen_Off : 12|1@0+ (1,0) [0|1] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        }
+      ],
+      "hits": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_btn2",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1050,
+          "message_node": "ICS",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1050 Radio_btn2 0 \"Not_Pressed\" 1 \"Pressed\";",
+          "signal_raw": "SG_ Radio_btn2 : 42|1@0+ (1,0) [0|1] \"\" SGW"
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_Screen_Off",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1445 DCSD_Screen_Off 0 \"Screen_Off_Not_Pressed\" 1 \"Screen_Off_Pressed\";",
+          "signal_raw": "SG_ DCSD_Screen_Off : 12|1@0+ (1,0) [0|1] \"\" SGW"
+        }
+      ],
+      "status": "RESOLVED",
+      "primary": {
+        "candidate": "CLIMATIC_PANEL.Radio_btn2",
+        "dbc": "R4_BHCAN",
+        "message_present": true,
+        "message_id": 1050,
+        "message_node": "ICS",
+        "signal_in_message": true,
+        "val_verbatim": "VAL_ 1050 Radio_btn2 0 \"Not_Pressed\" 1 \"Pressed\";",
+        "signal_raw": "SG_ Radio_btn2 : 42|1@0+ (1,0) [0|1] \"\" SGW"
+      },
+      "fallbacks": [
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_Screen_Off",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1445 DCSD_Screen_Off 0 \"Screen_Off_Not_Pressed\" 1 \"Screen_Off_Pressed\";",
+          "signal_raw": "SG_ DCSD_Screen_Off : 12|1@0+ (1,0) [0|1] \"\" SGW"
+        }
+      ],
+      "val_verbatim": "VAL_ 1050 Radio_btn2 0 \"Not_Pressed\" 1 \"Pressed\";"
+    },
+    {
+      "lid": "Enter_Button",
+      "rows_found": [
+        666
+      ],
+      "row": 666,
+      "atlantis_high": {
+        "signal_name_raw": "CLIMATIC_PANEL.Radio_btn1\nDIS_CENTERSTACK.DCSD_Enter",
+        "can": "CAN-B",
+        "format": " 1 bit signal\n0 = Not_Pressed (List/Enter button)\n1 = Pressed (List/Enter button)",
+        "sna": null,
+        "vfs": "169"
+      },
+      "usage_comment": "For Atlantis High, 14.4\" and 12\" DCSD on DT24 Truck uses the DIS_CENTERSTACK signal which is equivalent to the CLIMATIC_PANEL signal",
+      "candidates": [
+        "CLIMATIC_PANEL.Radio_btn1",
+        "DIS_CENTERSTACK.DCSD_Enter"
+      ],
+      "candidate_checks": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_btn1",
+          "message": "CLIMATIC_PANEL",
+          "signal": "Radio_btn1",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1050,
+              "message_node": "ICS",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1050 Radio_btn1 0 \"Not_Pressed\" 1 \"Pressed\";",
+              "signal_raw": "SG_ Radio_btn1 : 43|1@0+ (1,0) [0|1] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_Enter",
+          "message": "DIS_CENTERSTACK",
+          "signal": "DCSD_Enter",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1445,
+              "message_node": "DCSD",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1445 DCSD_Enter 0 \"Enter_Not_Pressed\" 1 \"Enter_Pressed\";",
+              "signal_raw": "SG_ DCSD_Enter : 11|1@0+ (1,0) [0|1] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        }
+      ],
+      "hits": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_btn1",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1050,
+          "message_node": "ICS",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1050 Radio_btn1 0 \"Not_Pressed\" 1 \"Pressed\";",
+          "signal_raw": "SG_ Radio_btn1 : 43|1@0+ (1,0) [0|1] \"\" SGW"
+        },
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_Enter",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1445 DCSD_Enter 0 \"Enter_Not_Pressed\" 1 \"Enter_Pressed\";",
+          "signal_raw": "SG_ DCSD_Enter : 11|1@0+ (1,0) [0|1] \"\" SGW"
+        }
+      ],
+      "status": "RESOLVED",
+      "primary": {
+        "candidate": "CLIMATIC_PANEL.Radio_btn1",
+        "dbc": "R4_BHCAN",
+        "message_present": true,
+        "message_id": 1050,
+        "message_node": "ICS",
+        "signal_in_message": true,
+        "val_verbatim": "VAL_ 1050 Radio_btn1 0 \"Not_Pressed\" 1 \"Pressed\";",
+        "signal_raw": "SG_ Radio_btn1 : 43|1@0+ (1,0) [0|1] \"\" SGW"
+      },
+      "fallbacks": [
+        {
+          "candidate": "DIS_CENTERSTACK.DCSD_Enter",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1445,
+          "message_node": "DCSD",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1445 DCSD_Enter 0 \"Enter_Not_Pressed\" 1 \"Enter_Pressed\";",
+          "signal_raw": "SG_ DCSD_Enter : 11|1@0+ (1,0) [0|1] \"\" SGW"
+        }
+      ],
+      "val_verbatim": "VAL_ 1050 Radio_btn1 0 \"Not_Pressed\" 1 \"Pressed\";"
+    },
+    {
+      "lid": "Back_Button",
+      "rows_found": [
+        131
+      ],
+      "row": 131,
+      "atlantis_high": {
+        "signal_name_raw": "CLIMATIC_PANEL.Radio_btn3",
+        "can": "CAN-B",
+        "format": " 1 bit signal\n0 = Not_Pressed (Back button)\n1 = Pressed (Back button)",
+        "sna": null,
+        "vfs": "169"
+      },
+      "usage_comment": null,
+      "candidates": [
+        "CLIMATIC_PANEL.Radio_btn3"
+      ],
+      "candidate_checks": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_btn3",
+          "message": "CLIMATIC_PANEL",
+          "signal": "Radio_btn3",
+          "dbc": {
+            "R4_BHCAN": {
+              "message_present": true,
+              "message_id": 1050,
+              "message_node": "ICS",
+              "signal_in_message": true,
+              "val_verbatim": "VAL_ 1050 Radio_btn3 0 \"Not_Pressed\" 1 \"Pressed\";",
+              "signal_raw": "SG_ Radio_btn3 : 41|1@0+ (1,0) [0|1] \"\" SGW"
+            },
+            "R5_FDCAN8": {
+              "message_present": false,
+              "message_id": null,
+              "message_node": null,
+              "signal_in_message": false,
+              "val_verbatim": null
+            }
+          }
+        }
+      ],
+      "hits": [
+        {
+          "candidate": "CLIMATIC_PANEL.Radio_btn3",
+          "dbc": "R4_BHCAN",
+          "message_present": true,
+          "message_id": 1050,
+          "message_node": "ICS",
+          "signal_in_message": true,
+          "val_verbatim": "VAL_ 1050 Radio_btn3 0 \"Not_Pressed\" 1 \"Pressed\";",
+          "signal_raw": "SG_ Radio_btn3 : 41|1@0+ (1,0) [0|1] \"\" SGW"
+        }
+      ],
+      "status": "RESOLVED",
+      "primary": {
+        "candidate": "CLIMATIC_PANEL.Radio_btn3",
+        "dbc": "R4_BHCAN",
+        "message_present": true,
+        "message_id": 1050,
+        "message_node": "ICS",
+        "signal_in_message": true,
+        "val_verbatim": "VAL_ 1050 Radio_btn3 0 \"Not_Pressed\" 1 \"Pressed\";",
+        "signal_raw": "SG_ Radio_btn3 : 41|1@0+ (1,0) [0|1] \"\" SGW"
+      },
+      "fallbacks": [],
+      "val_verbatim": "VAL_ 1050 Radio_btn3 0 \"Not_Pressed\" 1 \"Pressed\";"
+    }
+  ]
+}

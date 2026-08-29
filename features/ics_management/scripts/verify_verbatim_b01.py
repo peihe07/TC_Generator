@@ -11,6 +11,7 @@
   2. NBSP(U+00A0) → 空格；非斷字連字號 U+2011 → '-'
   3. 連續空白摺為單一空格、頭尾去空白
   4. 去除句末之單一句號 —— IN §11 令交付欄無尾句號，故上半抄入時必去
+  5. 句首字母之大小寫（R-4：自原句中段起抄時句首轉大寫屬排版正規化）
 
 上述四項皆為**形而非義**之變更；除此之外一字不動。
 """
@@ -35,7 +36,8 @@ SWRA = ROOT / "inputs/ICS_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx"
 CFTS020 = ROOT / ("inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and "
                   "DCSD _20260310-1533.docx")
 DEFAULT_BATCHES = [ROOT / "generated/b01/b01_tcs.json",
-                   ROOT / "generated/b02/b02_tcs.json"]
+                   ROOT / "generated/b02/b02_tcs.json",
+                   ROOT / "generated/b03/b03_tcs.json"]
 
 
 def docx_text(path: Path) -> str:
@@ -68,9 +70,19 @@ def main() -> int:
     bad = []
     for t in tcs:
         upper = norm(t["test_item"].split("\n")[0])
-        origin = ("CFTS022" if upper in src else
-                  "CFTS020" if upper in src020 else
-                  "SWRA" if upper in swra else None)
+        # R-4：自原句中段起抄時，句首字母轉大寫屬排版正規化，允許。
+        # 故比對取「原樣」與「句首轉小寫」二式，任一命中即算逐字。
+        cands = {upper, (upper[:1].lower() + upper[1:]) if upper else upper}
+        origin = None
+        for u in cands:
+            if u in src:
+                origin = "CFTS022"; break
+            if u in src020:
+                origin = "CFTS020"; break
+            if u in swra:
+                origin = "SWRA"; break
+        if origin and upper not in {u for u in cands if u == upper} | set():
+            pass
         print(f'{t["tc_title"]:46} {t["req_id"]:13} '
               f'{origin or "**MISS**"}  {t["specification_reference"].splitlines()[0]}')
         if origin is None:

@@ -283,3 +283,107 @@ R-ICS2 v2（適用域：依來源文件之屬性形制分流）
     依 v2(b) 判**適用** —— 與 R-ICS9(c)(ii) 之授權一致，I1／I2 無需回收。
 （分析層即裁，2026-08-29；上繳包 02 §四／§五-1）
 ```
+
+---
+
+## R-ICS14
+
+```
+R-ICS14（訊號取捨之明文追認）
+
+追認執行層之取捨：`ICSMuteButton` 取 `CLIMATIC_PANEL.Radio_btn4`（DBC
+發送節點 = ICS），`DIS_CENTERSTACK.DCSD_Mute` 記備援，
+`GW_B_5.Mute_Button` 因 DBC 無該訊號而落。
+
+註：同一判準已於同日落為 R-ICS13，但執行層所取之下放包 02
+快照未含該條（A-ICS14）。執行層以 R-ICS2 之 ECU 軸 ＋ DBC
+發送節點獨立推得同一結果，二路徑收於一點，無實害。
+R-ICS13 為現行條文；本條僅作追認。
+（分析層即裁，2026-08-29；上繳包 02 §二-1(c)、§十-2）
+```
+
+---
+
+## R-ICS15
+
+```
+R-ICS15（以 CFTS020 繞過 SWRA 位移：R-ICS4 之適用）
+
+實測（上繳包 02 §五-3）：CFTS020 直載之原句與 A-ICS1 之 +1 位移
+判定**相符而非衝突**（006 之 Description 內容直載於 4819572，
+屬 ScreenOff；009 之 Description 內容直載於 4819617，屬 Stuck Button）。
+E5 未觸發。
+
+裁定：
+(a) 006（題 ICSPowerButton）與 007（題 ICSScreenOffButton）**解鎖**：
+    上半 verbatim 改取 CFTS020 直載原句（006 → 1.8.1.1.1 {4819556} 群；
+    007 → 1.8.1.1.3 {4819570} 群），不再等 DR-ICS1。
+    依據：IN §8.6（來源 spec 勝過索引輸出）與 R-ICS4。
+(b) 009（題 Back_Button）**不解鎖**：其唯一直載原句 4819554 之
+    Market 限 NAFTA，而本專案之市場軸未經量測。登 DR-ICS13；
+    未回前不得生成（R-DD25 同族：不得以「有原句」充「在案」）。
+(c) 005（題 ICSMuteButton）**不解鎖**：CFTS020 無直載，
+    CFTS022 2.2.2 {4914991} 適用性未驗，SWRA 原句為唯一候選
+    且已判位移，繼續等 DR-ICS1。
+(d) 解鎖者之 Test Set 歸屬依 framework 不變，不因來源改變而重分。
+(e) 解鎖後之適用性判定一律依 **R-ICS2 v2(b)**，不得沌 v1。
+（分析層即裁，2026-08-29；上繳包 02 §五-2、§五-3、§十-3）
+```
+
+---
+
+## R-ICS16
+
+```
+R-ICS16（S1 等待步驟之處置與 DTC 具名，採認）
+
+(a) **S1 不另增等待步驟，採認**。DTCs Matrix r57 之
+    `Mature Criteria` = `Key is pressed and held.`、
+    `Mature Time` = `120 seconds.` —— 與 CFTS022-4914956 之門檻
+    量的是同一段時間（自按下起算）；另立等待步驟將使台架
+    執行成 240 s，造出規格未載之門檻（IN §8.4.1）。
+    以步驟 2 加註承載為正解。**下放包 02 §三 B.3 之字面
+    （「S1／S2 各＋1 等待步驟」）於 S1 作廢** —— 分析層書該
+    字面時未先量 mature 與 DTC 門檻是否同一時段（A-ICS19）。
+(b) S2 增 `Wait for 8 ms after the button release` 採認
+    （`De-Mature Time` = `8 ms.` 逐字）。
+(c) DTC 具名 `B14DA-2A`（及 S1 ER 之 `"Head Unit Button-Stuck"`）
+    **保留**。逐字取自 r57，非估算；台架讀 DTC 清單需號碼方
+    判得出（IN §5.1 之「具體可觀察標的」）。執行層之超出字面
+    已具名回報，合式。
+(d) `SIS-5161` 之 Enable 條件未寫入 TC，採認（文件不在 repo，
+    寫入即造值）。已登 DR-ICS11。
+（分析層即裁，2026-08-29；上繳包 02 §三-3、§三-4、§十-4、§十-5）
+```
+
+---
+
+## R-ICS17
+
+```
+R-ICS17（分析層台帳之單一寫者協定）
+
+成因：A-ICS20 —— 2026-08-29 同日有二個分析層實例實際寫入
+`RULINGS.md`。本次未撞號屬僥倖（v2 不佔新號），不得視為安全。
+
+(a) **權杖**：`features/ics_management/ANALYSIS_LOCK.md` 為唯一權杖。
+    其 `scope` 所列五類檔（RULINGS／ANOMALIES／DATA_REQUESTS／
+    framework／docs/handoff/*.md）僅持有者得寫。
+(b) **非持有者**一律改寫提案於 `docs/handoff/proposals/NN_<slug>.md`，
+    條文全文＋量測依據，編號寫 `R-ICS?`，**不自取號**。
+    持有者合併時取號、落檔、並於 ANOMALIES 記其來源。
+(c) **落檔三步**（持有者亦須遵）：
+    (i)   寫前 live grep `^## R-ICS` 取現行最大號（R-G23）；
+    (ii)  寫入；
+    (iii) **寫後回讀驗證**（read-after-write）—— 確認所寫存在且
+          無重號。MCP timeout 後先 `get_file_info` 再重試（既例）。
+(d) **附加制**：已落之條文不刪不改字（R-TM13）。需修訂者另立
+    `R-ICSn vN+1` 並將舊條改題為 `R-ICSn vN`；改題本身須於
+    ANOMALIES 具名。
+(e) **下放包不得原地追寫**（A-ICS14 之拿法）：已下放之包若需補充，
+    另發 NN+1。執行層開工前須重測 handoff 之 sha256 並入上繳包；
+    與包內所載不符即停並報。
+(f) **驗證工具**：`scripts/ledger_guard.py`（b03 作業 A）。
+    每份上繳包須附其開工前／完工後二次實跑輸出。
+（分析層即裁，2026-08-29；A-ICS20）
+```

@@ -109,7 +109,7 @@
    "test_group": "ICS",
    "test_set": "Volume Control",
    "test_item": "The ICS software shall monitor $ICS_KNOB1_VAL$ using the HW API and update internal volume adjustment information according to CFTS019.\n(Three detent positions in one rotation change the audio level by three steps)",
-   "pre_conditions": "1. The HU is in HU Audio Mode ON mode\n2. The current audio level is at least three levels below the maximum audio level (maximum audio level PENDING: DR-ICS4 <CFTS019 volume level range>)",
+   "pre_conditions": "1. The HU is in HU Audio Mode ON mode\n2. The current audio level is at least three levels below the maximum audio level (maximum audio level PENDING: DR-ICS4 <CFTS019 volume level range>)\n3. The detent counting time window of the ICS is PENDING: DR-ICS12 <detent counting time window>",
    "input_test_data": "NA",
    "test_procedure": "1. Rotate the VOLUME knob one detent position clock-wise\n2. Read the audio level shown in the \"VOLUME POP_UP\" and record it\n3. Rotate the VOLUME knob three detent positions clock-wise in one continuous rotation\n4. Read the audio level shown in the \"VOLUME POP_UP\" and check that it is three levels above the recorded level",
    "expected_result": "1. The \"VOLUME POP_UP\" is displayed on the HU screen\n2. The audio level shown in the \"VOLUME POP_UP\" is recorded\n3. The \"VOLUME POP_UP\" is displayed on the HU screen\n4. The audio level shown in the \"VOLUME POP_UP\" is three levels above the baseline recorded in step 2",
@@ -123,7 +123,7 @@
     "axis": "input_data",
     "delta": "一次轉動三格對三階之累計對應；V1 為單格對單階"
    },
-   "reasoning": "驗證目標為 $ICS_KNOB1_VAL$ 之值對應：連續轉動 n 格時音量變化 n 階，而非只認得單格事件。上半 verbatim 取 SWRA SWE-ICS-002 之 Requirement Description（本包實測該列未受 A-ICS1 之 +1 位移，故依 R-ICS4 仍以 SWRA 為上半來源）。specification_reference 錨 CFTS022-4914975 而非 SWRA 或 CFTS019：IN §10.7 之錨只收 CFTS ObjectID 或 HMI Logic and Flow 章節號，而 002 之母文 CFTS019 未提供（DR-ICS4），可觀察之逐格對應原句在 4914975。與 V1 之切分軸為 input_data（3 格 vs 1 格），驗證對象亦異（累計對應 vs 單格遞增）。n = 3 為測試實作選擇，非規格數值；音量階數上限屬 CFTS019，故 Pre-Condition 以 PENDING 佔位（IN §8.4.3）。"
+   "reasoning": "驗證目標為 $ICS_KNOB1_VAL$ 之值對應：連續轉動 n 格時音量變化 n 階，而非只認得單格事件。上半 verbatim 取 SWRA SWE-ICS-002 之 Requirement Description（本包實測該列未受 A-ICS1 之 +1 位移，故依 R-ICS4 仍以 SWRA 為上半來源）。specification_reference 錨 CFTS022-4914975 而非 SWRA 或 CFTS019：IN §10.7 之錨只收 CFTS ObjectID 或 HMI Logic and Flow 章節號，而 002 之母文 CFTS019 未提供（DR-ICS4），可觀察之逐格對應原句在 4914975。與 V1 之切分軸為 input_data（3 格 vs 1 格），驗證對象亦異（累計對應 vs 單格遞增）。n = 3 為測試實作選擇，非規格數值；音量階數上限屬 CFTS019，故 Pre-Condition 以 PENDING 佔位（IN §8.4.3）。　【b03 作業 D】增第 3 條 Pre-Condition：CFTS020-4819583 逐字載 `the ICS shall count the relative number of detents rotated through in <TPeriodToCountKnobDetents> seconds`——「一次連轉三格」是否被計為 3，取決於該時間窗；二符號於 CFTS020 皆無值，故依 IN §8.4.3 佔位（DR-ICS12）。寫為系統組態之狀態而非動作，以合 IN §4.4（Pre-Condition 只記狀態／環境）。S1／S2／S3 與 V1／V2 依 R-ICS16 一字不動。"
   }
  ],
  "revision": {
@@ -131,6 +131,9 @@
    "作業 A（R-ICS8 解 DR-ICS8 佔位，3 處 → 0 處）",
    "作業 B（DTC 成熟／消除條件，S1 步驟 2 加註、S2 增等待步驟 5）"
   ],
-  "date": "2026-08-29"
+  "date": "2026-08-29",
+  "b03_applied": [
+   "作業 D（V3 增 PENDING: DR-ICS12，A-ICS17）"
+  ]
  }
 }

@@ -22,3 +22,4 @@
 | DR-ICS10 | 【新登 2026-08-29，自 DR-ICS7 拆出，見 A-ICS11】CFTS020-4819617 之 `<Tstuck_button>`（ignore 行為門檻）具體值；與 CFTS022-4914956 之 120 s（DTC 面）未必同值，請分別給值。【b02 二處佔位待其回覆】 | 010（ignore 面） | OPEN |
 | DR-ICS11 | 【新登 2026-08-29，上繳包 02 §三-4】DTC `B14DA-2A` 之 Enable Condition EC3 轉引 `{SIS-5161}`（Local Battery Voltage operating range），該文件全 repo 掃描 0 命中。請提供電壓範圍或文件 | S1／S2／S3 之 Enable 條件無法入 Pre-Condition | OPEN |
 | DR-ICS12 | 【新登 2026-08-29，見 A-ICS17】CFTS020-4819583 之 `<TPeriodToCountKnobDetents>` 與 `<TPeriodToSendNoChange>` 具體值（detent 計數時間窗）；V3 之「連轉三格」與將來 knob2 全面皆依賤此值 | 002（V3）、003、004 | OPEN |
+| DR-ICS13 | 【新登 2026-08-29，見 R-ICS15(b)】本專案（newR1L／R1L-R，Atlantis High）之 **市場軸**為何？CFTS020-4819554（Back_Button 唯一直載原句）之 Market 限 NAFTA；市場軸未定前不得判其在案（R-DD25 同族）。順帶確認 CFTS022／CFTS020 之 `Market` 屬性於本 DUT 之採認值域 | 009；及後續所有帶 Market 限定之物件 | OPEN |

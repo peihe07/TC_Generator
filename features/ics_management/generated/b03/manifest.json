@@ -1,0 +1,63 @@
+{
+ "batch": "b03",
+ "feature": "ICS Management",
+ "date": "2026-08-29",
+ "generator": "Claude Code session, canon-direct — 未經 backend/prompt_builder.py，未呼叫 backend/generator.py",
+ "counts": {
+  "tcs": 8,
+  "parents": 2,
+  "test_sets": 1,
+  "pending_placeholders": 14
+ },
+ "parents": {
+  "SWE-ICS-006": 4,
+  "SWE-ICS-007": 4
+ },
+ "anchors": [
+  "CFTS020-4819560",
+  "CFTS020-4819561",
+  "CFTS020-4819563",
+  "CFTS020-4819564",
+  "CFTS020-4819572",
+  "CFTS020-4819573",
+  "CFTS020-4819574",
+  "CFTS020-4819576"
+ ],
+ "applicability": {
+  "ruling": "R-ICS2 v2(b)",
+  "1.8.1.1.1 {4819556} 群": "8 物件，6 適用（4819557／4819562 之 EE 僅 PowerNet）",
+  "1.8.1.1.3 {4819570} 群": "6 物件，6 適用",
+  "cross_check": "執行層自算與作業 B 之腳本重判**獨立收於同一結果**（6/8、6/6）",
+  "not_generated": {
+   "4819558": "「是否忽略」之仲裁，轉引 HMI 文件無具體判準",
+   "4819571": "同上（SCREEN OFF 側）",
+   "4819559": "音量面，轉引 CFTS019（DR-ICS4）",
+   "4819575": "pop-up 期間行為，轉引 HMI core H4 之 pop-up 清單，本 feature 未納源"
+  }
+ },
+ "signals": {
+  "ICSPowerButton": "$CLIMATIC_PANEL.Radio_btn0$（BO_ 1050，節點 ICS，VAL_ 0 \"Not_Pressed\" 1 \"Pressed\"），備援 DIS_CENTERSTACK.DCSD_Power",
+  "ICSScreenOffButton": "$CLIMATIC_PANEL.Radio_btn2$（BO_ 1050，節點 ICS，VAL_ 0 \"Not_Pressed\" 1 \"Pressed\"），備援 DIS_CENTERSTACK.DCSD_Screen_Off",
+  "TGW_DISP_STAT / RQ_DISP_INTS": "**不在作業 E 之點名清單**，依下放包 03 §三 C 以 PENDING: DR-ICS8 佔位，不臆造"
+ },
+ "context_sha256": {
+  "canon": "0b0cea006552a2f244ba8e733ef6227b132b591a34defb65234934985fe2598e",
+  "framework": "375f7d3bc93d3a0e6572ee4dc2b7c56e8b1d36108c8a1f3719908a90880dec1b",
+  "rulings": "29c6d4508dd3ee874d4ba2c954b36c3c44e5ac6d46d633644ede76811a63a90b",
+  "analysis_lock": "e6c820f5c31796d392551269ded99a256db4818dd40a3ea5c6645c594079ba12",
+  "handoff_03": "1ebd3601cbd96a472429e58f82ef52dc9c26f104a8a7c0159a1dbd3bfdd539ce",
+  "cfts020_fs": "8696d1f596e3367754b092ff6d810cccff6258f46d6e90f8c0b30864314a30f3",
+  "cfts022_fs": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78",
+  "a03_report": "b853c336c28e51f8591672a8440980ad308f4ea0a6b05afa7a27a3bff7d0fda7",
+  "lid_v1_78": "a01e1679c706cd454daf82573a732fe5ad5eedb3865083897cb18c970b312433",
+  "dbc_b": "9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0",
+  "dbc_fd": "51c8fd6092925071bbf443711e5161d78df292de232dc7427b1cceaa8f181cd2"
+ },
+ "tcs_sha256": "52d6796e6b889d0f761c72f80bca435e20a6bb42f2e94ce5c487add966978bb8",
+ "checks": {
+  "selfcheck_b01.py": "PASS — b01+b02+b03 合檢 16 條，機檢 17 項 FAIL 0，人工 8 項",
+  "verify_verbatim_b01.py": "PASS — 16 條逐字命中 16",
+  "ledger_guard.py": "開工前 exit 0"
+ },
+ "note": "tcs_sha256 為本檔寫入前之值；b03_tcs.json 若再動，本檔須重算。"
+}

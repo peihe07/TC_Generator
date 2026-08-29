@@ -17,7 +17,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BATCHES = [ROOT / "generated" / "b01" / "b01_tcs.json",
-                   ROOT / "generated" / "b02" / "b02_tcs.json"]
+                   ROOT / "generated" / "b02" / "b02_tcs.json",
+                   ROOT / "generated" / "b03" / "b03_tcs.json"]
 
 TEN_KEYS = ["tc_title", "pre_conditions", "input_test_data", "test_procedure",
             "expected_result", "specification_reference", "design_method",
@@ -172,24 +173,46 @@ def main() -> int:
                     bad.append(f'{t["tc_title"]}/{f}')
     add("§11 無行首行尾空白", not bad, f"違規 {bad or 0}")
 
-    # 11 方括號
-    bad = []
+    # 11 方括號 —— 分流（IN §11 之 Exception 為 profile-scoped；本 feature 無 profile）
+    #   (a) test_item **上半**（需求原句 verbatim）：列示，並由 verify_verbatim
+    #       之逐字比對背書（該處之 token 皆為所引來源列之逐字）
+    #   (b) 其餘欄位與 test_item 下半（作者所書）：硬 FAIL
+    hard, verb = [], []
     for t in tcs:
+        upper = t["test_item"].split("\n")[0]
+        lower = "\n".join(t["test_item"].split("\n")[1:])
+        if "[" in upper or "]" in upper:
+            verb.append(f'{t["tc_title"]}: ' + "、".join(re.findall(r"\[[^\]]{1,40}\]", upper)))
+        if "[" in lower or "]" in lower:
+            hard.append(f'{t["tc_title"]}/test_item 下半')
         for f in NO_WS_FIELDS:
+            if f == "test_item":
+                continue
             if "[" in t[f] or "]" in t[f]:
-                bad.append(f'{t["tc_title"]}/{f}')
-    add("§11 無方括號", not bad, f"違規 {bad or 0}")
+                hard.append(f'{t["tc_title"]}/{f}')
+    add("§11 無方括號（作者所書之欄位）", not hard, f"違規 {hard or 0}")
+    add("§11 方括號於 test_item 上半（verbatim，列示）", None,
+        f"{len(verb)} 條帶方括號：{verb or 0}"
+        + ("　—— IN §11 之 Exception 為 profile-scoped，本 feature 無 profile，"
+           "須裁（見上繳包）" if verb else ""))
 
-    # 11 UI 標籤用雙引號（單引號之逐字例外另列）
-    single = []
+    # 11 UI 標籤用雙引號 —— 與方括號同一分流：
+    #   (a) test_item **上半**（verbatim）保留來源記法者：列示，待裁
+    #   (b) 作者所書之欄位（含 test_item 下半）：硬 FAIL
+    hard_q, verb_q = [], []
     for t in tcs:
+        upper = t["test_item"].split("\n")[0]
         for f in NO_WS_FIELDS:
-            for m in re.findall(r"'([A-Za-z_ ]{2,})'", t[f]):
-                single.append(f'{t["tc_title"]}/{f}: \'{m}\'')
-    add("§11 UI 標籤雙引號", not single,
-        f"單引號 token {single or 0}"
-        + ("（皆為 CFTS022 逐字之 'VOLUME POP_UP'／'SLEEP MODE'，"
-           "落於 test_item 上半 verbatim；見上繳包 §三-5）" if single else ""))
+            body = "\n".join(t[f].split("\n")[1:]) if f == "test_item" else t[f]
+            for m in re.findall(r"'([A-Za-z_ 0-9%]{2,})'", body):
+                hard_q.append(f'{t["tc_title"]}/{f}: \'{m}\'')
+        for m in re.findall(r"'([A-Za-z_ 0-9%]{2,})'", upper):
+            verb_q.append(f'{t["tc_title"]}: \'{m}\'')
+    add("§11 UI 標籤雙引號（作者所書之欄位）", not hard_q, f"單引號 token {hard_q or 0}")
+    add("§11 單引號於 test_item 上半（verbatim，列示）", None,
+        f"{len(set(verb_q))} 處：{sorted(set(verb_q)) or 0}"
+        + ("　—— 來源（CFTS020）自身之記法，與方括號同屬 IN §11 之 "
+           "profile-scoped Exception，本 feature 無 profile，須裁" if verb_q else ""))
 
     # 10.7 spec_reference 形制
     bad = []

@@ -1,0 +1,185 @@
+{
+ "batch": "b03",
+ "feature": "ICS Management",
+ "test_group": "ICS",
+ "handoff": "features/ics_management/docs/handoff/03_parallel_guard_and_display_unlock.md",
+ "reasoning": "本批為 Display Control 面之解鎖（R-ICS15(a)）：006（題 ICSPowerButton）與 007（題 ICSScreenOffButton）之上半 verbatim 改取 CFTS020 直載原句，不再等 DR-ICS1。適用性依 R-ICS2 v2(b) 逐物件實測：`1.8.1.1.1 {4819556}` 群 8 物件中 6 適用（4819557／4819562 之 EE 僅 PowerNet，實值命中失敗），`1.8.1.1.3 {4819570}` 群 6 物件全適用 —— 二群皆有適用物件，E2 未觸發。自 12 個適用物件中生成 8 條：4819558／4819571（「是否忽略」之仲裁，轉引 HMI 文件無具體判準）、4819559（音量面，轉引 CFTS019，DR-ICS4）、4819575（pop-up 期間行為，轉引 HMI core H4 之 pop-up 清單，本 feature 未納源）四者不生 TC，其理由逐一見各 TC 之 reasoning 與上繳包。切分一律依 IN §8.2.2（一物件一 partial failure 一條）；訊號名依作業 E 之實測（`Radio_btn0`／`Radio_btn2`，皆 `BO_ 1050`、節點 ICS、R-ICS13），`$TGW_DISP_STAT$`／`$RQ_DISP_INTS$` 不在作業 E 點名清單，依作業 C 之令以 PENDING: DR-ICS8 佔位。刻意未涵蓋：009（Back_Button，R-ICS15(b)，待 DR-ICS13）與 005（ICSMuteButton，R-ICS15(c)，待 DR-ICS1）。",
+ "tcs": [
+  {
+   "req_id": "SWE-ICS-006",
+   "tc_title": "Power hardkey pressed while HU screen on",
+   "test_group": "ICS",
+   "test_set": "Display Control",
+   "test_item": "Then the HU shall immediately send $TGW_DISP_STAT$ = [DISP_OFF], and send $RQ_DISP_INTS$ = [0% Intensity]\n(HU Screen ON plus DCSD Screen ON, POWER hardkey responded to, display turned off)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button status messages\n3. The HU is in the \"HU Screen ON\" state\n4. The DCSD screen is in the \"DCSD Screen ON\" state",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the display status signal and record it (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n2. Press the ICS \"Power\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn0$ and check that it is 1 (Pressed)\n4. Read the display status signal and check that it is the \"DISP_OFF\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n5. Read the display intensity signal and check that it is the \"0% Intensity\" value (signal name PENDING: DR-ICS8 <RQ_DISP_INTS CAN signal>)",
+   "expected_result": "1. The display status signal reports the \"DISP_NORMAL\" value\n2. The \"Power\" button enters the pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed) is received\n4. The display status signal reports the \"DISP_OFF\" value\n5. The display intensity signal reports the \"0% Intensity\" value",
+   "specification_reference": "CFTS020-4819560",
+   "design_method": "State Transition",
+   "priority": "P0",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "reasoning": "驗證目標為 4819560：HU Screen ON 且 DCSD Screen ON 時，POWER 硬鍵被回應即關螢幕。上半 verbatim 取該物件之**後半獨立子句**（`then the HU shall immediately send …` 起，句首 `then` 依 R-4 轉大寫）—— 全句 66 token 逾 R-3 之 50 上限，而該物件為單一句無可摘之次句；前提子句改由 Pre-Condition 3／4 與括號下半承載，全文以 specification_reference 指回。訊號名：ICSPowerButton 依作業 E 實測為 `CLIMATIC_PANEL.Radio_btn0`（`BO_ 1050`，發送節點 ICS，`VAL_ 1050 Radio_btn0 0 \"Not_Pressed\" 1 \"Pressed\"`，R-ICS13）；`$TGW_DISP_STAT$`／`$RQ_DISP_INTS$` **不在作業 E 之點名清單**，依作業 C 之令以 `PENDING: DR-ICS8` 佔位，不臆造。值以來源之 token 加雙引號書寫，不用方括號（IN §11）。刻意未涵蓋：4819558 之「是否忽略」仲裁（轉引 HMI 文件，無具體判準）、4819559 之音量面（轉引 CFTS019，DR-ICS4）。",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "觸發前提為 HU Screen ON；Telematic_Power = Full_Operation 之路徑由 P2 承擔"
+   }
+  },
+  {
+   "req_id": "SWE-ICS-006",
+   "tc_title": "Power hardkey pressed at Telematic Power full operation",
+   "test_group": "ICS",
+   "test_set": "Display Control",
+   "test_item": "Then the HU shall immediately send $TGW_DISP_STAT$ = [DISP_OFF], and send $RQ_DISP_INTS$ = [0% Intensity]\n(Telematic Power in full operation plus DCSD Screen ON, POWER hardkey responded to, display turned off)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button status messages\n3. $Telematic_Power$ is in the \"Full_Operation\" state\n4. The DCSD screen is in the \"DCSD Screen ON\" state",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the display status signal and record it (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n2. Press the ICS \"Power\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn0$ and check that it is 1 (Pressed)\n4. Read the display status signal and check that it is the \"DISP_OFF\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n5. Read the display intensity signal and check that it is the \"0% Intensity\" value (signal name PENDING: DR-ICS8 <RQ_DISP_INTS CAN signal>)",
+   "expected_result": "1. The display status signal is recorded\n2. The \"Power\" button enters the pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed) is received\n4. The display status signal reports the \"DISP_OFF\" value\n5. The display intensity signal reports the \"0% Intensity\" value",
+   "specification_reference": "CFTS020-4819561",
+   "design_method": "State Transition",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "reasoning": "驗證目標為 4819561：以 $Telematic_Power$ = Full_Operation 為前提之同一關螢幕行為。上半 verbatim 之摘取法同 P1（全句 54 token 逾 R-3）。與 P1 分列之依據為 IN §8.2.2：4819560 與 4819561 為二條各自成立之 SFR，其前提條件不同（HU Screen ON vs Telematic_Power = Full_Operation），併為一條時前者失敗即掩蓋後者是否成立。4819561 末句轉引之 {CFTS009-829} 為短號需求 ID 而非 ObjectID，依 IN §10.7(a) 不作錨。",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "觸發前提為 Telematic_Power = Full_Operation；HU Screen ON 之路徑由 P1 承擔"
+   }
+  },
+  {
+   "req_id": "SWE-ICS-006",
+   "tc_title": "Power hardkey pressed while HU screen off",
+   "test_group": "ICS",
+   "test_set": "Display Control",
+   "test_item": "When the HU is in the 'HU Screen OFF' state (displaying the \"completely black screen\") and the ICS POWER hardkey is pressed the HU shall send the signal $TGW_DISP_STAT$ = [DISP_NORMAL] and $RQ_DISP_INTS$ = [current non-zero value] and the HU shall return to the previous 'HU Screen ON' screen\n(Display restored to the previous screen from the completely black screen)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button status messages\n3. The HU is in the \"HU Screen OFF\" state and displays the completely black screen",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the display status signal and record it (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n2. Record the screen that was shown before the HU entered the \"HU Screen OFF\" state\n3. Press the ICS \"Power\" button\n4. Read the signal $CLIMATIC_PANEL.Radio_btn0$ and check that it is 1 (Pressed)\n5. Read the display status signal and check that it is the \"DISP_NORMAL\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n6. Check that the screen shown is the same as the screen recorded in step 2",
+   "expected_result": "1. The display status signal reports the \"DISP_OFF\" value\n2. The previously shown screen is recorded\n3. The \"Power\" button enters the pressed state\n4. The signal value $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed) is received\n5. The display status signal reports the \"DISP_NORMAL\" value\n6. The previous \"HU Screen ON\" screen is shown again",
+   "specification_reference": "CFTS020-4819563",
+   "design_method": "State Transition",
+   "priority": "P0",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "reasoning": "驗證目標為 4819563：黑屏狀態下按 POWER 硬鍵即回復前一畫面。上半 39 token，未逾 R-3，逐字全取。關鍵情境條件為 'HU Screen OFF' 之黑屏態。與 P1 之切分軸為方向（關 vs 開），二者為不同觸發前提下之不同後果（IN §8.2.2）。`$RQ_DISP_INTS$ = [current non-zero value]` 之「current」為相對值，台架無法以絕對值判定，故 ER 只斷言 `$TGW_DISP_STAT$` 與畫面回復；強度較弱一事已於上繳包 §獨立判斷具名。",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "自 HU Screen OFF 開螢幕；自 HU Screen ON 關螢幕由 P1 承擔"
+   }
+  },
+  {
+   "req_id": "SWE-ICS-006",
+   "tc_title": "Power hardkey pressed at Telematic Power idle",
+   "test_group": "ICS",
+   "test_set": "Display Control",
+   "test_item": "If $Telematic_Power$ = [Idle] and the ICS POWER hardkey is pressed the HU shall send the signal $TGW_DISP_STAT$ = [DISP_NORMAL] and $RQ_DISP_INTS$ = [current non-zero value] and the HU shall return to the previous 'HU Screen ON' screen\n(Display restored to the previous screen while Telematic Power is idle)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button status messages\n3. $Telematic_Power$ is in the \"Idle\" state\n4. The HU is in the \"HU Screen OFF\" state",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the screen that was shown before the HU entered the \"HU Screen OFF\" state\n2. Press the ICS \"Power\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn0$ and check that it is 1 (Pressed)\n4. Read the display status signal and check that it is the \"DISP_NORMAL\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n5. Check that the screen shown is the same as the screen recorded in step 1",
+   "expected_result": "1. The previously shown screen is recorded\n2. The \"Power\" button enters the pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed) is received\n4. The display status signal reports the \"DISP_NORMAL\" value\n5. The previous \"HU Screen ON\" screen is shown again",
+   "specification_reference": "CFTS020-4819564",
+   "design_method": "State Transition",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "reasoning": "驗證目標為 4819564：$Telematic_Power$ = Idle 前提下之同一回復行為。上半 41 token，逐字全取。與 P3 分列之依據同 P1／P2：4819563 與 4819564 為二條前提不同之 SFR（IN §8.2.2）。4819564 末句轉引之 {CFTS009-829} 不作錨（IN §10.7(a)）。",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "前提為 Telematic_Power = Idle；HU Screen OFF 態之路徑由 P3 承擔"
+   }
+  },
+  {
+   "req_id": "SWE-ICS-007",
+   "tc_title": "Screen off hardkey starts the three second timer",
+   "test_group": "ICS",
+   "test_set": "Display Control",
+   "test_item": "Then the HU shall continue to send $TGW_DISP_STAT$ = [DISP_NORMAL], and $RQ_DISP_INTS$ <> [0% Intensity] until the 3 second \"TOUCH SCREEN TO TURN ON\" timer expires\n(Display kept on for the whole three second window after the SCREEN OFF hardkey is responded to)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button status messages\n3. The HU is in the \"HU Screen ON\" state\n4. The DCSD screen is in the \"DCSD Screen ON\" state",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the ICS \"Screen Off\" button\n2. Read the signal $CLIMATIC_PANEL.Radio_btn2$ and check that it is 1 (Pressed)\n3. Read the display status signal 1 second after the button press and check that it is the \"DISP_NORMAL\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n4. Read the display status signal 2 seconds after the button press and check that it is the \"DISP_NORMAL\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)",
+   "expected_result": "1. The \"Screen Off\" button enters the pressed state\n2. The signal value $CLIMATIC_PANEL.Radio_btn2$ = 1 (Pressed) is received\n3. The display status signal reports the \"DISP_NORMAL\" value and the \"TOUCH SCREEN TO TURN ON\" graphic is shown\n4. The display status signal reports the \"DISP_NORMAL\" value and the \"TOUCH SCREEN TO TURN ON\" graphic is shown",
+   "specification_reference": "CFTS020-4819572",
+   "design_method": "Functional Based",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "reasoning": "驗證目標為 4819572 之維持面：SCREEN OFF 被回應後，3 秒計時期間顯示狀態不變。上半 verbatim 取後半獨立子句（`then the HU shall continue to send …` 起，句首依 R-4 轉大寫）—— 全句 66 token 逾 R-3。3 秒為 spec 明載（4819572 逐字），依下放包 03 §三 C 得直用，非造值。取 1 秒與 2 秒二個觀察點而非只取一點：單點無法區分「維持」與「尚未生效」。訊號名依作業 E：ICSScreenOffButton = `CLIMATIC_PANEL.Radio_btn2`（`BO_ 1050`，節點 ICS，`VAL_ … 0 \"Not_Pressed\" 1 \"Pressed\"`）。刻意未涵蓋：4819571 之「是否忽略」仲裁（轉引 HMI 文件）、4819575 之 pop-up 期間行為（轉引 HMI core H4 之 pop-up 清單，本 feature 未納源）。",
+   "distinguishing_axis": {
+    "axis": "timing",
+    "delta": "3 秒窗內之維持；窗滿之關閉由 S3 承擔、窗內再按之取消由 S2 承擔"
+   }
+  },
+  {
+   "req_id": "SWE-ICS-007",
+   "tc_title": "Screen off hardkey pressed again within three seconds",
+   "test_group": "ICS",
+   "test_set": "Display Control",
+   "test_item": "During the '3-second' time period if the ICS SCREEN OFF hardkey is pressed the HU shall cancel the \"TOUCH SCREEN TO TURN ON\" screen timer, the HU shall send $TGW_DISP_STAT$ = [DISP_NORMAL] and $RQ_DISP_INTS$ = [current non-zero value] and the HU shall return to the previous 'HU Screen ON' screen\n(Second press inside the three second window cancels the timer and restores the previous screen)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button status messages\n3. The HU is in the \"HU Screen ON\" state\n4. The DCSD screen is in the \"DCSD Screen ON\" state",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the screen currently shown on the HU\n2. Press the ICS \"Screen Off\" button\n3. Press the ICS \"Screen Off\" button again 1 second after the first press\n4. Read the display status signal 5 seconds after the second press and check that it is the \"DISP_NORMAL\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n5. Check that the screen shown is the same as the screen recorded in step 1",
+   "expected_result": "1. The currently shown screen is recorded\n2. The \"TOUCH SCREEN TO TURN ON\" graphic is shown\n3. The \"TOUCH SCREEN TO TURN ON\" graphic is removed\n4. The display status signal reports the \"DISP_NORMAL\" value\n5. The previous \"HU Screen ON\" screen is shown again",
+   "specification_reference": "CFTS020-4819573",
+   "design_method": "State Transition",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "reasoning": "驗證目標為 4819573：3 秒窗內再按 SCREEN OFF 即取消計時並回前一畫面。上半 44 token，逐字全取。步驟 4 取「第二次按下後 5 秒」為觀察點：須跨過原 3 秒窗方能證明計時確被取消，而非只是尚未到期。5 秒為測試實作選擇（> 3 秒即可），非規格數值，故不落佔位亦不宣稱其為 spec 值。與 S1 分列之依據為 IN §8.2.2：維持與取消為二獨立 partial failure。",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "窗內再按之取消；窗內不動作之維持由 S1 承擔"
+   }
+  },
+  {
+   "req_id": "SWE-ICS-007",
+   "tc_title": "Three second period completed after screen off hardkey",
+   "test_group": "ICS",
+   "test_set": "Display Control",
+   "test_item": "After the '3-second' time period is complete, the HU shall immediately send $TGW_DISP_STAT$ = [DISP_OFF], and send $RQ_DISP_INTS$ = [0% Intensity]\n(Display turned off once the three second window has elapsed without further input)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button status messages\n3. The HU is in the \"HU Screen ON\" state\n4. The DCSD screen is in the \"DCSD Screen ON\" state",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the ICS \"Screen Off\" button\n2. Wait for the 3 second period to complete without touching the screen\n3. Read the display status signal and check that it is the \"DISP_OFF\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n4. Read the display intensity signal and check that it is the \"0% Intensity\" value (signal name PENDING: DR-ICS8 <RQ_DISP_INTS CAN signal>)",
+   "expected_result": "1. The \"TOUCH SCREEN TO TURN ON\" graphic is shown\n2. The 3 second period elapses and the screen turns black\n3. The display status signal reports the \"DISP_OFF\" value\n4. The display intensity signal reports the \"0% Intensity\" value",
+   "specification_reference": "CFTS020-4819574",
+   "design_method": "State Transition",
+   "priority": "P0",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "reasoning": "驗證目標為 4819574：3 秒窗滿後立即關螢幕。上半 21 token，逐字全取。此為 Display Control 之核心主流程（按 SCREEN OFF 後螢幕確實關閉），依 TEST_CASE_PRIORITY.md「功能核心主流程預設 P0」落 P0。與 S1 分列：S1 驗窗內維持、S3 驗窗滿之關閉，二者為同一計時器之二個獨立後果，但其失敗模式不同（維持失敗＝提早關；關閉失敗＝永不關），依 IN §8.2.2 分列。",
+   "distinguishing_axis": {
+    "axis": "timing",
+    "delta": "3 秒窗滿後之關閉；窗內之維持由 S1 承擔"
+   }
+  },
+  {
+   "req_id": "SWE-ICS-007",
+   "tc_title": "Screen off hardkey pressed while HU screen off",
+   "test_group": "ICS",
+   "test_set": "Display Control",
+   "test_item": "When the HU is in the 'HU Screen OFF' state (displaying the \"completely black screen\") and the ICS SCREEN OFF hardkey is pressed the HU shall send the signal $TGW_DISP_STAT$ = [DISP_NORMAL] and $RQ_DISP_INTS$ = [current non-zero value] and the HU shall return to the previous 'HU Screen ON' screen\n(Display restored by the SCREEN OFF hardkey from the completely black screen)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button status messages\n3. The HU is in the \"HU Screen OFF\" state and displays the completely black screen",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the screen that was shown before the HU entered the \"HU Screen OFF\" state\n2. Press the ICS \"Screen Off\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn2$ and check that it is 1 (Pressed)\n4. Read the display status signal and check that it is the \"DISP_NORMAL\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n5. Check that the screen shown is the same as the screen recorded in step 1",
+   "expected_result": "1. The previously shown screen is recorded\n2. The \"Screen Off\" button enters the pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn2$ = 1 (Pressed) is received\n4. The display status signal reports the \"DISP_NORMAL\" value\n5. The previous \"HU Screen ON\" screen is shown again",
+   "specification_reference": "CFTS020-4819576",
+   "design_method": "State Transition",
+   "priority": "P0",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "reasoning": "驗證目標為 4819576：黑屏態下按 SCREEN OFF 硬鍵亦回復前一畫面。上半 37 token，逐字全取。與 P3（4819563，POWER 硬鍵）之區別在按鍵不同而非狀態不同 —— 二者為二條各自之 SFR，其錨、其按鍵、其訊號皆異（`Radio_btn2` vs `Radio_btn0`），非重複（IN §8.2.2）。與 S3 之切分軸為起始狀態（黑屏 vs 亮屏）。",
+   "distinguishing_axis": {
+    "axis": "mode",
+    "delta": "自黑屏態以 SCREEN OFF 鍵回復；POWER 鍵之同一回復由 P3 承擔"
+   }
+  }
+ ]
+}

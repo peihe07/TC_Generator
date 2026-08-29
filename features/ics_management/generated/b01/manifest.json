@@ -7,7 +7,7 @@
   "tcs": 6,
   "parents": 3,
   "test_sets": 2,
-  "pending_placeholders": 1
+  "pending_placeholders": 2
  },
  "parents": {
   "SWE-ICS-010": 3,
@@ -37,7 +37,7 @@
   "dbc_b": "9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0",
   "dbc_fd": "51c8fd6092925071bbf443711e5161d78df292de232dc7427b1cceaa8f181cd2"
  },
- "tcs_sha256": "f38882a9108023f4f5004d38de9988d654691a4e7f631f1828b82af459d289fe",
+ "tcs_sha256": "b32ec5d064d6c5ceacff21615527d1c55491f95ea5e609432ce52115d81930b8",
  "checks": {
   "selfcheck_b01.py": "PASS — 機檢 16 項 FAIL 0，人工 5 項",
   "verify_verbatim_b01.py": "PASS — 6 條逐字命中 6"
@@ -45,11 +45,12 @@
  "note": "tcs_sha256 為本檔寫入前之值；b01_tcs.json 若再動，本檔須重算。",
  "revision": {
   "date": "2026-08-29",
-  "by": "下放包 02 作業 A／B",
+  "by": "下放包 02 作業 A／B ＋ 下放包 03 作業 D",
   "changes": [
    "DR-ICS8 佔位 3 處 → 0 處（R-ICS8 實測 $CLIMATIC_PANEL.Radio_btn4$）",
    "S1 步驟 2 加註 DTC mature time；S2 增步驟 5（de-mature 8 ms）",
-   "S1/S2/S3 之 DTC 具名為 B14DA-2A（DTCs Matrix r57）"
+   "S1/S2/S3 之 DTC 具名為 B14DA-2A（DTCs Matrix r57）",
+   "b03 作業 D：V3 之 pre_conditions 增 PENDING: DR-ICS12（佔位 1 → 2）"
   ]
  }
 }
