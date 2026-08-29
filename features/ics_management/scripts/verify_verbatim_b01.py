@@ -39,7 +39,8 @@ DEFAULT_BATCHES = [ROOT / "generated/b01/b01_tcs.json",
                    ROOT / "generated/b02/b02_tcs.json",
                    ROOT / "generated/b03/b03_tcs.json",
                    ROOT / "generated/b04/b04_tcs.json",
-                   ROOT / "generated/b05/b05_tcs.json"]
+                   ROOT / "generated/b05/b05_tcs.json",
+                   ROOT / "generated/b06/b06_tcs.json"]
 
 
 def docx_text(path: Path) -> str:

@@ -37,7 +37,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BATCHES = ["b01", "b02", "b03", "b04", "b05"]
+BATCHES = ["b01", "b02", "b03", "b04", "b05", "b06"]
 FIELDS = ["pre_conditions", "input_test_data", "test_procedure",
           "expected_result", "test_item", "specification_reference"]
 PAT = re.compile(r"PENDING: (DR-ICS\d+) <([^>]+)>")

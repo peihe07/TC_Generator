@@ -9,7 +9,7 @@
 > `狀態` 欄之值域：`OPEN` ／ `可結`（授權，佔位實際回收後方改）／ `CLOSED`。
 
 **催件排序（Pei 2026-08-29「裁」核可，2026-08-29 重排）**：
-- 上游急件：DR-ICS9（V 組存續）、DR-ICS2（011/012 補列）
+- 上游急件：**DR-ICS18（§1.8／§1.18 權威歸屬及 TLM 之指涉；2026-08-29 新登）**、**DR-ICS16（DISP_STAT 家族零承載，二條路皆確認不通）**、DR-ICS9（V 組存續）、DR-ICS2（011/012 補列）
 - 緩件：DR-ICS3（交付前須結，ASPICE 追溯鏈）、DR-ICS4／DR-ICS14（CFTS019 線）、DR-ICS6、DR-ICS11
 - 待偵察：DR-ICS17（b07）
 - 可結待回收：DR-ICS5／7／8／10／13／15
@@ -57,8 +57,9 @@
 | DR-ICS10 | 【新登 2026-08-29，自 DR-ICS7 拆出，見 A-ICS11】CFTS020-4819617 之 `<Tstuck_button>`（ignore 行為門檻）具體值；與 CFTS022-4914956 之 120 s（DTC 面）未必同值，請分別給值。【b02 二處佔位待其回覆】 | 010（ignore 面） | OPEN |
 | DR-ICS11 | 【新登 2026-08-29，上繳包 02 §三-4】DTC `B14DA-2A` 之 Enable Condition EC3 轉引 `{SIS-5161}`（Local Battery Voltage operating range），該文件全 repo 掃描 0 命中。請提供電壓範圍或文件 | S1／S2／S3 之 Enable 條件無法入 Pre-Condition | OPEN |
 | DR-ICS12 | 【新登 2026-08-29，見 A-ICS17】CFTS020-4819583 之 `<TPeriodToCountKnobDetents>` 與 `<TPeriodToSendNoChange>` 具體值（detent 計數時間窗）；V3 之「連轉三格」與將來 knob2 全面皆依賤此值 | 002（V3）、003、004 | OPEN |
-| DR-ICS13 | 【新登 2026-08-29，見 R-ICS15(b)】本專案（newR1L／R1L-R，Atlantis High）之 **市場軸**為何？CFTS020-4819554（Back_Button 唯一直載原句）之 Market 限 NAFTA；市場軸未定前不得判其在案（R-DD25 同族）。順帶確認 CFTS022／CFTS020 之 `Market` 屬性於本 DUT 之採認值域 | 009；及後續所有帶 Market 限定之物件 | OPEN |
+| DR-ICS13 | 【新登 2026-08-29，見 R-ICS15(b)】本專案（newR1L／R1L-R，Atlantis High）之 **市場軸**為何？CFTS020-4819554（Back_Button 唯一直載原句）之 Market 限 NAFTA；市場軸未定前不得判其在案（R-DD25 同族）。順帶確認 CFTS022／CFTS020 之 `Market` 屬性於本 DUT 之採認值域 | 009；及後續所有帶 Market 限定之物件 | OPEN（**改問 2026-08-29**，R-ICS25 v2(c)：009 之阻斷面實在 Radio／EE 二軸而非 Market。現問「請提供 ICS／HU 側之 Back_Button 行為母條，或確認 009 出案外」。**2026-08-29 R-ICS35(g)**：Pei 裁 ③（二節並存）**不使本 DR 結案** —— §1.18 側之 `4821681` 為 LID 清單非行為母條，`4821704` 主詞為 TLM，其可用與否繫於 DR-ICS18／b09 作業 A 之 TLM 指涉量測；009 於其定案前不生成） |
 | DR-ICS14 | 【新登 2026-08-29，上繳包 03 §七-2、§12-2-4】CFTS019 七件之引用鏈有五個斷點文件不在件內：`TABLE 34`（音量曲線，自 Radio Performance Standard 轉引）、HU Component Specification、`4866125` 所指之未具名 HMI 文件、CIP Radio DSPPP 表、`Table for CFTS019-4866516`。請提供或指明其所在 | 001, 002（音量階數域） | OPEN |
 | DR-ICS15 | 【新登 2026-08-29，上繳包 03 §四-3】`$TGW_DISP_STAT$`、`$RQ_DISP_INTS$`、`$DCSD_DISP_STAT$`、`$Telematic_Power$` 四訊號不在 LID 點名清單，b03 共 14 處佔位。已令 b04 依 R-ICS8 進 LID→CAN 驗證；驗證後仍查無者以本 DR 向上游要對應 | 006, 007, (011) 之訊號欄 | OPEN |
-| DR-ICS16 | 【新登 2026-08-29，見 A-ICS28／R-ICS22(a)】`$TGW_DISP_STAT$` 與 `$Telematic_Power$` 於 B-CAN（`TELEMATIC_DISPLAY2` @1500／`STATUS_TELEMATIC` @1470）與 CAN-FD（`TELEMATIC_FD_4` @1427）二條匯流排上均有承載。**本 DUT 於哪條匯流排上觀察該二訊號？** 二候選發送節點皆非 ICS，台架取捨無量測依據 | b03 之 12 處佔位 | OPEN |
-| DR-ICS17 | 【新登 2026-08-29，upstream-04 §6-1】`Pop-up List Notification`（由 `Pop Up List Priority Matrix` p.3 逐字外指之文件）**不在 `spec-index/sources/` 33 件內**。請提供。理由：`VOLUME POP_UP` 之顯示條件連續四包追索（CFTS022／020／019 七件／ HMI L&F 六本）皆強查無，線索首次收斂至此一具名而未入庫之文件 | b01 之 V1／V2／V3 共 6 行 ER（A-ICS16） | OPEN |
+| DR-ICS16 | 【新登 2026-08-29，見 A-ICS28／R-ICS22(a)】`$TGW_DISP_STAT$` 與 `$Telematic_Power$` 於 B-CAN（`TELEMATIC_DISPLAY2` @1500／`STATUS_TELEMATIC` @1470）與 CAN-FD（`TELEMATIC_FD_4` @1427）二條匯流排上均有承載。**本 DUT 於哪條匯流排上觀察該二訊號？** 二候選發送節點皆非 ICS，台架取捨無量測依據 | b03 之 12 處佔位 | OPEN（**升回阻斷件 2026-08-29**，見 A-ICS47：ETM=DUT 不成立；若 DUT 為 LTM，二 DBC 皆無其發送側。b08 須查 §1.18 是否有解） |
+| DR-ICS17 | 【新登 2026-08-29，upstream-04 §6-1】`Pop-up List Notification`（由 `Pop Up List Priority Matrix` p.3 逐字外指之文件）**不在 `spec-index/sources/` 33 件內**。請提供。理由：`VOLUME POP_UP` 之顯示條件連續四包追索（CFTS022／020／019 七件／ HMI L&F 六本）皆強查無，線索首次收斂至此一具名而未入庫之文件 | b01 之 V1／V2／V3 共 6 行 ER（A-ICS16） | OPEN（**線索移轉 2026-08-29**：upstream-07 §8 實測 Notifications 本不支持為該文件，且其 p.2／p.3 反向外指 `HMI Pop Up List`（亦不在 33 件內）。現請提供 `HMI Pop Up List`） |
+| DR-ICS18 | 【新登 2026-08-29，R-ICS35(d)】CFTS020 二節之權威歸屬：§1.8（`PNet & AtlHi & AtlMi`）與 §1.18（`AtlMi & AtlHi & AtlLo`）對本 DUT（newR1L／R1L-R，Atlantis High）係**並存（各有涵蓋面）**、**取代關係**、或**適用條件差異**？附受影響之 25 條 TC 與 15 個 CFTS020 錨清單（`docs/reports/08_s118_vs_s18.md` §5）。**一併請確認**：§1.18 所稱之 `TLM` 是否即本 DUT（其 §1.18.1.2 逐字載 TLM 有畫面、有 `"Screen Off"` 模式、須管 browsing lists），及其與 ECU 屬性 `LTM`／`ETM`／`RRM` 之關係（連帶 DR-ICS9） | 13 條之錨歸屬；009；A-ICS55 之泛用母條處置 | OPEN |

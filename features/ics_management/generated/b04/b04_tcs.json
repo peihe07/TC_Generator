@@ -65,7 +65,7 @@
    "split_flag": false,
    "split_reason": "",
    "has_pending": false,
-   "reasoning": "驗證目標為 4819582：旋鈕未轉時送 no change，且此狀態下 VAL 之值應被接收端忽略。上半 38 token，二句逐字全取。步驟 4 以「畫面不變」承載「VAL 被忽略」—— 條文之 `ignored by the receiving components` 無直接可觀察之訊號面（忽略是「不做事」），只能由其後果觀察。此為本條驗證強度之弱點，已於 upstream-04 §獨立判斷具名。與 B1／B2 之切分軸為 trigger_state（靜止 vs 轉動）。",
+   "reasoning": "驗證目標為 4819582：旋鈕未轉時送 no change，且此狀態下 VAL 之值應被接收端忽略。上半 38 token，二句逐字全取。步驟 4 以「畫面不變」承載「VAL 被忽略」—— 條文之 `ignored by the receiving components` 無直接可觀察之訊號面（忽略是「不做事」），只能由其後果觀察。此為本條驗證強度之弱點，已於 upstream-04 §獨立判斷具名。與 B1／B2 之切分軸為 trigger_state（靜止 vs 轉動）。　【b08 作業 D】依 R-ICS32(a) 標弱驗證，**內容不改**：本條之末行以「狀態不變／改變」承載來源句之「忽略」「no action taken」，而**來源未承諾該不作為必有可觀察之無變化** —— 通過不足以完全證成條文。此為可行之最佳近似（無直接可觀察之訊號面），保留但於交付時標為弱驗證。",
    "distinguishing_axis": {
     "axis": "trigger_state",
     "delta": "旋鈕靜止；轉動中之送出由 B1／B2 承擔"
@@ -121,9 +121,9 @@
    "test_group": "ICS",
    "test_set": "Browse Control",
    "test_item": "When the HU receives $ICS_KNOB2_DIR$ and $ICS_KNOB2_VAL$ signals it shall determine the corresponding HMI screen to 'flow' to (Browse), if any, HMI screen to update (Scroll) or change in Entertainment Audio state ('Tune')\n(The HU acts on the knob 2 direction and value pair with the browse, scroll or tune behavior)",
-   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob and button status messages\n3. The HU shows a list screen on which browse behavior is defined\n4. The ICS knob 2 is not being rotated",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob and button status messages\n3. The HU shows a screen for which a browse action is defined for knob 2 (screen identified per PENDING: DR-ICS6 <HMI Logic and Flow browse mapping for ICS_KNOB2>)\n4. The ICS knob 2 is not being rotated",
    "input_test_data": "NA",
-   "test_procedure": "1. Record the screen currently shown on the HU\n2. Rotate the ICS knob 2 one detent position clock-wise\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)\n4. Check that the HU acts on the knob 2 rotation as defined for the current screen (expected behavior PENDING: DR-ICS6 <HMI Logic and Flow browse, scroll and tune mapping for ICS_KNOB2>)",
+   "test_procedure": "1. Record the screen currently shown on the HU\n2. Rotate the ICS knob 2 one detent position clock-wise\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)\n4. Check that the HU state has changed from the state recorded in step 1",
    "expected_result": "1. The currently shown screen is recorded\n2. The knob 2 detent is felt and the rotation is completed\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received\n4. The HU state differs from the state recorded in step 1",
    "specification_reference": "CFTS020-4819586",
    "design_method": "Functional Based",
@@ -131,7 +131,7 @@
    "split_flag": false,
    "split_reason": "",
    "has_pending": true,
-   "reasoning": "驗證目標為 4819586：HU 收到 KNOB2 之 DIR／VAL 後確實據以動作（browse／scroll／tune）。上半 33 token，單句逐字全取。**具體動作為何取決於當前畫面**，其對照表在 HMI Logic and Flow（DR-ICS6 未回），指名即造值（IN §8.4.1），故以 `PENDING: DR-ICS6` 佔位並以前後基線比較承載可判定性（同 b02 之 I1／I2 之處置）。條文之 `if any` 明示「可能無對應畫面」—— 故 Pre-Condition 3 限定於「已定義 browse 行為之列表畫面」，否則步驟 4 之斷言即為潛在 FF（IN §7）。與 B1／B5 之別：B1／B5 驗 ICS **送出**面，本條驗 HU **接收後之動作**面 ——二者為不同 ECU 側之行為，非同一觸發之多後果。",
+   "reasoning": "驗證目標為 4819586：HU 收到 KNOB2 之 DIR／VAL 後確實據以動作（browse／scroll／tune）。上半 33 token，單句逐字全取。**具體動作為何取決於當前畫面**，其對照表在 HMI Logic and Flow（DR-ICS6 未回），指名即造值（IN §8.4.1），故以 `PENDING: DR-ICS6` 佔位並以前後基線比較承載可判定性（同 b02 之 I1／I2 之處置）。條文之 `if any` 明示「可能無對應畫面」—— 故 Pre-Condition 3 限定於「已定義 browse 行為之列表畫面」，否則步驟 4 之斷言即為潛在 FF（IN §7）。與 B1／B5 之別：B1／B5 驗 ICS **送出**面，本條驗 HU **接收後之動作**面 ——二者為不同 ECU 側之行為，非同一觸發之多後果。　【b08 作業 C】依 R-ICS32(b) 改寫 `if any` 之斷言逾越：來源句自帶 `if any`，即規格明示可能無對應後果，而原 ER 斷言必有可觀察差異 —— 潛在 FF（IN §7）。改法：**佔位自 procedure 移至 Pre-Condition**，使「該動作已定義」成為本條之**前提**而非其**斷言**；`if any` 之否定分支因而被前提排除，ER 之差異斷言方為有據。**畫面名仍未自行指定**（R-ICS30(b) 不變）——前提所限定者為「該畫面之屬性（已定義該動作）」，不是其名。",
    "distinguishing_axis": {
     "axis": "mode",
     "delta": "HU 接收後之動作面；ICS 之送出面由 B1／B5 承擔"
@@ -143,9 +143,9 @@
    "test_group": "ICS",
    "test_set": "Menu Navigation",
    "test_item": "When the HU receives $Enter_Button$ = [pressed] it shall determine the corresponding HMI screen to 'flow' to, if any\n(The HU flows to the screen defined for the current context when the Enter button is pressed)",
-   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob and button status messages\n3. The HU shows a screen on which an Enter action is defined",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob and button status messages\n3. The HU shows a screen for which an Enter action is defined (screen identified per PENDING: DR-ICS6 <HMI Logic and Flow screen mapping for Enter_Button>)",
    "input_test_data": "NA",
-   "test_procedure": "1. Record the screen currently shown on the HU\n2. Press the ICS \"Enter\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn1$ and check that it is 1 (Pressed)\n4. Check that the HU flows to the screen defined for the current context (target screen PENDING: DR-ICS6 <HMI Logic and Flow screen mapping for Enter_Button>)",
+   "test_procedure": "1. Record the screen currently shown on the HU\n2. Press the ICS \"Enter\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn1$ and check that it is 1 (Pressed)\n4. Check that the screen shown has changed from the screen recorded in step 1",
    "expected_result": "1. The currently shown screen is recorded\n2. The \"Enter\" button enters the pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn1$ = 1 (Pressed) is received\n4. The screen shown differs from the screen recorded in step 1",
    "specification_reference": "CFTS020-4819555",
    "design_method": "Functional Based",
@@ -153,7 +153,7 @@
    "split_flag": false,
    "split_reason": "",
    "has_pending": true,
-   "reasoning": "驗證目標為 4819555：HU 收到 `$Enter_Button$` = [pressed] 後流向對應畫面。上半 19 token，單句逐字全取。v2 判定為**適用**（ECU 軸缺、Radio 含 R1L、EE 含 Atlantis High），E3 未觸發。訊號名依 b03 作業 E：`CLIMATIC_PANEL.Radio_btn1`（`BO_ 1050`，節點 ICS，`VAL_ 1050 Radio_btn1 0 \"Not_Pressed\" 1 \"Pressed\";`）。目標畫面之對照表在 HMI L&F（DR-ICS6），故佔位。條文之 `if any` 同 4819586 —— Pre-Condition 3 限定於「已定義 Enter 動作之畫面」，否則步驟 4 為潛在 FF。**未涵蓋之覆蓋缺口（E6，具名）**：`1.8.1.3 Button Press Events` 之 Short／Long Press 定義（4819593、4819599 等）於 v2 判**不適用** —— 成因為其 `[ECU:FPDM]` 軸值不含 {ICS, LTM}，屬實質判定而非軸缺。故「按壓事件」之時長判準本 feature 無母條可依，本條只驗 `[pressed]` 訊號值之後果，不涉短按／長按之區別，亦不自他處補（下放包 04 §三 C-4）。"
+   "reasoning": "驗證目標為 4819555：HU 收到 `$Enter_Button$` = [pressed] 後流向對應畫面。上半 19 token，單句逐字全取。v2 判定為**適用**（ECU 軸缺、Radio 含 R1L、EE 含 Atlantis High），E3 未觸發。訊號名依 b03 作業 E：`CLIMATIC_PANEL.Radio_btn1`（`BO_ 1050`，節點 ICS，`VAL_ 1050 Radio_btn1 0 \"Not_Pressed\" 1 \"Pressed\";`）。目標畫面之對照表在 HMI L&F（DR-ICS6），故佔位。條文之 `if any` 同 4819586 —— Pre-Condition 3 限定於「已定義 Enter 動作之畫面」，否則步驟 4 為潛在 FF。**未涵蓋之覆蓋缺口（E6，具名）**：`1.8.1.3 Button Press Events` 之 Short／Long Press 定義（4819593、4819599 等）於 v2 判**不適用** —— 成因為其 `[ECU:FPDM]` 軸值不含 {ICS, LTM}，屬實質判定而非軸缺。故「按壓事件」之時長判準本 feature 無母條可依，本條只驗 `[pressed]` 訊號值之後果，不涉短按／長按之區別，亦不自他處補（下放包 04 §三 C-4）。　【b08 作業 C】依 R-ICS32(b) 改寫 `if any` 之斷言逾越：來源句自帶 `if any`，即規格明示可能無對應後果，而原 ER 斷言必有可觀察差異 —— 潛在 FF（IN §7）。改法：**佔位自 procedure 移至 Pre-Condition**，使「該動作已定義」成為本條之**前提**而非其**斷言**；`if any` 之否定分支因而被前提排除，ER 之差異斷言方為有據。**畫面名仍未自行指定**（R-ICS30(b) 不變）——前提所限定者為「該畫面之屬性（已定義該動作）」，不是其名。"
   }
  ],
  "revision": {
@@ -162,6 +162,10 @@
   ],
   "b07_applied": [
    "作業 B：符號值佔位回填（R-ICS27(b)(c)），錨增 CFTS020-4819541"
+  ],
+  "b08_applied": [
+   "作業 C：if-any 四行之佔位自 procedure 移至 Pre-Condition（R-ICS32(b)）",
+   "作業 D：不作為三行標弱驗證，內容不改（R-ICS32(a)）"
   ]
  }
 }

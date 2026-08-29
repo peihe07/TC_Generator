@@ -12,9 +12,9 @@
    "test_group": "ICS",
    "test_set": "Browse Control",
    "test_item": "When the HU receives $ICS_KNOB2_DIR$ and $ICS_KNOB2_VAL$ signals it shall determine the corresponding HMI screen to 'flow' to (Browse), if any, HMI screen to update (Scroll) or change in Entertainment Audio state ('Tune')\n(The HU updates the screen content as the Scroll operation when knob 2 is rotated)",
-   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob status messages\n3. The HU shows a screen on which scroll behavior is defined\n4. The ICS knob 2 is not being rotated",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob status messages\n3. The HU shows a screen for which a scroll action is defined for knob 2 (screen identified per PENDING: DR-ICS6 <HMI Logic and Flow scroll mapping for ICS_KNOB2>)\n4. The ICS knob 2 is not being rotated",
    "input_test_data": "NA",
-   "test_procedure": "1. Record the screen content currently shown on the HU\n2. Rotate the ICS knob 2 one detent position clock-wise\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)\n4. Check that the HU updates the screen content as defined for the current screen (expected update PENDING: DR-ICS6 <HMI Logic and Flow scroll mapping for ICS_KNOB2>)",
+   "test_procedure": "1. Record the screen content currently shown on the HU\n2. Rotate the ICS knob 2 one detent position clock-wise\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)\n4. Check that the screen content has changed from the content recorded in step 1",
    "expected_result": "1. The screen content currently shown on the HU is recorded\n2. The knob 2 detent is felt and the rotation is completed\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received\n4. The screen content differs from the content recorded in step 1",
    "specification_reference": "CFTS020-4819586",
    "design_method": "Functional Based",
@@ -22,7 +22,7 @@
    "split_flag": false,
    "split_reason": "",
    "has_pending": true,
-   "reasoning": "驗證目標為 4819586 之 **Scroll** 面：HU 收到 KNOB2 之 DIR／VAL 後更新畫面內容。上半 verbatim 取 4819586 全句（33 token，未逾 R-3），該句同時載 Browse／Scroll／Tune 三操作，故三條同錨（R-ICS30(a)）。**本條之生成依據為 R-ICS30(a)**：SWE-ICS-004 之 Verification Criteria 逐字載 `browse, scroll and tune operations`，而 b04 之 B6 只涵蓋 browse ——**此為覆蓋面之缺，非資料之缺，不得以 DR-ICS6 未回為由不生成**；佔位是缺件之正當表達，不生成則該 VC 於台帳上零覆蓋而覆蓋率統計看不出來。具體更新內容之對照表在 HMI Logic and Flow（DR-ICS6），指名即造值（IN §8.4.1），故以 `PENDING: DR-ICS6` 承載並以前後基線比較維持可判定性。與 B6（browse）之切分軸為 mode —— 三操作各自為不同之 HMI 後果，併為一條時前者失敗即掩蓋其餘（IN §8.2.2）。",
+   "reasoning": "驗證目標為 4819586 之 **Scroll** 面：HU 收到 KNOB2 之 DIR／VAL 後更新畫面內容。上半 verbatim 取 4819586 全句（33 token，未逾 R-3），該句同時載 Browse／Scroll／Tune 三操作，故三條同錨（R-ICS30(a)）。**本條之生成依據為 R-ICS30(a)**：SWE-ICS-004 之 Verification Criteria 逐字載 `browse, scroll and tune operations`，而 b04 之 B6 只涵蓋 browse ——**此為覆蓋面之缺，非資料之缺，不得以 DR-ICS6 未回為由不生成**；佔位是缺件之正當表達，不生成則該 VC 於台帳上零覆蓋而覆蓋率統計看不出來。具體更新內容之對照表在 HMI Logic and Flow（DR-ICS6），指名即造值（IN §8.4.1），故以 `PENDING: DR-ICS6` 承載並以前後基線比較維持可判定性。與 B6（browse）之切分軸為 mode —— 三操作各自為不同之 HMI 後果，併為一條時前者失敗即掩蓋其餘（IN §8.2.2）。　【b08 作業 C】依 R-ICS32(b) 改寫 `if any` 之斷言逾越：來源句自帶 `if any`，即規格明示可能無對應後果，而原 ER 斷言必有可觀察差異 —— 潛在 FF（IN §7）。改法：**佔位自 procedure 移至 Pre-Condition**，使「該動作已定義」成為本條之**前提**而非其**斷言**；`if any` 之否定分支因而被前提排除，ER 之差異斷言方為有據。**畫面名仍未自行指定**（R-ICS30(b) 不變）——前提所限定者為「該畫面之屬性（已定義該動作）」，不是其名。",
    "distinguishing_axis": {
     "axis": "mode",
     "delta": "Scroll 面（畫面內容更新）；Browse 面由 B6 承擔、Tune 面由 T1 承擔"
@@ -34,9 +34,9 @@
    "test_group": "ICS",
    "test_set": "Browse Control",
    "test_item": "When the HU receives $ICS_KNOB2_DIR$ and $ICS_KNOB2_VAL$ signals it shall determine the corresponding HMI screen to 'flow' to (Browse), if any, HMI screen to update (Scroll) or change in Entertainment Audio state ('Tune')\n(The HU changes the Entertainment Audio state as the Tune operation when knob 2 is rotated)",
-   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob status messages\n3. The HU is on a tuner source on which tune behavior is defined\n4. The ICS knob 2 is not being rotated",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob status messages\n3. The HU is on a tuner source for which a tune action is defined for knob 2 (source identified per PENDING: DR-ICS6 <HMI Logic and Flow tune mapping for ICS_KNOB2>)\n4. The ICS knob 2 is not being rotated",
    "input_test_data": "NA",
-   "test_procedure": "1. Record the current Entertainment Audio state shown on the HU\n2. Rotate the ICS knob 2 one detent position clock-wise\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)\n4. Check that the HU changes the Entertainment Audio state as defined for the current source (expected change PENDING: DR-ICS6 <HMI Logic and Flow tune mapping for ICS_KNOB2>)",
+   "test_procedure": "1. Record the current Entertainment Audio state shown on the HU\n2. Rotate the ICS knob 2 one detent position clock-wise\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)\n4. Check that the Entertainment Audio state has changed from the state recorded in step 1",
    "expected_result": "1. The current Entertainment Audio state is recorded\n2. The knob 2 detent is felt and the rotation is completed\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received\n4. The Entertainment Audio state differs from the state recorded in step 1",
    "specification_reference": "CFTS020-4819586",
    "design_method": "Functional Based",
@@ -44,11 +44,17 @@
    "split_flag": false,
    "split_reason": "",
    "has_pending": true,
-   "reasoning": "驗證目標為 4819586 之 **Tune** 面：HU 收到 KNOB2 之 DIR／VAL 後改變 Entertainment Audio 狀態。上半與錨同 Scroll 條（R-ICS30(a)：三操作同錨於 4819586）。生成依據同上（R-ICS30(a)，覆蓋面之缺）。條文之 `('Tune')` 加引號且與 Browse／Scroll 並列，三者為 HU 依當前畫面／來源決定之三種後果；本條限定於 tuner source（Pre-Condition 3），否則其斷言為潛在 FF（IN §7）。具體變化之對照表在 HMI L&F（DR-ICS6），故佔位。與 B6／Scroll 條之切分軸為 mode。",
+   "reasoning": "驗證目標為 4819586 之 **Tune** 面：HU 收到 KNOB2 之 DIR／VAL 後改變 Entertainment Audio 狀態。上半與錨同 Scroll 條（R-ICS30(a)：三操作同錨於 4819586）。生成依據同上（R-ICS30(a)，覆蓋面之缺）。條文之 `('Tune')` 加引號且與 Browse／Scroll 並列，三者為 HU 依當前畫面／來源決定之三種後果；本條限定於 tuner source（Pre-Condition 3），否則其斷言為潛在 FF（IN §7）。具體變化之對照表在 HMI L&F（DR-ICS6），故佔位。與 B6／Scroll 條之切分軸為 mode。　【b08 作業 C】依 R-ICS32(b) 改寫 `if any` 之斷言逾越：來源句自帶 `if any`，即規格明示可能無對應後果，而原 ER 斷言必有可觀察差異 —— 潛在 FF（IN §7）。改法：**佔位自 procedure 移至 Pre-Condition**，使「該動作已定義」成為本條之**前提**而非其**斷言**；`if any` 之否定分支因而被前提排除，ER 之差異斷言方為有據。**畫面名仍未自行指定**（R-ICS30(b) 不變）——前提所限定者為「該畫面之屬性（已定義該動作）」，不是其名。",
    "distinguishing_axis": {
     "axis": "mode",
     "delta": "Tune 面（Entertainment Audio 狀態改變）；Browse 由 B6、Scroll 由前條承擔"
    }
   }
- ]
+ ],
+ "revision": {
+  "b08_applied": [
+   "作業 C：if-any 四行之佔位自 procedure 移至 Pre-Condition（R-ICS32(b)）",
+   "作業 D：不作為三行標弱驗證，內容不改（R-ICS32(a)）"
+  ]
+ }
 }

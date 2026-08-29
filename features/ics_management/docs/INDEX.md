@@ -17,7 +17,9 @@
 | 04 | 2026-08-29 | profile 落檔、四訊號解佔位、Browse／Navigation 面（b04，7 條） | [handoff/04_profile_signals_and_navigation.md](handoff/04_profile_signals_and_navigation.md) | [upstream/04_profile_signals_and_navigation.md](upstream/04_profile_signals_and_navigation.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §十二） | **已審結**（b04 收下；即裁 R-ICS22／23，登 A-ICS28～33，新開 DR-ICS16／17） |
 | 05 | 2026-08-29 | 佔位補齊、Display ER 主錨改寫、交付前體檢（**不新增 TC**，維持 23 條） | [handoff/05_anchor_rework_and_pre_delivery.md](handoff/05_anchor_rework_and_pre_delivery.md) | [upstream/05_anchor_rework_and_pre_delivery.md](upstream/05_anchor_rework_and_pre_delivery.md) | **無**（執行層不代擬） | 建議登錄 3 則＋G2~G7 六筆待取號（上繳 §14） | **已審結**（即裁 R-ICS22 v2／24～30，登 A-ICS34～45） |
 | 06 | 2026-08-29 | 佔位回收、005／009 解鎖、CFTS022 改綁、Notifications 偵察 | [handoff/06_placeholder_recovery_and_unlock.md](handoff/06_placeholder_recovery_and_unlock.md) | **無上繳** | — | — | **作廢**（E1 開工前觸發：`ledger_guard` exit 1 報 11 筆 DUPLICATE，實為掃描定義有缺而非台帳有錯。執行層一項作業未動、一個檔未寫、未自改工具而上報 —— 判為合式，記於 R-ICS29(e)；成因為分析層之誤 A-ICS45。內容併入 07 並刷新） |
-| 07 | 2026-08-29 | 解封（掃法修正）、佔位回收、scroll／tune（b05，2 條） | [handoff/07_unblock_and_recovery.md](handoff/07_unblock_and_recovery.md) | [upstream/07_unblock_and_recovery.md](upstream/07_unblock_and_recovery.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §14） | 待覆核 |
+| 07 | 2026-08-29 | 解封（掃法修正）、佔位回收、scroll／tune（b05，2 條） | [handoff/07_unblock_and_recovery.md](handoff/07_unblock_and_recovery.md) | [upstream/07_unblock_and_recovery.md](upstream/07_unblock_and_recovery.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §14） | **已審結**（即裁 R-ICS19 v2／R-ICS25 v2／R-ICS31～33，登 A-ICS46～50）|
+| 08 | 2026-08-29 | §1.18 對比、005 生成（b06，2 條）、if-any 改寫、候選篩常設化 | [handoff/08_s118_comparison_and_rework.md](handoff/08_s118_comparison_and_rework.md) | [upstream/08_s118_comparison_and_rework.md](upstream/08_s118_comparison_and_rework.md) | **無**（執行層不代擬） | 建議登錄 4 則（上繳 §12） | **已審結**（Pei 裁 ③ 二節並存 → R-ICS35；另落 R-ICS34、A-ICS51～56、DR-ICS18）|
+| 09 | 2026-08-29 | TLM 指涉量測、§1.18 獨有面覆蓋清點（**TC 新增 0、錨變動 0**） | [handoff/09_tlm_referent_measurement.md](handoff/09_tlm_referent_measurement.md) | [upstream/09_tlm_referent_measurement.md](upstream/09_tlm_referent_measurement.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §10） | 待覆核 |
 
 ---
 
@@ -55,7 +57,45 @@ R-ICS1～4 與 A-ICS1～7 之產生過程只存在於 2026-08-29 之聊天；
 E1 於開工前觸發而封鎖整包。診斷、三選一之解封方案與 P1／P2 過期之具名，
 見對話紀錄與 R-ICS29／A-ICS45。**06 之作業內容併入 07 並刷新。**
 
-### 07 之未結事項（詳見 upstream-07）
+### 07 之未結事項
+
+07 之待裁 8 項由 R-ICS19 v2／R-ICS25 v2／R-ICS31～R-ICS33 裁結其六。
+
+### 08 之未結事項
+
+08 之待裁 6 項由 Pei 裁 ③（R-ICS35）與 R-ICS34 裁結其四。
+
+### 09 之未結事項（詳見 upstream-09）
+
+- **【E5 觸發】`TLM` = DUT**。五項獨立證據收於一點；`TLM` 47 次／20 物件**只在 §1.18**、
+  `HU` 1741 次／940 物件而 **§1.17／§1.18 為 0**、**同物件併現 0** —— 互補分佈而非併現區辨。
+  主實例已獨立複驗五個實數，與並行實例逐一相符。**未生成 009、未改錨、未結案。**
+- **【最重】問題已變形（§2-5）**：`§1.8` 標題為 `… ICS, **Silver Box HU**, …`、
+  `§1.18` 為 `… ICS and **Associated HU**`，而 `4819134` 逐字界定二者為
+  **同一顆 HU 的兩種硬體變體**（`_DDspl` 外接 DCSD／`_ADspl` 觸控整合）。
+  **R-ICS35(a)「二節並存」之依據（互不重疊）另有更簡單的解釋：一顆 DUT 只會是其中一種。**
+  待裁之問題應改為「**本 DUT 是 Associated 還是 Disassociated**」—— 可量測，量到後前者自動有解。
+- **【E6 觸發】** §1.18 獨有面 9 個缺口，「現在即可生成」4 個 —— **一條未生成**
+- **一項禁區違規（自承）**：並行實例執行了一次唯讀 `git status --short`；
+  **成因為主實例下派時未把「唯讀亦不可」寫死**，已具名不減輕
+- 預期數字 **13 項全部相符（連續第二包零不符）**；TC 27、佔位 17、可出貨 23／不可 4 皆不變
+
+### 08 之未結事項（已作廢，保留於下）
+
+- **預期數字 13 項全部相符 —— 八輪來第一次零不符**。但實質產出都落在該表之外：
+  E2 觸發、對 upstream-07 之自我更正、候選篩首版失敗
+- **【E2 觸發】DR-ICS13**：§1.18 有判適用之 `Back_Button` 母條
+  （`4821681` ＋ `4821683`~`4821689` 七個泛用母條），而 §1.8／§1.5 之對應物皆判不適用
+  —— **未結案、未生成 009**
+- **DR-ICS16 之出路已窮**：`ETM = DUT` 不成立（b07）＋ **§1.18 對 DISP_STAT 家族零承載**（b08）
+  → 12 處佔位在現有素材下**確定無解**，建議升為阻斷件
+- **§1.18 三種結果之影響估**：0／20／13 條。**結果 ② 之真正代價不是重錨，是「無錨可重」**
+  —— 7 條之錨在 §1.18 零承載，且 `4819541`（唯一定值來源）一併失去
+- **自我更正**：upstream-07 §13-2 之「§1.18 更具體」為整體印象，
+  逐物件實測後**只在旋鈕／訊息名上成立**；POWER／SCREEN OFF 上 §1.18 反而更抽象且主詞為 TLM
+- 未錨定斷言 **7 → 3**；TC 25 → **27**；可出貨 **23／不可 4**；佔位 **17**（不變）
+
+### 07 之未結事項（已作廢，保留於下）
 
 - **解封**：`ledger_guard` 掃法依 R-ICS29(c)(d) 修正（剔除 `LEDGER-IGNORE` 區塊、
   合併列不計入、docstring 同步），exit 0
@@ -123,6 +163,8 @@ E1 於開工前觸發而封鎖整包。診斷、三選一之解封方案與 P1�
 | b04 之 manifest | `generated/b04/manifest.json` |
 | b05 之 TC JSON | `generated/b05/b05_tcs.json`（scroll／tune 2 條；**批號與輪次自此不同步**）|
 | b05 之 manifest | `generated/b05/manifest.json` |
+| b06 之 TC JSON | `generated/b06/b06_tcs.json`（005 Mute，2 條）|
+| b06 之 manifest | `generated/b06/manifest.json` |
 | 9 個 LID → CAN 對照 | `generated/b03/lid_dbc_map.json` |
 | **累計** 12 個 LID → CAN 對照 | `generated/b04/lid_dbc_map.json`（b03 八筆沿用＋b04 四筆實測）|
 | feature profile | `docs/runtime/profiles/FW036_R1L_ICS_Profile.md`（R-ICS18(e)，逐字取 R-ICS18(a)(b)(c)）|
@@ -132,7 +174,11 @@ E1 於開工前觸發而封鎖整包。診斷、三選一之解封方案與 P1�
 | Pop Up List ／ Camera 偵察 | `docs/reports/04_source_recon_2.md` |
 | 覆蓋缺口清單 | `docs/reports/05_coverage_gaps.md`（7 筆）|
 | 交付前體檢（v1，**已被取代**）| `docs/reports/05_pre_delivery_check.md` |
-| **交付前體檢 v2（現行）** | `docs/reports/07_pre_delivery_check.md`（含未錨定斷言檢查）|
+| 交付前體檢（v2，**已被取代**）| `docs/reports/07_pre_delivery_check.md` |
+| **交付前體檢 v3（現行）** | `docs/reports/08_pre_delivery_check.md`（候選篩＋人工複核二層式，R-ICS32(c) 常設項）|
+| **§1.8 vs §1.18 逐物件對比** | `docs/reports/08_s118_vs_s18.md`（639 行）|
+| **TLM 指涉量測** | `docs/reports/09_tlm_referent.md`（E5：`TLM = DUT`）|
+| **§1.18 獨有面覆蓋缺口** | `docs/reports/09_s118_coverage_gap.md`（9 缺口、三分類）|
 | `ETM = DUT` 三路交叉 | `docs/reports/07_etm_dut_crosscheck.md` |
 | CFTS022 新舊版覆驗 | `docs/reports/07_cfts022_reverify.md` |
 | 節前定義塊掃查 | `docs/reports/07_predef_blocks.md` |

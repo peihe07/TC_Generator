@@ -1,0 +1,35 @@
+{
+ "batch": "b06",
+ "feature": "ICS Management",
+ "date": "2026-08-29",
+ "generator": "Claude Code session, canon-direct",
+ "batch_naming_note": "b05 為下放包 07 之新 TC；b06 為下放包 08 之新 TC。批號與輪次不同步（05／06 兩輪未新增 TC）。",
+ "counts": {
+  "tcs": 2,
+  "parents": 1,
+  "test_sets": 1,
+  "pending_placeholders": 0,
+  "pending_source": "scripts/pending_census.py"
+ },
+ "parents": {
+  "SWE-ICS-005": 2
+ },
+ "anchors": [
+  "CFTS022-4914993"
+ ],
+ "unlock": "R-ICS31(c)：E4 於本件未真正觸發（三軸以值集合比對相符）。本包複驗新版 4914993 之三軸值集合 ECU{ETM,LTM}／Radio{R1H,R1L,R1L-R,R1M}／EE{All}，與舊版相同 → E4 防迴歸未觸發。",
+ "context_sha256": {
+  "canon": "0b0cea006552a2f244ba8e733ef6227b132b591a34defb65234934985fe2598e",
+  "profile": "2bedb33daeaf341389203e8bf7c5d1701442bf97f1541c57de3b38080df0a53f",
+  "rulings": "72460f23b89704fda27cfb8e3ceb3160f3b6a5ab8fc983885847b1356a0f210d",
+  "handoff_08": "078a648f0d5623457a128f7cd4c1fd616a2de948db1fb05642cbab6b2f3aef09",
+  "cfts022_fs_26PI2_5": "7acfa462533d143c8099933e5b9e707f1c36aa3be95f5d8d0875b42a1f917fef",
+  "dbc_b": "9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0"
+ },
+ "tcs_sha256": "a0a416e9a6583b2f16eff6f666c48714195a1d104bde2f91b31e88938fcd3988",
+ "checks": {
+  "selfcheck_b01.py": "PASS — b01~b06 合檢 27 條，機檢 19 項 FAIL 0",
+  "verify_verbatim_b01.py": "PASS — 27 條逐字命中 27"
+ },
+ "note": "tcs_sha256 為本檔寫入前之值。"
+}
