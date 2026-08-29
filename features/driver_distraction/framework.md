@@ -32,6 +32,10 @@ CFTS022 章名 `Driver Distraction Lockout` 與 HMI spec 題名 `Driver Lockout`
 **六組，28 leaf 全分掛。** 下列六列逐字取下放包 01 §三 之草案、
 經下放包 03 §五 提請並由 Pei 准鎖，下放包 14 §二 重申。
 
+**閉合式（下放包 20 §四）**：**24 生成 ＋ 4 範圍外 ＝ 28**。
+組數不變（**六組**）—— 組 6 之組名保留，其為 037 分組之事實；
+**刪之則 28 之閉合無從交代**（R-DD25(d)／R-DD10(c)）。
+
 | # | Test Set | leaf | 能力叢集 |
 |---|---|---|---|
 | 1 | `Body Off Init` | 001–002 (2) | 出眠初始化：Lock Out State 復位、process 終止後冷啟 |
@@ -39,21 +43,29 @@ CFTS022 章名 `Driver Distraction Lockout` 與 HMI spec 題名 `Driver Lockout`
 | 3 | `Lockout Enforcement` | 009–012 (4) | Locked 態之存取阻擋、使用中之強制退出 |
 | 4 | `Lockout Tables` | 013–016 (4) | Lockout Table 所列 feature 之逐項套用 |
 | 5 | `Hong Kong Market` | 017–024 (8) | `Country_Code`=HK：自排 P 檔閘、手排手煞閘、輸入失效 |
-| 6 | `Market Speed Gating` | 025–028 (4) | 5/3 MPH 門檻於市場條件下 —— **PENDING（DR-DD1）** |
+| 6 | `Market Speed Gating` | 025–028 (4) | 5/3 MPH 門檻於市場條件下 —— **OUT OF SCOPE（R-DD25(b)）**；不生成 |
 
-### 組 6 之 PENDING 拘束
+### ~~組 6 之 PENDING 拘束~~ —— **已由 R-DD25(b) 結案（下放包 20 §四）**
 
-組名為**市場中立之佔位措辭**。DR-DD1 回覆前：
+> ~~組名為市場中立之佔位措辭。DR-DD1 回覆前：組名不寫入工作簿任何列；
+> DR-DD1 裁 HK → 併入組 5；DR-DD1 裁 LATAM → 更名 `LATAM Market`。~~
+> **三項待決皆已消滅** —— 範圍裁定（R-DD25(a)）已定 LATAM 不在案，
+> 該四列之歸屬不再取決於 DR-DD1 之回覆。
 
-- **組名不寫入工作簿任何列**
-- DR-DD1 裁 HK → 併入組 5（`Hong Kong Market` 成 12 leaf，六組併五組）
-- DR-DD1 裁 LATAM → 更名 `LATAM Market`
+### 組 6 之 OUT OF SCOPE 拘束（現行）
 
-（下放包 01 §三；A-DD1／DR-DD1 之凍結另使 `-025`~`-028` 不入任何批次。）
+- **組名保留，不刪組** —— 其為 037 分組之事實；刪之則 28 之閉合無從交代
+- **不生成任何 TC；組名不寫入工作簿任何列**（拘束不變，理由改變）
+- 差額之記錄義務由 `COVERAGE_GAPS.md` 之 **[CG-DD2]** 承接（R-DD25(d)）
+- **不併入組 5** —— `-017`~`-024` 在案之依據為 RHD（R-DD25(a)(e)），
+  與本組所依之 LATAM 需求無涉；**併組即把二個獨立維度混為一談**
+
+（下放包 20 §二／§四；A-DD1 已 `CLOSED-BY-SCOPE`。）
 
 ### 反模式自查（IN §4.1.3）
 
-- 28 leaf 分 6 組，**平均 4.7 leaf/組**
+- 28 leaf 分 6 組，**平均 4.7 leaf/組**（分組之母體為 037 之 28 列，
+  **不因組 6 判範圍外而改** —— 分組為文件事實，範圍為裁定）
 - 最小組 2 leaf（`Body Off Init`）為**真 outlier** —— 唯一之電源域行為，
   非逐 RD 立組（IN §4.1.3「Too granular」不成立）
 - **無** `Misc`／`General`／`Unclassified`（「Too coarse」不成立）
@@ -98,3 +110,4 @@ recon 時列覆蓋台帳註記即可。
 |---|---|---|
 | 2026-08-28 | **初版落檔**（LOCKED）。Layer 2 六組逐字取經核准之草案 | 下放包 03 §五 Pei 准；下放包 14 §六 T20a |
 | 2026-08-28 | 據本檔更正 B1 之 Test Set：`-003`~`-008` `Speed Threshold Judgment` → **`Speed Monitoring`**；`-013`~`-016` `Lockout Enforcement` → **`Lockout Tables`** | 下放包 14 §二 |
+| 2026-08-28 | **組 6 `Market Speed Gating` 由 `PENDING（DR-DD1）` 改 `OUT OF SCOPE（R-DD25(b)）`**；閉合式改為 **24 生成 ＋ 4 範圍外 ＝ 28**；組名保留不刪組；「組 6 之 PENDING 拘束」節結案 | 下放包 20 §四 T26a |

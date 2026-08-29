@@ -12,21 +12,21 @@ Urgency 回報。
 
 | # | 標的 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
-| **DR-DD1** | 037 作者／上游 | **DRAFTED（改稿含 SYSAD 引文）**（待 Pei 發送）| `-025`~`-028`（4） | 該 4 leaf **凍結**，不入任何批次 | A-DD1 | **必發** —— framework 組 6 之歸屬待此 |
+| **DR-DD1** | 037 作者／上游 | **DRAFTED（下放包 20 §三 整段替換；確認件）**（待 Pei 發送）| `-025`~`-028`（4） | 該 4 leaf **範圍外**（R-DD25(b)），不生成 TC；**不阻斷交付** | A-DD1（**CLOSED-BY-SCOPE**）| **必發**（文件缺陷）—— 037 該四列把範圍外之 LATAM source 接上 Hong Kong 文字 |
 | **DR-DD2** | 上游（CFTS022 作者）| **DRAFTED（格式更正件，緩發）** | `-021`~`-024`（4） | **不阻斷** —— 施加名依 **R-DD18** 採認為 `PARK_BRK_EDG`；所問改為規範欄之更正 | **A-DD2** | 低 |
 | ~~**DR-DD3**~~ | 上游（素材提供）| **RESOLVED**（Pei 2026-08-28 確認識別）| `-017`~`-028`（12） | **解除** —— `Country_Code = 91` 為確定值，A-DD5 撤銷 | ~~A-DD5~~ | — |
-| **DR-DD4** | 上游（CFTS022／037 作者）| **PARTIALLY ANSWERED**（單位 km/h）／縮為一問，**緩發** | **9 列書 MPH 門檻者**：`-003`／`-005`／`-007`／`-009`／`-011`／`-013`／`-015`（7，可生成）＋ `-025`／`-027`（2，另因 A-DD1 凍結）| 不阻斷生成；ER 之 raw 數值標 A-DD6 | **A-DD6** | 中 |
+| **DR-DD4** | 上游（CFTS022／037 作者）| **PARTIALLY ANSWERED**（單位 km/h）／縮為一問，**緩發** | **9 列書 MPH 門檻者**：`-003`／`-005`／`-007`／`-009`／`-011`／`-013`／`-015`（7，可生成）＋ `-025`／`-027`（2，**已判範圍外**，R-DD25(b)）| 不阻斷生成；ER 之 raw 數值標 A-DD6 | **A-DD6** | 中 |
 | **DR-DD5** | 上游（LID 維護者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **已由 R-DD19 乙案解凍**，B2 八則（`-017`~`-024`）已產出並掛 `[ASSUMPTION A-DD8]`；回覆不符時回修為機械換值 | — | **必發** —— 與 DR-DD6 並列 |
 | **DR-DD6** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **已由 R-DD19 乙案解凍**，B2 八則已產出並掛 `[ASSUMPTION A-DD9]`；`MTA(2)`／`DDCT(3)` 仍為 R-DD19(c) 硬邊界 | — | **必發** —— 組 1／2 待此 |
 | **DR-DD7** | 上游（037 作者）| **DRAFTED**（待 Pei 發送）| 文稿問 `-010`／`-012`；**實測涉 11 leaf** | **不阻斷** —— 品質旗標；**緩發** | **A-DD7** | 低 |
-| **DR-DD8** | 上游（CFTS022 作者／素材提供）| **DRAFTED**（待 Pei 發送）| `-021`~`-024` 之負向側（表外功能）| **不阻斷生成** —— 負向側記為 `[CG-DD1]` 涵蓋缺口 | **[CG-DD1]** | **必發** —— 驗證方法步驟 4 待此 |
+| **DR-DD8** | 上游（CFTS022 作者／素材提供）| **DRAFTED**（待 Pei 發送）| **`-013`／`-015`** 之負向側（表外功能；範圍依下放包 17 §四 10-5）| **不阻斷生成** —— 負向側記為 `[CG-DD1]` 涵蓋缺口；亦為取樣只有 5 列可用之根因 | **[CG-DD1]** | **必發** —— 驗證方法步驟 4 待此 |
 | **DR-DD9** | 上游（CFTS022／037 作者）| **DRAFTED**（待 Pei 發送）| `-001`／`-002`（2）| **不阻斷** —— 依 R-DD20 掛 A-DD10 生成（**惟生成待包 17**）；`-002` 之 `$` 指令行留 `PENDING: DR-DD9` | **A-DD10** | **必發** —— 與 DD1／DD5／DD6 並列 |
 
 **發送清單（下放包 13 §六）**：
 
 | 級 | DR | 狀態 |
 |---|---|---|
-| **必發** | **DD1**（改稿含 SYSAD 引文）、**DD5**、**DD6**、**DD8**、**DD9** | DD1 卡 `-025`~`-028` 共 4 leaf；DD5／DD6 已由 R-DD19 乙案解凍生成（**必發等級不減**，R-DD19(e)）；DD8 卡 `-120`／`-121` 之負向側；DD9 卡 `-001`／`-002` 之施加識別碼與 process 名 |
+| **必發** | **DD1**（確認件）、**DD5**、**DD6**、**DD8**、**DD9** | **DD1 已不卡 leaf** —— `-025`~`-028` 判範圍外（R-DD25(b)），該 DR 改為文件缺陷之確認件；DD5／DD6 已由 R-DD19 乙案解凍生成（**必發等級不減**，R-DD19(e)）；DD8 卡 `-120`／`-121` 之負向側；DD9 卡 `-001`／`-002` 之施加識別碼與 process 名 |
 | 緩發 | DD2（格式更正件）、DD4（縮為一問）、DD7（品質旗標）| 皆非阻斷 |
 | **結案** | **DD3** | **RESOLVED**（下放包 13 §二）|
 
@@ -51,51 +51,49 @@ Urgency 回報。
 ## DR-DD1 —— 市場條件衝突（`-025`~`-028`）
 
 - **標的**：037 作者／上游
-- **狀態**：DRAFTED（下放包 02 §三 之文稿，逐字保留；待 Pei 發送）
-- **阻斷範圍**：`-025`~`-028` 四 leaf 凍結（A-DD1 暫行處置）
+- **狀態**：DRAFTED（**文稿於下放包 20 §三 整段替換**；待 Pei 發送）
+- **性質**：**釐清件 → 確認件**（範圍裁定後，「香港還是拉美」已由 Tier 3 答；
+  餘下者為**文件缺陷** —— 037 該四列把範圍外之 LATAM source 接上 Hong Kong 文字）
+- **等級**：**必發**（文件缺陷）　**阻斷：無** —— 交付不再等其回覆
+- **範圍**：`-025`~`-028` 四 leaf **範圍外**（R-DD25(b)），非凍結；A-DD1 已 `CLOSED-BY-SCOPE`
 - **⚠ 與 DR-DD3 為二個獨立阻斷，不可互抵**（下放包 05 §四 採認執行層所指）：
   **DR-DD1 裁 HK 只定「市場為何」，仍不給出 `Country_Code` 之值。**
   即使 DR-DD1 先回，HK 段（`-017`~`-028`）仍卡於 DR-DD3。**二者須分別追。**
 
-### 文稿（下放包 02 §三，逐字）
+### ~~文稿（下放包 02 §三，逐字）~~ —— **已於下放包 20 §三 整段替換**
 
-> **DR-DD1 — Market condition conflict for SWE1-RA-Driver_Distraction-025 ~ -028**
+> **舊稿之失實處**：末行書 `Until clarified, the four rows are on hold in SWQT
+> test case generation.` —— 範圍裁定後該四列**不是 on hold，是範圍外**；
+> 主問「(a) Hong Kong、(b) LATAM、(c) both」亦已由 Tier 3 答。
+> **一個過期的狀態陳述，比沒有狀態陳述更糟**（上繳包 12 §2.3 之同一形態）。
+> 舊稿全文見 `docs/handoff/02_rulings_q1q6.md` §三，此處不留副本以免二版並存。
+
+### 文稿（下放包 20 §三，逐字；**整段替換**）
+
+> **DR-DD1 — Rows `-025` ~ `-028` derive from out-of-scope LATAM requirements
+> while their text specifies Hong Kong**
 >
-> In FM-WI-FSM-037-A03 (DD_SWE1, 2026-08-07), rows
-> SWE1-RA-Driver_Distraction-025 through -028 cite source requirements
-> `SYS-RA-Driver_Distraction-125` (section gate: "The requirements in the
-> section shall be implemented if $Country_Code$ = [Hong Kong]") together
-> with `SYS-RA-Driver_Distraction-132` / `-133` (5 MPH lock / 3 MPH unlock
-> thresholds). Their Requirement Descriptions and Verification Criteria
-> also state "When Country_Code is Hong Kong".
+> `SWE1-RA-Driver_Distraction-025` ~ `-028` in FM-WI-FSM-037-A03 cite
+> `SYS-RA-Driver_Distraction-125` together with `-132` / `-133`. In CFTS022,
+> `-132` / `-133` belong to the LATAM chapter, and the System Architectural
+> Design describes the speed-hysteresis judgment they specify as a
+> market-specific processor type for LATAM
+> (`ProcessorType4to6 … for LATAM`), whereas the Hong Kong logic is
+> described in terms of parking-brake state and gear selection.
 >
-> However, in CFTS022 SYSRA (FM-WI-FSM-035-A02), `-132` and `-133` are
-> located under the **LATAM Market Regulations** heading (`-130`), whose
-> applicability note (`-131`) states the section applies to the LATAM
-> market only. The two sources are mutually exclusive on the market
-> condition.
+> This programme covers NAFTA and does not cover LATAM; Hong Kong is in
+> scope as a right-hand-drive market (`Market Config - R1`, row 97: RHD,
+> Region APAC), not as a LATAM market. The behaviour specified by
+> `-132` / `-133` is therefore not implemented in this programme.
 >
-> Question: for SWE1 rows -025 ~ -028, should the market condition be
-> (a) Hong Kong, (b) LATAM, or (c) both markets? If (c), please confirm
-> whether separate SWE1 rows for the LATAM side will be added, since the
-> current four rows carry Hong Kong wording only.
+> However, the Requirement Description, Verification Criteria and
+> Verification Method of all four rows read `Country_Code is Hong Kong` /
+> `Preset Country_Code to Hong Kong`.
 >
-> Additionally, the System Architectural Design (FM-WI-FSM-015-A01)
-> describes the speed-hysteresis judgment (separate lock and unlock
-> thresholds) as a market-specific processor type **for LATAM**
-> (`ProcessorType4to6 … for LATAM`; "Market-specific types (such as LATAM)
-> evaluate restriction using speed hysteresis thresholds"), while the
-> Hong Kong logic is described in terms of parking-brake state and gear
-> selection. This is consistent with the CFTS022 section structure and
-> inconsistent with the Hong Kong wording of SWE1 rows -025 ~ -028.
->
-> If the answer is (b) LATAM: please also specify how the market condition
-> is expressed for these rows — as a list of `$Country_Code$` values, or
-> via the `Regulation_type` property referenced in the System Architectural
-> Design. "LATAM" is a region, not a single country code, and the test
-> cases need a concrete precondition value.
->
-> Until clarified, the four rows are on hold in SWQT test case generation.
+> Question: please confirm that rows `-025` ~ `-028` should be removed or
+> revised, since they combine an out-of-scope LATAM source requirement with
+> Hong Kong wording. SWQT has recorded them as out of scope and has not
+> generated test cases for them; the remaining 24 leaves are covered.
 
 ---
 
@@ -290,7 +288,9 @@ Pei 2026-08-28 確認 SR24 R1 MCT v1.6 即 LID 所指之 CIP MCT（取檔出處�
 
 > **與 DR-DD1 之獨立性註記，其效力隨本 DR 結案而終** ——
 > 該註記所防者為「以 DD3 之值到位推論 DD1 得解」。DD3 已結，
-> **`-025`~`-028` 之凍結僅餘 A-DD1／DR-DD1 一個成因。**
+> ~~**`-025`~`-028` 之凍結僅餘 A-DD1／DR-DD1 一個成因。**~~
+> **（下放包 20 更正）該四列已由 R-DD25(b) 判為範圍外，凍結狀態終止**
+> —— 成因之討論隨之失效。
 
 ---
 
@@ -339,14 +339,18 @@ Q9 已由 Pei 下放、分析層即裁為 **R-DD8**。**所裁者為「處置」
 | `-011` | r19 | `5 MPH` | 可生成 |
 | `-013` | r21 | `5 MPH` | 可生成 |
 | `-015` | r23 | `5 MPH` | 可生成 |
-| `-025` | r33 | `5 MPH` | **另因 A-DD1 凍結** |
-| `-027` | r35 | `3 MPH` | **另因 A-DD1 凍結** |
+| `-025` | r33 | `5 MPH` | **範圍外**（R-DD25(b)）—— 不生成，故不帶 marker |
+| `-027` | r35 | `3 MPH` | **範圍外**（R-DD25(b)）—— 同上 |
 
   其偶數配對列（`-004`／`-006`／`-008`／`-026`／`-028`）為 **AC2 之
   訊號失效／逾時分支**，文中無門檻值 —— **A-DD6 不及於彼**。
 
   > **即：A-DD6 之波及面比 A-DD1 廣。** 7 列不在凍結名單內卻要帶 marker，
   > 這 7 列是 pilot 會先碰到的。
+  >
+  > **（下放包 20 更正）** `-025`／`-027` 轉範圍外後**不生成、不帶 marker**，
+  > 故 A-DD6 之實際波及面收為 **7 列**（`-003`／`-005`／`-007`／`-009`／`-011`／`-013`／`-015`），
+  > 與已交付產物之實測相符（pilot 2 ＋ B1 5）。
 - **回修範圍（受限）**：DR 回覆若與 R-DD7(c) 不同，
   **只動速度類 leaf 之 ER 數值，不動其結構**
 
