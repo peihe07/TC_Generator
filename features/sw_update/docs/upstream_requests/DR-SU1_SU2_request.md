@@ -3,7 +3,7 @@
 - **From**: Pei (SW Test / SWE.6, SW Update feature)
 - **Date**: 2026-08-28
 - **Subject**: Two data requests blocking system-level test case authoring for FOTA / SW Update
-- **Open items**: DR-SU1 (1 requirement), DR-SU2 v3 (4 sub-requests), DR-SU3 (2 requirements), **DR-SU4 (6 requirements — highest priority)**
+- **Open items**: DR-SU1 (1 requirement), DR-SU2 v3 (4 sub-requests), DR-SU3 (2 requirements), **DR-SU4 (6 requirements — highest priority)**, DR-SU5 (1 requirement + 1 facet)
 - **Revision**: 2026-08-29 — DR-SU2 (c) now lists three requirements (`184` added);
   DR-SU2 (d) added (trigger means for `315`/`318`); DR-SU3 added (umbrella requirements)
 
@@ -213,6 +213,43 @@ six visibly blocked test cases than six that quietly pass the wrong thing.
 
 ---
 
+## 3C. DR-SU5 — Bench procedure for comparing two update types on one head unit
+
+`SWE1-FOTA-131` requires the WiFi Update Service to retrieve the update type
+configuration from the server and **control the applicable update flow according to
+that configuration**. What this requirement owns is not the behaviour of any one update
+type — those belong to other requirements — but the fact that **the server's setting
+determines which flow is applied**.
+
+Verifying that needs **two runs of the same head unit against campaigns of different
+types**, because one campaign carries one type. The second run has to start from a
+state comparable to the first, and here we are stuck:
+
+1. Nothing in the material we hold describes a rollback or downgrade procedure.
+2. **Rollback Protection is itself a requirement area for this feature** — a system
+   whose requirements are to *prevent* rollback is not one where we may assume the
+   bench can roll back.
+3. Even if a rollback were possible, **nothing in the specification lets us confirm
+   that the head unit is back in a state equivalent to before the first run** — and
+   without that, a difference between the two runs cannot be attributed to the update
+   type rather than to leftover state.
+
+**Request 1**: When the same head unit is run against two campaigns of different update
+types in sequence, how should the two starting states be made comparable — a clean
+reflash, two head units, or another procedure?
+
+**Request 2**: The same requirement also states that the HMI shall provide a
+**consistent user interaction flow across the supported update types**. We have not
+written a test case for that part, because "consistent" is not defined. **Which aspects
+must be identical across update types, and which are allowed to differ?**
+
+We have marked the test case `PENDING` rather than writing a step we cannot execute.
+The wording we used is "return the head unit to a comparable starting state" rather
+than "restore the previous software version", so that your answer is not constrained
+to a downgrade.
+
+---
+
 ## 4. Evidence — the diagnostics side has been exhausted
 
 Before raising §3.3, we checked every diagnostics-side source available to us for a
@@ -248,3 +285,4 @@ definition for FOTA exists, it is in a document we have not been given.
 | DR-SU2 (d) | **Trigger** means for `SWE1-FOTA-315` and `318` | 2 test cases, 6 placeholders |
 | DR-SU3 | Confirmation that `SWE1-FOTA-313` and `327` fold into the requirements they list | 1 test case, 3 placeholders (`327` not yet drafted) |
 | **DR-SU4** | **What "handled" looks like on the head unit, and how to judge it when the interruption's phase is undeterminable** | **6 test cases — none deliverable** |
+| DR-SU5 | Bench procedure for comparing two update types on one head unit; definition of "consistent" across types | 1 test case, 3 placeholders; 1 facet not drafted |

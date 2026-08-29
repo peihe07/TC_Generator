@@ -1,8 +1,19 @@
 #!/usr/bin/env python3
 """T53c —— batch 3（下放包 40 §三）之工作簿產出：`Update HMI` 6 列 → 10 個 TC。
 
-**本 feature 首個預期全數可交付之批次** —— 無 105 列、無第三型、無第四型，
-`PENDING` 為 0。
+沿革：
+- **v1**（下放包 40 §三）：10 個 TC，`PENDING` 0。
+- **v2**（下放包 41 §三，T54a）：**三份更正** ——
+  `022` 之上半由 s2＋s4 改 **s3＋s4**（其 s3 即 ER 之驗證點，原不在上半內）；
+  `025` 刪除自 s2 移接之時間子句（**造句非摘句**，原文中該子句主詞為 SWMC）；
+  **`021` 改判掛 `PENDING: DR-SU5`** —— 其「還原至更新前版本」在台架上
+  不可行且不可確認（上繳包 35 §7），措辭改為「回到**可比之起始狀態**」，
+  **不預設其手段為降版**。
+
+⚠ **`025` 之引號依下放包 41 §3.2 逐字照抄**：`test_item` 為彎引號（037 原文），
+而 `test_procedure`／`expected_result` 為**直引號**（下放包之措辭）——
+**同一 TC 內同一標籤二種寫法**。執行層依 T32b 不改寫分析層所定之 TC 內容，
+**記於上繳包 36 §2.2 待裁**。
 
 TC 內容逐字取自下放包 40 §三，執行層不改寫（T32b）。**二處例外，皆為逐字還原**
 （凍結第 3 條之逕行條件：不改驗證單元、不改錨、不增刪 `PENDING`、
@@ -70,19 +81,20 @@ TCS = [
   item=["The WiFi Update Service shall retrieve update type configuration from the OTA server for each update campaign using SWMC. The WiFi Update Service shall control the applicable update flow according to the server-defined update type configuration.",
         "(Update flow follows the update type configured on the server)"],
   pre=[WIFI,
-       "2. An update campaign configured on the OTA Server with update type Regular is available for this head unit"],
+       "2. An update campaign configured on the OTA Server with update type Regular is available for this head unit",
+       "3. PENDING: DR-SU5 bench procedure for running the same head unit against two update campaigns of different update types from a comparable starting state"],
   proc=["1. Trigger an update availability check to the OTA Server",
         "2. Record the SW Update screens shown on the head unit as continuous video capture until the update finishes",
-        "3. Reconfigure the update campaign on the OTA Server to update type Silent and restore the head unit to its pre-update software version",
+        "3. PENDING: DR-SU5 step to return the head unit to a comparable starting state and set the campaign to update type Silent",
         "4. Trigger an update availability check to the OTA Server",
         "5. Check that the recorded screen content of the first run contains the opt-in screen and that no opt-in screen is shown in the second run"],
   er=["1. The update availability check completes and an update is reported as available",
       "2. The SW Update screens shown until the update finishes are recorded as continuous video capture",
-      "3. The update campaign on the OTA Server is set to update type Silent and the head unit software version is back at its pre-update value",
+      "3. PENDING: DR-SU5 observable state showing the head unit is back at a comparable starting state and the campaign type is Silent",
       "4. The update availability check completes and an update is reported as available",
       "5. The recorded screen content of the first run contains the opt-in screen; the second run shows no opt-in screen"]),
  dict(req="SWE1-FOTA-132", spec="CFTS057-4907657", dm=NEG, prio="P1",
-  item=["Before initiating the update download, the SWMC shall check the customer acceptance status from the FCA IT customer preference database. The SWMC shall block update download initiation until terms and conditions acceptance is confirmed.",
+  item=["If the customer has not accepted the required terms and conditions, the SWMC shall provide SW Update HMI guidance describing how the customer can complete the acceptance process. The SWMC shall block update download initiation until terms and conditions acceptance is confirmed.",
         "(Download blocked and guidance shown when terms and conditions are not accepted)"],
   pre=[WIFI,
        "2. An update package whose Download Descriptor requires terms and conditions acceptance is staged on the OTA Server for this head unit",
@@ -123,16 +135,16 @@ TCS = [
       "4. The head unit opens the content referenced by the selected link"]),
  # TC-25 —— 彎引號與 ` .` 之空格為 037 原文，**逐字還原**（R-4）
  dict(req="SWE1-FOTA-134", spec="CFTS057-4907662", dm=FN, prio="P1",
-  item=["After completion of the download, the SW Update HMI shall display the deployment package details to the user . The SW Update HMI shall provide opt-in options including “Install” and “Schedule Later”.",
+  item=["The SW Update HMI shall display the deployment package details to the user . The SW Update HMI shall provide opt-in options including “Install” and “Schedule Later”.",
         "(Install and Schedule Later offered after download completes)"],
   pre=[WIFI,
        "2. An update package configured as a non-silent update is staged on the OTA Server for this head unit"],
   proc=["1. Trigger an update availability check to the OTA Server",
         "2. Accept the update on the opt-in screen and wait until the download completes",
-        "3. Check that the head unit shows the deployment package details together with an “Install” option and a “Schedule Later” option"],
+        "3. Check that the head unit shows the deployment package details together with an \"Install\" option and a \"Schedule Later\" option"],
   er=["1. The update availability check completes and an update is reported as available",
       "2. The download completes and the post-download screen is displayed on the head unit",
-      "3. The post-download screen shows the deployment package details, an “Install” option and a “Schedule Later” option"]),
+      "3. The post-download screen shows the deployment package details, an \"Install\" option and a \"Schedule Later\" option"]),
  # TC-26／27 —— `flag .` 之空格為 037 原文，**逐字還原**（R-4）
  dict(req="SWE1-FOTA-136", spec="CFTS057-4907600", dm=DT, prio="P1",
   item=["The SWMC shall determine whether end-user rejection of the OTA deployment is permitted based on the received Critical Update and Silent Install flag . The SW Update HMI shall allow or restrict user rejection options according to the deployment interaction policy received from the SWMC via WiFi Update Service.",
