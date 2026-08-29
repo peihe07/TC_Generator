@@ -43,7 +43,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from write_back_036 import _set_row, MASTER, SHEET_NAME, HEADER_ROW, FEAT  # noqa: E402
 
-TAG = "pilot05"                    # v1–v4 為 pilot01–04，**不覆寫**
+TAG = "pilot06"                    # v1–v5 為 pilot01–05，**不覆寫**
 OUT = FEAT / "sandbox" / TAG / MASTER
 TEST_GROUP, TEST_SET = "SW Update", "Silent Update"
 AUTHOR = "PeiPYHsu"
@@ -55,30 +55,32 @@ TCS = [
   item=["When the update type is identified as Silent Update, the WiFi Update Service shall automatically execute the update in background mode.",
         "(Silent update runs in background with no HMI interaction)"],
   pre=["1. The head unit is connected to a Wi-Fi network with internet access",
-       "2. An update package with update type Silent Update is staged on the OTA Server for this head unit"],
+       "2. An update package with update type Silent Update is staged on the OTA Server for this head unit",
+       "3. PENDING: DR-SU1 confirmation that no safety-related notification condition applies during the session"],
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. Trigger an update availability check to the OTA Server",
         "3. Record the head unit screen content as continuous video capture until the update finishes",
         "4. Read the software version shown on the head unit and record it as Version_after",
-        "5. Check that Version_after differs from Version_initial and that no SW Update prompt or progress notification appears in the recorded screen content"],
+        "5. Check that Version_after differs from Version_initial and that no SW Update prompt or progress notification appears in the recorded screen content while no safety-related notification condition applies"],
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
       "3. The head unit screen content until the update finishes is recorded as continuous video capture",
       "4. Version_after is recorded",
-      "5. Version_after differs from Version_initial; the recorded screen content contains no SW Update prompt and no progress notification"]),
+      "5. Version_after differs from Version_initial; the recorded screen content contains no SW Update prompt and no progress notification while no safety-related notification condition applies"]),
  dict(req="SWE1-FOTA-176", spec="CFTS057-4907476", dm=FN, prio="P1",
   item=["During a Silent Update session, the WiFi Update Service shall not trigger the SW Update HMI for update progress notifications.",
         "(No progress notification during a silent session)"],
   pre=["1. The head unit is connected to a Wi-Fi network with internet access",
-       "2. An update package with update type Silent Update is staged on the OTA Server for this head unit"],
+       "2. An update package with update type Silent Update is staged on the OTA Server for this head unit",
+       "3. PENDING: DR-SU1 confirmation that no safety-related notification condition applies during the session"],
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. Trigger an update availability check to the OTA Server",
         "3. Record the head unit screen content as continuous video capture until the software version changes",
-        "4. Check that no update progress notification appears anywhere in the recorded screen content"],
+        "4. Check that the recorded screen content contains no update progress notification while no safety-related notification condition applies"],
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
       "3. The head unit screen content until the software version changes is recorded as continuous video capture",
-      "4. The recorded screen content contains no update progress notification at any point of the session"]),
+      "4. The recorded screen content contains no update progress notification while no safety-related notification condition applies"]),
  dict(req="SWE1-FOTA-176", spec="CFTS057-4907477", dm=FN, prio="P1",
   item=["During a Silent Update session, the WiFi Update Service shall allow user notification only when required to satisfy safety-related requirements.",
         "(Safety-required notification is permitted during a silent session)"],
