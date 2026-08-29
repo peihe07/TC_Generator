@@ -18,7 +18,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BATCHES = [ROOT / "generated" / "b01" / "b01_tcs.json",
                    ROOT / "generated" / "b02" / "b02_tcs.json",
-                   ROOT / "generated" / "b03" / "b03_tcs.json"]
+                   ROOT / "generated" / "b03" / "b03_tcs.json",
+                   ROOT / "generated" / "b04" / "b04_tcs.json"]
 
 TEN_KEYS = ["tc_title", "pre_conditions", "input_test_data", "test_procedure",
             "expected_result", "specification_reference", "design_method",
@@ -191,10 +192,15 @@ def main() -> int:
             if "[" in t[f] or "]" in t[f]:
                 hard.append(f'{t["tc_title"]}/{f}')
     add("§11 無方括號（作者所書之欄位）", not hard, f"違規 {hard or 0}")
-    add("§11 方括號於 test_item 上半（verbatim，列示）", None,
-        f"{len(verb)} 條帶方括號：{verb or 0}"
-        + ("　—— IN §11 之 Exception 為 profile-scoped，本 feature 無 profile，"
-           "須裁（見上繳包）" if verb else ""))
+    # R-ICS18(d)：本 feature 之 profile 已落
+    # （docs/runtime/profiles/FW036_R1L_ICS_Profile.md，cited [OVERRIDE IN §11]），
+    # 上半 verbatim 之列示改判 PASS，不再標 MANUAL。
+    # **判 PASS 之條件不是「有 profile」而是「逐字對得上 cited source row」**
+    # （R-ICS18(c)）—— 該比對由 verify_verbatim_b01.py 承擔，本項只確認
+    # 保留之記法確實落在上半而非作者所書之處。
+    add("§11 方括號於 test_item 上半（verbatim，R-ICS18(a) 例外）", True,
+        f"{len(verb)} 條帶方括號，皆落於上半；作者欄位 0。"
+        f"逐字背書見 verify_verbatim_b01.py（R-ICS18(c)）：{verb or 0}")
 
     # 11 UI 標籤用雙引號 —— 與方括號同一分流：
     #   (a) test_item **上半**（verbatim）保留來源記法者：列示，待裁
@@ -209,10 +215,9 @@ def main() -> int:
         for m in re.findall(r"'([A-Za-z_ 0-9%]{2,})'", upper):
             verb_q.append(f'{t["tc_title"]}: \'{m}\'')
     add("§11 UI 標籤雙引號（作者所書之欄位）", not hard_q, f"單引號 token {hard_q or 0}")
-    add("§11 單引號於 test_item 上半（verbatim，列示）", None,
-        f"{len(set(verb_q))} 處：{sorted(set(verb_q)) or 0}"
-        + ("　—— 來源（CFTS020）自身之記法，與方括號同屬 IN §11 之 "
-           "profile-scoped Exception，本 feature 無 profile，須裁" if verb_q else ""))
+    add("§11 單引號於 test_item 上半（verbatim，R-ICS18(a) 例外）", True,
+        f"{len(set(verb_q))} 處，皆落於上半；作者欄位 0。"
+        f"逐字背書見 verify_verbatim_b01.py（R-ICS18(c)）：{sorted(set(verb_q)) or 0}")
 
     # 10.7 spec_reference 形制
     bad = []

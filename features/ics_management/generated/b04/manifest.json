@@ -1,0 +1,61 @@
+{
+ "batch": "b04",
+ "feature": "ICS Management",
+ "date": "2026-08-29",
+ "generator": "Claude Code session, canon-direct — 未經 backend/prompt_builder.py，未呼叫 backend/generator.py",
+ "counts": {
+  "tcs": 7,
+  "parents": 3,
+  "test_sets": 2,
+  "pending_placeholders": 5,
+  "pending_source": "scripts/pending_census.py 腳本計數（A-ICS31 之口徑統一，禁人工列舉）"
+ },
+ "parents": {
+  "SWE-ICS-003": 4,
+  "SWE-ICS-004": 2,
+  "SWE-ICS-008": 1
+ },
+ "anchors": [
+  "CFTS020-4819555",
+  "CFTS020-4819582",
+  "CFTS020-4819583",
+  "CFTS020-4819584",
+  "CFTS020-4819586"
+ ],
+ "applicability": {
+  "ruling": "R-ICS2 v2(b)",
+  "1.8.1.2 {4819577} 群": "9 物件，9 適用（E4 未觸發）",
+  "4819555": "適用（E3 未觸發）",
+  "not_generated": {
+   "4819578": "Description 型章節引言",
+   "4819579": "同上",
+   "4819581": "「見 LID 檔」之指向，無可驗行為",
+   "4819585": "KNOB1 之音量面，屬 001／002"
+  }
+ },
+ "signals": {
+  "ICS_KNOB2_DIR": "$CLIMATIC_PANEL.Radio_Knob2_DIR$（BO_ 1050，節點 ICS，VAL_ 0 Knob_no_change / 1 Knob_increment / 2 Knob_decrement / 3 Knob_enter）",
+  "ICS_KNOB2_VAL": "$CLIMATIC_PANEL.Radio_Knob2_VAL$（BO_ 1050，節點 ICS，**無 VAL_**，SG_ 29|6@0+ (1,0) [0|63]）",
+  "Enter_Button": "$CLIMATIC_PANEL.Radio_btn1$（BO_ 1050，節點 ICS，VAL_ 0 Not_Pressed / 1 Pressed）"
+ },
+ "coverage_gap_E6": "1.8.1.3 Button Press Events 之 Short／Long Press 定義（4819593、4819599 等）於 v2 判不適用，成因為 [ECU:FPDM] 軸值不含 {ICS, LTM}（實質判定，非軸缺）。按壓事件之時長判準本 feature 無母條可依，未自他處補。",
+ "context_sha256": {
+  "canon": "0b0cea006552a2f244ba8e733ef6227b132b591a34defb65234934985fe2598e",
+  "profile": "2bedb33daeaf341389203e8bf7c5d1701442bf97f1541c57de3b38080df0a53f",
+  "framework": "38de4ab913b1663e0a3819f23ef390ef4b1ca2c153057890f58733f6d19c1edf",
+  "rulings": "6387d8213d4ae2f62918a2ff61bfb42157629d19151236e054030ed68f501f7a",
+  "analysis_lock": "e6c820f5c31796d392551269ded99a256db4818dd40a3ea5c6645c594079ba12",
+  "handoff_04": "1beddf56bdf5026a52d2145c6636da0e49071a35967ef988d6ffd8ea35f767d4",
+  "cfts020_fs": "8696d1f596e3367754b092ff6d810cccff6258f46d6e90f8c0b30864314a30f3",
+  "lid_v1_78": "a01e1679c706cd454daf82573a732fe5ad5eedb3865083897cb18c970b312433",
+  "dbc_b": "9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0",
+  "dbc_fd": "51c8fd6092925071bbf443711e5161d78df292de232dc7427b1cceaa8f181cd2"
+ },
+ "tcs_sha256": "b0ef699c626782f44616f39ab866e41deb4024bd9d65d0d66f5b96068fe3d4c5",
+ "checks": {
+  "selfcheck_b01.py": "PASS — b01~b04 合檢 23 條，機檢 19 項 FAIL 0，人工 6 項",
+  "verify_verbatim_b01.py": "PASS — 23 條逐字命中 23",
+  "ledger_guard.py": "開工前 exit 0"
+ },
+ "note": "tcs_sha256 為本檔寫入前之值；b04_tcs.json 若再動，本檔須重算。"
+}

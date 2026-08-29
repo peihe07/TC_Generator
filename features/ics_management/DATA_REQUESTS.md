@@ -3,8 +3,29 @@
 發出日：2026-08-29（Pei 准，下放包 01）。每包上繳附未結 DR 清單。
 未結期間，受阻欄位一律 `PENDING: DR-ICS{n} <缺件名>`（IN §8.4.3）。
 
-**催件排序（Pei 2026-08-29「裁」核可）**：
-- 上游急件：DR-ICS9（V 組存續）、DR-ICS10（ignore 門檻）、DR-ICS1（縮圍版：俟 b02 偵察定 006/009 可否繞過後發，005 恐繞不過）、DR-ICS2（011/012 補列）
+## 狀態重排（Pei 2026-08-29「准」，自解檢查後）
+
+實測後重排，詳見 R-ICS22 v2／R-ICS24／R-ICS25 與 A-ICS34／35。
+下表為現行狀態，與各列之 `狀態` 欄不一致時，**以本表為準**（b06 後合並）：
+
+| DR | 新狀態 | 依據 |
+| --- | --- | --- |
+| DR-ICS1 | **降為帳面修正件**（阻斷面歸零） | R-ICS25(c)(d)：005 已解鎖 |
+| DR-ICS5 | **可結**（檔在 inputs、R-ICS9 已採用） | A-ICS9 |
+| DR-ICS7 | **可結**（120 s 三源互證：4914956、DTC Matrix r57、CFTS020 定義塊） | R-ICS24(b) |
+| DR-ICS8 | **可結**（九個 LID 全解；殘項轉 A-ICS30） | upstream-04 §3 |
+| DR-ICS10 | **可結**（`<Tstuck_button> = 120 sec` 逐字） | R-ICS24(b) |
+| DR-ICS12 | **可結**（`= initial value 50 msec`／`= 20 msec` 逐字；reasoning 須註 initial value） | R-ICS24(c) |
+| DR-ICS13 | **可結**（市場軸承接 R-DD25(a)：NAFTA 在案） | R-ICS25(a)(b) |
+| DR-ICS15 | **可結**（2 解、2 併入 DR-ICS16） | upstream-04 §3 |
+| DR-ICS16 | **降為確認件**，不再阻斷 | R-ICS22 v2(d) |
+| DR-ICS17 | **待 b06 偵察**（`Notifications HMI L&F R1L-R (Feb 13 2026)` 為候選，未判同一） | 分析層 2026-08-29 量測 |
+| DR-ICS2、3、4、6、9、11、14 | **維持 OPEN（真上游件）** | — |
+
+結案一律以 b06 之實測為準：佔位實際回收後方改 `CLOSED`，
+本表之「可結」為授權，非已結。
+
+**催件排序（Pei 2026-08-29「裁」核可）**：- 上游急件：DR-ICS9（V 組存續）、DR-ICS10（ignore 門檻）、DR-ICS1（縮圍版：俟 b02 偵察定 006/009 可否繞過後發，005 恐繞不過）、DR-ICS2（011/012 補列）
 - 緩件：DR-ICS3（交付前須結，ASPICE 追溯鏈）、DR-ICS5（與 A-ICS13 版本問併送）、DR-ICS7（純確認）
 - 內部收口中：DR-ICS8（b02 作業 A，R-ICS8／13）、DR-ICS4（R-ICS11 綁 audio_mgmt 原件，上游只剩版本確認）
 
@@ -23,3 +44,7 @@
 | DR-ICS11 | 【新登 2026-08-29，上繳包 02 §三-4】DTC `B14DA-2A` 之 Enable Condition EC3 轉引 `{SIS-5161}`（Local Battery Voltage operating range），該文件全 repo 掃描 0 命中。請提供電壓範圍或文件 | S1／S2／S3 之 Enable 條件無法入 Pre-Condition | OPEN |
 | DR-ICS12 | 【新登 2026-08-29，見 A-ICS17】CFTS020-4819583 之 `<TPeriodToCountKnobDetents>` 與 `<TPeriodToSendNoChange>` 具體值（detent 計數時間窗）；V3 之「連轉三格」與將來 knob2 全面皆依賤此值 | 002（V3）、003、004 | OPEN |
 | DR-ICS13 | 【新登 2026-08-29，見 R-ICS15(b)】本專案（newR1L／R1L-R，Atlantis High）之 **市場軸**為何？CFTS020-4819554（Back_Button 唯一直載原句）之 Market 限 NAFTA；市場軸未定前不得判其在案（R-DD25 同族）。順帶確認 CFTS022／CFTS020 之 `Market` 屬性於本 DUT 之採認值域 | 009；及後續所有帶 Market 限定之物件 | OPEN |
+| DR-ICS14 | 【新登 2026-08-29，上繳包 03 §七-2、§12-2-4】CFTS019 七件之引用鏈有五個斷點文件不在件內：`TABLE 34`（音量曲線，自 Radio Performance Standard 轉引）、HU Component Specification、`4866125` 所指之未具名 HMI 文件、CIP Radio DSPPP 表、`Table for CFTS019-4866516`。請提供或指明其所在 | 001, 002（音量階數域） | OPEN |
+| DR-ICS15 | 【新登 2026-08-29，上繳包 03 §四-3】`$TGW_DISP_STAT$`、`$RQ_DISP_INTS$`、`$DCSD_DISP_STAT$`、`$Telematic_Power$` 四訊號不在 LID 點名清單，b03 共 14 處佔位。已令 b04 依 R-ICS8 進 LID→CAN 驗證；驗證後仍查無者以本 DR 向上游要對應 | 006, 007, (011) 之訊號欄 | OPEN |
+| DR-ICS16 | 【新登 2026-08-29，見 A-ICS28／R-ICS22(a)】`$TGW_DISP_STAT$` 與 `$Telematic_Power$` 於 B-CAN（`TELEMATIC_DISPLAY2` @1500／`STATUS_TELEMATIC` @1470）與 CAN-FD（`TELEMATIC_FD_4` @1427）二條匯流排上均有承載。**本 DUT 於哪條匯流排上觀察該二訊號？** 二候選發送節點皆非 ICS，台架取捨無量測依據 | b03 之 12 處佔位 | OPEN |
+| DR-ICS17 | 【新登 2026-08-29，upstream-04 §6-1】`Pop-up List Notification`（由 `Pop Up List Priority Matrix` p.3 逐字外指之文件）**不在 `spec-index/sources/` 33 件內**。請提供。理由：`VOLUME POP_UP` 之顯示條件連續四包追索（CFTS022／020／019 七件／ HMI L&F 六本）皆強查無，線索首次收斂至此一具名而未入庫之文件 | b01 之 V1／V2／V3 共 6 行 ER（A-ICS16） | OPEN |

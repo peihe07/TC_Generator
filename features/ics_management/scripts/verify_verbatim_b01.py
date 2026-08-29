@@ -37,7 +37,8 @@ CFTS020 = ROOT / ("inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and 
                   "DCSD _20260310-1533.docx")
 DEFAULT_BATCHES = [ROOT / "generated/b01/b01_tcs.json",
                    ROOT / "generated/b02/b02_tcs.json",
-                   ROOT / "generated/b03/b03_tcs.json"]
+                   ROOT / "generated/b03/b03_tcs.json",
+                   ROOT / "generated/b04/b04_tcs.json"]
 
 
 def docx_text(path: Path) -> str:

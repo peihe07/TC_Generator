@@ -15,10 +15,10 @@
 | --- | --- | --- | --- |
 | Volume Control | 001, 002, 005 | CFTS022 2.2 {4914970}、2.2.2 {4914991}；CFTS019 | CFTS019 缺（DR-ICS4）；005 受 A-ICS1 錯置暫緩。**b01 已出 V1/V2/V3**（存續繫於 DR-ICS9） |
 | Browse Control | 003, 004 | CFTS020 1.8.1.2 Rotary Knob Data Transfer {4819577} | 母條已尋獲（R-ICS9）— **b02 偵察**，未生 TC |
-| Display Control | 006, 007, (011) | CFTS020 1.8.1.1.1 {4819556}；1.5.1.1.2 {4819389}（PowerNet 分支，適用性待驗） | 母條已尋獲（R-ICS9）— **b02 偵察**，未生 TC |
+| Display Control | 006, 007, (011) | CFTS020 1.8.1.1.1 {4819556}（6/8 適用）、1.8.1.1.3 {4819570}（6/6 適用）；1.5.1.1.2 {4819389} 實測 PowerNet-only，不適用 | **已解鎖**（R-ICS15(a)）— **b03 已出 8 條**（P1–P4／S1–S4）；granularity 判**健康**（共用 setup 與 entry path） |
 | Menu Navigation | 008, 009 | CFTS020 1.8.1.1 {4819542}、1.8.1.3 Button Press Events {4819587} | 母條已尋獲（R-ICS9）— **b02 偵察**，未生 TC |
 | Stuck Button | 010 | (i) DTC 面：CFTS022 1.5 {4914953}（物件 4914954–4914958）；(ii) ignore 面：CFTS020 1.8.1.4 {4819615}（物件 4819617）；1.4.1.3.1 {4819296}（DTC 成熟條件） | (i) **b01 已出 S1/S2/S3**；(ii) **b02 補寫**（R-ICS9(c)） |
-| Camera Transition | (012) | SYSAD §4.10.1（本文缺，A-ICS5） | 缺文 — 不可動工 |
+| Camera Transition | (012) | SYSAD §4.10.1（本文缺，A-ICS5） | **轉 out-of-scope-pending**（b03 審查）— 無 RD 在案（需求分頁缺列，DR-ICS2）且無母文（A-ICS5），filter 永遠為空，不成 Test Set（IN §4.1.3）。DR-ICS2 補列且納源（RVC+PAM）後得復活 |
 
 括號之 (011)(012) 為 SYS2 Traceability 所列、SWE1 Requirements 分頁缺列之項（DR-ICS2）。
 

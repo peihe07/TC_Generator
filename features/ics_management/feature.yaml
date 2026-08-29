@@ -33,6 +33,13 @@ paths:
   # 素材補入超出既定根目錄屬 Pei 裁定事項（charter §觸點），故本包只綁不搬。
   cfts022_fs: "../privacy/inputs/R1LR_Atl-H_25PI3.5_Privacy_CFTS_022 Functional Specification_20250910_1708.docx"
 
+# feature profile（R-ICS18(e)，下放包 04 §三 A 令執行層落檔）。
+# 內容逐字取 R-ICS18(a)(b)(c)，標 cited `[OVERRIDE IN §11]`；
+# 執行層落檔而非其作者。sha256 自實體檔算。
+profile:
+  file: "docs/runtime/profiles/FW036_R1L_ICS_Profile.md"
+  sha256: "2bedb33daeaf341389203e8bf7c5d1701442bf97f1541c57de3b38080df0a53f"
+
 # FO §3：CFTS／Word，reference 為 **looked up, never constructed**。
 # b01 之 specification_reference 全數逐字取自 CFTS022 之 ObjectID（IN §10.7(a)），
 # 無任何構造成分。

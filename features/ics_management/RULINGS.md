@@ -387,3 +387,278 @@ R-ICS17（分析層台帳之單一寫者協定）
     每份上繳包須附其開工前／完工後二次實跑輸出。
 （分析層即裁，2026-08-29；A-ICS20）
 ```
+
+---
+
+## R-ICS18
+
+```
+R-ICS18（IN §11 Exception 之啟用：本 feature profile）
+
+成因：A-ICS22。IN §11 之方括號／引號 Exception 為 profile-scoped，
+而本 feature 無 profile（執行層實測 `docs/runtime/profiles/` 無 ICS 檔），
+致 b03 八條之出貨資格懸置。
+
+(a) 本 feature 啟用 IN §11 Exception，範圍限定於：
+    `test_item` **上半**之 verbatim 段落，及 ER 中以
+    `... as defined by CFTS0xx-{ObjectID} ...` 式引註之引句段落。
+    保留之記法包含來源自身之方括號（`[DISP_OFF]`、`[DISP_NORMAL]`、
+    `[0% Intensity]`、`[current non-zero value]`、`[Idle]`）與單引號
+    （`'HU Screen ON'`、`'HU Screen OFF'`）。
+(b) **作者自書之文字不適用本例**：procedure 之按鍵標的、非引句之
+    ER 行、pre_conditions、input_test_data 一律用 `"..."`（IN §11 本文）。
+(c) **驗證方式**：保留之 token 須能於所錨之 cited source row 逐字對上
+    （IN §11 Exception 本文之 lint 規定）。本 feature 之對比器為
+    `scripts/verify_verbatim_b01.py`；對不上即為違規，不得以本條免責。
+(d) 自檢之分流（作者欄位硬 FAIL／上半 verbatim 列示）**採認**；
+    自本條生效起，上半之列示項改判 **PASS**，不再標 MANUAL。
+(e) 下放包 04 令執行層落 `docs/runtime/profiles/FW036_R1L_ICS_Profile.md`，
+    內容逐字取本條 (a)(b)(c)，並標 cited `[OVERRIDE IN §11]`。
+    先例：driver_distraction R-DD12（同一件事，同一驗證方式）。
+b03 八條之出貨資格自本條解鎖。
+（分析層即裁，2026-08-29；上繳包 03 §四-4(b)(c)、§十-2）
+```
+
+---
+
+## R-ICS19
+
+```
+R-ICS19（R-G13 指紋與 R-ICS17(d) 改題之交互）
+
+成因：A-ICS21。依 R-ICS17(d) 正確改題之條文，其 sha8 必然改變
+（`R-ICS2 v1`：`ad557b5d` → `4a8819f0`，而圍籬內容 diff 0 行），
+而 R-G13 之設計為「sha 不符即停下」—— 二條直接衝突。
+
+(a) **不改 `rulings_hash.py`**（全域工具，改之影響十餘本之基線）。
+(b) 引用之 sha8 不符時，**先取圍籬內容 diff**：
+    diff 為 0 行 → 條文未變，**不停**，於上繳包具名新舊 sha8；
+    diff 非 0 行 → 條文已變，依 R-G13 停下並報。
+(c) 改題之人須於 ANOMALIES 登新舊 sha8 對照（本件見 A-ICS21），
+    使舊包之引用可回溯。
+(d) 本條之適用限於「改題與作廢註記」所致之指紋變動；
+    條文本體改字仍屬 R-TM13 禁區，不得援引本條。
+（分析層即裁，2026-08-29；上繳包 03 §1.1、§十-1）
+```
+
+---
+
+## R-ICS20
+
+```
+R-ICS20（R-3 上限與 CFTS020 單句長度之衝突：摘取法採認）
+
+CFTS020 多條為單一長句（`4819560` 66 token、`4819561` 54、
+`4819572` 66），無次句可摘，而 R-3 上限 50 token。
+
+採認執行層之摘取法：
+(a) 取後半**獨立子句之連續逐字片段**（`then the HU shall …` 起），
+    句首依 R-4 轉大寫（排版正規化，允許）。
+(b) 前提子句改由 Pre-Condition 與括號下半承載，
+    全文以 `specification_reference` 指回（R-S4 本旨）。
+(c) **限制**：只得取**連續**片段，不得跨句拼接、不得刪中間字。
+    所取片段須自足地載明「何物在何條件下為何」之後二者；
+    前提子句所載之條件**必須**出現於 Pre-Condition，不得不見。
+(d) 逐字比對器新增之第五項正規化（句首大小寫）採認，
+    依據為 IN §8.7.5 之 R-4。
+（分析層即裁，2026-08-29；上繳包 03 §四-4(a)、§十-3）
+```
+
+---
+
+## R-ICS21
+
+```
+R-ICS21（綁定 DBC 、強度分級、偵察範圍三件）
+
+(a) **`PDT27_E2A_R5_FDCAN8.dbc` 維持綁定**，不解除。
+    實測零貢獻（九個 LID 之候選全數訊息不存在）之事實註於
+    `feature.yaml` 之 `reference`。理由：R-ICS8(c) 之「二 DBC 篩」
+    是判定程序，解綁即使日後新訊號少查一庫；
+    「已查而無」與「未查」在台帳上必須可區別。
+(b) **v2 下之強度分級採認**（執行層實作）：
+    `正面命中（三軸齊備且全命中）` ／
+    `正面命中（ECU 軸缺，依 v2(b)(ii) 不記 WARN）` ／ `不適用`。
+    二級命中須可區別 —— 後者之確信度低於前者，
+    DR-ICS9 若收窄 ECU 邊界，只有後者需重審。
+(c) **偵察範圍擴充**：`spec-index/sources/` 之
+    `Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf` 與
+    `HeadUnitCameraSystems HMI Logic and Flow R1 SR24 Post 2A v7
+    (February 10th, 2023).pdf` 納入偵察範圍（b04）。
+    **偵察非納源** —— 得列章節與命中，不得充 verbatim 來源、
+    不得充錨，納源另裁。
+（分析層即裁，2026-08-29；上繳包 03 §六-2、§三-4、§七-3、§十-5／6／7）
+```
+
+---
+
+## R-ICS22 v1
+
+```
+R-ICS22（匯流排變體之 E1，及 Display 面 ER 之主錨）
+
+⚠ **(a) 已由 R-ICS22 v2 取代（2026-08-29）**；(b)(c)(d) 仍為現行。
+依 R-TM13 不刪不改字；改題與本註記之指紋變動依 R-ICS19 處理。
+
+成因：A-ICS28／A-ICS29。`TGW_DISP_STAT` 與 `Telematic_Power` 之二候選
+為**同一訊號之匯流排變體**（B-CAN vs CAN-FD），非 ECU 變體；
+R-ICS13 之「取發送節點 = ICS」在此結構上無對應物。
+
+(a) **不自裁取哪一條匯流排**。二候選維持 `fallbacks`，
+    b03 之 12 處 `$TGW_DISP_STAT$` 佔位**維持**；新開 DR-ICS16
+    向上游問「本 DUT 於哪條匯流排上觀察該訊號」。
+    理由：二者發送節點皆非 ICS，且接收清單亦不含 ICS（A-ICS29），
+    台架上取哪一條無量測依據；自選即造值（IN §8.4.1）。
+(b) **b03 八條之 ER 主錨定為 HMI 可觀察現象**（螢幕亮／滅、
+    背光態、`TOUCH SCREEN TO TURN ON` 之顯示），**訊號面為輔**。
+    依據：R-DD3 同族 —— SWQT 之可觀察面為 HMI 現象，
+    `$TGW_DISP_STAT$` 屬匯流排層。
+    **故 b03 八條不因 (a) 之佔位而阻出貨** —— 但其 reasoning 須明載
+    訊號面為輔且現為佔位，不得以外觀上之完整掩蓋其驗證強度。
+(c) **不得以「ICS 收得到此訊號」立任何 ER**：
+    `TELEMATIC_DISPLAY2.TGW_DISP_STATSts`、`RADIO_B3.RQ_DISP_INTS`、
+    `DIS_CENTERSTACK.DCSD_DISP_STAT` 三者之 DBC 接收清單均不含 ICS
+    （A-ICS29）。已解之 `$RADIO_B3.RQ_DISP_INTS$` 三處改寫採認，
+    但其觀察位置須書為匯流排迷蹤（CAN trace），
+    不得書為「HU／ICS 收到」。
+(d) 單名者（`RQ_DISP_INTS`、`DCSD_DISP_STAT`）之處置採認：
+    R-ICS13 前件不成立即不套其結論，如實記其節點為 SGW／DCSD
+    並判 RESOLVED —— 執行層將「前件是否成立」與「結論能否落地」
+    分開判，合式。
+（分析層即裁，2026-08-29；upstream-04 §3-1／3-2／3-3、§9-1／2／4）
+```
+
+---
+
+## R-ICS23
+
+```
+R-ICS23（按壓事件定義之覆蓋缺口、B1／B2 之等待值、Menu Navigation 之存續）
+
+(a) **短按／長按之區別：本 feature 不驗**。
+    `1.8.1.3 Button Press Events` 之 24 物件中 23 為 `[ECU:FPDM]`，
+    依 R-ICS2 v2(b)(ii) 為**實質不適用**（非軸缺），
+    `Short Press`／`Long Press`（含 `<Tpress>`）於 ICS 側無母條。
+    N1 只驗 `[pressed]` 訊號值之後果、不涉短長按，**採認**；
+    執行層不自他處補（E6 觸發之處置）合式。
+    登為覆蓋缺口 A-ICS33，並於 DR-ICS6 附問上游是否有 ICS 側等價條文。
+    **不得以 FPDM 之條文充當** —— 不同 ECU，不同適用域。
+(b) **B1／B2 之「轉動後 2 秒」須落佔位**。該值為測試實作選擇，
+    而 `<TPeriodToSendNoChange>` 於 CFTS020 為符號無值；
+    若上游之值 > 2 s，二條之觀察步驟即錯。
+    依 IN §8.4.3 於 `pre_conditions` 增
+    `PENDING: DR-ICS12 <no-change resend period>`（b05 補）。
+    執行層之「不影響送什麼、只影響何時觀察」之區分成立，
+    但「何時觀察」錯了仍致該 TC 判錯，故仍須佔位。
+(c) **Browse Control 與 Menu Navigation 不合併**，採執行層 §10-1 之判斷：
+    二者 entry path（旋鈕 vs 按鍵）與 setup pattern 皆異；
+    Menu Navigation 現為 1 條之成因是 009 遭 DR-ICS13 凍結，
+    **不是分組太細** —— 以合併補資料缺口是治錯了病。
+    DR-ICS13 若回覆 009 出案外，屆時方得合併並更名（候選
+    `Knob and Button Navigation`）；在那之前 framework 不動。
+(d) LID `Format` 與 DBC `VAL_` 之字面不符及範圍越界（A-ICS30）：
+    值一律以 **DBC 為準**（R-6 既例），LID 之拼字誤與越界不得入 TC，
+    二邊逐字存於 JSON 供回溯，並於 DR-ICS8 附問。
+（分析層即裁，2026-08-29；upstream-04 §3-4、§4-4、§9-5／7、§10-1、§10-2-2）
+```
+
+---
+
+## R-ICS22 v2
+
+```
+R-ICS22 v2（匯流排之取捨：取 DUT 發送側）
+
+取代 v1(a)。v1(b)(c)(d) 不變，仍為現行。
+成因：v1(a) 斷「台架取哪一條無量測依據」，該斷言已由新量測推翻（A-ICS35）。
+
+新量測（2026-08-29，二綁定 DBC 之 `BU_:` 與 `BO_` 發送者）：
+  · FDCAN8 之節點 = {ETM, LTM, SGW, TBM}；**LTM 發送 0 則訊息**；
+    `BO_ 1427 TELEMATIC_FD_4` 之發送者 = **ETM**。
+  · BHCAN 之 `BO_ 1500 TELEMATIC_DISPLAY2` 發送者 = **SGW**（閘道）。
+  · SWRA 011 載 DUT **維持並送出** `$TGW_DISP_STAT$`。
+
+裁定：
+(a) 同一訊號跨匯流排承載時，**取 DUT 自身為發送者之那一條**為主路徑；
+    閘道轉發侧（SGW）記備援。理由：所驗者為 DUT 所送之訊號，
+    觀察點自然在 DUT 所發之匯流排；於閘道侧觀察則多一層轉發，
+    失敗時無法區別 DUT 未送與閘道未轉（因果塔縮）。
+(b) 依 (a)：`$TGW_DISP_STAT$` 取
+    **`$TELEMATIC_FD_4.TGW_DISP_STATSts$`**（CAN-FD，發送者 ETM）；
+    `TELEMATIC_DISPLAY2.TGW_DISP_STATSts`（B-CAN，SGW）記備援。
+    `$Telematic_Power$` 同理取 `TELEMATIC_FD_4` 側。
+    b03 之 12 處佔位於 b06 回收改寫。
+(c) **先決問題：ETM 是否即本 DUT**。本條之成立繫於「DUT 之 DBC 節點
+    名為 ETM」。實測佐證：FDCAN8 之 LTM 發送 0 則，而 CFTS022 之
+    ECU 軸以 `LTM/ETM` 並列指 HU；執行層於 b06 須**先驗此一前提**
+    （取 SYSAD／SWRA／LID 三路交叉），不成立即停並報，
+    佔位維持、本條不適用。
+(d) DR-ICS16 不逐結：降為「請上游確認 DUT 之 DBC 節點名與觀察點」之
+    確認件，不再阻斷生成。
+（Pei 2026-08-29「准」；A-ICS35）
+```
+
+---
+
+## R-ICS24
+
+```
+R-ICS24（符號參數值之採認，及符號類 DR 之發出前置義務）
+
+實測（2026-08-29，CFTS020 全文，§1.8 前文之 time-variables 定義塊）：
+  `<Tsend> = 150 msec`、`<Tbutton> = 100 msec`、
+  `<TPeriodToCountKnobDetents> = initial value 50 msec`、
+  `<Tpower> = 1.5 sec`、`<Tstuck_button> = 120 sec`、
+  `<Tpress> = 500 msec`、`<TPeriodToSendNoChange> = 20 msec`。
+
+(a) 上列值採為 spec-sourced（IN §8.7.1），得直入 TC，非造值。
+(b) `<Tstuck_button> = 120 sec` 使 **ignore 面與 DTC 面同值得證**；
+    b02 之 I1／I2 二處 `PENDING: DR-ICS10` 於 b06 回收改寫。
+    R-ICS9(d) 之「二門檻不得互代」**不撤** —— 其為程序拘束
+    （不得以此推彼），現在是二者各自有來源而值相同，不同事。
+(c) `<TPeriodToCountKnobDetents> = initial value 50 msec` 帶
+    `parameter tuning process` 之註：得入 TC，**但須於 reasoning
+    註明其為 initial value、可於整合測試後變更**；
+    b01 V3、b04 B1／B2／B5 之佔位於 b06 回收。
+(d) `<Tpress> = 500 msec` 之存在**不解 A-ICS33**：
+    該值為時間參數，而所缺者為 ICS 側之 Short／Long Press
+    **行為條文**（`1.8.1.3` 之 23 物件皆 `[ECU:FPDM]`）。
+    有門檻而無行為，不得自行組合成 TC。
+(e) **適用屬性須逐物件驗**：該定義塊於文中出現多次，
+    各次之屬性三軸不同（含 PowerNet-only 之版本）。
+    b06 須依 R-ICS2 v2 定出**適用於本 DUT 之那一物件**，
+    以其 ObjectID 充錨；多版本值不一致時停並報。
+(f) **置義務**：符號類缺件之 DR 發出前，須先於已納源文件全文搜
+    `<符號>` 與 `<符號> =`，並於 DR 內文載明該搜尋之範圍與結果。
+    只查需求句不算已搜（A-ICS34）。
+（Pei 2026-08-29「准」；A-ICS34）
+```
+
+---
+
+## R-ICS25
+
+```
+R-ICS25（005／009 解鎖，及市場軸之跨 feature 承接）
+
+(a) **市場軸承接 R-DD25(a)**（Pei 2026-08-28 裁定，
+    driver_distraction 下放包 20 §二）：**NAFTA 在案、LATAM 不在案**；
+    `Hong Kong` 在案之依據為右駕（RHD）非區域。
+    該裁定為**專案級範圍**，非 driver_distraction 專有，
+    依 FO 之跨 feature 承接例採用，並於本條註明來源包。
+(b) 依 (a)：**009（Back_Button）解鎖**。其直載原句 CFTS020-4819554
+    之 Market 限 NAFTA，而 NAFTA 在案 → 在案。
+    R-ICS15(b) 之凍結解除；Test Set 仍為 `Menu Navigation`，
+    該組自此成 cluster，R-ICS23(c) 之合併議題不再發生。
+    **須於 TC 之 reasoning 載明其 Market 限 NAFTA 及其在案依據。**
+(c) **005（ICSMuteButton）解鎖**，依 R-ICS15(a) 同型：
+    CFTS022-4914993 實測 `[Artifact Type:Subsystem Functional Requirement]`
+    `[ECU:LTM, ETM] [Market:All] [Radio:R1L, R1M, R1L-R, R1H]`
+    `[EE Architecture:All]` —— 依 R-ICS2 v2(a) 三軸全命中；
+    其逐字直載 Mute hardkey 按下→ HU toggle mute/unmute state。
+    上半 verbatim 改取 4914993，錨 `CFTS022-4914993`，
+    不再等 DR-ICS1。Test Set = `Volume Control`。
+(d) DR-ICS1 降為**帳面修正件**：其阻斷面歸零，但 SWRA 之
+    Description 欄位移（A-ICS1）仍須上游更正，不逐結。
+（Pei 2026-08-29「准」）
+```

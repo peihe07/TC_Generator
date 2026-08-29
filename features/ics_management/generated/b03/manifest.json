@@ -7,7 +7,8 @@
   "tcs": 8,
   "parents": 2,
   "test_sets": 1,
-  "pending_placeholders": 14
+  "pending_placeholders": 12,
+  "pending_source": "scripts/pending_census.py 腳本計數（A-ICS31 之口徑統一，禁人工列舉）"
  },
  "parents": {
   "SWE-ICS-006": 4,
@@ -38,7 +39,7 @@
  "signals": {
   "ICSPowerButton": "$CLIMATIC_PANEL.Radio_btn0$（BO_ 1050，節點 ICS，VAL_ 0 \"Not_Pressed\" 1 \"Pressed\"），備援 DIS_CENTERSTACK.DCSD_Power",
   "ICSScreenOffButton": "$CLIMATIC_PANEL.Radio_btn2$（BO_ 1050，節點 ICS，VAL_ 0 \"Not_Pressed\" 1 \"Pressed\"），備援 DIS_CENTERSTACK.DCSD_Screen_Off",
-  "TGW_DISP_STAT / RQ_DISP_INTS": "**不在作業 E 之點名清單**，依下放包 03 §三 C 以 PENDING: DR-ICS8 佔位，不臆造"
+  "TGW_DISP_STAT / RQ_DISP_INTS": "b04 作業 B：`$RQ_DISP_INTS$` 解為 `RADIO_B3.RQ_DISP_INTS`（BO_ 1283，節點 SGW）；`$TGW_DISP_STAT$` 判 E1（TELEMATIC_DISPLAY2 / TELEMATIC_FD_4 二候選皆在庫，節點分別為 SGW／ETM，無一為 ICS），維持佔位"
  },
  "context_sha256": {
   "canon": "0b0cea006552a2f244ba8e733ef6227b132b591a34defb65234934985fe2598e",
@@ -53,11 +54,12 @@
   "dbc_b": "9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0",
   "dbc_fd": "51c8fd6092925071bbf443711e5161d78df292de232dc7427b1cceaa8f181cd2"
  },
- "tcs_sha256": "52d6796e6b889d0f761c72f80bca435e20a6bb42f2e94ce5c487add966978bb8",
+ "tcs_sha256": "a696ec5e216768dc25bb595b02b6e25ffc733439604a2b8adb3335bfc9d0da27",
  "checks": {
   "selfcheck_b01.py": "PASS — b01+b02+b03 合檢 16 條，機檢 17 項 FAIL 0，人工 8 項",
   "verify_verbatim_b01.py": "PASS — 16 條逐字命中 16",
   "ledger_guard.py": "開工前 exit 0"
  },
- "note": "tcs_sha256 為本檔寫入前之值；b03_tcs.json 若再動，本檔須重算。"
+ "note": "tcs_sha256 為本檔寫入前之值；b03_tcs.json 若再動，本檔須重算。",
+ "counts_correction": "b03 落檔時本檔記 14，**實測為 15**（本包以腳本逐一列舉重數）—— 該誤值經 upstream-03 §13 傳入下放包 04 §5-5 之預期。現值 12 為解 3 後之數。"
 }
