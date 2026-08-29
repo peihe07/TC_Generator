@@ -38,6 +38,19 @@ STAGE_MAP = {
     "Install ( M-CPU: Redbend )": "`Interruption Handling`／`Update Agent`",
     "Install ( V-CPU )": "`Interruption Handling`／`Update Agent`",
     "Install ( SXM )": "**不用**（非本 feature 範圍）",
+    # 下放包 30 §四之補裁 —— R-SU35(a) 原漏此二階段（5 碼無落點）
+    "After HU start-up, suddenly": "`Update Agent`",
+    "RedBend update engine": "`Update Agent`",
+}
+
+# 下放包 30 §四：補裁之 5 碼，**其依據為碼之內容，非階段名之字面**（R-SU20(d)）。
+# 逐碼記其依據 —— 只有這 5 碼有逐碼依據，其餘為階段級之代理（見 ERROR_CODES.md 檔首）。
+CODE_BASIS = {
+    "327680": "V-CPU 更新之總括錯誤，其單元為更新執行本身",
+    "393216": "前次更新失敗後之復原態（`381` recovery）",
+    "393217": "`379`／`380` failsafe 與防磚之失效表現",
+    "393219": "安裝後版本未登錄，屬 `383` deployed software validation 之失效",
+    "2147483330": "`382` differential update 之來源／目標相容性失效",
 }
 NOT_ERROR = {"458760", "458763"}          # R-SU35(c)3：不作失敗判準
 GEN1 = re.compile(r"\*?Not support at GEN1")
@@ -151,6 +164,11 @@ def t42c():
     A("> 錯誤碼於 HU 上之呈現途徑為 **DR-SU2 v2(a)** 之未解項；")
     A("> 未答前，觀測步驟一律掛 `PENDING: DR-SU2`。二者不得混同。")
     A("")
+    A("> ⚠ **`Test Set 候選`欄之粒度**：除下放包 30 §四所補之 5 碼有**逐碼依據**外，")
+    A("> 其餘為 **R-SU35(a) 之階段級對照**，即一個粗粒度之代理。")
+    A("> **候選非裁定** —— 逐碼之正解須自碼之 Description 讀出其失敗情境，")
+    A("> 再對照該 Test Set 所轄之 037 列；本輪未做（80 碼之工作量）。")
+    A(">")
     A("> ⚠ **本表為 USB／SWDL 路徑**（R-SU35(c)1）——")
     A("> **不得引用以充當 Wi-Fi FOTA session 之觀測面**（DR-SU2 v2(b) 未解）。")
     A("")
@@ -189,11 +207,26 @@ def t42c():
     A("")
     A("| 碼 | Description（verbatim） | 階段 | 平台限定 | Test Set 候選 | 註 |")
     A("|---|---|---|---|---|---|")
+    _basis_used = set()
     for stage, code, desc, root, rec, contact in codes:
         ts = ts_of(stage) or "**—（未載）**"
         plat = "**`*Not support at GEN1`**" if GEN1.search(desc) else "—"
         note = "**不作失敗判準**（R-SU35(c)3）" if code in NOT_ERROR else ""
+        if code in CODE_BASIS:
+            _basis_used.add(code)
+            note = (note + "｜" if note else "") + \
+                "**逐碼依據**（下放包 30 §四）：" + CODE_BASIS[code]
+        if code in ("2147483330", "-2147483330"):
+            note = (note + "｜" if note else "") + \
+                "⚠ 與 `" + ("-" if not code.startswith("-") else "") + \
+                code.lstrip("-") + "` **符號相反、數值相同**，" \
+                "為同一底層錯誤之二種呈現 —— **引用時須連同符號逐字抄**（R-SU35(b)1）"
         A(f"| `{code}` | {desc} | `{stage[:34]}` | {plat} | {ts} | {note} |")
+    A("")
+    if _basis_used != set(CODE_BASIS):
+        sys.exit(f"T43d(ii)：逐碼依據應套用 {len(CODE_BASIS)} 碼，"
+                 f"實得 {len(_basis_used)} —— 停並回報")
+    A(f"> **逐碼依據已套用 {len(_basis_used)} / {len(CODE_BASIS)} 碼**（下放包 30 §四之補裁）。")
     A("")
     A("---")
     A("")

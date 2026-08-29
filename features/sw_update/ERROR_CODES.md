@@ -10,6 +10,11 @@
 > 錯誤碼於 HU 上之呈現途徑為 **DR-SU2 v2(a)** 之未解項；
 > 未答前，觀測步驟一律掛 `PENDING: DR-SU2`。二者不得混同。
 
+> ⚠ **`Test Set 候選`欄之粒度**：除下放包 30 §四所補之 5 碼有**逐碼依據**外，
+> 其餘為 **R-SU35(a) 之階段級對照**，即一個粗粒度之代理。
+> **候選非裁定** —— 逐碼之正解須自碼之 Description 讀出其失敗情境，
+> 再對照該 Test Set 所轄之 037 列；本輪未做（80 碼之工作量）。
+>
 > ⚠ **本表為 USB／SWDL 路徑**（R-SU35(c)1）——
 > **不得引用以充當 Wi-Fi FOTA session 之觀測面**（DR-SU2 v2(b) 未解）。
 
@@ -28,7 +33,7 @@
 
 | 階段（分頁原文） | 碼數 | **Test Set 候選（R-SU35(a)）** |
 |---|---:|---|
-| `After HU start-up, suddenly` | 4 | **—（R-SU35(a) 未載）** |
+| `After HU start-up, suddenly` | 4 | `Update Agent` |
 | `Precondition` | 7 | `USB Update` |
 | `Package Header check & unpack` | 13 | `Integrity Verification` |
 | `Rollback Protection *This function supports only user build.` | 3 | `Update Agent` |
@@ -37,14 +42,7 @@
 | `Install ( M-CPU: Redbend ) Note: These error code is not defined by melco` | 1 | `Interruption Handling`／`Update Agent` |
 | `Install ( V-CPU )` | 24 | `Interruption Handling`／`Update Agent` |
 | `Install ( SXM )` | 17 | **不用**（非本 feature 範圍） |
-| `RedBend update engine` | 1 | **—（R-SU35(a) 未載）** |
-
-> ### ⚠ **R-SU35(a) 之對照表未涵蓋下列階段**
->
-> - `After HU start-up, suddenly` —— **4 碼**
-> - `RedBend update engine` —— **1 碼**
->
-> **執行層不推定其歸屬** —— 依 R-SU20(d)，「階段名與組名字面相近」是循環，不是依據。待分析層補裁。
+| `RedBend update engine` | 1 | `Update Agent` |
 
 ---
 
@@ -52,10 +50,10 @@
 
 | 碼 | Description（verbatim） | 階段 | 平台限定 | Test Set 候選 | 註 |
 |---|---|---|---|---|---|
-| `327680` | General VCPU FW update error | `After HU start-up, suddenly` | — | **—（未載）** |  |
-| `393216` | Report PBL mode enter | `After HU start-up, suddenly` | — | **—（未載）** |  |
-| `393217` | Report HU is in bricked state - two or more VCPU update were failed | `After HU start-up, suddenly` | — | **—（未載）** |  |
-| `393219` | Version sync error | `After HU start-up, suddenly` | — | **—（未載）** |  |
+| `327680` | General VCPU FW update error | `After HU start-up, suddenly` | — | `Update Agent` | **逐碼依據**（下放包 30 §四）：V-CPU 更新之總括錯誤，其單元為更新執行本身 |
+| `393216` | Report PBL mode enter | `After HU start-up, suddenly` | — | `Update Agent` | **逐碼依據**（下放包 30 §四）：前次更新失敗後之復原態（`381` recovery） |
+| `393217` | Report HU is in bricked state - two or more VCPU update were failed | `After HU start-up, suddenly` | — | `Update Agent` | **逐碼依據**（下放包 30 §四）：`379`／`380` failsafe 與防磚之失效表現 |
+| `393219` | Version sync error | `After HU start-up, suddenly` | — | `Update Agent` | **逐碼依據**（下放包 30 §四）：安裝後版本未登錄，屬 `383` deployed software validation 之失效 |
 | `-` | Cannot update software. Software not compatible with vehicle. | `Precondition` | — | `USB Update` |  |
 | `1` | ERROR_GENERAL | `Precondition` | — | `USB Update` |  |
 | `2` | ERROR_GENERAL_FILE_IO | `Precondition` | — | `USB Update` |  |
@@ -89,7 +87,7 @@
 | `262146` | Update engine failed to apply payload | `Install ( M-CPU )` | — | `Interruption Handling`／`Update Agent` |  |
 | `262147` | Update engine no configuration error | `Install ( M-CPU )` | — | `Interruption Handling`／`Update Agent` |  |
 | `262148` | Redbend update - cannot remove artifacts error *Not support at GEN1 | `Install ( M-CPU )` | **`*Not support at GEN1`** | `Interruption Handling`／`Update Agent` |  |
-| `-2147483330` | CRC Signature mismatch | `Install ( M-CPU: Redbend ) Note: T` | — | `Interruption Handling`／`Update Agent` |  |
+| `-2147483330` | CRC Signature mismatch | `Install ( M-CPU: Redbend ) Note: T` | — | `Interruption Handling`／`Update Agent` | ⚠ 與 `2147483330` **符號相反、數值相同**，為同一底層錯誤之二種呈現 —— **引用時須連同符號逐字抄**（R-SU35(b)1） |
 | `335872` | General Slave Error | `Install ( V-CPU )` | — | `Interruption Handling`／`Update Agent` |  |
 | `335873` | Sequence Error | `Install ( V-CPU )` | — | `Interruption Handling`／`Update Agent` |  |
 | `335890` | Download not possible - last sessiion interrupted | `Install ( V-CPU )` | — | `Interruption Handling`／`Update Agent` |  |
@@ -131,7 +129,9 @@
 | `458766` | Common SXM installation error | `Install ( SXM )` | — | **不用**（非本 feature 範圍） |  |
 | `458767` | Common SXM installation error | `Install ( SXM )` | — | **不用**（非本 feature 範圍） |  |
 | `458768` | Common SXM installation error | `Install ( SXM )` | — | **不用**（非本 feature 範圍） |  |
-| `2147483330` | Source ↔ Target versions mismatch | `RedBend update engine` | — | **—（未載）** |  |
+| `2147483330` | Source ↔ Target versions mismatch | `RedBend update engine` | — | `Update Agent` | **逐碼依據**（下放包 30 §四）：`382` differential update 之來源／目標相容性失效｜⚠ 與 `-2147483330` **符號相反、數值相同**，為同一底層錯誤之二種呈現 —— **引用時須連同符號逐字抄**（R-SU35(b)1） |
+
+> **逐碼依據已套用 5 / 5 碼**（下放包 30 §四之補裁）。
 
 ---
 

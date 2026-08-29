@@ -9,6 +9,11 @@
 - **v3**（`pilot03`，下放包 23 §四）：**TC 內容逐字沿 v2 不動**，
   僅補齊寫回欄集 —— `S`（functional_safety）填 **`NA`**（他 feature 5/6 之實務）、
   **`T`–`Z` 七個車型旗標留空**（他 feature 6/6 之實務）。
+- **v4**（`pilot04`，T43b／下放包 30 §六）：**R-SU36 之時間解析度** ——
+  三處錄影步驟改 `as continuous video capture`（明文排除定時截圖）；
+  **TC-4 之 `Record every SW Update screen …` 依 R-SU36(c) 改寫**
+  （`every` 是一個宣稱不是一個動作），其 ER 二行對應改。
+  **TC 之驗證單元不變**，改動限於觀測手段之具體化。
 
 前一版之產出一律保留，**不覆寫**。
 
@@ -32,7 +37,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from write_back_036 import _set_row, MASTER, SHEET_NAME, HEADER_ROW, FEAT  # noqa: E402
 
-TAG = "pilot03"                    # v1/v2 為 pilot01/pilot02，不覆寫
+TAG = "pilot04"                    # v1–v3 為 pilot01–03，**不覆寫**
 OUT = FEAT / "sandbox" / TAG / MASTER
 TEST_GROUP, TEST_SET = "SW Update", "Silent Update"
 AUTHOR = "PeiPYHsu"
@@ -47,12 +52,12 @@ TCS = [
        "2. An update package with update type Silent Update is staged on the OTA Server for this head unit"],
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. Trigger an update availability check to the OTA Server",
-        "3. Record the head unit screen content continuously until the update finishes",
+        "3. Record the head unit screen content as continuous video capture until the update finishes",
         "4. Read the software version shown on the head unit and record it as Version_after",
         "5. Check that Version_after differs from Version_initial and that no SW Update prompt or progress notification appears in the recorded screen content"],
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
-      "3. The head unit screen content until the update finishes is recorded",
+      "3. The head unit screen content until the update finishes is recorded as continuous video capture",
       "4. Version_after is recorded",
       "5. Version_after differs from Version_initial; the recorded screen content contains no SW Update prompt and no progress notification"]),
  dict(req="SWE1-FOTA-176", spec="CFTS057-4907476", dm=FN, prio="P1",
@@ -62,11 +67,11 @@ TCS = [
        "2. An update package with update type Silent Update is staged on the OTA Server for this head unit"],
   proc=["1. Read the software version shown on the head unit and record it as Version_initial",
         "2. Trigger an update availability check to the OTA Server",
-        "3. Record the head unit screen content continuously until the software version changes",
+        "3. Record the head unit screen content as continuous video capture until the software version changes",
         "4. Check that no update progress notification appears anywhere in the recorded screen content"],
   er=["1. Version_initial is recorded",
       "2. The update availability check completes and an update is reported as available",
-      "3. The head unit screen content until the software version changes is recorded",
+      "3. The head unit screen content until the software version changes is recorded as continuous video capture",
       "4. The recorded screen content contains no update progress notification at any point of the session"]),
  dict(req="SWE1-FOTA-176", spec="CFTS057-4907477", dm=FN, prio="P1",
   item=["During a Silent Update session, the WiFi Update Service shall allow user notification only when required to satisfy safety-related requirements.",
@@ -89,11 +94,11 @@ TCS = [
        "2. An update package with update type Silent Update is staged on the OTA Server for this head unit",
        "3. The SW Update HMI is available on the head unit"],
   proc=["1. Trigger an update availability check to the OTA Server",
-        "2. Record every SW Update screen shown on the head unit until the update finishes",
-        "3. Check that none of the recorded screens offers an opt-out control or a defer control"],
+        "2. Record the head unit screen content as continuous video capture until the update finishes",
+        "3. Check that no opt-out control and no defer control appear in the recorded screen content"],
   er=["1. The update availability check completes and an update is reported as available",
-      "2. Every SW Update screen shown until the update finishes is recorded",
-      "3. None of the recorded screens offers an opt-out control or a defer control"]),
+      "2. The head unit screen content until the update finishes is recorded as continuous video capture",
+      "3. The recorded screen content contains no opt-out control and no defer control"]),
  dict(req="SWE1-FOTA-183", spec="CFTS057-4907485", dm=FN, prio="P2",
   item=["When the update completes, the OTA client will display a success notification and what's new details.",
         "(Completion notification with What's New shown after a silent update)"],
