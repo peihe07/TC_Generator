@@ -63,13 +63,66 @@ Urgency 回報。
   **DR-DD1 裁 HK 只定「市場為何」，仍不給出 `Country_Code` 之值。**
   即使 DR-DD1 先回，HK 段（`-017`~`-028`）仍卡於 DR-DD3。**二者須分別追。**
 
-### ~~文稿（下放包 02 §三，逐字）~~ —— **已於下放包 20 §三 整段替換**
+### 舊稿（**SUPERSEDED 2026-08-28，下放包 20 §三**）
 
-> **舊稿之失實處**：末行書 `Until clarified, the four rows are on hold in SWQT
-> test case generation.` —— 範圍裁定後該四列**不是 on hold，是範圍外**；
-> 主問「(a) Hong Kong、(b) LATAM、(c) both」亦已由 Tier 3 答。
+**失實處（三項）**：
+
+1. 末行 `Until clarified, the four rows are on hold in SWQT test case generation.`
+   —— 範圍裁定後該四列**不是 on hold，是範圍外**（R-DD25(b)）
+2. 主問「(a) Hong Kong、(b) LATAM、(c) both」—— **已由 Tier 3 答**（R-DD25(a)）
+3. 末段「If the answer is (b) LATAM: please also specify how the market condition
+   is expressed…」—— 其前提（可能裁 LATAM 而仍須生成）**不再成立**
+
 > **一個過期的狀態陳述，比沒有狀態陳述更糟**（上繳包 12 §2.3 之同一形態）。
-> 舊稿全文見 `docs/handoff/02_rulings_q1q6.md` §三，此處不留副本以免二版並存。
+
+**留副本之依據（下放包 21 §四 10-4）**：前版只留指向
+`docs/handoff/02_rulings_q1q6.md` §三 之位置，**而該處所存者為最初稿，非本次所替換之稿**
+（本稿已含 SYSAD 引文段，為包 13 §五 縮問改稿後之版本，2020 字元）——
+即**當時所指之位置根本取不到被替換的那一份**。
+**台帳之自足性不應繫於他檔之位置**，故全文留存於此。
+
+<details>
+<summary>舊稿全文（2020 字元，SUPERSEDED；<b>不得引用</b>）</summary>
+
+> **DR-DD1 — Market condition conflict for SWE1-RA-Driver_Distraction-025 ~ -028**
+>
+> In FM-WI-FSM-037-A03 (DD_SWE1, 2026-08-07), rows
+> SWE1-RA-Driver_Distraction-025 through -028 cite source requirements
+> `SYS-RA-Driver_Distraction-125` (section gate: "The requirements in the
+> section shall be implemented if $Country_Code$ = [Hong Kong]") together
+> with `SYS-RA-Driver_Distraction-132` / `-133` (5 MPH lock / 3 MPH unlock
+> thresholds). Their Requirement Descriptions and Verification Criteria
+> also state "When Country_Code is Hong Kong".
+>
+> However, in CFTS022 SYSRA (FM-WI-FSM-035-A02), `-132` and `-133` are
+> located under the **LATAM Market Regulations** heading (`-130`), whose
+> applicability note (`-131`) states the section applies to the LATAM
+> market only. The two sources are mutually exclusive on the market
+> condition.
+>
+> Question: for SWE1 rows -025 ~ -028, should the market condition be
+> (a) Hong Kong, (b) LATAM, or (c) both markets? If (c), please confirm
+> whether separate SWE1 rows for the LATAM side will be added, since the
+> current four rows carry Hong Kong wording only.
+>
+> Additionally, the System Architectural Design (FM-WI-FSM-015-A01)
+> describes the speed-hysteresis judgment (separate lock and unlock
+> thresholds) as a market-specific processor type **for LATAM**
+> (`ProcessorType4to6 … for LATAM`; "Market-specific types (such as LATAM)
+> evaluate restriction using speed hysteresis thresholds"), while the
+> Hong Kong logic is described in terms of parking-brake state and gear
+> selection. This is consistent with the CFTS022 section structure and
+> inconsistent with the Hong Kong wording of SWE1 rows -025 ~ -028.
+>
+> If the answer is (b) LATAM: please also specify how the market condition
+> is expressed for these rows — as a list of `$Country_Code$` values, or
+> via the `Regulation_type` property referenced in the System Architectural
+> Design. "LATAM" is a region, not a single country code, and the test
+> cases need a concrete precondition value.
+>
+> Until clarified, the four rows are on hold in SWQT test case generation.
+
+</details>
 
 ### 文稿（下放包 20 §三，逐字；**整段替換**）
 
