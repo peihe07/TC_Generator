@@ -120,6 +120,18 @@ happen but cannot see it; here we can see it but cannot make it happen.
 **We will not fabricate a signal.** Naming a CAN signal we cannot trace to a source
 document would put an invented value into a delivered test case.
 
+**Two further requirements need the same kind of answer — a way to make an update
+fail:**
+
+| Requirement | Title | What we cannot trigger | What would resolve it |
+|---|---|---|---|
+| `SWE1-FOTA-093` | ROV Rollback Pop-up | An ROV update that fails **and then rolls back successfully**. The outcome is observable (a "Reverted" pop-up); we cannot cause the failure | A bench procedure or test mode that makes an ROV update fail with a successful rollback |
+| `SWE1-FOTA-094` | ROV Failure Pop-up | An ROV update that fails **without a successful rollback**. The outcome is observable (a "Walk Home Scenario" pop-up); we cannot cause the failure | The same, for the no-rollback case |
+
+These two are the same shape as `315`/`318`: **we know what to look for, we cannot
+bring it about.** Note that the two need to be distinguishable from each other — one
+requires the rollback to succeed, the other requires it not to.
+
 ---
 
 ## 3A. DR-SU3 — Confirmation that two requirements' verification may be folded in
@@ -282,7 +294,7 @@ definition for FOTA exists, it is in a document we have not been given.
 | DR-SU2 (a) | How error codes are surfaced on the head unit | Every step that reads a code |
 | DR-SU2 (b) | Positive-state observation for the Wi-Fi FOTA session | 5 confirmed rows, up to 106 in the same profile |
 | DR-SU2 (c) | Distinguishing means for `SWE1-FOTA-179`, `181` and `184` | 3 test cases, 8 placeholders |
-| DR-SU2 (d) | **Trigger** means for `SWE1-FOTA-315` and `318` | 2 test cases, 6 placeholders |
+| DR-SU2 (d) | **Trigger** means for `SWE1-FOTA-315`, `318`, `093` and `094` | 4 test cases, 12 placeholders |
 | DR-SU3 | Confirmation that `SWE1-FOTA-313` and `327` fold into the requirements they list | 1 test case, 3 placeholders (`327` not yet drafted) |
 | **DR-SU4** | **What "handled" looks like on the head unit, and how to judge it when the interruption's phase is undeterminable** | **6 test cases — none deliverable** |
 | DR-SU5 | Bench procedure for comparing two update types on one head unit; definition of "consistent" across types | 1 test case, 3 placeholders; 1 facet not drafted |

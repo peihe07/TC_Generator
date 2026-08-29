@@ -171,3 +171,51 @@ B-5 是逕行之判斷，本項是提交範圍之判斷。
 即可暴露二種失聯。**本輪之 `REASONING.md` 已對 `022` 記了這個對照，可作為格式雛形。**
 
 **出處**：上繳包 36 §5。
+
+---
+
+## B-9 `IX_END` 是一張寫死的片語表，每進一個新 Test Set 就落後一次
+
+**觀察**：`I-cross` 抽觀測窗之訖點，其詞表只有二個片語 ——
+`until the software version changes`／`until the update finishes`。
+二者皆出自 `Silent Update` 那一批。
+
+`ROV Installation` 之 `newR1L-SU-029` 寫 **`until the installation ends`**，
+**二者皆不匹配** → 訖點抽不出 → 該列被算成半窗。
+
+**其落後之方式是靜默的**：不報錯、不警告，只是把該列移出比對集
+（PLAYBOOK (41) 之同族）。**每個 Test Set 有自己的收尾語**，
+`Update HMI` 是「畫面開啟」、ROV 是「安裝結束」，下一組會是別的。
+
+**若解凍時之建議**：不必改為語意抽取（過度工程），但 ——
+- **半窗之輸出應同時列出「其 procedure／ER 中最像窗之片語」**，
+  使人一眼看出是「真的沒有窗」還是「詞表沒收」；
+- 詞表擴充時**記其來源批次**，使其成長可追。
+
+**出處**：上繳包 37 §2.3。
+
+---
+
+## B-10 訊號值與彈窗編號，是同一件事的兩種寫法
+
+**觀察**：037 以 `$FOTA_Status$ = [Successful FOTA Update]` 寫其**內部狀態**；
+彈窗清單以 `PU0303`（`Shown after a successful update`）／
+`PU0416`（`Displayed when the software update is complete`）寫其**外部表徵**。
+
+**二者指的是同一個時點。**
+
+而 `$FOTA_Status$` 是 CarPropertyManager 之車輛屬性，**台架上看不到**；
+彈窗**看得到，且其編號與文字皆已在案**。
+
+**故本組多數以「內部狀態」表述之列，其可觀測性並非真的缺** ——
+**缺的是一張對照表。**
+
+**若解凍時之建議**：建 `$FOTA_Status$` 各值 ↔ `PU` 編號之對照，
+**其依據須為彈窗清單之 `Description` 欄內容**（如 `Shown after a successful update`），
+**不得由值名與彈窗名之字面相近推定**（R-SU20(d) 之循環）。
+
+現已可據 `Description` 逐字對上者二：
+`[Successful FOTA Update]` ↔ `PU0303`；「更新完成」↔ `PU0416`。
+**其餘須逐值查，且未必都有。**
+
+**出處**：上繳包 37 §7。
