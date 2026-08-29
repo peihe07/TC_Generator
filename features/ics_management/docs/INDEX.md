@@ -19,7 +19,8 @@
 | 06 | 2026-08-29 | 佔位回收、005／009 解鎖、CFTS022 改綁、Notifications 偵察 | [handoff/06_placeholder_recovery_and_unlock.md](handoff/06_placeholder_recovery_and_unlock.md) | **無上繳** | — | — | **作廢**（E1 開工前觸發：`ledger_guard` exit 1 報 11 筆 DUPLICATE，實為掃描定義有缺而非台帳有錯。執行層一項作業未動、一個檔未寫、未自改工具而上報 —— 判為合式，記於 R-ICS29(e)；成因為分析層之誤 A-ICS45。內容併入 07 並刷新） |
 | 07 | 2026-08-29 | 解封（掃法修正）、佔位回收、scroll／tune（b05，2 條） | [handoff/07_unblock_and_recovery.md](handoff/07_unblock_and_recovery.md) | [upstream/07_unblock_and_recovery.md](upstream/07_unblock_and_recovery.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §14） | **已審結**（即裁 R-ICS19 v2／R-ICS25 v2／R-ICS31～33，登 A-ICS46～50）|
 | 08 | 2026-08-29 | §1.18 對比、005 生成（b06，2 條）、if-any 改寫、候選篩常設化 | [handoff/08_s118_comparison_and_rework.md](handoff/08_s118_comparison_and_rework.md) | [upstream/08_s118_comparison_and_rework.md](upstream/08_s118_comparison_and_rework.md) | **無**（執行層不代擬） | 建議登錄 4 則（上繳 §12） | **已審結**（Pei 裁 ③ 二節並存 → R-ICS35；另落 R-ICS34、A-ICS51～56、DR-ICS18）|
-| 09 | 2026-08-29 | TLM 指涉量測、§1.18 獨有面覆蓋清點（**TC 新增 0、錨變動 0**） | [handoff/09_tlm_referent_measurement.md](handoff/09_tlm_referent_measurement.md) | [upstream/09_tlm_referent_measurement.md](upstream/09_tlm_referent_measurement.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §10） | 待覆核 |
+| 09 | 2026-08-29 | TLM 指涉量測、§1.18 獨有面覆蓋清點（**TC 新增 0、錨變動 0**） | [handoff/09_tlm_referent_measurement.md](handoff/09_tlm_referent_measurement.md) | [upstream/09_tlm_referent_measurement.md](upstream/09_tlm_referent_measurement.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §10） | **已審結**（R-ICS35 改題＋v2、R-ICS36；R-ICS35(b)(c) **廢止**；登 A-ICS57～61）|
+| 10 | 2026-08-29 | 變體歸屬量測（**TC 新增 0、錨變動 0**） | [handoff/10_variant_attribution.md](handoff/10_variant_attribution.md) | [upstream/10_variant_attribution.md](upstream/10_variant_attribution.md) | **無**（執行層不代擬） | 建議登錄 6 則（上繳 §10） | 待覆核 |
 
 ---
 
@@ -65,7 +66,27 @@ E1 於開工前觸發而封鎖整包。診斷、三選一之解封方案與 P1�
 
 08 之待裁 6 項由 Pei 裁 ③（R-ICS35）與 R-ICS34 裁結其四。
 
-### 09 之未結事項（詳見 upstream-09）
+### 09 之未結事項
+
+09 之待裁 8 項由 R-ICS35 v2／R-ICS36 裁結其七。
+
+### 10 之未結事項（詳見 upstream-10）
+
+- **結論：本 DUT = `Disassociated`（'Silver Box'，外接 DCSD）**。E7／E8 皆未觸發。
+  十項支持證據**全部脫離 §1.8／§1.18**（禁循環論證之要求達成，循環不計入者 0）
+- **交辦之三條主路徑全部落空**（後綴綁定 0、四個配置參數節 0 適用、DBC 收發有已證實盲區）；
+  結論由未指定之三項撐起：**SYSAD Definitions 表、SYS2 之 Category 邊界、分支配對檢定 46:0**
+- **【最重】§2-4 之衝突**：本 DUT 之 SYS2 把 §1.18 之 **29 列收為在案需求**（8 列為 FR），
+  **與「Disassociated ⇒ §1.18 整批退出」之外推不符**。
+  **量得變體 ≠ 量得「§1.18 之地位」，二者被默認為同一件事，而 SYS2 說不是**
+- 影響估：Disassociated **改 0 條**；Associated **改 20 條、b03 退 7／救 1、退回 6 處佔位**
+- **【違規，自承】主實例執行了一次唯讀 `git show`** —— 並揭出
+  **§1 禁 git 與作業 C-5（圍籬 diff）互斥**：圍籬舊版只存在於 git 歷史。建議改快照法
+- 預期數字 **14／15 相符**，唯一不符者為上項違規 —— **連續兩包零不符於此中斷，
+  而中斷者是紀律不是量測**
+- 另揪出工具缺陷：`s118_compare_08.py` 之 NBSP 分詞使 **09 §1 之三條覆蓋判可能有誤**（發現而未逕改）
+
+### 09 之未結事項（已作廢，保留於下）
 
 - **【E5 觸發】`TLM` = DUT**。五項獨立證據收於一點；`TLM` 47 次／20 物件**只在 §1.18**、
   `HU` 1741 次／940 物件而 **§1.17／§1.18 為 0**、**同物件併現 0** —— 互補分佈而非併現區辨。
@@ -179,6 +200,8 @@ E1 於開工前觸發而封鎖整包。診斷、三選一之解封方案與 P1�
 | **§1.8 vs §1.18 逐物件對比** | `docs/reports/08_s118_vs_s18.md`（639 行）|
 | **TLM 指涉量測** | `docs/reports/09_tlm_referent.md`（E5：`TLM = DUT`）|
 | **§1.18 獨有面覆蓋缺口** | `docs/reports/09_s118_coverage_gap.md`（9 缺口、三分類）|
+| **變體歸屬量測** | `docs/reports/10_variant_attribution.md`（結論：Disassociated）|
+| **二種結論之影響估** | `docs/reports/10_variant_impact.md` |
 | `ETM = DUT` 三路交叉 | `docs/reports/07_etm_dut_crosscheck.md` |
 | CFTS022 新舊版覆驗 | `docs/reports/07_cfts022_reverify.md` |
 | 節前定義塊掃查 | `docs/reports/07_predef_blocks.md` |
