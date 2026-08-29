@@ -632,3 +632,39 @@ shall go to Body Off HU System Sleep Mode.
 確實可如此驅動」。此為**收窄**，非撤銷。
 
 狀態：**OPEN**（撤銷條件：DR-DD9 回覆確認）。
+
+---
+
+## [A-DD11] 彈出字串之二變體（新立，下放包 19 §1.2；**INFORMATIONAL，不阻斷**）
+
+- 登記：2026-08-28（分析層 forms/ 查證之順帶所得）
+- 狀態：**INFORMATIONAL** —— **不阻斷、不登 DR、不入 marker 登記表**
+- **對已生成 TC 之影響：無**
+
+### 二變體（下放包 19 §1.2 逐字）
+
+| 變體 | 出處 | 與已生成 TC 之關係 |
+|---|---|---|
+| `Feature not available while the vehicle is in motion` | `HMI Settings List` `Settings` r666 c7 | **與 profile §2.1 觀察面 B 逐字相同**（源 HMI spec p4）|
+| `Function not available while vehicle is in motion` | 同檔 `Settings` r151 c7 | **不同**：`Function`／無 `the` |
+
+### 何以不回修任何 TC
+
+觀察面 B 之權威為 **Driver Lockout HMI spec p4**（R-DD5 所綁）。
+`HMI Settings List` **未綁於本 feature，非語料** —— 故：
+
+- **不回修任何 TC**
+- **不改 profile §2.1**
+- **不登 DR** —— 該不一致存在於**未綁之文件內**
+
+> **這一條的價值在它記下了一件「現在不必處理」的事。**
+> 若日後綁定該檔、或 Settings 側之 popup 進入範圍，
+> 二變體之取捨會立刻變成問題 —— 屆時不必重新發現它。
+
+### 何以不入 marker 登記表（下放包 19 §七 T-登 明命）
+
+marker 登記表之每一列課予**生成義務**（用及某物即須標）。
+本條為 INFORMATIONAL，**不課任何生成義務** —— 入表即等於要求 TC 標一個
+沒有假設內容的 marker。**登記表只登有義務者。**
+
+狀態：**INFORMATIONAL**（無撤銷條件；隨綁定範圍變更而重新評估）。

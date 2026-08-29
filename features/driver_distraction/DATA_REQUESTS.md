@@ -20,17 +20,20 @@ Urgency 回報。
 | **DR-DD6** | 上游（CFTS022 作者）| **DRAFTED**（待 Pei 發送）| `-017`~`-024`（8）| **已由 R-DD19 乙案解凍**，B2 八則已產出並掛 `[ASSUMPTION A-DD9]`；`MTA(2)`／`DDCT(3)` 仍為 R-DD19(c) 硬邊界 | — | **必發** —— 組 1／2 待此 |
 | **DR-DD7** | 上游（037 作者）| **DRAFTED**（待 Pei 發送）| 文稿問 `-010`／`-012`；**實測涉 11 leaf** | **不阻斷** —— 品質旗標；**緩發** | **A-DD7** | 低 |
 | **DR-DD8** | 上游（CFTS022 作者／素材提供）| **DRAFTED**（待 Pei 發送）| **`-013`／`-015`** 之負向側（表外功能；範圍依下放包 17 §四 10-5）| **不阻斷生成** —— 負向側記為 `[CG-DD1]` 涵蓋缺口；亦為取樣只有 5 列可用之根因 | **[CG-DD1]** | **必發** —— 驗證方法步驟 4 待此 |
-| **DR-DD9** | 上游（CFTS022／037 作者）| **DRAFTED**（待 Pei 發送）| `-001`／`-002`（2）| **不阻斷** —— 依 R-DD20 掛 A-DD10 生成（**惟生成待包 17**）；`-002` 之 `$` 指令行留 `PENDING: DR-DD9` | **A-DD10** | **必發** —— 與 DD1／DD5／DD6 並列 |
+| **DR-DD9** | 上游（CFTS022／037 作者）| **DRAFTED**（待 Pei 發送；**文稿不動**）| `-001`／`-002`（2，**已產出**）| **不阻斷** —— `-002` 依 **R-DD20 v3(c)** 已可出貨（`$` 行撤，非規格缺件）；process 之具名為**品質改善項**，回覆到位後得補入步驟 | **A-DD10** | **緩發**（下放包 19 §二 R-DD20 v3(d) 降級）|
 
 **發送清單（下放包 13 §六）**：
 
 | 級 | DR | 狀態 |
 |---|---|---|
-| **必發** | **DD1**（確認件）、**DD5**、**DD6**、**DD8**、**DD9** | **DD1 已不卡 leaf** —— `-025`~`-028` 判範圍外（R-DD25(b)），該 DR 改為文件缺陷之確認件；DD5／DD6 已由 R-DD19 乙案解凍生成（**必發等級不減**，R-DD19(e)）；DD8 卡 `-120`／`-121` 之負向側；DD9 卡 `-001`／`-002` 之施加識別碼與 process 名 |
-| 緩發 | DD2（格式更正件）、DD4（縮為一問）、DD7（品質旗標）| 皆非阻斷 |
+| **必發** | **DD1**（確認件）、**DD5**、**DD6**、**DD8** | **DD1 已不卡 leaf** —— `-025`~`-028` 判範圍外（R-DD25(b)），該 DR 改為文件缺陷之確認件；DD5／DD6 已由 R-DD19 乙案解凍生成（**必發等級不減**，R-DD19(e)）；DD8 為 `-013`／`-015` 之負向側（範圍依下放包 17 §四 10-5），亦為取樣只有 5 列可用之根因。**四筆皆不阻斷出貨。** |
+| 緩發 | DD2（格式更正件）、DD4（縮為一問）、DD7（品質旗標）、**DD9**（下放包 19 §二 降級）| 皆非阻斷 |
 | **結案** | **DD3** | **RESOLVED**（下放包 13 §二）|
 
 **八筆未發送；DD3 已結案。**
+
+> **自下放包 19 §二 R-DD20 v3(c)(d) 起，未結 DR 中已無阻斷出貨者** ——
+> DD9 為最後一筆（`-002` 之 `PENDING`），該包撤其佔位並降為緩發。
 
 > **DD5／DD6 之「阻斷」欄已於本輪改寫**（下放包 16 §七 之拘束：
 > 不得向上游或台帳陳述已失實之狀態）。上繳 12 §2.3 改的是 **DR 文稿末行**，
@@ -723,6 +726,14 @@ not in the table`。而該表在需求本文中**只以內嵌物件引用**
 > features remain accessible) can be implemented. Until then this negative
 > aspect is recorded as a coverage gap ([CG-DD1]) in SWQT test case
 > generation.
+>
+> The following bound and shared sources were searched without finding a
+> machine-readable form of the table: the SYSRA workbook (no embedded
+> objects), the Driver Lockout HMI Logic and Flow document (May 3 2021,
+> `L/O`-marked rows only), `DTCs Matrix Core List Rev. 1.6`, and
+> `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026)` (lockout appears
+> only as free-text notes in the Notes column, which itself refers back to
+> CFTS022 for the requirements).
 
 ### 與 [CG-DD1] 之連結
 

@@ -33,7 +33,7 @@
     "test_item": "AC2:\nWhen the DD process is terminated during Body OFF sleep, DD Service provides cold-start state initialization capability after wake-up\nCase [Exception]the process is terminated during sleep\nThen DD Service starts with the default NOT_RESTRICTED state and initializes all states to NOT_RESTRICTED\n(a cold start after the process was terminated during sleep leaves the locked-out features reachable)",
     "pre_conditions": "1. The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ is transmitted on the bus at 0 (0.0000 km/h)",
     "input_test_data": "NA",
-    "test_procedure": "1. Bring the HU through the Body OFF power down [ASSUMPTION A-DD10]\n2. Terminate the DD process in the test environment\n$ PENDING: DR-DD9 <DD process termination command>\n3. Start CAN activity on Body CAN to wake the HU [ASSUMPTION A-DD10]\n4. Open \"DND Customize auto reply message\" and check that it opens",
+    "test_procedure": "1. Bring the HU through the Body OFF power down [ASSUMPTION A-DD10]\n2. Terminate the DD process in the test environment\n3. Start CAN activity on Body CAN to wake the HU [ASSUMPTION A-DD10]\n4. Open \"DND Customize auto reply message\" and check that it opens",
     "expected_result": "1. The HU periodic messages are no longer present on the bus\n2. The DD process is no longer running in the test environment\n3. The HU broadcasts all its periodic messages within 400 msec of wakeup\n4. \"DND Customize auto reply message\" opens and its view is displayed",
     "spec_reference": "CFTS022-4915104",
     "tc_ref_id": "NEW",
@@ -49,6 +49,6 @@
       "tokens": 42,
       "cap": 50
     },
-    "reasoning": "驗證目標：sleep 中 DD process 被終止後之冷啟初始化 —— 斷言錨與取樣同 `-001` 之體例，取樣改為 \"DND Customize auto reply message\"（p7 top=317（DND 列））使二則於 ER 可區辨（IN §8.7）。終止步驟之**業務行照 037 Method（r10 c18）逐字承載** —— 原文 `terminate the DD process in the test environment`（首字母大寫為步驟書寫之排版正規化，實詞未改）；其 `$` 指令行依 **R-DD20 v2(c) ＋ IN §8.4.3** 留 `PENDING: DR-DD9 <DD process termination command>`（**佔位內文亦須為英文** —— R-DD22(a)；R-DD20 v1(c) 原書之中文佔位違 IN §1，下放包 18 §1.2 已裁改），**不得自 SYSAD 取服務名充之**（R-DD4：SYSAD 不入語料）。**本則因含 PENDING 而不得出貨**（IN §8.4.3），生成與台帳照常。電源時序、marker、PC 之處置同 `-001`。"
+    "reasoning": "驗證目標：sleep 中 DD process 被終止後之冷啟初始化 —— 斷言錨與取樣同 `-001` 之體例，取樣改為 \"DND Customize auto reply message\"（p7 top=317（DND 列））使二則於 ER 可區辨（IN §8.7）。終止步驟之**業務行照 037 Method（r10 c18）逐字承載** —— 原文 `terminate the DD process in the test environment`（首字母大寫為步驟書寫之排版正規化，實詞未改）；**不附 `$` 指令行**（**R-DD20 v3(c)**）—— 本步驟與電源時序步驟同屬台架程序層級，其可執行性屬台架程序，**非規格缺件**，故 IN §8.4.3 之佔位義務不發生；v1(c)／v2(c) 之 `PENDING: DR-DD9 <…>` 已撤。**不得自 SYSAD 取服務名充之**（R-DD4：SYSAD 不入語料）。**本則自 R-DD20 v3(c) 起可出貨**（PENDING 已撤）；DR-DD9 降緩發，process 之具名為品質改善項。電源時序、marker、PC 之處置同 `-001`。"
   }
 ]

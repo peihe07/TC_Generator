@@ -5,7 +5,7 @@
 - (a) 同一性採定義級基礎（CFTS009 `4941238`），marker `A-DD10` 標於電源時序步驟
 - (b) 施加式**以 power 線通稱式之風格新編**，條件與觀察錨定 CFTS009 逐字：
       Body OFF 定義 `4941028`／入眠 `4941238`／喚醒 `4941100`／醒後現象 `4941103`
-- (c) `-002` 之終止步驟：業務行照 037 Method 逐字；`$` 行留 IN §8.4.3 之 PENDING
+- (c) `-002` 之終止步驟：業務行照 037 Method 逐字；**不附 `$` 指令行**（v3 改述）
 - (f) `TLM_Status.Info`／`$Telematic_Power$` **不用於本二則**
 
 **只生成，不寫回、不 git。** 產物：`generated/batch_body_off_init.json`
@@ -76,11 +76,13 @@ def build(k):
         proc = [SLEEP_STEP, WAKE_STEP, acc_p]
         er = [SLEEP_ER, WAKE_ER, acc_e]
     else:
-        # §5.4：描述行（業務行，037 Method 逐字）＋ 其下不編號之 `$` 指令行。
-        # **指令行不縮排** —— IN §5.4 之規範句只要求「starts with `$`」，
-        # 其範例之縮排與 IN §11「多行欄位無行首空白」相衝，取規範句。
-        term = (TERM_VERBATIM[0].upper() + TERM_VERBATIM[1:] + "\n"
-                "$ PENDING: DR-DD9 <DD process termination command>")
+        # **R-DD20 v3(c)（下放包 19 §二）：不附 `$` 指令行。**
+        # 理由（條文逐字）：IN §5.4 之二行式適用於「步驟需 shell／adb／CAN 工具等
+        # 外部指令」者；本步驟與同則之電源時序步驟（`Bring the HU through the
+        # Body OFF power down`，亦不附指令）**同屬台架程序層級**，
+        # 其可執行性屬台架程序，**非規格缺件** —— 故 IN §8.4.3 之佔位義務
+        # 於本欄不發生，v1(c)／v2(c) 之 `PENDING: DR-DD9 <…>` 撤。
+        term = TERM_VERBATIM[0].upper() + TERM_VERBATIM[1:]
         proc = [SLEEP_STEP, term, WAKE_STEP, acc_p]
         er = [SLEEP_ER,
               "The DD process is no longer running in the test environment",
@@ -154,9 +156,9 @@ REASON = {
         f"取樣改為 {FEAT['002'][0]}（{FEAT['002'][1]}）使二則於 ER 可區辨（IN §8.7）。"
         "終止步驟之**業務行照 037 Method（r10 c18）逐字承載** —— 原文 "
         f"`{TERM_VERBATIM}`（首字母大寫為步驟書寫之排版正規化，實詞未改）；"
-        "其 `$` 指令行依 **R-DD20 v2(c) ＋ IN §8.4.3** 留 `PENDING: DR-DD9 <DD process termination command>`（**佔位內文亦須為英文** —— R-DD22(a)；R-DD20 v1(c) 原書之中文佔位違 IN §1，下放包 18 §1.2 已裁改），"
+        "**不附 `$` 指令行**（**R-DD20 v3(c)**）—— 本步驟與電源時序步驟同屬台架程序層級，其可執行性屬台架程序，**非規格缺件**，故 IN §8.4.3 之佔位義務不發生；v1(c)／v2(c) 之 `PENDING: DR-DD9 <…>` 已撤。"
         "**不得自 SYSAD 取服務名充之**（R-DD4：SYSAD 不入語料）。"
-        "**本則因含 PENDING 而不得出貨**（IN §8.4.3），生成與台帳照常。"
+        "**本則自 R-DD20 v3(c) 起可出貨**（PENDING 已撤）；DR-DD9 降緩發，process 之具名為品質改善項。"
         "電源時序、marker、PC 之處置同 `-001`。"),
 }
 for tc in TCS:
