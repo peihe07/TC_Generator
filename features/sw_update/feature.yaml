@@ -18,6 +18,8 @@ paths:
   sysad: "inputs/SYS3_CFTS_057_FM-WI-FSM-011-A01 系統架構設計 System Architectural Design_SYSAD_V03_06042026_V3.0.docx"
   vf747: "inputs/Entire_Vehicle_FOTA_Management_VF747_V1_R3.docx"
   popup_list: "inputs/Pop Up List HMI R1 (26PI).xlsx"
+  # T42a（下放包 29）：Pei 裁可用（R-SU35）。負向路徑之錯誤碼來源，非錨點來源。
+  error_code_list: "inputs/Error_Code_List.xlsx"
 
 # T2 實測（2026-08-27）：037 之需求分頁名為 `AnalysisReport_FULL`（無空格），
 # intake.py 之 SHEET_SIGNATURES（`"Analysis Report" in names`）不命中，
@@ -114,6 +116,9 @@ reference:
   vf747:
     file: "features/sw_update/inputs/Entire_Vehicle_FOTA_Management_VF747_V1_R3.docx"
     sha256: "8970eb04dbc158e841108ac7003b82c7fab52dabbb0e9e1a23ca9cfa1855a416"
+  error_code_list:
+    file: "features/sw_update/inputs/Error_Code_List.xlsx"
+    sha256: "4625753cdf90a6b0788e8da32448e8e6aef4ee987b6966bb9934f2ab49451aad"   # T42a 實測；與 forms/ 原件位元相同
   workbook_master:
     file: "forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
     sha256: "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"   # T9 對 forms/ 原件重測確認 ✅

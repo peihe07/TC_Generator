@@ -28,6 +28,37 @@ R-SU1／**R-SU10 v2**／R-SU18／**R-SU19**
 > 二者為導航與交付面之別 —— Layer 3 錯了只是導航繞路，
 > `specification_reference` 錯了是交付缺陷。
 
+## 觀測面來源之覆蓋（T42d，下放包 29）
+
+> **T42d(iii) 令「`framework.md` 之 DR 註記同步」—— 本檔原無任何 DR 註記**
+> （全檔 `DR-SU` 命中 0）。故本節為**新增**，非同步；
+> 其射程限於「哪些 Test Set 因 `Error_Code_List.xlsx` 而有了觀測面來源」。
+
+**Pei 裁 `Error_Code_List.xlsx` 可用**（R-SU35，2026-08-28）後，
+下列 Test Set 之**負向路徑**有了具名之觀測面來源。**正向路徑不受影響**（R-SU35(d)）。
+
+| Test Set | 對應階段（R-SU35(a)） | 碼數 | 覆蓋之路徑 |
+|---|---|---:|---|
+| `USB Update` | Precondition | 7 | **負向**（USB／SWDL） |
+| `Integrity Verification` | Package Header check & unpack／Security check | 17 | **負向** |
+| `Update Agent` | Rollback Protection | 3 | **負向** |
+| `Interruption Handling`／`Update Agent` | Install（M-CPU／Redbend／V-CPU） | 31 | **負向** |
+| （不用） | Install ( SXM ) | 17 | 非本 feature 範圍 |
+| **— 未載** | `After HU start-up, suddenly`／`RedBend update engine` | **5** | **R-SU35(a) 無對照，待裁** |
+
+**三項拘束須隨本表一併讀**：
+
+1. **本表為 USB／SWDL 路徑**（R-SU35(c)1）—— `Wi-Fi Download`、`Silent Update`
+   等 Wi-Fi FOTA session 之組**不得引用**，其正向狀態觀測仍為 DR-SU2 v2(b)。
+2. **碼有了，看碼的地方還沒有**（R-SU35(b)3）—— 錯誤碼於 HU 上之呈現途徑為
+   DR-SU2 v2(a) 之未解項；未答前觀測步驟掛 `PENDING: DR-SU2`。
+3. **本表不改 Layer 2 之切分** —— 其為各組之材料供給狀態，非分組依據。
+   以「某組有無錯誤碼」回頭調整分組即為循環（R-SU20(d)）。
+
+詳見 `ERROR_CODES.md`（80 碼）與 `DATA_REQUESTS.md` 之 DR-SU2 v2。
+
+---
+
 **Layer 3 於 2026-08-28 之覆蓋狀態**：
 
 | | 值 |
