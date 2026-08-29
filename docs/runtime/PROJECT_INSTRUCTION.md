@@ -105,6 +105,12 @@ Balance SWE.6 (deterministic, reproducible, auditable, traceable, no FP) with re
 ## 1. Language
 TC workbook fields: English only. Reasoning fields: Traditional Chinese allowed. No emoji.
 
+[OVERRIDE-R5][DEFAULT] 雙語並列（中文 AC + 英譯、英文 + 簡中對照）
+於 BT、Projection 兩 feature 為既存制度性格式，予以合法化，
+不回修；lint K 對此二本配置豁免。UI 標籤之簡中 verbatim 全案豁免。
+工作備註中文一律不得留於交付欄，應移至 Remarks。
+新 feature 一律 English only，不得援引本例。
+
 ## 2. Core Principles
 - One TC = one verification objective; flow multi-step, validation single
 - Final Step owns validation; represents Test Item executably
@@ -285,6 +291,10 @@ Pre-Condition, Input Test Data, and Procedure.
 
 If the data already belongs to Pre-Condition or Procedure, set Input Test Data
 to `NA`. `NA` is valid for many UI-operation TCs and does not fail self-check.
+
+**SWC 基準（R-1 v2 同批採認）**：資料應內聯至 Pre-Condition 或 Procedure，
+使步驟自足；Input Test Data 以 `NA` 為常態（SWC 0708 實測 285/286 為 `NA`）。
+步驟不得以「listed in Input Test Data」回指該欄。
 
 ### 4.6 Sibling Awareness
 On `## Sibling Rows` injection, output `duplicate_of` (only if truly equivalent: same trigger+outcome+input+verification target) and `distinguishing_axis` `{"axis": "<trigger_state|input_data|timing|boundary|mode|none>", "delta": "<繁中一句, 含 tc_title 具體 token>"}`. Rule: `axis="none"` ⇔ `duplicate_of` set. Full contract in code.
@@ -542,6 +552,12 @@ If the external spec has no parallel SWE requirements in the project (true
 coverage gap), surface it as a coverage hole in `reasoning` — do NOT silently
 absorb it into the current TC.
 
+#### 8.4.3 缺件佔位（S6）
+欄位因來源文件缺失而無法填寫時，寫 `PENDING: DR-{n} <缺件名>`，
+不得留空、不得填 NA。NA 僅限「確認不適用」。DR 登記於該 feature
+之 DATA_REQUESTS.md；每包上繳附未結 DR 清單。含 PENDING 之工作簿
+不得出貨，交付前須全數結案或由 Pei 裁定降轉 NA。
+
 ### 8.5 Pre-Condition Scope Drift
 A Pre-Condition entry is valid only if it is a trigger condition the current
 TC directly verifies. Environmental stability conditions owned by other RDs
@@ -598,6 +614,83 @@ all related steps, noting the source requirement (e.g. `<variant-ref>`).
 A visual state (greyed-out, dimmed) does NOT imply non-operability; the ER must
 not assert operability that contradicts the spec. Follow the behavior the spec
 explicitly states.
+
+#### 8.7.5 訊號與參數寫法（R-1 v3）
+**適用範圍**：全域預設；feature profile 之 cited `[OVERRIDE §8.7.5]` 勝出（FO §0）—— 現有 override：`vehicle_setting`（R-VS52／R-VS67，依 SWC 0708 交付本風格，不適用本節）。
+基準：CR30580/30581 參考本（TestResult 分頁）＋ SWC 0708 交付本。
+條文全文落檔於本節，台帳見 `docs/fw036/RULINGS_LEDGER.md`。
+**v1 之三件組 `<Signal> in <MESSAGE> on <segment>` 與 v2 之
+`Send CAN:` 前綴式皆已撤銷**，撤銷理由見本節末之沿革。
+
+(a) 訊號一律以 `$<MESSAGE>.<Signal>$` 全名書寫，`$` 包覆全名；
+    值採 `= <raw> (<label>)`，`<label>` 逐字取自 DBC `VAL_` 列舉（R-7）。
+
+        Procedure 送出：
+          `Send the signal $MESSAGE.Signal$ = <raw> (<label>)`
+          例：`1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)`
+        Procedure 由 HMI 觸發：
+          `Select <項目> = <值> to trigger $Signal$ signal transmission`
+        Expected Result 觀察：
+          `The signal value $MESSAGE.Signal$ = <raw> (<label>) is received`
+        Expected Result 送出之確認：
+          `The signal $MESSAGE.Signal$ = <raw> (<label>) is registered without a bus error`
+
+(b) Procedure 之觀察步驟須寫出應觀察之值（R-11(b)）：
+    `Read the signal $MESSAGE.Signal$ and check that it is <raw> (<label>)`
+
+(c) PROXI 參數：`PROXI <Param> = <值>`，前綴 `PROXI` 必寫，**不加 `$`**。
+    例：`2. PROXI Vehicle_Line_Configuration = 124 (DT)`
+    `$` 是訊號之標記，不是 PROXI 之標記。
+
+(d) 內部訊號（`X.Info` / `X.Req` / `X.GUI`）：**優先**依對照表轉為可觀察之
+    CAN 訊號並套 (a)；**DBC 查無對應者保留來源名稱，不加 `$`**，
+    並依 (b) 於 Procedure 寫出應設定或應觀察之值。
+    例：`1. Drive Front_Panel_OnOff.Req from Not_Pressed to Pressed`
+    理由：強令改寫為「HMI 現象」將失去對規格之逐條追溯性，
+    且該現象本身常無來源明載，反致造值（§8.4.1）。
+
+(e) 保持／等待步驟：`Hold for <n> ms` 獨立成一步驟，
+    ER 對應 `The signal is held for <n> ms`。
+
+(f) baseline 記錄：`Read <對象> and record as <Name>_initial` →
+    `Read <對象> … and record as <Name>_after` →
+    `Check that <Name>_after <關係> <Name>_initial`。
+    ER 對應 `<Name>_initial is recorded`。
+
+(g) **規格訊號名與 DBC 不符之處置（R-13）**：規格原文所載之訊號名，
+    即使 DBC 查無同名，一律**保留原文名稱**，不得代以語意相近之他訊號；
+    DBC 對應缺漏登記 DR 向上游查詢。
+    理由：以他訊號代入將改變 TC 之驗證對象與因果結構。
+
+訊號名以 DBC 為準；來源文件與 DBC 大小寫不一致時，步驟採 DBC 寫法，
+verbatim 上半仍保留來源原文（R-6）。**(g) 為此之例外** —— DBC 全無該名時，
+無「以 DBC 為準」可言，取原文。
+
+##### 沿革（R-TM13：不刪除，加註保留）
+
+~~**v2(a)** CAN 訊號 Procedure 採 `Send CAN: <MESSAGE>.<Signal> = <raw> (<label>)`，
+不加 `$`；**v2(b)** ER 採 `<MESSAGE>.<Signal> = <raw> (<label>) is sent <時機>`；
+**v2(c)** PROXI 參數名採加 `$` 式 `PROXI $Param$ = "值"`；
+**v2(d)** 內部訊號維持來源記法，不加 `$`，不套 (a) 之 CAN 格式。~~
+
+> **撤銷（2026-08-21，下放包 12）**：CR30580/30581 參考本實測顯示
+> `$` 為**訊號**之標記而非 PROXI 之標記 —— v2(c)(d) 之指派恰好相反。
+> (a)(b) 之 `Send CAN:` 前綴一併由 (a) 之 `$MESSAGE.Signal$` 式取代。
+> v2(e)(f) 之內容不變，即現行 (e)(f)。
+>
+> **v3(d) 之再修訂（2026-08-21，下放包 17 §三）**：v3 原條文為
+> 「內部訊號**必須**轉為可觀察之 CAN 訊號，查無對應者**不得留內部訊號名**」。
+> 實作後發現該類訊號多對應可執行之實體動作或可讀之設定值，
+> 改寫為「HMI 現象」反失追溯性且易致造值。
+> **原「不得留來源名」之表述作廢**，改為現行 (d)。
+>
+> **(g) 之增立（2026-08-21，下放包 19）**：`PowerModeSts_Telematic` 一案 ——
+> 分析層僅查 DBC 未查 CFTS 原文，即斷該名為兩個 DBC 訊號之混合並代入其一，
+> 致觸發訊號被觀察訊號取代、因果驗證塌縮。R-13 為其防再犯之條文。
+
+> ⚠ **lint 之檢查 P 目前仍以 v2 判準實作**（`Send CAN:` 前綴）。
+> 其改寫以 `--profile <feature>` 為之（下放包 17 §四），
+> 未指定 profile 時維持現行行為，以保既有八本之報告基線不變。
 
 ## 9. Self-Check (before emitting each TC)
 1. Test Set: noun phrase, capability-level, matches `framework.md`, no Test Group prefix, consistent spelling, no `Unclassified` / `Misc` (§4.1, §4.2)
@@ -671,26 +764,39 @@ matching a sibling shown as `[row #11]` in the Sibling Rows section. Strict
 equivalence required: same trigger + outcome + input + verification target.
 When in doubt, omit the field.
 
-### 10.7 `specification_reference` (workbook column)
-String list of source spec references that anchor this TC. Required when
-TC content depends on spec content (almost always).
+### 10.7 specification_reference
+依母 spec 型態分流：
+(a) CFTS 母文件 → `CFTS{nnn}-{ObjectID}`，ObjectID 為該物件之
+    Polarion 7 位號碼。短號需求 ID（如 CFTS015-824）不得作為錨，
+    僅得於 reasoning 引用。
+(b) HMI Logic and Flow 類 → `{檔名}_{章節號}`，檔名以底線 token 化
+    （空格→底線），全案逐字一致，禁止同檔名拼寫變體。
+排列（Pei 裁定，2026-08-21，取代原「以 `, ` 續列」之規定）：
+**一個 ObjectID／章節號一行**，每行皆為完整之
+`CFTS{nnn}-{ObjectID}`／`{檔名}_{章節號}`，前綴逐行重述。
+禁用 `,`、`、`、`;` 串接。同文件內 ID／章節號升冪。
+CFTS 家族之列不另附文件名與章節號 —— ObjectID 已足以定位。
 
-**Format per entry**: `{spec_filename}_{section_id}`
-- e.g. `Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_4.1`
-- e.g. `Menu Bar and App Drawer HMI Logic and Flow R1 SR24 3A (September 11 2023)_2.5`
-
-**Rules:**
-- List every spec section the TC directly verifies or relies on as setup
-- Use the SourceID format from SYS1 / Polarion when available
-- Order from most-specific (lowest section number) to general
-- Multiple specs allowed when TC spans multiple spec files
-- Do NOT cite specs only used as background context (those go in `reasoning`)
-- Do NOT cite RD analysis docs (SWE.1 / SWE.5) — those are not spec sources
+**家族排序（SWC 基準，實測 286/286 首行為 CFTS）**：同一 TC 兼引 CFTS 與
+HMI Logic and Flow 兩家族時，CFTS 行在前、HMI 行在後。
+例：`CFTS042-4813401` ⏎ `Steering_Wheel_Controls_HMI_Logic_and_Flow_…-Volume Down`
 
 ## 11. Formatting
 No HTML / Markdown tables in TC output. Plain numbered text; one item per line; blank line between fields.
 
 **No trailing period** in `pre_conditions`, `input_test_data`, `test_procedure`, `expected_result` — strip the final `.` (or `。`) at the end of every line. Mid-sentence periods are kept (e.g. `Press button. Wait 5s` is fine; `Press button. Wait 5s.` is NOT). Applies to every numbered item.
+
+本節之引號規則與尾句號規則自 canon 生效日起適用；
+09_ 目錄舊版 Writing Rules 之方括號範例與帶尾句號範例已 superseded。
+尾句號之規制單位為 numbered item，非物理行：item 之尾句號落於續行
+時，該 item 仍屬違規。子步驟 `a./b./c.` 為實質測試內容，同受規制。
+
+**No leading / trailing whitespace on any physical line**（Pei 裁定 2026-08-24）：
+多行欄位（`test_item`、`pre_conditions`、`input_test_data`、
+`test_procedure`、`expected_result`、`specification_reference`、`remarks`）
+之每一實體行行首不得有空白字元；空行須為真空行（不得含任何空白字元）；
+行尾不得有 trailing 空白。適用於 generated json 與寫回後之 cell 兩層 ——
+寫回組裝不得引入縮排。lint 檢測項於全域收尾輪接入。
 
 **UI element labels use double quotes**, never square brackets. Applies to on-screen buttons, menu bar items, popup buttons, hard-key (H/K) buttons, tab names, and any literal label the tester reads off the UI. Display text and indicators that are values rather than tappable elements (e.g. source indicator `"AA"`, status text `"Music Muted"`) follow the same convention.
 
