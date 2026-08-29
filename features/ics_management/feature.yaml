@@ -26,12 +26,15 @@ paths:
   sysad: "inputs/SYS3_CFTS020_ICS_FM-WI-FSM-011-A01_System Architectural Design_SYSAD_v1.0.docx"
   sys2_export: "inputs/SYS2_CFTS_020_DISP_TCH_ICS_20260616_All_HW_System_Accepted & Released.xlsx"
   cfts020_fs: "inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and DCSD _20260310-1533.docx"
-  # ⚠ **CFTS022 不在本 feature 之 inputs/**（上繳包 01 §三-1，A-ICS8）。
-  # b01 六條之錨全數取自該檔，其實體位於 privacy 之 inputs/。
-  # 綁原件而不複製 —— 原件變動才是需要偵測的事件，複本只會跟著變
-  # （同 bed_lowering R-BLM11 綁 vehicle_setting 原件之理由）。
-  # 素材補入超出既定根目錄屬 Pei 裁定事項（charter §觸點），故本包只綁不搬。
-  cfts022_fs: "../privacy/inputs/R1LR_Atl-H_25PI3.5_Privacy_CFTS_022 Functional Specification_20250910_1708.docx"
+  # ✅ **CFTS022 已入本 feature 之 inputs/**（R-ICS12(a)，Pei 2026-08-29 置入
+  # 26PI2.5_20260608-1205 真 docx）。依 **R-ICS12(b)**，本 feature 之綁定自
+  # privacy 原件（25PI3.5）改綁本 feature inputs/ 之新版；
+  # **privacy 自身之綁定不動**（他轄）。
+  # 01 輪之「不在本 feature／綁 privacy 原件而不複製」註記自本包起作廢：
+  # 其理由為「素材補入超出既定根目錄屬 Pei 裁定事項」，該前提已由 (a) 消滅。
+  # b01 六條之錨全數取自本檔；改綁前後之逐字覆驗見
+  # docs/reports/07_cfts022_reverify.md（R-ICS12(c)）。
+  cfts022_fs: "inputs/R1LR_Atl-H_26PI2.5 Jun Release-Privacy_CFTS_022 Functional Specification_20260608-1205.docx"
 
 # feature profile（R-ICS18(e)，下放包 04 §三 A 令執行層落檔）。
 # 內容逐字取 R-ICS18(a)(b)(c)，標 cited `[OVERRIDE IN §11]`；
@@ -129,10 +132,15 @@ reference:
   cfts020_fs:
     file: "features/ics_management/inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and DCSD _20260310-1533.docx"
     sha256: "8696d1f596e3367754b092ff6d810cccff6258f46d6e90f8c0b30864314a30f3"
-  # b01 六條之錨全數出自本檔。綁 privacy 之原件（見 paths.cfts022_fs 之註）。
+  # b01 六條之錨全數出自本檔。**依 R-ICS12(b) 自 privacy 原件（25PI3.5）
+  # 改綁本 feature inputs/ 之 26PI2.5 新版**（見 paths.cfts022_fs 之註）；
+  # privacy 之綁定不動。舊綁定留記以供回溯：
+  #   features/privacy/inputs/R1LR_Atl-H_25PI3.5_Privacy_CFTS_022 Functional Specification_20250910_1708.docx
+  #   sha256 5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78
+  # 下列 sha256 為本包自實體檔以 `shasum -a 256` 重算。
   cfts022_fs:
-    file: "features/privacy/inputs/R1LR_Atl-H_25PI3.5_Privacy_CFTS_022 Functional Specification_20250910_1708.docx"
-    sha256: "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+    file: "features/ics_management/inputs/R1LR_Atl-H_26PI2.5 Jun Release-Privacy_CFTS_022 Functional Specification_20260608-1205.docx"
+    sha256: "7acfa462533d143c8099933e5b9e707f1c36aa3be95f5d8d0875b42a1f917fef"
   workbook_master:
     file: "forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
     sha256: "6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2"

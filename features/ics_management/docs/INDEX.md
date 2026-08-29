@@ -15,7 +15,9 @@
 | 02 | 2026-08-29 | 訊號解佔位、ignore 面（b02，2 條）、CFTS020 三面偵察 | [handoff/02_signal_resolution_and_ignore_face.md](handoff/02_signal_resolution_and_ignore_face.md) | [upstream/02_signal_resolution_and_ignore_face.md](upstream/02_signal_resolution_and_ignore_face.md) | **無**（執行層不代擬） | 建議登錄 3 則（上繳 §十二） | **已審結**（b02 收下；即裁 R-ICS11～17 與 R-ICS2 v2）｜註：其 §8 追補未隨包執行，改由 03 之作業 F 補做 |
 | 03 | 2026-08-29 | 並行防護、CFTS020 全域 v2 重判、Display 面解鎖（b03，8 條） | [handoff/03_parallel_guard_and_display_unlock.md](handoff/03_parallel_guard_and_display_unlock.md) | [upstream/03_parallel_guard_and_display_unlock.md](upstream/03_parallel_guard_and_display_unlock.md) | **無**（執行層不代擬） | 建議登錄 6 則（上繳 §十四） | **已審結**（b03 收下；即裁 R-ICS18～21，登 A-ICS21～27，新開 DR-ICS14／15） |
 | 04 | 2026-08-29 | profile 落檔、四訊號解佔位、Browse／Navigation 面（b04，7 條） | [handoff/04_profile_signals_and_navigation.md](handoff/04_profile_signals_and_navigation.md) | [upstream/04_profile_signals_and_navigation.md](upstream/04_profile_signals_and_navigation.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §十二） | **已審結**（b04 收下；即裁 R-ICS22／23，登 A-ICS28～33，新開 DR-ICS16／17） |
-| 05 | 2026-08-29 | 佔位補齊、Display ER 主錨改寫、交付前體檢（**不新增 TC**，維持 23 條） | [handoff/05_anchor_rework_and_pre_delivery.md](handoff/05_anchor_rework_and_pre_delivery.md) | [upstream/05_anchor_rework_and_pre_delivery.md](upstream/05_anchor_rework_and_pre_delivery.md) | **無**（執行層不代擬） | 建議登錄 3 則＋G2~G7 六筆待取號（上繳 §14） | 待覆核 |
+| 05 | 2026-08-29 | 佔位補齊、Display ER 主錨改寫、交付前體檢（**不新增 TC**，維持 23 條） | [handoff/05_anchor_rework_and_pre_delivery.md](handoff/05_anchor_rework_and_pre_delivery.md) | [upstream/05_anchor_rework_and_pre_delivery.md](upstream/05_anchor_rework_and_pre_delivery.md) | **無**（執行層不代擬） | 建議登錄 3 則＋G2~G7 六筆待取號（上繳 §14） | **已審結**（即裁 R-ICS22 v2／24～30，登 A-ICS34～45） |
+| 06 | 2026-08-29 | 佔位回收、005／009 解鎖、CFTS022 改綁、Notifications 偵察 | [handoff/06_placeholder_recovery_and_unlock.md](handoff/06_placeholder_recovery_and_unlock.md) | **無上繳** | — | — | **作廢**（E1 開工前觸發：`ledger_guard` exit 1 報 11 筆 DUPLICATE，實為掃描定義有缺而非台帳有錯。執行層一項作業未動、一個檔未寫、未自改工具而上報 —— 判為合式，記於 R-ICS29(e)；成因為分析層之誤 A-ICS45。內容併入 07 並刷新） |
+| 07 | 2026-08-29 | 解封（掃法修正）、佔位回收、scroll／tune（b05，2 條） | [handoff/07_unblock_and_recovery.md](handoff/07_unblock_and_recovery.md) | [upstream/07_unblock_and_recovery.md](upstream/07_unblock_and_recovery.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §14） | 待覆核 |
 
 ---
 
@@ -44,7 +46,29 @@ R-ICS1～4 與 A-ICS1～7 之產生過程只存在於 2026-08-29 之聊天；
 
 04 之待裁 7 項由 R-ICS22／R-ICS23 裁結其五。
 
-### 05 之未結事項（詳見 upstream-05）
+### 05 之未結事項
+
+05 之待裁 7 項由 R-ICS22 v2／R-ICS24～R-ICS30 裁結。
+
+### 06 —— **作廢，無上繳包**
+
+E1 於開工前觸發而封鎖整包。診斷、三選一之解封方案與 P1／P2 過期之具名，
+見對話紀錄與 R-ICS29／A-ICS45。**06 之作業內容併入 07 並刷新。**
+
+### 07 之未結事項（詳見 upstream-07）
+
+- **解封**：`ledger_guard` 掃法依 R-ICS29(c)(d) 修正（剔除 `LEDGER-IGNORE` 區塊、
+  合併列不計入、docstring 同步），exit 0
+- **三個機制各擋下一件**：作業 C **E3 觸發**（`ETM = DUT` **不成立**，
+  12 處 `$TGW_DISP_STAT$` 佔位維持）、作業 D 之 009 **錨判不適用**（Radio／EE 二軸皆落空）、
+  005 **E4 觸發**（不符純為列舉順序，內容零變動）
+- **作業 G 首次執行**：118 行 ER 中 **7 行未錨定斷言**，其中 4 行為 `if any` 之潛在 FF
+- **§1.18「ICS Management」七包未讀** —— 37 物件、29 適用，且其條文
+  **逐字點名 `CLIMATIC_PANEL` 與 `Knob_increment` 等值**，較 §1.8 更具體
+- 全批佔位 21 → **17**；TC 23 → **25**；可出貨 **17／不可 8**
+- DR-ICS1 ~ DR-ICS17 **17 條全開**（狀態實測見 upstream-07 §10）
+
+### 05 之未結事項（已作廢，保留於下）
 
 - **本輪自承二誤**：(1) 連續三包斷言「時間符號於 CFTS020 無值」為誤 ——
   值實存於 **`CFTS020-4819541`**（§1.8.1，v2 判適用，SFR 型）：`<Tstuck_button> = 120 sec`、
@@ -97,6 +121,8 @@ R-ICS1～4 與 A-ICS1～7 之產生過程只存在於 2026-08-29 之聊天；
 | b03 之 manifest | `generated/b03/manifest.json` |
 | b04 之 TC JSON | `generated/b04/b04_tcs.json`（Browse Control 6 條＋Menu Navigation 1 條）|
 | b04 之 manifest | `generated/b04/manifest.json` |
+| b05 之 TC JSON | `generated/b05/b05_tcs.json`（scroll／tune 2 條；**批號與輪次自此不同步**）|
+| b05 之 manifest | `generated/b05/manifest.json` |
 | 9 個 LID → CAN 對照 | `generated/b03/lid_dbc_map.json` |
 | **累計** 12 個 LID → CAN 對照 | `generated/b04/lid_dbc_map.json`（b03 八筆沿用＋b04 四筆實測）|
 | feature profile | `docs/runtime/profiles/FW036_R1L_ICS_Profile.md`（R-ICS18(e)，逐字取 R-ICS18(a)(b)(c)）|
@@ -105,7 +131,12 @@ R-ICS1～4 與 A-ICS1～7 之產生過程只存在於 2026-08-29 之聊天；
 | HMI L&F ／ CFTS019 偵察 | `docs/reports/03_source_recon.md` |
 | Pop Up List ／ Camera 偵察 | `docs/reports/04_source_recon_2.md` |
 | 覆蓋缺口清單 | `docs/reports/05_coverage_gaps.md`（7 筆）|
-| 交付前體檢 | `docs/reports/05_pre_delivery_check.md`（23 條逐條強度與出貨判斷）|
+| 交付前體檢（v1，**已被取代**）| `docs/reports/05_pre_delivery_check.md` |
+| **交付前體檢 v2（現行）** | `docs/reports/07_pre_delivery_check.md`（含未錨定斷言檢查）|
+| `ETM = DUT` 三路交叉 | `docs/reports/07_etm_dut_crosscheck.md` |
+| CFTS022 新舊版覆驗 | `docs/reports/07_cfts022_reverify.md` |
+| 節前定義塊掃查 | `docs/reports/07_predef_blocks.md` |
+| Notifications 偵察 | `docs/reports/07_notifications_recon.md` |
 | 036 表單工作副本 | `sandbox/ics_management_00.xlsx`（不入版控）|
 | 自檢 | `scripts/selfcheck_b01.py`（02 輪起合檢 b01+b02，增非 ASCII 與角括號列示）|
 | 逐字比對 | `scripts/verify_verbatim_b01.py`（02 輪起兼比 CFTS020）|

@@ -14,10 +14,23 @@
 exit code：有 DUPLICATE 或 INCONSISTENT → 1，否則 0。
 
 掃描條件（逐項揭露）：
-  - 錨點：`RULINGS.md` 中 `^## (R-ICS\\d+)(?: (v\\d+))?\\s*$`，1-based 行號
-  - A-／DR- 之登記列：`^\\| (A-ICS\\d+)`／`^\\| (DR-ICS\\d+)`（登記表之首格），
-    **不掃內文引用** —— 內文提及同一編號屬正常，非重號
+  - 錨點：`RULINGS.md` 中 `^## (R-ICS\d+)(?: (v\d+))?\s*$`，1-based 行號
+  - A-／DR- 之登記列（**R-ICS29(c)(d)；b07 作業 A 改此段**）：
+      1. **先剔除** `<!-- LEDGER-IGNORE-BEGIN -->` ~ `<!-- LEDGER-IGNORE-END -->`
+         之區塊（沿革、重排、例示等非登記區塊，R-ICS29(b)）。
+         剔除時以等量換行取代，**保住原檔行號**。
+      2. 於剩餘文本取 `^\| (A-ICS\d+)`／`^\| (DR-ICS\d+)`。
+      3. **合併列不計入**（R-ICS29(d)）：判準為「首格去頭尾空白後**須恰等於**
+         該編號」。`| DR-ICS2、3、4 |` 之首格為 `DR-ICS2、3、4`，不等於
+         `DR-ICS2`，故排除；此類列另行印出但不計入登記數。
   - scope 檔清單自 `ANALYSIS_LOCK.md` 之 `scope:` 區塊讀出，glob 展開
+
+**b06 封鎖事故之根，即本節與實作之不一致**（A-ICS45）：
+舊 docstring 自稱「不掃內文引用」，而舊實作為全檔取首格；
+分析層新增之同形過渡表因此被計為第二次登記，報 11 筆 DUPLICATE 而封鎖整包。
+台帳無錯（主登記表 17 列、相異 17、號段無缺口），是掃描定義有缺。
+**改動範圍限本節所述之掃法**（b07 §1 禁區：不得順手改其他判準）。
+
 """
 from __future__ import annotations
 
@@ -96,6 +109,52 @@ def check_anchors() -> None:
                 print(f"  並存（合法）：{rid} {[v or 'v1(隱)' for _, v in occ]}")
 
 
+IGNORE_RE = re.compile(
+    r"<!--\s*LEDGER-IGNORE-BEGIN\s*-->.*?<!--\s*LEDGER-IGNORE-END\s*-->",
+    re.S)
+
+
+def strip_ignored(text: str) -> tuple[str, int]:
+    """剔除 LEDGER-IGNORE 區塊；以等量換行取代，**保住原檔行號**（R-ICS29(c)）。"""
+    n = 0
+
+    def blank(m):
+        nonlocal n
+        n += 1
+        return "\n" * m.group(0).count("\n")
+
+    return IGNORE_RE.sub(blank, text), n
+
+
+def registry_ids(text: str, prefix: str) -> list[str]:
+    """取登記列之首格；**合併列不計入**（R-ICS29(d)）。
+
+    判準：首格（首二個 `|` 之間）去頭尾空白後**須恰等於**該編號。
+    `| DR-ICS2、3、4 |` 之首格為 `DR-ICS2、3、4`，不等於 `DR-ICS2`，故排除。
+    """
+    out = []
+    for line in text.split("\n"):
+        m = re.match(rf"^\|\s*({prefix}\d+)", line)
+        if not m or line.count("|") < 2:
+            continue
+        if line.split("|")[1].strip() == m.group(1):
+            out.append(m.group(1))
+    return out
+
+
+def merged_rows(text: str, prefix: str) -> list[str]:
+    """首格以編號開頭但非單一編號者（合併列），只印不計。"""
+    out = []
+    for line in text.split("\n"):
+        m = re.match(rf"^\|\s*{prefix}\d+", line)
+        if not m or line.count("|") < 2:
+            continue
+        cell = line.split("|")[1].strip()
+        if not re.fullmatch(rf"{prefix}\d+", cell):
+            out.append(cell)
+    return out
+
+
 def check_series(fname: str, prefix: str) -> None:
     print(f"\n== 3. {fname} 之 {prefix}{{n}} ==")
     p = ROOT / fname
@@ -103,7 +162,11 @@ def check_series(fname: str, prefix: str) -> None:
         print("  檔不存在")
         problems.append(f"INCONSISTENT: {fname} 不存在")
         return
-    ids = re.findall(rf"^\| ({prefix}\d+)", p.read_text(), re.M)
+    text, nblk = strip_ignored(p.read_text())
+    merged = merged_rows(text, prefix)
+    print(f"  剔除 LEDGER-IGNORE 區塊 {nblk} 個；合併列（不計入）{len(merged)} 列"
+          + (f"：{merged}" if merged else ""))
+    ids = registry_ids(text, prefix)
     counts: dict[str, int] = {}
     for i in ids:
         counts[i] = counts.get(i, 0) + 1

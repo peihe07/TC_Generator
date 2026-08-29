@@ -1,0 +1,42 @@
+{
+ "batch": "b05",
+ "feature": "ICS Management",
+ "date": "2026-08-29",
+ "generator": "Claude Code session, canon-direct",
+ "batch_naming_note": "b01~b04 對應下放包 01~04；05 為補正、06 作廢，二者未新增 TC，故下放包 07 之新 TC 落 b05。批號與輪次自此不同步。",
+ "counts": {
+  "tcs": 2,
+  "parents": 1,
+  "test_sets": 1,
+  "pending_placeholders": 2,
+  "pending_source": "scripts/pending_census.py 腳本計數（A-ICS31 之口徑統一，禁人工列舉）"
+ },
+ "parents": {
+  "SWE-ICS-004": 2
+ },
+ "anchors": [
+  "CFTS020-4819586"
+ ],
+ "not_generated": {
+  "SWE-ICS-009": "指定錨 CFTS020-4819554 依 R-ICS2 v2 判**不適用**（Radio ∩ 判準 = ∅、EE ∩ 判準 = ∅，二軸皆實值落空非軸缺）。全文含 Back_Button 之 7 物件中判適用者僅 2 個且皆屬 §1.18.1.2 TLM algorithm requirements（主詞為 TLM 非 HU／ICS）。停下回報，不改錨他物件。",
+  "SWE-ICS-005": "作業 F 報 **E4 觸發**（七物件三軸之列舉順序於新版改變）。四句 verbatim 位元級相同、值集合 7/7 相同、v2 判定 7/7 未變、4914993 本文位元級相同 —— 不符純為排序。判準解釋屬分析層，執行層停下不自裁。"
+ },
+ "context_sha256": {
+  "canon": "0b0cea006552a2f244ba8e733ef6227b132b591a34defb65234934985fe2598e",
+  "profile": "2bedb33daeaf341389203e8bf7c5d1701442bf97f1541c57de3b38080df0a53f",
+  "rulings": "8cdfc54ab52991de4f612d57ac56377fe7106af0c5e66003cb6ed44fafb46229",
+  "analysis_lock": "e6c820f5c31796d392551269ded99a256db4818dd40a3ea5c6645c594079ba12",
+  "handoff_07": "c0e73a188501ec3cac7ce5c233a64fa857864632c1e2567234ec30480db68341",
+  "cfts020_fs": "8696d1f596e3367754b092ff6d810cccff6258f46d6e90f8c0b30864314a30f3",
+  "cfts022_fs_26PI2_5": "7acfa462533d143c8099933e5b9e707f1c36aa3be95f5d8d0875b42a1f917fef",
+  "lid_v1_78": "a01e1679c706cd454daf82573a732fe5ad5eedb3865083897cb18c970b312433",
+  "dbc_b": "9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0"
+ },
+ "tcs_sha256": "98fcfd5338de1407329df9248d02e5fe75cc6ef5bc73f63f92a9eb5fffbdbe7b",
+ "checks": {
+  "selfcheck_b01.py": "PASS — b01~b05 合檢 25 條，機檢 19 項 FAIL 0",
+  "verify_verbatim_b01.py": "PASS — 25 條逐字命中 25",
+  "ledger_guard.py": "作業 A 後 exit 0；完工後 exit 0 且與作業 A 後逐字相同"
+ },
+ "note": "tcs_sha256 為本檔寫入前之值。"
+}

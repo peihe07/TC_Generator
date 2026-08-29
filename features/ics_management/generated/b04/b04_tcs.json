@@ -11,17 +11,17 @@
    "test_group": "ICS",
    "test_set": "Browse Control",
    "test_item": "The ICS shall send the information in a pair of on-change messages using the $ICS_KNOB<n>_DIR$ = [increment or  decrement] and $ICS_KNOB<n>_VAL$ = [1 to 63] signals and values and then within <TPeriodToSendNoChange> seconds send the $ICS_KNOB<n>_DIR$ = [Knob_no_change] and $ICS_KNOB<n>_VAL$ = [0] signals and values\n(One detent clock-wise sends the direction and value pair, then returns to no change)",
-   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob and button status messages\n3. The ICS knob 2 is not being rotated\n4. The no-change resend period of the ICS is PENDING: DR-ICS12 <no-change resend period>",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob and button status messages\n3. The ICS knob 2 is not being rotated\n4. The no-change resend period of the ICS is 20 msec",
    "input_test_data": "NA",
    "test_procedure": "1. Rotate the ICS knob 2 one detent position clock-wise\n2. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ and check that it is 1\n4. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ 2 seconds after the rotation and check that it is 0 (Knob_no_change)\n5. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ 2 seconds after the rotation and check that it is 0",
    "expected_result": "1. The knob 2 detent is felt and the rotation is completed\n2. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 1 is received\n4. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received\n5. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 0 is received",
-   "specification_reference": "CFTS020-4819583",
+   "specification_reference": "CFTS020-4819541\nCFTS020-4819583",
    "design_method": "Functional Based",
    "priority": "P0",
    "split_flag": false,
    "split_reason": "",
-   "has_pending": true,
-   "reasoning": "驗證目標為 4819583 之送出面：轉動一格後，ICS 以一對 on-change 訊息送出方向與值，再於 <TPeriodToSendNoChange> 秒內回到 no change。上半 verbatim **取該物件之第二句**（45 token，未逾 R-3 之 50）—— 此為 IN §4.3.1 之正規摘句（整句），非 R-ICS20 之片段摘取，故無 (c) 之三項限制之適用。第一句（detent 計數與 <TPeriodToCountKnobDetents>）之測試目的另由 B5 承擔。訊號名依 b03 作業 E 實測：`CLIMATIC_PANEL.Radio_Knob2_DIR`／`_VAL`（`BO_ 1050`，發送節點 ICS）；DIR 之值逐字取 `VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";`。**VAL 無 `VAL_` 列舉**（連續量，`SG_ … 29|6@0+ (1,0) [0|63]`），依 R-ICS8(d) 不自造 label，故書 `= 1` 而不加括號標籤。步驟 4／5 取「轉動後 2 秒」為觀察點：<TPeriodToSendNoChange> 無值（CFTS020 為符號），2 秒為測試實作選擇而非規格值，故不宣稱其為 spec 值亦不落佔位；**若上游回覆之 T2 大於 2 秒，本二步須改**，已於 upstream-04 §獨立判斷具名。與另一方向之條分列依 IN §8.3（方向軸）。　【b05 作業 B】依 R-ICS23(b) 增第 4 條 Pre-Condition：步驟 4／5 之「轉動後 2 秒」為測試實作選擇，而 `<TPeriodToSendNoChange>` 於 CFTS020 為符號無值。分析層採認「不影響送什麼、只影響何時觀察」之區分，**但『何時觀察』錯了仍致本條判錯**，故仍須佔位（IN §8.4.3）。寫為系統組態之狀態而非動作（IN §4.4）。",
+   "has_pending": false,
+   "reasoning": "驗證目標為 4819583 之送出面：轉動一格後，ICS 以一對 on-change 訊息送出方向與值，再於 <TPeriodToSendNoChange> 秒內回到 no change。上半 verbatim **取該物件之第二句**（45 token，未逾 R-3 之 50）—— 此為 IN §4.3.1 之正規摘句（整句），非 R-ICS20 之片段摘取，故無 (c) 之三項限制之適用。第一句（detent 計數與 <TPeriodToCountKnobDetents>）之測試目的另由 B5 承擔。訊號名依 b03 作業 E 實測：`CLIMATIC_PANEL.Radio_Knob2_DIR`／`_VAL`（`BO_ 1050`，發送節點 ICS）；DIR 之值逐字取 `VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";`。**VAL 無 `VAL_` 列舉**（連續量，`SG_ … 29|6@0+ (1,0) [0|63]`），依 R-ICS8(d) 不自造 label，故書 `= 1` 而不加括號標籤。步驟 4／5 取「轉動後 2 秒」為觀察點：<TPeriodToSendNoChange> 無值（CFTS020 為符號），2 秒為測試實作選擇而非規格值，故不宣稱其為 spec 值亦不落佔位；**若上游回覆之 T2 大於 2 秒，本二步須改**，已於 upstream-04 §獨立判斷具名。與另一方向之條分列依 IN §8.3（方向軸）。　【b05 作業 B】依 R-ICS23(b) 增第 4 條 Pre-Condition：步驟 4／5 之「轉動後 2 秒」為測試實作選擇，而 `<TPeriodToSendNoChange>` 於 CFTS020 為符號無值。分析層採認「不影響送什麼、只影響何時觀察」之區分，**但『何時觀察』錯了仍致本條判錯**，故仍須佔位（IN §8.4.3）。寫為系統組態之狀態而非動作（IN §4.4）。　【b07 作業 B】no-change 重送週期之佔位已回填為 **20 msec**，逐字取自 `CFTS020-4819541`（無 `initial value` 之保留字）。**該值遠小於本條步驟 4／5 所用之 2 秒觀察點** —— upstream-04 §10-2-2 所具名之「觀察時點可能錯」之風險，至此實測為**不成立**；2 秒仍為測試實作選擇，非規格值。錨行增 `CFTS020-4819541`。",
    "distinguishing_axis": {
     "axis": "trigger_state",
     "delta": "clock-wise 之方向值；另一方向由 B2 承擔"
@@ -33,17 +33,17 @@
    "test_group": "ICS",
    "test_set": "Browse Control",
    "test_item": "The ICS shall send the information in a pair of on-change messages using the $ICS_KNOB<n>_DIR$ = [increment or  decrement] and $ICS_KNOB<n>_VAL$ = [1 to 63] signals and values and then within <TPeriodToSendNoChange> seconds send the $ICS_KNOB<n>_DIR$ = [Knob_no_change] and $ICS_KNOB<n>_VAL$ = [0] signals and values\n(One detent counter clock-wise sends the direction and value pair, then returns to no change)",
-   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob and button status messages\n3. The ICS knob 2 is not being rotated\n4. The no-change resend period of the ICS is PENDING: DR-ICS12 <no-change resend period>",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob and button status messages\n3. The ICS knob 2 is not being rotated\n4. The no-change resend period of the ICS is 20 msec",
    "input_test_data": "NA",
    "test_procedure": "1. Rotate the ICS knob 2 one detent position counter clock-wise\n2. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 2 (Knob_decrement)\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ and check that it is 1\n4. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ 2 seconds after the rotation and check that it is 0 (Knob_no_change)\n5. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ 2 seconds after the rotation and check that it is 0",
    "expected_result": "1. The knob 2 detent is felt and the rotation is completed\n2. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 2 (Knob_decrement) is received\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 1 is received\n4. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received\n5. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 0 is received",
-   "specification_reference": "CFTS020-4819583",
+   "specification_reference": "CFTS020-4819541\nCFTS020-4819583",
    "design_method": "Functional Based",
    "priority": "P0",
    "split_flag": false,
    "split_reason": "",
-   "has_pending": true,
-   "reasoning": "驗證目標為 4819583 之送出面：轉動一格後，ICS 以一對 on-change 訊息送出方向與值，再於 <TPeriodToSendNoChange> 秒內回到 no change。上半 verbatim **取該物件之第二句**（45 token，未逾 R-3 之 50）—— 此為 IN §4.3.1 之正規摘句（整句），非 R-ICS20 之片段摘取，故無 (c) 之三項限制之適用。第一句（detent 計數與 <TPeriodToCountKnobDetents>）之測試目的另由 B5 承擔。訊號名依 b03 作業 E 實測：`CLIMATIC_PANEL.Radio_Knob2_DIR`／`_VAL`（`BO_ 1050`，發送節點 ICS）；DIR 之值逐字取 `VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";`。**VAL 無 `VAL_` 列舉**（連續量，`SG_ … 29|6@0+ (1,0) [0|63]`），依 R-ICS8(d) 不自造 label，故書 `= 1` 而不加括號標籤。步驟 4／5 取「轉動後 2 秒」為觀察點：<TPeriodToSendNoChange> 無值（CFTS020 為符號），2 秒為測試實作選擇而非規格值，故不宣稱其為 spec 值亦不落佔位；**若上游回覆之 T2 大於 2 秒，本二步須改**，已於 upstream-04 §獨立判斷具名。與另一方向之條分列依 IN §8.3（方向軸）。　【b05 作業 B】依 R-ICS23(b) 增第 4 條 Pre-Condition：步驟 4／5 之「轉動後 2 秒」為測試實作選擇，而 `<TPeriodToSendNoChange>` 於 CFTS020 為符號無值。分析層採認「不影響送什麼、只影響何時觀察」之區分，**但『何時觀察』錯了仍致本條判錯**，故仍須佔位（IN §8.4.3）。寫為系統組態之狀態而非動作（IN §4.4）。",
+   "has_pending": false,
+   "reasoning": "驗證目標為 4819583 之送出面：轉動一格後，ICS 以一對 on-change 訊息送出方向與值，再於 <TPeriodToSendNoChange> 秒內回到 no change。上半 verbatim **取該物件之第二句**（45 token，未逾 R-3 之 50）—— 此為 IN §4.3.1 之正規摘句（整句），非 R-ICS20 之片段摘取，故無 (c) 之三項限制之適用。第一句（detent 計數與 <TPeriodToCountKnobDetents>）之測試目的另由 B5 承擔。訊號名依 b03 作業 E 實測：`CLIMATIC_PANEL.Radio_Knob2_DIR`／`_VAL`（`BO_ 1050`，發送節點 ICS）；DIR 之值逐字取 `VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";`。**VAL 無 `VAL_` 列舉**（連續量，`SG_ … 29|6@0+ (1,0) [0|63]`），依 R-ICS8(d) 不自造 label，故書 `= 1` 而不加括號標籤。步驟 4／5 取「轉動後 2 秒」為觀察點：<TPeriodToSendNoChange> 無值（CFTS020 為符號），2 秒為測試實作選擇而非規格值，故不宣稱其為 spec 值亦不落佔位；**若上游回覆之 T2 大於 2 秒，本二步須改**，已於 upstream-04 §獨立判斷具名。與另一方向之條分列依 IN §8.3（方向軸）。　【b05 作業 B】依 R-ICS23(b) 增第 4 條 Pre-Condition：步驟 4／5 之「轉動後 2 秒」為測試實作選擇，而 `<TPeriodToSendNoChange>` 於 CFTS020 為符號無值。分析層採認「不影響送什麼、只影響何時觀察」之區分，**但『何時觀察』錯了仍致本條判錯**，故仍須佔位（IN §8.4.3）。寫為系統組態之狀態而非動作（IN §4.4）。　【b07 作業 B】no-change 重送週期之佔位已回填為 **20 msec**，逐字取自 `CFTS020-4819541`（無 `initial value` 之保留字）。**該值遠小於本條步驟 4／5 所用之 2 秒觀察點** —— upstream-04 §10-2-2 所具名之「觀察時點可能錯」之風險，至此實測為**不成立**；2 秒仍為測試實作選擇，非規格值。錨行增 `CFTS020-4819541`。",
    "distinguishing_axis": {
     "axis": "trigger_state",
     "delta": "counter clock-wise 之方向值；另一方向由 B1 承擔"
@@ -99,17 +99,17 @@
    "test_group": "ICS",
    "test_set": "Browse Control",
    "test_item": "While a knob is being rotated, the ICS shall count the relative number of detents rotated through in <TPeriodToCountKnobDetents> seconds\n(Three detents rotated in one continuous motion are reported as a value of three)",
-   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob and button status messages\n3. The ICS knob 2 is not being rotated\n4. The detent counting time window of the ICS is PENDING: DR-ICS12 <detent counting time window>",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS knob and button status messages\n3. The ICS knob 2 is not being rotated\n4. The detent counting time window of the ICS is 50 msec",
    "input_test_data": "NA",
    "test_procedure": "1. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ and check that it is 0\n2. Rotate the ICS knob 2 three detent positions clock-wise in one continuous rotation\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ and check that it is 3\n4. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)",
    "expected_result": "1. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 0 is received\n2. The three detents are felt and the rotation is completed\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 3 is received\n4. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received",
-   "specification_reference": "CFTS020-4819583",
+   "specification_reference": "CFTS020-4819541\nCFTS020-4819583",
    "design_method": "Functional Based",
    "priority": "P1",
    "split_flag": false,
    "split_reason": "",
-   "has_pending": true,
-   "reasoning": "驗證目標為 4819583 之**第一句**：轉動中之 detent 相對計數。上半取該句（20 token）為正規摘句 —— 其與括號下半之測試目的直接相關，第二句之送出形制由 B1／B2 承擔。計數時間窗 `<TPeriodToCountKnobDetents>` 於 CFTS020 為符號無值，依 IN §8.4.3 落 `PENDING: DR-ICS12` 佔位，寫為系統組態之狀態而非動作（IN §4.4）——與 b01 之 V3（knob 1 側之同一問題）同一處置。n = 3 為測試實作選擇，非規格數值。與 B1 之切分軸為 input_data（3 格 vs 1 格），驗證對象亦異（累計計數 vs 單格送出形制）。",
+   "has_pending": false,
+   "reasoning": "驗證目標為 4819583 之**第一句**：轉動中之 detent 相對計數。上半取該句（20 token）為正規摘句 —— 其與括號下半之測試目的直接相關，第二句之送出形制由 B1／B2 承擔。計數時間窗 `<TPeriodToCountKnobDetents>` 於 CFTS020 為符號無值，依 IN §8.4.3 落 `PENDING: DR-ICS12` 佔位，寫為系統組態之狀態而非動作（IN §4.4）——與 b01 之 V3（knob 1 側之同一問題）同一處置。n = 3 為測試實作選擇，非規格數值。與 B1 之切分軸為 input_data（3 格 vs 1 格），驗證對象亦異（累計計數 vs 單格送出形制）。　【b07 作業 B】detent 計數窗之佔位已回填為 **50 msec**，逐字取自 `CFTS020-4819541`。**該值於原文標 `initial value` 並附 `parameter tuning process` 之註 —— 即其為暫定值，可於整合測試後變更**（R-ICS27(c)）。故 DR-ICS12 **不結案**，改為「請上游確認調校後之定值」之追蹤件；本條之數值面於該定值確認前仍不得視為終局。錨行增 `CFTS020-4819541`。",
    "distinguishing_axis": {
     "axis": "input_data",
     "delta": "一次轉三格之累計計數；單格之送出形制由 B1 承擔"
@@ -159,6 +159,9 @@
  "revision": {
   "b05_applied": [
    "作業 B：B1／B2 增 PENDING: DR-ICS12 <no-change resend period>（R-ICS23(b)）"
+  ],
+  "b07_applied": [
+   "作業 B：符號值佔位回填（R-ICS27(b)(c)），錨增 CFTS020-4819541"
   ]
  }
 }

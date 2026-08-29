@@ -40,3 +40,12 @@
 | A-ICS34 | 雙層之誤（分析層自承照收、執行層斷言）：連續三包斷言「`<Tstuck_button>`／`<TPeriodToCountKnobDetents>`／`<TPeriodToSendNoChange>` 於 CFTS020 皆符號無值」（upstream-02 §六-3、A-ICS17、upstream-03／04）。實測（2026-08-29，CFTS020 全文）：§1.8 前文之 time-variables 定義塊逐字載 `<Tsend> = 150 msec`、`<Tbutton> = 100 msec`、`<TPeriodToCountKnobDetents> = initial value 50 msec`（標 parameter tuning 待優化）、`<Tpower> = 1.5 sec`、**`<Tstuck_button> = 120 sec`**、`<Tpress> = 500 msec`、**`<TPeriodToSendNoChange> = 20 msec`**。成因：只查需求句未搜節前定義塊。拿法：符號類 DR 發出前須全文搜 `<符號> =` | CLOSED（事實已正；適用屬性之逐物件驗證交 b06） |
 | A-ICS35 | 分析層之誤（自承）：R-ICS22 v1(a) 斷「二候選發送節點皆非 ICS，台架取捨無量測依據」，未先查 `BU_:` 節點表與發送者屬性即斷言。實測（2026-08-29）：FDCAN8 節點 = {ETM, LTM, SGW, TBM}，**LTM 發送 0 則**，`BO_ 1427 TELEMATIC_FD_4` 發送者 = **ETM**；BHCAN 之 `BO_ 1500 TELEMATIC_DISPLAY2` 發送者 = **SGW**（閘道）。對照 SWRA 011（DUT 維持並送出該訊號），取捨有據 | CLOSED（R-ICS22 v2；先決問題 ETM=DUT 交 b06 驗） |
 | A-ICS36 | R-ICS22 v1 依 R-TM13 改題為 `R-ICS22 v1` 並加作廢註記，其 sha8 將隨之改變（R-ICS19 同型事件第二例）。**舊 sha8 = `bf7ae107` 之前一行位址不適用；R-ICS22 v1 之舊值未曾入任何上繳包**（其首次落檔至改題之間無上繳包發生），故無舊引用需回溯；b06 首次實測其 v1／v2 二值 | CLOSED |
+| A-ICS37 | 覆蓋缺口 G2：SWE-ICS-005 完全無 TC | 已解（R-ICS25(c)：b06／07 生成） |
+| A-ICS38 | 覆蓋缺口 G3：SWE-ICS-009 完全無 TC | 已解（R-ICS25(b)：b06／07 生成） |
+| A-ICS39 | 覆蓋缺口 G4：SWE1-ICS-011 無 TC 且 SWRA 需求分頁缺列 | OPEN（DR-ICS2） |
+| A-ICS40 | 覆蓋缺口 G5：SWE1-ICS-012 無 TC 且需求分頁缺列；framework 已轉 out-of-scope-pending | OPEN（DR-ICS2） |
+| A-ICS41 | 覆蓋缺口 G6：SWE-ICS-004 之 VC 明載 `browse, scroll and tune`，現僅涵蓋 browse（且以 `PENDING: DR-ICS6` 承載），**scroll／tune 無任何具名 TC**。此為**覆蓋面之缺，非資料之缺** | OPEN（R-ICS30(a)：b07 補生成） |
+| A-ICS42 | 覆蓋缺口 G7：SWE-ICS-008 之 VC 明載 `HMI navigation flow`，而 N1 之 ER 4 僅斷言「畫面有變」，目標畫面未具名 | OPEN（DR-ICS6） |
+| A-ICS43 | 觀察面不一致：SWE-ICS-001（方向偵測）之 V1／V2 以 `VOLUME POP_UP` 之音量階承載（CFTS022 來源），而 SWE-ICS-003（同為方向）之 B1／B2 讀 `$CLIMATIC_PANEL.Radio_Knob2_DIR$` 訊號（CFTS020 來源）。二者來源不同故觀察面不同，**本身不構成違規**；但 001 以音量階間接推斷方向，驗證強度低於直讀訊號，且繫於未錯定之 popup 顯示（A-ICS16）。CFTS019 到位後須複核 | OPEN（追蹤；DR-ICS4） |
+| A-ICS44 | 分析層之誤（自承，同輪偵出並改正）：落 A-ICS37–43 時錨字串取「行尾狀態欄」而誤匹配至 A-ICS7 列，七列一度重複落於 A-ICS7～A-ICS8 之間（實測登記列 50、重號 7），已删除重複塊。**注意：`ledger_guard` 之重號檢查會拓到此類**（相異數≠登記列數），但分析層寫簿後未跑該工具 —— 本件係以人工 grep 自查發現。拿法：① 追加登記列之錨字串須含前一列之編號，不得只用行尾狀態欄；② **分析層寫台帳後須自跑 `ledger_guard.py`**（現行只規定執行層跑，R-ICS17(f)） | CLOSED |
+| A-ICS45 | 分析層之誤（自承，**A-ICS44 之實現**）：於 `DATA_REQUESTS.md` 新增「狀態重排」過渡表，其首格與主登記表同形，致 `ledger_guard` 於 b06 開工前 exit 1、報 DUPLICATE，**封鎖整包**（執行層依 E1 停下，一項作業未動、一個檔未寫，合式）。實測：主登記表 17 列、相異 17、號段 1–17 無缺口 —— **台帳無錯，是掃描定義有缺**。另：執行層報 11 筆、分析層實測 10 筆，差額為合併列（寬鬆正則抓得到、嚴格正則抓不到），二數皆非錯，且暴露第二個同形陷阱。拿法見 R-ICS29；過渡表已以 `LEDGER-IGNORE` 標記包覆 | CLOSED（R-ICS29） |
