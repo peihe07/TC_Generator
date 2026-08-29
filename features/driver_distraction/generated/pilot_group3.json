@@ -1,6 +1,6 @@
 [
   {
-    "tc_id": "newR1L-DD-001",
+    "tc_id": "newR1L-DD-009",
     "req_id": "SWE1-RA-Driver_Distraction-009",
     "test_group": "Driver Distraction",
     "test_set": "Lockout Enforcement",
@@ -26,7 +26,7 @@
     "reasoning": "驗證目標：速度達上鎖門檻時，Lockout Table 所列之受限 feature 其存取被阻 —— 斷言錨取 profile §2.1 觀察面 A（存取阻擋），取樣 feature 具名為 \"Pairing (1st time)\"。關鍵情境條件：$STATUS_CCAN3.VehicleSpeedVSOSig$ 由 0 送至 raw 129（8.0625 km/h＝5.0097 MPH），該值為 profile §3.1 依 R-DD7(c) 所定之上鎖側第一個可表示格，標 [ASSUMPTION A-DD6]。一條 TC 即足：037 之 AC1 只有一條常態路徑（施加受限狀態 → 存取被阻），無獨立可分之部分失效（IN §8.2.2 未成立）。刻意略過：解鎖方向（raw 77／78）屬 -013／-015，門檻下側 raw 128 之不應鎖屬 BVA 之另一半，本列不擴入（IN §8.2.1）；p7 黃標三項（Player / RSE、Messaging、SRT Options）不取樣，Embedded NAV 系（含 Destination Entry）因僅適用 LATAM 亦不取。設計方法依 IN §12 首合原則取狀態轉換 —— 觸發為車速由 0 跨越門檻之 A→B 轉換，於 Scenario 之前命中；且 §12 tie-break 之 Scenario 判準為「≥3 steps crossing features」，本列為單一 feature 之存取嘗試，不合。"
   },
   {
-    "tc_id": "newR1L-DD-002",
+    "tc_id": "newR1L-DD-010",
     "req_id": "SWE1-RA-Driver_Distraction-010",
     "test_group": "Driver Distraction",
     "test_set": "Lockout Enforcement",
@@ -49,10 +49,10 @@
       "tokens": 47,
       "cap": 50
     },
-    "reasoning": "驗證目標：DD 判定所需之車輛訊號消失時，fail-safe 使受限 feature 仍不可存取，斷言錨取 profile §2.1 觀察面 A。關鍵情境條件：失效形態取「匯流排逾時」而非 SNA —— profile §3.2 明定逐 leaf 依 037 AC2 原文定，而本列 AC2 逐字為 `the signal simulation tool stops transmitting a vehicle message`，其驗證方法欄亦書 `After the signal timeout`，故為停送非送 SNA。步驟 1 先確認該 feature 在訊號正常時可啟動，否則步驟 3 之「不可啟動」分不出「fail-safe 生效」與「本來就不可用」（IN §5.6 基準）。刻意略過：SNA（raw 8191）之路徑本列不涵蓋 —— 037 本列未書該形態，寫入即造值。另：本列與 newR1L-DD-004 之驗證目標實質相同（見該列 reasoning 與 A-DD7／DR-DD7）。"
+    "reasoning": "驗證目標：DD 判定所需之車輛訊號消失時，fail-safe 使受限 feature 仍不可存取，斷言錨取 profile §2.1 觀察面 A。關鍵情境條件：失效形態取「匯流排逾時」而非 SNA —— profile §3.2 明定逐 leaf 依 037 AC2 原文定，而本列 AC2 逐字為 `the signal simulation tool stops transmitting a vehicle message`，其驗證方法欄亦書 `After the signal timeout`，故為停送非送 SNA。步驟 1 先確認該 feature 在訊號正常時可啟動，否則步驟 3 之「不可啟動」分不出「fail-safe 生效」與「本來就不可用」（IN §5.6 基準）。刻意略過：SNA（raw 8191）之路徑本列不涵蓋 —— 037 本列未書該形態，寫入即造值。另：本列與 newR1L-DD-012 之驗證目標實質相同（見該列 reasoning 與 A-DD7／DR-DD7）。"
   },
   {
-    "tc_id": "newR1L-DD-003",
+    "tc_id": "newR1L-DD-011",
     "req_id": "SWE1-RA-Driver_Distraction-011",
     "test_group": "Driver Distraction",
     "test_set": "Lockout Enforcement",
@@ -78,7 +78,7 @@
     "reasoning": "驗證目標：受限 feature 使用中而車速跨越門檻時，HMI 呈現 lockout 通知 —— 斷言錨取 profile §2.2 觀察面 B，字串逐字取 HMI spec p4。關鍵情境條件：與 -009 之別在於**施加順序** —— 本列先進入 feature 再跨門檻，故設計方法取狀態轉換；raw 129 同 profile §3.1，標 [ASSUMPTION A-DD6]。一條 TC 即足：037 之 AC1 只有一條轉換路徑，無獨立可分之部分失效。刻意略過：通知關閉後之後續行為、以及 popup 之逾時形態，037 本列未書，不擴入；取樣 feature 取 \"Reconfigurable menu bar\"（Menu Bar 列，非黃標、非 NAV 系），與同源之 -012 一致，使 -118 家族之二列可對讀。"
   },
   {
-    "tc_id": "newR1L-DD-004",
+    "tc_id": "newR1L-DD-012",
     "req_id": "SWE1-RA-Driver_Distraction-012",
     "test_group": "Driver Distraction",
     "test_set": "Lockout Enforcement",
@@ -101,6 +101,6 @@
       "tokens": 47,
       "cap": 50
     },
-    "reasoning": "驗證目標：訊號逾時之 fail-safe 對 -118 家族之取樣 feature 同樣使其不可存取，斷言錨取 profile §2.1 觀察面 A。關鍵情境條件：形態同 -010 取匯流排逾時，依 profile §3.2 逐 leaf 依 037 AC2 原文定，本列 AC2 逐字書停送與 signal timeout。**本列之 037 Requirement Description 與 -010 逐字全等**（見 A-DD7），其 Then 句書 `HMI keeps the corresponding feature locked` 而非 -118 之通知面；本 TC 依原文斷言存取阻擋，**不代上游改寫為通知**（IN §8.4.2）。區別二列者為取樣 feature 與 spec_reference，非斷言內容。**本列與 newR1L-DD-002 之驗證目標實質相同** —— 依 IN §4.6 之等價判準（same trigger + outcome + input + verification target）四者皆同，其區別僅在取樣 feature 與追溯 ID，而取樣 feature 係作者所選、非 spec 所定。二列皆保留係追溯要求（每 leaf 須有 TC），**不得以取樣 feature 之不同偽稱為不同之驗證目標**；成因見 A-DD7／DR-DD7。"
+    "reasoning": "驗證目標：訊號逾時之 fail-safe 對 -118 家族之取樣 feature 同樣使其不可存取，斷言錨取 profile §2.1 觀察面 A。關鍵情境條件：形態同 -010 取匯流排逾時，依 profile §3.2 逐 leaf 依 037 AC2 原文定，本列 AC2 逐字書停送與 signal timeout。**本列之 037 Requirement Description 與 -010 逐字全等**（見 A-DD7），其 Then 句書 `HMI keeps the corresponding feature locked` 而非 -118 之通知面；本 TC 依原文斷言存取阻擋，**不代上游改寫為通知**（IN §8.4.2）。區別二列者為取樣 feature 與 spec_reference，非斷言內容。**本列與 newR1L-DD-010 之驗證目標實質相同** —— 依 IN §4.6 之等價判準（same trigger + outcome + input + verification target）四者皆同，其區別僅在取樣 feature 與追溯 ID，而取樣 feature 係作者所選、非 spec 所定。二列皆保留係追溯要求（每 leaf 須有 TC），**不得以取樣 feature 之不同偽稱為不同之驗證目標**；成因見 A-DD7／DR-DD7。"
   }
 ]

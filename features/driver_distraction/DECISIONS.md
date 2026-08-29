@@ -71,6 +71,24 @@ An unsigned sheet blocks Phase 4+.
   Sonnet for templated with strong exemplars]`
 - BLOCKED batches at start: `[AUTO — from §1 missing specs]`
 
+## 8. 出貨（Tier 3）
+
+- **寫回之時點：`[PEI]` → 乙案**（Pei 2026-08-29 裁）
+
+  > **乙：即寫回 24 則，marker 隨簿，DR 照發，回覆後機械回修。**
+  > 甲案（等 DR 回覆撤 marker 後寫回）不採。
+  > 材料見上繳包 19 §七：24 可出貨、0 不得出貨、4 範圍外（R-DD25(b)）、
+  > 無阻斷出貨之 DR、四產物 27 檢全綠、`lint_docs036` PASS。
+
+- **寫回之形制：`[PEI]` 或分析層下放 —— 未定，寫回未執行**
+
+  乙案定「何時」，未定「如何」。**至今無任何下放包含寫回之派工**
+  （包 16–22 皆明書「不在本輪：寫回工作簿」）。
+  執行層已試算列計畫（`scripts/t29_writeback_plan.py`，**只讀，未寫一格**），
+  三項未決見上繳包 20 §二。
+
+---
+
 ---
 
 ## Sign-off

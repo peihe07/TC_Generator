@@ -1,6 +1,6 @@
 [
   {
-    "tc_id": "newR1L-DD-D001",
+    "tc_id": "newR1L-DD-001",
     "req_id": "SWE1-RA-Driver_Distraction-001",
     "test_group": "Driver Distraction",
     "test_set": "Body Off Init",
@@ -26,7 +26,7 @@
     "reasoning": "驗證目標：出眠後之 Lock Out State 初始化 —— 斷言錨取 profile §2.1 觀察面 A，取樣 \"Player Song, artist, title, etc. (speller search)\"（p7 top=330（Player 列），非黃標、非 NAV 系）。037 VC 之 `all Lock Out States are NOT_RESTRICTED` 依 profile §2.3 之四禁詞不入 ER，改以該 feature 之可及性承載。電源時序依 **R-DD20 v2(b)**：步驟以 power 線之通稱式風格新編（該線無本序列之施加步驟，上繳 13 §6.3 已實測），條件與觀察錨定 CFTS009 逐字 —— 入眠 `4941238`（Body OFF → Standby → 無 CAN-I/CAN-C → Body Off HU System Sleep Mode）、喚醒 `4941100`（`With the Body Off mode and CAN bus activity is initiated by any CAN module, all modules shall wake up`）、醒後可觀察現象 `4941103`（`Within 400 msec of wakeup mode, each module shall broadcast all periodic messages`）；Body OFF 之定義為 `4941028` 之 `$PowerMode$` 五值 —— **該值以方括號書之，依 profile §2.5 不入四交付欄**，故錨定記於此。電源時序二步標 [ASSUMPTION A-DD10]（R-DD20 v2 之殘餘假設＝台架實現與 DR-DD9 回覆之一致性）。速度訊號源壓於 `0 (0.0000 km/h)` —— 使觀察可歸因於初始化值，非基準速度規則；0 非門檻值，**不掛 A-DD6**。PC 不含 Gear／PARK_BRK／Country_Code —— `-113` 未條件於市場與檔位，引入即擴入（IN §8.2.1）。**TLM_Status.Info 與 $Telematic_Power$ 不用**（R-DD20 v2(f)）。"
   },
   {
-    "tc_id": "newR1L-DD-D002",
+    "tc_id": "newR1L-DD-002",
     "req_id": "SWE1-RA-Driver_Distraction-002",
     "test_group": "Driver Distraction",
     "test_set": "Body Off Init",

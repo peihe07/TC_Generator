@@ -11,7 +11,7 @@
 ## [CG-DD1] Lockout Table 之負向面 —— 「不在表內之 feature 仍可存取」未驗
 
 - 登記：2026-08-28（T20c，下放包 14 §3.2）
-- 影響 leaf：`-013`／`-015`（`newR1L-DD-B007`／`newR1L-DD-B009`）
+- 影響 leaf：`-013`／`-015`（`newR1L-DD-013`／`newR1L-DD-015`）
 - 狀態：**OPEN**
 
 ### 缺口

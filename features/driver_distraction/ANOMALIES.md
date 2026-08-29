@@ -417,7 +417,7 @@ Then DD Service outputs RESTRICTED and HMI keeps the corresponding feature locke
 
 ### 處置 —— 執行層未代上游改寫
 
-- `newR1L-DD-004`（`-012`）**依 037 原文斷言存取阻擋**，
+- `newR1L-DD-012`（`-012`）**依 037 原文斷言存取阻擋**，
   **不改寫為通知面**（IN §8.4.2：不得造範圍）
 - 二列之區別落在**取樣 feature 與 spec_reference**，非斷言內容 ——
   此為 037 現狀之忠實反映，非 TC 之設計缺陷
@@ -445,8 +445,8 @@ lockout 通知仍呈現／該 feature 仍不可用」）？
 > 若非追溯需求，其為重複。
 
 - 二 TC **皆保留**（追溯要求每 leaf 有 TC）
-- `newR1L-DD-004` 之 `reasoning` 已明記其與 `newR1L-DD-002` 之實質同一，
-  `newR1L-DD-002` 亦互指（T16c）
+- `newR1L-DD-012` 之 `reasoning` 已明記其與 `newR1L-DD-010` 之實質同一，
+  `newR1L-DD-010` 亦互指（T16c）
 - **不得以取樣 feature 之不同偽稱為不同之驗證目標**
 - **DR-DD7 已建檔**（DRAFTED，見 `DATA_REQUESTS.md` §`DR-DD7 —— AC2 逐字全等`）
 

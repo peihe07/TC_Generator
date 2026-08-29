@@ -1,6 +1,6 @@
 [
   {
-    "tc_id": "newR1L-DD-B001",
+    "tc_id": "newR1L-DD-003",
     "req_id": "SWE1-RA-Driver_Distraction-003",
     "test_group": "Driver Distraction",
     "test_set": "Speed Monitoring",
@@ -26,7 +26,7 @@
     "reasoning": "驗證目標：037 本列之 `5/3 MPH rule`。其 source `-114` 所命者為「**監看 `$Speedometer$` 以啟閉受限 feature**」之能力，驗證對象為**規則整體**。**5/3 之雙門檻即遲滯（hysteresis）** —— 遲滯之定義為「上行門檻 ≠ 下行門檻」，**任一單邊皆無法承載該性質**；故本則之驗證點為一，非二，步驟 2 與步驟 4 合為該單一驗證點之組成，不拆（`split_flag: false`）。關鍵情境條件：raw 129 與 raw 77 皆取 profile §3.1（R-DD7(c)），標 [ASSUMPTION A-DD6]；取樣 feature 取 \"Reconfigurable menu bar\"（p7 top=356（Menu Bar 列）），非黃標、非 NAV 系。**未取「above 3 MPH」之任意中間值** —— profile §3.1 只給 129 與 77 二個 spec 溯源之格，另擇一值即造值（IN §8.4.1）；raw 129（5.0097 MPH）本身即在 3 MPH 之上，足以起算。刻意略過：BVA 之另一側（raw 128／78）037 未書，不擴入（IN §8.2.1）；個別方向之轉換分由 `-007`（`-116`，上鎖）與 `-005`（`-115`，解鎖）依其各自 source 承載 —— **拆本則即產出與該二者幾近重複之 TC，而 `-114` 所命之遲滯性質反而無人驗**。"
   },
   {
-    "tc_id": "newR1L-DD-B002",
+    "tc_id": "newR1L-DD-004",
     "req_id": "SWE1-RA-Driver_Distraction-004",
     "test_group": "Driver Distraction",
     "test_set": "Speed Monitoring",
@@ -52,7 +52,7 @@
     "reasoning": "驗證目標：DD 判定所需之車輛訊號消失時，fail-safe 使受限 feature 仍不可存取 —— 斷言錨取 profile §2.1 觀察面 A，取樣 \"Reconfigurable menu bar\"（p7 top=356（Menu Bar 列））。關鍵情境條件：失效形態取**匯流排逾時**而非 SNA —— profile §3.2 明定逐 leaf 依 037 AC2 原文定，本列 AC2 逐字書 `stops transmitting`／`stop updating`，其 Method 亦書 `After the … signal timeout`，故為停送非送 SNA（raw 8191）。步驟 1 先確認訊號正常時該 feature 可用，否則步驟 3 之「不可用」分不出 fail-safe 生效與本來就不可用（IN §5.6 基準）。**本列之 037 原文與其他 AC2 列逐字全等**（A-DD7 之擴大量測：4 組、11/28 leaf）——本列源自 `-114`，其區別僅在取樣 feature 與追溯 ID，**不得以取樣 feature 之不同偽稱為不同之驗證目標**（下放包 10 §四）。刻意略過：SNA（raw 8191）路徑 037 本列未書，寫入即造值。"
   },
   {
-    "tc_id": "newR1L-DD-B003",
+    "tc_id": "newR1L-DD-005",
     "req_id": "SWE1-RA-Driver_Distraction-005",
     "test_group": "Driver Distraction",
     "test_set": "Speed Monitoring",
@@ -78,7 +78,7 @@
     "reasoning": "驗證目標：車速自 3 MPH 之上降至 3 MPH 或以下時，受限解除 —— 斷言錨取 profile §2.1 觀察面 A，取樣 feature \"Edit phone book (speller input)\"（p7 top=291（Phone 列））。關鍵情境條件：解鎖側取 raw **77**（4.8125 km/h＝2.9903 MPH），為 profile §3.1 依 R-DD7(c) 所定之 ≤3 MPH 側第一個可表示格，標 [ASSUMPTION A-DD6]。起始值取 raw 129 而非任意「3 MPH 以上」之值 —— 後者無 spec 來源，寫入即造值。一條 TC 即足：037 本列只有一條解鎖路徑。刻意略過：raw 78（不應解）為 BVA 之另一側，037 未書，不擴入（§8.2.1）；037 VC 第 2 項之 `\"Lock Out State\" variable to \"Unlocked\"` 依 profile §2.3 不得入 ER，改以 HMI 之可及性承載。"
   },
   {
-    "tc_id": "newR1L-DD-B004",
+    "tc_id": "newR1L-DD-006",
     "req_id": "SWE1-RA-Driver_Distraction-006",
     "test_group": "Driver Distraction",
     "test_set": "Speed Monitoring",
@@ -104,7 +104,7 @@
     "reasoning": "驗證目標：DD 判定所需之車輛訊號消失時，fail-safe 使受限 feature 仍不可存取 —— 斷言錨取 profile §2.1 觀察面 A，取樣 \"Edit phone book (speller input)\"（p7 top=291（Phone 列））。關鍵情境條件：失效形態取**匯流排逾時**而非 SNA —— profile §3.2 明定逐 leaf 依 037 AC2 原文定，本列 AC2 逐字書 `stops transmitting`／`stop updating`，其 Method 亦書 `After the … signal timeout`，故為停送非送 SNA（raw 8191）。步驟 1 先確認訊號正常時該 feature 可用，否則步驟 3 之「不可用」分不出 fail-safe 生效與本來就不可用（IN §5.6 基準）。**本列之 037 原文與其他 AC2 列逐字全等**（A-DD7 之擴大量測：4 組、11/28 leaf）——本列源自 `-115`，其區別僅在取樣 feature 與追溯 ID，**不得以取樣 feature 之不同偽稱為不同之驗證目標**（下放包 10 §四）。刻意略過：SNA（raw 8191）路徑 037 本列未書，寫入即造值。"
   },
   {
-    "tc_id": "newR1L-DD-B005",
+    "tc_id": "newR1L-DD-007",
     "req_id": "SWE1-RA-Driver_Distraction-007",
     "test_group": "Driver Distraction",
     "test_set": "Speed Monitoring",
@@ -130,7 +130,7 @@
     "reasoning": "驗證目標：車速自 5 MPH 之下升至 5 MPH 或以上時，受限生效 —— 斷言錨取 profile §2.1 觀察面 A，取樣 feature \"DND Customize auto reply message\"（p7 top=317（DND 列））。關鍵情境條件：上鎖側取 raw **129**（8.0625 km/h＝5.0097 MPH），為 profile §3.1 之 ≥5 MPH 側第一個可表示格，標 [ASSUMPTION A-DD6]；起始值取 raw 77（2.9903 MPH）—— 其為 profile §3.1 中唯一低於 5 MPH 之 spec 溯源格。一條 TC 即足：037 本列只有一條上鎖路徑。刻意略過：raw 128（不應鎖）037 未書，不擴入（§8.2.1）。"
   },
   {
-    "tc_id": "newR1L-DD-B006",
+    "tc_id": "newR1L-DD-008",
     "req_id": "SWE1-RA-Driver_Distraction-008",
     "test_group": "Driver Distraction",
     "test_set": "Speed Monitoring",
@@ -156,7 +156,7 @@
     "reasoning": "驗證目標：DD 判定所需之車輛訊號消失時，fail-safe 使受限 feature 仍不可存取 —— 斷言錨取 profile §2.1 觀察面 A，取樣 \"DND Customize auto reply message\"（p7 top=317（DND 列））。關鍵情境條件：失效形態取**匯流排逾時**而非 SNA —— profile §3.2 明定逐 leaf 依 037 AC2 原文定，本列 AC2 逐字書 `stops transmitting`／`stop updating`，其 Method 亦書 `After the … signal timeout`，故為停送非送 SNA（raw 8191）。步驟 1 先確認訊號正常時該 feature 可用，否則步驟 3 之「不可用」分不出 fail-safe 生效與本來就不可用（IN §5.6 基準）。**本列之 037 原文與其他 AC2 列逐字全等**（A-DD7 之擴大量測：4 組、11/28 leaf）——本列源自 `-116`，其區別僅在取樣 feature 與追溯 ID，**不得以取樣 feature 之不同偽稱為不同之驗證目標**（下放包 10 §四）。刻意略過：SNA（raw 8191）路徑 037 本列未書，寫入即造值。"
   },
   {
-    "tc_id": "newR1L-DD-B007",
+    "tc_id": "newR1L-DD-013",
     "req_id": "SWE1-RA-Driver_Distraction-013",
     "test_group": "Driver Distraction",
     "test_set": "Lockout Tables",
@@ -182,7 +182,7 @@
     "reasoning": "驗證目標：受限態下，Lockout Table 標 `L/O` 之 feature 被鎖 —— 取樣 \"Player Song, artist, title, etc. (speller search)\"，所據為 HMI spec p7 top=330（Player 列），**非黃標（黃標三項為 Player / RSE、Messaging、SRT Options，以 PDF 填色實測定位）、非 NAV 系（p7 註記逐字 `Embedded NAV for R1L is applicable to LATAM region only`）**。關鍵情境條件：037 本列之 Method 逐字 `send a speed above 5 MPH`，故取 profile §3.1 之上鎖側 raw 129，標 [ASSUMPTION A-DD6]。一條 TC 即足：037 本列只有一條常態路徑。刻意略過：**不逐一遍歷表列全部 feature** —— 037 本列未要求窮舉，以具名單一樣本承載（profile §2.1 禁泛稱，未禁單樣本）；解鎖方向與 BVA 另一側不擴入（§8.2.1）。**負向面（不在表內之 feature 仍可存取）本則未涵蓋** —— 見 `COVERAGE_GAPS.md` [CG-DD1]：該行為明載於 CFTS022 `-120`／`-121` 之驗證標準欄（`Features not listed in the table remain accessible`），**屬上游所有而非本層所造**；惟其樣本須具名一個「不在表內」之 feature，而 HMI spec p7 之 16 列**全部標 L/O**（表內無非 L/O 之列），CFTS022 之表本體又以圖片參照且該 xlsx 無任何嵌入物件（實測 0）——**權威表之內容於綁定來源中不存在，故無從確認任一 feature 不在表內**，具名即造值（§8.4.1）。表可機讀後即應於本則加該斷言（同一 trigger 之另一後果，§5.7）。"
   },
   {
-    "tc_id": "newR1L-DD-B008",
+    "tc_id": "newR1L-DD-014",
     "req_id": "SWE1-RA-Driver_Distraction-014",
     "test_group": "Driver Distraction",
     "test_set": "Lockout Tables",
@@ -208,7 +208,7 @@
     "reasoning": "驗證目標：DD 判定所需之車輛訊號消失時，fail-safe 使受限 feature 仍不可存取 —— 斷言錨取 profile §2.1 觀察面 A，取樣 \"Player Song, artist, title, etc. (speller search)\"（p7 top=330（Player 列））。關鍵情境條件：失效形態取**匯流排逾時**而非 SNA —— profile §3.2 明定逐 leaf 依 037 AC2 原文定，本列 AC2 逐字書 `stops transmitting`／`stop updating`，其 Method 亦書 `After the … signal timeout`，故為停送非送 SNA（raw 8191）。步驟 1 先確認訊號正常時該 feature 可用，否則步驟 3 之「不可用」分不出 fail-safe 生效與本來就不可用（IN §5.6 基準）。**本列之 037 原文與其他 AC2 列逐字全等**（A-DD7 之擴大量測：4 組、11/28 leaf）——本列源自 `-120`，其區別僅在取樣 feature 與追溯 ID，**不得以取樣 feature 之不同偽稱為不同之驗證目標**（下放包 10 §四）。刻意略過：SNA（raw 8191）路徑 037 本列未書，寫入即造值。"
   },
   {
-    "tc_id": "newR1L-DD-B009",
+    "tc_id": "newR1L-DD-015",
     "req_id": "SWE1-RA-Driver_Distraction-015",
     "test_group": "Driver Distraction",
     "test_set": "Lockout Tables",
@@ -234,7 +234,7 @@
     "reasoning": "驗證目標：受限態下，Lockout Table 標 `L/O` 之 feature 被鎖 —— 取樣 \"Pairing (1st time)\"，所據為 HMI spec p7 top=304（Phone 列），**非黃標（黃標三項為 Player / RSE、Messaging、SRT Options，以 PDF 填色實測定位）、非 NAV 系（p7 註記逐字 `Embedded NAV for R1L is applicable to LATAM region only`）**。關鍵情境條件：037 本列之 Method 逐字 `send a speed above 5 MPH`，故取 profile §3.1 之上鎖側 raw 129，標 [ASSUMPTION A-DD6]。一條 TC 即足：037 本列只有一條常態路徑。刻意略過：**不逐一遍歷表列全部 feature** —— 037 本列未要求窮舉，以具名單一樣本承載（profile §2.1 禁泛稱，未禁單樣本）；解鎖方向與 BVA 另一側不擴入（§8.2.1）。**負向面（不在表內之 feature 仍可存取）本則未涵蓋** —— 見 `COVERAGE_GAPS.md` [CG-DD1]：該行為明載於 CFTS022 `-120`／`-121` 之驗證標準欄（`Features not listed in the table remain accessible`），**屬上游所有而非本層所造**；惟其樣本須具名一個「不在表內」之 feature，而 HMI spec p7 之 16 列**全部標 L/O**（表內無非 L/O 之列），CFTS022 之表本體又以圖片參照且該 xlsx 無任何嵌入物件（實測 0）——**權威表之內容於綁定來源中不存在，故無從確認任一 feature 不在表內**，具名即造值（§8.4.1）。表可機讀後即應於本則加該斷言（同一 trigger 之另一後果，§5.7）。"
   },
   {
-    "tc_id": "newR1L-DD-B010",
+    "tc_id": "newR1L-DD-016",
     "req_id": "SWE1-RA-Driver_Distraction-016",
     "test_group": "Driver Distraction",
     "test_set": "Lockout Tables",

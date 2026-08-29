@@ -89,7 +89,9 @@ def build(k):
               WAKE_ER, acc_e]
     numbered = lambda xs: "\n".join(f"{i}. {x}" for i, x in enumerate(xs, 1))
     return {
-        "tc_id": f"newR1L-DD-D{int(k):03d}",
+        # R-DD2：`newR1L-DD-{n:03d}`；n 取 leaf 號（Pei 2026-08-29 裁 leaf 升冪，
+        # 24 leaf 為 001–024 連續，故 n 恆等於 leaf 號）
+        "tc_id": f"newR1L-DD-{k}",
         "req_id": f"SWE1-RA-Driver_Distraction-{k}",
         "test_group": "Driver Distraction",
         "test_set": "Body Off Init",
