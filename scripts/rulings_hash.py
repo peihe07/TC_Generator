@@ -216,7 +216,11 @@ def main() -> int:
     targets = args.target or default_targets(root, args.w_p1_only)
     rulings, dupes = collect(root, targets)
 
-    body = "\n".join(["\t".join(COLUMNS)] + [r.row() for r in rulings]) + "\n"
+    # 檔首註（下放包 56 T68a）—— 本檔為單一全域檔，其重生必然含當時全部線之條文
+    note = ("# 本檔為單一全域檔：其重生一律掃描全部 canon 與各 feature 之 "
+            "RULINGS.md，故其 commit 不可能只含單一變更之列。"
+            "夾帶之他線列為結構性質，非該次提交之瑕疵（下放包 56 §二 #1）。\n")
+    body = note + "\n".join(["\t".join(COLUMNS)] + [r.row() for r in rulings]) + "\n"
     out_path = root / args.out
 
     if args.check:

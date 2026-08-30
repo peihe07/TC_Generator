@@ -1,3 +1,4 @@
+# 本檔為單一全域檔：其重生一律掃描全部 canon 與各 feature 之 RULINGS.md，故其 commit 不可能只含單一變更之列。夾帶之他線列為結構性質，非該次提交之瑕疵（下放包 56 §二 #1）。
 ruling_id	kind	sha8	sha256	source	line	body_lines	ancestor	slug
 R-G1	ruling	550ace4f	550ace4fab995b766d75160960e9f3b6e5611f71bd409a6e9070bb757d2f71b6	docs/fw036/FEATURE_ONBOARDING.md	734	2	9. 全域條文與通則（整併落點）	036 母本之固定與其身分
 R-G2	ruling	521fde5f	521fde5fedde77c14cc479c2f0e06ee3415c5caf8f6f16dfdf8ef4060740f969	docs/fw036/FEATURE_ONBOARDING.md	739	1	9. 全域條文與通則（整併落點）	`forms/` 舊檔以 `mv` 歸檔
@@ -27,8 +28,8 @@ R-G24	ruling	bd9a8cc0	bd9a8cc0f28c1608778f8d4320596456435510f81db9aac055138cc8e3
 R-G25	ruling	50be5127	50be5127ce261473a8576d55b10d92e8489e32b651cf321ba78b5a22b0bdc801	docs/fw036/FEATURE_ONBOARDING.md	1019	19	9. 全域條文與通則（整併落點）	產出物目錄政策
 R-G26	ruling	ce4fdff2	ce4fdff27c0dbeaf7d5a38a632ca2648336538a897aec171172a64a844101a07	docs/fw036/FEATURE_ONBOARDING.md	1041	12	9. 全域條文與通則（整併落點）	工作區清理制
 R-G27	ruling	2bd39a12	2bd39a1228b991e946fc8e833b71f9d541301ea22d1a5ec2423bab1b0d3ac445	docs/fw036/FEATURE_ONBOARDING.md	1056	13	9. 全域條文與通則（整併落點）	來源集中制（`sources/`）
-R-G28	ruling	e1093545	e109354588e2d9b748b07b321b05f6e106a4b3a60a28659a09dc2da41fae2290	docs/fw036/FEATURE_ONBOARDING.md	1072	37	9. 全域條文與通則（整併落點）	CFTS 嵌入物件之逐 feature 檢查
-R-G4	group	9551aa3b	9551aa3b6223406b9c874993986332c91fc67a823d373d28f6f0a1985ff0d453	docs/fw036/FEATURE_ONBOARDING.md	1112	11	9. 全域條文與通則（整併落點）	／R-G7 之原文與 R-G12 之來源
+R-G28	ruling	0336d5bc	0336d5bcab34c3b74551970a8ada2db4f531fc8d5fdd87a2182b99ba9ac86024	docs/fw036/FEATURE_ONBOARDING.md	1072	46	9. 全域條文與通則（整併落點）	CFTS 嵌入物件之逐 feature 檢查
+R-G4	group	9551aa3b	9551aa3b6223406b9c874993986332c91fc67a823d373d28f6f0a1985ff0d453	docs/fw036/FEATURE_ONBOARDING.md	1121	11	9. 全域條文與通則（整併落點）	／R-G7 之原文與 R-G12 之來源
 R-AM1	ruling	212e0cf0	212e0cf0c11d79963dd14f5a143c97299a9b4ef577c407639128d71501965590	features/audio_mgmt/RULINGS.md	12	6	R-AM1（Q6）：Phase 0 人工分類	（Q6）：Phase 0 人工分類
 R-AM2	ruling	21957d7f	21957d7fa5540080f9e09f77dfe3c3adab018bb1770115f9476a5032db4a06a6	features/audio_mgmt/RULINGS.md	21	31	R-AM2（Q2）：錨源 = 兩本 CFTS Basic Report	（Q2）：錨源 = 兩本 CFTS Basic Report
 R-AM2′	ruling	447e2316	447e2316c27a290b78af4f489d9036b0e641c852b45fe086584365271d97a6f7	features/audio_mgmt/RULINGS.md	33	19	R-AM2（Q2）：錨源 = 兩本 CFTS Basic Report	（修訂，2026-08-26，Pei 裁：「2採 R-AM2′准 DR-AM3發」）
