@@ -406,7 +406,7 @@
       "test_item": "Case 1:IF Timeout1 <> 00 minutesAND IF Phone_Call.Info passes to \"Not_Active\" before \"Timeout1” expiration THEN TLM has to restore the active source managed by TLM before the call (for example entertainment features like DAB Tuner, rather than USB or BT streaming audio) staying still in Timed state.\n\n(read the active audio source and the TLM state -> The DAB Tuner source is active again and the TLM remains in Timed state)",
       "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. Apply ENTER_TIMED\n3. A DAB Tuner source was active before the call\n4. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read the active audio source and the TLM state to check that the previous source returned",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read the source indicator and record its value, then check it against the recorded value; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. PENDING: DR-PW23 Phone_Call.Info\n2. The DAB Tuner source is active again and the TLM remains in Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P1",
@@ -415,12 +415,12 @@
       "split_reason": "本條驗還原音源分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4/R5)",
+      "remarks": "(R-P394 B5；規則 R4/R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗還原音源分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -484,7 +484,7 @@
       "test_item": "ELSE TLM has to restore the active source managed by TLM before the call (for example entertainment features like DAB Tuner, rather than USB or BT streaming audio) staying still in Timed state.\n\n(read the active source and the TLM state -> The TLM stayed in Timed state throughout and no transition to Standby occurred)",
       "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 RemStartFail\n4. A DAB Tuner source was active before the call",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Place a further bluetooth call while Timeout1 is still running\n3. Read the active source and the TLM state to check the restore and the further call",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Place a further bluetooth call while Timeout1 is still running\n3. Read the source indicator and record its value, then check it against the recorded value; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The DAB Tuner source is active again and the TLM remains in Timed state\n2. The further call is connected and is managed by the TLM\n3. The TLM stayed in Timed state throughout and no transition to Standby occurred",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
@@ -493,12 +493,12 @@
       "split_reason": "本條驗 Case 1 之 ELSE 分支：還原音源並續管理其他通話",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 待範圍確認 (R-P394 B5；規則 R5)",
+      "remarks": "DR-PW10 待範圍確認 (R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗 Case 1 之 ELSE 分支：還原音源並續管理其他通話"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {

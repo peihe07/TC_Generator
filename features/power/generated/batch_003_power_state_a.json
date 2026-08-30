@@ -197,7 +197,7 @@
       "test_item": "If the CarPlay Device requests audio control and video control, then the HU shall remain in FULL OPERATION mode with the entertainment audio unmuted and the screen on.\n\n(read the HU mode, the entertainment audio and the screen -> The entertainment audio is unmuted and the screen is on)",
       "pre_conditions": "1. Apply ENTER_FULL_OPERATION\n2. A CarPlay Device is paired on the bench\n3. A CarPlay VR interaction has completed",
       "input_test_data": "NA",
-      "test_procedure": "1. Let the CarPlay Device issue the request CarPlay request: audio control and video control\n2. Read the HU mode, the entertainment audio and the screen to check the resulting behavior",
+      "test_procedure": "1. Let the CarPlay Device issue the request CarPlay request: audio control and video control\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Read the HU speakers and check whether entertainment audio output is present on them; Apply FUNC_STATE_<STATE> and check its Display sub-item",
       "expected_result": "1. The HU accepts the request without leaving FULL OPERATION mode\n2. The entertainment audio is unmuted and the screen is on",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
@@ -206,12 +206,12 @@
       "split_reason": "本條驗 audio ＋ video 皆請求之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 audio ＋ video 皆請求之分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -223,7 +223,7 @@
       "test_item": "If the Carplay device requests audio control and does not request video control, then the HU shall remain in FULL OPERATION mode with the audio unmuted and the Screen OFF function activated.  See CFTS020 for Screen Off definition\n\n(read the HU mode, the audio and the screen -> The audio is unmuted and the Screen OFF function is activated)",
       "pre_conditions": "1. Apply ENTER_FULL_OPERATION\n2. A CarPlay Device is paired on the bench\n3. A CarPlay VR interaction has completed",
       "input_test_data": "NA",
-      "test_procedure": "1. Let the CarPlay Device issue the request CarPlay request: audio control only\n2. Read the HU mode, the audio and the screen to check the resulting behavior",
+      "test_procedure": "1. Let the CarPlay Device issue the request CarPlay request: audio control only\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Read the HU speakers and check whether entertainment audio output is present on them; Apply FUNC_STATE_<STATE> and check its Display sub-item",
       "expected_result": "1. The HU accepts the request without leaving FULL OPERATION mode\n2. The audio is unmuted and the Screen OFF function is activated",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
@@ -232,12 +232,12 @@
       "split_reason": "本條驗僅請求 audio 之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗僅請求 audio 之分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 3
     },
     {
@@ -249,7 +249,7 @@
       "test_item": "If the Carplay device does not request audio control and does request video control, then the HU shall remain in FULL OPERATION mode with the audio muted and the Screen On.  See CFTS020 for Screen On definition\n\n(read the HU mode, the audio and the screen -> The audio is muted and the Screen On function is activated)",
       "pre_conditions": "1. Apply ENTER_FULL_OPERATION\n2. A CarPlay Device is paired on the bench\n3. A CarPlay VR interaction has completed",
       "input_test_data": "NA",
-      "test_procedure": "1. Let the CarPlay Device issue the request CarPlay request: video control only\n2. Read the HU mode, the audio and the screen to check the resulting behavior",
+      "test_procedure": "1. Let the CarPlay Device issue the request CarPlay request: video control only\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Read the HU speakers and check whether entertainment audio output is present on them; Apply FUNC_STATE_<STATE> and check its Display sub-item",
       "expected_result": "1. The HU accepts the request without leaving FULL OPERATION mode\n2. The audio is muted and the Screen On function is activated",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
@@ -258,12 +258,12 @@
       "split_reason": "本條驗僅請求 video 之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗僅請求 video 之分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 4
     },
     {
@@ -379,7 +379,7 @@
       "test_item": "In this mode TLM shall shall report $Telematic_Power$ = \" Partial_Operation\". This mode shall exist for AMP, ICS, and DTV when STATUS_BH_BCM2.RemStActvSts is equal to \"Remote Start Active\" is recieved and TLM sends $Telematic_Power$ = \"Partial_Operation\"\n\n(read $Telematic_Power$ -> $Telematic_Power$ reads \"Partial_Operation\")",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ignition working condition is Ignition On",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\"\n2. Read $Telematic_Power$ to check the reported mode",
+      "test_procedure": "1. Send the signal STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM accepts the signal without a bus error\n2. $Telematic_Power$ reads \"Partial_Operation\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.3",
       "priority": "P0",
@@ -388,12 +388,12 @@
       "split_reason": "本條驗 Remote Start Active 之模式回報",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Remote Start Active 之模式回報"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -405,7 +405,7 @@
       "test_item": "In this mode TLM shall shall report $Telematic_Power$ = \" Partial_Operation\". This mode shall exist for AMP, ICS, and DTV when STATUS_BH_BCM2.RemStActvSts is equal to \"Remote Start Active\" is recieved and TLM sends $Telematic_Power$ = \"Partial_Operation\"\n\n(read $Telematic_Power$ -> $Telematic_Power$ reads \"Partial_Operation\")",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ignition working condition is Ignition Pre_Start",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\"\n2. Read $Telematic_Power$ to check the reported mode",
+      "test_procedure": "1. Send the signal STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM accepts the signal without a bus error\n2. $Telematic_Power$ reads \"Partial_Operation\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.3",
       "priority": "P0",
@@ -414,12 +414,12 @@
       "split_reason": "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）"
       },
-      "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition Pre_Start` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition Pre_Start` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -431,7 +431,7 @@
       "test_item": "In this mode TLM shall shall report $Telematic_Power$ = \" Partial_Operation\". This mode shall exist for AMP, ICS, and DTV when STATUS_BH_BCM2.RemStActvSts is equal to \"Remote Start Active\" is recieved and TLM sends $Telematic_Power$ = \"Partial_Operation\"\n\n(read $Telematic_Power$ -> $Telematic_Power$ reads \"Partial_Operation\")",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ignition working condition is Ignition Cranking",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\"\n2. Read $Telematic_Power$ to check the reported mode",
+      "test_procedure": "1. Send the signal STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM accepts the signal without a bus error\n2. $Telematic_Power$ reads \"Partial_Operation\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.3",
       "priority": "P0",
@@ -440,12 +440,12 @@
       "split_reason": "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）"
       },
-      "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition Cranking` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition Cranking` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 3
     },
     {
@@ -457,7 +457,7 @@
       "test_item": "In this mode TLM shall shall report $Telematic_Power$ = \" Partial_Operation\". This mode shall exist for AMP, ICS, and DTV when STATUS_BH_BCM2.RemStActvSts is equal to \"Remote Start Active\" is recieved and TLM sends $Telematic_Power$ = \"Partial_Operation\"\n\n(read $Telematic_Power$ -> $Telematic_Power$ reads \"Partial_Operation\")",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ignition working condition is Ignition On Engine On",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\"\n2. Read $Telematic_Power$ to check the reported mode",
+      "test_procedure": "1. Send the signal STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM accepts the signal without a bus error\n2. $Telematic_Power$ reads \"Partial_Operation\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.3",
       "priority": "P0",
@@ -466,12 +466,12 @@
       "split_reason": "本條驗逗號列舉之點火工作條件 Ignition On Engine On（R-P199 補測）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗逗號列舉之點火工作條件 Ignition On Engine On（R-P199 補測）"
       },
-      "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition On Engine On` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition On Engine On` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 4
     },
     {
@@ -587,7 +587,7 @@
       "test_item": "If Phone_Call.Info == Not_Active, at LTM_OperationalModeSts.Info transition TLM sets TLM_Status.Info and $Telematic_Power$ to \"Standby\" value and then it goes to TLM Standby state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM goes to TLM Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The signal value $STATUS_BH_BCM1.OperationalModeSts$ is received without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM goes to TLM Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -596,12 +596,12 @@
       "split_reason": "本條驗 Behaviour 1 之無通話分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Behaviour 1 之無通話分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 3
     },
     {
@@ -613,7 +613,7 @@
       "test_item": "If Phone_Call.Info == Active, at LTM_OperationalModeSts.Info transition TLM sets TLM_Status.Info and $Telematic_Power$ to \"Timed\" value and then it goes to TLM Timed state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the TLM stays there until Phone_Call.Info becomes \"Not_Active\")",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Timed",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The signal value $STATUS_BH_BCM1.OperationalModeSts$ is received without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the TLM stays there until Phone_Call.Info becomes \"Not_Active\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -622,12 +622,12 @@
       "split_reason": "本條驗 Behaviour 1 之通話中分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Behaviour 1 之通話中分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 4
     },
     {
@@ -639,7 +639,7 @@
       "test_item": "IF Brand_Configuration _2 == \"Jeep\" AND STATUS_BH_BCM1.DriverDoorSts == \"Open\" AND PhoneCall.Info == \"Not_Active\" at LTM_OperationalModeSts.Info transition, TLM sets TLM_Status.Info and $Telematic_Power$ to \"Standby\" value and then it passes to TLM Standby state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to TLM Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req\n3. Brand_Configuration _2 reads \"Jeep\"\n4. PENDING: DR-PW23 PhoneCall.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal STATUS_BH_BCM1.DriverDoorSts = \"Open\" and let LTM_OperationalModeSts.Info transition occur\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open) and send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers both the door signal and the mode transition\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to TLM Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -648,12 +648,12 @@
       "split_reason": "本條驗 Behaviour 2 之 Jeep ＋ 駕駛門開啟分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Behaviour 2 之 Jeep ＋ 駕駛門開啟分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 5
     },
     {
@@ -665,7 +665,7 @@
       "test_item": "ELSE at LTM_OperationalModeSts.Info transition, TLM sets TLM_Status.Info and $Telematic_Power$ to \"Timed\" value and then it passes to TLM Timed state, mantaining the current active source.\n\n(read TLM_Status.Info, $Telematic_Power$ and the active source -> TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the current active source is maintained)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req\n3. Brand_Configuration _2 reads a value other than \"Jeep\"\n4. A tuner source is currently active",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read TLM_Status.Info, $Telematic_Power$ and the active source to check the transition to Timed",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Read the source indicator and record its value, then check it against the recorded value",
       "expected_result": "1. The signal value $STATUS_BH_BCM1.OperationalModeSts$ is received without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the current active source is maintained",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -674,12 +674,12 @@
       "split_reason": "本條驗 Behaviour 2 之 ELSE 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Behaviour 2 之 ELSE 分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 6
     },
     {
@@ -691,7 +691,7 @@
       "test_item": "Behaviour 2: \"SwitchOff_Timeout_Setting.Req == Timeout1 <> 00 MIN\" or ( If Auto_SwitchOn_Setting.Req ==\"Not_Active \", when  Timeout1 <> 00 MIN\" for LTM High Radio):\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM goes to TLM Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. An LTM High Radio is present in the bench configuration\n3. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n4. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The signal value $STATUS_BH_BCM1.OperationalModeSts$ is received without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM goes to TLM Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -700,12 +700,12 @@
       "split_reason": "本條驗 Behaviour 1 之 LTM High 形態（`063` 驗 SwitchOff_Timeout_Setting.Req 形態）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Behaviour 1 之 LTM High 形態（`063` 驗 SwitchOff_Timeout_Setting.Req 形態）"
       },
-      "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 7
     },
     {
@@ -717,7 +717,7 @@
       "test_item": "Behaviour 1: \"SwitchOff_Timeout_Setting.Req == Timeout1 == 00 MIN\" or ( If Auto_SwitchOn_Setting.Req ==\"Active\", when  Timeout1 == 00 MIN\" for LTM High Radio):\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the current active source is maintained)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. An LTM High Radio is present in the bench configuration\n3. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n4. Brand_Configuration _2 reads a value other than \"Jeep\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Timed",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = the value under test (DR-PW26)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The signal value $STATUS_BH_BCM1.OperationalModeSts$ is received without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the current active source is maintained",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -726,12 +726,12 @@
       "split_reason": "本條驗 Behaviour 2 之 LTM High 形態（`066` 驗 SwitchOff_Timeout_Setting.Req 形態）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Behaviour 2 之 LTM High 形態（`066` 驗 SwitchOff_Timeout_Setting.Req 形態）"
       },
-      "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 8
     },
     {
@@ -769,7 +769,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Full-Operation\"AND signal Front_Panel_OnOff.Req has a transition from “Not_Pressed” value to “Pressed” valueTHEN IF Phone_Call.Info == Not_Active TLM has to set VPLastStatus to “OFF” value and to set TLM_Status.Info and $Telematic_Power$ to \"Idle\" value and then it passes to TLM Idle state.\n\n(read VPLastStatus, TLM_Status.Info and $Telematic_Power$ -> VPLastStatus reads \"OFF\", TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_FULL_OPERATION\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read VPLastStatus, TLM_Status.Info and $Telematic_Power$ to check the transition to Idle",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. PENDING: DR-PW23 VPLastStatus; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the press transition\n2. VPLastStatus reads \"OFF\", TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -778,12 +778,12 @@
       "split_reason": "本條驗 Front_Panel_OnOff.Req 之按下 → Idle",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4/R5)",
+      "remarks": "(R-P394 B5；規則 R4/R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Front_Panel_OnOff.Req 之按下 → Idle"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -795,7 +795,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Full-Operation\"AND signal CLIMATIC_PANEL.Radio_Btn0 has a transition from “Not_Pressed” value to “Pressed” valueTHEN IF Phone_Call.Info == Not_Active TLM has to set VPLastStatus to “OFF” value and to set TLM_Status.Info and $Telematic_Power$ to \"Idle\" value and then it passes to TLM Idle state.\n\n(read VPLastStatus, TLM_Status.Info and $Telematic_Power$ -> VPLastStatus reads \"OFF\", TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_FULL_OPERATION\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Read VPLastStatus, TLM_Status.Info and $Telematic_Power$ to check the transition to Idle",
+      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. PENDING: DR-PW23 VPLastStatus; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the press transition\n2. VPLastStatus reads \"OFF\", TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -804,12 +804,12 @@
       "split_reason": "本條驗 CLIMATIC_PANEL.Radio_Btn0 之按下 → Idle",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 之按下 → Idle"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -821,7 +821,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Full-Operation\"AND signal Front_Panel_OnOff.Req has a transition from “Not_Pressed” value to “Pressed” valueTHEN IF Phone_Call.Info == Not_Active AND Rear Camera is not Active (provided that proxi parameter Rear_View_Camera == \"Present\") TLM has to set VPLastStatus to “OFF” value and to set TLM_Status.Info and $Telematic_Power$ to \"Idle\" value and then it passes to TLM Idle state.\n\n(read VPLastStatus, TLM_Status.Info and $Telematic_Power$ -> VPLastStatus reads \"OFF\", TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_FULL_OPERATION\n3. PENDING: DR-PW23 Phone_Call.Info\n4. Rear_View_Camera reads \"Present\" and the Rear Camera is not active",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read VPLastStatus, TLM_Status.Info and $Telematic_Power$ to check the transition to Idle",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. PENDING: DR-PW23 VPLastStatus; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the press transition\n2. VPLastStatus reads \"OFF\", TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P1",
@@ -830,12 +830,12 @@
       "split_reason": "本條驗 Front_Panel_OnOff.Req 於 Rear_View_Camera 存在而未啟動時之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4/R5)",
+      "remarks": "(R-P394 B5；規則 R4/R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Front_Panel_OnOff.Req 於 Rear_View_Camera 存在而未啟動時之分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 3
     },
     {
@@ -847,7 +847,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Full-Operation\"AND signal CLIMATIC_PANEL.Radio_Btn0 has a transition from “Not_Pressed” value to “Pressed” valueTHEN IF Phone_Call.Info == Not_Active AND Rear Camera is not active (provided that proxi parameter Rear_View_Camera == \"Present\") TLM has to set VPLastStatus to “OFF” value and to set TLM_Status.Info and $Telematic_Power$ to \"Idle\" value and then it passes to TLM Idle state.\n\n(read VPLastStatus, TLM_Status.Info and $Telematic_Power$ -> VPLastStatus reads \"OFF\", TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_FULL_OPERATION\n3. PENDING: DR-PW23 Phone_Call.Info\n4. Rear_View_Camera reads \"Present\" and the Rear Camera is not active",
       "input_test_data": "NA",
-      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Read VPLastStatus, TLM_Status.Info and $Telematic_Power$ to check the transition to Idle",
+      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. PENDING: DR-PW23 VPLastStatus; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the press transition\n2. VPLastStatus reads \"OFF\", TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P1",
@@ -856,12 +856,12 @@
       "split_reason": "本條驗 CLIMATIC_PANEL.Radio_Btn0 於 Rear_View_Camera 存在而未啟動時之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 於 Rear_View_Camera 存在而未啟動時之分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 4
     },
     {
@@ -895,7 +895,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Full-Operation\"AND PROXI parameter Rear_View_Camera == \"Present\" AND Rear Camera becomes inactive,THENTLM has to manage the last active source, that depends also on Audio_Data_Exchange.Info value and on Phone_Call.Info values, that could have changed their value while showing rvc images, and on priorities of the sources.\n\n(read the active source -> The last active source is managed according to Audio_Data_Exchange.Info and Phone_Call.Info values)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_FULL_OPERATION\n3. Rear_View_Camera reads \"Present\" and the Rear Camera is active",
       "input_test_data": "NA",
-      "test_procedure": "1. Make the Rear Camera become inactive\n2. Read the active source to check that the last active source is managed",
+      "test_procedure": "1. Make the Rear Camera become inactive\n2. Read the source indicator and record its value, then check it against the recorded value",
       "expected_result": "1. The TLM leaves the rear view camera images on the deactivation\n2. PENDING: DR-PW23 Audio_Data_Exchange.Info",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -904,8 +904,8 @@
       "split_reason": "本條驗後視攝影機關閉後之音源回復",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "remarks": "(R-P394 B5；規則 R4) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -917,7 +917,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Idle\"AND signal LTM_OperationalModeSts has a transition to \"Ignition Pre Off\" OR to \"Ignition Off\" valueTHENTLM has to set TLM_Status.Info and $Telematic_Power$ to \"Standby\" value and then it passes to TLM Standby state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to TLM Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the transition LTM_OperationalModeSts: \"Ignition Off\"\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
+      "test_procedure": "1. Send the transition LTM_OperationalModeSts: \"Ignition Off\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to TLM Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -926,12 +926,12 @@
       "split_reason": "本條驗 Idle ＋ 點火關閉 → Standby",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Idle ＋ 點火關閉 → Standby"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -943,7 +943,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Idle\"AND signal LTM_OperationalModeSts has a transition to \"Ignition Pre Off\" OR to \"Ignition Off\" valueTHENTLM has to set TLM_Status.Info and $Telematic_Power$ to \"Standby\" value and then it passes to TLM Standby state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to TLM Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the transition LTM_OperationalModeSts: \"Ignition Pre Off\"\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
+      "test_procedure": "1. Send the transition LTM_OperationalModeSts: \"Ignition Pre Off\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to TLM Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -952,12 +952,12 @@
       "split_reason": "本條驗 `Ignition Pre Off` 之觸發（`073` 之對應條驗 `Ignition Off`）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 `Ignition Pre Off` 之觸發（`073` 之對應條驗 `Ignition Off`）"
       },
-      "reasoning_note": "**G113 之首次真實命中（23 包）**：`4941504` / `4941548` 皆載觸發為 「`Ignition Pre Off` **OR** `Ignition Off`」，而首次撰寫只取 `Ignition Off`。**此為「原文以 OR 並列而 TC 只取其一」之第八、第九例** —— 與 A-PW94 / A-PW87 / A-PW119 同型，**惟本次係由 G113 於現況資料上直接攔下，非事後由反向涵蓋抓到**。依 R-P161(c) 裁為真缺口並補本條。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "**G113 之首次真實命中（23 包）**：`4941504` / `4941548` 皆載觸發為 「`Ignition Pre Off` **OR** `Ignition Off`」，而首次撰寫只取 `Ignition Off`。**此為「原文以 OR 並列而 TC 只取其一」之第八、第九例** —— 與 A-PW94 / A-PW87 / A-PW119 同型，**惟本次係由 G113 於現況資料上直接攔下，非事後由反向涵蓋抓到**。依 R-P161(c) 裁為真缺口並補本條。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -969,7 +969,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Idle\"AND signal Front_Panel_OnOff.Req has a transition from “Not_Pressed” value to “Pressed” valueTHEN\n\n(read TLM_Status.Info and the screen -> TLM_Status.Info still reads \"Idle\" and no Splash Screen is shown)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. PENDING: DR-PW23 Rear_Camera_Enable.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read TLM_Status.Info and the screen to check that the transition is ignored",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Apply FUNC_STATE_<STATE> and check its Display sub-item",
       "expected_result": "1. The TLM receives the press transition\n2. TLM_Status.Info still reads \"Idle\" and no Splash Screen is shown",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
@@ -978,12 +978,12 @@
       "split_reason": "本條驗 Front_Panel_OnOff.Req 於後視攝影機啟用時被忽略",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4/R5)",
+      "remarks": "(R-P394 B5；規則 R4/R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Front_Panel_OnOff.Req 於後視攝影機啟用時被忽略"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -995,7 +995,7 @@
       "test_item": "TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time AND TLM has to set VPLastStatus to “ON” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and then it passes to TLM Full-Operation state.\n\n(read the screen, VPLastStatus and TLM_Status.Info -> VPLastStatus reads \"ON\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. PENDING: DR-PW23 Rear_Camera_Enable.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read the screen, VPLastStatus and TLM_Status.Info to check the transition",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; PENDING: DR-PW23 VPLastStatus; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. A Splash Screen is shown for Response_Wait_Time\n2. VPLastStatus reads \"ON\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
@@ -1004,12 +1004,12 @@
       "split_reason": "本條驗 Front_Panel_OnOff.Req 之 ELSE 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4/R5)",
+      "remarks": "(R-P394 B5；規則 R4/R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Front_Panel_OnOff.Req 之 ELSE 分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -1021,7 +1021,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Idle\"AND signal CLIMATIC_PANEL.Radio_Btn0 has a transition from “Not_Pressed” value to “Pressed” valueTHEN\n\n(read TLM_Status.Info and the screen -> TLM_Status.Info still reads \"Idle\" and no Splash Screen is shown)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. PENDING: DR-PW23 Rear_Camera_Enable.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Read TLM_Status.Info and the screen to check that the transition is ignored",
+      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Apply FUNC_STATE_<STATE> and check its Display sub-item",
       "expected_result": "1. The TLM receives the press transition\n2. TLM_Status.Info still reads \"Idle\" and no Splash Screen is shown",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
@@ -1030,12 +1030,12 @@
       "split_reason": "本條驗 CLIMATIC_PANEL.Radio_Btn0 於後視攝影機啟用時被忽略",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 於後視攝影機啟用時被忽略"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 3
     },
     {
@@ -1047,7 +1047,7 @@
       "test_item": "TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time AND TLM has to set VPLastStatus to “ON” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and then it passes to TLM Full-Operation state.\n\n(read the screen, VPLastStatus and TLM_Status.Info -> VPLastStatus reads \"ON\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. PENDING: DR-PW23 Rear_Camera_Enable.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Read the screen, VPLastStatus and TLM_Status.Info to check the transition",
+      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; PENDING: DR-PW23 VPLastStatus; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. A Splash Screen is shown for Response_Wait_Time\n2. VPLastStatus reads \"ON\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
@@ -1056,12 +1056,12 @@
       "split_reason": "本條驗 CLIMATIC_PANEL.Radio_Btn0 之 ELSE 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 之 ELSE 分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 4
     },
     {
@@ -1073,7 +1073,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Idle\"AND signal Phone_Call.Info has a transition from “Not_Active” value to “Active” valueTHENTLM has to set VPLastStatus  to “ON” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and then it passes to TLM Full-Operation state.This condition does not apply to Calls made through Apple CarPlay on R1H in SR21.\n\n(read VPLastStatus, TLM_Status.Info and $Telematic_Power$ -> VPLastStatus reads \"ON\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. The call is not made through Apple CarPlay",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read VPLastStatus, TLM_Status.Info and $Telematic_Power$ to check the transition",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. PENDING: DR-PW23 VPLastStatus; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. VPLastStatus reads \"ON\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1082,12 +1082,12 @@
       "split_reason": "本條驗 Idle ＋ 通話進入 → Full-Operation",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4)",
+      "remarks": "(R-P394 B5；規則 R4) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Idle ＋ 通話進入 → Full-Operation"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -1099,7 +1099,7 @@
       "test_item": "Then, IF Phone_Call.Info turns back to \"Not_Active\" when TLM_Display.GUI is in Phone Main Screen, TLM shall set TLM_Status.Info and $Telematic_Power$ to \"Idle\" again and then it passes to TLM Idle state.IF Phone_Call.Info turns back to \"Not_Active\" when another Screen is active on TLM_Display.GUI (due to user actions during the call), TLM shall stay in Full-Operation state.        Refer to TLM HMI document for further details about the screens visualization.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info reads \"Full-Operation\" entered through a call\n3. TLM_Display.GUI is in Phone Main Screen",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read TLM_Status.Info and $Telematic_Power$ to check the return to Idle",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1108,12 +1108,12 @@
       "split_reason": "本條驗通話結束於 Phone Main Screen 之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4)",
+      "remarks": "(R-P394 B5；規則 R4) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗通話結束於 Phone Main Screen 之分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -1125,7 +1125,7 @@
       "test_item": "Then, IF Phone_Call.Info turns back to \"Not_Active\" when TLM_Display.GUI is in Phone Main Screen, TLM shall set TLM_Status.Info and $Telematic_Power$ to \"Idle\" again and then it passes to TLM Idle state.IF Phone_Call.Info turns back to \"Not_Active\" when another Screen is active on TLM_Display.GUI (due to user actions during the call), TLM shall stay in Full-Operation state.        Refer to TLM HMI document for further details about the screens visualization.\n\n(read TLM_Status.Info -> TLM_Status.Info still reads \"Full-Operation\" and the TLM stays in Full-Operation state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info reads \"Full-Operation\" entered through a call\n3. TLM_Display.GUI is on a screen other than Phone Main Screen",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read TLM_Status.Info to check that Full-Operation state is kept",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. TLM_Status.Info still reads \"Full-Operation\" and the TLM stays in Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1134,12 +1134,12 @@
       "split_reason": "本條驗通話結束於其他畫面之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4)",
+      "remarks": "(R-P394 B5；規則 R4) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗通話結束於其他畫面之分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 3
     },
     {
@@ -1173,7 +1173,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Full-Operation” || “Idle”AND signal PowerModeSts_Telematic passes from “Standard_Power” to “Logistic_Mode_On”, then TLM has to set TLM_Status.Info to \"Logistic Idle\" and $Telematic_Power$ to “Logistic_On” and then it passes to Logistic Idle state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info reads \"Logistic Idle\", $Telematic_Power$ reads \"Logistic_On\" and the TLM passes to Logistic Idle state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_FULL_OPERATION",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the transition PowerModeSts_Telematic: \"Standard_Power\" to \"Logistic_Mode_On\"\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition",
+      "test_procedure": "1. Send the transition PowerModeSts_Telematic: \"Standard_Power\" to \"Logistic_Mode_On\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. TLM_Status.Info reads \"Logistic Idle\", $Telematic_Power$ reads \"Logistic_On\" and the TLM passes to Logistic Idle state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1182,8 +1182,8 @@
       "split_reason": "本條驗物流模式進入",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -1195,7 +1195,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Timed\"AND signal LTM_OperationalModeSts.Info has a transition from \"Ignition Off\" to another valueTHENTLM has to set VPLastStatus  to “On” value and to set TLM_Status.Info and $Telematic_Power$ to “Full-Operation” value and then it passes to TLM Full-Operation state.\n\n(read VPLastStatus, TLM_Status.Info and $Telematic_Power$ -> VPLastStatus reads \"On\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the transition LTM_OperationalModeSts.Info: from \"Ignition Off\" to another value\n2. Read VPLastStatus, TLM_Status.Info and $Telematic_Power$ to check the transition",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = a value other than 2 (Ignition_Off) (DR-PW26)\n2. PENDING: DR-PW23 VPLastStatus; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. VPLastStatus reads \"On\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1204,8 +1204,8 @@
       "split_reason": "本條驗 Timed ＋ 離開 Ignition Off → Full-Operation",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 1
     },
     {
@@ -1217,7 +1217,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Timed\"AND STATUS_BH_BCM2.RemStActvSts == \"Remote Start Not Active\"AND signal LTM_OperationalModeSts.Info has a transition from \"Ignition Off\" to another valueTHENTLM has to set VPLastStatus  to “On” value and  RemStartFail to \"False\"AND TLM has to set TLM_Status.Info and $Telematic_Power$ to “Full-Operation” value and then it passes to TLM Full-Operation state.\n\n(read VPLastStatus, RemStartFail and TLM_Status.Info -> VPLastStatus reads \"On\", RemStartFail reads \"False\" and the TLM passes to TLM Full-Operation state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. STATUS_BH_BCM2.RemStActvSts reads \"Remote Start Not Active\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the transition LTM_OperationalModeSts.Info: from \"Ignition Off\" to another value\n2. PENDING: DR-PW23 RemStartFail",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = a value other than 2 (Ignition_Off) (DR-PW26)\n2. PENDING: DR-PW23 RemStartFail",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. PENDING: DR-PW23 RemStartFail",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1226,8 +1226,8 @@
       "split_reason": "本條驗 Remote Start Not Active 下之 RemStartFail 清除",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "remarks": "(R-P394 B5；規則 R4) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 1
     },
     {
@@ -1239,7 +1239,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Timed\"AND Front_Panel_OnOff.Req has a transition from “Not_Pressed” value to “Pressed” valueTHENIF Phone_Call.Info == ActiveTHEN TLM shall show a popup to the user, asking whether to transfer the call in order to turn off TLM or not (refer to TLM HMI Specification)\n\n(read the screen -> A popup asking whether to transfer the call is shown to the user)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read the screen to check that the transfer popup is shown",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
       "expected_result": "1. The TLM registers the press transition\n2. A popup asking whether to transfer the call is shown to the user",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
@@ -1248,12 +1248,12 @@
       "split_reason": "本條驗 Front_Panel_OnOff.Req ＋ 通話中之 popup",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4/R5)",
+      "remarks": "(R-P394 B5；規則 R4/R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Front_Panel_OnOff.Req ＋ 通話中之 popup"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -1265,7 +1265,7 @@
       "test_item": "In this case, IF user accepts, TLM shall set TLM_Status.Info and $Telematic_Power$ to “Standby” value and it passes to Standby state.IF user does not accept, TLM shall stay in Timed state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 Front_Panel_OnOff.Req",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM accepts the user answer\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1274,12 +1274,12 @@
       "split_reason": "本條驗 Front_Panel_OnOff.Req popup 之接受分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4/R5)",
+      "remarks": "(R-P394 B5；規則 R4/R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Front_Panel_OnOff.Req popup 之接受分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -1291,7 +1291,7 @@
       "test_item": "In this case, IF user accepts, TLM shall set TLM_Status.Info and $Telematic_Power$ to “Standby” value and it passes to Standby state.IF user does not accept, TLM shall stay in Timed state.\n\n(read TLM_Status.Info -> TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 Front_Panel_OnOff.Req",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read TLM_Status.Info to check that Timed state is kept",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM accepts the user answer\n2. TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1300,12 +1300,12 @@
       "split_reason": "本條驗 Front_Panel_OnOff.Req popup 之拒絕分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4/R5)",
+      "remarks": "(R-P394 B5；規則 R4/R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Front_Panel_OnOff.Req popup 之拒絕分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 3
     },
     {
@@ -1317,7 +1317,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Timed\"AND Front_Panel_OnOff.Req has a transition from “Not_Pressed” value to “Pressed” valueTHENIF Phone_Call.Info == ActiveTHEN TLM shall show a popup to the user, asking whether to transfer the call in order to turn off TLM or not (refer to TLM HMI Specification)\n\n(read the active functionality and TLM_Status.Info -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 Phone_Call.Info\n4. A tuner source is currently active",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read the active functionality and TLM_Status.Info to check the transition to Standby",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Apply FUNC_STATE_<STATE> and check all of its sub-items; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The active functionality stops and no source stays active\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1326,12 +1326,12 @@
       "split_reason": "本條驗 Front_Panel_OnOff.Req ＋ 無通話之直接轉換",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Front_Panel_OnOff.Req ＋ 無通話之直接轉換"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 4
     },
     {
@@ -1343,7 +1343,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Timed\"AND CLIMATIC_PANEL.Radio_Btn0 has a transition from “Not_Pressed” value to “Pressed” valueTHENIF Phone_Call.Info == ActiveTHEN TLM shall show a popup to the user, asking whether to transfer the call in order to turn off TLM or not (refer to TLM HMI Specification)\n\n(read the screen -> A popup asking whether to transfer the call is shown to the user)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Read the screen to check that the transfer popup is shown",
+      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
       "expected_result": "1. The TLM registers the press transition\n2. A popup asking whether to transfer the call is shown to the user",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
@@ -1352,12 +1352,12 @@
       "split_reason": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ 通話中之 popup",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ 通話中之 popup"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 5
     },
     {
@@ -1369,7 +1369,7 @@
       "test_item": "In this case, IF user accepts, TLM shall set TLM_Status.Info and $Telematic_Power$ to “Standby” value and it passes to Standby state.IF user does not accept, TLM shall stay in Timed state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. The transfer popup is shown after the CLIMATIC_PANEL.Radio_Btn0 press",
       "input_test_data": "NA",
-      "test_procedure": "1. Accept the CLIMATIC_PANEL.Radio_Btn0 popup as the user\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
+      "test_procedure": "1. Accept the CLIMATIC_PANEL.Radio_Btn0 popup as the user\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM accepts the user answer\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1378,12 +1378,12 @@
       "split_reason": "本條驗 CLIMATIC_PANEL.Radio_Btn0 popup 之接受分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 popup 之接受分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 6
     },
     {
@@ -1395,7 +1395,7 @@
       "test_item": "In this case, IF user accepts, TLM shall set TLM_Status.Info and $Telematic_Power$ to “Standby” value and it passes to Standby state.IF user does not accept, TLM shall stay in Timed state.\n\n(read TLM_Status.Info -> TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. The transfer popup is shown after the CLIMATIC_PANEL.Radio_Btn0 press",
       "input_test_data": "NA",
-      "test_procedure": "1. Decline the CLIMATIC_PANEL.Radio_Btn0 popup as the user\n2. Read TLM_Status.Info to check that Timed state is kept",
+      "test_procedure": "1. Decline the CLIMATIC_PANEL.Radio_Btn0 popup as the user\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM accepts the user answer\n2. TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1404,12 +1404,12 @@
       "split_reason": "本條驗 CLIMATIC_PANEL.Radio_Btn0 popup 之拒絕分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 popup 之拒絕分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 7
     },
     {
@@ -1421,7 +1421,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Timed\"AND CLIMATIC_PANEL.Radio_Btn0 has a transition from “Not_Pressed” value to “Pressed” valueTHENIF Phone_Call.Info == ActiveTHEN TLM shall show a popup to the user, asking whether to transfer the call in order to turn off TLM or not (refer to TLM HMI Specification)\n\n(read the active functionality and TLM_Status.Info -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 Phone_Call.Info\n4. A tuner source is currently active",
       "input_test_data": "NA",
-      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Read the active functionality and TLM_Status.Info to check the transition to Standby",
+      "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Apply FUNC_STATE_<STATE> and check all of its sub-items; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The active functionality stops and no source stays active\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1430,12 +1430,12 @@
       "split_reason": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ 無通話之直接轉換",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ 無通話之直接轉換"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 8
     },
     {
@@ -1447,7 +1447,7 @@
       "test_item": "IF previous internal state TLM_Status.Info == \"Full-Operation\" AND PhoneCall.Info == \"Not_Active\"THEN TLM has to stop its active functionality (Media audio streaming, tuner, etc) and to set TLM_Status.Info and $Telematic_Power$ to “Standby” value and it passes to Standby state\n\n(read the active functionality and TLM_Status.Info -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. Brand_Configuration_2 reads \"Jeep\" and SWITCH_OFF_DOOR reads \"enable\"\n4. PENDING: DR-PW23 PhoneCall.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal STATUS_BH_BCM1.DriverDoorSts = \"Open\"\n2. Read the active functionality and TLM_Status.Info to check the transition to Standby",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open)\n2. Apply FUNC_STATE_<STATE> and check all of its sub-items; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The active functionality stops and no source stays active\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1456,12 +1456,12 @@
       "split_reason": "本條驗 Jeep 車門開啟 ＋ 前狀態 Full-Operation 之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Jeep 車門開啟 ＋ 前狀態 Full-Operation 之分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 1
     },
     {
@@ -1473,7 +1473,7 @@
       "test_item": "IF PhoneCall.Info == \"Active\"OR IF previous internal state TLM_Status.Info == StandbyTHEN TLM shall stay in Timed state.\n\n(read TLM_Status.Info -> TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. Brand_Configuration_2 reads \"Jeep\" and SWITCH_OFF_DOOR reads \"enable\"\n4. PENDING: DR-PW23 PhoneCall.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal STATUS_BH_BCM1.PsngrDoorSts = \"Open\"\n2. Read TLM_Status.Info to check that Timed state is kept",
+      "test_procedure": "1. Send the signal STATUS_BH_BCM1.PsngrDoorSts = \"Open\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the door signal without a bus error\n2. TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1482,12 +1482,12 @@
       "split_reason": "本條驗通話中之門開啟分支，**並承擔 OR 之右支 `STATUS_BH_BCM1.PsngrDoorSts`**（R-P202 —— 使該涵蓋自附帶轉為設計）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗通話中之門開啟分支，**並承擔 OR 之右支 `STATUS_BH_BCM1.PsngrDoorSts`**（R-P202 —— 使該涵蓋自附帶轉為設計）"
       },
-      "reasoning_note": "R-P202：本 leaf 之拆分軸為前狀態與通話狀態，而 `source_clause` 之車門 OR 有二支。**本條指定承擔 `PsngrDoorSts` 支**，`094` / `096` / `097` 承擔 `DriverDoorSts` 支。改寫本條時**須保留副駕駛門之輸入**，否則該支之涵蓋將無聲消失。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "R-P202：本 leaf 之拆分軸為前狀態與通話狀態，而 `source_clause` 之車門 OR 有二支。**本條指定承擔 `PsngrDoorSts` 支**，`094` / `096` / `097` 承擔 `DriverDoorSts` 支。改寫本條時**須保留副駕駛門之輸入**，否則該支之涵蓋將無聲消失。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -1499,7 +1499,7 @@
       "test_item": "IF PhoneCall.Info == \"Active\"OR IF previous internal state TLM_Status.Info == StandbyTHEN TLM shall stay in Timed state.\n\n(read TLM_Status.Info -> TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. Brand_Configuration_2 reads \"Jeep\" and SWITCH_OFF_DOOR reads \"enable\"\n4. The previous internal state was Standby",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal STATUS_BH_BCM1.DriverDoorSts = \"Open\"\n2. Read TLM_Status.Info to check that Timed state is kept",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the door signal without a bus error\n2. TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P1",
@@ -1508,12 +1508,12 @@
       "split_reason": "本條驗前狀態為 Standby 之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗前狀態為 Standby 之分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 3
     },
     {
@@ -1525,7 +1525,7 @@
       "test_item": "IF previous internal state TLM_Status.Info == \"Full-Operation\" AND PhoneCall.Info == \"Not_Active\"THEN TLM has to stop its active functionality (Media audio streaming, tuner, etc) and to set TLM_Status.Info and $Telematic_Power$ to “Standby” value and it passes to Standby state\n\n(read TLM_Status.Info -> TLM_Status.Info does not pass to \"Standby\" through the transition of this clause)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_TIMED\n3. Brand_Configuration_2 reads a value other than \"Jeep\" and SWITCH_OFF_DOOR reads \"enable\"\n4. PENDING: DR-PW23 PhoneCall.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the value STATUS_BH_BCM1.DriverDoorSts = \"Open\"\n2. Read TLM_Status.Info to check whether the transition of this clause occurs",
+      "test_procedure": "1. Send the value STATUS_BH_BCM1.DriverDoorSts = \"Open\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the door signal without a bus error\n2. TLM_Status.Info does not pass to \"Standby\" through the transition of this clause",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P1",
@@ -1534,12 +1534,12 @@
       "split_reason": "本條驗守衛條件之否定側（非 Jeep）——（R-P198(b) 補測）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗守衛條件之否定側（非 Jeep）——（R-P198(b) 補測）"
       },
-      "reasoning_note": "R-P198(b) 補測 —— `Brand_Configuration_2` 得逐車配置，故非 Jeep 為另一可發生情境。依 §7 為否定側；**ER 僅述「未發生該轉換」，未斷言其他行為**（§8.4.1）。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "R-P198(b) 補測 —— `Brand_Configuration_2` 得逐車配置，故非 Jeep 為另一可發生情境。依 §7 為否定側；**ER 僅述「未發生該轉換」，未斷言其他行為**（§8.4.1）。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 4
     },
     {
@@ -1603,7 +1603,7 @@
       "test_item": "AND TLM has to set TLM_Status.Info and $Telematic_Power$ to \"Timed\" value and it passes to TLM Timed state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the TLM passes to TLM Timed state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Antitheft_Activation.Req",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. PENDING: DR-PW23 Antitheft_Activation.Req\n3. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Timed",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. PENDING: DR-PW23 Antitheft_Activation.Req\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM accepts the signal without a bus error\n2. PENDING: DR-PW23 Antitheft_Activation.Req\n3. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the TLM passes to TLM Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1612,12 +1612,12 @@
       "split_reason": "本條驗防盜成功後之請求復歸",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-102 五欄逐字相同而 Req ID 不同（SWE-PM-028 / SWE-PM-029），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 R5)",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-102 五欄逐字相同而 Req ID 不同（SWE-PM-028 / SWE-PM-029），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗防盜成功後之請求復歸"
       },
-      "reasoning_note": "**合併（R-P294 / §5.7，44 包）**：本條由臨時號 `…-100` 與 `…-102` 合併而成。二者之 `pre_conditions` / `input_test_data` 逐字全同，`test_procedure` 之**施加步驟逐字相同**（`1. Send the signal listed in Input Test Data…`），僅觀察步驟與 ER 相異 —— 依 §5.7「一個觸發、多個必然後果歸同一條」，其觀察之差異為同一觸發之不同後果，以多 ER 承接。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "**合併（R-P294 / §5.7，44 包）**：本條由臨時號 `…-100` 與 `…-102` 合併而成。二者之 `pre_conditions` / `input_test_data` 逐字全同，`test_procedure` 之**施加步驟逐字相同**（`1. Send the signal listed in Input Test Data…`），僅觀察步驟與 ER 相異 —— 依 §5.7「一個觸發、多個必然後果歸同一條」，其觀察之差異為同一觸發之不同後果，以多 ER 承接。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -1681,7 +1681,7 @@
       "test_item": "AND TLM has to set TLM_Status.Info and $Telematic_Power$ to \"Timed\" value and it passes to TLM Timed state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the TLM passes to TLM Timed state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Antitheft_Activation.Req",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. PENDING: DR-PW23 Antitheft_Activation.Req\n3. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Timed",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. PENDING: DR-PW23 Antitheft_Activation.Req\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM accepts the signal without a bus error\n2. PENDING: DR-PW23 Antitheft_Activation.Req\n3. TLM_Status.Info and $Telematic_Power$ read \"Timed\" and the TLM passes to TLM Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1690,12 +1690,12 @@
       "split_reason": "本條驗本變體之請求復歸",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-099 五欄逐字相同而 Req ID 不同（SWE-PM-028 / SWE-PM-029），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 R5)",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-099 五欄逐字相同而 Req ID 不同（SWE-PM-028 / SWE-PM-029），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗本變體之請求復歸"
       },
-      "reasoning_note": "**合併（R-P294 / §5.7，44 包）**：本條由臨時號 `…-104` 與 `…-107` 合併而成。二者之 `pre_conditions` / `input_test_data` 逐字全同，`test_procedure` 之**施加步驟逐字相同**（`1. Send the signal listed in Input Test Data…`），僅觀察步驟與 ER 相異 —— 依 §5.7「一個觸發、多個必然後果歸同一條」，其觀察之差異為同一觸發之不同後果，以多 ER 承接。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "**合併（R-P294 / §5.7，44 包）**：本條由臨時號 `…-104` 與 `…-107` 合併而成。二者之 `pre_conditions` / `input_test_data` 逐字全同，`test_procedure` 之**施加步驟逐字相同**（`1. Send the signal listed in Input Test Data…`），僅觀察步驟與 ER 相異 —— 依 §5.7「一個觸發、多個必然後果歸同一條」，其觀察之差異為同一觸發之不同後果，以多 ER 承接。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -1759,7 +1759,7 @@
       "test_item": "IF Auto_SwitchOn_Setting.Req == Active OR IF Auto_SwitchOn_Setting.Req == Recall_Last AND VPLastStatus == OnTHEN TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time.\n\n(read the screen and its duration -> The Splash Screen stays for Response_Wait_Time)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM through the switch on sequence\n2. Read the screen and its duration to check the Splash Screen presentation",
+      "test_procedure": "1. Bring the TLM through the switch on sequence\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; PENDING: DR-PW30 Response_Wait_Time 之值",
       "expected_result": "1. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n2. The Splash Screen stays for Response_Wait_Time",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
@@ -1768,12 +1768,12 @@
       "split_reason": "本條驗 Auto_SwitchOn_Setting.Req 為 Active 時之 Splash Screen",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Auto_SwitchOn_Setting.Req 為 Active 時之 Splash Screen"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown on the TLM screen`",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown on the TLM screen`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -1785,7 +1785,7 @@
       "test_item": "IF Auto_SwitchOn_Setting.Req == Active OR IF Auto_SwitchOn_Setting.Req == Recall_Last AND VPLastStatus == OnTHEN TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time.\n\n(read the screen and its duration -> The Splash Screen stays for Response_Wait_Time)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. VPLastStatus reads \"On\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM through the switch on sequence\n2. Read the screen and its duration to check the Splash Screen presentation",
+      "test_procedure": "1. Bring the TLM through the switch on sequence\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; PENDING: DR-PW30 Response_Wait_Time 之值",
       "expected_result": "1. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n2. The Splash Screen stays for Response_Wait_Time",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
@@ -1794,12 +1794,12 @@
       "split_reason": "本條驗 OR 之右支 Recall_Last ＋ VPLastStatus == On",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 OR 之右支 Recall_Last ＋ VPLastStatus == On（104 驗左支 Active）"
       },
-      "reasoning_note": "R-P118(d) 反向涵蓋裁決（G113 分桶，R-P171）—— `source_clause` 之 OR 右支 `Auto_SwitchOn_Setting.Req == Recall_Last AND VPLastStatus == On` 原無任何 TC 覆蓋，裁為真缺口並補此條。為 G113 前瞻捕獲之第十例。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown on the TLM screen`",
+      "reasoning_note": "R-P118(d) 反向涵蓋裁決（G113 分桶，R-P171）—— `source_clause` 之 OR 右支 `Auto_SwitchOn_Setting.Req == Recall_Last AND VPLastStatus == On` 原無任何 TC 覆蓋，裁為真缺口並補此條。為 G113 前瞻捕獲之第十例。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown on the TLM screen`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -1811,7 +1811,7 @@
       "test_item": "IF Rear_View_Camera PROXI parameter == \"Present\", according to the value of Rear_Camera_Enable.Info, TLM shall show or not rear view camera images regardless of TLM_Status.Info and $Telematic_Power$ value.\n\n(read the screen against TLM_Status.Info -> The rear view camera images are shown while the signal reads \"True\" regardless of TLM_Status.Info)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Rear_View_Camera reads \"Present\"\n3. Apply ENTER_STANDBY",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Rear_Camera_Enable.Info\n2. Read the screen against TLM_Status.Info to check that images follow the signal only",
+      "test_procedure": "1. PENDING: DR-PW23 Rear_Camera_Enable.Info\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. No rear view camera images are shown while the signal reads \"False\"\n2. The rear view camera images are shown while the signal reads \"True\" regardless of TLM_Status.Info",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1820,8 +1820,8 @@
       "split_reason": "本條驗後視影像之顯示與狀態無關",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -1833,7 +1833,7 @@
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Standby\" OR “Sleep”AND STATUS_BH_BCM2.RemStActvSts has a transition from “Remote Start Not Active” value to “Remote Start Active” valueTHENTLM has to set TLM_Status.Info and $Telematic_Power$ to \"Partial Operation\" value and it passes to TLM Partial Operation state.\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Partial Operation\" and the TLM passes to TLM Partial Operation state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the transition STATUS_BH_BCM2.RemStActvSts: \"Remote Start Not Active\" to \"Remote Start Active\"\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition",
+      "test_procedure": "1. Send the transition STATUS_BH_BCM2.RemStActvSts: \"Remote Start Not Active\" to \"Remote Start Active\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Partial Operation\" and the TLM passes to TLM Partial Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1842,8 +1842,8 @@
       "split_reason": "本條驗 Standby ＋ Remote Start → Partial Operation",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     }
   ]

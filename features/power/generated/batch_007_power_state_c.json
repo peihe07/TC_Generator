@@ -70,7 +70,7 @@
       "test_item": "All TLM, AMP/ICS/DTV functionalities are available.\n\n(read the TLM, AMP, ICS and DTV functionality availability -> All TLM, AMP, ICS and DTV functionalities are available)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ignition working condition is Ignition On\n3. Apply ENTER_FULL_OPERATION",
       "input_test_data": "NA",
-      "test_procedure": "1. Read TLM_Status.Info and the TLM power indication\n2. Read the TLM, AMP, ICS and DTV functionality availability to check that all are available",
+      "test_procedure": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)\n2. Apply FUNC_STATE_<STATE> and check all of its sub-items; Read the HU speakers and check whether entertainment audio output is present on them; Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates; Apply FUNC_STATE_<STATE> and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)",
       "expected_result": "1. The TLM is ON\n2. All TLM, AMP, ICS and DTV functionalities are available",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.1",
       "priority": "P0",
@@ -79,12 +79,12 @@
       "split_reason": "本條驗 Ignition On 之情形",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R1)",
+      "remarks": "(R-P394 B5；規則 R1) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Ignition On 之情形"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -122,7 +122,7 @@
       "test_item": "This status is related to TLM audio is OFF. TLM shall allow only Splash Screen visualization on its display.  ICS functionalities are available.  DTV shall be OFF.\n\n(read the TLM display -> Only the Splash Screen is visualized on the TLM display)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the TLM audio output state\n2. Read the TLM display to check what is allowed",
+      "test_procedure": "1. Read the HU speakers and check whether entertainment audio output is present on them\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
       "expected_result": "1. The TLM audio is OFF\n2. Only the Splash Screen is visualized on the TLM display",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
@@ -131,12 +131,12 @@
       "split_reason": "本條驗音訊與畫面之限制",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R1)",
+      "remarks": "(R-P394 B5；規則 R1) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗音訊與畫面之限制"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -148,7 +148,7 @@
       "test_item": "This status is related to TLM audio is OFF. TLM shall allow only Splash Screen visualization on its display.  ICS functionalities are available.  DTV shall be OFF.\n\n(read the DTV state -> The DTV is OFF)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the ICS functionality availability\n2. Read the DTV state to check that it is off",
+      "test_procedure": "1. Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)",
       "expected_result": "1. The ICS functionalities are available\n2. The DTV is OFF",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
@@ -157,12 +157,12 @@
       "split_reason": "本條驗 ICS 與 DTV 之可用性",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R1)",
+      "remarks": "(R-P394 B5；規則 R1) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 ICS 與 DTV 之可用性"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -174,7 +174,7 @@
       "test_item": "Rear View Camera images shall be available if needed.\n\n(read the TLM display -> The rear view camera images are available)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. The rear view camera images are requested",
       "input_test_data": "NA",
-      "test_procedure": "1. Request the rear view camera images\n2. Read the TLM display to check whether the images are provided",
+      "test_procedure": "1. Request the rear view camera images\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
       "expected_result": "1. The TLM registers the request without a bus error\n2. The rear view camera images are available",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
@@ -183,12 +183,12 @@
       "split_reason": "本條驗後視攝影機之可用性",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R1)",
+      "remarks": "(R-P394 B5；規則 R1) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗後視攝影機之可用性"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 3
     },
     {
@@ -226,7 +226,7 @@
       "test_item": "In this mode TLM shall shall report $Telematic_Power$ = \" Partial_Operation\". This mode shall exist for AMP, ICS, and DTV when STATUS_BH_BCM2.RemStActvSts is equal to \"Remote Start Active\" is recieved and TLM sends $Telematic_Power$ = \"Partial_Operation\"\n\n(read $Telematic_Power$ and the AMP, ICS and DTV states -> $Telematic_Power$ reads \"Partial_Operation\" and the AMP, ICS and DTV are OFF)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ignition working condition is Ignition On",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\"\n2. Read $Telematic_Power$ and the AMP, ICS and DTV states to check the reported mode",
+      "test_procedure": "1. Send the signal STATUS_BH_BCM2.RemStActvSts = \"Remote Start Active\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Read the HU speakers and check whether entertainment audio output is present on them; Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates; Apply FUNC_STATE_<STATE> and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)",
       "expected_result": "1. The TLM registers the signal without a bus error\n2. $Telematic_Power$ reads \"Partial_Operation\" and the AMP, ICS and DTV are OFF",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.3",
       "priority": "P0",
@@ -235,12 +235,12 @@
       "split_reason": "本條驗 Remote Start Active 之觸發與其後之子系統狀態",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3)",
+      "remarks": "(R-P394 B5；規則 R3) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Remote Start Active 之觸發與其後之子系統狀態"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -252,7 +252,7 @@
       "test_item": "This status is related to TLM OFF. AMP/ICS/DTV shall be OFF. Audio for ANC, ACN, and chimes (if equipped) shall be active in this state)\n\n(read the audio output for ANC, ACN and chimes -> The audio for ANC, ACN and chimes is active)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. $Telematic_Power$ reads \"Partial_Operation\"\n3. The unit is equipped with ANC, ACN and chimes",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the audio output for ANC, ACN and chimes to check that they stay active",
+      "test_procedure": "1. Send the signal $PARK_INFO.ChimeActivation_LHF$ = 1 (Active) and check that the chime is audible on the left hand front speaker  —— PENDING: DR-PW29 ANC 之刺激與觀察面; PENDING: DR-PW29 ACN 之刺激與觀察面",
       "expected_result": "1. The audio for ANC, ACN and chimes is active",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.3",
       "priority": "P0",
@@ -261,12 +261,12 @@
       "split_reason": "本條驗音訊之例外項",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗音訊之例外項"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -304,7 +304,7 @@
       "test_item": "the R1 HU shall not enter stolen vehicle mode under any condition\n\n(read the HU mode -> The HU does not enter stolen vehicle mode)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an operative state",
       "input_test_data": "NA",
-      "test_procedure": "1. Attempt to bring the HU into stolen vehicle mode\n2. Read the HU mode to check that it did not enter",
+      "test_procedure": "1. Attempt to bring the HU into stolen vehicle mode\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The attempt is not accepted\n2. The HU does not enter stolen vehicle mode",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.3",
       "priority": "P0",
@@ -313,12 +313,12 @@
       "split_reason": "本條驗 Stolen Vehicle Mode 之否定規定",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Stolen Vehicle Mode 之否定規定"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 4
     },
     {
@@ -382,7 +382,7 @@
       "test_item": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(read the TLM, FPDM, AMP, ICS and DTV functionality availability -> No TLM, FPDM, AMP, ICS or DTV functionality is available)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the TLM power indication and the network state\n2. Read the TLM, FPDM, AMP, ICS and DTV functionality availability to check that none is available",
+      "test_procedure": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Read the bus trace and check whether the HU keeps transmitting the $STATUS_TELEMATIC$ message\n2. Apply FUNC_STATE_<STATE> and check all of its sub-items; Apply FUNC_STATE_<STATE> and check its Display / Illumination sub-item  (FPDM 對應為分析層判斷，非規格明文 —— R-P396(c)，併 DR-PW29); Read the HU speakers and check whether entertainment audio output is present on them; Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates; Apply FUNC_STATE_<STATE> and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)",
       "expected_result": "1. The TLM is OFF and the network is on\n2. No TLM, FPDM, AMP, ICS or DTV functionality is available",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.6",
       "priority": "P0",
@@ -391,12 +391,12 @@
       "split_reason": "本條驗處於 Standby 時之性質",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R1)",
+      "remarks": "(R-P394 B5；規則 R1) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗處於 Standby 時之性質"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -434,7 +434,7 @@
       "test_item": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(read the TLM, FPDM, AMP, ICS and DTV functionality availability -> No TLM, FPDM, AMP, ICS or DTV functionality is available)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_SLEEP",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the TLM power indication and the network state\n2. Read the TLM, FPDM, AMP, ICS and DTV functionality availability to check that none is available",
+      "test_procedure": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Read the bus trace and check whether the HU keeps transmitting the $STATUS_TELEMATIC$ message\n2. Apply FUNC_STATE_<STATE> and check all of its sub-items; Apply FUNC_STATE_<STATE> and check its Display / Illumination sub-item  (FPDM 對應為分析層判斷，非規格明文 —— R-P396(c)，併 DR-PW29); Read the HU speakers and check whether entertainment audio output is present on them; Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates; Apply FUNC_STATE_<STATE> and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)",
       "expected_result": "1. The TLM is OFF and the network is off\n2. No TLM, FPDM, AMP, ICS or DTV functionality is available",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.7",
       "priority": "P0",
@@ -443,12 +443,12 @@
       "split_reason": "本條驗處於 Sleep 時之性質",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R1)",
+      "remarks": "(R-P394 B5；規則 R1) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗處於 Sleep 時之性質"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -486,7 +486,7 @@
       "test_item": "This status is related to TLM AMP, ICS, and DTV ON only for testing, diagnostics and development of TLM component, relatively to Engineering Line.\n\n(read the TLM, AMP, ICS and DTV states -> The TLM, AMP, ICS and DTV are ON)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ignition working condition is Ignition Off\n3. The Engineering Line is activated",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM to the Bench state\n2. Read the TLM, AMP, ICS and DTV states to check that they are on",
+      "test_procedure": "1. Bring the TLM to the Bench state\n2. Apply FUNC_STATE_<STATE> and check all of its sub-items; Read the HU speakers and check whether entertainment audio output is present on them; Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates; Apply FUNC_STATE_<STATE> and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)",
       "expected_result": "1. The TLM reaches the Bench state\n2. The TLM, AMP, ICS and DTV are ON",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.8",
       "priority": "P0",
@@ -495,8 +495,8 @@
       "split_reason": "原文為單一斷言，依 §5.7 為一條",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -508,7 +508,7 @@
       "test_item": "First default values for TLM are: TLM_Status.Info, $Telematic_Power$ equal to \"Sleep\" value; VPLastStatus equal to \"On\" value; SwitchOff_Timeout_Setting.Req equal to \"00 min\" == Timeout1 equal to 00 minutes; Timeout1 equal to 00 minutes for LTM High Auto_SwitchOn_Setting.Req equal to \"Recall_Last\" value; Antitheft_Activation.Req equal to \"False\" value.\n\n(read TLM_Status.Info, VPLastStatus, SwitchOff_Timeout_Setting.Req, Auto_SwitchOn_Setting.Req, Antitheft_Activation.Req and RemStartFail -> VPLastStatus reads \"On\", SwitchOff_Timeout_Setting.Req reads \"00 min\", Auto_SwitchOn_Setting.Req reads \"Recall_Last\", Antitheft_Activation.Req reads \"False\" and RemStartFail reads \"False\")",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The unit carries the ex-factory configuration",
       "input_test_data": "NA",
-      "test_procedure": "1. Power up the TLM for the first time\n2. Read TLM_Status.Info, VPLastStatus, SwitchOff_Timeout_Setting.Req, Auto_SwitchOn_Setting.Req, Antitheft_Activation.Req and RemStartFail to check the ex-factory defaults",
+      "test_procedure": "1. Power up the TLM for the first time\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); PENDING: DR-PW23 VPLastStatus; PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req; PENDING: DR-PW25 Auto_SwitchOn_Setting.Req 之設定項名; PENDING: DR-PW23 Antitheft_Activation.Req; PENDING: DR-PW23 RemStartFail",
       "expected_result": "1. TLM_Status.Info and $Telematic_Power$ read \"Sleep\"\n2. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.13",
       "priority": "P0",
@@ -517,12 +517,12 @@
       "split_reason": "本條驗出廠預設值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4)",
+      "remarks": "(R-P394 B5；規則 R4) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗出廠預設值"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -534,7 +534,7 @@
       "test_item": "IF the voltage exceeds the higher or the lower voltage threshold for a certain time, or also at every battery disconnection event,THEN TLM has to set itself in a INIT state, until certain conditions that allow TLM to exit from this status occur.\n\n(read the TLM state -> The TLM sets itself in the INIT state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is running normally",
       "input_test_data": "NA",
-      "test_procedure": "1. Disconnect the battery\n2. Read the TLM state to check that it entered INIT",
+      "test_procedure": "1. Disconnect the battery\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM registers the battery disconnection\n2. The TLM sets itself in the INIT state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.13",
       "priority": "P0",
@@ -543,12 +543,12 @@
       "split_reason": "本條驗進入 INIT 之觸發",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗進入 INIT 之觸發"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -560,7 +560,7 @@
       "test_item": "After a battery reconnection and also when TLM has to exit INIT state (as soon as the voltage is limited within certain thresholds), TLM is able to work properly again and it has to restore the last user settings and the last variables values: VPLastStatus, SwitchOffSetting.Req, Auto_SwitchOn_Setting.Req shall be restored to their values before the battery disconnection / battery reset\n\n(read TLM_Status.Info -> TLM_Status.Info is set to \"Sleep\" and the TLM starts from the Sleep state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in the INIT state after a battery disconnection\n3. PENDING: DR-PW23 SwitchOffSetting.Req",
       "input_test_data": "NA",
-      "test_procedure": "1. Reconnect the battery and let the TLM exit the INIT state\n2. PENDING: DR-PW23 SwitchOffSetting.Req\n3. Read TLM_Status.Info to check the state the TLM starts from",
+      "test_procedure": "1. Reconnect the battery and let the TLM exit the INIT state\n2. PENDING: DR-PW23 SwitchOffSetting.Req\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
       "expected_result": "1. The TLM exits the INIT state\n2. PENDING: DR-PW23 SwitchOffSetting.Req\n3. TLM_Status.Info is set to \"Sleep\" and the TLM starts from the Sleep state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.13",
       "priority": "P0",
@@ -569,12 +569,12 @@
       "split_reason": "本條驗離開 INIT **之後**之還原與起始狀態",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R4/R5)",
+      "remarks": "(R-P394 B5；規則 R4/R5) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗離開 INIT **之後**之還原與起始狀態"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 3
     },
     {

@@ -13192,6 +13192,47 @@ R-P392(c) 之理由亦複核：`DIS_CENTERSTACK.DCSD_DISP_STAT` 發送節點為 
 > 分析層對 token 建字典，機器套用。**非取消人讀**，是把重複的人讀收斂為一次。
 
 
+## 71 包裁決條文（R-P396）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 1、§J「一條」、§H 步驟 1 = 一條**，
+並依 R-P364(d) 核對既有 canon。三處一致。
+
+**R-P379(b) 抄錄前重算本包數字（全部相符）：**
+
+| 條文所引 | 機讀來源 | 重算 |
+|---|---|---|
+| 59 / 303 | `composite_tokens_70.md` 標題 | **59 個 token / 出現 303 次** ✓ |
+| 170 | 同檔之母體行 | **170 條** ✓ |
+| 41 / 12 / 6 / 0 | 71 包 §1 表 | 合計 **59**，與供料之 token 數一致 ✓ |
+| **字典覆蓋率** | 供料 59 token 逐一比對 §1 表 | **59 / 59，未覆蓋 0** ✓ |
+
+```
+[R-P396] 原子 token 字典依 71 包 §1 表；五個狀態 token 判為同物；FPDM 之對應為分析層判斷。
+         （a）`data/proxy_dictionary_71.md` 逐字採 71 包 §1 表；機器套用（R-P395(c)），
+              一步多 token → 每 token 一句 check，ER 逐句對齊；套用後重跑 G245／G250-G／G247
+         （b）`TLM_Status.Info`、`$Telematic_Power$`、`TLM state`、`HU mode`、`power mode`
+              判為同一狀態量，代理量 `$STATUS_TELEMATIC.PowerSts_Telematic$`；
+              `TLM_Status.Info` 不再單獨佔位 PENDING；G247 之判準相應排除該名
+         （c）`FPDM` → Display／Illumination 子項為分析層判斷（縮寫非規格展開），
+              Remarks 逐條記「FPDM 對應為分析層判斷」；併 DR-PW29 附問
+         （d）執行層查二項：`AUD_LVL` 訊號（R-P368）、`Response_Wait_Time` 值（PROXI `Format`／CFTS009）；
+              查無者併 DR-PW30
+         （e）字典未覆蓋之殘留 token 回 R-P395(a) 補一輪供料
+         裁決者：分析層（Tier 2，R-P395(b) 之人讀）。
+```
+
+**已逐字抄入（核對 1 / 1）。** R-P355(c) / R-P380 依 R-P36 原文不改，加註於下。
+
+> **註記（R-P36，71 包加註）—— R-P355(c) / R-P380**：`TLM_Status.Info` 之
+> **PENDING 佔位範圍受限縮**（**R-P396(b)**）—— 規格全篇以
+> `TLM_Status.Info and $Telematic_Power$` **成對書寫且值恆同**，
+> 故該名與 `$Telematic_Power$` / `TLM state` / `HU mode` / `power mode`
+> **判為同一狀態量**，代理量 `$STATUS_TELEMATIC.PowerSts_Telematic$`（R-P368 已解得）。
+> **`TLM_Status.Info` 不再單獨佔位 PENDING**；G247 之判準相應排除該名。
+> ⚠ 此為**對既有條之限縮**，非新增例外；同物判定屬分析層判斷（71 包 §0），
+> Pei 得否決（71 包 §K）。
+
+
 ---
 
 ## 待裁

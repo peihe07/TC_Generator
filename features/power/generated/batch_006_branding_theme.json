@@ -129,7 +129,7 @@
       "test_item": "$VC_SpecialPKG$ shall be used to determine which theme will be used by the HU. See the latest version of [PDO Theme Configuration]  for value definitions.\n\n(read the applied theme against the configured value -> The theme used by the HU is the one associated with $VC_SpecialPKG$)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU carries a supported special package configuration\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the value VC_SpecialPKG: a value defined in the PDO Theme Configuration\n2. Read the applied theme against the configured value to check the source",
+      "test_procedure": "1. Send the value VC_SpecialPKG: a value defined in the PDO Theme Configuration\n2. PENDING: DR-PW27 [PDO Theme Configuration]",
       "expected_result": "1. The HU accepts the configuration value\n2. The theme used by the HU is the one associated with VC_SpecialPKG",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1",
       "priority": "P3",
@@ -138,8 +138,8 @@
       "split_reason": "本條驗 $VC_SpecialPKG$ 決定主題",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3/R6)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "remarks": "(R-P394 B5；規則 R3/R6) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -225,7 +225,7 @@
       "test_item": "When the CAN network is awake, the HU shall send the special package value associated with that theme in $Radio_Theme$. if the theme has changed, the HU will update and send the new $Radio_Theme$ within <Tsend> See the $VC_SpecialPKG$ column of the [PDO Theme Configuration] reference document for the value to send in $Radio_Theme$.\n\n(read $Radio_Theme$ against the applied theme -> The value sent in $Radio_Theme$ is the special package value associated with that theme)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The CAN network is awake\n3. A theme is applied on the HU",
       "input_test_data": "NA",
-      "test_procedure": "1. Observe the bus traffic while the CAN network stays awake\n2. Read $Radio_Theme$ against the applied theme to check the sent value",
+      "test_procedure": "1. Observe the bus traffic while the CAN network stays awake\n2. Read the signal $RADIO_B4.Radio_Theme$ and check its value; PENDING: DR-PW27 [PDO Theme Configuration]",
       "expected_result": "1. The HU sends $Radio_Theme$ on the bus\n2. The value sent in $Radio_Theme$ is the special package value associated with that theme",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1",
       "priority": "P0",
@@ -234,12 +234,12 @@
       "split_reason": "本條驗喚醒時之送值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-246 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 無)",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-246 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗喚醒時之送值"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -251,7 +251,7 @@
       "test_item": "When the CAN network is awake, the HU shall send the special package value associated with that theme in $Radio_Theme$. if the theme has changed, the HU will update and send the new $Radio_Theme$ within <Tsend> See the $VC_SpecialPKG$ column of the [PDO Theme Configuration] reference document for the value to send in $Radio_Theme$.\n\n(read $Radio_Theme$ and its timing -> The new value is sent within Tsend of the theme change)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The CAN network is awake\n3. A theme is applied on the HU\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the value VC_SpecialPKG: a second value mapped to a different theme\n2. Read $Radio_Theme$ and its timing to check the update",
+      "test_procedure": "1. Send the value VC_SpecialPKG: a second value mapped to a different theme\n2. Read the signal $RADIO_B4.Radio_Theme$ and check its value; PENDING: DR-PW27 <Tsend> 之值",
       "expected_result": "1. The HU sends the new $Radio_Theme$ value\n2. The new value is sent within Tsend of the theme change",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1",
       "priority": "P1",
@@ -260,12 +260,12 @@
       "split_reason": "本條驗變更後之更新與時限",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-247 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 R3/R6)",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-247 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 R3/R6) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗變更後之更新與時限"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -433,7 +433,7 @@
       "test_item": "The HU shall use the $VC_VEH_BRAND$  signal to determine the list of the branded avatars available in the profile screen.$VC_VEH_BRAND$  = [Chrysler] shall indicate Chrysler avatars. $VC_VEH_BRAND$  = [Dodge] shall indicate Dodge avatars. $VC_VEH_BRAND$  = [Jeep] shall indicate Jeep avatars.$VC_VEH_BRAND$  = [Alpha Romeo] shall indicate Alfa Romeo avatars.$VC_VEH_BRAND$  = [Fiat] shall indicate Fiat avatars. (DEFAULT)$VC_VEH_BRAND$  = [Maserati] shall indicate Maserati avatars.$VC_VEH_BRAND$  = [Ram] shall indicate Ram avatars.$VC_VEH_BRAND$  = [Abarth] shall indicate Fiat avatars.$VC_VEH_BRAND$  = [Opel] shall indicate  Fiat avatars.$VC_VEH_BRAND$  = [Vauxhall] shall indicate  Fiat avatars.$VC_VEH_BRAND$  = [Citroen] shall indicate Fiat avatars.$VC_VEH_BRAND$  = [Peugeot] shall indicate  Fiat avatars.\n\n(read the avatar list in the profile screen -> The profile screen offers the Jeep avatars)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The profile screen is reachable on the HU\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the value VC_VEH_BRAND: \"Jeep\"\n2. Read the avatar list in the profile screen to check which set is offered",
+      "test_procedure": "1. Send the value VC_VEH_BRAND: \"Jeep\"\n2. Read the \"Profile\" screen and check that its avatar list is the \"<Brand> avatars\"",
       "expected_result": "1. The HU accepts the signal value\n2. The profile screen offers the Jeep avatars",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.5",
       "priority": "P3",
@@ -442,12 +442,12 @@
       "split_reason": "本條驗自有 avatar 之品牌值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3/R6)",
+      "remarks": "(R-P394 B5；規則 R3/R6) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗自有 avatar 之品牌值"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -459,7 +459,7 @@
       "test_item": "The HU shall use the $VC_VEH_BRAND$  signal to determine the list of the branded avatars available in the profile screen.$VC_VEH_BRAND$  = [Chrysler] shall indicate Chrysler avatars. $VC_VEH_BRAND$  = [Dodge] shall indicate Dodge avatars. $VC_VEH_BRAND$  = [Jeep] shall indicate Jeep avatars.$VC_VEH_BRAND$  = [Alpha Romeo] shall indicate Alfa Romeo avatars.$VC_VEH_BRAND$  = [Fiat] shall indicate Fiat avatars. (DEFAULT)$VC_VEH_BRAND$  = [Maserati] shall indicate Maserati avatars.$VC_VEH_BRAND$  = [Ram] shall indicate Ram avatars.$VC_VEH_BRAND$  = [Abarth] shall indicate Fiat avatars.$VC_VEH_BRAND$  = [Opel] shall indicate  Fiat avatars.$VC_VEH_BRAND$  = [Vauxhall] shall indicate  Fiat avatars.$VC_VEH_BRAND$  = [Citroen] shall indicate Fiat avatars.$VC_VEH_BRAND$  = [Peugeot] shall indicate  Fiat avatars.\n\n(read the avatar list in the profile screen -> The profile screen offers the Fiat avatars that the specification marks as DEFAULT)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The profile screen is reachable on the HU\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the value VC_VEH_BRAND: \"Fiat\"\n2. Read the avatar list in the profile screen to check which set is offered",
+      "test_procedure": "1. Send the value VC_VEH_BRAND: \"Fiat\"\n2. Read the \"Profile\" screen and check that its avatar list is the \"<Brand> avatars\"",
       "expected_result": "1. The HU accepts the signal value\n2. The profile screen offers the Fiat avatars that the specification marks as DEFAULT",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.5",
       "priority": "P3",
@@ -468,12 +468,12 @@
       "split_reason": "本條驗標為 DEFAULT 之值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3/R6)",
+      "remarks": "(R-P394 B5；規則 R3/R6) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗標為 DEFAULT 之值"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -485,7 +485,7 @@
       "test_item": "The HU shall use the $VC_VEH_BRAND$  signal to determine the list of the branded avatars available in the profile screen.$VC_VEH_BRAND$  = [Chrysler] shall indicate Chrysler avatars. $VC_VEH_BRAND$  = [Dodge] shall indicate Dodge avatars. $VC_VEH_BRAND$  = [Jeep] shall indicate Jeep avatars.$VC_VEH_BRAND$  = [Alpha Romeo] shall indicate Alfa Romeo avatars.$VC_VEH_BRAND$  = [Fiat] shall indicate Fiat avatars. (DEFAULT)$VC_VEH_BRAND$  = [Maserati] shall indicate Maserati avatars.$VC_VEH_BRAND$  = [Ram] shall indicate Ram avatars.$VC_VEH_BRAND$  = [Abarth] shall indicate Fiat avatars.$VC_VEH_BRAND$  = [Opel] shall indicate  Fiat avatars.$VC_VEH_BRAND$  = [Vauxhall] shall indicate  Fiat avatars.$VC_VEH_BRAND$  = [Citroen] shall indicate Fiat avatars.$VC_VEH_BRAND$  = [Peugeot] shall indicate  Fiat avatars.\n\n(read the avatar list in the profile screen -> The profile screen offers the Fiat avatars rather than an Abarth set)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The profile screen is reachable on the HU\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the value VC_VEH_BRAND: \"Abarth\"\n2. Read the avatar list in the profile screen to check which set is offered",
+      "test_procedure": "1. Send the value VC_VEH_BRAND: \"Abarth\"\n2. Read the \"Profile\" screen and check that its avatar list is the \"<Brand> avatars\"",
       "expected_result": "1. The HU accepts the signal value\n2. The profile screen offers the Fiat avatars rather than an Abarth set",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.5",
       "priority": "P3",
@@ -494,12 +494,12 @@
       "split_reason": "本條驗映射至他品牌 avatar 之規則（本 leaf 獨有）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3/R6)",
+      "remarks": "(R-P394 B5；規則 R3/R6) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗映射至他品牌 avatar 之規則（本 leaf 獨有）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 3
     },
     {
@@ -563,7 +563,7 @@
       "test_item": "CUSW/AtlLo/AtlMi/AtlHi:The HU shall use $VC_VEH_LINE$ and the $Car_Shape_Configuration$ and $Number_of_Doors$ PROXI parameters to determine the correct settings seat graphic to display. See HMI release and PDO graphics files for settings seat graphic assignments.PNET:The HU shall use the $VC_VEH_LINE$ and the $VC_BODY_STYLE$ signals to determine the correct settings seat graphic to display. See HMI release and PDO graphics files for settings seat graphic assignments.\n\n(read the shown seat graphic -> The settings seat graphic matches the assignment for that vehicle line and car shape)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU runs the CUSW or Atlantis architecture\n3. The seat settings screen is reachable\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the configuration VC_VEH_LINE with the $Car_Shape_Configuration$ and $Number_of_Doors$ PROXI parameters\n2. Read the shown seat graphic to check which assignment the HU applies",
+      "test_procedure": "1. Send the configuration VC_VEH_LINE with the $Car_Shape_Configuration$ and $Number_of_Doors$ PROXI parameters\n2. PENDING: DR-PW27 seat graphic 指派",
       "expected_result": "1. The HU accepts the configuration\n2. The settings seat graphic matches the assignment for that vehicle line and car shape",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.7",
       "priority": "P0",
@@ -572,12 +572,12 @@
       "split_reason": "本條驗 CUSW / Atlantis 路徑（本專案適用）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3/R6)",
+      "remarks": "(R-P394 B5；規則 R3/R6) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 CUSW / Atlantis 路徑（本專案適用）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -589,7 +589,7 @@
       "test_item": "CUSW/AtlLo/AtlMi/AtlHi:The HU shall use $VC_VEH_LINE$ and the $Car_Shape_Configuration$ and $Number_of_Doors$ PROXI parameters to determine the correct settings seat graphic to display. See HMI release and PDO graphics files for settings seat graphic assignments.PNET:The HU shall use the $VC_VEH_LINE$ and the $VC_BODY_STYLE$ signals to determine the correct settings seat graphic to display. See HMI release and PDO graphics files for settings seat graphic assignments.\n\n(read the shown seat graphic -> The settings seat graphic matches the assignment for that vehicle line and body style)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU runs the PNET architecture\n3. The seat settings screen is reachable\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the configuration VC_VEH_LINE with the VC_BODY_STYLE signal\n2. Read the shown seat graphic to check which assignment the HU applies",
+      "test_procedure": "1. Send the configuration VC_VEH_LINE with the VC_BODY_STYLE signal\n2. PENDING: DR-PW27 seat graphic 指派",
       "expected_result": "1. The HU accepts the configuration\n2. The settings seat graphic matches the assignment for that vehicle line and body style",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.7",
       "priority": "P2",
@@ -598,12 +598,12 @@
       "split_reason": "本條驗 PNET 路徑（非本專案架構，成條以保留追溯）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3/R6)",
+      "remarks": "(R-P394 B5；規則 R3/R6) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 PNET 路徑（非本專案架構，成條以保留追溯）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -615,7 +615,7 @@
       "test_item": "When the CAN network is awake, the HU shall send the special package value associated with that theme in $Radio_Theme$. if the theme has changed, the HU will update and send the new $Radio_Theme$ within <Tsend> See the $VC_SpecialPKG$ column of the [PDO Theme Configuration] reference document for the value to send in $Radio_Theme$.\n\n(read $Radio_Theme$ against the applied theme -> The value sent in $Radio_Theme$ is the special package value associated with that theme)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The CAN network is awake\n3. A theme is applied on the HU",
       "input_test_data": "NA",
-      "test_procedure": "1. Observe the bus traffic while the CAN network stays awake\n2. Read $Radio_Theme$ against the applied theme to check the sent value",
+      "test_procedure": "1. Observe the bus traffic while the CAN network stays awake\n2. Read the signal $RADIO_B4.Radio_Theme$ and check its value; PENDING: DR-PW27 [PDO Theme Configuration]",
       "expected_result": "1. The HU sends $Radio_Theme$ on the bus\n2. The value sent in $Radio_Theme$ is the special package value associated with that theme",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.7.1.1",
       "priority": "P1",
@@ -624,12 +624,12 @@
       "split_reason": "本條驗喚醒時之送值（與 SWE-PM-080 重疊，見 reasoning）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-231 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 無)",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-231 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗喚醒時之送值（與 SWE-PM-080 重疊，見 reasoning）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -641,7 +641,7 @@
       "test_item": "When the CAN network is awake, the HU shall send the special package value associated with that theme in $Radio_Theme$. if the theme has changed, the HU will update and send the new $Radio_Theme$ within <Tsend> See the $VC_SpecialPKG$ column of the [PDO Theme Configuration] reference document for the value to send in $Radio_Theme$.\n\n(read $Radio_Theme$ and its timing -> The new value is sent within Tsend of the theme change)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The CAN network is awake\n3. A theme is applied on the HU\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the value VC_SpecialPKG: a second value mapped to a different theme\n2. Read $Radio_Theme$ and its timing to check the update",
+      "test_procedure": "1. Send the value VC_SpecialPKG: a second value mapped to a different theme\n2. Read the signal $RADIO_B4.Radio_Theme$ and check its value; PENDING: DR-PW27 <Tsend> 之值",
       "expected_result": "1. The HU sends the new $Radio_Theme$ value\n2. The new value is sent within Tsend of the theme change",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.7.1.1",
       "priority": "P1",
@@ -650,12 +650,12 @@
       "split_reason": "本條驗變更後之更新與時限（與 SWE-PM-080 重疊）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-232 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 R3/R6)",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-232 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 R3/R6) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗變更後之更新與時限（與 SWE-PM-080 重疊）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -667,7 +667,7 @@
       "test_item": "If $VC_VEH_LINE$ = [M240] The HU Shall use the M240 seat graphics.  If $VC_VEH_LINE$ <> [M240]The HU shall use $VC_VEH_BRAND$ to determine the correct settings seat graphic display.\n\n(read the shown seat graphic -> The HU uses the M240 seat graphics)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The seat settings screen is reachable\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the value VC_VEH_LINE: \"M240\"\n2. Read the shown seat graphic to check which set the HU uses",
+      "test_procedure": "1. Send the value VC_VEH_LINE: \"M240\"\n2. PENDING: DR-PW27 seat graphic 指派",
       "expected_result": "1. The HU accepts the signal value\n2. The HU uses the M240 seat graphics",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.7.1.1.6",
       "priority": "P0",
@@ -676,12 +676,12 @@
       "split_reason": "本條驗 IF 分支 M240",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3/R6)",
+      "remarks": "(R-P394 B5；規則 R3/R6) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 IF 分支 M240"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -741,7 +741,7 @@
       "test_item": "If the \"Theme Mode\" setting is set to \"Auto\" the HU shall use the $Day_Night_Mode$ to determine which of the themes to show\n\n(read the applied theme -> The HU shows the Day theme)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The \"Theme Mode\" setting reads \"Auto\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the value $Day_Night_Mode$: the value indicating day\n2. Read the applied theme to check which theme the HU shows",
+      "test_procedure": "1. Send the value $Day_Night_Mode$: the value indicating day\n2. PENDING: DR-PW27 [PDO Theme Configuration]",
       "expected_result": "1. The HU accepts the signal value\n2. The HU shows the Day theme",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.17",
       "priority": "P3",
@@ -750,12 +750,12 @@
       "split_reason": "本條驗 Auto 跟隨日間值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3)",
+      "remarks": "(R-P394 B5；規則 R3) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Auto 跟隨日間值"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -767,7 +767,7 @@
       "test_item": "If the \"Theme Mode\" setting is set to \"Auto\" the HU shall use the $Day_Night_Mode$ to determine which of the themes to show\n\n(read the applied theme -> The HU shows the Night theme)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The \"Theme Mode\" setting reads \"Auto\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the value $Day_Night_Mode$: the value indicating night\n2. Read the applied theme to check which theme the HU shows",
+      "test_procedure": "1. Send the value $Day_Night_Mode$: the value indicating night\n2. PENDING: DR-PW27 [PDO Theme Configuration]",
       "expected_result": "1. The HU accepts the signal value\n2. The HU shows the Night theme",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.17",
       "priority": "P3",
@@ -776,12 +776,12 @@
       "split_reason": "本條驗 Auto 跟隨夜間值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3)",
+      "remarks": "(R-P394 B5；規則 R3) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Auto 跟隨夜間值"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 2
     },
     {
@@ -793,7 +793,7 @@
       "test_item": "If the \"Theme Mode\" setting is set to \"Day\" the HU shall use the Day theme\n\n(read the applied theme -> The HU uses the Day theme)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The \"Theme Mode\" setting reads \"Day\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU to the theme presentation\n2. Read the applied theme to check which theme the HU uses",
+      "test_procedure": "1. Bring the HU to the theme presentation\n2. PENDING: DR-PW27 [PDO Theme Configuration]",
       "expected_result": "1. The theme presentation is reached\n2. The HU uses the Day theme",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.17",
       "priority": "P3",
@@ -802,8 +802,8 @@
       "split_reason": "本條驗 Theme Mode 設為 Day 之結果",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -815,7 +815,7 @@
       "test_item": "If the \"Theme Mode\" setting is set to \"Night\" the HU shall use the Night theme\n\n(read the applied theme -> The HU uses the Night theme)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The \"Theme Mode\" setting reads \"Night\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU to the theme presentation\n2. Read the applied theme to check which theme the HU uses",
+      "test_procedure": "1. Bring the HU to the theme presentation\n2. PENDING: DR-PW27 [PDO Theme Configuration]",
       "expected_result": "1. The theme presentation is reached\n2. The HU uses the Night theme",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.17",
       "priority": "P3",
@@ -824,8 +824,8 @@
       "split_reason": "本條驗 Theme Mode 設為 Night 之結果",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
       "split_index": 1
     },
     {
@@ -837,7 +837,7 @@
       "test_item": "At Ignition On the HU shall determine if there has been a change in season based on the below dates.\n\n(read the season the HU determines -> The HU determines that Summer has started)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU clock is set to the day before the Summer start date",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through the event An Ignition On after the date passes December, 21st\n2. Read the season the HU determines to check the boundary",
+      "test_procedure": "1. Bring the HU through the event An Ignition On after the date passes December, 21st\n2. Read the recording and check whether the \"New Season Animation\" or the \"Brand Animation\" is played",
       "expected_result": "1. The HU determines the season at Ignition On\n2. The HU determines that Summer has started",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.16",
       "priority": "P0",
@@ -846,12 +846,12 @@
       "split_reason": "本條驗季節界線一（12/21）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3)",
+      "remarks": "(R-P394 B5；規則 R3) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗季節界線一（12/21）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 1
     },
     {
@@ -863,7 +863,7 @@
       "test_item": "At Ignition On the HU shall determine if there has been a change in season based on the below dates.\n\n(read the season the HU determines -> The HU determines that Fall has started)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU clock is set to the day before the Fall start date",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through the event An Ignition On after the date passes March, 20th\n2. Read the season the HU determines to check the boundary",
+      "test_procedure": "1. Bring the HU through the event An Ignition On after the date passes March, 20th\n2. Read the recording and check whether the \"New Season Animation\" or the \"Brand Animation\" is played",
       "expected_result": "1. The HU determines the season at Ignition On\n2. The HU determines that Fall has started",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.16",
       "priority": "P0",
@@ -872,12 +872,12 @@
       "split_reason": "本條驗季節界線二（3/20）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3)",
+      "remarks": "(R-P394 B5；規則 R3) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗季節界線二（3/20）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 2
     },
     {
@@ -889,7 +889,7 @@
       "test_item": "At Ignition On the HU shall determine if there has been a change in season based on the below dates.\n\n(read the season the HU determines -> The HU determines that Winter has started)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU clock is set to the day before the Winter start date",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through the event An Ignition On after the date passes June, 21st\n2. Read the season the HU determines to check the boundary",
+      "test_procedure": "1. Bring the HU through the event An Ignition On after the date passes June, 21st\n2. Read the recording and check whether the \"New Season Animation\" or the \"Brand Animation\" is played",
       "expected_result": "1. The HU determines the season at Ignition On\n2. The HU determines that Winter has started",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.16",
       "priority": "P0",
@@ -898,12 +898,12 @@
       "split_reason": "本條驗季節界線三（6/21）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3)",
+      "remarks": "(R-P394 B5；規則 R3) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗季節界線三（6/21）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 3
     },
     {
@@ -915,7 +915,7 @@
       "test_item": "At Ignition On the HU shall determine if there has been a change in season based on the below dates.\n\n(read the season the HU determines -> The HU determines that Spring has started)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU clock is set to the day before the Spring start date",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through the event An Ignition On after the date passes September, 23rd\n2. Read the season the HU determines to check the boundary",
+      "test_procedure": "1. Bring the HU through the event An Ignition On after the date passes September, 23rd\n2. Read the recording and check whether the \"New Season Animation\" or the \"Brand Animation\" is played",
       "expected_result": "1. The HU determines the season at Ignition On\n2. The HU determines that Spring has started",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.16",
       "priority": "P0",
@@ -924,12 +924,12 @@
       "split_reason": "本條驗季節界線四（9/23）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3)",
+      "remarks": "(R-P394 B5；規則 R3) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗季節界線四（9/23）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 4
     },
     {
@@ -941,7 +941,7 @@
       "test_item": "If there has been a change in season, the HU shall play the new season startup animation.\n\n(read the played animation -> The HU plays the new season startup animation)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The previous Ignition On was in a different season",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through an Ignition On\n2. Read the played animation to check which one the HU selects",
+      "test_procedure": "1. Bring the HU through an Ignition On\n2. Read the recording and check whether the \"New Season Animation\" or the \"Brand Animation\" is played",
       "expected_result": "1. The HU determines that there has been a change in season\n2. The HU plays the new season startup animation",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.16",
       "priority": "P0",
@@ -950,12 +950,12 @@
       "split_reason": "本條驗有變更之後果",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗有變更之後果"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 5
     },
     {
@@ -967,7 +967,7 @@
       "test_item": "If there has not been a change in season, the HU shall play the normal Brand based startup animation.\n\n(read the played animation -> The HU plays the normal Brand based startup animation)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The previous Ignition On was in the same season",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through an Ignition On\n2. Read the played animation to check which one the HU selects",
+      "test_procedure": "1. Bring the HU through an Ignition On\n2. Read the recording and check whether the \"New Season Animation\" or the \"Brand Animation\" is played",
       "expected_result": "1. The HU determines that there has not been a change in season\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.16",
       "priority": "P0",
@@ -976,12 +976,12 @@
       "split_reason": "本條驗無變更之後果",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R7)",
+      "remarks": "(R-P394 B5；規則 R7) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗無變更之後果"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（70 包）**：以下句因含 R-P353 末段所禁之措辭而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU plays the normal Brand based startup animation`",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（70 包）**：以下句因含 R-P353 末段所禁之措辭而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU plays the normal Brand based startup animation`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
       "split_index": 6
     },
     {

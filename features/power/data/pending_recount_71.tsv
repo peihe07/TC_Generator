@@ -1,0 +1,13 @@
+metric	value	source
+corpus 總條數	287	generated/batch_*.json
+G245 家族 A（上界，R-P362）	0	remeasure_55 A_upper
+G250 proper/as defined/normal	0	D
+G250 Read the HU mode/state	0	G
+G251 listed in ITD	3	family_k_59；皆 (c) 類應保留 005、218、262
+G247 Proc/ER 內部訊號（排除 TLM_Status.Info，R-P396(b)）	0	正則
+G249 五欄逐字相同對	10	五欄鍵；同 req_id 0、不同 10（全 (b) 型）
+G246 使用 ENTER_<STATE>	134	字串掃
+使用 FUNC_STATE_<STATE>	68	同上
+corpus 內 PENDING 文字	146	逐欄掃
+字典套用條數	170	apply_dictionary_71.py
+字典未覆蓋 token	0	同上
