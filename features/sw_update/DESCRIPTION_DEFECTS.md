@@ -31,6 +31,7 @@ verbatim 抄其原文（含缺字），錨由其他路徑定，並於 `reasoning
 | D-5 | `SWE1-FOTA-346` | **句首缺字** —— `he WiFiUpdateService`（缺 `T`） | **已確認**（上繳包 44 §5.1） |
 | D-6 | `SWE1-FOTA-333` | **句尾截斷＋缺字** —— `…are not know`（缺 `n`，且句子未完） | **已確認**（上繳包 48 §3.2） |
 | D-7 | `SWE1-FOTA-117` | **註腳併入條文本體** ＋ 拼寫殘留 `Iginiton_on_Engine_on` | **已確認**（上繳包 58 §5.3） |
+| D-8 | `SWE1-FOTA-145` | **主詞被切斷** —— `the WiFi Update Servic/USB Update Service e shall not allow…`（`Service` 之 `e` 被推到句中） | **已確認**（上繳包 65 §4） |
 
 ---
 
@@ -202,6 +203,27 @@ shall notify the TBM FOTA HMI.`），**逐字**；
 > 其後果不在字面，在**取材**：若逐字全取，`test_item` 會含註腳；
 > 若不取，則須說明取捨之界 —— **本節即該界之記錄**。
 
+---
+
+## D-8 —— `SWE1-FOTA-145`：主詞被切斷 —— **已確認**
+
+出處：上繳包 65 §4（batch 17 起草時遇）。
+
+037 原文（逐字）：
+
+> If $IBS_SOC$ < [80], **the WiFi Update Servic/USB Update Service e** shall not allow
+> installation and maintain the deployment in deferred state until the battery state of
+> charge is restored to the configured threshold or higher.
+
+**`the WiFi Update Service/USB Update Service` 之 `Service` 被切成 `Servic` 與 `e`**，
+而該 `e` 被推到 `/USB Update Service` 之後。
+
+**其型與 D-1～D-6（字元層）、D-7（結構層）皆不同 —— 本項為「同一個詞被拆成二處」**：
+其非缺字（字都在），非拼錯（字母無誤），**是一個詞之片段落在錯的位置**。
+
+**處置**：`test_item` 上半 **verbatim 保留**（IN §8.4.1）。
+**其不觸發 `J`**（首字為 `If`），**故不會被 lint 攔到** ——
+**本項只能由起草者逐字抄寫時發現，且我是在對照 037 原文修正另一個錯時才看到它的。**
 ---
 
 ## 掃描之能力界線（R-G8）
