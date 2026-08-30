@@ -12122,7 +12122,379 @@ fixture **8 / 8** —— 六紅（無空行、末段前二空行、末段無括�
 
 
 
+## 55 包裁決條文（R-P352 – R-P358）
 
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 7、§J 列數 = 7、§H 步驟 9 =「七條」**，
+另依 R-P348 核對相容性 **C(7,2) = 21 對**齊備。四處一致。
+
+```
+[R-P352] 站③ 審閱成立；整改採「先立配方，後機器改寫，最後人審」，寫回順延。
+         Pei 站③ 審閱 pm_29，判定 390 列中 290 列（74%）之驗證步驟目標
+         非可觀察量，屬結構性缺陷，根因為 `Read the <X> and check that it is <Y>`
+         模板將規格名詞（functionality / state / reaction / behavior）填入 <X>，
+         ER 同義反覆，判斷實際推回測試員（IN §5.1 defer judgement 之變形）。
+         處置：不逐列手修。依 R-P353–R-P358 立配方，執行層機器改寫，
+         再進站④ 人審。54 包 §E「55 包即寫回」作廢，寫回順延至本包
+         G245–G250 全數 PASS 後之次包。
+         裁決者 Pei，逐字依據：「1. 是」。
+```
+
+```
+[R-P353] 可觀察目標白名單；`functionality (not) available` 由分析／執行層指定代理量。
+         Procedure 之 `Read <X>` / `Check that <X> …` 與 ER 之主詞 <X>，
+         **限四類**：
+         （i）`$MESSAGE.Signal$`（R-1 v3 (a)）
+         （ii）具名 UI 元件，以 `"..."` 標示（IN §11），如 `"Splash Screen"`、
+               `"Chrysler App icon"`、`"FOTA update available"` pop-up
+         （iii）可量測音訊：source indicator 顯示值、`AUD_LVL` 值、指定揚聲器
+               有／無輸出
+         （iv）log / trace 之具名行或具名計數器
+         其餘（`functionality`、`reaction`、`behavior`、`network state`、
+         `HU mode`、`screen sequence`、`main CPU`、`CAN micro` 等）**一律不得作 <X>**。
+
+         **代理量指定（Pei 裁：允許）**：`<功能> functionality is (not) available`
+         型（pm_29 計 38 列）及其他非白名單 <X>，由執行層為每一功能指定
+         **一個**白名單類代理量，**須引 CFTS009 / SYS1 中載明該功能可觀察面之
+         錨點**（ObjectID 或章節）；查無錨點者不得自造，改登 DR。
+         代理量表落於 `data/observable_proxy_55.md`，格式：
+         `<原 X> | <代理量（白名單類別）> | <錨點> | <影響列>`，
+         分析層於上繳覆核時逐條核對錨點。
+         `Read the HU mode and check that it is <STATE>`（pm_29 計 15 列）
+         一律改為 `$STATUS_TELEMATIC.PowerSts_Telematic$ = <raw> (<label>)`。
+         `proper` / `as defined (per HMI)` / `normal` 不得出現於 Procedure 與 ER；
+         改為具名畫面／具名值並引錨點，查無定義者 `PENDING: DR-{n}`。
+         裁決者 Pei，逐字依據：「5. 允許」。
+```
+
+```
+[R-P354] `ENTER_<STATE>` 標準片段表；來源得併用 CFTS009 與 SYS1 HMI spec。
+         Pre-Condition `The HU is in <State> state`（pm_29 計 226 列）
+         其進入路徑全案無定義。依 IN §5.3 常數制，為每一 HU 電源狀態建立
+         `ENTER_<STATE>`：`Full-Operation` / `Timed` / `Idle` / `Standby` /
+         `Partial_Operation` / `Sleep` / `Bench` / `INIT`。
+         （a）內容 = 自起始態之 `$STATUS_BH_BCM1.OperationalModeSts$` 序列
+              （及其他必要觸發訊號）＋ 確認步
+              `Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check
+              that it is <raw> (<label>)`；每一片段須引其轉移條文之錨點
+         （b）來源：CFTS009 為主，**SYS1 HMI spec 得併用**（Pei 裁：可）；
+              二者衝突時 CFTS 勝，並登 DR
+         （c）狀態名以 DBC `VAL_` 標籤為唯一拼法（R-7）；
+              `FULL OPERATION` / `IDLE` / `Partial Operation` 等變體全案改齊
+         （d）`The HU is in an operative state`（25 列）、`a … state`（3 列）
+              須逐列改為具體狀態；改不出者登 DR
+         （e）`BODY ON` / `BODY OFF-TIMED` 為車輛模式，非 HU 態；
+              須依 spec 對照改為對應 HU 態，並保留原車輛模式於 Remarks
+         （f）片段之套用方式：Pre-Condition 保留
+              `The HU is in <State> state`，Procedure 第 1 步改為
+              `Apply ENTER_<STATE>`，其 ER 為該片段之確認值；
+              抽象動詞 `Bring the HU to` / `Let the HU enter` /
+              `Bring the HU through the switch on sequence`（pm_29 計 69 列）
+              同以片段取代
+         片段表落於 `data/enter_state_55.md`，同步登入 lint 常數表。
+         裁決者 Pei，逐字依據：「2. 可」。
+```
+
+```
+[R-P355] 內部訊號不得直接 Set；DR-PW23 擴大為 PM 內部訊號對照總表。
+         `Set <X>.Info to <v>` / `Set <X>.Req to <v>`（pm_29 計 40 列）
+         及以 `.Info` / `.Req` / `RemStartFail` 作 Pre-Condition（66 列），
+         其對象為 HU 內部變數，測試台無法直接寫入或讀出。
+         （a）DR-PW23 擴大：列出全案出現之每一內部訊號名，
+              逐一向上游索取**驅動方法**與**觀察方法**；
+              落於 `DATA_REQUESTS.md` DR-PW23 條下之附表
+         （b）已有 DBC 對照者，依 R-1 v3 (d) 改為 `$MESSAGE.Signal$`
+         （c）尚無者，Procedure 該步改 `PENDING: DR-PW23 <訊號名>`，
+              ER 同；**不得以 `Set X.Info` 假裝可執行**
+         （d）`Let the bench place an incoming phone call` 等外部動作
+              改為具體操作（如 `Place a call from the paired phone to the HU`），
+              不屬本條，屬 R-P354(f)
+         裁決者 Pei，逐字依據：「都裁」。
+```
+
+```
+[R-P356] `Specification Reference` 收斂至直接驗證之 ObjectID。
+         pm_29 計 100 列每列引 6–11 個 ObjectID 且整段共用同組
+         （#1–43、#52–67 等）。IN §10.7 要求列出 TC **直接驗證**之章節。
+         每列僅保留其 `test_item` 括號下半所對應之 ObjectID（通常 1–2 個），
+         由執行層依 037 SWRA 逐列對回；對不回者登 DR，不得保留整組。
+         DR-PW6 所阻斷之 `SWE-PM-001`–`009` 依其 DR 狀態處理，不因本條解阻。
+         裁決者 Pei，逐字依據：「都裁」。
+```
+
+```
+[R-P357] 重複對之去留：同 Req ID 刪後者；SWRA ID 不同者不得合併。
+         pm_29 四欄逐字相同之重複對 12 對：
+         (126,129) (212,354) (213,355) (214,356) (215,357) (216,358)
+         (217,359) (218,347) (250,389) (255,390) (305,320) (306,321)。
+         （a）`Requirement or Design ID` 相同 → 刪列號較大者
+         （b）`Requirement or Design ID` 不同 → **二列皆保留，不得合併**
+              （Pei 裁：只要 SWRA ID 不同就不可以合併）；
+              其為同一 TC 掛雙需求之事實，於二列 Remarks 互註對方 tc_id
+         刪除者入三代對照表（R-P349(c) 同批），tc_id 不重編。
+         裁決者 Pei，逐字依據：「3.但只要SWRA ID不同就不可以合併」。
+```
+
+```
+[R-P358] `LIN and CAN tool is available on HU` 保留；步驟控制狀態移出 Pre-Condition；零星項同批修。
+         （a）`LIN and CAN tool is available on HU` **保留**，不刪
+              （Pei 裁：不用）
+         （b）步驟控制狀態（`The previous internal state was …`、
+              `held a known value before the disconnection`、
+              `The boot of the HU is not ended`、
+              `The disclaimer screen has not yet been shown`、
+              `has already played the startup sound`；pm_29 計 16 列）
+              依 IN §4.4 移入 Procedure 為 Setup 步，附 ER 證明條件成立
+         （c）零星項：#325 補括號下半與第 2 步；#9–11 前置只留該列所測之
+              來源，`An active phone call is available` 自 #9/#10 移除；
+              #80 Test Item 之 AMP/ICS/DTV OFF 須有對應觀察步；
+              #10 `Select BT Music streaming` 補 UI 路徑或引錨點
+         裁決者 Pei，逐字依據：「4.不用」。
+```
+
+**已逐字抄入（核對 7 / 7）。** 其中二條於 56 包受訂正 ——
+R-P356 見 R-P359（於現行 corpus 無標的，55 包不施作，原文不改）；
+R-P358(c) 之 `#325` 項見 R-P361（撤回，原文不改）。二處依 R-P36 加註於下。
+
+> **註記（R-P36，56 包加註）—— R-P356**：本條之標的（整段共用之 6–11 個 ObjectID）
+> 於現行 corpus（`generated/batch_00{1..7}.json`，283 條）**無一實例** ——
+> 其 `specification_reference` 全為 `{spec_filename}_{section_id}` 式。
+> 依 **R-P359** 記明「於 55 包無標的」，本包不施作；G248 停用，
+> spec ref 格式與 IN §10.7(a) 之關係另列待裁。
+
+> **註記（R-P36，56 包加註）—— R-P358(c)**：其 `#325` 項**撤回**（**R-P361**）。
+> pm_29 `No.# 325` 為 `SWE-PM-089` 之 R-P141 留白列，非缺陷。
+> 本款其餘三項（#9–11、#80、#10）之列號仍受 55 包 §0 約束，
+> 須先於現行 corpus 以 `(req_id, test_item)` 找到對應物再施作。
+
+## 56 包裁決條文（R-P359 – R-P362）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 4、§J 列數 = 4、§H 步驟 1 =「四條」**，
+另依 R-P348 核對相容性 **C(4,2) = 6 對**齊備。四處一致。
+
+```
+[R-P359] R-P356 於現行 corpus 無標的，本包略過；spec ref 格式問題另列待裁。
+         現行 corpus 之 specification_reference 全 283 條為
+         `{spec_filename}_{section_id}` 式，無任何 ObjectID；
+         R-P356 之標的（整段共用之 6–11 個 ObjectID）無一實例。
+         （a）R-P356 記明「於 55 包無標的」，本包不施作，不改條文
+         （b）**不**將 R-P356 之意旨自行改適用於 section_id 收斂 ——
+              執行層之判斷正確，判準變更不由執行層推定，亦不由本包推定
+         （c）另列待裁：現行格式與 IN §10.7(a)「CFTS 母文件 →
+              `CFTS{nnn}-{ObjectID}`」之關係 —— feature.yaml 之
+              `spec_reference_template` 是否為已裁之 profile override，
+              分析層未查；G248 於本包**停用**，待該項裁後另定
+         裁決者：分析層（Tier 2，依 B1 §五-1 (i)）。
+```
+
+```
+[R-P360] R-P357 比對鍵改為五欄；`listed in Input Test Data` 回指須內聯後再比對。
+         （a）重複對之比對鍵加入 `Input Test Data`，
+              為 Test Item / Pre / ITD / Procedure / ER 五欄逐字
+         （b）B1 §五-2 所報 14 對「Procedure 寫 `… the event listed in
+              Input Test Data …`、區辨內容落於 ITD」之型別，
+              違反 IN §4.5 SWC 基準「步驟不得以『listed in Input Test Data』
+              回指該欄」與 R-1 v2「ITD 以 NA 為常態」。
+              **此為 pm_29 所無、現行 corpus 新增之缺陷家族，登記為 K。**
+              處置：ITD 之值內聯至 Procedure 該步（`Send the signal …` /
+              具體事件），ITD 改 `NA`；內聯後該 14 對自然不再逐字相同
+         （c）G249 改為：先施作 (b)，再以五欄鍵重跑；
+              新增 G251：`listed in Input Test Data` 殘留 **0**、
+              ITD 非 `NA` 者須逐列說明其為 IN §4.5 第 3 類獨立資料集
+         （d）B1 所報 11 對真重複、req_id 全數不同者 → 依 R-P357(b)
+              二列皆留、Remarks 互註；可刪列 0；B6 三代對照表本包無異動
+         裁決者：分析層（Tier 2，套用既有 IN §4.5 / R-1 v2，無新判準）。
+```
+
+```
+[R-P361] R-P358(c) 之 `#325` 撤回；R-P358 其餘各款不變。
+         pm_29 `No.# 325` 為 `SWE-PM-089` 之 R-P141 留白列，非缺陷；
+         tc_id `-325`（`No.# 326`）括號下半完整、Procedure 2 步，亦非缺陷。
+         分析層之誤（§0-1）。R-P358 依 R-P36 原文不改，於 (c) 下加註
+         「`#325` 項撤回（R-P361）」。
+         R-P358(c) 其餘三項（#9–11、#80、#10）之列號同受 55 包 §0 約束，
+         須先在現行 corpus 上以 `(req_id, test_item)` 找到對應物再施作；
+         找不到者記「無對應物，略過」。
+         裁決者：分析層（Tier 2，撤回自身錯誤）。
+```
+
+```
+[R-P362] 家族 A 之判準採 `remeasure_55.py` 上界，G245 以之為 lint。
+         B1 報二界在現行 corpus 上同為 260，且 G245 期望值為 0，
+         界之寬窄不影響目標，取**上界**（併計句中 `… and check that …`）
+         以保攔截力。分析層原掃描（290）之判準為
+         `^\d+\.\s*Read (the )?(<X>) and check`、<X> 不含 `$`，
+         窄於上界且未含 ER 主詞，**以偵測器為準，分析層判準廢**。
+         `remeasure_55.py` 之白名單判準即 G245 之實作；兩層同一份程式碼，
+         符合 R-P348 之精神（判準不得二源）。
+         裁決者：分析層（Tier 2）。
+```
+
+**已逐字抄入（核對 4 / 4）。** R-P356 / R-P358 依 R-P36 原文不改，
+各加註於 55 包段落之下。
+
+**本包新增之缺陷家族 K**（R-P360(b)）：現行 corpus 以
+`… the event listed in Input Test Data …` 回指 ITD 欄，違 IN §4.5 與 R-1 v2。
+pm_29 之 ITD 全為 `NA`，故該家族為 44 包之後新生，
+**不在 55 包附件之十二個家族內** —— 盤點基底落後兩代之直接後果。
+
+## 57 包裁決條文（R-P363 – R-P367）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 5、§J 列數 = 5、§H 步驟 1 =「五條」**，
+另依 R-P348 核對相容性 **C(5,2) = 10 對**齊備，並依 **R-P364(d)** 逐條核對既有 canon。四處一致。
+
+```
+[R-P363] R-P354 之狀態集與拼法改依 DBC `VAL_ 1470`；`INIT` 為規格態，保留原名並 PENDING。
+         （a）`ENTER_<STATE>` 之 <STATE> 集合 = `VAL_ 1470` 之列舉值，
+              拼法逐字取 `VAL_`（`Full_Operation`，非 `Full-Operation`）；
+              R-P354 條文中之 `Full-Operation` 等拼法全部依此更正，
+              R-P354 依 R-P36 原文不改，於 (c) 下加註指向本條
+         （b）`Logistic_On`（raw 5）列入片段集，`ENTER_LOGISTIC_ON` 自附錄移入正表；
+              惟其 TC 產出仍受 R-P349(a) / DR-PW11 阻斷，片段可立、TC 不產
+         （c）`INIT` 不在 `VAL_` —— 依 R-13 精神，規格原文所載之狀態名**保留**，
+              `ENTER_INIT` 標 `PENDING: DR-PW26 INIT 觀察量`；不得以 `VAL_` 內
+              語意相近之值代入
+         （d）`ENTER_SLEEP` 同標 `PENDING: DR-PW26 Sleep 觀察方法`；
+              「CAN 睡眠後無法以 CAN 讀確認值」之事實寫入片段備註，
+              待 DR-PW26 回覆是否有非 CAN 觀察面（電流／LIN／log）
+         DR-PW26（High）之四問**核可**，維持「阻斷 G246，不阻斷其餘六片段」。
+         裁決者：分析層（Tier 2，訂正自身條文以合 canon R-7）。
+```
+
+```
+[R-P364] R-P348 增 (d)：新條文須對既有 canon 逐條查相容，不僅查新條彼此。
+         A-PW350 為首例：R-P354(c) 引 R-7 而 R-P354 本文違 R-7，
+         C(7,2) 之 21 對檢查全數「有解」而未攔。
+         增訂：分析層於 §J 之相容性檢查，除新條兩兩配對外，
+         **須列出每一新條所引用或觸及之既有 canon 條（IN §、R-、R-P-）**，
+         逐條問「新條之極端案例是否違該 canon」；引用而未查者視同未檢。
+         R-P348 依 R-P36 原文不改，加註指向本條。
+         裁決者：分析層（Tier 2，作業規則）。
+```
+
+```
+[R-P365] G246 改寫；G0 台帳納入判準所依之 DBC 並定版本凍結。
+         （a）G246 期望值改為：「可用片段（非 PENDING 者）100% 解析
+              ＋ PENDING 片段逐條掛 DR-PW26 且其所涉列以
+              `PENDING: DR-PW26 <態>` 佔位」。不以降判準求綠（R-P187），
+              改以「可達之部分全達、不可達之部分全數可追溯」為判準
+         （b）`features/vehicle_setting/inputs/PDT27_E2A_R4_BHCAN.dbc`
+              （SHA `9ef1ec98…`）納入 power 之 G0 台帳，G0 改 **10 / 10**；
+              登記其為自 20 包（DR-PW21）起之判準來源，**遲登**據實記明（A-PW349）
+         （c）版本凍結規則：台帳登記路徑＋SHA；SHA 不符即 G0 FAIL；
+              換版須開 DR 或裁定，並重跑所有引 `VAL_` 之閘（G245 / G246）
+         （d）該檔位於他 feature 目錄 —— 是否複製入 `features/power/inputs/`
+              以去除跨 feature 依賴，列 §K 待 Pei
+         裁決者：分析層（Tier 2）。
+```
+
+```
+[R-P366] R-P360(b) 之適用範圍依執行層三分法；15 條逾長者不得為湊字數而截斷資料。
+         家族 K 實測 158 / 283。
+         （a）單行 ITD ≤ 60 字元（135 條）：內聯至 Procedure 該步，ITD 改 `NA`
+         （b）單行 ITD > 60 字元（15 條）：逐條檢。內聯後末步逾 §5.2B 18 字者，
+              **不得刪減資料以合字數**；改為拆步（資料送出步 ＋ 驗證步）
+              或依 (c) 保留於 ITD 並說明。字數上限與資料完整性衝突時，資料完整性勝
+         （c）多行 ITD（8 條）：保留於 ITD，逐列於 Remarks 說明其為
+              IN §4.5 第 3 類獨立資料集；Procedure 該步改為具體引用
+              （`Send each signal value listed in Input Test Data in turn`
+              仍屬回指，不許；須寫明資料集之性質，如
+              `Send the boundary values of $X$ one at a time`）
+         G251 之判準隨之：`listed in Input Test Data` 殘留 0；
+         ITD 非 `NA` 者 = (b)(c) 之保留列且 Remarks 有說明。
+         R-P360 依 R-P36 原文不改，加註指向本條；
+         規模估計失準登 A-PW（§F）。
+         裁決者：分析層（Tier 2，適用 R-P360(c) 既留之例外）。
+```
+
+```
+[R-P367] B3 代理量之錨點來源 = power 之 G0 台帳所列文件，不限 CFTS009。
+         本 feature `sys1_export: null`，R-P353 / R-P354(b) 之「SYS1」在本 feature 為空集，
+         二條於此**不改文，記明無適用對象**。
+         代理量錨點得取自 G0 台帳（10 / 10）內任一文件：CFTS009、SYS3、
+         WrapperResource 二份、DBC（`VAL_` 標籤本身即為錨點）等；
+         台帳外文件一律不得為錨。查無錨點者登 DR，不得自造（R-P353 不變）。
+         B3 施作前先出**可及性報告**：260 條非白名單 <X> 按「原 X」去重後之相異名數，
+         逐名標「台帳內有錨 / 無錨」，分析層覆核後再填代理量表。
+         裁決者：分析層（Tier 2）。
+```
+
+**已逐字抄入（核對 5 / 5）。** R-P348 / R-P354 / R-P360 依 R-P36 原文不改，加註於下。
+R-P365(b) 於 58 包受訂正，加註見 58 包段落。
+
+> **註記（R-P36，57 包加註）—— R-P348**：本條之相容性檢查**不涵蓋新條對既有 canon**。
+> A-PW350 為首例：R-P354(c) 引 R-7 而 R-P354 本文違 R-7，C(7,2) 之 21 對全數「有解」而未攔。
+> 依 **R-P364** 增訂 (d)：須列出每一新條所引用或觸及之既有 canon 條並逐條檢。
+
+> **註記（R-P36，57 包加註）—— R-P354(c)**：本條之八態集合與拼法依 **R-P363** 改依
+> DBC `VAL_ 1470`（`Full_Operation` 而非 `Full-Operation`；`Logistic_On` 入正表；
+> `INIT` 不在 `VAL_`，依 R-13 保留原名並標 `PENDING: DR-PW26`）。
+
+> **註記（R-P36，57 包加註）—— R-P360(b)**：其適用範圍依 **R-P366** 之三分法
+> （單行 ≤60 字元 135 條內聯、單行 >60 字元 15 條逐條檢、多行 8 條保留並說明）。
+> 本條原文所依為 14 對重複之誤判樣本，**規模估計失準一個數量級**（14 → 158），見 A-PW353。
+
+## 58 包裁決條文（R-P368 – R-P369）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 2、§J 「二條」、§H 步驟 2 =「二條」**，
+相容性 C(2,2) = 1 對，並依 R-P364(d) 對既有 canon（R-6 / R-13 / R-1 v3 / R-G13 / R-G14 /
+R-DM17 / R-DM21 / R-P355(b) / R-P365(b)）逐條核對。四處一致。
+
+```
+[R-P368] 內部訊號之實際名稱以 forms/ 為主，依三段鏈解析；DBC 實名勝規格原名。
+         （a）解析鏈（R-DM17 / R-DM21 之全案慣例）：
+              段 1  規格原名（`X.Info` / `X.Req` / `$X$` / 素材原文）
+                    → `forms/Logical Identifiers and CAN Mapping v1_78.xlsx`
+                    之 `CAN Mapping` 分頁，`Atlantis High` 欄組 `Signal Name`
+              段 2  → `MESSAGE.Signal`
+              段 3  → `forms/PDT27_E2A_R1_BHCAN2.dbc` / `forms/PDT27_E2A_R1_FDCAN8.dbc`
+                    之 `SG_` 逐字查得
+              三段皆過者，TC 寫 `$MESSAGE.Signal$`（DBC 實名，含大小寫），
+              規格原名保留於 `test_item` 上半 verbatim（R-6 不變）
+         （b）**名稱不必逐字相同**：段 1 之比對得用 LID 之 `Logical Identifier`
+              欄與 `Description` 欄，容許前綴／後綴／底線差異；
+              惟每一對應須於附表載明比對依據（哪一欄、哪一列），不得憑語意跳接
+         （c）PROXI 參數同理：段 1 → LID `Proxi & Configuration` → 段 3
+              `forms/PROXI_HDCC27_R3_20250424.xlsx` `Format` 分頁 `Parameter Name`
+         （d）止於段 1 或段 2 者，記「未解得（止於段 n）」；
+              段 3 查無者始得記「查無」，且須滿足 R-G13 三要件並登
+              `forms/LOOKUP_MISSES.md`（R-G14），同時 ANOMALIES + DR 三處各登
+         （e）R4 BHCAN（`features/vehicle_setting/inputs/`）降為**旁證**：
+              段 3 在 forms 二本查無而在 R4 查得者，**不得逕用 R4 名**，
+              記為 B-1 型衝突，列 §K 交 Pei
+         （f）R-13 續有效：三段鏈全程查無者，TC 保留規格原名不加 `$`，
+              `PENDING: DR-PW23 <名>` 不變
+         R-P355(b) 之「已有 DBC 對照者」自此指本條 (a) 三段皆過者。
+         R-P365(b) 之台帳 DBC 改為 forms 三檔（LID、BHCAN2、FDCAN8，SHA 取自 FORMS.md），
+         R4 BHCAN 另列「旁證，DR-PW21 歷史來源」；R-P365 依 R-P36 原文不改，加註。
+         裁決者 Pei，逐字依據：「以…forms為主 名稱不一定會完全一樣要看DBC實際名稱」。
+```
+
+```
+[R-P369] B4 附表重做；`ENTER_<STATE>` 之訊號同受 R-P368 複驗。
+         （a）`data/dr_pw23_internal_signals_55.md` 之 13 名依 R-P368 逐名重解，
+              附表改為：`規格原名 | 段1 LID 列與欄 | 段2 MESSAGE.Signal | 段3 DBC 檔 | 結果`
+              結果 ∈ {解得, 未解得(止於段1), 未解得(止於段2), 查無(R-G13), B-1 衝突}
+         （b）素材拼法不一致者（`Phone_Call.Info`/`PhoneCall.Info` 等）
+              二名皆入段 1 查，若解至同一 `MESSAGE.Signal` 則為同物，TC 用 DBC 實名，
+              二拼法之等同記入附表；解至不同者維持 DR-PW23 詢問
+         （c）`ENTER_<STATE>` 六可用片段所用之 `$STATUS_BH_BCM1.OperationalModeSts$`、
+              `$STATUS_TELEMATIC.PowerSts_Telematic$` 及 `VAL_`，**改以 forms 之 BHCAN2 複驗**；
+              R4 有而 BHCAN2 無者即 B-1 衝突，該片段轉 PENDING 並列 §K
+         （d）57 包定量「105 條 PENDING」作廢，待 (a) 重做後重算
+         裁決者：分析層（Tier 2，落實 R-P368）。
+```
+
+**已逐字抄入（核對 2 / 2）。** R-P355 / R-P365 依 R-P36 原文不改，加註於下。
+
+> **註記（R-P36，58 包加註）—— R-P355(b)**：其「已有 DBC 對照者」自 **R-P368** 起
+> 指該條 (a) 之三段鏈全過者，非以規格原名直查 DBC。
+> 55 包 B4 所報之「DBC 對照 0 / 13」係跳過段 1–2 而只做段 3，
+> **依 R-G13 為「未查」而非「查無」**，已由 58 包 B4′ 重做（A-PW355）。
+
+> **註記（R-P36，58 包加註）—— R-P365(b)**：其台帳 DBC 依 **R-P368(e)** 改為
+> `forms/` 三檔（LID v1_78、BHCAN2、FDCAN8，SHA 取自 `forms/FORMS.md`）；
+> `features/vehicle_setting/inputs/PDT27_E2A_R4_BHCAN.dbc` 降為**旁證**
+> （DR-PW21 之歷史來源）。二檔非版次關係（LOOKUP_MISSES B-1：僅 R4 有 573、僅 BHCAN2 有 32）。
 
 ---
 

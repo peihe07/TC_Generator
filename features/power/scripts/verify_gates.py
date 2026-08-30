@@ -34,6 +34,18 @@ LEDGER = {
     "dede965f228429c6e95aa7f7c4de08f0a52f1fd28b12ef10da3fc6db8638a9cc": "WrapperResource O1584（49 包 R-P319 登記）",
 }
 
+# §B 台帳（參考資料庫）：R-P365(b)(c) 令納入判準所依之 DBC，
+# 58 包 R-P368(e) 訂正其為 `forms/` 三檔 —— 路徑 ＋ SHA256，SHA 不符即 FAIL。
+# R4 BHCAN 降為旁證（DR-PW21 之歷史來源），**不入台帳、不參與判準**。
+REFERENCE_LEDGER = {
+    "forms/Logical Identifiers and CAN Mapping v1_78.xlsx":
+        "a01e1679c706cd454daf82573a732fe5ad5eedb3865083897cb18c970b312433",
+    "forms/PDT27_E2A_R1_BHCAN2.dbc":
+        "46cb73f3db62ac9fba6ad8010d7930661983faf01383c022c52ba3c37de1cc60",
+    "forms/PDT27_E2A_R1_FDCAN8.dbc":
+        "2a86c4bf3e670d71b362d430b446d8d157c74b94429e833362f81f4a48f6a22e",
+}
+
 # §C rule 4：037 Source Requirement ID 之兩域 token（區分大小寫）
 PM_RE = re.compile(r"Sys-RA-PM-\d{4}")
 PD_RE = re.compile(r"Sys-RA-PD[_-]\d+")
@@ -72,7 +84,24 @@ def gate0() -> bool:
         print(f"   缺: {LEDGER[h]} ({h[:16]})")
     for h in extra:
         print(f"   多: {seen[h]} ({h[:16]})")
-    return not missing and not extra
+
+    # 參考資料庫段（R-P365(c) / R-P368(e)）—— 以路徑取檔、比 SHA。
+    # 與上段之集合相等判準分開計數：素材在 `inputs/`，參考庫在 `forms/`，
+    # 二者之「多」之語意不同（forms/ 為全案共用，多出之檔非本 feature 之缺陷）。
+    ref_ok = 0
+    for rel, want in REFERENCE_LEDGER.items():
+        f = ROOT / rel
+        if not f.exists():
+            print(f"   參考庫缺: {rel}")
+            continue
+        got = hashlib.sha256(f.read_bytes()).hexdigest()
+        if got == want:
+            ref_ok += 1
+        else:
+            print(f"   參考庫 SHA 不符: {rel} 實測 {got[:16]} 台帳 {want[:16]}")
+    print(f"G0 參考資料庫: {ref_ok} / {len(REFERENCE_LEDGER)}")
+
+    return not missing and not extra and ref_ok == len(REFERENCE_LEDGER)
 
 
 def leaves() -> list[tuple[str, str, str]]:

@@ -1,0 +1,18 @@
+family	pm_29_rows	current_rows	delta	attachment	detector_gap
+A_lower	276	260	-16	290	-14
+A_upper	312	260	-52	290	+22
+A1	38	4	-34	38	+0
+B	226	28	-198	226	+0
+B_shape	201	120	-81	226	-25
+C1	78	65	-13	69	+9
+C2	40	5	-35	40	+0
+C3	72	111	39	66	+6
+D	25	23	-2	25	+0
+E	16	12	-4	16	+0
+G	16	17	1	15	+1
+H	100	0	-100	100	+0
+I	15	0	-15	15	+0
+F	12	25	13	12	+0
+F_true	—	11	—	—	含 ITD 亦同者
+F_itd_falsepos	—	14	—	—	ITD 不同，R-P357 四欄鍵誤判
+F_deletable	—	0	—	—	R-P357(a) 同 req_id 可刪者
