@@ -1,0 +1,8 @@
+metric	count	pct	source
+corpus 總條數	283	100.0%	generated/batch_*.json
+第一批已改寫（R-P391(a)）	37	13.1%	apply_batch1_67.py 之 E 表
+corpus 內 PENDING 文字	20	7.1%	逐欄掃
+家族 K 殘留	132	46.6%	family_k_59.py
+五欄逐字相同對	12	4.2%	五欄鍵
+R-P357(b) 互註齊備	24	8.5%	remarks 掃描
+丁案已改寫	3	1.1%	-057 / -065 / -116

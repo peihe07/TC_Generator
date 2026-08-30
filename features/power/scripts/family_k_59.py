@@ -56,7 +56,10 @@ def words(step: str) -> int:
 # R-P373(a)：第 3 類資料集之語言標記 —— 一步多值、值間並列。
 DATASET_RE = re.compile(
     r"\bone at a time\b|\bin turn\b|\beach of\b|\bboundary values\b"
-    r"|\ball listed\b|\bfor every\b|\bevery listed\b", re.I)
+    r"|\ball listed\b|\bfor every\b|\bevery listed\b"
+    # 67 包補：`Repeat … N times` 亦為「一步多輪、輪間並列」之第 3 類
+    # （66 包 §1 表對 `-218` 明示此寫法），原式看不到。
+    r"|\brepeat\b[^\n]{0,60}\b\d+\s+times\b", re.I)
 
 
 def is_dataset(tc: dict) -> bool:

@@ -234,7 +234,7 @@
       "split_reason": "本條驗喚醒時之送值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-246 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗喚醒時之送值"
@@ -260,7 +260,7 @@
       "split_reason": "本條驗變更後之更新與時限",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-247 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗變更後之更新與時限"
@@ -624,7 +624,7 @@
       "split_reason": "本條驗喚醒時之送值（與 SWE-PM-080 重疊，見 reasoning）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-231 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗喚醒時之送值（與 SWE-PM-080 重疊，見 reasoning）"
@@ -650,7 +650,7 @@
       "split_reason": "本條驗變更後之更新與時限（與 SWE-PM-080 重疊）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-232 五欄逐字相同而 Req ID 不同（SWE-PM-080 / SWE-PM-086），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗變更後之更新與時限（與 SWE-PM-080 重疊）"

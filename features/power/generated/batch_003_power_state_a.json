@@ -327,8 +327,8 @@
       "test_item": "After a battery reconnection and also when TLM has to exit INIT state (as soon as the voltage is limited within certain thresholds), TLM is able to work properly again and it has to restore the last user settings and the last variables values: VPLastStatus, SwitchOffSetting.Req, Auto_SwitchOn_Setting.Req shall be restored to their values before the battery disconnection / battery reset\n\n(read the three stored variables -> VPLastStatus, SwitchOffSetting.Req and Auto_SwitchOn_Setting.Req read their values before the battery disconnection)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. VPLastStatus, SwitchOffSetting.Req and Auto_SwitchOn_Setting.Req hold known values\n3. The battery is disconnected",
       "input_test_data": "NA",
-      "test_procedure": "1. Reconnect the battery and let the voltage settle within its thresholds\n2. Read the three stored variables to check that their previous values returned",
-      "expected_result": "1. The TLM leaves INIT state once the voltage is within its thresholds\n2. VPLastStatus, SwitchOffSetting.Req and Auto_SwitchOn_Setting.Req read their values before the battery disconnection",
+      "test_procedure": "1. Apply ENTER_FULL_OPERATION and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$, recording the value as State_before\n2. Disconnect the battery from the HU, then reconnect it\n3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) (DR-PW26), then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it equals State_before\n4. PENDING: DR-PW25 SwitchOffSetting.Req 與 Auto_SwitchOn_Setting.Req 之設定項名與讀取方法",
+      "expected_result": "1. State_before is recorded\n2. The battery is disconnected and reconnected\n3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ equals State_before\n4. PENDING: DR-PW25 SwitchOffSetting.Req / Auto_SwitchOn_Setting.Req",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.13",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -336,12 +336,12 @@
       "split_reason": "本條驗電池回接後之使用者設定還原",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗電池回接後之使用者設定還原"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `three stored variables` 三者皆內部變數。依 66 包 §1 表 —— `VPLastStatus` 以「Ignition On 後之態與斷電前相同」為代理（baseline (f)，(i) 類）；二個 `.Req` 設定值以 UI 讀，其設定項名未查得 → `PENDING: DR-PW23 / DR-PW25`。⚠ `Recall_Last` 之邏輯屬 `CFTS009-4941610`，依 IN §8.2.1 **不擴入本條**。",
       "split_index": 1
     },
     {
@@ -353,8 +353,8 @@
       "test_item": "Then, TLM has to behave according to requirements of par. \"TLM_Status.Info and $Telematic_Power$ signal setting\", setting TLM_Status.Info to \"Sleep\" first and starting from Sleep state.\n\n(read TLM_Status.Info and the state machine -> TLM_Status.Info reads \"Sleep\" and the TLM starts from Sleep state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The battery has just been reconnected",
       "input_test_data": "NA",
-      "test_procedure": "1. Let the TLM exit INIT state\n2. Read TLM_Status.Info and the state machine to check the starting state",
-      "expected_result": "1. The TLM leaves INIT state without an error being reported\n2. TLM_Status.Info reads \"Sleep\" and the TLM starts from Sleep state",
+      "test_procedure": "1. Disconnect the battery from the HU\n2. Reconnect the battery\n3. Read the bus trace and check that the first $STATUS_TELEMATIC$ frame transmitted after the reconnection carries $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep)",
+      "expected_result": "1. The battery is disconnected\n2. The battery is reconnected\n3. The first $STATUS_TELEMATIC$ frame after the reconnection carries $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep)",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.13",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -362,12 +362,12 @@
       "split_reason": "本條驗離開 INIT 後之起始狀態",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗離開 INIT 後之起始狀態"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `TLM_Status.Info and the state machine` 非可觀察量。依 66 包 §1 表 —— 以 bus 上 `STATUS_TELEMATIC` 之**第一幀**落實 INIT 之退出，`$STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep)`。**不需 `ENTER_INIT`**（其確認步 PENDING DR-PW26），本條以第一幀取代之。",
       "split_index": 2
     },
     {
@@ -1612,7 +1612,7 @@
       "split_reason": "本條驗防盜成功後之請求復歸",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-102 五欄逐字相同而 Req ID 不同（SWE-PM-028 / SWE-PM-029），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗防盜成功後之請求復歸"
@@ -1628,9 +1628,9 @@
       "test_set": "Power State",
       "test_item": "IF SwitchOff_Timeout_Setting.Req == 00 min or ( If Auto_SwitchOn_Setting.Req ==\"Active \", when  Timeout1 == 00 MIN\" for LTM High Radio): THENTLM has to set Timeout1 to the value specified by PROXI parameter “Switch_Off_Time” (for example 20 minutes if Switch_Off_Time == 20 minutes), only for this case,  restoring it to \"00 minutes\" at next Ignition On event.\n\n(read Timeout1 and then trigger an Ignition On event -> Timeout1 reads \"00 minutes\" again at the next Ignition On event)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SwitchOff_Timeout_Setting.Req reads \"00 min\"\n3. Switch_Off_Time reads 20 minutes",
-      "input_test_data": "Antitheft_Result.Info = \"Successfully\"",
-      "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read Timeout1 and then trigger an Ignition On event to check the restore",
-      "expected_result": "1. Timeout1 reads 20 minutes after the antitheft success\n2. Timeout1 reads \"00 minutes\" again at the next Ignition On event",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req 之設定方法（設為 \"00 min\"）\n2. Apply ENTER_TIMED and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)\n3. Hold for the PROXI Switch_Off_Time value, then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n4. PENDING: DR-PW23 Antitheft_Result.Info 之觀察方法（antitheft 成功）",
+      "expected_result": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received\n3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed\n4. PENDING: DR-PW23 Antitheft_Result.Info",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1638,12 +1638,12 @@
       "split_reason": "本條驗 Timeout1 之暫時取值與其復歸",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Timeout1 之暫時取值與其復歸"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包，第一批）**：`Timeout1` 為 HU 內部參數，不可直接讀。依 66 包 §1 表，**以狀態持續時間為代理** —— `$STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed)` 持續 `PROXI Switch_Off_Time` 之值後轉 `= 1 (Standby)`。`Hold for <值> ms` 依 R-1 v3 (e)。⚠ 前置 `SwitchOff_Timeout_Setting.Req = 00 min` 之 UI 設定名未查得，維持 `PENDING: DR-PW23`（R-P380(a)：運行時用法不撤）。",
       "split_index": 2
     },
     {
@@ -1654,9 +1654,9 @@
       "test_set": "Power State",
       "test_item": "IF SwitchOff_Timeout_Setting.Req == 00 min or ( If Auto_SwitchOn_Setting.Req ==\"Active \", when  Timeout1 == 00 MIN\" for LTM High Radio): THENTLM has to set Timeout1 to the value specified by PROXI parameter “Switch_Off_Time” (for example 20 minutes if Switch_Off_Time == 20 minutes), only for this case,  restoring it to \"00 minutes\" at next Ignition On event.\n\n(read Timeout1 and then trigger an Ignition On event -> Timeout1 reads \"00 minutes\" again at the next Ignition On event)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. An LTM High Radio is present in the bench configuration\n3. Auto_SwitchOn_Setting.Req reads \"Active \" and Timeout1 reads \"00 MIN\"\n4. Switch_Off_Time reads 20 minutes",
-      "input_test_data": "Antitheft_Result.Info = \"Successfully\"",
-      "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read Timeout1 and then trigger an Ignition On event to check the restore",
-      "expected_result": "1. Timeout1 reads 20 minutes after the antitheft success\n2. Timeout1 reads \"00 minutes\" again at the next Ignition On event",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req 之設定方法（設為 \"00 min\"）\n2. Apply ENTER_TIMED and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)\n3. Hold for the PROXI Switch_Off_Time value, then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n4. PENDING: DR-PW23 Antitheft_Result.Info 之觀察方法（antitheft 成功）",
+      "expected_result": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received\n3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed\n4. PENDING: DR-PW23 Antitheft_Result.Info",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1664,12 +1664,12 @@
       "split_reason": "本條驗 LTM High 形態之 Timeout1 取值（`100` 之對應條驗 SwitchOff_Timeout_Setting.Req 形態）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 LTM High 形態之 Timeout1 取值（`100` 之對應條驗 SwitchOff_Timeout_Setting.Req 形態）"
       },
-      "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。",
+      "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。\n\n**R-P386 改寫（67 包，第一批）**：`Timeout1` 為 HU 內部參數，不可直接讀。依 66 包 §1 表，**以狀態持續時間為代理** —— `$STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed)` 持續 `PROXI Switch_Off_Time` 之值後轉 `= 1 (Standby)`。`Hold for <值> ms` 依 R-1 v3 (e)。⚠ 前置 `SwitchOff_Timeout_Setting.Req = 00 min` 之 UI 設定名未查得，維持 `PENDING: DR-PW23`（R-P380(a)：運行時用法不撤）。",
       "split_index": 3
     },
     {
@@ -1690,7 +1690,7 @@
       "split_reason": "本條驗本變體之請求復歸",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-099 五欄逐字相同而 Req ID 不同（SWE-PM-028 / SWE-PM-029），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗本變體之請求復歸"
@@ -1706,9 +1706,9 @@
       "test_set": "Power State",
       "test_item": "IF SwitchOff_Timeout_Setting.Req == 00 min  THENTLM has to set Timeout1 to the value specified by PROXI parameter “Switch_Off_Time” (for example 20 minutes if Switch_Off_Time == 20 minutes), only for this case,  restoring it to \"00 minutes\" at next Ignition On event.\n\n(read Timeout1 and then trigger an Ignition On event -> Timeout1 reads \"00 minutes\" again at the next Ignition On event)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SwitchOff_Timeout_Setting.Req reads \"00 min\"\n3. Switch_Off_Time reads 20 minutes",
-      "input_test_data": "Antitheft_Result.Info = \"Successfully\"",
-      "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read Timeout1 and then trigger an Ignition On event to check the restore",
-      "expected_result": "1. Timeout1 reads 20 minutes after the antitheft success\n2. Timeout1 reads \"00 minutes\" again at the next Ignition On event",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req 之設定方法（設為 \"00 min\"）\n2. Apply ENTER_TIMED and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)\n3. Hold for the PROXI Switch_Off_Time value, then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received\n3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1716,12 +1716,12 @@
       "split_reason": "本條驗 Timeout1 取自 Switch_Off_Time 之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗 Timeout1 取自 Switch_Off_Time 之分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包，第一批）**：`Timeout1` 為 HU 內部參數，不可直接讀。依 66 包 §1 表，**以狀態持續時間為代理** —— `$STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed)` 持續 `PROXI Switch_Off_Time` 之值後轉 `= 1 (Standby)`。`Hold for <值> ms` 依 R-1 v3 (e)。⚠ 前置 `SwitchOff_Timeout_Setting.Req = 00 min` 之 UI 設定名未查得，維持 `PENDING: DR-PW23`（R-P380(a)：運行時用法不撤）。",
       "split_index": 2
     },
     {
@@ -1732,9 +1732,9 @@
       "test_set": "Power State",
       "test_item": "IF SwitchOff_Timeout_Setting.Req == 00 min  THEN TLM has to set Timeout1 to the value specified by $PwrAccDelayAct$ (for example 10  minutes if $PwrAccDelayAct$ == 10 minutes), only for this case,  restoring it to \"00 minutes\" at next Ignition  On event.\n\n(read Timeout1 and then trigger an Ignition On event -> Timeout1 reads \"00 minutes\" again at the next Ignition On event)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SwitchOff_Timeout_Setting.Req reads \"00 min\"\n3. $PwrAccDelayAct$ reads 10 minutes",
-      "input_test_data": "Antitheft_Result.Info = \"Successfully\"",
-      "test_procedure": "1. Send the signal listed in Input Test Data\n2. Read Timeout1 and then trigger an Ignition On event to check the restore",
-      "expected_result": "1. Timeout1 reads 10 minutes after the antitheft success\n2. Timeout1 reads \"00 minutes\" again at the next Ignition On event",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req 之設定方法（設為 \"00 min\"）\n2. Apply ENTER_TIMED and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)\n3. Hold for the $BCM_FD_27.Comfort_Enable_Time$ (DR-PW26) value, then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received\n3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the $BCM_FD_27.Comfort_Enable_Time$ (DR-PW26) value has elapsed",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1742,12 +1742,12 @@
       "split_reason": "本條驗 Timeout1 取自 $PwrAccDelayAct$ 之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗 Timeout1 取自 $PwrAccDelayAct$ 之分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包，第一批）**：`Timeout1` 為 HU 內部參數，不可直接讀。依 66 包 §1 表，**以狀態持續時間為代理** —— `$STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed)` 持續 `PROXI Switch_Off_Time` 之值後轉 `= 1 (Standby)`。`Hold for <值> ms` 依 R-1 v3 (e)。⚠ 前置 `SwitchOff_Timeout_Setting.Req = 00 min` 之 UI 設定名未查得，維持 `PENDING: DR-PW23`（R-P380(a)：運行時用法不撤）。",
       "split_index": 3
     },
     {

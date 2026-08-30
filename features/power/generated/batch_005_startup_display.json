@@ -303,7 +303,7 @@
       "split_reason": "本條驗來電所致之 IDLE → FULL OPERATION 免顯免責畫面",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-225 五欄逐字相同而 Req ID 不同（SWE-PM-068 / SWE-PM-114），二列皆保留不得合併；互註對方 tc_id)",
       "reasoning_note": "",
       "split_index": 1
     },
@@ -377,7 +377,7 @@
       "split_reason": "本條驗免責畫面之延後補顯",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-226 五欄逐字相同而 Req ID 不同（SWE-PM-070 / SWE-PM-115），二列皆保留不得合併；互註對方 tc_id)",
       "reasoning_note": "",
       "split_index": 1
     },
@@ -468,8 +468,8 @@
       "test_item": "If the HU Transitions to Timed mode due to the condition described in CFTS009-1809, the HU shall transition to Standby mode after: -1 minute has passed without the user interacting with the pop-up -The FOTA pop up is dismissed -$ACCDlyAct$ transitions from active to inactive\n\n(read the HU mode after the idle period -> The HU transitions to Standby mode after 1 minute has passed)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is in Timed mode due to the condition described in CFTS009-1809",
       "input_test_data": "NA",
-      "test_procedure": "1. Leave the FOTA pop-up without any user interaction\n2. Read the HU mode after the idle period to check the transition",
-      "expected_result": "1. The pop-up stays on the screen while no interaction occurs\n2. The HU transitions to Standby mode after 1 minute has passed",
+      "test_procedure": "1. PENDING: DR-PW27 CFTS057 —— FOTA update available 之建立方法\n2. Apply ENTER_TIMED\n3. Read the HU screen and check that the \"FOTA update available\" pop-up is shown\n4. Hold for 60000 ms with no user interaction, then read the HU screen and check that the \"FOTA update available\" pop-up is still shown on it\n5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. PENDING: DR-PW27 CFTS057\n2. The HU is in Timed\n3. The \"FOTA update available\" pop-up is shown on the HU screen\n4. The \"FOTA update available\" pop-up is still shown on the HU screen after 60000 ms with no user interaction\n5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.10",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -477,12 +477,12 @@
       "split_reason": "本條驗條件一 —— 1 分鐘無互動",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗條件一 —— 1 分鐘無互動"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `HU mode after the idle period` 非可觀察量。依 66 包 §1 表 —— pop-up 停留以 `\"FOTA update available\"` pop-up (ii)、`Hold for 60000 ms`（R-1 v3 (e)）、之後 `PowerSts_Telematic = 1 (Standby)` (i)。⚠ **FOTA 可用之建立方法規格指 CFTS057，該文件在 G0 台帳外** → `PENDING: DR-PW27`。⚠ §1 表另記「三個離開條件各一 TC（IN §8.3），現行只測 1 分鐘」—— **拆分未做**，見 67 包回報 §6。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 1
     },
     {
@@ -875,9 +875,9 @@
       "test_set": "Startup Display",
       "test_item": "If DID \"Startup Animation Selection\" = [Fiat Latam] then the HU shall replace the vehicle brand logo with the Fiat Latam Logo regardless of the value of $VC_Veh_Brand$\n\n(read the shown logo against the configured brand -> The Fiat Latam Logo replaces the vehicle brand logo regardless of the configured brand)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU carries a configured vehicle brand",
-      "input_test_data": "DID \"Startup Animation Selection\": \"Fiat Latam\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown logo against the configured brand to check which logo appears",
-      "expected_result": "1. The HU accepts the configuration value\n2. The Fiat Latam Logo replaces the vehicle brand logo regardless of the configured brand",
+      "input_test_data": "NA",
+      "test_procedure": "1. Write the DID Startup Animation Selection = Fiat Latam\n2. Set VC_VEH_BRAND = a value other than Fiat (DR-PW28)\n3. Apply ENTER_FULL_OPERATION and read the \"Brand Logo Screen\", and check that the \"Fiat Latam Logo\" is shown on it in place of the \"Vehicle Brand Logo\"",
+      "expected_result": "1. The DID is written\n2. The brand configuration is applied\n3. The \"Fiat Latam Logo\" is shown on the \"Brand Logo Screen\" in place of the \"Vehicle Brand Logo\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -885,8 +885,8 @@
       "split_reason": "本條驗 Fiat Latam 之覆蓋規則",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-056` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-056` 承擔，**呈請裁定於 26 包**。",
+      "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-155 五欄逐字相同而 Req ID 不同（SWE-PM-056 / SWE-PM-097），二列皆保留不得合併；互註對方 tc_id)",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-056` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-056` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。 本條之觸發為 DID 診斷寫入（`Startup Animation Selection`），**HMI Settings List 查無該條目**（67 包 §H 第 2 步實測），依 R-1 v3 (d) 保留來源名不加 `$`。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 1
     },
     {
@@ -1045,9 +1045,9 @@
       "test_set": "Startup Display",
       "test_item": "- IF SDARS_Presence == \"Absent\" AND Audio_Brand == \"No Audio Brand\"THEN TLM has to show the vehicle brand logo only, that depends on Brand_Configuration_2 parameter value;\n\n(read the shown logos -> The vehicle brand logo that depends on the Brand_Configuration_2 parameter value is shown alone)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Absent\"",
-      "input_test_data": "Audio_Brand: \"No Audio Brand\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown logos to check the resulting presentation",
-      "expected_result": "1. The brand logo screen is presented\n2. The vehicle brand logo that depends on the Brand_Configuration_2 parameter value is shown alone",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1055,12 +1055,12 @@
       "split_reason": "本條驗組合一（Absent ＋ No Audio Brand）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-149 五欄逐字相同而 Req ID 不同（SWE-PM-054 / SWE-PM-101），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗組合一（Absent ＋ No Audio Brand）"
       },
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 1
     },
     {
@@ -1071,9 +1071,9 @@
       "test_set": "Startup Display",
       "test_item": "- IF SDARS_Presence == \"Absent\" AND Audio_Brand == \"Beats Brand White\"THEN TLM has to show the Beats Brand White logo in addition to the vehicle brand logo;\n\n(read the shown logos -> The Beats Brand White logo is shown in addition to the vehicle brand logo)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Absent\"",
-      "input_test_data": "Audio_Brand: \"Beats Brand White\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown logos to check the resulting presentation",
-      "expected_result": "1. The brand logo screen is presented\n2. The Beats Brand White logo is shown in addition to the vehicle brand logo",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1081,12 +1081,12 @@
       "split_reason": "本條驗組合二（Absent ＋ Beats Brand White）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-150 五欄逐字相同而 Req ID 不同（SWE-PM-054 / SWE-PM-101），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗組合二（Absent ＋ Beats Brand White）"
       },
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 2
     },
     {
@@ -1097,9 +1097,9 @@
       "test_set": "Startup Display",
       "test_item": "- IF SDARS_Presence == \"Present\" AND Audio_Brand == \"No Audio Brand\"THEN TLM has to show the Sirius logo in addition to the vehicle brand logo;\n\n(read the shown logos -> The Sirius logo is shown in addition to the vehicle brand logo)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Present\"",
-      "input_test_data": "Audio_Brand: \"No Audio Brand\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown logos to check the resulting presentation",
-      "expected_result": "1. The brand logo screen is presented\n2. The Sirius logo is shown in addition to the vehicle brand logo",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1107,12 +1107,12 @@
       "split_reason": "本條驗組合三（Present ＋ No Audio Brand）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-151 五欄逐字相同而 Req ID 不同（SWE-PM-054 / SWE-PM-101），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗組合三（Present ＋ No Audio Brand）"
       },
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 3
     },
     {
@@ -1123,9 +1123,9 @@
       "test_set": "Startup Display",
       "test_item": "- IF SDARS_Presence == \"Present\" AND Audio_Brand == \"Beats Brand White\"THEN TLM has to show both the Sirius and the Beats logos in addition to the vehicle brand logo.\n\n(read the shown logos -> Both the Sirius and the Beats logos are shown in addition to the vehicle brand logo)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Present\"",
-      "input_test_data": "Audio_Brand: \"Beats Brand White\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown logos to check the resulting presentation",
-      "expected_result": "1. The brand logo screen is presented\n2. Both the Sirius and the Beats logos are shown in addition to the vehicle brand logo",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1133,12 +1133,12 @@
       "split_reason": "本條驗組合四（Present ＋ Beats Brand White）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-152 五欄逐字相同而 Req ID 不同（SWE-PM-054 / SWE-PM-101），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗組合四（Present ＋ Beats Brand White）"
       },
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 4
     },
     {
@@ -1159,7 +1159,7 @@
       "split_reason": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-153 五欄逐字相同而 Req ID 不同（SWE-PM-055 / SWE-PM-102），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "boundary",
         "delta": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑"
@@ -1185,7 +1185,7 @@
       "split_reason": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-154 五欄逐字相同而 Req ID 不同（SWE-PM-055 / SWE-PM-102），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "boundary",
         "delta": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑"
@@ -1668,10 +1668,10 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "For all variations of the disclaimer screen and geolocation pop up listed below, if the configuration parameter $Ecall_Button_Variant$ = [SOS] the HU shall use the SOS text for the disclaimer.\n\n(read the disclaimer wording -> The HU uses the SOS text for the disclaimer)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is configured for a disclaimer screen variation",
-      "input_test_data": "$Ecall_Button_Variant$: \"SOS\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the disclaimer wording to check which text the HU uses",
-      "expected_result": "1. The HU accepts the configuration value\n2. The HU uses the SOS text for the disclaimer",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Set VC_VEH_BRAND = a value other than \"Maserati\" (DR-PW28)\n3. Set TBM_Present = \"Present\" (DR-PW28)\n4. PROXI Ecall_Button_Variant = the variant for this market",
+      "input_test_data": "NA",
+      "test_procedure": "1. Apply ENTER_FULL_OPERATION and let the HU reach the disclaimer presentation\n2. Read the \"Disclaimer\" screen text and check that it contains \"SOS\"",
+      "expected_result": "1. The HU reaches the disclaimer presentation\n2. The \"Disclaimer\" screen text contains \"SOS\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1679,8 +1679,8 @@
       "split_reason": "本條驗 SOS 變體",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第一批)",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `disclaimer wording` 非具名觀察量。依 66 包 §1 表 —— **規格自給 token**，觀察量為 disclaimer 文字含 \"SOS\" (ii)，**ER 不 PENDING**（與 `-222`／`-223` 之 ADAS 文字不同，後者繫 DR-PW27）。前置之 `$VC_VEH_BRAND$` / `$TBM_Present$` 依 **R-P389(c)** 保留規格原名。",
       "split_index": 1
     },
     {
@@ -1690,10 +1690,10 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "For all variations of the disclaimer screen and geolocation pop up listed below, if the configuration parameter $Ecall_Button_Variant$ = [Help] the HU shall replace the \"SOS\" text with the \"Help\" version of the disclaimer.\n\n(read the disclaimer wording -> The HU replaces the \"SOS\" text with the \"Help\" version of the disclaimer)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is configured for a disclaimer screen variation",
-      "input_test_data": "$Ecall_Button_Variant$: \"Help\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the disclaimer wording to check which text the HU uses",
-      "expected_result": "1. The HU accepts the configuration value\n2. The HU replaces the \"SOS\" text with the \"Help\" version of the disclaimer",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Set VC_VEH_BRAND = a value other than \"Maserati\" (DR-PW28)\n3. Set TBM_Present = \"Present\" (DR-PW28)\n4. PROXI Ecall_Button_Variant = the variant for this market",
+      "input_test_data": "NA",
+      "test_procedure": "1. Apply ENTER_FULL_OPERATION and let the HU reach the disclaimer presentation\n2. Read the \"Disclaimer\" screen text and check that it contains \"Help\" and does not contain \"SOS\"",
+      "expected_result": "1. The HU reaches the disclaimer presentation\n2. The \"Disclaimer\" screen text contains \"Help\" and does not contain \"SOS\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1701,8 +1701,8 @@
       "split_reason": "本條驗 Help 變體",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第一批)",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `disclaimer wording` 非具名觀察量。依 66 包 §1 表 —— **規格自給 token**，觀察量為 disclaimer 文字含 \"Help\" and does not contain \"SOS\" (ii)，**ER 不 PENDING**（與 `-222`／`-223` 之 ADAS 文字不同，後者繫 DR-PW27）。前置之 `$VC_VEH_BRAND$` / `$TBM_Present$` 依 **R-P389(c)** 保留規格原名。",
       "split_index": 1
     },
     {
@@ -1713,9 +1713,9 @@
       "test_set": "Startup Display",
       "test_item": "If $VC_VEH_BRAND$ <> [Maserati] the R1 Head Unit shall only show the core disclaimer screen once every 30 ignition cycles\n\n(read the screen across the cycles -> The core disclaimer screen is shown only once every 30 ignition cycles)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. $VC_VEH_BRAND$ reads a value other than \"Maserati\"",
-      "input_test_data": "NA",
-      "test_procedure": "1. Run the head unit through consecutive ignition cycles\n2. Read the screen across the cycles to check how often the disclaimer appears",
-      "expected_result": "1. The core disclaimer screen is shown on the first ignition cycle\n2. The core disclaimer screen is shown only once every 30 ignition cycles",
+      "input_test_data": "Ignition cycles: 31 consecutive Ignition Off -> Ignition On cycles",
+      "test_procedure": "1. Repeat the ignition cycle listed in Input Test Data 31 times, sending $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) then = 4 (Ignition_On) (DR-PW26)\n2. After each cycle, read the HU screen and record whether the \"Disclaimer\" screen is shown\n3. Count the cycles in which the \"Disclaimer\" screen was shown",
+      "expected_result": "1. All 31 ignition cycles are registered without a bus error\n2. The presence of the \"Disclaimer\" screen is recorded for each of the 31 cycles\n3. The \"Disclaimer\" screen was shown in exactly 2 cycles: cycle 1 and cycle 31",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P3",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1723,8 +1723,8 @@
       "split_reason": "本條驗免責畫面之顯示頻率",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第一批)",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `screen across the cycles` 非可觀察量。依 66 包 §1 表 —— 觀察量為 `\"Disclaimer\"` 畫面於連續 31 個點火循環中之**出現次數** (ii)，期望為 2（第 1 與第 31 次）。寫法依家族 K (c) 類：`Repeat … 31 times`，ER 逐輪對齊以計數。⚠ ITD 保留（(c) 類，R-P366(c) / R-P373(a)）。",
       "split_index": 1
     },
     {
@@ -1893,7 +1893,7 @@
       "split_reason": "本條驗來電所致之 IDLE → FULL OPERATION 免顯免責畫面",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-162 五欄逐字相同而 Req ID 不同（SWE-PM-068 / SWE-PM-114），二列皆保留不得合併；互註對方 tc_id)",
       "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-068` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-068` 承擔，**呈請裁定於 26 包**。",
       "split_index": 1
     },
@@ -1915,7 +1915,7 @@
       "split_reason": "本條驗免責畫面之延後補顯",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-165 五欄逐字相同而 Req ID 不同（SWE-PM-070 / SWE-PM-115），二列皆保留不得合併；互註對方 tc_id)",
       "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-070` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-070` 承擔，**呈請裁定於 26 包**。",
       "split_index": 1
     }

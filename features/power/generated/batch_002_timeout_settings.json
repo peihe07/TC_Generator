@@ -72,8 +72,8 @@
       "test_item": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(select each offered value in turn and read Timeout1 -> Timeout1 reads \"00 min\" after the first selection and \"20 minutes\" after the second)",
       "pre_conditions": "1. An LTM High Radio is absent from the bench configuration\n2. The PROXI parameter \"Switch_Off_Time\" is at 20 minutes\n3. The TLM is in Full-Operation status",
       "input_test_data": "NA",
-      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. Read the selectable values offered for SwitchOff_Timeout_Setting.Req\n3. Select each offered value in turn and read Timeout1 to check that it follows the selection",
-      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. The offered values are \"00 min\" and \"20 min\" and no other value is offered\n3. Timeout1 reads \"00 min\" after the first selection and \"20 minutes\" after the second",
+      "test_procedure": "1. PENDING: DR-PW25 —— TLM 選單中該設定項之名稱與進入路徑\n2. PENDING: DR-PW25 —— 讀該設定項所列之可選值（數與名）",
+      "expected_result": "1. PENDING: DR-PW25\n2. PENDING: DR-PW25",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.17; R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.3.1.1; R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.8.1.1.1",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -81,12 +81,12 @@
       "split_reason": "本條驗 PROXI \"Switch_Off_Time\" = 20 分鐘時之可選集合與 Timeout1 結果",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 PROXI \"Switch_Off_Time\" = 20 分鐘時之可選集合與 Timeout1 結果"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：觀察量為設定頁所列項目之數與名 (ii)，**惟設定項名為 DR-PW25 之未決項** —— 依 R-P377(b)「弱候選不入 TC」，該項 `PENDING: DR-PW25`。⚠ `-017` / `-018` / `-019` 之名於 55 包可及性報告被截斷至 50 字元（A-PW366），本包以原名重取，三條併入本群同法處理。",
       "split_index": 1
     },
     {
@@ -98,8 +98,8 @@
       "test_item": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(select each offered value in turn and read Timeout1 -> Timeout1 reads \"00 min\" after the first selection and \"60 minutes\" after the second)",
       "pre_conditions": "1. An LTM High Radio is absent from the bench configuration\n2. The PROXI parameter \"Switch_Off_Time\" is at 60 minutes\n3. The TLM is in Full-Operation status",
       "input_test_data": "NA",
-      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. Read the selectable values offered for SwitchOff_Timeout_Setting.Req\n3. Select each offered value in turn and read Timeout1 to check that it follows the selection",
-      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. The offered values are \"00 min\" and \"60 min\" and no other value is offered\n3. Timeout1 reads \"00 min\" after the first selection and \"60 minutes\" after the second",
+      "test_procedure": "1. PENDING: DR-PW25 —— TLM 選單中該設定項之名稱與進入路徑\n2. PENDING: DR-PW25 —— 讀該設定項所列之可選值（數與名）",
+      "expected_result": "1. PENDING: DR-PW25\n2. PENDING: DR-PW25",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.17; R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.3.1.1; R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.8.1.1.1",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -107,12 +107,12 @@
       "split_reason": "本條驗 PROXI \"Switch_Off_Time\" = 60 分鐘時之可選集合與 Timeout1 結果",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 PROXI \"Switch_Off_Time\" = 60 分鐘時之可選集合與 Timeout1 結果"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：觀察量為設定頁所列項目之數與名 (ii)，**惟設定項名為 DR-PW25 之未決項** —— 依 R-P377(b)「弱候選不入 TC」，該項 `PENDING: DR-PW25`。⚠ `-017` / `-018` / `-019` 之名於 55 包可及性報告被截斷至 50 字元（A-PW366），本包以原名重取，三條併入本群同法處理。",
       "split_index": 2
     },
     {
@@ -124,8 +124,8 @@
       "test_item": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\n\n(select each offered value in turn and read Timeout1 -> Timeout1 reads \"00 min\" after the first selection and \"180 minutes\" after the second)",
       "pre_conditions": "1. An LTM High Radio is absent from the bench configuration\n2. The PROXI parameter \"Switch_Off_Time\" is at 180 minutes\n3. The TLM is in Full-Operation status",
       "input_test_data": "NA",
-      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. Read the selectable values offered for SwitchOff_Timeout_Setting.Req\n3. Select each offered value in turn and read Timeout1 to check that it follows the selection",
-      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. The offered values are \"00 min\" and \"180 min\" and no other value is offered\n3. Timeout1 reads \"00 min\" after the first selection and \"180 minutes\" after the second",
+      "test_procedure": "1. PENDING: DR-PW25 —— TLM 選單中該設定項之名稱與進入路徑\n2. PENDING: DR-PW25 —— 讀該設定項所列之可選值（數與名）",
+      "expected_result": "1. PENDING: DR-PW25\n2. PENDING: DR-PW25",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.17; R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.3.1.1; R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.8.1.1.1",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -133,12 +133,12 @@
       "split_reason": "本條驗 PROXI \"Switch_Off_Time\" = 180 分鐘時之可選集合與 Timeout1 結果",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 PROXI \"Switch_Off_Time\" = 180 分鐘時之可選集合與 Timeout1 結果"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：觀察量為設定頁所列項目之數與名 (ii)，**惟設定項名為 DR-PW25 之未決項** —— 依 R-P377(b)「弱候選不入 TC」，該項 `PENDING: DR-PW25`。⚠ `-017` / `-018` / `-019` 之名於 55 包可及性報告被截斷至 50 字元（A-PW366），本包以原名重取，三條併入本群同法處理。",
       "split_index": 3
     },
     {
@@ -150,8 +150,8 @@
       "test_item": "For LTM/ETM, the user can set one parameter, by means of Auto_SwitchOn_Setting.Req. For other Radios the user can set two parameters, by means of SwitchOff_Timeout_Setting.Req and Auto_SwitchOn_Setting.Req signals, selectable from TLM menu.\n\n(read the parameters offered for user selection -> Auto_SwitchOn_Setting.Req is the only parameter offered and SwitchOff_Timeout_Setting.Req is absent)",
       "pre_conditions": "1. An LTM Radio is present in the bench configuration\n2. The TLM is in Full-Operation status",
       "input_test_data": "NA",
-      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. Read the parameters offered for user selection to check that only one is present",
-      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. Auto_SwitchOn_Setting.Req is the only parameter offered and SwitchOff_Timeout_Setting.Req is absent",
+      "test_procedure": "1. PENDING: DR-PW25 —— TLM 選單中該設定項之名稱與進入路徑\n2. PENDING: DR-PW25 —— 讀該設定項所列之可選值（數與名）",
+      "expected_result": "1. PENDING: DR-PW25\n2. PENDING: DR-PW25",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.3.1",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -159,12 +159,12 @@
       "split_reason": "本條驗 LTM/ETM 型別：僅一個可設定參數",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 LTM/ETM 型別：僅一個可設定參數"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：觀察量為設定頁所列項目之數與名 (ii)，**惟設定項名為 DR-PW25 之未決項** —— 依 R-P377(b)「弱候選不入 TC」，該項 `PENDING: DR-PW25`。⚠ `-017` / `-018` / `-019` 之名於 55 包可及性報告被截斷至 50 字元（A-PW366），本包以原名重取，三條併入本群同法處理。",
       "split_index": 1
     },
     {
@@ -176,8 +176,8 @@
       "test_item": "For LTM/ETM, the user can set one parameter, by means of Auto_SwitchOn_Setting.Req. For other Radios the user can set two parameters, by means of SwitchOff_Timeout_Setting.Req and Auto_SwitchOn_Setting.Req signals, selectable from TLM menu.\n\n(read the parameters offered for user selection -> SwitchOff_Timeout_Setting.Req and Auto_SwitchOn_Setting.Req are both offered for selection)",
       "pre_conditions": "1. A Radio other than LTM or ETM is present in the bench configuration\n2. The TLM is in Full-Operation status",
       "input_test_data": "NA",
-      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. Read the parameters offered for user selection to check that both are present",
-      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. SwitchOff_Timeout_Setting.Req and Auto_SwitchOn_Setting.Req are both offered for selection",
+      "test_procedure": "1. PENDING: DR-PW25 —— TLM 選單中該設定項之名稱與進入路徑\n2. PENDING: DR-PW25 —— 讀該設定項所列之可選值（數與名）",
+      "expected_result": "1. PENDING: DR-PW25\n2. PENDING: DR-PW25",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.3.1",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -185,12 +185,12 @@
       "split_reason": "本條驗其餘 Radio 型別：兩個可設定參數",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗其餘 Radio 型別：兩個可設定參數"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：觀察量為設定頁所列項目之數與名 (ii)，**惟設定項名為 DR-PW25 之未決項** —— 依 R-P377(b)「弱候選不入 TC」，該項 `PENDING: DR-PW25`。⚠ `-017` / `-018` / `-019` 之名於 55 包可及性報告被截斷至 50 字元（A-PW366），本包以原名重取，三條併入本群同法處理。",
       "split_index": 2
     },
     {

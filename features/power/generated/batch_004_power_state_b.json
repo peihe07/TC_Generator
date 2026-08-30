@@ -413,9 +413,9 @@
       "test_set": "Power State",
       "test_item": "IF TLM receives signal LTM_OperationalModeSts.Info equal to \"SNA\" value  THEN TLM has to behave as an Ignition Pre Off or Ignition Off event occurs, according to par. \"TLM Operative state management\".\n\n(read the TLM state against the operative state management rules -> The TLM behaves as for an Ignition Pre Off or Ignition Off event)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition On working condition",
-      "input_test_data": "LTM_OperationalModeSts.Info: \"SNA\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the TLM state against the operative state management rules to check the resulting behavior",
-      "expected_result": "1. The TLM registers the value without a bus error\n2. The TLM behaves as for an Ignition Pre Off or Ignition Off event",
+      "input_test_data": "NA",
+      "test_procedure": "1. Apply ENTER_FULL_OPERATION, send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) (DR-PW26), then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and record the value as State_ignoff\n2. Apply ENTER_FULL_OPERATION again\n3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 15 (SNA) (DR-PW26), then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the same value as State_ignoff",
+      "expected_result": "1. State_ignoff is recorded\n2. The HU is in Full-Operation again\n3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ after the SNA value is the same as State_ignoff",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.7.1.1.1",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -423,12 +423,12 @@
       "split_reason": "本條驗 SNA 之等同處置",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗 SNA 之等同處置"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `TLM state against the operative state management rules` 非可觀察量。依 66 包 §1 表以**基線比較**落實「behaves as」—— 先送 `Ignition_Off` 記其態為基線，復位後送 `SNA`，比對二者相同。二次讀值皆為 (i) 類，比較本身不引入新判準。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 1
     },
     {
@@ -439,9 +439,9 @@
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info was equal to \"Full-Operation\" AND SwitchOff_Timeout_Setting.Req was equal to \"00 min\" or (Auto_SwitchOn_Setting.Req == Active for LTM High Radio), then TLM has to set Timeout1 to the \"Switch_Off_Time\" PROXI value.\n\n(read Timeout1 against the configured parameter -> Timeout1 reads the \"Switch_Off_Time\" PROXI value)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info was equal to \"Full-Operation\"",
-      "input_test_data": "SwitchOff_Timeout_Setting.Req: \"00 min\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read Timeout1 against the configured parameter to check the loaded value",
-      "expected_result": "1. The TLM registers the value without a bus error\n2. Timeout1 reads the \"Switch_Off_Time\" PROXI value",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req 之設定方法\n2. Apply ENTER_FULL_OPERATION\n3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) (DR-PW26)\n4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed), then hold for the PROXI Switch_Off_Time value and check that it is 1 (Standby)",
+      "expected_result": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req\n2. The HU is in Full-Operation\n3. The signal value $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is received\n4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received, and $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.7.1.1.1",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -449,12 +449,12 @@
       "split_reason": "本條驗 OR 之左支 SwitchOff_Timeout_Setting.Req",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 OR 之左支 SwitchOff_Timeout_Setting.Req"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包，第一批）**：`Timeout1` 為 HU 內部參數，不可直接讀。依 66 包 §1 表，**以狀態持續時間為代理** —— `$STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed)` 持續 `PROXI Switch_Off_Time` 之值後轉 `= 1 (Standby)`。`Hold for <值> ms` 依 R-1 v3 (e)。⚠ 前置 `SwitchOff_Timeout_Setting.Req = 00 min` 之 UI 設定名未查得，維持 `PENDING: DR-PW23`（R-P380(a)：運行時用法不撤）。",
       "split_index": 2
     },
     {
@@ -465,9 +465,9 @@
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info was equal to \"Full-Operation\" AND SwitchOff_Timeout_Setting.Req was equal to \"00 min\" or (Auto_SwitchOn_Setting.Req == Active for LTM High Radio), then TLM has to set Timeout1 to the \"Switch_Off_Time\" PROXI value.\n\n(read Timeout1 against the configured parameter -> Timeout1 reads the \"Switch_Off_Time\" PROXI value)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info was equal to \"Full-Operation\"\n3. The unit is an LTM High Radio",
-      "input_test_data": "Auto_SwitchOn_Setting.Req: \"Active\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read Timeout1 against the configured parameter to check the loaded value",
-      "expected_result": "1. The TLM registers the value without a bus error\n2. Timeout1 reads the \"Switch_Off_Time\" PROXI value",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req 之設定方法\n2. Apply ENTER_FULL_OPERATION\n3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) (DR-PW26)\n4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed), then hold for the PROXI Switch_Off_Time value and check that it is 1 (Standby)",
+      "expected_result": "1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req\n2. The HU is in Full-Operation\n3. The signal value $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is received\n4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received, and $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.7.1.1.1",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -475,12 +475,12 @@
       "split_reason": "本條驗 OR 之右支 Auto_SwitchOn_Setting.Req for LTM High Radio",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 OR 之右支 Auto_SwitchOn_Setting.Req for LTM High Radio"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包，第一批）**：`Timeout1` 為 HU 內部參數，不可直接讀。依 66 包 §1 表，**以狀態持續時間為代理** —— `$STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed)` 持續 `PROXI Switch_Off_Time` 之值後轉 `= 1 (Standby)`。`Hold for <值> ms` 依 R-1 v3 (e)。⚠ 前置 `SwitchOff_Timeout_Setting.Req = 00 min` 之 UI 設定名未查得，維持 `PENDING: DR-PW23`（R-P380(a)：運行時用法不撤）。",
       "split_index": 3
     },
     {
@@ -492,8 +492,8 @@
       "test_item": "IF TLM passes to Timed status due to this two conditions, THEN only TLM menu items (not related to vehicle setup) must be guaranteed. See TLM HMI documents for TLM items.\n\n(read the offered items against the TLM HMI documents -> Only TLM menu items that are not related to vehicle setup are guaranteed)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM passed to Timed status due to the two conditions of this clause",
       "input_test_data": "NA",
-      "test_procedure": "1. Browse the menu items offered by the TLM\n2. Read the offered items against the TLM HMI documents to check what is guaranteed",
-      "expected_result": "1. The menu is reachable in the Timed status\n2. Only TLM menu items that are not related to vehicle setup are guaranteed",
+      "test_procedure": "1. Apply ENTER_TIMED\n2. PENDING: DR-PW27 TLM HMI documents —— 該態下應不可用之 vehicle setup 項目清單",
+      "expected_result": "1. The HU is in Timed\n2. PENDING: DR-PW27 TLM HMI documents",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.7.1.1.1",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -501,12 +501,12 @@
       "split_reason": "本條驗 Timed 狀態下之選單保證範圍",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗 Timed 狀態下之選單保證範圍"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：觀察量為 Timed 態 Settings 中 vehicle setup 類項目之不可用（灰化／不存在）(ii)；**項目清單在 TLM HMI documents，該文件在 G0 台帳外** → `PENDING: DR-PW27`。",
       "split_index": 4
     },
     {
@@ -540,8 +540,8 @@
       "test_item": "No TLM, FPDM, AMP, ICS, and DTV functionality is available.\n\n(read the FPDM, AMP, ICS and DTV functions -> No TLM, FPDM, AMP, ICS and DTV functionality is available)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition Off working condition",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM to the status related to TLM OFF with Network on\n2. Read the FPDM, AMP, ICS and DTV functions to check their availability",
-      "expected_result": "1. The TLM reaches the status related to TLM OFF with Network on\n2. No TLM, FPDM, AMP, ICS and DTV functionality is available",
+      "test_procedure": "1. Apply ENTER_STANDBY\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. Apply FUNC_STATE_STANDBY and check each of its sub-items",
+      "expected_result": "1. The HU is in Standby\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. FUNC_STATE_STANDBY holds:\n   a. No audio source is playing on the HU speakers\n   b. No amplifier output is present on the HU speakers\n   c. The HU display is off, except for the HMI Antitheft Screens (CFTS009-4941457)\n   d. PENDING: DR-PW27 BoosterOUT / antenna supply OFF 位準值\n   e. A USB device inserted on the bench is not enumerated and the AUX input does not play on the HU speakers",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.6",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -549,12 +549,12 @@
       "split_reason": "本條驗 Network on 狀態之功能不可用",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Network on 狀態之功能不可用"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P387(b) 改寫（67 包）**：原 `FPDM, AMP, ICS and DTV functions` 為 A1 家族。依 R-P387(b) **直接取 `CFTS009-4941453` 之 `Standby` 列**，不另造代理量：Source OFF → 無音訊 (iii)；AMP OFF → 無放大輸出 (iii)；Display OFF (**) → 畫面關閉，**惟 `(**)`（`CFTS009-4941457`）例外：HMI Antitheft Screens**；BoosterOUT／天線 OFF → (v) 類，**位準值規格未載 → `PENDING: DR-PW27`**；MCU OFF → (iii)。另加態確認 (i)。片段全文見 `data/func_state_66.md` 之 `FUNC_STATE_STANDBY`。",
       "split_index": 1
     },
     {
@@ -1060,8 +1060,8 @@
       "test_item": "Default:         The ex-factory default must be \"Auto_SwitchOn_Setting.Req == Recall_Last\" AND VPLastStatus == On.\n\n(read the stored last status -> VPLastStatus reads \"On\")",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM carries the ex-factory configuration",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the user selectable parameter on an ex-factory unit\n2. Read the stored last status to check the ex-factory default of this clause",
-      "expected_result": "1. Auto_SwitchOn_Setting.Req reads \"Recall_Last\"\n2. VPLastStatus reads \"On\"",
+      "test_procedure": "1. PENDING: DR-PW25 —— TLM 選單中該設定項之名稱與進入路徑\n2. PENDING: DR-PW25 —— 讀該設定項所列之可選值（數與名）",
+      "expected_result": "1. PENDING: DR-PW25\n2. PENDING: DR-PW25",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1069,12 +1069,12 @@
       "split_reason": "本條驗 Default 之出廠預設",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Default 之出廠預設"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：觀察量為設定頁所列項目之數與名 (ii)，**惟設定項名為 DR-PW25 之未決項** —— 依 R-P377(b)「弱候選不入 TC」，該項 `PENDING: DR-PW25`。⚠ `-017` / `-018` / `-019` 之名於 55 包可及性報告被截斷至 50 字元（A-PW366），本包以原名重取，三條併入本群同法處理。",
       "split_index": 5
     },
     {
@@ -1174,8 +1174,8 @@
       "test_item": "TLM has to read Brand_Configuration_2 PROXI parameter in order to show the vehicle brand logo screen.\n\n(read the shown logo against the configured parameter -> The vehicle brand logo shown matches the Brand_Configuration_2 PROXI parameter)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM carries a configured brand parameter",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM to the brand logo screen presentation\n2. Read the shown logo against the configured parameter to check the source of the logo",
-      "expected_result": "1. The brand logo screen is presented\n2. The vehicle brand logo shown matches the Brand_Configuration_2 PROXI parameter",
+      "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P3",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1183,8 +1183,8 @@
       "split_reason": "本條驗 Brand_Configuration_2 之讀取",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第一批)",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 1
     },
     {
@@ -1195,9 +1195,9 @@
       "test_set": "Startup Display",
       "test_item": "- IF SDARS_Presence == \"Absent\" AND Audio_Brand == \"No Audio Brand\"THEN TLM has to show the vehicle brand logo only, that depends on Brand_Configuration_2 parameter value;\n\n(read the shown logos -> The vehicle brand logo that depends on the Brand_Configuration_2 parameter value is shown alone)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Absent\"",
-      "input_test_data": "Audio_Brand: \"No Audio Brand\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown logos to check the resulting presentation",
-      "expected_result": "1. The brand logo screen is presented\n2. The vehicle brand logo that depends on the Brand_Configuration_2 parameter value is shown alone",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1205,12 +1205,12 @@
       "split_reason": "本條驗組合一（Absent ＋ No Audio Brand）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-192 五欄逐字相同而 Req ID 不同（SWE-PM-054 / SWE-PM-101），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗組合一（Absent ＋ No Audio Brand）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 1
     },
     {
@@ -1221,9 +1221,9 @@
       "test_set": "Startup Display",
       "test_item": "- IF SDARS_Presence == \"Absent\" AND Audio_Brand == \"Beats Brand White\"THEN TLM has to show the Beats Brand White logo in addition to the vehicle brand logo;\n\n(read the shown logos -> The Beats Brand White logo is shown in addition to the vehicle brand logo)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Absent\"",
-      "input_test_data": "Audio_Brand: \"Beats Brand White\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown logos to check the resulting presentation",
-      "expected_result": "1. The brand logo screen is presented\n2. The Beats Brand White logo is shown in addition to the vehicle brand logo",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1231,12 +1231,12 @@
       "split_reason": "本條驗組合二（Absent ＋ Beats Brand White）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-193 五欄逐字相同而 Req ID 不同（SWE-PM-054 / SWE-PM-101），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗組合二（Absent ＋ Beats Brand White）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 2
     },
     {
@@ -1247,9 +1247,9 @@
       "test_set": "Startup Display",
       "test_item": "- IF SDARS_Presence == \"Present\" AND Audio_Brand == \"No Audio Brand\"THEN TLM has to show the Sirius logo in addition to the vehicle brand logo;\n\n(read the shown logos -> The Sirius logo is shown in addition to the vehicle brand logo)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Present\"",
-      "input_test_data": "Audio_Brand: \"No Audio Brand\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown logos to check the resulting presentation",
-      "expected_result": "1. The brand logo screen is presented\n2. The Sirius logo is shown in addition to the vehicle brand logo",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1257,12 +1257,12 @@
       "split_reason": "本條驗組合三（Present ＋ No Audio Brand）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-194 五欄逐字相同而 Req ID 不同（SWE-PM-054 / SWE-PM-101），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗組合三（Present ＋ No Audio Brand）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 3
     },
     {
@@ -1273,9 +1273,9 @@
       "test_set": "Startup Display",
       "test_item": "- IF SDARS_Presence == \"Present\" AND Audio_Brand == \"Beats Brand White\"THEN TLM has to show both the Sirius and the Beats logos in addition to the vehicle brand logo.\n\n(read the shown logos -> Both the Sirius and the Beats logos are shown in addition to the vehicle brand logo)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Present\"",
-      "input_test_data": "Audio_Brand: \"Beats Brand White\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown logos to check the resulting presentation",
-      "expected_result": "1. The brand logo screen is presented\n2. Both the Sirius and the Beats logos are shown in addition to the vehicle brand logo",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1283,12 +1283,12 @@
       "split_reason": "本條驗組合四（Present ＋ Beats Brand White）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-195 五欄逐字相同而 Req ID 不同（SWE-PM-054 / SWE-PM-101），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗組合四（Present ＋ Beats Brand White）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 4
     },
     {
@@ -1309,7 +1309,7 @@
       "split_reason": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-196 五欄逐字相同而 Req ID 不同（SWE-PM-055 / SWE-PM-102），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "boundary",
         "delta": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑"
@@ -1335,7 +1335,7 @@
       "split_reason": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-197 五欄逐字相同而 Req ID 不同（SWE-PM-055 / SWE-PM-102），二列皆保留不得合併；互註對方 tc_id)",
       "distinguishing_axis": {
         "axis": "boundary",
         "delta": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑"
@@ -1351,9 +1351,9 @@
       "test_set": "Startup Display",
       "test_item": "If DID \"Startup Animation Selection\" = [Fiat Latam] then the HU shall replace the vehicle brand logo with the Fiat Latam Logo regardless of the value of $VC_Veh_Brand$\n\n(read the shown logo against the configured brand -> The Fiat Latam Logo replaces the vehicle brand logo regardless of the configured brand)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU carries a configured vehicle brand",
-      "input_test_data": "DID \"Startup Animation Selection\": \"Fiat Latam\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown logo against the configured brand to check which logo the HU displays",
-      "expected_result": "1. The HU accepts the configuration value\n2. The Fiat Latam Logo replaces the vehicle brand logo regardless of the configured brand",
+      "input_test_data": "NA",
+      "test_procedure": "1. Write the DID Startup Animation Selection = Fiat Latam\n2. Set VC_VEH_BRAND = a value other than Fiat (DR-PW28)\n3. Apply ENTER_FULL_OPERATION and read the \"Brand Logo Screen\", and check that the \"Fiat Latam Logo\" is shown on it in place of the \"Vehicle Brand Logo\"",
+      "expected_result": "1. The DID is written\n2. The brand configuration is applied\n3. The \"Fiat Latam Logo\" is shown on the \"Brand Logo Screen\" in place of the \"Vehicle Brand Logo\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1361,8 +1361,8 @@
       "split_reason": "本條驗 Fiat Latam 之覆蓋規則",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-185 五欄逐字相同而 Req ID 不同（SWE-PM-056 / SWE-PM-097），二列皆保留不得合併；互註對方 tc_id)",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。 本條之觸發為 DID 診斷寫入（`Startup Animation Selection`），**HMI Settings List 查無該條目**（67 包 §H 第 2 步實測），依 R-1 v3 (d) 保留來源名不加 `$`。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
       "split_index": 1
     },
     {
@@ -1374,8 +1374,8 @@
       "test_item": "Default:The ex-factory default must be \"SwitchOff_Timeout_Setting.Req == 00 MIN\" and  (Auto_SwitchOn_Setting.Req ==\"Active\", and  Timeout1 == 00 MIN\" for LTM High Radio)\n\n(read the auto switch on parameter and Timeout1 -> Auto_SwitchOn_Setting.Req reads \"Active\" and Timeout1 reads \"00 MIN\")",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM carries the ex-factory configuration\n3. The unit is an LTM High Radio",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the user selectable timeout parameter on an ex-factory unit\n2. Read the auto switch on parameter and Timeout1 to check the ex-factory default of this clause",
-      "expected_result": "1. SwitchOff_Timeout_Setting.Req reads \"00 MIN\"\n2. Auto_SwitchOn_Setting.Req reads \"Active\" and Timeout1 reads \"00 MIN\"",
+      "test_procedure": "1. PENDING: DR-PW25 —— TLM 選單中該設定項之名稱與進入路徑\n2. PENDING: DR-PW25 —— 讀該設定項所列之可選值（數與名）",
+      "expected_result": "1. PENDING: DR-PW25\n2. PENDING: DR-PW25",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1383,8 +1383,8 @@
       "split_reason": "本條驗出廠預設值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第一批)",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：觀察量為設定頁所列項目之數與名 (ii)，**惟設定項名為 DR-PW25 之未決項** —— 依 R-P377(b)「弱候選不入 TC」，該項 `PENDING: DR-PW25`。⚠ `-017` / `-018` / `-019` 之名於 55 包可及性報告被截斷至 50 字元（A-PW366），本包以原名重取，三條併入本群同法處理。",
       "split_index": 1
     },
     {
