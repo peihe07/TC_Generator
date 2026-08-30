@@ -44,3 +44,4 @@ features/vehicle_setting/scripts/selfcheck_anchored.py	feature	**未拆之閘集
 features/vehicle_setting/scripts/selfcheck_w53.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/vehicle_setting/scripts/vf230_selfcheck_wvf62.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/vehicle_setting/scripts/vf230_wvf68_selfcheck.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
+body_kind	lint_docs036	ruling 之節內須有至少一個 fenced block（`body_kind == section` 即缺陷）	R-G29 [DEFAULT]	2026-08-30	每條	**未校準（存量清完前只計數不判紅）**	always	0	0	48	48	N	N

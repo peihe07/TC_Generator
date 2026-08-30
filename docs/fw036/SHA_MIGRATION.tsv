@@ -3,6 +3,8 @@
 # 歷史包依 R-G18 之精神不追改，故其所引之 sha8 一律為舊式（含成因段）。
 # ⚠ `same=Y` 者其引用未受影響，**而那不是因為該條穩定，是因為改制對它沒有作用**
 #   —— 其成因為該條無 fenced block（`body_kind=section`），非其條文不曾變動（下放包 58 §三 #5）。
+# ⚠ `R-G13` 自身之 `body_sha` 亦因本次改制而變（`e67a4fc3` → `854f1050`）——
+#   **管引用制的那一條，其引用值因引用制之改制而變**（下放包 59 §2.2）。
 ruling_id	old_sha8	new_body_sha8	same	body_kind	source
 R-G1	550ace4f	550ace4f	Y	section	docs/fw036/FEATURE_ONBOARDING.md
 R-G2	521fde5f	521fde5f	Y	section	docs/fw036/FEATURE_ONBOARDING.md
