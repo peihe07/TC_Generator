@@ -12496,6 +12496,39 @@ R-DM17 / R-DM21 / R-P355(b) / R-P365(b)）逐條核對。四處一致。
 > `features/vehicle_setting/inputs/PDT27_E2A_R4_BHCAN.dbc` 降為**旁證**
 > （DR-PW21 之歷史來源）。二檔非版次關係（LOOKUP_MISSES B-1：僅 R4 有 573、僅 BHCAN2 有 32）。
 
+## 59 包裁決條文（R-P370）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 1、§J「一條」、§H 步驟 1 = 一條**，
+並依 R-P364(d) 對既有 canon（R-P365 / R-P366 / R-P367）逐條核對。三處一致。
+
+```
+[R-P370] R-P365(d) 撤回；B3、B7 解凍先行；B5 續凍。
+         （a）R-P365(d)「R4 BHCAN 是否複製入 features/power/inputs/」撤回 ——
+              台帳三檔皆在 forms/，為全案共用，跨 feature 依賴之前提已消解；
+              R-P365 依 R-P36 原文不改，加註
+         （b）B3 可及性報告（R-P367）與 B7 家族 K 三分法（R-P366）
+              **不依賴 §K 二項**，即時施作；B7 先於 B3
+         （c）B5 機器改寫續凍，待 §K-2 裁後
+         （d）DR-PW23 附表以 58 版為準；十一名「未解得（止於段 1）」之九名
+              於附表加註「HU 內部變數，LID 不收錄」，其解消途徑僅餘上游回覆或 Pei 裁
+         裁決者：分析層（Tier 2）。
+```
+
+**已逐字抄入（核對 1 / 1）。** R-P365 依 R-P36 原文不改，加註於下。
+
+> **註記（R-P36，59 包加註）—— R-P365(d)**：本款**撤回**（**R-P370(a)**）。
+> R4 BHCAN 依 R-P368(e) 已降為旁證，台帳三檔皆在 `forms/`（全案共用），
+> **跨 feature 依賴之前提消解**，故「是否複製入 `features/power/inputs/`」之問題不再存在。
+
+> **註記（R-P36，59 包加註）—— R-P370(d) 之「九名」**：執行層實測為 **八名**。
+> 該數源自 58 包回報 §5 之筆誤（`data/58_b4_b2_report.md`），本包據實訂正：
+> 十三個**完整規格原名**在 LID 三個比對欄**全部零命中**（13 / 13）；
+> 十一名未解得者中，**三名**有語意近似之 LID 列而依 R-P368(b) 拒收
+> （`Antitheft_Activation.Req` / `Antitheft_Result.Info` → r76 `AntiTheftStatus`；
+> `Front_Panel_OnOff.Req` → r1039 `ICSPowerButton`），**八名**連近似列亦無。
+> R-P370(d) 之加註標的為該**八名**。見 A-PW358。
+
+
 ---
 
 ## 待裁

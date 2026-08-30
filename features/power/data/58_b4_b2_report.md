@@ -99,11 +99,13 @@ PENDING 片段 2 / 2 逐條掛 DR-PW26。**前二項 PASS**；
 
 R-P368 之判斷成立 —— 55 包之「0 / 13」確為未查，段 1 一做即推翻。
 **但重做後 PENDING 幾乎不動。** 原因不在方法而在 LID 之涵蓋：
-十一名中有九名在 LID 三個比對欄**完全無列**（非「有列而解不出 CAN 名」）。
+十一名中有**八**名在 LID 三個比對欄**完全無列**（非「有列而解不出 CAN 名」）。
 LID 收錄的是有 CAN 對應之 Logical Identifier；PM 之這些名是 **HU 內部變數**
 （DR-PW23 原案對 `RemStartFail` 已如此判：SYSAD 載其為
 `The internal variable to manage the success or failure of remote start`），
 **本來就不會進 LID**。
+> ⚠ **原記「九名」為筆誤**，59 包實測訂正為**八名**（A-PW358）：十三個完整規格原名在 LID 零命中 13 / 13；十一名未解得者中三名有語意近似列而依 R-P368(b) 拒收。結論（PENDING 102、S6 衝突之結構）不受影響。
+
 
 **故 57 包 §K-1 之三選項其量化前提由 105 改為 102 而結構不變 ——
 S6 衝突未因 forms/ 而解消，仍待 Pei 裁。**

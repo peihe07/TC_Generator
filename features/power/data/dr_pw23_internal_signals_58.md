@@ -36,6 +36,30 @@
 
 **解得 2 / 13；未解得（止於段 1）11 / 13；段 3 查無 0。**
 
+### R-P370(d) 加註 —— 八名為 HU 內部變數，LID 不收錄
+
+> **訂正（59 包，A-PW358）**：58 包回報 §5 記「十一名中九名在 LID 完全無列」為筆誤，
+> 實測為**八名**。十三個完整規格原名在 LID c1/c2/c3 **零命中 13 / 13**；
+> 十一名未解得者中**三名**有語意近似列而依 R-P368(b) 拒收（#6 / #7 → r76、#12 → r1039），
+> **八名**連近似列亦無。R-P370(d) 之加註標的為下列八名。
+> ⚠ **原記「九名」為筆誤**，59 包實測訂正為**八名**（A-PW358）：十三個完整規格原名在 LID 零命中 13 / 13；十一名未解得者中三名有語意近似列而依 R-P368(b) 拒收。結論（PENDING 102、S6 衝突之結構）不受影響。
+
+
+| 名 | 加註（R-P370(d)）|
+|---|---|
+| `Phone_Call.Info` | **HU 內部變數，LID 不收錄**；解消途徑僅餘上游回覆或 Pei 裁 |
+| `PhoneCall.Info` | 同上 |
+| `Auto_SwitchOn_Setting.Req` | 同上 |
+| `RemStartFail` | 同上；SYSAD 逐字載其為 `The internal variable to manage the success or failure of remote start` |
+| `SwitchOff_Timeout_Setting.Req` | 同上 |
+| `SwitchOffSetting.Req` | 同上 |
+| `Rear_Camera_Enable.Info` | 同上 |
+| `Audio_Data_Exchange.Info` | 同上 |
+
+另三名（`Antitheft_Activation.Req` / `Antitheft_Result.Info` / `Front_Panel_OnOff.Req`）
+**有語意近似之 LID 列**，其解消途徑除上游回覆外，尚有「上游確認該近似列即同一物」
+（後者即 DR-PW24 之既有問法）—— 故**不加「LID 不收錄」之註**。
+
 ### 為何無一筆記「查無」
 
 R-G13 之三要件中，第 2 項（用什麼名字查）在十一筆上不成立 ——
@@ -110,7 +134,7 @@ R-P369(b) 之「解至同一 `MESSAGE.Signal` 則為同物」在本輪**無適�
 R-P368 之判斷成立 —— 55 包之「0 / 13」確為未查，段 1 一做即推翻。
 **但重做後解得 2 / 13，PENDING 由 105 降至 102（−3 條，−2.9%）。**
 
-原因不在方法而在 LID 之涵蓋：十一名中有九名在 LID `CAN Mapping`
+原因不在方法而在 LID 之涵蓋：十一名中有**八**名在 LID `CAN Mapping`
 之三個比對欄**完全無列**（非「有列而解不出 CAN 名」）。
 LID 收錄的是有 CAN 對應之 Logical Identifier；
 PM 之這些名是 **HU 內部變數**（DR-PW23 原案對 `RemStartFail` 之判斷即如此：
