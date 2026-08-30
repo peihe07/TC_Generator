@@ -44,7 +44,8 @@ RE_SUPERSEDED = re.compile(r"作廢|SUPERSEDED|已撤回")
 RE_GROUP = re.compile(r"^\s*(?:[~～、／/,]|及|與|至)\s*R-[A-Z]{0,3}\d")
 
 OUT_DEFAULT = "docs/fw036/RULINGS.sha.tsv"
-COLUMNS = ["ruling_id", "kind", "sha8", "sha256", "source", "line", "body_lines", "ancestor", "slug"]
+COLUMNS = ["ruling_id", "kind", "sha8", "sha256", "body_sha8", "body_sha256", "body_kind",
+           "source", "line", "body_lines", "ancestor", "slug"]
 # W-P1 §4：本輪結構化範圍為 canon §9 與 vehicle_setting；其餘 feature 延後
 # R-POP11（Pei 2026-08-27）：預設範圍納入**全部** `features/*/RULINGS.md`。
 # 理由 —— R-G13 明定條文落各 feature 之 RULINGS.md，tsv 不涵蓋則引用制半殘：
@@ -57,7 +58,9 @@ SCOPE_W_P1 = ["docs/fw036/FEATURE_ONBOARDING.md", "features/vehicle_setting/RULI
 class Ruling:
     ruling_id: str
     kind: str            # ruling | report（report 為條號被重用作回報標題者）
-    sha256: str
+    sha256: str          # === section_sha（該錨點至下一錨點之全部內容，含成因段）
+    body_sha256: str     # 條文本體（首個 fenced block）；無 fence 者退回整節
+    body_kind: str       # fenced | section —— `section` 者其二值相同（R-G22′ 之殘餘）
     source: str
     line: int
     body_lines: int
@@ -68,9 +71,14 @@ class Ruling:
     def sha8(self) -> str:
         return self.sha256[:8]
 
+    @property
+    def body_sha8(self) -> str:
+        return self.body_sha256[:8]
+
     def row(self) -> str:
         return "\t".join([
             self.ruling_id, self.kind, self.sha8, self.sha256,
+            self.body_sha8, self.body_sha256, self.body_kind,
             self.source, str(self.line), str(self.body_lines),
             self.ancestor, self.slug,
         ])
@@ -101,6 +109,25 @@ def body_sha(lines: list[str]) -> tuple[str, int]:
         trimmed.pop()
     body = "\n".join(trimmed)
     return hashlib.sha256(body.encode("utf-8")).hexdigest(), len(trimmed)
+
+
+def fenced_body(lines: list[str]) -> tuple[list[str], str]:
+    """取條文本體（R-G22′，下放包 57 §二 #1）。
+
+    **本體 = 該節之首個 fenced block 之內容**（不含 ``` 兩行）。
+    節內無 fenced block 者**退回整節**，其 `body_kind` 記為 `section` ——
+    **該類條之 `body_sha` 與 `section_sha` 相同，R-G13 之假性不符對其未解**
+    （上繳包 57 §6 之自評；實測 74 條）。
+    首個之後的 fenced block 視為實例或引文，不入本體（實測 19 條有二個以上）。
+    """
+    start = None
+    for i, ln in enumerate(lines):
+        if ln.lstrip().startswith("```"):
+            if start is None:
+                start = i
+            else:
+                return lines[start + 1:i], "fenced"
+    return lines, "section"
 
 
 def extract(path: Path, root: Path) -> list[Ruling]:
@@ -147,7 +174,10 @@ def extract(path: Path, root: Path) -> list[Ruling]:
             if h and len(h.group(1)) <= level:
                 end = j
                 break
-        sha, n = body_sha(lines[idx + 1:end])
+        section = lines[idx + 1:end]
+        sha, n = body_sha(section)
+        bl, bkind = fenced_body(section)
+        bsha, _ = body_sha(bl)
         if RE_GROUP.match(slug):
             kind = "group"
         elif dead:
@@ -156,7 +186,8 @@ def extract(path: Path, root: Path) -> list[Ruling]:
             kind = "report"
         else:
             kind = "ruling"
-        out.append(Ruling(ruling_id, kind, sha, source, idx + 1, n, anc, slug))
+        out.append(Ruling(ruling_id, kind, sha, bsha, bkind,
+                          source, idx + 1, n, anc, slug))
     return out
 
 
