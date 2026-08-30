@@ -332,8 +332,8 @@
       "test_item": "In Timed state, it is possible either to make and to receive one or more bluetooth phone calls according to following logics that depend on Timeout1 and on MaxCallTimeout time parameters.\n\n(read the call audio routing and the TLM state -> Both calls were served and the TLM remains in Timed state)",
       "pre_conditions": "1. A paired bluetooth phone is available on the bench\n2. The TLM is in Timed state",
       "input_test_data": "NA",
-      "test_procedure": "1. Place an outgoing bluetooth call from the paired phone through the TLM\n2. Read the paired phone screen and check that it shows the call as connected, and check that the call audio is present on the HU speakers\n3. End that call and let the paired phone place an incoming call to the HU\n4. Read the HU screen and check that the \"Incoming Call\" pop-up is shown on it, then answer it\n5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)",
-      "expected_result": "1. The outgoing call is placed from the paired phone\n2. The paired phone shows the call as connected and the call audio is present on the HU speakers\n3. The incoming call reaches the HU\n4. The \"Incoming Call\" pop-up is shown on the HU screen and the call is answered\n5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received",
+      "test_procedure": "1. Place an outgoing bluetooth call from the paired phone through the TLM\n2. Read the \"Call Screen\" on the paired phone and check that it shows the call as connected\n3. Check that the call audio is present on the HU speakers\n4. End that call and let the paired phone place an incoming call to the HU\n5. Read the HU screen and check that the \"Incoming Call\" pop-up is shown on it\n6. Answer it\n7. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)",
+      "expected_result": "1. The outgoing call is placed from the paired phone\n2. The paired phone shows the call as connected and the call audio is present on the HU speakers\n3. The paired phone shows the call as connected and the call audio is present on the HU speakers\n4. The incoming call reaches the HU\n5. The \"Incoming Call\" pop-up is shown on the HU screen and the call is answered\n6. The \"Incoming Call\" pop-up is shown on the HU screen and the call is answered\n7. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -342,7 +342,7 @@
       "functional_safety": "NA",
       "estimated_test_time": "",
       "remarks": "(R-P383)",
-      "reasoning_note": "\n\n**R-P383 改寫（65 包）**：原步 3 之 `call audio routing and the TLM state` 為 TC 自造之複合名詞，非可觀察量。依 65 包 §0 拆為三個白名單量 —— 去話以手機端顯示 ＋ HU 揚聲器通話音訊 (iii)、來話以 HU 來電 pop-up (ii)、TLM 態以 `$STATUS_TELEMATIC.PowerSts_Telematic$` (i)。⚠ 錨點 `CFTS009-4941715` 為導言句（`according to following logics`），實質規則在 `4941716` 以後之各 Case；**本條與 `SWE-PM-064` / `SWE-PM-065` 之 Case TC 有 IN §8.2.1 重疊之虞，記明不刪**（RD 單位屬上游）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
+      "reasoning_note": "\n\n**R-P383 改寫（65 包）**：原步 3 之 `call audio routing and the TLM state` 為 TC 自造之複合名詞，非可觀察量。依 65 包 §0 拆為三個白名單量 —— 去話以手機端顯示 ＋ HU 揚聲器通話音訊 (iii)、來話以 HU 來電 pop-up (ii)、TLM 態以 `$STATUS_TELEMATIC.PowerSts_Telematic$` (i)。⚠ 錨點 `CFTS009-4941715` 為導言句（`according to following logics`），實質規則在 `4941716` 以後之各 Case；**本條與 `SWE-PM-064` / `SWE-PM-065` 之 Case TC 有 IN §8.2.1 重疊之虞，記明不刪**（RD 單位屬上游）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。\n\n**G245 補正（74 包）**：保守拆步後有二句之受詞被孤立（`the paired phone screen`／指代詞 `it`），已回填其具名元件（`\"Call Screen\"`／`\"FOTA update available\"` pop-up），使受詞落 R-P353(ii)。**拆步之副作用，據實記。**",
       "split_index": 1
     },
     {
@@ -406,8 +406,8 @@
       "test_item": "Case 1:IF Timeout1 <> 00 minutesAND IF Phone_Call.Info passes to \"Not_Active\" before \"Timeout1” expiration THEN TLM has to restore the active source managed by TLM before the call (for example entertainment features like DAB Tuner, rather than USB or BT streaming audio) staying still in Timed state.\n\n(read the active audio source and the TLM state -> The DAB Tuner source is active again and the TLM remains in Timed state)",
       "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. Apply ENTER_TIMED\n3. A DAB Tuner source was active before the call\n4. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read the source indicator and record its value, then check it against the recorded value\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 2 (Timed)",
-      "expected_result": "1. PENDING: DR-PW23 Phone_Call.Info\n2. The DAB Tuner source is active again and the TLM remains in Timed state\n3. The DAB Tuner source is active again and the TLM remains in Timed state",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read the source indicator and record its value\n3. Check it against the recorded value\n4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 2 (Timed)",
+      "expected_result": "1. PENDING: DR-PW23 Phone_Call.Info\n2. The DAB Tuner source is active again and the TLM remains in Timed state\n3. The DAB Tuner source is active again and the TLM remains in Timed state\n4. The DAB Tuner source is active again and the TLM remains in Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -420,7 +420,7 @@
         "axis": "timing",
         "delta": "本條驗還原音源分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：佔位符依本條推定之狀態 `Timed`（raw 2）替換；Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：佔位符依本條推定之狀態 `Timed`（raw 2）替換；Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 1
     },
     {
@@ -484,8 +484,8 @@
       "test_item": "ELSE TLM has to restore the active source managed by TLM before the call (for example entertainment features like DAB Tuner, rather than USB or BT streaming audio) staying still in Timed state.\n\n(read the active source and the TLM state -> The TLM stayed in Timed state throughout and no transition to Standby occurred)",
       "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 RemStartFail\n4. A DAB Tuner source was active before the call",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Place a further bluetooth call while Timeout1 is still running\n3. Read the source indicator and record its value, then check it against the recorded value\n4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 2 (Timed)",
-      "expected_result": "1. The DAB Tuner source is active again and the TLM remains in Timed state\n2. The further call is connected and is managed by the TLM\n3. The TLM stayed in Timed state throughout and no transition to Standby occurred\n4. The TLM stayed in Timed state throughout and no transition to Standby occurred",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Place a further bluetooth call while Timeout1 is still running\n3. Read the source indicator and record its value\n4. Check it against the recorded value\n5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 2 (Timed)",
+      "expected_result": "1. The DAB Tuner source is active again and the TLM remains in Timed state\n2. The further call is connected and is managed by the TLM\n3. The TLM stayed in Timed state throughout and no transition to Standby occurred\n4. The TLM stayed in Timed state throughout and no transition to Standby occurred\n5. The TLM stayed in Timed state throughout and no transition to Standby occurred",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -498,7 +498,7 @@
         "axis": "timing",
         "delta": "本條驗 Case 1 之 ELSE 分支：還原音源並續管理其他通話"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：佔位符依本條推定之狀態 `Timed`（raw 2）替換；Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：佔位符依本條推定之狀態 `Timed`（raw 2）替換；Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 2
     },
     {

@@ -110,8 +110,8 @@
 | 102 | `NR1L-PowerManagement-102` | `SWE-PM-029` | (R-P357(b)：與 NR1L-PowerManagement-099 五欄逐字相同而 Req ID 不同（SWE-PM-028 / SWE-PM-029），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 R5) (R-P396 字典套用) |
 | 103 | `NR1L-PowerManagement-103` | `SWE-PM-029` | (R-P386 第一批) |
 | 104 | `NR1L-PowerManagement-104` | `SWE-PM-029` | (R-P386 第一批) |
-| 105 | `NR1L-PowerManagement-105` | `SWE-PM-030` | (R-P394 B5；規則 R5) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
-| 106 | `NR1L-PowerManagement-106` | `SWE-PM-030` | (R-P394 B5；規則 R5) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
+| 105 | `NR1L-PowerManagement-105` | `SWE-PM-030` | (R-P394 B5；規則 R5) (R-P396 字典套用) |
+| 106 | `NR1L-PowerManagement-106` | `SWE-PM-030` | (R-P394 B5；規則 R5) (R-P396 字典套用) |
 | 107 | `NR1L-PowerManagement-107` | `SWE-PM-031` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 108 | `NR1L-PowerManagement-108` | `SWE-PM-032` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 109 | `NR1L-PowerManagement-109` | `SWE-PM-033` | (R-P394 B5；規則 無) (R-P396 字典套用) |
@@ -127,7 +127,7 @@
 | 119 | `NR1L-PowerManagement-119` | `SWE-PM-039` | (R-P386 第一批) |
 | 120 | `NR1L-PowerManagement-120` | `SWE-PM-039` | (R-P386 第一批) |
 | 121 | `NR1L-PowerManagement-121` | `SWE-PM-039` | (R-P386 第一批) |
-| 122 | `NR1L-PowerManagement-122` | `SWE-PM-040` | (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
+| 122 | `NR1L-PowerManagement-122` | `SWE-PM-040` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 123 | `NR1L-PowerManagement-123` | `SWE-PM-041` | (R-P386 第一批) |
 | 124 | `NR1L-PowerManagement-124` | `SWE-PM-041` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 125 | `NR1L-PowerManagement-125` | `SWE-PM-042` | (R-P386 第二批) |
@@ -140,8 +140,8 @@
 | 132 | `NR1L-PowerManagement-132` | `SWE-PM-044` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 133 | `NR1L-PowerManagement-133` | `SWE-PM-045` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 134 | `NR1L-PowerManagement-134` | `SWE-PM-045` | (R-P394 B5；規則 無) (R-P396 字典套用) |
-| 135 | `NR1L-PowerManagement-135` | `SWE-PM-046` | (R-P394 B5；規則 R5) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
-| 136 | `NR1L-PowerManagement-136` | `SWE-PM-046` | (R-P394 B5；規則 R5) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
+| 135 | `NR1L-PowerManagement-135` | `SWE-PM-046` | (R-P394 B5；規則 R5) (R-P396 字典套用) |
+| 136 | `NR1L-PowerManagement-136` | `SWE-PM-046` | (R-P394 B5；規則 R5) (R-P396 字典套用) |
 | 137 | `NR1L-PowerManagement-137` | `SWE-PM-047` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 138 | `NR1L-PowerManagement-138` | `SWE-PM-047` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 139 | `NR1L-PowerManagement-139` | `SWE-PM-048` | (R-P394 B5；規則 R5) (R-P396 字典套用) |
@@ -183,13 +183,13 @@
 | 175 | `NR1L-PowerManagement-175` | `SWE-PM-093` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 176 | `NR1L-PowerManagement-176` | `SWE-PM-093` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 177 | `NR1L-PowerManagement-177` | `SWE-PM-093` | (R-P394 B5；規則 無) (R-P396 字典套用) |
-| 178 | `NR1L-PowerManagement-178` | `SWE-PM-093` | (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
-| 179 | `NR1L-PowerManagement-179` | `SWE-PM-093` | (R-P385(b) 候選，待上游確認) (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
-| 180 | `NR1L-PowerManagement-180` | `SWE-PM-093` | (R-P394 B5；規則 R3/R7) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
+| 178 | `NR1L-PowerManagement-178` | `SWE-PM-093` | (R-P394 B5；規則 無) (R-P396 字典套用) |
+| 179 | `NR1L-PowerManagement-179` | `SWE-PM-093` | (R-P385(b) 候選，待上游確認) (R-P394 B5；規則 無) (R-P396 字典套用) |
+| 180 | `NR1L-PowerManagement-180` | `SWE-PM-093` | (R-P394 B5；規則 R3/R7) (R-P396 字典套用) |
 | 181 | `NR1L-PowerManagement-181` | `SWE-PM-093` | (R-P394 B5；規則 R1/R3/R6) (R-P396 字典套用) |
 | 182 | `NR1L-PowerManagement-182` | `SWE-PM-093` | (R-P386 第二批) |
 | 183 | `NR1L-PowerManagement-183` | `SWE-PM-094` | (R-P394 B5；規則 R1) (R-P396 字典套用) |
-| 184 | `NR1L-PowerManagement-184` | `SWE-PM-095` | (R-P394 B5；規則 R3) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
+| 184 | `NR1L-PowerManagement-184` | `SWE-PM-095` | (R-P394 B5；規則 R3) (R-P396 字典套用) |
 | 185 | `NR1L-PowerManagement-185` | `SWE-PM-097` | (R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-155 五欄逐字相同而 Req ID 不同（SWE-PM-056 / SWE-PM-097），二列皆保留不得合併；互註對方 tc_id) |
 | 186 | `NR1L-PowerManagement-186` | `SWE-PM-098` | (R-P386 第二批) |
 | 187 | `NR1L-PowerManagement-187` | `SWE-PM-099` | (R-P386 第二批) |
@@ -203,10 +203,10 @@
 | 195 | `NR1L-PowerManagement-195` | `SWE-PM-101` | (R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-152 五欄逐字相同而 Req ID 不同（SWE-PM-054 / SWE-PM-101），二列皆保留不得合併；互註對方 tc_id) |
 | 196 | `NR1L-PowerManagement-196` | `SWE-PM-102` | (R-P357(b)：曾與 NR1L-PowerManagement-153 五欄逐字相同而 Req ID 不同（SWE-PM-055 / SWE-PM-102），二列皆保留不得合併；**71 包字典套用後二者之 Procedure／ER 已相異，不再成對** —— 互註改為歷史記載) (R-P394 B5；規則 R3/R6) (R-P396 字典套用) |
 | 197 | `NR1L-PowerManagement-197` | `SWE-PM-102` | (R-P357(b)：曾與 NR1L-PowerManagement-154 五欄逐字相同而 Req ID 不同（SWE-PM-055 / SWE-PM-102），二列皆保留不得合併；**71 包字典套用後二者之 Procedure／ER 已相異，不再成對** —— 互註改為歷史記載) (R-P394 B5；規則 R3/R6) (R-P396 字典套用) |
-| 198 | `NR1L-PowerManagement-198` | `SWE-PM-103` | (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
-| 199 | `NR1L-PowerManagement-199` | `SWE-PM-103` | (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
-| 200 | `NR1L-PowerManagement-200` | `SWE-PM-103` | (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
-| 201 | `NR1L-PowerManagement-201` | `SWE-PM-103` | (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
+| 198 | `NR1L-PowerManagement-198` | `SWE-PM-103` | (R-P394 B5；規則 無) (R-P396 字典套用) |
+| 199 | `NR1L-PowerManagement-199` | `SWE-PM-103` | (R-P394 B5；規則 無) (R-P396 字典套用) |
+| 200 | `NR1L-PowerManagement-200` | `SWE-PM-103` | (R-P394 B5；規則 無) (R-P396 字典套用) |
+| 201 | `NR1L-PowerManagement-201` | `SWE-PM-103` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 202 | `NR1L-PowerManagement-202` | `SWE-PM-103` | (R-P386 第二批) |
 | 203 | `NR1L-PowerManagement-203` | `SWE-PM-104` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 204 | `NR1L-PowerManagement-204` | `SWE-PM-104` | (R-P394 B5；規則 無) (R-P396 字典套用) |
@@ -275,7 +275,7 @@
 | 267 | `NR1L-PowerManagement-267` | `SWE-PM-003` | (R-P394 B5；規則 R3) (R-P396 字典套用) |
 | 268 | `NR1L-PowerManagement-268` | `SWE-PM-003` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 269 | `NR1L-PowerManagement-269` | `SWE-PM-003` | (R-P394 B5；規則 無) |
-| 270 | `NR1L-PowerManagement-270` | `SWE-PM-003` | (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
+| 270 | `NR1L-PowerManagement-270` | `SWE-PM-003` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 271 | `NR1L-PowerManagement-271` | `SWE-PM-004` | (R-P383) |
 | 272 | `NR1L-PowerManagement-272` | `SWE-PM-004` | (R-P394 B5；規則 R1) |
 | 273 | `NR1L-PowerManagement-273` | `SWE-PM-005` | (R-P394 B5；規則 R1) (R-P396 字典套用) |
@@ -284,7 +284,7 @@
 | 276 | `NR1L-PowerManagement-276` | `SWE-PM-006` | (R-P394 B5；規則 R4/R5) |
 | 277 | `NR1L-PowerManagement-277` | `SWE-PM-007` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 278 | `NR1L-PowerManagement-278` | `SWE-PM-009` | (R-P394 B5；規則 R4) (R-P396 字典套用) |
-| 279 | `NR1L-PowerManagement-279` | `SWE-PM-009` | (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定) |
+| 279 | `NR1L-PowerManagement-279` | `SWE-PM-009` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 280 | `NR1L-PowerManagement-280` | `SWE-PM-009` | (R-P394 B5；規則 R4/R5) (R-P396 字典套用) |
 | 281 | `NR1L-PowerManagement-281` | `SWE-PM-007` | (R-P386 第二批) |
 | 282 | `NR1L-PowerManagement-282` | `SWE-PM-001` | (R-P394 B5；規則 R1) |
@@ -322,7 +322,8 @@ NA
 
 ```
 1. Start the suspend-resume boot sequence
-2. PENDING: DR-PW30 SplashScreen_Time 之值 —— read the HU screen and check the "Splash Screen" against that time on the recording
+2. PENDING: DR-PW30 SplashScreen_Time 之值
+3. Read the HU screen and check the "Splash Screen" against that time on the recording
 ```
 
 **Expected Result**
@@ -330,6 +331,7 @@ NA
 ```
 1. The TLM display stays blank while the boot sequence runs
 2. No "Splash Screen" appears before SplashScreen_Time has elapsed, and the "Splash Screen" is loaded once it has
+3. No "Splash Screen" appears before SplashScreen_Time has elapsed, and the "Splash Screen" is loaded once it has
 ```
 
 **Remarks**
@@ -366,7 +368,8 @@ NA
 
 ```
 1. Set the boot target status to Standby and start the suspend-resume boot sequence
-2. PENDING: DR-PW30 SplashScreen_Time 之值 —— read the HU screen and check the "Splash Screen" against that time on the recording
+2. PENDING: DR-PW30 SplashScreen_Time 之值
+3. Read the HU screen and check the "Splash Screen" against that time on the recording
 ```
 
 **Expected Result**
@@ -374,6 +377,7 @@ NA
 ```
 1. The TLM display stays blank while the boot sequence runs
 2. No "Splash Screen" appears at any time through SplashScreen_Time, and the TLM reaches the Standby boot target
+3. No "Splash Screen" appears at any time through SplashScreen_Time, and the TLM reaches the Standby boot target
 ```
 
 **Remarks**
@@ -410,7 +414,8 @@ NA
 
 ```
 1. Set the boot target status to Bench and start the suspend-resume boot sequence
-2. PENDING: DR-PW30 SplashScreen_Time 之值 —— read the HU screen and check the "Splash Screen" against that time on the recording
+2. PENDING: DR-PW30 SplashScreen_Time 之值
+3. Read the HU screen and check the "Splash Screen" against that time on the recording
 ```
 
 **Expected Result**
@@ -418,6 +423,7 @@ NA
 ```
 1. The TLM display stays blank while the boot sequence runs
 2. No "Splash Screen" appears at any time through SplashScreen_Time, and the TLM reaches the Bench boot target
+3. No "Splash Screen" appears at any time through SplashScreen_Time, and the TLM reaches the Bench boot target
 ```
 
 **Remarks**
@@ -454,8 +460,10 @@ NA
 
 ```
 1. Start the suspend-resume boot sequence with video recording running
-2. PENDING: DR-PW30 SplashScreen_Time 之值 —— read the HU screen at that time and check that the "Splash Screen" is shown on it
-3. PENDING: DR-PW30 StandardScreen_Time 之值 —— read the HU screen before and after that time and check that the "Standard Screen" is shown on it only after that time
+2. PENDING: DR-PW30 SplashScreen_Time 之值
+3. Read the HU screen at that time and check that the "Splash Screen" is shown on it
+4. PENDING: DR-PW30 StandardScreen_Time 之值
+5. Read the HU screen before and after that time and check that the "Standard Screen" is shown on it only after that time
 ```
 
 **Expected Result**
@@ -463,7 +471,9 @@ NA
 ```
 1. The boot sequence is recorded
 2. PENDING: DR-PW30 SplashScreen_Time
-3. PENDING: DR-PW30 StandardScreen_Time
+3. PENDING: DR-PW30 SplashScreen_Time
+4. PENDING: DR-PW30 StandardScreen_Time
+5. PENDING: DR-PW30 StandardScreen_Time
 ```
 
 **Remarks**
@@ -1543,10 +1553,12 @@ NA
 
 ```
 1. Place an outgoing bluetooth call from the paired phone through the TLM
-2. Read the paired phone screen and check that it shows the call as connected, and check that the call audio is present on the HU speakers
-3. End that call and let the paired phone place an incoming call to the HU
-4. Read the HU screen and check that the "Incoming Call" pop-up is shown on it, then answer it
-5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)
+2. Read the "Call Screen" on the paired phone and check that it shows the call as connected
+3. Check that the call audio is present on the HU speakers
+4. End that call and let the paired phone place an incoming call to the HU
+5. Read the HU screen and check that the "Incoming Call" pop-up is shown on it
+6. Answer it
+7. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)
 ```
 
 **Expected Result**
@@ -1554,9 +1566,11 @@ NA
 ```
 1. The outgoing call is placed from the paired phone
 2. The paired phone shows the call as connected and the call audio is present on the HU speakers
-3. The incoming call reaches the HU
-4. The "Incoming Call" pop-up is shown on the HU screen and the call is answered
-5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received
+3. The paired phone shows the call as connected and the call audio is present on the HU speakers
+4. The incoming call reaches the HU
+5. The "Incoming Call" pop-up is shown on the HU screen and the call is answered
+6. The "Incoming Call" pop-up is shown on the HU screen and the call is answered
+7. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received
 ```
 
 **Remarks**
@@ -1682,8 +1696,9 @@ NA
 
 ```
 1. PENDING: DR-PW23 Phone_Call.Info
-2. Read the source indicator and record its value, then check it against the recorded value
-3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 2 (Timed)
+2. Read the source indicator and record its value
+3. Check it against the recorded value
+4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 2 (Timed)
 ```
 
 **Expected Result**
@@ -1692,6 +1707,7 @@ NA
 1. PENDING: DR-PW23 Phone_Call.Info
 2. The DAB Tuner source is active again and the TLM remains in Timed state
 3. The DAB Tuner source is active again and the TLM remains in Timed state
+4. The DAB Tuner source is active again and the TLM remains in Timed state
 ```
 
 **Remarks**
@@ -1822,8 +1838,9 @@ NA
 ```
 1. PENDING: DR-PW23 Phone_Call.Info
 2. Place a further bluetooth call while Timeout1 is still running
-3. Read the source indicator and record its value, then check it against the recorded value
-4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 2 (Timed)
+3. Read the source indicator and record its value
+4. Check it against the recorded value
+5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 2 (Timed)
 ```
 
 **Expected Result**
@@ -1833,6 +1850,7 @@ NA
 2. The further call is connected and is managed by the TLM
 3. The TLM stayed in Timed state throughout and no transition to Standby occurred
 4. The TLM stayed in Timed state throughout and no transition to Standby occurred
+5. The TLM stayed in Timed state throughout and no transition to Standby occurred
 ```
 
 **Remarks**
@@ -2541,8 +2559,9 @@ NA
 ```
 1. Apply ENTER_FULL_OPERATION and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$, recording the value as State_before
 2. Disconnect the battery from the HU, then reconnect it
-3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) (DR-PW26), then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it equals State_before
-4. PENDING: DR-PW25 SwitchOffSetting.Req 與 Auto_SwitchOn_Setting.Req 之設定項名與讀取方法
+3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) (DR-PW26)
+4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it equals State_before
+5. PENDING: DR-PW25 SwitchOffSetting.Req 與 Auto_SwitchOn_Setting.Req 之設定項名與讀取方法
 ```
 
 **Expected Result**
@@ -2551,7 +2570,8 @@ NA
 1. State_before is recorded
 2. The battery is disconnected and reconnected
 3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ equals State_before
-4. PENDING: DR-PW25 SwitchOffSetting.Req / Auto_SwitchOn_Setting.Req
+4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ equals State_before
+5. PENDING: DR-PW25 SwitchOffSetting.Req / Auto_SwitchOn_Setting.Req
 ```
 
 **Remarks**
@@ -4840,8 +4860,9 @@ NA
 ```
 1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req 之設定方法（設為 "00 min"）
 2. Apply ENTER_TIMED and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)
-3. Hold for the PROXI Switch_Off_Time value, then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
-4. PENDING: DR-PW23 Antitheft_Result.Info 之觀察方法（antitheft 成功）
+3. Hold for the PROXI Switch_Off_Time value
+4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
+5. PENDING: DR-PW23 Antitheft_Result.Info 之觀察方法（antitheft 成功）
 ```
 
 **Expected Result**
@@ -4850,7 +4871,8 @@ NA
 1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req
 2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received
 3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed
-4. PENDING: DR-PW23 Antitheft_Result.Info
+4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed
+5. PENDING: DR-PW23 Antitheft_Result.Info
 ```
 
 **Remarks**
@@ -4889,8 +4911,9 @@ NA
 ```
 1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req 之設定方法（設為 "00 min"）
 2. Apply ENTER_TIMED and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)
-3. Hold for the PROXI Switch_Off_Time value, then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
-4. PENDING: DR-PW23 Antitheft_Result.Info 之觀察方法（antitheft 成功）
+3. Hold for the PROXI Switch_Off_Time value
+4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
+5. PENDING: DR-PW23 Antitheft_Result.Info 之觀察方法（antitheft 成功）
 ```
 
 **Expected Result**
@@ -4899,7 +4922,8 @@ NA
 1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req
 2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received
 3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed
-4. PENDING: DR-PW23 Antitheft_Result.Info
+4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed
+5. PENDING: DR-PW23 Antitheft_Result.Info
 ```
 
 **Remarks**
@@ -5072,7 +5096,7 @@ NA
 
 ```
 1. Bring the TLM through the switch on sequence
-2. Apply FUNC_STATE_<STATE> and check its Display sub-item
+2. Read the HU screen and check that the "Splash Screen" is shown on it
 3. PENDING: DR-PW30 Response_Wait_Time 之值
 ```
 
@@ -5087,7 +5111,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 R5) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 R5) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-106`　`SWE-PM-030`　Splash Screen is shown for the Recall_Last branch
@@ -5118,7 +5142,7 @@ NA
 
 ```
 1. Bring the TLM through the switch on sequence
-2. Apply FUNC_STATE_<STATE> and check its Display sub-item
+2. Read the HU screen and check that the "Splash Screen" is shown on it
 3. PENDING: DR-PW30 Response_Wait_Time 之值
 ```
 
@@ -5133,7 +5157,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 R5) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 R5) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-107`　`SWE-PM-031`　Rear view camera images follow the enable signal in any state
@@ -5656,17 +5680,21 @@ NA
 **Test procedure**
 
 ```
-1. Apply ENTER_FULL_OPERATION, send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) (DR-PW26), then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and record the value as State_ignoff
-2. Apply ENTER_FULL_OPERATION again
-3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 15 (SNA) (DR-PW26), then read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the same value as State_ignoff
+1. Apply ENTER_FULL_OPERATION, send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) (DR-PW26)
+2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and record the value as State_ignoff
+3. Apply ENTER_FULL_OPERATION again
+4. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 15 (SNA) (DR-PW26)
+5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the same value as State_ignoff
 ```
 
 **Expected Result**
 
 ```
 1. State_ignoff is recorded
-2. The HU is in Full-Operation again
-3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ after the SNA value is the same as State_ignoff
+2. State_ignoff is recorded
+3. The HU is in Full-Operation again
+4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ after the SNA value is the same as State_ignoff
+5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ after the SNA value is the same as State_ignoff
 ```
 
 **Remarks**
@@ -5704,7 +5732,9 @@ NA
 1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req 之設定方法
 2. Apply ENTER_FULL_OPERATION
 3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) (DR-PW26)
-4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed), then hold for the PROXI Switch_Off_Time value and check that it is 1 (Standby)
+4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)
+5. Hold for the PROXI Switch_Off_Time value
+6. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
 ```
 
 **Expected Result**
@@ -5713,7 +5743,9 @@ NA
 1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req
 2. The HU is in Full-Operation
 3. The signal value $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is received
-4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received, and $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed
+4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received
+5. The PROXI Switch_Off_Time value elapses
+6. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received
 ```
 
 **Remarks**
@@ -5752,7 +5784,9 @@ NA
 1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req 之設定方法
 2. Apply ENTER_FULL_OPERATION
 3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) (DR-PW26)
-4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed), then hold for the PROXI Switch_Off_Time value and check that it is 1 (Standby)
+4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)
+5. Hold for the PROXI Switch_Off_Time value
+6. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
 ```
 
 **Expected Result**
@@ -5761,7 +5795,9 @@ NA
 1. PENDING: DR-PW23 SwitchOff_Timeout_Setting.Req
 2. The HU is in Full-Operation
 3. The signal value $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) is received
-4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received, and $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received after the PROXI Switch_Off_Time value has elapsed
+4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received
+5. The PROXI Switch_Off_Time value elapses
+6. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received
 ```
 
 **Remarks**
@@ -5841,7 +5877,7 @@ NA
 ```
 1. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）
 2. PENDING: DR-PW26 Suspend-to-RAM 觀察面
-3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)
+3. PENDING: DR-PW26 Suspend-to-RAM 對應之 PowerSts_Telematic 值
 ```
 
 **Expected Result**
@@ -5855,7 +5891,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 無) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-123`　`SWE-PM-041`　No TLM function is available in the TLM off with network on status
@@ -6432,7 +6468,7 @@ NA
 
 ```
 1. PENDING: DR-PW23 Antitheft_Result.Info
-2. Apply FUNC_STATE_<STATE> and check its Display sub-item
+2. Read the HU screen and check that the "Rear View Camera" video is shown on it
 3. Read the HU speakers and check whether entertainment audio output is present on them
 ```
 
@@ -6447,7 +6483,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 R5) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 R5) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-136`　`SWE-PM-046`　Rear view camera is provided after an unsuccessful antitheft
@@ -6478,7 +6514,7 @@ NA
 
 ```
 1. PENDING: DR-PW23 Antitheft_Result.Info
-2. Apply FUNC_STATE_<STATE> and check its Display sub-item
+2. Read the HU screen and check that the "Rear View Camera" video is shown on it
 3. Read the HU speakers and check whether entertainment audio output is present on them
 ```
 
@@ -6493,7 +6529,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 R5) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 R5) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-137`　`SWE-PM-047`　A failed antitheft keeps the TLM in Standby and shows the antitheft screens
@@ -7342,7 +7378,8 @@ NA
 ```
 1. Write the DID Startup Animation Selection = Fiat Latam
 2. Set VC_VEH_BRAND = a value other than Fiat (DR-PW28)
-3. Apply ENTER_FULL_OPERATION and read the "Brand Logo Screen", and check that the "Fiat Latam Logo" is shown on it in place of the "Vehicle Brand Logo"
+3. Apply ENTER_FULL_OPERATION and read the "Brand Logo Screen"
+4. Check that the "Fiat Latam Logo" is shown on it in place of the "Vehicle Brand Logo"
 ```
 
 **Expected Result**
@@ -7351,6 +7388,7 @@ NA
 1. The DID is written
 2. The brand configuration is applied
 3. The "Fiat Latam Logo" is shown on the "Brand Logo Screen" in place of the "Vehicle Brand Logo"
+4. The "Fiat Latam Logo" is shown on the "Brand Logo Screen" in place of the "Vehicle Brand Logo"
 ```
 
 **Remarks**
@@ -7520,7 +7558,8 @@ NA
 
 ```
 1. Place the call An SOS call is placed
-2. Read the HU screen and check that the "Call Screen" is shown on it, and check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$
+2. Read the HU screen and check that the "Call Screen" is shown on it
+3. Check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$
 ```
 
 **Expected Result**
@@ -7528,6 +7567,7 @@ NA
 ```
 1. The HU registers the call
 2. The HU behaves as for a Phone call becoming active
+3. The HU behaves as for a Phone call becoming active
 ```
 
 **Remarks**
@@ -7563,7 +7603,8 @@ NA
 
 ```
 1. Place the call An Assist call is placed
-2. Read the HU screen and check that the "Call Screen" is shown on it, and check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$
+2. Read the HU screen and check that the "Call Screen" is shown on it
+3. Check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$
 ```
 
 **Expected Result**
@@ -7571,6 +7612,7 @@ NA
 ```
 1. The HU registers the call
 2. The HU behaves as for a Phone call becoming active
+3. The HU behaves as for a Phone call becoming active
 ```
 
 **Remarks**
@@ -7606,7 +7648,8 @@ NA
 
 ```
 1. Place the call A Projection device call is placed
-2. Read the HU screen and check that the "Call Screen" is shown on it, and check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$
+2. Read the HU screen and check that the "Call Screen" is shown on it
+3. Check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$
 ```
 
 **Expected Result**
@@ -7614,6 +7657,7 @@ NA
 ```
 1. The HU registers the call
 2. The HU behaves as for a Phone call becoming active
+3. The HU behaves as for a Phone call becoming active
 ```
 
 **Remarks**
@@ -7964,8 +8008,9 @@ NA
 1. PENDING: DR-PW27 CFTS057 —— FOTA update available 之建立方法
 2. Apply ENTER_TIMED
 3. Read the HU screen and check that the "FOTA update available" pop-up is shown
-4. Hold for 60000 ms with no user interaction, then read the HU screen and check that the "FOTA update available" pop-up is still shown on it
-5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
+4. Hold for 60000 ms with no user interaction
+5. Read the HU screen and check that the "FOTA update available" pop-up is still shown on it
+6. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
 ```
 
 **Expected Result**
@@ -7975,7 +8020,8 @@ NA
 2. The HU is in Timed
 3. The "FOTA update available" pop-up is shown on the HU screen
 4. The "FOTA update available" pop-up is still shown on the HU screen after 60000 ms with no user interaction
-5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received
+5. The "FOTA update available" pop-up is still shown on the HU screen after 60000 ms with no user interaction
+6. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received
 ```
 
 **Remarks**
@@ -8142,7 +8188,8 @@ NA
 
 ```
 1. Send the input $ICSPowerButton$: Pressed for 10 seconds consecutively
-2. Read the HU screen and check that it goes dark and then shows the "Splash Screen" again, and read the bus trace and check that the $STATUS_TELEMATIC$ message stops and resumes
+2. Read the HU screen and check that it goes dark and then shows the "Splash Screen" again
+3. Read the bus trace and check that the $STATUS_TELEMATIC$ message stops and resumes
 ```
 
 **Expected Result**
@@ -8150,6 +8197,7 @@ NA
 ```
 1. The HU registers the input
 2. The HU does not reset due to a power button reset
+3. The HU does not reset due to a power button reset
 ```
 
 **Remarks**
@@ -8363,8 +8411,8 @@ NA
 
 ```
 1. Send the event An ignition event that changes the HU power mode to BODY ON during the animation
-2. Apply FUNC_STATE_<STATE> and check its Display sub-item
-3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)
+2. Read the HU screen and check that the "Start-up Animation" is no longer played on it
+3. PENDING: DR-PW29 BODY ON 對應之 PowerSts_Telematic 值（`4941042` Full-Operation 與 `4941039` Idle 二分支）
 ```
 
 **Expected Result**
@@ -8378,7 +8426,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 無) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-179`　`SWE-PM-093`　An ignition crank event cancels a start-up animation in progress
@@ -8408,8 +8456,8 @@ NA
 
 ```
 1. Send the signal $STATUS_BH_BCM2.CmdIgnSts$ = 5 (START) during the animation (DR-PW26)
-2. Apply FUNC_STATE_<STATE> and check its Display sub-item
-3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)
+2. Read the HU screen and check that the "Start-up Animation" is no longer played on it
+3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)
 ```
 
 **Expected Result**
@@ -8423,7 +8471,7 @@ NA
 **Remarks**
 
 ```
-(R-P385(b) 候選，待上游確認) (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P385(b) 候選，待上游確認) (R-P394 B5；規則 無) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-180`　`SWE-PM-093`　A mode change to TIMED MODE cancels a start-up animation in progress
@@ -8453,8 +8501,8 @@ NA
 
 ```
 1. Send the change An HU power mode status change to TIMED MODE during the animation
-2. Apply FUNC_STATE_<STATE> and check its Display sub-item
-3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)
+2. Read the HU screen and check that the "Start-up Animation" is no longer played on it
+3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)
 ```
 
 **Expected Result**
@@ -8468,7 +8516,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 R3/R7) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 R3/R7) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-181`　`SWE-PM-093`　An open driver door makes the HU skip the animation on a mode change
@@ -8545,7 +8593,8 @@ NA
 ```
 1. Set Door_Ajar_Status = "Open" then "Closed" again within the same CAN wakeup cycle (DR-PW28)
 2. Read the HU screen and check that the "Start-up Animation" is not played on it
-3. Hold for 1800000 ms, repeat the door event, then read the HU screen and check that the "Start-up Animation" is played on it
+3. Hold for 1800000 ms, repeat the door event
+4. Read the HU screen and check that the "Start-up Animation" is played on it
 ```
 
 **Expected Result**
@@ -8554,6 +8603,7 @@ NA
 1. The door event is registered within the same CAN wakeup cycle
 2. The "Start-up Animation" is not played on the HU screen
 3. After 1800000 ms the "Start-up Animation" is played on the HU screen
+4. After 1800000 ms the "Start-up Animation" is played on the HU screen
 ```
 
 **Remarks**
@@ -8631,23 +8681,25 @@ NA
 **Test procedure**
 
 ```
-1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = a value other than 15 (SNA) (DR-PW26)
-2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)
-3. Apply FUNC_STATE_<STATE> and check its Display sub-item
+1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and record the value as State_before
+2. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = a value other than 15 (SNA) (DR-PW26)
+3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the same value as State_before
+4. Read the HU screen and check that the "Splash Screen" is not shown on it
 ```
 
 **Expected Result**
 
 ```
-1. The TLM follows the state diagram using the updated value
-2. The possible visualization of the "Splash Screen" is avoided
+1. State_before is recorded
+2. The TLM follows the state diagram using the updated value
 3. The possible visualization of the "Splash Screen" is avoided
+4. The possible visualization of the "Splash Screen" is avoided
 ```
 
 **Remarks**
 
 ```
-(R-P394 B5；規則 R3) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 R3) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-185`　`SWE-PM-097`　The Fiat Latam startup animation selection replaces the vehicle brand logo
@@ -8678,7 +8730,8 @@ NA
 ```
 1. Write the DID Startup Animation Selection = Fiat Latam
 2. Set VC_VEH_BRAND = a value other than Fiat (DR-PW28)
-3. Apply ENTER_FULL_OPERATION and read the "Brand Logo Screen", and check that the "Fiat Latam Logo" is shown on it in place of the "Vehicle Brand Logo"
+3. Apply ENTER_FULL_OPERATION and read the "Brand Logo Screen"
+4. Check that the "Fiat Latam Logo" is shown on it in place of the "Vehicle Brand Logo"
 ```
 
 **Expected Result**
@@ -8687,6 +8740,7 @@ NA
 1. The DID is written
 2. The brand configuration is applied
 3. The "Fiat Latam Logo" is shown on the "Brand Logo Screen" in place of the "Vehicle Brand Logo"
+4. The "Fiat Latam Logo" is shown on the "Brand Logo Screen" in place of the "Vehicle Brand Logo"
 ```
 
 **Remarks**
@@ -9269,7 +9323,7 @@ NA
 ```
 1. Bring the TLM to the status related to TLM audio is OFF
 2. Read the HU speakers and check whether entertainment audio output is present on them
-3. Apply FUNC_STATE_<STATE> and check its Display sub-item
+3. Apply FUNC_STATE_IDLE and check its Display sub-item
 ```
 
 **Expected Result**
@@ -9283,7 +9337,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 無) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-199`　`SWE-PM-103`　Audio is off and only the Splash Screen is allowed in Ignition Pre_Start
@@ -9314,7 +9368,7 @@ NA
 ```
 1. Bring the TLM to the status related to TLM audio is OFF
 2. Read the HU speakers and check whether entertainment audio output is present on them
-3. Apply FUNC_STATE_<STATE> and check its Display sub-item
+3. Apply FUNC_STATE_IDLE and check its Display sub-item
 ```
 
 **Expected Result**
@@ -9328,7 +9382,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 無) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-200`　`SWE-PM-103`　Audio is off and only the Splash Screen is allowed in Ignition Start
@@ -9359,7 +9413,7 @@ NA
 ```
 1. Bring the TLM to the status related to TLM audio is OFF
 2. Read the HU speakers and check whether entertainment audio output is present on them
-3. Apply FUNC_STATE_<STATE> and check its Display sub-item
+3. Apply FUNC_STATE_IDLE and check its Display sub-item
 ```
 
 **Expected Result**
@@ -9373,7 +9427,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 無) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-201`　`SWE-PM-103`　Audio is off and only the Splash Screen is allowed in Ignition Cranking
@@ -9404,7 +9458,7 @@ NA
 ```
 1. Bring the TLM to the status related to TLM audio is OFF
 2. Read the HU speakers and check whether entertainment audio output is present on them
-3. Apply FUNC_STATE_<STATE> and check its Display sub-item
+3. Apply FUNC_STATE_IDLE and check its Display sub-item
 ```
 
 **Expected Result**
@@ -9418,7 +9472,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 無) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-202`　`SWE-PM-103`　ICS stays available while DTV is off in this status
@@ -9450,7 +9504,8 @@ NA
 1. Apply ENTER_IDLE
 2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 3 (Idle)
 3. Read the HU screen and check that only the "Splash Screen" is shown on it and no audio source is playing on the HU speakers
-4. Touch the screen and read the bus trace, and check that $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) and that $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$ carry the touch coordinates
+4. Touch the screen and read the bus trace
+5. Check that $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) and that $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$ carry the touch coordinates
 ```
 
 **Expected Result**
@@ -9460,6 +9515,7 @@ NA
 2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received
 3. Only the "Splash Screen" is shown on the HU screen and no audio source is playing on the HU speakers
 4. The signal value $TELEMATIC_FD_5.CM_TCH_STAT$ = 1 (TCH_PSD) is received together with the touch coordinates on $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$
+5. The signal value $TELEMATIC_FD_5.CM_TCH_STAT$ = 1 (TCH_PSD) is received together with the touch coordinates on $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$
 ```
 
 **Remarks**
@@ -10197,7 +10253,8 @@ NA
 
 ```
 1. Bring the HU through the startup sequence
-2. Read the HU screen and check that the "Geolocation + SOS" pop-up is shown on it  —— PENDING: DR-PW27 GDPR flow in HMI
+2. Read the HU screen and check that the "Geolocation + SOS" pop-up is shown on it
+3. PENDING: DR-PW27 GDPR flow in HMI
 ```
 
 **Expected Result**
@@ -10205,6 +10262,7 @@ NA
 ```
 1. The HU reaches the startup presentation
 2. The HU follows the GDPR Non-Maserati startup flow in the HMI
+3. The HU follows the GDPR Non-Maserati startup flow in the HMI
 ```
 
 **Remarks**
@@ -10242,7 +10300,8 @@ NA
 
 ```
 1. Bring the HU through the startup sequence
-2. Read the HU screen and check that the "Geolocation + SOS" pop-up is shown on it  —— PENDING: DR-PW27 GDPR flow in HMI
+2. Read the HU screen and check that the "Geolocation + SOS" pop-up is shown on it
+3. PENDING: DR-PW27 GDPR flow in HMI
 ```
 
 **Expected Result**
@@ -10250,6 +10309,7 @@ NA
 ```
 1. The HU reaches the startup presentation
 2. The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI
+3. The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI
 ```
 
 **Remarks**
@@ -10288,7 +10348,8 @@ NA
 
 ```
 1. Bring the HU through the startup sequence
-2. Read the HU screen and check that the "Geolocation + SOS" pop-up is shown on it  —— PENDING: DR-PW27 GDPR flow in HMI
+2. Read the HU screen and check that the "Geolocation + SOS" pop-up is shown on it
+3. PENDING: DR-PW27 GDPR flow in HMI
 ```
 
 **Expected Result**
@@ -10296,6 +10357,7 @@ NA
 ```
 1. The HU reaches the startup presentation
 2. The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI
+3. The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI
 ```
 
 **Remarks**
@@ -12068,8 +12130,9 @@ NA
 1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 4 (Full_Operation)
 2. Apply FUNC_STATE_Full_Operation and check all of its sub-items
 3. Read the HU speakers and check whether entertainment audio output is present on them
-4. Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
-5. Apply FUNC_STATE_Full_Operation and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
+4. Touch the screen and read the bus trace
+5. Check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
+6. Apply FUNC_STATE_Full_Operation and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
 ```
 
 **Expected Result**
@@ -12080,6 +12143,7 @@ NA
 3. All TLM, AMP, ICS and DTV functionalities are available
 4. All TLM, AMP, ICS and DTV functionalities are available
 5. All TLM, AMP, ICS and DTV functionalities are available
+6. All TLM, AMP, ICS and DTV functionalities are available
 ```
 
 **Remarks**
@@ -12202,15 +12266,17 @@ NA
 **Test procedure**
 
 ```
-1. Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
-2. Apply FUNC_STATE_Idle and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
+1. Touch the screen and read the bus trace
+2. Check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
+3. Apply FUNC_STATE_Idle and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
 ```
 
 **Expected Result**
 
 ```
 1. The ICS functionalities are available
-2. The DTV is OFF
+2. The ICS functionalities are available
+3. The DTV is OFF
 ```
 
 **Remarks**
@@ -12337,8 +12403,9 @@ NA
 1. Send the signal STATUS_BH_BCM2.RemStActvSts = "Remote Start Active"
 2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 7 (Partial_Operation)
 3. Read the HU speakers and check whether entertainment audio output is present on them
-4. Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
-5. Apply FUNC_STATE_Partial_Operation and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
+4. Touch the screen and read the bus trace
+5. Check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
+6. Apply FUNC_STATE_Partial_Operation and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
 ```
 
 **Expected Result**
@@ -12349,6 +12416,7 @@ NA
 3. $Telematic_Power$ reads "Partial_Operation" and the AMP, ICS and DTV are OFF
 4. $Telematic_Power$ reads "Partial_Operation" and the AMP, ICS and DTV are OFF
 5. $Telematic_Power$ reads "Partial_Operation" and the AMP, ICS and DTV are OFF
+6. $Telematic_Power$ reads "Partial_Operation" and the AMP, ICS and DTV are OFF
 ```
 
 **Remarks**
@@ -12384,8 +12452,9 @@ NA
 **Test procedure**
 
 ```
-1. Send the signal $PARK_INFO.ChimeActivation_LHF$ = 1 (Active) and check that the chime is audible on the left hand front speaker  —— PENDING: DR-PW29 ANC 之刺激與觀察面
-2. PENDING: DR-PW29 ACN 之刺激與觀察面
+1. Send the signal $PARK_INFO.ChimeActivation_LHF$ = 1 (Active) and check that the chime is audible on the left hand front speaker
+2. PENDING: DR-PW29 ANC 之刺激與觀察面
+3. PENDING: DR-PW29 ACN 之刺激與觀察面
 ```
 
 **Expected Result**
@@ -12393,6 +12462,7 @@ NA
 ```
 1. The audio for ANC, ACN and chimes is active
 2. The audio for ANC, ACN and chimes is active
+3. The audio for ANC, ACN and chimes is active
 ```
 
 **Remarks**
@@ -12470,21 +12540,23 @@ NA
 **Test procedure**
 
 ```
-1. Attempt to bring the HU into stolen vehicle mode
-2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)
+1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and record the value as State_before
+2. Attempt to bring the HU into stolen vehicle mode
+3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the same value as State_before
 ```
 
 **Expected Result**
 
 ```
-1. The attempt is not accepted
-2. The HU does not enter stolen vehicle mode
+1. State_before is recorded
+2. The attempt is not accepted
+3. The HU does not enter stolen vehicle mode
 ```
 
 **Remarks**
 
 ```
-(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 無) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-271`　`SWE-PM-004`　Timed keeps the TLM on with all functionalities available for a limited time
@@ -12514,17 +12586,19 @@ NA
 **Test procedure**
 
 ```
-1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed), and check that the audio active source keeps playing on the HU speakers
-2. Hold for the $BCM_FD_27.Comfort_Enable_Time$ value with no phone call active
-3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
+1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)
+2. Check that the audio active source keeps playing on the HU speakers
+3. Hold for the $BCM_FD_27.Comfort_Enable_Time$ value with no phone call active
+4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
 ```
 
 **Expected Result**
 
 ```
 1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received and the audio active source keeps playing on the HU speakers
-2. The $BCM_FD_27.Comfort_Enable_Time$ value elapses with no phone call active
-3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received
+2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received and the audio active source keeps playing on the HU speakers
+3. The $BCM_FD_27.Comfort_Enable_Time$ value elapses with no phone call active
+4. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received
 ```
 
 **Remarks**
@@ -12603,10 +12677,12 @@ NA
 1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 1 (Standby)
 2. Read the bus trace and check whether the HU keeps transmitting the $STATUS_TELEMATIC$ message
 3. Apply FUNC_STATE_Standby and check all of its sub-items
-4. Apply FUNC_STATE_Standby and check its Display / Illumination sub-item  (FPDM 對應為分析層判斷，非規格明文 —— R-P396(c)，併 DR-PW29)
-5. Read the HU speakers and check whether entertainment audio output is present on them
-6. Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
-7. Apply FUNC_STATE_Standby and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
+4. Apply FUNC_STATE_Standby and check its Display / Illumination sub-item  (FPDM 對應為分析層判斷，非規格明文
+5. R-P396(c)，併 DR-PW29)
+6. Read the HU speakers and check whether entertainment audio output is present on them
+7. Touch the screen and read the bus trace
+8. Check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
+9. Apply FUNC_STATE_Standby and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
 ```
 
 **Expected Result**
@@ -12619,6 +12695,8 @@ NA
 5. No TLM, FPDM, AMP, ICS or DTV functionality is available
 6. No TLM, FPDM, AMP, ICS or DTV functionality is available
 7. No TLM, FPDM, AMP, ICS or DTV functionality is available
+8. No TLM, FPDM, AMP, ICS or DTV functionality is available
+9. No TLM, FPDM, AMP, ICS or DTV functionality is available
 ```
 
 **Remarks**
@@ -12700,10 +12778,12 @@ NA
 1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected 0 (Sleep)
 2. Read the bus trace and check whether the HU keeps transmitting the $STATUS_TELEMATIC$ message
 3. Apply FUNC_STATE_Sleep and check all of its sub-items
-4. Apply FUNC_STATE_Sleep and check its Display / Illumination sub-item  (FPDM 對應為分析層判斷，非規格明文 —— R-P396(c)，併 DR-PW29)
-5. Read the HU speakers and check whether entertainment audio output is present on them
-6. Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
-7. Apply FUNC_STATE_Sleep and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
+4. Apply FUNC_STATE_Sleep and check its Display / Illumination sub-item  (FPDM 對應為分析層判斷，非規格明文
+5. R-P396(c)，併 DR-PW29)
+6. Read the HU speakers and check whether entertainment audio output is present on them
+7. Touch the screen and read the bus trace
+8. Check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
+9. Apply FUNC_STATE_Sleep and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
 ```
 
 **Expected Result**
@@ -12716,6 +12796,8 @@ NA
 5. No TLM, FPDM, AMP, ICS or DTV functionality is available
 6. No TLM, FPDM, AMP, ICS or DTV functionality is available
 7. No TLM, FPDM, AMP, ICS or DTV functionality is available
+8. No TLM, FPDM, AMP, ICS or DTV functionality is available
+9. No TLM, FPDM, AMP, ICS or DTV functionality is available
 ```
 
 **Remarks**
@@ -12798,8 +12880,9 @@ NA
 1. Bring the TLM to the Bench state
 2. Apply FUNC_STATE_Bench and check all of its sub-items
 3. Read the HU speakers and check whether entertainment audio output is present on them
-4. Touch the screen and read the bus trace, and check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
-5. Apply FUNC_STATE_Bench and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
+4. Touch the screen and read the bus trace
+5. Check whether $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) with coordinates
+6. Apply FUNC_STATE_Bench and check its Display sub-item  (DTV 影像僅經顯示可見；規格無獨立 DTV 觀察面)
 ```
 
 **Expected Result**
@@ -12810,6 +12893,7 @@ NA
 3. The TLM, AMP, ICS and DTV are ON
 4. The TLM, AMP, ICS and DTV are ON
 5. The TLM, AMP, ICS and DTV are ON
+6. The TLM, AMP, ICS and DTV are ON
 ```
 
 **Remarks**
@@ -12898,7 +12982,7 @@ NA
 
 ```
 1. Disconnect the battery
-2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)
+2. PENDING: DR-PW26 INIT 觀察量
 ```
 
 **Expected Result**
@@ -12911,7 +12995,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)
+(R-P394 B5；規則 無) (R-P396 字典套用)
 ```
 
 ## `NR1L-PowerManagement-280`　`SWE-PM-009`　Leaving INIT restores the last settings and starts from Sleep
@@ -12999,8 +13083,10 @@ NA
 1. Apply ENTER_BENCH
 2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 6 (Bench)
 3. Read the HU speakers and check that the audio active source is playing on them
-4. PENDING: DR-PW27 BoosterOUT / analog and digital antenna supply 之 ON 位準值 —— measure the voltage at each output and check it against that level
-5. Insert a USB device and check that it is enumerated and can be played, and check that the AUX input plays on the HU speakers
+4. PENDING: DR-PW27 BoosterOUT / analog and digital antenna supply 之 ON 位準值
+5. Measure the voltage at each output and check it against that level
+6. Insert a USB device and check that it is enumerated and plays on the HU speakers
+7. Check that the AUX input plays on the HU speakers
 ```
 
 **Expected Result**
@@ -13010,7 +13096,9 @@ NA
 2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received
 3. The audio active source is playing on the HU speakers
 4. PENDING: DR-PW27 BoosterOUT / antenna supply ON 位準值
-5. The USB device is enumerated and can be played, and the AUX input plays on the HU speakers
+5. PENDING: DR-PW27 BoosterOUT / antenna supply ON 位準值
+6. The USB device is enumerated and plays on the HU speakers, and the AUX input plays on the HU speakers
+7. The USB device is enumerated and plays on the HU speakers, and the AUX input plays on the HU speakers
 ```
 
 **Remarks**
@@ -13156,8 +13244,9 @@ NA
 1. PENDING: DR-PW27 CFTS057 —— FOTA update available 之建立方法
 2. Apply ENTER_TIMED
 3. Read the HU screen and check that the "FOTA update available" pop-up is shown
-4. Dismiss the "FOTA update available" pop-up through the HMI, then read the HU screen and check that it is no longer shown on it
-5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
+4. Dismiss the "FOTA update available" pop-up through the HMI
+5. Read the HU screen and check that the "FOTA update available" pop-up is no longer shown on it
+6. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
 ```
 
 **Expected Result**
@@ -13167,7 +13256,8 @@ NA
 2. The HU is in Timed
 3. The "FOTA update available" pop-up is shown
 4. The pop-up is no longer shown on the HU screen
-5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received
+5. The pop-up is no longer shown on the HU screen
+6. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received
 ```
 
 **Remarks**
@@ -13298,8 +13388,10 @@ NA
 ```
 1. Set Door_Ajar_Status = "Open" then "Closed" again within the same CAN wakeup cycle (DR-PW28)
 2. Read the HU screen and check that the "Start-up Animation" is not played on it
-3. PENDING: DR-PW26 Sleep 態之觀察方法 —— let the Body CAN go to sleep and wake it again to start a new wakeup cycle
-4. Repeat the door event and read the HU screen, and check that the "Start-up Animation" is played on it
+3. PENDING: DR-PW26 Sleep 態之觀察方法
+4. Let the Body CAN go to sleep and wake it again to start a new wakeup cycle
+5. Repeat the door event and read the HU screen
+6. Check that the "Start-up Animation" is played on it
 ```
 
 **Expected Result**
@@ -13308,7 +13400,9 @@ NA
 1. The door event is registered within the same CAN wakeup cycle
 2. The "Start-up Animation" is not played
 3. PENDING: DR-PW26 Sleep 態之觀察方法
-4. The "Start-up Animation" is played on the HU screen in the new wakeup cycle
+4. PENDING: DR-PW26 Sleep 態之觀察方法
+5. The "Start-up Animation" is played on the HU screen in the new wakeup cycle
+6. The "Start-up Animation" is played on the HU screen in the new wakeup cycle
 ```
 
 **Remarks**

@@ -1,3 +1,3 @@
 filename	sha256	source_path	delivered_round	note
 pm_29.xlsx	35305835796a3982ed74b52eb30d563461ffebe254a2a4a55390e8d411730480	features/power/sandbox/b29/pm_29.xlsx	27 包 §D-5	整檔複製，逐位元組一致（cmp 實測）
-pm_73.xlsx	b5345cca38dcb7543da8db10671e33ba66811207d3c99f7927c6513c71a60d9a	features/power/sandbox/b73/pm_73.xlsx	74 包 R-P399	S6 例外（Pei 2026-08-30 逐字「出貨吧 我送」）。288 列（TC 287 ＋ SWE-PM-089 留白 1）。含 PENDING 佔位 153 條，原樣保留、不降轉 NA、不刪列（R-P399(a)）；清單見 delivered/PENDING_LIST.md。整檔複製自 sandbox/b73，逐位元組一致（cmp 實測）。
+pm_73.xlsx	9e729b3f3ee4b85df804b219661a8c6e1543ad1a88af0b52028de0738eb89538	features/power/sandbox/b73/pm_73.xlsx	74 包 R-P399（Pei 授權處置後重出）	S6 例外（Pei 2026-08-30「出貨吧 我送」）。288 列。站④-2 之 15 條已逐條指定、佔位符 0。含 PENDING 佔位 147 條，原樣保留、不降轉 NA、不刪列（R-P399(a)）；清單見 delivered/PENDING_LIST.md。

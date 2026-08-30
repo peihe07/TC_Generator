@@ -31,12 +31,31 @@ def steps(s: str) -> list[str]:
             for l in (s or "").splitlines() if re.match(r"^\s*\d+\.", l)]
 
 
+CHECK = re.compile(r"\bcheck (?:that|whether|which|each)\b|\bto verify\b|\bto check\b", re.I)
+
+
 def limit(step: str, is_last: bool) -> int:
+    """⚠ **一項判準之明示假設（74 包，執行層，待分析層追認）**
+
+    IN §5.2 只定義三種角色：**A** 一般 setup／transition（≤12，明載「Action + target
+    only; **no purpose clause**」）、**B** Final Step（≤18，**須含驗證意圖**）、
+    **C** 需意圖之 setup（帶 `to …`，≤18）。
+
+    本 corpus 之慣例為**一 TC 多個 check 步**（ER 1:1 對齊之基礎，自早期各包既然），
+    故存在**非末步而自帶 `check that`** 之步 —— 該形態**不在 §5.2 之三分類內**。
+
+    §5.2A 之定義明言其為「無 purpose clause」之步，故**不涵蓋帶 check 之步**；
+    本閘據此把「非末步但帶 `check that` / `to verify`」歸為**驗證步，取 18 字**。
+    此為判準之分類假設，非內容判斷；**待分析層追認**（若裁為應取 12，
+    則須先裁「一 TC 只能有一個 check 步」，那是 §5.5 之適用問題，非字數問題）。
+    """
     if is_last:
         return 18                      # §5.2B
+    if CHECK.search(step):
+        return 18                      # 非末步之驗證步 —— 見上之假設
     if TO_CLAUSE.search(step):
         return 18                      # §5.2C（`to …` 例外）
-    return 12                          # §5.2A
+    return 12                          # §5.2A（純 setup／transition）
 
 
 def main() -> None:

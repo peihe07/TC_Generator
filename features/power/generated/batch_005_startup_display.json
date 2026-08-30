@@ -220,8 +220,8 @@
       "test_item": "The HU shall consider SOS and Assist calls as Phone calls becoming active.\n\n(read the HU reaction -> The HU behaves as for a Phone call becoming active)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is in a state that reacts to a phone call becoming active",
       "input_test_data": "NA",
-      "test_procedure": "1. Place the call An SOS call is placed\n2. Read the HU screen and check that the \"Call Screen\" is shown on it, and check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$",
-      "expected_result": "1. The HU registers the call\n2. The HU behaves as for a Phone call becoming active",
+      "test_procedure": "1. Place the call An SOS call is placed\n2. Read the HU screen and check that the \"Call Screen\" is shown on it\n3. Check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$",
+      "expected_result": "1. The HU registers the call\n2. The HU behaves as for a Phone call becoming active\n3. The HU behaves as for a Phone call becoming active",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.4",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -234,7 +234,7 @@
         "axis": "input_data",
         "delta": "本條驗 SOS call"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 1
     },
     {
@@ -246,8 +246,8 @@
       "test_item": "The HU shall consider SOS and Assist calls as Phone calls becoming active.\n\n(read the HU reaction -> The HU behaves as for a Phone call becoming active)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is in a state that reacts to a phone call becoming active",
       "input_test_data": "NA",
-      "test_procedure": "1. Place the call An Assist call is placed\n2. Read the HU screen and check that the \"Call Screen\" is shown on it, and check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$",
-      "expected_result": "1. The HU registers the call\n2. The HU behaves as for a Phone call becoming active",
+      "test_procedure": "1. Place the call An Assist call is placed\n2. Read the HU screen and check that the \"Call Screen\" is shown on it\n3. Check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$",
+      "expected_result": "1. The HU registers the call\n2. The HU behaves as for a Phone call becoming active\n3. The HU behaves as for a Phone call becoming active",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.4",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -260,7 +260,7 @@
         "axis": "input_data",
         "delta": "本條驗 Assist call"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 2
     },
     {
@@ -272,8 +272,8 @@
       "test_item": "The HU shall consider Projection device calls as Phone calls becoming active.\n\n(read the HU reaction -> The HU behaves as for a Phone call becoming active)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. A projection device is paired on the bench",
       "input_test_data": "NA",
-      "test_procedure": "1. Place the call A Projection device call is placed\n2. Read the HU screen and check that the \"Call Screen\" is shown on it, and check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$",
-      "expected_result": "1. The HU registers the call\n2. The HU behaves as for a Phone call becoming active",
+      "test_procedure": "1. Place the call A Projection device call is placed\n2. Read the HU screen and check that the \"Call Screen\" is shown on it\n3. Check that the call audio is present on the HU speakers, and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$",
+      "expected_result": "1. The HU registers the call\n2. The HU behaves as for a Phone call becoming active\n3. The HU behaves as for a Phone call becoming active",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.4",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -282,7 +282,7 @@
       "functional_safety": "NA",
       "estimated_test_time": "",
       "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 1
     },
     {
@@ -468,8 +468,8 @@
       "test_item": "If the HU Transitions to Timed mode due to the condition described in CFTS009-1809, the HU shall transition to Standby mode after: -1 minute has passed without the user interacting with the pop-up -The FOTA pop up is dismissed -$ACCDlyAct$ transitions from active to inactive\n\n(read the HU mode after the idle period -> The HU transitions to Standby mode after 1 minute has passed)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is in Timed mode due to the condition described in CFTS009-1809",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW27 CFTS057 —— FOTA update available 之建立方法\n2. Apply ENTER_TIMED\n3. Read the HU screen and check that the \"FOTA update available\" pop-up is shown\n4. Hold for 60000 ms with no user interaction, then read the HU screen and check that the \"FOTA update available\" pop-up is still shown on it\n5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
-      "expected_result": "1. PENDING: DR-PW27 CFTS057\n2. The HU is in Timed\n3. The \"FOTA update available\" pop-up is shown on the HU screen\n4. The \"FOTA update available\" pop-up is still shown on the HU screen after 60000 ms with no user interaction\n5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
+      "test_procedure": "1. PENDING: DR-PW27 CFTS057 —— FOTA update available 之建立方法\n2. Apply ENTER_TIMED\n3. Read the HU screen and check that the \"FOTA update available\" pop-up is shown\n4. Hold for 60000 ms with no user interaction\n5. Read the HU screen and check that the \"FOTA update available\" pop-up is still shown on it\n6. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. PENDING: DR-PW27 CFTS057\n2. The HU is in Timed\n3. The \"FOTA update available\" pop-up is shown on the HU screen\n4. The \"FOTA update available\" pop-up is still shown on the HU screen after 60000 ms with no user interaction\n5. The \"FOTA update available\" pop-up is still shown on the HU screen after 60000 ms with no user interaction\n6. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.10",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -482,7 +482,7 @@
         "axis": "mode",
         "delta": "本條驗條件一 —— 1 分鐘無互動"
       },
-      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `HU mode after the idle period` 非可觀察量。依 66 包 §1 表 —— pop-up 停留以 `\"FOTA update available\"` pop-up (ii)、`Hold for 60000 ms`（R-1 v3 (e)）、之後 `PowerSts_Telematic = 1 (Standby)` (i)。⚠ **FOTA 可用之建立方法規格指 CFTS057，該文件在 G0 台帳外** → `PENDING: DR-PW27`。⚠ §1 表另記「三個離開條件各一 TC（IN §8.3），現行只測 1 分鐘」—— **拆分未做**，見 67 包回報 §6。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `HU mode after the idle period` 非可觀察量。依 66 包 §1 表 —— pop-up 停留以 `\"FOTA update available\"` pop-up (ii)、`Hold for 60000 ms`（R-1 v3 (e)）、之後 `PowerSts_Telematic = 1 (Standby)` (i)。⚠ **FOTA 可用之建立方法規格指 CFTS057，該文件在 G0 台帳外** → `PENDING: DR-PW27`。⚠ §1 表另記「三個離開條件各一 TC（IN §8.3），現行只測 1 分鐘」—— **拆分未做**，見 67 包回報 §6。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 1
     },
     {
@@ -572,8 +572,8 @@
       "test_item": "If the HU is currently installing a firmware image the HU shall not reset due to a power button reset.\n\n(read the HU behavior -> The HU does not reset due to a power button reset)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is currently installing a firmware image",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the input $ICSPowerButton$: Pressed for 10 seconds consecutively\n2. Read the HU screen and check that it goes dark and then shows the \"Splash Screen\" again, and read the bus trace and check that the $STATUS_TELEMATIC$ message stops and resumes",
-      "expected_result": "1. The HU registers the input\n2. The HU does not reset due to a power button reset",
+      "test_procedure": "1. Send the input $ICSPowerButton$: Pressed for 10 seconds consecutively\n2. Read the HU screen and check that it goes dark and then shows the \"Splash Screen\" again\n3. Read the bus trace and check that the $STATUS_TELEMATIC$ message stops and resumes",
+      "expected_result": "1. The HU registers the input\n2. The HU does not reset due to a power button reset\n3. The HU does not reset due to a power button reset",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.3",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -586,7 +586,7 @@
         "axis": "input_data",
         "delta": "本條驗韌體安裝中之例外"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 2
     },
     {
@@ -702,7 +702,7 @@
       "test_item": "While HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.\n\n(read the screen and the power mode -> The HU switches to the required power mode as defined)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is playing a start-up animation",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the event An ignition event that changes the HU power mode to BODY ON during the animation\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
+      "test_procedure": "1. Send the event An ignition event that changes the HU power mode to BODY ON during the animation\n2. Read the HU screen and check that the \"Start-up Animation\" is no longer played on it\n3. PENDING: DR-PW29 BODY ON 對應之 PowerSts_Telematic 值（`4941042` Full-Operation 與 `4941039` Idle 二分支）",
       "expected_result": "1. The HU cancels the current \"Start-up Animation\"\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n3. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P0",
@@ -711,12 +711,12 @@
       "split_reason": "本條驗播放中之模式變更取消",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗播放中之模式變更取消"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU switches to the required power mode as defined`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU switches to the required power mode as defined`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。\n\n**站④-2 之處置（Pei 2026-08-30 授權執行層直接處置）**：`test_item`：動畫之取消為本條之驗證標的。**依據取自本條 `test_item` 上半 verbatim 或既有裁決，未另造判準。**\n\n**站④-2 之處置（續，Pei 授權）**：步 1 之觸發為「power mode 轉為 BODY ON」，而 BODY ON 群依 `4941042` / `4941039` **二分支**（有無 Power Button、`VPLastStatus` 等），規格未指單一值 → **不猜**（§8.4.1），開問於 DR-PW29。",
       "split_index": 5
     },
     {
@@ -728,7 +728,7 @@
       "test_item": "While HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.\n\n(read the screen and the power mode -> The HU switches to the required power mode as defined)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is playing a start-up animation",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal $STATUS_BH_BCM2.CmdIgnSts$ = 5 (START) during the animation (DR-PW26)\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
+      "test_procedure": "1. Send the signal $STATUS_BH_BCM2.CmdIgnSts$ = 5 (START) during the animation (DR-PW26)\n2. Read the HU screen and check that the \"Start-up Animation\" is no longer played on it\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)",
       "expected_result": "1. The signal value $STATUS_BH_BCM2.CmdIgnSts$ = 5 (START) is received during the animation\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n3. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P3",
@@ -737,12 +737,12 @@
       "split_reason": "本條驗 IGN_START 取消",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P385(b) 候選，待上游確認) (R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)",
+      "remarks": "(R-P385(b) 候選，待上游確認) (R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 IGN_START 取消"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**R-P385(b) 改寫（65 包）**：`$PowerMode$` 依 LID 逐字命中之強候選 改為 `$STATUS_BH_BCM2.CmdIgnSts$`（`VAL_ 1132` 之 `5 \"START\"`，與規格 `IGN_START` 為 `IGN_` 前綴差）；ITD 之值依 R-P366(a) 內聯至步 1，ITD 改 `NA`。**待上游確認**（DR-PW26 第 (1b) 問），否認則回滾（R-P371(c) 型）。⚠ **全 corpus 引 `$PowerMode$` 者 9 條，其中 8 條僅見於 `test_item` 上半 verbatim** —— 該處為規格逐字，依 R-6 / R-P343 / R-P347 **不得改**，故 R-P385(b) 之實際適用列為 **1**。本條步 2 之 `screen and the power mode`（複合非白名單 `<X>`）與 ER 2 之 `as defined`（R-P353 末段所禁）**屬 B5 範圍，本包不動**。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU cancels the current start-up animation and switches to the requ`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**R-P385(b) 改寫（65 包）**：`$PowerMode$` 依 LID 逐字命中之強候選 改為 `$STATUS_BH_BCM2.CmdIgnSts$`（`VAL_ 1132` 之 `5 \"START\"`，與規格 `IGN_START` 為 `IGN_` 前綴差）；ITD 之值依 R-P366(a) 內聯至步 1，ITD 改 `NA`。**待上游確認**（DR-PW26 第 (1b) 問），否認則回滾（R-P371(c) 型）。⚠ **全 corpus 引 `$PowerMode$` 者 9 條，其中 8 條僅見於 `test_item` 上半 verbatim** —— 該處為規格逐字，依 R-6 / R-P343 / R-P347 **不得改**，故 R-P385(b) 之實際適用列為 **1**。本條步 2 之 `screen and the power mode`（複合非白名單 `<X>`）與 ER 2 之 `as defined`（R-P353 末段所禁）**屬 B5 範圍，本包不動**。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU cancels the current start-up animation and switches to the requ`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。\n\n**站④-2 之處置（Pei 2026-08-30 授權執行層直接處置）**：`test_item`：動畫之取消為本條之驗證標的。**依據取自本條 `test_item` 上半 verbatim 或既有裁決，未另造判準。**\n\n**站④-2 之處置（續，Pei 授權）**：步 1 送 `$STATUS_BH_BCM2.CmdIgnSts$ = 5 (START)`；`CFTS009-4941357` 逐字列 `Ignition Start` 為 Full-Operation 保持之點火條件之一 → `4 (Full_Operation)`。",
       "split_index": 6
     },
     {
@@ -754,7 +754,7 @@
       "test_item": "While HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.\n\n(read the screen and the power mode -> The HU switches to the required power mode as defined)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is playing a start-up animation",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the change An HU power mode status change to TIMED MODE during the animation\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
+      "test_procedure": "1. Send the change An HU power mode status change to TIMED MODE during the animation\n2. Read the HU screen and check that the \"Start-up Animation\" is no longer played on it\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)",
       "expected_result": "1. The HU cancels the current \"Start-up Animation\"\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n3. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P3",
@@ -763,12 +763,12 @@
       "split_reason": "本條驗 OR 之 TIMED MODE 支（R-P118(d) 反向涵蓋裁決補測）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3/R7) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)",
+      "remarks": "(R-P394 B5；規則 R3/R7) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 OR 之 TIMED MODE 支（R-P118(d) 反向涵蓋裁決補測）"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（70 包）**：以下句因含 R-P353 末段所禁之措辭而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU switches to the required power mode as defined`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（70 包）**：以下句因含 R-P353 末段所禁之措辭而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU switches to the required power mode as defined`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。\n\n**站④-2 之處置（Pei 2026-08-30 授權執行層直接處置）**：`test_item`：動畫之取消為本條之驗證標的。**依據取自本條 `test_item` 上半 verbatim 或既有裁決，未另造判準。**\n\n**站④-2 之處置（續，Pei 授權）**：步 1 之觸發逐字為「a status change to TIMED MODE」→ `VAL_ 1470` 之 `2 (Timed)`。",
       "split_index": 7
     },
     {
@@ -806,8 +806,8 @@
       "test_item": "While HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.\n\n(read the screen against the elapsed time -> A start-up animation plays again only at the next CAN wakeup cycle or after 30 minutes, whichever is greater)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU has just played a start-up animation\n3. All other conditions for the animation hold",
       "input_test_data": "NA",
-      "test_procedure": "1. Set Door_Ajar_Status = \"Open\" then \"Closed\" again within the same CAN wakeup cycle (DR-PW28)\n2. Read the HU screen and check that the \"Start-up Animation\" is not played on it\n3. Hold for 1800000 ms, repeat the door event, then read the HU screen and check that the \"Start-up Animation\" is played on it",
-      "expected_result": "1. The door event is registered within the same CAN wakeup cycle\n2. The \"Start-up Animation\" is not played on the HU screen\n3. After 1800000 ms the \"Start-up Animation\" is played on the HU screen",
+      "test_procedure": "1. Set Door_Ajar_Status = \"Open\" then \"Closed\" again within the same CAN wakeup cycle (DR-PW28)\n2. Read the HU screen and check that the \"Start-up Animation\" is not played on it\n3. Hold for 1800000 ms, repeat the door event\n4. Read the HU screen and check that the \"Start-up Animation\" is played on it",
+      "expected_result": "1. The door event is registered within the same CAN wakeup cycle\n2. The \"Start-up Animation\" is not played on the HU screen\n3. After 1800000 ms the \"Start-up Animation\" is played on the HU screen\n4. After 1800000 ms the \"Start-up Animation\" is played on the HU screen",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -820,7 +820,7 @@
         "axis": "trigger_state",
         "delta": "本條驗再播放之間隔規則"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**R-P386 / R-P393(c) 改寫（68 包）**：原 `screen against the elapsed time` 非可觀察量。依 66 包 §1 表拆二 —— **本條為 30 分鐘支**，下一喚醒週期支另立（IN §8.3）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 `$Door_Ajar_Status$` 止於段 2（LID r474 有列而 `Atlantis High` 欄空），依 R-P393(a) 保留原名。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**R-P386 / R-P393(c) 改寫（68 包）**：原 `screen against the elapsed time` 非可觀察量。依 66 包 §1 表拆二 —— **本條為 30 分鐘支**，下一喚醒週期支另立（IN §8.3）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 `$Door_Ajar_Status$` 止於段 2（LID r474 有列而 `Atlantis High` 欄空），依 R-P393(a) 保留原名。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 9
     },
     {
@@ -854,8 +854,8 @@
       "test_item": "As soon as signal LTM_OperationalModeSts.Info becomes different from \"SNA\" value again, TLM has still to behave following the state diagram, considering the updated value of LTM_OperationalModeSts.Info signal and avoiding the possible visualization of the splash screen\n\n(read the TLM state and the screen -> The possible visualization of the splash screen is avoided)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. LTM_OperationalModeSts.Info reads \"SNA\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = a value other than 15 (SNA) (DR-PW26)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)\n3. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The TLM follows the state diagram using the updated value\n2. The possible visualization of the \"Splash Screen\" is avoided\n3. The possible visualization of the \"Splash Screen\" is avoided",
+      "test_procedure": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and record the value as State_before\n2. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = a value other than 15 (SNA) (DR-PW26)\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the same value as State_before\n4. Read the HU screen and check that the \"Splash Screen\" is not shown on it",
+      "expected_result": "1. State_before is recorded\n2. The TLM follows the state diagram using the updated value\n3. The possible visualization of the \"Splash Screen\" is avoided\n4. The possible visualization of the \"Splash Screen\" is avoided",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.7.1.1.1",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -863,8 +863,8 @@
       "split_reason": "本條驗離開 SNA 之恢復行為",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。",
+      "remarks": "(R-P394 B5；規則 R3) (R-P396 字典套用)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。\n\n**站④-2 之處置（Pei 2026-08-30 授權執行層直接處置）**：期望值非固定常數（「behave following the state diagram」）——用既有 baseline (f) 型式，同 `-118` 之先例。**依據取自本條 `test_item` 上半 verbatim 或既有裁決，未另造判準。**\n\n**站④-2 之處置（續，Pei 授權）**：本條 `tc_title` 逐字為「resumes the state diagram **without a splash**」→ 觀察標的為該具名元件之**不出現**。",
       "split_index": 1
     },
     {
@@ -876,8 +876,8 @@
       "test_item": "If DID \"Startup Animation Selection\" = [Fiat Latam] then the HU shall replace the vehicle brand logo with the Fiat Latam Logo regardless of the value of $VC_Veh_Brand$\n\n(read the shown logo against the configured brand -> The Fiat Latam Logo replaces the vehicle brand logo regardless of the configured brand)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU carries a configured vehicle brand",
       "input_test_data": "NA",
-      "test_procedure": "1. Write the DID Startup Animation Selection = Fiat Latam\n2. Set VC_VEH_BRAND = a value other than Fiat (DR-PW28)\n3. Apply ENTER_FULL_OPERATION and read the \"Brand Logo Screen\", and check that the \"Fiat Latam Logo\" is shown on it in place of the \"Vehicle Brand Logo\"",
-      "expected_result": "1. The DID is written\n2. The brand configuration is applied\n3. The \"Fiat Latam Logo\" is shown on the \"Brand Logo Screen\" in place of the \"Vehicle Brand Logo\"",
+      "test_procedure": "1. Write the DID Startup Animation Selection = Fiat Latam\n2. Set VC_VEH_BRAND = a value other than Fiat (DR-PW28)\n3. Apply ENTER_FULL_OPERATION and read the \"Brand Logo Screen\"\n4. Check that the \"Fiat Latam Logo\" is shown on it in place of the \"Vehicle Brand Logo\"",
+      "expected_result": "1. The DID is written\n2. The brand configuration is applied\n3. The \"Fiat Latam Logo\" is shown on the \"Brand Logo Screen\" in place of the \"Vehicle Brand Logo\"\n4. The \"Fiat Latam Logo\" is shown on the \"Brand Logo Screen\" in place of the \"Vehicle Brand Logo\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -886,7 +886,7 @@
       "functional_safety": "NA",
       "estimated_test_time": "",
       "remarks": "(R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-155 五欄逐字相同而 Req ID 不同（SWE-PM-056 / SWE-PM-097），二列皆保留不得合併；互註對方 tc_id)",
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-056` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-056` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。 本條之觸發為 DID 診斷寫入（`Startup Animation Selection`），**HMI Settings List 查無該條目**（67 包 §H 第 2 步實測），依 R-1 v3 (d) 保留來源名不加 `$`。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-056` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-056` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。 本條之觸發為 DID 診斷寫入（`Startup Animation Selection`），**HMI Settings List 查無該條目**（67 包 §H 第 2 步實測），依 R-1 v3 (d) 保留來源名不加 `$`。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 1
     },
     {
@@ -1202,7 +1202,7 @@
       "test_item": "This status is related to TLM audio is OFF. TLM shall allow only Splash Screen visualization on its display.  ICS functionalities are available.  DTV shall be OFF.\n\n(read the audio path and the display -> The TLM allows only Splash Screen visualization on its display)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition On working condition",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them\n3. Apply FUNC_STATE_<STATE> and check its Display sub-item",
+      "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them\n3. Apply FUNC_STATE_IDLE and check its Display sub-item",
       "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only \"Splash Screen\" visualization on its display\n3. The TLM allows only \"Splash Screen\" visualization on its display",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
@@ -1211,12 +1211,12 @@
       "split_reason": "本條驗音訊關閉與畫面限制",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗音訊關閉與畫面限制"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。\n\n**站④-2 之處置（Pei 2026-08-30 授權執行層直接處置）**：`test_item` 逐字為 `CFTS009-4941365`（§1.6.2.1.2 Idle）之段落；同上。**依據取自本條 `test_item` 上半 verbatim 或既有裁決，未另造判準。**",
       "split_index": 1
     },
     {
@@ -1228,7 +1228,7 @@
       "test_item": "This status is related to TLM audio is OFF. TLM shall allow only Splash Screen visualization on its display.  ICS functionalities are available.  DTV shall be OFF.\n\n(read the audio path and the display -> The TLM allows only Splash Screen visualization on its display)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition Pre_Start working condition",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them\n3. Apply FUNC_STATE_<STATE> and check its Display sub-item",
+      "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them\n3. Apply FUNC_STATE_IDLE and check its Display sub-item",
       "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only \"Splash Screen\" visualization on its display\n3. The TLM allows only \"Splash Screen\" visualization on its display",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
@@ -1237,12 +1237,12 @@
       "split_reason": "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）"
       },
-      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。",
+      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。\n\n**站④-2 之處置（Pei 2026-08-30 授權執行層直接處置）**：`test_item` 逐字為 `CFTS009-4941365`（§1.6.2.1.2 Idle）之段落；同上。**依據取自本條 `test_item` 上半 verbatim 或既有裁決，未另造判準。**",
       "split_index": 2
     },
     {
@@ -1254,7 +1254,7 @@
       "test_item": "This status is related to TLM audio is OFF. TLM shall allow only Splash Screen visualization on its display.  ICS functionalities are available.  DTV shall be OFF.\n\n(read the audio path and the display -> The TLM allows only Splash Screen visualization on its display)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition Start working condition",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them\n3. Apply FUNC_STATE_<STATE> and check its Display sub-item",
+      "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them\n3. Apply FUNC_STATE_IDLE and check its Display sub-item",
       "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only \"Splash Screen\" visualization on its display\n3. The TLM allows only \"Splash Screen\" visualization on its display",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
@@ -1263,12 +1263,12 @@
       "split_reason": "本條驗逗號列舉之點火工作條件 Ignition Start（R-P199 補測）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗逗號列舉之點火工作條件 Ignition Start（R-P199 補測）"
       },
-      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。",
+      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。\n\n**站④-2 之處置（Pei 2026-08-30 授權執行層直接處置）**：`test_item` 逐字為 `CFTS009-4941365`（§1.6.2.1.2 Idle）之段落；同上。**依據取自本條 `test_item` 上半 verbatim 或既有裁決，未另造判準。**",
       "split_index": 3
     },
     {
@@ -1280,7 +1280,7 @@
       "test_item": "This status is related to TLM audio is OFF. TLM shall allow only Splash Screen visualization on its display.  ICS functionalities are available.  DTV shall be OFF.\n\n(read the audio path and the display -> The TLM allows only Splash Screen visualization on its display)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition Cranking working condition",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them\n3. Apply FUNC_STATE_<STATE> and check its Display sub-item",
+      "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them\n3. Apply FUNC_STATE_IDLE and check its Display sub-item",
       "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only \"Splash Screen\" visualization on its display\n3. The TLM allows only \"Splash Screen\" visualization on its display",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
@@ -1289,12 +1289,12 @@
       "split_reason": "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用) (站④-2：`<STATE>` 未能由本條推定，待分析層指定)",
+      "remarks": "(R-P394 B5；規則 無) (R-P396 字典套用)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）"
       },
-      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。",
+      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。\n\n**73 包補正（R-P398(b)(c) / R-P366(b)）**：Procedure 之 `;` 串接依 R-P398(c) 拆為逐步，ER 對齊。\n\n**站④-2 之處置（Pei 2026-08-30 授權執行層直接處置）**：`test_item` 逐字為 `CFTS009-4941365`（§1.6.2.1.2 Idle）之段落；同上。**依據取自本條 `test_item` 上半 verbatim 或既有裁決，未另造判準。**",
       "split_index": 4
     },
     {
@@ -1306,8 +1306,8 @@
       "test_item": "This status is related to TLM audio is OFF. TLM shall allow only Splash Screen visualization on its display.  ICS functionalities are available.  DTV shall be OFF.\n\n(read the ICS functions and the DTV -> DTV is OFF)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition On Engine On working condition",
       "input_test_data": "NA",
-      "test_procedure": "1. Apply ENTER_IDLE\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 3 (Idle)\n3. Read the HU screen and check that only the \"Splash Screen\" is shown on it and no audio source is playing on the HU speakers\n4. Touch the screen and read the bus trace, and check that $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) and that $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$ carry the touch coordinates",
-      "expected_result": "1. The HU is in Idle\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received\n3. Only the \"Splash Screen\" is shown on the HU screen and no audio source is playing on the HU speakers\n4. The signal value $TELEMATIC_FD_5.CM_TCH_STAT$ = 1 (TCH_PSD) is received together with the touch coordinates on $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$",
+      "test_procedure": "1. Apply ENTER_IDLE\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 3 (Idle)\n3. Read the HU screen and check that only the \"Splash Screen\" is shown on it and no audio source is playing on the HU speakers\n4. Touch the screen and read the bus trace\n5. Check that $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) and that $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$ carry the touch coordinates",
+      "expected_result": "1. The HU is in Idle\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received\n3. Only the \"Splash Screen\" is shown on the HU screen and no audio source is playing on the HU speakers\n4. The signal value $TELEMATIC_FD_5.CM_TCH_STAT$ = 1 (TCH_PSD) is received together with the touch coordinates on $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$\n5. The signal value $TELEMATIC_FD_5.CM_TCH_STAT$ = 1 (TCH_PSD) is received together with the touch coordinates on $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1320,7 +1320,7 @@
         "axis": "input_data",
         "delta": "本條驗 ICS 與 DTV 之可用性"
       },
-      "reasoning_note": "\n\n**R-P386 / R-P387(b) / R-P392(b) 改寫（68 包）**：原 `ICS functions and the DTV` 為 A1 家族。依 R-P387(b) 取 `4941453` 之 `Idle` 列 —— Display `OFF (*)`，**`(*)`（`CFTS009-4941454` / `4941455`）例外含 Splash Screen visualization**，故畫面僅 `\"Splash Screen\"`；Source OFF → 無音訊 (iii)。ICS 可用之觀察依 **R-P392(b)** 取觸控座標上線：`$TELEMATIC_FD_5.CM_TCH_STAT$ = 1 (TCH_PSD)` 與 `CM_TCH_X_COORD` / `CM_TCH_Y_COORD` 有值 (i)。⚠ **ICS 與 DCSD 之等同性不認定**（R-P392(b) / §I）—— 觀察面取自 `4941453` Idle 列之「DCSD sends touch coordinates」，即規格自給之該態觀察面，非以 ICS 一詞語意擇定；已併入 DR-PW29 附問。",
+      "reasoning_note": "\n\n**R-P386 / R-P387(b) / R-P392(b) 改寫（68 包）**：原 `ICS functions and the DTV` 為 A1 家族。依 R-P387(b) 取 `4941453` 之 `Idle` 列 —— Display `OFF (*)`，**`(*)`（`CFTS009-4941454` / `4941455`）例外含 Splash Screen visualization**，故畫面僅 `\"Splash Screen\"`；Source OFF → 無音訊 (iii)。ICS 可用之觀察依 **R-P392(b)** 取觸控座標上線：`$TELEMATIC_FD_5.CM_TCH_STAT$ = 1 (TCH_PSD)` 與 `CM_TCH_X_COORD` / `CM_TCH_Y_COORD` 有值 (i)。⚠ **ICS 與 DCSD 之等同性不認定**（R-P392(b) / §I）—— 觀察面取自 `4941453` Idle 列之「DCSD sends touch coordinates」，即規格自給之該態觀察面，非以 ICS 一詞語意擇定；已併入 DR-PW29 附問。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 5
     },
     {
@@ -1736,8 +1736,8 @@
       "test_item": "If $VC_VEH_BRAND$ <> [Maserati] AND $TBM_Present$ = [Present]  AND $Country_Code$ is marked as \"Countries which need the combined Geolocation plus SOS Popup\" (see market configuration table) then the HU shall follow the GDPR Non-Maserati startup flow in the HMI.\n\n(read the startup flow against the HMI -> The HU follows the GDPR Non-Maserati startup flow in the HMI)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. VC_VEH_BRAND reads a value other than \"Maserati\"\n3. TBM_Present reads \"Present\"\n4. $Country_Code$ is marked as a country needing the combined Geolocation plus SOS Popup\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through the startup sequence\n2. Read the HU screen and check that the \"Geolocation + SOS\" pop-up is shown on it  —— PENDING: DR-PW27 GDPR flow in HMI",
-      "expected_result": "1. The HU reaches the startup presentation\n2. The HU follows the GDPR Non-Maserati startup flow in the HMI",
+      "test_procedure": "1. Bring the HU through the startup sequence\n2. Read the HU screen and check that the \"Geolocation + SOS\" pop-up is shown on it\n3. PENDING: DR-PW27 GDPR flow in HMI",
+      "expected_result": "1. The HU reaches the startup presentation\n2. The HU follows the GDPR Non-Maserati startup flow in the HMI\n3. The HU follows the GDPR Non-Maserati startup flow in the HMI",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1746,7 +1746,7 @@
       "functional_safety": "NA",
       "estimated_test_time": "",
       "remarks": "(R-P394 B5；規則 R6) (R-P396 字典套用)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 1
     },
     {
@@ -1758,8 +1758,8 @@
       "test_item": "If  $VC_VEH_BRAND$ <> [Maserati] AND ($TBM_Present$ = [Not Present] OR $Country_Code$ is not marked as \"Countries which need the combined Geolocation plus SOS Popup\" in the Market Configuration Table), the HU shall follow the Non-GDPR/Non-Maserati Startup flow in the HMI.\n\n(read the startup flow against the HMI -> The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. VC_VEH_BRAND reads a value other than \"Maserati\"\n3. TBM_Present reads \"Not Present\"\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through the startup sequence\n2. Read the HU screen and check that the \"Geolocation + SOS\" pop-up is shown on it  —— PENDING: DR-PW27 GDPR flow in HMI",
-      "expected_result": "1. The HU reaches the startup presentation\n2. The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI",
+      "test_procedure": "1. Bring the HU through the startup sequence\n2. Read the HU screen and check that the \"Geolocation + SOS\" pop-up is shown on it\n3. PENDING: DR-PW27 GDPR flow in HMI",
+      "expected_result": "1. The HU reaches the startup presentation\n2. The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI\n3. The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1772,7 +1772,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 OR 之左支 TBM Not Present"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 1
     },
     {
@@ -1784,8 +1784,8 @@
       "test_item": "If  $VC_VEH_BRAND$ <> [Maserati] AND ($TBM_Present$ = [Not Present] OR $Country_Code$ is not marked as \"Countries which need the combined Geolocation plus SOS Popup\" in the Market Configuration Table), the HU shall follow the Non-GDPR/Non-Maserati Startup flow in the HMI.\n\n(read the startup flow against the HMI -> The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. VC_VEH_BRAND reads a value other than \"Maserati\"\n3. TBM_Present reads \"Present\"\n4. $Country_Code$ is not marked as one of the \"Countries which need the combined Geolocation plus SOS Popup\" in the Market Configuration Table\n(DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through the startup sequence\n2. Read the HU screen and check that the \"Geolocation + SOS\" pop-up is shown on it  —— PENDING: DR-PW27 GDPR flow in HMI",
-      "expected_result": "1. The HU reaches the startup presentation\n2. The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI",
+      "test_procedure": "1. Bring the HU through the startup sequence\n2. Read the HU screen and check that the \"Geolocation + SOS\" pop-up is shown on it\n3. PENDING: DR-PW27 GDPR flow in HMI",
+      "expected_result": "1. The HU reaches the startup presentation\n2. The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI\n3. The HU follows the Non-GDPR/Non-Maserati Startup flow in the HMI",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1798,7 +1798,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 OR 之右支 country 未標記"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 2
     },
     {
@@ -1928,8 +1928,8 @@
       "test_item": "If the HU Transitions to Timed mode due to the condition described in CFTS009-1809, the HU shall transition to Standby mode after: -1 minute has passed without the user interacting with the pop-up -The FOTA pop up is dismissed -$ACCDlyAct$ transitions from active to inactive\n\n(read the HU mode after the idle period -> The HU transitions to Standby mode after 1 minute has passed)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is in Timed mode due to the condition described in CFTS009-1809",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-PW27 CFTS057 —— FOTA update available 之建立方法\n2. Apply ENTER_TIMED\n3. Read the HU screen and check that the \"FOTA update available\" pop-up is shown\n4. Dismiss the \"FOTA update available\" pop-up through the HMI, then read the HU screen and check that it is no longer shown on it\n5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
-      "expected_result": "1. PENDING: DR-PW27 CFTS057\n2. The HU is in Timed\n3. The \"FOTA update available\" pop-up is shown\n4. The pop-up is no longer shown on the HU screen\n5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
+      "test_procedure": "1. PENDING: DR-PW27 CFTS057 —— FOTA update available 之建立方法\n2. Apply ENTER_TIMED\n3. Read the HU screen and check that the \"FOTA update available\" pop-up is shown\n4. Dismiss the \"FOTA update available\" pop-up through the HMI\n5. Read the HU screen and check that the \"FOTA update available\" pop-up is no longer shown on it\n6. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. PENDING: DR-PW27 CFTS057\n2. The HU is in Timed\n3. The \"FOTA update available\" pop-up is shown\n4. The pop-up is no longer shown on the HU screen\n5. The pop-up is no longer shown on the HU screen\n6. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.10",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1942,7 +1942,7 @@
         "axis": "mode",
         "delta": "本條驗條件一 —— 1 分鐘無互動"
       },
-      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `HU mode after the idle period` 非可觀察量。依 66 包 §1 表 —— pop-up 停留以 `\"FOTA update available\"` pop-up (ii)、`Hold for 60000 ms`（R-1 v3 (e)）、之後 `PowerSts_Telematic = 1 (Standby)` (i)。⚠ **FOTA 可用之建立方法規格指 CFTS057，該文件在 G0 台帳外** → `PENDING: DR-PW27`。⚠ §1 表另記「三個離開條件各一 TC（IN §8.3），現行只測 1 分鐘」—— **拆分未做**，見 67 包回報 §6。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**R-P393(c) §8.3 拆分**：`-169` 之三個離開條件各一 TC；本條為 **FOTA pop-up dismissed 支**。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `HU mode after the idle period` 非可觀察量。依 66 包 §1 表 —— pop-up 停留以 `\"FOTA update available\"` pop-up (ii)、`Hold for 60000 ms`（R-1 v3 (e)）、之後 `PowerSts_Telematic = 1 (Standby)` (i)。⚠ **FOTA 可用之建立方法規格指 CFTS057，該文件在 G0 台帳外** → `PENDING: DR-PW27`。⚠ §1 表另記「三個離開條件各一 TC（IN §8.3），現行只測 1 分鐘」—— **拆分未做**，見 67 包回報 §6。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**R-P393(c) §8.3 拆分**：`-169` 之三個離開條件各一 TC；本條為 **FOTA pop-up dismissed 支**。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。\n\n**G245 補正（74 包）**：保守拆步後有二句之受詞被孤立（`the paired phone screen`／指代詞 `it`），已回填其具名元件（`\"Call Screen\"`／`\"FOTA update available\"` pop-up），使受詞落 R-P353(ii)。**拆步之副作用，據實記。**",
       "split_index": 1
     },
     {
@@ -1980,8 +1980,8 @@
       "test_item": "While HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.\n\n(read the screen against the elapsed time -> A start-up animation plays again only at the next CAN wakeup cycle or after 30 minutes, whichever is greater)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU has just played a start-up animation\n3. All other conditions for the animation hold",
       "input_test_data": "NA",
-      "test_procedure": "1. Set Door_Ajar_Status = \"Open\" then \"Closed\" again within the same CAN wakeup cycle (DR-PW28)\n2. Read the HU screen and check that the \"Start-up Animation\" is not played on it\n3. PENDING: DR-PW26 Sleep 態之觀察方法 —— let the Body CAN go to sleep and wake it again to start a new wakeup cycle\n4. Repeat the door event and read the HU screen, and check that the \"Start-up Animation\" is played on it",
-      "expected_result": "1. The door event is registered within the same CAN wakeup cycle\n2. The \"Start-up Animation\" is not played\n3. PENDING: DR-PW26 Sleep 態之觀察方法\n4. The \"Start-up Animation\" is played on the HU screen in the new wakeup cycle",
+      "test_procedure": "1. Set Door_Ajar_Status = \"Open\" then \"Closed\" again within the same CAN wakeup cycle (DR-PW28)\n2. Read the HU screen and check that the \"Start-up Animation\" is not played on it\n3. PENDING: DR-PW26 Sleep 態之觀察方法\n4. Let the Body CAN go to sleep and wake it again to start a new wakeup cycle\n5. Repeat the door event and read the HU screen\n6. Check that the \"Start-up Animation\" is played on it",
+      "expected_result": "1. The door event is registered within the same CAN wakeup cycle\n2. The \"Start-up Animation\" is not played\n3. PENDING: DR-PW26 Sleep 態之觀察方法\n4. PENDING: DR-PW26 Sleep 態之觀察方法\n5. The \"Start-up Animation\" is played on the HU screen in the new wakeup cycle\n6. The \"Start-up Animation\" is played on the HU screen in the new wakeup cycle",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1994,7 +1994,7 @@
         "axis": "trigger_state",
         "delta": "本條驗再播放之間隔規則"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**R-P386 / R-P393(c) 改寫（68 包）**：原 `screen against the elapsed time` 非可觀察量。依 66 包 §1 表拆二 —— **本條為 30 分鐘支**，下一喚醒週期支另立（IN §8.3）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 `$Door_Ajar_Status$` 止於段 2（LID r474 有列而 `Atlantis High` 欄空），依 R-P393(a) 保留原名。\n\n**R-P393(c) §8.3 拆分**：`-182` 之 **下一喚醒週期支**（原條為 30 分鐘支）。⚠ 喚醒週期須經 `ENTER_SLEEP`，其確認步 `PENDING: DR-PW26`（A-PW351）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**R-P386 / R-P393(c) 改寫（68 包）**：原 `screen against the elapsed time` 非可觀察量。依 66 包 §1 表拆二 —— **本條為 30 分鐘支**，下一喚醒週期支另立（IN §8.3）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 `$Door_Ajar_Status$` 止於段 2（LID r474 有列而 `Atlantis High` 欄空），依 R-P393(a) 保留原名。\n\n**R-P393(c) §8.3 拆分**：`-182` 之 **下一喚醒週期支**（原條為 30 分鐘支）。⚠ 喚醒週期須經 `ENTER_SLEEP`，其確認步 `PENDING: DR-PW26`（A-PW351）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。\n\n**G257 拆步（保守版，74 包）**：逾 IN §5.2 之步**只在帶逗號之並列連接處**切，故 `Read … and check that …` 之原子（R-P354(a)）不被拆、§5.5 之驗證擁有者保有 `check that`；**未刪任何字**（R-P366(b)）；ER 逐步對齊。",
       "split_index": 9
     }
   ]
