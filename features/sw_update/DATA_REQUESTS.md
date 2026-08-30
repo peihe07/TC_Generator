@@ -15,7 +15,7 @@ Urgency 回報。
 | **DR-SU2** | **v3（增第四型，下放包 34）** —— **(a)** Error Code 之**顯示途徑**確認；**(b)** Wi-Fi FOTA session 之**正向狀態**觀測；**(c)** **第三型之區辨手段**（`179`／`181`）。「106 列全部之觀測手段」**已不再請求** —— 其負向半由 `Error_Code_List.xlsx` 覆蓋（R-SU35） | **OPEN**｜**第二型 5 / 106**；**第三型 3 列（母群未經盤點）** | 第二型 5 列（`363`–`367`）＋第三型 **3 列**（`179`／`181`／`184`） | 三段式台帳（R-SU32 v2(f)）——**(b) 段之 106 僅對第二型有意義，不得冒充全體上界** | — | **High** |
 | **DR-SU1** | **靜默期間之安全相關通知條件清單**（pattern：規格側之 safety-related notification 條件表）＋ **二問**：(i) 安全條件成立時系統**是否必須**通知（`shall`）抑或**得不通知**（`allow`／`may`）；(ii) **`4907485`（完成時顯示成功通知）與 `4907477`（靜默期間不得通知）同屬 4.7.3.2 而相互抵觸**，請釐清其優先 | **OPEN**｜**High** | **`175`／`176`(facet A)／`176`(facet B)／`183`** —— **四個驗證單元，非一個** | **阻斷 `newR1L-SU-001`／`002`／`003`，另 `005` 因 (ii) 待釐清** —— **由 1 列擴為 4 列** | — | **High** |
 | **DR-SU3** | **需求單元之合併確認** —— (i) 統攝型：`313`（統攝 `315`–`320`）、`327`（統攝 `328`／`329`）；(ii) **重複表述（下放包 49 §二 #3）：`081`／`083` 與 `082`／`084` 二對，其差全在內部路由（各自送 Arbiter vs 先送 WiFi Update Service 再轉送），外部後果完全相同 —— 請確認是否為同一需求之二種表述** | **OPEN**｜**Medium**（不阻斷其餘各列） | `313`／`327` 二列 | `newR1L-SU-017` 三欄各掛一 `PENDING`；`327` 之 TC 未起草 | — | **Medium** |
-| **DR-SU4** | **中斷處理之判定準據**（**請求 1 之答案同時適用於 transition 之 ER** —— `015`／`016` 第 4 行之 `screen responds to user input` 與六列尾句所求為同一件事，下放包 39 §3.5） —— (1) `4907673` 之 `however` 子句要求 `interrupts shall be gracefully handled so that **the OTA client** continues operation`，惟**其於 HU 上之可觀測表徵未載**；(2) `Table 4-6` 依中斷所落之階段給不同要求（含 `Complete the deployment`），而**階段界線於 HU 外部無可觀測之表徵** | **OPEN**｜**High** —— **阻斷 batch 2a 全部六列** | `315`–`320`（6 列） | `newR1L-SU-011`–`016` 之判定核心全部掛 `PENDING`；**本批無一列可交付** | — | **High** |
+| **DR-SU4** | **中斷處理之判定準據**（**請求 1 之答案同時適用於 transition 之 ER** —— `015`／`016` 第 4 行之 `screen responds to user input` 與六列尾句所求為同一件事，下放包 39 §3.5） —— (1) `4907673` 之 `however` 子句要求 `interrupts shall be gracefully handled so that **the OTA client** continues operation`，惟**其於 HU 上之可觀測表徵未載**；(2) `Table 4-6` 依中斷所落之階段給不同要求（含 `Complete the deployment`），而**階段界線於 HU 外部無可觀測之表徵**。**⚠ v2（下放包 53 T65d）：請求 2 之範圍縮小** —— 嵌入物件 `4908702`（Wi-Fi 下載 session 流程圖）載有可判定之界（`T = 5 minutes since last data received`／`T = 30 minutes after timed mode has expired`／重試計數 `I` 之 0 與 7），**惟其僅及 Wi-Fi 下載路徑之「session 何時終止」，不及 Table 4-6 之階段界線本身**，故請求 2 維持 OPEN，其詳見下方 §DR-SU4 | **OPEN**｜**High** —— **阻斷 batch 2a 全部六列** | `315`–`320`（6 列） | `newR1L-SU-011`–`016` 之判定核心全部掛 `PENDING`；**本批無一列可交付** | — | **High** |
 | **DR-SU5** | **更新類型切換之台架程序與二次執行之可比性** —— **請求 1**：同一 HU 對二個不同類型之 campaign 依序執行時，**如何使二次之起始狀態可比**（乾淨刷機？二台 HU？其他程序？）；**請求 2**：`131` 之 s4 要求「跨更新類型之一致使用者互動流程」，**「一致」之判準為何**（何者須相同、何者得因類型而異） | **OPEN**｜**Medium** | `SWE1-FOTA-131`（`newR1L-SU-021`）＋ 其 **s4 facet（本輪無 TC）** | 阻斷 1 個 TC 與 1 個未起草之 facet；**不阻斷其餘九列** | — | **Medium** |
 
 ## DR-SU2 —— 詳（下放包 23 §3.1）
@@ -186,6 +186,72 @@ Error_Code_List 覆蓋（R-SU35）。
 > （難類盤點，T38c）時撞到的。**二段判準不一致在台帳上看不出來** ——
 > 二欄都是數字，數字都對，只有把二段之**入列條件**並排寫出才顯形。
 > 已入 PLAYBOOK (27)。
+
+---
+
+## DR-SU4 —— 詳（**v2**，下放包 53 T65d）
+
+### 新增之證據：嵌入物件 `4908702`（Wi-Fi 下載 session 流程圖）
+
+**逐字轉錄**（自 RTF 內之 WMF 抽字覆核，非推想）：
+
+| 門檻 | 圖上原文 |
+|---|---|
+| 重試計數 | `Counter I = 0, updates and overwrites the new value of the counter with the input`；`I => 7` 時於 IGN_OFF 提示使用者設定網路並重置 |
+| 30 分鐘 | `T = 30 minutes after timed mode has expired` |
+| 5 分鐘 | `T = 5 minutes since last data received` |
+| 中斷之處置 | `HU shall terminate the download session for the duration of ignition cycle with increment in counter`／`… and reset the counter` |
+
+### ⚠ 其對請求 2 之作用有界，**不得逾界援引**
+
+請求 2 所問者為：**中斷落在 Table 4-6 之哪一階段，測試者既不能選也不能事後判定。**
+
+`4908702` 給的是**下載 session 何時被 HU 終止**之判準
+（5 分鐘無資料／30 分鐘逾時／中斷即終止並累計 `I`）——
+**這使「下載階段」之終止時點可等待、可判定**，
+**而 Table 4-6 第 2 列與第 3 列之界（download session → deployment）仍然沒有。**
+
+**故請求 2 之縮小限於二重範圍**：
+
+1. **限 Wi-Fi 下載路徑** —— 該圖為 Wi-Fi session 之流程；
+   `4907673` 之中斷處理為**通用**條文，其涵蓋 USB／cellular 路徑。
+   **以 Wi-Fi 路徑之值充作通用值即為外推**（IN §8.4.1）。
+2. **限「下載 session 之終止時點」** —— 不及階段界線之判定。
+
+**請求 2 維持 OPEN**，其文本改為：
+
+> 於 **Wi-Fi 下載路徑之外**（USB／cellular），或於 **download → deployment 之界**，
+> 中斷落於何階段仍無可觀測之表徵。系統測層級應如何判定其處置正確？
+
+### 一項須併陳之事實：**037 自身早已載有同組門檻**
+
+複查全 311 列所得（非新值，本輪始被發現）：
+
+| 037 列 | 組 | 門檻 |
+|---|---|---|
+| `003`／`006` | `FOTA Overview` | `no FOTA data is received for **5 consecutive minutes**` |
+| `004` | `FOTA Overview` | `not completed within **7 ignition cycles**` |
+| `007` | `FOTA Overview` | `download attempt count is greater than or equal to **7**` |
+| `008` | `FOTA Overview` | `cannot download FOTA package over Wi-Fi for **7 consecutive days**` |
+| `057` | `Wi-Fi Download` | `session duration exceeds **30 minutes** during the current ignition cycle` |
+| `043`／`054` | `Wi-Fi Download` | `within **15 seconds**`（Host↔Client 模式切換） |
+| `065` | `Wi-Fi Download` | `fails for **5 consecutive** Wi-Fi connection attempts` |
+| `069` | `Wi-Fi Download` | `$IBS_SOC$ > [**65**]` |
+| `071` | `Wi-Fi Download` | `unsuccessful within **3 minutes**` |
+
+> **故 `4908702` 之價值不在「提供了新值」，而在「與 037 互為佐證」** ——
+> 5 分鐘與 7 兩者於二個獨立來源一致（R-SU42(b) 之來源要求因此加強）。
+
+### ⚠ 惟其中一項二來源**不一致**，列待裁
+
+| 來源 | 30 分鐘之錨 |
+|---|---|
+| 037 `057` | session **duration** exceeds 30 minutes **during the current ignition cycle** |
+| `4908702` | `T = 30 minutes **after timed mode has expired**` |
+
+**同一個 30，起點不同** —— 前者自 session 起算，後者自 timed mode 到期起算。
+**二者於台架上是不同的等待。** 起草 `057` 之 TC 前須先裁其一，
+**不得因「都是 30 分鐘」而視為同一件事。**
 
 ---
 

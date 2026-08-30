@@ -90,3 +90,29 @@ DECISIONS.md written.
 - workbook req_ids ABSENT from 037 (traceability orphans, RD-1 candidates):
   - done region: 0 (none)
   - draft region: 0 (none)
+
+---
+
+## 跨 feature 之事實 —— CFTS Embedded Objects 目錄（T65e，下放包 53 §三）
+
+**只記錄，不處理**（跨 feature 之處置屬 Pei）。
+
+路徑：`~/Work/02_Project_R1LR/1_Customer_Requirement/R1LR SR26 ATL-H/26PI2.5/
+Reference Documents/CFTS Embedded Objects/`
+
+其下有 **9 個 CFTS 目錄**：`CFTS001`／`CFTS013`／`CFTS019`／`CFTS024`／`CFTS025`／
+`CFTS028`／`CFTS036`／**`CFTS057`**（本 feature 之母 spec）／`CFTS069`。
+
+**本 feature 之 `CFTS057` 目錄下 6 個 `.rtf` 皆為 Visio 圖（RTF 包 WMF），
+其中確含未見於 docx 文字之流程與數值**（見 `DATA_REQUESTS.md` §DR-SU4 詳、
+`ANCHOR_POOL.md` 附記）：
+
+- `4908702`：Wi-Fi 下載 session 流程圖 —— 三個時間／計數門檻
+- `4907980`：**UDS Pre-Program Sequence** —— `$10 83`／`$85 82`／`$31 81 FF 05`／`$28 81 01` 等診斷服務碼
+- `4907976`＝`4907977`：OTA client 架構（Vehicle／Download／Deployment Manager 三層）
+- `4907974`／`4907975`：OTA 架構概觀與端到端系統圖（11 個編號步驟）
+
+> **對其他 feature 之意義**：其素材若同樣取自 CFTS docx 之文字，
+> **則其圖中之數值同樣不在其語料內**（本 feature 實測：六個 ObjectID 於
+> `document.xml` 出現次數皆為 **0**）。`audio_mgmt`（CFTS019）等
+> **可能有同型之藏值**。**本項只陳述事實，不建議任何處置。**

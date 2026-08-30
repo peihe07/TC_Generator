@@ -216,6 +216,33 @@ that follows the third row is compliant, and that assertion would fail it.
 judged, given that the tester can neither control nor determine which phase the
 interruption fell in?
 
+### 3B.2a Addendum (2026-08-30) — one boundary has since been found, and it is narrower than the request
+
+An embedded object in CFTS057 (`4908702`, a Wi-Fi download session flow chart that is
+not part of the document text) states three thresholds verbatim:
+
+- `T = 5 minutes since last data received`
+- `T = 30 minutes after timed mode has expired`
+- a retry counter `I`, reset at `0`, with the user prompted at `I => 7`
+
+and, for an interruption, `HU shall terminate the download session for the duration of
+ignition cycle with increment in counter, I += 1` (or `… and reset the counter, I = 0`).
+
+**This tells us when a download session ends. It does not tell us which phase an
+interruption fell in.** It also applies to the Wi-Fi download path only, while
+`4907673` is written for interruptions in general, including USB and cellular. We are
+therefore not treating these values as an answer to Request 2, and we are not carrying
+them over to other paths.
+
+**Request 2 remains open, restated narrowly:** outside the Wi-Fi download path, and at
+the boundary between the download session and deployment, how should correct
+interruption handling be judged at system test level?
+
+**One inconsistency we need resolved before we can use the 30 minutes at all:**
+requirement `SWE1-FOTA-057` measures it as the *session duration* within the current
+ignition cycle, while the flow chart measures it *from the expiry of timed mode*. These
+are two different waits on the bench.
+
 ### 3B.3 What we did instead, pending your answer
 
 We removed the version comparison from the pass criterion and kept it as a recorded
