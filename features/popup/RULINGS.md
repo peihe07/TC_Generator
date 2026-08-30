@@ -6,10 +6,12 @@
 
 ### R-POP1 — slug 與目錄（Pei 裁，2026-08-27）
 
+```
 Popup 立為獨立 feature，slug = `popup`。目錄 `features/popup/`，
 投遞區 `_intake/Popup/`（TitleCase，R-G24 已建妥並實測）。
 Feature 接手名稱「Pop-Up Queue and Priority Management」為工單稱謂；
 目錄與 slug 不帶 queue/priority 字樣（現有 037 內容見 R-POP2）。
+```
 
 ### R-POP2 — 生成範圍照 037 為準（Pei 裁，2026-08-27）
 
@@ -41,16 +43,19 @@ Part N（落檔於 framework 鎖定時）。
 
 ### R-POP5 — Heading 列之台帳處置（分析層先裁；**Pei 追認 2026-08-28**）
 
+```
 覆蓋台帳收錄 Analysis Report 全部 7 列。Heading 2 列處置：
 - SWE1-POP-002 標 `No TC — Heading; refer to child IDs -002-01..-05`
 - SWE1-POP-001 標 `No TC — Heading; duplicated of SWE1-POP-002-02`
   （037 原文 K8 逐字：「Duplicated feature of SWE1-POP-002-02」）
+```
 沿 bed_lowering R-BLM2 前例形制。
 
 **追認（2026-08-28，Pei「都裁過了」）**：照現裁確定，不再為 [DEFAULT]。
 
 ### R-POP6 — Pop Up List 納入為素材（Pei 裁，2026-08-27，A-POP2 甲半）
 
+```
 納入 `forms/Pop Up List HMI R1 (26PI).xlsx`（Main A1 逐字
 `SR24 Post 2A CR25802`，與本 feature 規格基線同代）為 popup 素材，
 **引用原位不搬**（既有共用件，sw_update A-SU3 前例；R-G27「既有檔案
@@ -63,6 +68,7 @@ profile-scoped 例外（前例 Home A-H10）。
 殘留兩點隨 RD-1 確認、不阻斷：
 (a) CR25802（Pop Up List）vs CR22510（規格封面）之版位關係；
 (b) 檔名 `(26PI)` 標記之車型／程式適用性。
+```
 
 ### R-POP7 — Priority Matrix 不納入（Pei 裁，2026-08-27，A-POP2 乙半）
 
@@ -75,6 +81,7 @@ R-POP2 已將 queue／priority 排除於生成範圍。DR-POP2 保持開啟，
 
 ### R-POP8 — -002-02 之 spec_reference 併列兩節（Pei 裁，2026-08-27，A-POP3 採甲）
 
+```
 SWE1-POP-002-02 衍生 TC 之 specification_reference 併列兩行（升冪，
 前綴逐行重述，IN §10.7）：
 `SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)_5.5`
@@ -82,6 +89,7 @@ SWE1-POP-002-02 衍生 TC 之 specification_reference 併列兩行（升冪，
 兩值皆為 037 C 欄逐字（C8／C10 起），非分析層推定之章節錨（與
 bed_lowering R-BLM5 之 A-BLM4 情境不同，本 feature 不需 override）。
 其餘 leaf 單行 `_5.6`。理由：GP3 與 GP4 第 2 途徑為同一行為之兩處敘述
+```
 （037 K8 之 duplicated 判定與規格對得上），該 TC 所直接驗證者含兩節
 （IN §9-16）。
 
@@ -106,9 +114,11 @@ DR-POP 須轉為受檢，並以「注入跳號即 FAIL」實證其會轉紅。
 
 ### R-POP11 — rulings_hash 範圍納 feature RULINGS（Pei 裁，2026-08-27）
 
+```
 `scripts/rulings_hash.py` 預設範圍納入 `features/*/RULINGS.md`，
 重產 `docs/fw036/RULINGS.sha.tsv`。invariant：既有 R-G 條之 sha 不得
 因本次擴範圍而變（變動即停下回報）。理由：R-G13 明定條文落各 feature
+```
 之 RULINGS.md，tsv 不涵蓋則引用制半殘。
 **全域效力之工具政策，候升格 R-G。**
 
@@ -165,13 +175,17 @@ pilot 現值 `newR1L-POP-{NNN}` 兩處皆錯（`newR1L`≠`NR1L`；
 
 ### R-POP14 — -002-05 採規格原句生成（分析層裁 [DEFAULT]，2026-08-27，**A-POP8**）
 
+```
 **A-POP8** 三案採**乙案改良**：-002-05 照 GP4-4 規格原句生成，
 `spec_reference` 單行 `_5.6`，**不引 PU**。理由：GP4-4 為規格自載之行為
+```
 陳述，`e.g in the search keyboard` 是規格自己的舉例，**不是向 Pop Up List
 之委派**（對照 GP4-1 逐字 `timeout is defined in Pop-up List document`
+```
 才是委派）。故不適用 R-POP6 之值引用規則，亦無須 PENDING。
 另開 **DR-POP4** 索 multi-task popup 之完整例外清單（不阻斷；
 回覆前不得自行列舉 search keyboard 以外之實例，IN §8.4.1）。
+```
 
 ### R-POP15 — Pilot 修正六件之判準（分析層裁，2026-08-27）
 
