@@ -1,0 +1,52 @@
+# 框界作業期間之狀態表（下放包 63 §三 #1，T75a；下放包 64 T76 修正其母群）。
+# **只收 `kind == ruling` 之錨點** —— R-G29 之射程即此（group／report／superseded 不在內）。
+# R-G13 之比對對 `refenced`／`pending-frame` 者，其不符**不觸發停止**，改報「框界作業中，非條文變動」。
+# ⚠ 診斷：sha 同時承擔「條文是否被改」與「這一節之字元是否有任何變動」二事；`body_sha`／`section_sha` 之分立解了一半，
+#    而**加框動 `section_sha`；`body_sha` 之變動來自巢狀修正（5 條）**（下放包 65 §四 #1）。本表為過渡之解，非其根治。
+ruling_id	source	frame_state	tsv_body_sha8	current_body_sha8	body_kind	note
+R-POP1	features/popup/RULINGS.md	refenced	61145b5f	61145b5f	section	框界已裁（下放包 65 §三），已加框
+R-POP11	features/popup/RULINGS.md	refenced	a6b5301b	a6b5301b	section	框界已裁（下放包 65 §三），已加框
+R-POP12	features/popup/RULINGS.md	pending-frame	e323360d	e323360d	section	待裁框界
+R-POP13	features/popup/RULINGS.md	pending-frame	89306542	89306542	section	待裁框界
+R-POP14	features/popup/RULINGS.md	refenced	e025ab99	e025ab99	section	框界已裁（下放包 65 §三），已加框
+R-POP15	features/popup/RULINGS.md	pending-frame	2c712b56	2c712b56	section	待裁框界
+R-POP18	features/popup/RULINGS.md	pending-frame	bfbb3167	bfbb3167	section	待裁框界
+R-POP20	features/popup/RULINGS.md	pending-frame	2894aa0c	2894aa0c	section	待裁框界
+R-POP22	features/popup/RULINGS.md	pending-frame	1bb746f6	1bb746f6	section	待裁框界
+R-POP23	features/popup/RULINGS.md	pending-frame	c5655c80	c5655c80	section	待裁框界
+R-POP24	features/popup/RULINGS.md	pending-frame	e362b2b6	e362b2b6	section	待裁框界
+R-POP26	features/popup/RULINGS.md	pending-frame	5b4d55fe	5b4d55fe	section	待裁框界
+R-POP5	features/popup/RULINGS.md	refenced	a6816cb1	a6816cb1	section	框界已裁（下放包 65 §三），已加框
+R-POP6	features/popup/RULINGS.md	refenced	66f64b48	66f64b48	section	框界已裁（下放包 65 §三），已加框
+R-POP8	features/popup/RULINGS.md	refenced	7425f059	7425f059	section	框界已裁（下放包 65 §三），已加框
+R-TM11	features/time_management/RULINGS.md	pending-frame	bdabd953	bdabd953	section	待裁框界
+R-TM12	features/time_management/RULINGS.md	pending-frame	831cfd67	831cfd67	section	待裁框界
+R-TM13	features/time_management/RULINGS.md	pending-frame	19d17718	19d17718	section	待裁框界
+R-TM40	features/time_management/RULINGS.md	pending-frame	f2c23203	f2c23203	section	待裁框界
+R-TM9	features/time_management/RULINGS.md	pending-frame	54c12889	54c12889	section	待裁框界
+R-VS19′	features/vehicle_setting/RULINGS.md	pending-frame	487f8e10	487f8e10	section	待裁框界
+R-VS19″	features/vehicle_setting/RULINGS.md	pending-frame	d1c7df04	d1c7df04	section	待裁框界
+R-VS36	features/vehicle_setting/RULINGS.md	pending-frame	2388813c	2388813c	section	待裁框界
+R-VS37	features/vehicle_setting/RULINGS.md	pending-frame	3ccd425f	3ccd425f	section	待裁框界
+R-VS37′	features/vehicle_setting/RULINGS.md	pending-frame	9fb44a48	9fb44a48	section	待裁框界
+R-VS38	features/vehicle_setting/RULINGS.md	pending-frame	238c968a	238c968a	section	待裁框界
+R-VS39	features/vehicle_setting/RULINGS.md	pending-frame	d66fb38e	d66fb38e	section	待裁框界
+R-VS40	features/vehicle_setting/RULINGS.md	pending-frame	14c4341f	14c4341f	section	待裁框界
+R-VS41	features/vehicle_setting/RULINGS.md	pending-frame	94b19430	94b19430	section	待裁框界
+R-VS42	features/vehicle_setting/RULINGS.md	pending-frame	94211023	94211023	section	待裁框界
+R-VS43	features/vehicle_setting/RULINGS.md	pending-frame	2b9ae897	2b9ae897	section	待裁框界
+R-VS44	features/vehicle_setting/RULINGS.md	pending-frame	076b791c	076b791c	section	待裁框界
+R-VS44′	features/vehicle_setting/RULINGS.md	pending-frame	8bc26bce	8bc26bce	section	待裁框界
+R-VS45	features/vehicle_setting/RULINGS.md	pending-frame	650e2f03	650e2f03	section	待裁框界
+R-VS46	features/vehicle_setting/RULINGS.md	pending-frame	2712e131	2712e131	section	待裁框界
+R-VS47	features/vehicle_setting/RULINGS.md	pending-frame	8151b4de	8151b4de	section	待裁框界
+R-VS48	features/vehicle_setting/RULINGS.md	pending-frame	72fad62e	72fad62e	section	待裁框界
+R-VS48′	features/vehicle_setting/RULINGS.md	pending-frame	9a791357	9a791357	section	待裁框界
+R-VS49	features/vehicle_setting/RULINGS.md	pending-frame	6b42d425	6b42d425	section	待裁框界
+R-VS50	features/vehicle_setting/RULINGS.md	pending-frame	87d132ec	87d132ec	section	待裁框界
+R-VS7(a)′	features/vehicle_setting/RULINGS.md	pending-frame	31bff057	31bff057	section	待裁框界
+R-AM2	features/audio_mgmt/RULINGS.md	refenced	21957d7f	a1204c33	fenced	巢狀修正（子條之框不再算入母條）
+R-TM37	features/time_management/RULINGS.md	refenced	6eaeb96f	d0ead7b9	fenced	巢狀修正（子條之框不再算入母條）
+R-TM47	features/time_management/RULINGS.md	refenced	0f42ba4c	4769bb92	fenced	巢狀修正（子條之框不再算入母條）
+R-TM49	features/time_management/RULINGS.md	refenced	452edaf7	f6c7f919	fenced	巢狀修正（子條之框不再算入母條）
+R-TM51	features/time_management/RULINGS.md	refenced	d0a7addf	47b9a473	fenced	巢狀修正（子條之框不再算入母條）
