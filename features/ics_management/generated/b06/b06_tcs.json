@@ -8,6 +8,7 @@
  "tcs": [
   {
    "req_id": "SWE-ICS-005",
+   "tc_id": "NR1L-ICS-026",
    "tc_title": "Mute hardkey pressed while audio unmuted",
    "test_group": "ICS",
    "test_set": "Volume Control",
@@ -30,6 +31,7 @@
   },
   {
    "req_id": "SWE-ICS-005",
+   "tc_id": "NR1L-ICS-027",
    "tc_title": "Mute hardkey pressed while audio muted",
    "test_group": "ICS",
    "test_set": "Volume Control",

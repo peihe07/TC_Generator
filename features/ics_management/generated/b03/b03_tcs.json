@@ -7,6 +7,7 @@
  "tcs": [
   {
    "req_id": "SWE-ICS-006",
+   "tc_id": "NR1L-ICS-009",
    "tc_title": "Power hardkey pressed while HU screen on",
    "test_group": "ICS",
    "test_set": "Display Control",
@@ -29,6 +30,7 @@
   },
   {
    "req_id": "SWE-ICS-006",
+   "tc_id": "NR1L-ICS-010",
    "tc_title": "Power hardkey pressed at Telematic Power full operation",
    "test_group": "ICS",
    "test_set": "Display Control",
@@ -51,6 +53,7 @@
   },
   {
    "req_id": "SWE-ICS-006",
+   "tc_id": "NR1L-ICS-011",
    "tc_title": "Power hardkey pressed while HU screen off",
    "test_group": "ICS",
    "test_set": "Display Control",
@@ -73,6 +76,7 @@
   },
   {
    "req_id": "SWE-ICS-006",
+   "tc_id": "NR1L-ICS-012",
    "tc_title": "Power hardkey pressed at Telematic Power idle",
    "test_group": "ICS",
    "test_set": "Display Control",
@@ -95,6 +99,7 @@
   },
   {
    "req_id": "SWE-ICS-007",
+   "tc_id": "NR1L-ICS-013",
    "tc_title": "Screen off hardkey starts the three second timer",
    "test_group": "ICS",
    "test_set": "Display Control",
@@ -117,6 +122,7 @@
   },
   {
    "req_id": "SWE-ICS-007",
+   "tc_id": "NR1L-ICS-014",
    "tc_title": "Screen off hardkey pressed again within three seconds",
    "test_group": "ICS",
    "test_set": "Display Control",
@@ -139,6 +145,7 @@
   },
   {
    "req_id": "SWE-ICS-007",
+   "tc_id": "NR1L-ICS-015",
    "tc_title": "Three second period completed after screen off hardkey",
    "test_group": "ICS",
    "test_set": "Display Control",
@@ -161,6 +168,7 @@
   },
   {
    "req_id": "SWE-ICS-007",
+   "tc_id": "NR1L-ICS-016",
    "tc_title": "Screen off hardkey pressed while HU screen off",
    "test_group": "ICS",
    "test_set": "Display Control",

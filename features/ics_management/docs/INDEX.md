@@ -439,3 +439,27 @@ PENDING **6 處全在 `pre_conditions`**（DR-ICS6 五處、DR-ICS4 一處）；
 
 另具名一件：下放包稱「本 feature 無既有交付件」，實測 `sandbox/ics_management_00.xlsx` **存在**
 （第 01 輪所產，**與母本 sha 逐字相同、資料列 0**）—— 結論正確而前提敘述不精確。
+
+---
+
+## 第 19 輪（2026-08-30）**寫回 19b：編號與 sandbox 產出**
+
+| 項 | 落點 |
+|---|---|
+| 上繳包 19b | `docs/upstream/19b_writeback_sandbox.md` |
+| **工作簿** | `sandbox/v1/ics_management_v1.xlsx`（177,187 bytes）＋ `.sha256` sidecar |
+| 交付清單（已更新）| `docs/reports/19_delivery_checklist_ics.md` |
+| 快照 | `docs/reports/19b_rulings_snapshot.md` |
+
+**E18／E46／E47／E48 全部未觸發；預期數字 13 項全數相符。git 執行次數 0。**
+
+**`tc_id` 已指派**：`NR1L-ICS-001` ~ `NR1L-ICS-031`，依工作簿列序連續、無重號無缺號、前綴唯一。
+`generated/` 之其他欄一字未改（欄集合僅多 `tc_id`）；七批 `manifest.json` 同步。
+
+**工作簿 sha256 ＝ `d31d81d211d11593cfbc6878e89fb87b3f9fcf3cbf33621a761857f4b2e2ddea`**。
+**讀回 403／403 格逐字相同**（31 條 × 13 欄）；zip 48 成員／順序／timestamps／`docProps` 與母本一致；
+**x14 DV（`R10:R1411`）保留**，僅 `sheet6.xml` 有差；PENDING 6 處原樣、Test Set 5、錨行 65。
+
+**未做**：Excel GUI 驗證（屬 Pei）、`--write`、tag、複製入 `delivered/`。
+**四條不可出貨者之 ID**：`-004`／`-005`／`-006`（DR-ICS9）、`-021`（DR-ICS2）——
+**工作簿內無任何記號**，只有交付清單 §3 與凍結記錄 §3 會提醒。

@@ -38,5 +38,9 @@
   "verify_verbatim_b01.py": "PASS — 25 條逐字命中 25",
   "ledger_guard.py": "作業 A 後 exit 0；完工後 exit 0 且與作業 A 後逐字相同"
  },
- "note": "tcs_sha256 為本檔寫入前之值。"
+ "note": "tcs_sha256 為本檔寫入前之值。",
+ "tc_ids": [
+  "NR1L-ICS-024",
+  "NR1L-ICS-025"
+ ]
 }

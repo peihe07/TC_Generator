@@ -2,13 +2,27 @@
 
 回修不只是改內容，交付物本身的版本合規同樣要成立。
 
-## 版次命名（待 Pei 裁定一制）
+## 版次命名（**交付本檔名已裁定 2026-08-30**；回修尾綴仍待裁）
 
 提案：回修版檔名沿用原名，日期改回修完成日，尾綴 `(Revise)`；
 同本二修 `(Revise2)`。例：
 `..._SWQT_BT_20260901(Revise).xlsx`
 （沿用語料既有慣例：DealerMode 已有 `(Review)`/`(Revise)`/`(done)`
-尾綴先例。）☐照提案 ☐其他制___
+尾綴先例。）☐照提案 ☐其他制___ ← **回修尾綴此框仍未勾，仍待裁**
+
+### 交付本檔名（已裁 2026-08-30，Pei 直接裁定）
+
+**☑ 定案**：`…Result_SWQT_{FeatureToken}_{YYYYMMDD}.xlsx`，
+`{FeatureToken}` 取 feature slug 之 PascalCase 形（`PowerManagement`／
+`ICSManagement`），`{YYYYMMDD}` 取交付日。**sandbox 作業名不得作交付名。**
+
+落條於 `features/ics_management/RULINGS.md` **R-ICS57(a)~(g)**（全案適用）。
+依 R-G25「政策自生效日管新檔」，`features/power/delivered/pm_29.xlsx`
+不更名，但**具名其為 sandbox 名、不合本制，不得再作命名前例援引**。
+
+> 成因具名：本節自 2026-08-21 標「待裁」，選項框九日未勾。ICS 交付時
+> 執行層以 `pm_29.xlsx` 為前例推定檔名而推定錯誤 —— 該前例本身即不合
+> 語料慣例。**一個未裁定之欄位不會因為久置而變成有預設值。**
 
 原始交付檔不覆寫、不刪除，回修版並存於同目錄；
 舊版是否移 REF/ 由 Pei 逐本裁定。

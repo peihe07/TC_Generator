@@ -31,5 +31,9 @@
   "selfcheck_b01.py": "PASS — b01~b06 合檢 27 條，機檢 19 項 FAIL 0",
   "verify_verbatim_b01.py": "PASS — 27 條逐字命中 27"
  },
- "note": "tcs_sha256 為本檔寫入前之值。"
+ "note": "tcs_sha256 為本檔寫入前之值。",
+ "tc_ids": [
+  "NR1L-ICS-026",
+  "NR1L-ICS-027"
+ ]
 }

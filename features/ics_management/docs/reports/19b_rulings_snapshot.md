@@ -1,3 +1,15 @@
+# RULINGS.md 快照 — b19b 完工時（2026-08-30）
+
+> 快照法（R-ICS38(a)）第十次落地。**b19 完工；ICS 之產出已全部在檔案裡。**
+> 下次之圍籬 diff 以本檔為基準，**不動用 git**。逐字複本，一字未改。
+
+- 來源 sha256：`415b6cca7b3f75241f2bbc5f19bdba5cc1479790c6bae1ca1053e0f96f187f1e`
+- `## R-ICS` 標題 63 行
+
+- 快照時間：2026-08-30 22:06:30
+
+---
+
 # RULINGS — ICS Management (FW036)
 
 Pei 之裁決與分析層自裁條文之逐字登記。前綴 `R-ICS` / `A-ICS` / `DR-ICS`，
@@ -2273,37 +2285,3 @@ R-ICS55（19a 之採認；TC ID 之裁定路徑；19b 授權）
     列入交付清單。五個跡象合併上呈，**分析層不再重複提問**，只在交付清單標明其影響。
 （分析層即裁，2026-08-30；upstream-19a §2、§3、§4、§5、§11；IN §4.1.3、§10.3；FO §6）
 ```
-
-## R-ICS57 — 交付本檔名一制（Pei 直接裁定，2026-08-30）
-
-```
-(a) `delivered/` 內之交付本檔名一律為：
-    `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case
-    Specification & Result_SWQT_{FeatureToken}_{YYYYMMDD}.xlsx`
-    —— 即 036 母本全名，`_SWQT_` 之後接 feature token 與交付日。
-
-(b) `{FeatureToken}` 對齊 feature slug 之 PascalCase 形，非 Test Group 縮寫。
-    ICS 之 token 為 **`ICSManagement`**（比對 power → `PowerManagement`）。
-    **本項與 tc_id 前綴無關** —— tc_id 仍為 `NR1L-ICS-{n:03d}`（R-ICS56(a)），
-    二者分屬不同命名軸，不得互相推定。
-
-(c) `{YYYYMMDD}` 為**交付日**（複製入 `delivered/` 之日），
-    非母本日、非 sandbox 產出日。
-
-(d) **sandbox 作業名不得作交付名。** `sandbox/<tag>/` 之檔名為作業用，
-    複製入 `delivered/` 時須依 (a) 更名；MANIFEST.tsv 之 `source_path`
-    保留其 sandbox 原名，使兩名之對應可查。
-
-(e) 本條**只管新交付件**。依 R-G25「政策自生效日管新檔；既有檔案不搬移」，
-    `features/power/delivered/pm_29.xlsx` 不更名 —— 但**具名其為 sandbox 名，
-    不合本制**，不得再作為命名前例援引。
-
-(f) 具名本條之成因：`docs/fw036/REMEDIATION_DELIVERY_MGMT_20260821.md`
-    §版次命名自 2026-08-21 起標「待 Pei 裁定一制」，選項框九日未勾。
-    ICS 交付時執行層以 `pm_29.xlsx` 為前例推定檔名，**推定錯誤**——
-    該前例本身即不合語料慣例。**一個未裁定之欄位不會因為久置而變成有預設值。**
-
-(g) 回修版尾綴（`(Revise)`／`(Revise2)`）之提案不在本條射程，仍待裁。
-```
-（Pei 直接裁定，2026-08-30；FO R-G25、R-G1；FORMS.md；
- REMEDIATION_DELIVERY_MGMT_20260821 §版次命名）

@@ -8,6 +8,7 @@
  "tcs": [
   {
    "req_id": "SWE-ICS-009",
+   "tc_id": "NR1L-ICS-028",
    "tc_title": "Back button pressed",
    "test_group": "ICS",
    "test_set": "Menu Navigation",
@@ -30,6 +31,7 @@
   },
   {
    "req_id": "SWE-ICS-006",
+   "tc_id": "NR1L-ICS-029",
    "tc_title": "Two ICS buttons pressed at the same time",
    "test_group": "ICS",
    "test_set": "Display Control",
@@ -52,6 +54,7 @@
   },
   {
    "req_id": "SWE-ICS-007",
+   "tc_id": "NR1L-ICS-030",
    "tc_title": "Button event change reported within Tbutton",
    "test_group": "ICS",
    "test_set": "Display Control",
@@ -74,6 +77,7 @@
   },
   {
    "req_id": "SWE-ICS-001",
+   "tc_id": "NR1L-ICS-031",
    "tc_title": "Knob 1 status sent on BH-CAN",
    "test_group": "ICS",
    "test_set": "Volume Control",

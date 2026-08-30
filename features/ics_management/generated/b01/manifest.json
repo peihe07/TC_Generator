@@ -53,5 +53,13 @@
    "S1/S2/S3 之 DTC 具名為 B14DA-2A（DTCs Matrix r57）",
    "b03 作業 D：V3 之 pre_conditions 增 PENDING: DR-ICS12（佔位 1 → 2）"
   ]
- }
+ },
+ "tc_ids": [
+  "NR1L-ICS-001",
+  "NR1L-ICS-002",
+  "NR1L-ICS-003",
+  "NR1L-ICS-004",
+  "NR1L-ICS-005",
+  "NR1L-ICS-006"
+ ]
 }

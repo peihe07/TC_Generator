@@ -7,6 +7,7 @@
  "tcs": [
   {
    "req_id": "SWE-ICS-010",
+   "tc_id": "NR1L-ICS-007",
    "tc_title": "Press ignored during stuck condition",
    "test_group": "ICS",
    "test_set": "Stuck Button",
@@ -29,6 +30,7 @@
   },
   {
    "req_id": "SWE-ICS-010",
+   "tc_id": "NR1L-ICS-008",
    "tc_title": "Button responsive after release",
    "test_group": "ICS",
    "test_set": "Stuck Button",

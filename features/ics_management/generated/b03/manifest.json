@@ -61,5 +61,15 @@
   "ledger_guard.py": "開工前 exit 0"
  },
  "note": "tcs_sha256 為本檔寫入前之值；b03_tcs.json 若再動，本檔須重算。",
- "counts_correction": "b03 落檔時本檔記 14，**實測為 15**（本包以腳本逐一列舉重數）—— 該誤值經 upstream-03 §13 傳入下放包 04 §5-5 之預期。現值 12 為解 3 後之數。"
+ "counts_correction": "b03 落檔時本檔記 14，**實測為 15**（本包以腳本逐一列舉重數）—— 該誤值經 upstream-03 §13 傳入下放包 04 §5-5 之預期。現值 12 為解 3 後之數。",
+ "tc_ids": [
+  "NR1L-ICS-009",
+  "NR1L-ICS-010",
+  "NR1L-ICS-011",
+  "NR1L-ICS-012",
+  "NR1L-ICS-013",
+  "NR1L-ICS-014",
+  "NR1L-ICS-015",
+  "NR1L-ICS-016"
+ ]
 }

@@ -1,0 +1,2 @@
+filename	sha256	source_path	delivered_round	note
+FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ICSManagement_20260830.xlsx	d31d81d211d11593cfbc6878e89fb87b3f9fcf3cbf33621a761857f4b2e2ddea	features/ics_management/sandbox/v1/ics_management_v1.xlsx	19b 包 §作業 C	整檔複製，逐位元組一致（cmp 實測）。檔名依 R-ICS57 之交付命名一制。GUI 驗證未做（Pei 手動項）；4 條不可出貨（V1/V2/V3 繫 DR-ICS9、B5 繫 DR-ICS2）依 R-ICS54(a) 現狀寫入

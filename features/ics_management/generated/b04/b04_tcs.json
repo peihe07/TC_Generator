@@ -7,6 +7,7 @@
  "tcs": [
   {
    "req_id": "SWE-ICS-003",
+   "tc_id": "NR1L-ICS-017",
    "tc_title": "Knob 2 rotated clock-wise",
    "test_group": "ICS",
    "test_set": "Browse Control",
@@ -29,6 +30,7 @@
   },
   {
    "req_id": "SWE-ICS-003",
+   "tc_id": "NR1L-ICS-018",
    "tc_title": "Knob 2 rotated counter clock-wise",
    "test_group": "ICS",
    "test_set": "Browse Control",
@@ -51,6 +53,7 @@
   },
   {
    "req_id": "SWE-ICS-003",
+   "tc_id": "NR1L-ICS-019",
    "tc_title": "Knob 2 held stationary",
    "test_group": "ICS",
    "test_set": "Browse Control",
@@ -73,6 +76,7 @@
   },
   {
    "req_id": "SWE-ICS-003",
+   "tc_id": "NR1L-ICS-020",
    "tc_title": "Knob 2 no change sent periodically",
    "test_group": "ICS",
    "test_set": "Browse Control",
@@ -95,6 +99,7 @@
   },
   {
    "req_id": "SWE-ICS-004",
+   "tc_id": "NR1L-ICS-021",
    "tc_title": "Three detents counted in one rotation",
    "test_group": "ICS",
    "test_set": "Browse Control",
@@ -117,6 +122,7 @@
   },
   {
    "req_id": "SWE-ICS-004",
+   "tc_id": "NR1L-ICS-022",
    "tc_title": "Knob 2 signals acted on by the HU",
    "test_group": "ICS",
    "test_set": "Browse Control",
@@ -139,6 +145,7 @@
   },
   {
    "req_id": "SWE-ICS-008",
+   "tc_id": "NR1L-ICS-023",
    "tc_title": "Enter button pressed",
    "test_group": "ICS",
    "test_set": "Menu Navigation",
