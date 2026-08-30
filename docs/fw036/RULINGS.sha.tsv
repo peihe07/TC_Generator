@@ -1,33 +1,34 @@
 ruling_id	kind	sha8	sha256	source	line	body_lines	ancestor	slug
-R-G1	ruling	550ace4f	550ace4fab995b766d75160960e9f3b6e5611f71bd409a6e9070bb757d2f71b6	docs/fw036/FEATURE_ONBOARDING.md	727	2	9. 全域條文與通則（整併落點）	036 母本之固定與其身分
-R-G2	ruling	521fde5f	521fde5fedde77c14cc479c2f0e06ee3415c5caf8f6f16dfdf8ef4060740f969	docs/fw036/FEATURE_ONBOARDING.md	732	1	9. 全域條文與通則（整併落點）	`forms/` 舊檔以 `mv` 歸檔
-R-G3	ruling	79860d4a	79860d4a4c9624f0afe354f34f363cc80de3fb036b1e2ea909e79731b907ffab	docs/fw036/FEATURE_ONBOARDING.md	736	2	9. 全域條文與通則（整併落點）	`framework.md` 範例禁用 `openpyxl` + `wb.save()`
-R-G4	ruling	329570ce	329570ce47fe242c290f224979003382ce27bf841a036c5c53e9737fe4180dbf	docs/fw036/FEATURE_ONBOARDING.md	741	3	9. 全域條文與通則（整併落點）	衍生檔之檔名歸屬與其讀者
-R-G5	ruling	9814d24c	9814d24ca744fa17831281ec13fccae57f0f589ffc827495227966b1b6659543	docs/fw036/FEATURE_ONBOARDING.md	747	2	9. 全域條文與通則（整併落點）	全部 git 操作屬 Pei
-R-G6	ruling	6ad48387	6ad483878e40b4432fa8cf7d73cded9f77afeceac449efb4c5eb16f362d830f6	docs/fw036/FEATURE_ONBOARDING.md	752	2	9. 全域條文與通則（整併落點）	上繳包之記載一致性
-R-G7	ruling	bc6acec6	bc6acec678570e6194ee7af0e9112b9cad1b94e1f931d03b41b20bc5333a6797	docs/fw036/FEATURE_ONBOARDING.md	757	2	9. 全域條文與通則（整併落點）	反向驗證之對照向
-R-G8	ruling	d3ac16c4	d3ac16c4359a3804bbcb4c8610b18c894662772992cb9d20084fa4709d774b2a	docs/fw036/FEATURE_ONBOARDING.md	762	1	9. 全域條文與通則（整併落點）	比率須載明其分子與分母
-R-G9	ruling	d4f630f0	d4f630f0afe9acebc39731b7ab5d21245748e7022a5793899bf15f3eecdfc216	docs/fw036/FEATURE_ONBOARDING.md	766	2	9. 全域條文與通則（整併落點）	lint 規則之驗證須含範圍向
-R-G10	ruling	2b51c522	2b51c5220e545d6e7352c61dd7a9acee02969952491deac368b324a7056bd93c	docs/fw036/FEATURE_ONBOARDING.md	771	2	9. 全域條文與通則（整併落點）	清單式分類須以餘數驗證
-R-G11	ruling	894614b2	894614b2839c24e1c994e8e1122d08d5742bf4d1eacaebaf1de71098f244f063	docs/fw036/FEATURE_ONBOARDING.md	776	2	9. 全域條文與通則（整併落點）	可測判準須同時聲明其盲區
-R-G12	ruling	eabe2726	eabe272635a55614906d5e60ba17f8190e36c2c4a386c6be245941a66b105d97	docs/fw036/FEATURE_ONBOARDING.md	781	4	9. 全域條文與通則（整併落點）	`git commit` 一律帶 pathspec
-R-G13	ruling	abdc56e3	abdc56e3a9c86c775ec8b448c0747cca9b67dee3dc096601aef16980791465cb	docs/fw036/FEATURE_ONBOARDING.md	788	20	9. 全域條文與通則（整併落點）	裁決引用制（取代 FO §8.1「裁決逐字照錄」）
-R-G14	ruling	fb508d10	fb508d1012978a20215cf046a7954c1e496be4034223e239b0ce31e3fcb82c89	docs/fw036/FEATURE_ONBOARDING.md	811	8	9. 全域條文與通則（整併落點）	綠色通道（FO §8.8 之例外）
-R-G15	ruling	2aa0c28f	2aa0c28fa166c510ebe90ab42ad7d861b48f0a0881fe2d2843f3a843f6f2bf1e	docs/fw036/FEATURE_ONBOARDING.md	822	12	9. 全域條文與通則（整併落點）	Pilot 退出準則
-R-G16	ruling	2ec55d94	2ec55d94365fad4d38b5948eda69fe9f52ed8242d1a68174ba8ae309ed4164e7	docs/fw036/FEATURE_ONBOARDING.md	837	6	9. 全域條文與通則（整併落點）	預期數字自動生成
-R-G17	ruling	24cdeec6	24cdeec65d4b3baf13ae6b12081a6fda0df24d67d61a4a58ec5696be7c2dc63f	docs/fw036/FEATURE_ONBOARDING.md	846	8	9. 全域條文與通則（整併落點）	閘登錄簿與除役
-R-G18	ruling	8f61f9fd	8f61f9fd2bedd2985220698780d07e452bd8c9294f7a3d3bd5fad299c4679400	docs/fw036/FEATURE_ONBOARDING.md	857	21	9. 全域條文與通則（整併落點）	canon 引用唯一可解析
-R-G19	ruling	bd206972	bd206972e5c52fcb7ddddd587019c0bb04946ae4052f3ccd93e7ea39878f0ed9	docs/fw036/FEATURE_ONBOARDING.md	881	5	9. 全域條文與通則（整併落點）	prompt 指紋（TC 規則抗漂移之一）
-R-G20	ruling	3d0cd37b	3d0cd37b3170d7cd66f12fb2846408a5be4b9d4ed700f0bc58d0bba86cf9c627	docs/fw036/FEATURE_ONBOARDING.md	889	6	9. 全域條文與通則（整併落點）	規則副本同步指紋（TC 規則抗漂移之二）
-R-G21	ruling	1230e795	1230e795feb9d96ae622fa57756b4503a3366f449fd3ca4fd11fe1d4fc78dd5d	docs/fw036/FEATURE_ONBOARDING.md	898	9	9. 全域條文與通則（整併落點）	自查表機檢對映（TC 規則抗漂移之三）
-R-G22	ruling	bca29f8f	bca29f8fa03e06aa926d8a2dac9001b8f3ee3b33f16e70e8d9ec88038f28d28f	docs/fw036/FEATURE_ONBOARDING.md	910	14	9. 全域條文與通則（整併落點）	條文之任何字元變動皆變更其 sha
-R-G23	ruling	67bae889	67bae88907e6f24a021a120eeba5a6bdf72f97e8c76c98b6e0fb67e25ee80354	docs/fw036/FEATURE_ONBOARDING.md	927	21	9. 全域條文與通則（整併落點）	同一工單同時只得有一份有效下放包
-R-G23′	ruling	990b1c2e	990b1c2eaa5de10f2e829add466c6c89874941ca4d355185d0fd3d01f8005784	docs/fw036/FEATURE_ONBOARDING.md	951	18	9. 全域條文與通則（整併落點）	單一來源擴至每條線；取號一律 live
-R-G24	ruling	bd9a8cc0	bd9a8cc0f28c1608778f8d4320596456435510f81db9aac055138cc8e321821e	docs/fw036/FEATURE_ONBOARDING.md	972	37	9. 全域條文與通則（整併落點）	下放指示之路徑實在性
-R-G25	ruling	50be5127	50be5127ce261473a8576d55b10d92e8489e32b651cf321ba78b5a22b0bdc801	docs/fw036/FEATURE_ONBOARDING.md	1012	19	9. 全域條文與通則（整併落點）	產出物目錄政策
-R-G26	ruling	ce4fdff2	ce4fdff27c0dbeaf7d5a38a632ca2648336538a897aec171172a64a844101a07	docs/fw036/FEATURE_ONBOARDING.md	1034	12	9. 全域條文與通則（整併落點）	工作區清理制
-R-G27	ruling	2bd39a12	2bd39a1228b991e946fc8e833b71f9d541301ea22d1a5ec2423bab1b0d3ac445	docs/fw036/FEATURE_ONBOARDING.md	1049	13	9. 全域條文與通則（整併落點）	來源集中制（`sources/`）
-R-G4	group	9551aa3b	9551aa3b6223406b9c874993986332c91fc67a823d373d28f6f0a1985ff0d453	docs/fw036/FEATURE_ONBOARDING.md	1065	11	9. 全域條文與通則（整併落點）	／R-G7 之原文與 R-G12 之來源
+R-G1	ruling	550ace4f	550ace4fab995b766d75160960e9f3b6e5611f71bd409a6e9070bb757d2f71b6	docs/fw036/FEATURE_ONBOARDING.md	734	2	9. 全域條文與通則（整併落點）	036 母本之固定與其身分
+R-G2	ruling	521fde5f	521fde5fedde77c14cc479c2f0e06ee3415c5caf8f6f16dfdf8ef4060740f969	docs/fw036/FEATURE_ONBOARDING.md	739	1	9. 全域條文與通則（整併落點）	`forms/` 舊檔以 `mv` 歸檔
+R-G3	ruling	79860d4a	79860d4a4c9624f0afe354f34f363cc80de3fb036b1e2ea909e79731b907ffab	docs/fw036/FEATURE_ONBOARDING.md	743	2	9. 全域條文與通則（整併落點）	`framework.md` 範例禁用 `openpyxl` + `wb.save()`
+R-G4	ruling	329570ce	329570ce47fe242c290f224979003382ce27bf841a036c5c53e9737fe4180dbf	docs/fw036/FEATURE_ONBOARDING.md	748	3	9. 全域條文與通則（整併落點）	衍生檔之檔名歸屬與其讀者
+R-G5	ruling	9814d24c	9814d24ca744fa17831281ec13fccae57f0f589ffc827495227966b1b6659543	docs/fw036/FEATURE_ONBOARDING.md	754	2	9. 全域條文與通則（整併落點）	全部 git 操作屬 Pei
+R-G6	ruling	6ad48387	6ad483878e40b4432fa8cf7d73cded9f77afeceac449efb4c5eb16f362d830f6	docs/fw036/FEATURE_ONBOARDING.md	759	2	9. 全域條文與通則（整併落點）	上繳包之記載一致性
+R-G7	ruling	bc6acec6	bc6acec678570e6194ee7af0e9112b9cad1b94e1f931d03b41b20bc5333a6797	docs/fw036/FEATURE_ONBOARDING.md	764	2	9. 全域條文與通則（整併落點）	反向驗證之對照向
+R-G8	ruling	d3ac16c4	d3ac16c4359a3804bbcb4c8610b18c894662772992cb9d20084fa4709d774b2a	docs/fw036/FEATURE_ONBOARDING.md	769	1	9. 全域條文與通則（整併落點）	比率須載明其分子與分母
+R-G9	ruling	d4f630f0	d4f630f0afe9acebc39731b7ab5d21245748e7022a5793899bf15f3eecdfc216	docs/fw036/FEATURE_ONBOARDING.md	773	2	9. 全域條文與通則（整併落點）	lint 規則之驗證須含範圍向
+R-G10	ruling	2b51c522	2b51c5220e545d6e7352c61dd7a9acee02969952491deac368b324a7056bd93c	docs/fw036/FEATURE_ONBOARDING.md	778	2	9. 全域條文與通則（整併落點）	清單式分類須以餘數驗證
+R-G11	ruling	894614b2	894614b2839c24e1c994e8e1122d08d5742bf4d1eacaebaf1de71098f244f063	docs/fw036/FEATURE_ONBOARDING.md	783	2	9. 全域條文與通則（整併落點）	可測判準須同時聲明其盲區
+R-G12	ruling	eabe2726	eabe272635a55614906d5e60ba17f8190e36c2c4a386c6be245941a66b105d97	docs/fw036/FEATURE_ONBOARDING.md	788	4	9. 全域條文與通則（整併落點）	`git commit` 一律帶 pathspec
+R-G13	ruling	abdc56e3	abdc56e3a9c86c775ec8b448c0747cca9b67dee3dc096601aef16980791465cb	docs/fw036/FEATURE_ONBOARDING.md	795	20	9. 全域條文與通則（整併落點）	裁決引用制（取代 FO §8.1「裁決逐字照錄」）
+R-G14	ruling	fb508d10	fb508d1012978a20215cf046a7954c1e496be4034223e239b0ce31e3fcb82c89	docs/fw036/FEATURE_ONBOARDING.md	818	8	9. 全域條文與通則（整併落點）	綠色通道（FO §8.8 之例外）
+R-G15	ruling	2aa0c28f	2aa0c28fa166c510ebe90ab42ad7d861b48f0a0881fe2d2843f3a843f6f2bf1e	docs/fw036/FEATURE_ONBOARDING.md	829	12	9. 全域條文與通則（整併落點）	Pilot 退出準則
+R-G16	ruling	2ec55d94	2ec55d94365fad4d38b5948eda69fe9f52ed8242d1a68174ba8ae309ed4164e7	docs/fw036/FEATURE_ONBOARDING.md	844	6	9. 全域條文與通則（整併落點）	預期數字自動生成
+R-G17	ruling	24cdeec6	24cdeec65d4b3baf13ae6b12081a6fda0df24d67d61a4a58ec5696be7c2dc63f	docs/fw036/FEATURE_ONBOARDING.md	853	8	9. 全域條文與通則（整併落點）	閘登錄簿與除役
+R-G18	ruling	8f61f9fd	8f61f9fd2bedd2985220698780d07e452bd8c9294f7a3d3bd5fad299c4679400	docs/fw036/FEATURE_ONBOARDING.md	864	21	9. 全域條文與通則（整併落點）	canon 引用唯一可解析
+R-G19	ruling	bd206972	bd206972e5c52fcb7ddddd587019c0bb04946ae4052f3ccd93e7ea39878f0ed9	docs/fw036/FEATURE_ONBOARDING.md	888	5	9. 全域條文與通則（整併落點）	prompt 指紋（TC 規則抗漂移之一）
+R-G20	ruling	3d0cd37b	3d0cd37b3170d7cd66f12fb2846408a5be4b9d4ed700f0bc58d0bba86cf9c627	docs/fw036/FEATURE_ONBOARDING.md	896	6	9. 全域條文與通則（整併落點）	規則副本同步指紋（TC 規則抗漂移之二）
+R-G21	ruling	1230e795	1230e795feb9d96ae622fa57756b4503a3366f449fd3ca4fd11fe1d4fc78dd5d	docs/fw036/FEATURE_ONBOARDING.md	905	9	9. 全域條文與通則（整併落點）	自查表機檢對映（TC 規則抗漂移之三）
+R-G22	ruling	bca29f8f	bca29f8fa03e06aa926d8a2dac9001b8f3ee3b33f16e70e8d9ec88038f28d28f	docs/fw036/FEATURE_ONBOARDING.md	917	14	9. 全域條文與通則（整併落點）	條文之任何字元變動皆變更其 sha
+R-G23	ruling	67bae889	67bae88907e6f24a021a120eeba5a6bdf72f97e8c76c98b6e0fb67e25ee80354	docs/fw036/FEATURE_ONBOARDING.md	934	21	9. 全域條文與通則（整併落點）	同一工單同時只得有一份有效下放包
+R-G23′	ruling	990b1c2e	990b1c2eaa5de10f2e829add466c6c89874941ca4d355185d0fd3d01f8005784	docs/fw036/FEATURE_ONBOARDING.md	958	18	9. 全域條文與通則（整併落點）	單一來源擴至每條線；取號一律 live
+R-G24	ruling	bd9a8cc0	bd9a8cc0f28c1608778f8d4320596456435510f81db9aac055138cc8e321821e	docs/fw036/FEATURE_ONBOARDING.md	979	37	9. 全域條文與通則（整併落點）	下放指示之路徑實在性
+R-G25	ruling	50be5127	50be5127ce261473a8576d55b10d92e8489e32b651cf321ba78b5a22b0bdc801	docs/fw036/FEATURE_ONBOARDING.md	1019	19	9. 全域條文與通則（整併落點）	產出物目錄政策
+R-G26	ruling	ce4fdff2	ce4fdff27c0dbeaf7d5a38a632ca2648336538a897aec171172a64a844101a07	docs/fw036/FEATURE_ONBOARDING.md	1041	12	9. 全域條文與通則（整併落點）	工作區清理制
+R-G27	ruling	2bd39a12	2bd39a1228b991e946fc8e833b71f9d541301ea22d1a5ec2423bab1b0d3ac445	docs/fw036/FEATURE_ONBOARDING.md	1056	13	9. 全域條文與通則（整併落點）	來源集中制（`sources/`）
+R-G28	ruling	e1093545	e109354588e2d9b748b07b321b05f6e106a4b3a60a28659a09dc2da41fae2290	docs/fw036/FEATURE_ONBOARDING.md	1072	37	9. 全域條文與通則（整併落點）	CFTS 嵌入物件之逐 feature 檢查
+R-G4	group	9551aa3b	9551aa3b6223406b9c874993986332c91fc67a823d373d28f6f0a1985ff0d453	docs/fw036/FEATURE_ONBOARDING.md	1112	11	9. 全域條文與通則（整併落點）	／R-G7 之原文與 R-G12 之來源
 R-AM1	ruling	212e0cf0	212e0cf0c11d79963dd14f5a143c97299a9b4ef577c407639128d71501965590	features/audio_mgmt/RULINGS.md	12	6	R-AM1（Q6）：Phase 0 人工分類	（Q6）：Phase 0 人工分類
 R-AM2	ruling	21957d7f	21957d7fa5540080f9e09f77dfe3c3adab018bb1770115f9476a5032db4a06a6	features/audio_mgmt/RULINGS.md	21	31	R-AM2（Q2）：錨源 = 兩本 CFTS Basic Report	（Q2）：錨源 = 兩本 CFTS Basic Report
 R-AM2′	ruling	447e2316	447e2316c27a290b78af4f489d9036b0e641c852b45fe086584365271d97a6f7	features/audio_mgmt/RULINGS.md	33	19	R-AM2（Q2）：錨源 = 兩本 CFTS Basic Report	（修訂，2026-08-26，Pei 裁：「2採 R-AM2′准 DR-AM3發」）
@@ -75,25 +76,87 @@ R-C12	report	b1e06f44	b1e06f44fd9cba729a3c3e32c7cff37c4b3802c7a63b4a9a83f63c08b3
 R-C13	report	0b64f050	0b64f0500410acf7f841d7d463714df0a5554638e28a3985d6941da113b005b6	features/comfort/RULINGS.md	1336	11	執行層回報（2026-08-14，下放包 07／08）	A-CF11 已升格，且本輪再次派上用場
 R-C14	report	5c1a2ef4	5c1a2ef42997e74bef0081efaa9ffdbb4439ba4d14fde3a1c6a509654072bf1b	features/comfort/RULINGS.md	1350	12	執行層回報（2026-08-14，下放包 07／08）	本輪對 Market Configuration Table 之取用即依此條
 R-C18	report	1abb4f7b	1abb4f7badba682581dccc98c8a37416aa8dfe7148d0ebf0dfe3bd1c29db4c99	features/comfort/RULINGS.md	1369	19	執行層回報（2026-08-15，下放包 13）	已貼入，並已建立其所需之基礎設施
-R-DD1	ruling	a9b76e4b	a9b76e4b141ee5e91740d867556753a6b198fff8ad462a7b025c30990a98aa53	features/driver_distraction/RULINGS.md	52	9	R-DD1	
-R-DD2	ruling	da3cd8ec	da3cd8eccb72d332047b3a8d3d95c3b676652f1857a990a9d9524b7d30fa1603	features/driver_distraction/RULINGS.md	65	8	R-DD2	
-R-DD3	ruling	cc7aea6c	cc7aea6ccddae82c59d8ccc52e5af10e7db88e451f81a1d9d70b07868f227037	features/driver_distraction/RULINGS.md	77	17	R-DD3	
-R-DD4	ruling	8d4f36bf	8d4f36bf5aaf5dad0a1594aac2c4a4d9bea4837c6f0a57a1037e2b0136cd69c0	features/driver_distraction/RULINGS.md	98	10	R-DD4	
-R-DD5	ruling	75513f31	75513f3141365ce0b2995c36e2ed8596c5a6d89d57ed496a6052526a7d2a3bb5	features/driver_distraction/RULINGS.md	112	13	R-DD5	
-R-DD6	ruling	f28ee265	f28ee2657027475ef4be76f835d7ac3f512ec97e137fb158f4cbcf98337e65cf	features/driver_distraction/RULINGS.md	128	18	R-DD6 v1	v1
-R-DD7	ruling	f33ed793	f33ed79349358f479a0702e987d07004963268c5d2493d1ef4e8a3f2aaf22b5c	features/driver_distraction/RULINGS.md	150	31	R-DD7	
-R-DD8	ruling	5dca74aa	5dca74aacff2d427e0fcde6fa7fa70f1838e227cc246fd43ec23196b842b1ba8	features/driver_distraction/RULINGS.md	185	19	R-DD8	
-R-DD6	ruling	a5cbaf9c	a5cbaf9c60d2c9abbdf49a2e837b56e6e5fe2e0a5cd6b7285449723211559532	features/driver_distraction/RULINGS.md	208	28	R-DD6	
-R-DD9	ruling	965b6d4c	965b6d4c3e779faabd19783907ae7fdb10e3c9b91f906b484277f8b4cef3fc93	features/driver_distraction/RULINGS.md	240	20	R-DD9	
-R-DD10	ruling	6f601dd1	6f601dd1fe2a9b27fe87815e9c079f91953385333b5b75561f97b4b4242f0313	features/driver_distraction/RULINGS.md	264	14	R-DD10	
-R-DD11	ruling	872344f4	872344f46f297a6f87253f7480d6e9d8575a11d3dfe7f69ff94487524c7d4006	features/driver_distraction/RULINGS.md	282	18	R-DD11	
-R-DD12	ruling	42ddd946	42ddd946d78810ce5971401108b3eca496ca36e7706a3c787211950ac58d95ce	features/driver_distraction/RULINGS.md	304	16	R-DD12	
-R-DD13	ruling	d46f4c85	d46f4c85489577f2b58aa9544fe5d8e0976d8fd7360dd3eb264880ac70dc4990	features/driver_distraction/RULINGS.md	324	16	R-DD13	
-R-DD14	ruling	590f1cdc	590f1cdcbdae3b3c2f3e9d643f140990222a76a11f7412adc014131e1bbcaccf	features/driver_distraction/RULINGS.md	344	23	R-DD14	
-R-DD15	ruling	b344ee36	b344ee36d2eed63b4d2ccc2d33807421e082b063a5f649e81a372fedf9d7fb16	features/driver_distraction/RULINGS.md	371	13	R-DD15	
-R-DD16	ruling	85588cb1	85588cb16139ed81026284e7fa3c71d961217c446d0ae3d0802c2529023b3b4b	features/driver_distraction/RULINGS.md	388	16	R-DD16	
-R-DD17	ruling	a9ecb4c1	a9ecb4c1395eb39772e47d43f55eea87ea962c3f8f8b5d5969895c1e57bef2ff	features/driver_distraction/RULINGS.md	408	18	R-DD17	
-R-DD18	ruling	a79ceb6c	a79ceb6cd18ace62738b1654808a57a666b20ecb7d4e4736b405a8a5a51eed66	features/driver_distraction/RULINGS.md	430	23	R-DD18	
+R-DD1	ruling	a9b76e4b	a9b76e4b141ee5e91740d867556753a6b198fff8ad462a7b025c30990a98aa53	features/driver_distraction/RULINGS.md	128	9	R-DD1	
+R-DD2	ruling	da3cd8ec	da3cd8eccb72d332047b3a8d3d95c3b676652f1857a990a9d9524b7d30fa1603	features/driver_distraction/RULINGS.md	141	8	R-DD2	
+R-DD3	ruling	cc7aea6c	cc7aea6ccddae82c59d8ccc52e5af10e7db88e451f81a1d9d70b07868f227037	features/driver_distraction/RULINGS.md	153	17	R-DD3	
+R-DD4	ruling	8d4f36bf	8d4f36bf5aaf5dad0a1594aac2c4a4d9bea4837c6f0a57a1037e2b0136cd69c0	features/driver_distraction/RULINGS.md	174	10	R-DD4	
+R-DD5	ruling	75513f31	75513f3141365ce0b2995c36e2ed8596c5a6d89d57ed496a6052526a7d2a3bb5	features/driver_distraction/RULINGS.md	188	13	R-DD5	
+R-DD6	ruling	f28ee265	f28ee2657027475ef4be76f835d7ac3f512ec97e137fb158f4cbcf98337e65cf	features/driver_distraction/RULINGS.md	204	18	R-DD6 v1	v1
+R-DD7	ruling	f33ed793	f33ed79349358f479a0702e987d07004963268c5d2493d1ef4e8a3f2aaf22b5c	features/driver_distraction/RULINGS.md	226	31	R-DD7	
+R-DD8	ruling	5dca74aa	5dca74aacff2d427e0fcde6fa7fa70f1838e227cc246fd43ec23196b842b1ba8	features/driver_distraction/RULINGS.md	261	19	R-DD8	
+R-DD6	ruling	a5cbaf9c	a5cbaf9c60d2c9abbdf49a2e837b56e6e5fe2e0a5cd6b7285449723211559532	features/driver_distraction/RULINGS.md	284	28	R-DD6	
+R-DD9	ruling	965b6d4c	965b6d4c3e779faabd19783907ae7fdb10e3c9b91f906b484277f8b4cef3fc93	features/driver_distraction/RULINGS.md	316	20	R-DD9	
+R-DD10	ruling	6f601dd1	6f601dd1fe2a9b27fe87815e9c079f91953385333b5b75561f97b4b4242f0313	features/driver_distraction/RULINGS.md	340	14	R-DD10	
+R-DD11	ruling	872344f4	872344f46f297a6f87253f7480d6e9d8575a11d3dfe7f69ff94487524c7d4006	features/driver_distraction/RULINGS.md	358	18	R-DD11	
+R-DD12	ruling	42ddd946	42ddd946d78810ce5971401108b3eca496ca36e7706a3c787211950ac58d95ce	features/driver_distraction/RULINGS.md	380	16	R-DD12	
+R-DD13	ruling	d46f4c85	d46f4c85489577f2b58aa9544fe5d8e0976d8fd7360dd3eb264880ac70dc4990	features/driver_distraction/RULINGS.md	400	16	R-DD13	
+R-DD14	ruling	590f1cdc	590f1cdcbdae3b3c2f3e9d643f140990222a76a11f7412adc014131e1bbcaccf	features/driver_distraction/RULINGS.md	420	23	R-DD14	
+R-DD15	ruling	b344ee36	b344ee36d2eed63b4d2ccc2d33807421e082b063a5f649e81a372fedf9d7fb16	features/driver_distraction/RULINGS.md	447	13	R-DD15	
+R-DD16	ruling	85588cb1	85588cb16139ed81026284e7fa3c71d961217c446d0ae3d0802c2529023b3b4b	features/driver_distraction/RULINGS.md	464	16	R-DD16	
+R-DD17	ruling	a9ecb4c1	a9ecb4c1395eb39772e47d43f55eea87ea962c3f8f8b5d5969895c1e57bef2ff	features/driver_distraction/RULINGS.md	484	18	R-DD17	
+R-DD18	ruling	a79ceb6c	a79ceb6cd18ace62738b1654808a57a666b20ecb7d4e4736b405a8a5a51eed66	features/driver_distraction/RULINGS.md	506	23	R-DD18	
+R-DD19	ruling	e293c320	e293c3209ba04934d4fb3cc5eda53284d9d1ef953bbacb37150a59e223200f63	features/driver_distraction/RULINGS.md	533	23	R-DD19	
+R-DD20	ruling	00912428	009124281275f037e379b81dd242272c6d33f16a5587c1db7251de229a104aae	features/driver_distraction/RULINGS.md	560	26	R-DD20 v1	v1
+R-DD20	ruling	5ae8694f	5ae8694fdf951f44dc4176e063d82585d779909214f3adf8531070f5b9a47c52	features/driver_distraction/RULINGS.md	590	30	R-DD20 v2	v2
+R-DD21	ruling	e11b023f	e11b023fbe829ca997f96f51157e6a95aa66f0204b4922653292f3815ee42ee8	features/driver_distraction/RULINGS.md	624	14	R-DD21	
+R-DD22	ruling	9c0ef625	9c0ef6254c98e6e76d3718df35ce42f96a309974cbf001e4bafcd7756c71196f	features/driver_distraction/RULINGS.md	642	14	R-DD22	
+R-DD23	ruling	aab3104b	aab3104bd29b93358cd1b729ba2a237402b68810d1260f4ab8e01872520384ff	features/driver_distraction/RULINGS.md	660	19	R-DD23	
+R-DD25	ruling	458e5406	458e540622eb6bd6171987a9174d7ed3785753b0c5ef9c2481a1751a6527fc73	features/driver_distraction/RULINGS.md	683	28	R-DD25	
+R-DD20	ruling	1f2aef6d	1f2aef6d725e33c1dbd01393ba55fb97a2c03a0e012280447b0efd2b4fa23a9f	features/driver_distraction/RULINGS.md	715	27	R-DD20	
+R-DD24	ruling	8fcae198	8fcae1980e4f3a7eb4f1e00e98ab797dc712fb5c4bb35dcddd141335190e0afc	features/driver_distraction/RULINGS.md	746	13	R-DD24	
+R-DD26	ruling	ba96c30f	ba96c30f159116f1ea537943cdbd0c12969a9b6dfdc282ea0003f764002d7a8e	features/driver_distraction/RULINGS.md	763	19	R-DD26 v1	v1
+R-DD26	ruling	781a0030	781a00309e4df7490b110201c5f25851f07bc3ae3db70b2ba63d10f45edf908c	features/driver_distraction/RULINGS.md	786	26	R-DD26	
+R-DD27	ruling	f06ec1f1	f06ec1f1792b8a55d570b76d9f460a0eed9ca7d9aa1927757ddf7af4f79073de	features/driver_distraction/RULINGS.md	816	21	R-DD27	
+R-ICS1	ruling	3e48552b	3e48552b2ea45bb737d3fb1c2229e3bd7971804ceeed609a1ff106b4266f4158	features/ics_management/RULINGS.md	12	8	R-ICS1	
+R-ICS2	ruling	4a8819f0	4a8819f0446ec1c5fb8bad59ac84d78f3ba958de673f8476d2bc9f07dbd2d512	features/ics_management/RULINGS.md	25	17	R-ICS2 v1	v1
+R-ICS3	ruling	b10318e0	b10318e00b05144a6bd3f315acee3ea4fb1213957f9edac8301dbb9ee1aef229	features/ics_management/RULINGS.md	47	9	R-ICS3	
+R-ICS4	ruling	85de9871	85de98711b912acf7ee645a0ed1eea158dd8b11a06ce05bf18d12c14b4ce1d98	features/ics_management/RULINGS.md	61	10	R-ICS4	
+R-ICS5	ruling	e6a4790d	e6a4790d91de9704ba193e00ba29500b81efe6566f8c0ad3d2af1c68458b0175	features/ics_management/RULINGS.md	76	11	R-ICS5	
+R-ICS6	ruling	77478a91	77478a912a93c3ac68e37ac0d9566ba7ab7f88ab86f2548b5dda8497778afbf7	features/ics_management/RULINGS.md	92	10	R-ICS6	
+R-ICS7	ruling	2c51cc80	2c51cc808ef36205d60b8ad2c2a0f98cb69223a250396c419169a49110ca8fc7	features/ics_management/RULINGS.md	107	13	R-ICS7	
+R-ICS8	ruling	bf473e9c	bf473e9c5ad8924bf171cb90fa3fc7780bfa81b182584ed0394c41f7a7496603	features/ics_management/RULINGS.md	125	22	R-ICS8	
+R-ICS9	ruling	7e7aa921	7e7aa921e40fb20426e36deea96daaf1d7a563192cb00d489a50d13d25e3ab06	features/ics_management/RULINGS.md	152	23	R-ICS9	
+R-ICS10	ruling	a2cda337	a2cda337ba2a7bebe11dcfcf5aedeebe8079f048d88f024c100b5cbda610c05c	features/ics_management/RULINGS.md	180	14	R-ICS10	
+R-ICS11	ruling	e16c88e3	e16c88e3b87724fd387340e82c795411a527b0d0bbbcfad8fc36ee47bd9898b4	features/ics_management/RULINGS.md	199	11	R-ICS11	
+R-ICS12	ruling	558acc83	558acc838fcdabca1f0ffccdd45c6720f1fef592be3dc4259e2a8ef7e80f6c51	features/ics_management/RULINGS.md	215	13	R-ICS12	
+R-ICS13	ruling	273e1dbb	273e1dbbb13568e1c0b05828eea587f8397941c5394a950715ffd23a878ee16a	features/ics_management/RULINGS.md	233	17	R-ICS13	
+R-ICS2	ruling	b6ddfe90	b6ddfe9014bd6da9bec2a859dd1a4e2f27b2ce1c1806e34956f47fce3ac91500	features/ics_management/RULINGS.md	255	29	R-ICS2 v2	v2
+R-ICS14	ruling	6f9e4686	6f9e46867f6b80bf058aceebbb0d3703402e3118c75bb12a3b9aaa418ee50944	features/ics_management/RULINGS.md	289	13	R-ICS14	
+R-ICS15	ruling	545928c0	545928c0614686045c5f275a132f0fd21638247807e5cbbb720a2029ed02ccd9	features/ics_management/RULINGS.md	307	23	R-ICS15	
+R-ICS16	ruling	4d0eb301	4d0eb301de820a0f8a8670179bb3d6d54334a60a58f04d53ae7aca2a97e13ec5	features/ics_management/RULINGS.md	335	21	R-ICS16	
+R-ICS17	ruling	ed8d8f0c	ed8d8f0c6756e26ce7805cdc006f071482339f6e5ea8a3e6cc9ef46d342c306d	features/ics_management/RULINGS.md	361	27	R-ICS17	
+R-ICS18	ruling	ab6dc8ea	ab6dc8ea901f3609c2ec7c540aa3f548dfd7a03dd9cf5c0e56c33e3ce92983b1	features/ics_management/RULINGS.md	393	26	R-ICS18	
+R-ICS19	ruling	da2cf229	da2cf229e4fd5125e6518bc88204de8cc0269892b2f58ee0afa8439057f0269f	features/ics_management/RULINGS.md	424	19	R-ICS19 v1	v1
+R-ICS20	ruling	b0e7170f	b0e7170fb197d7f044b5eeac83ce7e7a11c56be66828e607ede4b290553f2322	features/ics_management/RULINGS.md	448	18	R-ICS20	
+R-ICS21	ruling	bf7ae107	bf7ae1075395e688ab7b70f3ce5e32c07f2f40f443c20ecbc6a82f2c87759b4a	features/ics_management/RULINGS.md	471	21	R-ICS21	
+R-ICS22	ruling	f833c29d	f833c29d9ac1b865eefb2910cbd220ab7fad717b8f5f90cdd6955234689ba8f6	features/ics_management/RULINGS.md	497	33	R-ICS22 v1	v1
+R-ICS23	ruling	d8d41b4a	d8d41b4a91a7ea275cd9edc4e0905328f04bae45881f424f449efa66ea5bbbee	features/ics_management/RULINGS.md	535	33	R-ICS23 v1	v1
+R-ICS22	ruling	acfaff43	acfaff43ccc8d8371982f5ce8021703bd4a574884db4ef2ffd485c8b716c027e	features/ics_management/RULINGS.md	573	31	R-ICS22 v2	v2
+R-ICS24	ruling	2cf6622a	2cf6622adb3d0de0114216c10cd015780d5dde5bcb0c56431761bd775ad37a1c	features/ics_management/RULINGS.md	609	31	R-ICS24	
+R-ICS25	ruling	a531cfe6	a531cfe68e1b8d1d5ce59099a98535cdf90c046eff954e978a7619fde3a9597c	features/ics_management/RULINGS.md	645	27	R-ICS25 v1	v1
+R-ICS23	ruling	997ae0ba	997ae0ba595e48246fdd3af573d625ad4de49f91463c25c0d0c235f95a4667df	features/ics_management/RULINGS.md	677	21	R-ICS23 v2	v2
+R-ICS26	ruling	f282ce2d	f282ce2d6d89618450ad082b20a3f0c3a05598a4d98b795ef1123e3e753321f7	features/ics_management/RULINGS.md	703	21	R-ICS26	
+R-ICS27	ruling	8e301377	8e301377b519505ee919a6bb8679bd0fb998606e1370dd7d6a5f8df8f1948585	features/ics_management/RULINGS.md	729	28	R-ICS27	
+R-ICS28	ruling	4857e29c	4857e29c179a8170dd795fe300a100b216875bc3db72951c5c5e6e5fa5c094b2	features/ics_management/RULINGS.md	762	20	R-ICS28	
+R-ICS29	ruling	ff733567	ff733567c70cbe592a8ab64d59bc88b483ca434728a8c6f0853415b3b4bca927	features/ics_management/RULINGS.md	787	26	R-ICS29	
+R-ICS30	ruling	ac7b99ef	ac7b99ef3920dd63d2027d0beabf5bc239e7ddcc3287bceb50e763d181dc6226	features/ics_management/RULINGS.md	818	22	R-ICS30	
+R-ICS19	ruling	ae2d0f03	ae2d0f038be21f2315b9794157ee870adce7922c8eb162ceffcc20e744b298aa	features/ics_management/RULINGS.md	845	14	R-ICS19 v2	v2
+R-ICS25	ruling	ce26c27e	ce26c27eaa76b22e83b8b801c78c8371592c52b9303e139ee474c167add468d4	features/ics_management/RULINGS.md	864	20	R-ICS25 v2	v2
+R-ICS31	ruling	cc165364	cc165364ce0bb6f0ad045c1b6a21f0dea91c96e2000352ea95fc79f6808d04c4	features/ics_management/RULINGS.md	889	19	R-ICS31	
+R-ICS32	ruling	0448999e	0448999e71cc6ec4a251c94774169241c22d30340c38cb60e021bd504b9c010d	features/ics_management/RULINGS.md	913	21	R-ICS32	
+R-ICS33	ruling	bd35bba0	bd35bba0408d309adf55be63d62b7a00a932fb4b25a14658fd10e0c1a732b522	features/ics_management/RULINGS.md	939	24	R-ICS33 v1	v1
+R-ICS33	ruling	32e067cc	32e067ccec74e7440c8192591df0108abb06cea08aa86887aa637dfb02907f6f	features/ics_management/RULINGS.md	968	20	R-ICS33 v2	v2
+R-ICS34	ruling	90e511f8	90e511f87fd86b8cadc37f25ef0ddb14eefc0fd99f006cd1a5f71598e8ff1325	features/ics_management/RULINGS.md	993	16	R-ICS34	
+R-ICS35	ruling	3bc16777	3bc16777f8cb8120fdfecb7b0e0a5f8fdbeba709e96c9f46a34ff0b1c97b8dc6	features/ics_management/RULINGS.md	1014	44	R-ICS35 v1	v1
+R-ICS35	ruling	dbfc78bc	dbfc78bccbe43917bae4f7366222a8c6417cb46be73751603212694ca76f6607	features/ics_management/RULINGS.md	1063	30	R-ICS35 v2	v2
+R-ICS36	ruling	88bd5367	88bd53673fe37664432c2b4e3214cf68134b44e019359d6204c4a22624e01611	features/ics_management/RULINGS.md	1098	34	R-ICS36	
+R-ICS37	ruling	45b747a3	45b747a3c9e8aefd60a8c6a635e39f163c2f4baddc0f40bbf3fbbf82359b2cfb	features/ics_management/RULINGS.md	1137	47	R-ICS37	
+R-ICS38	ruling	9867f4ba	9867f4ba781ba93527c0d78ad672713c9ea05fdac75cb552f60d4f7e5f9329a8	features/ics_management/RULINGS.md	1189	32	R-ICS38	
+R-ICS39	ruling	96b3ae9e	96b3ae9e014f7898ca1f537670a645441508c4b0d7afd4fad601618c3728c63b	features/ics_management/RULINGS.md	1226	116	R-ICS39	
+R-ICS40	ruling	81b4b1d0	81b4b1d0eea5eae69c654dcb56fa4130c9e4caba510542c32dade9206e95cdf1	features/ics_management/RULINGS.md	1347	57	R-ICS40	
+R-ICS41	ruling	07321dee	07321dee2603b7060ea90b6cd280a7da6de0490a433a8f74df90aa759e0d2ceb	features/ics_management/RULINGS.md	1409	25	R-ICS41	
+R-ICS42	ruling	4205da56	4205da568bb979cf6b3d709df245ea1b55de5cec6d78f1dc3b32de38ce6eae5a	features/ics_management/RULINGS.md	1439	56	R-ICS42	
+R-ICS43	ruling	f612de47	f612de47d120ac223c7af1739c262c75f289de15fb293f0ec7200138d19c5c85	features/ics_management/RULINGS.md	1500	52	R-ICS43	
 R-POP1	ruling	61145b5f	61145b5f874f6dba76dd75aa4e7f5b2e01bee739f73752e725ee2a773bb3e5bb	features/popup/RULINGS.md	7	4		slug 與目錄（Pei 裁，2026-08-27）
 R-POP2	ruling	93a0e937	93a0e937a7e1c3c3c87fd09346f6d81cc99a4439a800370d374e78865ab2c9a0	features/popup/RULINGS.md	14	6		生成範圍照 037 為準（Pei 裁，2026-08-27）
 R-POP3	ruling	6f6a3531	6f6a3531e75d7b752152414ad48f22c1a1866da9f208d9e98d902cc2e405a0e5	features/popup/RULINGS.md	23	3		DR 三件開立（Pei 裁，2026-08-27）
