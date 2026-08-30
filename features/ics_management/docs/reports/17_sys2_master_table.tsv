@@ -1,0 +1,334 @@
+sys2_row	doc_id	src_id	src_bucket	category	verifiability	axis_verdict	variant	scope	tc_coverage	cover_basis	covering_tcs	verif_criteria	er_match
+2	SR26_20250813-1632	4819125	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+3	SR26_20250813-1632	4819126	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+4	SR26_20250813-1632	4819127	物件頭	Information		不適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+5	SR26_20250813-1632	4819128	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+6	SR26_20250813-1632	4819129	物件頭	Information		不適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+7	SR26_20250813-1632	4819130	物件頭	Information		不適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+8	SR26_20250813-1632	4819133	物件頭	Information		不適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+9	SR26_20250813-1632	4819134	物件頭	Information		不適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+10	SR26_20250813-1632	4819135	物件頭	Information		不適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+11	SR26_20250813-1632	4819136	物件頭	Information		不適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+12	SR26_20250813-1632	4819352	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+13	SR26_20250813-1632	4819353	物件頭	Functional Requirement	Y	適用	Unclassified	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+14	SR26_20250813-1632	4819620	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+15	SR26_20250813-1632	4819621	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+16	SR26_20250813-1632	4819622	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+17	SR26_20250813-1632	4819623	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Work with DCSD supplier and prepare document.	不可比
+18	SR26_20250813-1632	4819624	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Work with DCSD supplier and prepare document.	不可比
+19	SR26_20250813-1632	4819626	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+20	SR26_20250813-1632	4820119	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+21	SR26_20250813-1632	4820121	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+22	SR26_20250813-1632	4820122	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+23	SR26_20250813-1632	4820123	物件頭	Out of scope	Y	適用	Disassociated	隨變體層	無	無		Create the DTC and check the contents.	不可比
+24	SR26_20250813-1632	4820124	物件頭	Out of scope	Y	適用	Disassociated	隨變體層	無	無		Create the DTC and check the contents.	不可比
+25	SR26_20250813-1632	4820126	物件頭	Out of scope	Y	適用	Disassociated	隨變體層	無	無		Create the DTC and check the contents.	不可比
+26	SR26_20250813-1632	4820127	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Create the DTC and check the contents.	不可比
+27	SR26_20250813-1632	4820128	物件頭	Out of scope	Y	適用	Disassociated	隨變體層	無	無		Create the DTC and check the contents.	不可比
+28	SR26_20250813-1632	4820129	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Create the DTC and check the contents.	不可比
+29	SR26_20250813-1632	4820132	物件頭	Heading		不適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+30	SR26_20250813-1632	4820947	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+31	SR26_20250813-1632	4820950	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		*Set the $DCSD_DISP_STAT$ != DISP_HOT 1st and next set the $DCSD_DISP_STAT$ == DISP_HOT in the respective CAN signal using external tool. *Check in the Logs it shall able to receive the $DCSD_DISP_STAT$ value. *Check in HU shall display the 'Display Hot State' warning screen. *Check the Can signal with respect to TGW_DISP_STAT and RQ_DISP_INTS LID using external tool.	不可比
+32	SR26_20250813-1632	4820952	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		*Set the $DCSD_DISP_STAT$ = DISP_HOT 1st and next set the $DCSD_DISP_STAT$ = DISP_OFF in the respective CAN signal using external tool. *Check in the Logs it shall able to receive the $DCSD_DISP_STAT$ value. *Check the Can signal with respect to TGW_DISP_STAT and RQ_DISP_INTS LID using external tool. *The vlaue of TGW_DISP_STAT = DISP_OFF and RQ_DISP_INTS = [0% Intensity]	不可比
+33	SR26_20250813-1632	4820954	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Simulate the conditon HU have to send $TGW_DISP_STAT$ = Disp_OFF and $RQ_DISP_INTS$ = [0% Intensity]. *Simulate the condition to display temporarily turn back on. * Check the HU shall send $TGW_DISP_STAT$ != [DISP_OFF] and $RQ_DISP_INTS$ = [current non-zero value].	不可比
+34	SR26_20250813-1632	4820957	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		*Set the $DCSD_DISP_STAT$ = DISP_HOT 1st and next set the $DCSD_DISP_STAT$ = DISP_ON in the respective CAN signal using external tool. *Check in the Logs HU shall resume the Normal display operations	不可比
+35	SR26_20250813-1632	4821012	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+36	SR26_20250813-1632	4821019	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+37	SR26_20250813-1632	4821020	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Simulate the Start Up Sequence. * check we are in Splash/Disclaimer Screen' * In the Splash/Disclaimer Screen' time period simulate the condition to turn on the rear view camera. * Check HU shall give the priority to display the Rear view camera to display. *Check the Hu shall send $TGW_DISP_STAT$ = [DISP_REAR_CAMERA] by using external tool or log. *At the same check Hu shall able to receive the $DCSD_DISP_STAT$ = [RR_CMRA]. *After this simaulte the condition to rear view camer off and then check the display shall resume the splash/Disclaimer screen and restarted the screen timer.	不可比
+38	SR26_20250813-1632	4821021	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+39	SR26_20250813-1632	4821022	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	行為等值：b03「Power hardkey pressed while HU screen on」之步驟 1／ER 1 觀察 HU Screen ON 態下 $TELEMATIC_DISPLAY2.TGW_DISP_STATSts$ = 2 (Normal_mode)，即本條所述之持續發送行為		* Simulate the condition to make HU Dispaly ON. * Check HU shall send $TGW_DISP_STAT$ = [DISP_NORMAL] and $RQ_DISP_INTS$ != [0% Intensity]) by using external tool or logs.	我方較寬
+40	SR26_20250813-1632	4821025	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+41	SR26_20250813-1632	4821026	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Simulate the condition to make HU Dispaly ON and DCSD display ON conditions. *Simulate the condition to turn on the rear view camera condition. * Check Hu shall send $TGW_DISP_STAT$ = [DISP_REAR_CAMERA] and $RQ_DISP_INTS$ != [0% Intensity] and also HU shall switch to the 'Rear Camera' screen.	不可比
+42	SR26_20250813-1632	4821029	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Simulate the condition to turn off the rear view camera. * Check the HU shall send $TGW_DISP_STAT$ = [DISP_NORMAL] and $RQ_DISP_INTS$ != [0% Intensity] verify this through logs or trace the CAN signal through external tool. * Verify HU shall return back to HU screen ON state.	不可比
+43	SR26_20250813-1632	4821035	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+44	SR26_20250813-1632	4821036	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Simulate the condition to make 'TOUCH SCREEN TO TURN ON' Screen. *Simulate the condition to turn on the rear view camera condition. * Check Hu shall send $TGW_DISP_STAT$ = [DISP_REAR_CAMERA] and $RQ_DISP_INTS$ != [0% Intensity] and also HU shall switch to the 'Rear Camera' screen. *HU shall abort the 'TOUCH SCREEN TO TURN ON' display.	不可比
+45	SR26_20250813-1632	4821039	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Simulate the condition to turn off the rear view camera. * Check the HU shall send $TGW_DISP_STAT$ = [DISP_OFF] and $RQ_DISP_INTS$ != [0% Intensity] verify this through logs or trace the CAN signal through external tool. * Verify HU shall return back to 'TOUCH SCREEN TO TURN ON' screen.	不可比
+46	SR26_20250813-1632	4821041	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+47	SR26_20250813-1632	4821044	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Check HU shall able to receive the DCSD touch coordinates. * Check HU shall send the $TGW_DISP_STAT$ = [DISP_NORMAL] and $RQ_DISP_INTS$ = [current non-zero value] when it receives the DCSD coordinates. * Check HU shall go the HU screen ON with previous screen.	不可比
+48	SR26_20250813-1632	4821046	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+49	SR26_20250813-1632	4821047	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	行為等值：b03「Three second period completed after screen off hardkey」驗三秒逾時後 = 0 (Display_off)，即本條之逾時行為		"* Check ""TOUCH SCREEN TO TURN ON"" screen times out in the HU logs. * Check HU shall send $TGW_DISP_STAT$ = [DISP_OFF] and $RQ_DISP_INTS$ = [0% Intensity] after the ""TOUCH SCREEN TO TURN ON"" screen times out. Monitor the CAN signals using external tool or trace through the logs."	一致
+50	SR26_20250813-1632	4821050	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+51	SR26_20250813-1632	4821051	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+52	SR26_20250813-1632	4821052	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Turn Off the HU and DCSD display. * Simulate the rear view camera turn on. *Check Hu shall send the $TGW_DISP_STAT$ = [DISP_REAR_CAMERA] and $RQ_DISP_INTS$ != [0% Intensity]trace the related CAN signals through external tool. *Check HU shall show the Rear camera screen.	不可比
+53	SR26_20250813-1632	4821055	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Simulate the condition to turn off the rear view camera. * Check the HU shall send $TGW_DISP_STAT$ = [DISP_OFF] and $RQ_DISP_INTS$ != [0% Intensity] verify this through logs or trace the CAN signal through external tool. * Verify HU shall return back to Screen OFF state.	不可比
+54	SR26_20250813-1632	4821056	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Simulate the condition to turn off the rear view camera. * Check the HU shall send $TGW_DISP_STAT$ = [DISP_OFF] and $RQ_DISP_INTS$ != [0% Intensity] verify this through logs or trace the CAN signal through external tool. Check HU shall receive the $DCSD_DISP_STAT$ = [OFF] status * Verify HU shall return back to 'DCSD Screen OFF' state.	不可比
+55	SR26_20250813-1632	4821060	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+56	SR26_20250813-1632	4821064	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		* Check HU shall able to receive the DCSD touch coordinates at HU SCREEN OFF state. * Check HU shall send the $TGW_DISP_STAT$ = [DISP_NORMAL] and $RQ_DISP_INTS$ = [current non-zero value] when it receives the DCSD coordinates. * Check HU shall go the HU screen ON with previous screen.	不可比
+57	SR26_20250813-1632	4821682	物件頭	Information		不適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+58	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		"* Check HU shall with interface with 8.4"" display according to the requirement."	不可比
+59	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		"* Check HU shall with interface with 10.1L"" display according to the requirement."	不可比
+60	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		"* Check HU shall with interface with 10.1P"" display according to the requirement."	不可比
+61	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		* Check HU shall with interface with 10.25 display according to the requirement.	不可比
+62	SR26_20250813-1632	EMPTY	來源空白	Heading	NA	NA	NA	NA	無	無		EMPTY	不可比
+63	SR26_20250813-1632	EMPTY	來源空白	Information	NA	NA	NA	NA	無	無		EMPTY	不可比
+64	SR26_20250813-1632	EMPTY	來源空白	Out of scope	NA	NA	NA	NA	無	無		EMPTY	不可比
+65	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		Verify by measurement: first DCSD backchannel access occurs ≥1200 ms after IGN OFF→ON.	不可比
+66	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		Verify by measurement: first DCSD touch data read occurs ≥1800 ms after IGN ON.	不可比
+67	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		Verify by inspection and I2C bus trace that DCSD operates as an I2C slave at address 0x12 (Write 0x24 / Read 0x25).	不可比
+68	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		Verify via touch test that up to 5 simultaneous touch points are detected with 11-bit coordinate resolution.	不可比
+69	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		Verify via logs or bus trace that retry intervals are 100 ms for DCSD version requests and 17 ms for touch data requests.	不可比
+70	SR26_20250813-1632	EMPTY	來源空白	Out of scope	NA	NA	NA	NA	無	無		EMPTY	不可比
+71	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		Verify via configuration review and I2C bus trace that the Radio operates as I2C Master and DCSD operates as I2C Slave (Case 2).	不可比
+72	SR26_20250813-1632	EMPTY	來源空白	Heading	NA	NA	NA	NA	無	無		EMPTY	不可比
+73	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		Verify via GPIO trace that GPIO-0 is high in idle state and transitions low on DCSD interrupt.	不可比
+74	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		Verify via GPIO and I2C trace that GPIO-0 returns high after touch data is read or after 100 ms with no Radio response.	不可比
+75	SR26_20250813-1632	EMPTY	來源空白	Information	NA	NA	NA	NA	無	無		EMPTY	不可比
+76	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		Verify via touch drag test that duplicate touch events with identical coordinates are continuously reported and not filtered.	不可比
+77	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	Y	NA	NA	NA	無	無		Verify via timing measurement that touch transmit interval is ≥15 ms and end-to-end Radio latency is ≤16.6 ms.	不可比
+78	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	NA	NA	NA	NA	無	無		EMPTY	不可比
+79	SR26_20250813-1632	EMPTY	來源空白	Functional Requirement	NA	NA	NA	NA	無	無		EMPTY	不可比
+80		EMPTY	來源空白	Functional Requirement		NA	NA	NA	無	無		EMPTY	不可比
+81		EMPTY	來源空白	Out of scope		NA	NA	NA	無	無		EMPTY	不可比
+82		EMPTY	來源空白	Functional Requirement		NA	NA	NA	無	無		EMPTY	不可比
+83		EMPTY	來源空白	Functional Requirement		NA	NA	NA	無	無		EMPTY	不可比
+84		EMPTY	來源空白	Functional Requirement		NA	NA	NA	無	無		EMPTY	不可比
+85		EMPTY	來源空白	Information		NA	NA	NA	無	無		EMPTY	不可比
+86		EMPTY	來源空白	Functional Requirement		NA	NA	NA	無	無		EMPTY	不可比
+87		EMPTY	來源空白	Functional Requirement		NA	NA	NA	無	無		EMPTY	不可比
+88		EMPTY	來源空白	Functional Requirement		NA	NA	NA	無	無		EMPTY	不可比
+89	SR26_20260310-1533	4819144	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+90	SR26_20260310-1534	4819146	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+91	SR26_20260310-1535	4819150	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+92	SR26_20260310-1536	4819151	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+93	SR26_20260310-1537	4819152	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+94	SR26_20260310-1538	4819153	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+95	SR26_20260310-1539	4819154	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+96	SR26_20260310-1540	4819157	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+97	SR26_20260310-1541	4819158	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+98	SR26_20260310-1542	4819159	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+99	SR26_20260310-1543	4819160	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+100	SR26_20260310-1544	4819161	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+101	SR26_20260310-1545	4819185	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+102	SR26_20260310-1546	4819186	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+103	SR26_20260310-1547	4819187	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+104	SR26_20260310-1548	4819188	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+105	SR26_20260310-1549	4819189	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+106	SR26_20260310-1550	4819192	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+107	SR26_20260310-1551	4819193	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+108	SR26_20260310-1552	4819194	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+109	SR26_20260310-1553	4819195	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+110	SR26_20260310-1554	4819196	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+111	SR26_20260310-1555	4819213	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+112	SR26_20260310-1556	4819214	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+113	SR26_20260310-1557	4819215	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+114	SR26_20260310-1558	4819216	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+115	SR26_20260310-1559	4819217	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+116	SR26_20260310-1560	4819220	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+117	SR26_20260310-1561	4819221	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+118	SR26_20260310-1562	4819222	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+119	SR26_20260310-1563	4819223	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+120	SR26_20260310-1564	4819224	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+121	SR26_20260310-1565	4819227	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+122	SR26_20260310-1566	4819228	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+123	SR26_20260310-1567	4819229	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+124	SR26_20260310-1568	4819230	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+125	SR26_20260310-1569	4819231	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+126	SR26_20260310-1570	4819233	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+127	SR26_20260310-1571	4819234	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+128	SR26_20260310-1572	4819235	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+129	SR26_20260310-1573	4819238	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+130	SR26_20260310-1574	4819239	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+131	SR26_20260310-1575	4819240	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+132	SR26_20260310-1576	4819241	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+133	SR26_20260310-1577	4819242	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+134	SR26_20260310-1578	4819245	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+135	SR26_20260310-1579	4819246	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+136	SR26_20260310-1580	4819247	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+137	SR26_20260310-1581	4819248	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+138	SR26_20260310-1582	4819249	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+139	SR26_20260310-1583	4819270	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+140	SR26_20260310-1584	4819271	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+141	SR26_20260310-1585	4819272	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+142	SR26_20260310-1586	4819273	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+143	SR26_20260310-1587	4819274	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+144	SR26_20260310-1588	4819294	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+145	SR26_20260310-1589	4819297	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+146	SR26_20260310-1590	4819298	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+147	SR26_20260310-1591	4819299	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+148	SR26_20260310-1592	4819300	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+149	SR26_20260310-1593	4819301	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+150	SR26_20260310-1594	4819304	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+151	SR26_20260310-1595	4819305	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+152	SR26_20260310-1596	4819306	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+153	SR26_20260310-1597	4819307	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+154	SR26_20260310-1598	4819308	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+155	SR26_20260310-1599	4819311	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+156	SR26_20260310-1600	4819312	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+157	SR26_20260310-1601	4819313	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+158	SR26_20260310-1602	4819314	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+159	SR26_20260310-1603	4819315	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+160	SR26_20260310-1604	4819331	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+161	SR26_20260310-1605	4819334	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+162	SR26_20260310-1606	4819335	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+163	SR26_20260310-1607	4819336	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+164	SR26_20260310-1608	4819337	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+165	SR26_20260310-1609	4819338	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+166	SR26_20260310-1610	4819341	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+167	SR26_20260310-1611	4819344	物件頭	Information		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+168	SR26_20260310-1612	4819347	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+169	SR26_20260310-1613	4819348	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+170	SR26_20260310-1614	4819349	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+171	SR26_20260310-1615	4819350	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+172	SR26_20260310-1616	4819351	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+173	SR26_20260310-1617	4819355	物件頭	Out of Scope		適用	Unclassified	隨變體層	無	無		EMPTY	不可比
+174	SR26_20260310-1618	4819541	物件頭	Information		適用	Disassociated	隨變體層	有	錨命中	Button responsive after release|Knob 2 rotated clock-wise|Knob 2 rotated counter clock-wise|Press ignored during stuck condition|Three detents counted in one rotation|Three detents rotated clock-wise	EMPTY	不可比
+175	SR26_20260310-1619	4819545	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+176	SR26_20260310-1620	4819547	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+177	SR26_20260310-1621	4819548	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+178	SR26_20260310-1622	4819549	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+179	SR26_20260310-1623	4819550	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+180	SR26_20260310-1624	4819551	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+181	SR26_20260310-1625	4819552	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+182	SR26_20260310-1626	4819553	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+183	SR26_20260310-1627	4819555	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	錨命中	Enter button pressed	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+184	SR26_20260310-1628	4819558	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	部分	行為等值：b03 四條驗「回應」分支（screen on／off × Telematic Power 二態），**未驗「忽略」分支**		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+185	SR26_20260310-1629	4819559	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+186	SR26_20260310-1630	4819560	物件頭	Out of Scope		適用	Disassociated	隨變體層	有	錨命中	Power hardkey pressed while HU screen on	EMPTY	不可比
+187	SR26_20260310-1631	4819561	物件頭	Out of Scope		適用	Disassociated	隨變體層	有	錨命中	Power hardkey pressed at Telematic Power full operation	EMPTY	不可比
+188	SR26_20260310-1632	4819563	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	錨命中	Power hardkey pressed while HU screen off	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+189	SR26_20260310-1633	4819564	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	錨命中	Power hardkey pressed at Telematic Power idle	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+190	SR26_20260310-1634	4819571	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	部分	行為等值：b03 三條驗 SCREEN OFF 之回應分支，**未驗依 screen priority 忽略之分支**		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+191	SR26_20260310-1635	4819572	物件頭	Out of Scope		適用	Disassociated	隨變體層	有	錨命中	Screen off hardkey starts the three second timer	EMPTY	不可比
+192	SR26_20260310-1636	4819573	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	錨命中	Screen off hardkey pressed again within three seconds	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+193	SR26_20260310-1637	4819574	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	錨命中	Three second period completed after screen off hardkey	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+194	SR26_20260310-1638	4819575	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+195	SR26_20260310-1639	4819576	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	錨命中	Screen off hardkey pressed while HU screen off	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+196	SR26_20260310-1640	4819580	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+197	SR26_20260310-1641	4819581	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+198	SR26_20260310-1642	4819582	物件頭	Out of Scope		適用	Disassociated	隨變體層	有	錨命中	Knob 2 held stationary	EMPTY	不可比
+199	SR26_20260310-1643	4819583	物件頭	Out of Scope		適用	Disassociated	隨變體層	有	錨命中	Knob 2 rotated clock-wise|Knob 2 rotated counter clock-wise|Three detents counted in one rotation	EMPTY	不可比
+200	SR26_20260310-1644	4819584	物件頭	Out of Scope		適用	Disassociated	隨變體層	有	錨命中	Knob 2 no change sent periodically	EMPTY	不可比
+201	SR26_20260310-1645	4819585	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+202	SR26_20260310-1646	4819586	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	錨命中	Knob 2 rotated on a scrollable screen|Knob 2 rotated on a tuner source|Knob 2 signals acted on by the HU	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+203	SR26_20260310-1647	4819617	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	錨命中	Button responsive after release|Press ignored during stuck condition	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+204	SR26_20260310-1648	4819628	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+205	SR26_20260310-1649	4819630	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+206	SR26_20260310-1650	4819631	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+207	SR26_20260310-1651	4819632	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+208	SR26_20260310-1652	4819635	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+209	SR26_20260310-1653	4819637	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	有	行為等值：與 4821022 逐字相同之需求（§1.8 對應節），同一觀察即涵蓋		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+210	SR26_20260310-1654	4819638	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+211	SR26_20260310-1655	4819641	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+212	SR26_20260310-1656	4819642	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+213	SR26_20260310-1657	4819644	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+214	SR26_20260310-1658	4819645	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+215	SR26_20260310-1659	4819646	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+216	SR26_20260310-1660	4819648	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+217	SR26_20260310-1661	4819651	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+218	SR26_20260310-1662	4819652	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+219	SR26_20260310-1663	4819654	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+220	SR26_20260310-1664	4819657	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+221	SR26_20260310-1665	4819659	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+222	SR26_20260310-1666	4819662	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	部分	行為等值：b03「Three second period completed」驗逾時後 DISP_OFF，**未驗 $CCDMF_RQ_DISP_INTS$ 之 CFTS022-2145 條件分支**		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+223	SR26_20260310-1667	4819664	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+224	SR26_20260310-1668	4819667	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+225	SR26_20260310-1669	4819668	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+226	SR26_20260310-1670	4819670	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+227	SR26_20260310-1671	4819671	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+228	SR26_20260310-1672	4819679	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+229	SR26_20260310-1673	4819859	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+230	SR26_20260310-1674	4819861	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+231	SR26_20260310-1675	4819863	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+232	SR26_20260310-1676	4819865	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+233	SR26_20260310-1677	4819868	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+234	SR26_20260310-1678	4819872	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+235	SR26_20260310-1679	4819875	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+236	SR26_20260310-1680	4819877	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+237	SR26_20260310-1681	4819878	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+238	SR26_20260310-1682	4819879	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+239	SR26_20260310-1683	4819880	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+240	SR26_20260310-1684	4819884	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+241	SR26_20260310-1685	4819885	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+242	SR26_20260310-1686	4819889	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+243	SR26_20260310-1687	4819890	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+244	SR26_20260310-1688	4819897	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+245	SR26_20260310-1689	4819915	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+246	SR26_20260310-1690	4819916	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+247	SR26_20260310-1691	4819917	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+248	SR26_20260310-1692	4819919	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+249	SR26_20260310-1693	4819921	物件頭	Functional Requirement	Y	適用	Disassociated	隨變體層	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+250	SR26_20260310-1694	4820117	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+251	SR26_20260310-1695	4820120	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+252	SR26_20260310-1696	4820130	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+253	SR26_20260310-1697	4820134	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+254	SR26_20260310-1698	4820135	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+255	SR26_20260310-1699	4820137	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+256	SR26_20260310-1700	4820140	物件頭	Information		不適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+257	SR26_20260310-1701	4820143	物件頭	Information		不適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+258	SR26_20260310-1702	4820147	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+259	SR26_20260310-1703	4820152	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+260	SR26_20260310-1704	4820153	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+261	SR26_20260310-1705	4820157	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+262	SR26_20260310-1706	4820159	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+263	SR26_20260310-1707	4821013	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+264	SR26_20260310-1708	4821015	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+265	SR26_20260310-1709	4821016	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+266	SR26_20260310-1710	4821017	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+267	SR26_20260310-1711	4821023	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+268	SR26_20260310-1712	4821027	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+269	SR26_20260310-1713	4821030	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+270	SR26_20260310-1714	4821031	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+271	SR26_20260310-1715	4821033	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+272	SR26_20260310-1716	4821037	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+273	SR26_20260310-1717	4821042	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+274	SR26_20260310-1718	4821049	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+275	SR26_20260310-1719	4821053	物件頭	Out of Scope		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+276	SR26_20260310-1720	4821676	物件頭	Information		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+277	SR26_20260310-1721	4821679	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+278	SR26_20260310-1722	4821681	物件頭	Information		適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Back button pressed	EMPTY	不可比
+279	SR26_20260310-1723	4821683	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+280	SR26_20260310-1724	4821684	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+281	SR26_20260310-1725	4821685	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+282	SR26_20260310-1726	4821686	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+283	SR26_20260310-1727	4821687	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+284	SR26_20260310-1728	4821688	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Two ICS buttons pressed at the same time	EMPTY	不可比
+285	SR26_20260310-1729	4821689	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Button event change reported within Tbutton	EMPTY	不可比
+286	SR26_20260310-1730	4821691	物件頭	Information		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+287	SR26_20260310-1731	4821693	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Knob 1 status sent on BH-CAN|Knob 2 held stationary|Knob 2 no change sent periodically|Knob 2 rotated clock-wise|Knob 2 rotated counter clock-wise|Three detents counted in one rotation	EMPTY	不可比
+288	SR26_20260310-1732	4821694	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Knob 2 held stationary|Knob 2 no change sent periodically	EMPTY	不可比
+289	SR26_20260310-1733	4821695	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Three detents counted in one rotation	EMPTY	不可比
+290	SR26_20260310-1734	4821696	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Knob 2 rotated clock-wise|Knob 2 rotated counter clock-wise|Three detents counted in one rotation	EMPTY	不可比
+291	SR26_20260310-1735	4821697	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Knob 2 no change sent periodically	EMPTY	不可比
+292	SR26_20260310-1736	4821698	物件頭	Out of Scope		適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Knob 2 no change sent periodically	EMPTY	不可比
+293	SR26_20260310-1737	4821700	物件頭	Information		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+294	SR26_20260310-1738	4821701	物件頭	Functional Requirement	Y	適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Three detents rotated clock-wise	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+295	SR26_20260310-1739	4821702	物件頭	Functional Requirement	Y	適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Knob 2 rotated on a scrollable screen|Knob 2 rotated on a tuner source|Knob 2 signals acted on by the HU	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+296	SR26_20260310-1740	4821703	物件頭	Functional Requirement	Y	適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Knob 2 held stationary	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+297	SR26_20260310-1741	4821704	物件頭	Functional Requirement	Y	適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Back button pressed|Enter button pressed	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+298	SR26_20260310-1742	4821705	物件頭	Functional Requirement	Y	適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Screen off hardkey pressed while HU screen off	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+299	SR26_20260310-1743	4821706	物件頭	Functional Requirement	Y	適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Screen off hardkey starts the three second timer|Three second period completed after screen off hardkey	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+300	SR26_20260310-1744	4821707	物件頭	Information		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+301	SR26_20260310-1745	4821708	物件頭	Information		適用	Associated	算數（R-ICS39，裁決）	無	無		EMPTY	不可比
+302	SR26_20260310-1746	4821709	物件頭	Functional Requirement	Y	適用	Associated	算數（R-ICS39，裁決）	有	錨命中	Mute hardkey pressed while audio muted|Mute hardkey pressed while audio unmuted	Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+303	SR26_20260310-1747	4821710	物件頭	Functional Requirement	Y	適用	Associated	算數（R-ICS39，裁決）	無	無		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	不可比
+304	SR26_20260310-1748	4819538	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+305	SR26_20260310-1749	4819542	節標題錨	Information		NA	NA	NA	無	無		EMPTY	不可比
+306	SR26_20260310-1750	4819556	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+307	SR26_20260310-1751	4819570	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+308	SR26_20260310-1752	4819577	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+309	SR26_20260310-1753	4819579	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+310	SR26_20260310-1754	4819588	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+311	SR26_20260310-1755	4819592	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+312	SR26_20260310-1756	4819609	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+313	SR26_20260310-1757	4819615	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+314	SR26_20260310-1758	4819616	物件頭	Functional requirement	Y	適用	Disassociated	隨變體層	有	行為等值：b01／b02 之 Stuck button 四條驗 HU 判定實體按鍵卡住與其後續行為，即本條		Check $DCSD_DISP_STAT$ in the external tool. If this is 5 or 6, this should be replaced with last palusible value or ON.	我方較寬
+315	SR26_20260310-1759	4819618	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+316	SR26_20260310-1760	4819619	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+317	SR26_20260310-1761	4819627	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+318	SR26_20260310-1762	4819634	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+319	SR26_20260310-1763	4819636	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+320	SR26_20260310-1764	4819640	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+321	SR26_20260310-1765	4819647	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+322	SR26_20260310-1766	4819650	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+323	SR26_20260310-1767	4819656	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+324	SR26_20260310-1768	4819665	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+325	SR26_20260310-1769	4819666	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+326	SR26_20260310-1770	4819675	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+327	SR26_20260310-1771	4819848	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+328	SR26_20260310-1772	4819849	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+329	SR26_20260310-1773	4819858	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+330	SR26_20260310-1774	4819870	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+331	SR26_20260310-1775	4819871	物件頭	Information		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+332	SR26_20260310-1776	4819913	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比
+333	SR26_20260310-1777	4819914	物件頭	Heading		適用	Disassociated	隨變體層	無	無		EMPTY	不可比
+334	SR26_20260310-1778	4819920	節標題錨	Heading		NA	NA	NA	無	無		EMPTY	不可比

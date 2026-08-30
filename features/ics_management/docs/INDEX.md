@@ -359,3 +359,30 @@ upstream-11 §4-3 與 A-ICS74 之敘述須更正）；**SYS2 有 23 列在案 FR
 且 `display`／`bed_lowering` 之同名讀者亦均未登錄，讀者入簿在本 repo 尚無先例）；
 **回填之副作用 `has_pending` 旗標須同步**（下放包未令，本包自行發現並修正）；
 **`VAL_ 1500` 之三值（`7`／`8`／`15`）無任何 TC 涵蓋**而規格側載有此三態。
+
+---
+
+## 第 17 輪（2026-08-30）**SYS2 主鍵對照表**、驗證性欄對照、二件小量
+
+| 項 | 落點 |
+|---|---|
+| 上繳包 | `docs/upstream/17_sys2_master_table.md` |
+| **SYS2 主鍵對照表**（表本體 333×14）| `docs/reports/17_sys2_master_table.tsv` ＋ `.md` |
+| `VAL_ 1500` 三值與 `RQ_DISP_INTS` 書寫（E36 未觸發）| `docs/reports/17_val1500_three_states.md` |
+| **回凍基準快照** | `docs/reports/17_rulings_snapshot.md` |
+| 新腳本 | `scripts/sys2_master_table_17.py`、`scripts/val1500_probe_17.py`（皆唯讀）|
+
+**零 TC 新生／零錨變動／零 ER 改寫／零交付欄改寫。git 執行次數 0。E35／E36 未觸發。**
+
+**以 SYS2 為主鍵之覆蓋率：38／333 ＝ 11.4%**（只計 FR 為 22／80 ＝ 27.5%）。
+四桶 260／42／31／0 與 A-ICS86 逐項相符。
+
+**【E33 觸發】** 7 個錨不在 SYS2 —— **七者全屬 CFTS022，而 repo 內查無 CFTS022 之 SYS2 匯出**；
+本表結構性地無法回答 CFTS022 側之覆蓋。
+**【E34 觸發】**「我方較寬」21 列，二種成因：20 列源於 SYS2 之樣板 Criteria 貼錯（37／75 為逐字相同之樣板），
+1 列（`4821022`）為**實質驗證缺口**（screen ON 態之 `$RQ_DISP_INTS$ != 0%` 未驗）。
+
+三件另須處置者：**我方已驗之 38 列中 14 列為 SYS2 判 `Out of Scope` 且理由欄全空**；
+**E36 射程過窄** —— 其指名之二物件屬 §1.5（R-ICS2 v2(c) 早載 100% 不適用），
+實質條件成立於另 **20 個**物件（適用 ∧ 在案 ∧ 未覆蓋）；
+**A-ICS94 有反例**（`4819632` 規格原文並列 `[ON_BLANK / On_blanked_screen]`）。

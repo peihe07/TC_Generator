@@ -1,3 +1,15 @@
+# RULINGS.md 快照 — b17 完工時（2026-08-30）**＝ 回凍之新基準**
+
+> 快照法（R-ICS38(a)）第七次落地。b17 完工即回凍（R-ICS50）；
+> 下次解凍之圍籬 diff 以本檔為基準，**不動用 git**。逐字複本，一字未改。
+
+- 來源 sha256：`e4bc23627cadf1ab8644b4ba6bbc97cfd048e21acfd0f8a09dea7f3011752ece`
+- `## R-ICS` 標題 57 行
+
+- 快照時間：2026-08-30 17:54:45
+
+---
+
 # RULINGS — ICS Management (FW036)
 
 Pei 之裁決與分析層自裁條文之逐字登記。前綴 `R-ICS` / `A-ICS` / `DR-ICS`，
