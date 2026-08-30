@@ -1,0 +1,6 @@
+metric	count	pct	source
+corpus 總條數	283	100.0%	generated/batch_*.json
+含任一內部訊號	131	46.3%	remeasure_55.py 之訊號掃描
+62 包：解得 2 名扣除後	102	36.0%	同上
+63 包 R-P377(a)：解得 2 ＋ 強中候選 3 名扣除後	93	32.9%	同上
+（參考）弱候選亦扣除	79	27.9%	同上

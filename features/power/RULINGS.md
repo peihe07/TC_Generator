@@ -12671,6 +12671,96 @@ R-DM17 / R-DM21 / R-P355(b) / R-P365(b)）逐條核對。四處一致。
 > G0 參考資料庫段隨之自 3 檔擴為 **7 檔**。
 
 
+## 63 包裁決條文（R-P376 – R-P379）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 4、§J「四條」、§H 步驟 1 = 四條**，
+相容性 C(4,2) = 6 對，並依 R-P364(d) 對既有 canon 逐條核對。三處一致。
+
+**另依 R-P379(b) 於抄錄前重跑本包三個數字之機讀來源，全部相符（3 / 3）：**
+
+| 條文所引 | 來源 | 重算 |
+|---|---|---|
+| 2 條（丁案適用）| `pattern_d_trial_61.md` §0；重算＝現行 corpus 中 `test_item` 含 `RemStartFail` 且 `reasoning_note` 引 `4941504` 者 | **2**（`-057` / `-065`；母體 14）|
+| 45 名（R-P372 複查對象）| `proxy_reachability_55.md` 無錨名 51 − 逐字含 `antitheft` 者 6 | **45** |
+| 16（G251 之 ITD 非 `NA`）| `family_k_disposition_55.tsv` class ∈ {b, c} | **16**（b=14、c=2）|
+
+```
+[R-P376] 丁案不全推；限「因果同錨點段落」者逐條適用，本輪為 `-057` / `-065`。
+         （a）採執行層觀察：丁案為逐條例外，非機制。適用要件三項並立：
+              (i) 上游事件與下游效果載於**同一錨點之同一段落**；
+              (ii) 上游事件為 `$MESSAGE.Signal$`（R-P368 三段皆過或 R-P371 型逐字證據）；
+              (iii) 下游效果落 R-P353 白名單
+         （b）本輪符合者 `-057`、`-065`（同錨點 `CFTS009-4941504`）；
+              二條依 `pattern_d_trial_61.md` 之寫法入 corpus，`test_item` 括號下半改寫為
+              丁版之驗證宣告，Remarks 標 `(R-P376 丁案；原驗 RemStartFail 內部值，改驗其下游效果)`
+         （c）跨段落拼接因果者一律不適用（R-P368(b) 同型風險）；其餘 12 條維持 PENDING
+         （d）R-13 之代價據實入交付說明之未驗證性質：
+              「該二條不覆蓋 `RemStartFail` 內部值本身」
+         裁決者：分析層（Tier 2，未全推；Pei 得於站④ 否決）。
+```
+
+```
+[R-P377] 候選強度：強、中撤 PENDING；弱維持 PENDING。
+         （a）強（`SwitchOff_Timeout_Setting.Req` / `SwitchOffSetting.Req` → PROXI `Switch_Off_Time`）
+              與中（`Rear_Camera_Enable.Info` → SR26 `Rear Camera Present` / PROXI `Rear_View_Camera`）
+              依 R-P375(d) 以候選寫入，Remarks 標待上游確認，PENDING 撤除
+         （b）弱（`Auto_SwitchOn_Setting.Req` → `Auto-On Comfort`）：`Comfort` 為規格原名所無之
+              語意成分，屬 R-P368(b) 所禁；且即 DR-PW25 未決項。**維持 PENDING**，
+              候選記入 DR-PW25 附註供上游確認，不入 TC
+         （c）R-P375(b) 以 `Auto_SwitchOn_Setting.Req` 為示例之陳述**作廢**，加註；
+              示例改為 `SwitchOff_Timeout_Setting.Req`
+         （d）PENDING 數以 `pending_recount_62.tsv` 之「強＋中撤」情形重算，條文不預寫數字
+         裁決者：分析層（Tier 2）。
+```
+
+```
+[R-P378] G251「ITD 非 NA 者」期望值改為附表機讀值；R-P372 複查照做，量依附表。
+         （a）G251 該項期望值 = `family_k_disposition_55.tsv` 中 class ∈ {(b),(c)} 之列數，
+              本輪為 16；R-P373(c) 所寫之 15 作廢，加註
+         （b）R-P372 人讀複查照做，對象 = `proxy_reachability_55.md` 無錨名扣除
+              逐字含 `antitheft` 者，本輪為 45；R-P372(b) 之「11 名／40」作廢，加註；
+              產出 `proxy_reachability_63.md`
+         裁決者：分析層（Tier 2）。
+```
+
+```
+[R-P379] 條文所引之實測數字須有機讀來源；抄錄前重算，不符即 FAIL。
+         A-PW358 / A-PW360 / A-PW362 三次同族：條文引附表數字而與附表不符，
+         R-P348 / R-P364 皆查不到。
+         （a）條文中每一實測數字（列數、名數、對數、比例）須以
+              `<數字>（<檔名>，<產生指令或欄位篩選>）` 形式書寫；無來源者不得寫數字，
+              改寫「依 <檔名> 之計數」
+         （b）執行層抄錄前逐一重跑該來源，不符者**不抄**，回報差異，分析層訂正後再抄
+         （c）新增 G255：上繳時列出本包條文之全部數字與其重算結果，一對一
+         （d）本條自 63 包起適用；前包不回溯，惟 A-PW358/360/362 三處已加註
+         裁決者：分析層（Tier 2，作業規則）。
+```
+
+**已逐字抄入（核對 4 / 4）。** R-P372 / R-P373 / R-P375 依 R-P36 原文不改，加註於下。
+
+> **註記（R-P36，63 包加註）—— R-P372(b)**：其「antitheft 系列 **11 名**、
+> 複查工作量由 51 降至 **40**」**作廢**（**R-P378(b)**）。
+> 逐字含 `antitheft` 者實測為 **6 名**（`proxy_reachability_55.md`），
+> 複查對象為 **45 名**。見 A-PW362。
+
+> **註記（R-P36，63 包加註）—— R-P373(c)**：其「(c) 類數改為 **0**、
+> G251 之『ITD 非 `NA` 者』改為 **15**」**作廢**（**R-P378(a)**）。
+> 依性質重分類後 (c) 為 **2**（`-107` / `-262`，二者 ITD 為單行而
+> Procedure 帶 `in turn` / `each`，舊之行數判準看不到），
+> G251 該項期望值 = `family_k_disposition_55.tsv` 中 class ∈ {b, c} 之列數，
+> 本輪為 **16**。**(c)=2 為判準之正確結果，非偏差。**
+
+> **註記（R-P36，63 包加註）—— R-P375(b)**：其以
+> `Auto_SwitchOn_Setting.Req` 為 `.Req` 類示例之陳述**作廢**（**R-P377(c)**）——
+> 該名之候選 `Auto-On Comfort` 含規格原名所無之語意成分 `Comfort`，
+> 屬 R-P368(b) 所禁，且即 DR-PW25 之未決項，**維持 PENDING、不入 TC**。
+> 示例改為 `SwitchOff_Timeout_Setting.Req`（→ PROXI `Format` r510 c6 `Switch_Off_Time`，
+> 純底線／後綴差異）。
+
+**R-P379 自 63 包起適用**：條文中每一實測數字須附機讀來源，
+執行層抄錄前逐一重跑，不符即不抄。新增 **G255**（上繳時列數字與重算結果之一對一表）。
+A-PW358 / A-PW360 / A-PW362 三處已加註，前包不回溯。
+
 ---
 
 ## 待裁
