@@ -13046,6 +13046,69 @@ BHCAN2 `SG_` **0**、FDCAN8 `SG_` **0**；
 處置依 **R-P389(c)**：R-13 保留規格原名，開 **DR-PW28**。
 
 
+## 68 包裁決條文（R-P392 – R-P393）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 2、§J「二條」、§H 步驟 1 = 二條**，
+相容性 C(2,2) = 1 對，並依 R-P364(d) 核對既有 canon。三處一致。
+
+**R-P379(b) 抄錄前重算 —— R-P392 之 `CM_` 證據逐字複核（3 / 3 相符）：**
+
+| 條文所引 | 實測（forms DBC 逐字）|
+|---|---|
+| `PARK_INFO.ChimeActivation_LHF` 之 `CM_` | `"This signal indicates the chime activation request for the left hand, front audio speaker, or rear hardwired buzzer."`；訊息 `PARK_INFO`(950)、發送 `SGW`、接收 `ETM,LTM`、`VAL_ 0 "NotActive" 1 "Active"` ✓ |
+| `TELEMATIC_FD_5.CM_TCH_STAT` | `CM_` = `"Touch Screen Status"`；`VAL_ 1 "TCH_PSD"`；**發送節點 `ETM`（HU 側輸出）** ✓ |
+| `CM_TCH_X_COORD` / `Y_COORD` 之 `CM_` | `"Value for the touch screen X axis coordinates"` / `Y` ✓ |
+
+R-P392(c) 之理由亦複核：`DIS_CENTERSTACK.DCSD_DISP_STAT` 發送節點為 `SGW`（非 HU），
+**確為輸入而非 HU 輸出**，不取之判斷成立。
+
+```
+[R-P392] 刺激訊號擇定：chime 取 `PARK_INFO.ChimeActivation_LHF`；ICS 可用取觸控座標上線。
+         （a）`-055` chime 刺激 = `$PARK_INFO.ChimeActivation_LHF$ = 1 (Active)`。
+              依據：`CM_` 逐字「indicates the chime activation request for the left hand,
+              front audio speaker」—— 明述為 chime 啟動請求且指明喇叭，接收節點 ETM/LTM；
+              38 候選中唯此組（`PARK_INFO.ChimeActivation_*` 四支）之 `CM_` 同時述「request」與
+              「audio speaker」，取 LHF 為代表。ER：左前喇叭有 chime 聲 (iii)
+         （b）`-202` ICS 可用之觀察 = 觸螢幕後 bus 上
+              `$TELEMATIC_FD_5.CM_TCH_STAT$ = 1 (TCH_PSD)` 與 `CM_TCH_X_COORD`/`CM_TCH_Y_COORD` 有值 (i)。
+              依據：`4941453` Idle 列之 Display 欄逐字「DCSD sends touch coordinates」——
+              **此為規格自給之該態觀察面**，非以 ICS 一詞語意擇定；`CM_` 逐字「Touch Screen Status」
+              「touch screen X axis coordinates」。ICS 與 DCSD 之等同性**不認定**，Remarks 記
+              「觀察面取自 4941453 Idle 列」，並入 DR-PW29 附問
+         （c）`DIS_CENTERSTACK.DCSD_DISP_STAT`（SGW→ETM，遠端顯示狀態）為輸入非 HU 輸出，不取
+         裁決者：分析層（Tier 2，R-P390(b)）。
+```
+
+```
+[R-P393] R-P389(c) 推廣至所有未查得之規格 `$…$` 名；第二批放行；`-169` 拆分本批補做；互註追認。
+         （a）凡規格 `$X$` 經 R-P368 全鏈與 R-P389(a) 六處查詢皆未查得者（本輪 `$Themed_Sound$`、
+              `$VC_BODY_STYLE$`、`$Door_Ajar_Status$` 止於段 2），一律依 R-P389(c)：
+              保留原名不加 `$`，`Set X = <值> (DR-PW28)`，併入 DR-PW28 附表，**不算 PENDING**
+         （b）R-P391(b) 第二批**放行**，含 `-233~238`、`-228~230`、`-242/243`、`-249/250`、
+              `-222/223/224` 之 `TBM_Present` 項、`-055`（依 R-P392(a)）、`-202`（依 R-P392(b)）、
+              `-081`、`-186/187/191`、`-281`；`-125`／`-182` 之 `ENTER_SLEEP` 項維持 `PENDING: DR-PW26`
+              但其餘欄位照改
+         （c）§8.3 拆分本批補做：`-169` 三個離開條件各一（現行條為 1 分鐘支，增 FOTA dismissed 支、
+              `$ACCDlyAct$` active→inactive 支，後者之 `$ACCDlyAct$` 走 R-P368／(a)）；
+              `-249` 補 M240 支；`-222`/`-223` 依 `Country_Code` 分支各一；`-182` 拆二
+              （30 分鐘支／下一喚醒週期支）
+         （d）R-P357(b) 之 12 對 24 處互註**追認**；該項本應於 B5 施作，執行層先行補全屬合規
+              （非改寫 TC 內容，不違 R-P374(a)）
+         （e）`4941453` 之聯集作法與 DR-PW29 採；DR-PW28（High）、DR-PW30（Medium）核可
+         裁決者：分析層（Tier 2）。
+```
+
+**已逐字抄入（核對 2 / 2）。**
+
+**R-P393(a) 之推廣範圍**：本輪未查得之規格 `$X$` 為
+`$Themed_Sound$`（止於段 1）、`$VC_BODY_STYLE$`（止於段 1）、
+`$Door_Ajar_Status$`（LID r474 有列而 `Atlantis High` 欄空，**止於段 2**），
+連同 `VC_*` 九名與 `$TBM_Present$`，一律依 R-P389(c) 之寫法並併入 DR-PW28 附表。
+
+**R-P393(d)**：R-P357(b) 之 12 對 24 處互註經本條**追認** ——
+該項為既有條文之未施作項，非改寫 TC 內容，不違 R-P374(a)。
+
+
 ---
 
 ## 待裁

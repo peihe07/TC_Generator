@@ -586,8 +586,8 @@
       "test_item": "Bench\nLTM plays the audio active source (Tuner, USB, AUX_IN or Phone Call, etc)\nON (Not muted)\nON DCSD follows behavior related to intensity and display status as defined in CFTS020 and VF668 DCSD sends touch coordinates\nON\nON Refer to {CFTS024} for further details about Antenna power supply\nON Refer to {VF654} for further details about Antenna power supply\nON (if present) Refer to {VF652} for further details about USB presence\nON (if present) Refer to {VF652} for further details about AUX_IN presence\n\n(read the USB and AUX MCU states -> The USB and AUX MCU are ON when present)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\nThe ignition working condition is Ignition Off\nThe Engineering Line is activated\nTLM_Status.Info reads \"Bench\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the audio power amplifier and the BoosterOUT states\n2. Read the analog and digital antenna supplies\n3. Read the USB and AUX MCU states to check that both are on",
-      "expected_result": "1. The audio power amplifier is ON and not muted, and the BoosterOUT is ON\n2. The analog and digital antenna supplies are ON\n3. The USB and AUX MCU are ON when present",
+      "test_procedure": "1. Apply ENTER_BENCH\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 6 (Bench)\n3. Read the HU speakers and check that the audio active source is playing on them\n4. PENDING: DR-PW27 BoosterOUT / analog and digital antenna supply 之 ON 位準值 —— measure the voltage at each output and check it against that level\n5. Insert a USB device and check that it is enumerated and can be played, and check that the AUX input plays on the HU speakers",
+      "expected_result": "1. The HU is in Bench\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received\n3. The audio active source is playing on the HU speakers\n4. PENDING: DR-PW27 BoosterOUT / antenna supply ON 位準值\n5. The USB device is enumerated and can be played, and the AUX input plays on the HU speakers",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.8",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -595,12 +595,12 @@
       "split_reason": "本條驗狀態表 Bench 列之輸出組合（R-P340(b)）—— `-277` 未涵蓋該八欄",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "output_set",
         "delta": "本條驗 Bench 列之八個輸出取值；`-277` 驗其 prose 錨點之 TLM/AMP/ICS/DTV 為 ON"
       },
-      "reasoning_note": "**首段取自錨點 `4941453` 之連續片段**（R-P343(c) / R-P344）——該錨點 4,259 字元逾 1,000；片段起訖字元位置 3374–3880，即該狀態列之九欄，照原分隔逐字取，未加 `=`、未加 `,`、未重排欄序。",
+      "reasoning_note": "**首段取自錨點 `4941453` 之連續片段**（R-P343(c) / R-P344）——該錨點 4,259 字元逾 1,000；片段起訖字元位置 3374–3880，即該狀態列之九欄，照原分隔逐字取，未加 `=`、未加 `,`、未重排欄序。\n\n**R-P386 / R-P387(a)(b) 改寫（68 包）**：三個原 `<X>` 皆 A1 家族，依 R-P387(b) 取 `4941453` 之 `Bench` 列。AMP → 音源播放有聲 (iii)；**BoosterOUT 與天線供電為 (v) 類電氣量測**，其 ON 位準值規格未載（`4941453` 逐字為 `ON Refer to {CFTS024}…`）→ `PENDING: DR-PW27`，**不得自造位準**（R-P387(a) / §I）；USB → 插入後被列舉／可播放 (iii)；AUX → 播放有聲 (iii)。",
       "split_index": 2
     },
     {

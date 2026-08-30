@@ -592,8 +592,8 @@
       "test_item": "No TLM, FPDM AMP, ICS, and DTV functionality is available.\n\n(read the FPDM, AMP, ICS and DTV functions -> No TLM, FPDM AMP, ICS and DTV functionality is available)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition Off working condition",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM to the status related to TLM OFF with Network off\n2. Read the FPDM, AMP, ICS and DTV functions to check their availability",
-      "expected_result": "1. The TLM reaches the status related to TLM OFF with Network off\n2. No TLM, FPDM AMP, ICS and DTV functionality is available",
+      "test_procedure": "1. Apply ENTER_STANDBY, then stop all bus activity on Body CAN and let the network go to sleep\n2. PENDING: DR-PW26 Sleep 態之觀察方法（CAN 睡眠後無法以 CAN 讀 $STATUS_TELEMATIC.PowerSts_Telematic$）\n3. Apply FUNC_STATE_SLEEP and check each of its sub-items",
+      "expected_result": "1. The Body CAN goes to sleep\n2. PENDING: DR-PW26 Sleep 態之觀察方法\n3. FUNC_STATE_SLEEP holds:\n   a. No audio source is playing and no amplifier output is present\n   b. The HU display is off, except for the HMI Antitheft Screens (CFTS009-4941457)\n   c. PENDING: DR-PW27 BoosterOUT / antenna supply OFF 位準值\n   d. A USB device is not enumerated and the AUX input does not play",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.7",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -601,12 +601,12 @@
       "split_reason": "本條驗 Network off 狀態之功能不可用",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Network off 狀態之功能不可用"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P387(b) 改寫（68 包）**：原 `FPDM, AMP, ICS and DTV functions` 為 A1 家族，依 R-P387(b) 取 `4941453` 之 `Sleep` 列。⚠ **`ENTER_SLEEP` 之確認步不可執行**（CAN 睡眠後無法以 CAN 讀值，A-PW351），依 R-P393(b) 該項維持 `PENDING: DR-PW26`，**其餘欄位照改**。",
       "split_index": 1
     },
     {

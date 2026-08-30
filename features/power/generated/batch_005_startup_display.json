@@ -804,10 +804,10 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "While HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.\n\n(read the screen against the elapsed time -> A start-up animation plays again only at the next CAN wakeup cycle or after 30 minutes, whichever is greater)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU has just played a start-up animation\n3. All other conditions for the animation to play are met",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU has just played a start-up animation\n3. All other conditions for the animation hold",
       "input_test_data": "NA",
-      "test_procedure": "1. Close the driver door again within the same CAN wakeup cycle\n2. Read the screen against the elapsed time to check the replay rule",
-      "expected_result": "1. No further start-up animation is played\n2. A start-up animation plays again only at the next CAN wakeup cycle or after 30 minutes, whichever is greater",
+      "test_procedure": "1. Set Door_Ajar_Status = \"Open\" then \"Closed\" again within the same CAN wakeup cycle (DR-PW28)\n2. Read the HU screen and check that the \"Start-up Animation\" is not played on it\n3. Hold for 1800000 ms, repeat the door event, then read the HU screen and check that the \"Start-up Animation\" is played on it",
+      "expected_result": "1. The door event is registered within the same CAN wakeup cycle\n2. The \"Start-up Animation\" is not played on the HU screen\n3. After 1800000 ms the \"Start-up Animation\" is played on the HU screen",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -815,12 +815,12 @@
       "split_reason": "本條驗再播放之間隔規則",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗再播放之間隔規則"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**R-P386 / R-P393(c) 改寫（68 包）**：原 `screen against the elapsed time` 非可觀察量。依 66 包 §1 表拆二 —— **本條為 30 分鐘支**，下一喚醒週期支另立（IN §8.3）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 `$Door_Ajar_Status$` 止於段 2（LID r474 有列而 `Atlantis High` 欄空），依 R-P393(a) 保留原名。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 9
     },
     {
@@ -896,10 +896,10 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "If $Themed_Sound$ = [Fiat Latam] and the \"Welcome Onboard Sound\" setting is set to \"Always\", the HU startup animation shall be accompanied by a startup sound that begins at the same time.\n\n(read the audio output against the animation start -> A startup sound accompanies the animation and begins at the same time)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. $Themed_Sound$ reads \"Fiat Latam\"\n3. The \"Welcome Onboard Sound\" setting reads \"Always\"",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Set Themed_Sound = \"Fiat Latam\" (DR-PW28)\n3. Select \"Welcome Onboard Sound\" = \"Always\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through a startup that plays the animation\n2. Read the audio output against the animation start to check the accompaniment",
-      "expected_result": "1. The HU startup animation is played\n2. A startup sound accompanies the animation and begins at the same time",
+      "test_procedure": "1. Start video and audio recording on the bench\n2. Apply ENTER_FULL_OPERATION and let the startup animation play\n3. Read the recording and check that the startup sound is present on the HU speakers starting at the same time as the first frame of the \"Start-up Animation\"",
+      "expected_result": "1. The recording is running\n2. The startup animation plays\n3. On the recording, the startup sound starts at the same time as the first frame of the animation",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.8",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -907,8 +907,8 @@
       "split_reason": "本條驗 Always 設定",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第二批)",
+      "reasoning_note": "\n\n**R-P386 / R-P393(a) 改寫（68 包）**：原 `audio output against the animation start` 非可觀察量。依 66 包 §1 表 —— 以**錄音／錄影同步**判，聲音起點與動畫第一幀同時 (iii)。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 `$Themed_Sound$` 經 R-P368 全鏈與六處查詢皆未查得（止於段 1），故寫 `Set Themed_Sound = \"Fiat Latam\" (DR-PW28)`。`\"Welcome Onboard Sound\"` 為 HMI Settings List `Settings` r41 / r172 **查得**之條目，依 R-P375(b) 以 UI 元件寫。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 1
     },
     {
@@ -918,10 +918,10 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "If $Themed_Sound$ = [Fiat Latam] AND the \"Welcome Onboard Sound\" setting is set to \"Once a Day\" AND the HU has not yet played the startup sound yet that day, the HU startup animation shall be accompanied by a startup sound that begins at the same time.\n\n(read the audio output against the animation start -> A startup sound accompanies the animation and begins at the same time)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. $Themed_Sound$ reads \"Fiat Latam\"\n3. The \"Welcome Onboard Sound\" setting reads \"Once a Day\"\n4. The HU has not yet played the startup sound that day",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Set Themed_Sound = \"Fiat Latam\" (DR-PW28)\n3. Select \"Welcome Onboard Sound\" = \"Once a day\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through a startup that plays the animation\n2. Read the audio output against the animation start to check the accompaniment",
-      "expected_result": "1. The HU startup animation is played\n2. A startup sound accompanies the animation and begins at the same time",
+      "test_procedure": "1. Start video and audio recording on the bench\n2. Apply ENTER_FULL_OPERATION and let the startup animation play\n3. Read the recording and check that the startup sound is present on the HU speakers starting at the same time as the first frame of the \"Start-up Animation\" on the first startup of the day",
+      "expected_result": "1. The recording is running\n2. The startup animation plays\n3. On the recording, the startup sound starts at the same time as the first frame of the animation on the first startup of the day",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.8",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -929,12 +929,12 @@
       "split_reason": "本條驗 Once a Day 之當日首次",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Once a Day 之當日首次"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P393(a) 改寫（68 包）**：原 `audio output against the animation start` 非可觀察量。依 66 包 §1 表 —— 以**錄音／錄影同步**判，聲音起點與動畫第一幀同時 (iii)。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 `$Themed_Sound$` 經 R-P368 全鏈與六處查詢皆未查得（止於段 1），故寫 `Set Themed_Sound = \"Fiat Latam\" (DR-PW28)`。`\"Welcome Onboard Sound\"` 為 HMI Settings List `Settings` r41 / r172 **查得**之條目，依 R-P375(b) 以 UI 元件寫。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 1
     },
     {
@@ -1022,10 +1022,10 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "If $Themed_Sound$ = [Fiat Latam] AND the \"Welcome Onboard Sound\" setting is set to \"Never\", the HU startup animation shall not be accompanied by a startup sound that begins at the same time.\n\n(read the audio output against the animation start -> No startup sound accompanies the animation)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. $Themed_Sound$ reads \"Fiat Latam\"\n3. The \"Welcome Onboard Sound\" setting reads \"Never\"",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Set Themed_Sound = \"Fiat Latam\" (DR-PW28)\n3. Select \"Welcome Onboard Sound\" = \"Never\"",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through a startup that plays the animation\n2. Read the audio output against the animation start to check the accompaniment",
-      "expected_result": "1. The HU startup animation is played\n2. No startup sound accompanies the animation",
+      "test_procedure": "1. Start video and audio recording on the bench\n2. Apply ENTER_FULL_OPERATION and let the startup animation play\n3. Read the recording and check that no startup sound is present on the HU speakers while the \"Start-up Animation\" runs",
+      "expected_result": "1. The recording is running\n2. The startup animation plays\n3. On the recording, no startup sound is played while the animation runs",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.8",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1033,8 +1033,8 @@
       "split_reason": "本條驗 Never 設定",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第二批)",
+      "reasoning_note": "\n\n**R-P386 / R-P393(a) 改寫（68 包）**：原 `audio output against the animation start` 非可觀察量。依 66 包 §1 表 —— 以**錄音／錄影同步**判，聲音起點與動畫第一幀同時 (iii)。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 `$Themed_Sound$` 經 R-P368 全鏈與六處查詢皆未查得（止於段 1），故寫 `Set Themed_Sound = \"Fiat Latam\" (DR-PW28)`。`\"Welcome Onboard Sound\"` 為 HMI Settings List `Settings` r41 / r172 **查得**之條目，依 R-P375(b) 以 UI 元件寫。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 1
     },
     {
@@ -1306,8 +1306,8 @@
       "test_item": "This status is related to TLM audio is OFF. TLM shall allow only Splash Screen visualization on its display.  ICS functionalities are available.  DTV shall be OFF.\n\n(read the ICS functions and the DTV -> DTV is OFF)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition On Engine On working condition",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the ICS functions and the DTV to check their availability",
-      "expected_result": "1. ICS functionalities are available\n2. DTV is OFF",
+      "test_procedure": "1. Apply ENTER_IDLE\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 3 (Idle)\n3. Read the HU screen and check that only the \"Splash Screen\" is shown on it and no audio source is playing on the HU speakers\n4. Touch the screen and read the bus trace, and check that $TELEMATIC_FD_5.CM_TCH_STAT$ is 1 (TCH_PSD) and that $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$ carry the touch coordinates",
+      "expected_result": "1. The HU is in Idle\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received\n3. Only the \"Splash Screen\" is shown on the HU screen and no audio source is playing on the HU speakers\n4. The signal value $TELEMATIC_FD_5.CM_TCH_STAT$ = 1 (TCH_PSD) is received together with the touch coordinates on $TELEMATIC_FD_5.CM_TCH_X_COORD$ and $TELEMATIC_FD_5.CM_TCH_Y_COORD$",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1315,12 +1315,12 @@
       "split_reason": "本條驗 ICS 與 DTV 之可用性",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 ICS 與 DTV 之可用性"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P387(b) / R-P392(b) 改寫（68 包）**：原 `ICS functions and the DTV` 為 A1 家族。依 R-P387(b) 取 `4941453` 之 `Idle` 列 —— Display `OFF (*)`，**`(*)`（`CFTS009-4941454` / `4941455`）例外含 Splash Screen visualization**，故畫面僅 `\"Splash Screen\"`；Source OFF → 無音訊 (iii)。ICS 可用之觀察依 **R-P392(b)** 取觸控座標上線：`$TELEMATIC_FD_5.CM_TCH_STAT$ = 1 (TCH_PSD)` 與 `CM_TCH_X_COORD` / `CM_TCH_Y_COORD` 有值 (i)。⚠ **ICS 與 DCSD 之等同性不認定**（R-P392(b) / §I）—— 觀察面取自 `4941453` Idle 列之「DCSD sends touch coordinates」，即規格自給之該態觀察面，非以 ICS 一詞語意擇定；已併入 DR-PW29 附問。",
       "split_index": 5
     },
     {
@@ -1808,10 +1808,10 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "For all screen sizes except 7 inch If $VC_VEH_BRAND$ <> [Maserati] AND ($TBM_Present$ = [Not Present] OR$Country_Code$  does not require SOS or Geolocation) then the HU shall add the ADAS text to the disclaimer\n\n(read the disclaimer wording -> The HU adds the ADAS text to the disclaimer)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The screen size is other than 7 inch\n3. $VC_VEH_BRAND$ reads a value other than \"Maserati\"\n4. $TBM_Present$ reads \"Not Present\"",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The screen size is other than 7 inch\n3. Set VC_VEH_BRAND = a value other than \"Maserati\" (DR-PW28)\n4. Set TBM_Present = \"Not Present\" (DR-PW28)",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU to the disclaimer presentation\n2. Read the disclaimer wording to check the added text",
-      "expected_result": "1. The disclaimer screen is shown\n2. The HU adds the ADAS text to the disclaimer",
+      "test_procedure": "1. Apply ENTER_FULL_OPERATION and let the HU reach the disclaimer presentation\n2. Read the \"Disclaimer\" screen text and check the added text\n3. PENDING: DR-PW27 HMI disclaimer wording —— the ADAS text 之逐字定義",
+      "expected_result": "1. The HU reaches the disclaimer presentation\n2. The \"Disclaimer\" screen text is read\n3. PENDING: DR-PW27 HMI disclaimer wording",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1819,12 +1819,12 @@
       "split_reason": "本條驗 OR 之左支 TBM Not Present",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 OR 之左支 TBM Not Present"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P393(a) 改寫（68 包）**：觀察面為 `\"Disclaimer\"` 畫面之文字內容 (ii)。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **ADAS 文字之逐字定義在 HMI 文件，該文件在 G0 台帳外** → `PENDING: DR-PW27`（與 `-216`/`-217` 之 `\"SOS\"`/`\"Help\"` 不同 —— 後者規格自給 token，ER 不 PENDING）。",
       "split_index": 1
     },
     {
@@ -1834,10 +1834,10 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "For all screen sizes except 7 inch If $VC_VEH_BRAND$ <> [Maserati] AND ($TBM_Present$ = [Not Present] OR$Country_Code$  does not require SOS or Geolocation) then the HU shall add the ADAS text to the disclaimer\n\n(read the disclaimer wording -> The HU adds the ADAS text to the disclaimer)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The screen size is other than 7 inch\n3. $VC_VEH_BRAND$ reads a value other than \"Maserati\"\n4. $Country_Code$ does not require SOS or Geolocation",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The screen size is other than 7 inch\n3. Set VC_VEH_BRAND = a value other than \"Maserati\" (DR-PW28)\n4. PROXI Country_Code = a market that requires neither SOS nor geolocation",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU to the disclaimer presentation\n2. Read the disclaimer wording to check the added text",
-      "expected_result": "1. The disclaimer screen is shown\n2. The HU adds the ADAS text to the disclaimer",
+      "test_procedure": "1. Apply ENTER_FULL_OPERATION and let the HU reach the disclaimer presentation\n2. Read the \"Disclaimer\" screen text and check the added text\n3. PENDING: DR-PW27 HMI disclaimer wording —— the ADAS text 之逐字定義",
+      "expected_result": "1. The HU reaches the disclaimer presentation\n2. The \"Disclaimer\" screen text is read\n3. PENDING: DR-PW27 HMI disclaimer wording",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1845,12 +1845,12 @@
       "split_reason": "本條驗 OR 之右支 country 不需 SOS 或 Geolocation",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 OR 之右支 country 不需 SOS 或 Geolocation"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P393(a) 改寫（68 包）**：觀察面為 `\"Disclaimer\"` 畫面之文字內容 (ii)。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **ADAS 文字之逐字定義在 HMI 文件，該文件在 G0 台帳外** → `PENDING: DR-PW27`（與 `-216`/`-217` 之 `\"SOS\"`/`\"Help\"` 不同 —— 後者規格自給 token，ER 不 PENDING）。",
       "split_index": 2
     },
     {
@@ -1860,7 +1860,7 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "For all screen sizes except 7 inch If $VC_VEH_BRAND$ <> [Maserati] AND $TBM_Present$ = [Present]  AND $Country_Code$ requires geolocation and SOS in the disclaimer then the HU shall add the ADAS and SOS to the geolocation pop-up or disclaimer. See HMI for different statup conditions to determine when to add geolocation + SOS Pop-up or add geolocation and SOS text to Disclaimer.\n\n(read the shown wording -> The HU adds the ADAS and SOS to the geolocation pop-up or disclaimer)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The screen size is other than 7 inch\n3. PROXI VC_VEH_BRAND = a value other than \"Maserati\"\n4. PROXI TBM_Present = \"Present\"\n5. PROXI Country_Code = a market that requires geolocation and SOS in the disclaimer",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The screen size is other than 7 inch\n3. Set VC_VEH_BRAND = a value other than \"Maserati\" (DR-PW28)\n4. Set TBM_Present = \"Present\" (DR-PW28)\n5. PROXI Country_Code = a market that requires geolocation and SOS in the disclaimer",
       "input_test_data": "NA",
       "test_procedure": "1. Apply ENTER_FULL_OPERATION and let the HU reach the disclaimer presentation\n2. Read the HU screen and check whether the \"Disclaimer\" screen or the geolocation pop-up is shown\n3. PENDING: DR-PW27 HMI disclaimer wording（ADAS ＋ SOS 之逐字文字）",
       "expected_result": "1. The HU reaches the disclaimer presentation\n2. Either the \"Disclaimer\" screen or the geolocation pop-up is shown\n3. PENDING: DR-PW27 HMI disclaimer wording",
@@ -1871,8 +1871,8 @@
       "split_reason": "本條驗 geolocation ＋ SOS 之附加",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P383)",
-      "reasoning_note": "\n\n**R-P383 改寫（65 包）**：原步 2 之 `shown wording` 非具名觀察量。依 65 包 §0 —— 觀察面為 `\"Disclaimer\"` 畫面／geolocation pop-up 之文字內容 (ii)；**具體文字規格寫「See HMI」而 HMI 文件不在 G0 台帳，開 `DR-PW27`**（未尋獲文件型）。Pre-Condition 之三個 `$…$` 改為 `PROXI <Param>`（R-1 v3 (c)）。⚠ ER 1 之「pop-up **or** disclaimer」二擇一判準未載，即 **DR-PW22** 所問者，本次不另開 DR，二問同情境。錨點 `CFTS009-4941968`。",
+      "remarks": "(R-P383) (R-P386 第二批)",
+      "reasoning_note": "\n\n**R-P383 改寫（65 包）**：原步 2 之 `shown wording` 非具名觀察量。依 65 包 §0 —— 觀察面為 `\"Disclaimer\"` 畫面／geolocation pop-up 之文字內容 (ii)；**具體文字規格寫「See HMI」而 HMI 文件不在 G0 台帳，開 `DR-PW27`**（未尋獲文件型）。Pre-Condition 之三個 `$…$` 改為 `PROXI <Param>`（R-1 v3 (c)）。⚠ ER 1 之「pop-up **or** disclaimer」二擇一判準未載，即 **DR-PW22** 所問者，本次不另開 DR，二問同情境。錨點 `CFTS009-4941968`。\n\n**R-P393(a) 訂正（68 包）**：本條於 65 包依 R-P383 改寫時，前置寫成 `PROXI VC_VEH_BRAND` / `PROXI TBM_Present` —— 其時 66 包 §1 表尚以 PROXI 指定該二名。67 包實測**四名皆不在 PROXI `Format`**（A-PW367 / A-PW368），依 R-P389(c) / R-P393(a) 改為保留規格原名不加 `$`、不加 `PROXI`。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 `Country_Code` 為 PROXI `Format` r468 **查得**，維持 `PROXI` 寫法。",
       "split_index": 1
     },
     {
@@ -1918,6 +1918,84 @@
       "remarks": "(R-P357(b)：與 NR1L-PowerManagement-165 五欄逐字相同而 Req ID 不同（SWE-PM-070 / SWE-PM-115），二列皆保留不得合併；互註對方 tc_id)",
       "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-070` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-070` 承擔，**呈請裁定於 26 包**。",
       "split_index": 1
+    },
+    {
+      "req_id": "SWE-PM-075",
+      "tc_id": "NR1L-PowerManagement-284",
+      "tc_title": "A dismissed FOTA pop up passes the TLM to Standby",
+      "test_group": "Power Management",
+      "test_set": "Startup Display",
+      "test_item": "If the HU Transitions to Timed mode due to the condition described in CFTS009-1809, the HU shall transition to Standby mode after: -1 minute has passed without the user interacting with the pop-up -The FOTA pop up is dismissed -$ACCDlyAct$ transitions from active to inactive\n\n(read the HU mode after the idle period -> The HU transitions to Standby mode after 1 minute has passed)",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is in Timed mode due to the condition described in CFTS009-1809",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW27 CFTS057 —— FOTA update available 之建立方法\n2. Apply ENTER_TIMED\n3. Read the HU screen and check that the \"FOTA update available\" pop-up is shown\n4. Dismiss the \"FOTA update available\" pop-up through the HMI, then read the HU screen and check that it is no longer shown on it\n5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. PENDING: DR-PW27 CFTS057\n2. The HU is in Timed\n3. The \"FOTA update available\" pop-up is shown\n4. The pop-up is no longer shown on the HU screen\n5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
+      "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.10",
+      "priority": "P0",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "split_flag": true,
+      "split_reason": "本條驗條件一 —— 1 分鐘無互動",
+      "functional_safety": "NA",
+      "estimated_test_time": "",
+      "remarks": "(R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-169 同錨點)",
+      "distinguishing_axis": {
+        "axis": "mode",
+        "delta": "本條驗條件一 —— 1 分鐘無互動"
+      },
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `HU mode after the idle period` 非可觀察量。依 66 包 §1 表 —— pop-up 停留以 `\"FOTA update available\"` pop-up (ii)、`Hold for 60000 ms`（R-1 v3 (e)）、之後 `PowerSts_Telematic = 1 (Standby)` (i)。⚠ **FOTA 可用之建立方法規格指 CFTS057，該文件在 G0 台帳外** → `PENDING: DR-PW27`。⚠ §1 表另記「三個離開條件各一 TC（IN §8.3），現行只測 1 分鐘」—— **拆分未做**，見 67 包回報 §6。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**R-P393(c) §8.3 拆分**：`-169` 之三個離開條件各一 TC；本條為 **FOTA pop-up dismissed 支**。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
+      "split_index": 1
+    },
+    {
+      "req_id": "SWE-PM-075",
+      "tc_id": "NR1L-PowerManagement-285",
+      "tc_title": "An accessory delay going inactive passes the TLM to Standby",
+      "test_group": "Power Management",
+      "test_set": "Startup Display",
+      "test_item": "If the HU Transitions to Timed mode due to the condition described in CFTS009-1809, the HU shall transition to Standby mode after: -1 minute has passed without the user interacting with the pop-up -The FOTA pop up is dismissed -$ACCDlyAct$ transitions from active to inactive\n\n(read the HU mode after the idle period -> The HU transitions to Standby mode after 1 minute has passed)",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is in Timed mode due to the condition described in CFTS009-1809",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW27 CFTS057 —— FOTA update available 之建立方法\n2. Apply ENTER_TIMED with $BCM_FD_27.Comfort_Enable_Act$ = 1 (DR-PW26)\n3. Read the HU screen and check that the \"FOTA update available\" pop-up is shown\n4. Send the signal $BCM_FD_27.Comfort_Enable_Act$ = 0 (DR-PW26)\n5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. PENDING: DR-PW27 CFTS057\n2. The HU is in Timed\n3. The \"FOTA update available\" pop-up is shown\n4. The signal value $BCM_FD_27.Comfort_Enable_Act$ = 0 is received\n5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
+      "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.10",
+      "priority": "P0",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "split_flag": true,
+      "split_reason": "本條驗條件一 —— 1 分鐘無互動",
+      "functional_safety": "NA",
+      "estimated_test_time": "",
+      "remarks": "(R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-169 同錨點)",
+      "distinguishing_axis": {
+        "axis": "mode",
+        "delta": "本條驗條件一 —— 1 分鐘無互動"
+      },
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `HU mode after the idle period` 非可觀察量。依 66 包 §1 表 —— pop-up 停留以 `\"FOTA update available\"` pop-up (ii)、`Hold for 60000 ms`（R-1 v3 (e)）、之後 `PowerSts_Telematic = 1 (Standby)` (i)。⚠ **FOTA 可用之建立方法規格指 CFTS057，該文件在 G0 台帳外** → `PENDING: DR-PW27`。⚠ §1 表另記「三個離開條件各一 TC（IN §8.3），現行只測 1 分鐘」—— **拆分未做**，見 67 包回報 §6。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**R-P393(c) §8.3 拆分**：`-169` 之第三個離開條件 —— `$ACCDlyAct$` active→inactive 支。該名經 R-P368 段 1 命中 LID r29 `AccDelayAct`，惟其 `Atlantis High` 欄為 `N/A`（止於段 2）；FD 側同義訊號為 `$BCM_FD_27.Comfort_Enable_Act$`（`CM_` = `Accessory Delay Active`，R-P371 型證據）。",
+      "split_index": 1
+    },
+    {
+      "req_id": "SWE-PM-093",
+      "tc_id": "NR1L-PowerManagement-287",
+      "tc_title": "A start-up animation plays again in the next wakeup cycle",
+      "test_group": "Power Management",
+      "test_set": "Startup Display",
+      "test_item": "While HU is in SLEEP MODE, STANDBY MODE, or in PARTIAL OPERATION MODE and when driver door ajar status ($Door_Ajar_Status$) is changed to CLOSED, HU shall play a start-up animation as defined per HMI. The startup animation will be unique for each vehicle or/and brand as defined per PDO/HMI. If driver door is not present or removed for current vehicle ($DriverDoorOnOffSts$ = [DOOR_OFF]), or if HU changes mode (due to ignition event or to due to HU power mode status change to BODY ON or to TIMED MODE while driver door ajar status ($Door_Ajar_Status$) is OPEN, the HU shall skip start-up animation. While HU is playing a start-up animation and HU changes mode (due to ignition event or to HU power mode status changes to BODY ON or to TIMED MODE) or if an ignition crank event ($PowerMode$ = [IGN_START ]), then HU shall cancel current start-up animation and switch required power mode as defined. Once a start-up animation is played, HU shall not play the next start-up animation until the next CAN wakeup cycle OR at least 30 minutes passed from last time the start-up animation was played ;whichever is greater; given all other conditions are met for startup animation to play as defined here.\n\n(read the screen against the elapsed time -> A start-up animation plays again only at the next CAN wakeup cycle or after 30 minutes, whichever is greater)",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU has just played a start-up animation\n3. All other conditions for the animation hold",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set Door_Ajar_Status = \"Open\" then \"Closed\" again within the same CAN wakeup cycle (DR-PW28)\n2. Read the HU screen and check that the \"Start-up Animation\" is not played on it\n3. PENDING: DR-PW26 Sleep 態之觀察方法 —— let the Body CAN go to sleep and wake it again to start a new wakeup cycle\n4. Repeat the door event and read the HU screen, and check that the \"Start-up Animation\" is played on it",
+      "expected_result": "1. The door event is registered within the same CAN wakeup cycle\n2. The \"Start-up Animation\" is not played\n3. PENDING: DR-PW26 Sleep 態之觀察方法\n4. The \"Start-up Animation\" is played on the HU screen in the new wakeup cycle",
+      "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)",
+      "split_flag": true,
+      "split_reason": "本條驗再播放之間隔規則",
+      "functional_safety": "NA",
+      "estimated_test_time": "",
+      "remarks": "(R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-182 同錨點)",
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本條驗再播放之間隔規則"
+      },
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**R-P386 / R-P393(c) 改寫（68 包）**：原 `screen against the elapsed time` 非可觀察量。依 66 包 §1 表拆二 —— **本條為 30 分鐘支**，下一喚醒週期支另立（IN §8.3）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 `$Door_Ajar_Status$` 止於段 2（LID r474 有列而 `Atlantis High` 欄空），依 R-P393(a) 保留原名。\n\n**R-P393(c) §8.3 拆分**：`-182` 之 **下一喚醒週期支**（原條為 30 分鐘支）。⚠ 喚醒週期須經 `ENTER_SLEEP`，其確認步 `PENDING: DR-PW26`（A-PW351）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
+      "split_index": 9
     }
   ]
 }

@@ -1,0 +1,13 @@
+metric	value	source
+corpus 總條數	287	generated/batch_*.json（含 §8.3 增列 4 條）
+已改寫（55–68 包）	75	remarks 標記
+未改寫（B5 範圍）	212	同上
+corpus 內 PENDING 文字	36	逐欄掃
+G245 全案 / 已改寫內	189 / 0	A_upper
+G250 proper 類 全案 / 已改寫內	22 / 0	D
+G250 Read HU mode 全案 / 已改寫內	16 / 0	G
+G251 全案 / 已改寫內	118 / 3	family_k_59
+G247 Proc/ER 內部訊號 全案 / 已改寫內	97 / 9	正則
+  其中已改寫內者皆為 PENDING 佔位句	9 / 9	同上
+G249 五欄相同對	12	全為 (b) 型（req_id 不同），互註 24 處
+G246 使用 ENTER_<STATE>	40	字串掃

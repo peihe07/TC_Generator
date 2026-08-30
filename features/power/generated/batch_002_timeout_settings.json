@@ -332,8 +332,8 @@
       "test_item": "In Timed state, it is possible either to make and to receive one or more bluetooth phone calls according to following logics that depend on Timeout1 and on MaxCallTimeout time parameters.\n\n(read the call audio routing and the TLM state -> Both calls were served and the TLM remains in Timed state)",
       "pre_conditions": "1. A paired bluetooth phone is available on the bench\n2. The TLM is in Timed state",
       "input_test_data": "NA",
-      "test_procedure": "1. Place an outgoing bluetooth call from the paired phone through the TLM\n2. Read the paired phone screen and check that it shows the call as connected, and check that the call audio is present on the HU speakers\n3. End that call and let the paired phone place an incoming call to the HU\n4. Read the HU screen and check that the incoming call pop-up is shown, then answer it\n5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)",
-      "expected_result": "1. The outgoing call is placed from the paired phone\n2. The paired phone shows the call as connected and the call audio is present on the HU speakers\n3. The incoming call reaches the HU\n4. The incoming call pop-up is shown on the HU screen and the call is answered\n5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received",
+      "test_procedure": "1. Place an outgoing bluetooth call from the paired phone through the TLM\n2. Read the paired phone screen and check that it shows the call as connected, and check that the call audio is present on the HU speakers\n3. End that call and let the paired phone place an incoming call to the HU\n4. Read the HU screen and check that the \"Incoming Call\" pop-up is shown on it, then answer it\n5. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed)",
+      "expected_result": "1. The outgoing call is placed from the paired phone\n2. The paired phone shows the call as connected and the call audio is present on the HU speakers\n3. The incoming call reaches the HU\n4. The \"Incoming Call\" pop-up is shown on the HU screen and the call is answered\n5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -342,7 +342,7 @@
       "functional_safety": "NA",
       "estimated_test_time": "",
       "remarks": "(R-P383)",
-      "reasoning_note": "\n\n**R-P383 改寫（65 包）**：原步 3 之 `call audio routing and the TLM state` 為 TC 自造之複合名詞，非可觀察量。依 65 包 §0 拆為三個白名單量 —— 去話以手機端顯示 ＋ HU 揚聲器通話音訊 (iii)、來話以 HU 來電 pop-up (ii)、TLM 態以 `$STATUS_TELEMATIC.PowerSts_Telematic$` (i)。⚠ 錨點 `CFTS009-4941715` 為導言句（`according to following logics`），實質規則在 `4941716` 以後之各 Case；**本條與 `SWE-PM-064` / `SWE-PM-065` 之 Case TC 有 IN §8.2.1 重疊之虞，記明不刪**（RD 單位屬上游）。",
+      "reasoning_note": "\n\n**R-P383 改寫（65 包）**：原步 3 之 `call audio routing and the TLM state` 為 TC 自造之複合名詞，非可觀察量。依 65 包 §0 拆為三個白名單量 —— 去話以手機端顯示 ＋ HU 揚聲器通話音訊 (iii)、來話以 HU 來電 pop-up (ii)、TLM 態以 `$STATUS_TELEMATIC.PowerSts_Telematic$` (i)。⚠ 錨點 `CFTS009-4941715` 為導言句（`according to following logics`），實質規則在 `4941716` 以後之各 Case；**本條與 `SWE-PM-064` / `SWE-PM-065` 之 Case TC 有 IN §8.2.1 重疊之虞，記明不刪**（RD 單位屬上游）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 1
     },
     {

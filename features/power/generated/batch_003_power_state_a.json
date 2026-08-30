@@ -483,8 +483,8 @@
       "test_item": "This status is related to TLM OFF. AMP/ICS/DTV shall be OFF. Audio for ANC, ACN, and chimes (if equipped) shall be active in this state)\n\n(read the AMP, ICS and DTV power states and the audio paths -> AMP, ICS and DTV are OFF while audio for ANC, ACN and chimes is active)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in Partial Operation with AMP, ICS and DTV equipped",
       "input_test_data": "NA",
-      "test_procedure": "1. Let the TLM settle in Partial Operation\n2. Read the AMP, ICS and DTV power states and the audio paths to check the active set",
-      "expected_result": "1. The TLM stays in Partial Operation without further transition\n2. AMP, ICS and DTV are OFF while audio for ANC, ACN and chimes is active",
+      "test_procedure": "1. Apply ENTER_PARTIAL_OPERATION\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 7 (Partial_Operation)\n3. Apply FUNC_STATE_PARTIAL_OPERATION and check each of its sub-items\n4. Send the signal $PARK_INFO.ChimeActivation_LHF$ = 1 (Active) and check that the chime is audible on the left hand front speaker",
+      "expected_result": "1. The HU is in Partial Operation\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received\n3. FUNC_STATE_PARTIAL_OPERATION holds:\n   a. No audio source is playing and no amplifier output is present\n   b. The HU display is off, except for the HMI Antitheft Screens (CFTS009-4941457)\n   c. PENDING: DR-PW27 BoosterOUT OFF / antenna supply ON 位準值\n   d. A USB device is not enumerated and the AUX input does not play\n4. The chime is audible on the left hand front speaker",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.3",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -492,12 +492,12 @@
       "split_reason": "本條驗 Partial Operation 之各模組電源與音訊",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Partial Operation 之各模組電源與音訊"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P387(b) / R-P392(a) 改寫（68 包）**：原 `AMP, ICS and DTV power states and the audio paths` 為 A1 家族。依 R-P387(b) 取 `CFTS009-4941453` 之 `Partial Operation` 列（Source OFF／AMP OFF／Display OFF `(**)`／BoosterOUT OFF／天線 ON／MCU OFF）。ANC/ACN/chime 可用之刺激依 **R-P392(a)** 取 `$PARK_INFO.ChimeActivation_LHF$`（`CM_` 逐字「chime activation request for the left hand, front audio speaker」，接收 ETM/LTM），ER 為左前喇叭有 chime 聲 (iii)。",
       "split_index": 5
     },
     {
@@ -1149,10 +1149,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Idle\" AND PROXI parameter Rear_View_Camera == \"Present\" AND Rear_Camera_Enable.Info passes from \"False\" to \"True\"THENTLM stays in Idle state but allows its screen only to show the rear view camera video on its screen.Refer to VF551 for details about video availability requirements on TLM screen state.\n\n(read TLM_Status.Info and the screen content -> The screen shows the rear view camera video and nothing else)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Idle\"\n3. Rear_View_Camera reads \"Present\"",
-      "input_test_data": "Rear_Camera_Enable.Info: \"False\" to \"True\"",
-      "test_procedure": "1. Send the transition listed in Input Test Data\n2. Read TLM_Status.Info and the screen content to check what the screen shows",
-      "expected_result": "1. The TLM registers the transition without leaving Idle state\n2. The screen shows the rear view camera video and nothing else",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. PROXI Rear_View_Camera = \"Present\"",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Rear_Camera_Enable.Info 之驅動方法（自 \"False\" 轉 \"True\"）\n2. Read the HU screen and check that the \"Rear View Camera\" video is shown on it\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is still 3 (Idle)",
+      "expected_result": "1. PENDING: DR-PW23 Rear_Camera_Enable.Info\n2. The \"Rear View Camera\" video is shown on the HU screen\n3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is still received",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1160,8 +1160,8 @@
       "split_reason": "本條驗 Idle 下後視攝影機啟用之停留與畫面限制",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第二批)",
+      "reasoning_note": "\n\n**R-P386 改寫（68 包）**：原 `TLM_Status.Info and the screen content` 拆為二 —— 畫面僅 rear view camera video (ii)、`$STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle)` 不變 (i)。前置之 `Rear_View_Camera` 為 **PROXI `Format` r401 查得**（R-P377 中候選），寫 `PROXI Rear_View_Camera`。⚠ `Rear_Camera_Enable.Info` 之 `False`→`True` 為**運行時用法**，依 **R-P380(a)** 不撤 PENDING。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 1
     },
     {

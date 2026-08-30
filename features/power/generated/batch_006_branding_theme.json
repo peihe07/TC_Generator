@@ -149,10 +149,10 @@
       "test_group": "Power Management",
       "test_set": "Branding and Theme",
       "test_item": "If $VC_SpecialPKG$ = [none] or indicates a value that is not supported by the HU, the default theme based on the $VC_VEH_BRAND$ signal shall be used. See the latest version of [PDO Theme Configuration] for the default value definition.\n\n(read the applied theme against the brand signal -> The default theme based on the $VC_VEH_BRAND$ signal is used)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU carries a configured vehicle brand",
-      "input_test_data": "$VC_SpecialPKG$: \"none\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the applied theme against the brand signal to check the fallback",
-      "expected_result": "1. The HU accepts the configuration value\n2. The default theme based on the $VC_VEH_BRAND$ signal is used",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Set VC_VEH_BRAND = the configured brand (DR-PW28)",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_SpecialPKG = \"none\" (DR-PW28)\n2. Read the \"Theme\" applied on the HU screen\n3. PENDING: DR-PW27 [PDO Theme Configuration] —— 該品牌之預設 theme",
+      "expected_result": "1. The special package value is applied\n2. The applied theme is read from the HU screen\n3. PENDING: DR-PW27 [PDO Theme Configuration]",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -160,12 +160,12 @@
       "split_reason": "本條驗 OR 之左支 none",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 OR 之左支 none"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 1
     },
     {
@@ -175,10 +175,10 @@
       "test_group": "Power Management",
       "test_set": "Branding and Theme",
       "test_item": "If $VC_SpecialPKG$ = [none] or indicates a value that is not supported by the HU, the default theme based on the $VC_VEH_BRAND$ signal shall be used. See the latest version of [PDO Theme Configuration] for the default value definition.\n\n(read the applied theme against the brand signal -> The default theme based on the $VC_VEH_BRAND$ signal is used)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU carries a configured vehicle brand",
-      "input_test_data": "$VC_SpecialPKG$: a value that is not supported by the HU",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the applied theme against the brand signal to check the fallback",
-      "expected_result": "1. The HU accepts the configuration value\n2. The default theme based on the $VC_VEH_BRAND$ signal is used",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Set VC_VEH_BRAND = the configured brand (DR-PW28)",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_SpecialPKG = an unsupported value (DR-PW28)\n2. Read the \"Theme\" applied on the HU screen\n3. PENDING: DR-PW27 [PDO Theme Configuration] —— 該品牌之預設 theme",
+      "expected_result": "1. The special package value is applied\n2. The applied theme is read from the HU screen\n3. PENDING: DR-PW27 [PDO Theme Configuration]",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -186,12 +186,12 @@
       "split_reason": "本條驗 OR 之右支 不受支援之值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 OR 之右支 不受支援之值"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 2
     },
     {
@@ -201,10 +201,10 @@
       "test_group": "Power Management",
       "test_set": "Branding and Theme",
       "test_item": "For all of the PDO branded elements listed, if the CAN signals referenced indicate a value that is not supported by the HU, the default value defined by PDO shall be used. See the latest version of [PDO Theme Configuration] and the \"Theme Name\" defaults for the values to use.\n\n(read the shown element -> The default value defined by PDO is used for that branded element)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU displays a PDO branded element",
-      "input_test_data": "A referenced CAN signal carrying a value that is not supported by the HU",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown element to check which value the HU falls back to",
-      "expected_result": "1. The HU accepts the signal value\n2. The default value defined by PDO is used for that branded element",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is displaying a PDO branded element",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send an unsupported CAN value for the branded element\n2. Read the \"PDO Branded Element\" shown on the HU screen\n3. PENDING: DR-PW27 [PDO Theme Configuration] —— 該元件之預設值與元件清單",
+      "expected_result": "1. The unsupported value is sent\n2. The shown element is read\n3. PENDING: DR-PW27 [PDO Theme Configuration]",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -212,8 +212,8 @@
       "split_reason": "本條驗品牌化元素之回落規則",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第二批)",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 1
     },
     {
@@ -276,9 +276,9 @@
       "test_set": "Branding and Theme",
       "test_item": "The HU shall use $VC_VEH_BRAND$ to determine the correct font to display. Valid values are as follows:$VC_VEH_BRAND$  = [Chrysler] shall indicate Chrysler font. $VC_VEH_BRAND$  = [Dodge] shall indicate Dodge font. $VC_VEH_BRAND$  = [Jeep] shall indicate Jeep font. $VC_VEH_BRAND$  = [Alpha Romeo] shall indicate Alfa Romeo font. $VC_VEH_BRAND$  = [Fiat] shall indicate Fiat font. (DEFAULT)$VC_VEH_BRAND$  = [Lancia] shall indicate Lancia font. $VC_VEH_BRAND$  = [Maserati] shall indicate Maserati font. $VC_VEH_BRAND$  = [Ram] shall indicate Ram font.$VC_VEH_BRAND$  = [Abarth] shall indicate Abarth font.$VC_VEH_BRAND$  = [Opel] shall indicate Opel font.$VC_VEH_BRAND$  = [Vauxhall] shall indicate Vauxhall font.$VC_VEH_BRAND$  = [Citroen] shall indicate Citroen font.$VC_VEH_BRAND$  = [Peugeot] shall indicate Peugeot font.\n\n(read the displayed font -> The HU displays the Chrysler font)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is displaying branded text",
-      "input_test_data": "$VC_VEH_BRAND$: \"Chrysler\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the displayed font to check which font the HU selects",
-      "expected_result": "1. The HU accepts the signal value\n2. The HU displays the Chrysler font",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = \"Chrysler\" (DR-PW28)\n2. Read the branded text on the HU screen and check that it is rendered in the \"Chrysler font\"",
+      "expected_result": "1. The brand configuration is applied\n2. The branded text is rendered in the \"Chrysler font\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.1",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -286,12 +286,12 @@
       "split_reason": "本條驗一般品牌值之映射",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗一般品牌值之映射"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **元件已由規格指名，ER 不 PENDING**；辨識參照（PDO graphics）見 DR-PW27，僅記於 Remarks（R-P388 之分流）。",
       "split_index": 1
     },
     {
@@ -302,9 +302,9 @@
       "test_set": "Branding and Theme",
       "test_item": "The HU shall use $VC_VEH_BRAND$ to determine the correct font to display. Valid values are as follows:$VC_VEH_BRAND$  = [Chrysler] shall indicate Chrysler font. $VC_VEH_BRAND$  = [Dodge] shall indicate Dodge font. $VC_VEH_BRAND$  = [Jeep] shall indicate Jeep font. $VC_VEH_BRAND$  = [Alpha Romeo] shall indicate Alfa Romeo font. $VC_VEH_BRAND$  = [Fiat] shall indicate Fiat font. (DEFAULT)$VC_VEH_BRAND$  = [Lancia] shall indicate Lancia font. $VC_VEH_BRAND$  = [Maserati] shall indicate Maserati font. $VC_VEH_BRAND$  = [Ram] shall indicate Ram font.$VC_VEH_BRAND$  = [Abarth] shall indicate Abarth font.$VC_VEH_BRAND$  = [Opel] shall indicate Opel font.$VC_VEH_BRAND$  = [Vauxhall] shall indicate Vauxhall font.$VC_VEH_BRAND$  = [Citroen] shall indicate Citroen font.$VC_VEH_BRAND$  = [Peugeot] shall indicate Peugeot font.\n\n(read the displayed font -> The HU displays the Jeep font)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is displaying branded text",
-      "input_test_data": "$VC_VEH_BRAND$: \"Jeep\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the displayed font to check which font the HU selects",
-      "expected_result": "1. The HU accepts the signal value\n2. The HU displays the Jeep font",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = \"Jeep\" (DR-PW28)\n2. Read the branded text on the HU screen and check that it is rendered in the \"Jeep font\"",
+      "expected_result": "1. The brand configuration is applied\n2. The branded text is rendered in the \"Jeep font\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.1",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -312,12 +312,12 @@
       "split_reason": "本條驗 Jeep 值之映射（與 R-P193 之品牌適用性相關）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Jeep 值之映射（與 R-P193 之品牌適用性相關）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **元件已由規格指名，ER 不 PENDING**；辨識參照（PDO graphics）見 DR-PW27，僅記於 Remarks（R-P388 之分流）。",
       "split_index": 2
     },
     {
@@ -328,9 +328,9 @@
       "test_set": "Branding and Theme",
       "test_item": "The HU shall use $VC_VEH_BRAND$ to determine the correct font to display. Valid values are as follows:$VC_VEH_BRAND$  = [Chrysler] shall indicate Chrysler font. $VC_VEH_BRAND$  = [Dodge] shall indicate Dodge font. $VC_VEH_BRAND$  = [Jeep] shall indicate Jeep font. $VC_VEH_BRAND$  = [Alpha Romeo] shall indicate Alfa Romeo font. $VC_VEH_BRAND$  = [Fiat] shall indicate Fiat font. (DEFAULT)$VC_VEH_BRAND$  = [Lancia] shall indicate Lancia font. $VC_VEH_BRAND$  = [Maserati] shall indicate Maserati font. $VC_VEH_BRAND$  = [Ram] shall indicate Ram font.$VC_VEH_BRAND$  = [Abarth] shall indicate Abarth font.$VC_VEH_BRAND$  = [Opel] shall indicate Opel font.$VC_VEH_BRAND$  = [Vauxhall] shall indicate Vauxhall font.$VC_VEH_BRAND$  = [Citroen] shall indicate Citroen font.$VC_VEH_BRAND$  = [Peugeot] shall indicate Peugeot font.\n\n(read the displayed font -> The HU displays the Fiat font that the specification marks as DEFAULT)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is displaying branded text",
-      "input_test_data": "$VC_VEH_BRAND$: \"Fiat\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the displayed font to check which font the HU selects",
-      "expected_result": "1. The HU accepts the signal value\n2. The HU displays the Fiat font that the specification marks as DEFAULT",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = \"Fiat\" (DR-PW28)\n2. Read the branded text on the HU screen and check that it is rendered in the \"Fiat font\"",
+      "expected_result": "1. The brand configuration is applied\n2. The branded text is rendered in the \"Fiat font\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.1",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -338,12 +338,12 @@
       "split_reason": "本條驗標為 DEFAULT 之值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗標為 DEFAULT 之值"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **元件已由規格指名，ER 不 PENDING**；辨識參照（PDO graphics）見 DR-PW27，僅記於 Remarks（R-P388 之分流）。",
       "split_index": 3
     },
     {
@@ -354,9 +354,9 @@
       "test_set": "Branding and Theme",
       "test_item": "The HU shall use the $VC_VEH_BRAND$  signal to determine the correct App icon to display.$VC_VEH_BRAND$  = [Chrysler] shall indicate Chrysler App icon. $VC_VEH_BRAND$  = [Dodge] shall indicate Dodge App icon. $VC_VEH_BRAND$  = [Jeep] shall indicate Jeep App icon.$VC_VEH_BRAND$  = [Alpha Romeo] shall indicate Alfa Romeo App icon.$VC_VEH_BRAND$  = [Fiat] shall indicate Fiat App icon. (DEFAULT)$VC_VEH_BRAND$  = [Lancia] shall indicate Lancia App icon. $VC_VEH_BRAND$  = [Maserati] shall indicate Maserati App icon.$VC_VEH_BRAND$  = [Ram] shall indicate Ram App icon.$VC_VEH_BRAND$  = [Abarth] shall indicate Abarth App icon.$VC_VEH_BRAND$  = [Opel] shall indicate Opel font App icon.$VC_VEH_BRAND$  = [Vauxhall] shall indicate Vauxhall App icon.$VC_VEH_BRAND$  = [Citroen] shall indicate Citroen App icon.$VC_VEH_BRAND$  = [Peugeot] shall indicate Peugeot App icon.\n\n(read the displayed App icon -> The HU displays the Chrysler App icon)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is displaying the App icon",
-      "input_test_data": "$VC_VEH_BRAND$: \"Chrysler\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the displayed App icon to check which icon the HU selects",
-      "expected_result": "1. The HU accepts the signal value\n2. The HU displays the Chrysler App icon",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = \"Chrysler\" (DR-PW28)\n2. Read the App Drawer on the HU screen and check that the \"Chrysler App icon\" is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Chrysler App icon\" is shown in the App Drawer",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.4",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -364,12 +364,12 @@
       "split_reason": "本條驗一般品牌值之映射",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗一般品牌值之映射"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **元件已由規格指名，ER 不 PENDING**；辨識參照（PDO graphics）見 DR-PW27，僅記於 Remarks（R-P388 之分流）。",
       "split_index": 1
     },
     {
@@ -380,9 +380,9 @@
       "test_set": "Branding and Theme",
       "test_item": "The HU shall use the $VC_VEH_BRAND$  signal to determine the correct App icon to display.$VC_VEH_BRAND$  = [Chrysler] shall indicate Chrysler App icon. $VC_VEH_BRAND$  = [Dodge] shall indicate Dodge App icon. $VC_VEH_BRAND$  = [Jeep] shall indicate Jeep App icon.$VC_VEH_BRAND$  = [Alpha Romeo] shall indicate Alfa Romeo App icon.$VC_VEH_BRAND$  = [Fiat] shall indicate Fiat App icon. (DEFAULT)$VC_VEH_BRAND$  = [Lancia] shall indicate Lancia App icon. $VC_VEH_BRAND$  = [Maserati] shall indicate Maserati App icon.$VC_VEH_BRAND$  = [Ram] shall indicate Ram App icon.$VC_VEH_BRAND$  = [Abarth] shall indicate Abarth App icon.$VC_VEH_BRAND$  = [Opel] shall indicate Opel font App icon.$VC_VEH_BRAND$  = [Vauxhall] shall indicate Vauxhall App icon.$VC_VEH_BRAND$  = [Citroen] shall indicate Citroen App icon.$VC_VEH_BRAND$  = [Peugeot] shall indicate Peugeot App icon.\n\n(read the displayed App icon -> The HU displays the Jeep App icon)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is displaying the App icon",
-      "input_test_data": "$VC_VEH_BRAND$: \"Jeep\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the displayed App icon to check which icon the HU selects",
-      "expected_result": "1. The HU accepts the signal value\n2. The HU displays the Jeep App icon",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = \"Jeep\" (DR-PW28)\n2. Read the App Drawer on the HU screen and check that the \"Jeep App icon\" is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Jeep App icon\" is shown in the App Drawer",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.4",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -390,12 +390,12 @@
       "split_reason": "本條驗 Jeep 值之映射",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Jeep 值之映射"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **元件已由規格指名，ER 不 PENDING**；辨識參照（PDO graphics）見 DR-PW27，僅記於 Remarks（R-P388 之分流）。",
       "split_index": 2
     },
     {
@@ -406,9 +406,9 @@
       "test_set": "Branding and Theme",
       "test_item": "The HU shall use the $VC_VEH_BRAND$  signal to determine the correct App icon to display.$VC_VEH_BRAND$  = [Chrysler] shall indicate Chrysler App icon. $VC_VEH_BRAND$  = [Dodge] shall indicate Dodge App icon. $VC_VEH_BRAND$  = [Jeep] shall indicate Jeep App icon.$VC_VEH_BRAND$  = [Alpha Romeo] shall indicate Alfa Romeo App icon.$VC_VEH_BRAND$  = [Fiat] shall indicate Fiat App icon. (DEFAULT)$VC_VEH_BRAND$  = [Lancia] shall indicate Lancia App icon. $VC_VEH_BRAND$  = [Maserati] shall indicate Maserati App icon.$VC_VEH_BRAND$  = [Ram] shall indicate Ram App icon.$VC_VEH_BRAND$  = [Abarth] shall indicate Abarth App icon.$VC_VEH_BRAND$  = [Opel] shall indicate Opel font App icon.$VC_VEH_BRAND$  = [Vauxhall] shall indicate Vauxhall App icon.$VC_VEH_BRAND$  = [Citroen] shall indicate Citroen App icon.$VC_VEH_BRAND$  = [Peugeot] shall indicate Peugeot App icon.\n\n(read the displayed App icon -> The HU displays the Fiat App icon that the specification marks as DEFAULT)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is displaying the App icon",
-      "input_test_data": "$VC_VEH_BRAND$: \"Fiat\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the displayed App icon to check which icon the HU selects",
-      "expected_result": "1. The HU accepts the signal value\n2. The HU displays the Fiat App icon that the specification marks as DEFAULT",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_BRAND = \"Fiat\" (DR-PW28)\n2. Read the App Drawer on the HU screen and check that the \"Fiat App icon\" is shown on it",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Fiat App icon\" is shown in the App Drawer",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.4",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -416,12 +416,12 @@
       "split_reason": "本條驗標為 DEFAULT 之值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗標為 DEFAULT 之值"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **元件已由規格指名，ER 不 PENDING**；辨識參照（PDO graphics）見 DR-PW27，僅記於 Remarks（R-P388 之分流）。",
       "split_index": 3
     },
     {
@@ -510,9 +510,9 @@
       "test_set": "Branding and Theme",
       "test_item": "CUSW/AtlLo/AtlMi/AtlHi:The HU shall use $VC_VEH_LINE$ and the$Car_Shape_Configuration$ and $Number_of_Doors$ PROXI parameters to determine the correct recirc icon to display. See HMI release and PDO graphics files for ICON assignments.PNET: The HU shall use the $VC_VEH_LINE$ and the $VC_BODY_STYLE$ signals to determine the correct recirc icon to display. See HMI release and PDO graphics files for ICON assignments\n\n(read the shown recirc icon -> The recirc icon matches the assignment for that vehicle line and car shape)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU runs the CUSW or Atlantis architecture\n3. The climate screen showing the recirc icon is reachable",
-      "input_test_data": "$VC_VEH_LINE$ with the $Car_Shape_Configuration$ and $Number_of_Doors$ PROXI parameters",
-      "test_procedure": "1. Send the configuration listed in Input Test Data\n2. Read the shown recirc icon to check which assignment the HU applies",
-      "expected_result": "1. The HU accepts the configuration\n2. The recirc icon matches the assignment for that vehicle line and car shape",
+      "input_test_data": "NA",
+      "test_procedure": "1. Apply the configuration: PROXI Car_Shape_Configuration and PROXI Number_of_Doors\n2. Read the climate screen and check which \"Recirc Icon\" is shown on it\n3. PENDING: DR-PW27 HMI release —— 該組態所對應之 recirc icon 指派",
+      "expected_result": "1. The configuration is applied\n2. The \"Recirc Icon\" shown on the climate screen is read\n3. PENDING: DR-PW27 HMI release",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.6",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -520,12 +520,12 @@
       "split_reason": "本條驗 CUSW / Atlantis 路徑（本專案適用）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 CUSW / Atlantis 路徑（本專案適用）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 1
     },
     {
@@ -536,9 +536,9 @@
       "test_set": "Branding and Theme",
       "test_item": "CUSW/AtlLo/AtlMi/AtlHi:The HU shall use $VC_VEH_LINE$ and the$Car_Shape_Configuration$ and $Number_of_Doors$ PROXI parameters to determine the correct recirc icon to display. See HMI release and PDO graphics files for ICON assignments.PNET: The HU shall use the $VC_VEH_LINE$ and the $VC_BODY_STYLE$ signals to determine the correct recirc icon to display. See HMI release and PDO graphics files for ICON assignments\n\n(read the shown recirc icon -> The recirc icon matches the assignment for that vehicle line and body style)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU runs the PNET architecture\n3. The climate screen showing the recirc icon is reachable",
-      "input_test_data": "$VC_VEH_LINE$ with the $VC_BODY_STYLE$ signal",
-      "test_procedure": "1. Send the configuration listed in Input Test Data\n2. Read the shown recirc icon to check which assignment the HU applies",
-      "expected_result": "1. The HU accepts the configuration\n2. The recirc icon matches the assignment for that vehicle line and body style",
+      "input_test_data": "NA",
+      "test_procedure": "1. Apply the configuration: Set VC_BODY_STYLE = the body style under test (DR-PW28)\n2. Read the climate screen and check which \"Recirc Icon\" is shown on it\n3. PENDING: DR-PW27 HMI release —— 該組態所對應之 recirc icon 指派",
+      "expected_result": "1. The configuration is applied\n2. The \"Recirc Icon\" shown on the climate screen is read\n3. PENDING: DR-PW27 HMI release",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.6",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -546,12 +546,12 @@
       "split_reason": "本條驗 PNET 路徑（非本專案架構，成條以保留追溯）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 PNET 路徑（非本專案架構，成條以保留追溯）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 2
     },
     {
@@ -691,10 +691,10 @@
       "test_group": "Power Management",
       "test_set": "Branding and Theme",
       "test_item": "If $VC_VEH_LINE$ = [M240] The HU Shall use the M240 seat graphics.  If $VC_VEH_LINE$ <> [M240]The HU shall use $VC_VEH_BRAND$ to determine the correct settings seat graphic display.\n\n(read the shown seat graphic against the brand signal -> The HU uses $VC_VEH_BRAND$ to determine the settings seat graphic)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The seat settings screen is reachable\n3. The HU carries a configured vehicle brand",
-      "input_test_data": "$VC_VEH_LINE$: a value other than \"M240\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown seat graphic against the brand signal to check the source",
-      "expected_result": "1. The HU accepts the signal value\n2. The HU uses $VC_VEH_BRAND$ to determine the settings seat graphic",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The seat settings screen is reachable\n3. Set VC_VEH_BRAND = the configured brand (DR-PW28)",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_LINE = a value other than M240 (DR-PW28)\n2. Read the seat settings screen and check which \"Seat Graphic\" is shown on it\n3. PENDING: DR-PW27 —— 非 M240 之 seat graphic 指派",
+      "expected_result": "1. The vehicle line is applied\n2. The shown \"Seat Graphic\" is read\n3. PENDING: DR-PW27",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.7.1.1.6",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -702,12 +702,12 @@
       "split_reason": "本條驗 ELSE 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P386 第二批)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 ELSE 分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。 本條為**非 M240** 支；M240 支依 R-P393(c) 另立（IN §8.3）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 2
     },
     {
@@ -718,9 +718,9 @@
       "test_set": "Branding and Theme",
       "test_item": "The HU shall use the $VC_VEH_LINE$ signal to determine the correct performance gauges to display. See HMI release and PDO graphics files for performance gauge assignments.\n\n(read the shown gauges -> The performance gauges match the assignment for that vehicle line)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The performance gauges screen is reachable",
-      "input_test_data": "$VC_VEH_LINE$: a configured vehicle line value",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown gauges to check which assignment the HU applies",
-      "expected_result": "1. The HU accepts the signal value\n2. The performance gauges match the assignment for that vehicle line",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_LINE = the vehicle line under test (DR-PW28)\n2. Read the performance gauges screen and check which \"Performance Gauges\" are shown on it\n3. PENDING: DR-PW27 —— 該 vehicle line 之 gauges 指派",
+      "expected_result": "1. The vehicle line is applied\n2. The shown \"Performance Gauges\" are read\n3. PENDING: DR-PW27",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.10",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -728,8 +728,8 @@
       "split_reason": "本條驗 $VC_VEH_LINE$ 決定 gauges",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P386 第二批)",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
       "split_index": 1
     },
     {
@@ -983,6 +983,32 @@
       },
       "reasoning_note": "",
       "split_index": 6
+    },
+    {
+      "req_id": "SWE-PM-087",
+      "tc_id": "NR1L-PowerManagement-286",
+      "tc_title": "An M240 vehicle line uses the M240 seat graphics",
+      "test_group": "Power Management",
+      "test_set": "Branding and Theme",
+      "test_item": "If $VC_VEH_LINE$ = [M240] The HU Shall use the M240 seat graphics.  If $VC_VEH_LINE$ <> [M240]The HU shall use $VC_VEH_BRAND$ to determine the correct settings seat graphic display.\n\n(read the shown seat graphic against the brand signal -> The HU uses $VC_VEH_BRAND$ to determine the settings seat graphic)",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The seat settings screen is reachable\n3. Set VC_VEH_BRAND = the configured brand (DR-PW28)",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set VC_VEH_LINE = \"M240\" (DR-PW28)\n2. Read the seat settings screen and check that the \"M240 seat graphics\" are shown on it",
+      "expected_result": "1. The vehicle line is applied\n2. The \"M240 seat graphics\" are shown on the seat settings screen",
+      "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.7.1.1.6",
+      "priority": "P3",
+      "design_method": "決策表 (Decision Table Testing)",
+      "split_flag": true,
+      "split_reason": "本條驗 ELSE 分支",
+      "functional_safety": "NA",
+      "estimated_test_time": "",
+      "remarks": "(R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-249 同錨點)",
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "本條驗 ELSE 分支"
+      },
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。 本條為**非 M240** 支；M240 支依 R-P393(c) 另立（IN §8.3）。\n\n**R-P393(c) §8.3 拆分**：`-249` 之 **M240 支**（原條為非 M240 支）。",
+      "split_index": 2
     }
   ]
 }

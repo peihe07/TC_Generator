@@ -318,3 +318,22 @@
 | `SWE-PM-113` | `221` | `228` | `228` | `224` | `258` | **`281`** | A geolocation and SOS market adds the ADAS and SOS t |
 | `SWE-PM-114` | `222` | `229` | `229` | `225` | `259` | **`282`** | An incoming call from IDLE bypasses the not yet show |
 | `SWE-PM-115` | `223` | `230` | `230` | `226` | `260` | **`283`** | The disclaimer bypassed for a call is shown at the n |
+
+---
+
+## 四、68 包 §8.3 拆分增列（R-P393(c)）
+
+> 本節為 54 包重建版之**增補**，非重編。既有 001–283 之號碼**不變**（同 R-P349(c) 之處置）。
+> 增列四條之 tc_id 自 **284** 續號，其「（二）交付副本」欄為 **新增**（無對應）。
+
+| req_id | 拆自 | **新 tc_id** | tc_title | 拆分依據 |
+|---|---|---|---|---|
+| `SWE-PM-075` | `NR1L-PowerManagement-169` | **`284`** | A dismissed FOTA pop up passes the TLM to Standby | IN §8.3：三個離開條件各一 TC；本條為 pop-up dismissed 支 |
+| `SWE-PM-075` | `NR1L-PowerManagement-169` | **`285`** | An accessory delay going inactive passes the TLM to Standby | 同上；`$ACCDlyAct$` active→inactive 支 |
+| `SWE-PM-087` | `NR1L-PowerManagement-249` | **`286`** | An M240 vehicle line uses the M240 seat graphics | IN §8.3：原條為非 M240 支，本條補 M240 支 |
+| `SWE-PM-093` | `NR1L-PowerManagement-182` | **`287`** | A start-up animation plays again in the next wakeup cycle | IN §8.3：原條為 30 分鐘支，本條補下一喚醒週期支 |
+
+**corpus 條數 283 → 287。**
+
+⚠ 四條之 `req_id` 與拆自之條相同，故**五欄鍵下與原條相異**（Procedure / ER 不同），
+不觸 R-P357。四條之 `req_id` 實測：`-284` / `-285` = `SWE-PM-075`；`-286` = `SWE-PM-087`；`-287` = `SWE-PM-093`。
