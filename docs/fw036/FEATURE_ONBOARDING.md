@@ -21,6 +21,12 @@ escalate one tier up — never down.
   037 from the start and was only noticed mid-pipeline). Label-variant
   matches are flagged for confirmation (A-H03 pattern). Obtaining the files
   stays Tier 3.
+- **CFTS 嵌入物件之檢查（R-G28，Pei 2026-08-30，全域）**：intake 時須查
+  `…/Reference Documents/CFTS Embedded Objects/CFTS<nnn>/` 有無該 feature
+  之母 CFTS 目錄；有者逐張轉圖並出「由圖找列」二欄表，**查無者亦記明已查**。
+  圖中可能載有未見於 docx 之數值與流程（sw_update 實測：四個門檻、
+  一段 UDS 序列），而其 ObjectID **不在錨定語料內**，錨定三機制對其無效。
+  條文與其成因見 FO §9.2 R-G28。
 - **036 母本選擇（R-G1，Pei 2026-08-17，全域）**：自 2026-08-17 起所有新
   feature 一律以 `forms/…_SWQT_20260817_ext.xlsx` 為 036 母本，不再逐
   feature 詢問。既有 feature 之已交付件不因本條改變。結構事實見
@@ -723,6 +729,7 @@ sha 不符即停下（FO §8.4）。**原文段保留不刪**（R-TM13 之精神
 | R-G25 | 產出物目錄政策 | 27 包 §C，Pei 裁定 2026-08-24（換號 08-27）|
 | R-G26 | 工作區清理制 | 同上 |
 | R-G27 | 來源集中制（`sources/`）| 同上 |
+| R-G28 | CFTS 嵌入物件之逐 feature 檢查 | sw_update 53／54 包，Pei 裁定 2026-08-30 |
 
 #### R-G1 — 036 母本之固定與其身分
 
@@ -1061,6 +1068,46 @@ feature.yaml 以 doc_id 引用。內容爭議以 raw 為準（FO §8.6 同精神
 > 為準（FO §8.6）；抽取工具改版後 `extracted/` 得重產，`raw/` 不得。
 > **與 R-G24 之銜接**：新 feature 之 `_intake/{Feature_Name}/` 仍為投遞區，
 > 投遞後之原檔落點為 `sources/raw/<doc_id>/`，非 `features/<f>/inputs/`。
+
+#### R-G28 — CFTS 嵌入物件之逐 feature 檢查
+
+```
+R-G28（Pei 裁定 2026-08-30）：intake 時須檢查該 feature 之母 CFTS 是否於
+`…/Reference Documents/CFTS Embedded Objects/CFTS<nnn>/` 下有嵌入物件；
+有者逐張轉為可讀影像並出「由圖找列」二欄表：**其所載之值／流程**、
+**其對應之 037 列**，併記其與文字來源**一致或不一致**。不一致者為 DR 之材料。
+查無者亦須記明「已查、無此目錄」，不得以未提及代替。
+嵌入物件之 ObjectID 落於錨點池號段內而**不在錨定語料內** ——
+其內容不進路徑 A，故錨定之三機制對其一律無效；
+該事實須記入該 feature 之 `ANCHOR_POOL.md` 附記（R-G8）。
+```
+
+> **本條之來源**（sw_update，2026-08-30）：`CFTS057` 下六個 `.rtf`
+> 皆為 Visio 圖，其中 `4908702`（Wi-Fi 下載 session 流程）載有四個門檻
+> ——重試上限 7、`T = 30 minutes after timed mode has expired`、
+> `T = 5 minutes since last data received`、中斷時終止 session 並
+> `I += 1` 或 `I = 0`。**六個 ObjectID 於母 docx 之內文出現次數皆為 0** ——
+> 號段落在池之範圍內，**而號段內不等於語料內**。
+>
+> **其後果不在錨錯，在覆蓋**：一列若其正解係某張圖所載，
+> **路徑 A 在原理上找不到它，低分偵測器也不會攔它** ——
+> 它不是「分數低」，是**不在候選集合中**。三機制（自證錨／區塊錨／低分）
+> 皆假設正解在候選集合內，**對「不在集合內」者全部無效**。
+>
+> **「由圖找列」而非「由列找圖」之理由**：由列找圖不可窮舉
+> （311 列 × 未知圖數），**由圖找列可以** —— 圖數有限，逐張問
+> 「它所載之事對應到哪些列」。sw_update 對 `4908702` 實作之，
+> 對應到 9 列，其中 1 列（`057`）與其**不一致**（同一個 30 分鐘，
+> 037 起算於 ignition cycle，圖起算於 timed mode expired）——
+> **該不一致即為 DR 之材料，而它只有做了這一步才看得到。**
+>
+> **與 G-M 之分工**：G-M 管「先查他 feature 之 `inputs/`」，
+> 本條管「查本 feature 之母 CFTS 有無嵌入物件」。
+> **同一形態之兩個方向** —— 素材不只在別人的目錄裡，也在自己那份文件裡面。
+>
+> **與 R-SU26（素材欄位全覽，sw_update 側）之分工**：
+> 該條管「一份已知素材裡有哪些欄」，本條管「有哪些素材」。
+> **欄位全覽做過不蘊含素材已盤點。**
 
 #### R-G4／R-G7 之原文與 R-G12 之來源
 
