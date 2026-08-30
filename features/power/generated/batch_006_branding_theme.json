@@ -1002,13 +1002,13 @@
       "split_reason": "本條驗 ELSE 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-249 同錨點)",
+      "remarks": "(R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-249 同錨點) (站④-3：與 -248 同為 SWE-PM-087 之 M240 分支，內容重疊，待分析層裁去留)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 ELSE 分支"
       },
-      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。 本條為**非 M240** 支；M240 支依 R-P393(c) 另立（IN §8.3）。\n\n**R-P393(c) §8.3 拆分**：`-249` 之 **M240 支**（原條為非 M240 支）。",
-      "split_index": 2
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。 本條為**非 M240** 支；M240 支依 R-P393(c) 另立（IN §8.3）。\n\n**R-P393(c) §8.3 拆分**：`-249` 之 **M240 支**（原條為非 M240 支）。\n\n**`split_index` 訂正（74 包）**：本條為 68 包 §8.3 之拆分增列，以 `clone()` 產生而**沿用來源條之 `split_index`（2）**，致同一 leaf 內出現重複鍵、列序（R-P113 / R-P115 之 `(req_id, split_index)`）把本條排到來源條之後而非該 leaf 之末。改為該 leaf 之次一號 **3**。⚠ `req_id` 之列序本就正確（288 列 0 逆序），本訂正只影響**同 leaf 內**之相對位置。\n\n**站④-3（74 包，執行層實測）**：本條為 68 包 §8.3 依 R-P393(c)「`-249` 補 M240 支」所增，惟 **`-248` 本即為 M240 支**（`tc_title`「The M240 vehicle line uses the M240 seat graphics」，Procedure 送 `VC_VEH_LINE = \"M240\"`，ER 驗 `\"M240 seat graphics\"`）——**R-P393(c) 立條時未察該支已存在**，本條與 `-248` 內容重疊。⚠ 二者五欄不逐字相同（措辭有別），故 R-P357 不機械觸發；**去留屬 IN §8.2.1／§8.3 之處置，執行層不逕刪**，標記交分析層裁。",
+      "split_index": 3
     }
   ]
 }

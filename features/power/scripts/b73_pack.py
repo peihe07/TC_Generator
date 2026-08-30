@@ -30,6 +30,25 @@ from dryrun_write_back import (HEADER_ROW, FIRST_DATA_ROW, load_cfg,  # noqa: E4
                                row_values, sha256)
 from dryrun_full_write_back import BLANK_LEAF, ordered_tcs  # noqa: E402
 
+
+def ordered_tcs_v2() -> list[dict]:
+    """`(SWE-PM ID, split_index, tc_id)` —— 於 R-P113 / R-P115 之鍵後補 `tc_id`。
+
+    ⚠ **補此第三鍵之理由**：68 包 §8.3 之拆分四條（`-284`–`-287`）以
+    `clone()` 產生，**沿用來源條之 `split_index`**，故與來源條同鍵；
+    Python 之穩定排序遂保留 JSON 陣列序，使 `SWE-PM-075` 之列序成
+    `169、284、285、170、171` —— **同一 leaf 內 `tc_id` 不遞增**。
+
+    `req_id` 之列序**本就正確**（實測 288 列 0 逆序斷點，
+    同 comfort 96 §6 之 `row-order-by-reqid`）；本鍵只在**同 req_id 且同
+    split_index** 時才生效，故不改動任何既有列之相對位置。
+    """
+    import re as _re
+    return sorted(ordered_tcs(),
+                  key=lambda t: (int(_re.match(r"SWE-PM-(\d+)", t["req_id"]).group(1)),
+                                 int(t.get("split_index") or 1),
+                                 int(t["tc_id"].rsplit("-", 1)[-1])))
+
 FIVE = ("test_item", "pre_conditions", "input_test_data",
         "test_procedure", "expected_result")
 LABEL = {"test_item": "Test Item", "pre_conditions": "Pre-Conditions",
@@ -48,7 +67,7 @@ def main() -> None:
     shutil.copyfile(src, work)                      # 位元組複製，來源唯讀
     assert sha256(work) == sha256(src), "來源副本非位元組相同"
 
-    tcs = ordered_tcs()
+    tcs = ordered_tcs_v2()
     blank = {k: "" for k in
              ("tc_id", "tc_title", "test_item", "pre_conditions", "input_test_data",
               "test_procedure", "expected_result", "specification_reference",

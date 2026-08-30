@@ -291,7 +291,7 @@
 | 283 | `NR1L-PowerManagement-283` | `SWE-PM-004` | (R-P394 B5；規則 R1) |
 | 284 | `NR1L-PowerManagement-284` | `SWE-PM-075` | (R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-169 同錨點) |
 | 285 | `NR1L-PowerManagement-285` | `SWE-PM-075` | (R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-169 同錨點) |
-| 286 | `NR1L-PowerManagement-286` | `SWE-PM-087` | (R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-249 同錨點) |
+| 286 | `NR1L-PowerManagement-286` | `SWE-PM-087` | (R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-249 同錨點) (站④-3：與 -248 同為 SWE-PM-087 之 M240 分支，內容重疊，待分析層裁去留) |
 | 287 | `NR1L-PowerManagement-287` | `SWE-PM-093` | (R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-182 同錨點) |
 
 ## `NR1L-PowerManagement-001`　`SWE-PM-071`　Splash screen shown after SplashScreen_Time on normal boot
@@ -13356,7 +13356,7 @@ NA
 **Remarks**
 
 ```
-(R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-249 同錨點)
+(R-P393(c) §8.3 拆分增列；本條與 NR1L-PowerManagement-249 同錨點) (站④-3：與 -248 同為 SWE-PM-087 之 M240 分支，內容重疊，待分析層裁去留)
 ```
 
 ## `NR1L-PowerManagement-287`　`SWE-PM-093`　A start-up animation plays again in the next wakeup cycle
