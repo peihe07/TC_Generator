@@ -599,7 +599,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_SLEEP\n3. A driver door is present for the vehicle\n4. (DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the change Door_Ajar_Status: changed to CLOSED\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU registers the change without a bus error\n2. The HU plays a start-up animation",
+      "expected_result": "1. The HU registers the change without a bus error\n2. The HU plays a \"Start-up Animation\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -612,7 +612,7 @@
         "axis": "mode",
         "delta": "本條驗 OR 之 SLEEP MODE 支"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -625,7 +625,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY\n3. A driver door is present for the vehicle\n4. (DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the change Door_Ajar_Status: changed to CLOSED\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU registers the change without a bus error\n2. The HU plays a start-up animation",
+      "expected_result": "1. The HU registers the change without a bus error\n2. The HU plays a \"Start-up Animation\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -638,7 +638,7 @@
         "axis": "mode",
         "delta": "本條驗 OR 之 STANDBY MODE 支"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {
@@ -651,7 +651,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_PARTIAL_OPERATION\n3. A driver door is present for the vehicle\n4. (DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the change Door_Ajar_Status: changed to CLOSED\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU registers the change without a bus error\n2. The HU plays a start-up animation",
+      "expected_result": "1. The HU registers the change without a bus error\n2. The HU plays a \"Start-up Animation\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -664,7 +664,7 @@
         "axis": "mode",
         "delta": "本條驗 OR 之 PARTIAL OPERATION MODE 支"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 3
     },
     {
@@ -677,7 +677,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY",
       "input_test_data": "NA",
       "test_procedure": "1. Send the value $DriverDoorOnOffSts$: \"DOOR_OFF\" and close the driver door\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU registers the value without a bus error\n2. The HU skips the start-up animation",
+      "expected_result": "1. The HU registers the value without a bus error\n2. The HU skips the \"Start-up Animation\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -690,7 +690,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 $DriverDoorOnOffSts$ 之略過分支"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 4
     },
     {
@@ -703,7 +703,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is playing a start-up animation",
       "input_test_data": "NA",
       "test_procedure": "1. Send the event An ignition event that changes the HU power mode to BODY ON during the animation\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
-      "expected_result": "1. The HU cancels the current start-up animation\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
+      "expected_result": "1. The HU cancels the current \"Start-up Animation\"\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -716,7 +716,7 @@
         "axis": "mode",
         "delta": "本條驗播放中之模式變更取消"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU switches to the required power mode as defined`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU switches to the required power mode as defined`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 5
     },
     {
@@ -755,7 +755,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is playing a start-up animation",
       "input_test_data": "NA",
       "test_procedure": "1. Send the change An HU power mode status change to TIMED MODE during the animation\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
-      "expected_result": "1. The HU cancels the current start-up animation\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
+      "expected_result": "1. The HU cancels the current \"Start-up Animation\"\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P3",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -768,7 +768,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 OR 之 TIMED MODE 支（R-P118(d) 反向涵蓋裁決補測）"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（70 包）**：以下句因含 R-P353 末段所禁之措辭而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU switches to the required power mode as defined`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（70 包）**：以下句因含 R-P353 末段所禁之措辭而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The HU switches to the required power mode as defined`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 7
     },
     {
@@ -781,7 +781,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY\n3. Door_Ajar_Status reads OPEN\n(DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the change An HU power mode status change to BODY ON\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU switches to the required power mode\n2. The HU skips the start-up animation",
+      "expected_result": "1. The HU switches to the required power mode\n2. The HU skips the \"Start-up Animation\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.3.5",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -794,7 +794,7 @@
         "axis": "trigger_state",
         "delta": "本條驗門開啟時之模式變更略過（R-P118(d) 反向涵蓋裁決補測）"
       },
-      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。\n\n**首段取自錨點 `4941301` 之連續片段**（R-P343(c)）——該錨點 1199 字元逾 1,000；片段起訖字元位置 0–1199。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 8
     },
     {
@@ -833,7 +833,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the HU through a startup that plays the animation\n2. Read the HU screen and check that the \"Start-up Animation\", the \"Splash Screen\" and the \"Disclaimer\" are shown separately in that order",
-      "expected_result": "1. The startup animation is displayed\n2. The startup animation is displayed separately from the Splash screen and disclaimer screen",
+      "expected_result": "1. The startup animation is displayed\n2. The startup animation is displayed separately from the \"Splash Screen\" and disclaimer screen",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.8",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -842,7 +842,7 @@
       "functional_safety": "NA",
       "estimated_test_time": "",
       "remarks": "(R-P394 B5；規則 R1) (R-P396 字典套用)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -855,7 +855,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. LTM_OperationalModeSts.Info reads \"SNA\"",
       "input_test_data": "NA",
       "test_procedure": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = a value other than 15 (SNA) (DR-PW26)\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The TLM follows the state diagram using the updated value\n2. The possible visualization of the splash screen is avoided",
+      "expected_result": "1. The TLM follows the state diagram using the updated value\n2. The possible visualization of the \"Splash Screen\" is avoided",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.7.1.1.1",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -864,7 +864,7 @@
       "functional_safety": "NA",
       "estimated_test_time": "",
       "remarks": "(R-P394 B5；規則 R3) (R-P396 字典套用)",
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P396 套用之補正（71 包）**：具名元件依 **IN §11** 加引號（`\"New Season Animation\"` / `\"Brand Animation\"` / `\"Display Backlight\"`），同時消去 R-P353 末段所禁之 `normal`；`LTM_OperationalModeSts.Info` 於 **Send 句**亦依既裁（R-P368／DR-PW26(1a)）換為 `$STATUS_BH_BCM1.OperationalModeSts$` —— 字典之既裁項不限於 Read 句。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -1047,7 +1047,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Absent\"",
       "input_test_data": "NA",
       "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
-      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Brand Logo Screen\" is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1060,7 +1060,7 @@
         "axis": "input_data",
         "delta": "本條驗組合一（Absent ＋ No Audio Brand）"
       },
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -1073,7 +1073,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Absent\"",
       "input_test_data": "NA",
       "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
-      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Brand Logo Screen\" is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1086,7 +1086,7 @@
         "axis": "input_data",
         "delta": "本條驗組合二（Absent ＋ Beats Brand White）"
       },
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {
@@ -1099,7 +1099,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Present\"",
       "input_test_data": "NA",
       "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
-      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Brand Logo Screen\" is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1112,7 +1112,7 @@
         "axis": "input_data",
         "delta": "本條驗組合三（Present ＋ No Audio Brand）"
       },
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 3
     },
     {
@@ -1125,7 +1125,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Present\"",
       "input_test_data": "NA",
       "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
-      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Brand Logo Screen\" is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1138,7 +1138,7 @@
         "axis": "input_data",
         "delta": "本條驗組合四（Present ＋ Beats Brand White）"
       },
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 4
     },
     {
@@ -1151,7 +1151,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ETM carries VC_MODEL_YEAR equal to \"2025\"\n3. The ETM carries VC_VEH_LINE equal to \"DT\"\n(DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the value $VC_SpecialPKG_IC$: \"Tungsten (147)\"\n2. Read the HU screen and check that the \"Splash Screen\" is shown on it",
-      "expected_result": "1. The ETM accepts the configuration value\n2. The Klipsch Splash Screen is displayed",
+      "expected_result": "1. The ETM accepts the configuration value\n2. The Klipsch \"Splash Screen\" is displayed",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1164,7 +1164,7 @@
         "axis": "boundary",
         "delta": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑"
       },
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-055` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-055` 承擔，**呈請裁定於 26 包**。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P357(b) 互註之訂正（71 包）**：本條原與對方五欄逐字相同（Req ID 不同，(b) 型），71 包字典套用後二者之觀察量依各自 token 展開而相異，**已不成對**。互註改為歷史記載，不刪 —— 二列皆保留之事實不因此改變。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-055` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-055` 承擔，**呈請裁定於 26 包**。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P357(b) 互註之訂正（71 包）**：本條原與對方五欄逐字相同（Req ID 不同，(b) 型），71 包字典套用後二者之觀察量依各自 token 展開而相異，**已不成對**。互註改為歷史記載，不刪 —— 二列皆保留之事實不因此改變。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -1177,7 +1177,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ETM carries VC_MODEL_YEAR greater than \"2025\"\n3. The ETM carries VC_VEH_LINE equal to \"DT\"\n(DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the value $SplashScreen_Type$: \"Klipsch (7)\"\n2. Read the HU screen and check that the \"Splash Screen\" is shown on it",
-      "expected_result": "1. The ETM accepts the configuration value\n2. The Klipsch Splash Screen is displayed",
+      "expected_result": "1. The ETM accepts the configuration value\n2. The Klipsch \"Splash Screen\" is displayed",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1190,7 +1190,7 @@
         "axis": "boundary",
         "delta": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑"
       },
-      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-055` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-055` 承擔，**呈請裁定於 26 包**。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P357(b) 互註之訂正（71 包）**：本條原與對方五欄逐字相同（Req ID 不同，(b) 型），71 包字典套用後二者之觀察量依各自 token 展開而相異，**已不成對**。互註改為歷史記載，不刪 —— 二列皆保留之事實不因此改變。",
+      "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-055` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-055` 承擔，**呈請裁定於 26 包**。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P357(b) 互註之訂正（71 包）**：本條原與對方五欄逐字相同（Req ID 不同，(b) 型），71 包字典套用後二者之觀察量依各自 token 展開而相異，**已不成對**。互註改為歷史記載，不刪 —— 二列皆保留之事實不因此改變。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {
@@ -1203,7 +1203,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition On working condition",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them; Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only Splash Screen visualization on its display",
+      "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only \"Splash Screen\" visualization on its display",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1216,7 +1216,7 @@
         "axis": "input_data",
         "delta": "本條驗音訊關閉與畫面限制"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -1229,7 +1229,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition Pre_Start working condition",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them; Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only Splash Screen visualization on its display",
+      "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only \"Splash Screen\" visualization on its display",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1242,7 +1242,7 @@
         "axis": "input_data",
         "delta": "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）"
       },
-      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {
@@ -1255,7 +1255,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition Start working condition",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them; Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only Splash Screen visualization on its display",
+      "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only \"Splash Screen\" visualization on its display",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1268,7 +1268,7 @@
         "axis": "input_data",
         "delta": "本條驗逗號列舉之點火工作條件 Ignition Start（R-P199 補測）"
       },
-      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 3
     },
     {
@@ -1281,7 +1281,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition Cranking working condition",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the TLM to the status related to TLM audio is OFF\n2. Read the HU speakers and check whether entertainment audio output is present on them; Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only Splash Screen visualization on its display",
+      "expected_result": "1. The TLM audio is OFF\n2. The TLM allows only \"Splash Screen\" visualization on its display",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1294,7 +1294,7 @@
         "axis": "input_data",
         "delta": "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）"
       },
-      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 4
     },
     {
@@ -1333,7 +1333,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. A new bus cycle has started\n3. Neither screen has been shown in this bus cycle",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the HU to Timed mode for the first time in the bus cycle\n2. Read the HU screen and check that the \"Start-up Animation\", the \"Splash Screen\" and the \"Disclaimer\" are shown separately in that order",
-      "expected_result": "1. The splash screen is shown\n2. The disclaimer screen is shown",
+      "expected_result": "1. The \"Splash Screen\" is shown\n2. The disclaimer screen is shown",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1346,7 +1346,7 @@
         "axis": "trigger_state",
         "delta": "本條驗首次進入 Timed"
       },
-      "reasoning_note": "**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `trigger_state`。R-P308(c)：相異為 `Bring the HU to Timed mode` 對 `to Full Operation mode` —— **電源模式為系統狀態**。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `trigger_state`。R-P308(c)：相異為 `Bring the HU to Timed mode` 對 `to Full Operation mode` —— **電源模式為系統狀態**。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -1359,7 +1359,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. A new bus cycle has started\n3. Neither screen has been shown in this bus cycle",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the HU to Full Operation mode for the first time in the bus cycle\n2. Read the HU screen and check that the \"Start-up Animation\", the \"Splash Screen\" and the \"Disclaimer\" are shown separately in that order",
-      "expected_result": "1. The splash screen is shown\n2. The disclaimer screen is shown",
+      "expected_result": "1. The \"Splash Screen\" is shown\n2. The disclaimer screen is shown",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1372,7 +1372,7 @@
         "axis": "trigger_state",
         "delta": "本條驗首次進入 Full Operation"
       },
-      "reasoning_note": "**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `trigger_state`。R-P308(c)：同上，對照方向相反。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `trigger_state`。R-P308(c)：同上，對照方向相反。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {
@@ -1463,7 +1463,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. A new bus cycle has started",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the HU to Timed mode while the event An ongoing call at the moment of the transition holds\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and splash screen are temporarily skipped",
+      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and \"Splash Screen\" are temporarily skipped",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1476,7 +1476,7 @@
         "axis": "input_data",
         "delta": "本條驗通話類之暫時略過"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -1489,7 +1489,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. A new bus cycle has started",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the HU to Timed mode while the event A backup camera view at the moment of the transition holds\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and splash screen are temporarily skipped",
+      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and \"Splash Screen\" are temporarily skipped",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1502,7 +1502,7 @@
         "axis": "input_data",
         "delta": "本條驗非通話類之暫時略過"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {
@@ -1515,7 +1515,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. A new bus cycle has started",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the HU to Timed mode while the event An incoming call at the moment of the transition holds\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and splash screen are temporarily skipped",
+      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and \"Splash Screen\" are temporarily skipped",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1528,7 +1528,7 @@
         "axis": "input_data",
         "delta": "本條驗 incoming call 支（R-P118(d) 補測）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 3
     },
     {
@@ -1541,7 +1541,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. A new bus cycle has started",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the HU to Timed mode while the event An outgoing call at the moment of the transition holds\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and splash screen are temporarily skipped",
+      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and \"Splash Screen\" are temporarily skipped",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1554,7 +1554,7 @@
         "axis": "input_data",
         "delta": "本條驗 outgoing call 支（R-P118(d) 補測）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 4
     },
     {
@@ -1567,7 +1567,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. A new bus cycle has started",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the HU to Timed mode while the event A climate pop-up at the moment of the transition holds\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and splash screen are temporarily skipped",
+      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and \"Splash Screen\" are temporarily skipped",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1580,7 +1580,7 @@
         "axis": "input_data",
         "delta": "本條驗 climate pop-ups 支（R-P118(d) 補測）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 5
     },
     {
@@ -1593,7 +1593,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. A new bus cycle has started",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the HU to Timed mode while the event An SOS or Assist call at the moment of the transition holds\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and splash screen are temporarily skipped",
+      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and \"Splash Screen\" are temporarily skipped",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1606,7 +1606,7 @@
         "axis": "input_data",
         "delta": "本條驗 SOS and Assist calls 支（R-P118(d) 補測）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 6
     },
     {
@@ -1619,7 +1619,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. A new bus cycle has started",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the HU to Timed mode while the event A FOTA pop up at the moment of the transition holds\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and splash screen are temporarily skipped",
+      "expected_result": "1. The HU reaches Timed mode\n2. The disclaimer and \"Splash Screen\" are temporarily skipped",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.9",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1632,7 +1632,7 @@
         "axis": "input_data",
         "delta": "本條驗 FOTA pop ups 支（R-P118(d) 補測）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 7
     },
     {

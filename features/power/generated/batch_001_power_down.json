@@ -36,7 +36,7 @@
       "pre_conditions": "1. A suspend-resume boot sequence is available on the bench",
       "input_test_data": "NA",
       "test_procedure": "1. Start the suspend-resume boot sequence\n2. PENDING: DR-PW30 SplashScreen_Time 之值 —— read the HU screen and check the \"Splash Screen\" against that time on the recording",
-      "expected_result": "1. The TLM display stays blank while the boot sequence runs\n2. No splash screen appears before SplashScreen_Time has elapsed, and the splash screen is loaded once it has",
+      "expected_result": "1. The TLM display stays blank while the boot sequence runs\n2. No \"Splash Screen\" appears before SplashScreen_Time has elapsed, and the \"Splash Screen\" is loaded once it has",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.1.1.1",
       "priority": "P1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -49,7 +49,7 @@
         "axis": "timing",
         "delta": "本條驗正常開機分支：未轉往 Standby / Bench 時，SplashScreen_Time 到期後顯示 splash"
       },
-      "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。\n\n**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `timing`。R-P308(a)：與 `…-004` 觀察於**開機序列之不同時點**（`SplashScreen_Time` 對 `StandardScreen_Time`），合 R-P298 訂正後之「事件發生之相對位置不同」。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。\n\n**`axis` 之人工指派（R-P308，47 包）**：本條經五個正向謂詞判定為「無對應」，分析層複核後判其軸為 `timing`。R-P308(a)：與 `…-004` 觀察於**開機序列之不同時點**（`SplashScreen_Time` 對 `StandardScreen_Time`），合 R-P298 訂正後之「事件發生之相對位置不同」。**其為人工指派而非謂詞判定** —— 謂詞比對之為措辭形態而非語義，其無法窮盡；依 R-P308 不再擴充謂詞。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -62,7 +62,7 @@
       "pre_conditions": "1. A suspend-resume boot sequence is available on the bench",
       "input_test_data": "NA",
       "test_procedure": "1. Set the boot target status to Standby and start the suspend-resume boot sequence\n2. PENDING: DR-PW30 SplashScreen_Time 之值 —— read the HU screen and check the \"Splash Screen\" against that time on the recording",
-      "expected_result": "1. The TLM display stays blank while the boot sequence runs\n2. No splash screen appears at any time through SplashScreen_Time, and the TLM reaches the Standby boot target",
+      "expected_result": "1. The TLM display stays blank while the boot sequence runs\n2. No \"Splash Screen\" appears at any time through SplashScreen_Time, and the TLM reaches the Standby boot target",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.1.1.1",
       "priority": "P2",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -76,7 +76,7 @@
         "delta": "本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件；本條之分支為：Standby"
       },
       "split_index": 2,
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。"
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。"
     },
     {
       "req_id": "SWE-PM-071",
@@ -88,7 +88,7 @@
       "pre_conditions": "1. A suspend-resume boot sequence is available on the bench",
       "input_test_data": "NA",
       "test_procedure": "1. Set the boot target status to Bench and start the suspend-resume boot sequence\n2. PENDING: DR-PW30 SplashScreen_Time 之值 —— read the HU screen and check the \"Splash Screen\" against that time on the recording",
-      "expected_result": "1. The TLM display stays blank while the boot sequence runs\n2. No splash screen appears at any time through SplashScreen_Time, and the TLM reaches the Bench boot target",
+      "expected_result": "1. The TLM display stays blank while the boot sequence runs\n2. No \"Splash Screen\" appears at any time through SplashScreen_Time, and the TLM reaches the Bench boot target",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.1.1.1",
       "priority": "P2",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -102,7 +102,7 @@
         "delta": "本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件；本條之分支為：Bench"
       },
       "split_index": 3,
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。"
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。"
     },
     {
       "req_id": "SWE-PM-071",

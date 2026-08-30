@@ -564,7 +564,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU runs the CUSW or Atlantis architecture\n3. The seat settings screen is reachable\n(DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the configuration VC_VEH_LINE with the $Car_Shape_Configuration$ and $Number_of_Doors$ PROXI parameters\n2. PENDING: DR-PW27 seat graphic 指派",
-      "expected_result": "1. The HU accepts the configuration\n2. The settings seat graphic matches the assignment for that vehicle line and car shape",
+      "expected_result": "1. The HU accepts the configuration\n2. The settings \"Seat Graphic\" matches the assignment for that vehicle line and car shape",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.7",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -577,7 +577,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 CUSW / Atlantis 路徑（本專案適用）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -590,7 +590,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU runs the PNET architecture\n3. The seat settings screen is reachable\n(DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the configuration VC_VEH_LINE with the VC_BODY_STYLE signal\n2. PENDING: DR-PW27 seat graphic 指派",
-      "expected_result": "1. The HU accepts the configuration\n2. The settings seat graphic matches the assignment for that vehicle line and body style",
+      "expected_result": "1. The HU accepts the configuration\n2. The settings \"Seat Graphic\" matches the assignment for that vehicle line and body style",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.7",
       "priority": "P2",
       "design_method": "決策表 (Decision Table Testing)",
@@ -603,7 +603,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 PNET 路徑（非本專案架構，成條以保留追溯）"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {
@@ -668,7 +668,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The seat settings screen is reachable\n(DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the value VC_VEH_LINE: \"M240\"\n2. PENDING: DR-PW27 seat graphic 指派",
-      "expected_result": "1. The HU accepts the signal value\n2. The HU uses the M240 seat graphics",
+      "expected_result": "1. The HU accepts the signal value\n2. The HU uses the \"M240 seat graphics\"",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.7.1.1.6",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -681,7 +681,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 IF 分支 M240"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -719,7 +719,7 @@
       "test_item": "The HU shall use the $VC_VEH_LINE$ signal to determine the correct performance gauges to display. See HMI release and PDO graphics files for performance gauge assignments.\n\n(read the shown gauges -> The performance gauges match the assignment for that vehicle line)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The performance gauges screen is reachable",
       "input_test_data": "NA",
-      "test_procedure": "1. Set VC_VEH_LINE = the vehicle line under test (DR-PW28)\n2. Read the performance gauges screen and check which \"Performance Gauges\" are shown on it\n3. PENDING: DR-PW27 —— 該 vehicle line 之 gauges 指派",
+      "test_procedure": "1. Set VC_VEH_LINE = the vehicle line under test (DR-PW28)\n2. Read the \"Performance Gauges\" screen and check which \"Performance Gauges\" are shown on it\n3. PENDING: DR-PW27 —— 該 vehicle line 之 gauges 指派",
       "expected_result": "1. The vehicle line is applied\n2. The shown \"Performance Gauges\" are read\n3. PENDING: DR-PW27",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.15.1.10",
       "priority": "P0",
@@ -729,7 +729,7 @@
       "functional_safety": "NA",
       "estimated_test_time": "",
       "remarks": "(R-P386 第二批)",
-      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。",
+      "reasoning_note": "\n\n**R-P386 / R-P388 / R-P393(a) 改寫（68 包）**：觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件，書寫依 IN §11 加引號）。**R-P393(a) / R-P389(c)**：`$VC_*$` 等未查得之規格名保留原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；原名與值皆規格明載，缺的是載體而非資料，**不算 PENDING**。 ⚠ **指派規則本身在台帳外文件** → 該項 `PENDING: DR-PW27`（R-P388 之分流：指派在該文件者 ER PENDING）。\n\n**G245 補正（68 包）**：與 67 包同因 —— 具名 UI 元件依 **IN §11** 加引號（R-P384(b) 之「不以引號為要件」為**抽取**判準，非書寫）。音訊面之觀察改明寫「on the HU speakers」以落 R-P353(iii)「指定揚聲器有／無輸出」。⚠ **本層於第二批重蹈第一批之誤**，據實記明。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {

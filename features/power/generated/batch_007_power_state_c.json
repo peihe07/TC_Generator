@@ -123,7 +123,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE",
       "input_test_data": "NA",
       "test_procedure": "1. Read the HU speakers and check whether entertainment audio output is present on them\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The TLM audio is OFF\n2. Only the Splash Screen is visualized on the TLM display",
+      "expected_result": "1. The TLM audio is OFF\n2. Only the \"Splash Screen\" is visualized on the TLM display",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.2",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -136,7 +136,7 @@
         "axis": "trigger_state",
         "delta": "本條驗音訊與畫面之限制"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {

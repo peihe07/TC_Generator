@@ -1175,7 +1175,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM carries a configured brand parameter",
       "input_test_data": "NA",
       "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
-      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Brand Logo Screen\" is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P3",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1184,7 +1184,7 @@
       "functional_safety": "NA",
       "estimated_test_time": "",
       "remarks": "(R-P386 第一批)",
-      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -1197,7 +1197,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Absent\"",
       "input_test_data": "NA",
       "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
-      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Brand Logo Screen\" is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1210,7 +1210,7 @@
         "axis": "input_data",
         "delta": "本條驗組合一（Absent ＋ No Audio Brand）"
       },
-      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -1223,7 +1223,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Absent\"",
       "input_test_data": "NA",
       "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
-      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Brand Logo Screen\" is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1236,7 +1236,7 @@
         "axis": "input_data",
         "delta": "本條驗組合二（Absent ＋ Beats Brand White）"
       },
-      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {
@@ -1249,7 +1249,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Present\"",
       "input_test_data": "NA",
       "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
-      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Brand Logo Screen\" is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1262,7 +1262,7 @@
         "axis": "input_data",
         "delta": "本條驗組合三（Present ＋ No Audio Brand）"
       },
-      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 3
     },
     {
@@ -1275,7 +1275,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. SDARS_Presence reads \"Present\"",
       "input_test_data": "NA",
       "test_procedure": "1. Set VC_VEH_BRAND = the brand under test (DR-PW28)\n2. Apply ENTER_FULL_OPERATION and let the brand logo screen be shown\n3. Read the \"Brand Logo Screen\" and check which of the named logos is shown on it",
-      "expected_result": "1. The brand configuration is applied\n2. The brand logo screen is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
+      "expected_result": "1. The brand configuration is applied\n2. The \"Brand Logo Screen\" is shown\n3. The logo shown on the \"Brand Logo Screen\" is the one named for this configuration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1288,7 +1288,7 @@
         "axis": "input_data",
         "delta": "本條驗組合四（Present ＋ Beats Brand White）"
       },
-      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。",
+      "reasoning_note": "\n\n**R-P386 改寫（67 包）**：原 `shown logos` / `shown logo against …` 之觀察量為**規格指名之元件** (ii)（R-P384(b)：具名不以引號為要件）。前置之 `$VC_*$` 依 **R-P389(c)** 保留規格原名不加 `$`、不加 `PROXI`，附 `(DR-PW28)`；PROXI 已查得者（`Brand_Configuration_2` r566、`SDARS_Presence` r542、`Audio_Brand` r597）以 `PROXI <Param>` 寫。ITD 依 R-P366(a) 內聯。\n\n**G245 補正（67 包）**：具名 UI 元件依 **IN §11** 加引號 —— R-P384(b) 之「不以引號為要件」指**抽取**判準，**書寫**仍依 §11。二者不衝突。另將落在白名單外之措辭（手機端音訊、比較步）改寫入白名單內。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 4
     },
     {
@@ -1301,7 +1301,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ETM carries VC_MODEL_YEAR equal to \"2025\"\n3. The ETM carries VC_VEH_LINE equal to \"DT\"\n4. (DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the value $VC_SpecialPKG_IC$: \"Tungsten (147)\"\n2. Read the HU screen and check that the \"Splash Screen\" is shown on it",
-      "expected_result": "1. The ETM accepts the configuration value\n2. The Klipsch Splash Screen is displayed",
+      "expected_result": "1. The ETM accepts the configuration value\n2. The Klipsch \"Splash Screen\" is displayed",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1314,7 +1314,7 @@
         "axis": "boundary",
         "delta": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P357(b) 互註之訂正（71 包）**：本條原與對方五欄逐字相同（Req ID 不同，(b) 型），71 包字典套用後二者之觀察量依各自 token 展開而相異，**已不成對**。互註改為歷史記載，不刪 —— 二列皆保留之事實不因此改變。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P357(b) 互註之訂正（71 包）**：本條原與對方五欄逐字相同（Req ID 不同，(b) 型），71 包字典套用後二者之觀察量依各自 token 展開而相異，**已不成對**。互註改為歷史記載，不刪 —— 二列皆保留之事實不因此改變。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -1327,7 +1327,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ETM carries VC_MODEL_YEAR greater than \"2025\"\n3. The ETM carries VC_VEH_LINE equal to \"DT\"\n4. (DR-PW28)",
       "input_test_data": "NA",
       "test_procedure": "1. Send the value $SplashScreen_Type$: \"Klipsch (7)\"\n2. Read the HU screen and check that the \"Splash Screen\" is shown on it",
-      "expected_result": "1. The ETM accepts the configuration value\n2. The Klipsch Splash Screen is displayed",
+      "expected_result": "1. The ETM accepts the configuration value\n2. The Klipsch \"Splash Screen\" is displayed",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1340,7 +1340,7 @@
         "axis": "boundary",
         "delta": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P357(b) 互註之訂正（71 包）**：本條原與對方五欄逐字相同（Req ID 不同，(b) 型），71 包字典套用後二者之觀察量依各自 token 展開而相異，**已不成對**。互註改為歷史記載，不刪 —— 二列皆保留之事實不因此改變。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**R-P357(b) 互註之訂正（71 包）**：本條原與對方五欄逐字相同（Req ID 不同，(b) 型），71 包字典套用後二者之觀察量依各自 token 展開而相異，**已不成對**。互註改為歷史記載，不刪 —— 二列皆保留之事實不因此改變。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {

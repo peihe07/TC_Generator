@@ -970,7 +970,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. PENDING: DR-PW23 Rear_Camera_Enable.Info",
       "input_test_data": "NA",
       "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The TLM receives the press transition\n2. TLM_Status.Info still reads \"Idle\" and no Splash Screen is shown",
+      "expected_result": "1. The TLM receives the press transition\n2. TLM_Status.Info still reads \"Idle\" and no \"Splash Screen\" is shown",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -983,7 +983,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 Front_Panel_OnOff.Req 於後視攝影機啟用時被忽略"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -996,7 +996,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. PENDING: DR-PW23 Rear_Camera_Enable.Info",
       "input_test_data": "NA",
       "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; PENDING: DR-PW23 VPLastStatus; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
-      "expected_result": "1. A Splash Screen is shown for Response_Wait_Time\n2. VPLastStatus reads \"ON\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
+      "expected_result": "1. A \"Splash Screen\" is shown for Response_Wait_Time\n2. VPLastStatus reads \"ON\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1009,7 +1009,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 Front_Panel_OnOff.Req 之 ELSE 分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {
@@ -1022,7 +1022,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. PENDING: DR-PW23 Rear_Camera_Enable.Info",
       "input_test_data": "NA",
       "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>); Apply FUNC_STATE_<STATE> and check its Display sub-item",
-      "expected_result": "1. The TLM receives the press transition\n2. TLM_Status.Info still reads \"Idle\" and no Splash Screen is shown",
+      "expected_result": "1. The TLM receives the press transition\n2. TLM_Status.Info still reads \"Idle\" and no \"Splash Screen\" is shown",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1035,7 +1035,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 於後視攝影機啟用時被忽略"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 3
     },
     {
@@ -1048,7 +1048,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE\n3. PENDING: DR-PW23 Rear_Camera_Enable.Info",
       "input_test_data": "NA",
       "test_procedure": "1. Drive CLIMATIC_PANEL.Radio_Btn0 from \"Not_Pressed\" to \"Pressed\"\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; PENDING: DR-PW23 VPLastStatus; Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is the expected <raw> (<STATE>)",
-      "expected_result": "1. A Splash Screen is shown for Response_Wait_Time\n2. VPLastStatus reads \"ON\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
+      "expected_result": "1. A \"Splash Screen\" is shown for Response_Wait_Time\n2. VPLastStatus reads \"ON\", TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1061,7 +1061,7 @@
         "axis": "trigger_state",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 之 ELSE 分支"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 4
     },
     {
@@ -1760,7 +1760,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the TLM through the switch on sequence\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; PENDING: DR-PW30 Response_Wait_Time 之值",
-      "expected_result": "1. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n2. The Splash Screen stays for Response_Wait_Time",
+      "expected_result": "1. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n2. The \"Splash Screen\" stays for Response_Wait_Time",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -1773,7 +1773,7 @@
         "axis": "input_data",
         "delta": "本條驗 Auto_SwitchOn_Setting.Req 為 Active 時之 Splash Screen"
       },
-      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown on the TLM screen`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown on the TLM screen`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 1
     },
     {
@@ -1786,7 +1786,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. VPLastStatus reads \"On\"",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the TLM through the switch on sequence\n2. Apply FUNC_STATE_<STATE> and check its Display sub-item; PENDING: DR-PW30 Response_Wait_Time 之值",
-      "expected_result": "1. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n2. The Splash Screen stays for Response_Wait_Time",
+      "expected_result": "1. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n2. The \"Splash Screen\" stays for Response_Wait_Time",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1799,7 +1799,7 @@
         "axis": "input_data",
         "delta": "本條驗 OR 之右支 Recall_Last ＋ VPLastStatus == On（104 驗左支 Active）"
       },
-      "reasoning_note": "R-P118(d) 反向涵蓋裁決（G113 分桶，R-P171）—— `source_clause` 之 OR 右支 `Auto_SwitchOn_Setting.Req == Recall_Last AND VPLastStatus == On` 原無任何 TC 覆蓋，裁為真缺口並補此條。為 G113 前瞻捕獲之第十例。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown on the TLM screen`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。",
+      "reasoning_note": "R-P118(d) 反向涵蓋裁決（G113 分桶，R-P171）—— `source_clause` 之 OR 右支 `Auto_SwitchOn_Setting.Req == Recall_Last AND VPLastStatus == On` 原無任何 TC 覆蓋，裁為真缺口並補此條。為 G113 前瞻捕獲之第十例。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown on the TLM screen`\n\n**R-P396(a) 字典套用（71 包）**：複合觀察目標依 `data/proxy_dictionary_71.md` 逐 token 換為白名單代理量，每 token 一句 check。**字典外之代理量未自填**（R-P396(e)）。\n\n**G256 補正（72 包 / R-P397(b)）**：本條之具名元件於 Procedure／ER 曾以未加引號之形式書寫，與全案其他處之 `\"…\"` 不一致（IN §11）。已補引號。**`test_item` 上半 verbatim 未動**（R-6）。",
       "split_index": 2
     },
     {

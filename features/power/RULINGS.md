@@ -13233,6 +13233,34 @@ R-P392(c) 之理由亦複核：`DIS_CENTERSTACK.DCSD_DISP_STAT` 發送節點為 
 > Pei 得否決（71 包 §K）。
 
 
+## 72 包裁決條文（R-P397）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 1、§J「一條」、§H 步驟 1 = 一條**，
+並依 R-P364(d) 核對既有 canon。三處一致。
+
+**R-P379(b) 抄錄前重算本包四數，4 / 4 相符**：287 / 146 / 10 / 3。
+
+```
+[R-P397] 站④ 標的 = 全 287 條；先出 sandbox 工作簿與目視包；IN §11 引號入 lint。
+         （a）執行層自現行 batch JSON 產出 `sandbox/b72/pm_72.xlsx`
+              （openpyxl 寫入 ＋ XML 修補，方法同 27 包；SHA 記 MANIFEST；**不複製至 delivered/**），
+              另出 `data/reviewed_287_72.md`（tc_id／req_id／五欄／Remarks，逐字）；
+              二者為 Pei 站④ 之標的，`reviewed_75_69.md` 由其取代
+         （b）IN §11 引號規則入 lint：Procedure／ER 中出現 R-P353(ii) 類名詞
+              （screen／icon／pop-up／logo／animation／button／menu／font／graphic／gauge／avatar）
+              而未以 `"…"` 包覆者列出，期望 0；新增 G256
+         （c）站④ 期間執行層不改 corpus；Pei 抽查所出之項以 Remarks 標 `(站④-n)` 由分析層逐項裁
+         裁決者：分析層（Tier 2）。
+```
+
+**已逐字抄入（核對 1 / 1）。**
+
+**G256 之立閘理由**（R-P397(b)）：IN §11 之引號規則為**書寫**規則，
+而 R-P384(b) 之「不以引號為要件」為**抽取**判準 —— 二者不衝突，
+惟執行層於 67 / 68 / 71 三包連續三次把抽取判準誤用於書寫（皆事後補正），
+分析層 71 包字典亦同（72 包 §0）。**故入 lint，由閘擋而非靠人記。**
+
+
 ---
 
 ## 待裁
