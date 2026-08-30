@@ -127,7 +127,7 @@ def main() -> None:
         if not kind:
             kind = "**無**"
         anchors = "、".join(hits) if hits else ("DBC `VAL_`/`CM_`" if in_val else "**無**")
-        rows.append(f"| `{x[:72]}` | {n} | {len(tcs[x])} | {kind} | {anchors} |")
+        rows.append(f"| `{x}` | {n} | {len(tcs[x])} | {kind} | {anchors} |")
 
     body = [
         "# B3 前置 —— 代理量錨點可及性報告（59 包 / R-P367 / G252）",

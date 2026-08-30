@@ -139,11 +139,11 @@ def main() -> None:
         tcs = owners.get(x, [])
         if cands:
             filled += 1
-            rows.append(f"| `{x[:50]}` | {'<br>'.join(cands)} | {anchor} | "
+            rows.append(f"| `{x}` | {'<br>'.join(cands)} | {anchor} | "
                         f"{len(tcs)}（{'、'.join(t[-3:] for t in tcs[:6])}）|")
         else:
             unfilled.append((x, anchor, len(tcs)))
-            rows.append(f"| `{x[:50]}` | **填不出** | {anchor} | "
+            rows.append(f"| `{x}` | **填不出** | {anchor} | "
                         f"{len(tcs)}（{'、'.join(t[-3:] for t in tcs[:6])}）|")
 
     body_md = [
@@ -171,7 +171,7 @@ def main() -> None:
         body_md += [
             "## 填不出白名單類者（R-P382 令回報）", "",
             "| `<原 X>` | 錨點 | 影響列 | 原因 |", "|---|---|---|---|",
-        ] + [f"| `{x[:50]}` | {a} | {n} | 錨點段落內無 `$…$`（經 DBC `SG_` 確認）、"
+        ] + [f"| `{x}` | {a} | {n} | 錨點段落內無 `$…$`（經 DBC `SG_` 確認）、"
              f"無引號具名值、無音訊／log 具名詞 |" for x, a, n in unfilled] + [""]
     OUT.write_text("\n".join(body_md))
     print(f"可填 {filled}、填不出 {len(unfilled)}")

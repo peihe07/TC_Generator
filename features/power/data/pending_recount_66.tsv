@@ -1,0 +1,5 @@
+metric	count	pct	source
+corpus 總條數	283	100.0%	generated/batch_*.json
+PENDING 文字實際出現於 corpus	2	0.7%	逐欄掃 'PENDING'
+內部訊號 PENDING（R-P380 甲，65 包值）	99	35.0%	pending_recount_64.tsv
+丁案已改寫（R-P376 / R-P386）	3	1.1%	-057 / -065 / -116

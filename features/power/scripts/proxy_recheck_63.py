@@ -76,7 +76,7 @@ def main() -> None:
         tcs = sorted(owner.get(x, []))
         if not tcs:
             stat["未覆蓋"] += 1
-            rows.append(f"| `{x[:56]}` | — | — | **未覆蓋** | "
+            rows.append(f"| `{x}` | — | — | **未覆蓋** | "
                         f"無 TC 之 `Read <X>` 逐字對應（措辭於 59 包掃描後已變）|")
             continue
         # 規格用語 = test_item 上半之內容詞（去 TC 措辭）
@@ -95,7 +95,7 @@ def main() -> None:
             hits = ["DBC `VAL_`/`CM_`"]
         verdict = "**有錨**" if hits else "**查無**"
         stat["有錨" if hits else "查無"] += 1
-        rows.append(f"| `{x[:56]}` | {len(tcs)} | `{'、'.join(sorted(probe))[:40]}` | "
+        rows.append(f"| `{x}` | {len(tcs)} | `{'、'.join(sorted(probe))[:40]}` | "
                     f"{verdict} | {'、'.join(hits) if hits else '—'} |")
 
     body = [

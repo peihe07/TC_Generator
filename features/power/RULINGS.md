@@ -12905,6 +12905,77 @@ A-PW358 / A-PW360 / A-PW362 三處已加註，前包不回溯。
 「本輪仍非人讀、6 個查無不足以登 R-G13」之保留一致。
 
 
+## 66 包裁決條文（R-P386 – R-P388）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 3、§J「三條」、§H 步驟 1 = 三條**，
+相容性 C(3,2) = 3 對，並依 R-P364(d)（引用＋觸及）核對既有 canon。三處一致。
+
+**另依 R-P379(b) 於抄錄前重跑本包數字（5 / 5 相符）：**
+
+| 條文所引 | 機讀來源 | 重算 |
+|---|---|---|
+| 39 名 | `g252_thirtynine_65.md` 之 `## ` 標題計 | **39** |
+| 67 條 | 同檔之 `### ` 條目計 | **67 條目**（⚠ **相異 `tc_id` 為 65** —— 二條各掛二名）|
+| 26 / 8 / 3 / 2 | 66 包 §0 表 | 合計 **39**，與 §1 表逐節計數（12+11+4+5+2+3+2）**一致** |
+| 0 查無 | §0 表 | **0** |
+| DR-PW27 擴大之影響列 | §1 表提及 `DR-PW27` 之列 | **12** |
+
+```
+[R-P386] 39 名依 66 包 §1 表處置；查無 0；G252 結案。
+         執行層依 §1 表改寫 67 條；每一觀察量引其錨點；表中「執行層查」項
+         走 R-P368 三段鏈或 PROXI `Format`，查無者記未解得／開 DR；
+         「拆」項依 §8.3 增列 TC，tc_id 續號。`-116` 適用丁案（R-P376(a) 三要件於
+         `4941654` 全備），為第三條。G252 期望值改「39 名依 R-P386 結案」。
+         裁決者：分析層（Tier 2，R-P384(c) 之人讀）。
+```
+
+```
+[R-P387] 白名單增 (v) 電氣量測；A1 家族以 `4941453` 狀態表為標準代理。
+         （a）R-P353 白名單增第 (v) 類：規格定義為 ON/OFF 之供電輸出
+              （BoosterOUT、天線相位供電）以腳位電壓／電流量測為觀察量，
+              步驟寫 `Measure the voltage at <output> and check that it is <ON 位準>`；
+              位準值須規格載明，查無者 PENDING
+         （b）`<X> functionality is (not) available` 型（A1）之代理量 = `4941453`
+              該態之列：Source（音訊有無 (iii)）、Audio Power amplifier（同）、
+              Display（畫面有無／內容 (ii)）、BoosterOUT／Antenna（(v)）、MCU（USB 列舉／AUX 播放 (iii)）；
+              另加 `PowerSts_Telematic` 該態值 (i) 與觸控無反應（OFF 態）(ii)。
+              執行層建 `FUNC_STATE_<STATE>` 標準片段（IN §5.3），每態一組 ER 子項
+         裁決者：分析層（Tier 2；(a) 為白名單擴張，Pei 得否決）。
+```
+
+```
+[R-P388] DR-PW27 擴大為「HMI／PDO 參考文件未尋獲」總表；丁案第三條。
+         DR-PW27 自 disclaimer wording 擴為：HMI release、PDO graphics files、
+         [PDO Theme Configuration]、TLM HMI documents（Timed 選單項）、CFTS057（FOTA）、
+         CFTS024／VF654（天線供電位準）；每項記所影響之 tc_id。
+         規格已指名之元件（`"<Brand> font"`、`"<Brand> App icon"`、season animation）
+         **ER 不 PENDING**，僅 Remarks 註「辨識參照見 DR-PW27」；
+         指派規則本身在該文件者（theme 預設、recirc、gauge、seat graphic 非 M240、
+         `$Radio_Theme$` 應送值）ER 該項 `PENDING: DR-PW27`。
+         裁決者：分析層（Tier 2）。
+```
+
+**已逐字抄入（核對 3 / 3）。** R-P353 依 R-P36 原文不改，加註於下。
+
+> **註記（R-P36，66 包加註）—— R-P353**：白名單**增第 (v) 類**（**R-P387(a)**）——
+> 規格定義為 ON/OFF 之**供電輸出**（BoosterOUT、天線相位供電）以
+> 腳位電壓／電流量測為觀察量，步驟寫
+> `Measure the voltage at <output> and check that it is <ON 位準>`；
+> **位準值須規格載明，查無者 PENDING、不得自造**（§8.4.1）。
+> 原四類（`$MESSAGE.Signal$` / 具名 UI 元件 / 可量測音訊 / log·trace）不變。
+>
+> 另 **R-P387(b)**：`<X> functionality is (not) available` 型（A1 家族）之代理量
+> **不必另造** —— 直接取 `CFTS009-4941453` 狀態表該態之列
+> （Source / Audio Power amplifier / Display / BoosterOUT / Antenna / MCU），
+> 另加 `PowerSts_Telematic` 該態值 (i) 與 OFF 態之觸控無反應 (ii)。
+> 該表為**規格自帶之代理量表**，55 包 §A 立 R-P353 時未察其存在。
+
+**R-P384 之 39 名於本包結案**（R-P386）：**查無 0**；
+26 名措辭改寫即可、8 名繫台帳外文件（DR-PW27 擴大）、3 名維持 PENDING、2 名供料 0 TC。
+`observable_proxy_64.md` 之退回經此確認為正確 —— 品牌視覺類 12 名之觀察量**全為 (ii)**，
+規格皆指名元件而未加引號，即 R-P384(b) 所指者。
+
+
 ---
 
 ## 待裁
