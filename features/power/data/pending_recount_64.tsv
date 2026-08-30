@@ -1,0 +1,7 @@
+metric	count	pct	source
+corpus 總條數	283	100.0%	generated/batch_*.json
+62 包：解得 2 名扣除後	102	36.0%	remeasure_55.py 之訊號掃描
+R-P377(a) 原機讀（強中候選全撤）	93	32.9%	pending_recount_63.tsv
+R-P380(a) 甲：僅靜態組態用法撤除	99	35.0%	base − 靜態可撤 3
+  其中靜態組態可撤	3	1.1%	-062 / -076 / -077
+  其中運行時維持 PENDING（R-P375(c)）	6	2.1%	-017/-018/-019/-070/-081/-107
