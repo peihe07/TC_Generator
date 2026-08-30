@@ -33,6 +33,7 @@ from gen_rov_cd import TCS as G         # noqa: E402
 from gen_batch4 import TCS as H         # noqa: E402
 from gen_batch5 import TCS as I         # noqa: E402
 from gen_batch6 import TCS as J         # noqa: E402
+from gen_batch7 import TCS as K         # noqa: E402
 
 RE_PEND = re.compile(r"PENDING:[^;]*")
 RE_NUM = re.compile(r"^\s*\d+\.\s*")
@@ -43,7 +44,7 @@ def norm(s: str) -> str:
 
 
 def main():
-    tcs = list(P) + list(B) + list(C) + list(D) + list(E) + list(F) + list(G) + list(H) + list(I) + list(J)
+    tcs = list(P) + list(B) + list(C) + list(D) + list(E) + list(F) + list(G) + list(H) + list(I) + list(J) + list(K)
     named = [(f"newR1L-SU-{i:03d}", t) for i, t in enumerate(tcs, 1)]
     print("## T49b —— Final Step 遮蔽測試（R-SU41(b)）\n")
     print(f"回測集 **{len(named)} 個 TC**，"
