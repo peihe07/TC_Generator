@@ -247,3 +247,25 @@ E1 於開工前觸發而封鎖整包。診斷、三選一之解封方案與 P1�
 
 落點取 `generated/`／`sandbox/` 而非下放包所令之 `batches/`／`workbook/`，
 依 R-G25 與 `scripts/lint_paths.py` 之實跑；理由與證據見上繳包 §二。
+
+---
+
+## 第 12 輪（2026-08-30）加錨 15 條、87 物件之 SYS2 收錄面、CFTS022 外引
+
+| 項 | 落點 |
+|---|---|
+| 上繳包 | `docs/upstream/12_anchor_addition.md` |
+| 87 物件之 SYS2 收錄面（**E15 觸發**）| `docs/reports/12_87_objects_sys2.md` |
+| CFTS022 外引與第三種變體表達（E16 未觸發）| `docs/reports/12_cfts022_crossref_and_third_variant.md` |
+| RULINGS 快照（快照法第二次；b13 之圍籬 diff 基準）| `docs/reports/12_rulings_snapshot.md` |
+| 新腳本 | `scripts/sys2_87_probe_12.py`、`scripts/crossref_probe_12.py` |
+
+本輪改 15 條 TC 之 `specification_reference`（＋24 錨行、13 個相異新 ObjectID，照抄
+upstream-11 §4-2，E17 未觸發）與 G2／G3 之 `reasoning`；**未生成任何 TC，總數仍 31**。
+**git 執行次數 0**（含唯讀）。
+
+三件須分析層處置者：**87 個實為 §1.4 架構共通節 × 86 ＋ §1.5 × 1，非 Associated 分支**
+（根因為執行層 probe 之 `variant_fits_dut` 併「未分類」入「Associated」，
+upstream-11 §4-3 與 A-ICS74 之敘述須更正）；**SYS2 有 23 列在案 FR 無 CFTS020 來源**
+（以 CFTS020 為起點之掃描結構性掃不到）；**A-ICS73 所慮已經由本包之加錨成為事實**
+（b06 二條 Mute TC 現帶 §1.18 錨）。

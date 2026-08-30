@@ -103,13 +103,13 @@
    "input_test_data": "NA",
    "test_procedure": "1. Press the ICS \"Screen Off\" button\n2. Read the signal $CLIMATIC_PANEL.Radio_btn2$ and check that it is 1 (Pressed)\n3. Read the display status signal on the CAN trace 1 second after the button press and check that it is the \"DISP_NORMAL\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n4. Read the display status signal on the CAN trace 2 seconds after the button press and check that it is the \"DISP_NORMAL\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n5. Check that the \"TOUCH SCREEN TO TURN ON\" graphic is still shown 2 seconds after the button press",
    "expected_result": "1. The \"Screen Off\" button enters the pressed state\n2. The signal value $CLIMATIC_PANEL.Radio_btn2$ = 1 (Pressed) is observed on the CAN trace (supporting observation)\n3. The \"TOUCH SCREEN TO TURN ON\" graphic is shown, and the display status signal reports the \"DISP_NORMAL\" value on the CAN trace (supporting observation)\n4. The \"TOUCH SCREEN TO TURN ON\" graphic is shown, and the display status signal reports the \"DISP_NORMAL\" value on the CAN trace (supporting observation)\n5. The \"TOUCH SCREEN TO TURN ON\" graphic is still shown and the screen is not dark",
-   "specification_reference": "CFTS020-4819572",
+   "specification_reference": "CFTS020-4819572\nCFTS020-4821706",
    "design_method": "Functional Based",
    "priority": "P1",
    "split_flag": false,
    "split_reason": "",
    "has_pending": true,
-   "reasoning": "驗證目標為 4819572 之維持面：SCREEN OFF 被回應後，3 秒計時期間顯示狀態不變。上半 verbatim 取後半獨立子句（`then the HU shall continue to send …` 起，句首依 R-4 轉大寫）—— 全句 66 token 逾 R-3。3 秒為 spec 明載（4819572 逐字），依下放包 03 §三 C 得直用，非造值。取 1 秒與 2 秒二個觀察點而非只取一點：單點無法區分「維持」與「尚未生效」。訊號名依作業 E：ICSScreenOffButton = `CLIMATIC_PANEL.Radio_btn2`（`BO_ 1050`，節點 ICS，`VAL_ … 0 \"Not_Pressed\" 1 \"Pressed\"`）。刻意未涵蓋：4819571 之「是否忽略」仲裁（轉引 HMI 文件）、4819575 之 pop-up 期間行為（轉引 HMI core H4 之 pop-up 清單，本 feature 未納源）。　【b05 作業 A】依 R-ICS22(b) 改寫 ER 之錨層級：**主錨為 HMI 可觀察現象**（螢幕暗／亮、`\"TOUCH SCREEN TO TURN ON\"` 之顯示、前一畫面之回復），末步即主錨且可單獨判定通過與否；**訊號面降為輔助觀察**，標 (supporting observation)，缺之不影響判定。**驗證強度之實況須明載，不得以外觀上之完整掩蓋**：`$TGW_DISP_STAT$` 現仍為 `PENDING: DR-ICS8` 佔位（R-ICS22(a)：其二候選為匯流排變體，取哪一條無量測依據，已開 DR-ICS16），故本條之訊號面**目前無法實跑**；已解之 `$RADIO_B3.RQ_DISP_INTS$` 與 `$CLIMATIC_PANEL.Radio_btn0$`／`_btn2$` 之觀察位置一律書為匯流排追蹤（CAN trace），**不書為「HU／ICS 收到」**（R-ICS22(c)：該三訊號之 DBC 接收清單均不含 ICS）。",
+   "reasoning": "驗證目標為 4819572 之維持面：SCREEN OFF 被回應後，3 秒計時期間顯示狀態不變。上半 verbatim 取後半獨立子句（`then the HU shall continue to send …` 起，句首依 R-4 轉大寫）—— 全句 66 token 逾 R-3。3 秒為 spec 明載（4819572 逐字），依下放包 03 §三 C 得直用，非造值。取 1 秒與 2 秒二個觀察點而非只取一點：單點無法區分「維持」與「尚未生效」。訊號名依作業 E：ICSScreenOffButton = `CLIMATIC_PANEL.Radio_btn2`（`BO_ 1050`，節點 ICS，`VAL_ … 0 \"Not_Pressed\" 1 \"Pressed\"`）。刻意未涵蓋：4819571 之「是否忽略」仲裁（轉引 HMI 文件）、4819575 之 pop-up 期間行為（轉引 HMI core H4 之 pop-up 清單，本 feature 未納源）。　【b05 作業 A】依 R-ICS22(b) 改寫 ER 之錨層級：**主錨為 HMI 可觀察現象**（螢幕暗／亮、`\"TOUCH SCREEN TO TURN ON\"` 之顯示、前一畫面之回復），末步即主錨且可單獨判定通過與否；**訊號面降為輔助觀察**，標 (supporting observation)，缺之不影響判定。**驗證強度之實況須明載，不得以外觀上之完整掩蓋**：`$TGW_DISP_STAT$` 現仍為 `PENDING: DR-ICS8` 佔位（R-ICS22(a)：其二候選為匯流排變體，取哪一條無量測依據，已開 DR-ICS16），故本條之訊號面**目前無法實跑**；已解之 `$RADIO_B3.RQ_DISP_INTS$` 與 `$CLIMATIC_PANEL.Radio_btn0$`／`_btn2$` 之觀察位置一律書為匯流排追蹤（CAN trace），**不書為「HU／ICS 收到」**（R-ICS22(c)：該三訊號之 DBC 接收清單均不含 ICS）。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821706`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821706`（有覆蓋）：Screen On 下收上升緣 → 設 Screen Off（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。",
    "distinguishing_axis": {
     "axis": "timing",
     "delta": "3 秒窗內之維持；窗滿之關閉由 S3 承擔、窗內再按之取消由 S2 承擔"
@@ -147,13 +147,13 @@
    "input_test_data": "NA",
    "test_procedure": "1. Press the ICS \"Screen Off\" button\n2. Wait for the 3 second period to complete without touching the screen\n3. Read the display status signal on the CAN trace and check that it is the \"DISP_OFF\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n4. Read the signal $RADIO_B3.RQ_DISP_INTS$ on the CAN trace and check that it is 0 (0 %)\n5. Check that the HU screen is dark and shows no content",
    "expected_result": "1. The \"TOUCH SCREEN TO TURN ON\" graphic is shown\n2. The 3 second period elapses and the screen turns black\n3. The display status signal reports the \"DISP_OFF\" value on the CAN trace (supporting observation)\n4. The signal value $RADIO_B3.RQ_DISP_INTS$ = 0 (0 %) is observed on the CAN trace (supporting observation)\n5. The HU screen is dark and shows no content",
-   "specification_reference": "CFTS020-4819574",
+   "specification_reference": "CFTS020-4819574\nCFTS020-4821706",
    "design_method": "State Transition",
    "priority": "P0",
    "split_flag": false,
    "split_reason": "",
    "has_pending": true,
-   "reasoning": "驗證目標為 4819574：3 秒窗滿後立即關螢幕。上半 21 token，逐字全取。此為 Display Control 之核心主流程（按 SCREEN OFF 後螢幕確實關閉），依 TEST_CASE_PRIORITY.md「功能核心主流程預設 P0」落 P0。與 S1 分列：S1 驗窗內維持、S3 驗窗滿之關閉，二者為同一計時器之二個獨立後果，但其失敗模式不同（維持失敗＝提早關；關閉失敗＝永不關），依 IN §8.2.2 分列。　【b04 作業 B】`$RQ_DISP_INTS$` 之佔位已解：LID v1_78 `CAN Mapping` r1626 之 Atlantis High 欄為**單名** `RADIO_B3.RQ_DISP_INTS`，R-ICS13 之前件（一格多名）不成立，故無取捨可為；R4_BHCAN `BO_ 1283`，`SG_ RQ_DISP_INTS : 55|8@0+ (0.5,0) [0|100] \"%\" DCSD`，**發送節點為 SGW 而非 ICS**（已具名，見 upstream-04 §三）。值之書寫：`VAL_ 1283 RQ_DISP_INTS 255 \"SNA\";` 只列舉 255，0–100% 為連續量（factor 0.5），依 R-ICS8(d) **不為 0 自造 label**，改沿 bed_lowering 之連續量既例書 `= <raw> (<物理值>)`。`$TGW_DISP_STAT$` 之佔位**維持**（作業 B 判 E1：二候選皆在庫而無一發送節點為 ICS）。　【b05 作業 A】依 R-ICS22(b) 改寫 ER 之錨層級：**主錨為 HMI 可觀察現象**（螢幕暗／亮、`\"TOUCH SCREEN TO TURN ON\"` 之顯示、前一畫面之回復），末步即主錨且可單獨判定通過與否；**訊號面降為輔助觀察**，標 (supporting observation)，缺之不影響判定。**驗證強度之實況須明載，不得以外觀上之完整掩蓋**：`$TGW_DISP_STAT$` 現仍為 `PENDING: DR-ICS8` 佔位（R-ICS22(a)：其二候選為匯流排變體，取哪一條無量測依據，已開 DR-ICS16），故本條之訊號面**目前無法實跑**；已解之 `$RADIO_B3.RQ_DISP_INTS$` 與 `$CLIMATIC_PANEL.Radio_btn0$`／`_btn2$` 之觀察位置一律書為匯流排追蹤（CAN trace），**不書為「HU／ICS 收到」**（R-ICS22(c)：該三訊號之 DBC 接收清單均不含 ICS）。",
+   "reasoning": "驗證目標為 4819574：3 秒窗滿後立即關螢幕。上半 21 token，逐字全取。此為 Display Control 之核心主流程（按 SCREEN OFF 後螢幕確實關閉），依 TEST_CASE_PRIORITY.md「功能核心主流程預設 P0」落 P0。與 S1 分列：S1 驗窗內維持、S3 驗窗滿之關閉，二者為同一計時器之二個獨立後果，但其失敗模式不同（維持失敗＝提早關；關閉失敗＝永不關），依 IN §8.2.2 分列。　【b04 作業 B】`$RQ_DISP_INTS$` 之佔位已解：LID v1_78 `CAN Mapping` r1626 之 Atlantis High 欄為**單名** `RADIO_B3.RQ_DISP_INTS`，R-ICS13 之前件（一格多名）不成立，故無取捨可為；R4_BHCAN `BO_ 1283`，`SG_ RQ_DISP_INTS : 55|8@0+ (0.5,0) [0|100] \"%\" DCSD`，**發送節點為 SGW 而非 ICS**（已具名，見 upstream-04 §三）。值之書寫：`VAL_ 1283 RQ_DISP_INTS 255 \"SNA\";` 只列舉 255，0–100% 為連續量（factor 0.5），依 R-ICS8(d) **不為 0 自造 label**，改沿 bed_lowering 之連續量既例書 `= <raw> (<物理值>)`。`$TGW_DISP_STAT$` 之佔位**維持**（作業 B 判 E1：二候選皆在庫而無一發送節點為 ICS）。　【b05 作業 A】依 R-ICS22(b) 改寫 ER 之錨層級：**主錨為 HMI 可觀察現象**（螢幕暗／亮、`\"TOUCH SCREEN TO TURN ON\"` 之顯示、前一畫面之回復），末步即主錨且可單獨判定通過與否；**訊號面降為輔助觀察**，標 (supporting observation)，缺之不影響判定。**驗證強度之實況須明載，不得以外觀上之完整掩蓋**：`$TGW_DISP_STAT$` 現仍為 `PENDING: DR-ICS8` 佔位（R-ICS22(a)：其二候選為匯流排變體，取哪一條無量測依據，已開 DR-ICS16），故本條之訊號面**目前無法實跑**；已解之 `$RADIO_B3.RQ_DISP_INTS$` 與 `$CLIMATIC_PANEL.Radio_btn0$`／`_btn2$` 之觀察位置一律書為匯流排追蹤（CAN trace），**不書為「HU／ICS 收到」**（R-ICS22(c)：該三訊號之 DBC 接收清單均不含 ICS）。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821706`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821706`（有覆蓋）：同 b03-05（09 §1 列 b03-05 ＋ b03-07 合成該覆蓋）（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。",
    "distinguishing_axis": {
     "axis": "timing",
     "delta": "3 秒窗滿後之關閉；窗內之維持由 S1 承擔"
@@ -169,13 +169,13 @@
    "input_test_data": "NA",
    "test_procedure": "1. Record the screen that was shown before the HU entered the \"HU Screen OFF\" state\n2. Press the ICS \"Screen Off\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn2$ and check that it is 1 (Pressed)\n4. Read the display status signal on the CAN trace and check that it is the \"DISP_NORMAL\" value (signal name PENDING: DR-ICS8 <TGW_DISP_STAT CAN signal>)\n5. Check that the screen shown is the same as the screen recorded in step 1",
    "expected_result": "1. The previously shown screen is recorded\n2. The \"Screen Off\" button enters the pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn2$ = 1 (Pressed) is observed on the CAN trace (supporting observation)\n4. The display status signal reports the \"DISP_NORMAL\" value on the CAN trace (supporting observation)\n5. The previous \"HU Screen ON\" screen is shown again",
-   "specification_reference": "CFTS020-4819576",
+   "specification_reference": "CFTS020-4819576\nCFTS020-4821705",
    "design_method": "State Transition",
    "priority": "P0",
    "split_flag": false,
    "split_reason": "",
    "has_pending": true,
-   "reasoning": "驗證目標為 4819576：黑屏態下按 SCREEN OFF 硬鍵亦回復前一畫面。上半 37 token，逐字全取。與 P3（4819563，POWER 硬鍵）之區別在按鍵不同而非狀態不同 —— 二者為二條各自之 SFR，其錨、其按鍵、其訊號皆異（`Radio_btn2` vs `Radio_btn0`），非重複（IN §8.2.2）。與 S3 之切分軸為起始狀態（黑屏 vs 亮屏）。　【b05 作業 A】依 R-ICS22(b) 改寫 ER 之錨層級：**主錨為 HMI 可觀察現象**（螢幕暗／亮、`\"TOUCH SCREEN TO TURN ON\"` 之顯示、前一畫面之回復），末步即主錨且可單獨判定通過與否；**訊號面降為輔助觀察**，標 (supporting observation)，缺之不影響判定。**驗證強度之實況須明載，不得以外觀上之完整掩蓋**：`$TGW_DISP_STAT$` 現仍為 `PENDING: DR-ICS8` 佔位（R-ICS22(a)：其二候選為匯流排變體，取哪一條無量測依據，已開 DR-ICS16），故本條之訊號面**目前無法實跑**；已解之 `$RADIO_B3.RQ_DISP_INTS$` 與 `$CLIMATIC_PANEL.Radio_btn0$`／`_btn2$` 之觀察位置一律書為匯流排追蹤（CAN trace），**不書為「HU／ICS 收到」**（R-ICS22(c)：該三訊號之 DBC 接收清單均不含 ICS）。",
+   "reasoning": "驗證目標為 4819576：黑屏態下按 SCREEN OFF 硬鍵亦回復前一畫面。上半 37 token，逐字全取。與 P3（4819563，POWER 硬鍵）之區別在按鍵不同而非狀態不同 —— 二者為二條各自之 SFR，其錨、其按鍵、其訊號皆異（`Radio_btn2` vs `Radio_btn0`），非重複（IN §8.2.2）。與 S3 之切分軸為起始狀態（黑屏 vs 亮屏）。　【b05 作業 A】依 R-ICS22(b) 改寫 ER 之錨層級：**主錨為 HMI 可觀察現象**（螢幕暗／亮、`\"TOUCH SCREEN TO TURN ON\"` 之顯示、前一畫面之回復），末步即主錨且可單獨判定通過與否；**訊號面降為輔助觀察**，標 (supporting observation)，缺之不影響判定。**驗證強度之實況須明載，不得以外觀上之完整掩蓋**：`$TGW_DISP_STAT$` 現仍為 `PENDING: DR-ICS8` 佔位（R-ICS22(a)：其二候選為匯流排變體，取哪一條無量測依據，已開 DR-ICS16），故本條之訊號面**目前無法實跑**；已解之 `$RADIO_B3.RQ_DISP_INTS$` 與 `$CLIMATIC_PANEL.Radio_btn0$`／`_btn2$` 之觀察位置一律書為匯流排追蹤（CAN trace），**不書為「HU／ICS 收到」**（R-ICS22(c)：該三訊號之 DBC 接收清單均不含 ICS）。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821705`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821705`（有覆蓋）：Screen Off 下收上升緣 → 設 Screen On（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。",
    "distinguishing_axis": {
     "axis": "mode",
     "delta": "自黑屏態以 SCREEN OFF 鍵回復；POWER 鍵之同一回復由 P3 承擔"
@@ -191,6 +191,9 @@
    "作業 A：八條之 ER 主錨改為 HMI 現象，訊號面降為輔（R-ICS22(b)）",
    "觀察位置一律書為 CAN trace，不書為「HU／ICS 收到」（R-ICS22(c)）",
    "$TGW_DISP_STAT$ 之 12 處佔位維持不動（R-ICS22(a)）"
+  ],
+  "b12_applied": [
+   "作業 A：依 R-ICS39(c) 並列加錨（照抄 upstream-11 §4-2）"
   ]
  }
 }

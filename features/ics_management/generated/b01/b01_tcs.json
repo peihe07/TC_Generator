@@ -113,7 +113,7 @@
    "input_test_data": "NA",
    "test_procedure": "1. Rotate the VOLUME knob one detent position clock-wise\n2. Read the audio level shown in the \"VOLUME POP_UP\" and record it\n3. Rotate the VOLUME knob three detent positions clock-wise in one continuous rotation\n4. Read the audio level shown in the \"VOLUME POP_UP\" and check that it is three levels above the recorded level",
    "expected_result": "1. The \"VOLUME POP_UP\" is displayed on the HU screen\n2. The audio level shown in the \"VOLUME POP_UP\" is recorded\n3. The \"VOLUME POP_UP\" is displayed on the HU screen\n4. The audio level shown in the \"VOLUME POP_UP\" is three levels above the baseline recorded in step 2",
-   "specification_reference": "CFTS020-4819541\nCFTS022-4914975",
+   "specification_reference": "CFTS020-4819541\nCFTS020-4821701\nCFTS022-4914975",
    "design_method": "Functional Based",
    "priority": "P1",
    "split_flag": false,
@@ -123,7 +123,7 @@
     "axis": "input_data",
     "delta": "一次轉動三格對三階之累計對應；V1 為單格對單階"
    },
-   "reasoning": "驗證目標為 $ICS_KNOB1_VAL$ 之值對應：連續轉動 n 格時音量變化 n 階，而非只認得單格事件。上半 verbatim 取 SWRA SWE-ICS-002 之 Requirement Description（本包實測該列未受 A-ICS1 之 +1 位移，故依 R-ICS4 仍以 SWRA 為上半來源）。specification_reference 錨 CFTS022-4914975 而非 SWRA 或 CFTS019：IN §10.7 之錨只收 CFTS ObjectID 或 HMI Logic and Flow 章節號，而 002 之母文 CFTS019 未提供（DR-ICS4），可觀察之逐格對應原句在 4914975。與 V1 之切分軸為 input_data（3 格 vs 1 格），驗證對象亦異（累計對應 vs 單格遞增）。n = 3 為測試實作選擇，非規格數值；音量階數上限屬 CFTS019，故 Pre-Condition 以 PENDING 佔位（IN §8.4.3）。　【b03 作業 D】增第 3 條 Pre-Condition：CFTS020-4819583 逐字載 `the ICS shall count the relative number of detents rotated through in <TPeriodToCountKnobDetents> seconds`——「一次連轉三格」是否被計為 3，取決於該時間窗；二符號於 CFTS020 皆無值，故依 IN §8.4.3 佔位（DR-ICS12）。寫為系統組態之狀態而非動作，以合 IN §4.4（Pre-Condition 只記狀態／環境）。S1／S2／S3 與 V1／V2 依 R-ICS16 一字不動。　【b07 作業 B】detent 計數窗之佔位已回填為 **50 msec**，逐字取自 `CFTS020-4819541`。**該值於原文標 `initial value` 並附 `parameter tuning process` 之註 —— 即其為暫定值，可於整合測試後變更**（R-ICS27(c)）。故 DR-ICS12 **不結案**，改為「請上游確認調校後之定值」之追蹤件；本條之數值面於該定值確認前仍不得視為終局。錨行增 `CFTS020-4819541`。"
+   "reasoning": "驗證目標為 $ICS_KNOB1_VAL$ 之值對應：連續轉動 n 格時音量變化 n 階，而非只認得單格事件。上半 verbatim 取 SWRA SWE-ICS-002 之 Requirement Description（本包實測該列未受 A-ICS1 之 +1 位移，故依 R-ICS4 仍以 SWRA 為上半來源）。specification_reference 錨 CFTS022-4914975 而非 SWRA 或 CFTS019：IN §10.7 之錨只收 CFTS ObjectID 或 HMI Logic and Flow 章節號，而 002 之母文 CFTS019 未提供（DR-ICS4），可觀察之逐格對應原句在 4914975。與 V1 之切分軸為 input_data（3 格 vs 1 格），驗證對象亦異（累計對應 vs 單格遞增）。n = 3 為測試實作選擇，非規格數值；音量階數上限屬 CFTS019，故 Pre-Condition 以 PENDING 佔位（IN §8.4.3）。　【b03 作業 D】增第 3 條 Pre-Condition：CFTS020-4819583 逐字載 `the ICS shall count the relative number of detents rotated through in <TPeriodToCountKnobDetents> seconds`——「一次連轉三格」是否被計為 3，取決於該時間窗；二符號於 CFTS020 皆無值，故依 IN §8.4.3 佔位（DR-ICS12）。寫為系統組態之狀態而非動作，以合 IN §4.4（Pre-Condition 只記狀態／環境）。S1／S2／S3 與 V1／V2 依 R-ICS16 一字不動。　【b07 作業 B】detent 計數窗之佔位已回填為 **50 msec**，逐字取自 `CFTS020-4819541`。**該值於原文標 `initial value` 並附 `parameter tuning process` 之註 —— 即其為暫定值，可於整合測試後變更**（R-ICS27(c)）。故 DR-ICS12 **不結案**，改為「請上游確認調校後之定值」之追蹤件；本條之數值面於該定值確認前仍不得視為終局。錨行增 `CFTS020-4819541`。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821701`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821701`（部分覆蓋）：TLM 依 `$ICS_KNOB1_*$` 調音量（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。"
   }
  ],
  "revision": {
@@ -137,6 +137,9 @@
   ],
   "b07_applied": [
    "作業 B：符號值佔位回填（R-ICS27(b)(c)），錨增 CFTS020-4819541"
+  ],
+  "b12_applied": [
+   "作業 A：依 R-ICS39(c) 並列加錨（照抄 upstream-11 §4-2）"
   ]
  }
 }

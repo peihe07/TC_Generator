@@ -16,7 +16,7 @@
    "input_test_data": "NA",
    "test_procedure": "1. Read the audible state of the entertainment audio source and record it as unmuted\n2. Press the ICS \"Mute\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn4$ on the CAN trace and check that it is 1 (Pressed)\n4. Check that the entertainment audio source is muted",
    "expected_result": "1. The entertainment audio source is unmuted\n2. The \"Mute\" button enters the pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn4$ = 1 (Pressed) is observed on the CAN trace (supporting observation)\n4. The entertainment audio source is muted",
-   "specification_reference": "CFTS022-4914993",
+   "specification_reference": "CFTS020-4821709\nCFTS022-4914993",
    "design_method": "State Transition",
    "priority": "P0",
    "split_flag": false,
@@ -26,7 +26,7 @@
     "axis": "trigger_state",
     "delta": "自未靜音態按下 → 轉為靜音；反向由另一條承擔"
    },
-   "reasoning": "驗證目標為 4914993 之 toggle 面之**去程**：自未靜音態按 Mute 硬鍵即靜音。上半 verbatim 取 `CFTS022-4914993` 之**主句**（25 token，未逾 R-3），其後之 `* Note: The Mute softkey applies only if the HMI calls for such a softkey.` 未取 —— 該註治 softkey 之適用條件，而本條驗 **hardkey** 側（IN §4.3.1：摘句以與括號下半之測試目的直接相關者為限）。原句以 NBSP 分詞，逐字比對之正規化第二項已涵蓋。訊號名依 b03 作業 E 之實測：`CLIMATIC_PANEL.Radio_btn4`（`BO_ 1050`，發送節點 ICS，`VAL_ 1050 Radio_btn4 0 \"Not_Pressed\" 1 \"Pressed\";`）；觀察位置書為 CAN trace，**不書為「HU／ICS 收到」**（R-ICS22 v1(c)）。005 之解鎖依 R-ICS31(c)：E4 於本件未真正觸發（三軸以值集合比對相符）。本包另複驗 `4914993` 於新版之三軸值集合 —— `ECU {ETM, LTM}`／`Radio {R1H, R1L, R1L-R, R1M}`／`EE {All}`，與舊版相同，**E4 防迴歸未觸發**。音量面之靜音狀態為直接可聽可判，**不需 DR-ICS6 之畫面對照**，故本二條無佔位。與反向條之切分依 IN §8.3：toggle 之二方向為 sibling 軸，其起始狀態不同、失敗模式亦不同（去程失敗＝按不靜音；回程失敗＝靜音後解不開），併為一條時前者失敗即掩蓋後者（IN §8.2.2）。"
+   "reasoning": "驗證目標為 4914993 之 toggle 面之**去程**：自未靜音態按 Mute 硬鍵即靜音。上半 verbatim 取 `CFTS022-4914993` 之**主句**（25 token，未逾 R-3），其後之 `* Note: The Mute softkey applies only if the HMI calls for such a softkey.` 未取 —— 該註治 softkey 之適用條件，而本條驗 **hardkey** 側（IN §4.3.1：摘句以與括號下半之測試目的直接相關者為限）。原句以 NBSP 分詞，逐字比對之正規化第二項已涵蓋。訊號名依 b03 作業 E 之實測：`CLIMATIC_PANEL.Radio_btn4`（`BO_ 1050`，發送節點 ICS，`VAL_ 1050 Radio_btn4 0 \"Not_Pressed\" 1 \"Pressed\";`）；觀察位置書為 CAN trace，**不書為「HU／ICS 收到」**（R-ICS22 v1(c)）。005 之解鎖依 R-ICS31(c)：E4 於本件未真正觸發（三軸以值集合比對相符）。本包另複驗 `4914993` 於新版之三軸值集合 —— `ECU {ETM, LTM}`／`Radio {R1H, R1L, R1L-R, R1M}`／`EE {All}`，與舊版相同，**E4 防迴歸未觸發**。音量面之靜音狀態為直接可聽可判，**不需 DR-ICS6 之畫面對照**，故本二條無佔位。與反向條之切分依 IN §8.3：toggle 之二方向為 sibling 軸，其起始狀態不同、失敗模式亦不同（去程失敗＝按不靜音；回程失敗＝靜音後解不開），併為一條時前者失敗即掩蓋後者（IN §8.2.2）。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821709`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821709`（部分覆蓋，可聽狀態半）：TLM 依 `$ICSMuteButton$` 調音訊輸出（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。"
   },
   {
    "req_id": "SWE-ICS-005",
@@ -38,7 +38,7 @@
    "input_test_data": "NA",
    "test_procedure": "1. Read the audible state of the entertainment audio source and record it as muted\n2. Press the ICS \"Mute\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn4$ on the CAN trace and check that it is 1 (Pressed)\n4. Check that the entertainment audio source is unmuted",
    "expected_result": "1. The entertainment audio source is muted\n2. The \"Mute\" button enters the pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn4$ = 1 (Pressed) is observed on the CAN trace (supporting observation)\n4. The entertainment audio source is unmuted",
-   "specification_reference": "CFTS022-4914993",
+   "specification_reference": "CFTS020-4821709\nCFTS022-4914993",
    "design_method": "State Transition",
    "priority": "P0",
    "split_flag": false,
@@ -48,7 +48,12 @@
     "axis": "trigger_state",
     "delta": "自靜音態按下 → 轉為未靜音；去程由另一條承擔"
    },
-   "reasoning": "驗證目標為 4914993 之 toggle 面之**回程**：自靜音態按 Mute 硬鍵即解除靜音。上半 verbatim 取 `CFTS022-4914993` 之**主句**（25 token，未逾 R-3），其後之 `* Note: The Mute softkey applies only if the HMI calls for such a softkey.` 未取 —— 該註治 softkey 之適用條件，而本條驗 **hardkey** 側（IN §4.3.1：摘句以與括號下半之測試目的直接相關者為限）。原句以 NBSP 分詞，逐字比對之正規化第二項已涵蓋。訊號名依 b03 作業 E 之實測：`CLIMATIC_PANEL.Radio_btn4`（`BO_ 1050`，發送節點 ICS，`VAL_ 1050 Radio_btn4 0 \"Not_Pressed\" 1 \"Pressed\";`）；觀察位置書為 CAN trace，**不書為「HU／ICS 收到」**（R-ICS22 v1(c)）。005 之解鎖依 R-ICS31(c)：E4 於本件未真正觸發（三軸以值集合比對相符）。本包另複驗 `4914993` 於新版之三軸值集合 —— `ECU {ETM, LTM}`／`Radio {R1H, R1L, R1L-R, R1M}`／`EE {All}`，與舊版相同，**E4 防迴歸未觸發**。音量面之靜音狀態為直接可聽可判，**不需 DR-ICS6 之畫面對照**，故本二條無佔位。與去程條之切分理由同上。"
+   "reasoning": "驗證目標為 4914993 之 toggle 面之**回程**：自靜音態按 Mute 硬鍵即解除靜音。上半 verbatim 取 `CFTS022-4914993` 之**主句**（25 token，未逾 R-3），其後之 `* Note: The Mute softkey applies only if the HMI calls for such a softkey.` 未取 —— 該註治 softkey 之適用條件，而本條驗 **hardkey** 側（IN §4.3.1：摘句以與括號下半之測試目的直接相關者為限）。原句以 NBSP 分詞，逐字比對之正規化第二項已涵蓋。訊號名依 b03 作業 E 之實測：`CLIMATIC_PANEL.Radio_btn4`（`BO_ 1050`，發送節點 ICS，`VAL_ 1050 Radio_btn4 0 \"Not_Pressed\" 1 \"Pressed\";`）；觀察位置書為 CAN trace，**不書為「HU／ICS 收到」**（R-ICS22 v1(c)）。005 之解鎖依 R-ICS31(c)：E4 於本件未真正觸發（三軸以值集合比對相符）。本包另複驗 `4914993` 於新版之三軸值集合 —— `ECU {ETM, LTM}`／`Radio {R1H, R1L, R1L-R, R1M}`／`EE {All}`，與舊版相同，**E4 防迴歸未觸發**。音量面之靜音狀態為直接可聽可判，**不需 DR-ICS6 之畫面對照**，故本二條無佔位。與去程條之切分理由同上。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821709`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：同 b06-01（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。"
   }
- ]
+ ],
+ "revision": {
+  "b12_applied": [
+   "作業 A：依 R-ICS39(c) 並列加錨（照抄 upstream-11 §4-2）"
+  ]
+ }
 }

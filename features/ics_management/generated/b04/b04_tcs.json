@@ -15,13 +15,13 @@
    "input_test_data": "NA",
    "test_procedure": "1. Rotate the ICS knob 2 one detent position clock-wise\n2. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ and check that it is 1\n4. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ 2 seconds after the rotation and check that it is 0 (Knob_no_change)\n5. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ 2 seconds after the rotation and check that it is 0",
    "expected_result": "1. The knob 2 detent is felt and the rotation is completed\n2. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 1 is received\n4. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received\n5. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 0 is received",
-   "specification_reference": "CFTS020-4819541\nCFTS020-4819583",
+   "specification_reference": "CFTS020-4819541\nCFTS020-4819583\nCFTS020-4821693\nCFTS020-4821696",
    "design_method": "Functional Based",
    "priority": "P0",
    "split_flag": false,
    "split_reason": "",
    "has_pending": false,
-   "reasoning": "驗證目標為 4819583 之送出面：轉動一格後，ICS 以一對 on-change 訊息送出方向與值，再於 <TPeriodToSendNoChange> 秒內回到 no change。上半 verbatim **取該物件之第二句**（45 token，未逾 R-3 之 50）—— 此為 IN §4.3.1 之正規摘句（整句），非 R-ICS20 之片段摘取，故無 (c) 之三項限制之適用。第一句（detent 計數與 <TPeriodToCountKnobDetents>）之測試目的另由 B5 承擔。訊號名依 b03 作業 E 實測：`CLIMATIC_PANEL.Radio_Knob2_DIR`／`_VAL`（`BO_ 1050`，發送節點 ICS）；DIR 之值逐字取 `VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";`。**VAL 無 `VAL_` 列舉**（連續量，`SG_ … 29|6@0+ (1,0) [0|63]`），依 R-ICS8(d) 不自造 label，故書 `= 1` 而不加括號標籤。步驟 4／5 取「轉動後 2 秒」為觀察點：<TPeriodToSendNoChange> 無值（CFTS020 為符號），2 秒為測試實作選擇而非規格值，故不宣稱其為 spec 值亦不落佔位；**若上游回覆之 T2 大於 2 秒，本二步須改**，已於 upstream-04 §獨立判斷具名。與另一方向之條分列依 IN §8.3（方向軸）。　【b05 作業 B】依 R-ICS23(b) 增第 4 條 Pre-Condition：步驟 4／5 之「轉動後 2 秒」為測試實作選擇，而 `<TPeriodToSendNoChange>` 於 CFTS020 為符號無值。分析層採認「不影響送什麼、只影響何時觀察」之區分，**但『何時觀察』錯了仍致本條判錯**，故仍須佔位（IN §8.4.3）。寫為系統組態之狀態而非動作（IN §4.4）。　【b07 作業 B】no-change 重送週期之佔位已回填為 **20 msec**，逐字取自 `CFTS020-4819541`（無 `initial value` 之保留字）。**該值遠小於本條步驟 4／5 所用之 2 秒觀察點** —— upstream-04 §10-2-2 所具名之「觀察時點可能錯」之風險，至此實測為**不成立**；2 秒仍為測試實作選擇，非規格值。錨行增 `CFTS020-4819541`。",
+   "reasoning": "驗證目標為 4819583 之送出面：轉動一格後，ICS 以一對 on-change 訊息送出方向與值，再於 <TPeriodToSendNoChange> 秒內回到 no change。上半 verbatim **取該物件之第二句**（45 token，未逾 R-3 之 50）—— 此為 IN §4.3.1 之正規摘句（整句），非 R-ICS20 之片段摘取，故無 (c) 之三項限制之適用。第一句（detent 計數與 <TPeriodToCountKnobDetents>）之測試目的另由 B5 承擔。訊號名依 b03 作業 E 實測：`CLIMATIC_PANEL.Radio_Knob2_DIR`／`_VAL`（`BO_ 1050`，發送節點 ICS）；DIR 之值逐字取 `VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";`。**VAL 無 `VAL_` 列舉**（連續量，`SG_ … 29|6@0+ (1,0) [0|63]`），依 R-ICS8(d) 不自造 label，故書 `= 1` 而不加括號標籤。步驟 4／5 取「轉動後 2 秒」為觀察點：<TPeriodToSendNoChange> 無值（CFTS020 為符號），2 秒為測試實作選擇而非規格值，故不宣稱其為 spec 值亦不落佔位；**若上游回覆之 T2 大於 2 秒，本二步須改**，已於 upstream-04 §獨立判斷具名。與另一方向之條分列依 IN §8.3（方向軸）。　【b05 作業 B】依 R-ICS23(b) 增第 4 條 Pre-Condition：步驟 4／5 之「轉動後 2 秒」為測試實作選擇，而 `<TPeriodToSendNoChange>` 於 CFTS020 為符號無值。分析層採認「不影響送什麼、只影響何時觀察」之區分，**但『何時觀察』錯了仍致本條判錯**，故仍須佔位（IN §8.4.3）。寫為系統組態之狀態而非動作（IN §4.4）。　【b07 作業 B】no-change 重送週期之佔位已回填為 **20 msec**，逐字取自 `CFTS020-4819541`（無 `initial value` 之保留字）。**該值遠小於本條步驟 4／5 所用之 2 秒觀察點** —— upstream-04 §10-2-2 所具名之「觀察時點可能錯」之風險，至此實測為**不成立**；2 秒仍為測試實作選擇，非規格值。錨行增 `CFTS020-4819541`。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821693`、`CFTS020-4821696`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821693`（部分覆蓋，KNOB2 側）；`4821696`（有覆蓋）：`DIR=\"Knob_increment\"`、`VAL` 1~63（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。",
    "distinguishing_axis": {
     "axis": "trigger_state",
     "delta": "clock-wise 之方向值；另一方向由 B2 承擔"
@@ -37,13 +37,13 @@
    "input_test_data": "NA",
    "test_procedure": "1. Rotate the ICS knob 2 one detent position counter clock-wise\n2. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 2 (Knob_decrement)\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ and check that it is 1\n4. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ 2 seconds after the rotation and check that it is 0 (Knob_no_change)\n5. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ 2 seconds after the rotation and check that it is 0",
    "expected_result": "1. The knob 2 detent is felt and the rotation is completed\n2. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 2 (Knob_decrement) is received\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 1 is received\n4. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received\n5. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 0 is received",
-   "specification_reference": "CFTS020-4819541\nCFTS020-4819583",
+   "specification_reference": "CFTS020-4819541\nCFTS020-4819583\nCFTS020-4821693\nCFTS020-4821696",
    "design_method": "Functional Based",
    "priority": "P0",
    "split_flag": false,
    "split_reason": "",
    "has_pending": false,
-   "reasoning": "驗證目標為 4819583 之送出面：轉動一格後，ICS 以一對 on-change 訊息送出方向與值，再於 <TPeriodToSendNoChange> 秒內回到 no change。上半 verbatim **取該物件之第二句**（45 token，未逾 R-3 之 50）—— 此為 IN §4.3.1 之正規摘句（整句），非 R-ICS20 之片段摘取，故無 (c) 之三項限制之適用。第一句（detent 計數與 <TPeriodToCountKnobDetents>）之測試目的另由 B5 承擔。訊號名依 b03 作業 E 實測：`CLIMATIC_PANEL.Radio_Knob2_DIR`／`_VAL`（`BO_ 1050`，發送節點 ICS）；DIR 之值逐字取 `VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";`。**VAL 無 `VAL_` 列舉**（連續量，`SG_ … 29|6@0+ (1,0) [0|63]`），依 R-ICS8(d) 不自造 label，故書 `= 1` 而不加括號標籤。步驟 4／5 取「轉動後 2 秒」為觀察點：<TPeriodToSendNoChange> 無值（CFTS020 為符號），2 秒為測試實作選擇而非規格值，故不宣稱其為 spec 值亦不落佔位；**若上游回覆之 T2 大於 2 秒，本二步須改**，已於 upstream-04 §獨立判斷具名。與另一方向之條分列依 IN §8.3（方向軸）。　【b05 作業 B】依 R-ICS23(b) 增第 4 條 Pre-Condition：步驟 4／5 之「轉動後 2 秒」為測試實作選擇，而 `<TPeriodToSendNoChange>` 於 CFTS020 為符號無值。分析層採認「不影響送什麼、只影響何時觀察」之區分，**但『何時觀察』錯了仍致本條判錯**，故仍須佔位（IN §8.4.3）。寫為系統組態之狀態而非動作（IN §4.4）。　【b07 作業 B】no-change 重送週期之佔位已回填為 **20 msec**，逐字取自 `CFTS020-4819541`（無 `initial value` 之保留字）。**該值遠小於本條步驟 4／5 所用之 2 秒觀察點** —— upstream-04 §10-2-2 所具名之「觀察時點可能錯」之風險，至此實測為**不成立**；2 秒仍為測試實作選擇，非規格值。錨行增 `CFTS020-4819541`。",
+   "reasoning": "驗證目標為 4819583 之送出面：轉動一格後，ICS 以一對 on-change 訊息送出方向與值，再於 <TPeriodToSendNoChange> 秒內回到 no change。上半 verbatim **取該物件之第二句**（45 token，未逾 R-3 之 50）—— 此為 IN §4.3.1 之正規摘句（整句），非 R-ICS20 之片段摘取，故無 (c) 之三項限制之適用。第一句（detent 計數與 <TPeriodToCountKnobDetents>）之測試目的另由 B5 承擔。訊號名依 b03 作業 E 實測：`CLIMATIC_PANEL.Radio_Knob2_DIR`／`_VAL`（`BO_ 1050`，發送節點 ICS）；DIR 之值逐字取 `VAL_ 1050 Radio_Knob2_DIR 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\";`。**VAL 無 `VAL_` 列舉**（連續量，`SG_ … 29|6@0+ (1,0) [0|63]`），依 R-ICS8(d) 不自造 label，故書 `= 1` 而不加括號標籤。步驟 4／5 取「轉動後 2 秒」為觀察點：<TPeriodToSendNoChange> 無值（CFTS020 為符號），2 秒為測試實作選擇而非規格值，故不宣稱其為 spec 值亦不落佔位；**若上游回覆之 T2 大於 2 秒，本二步須改**，已於 upstream-04 §獨立判斷具名。與另一方向之條分列依 IN §8.3（方向軸）。　【b05 作業 B】依 R-ICS23(b) 增第 4 條 Pre-Condition：步驟 4／5 之「轉動後 2 秒」為測試實作選擇，而 `<TPeriodToSendNoChange>` 於 CFTS020 為符號無值。分析層採認「不影響送什麼、只影響何時觀察」之區分，**但『何時觀察』錯了仍致本條判錯**，故仍須佔位（IN §8.4.3）。寫為系統組態之狀態而非動作（IN §4.4）。　【b07 作業 B】no-change 重送週期之佔位已回填為 **20 msec**，逐字取自 `CFTS020-4819541`（無 `initial value` 之保留字）。**該值遠小於本條步驟 4／5 所用之 2 秒觀察點** —— upstream-04 §10-2-2 所具名之「觀察時點可能錯」之風險，至此實測為**不成立**；2 秒仍為測試實作選擇，非規格值。錨行增 `CFTS020-4819541`。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821693`、`CFTS020-4821696`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：同 b04-01；decrement 分支（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。",
    "distinguishing_axis": {
     "axis": "trigger_state",
     "delta": "counter clock-wise 之方向值；另一方向由 B1 承擔"
@@ -59,13 +59,13 @@
    "input_test_data": "NA",
    "test_procedure": "1. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 0 (Knob_no_change)\n2. Keep the ICS knob 2 stationary for 5 seconds\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ again and check that it is still 0 (Knob_no_change)\n4. Check that the HU screen content is unchanged during the 5 seconds",
    "expected_result": "1. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received\n2. The knob 2 remains stationary\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received\n4. The HU screen content is unchanged",
-   "specification_reference": "CFTS020-4819582",
+   "specification_reference": "CFTS020-4819582\nCFTS020-4821693\nCFTS020-4821694\nCFTS020-4821703",
    "design_method": "Functional Based",
    "priority": "P1",
    "split_flag": false,
    "split_reason": "",
    "has_pending": false,
-   "reasoning": "驗證目標為 4819582：旋鈕未轉時送 no change，且此狀態下 VAL 之值應被接收端忽略。上半 38 token，二句逐字全取。步驟 4 以「畫面不變」承載「VAL 被忽略」—— 條文之 `ignored by the receiving components` 無直接可觀察之訊號面（忽略是「不做事」），只能由其後果觀察。此為本條驗證強度之弱點，已於 upstream-04 §獨立判斷具名。與 B1／B2 之切分軸為 trigger_state（靜止 vs 轉動）。　【b08 作業 D】依 R-ICS32(a) 標弱驗證，**內容不改**：本條之末行以「狀態不變／改變」承載來源句之「忽略」「no action taken」，而**來源未承諾該不作為必有可觀察之無變化** —— 通過不足以完全證成條文。此為可行之最佳近似（無直接可觀察之訊號面），保留但於交付時標為弱驗證。",
+   "reasoning": "驗證目標為 4819582：旋鈕未轉時送 no change，且此狀態下 VAL 之值應被接收端忽略。上半 38 token，二句逐字全取。步驟 4 以「畫面不變」承載「VAL 被忽略」—— 條文之 `ignored by the receiving components` 無直接可觀察之訊號面（忽略是「不做事」），只能由其後果觀察。此為本條驗證強度之弱點，已於 upstream-04 §獨立判斷具名。與 B1／B2 之切分軸為 trigger_state（靜止 vs 轉動）。　【b08 作業 D】依 R-ICS32(a) 標弱驗證，**內容不改**：本條之末行以「狀態不變／改變」承載來源句之「忽略」「no action taken」，而**來源未承諾該不作為必有可觀察之無變化** —— 通過不足以完全證成條文。此為可行之最佳近似（無直接可觀察之訊號面），保留但於交付時標為弱驗證。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821693`、`CFTS020-4821694`、`CFTS020-4821703`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821693`（部分）；`4821694`（有）：未轉動時 `DIR=\"Knob_no_change\"`／`VAL=\"0\"`；`4821703`（有）：TLM 收 no_change 時忽略 VAL（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。",
    "distinguishing_axis": {
     "axis": "trigger_state",
     "delta": "旋鈕靜止；轉動中之送出由 B1／B2 承擔"
@@ -81,13 +81,13 @@
    "input_test_data": "NA",
    "test_procedure": "1. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 0 (Knob_no_change)\n2. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ and check that it is 0\n3. Record the cycle time between two consecutive frames carrying the knob 2 signals\n4. Rotate the ICS knob 2 one detent position clock-wise and check that $CLIMATIC_PANEL.Radio_Knob2_DIR$ is 1 (Knob_increment)",
    "expected_result": "1. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received\n2. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 0 is received\n3. The frames carrying the knob 2 signals are received at a constant cycle time\n4. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received",
-   "specification_reference": "CFTS020-4819584",
+   "specification_reference": "CFTS020-4819584\nCFTS020-4821693\nCFTS020-4821694\nCFTS020-4821697\nCFTS020-4821698",
    "design_method": "Functional Based",
    "priority": "P1",
    "split_flag": false,
    "split_reason": "",
    "has_pending": false,
-   "reasoning": "驗證目標為 4819584：判定無變化後，DIR = no change 與 VAL = 0 以排定之週期率持續送出，直至旋鈕再次轉動。上半 38 token，單句逐字全取。與 B3（4819582）之別：4819582 治「未轉動時之送出值」，4819584 治「無變化之持續與其終止條件」——二條各自成立之 SFR，其失敗模式不同（前者送錯值；後者不送或不停），依 IN §8.2.2 分列。`scheduled periodic rate` 之具體值 CFTS020 未載，故步驟 3 只記錄週期而不斷言其值 ——斷言一個未載之數即造值（IN §8.4.1）。",
+   "reasoning": "驗證目標為 4819584：判定無變化後，DIR = no change 與 VAL = 0 以排定之週期率持續送出，直至旋鈕再次轉動。上半 38 token，單句逐字全取。與 B3（4819582）之別：4819582 治「未轉動時之送出值」，4819584 治「無變化之持續與其終止條件」——二條各自成立之 SFR，其失敗模式不同（前者送錯值；後者不送或不停），依 IN §8.2.2 分列。`scheduled periodic rate` 之具體值 CFTS020 未載，故步驟 3 只記錄週期而不斷言其值 ——斷言一個未載之數即造值（IN §8.4.1）。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821693`、`CFTS020-4821694`、`CFTS020-4821697`、`CFTS020-4821698`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821693`（部分）；`4821694`（有）；`4821697`（有）：判無變化時以該速率送；`4821698`（有）：續以週期速率送至再轉動（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。",
    "distinguishing_axis": {
     "axis": "timing",
     "delta": "無變化之週期持續與其終止；未轉動時之送出值由 B3 承擔"
@@ -103,13 +103,13 @@
    "input_test_data": "NA",
    "test_procedure": "1. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ and check that it is 0\n2. Rotate the ICS knob 2 three detent positions clock-wise in one continuous rotation\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_VAL$ and check that it is 3\n4. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)",
    "expected_result": "1. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 0 is received\n2. The three detents are felt and the rotation is completed\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_VAL$ = 3 is received\n4. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received",
-   "specification_reference": "CFTS020-4819541\nCFTS020-4819583",
+   "specification_reference": "CFTS020-4819541\nCFTS020-4819583\nCFTS020-4821693\nCFTS020-4821695\nCFTS020-4821696",
    "design_method": "Functional Based",
    "priority": "P1",
    "split_flag": false,
    "split_reason": "",
    "has_pending": false,
-   "reasoning": "驗證目標為 4819583 之**第一句**：轉動中之 detent 相對計數。上半取該句（20 token）為正規摘句 —— 其與括號下半之測試目的直接相關，第二句之送出形制由 B1／B2 承擔。計數時間窗 `<TPeriodToCountKnobDetents>` 於 CFTS020 為符號無值，依 IN §8.4.3 落 `PENDING: DR-ICS12` 佔位，寫為系統組態之狀態而非動作（IN §4.4）——與 b01 之 V3（knob 1 側之同一問題）同一處置。n = 3 為測試實作選擇，非規格數值。與 B1 之切分軸為 input_data（3 格 vs 1 格），驗證對象亦異（累計計數 vs 單格送出形制）。　【b07 作業 B】detent 計數窗之佔位已回填為 **50 msec**，逐字取自 `CFTS020-4819541`。**該值於原文標 `initial value` 並附 `parameter tuning process` 之註 —— 即其為暫定值，可於整合測試後變更**（R-ICS27(c)）。故 DR-ICS12 **不結案**，改為「請上游確認調校後之定值」之追蹤件；本條之數值面於該定值確認前仍不得視為終局。錨行增 `CFTS020-4819541`。",
+   "reasoning": "驗證目標為 4819583 之**第一句**：轉動中之 detent 相對計數。上半取該句（20 token）為正規摘句 —— 其與括號下半之測試目的直接相關，第二句之送出形制由 B1／B2 承擔。計數時間窗 `<TPeriodToCountKnobDetents>` 於 CFTS020 為符號無值，依 IN §8.4.3 落 `PENDING: DR-ICS12` 佔位，寫為系統組態之狀態而非動作（IN §4.4）——與 b01 之 V3（knob 1 側之同一問題）同一處置。n = 3 為測試實作選擇，非規格數值。與 B1 之切分軸為 input_data（3 格 vs 1 格），驗證對象亦異（累計計數 vs 單格送出形制）。　【b07 作業 B】detent 計數窗之佔位已回填為 **50 msec**，逐字取自 `CFTS020-4819541`。**該值於原文標 `initial value` 並附 `parameter tuning process` 之註 —— 即其為暫定值，可於整合測試後變更**（R-ICS27(c)）。故 DR-ICS12 **不結案**，改為「請上游確認調校後之定值」之追蹤件；本條之數值面於該定值確認前仍不得視為終局。錨行增 `CFTS020-4819541`。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821693`、`CFTS020-4821695`、`CFTS020-4821696`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821693`（部分）；`4821695`（有）：`TPeriodToCountKnobDetents` 期內計 detent；`4821696`（有）：`VAL=3`（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。",
    "distinguishing_axis": {
     "axis": "input_data",
     "delta": "一次轉三格之累計計數；單格之送出形制由 B1 承擔"
@@ -125,13 +125,13 @@
    "input_test_data": "NA",
    "test_procedure": "1. Record the screen currently shown on the HU\n2. Rotate the ICS knob 2 one detent position clock-wise\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob2_DIR$ and check that it is 1 (Knob_increment)\n4. Check that the HU state has changed from the state recorded in step 1",
    "expected_result": "1. The currently shown screen is recorded\n2. The knob 2 detent is felt and the rotation is completed\n3. The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received\n4. The HU state differs from the state recorded in step 1",
-   "specification_reference": "CFTS020-4819586",
+   "specification_reference": "CFTS020-4819586\nCFTS020-4821702",
    "design_method": "Functional Based",
    "priority": "P0",
    "split_flag": false,
    "split_reason": "",
    "has_pending": true,
-   "reasoning": "驗證目標為 4819586：HU 收到 KNOB2 之 DIR／VAL 後確實據以動作（browse／scroll／tune）。上半 33 token，單句逐字全取。**具體動作為何取決於當前畫面**，其對照表在 HMI Logic and Flow（DR-ICS6 未回），指名即造值（IN §8.4.1），故以 `PENDING: DR-ICS6` 佔位並以前後基線比較承載可判定性（同 b02 之 I1／I2 之處置）。條文之 `if any` 明示「可能無對應畫面」—— 故 Pre-Condition 3 限定於「已定義 browse 行為之列表畫面」，否則步驟 4 之斷言即為潛在 FF（IN §7）。與 B1／B5 之別：B1／B5 驗 ICS **送出**面，本條驗 HU **接收後之動作**面 ——二者為不同 ECU 側之行為，非同一觸發之多後果。　【b08 作業 C】依 R-ICS32(b) 改寫 `if any` 之斷言逾越：來源句自帶 `if any`，即規格明示可能無對應後果，而原 ER 斷言必有可觀察差異 —— 潛在 FF（IN §7）。改法：**佔位自 procedure 移至 Pre-Condition**，使「該動作已定義」成為本條之**前提**而非其**斷言**；`if any` 之否定分支因而被前提排除，ER 之差異斷言方為有據。**畫面名仍未自行指定**（R-ICS30(b) 不變）——前提所限定者為「該畫面之屬性（已定義該動作）」，不是其名。",
+   "reasoning": "驗證目標為 4819586：HU 收到 KNOB2 之 DIR／VAL 後確實據以動作（browse／scroll／tune）。上半 33 token，單句逐字全取。**具體動作為何取決於當前畫面**，其對照表在 HMI Logic and Flow（DR-ICS6 未回），指名即造值（IN §8.4.1），故以 `PENDING: DR-ICS6` 佔位並以前後基線比較承載可判定性（同 b02 之 I1／I2 之處置）。條文之 `if any` 明示「可能無對應畫面」—— 故 Pre-Condition 3 限定於「已定義 browse 行為之列表畫面」，否則步驟 4 之斷言即為潛在 FF（IN §7）。與 B1／B5 之別：B1／B5 驗 ICS **送出**面，本條驗 HU **接收後之動作**面 ——二者為不同 ECU 側之行為，非同一觸發之多後果。　【b08 作業 C】依 R-ICS32(b) 改寫 `if any` 之斷言逾越：來源句自帶 `if any`，即規格明示可能無對應後果，而原 ER 斷言必有可觀察差異 —— 潛在 FF（IN §7）。改法：**佔位自 procedure 移至 Pre-Condition**，使「該動作已定義」成為本條之**前提**而非其**斷言**；`if any` 之否定分支因而被前提排除，ER 之差異斷言方為有據。**畫面名仍未自行指定**（R-ICS30(b) 不變）——前提所限定者為「該畫面之屬性（已定義該動作）」，不是其名。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821702`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821702`（有覆蓋）：TLM 依 `$ICS_KNOB2_*$` 管理畫面與瀏覽清單（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。",
    "distinguishing_axis": {
     "axis": "mode",
     "delta": "HU 接收後之動作面；ICS 之送出面由 B1／B5 承擔"
@@ -147,13 +147,13 @@
    "input_test_data": "NA",
    "test_procedure": "1. Record the screen currently shown on the HU\n2. Press the ICS \"Enter\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn1$ and check that it is 1 (Pressed)\n4. Check that the screen shown has changed from the screen recorded in step 1",
    "expected_result": "1. The currently shown screen is recorded\n2. The \"Enter\" button enters the pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn1$ = 1 (Pressed) is received\n4. The screen shown differs from the screen recorded in step 1",
-   "specification_reference": "CFTS020-4819555",
+   "specification_reference": "CFTS020-4819555\nCFTS020-4821704",
    "design_method": "Functional Based",
    "priority": "P0",
    "split_flag": false,
    "split_reason": "",
    "has_pending": true,
-   "reasoning": "驗證目標為 4819555：HU 收到 `$Enter_Button$` = [pressed] 後流向對應畫面。上半 19 token，單句逐字全取。v2 判定為**適用**（ECU 軸缺、Radio 含 R1L、EE 含 Atlantis High），E3 未觸發。訊號名依 b03 作業 E：`CLIMATIC_PANEL.Radio_btn1`（`BO_ 1050`，節點 ICS，`VAL_ 1050 Radio_btn1 0 \"Not_Pressed\" 1 \"Pressed\";`）。目標畫面之對照表在 HMI L&F（DR-ICS6），故佔位。條文之 `if any` 同 4819586 —— Pre-Condition 3 限定於「已定義 Enter 動作之畫面」，否則步驟 4 為潛在 FF。**未涵蓋之覆蓋缺口（E6，具名）**：`1.8.1.3 Button Press Events` 之 Short／Long Press 定義（4819593、4819599 等）於 v2 判**不適用** —— 成因為其 `[ECU:FPDM]` 軸值不含 {ICS, LTM}，屬實質判定而非軸缺。故「按壓事件」之時長判準本 feature 無母條可依，本條只驗 `[pressed]` 訊號值之後果，不涉短按／長按之區別，亦不自他處補（下放包 04 §三 C-4）。　【b08 作業 C】依 R-ICS32(b) 改寫 `if any` 之斷言逾越：來源句自帶 `if any`，即規格明示可能無對應後果，而原 ER 斷言必有可觀察差異 —— 潛在 FF（IN §7）。改法：**佔位自 procedure 移至 Pre-Condition**，使「該動作已定義」成為本條之**前提**而非其**斷言**；`if any` 之否定分支因而被前提排除，ER 之差異斷言方為有據。**畫面名仍未自行指定**（R-ICS30(b) 不變）——前提所限定者為「該畫面之屬性（已定義該動作）」，不是其名。"
+   "reasoning": "驗證目標為 4819555：HU 收到 `$Enter_Button$` = [pressed] 後流向對應畫面。上半 19 token，單句逐字全取。v2 判定為**適用**（ECU 軸缺、Radio 含 R1L、EE 含 Atlantis High），E3 未觸發。訊號名依 b03 作業 E：`CLIMATIC_PANEL.Radio_btn1`（`BO_ 1050`，節點 ICS，`VAL_ 1050 Radio_btn1 0 \"Not_Pressed\" 1 \"Pressed\";`）。目標畫面之對照表在 HMI L&F（DR-ICS6），故佔位。條文之 `if any` 同 4819586 —— Pre-Condition 3 限定於「已定義 Enter 動作之畫面」，否則步驟 4 為潛在 FF。**未涵蓋之覆蓋缺口（E6，具名）**：`1.8.1.3 Button Press Events` 之 Short／Long Press 定義（4819593、4819599 等）於 v2 判**不適用** —— 成因為其 `[ECU:FPDM]` 軸值不含 {ICS, LTM}，屬實質判定而非軸缺。故「按壓事件」之時長判準本 feature 無母條可依，本條只驗 `[pressed]` 訊號值之後果，不涉短按／長按之區別，亦不自他處補（下放包 04 §三 C-4）。　【b08 作業 C】依 R-ICS32(b) 改寫 `if any` 之斷言逾越：來源句自帶 `if any`，即規格明示可能無對應後果，而原 ER 斷言必有可觀察差異 —— 潛在 FF（IN §7）。改法：**佔位自 procedure 移至 Pre-Condition**，使「該動作已定義」成為本條之**前提**而非其**斷言**；`if any` 之否定分支因而被前提排除，ER 之差異斷言方為有據。**畫面名仍未自行指定**（R-ICS30(b) 不變）——前提所限定者為「該畫面之屬性（已定義該動作）」，不是其名。　【b12 作業 A】依 **R-ICS39(c)**（同一行為二節皆有母條時並列雙錨，不擇一）加錨 `CFTS020-4821704`。**所加之錨全數屬 §1.18**（R-ICS39(e)：須註明所據為 §1.8 或 §1.18）；原有之 §1.8 錨**一個未撤**（R-ICS39(b)）。行為等值覆蓋關係：`4821704`（部分覆蓋，Enter 半）：TLM 依 `$Enter_Button$`／`$Back_Button$` 管理畫面（依據為 09 §1 之逐條人工判，其機械層輸入已於 b11 作業 B 以 NBSP 正規化複驗，改變者 0）。排序依 R-ICS40(c)：文件依 CFTS 編號升序、同文件內 ObjectID 升序。"
   }
  ],
  "revision": {
@@ -166,6 +166,9 @@
   "b08_applied": [
    "作業 C：if-any 四行之佔位自 procedure 移至 Pre-Condition（R-ICS32(b)）",
    "作業 D：不作為三行標弱驗證，內容不改（R-ICS32(a)）"
+  ],
+  "b12_applied": [
+   "作業 A：依 R-ICS39(c) 並列加錨（照抄 upstream-11 §4-2）"
   ]
  }
 }

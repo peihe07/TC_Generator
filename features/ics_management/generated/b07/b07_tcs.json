@@ -48,7 +48,7 @@
     "axis": "input_data",
     "delta": "二鍵同時按下之並存回報；單鍵之回報由既有各條承擔"
    },
-   "reasoning": "驗證目標為 `CFTS020-4821688`（缺口 G2）：多鍵同時按下時，`CLIMATIC_PANEL` 訊息中**全部**相關訊號須一併為 `\"Pressed\"`。27 條中無一條施加「同時按下二鍵以上」之觸發，故為覆蓋缺口（upstream-09 §2）。上半 verbatim 取二句全文（33 token，未逾 R-3）—— 第二句以 `In this case` 回指第一句，只取第二句即失其前提。步驟 5 之 `in the same message` 為本條之驗證核心：條文所要者為**同一則訊息內並存**，而非二訊號先後各自為 `Pressed`。訊號名依 b03 作業 E（`Radio_btn0`／`Radio_btn2`，皆 `BO_ 1050`、發送節點 ICS，`VAL_ … 0 \"Not_Pressed\" 1 \"Pressed\"`）；**值之 `\"Pressed\"` 為條文逐字常數，非符號，無佔位**。錨為 §1.18 家族單錨：§1.8 側無「多鍵並存」之母條（`4819552` 雖近似但其判定與本包無涉，加錨押後至 b12，R-ICS39(d)）。　**代表按鍵之選擇具名**：母條之主詞為「任一按鍵」，屬**跨鍵之傳輸層行為**，而 SWRA 之 RD 為逐訊號切分（001~010），**無與之對應之 RD** —— 本條以 Display Control 之二鍵（`ICSPowerButton`／`ICSScreenOffButton`）具現之，trace 取其一，Test Set 隨之。此為測試實作選擇而非規格限定（同 b01 S1 取 \"Mute\" 之既例），**Test Set 未新立**（E12 未觸發）。母條與 RD 之粒度不對應一事已入上繳包待裁。"
+   "reasoning": "驗證目標為 `CFTS020-4821688`（缺口 G2）：多鍵同時按下時，`CLIMATIC_PANEL` 訊息中**全部**相關訊號須一併為 `\"Pressed\"`。27 條中無一條施加「同時按下二鍵以上」之觸發，故為覆蓋缺口（upstream-09 §2）。上半 verbatim 取二句全文（33 token，未逾 R-3）—— 第二句以 `In this case` 回指第一句，只取第二句即失其前提。步驟 5 之 `in the same message` 為本條之驗證核心：條文所要者為**同一則訊息內並存**，而非二訊號先後各自為 `Pressed`。訊號名依 b03 作業 E（`Radio_btn0`／`Radio_btn2`，皆 `BO_ 1050`、發送節點 ICS，`VAL_ … 0 \"Not_Pressed\" 1 \"Pressed\"`）；**值之 `\"Pressed\"` 為條文逐字常數，非符號，無佔位**。錨為 §1.18 家族單錨：§1.8 側無「多鍵並存」之母條（`4819552` 雖近似但其判定與本包無涉，加錨押後至 b12，R-ICS39(d)）。　**代表按鍵之選擇具名**：母條之主詞為「任一按鍵」，屬**跨鍵之傳輸層行為**，而 SWRA 之 RD 為逐訊號切分（001~010），**無與之對應之 RD** —— 本條以 Display Control 之二鍵（`ICSPowerButton`／`ICSScreenOffButton`）具現之，trace 取其一，Test Set 隨之。此為測試實作選擇而非規格限定（同 b01 S1 取 \"Mute\" 之既例），**Test Set 未新立**（E12 未觸發）。母條與 RD 之粒度不對應一事已入上繳包待裁。　【b12 作業 D】依 **R-ICS40(d)②** 補第四項：\n**(1) 未具現之按鍵清單** —— CFTS020 之 `4821681` 逐字所列之 ICS 按鍵共 **5 個**：`$ICSPowerButton$`、`$Enter_Button$`、`$ICSScreenOffButton$`、`$Back_Button$`、`$ICSMuteButton$`；本條以 `ICSPowerButton`／`ICSScreenOffButton` **二鍵**具現，**未具現者 3 個：`$Enter_Button$`、`$Back_Button$`、`$ICSMuteButton$`**。**(2) 為何不需各生一條** —— 依 **R-ICS41(a)** 逕裁：IN §8.3 之 sibling axis 適用於「行為隨輸入而異」者，而本母條之行為**對所有按鍵同一**，逐鍵展開不滿足 IN §7 之拆分判準（不同輸入不產生不同判定），為冗餘。**(3) 效力所繫** —— 依 **R-ICS41(b)**，本款之效力繫於 **DR-ICS20**：若上游答覆指出逐鍵有差異，R-ICS41(a) 進入重議，本條須重審。"
   },
   {
    "req_id": "SWE-ICS-007",
@@ -70,7 +70,7 @@
     "axis": "timing",
     "delta": "事件變化至幀更新之時限；並存回報由 G2 承擔"
    },
-   "reasoning": "驗證目標為 `CFTS020-4821689`（缺口 G3）：每一次按鍵事件變化（press 或 release）須使 ICS 於 `Tbutton` 內送出更新後之 `CLIMATIC_PANEL` 幀。27 條中無一條量此時限（upstream-09 §2）。上半 23 token，單句逐字全取。**`Tbutton = 100 msec` 之來源具名（R-ICS35 v1(e) 明令）**：取自 **§1.8** 之 time-variables 定義塊 `CFTS020-4819541`，**非 §1.18** —— §1.18 全節只以符號出現而無定值。依 R-ICS36(f) 取該值；其成立之前提為「§1.8 於 Disassociated 下有效」，而 b10 已量得本 DUT 為 Disassociated（R-ICS37(a)），故來源成立，**不落佔位**。press 與 release 二側併於一條：條文之 `(press or release)` 為同一機制之二實例，同一時限、同一幀更新，屬 IN §5.7 之「一觸發多後果」而非二 partial failure。Pre-Condition 4 之時間解析度為量測前提而非規格值，已具名。"
+   "reasoning": "驗證目標為 `CFTS020-4821689`（缺口 G3）：每一次按鍵事件變化（press 或 release）須使 ICS 於 `Tbutton` 內送出更新後之 `CLIMATIC_PANEL` 幀。27 條中無一條量此時限（upstream-09 §2）。上半 23 token，單句逐字全取。**`Tbutton = 100 msec` 之來源具名（R-ICS35 v1(e) 明令）**：取自 **§1.8** 之 time-variables 定義塊 `CFTS020-4819541`，**非 §1.18** —— §1.18 全節只以符號出現而無定值。依 R-ICS36(f) 取該值；其成立之前提為「§1.8 於 Disassociated 下有效」，而 b10 已量得本 DUT 為 Disassociated（R-ICS37(a)），故來源成立，**不落佔位**。press 與 release 二側併於一條：條文之 `(press or release)` 為同一機制之二實例，同一時限、同一幀更新，屬 IN §5.7 之「一觸發多後果」而非二 partial failure。Pre-Condition 4 之時間解析度為量測前提而非規格值，已具名。　【b12 作業 D】依 **R-ICS40(d)②** 補第四項：\n**(1) 未具現之按鍵清單** —— CFTS020 之 `4821681` 逐字所列之 ICS 按鍵共 **5 個**：`$ICSPowerButton$`、`$Enter_Button$`、`$ICSScreenOffButton$`、`$Back_Button$`、`$ICSMuteButton$`；本條以 `ICSPowerButton`／`ICSScreenOffButton` **二鍵**具現，**未具現者 3 個：`$Enter_Button$`、`$Back_Button$`、`$ICSMuteButton$`**。**(2) 為何不需各生一條** —— 依 **R-ICS41(a)** 逕裁：IN §8.3 之 sibling axis 適用於「行為隨輸入而異」者，而本母條之行為**對所有按鍵同一**，逐鍵展開不滿足 IN §7 之拆分判準（不同輸入不產生不同判定），為冗餘。**(3) 效力所繫** —— 依 **R-ICS41(b)**，本款之效力繫於 **DR-ICS20**：若上游答覆指出逐鍵有差異，R-ICS41(a) 進入重議，本條須重審。"
   },
   {
    "req_id": "SWE-ICS-001",
@@ -94,5 +94,10 @@
    },
    "reasoning": "驗證目標為 `CFTS020-4821693`（缺口 G9）：ICS 於 BH-CAN 上送出旋鈕狀態。上半 16 token，單句逐字全取。**與 SWE-ICS-001 既有三條（V1／V2／V3）之切分不重複**（upstream-09 §5 具名提請之點）：V1／V2／V3 驗 **HU 側之音量回應**，其觀察面為 `\"VOLUME POP_UP\"` 之音量階；本條驗 **ICS 側之訊號送出**，其觀察面為 CAN trace 上之 `Radio_Knob1_DIR`／`_VAL`。**二者為不同 ECU 側之行為，非同一觸發之多後果**（IN §8.2.2）；且本條不涉 `\"VOLUME POP_UP\"`，故**不受 A-ICS16 之 popup 顯示條件未載所影響** ——此為本條相對於 V1／V2／V3 之一項強度優勢，具名。KNOB2 面已由 b04 之 B1～B5 覆蓋，本條專指 KNOB1。訊號名與 `VAL_` 依 b03 作業 E（`Radio_Knob1_DIR` 之 `VAL_ 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\"`；`_VAL` **無 `VAL_` 列舉**，依 R-ICS8(d) 不加標籤）。"
   }
- ]
+ ],
+ "revision": {
+  "b12_applied": [
+   "作業 D：G2／G3 之 reasoning 補 R-ICS40(d)② 第四項（只動 reasoning）"
+  ]
+ }
 }

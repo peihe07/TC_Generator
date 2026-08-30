@@ -8,11 +8,11 @@
 
 - ER 行總數 **144**
 - **原始命中 140 行**（未涵蓋實詞 ≥ 1）
-- 衍生載具詞 **18** 個（跨 ≥ 5 條 TC，自動導出）：
-  `baseline`、`button`、`climatic`、`completed`、`differs`、`enters`、`felt`、`increment`、`mute`、`panel`、`pressed`、`radio`、`remains`、`reports`、`rotation`、`screen`、`shown`、`status`
-- **殘餘候選 62 行** —— 此為人工複核之實際對象
+- 衍生載具詞 **17** 個（跨 ≥ 5 條 TC，自動導出）：
+  `baseline`、`button`、`climatic`、`completed`、`differs`、`enters`、`felt`、`increment`、`mute`、`panel`、`radio`、`remains`、`reports`、`rotation`、`screen`、`shown`、`status`
+- **殘餘候選 66 行** —— 此為人工複核之實際對象
 
-**殘餘率 43%**（基線 53%，R-ICS34(c)：連續三包 > 60% 須重議門檻）。
+**殘餘率 45%**（基線 53%，R-ICS34(c)：連續三包 > 60% 須重議門檻）。
 
 > **R-ICS34(d)：篩之命中率不得作為品質指標。** 上列原始命中數與殘餘數**量的是篩自身之噪音**，不是 TC 之品質；篩只產候選，未錨定之認定仍為人工（§2）。原始命中率之所以仍列出，是為使門檻之效果可量（R-ICS34(b)：二數必並報，不得以分層掩蓋原始噪音）。
 
@@ -43,7 +43,11 @@
 | b02 | Button responsive after release | 2 | `returns` |
 | b02 | Button responsive after release | 4 | `after`、`release` |
 | b02 | Button responsive after release | 5 | `changes` |
+| b03 | Power hardkey pressed while HU screen on | 2 | `pressed` |
+| b03 | Power hardkey pressed while HU screen on | 3 | `pressed` |
 | b03 | Power hardkey pressed while HU screen on | 6 | `content`、`dark`、`shows` |
+| b03 | Power hardkey pressed at Telematic Power full operation | 2 | `pressed` |
+| b03 | Power hardkey pressed at Telematic Power full operation | 3 | `pressed` |
 | b03 | Power hardkey pressed at Telematic Power full operation | 6 | `content`、`dark`、`shows` |
 | b03 | Power hardkey pressed while HU screen off | 2 | `previously` |
 | b03 | Power hardkey pressed while HU screen off | 6 | `again` |
@@ -64,21 +68,21 @@
 | b03 | Screen off hardkey pressed while HU screen off | 5 | `again` |
 | b04 | Knob 2 held stationary | 4 | `content`、`unchanged` |
 | b04 | Knob 2 no change sent periodically | 3 | `carrying`、`constant`、`cycle`、`frames`、`time` |
-| b04 | Knob 2 signals acted on by the HU | 1 | `currently` |
 | b04 | Knob 2 signals acted on by the HU | 2 | `detent` |
-| b04 | Enter button pressed | 1 | `currently` |
-| b05 | Knob 2 rotated on a scrollable screen | 1 | `currently` |
 | b05 | Knob 2 rotated on a scrollable screen | 2 | `detent` |
 | b05 | Knob 2 rotated on a tuner source | 1 | `current` |
 | b05 | Knob 2 rotated on a tuner source | 2 | `detent` |
 | b06 | Mute hardkey pressed while audio unmuted | 1 | `unmuted` |
 | b06 | Mute hardkey pressed while audio muted | 1 | `muted` |
+| b07 | Back button pressed | 2 | `pressed` |
+| b07 | Back button pressed | 3 | `pressed` |
 | b07 | Two ICS buttons pressed at the same time | 2 | `power` |
 | b07 | Two ICS buttons pressed at the same time | 3 | `power`、`while` |
-| b07 | Button event change reported within Tbutton | 2 | `carrying`、`timestamp` |
+| b07 | Button event change reported within Tbutton | 1 | `pressed` |
+| b07 | Button event change reported within Tbutton | 2 | `carrying`、`pressed`、`timestamp` |
 | b07 | Button event change reported within Tbutton | 3 | `between`、`interval`、`more`、`msec` |
-| b07 | Button event change reported within Tbutton | 4 | `returns` |
-| b07 | Button event change reported within Tbutton | 5 | `after`、`carrying`、`more`、`msec` |
+| b07 | Button event change reported within Tbutton | 4 | `pressed`、`returns` |
+| b07 | Button event change reported within Tbutton | 5 | `after`、`carrying`、`more`、`msec`、`pressed` |
 | b07 | Knob 1 status sent on BH-CAN | 1 | `change` |
 | b07 | Knob 1 status sent on BH-CAN | 2 | `detent` |
 | b07 | Knob 1 status sent on BH-CAN | 4 | `message`、`same` |
