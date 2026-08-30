@@ -1,8 +1,7 @@
-# 框界作業期間之基準表（下放包 66 §四 #5 之二欄制，取代原 `frame_state` 單欄）。
-# 母群：`kind == ruling` 之錨點（R-G29 之射程）。
+# 框界作業期間之基準表（下放包 66 §四 #5 之二欄制）。母群：`kind == ruling`（R-G29 之射程）。
 # `last_known_body_sha8` = 該條最近一次「已知且已解釋」之 body_sha；`reason` = 其成因。
-# R-G13 之比對改三段：與 `sha.tsv` 同 → clean；與 `last_known` 同 → 報其 reason，**不停止**；
-#   **與二者皆不同 → 真變動，停止並回報**（成因段被改之情形自動落入第三段）。
+# R-G13 之比對三段：與 `sha.tsv` 同 → clean；與 `last_known` 同 → 報其 reason，**不停止**；
+#   **與二者皆不同 → 真變動，停止並回報**。
 ruling_id	source	last_known_body_sha8	reason	body_kind	tsv_body_sha8
 R-AM2	features/audio_mgmt/RULINGS.md	a1204c33	nested-fix	fenced	21957d7f
 R-TM37	features/time_management/RULINGS.md	d0ead7b9	nested-fix	fenced	6eaeb96f
@@ -12,12 +11,7 @@ R-TM51	features/time_management/RULINGS.md	47b9a473	nested-fix	fenced	d0a7addf
 R-POP12	features/popup/RULINGS.md	e323360d	pending-frame	section	e323360d
 R-POP13	features/popup/RULINGS.md	89306542	pending-frame	section	89306542
 R-POP18	features/popup/RULINGS.md	bfbb3167	pending-frame	section	bfbb3167
-R-POP26	features/popup/RULINGS.md	5b4d55fe	pending-frame	section	5b4d55fe
-R-TM11	features/time_management/RULINGS.md	bdabd953	pending-frame	section	bdabd953
-R-TM12	features/time_management/RULINGS.md	831cfd67	pending-frame	section	831cfd67
-R-TM13	features/time_management/RULINGS.md	19d17718	pending-frame	section	19d17718
 R-TM40	features/time_management/RULINGS.md	f2c23203	pending-frame	section	f2c23203
-R-TM9	features/time_management/RULINGS.md	54c12889	pending-frame	section	54c12889
 R-VS19′	features/vehicle_setting/RULINGS.md	487f8e10	pending-frame	section	487f8e10
 R-VS19″	features/vehicle_setting/RULINGS.md	d1c7df04	pending-frame	section	d1c7df04
 R-VS36	features/vehicle_setting/RULINGS.md	2388813c	pending-frame	section	2388813c
@@ -47,6 +41,11 @@ R-POP20	features/popup/RULINGS.md	d6a87394	ruled-boundary	fenced	2894aa0c
 R-POP22	features/popup/RULINGS.md	34df5903	ruled-boundary	fenced	1bb746f6
 R-POP23	features/popup/RULINGS.md	698c370b	ruled-boundary	fenced	c5655c80
 R-POP24	features/popup/RULINGS.md	e362b2b6	ruled-boundary	fenced	e362b2b6
+R-POP26	features/popup/RULINGS.md	5fea3d55	ruled-boundary	fenced	5b4d55fe
 R-POP5	features/popup/RULINGS.md	6ffd7fad	ruled-boundary	fenced	a6816cb1
 R-POP6	features/popup/RULINGS.md	66f64b48	ruled-boundary	fenced	66f64b48
 R-POP8	features/popup/RULINGS.md	ce2d0a8c	ruled-boundary	fenced	7425f059
+R-TM11	features/time_management/RULINGS.md	a922a4a4	ruled-boundary	fenced	bdabd953
+R-TM12	features/time_management/RULINGS.md	740bd3b0	ruled-boundary	fenced	831cfd67
+R-TM13	features/time_management/RULINGS.md	9845d5f6	ruled-boundary	fenced	19d17718
+R-TM9	features/time_management/RULINGS.md	95c7b6dc	ruled-boundary	fenced	54c12889
