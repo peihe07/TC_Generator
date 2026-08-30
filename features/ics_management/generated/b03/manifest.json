@@ -7,7 +7,7 @@
   "tcs": 8,
   "parents": 2,
   "test_sets": 1,
-  "pending_placeholders": 12,
+  "pending_placeholders": 0,
   "pending_source": "scripts/pending_census.py 腳本計數（A-ICS31 之口徑統一，禁人工列舉）"
  },
  "parents": {

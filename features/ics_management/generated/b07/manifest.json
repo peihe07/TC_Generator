@@ -9,7 +9,7 @@
   "parents": 4,
   "test_sets": 3,
   "pending_placeholders": 1,
-  "pending_source": "scripts/pending_census.py"
+  "pending_source": "scripts/pending_census.py 腳本計數（A-ICS31 之口徑統一，禁人工列舉）"
  },
  "parents": {
   "SWE-ICS-009": 1,

@@ -464,7 +464,7 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 
 ### `PDT27_E2A_R1_BHCAN2.dbc`
 
-> **使用中之 feature（R-G15 反向記載）**：`display`（R-DM19 選定為其 B-CAN 資料庫）。各該 feature 之 `feature.yaml` `reference:` 節載其 SHA256。
+> **使用中之 feature（R-G15 反向記載）**：`display`（R-DM19 選定為其 B-CAN 資料庫）、`ics_management`（R-ICS46，Pei 裁定之台架觀察匯流排）。各該 feature 之 `feature.yaml` `reference:` 節載其 SHA256.
 
 - **(a)** SHA256 `46cb73f3db62ac9fba6ad8010d7930661983faf01383c022c52ba3c37de1cc60`
   · 167,226 bytes · mtime 2026-08-24T19:59:45

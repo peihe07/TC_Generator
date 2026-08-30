@@ -333,3 +333,29 @@ upstream-11 §4-3 與 A-ICS74 之敘述須更正）；**SYS2 有 23 列在案 FR
 
 另對 upstream-14 具名更正一項：**A-ICS91 所引之 `4819144`／`4820117` 並非 TC 2／TC 4 之錨，
 且未被任何 TC 引用**；二條之前提 `$Telematic_Power$` **從未寫過任何建立方法**。
+
+---
+
+## 第 16 輪（2026-08-30）綁定與讀者、**12 處回填**、reasoning 更正
+
+| 項 | 落點 |
+|---|---|
+| 上繳包 | `docs/upstream/16_binding_and_backfill_exec.md` |
+| Pre-Condition 體例抽查（只量不改）| `docs/reports/16_precondition_style.md` |
+| **回凍基準快照** | `docs/reports/16_rulings_snapshot.md` |
+| 新腳本 | **`scripts/verify_reference_binding.py`**（移植自 `display`；首跑 11／11）|
+| 改動 | `feature.yaml`（`reference:` 10 → 11，增 `dbc_bh2`）、`forms/FORMS.md`（僅 BHCAN2 一列之使用 feature 欄）、`generated/b03/`（12 處回填）|
+
+**E27／E30／E31／E32 全部未觸發，作業 A～E 全數完成。git 執行次數 0。**
+
+**十六包來第一次補完一件缺件**：`DR-ICS8` 之 12 處佔位全數回填為
+`$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$`，值取 `VAL_ 1500` 逐字（`0 (Display_off)`／`2 (Normal_mode)`）。
+**ICS 佔位由 18 處／14 條降至 6 處／6 條**，殘餘只繫於 DR-ICS6（5 處）與 DR-ICS4（1 處）。
+
+**A-ICS97 解除**：本 feature 之 11 個 sha 首次受程式檢驗，**11／11 相符** ——
+即十六包所綁之參考件皆未被改動。
+
+三件須分析層處置者：**「納入 gate 集」無可行載體**（`ics_management` 於 `GATES.tsv` 命中 0 列，
+且 `display`／`bed_lowering` 之同名讀者亦均未登錄，讀者入簿在本 repo 尚無先例）；
+**回填之副作用 `has_pending` 旗標須同步**（下放包未令，本包自行發現並修正）；
+**`VAL_ 1500` 之三值（`7`／`8`／`15`）無任何 TC 涵蓋**而規格側載有此三態。

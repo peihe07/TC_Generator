@@ -8,11 +8,11 @@
 
 - ER 行總數 **144**
 - **原始命中 140 行**（未涵蓋實詞 ≥ 1）
-- 衍生載具詞 **17** 個（跨 ≥ 5 條 TC，自動導出）：
-  `baseline`、`button`、`climatic`、`completed`、`differs`、`enters`、`felt`、`increment`、`mute`、`panel`、`radio`、`remains`、`reports`、`rotation`、`screen`、`shown`、`status`
-- **殘餘候選 66 行** —— 此為人工複核之實際對象
+- 衍生載具詞 **18** 個（跨 ≥ 5 條 TC，自動導出）：
+  `baseline`、`button`、`climatic`、`completed`、`differs`、`enters`、`felt`、`increment`、`mode`、`mute`、`panel`、`radio`、`remains`、`rotation`、`screen`、`shown`、`statsts`、`telematic`
+- **殘餘候選 68 行** —— 此為人工複核之實際對象
 
-**殘餘率 45%**（基線 53%，R-ICS34(c)：連續三包 > 60% 須重議門檻）。
+**殘餘率 47%**（基線 53%，R-ICS34(c)：連續三包 > 60% 須重議門檻）。
 
 > **R-ICS34(d)：篩之命中率不得作為品質指標。** 上列原始命中數與殘餘數**量的是篩自身之噪音**，不是 TC 之品質；篩只產候選，未錨定之認定仍為人工（§2）。原始命中率之所以仍列出，是為使門檻之效果可量（R-ICS34(b)：二數必並報，不得以分層掩蓋原始噪音）。
 
@@ -24,8 +24,10 @@
 | b01 | Stuck button held over 120 s | 3 | `head`、`unit` |
 | b01 | Stuck button held over 120 s | 4 | `periodically` |
 | b01 | Stuck fault held until de-bounced not-pressed | 1 | `more`、`seconds` |
+| b01 | Stuck fault held until de-bounced not-pressed | 2 | `status` |
 | b01 | Stuck fault held until de-bounced not-pressed | 4 | `returns` |
 | b01 | Stuck fault held until de-bounced not-pressed | 5 | `elapsed`、`mature`、`time` |
+| b01 | Button held exactly 120 s | 1 | `status` |
 | b01 | Button held exactly 120 s | 3 | `returns` |
 | b01 | VOLUME knob rotated clock-wise | 1 | `displayed` |
 | b01 | VOLUME knob rotated clock-wise | 3 | `displayed` |
@@ -144,5 +146,4 @@
 |---|---|---|
 | DR-ICS4 | 1 | 1 |
 | DR-ICS6 | 5 | 5 |
-| DR-ICS8 | 12 | 8 |
-| **合計** | **18** | |
+| **合計** | **6** | |

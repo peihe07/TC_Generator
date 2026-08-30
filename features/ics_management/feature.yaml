@@ -162,6 +162,14 @@ reference:
   dbc_fd:
     file: "features/vehicle_setting/inputs/PDT27_E2A_R5_FDCAN8.dbc"
     sha256: "51c8fd6092925071bbf443711e5161d78df292de232dc7427b1cceaa8f181cd2"
+  # BHCAN2：R-ICS46（Pei 裁「BHCAN2」，2026-08-30）之台架觀察匯流排。
+  # b14 判 `$TGW_DISP_STAT$` 之 DBC 實名為 `TGW_DISP_STATSts`＠`BO_ 1500
+  # TELEMATIC_DISPLAY2`；b15 復以四支 dbc 交叉確認位元佈局與 `VAL_` 17／17 相同。
+  # 鍵名依既有體例（`dbc_b`／`dbc_fd`）取 `dbc_bh2`。sha256 本包現場重算。
+  # 本綁定**不改變 `display` 之綁定**，亦不裁 A-DM14（R-ICS46(b) 射程限本 feature）。
+  dbc_bh2:
+    file: "forms/PDT27_E2A_R1_BHCAN2.dbc"
+    sha256: "46cb73f3db62ac9fba6ad8010d7930661983faf01383c022c52ba3c37de1cc60"
   # DTCs Matrix：CFTS020-4819297 逐字令 ICS 之 Enable／Mature／De-Mature
   # 條件以本表為準。b01 之 S1／S2／S3 之 B14DA-2A 與 120 s／8 ms 出自 r57。
   dtcs_matrix:
