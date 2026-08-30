@@ -124,6 +124,7 @@ DR-POP 須轉為受檢，並以「注入跳號即 FAIL」實證其會轉紅。
 
 ### R-POP12 — -002-02 不拆，軸不存在（分析層裁 [DEFAULT]，2026-08-27，**A-POP7**）
 
+```
 SWE1-POP-002-02 **不拆** device 軸，理由採「**規格側無此分支**」一說：
 SYS1 5.6 逐字為 `pressing the button a second time`，未區分按鍵型別；
 037 S11 之 `a physical hard button or a specific UI button on the screen`
@@ -138,10 +139,13 @@ sub-id。依 IN §8.2（RD 為需求單位之權威）與 §8.4.2（規則定義
 
 Pei 得於審查時否決改裁；若改採「真軸缺件」說，則須開 DR 並將
 -002-02 視為未完成（欠 hard-button 一條）。
+```
 
 ### R-POP13 — TC ID 前綴定值（分析層裁 [DEFAULT]，2026-08-27，**A-POP9**）
 
+```
 TC ID 採 `NR1L-Popup-{NNN}`。依據：分析層 2026-08-27 實測五本交付／
+```
 產出簿之欄 F（Test Case ID）：
 
 | 簿 | 前綴 | 列數 |
@@ -152,6 +156,7 @@ TC ID 採 `NR1L-Popup-{NNN}`。依據：分析層 2026-08-27 實測五本交付�
 | TimeManagement 20260825 | `NR1L-TimeManagement` | 59 |
 | Display 20260826 | `TC-DM` | 23 |
 
+```
 4/5 為 `NR1L-{FeatureName}-{NNN}`，Display 為離群（不取為基準）。
 pilot 現值 `newR1L-POP-{NNN}` 兩處皆錯（`newR1L`≠`NR1L`；
 縮寫 `POP`≠全名 `Popup`），全數重排，NNN 序不變。
@@ -172,6 +177,7 @@ pilot 現值 `newR1L-POP-{NNN}` 兩處皆錯（`newR1L`≠`NR1L`；
 與儲存格**；`POP-` 限 **TC ID 欄 F10:F1411**。
 順帶：`D2` = `newR1L`（專案名稱）與交付簿欄 F = `NR1L-*`（TC ID）
 為不同層之值，**不得以 D2 為 TC ID 前綴之權威**。
+```
 
 ### R-POP14 — -002-05 採規格原句生成（分析層裁 [DEFAULT]，2026-08-27，**A-POP8**）
 
@@ -249,6 +255,7 @@ A-POP5 未提、傳染性掃描結論相反、TC ID 前綴述值與語料不同�
 
 ### R-POP18 — 主表辨識改內容判準（分析層裁，2026-08-28，A-POP10）
 
+```
 **R-POP16 乙之「首個表格為三簿體例之不變量」一語經實測不成立**，本條取代
 其中「抽取限於檔內首個表格」一項（其餘兩項不變）。依據：上繳包 03
 §七 A-POP10 實測 —— sxm／audio_mgmt／projection／privacy 之首個表格
@@ -279,6 +286,7 @@ A-POP5 未提、傳染性掃描結論相反、TC ID 前綴述值與語料不同�
    「主表一列 ＋ `## A-POPn` 明細節一節」每號皆變跨表同號（11 筆 note）；
    有表格就不看標題 → sxm 之 A-SX18／19 又被判跳號（A-POP11 之重現）。
    先證偽兩方向再定案，而非定案後找支持。
+```
 
 ### R-POP19 — A-POP6 甲類之 sxm 兩筆撤回（分析層裁，2026-08-28，A-POP11）
 

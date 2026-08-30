@@ -37,6 +37,8 @@ RE_HEADING = re.compile(r"^(#{1,6})\s")
 RE_NON_RULING = re.compile(r"執行層回報|落實紀錄|實測紀錄|回報摘要")
 # 作廢標記：標題含之者，其自身與其下轄各級標題皆為 superseded
 RE_SUPERSEDED = re.compile(r"作廢|SUPERSEDED|已撤回")
+# 條文自身宣告其被取代（其非標題所載，故 RE_SUPERSEDED 掃不到）
+RE_SELF_SUPERSEDED = re.compile(r"經\s*R-[A-Z]*\d+[′’']?\s*取代|已由\s*R-[A-Z]*\d+.{0,8}取代|【.{0,20}取代")
 # 群組標題（`## R-C1 ~ R-C5 —— 下放包 01`）：其非單條之錨點，不得佔用首條之 id。
 # 判別特徵為 slug **以分隔符或連接詞起首**再接另一條號；
 # 不得只憑「slug 以條號起首」—— `### R-VS82 —— R-G14 綠色通道之生效起點`
@@ -111,7 +113,13 @@ def body_sha(lines: list[str]) -> tuple[str, int]:
     return hashlib.sha256(body.encode("utf-8")).hexdigest(), len(trimmed)
 
 
-def fenced_body(lines: list[str]) -> tuple[list[str], str]:
+# 引文框之排除（下放包 69 §3.1）：節內既有之 fenced block 若為他處條文之引文，
+# 其變動不應改變本條之 `body_sha`。其判定屬人裁，值來自 `FRAME_STATE.tsv` 之
+# `excluded_frames` 欄（1-based 序號），此處以模組級 dict 注入。
+EXCLUDED_FRAMES: dict[str, set[int]] = {}
+
+
+def fenced_body(lines: list[str], key: str = "") -> tuple[list[str], str]:
     """取條文本體（R-G22′，下放包 57 §二 #1）。
 
     **本體 = 該節之全部 fenced block 之內容串接**（不含 ``` 兩行，依出現序，無分隔符）。
@@ -125,12 +133,16 @@ def fenced_body(lines: list[str]) -> tuple[list[str], str]:
     """
     out: list[str] = []
     start = None
+    idx = 0
+    drop = EXCLUDED_FRAMES.get(key, set())
     for i, ln in enumerate(lines):
         if ln.lstrip().startswith("```"):
             if start is None:
                 start = i
             else:
-                out.extend(lines[start + 1:i])
+                idx += 1
+                if idx not in drop:
+                    out.extend(lines[start + 1:i])
                 start = None
     return (out, "fenced") if out else (lines, "section")
 
@@ -188,10 +200,15 @@ def extract(path: Path, root: Path) -> list[Ruling]:
             if RE_HEADING.match(ln):
                 own = section[:k]
                 break
-        bl, bkind = fenced_body(own)
+        bl, bkind = fenced_body(own, f"{ruling_id}@{source}")
         bsha, _ = body_sha(bl)
+        # 條文自身於節首宣告其被取代者，亦為 superseded（下放包 69 §三，`R-VS37` 之例）
+        head2 = [l for l in section[:4] if l.strip()][:2]
+        self_sup = any(RE_SELF_SUPERSEDED.search(l) for l in head2)
         if RE_GROUP.match(slug):
             kind = "group"
+        elif self_sup:
+            kind = "superseded"
         elif dead:
             kind = "superseded"
         elif RE_NON_RULING.search(anc):

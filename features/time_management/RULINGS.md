@@ -1434,6 +1434,7 @@ feature.yaml 之 spec_reference_template 隨之改寫。
 
 ### R-TM40 之連鎖後果（六項，`04Z-A4` §2）
 
+```
 **1. A-TM12 降為非阻塞**（§2.1）—— 取值止於物件 id，不再需要
 「物件 id → 章節號」之 docx 解析。錨鏈工作不作廢，其角色由「交付欄位
 之來源」改為「framework 導航之依據」（Layer 3 主軸章節表、R-TM23 兩條
@@ -1457,6 +1458,7 @@ setup；Do NOT cite specs only used as background context」。一片 leaf
 (iii) 存在於 CFTS015 docx。第 (iii) 項與現存 `lint_tcs.py` 之
 `lint_spec_reference` 方向相同，**使該閘門由「額外保護」升為
 「格式正確性之必要條件」**（G-TM2 項 6 之「不得回退」因此更硬）。
+```
 
 **執行層回報（2026-08-21）**：六項全數登記。第 5 項已執行；第 6 項屬
 `scripts/`，凍結中未實作。逐 leaf 之候選表已產出於
@@ -1472,7 +1474,9 @@ setup；Do NOT cite specs only used as background context」。一片 leaf
 `CFTS015-4813905` 為本專案新定之形式，非沿用文件既有慣例。
 兩套編號並存之事實見 A-TM23。
 
+```
 前綴之三位零填（`CFTS015` 非 `CFTS15`）仍成立 —— 26 個短號值皆用此前綴。
+```
 
 **依據再訂正（2026-08-21，依 `04Z-A5` 上繳 §3.4 之提請）**
 

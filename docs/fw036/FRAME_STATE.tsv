@@ -1,51 +1,50 @@
-# 框界作業期間之基準表（下放包 66 §四 #5 之二欄制）。母群：`kind == ruling`（R-G29 之射程）。
-# `last_known_body_sha8` = 該條最近一次「已知且已解釋」之 body_sha；`reason` = 其成因。
-# R-G13 之比對三段：與 `sha.tsv` 同 → clean；與 `last_known` 同 → 報其 reason，**不停止**；
+# 框界作業之基準表（下放包 66 §四 #5 之二欄制；下放包 69 §3.1 增 `excluded_frames`）。
+# 母群：`kind == ruling`（R-G29 之射程；自宣告被取代者已改判 superseded，下放包 69 §三）。
+# `excluded_frames`：該條節內**不計入 `body_sha`** 之 fenced block 序號（1-based）——
+#   其為他處條文之引文，不屬本條之本體（`R-TM40` 之第 3 框為 canon §10.7 之逐字引文）。
+# R-G13 之比對三段：與 `sha.tsv` 同 → clean；與 `last_known` 同 → 報其 reason，不停止；
 #   **與二者皆不同 → 真變動，停止並回報**。
-ruling_id	source	last_known_body_sha8	reason	body_kind	tsv_body_sha8
-R-AM2	features/audio_mgmt/RULINGS.md	a1204c33	nested-fix	fenced	21957d7f
-R-TM37	features/time_management/RULINGS.md	d0ead7b9	nested-fix	fenced	6eaeb96f
-R-TM47	features/time_management/RULINGS.md	4769bb92	nested-fix	fenced	0f42ba4c
-R-TM49	features/time_management/RULINGS.md	f6c7f919	nested-fix	fenced	452edaf7
-R-TM51	features/time_management/RULINGS.md	47b9a473	nested-fix	fenced	d0a7addf
-R-POP12	features/popup/RULINGS.md	e323360d	pending-frame	section	e323360d
-R-POP13	features/popup/RULINGS.md	89306542	pending-frame	section	89306542
-R-POP18	features/popup/RULINGS.md	bfbb3167	pending-frame	section	bfbb3167
-R-TM40	features/time_management/RULINGS.md	f2c23203	pending-frame	section	f2c23203
-R-VS19′	features/vehicle_setting/RULINGS.md	487f8e10	pending-frame	section	487f8e10
-R-VS19″	features/vehicle_setting/RULINGS.md	d1c7df04	pending-frame	section	d1c7df04
-R-VS36	features/vehicle_setting/RULINGS.md	2388813c	pending-frame	section	2388813c
-R-VS37	features/vehicle_setting/RULINGS.md	3ccd425f	pending-frame	section	3ccd425f
-R-VS37′	features/vehicle_setting/RULINGS.md	9fb44a48	pending-frame	section	9fb44a48
-R-VS38	features/vehicle_setting/RULINGS.md	238c968a	pending-frame	section	238c968a
-R-VS39	features/vehicle_setting/RULINGS.md	d66fb38e	pending-frame	section	d66fb38e
-R-VS40	features/vehicle_setting/RULINGS.md	14c4341f	pending-frame	section	14c4341f
-R-VS41	features/vehicle_setting/RULINGS.md	94b19430	pending-frame	section	94b19430
-R-VS42	features/vehicle_setting/RULINGS.md	94211023	pending-frame	section	94211023
-R-VS43	features/vehicle_setting/RULINGS.md	2b9ae897	pending-frame	section	2b9ae897
-R-VS44	features/vehicle_setting/RULINGS.md	076b791c	pending-frame	section	076b791c
-R-VS44′	features/vehicle_setting/RULINGS.md	8bc26bce	pending-frame	section	8bc26bce
-R-VS45	features/vehicle_setting/RULINGS.md	650e2f03	pending-frame	section	650e2f03
-R-VS46	features/vehicle_setting/RULINGS.md	2712e131	pending-frame	section	2712e131
-R-VS47	features/vehicle_setting/RULINGS.md	8151b4de	pending-frame	section	8151b4de
-R-VS48	features/vehicle_setting/RULINGS.md	72fad62e	pending-frame	section	72fad62e
-R-VS48′	features/vehicle_setting/RULINGS.md	9a791357	pending-frame	section	9a791357
-R-VS49	features/vehicle_setting/RULINGS.md	6b42d425	pending-frame	section	6b42d425
-R-VS50	features/vehicle_setting/RULINGS.md	87d132ec	pending-frame	section	87d132ec
-R-VS7(a)′	features/vehicle_setting/RULINGS.md	31bff057	pending-frame	section	31bff057
-R-POP1	features/popup/RULINGS.md	61145b5f	ruled-boundary	fenced	61145b5f
-R-POP11	features/popup/RULINGS.md	cf8cd5af	ruled-boundary	fenced	a6b5301b
-R-POP14	features/popup/RULINGS.md	67350a6d	ruled-boundary	fenced	e025ab99
-R-POP15	features/popup/RULINGS.md	2c712b56	ruled-boundary	fenced	2c712b56
-R-POP20	features/popup/RULINGS.md	d6a87394	ruled-boundary	fenced	2894aa0c
-R-POP22	features/popup/RULINGS.md	34df5903	ruled-boundary	fenced	1bb746f6
-R-POP23	features/popup/RULINGS.md	698c370b	ruled-boundary	fenced	c5655c80
-R-POP24	features/popup/RULINGS.md	e362b2b6	ruled-boundary	fenced	e362b2b6
-R-POP26	features/popup/RULINGS.md	5fea3d55	ruled-boundary	fenced	5b4d55fe
-R-POP5	features/popup/RULINGS.md	6ffd7fad	ruled-boundary	fenced	a6816cb1
-R-POP6	features/popup/RULINGS.md	66f64b48	ruled-boundary	fenced	66f64b48
-R-POP8	features/popup/RULINGS.md	ce2d0a8c	ruled-boundary	fenced	7425f059
-R-TM11	features/time_management/RULINGS.md	a922a4a4	ruled-boundary	fenced	bdabd953
-R-TM12	features/time_management/RULINGS.md	740bd3b0	ruled-boundary	fenced	831cfd67
-R-TM13	features/time_management/RULINGS.md	9845d5f6	ruled-boundary	fenced	19d17718
-R-TM9	features/time_management/RULINGS.md	95c7b6dc	ruled-boundary	fenced	54c12889
+ruling_id	source	last_known_body_sha8	reason	body_kind	excluded_frames
+R-AM2	features/audio_mgmt/RULINGS.md	a1204c33	nested-fix	fenced	
+R-TM37	features/time_management/RULINGS.md	d0ead7b9	nested-fix	fenced	
+R-TM47	features/time_management/RULINGS.md	4769bb92	nested-fix	fenced	
+R-TM49	features/time_management/RULINGS.md	f6c7f919	nested-fix	fenced	
+R-TM51	features/time_management/RULINGS.md	47b9a473	nested-fix	fenced	
+R-VS19″	features/vehicle_setting/RULINGS.md	d1c7df04	pending-frame	section	
+R-VS37′	features/vehicle_setting/RULINGS.md	9fb44a48	pending-frame	section	
+R-VS38	features/vehicle_setting/RULINGS.md	238c968a	pending-frame	section	
+R-VS39	features/vehicle_setting/RULINGS.md	d66fb38e	pending-frame	section	
+R-VS40	features/vehicle_setting/RULINGS.md	14c4341f	pending-frame	section	
+R-VS42	features/vehicle_setting/RULINGS.md	94211023	pending-frame	section	
+R-VS43	features/vehicle_setting/RULINGS.md	2b9ae897	pending-frame	section	
+R-VS44	features/vehicle_setting/RULINGS.md	076b791c	pending-frame	section	
+R-VS44′	features/vehicle_setting/RULINGS.md	8bc26bce	pending-frame	section	
+R-VS45	features/vehicle_setting/RULINGS.md	650e2f03	pending-frame	section	
+R-VS46	features/vehicle_setting/RULINGS.md	2712e131	pending-frame	section	
+R-VS47	features/vehicle_setting/RULINGS.md	8151b4de	pending-frame	section	
+R-VS48	features/vehicle_setting/RULINGS.md	72fad62e	pending-frame	section	
+R-VS48′	features/vehicle_setting/RULINGS.md	9a791357	pending-frame	section	
+R-VS49	features/vehicle_setting/RULINGS.md	6b42d425	pending-frame	section	
+R-VS50	features/vehicle_setting/RULINGS.md	87d132ec	pending-frame	section	
+R-VS7(a)′	features/vehicle_setting/RULINGS.md	31bff057	pending-frame	section	
+R-POP1	features/popup/RULINGS.md	61145b5f	ruled-boundary	fenced	
+R-POP11	features/popup/RULINGS.md	cf8cd5af	ruled-boundary	fenced	
+R-POP12	features/popup/RULINGS.md	e323360d	ruled-boundary	fenced	
+R-POP13	features/popup/RULINGS.md	7adc0d91	ruled-boundary	fenced	
+R-POP14	features/popup/RULINGS.md	67350a6d	ruled-boundary	fenced	
+R-POP15	features/popup/RULINGS.md	2c712b56	ruled-boundary	fenced	
+R-POP18	features/popup/RULINGS.md	bfbb3167	ruled-boundary	fenced	
+R-POP20	features/popup/RULINGS.md	d6a87394	ruled-boundary	fenced	
+R-POP22	features/popup/RULINGS.md	34df5903	ruled-boundary	fenced	
+R-POP23	features/popup/RULINGS.md	698c370b	ruled-boundary	fenced	
+R-POP24	features/popup/RULINGS.md	e362b2b6	ruled-boundary	fenced	
+R-POP26	features/popup/RULINGS.md	5fea3d55	ruled-boundary	fenced	
+R-POP5	features/popup/RULINGS.md	6ffd7fad	ruled-boundary	fenced	
+R-POP6	features/popup/RULINGS.md	66f64b48	ruled-boundary	fenced	
+R-POP8	features/popup/RULINGS.md	ce2d0a8c	ruled-boundary	fenced	
+R-TM11	features/time_management/RULINGS.md	a922a4a4	ruled-boundary	fenced	
+R-TM12	features/time_management/RULINGS.md	740bd3b0	ruled-boundary	fenced	
+R-TM13	features/time_management/RULINGS.md	9845d5f6	ruled-boundary	fenced	
+R-TM40	features/time_management/RULINGS.md	77513939	ruled-boundary	fenced	3
+R-TM9	features/time_management/RULINGS.md	95c7b6dc	ruled-boundary	fenced	
+R-VS36	features/vehicle_setting/RULINGS.md	8af62f83	ruled-boundary	fenced	
