@@ -47,7 +47,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BATCHES = ["b01", "b02", "b03", "b04", "b05", "b06"]
+BATCHES = ["b01", "b02", "b03", "b04", "b05", "b06", "b07"]
 FIELDS = ["pre_conditions", "input_test_data", "test_procedure",
           "expected_result", "test_item", "specification_reference"]
 PAT = re.compile(r"PENDING: (DR-ICS\d+) <([^>]+)>")
@@ -76,7 +76,14 @@ UNANCHORED = {
  ("Button responsive after release", 5):
    "來源句只說「恢復處理」，未載恢復後必產生可見變化。R-ICS32(a)：保留，標**弱驗證**。",
 }
+# b11 新增四條之人工複核（下放包 11 §五-15：新四條須一併納入）
+#   · 009「Back button pressed」ER4 —— 其母條 4821704 之 `Depending on what TLM is
+#     currently showing` 與 `if any` 同形，生成時即依 b08 作業 C 之處置把佔位置於
+#     Pre-Condition，使該條件成為**前提**而非**斷言** → 判已錨。
+#   · G2／G3／G9 之 16 行 ER 全為訊號觀察行或按鍵狀態行，無 `if any`／不作為之形，
+#     依規則 R2／R7 判已錨，不入例外表。
 RESOLVED_B08 = {
+ ("Back button pressed", 4),
  ("Knob 2 signals acted on by the HU", 4),
  ("Knob 2 rotated on a scrollable screen", 4),
  ("Knob 2 rotated on a tuner source", 4),

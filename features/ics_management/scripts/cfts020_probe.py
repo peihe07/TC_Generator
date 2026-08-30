@@ -53,10 +53,22 @@ DOC = ROOT / ("inputs/R1LR_Atl-H_26PI1.5 Mar Release-Cabin_CFTS_020 ICS and "
               "DCSD _20260310-1533.docx")
 
 ECU_OK = {"ICS", "LTM"}
+# 變體層之分支表：由頂層節標題字面歸類（b11 作業 C 實測，見檔頭）
+DUT_VARIANT = "Disassociated"          # R-ICS37(a)，b10 量測
+SCOPE_RULED_IN = {"1.18"}              # R-ICS39：§1.18 算數（裁決，非推導）
 RADIO_OK = {"R1L", "R1L-R", "allSys"}
 EE_OK = {"Atlantis High", "All"}
 
 SEC_RE = re.compile(r"^(\d+(?:\.\d+)*) (.+?) \{(\d{7})\}\s*$")
+
+
+def variant_of(title: str) -> str:
+    """變體層：由頂層節標題字面歸類。不涉軸層、不涉裁決。"""
+    if "Silver Box" in title or "Disassociated" in title:
+        return "Disassociated"
+    if re.search(r"(?<!Dis)Associated", title):
+        return "Associated"
+    return "未分類"
 OBJ_RE = re.compile(r"^(\d{7}): \[")
 ATTR_RE = re.compile(r"\[([^:\]]+):([^\]]*)\]")
 
@@ -132,12 +144,15 @@ def verdict(o: dict, use_v1: bool = False) -> tuple[str, list[str]]:
 def parse(use_v1: bool = False) -> list[dict]:
     lines = doc_lines()
     objs, section = [], ("", "")
+    top_titles: dict[str, str] = {}
     for i, line in enumerate(lines):
         s = line.strip()
         if "PAGEREF" not in s:
             m = SEC_RE.match(s)
             if m:
                 section = (m.group(1), f"{m.group(2)} {{{m.group(3)}}}")
+                if m.group(1).count(".") == 1:
+                    top_titles[m.group(1)] = m.group(2)
                 continue
         if OBJ_RE.match(s):
             attrs = dict(ATTR_RE.findall(s))
@@ -158,6 +173,12 @@ def parse(use_v1: bool = False) -> list[dict]:
             o["verdict"], o["reasons"] = (
                 (o["v1"], o["v1_reasons"]) if use_v1 else (o["v2"], o["v2_reasons"]))
             o["strength"] = strength(o, o["verdict"])
+            # ── 三層分列（b11 作業 C；不得合併為單一旗標）──────────
+            top = ".".join(o["section_no"].split(".")[:2]) if o["section_no"] else ""
+            o["variant"] = variant_of(top_titles.get(top, ""))
+            o["variant_fits_dut"] = (o["variant"] == DUT_VARIANT)
+            o["scope"] = ("算數（R-ICS39，裁決）" if top in SCOPE_RULED_IN
+                          else "隨變體層")
             objs.append(o)
     return objs
 

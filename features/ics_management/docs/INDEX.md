@@ -20,7 +20,8 @@
 | 07 | 2026-08-29 | 解封（掃法修正）、佔位回收、scroll／tune（b05，2 條） | [handoff/07_unblock_and_recovery.md](handoff/07_unblock_and_recovery.md) | [upstream/07_unblock_and_recovery.md](upstream/07_unblock_and_recovery.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §14） | **已審結**（即裁 R-ICS19 v2／R-ICS25 v2／R-ICS31～33，登 A-ICS46～50）|
 | 08 | 2026-08-29 | §1.18 對比、005 生成（b06，2 條）、if-any 改寫、候選篩常設化 | [handoff/08_s118_comparison_and_rework.md](handoff/08_s118_comparison_and_rework.md) | [upstream/08_s118_comparison_and_rework.md](upstream/08_s118_comparison_and_rework.md) | **無**（執行層不代擬） | 建議登錄 4 則（上繳 §12） | **已審結**（Pei 裁 ③ 二節並存 → R-ICS35；另落 R-ICS34、A-ICS51～56、DR-ICS18）|
 | 09 | 2026-08-29 | TLM 指涉量測、§1.18 獨有面覆蓋清點（**TC 新增 0、錨變動 0**） | [handoff/09_tlm_referent_measurement.md](handoff/09_tlm_referent_measurement.md) | [upstream/09_tlm_referent_measurement.md](upstream/09_tlm_referent_measurement.md) | **無**（執行層不代擬） | 建議登錄 5 則（上繳 §10） | **已審結**（R-ICS35 改題＋v2、R-ICS36；R-ICS35(b)(c) **廢止**；登 A-ICS57～61）|
-| 10 | 2026-08-29 | 變體歸屬量測（**TC 新增 0、錨變動 0**） | [handoff/10_variant_attribution.md](handoff/10_variant_attribution.md) | [upstream/10_variant_attribution.md](upstream/10_variant_attribution.md) | **無**（執行層不代擬） | 建議登錄 6 則（上繳 §10） | 待覆核 |
+| 10 | 2026-08-29 | 變體歸屬量測（**TC 新增 0、錨變動 0**） | [handoff/10_variant_attribution.md](handoff/10_variant_attribution.md) | [upstream/10_variant_attribution.md](upstream/10_variant_attribution.md) | **無**（執行層不代擬） | 建議登錄 6 則（上繳 §10） | **已審結**（Pei 裁 §1.18 算數 → R-ICS39；另落 R-ICS37／38、A-ICS62～69、DR-ICS19）|
+| 11 | 2026-08-29 | **009 與三缺口生成（b07，4 條）**、NBSP 重跑、probe 三層、CFTS022 變體軸 | [handoff/11_generation_and_rerun.md](handoff/11_generation_and_rerun.md) | [upstream/11_generation_and_rerun.md](upstream/11_generation_and_rerun.md) | **無**（執行層不代擬） | 建議登錄 6 則（上繳 §12） | 待覆核 |
 
 ---
 
@@ -70,7 +71,27 @@ E1 於開工前觸發而封鎖整包。診斷、三選一之解封方案與 P1�
 
 09 之待裁 8 項由 R-ICS35 v2／R-ICS36 裁結其七。
 
-### 10 之未結事項（詳見 upstream-10）
+### 10 之未結事項
+
+10 之待裁 8 項由 R-ICS37／38／39 裁結其六。
+
+### 11 之未結事項（詳見 upstream-11）
+
+- **八包以來第一次真的寫 TC**：009 ＋ G2／G3／G9 共 **4 條**（先導閘通過，E13 未觸發）；
+  **TC 27 → 31**；Test Set 仍 5 組（E12 未觸發）；既有 27 條之錨**一條未改**
+- **009 之 Market 註不照抄**：R-ICS25 v1(b) 之「必載 Market 限 NAFTA」繫於舊候選錨 `4819554`，
+  本條二錨實測皆 `Market = All` —— **照載即與實測不符**
+- **A-ICS66 之因果陳述有誤（自我更正）**：NBSP 缺陷之後果**只落在錨層對應集合，
+  不落在 09 之覆蓋清點**（09 走 `tokens()` 路徑，結構性免疫）。
+  **09 之判定改變者 0 個**；upstream-10 §3-5-1 之推論已更正
+- **加錨指示表已備**：15 條 TC／24 錨行／13 個相異新 ObjectID，b12 可逐條照抄。**E14 未觸發**
+- **CFTS022 無變體軸，7 條不受影響（E10 未觸發）**；更準的讀法是
+  **CFTS022 把變體敏感行為全數外包給 CFTS020** —— 外引是否反噬，本線從未問過
+- **快照法首次落地**：`11_rulings_snapshot.md`；**本包 git 執行次數 0**（b10 之違規未再發生）
+- 預期數字 **18／19 相符**；不符者為下放包「6 個物件」而其列舉為 7 個
+- probe 三層分列（軸層回歸 `True`）；另揭 **87 個「軸層適用、變體不合、範圍隨變體層」之物件無人裁過**
+
+### 10 之未結事項（已作廢，保留於下）
 
 - **結論：本 DUT = `Disassociated`（'Silver Box'，外接 DCSD）**。E7／E8 皆未觸發。
   十項支持證據**全部脫離 §1.8／§1.18**（禁循環論證之要求達成，循環不計入者 0）
@@ -186,6 +207,8 @@ E1 於開工前觸發而封鎖整包。診斷、三選一之解封方案與 P1�
 | b05 之 manifest | `generated/b05/manifest.json` |
 | b06 之 TC JSON | `generated/b06/b06_tcs.json`（005 Mute，2 條）|
 | b06 之 manifest | `generated/b06/manifest.json` |
+| b07 之 TC JSON | `generated/b07/b07_tcs.json`（009＋G2／G3／G9，4 條）|
+| b07 之 manifest | `generated/b07/manifest.json` |
 | 9 個 LID → CAN 對照 | `generated/b03/lid_dbc_map.json` |
 | **累計** 12 個 LID → CAN 對照 | `generated/b04/lid_dbc_map.json`（b03 八筆沿用＋b04 四筆實測）|
 | feature profile | `docs/runtime/profiles/FW036_R1L_ICS_Profile.md`（R-ICS18(e)，逐字取 R-ICS18(a)(b)(c)）|
@@ -202,6 +225,9 @@ E1 於開工前觸發而封鎖整包。診斷、三選一之解封方案與 P1�
 | **§1.18 獨有面覆蓋缺口** | `docs/reports/09_s118_coverage_gap.md`（9 缺口、三分類）|
 | **變體歸屬量測** | `docs/reports/10_variant_attribution.md`（結論：Disassociated）|
 | **二種結論之影響估** | `docs/reports/10_variant_impact.md` |
+| NBSP 重跑與加錨指示表 | `docs/reports/11_s118_coverage_gap_rerun.md`（**b12 之直接輸入**）|
+| CFTS022 變體軸 | `docs/reports/11_cfts022_variant_axis.md` |
+| **RULINGS 快照（圍籬 diff 基準）** | `docs/reports/11_rulings_snapshot.md`（R-ICS38(a) 首次落地）|
 | `ETM = DUT` 三路交叉 | `docs/reports/07_etm_dut_crosscheck.md` |
 | CFTS022 新舊版覆驗 | `docs/reports/07_cfts022_reverify.md` |
 | 節前定義塊掃查 | `docs/reports/07_predef_blocks.md` |

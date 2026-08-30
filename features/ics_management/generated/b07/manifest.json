@@ -1,0 +1,50 @@
+{
+ "batch": "b07",
+ "feature": "ICS Management",
+ "date": "2026-08-29",
+ "generator": "Claude Code session, canon-direct",
+ "batch_naming_note": "b05=下放包 07、b06=下放包 08、b07=下放包 11（09／10 兩輪未新增 TC）。批號與輪次不同步。",
+ "counts": {
+  "tcs": 4,
+  "parents": 4,
+  "test_sets": 3,
+  "pending_placeholders": 1,
+  "pending_source": "scripts/pending_census.py"
+ },
+ "parents": {
+  "SWE-ICS-009": 1,
+  "SWE-ICS-006": 1,
+  "SWE-ICS-007": 1,
+  "SWE-ICS-001": 1
+ },
+ "anchors": [
+  "CFTS020-4821681",
+  "CFTS020-4821688",
+  "CFTS020-4821689",
+  "CFTS020-4821693",
+  "CFTS020-4821704"
+ ],
+ "pilot_gate": "009 先寫，自檢 FAIL 0＋逐字 28/28 通過後方續寫 G2／G3／G9（下放包 §3 A-1；E13 未觸發）",
+ "unlock": "009 依 R-ICS39(e)；G2／G3／G9 依 R-ICS39(f)。G5 維持押後（阻因 A-ICS60）。",
+ "named_judgements": {
+  "Market": "R-ICS25 v1(b) 之『009 必載 Market 限 NAFTA』繫於舊候選錨 4819554；本條二錨實測皆 Market=All，故不載該註（照載即與實測不符）",
+  "G2/G3 粒度": "母條為跨鍵之傳輸層行為，SWRA 無對應 RD；以 Display Control 二鍵具現，trace 隨代表按鍵。Test Set 未新立（E12 未觸發）",
+  "G9 切分": "驗 ICS 側送出面，與 V1/V2/V3 之 HU 側回應面不同 ECU 側、不同觀察面；且不涉 popup，不受 A-ICS16 影響",
+  "Tbutton": "100 msec 取自 §1.8 之 4819541（非 §1.18），依 R-ICS36(f)；來源成立故不落佔位"
+ },
+ "context_sha256": {
+  "canon": "0b0cea006552a2f244ba8e733ef6227b132b591a34defb65234934985fe2598e",
+  "profile": "2bedb33daeaf341389203e8bf7c5d1701442bf97f1541c57de3b38080df0a53f",
+  "rulings": "249241453595cc2cb433a8d2d518ac1ad2df8efffca8aec4cbfc90247baedc5b",
+  "handoff_11": "e7546e4475604e737c8679a4a5801501acf86feb6bc05cbc04bdd72f279ef82b",
+  "cfts020_fs": "8696d1f596e3367754b092ff6d810cccff6258f46d6e90f8c0b30864314a30f3",
+  "dbc_b": "9ef1ec9830fc8018b23d0e36dbd7ca6023b9b0a03124095726eb5583a01930d0"
+ },
+ "tcs_sha256": "ef2059e80ecd2fa93216f52ac3e06ca1f0068fc76cd0266d04cbe32e679b840d",
+ "checks": {
+  "selfcheck_b01.py": "PASS — b01~b07 合檢 31 條，機檢 19 項 FAIL 0",
+  "verify_verbatim_b01.py": "PASS — 31 條逐字命中 31",
+  "ledger_guard.py": "開工前／完工後 exit 0 且逐字相同"
+ },
+ "note": "tcs_sha256 為本檔寫入前之值。"
+}

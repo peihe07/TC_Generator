@@ -1,0 +1,98 @@
+{
+ "batch": "b07",
+ "feature": "ICS Management",
+ "test_group": "ICS",
+ "handoff": "features/ics_management/docs/handoff/11_generation_and_rerun.md",
+ "batch_naming_note": "b05=下放包 07、b06=下放包 08、b07=下放包 11。批號與輪次不同步（09／10 兩輪未新增 TC）。",
+ "reasoning": "本批為下放包 11 作業 A：009（先導）＋ G2／G3／G9，共 4 條。009 先寫並通過自檢（FAIL 0、逐字命中）後方續寫其餘三條（§3 A-1 之先導閘，E13 未觸發）。009 之解鎖依 R-ICS39(e)；G2／G3／G9 之解除押後依 R-ICS39(f)。**G5 維持押後不生成**（阻因 A-ICS60，與本裁定無關）。**Test Set 未新立**：009→Menu Navigation、G2／G3→Display Control、G9→Volume Control，皆為現有五組之一（E12 未觸發）。**既有 27 條之錨一條未改**（R-ICS39(d)：加錨押後至 b12）。",
+ "tcs": [
+  {
+   "req_id": "SWE-ICS-009",
+   "tc_title": "Back button pressed",
+   "test_group": "ICS",
+   "test_set": "Menu Navigation",
+   "test_item": "Depending on what TLM is currently showing on its screen, TLM shall manage its screens and/or browsing lists according to $Enter_Button$ and $Back_Button$ signals\n(The Back button press is acted on by the screen and browsing list management)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button status messages\n3. The HU shows a screen for which a Back action is defined (screen identified per PENDING: DR-ICS6 <HMI Logic and Flow screen mapping for Back_Button>)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the screen currently shown on the HU\n2. Press the ICS \"Back\" button\n3. Read the signal $CLIMATIC_PANEL.Radio_btn3$ on the CAN trace and check that it is 1 (Pressed)\n4. Check that the screen shown has changed from the screen recorded in step 1",
+   "expected_result": "1. The screen currently shown on the HU is recorded\n2. The \"Back\" button enters the pressed state\n3. The signal value $CLIMATIC_PANEL.Radio_btn3$ = 1 (Pressed) is observed on the CAN trace (supporting observation)\n4. The screen shown differs from the screen recorded in step 1",
+   "specification_reference": "CFTS020-4821681\nCFTS020-4821704",
+   "design_method": "Functional Based",
+   "priority": "P0",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": true,
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "Back 鍵之後果；Enter 鍵由 b04 之 N1 承擔"
+   },
+   "reasoning": "驗證目標為 `CFTS020-4821704`：TLM 依當前畫面管理其畫面與 browsing lists，而本條驗 **Back 側**。009 之解鎖依 **R-ICS39(e)** —— 其母條為 4821704（行為，主詞 TLM，而 **b09 已量得 `TLM = DUT`**）與 4821681（LID 清單），二者依 R-ICS2 v2(b) 皆判適用（ECU 軸缺、Radio `allSys`、EE 含 Atlantis High）。上半 verbatim 取該物件之**第一句**（24 token，未逾 R-3）；其後之 `See TLM CFTS and TLM HMI for details.` 未取（轉引，非行為）。**Enter／Back 之分工**：4821704 原句同時載二鍵，Enter 側已由 b04 之 N1（錨 4819555）承擔，本條只驗 Back 側，不擴入相鄰需求（IN §8.2.1）。**錨為 §1.18 家族，不併列 §1.8** —— §1.8 無 Back_Button 之判適用母條（b07 實測：全文含 Back_Button 之 7 物件中，§1.5.1.1／§1.8.1.1／§1.14.1.1 之 5 個皆判不適用）。**Market 之更正具名**：R-ICS25 v1(b) 曾令 009 之 reasoning 必載「Market 限 NAFTA 及在案依據」，該限制繫於舊候選錨 `4819554`；本條之二錨實測 **`Market = All`**，故**不載該註** —— 照載即為與實測不符之陳述。訊號名依 b03 作業 E：`CLIMATIC_PANEL.Radio_btn3`（`BO_ 1050`，發送節點 ICS，`VAL_ 1050 Radio_btn3 0 \"Not_Pressed\" 1 \"Pressed\";`）；觀察位置書為 CAN trace，不書為「HU／ICS 收到」（R-ICS22 v1(c)）。**`Depending on what …` 之條件式處置**：同 b08 作業 C 之作法，把「該畫面已定義 Back 動作」置於 Pre-Condition 使其成為**前提**而非**斷言**，畫面名仍以 `PENDING: DR-ICS6` 承載（R-ICS30(b)：不得自行指定畫面名）。"
+  },
+  {
+   "req_id": "SWE-ICS-006",
+   "tc_title": "Two ICS buttons pressed at the same time",
+   "test_group": "ICS",
+   "test_set": "Display Control",
+   "test_item": "It may be possible that several buttons can be pressed at the same time. In this case ICS shall send all the relative BH-CAN signals in CLIMATIC_PANEL message, set to \"Pressed\"\n(All relevant button signals in one message are set to pressed when two buttons are held together)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button and knob status messages\n3. No ICS button is pressed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the signals $CLIMATIC_PANEL.Radio_btn0$ and $CLIMATIC_PANEL.Radio_btn2$ on the CAN trace and check that both are 0 (Not_Pressed)\n2. Press and hold the ICS \"Power\" button\n3. Press the ICS \"Screen Off\" button while the \"Power\" button is still held\n4. Read the signal $CLIMATIC_PANEL.Radio_btn0$ on the CAN trace and check that it is 1 (Pressed)\n5. Read the signal $CLIMATIC_PANEL.Radio_btn2$ in the same message and check that it is 1 (Pressed)",
+   "expected_result": "1. The signal values $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed) and $CLIMATIC_PANEL.Radio_btn2$ = 0 (Not_Pressed) are observed on the CAN trace\n2. The \"Power\" button enters and remains in the pressed state\n3. The \"Screen Off\" button enters the pressed state while the \"Power\" button remains pressed\n4. The signal value $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed) is observed on the CAN trace\n5. The signal value $CLIMATIC_PANEL.Radio_btn2$ = 1 (Pressed) is observed in the same message",
+   "specification_reference": "CFTS020-4821688",
+   "design_method": "Combinatorial",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": false,
+   "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "二鍵同時按下之並存回報；單鍵之回報由既有各條承擔"
+   },
+   "reasoning": "驗證目標為 `CFTS020-4821688`（缺口 G2）：多鍵同時按下時，`CLIMATIC_PANEL` 訊息中**全部**相關訊號須一併為 `\"Pressed\"`。27 條中無一條施加「同時按下二鍵以上」之觸發，故為覆蓋缺口（upstream-09 §2）。上半 verbatim 取二句全文（33 token，未逾 R-3）—— 第二句以 `In this case` 回指第一句，只取第二句即失其前提。步驟 5 之 `in the same message` 為本條之驗證核心：條文所要者為**同一則訊息內並存**，而非二訊號先後各自為 `Pressed`。訊號名依 b03 作業 E（`Radio_btn0`／`Radio_btn2`，皆 `BO_ 1050`、發送節點 ICS，`VAL_ … 0 \"Not_Pressed\" 1 \"Pressed\"`）；**值之 `\"Pressed\"` 為條文逐字常數，非符號，無佔位**。錨為 §1.18 家族單錨：§1.8 側無「多鍵並存」之母條（`4819552` 雖近似但其判定與本包無涉，加錨押後至 b12，R-ICS39(d)）。　**代表按鍵之選擇具名**：母條之主詞為「任一按鍵」，屬**跨鍵之傳輸層行為**，而 SWRA 之 RD 為逐訊號切分（001~010），**無與之對應之 RD** —— 本條以 Display Control 之二鍵（`ICSPowerButton`／`ICSScreenOffButton`）具現之，trace 取其一，Test Set 隨之。此為測試實作選擇而非規格限定（同 b01 S1 取 \"Mute\" 之既例），**Test Set 未新立**（E12 未觸發）。母條與 RD 之粒度不對應一事已入上繳包待裁。"
+  },
+  {
+   "req_id": "SWE-ICS-007",
+   "tc_title": "Button event change reported within Tbutton",
+   "test_group": "ICS",
+   "test_set": "Display Control",
+   "test_item": "Each button event change (press or release) shall cause the ICS to send CLIMATIC_PANEL frame with updated button status within the time period of Tbutton\n(A press and a release are each reported in an updated frame within the button period)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button and knob status messages\n3. No ICS button is pressed\n4. The CAN trace tool timestamps each received frame with a resolution of 1 msec or finer",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the ICS \"Screen Off\" button and record the time of the press\n2. Read the first frame carrying $CLIMATIC_PANEL.Radio_btn2$ = 1 (Pressed) and record its timestamp\n3. Check that the interval between the press and that frame is not more than 100 msec\n4. Release the ICS \"Screen Off\" button and record the time of the release\n5. Read the first frame carrying $CLIMATIC_PANEL.Radio_btn2$ = 0 (Not_Pressed) and check that the interval from the release is not more than 100 msec",
+   "expected_result": "1. The \"Screen Off\" button enters the pressed state and the time of the press is recorded\n2. A frame carrying $CLIMATIC_PANEL.Radio_btn2$ = 1 (Pressed) is observed on the CAN trace and its timestamp is recorded\n3. The interval between the press and that frame is not more than 100 msec\n4. The \"Screen Off\" button returns to the not pressed state and the time of the release is recorded\n5. A frame carrying $CLIMATIC_PANEL.Radio_btn2$ = 0 (Not_Pressed) is observed not more than 100 msec after the release",
+   "specification_reference": "CFTS020-4821689",
+   "design_method": "Functional Based",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": false,
+   "distinguishing_axis": {
+    "axis": "timing",
+    "delta": "事件變化至幀更新之時限；並存回報由 G2 承擔"
+   },
+   "reasoning": "驗證目標為 `CFTS020-4821689`（缺口 G3）：每一次按鍵事件變化（press 或 release）須使 ICS 於 `Tbutton` 內送出更新後之 `CLIMATIC_PANEL` 幀。27 條中無一條量此時限（upstream-09 §2）。上半 23 token，單句逐字全取。**`Tbutton = 100 msec` 之來源具名（R-ICS35 v1(e) 明令）**：取自 **§1.8** 之 time-variables 定義塊 `CFTS020-4819541`，**非 §1.18** —— §1.18 全節只以符號出現而無定值。依 R-ICS36(f) 取該值；其成立之前提為「§1.8 於 Disassociated 下有效」，而 b10 已量得本 DUT 為 Disassociated（R-ICS37(a)），故來源成立，**不落佔位**。press 與 release 二側併於一條：條文之 `(press or release)` 為同一機制之二實例，同一時限、同一幀更新，屬 IN §5.7 之「一觸發多後果」而非二 partial failure。Pre-Condition 4 之時間解析度為量測前提而非規格值，已具名。"
+  },
+  {
+   "req_id": "SWE-ICS-001",
+   "tc_title": "Knob 1 status sent on BH-CAN",
+   "test_group": "ICS",
+   "test_set": "Volume Control",
+   "test_item": "The ICS shall send signals on the BH-CAN to communicate the status of the rotary knobs\n(The ICS side reports knob 1 direction and value on the bus when the knob is rotated)",
+   "pre_conditions": "1. The A&T System has exited SLEEP MODE\n2. A CAN trace tool is connected and able to log the ICS button and knob status messages\n3. The ICS knob 1 is not being rotated",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the signal $CLIMATIC_PANEL.Radio_Knob1_DIR$ on the CAN trace and check that it is 0 (Knob_no_change)\n2. Rotate the ICS knob 1 one detent position clock-wise\n3. Read the signal $CLIMATIC_PANEL.Radio_Knob1_DIR$ on the CAN trace and check that it is 1 (Knob_increment)\n4. Read the signal $CLIMATIC_PANEL.Radio_Knob1_VAL$ in the same message and check that it is 1",
+   "expected_result": "1. The signal value $CLIMATIC_PANEL.Radio_Knob1_DIR$ = 0 (Knob_no_change) is observed on the CAN trace\n2. The knob 1 detent is felt and the rotation is completed\n3. The signal value $CLIMATIC_PANEL.Radio_Knob1_DIR$ = 1 (Knob_increment) is observed on the CAN trace\n4. The signal value $CLIMATIC_PANEL.Radio_Knob1_VAL$ = 1 is observed in the same message",
+   "specification_reference": "CFTS020-4821693",
+   "design_method": "Functional Based",
+   "priority": "P1",
+   "split_flag": false,
+   "split_reason": "",
+   "has_pending": false,
+   "distinguishing_axis": {
+    "axis": "mode",
+    "delta": "ICS 側之訊號送出面；HU 側之音量回應由 V1／V2／V3 承擔"
+   },
+   "reasoning": "驗證目標為 `CFTS020-4821693`（缺口 G9）：ICS 於 BH-CAN 上送出旋鈕狀態。上半 16 token，單句逐字全取。**與 SWE-ICS-001 既有三條（V1／V2／V3）之切分不重複**（upstream-09 §5 具名提請之點）：V1／V2／V3 驗 **HU 側之音量回應**，其觀察面為 `\"VOLUME POP_UP\"` 之音量階；本條驗 **ICS 側之訊號送出**，其觀察面為 CAN trace 上之 `Radio_Knob1_DIR`／`_VAL`。**二者為不同 ECU 側之行為，非同一觸發之多後果**（IN §8.2.2）；且本條不涉 `\"VOLUME POP_UP\"`，故**不受 A-ICS16 之 popup 顯示條件未載所影響** ——此為本條相對於 V1／V2／V3 之一項強度優勢，具名。KNOB2 面已由 b04 之 B1～B5 覆蓋，本條專指 KNOB1。訊號名與 `VAL_` 依 b03 作業 E（`Radio_Knob1_DIR` 之 `VAL_ 0 \"Knob_no_change\" 1 \"Knob_increment\" 2 \"Knob_decrement\" 3 \"Knob_enter\"`；`_VAL` **無 `VAL_` 列舉**，依 R-ICS8(d) 不加標籤）。"
+  }
+ ]
+}
