@@ -1,0 +1,288 @@
+req_id	tc_id_new	tc_id_delivered_copy	tc_title	note
+SWE-PM-071	NR1L-PowerManagement-001	新增	Splash screen shown after SplashScreen_Time on normal boot	
+SWE-PM-071	NR1L-PowerManagement-002	新增	No splash screen when TLM passes to Standby	
+SWE-PM-071	NR1L-PowerManagement-003	新增	No splash screen when TLM passes to Bench	
+SWE-PM-071	NR1L-PowerManagement-004	新增	Standard screen shown after StandardScreen_Time	
+SWE-PM-072	NR1L-PowerManagement-005	新增	Events during boot are buffered without loss	
+SWE-PM-073	NR1L-PowerManagement-006	新增	Load Shed limits volume and mutes TLM	
+SWE-PM-073	NR1L-PowerManagement-007	新增	Load Shed signals lost: last values retained	
+SWE-PM-073	NR1L-PowerManagement-008	新增	Battery Critical minimizes draw and keeps ACN active	
+SWE-PM-073	NR1L-PowerManagement-009	新增	Normal operation resumes 10 seconds after recovery	
+SWE-PM-073	NR1L-PowerManagement-010	新增	Load Shed recovers: normal volume and audio restored	
+SWE-PM-073	NR1L-PowerManagement-011	新增	Continuing call transferred to head set under Load Shed	
+SWE-PM-073	NR1L-PowerManagement-012	新增	Continuing call transferred to head set under Battery Critical	
+SWE-PM-073	NR1L-PowerManagement-013	新增	Battery Critical minimizes draw in BODY OFF-TIMED mode	
+SWE-PM-073	NR1L-PowerManagement-014	新增	Battery Critical exits on voltage out of range condition	
+SWE-PM-073	NR1L-PowerManagement-015	新增	Load Shed with volume already below the cap: no AUD_LVL update	
+SWE-PM-073	NR1L-PowerManagement-016	新增	Battery Critical with volume already below the cap: no AUD_LVL update	
+SWE-PM-057	NR1L-PowerManagement-017	新增	"Timeout1 options follow PROXI ""Switch_Off_Time"" set to 20 minutes"	
+SWE-PM-057	NR1L-PowerManagement-018	新增	"Timeout1 options follow PROXI ""Switch_Off_Time"" set to 60 minutes"	
+SWE-PM-057	NR1L-PowerManagement-019	新增	"Timeout1 options follow PROXI ""Switch_Off_Time"" set to 180 minutes"	
+SWE-PM-060	NR1L-PowerManagement-020	新增	LTM or ETM Radio offers one timeout parameter	
+SWE-PM-060	NR1L-PowerManagement-021	新增	Radio other than LTM or ETM offers two timeout parameters	
+SWE-PM-061	NR1L-PowerManagement-022	新增	Timeout settings are selectable in Full-Operation status	
+SWE-PM-061	NR1L-PowerManagement-023	新增	Timeout settings are not selectable outside Full-Operation status	
+SWE-PM-062	NR1L-PowerManagement-024	001	Auto_SwitchOn_Setting.Req can be set to Active	
+SWE-PM-062	NR1L-PowerManagement-025	002	Auto_SwitchOn_Setting.Req can be set to Not_Active	
+SWE-PM-062	NR1L-PowerManagement-026	003	Auto_SwitchOn_Setting.Req can be set to Recall_Last	
+SWE-PM-063	NR1L-PowerManagement-027	004	Bluetooth calls can be made and received in Timed state	
+SWE-PM-064	NR1L-PowerManagement-028	005	MaxCallTimeout starts on ignition off with Timeout1 at 00 min	
+SWE-PM-064	NR1L-PowerManagement-029	006	MaxCallTimeout starts at Timeout1 expiry with the call still active	
+SWE-PM-065	NR1L-PowerManagement-030	007	Call ends before Timeout1 expiry: previous source is restored	
+SWE-PM-065	NR1L-PowerManagement-031	008	Further calls are still managed within Timeout1	
+SWE-PM-038	NR1L-PowerManagement-032	009	Case 1 with RemStartFail true: TLM stops and passes to Standby	
+SWE-PM-038	NR1L-PowerManagement-033	010	Case 1 with RemStartFail false: previous source is restored	
+SWE-PM-038	NR1L-PowerManagement-034	011	Case 2: MaxCallTimeout starts at Timeout1 expiry and the TLM stays Timed	
+SWE-PM-038	NR1L-PowerManagement-035	012	Case 2 exit on call end: TLM_Status.Info passes to Standby	
+SWE-PM-038	NR1L-PowerManagement-036	013	Case 2 exit with RemStartFail cleared on MaxCallTimeout expiry	
+SWE-PM-038	NR1L-PowerManagement-037	014	Case 3: call already ended at Timeout1 expiry	
+SWE-PM-038	NR1L-PowerManagement-038	015	Case 3 with RemStartFail cleared at Timeout1 expiry	
+SWE-PM-038	NR1L-PowerManagement-039	016	Case 4: ignition off with Timeout1 at 00 min enters Timed state	
+SWE-PM-038	NR1L-PowerManagement-040	017	Case 4 exit: TLM passes to Standby when the call ends	
+SWE-PM-038	NR1L-PowerManagement-041	018	Case 4 exit with RemStartFail cleared on MaxCallTimeout expiry	
+SWE-PM-038	NR1L-PowerManagement-042	019	Case 4 with ignition pre off: TLM enters Timed state	
+SWE-PM-011	NR1L-PowerManagement-043	020	VR button press in IDLE mode transitions the HU to Full-Operation	
+SWE-PM-011	NR1L-PowerManagement-044	021	CarPlay requesting audio and video keeps audio unmuted and screen on	
+SWE-PM-011	NR1L-PowerManagement-045	022	CarPlay requesting audio only activates the Screen OFF function	
+SWE-PM-011	NR1L-PowerManagement-046	023	CarPlay requesting video only mutes the audio and keeps the screen on	
+SWE-PM-011	NR1L-PowerManagement-047	024	CarPlay requesting neither audio nor video returns the HU to IDLE	
+SWE-PM-011	NR1L-PowerManagement-048	025	VR button long press in IDLE mode transitions the HU to Full-Operation	
+SWE-PM-012	NR1L-PowerManagement-049	026	User settings are restored after a battery reconnection	
+SWE-PM-012	NR1L-PowerManagement-050	027	TLM starts from Sleep state after leaving INIT	
+SWE-PM-013	NR1L-PowerManagement-051	028	Remote Start Active reports Partial_Operation	
+SWE-PM-013	NR1L-PowerManagement-052	029	Remote Start Active reports Partial_Operation in Ignition Pre_Start	
+SWE-PM-013	NR1L-PowerManagement-053	030	Remote Start Active reports Partial_Operation in Ignition Cranking	
+SWE-PM-013	NR1L-PowerManagement-054	031	Remote Start Active reports Partial_Operation in Ignition On Engine On	
+SWE-PM-013	NR1L-PowerManagement-055	032	AMP, ICS and DTV are off while chime audio stays active	
+SWE-PM-013	NR1L-PowerManagement-056	033	HMI interaction is disabled except for status changes	
+SWE-PM-014	NR1L-PowerManagement-057	034	Remote Start ends at ignition off: RemStartFail is set true	
+SWE-PM-014	NR1L-PowerManagement-058	035	RemStartFail is cleared when the call is not active	
+SWE-PM-014	NR1L-PowerManagement-059	036	Behaviour 1 with no active call passes the TLM to Standby	
+SWE-PM-014	NR1L-PowerManagement-060	037	Behaviour 1 with an active call passes the TLM to Timed	
+SWE-PM-014	NR1L-PowerManagement-061	038	Behaviour 2 on a Jeep with the driver door open passes to Standby	
+SWE-PM-014	NR1L-PowerManagement-062	039	Behaviour 2 otherwise passes to Timed keeping the active source	
+SWE-PM-014	NR1L-PowerManagement-063	040	Behaviour 1 reached through Auto_SwitchOn_Setting.Req on LTM High	
+SWE-PM-014	NR1L-PowerManagement-064	041	Behaviour 2 reached through Auto_SwitchOn_Setting.Req on LTM High	
+SWE-PM-014	NR1L-PowerManagement-065	042	Remote Start ends at ignition pre off: RemStartFail is set true	
+SWE-PM-015	NR1L-PowerManagement-066	043	Front_Panel_OnOff.Req press with no active call passes the TLM to Idle	
+SWE-PM-015	NR1L-PowerManagement-067	044	CLIMATIC_PANEL.Radio_Btn0 press with no active call passes the TLM to Idle	
+SWE-PM-015	NR1L-PowerManagement-068	045	Front_Panel_OnOff.Req press with the rear camera not active passes the TLM to Idle	
+SWE-PM-015	NR1L-PowerManagement-069	046	CLIMATIC_PANEL.Radio_Btn0 press with the rear camera not active passes the TLM to Idle	
+SWE-PM-016	NR1L-PowerManagement-070	047	Rear camera activation keeps the TLM in Full-Operation	
+SWE-PM-017	NR1L-PowerManagement-071	048	Rear camera deactivation restores the last active source	
+SWE-PM-018	NR1L-PowerManagement-072	049	Ignition off in Idle passes the TLM to Standby	
+SWE-PM-018	NR1L-PowerManagement-073	050	Ignition pre off in Idle passes the TLM to Standby	
+SWE-PM-019	NR1L-PowerManagement-074	051	Front_Panel_OnOff.Req press is ignored while the rear camera is enabled	
+SWE-PM-019	NR1L-PowerManagement-075	052	Front_Panel_OnOff.Req press otherwise shows the Splash Screen and enters Full-Operation	
+SWE-PM-019	NR1L-PowerManagement-076	053	CLIMATIC_PANEL.Radio_Btn0 press is ignored while the rear camera is enabled	
+SWE-PM-019	NR1L-PowerManagement-077	054	CLIMATIC_PANEL.Radio_Btn0 press otherwise shows the Splash Screen and enters Full-Operation	
+SWE-PM-020	NR1L-PowerManagement-078	055	Incoming call in Idle passes the TLM to Full-Operation	
+SWE-PM-020	NR1L-PowerManagement-079	056	Call ending on the Phone Main Screen returns the TLM to Idle	
+SWE-PM-020	NR1L-PowerManagement-080	057	Call ending on another screen keeps the TLM in Full-Operation	
+SWE-PM-021	NR1L-PowerManagement-081	058	Rear camera enable in Idle keeps Idle with video only	
+SWE-PM-022	NR1L-PowerManagement-082	059	Logistic mode on passes the TLM to Logistic Idle	
+SWE-PM-023	NR1L-PowerManagement-083	060	Leaving Ignition Off in Timed passes the TLM to Full-Operation	
+SWE-PM-024	NR1L-PowerManagement-084	061	Remote Start not active on leaving Ignition Off clears RemStartFail	
+SWE-PM-025	NR1L-PowerManagement-085	062	Front_Panel_OnOff.Req press in Timed with an active call shows a popup	
+SWE-PM-025	NR1L-PowerManagement-086	063	Accepting the Front_Panel_OnOff.Req popup passes the TLM to Standby	
+SWE-PM-025	NR1L-PowerManagement-087	064	Declining the Front_Panel_OnOff.Req popup keeps the TLM in Timed	
+SWE-PM-025	NR1L-PowerManagement-088	065	Front_Panel_OnOff.Req press in Timed with no active call passes to Standby	
+SWE-PM-025	NR1L-PowerManagement-089	066	CLIMATIC_PANEL.Radio_Btn0 press in Timed with an active call shows a popup	
+SWE-PM-025	NR1L-PowerManagement-090	067	Accepting the CLIMATIC_PANEL.Radio_Btn0 popup passes the TLM to Standby	
+SWE-PM-025	NR1L-PowerManagement-091	068	Declining the CLIMATIC_PANEL.Radio_Btn0 popup keeps the TLM in Timed	
+SWE-PM-025	NR1L-PowerManagement-092	069	CLIMATIC_PANEL.Radio_Btn0 press in Timed with no active call passes to Standby	
+SWE-PM-026	NR1L-PowerManagement-093	070	Door open on a Jeep from Full-Operation passes the TLM to Standby	
+SWE-PM-026	NR1L-PowerManagement-094	071	Door open with an active call keeps the TLM in Timed	
+SWE-PM-026	NR1L-PowerManagement-095	072	Door open with Standby as the previous state keeps the TLM in Timed	
+SWE-PM-026	NR1L-PowerManagement-096	073	A non Jeep brand does not take the door transition to Standby	
+SWE-PM-027	NR1L-PowerManagement-097	074	Antitheft failure clears the activation request within Timeout1	
+SWE-PM-027	NR1L-PowerManagement-098	075	Antitheft failure in Partial Operation keeps the original state	
+SWE-PM-028	NR1L-PowerManagement-099	076	Antitheft success clears the activation request	
+SWE-PM-028	NR1L-PowerManagement-100	077	Antitheft success with a zero timeout takes Timeout1 from PROXI	
+SWE-PM-028	NR1L-PowerManagement-101	078	Antitheft success on LTM High takes Timeout1 from PROXI	
+SWE-PM-029	NR1L-PowerManagement-102	079	Antitheft success clears the activation request on this variant	
+SWE-PM-029	NR1L-PowerManagement-103	080	Timeout1 follows Switch_Off_Time when the setting is zero	
+SWE-PM-029	NR1L-PowerManagement-104	081	Timeout1 follows PwrAccDelayAct when the setting is zero	
+SWE-PM-030	NR1L-PowerManagement-105	082	Splash Screen is shown for the configured wait time	
+SWE-PM-030	NR1L-PowerManagement-106	083	Splash Screen is shown for the Recall_Last branch	
+SWE-PM-031	NR1L-PowerManagement-107	084	Rear view camera images follow the enable signal in any state	
+SWE-PM-032	NR1L-PowerManagement-108	085	Remote Start from Standby passes the TLM to Partial Operation	
+SWE-PM-033	NR1L-PowerManagement-109	086	Ignition Pre Off from Partial Operation passes the TLM to Standby	
+SWE-PM-033	NR1L-PowerManagement-110	087	Ignition Off from Partial Operation passes the TLM to Standby	
+SWE-PM-034	NR1L-PowerManagement-111	088	Front panel press in Partial Operation arms the antitheft and shows the Splash Screen	
+SWE-PM-035	NR1L-PowerManagement-112	089	Antitheft success with auto switch on active passes the TLM to Full-Operation	
+SWE-PM-035	NR1L-PowerManagement-113	090	Antitheft success with auto switch on not active passes the TLM to Idle	
+SWE-PM-035	NR1L-PowerManagement-114	091	Antitheft success with recall last and last status on passes the TLM to Full-Operation	
+SWE-PM-035	NR1L-PowerManagement-115	092	Antitheft success with recall last and last status off passes the TLM to Idle	
+SWE-PM-036	NR1L-PowerManagement-116	093	Remote start from Timed passes the TLM to Partial Operation	
+SWE-PM-037	NR1L-PowerManagement-117	094	Call end in Timed with a failed remote start passes the TLM to Standby	
+SWE-PM-039	NR1L-PowerManagement-118	095	An SNA operational mode is handled as an ignition off event	
+SWE-PM-039	NR1L-PowerManagement-119	096	A zero switch off timeout loads Timeout1 from the PROXI value	
+SWE-PM-039	NR1L-PowerManagement-120	097	Auto switch on active on LTM High Radio loads Timeout1 from the PROXI value	
+SWE-PM-039	NR1L-PowerManagement-121	098	Only TLM menu items are guaranteed in the Timed status	
+SWE-PM-040	NR1L-PowerManagement-122	099	A normal power down into Suspend to RAM starts the 8 day timer	
+SWE-PM-041	NR1L-PowerManagement-123	100	No TLM function is available in the TLM off with network on status	
+SWE-PM-041	NR1L-PowerManagement-124	101	Entering the TLM off with network on status clears the antitheft request	
+SWE-PM-042	NR1L-PowerManagement-125	102	No TLM function is available in the TLM off with network off status	
+SWE-PM-042	NR1L-PowerManagement-126	103	Entering the TLM off with network off status clears the antitheft request	
+SWE-PM-043	NR1L-PowerManagement-127	104	The backlight stays off during Standby mode	
+SWE-PM-043	NR1L-PowerManagement-128	105	The backlight is allowed during Standby when an HMI screen is required	
+SWE-PM-044	NR1L-PowerManagement-129	106	Front panel press in Standby arms the antitheft and shows the Splash Screen	
+SWE-PM-044	NR1L-PowerManagement-130	107	Front panel press in Sleep arms the antitheft and shows the Splash Screen	
+SWE-PM-044	NR1L-PowerManagement-131	108	Climatic panel press in Standby arms the antitheft and shows the Splash Screen	
+SWE-PM-044	NR1L-PowerManagement-132	109	Climatic panel press in Sleep arms the antitheft and shows the Splash Screen	
+SWE-PM-045	NR1L-PowerManagement-133	110	A failed antitheft keeps the TLM in the original Standby state	
+SWE-PM-045	NR1L-PowerManagement-134	111	A failed antitheft keeps the TLM in the original Sleep state	
+SWE-PM-046	NR1L-PowerManagement-135	112	Rear view camera is provided while the antitheft is still in progress	
+SWE-PM-046	NR1L-PowerManagement-136	113	Rear view camera is provided after an unsuccessful antitheft	
+SWE-PM-047	NR1L-PowerManagement-137	114	A failed antitheft keeps the TLM in Standby and shows the antitheft screens	
+SWE-PM-047	NR1L-PowerManagement-138	115	A failed antitheft keeps the TLM in Sleep and shows the antitheft screens	
+SWE-PM-048	NR1L-PowerManagement-139	116	Antitheft success with auto switch on active reaches Full-Operation after the mode transition	
+SWE-PM-048	NR1L-PowerManagement-140	117	Antitheft success with auto switch on not active reaches Idle after the mode transition	
+SWE-PM-048	NR1L-PowerManagement-141	118	Recall last with last status on reaches Full-Operation after the mode transition	
+SWE-PM-048	NR1L-PowerManagement-142	119	Recall last with last status off reaches Idle after the mode transition	
+SWE-PM-048	NR1L-PowerManagement-143	120	The ex-factory default selects recall last with the last status on	
+SWE-PM-049	NR1L-PowerManagement-144	121	A failed antitheft keeps the TLM blocked in Idle	
+SWE-PM-050	NR1L-PowerManagement-145	122	The else branch stores the last status off and passes the TLM to Idle	
+SWE-PM-051	NR1L-PowerManagement-146	123	Antitheft success stores the last status on and passes the TLM to Full-Operation	
+SWE-PM-052	NR1L-PowerManagement-147	124	A failed antitheft keeps the TLM in the original Partial Operation state	
+SWE-PM-053	NR1L-PowerManagement-148	125	The vehicle brand logo screen follows the brand configuration parameter	
+SWE-PM-054	NR1L-PowerManagement-149	126	No audio brand without SDARS shows the vehicle brand logo only	
+SWE-PM-054	NR1L-PowerManagement-150	127	Beats brand white without SDARS adds the Beats logo	
+SWE-PM-054	NR1L-PowerManagement-151	128	SDARS present without audio brand adds the Sirius logo	
+SWE-PM-054	NR1L-PowerManagement-152	129	SDARS present with beats brand white adds both logos	
+SWE-PM-055	NR1L-PowerManagement-153	130	The special package drives the Klipsch Splash Screen on the 2025 model year	
+SWE-PM-055	NR1L-PowerManagement-154	131	The splash screen type drives the Klipsch Splash Screen after the 2025 model year	
+SWE-PM-056	NR1L-PowerManagement-155	132	The Fiat Latam startup animation replaces the vehicle brand logo	
+SWE-PM-058	NR1L-PowerManagement-156	133	The ex-factory default sets a zero switch off timeout	
+SWE-PM-059	NR1L-PowerManagement-157	134	A network sleep request in Standby passes the TLM to Sleep	
+SWE-PM-059	NR1L-PowerManagement-158	135	A network sleep request during boot is served only after the boot ends	
+SWE-PM-066	NR1L-PowerManagement-159	136	An SOS call is treated as a phone call becoming active	
+SWE-PM-066	NR1L-PowerManagement-160	137	An Assist call is treated as a phone call becoming active	
+SWE-PM-067	NR1L-PowerManagement-161	138	A projection device call is treated as a phone call becoming active	
+SWE-PM-068	NR1L-PowerManagement-162	139	An incoming call from IDLE bypasses the disclaimer screen	
+SWE-PM-069	NR1L-PowerManagement-163	140	The HU returns to IDLE when the call ends on the phone main screen	
+SWE-PM-069	NR1L-PowerManagement-164	141	The HU returns to IDLE when the call ends on the phone projection call UI	
+SWE-PM-070	NR1L-PowerManagement-165	142	The bypassed disclaimer is shown at the next transition to FULL OPERATION	
+SWE-PM-074	NR1L-PowerManagement-166	143	A Radio FOTA update at Body OFF brings the HU to Timed for the pop-up	
+SWE-PM-074	NR1L-PowerManagement-167	144	A TBM FOTA update at Body OFF brings the HU to Timed for the pop-up	
+SWE-PM-074	NR1L-PowerManagement-168	145	A ROV FOTA update at Body OFF brings the HU to Timed for the pop-up	
+SWE-PM-075	NR1L-PowerManagement-169	146	The HU leaves Timed one minute after the FOTA pop-up is left untouched	
+SWE-PM-075	NR1L-PowerManagement-170	147	The HU leaves Timed when the FOTA pop-up is dismissed	
+SWE-PM-075	NR1L-PowerManagement-171	148	The HU leaves Timed when the accessory delay becomes inactive	
+SWE-PM-076	NR1L-PowerManagement-172	149	A ten second power button press performs a radio reset and saves logs	
+SWE-PM-076	NR1L-PowerManagement-173	150	No power button reset occurs while a firmware image is installing	
+SWE-PM-093	NR1L-PowerManagement-174	151	Closing the driver door in SLEEP MODE plays the start-up animation	
+SWE-PM-093	NR1L-PowerManagement-175	152	Closing the driver door in STANDBY MODE plays the start-up animation	
+SWE-PM-093	NR1L-PowerManagement-176	153	Closing the driver door in PARTIAL OPERATION MODE plays the start-up animation	
+SWE-PM-093	NR1L-PowerManagement-177	154	A removed driver door makes the HU skip the start-up animation	
+SWE-PM-093	NR1L-PowerManagement-178	155	A mode change cancels a start-up animation in progress	
+SWE-PM-093	NR1L-PowerManagement-179	156	An ignition crank event cancels a start-up animation in progress	
+SWE-PM-093	NR1L-PowerManagement-180	157	A mode change to TIMED MODE cancels a start-up animation in progress	
+SWE-PM-093	NR1L-PowerManagement-181	158	An open driver door makes the HU skip the animation on a mode change	
+SWE-PM-093	NR1L-PowerManagement-182	159	A second start-up animation waits for the wakeup cycle or thirty minutes	
+SWE-PM-094	NR1L-PowerManagement-183	160	The startup animation is displayed separately from the other startup screens	
+SWE-PM-095	NR1L-PowerManagement-184	161	Leaving the SNA value resumes the state diagram without a splash screen	
+SWE-PM-097	NR1L-PowerManagement-185	162	The Fiat Latam startup animation selection replaces the vehicle brand logo	
+SWE-PM-098	NR1L-PowerManagement-186	163	The always setting plays a startup sound with the animation	
+SWE-PM-099	NR1L-PowerManagement-187	164	The once a day setting plays the startup sound on the first startup of the day	
+SWE-PM-099	NR1L-PowerManagement-188	165	A change of the customer selected date allows the sound to play again	
+SWE-PM-099	NR1L-PowerManagement-189	166	Passing midnight allows the startup sound to play again	
+SWE-PM-099	NR1L-PowerManagement-190	167	An automatic time zone adjustment allows the startup sound to play again	
+SWE-PM-100	NR1L-PowerManagement-191	168	The never setting plays no startup sound with the animation	
+SWE-PM-101	NR1L-PowerManagement-192	169	No audio brand without SDARS shows the vehicle brand logo only	
+SWE-PM-101	NR1L-PowerManagement-193	170	Beats brand white without SDARS adds the Beats logo	
+SWE-PM-101	NR1L-PowerManagement-194	171	SDARS present without audio brand adds the Sirius logo	
+SWE-PM-101	NR1L-PowerManagement-195	172	SDARS present with beats brand white adds both logos	
+SWE-PM-102	NR1L-PowerManagement-196	173	The special package drives the Klipsch Splash Screen on the 2025 model year	
+SWE-PM-102	NR1L-PowerManagement-197	174	The splash screen type drives the Klipsch Splash Screen after the 2025 model year	
+SWE-PM-103	NR1L-PowerManagement-198	175	Audio is off and only the Splash Screen is allowed in this status	
+SWE-PM-103	NR1L-PowerManagement-199	176	Audio is off and only the Splash Screen is allowed in Ignition Pre_Start	
+SWE-PM-103	NR1L-PowerManagement-200	177	Audio is off and only the Splash Screen is allowed in Ignition Start	
+SWE-PM-103	NR1L-PowerManagement-201	178	Audio is off and only the Splash Screen is allowed in Ignition Cranking	
+SWE-PM-103	NR1L-PowerManagement-202	179	ICS stays available while DTV is off in this status	
+SWE-PM-104	NR1L-PowerManagement-203	180	The splash and disclaimer screens appear on the first transition to Timed	
+SWE-PM-104	NR1L-PowerManagement-204	181	The splash and disclaimer screens appear on the first transition to Full Operation	
+SWE-PM-104	NR1L-PowerManagement-205	182	The disclaimer appears on the first transition from Idle	
+SWE-PM-104	NR1L-PowerManagement-206	183	The disclaimer appears on the first transition from Standby	
+SWE-PM-104	NR1L-PowerManagement-207	184	The disclaimer appears on the first transition from Partial Operation	
+SWE-PM-105	NR1L-PowerManagement-208	185	An ongoing call temporarily skips the disclaimer and splash screens	
+SWE-PM-105	NR1L-PowerManagement-209	186	A backup camera view temporarily skips the disclaimer and splash screens	
+SWE-PM-105	NR1L-PowerManagement-210	187	An incoming call temporarily skips the disclaimer and splash screens	
+SWE-PM-105	NR1L-PowerManagement-211	188	An outgoing call temporarily skips the disclaimer and splash screens	
+SWE-PM-105	NR1L-PowerManagement-212	189	A climate pop-up temporarily skips the disclaimer and splash screens	
+SWE-PM-105	NR1L-PowerManagement-213	190	An SOS or Assist call temporarily skips the disclaimer and splash screens	
+SWE-PM-105	NR1L-PowerManagement-214	191	A FOTA pop up temporarily skips the disclaimer and splash screens	
+SWE-PM-105	NR1L-PowerManagement-215	192	The skipped screens are displayed at the next transition in the bus cycle	
+SWE-PM-106	NR1L-PowerManagement-216	193	The SOS button variant selects the SOS disclaimer text	
+SWE-PM-107	NR1L-PowerManagement-217	194	The help button variant replaces the SOS text in the disclaimer	
+SWE-PM-108	NR1L-PowerManagement-218	195	A non Maserati brand shows the core disclaimer once every thirty ignition cycles	
+SWE-PM-109	NR1L-PowerManagement-219	196	A GDPR market with the TBM present follows the GDPR non Maserati startup flow	
+SWE-PM-110	NR1L-PowerManagement-220	197	A missing TBM follows the non GDPR non Maserati startup flow	
+SWE-PM-110	NR1L-PowerManagement-221	198	An unmarked country follows the non GDPR non Maserati startup flow	
+SWE-PM-111	NR1L-PowerManagement-222	199	A missing TBM adds the ADAS text to the disclaimer	
+SWE-PM-111	NR1L-PowerManagement-223	200	A country not requiring SOS or geolocation adds the ADAS text	
+SWE-PM-113	NR1L-PowerManagement-224	201	A geolocation and SOS market adds the ADAS and SOS text	
+SWE-PM-114	NR1L-PowerManagement-225	202	An incoming call from IDLE bypasses the not yet shown disclaimer screen	
+SWE-PM-115	NR1L-PowerManagement-226	203	The disclaimer bypassed for a call is shown at the next FULL OPERATION	
+SWE-PM-077	NR1L-PowerManagement-227	204	The special package value determines the theme used by the HU	
+SWE-PM-078	NR1L-PowerManagement-228	205	A none special package falls back to the brand default theme	
+SWE-PM-078	NR1L-PowerManagement-229	206	An unsupported special package falls back to the brand default theme	
+SWE-PM-079	NR1L-PowerManagement-230	207	An unsupported CAN value on a branded element uses the PDO default	
+SWE-PM-080	NR1L-PowerManagement-231	208	The theme special package value is sent while the CAN network is awake	
+SWE-PM-080	NR1L-PowerManagement-232	209	A theme change updates the sent value within the send window	
+SWE-PM-081	NR1L-PowerManagement-233	210	The Chrysler brand selects the Chrysler font	
+SWE-PM-081	NR1L-PowerManagement-234	211	The Jeep brand selects the Jeep font	
+SWE-PM-081	NR1L-PowerManagement-235	212	The Fiat brand selects the default Fiat font	
+SWE-PM-082	NR1L-PowerManagement-236	213	The Chrysler brand selects the Chrysler App icon	
+SWE-PM-082	NR1L-PowerManagement-237	214	The Jeep brand selects the Jeep App icon	
+SWE-PM-082	NR1L-PowerManagement-238	215	The Fiat brand selects the default Fiat App icon	
+SWE-PM-083	NR1L-PowerManagement-239	216	The Jeep brand offers the Jeep avatars in the profile screen	
+SWE-PM-083	NR1L-PowerManagement-240	217	The Fiat brand offers the default Fiat avatars	
+SWE-PM-083	NR1L-PowerManagement-241	218	The Abarth brand is mapped to the Fiat avatars	
+SWE-PM-084	NR1L-PowerManagement-242	219	The recirc icon follows the PROXI parameters on the Atlantis architecture	
+SWE-PM-084	NR1L-PowerManagement-243	220	The recirc icon follows the body style signal on the PowerNet architecture	
+SWE-PM-085	NR1L-PowerManagement-244	221	The settings seat graphic follows the PROXI parameters on the Atlantis architecture	
+SWE-PM-085	NR1L-PowerManagement-245	222	The settings seat graphic follows the body style signal on the PowerNet architecture	
+SWE-PM-086	NR1L-PowerManagement-246	223	The theme special package value is sent on this chapter while the network is awake	
+SWE-PM-086	NR1L-PowerManagement-247	224	A theme change on this chapter updates the sent value within the send window	
+SWE-PM-087	NR1L-PowerManagement-248	225	The M240 vehicle line uses the M240 seat graphics	
+SWE-PM-087	NR1L-PowerManagement-249	226	A non M240 vehicle line falls back to the brand seat graphic	
+SWE-PM-088	NR1L-PowerManagement-250	227	The performance gauges follow the vehicle line signal	
+SWE-PM-090	NR1L-PowerManagement-251	228	The auto theme mode follows the day night signal into the day theme	
+SWE-PM-090	NR1L-PowerManagement-252	229	The auto theme mode follows the day night signal into the night theme	
+SWE-PM-091	NR1L-PowerManagement-253	230	The day theme mode uses the Day theme	
+SWE-PM-092	NR1L-PowerManagement-254	231	The night theme mode uses the Night theme	
+SWE-PM-096	NR1L-PowerManagement-255	232	The season changes to Summer at the December date	
+SWE-PM-096	NR1L-PowerManagement-256	233	The season changes to Fall at the March date	
+SWE-PM-096	NR1L-PowerManagement-257	234	The season changes to Winter at the June date	
+SWE-PM-096	NR1L-PowerManagement-258	235	The season changes to Spring at the September date	
+SWE-PM-096	NR1L-PowerManagement-259	236	A season change plays the new season startup animation	
+SWE-PM-096	NR1L-PowerManagement-260	237	No season change plays the normal brand based startup animation	
+SWE-PM-001	NR1L-PowerManagement-261	238	Full-Operation keeps the TLM ON with all functionalities available	
+SWE-PM-001	NR1L-PowerManagement-262	239	Full-Operation holds in each listed ignition working condition	
+SWE-PM-002	NR1L-PowerManagement-263	240	Idle mutes the audio and allows only the Splash Screen	
+SWE-PM-002	NR1L-PowerManagement-264	241	Idle keeps ICS available and DTV off	
+SWE-PM-002	NR1L-PowerManagement-265	242	Idle provides the rear view camera images when needed	
+SWE-PM-002	NR1L-PowerManagement-266	243	Idle disables settings and all HMI interaction except the power button	
+SWE-PM-003	NR1L-PowerManagement-267	244	Remote Start Active reports Partial_Operation with AMP, ICS and DTV off	
+SWE-PM-003	NR1L-PowerManagement-268	245	Partial Operation keeps ANC, ACN and chimes audio active	
+SWE-PM-003	NR1L-PowerManagement-269	246	Partial Operation enables only the interaction that changes the status	
+SWE-PM-003	NR1L-PowerManagement-270	247	The HU does not enter stolen vehicle mode under any condition	
+SWE-PM-004	NR1L-PowerManagement-271	248	Timed keeps the TLM on with all functionalities available for a limited time	
+SWE-PM-004	NR1L-PowerManagement-272	249	Timed mode disables the Customer setting screens	
+SWE-PM-005	NR1L-PowerManagement-273	250	Standby turns the TLM off while the network stays on	
+SWE-PM-005	NR1L-PowerManagement-274	251	Entering Standby clears the antitheft activation request	
+SWE-PM-006	NR1L-PowerManagement-275	252	Sleep turns the TLM off with the network off as well	
+SWE-PM-006	NR1L-PowerManagement-276	253	Entering Sleep clears the antitheft activation request	
+SWE-PM-007	NR1L-PowerManagement-277	254	Bench turns the AMP, ICS and DTV on for the Engineering Line	
+SWE-PM-009	NR1L-PowerManagement-278	255	The ex-factory defaults are applied on the first power up	
+SWE-PM-009	NR1L-PowerManagement-279	256	A battery disconnection puts the TLM into the INIT state	
+SWE-PM-009	NR1L-PowerManagement-280	257	Leaving INIT restores the last settings and starts from Sleep	
+SWE-PM-007	NR1L-PowerManagement-281	258	Bench powers the amplifier, booster, antennas and MCU on	
+SWE-PM-001	NR1L-PowerManagement-282	259	Full-Operation plays SDCARD, BT streaming and call audio as the source	
+SWE-PM-004	NR1L-PowerManagement-283	260	Timed plays SDCARD, BT streaming and call audio as the source	
+SWE-PM-075	NR1L-PowerManagement-284	新增	A dismissed FOTA pop up passes the TLM to Standby	§8.3 拆分增列（68 包 R-P393(c)）
+SWE-PM-075	NR1L-PowerManagement-285	新增	An accessory delay going inactive passes the TLM to Standby	§8.3 拆分增列（68 包 R-P393(c)）
+SWE-PM-087	NR1L-PowerManagement-286	新增	An M240 vehicle line uses the M240 seat graphics	§8.3 拆分增列（68 包 R-P393(c)）
+SWE-PM-093	NR1L-PowerManagement-287	新增	A start-up animation plays again in the next wakeup cycle	§8.3 拆分增列（68 包 R-P393(c)）
