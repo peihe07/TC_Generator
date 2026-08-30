@@ -456,6 +456,7 @@ T1–T4 指派**，執行層依歷來常規義務（每一新裁決逐字寫入 
 
 ## R-TM14 — 自檢表與指令段須一一對應
 
+```
 （分析層，2026-08-20。上游包 `docs/handoff/02R_framework_lock.md` §1）
 
 下放包末尾「本包產生之新條文清單」之每一列，指令段須有對應之登記指派
@@ -466,9 +467,11 @@ T1–T4 指派**，執行層依歷來常規義務（每一新裁決逐字寫入 
 
 依據：01Z-A4（A-TM02a）、02（R-TM13、framework）三次同型。
 與 R-TM11／R-TM12／R-TM13 同族：四者皆為下放包自身之缺陷。
+```
 
 ## R-TM15 — Layer 3 訊號之判讀限制
 
+```
 （分析層，2026-08-20。上游包 `docs/handoff/02R_framework_lock.md` §2.1）
 
 canon §4.1.4 第 4 用途（章節分散即 Layer 2 切錯之訊號）僅在「該 leaf
@@ -482,6 +485,7 @@ canon §4.1.4 第 4 用途（章節分散即 Layer 2 切錯之訊號）僅在「
 依據：Set 3 之 021，章節層孤立於 1.5.2.2（條件章節），語意層與
 005/006/016 同句型（maintain internal clock / time signal / calendar /
 counters）。
+```
 
 ## R-TM17 — framework Part VII Layer 2 簽核
 

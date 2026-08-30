@@ -13,25 +13,31 @@ Feature 接手名稱「Pop-Up Queue and Priority Management」為工單稱謂；
 
 ### R-POP2 — 生成範圍照 037 為準（Pei 裁，2026-08-27）
 
+```
 生成範圍以 `FMWIFSM037A03N1LSWE1PopupHMIV0.2` Analysis Report 現有
 5 個 Functional Requirement leaf（SWE1-POP-002-01 ～ -002-05）為準。
 Queue／priority 本體（GP2 = spec 5.4、HMI Popup List Priority Matrix
 所定義之優先權行為）於 037 V0.2 無任何 SWE1 列 —— 此缺口以 RD-1
 具名上報，不自行擴充（IN §8.2.1、IN §8.4.2）。缺口記入
 `COVERAGE_GAPS.md`。
+```
 
 ### R-POP3 — DR 三件開立（Pei 裁，2026-08-27）
 
+```
 DR-POP1（HMI Popup List）、DR-POP2（HMI Popup List Priority Matrix）、
 DR-POP3（SWE1-POP-004 懸空引用之更正）開立，登錄於本 feature
 `DATA_REQUESTS.md`。送出時點由 Pei 決定（Tier 3）。
+```
 
 ### R-POP4 — 框架（Pei 裁，2026-08-27）
 
+```
 Test Group = `Popup`；Test Set 單一 `Pop-up Close`（5 leaf 同一
 capability，IN §4.1.3 granularity test 通過）。Queue／priority 若日後
 補件（037 增補或 RD-1 回覆）再增 Test Set。Layer 3 見 framework.md
 Part N（落檔於 framework 鎖定時）。
+```
 
 ### R-POP5 — Heading 列之台帳處置（分析層先裁；**Pei 追認 2026-08-28**）
 
@@ -60,10 +66,12 @@ profile-scoped 例外（前例 Home A-H10）。
 
 ### R-POP7 — Priority Matrix 不納入（Pei 裁，2026-08-27，A-POP2 乙半）
 
+```
 `forms/Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf`
 不納入為生成素材：版次 SR24 1A 早於基線（SR24 Post 2A）兩代，且
 R-POP2 已將 queue／priority 排除於生成範圍。DR-POP2 保持開啟，
 改記「repo 存 SR24 1A 舊版於 forms/，向上游索 SR24 Post 2A 現版」。
+```
 
 ### R-POP8 — -002-02 之 spec_reference 併列兩節（Pei 裁，2026-08-27，A-POP3 採甲）
 
@@ -79,18 +87,22 @@ bed_lowering R-BLM5 之 A-BLM4 情境不同，本 feature 不需 override）。
 
 ### R-POP9 — A-POP1 修正追認＋傳染性掃描（Pei 裁，2026-08-27）
 
+```
 追認 `scripts/extract_source.py` 之修正：`safe_name()` 只剝尾端、
 加 casefold 撞名守衛（撞名即停）、兩支迴歸測試。
 backlog 一項隨 02 包執行：抽取類腳本之同型名稱正規化函式傳染性掃描
 （FO §5a-6：字串比對缺陷具傳染性），逐支回報有無同缺陷。
+```
 
 ### R-POP10 — lint 跳號檢查改前綴自動抽取（Pei 裁，2026-08-27，A-POP4 處置）
 
+```
 `lint_docs036.py` 跳號檢查之前綴清單改為自動抽取（掃描台帳全文之
 `(A|DR|R)-[A-Z]+` 前綴逐一檢查跳號），並接 G-B 餘數對照（抽得前綴集
 與硬寫時代清單之差集回報）。迴歸要件（G-K／G-N）：已知案例 A-POP／
 DR-POP 須轉為受檢，並以「注入跳號即 FAIL」實證其會轉紅。
 不採「硬寫清單再加 POP」。**全域效力之工具政策，候升格 R-G。**
+```
 
 ### R-POP11 — rulings_hash 範圍納 feature RULINGS（Pei 裁，2026-08-27）
 
@@ -187,6 +199,7 @@ pilot 現值 `newR1L-POP-{NNN}` 兩處皆錯（`newR1L`≠`NR1L`；
 
 ### R-POP16 — lint 新規命中之三分法處置（分析層裁 [DEFAULT]，2026-08-27，A-POP6）
 
+```
 A-POP6 三類逐類處置：
 
 - **甲（真陽性 5 筆，sxm／audio_mgmt／time_management）**：屬各該 feature
@@ -201,9 +214,11 @@ A-POP6 三類逐類處置：
   **明示回報「no series detected」而非靜默 PASS**（G-D：PASS 不得
   與「已驗」混同）。`privacy` 之假前綴 `S` 於改限首個表格後自然排除，
   需實證。
+```
 
 ### R-POP17 — 上繳回報與 repo 台帳不符之登記（分析層裁，2026-08-27，A-POP9）
 
+```
 下放包 02 之上繳回報與 repo 台帳實況於四點不符（anomaly 編號錯置、
 A-POP5 未提、傳染性掃描結論相反、TC ID 前綴述值與語料不同）。
 登為 **A-POP9**（詳 ANOMALIES.md）。處置：
@@ -214,6 +229,7 @@ A-POP5 未提、傳染性掃描結論相反、TC ID 前綴述值與語料不同�
    引用，與該 feature 台帳之實存號碼及其標題對不上即回報。
    這正是 `ledger_xref` 設計目的內而未涵蓋之型態。
 3. 分析層同受此規（見 R-POP15 F5 之註）。
+```
 
 ### R-POP18 — 主表辨識改內容判準（分析層裁，2026-08-28，A-POP10）
 
@@ -250,6 +266,7 @@ A-POP5 未提、傳染性掃描結論相反、TC ID 前綴述值與語料不同�
 
 ### R-POP19 — A-POP6 甲類之 sxm 兩筆撤回（分析層裁，2026-08-28，A-POP11）
 
+```
 A-POP6 甲類之 `A-SX18`／`A-SX19` **為假陽性，撤回**：sxm 以標題式
 登記，`A-SX` 實存集為 1–30 連續零跳號，兩號皆實存且皆 RESOLVED。
 執行層未寫入 sxm BACKLOG、未建該檔、未代改，處置正確。
@@ -258,6 +275,7 @@ A-POP6 甲類之訂正後數字：**2 個 feature／2 筆**
 （audio_mgmt `DR-AM7`、time_management `A-TM2`），已入兩本 BACKLOG。
 A-POP6 §甲 原標題「4 個 feature，5 筆」與其自身表列「3 個 feature、4 筆」
 亦不符 —— 三個數字並陳，以本條之 **2／2** 為準。
+```
 
 ### R-POP20 — F1 修正過長之回調（分析層裁，2026-08-28，編號 F7）
 
@@ -294,6 +312,7 @@ R-POP15 F1 之條文需同步加註「且受 IN §5.2B ≤ 18 words 拘束」。
 
 ### R-POP21 — 節號列舉不得省略 canon 前綴（分析層裁，2026-08-28）
 
+```
 下放包／上繳包／台帳內列舉多個節號時，**每一個節號皆須冠 canon
 前綴**（`IN §4.5`、`IN §5.2B`…）。縮寫式 `IN §4.5／§5.2B／§5.5`
 之第二個以後成為**裸引用**，`canon_refs` 判為 FO／IN 兩 canon
@@ -302,6 +321,7 @@ R-POP15 F1 之條文需同步加註「且受 IN §5.2B ≤ 18 words 拘束」。
 來源：上繳包 04 §八-5 —— 執行層於作業中自產此錯（canon_refs 471）
 並自修回 470，一併記錄。這是可複製之寫作陷阱，不是一次性筆誤；
 分析層寫包同受此規。**全域效力之寫作規約，候升格 R-G。**
+```
 
 ### R-POP22 — Estimated Test Time（Q 欄）留空（分析層裁 [DEFAULT]，2026-08-28）
 
@@ -347,6 +367,7 @@ Negative / Invalid 指**非法輸入或非法操作**，而 GP4-4 所述之按�
 
 ### R-POP25 — `forms/` 落點政策（分析層裁 [DEFAULT]，2026-08-28）
 
+```
 **取號與權限聲明**：Pei 於 2026-08-28 之「都裁過了」未攜帶本項之
 方向（分析層於下放包 05 §九-4 亦未提意見）。為不再以同一問題
 上呼，分析層以 [DEFAULT] 裁之，Pei 得隨時否決。
@@ -369,6 +390,7 @@ Negative / Invalid 指**非法輸入或非法操作**，而 GP4-4 所述之按�
    或 `sources/`。
 
 本條之實作限於「登錄」，**不移動、不刪除任何檔**。
+```
 
 ### R-POP26 — 升級條件命中即停；條件不得以可過期之白名單寫成（分析層裁，2026-08-28）
 
