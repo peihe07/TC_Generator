@@ -32,6 +32,7 @@ verbatim 抄其原文（含缺字），錨由其他路徑定，並於 `reasoning
 | D-6 | `SWE1-FOTA-333` | **句尾截斷＋缺字** —— `…are not know`（缺 `n`，且句子未完） | **已確認**（上繳包 48 §3.2） |
 | D-7 | `SWE1-FOTA-117` | **註腳併入條文本體** ＋ 拼寫殘留 `Iginiton_on_Engine_on` | **已確認**（上繳包 58 §5.3） |
 | D-8 | `SWE1-FOTA-145` | **主詞被切斷** —— `the WiFi Update Servic/USB Update Service e shall not allow…`（`Service` 之 `e` 被推到句中） | **已確認**（上繳包 65 §4） |
+| D-9 | `SWE1-FOTA-248` | **缺受詞** —— `then notify the to start server initiated session`（`notify the` 之後無名詞） | **已確認**（上繳包 68 §4.2） |
 
 ---
 
@@ -224,6 +225,35 @@ shall notify the TBM FOTA HMI.`），**逐字**；
 **處置**：`test_item` 上半 **verbatim 保留**（IN §8.4.1）。
 **其不觸發 `J`**（首字為 `If`），**故不會被 lint 攔到** ——
 **本項只能由起草者逐字抄寫時發現，且我是在對照 037 原文修正另一個錯時才看到它的。**
+---
+
+## D-9 —— `SWE1-FOTA-248`：缺受詞 —— **已確認**
+
+037 原文（逐字，句末）：
+
+> …forwarded from the OTA server through the TC communication channel,
+> **then notify the to start server initiated session.**
+
+**`notify the` 之後沒有名詞** —— 其應為 `notify the SWMC`／`notify the WiFi Update Service`
+之類，**而該詞不在句中**。
+
+**與 D-1／D-2／D-5（缺字）之別**：缺的不是一個字母，**是一個必要之語法成分**；
+**與 D-6（截斷）之別**：句子有結束（有句號），**其缺口在句中而非句尾**。
+
+**處置**：`test_item` 上半 **verbatim 保留**（IN §8.4.1）；
+**其受詞不得由我方補入** —— 補 `SWMC` 或補 `WiFi Update Service` 是二個不同的需求，
+**而 037 沒有說是哪一個。** 列待裁。
+
+---
+
+## D-7 之複發（`242`／`243`）—— **其非孤例**
+
+`SWE1-FOTA-242` 與 `243` 之句尾同樣併入 `*Body on mode when $OperationalModeSts$ = …`
+之取值註腳（含同一處拼寫殘留 `Iginiton_on_Engine_on`），**與 D-7（`117`）逐字同型**。
+
+> **三列共用同一段被誤併之註腳** —— **其為同一次編輯之產物，非三次獨立之失誤。**
+> **故 D-7 之處置（只取規範句、註腳不入 `test_item`）於三列一致適用。**
+
 ---
 
 ## 掃描之能力界線（R-G8）
