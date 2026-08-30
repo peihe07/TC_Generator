@@ -18,8 +18,8 @@
 
 | # | 037 列 | 未覆蓋之 facet（原文摘句） | 其去向 |
 |---:|---|---|---|
-| CG-1 | `116` | `…the user **ignores** … the update pop-up` | **無** —— batch 10 之 TC 取 `Update Later` 一支 |
-| CG-2 | `116` | `…the user … **closes** the update pop-up` | **無** —— 同上 |
+| ~~CG-1~~ | `116` | `…the user **ignores** … the update pop-up` | ✅ **已補**（`SU-318`，batch 23，T84a） |
+| ~~CG-2~~ | `116` | `…the user … **closes** the update pop-up` | ✅ **已補**（`SU-319`，batch 23，T84a） |
 | CG-3 | `330` | `…regardless of whether the session **completes successfully or fails**` 之**失敗**支 | 其 TC 之 proc 已含二支，**惟二支皆掛 `PENDING`（伺服器側）** |
 | CG-4 | `063` | `High / Medium / **Low** Signal Strength` 三類之逐類判定 | **無** —— 其門檻值未載（DR-SU2(a)），現只驗分類之存在 |
 

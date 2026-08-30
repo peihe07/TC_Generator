@@ -1,0 +1,320 @@
+tc_id	row	req_id	test_set	priority	design_method	has_pending
+newR1L-SU-001	10	SWE1-FOTA-175	Silent Update	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-002	11	SWE1-FOTA-176	Silent Update	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-003	12	SWE1-FOTA-176	Silent Update	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-004	13	SWE1-FOTA-177	Silent Update	P2	負向測試 (Negative / Invalid)	
+newR1L-SU-005	14	SWE1-FOTA-183	Silent Update	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-006	15	SWE1-FOTA-180	Silent Update	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-007	16	SWE1-FOTA-182	Silent Update	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-008	17	SWE1-FOTA-184	Silent Update	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-009	18	SWE1-FOTA-179	Silent Update	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-010	19	SWE1-FOTA-181	Silent Update	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-011	20	SWE1-FOTA-315	Interruption Handling	P1		Y
+newR1L-SU-012	21	SWE1-FOTA-316	Interruption Handling	P1		Y
+newR1L-SU-013	22	SWE1-FOTA-317	Interruption Handling	P1		Y
+newR1L-SU-014	23	SWE1-FOTA-318	Interruption Handling	P1		Y
+newR1L-SU-015	24	SWE1-FOTA-319	Interruption Handling	P1		Y
+newR1L-SU-016	25	SWE1-FOTA-320	Interruption Handling	P1		Y
+newR1L-SU-017	26	SWE1-FOTA-313	Interruption Handling	P1		Y
+newR1L-SU-018	27	SWE1-FOTA-130	Update HMI	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-019	28	SWE1-FOTA-130	Update HMI	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-020	29	SWE1-FOTA-130	Update HMI	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-021	30	SWE1-FOTA-131	Update HMI	P1	狀態轉換 (State Transition Testing)	Y
+newR1L-SU-022	31	SWE1-FOTA-132	Update HMI	P1	負向測試 (Negative / Invalid)	
+newR1L-SU-023	32	SWE1-FOTA-133	Update HMI	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-024	33	SWE1-FOTA-133	Update HMI	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-025	34	SWE1-FOTA-134	Update HMI	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-026	35	SWE1-FOTA-136	Update HMI	P1	決策表 (Decision Table Testing)	
+newR1L-SU-027	36	SWE1-FOTA-136	Update HMI	P1	決策表 (Decision Table Testing)	
+newR1L-SU-028	37	SWE1-FOTA-090	ROV Installation	P2	狀態轉換 (State Transition Testing)	
+newR1L-SU-029	38	SWE1-FOTA-092	ROV Installation	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-030	39	SWE1-FOTA-093	ROV Installation	P1	基礎故障注入 (Fault Injection Lite)	Y
+newR1L-SU-031	40	SWE1-FOTA-094	ROV Installation	P1	基礎故障注入 (Fault Injection Lite)	Y
+newR1L-SU-032	41	SWE1-FOTA-097	ROV Installation	P1	決策表 (Decision Table Testing)	
+newR1L-SU-033	42	SWE1-FOTA-099	ROV Installation	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-034	43	SWE1-FOTA-100	ROV Installation	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-035	44	SWE1-FOTA-100	ROV Installation	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-036	45	SWE1-FOTA-101	ROV Installation	P1	決策表 (Decision Table Testing)	
+newR1L-SU-037	46	SWE1-FOTA-102	ROV Installation	P1	決策表 (Decision Table Testing)	
+newR1L-SU-038	47	SWE1-FOTA-103	ROV Installation	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-039	48	SWE1-FOTA-089	ROV Installation	P1	狀態轉換 (State Transition Testing)	
+newR1L-SU-040	49	SWE1-FOTA-098	ROV Installation	P2	狀態轉換 (State Transition Testing)	
+newR1L-SU-041	50	SWE1-FOTA-107	ROV Installation	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-042	51	SWE1-FOTA-108	ROV Installation	P1	負向測試 (Negative / Invalid)	
+newR1L-SU-043	52	SWE1-FOTA-109	ROV Installation	P1	狀態轉換 (State Transition Testing)	
+newR1L-SU-044	53	SWE1-FOTA-088	ROV Installation	P1	狀態轉換 (State Transition Testing)	
+newR1L-SU-045	54	SWE1-FOTA-095	ROV Installation	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-046	55	SWE1-FOTA-104	ROV Installation	P2	決策表 (Decision Table Testing)	
+newR1L-SU-047	56	SWE1-FOTA-105	ROV Installation	P2	決策表 (Decision Table Testing)	
+newR1L-SU-048	57	SWE1-FOTA-106	ROV Installation	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-049	58	SWE1-FOTA-080	USB Update	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-050	59	SWE1-FOTA-081	USB Update	P1	等價劃分 (Equivalence Partitioning, EP)	
+newR1L-SU-051	60	SWE1-FOTA-082	USB Update	P1	決策表 (Decision Table Testing)	
+newR1L-SU-052	61	SWE1-FOTA-083	USB Update	P2	等價劃分 (Equivalence Partitioning, EP)	Y
+newR1L-SU-053	62	SWE1-FOTA-084	USB Update	P2	決策表 (Decision Table Testing)	Y
+newR1L-SU-054	63	SWE1-FOTA-010	Update Policy	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-055	64	SWE1-FOTA-011	Update Policy	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-056	65	SWE1-FOTA-012	Update Policy	P1	狀態轉換 (State Transition Testing)	Y
+newR1L-SU-057	66	SWE1-FOTA-013	Update Policy	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-058	67	SWE1-FOTA-014	Update Policy	P1	狀態轉換 (State Transition Testing)	Y
+newR1L-SU-059	68	SWE1-FOTA-015	Update Policy	P1	狀態轉換 (State Transition Testing)	Y
+newR1L-SU-060	69	SWE1-FOTA-028	Update Policy	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-061	70	SWE1-FOTA-030	Update Policy	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-062	71	SWE1-FOTA-031	Update Policy	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-063	72	SWE1-FOTA-034	Update Policy	P1	決策表 (Decision Table Testing)	
+newR1L-SU-064	73	SWE1-FOTA-035	Update Policy	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-065	74	SWE1-FOTA-037	Update Policy	P1	負向測試 (Negative / Invalid)	
+newR1L-SU-066	75	SWE1-FOTA-171	Integrity Verification	P1	負向測試 (Negative / Invalid)	Y
+newR1L-SU-067	76	SWE1-FOTA-172	Integrity Verification	P1	負向測試 (Negative / Invalid)	Y
+newR1L-SU-068	77	SWE1-FOTA-173	Integrity Verification	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-069	78	SWE1-FOTA-174	Integrity Verification	P1	負向測試 (Negative / Invalid)	Y
+newR1L-SU-070	79	SWE1-FOTA-310	Integrity Verification	P1	負向測試 (Negative / Invalid)	Y
+newR1L-SU-071	80	SWE1-FOTA-311	Integrity Verification	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-072	81	SWE1-FOTA-312	Integrity Verification	P1	負向測試 (Negative / Invalid)	Y
+newR1L-SU-073	82	SWE1-FOTA-338	Integrity Verification	P1	負向測試 (Negative / Invalid)	Y
+newR1L-SU-074	83	SWE1-FOTA-336	Deployment Conditions	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-075	84	SWE1-FOTA-337	Deployment Conditions	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-076	85	SWE1-FOTA-340	Deployment Conditions	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-077	86	SWE1-FOTA-341	Deployment Conditions	P1	決策表 (Decision Table Testing)	
+newR1L-SU-078	87	SWE1-FOTA-343	Deployment Conditions	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-079	88	SWE1-FOTA-344	Deployment Conditions	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-080	89	SWE1-FOTA-345	Deployment Conditions	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-081	90	SWE1-FOTA-346	Deployment Conditions	P1	負向測試 (Negative / Invalid)	
+newR1L-SU-082	91	SWE1-FOTA-039	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-083	92	SWE1-FOTA-040	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-084	93	SWE1-FOTA-041	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-085	94	SWE1-FOTA-042	Wi-Fi Download	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-086	95	SWE1-FOTA-043	Wi-Fi Download	P1	邊界值分析 (Boundary Value Analysis, BVA)	
+newR1L-SU-087	96	SWE1-FOTA-044	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-088	97	SWE1-FOTA-045	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-089	98	SWE1-FOTA-047	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-090	99	SWE1-FOTA-048	Wi-Fi Download	P1	負向測試 (Negative / Invalid)	
+newR1L-SU-091	100	SWE1-FOTA-049	Wi-Fi Download	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-092	101	SWE1-FOTA-050	Wi-Fi Download	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-093	102	SWE1-FOTA-051	Wi-Fi Download	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-094	103	SWE1-FOTA-052	Wi-Fi Download	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-095	104	SWE1-FOTA-053	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-096	105	SWE1-FOTA-054	Wi-Fi Download	P1	邊界值分析 (Boundary Value Analysis, BVA)	
+newR1L-SU-097	106	SWE1-FOTA-056	Wi-Fi Download	P1	決策表 (Decision Table Testing)	
+newR1L-SU-098	107	SWE1-FOTA-059	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-099	108	SWE1-FOTA-060	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-100	109	SWE1-FOTA-061	Wi-Fi Download	P1	負向測試 (Negative / Invalid)	
+newR1L-SU-101	110	SWE1-FOTA-062	Wi-Fi Download	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-102	111	SWE1-FOTA-063	Wi-Fi Download	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-103	112	SWE1-FOTA-064	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-104	113	SWE1-FOTA-065	Wi-Fi Download	P1	邊界值分析 (Boundary Value Analysis, BVA)	
+newR1L-SU-105	114	SWE1-FOTA-066	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-106	115	SWE1-FOTA-067	Wi-Fi Download	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-107	116	SWE1-FOTA-069	Wi-Fi Download	P1	決策表 (Decision Table Testing)	
+newR1L-SU-108	117	SWE1-FOTA-070	Wi-Fi Download	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-109	118	SWE1-FOTA-071	Wi-Fi Download	P1	邊界值分析 (Boundary Value Analysis, BVA)	
+newR1L-SU-110	119	SWE1-FOTA-330	Status Reporting	P1	決策表 (Decision Table Testing)	Y
+newR1L-SU-111	120	SWE1-FOTA-331	Status Reporting	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-112	121	SWE1-FOTA-332	Status Reporting	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-113	122	SWE1-FOTA-333	Status Reporting	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-114	123	SWE1-FOTA-334	Status Reporting	P1	基礎故障注入 (Fault Injection Lite)	Y
+newR1L-SU-115	124	SWE1-FOTA-339	Status Reporting	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-116	125	SWE1-FOTA-358	Status Reporting	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-117	126	SWE1-FOTA-003	FOTA Overview	P1	邊界值分析 (Boundary Value Analysis, BVA)	
+newR1L-SU-118	127	SWE1-FOTA-004	FOTA Overview	P1	邊界值分析 (Boundary Value Analysis, BVA)	
+newR1L-SU-119	128	SWE1-FOTA-005	FOTA Overview	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-120	129	SWE1-FOTA-006	FOTA Overview	P1	邊界值分析 (Boundary Value Analysis, BVA)	
+newR1L-SU-121	130	SWE1-FOTA-007	FOTA Overview	P1	決策表 (Decision Table Testing)	
+newR1L-SU-122	131	SWE1-FOTA-008	FOTA Overview	P1	負向測試 (Negative / Invalid)	Y
+newR1L-SU-123	132	SWE1-FOTA-347	Session Management	P1	邊界值分析 (Boundary Value Analysis, BVA)	Y
+newR1L-SU-124	133	SWE1-FOTA-348	Session Management	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-125	134	SWE1-FOTA-349	Session Management	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-126	135	SWE1-FOTA-350	Session Management	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-127	136	SWE1-FOTA-351	Session Management	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-128	137	SWE1-FOTA-352	Session Management	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-129	138	SWE1-FOTA-353	Session Management	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-130	139	SWE1-FOTA-354	Session Management	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-131	140	SWE1-FOTA-355	Session Management	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-132	141	SWE1-FOTA-356	Session Management	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-133	142	SWE1-FOTA-361	Session Management	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-134	143	SWE1-FOTA-368	Session Management	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-135	144	SWE1-FOTA-369	Session Management	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-136	145	SWE1-FOTA-111	TBM Reflash	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-137	146	SWE1-FOTA-112	TBM Reflash	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-138	147	SWE1-FOTA-113	TBM Reflash	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-139	148	SWE1-FOTA-114	TBM Reflash	P1	邊界值分析 (Boundary Value Analysis, BVA)	Y
+newR1L-SU-140	149	SWE1-FOTA-115	TBM Reflash	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-141	150	SWE1-FOTA-116	TBM Reflash	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-142	151	SWE1-FOTA-117	TBM Reflash	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-143	152	SWE1-FOTA-118	TBM Reflash	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-144	153	SWE1-FOTA-119	TBM Reflash	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-145	154	SWE1-FOTA-120	TBM Reflash	P1	基礎故障注入 (Fault Injection Lite)	Y
+newR1L-SU-146	155	SWE1-FOTA-121	TBM Reflash	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-147	156	SWE1-FOTA-122	TBM Reflash	P2	基礎故障注入 (Fault Injection Lite)	Y
+newR1L-SU-148	157	SWE1-FOTA-123	TBM Reflash	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-149	158	SWE1-FOTA-124	TBM Reflash	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-150	159	SWE1-FOTA-019	Session Flows	P1	決策表 (Decision Table Testing)	
+newR1L-SU-151	160	SWE1-FOTA-189	Session Flows	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-152	161	SWE1-FOTA-190	Session Flows	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-153	162	SWE1-FOTA-187	Session Flows	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-154	163	SWE1-FOTA-169	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-155	164	SWE1-FOTA-191	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-156	165	SWE1-FOTA-272	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-157	166	SWE1-FOTA-277	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-158	167	SWE1-FOTA-273	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-159	168	SWE1-FOTA-274	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-160	169	SWE1-FOTA-275	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-161	170	SWE1-FOTA-276	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-162	171	SWE1-FOTA-279	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-163	172	SWE1-FOTA-288	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-164	173	SWE1-FOTA-289	Session Flows	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-165	174	SWE1-FOTA-290	Session Flows	P2	負向測試 (Negative / Invalid)	Y
+newR1L-SU-166	175	SWE1-FOTA-370	Update Agent	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-167	176	SWE1-FOTA-371	Update Agent	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-168	177	SWE1-FOTA-372	Update Agent	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-169	178	SWE1-FOTA-373	Update Agent	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-170	179	SWE1-FOTA-374	Update Agent	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-171	180	SWE1-FOTA-375	Update Agent	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-172	181	SWE1-FOTA-376	Update Agent	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-173	182	SWE1-FOTA-377	Update Agent	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-174	183	SWE1-FOTA-378	Update Agent	P1	基礎故障注入 (Fault Injection Lite)	Y
+newR1L-SU-175	184	SWE1-FOTA-379	Update Agent	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-176	185	SWE1-FOTA-380	Update Agent	P1	基礎故障注入 (Fault Injection Lite)	
+newR1L-SU-177	186	SWE1-FOTA-381	Update Agent	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-178	187	SWE1-FOTA-382	Update Agent	P1	負向測試 (Negative / Invalid)	Y
+newR1L-SU-179	188	SWE1-FOTA-383	Update Agent	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-180	189	SWE1-FOTA-321	Interruption Handling	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-181	190	SWE1-FOTA-322	Interruption Handling	P1	負向測試 (Negative / Invalid)	Y
+newR1L-SU-182	191	SWE1-FOTA-323	Interruption Handling	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-183	192	SWE1-FOTA-324	Interruption Handling	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-184	193	SWE1-FOTA-325	Interruption Handling	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-185	194	SWE1-FOTA-326	Interruption Handling	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-186	195	SWE1-FOTA-327	Interruption Handling	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-187	196	SWE1-FOTA-328	Interruption Handling	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-188	197	SWE1-FOTA-329	Interruption Handling	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-189	198	SWE1-FOTA-357	Interruption Handling	P1	基礎故障注入 (Fault Injection Lite)	Y
+newR1L-SU-190	199	SWE1-FOTA-359	Interruption Handling	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-191	200	SWE1-FOTA-360	Interruption Handling	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-192	201	SWE1-FOTA-363	Telematics Client	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-193	202	SWE1-FOTA-364	Telematics Client	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-194	203	SWE1-FOTA-365	Telematics Client	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-195	204	SWE1-FOTA-366	Telematics Client	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-196	205	SWE1-FOTA-367	Telematics Client	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-197	206	SWE1-FOTA-195	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-198	207	SWE1-FOTA-198	Client Architecture	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-199	208	SWE1-FOTA-199	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-200	209	SWE1-FOTA-201	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-201	210	SWE1-FOTA-203	Client Architecture	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-202	211	SWE1-FOTA-205	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-203	212	SWE1-FOTA-206	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-204	213	SWE1-FOTA-207	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-205	214	SWE1-FOTA-208	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-206	215	SWE1-FOTA-209	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-207	216	SWE1-FOTA-210	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-208	217	SWE1-FOTA-211	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-209	218	SWE1-FOTA-212	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-210	219	SWE1-FOTA-213	Client Architecture	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-211	220	SWE1-FOTA-252	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-212	221	SWE1-FOTA-253	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-213	222	SWE1-FOTA-254	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-214	223	SWE1-FOTA-255	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-215	224	SWE1-FOTA-256	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-216	225	SWE1-FOTA-257	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-217	226	SWE1-FOTA-258	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-218	227	SWE1-FOTA-260	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-219	228	SWE1-FOTA-261	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-220	229	SWE1-FOTA-262	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-221	230	SWE1-FOTA-264	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-222	231	SWE1-FOTA-265	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-223	232	SWE1-FOTA-267	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-224	233	SWE1-FOTA-268	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-225	234	SWE1-FOTA-269	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-226	235	SWE1-FOTA-270	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-227	236	SWE1-FOTA-281	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-228	237	SWE1-FOTA-282	Client Architecture	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-229	238	SWE1-FOTA-283	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-230	239	SWE1-FOTA-284	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-231	240	SWE1-FOTA-286	Client Architecture	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-232	241	SWE1-FOTA-025	Update Policy	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-233	242	SWE1-FOTA-026	Update Policy	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-234	243	SWE1-FOTA-027	Update Policy	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-235	244	SWE1-FOTA-033	Update Policy	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-236	245	SWE1-FOTA-036	Update Policy	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-237	246	SWE1-FOTA-126	Configurable Parameters	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-238	247	SWE1-FOTA-128	Configurable Parameters	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-239	248	SWE1-FOTA-138	Deployment Flow	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-240	249	SWE1-FOTA-139	Deployment Flow	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-241	250	SWE1-FOTA-140	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-242	251	SWE1-FOTA-141	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-243	252	SWE1-FOTA-142	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-244	253	SWE1-FOTA-143	Deployment Flow	P1	邊界值分析 (Boundary Value Analysis, BVA)	
+newR1L-SU-245	254	SWE1-FOTA-144	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-246	255	SWE1-FOTA-145	Deployment Flow	P1	邊界值分析 (Boundary Value Analysis, BVA)	
+newR1L-SU-247	256	SWE1-FOTA-146	Deployment Flow	P1	決策表 (Decision Table Testing)	
+newR1L-SU-248	257	SWE1-FOTA-147	Deployment Flow	P1	負向測試 (Negative / Invalid)	
+newR1L-SU-249	258	SWE1-FOTA-148	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-250	259	SWE1-FOTA-149	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-251	260	SWE1-FOTA-150	Deployment Flow	P1	邊界值分析 (Boundary Value Analysis, BVA)	
+newR1L-SU-252	261	SWE1-FOTA-151	Deployment Flow	P1	負向測試 (Negative / Invalid)	
+newR1L-SU-253	262	SWE1-FOTA-152	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-254	263	SWE1-FOTA-153	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-255	264	SWE1-FOTA-154	Deployment Flow	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-256	265	SWE1-FOTA-155	Deployment Flow	P1	負向測試 (Negative / Invalid)	
+newR1L-SU-257	266	SWE1-FOTA-156	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-258	267	SWE1-FOTA-157	Deployment Flow	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-259	268	SWE1-FOTA-160	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-260	269	SWE1-FOTA-161	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-261	270	SWE1-FOTA-162	Deployment Flow	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-262	271	SWE1-FOTA-163	Deployment Flow	P1	基礎故障注入 (Fault Injection Lite)	Y
+newR1L-SU-263	272	SWE1-FOTA-165	Deployment Flow	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-264	273	SWE1-FOTA-167	Deployment Flow	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-265	274	SWE1-FOTA-215	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-266	275	SWE1-FOTA-216	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-267	276	SWE1-FOTA-217	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-268	277	SWE1-FOTA-218	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-269	278	SWE1-FOTA-219	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-270	279	SWE1-FOTA-220	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-271	280	SWE1-FOTA-221	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-272	281	SWE1-FOTA-222	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-273	282	SWE1-FOTA-223	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-274	283	SWE1-FOTA-224	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-275	284	SWE1-FOTA-225	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-276	285	SWE1-FOTA-226	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-277	286	SWE1-FOTA-227	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-278	287	SWE1-FOTA-228	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-279	288	SWE1-FOTA-229	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-280	289	SWE1-FOTA-230	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-281	290	SWE1-FOTA-231	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-282	291	SWE1-FOTA-232	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-283	292	SWE1-FOTA-233	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-284	293	SWE1-FOTA-234	HU FOTA via TBM	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-285	294	SWE1-FOTA-235	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-286	295	SWE1-FOTA-236	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-287	296	SWE1-FOTA-237	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-288	297	SWE1-FOTA-238	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-289	298	SWE1-FOTA-239	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-290	299	SWE1-FOTA-240	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-291	300	SWE1-FOTA-241	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-292	301	SWE1-FOTA-242	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-293	302	SWE1-FOTA-243	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-294	303	SWE1-FOTA-244	HU FOTA via TBM	P3	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-295	304	SWE1-FOTA-245	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-296	305	SWE1-FOTA-246	HU FOTA via TBM	P1	負向測試 (Negative / Invalid)	
+newR1L-SU-297	306	SWE1-FOTA-247	HU FOTA via TBM	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-298	307	SWE1-FOTA-248	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-299	308	SWE1-FOTA-249	HU FOTA via TBM	P1	負向測試 (Negative / Invalid)	Y
+newR1L-SU-300	309	SWE1-FOTA-250	HU FOTA via TBM	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-301	310	SWE1-FOTA-292	Bearer Selection	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-302	311	SWE1-FOTA-293	Bearer Selection	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-303	312	SWE1-FOTA-294	Bearer Selection	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-304	313	SWE1-FOTA-295	Bearer Selection	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-305	314	SWE1-FOTA-297	Bearer Selection	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-306	315	SWE1-FOTA-298	Bearer Selection	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-307	316	SWE1-FOTA-299	Bearer Selection	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-308	317	SWE1-FOTA-300	Bearer Selection	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-309	318	SWE1-FOTA-301	Bearer Selection	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-310	319	SWE1-FOTA-302	Bearer Selection	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-311	320	SWE1-FOTA-303	Bearer Selection	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-312	321	SWE1-FOTA-304	Bearer Selection	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-313	322	SWE1-FOTA-305	Bearer Selection	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-314	323	SWE1-FOTA-306	Bearer Selection	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-315	324	SWE1-FOTA-307	Bearer Selection	P1	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-316	325	SWE1-FOTA-308	Bearer Selection	P2	功能測試 (Functional based ; no specific technique)	Y
+newR1L-SU-317	326	SWE1-FOTA-057	Wi-Fi Download	P1	邊界值分析 (Boundary Value Analysis, BVA)	Y
+newR1L-SU-318	327	SWE1-FOTA-116	TBM Reflash	P2	功能測試 (Functional based ; no specific technique)	
+newR1L-SU-319	328	SWE1-FOTA-116	TBM Reflash	P2	功能測試 (Functional based ; no specific technique)	
