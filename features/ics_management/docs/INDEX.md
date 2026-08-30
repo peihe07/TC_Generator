@@ -290,3 +290,46 @@ upstream-11 §4-3 與 A-ICS74 之敘述須更正）；**SYS2 有 23 列在案 FR
 四件須分析層處置者：**E19 —— `NRL-180522`（觸控去重／CarPlay 認證）為 HMI 軟體側可驗證之行為**；
 **SYS2 自帶 `Verifiability`／`Verification Criteria`／`Verification Method` 三欄，本線十三包從未量過**；
 **掃描起點盲區 73 列（21.9%）**；**已綁 FDCAN8 檔載 `BO_TX_BU_ 1427 : ETM,LTM;`，與 upstream-07 之 E3 依據相對**。
+
+---
+
+## 第 14 輪（2026-08-30）窗口式解凍：同一物、發收方向、綁定三件量測
+
+| 項 | 落點 |
+|---|---|
+| 上繳包 | `docs/upstream/14_signal_identity_and_direction.md` |
+| 同一物判定（**E25 觸發**：dbc 為四支非三支）| `docs/reports/14_signal_identity.md` |
+| 發收方向（E22 字面未觸發，另具名一件範圍事項）| `docs/reports/14_signal_direction.md` |
+| BHCAN2 綁定影響面（E24 未觸發）| `docs/reports/14_bhcan2_binding_impact.md` |
+| **回凍基準快照** | `docs/reports/14_rulings_snapshot.md` |
+
+本輪為純量測包：**零 TC 新生／零錨變動／零佔位回填／零步驟或 ER 改寫**；
+`FORMS.md`／`feature.yaml`／`features/display/` 一字未改（sha 自證）。**git 執行次數 0**。
+預期數字 16 項相符、1 項不符（圍籬 diff 實測新增二條而非一條，成因為快照時點早於 `R-ICS43`）。
+
+四件須分析層處置者：**`$Telematic_Power$` 在裁定之 BHCAN2 上本 DUT 是發送側，
+`ICS` 不在該檔 `BU_` 內 —— TC 2／TC 4 之前提可能無法建立**；
+**A-DM14 無承載流程**（只登 `display` 一處，對造 `vehicle_setting` 命中 0，未轉 DR）；
+**dbc 為四支且 R1／R4／R5 世代錯配**（DUT 為 R1L，已綁者為 R4／R5）；
+**CFTS020 不載任何 CAN 訊息名與位元佈局，R-17(c) 三項判準實際只有一項可用**。
+
+---
+
+## 第 15 輪（2026-08-30）世代錯配量測 —— **E26 觸發，綁定與回填未執行**
+
+| 項 | 落點 |
+|---|---|
+| 上繳包 | `docs/upstream/15_binding_and_backfill.md` |
+| 世代錯配量測（**E26 觸發**）| `docs/reports/15_dbc_generation_diff.md` |
+| TC 2／TC 4 前提建立法（E28 未觸發）| `docs/reports/15_tc2_tc4_precondition.md` |
+| **回凍基準快照** | `docs/reports/15_rulings_snapshot.md` |
+
+**作業 B（綁定 BHCAN2 ＋ 建讀者）與作業 C（12 處回填）依 E26 未執行。**
+`feature.yaml` 仍 10 鍵、`FORMS.md` 一字未改、佔位仍 18 處／14 條、TC 仍 31 條。**git 執行次數 0**。
+
+核心量測結果：**世代之間唯一的差異在發收方 —— 位元佈局、值域、`VAL_` 於四支 dbc 上 17／17 完全相同**，
+交付欄受影響 **0 條**。下放包 §7 所慮之「回填錯值而看不出來」**經量測不成立**。
+實際觸發 E26 者為**三條 b03 之 `reasoning` 引述 R4 檔原行，該引述於裁定之 BHCAN2 上不正確**。
+
+另對 upstream-14 具名更正一項：**A-ICS91 所引之 `4819144`／`4820117` 並非 TC 2／TC 4 之錨，
+且未被任何 TC 引用**；二條之前提 `$Telematic_Power$` **從未寫過任何建立方法**。

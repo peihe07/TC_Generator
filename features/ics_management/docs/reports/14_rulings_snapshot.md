@@ -1,3 +1,14 @@
+# RULINGS.md 快照 — b14 完工時（2026-08-30）**＝ 回凍之新基準**
+
+> 快照法（R-ICS38(a)）第四次落地。b14 完工即回到凍結（R-ICS44(a)）；
+> 下次解凍之圍籬 diff 以本檔為基準，**不動用 git**。本檔為逐字複本，一字未改。
+
+- 來源 sha256：`16c6d38f544bb7a2bb8193fe1ec5bf95b67ca5513fe5b42b5c3c019f61deb3ba`
+- 錨點 51 個：R-ICS1、R-ICS2 v1、R-ICS3、R-ICS4、R-ICS5、R-ICS6、R-ICS7、R-ICS8、R-ICS9、R-ICS10、R-ICS11、R-ICS12、R-ICS13、R-ICS2 v2、R-ICS14、R-ICS15、R-ICS16、R-ICS17、R-ICS18、R-ICS19 v1、R-ICS20、R-ICS21、R-ICS22 v1、R-ICS23 v1、R-ICS22 v2、R-ICS24、R-ICS25 v1、R-ICS23 v2、R-ICS26、R-ICS27、R-ICS28、R-ICS29、R-ICS30、R-ICS19 v2、R-ICS25 v2、R-ICS31、R-ICS32、R-ICS33 v1、R-ICS33 v2、R-ICS34、R-ICS35 v1、R-ICS35 v2、R-ICS36、R-ICS37、R-ICS38、R-ICS39、R-ICS40、R-ICS41、R-ICS42、R-ICS43、R-ICS44
+- 快照時間：2026-08-30 15:22:49
+
+---
+
 # RULINGS — ICS Management (FW036)
 
 Pei 之裁決與分析層自裁條文之逐字登記。前綴 `R-ICS` / `A-ICS` / `DR-ICS`，
@@ -1588,114 +1599,4 @@ R-ICS44（窗口式解凍：僅 b14；三件量測；不回填、不改寫）
 (f) 本條不解除 R-ICS43 之其餘拘束：五簿仍只寫本輪所列；
     G5 維持押後；A-ICS84（NRL-180522）、A-ICS80 維持待 Pei。
 （分析層即裁，2026-08-30；Pei 裁「BHCAN2」「以 DBC 為主」「開」；R-17；A-ICS87／88／82）
-```
-
----
-
-## R-ICS45
-
-```
-R-ICS45（b14 之採認與上呈；回凍；世代錯配為下一優先）
-
-成因：upstream-14。16 項相符、1 項不符（圓籬 diff 預期一條實為二條，
-分析層之誤，A-ICS99）。E25 觸發；E22／E23／E24 未觸發，
-惟 E22 字面涵蓋不到之一件範圍事項已具名呈報。
-
-(a) **二訊號之同一物判定採認**：
-    `$TGW_DISP_STAT$` ≡ `TGW_DISP_STATSts` ＠ `BO_ 1500 TELEMATIC_DISPLAY2`；
-    `$Telematic_Power$` ≡ `PowerSts_Telematic` ＠ `BO_ 1470 STATUS_TELEMATIC`。
-    **惟須逐案具名：本判定僅繫於 R-17(c) 項③一項**（項①② 不可比，A-ICS94）；
-    日後取得載訊息名或位元佈局之規格件時，**須重驗**。
-
-(b) **回凍**：b14 已完工，依 R-ICS44(a) 自動回到 R-ICS43 之凍結。
-    回凍基準：`docs/reports/14_rulings_snapshot.md`（51 錨點）。
-    **12 處佔位仍未回填** —— 回填須開 b15，屬 Pei。
-
-(c) **回填之建議（上呈，不逕定）**：採執行層 §10-2 之分割 ——
-    12 處佔位中，**不涉 TC 2／TC 4 者先填**；TC 2／TC 4 連同其前提問題押後。
-    回填時 **值名須與訊號名同批改為 DBC 實值**（R-17(a)）——
-    `DISP_OFF` → `Display_off`、`DISP_NORMAL` → `Normal_mode` 等；
-    **不得出現「訊號名用 DBC、值名用規格」之混用**。
-    同批複審 `(supporting observation)` 標記（A-ICS98）。
-
-(d) **TC 2／TC 4 之前提可建立性：上呈 Pei，分析層不逕定**（A-ICS91）。
-    **且不得推定其為「不可建立」** —— 規格 `4819144`／`4820117` 之主詞為 **ICS**
-    （面板）而非本 DUT；而 TC 2／4 之前提是否以 CAN 輸入建立、
-    或以 DUT 自身之電源模式建立，**本包未量**。
-    b15 若開，須先量該二條現行步驟究以何法建立該前提，再談可否。
-
-(e) **世代錯配為解凍後最高優先**（A-ICS93）：本 DUT 為 **R1L**，
-    而已綁之二支 dbc 為 **R4／R5**、未綁之二支為 **R1**。
-    前十四包之訊號解析皆建立於 R4／R5 上，**而該前提從未量過**。
-    其優先序在 12 處回填之前 —— 若 R1 與 R4／R5 於本線已用訊號上有差，
-    回填之值本身即可能錯。
-
-(f) **A-DM14 無承載流程：上呈 Pei**（A-ICS92）。
-    分析層建議二選一：① Pei 直接裁 BHCAN2 之檔案歸屬；
-    ② 立一條跨 feature 争點之承載規則（登於全案台帳並向對造 feature 告知）。
-    **分析層不逕裁**；惟具名：等待 A-DM14 不是等待一個進行中之程序。
-
-(g) **只量不綁之實測採認**：本 feature 之六支讀 dbc 之腳本皆硬寫路徑，
-    工具鏈層未阻。**唯一限制在條文面：未綁定之 dbc 不得採認入 TC**。
-    回填屬「採認入 TC」，故 (c) 之執行仍繫於 (f) 之結果或 Pei 之單獨授權。
-
-(h) `BHCAN2` 於 CFTS020 查無、規格只載 `BH-CAN`（A-ICS95）：**登記，不調和**。
-    二者是否同一條匯流排，規格內無可判依據；併入 DR-ICS16 之後續。
-
-(i) `FORMS.md` 二支已綁 dbc 無自身登錄（A-ICS96）、
-    本 feature 之 10 個 sha 無程式比對（A-ICS97）：**工具面，登記**，
-    不在本線修（跨 feature 且本線已凍）。
-
-(j) `gate_all` 由四支紅變五支，新紅者 `lint_docs036` 之二項皆在
-    `features/power/DATA_REQUESTS.md`（DR-PW23 缺結尾 `|`、序號跳號）。
-    **非 ICS 所致。列為轉 PM 線之首件（一行可修）。**
-（分析層即裁，2026-08-30；upstream-14 §2、§3、§4、§9、§10）
-```
-
----
-
-## R-ICS46
-
-```
-R-ICS46（Pei 裁：BHCAN2 歸屬確立；第二次窗口式解凍（b15））
-
-Pei 於 2026-08-30 下二字：**「開」**、**「裁 BHCAN2」**。
-
-(a) **BHCAN2 歸屬確立**（採 A-ICS92 之選項①）：
-    `forms/PDT27_E2A_R1_BHCAN2.dbc` 確立為本 feature 可用之參考件，
-    得**綁定入 `ics_management/feature.yaml`** 並**採認入 TC**。
-    R-ICS44(d)「不逕裁」之拘束至此解除 —— 裁者為 Pei。
-
-(b) **本裁定之射程限於 `ics_management`。**
-    其**不裁** display 線之 A-DM14（R4 與 BHCAN2 之取捨），
-    亦**不令** `display`／`vehicle_setting` 改用任何檔。
-    理由：本線只問過「本 feature 可否用」，未問過「他線應否改」；
-    以一個答案覆蓋一個未問之問，是 A-ICS83 同族之錯。
-
-(c) **A-ICS92（承載流程）不因本裁定而結案**。
-    本裁解了 ICS 之阻塞，但「跨 feature 争點無人承載」之結構問題仍在：
-    `vehicle_setting`（R4 持有者）對 A-DM14 命中仍為 0，**從未被告知**。
-    建議 Pei 順手向 display／vehicle_setting 二線告知本裁定之存在及其射程限制；
-    **分析層不代為告知**（跨 feature 寫入非本線之權）。
-
-(d) **綁定須有讀者（R-G40 之精神）**：本 feature 之 10 個 sha 現無程式比對
-    （A-ICS97）。**綁入 BHCAN2 之同一包內須建立讀者**，
-    否則只是把第 11 個無人讀之 sha 加進去。
-
-(e) **第二次窗口式解凍，範圍限於下放包 15**（同 R-ICS44(a) 之形式）。
-    b15 完工自動回凍；繼續須 Pei 另一字。
-
-(f) **b15 之順序不得顓倒**：先世代錯配（A-ICS93）、再綁定（含讀者）、
-    後回填。理由：若 R1 與 R4／R5 於本線已用訊號上有差，
-    **回填之值本身即可能錯** —— 先填再發現，等於把錯值寫進交付簿。
-
-(g) **回填範圍限於不涉 TC 2／TC 4 者**（R-ICS45(c)）。
-    A-ICS91（TC 2／4 之前提可建立性）**Pei 未裁，維持上呈中**；
-    b15 只量該二條現行步驟以何法建立該前提，**不改、不回填、不推定**。
-
-(h) 回填時 **值名與訊號名同批改為 DBC 實值**（R-17(a)）；
-    同批複審 `(supporting observation)` 標記（A-ICS98）。
-    R-17(f) 之「既有 TC 回改逐 feature 裁」，於 ICS **限於本次回填所觸之列**，
-    不擴及其他 TC。
-（Pei 裁「開」「裁 BHCAN2」，2026-08-30；A-ICS91／92／93／97／98；R-17；R-G40）
 ```
