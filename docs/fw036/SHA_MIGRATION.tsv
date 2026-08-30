@@ -1,4 +1,8 @@
-# R-G22′ 遷移對照（下放包 57 T69a）：既有引用之 sha8 為舊式（含成因段），改制後 R-G13 之比對一律用 body_sha8。`same=Y` 者其引用不受影響。
+# R-G22′ 遷移對照（下放包 57 T69a；下放包 58 T70a 後重生）。
+# 用途：**讀歷史包之 `R-XX@<sha8>` 時，以本表反查其對應之現行 `body_sha8`**。
+# 歷史包依 R-G18 之精神不追改，故其所引之 sha8 一律為舊式（含成因段）。
+# ⚠ `same=Y` 者其引用未受影響，**而那不是因為該條穩定，是因為改制對它沒有作用**
+#   —— 其成因為該條無 fenced block（`body_kind=section`），非其條文不曾變動（下放包 58 §三 #5）。
 ruling_id	old_sha8	new_body_sha8	same	body_kind	source
 R-G1	550ace4f	550ace4f	Y	section	docs/fw036/FEATURE_ONBOARDING.md
 R-G2	521fde5f	521fde5f	Y	section	docs/fw036/FEATURE_ONBOARDING.md
@@ -12,7 +16,7 @@ R-G9	d4f630f0	d4f630f0	Y	section	docs/fw036/FEATURE_ONBOARDING.md
 R-G10	2b51c522	2b51c522	Y	section	docs/fw036/FEATURE_ONBOARDING.md
 R-G11	894614b2	894614b2	Y	section	docs/fw036/FEATURE_ONBOARDING.md
 R-G12	eabe2726	eabe2726	Y	section	docs/fw036/FEATURE_ONBOARDING.md
-R-G13	abdc56e3	e67a4fc3	N	fenced	docs/fw036/FEATURE_ONBOARDING.md
+R-G13	abdc56e3	854f1050	N	fenced	docs/fw036/FEATURE_ONBOARDING.md
 R-G14	fb508d10	fe92f06c	N	fenced	docs/fw036/FEATURE_ONBOARDING.md
 R-G15	2aa0c28f	a6d2d055	N	fenced	docs/fw036/FEATURE_ONBOARDING.md
 R-G16	2ec55d94	7918a7a2	N	fenced	docs/fw036/FEATURE_ONBOARDING.md
@@ -37,24 +41,24 @@ R-AM3	77bb5285	77bb5285	Y	section	features/audio_mgmt/RULINGS.md
 R-AM5	d146db15	d146db15	Y	section	features/audio_mgmt/RULINGS.md
 R-AM6	2851840a	2851840a	Y	section	features/audio_mgmt/RULINGS.md
 R-AM7	8cc0256f	8cc0256f	Y	section	features/audio_mgmt/RULINGS.md
-R-C1	0f5430ae	e8d36a44	N	fenced	features/comfort/RULINGS.md
+R-C1	0f5430ae	5bd41f41	N	fenced	features/comfort/RULINGS.md
 R-C5	5c5ba91c	834164e9	N	fenced	features/comfort/RULINGS.md
 R-C4	4c297718	c5101b9a	N	fenced	features/comfort/RULINGS.md
-R-C6	8b678433	0ad30481	N	fenced	features/comfort/RULINGS.md
-R-C8	e24753cf	086244d3	N	fenced	features/comfort/RULINGS.md
+R-C6	8b678433	39b6abc9	N	fenced	features/comfort/RULINGS.md
+R-C8	e24753cf	57190773	N	fenced	features/comfort/RULINGS.md
 R-C11	2ca4c893	7f2d73f9	N	fenced	features/comfort/RULINGS.md
-R-C12	f7c99832	23a92f5b	N	fenced	features/comfort/RULINGS.md
-R-C15	665195f2	d73d23c2	N	fenced	features/comfort/RULINGS.md
+R-C12	f7c99832	f8548cae	N	fenced	features/comfort/RULINGS.md
+R-C15	665195f2	1465fae9	N	fenced	features/comfort/RULINGS.md
 R-C17	cd144349	421f6ba5	N	fenced	features/comfort/RULINGS.md
 R-C18	44dba5b9	6e37abb4	N	fenced	features/comfort/RULINGS.md
 R-C19	0780ca99	f8589127	N	fenced	features/comfort/RULINGS.md
 R-C20	66a6796c	66ef21b8	N	fenced	features/comfort/RULINGS.md
-R-C21	53f254a0	1a9da8c7	N	fenced	features/comfort/RULINGS.md
-R-C23	b4419722	fee28df2	N	fenced	features/comfort/RULINGS.md
-R-C25	a33b5607	da16d757	N	fenced	features/comfort/RULINGS.md
+R-C21	53f254a0	d0d544b1	N	fenced	features/comfort/RULINGS.md
+R-C23	b4419722	16f0c8e9	N	fenced	features/comfort/RULINGS.md
+R-C25	a33b5607	c8007b3c	N	fenced	features/comfort/RULINGS.md
 R-C27	b823fecb	7005b969	N	fenced	features/comfort/RULINGS.md
 R-C27	6ee04303	cde55af4	N	fenced	features/comfort/RULINGS.md
-R-C28	1c05657e	ca41e72b	N	fenced	features/comfort/RULINGS.md
+R-C28	1c05657e	d85a7a51	N	fenced	features/comfort/RULINGS.md
 R-C38	d099e177	cbf7bc21	N	fenced	features/comfort/RULINGS.md
 R-C39	0f40f7fa	347c41d1	N	fenced	features/comfort/RULINGS.md
 R-C40	8fdd4394	2ac7e894	N	fenced	features/comfort/RULINGS.md
@@ -153,11 +157,12 @@ R-ICS35	dbfc78bc	079b2247	N	fenced	features/ics_management/RULINGS.md
 R-ICS36	88bd5367	9a925bdf	N	fenced	features/ics_management/RULINGS.md
 R-ICS37	45b747a3	91881af7	N	fenced	features/ics_management/RULINGS.md
 R-ICS38	9867f4ba	782f3a43	N	fenced	features/ics_management/RULINGS.md
-R-ICS39	96b3ae9e	a6104627	N	fenced	features/ics_management/RULINGS.md
+R-ICS39	96b3ae9e	0e1e2409	N	fenced	features/ics_management/RULINGS.md
 R-ICS40	81b4b1d0	f09863da	N	fenced	features/ics_management/RULINGS.md
 R-ICS41	07321dee	edc07b7d	N	fenced	features/ics_management/RULINGS.md
 R-ICS42	4205da56	ad18d719	N	fenced	features/ics_management/RULINGS.md
 R-ICS43	f612de47	51617ee7	N	fenced	features/ics_management/RULINGS.md
+R-ICS44	ca04242c	0b832178	N	fenced	features/ics_management/RULINGS.md
 R-POP1	61145b5f	61145b5f	Y	section	features/popup/RULINGS.md
 R-POP2	93a0e937	93a0e937	Y	section	features/popup/RULINGS.md
 R-POP3	6f6a3531	6f6a3531	Y	section	features/popup/RULINGS.md
@@ -344,7 +349,7 @@ R-TM4	3c312f00	90dddf9f	N	fenced	features/time_management/RULINGS.md
 R-TM5	28276d49	720d04af	N	fenced	features/time_management/RULINGS.md
 R-TM6	5f7639dc	f5071ac5	N	fenced	features/time_management/RULINGS.md
 R-TM7	4e7d6003	e8265b57	N	fenced	features/time_management/RULINGS.md
-R-TM8	fc2432af	32a6b3f8	N	fenced	features/time_management/RULINGS.md
+R-TM8	fc2432af	8d71b20c	N	fenced	features/time_management/RULINGS.md
 R-TM9	14d3d4f9	2ad189b3	N	fenced	features/time_management/RULINGS.md
 R-TM9	b16d7bde	a3eb69a5	N	fenced	features/time_management/RULINGS.md
 R-TM10	82d2334a	c0bfc531	N	fenced	features/time_management/RULINGS.md
@@ -361,7 +366,7 @@ R-TM19	2566495a	7e51c580	N	fenced	features/time_management/RULINGS.md
 R-TM16	cfcd7b89	95f90b06	N	fenced	features/time_management/RULINGS.md
 R-TM20	27c23c23	40446559	N	fenced	features/time_management/RULINGS.md
 R-TM21	da2c519e	4e977069	N	fenced	features/time_management/RULINGS.md
-R-TM22	1d6c0969	454ae03f	N	fenced	features/time_management/RULINGS.md
+R-TM22	1d6c0969	84a822ed	N	fenced	features/time_management/RULINGS.md
 R-TM23	3c976375	d0742746	N	fenced	features/time_management/RULINGS.md
 R-TM24	70c6650b	d81f345f	N	fenced	features/time_management/RULINGS.md
 R-TM25	8b88a8e6	309f3a5e	N	fenced	features/time_management/RULINGS.md
@@ -376,23 +381,23 @@ R-TM33	88b6863a	586f7ec8	N	fenced	features/time_management/RULINGS.md
 R-TM34	59fa9ca4	421708cf	N	fenced	features/time_management/RULINGS.md
 R-TM35	1a45a504	adcf0183	N	fenced	features/time_management/RULINGS.md
 R-TM36	49cdf1b4	38b413c7	N	fenced	features/time_management/RULINGS.md
-R-TM37	a8f738cd	d0ead7b9	N	fenced	features/time_management/RULINGS.md
+R-TM37	a8f738cd	6eaeb96f	N	fenced	features/time_management/RULINGS.md
 R-TM38	e326d17d	5e8ad621	N	fenced	features/time_management/RULINGS.md
 R-TM39	b5e02432	27eb7ee5	N	fenced	features/time_management/RULINGS.md
-R-TM40	ce38b35c	f103a872	N	fenced	features/time_management/RULINGS.md
+R-TM40	ce38b35c	15764443	N	fenced	features/time_management/RULINGS.md
 R-TM40	f2c23203	f2c23203	Y	section	features/time_management/RULINGS.md
-R-TM41	3fcb8240	2d13db00	N	fenced	features/time_management/RULINGS.md
+R-TM41	3fcb8240	bc863741	N	fenced	features/time_management/RULINGS.md
 R-TM42	8056286f	f9069d72	N	fenced	features/time_management/RULINGS.md
 R-TM43	89cae5e8	1b0a56f7	N	fenced	features/time_management/RULINGS.md
 R-TM44	d49d64f4	30bdcb10	N	fenced	features/time_management/RULINGS.md
 R-TM45	3cb69c5f	730ce1fe	N	fenced	features/time_management/RULINGS.md
 R-TM46	a20e5b09	cc49d11d	N	fenced	features/time_management/RULINGS.md
-R-TM47	ac633180	4769bb92	N	fenced	features/time_management/RULINGS.md
-R-TM41	23815142	ea209556	N	fenced	features/time_management/RULINGS.md
+R-TM47	ac633180	0f42ba4c	N	fenced	features/time_management/RULINGS.md
+R-TM41	23815142	0a7a6ea2	N	fenced	features/time_management/RULINGS.md
 R-TM48	6c332201	0a131d93	N	fenced	features/time_management/RULINGS.md
-R-TM49	14e4d36e	f6c7f919	N	fenced	features/time_management/RULINGS.md
+R-TM49	14e4d36e	452edaf7	N	fenced	features/time_management/RULINGS.md
 R-TM50	a0a28d30	c64be6d0	N	fenced	features/time_management/RULINGS.md
-R-TM51	32697c91	47b9a473	N	fenced	features/time_management/RULINGS.md
+R-TM51	32697c91	d0a7addf	N	fenced	features/time_management/RULINGS.md
 R-TM52	988ab4ba	7470e38e	N	fenced	features/time_management/RULINGS.md
 R-TM53	250cd879	ae4add07	N	fenced	features/time_management/RULINGS.md
 R-TM54	3751da49	844a0a37	N	fenced	features/time_management/RULINGS.md
@@ -479,7 +484,7 @@ R-VS57	9af7987d	04e350f5	N	fenced	features/vehicle_setting/RULINGS.md
 R-VS58	4d5140e5	e0fab1f3	N	fenced	features/vehicle_setting/RULINGS.md
 R-VS50′	64da07d8	5944a42b	N	fenced	features/vehicle_setting/RULINGS.md
 R-VS57(4)	a5329b01	4d2cd2b2	N	fenced	features/vehicle_setting/RULINGS.md
-R-VF83	beba78c6	0584f0a9	N	fenced	features/vehicle_setting/RULINGS.md
+R-VF83	beba78c6	ebfa087c	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF84	c74e2367	472037d6	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF85	313ad7fc	28057991	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF86	99a1839d	4ef2f623	N	fenced	features/vehicle_setting/RULINGS.md
@@ -492,7 +497,7 @@ R-VF88	b73021b9	bbafc134	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF89	ce0382a2	5c0f36db	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF90	a43f69b2	2e7791cd	N	fenced	features/vehicle_setting/RULINGS.md
 R-VS63	00e9cece	68d2ae74	N	fenced	features/vehicle_setting/RULINGS.md
-R-VF14	03e7d2c1	47126ee2	N	fenced	features/vehicle_setting/RULINGS.md
+R-VF14	03e7d2c1	4d0602a7	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF15	b279a30e	a54aeb1b	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF16	c0b220cf	d441b4da	N	fenced	features/vehicle_setting/RULINGS.md
 R-VS62′	b985b693	87c6947c	N	fenced	features/vehicle_setting/RULINGS.md
@@ -536,7 +541,7 @@ R-VS35+補充	413c8335	391add08	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF40	11023af4	dbb695cd	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF41	d5d234d0	25f73270	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF42	d2032926	686f0ab3	N	fenced	features/vehicle_setting/RULINGS.md
-R-VF43	852cb453	0ef8557e	N	fenced	features/vehicle_setting/RULINGS.md
+R-VF43	852cb453	f8d97067	N	fenced	features/vehicle_setting/RULINGS.md
 R-VS71	6a6a963b	20084573	N	fenced	features/vehicle_setting/RULINGS.md
 R-VS72	1e714c9f	da3fed5d	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF9	0e6d281e	8f0878dc	N	fenced	features/vehicle_setting/RULINGS.md
@@ -612,7 +617,7 @@ R-VF109	9c1a23ef	e3ca6ef5	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF110	30209fe3	8efaf0ca	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF111	750b9fbd	0f29cbdf	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF112	6104b2f4	0c180796	N	fenced	features/vehicle_setting/RULINGS.md
-R-VF113	67ef2e65	93bb9644	N	fenced	features/vehicle_setting/RULINGS.md
+R-VF113	67ef2e65	d58590ec	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF114	8bd77e49	ed952bb3	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF115	b8b47a93	3d167ef6	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF116	b7e71940	e0099738	N	fenced	features/vehicle_setting/RULINGS.md
@@ -632,16 +637,16 @@ R-VF129	b05f6f08	bb30f029	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF130	a152d37b	6b34e68a	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF131	2dbc4748	e0f58a1c	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF132	b05d4582	76ed31c6	N	fenced	features/vehicle_setting/RULINGS.md
-R-VF133	f853cbd1	b81b4f32	N	fenced	features/vehicle_setting/RULINGS.md
+R-VF133	f853cbd1	805da5dd	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF134	3df00b46	5f2b8982	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF135	f6ad9943	c44be4dd	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF136	df62fc6f	bf9feacf	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF137	1a9d3d72	e91ea734	N	fenced	features/vehicle_setting/RULINGS.md
-R-VF138	681b3ea3	cac9a880	N	fenced	features/vehicle_setting/RULINGS.md
+R-VF138	681b3ea3	5c8a065a	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF139	26c01f14	9fc3bd27	N	fenced	features/vehicle_setting/RULINGS.md
 R-VS82	12177e4f	851375d9	N	fenced	features/vehicle_setting/RULINGS.md
 R-VS83	1936a6ab	1ce47311	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF95	876654d9	2559e388	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF140	f2afc86f	1da213c0	N	fenced	features/vehicle_setting/RULINGS.md
 R-VF141	3561aa7f	72f0dabf	N	fenced	features/vehicle_setting/RULINGS.md
-R-VF142	88a3c9a5	ad89997a	N	fenced	features/vehicle_setting/RULINGS.md
+R-VF142	88a3c9a5	6d8b9d05	N	fenced	features/vehicle_setting/RULINGS.md

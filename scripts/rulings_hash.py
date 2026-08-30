@@ -114,20 +114,25 @@ def body_sha(lines: list[str]) -> tuple[str, int]:
 def fenced_body(lines: list[str]) -> tuple[list[str], str]:
     """取條文本體（R-G22′，下放包 57 §二 #1）。
 
-    **本體 = 該節之首個 fenced block 之內容**（不含 ``` 兩行）。
+    **本體 = 該節之全部 fenced block 之內容串接**（不含 ``` 兩行，依出現序，無分隔符）。
+    **取全部而非首個**（下放包 58 §三 #2）：條文分成二框者（如 `R-G23` 與其
+    `[DEFAULT]` 段），**第二框亦為規範內容，取首個即漏掉一半規範**。
+    其偏差方向安全 —— **多算使 sha 多變（可容忍），漏算使規範不受保護（不可容忍）**。
     節內無 fenced block 者**退回整節**，其 `body_kind` 記為 `section` ——
     **該類條之 `body_sha` 與 `section_sha` 相同，R-G13 之假性不符對其未解**
     （上繳包 57 §6 之自評；實測 74 條）。
     首個之後的 fenced block 視為實例或引文，不入本體（實測 19 條有二個以上）。
     """
+    out: list[str] = []
     start = None
     for i, ln in enumerate(lines):
         if ln.lstrip().startswith("```"):
             if start is None:
                 start = i
             else:
-                return lines[start + 1:i], "fenced"
-    return lines, "section"
+                out.extend(lines[start + 1:i])
+                start = None
+    return (out, "fenced") if out else (lines, "section")
 
 
 def extract(path: Path, root: Path) -> list[Ruling]:
