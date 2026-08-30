@@ -11,15 +11,18 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 
 ## R-AM1（Q6）：Phase 0 人工分類
 
+```
 > sniffer 輸出作廢，§一分類表為正式 Phase 0 產出。slug = `audio_mgmt` 併准。
 
 （R-AM4 = slug 併准，併入本條；01 包 §首行「Feature slug：`audio_mgmt`（R-AM4 併准）」。）
 
 執行層回報：`scripts/intake.py` 未執行、亦不執行；01 包 §一之九件分類表
 為本 feature Phase 0 之唯一正式產出。
+```
 
 ## R-AM2（Q2）：錨源 = 兩本 CFTS Basic Report
 
+```
 > specification_reference 之錨定物件池 = 檔 3、檔 4 兩本 Basic Report 之
 > Source Requirement ID 欄（Polarion 7 位 ObjectID），格式依 IN §10.7(a)
 > `CFTS019-{ObjectID}`。因正式橋接欄全空（F1），對位方法為：
@@ -29,9 +32,11 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 > 並逐條登記，不硬配、不取語意相近他列代入（IN §8.4.1 / R-13 同理）。
 > 內容對位屬 Pei 本裁定明文授權之例外，僅限本 feature、僅限此橋；
 > DR-AM1 之上游正式對照表到位後，全簿回填校正。
+```
 
 ### R-AM2′（修訂，2026-08-26，Pei 裁：「2採 R-AM2′准 DR-AM3發」）
 
+```
 > 錨源池 = (a) 兩本 CFTS Basic Report（主池，優先）；
 > (b) 全文 PDF 中 State:Approved 之需求物件（**僅限該物件不在 (a) 時啟用**）。
 > 凡取自 (b) 者：reasoning 逐條註明「池外錨，全文佐證」，並列入該批上繳包
@@ -51,9 +56,11 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 `CFTS019-{object_id}`；兩本錨源分別掛 `paths.sys1_export`（Part 1）與
 `paths.sys1_export_part2`（Part 2），因 `feature_config.resolve_path`
 要求每鍵恰好 glob 到 1 檔，不得以單鍵表達。
+```
 
 ## R-AM3（Q1）：工作簿基底 = BLANK + R-G1 模板
 
+```
 > 新 TC 簿自 R-G1 模板空白起建。既存 `SWQT_AudioAACP` 簿之 50 條舊 TC
 > 原封不動、不續寫、不回修，僅作參考。理由：舊 TC 錨定 SWE1-PROJ-203
 > （Projection 需求命名空間），與本案 SWE1_AMM 命名空間無交集，混簿將
@@ -63,26 +70,33 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 執行層回報：`done_region.detection` 設 `none`（BLANK 下無 done region，
 留 author_value 會使 content_hash 在 0 列上恆真）；`fill_test_group_set`
 設 `true`（canon §2 之 BLANK 綁定）。
+```
 
 ## R-AM5（Q3）：驗證範圍 = SWE.1 之 318 葉
 
+```
 > 範圍 = SWE.1 報告全部 318 列（317 唯一 SWE ID，含 F2 碰撞之兩列均入範圍）。
 > PF / EQ / DSPPP 之 177 條需求範圍外，不擅自擴編，以 §六 揭露表列為
 > coverage gap，交付時隨簿揭露。
+```
 
 ## R-AM6（Q4）：SWE1_AMM_076 碰撞之交付欄處置
 
+```
 > 兩條 076 各自出 TC。交付簿 `Requirement or Design ID` 欄**均照抄
 > `SWE1_AMM_076`**（上游僅存在此字串；自造 `076a/b` 寫入交付欄 = 造 ID，
 > 追溯反斷）。兩組 TC 之區分由各自 test_item 內容與 specification_reference
 > （錨至不同 CFTS 物件）承載。「076a（=SYS-RA-AMM-242）／076b（=SYS-RA-AMM-246）」
 > 代號僅限分析層文件內部追蹤使用，禁入交付欄。DR-AM2 上呈請上游改號，
 > 改號後交付欄隨改。（Pei 於 Q4 提問後說明，無異議即照此辦。）
+```
 
 ## R-AM7（Q5）：req_id 欄格式
 
+```
 > `Requirement or Design ID` 欄照抄 SWE.1 原文底線式 `SWE1_AMM_{NNN}`，
 > 不改寫為連字號、不增删前綴。
+```
 
 ---
 

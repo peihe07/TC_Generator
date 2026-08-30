@@ -181,7 +181,14 @@ def extract(path: Path, root: Path) -> list[Ruling]:
                 break
         section = lines[idx + 1:end]
         sha, n = body_sha(section)
-        bl, bkind = fenced_body(section)
+        # 本體之取材止於**下一個任何層級之標題**（下放包 60 T72b 實測）——
+        # 否則巢狀之子條（`## R-AM2` 下之 `### R-AM2′`）其框會被算進母條之本體。
+        own = section
+        for k, ln in enumerate(section):
+            if RE_HEADING.match(ln):
+                own = section[:k]
+                break
+        bl, bkind = fenced_body(own)
         bsha, _ = body_sha(bl)
         if RE_GROUP.match(slug):
             kind = "group"
