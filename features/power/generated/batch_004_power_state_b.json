@@ -190,9 +190,9 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Partial Operation\"AND signal LTM_OperationalModeSts has a transition to \"Ignition Pre Off\" OR to \"Ignition Off\" valueTHEN\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to TLM Standby state)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Partial Operation\"",
-      "input_test_data": "LTM_OperationalModeSts: transition to \"Ignition Pre Off\"",
-      "test_procedure": "1. Send the transition listed in Input Test Data\n2. Read TLM_Status.Info and $Telematic_Power$ to check the resulting state",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_PARTIAL_OPERATION",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send the transition LTM_OperationalModeSts: transition to \"Ignition Pre Off\"\n2. Read TLM_Status.Info and $Telematic_Power$ to check the resulting state",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to TLM Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -201,12 +201,12 @@
       "split_reason": "本條驗 OR 之左支 Ignition Pre Off",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 OR 之左支 Ignition Pre Off"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -216,9 +216,9 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Partial Operation\"AND signal LTM_OperationalModeSts has a transition to \"Ignition Pre Off\" OR to \"Ignition Off\" valueTHEN\n\n(read TLM_Status.Info and $Telematic_Power$ -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to TLM Standby state)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Partial Operation\"",
-      "input_test_data": "LTM_OperationalModeSts: transition to \"Ignition Off\"",
-      "test_procedure": "1. Send the transition listed in Input Test Data\n2. Read TLM_Status.Info and $Telematic_Power$ to check the resulting state",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_PARTIAL_OPERATION",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send the transition LTM_OperationalModeSts: transition to \"Ignition Off\"\n2. Read TLM_Status.Info and $Telematic_Power$ to check the resulting state",
       "expected_result": "1. The TLM registers the transition without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to TLM Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -227,12 +227,12 @@
       "split_reason": "本條驗 OR 之右支 Ignition Off",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 OR 之右支 Ignition Off"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -242,10 +242,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "THEN TLM has to set signal Antitheft_Activation.Req to \"True\" value. AND TLM has to show a proper Splash Screen, depending on  \"Splash Screen logo visualization\" logics, for Response_Wait_Time\n\n(read the antitheft request and the screen -> A proper Splash Screen is shown for Response_Wait_Time)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Partial Operation\"",
-      "input_test_data": "Front_Panel_OnOff.Req: \"Not_Pressed\" to \"Pressed\"",
-      "test_procedure": "1. Send the transition listed in Input Test Data\n2. Read the antitheft request and the screen to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"True\"\n2. A proper Splash Screen is shown for Response_Wait_Time",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_PARTIAL_OPERATION",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read the antitheft request and the screen to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -253,8 +253,8 @@
       "split_reason": "本條驗 Partial Operation 之前面板觸發",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P394 B5；規則 無)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown for Response_Wait_Time`",
       "split_index": 1
     },
     {
@@ -264,10 +264,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "Behaviour 1: \"Auto_SwitchOn_Setting.Req == Active\":TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time. At Response_wait_Time expired TLM has to set VPLastStatus to “On” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and it passes to TLM Full-Operation state.\n\n(read the antitheft request, the screen and the TLM state -> VPLastStatus reads \"On\" and TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Auto_SwitchOn_Setting.Req reads \"Active\"",
-      "input_test_data": "Antitheft_Result.Info: \"Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request, the screen and the TLM state to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\" and a proper Splash Screen is shown for Response_Wait_Time\n2. VPLastStatus reads \"On\" and TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request, the screen and the TLM state to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. VPLastStatus reads \"On\" and TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -275,12 +275,12 @@
       "split_reason": "本條驗 Behaviour 1（Active）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Behaviour 1（Active）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -290,10 +290,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "Behaviour 2: \"Auto_SwitchOn_Setting.Req == Not_Active \":TLM has to set VPLastStatus to “Off” value and TLM_Status.Info and $Telematic_Power$ to \"Idle\" value and it passes to TLM Idle state.\n\n(read the antitheft request and the TLM state -> VPLastStatus reads \"Off\" and TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Auto_SwitchOn_Setting.Req reads \"Not_Active\"",
-      "input_test_data": "Antitheft_Result.Info: \"Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request and the TLM state to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\"\n2. VPLastStatus reads \"Off\" and TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request and the TLM state to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. VPLastStatus reads \"Off\" and TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -301,12 +301,12 @@
       "split_reason": "本條驗 Behaviour 2（Not_Active）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Behaviour 2（Not_Active）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -316,10 +316,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "Behaviour 1: \"Auto_SwitchOn_Setting.Req == Active\":TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\" logics, for Response_Wait_Time. At Response_wait_Time expired TLM has to set VPLastStatus to “On” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and it passes to TLM Full-Operation state.\n\n(read the screen and the TLM state -> TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Auto_SwitchOn_Setting.Req reads \"Recall_Last\"\n3. VPLastStatus reads \"On\"",
-      "input_test_data": "Antitheft_Result.Info: \"Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the screen and the TLM state to check the resulting behavior",
-      "expected_result": "1. A proper Splash Screen is shown for Response_Wait_Time\n2. TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. VPLastStatus reads \"On\"",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the screen and the TLM state to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n2. TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -327,12 +327,12 @@
       "split_reason": "本條驗 Behaviour 3 之 VPLastStatus On 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Behaviour 3 之 VPLastStatus On 分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown for Response_Wait_Time`",
       "split_index": 3
     },
     {
@@ -342,10 +342,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "Behaviour 2: \"Auto_SwitchOn_Setting.Req == Not_Active \":TLM has to set VPLastStatus to “Off” value and TLM_Status.Info and $Telematic_Power$ to \"Idle\" value and it passes to TLM Idle state.\n\n(read the antitheft request and the TLM state -> TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Auto_SwitchOn_Setting.Req reads \"Recall_Last\"\n3. VPLastStatus reads \"Off\"",
-      "input_test_data": "Antitheft_Result.Info: \"Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request and the TLM state to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\"\n2. TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. VPLastStatus reads \"Off\"",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request and the TLM state to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -353,12 +353,12 @@
       "split_reason": "本條驗 Behaviour 3 之 VPLastStatus Off 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Behaviour 3 之 VPLastStatus Off 分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 4
     },
     {
@@ -518,7 +518,7 @@
       "test_item": "When the HU shall power down in a normal sequence into Suspend to RAM. The following action shall be taken:If Suspend to RAM is allowed, HU shall start an 8 day timer and shall enter low power mode.\n\n(read the HU timer and its power mode -> The HU enters low power mode)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Suspend to RAM is allowed on the HU",
       "input_test_data": "NA",
-      "test_procedure": "1. Bring the HU through a normal power down sequence\n2. Read the HU timer and its power mode to check the resulting behavior",
+      "test_procedure": "1. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）\n2. Read the HU timer and its power mode to check the resulting behavior",
       "expected_result": "1. The HU starts an 8 day timer\n2. The HU enters low power mode",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.9.12",
       "priority": "P0",
@@ -527,8 +527,8 @@
       "split_reason": "本條驗 Suspend to RAM 之正常關機序列",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P394 B5；規則 無)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `Bring the HU through a normal power down sequence`",
       "split_index": 1
     },
     {
@@ -567,7 +567,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition Pre Off working condition",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the TLM to the status related to TLM OFF with Network on\n2. Read the antitheft request to check its value on entering the status",
-      "expected_result": "1. The TLM reaches the status related to TLM OFF with Network on\n2. Antitheft_Activation.Req reads \"False\"",
+      "expected_result": "1. The TLM reaches the status related to TLM OFF with Network on\n2. PENDING: DR-PW23 Antitheft_Activation.Req",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.6",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -575,12 +575,12 @@
       "split_reason": "本條驗 Network on 狀態之進入動作",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Network on 狀態之進入動作"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -619,7 +619,7 @@
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in an Ignition Pre Off working condition",
       "input_test_data": "NA",
       "test_procedure": "1. Bring the TLM to the status related to TLM OFF with Network off\n2. Read the antitheft request to check its value on entering the status",
-      "expected_result": "1. The TLM reaches the status related to TLM OFF with Network off\n2. Antitheft_Activation.Req reads \"False\"",
+      "expected_result": "1. The TLM reaches the status related to TLM OFF with Network off\n2. PENDING: DR-PW23 Antitheft_Activation.Req",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.7",
       "priority": "P0",
       "design_method": "功能測試 (Functional based ; no specific technique)",
@@ -627,12 +627,12 @@
       "split_reason": "本條驗 Network off 狀態之進入動作",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Network off 狀態之進入動作"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -642,7 +642,7 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "The HU shall keep the backlight OFF during Standby mode except if it is required to display an HMI screen.\n\n(read the display backlight -> The backlight is OFF)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is in Standby mode\n3. No HMI screen is required",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY\n3. No HMI screen is required",
       "input_test_data": "NA",
       "test_procedure": "1. Leave the HU in Standby mode without requesting an HMI screen\n2. Read the display backlight to check whether it stays off",
       "expected_result": "1. The HU stays in Standby mode\n2. The backlight is OFF",
@@ -653,12 +653,12 @@
       "split_reason": "本條驗 Standby 之背光關閉常態",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Standby 之背光關閉常態"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -668,7 +668,7 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "The HU shall keep the backlight OFF during Standby mode except if it is required to display an HMI screen.\n\n(read the display backlight -> The backlight is not kept OFF while the HMI screen is displayed)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The HU is in Standby mode",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY",
       "input_test_data": "NA",
       "test_procedure": "1. Request an HMI screen to be displayed while the HU is in Standby mode\n2. Read the display backlight to check the exception of this clause",
       "expected_result": "1. The HMI screen is displayed\n2. The backlight is not kept OFF while the HMI screen is displayed",
@@ -679,12 +679,12 @@
       "split_reason": "本條驗 except 分支 —— 需顯示 HMI 畫面時",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 except 分支 —— 需顯示 HMI 畫面時"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -694,10 +694,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Standby\" OR “Sleep”AND Front_Panel_OnOff.Req has a transition from “Not_Pressed” value to “Pressed” value with Engineering Line deactivatedTHENTLM has to set signal Antitheft_Activation.Req to \"True\" value AND TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\", for Response_Wait_Time. For Splash Screen logo, refer to TLM HMI Specification\n\n(read the antitheft request and the screen -> A proper Splash Screen is shown for Response_Wait_Time)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\"\n3. The Engineering Line is deactivated",
-      "input_test_data": "Front_Panel_OnOff.Req: \"Not_Pressed\" to \"Pressed\"",
-      "test_procedure": "1. Send the transition listed in Input Test Data\n2. Read the antitheft request and the screen to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"True\"\n2. A proper Splash Screen is shown for Response_Wait_Time",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY\n3. The Engineering Line is deactivated",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read the antitheft request and the screen to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -705,12 +705,12 @@
       "split_reason": "本條驗 Front_Panel_OnOff.Req ＋ OR 之左支 Standby",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Front_Panel_OnOff.Req ＋ OR 之左支 Standby"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown for Response_Wait_Time`",
       "split_index": 1
     },
     {
@@ -720,10 +720,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Standby\" OR “Sleep”AND Front_Panel_OnOff.Req has a transition from “Not_Pressed” value to “Pressed” value with Engineering Line deactivatedTHENTLM has to set signal Antitheft_Activation.Req to \"True\" value AND TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\", for Response_Wait_Time. For Splash Screen logo, refer to TLM HMI Specification\n\n(read the antitheft request and the screen -> A proper Splash Screen is shown for Response_Wait_Time)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Sleep\"\n3. The Engineering Line is deactivated",
-      "input_test_data": "Front_Panel_OnOff.Req: \"Not_Pressed\" to \"Pressed\"",
-      "test_procedure": "1. Send the transition listed in Input Test Data\n2. Read the antitheft request and the screen to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"True\"\n2. A proper Splash Screen is shown for Response_Wait_Time",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_SLEEP\n3. The Engineering Line is deactivated",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Front_Panel_OnOff.Req\n2. Read the antitheft request and the screen to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -731,12 +731,12 @@
       "split_reason": "本條驗 Front_Panel_OnOff.Req ＋ OR 之右支 Sleep",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Front_Panel_OnOff.Req ＋ OR 之右支 Sleep"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown for Response_Wait_Time`",
       "split_index": 2
     },
     {
@@ -746,10 +746,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Standby\" OR “Sleep”AND CLIMATIC_PANEL.Radio_Btn0 has a transition from “Not_Pressed” value to “Pressed” value with Engineering Line deactivatedTHENTLM has to set signal Antitheft_Activation.Req to \"True\" value AND TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\", for Response_Wait_Time. For Splash Screen logo, refer to TLM HMI Specification\n\n(read the antitheft request and the screen -> A proper Splash Screen is shown for Response_Wait_Time)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\"\n3. The Engineering Line is deactivated",
-      "input_test_data": "CLIMATIC_PANEL.Radio_Btn0: \"Not_Pressed\" to \"Pressed\"",
-      "test_procedure": "1. Send the transition listed in Input Test Data\n2. Read the antitheft request and the screen to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"True\"\n2. A proper Splash Screen is shown for Response_Wait_Time",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY\n3. The Engineering Line is deactivated",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send the transition CLIMATIC_PANEL.Radio_Btn0: \"Not_Pressed\" to \"Pressed\"\n2. Read the antitheft request and the screen to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -757,12 +757,12 @@
       "split_reason": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ OR 之左支 Standby",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ OR 之左支 Standby"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown for Response_Wait_Time`",
       "split_index": 3
     },
     {
@@ -772,10 +772,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Standby\" OR “Sleep”AND CLIMATIC_PANEL.Radio_Btn0 has a transition from “Not_Pressed” value to “Pressed” value with Engineering Line deactivatedTHENTLM has to set signal Antitheft_Activation.Req to \"True\" value AND TLM has to show a proper Splash Screen, depending on par. \"Splash Screen logo visualization\", for Response_Wait_Time. For Splash Screen logo, refer to TLM HMI Specification\n\n(read the antitheft request and the screen -> A proper Splash Screen is shown for Response_Wait_Time)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Sleep\"\n3. The Engineering Line is deactivated",
-      "input_test_data": "CLIMATIC_PANEL.Radio_Btn0: \"Not_Pressed\" to \"Pressed\"",
-      "test_procedure": "1. Send the transition listed in Input Test Data\n2. Read the antitheft request and the screen to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"True\"\n2. A proper Splash Screen is shown for Response_Wait_Time",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_SLEEP\n3. The Engineering Line is deactivated",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send the transition CLIMATIC_PANEL.Radio_Btn0: \"Not_Pressed\" to \"Pressed\"\n2. Read the antitheft request and the screen to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P3",
       "design_method": "決策表 (Decision Table Testing)",
@@ -783,12 +783,12 @@
       "split_reason": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ OR 之右支 Sleep",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ OR 之右支 Sleep"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `A proper Splash Screen is shown for Response_Wait_Time`",
       "split_index": 4
     },
     {
@@ -798,10 +798,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF Antitheft_Result.Info == \"Not_Successfully\", THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and to stay in the original state (Standby OR Sleep), showing proper HMI Antitheft screens if needed, for a maximum time equal to Timeout1.\n\n(read the antitheft request and the TLM state -> The TLM stays in the original Standby state for at most Timeout1, with proper HMI Antitheft screens)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\"",
-      "input_test_data": "Antitheft_Result.Info: \"Not_Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request and the TLM state to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\"\n2. The TLM stays in the original Standby state for at most Timeout1, with proper HMI Antitheft screens",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request and the TLM state to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -809,12 +809,12 @@
       "split_reason": "本條驗 OR 之左支 Standby",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 OR 之左支 Standby"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The TLM stays in the original Standby state for at most Timeout1, with`",
       "split_index": 1
     },
     {
@@ -824,10 +824,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF Antitheft_Result.Info == \"Not_Successfully\", THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and to stay in the original state (Standby OR Sleep), showing proper HMI Antitheft screens if needed, for a maximum time equal to Timeout1.\n\n(read the antitheft request and the TLM state -> The TLM stays in the original Sleep state for at most Timeout1, with proper HMI Antitheft screens)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Sleep\"",
-      "input_test_data": "Antitheft_Result.Info: \"Not_Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request and the TLM state to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\"\n2. The TLM stays in the original Sleep state for at most Timeout1, with proper HMI Antitheft screens",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_SLEEP",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request and the TLM state to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -835,12 +835,12 @@
       "split_reason": "本條驗 OR 之右支 Sleep",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 OR 之右支 Sleep"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The TLM stays in the original Sleep state for at most Timeout1, with p`",
       "split_index": 2
     },
     {
@@ -850,9 +850,9 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF Rear_View_Camera PROXI parameter == \"Present\" AND Rear_Camera_Enable.Info == \"True\" THENeven IF Antitheft_Result.Info is still equal to \"In_Progress\" or \"Not_Successfully\", TLM shall provide audio and video for rear view camera component, as soon as the images are available on TLM and as long as Rear_Camera_Enable.Info == \"True\".Refer to VF551 for details about video availability requirements on TLM screen\n\n(read the screen and the audio path -> The TLM provides audio and video for the rear view camera component as soon as the images are available)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The Rear_View_Camera PROXI parameter reads \"Present\"\n3. Rear_Camera_Enable.Info reads \"True\"",
-      "input_test_data": "Antitheft_Result.Info: \"In_Progress\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the screen and the audio path to check the rear view camera component",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The Rear_View_Camera PROXI parameter reads \"Present\"\n3. PENDING: DR-PW23 Rear_Camera_Enable.Info",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the screen and the audio path to check the rear view camera component",
       "expected_result": "1. The TLM registers the value without a bus error\n2. The TLM provides audio and video for the rear view camera component as soon as the images are available",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -861,12 +861,12 @@
       "split_reason": "本條驗 OR 之左支 In_Progress",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 OR 之左支 In_Progress"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -876,10 +876,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF Rear_View_Camera PROXI parameter == \"Present\" AND Rear_Camera_Enable.Info == \"True\" THENeven IF Antitheft_Result.Info is still equal to \"In_Progress\" or \"Not_Successfully\", TLM shall provide audio and video for rear view camera component, as soon as the images are available on TLM and as long as Rear_Camera_Enable.Info == \"True\".Refer to VF551 for details about video availability requirements on TLM screen\n\n(read the screen and the audio path -> The TLM provides audio and video for the rear view camera component as long as Rear_Camera_Enable.Info reads \"True\")",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The Rear_View_Camera PROXI parameter reads \"Present\"\n3. Rear_Camera_Enable.Info reads \"True\"",
-      "input_test_data": "Antitheft_Result.Info: \"Not_Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the screen and the audio path to check the rear view camera component",
-      "expected_result": "1. The TLM registers the value without a bus error\n2. The TLM provides audio and video for the rear view camera component as long as Rear_Camera_Enable.Info reads \"True\"",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The Rear_View_Camera PROXI parameter reads \"Present\"\n3. PENDING: DR-PW23 Rear_Camera_Enable.Info",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the screen and the audio path to check the rear view camera component",
+      "expected_result": "1. The TLM registers the value without a bus error\n2. PENDING: DR-PW23 Rear_Camera_Enable.Info",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -887,12 +887,12 @@
       "split_reason": "本條驗 OR 之右支 Not_Successfully",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 OR 之右支 Not_Successfully"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -902,10 +902,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF Antitheft_Result.Info == \"Not_Successfully\", THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and to stay in the original state (Standby OR Sleep),  showing proper HMI Antitheft screens, if needed (see VF210).\n\n(read the antitheft request, the TLM state and the screen -> The TLM stays in the original Standby state and proper HMI Antitheft screens are shown if needed)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\"",
-      "input_test_data": "Antitheft_Result.Info: \"Not_Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request, the TLM state and the screen to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\"\n2. The TLM stays in the original Standby state and proper HMI Antitheft screens are shown if needed",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request, the TLM state and the screen to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -913,12 +913,12 @@
       "split_reason": "本條驗 OR 之左支 Standby",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 OR 之左支 Standby"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The TLM stays in the original Standby state and proper HMI Antitheft s`",
       "split_index": 1
     },
     {
@@ -928,10 +928,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF Antitheft_Result.Info == \"Not_Successfully\", THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and to stay in the original state (Standby OR Sleep),  showing proper HMI Antitheft screens, if needed (see VF210).\n\n(read the antitheft request, the TLM state and the screen -> The TLM stays in the original Sleep state and proper HMI Antitheft screens are shown if needed)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Sleep\"",
-      "input_test_data": "Antitheft_Result.Info: \"Not_Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request, the TLM state and the screen to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\"\n2. The TLM stays in the original Sleep state and proper HMI Antitheft screens are shown if needed",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_SLEEP",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request, the TLM state and the screen to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -939,12 +939,12 @@
       "split_reason": "本條驗 OR 之右支 Sleep",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 OR 之右支 Sleep"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The TLM stays in the original Sleep state and proper HMI Antitheft scr`",
       "split_index": 2
     },
     {
@@ -954,10 +954,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "Behaviour 1: \"Auto_SwitchOn_Setting.Req == Active\"After the LTM_OperationalModeSts.Info transition, TLM sets TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and it passes to TLM Full-Operation state\n\n(read the antitheft request and the TLM state -> TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Auto_SwitchOn_Setting.Req reads \"Active\"\n3. The LTM_OperationalModeSts.Info transition has occurred",
-      "input_test_data": "Antitheft_Result.Info: \"Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request and the TLM state to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\"\n2. TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. The LTM_OperationalModeSts.Info transition has occurred",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request and the TLM state to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -965,12 +965,12 @@
       "split_reason": "本條驗 Behaviour 1（Active）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Behaviour 1（Active）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -980,10 +980,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "Behaviour 2: \"Auto_SwitchOn_Setting.Req == Not_Active \":         After the LTM_OperationalModeSts.Info transition, TLM sets TLM_Status.Info and $Telematic_Power$ to \"Idle\" value and it passes to TLM Idle state\n\n(read the antitheft request and the TLM state -> TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Auto_SwitchOn_Setting.Req reads \"Not_Active\"\n3. The LTM_OperationalModeSts.Info transition has occurred",
-      "input_test_data": "Antitheft_Result.Info: \"Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request and the TLM state to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\"\n2. TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. The LTM_OperationalModeSts.Info transition has occurred",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request and the TLM state to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -991,12 +991,12 @@
       "split_reason": "本條驗 Behaviour 2（Not_Active）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Behaviour 2（Not_Active）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -1006,9 +1006,9 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "Behaviour 1: \"Auto_SwitchOn_Setting.Req == Active\"After the LTM_OperationalModeSts.Info transition, TLM sets TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and it passes to TLM Full-Operation state\n\n(read the TLM state -> TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Auto_SwitchOn_Setting.Req reads \"Recall_Last\"\n3. VPLastStatus reads \"ON\"",
-      "input_test_data": "Antitheft_Result.Info: \"Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the TLM state to check the resulting behavior",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. VPLastStatus reads \"ON\"",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the TLM state to check the resulting behavior",
       "expected_result": "1. The TLM registers the value without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1017,12 +1017,12 @@
       "split_reason": "本條驗 Behaviour 3 之 VPLastStatus ON 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Behaviour 3 之 VPLastStatus ON 分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 3
     },
     {
@@ -1032,9 +1032,9 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "Behaviour 3: \"Auto_SwitchOn_Setting.Req  == Recall_Last\":IF VPLastStatus == ON then TLM sets TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\" value and it passes to TLM Full-Operation stateIF VPLastStatus == OFF then TLM sets TLM_Status.Info and $Telematic_Power$ to \"Idle\" value and it passes to TLM Idle state\n\n(read the TLM state -> TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Auto_SwitchOn_Setting.Req reads \"Recall_Last\"\n3. VPLastStatus reads \"OFF\"",
-      "input_test_data": "Antitheft_Result.Info: \"Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the TLM state to check the resulting behavior",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. VPLastStatus reads \"OFF\"",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the TLM state to check the resulting behavior",
       "expected_result": "1. The TLM registers the value without a bus error\n2. TLM_Status.Info and $Telematic_Power$ read \"Idle\" and the TLM passes to TLM Idle state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1043,12 +1043,12 @@
       "split_reason": "本條驗 Behaviour 3 之 VPLastStatus OFF 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Behaviour 3 之 VPLastStatus OFF 分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 4
     },
     {
@@ -1084,10 +1084,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF Antitheft_Result.Info == \"Not_Successfully\", THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and to stay blocked in Idle state (see VF210 for blocked meaning), showing proper HMI Antitheft screens, if needed (see VF210).\n\n(read the antitheft request, the TLM state and the screen -> The TLM stays blocked in Idle state and proper HMI Antitheft screens are shown if needed)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Idle\"",
-      "input_test_data": "Antitheft_Result.Info: \"Not_Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request, the TLM state and the screen to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\"\n2. The TLM stays blocked in Idle state and proper HMI Antitheft screens are shown if needed",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_IDLE",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request, the TLM state and the screen to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1095,8 +1095,8 @@
       "split_reason": "本條驗 Idle 之封鎖分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P394 B5；規則 無)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The TLM stays blocked in Idle state and proper HMI Antitheft screens a`",
       "split_index": 1
     },
     {
@@ -1117,8 +1117,8 @@
       "split_reason": "本條驗 ELSE 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "本 leaf 之錨點原文以 `ELSE` 起首，其**前件不在本 leaf 之錨點內** ——前提僅能寫成「前一條款之條件未成立」。已列為觀察，見上繳 §五。",
+      "remarks": "(R-P394 B5；規則 無)",
+      "reasoning_note": "本 leaf 之錨點原文以 `ELSE` 起首，其**前件不在本 leaf 之錨點內** ——前提僅能寫成「前一條款之條件未成立」。已列為觀察，見上繳 §五。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -1129,9 +1129,9 @@
       "test_set": "Power State",
       "test_item": "IF Antitheft_Result.Info == \"Successfully\"THEN TLM has to set Antitheft_Activation.Req back to \"False\" value ANDTLM has to set VPLastStatus to “On” value and TLM_Status.Info and $Telematic_Power$ to \"Full-Operation\"   value and then it passes to TLM Full-Operation state.\n\n(read the antitheft request, the stored last status and the TLM state -> TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is running the antitheft check",
-      "input_test_data": "Antitheft_Result.Info: \"Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request, the stored last status and the TLM state to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\" and VPLastStatus reads \"On\"\n2. TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request, the stored last status and the TLM state to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. TLM_Status.Info and $Telematic_Power$ read \"Full-Operation\" and the TLM passes to TLM Full-Operation state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -1139,8 +1139,8 @@
       "split_reason": "本條驗 Successfully 分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P394 B5；規則 無)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -1150,10 +1150,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF Antitheft_Result.Info == \"Not_Successfully\"THEN TLM has to set Antitheft_Activation.Req back to \"False\" value and to stay in the original state (Partial Operation),  showing proper HMI Antitheft screens, if needed (see VF210).\n\n(read the antitheft request, the TLM state and the screen -> The TLM stays in the original Partial Operation state and proper HMI Antitheft screens are shown if needed)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Partial Operation\"",
-      "input_test_data": "Antitheft_Result.Info: \"Not_Successfully\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the antitheft request, the TLM state and the screen to check the resulting behavior",
-      "expected_result": "1. Antitheft_Activation.Req reads \"False\"\n2. The TLM stays in the original Partial Operation state and proper HMI Antitheft screens are shown if needed",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_PARTIAL_OPERATION",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 Antitheft_Result.Info\n2. Read the antitheft request, the TLM state and the screen to check the resulting behavior",
+      "expected_result": "1. PENDING: DR-PW23 Antitheft_Activation.Req\n2. PENDING: DR-PW27 該規格措辭之逐字定義（原措辭見 reasoning_note）",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -1161,8 +1161,8 @@
       "split_reason": "本條驗 Partial Operation 之留置分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P394 B5；規則 無)",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R4、R7。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**R7 之原句保存（69 包）**：以下句因含 R-P353 末段所禁之措辭（`proper` / `as defined` / `normal`）而以 `PENDING: DR-PW27` 取代，原文存此：\n- `The TLM stays in the original Partial Operation state and proper HMI A`",
       "split_index": 1
     },
     {
@@ -1298,9 +1298,9 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "The ETM shall use $VC_SpecialPKG_IC$ = [Tungsten (147)] to display the Klipsch Splash Screen if $VC_MODEL_YEAR$ =    [2025] and $VC_VEH_LINE$ = [DT].      The ETM shall use $SplashScreen_Type$ = [Klipsch (7)]  to display the Klipsch Splash Screen if $VC_MODEL_YEAR$ > [2025] and $VC_VEH_LINE$ = [DT].\n\n(read the shown Splash Screen -> The Klipsch Splash Screen is displayed)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ETM carries $VC_MODEL_YEAR$ equal to \"2025\"\n3. The ETM carries $VC_VEH_LINE$ equal to \"DT\"",
-      "input_test_data": "$VC_SpecialPKG_IC$: \"Tungsten (147)\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown Splash Screen to check which screen the ETM displays",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ETM carries VC_MODEL_YEAR equal to \"2025\"\n3. The ETM carries VC_VEH_LINE equal to \"DT\"\n4. (DR-PW28)",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send the value $VC_SpecialPKG_IC$: \"Tungsten (147)\"\n2. Read the shown Splash Screen to check which screen the ETM displays",
       "expected_result": "1. The ETM accepts the configuration value\n2. The Klipsch Splash Screen is displayed",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P1",
@@ -1309,12 +1309,12 @@
       "split_reason": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-196 五欄逐字相同而 Req ID 不同（SWE-PM-055 / SWE-PM-102），二列皆保留不得合併；互註對方 tc_id)",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-196 五欄逐字相同而 Req ID 不同（SWE-PM-055 / SWE-PM-102），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "boundary",
         "delta": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -1324,9 +1324,9 @@
       "test_group": "Power Management",
       "test_set": "Startup Display",
       "test_item": "The ETM shall use $VC_SpecialPKG_IC$ = [Tungsten (147)] to display the Klipsch Splash Screen if $VC_MODEL_YEAR$ =    [2025] and $VC_VEH_LINE$ = [DT].      The ETM shall use $SplashScreen_Type$ = [Klipsch (7)]  to display the Klipsch Splash Screen if $VC_MODEL_YEAR$ > [2025] and $VC_VEH_LINE$ = [DT].\n\n(read the shown Splash Screen -> The Klipsch Splash Screen is displayed)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ETM carries $VC_MODEL_YEAR$ greater than \"2025\"\n3. The ETM carries $VC_VEH_LINE$ equal to \"DT\"",
-      "input_test_data": "$SplashScreen_Type$: \"Klipsch (7)\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the shown Splash Screen to check which screen the ETM displays",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The ETM carries VC_MODEL_YEAR greater than \"2025\"\n3. The ETM carries VC_VEH_LINE equal to \"DT\"\n4. (DR-PW28)",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send the value $SplashScreen_Type$: \"Klipsch (7)\"\n2. Read the shown Splash Screen to check which screen the ETM displays",
       "expected_result": "1. The ETM accepts the configuration value\n2. The Klipsch Splash Screen is displayed",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.16",
       "priority": "P1",
@@ -1335,12 +1335,12 @@
       "split_reason": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-197 五欄逐字相同而 Req ID 不同（SWE-PM-055 / SWE-PM-102），二列皆保留不得合併；互註對方 tc_id)",
+      "remarks": "(R-P357(b)：與 NR1L-PowerManagement-197 五欄逐字相同而 Req ID 不同（SWE-PM-055 / SWE-PM-102），二列皆保留不得合併；互註對方 tc_id) (R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "boundary",
         "delta": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R3、R6。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -1394,9 +1394,9 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Standby\"AND a Network Sleep request occursTHEN, provided that the boot of TLM has been completed, TLM has to set TLM_Status.Info and $Telematic_Power$ to “Sleep” value and then it has to pass to Sleep state AND Shutdown_Time starts.\n\n(read the TLM state and the shutdown counter -> Shutdown_Time starts)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\"\n3. The boot of the TLM has been completed",
-      "input_test_data": "A Network Sleep request",
-      "test_procedure": "1. Send the request listed in Input Test Data\n2. Read the TLM state and the shutdown counter to check the resulting behavior",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY\n3. The boot of the TLM has been completed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send the request A Network Sleep request\n2. Read the TLM state and the shutdown counter to check the resulting behavior",
       "expected_result": "1. TLM_Status.Info and $Telematic_Power$ read \"Sleep\" and the TLM passes to Sleep state\n2. Shutdown_Time starts",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1405,12 +1405,12 @@
       "split_reason": "本條驗 boot 已完成之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 boot 已完成之分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -1420,9 +1420,9 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "If TLM Boot is not ended, TLM has to wait for its end before passing to Sleep state and starting the Shutdown_Time.\n\n(read the TLM state and the shutdown counter at the end of the boot -> Shutdown_Time starts only after the end of the boot)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\"\n3. The boot of the TLM is not ended",
-      "input_test_data": "A Network Sleep request",
-      "test_procedure": "1. Send the request listed in Input Test Data\n2. Read the TLM state and the shutdown counter at the end of the boot to check the wait",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. Apply ENTER_STANDBY\n3. The boot of the TLM is not ended",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send the request A Network Sleep request\n2. Read the TLM state and the shutdown counter at the end of the boot to check the wait",
       "expected_result": "1. The TLM waits for the end of the boot before passing to Sleep state\n2. Shutdown_Time starts only after the end of the boot",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
@@ -1431,12 +1431,12 @@
       "split_reason": "本條驗 boot 未結束之等待分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 boot 未結束之等待分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     }
   ]

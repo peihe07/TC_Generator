@@ -200,7 +200,7 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "These settings could be only done in TLM Full-Operation Status.\n\n(change the offered timeout parameter and read it back -> The parameter reads back the newly selected value)",
-      "pre_conditions": "1. The TLM is in Full-Operation status",
+      "pre_conditions": "1. Apply ENTER_FULL_OPERATION",
       "input_test_data": "NA",
       "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. Change the offered timeout parameter and read it back to check that the change is accepted",
       "expected_result": "1. The timeout setting entry is shown and its controls are enabled\n2. The parameter reads back the newly selected value",
@@ -211,12 +211,12 @@
       "split_reason": "本條驗肯定分支：Full-Operation 下設定可用",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗肯定分支：Full-Operation 下設定可用"
       },
-      "reasoning_note": "**R-P157(ii)（22 包）**：本條 ER1 述「timeout setting entry 之呈現／其控制項啟用與否」。`4941703` 僅載「These settings could be only done in TLM Full-Operation Status」，**未載該項於 HMI 上如何呈現**。該行為**僅描述觀察到之事實，不以之為 pass/fail 判準** ——本條之判準為 ER2（設定是否被接受／被拒），其依據即該錨點原文。",
+      "reasoning_note": "**R-P157(ii)（22 包）**：本條 ER1 述「timeout setting entry 之呈現／其控制項啟用與否」。`4941703` 僅載「These settings could be only done in TLM Full-Operation Status」，**未載該項於 HMI 上如何呈現**。該行為**僅描述觀察到之事實，不以之為 pass/fail 判準** ——本條之判準為 ER2（設定是否被接受／被拒），其依據即該錨點原文。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -226,7 +226,7 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "These settings could be only done in TLM Full-Operation Status.\n\n(attempt to change the offered timeout parameter and read it back -> The parameter reads back its previous value and no change is stored)",
-      "pre_conditions": "1. The TLM is in Timed status",
+      "pre_conditions": "1. Apply ENTER_TIMED",
       "input_test_data": "NA",
       "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. Attempt to change the offered timeout parameter and read it back to check that it is rejected",
       "expected_result": "1. The timeout setting entry is either absent or shown with its controls disabled\n2. The parameter reads back its previous value and no change is stored",
@@ -237,12 +237,12 @@
       "split_reason": "本條驗否定分支：非 Full-Operation 下設定不可用",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 無)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗否定分支：非 Full-Operation 下設定不可用"
       },
-      "reasoning_note": "**R-P157(ii)（22 包）**：本條 ER1 述「timeout setting entry 之呈現／其控制項啟用與否」。`4941703` 僅載「These settings could be only done in TLM Full-Operation Status」，**未載該項於 HMI 上如何呈現**。該行為**僅描述觀察到之事實，不以之為 pass/fail 判準** ——本條之判準為 ER2（設定是否被接受／被拒），其依據即該錨點原文。",
+      "reasoning_note": "**R-P157(ii)（22 包）**：本條 ER1 述「timeout setting entry 之呈現／其控制項啟用與否」。`4941703` 僅載「These settings could be only done in TLM Full-Operation Status」，**未載該項於 HMI 上如何呈現**。該行為**僅描述觀察到之事實，不以之為 pass/fail 判準** ——本條之判準為 ER2（設定是否被接受／被拒），其依據即該錨點原文。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 （無可施行之規則）。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -252,10 +252,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "User can select Auto_SwitchOn_Setting.Req value equal to \"Active\" (If LTM High is present: \"Timeout1\" = \"00 minutes\");\"Not_Active (If LTM High is present:\"Timeout1\" <> \"00 minutes\");\"Recall_Last\" (If LTM High is present:\"Timeout1 = \"00 minutes\")\n\n(read Auto_SwitchOn_Setting.Req and Timeout1 -> Auto_SwitchOn_Setting.Req reads \"Active\" and Timeout1 reads \"00 minutes\")",
-      "pre_conditions": "1. An LTM High Radio is present in the bench configuration\n2. The TLM is in Full-Operation status",
+      "pre_conditions": "1. An LTM High Radio is present in the bench configuration\n2. Apply ENTER_FULL_OPERATION",
       "input_test_data": "NA",
-      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. Select \"Active\" for Auto_SwitchOn_Setting.Req\n3. Read Auto_SwitchOn_Setting.Req and Timeout1 to check the stored selection",
-      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. The TLM accepts the selection without reverting it\n3. Auto_SwitchOn_Setting.Req reads \"Active\" and Timeout1 reads \"00 minutes\"",
+      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req",
+      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. The TLM accepts the selection without reverting it\n3. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.3.1.2",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -263,12 +263,12 @@
       "split_reason": "本條驗 Auto_SwitchOn_Setting.Req = \"Active\" 之選擇與其 Timeout1 條件",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R4)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Auto_SwitchOn_Setting.Req = \"Active\" 之選擇與其 Timeout1 條件"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -278,10 +278,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "User can select Auto_SwitchOn_Setting.Req value equal to \"Active\" (If LTM High is present: \"Timeout1\" = \"00 minutes\");\"Not_Active (If LTM High is present:\"Timeout1\" <> \"00 minutes\");\"Recall_Last\" (If LTM High is present:\"Timeout1 = \"00 minutes\")\n\n(read Auto_SwitchOn_Setting.Req and Timeout1 -> Auto_SwitchOn_Setting.Req reads \"Not_Active\" and Timeout1 holds a value other than \"00 minutes\")",
-      "pre_conditions": "1. An LTM High Radio is present in the bench configuration\n2. The TLM is in Full-Operation status",
+      "pre_conditions": "1. An LTM High Radio is present in the bench configuration\n2. Apply ENTER_FULL_OPERATION",
       "input_test_data": "NA",
-      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. Select \"Not_Active\" for Auto_SwitchOn_Setting.Req\n3. Read Auto_SwitchOn_Setting.Req and Timeout1 to check the stored selection",
-      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. The TLM accepts the selection without reverting it\n3. Auto_SwitchOn_Setting.Req reads \"Not_Active\" and Timeout1 holds a value other than \"00 minutes\"",
+      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req",
+      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. The TLM accepts the selection without reverting it\n3. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.3.1.2",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -289,12 +289,12 @@
       "split_reason": "本條驗 Auto_SwitchOn_Setting.Req = \"Not_Active\" 之選擇與其 Timeout1 條件",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R4)",
       "distinguishing_axis": {
         "axis": "boundary",
         "delta": "本條驗 Auto_SwitchOn_Setting.Req = \"Not_Active\" 之選擇與其 Timeout1 條件"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -304,10 +304,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "User can select Auto_SwitchOn_Setting.Req value equal to \"Active\" (If LTM High is present: \"Timeout1\" = \"00 minutes\");\"Not_Active (If LTM High is present:\"Timeout1\" <> \"00 minutes\");\"Recall_Last\" (If LTM High is present:\"Timeout1 = \"00 minutes\")\n\n(read Auto_SwitchOn_Setting.Req and Timeout1 -> Auto_SwitchOn_Setting.Req reads \"Recall_Last\" and Timeout1 reads \"00 minutes\")",
-      "pre_conditions": "1. An LTM High Radio is present in the bench configuration\n2. The TLM is in Full-Operation status",
+      "pre_conditions": "1. An LTM High Radio is present in the bench configuration\n2. Apply ENTER_FULL_OPERATION",
       "input_test_data": "NA",
-      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. Select \"Recall_Last\" for Auto_SwitchOn_Setting.Req\n3. Read Auto_SwitchOn_Setting.Req and Timeout1 to check the stored selection",
-      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. The TLM accepts the selection without reverting it\n3. Auto_SwitchOn_Setting.Req reads \"Recall_Last\" and Timeout1 reads \"00 minutes\"",
+      "test_procedure": "1. Open the timeout setting entry in the TLM menu\n2. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req\n3. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req",
+      "expected_result": "1. The timeout setting entry is shown in the TLM menu\n2. The TLM accepts the selection without reverting it\n3. PENDING: DR-PW23 Auto_SwitchOn_Setting.Req",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.3.1.2",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -315,12 +315,12 @@
       "split_reason": "本條驗 Auto_SwitchOn_Setting.Req = \"Recall_Last\" 之選擇與其 Timeout1 條件",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R4)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Auto_SwitchOn_Setting.Req = \"Recall_Last\" 之選擇與其 Timeout1 條件"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 3
     },
     {
@@ -352,9 +352,9 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "MaxCallTimeout starts in the following two conditions: Timeout1 == 00 min: IF Phone_Call.Info is equal to “Active” in TLM Full-Operation state, AND the Ignition working condition switches to \"Ignition Pre Off\" OR to \"Ignition Off\";   Timeout1 <> 00 min: at Timeout1 expiration, only IF Phone_Call.Info is still equal to “Active”;\n\n(read the MaxCallTimeout counter -> The MaxCallTimeout counter is running from the moment of the ignition change)",
-      "pre_conditions": "1. Timeout1 is at \"00 min\"\n2. The TLM is in Full-Operation state\n3. Phone_Call.Info is at \"Active\"",
-      "input_test_data": "Ignition working condition: \"Ignition Pre Off\"",
-      "test_procedure": "1. Switch the ignition working condition to the value listed in Input Test Data\n2. Read the MaxCallTimeout counter to check that it started",
+      "pre_conditions": "1. Timeout1 is at \"00 min\"\n2. Apply ENTER_FULL_OPERATION\n3. PENDING: DR-PW23 Phone_Call.Info",
+      "input_test_data": "NA",
+      "test_procedure": "1. Switch the ignition working condition to the value Ignition working condition: \"Ignition Pre Off\"\n2. Read the MaxCallTimeout counter to check that it started",
       "expected_result": "1. The TLM leaves Full-Operation state without dropping the active call\n2. The MaxCallTimeout counter is running from the moment of the ignition change",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P1",
@@ -363,12 +363,12 @@
       "split_reason": "本條驗啟動條件一：Timeout1 == 00 min 且點火轉為 Pre Off 或 Off",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗啟動條件一：Timeout1 == 00 min 且點火轉為 Pre Off 或 Off"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -378,10 +378,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "MaxCallTimeout starts in the following two conditions: Timeout1 == 00 min: IF Phone_Call.Info is equal to “Active” in TLM Full-Operation state, AND the Ignition working condition switches to \"Ignition Pre Off\" OR to \"Ignition Off\";   Timeout1 <> 00 min: at Timeout1 expiration, only IF Phone_Call.Info is still equal to “Active”;\n\n(read the MaxCallTimeout counter at Timeout1 expiration -> The MaxCallTimeout counter is running from the moment of Timeout1 expiration)",
-      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. Phone_Call.Info is at \"Active\"",
+      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
       "test_procedure": "1. Let Timeout1 run to its expiration while the call stays active\n2. Read the MaxCallTimeout counter at Timeout1 expiration to check that it started",
-      "expected_result": "1. Phone_Call.Info is still at \"Active\" when Timeout1 expires\n2. The MaxCallTimeout counter is running from the moment of Timeout1 expiration",
+      "expected_result": "1. PENDING: DR-PW23 Phone_Call.Info\n2. The MaxCallTimeout counter is running from the moment of Timeout1 expiration",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -389,12 +389,12 @@
       "split_reason": "本條驗啟動條件二：Timeout1 到期時通話仍為 Active",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R4/R5)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗啟動條件二：Timeout1 到期時通話仍為 Active"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -404,10 +404,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "Case 1:IF Timeout1 <> 00 minutesAND IF Phone_Call.Info passes to \"Not_Active\" before \"Timeout1” expiration THEN TLM has to restore the active source managed by TLM before the call (for example entertainment features like DAB Tuner, rather than USB or BT streaming audio) staying still in Timed state.\n\n(read the active audio source and the TLM state -> The DAB Tuner source is active again and the TLM remains in Timed state)",
-      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. A DAB Tuner source was active before the call\n4. Phone_Call.Info is at \"Active\"",
+      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. Apply ENTER_TIMED\n3. A DAB Tuner source was active before the call\n4. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Set Phone_Call.Info to \"Not_Active\" before Timeout1 expires\n2. Read the active audio source and the TLM state to check that the previous source returned",
-      "expected_result": "1. Phone_Call.Info reads \"Not_Active\" before Timeout1 expires\n2. The DAB Tuner source is active again and the TLM remains in Timed state",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read the active audio source and the TLM state to check that the previous source returned",
+      "expected_result": "1. PENDING: DR-PW23 Phone_Call.Info\n2. The DAB Tuner source is active again and the TLM remains in Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P1",
       "design_method": "決策表 (Decision Table Testing)",
@@ -415,12 +415,12 @@
       "split_reason": "本條驗還原音源分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P394 B5；規則 R4/R5)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗還原音源分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -456,10 +456,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "IF RemStartFail = ”True” TLM has to stop its active functionality (Media audio streaming, tuner, etc) and has to set RemStartFail  to “False” value and  TLM_Status.Info and $Telematic_Power$ to “Standby” value and it passes to Standby state\n\n(read the active functionality, RemStartFail, TLM_Status.Info and $Telematic_Power$ -> RemStartFail reads \"False\", TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM is in Standby state)",
-      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state with media audio streaming active\n3. RemStartFail is at \"True\"\n4. Phone_Call.Info is at \"Active\"",
+      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state with media audio streaming active\n3. PENDING: DR-PW23 RemStartFail\n4. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Set Phone_Call.Info to \"Not_Active\" before Timeout1 expires\n2. Read the active functionality, RemStartFail, TLM_Status.Info and $Telematic_Power$ to check the transition",
-      "expected_result": "1. The media audio streaming stops and no source stays active\n2. RemStartFail reads \"False\", TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM is in Standby state",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. PENDING: DR-PW23 RemStartFail",
+      "expected_result": "1. The media audio streaming stops and no source stays active\n2. PENDING: DR-PW23 RemStartFail",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -467,12 +467,12 @@
       "split_reason": "本條驗 Case 1 之 RemStartFail 為 True 之分支",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 待範圍確認",
+      "remarks": "DR-PW10 待範圍確認 (R-P394 B5；規則 R4/R5)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗 Case 1 之 RemStartFail 為 True 之分支"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 1
     },
     {
@@ -482,9 +482,9 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "ELSE TLM has to restore the active source managed by TLM before the call (for example entertainment features like DAB Tuner, rather than USB or BT streaming audio) staying still in Timed state.\n\n(read the active source and the TLM state -> The TLM stayed in Timed state throughout and no transition to Standby occurred)",
-      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. RemStartFail is at \"False\"\n4. A DAB Tuner source was active before the call",
+      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 RemStartFail\n4. A DAB Tuner source was active before the call",
       "input_test_data": "NA",
-      "test_procedure": "1. Set Phone_Call.Info to \"Not_Active\" before Timeout1 expires\n2. Place a further bluetooth call while Timeout1 is still running\n3. Read the active source and the TLM state to check the restore and the further call",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Place a further bluetooth call while Timeout1 is still running\n3. Read the active source and the TLM state to check the restore and the further call",
       "expected_result": "1. The DAB Tuner source is active again and the TLM remains in Timed state\n2. The further call is connected and is managed by the TLM\n3. The TLM stayed in Timed state throughout and no transition to Standby occurred",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
@@ -493,12 +493,12 @@
       "split_reason": "本條驗 Case 1 之 ELSE 分支：還原音源並續管理其他通話",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 待範圍確認",
+      "remarks": "DR-PW10 待範圍確認 (R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗 Case 1 之 ELSE 分支：還原音源並續管理其他通話"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 2
     },
     {
@@ -508,10 +508,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "Case 2:IF Timeout1 <> 00 minutesAND IF Phone_Call.Info is still \"Active\" at \"Timeout1\" expirationTHENat Timeout1 expiration TLM starts MaxCallTimeout AND stays still in Timed state until Phone_Call.Info passes to \"Not_Active\" OR at maximum until MaxCallTimeout expiration.\n\n(read the MaxCallTimeout counter and the TLM state -> The TLM remains in Timed state while MaxCallTimeout runs)",
-      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. Phone_Call.Info is at \"Active\"",
+      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
       "test_procedure": "1. Let Timeout1 run to its expiration while the call stays active\n2. Read the MaxCallTimeout counter and the TLM state to check that the TLM stays Timed",
-      "expected_result": "1. Phone_Call.Info is still at \"Active\" when Timeout1 expires and the MaxCallTimeout counter starts\n2. The TLM remains in Timed state while MaxCallTimeout runs",
+      "expected_result": "1. PENDING: DR-PW23 Phone_Call.Info\n2. The TLM remains in Timed state while MaxCallTimeout runs",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -519,12 +519,12 @@
       "split_reason": "本條驗 Case 2 之進入：Timeout1 到期啟動 MaxCallTimeout 並續留 Timed",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 待範圍確認",
+      "remarks": "DR-PW10 待範圍確認 (R-P394 B5；規則 R4/R5)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Case 2 之進入：Timeout1 到期啟動 MaxCallTimeout 並續留 Timed"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 3
     },
     {
@@ -534,10 +534,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "WHEN Phone_Call.Info passes to \"Not_Active\", OR at MaxCallTimeout expiration, TLM has to set RemStartFail  to “False” value and TLM_Status.Info to \"Standby\" value and then it passes to Standby state.\n\n(read TLM_Status.Info and the TLM state -> TLM_Status.Info reads \"Standby\" and the TLM is in Standby state)",
-      "pre_conditions": "1. The TLM is in Timed state with MaxCallTimeout running\n2. Phone_Call.Info is at \"Active\"",
+      "pre_conditions": "1. The TLM is in Timed state with MaxCallTimeout running\n2. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Set Phone_Call.Info to \"Not_Active\" before MaxCallTimeout expires\n2. Read TLM_Status.Info and the TLM state to check the transition to Standby",
-      "expected_result": "1. Phone_Call.Info reads \"Not_Active\" before MaxCallTimeout expires\n2. TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. PENDING: DR-PW23 Phone_Call.Info\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -545,12 +545,12 @@
       "split_reason": "本條驗 Case 2 之離開路徑：通話結束（不含 RemStartFail 處置）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 待範圍確認",
+      "remarks": "DR-PW10 待範圍確認 (R-P394 B5；規則 R4/R5)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Case 2 之離開路徑：通話結束（不含 RemStartFail 處置）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 4
     },
     {
@@ -560,10 +560,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "WHEN Phone_Call.Info passes to \"Not_Active\", OR at MaxCallTimeout expiration, TLM has to set RemStartFail  to “False” value and TLM_Status.Info to \"Standby\" value and then it passes to Standby state.\n\n(read RemStartFail, TLM_Status.Info and the TLM state -> RemStartFail reads \"False\", TLM_Status.Info reads \"Standby\" and the TLM is in Standby state)",
-      "pre_conditions": "1. The TLM is in Timed state with MaxCallTimeout running\n2. RemStartFail is at \"True\"\n3. Phone_Call.Info is at \"Active\"",
+      "pre_conditions": "1. The TLM is in Timed state with MaxCallTimeout running\n2. PENDING: DR-PW23 RemStartFail\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Let MaxCallTimeout run to its expiration while the call stays active\n2. Read RemStartFail, TLM_Status.Info and the TLM state to check the transition to Standby",
-      "expected_result": "1. MaxCallTimeout reaches its expiration while Phone_Call.Info is still \"Active\"\n2. RemStartFail reads \"False\", TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
+      "test_procedure": "1. Let MaxCallTimeout run to its expiration while the call stays active\n2. PENDING: DR-PW23 RemStartFail",
+      "expected_result": "1. PENDING: DR-PW23 Phone_Call.Info\n2. PENDING: DR-PW23 RemStartFail",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -571,12 +571,12 @@
       "split_reason": "本條驗 Case 2 之離開路徑：MaxCallTimeout 到期（含 RemStartFail 處置）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review",
+      "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review (R-P394 B5；規則 R4/R5)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗 Case 2 之離開路徑：MaxCallTimeout 到期（含 RemStartFail 處置）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 5
     },
     {
@@ -586,10 +586,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "Case 3:IF Timeout1 <> 00 minutesAND IF Phone_Call.Info == \"Not_Active\" at Timeout1 expiration THENTLM has to set RemStartFail to \"False\" value and TLM_Status.Info to “Standby” value and to pass to Standby state.\n\n(read TLM_Status.Info and the TLM state -> TLM_Status.Info reads \"Standby\" and the TLM is in Standby state)",
-      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. Phone_Call.Info is at \"Not_Active\"",
+      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Let Timeout1 run to its expiration with no call active\n2. Read TLM_Status.Info and the TLM state to check the transition to Standby",
-      "expected_result": "1. No call is active when Timeout1 expires\n2. TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
+      "test_procedure": "1. Let Timeout1 run to its expiration with no call active\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. No call is active when Timeout1 expires\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -597,12 +597,12 @@
       "split_reason": "本條驗 Case 3（不含 RemStartFail 處置）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 待範圍確認",
+      "remarks": "DR-PW10 待範圍確認 (R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Case 3（不含 RemStartFail 處置）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 6
     },
     {
@@ -612,10 +612,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "Case 3:IF Timeout1 <> 00 minutesAND IF Phone_Call.Info == \"Not_Active\" at Timeout1 expiration THENTLM has to set RemStartFail to \"False\" value and TLM_Status.Info to “Standby” value and to pass to Standby state.\n\n(read RemStartFail, TLM_Status.Info and the TLM state -> RemStartFail reads \"False\", TLM_Status.Info reads \"Standby\" and the TLM is in Standby state)",
-      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. RemStartFail is at \"True\"\n4. Phone_Call.Info is at \"Not_Active\"",
+      "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. Apply ENTER_TIMED\n3. PENDING: DR-PW23 RemStartFail\n4. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Let Timeout1 run to its expiration with no call active\n2. Read RemStartFail, TLM_Status.Info and the TLM state to check the transition to Standby",
-      "expected_result": "1. No call is active when Timeout1 expires\n2. RemStartFail reads \"False\", TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
+      "test_procedure": "1. Let Timeout1 run to its expiration with no call active\n2. PENDING: DR-PW23 RemStartFail",
+      "expected_result": "1. No call is active when Timeout1 expires\n2. PENDING: DR-PW23 RemStartFail",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -623,12 +623,12 @@
       "split_reason": "本條驗 Case 3（含 RemStartFail 處置）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review",
+      "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review (R-P394 B5；規則 R4/R5)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Case 3（含 RemStartFail 處置）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 7
     },
     {
@@ -638,9 +638,9 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "Case 4:IF Timeout1 == 00 minutesAND in Full-Operation state Phone_Call.Info signal is equal to \"Active\" AND the ignition working condition passes to \"Ignition Pre Off\" OR to \"Ignition Off\"THENTLM has to pass in Timed state starting MaxCallTimeout counter.\n\n(read the TLM state and the MaxCallTimeout counter -> The TLM is in Timed state and the MaxCallTimeout counter is running)",
-      "pre_conditions": "1. Timeout1 is at \"00 min\"\n2. The TLM is in Full-Operation state\n3. Phone_Call.Info is at \"Active\"",
-      "input_test_data": "Ignition working condition: \"Ignition Off\"",
-      "test_procedure": "1. Keep the call active and switch the ignition working condition to the value listed in Input Test Data\n2. Read the TLM state and the MaxCallTimeout counter to check that Timed state is entered",
+      "pre_conditions": "1. Timeout1 is at \"00 min\"\n2. Apply ENTER_FULL_OPERATION\n3. PENDING: DR-PW23 Phone_Call.Info",
+      "input_test_data": "NA",
+      "test_procedure": "1. Keep the call active and switch the ignition working condition to the value Ignition working condition: \"Ignition Off\"\n2. Read the TLM state and the MaxCallTimeout counter to check that Timed state is entered",
       "expected_result": "1. The active call is not dropped by the ignition change\n2. The TLM is in Timed state and the MaxCallTimeout counter is running",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
@@ -649,12 +649,12 @@
       "split_reason": "本條驗 Case 4 之進入：Timeout1 == 00 min 且點火轉為 Off",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 待範圍確認",
+      "remarks": "DR-PW10 待範圍確認 (R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Case 4 之進入：Timeout1 == 00 min 且點火轉為 Off"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 8
     },
     {
@@ -664,10 +664,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "WHEN Phone_Call.Info passes to \"Not_Active\", OR at MaxCallTimeout expiration, TLM has to set RemStartFail  to “False” value and TLM_Status.Info to \"Standby\" value and then it passes to Standby state.\n\n(read TLM_Status.Info and the TLM state -> TLM_Status.Info reads \"Standby\" and the TLM is in Standby state)",
-      "pre_conditions": "1. The TLM is in Timed state entered through Case 4\n2. MaxCallTimeout is running\n3. Phone_Call.Info is at \"Active\"",
+      "pre_conditions": "1. The TLM is in Timed state entered through Case 4\n2. MaxCallTimeout is running\n3. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Set Phone_Call.Info to \"Not_Active\" before MaxCallTimeout expires\n2. Read TLM_Status.Info and the TLM state to check the transition to Standby",
-      "expected_result": "1. The TLM stayed in Timed state for the whole time the call was active\n2. TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
+      "test_procedure": "1. PENDING: DR-PW23 Phone_Call.Info\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. The TLM stayed in Timed state for the whole time the call was active\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -675,12 +675,12 @@
       "split_reason": "本條驗 Case 4 之離開路徑（`4941732` ＋ `4941735`，不含 RemStartFail 處置）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 待範圍確認",
+      "remarks": "DR-PW10 待範圍確認 (R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Case 4 之離開路徑（`4941732` ＋ `4941735`，不含 RemStartFail 處置）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 9
     },
     {
@@ -690,10 +690,10 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "Case 2:IF Timeout1 <> 00 minutesAND IF Phone_Call.Info is still \"Active\" at \"Timeout1\" expirationTHENat Timeout1 expiration TLM starts MaxCallTimeout AND stays still in Timed state until Phone_Call.Info passes to \"Not_Active\" OR at maximum until MaxCallTimeout expiration.\n\n(read RemStartFail, TLM_Status.Info and the TLM state -> RemStartFail reads \"False\", TLM_Status.Info reads \"Standby\" and the TLM is in Standby state)",
-      "pre_conditions": "1. The TLM is in Timed state entered through Case 4\n2. MaxCallTimeout is running\n3. RemStartFail is at \"True\"\n4. Phone_Call.Info is at \"Active\"",
+      "pre_conditions": "1. The TLM is in Timed state entered through Case 4\n2. MaxCallTimeout is running\n3. PENDING: DR-PW23 RemStartFail\n4. PENDING: DR-PW23 Phone_Call.Info",
       "input_test_data": "NA",
-      "test_procedure": "1. Let MaxCallTimeout run to its expiration while the call stays active\n2. Read RemStartFail, TLM_Status.Info and the TLM state to check the transition to Standby",
-      "expected_result": "1. The TLM stayed in Timed state until MaxCallTimeout expired\n2. RemStartFail reads \"False\", TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
+      "test_procedure": "1. Let MaxCallTimeout run to its expiration while the call stays active\n2. PENDING: DR-PW23 RemStartFail",
+      "expected_result": "1. The TLM stayed in Timed state until MaxCallTimeout expired\n2. PENDING: DR-PW23 RemStartFail",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -701,12 +701,12 @@
       "split_reason": "本條驗 Case 4 之離開路徑（`4941736`，含 RemStartFail 處置）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review",
+      "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review (R-P394 B5；規則 R4/R5)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗 Case 4 之離開路徑（`4941736`，含 RemStartFail 處置）"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R4、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 10
     },
     {
@@ -716,9 +716,9 @@
       "test_group": "Power Management",
       "test_set": "Timeout Settings",
       "test_item": "Case 4:IF Timeout1 == 00 minutesAND in Full-Operation state Phone_Call.Info signal is equal to \"Active\" AND the ignition working condition passes to \"Ignition Pre Off\" OR to \"Ignition Off\"THENTLM has to pass in Timed state starting MaxCallTimeout counter.\n\n(read the TLM state and the MaxCallTimeout counter -> The TLM is in Timed state and the MaxCallTimeout counter is running)",
-      "pre_conditions": "1. Timeout1 is at \"00 min\"\n2. The TLM is in Full-Operation state\n3. Phone_Call.Info is at \"Active\"",
-      "input_test_data": "Ignition working condition: \"Ignition Pre Off\"",
-      "test_procedure": "1. Keep the call active and switch the ignition working condition to the value listed in Input Test Data\n2. Read the TLM state and the MaxCallTimeout counter to check that Timed state is entered",
+      "pre_conditions": "1. Timeout1 is at \"00 min\"\n2. Apply ENTER_FULL_OPERATION\n3. PENDING: DR-PW23 Phone_Call.Info",
+      "input_test_data": "NA",
+      "test_procedure": "1. Keep the call active and switch the ignition working condition to the value Ignition working condition: \"Ignition Pre Off\"\n2. Read the TLM state and the MaxCallTimeout counter to check that Timed state is entered",
       "expected_result": "1. The active call is not dropped by the ignition change\n2. The TLM is in Timed state and the MaxCallTimeout counter is running",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
@@ -727,12 +727,12 @@
       "split_reason": "本條驗 Case 4 之另一觸發：點火轉為 \"Ignition Pre Off\"（`040` 驗 \"Ignition Off\"）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "DR-PW10 待範圍確認",
+      "remarks": "DR-PW10 待範圍確認 (R-P394 B5；規則 R5)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Case 4 之 \"Ignition Pre Off\" 觸發"
       },
-      "reasoning_note": "**R-P118 反向涵蓋盲測（18 包）**：`4941731` 載 Case 4 之觸發為 「the ignition working condition passes to \"Ignition Pre Off\" **OR** to \"Ignition Off\"」。首次撰寫時 `040` 僅取 \"Ignition Off\"，**\"Ignition Pre Off\" 之分支漏測**。透鏡 1 對該行為項判 overlap 0.62 為已覆蓋；**是透鏡 3 之殘差詞 `pre` 使其現形**。依 §5.7「不同觸發即拆分」與 R-P118(d) 裁為**真缺口**並補本條。**本項為 R-P128 之盲測結果：事前未知，由工具抓出。**",
+      "reasoning_note": "**R-P118 反向涵蓋盲測（18 包）**：`4941731` 載 Case 4 之觸發為 「the ignition working condition passes to \"Ignition Pre Off\" **OR** to \"Ignition Off\"」。首次撰寫時 `040` 僅取 \"Ignition Off\"，**\"Ignition Pre Off\" 之分支漏測**。透鏡 1 對該行為項判 overlap 0.62 為已覆蓋；**是透鏡 3 之殘差詞 `pre` 使其現形**。依 §5.7「不同觸發即拆分」與 R-P118(d) 裁為**真缺口**並補本條。**本項為 R-P128 之盲測結果：事前未知，由工具抓出。**\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R1、R3、R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。\n\n**B5 第一批機器改寫（69 包 / R-P394(b)）**：施行既定配方之規則 R5。**未引入新判準**。A 家族（G245）之代理量須人讀指定（R-P381 / R-P384），不在機器範圍。",
       "split_index": 11
     }
   ]
