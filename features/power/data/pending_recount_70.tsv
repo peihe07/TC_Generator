@@ -1,0 +1,14 @@
+metric	value	source
+corpus 總條數	287	generated/batch_*.json
+已改寫累計（55–70 包）	287	remarks 標記
+  其中 B5（R-P394）	212	R-P394 B5 標記
+未改寫	0	同上
+corpus 內 PENDING 文字	125	逐欄掃
+G245 家族 A（上界）	168	remeasure_55
+G250 proper 類	0	D
+G250 Read the HU mode/state	13	G
+G251 listed in ITD	3	family_k_59
+G247 Proc/ER 非 PENDING 內部訊號句	53	正則
+G249 五欄逐字相同對	12	五欄鍵
+token 母體條數	170	composite_tokens_70.py
+相異原子 token	59	同上
