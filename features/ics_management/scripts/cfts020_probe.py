@@ -69,6 +69,24 @@ def variant_of(title: str) -> str:
     if re.search(r"(?<!Dis)Associated", title):
         return "Associated"
     return "未分類"
+VARIANT_FIT = {"Disassociated": "Disassociated",
+               "Associated": "Associated",
+               "未分類": "Unclassified"}
+
+
+def variant_fit(variant: str) -> str:
+    """變體層對 DUT 之關係，**三值**（R-ICS42(b)；b13 作業 A 改此處）。
+
+    b11~b12 此欄為布林 `variant == DUT_VARIANT`，使「未分類」與「Associated」
+    同落 `False` 而被併為一桶 —— upstream-11 §4-3 之「87 個 Associated 分支物件」
+    因此而誤，實為 §1.4（Common Between Architectures）× 86 ＋ §1.5 × 1（A-ICS81）。
+
+    `Unclassified` 不是「不適用」，而是**無變體歸屬**（架構共通節）；
+    其去留與 `Associated` 不同問，不得再合桶。
+    """
+    return VARIANT_FIT[variant]
+
+
 OBJ_RE = re.compile(r"^(\d{7}): \[")
 ATTR_RE = re.compile(r"\[([^:\]]+):([^\]]*)\]")
 
@@ -176,7 +194,7 @@ def parse(use_v1: bool = False) -> list[dict]:
             # ── 三層分列（b11 作業 C；不得合併為單一旗標）──────────
             top = ".".join(o["section_no"].split(".")[:2]) if o["section_no"] else ""
             o["variant"] = variant_of(top_titles.get(top, ""))
-            o["variant_fits_dut"] = (o["variant"] == DUT_VARIANT)
+            o["variant_fits_dut"] = variant_fit(o["variant"])
             o["scope"] = ("算數（R-ICS39，裁決）" if top in SCOPE_RULED_IN
                           else "隨變體層")
             objs.append(o)

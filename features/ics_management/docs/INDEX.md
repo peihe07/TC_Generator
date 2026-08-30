@@ -269,3 +269,24 @@ upstream-11 §4-2，E17 未觸發）與 G2／G3 之 `reasoning`；**未生成任
 upstream-11 §4-3 與 A-ICS74 之敘述須更正）；**SYS2 有 23 列在案 FR 無 CFTS020 來源**
 （以 CFTS020 為起點之掃描結構性掃不到）；**A-ICS73 所慮已經由本包之加錨成為事實**
 （b06 二條 Mute TC 現帶 §1.18 錨）。
+
+---
+
+## 第 13 輪（2026-08-30）收尾包：probe 三值化、SYS2 反向掃、**凍結**
+
+| 項 | 落點 |
+|---|---|
+| 上繳包 | `docs/upstream/13_freeze.md` |
+| **凍結記錄（解凍者先讀此檔）** | `docs/reports/13_freeze_record.md` |
+| SYS2 反向掃（**E19 觸發**）| `docs/reports/13_sys2_reverse_scan.md` |
+| PDT27 dbc 對 DR-ICS16（E21 未觸發）| `docs/reports/13_pdt27_dbc_vs_dr16.md` |
+| **凍結基準快照**（解凍時圍籬 diff 之基準）| `docs/reports/13_rulings_snapshot.md` |
+| 新腳本 | `scripts/sys2_reverse_scan_13.py`、`scripts/pdt27_probe_13.py` |
+| 改動之腳本 | `scripts/cfts020_probe.py`（`variant_fit()` 三值化，軸層零變動）|
+
+本輪**未生成任何 TC、未改任何錨或 reasoning**；TC 仍 31、佔位仍 18 處／14 條。
+預期數字 17 項全數相符。**git 執行次數 0**。
+
+四件須分析層處置者：**E19 —— `NRL-180522`（觸控去重／CarPlay 認證）為 HMI 軟體側可驗證之行為**；
+**SYS2 自帶 `Verifiability`／`Verification Criteria`／`Verification Method` 三欄，本線十三包從未量過**；
+**掃描起點盲區 73 列（21.9%）**；**已綁 FDCAN8 檔載 `BO_TX_BU_ 1427 : ETM,LTM;`，與 upstream-07 之 E3 依據相對**。
