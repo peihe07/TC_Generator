@@ -12831,6 +12831,80 @@ A-PW358 / A-PW360 / A-PW362 三處已加註，前包不回溯。
 > 其 6 個「查無」不足以登 R-G13 之查無。
 
 
+## 65 包裁決條文（R-P383 – R-P385）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 3、§J「三條」、§H 步驟 1 = 三條**，
+相容性 C(3,2) = 3 對，並依 R-P364(d)（引用＋觸及）核對既有 canon。三處一致。
+
+**另依 R-P379(b) 於抄錄前重跑本包數字，全部相符（4 / 4）：**
+
+| 條文所引 | 機讀來源 | 重算 |
+|---|---|---|
+| 六名七條 | `g252_six_63.md` 之 `## ` / `### ` 標題計 | **6 名 / 7 條** |
+| 39 | `proxy_reachability_63.md` 之 `**有錨**` 列 | **39** |
+| 22 / 17 | `observable_proxy_64.md` 總計行 | **填不出 22 / 可填 17** |
+| 0 查無 | 65 包 §0 人讀之結論（取代 63 包機掃之 6）| **0**（開 DR 1）|
+
+另查現行最大號：`DR-PW26` → 下一個可用 **`DR-PW27`**；`A-PW364` → 下一個 **`A-PW365`**。
+
+```
+[R-P383] 六名之處置依 65 包 §0 表；G252 之六名結案。
+         六名皆為 TC 措辭問題，無查無。執行層依 §0 表改寫七條，
+         每一觀察量引其錨點 ObjectID；`-172` 依 §8.2.1 移除 `4941860` 之 ER；
+         `-224` 開 DR（未尋獲文件型）並登 DATA_REQUESTS；`-117` 之 `RemStartFail` 維持 PENDING。
+         G252 期望值：「有錨者入代理量表；六名依 R-P383 結案」。
+         裁決者：分析層（Tier 2，R-P381(b) 之人讀）。
+```
+
+```
+[R-P384] `observable_proxy_64.md` 退回；(ii) 之「具名」不以引號為要件；39 名改人讀。
+         （a）機器候選不採：其 (i) 類多為段落中之**觸發**訊號而非**觀察**量
+              （如 `disclaimer wording` → `CmdIgnSts`、`displayed font` → `Radio_Theme`），
+              以觸發代觀察即 R-13 所禁之對象替換
+         （b）R-P353(ii) 之「具名 UI 元件」指規格段落**指名**之元件（logo、icon、gauge、
+              seat graphic、App icon、theme、font、pop-up、screen），不以規格原文帶引號為要件；
+              引號是 TC 書寫規則（IN §11），非抽取判準。64 包 22 個「填不出」多屬此類
+         （c）39 名全數改由分析層人讀：執行層依 R-P381(a) 之格式供料
+              `data/g252_thirtynine_65.md`（每名：所屬 tc_id、`test_item` 上半 verbatim、
+              各錨點段落全文、現行 Procedure／ER），**不判定**；分析層於 66 包逐名裁
+         （d）複合觀察目標（`A and B`、`X against Y`）於供料頁保留原形，
+              拆分與否由分析層裁，執行層不預拆
+         R-P382 依 R-P36 原文不改，加註。
+         裁決者：分析層（Tier 2）。
+```
+
+```
+[R-P385] `$PowerMode$` 與 `OperationalModeSts` 為規格中二個不同變數，分立處理。
+         （a）`ENTER_<STATE>` 之點火序列維持 `$STATUS_BH_BCM1.OperationalModeSts$`：
+              CFTS009-4941357 之 token（`Ignition On, Ignition Pre_Start, Ignition Start,
+              Ignition Cranking, Ignition On Engine On`）與 `VAL_ 854` 標籤
+              （`Ignition_On`、`Ignition_Pre_Start`…）逐字對應，為 R-P371 型證據
+         （b）`$PowerMode$`（值域 `IGN_ACC` / `IGN_RUN` / `IGN_LK` / `SNA`…）為另一變數，
+              LID 逐字命中 `PowerMode` → `STATUS_BH_BCM2.CmdIgnSts`，`VAL_ 1132` 之
+              `IGN_LK` / `SNA` 逐字、餘為 `IGN_` 前綴差，記為**強候選**；
+              凡 TC 引 `$PowerMode$` 之步驟改以 `$STATUS_BH_BCM2.CmdIgnSts$` 候選寫，
+              Remarks 標待上游確認，**不改 (a) 之片段**
+         （c）DR-PW26 第 (1) 問改為二問：`LTM_OperationalModeSts.Info` ≟ `OperationalModeSts`；
+              `$PowerMode$` ≟ `CmdIgnSts`。A-PW364 之「方向相反」訂正為「二者非同一變數」
+         裁決者：分析層（Tier 2，二項皆機讀逐字證據，上游確認前為候選）。
+```
+
+**已逐字抄入（核對 3 / 3）。** R-P382 依 R-P36 原文不改，加註於下。
+
+> **註記（R-P36，65 包加註）—— R-P382**：其產出 `observable_proxy_64.md`
+> **退回**（**R-P384**）。二項理由：
+> (1) 機器候選之 (i) 類多為段落中之**觸發**訊號而非**觀察**量
+> （`disclaimer wording` → `CmdIgnSts`、`displayed font` → `Radio_Theme`），
+> **以觸發代觀察即 R-13 所禁之對象替換**；
+> (2) R-P353(ii) 之「具名 UI 元件」指規格段落**指名**之元件，
+> **不以規格原文帶引號為要件** —— 引號是 TC 書寫規則（IN §11），非抽取判準，
+> 64 包 22 個「填不出」多屬此類。39 名全數改由分析層人讀，執行層僅供料。
+
+**R-P381 之六名於本包結案**（R-P383）：**查無 0、TC 措辭問題 6、新開 DR 1**。
+63 包機掃所得之 6 個「查無」經人讀後全部推翻 —— 與執行層當時
+「本輪仍非人讀、6 個查無不足以登 R-G13」之保留一致。
+
+
 ---
 
 ## 待裁

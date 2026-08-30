@@ -391,9 +391,9 @@
       "test_set": "Power State",
       "test_item": "IF TLM_Status.Info and $Telematic_Power$ == \"Timed\" AND PhoneCall.Info becames \"not Active\"AND RemStartFail ==“True”THENTLM has to set RemStartFail  to “False” value and  TLM_Status.Info and $Telematic_Power$ to “Standby” value and it passes to Standby state.\n\n(read the remote start outcome flag and the TLM state -> TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\"\n3. RemStartFail reads \"True\"",
-      "input_test_data": "PhoneCall.Info: \"not Active\"",
-      "test_procedure": "1. Send the value listed in Input Test Data\n2. Read the remote start outcome flag and the TLM state to check the resulting behavior",
-      "expected_result": "1. RemStartFail reads \"False\"\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-PW23 PhoneCall.Info 之驅動方法（使其轉為 \"not Active\"）\n2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)\n3. PENDING: DR-PW23 RemStartFail 之觀察方法",
+      "expected_result": "1. PENDING: DR-PW23 PhoneCall.Info\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received\n3. PENDING: DR-PW23 RemStartFail",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -401,8 +401,8 @@
       "split_reason": "本條驗 Timed ＋ 通話結束 ＋ RemStartFail 為真",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
-      "reasoning_note": "",
+      "remarks": "(R-P383)",
+      "reasoning_note": "\n\n**R-P383 改寫（65 包）**：原步 2 之 `remote start outcome flag and the TLM state` 拆為二 —— TLM 態以 `$STATUS_TELEMATIC.PowerSts_Telematic$` (i)；`RemStartFail` 讀值**維持 `PENDING: DR-PW23`**。原步 1 `Send the value listed in Input Test Data` 為家族 K，依 R-P366 內聯後 ITD 改 `NA`；惟其值為 `PhoneCall.Info`（內部變數），內聯後仍落 PENDING。⚠ **本條之因（`PhoneCall.Info` 轉 `Not_Active`）為內部變數，不符 R-P376(a)(ii)，不適用丁案**。錨點 `CFTS009-4941655`。",
       "split_index": 1
     },
     {

@@ -96,8 +96,8 @@
       "test_item": "All TLM, AMP/ICS/DTV functionalities are available.\n\n(read TLM_Status.Info after each one -> The TLM stays ON with all TLM, AMP, ICS and DTV functionalities available in each of the listed conditions)",
       "pre_conditions": "1. A LIN and CAN simulation tool is connected\nThe TLM is in Full-Operation",
       "input_test_data": "Ignition working conditions: Ignition Pre_Start, Ignition Start, Ignition Cranking, Ignition On Engine On",
-      "test_procedure": "1. Apply each ignition working condition listed in Input Test Data in turn\n2. Read TLM_Status.Info after each one to check that Full-Operation is kept",
-      "expected_result": "1. The TLM registers each ignition working condition without a bus error\n2. The TLM stays ON with all TLM, AMP, ICS and DTV functionalities available in each of the listed conditions",
+      "test_procedure": "1. Apply each ignition working condition listed in Input Test Data in turn by sending $STATUS_BH_BCM1.OperationalModeSts$ (DR-PW26)\n2. After each one, read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4 (Full_Operation)\n3. After each one, check that the audio active source keeps playing on the HU speakers",
+      "expected_result": "1. Each listed ignition working condition is registered without a bus error\n2. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received after each one\n3. The audio active source keeps playing on the HU speakers after each one",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.1",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -105,12 +105,12 @@
       "split_reason": "本條驗其餘四種 ignition 條件之取值",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P383)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗其餘四種 ignition 條件之取值"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P383 改寫（65 包）**：原步 2 之 `TLM_Status.Info after each one` 改為 `$STATUS_TELEMATIC.PowerSts_Telematic$` (i)；原 ER 2 之「all TLM, AMP, ICS and DTV functionalities available」改以**代理量**「音源持續播放」(iii) —— 依 `CFTS009-4941453` 之表，Full-Operation 列載 `TLM plays the audio active source`。⚠ **本條為家族 K (c) 類**（一步多值、值間並列），依 R-P366(c) / R-P373(a) **ITD 保留不改 `NA`**，ER 逐值對齊。",
       "split_index": 2
     },
     {
@@ -328,10 +328,10 @@
       "test_group": "Power Management",
       "test_set": "Power State",
       "test_item": "TLM AMP/ICS/DTV functionalities are available only for a limited time.\n\n(read the TLM state again after Timeout1 has elapsed -> The availability is limited in time and does not continue past Timeout1)",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\nThe ignition working condition is Ignition Off\nTLM_Status.Info and $Telematic_Power$ read \"Timed\"",
+      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off) (DR-PW26)\n3. Apply ENTER_TIMED",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the TLM power indication and the AMP, ICS and DTV states\n2. Read the TLM state again after Timeout1 has elapsed to check that the availability is limited",
-      "expected_result": "1. The TLM is ON and all TLM, AMP, ICS and DTV functionalities are available\n2. The availability is limited in time and does not continue past Timeout1",
+      "test_procedure": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2 (Timed), and check that the audio active source keeps playing on the HU speakers\n2. Hold for the $BCM_FD_27.Comfort_Enable_Time$ value with no phone call active\n3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)",
+      "expected_result": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received and the audio active source keeps playing on the HU speakers\n2. The $BCM_FD_27.Comfort_Enable_Time$ value elapses with no phone call active\n3. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.5",
       "priority": "P0",
       "design_method": "決策表 (Decision Table Testing)",
@@ -339,12 +339,12 @@
       "split_reason": "本條驗其限時性 —— 觀察於 Timeout1 之前與之後",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "(R-P383)",
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗其限時性 —— 觀察於 Timeout1 之前與之後"
       },
-      "reasoning_note": "",
+      "reasoning_note": "\n\n**R-P383 改寫（65 包）**：原步 2 之 `TLM state again after Timeout1 has elapsed` 改為三段 —— 進入時 `= 2 (Timed)`、`Hold for $BCM_FD_27.Comfort_Enable_Time$`（R-1 v3 (e)，值依 R-P371 之候選）、之後 `= 1 (Standby)`，皆 (i) 類。原步 1 之 `TLM power indication and the AMP, ICS and DTV states` 改為訊號 ＋ 音源持續播放 (iii)。⚠ **與 Timeout1 到期轉態之 TC 有重疊之虞，記明不刪**（IN §8.2.1，RD 單位屬上游）。錨點 `CFTS009-4941402` / `CFTS009-4941404` / `CFTS009-4941453`。",
       "split_index": 1
     },
     {
