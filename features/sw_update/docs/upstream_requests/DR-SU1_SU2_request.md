@@ -45,6 +45,10 @@ is answered, so the gaps remain visible rather than silently filled.
 
 ## 2. DR-SU1 — Safety-related notification conditions during a silent update
 
+> **Current scope (checked 2026-08-30, against `PENDING_LIST.md`)**: **3 test cases**
+> across **2 requirements** (`175`, `176`). The "one test case" stated below was correct
+> when this section was written and is superseded by this line.
+
 **Requirement**: `SWE1-FOTA-176` (and `CFTS057-4907477`) states that during a Silent
 Update the update service shall allow user notification **only when required to
 satisfy safety-related requirements**.
@@ -103,6 +107,12 @@ the 106 is an upper bound on this category, not a count of confirmed cases.
 
 ### 3.4 (c) Means of distinguishing two specific requirements
 
+> **Current scope (2026-08-30)**: this category now holds **7 requirements**, not three:
+> `179`, `181`, `184` (below) plus `030`/`062` (indistinguishable from an adjacent row),
+> `124` (differs from `123` only in an internal state value) and `332` (its text is wholly
+> contained in `331`). **The heading "two specific requirements" is out of date; the
+> category has grown by drafting, not by re-interpretation.**
+
 Three requirements have external consequences we cannot separate from an adjacent
 requirement's consequences, or qualifiers we cannot measure. All three are currently
 `PENDING`.
@@ -123,6 +133,15 @@ mention external behaviour, so it was never in that set, yet it is still not ful
 verifiable. **The size of this category has not been surveyed.**
 
 ### 3.5 (d) Means of *triggering* two conditions on the bench — **not** means of observing them
+
+> **Current scope (2026-08-30)**: **14 requirements**, not two (or four). Besides `315`,
+> `318`, `093`, `094` listed below: `171`, `172`, `174`, `310`, `312`, `338` (no way to stage a
+> package that fails its checks), `028`, `008` (waits of one week / seven days), `217`/`222`
+> (two update types available at once), `249`, `250`, `163`, `247`, `376`, `377`.
+> **A sub-form has also appeared that this section does not cover**: `225`, `226`, `227`,
+> `230`, `238`, `242`, `243` need a *value set by another ECU* (`$FOTA_MASTER.*`,
+> `FOTA_TBM_*`). Those do not ask for an injection tool — they ask **who is able to write
+> that value on a bench, and by what route**.
 
 Two requirements describe conditions we can observe the outcome of, but **cannot bring
 about** on a test bench. This is the opposite problem from §3.3: there we can make it
@@ -152,6 +171,20 @@ requires the rollback to succeed, the other requires it not to.
 
 ## 3A. DR-SU3 — Confirmation that two requirements' verification may be folded in
 
+> **Current scope (2026-08-30)**: **27 test cases**. The question has also changed shape:
+> it is no longer "are these two requirements the same" but **"does your side split a
+> requirement on an internal difference, or on a different narrative angle of the same
+> thing?"** Four recurring forms, each with its strongest example:
+>
+> | Form | Strongest example |
+> |---|---|
+> | **Same anchor** | `207`/`208` (both `4907322`), `255`/`256` (both `4907332`) — **your own object IDs say they are the same source** |
+> | Internal routing | `081`/`083`; `157`/`162`/`167` (three rows, differing only in which service reports) |
+> | Internal state value | `123`/`124` |
+> | Narrative angle | `274`/`275`/`276` + `347`/`348` — one polling-interval setting written five ways |
+>
+> **The remaining pairs are listed in `PENDING_LIST.md`; they are the same four forms.**
+
 Two requirements are written as *umbrella* statements: they say a component shall
 coordinate the handling of conditions that are themselves defined in other requirements,
 and they list those requirements by ID.
@@ -175,6 +208,13 @@ verify that their listed requirements do not.
 ---
 
 ## 3B. DR-SU4 — What counts as "handled" for an interruption, and how to judge it on a bench
+
+> **Current scope (2026-08-30)**: **11 test cases** (`315`–`321`, `325`, `357`, `378`, and
+> **`057`**). `057` is new to this request and is a different kind of problem: **the same
+> 30-minute limit is counted from two different start points** — from the start of the
+> download session (037 `057`) and from the expiry of timed mode (embedded object
+> `4908702`, a Visio drawing inside CFTS057). **Both are your documents. We have not
+> picked one.**
 
 **High priority — this blocks all six interruption-handling test cases.**
 
@@ -270,6 +310,8 @@ six visibly blocked test cases than six that quietly pass the wrong thing.
 
 ## 3C. DR-SU5 — Bench procedure for comparing two update types on one head unit
 
+> **Current scope (2026-08-30)**: **1 test case** (`131`). Unchanged.
+
 `SWE1-FOTA-131` requires the WiFi Update Service to retrieve the update type
 configuration from the server and **control the applicable update flow according to
 that configuration**. What this requirement owns is not the behaviour of any one update
@@ -305,6 +347,52 @@ to a downgrade.
 
 ---
 
+## 3D. DR-SU6 — What counts as a pass, for a requirement that states a capability
+
+**Current scope (2026-08-30)**: **17 test cases** (`144`, `160`, `195`, `198`, `212`, `244`,
+`257`, `267`, `269`, `270`, `282`, `283`, `284`, `299`, `375`, `379`, `382`).
+
+Some requirements state a **capability** or a **universal negative** rather than a
+behaviour we can trigger once and look at:
+
+- `379`: safety mechanisms **prevent** the SOC from ever being permanently disabled
+- `375`: the installed image is **identical** to the reference image for that version
+- `282`: CPU and RAM use is **minimised** while idle
+- `283`/`284`: HMI performance is **not adversely affected** by a background download
+- `195`/`212`/`257`/`267`: the implementation is **independent of** a platform, OS or bus stack
+
+**The problem is not observation.** We can watch a run and see nothing go wrong.
+**A run in which nothing goes wrong does not show that nothing ever will** — and an
+expected result written as "the update completed and the unit still boots" would pass
+on every system, including a non-compliant one.
+
+**What we need**: for each of these, the criterion by which a **single bench run** counts
+as a pass — a prescribed sequence, a sample size, a set of injected conditions, or a
+statement that this requirement is verified at another level (unit/integration) and not here.
+
+---
+
+## 3E. DR-SU7 — Observation means for security and authentication mechanisms
+
+**Current scope (2026-08-30)**: **11 test cases** (`297`, `298`, `300`–`308`).
+
+These requirements govern TLS 1.2 server authentication, application-layer HMAC-MD5 /
+HMAC-SHA2, server authorisation checks, communication port hygiene, and package
+signature verification. **Every one of them happens in the protocol and cryptographic
+layers. None of them shows anything on the head unit screen.**
+
+**What we need**:
+
+1. Whether verifying these requires **network capture** — and if so, the tool, the tap
+   point, and the permission needed on a vehicle bench.
+2. If a cryptographic inspection is needed (for example to confirm which HMAC algorithm
+   is actually selected), a route that is feasible on a full-vehicle bench.
+3. **If neither is available, whether these requirements should be verified at another
+   level instead** — and if so, please state the split explicitly, so that the system-test
+   deliverable can record it rather than leaving sixteen test cases in placeholder state.
+
+---
+
 ## 4. Evidence — the diagnostics side has been exhausted
 
 Before raising §3.3, we checked every diagnostics-side source available to us for a
@@ -331,13 +419,44 @@ definition for FOTA exists, it is in a document we have not been given.
 
 ## 6. Summary of what is requested
 
-| # | Request | Blocks |
+> **Restated 2026-08-30 against `PENDING_LIST.md`.** Drafting is complete for all 311
+> requirements: **317 test cases, of which 195 carry at least one placeholder (712 lines).**
+> The table below counts **test cases blocked**, so that the size of each request is
+> comparable. The older per-request wording further up this document is kept where it is
+> still accurate; where it states a smaller scope, this table supersedes it.
+
+| # | Request | Test cases blocked |
+|---|---|---:|
+| DR-SU1 | List of safety-related notification conditions for silent updates | 3 |
+| **DR-SU2** | **Observation, discrimination and trigger means (segments a–e)** | **151** |
+| DR-SU3 | Whether a requirement is split on an internal difference or a narrative angle | 27 |
+| DR-SU4 | What "handled" looks like; the two start points for the same 30 minutes | 11 |
+| DR-SU5 | Bench procedure for comparing two update types | 1 |
+| **DR-SU6** | **Pass criterion for capability / universal requirements in one bench run** | **17** |
+| **DR-SU7** | **Observation means for security and authentication mechanisms** | **11** |
+
+**Of the 317 test cases, 122 are complete and executable as they stand.** The remaining
+195 are written in full — steps, expected results, anchors and traceability — with the
+single step or assertion that depends on your answer marked `PENDING: DR-SU{n}`.
+**Nothing has been guessed or filled with a plausible value.**
+
+---
+
+## 7. What was superseded in this document
+
+This request was first sent on 2026-08-28, when it described five requests blocking a
+handful of test cases. The following statements in the sections above were true then and
+are not true now; each is marked in place with a **Current scope** line:
+
+| Section | Said then | Now |
 |---|---|---|
-| DR-SU1 | List of safety-related notification conditions for silent updates | 1 test case, 3 placeholders |
-| DR-SU2 (a) | How error codes are surfaced on the head unit | Every step that reads a code |
-| DR-SU2 (b) | Positive-state observation for the Wi-Fi FOTA session | 5 confirmed rows, up to 106 in the same profile |
-| DR-SU2 (c) | Distinguishing means for `SWE1-FOTA-179`, `181` and `184` | 3 test cases, 8 placeholders |
-| DR-SU2 (d) | **Trigger** means for `SWE1-FOTA-315`, `318`, `093` and `094` | 4 test cases, 12 placeholders |
-| DR-SU3 | Confirmation that `SWE1-FOTA-313` and `327` fold into the requirements they list | 1 test case, 3 placeholders (`327` not yet drafted) |
-| **DR-SU4** | **What "handled" looks like on the head unit, and how to judge it when the interruption's phase is undeterminable** | **6 test cases — none deliverable** |
-| DR-SU5 | Bench procedure for comparing two update types on one head unit; definition of "consistent" across types | 1 test case, 3 placeholders; 1 facet not drafted |
+| §2 DR-SU1 | 1 test case | **3** |
+| §3.4 DR-SU2 (c) | "two specific requirements" (3 listed) | **7 requirements** |
+| §3.5 DR-SU2 (d) | 2 requirements, plus 2 more | **14**, plus a sub-form (value owned by another ECU) not covered at all |
+| §3A DR-SU3 | 2 requirements, "are these the same?" | **27 test cases**, and the question is now about the splitting rule, not the pair |
+| §3B DR-SU4 | 6 test cases | **11**, including a conflict between two of your own documents |
+| §6 Summary | five requests | **seven** |
+
+**Why this matters for prioritisation**: a request that says it blocks six test cases will
+be scheduled as a small item. **DR-SU2 alone blocks 151.** We would rather show you the
+correction than let the older figure stand.
