@@ -172,7 +172,7 @@ P1（20）：001, 002, 003, 004, 005, 006, 008, 010, 012, 014, 016,
 
 | 項 | 範圍 | 狀態 |
 |---|---|---|
-| A-DD1／DR-DD1 | leaf 025–028 | **範圍外（R-DD25(b)）**，不生成 TC。依據三：`-132`／`-133` 屬 CFTS022 LATAM 章；SYSAD 載速度遲滾為 `JudgmentProcessorType4to6 … for LATAM`；Pei 2026-08-28 裁定本案只做 NAFTA、不做 LATAM。A-DD1 改 **`CLOSED-BY-SCOPE`**（**非以 DR 回覆結案**）；登 [CG-DD2]。DR-DD1 改為確認件，必發但不阻斷 |
+| A-DD1／DR-DD1 | leaf 025–028 | **範圍外（R-DD25(b)）**，不生成 TC。依據三：`-132`／`-133` 屬 CFTS022 LATAM 章；SYSAD 載速度遲滯為 `JudgmentProcessorType4to6 … for LATAM`；Pei 2026-08-28 裁定本案只做 NAFTA、不做 LATAM。A-DD1 改 **`CLOSED-BY-SCOPE`**（**非以 DR 回覆結案**）；登 [CG-DD2]。DR-DD1 改為確認件，必發但不阻斷 |
 | A-DD8／A-DD9（R-DD19） | leaf 017–024 | **解凍生成**，雙 marker；DR-DD5／DD6 回覆後撤或換值 |
 | A-DD2／DR-DD2 | leaf 021–024 | 不阻斷。施加名依 **R-DD18** 已採勘誤為 `PARK_BRK_EDG`（→ `BCM_FD_9.ParkBrakeSts`，見 §3）；`test_item` 上半 verbatim 仍保留 `$PARK_BRK_EGD$` 不改字；用及施加路徑者標 `[ASSUMPTION A-DD2]`，上游正式更正後撤 |
 | framework 組 6 | `Market Speed Gating` | **OUT OF SCOPE（R-DD25(b)）**。組名保留（其為 037 分組之事實，刪之則 28 之閉合無從交代），**不寫入工作簿任何列** |

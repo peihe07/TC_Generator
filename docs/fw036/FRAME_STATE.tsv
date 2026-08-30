@@ -1,52 +1,52 @@
-# 框界作業期間之狀態表（下放包 63 §三 #1，T75a；下放包 64 T76 修正其母群）。
-# **只收 `kind == ruling` 之錨點** —— R-G29 之射程即此（group／report／superseded 不在內）。
-# R-G13 之比對對 `refenced`／`pending-frame` 者，其不符**不觸發停止**，改報「框界作業中，非條文變動」。
-# ⚠ 診斷：sha 同時承擔「條文是否被改」與「這一節之字元是否有任何變動」二事；`body_sha`／`section_sha` 之分立解了一半，
-#    而**加框動 `section_sha`；`body_sha` 之變動來自巢狀修正（5 條）**（下放包 65 §四 #1）。本表為過渡之解，非其根治。
-ruling_id	source	frame_state	tsv_body_sha8	current_body_sha8	body_kind	note
-R-POP1	features/popup/RULINGS.md	refenced	61145b5f	61145b5f	section	框界已裁（下放包 65 §三），已加框
-R-POP11	features/popup/RULINGS.md	refenced	a6b5301b	a6b5301b	section	框界已裁（下放包 65 §三），已加框
-R-POP12	features/popup/RULINGS.md	pending-frame	e323360d	e323360d	section	待裁框界
-R-POP13	features/popup/RULINGS.md	pending-frame	89306542	89306542	section	待裁框界
-R-POP14	features/popup/RULINGS.md	refenced	e025ab99	e025ab99	section	框界已裁（下放包 65 §三），已加框
-R-POP15	features/popup/RULINGS.md	pending-frame	2c712b56	2c712b56	section	待裁框界
-R-POP18	features/popup/RULINGS.md	pending-frame	bfbb3167	bfbb3167	section	待裁框界
-R-POP20	features/popup/RULINGS.md	pending-frame	2894aa0c	2894aa0c	section	待裁框界
-R-POP22	features/popup/RULINGS.md	pending-frame	1bb746f6	1bb746f6	section	待裁框界
-R-POP23	features/popup/RULINGS.md	pending-frame	c5655c80	c5655c80	section	待裁框界
-R-POP24	features/popup/RULINGS.md	pending-frame	e362b2b6	e362b2b6	section	待裁框界
-R-POP26	features/popup/RULINGS.md	pending-frame	5b4d55fe	5b4d55fe	section	待裁框界
-R-POP5	features/popup/RULINGS.md	refenced	a6816cb1	a6816cb1	section	框界已裁（下放包 65 §三），已加框
-R-POP6	features/popup/RULINGS.md	refenced	66f64b48	66f64b48	section	框界已裁（下放包 65 §三），已加框
-R-POP8	features/popup/RULINGS.md	refenced	7425f059	7425f059	section	框界已裁（下放包 65 §三），已加框
-R-TM11	features/time_management/RULINGS.md	pending-frame	bdabd953	bdabd953	section	待裁框界
-R-TM12	features/time_management/RULINGS.md	pending-frame	831cfd67	831cfd67	section	待裁框界
-R-TM13	features/time_management/RULINGS.md	pending-frame	19d17718	19d17718	section	待裁框界
-R-TM40	features/time_management/RULINGS.md	pending-frame	f2c23203	f2c23203	section	待裁框界
-R-TM9	features/time_management/RULINGS.md	pending-frame	54c12889	54c12889	section	待裁框界
-R-VS19′	features/vehicle_setting/RULINGS.md	pending-frame	487f8e10	487f8e10	section	待裁框界
-R-VS19″	features/vehicle_setting/RULINGS.md	pending-frame	d1c7df04	d1c7df04	section	待裁框界
-R-VS36	features/vehicle_setting/RULINGS.md	pending-frame	2388813c	2388813c	section	待裁框界
-R-VS37	features/vehicle_setting/RULINGS.md	pending-frame	3ccd425f	3ccd425f	section	待裁框界
-R-VS37′	features/vehicle_setting/RULINGS.md	pending-frame	9fb44a48	9fb44a48	section	待裁框界
-R-VS38	features/vehicle_setting/RULINGS.md	pending-frame	238c968a	238c968a	section	待裁框界
-R-VS39	features/vehicle_setting/RULINGS.md	pending-frame	d66fb38e	d66fb38e	section	待裁框界
-R-VS40	features/vehicle_setting/RULINGS.md	pending-frame	14c4341f	14c4341f	section	待裁框界
-R-VS41	features/vehicle_setting/RULINGS.md	pending-frame	94b19430	94b19430	section	待裁框界
-R-VS42	features/vehicle_setting/RULINGS.md	pending-frame	94211023	94211023	section	待裁框界
-R-VS43	features/vehicle_setting/RULINGS.md	pending-frame	2b9ae897	2b9ae897	section	待裁框界
-R-VS44	features/vehicle_setting/RULINGS.md	pending-frame	076b791c	076b791c	section	待裁框界
-R-VS44′	features/vehicle_setting/RULINGS.md	pending-frame	8bc26bce	8bc26bce	section	待裁框界
-R-VS45	features/vehicle_setting/RULINGS.md	pending-frame	650e2f03	650e2f03	section	待裁框界
-R-VS46	features/vehicle_setting/RULINGS.md	pending-frame	2712e131	2712e131	section	待裁框界
-R-VS47	features/vehicle_setting/RULINGS.md	pending-frame	8151b4de	8151b4de	section	待裁框界
-R-VS48	features/vehicle_setting/RULINGS.md	pending-frame	72fad62e	72fad62e	section	待裁框界
-R-VS48′	features/vehicle_setting/RULINGS.md	pending-frame	9a791357	9a791357	section	待裁框界
-R-VS49	features/vehicle_setting/RULINGS.md	pending-frame	6b42d425	6b42d425	section	待裁框界
-R-VS50	features/vehicle_setting/RULINGS.md	pending-frame	87d132ec	87d132ec	section	待裁框界
-R-VS7(a)′	features/vehicle_setting/RULINGS.md	pending-frame	31bff057	31bff057	section	待裁框界
-R-AM2	features/audio_mgmt/RULINGS.md	refenced	21957d7f	a1204c33	fenced	巢狀修正（子條之框不再算入母條）
-R-TM37	features/time_management/RULINGS.md	refenced	6eaeb96f	d0ead7b9	fenced	巢狀修正（子條之框不再算入母條）
-R-TM47	features/time_management/RULINGS.md	refenced	0f42ba4c	4769bb92	fenced	巢狀修正（子條之框不再算入母條）
-R-TM49	features/time_management/RULINGS.md	refenced	452edaf7	f6c7f919	fenced	巢狀修正（子條之框不再算入母條）
-R-TM51	features/time_management/RULINGS.md	refenced	d0a7addf	47b9a473	fenced	巢狀修正（子條之框不再算入母條）
+# 框界作業期間之基準表（下放包 66 §四 #5 之二欄制，取代原 `frame_state` 單欄）。
+# 母群：`kind == ruling` 之錨點（R-G29 之射程）。
+# `last_known_body_sha8` = 該條最近一次「已知且已解釋」之 body_sha；`reason` = 其成因。
+# R-G13 之比對改三段：與 `sha.tsv` 同 → clean；與 `last_known` 同 → 報其 reason，**不停止**；
+#   **與二者皆不同 → 真變動，停止並回報**（成因段被改之情形自動落入第三段）。
+ruling_id	source	last_known_body_sha8	reason	body_kind	tsv_body_sha8
+R-AM2	features/audio_mgmt/RULINGS.md	a1204c33	nested-fix	fenced	21957d7f
+R-TM37	features/time_management/RULINGS.md	d0ead7b9	nested-fix	fenced	6eaeb96f
+R-TM47	features/time_management/RULINGS.md	4769bb92	nested-fix	fenced	0f42ba4c
+R-TM49	features/time_management/RULINGS.md	f6c7f919	nested-fix	fenced	452edaf7
+R-TM51	features/time_management/RULINGS.md	47b9a473	nested-fix	fenced	d0a7addf
+R-POP12	features/popup/RULINGS.md	e323360d	pending-frame	section	e323360d
+R-POP13	features/popup/RULINGS.md	89306542	pending-frame	section	89306542
+R-POP18	features/popup/RULINGS.md	bfbb3167	pending-frame	section	bfbb3167
+R-POP26	features/popup/RULINGS.md	5b4d55fe	pending-frame	section	5b4d55fe
+R-TM11	features/time_management/RULINGS.md	bdabd953	pending-frame	section	bdabd953
+R-TM12	features/time_management/RULINGS.md	831cfd67	pending-frame	section	831cfd67
+R-TM13	features/time_management/RULINGS.md	19d17718	pending-frame	section	19d17718
+R-TM40	features/time_management/RULINGS.md	f2c23203	pending-frame	section	f2c23203
+R-TM9	features/time_management/RULINGS.md	54c12889	pending-frame	section	54c12889
+R-VS19′	features/vehicle_setting/RULINGS.md	487f8e10	pending-frame	section	487f8e10
+R-VS19″	features/vehicle_setting/RULINGS.md	d1c7df04	pending-frame	section	d1c7df04
+R-VS36	features/vehicle_setting/RULINGS.md	2388813c	pending-frame	section	2388813c
+R-VS37	features/vehicle_setting/RULINGS.md	3ccd425f	pending-frame	section	3ccd425f
+R-VS37′	features/vehicle_setting/RULINGS.md	9fb44a48	pending-frame	section	9fb44a48
+R-VS38	features/vehicle_setting/RULINGS.md	238c968a	pending-frame	section	238c968a
+R-VS39	features/vehicle_setting/RULINGS.md	d66fb38e	pending-frame	section	d66fb38e
+R-VS40	features/vehicle_setting/RULINGS.md	14c4341f	pending-frame	section	14c4341f
+R-VS41	features/vehicle_setting/RULINGS.md	94b19430	pending-frame	section	94b19430
+R-VS42	features/vehicle_setting/RULINGS.md	94211023	pending-frame	section	94211023
+R-VS43	features/vehicle_setting/RULINGS.md	2b9ae897	pending-frame	section	2b9ae897
+R-VS44	features/vehicle_setting/RULINGS.md	076b791c	pending-frame	section	076b791c
+R-VS44′	features/vehicle_setting/RULINGS.md	8bc26bce	pending-frame	section	8bc26bce
+R-VS45	features/vehicle_setting/RULINGS.md	650e2f03	pending-frame	section	650e2f03
+R-VS46	features/vehicle_setting/RULINGS.md	2712e131	pending-frame	section	2712e131
+R-VS47	features/vehicle_setting/RULINGS.md	8151b4de	pending-frame	section	8151b4de
+R-VS48	features/vehicle_setting/RULINGS.md	72fad62e	pending-frame	section	72fad62e
+R-VS48′	features/vehicle_setting/RULINGS.md	9a791357	pending-frame	section	9a791357
+R-VS49	features/vehicle_setting/RULINGS.md	6b42d425	pending-frame	section	6b42d425
+R-VS50	features/vehicle_setting/RULINGS.md	87d132ec	pending-frame	section	87d132ec
+R-VS7(a)′	features/vehicle_setting/RULINGS.md	31bff057	pending-frame	section	31bff057
+R-POP1	features/popup/RULINGS.md	61145b5f	ruled-boundary	fenced	61145b5f
+R-POP11	features/popup/RULINGS.md	cf8cd5af	ruled-boundary	fenced	a6b5301b
+R-POP14	features/popup/RULINGS.md	67350a6d	ruled-boundary	fenced	e025ab99
+R-POP15	features/popup/RULINGS.md	2c712b56	ruled-boundary	fenced	2c712b56
+R-POP20	features/popup/RULINGS.md	d6a87394	ruled-boundary	fenced	2894aa0c
+R-POP22	features/popup/RULINGS.md	34df5903	ruled-boundary	fenced	1bb746f6
+R-POP23	features/popup/RULINGS.md	698c370b	ruled-boundary	fenced	c5655c80
+R-POP24	features/popup/RULINGS.md	e362b2b6	ruled-boundary	fenced	e362b2b6
+R-POP5	features/popup/RULINGS.md	6ffd7fad	ruled-boundary	fenced	a6816cb1
+R-POP6	features/popup/RULINGS.md	66f64b48	ruled-boundary	fenced	66f64b48
+R-POP8	features/popup/RULINGS.md	ce2d0a8c	ruled-boundary	fenced	7425f059
