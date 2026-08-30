@@ -3,9 +3,25 @@
 - **From**: Pei (SW Test / SWE.6, SW Update feature)
 - **Date**: 2026-08-28
 - **Subject**: Two data requests blocking system-level test case authoring for FOTA / SW Update
-- **Open items**: DR-SU1 (1 requirement), DR-SU2 v3 (4 sub-requests), DR-SU3 (2 requirements), **DR-SU4 (6 requirements — highest priority)**, DR-SU5 (1 requirement + 1 facet)
-- **Revision**: 2026-08-29 — DR-SU2 (c) now lists three requirements (`184` added);
-  DR-SU2 (d) added (trigger means for `315`/`318`); DR-SU3 added (umbrella requirements)
+- **Open items (as of 2026-08-30)**: **seven** data requests, DR-SU1 through DR-SU7
+- **Revision 2026-08-30 — the numbers in this document were out of date and are restated here.**
+  When this request was first written (2026-08-28) it described five data requests blocking
+  a handful of test cases. Drafting is now complete for all 311 requirements, and the same
+  requests block a much larger share of the work than the body of this document says:
+
+  | Request | What it asks for | Test cases blocked |
+  |---|---|---:|
+  | DR-SU1 | Safety-related notification conditions during a silent update | 3 |
+  | **DR-SU2** | Observation, discrimination and trigger means (four segments) | **151** |
+  | DR-SU3 | Whether internal differences or narrative angles split a requirement | 27 |
+  | DR-SU4 | Interruption-handling criterion; the two 30-minute start points | 11 |
+  | DR-SU5 | Bench procedure for comparing two update types | 1 |
+  | **DR-SU6** | Pass criterion for capability/universal requirements in one bench run | 17 |
+  | **DR-SU7** | Observation means for security and authentication mechanisms | 11 |
+
+  **195 of 317 test cases carry at least one placeholder; 712 placeholder lines in total.**
+  The per-request detail below is unchanged where it is still correct; where a section
+  states a smaller scope, the table above supersedes it.
 
 ---
 
