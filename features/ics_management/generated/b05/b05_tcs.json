@@ -8,7 +8,7 @@
  "tcs": [
   {
    "req_id": "SWE-ICS-004",
-   "tc_id": "NR1L-ICS-024",
+   "tc_id": "NR1L-ICS-011",
    "tc_title": "Knob 2 rotated on a scrollable screen",
    "test_group": "ICS",
    "test_set": "Browse Control",
@@ -31,7 +31,7 @@
   },
   {
    "req_id": "SWE-ICS-004",
-   "tc_id": "NR1L-ICS-025",
+   "tc_id": "NR1L-ICS-012",
    "tc_title": "Knob 2 rotated on a tuner source",
    "test_group": "ICS",
    "test_set": "Browse Control",

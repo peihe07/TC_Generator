@@ -127,3 +127,49 @@
 自 2026-08-21 起標「待 Pei 裁定一制」，選項框九日未勾 ——
 **執行層未查該節即以前例推定**。經 Pei 直接裁定落 **R-ICS57**，
 檔案於 commit 前更名，sha 不變（`cmp` 複驗逐位元組一致）。
+
+---
+
+## §8 列序更正（2026-08-30，Pei 指出「Requirement or Design ID 沒有照順序排」）
+
+### §8-1 缺陷與其量測
+
+| 項 | power/delivered（389 列）| ICS/delivered v1（31 列）|
+|---|---|---|
+| `tc_id` 與列序一致 | ✓ | ✓ |
+| **`req_id` 升序** | **0 斷點** | **6 斷點** |
+| Test Set 分組連續 | ✗（5 值散成 19 塊）| ✗ |
+
+power 之 Test Set 亦不連續 —— **分組不是不變量，`req_id` 升序才是**。
+首個逆序：`row13: SWE-ICS-001 在 SWE-ICS-010 之後`。
+
+### §8-2 根因（R-ICS58(f)）
+
+comfort 96 §1 一 早已立本規則並以 `row-order-by-reqid` 一道 gate 守之；
+power 之交付件實測合之。**ICS 無 `write_back.py`，該 gate 從未對其跑過。**
+b19b 之普查量「`tc_id` 與列序一致」而**未量 `req_id` 升序** ——
+在 power 二者恰好同時成立，ICS 是第一個分歧之 feature。
+
+### §8-3 更正之實測
+
+| 項 | 實測 |
+|---|---|
+| 產出路徑 | **新增** `scripts/write_back.py`（R-ICS58(g)，四道 gate 內建）|
+| `row-order-by-reqid` | **PASS**（v2）|
+| 反向驗證（R-G7）| 對 v1 原序**轉紅**並指名 row13；同值相鄰**不誤報**；注入逆序**轉紅** |
+| `all-leaves-present` | PASS —— 037 之 leaf 全集 10 個全數在表 |
+| `tc-id-sequence` | PASS —— `NR1L-ICS-001`~`031` 依列位 |
+| `content-preserved` | PASS —— 除 B／F 外之 11 欄，341 格之多重集 v1 == v2 |
+| `surgical_save` | 403 格（31×13）、成員 48、僅 `sheet6.xml` 有差、DV 保留 |
+| PENDING／Test Set／錨行／ObjectID | **6／5／65／38**，與 v1 全同 |
+| `generated/` json | 31 個 `tc_id` 全數換號，與 v2 工作簿逐條複驗相符 |
+| 交付件 sha256 | `e2ce5868adf3768fa1c64799634db075e7dd08ef582e0bb6ec3f28fc8afbc5d0` |
+
+### §8-4 舊交付件之處置
+
+v1（sha `d31d81d2…`）**視為誤交付，自 `delivered/` 移除**（Pei 裁）。
+其從未出過 repo —— 同一 session 內交付即發現缺陷。git 歷史為其歸檔（R-G26）。
+**此為 R-G25「`delivered/` 只進不改」之具名例外**，理由為該件自始即不該進。
+
+**仍未做**：Excel GUI 驗證（Pei 手動項）；tag（Pei）。
+4 條不可出貨與 6 處 PENDING 之狀態不因本次更正而改變。

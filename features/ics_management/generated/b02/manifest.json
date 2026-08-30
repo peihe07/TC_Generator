@@ -57,7 +57,7 @@
  },
  "note": "tcs_sha256 為本檔寫入前之值；b02_tcs.json 若再動，本檔須重算。",
  "tc_ids": [
-  "NR1L-ICS-007",
-  "NR1L-ICS-008"
+  "NR1L-ICS-030",
+  "NR1L-ICS-031"
  ]
 }

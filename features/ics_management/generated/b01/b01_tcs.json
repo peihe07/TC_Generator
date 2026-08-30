@@ -7,7 +7,7 @@
  "tcs": [
   {
    "req_id": "SWE-ICS-010",
-   "tc_id": "NR1L-ICS-001",
+   "tc_id": "NR1L-ICS-027",
    "tc_title": "Stuck button held over 120 s",
    "test_group": "ICS",
    "test_set": "Stuck Button",
@@ -26,7 +26,7 @@
   },
   {
    "req_id": "SWE-ICS-010",
-   "tc_id": "NR1L-ICS-002",
+   "tc_id": "NR1L-ICS-028",
    "tc_title": "Stuck fault held until de-bounced not-pressed",
    "test_group": "ICS",
    "test_set": "Stuck Button",
@@ -45,7 +45,7 @@
   },
   {
    "req_id": "SWE-ICS-010",
-   "tc_id": "NR1L-ICS-003",
+   "tc_id": "NR1L-ICS-029",
    "tc_title": "Button held exactly 120 s",
    "test_group": "ICS",
    "test_set": "Stuck Button",
@@ -64,7 +64,7 @@
   },
   {
    "req_id": "SWE-ICS-001",
-   "tc_id": "NR1L-ICS-004",
+   "tc_id": "NR1L-ICS-001",
    "tc_title": "VOLUME knob rotated clock-wise",
    "test_group": "ICS",
    "test_set": "Volume Control",
@@ -87,7 +87,7 @@
   },
   {
    "req_id": "SWE-ICS-001",
-   "tc_id": "NR1L-ICS-005",
+   "tc_id": "NR1L-ICS-002",
    "tc_title": "VOLUME knob rotated counter clock-wise",
    "test_group": "ICS",
    "test_set": "Volume Control",
@@ -110,7 +110,7 @@
   },
   {
    "req_id": "SWE-ICS-002",
-   "tc_id": "NR1L-ICS-006",
+   "tc_id": "NR1L-ICS-004",
    "tc_title": "Three detents rotated clock-wise",
    "test_group": "ICS",
    "test_set": "Volume Control",

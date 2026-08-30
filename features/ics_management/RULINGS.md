@@ -2307,3 +2307,49 @@ R-ICS55（19a 之採認；TC ID 之裁定路徑；19b 授權）
 ```
 （Pei 直接裁定，2026-08-30；FO R-G25、R-G1；FORMS.md；
  REMEDIATION_DELIVERY_MGMT_20260821 §版次命名）
+
+## R-ICS58 — 交付本列序依 `Requirement or Design ID` 升序（Pei 直接裁定，2026-08-30）
+
+```
+(a) `delivered/` 之列序**依 D 欄（`Requirement or Design ID`，即 037 之 leaf id）
+    升序**，同一 leaf 之多條 TC 維持其生成之相對序（穩定排序）。
+    **不依批次順序、不依 Test Set 順序。**
+
+(b) **本條取代 R-ICS56(b)。** R-ICS56(b) 定列序為「`generated/` 之批次序
+    （b01→b07，批內依 json 陣列序）」—— 該定義於 ICS 產生 6 個逆序斷點。
+
+(c) `tc_id` 與 B 欄序號**依新列位重編** `NR1L-ICS-{n:03d}`／`1..31`，
+    `generated/` 之 json 同步改寫（31 個全數換號）。
+    R-ICS56(a) 之前綴與格式不變。
+
+(d) 排序鍵為**數值**（`SWE-ICS-(\d+)` 之整數），非字串序。
+    本語料之 id 皆三位補零故兩者同果 —— **但依賴補零是依賴一個沒有人
+    保證過的事**，故取數值鍵。
+
+(e) 逆序之判準為 `<` 而非 `<=`：一個 leaf 拆出多條 TC 時該幾列 D 欄相同，
+    **那是規則所要之形態，不是違規**（同 comfort 之 `row-order-by-reqid`）。
+
+(f) 具名本條之成因 —— **不是新規則，是一道從未對 ICS 跑過的既有 gate**：
+    ① comfort 96 §1 一 早已立「列序依 `Requirement or Design ID` 遞增，
+       不依批次順序、不依 Test Set 順序」，並以
+       `features/comfort/scripts/verify_row_order_gates.py` 之
+       `row-order-by-reqid` 守之；
+    ② `features/power/delivered/pm_29.xlsx` 實測 389 列、111 個相異 req_id、
+       **0 個逆序斷點**，其不變量與 comfort 之條文一致；
+    ③ **ICS 無 `write_back.py`**，故該 gate 從未對 ICS 跑過。
+       b19b 之普查量的是「`tc_id` 001..N 與列序一致」，五本全過 ——
+       **但未量 `req_id` 升序**。在 power 二者恰好同時成立（其 generated
+       序本即依 req_id），ICS 是第一個二者分歧之 feature。
+       **普查不是算錯，是量錯了不變量。**
+
+(g) **`features/ics_management/scripts/write_back.py` 為本 feature 工作簿之
+    唯一產出路徑**，四道 gate（`row-order-by-reqid`／`all-leaves-present`／
+    `tc-id-sequence`／`content-preserved`）內建於其中。
+    v1 產出時無此腳本，其工作簿不可再現 —— 本條同時補該洞。
+
+(h) comfort 96 §1 二（未產出 TC 之 leaf 仍佔一列）**不適用於 ICS**：
+    037 實測 leaf 全集為 SWE-ICS-001..010 十個，十個皆有 TC，無留空列之需。
+    此前提由 `all-leaves-present` 現場複驗，不以本條為據。
+```
+（Pei 直接裁定，2026-08-30；comfort 96 §1、§6；power delivered 實測；
+ R-ICS56(a)(b)、R-ICS57、R-G7 反向驗證、R-G3、R-G25）

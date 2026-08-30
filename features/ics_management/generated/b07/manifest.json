@@ -48,9 +48,9 @@
  },
  "note": "tcs_sha256 為本檔寫入前之值。",
  "tc_ids": [
-  "NR1L-ICS-028",
-  "NR1L-ICS-029",
-  "NR1L-ICS-030",
-  "NR1L-ICS-031"
+  "NR1L-ICS-026",
+  "NR1L-ICS-019",
+  "NR1L-ICS-024",
+  "NR1L-ICS-003"
  ]
 }
