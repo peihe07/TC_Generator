@@ -9,6 +9,11 @@
 
 ## 1. What is in the book
 
+> **Row order**: the book is sorted by **`Requirement or Design ID` ascending**
+> (numerically, so `-10` follows `-9`), and test case IDs are assigned in row order,
+> `newR1L-SU-001` … `-319`. Where one requirement has several test cases they are
+> adjacent, in the order the facets were drafted.
+
 | | Count |
 |---|---:|
 | Requirements in the source report | **311** |

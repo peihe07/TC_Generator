@@ -66,3 +66,5 @@
 
 **全項結清。** 唯一未由我方完成者為 `DELIVERY_NOTE.md` §6 之末段所載之
 **Excel GUI 實開驗收（屬 Pei，下放包 23 §四 3b）**。
+
+| **D-12** | **交付本之列序依 `Requirement or Design ID` 升冪，TC ID 隨列指派（R-BLM17，跨 feature）** —— **出貨前須查既有 feature 之交付慣例並列其裁決編號** | ✅ **已結**（2026-08-30 補正，見上繳包 72 §8；驗證見 `scripts/verify_order.py`） | R-BLM17｜BACKLOG B-46 |

@@ -96,6 +96,14 @@ def main():
     global A9_FALLBACK
     A9_FALLBACK = legal[8]          # `下拉選單!$A$9`（batch02a 之值，R-SU40(a) 實測）
     tcs = collect()
+    # R-BLM17（Pei 2026-08-27，bed_lowering 立，跨 feature 適用）：
+    # 交付本依 `Requirement or Design ID`（D 欄）**升冪重排**，TC ID 隨列重指派。
+    # 排序鍵以**數值**排（非字串）；同一 req_id 之多列維持其起草序（穩定排序），
+    # 使一列之內的各 facet 不被打散。
+    order = sorted(range(len(tcs)),
+                   key=lambda i: (int(tcs[i]["req"].rsplit("-", 1)[1]), i))
+    draft_pos = {id(tcs[i]): j + 1 for j, i in enumerate(range(len(tcs)))}
+    tcs = [tcs[i] for i in order]
     rows = []
     row = HEADER_ROW + 1
     for i, t in enumerate(tcs, 1):
