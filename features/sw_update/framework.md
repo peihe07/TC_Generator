@@ -117,6 +117,21 @@ CFTS_57 Reflash —— 交付面統一取 `SW Update`（Pei 2026-08-27 裁定 Q6
 
 | # | Test Set | 能力叢集 | 所轄 (Heading id, 列區間) | 列數 | HMI | Service |
 |---:|---|---|---|---:|---:|---:|
+> ### ⚠ 組名與其內容之相符度（T83e，下放包 71 §三）
+>
+> **21 組逐組依列序抽三列（不挑）覆核其標題與組名之相符**，分析層判定：
+>
+> | 判 | 組 |
+> |---|---|
+> | **不符** | **`Bearer Selection`** —— **16 列中 15 列為 DDF 判讀與安全／認證**，非 bearer。**其排期曾因組名而被延後九包**（下放包 50 起以 DR-SU2(a) 為由），詳見 BACKLOG B-44 |
+> | 部分符 | `Session Flows`／`Client Architecture`／`Update Policy` —— 其抽樣列含他組關鍵詞，**惟其內容仍屬本組之能力；不改組成、不加註** |
+> | 未發現異常 | 其餘 17 組 |
+>
+> **⚠ 其限度須與結論並列**：**三列抽樣不足以判定全組。**
+> **本項之結論為「未發現第二個 `Bearer Selection`」，不是「其餘 20 組皆相符」。**
+>
+> **不改組成**：改組成會動已交付之 trace；**組名之誤導，其解是把內容寫在名字旁邊。**
+
 | 1 | `Wi-Fi Download` | Wi-Fi 下載路徑：連線建立、經 Wi-Fi 之軟體下載、非關鍵更新 | (`SWE1-FOTA-038`, 全群)、(`SWE1-FOTA-055`, 全群)、(`SWE1-FOTA-058`, 全群) | 29 | 12 | 17 |
 | | | *Heading 標題原文*（R-SU10 v2(c)）：038 OTA download via Wi-Fi；055 Non-Critical Updates；058 Connection to Wi-Fi network | | | | |
 | 2 | `Update Policy` | 更新之關鍵性政策：Critical／Regular／Silent 之分級與其套用 | (`SWE1-FOTA-009`, 全群)、(`SWE1-FOTA-024`, 全群) | 17 | 4 | 13 |
