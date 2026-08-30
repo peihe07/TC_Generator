@@ -55,35 +55,55 @@
 
 ## §3 掛帳清單（解凍時逐項處理）
 
+> **b19 更新（R-ICS54(d)，執行層依令改本節）**：原 11 項保留於下，並增列 b16～b18 之 OPEN 項。
+> **凡本表所列者，`pending_census` 與 `selfcheck` 皆不會提醒 —— 只有本表會。**
+
 | # | 掛帳事項 | 現況 | 所繫 |
 |---|---|---|---|
-| 1 | **§1.4 之 86 個 `Unclassified` 物件**依 SYS2 分類處置 | b13 三值化後已與 `Associated` 分離；OoS／Information 者不入範圍 | R-ICS42(d) |
-| 2 | **`4819353` 覆蓋缺口** | **未覆蓋**（三要件命中皆 0；31 條中提及 `DCSD_DISP_STAT` 者 **0 條**）。已登記，**未生成** | R-ICS42(d) |
-| 3 | **DR-ICS18 追認風險** | 上游若否認 `Disassociated`，**009 ＋ b12 加錨之 15 條須退回** | DR-ICS18 |
-| 4 | **G5 押後** | 未解 | A-ICS60 |
-| 5 | **SYS2 掃描起點盲區 73 列（21.9%）** | b13 作業 B 已盤點，**未處置** | A-ICS78 |
-| 6 | **E19 觸發之 `NRL-180522`** | 判為 HMI 軟體側**可驗證之行為**；範圍屬分析層，**未裁** | 本記錄 §4 |
-| 7 | **PDT27 dbc 綁定** | 唯讀量過，判「部分」；未綁定 | A-DM14 |
-| 8 | **A-ICS80（`R-ICS40` 正本來源）** | 待 Pei 答 | R-ICS42(i) |
-| 9 | **`$Touchscreen_ICS$` 第四路** | 登記不走 | R-ICS42(j) |
-| 10 | **SYS2 自帶之 `Verifiability`／`Verification Criteria`／`Verification Method` 三欄從未量過** | b13 新發現，**已複驗欄位存在**（欄 33／56／57）| 見 §4 |
-| 11 | **已綁 FDCAN8 檔載 `BO_TX_BU_ 1427 : ETM,LTM;`** | 與 upstream-07 之「二 DBC 中無 DUT 發送側」E3 依據**相對**，未調和 | 見 §4 |
+| 1 | §1.4 之 86 個 `Unclassified` 物件依 SYS2 分類處置 | 未處置 | R-ICS42(d) |
+| 2 | `4819353` 覆蓋缺口 | 未覆蓋；31 條提及 `DCSD_DISP_STAT` 者 0 條 | R-ICS42(d) |
+| 3 | DR-ICS18 追認風險 | 上游若否認 `Disassociated`，009 ＋ b12 加錨之 15 條須退回 | DR-ICS18 |
+| 4 | G5 押後 | 未解 | A-ICS60 |
+| 5 | SYS2 掃描起點盲區 73 列（21.9%）| b13 已盤點，未處置 | A-ICS78 |
+| 6 | E19 之 `NRL-180522`（觸控去重／CarPlay 認證）| 判為 HMI 軟體側可驗證行為，未裁 | 待 Pei |
+| 7 | PDT27 dbc 之跨 feature 歸屬 | **BHCAN2 已於 b16 綁為 `reference.dbc_bh2`**；`display` 側未動 | A-DM14 |
+| 8 | A-ICS80（`R-ICS40` 正本來源）| 待 Pei 答 | R-ICS42(i) |
+| 9 | `$Touchscreen_ICS$` 第四路 | 登記不走 | R-ICS42(j) |
+| 10 | SYS2 之 `Verifiability`／`Verification Criteria`／`Verification Method` 三欄 | **b17 已量**：75 列非空，**其中 37 列為逐字相同之樣板** | DR-ICS23 |
+| 11 | 已綁 FDCAN8 載 `BO_TX_BU_ 1427 : ETM,LTM;` | 與 upstream-07 之 E3 依據相對，未調和 | 未裁 |
+| **12** | **A-ICS116：列 39 `4821022` 之檢查點缺口** | SYS2 Criteria 要求 screen ON 態檢查 `$RQ_DISP_INTS$ != 0%`，我方 6 行全為 screen OFF 後之 `= 0 (0 %)`。**b18 因 E40 停，未補** | **待裁定性** |
+| **13** | **A-ICS125：`4819578` 未加錨** | 與已覆蓋之 `4821693` 文字相似度 0.97，行為已涵蓋而未加錨（b12 加錨時未納入）| 未裁 |
+| **14** | **A-ICS118②：`4819632`／`4819879`／`4821017` 三物件** | 適用 ∧ 在 SYS2 在案 ∧ 未覆蓋，載 `ON_BLANK`／`SNA`，**無 Camera Transition 之既存成因**。維持上呈中，未生成 | 待 Pei |
+| **15** | **A-ICS109** | 維持待 Pei，b18／b19 未碰 | 待 Pei |
+| **16** | **A-ICS130 及 b17／b18 後之其餘 OPEN 項** | 含 SYS2 之 `Category` 大小寫不一致、`Verifiability`＝`Criteria` 非空為同一集合、14 列 `Out of Scope` 而我方已驗且理由欄全空 | DR-ICS23 等 |
+| **17** | **CFTS022 無 SYS2 匯出** | b17 主鍵表結構性無法回答 CFTS022 側覆蓋；7 個錨全屬該族 | **DR-ICS22** |
+| **18** | **寫回後之交付狀態** | b19 依現狀寫回 036 工作簿；**非出貨授權**（IN §8.4.3 不變）。6 處 PENDING 原樣寫入 | R-ICS54(a) |
 
 ---
 
-## §4 解凍觸發條件（逐 DR 對映應做之事）
+## §4 解凍觸發條件
 
-| DR | 上游回覆後應做 |
+> **b19 更新（R-ICS54(d)）**：依「寫回後非上游 DR 回覆不開窗」，本節收斂為單一條件。
+
+**唯一之解凍觸發條件：上游 DR 回覆。**
+
+其餘一切（新量測、新生成、補檢查點、加錨、三物件）**皆不構成解凍理由** ——
+b18 之 E39／E40 與 b17 之 E33／E34 皆已停在該處，其續行繫於分析層之裁定，非繫於新的量測。
+
+回覆到達後，逐 DR 對映應做之事：
+
+| DR | 回覆後應做 |
 |---|---|
-| **DR-ICS16**（`TGW_DISP_STAT` 觀察點）| 若定於 PDT27／FDCAN8：回收 b03 之 12 處佔位（作業 C 估最可能覆蓋 **8 條**）；`$Telematic_Power$` 估 **3** 處。**須先解訊號拼法**：佔位字面 `TGW_DISP_STAT` 在三支 dbc 中**查無**，實名為 `TGW_DISP_STATSts`；值名亦不符（b03 書 `[DISP_OFF]`／`[DISP_NORMAL]`，`VAL_ 1500` 為 `"Display_off"`／`"Normal_mode"`）|
-| **DR-ICS9**（VOLUME POP_UP 顯示條件）| 解 V1／V2／V3 —— **凍結前之最高優先**，因其無佔位而不會自行浮出 |
-| **DR-ICS2** | 解 B5 |
+| **DR-ICS9** | 解 V1／V2／V3 —— **最高優先**，因其**無佔位**而不會自行浮出 |
+| **DR-ICS2** | 解 B5；並復活 Camera Transition Test Set（29 個未覆蓋物件繫於此）|
 | **DR-ICS6** | 回收 5 處佔位（browse／scroll／tune／Enter／Back 對映）|
-| **DR-ICS4** | 回收 1 處佔位 |
-| **DR-ICS18**（變體追認）| 確認 → 掛帳 #3 解除；否認 → **009 ＋ 15 條加錨退回** |
+| **DR-ICS4** | 回收 1 處佔位（CFTS019 volume level range）|
+| **DR-ICS18** | 確認 → 掛帳 #3 解除；否認 → 009 ＋ 15 條加錨退回 |
 | **DR-ICS20** | G2／G3 之效力確立或退回 |
+| **DR-ICS22** | CFTS022 之 SYS2 到手 → b17 主鍵表得涵蓋該族之 7 個錨 |
+| **DR-ICS23** | SYS2 三項品質事實澄清 → 37 列樣板 Criteria 之性質確定，A-ICS116 之推廣面才有分母 |
 
-**不依賴任何上游、隨時可做之二件**：
+**不依賴任何上游、隨時可做之二件**（保留自 b13）：
 1. 以 SYS2 之 `Verifiability` 三欄反查本線 31 條之自行推導（掛帳 #10）；
 2. 73 列盲區中之 42 列節標題錨與 31 列空白列之處置（掛帳 #5）。
 

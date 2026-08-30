@@ -412,3 +412,30 @@ TC 仍 31、佔位仍 6 處／6 條。**git 執行次數 0。** 作業 B、C、D
 
 **失敗史七類齊備**，未量即斷七例逐例獨立成則；其「共同形狀」為
 **把「我沒看見」當成「不存在」，並當作已量測之事實往下傳**（六類同形，A-ICS101 誠實排除在外）。
+
+---
+
+## 第 19 輪（2026-08-30）**寫回**：19a dry-run（**E42 停**）
+
+| 項 | 落點 |
+|---|---|
+| 上繳包 19a | `docs/upstream/19a_writeback_dryrun.md` |
+| dry-run 報告 | `docs/reports/19_writeback_dryrun.md` |
+| 交付清單對照 | `docs/reports/19_delivery_checklist_ics.md` |
+| 凍結記錄（§3 掛帳 11→18 項、§4 解凍條件收斂）| `docs/reports/13_freeze_record.md`（**執行層唯一得改之既有報告**）|
+| 快照 | `docs/reports/19_rulings_snapshot.md` |
+
+**作業 A／B／D／E 完成；作業 C（sandbox 產出）依令未做**，待分析層審 dry-run。
+**repo 內未新增任何 xlsx。git 執行次數 0。TC 內容變動 0。**
+
+**【E42 觸發】`generated/` 之 31 條無 `tc_id`** —— 而 `feature.yaml` 已宣告
+`tc_id_format: "NR1L-ICS-{n:03d}"` 與欄位對映（`tc_id: "F"`）：**格式在案，值從未生成**。
+依令不自行編號。**E41／E43／E44 未觸發** —— 母本 x14 DV（`R10:R1411`）經
+`xlsx_surgical` 實測保留（48 成員一致、DV 計數不變、僅 `sheet6.xml` 有差）。
+
+母本既有資料列 **0**（表頭第 9 列、資料自第 10 列，現場複驗）；投影後 **0 → 31**；
+PENDING **6 處全在 `pre_conditions`**（DR-ICS6 五處、DR-ICS4 一處）；
+不可出貨 **4 條**（V1／V2／V3 → DR-ICS9；B5 → DR-ICS2）。
+
+另具名一件：下放包稱「本 feature 無既有交付件」，實測 `sandbox/ics_management_00.xlsx` **存在**
+（第 01 輪所產，**與母本 sha 逐字相同、資料列 0**）—— 結論正確而前提敘述不精確。
