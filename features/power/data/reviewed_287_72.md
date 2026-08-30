@@ -11,14 +11,14 @@
 | 3 | `NR1L-PowerManagement-003` | `SWE-PM-071` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 4 | `NR1L-PowerManagement-004` | `SWE-PM-071` | (R-P386 第一批) |
 | 5 | `NR1L-PowerManagement-005` | `SWE-PM-072` | (R-P386 第一批) |
-| 6 | `NR1L-PowerManagement-006` | `SWE-PM-073` | (R-P394 B5；規則 R3) |
+| 6 | `NR1L-PowerManagement-006` | `SWE-PM-073` | (R-P394 B5；規則 R3) (站④-1：ER 末步 29 字，逾 IN §5.2B 之 18 字上限) |
 | 7 | `NR1L-PowerManagement-007` | `SWE-PM-073` | (R-P394 B5；規則 無) |
-| 8 | `NR1L-PowerManagement-008` | `SWE-PM-073` | (R-P394 B5；規則 R3) |
+| 8 | `NR1L-PowerManagement-008` | `SWE-PM-073` | (R-P394 B5；規則 R3) (站④-1：ER 末步 30 字，逾 IN §5.2B 之 18 字上限) |
 | 9 | `NR1L-PowerManagement-009` | `SWE-PM-073` | (R-P394 B5；規則 R3) |
 | 10 | `NR1L-PowerManagement-010` | `SWE-PM-073` | (R-P394 B5；規則 R3) (R-P396 字典套用) |
 | 11 | `NR1L-PowerManagement-011` | `SWE-PM-073` | (R-P386 第一批) |
 | 12 | `NR1L-PowerManagement-012` | `SWE-PM-073` | (R-P386 第一批) |
-| 13 | `NR1L-PowerManagement-013` | `SWE-PM-073` | (R-P394 B5；規則 R3) |
+| 13 | `NR1L-PowerManagement-013` | `SWE-PM-073` | (R-P394 B5；規則 R3) (站④-1：ER 末步 30 字，逾 IN §5.2B 之 18 字上限) |
 | 14 | `NR1L-PowerManagement-014` | `SWE-PM-073` | DR-PW8 (High) —— `4942354` 未載 voltage out of range 之電壓門檻值；本條在取得該門檻前不可實際執行 (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 15 | `NR1L-PowerManagement-015` | `SWE-PM-073` | (R-P394 B5；規則 R3) |
 | 16 | `NR1L-PowerManagement-016` | `SWE-PM-073` | (R-P394 B5；規則 R3) |
@@ -124,8 +124,8 @@
 | 116 | `NR1L-PowerManagement-116` | `SWE-PM-036` | (R-P376 丁案；原驗 RemStartFail / VPLastStatus 內部值，改驗其下游效果) |
 | 117 | `NR1L-PowerManagement-117` | `SWE-PM-037` | (R-P383) |
 | 118 | `NR1L-PowerManagement-118` | `SWE-PM-039` | (R-P386 第一批) |
-| 119 | `NR1L-PowerManagement-119` | `SWE-PM-039` | (R-P386 第一批) |
-| 120 | `NR1L-PowerManagement-120` | `SWE-PM-039` | (R-P386 第一批) |
+| 119 | `NR1L-PowerManagement-119` | `SWE-PM-039` | (R-P386 第一批) (站④-1：ER 末步 23 字，逾 IN §5.2B 之 18 字上限) |
+| 120 | `NR1L-PowerManagement-120` | `SWE-PM-039` | (R-P386 第一批) (站④-1：ER 末步 23 字，逾 IN §5.2B 之 18 字上限) |
 | 121 | `NR1L-PowerManagement-121` | `SWE-PM-039` | (R-P386 第一批) |
 | 122 | `NR1L-PowerManagement-122` | `SWE-PM-040` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 123 | `NR1L-PowerManagement-123` | `SWE-PM-041` | (R-P386 第一批) |
@@ -140,7 +140,7 @@
 | 132 | `NR1L-PowerManagement-132` | `SWE-PM-044` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 133 | `NR1L-PowerManagement-133` | `SWE-PM-045` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 134 | `NR1L-PowerManagement-134` | `SWE-PM-045` | (R-P394 B5；規則 無) (R-P396 字典套用) |
-| 135 | `NR1L-PowerManagement-135` | `SWE-PM-046` | (R-P394 B5；規則 R5) (R-P396 字典套用) |
+| 135 | `NR1L-PowerManagement-135` | `SWE-PM-046` | (R-P394 B5；規則 R5) (R-P396 字典套用) (站④-1：ER 末步 19 字，逾 IN §5.2B 之 18 字上限) |
 | 136 | `NR1L-PowerManagement-136` | `SWE-PM-046` | (R-P394 B5；規則 R5) (R-P396 字典套用) |
 | 137 | `NR1L-PowerManagement-137` | `SWE-PM-047` | (R-P394 B5；規則 無) (R-P396 字典套用) |
 | 138 | `NR1L-PowerManagement-138` | `SWE-PM-047` | (R-P394 B5；規則 無) (R-P396 字典套用) |
@@ -192,7 +192,7 @@
 | 184 | `NR1L-PowerManagement-184` | `SWE-PM-095` | (R-P394 B5；規則 R3) (R-P396 字典套用) |
 | 185 | `NR1L-PowerManagement-185` | `SWE-PM-097` | (R-P386 第一批) (R-P357(b)：與 NR1L-PowerManagement-155 五欄逐字相同而 Req ID 不同（SWE-PM-056 / SWE-PM-097），二列皆保留不得合併；互註對方 tc_id) |
 | 186 | `NR1L-PowerManagement-186` | `SWE-PM-098` | (R-P386 第二批) |
-| 187 | `NR1L-PowerManagement-187` | `SWE-PM-099` | (R-P386 第二批) |
+| 187 | `NR1L-PowerManagement-187` | `SWE-PM-099` | (R-P386 第二批) (站④-1：ER 末步 25 字，逾 IN §5.2B 之 18 字上限) |
 | 188 | `NR1L-PowerManagement-188` | `SWE-PM-099` | (R-P394 B5；規則 R3/R6) (R-P396 字典套用) |
 | 189 | `NR1L-PowerManagement-189` | `SWE-PM-099` | (R-P394 B5；規則 R6) (R-P396 字典套用) |
 | 190 | `NR1L-PowerManagement-190` | `SWE-PM-099` | (R-P394 B5；規則 R3/R6) (R-P396 字典套用) |
@@ -561,7 +561,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 R3)
+(R-P394 B5；規則 R3) (站④-1：ER 末步 29 字，逾 IN §5.2B 之 18 字上限)
 ```
 
 ## `NR1L-PowerManagement-007`　`SWE-PM-073`　Load Shed signals lost: last values retained
@@ -657,7 +657,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 R3)
+(R-P394 B5；規則 R3) (站④-1：ER 末步 30 字，逾 IN §5.2B 之 18 字上限)
 ```
 
 ## `NR1L-PowerManagement-009`　`SWE-PM-073`　Normal operation resumes 10 seconds after recovery
@@ -896,7 +896,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 R3)
+(R-P394 B5；規則 R3) (站④-1：ER 末步 30 字，逾 IN §5.2B 之 18 字上限)
 ```
 
 ## `NR1L-PowerManagement-014`　`SWE-PM-073`　Battery Critical exits on voltage out of range condition
@@ -5617,7 +5617,7 @@ NA
 **Remarks**
 
 ```
-(R-P386 第一批)
+(R-P386 第一批) (站④-1：ER 末步 23 字，逾 IN §5.2B 之 18 字上限)
 ```
 
 ## `NR1L-PowerManagement-120`　`SWE-PM-039`　Auto switch on active on LTM High Radio loads Timeout1 from the PROXI value
@@ -5665,7 +5665,7 @@ NA
 **Remarks**
 
 ```
-(R-P386 第一批)
+(R-P386 第一批) (站④-1：ER 末步 23 字，逾 IN §5.2B 之 18 字上限)
 ```
 
 ## `NR1L-PowerManagement-121`　`SWE-PM-039`　Only TLM menu items are guaranteed in the Timed status
@@ -6329,7 +6329,7 @@ NA
 **Remarks**
 
 ```
-(R-P394 B5；規則 R5) (R-P396 字典套用)
+(R-P394 B5；規則 R5) (R-P396 字典套用) (站④-1：ER 末步 19 字，逾 IN §5.2B 之 18 字上限)
 ```
 
 ## `NR1L-PowerManagement-136`　`SWE-PM-046`　Rear view camera is provided after an unsuccessful antitheft
@@ -8620,7 +8620,7 @@ NA
 **Remarks**
 
 ```
-(R-P386 第二批)
+(R-P386 第二批) (站④-1：ER 末步 25 字，逾 IN §5.2B 之 18 字上限)
 ```
 
 ## `NR1L-PowerManagement-188`　`SWE-PM-099`　A change of the customer selected date allows the sound to play again

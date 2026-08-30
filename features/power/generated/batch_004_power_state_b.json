@@ -449,7 +449,7 @@
       "split_reason": "本條驗 OR 之左支 SwitchOff_Timeout_Setting.Req",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P386 第一批)",
+      "remarks": "(R-P386 第一批) (站④-1：ER 末步 23 字，逾 IN §5.2B 之 18 字上限)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 OR 之左支 SwitchOff_Timeout_Setting.Req"
@@ -475,7 +475,7 @@
       "split_reason": "本條驗 OR 之右支 Auto_SwitchOn_Setting.Req for LTM High Radio",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P386 第一批)",
+      "remarks": "(R-P386 第一批) (站④-1：ER 末步 23 字，逾 IN §5.2B 之 18 字上限)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 OR 之右支 Auto_SwitchOn_Setting.Req for LTM High Radio"
@@ -861,7 +861,7 @@
       "split_reason": "本條驗 OR 之左支 In_Progress",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用)",
+      "remarks": "(R-P394 B5；規則 R5) (R-P396 字典套用) (站④-1：ER 末步 19 字，逾 IN §5.2B 之 18 字上限)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 OR 之左支 In_Progress"

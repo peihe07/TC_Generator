@@ -170,7 +170,7 @@
       "split_reason": "本條驗 Load Shed 之偵測與四項動作。與 -03 之 Battery Critical 為不同觸發訊號、不同控制實體，依 §8.2.2 拆分",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3)",
+      "remarks": "(R-P394 B5；規則 R3) (站④-1：ER 末步 29 字，逾 IN §5.2B 之 18 字上限)",
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Load Shed 之偵測與四項動作。與 -03 之 Battery Critical 為不同觸發訊號、不同控制實體，依 §8.2.2 拆分"
@@ -222,7 +222,7 @@
       "split_reason": "本條驗 Battery Critical 之偵測與四項動作。BODY ON 與 BODY OFF-TIMED 共用同一控制實體，故合為一條之多列 ER",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P394 B5；規則 R3)",
+      "remarks": "(R-P394 B5；規則 R3) (站④-1：ER 末步 30 字，逾 IN §5.2B 之 18 字上限)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 Battery Critical 之偵測與四項動作。BODY ON 與 BODY OFF-TIMED 共用同一控制實體，故合為一條之多列 ER"
@@ -351,7 +351,7 @@
       "split_flag": true,
       "split_reason": "本條驗 mode 分支：Battery Critical 於 BODY OFF-TIMED 模式下之行為（`009` 為 BODY ON）",
       "functional_safety": "NA",
-      "remarks": "(R-P394 B5；規則 R3)",
+      "remarks": "(R-P394 B5；規則 R3) (站④-1：ER 末步 30 字，逾 IN §5.2B 之 18 字上限)",
       "distinguishing_axis": {
         "axis": "mode",
         "delta": "本條驗 mode 分支：Battery Critical 於 BODY OFF-TIMED 模式下之行為（`009` 為 BODY ON）"

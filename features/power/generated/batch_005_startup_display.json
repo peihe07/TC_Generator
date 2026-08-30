@@ -929,7 +929,7 @@
       "split_reason": "本條驗 Once a Day 之當日首次",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "(R-P386 第二批)",
+      "remarks": "(R-P386 第二批) (站④-1：ER 末步 25 字，逾 IN §5.2B 之 18 字上限)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗 Once a Day 之當日首次"
