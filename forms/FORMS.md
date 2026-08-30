@@ -550,6 +550,53 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 
 欄位形制沿上節「參考資料庫（DBC / PROXI / LID）」之六項 (a)–(f)。
 
+### `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx`
+
+> **使用中之 feature（R-G15 反向記載）**：`power`（R-P375(a)(b) 之段 1 入口）。
+
+- **(a)** SHA256 `41daac0048d2afe15fe9aeee52a6197a28efdd2a71da44d2b836b4da3e9d4cf9`
+  · 295,635 bytes · mtime 2026-08-25T09:15:30
+- **(b) 涵蓋範圍**：3 分頁 —— `Title`（1,000 × 2）、**`Settings`（1,015 × 26）**、
+  `Brand-Specific Names`（1,001 × 26）。`Settings` 為設定條目之主表；
+  power 之段 1 命中落於 r96–97 c2/c4（`Auto-On Comfort` /
+  `Auto_On_Comfort_Remote` / `Auto_On_Comfort_No_Remote`）
+- **(c) 版次**：`R1 SR25 Post R1L-R (Feb 13 2026)`（檔名所載，非推定）
+- **(d) 已知不涵蓋**：CAN 訊號名與 PROXI 參數名 —— 本檔為 **HMI 設定條目**之清單，
+  其欄位為設定之顯示名與可選值，**不含訊號層資訊**。以訊號名查本檔必然低命中，
+  不得記為缺漏（R-G13）
+- **(e) 取代關係**：無已知前版於本 repo
+- **(f) 首個採用**：`power`，2026-08-30（R-P375）
+
+### `SR26 Default Settings and PNet ECU Configuration v1_0.xlsx`
+
+> **使用中之 feature（R-G15 反向記載）**：`power`（R-P375(a)(c)）。
+
+- **(a)** SHA256 `8f3ae50edd9e8355d1e300bc71980dd099c2ad8e2a1b3de04ec329ff7c34126c`
+  · 69,667 bytes · mtime 2026-08-27T20:56:49
+- **(b) 涵蓋範圍**：3 分頁 —— `Revision History`（30 × 4）、
+  **`Default Parameters`（268 × 109）**、`PNET ECU Master Configurations`（122 × 16,384）。
+  power 之段 1 命中落於 `Default Parameters` r14–15 c12（`Rear Camera Present`）
+- **(c) 版次**：`v1_0`（檔名所載）
+- **(d) 已知不涵蓋**：執行期狀態 —— 本檔為**出廠預設值**與 ECU 組態，
+  其值為靜態組態而非運行時狀態。**存在性參數不得代狀態**（R-P375(e)）
+- **(e) 取代關係**：無已知前版於本 repo
+- **(f) 首個採用**：`power`，2026-08-30（R-P375）
+
+### `SR24 R1 Market Configuration Table v1.6.xlsx`
+
+> **使用中之 feature（R-G15 反向記載）**：`power`（R-P375(a) 之段 1 入口；本輪 0 命中）。
+
+- **(a)** SHA256 `7e865d557e42c8b00fbb92ed58ae4e94bb1d561c5fdf01c6af32a70821fe7dc9`
+  · 274,486 bytes · mtime 2026-08-27T20:56:49
+- **(b) 涵蓋範圍**：8 分頁 —— `Revision Log`（43 × 10）、`ReadMe(Instruction)`（19 × 3）、
+  **`Market Config - R1`（1,001 × 61）**、`R1 Tuner Layout`、`Radio Tuner Configuration`、
+  `Measurement Units`、`Language Sets`、`R1 Navi MAP Sets`
+- **(c) 版次**：`SR24 R1 … v1.6`（檔名所載）
+- **(d) 已知不涵蓋**：訊號名與內部變數 —— 本檔為**市場組態**（語言、單位、tuner 配置），
+  與電源狀態無交集。power 本輪 **0 命中**，屬 (d) 之預期範圍，**非缺漏**（R-G13）
+- **(e) 取代關係**：無已知前版於本 repo
+- **(f) 首個採用**：`power`，2026-08-30（R-P375；本輪 0 命中，登記為已查之檔）
+
 ### `Pop Up List HMI R1 (26PI).xlsx`
 
 > **使用中之 feature（R-G15 反向記載）**：`popup`（**R-POP6** 裁定納入為素材，**引用原位不搬**；`features/popup/feature.yaml` 之 `paths.popup_list` 以相對 glob 指向本檔）。

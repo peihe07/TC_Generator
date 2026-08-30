@@ -44,6 +44,15 @@ REFERENCE_LEDGER = {
         "46cb73f3db62ac9fba6ad8010d7930661983faf01383c022c52ba3c37de1cc60",
     "forms/PDT27_E2A_R1_FDCAN8.dbc":
         "2a86c4bf3e670d71b362d430b446d8d157c74b94429e833362f81f4a48f6a22e",
+    # 62 包 R-P375(a)：段 1 入口自 LID `CAN Mapping` 擴為 forms/ 全部參考檔
+    "forms/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx":
+        "41daac0048d2afe15fe9aeee52a6197a28efdd2a71da44d2b836b4da3e9d4cf9",
+    "forms/PROXI_HDCC27_R3_20250424.xlsx":
+        "e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2",
+    "forms/SR26 Default Settings and PNet ECU Configuration v1_0.xlsx":
+        "8f3ae50edd9e8355d1e300bc71980dd099c2ad8e2a1b3de04ec329ff7c34126c",
+    "forms/SR24 R1 Market Configuration Table v1.6.xlsx":
+        "7e865d557e42c8b00fbb92ed58ae4e94bb1d561c5fdf01c6af32a70821fe7dc9",
 }
 
 # §C rule 4：037 Source Requirement ID 之兩域 token（區分大小寫）

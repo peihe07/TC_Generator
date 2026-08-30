@@ -12529,6 +12529,148 @@ R-DM17 / R-DM21 / R-P355(b) / R-P365(b)）逐條核對。四處一致。
 > R-P370(d) 之加註標的為該**八名**。見 A-PW358。
 
 
+## 60 包裁決條文（R-P371 – R-P373）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 3、§J「三條」、§H 步驟 1 = 三條**，
+相容性 C(3,2) = 3 對，並依 R-P364(d) 對既有 canon 逐條核對。三處一致。
+
+```
+[R-P371] K-1 裁乙：`$PwrAccDelayAct$` → `$BCM_FD_27.Comfort_Enable_Time$`；
+         `$AccDelayAct$` → `$BCM_FD_27.Comfort_Enable_Act$`。
+         依據：Pei 2026-08-30 逐字「名稱不一定會完全一樣要看DBC實際名稱」——
+         LID 段 2 所給之訊息名（`BODY_CNTRL3`）與 forms FDCAN8 實際訊息名
+         （`BCM_FD_27`）不同，屬該指示所涵之「不完全一樣」；
+         `SG_` 名逐字同、`CM_` 註解與 LID `Function` 欄逐字同、
+         接收節點 ETM/LTM 為 HU 側，三項證據皆為機讀逐字比對，非語意跳接（R-P368(b)）。
+         （a）R-P368(a) 段 3 之「查得」自此含「`SG_` 名逐字在 forms DBC，
+              惟訊息名與 LID 段 2 不同」之情形；附表記明訊息名差異與依據
+         （b）`ENTER_STANDBY` 之 `Timeout1` 值改引 `$BCM_FD_27.Comfort_Enable_Time$`；
+              `ENTER_TIMED` 之離開條件改引 `$BCM_FD_27.Comfort_Enable_Act$`
+         （c）「規格名 = DBC 訊號」之最終認定仍屬上游，DR-PW26 第 (4) 問改為
+              「確認」而非「詢問」，附本條證據；上游否認則回滾至 PENDING
+         （d）R4 `BODY_CNTRL3` 版（接收 DDM/PDM）不採，B-1 衝突記為已依本條處置
+         裁決者：分析層（Tier 2，套用 Pei 08-30 指示）；回滾風險 (c) 記明。
+```
+
+```
+[R-P372] G252 改判：無錨者先人讀複查，複查後始得開 DR；antitheft 系列併 DR-PW23。
+         （a）採執行層甲案。51 名逐名讀其所屬 TC 之 `test_item` 上半 verbatim，
+              以規格用語再查 G0 台帳一次；結果三分：
+              有錨（補入代理量表）／查無（R-G13 三要件齊備，開 DR、登 M-n）／
+              待併案（見 (b)）
+         （b）`antitheft request …` 系列（11 名、17 條 TC）與 `Antitheft_Activation.Req` /
+              `Antitheft_Result.Info`（DR-PW23）指向同組需求，**併入 DR-PW23**，
+              不另開 DR；複查工作量由 51 降至 40
+         （c）G252 期望值改為：「有錨者全數入代理量表；查無者全有 DR 號與 M-n；
+              待併案者列名且指明所併之 DR」——三類合計 = 121，無第四類
+         （d）複查產出 `data/proxy_reachability_60.md`，逐名附 `test_item` 之
+              規格用語與所查段落 ObjectID；未讀者不得標查無
+         裁決者：分析層（Tier 2）。
+```
+
+```
+[R-P373] R-P366(c) 之判準由「多行」改為「性質」；八條改判為 (a) 內聯。
+         R-P366(c) 以 ITD 行數為分類判準，A-PW355 同型錯誤（以形狀代性質）。
+         改判準：
+         （a）IN §4.5 第 3 類獨立資料集 = 同一步驟須**逐一代入多個值**之集合
+              （邊界值、批次值、列舉全體），其特徵為「一步多值、值間為並列」
+         （b）多行但每行為**一個訊號一個賦值**、彼此為前置關係者，非資料集，
+              為前置條件或送訊步驟，依 (a) 類內聯：每一賦值一步
+              `Send the signal $MESSAGE.Signal$ = <raw> (<label>)`，起始音量等
+              非訊號值入 Pre-Condition
+         （c）59 包所報八條（`-006/-008/-009/-010/-011/-013/-015/-016`）依 (b) 改判為內聯；
+              `family_k_disposition_55.tsv` 更新，(c) 類數改為 0，G251 期望
+              「ITD 非 NA 者」改為 **15**（僅 (b) 類逐條檢後之保留者）
+         （d）`[1h]` 之方括號記法為素材原文，內聯時改 `= 1 (<VAL_ 標籤>)`（R-1 v3 (a)）；
+              `VAL_` 查無標籤者寫 `= 1`，不造標籤（§8.4.1）
+         R-P366 依 R-P36 原文不改，加註。
+         裁決者：分析層（Tier 2）。
+```
+
+**已逐字抄入（核對 3 / 3）。** R-P366 依 R-P36 原文不改，加註於下。
+
+> **註記（R-P36，60 包加註）—— R-P366(c)**：其分類判準由「**多行**」改為
+> 「**性質**」（**R-P373**）—— IN §4.5 第 3 類獨立資料集之特徵為
+> 「一步多值、值間為並列」；多行而每行為一訊號一賦值、彼此為前置關係者**非資料集**，
+> 依 (a) 類內聯。59 包所報之八條（`-006` / `-008` / `-009` / `-010` / `-011` /
+> `-013` / `-015` / `-016`）**改判為內聯**，(c) 類數改為 **0**。
+> 以形狀代性質為 A-PW355 之同型錯誤。
+
+## 61 包裁決條文（R-P374）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 1、§J「一條」、§H 步驟 1 = 一條**，
+並依 R-P364(d) 對既有 canon（S6 / R-13 / R-P353 / R-P368 / R-P200(a)）逐條核對。三處一致。
+
+```
+[R-P374] K-2 不裁即甲；乙／丙仍為 Pei 專屬；丁授權試作一條，不推廣。
+         （a）S6 之預設 = 甲：含 `PENDING: DR-PW23` 之 102 條不出貨，等上游回覆。
+              本條不改 S6，不開例外
+         （b）乙（帶 PENDING 分段出貨）與丙（降轉 NA）為 S6 明文之 Pei 專屬事項，
+              分析層不觸、執行層不觸；Pei 未開口即不存在
+         （c）丁案試作：執行層以 `RemStartFail` 為對象，選其所涉 TC 中**一條**
+              （選擇依據：`test_item` 上半含 `RemStartFail` 且 CFTS009 對其
+              上游事件與下游效果**皆有明文**者；查無明文者不選、不造），
+              產出並列版：
+                左：現行版（含 `PENDING: DR-PW23 RemStartFail`）
+                右：丁版 —— Procedure 改驅動 CFTS 所載使 `RemStartFail` 變化之
+                    上游 CAN 事件（`$MESSAGE.Signal$`，走 R-P368 三段鏈），
+                    ER 改觀察 CFTS 所載之下游效果（R-P353 白名單四類），
+                    `RemStartFail` 自 Procedure / ER 移除，僅留 `test_item` 上半 verbatim；
+                    每一步附其 CFTS ObjectID
+              落 `data/pattern_d_trial_61.md`，附 reasoning（繁中，§10.4 四項）
+         （d）試作**不入 corpus、不入 batch、不計 G 閘**；僅供 Pei 站④ 目視
+         （e）試作後執行層自陳三項：上游事件是否 CFTS 逐字、下游效果是否白名單、
+              與原版相比驗證對象是否改變（R-13 之慮），逐項答是／否並引段落
+         （f）推廣與否由 Pei 裁；未裁前其餘 101 條維持 PENDING
+         裁決者：分析層（Tier 2）；(a)(b) 為 S6 之重述，非新裁。
+```
+
+**已逐字抄入（核對 1 / 1）。**
+
+**S6 之預設經本條確認為甲** —— 含 `PENDING: DR-PW23` 之 102 條不出貨，等上游回覆。
+乙（帶 PENDING 分段出貨）與丙（降轉 NA）為 S6 明文之 Pei 專屬事項，
+分析層與執行層皆不觸。丁案僅授權**一條**試作，不入 corpus、不計 G 閘。
+
+## 62 包裁決條文（R-P375）
+
+抄錄前依 R-P200(c) 重驗 §J 自檢：**§A 頂層 block = 1、§J「一條」、§H 步驟 1 = 一條**，
+並依 R-P364(d) 對既有 canon（R-P368 / R-1 v3 (c) / R-P353 / R-13 / §8.4.1）逐條核對。三處一致。
+
+```
+[R-P375] R-P368 段 1 之入口擴為 forms/ 全部參考檔；設定類與致能類另走 UI／PROXI 路徑。
+         （a）段 1 入口自 LID `CAN Mapping` 擴為 `forms/` 所列全部參考檔：
+              LID 全分頁、`HMI Settings List R1 SR25`、`PROXI_HDCC27_R3` `Format`、
+              `SR26 Default Settings and PNet ECU Configuration`、
+              `SR24 R1 Market Configuration Table`；每一檔以 FORMS.md 之 SHA 入台帳
+         （b）`.Req` 類（`Auto_SwitchOn_Setting.Req`、`SwitchOff_Timeout_Setting.Req` /
+              `SwitchOffSetting.Req`）為 HMI 設定值：
+              段 1 命中 HMI Settings List 者 → TC 以 UI 元件寫
+              （`Select "<設定名>" = "<值>"`，白名單 (ii)）；
+              命中 PROXI `Format` 者 → `PROXI <Param> = <值>`（R-1 v3 (c)）；
+              二者皆命中時，Procedure 用 UI、Pre-Condition 用 PROXI，各引其列
+         （c）`.Info` 類致能狀態（`Rear_Camera_Enable.Info`）：
+              命中 PROXI／Default Settings 之存在性參數者，為 Pre-Condition
+              `PROXI <Param> = <值>`；其運行時狀態仍須 CAN／UI 觀察面，另查
+         （d）命中即「候選」，非認定：每一候選於 DR-PW23 附表記
+              `候選（檔／分頁／列）`，TC 施作以候選寫，並於 Remarks 標
+              `(DR-PW23 候選，待上游確認)`；**PENDING 佔位撤除**，
+              上游否認則回滾（同 R-P371(c) 之處置）
+         （e）R-P368(b) 不變：候選之比對依據須載明欄／列；語意跳接仍不許。
+              `RemStartFail` 對 `Remote_start`（存在性）**非候選**，維持 PENDING
+         （f）DR-PW23 附表重做為 `dr_pw23_internal_signals_62.md`；PENDING 重算
+         R-P368 依 R-P36 原文不改，加註指向本條。
+         裁決者：分析層（Tier 2，訂正對 Pei 08-30 指示之窄讀）。
+```
+
+**已逐字抄入（核對 1 / 1）。** R-P368 依 R-P36 原文不改，加註於下。
+
+> **註記（R-P36，62 包加註）—— R-P368(a)**：段 1 之入口自 LID `CAN Mapping`
+> **擴為 `forms/` 全部參考檔**（**R-P375(a)**）：LID 全分頁、`HMI Settings List R1 SR25`、
+> `PROXI_HDCC27_R3` `Format`、`SR26 Default Settings`、`SR24 Market Configuration Table`。
+> 原文之窄讀致 `.Req` 類設定值與 `.Info` 類致能狀態從未被拿去查後三檔（A-PW361）。
+> G0 參考資料庫段隨之自 3 檔擴為 **7 檔**。
+
+
 ---
 
 ## 待裁

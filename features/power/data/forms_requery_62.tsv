@@ -1,0 +1,11 @@
+spec_name	file	sheet	row	col	value	matched_tokens
+Phone_Call.Info	LID	CAN Mapping	210	28	0 = No_Call
+1 = Phone_Number_1
+2 = Phone_Number_2
+3 = Phone_Number_3
+4	phone+call
+Phone_Call.Info	HMI	Settings	600	5	Media, Phone Call, Phone Ring, Navigation, Voice Recognition	phone+call
+Phone_Call.Info	HMI	Settings	612	5	Media, Phone Call, Phone Ring, Navigation, Voice Recognition	phone+call
+Phone_Call.Info	HMI	Settings	630	7	All R1 Head Unit. Turns on and off receiving/storing a popup for misse	phone+call
+PhoneCall.Info	HMI	Settings	600	5	Media, Phone Call, Phone Ring, Navigation, Voice Recognition	phonecall
+PhoneCall.Info	HMI	Settings	612	5	Media, Phone Call, Phone Ring, Navigation, Voice Recognition	phonecall

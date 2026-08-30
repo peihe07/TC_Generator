@@ -37,7 +37,9 @@ R4 BHCAN 降為**旁證**（R-P368(e)），A-PW349 之遲登與 A-PW356 之未�
 
 ⚠ 惟 `ENTER_STANDBY` 之 `Timeout1` 來源 `$PwrAccDelayAct$`
 **確為 B-1 衝突**（A-PW357）：LID r1458 解得 `BODY_CNTRL3.Comfort_Enable_Time`，
-BHCAN2 無、R4 有、FDCAN8 之訊息名為 `BCM_FD_27`。見 §3 `ENTER_STANDBY`。
+BHCAN2 無、R4 有、FDCAN8 之訊息名為 `BCM_FD_27`。
+**60 包 R-P371 已裁乙**：採 `$BCM_FD_27.Comfort_Enable_Time$`，B-1 衝突處置完畢。
+見 §3 `ENTER_STANDBY`。
 
 ### `VAL_ 1470 PowerSts_Telematic`（逐字）
 
@@ -122,6 +124,11 @@ CFTS009 §1.3.1.1 之 Body ON / Body OFF 以 **`$PowerMode$`** 定義：
 ```
 
 ⚠ `4941055` / `4941056` 載「`Timeout1` 僅在 Radio 自 STANDBY 轉入 TIMED 時使用」。
+
+**離開條件之訊號**（`4941059`：`$AccDelayAct$` becomes Not Active && Phone Call == Not active）
+依 R-P371(b) 引 **`$BCM_FD_27.Comfort_Enable_Act$`**
+（forms FDCAN8，`CM_` 註解 `Accessory Delay Active` 與 LID r29 `Function` 欄逐字同；
+該列 `Atlantis High` 欄為 `N/A`，故段 2 走 FD 側）。
 自 Full_Operation 進入 Timed 者不經 Timeout1；**若某 TC 所測者為
 STANDBY → TIMED，須改用 `ENTER_STANDBY` ＋ Timeout1 觸發**，
 其片段待該 TC 出現時另立（本表不預造）。
@@ -135,17 +142,26 @@ STANDBY → TIMED，須改用 `ENTER_STANDBY` ＋ Timeout1 觸發**，
 
 ```
 1. Apply ENTER_TIMED
-2. Wait until Timeout1 has elapsed with no phone call active
+2. Wait until $BCM_FD_27.Comfort_Enable_Time$ (Timeout1) has elapsed with no phone call active
 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 (Standby)
 ```
 
 ⚠ 第 2 步之 `Timeout1` 值取自 `$PwrAccDelayAct$`（`4941055`：X = 該訊號十進位值 × 15 秒）。
 **58 包三段鏈重解**（R-P368）：段 1 LID r1458 c1 `PwrAccDelayAct` 逐字命中
 （`Function` = `Power accessory delay time`）→ 段 2 `BODY_CNTRL3.Comfort_Enable_Time`（`B-CAN`）
-→ 段 3 **BHCAN2 無、旁證 R4 有、FDCAN8 有同名訊號惟訊息為 `BCM_FD_27`**。
-**此為首個 B-1 型衝突**（A-PW357）；依 R-P368(e) 不得逕用 R4 名，列 §K 交 Pei。
-在該衝突未裁前，`Timeout1` 之值由 TC 之 Input Test Data 給定，
-不以 `$…$` 形式寫入 Procedure。
+→ 段 3 **BHCAN2 無、旁證 R4 有、FDCAN8 有同名訊號惟訊息為 `BCM_FD_27`**（A-PW357）。
+
+**60 包 R-P371 裁乙 —— B-1 衝突已處置**：採
+**`$BCM_FD_27.Comfort_Enable_Time$`**（forms FDCAN8，接收節點 ETM/LTM，
+`CM_` 註解與 LID r1458 `Function` 欄逐字同）。R4 之 `BODY_CNTRL3` 版
+（接收 DDM/PDM）不採。第 2 步之 `Timeout1` 值改引該訊號：
+
+```
+2. Wait until $BCM_FD_27.Comfort_Enable_Time$ (Timeout1) has elapsed with no phone call active
+```
+
+⚠ 「規格名 = DBC 訊號」之最終認定屬上游（§8.4.1）；
+DR-PW26 第 (4) 問已改為「確認」並附本條證據，**上游否認則回滾至 PENDING**（R-P371(c)）。
 
 ### `ENTER_SLEEP`
 
@@ -241,7 +257,7 @@ SIS 不在 G0 台帳之九份內，**不得自造**（R-P353 末段 / §I）。
 | `ENTER_FULL_OPERATION` | 可（DR-PW26 待確認） | 可 | **可用** |
 | `ENTER_IDLE` | 可（DR-PW26） | 可 | **可用** |
 | `ENTER_TIMED` | 可（DR-PW26） | 可 | **可用** |
-| `ENTER_STANDBY` | 可，`Timeout1` 值由 ITD 給定（B-1 衝突，A-PW357） | 可 | **可用（附條件）** |
+| `ENTER_STANDBY` | 可，`Timeout1` 引 `$BCM_FD_27.Comfort_Enable_Time$`（R-P371 裁乙）| 可 | **可用** |
 | `ENTER_PARTIAL_OPERATION` | 可（無 DR 依賴） | 可 | **可用** |
 | `ENTER_BENCH` | 可 | 可（須 CAN 重連） | **可用（措辭待站④）** |
 | `ENTER_LOGISTIC_ON` | 可（DR-PW21 待確認） | 可 | **片段可用，TC 不產**（R-P349(a) / DR-PW11） |
@@ -269,7 +285,6 @@ DR-PW26 已問是否有非 CAN 觀察面（電流／LIN／log）。
 ## 5. lint 常數表同步
 
 `ENTER_*` **九個**常數名、其目標 raw 值與 `VAL_` 標籤已列於 §3。
-§1（R-P363）與 §4（R-P365(a)）已裁，§0 之判準 DBC 已定（R-P368(e)），
-故常數表**可寫**。餘一項未定：`$PwrAccDelayAct$` 之 B-1 衝突（A-PW357），
-其僅影響 `ENTER_STANDBY` 之 `Timeout1` **值**而不影響片段之常數名，
-故不阻寫入。常數表隨 B5 一併落地。
+§1（R-P363）、§4（R-P365(a)）已裁，§0 之判準 DBC 已定（R-P368(e)），
+`$PwrAccDelayAct$` 之 B-1 衝突亦已由 R-P371 裁乙處置。
+**常數表無未定項，可寫**，隨 B5 一併落地（B5 依 R-P374(a) / K-2 甲續凍）。
