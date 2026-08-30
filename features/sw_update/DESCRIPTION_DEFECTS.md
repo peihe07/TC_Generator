@@ -30,6 +30,7 @@ verbatim 抄其原文（含缺字），錨由其他路徑定，並於 `reasoning
 | D-4 | `SWE1-FOTA-180` | **拼寫殘留** —— `shalll` | **已確認**（下放包 26 §五 TC-6） |
 | D-5 | `SWE1-FOTA-346` | **句首缺字** —— `he WiFiUpdateService`（缺 `T`） | **已確認**（上繳包 44 §5.1） |
 | D-6 | `SWE1-FOTA-333` | **句尾截斷＋缺字** —— `…are not know`（缺 `n`，且句子未完） | **已確認**（上繳包 48 §3.2） |
+| D-7 | `SWE1-FOTA-117` | **註腳併入條文本體** ＋ 拼寫殘留 `Iginiton_on_Engine_on` | **已確認**（上繳包 58 §5.3） |
 
 ---
 
@@ -172,6 +173,34 @@ R-4 僅允許句首大寫之正規化，拼寫不在其列。
 
 **處置**：`test_item` 上半 **verbatim 保留（含 `not know` 與無句號）**（IN §8.4.1）；
 **其為待裁項** —— 上游若補全該句，本列須重寫。
+
+---
+
+## D-7 —— `SWE1-FOTA-117`：註腳併入條文本體，且其內另有拼寫殘留 —— **已確認**
+
+出處：上繳包 58 §5.3（batch 10 起草時遇）。
+
+該列之規範句結束於 `…the TBM FOTA HMI shall display the TBM update screen`，
+**其後未斷句即接上一段 `$OperationalModeSts$` 之取值說明**：
+
+> … shall display the TBM update screen **\*Body on mode when $OperationalModeSts$ =
+> Ignition_on or Ignition_pre_start or … or **Iginiton_on_Engine_on** else Body off
+> when $OperationalModeSts$ = Initialization or … or Not_Used Body on mode SNA**
+
+**二個缺陷疊在一處**：
+
+1. **註腳併入條文** —— 該段以 `*` 起首，其形態為註腳（說明 Body on／off 之對應值），
+   **而它沒有與規範句分開**；末尾之 `Body on mode SNA` 更是斷片
+2. **拼寫殘留** —— `Iginiton_on_Engine_on`（`Ignition` 之字母易位），同 D-4 之型
+
+**處置**：`test_item` 上半**只取其規範句**（`If $TBMupdate$ = [Update_start] …
+shall notify the TBM FOTA HMI.`），**逐字**；
+**註腳段不入 `test_item`** —— 其非規範內容，且入之會使該欄含一段無主詞之斷片。
+
+> **與 D-1～D-6 之別**：前六項皆為**字元層**之缺陷（缺字、拼錯、截斷），
+> **本項是結構層** —— **規範與註腳沒有被分開**。
+> 其後果不在字面，在**取材**：若逐字全取，`test_item` 會含註腳；
+> 若不取，則須說明取捨之界 —— **本節即該界之記錄**。
 
 ---
 
