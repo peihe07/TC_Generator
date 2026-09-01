@@ -1,0 +1,108 @@
+# feature.yaml — pipeline configuration for vsm_v42
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals. Regenerate nothing by editing code.
+#
+# 下放包 00 §五 W-1。來源以 `sources/` 之 doc_id 引用（R-G27）——
+# 本 feature 不存原檔副本，`inputs/` 恆空；`paths.*` 為指向
+# `sources/raw/<doc_id>/` 之相對 glob。
+#
+# ⚠ 落檔當下（2026-09-01）`_intake/Vehicle_Setup_VF665/` 實測 0 files，
+# 五件原檔皆未投遞，`sources/raw/` 之五個 doc_id 目錄尚未建立（W-2 未執行）。
+# 以下 `paths.*` 為 W-2 落檔後之預定落點宣告，**尚未逐鍵實測**；
+# 每鍵之實測與 sha256 於 W-2 補做並回填（下放包 00 §七-2）。
+
+feature: "Vehicle Setup Management R1 Low"      # R-VL3
+test_group: "Vehicle Setup Management R1 Low"   # R-VL3，同值
+
+sources:
+  # R-G27 之 doc_id ↔ `sources/MANIFEST.tsv`（W-2 落列）。
+  # 目前無腳本以 doc_id 解析路徑，故 `paths.*` 另以相對 glob 具名；
+  # 兩者所指須為同一檔，W-2 落檔後實測。
+  spec_docx: "vf665_v42_spec_r6"          # 下放包 00 §三 #1，母 spec
+  sysra: "vf665_v42_sysra"                # #2，跨源驗核，非母體（R-VL4）
+  a03_report_parksense: "vf665_037_parksense"   # #3，母體來源
+  a03_report_sdw: "vf665_037_sdw"               # #4，母體來源
+  sysad: "vf665_sysad_sys3"               # #5，架構參考，V42／V43 共用
+
+paths:
+  # 工作簿自 R-G1 母本（forms/…_SWQT_20260817_ext.xlsx）起建，落 sandbox/
+  # （R-G25：xlsx 只准在此改）；R-VL1「BLANK 起建」。W-2 後產生。
+  workbook: "sandbox/base/FM-WI-FSM-036-A01*_SWQT_20260817_ext.xlsx"
+
+  # `a03_report` 為 recon 之代表檔（下放包 00 §五 W-3：取 #3 Park Sense）。
+  # `feature_config.resolve_path` 要求 glob 恰 1 檔，故兩份 037 各以具名鍵
+  # 掛一檔；leaf 全集另建 `data/leaves.tsv`（W-4）。
+  a03_report: "../../sources/raw/vf665_037_parksense/*.xlsx"
+  a03_report_parksense: "../../sources/raw/vf665_037_parksense/*.xlsx"
+  a03_report_sdw: "../../sources/raw/vf665_037_sdw/*.xlsx"
+
+  spec_docx: "../../sources/raw/vf665_v42_spec_r6/*.docx"
+  sysra: "../../sources/raw/vf665_v42_sysra/*.xlsx"
+  sysad: "../../sources/raw/vf665_sysad_sys3/*.docx"
+
+  sys1_export: null      # 本線無 SYS1 匯出
+  spec_pdf: null         # spec_mode D，母 spec 為 docx，無 pdf
+  popup_list: null       # 未引用
+
+  # forms/ 之共用參考檔，引用原位不搬（R-P368 三段鏈／R-P375(a)）
+  lid: "../../forms/Logical Identifiers and CAN Mapping v1_78.xlsx"
+  dbc_bhcan2: "../../forms/PDT27_E2A_R1_BHCAN2.dbc"
+  dbc_fdcan8: "../../forms/PDT27_E2A_R1_FDCAN8.dbc"
+  proxi: "../../forms/PROXI_HDCC27_R3_20250424.xlsx"
+
+paths_meta:
+  a03_sheet: "Analysis Report"
+  a03_header_row_parksense: 7    # 下放包 00 §三 #3 之 intake 實測，W-3 複驗
+  a03_header_row_sdw: 8          # 同 #4
+  sysra_header_row: 5            # 同 #2
+
+spec_mode: "D"        # FO §3；母 spec 為 OOXML docx（R-VL5）
+spec_reference_template: "Vehicle Setup Management by VP - LTM (R1 Low) [VF665_V42_R6]_{outline}"
+
+# TC ID（IN §10.3）。**下放包 00 §五 W-1 指定鍵名 `tc_id_prefix`**，
+# 模板無此鍵故新增；值依 R-VL3 = `NR1L-VSM42-{nnn}`。
+# 註（執行層實測，交分析層裁）：全庫既有 17 個 feature.yaml 一律用
+# `tc_id_format`（`grep -rn "tc_id_prefix\|tc_id_format" features/*/feature.yaml`
+# 實測 tc_id_prefix 命中 0），且 `scripts/recon.py:1103` 讀的是
+# `write_back.tc_id_format`。本檔依指示只落 `tc_id_prefix`，不自行增設
+# `tc_id_format`（FO §8.5 之一：不代擬）。
+tc_id_prefix: "NR1L-VSM42-"
+
+workbook:
+  sheet: "Test Case Specification&Result"
+  header_row: 9
+  # column letters, verified by recon header match — do not guess
+  columns:
+    req_id: "D"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    design_method: "Q"
+    functional_safety: "R"
+    author: "Z"
+    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+
+done_region:
+  # R-VL1：BLANK 起建，無 done region。
+  detection: "author"
+  author_value: "Arif"
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: true      # BLANK 之故（FO §2）
+
+lint:
+  design_method_source: "dropdown_sheet"   # exact-string vocabulary
+  popup_ids: []
+  extra_rules: []
+  # R-VL2(c)：本線走 IN §8.7.5 v3 判準，lint 檢查 P 以 `--profile vsm_v42` 呼叫。
+  profile: "vsm_v42"
