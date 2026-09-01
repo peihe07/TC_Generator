@@ -7,8 +7,9 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
 |---|---|---|---|---|---|---|
 | DR-VT1 | VF665 V43 之 037（SWE1 分析報告）缺件 | **yes** | 全線（母體 = 0） | 已登記，建議送出 | | |
 | DR-VT2 | V43 SYSRA DocID `VF655_V43_R3`（247 列）疑為 `VF665` 之誤植；SYSRA 記 R3 而規格為 R4；`Melco ID` 於 Functional 507 列全空（A-VT9）；`Out of scope` 二拼法 55／44 | no | 追溯欄 | 已登記，未送出 | | |
-| DR-VT3 | V43 R4 規格之訊息名與 forms/ DBC（R1_FDCAN8／R1_BHCAN2）不符 28 列：`TELEMATIC_VEHICLE_SETUP2` 全無、`IPC_VEHICLE_SETUP2.*` 九名落在 `IPC_VEHICLE_SETUP`、`SERVICE_SETUP.*` 落在 `TBM_SCHEDULE_FD_2` | no（本線無母體）| 訊號實名 | 已登記，建議送出 | | |
-| DR-VT4 | V43 內部訊號（`X.Req`／`X.Info`／`X.GUI`，88 名，83 名止於段 1）之驅動與觀察方法對照總表（形制照 DR-PW23） | no（本線無母體；P4 起阻塞）| 內部訊號實名 | 已登記，建議送出 | | |
+| DR-VT3 | ~~V43 R4 規格之訊息名與 forms/ DBC 不符 28 列~~ → **重寫（R-VT13(d)）**：原問為誤問（拿 Atlantis High DBC 解 ATL-Mi 規格）；待 DR-VT5 到件重驗後若仍不符再問 | no | 訊號實名 | **暫持，不送** | | |
+| DR-VT4 | V43 內部訊號（`X.Req`／`X.Info`／`X.GUI`，88 名，83 名止於段 1）之驅動與觀察方法對照總表（形制照 DR-PW23） | **yes（與 DR-VT1 同級，R-VT14(d)）** | 內部訊號實名 | 已登記，建議送出 | | |
+| DR-VT5 | **ATL-Mi（P363／P637；CAN-B／CAN-C）之 DBC** —— forms/ 僅有 Atlantis High R1 DBC；R-VT13(b) 段 3 待此件；與 vsm_v42 DR-VL3 同件 | **yes（P4 起）** | 全線 CAN 訊號 | 已登記，**先問 Pei 手上有無** | | |
 
 ---
 
@@ -50,6 +51,19 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
 - **阻塞**：否（本線無母體）；對 vsm_v42 同型訊號亦適用，vsm_v42 W-5 完成後合併列表。
 - **本地處置**：保留規格原名（R-13），段 3 命中記旁證，候選非認定。
 - **請求動作**：Pei 決定送出；建議與 DR-VT1／VT2 三項併送。
+
+> **重寫（分析層 2026-09-01，R-VT13(d)，A-VT22）**：本 DR 原文**不得送出**。分析層實測 LID `CAN Mapping` 有獨立之 `Atlantis`（P–T）欄組，
+> 本線（ATL-Mi）規格之 `TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq`／`RestoreDefaultSettingReq`、`SERVICE_SETUP.*` 四名皆於該欄逐字命中，
+> `TELEMATIC_VEHICLE_SETUP2`／`IPC_VEHICLE_SETUP3` 亦只見於該欄。所謂「不符」是 forms/ DBC 屬 Atlantis High 而本線屬 ATL-Mi。
+> 本 DR 改為：待 DR-VT5（ATL-Mi DBC）到件後重驗 28 列；仍不符者再以新文送。狀態：暫持。
+
+## DR-VT5 —— ATL-Mi 之 DBC（阻塞 P4；與 vsm_v42 DR-VL3 同件）
+
+- **來源**：R-VT13(b)／A-VT22。實測見 vsm_v42 DR-VL3（同一實測，不重拄）。
+- **問題**：須取得 ATL-Mi（V43 P363；V42 P637 同）之 CAN-B／CAN-C DBC，與 LID `Atlantis` 欄同世代。**先問 Pei 手上有無**；無則送出。
+- **阻塞**：是（P4 起）。到件前 CAN 訊號一律「段3待ATL-Mi DBC」。
+- **本地處置**：段 1 以 Atlantis 欄解至段 2；對 Atlantis High DBC 之實查併記旁證。
+- **請求動作**：Pei 先答「有／無」。
 
 ## DR-VT4 —— V43 內部訊號之驅動與觀察方法對照總表
 

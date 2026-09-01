@@ -181,6 +181,40 @@ R-VT12（分析層裁定 2026-09-01，A-VT16／A-VT17）
     全母體 113 為觀測值。A-VT17 RESOLVED。分析層同包並命「擴充母體」與「< 102」之誤記 A-VT18。
 ```
 
+> **作廢部分（R-TM13，2026-09-01，R-VT13(c)）**：(b)「依 SYSAD」作廢 —— SYSAD 為 AOSP 軟體架構文件（A-VT19）；
+> HU 匯流排依 LID `Atlantis` 欄組之 `CAN` 值。「解法在 SYSAD 而非 LID」一句為分析層誤判（A-VT22）。
+
+### R-VT13 —— ATL-Mi 線之訊號解析綁定：段 1 取 LID `Atlantis` 欄組；段 3 待 ATL-Mi DBC；K-1／A-VT16／DR-VT3 依此重判
+
+```
+R-VT13（分析層裁定 2026-09-01，上繳 03 §K K-1、A-VT16、A-VT12／DR-VT3；訂正 R-VT2(b) 之分析層誤，A-VT22）
+(a) 同 vsm_v42 R-VL12(a)：LID v1_78 `CAN Mapping` 有獨立欄組 `Atlantis`（P–T）與 `Atlantis High`（Z–AD），
+    本線 EE = ATL-Mi（1280/1280），段 1 一律取 `Atlantis` 欄組，`Atlantis High` 只作旁證。
+    實測（分析層，v3 TSV × LID）：CAN 形 93 名 Atlantis 欄逐字命中 21、Atlantis High 10（10 ⊂ 21）；
+    R-13 28 列 Atlantis 命中 6、Atlantis High 0；段 2 待解 13 列 Atlantis 命中 7。
+(b) 段 3：forms/ R1 DBC 為 Atlantis High 之件，本線需 ATL-Mi CAN-B／CAN-C DBC → DR-VT5（與 vsm_v42 DR-VL3 同件）。
+    到件前 CAN 訊號一律「段3待ATL-Mi DBC」，不得記「解得」、不得寫 `$…$`；v3 之「解得 41」重判。
+(c) K-1 結案：LID Atlantis 欄 `Speedometer` 列為 `STATUS_CCAN3.VehicleSpeedVSOSig`（無 `BRAKE_FD_2`），
+    即 ATL-Mi 之 LTM 觀察面為 `STATUS_CCAN3.*`（BCM→LTM 弧），`BRAKE1.*` 為上游弧。A-VT16 RESOLVED；R-VT12(b) 之「依 SYSAD」作廢，
+    HU 匯流排依 LID Atlantis 欄之 `CAN` 值（A-VT19 結案：SYSAD 非拓撲文件，不再等）。
+(d) DR-VT3 重寫：原問「DBC 版次對應」為誤問；28 列之「不符」是拿 Atlantis High 之 DBC 解 ATL-Mi 之規格，
+    `TELEMATIC_VEHICLE_SETUP2`／`TELEMATIC_SERVICE_SETUP`／`SERVICE_SETUP` 皆見於 LID Atlantis 欄。
+    DR-VT3 改為「待 ATL-Mi DBC 後重驗；若仍不符再問」，送出前不得以原文送。
+(e) A-VT20 之第六規則（Unicode 去重音）：準，但命中者備註必記「重音正規化」並列 DR-VT2 佐證；不推廣為其他字符。
+```
+
+### R-VT14 —— 值域增「UI+PROXI 雙路徑」；HMI Settings List `Technical Reference` 欄先篩；台帳重生同 R-VL13
+
+```
+R-VT14（分析層裁定 2026-09-01，上繳 03 §二-2、§九-3、§九-5(a)）
+(a) 結果值域增 `UI+PROXI 雙路徑`（R-P375(b)：Procedure 用 UI、Pre-Condition 用 PROXI，備註各引其列）；
+    另增 `段3待ATL-Mi DBC`（R-VT13(b)）。
+(b) HMI Settings List `Settings` 分頁 F 欄 `Technical Reference (CFTS/VF)` 含 `VF665` 者先篩出為本線候選集，對該集先比；
+    未命中者再對全表。命中列之 F 欄值為 UI 元件之來源錨點（R-P353 (ii)），入備註。`Brand-Specific Names` 分頁於 P4 取 UI 實名時用，P3 不動。
+(c) 台帳重生同 vsm_v42 R-VL13(a)（Pei 提交前一次）；R-VT8(a) 之「由 vsm_v42 重生」作廢（加註）。
+(d) DR-VT4 升為與 DR-VT1 同級（三次擴充內部訊號 83→83，已證非比對問題）。
+```
+
 ---
 
 ## 取號紀錄
@@ -191,3 +225,4 @@ R-VT12（分析層裁定 2026-09-01，A-VT16／A-VT17）
 | R-VT6–R-VT8 | 2026-09-01 | 落檔當下讀本檔實測至 R-VT5；上繳 00 §七 sha 表亦止於 R-VT5 |
 | R-VT9–R-VT10 | 2026-09-01 | 上繳 01 §五 5.3 sha 表止於 R-VT8；本檔錨點實測 8 |
 | R-VT11–R-VT12 | 2026-09-01 | 上繳 02 §三 sha 表止於 R-VT10；本檔錨點實測 10 |
+| R-VT13–R-VT14 | 2026-09-01 | 上繳 03 §五 sha 表止於 R-VT12；本檔錨點實測 12 |
