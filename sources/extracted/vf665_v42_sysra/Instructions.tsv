@@ -1,0 +1,54 @@
+# source_sha256	72411efdd597482bc1b3bb394dbba002107feb27dca33bd6934b46008668994c	 sheet	Instructions
+		FM-WI-FSM-035-A02	
+項目分類Classification	項目Item	描述Description	
+基本資訊\nBasic Information	編碼 (SYS-RA)\nID	xxx-xxx-xxx	
+	Melco ID	紀錄Melco交接下來的需求分析號碼，讓我們可以對於重用以及現有的測試項目作參考\nRecord the requirement analysis numbers handed over by Melco, so that we can use them as a reference for reuse and existing test items.	
+	需求描述\nDescription	此需求的描述。\nThe description of this requirement.	
+	意見欄位\nComments Field	針對需求列出關聯的Domain，並做其他補充說明\nProvide the dependency of other Dominas and additional clarification regarding the requirement\n關聯分類 Dependency Category :\nProjectSystemDesign\nProjectSystemFeature\nAMM\nAndroidPF\nAudioDSP\nCAE\nCAMERA\nConnectivity\nDeadReckoning\nDevice Mirroring\nDiag_Engineering_Dealer\nFOTA\nMediaPlayer\nSecurity\nTelematics\nTelephony\nTuner\nV-FUNC	
+來源需求與追溯 (Source Requirement & Traceability)	來源需求項目ID \nSource Requirement items	客戶的原始需求ID \nThe customer's original requirement ID	
+	文件識別碼 \nDocument ID	客戶的原始需求文件\nThe customer's original requirement document	
+需求屬性與分類\nRequirement Attributes & Categorization	EE Architecture\n(All, ATL-Hi, ATL-Mi)	填寫正確的電子電氣架構\nFill in the correct electrical/electronic architecture.\n\n- ATL-Hi = Atlantis High\n- ATL-Mi = Atlantis Middle\n- ALL = Atlantis High,  Atlantis Middle	
+	VF章節 \nChapter for VF	將SYS1的"Label"資料對應Source id，填入VF章節，並將資料做轉換 (ex. 1.1 -> 01.01) ​\n參考Excel公式: =TEXTJOIN(".", TRUE, TEXT(TEXTSPLIT(I2, "."), "00"))​\n非VF文件可以略過此項\nMap the SYS1 “Label” data to the Source ID and fill it into the VF Chapter.and convert the data accordingly (e.g., 1.1 → 01.01).​\n\nExcel formula: =TEXTJOIN(".", TRUE, TEXT(TEXTSPLIT(I2, "."), "00"))\nNon "VF" document can skip it.	VF Merge diff.pptx
+	VF後綴 \nVF suffix	手動將Source Requirement items後面(VF_XX)擷取，放進此欄位​\n非VF文件可以略過此項\nManually extract the suffix (VF_XX) from the Source Requirement item and enter it into this field.\nNon "VF" document can skip it.	
+	分類\nCategory	被看成具有特定共有特徵的需求類別或劃分。\nA class or division of requirements regarded as having particular shared characteristics.\n\n- 標題 Heading \n- 資訊 Information \n- 功能需求 Functional Requirement \n- 非功能需求 Non Functional Requirement\n- 範圍外Out of scope	
+	限定地區\nRegion	填寫此需求是否符合該銷售地區\nIndicate whether this requirement complies with the target sales region.	
+	SW/HW/System	辨別此需求為軟體、硬體或者是系統(軟體兼硬體)\n※ 如果需求屬於下列項目，您可以填寫與類別 (Category) 相同的內容：\n- 標題 (Heading)\n- 資訊 (Information)\n- 範圍外 (Out of scope)\nIdentify whether this requirement is related to software, hardware, or system (both software and hardware).\n※If the requirement falls under the following items, you can fill in the same content as the Category:\n- Heading\n- Information\n- Out of scope	
+	SYS2 System-HW	Describe HW requirement	
+	SYS2 System-SW	Describe SW requirement	
+	SYS2 HARMAN Status (硬體溝通紀錄\nCommuncation record with HW supplier)	Accepted\nNeed clarification\nRejected\nNeed Rework	
+	SYS2 HARMAN Comments (硬體溝通紀錄\nCommuncation record with HW supplier)		
+	SYS2 MD Status (硬體溝通紀錄\nCommuncation record with HW supplier)	Wait for Harman Review\nWait for RAR\nWait for Harman feedback\nAccepted\nMore Info	
+	SYS2 MD Feedback (硬體溝通紀錄\nCommuncation record with HW supplier)		
+	FROP(Feature Rollout Plan)	Steering Wheel Controls,Bluetooth,\nDevice Manager,Media Player-USB,\nMedia metadata on cluster,Carplay Wired and Wireless,\nAndroid Auto Wired and Wireless,Audio Management,\nAudio Tuning,SSE / ECNR,\nGPS,WiFi,Touch,Core HMI(System UI,Pop-Up, menu bar...),\nAntitheft,ICS Integration,Connection Manager,\nClimate Control,Vehicle Settings,Dealer Mode,\nPrivacy Mode,Remote Clear Personal Data,\nDriver Distraction Lockout Management,Customizable themes and layout,\nAUX,AM/FM,SXM,USB,TbT on cluster,\nCustomizable Splash Screen / Animations,\nEarly Chimes,Branded Chimes,Rear View Camera,\nCargo Camera (OOS),Connected services via TBM(TBM WIFI),\ne-call (public)(OOS),4G Wi-fi Hotspot,AOTA,STR,\nPower Management,Disclaimer screen,\nSecurity Topics,Hardware Trust Anchor Abstraction,\nSecure Storage,SAM (Security Access Module),CAE API's,\nDiagnostic,CAN List,BootLoader,\nKernel,Logging,Early Camera,SW Update via USB,\nFOTA Via Wi-fi,FOTA Via Tbox,FOTA ROV,\ne-call (private),b-call,Storage Partitioning,\nEngineering Mode,Radio Usage Analytics,\nDisplay,PROXI,Thermal Management,Time Management,\nLocalization,EV/PHEV Pages,In-Vehicle Messenger(OOS),\nConnected Personal Account 1.0,\nTelematics Client,Display Temperature Warnings,HMI Arabic Mirroring,\nHMI Driver Side Management,HMI Last Mode Management,\nPremium Audio1,Stocking Logic,Trust Execution Environment (TEE),User Profiles	
+	優先級\nPriority	實施此需求的相對優先級。\nRelative priority for implement this requirement.\n\n- 高 High\n- 中 Medium\n- 低 Low	
+	非模糊性 \n\nUnambiguous	需求的描述不應含糊不清。 \n\nThe description of the requirement should not have ambiguous statement.	
+	文件版本\nRequirement Version	此需求對應車型的目前版本。\nThe current version of the vehicle model associated with this requirement.\n\na. 若該需求符合對應車型，則應填寫該車型下的最新文件版本\nIf the requirement applies to a specific vehicle model, the latest document version for that model should be provided.\nb. 若該需求不符合該車型，則須填寫”Not support”\nIf the requirement does not apply to the vehicle model, "Not support" must be entered.\n	
+品質特性\nQuality Characteristics	可行性 \n\nFeasibility	應確認該需求是可以實現的。 \n\nThe requirement should be confirmed that it is achievable.	
+	影響 \n\nImpact	對於成本、時程、運行環境的影響需被分析及列出\n\nThe impacts on cost, schedule, and operating environment shall be analyzed and documented.	
+	風險因素 \n\nRisk Factor	需求的風險因素意味著無法在專案中按時交付預期功能的因素。\n\nRisk factors of requirements mean that factors that do not able to deliver expected functions on time in the project.\n\nHigh: \n這項需求從未開發過應設置為高風險。\nThe requirement never been developed should be set to High Risk. \n不合理的時程安排，應該具有高風險。\nUnrealistic schedule, it should have High risk.\n\nMedium: \n對於需求外包，至少應設置為中風險。\nFor requirements outsourced, it should be set to Medium risk. \n重用性高或低應設置為中風險。\nThe reusability is High or Low should be set to Medium risk.\n\nLow: \n重用性 100%應設置為低風險。\nThe reusability is 100% should be set to Low risk.	
+可重用性 (Reusability)	可重用\nReusable	重用項編碼與此需求可重覆使用的百分比。\nThe reuse item ID & percentage of reusable for this requirement.\n\n• 此欄位可選完全，高，低和無。 指南是 :\nThis field can been selected: Fully, High, Low and None. The Guidelines are:\n\n。 完全 (100%):該需求與先前的需求相同。\nFully (100%): The requirement is the same as previous requirement.\n\n。 高 (>= 50%): 該需求可以重複使用超過先前需求的50％，但不能完全重複使用。\nHigh (>= 50%): The requirement can reuse above 50% of previous requirement, but not fully reuseable.\n\n。 低 (< 50%): 該需求與先前的需求部分相似，並且再利用部分低於先前需求的50％。\nLow (< 50%): The requirement is partially like previous requirement and the reuse part is under 50% of previous requirement.\n\n。 無 (0%): 新需求。\nNone (0%): New requirement.\n	
+	可重用的描述 (Description/Action for Reusable)	描述”可重用百分比”的原因\nTo describe the reason for the percentage of Reusable\n	
+驗證標準與方法 Verification Criteria & Method	驗證標準\nVerification Criteria	此需求的驗證標準。\nVerification Criteria for this requirement.	
+	驗證方法\nVerification Method	此需求的驗證方法。\nVerification Method for this requirement.	
+與硬體關聯\nRelation with HW	與硬體關聯\nRelation with HW	判斷是否與該硬體相關 (參考6.3.3.D)\nDetermine whether it is related to the specified hardware (refer to section 6.3.3.D).	
+	USB	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	Bluetooth	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	GPS	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	WiFi	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	Acoustic DSPs Except CDSP	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	Radio Tuner (FM/AM, DAB, HD), etc.	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	VICS Tuner	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	Gyro Sensor	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	CCD/DVD Mechanical	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	eMMC/SD	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	NOR Flash	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	CAN	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	MOST	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	Vehicular Signals (Hardwired)	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	Camera	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	Sub Display	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	Drive Recorder	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	DTV	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	Microphone	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	HDMI	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	
+	External Amp	如果此需求與之相關，請打勾\nIf this requirement is relevant, please check it.	

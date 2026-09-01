@@ -57,23 +57,27 @@ paths_meta:
   sysra_header_row: 5            # 同 #2
 
 spec_mode: "D"        # FO §3；母 spec 為 OOXML docx（R-VL5）
-spec_reference_template: "Vehicle Setup Management by VP - LTM (R1 Low) [VF665_V42_R6]_{outline}"
+# R-VL11(c)：落 null，待 P3 裁（VF 類母件之 IN §10.7 型態未定）；
+# 執行層自填之構造式不得進 recon。
+spec_reference_template: null
 
-# TC ID（IN §10.3）。**下放包 00 §五 W-1 指定鍵名 `tc_id_prefix`**，
-# 模板無此鍵故新增；值依 R-VL3 = `NR1L-VSM42-{nnn}`。
-# 註（執行層實測，交分析層裁）：全庫既有 17 個 feature.yaml 一律用
-# `tc_id_format`（`grep -rn "tc_id_prefix\|tc_id_format" features/*/feature.yaml`
-# 實測 tc_id_prefix 命中 0），且 `scripts/recon.py:1103` 讀的是
-# `write_back.tc_id_format`。本檔依指示只落 `tc_id_prefix`，不自行增設
-# `tc_id_format`（FO §8.5 之一：不代擬）。
-tc_id_prefix: "NR1L-VSM42-"
+# TC ID：R-VL7（2026-09-01）—— 鍵名採全庫慣例 `write_back.tc_id_format`
+# （`scripts/recon.py:1103` 所讀之鍵）；`tc_id_prefix` 已刪，不保留。
+# 值依 R-VL3 = NR1L-VSM42-{nnn}，落於下方 write_back 段。
 
 workbook:
-  sheet: "Test Case Specification&Result"
+  # R-VL8(b)：以下 sheet／header_row／columns 一律自 sandbox/base 副本第 9 列
+  # **實測**回填，scaffold 模板值不得沿用。模板原值三處為誤（上繳 01 第 7 節已證，
+  # 本包對副本重測再證）：sheet `Test Case Specification&Result`（該名不存在）、
+  # design_method `Q`（實為 R）、author `Z`（實為 AA，Z 為車型欄 Fastack (376)）。
+  sheet: "Test Case Specification 測試用例規範"
   header_row: 9
-  # column letters, verified by recon header match — do not guess
   columns:
-    req_id: "D"
+    no: "B"                    # No.# 序號
+    polarion_id: "C"           # Requirement or Design ID (Polarion)
+    req_id: "D"                # Requirement or Design ID 需求/設計 ID
+    testrail_id: "E"           # Test Case ID (TestRail)
+    tc_id: "F"                 # Test Case ID 測試用例ID（R-VL11(b) 納入）
     test_group: "G"
     test_set: "H"
     test_item: "I"
@@ -84,18 +88,37 @@ workbook:
     spec_reference: "N"
     tc_ref_id: "O"
     priority: "P"
-    design_method: "Q"
-    functional_safety: "R"
-    author: "Z"
-    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+    estimated_test_time: "Q"   # R-VL11(b) 納入
+    design_method: "R"
+    functional_safety: "S"
+    author: "AA"
+    test_version: "AB"
+    remarks: "AH"
+  # 車型欄（T–Z，本線 P637MCA／ATL-Mi 對應 V 欄 `VF(ProMaster)637 Atl-Mi`）
+  variant_columns:
+    hdcc27_atl_hi: "T"
+    dt27_atl_hi: "U"
+    vf_promaster_637_atl_mi: "V"
+    commander_598_atl_mi: "W"
+    renegade_5210_atl_mi: "X"
+    toro_2261_atl_mi: "Y"
+    fastback_376_atl_mi: "Z"
+  # 測試執行欄（AC–AG），生成階段不寫
+  execution_columns:
+    test_vehicle_bench: "AC"
+    test_period: "AD"
+    tester: "AE"
+    test_result: "AF"
+    defect_id: "AG"
 
 done_region:
-  # R-VL1：BLANK 起建，無 done region。
+  # R-VL1：BLANK 起建，無 done region；R-VL8(c)：author_value 落 null。
   detection: "author"
-  author_value: "Arif"
+  author_value: null
   invariant: "content_hash"
 
 write_back:
+  tc_id_format: "NR1L-VSM42-{n:03d}"     # R-VL7；R-VL3 之值不變
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"
   fill_test_group_set: true      # BLANK 之故（FO §2）

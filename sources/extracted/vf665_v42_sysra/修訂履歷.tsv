@@ -1,0 +1,18 @@
+# source_sha256	72411efdd597482bc1b3bb394dbba002107feb27dca33bd6934b46008668994c	 sheet	修訂履歷
+修訂履歷  Revision History				
+				
+				
+版本 Ver.	修訂内容 Revision Content	修訂人Reviser	日期 Date	核准者 Approver
+A	初版發行\nNew Release.	林沅佑Leyo Lin	2025-09-03 00:00:00	楊人豪Johnson Yang 
+B	增加 文件識別碼 Document ID 及\n硬體溝通紀錄 HW Communication Records	林沅佑Leyo Lin	2025-12-08 00:00:00	張志龍Stanley Chang
+C	增加G欄位 \nEE Architecture(All,ATL-Hi,ATL-Mi)	林沅佑Leyo Lin	2026-01-12 00:00:00	張志龍Stanley Chang
+D	將品質特性轉至審核清單執行，非模糊性移動至需求屬性與分類。(76-62)\nQuality characteristics are implemented via the audit checklist, and ambiguity is eliminated through requirement attributes and categorization.	陳禹伸 YuShen Chen	2026-01-20 00:00:00	楊人豪Johnson Yang
+E	增加H、I欄位 VF章節 、VF後綴 \nAdd H,I Column Chapter for VF,VF suffix	林沅佑Leyo Lin	2026-01-28 00:00:00	張志龍Stanley Chang
+F	增加FROP 欄位，移除子分類、功能(一階)、功能(二階)、功能(三階) 欄位。(65-61)\nAdd the FROP field and remove the Subcategory, Function (Level 1), Function (Level 2), and Function (Level 3) fields.).(65-61)	林沅佑Leyo Lin	2026-04-27 00:00:00	張志龍Stanley Chang
+				
+				
+				
+				
+				
+				FM-WI-FSM-035-A02
+				

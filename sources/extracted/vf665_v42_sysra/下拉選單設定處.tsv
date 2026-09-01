@@ -1,0 +1,79 @@
+# source_sha256	72411efdd597482bc1b3bb394dbba002107feb27dca33bd6934b46008668994c	 sheet	下拉選單設定處
+J.分類Category		Steering Wheel Controls
+Heading		Bluetooth
+Information		Device Manager
+Functional Requirement		Media Player-USB
+Non Functional Requirement		Media metadata on cluster
+Out of scope		Carplay Wired and Wireless
+		Android Auto Wired and Wireless
+		Audio Management
+		Audio Tuning
+		SSE / ECNR
+		GPS
+		WiFi
+		Touch
+		Core HMI(System UI,Pop-Up, menu bar...)
+		Antitheft
+		ICS Integration
+		Connection Manager
+		Climate Control
+		Vehicle Settings
+		Dealer Mode
+		Privacy Mode
+		Remote Clear Personal Data
+		Driver Distraction Lockout Management
+		Customizable themes and layout
+		AUX
+		AM/FM
+		SXM
+		USB
+		TbT on cluster
+		Customizable Splash Screen / Animations
+		Early Chimes
+		Branded Chimes
+		Rear View Camera
+		Cargo Camera (OOS)
+		Connected services via TBM(TBM WIFI)
+		e-call (public)(OOS)
+		4G Wi-fi Hotspot
+		AOTA
+		STR
+		Power Management
+		Disclaimer screen
+		Security Topics
+		Hardware Trust Anchor Abstraction
+		Secure Storage
+		SAM (Security Access Module)
+		CAE API's
+		Diagnostic
+		CAN List
+		BootLoader
+		Kernel
+		Logging
+		Early Camera
+		SW Update via USB
+		FOTA Via Wi-fi
+		FOTA Via Tbox
+		FOTA ROV
+		e-call (private)
+		b-call
+		Storage Partitioning
+		Engineering Mode
+		Radio Usage Analytics
+		Display
+		PROXI
+		Thermal Management
+		Time Management
+		Localization
+		EV/PHEV Pages
+		In-Vehicle Messenger(OOS)
+		Connected Personal Account 1.0
+		Telematics Client
+		Display Temperature Warnings
+		HMI Arabic Mirroring
+		HMI Driver Side Management
+		HMI Last Mode Management
+		Premium Audio1
+		Stocking Logic
+		Trust Execution Environment (TEE)
+		User Profiles

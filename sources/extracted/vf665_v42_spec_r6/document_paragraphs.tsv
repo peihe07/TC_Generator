@@ -1,0 +1,1745 @@
+para_idx	text
+0	Vehicle Setup Management by VP - LTM (R1 Low) [VF665_V42_R6]
+1	Vehicle Function Data
+2	Vehicle Function Area
+3	Infotainment and Telematics
+4	Vehicle Function Group
+5	General
+6	Vehicle Function Owner
+7	Fabiola Castaldi
+8	Revision Notes
+9	Date
+10	Author
+11	Description
+12	2019/23/08
+13	Francesca Farolfi
+14	First release
+15	Carry-Over document from: N.A.
+16	Derived document from: VF665_V42_R1_P250MCA
+17	2020/02/18
+18	Francesca Farolfi
+19	CR14128
+20	SRXX-2743 (JIRA)
+21	1) Paragraph: Functional Requirement
+22	Changes: updated "Units" paragraph 
+23	2020/05/15
+24	Francesca Farolfi
+25	CR14506
+26	1) Paragraph: Functional Diagram
+27	Changes: added IPC_VEHICLE_SETUP2.PassiveEntrySelection and TELEMATIC_VEHICLE_SETUP2.PassiveEntrySelection_Req B-CAN signals and PassiveEntrySelection.Req internal signal. Added Passive_Entry_Types PROXI parameter
+28	Removed IPC_VEHICLE_SETUP.AutomaticResetTripB and TELEMATIC_VEHICLE_SETUP.AutomaticResetTripB_Req 
+29	2) Paragraph: Functional Requirements
+30	Changes: updated "Passive Entry" paragraph and removed "Automatic Reset Trip B" paragraph
+31	2020/10/14
+32	Pasquale De Marco
+33	CR15139
+34	1) Paragraph: Functional Diagram                                         
+35	Changes: added       IPC_VEHICLE_SETUP4.HeadlampOnWithWiperEnable and TELEMATIC_VEHICLE_SETUP4.HeadlampOnWithWiperEnable _Req B-CAN signals;
+36	added HeadlampOnWithWiperEnable.Req internal signal;
+37	added Headlamp_On_With_Wiper PROXI parameter
+38	2) Paragraph: Functional Requirements
+39	Changes: added "Headlamps On with Wipers on" paragraph
+40	
+41	Pasquale De Marco
+42	CR15585: 
+43	Impacted Component: LTM
+44	1) Paragraph: Functional Requirement
+45	Changes: updated according to RAR-2176
+46	2022/06/10
+47	Fabiola Castaldi
+48	CR16309
+49	
+50	Involved Component: LTM
+51	1) Paragraph: Functional Requirement 
+52	Change: updated "Trailer Lenght for Blind Spot Alert", adding CAN node 51 (LBSS) and CAN node 52 (RBSS) Proxi parameter
+53	RECONSIDER
+54	Typo correction in "Trailer Lenght for Blind Spot Alert" (VF_6734)
+55	
+56	This document is based on template “VF Template 9.2”.
+57	Introduction
+58	This function describes the management of vehicle setup menu on the LTM
+59	Functional Diagram
+60	
+61	External Interfaces
+62	External Inputs
+63	VF230
+64	VF456
+65	VF608
+66	VF352
+67	VF400
+68	VF747
+69	VF528
+70	VF503
+71	External Outputs
+72	VF176
+73	VF230
+74	VF456
+75	VF155
+76	Control Unit
+77	ECU
+78	LTM
+79	Actuation
+80	Logic
+81	Sense
+82	BCM
+83	Gateway
+84	Logic
+85	TBM
+86	Actuation
+87	Logic
+88	Sense
+89	EMCU
+90	External Device
+91	Additional Component
+92	I/O
+93	TLM_Display.GUI
+94	It is the info telematic display.
+95	Server_App.GUI
+96	Information
+97	Hardwire
+98	Internal
+99	Cornering_Enable.Req
+100	Used to require the Cornering feature setup
+101	Day1_Setting.Req
+102	Used to require the first value of Day setting
+103	Day2_Setting.Req
+104	Used to require the second value of Day setting
+105	DistanceUnit
+106	Used to give information about the distance unit selected
+107	Distance_Unit_Setting.Req
+108	Used to require the Distance Unit setting
+109	External_Light_Sensor_Level_Setting.Req
+110	External_Light_Sensor_Level_Setting.Req
+111	GPS_Automatic_Time_Adj_Enable.Req
+112	Used to require the GPS Automatic Time Adjustment setup
+113	Hour1_Setting.Req
+114	Used to require the first value of hour setting
+115	Hour2_Setting.Req
+116	Used to require the second value of hour setting
+117	HourMode
+118	Used to give information about the  Hour Mode selected
+119	Hour_Mode_Setting.Req
+120	Used to require the Hour Mode setting
+121	Minute1_Setting.Req
+122	Used to require the first value of Minute setting
+123	Minute2_Setting.Req
+124	Used to require the second value of Minute setting
+125	Month1_Setting.Req
+126	Used to require the first value of  Month setting
+127	Month2_Setting.Req
+128	Used to require the second value of  Month setting
+129	Rain_Sensor_Level_Setting.Req
+130	Used to require the Rain Sensor Level setting
+131	Speed_Lock_Door_Enable.Req
+132	Used to require the Speed Lock Door feature setup
+133	TLM_Vehicle_Setup_Menu.Info
+134	Used to give information about the Vehicle Setup Menu to the display
+135	TemperatureUnit
+136	Used to give information about the temperature unit selected
+137	Temperature_Unit_Setting.Req
+138	Used to require the Temperature Unit setting
+139	Year1_Setting.Req
+140	Used to require the first value of Year setting
+141	Year2_Setting.Req
+142	Used to require the second value of Year setting
+143	Year3_Setting.Req
+144	Used to require the third value of Year setting
+145	Year4_Setting.Req
+146	Used to require the fourth value of Year setting
+147	Day1_Setting.Info
+148	Used to give information about the first value of Day set
+149	Day2_Setting.Info
+150	Used to give information about the second value of Day set
+151	GPS_Automatic_Time_Adj_Setup.Info
+152	Used to give information about the GPS Automatic Time Adjustment setup
+153	Hour1_Setting.Info
+154	Used to give information about the first value of Hour set
+155	Hour2_Setting.Info
+156	Used to give information about the second value of Hour set
+157	Minute1_Setting.Info
+158	Used to give information about the first value of Minute set
+159	Minute2_Setting.Info
+160	Used to give information about the second value of Minute set
+161	Month1_Setting.Info
+162	Used to give information about the first value of  Month set
+163	Month2_Setting.Info
+164	Used to give information about the second value of  Month set
+165	Year1_Setting.Info
+166	Used to give information about the first value of Year set
+167	Year2_Setting.Info
+168	Used to give information about the second value of Year set
+169	Year3_Setting.Info
+170	Used to give information about the third value of Year set
+171	Year4_Setting.Info
+172	Used to give information about the fourth value of Year set
+173	Language_Setting.Req
+174	Used to require the Language setting 
+175	LTM_OperationalModeSts.Info
+176	Used by the LTM to indicate the operational mode status.
+177	Time_Date_Setting_Feedback.Info
+178	Used to give a feedback about Time and Date value set
+179	LTM_CmdIgnSts.Info
+180	Used by the LTM to indicate the key selector position.
+181	GreetingLights_Enable.Req
+182	Used to require the Greeting Light feature setup
+183	Blind_Spot_Detection_Setting.Req
+184	Used to require the Blind Spot Detection setting
+185	NavigationRepetition.Info
+186	Used to give information about the Poup Navigation feature status
+187	PhoneRepetition.Info
+188	Used to give information about the Poup Phone feature status
+189	Passive_Entry_Enable.Req
+190	Remote_Door_Unlock_Setting.Req
+191	Sound_Horn_Lock_Setting.Req
+192	Auto_Park_Brake_Enable.Req
+193	AudioRepetition.Info
+194	Sdw_Setting.Req
+195	Flash_Light_With_Lock_Enable.Req
+196	LDW_Intensity_Setting.Req
+197	LDW_Sensibility_Setting.Req
+198	Maintenance_Mode_Enable.Req
+199	Units_Settings.Req
+200	Auto_High_Beam_Enable.Req
+201	Audio_Repetition_Setting.Req
+202	FSCWPlus_Activation_Mode_Setting.Req
+203	FSCWPlus_Setting.Req
+204	Pam_AlertMode_Setting.Req
+205	Pam_Chime_Volume_Front_Setting.Req
+206	Pam_Chime_Volume_Rear_Setting.Req
+207	Auto_Unlock_Door_Exit_Enable.Req
+208	Tyre_Pressure_Unit_Setting.Req
+209	TSR_Enable.Req
+210	App_ClearPersonalData_Enable.Req
+211	App_PrivacyMode_Enable.Req
+212	App_RestoreApp_Enable.Req
+213	App_RestoreDefaultSetting_Enable.Req
+214	ClearPersonalData.Info
+215	ClearPersonalData_Enable.Req
+216	PrivacyMode.Info
+217	RestoreApp.Info
+218	RestoreApp_Enable.Req
+219	RestoreDefaultSetting.Info
+220	RestoreDefaultSetting_Enable.Req
+221	TBM_CmdIgnSts.Info
+222	TBM_OperationalModeSts.Info
+223	Geolocation_Enable.Req
+224	FOTA_State.Info
+225	DynamicGrid.Req
+226	Drowsy_Driver_Alert_Enable.Req
+227	New_Spd_Zone_Ind_Setting.Req
+228	Sign_Capture_Mode_Setting.Req
+229	Speed_Unit_Setting.Req
+230	Traffic_Sign_Warn_Setting.Req
+231	ConsumptionUnit
+232	Trailer_Length_Blind_Spot.Req
+233	Consumption_Unit_Setting.Req
+234	DRL_Enable.Req
+235	Dynamic_Grid_Setting.Req
+236	Sound_Horn_Remote_Start_Enable.Req
+237	TLM_SettingChange.Info
+238	TLM_ProfileLevel.Info
+239	SVC_Gridlines.Req
+240	Headlights_Off_Delay_Setting.Req
+241	PassiveEntrySelection.Req
+242	HeadlampOnWithWiperEnable.Req
+243	B/BH-CAN
+244	IPC_VEHICLE_SETUP.CorneringEnable
+245	This signal is used to give information about the Cornering Lights selected
+246	IPC_VEHICLE_SETUP.DistanceUnit
+247	This signal is used to give information about the Distance Unit selected
+248	IPC_VEHICLE_SETUP.ExternalLightSensorLevel
+249	This signal is used to give information about the External Light Sensor Level selected
+250	IPC_VEHICLE_SETUP.HourMode
+251	This signal is used to give information about the Hour Mode selected.
+252	IPC_VEHICLE_SETUP.RainSensorLevel
+253	This signal is used to give information about the Rain Sensor Level selected
+254	IPC_VEHICLE_SETUP.SpeedLockDoorEnable
+255	This signal is used to give information about the Autoclose feature selected
+256	IPC_VEHICLE_SETUP.TemperatureUnit
+257	This signal is used to give information about the Temperature Unit selected
+258	IPC_VEHICLE_SETUP.LanguageSelection
+259	This signal is used to give information about the Language selected
+260	IPC_VEHICLE_SETUP.BSDEnable
+261	This signal is used to give information about the Blind Spot Alert feature selected
+262	TELEMATIC_VEHICLE_SETUP.BSDEnable_Req
+263	This signal is managed when the driver requests a setting of Blind Spot Alert
+264	TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req
+265	This signal is managed when the driver requests a setting of Cornering Lights
+266	TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req
+267	This signal is managed when the driver requests a setting of Distance Unit
+268	TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req
+269	This signal is managed when the driver requests a setting of External Light Sensor Level
+270	TELEMATIC_VEHICLE_SETUP.HourMode_Req
+271	This signal is managed when the driver requests a setting of Hour Mode
+272	TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req
+273	This signal is managed when the driver requests a setting of Language
+274	TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req
+275	This signal is managed when the driver requests a setting of Rain Sensor Level
+276	TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req
+277	This signal is managed when the driver requests a setting of Auto Door Locks
+278	TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req
+279	This signal is managed when the driver requests a setting of Temperature Unit
+280	IPC_VEHICLE_SETUP.TelematicSetupACK
+281	Used to give information about the acknowledge of the requested setup changes by telematic module.
+282	IPC_VEHICLE_SETUP.AutoParkBrake
+283	This signal is used to give information about the Auto Park Brake selected
+284	IPC_VEHICLE_SETUP.PassiveEntry
+285	This signal is used to give information about the Passive Entry selected
+286	IPC_VEHICLE_SETUP.RemoteDoorUnlock
+287	This signal is used to give information about the Remote Door Unlock selected
+288	IPC_VEHICLE_SETUP.SoundHornLock
+289	This signal is used to give information about the Sound Horn with Lock selected
+290	TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req
+291	This signal is managed when the driver requests a setting of the Auto Park Brake
+292	TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req
+293	This signal is managed when the driver requests a setting of the Passive Entry
+294	TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req
+295	This signal is managed when the driver requests a setting of the Remote Door Unlock
+296	TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req
+297	This signal is managed when the driver requests a setting of the Sound Horn with Unlock
+298	IPC_VEHICLE_SETUP.AudioRepetition
+299	This signal is used to give information about the Audio Repetition selected
+300	IPC_VEHICLE_SETUP.Sdw
+301	This signal is used to give information about the Side Distance Warning feature selected
+302	TELEMATIC_VEHICLE_SETUP.Sdw_Req
+303	This signal is managed when the driver request a  setting of the Sdw
+304	IPC_VEHICLE_SETUP.PhoneRepetition
+305	This signal is used to give information about the Phone Repetition selected
+306	IPC_VEHICLE_SETUP.PamAlertMode
+307	This signal is used to give information about the PAM Alert Mode selected
+308	IPC_VEHICLE_SETUP2.AutoUnlockDoorExit
+309	This signal is used to give information about the Auto Unlock Door on Exit feature selected
+310	IPC_VEHICLE_SETUP2.EPB_MaintenanceMode
+311	This signal is used to give information about the Maintenance Mode feature selected
+312	IPC_VEHICLE_SETUP2.FlashLightWLock
+313	This signal is used to give information about the Flash Light With Lock selected
+314	IPC_VEHICLE_SETUP2.LDW_Intensity
+315	This signal is used to give information about the LDW Intensity selected
+316	IPC_VEHICLE_SETUP2.LDW_Sensibility
+317	This signal is used to give information about the LDW Sensibility selected
+318	IPC_VEHICLE_SETUP2.TyrePressureUnit
+319	This signal is used to give information about the Tyre Pressure Unit selected
+320	TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req
+321	This signal is managed when the driver requests a setting of the PAM Alert Mode
+322	TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req
+323	This signal is managed when the driver request a setting of  Auto Unlock Door On Exit
+324	TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req
+325	This signal is managed when the driver request a setting of  Maintenance Mode
+326	TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req
+327	This signal is managed when the driver request a setting of  Flash Light With Lock
+328	TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req
+329	This signal is managed when the driver requests a setting of the LDW Intensity
+330	TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req
+331	This signal is managed when the driver requests a setting of  the LDW Sensibility
+332	TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req
+333	This signal is managed when the driver requests a setting of  the Tyre Pressure Unit
+334	IPC_VEHICLE_SETUP.NavRepetition
+335	This signal is used to give information about the Navigation Repetition selected
+336	IPC_VEHICLE_SETUP.AutoHighBeamEnable
+337	This signal is used to give information about the Auto High Beam feature selected
+338	TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req
+339	This signal is managed when the driver requests a setting of  the Auto High Beam feature
+340	IPC_VEHICLE_SETUP.PamChimeVolumeFront
+341	This signal is used to give information about the PAM  Chime Volume selected
+342	IPC_VEHICLE_SETUP.PamChimeVolumeRear
+343	This signal is used to give information about the PAM 8Ch Chime Volume selected
+344	IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk
+345	It indicates the HMI state of the EPB Functionality for the Maintenance Procedure
+346	TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req
+347	This signal is managed when the driver request a  setting of the of Chime Volume  of the PAM
+348	TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req
+349	This signal is managed when the driver request a  setting of the of Chime Volume  of the PAM  8  Channels
+350	STATUS_CCAN3.VehicleSpeedVSOSig
+351	It is the average vehicle speed calculated.
+352	STATUS_CCAN3.VehicleSpeedVSOSigFailSts
+353	It is the average vehicle speed fail status.
+354	IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode
+355	This signal is used to give information about the FSFCW Activation Mode setting
+356	IPC_VEHICLE_SETUP2.FSFCWPlusSetting
+357	This signal is used to give information about the FSFCW setting
+358	TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req
+359	This signal is managed when the driver request a  setting of FSFCW
+360	TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req
+361	This signal is managed when the driver request a  setting of FSFCW
+362	IPC_VEHICLE_SETUP2.TSREnable
+363	This signal will be used to indicate if the Traffic Sign Recognition function has been activated via Menu
+364	TELEMATIC_VEHICLE_SETUP2.TSREnableReq
+365	This signal is managed when the driver requests a setting of the TSR feature
+366	SERVICE_SETUP.ClearPersonalData
+367	It is used to give information about the Clear Personal Data functionality.
+368	SERVICE_SETUP.PrivacyMode
+369	It is used to give information about  the Privacy Mode functionality.
+370	SERVICE_SETUP.RestoreApp
+371	It is used to give information about the Restore App functionality.
+372	SERVICE_SETUP.RestoreDefaultSetting
+373	It is used to give information about the Restore Default Setting functionality.
+374	SERVICE_SETUP.TelematicSetupAck
+375	It is used to give information about the acknowledge of the requested setup changes by telematic module.
+376	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq
+377	It is managed when the driver requests a setting of Clear Personal Data.
+378	TELEMATIC_SERVICE_SETUP.PrivacyModeReq
+379	It is managed when the driver requests a setting of Privacy Mode.
+380	TELEMATIC_SERVICE_SETUP.RestoreAppReq
+381	It is managed when the driver requests a setting of  Restore App.
+382	TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq
+383	It is managed when the driver requests a setting of  Restore Default Setting.
+384	IPC_VEHICLE_SETUP3.Drowsy_Driver_Alert
+385	Drowsy Driver Alert setting
+386	IPC_VEHICLE_SETUP3.Speed_Unit
+387	Speed Unit setting
+388	IPC_VEHICLE_SETUP4.New_Spd_Zone_Ind
+389	New Speed Zone Indication setting
+390	IPC_VEHICLE_SETUP4.SignCaptureMode
+391	Intelligent Speed Mode setting
+392	IPC_VEHICLE_SETUP4.Traffic_Sign_Warn
+393	Traffic Sign Warning setting
+394	TELEMATIC_VEHICLE_SETUP3.Drowsy_Driver_Alert_Req
+395	Drowsy Driver Alert setting request
+396	TELEMATIC_VEHICLE_SETUP3.Speed_Unit_Req
+397	Speed Unit setting request
+398	TELEMATIC_VEHICLE_SETUP4.New_Spd_Zone_Ind_Req
+399	New Speed Zone Indication setting request
+400	TELEMATIC_VEHICLE_SETUP4.SignCaptureModeReq
+401	Intelligent Speed Mode setting request
+402	TELEMATIC_VEHICLE_SETUP4.Traffic_Sign_Warn_Req
+403	Traffic Sign Warning setting request
+404	TELEMATIC_VEHICLE_SETUP2.Trlr_Lnth_Blind_Spot_Req
+405	Trailer Length for Blind Spot Alert setting request
+406	IPC_VEHICLE_SETUP2.Trlr_Lnth_Blind_Spot
+407	Trailer Length for Blind Spot Alert setting
+408	IPC_VEHICLE_SETUP4.GreetingLightsLevel
+409	This signal is used to give information about the Greeting Lights selected
+410	IPC_VEHICLE_SETUP.ConsumptionUnit
+411	This signal is used to give information about the Consumption Unit selected
+412	IPC_VEHICLE_SETUP.DRLEnable
+413	This signal is used to give information about the DRL feature selected
+414	IPC_VEHICLE_SETUP.SoundHornRemoteStart
+415	This signal is used to give information about the Sound Horn with Remote Start selected
+416	IPC_VEHICLE_SETUP2.HeadlightsOffDelay
+417	This signal is used to give information about the Headlights Off Delay selected
+418	STATUS_TTM.TrailerConnectionSts
+419	Connection status of TTM
+420	TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req
+421	This signal is managed when the driver requests a setting of Consumption Unit
+422	TELEMATIC_VEHICLE_SETUP.DRLEnable_Req
+423	This signal is managed when the driver requests a setting of the DRL feature
+424	TELEMATIC_VEHICLE_SETUP.SoundHornRemoteStart_Req
+425	This signal is managed when the driver requests a setting of the Sound Horn with Remote Start
+426	TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req
+427	This signal is managed when the driver requests a setting of the Headligts Off Delay
+428	Surround View Camera Guidelines setting
+429	TELEMATIC_VEHICLE_SETUP4.GreetingLightsLevel_Req
+430	TELEMATIC_VEHICLE_SETUP3.SVC_Guidelines_Req
+431	Surround View Camera Guidelines setting request
+432	IPC_VEHICLE_SETUP2.PassiveEntrySelection
+433	This signal is used to select Passive Entry options
+434	TELEMATIC_VEHICLE_SETUP2.PassiveEntrySelection_Req
+435	This signal is used to select Passive Entry options
+436	IPC_VEHICLE_SETUP4.HeadlampOnWithWiperEnable
+437	Automatic headlamp activation with wiper on
+438	TELEMATIC_VEHICLE_SETUP4.HeadlampOnWithWiperEnable_Req
+439	Setting request for Automatic headlamp activation with wiper on
+440	C-CAN
+441	LIN
+442	C-CAN1
+443	BRAKE1.VehicleSpeedVSOSig
+444	It is the average vehicle speed calculated.
+445	BRAKE1.VehicleSpeedVSOSigFailSts
+446	It is the average vehicle speed fail status.
+447	PROXI Parameters
+448	The characteristics of the "PROXI" Parameters and their related values are
+449	defined in the "PROXI requirements" specific for the vehicle project.
+450	Auto_Close_Menu
+451	Cluster_Display_Type
+452	Cornering_Light
+453	Country_Code
+454	External_Temperature_Sensor
+455	Fuel_Type
+456	GPS_Presence
+457	Odo_Units_Change
+458	Rain_Sensor
+459	Twilight_Sensor
+460	Language_Selection
+461	AHBM_Feature_Menu
+462	Additional Languages
+463	Auto_Door_Unlock_Menu
+464	Auto_Park_Brake_Menu
+465	CAN node 24 (PAM)
+466	EPB_Maintenance_Menu
+467	Flash_Light_With_Lock_Menu
+468	Forward_Collision_Mitigation
+469	Half_HMI_Setting
+470	Half_Torque_Sensibility
+471	PAM_Configuration
+472	Passive_Entry_Menu
+473	Remote_Door_Unlock_Menu
+474	Side_Distance_Warning
+475	Horn_Chirp_Menu
+476	Tyre_Pressure_Unit_Menu
+477	Audio_Repetition
+478	NAV_Presence
+479	Headlamp_Delay_Feature
+480	CAN node 35 (TBM/FTM)
+481	Geolocation_Menu
+482	Greeting_Lights_Menu
+483	Hybrid_Type
+484	Intelligent_Speed_Function_Menu
+485	Rear_View_Camera
+486	CAN node 51 (LBSS)
+487	CAN node 52 (RBSS)
+488	CAN node 63 (TTM)
+489	RRM_VP_LEVEL
+490	DRL_Menu_Enable
+491	Driver_Drowsy_Alert
+492	Traffic_Sign_Recognition_Menu
+493	Surround_View_Camera
+494	Sound_Horn_Remote_Start_Menu
+495	Passive_Entry_Types
+496	Headlamp_On_With_Wiper
+497	Indication
+498	Working Conditions
+499	Ignition Working Conditions Table
+500	Ignition Working Conditions
+501	Active Sub Function Names
+502	Reference Paragraphs
+503	Ignition Off
+504	--
+505	--
+506	Ignition ACC
+507	--
+508	--
+509	Ignition On
+510	--
+511	--
+512	Ignition Pre Start
+513	--
+514	--
+515	Ignition Start
+516	--
+517	--
+518	Ignition Cranking
+519	--
+520	--
+521	Ignition On Engine On
+522	--
+523	--
+524	Ignition Pre ACC
+525	--
+526	--
+527	Ignition Pre Off
+528	--
+529	--
+530	
+531	Functional Working Conditions Table
+532	Functional Working Conditions
+533	Functional Requirements
+534	Reference Paragraphs
+535	Temporization After Ignition Off
+536	No
+537	N.A.
+538	Automatic Cranking (S&S) 
+539	No
+540	N.A.
+541	Automatic Stop (S&S)
+542	No
+543	N.A.
+544	Low Battery
+545	No
+546	N.A.
+547	Plant/Emission Mode
+548	No
+549	N.A.
+550	Logistic Mode
+551	No
+552	N.A.
+553	
+554	Functional Requirements
+555	TLM Vehicle setup management 
+556	TLM Algorithm Requirements
+557	In the following Ignition Working Conditions:
+558	Ignition On
+559	Ignition Start
+560	Ignition On Engine On
+561	the user can manage  the vehicle setup menu through TLM_Display.GUI.
+562	WHEN the Ignition Working Conditions switches from "Ignition On" OR "Ignition Start" OR "Ignition On Engine On" to  the following Ignition Working Condition:
+563	Ignition Off
+564	THEN TLM shall store the last setup settings.
+565	WHEN the Ignition Working Conditions switches from "Ignition Off" to  the following Ignition Working Condition:
+566	Ignition On or 
+567	Ignition On Engine On
+568	THEN TLM shall wait to receive the "IPC_VEHICLE_SETUP" AND  "IPC_VEHICLE_SETUP2 AND IPC_VEHICLE_SETUP3 AND IPC_VEHICLE_SETUP4" message
+569	WHEN TLM receive the first "IPC_VEHICLE_SETUP" message in "Ignition On" OR "Ignition On Engine On" Ignition Working Condition
+570	THEN TLM shall:
+571	Update the "TELEMATIC_VEHICLE_SETUP" message to the "IPC_VEHICLE_SETUP" message ( as defined in each item menu paragraph);
+572	send "TELEMATIC_VEHICLE_SETUP" BH-CAN message.
+573	
+574	WHEN TLM receive the first "IPC_VEHICLE_SETUP2" message in "Ignition On" OR "IgnitionOn Engine On Ignition" Working Condition 
+575	THEN TLM shall:
+576	Update the "TELEMATIC_VEHICLE_SETUP2" message to the "IPC_VEHICLE_SETUP2" message ( as defined in each item menu paragraph);
+577	send "TELEMATIC_VEHICLE_SETUP2" BH-CAN message.
+578	WHEN TLM receive the first "IPC_VEHICLE_SETUP3" message in "Ignition On" OR "IgnitionOn Engine On Ignition" Working Condition 
+579	THEN TLM shall:
+580	Update the "TELEMATIC_VEHICLE_SETUP3" message to the "IPC_VEHICLE_SETUP3" message ( as defined in each item menu paragraph);
+581	send "TELEMATIC_VEHICLE_SETUP3" BH-CAN message.
+582	
+583	WHEN TLM receive the first "IPC_VEHICLE_SETUP4" message in "Ignition On" OR "Ignition On Engine On" Ignition Working Condition
+584	THEN TLM shall:
+585	Update the "TELEMATIC_VEHICLE_SETUP4" message to the "IPC_VEHICLE_SETUP4" message ( as defined in each item menu paragraph);
+586	send "TELEMATIC_VEHICLE_SETUP4" BH-CAN message.
+587	
+588	In the following Ignition Working Conditions:
+589	Ignition Off
+590	Ignition On
+591	Ignition Start
+592	Ignition On Engine On
+593	the user can manage  the service setup menu and the Power Level menu through TLM_Display.GUI.
+594	The items menu are as follows:
+595	Cornering Lights
+596	IF"Cornering_Light" PROXI parameter is equal to "absent"
+597	THENTLM shall not display the Cornering Light menu item and the user can not perform any setting.
+598	IF"Cornering_Light" PROXI parameter is equal to "present" 
+599	THENTLM shall display the Cornering Light menu item and the user can perform setting.
+600	IFthe user sets "Cornering_Enable.Req" internal signals to "Enable"
+601	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req" B-CAN signal equal to "True" and sends this signal to IPC
+602	IFthe user sets "Cornering_Enable.Req" internal signals as "Not_Enable"
+603	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req" B-CAN signal equal to "False" and sends this signal to IPC
+604	WHEN TLM receives "IPC_VEHICLE_SETUP.CorneringEnable" message
+605	THEN TLM updates the Cornering information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+606	For more details refer to VF230 and VF033
+607	Greeting Lights
+608	IF"Greeting_Lights_Menù" PROXI parameter is equal to "Absent"
+609	THENTLM shall not display the Greeting Light menu item and the user can not perform any setting.
+610	IF"Greeting_Lights_Menù" PROXI parameter is equal to "Present" 
+611	THENTLM shall display the Greeting Light menu item and the user can perform setting.
+612	IFthe user sets "GreetingLights_Enable.Req" internal signals to "0 sec"
+613	THENTLM shall set "TELEMATIC_VEHICLE_SETUP4.GreetingLightsLevel_Req" B-CAN signal equal to "0 sec" and sends this signal to IPC
+614	IFthe user sets "GreetingLights_Enable.Req" internal signals to "30 sec"
+615	THENTLM shall set "TELEMATIC_VEHICLE_SETUP4.GreetingLightsLevel_Req" B-CAN signal equal to "30 sec" and sends this signal to IPC
+616	IFthe user sets "GreetingLights_Enable.Req" internal signals to "60 sec"
+617	THENTLM shall set "TELEMATIC_VEHICLE_SETUP4.GreetingLightsLevel_Req" B-CAN signal equal to "60 sec" and sends this signal to IPC
+618	IFthe user sets "GreetingLights_Enable.Req" internal signals to "90 sec"
+619	THENTLM shall set "TELEMATIC_VEHICLE_SETUP4.GreetingLightsLevel_Req" B-CAN signal equal to "90 sec" and sends this signal to IPC
+620	WHEN TLM receives "IPC_VEHICLE_SETUP4.GreetingLightsLevel" message
+621	THEN TLM updates the Greeting Lights information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+622	Lane Sense Warning
+623	IF           "Half_Torque_Sensibility" PROXI parameter is equal to "Level 3"
+624	THENTLM shall display the " Lanse Sense Warning 1 "   menu item and the user can perform setting with the following options:
+625	Early, Late
+626	IF       the user sets "LDW_Sensibility_Setting.Req" internal signals to "Early"
+627	THEN    TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req" B-CAN signal equal to "Early" and sends this signal to IPC
+628	
+629	
+630	IF       the user sets "LDW_Sensibility_Setting.Req" internal signals to "Late"
+631	THEN    TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req" B-CAN signal equal to "Late" and sends this signal to IPC
+632	
+633	WHEN TLM receives "IPC_VEHICLE_SETUP2.LDW_Sensibility" message
+634	THEN TLM updates the LDW Sensibility information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+635	
+636	IF           "Half_Torque_Sensibility" PROXI parameter is equal to "Level 2"
+637	THENTLM shall display the " Lanse Sense Warning 2"    menu item and the user can perform setting  with the following options:
+638	Early, Med,  Late
+639	
+640	IF       the user sets "LDW_Sensibility_Setting.Req" internal signals to "Early"
+641	THEN    TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req" B-CAN signal equal to "Early" and sends this signal to IPC
+642	
+643	IF       the user sets "LDW_Sensibility_Setting.Req" internal signals to "Med"
+644	THEN    TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req" B-CAN signal equal to "Med" and sends this signal to IPC
+645	
+646	IF       the user sets "LDW_Sensibility_Setting.Req" internal signals to "Late"
+647	THEN    TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req" B-CAN signal equal to "Late" and sends this signal to IPC
+648	
+649	WHEN TLM receives "IPC_VEHICLE_SETUP2.LDW_Sensibility" message
+650	THEN TLM updates the LDW Sensibility information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+651	Lane Sense Strenght 
+652	IF           "Half_HMI_Setting" PROXI parameter is equal to "Level 3"
+653	THENTLM shall display the " Lanse Sense Strenght 1 "    menu item and the user can perform setting  with the following options:
+654	Low, High 
+655	
+656	IF       the user sets "LDW_Intensity_Setting.Req" internal signals to "Low"
+657	THEN    TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req" B-CAN signal equal to "Low" and sends this signal to IPC
+658	IF       the user sets "LDW_Intensity_Setting.Req" internal signals to "High"
+659	THEN    TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req" B-CAN signal equal to "High" and sends this signal to IPC
+660	WHEN TLM receives "IPC_VEHICLE_SETUP2.LDW_Intensity" message
+661	THEN TLM updates the LDW Sensibility information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+662	IF           "Half_HMI_Setting" PROXI parameter is equal to "Level 2"
+663	THENTLM shall display the " Lanse Sense Strenght 2"    menu item and the user can perform setting  with the following options:
+664	Low,  Med, High
+665	IF       the user sets "LDW_Intensity_Setting.Req" internal signals to "Low"
+666	THEN    TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req" B-CAN signal equal to "Low" and sends this signal to IPC
+667	
+668	IF       the user sets "LDW_Intensity_Setting.Req" internal signals to "Med"
+669	THEN    TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req" B-CAN signal equal to "Med" and sends this signal to IPC
+670	
+671	IF       the user sets "LDW_Intensity_Setting.Req" internal signals to "High"
+672	THEN    TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req" B-CAN signal equal to "High" and sends this signal to IPC
+673	
+674	WHEN TLM receives "IPC_VEHICLE_SETUP2.LDW_Intensity" message
+675	THEN TLM updates the LDW Sensibility information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+676	
+677	Side Distance Warning
+678	IF             "Side_Distance_Warning" PROXI parameters is equal to "Absent"
+679	THENTLM shall not display the Side Distance Warning menu item and the user can not perform any setting.
+680	IF"Side_Distance_Warning"  PROXI parameter is equal to "Present"
+681	THENTLM shall display the Side Distance Warning menu items and the user can perform setting.
+682	SDW Setting
+683	IF              the user sets "Sdw_Setting.Req" internal signals to "Off"
+684	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.Sdw_Req" B-CAN signal equal to "Off" and sends this signal to IPC
+685	IF              the user sets "Sdw_Setting.Req" internal signals to "On"
+686	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.Sdw_Req" B-CAN signal equal to "Sound_Display" and sends this signal to IPC
+687	WHEN TLM receives "IPC_VEHICLE_SETUP.Sdw" message
+688	THEN TLM updates the Side Distance Warning information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+689	Forward Collision Warning
+690	IF"Forward_Collision_Mitigation" PROXI parameter is equal to "Full Speed Forward Collision Warning with Mitigation"
+691	THENTLM shall display the "Forward Collision Warinig Setting" and "Forward Collision Warning Sensitivity" menu item and the user can perform setting.
+692	Forward Collision Warning Setting
+693	
+694	IF   "Country_Code"  PROXI parameter  is equal to a country of NAFTA market (according to Market Configuration Table) 
+695	THEN  TLM shall display the " Forward Collision Warning Setting1" menu item and the user can perform setting  with the following options:
+696	
+697	Off,  Audio,  Audio_Brake
+698	
+699	IF              the user sets "FSCWPlus_Setting.Req" internal signals to "Off "
+700	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req" B-CAN signal equal to "Off " and sends this signal to IPC
+701	
+702	IF              the user sets "FSCWPlus_Setting.Req" internal signals to "Audio"
+703	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req" B-CAN signal equal to "Audio" and sends this signal to IPC
+704	
+705	IF              the user sets "FSCWPlus_Setting.Req" internal signals to "Audio_Brake"
+706	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req" B-CAN signal equal to "Audio_Brake" and sends this signal to IPC
+707	
+708	WHEN TLM receives "IPC_VEHICLE_SETUP2.FSFCWPlusSetting " message
+709	THEN TLM updates the Forward  Collision Warning information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+710	
+711	IF "Country_Code"PROXI parameter is not equal to a country of NAFTA market (according to Market Configuration Table)
+712	THEN  TLM shall display the " Forward Collision Warning Setting2" menu item and the user can perform setting with the following options:
+713	
+714	Off,  Brake,  Audio_Brake
+715	
+716	IF              the user sets "FSCWPlus_Setting.Req" internal signals to "Off "
+717	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req" B-CAN signal equal to "Off " and sends this signal to IPC
+718	
+719	IF              the user sets "FSCWPlus_Setting.Req" internal signals to "Brake "
+720	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req" B-CAN signal equal to "Brake " and sends this signal to IPC
+721	
+722	IF              the user sets "FSCWPlus_Setting.Req" internal signals to "Audio_Brake "
+723	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req" B-CAN signal equal to "Audio_Brake " and sends this signal to IPC
+724	
+725	WHEN TLM receives "IPC_VEHICLE_SETUP2.FSFCWPlusSetting " message
+726	THEN TLM updates the Forward Collision Warning information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+727	
+728	Forward Collision Warning Sensitivity
+729	IF              the user sets "FSCWPlus_Activation_Mode_Setting.Req" internal signals to "Near"
+730	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req " B-CAN signal equal to "Near" and sends this signal to IPC
+731	
+732	IF              the user sets "FSCWPlus_Activation_Mode_Setting.Req" internal signals to "Med"
+733	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req " B-CAN signal equal to "Med" and sends this signal to IPC
+734	
+735	IF              the user sets "FSCWPlus_Activation_Mode_Setting.Req" internal signals to "Far"
+736	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req " B-CAN signal equal to "Far" and sends this signal to IPC
+737	
+738	WHEN TLM receives "IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode " message
+739	THEN TLM updates the Forward Collision Warning information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+740	
+741	Rain Sensor
+742	IF"Rain_Sensor" PROXI parameter is equal to "present"
+743	THENTLM shall display the Rain Sensor menu item and the user can perform setting.
+744	IFthe user sets "Rain_Sensor_Level_Setting.Req" internal signals to "Enable"
+745	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req" B-CAN signal equal to "Enable" and sends this signal to IPC
+746	IFthe user sets "Rain_Sensor_Level_Setting.Req" internal signals to "Not_Enable"
+747	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req" B-CAN signal equal to "Not_Enable" and sends this signal to IPC
+748	IF"Rain_Sensor" PROXI parameter is equal to "absent"
+749	THENTLM shall not display the Rain Sensor menu item and the user can not perform any setting.
+750	WHEN TLM receives "IPC_VEHICLE_SETUP.RainSensorLevel" message
+751	THEN TLM updates the Rain Sensor information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+752	Time and Date
+753	Set Time
+754	TLM shall display the Clock Setting menu item and the user can perform setting.
+755	IFthe user sets "Hour1_Setting.Req" internal signals 
+756	THENTLM updates and sends the Hour information to VF456 through "Hour1_Setting.Info" internal signal
+757	The "Hour1_Setting.Req" and "Hour1_Setting.Info" internal signals can be set with a value between "0" and "2"
+758	IFthe user sets "Hour2_Setting.Req" internal signals 
+759	THENTLM updates and sends the Hour information to VF456 through "Hour2_Setting.Info" internal signal
+760	The "Hour2_Setting.Req" and "Hour2_Setting.Info" internal signals can be set with a value between "0" and "9"
+761	IFthe user sets "Minute1_Setting.Req" internal signals 
+762	THENTLM updates and sends the Minute information to VF456 through "Minute1_Setting.Info" internal signal
+763	The "Minute1_Setting.Req" and "Minute1_Setting.Info" internal signals can be set with a value between "0" and "5"
+764	IFthe user sets "Minute2_Setting.Req" internal signals 
+765	THENTLM updates and sends the Minute information to VF456 through "Minute1_Setting.Info" internal signal
+766	The "Minute2_Setting.Req" and "Minute2_Setting.Info" internal signals can be set with a value between "0" and "9"
+767	Set Format
+768	TLM shall display the Hour Mode menu item and the user can perform setting.
+769	IFthe user sets "Hour_Mode_Setting.Req" internal signals to "0_24_h"
+770	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.HourMode_Req" B-CAN signal equal to "0_24_h" and sends this signal to IPC
+771	IFthe user sets "Hour_Mode_Setting.Req" internal signals to "0_12_h"
+772	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.HourMode_Req" B-CAN signal equal to "0_12_h" and sends this signal to IPC
+773	WHEN TLM receives "IPC_VEHICLE_SETUP.HourMode" message
+774	THEN TLM updates the Hour Mode information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+775	Set Date 
+776	IF"Cluster_Display_Type" proxi parameter is equal to "Base Display"
+777	THENTLM shall not display the Set Data menu item and the user can not perform any setting. 
+778	ELSE
+779	THENTLM shall display the Set Data menu item and the user can not perform any setting. 
+780	IF the user sets "Day1_Setting.Req" internal signals 
+781	THEN  TLM updates and sends the Day information to VF456 through "Day1_Setting.Info" internal signal
+782	The "Day1_Setting.Req" and "Day1_Setting.Info" can be set with a value between "0" and "3"
+783	IFthe user sets "Day2_Setting.Req" internal signals 
+784	THEN  TLM updates and sends the Day information to VF456 through "Day2_Setting.Info" internal signal
+785	The "Day2_Setting.Req" and "Day2_Setting.Info" can be set with a value between "0" and "9"
+786	IF   the user sets "Month1_Setting.Req" internal signals 
+787	THEN  TLM updates and sends the Month information to VF456 through "Month1_Setting.Info" internal signal
+788	The "Month1_Setting.Req" and "Month1_Setting.Info" can be set with a value between "0" and "1"
+789	IF the user sets "Month2_Setting.Req" internal signals 
+790	THEN  TLM updates and sends the Month information to VF456 through "Month2_Setting.Info" internal signal
+791	The "Month2_Setting.Req" and "Month2_Setting.Info" can be set with a value between "0" and "9"
+792	IF the user sets "Year1_Setting.Req" internal signals 
+793	THEN   TLM updates and sends the Year information to VF456 through "Year1_Setting.Info" internal signal
+794	The "Year1_Setting.Req" and "Year1_Setting.Info" shall be fixed to "2"
+795	IF the user sets "Year2_Setting.Req" internal signals 
+796	THEN  TLM updates and sends the Year information to VF456 through "Year2_Setting.Info" internal signal
+797	The "Year2_Setting.Req" and "Year2_Setting.Info" shall be fixed to "0"
+798	IF the user sets "Year3_Setting.Req" internal signals 
+799	THEN   TLM updates and sends the Year information to VF456 through "Year3_Setting.Info" internal signal
+800	The "Year3_Setting.Req" and "Year3_Setting.Info" can be set with a value between "0" and "9"
+801	IF the user sets "Year4_Setting.Req" internal signals 
+802	THEN  TLM updates and sends the Year information to VF456 through "Year4_Setting.Info" internal signal
+803	The "Year4_Setting.Req" and "Year4_Setting.Info" can be set with a value between "0" and "9"
+804	TLM receives "Time_Date_Setting_Feedback.Info" from VF456 to update time and date information in the setup menu.
+805	Auto Door Locks
+806	IF"Auto_Close_Menu" PROXI parameter is equal to "Disabled"
+807	THENTLM shall not display the Speed Lock Door menu item and the user can not perform any settin
+808	IF"Auto_Close_Menu" PROXI parameter is equal to "Enabled"
+809	THENTLM shall display the Speed Lock Door menu item and the user can perform setting.
+810	IFthe user sets "Speed_Lock_Door_Enable.Req" internal signals to "Enable"
+811	
+812	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req" B-CAN signal equal to "Enable" and sends this signal to IPC
+813	IFthe user sets "Speed_Lock_Door_Enable.Req" internal signals to "Not_Enable"
+814	
+815	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req" B-CAN signal equal to "Not_Enable" and sends this signal to IPC
+816	WHEN TLM receives "IPC_VEHICLE_SETUP.SpeedLockDoorEnable" message
+817	THEN TLM updates the Speed Lock Door information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+818	Units
+819	TLM shall display one of the following UNIT  SET as described in "Market Configuration Table" document  according to "Country_Code"
+820	UNIT SET :
+821	Metric-A, Imperial
+822	   OR
+823	Metric-B, Imperial
+824	   OR
+825	US, Metric-A
+826	   OR
+827	Custom
+828	US
+829	IF            "Units_Settings.Req" is equal to " US "
+830	THEN
+831	TLM shall set "TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req"B-CAN signal equal to "Miles_Per_Gallon_US" value and sends this signal to IPC
+832	TLM shall set "TELEMATIC_VEHICLE_SETUP3.Speed_Unit_Req" B-CAN signal equal to " Mph" and sends this signal to IPC
+833	TLM shall set "TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req" B-CAN signal equal to "Miles" and sends this signal to IPC
+834	TLM shall set "TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req" B-CAN signal equal to "°F" and sends this signal to IPC
+835	TLM shall set "TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req" B-CAN signal equal to " psi" and sends this signal to IPC
+836	Metric-A
+837	IF            "Units_Settings.Req" is equal to "Metric-A"
+838	THEN
+839	TLM shall set "TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req"B-CAN signal equal to "Litres_Per_100Km" value and sends this signal to IPC
+840	TLM shall set "TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req" B-CAN signal equal to "Km" and sends this signal to IPC
+841	TLM shall set "TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req" B-CAN signal equal to "°C" and sends this signal to IPC
+842	TLM shall set "TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req" B-CAN signal equal to " bar" and sends this signal to IPC
+843	TLM shall set "TELEMATIC_VEHICLE_SETUP3.Speed_Unit_Req" B-CAN signal equal to " Kph" and sends this signal to IPC
+844	Metric-B
+845	IF            "Units_Settings.Req" is equal to "Metric-B"
+846	THEN
+847	TLM shall set "TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req"B-CAN signal equal to "Km_Per_Litre" value and sends this signal to IPC
+848	TLM shall set "TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req" B-CAN signal equal to "Km" and sends this signal to IPC
+849	TLM shall set "TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req" B-CAN signal equal to "°C" and sends this signal to IPC
+850	TLM shall set "TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req" B-CAN signal equal to " psi" and sends this signal to IPC
+851	TLM shall set "TELEMATIC_VEHICLE_SETUP3.Speed_Unit_Req" B-CAN signal equal to " Kph" and sends this signal to IPC
+852	Imperial
+853	IF            "Units_Settings.Req" is equal to "Imperial"
+854	THEN
+855	TLM shall set "TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req"B-CAN signal equal to "Miles_Per_Gallon_UK" value and sends this signal to IPC
+856	TLM shall set "TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req" B-CAN signal equal to "Miles" and sends this signal to IPC
+857	TLM shall set "TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req" B-CAN signal equal to "°C" and sends this signal to IPC
+858	TLM shall set "TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req" B-CAN signal equal to " bar" and sends this signal to IPC
+859	TLM shall set "TELEMATIC_VEHICLE_SETUP3.Speed_Unit_Req" B-CAN signal equal to " Mph" and sends this signal to IPC
+860	Custom
+861	IF            "Units_Settings.Req" is equal to "Custom"
+862	THEN
+863	Distances 
+864	IF "Odo_Units Change" PROXI parameter is equal to "absent"
+865	THEN  TLM shall not display the Distance Measurement Unit menu item and the user can not perform any setting.
+866	IF "Odo_Units Change" PROXI parameter is equal to "present"
+867	THEN  TLM shall display the Distance Measurement Unit menu item and the user can perform setting.
+868	IF the user sets "Distance_Unit_Setting.Req" internal signals to "Km"
+869	THEN  TLM shall set "TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req" B-CAN signal equal to "Km" and sends this signal to IPC
+870	IF the user sets "Distance_Unit_Setting.Req" internal signals as "Miles"
+871	THEN  TLM shall set "TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req" B-CAN signal equal to "Miles" and sends this signal to IPC
+872	WHEN  TLM receives "IPC_VEHICLE_SETUP.DistanceUnit" message
+873	THEN   TLM updates the Distance Measurement Unit information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+874	Fuel Consumption 
+875	IF "Fuel_Type" PROXI parameter is different  to "CNG" or "GPL"
+876	THEN  TLM shall display the Consumption Measurement Unit menu item and the user can perform setting.
+877	IF   "Odo_Units_Change" PROXI parameter is equal to "present" 
+878	THEN  TLM shall display the Fuel Consumption menu item and user can perform setting.
+879	IF  "Consumption_Unit_Setting.Req" is equal to "Km_Per_Litre"
+880	THEN  TLM shall set "TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req" to "Km_Per_Litre" value.
+881	IF  "Consumption_Unit_Setting.Req" is equal to "Litres_Per_100Km"
+882	THEN  TLM shall set "TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req" to "Litres_Per_100Km" value.
+883	IF  "Consumption_Unit_Setting.Req" is equal to "MPG US" 
+884	THEN  TLM shall set "TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req" to "Miles_Per_Gallon_US" value
+885	
+886	IF  "Consumption_Unit_Setting.Req" is equal to "MPG UK" 
+887	THEN  TLM shall set "TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req" to "Miles_Per_Gallon_UK" value
+888	
+889	WHEN  TLM receives "IPC_VEHICLE_SETUP.ConsumptionUnit" message
+890	THEN   TLM updates the Consumption Measurement Unit information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+891	
+892	ELSE
+893	THEN TLM shall not display the Consumption Measurement Unit menu item and the user can not perform setting.
+894	Speed
+895	IF "Odo_Units Change" PROXI parameter is equal to "absent"
+896	THEN  TLM shall not display the Speed Measurement Unit menu item and the user can not perform any setting.
+897	IF "Odo_Units Change" PROXI parameter is equal to "present"
+898	THEN  TLM shall display the Speed Measurement Unit menu item and the user can perform setting.
+899	IF the user sets "Speed_Unit_Setting.Req" internal signals to "Kph"
+900	THEN  TLM shall set "TELEMATIC_VEHICLE_SETUP3.Speed_Unit_Req" B-CAN signal equal to "Kph" and sends this signal to IPC
+901	IF the user sets "Speed_Unit_Setting.Req" internal signals as "Mph"
+902	THEN  TLM shall set "TELEMATIC_VEHICLE_SETUP3.Speed_Unit_Req" B-CAN signal equal to "Mph" and sends this signal to IPC
+903	WHEN  TLM receives "IPC_VEHICLE_SETUP3.Speed_Unit" message
+904	THEN   TLM updates the Speed Measurement Unit information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+905	Temperature 
+906	IF"External_Temperature_Sensor" PROXI parameter is equal to "absent"
+907	THENTLM shall not display the External Temperature Measurement Unit menu item and the user can not perform any setting.
+908	IF"External_Temperature_Sensor" PROXI parameter is equal to "present"
+909	THENTLM shall display the External Temperature Measurement Unit menu item and the user can perform setting.
+910	IF the user sets "Temperature_Unit_Setting.Req" internal signals to "°C"
+911	THEN  TLM shall set "TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req" B-CAN signal equal to "°C" and sends this signal to IPC
+912	IF the user sets "Temperature_Unit_Setting.Req" internal signals to "°F"
+913	THEN  TLM shall set "TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req" B-CAN signal equal to "°F" and sends this signal to IPC
+914	WHEN TLM receives "IPC_VEHICLE_SETUP.TemperatureUnit" message
+915	THEN TLM updates the External TemperatureMeasurement Unit information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+916	Tyre Pressure
+917	IF"Tyre_Pressure_Unit_Menu" PROXI parameter is equal to "Absent"
+918	THENTLM shall not display the Tyre Pressure Unit menu item and the user can not perform any setting.
+919	IF"Tyre_Pressure_Unit_Menu" PROXI parameter is equal to "Present"
+920	THENTLM shall display the Tyre Pressure Unit menu item and the user can perform setting.
+921	IFthe user sets "Tyre_Pressure_Unit_Setting.Req" internal signals to " kPa" 
+922	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req" B-CAN signal equal to "kPa" and sends this signal to IPC
+923	IFthe user sets "Tyre_Pressure_Unit_Setting.Req" internal signals to " psi"
+924	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req" B-CAN signal equal to " psi" and sends this signal to IPC
+925	IFthe user sets "TyrePressureUnit_Req" internal signals to " bar"
+926	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req" B-CAN signal equal to "bar" and sends this signal to IPC
+927	WHEN TLM receives "IPC_VEHICLE_SETUP2.TyrePressureUnit" message
+928	THEN TLM updates the Tyre Pressure Unit information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+929	Language 
+930	TLM shall:
+931	display the "Language" menu item.
+932	display the language SETS described in "Market Configuration Table" document  according to "Country_Code" and "Additional Language" PROXI parameters
+933	IF the user sets a language througt "Language_Setting.Req" internal signal  
+934	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req" to the corresponding selected value.
+935	WHEN TLM receives "IPC_VEHICLE_SETUP.LanguageSelection" message
+936	THEN TLM updates the Language information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+937	IFTLM receives a negative Ack from IPC
+938	THENthe TLM has to maintain the language previously selected.
+939	Daytime Running Lights
+940	IF"DRL_Menù_Enable" PROXI parameter is equal to "Disabled"
+941	THENTLM shall not display the DRL menu item and the user can not perform any setting.
+942	IF"DRL_Menù_Enable" PROXI parameter is equal to "Enabled"
+943	THENTLM shall display the DRL menu item and the user can perform setting.
+944	IFthe user sets "DRL_Enable.Req" internal signals to "Enable"
+945	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.DRLEnable_Req" B-CAN signal equal to "True" and sends this signal to IPC
+946	IFthe user sets "DRL_Enable.Req" internal signals to "Disable"
+947	
+948	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.DRLEnable_Req" B-CAN signal equal to "False" and sends this signal to IPC
+949	WHEN TLM receives "IPC_VEHICLE_SETUP.DRLEnable" message
+950	THEN TLM updates the DRL information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+951	Headlight Sensitivity
+952	IF"Twilight_Sensor" PROXI parameter is equal to "absent"
+953	THENTLM shall not display the External Light Sensor menu item and the user can not perform any setting.
+954	IF"Twilight_Sensor" PROXI parameter is equal to "present"
+955	THENTLM shall display the External Light Sensor menu item and the user can  perform setting.
+956	IFthe user sets "External_Light_Sensor_Level.Req" internal signal to "Level_1"
+957	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req" B-CAN signal equal to "Level_1" and sends this signal to IPC
+958	IFthe user sets "External_Light_Sensor_Level_Setting.Req" internal signal to "Level_2"
+959	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req" B-CAN signal equal to "Level_2" and sends this signal to IPC
+960	IFthe user sets "External_Light_Sensor_Level_Setting.Req" internal signal to "Level_3"
+961	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req" B-CAN signal equal to "Level_3" and sends this signal to IPC
+962	WHEN TLM receives "IPC_VEHICLE_SETUP.ExternalLightSensorLevel" message
+963	THEN TLM updates the External light Sensor information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+964	Headlights Off Delay
+965	IF"Headlamp_Delay_Feature" PROXI parameter is equal to "Absent"
+966	THENTLM shall not display the Headlights Off Delay menu item and the user can not perform any setting.
+967	IF"Headlamp_Delay_Feature" PROXI parameter is equal to "Present"
+968	TLM shall display the Headlights Off Delay  menu item and the user can  perform setting.
+969	IFthe user sets "Headlights_Off_Delay_Setting.Req" internal signal to " 0 "
+970	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req " B-CAN signal equal to "  0 " and sends this signal to IPC
+971	IFthe user sets "Headlights_Off_Delay_Setting.Req " internal signal to " 30 "
+972	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req " B-CAN signal equal to "  30 " and sends this signal to IPC
+973	IFthe user sets "Headlights_Off_Delay_Setting.Req " internal signal to " 60 "
+974	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req " B-CAN signal equal to "  60 " and sends this signal to IPC
+975	IFthe user sets "Headlights_Off_Delay_Setting.Req " internal signal to " 90 "
+976	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req " B-CAN signal equal to "  90 " and sends this signal to IPC
+977	WHEN TLM receives "IPC_VEHICLE_SETUP2.HeadlightsOffDelay" message
+978	THEN TLM updates the Headlights Off Delay information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+979	Blind Spot Alert
+980	IF"CAN node 51 (LBSS)" == "Absent" OR "CAN node 52 (RBSS)" == "Absent"
+981	THENTLM shall not display the Blind Spot Detection menu item and the user can not perform any setting.
+982	IF"CAN node 51 (LBSS)" == "Present" AND "CAN node 52 (RBSS)" == "Present"
+983	THENTLM shall display the Blind Spot Detection menu item and the user can perform setting.
+984	IFthe user sets "Blind_Spot_Detection_Setting.Req" internal signal to "Enable_LED" 
+985	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.BSDEnable_Req" B-CAN signal equal to "Enable_LED" and sends this signal to IPC
+986	IFthe user sets "Blind_Spot_Detection_Setting.Req" internal signal to "Enable_ LED_Chime" 
+987	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.BSDEnable_Req" B-CAN signal equal to "Enable_ LED_Chime" and sends this signal to IPC
+988	IFthe user sets "Blind_Spot_Detection_Setting.Req" internal signal to "Not_Enable" 
+989	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.BSDEnable_Req" B-CAN signal equal to "Not_Enable" and sends this signal to IPC
+990	WHEN TLM receives "IPC_VEHICLE_SETUP.BSDEnable" message
+991	THEN TLM updates the Blind Spot information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+992	Trailer Length for Blind Spot Alert
+993	IF "CAN node 51 (LBSS)" AND "CAN node 52 (RBSS)" AND "CAN node 63 (TTM)" are equal to "Present" 
+994	IFSTATUS_TTM.TrailerConnectionSts is equal to "Not_Connected"
+995	THENTLM shall grey out the Trailer Length for Blind Spot Alert menu item and the user can not perform any setting.
+996	IF STATUS_TTM.TrailerConnectionSts is equal to "Connected"
+997	THENTLM shall display the Trailer Length for Blind Spot Alert menu item and the user can perform setting.
+998	IFthe user sets "Trailer_Length_Blind_Spot.Req" internal signal to "Auto"
+999	THEN     TLM shall set "TELEMATIC_VEHICLE_SETUP2.Trlr_Lnth_Blind_Spot_Req" B-CAN signal equal to "Auto" and sends the signal to IPC
+1000	IFthe user sets "Trailer_Length_Blind_Spot.Req" internal signal to "Max"
+1001	THEN     TLM shall set "TELEMATIC_VEHICLE_SETUP2.Trlr_Lnth_Blind_Spot_Req" B-CAN signal equal to "Max" and sends the signal to IPC
+1002	WHEN    TLM receives "IPC_VEHICLE_SETUP2.Trlr_Lnth_Blind_Spot" message
+1003	THEN     TLM updates the Trailer Length for Blind Spot Alert information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1004	ELSETLM shall not display the "Trailer Length for Blind Spot Alert" menu item and the user can not perform any setting.
+1005	Passive Entry
+1006	IF"Passive_Entry_Menu" PROXI parameter is equal to "Absent"
+1007	THENTLM shall not display the Passive Entry menu item and the user can not perform any setting.
+1008	IF"Passive_Entry_Menu" PROXI parameter is equal to "Present"
+1009	IF "Passive_Entry_Types"  is equal to "2_Doors_PE"
+1010	
+1011	THENTLM shall display the Passive Entry menu item and the user can perform setting with the following options: On, Off
+1012	IFthe user sets "Passive_Entry_Enable.Req" internal signals to "On"
+1013	
+1014	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req" B-CAN signal equal to "On" and sends this signal to IPC
+1015	IFthe user sets "Passive_Entry_Enable.Req" internal signals to "Off"
+1016	
+1017	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req" B-CAN signal equal to "Off" and sends this signal to IPC
+1018	WHEN TLM receives "IPC_VEHICLE_SETUP.PassiveEntry" message
+1019	
+1020	THEN TLM updates the Passive Entry information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1021	IF "Passive_Entry_Types"  is equal to "4_Doors_PE"
+1022	
+1023	THENTLM shall display the Passive Entry menu item and the user can perform setting with the following options: Off, Approach Door, All Doors
+1024	IFthe user sets "PassiveEntrySelection.Req" internal signals to "Off"
+1025	
+1026	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.PassiveEntrySelection_Req" B-CAN signal equal to "Off" and sends this signal to IPC
+1027	IFthe user sets "PassiveEntrySelection.Req" internal signals to "Approach_Door"
+1028	
+1029	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.PassiveEntrySelection_Req" B-CAN signal equal to "Apporach_Door" and sends this signal to IPC
+1030	IFthe user sets "PassiveEntrySelection.Req" internal signals to "All_Doors"
+1031	
+1032	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.PassiveEntrySelection_Req" B-CAN signal equal to "All_Doors" and sends this signal to IPC
+1033	WHEN TLM receives "IPC_VEHICLE_SETUP2.PassiveEntrySelection" message
+1034	
+1035	THEN TLM updates the Passive Entry information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1036	Remote Door Unlock
+1037	IF"Remote_Door_Unlock_Menu" PROXI parameter is equal to "Absent"
+1038	THENTLM shall not display the Remote Door Unlock menu item and the user can not perform any setting.
+1039	IF"Remote_Door_Unlock_Menu" PROXI parameter is equal to "Present"
+1040	THENTLM shall display the Remote Door Unlock menu item and the user can perform setting.
+1041	IFthe user sets "Remote_Door_Unlock_Setting.Req" internal signals to "Driver"
+1042	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock._Req" B-CAN signal equal to "Driver" and sends this signal to IPC
+1043	IFthe user sets "Remote_Door_Unlock_Setting.Req" internal signals to "All"
+1044	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock._Req" B-CAN signal equal to "All" and sends this signal to IPC
+1045	WHEN TLM receives "IPC_VEHICLE_SETUP.RemoteDoorUnlock" message
+1046	THEN TLM updates the Remote Door Unlock information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1047	EPB Maintenance Mode
+1048	IF"EPB_Maintenance_Menu" PROXI parameter is equal to "Absent"
+1049	THENTLM shall not display the EPB Maintance Mode  menu item and the user can not perform any setting.
+1050	IF" EPB_Maintenance_Menu " PROXI parameter is equal to "Present"
+1051	THENTLM shall display the EPB Maintance Mode menu item and the user can perform setting.
+1052	IFthe user sets "Maintenance_Mode_Enable.Req" internal signals equal to " On"
+1053	THENTLM shall:
+1054	 Set "TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req" B-CAN signal equal to " On  " and sends this signal to IPC
+1055	activate and display the Popup related to "  initializing "  like described in the "Human Machine Interface logic &  flow" document
+1056	Start T_EPB_MM 
+1057	T_EPB_MM  is the timeout for the EPB Maintenance Mode setting
+1058	IF  T_EPB_MM  is not expired
+1059	IF        "IPC_VEHICLE_SETUP2.EPB_MaintenanceMode" B CAN signal  change from "Off"  to "On"   
+1060	THEN TLM shall:
+1061	activate and display the  Popup related to " the user selected yes to exiting service mode and the first step is to step on the brake pedal " like described in the "Human Machine Interface logic &  flow" document
+1062	 reset T_EPB_MM
+1063	
+1064	IF TLM receives "IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk" set to " 2 "
+1065	THEN TLM sall:
+1066	activate and display the  Popup related to "  the user elected yes to entering service mode but he vehicle speed is not at 0mph "  like described in the "Human Machine Interface logic &  flow" document
+1067	Reset T_EPB_MM
+1068	
+1069	IF TLM receives "IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk" set to " 3 "
+1070	THEN TLM sall:
+1071	activate and display the Popup related to "the user selected yes to entering service mode but the vehicle is not in park or neutral"  like described in the "Human Machine Interface logic &  flow" document. 
+1072	Reset T_EPB_MM
+1073	
+1074	IF TLM receives "IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk" set to " 4 "
+1075	THEN TLM sall:
+1076	activate and display the Popup related to "the user selected yes to entering service mode but the EPB switch is currently engaged"  like described in the "Human Machine Interface logic &  flow" document
+1077	Reset T_EPB_MM
+1078	
+1079	IF TLM receives "IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk" set to " 5 "
+1080	THEN TLM sall:
+1081	activate and display the Popup related to " the user selected yes to entering service mode but the EPB switch is currently engaged" "  like described in the "Human Machine Interface logic &  flow" document
+1082	Reset T_EPB_MM
+1083	
+1084	IF TLM receives "IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk" set to " 6 "
+1085	THEN TLM sall:
+1086	activate and display the Popup related to " the user selected yes to entering service mode but the brake pedal is currently pressed"  like described in the "Human Machine Interface logic &  flow" document
+1087	Reset T_EPB_MM
+1088	
+1089	ELSE
+1090	THEN    TLM shall:
+1091	activate and display the Popup related to " no response from EPB module " like described in the "Human Machine Interface logic &  flow" document
+1092	
+1093	IF TLM receives "IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk" set to " 8 "
+1094	THEN TLM sall:
+1095	activate and display the  Popup related to " Brake Service Park Brake Retracted. To reset, press brake pedal and activate Park Brake switch."  like described in the "Human Machine Interface logic &  flow" document
+1096	
+1097	IF TLM receives "IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk" set to " 9 "
+1098	THEN TLM sall:
+1099	activate and display the Popup related to "  the user selected yes to exiting service mode but the vehicle speed is not at 0mph "  like described in the "Human Machine Interface logic &  flow" document
+1100	
+1101	IF TLM receives "IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk" set to " 10  "
+1102	THEN TLM sall:
+1103	activate and display the  Popup related to “Brake Service To exit Service Mode, vehicle must not be in motion.”  like described in the "Human Machine Interface logic &  flow" document
+1104	
+1105	IF TLM receives "IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk" set to " 11  "
+1106	THEN TLM sall:
+1107	activate and display the Popup related to " once the Service Mode exit process is complete"  like described in the "Human Machine Interface logic &  flow" document
+1108	
+1109	IF        "IPC_VEHICLE_SETUP2.EPB_MaintenanceMode" B CAN signal  is equal  to "On"  
+1110	THEN
+1111	IF  "STATUS_CCAN3.VehicleSpeedVSOSig" B CAN signal changes from a value  ≤  "V_Car_Moving" to a value  >  "V_Car_Moving" OR  in case of  transition from "Ignition Off" to "Inigtion On"
+1112	
+1113	THEN  TLM shall activate and display the PopUp related to " the user selected yes to exiting service mode and the first step is to step on the brake pedal" like described in the "Human Machine Interface logic &  flow" document.
+1114	
+1115	WHEN TLM receives "IPC_VEHICLE_SETUP2.EPB_MaintenanceMode" message  
+1116	THEN TLM shall update the EPB Maintenance Mode information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1117	Fore more information about the Popup visualizzation for the EPB Maintenance Mode settings, refer to  "Service Mode Pop-up Messages " session of the "Human Machine Interface logic &  flow" document
+1118	Auto Park Brake
+1119	IF"Auto_Park_Brake_Menu" PROXI parameter is equal to "Absent"
+1120	THENTLM shall not display the Auto Park Brake menu item and the user can not perform any setting.
+1121	IF"Auto_Park_Brake_Menu" PROXI parameter is equal to "Present"
+1122	THENTLM shall display the Auto Park Brake menu item and the user can perform setting.
+1123	IFthe user sets "Auto_Park_Brake_Enable.Req" internal signals to "On"
+1124	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req" B-CAN signal equal to "On" and sends this signal to IPC
+1125	IFthe user sets "Auto_Park_Brake_Enable.Req" internal signals to "Off"
+1126	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req" B-CAN signal equal to "Off" and sends this signal to IPC
+1127	WHEN TLM receives "IPC_VEHICLE_SETUP.AutoParkBrake" message
+1128	THEN TLM updates the Auto Park Brake information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1129	Horn With Lock
+1130	IF"Horn_Chirp_Menu" PROXI parameter is equal to "Absent"
+1131	THENTLM shall not display the Sound Horn with Lock menu item and the user can not perform any setting.
+1132	IF"Horn_Chirp_Menu" PROXI parameter is equal to "Present"
+1133	THENTLM shall display the Sound Horn with Lock menu item and the user can perform setting.
+1134	IFthe user sets "Sound_Horn_With_Lock_Setting.Req" internal signals to "Off"
+1135	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req" B-CAN signal equal to "Off" and sends this signal to IPC
+1136	IFthe user sets "Sound_Horn_With_Lock_Setting.Req" internal signals to "1st Press"
+1137	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req" B-CAN signal equal to "1st Press" and sends this signal to IPC
+1138	IFthe user sets "Sound_Horn_With_Lock_Setting.Req" internal signals to "2st Press"
+1139	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.SoundHornLock_Req" B-CAN signal equal to "2st Press" and sends this signal to IPC
+1140	WHEN TLM receives "IPC_VEHICLE_SETUP.SoundHornLock" message
+1141	THEN TLM updates the Horn with Lock information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1142	Horn With Remote Start
+1143	IF"Sound_Horn_Remote_Start_Menu" PROXI parameter is equal to "Absent"
+1144	THENTLM shall not display the Sound Horn with Remote Start menu item and the user can not perform any setting.
+1145	IF"Sound_Horn_Remote_Start_Menu" PROXI parameter is equal to "Present"
+1146	THENTLM shall display the Sound Horn with Remote Start menu item and the user can perform setting.
+1147	IFthe user sets "Sound_Horn_Remote_Start_Enable.Req" internal signals to "Enable"
+1148	
+1149	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.SoundHornRemoteStart_Req" B-CAN signal equal to "On" and sends this signal to IPC
+1150	IFthe user sets "Sound_Horn_Remote_Start_Enable.Req" internal signals to "Not_Enable"
+1151	
+1152	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.SoundHornRemoteStart_Req" B-CAN signal equal to "Off" and sends this signal to IPC
+1153	WHEN TLM receives "IPC_VEHICLE_SETUP.SoundHornRemoteStart" message
+1154	THEN TLM updates the Horn with Remote Start information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1155	Auto Unlock on Exit
+1156	IF"Auto_Door_Unlock_Menu" PROXI parameter is equal to "Absent"
+1157	THENTLM shall not display the Auto Unlock Door Exit menu item and the user can not perform any setting.
+1158	IF"Auto_Door_Unlock_Menu" PROXI parameter is equal to "Present"
+1159	THENTLM shall display the Auto Unlock Door Exit menu item and the user can perform setting.
+1160	IFthe user sets "Auto_Unlock_Door_Exit_Enable.Req" internal signals to " Enable"
+1161	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req" B-CAN signal equal to "Enable" and sends this signal to IPC
+1162	IFthe user sets "Auto_Unlock_Door_Exit_Enable.Req" internal signals to " Not_Enable"
+1163	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req" B-CAN signal equal to "Not_Enable" and sends this signal to IPC
+1164	WHEN TLM receives "IPC_VEHICLE_SETUP2.AutoUnlockDoorExit" message
+1165	THEN TLM updates the Auto Unlock Door Exit information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal 
+1166	Flash Light With Lock
+1167	IF"Flash_Light_With_Lock_Menu" PROXI parameter is equal to "Absent"
+1168	THENTLM shall not display the Flash Light With Lock menu item and the user can not perform any setting.
+1169	IF"Flash_Light_With_Lock_Menu" PROXI parameter is equal to "Present"
+1170	THENTLM shall display the Flash Light With Lock menu item and the user can perform setting.
+1171	IF             the user sets  " Flash_Light_With_Lock_Enable.Req " internal signal to " Off" 
+1172	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req" B-CAN signal equal to "Off" and sends this signal to IPC
+1173	IF             the user sets  " Flash_Light_With_Lock_Enable.Req " internal signal to " On" 
+1174	THENTLM shall set "TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req" B-CAN signal equal to "On" and sends this signal to IPC
+1175	WHEN TLM receives "IPC_VEHICLE_SETUP2.FlashLightWLock" message
+1176	THEN TLM updates the Flash Light With Lock  information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1177	GPS Automatic Time Adjustment
+1178	IF"GPS_Presence" PROXI parameter is equal to "Absent"
+1179	THENTLM shall not display the GPS Automatic Time Adjustment menu item and the user can not perform any setting.
+1180	IF"GPS_Presence" PROXI parameter is equal to "Present"
+1181	THENTLM shall display the GPS Automatic Time Adjustment menu item and the user can perform setting.
+1182	IFthe user sets "GPS_Automatic_Time_Adj_Enable.Req" internal signals to "Not_Enable" 
+1183	THENTLM updates and sends the GPS Time Adjustment information to VF456 through "GPS_Automatic_Time_Adj_Setup.Info" internal signal
+1184	IFthe user sets "GPS_Automatic_Time_Adj_Enable.Req" internal signals to "Enable" 
+1185	THENTLM updates and sends the GPS Time Adjustment information to VF456 through "GPS_Automatic_Time_Adj_Setup.Info" internal signal
+1186	Phone Repetition
+1187	IFTLM receives "IPC_VEHICLE_SETUP.PhoneRepetition"set to "Present"
+1188	THENTLM updates and sends the information for enabling the Phone  repetition to VF464 through "PhoneRepetition.Info" internal signal 
+1189	IFTLM receives "IPC_VEHICLE_SETUP.PhoneRepetition"set to "Absent"
+1190	THENTLM updates and sends the information for disabling the Phone  repetition to VF464 through "PhoneRepetition.Info" internal signal 
+1191	Nav Turn by Turn
+1192	IFTLM receives "IPC_VEHICLE_SETUP.NavRepetition"set to "Present"
+1193	THENTLM updates and sends the information for enabling the Navigation  repetition to VF176 through "NavigationRepetition.Info" internal signal 
+1194	IFTLM receives "IPC_VEHICLE_SETUP.NavRepetition"set to "Absent"
+1195	THENTLM updates and sends the information for disabling the Navigation  repetition to VF176 through "NavigationRepetition.Info" internal signal 
+1196	Audio Repetition
+1197	IFTLM receives "IPC_VEHICLE_SETUP.AudioRepetition"set to "On"
+1198	THEN
+1199	TLM shall send the information for enabling the Audio repetition to VF155 through "AudioRepetition.Info" internal signal 
+1200	IFTLM receives "IPC_VEHICLE_SETUP.AudioRepetition"set to "Off"
+1201	THENTLM updates and sends the information for disabling the Audio repetition to VF155 through "AudioRepetition.Info" internal signal 
+1202	PARK SENSE w/o HC.1 and PARK SENSE w/o HC.2
+1203	IF            " CAN node 24 (PAM ) " PROXI parameter  is equal to "Present"
+1204	THEN      TLM shall display the "Park Sense Setting "  menu item  and the user can perform setting.
+1205	IF              the user sets "Pam_AlertMode_Setting.Req" internal signals to "Sound"
+1206	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req" B-CAN signal equal to "Sound" and sends this signal to IPC
+1207	
+1208	IF              the user sets "Pam_AlertMode_Setting.Req" internal signals to "Sound+Display"
+1209	THENTLM shall set "TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req" B-CAN signal equal to "Sound+Display" and sends this signal to IPC
+1210	
+1211	WHEN TLM receives "IPC_VEHICLE_SETUP.PamAlertMode" message
+1212	THEN TLM updates the Park Sense Setting information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1213	
+1214	IF            " CAN node 24 (PAM ) " PROXI parameter  is equal to "Present"  
+1215	THEN      TLM shall display the "Park Sense Setting "  menu item  and the user can perform setting.
+1216	Rear Park Sense Volume/ ParkSense Volume
+1217	IF "CAN node 24 (PAM)"  PROXI parameter  is equal to "Present"  AND ( "PAM_Configuration" PROXI parameter is equal to  "Rear" OR "Front And Rear" )
+1218	THEN IPC shall display the "Rear Park Sense Volume" menu item and the user can perform setting.
+1219	IF                the user sets "Pam_Chime_Volume_Rear_Setting.Req" internal signals to "Low"
+1220	THEN        TLM shall set "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req" B-CAN signal equal to "Low" and sends this signal to IPC
+1221	IF                the user sets "Pam_Chime_Volume_Rear_Setting.Req" internal signals to "Med"
+1222	THEN        TLM shall set "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req" B-CAN signal equal to "Med" and sends this signal to IPC
+1223	IF                the user sets "Pam_Chime_Volume_Rear_Setting.Req" internal signals to "High"
+1224	THEN        TLM shall set "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req" B-CAN signal equal to "High" and sends this signal to IPC
+1225	WHEN TLM receives "IPC_VEHICLE_SETUP.PamChimeVolumeRear" message
+1226	THEN TLM updates the Rear Park Sense Volume information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1227	ELSE
+1228	THEN TLM shall not display the "Rear Park Sense Volume"  menu item and the user can not perform any setting.
+1229	Front Park Sense Volume
+1230	IF "CAN node 24 (PAM)"  PROXI parameter  is equal to "Present"  AND  "PAM_Configuration" PROXI parameter is equal to  "Front And Rear" 
+1231	THEN IPC shall display the "Front Park Sense Volume" menu item and the user can perform setting.
+1232	IF                the user sets "Pam_Chime_Volume_Front_Setting.Req" internal signals to "Low"
+1233	THEN        TLM shall set "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req" B-CAN signal equal to "Low" and sends this signal to IPC
+1234	IF                the user sets "Pam_Chime_Volume_Front_Setting.Req" internal signals to "Med"
+1235	THEN        TLM shall set "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req" B-CAN signal equal to "Med" and sends this signal to IPC
+1236	IF                the user sets "Pam_Chime_Volume_Front_Setting.Req" internal signals to "High"
+1237	THEN        TLM shall set "TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req" B-CAN signal equal to "High" and sends this signal to IPC
+1238	WHEN TLM receives "IPC_VEHICLE_SETUP.PamChimeVolumeFront" message
+1239	THEN TLM updates the Front Park Sense Volume information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1240	ELSE
+1241	THEN TLM shall not display the "Front Park Sense Volume"  menu item and the user can not perform any setting.
+1242	ELSE
+1243	THEN TLM shall not display the "Park Sense Setting ",  "Rear Park Sense Volume"  and "Front Park Sense Volume"  menu items and the user can not perform any setting.
+1244	Auto High  Beam 
+1245	IF“AHBM_Feature_Menu ”  PROXI parameter is equal to "Absent"
+1246	THENTLM shall  display the Auto High Beam  menu item and the user can not perform any setting.
+1247	IF“AHBM_Feature_Menu” PROXI parameter is equal to "Present"
+1248	THENTLM shall display the Auto High Beam menu item and the user can perform setting.
+1249	IFthe user sets  "Auto_High_Beam_Enable.Req" equal to "Enable"
+1250	THEN     TLM  shall to set "TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req"  B-CAN signal equal to "Enable" and sends this signal to IPC 
+1251	IFthe user sets  "Auto_High_Beam_Enable.Req" equal to "Not_Enable"
+1252	THEN     TLM  shall to set "TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req"  B-CAN signal equal to "Not_Enable" and sends this signal to IPC
+1253	WHEN TLM receives "IPC_VEHICLE_SETUP.AutoHighBeamEnable" message
+1254	THEN TLM updates the Auto High Beam information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1255	Dynamic Gridlines
+1256	IF “Rear_View_Camera"   PROXI parameter is equal to "Absent"
+1257	THENTLM shall not display the Dynamic Gridlines  menu item and the user can not perform any setting.
+1258	IF “Rear_View_Camera"   PROXI parameter is equal to "Present"
+1259	THEN  TLM shall display the Dynamic Gridlines  menu item and the user can perform setting with the following options:
+1260	Off, On
+1261	
+1262	IF the user sets "Dynamic_Grid_Setting.Req"  equal to "Off" 
+1263	THEN TLM shall set "DynamicGrid.Req" internal signal equal to "OFF" .
+1264	
+1265	IF the user sets "Dynamic_Grid_Setting.Req"  equal to "On" 
+1266	THEN TLM shall set "DynamicGrid.Req" internal signal equal to "ON" .
+1267	
+1268	Traffic Sign Recognition
+1269	IF “Traffic_Sign_Recognition_Menu”   PROXI parameter is equal to "Absent"
+1270	THENTLM shall not display the Traffic Sign Recognition  menu item and the user can not perform any setting.
+1271	IF “Traffic_Sign_Recognition_Menu”   PROXI parameter is equal to "Present" 
+1272	THEN TLM shall display the Traffic Sign Recognition  menu item and the user can perform setting with the following options:
+1273	Off, On
+1274	
+1275	IF the user sets "TSR_Enable.Req"  equal to "Off" 
+1276	TLM shall set "TELEMATIC_VEHICLE_SETUP2.TSREnableReq"   BH-CAN signal equal to "Not_Active" and sends this signal to IPC
+1277	
+1278	IF the user sets "TSR_Enable.Req"  equal to "On" 
+1279	TLM shall set "TELEMATIC_VEHICLE_SETUP2.TSREnableReq"   BH-CAN signal equal to "Active" and sends this signal to IPC
+1280	WHEN TLM receives "IPC_VEHICLE_SETUP2.TSREnable" message
+1281	THEN TLM updates the Traffic Sign Recognition information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1282	Traffic Sign Assist Warning
+1283	IF “Traffic_Sign_Recognition_Menu"   PROXI parameter is equal to "Absent"
+1284	THENTLM shall not display the Traffic Sign Assist Warning  menu item and the user can not perform any setting.
+1285	IF “Traffic_Sign_Recognition_Menu”   PROXI parameter is equal to "Present" 
+1286	THEN TLM shall display the Traffic Sign Assist Warning  menu item and the user can perform setting with the following options:
+1287	Off, Visual, Visual_Chime
+1288	
+1289	IF the user sets "Traffic_Sign_Warn_Setting.Req"  equal to "Off" 
+1290	TLM shall set "TELEMATIC_VEHICLE_SETUP4.Traffic_Sign_Warn_Req"   BH-CAN signal equal to "Off" and sends this signal to IPC
+1291	
+1292	IF the user sets "Traffic_Sign_Warn_Setting.Req"  equal to "Visual" 
+1293	TLM shall set "TELEMATIC_VEHICLE_SETUP4.Traffic_Sign_Warn_Req"   BH-CAN signal equal to "Visual" and sends this signal to IPC
+1294	
+1295	IF the user sets "Traffic_Sign_Warn_Setting.Req"  equal to "Visual and Chime" 
+1296	TLM shall set "TELEMATIC_VEHICLE_SETUP4.Traffic_Sign_Warn_Req"   BH-CAN signal equal to "Visual_Chime" and sends this signal to IPC
+1297	
+1298	WHEN TLM receives "IPC_VEHICLE_SETUP4.Traffic_Sign_Warn" message
+1299	THEN TLM updates the Traffic Sign Assist Warning information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1300	Drowsy Driver Alert
+1301	IF “Driver_Drowsy_Alert"   PROXI parameter is equal to "Absent"
+1302	THENTLM shall not display the Driver Drowsy Alert  menu item and the user can not perform any setting.
+1303	IF “Driver_Drowsy_Alert”   PROXI parameter is different from "Absent" 
+1304	THEN TLM shall display the Driver Drowsy Alert  menu item and the user can perform setting with the following options:
+1305	Off, On
+1306	
+1307	IF the user sets "Drowsy_Driver_Alert_Enable.Req"  equal to "Off" 
+1308	TLM shall set "TELEMATIC_VEHICLE_SETUP3.Drowsy_Driver_Alert_Req"   BH-CAN signal equal to "Not_Active" and sends this signal to IPC
+1309	
+1310	IF the user sets "Drowsy_Driver_Alert_Enable.Req"  equal to "On" 
+1311	TLM shall set "TELEMATIC_VEHICLE_SETUP3.Drowsy_Driver_Alert_Req"   BH-CAN signal equal to "Active" and sends this signal to IPC
+1312	WHEN TLM receives "IPC_VEHICLE_SETUP3.Drowsy_Driver_Alert" message
+1313	THEN TLM updates the Driver Drowsy Alert information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1314	Intelligent Speed Limiter with Confirmation
+1315	IF “Intelligent_Speed_Function_Menu"   PROXI parameter is equal to "Absent"
+1316	THENTLM shall not display the Intellingent Speed Limiter  menu item and the user can not perform any setting.
+1317	IF “Intelligent_Speed_Function_Menu”   PROXI parameter is equal to "Present" 
+1318	THEN TLM shall display the Intellingent Speed Limiter  menu item and the user can perform setting with the following options:
+1319	Confirmation, Automatic
+1320	
+1321	IF the user sets "Sign_Capture_Mode_Setting.Req"  equal to "Confirmation" 
+1322	TLM shall set "TELEMATIC_VEHICLE_SETUP4.SignCaptureModeReq"   BH-CAN signal equal to "Confirmation" and sends this signal to IPC
+1323	
+1324	IF the user sets "Sign_Capture_Mode_Setting.Req"  equal to "Automatic" 
+1325	TLM shall set "TELEMATIC_VEHICLE_SETUP4.SignCaptureModeReq"   BH-CAN signal equal to "Automatic" and sends this signal to IPC
+1326	WHEN TLM receives "IPC_VEHICLE_SETUP4.SignCaptureMode" message
+1327	THEN TLM updates the Intellingent Speed Limiter information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1328	New Speed Zone
+1329	IF “Intelligent_Speed_Function_Menu"   PROXI parameter is equal to "Absent"
+1330	THENTLM shall not display the New Speed Zone  menu item and the user can not perform any setting.
+1331	IF “Intelligent_Speed_Function_Menu”  PROXI parameter is equal to "Present" 
+1332	THEN TLM shall display the New Speed Zone   menu item and the user can perform setting with the following options:
+1333	Off, Visual, Visual_Chime
+1334	
+1335	IF the user sets "New_Spd_Zone_Ind_Setting.Req"  equal to "Off" 
+1336	TLM shall set "TELEMATIC_VEHICLE_SETUP4.New_Spd_Zone_Ind_Req"   BH-CAN signal equal to "Off" and sends this signal to IPC
+1337	
+1338	IF the user sets "New_Spd_Zone_Ind_Setting.Req"  equal to "Visual" 
+1339	TLM shall set "TELEMATIC_VEHICLE_SETUP4.New_Spd_Zone_Ind_Req"   BH-CAN signal equal to "Visual" and sends this signal to IPC
+1340	
+1341	IF the user sets "New_Spd_Zone_Ind_Setting.Req"  equal to "Visual_Chime" 
+1342	TLM shall set "TELEMATIC_VEHICLE_SETUP4.New_Spd_Zone_Ind_Req"   BH-CAN signal equal to "Visual_Chime" and sends this signal to IPC
+1343	
+1344	WHEN TLM receives "IPC_VEHICLE_SETUP4.New_Spd_Zone_Ind" message
+1345	THEN TLM updates the New Speed Zone information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1346	Personal Profile Management
+1347	IF the User performs a new setting request
+1348	THEN the TLM shall set TLM_SettingChange.Info internal signal equals to "Change"
+1349	IF the User does not perform a new setting request
+1350	THEN the TLM shall set TLM_SettingChange.Info internal signal equals to "Not Change"
+1351	IF TLM_ProfileLevel.Info internal signal value changes
+1352	THEN the TLM shall consider the new Profile as a new setting request and update the settings (as indicated in the VF503)
+1353	Surround Camera Gridlines
+1354	IF "Surround_View_Camera” PROXI parameter is not equal to "Present" 
+1355	THEN the TLM shall not display the Surroundview Camera Gridlines menu item and the user can not perform any setting.
+1356	IF “Surround_View_Camera” PROXI parameter is equal to "Present" 
+1357	THEN TLM shall display the Surroundview Camera Gridlines menu item and the user can perform setting with the following options: 
+1358	Off or On.
+1359	IF the user sets "SVC_Gridlines.Req"  equal to "Off" 
+1360	THEN TLM shall set TELEMATIC_VEHICLE_SETUP3.SVC_Gridlines_Req equal to "Off" and sends this signal to IPC
+1361	IF the user sets "SVC_Gridlines.Req" equal to "On" 
+1362	TLM shall set TELEMATIC_VEHICLE_SETUP3.SVC_Gridlines_Req equal to "On" and sends this signal to IPC
+1363	WHEN TLM receives "IPC_VEHICLE_SETUP3.SVC_Guidelines" message
+1364	THEN TLM updates the Surroundview Camera Gridlines setting on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal.
+1365	Geolocation
+1366	IF “CAN Node 35 (TBM)” PROXI parameter is equal to "Absent" OR IF “Geolocation_Menu” PROXI parameter is equal to "Absent"
+1367	THENTLM shall not display the Geolocation  menu item and the user can not perform any setting.
+1368	IF “CAN Node 35 (TBM)” PROXI parameter is equal to "Present" AND IF “Geolocation_Menu” PROXI parameter is equal to "Present"
+1369	THEN TLM shall display the Geolocation  menu item and the user can perform setting with the following options:
+1370	Off, On
+1371	
+1372	IF the user sets "Geolocation_Enable.Req"  equal to "Off" 
+1373	TLM shall set "TELEMATIC_SERVICE_SETUP.PrivacyModeReq"   BH-CAN signal equal to "Active" and sends this signal to TBM
+1374	
+1375	IF the user sets "Geolocation_Enable.Req"  equal to "On" 
+1376	TLM shall set "TELEMATIC_SERVICE_SETUP.PrivacyModeReq"   BH-CAN signal equal to "Not Active" and sends this signal to TBM
+1377	
+1378	WHEN TLM receives "SERVICE_SETUP.PrivacyMode" message
+1379	THEN TLM updates the Privacy Mode information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1380	Clear Personal Data
+1381	IF “CAN Node 35 (TBM)”   PROXI parameter is equal to "Absent"
+1382	THEN TLM shall not manage "TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq" and "SERVICE_SETUP.ClearPersonalData"   BH-CAN signals.
+1383	IF “CAN Node 35 (TBM)”   PROXI parameter is equal to "Present" 
+1384	THEN TLM shall manage the Clear Personal Data  feature and the user can perform the service setup reset.
+1385	IF the user performs "ClearPersonalData_Enable.Req"  request 
+1386	TLM shall only send "TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq"   BH-CAN signal equal to "Active" to TBM.
+1387	
+1388	Restore Default Setting
+1389	IF “CAN Node 35 (TBM)”   PROXI parameter is equal to "Absent"
+1390	THEN TLM shall not manage "TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq" and "SERVICE_SETUP.RestoreDefaulSetting" BH-CAN signals.
+1391	IF “CAN Node 35 (TBM)”   PROXI parameter is equal to "Present" 
+1392	THEN TLM shall manage the Restore Default Setting  feature and the user can perform the service setup reset.
+1393	IF the user performs "RestoreDefaultSetting_Enable.Req"  request 
+1394	TLM shall only send "TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq"   BH-CAN signal equal to "Active" to TBM
+1395	
+1396	Restore App
+1397	IF “CAN Node 35 (TBM)”   PROXI parameter is equal to "Absent"
+1398	THEN TLM shall not manage "TELEMATIC_SERVICE_SETUP.RestoreAppReq" and "SERVICE_SETUP.RestoreApp"  BH-CAN signals.
+1399	IF “CAN Node 35 (TBM)”   PROXI parameter is equal to "Present" 
+1400	THEN TLM shall manage the Restore App  feature and the user can perform the service setup reset.
+1401	IF the user performs "RestoreApp_Enable.Req"  request 
+1402	TLM shall only send "TELEMATIC_SERVICE_SETUP.RestoreAppReq"   BH-CAN signal equal to "Active" to TBM
+1403	
+1404	Headlamps On with Wipers On
+1405	IF"Headlamp_On_With_Wiper" PROXI parameter's value is "Absent"
+1406	THENTLM shall not display the Headlamp On With Wiper On menu item.
+1407	IF"Headlamp_On_With_Wiper" PROXI parameter's value is "Present"
+1408	THENTLM shall display the Headlamp On With Wiper On menu item and allow the user to change settings.
+1409	IFthe user sets "HeadlampOnWithWiperEnable.Req" internal signal to "On"
+1410	THENTLM shall set "TELEMATIC_VEHICLE_SETUP4.HeadlampOnWithWiperEnable_Req" BH-CAN signal to "On" and send it to IPC
+1411	IFthe user sets "HeadlampOnWithWiperEnable.Req" internal signal to "Off"
+1412	THENTLM shall set "TELEMATIC_VEHICLE_SETUP4.HeadlampOnWithWiperEnable_Req" BH-CAN signal to "Off" and send it to IPC
+1413	WHEN TLM receives "IPC_VEHICLE_SETUP4.HeadlampOnWithWiperEnable" message
+1414	THEN TLM updates the  Headlamp On With Wiper On menu on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+1415	Vehicle setup management between IPC and TLM
+1416	IFTLM sends a request of vehicle setup to IPC through "TELEMATIC_VEHICLE_SETUPx" message
+1417	THENTLM has to wait for the "Acnowledge" through "IPC_VEHICLE_SETUP.TelematicSetupACK" from IPC to confirm the corrected reception and storage of the settings requested 
+1418	IFTLM  receives "IPC_VEHICLE_SETUP.TelematicSetupACK"equal to "No_ACK_Required" value.
+1419	THENTLM has to ignore this signal
+1420	IFTLM  receives "IPC_VEHICLE_SETUP.TelematicSetupACK"equal to "ACK_KO" value.
+1421	THENTLM has to visualize a message related to the failure (see HMI document).
+1422	IFTLM receives "IPC_VEHICLE_SETUP.TelematicSetupACK"equal to "ACK_OK" value.
+1423	THENTLM has to visualize the new parameters transmitted by IPC ("IPC_VEHICLE_SETUP" message).
+1424	Gateway management
+1425	BCM shall perform the gateway from C-CAN1 to BH-CAN network of the following signal:
+1426	"BRAKE1.VehicleSpeedVSOSig" to "STATUS_CCAN3.VehicleSpeedVSOSig"
+1427	"BRAKE1.VehicleSpeedVSOSigFailSts" to "STATUS_CCAN3.VehicleSpeedVSOSigFailSts"
+1428	TBM Service setup management
+1429	TBM Algorithm Requirements
+1430	At the first battery connection the TBM shall set all CAN and internal signals value according to the default value indicated in the "Market Configuration Table" document.
+1431	In the following Ignition Working Conditions:
+1432	Ignition Off
+1433	Ignition On
+1434	Ignition Start
+1435	Ignition On Prplsn On
+1436	The TBM has to follow the requirements below:
+1437	Geolocation
+1438	IF “Geolocation_Menu”   PROXI parameter is equal to "Absent"
+1439	THENTBM shall not manage the Privacy Mode menu item and the user can not perform any setting.
+1440	IF “Geolocation_Menu”   PROXI parameter is equal to "Present" THEN 
+1441	
+1442	IF the user sets "AppPrivacyMode_Enable.Req"  equal to "Off" by App menu OR TBM receives "TELEMATIC_SERVICE_SETUP.PrivacyModeReq" equals to "Not Active" 
+1443	THEN TBM shall 
+1444	
+1445	set "SERVICE_SETUP.PrivacyMode"   BH-CAN signal equal to "Not Active" .
+1446	set "PrivacyMode.Info"   internal signal equal to "Off"  (see CTS for comunication between TBM and Server App ).
+1447	IF the user sets "AppPrivacyMode_Enable.Req"  equal to "On" by App menu OR TBM receives "TELEMATIC_SERVICE_SETUP.PrivacyModeReq" equals to "Active" 
+1448	THEN TBM shall 
+1449	
+1450	set "SERVICE_SETUP.PrivacyMode"   BH-CAN signal equal to "Active" .
+1451	set "PrivacyMode.Info"   internal signal equal to "On"   (see CTS for comunication between TBM and Server App ).
+1452	Clear Personal Data
+1453	IF the TBM receives "TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq" equals to "Active" 
+1454	THEN TBM shall 
+1455	
+1456	set "SERVICE_SETUP.ClearPersonalData" BH-CAN signal equal to "Active".
+1457	set "ClearPersonalData.Info" internal signal equal to "Active".
+1458	IF TBM receives "TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq" equals to "Not Active" 
+1459	THEN TBM shall 
+1460	
+1461	set "SERVICE_SETUP.ClearPersonalData"   BH-CAN signal equal to "Not Active".
+1462	set "ClearPersonalData.Info" internal signal equals to "Not Active".
+1463	Restore Default Setting
+1464	IF the TBM receives "TELEMATIC_SERVICE_SETUP.RestoreDefaultSettimgReq" equals to "Active" 
+1465	THEN TBM shall 
+1466	
+1467	set "SERVICE_SETUP"   BH-CAN signals and the relative internal signals equal to default values (as defined in the MCT).
+1468	Restore App
+1469	IF the TBM receives "TELEMATIC_SERVICE_SETUP.RestoreAppReq" equals to "Active" 
+1470	THEN TBM shall 
+1471	
+1472	set  "SERVICE_SETUP.RestoreApp" BH-CAN signal equal to "Active".
+1473	set "RestoreApp.Info" internal signal equal to "Active".
+1474	IF the TBM receives "TELEMATIC_SERVICE_SETUP.RestoreAppReq" equals to "Not Active" 
+1475	THEN TBM shall 
+1476	
+1477	set "SERVICE_SETUP.RestoreApp"   BH-CAN signal equal to "Not Active".
+1478	set "RestoreApp.Info" internal signal equal to "Not Active".
+1479	Vehicle service management between TBM and TLM
+1480	IF TBM receives through "TELEMATIC_SERVICE_SETUP" CAN message the change request for the settings present on TLM setup menu and modified by the user 
+1481	THEN TBM shall
+1482	elaborate the new setting
+1483	send "SERVICE_SETUP.TelematicSetupACK" acknowledge signal to the TLM to confirm the corrected reception and storage of the requested settings 
+1484	send "SERVICE_SETUP" message with updated service setup settings and set corresponding signals
+1485	manage "SERVICE_SETUP.TelematicSetupACK" acknowledge signal as follow:
+1486	IF there are no setup changes request from TLM
+1487	THEN TBM shall:
+1488	set "SERVICE_SETUP.TelematicSetupACK" = "No_ACK_Required".
+1489	IF TBM shall not accept the setup changes requested from TLM
+1490	THEN TBM shall:
+1491	set "SERVICE_SETUP.TelematicSetupACK" = "ACK_KO".
+1492	not perform any changes.
+1493	IF TBM shall accept the setup changes requested from TLM
+1494	THEN TBM shall:
+1495	set "SERVICE_SETUP.TelematicSetupACK" = "ACK_OK".
+1496	keep "SERVICE_SETUP.TelematicSetupACK" = "ACK_OK" for "T_ACK" time
+1497	set "SERVICE_SETUP.TelematicSetupACK" = "No_ACK_Required".
+1498	store the new settings.
+1499	IF TBM receives through internal  requests as settings present on App or internal logics (as specified in the CTS Document)
+1500	THEN TBM shall
+1501	elaborate the new setting
+1502	send "SERVICE_SETUP.TelematicSetupACK" acknowledge signal to the TLM to confirm the corrected storage of the requested settings 
+1503	send "SERVICE_SETUP" message with updated service setup settings and set corresponding signals
+1504	manage "SERVICE_SETUP.TelematicSetupACK" acknowledge signal as follow:
+1505	IF there are no setup changes request
+1506	THEN TBM shall:
+1507	set "SERVICE_SETUP.TelematicSetupACK" = "No_ACK_Required".
+1508	IF TBM not accept the setup changes requested
+1509	THEN TBM shall:
+1510	set "SERVICE_SETUP.TelematicSetupACK" = "ACK_KO".
+1511	not perform any changes.
+1512	IF TBM accept the setup changes requested
+1513	THEN TBM shall:
+1514	set "SERVICE_SETUP.TelematicSetupACK" = "ACK_OK".
+1515	keep "SERVICE_SETUP.TelematicSetupACK" = "ACK_OK" for "T_ACK" time
+1516	set "SERVICE_SETUP.TelematicSetupACK" = "No_ACK_Required".
+1517	store the new settings.
+1518	Indication Management
+1519	N.A.
+1520	Diagnosis and Recovery
+1521	Diagnosis Table
+1522	ID
+1523	Component / Signal / Message Name
+1524	Diagnosis Type
+1525	
+1526	Functional  Recovery
+1527	DTC Stored
+1528	Detect Condition
+1529	Fault Signal
+1530	1.0
+1531	IPC_VEHICLE_SETUP
+1532	Missing Message
+1533	LTM
+1534	LTM
+1535	Ignition_On
+1536	Ignition_On_Engine_On
+1537	N.A.
+1538	2.0
+1539	LTM_OperationalModeSts.Info
+1540	LTM_CmdIgnSts.Info
+1541	Plausibility
+1542	LTM
+1543	N.A.
+1544	Ignition_On
+1545	Ignition_Start
+1546	Ignition_On_Engine_On
+1547	N.A.
+1548	3.0
+1549	IPC_VEHICLE_SETUP2
+1550	Missing Message
+1551	N.A.
+1552	LTM
+1553	Ignition_On
+1554	Ignition_On_Engine_On
+1555	N.A.
+1556	4.0
+1557	STATUS_CCAN3
+1558	Missing Message
+1559	N.A.
+1560	LTM
+1561	Ignition_On
+1562	Ignition_On_Engine_On
+1563	N.A.
+1564	6.0
+1565	SERVICE_SETUP
+1566	Missing Message
+1567	LTM
+1568	LTM
+1569	Ignition_Off
+1570	Ignition_On
+1571	Ignition_On_Engine_On
+1572	N.A.
+1573	
+1574	Diagnosis Table and Recovery Description
+1575	In case of systems equipped with diagnosis capabilities, the supplier developed functions shall be compliant with the company standards.
+1576	Following requirements have to be considered as sub-set diagnosis requirements (usually correlated to the system functionality). 
+1577	Any other specific diagnosis requirement is included in the “Finalized Diagnosis Requirements” document for the system itself.
+1578	TLM Diagnosis Table and Recovery Description
+1579	ID 1.0 Description
+1580	In case absence of  IPC_VEHICLE_SETUP  B-CAN message in Key On, TLM has to store an appropriate DTC in according to validation requirements defined in the CDD document.
+1581	IFTLM doesn't receive "IPC_VEHICLE_SETUP.TelematicSetupACK" within "TimeOut1" 
+1582	THENTLM has to resend the new vehicle setup request (This logic must be implemented for a max of three times after  TLM has to visualize a message to the user about the failure of request )
+1583	ID 2.0 Description
+1584	In the following Ignition Working Conditions:
+1585	Ignition_On
+1586	Ignition_Start
+1587	Ignition_On_Engine_On
+1588	WHEN "LTM_OperationalModeSts.Info" == "SNA" 
+1589	THEN 
+1590	LTM   shall:
+1591	keep the last valid  value that has been recognized.
+1592	ID 3.0 Description
+1593	In "Ignition On" OR "Ignition On Engine On" Ignition Working Condition 
+1594	IF TLM does not receive messages IPC_VEHICLE_SETUP2 for a time equal to T_REC_IPC
+1595	THEN TLM shall:
+1596	set the DTC, according to "TLM Diagnostic Requirement" document.
+1597	As soon as TLM receives again IPC_VEHICLE_SETUP2 message, 
+1598	TLM shall:
+1599	heal the DTC, according to the requirements specified in the "TLM Diagnostic Requirement" document.
+1600	ID 4.0 Description
+1601	In "Ignition On" OR "Ignition On Engine On" Ignition Working Condition 
+1602	IF TLM does not receive messages STATUS_CCAN3 for a time equal to T_REC_BCM
+1603	THEN TLM shall:
+1604	set the DTC, according to "TLM Diagnostic Requirement" document.
+1605	As soon as TLM receives again STATUS_CCAN3 message, 
+1606	TLM shall:
+1607	heal the DTC, according to the requirements specified in the "TLM Diagnostic Requirement" document.
+1608	ID 6.0 Description
+1609	In the following Ignition Working Condition:
+1610	"Ignition Off" 
+1611	"Ignition On" 
+1612	"Ignition On Engine On"  
+1613	IF TLM does not receive the SERVICE_SETUP message for a time equal to T_REC_TBM AND IF CAN Node 35 (TBM) PROXI Parameter is equals to "Present" AND FOTA_State.Info internal signal is equal to "NO_FOTA_State"
+1614	THEN 
+1615	TLM shall set the DTC, according to "TLM Diagnostic Requirement" document.
+1616	IFTLM doesn't receive "SERVICE_SETUP.TelematicSetupACK" within "TimeOut1" THEN TLM has to resend the new vehicle setup request (This logic must be implemented for a max of three times after  TLM has to visualize a message to the user about the failure of request )
+1617	As soon as TLM receives again SERVICE_SETUP message, 
+1618	TLM shall:
+1619	heal the DTC, according to the requirements specified in the "TLM Diagnostic Requirement" document.
+1620	Diagnostic Requirements
+1621	N.A.
+1622	Configuration Parameters
+1623	Configuration Parameters Table
+1624	ID
+1625	Parameter Name
+1626	First Trial Value
+1627	Range Value
+1628	Resolution
+1629	Unit
+1630	Component
+1631	Implementation
+1632	XCP Availability
+1633	Impact
+1634	Parameter Description 
+1635	
+1636	9
+1637	TimeOut1
+1638	1
+1639	[0;10]
+1640	0,1
+1641	sec
+1642	LTM
+1643	DEFINE
+1644	No
+1645	Diagnosis
+1646	Waiting Time of ACK from IPC
+1647	36
+1648	T_EPB_MM
+1649	35000
+1650	[0;50000]
+1651	200
+1652	ms
+1653	LTM
+1654	DEFINE
+1655	No
+1656	N.A.
+1657	Waiting Time of feedback  from IPC for EPB setting
+1658	
+1659	37
+1660	V_Car_Moving
+1661	4
+1662	[0;7]
+1663	0,5
+1664	km/h
+1665	LTM
+1666	DEFINE
+1667	No
+1668	N.A.
+1669	Speed threshold for car moving
+1670	48
+1671	T_REC_IPC
+1672	5000
+1673	[0;10000]
+1674	500
+1675	ms
+1676	LTM
+1677	SUPPLIER EOL_2
+1678	No
+1679	Diagnosis
+1680	
+1681	See ID Description
+1682	49
+1683	T_REC_BCM
+1684	1000
+1685	[0;2000]
+1686	100
+1687	ms
+1688	LTM
+1689	SUPPLIER EOL_2
+1690	No
+1691	Diagnosis
+1692	See ID Description
+1693	54
+1694	T_REC_TBM
+1695	2500
+1696	[0;10000]
+1697	
+1698	500
+1699	ms
+1700	LTM
+1701	SUPPLIER EOL_2
+1702	No
+1703	Diagnosis
+1704	See ID Description
+1705	55
+1706	T_ACK
+1707	2000
+1708	[0;10000]
+1709	100
+1710	ms
+1711	TBM
+1712	SUPPLIER EOL_2
+1713	No
+1714	NA
+1715	See ID Description
+1716	
+1717	The symbol "**" means: "See column Parameter Description".
+1718	Wake Up Stay Active
+1719	Wake Up and Stay Active Event Table
+1720	ID
+1721	Signal Name
+1722	Event Type
+1723	Component Awoken / Waking up
+1724	Wake up Type
+1725	Waking Up Functionality
+1726	
+1727	N.A.
+1728	N.A.
+1729	N.A.
+1730	N.A.
+1731	N.A.
+1732	
+1733	Wake Up and Stay Active Event Table Description
+1734	N.A.
+1735	Acronyms and Glossary
+1736	TLM = Telematic Module. This Acronym refers to the RRM/LTM/ETM/HTM nodes
+1737	MCT= Market Configuration Table
+1738	Reference Documents
+1739	MCT
+1740	CFTS_14
+1741	CTS TAN
+1742	CTS TBM_Admin_Serv_Mgmt_Specs
+1743	

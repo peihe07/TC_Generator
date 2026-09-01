@@ -8,7 +8,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 
 ---
 
-## A-VL1 —— `_intake/Vehicle_Setup_VF665/` 為空，五件原檔全缺（PENDING）
+## A-VL1 —— `_intake/Vehicle_Setup_VF665/` 為空，五件原檔全缺（**RESOLVED** 2026-09-01，下放包 02 W-6）
 
 - **登記日**：2026-09-01（下放包 00 之 W-1 執行時）
 - **依據**：FO §0 Escalation trigger 1（missing file）；
@@ -41,7 +41,12 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 - **未開 DR 之理由**：本項非上游資料疑義，而係下放包 §四 所載之 Pei 投遞動作
   尚未發生（內部流程步驟），無可向上游詢問之項；且 DR 送出權屬 Pei
   （禁區第 6 條）。故只登 anomaly，不成對開 DR，理由記於此。
-- **解除條件**：#1–#5 原檔落入 `_intake/Vehicle_Setup_VF665/` 後重跑 W-2～W-6。
+- **解除條件**：#1–#5 原檔落入投遞區後重跑 W-2～W-6。
+- **解除實測（2026-09-01，下放包 02 W-2）**：原檔改由 Pei 置於
+  `features/vsm_v42/inputs/`（非 `_intake/`），5 件到齊共 16 MB；
+  已依 R-VL11(a) `mv` 至 `sources/raw/`（sha 前後全等）並落 MANIFEST，
+  `inputs/` 清空實測 0 項（E24）。**投遞路徑與 R-VL5 所定之投遞區不同，
+  該落差記於本條，R-VL5 是否改寫交分析層。**
 
 ---
 
@@ -64,7 +69,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 
 ---
 
-## A-VL3 —— W-0 之前提不成立：`RULINGS.sha.tsv` 仍為 `M`，且重生 diff 非 14 列（PENDING）
+## A-VL3 —— W-0 之前提不成立：`RULINGS.sha.tsv` 仍為 `M`，且重生 diff 非 14 列（**RESOLVED** 2026-09-01，下放包 02 W-0）
 
 - **登記日**：2026-09-01（下放包 01 之 W-0 執行時）
 - **依據**：下放包 01 §三 W-0「先 `git status --short docs/fw036/RULINGS.sha.tsv`
@@ -94,13 +99,151 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
   未動 `features/vsm_v43/`；未執行 W-1′ 之後任一步。
 - **未開 DR 之理由**：同 A-VL1 —— 本項為專案內部流程（Pei 入庫）與下放包預期數陳舊，
   非上游資料疑義；DR 送出權屬 Pei（禁區第 6 條）。
-- **解除條件**（三項，請分析層／Pei 裁）：
+- **解除實測（2026-09-01，下放包 02 W-0）**：Pei 已將 `RULINGS.sha.tsv` 連同
+  `FEATURE_ONBOARDING.md`（R-G42 錨點）與 `RULINGS_LEDGER.md` 入庫（commit `b6668f4`）；
+  `git status --short` 實測乾淨後重生，新增 **21 列**（R-VL1–R-VL11 11 ＋ R-VT1–R-VT10 10），
+  修改 0、刪除 0 —— 依 R-VL10(b) 之性質判準 **E17′ 過**。
+  E18′ 改比 `body_sha8`（R-VL10(a)），R-VL1–R-VL9 九條**逐字全同**，**E18′ 過**。
+- **原解除條件**（三項，已由 R-VL10 與 Pei 之入庫滿足）：
   1. Pei 將 `docs/fw036/RULINGS.sha.tsv`（及其同批他線變更）入庫，使其為乾淨；
   2. E17 之預期數自 14 更新為**重生當下實測之 R-VT 條數 ＋ 9**，或改為
      「新增列全為 `R-VL*`／`R-VT*`，且修改 0、刪除 0」之**性質判準**
      （數值判準隨姊妹線落檔而失效，此為其第一次失效）；
   3. E18 之量測面裁定：改比 `body_sha8`（防條文遭改），或維持 `sha8`
      並將 R-VL2 之新值 `582d0c6d` 認列為基線。
+
+> **處置（分析層 2026-09-01）**：2、3 依 R-VL10 裁（性質判準；body_sha8）；1 待 Pei 入庫。
+> 本條於台帳重生成功（02 包 W-0）後轉 RESOLVED。A-VL1 之事實面已解（上繳 01 第 2 節），由 02 包執行層轉 RESOLVED。
+
+---
+
+## A-VL4 —— 分析層之誤（四項，01 下放包之預期數字）（RESOLVED）
+
+- **登記日**：2026-09-01；**分析層之誤**。
+- **(a) E17 跨線計數**：寫「14」時取 R-VT 當時條數 5，其後分析層自己又落 R-VT6–8，預期即陳舊。
+  被數對象會動而用數值判準 —— 與「預配號」同族。→ R-VL10(b)。
+- **(b) E18 比錯軸**：以 `sha8` 防「條文遭改」，而 `sha8` 含 R-TM13 加註；同包又命 R-VL6(d) 對 R-VL2 加註，
+  兩條互斥。→ R-VL10(a)。（vsm_v43 之 E10 同誤，A-VT14。）
+- **(c) E9（vsm_v43 00 包）「相異值 4」**：intake 時跡為 `Counter(...).most_common(4)` 之輸出列數，
+  非相異值數。量測條件未揭露即寫成預期（R-G8 之反面）。→ vsm_v43 R-VT10(b)。
+- **(d) E2（vsm_v43）措辭**：「Functional」指 `Functional Requirement` 全等，未寫全。→ R-VT10(b)。
+- **通則**：預期數字逐項附量測條件（欄、判式、分母），不得只寫數；分析層自己的預期數字也適用 IN §8.4.1。
+
+
+## A-VL5 —— 037 之 1 列 `Categorization` 為空（PENDING）
+
+- **登記日**：2026-09-01（下放包 02 之 W-6）
+- **實測**（掃描條件：`Analysis Report`，parksense 表頭列 7／sdw 表頭列 8，
+  `SWE-Requirement ID` 非空為母體，`Categorization` 為 `None`）：**1 列**，逐列如下。
+
+  | 檔 | SWE-Requirement ID | Requirement Title | Source Requirement ID |
+  |---|---|---|---|
+  | parksense | `SWE1-VC-IntelligentSpeedLimiterwithConfirmation-051` | Intelligent Speed Limiter with Confirmation | `Sys-RA-VF665_V42_VSM-845` |
+
+- **問題**：該列既非 `Functional Requirement` 亦非 `Heading`，無從判其是否為 leaf。
+  依 R-VL4，母體＝Functional leaf，故本列**不入母體**（128 不含之）。
+- **本地處置**：`data/leaves.tsv` 該列 `tc_status` 標 `UNCATEGORIZED`，不生成 TC。
+- **待裁**：若上游確認其為 Functional，母體由 128 增為 129，Layer 2 之
+  `Speed Assist` 組由 4＋1 變 5。**本包不自行改判。**
+
+---
+
+## A-VL6 —— SYSRA Functional 318 列中 112 列 `EE Architecture` 為空（PENDING）
+
+- **登記日**：2026-09-01（下放包 02 之 W-6）
+- **實測**（`Analysis Report`，表頭列 5，`分類 Category == 'Functional Requirement'`
+  之 318 列中，同列 `EE Architecture (All, ATL-Hi, ATL-Mi)` 為 `None`）：**112 列**。
+  該 318 列之 EE 分布：`ATL-Mi` **206**／空 **112**。
+- **交叉觀察**：全簿 `文件識別碼 Document ID` 為空者 **249 列**，其 Category 分布為
+  Functional 112／Heading 42／Information 39／Out of Scope 56 ——
+  **Functional 之 112 與 EE 空之 112 為同一批**（兩欄同缺）。
+  即缺的不是單一欄，是這 112 列的**適用性標註整組未填**。
+- **影響**：本線 EE 為 ATL-Mi、DocID 為 `VF665_V42_P637MCA`（791 列）。
+  該 112 列無從判其是否適用本線車型。其中被 037 覆蓋者才會進入母體。
+- **本地處置**：`data/leaves.tsv` 已逐列帶出 `sysra_ee_architecture` 與
+  `sysra_doc_id` 兩欄，空者可直接篩出。不自行補值（IN §8.4.1）。
+- **與 DR-VL1 之關係**：DR-VL1 問的是「318 中 191 列無 037 覆蓋」，本條問的是
+  「318 中 112 列無 EE／DocID 標註」，兩者交集未另計，**不合併**。
+
+---
+
+## A-VL7 —— 037 一 Functional leaf 之 Source ID 於 SYSRA 為 `Heading`（PENDING）
+
+- **登記日**：2026-09-01（下放包 02 之 W-4 跨源對帳，**下放包未預期之發現**）
+- **實測**：037 之 128 個 Functional leaf 其 `Source Requirement ID` 於 SYSRA
+  `Sys-RA-Feature-ID` **命中 128／128（E16 相符）**；但將命中列之 SYSRA `分類 Category`
+  取回後為 **Functional Requirement 127 ／ Heading 1**：
+
+  | 037 檔 | SWE-Requirement ID | Source Requirement ID | 037 Categorization | SYSRA Category |
+  |---|---|---|---|---|
+  | parksense | `SWE1-VC-SurroundCameraGridlines-063` | `Sys-RA-VF665_V42_VSM-857` | Functional Requirement | **Heading** |
+
+- **為何 E16 仍相符**：E16 之判式為「Source ID ∈ SYSRA `Sys-RA-Feature-ID`」，
+  **不含類別一致性**。128 全命中為真，而其中一列跨源類別不一致 —— 兩件事。
+- **影響**：SYSRA Functional 318 之覆蓋計算受此影響 ——
+  被 037 覆蓋之 SYSRA Functional 實為 **127**（非 128），未覆蓋為 **191**（非 190）。
+  DR-VL1 之實數因此為 191，見 `DATA_REQUESTS.md`。
+- **本地處置**：該 leaf 依 037 之 `Functional Requirement` 留在母體（037 為需求單位之
+  權威，IN §8.2／R-VL4），**不因 SYSRA 之 Heading 而剔除**；`data/leaves.tsv` 之
+  `sysra_category` 欄留有證據。
+- **待裁**：是否併入 DR-VL1 一併向上游詢問（類別歧異），或另開 DR。**本包不自行送出。**
+
+---
+
+## A-VL8 —— 段 1（LID）對本線 CAN 訊號名幾近全不命中；`637MCA Specific Signals` 命中 0（PENDING）
+
+- **登記日**：2026-09-01（下放包 02 之 W-5，**下放包未預期之發現**）
+- **實測**（`data/signal_chain_v42.tsv`，251 名；段 1 入口為 forms 五個 xlsx 之
+  全部分頁，比對式＝逐字／去 `.Req`_`.Info` 後綴／忽略底線空白大小寫）：
+
+  | 段 1 命中之檔／分頁 | 涉及訊號名數 |
+  |---|---|
+  | `PROXI_HDCC27_R3` `Format` | 36 |
+  | LID `CAN Mapping`（`Atlantis High` 欄組 Z 及名稱欄 A/B/C） | **9** |
+  | LID `Proxi & Configuration` | 6 |
+  | `HMI Settings List R1 SR25` `Settings` | 2 |
+  | **LID `637MCA Specific Signals`** | **0** |
+  | `SR26 Default Settings` | 0 |
+  | `SR24 Market Configuration Table` | 0 |
+
+- **R-VL6(c) 之二欄組實測結論**：`Atlantis High` 欄組 **9 名**、
+  `637MCA Specific Signals` 分頁 **0 名**、兩者皆命中 **0 名**。
+  故「二擇一」在本線為**空問題** —— 637MCA 分頁（22 列）與本線 251 個訊號名
+  **無任何交集**。**不自選、不合併**，據實登記。
+- **連帶之嚴重後果**：107 個 CAN 形訊號名中，**三段皆過者僅 3 名**；
+  另 **32 名**為「段 1 未命中，而其規格原名本身已是 `MESSAGE.Signal` 形、
+  段 3 於 DBC 逐字查得」。依 R-P368(a) 之字面，後者**不得**寫 `$MESSAGE.Signal$`
+  （三段未皆過）；依其意旨（DBC 實名為準）則可。**本包不自行認定**，
+  32 名於 tsv 中 `result=解得`、`result_detail=段1未命中…`，兩者分開可篩。
+- **待裁**：(a) 段 1 未命中而段 3 逐字查得者，可否寫 `$...$`；
+  (b) 若否，該 32 名之處置（`PENDING: DR-VL{n}` 或保留原名不加 `$`，R-P368(f)）。
+- **另記**：89 個訊號名有「前綴／後綴差異」之寬鬆候選而無嚴格命中，
+  已存於 tsv 之 `loose_n`／`loose` 兩欄，**不驅動結果**（R-P375(d) 候選非認定；
+  寬鬆比對曾試作為主判準，產生 68 筆假 B-1 衝突，屬 R-P368(b) 明禁之語意跳接，已撤）。
+
+---
+
+## A-VL9 —— 母 spec 之 Functional Diagram 為 WMF 圖，其訊號名不在文字層（PENDING）
+
+- **登記日**：2026-09-01（下放包 02 之 W-2，R-G28 檢查）
+- **實測**：`vf665_v42_spec_r6` docx zip members **25**；
+  `word/embeddings/` **0 項**；`word/media/` **1 項** = `image1.wmf`（498,222 bytes）。
+  該圖以 `r:embed="rId5"` 嵌於**段落 60**，其上一段（59）為標題
+  `Functional Diagram`，再上一段（58）為 `This function describes the management of
+  vehicle setup menu on the LTM`。
+- **問題**：`Functional Diagram` 一節之內容**全在圖內**，docx 文字層於該處為空 ——
+  正是 R-G28 所指「圖中載有未見於 docx 之數值與流程」之型態。
+- **處置（已做）**：`soffice --convert-to svg` 將 WMF 轉為 SVG（向量，文字仍為文字），
+  自 `<tspan>` 依 y／x 座標還原為 **240 行**，落
+  `sources/extracted/vf665_v42_spec_r6/media/image1_text.tsv`；
+  另存 `image1.png`／`image1.svg`／`image1.wmf`。
+  W-5 之抽名以該 240 行為第四來源，**單獨貢獻 158 個訊號名**
+  （其中 CAN 形 76、內部形 82）。
+- **「由圖找列」**：該圖為單一 Functional Diagram，其文字已全數轉為可檢索之 tsv，
+  故不逐張出二欄表，改以 `signal_chain_v42.tsv` 之 `sources` 欄標 `diagram`
+  作為「由圖找列」之對映（可篩）。
+- **待裁**：圖內尚有連線與方塊之**拓樸**（誰送給誰）未被文字化 ——
+  訊號名已得，流向未得。若 TC 需驗因果方向，須另讀圖。本包不臆測方向。
 
 
 ## Assumption markers
