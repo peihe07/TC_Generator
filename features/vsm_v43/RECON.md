@@ -93,11 +93,16 @@ Category 第 10 欄、Description 第 3 欄）Functional 318 條、去重 **308*
 `word/document.xml` 段落抽取得 **1781** 個非空段落。
 zip members **25**，其中媒體／內嵌物件 **1** 件：`word/media/image1.wmf`。
 
-## 7. 未決
+## 7. 未決（2026-09-01 依下放包 02 更新）
 
-| 項 | 依據 |
-|---|---|
-| Layer 2 test set 母體 | 待 037（R-VT4／DR-VT1） |
-| `spec_reference_template` | null，待 P3（R-VT8(c)） |
-| R-P368 段 1 之 LID 欄組適用性 | 本線 EE 全為 ATL-Mi（1280/1280 實測），與 vsm_v42 同題，待裁 |
-| B-1 型衝突 29 列 | E15 ≥ 1，停該部分並列 §K（`docs/upstream/01_sources_recon.md`） |
+| 項 | 現況 | 依據 |
+|---|---|---|
+| Layer 2 test set 母體 | 待 037 | R-VT4／DR-VT1 |
+| `spec_reference_template` | null，待 P3 | R-VT8(c) |
+| R-P368 段 1 之 LID 欄組適用性 | **消滅** —— 段 1 入口已依 R-VT6／R-P375(a) 擴為 forms/ 七檔，非欄組二擇一 | R-VT6(a) |
+| B-1 型衝突 | **0** —— 原 29 列依 R-VT9 重分類：訊息名不符(R-13) **28**（DR-VT3）＋ 型態三 1 列經 LID `CAN` 欄解得。§K 空 | R-VT9(a)(b) |
+| E9 基線 | **56**（Functional 507 列內正規化後非空相異值；`verified by in-vehicle testing` 47） | R-VT10(b) |
+| 「查無(R-G13)」標籤 | **撤除** —— 改記「未解得(止於段1)」；`查無` 僅於三要件皆滿足且登 `forms/LOOKUP_MISSES.md` 時用 | R-VT10(c) |
+| 訊號母體 | 181 → **230**（PROXI 2 → 49）；仍為**下界** | R-VT10(d) |
+| `word/media/image1.wmf` | **已轉圖並看過** → `data/spec_r4_image1.png`（794×1123）。內容為 R4 之**功能圖**：LTM 為中心，列出對 BCM／TBM／各 VF 節點之全部 CAN 弧線與內部訊號名 | R-VT10(e) |
+| docx 文字抽取 | 上繳 01 之抽取式有誤（誤配 `<w:tc>` 等），已修正；名數 181 → 179（三式）→ 230（含表格與引號式 PROXI） | A-VT15 |
