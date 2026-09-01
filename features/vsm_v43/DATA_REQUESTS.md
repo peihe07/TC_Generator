@@ -8,6 +8,7 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
 | DR-VT1 | VF665 V43 之 037（SWE1 分析報告）缺件 | **yes** | 全線（母體 = 0） | 已登記，建議送出 | | |
 | DR-VT2 | V43 SYSRA DocID `VF655_V43_R3`（247 列）疑為 `VF665` 之誤植；SYSRA 記 R3 而規格為 R4；`Melco ID` 於 Functional 507 列全空（A-VT9）；`Out of scope` 二拼法 55／44 | no | 追溯欄 | 已登記，未送出 | | |
 | DR-VT3 | V43 R4 規格之訊息名與 forms/ DBC（R1_FDCAN8／R1_BHCAN2）不符 28 列：`TELEMATIC_VEHICLE_SETUP2` 全無、`IPC_VEHICLE_SETUP2.*` 九名落在 `IPC_VEHICLE_SETUP`、`SERVICE_SETUP.*` 落在 `TBM_SCHEDULE_FD_2` | no（本線無母體）| 訊號實名 | 已登記，建議送出 | | |
+| DR-VT4 | V43 內部訊號（`X.Req`／`X.Info`／`X.GUI`，88 名，83 名止於段 1）之驅動與觀察方法對照總表（形制照 DR-PW23） | no（本線無母體；P4 起阻塞）| 內部訊號實名 | 已登記，建議送出 | | |
 
 ---
 
@@ -49,3 +50,15 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
 - **阻塞**：否（本線無母體）；對 vsm_v42 同型訊號亦適用，vsm_v42 W-5 完成後合併列表。
 - **本地處置**：保留規格原名（R-13），段 3 命中記旁證，候選非認定。
 - **請求動作**：Pei 決定送出；建議與 DR-VT1／VT2 三項併送。
+
+## DR-VT4 —— V43 內部訊號之驅動與觀察方法對照總表
+
+- **來源**：上繳 02 §二-2／§八-1。規格內部訊號 88 名（`X.Req` 62 型／`X.Info`／`X.GUI`），段 1 對 forms/ 七檔
+  逐字＋擴充比對後 **83 名止於段 1**；LID `Logical Identifier` 欄不收 `X.Req` 形名，放寬分隔符僅 +1。
+  瓶頸非比對規則，而是 forms/ 無「內部訊號 ↔ 可觀察面」對照表。PM 線同題以 DR-PW23 之對照總表解（R-P355(a)）。
+- **問題**：請上游（SYS2／HMI 設計方）提供 V43 各內部訊號之 (a) 驅動方法（對應 HMI 設定項名→路徑→值，或 PROXI 參數）、
+  (b) 可觀察面（對應 CAN 訊號 `MESSAGE.Signal`、UI 元件、或 log 具名行）；形制照 DR-PW23 之回覆表。
+  名單取 `features/vsm_v43/data/signal_chain_v43_v2.tsv` 類別＝內部且結果＝未解得(止於段1) 之 83 列。
+- **阻塞**：否（本線無母體）；037 到齊後 P4 起阻塞（R-P355(b)：尚無對照者只能 PENDING）。vsm_v42 同型需求於其 W-5 後另登。
+- **本地處置**：先以 R-VT11(b) 對 HMI Settings List／PROXI Format 擴充比對收一部分；其餘保留原名不加 `$`（IN §8.7.5(d)）。
+- **請求動作**：Pei 決定送出；可與 DR-VT1／VT2／VT3 四項併送。

@@ -152,6 +152,35 @@ R-VT10（分析層裁定 2026-09-01，上繳 01 §五 5.2、A-VT10／A-VT11／A-
 (e) #1 docx 之 `word/media/image1.wmf`：列 P3 待辦，於 framework 鎖定前轉圖一看；不施作 R-G28 二欄表。
 ```
 
+### R-VT11 —— 段 1 擴充比對之對象欄與對象檔；OOXML 抽取自驗
+
+```
+R-VT11（分析層裁定 2026-09-01，上繳 02 §二-2 回報、§八-2、A-VT15）
+(a) LID v1_78 無 `Description` 欄（實測表頭：Logical Identifier | Function | Object Text | Arch Basis | …）。
+    R-P368(b) 所稱「Description 欄」於本線讀作 `Function` 與 `Object Text` 二欄；擴充比對對象為
+    `Logical Identifier`／`Function`／`Object Text` 三欄，每一命中記欄名。
+    此為跨線觀察：R-P368(b) 之字面與 LID 實檔不符，PM 線之核對由 PM 線自為，本線不動其檔。
+(b) 擴充比對之對象檔自 LID 擴及 `HMI Settings List R1 SR25`（設定項名欄）與 `PROXI_HDCC27_R3` `Format`
+    （參數名欄）；四規則不變，另加第五條：去 `_Menu`／`_Setting` 後綴（僅對 HMI Settings List 與 PROXI）。
+    理由：上繳 02 PROXI 49 名含多個明顯 HMI 設定項而 HMI Settings List 命中 0，係比對未施於該檔所致。
+(c) `.` 分隔符變體不採（實測僅 +1）；內部訊號之解析不走正規化放寬，走 R-P375(b)(c) 與 DR-VT4。
+(d) 凡以正則讀 OOXML 者，抽完即斷言輸出不含 `</?w:`（A-VT15 之防再犯）。
+```
+
+### R-VT12 —— R-VT9(b) 但書：規格自載之兩條弧線不得合併；HU 所在匯流排依 SYSAD；母體可變之指標採同母體差
+
+```
+R-VT12（分析層裁定 2026-09-01，A-VT16／A-VT17）
+(a) 規格同時載有 `BRAKE1.VehicleSpeedVSOSig`（VF408→BCM）與 `STATUS_CCAN3.VehicleSpeedVSOSig`（BCM→LTM）
+    二名者，為兩個規格原名、兩條弧線，各自解析，不得以一方為他方旁證。R-VT9(b) 之「另一本記旁證」
+    僅適用於規格只載一名而兩本 DBC 各解一處之情形。
+(b) TC 之刺激／觀察目標取 HU（LTM）所在匯流排之那一弧；LTM 於 ATL-Mi 之網路位置自 SYSAD（SYS3）之
+    網路拓撲節實測後定，未定前兩弧皆記「解得」不標主旁。此為 LID `Atlantis High` 欄組適用性一題之重現，
+    解法在 SYSAD 而非 LID。
+(c) 母體會變之指標（如 E16）一律以同母體差或比率表述，不沿用絕對閾值；E16 依同母體 97 < 102 判相符，
+    全母體 113 為觀測值。A-VT17 RESOLVED。分析層同包並命「擴充母體」與「< 102」之誤記 A-VT18。
+```
+
 ---
 
 ## 取號紀錄
@@ -161,3 +190,4 @@ R-VT10（分析層裁定 2026-09-01，上繳 01 §五 5.2、A-VT10／A-VT11／A-
 | R-VT1–R-VT5 | 2026-09-01 | 本檔新建，全庫 `R-VT` 系列實測未佔 |
 | R-VT6–R-VT8 | 2026-09-01 | 落檔當下讀本檔實測至 R-VT5；上繳 00 §七 sha 表亦止於 R-VT5 |
 | R-VT9–R-VT10 | 2026-09-01 | 上繳 01 §五 5.3 sha 表止於 R-VT8；本檔錨點實測 8 |
+| R-VT11–R-VT12 | 2026-09-01 | 上繳 02 §三 sha 表止於 R-VT10；本檔錨點實測 10 |
