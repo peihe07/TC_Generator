@@ -1,0 +1,458 @@
+row	tc_id	setting	alias_status	path_now	path_proposed	control_proposed	proxi_now	proxi_proposed	flags
+10	(F 欄空)	6 Aux Switches	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $AUX_Switch_Types$ is set to "Not Type2"	PROXI AUX_Switch_Types = 0 (Absent)｜負向 TC 依 §4 取 Absent	ALIAS_UNRESOLVED;PATH_ABSENT;RAW_MISSING
+11	(F 欄空)	6 Aux Switches	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $AUX_Switch_Types$ is set to "Type2"	PROXI AUX_Switch_Types = ? (Type2)	ALIAS_UNRESOLVED;PATH_ABSENT;RAW_MISSING
+12	(F 欄空)	SWITCH 5 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+13	(F 欄空)	SWITCH 5 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+14	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+15	(F 欄空)	SWITCH 6 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+16	(F 欄空)	SWITCH 6 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+17	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+18	(F 欄空)	SWITCH 1 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+19	(F 欄空)	SWITCH 5 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+20	(F 欄空)	SWITCH 5 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+21	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+22	(F 欄空)	SWITCH 6 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+23	(F 欄空)	SWITCH 6 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+24	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+25	(F 欄空)	SWITCH 5 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+26	(F 欄空)	SWITCH 5 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+27	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+28	(F 欄空)	SWITCH 6 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+29	(F 欄空)	SWITCH 6 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+30	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+31	(F 欄空)	Rear Guidance Lighting with Approach	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Utility_Lighting$ is set to "Absent"	PROXI Utility_Lighting = ? (Absent)｜RAW_MISSING：Utility_Lighting 無 Absent 標籤；負向 TC 依 §4 取 Absent	ALIAS_UNRESOLVED;PATH_ABSENT;RAW_MISSING
+32	(F 欄空)	Rear Guidance Lighting with Approach	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Utility_Lighting$ is set to "Type 1"	PROXI Utility_Lighting = 1 (Type 1)	ALIAS_UNRESOLVED;PATH_ABSENT
+33	(F 欄空)	Rear Guidance Lighting with Approach	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+34	(F 欄空)	Rear Guidance Lighting with Approach	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+35	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+36	(F 欄空)	Rear Guidance Light Status	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Utility_Lighting$ is set to "Absent"	PROXI Utility_Lighting = ? (Absent)｜RAW_MISSING：Utility_Lighting 無 Absent 標籤；負向 TC 依 §4 取 Absent	PATH_ABSENT;RAW_MISSING
+37	(F 欄空)	Rear Guidance Light Status	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Utility_Lighting$ is set to "Type 1"	PROXI Utility_Lighting = 1 (Type 1)	PATH_ABSENT
+38	(F 欄空)	Rear Guidance Light Status	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+39	(F 欄空)	Rear Guidance Light Status	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+40	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+41	(F 欄空)	E-Save	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $eSave_Menu$ is set to "Absent"	PROXI eSave_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	ALIAS_UNRESOLVED;PATH_ABSENT
+42	(F 欄空)	E-Save	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $eSave_Menu$ is set to "Without Target or With Target"	PROXI eSave_Menu = ? (Without Target or With Target)	ALIAS_UNRESOLVED;OR_VALUE;PATH_ABSENT;RAW_MISSING
+43	(F 欄空)	Blind Spot Alert	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > KeySense > Blind Spot Alert	2 radio buttons [Lights / Lights + Chime]	PROXI $Blind_Spot_Monitoring$ is set to "Absent"	PROXI Blind_Spot_Monitoring = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT;VARIANT_UNRESOLVED
+44	(F 欄空)	Blind Spot Alert	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > KeySense > Blind Spot Alert	2 radio buttons [Lights / Lights + Chime]	PROXI $Blind_Spot_Monitoring$ is set to "Present"	PROXI Blind_Spot_Monitoring = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+45	(F 欄空)	Blind Spot Alert	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > KeySense > Blind Spot Alert	2 radio buttons [Lights / Lights + Chime]		PROXI Blind_Spot_Monitoring = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+46	(F 欄空)	Blind Spot Alert	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > KeySense > Blind Spot Alert	2 radio buttons [Lights / Lights + Chime]		PROXI Blind_Spot_Monitoring = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+47	(F 欄空)	Blind Spot Alert	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > KeySense > Blind Spot Alert	2 radio buttons [Lights / Lights + Chime]		PROXI Blind_Spot_Monitoring = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+48	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+49	(F 欄空)	Passive Entry	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Passive Entry	On/Off Checkbox []	PROXI $Passive_Entry_Menu$ is set to "Absent"	PROXI Passive_Entry_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT;VARIANT_UNRESOLVED
+50	(F 欄空)	Passive Entry	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Passive Entry	On/Off Checkbox []	PROXI $Passive_Entry_Menu$ is set to "Present"	PROXI Passive_Entry_Menu = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+51	(F 欄空)	Passive Entry	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Passive Entry	On/Off Checkbox []		PROXI Passive_Entry_Menu = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+52	(F 欄空)	Passive Entry	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Passive Entry	On/Off Checkbox []		PROXI Passive_Entry_Menu = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+53	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+54	(F 欄空)	Remote Door Unlock	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Remote_Door_Unlock_Menu$ is set to "Absent"	PROXI Remote_Door_Unlock_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+55	(F 欄空)	Remote Door Unlock	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Remote_Door_Unlock_Menu$ is set to "Present"	PROXI Remote_Door_Unlock_Menu = 1 (Present)	PATH_ABSENT
+56	(F 欄空)	Remote Door Unlock	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Remote_Door_Unlock_Menu = 1 (Present)	PATH_ABSENT
+57	(F 欄空)	Remote Door Unlock	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Remote_Door_Unlock_Menu = 1 (Present)	PATH_ABSENT
+58	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+59	(F 欄空)	Auto Park Brake	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Brakes > Auto Park Brake	On/Off Checkbox []	PROXI $Auto_Park_Brake_Menu$ is set to "Absent"	PROXI Auto_Park_Brake_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+60	(F 欄空)	Auto Park Brake	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Brakes > Auto Park Brake	On/Off Checkbox []	PROXI $Auto_Park_Brake_Menu$ is set to "Present"	PROXI Auto_Park_Brake_Menu = 1 (Present)	PATH_ABSENT
+61	(F 欄空)	Auto Park Brake	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Brakes > Auto Park Brake	On/Off Checkbox []		PROXI Auto_Park_Brake_Menu = 1 (Present)	PATH_ABSENT
+62	(F 欄空)	Auto Park Brake	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Brakes > Auto Park Brake	On/Off Checkbox []		PROXI Auto_Park_Brake_Menu = 1 (Present)	PATH_ABSENT
+63	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+64	(F 欄空)	Horn With Remote Start	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Sound_Horn_Remote_Start_Menu$ is set to "Absent"	PROXI Sound_Horn_Remote_Start_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+65	(F 欄空)	Horn With Remote Start	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Sound_Horn_Remote_Start_Menu$ is set to "Present"	PROXI Sound_Horn_Remote_Start_Menu = 1 (Present)	PATH_ABSENT
+66	(F 欄空)	Horn With Remote Start	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Sound_Horn_Remote_Start_Menu = 1 (Present)	PATH_ABSENT
+67	(F 欄空)	Horn With Remote Start	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Sound_Horn_Remote_Start_Menu = 1 (Present)	PATH_ABSENT
+68	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+69	(F 欄空)	Horn With Lock	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Horn_Chirp_Menu$ is set to "Absent"	PROXI Horn_Chirp_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+70	(F 欄空)	Horn With Lock	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Horn_Chirp_Menu$ is set to "Present"	PROXI Horn_Chirp_Menu = 1 (Present)	PATH_ABSENT
+71	(F 欄空)	Horn With Lock	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Horn_Chirp_Menu = 1 (Present)	PATH_ABSENT
+72	(F 欄空)	Horn With Lock	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Horn_Chirp_Menu = 1 (Present)	PATH_ABSENT
+73	(F 欄空)	Horn With Lock	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Horn_Chirp_Menu = 1 (Present)	PATH_ABSENT
+74	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+75	(F 欄空)	Auto Unlock on Exit	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Auto Unlock on Exit	On/Off Checkbox []	PROXI $Auto_Door_Unlock_Menu$ is set to "Absent"	PROXI Auto_Door_Unlock_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+76	(F 欄空)	Auto Unlock on Exit	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Auto Unlock on Exit	On/Off Checkbox []	PROXI $Auto_Door_Unlock_Menu$ is set to "Present"	PROXI Auto_Door_Unlock_Menu = 1 (Present)	PATH_ABSENT
+77	(F 欄空)	Auto Unlock on Exit	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Auto Unlock on Exit	On/Off Checkbox []		PROXI Auto_Door_Unlock_Menu = 1 (Present)	PATH_ABSENT
+78	(F 欄空)	Auto Unlock on Exit	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Auto Unlock on Exit	On/Off Checkbox []		PROXI Auto_Door_Unlock_Menu = 1 (Present)	PATH_ABSENT
+79	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+80	(F 欄空)	Flash Light With Lock	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Flash_Light_With_Lock_Menu$ is set to "Absent"	PROXI Flash_Light_With_Lock_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+81	(F 欄空)	Flash Light With Lock	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Flash_Light_With_Lock_Menu$ is set to "Present"	PROXI Flash_Light_With_Lock_Menu = 1 (Present)	PATH_ABSENT
+82	(F 欄空)	Flash Light With Lock	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Flash_Light_With_Lock_Menu = 1 (Present)	PATH_ABSENT
+83	(F 欄空)	Flash Light With Lock	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Flash_Light_With_Lock_Menu = 1 (Present)	PATH_ABSENT
+84	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+85	(F 欄空)	Navigation Turn by Turn	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $NAV_Presence$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+86	(F 欄空)	Navigation Turn by Turn	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $NAV_Presence$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+87	(F 欄空)	Navigation Turn by Turn	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+88	(F 欄空)	Navigation Turn by Turn	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+89	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+90	(F 欄空)	Language	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > My Profile > Language	Language []		PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+91	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+92	(F 欄空)	Phone Repetition	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Phone_Repetition_Menu$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+93	(F 欄空)	Phone Repetition	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Phone_Repetition_Menu$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+94	(F 欄空)	Phone Repetition	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+95	(F 欄空)	Phone Repetition	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+96	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+97	(F 欄空)	Park Sense Rear Volume	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+98	(F 欄空)	Park Sense Rear Volume	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+99	(F 欄空)	Park Sense Rear Volume	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+100	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+101	(F 欄空)	Park Sense Front Volume	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+102	(F 欄空)	Park Sense Front Volume	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+103	(F 欄空)	Park Sense Front Volume	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+104	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+105	(F 欄空)	Auto High Beam	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $AHBM_Feature_Menu$ is set to "Absent"	PROXI AHBM_Feature_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+106	(F 欄空)	Auto High Beam	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $AHBM_Feature_Menu$ is set to "Present"	PROXI AHBM_Feature_Menu = 1 (Present)	PATH_ABSENT
+107	(F 欄空)	Auto High Beam	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI AHBM_Feature_Menu = 1 (Present)	PATH_ABSENT
+108	(F 欄空)	Auto High Beam	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI AHBM_Feature_Menu = 1 (Present)	PATH_ABSENT
+109	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+110	(F 欄空)	RKE Linked to Memory	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Memory_System$ is set to "Absent"	PROXI Memory_System = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+111	(F 欄空)	RKE Linked to Memory	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Memory_System$ is set to "Present"	PROXI Memory_System = 1 (Present)	PATH_ABSENT
+112	(F 欄空)	RKE Linked to Memory	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Memory_System = 1 (Present)	PATH_ABSENT
+113	(F 欄空)	RKE Linked to Memory	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Memory_System = 1 (Present)	PATH_ABSENT
+114	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+115	(F 欄空)	Auto On Driver Comfort - 3 Option	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Heated_Seats$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+116	(F 欄空)	Auto On Driver Comfort - 3 Option	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Heated_Seats$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+117	(F 欄空)	Auto On Driver Comfort - 3 Option	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+118	(F 欄空)	Auto On Driver Comfort - 3 Option	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+119	(F 欄空)	Auto On Driver Comfort - 3 Option	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+120	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+121	(F 欄空)	Auto On Driver Comfort - 2 Option	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Heated_Seats$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+122	(F 欄空)	Auto On Driver Comfort - 2 Option	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+123	(F 欄空)	Auto On Driver Comfort - 2 Option	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+124	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+125	(F 欄空)	Rearview Camera Delay	manual	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Camera > Rear View Camera Delay	On/Off Checkbox []	PROXI $Rear_View_Camera$ is set to "Absent"	PENDING: DR-49	ALIAS_MANUAL;BRAND_NAME_UNVERIFIED;PATH_ABSENT;PROXI_PENDING
+126	(F 欄空)	Rearview Camera Delay	manual	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Camera > Rear View Camera Delay	On/Off Checkbox []	PROXI $Rear_View_Camera$ is set to "Present"	PENDING: DR-49	ALIAS_MANUAL;BRAND_NAME_UNVERIFIED;PATH_ABSENT;PROXI_PENDING
+127	(F 欄空)	Rearview Camera Delay	manual	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Camera > Rear View Camera Delay	On/Off Checkbox []		PENDING: DR-49	ALIAS_MANUAL;BRAND_NAME_UNVERIFIED;PATH_ABSENT;PROXI_PENDING
+128	(F 欄空)	Rearview Camera Delay	manual	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Camera > Rear View Camera Delay	On/Off Checkbox []		PENDING: DR-49	ALIAS_MANUAL;BRAND_NAME_UNVERIFIED;PATH_ABSENT;PROXI_PENDING
+129	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+130	(F 欄空)	Rearview Camera Dynamic Guidelines	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Rear_View_Camera$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+131	(F 欄空)	Rearview Camera Dynamic Guidelines	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Rear_View_Camera$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+132	(F 欄空)	Rearview Camera Dynamic Guidelines	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+133	(F 欄空)	Rearview Camera Dynamic Guidelines	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+134	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+135	(F 欄空)	Cornering Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Lights > Cornering Lights	On/Off Checkbox []	PROXI $Cornering_Light$ is set to "Absent"	PROXI Cornering_Light = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+136	(F 欄空)	Cornering Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Lights > Cornering Lights	On/Off Checkbox []	PROXI $Cornering_Light$ is set to "Present"	PROXI Cornering_Light = 1 (Present)	PATH_ABSENT
+137	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+138	(F 欄空)	Greeting Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Lights > Greeting Lights	On/Off Checkbox []	PROXI $Greeting_Light$ is set to "Absent"	PROXI Greeting_Lights_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT;VARIANT_UNRESOLVED
+139	(F 欄空)	Greeting Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Lights > Greeting Lights	On/Off Checkbox []	PROXI $Greeting_Light$ is set to "Present"	PROXI Greeting_Lights_Menu = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+140	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+141	(F 欄空)	Lane Sense Warning	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Lane_Assist$ is set to "Not Present"	PROXI Lane_Assist = ? (Absent)｜RAW_MISSING：Lane_Assist 無 Absent 標籤；RAW_MISSING：Lane_Assist 無 Absent 標籤；負向 TC 依 §4 取 Absent	OR_VALUE;PATH_ABSENT;RAW_MISSING
+142	(F 欄空)	Lane Sense Warning	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Lane_Assist$ is set to "Lane Departure Warning + Lane Keep Assist"	PROXI Lane_Assist = ? (Lane Departure Warning + Lane Keep Assist)｜EP 兄弟：Lane_Assist raw ?／3 各一條	EP_SIBLING;OR_VALUE;PATH_ABSENT;RAW_MISSING
+143	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+144	(F 欄空)	Signature Lighting	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Lights > Signature Lighting	On/Off Checkbox []	PROXI $Signature_Lighting$ is set to "Absent"	PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+145	(F 欄空)	Signature Lighting	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Lights > Signature Lighting	On/Off Checkbox []	PROXI $Signature_Lighting$ is set to "Present"	PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+146	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+147	(F 欄空)	Lane Sense Strength	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Lane_Assist$ is set to "Not Present"	PROXI Lane_Assist = ? (Absent)｜RAW_MISSING：Lane_Assist 無 Absent 標籤；RAW_MISSING：Lane_Assist 無 Absent 標籤；負向 TC 依 §4 取 Absent	OR_VALUE;PATH_ABSENT;RAW_MISSING
+148	(F 欄空)	Lane Sense Strength	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Lane_Assist$ is set to "Lane Departure Warning + Lane Keep Assist or Active Lane Management"	PROXI Lane_Assist = ? (Lane Departure Warning + Lane Keep Assist)｜EP 兄弟：Lane_Assist raw ?／3 各一條	EP_SIBLING;OR_VALUE;PATH_ABSENT;RAW_MISSING
+149	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+150	(F 欄空)	Forward Collision Warning	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > Automatic Emergency Braking > Forward Collision Warning	3 radio buttons [Off / Only Warning / Warning+ Active Braking]	PROXI $Forward_Collision_Mitigation$ is set to "Full Speed Forward Collision Warning with Mitigation"	PROXI Forward_Collision_Mitigation = 0 (Absent)｜負向 TC 依 §4 取 Absent	NEG_CONTRA;OR_VALUE;PATH_ABSENT
+151	(F 欄空)	Forward Collision Warning	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > Automatic Emergency Braking > Forward Collision Warning	3 radio buttons [Off / Only Warning / Warning+ Active Braking]	PROXI $Forward_Collision_Mitigation$ is set to "Full Speed Forward Collision Warning with Mitigation or Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking"	PROXI Forward_Collision_Mitigation = 3 (Full Speed Forward Collision Warning with Mitigation)｜EP 兄弟：Forward_Collision_Mitigation raw 3／2／1 各一條	EP_SIBLING;OR_VALUE;PATH_ABSENT
+152	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+153	(F 欄空)	Forward Collision Warning Sensitivity	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Forward_Collision_Mitigation$ is set to "Full Speed Forward Collision Warning with Mitigation"	PENDING: DR-49	NEG_CONTRA;PATH_ABSENT;PROXI_PENDING
+154	(F 欄空)	Forward Collision Warning Sensitivity	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Forward_Collision_Mitigation$ is set to "Full Speed Forward Collision Warning with Mitigation or Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking"	PENDING: DR-49	OR_VALUE;PATH_ABSENT;PROXI_PENDING
+155	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+156	(F 欄空)	Pedestrian Emergency Braking or Warning & Active Braking	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Forward_Collision_Mitigation$ is set to "Full Speed FCW with Pedestrian Emergency Braking"	PENDING: DR-49	ALIAS_UNRESOLVED;NEG_CONTRA;PATH_ABSENT;PROXI_PENDING
+157	(F 欄空)	Pedestrian Emergency Braking or Warning & Active Braking	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Forward_Collision_Mitigation$ is set to "Full Speed FCW with Pedestrian Emergency Braking or Full Speed FCW with Pedestrian or Cyclist Emergency Braking"	PENDING: DR-49	ALIAS_UNRESOLVED;OR_VALUE;PATH_ABSENT;PROXI_PENDING
+158	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+159	(F 欄空)	Rain Sensing Wipers	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Rain_Sensor$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+160	(F 欄空)	Rain Sensing Wipers	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Rain_Sensor$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+161	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+162	(F 欄空)	Daytime Running Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Lights > Daytime Running Lights	On/Off Checkbox []	PROXI $[ DRL_Menu_Enable ]$ is set to "Absent"	PROXI Enable = ? (Enable)	PATH_ABSENT;RAW_MISSING
+163	(F 欄空)	Daytime Running Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Lights > Daytime Running Lights	On/Off Checkbox []	PROXI $[ DRL_Menu_Enable ]$ is set to "Present"	PROXI Enable = ? (Enable)	PATH_ABSENT;RAW_MISSING
+164	(F 欄空)	Daytime Running Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Lights > Daytime Running Lights	On/Off Checkbox []		PROXI Enable = ? (Enable)	PATH_ABSENT;RAW_MISSING
+165	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+166	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+167	(F 欄空)	Headlights Off Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $[ Headlamp_Delay_Feature ]$ is set to "Absent"	PROXI Headlamp_Delay_Feature = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+168	(F 欄空)	Headlights Off Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $[ Headlamp_Delay_Feature ]$ is set to "Present"	PROXI Headlamp_Delay_Feature = 1 (Present)	PATH_ABSENT
+169	(F 欄空)	Headlights Off Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Headlamp_Delay_Feature = 1 (Present)	PATH_ABSENT
+170	(F 欄空)	Headlights Off Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Headlamp_Delay_Feature = 1 (Present)	PATH_ABSENT
+171	(F 欄空)	Headlights Off Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Headlamp_Delay_Feature = 1 (Present)	PATH_ABSENT
+172	(F 欄空)	Headlights Off Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Headlamp_Delay_Feature = 1 (Present)	PATH_ABSENT
+173	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+174	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+175	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+176	(F 欄空)	Pressure Unit	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $[Tyre_Pressure_unit_menu]$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+177	(F 欄空)	Pressure Unit	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $[Tyre_Pressure_unit_menu]$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+178	(F 欄空)	Pressure Unit	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+179	(F 欄空)	Pressure Unit	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+180	(F 欄空)	Pressure Unit	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+181	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+182	(F 欄空)	Power Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $(SRT)$ is set to "Absent"	PROXI SRT = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+183	(F 欄空)	Power Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $(SRT)$ is set to "Present"	PROXI SRT = 1 (Present)	PATH_ABSENT
+184	(F 欄空)	Power Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI SRT = 1 (Present)	PATH_ABSENT
+185	(F 欄空)	Power Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI SRT = 1 (Present)	PATH_ABSENT
+186	(F 欄空)	Power Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI SRT = 1 (Present)	PATH_ABSENT
+187	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+188	(F 欄空)	Torque Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $(SRT)$ is set to "Absent"	PROXI SRT = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+189	(F 欄空)	Torque Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $(SRT)$ is set to "Present"	PROXI SRT = 1 (Present)	PATH_ABSENT
+190	(F 欄空)	Torque Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI SRT = 1 (Present)	PATH_ABSENT
+191	(F 欄空)	Torque Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI SRT = 1 (Present)	PATH_ABSENT
+192	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+193	(F 欄空)	Illuminated Approach	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Greeting_Lights_Menu$ is set to "Absent"	PROXI Greeting_Lights_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+194	(F 欄空)	Illuminated Approach	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Greeting_Lights_Menu$ is set to "Present"	PROXI Greeting_Lights_Menu = 1 (Present)	PATH_ABSENT
+195	(F 欄空)	Illuminated Approach	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Greeting_Lights_Menu = 1 (Present)	PATH_ABSENT
+196	(F 欄空)	Illuminated Approach	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Greeting_Lights_Menu = 1 (Present)	PATH_ABSENT
+197	(F 欄空)	Illuminated Approach	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Greeting_Lights_Menu = 1 (Present)	PATH_ABSENT
+198	(F 欄空)	Illuminated Approach	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Greeting_Lights_Menu = 1 (Present)	PATH_ABSENT
+199	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+200	(F 欄空)	Paddle Shifter	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Paddle_Shifter_Menu$ is set to "Absent"	PROXI Paddle_Shifter_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+201	(F 欄空)	Paddle Shifter	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Paddle_Shifter_Menu$ is set to "Present"	PROXI Paddle_Shifter_Menu = 1 (Present)	PATH_ABSENT
+202	(F 欄空)	Paddle Shifter	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Paddle_Shifter_Menu = 1 (Present)	PATH_ABSENT
+203	(F 欄空)	Paddle Shifter	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Paddle_Shifter_Menu = 1 (Present)	PATH_ABSENT
+204	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+205	(F 欄空)	Power Liftgate/Tailgate Alert	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 82 (PTGM)$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+206	(F 欄空)	Power Liftgate/Tailgate Alert	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 82 (PTGM)$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+207	(F 欄空)	Power Liftgate/Tailgate Alert	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+208	(F 欄空)	Power Liftgate/Tailgate Alert	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+209	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+210	(F 欄空)		UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）					ALIAS_UNRESOLVED;PATH_ABSENT
+211	(F 欄空)	Power Tailgate	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Power Tailgate	2 radio buttons [Power / Manual]	PROXI $CAN node 82 (PTGM)$ is set to "Absent"	PROXI CAN node 82 (PTGM) = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+212	(F 欄空)	Power Tailgate	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Power Tailgate	2 radio buttons [Power / Manual]	PROXI $CAN node 82 (PTGM)$ is set to "Present"	PROXI CAN node 82 (PTGM) = 1 (Present)	PATH_ABSENT
+213	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+214	(F 欄空)		UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）					ALIAS_UNRESOLVED;PATH_ABSENT
+215	(F 欄空)	Traffic Sign Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Traffic_Sign_Recognition_Menu$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+216	(F 欄空)	Traffic Sign Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Traffic_Sign_Recognition_Menu$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+217	(F 欄空)	Traffic Sign Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+218	(F 欄空)	Traffic Sign Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+219	(F 欄空)	Traffic Sign Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+220	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+221	(F 欄空)	New Speed Zone Indication	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > New Speed Zone Indication	3 radio buttons [Off / Visual / Visual + Chime]	PROXI $Intelligent_Speed_Function$ is set to "Absent"	PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+222	(F 欄空)	New Speed Zone Indication	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > New Speed Zone Indication	3 radio buttons [Off / Visual / Visual + Chime]	PROXI $Intelligent_Speed_Function$ is set to "Present"	PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+223	(F 欄空)	New Speed Zone Indication	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > New Speed Zone Indication	3 radio buttons [Off / Visual / Visual + Chime]		PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+224	(F 欄空)	New Speed Zone Indication	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > New Speed Zone Indication	3 radio buttons [Off / Visual / Visual + Chime]		PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+225	(F 欄空)	New Speed Zone Indication	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > New Speed Zone Indication	3 radio buttons [Off / Visual / Visual + Chime]		PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+226	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+227	(F 欄空)	Charge Power Level	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+228	(F 欄空)	Charge Power Level	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+229	(F 欄空)	Charge Power Level	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+230	(F 欄空)	Charge Power Level	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+231	(F 欄空)	Charge Power Level	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+232	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+233	(F 欄空)	Rear Seat Reminder	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+234	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+235	(F 欄空)	Rear Seat Reminder	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+236	(F 欄空)	Trailer Number	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 95 (ITBM/ITCM)$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+237	(F 欄空)	Trailer Number	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 95 (ITBM/ITCM)$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+238	(F 欄空)	Trailer Number	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+239	(F 欄空)	Trailer Number	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+240	(F 欄空)	Trailer Number	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+241	(F 欄空)	Trailer Number	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+242	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+243	(F 欄空)	SWITCH 1 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+244	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+245	(F 欄空)	SWITCH 2 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+246	(F 欄空)	SWITCH 2 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+247	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+248	(F 欄空)	SWITCH 3 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+249	(F 欄空)	SWITCH 3 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+250	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+251	(F 欄空)	SWITCH 4 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+252	(F 欄空)	SWITCH 4 Type	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+253	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+254	(F 欄空)	SWITCH 1 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+255	(F 欄空)	SWITCH 1 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+256	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+257	(F 欄空)	SWITCH 2 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+258	(F 欄空)	SWITCH 2 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+259	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+260	(F 欄空)	SWITCH 3 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+261	(F 欄空)	SWITCH 3 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+262	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+263	(F 欄空)	SWITCH 4 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+264	(F 欄空)	SWITCH 4 Hold Last State	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+265	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+266	(F 欄空)	Suspension Flash Lights With Lower	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 27 (ASM/ASCM)$ is set to "Absent"	PROXI CAN node 27 (ASM/ASCM) = 1 (Present) ; PROXI Market_Area = 0 (NAFTA)	PATH_ABSENT
+267	(F 欄空)	Suspension Flash Lights With Lower	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 27 (ASM/ASCM)$ is set to "Present"	PROXI CAN node 27 (ASM/ASCM) = 1 (Present) ; PROXI Market_Area = 0 (NAFTA)	PATH_ABSENT
+268	(F 欄空)	Suspension Flash Lights With Lower	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI CAN node 27 (ASM/ASCM) = 1 (Present) ; PROXI Market_Area = 0 (NAFTA)	PATH_ABSENT
+269	(F 欄空)	Suspension Flash Lights With Lower	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI CAN node 27 (ASM/ASCM) = 1 (Present) ; PROXI Market_Area = 0 (NAFTA)	PATH_ABSENT
+270	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+271	(F 欄空)	Suspension Sound Horn With Lower	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 27 (ASM/ASCM)$ is set to "Absent"	PROXI CAN node 27 (ASM/ASCM) = 1 (Present) ; PROXI Market_Area = 0 (NAFTA)	PATH_ABSENT
+272	(F 欄空)	Suspension Sound Horn With Lower	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 27 (ASM/ASCM)$ is set to "Present"	PROXI Market_Area = 0 (NAFTA) ; PROXI CAN node 27 (ASM/ASCM) = 1 (Present)	PATH_ABSENT
+273	(F 欄空)	Suspension Sound Horn With Lower	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI CAN node 27 (ASM/ASCM) = 1 (Present) ; PROXI Market_Area = 0 (NAFTA)	PATH_ABSENT
+274	(F 欄空)	Suspension Sound Horn With Lower	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI CAN node 27 (ASM/ASCM) = 1 (Present) ; PROXI Market_Area = 0 (NAFTA)	PATH_ABSENT
+275	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+276	(F 欄空)	Rear Guidance Lights with Cargo Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $(Utility_Lighting)$ is set to "Absent"	PROXI Utility_Lighting = ? (Absent)｜RAW_MISSING：Utility_Lighting 無 Absent 標籤；負向 TC 依 §4 取 Absent	PATH_ABSENT;RAW_MISSING
+277	(F 欄空)	Rear Guidance Lights with Cargo Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $(Utility_Lighting)$ is set to "Type 1"	PROXI Utility_Lighting = 1 (Type 1)	PATH_ABSENT
+278	(F 欄空)	Rear Guidance Lights with Cargo Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Utility_Lighting = 1 (Type 1)	PATH_ABSENT
+279	(F 欄空)	Rear Guidance Lights with Cargo Lights	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Utility_Lighting = 1 (Type 1)	PATH_ABSENT
+280	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+281	(F 欄空)	Suspension Default Ride Height	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 27 (ASM/ASCM)$ is set to "Absent"	PROXI NetCfg_ASCM = ? (Absent)	ALIAS_UNRESOLVED;PATH_ABSENT;RAW_MISSING
+282	(F 欄空)	Suspension Default Ride Height	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 27 (ASM/ASCM)$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+283	(F 欄空)	Suspension Default Ride Height	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+284	(F 欄空)	Suspension Default Ride Height	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+285	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+286	(F 欄空)	AUX Switches	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $AUX_Switch_Types$ is set to "Type1"	PROXI AUX_Switch_Types = ? (Type1)	ALIAS_UNRESOLVED;PATH_ABSENT;RAW_MISSING
+287	(F 欄空)	SWITCH 1 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+288	(F 欄空)	SWITCH 1 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+289	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+290	(F 欄空)	SWITCH 2 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+291	(F 欄空)	SWITCH 2 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+292	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+293	(F 欄空)	SWITCH 3 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+294	(F 欄空)	SWITCH 3 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+295	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+296	(F 欄空)	SWITCH 4 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+297	(F 欄空)	SWITCH 4 Power Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+298	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+299	(F 欄空)	Suspension Service Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 27 (ASM/ASCM)$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+300	(F 欄空)	Suspension Service Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 27 (ASM/ASCM)$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+301	(F 欄空)	Suspension Service Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+302	(F 欄空)	Suspension Service Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+303	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+304	(F 欄空)	Suspension Display Messages	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 27 (ASM/ASCM)$ is set to "Absent"	PROXI CAN node 27 (ASM/ASCM) = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+305	(F 欄空)	Suspension Display Messages	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 27 (ASM/ASCM)$ is set to "Present"	PROXI CAN node 27 (ASM/ASCM) = 1 (Present)	PATH_ABSENT
+306	(F 欄空)	Suspension Display Messages	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI CAN node 27 (ASM/ASCM) = 1 (Present)	PATH_ABSENT
+307	(F 欄空)	Suspension Display Messages	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI CAN node 27 (ASM/ASCM) = 1 (Present)	PATH_ABSENT
+308	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+309	(F 欄空)	Tilt Mirror in Reverse	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Tilt_in_Reverse_Mirror$ is set to "Absent"	PROXI Tilt_in_Reverse_Mirror = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+310	(F 欄空)	Tilt Mirror in Reverse	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Tilt_in_Reverse_Mirror$ is set to "Present"	PROXI Tilt_in_Reverse_Mirror = 1 (Present)	PATH_ABSENT
+311	(F 欄空)	Tilt Mirror in Reverse	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Tilt_in_Reverse_Mirror = 1 (Present)	PATH_ABSENT
+312	(F 欄空)	Tilt Mirror in Reverse	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Tilt_in_Reverse_Mirror = 1 (Present)	PATH_ABSENT
+313	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+314	(F 欄空)	Tire Fill Alert	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Selectable_Tire_Fill_Alert$ is set to "Absent"	PROXI Tire_Fill_Alert = ? (Absent)｜RAW_MISSING：Tire_Fill_Alert 無 Absent 標籤；負向 TC 依 §4 取 Absent	PATH_ABSENT;RAW_MISSING
+315	(F 欄空)	Tire Fill Alert	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Selectable_Tire_Fill_Alert$ is set to "Present"	PROXI Tire_Fill_Alert = 1 (Enabled)	PATH_ABSENT
+316	(F 欄空)	Tire Fill Alert	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Tire_Fill_Alert = 1 (Enabled)	PATH_ABSENT
+317	(F 欄空)	Tire Fill Alert	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Tire_Fill_Alert = 1 (Enabled)	PATH_ABSENT
+318	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+319	(F 欄空)	Ready to Drive Pop-Up	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Electric Drive > Ready to Drive Pop-Up	On/Off Checkbox []	PROXI $Ready_To_Drive_Menu$ is set to "Absent"	PENDING: DR-49	ALWAYS_FALSE;PATH_ABSENT;PROXI_PENDING
+320	(F 欄空)	Ready to Drive Pop-Up	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Electric Drive > Ready to Drive Pop-Up	On/Off Checkbox []	PROXI $Ready_To_Drive_Menu$ is set to "Present"	PENDING: DR-49	ALWAYS_FALSE;PATH_ABSENT;PROXI_PENDING
+321	(F 欄空)	Ready to Drive Pop-Up	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Electric Drive > Ready to Drive Pop-Up	On/Off Checkbox []		PENDING: DR-49	ALWAYS_FALSE;PATH_ABSENT;PROXI_PENDING
+322	(F 欄空)	Ready to Drive Pop-Up	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Electric Drive > Ready to Drive Pop-Up	On/Off Checkbox []		PENDING: DR-49	ALWAYS_FALSE;PATH_ABSENT;PROXI_PENDING
+323	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+324	(F 欄空)	Auto Fold Mirrors	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Auto_Power_Folding_Mirrors$ is set to "Absent"	PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+325	(F 欄空)	Auto Fold Mirrors	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Auto_Power_Folding_Mirrors$ is set to "Present"	PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+326	(F 欄空)	Auto Fold Mirrors	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+327	(F 欄空)	Auto Fold Mirrors	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+328	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+329	(F 欄空)	Driver Easy Exit Seat	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Easy_Entry_Menu$ is set to "Absent"	PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+330	(F 欄空)	Driver Easy Exit Seat	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Easy_Entry_Menu$ is set to "Present"	PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+331	(F 欄空)	Driver Easy Exit Seat	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+332	(F 欄空)	Driver Easy Exit Seat	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+333	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+334	(F 欄空)	Engine Off Power Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+335	(F 欄空)	Engine Off Power Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+336	(F 欄空)	Engine Off Power Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+337	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+338	(F 欄空)	Hill Start Assist	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > Hill Start Assist	On/Off Checkbox []	PROXI $Hill_Start_Menu_Presence$ is set to "Absent"	PROXI Presence = ? (Absent)｜RAW_MISSING：Presence 無 Absent 標籤；負向 TC 依 §4 取 Absent	PATH_ABSENT;RAW_MISSING
+339	(F 欄空)	Hill Start Assist	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > Hill Start Assist	On/Off Checkbox []	PROXI $Hill_Start_Menu_Presence$ is set to "Present"	PROXI Presence = ? (Present)	PATH_ABSENT;RAW_MISSING
+340	(F 欄空)	Hill Start Assist	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > Hill Start Assist	On/Off Checkbox []		PROXI Presence = ? (Present)	PATH_ABSENT;RAW_MISSING
+341	(F 欄空)	Hill Start Assist	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > Hill Start Assist	On/Off Checkbox []		PROXI Presence = ? (Present)	PATH_ABSENT;RAW_MISSING
+342	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+343	(F 欄空)	Headlights with Wipers	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Mirrors & Wipers > Headlights with Wipers	On/Off Checkbox []	PROXI $Twilight_Sensor$ is set to "Absent"	PROXI Twilight_Sensor = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT;VARIANT_UNRESOLVED
+344	(F 欄空)	Headlights with Wipers	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Mirrors & Wipers > Headlights with Wipers	On/Off Checkbox []	PROXI $Twilight_Sensor$ is set to "Present"	PROXI Twilight_Sensor = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+345	(F 欄空)	Headlights with Wipers	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Mirrors & Wipers > Headlights with Wipers	On/Off Checkbox []		PROXI Twilight_Sensor = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+346	(F 欄空)	Headlights with Wipers	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Mirrors & Wipers > Headlights with Wipers	On/Off Checkbox []		PROXI Twilight_Sensor = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+347	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+348	(F 欄空)	Trailer Name	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Trailer > Trailer 1 > Trailer Name	> []	PROXI $CAN node 95$ is set to "Absent"	PROXI CAN node 95 = ? (Absent)｜RAW_MISSING：CAN node 95 無 Absent 標籤；負向 TC 依 §4 取 Absent	PATH_ABSENT;RAW_MISSING;VARIANT_UNRESOLVED
+349	(F 欄空)	Trailer Name	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Trailer > Trailer 1 > Trailer Name	> []	PROXI $CAN node 95$ is set to "Present"	PROXI CAN node 95 = 1 (Present)	PATH_ABSENT;VARIANT_UNRESOLVED
+350	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+351	(F 欄空)	Trailer Brake Type	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 95$ is set to "Absent"	PROXI CAN node 95 = ? (Absent)｜RAW_MISSING：CAN node 95 無 Absent 標籤；負向 TC 依 §4 取 Absent	PATH_ABSENT;RAW_MISSING
+352	(F 欄空)	Trailer Brake Type	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN node 95$ is set to "Present"	PROXI CAN node 95 = 1 (Present)	PATH_ABSENT
+353	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+354	(F 欄空)	Automatic Trailer Light Check	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Trailer_Light_Check$ is set to "Absent"	PROXI Trailer_Light_Check = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+355	(F 欄空)	Automatic Trailer Light Check	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Trailer_Light_Check$ is set to "Present"	PROXI Trailer_Light_Check = ? (Present)	PATH_ABSENT;RAW_MISSING
+356	(F 欄空)	Automatic Trailer Light Check	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+357	(F 欄空)	Automatic Trailer Light Check	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+358	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+359	(F 欄空)	Blind Spot with Trailer Detection	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Blindspot_Trailer_Detection$ is set to "Absent"	PROXI Blindspot_Trailer_Detection = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+360	(F 欄空)	Blind Spot with Trailer Detection	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Blindspot_Trailer_Detection$ is set to "Present"	PROXI Blindspot_Trailer_Detection = 1 (Present)	PATH_ABSENT
+361	(F 欄空)	Blind Spot with Trailer Detection	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Blindspot_Trailer_Detection = 1 (Present)	PATH_ABSENT
+362	(F 欄空)	Blind Spot with Trailer Detection	exact	（無逐層路徑：Open the Vehicle Settings menu）				PROXI Blindspot_Trailer_Detection = 1 (Present)	PATH_ABSENT
+363	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+364	(F 欄空)	Power Side Step	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > Power Side Step	2 radio buttons [Auto / Store]	PROXI $CAN node 97$ is set to "Absent"	PROXI CAN node 97 = ? (Absent)｜RAW_MISSING：CAN node 97 無 Absent 標籤；負向 TC 依 §4 取 Absent	PATH_ABSENT;RAW_MISSING
+365	(F 欄空)	Power Side Step	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > Power Side Step	2 radio buttons [Auto / Store]	PROXI $CAN node 97$ is set to "Present"	PROXI CAN node 97 = 1 (Present)	PATH_ABSENT
+366	(F 欄空)	Power Side Step	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > Power Side Step	2 radio buttons [Auto / Store]		PROXI CAN node 97 (PSSM) = 1 (Present)	PATH_ABSENT
+367	(F 欄空)	Power Side Step	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Safety & Driving Assistance > Power Side Step	2 radio buttons [Auto / Store]		PROXI CAN node 97 (PSSM) = 1 (Present)	PATH_ABSENT
+368	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+369	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Traffic_Sign_Recognition_Menu$ is set to "Present"	PROXI Traffic_Sign_Recognition_Menu = 1 (Present)	ALIAS_UNRESOLVED;PATH_ABSENT
+370	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Traffic_Sign_Recognition_Menu$ is set to "Absent"	PROXI Traffic_Sign_Recognition_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	ALIAS_UNRESOLVED;PATH_ABSENT
+371	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+372	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+373	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+374	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+375	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+376	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+377	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+378	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+379	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+380	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+381	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+382	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+383	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+384	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+385	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+386	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+387	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+388	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+389	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+390	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+391	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+392	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+393	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+394	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+395	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+396	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+397	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+398	(F 欄空)	Traffic Sign Assist Offset - NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+399	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+400	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Traffic_Sign_Recognition_Menu$ is set to "Present"	PROXI Traffic_Sign_Recognition_Menu = 1 (Present)	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT
+401	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Traffic_Sign_Recognition_Menu$ is set to "Absent"	PROXI Traffic_Sign_Recognition_Menu = 0 (Absent)｜負向 TC 依 §4 取 Absent	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT
+402	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+403	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+404	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+405	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+406	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+407	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+408	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED;NON_NAFTA
+409	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+410	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+411	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+412	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+413	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+414	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+415	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+416	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+417	(F 欄空)	Traffic Sign Assist Offset - non-NAFTA Setting	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;NON_NAFTA;PATH_ABSENT;PROXI_PENDING
+418	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED;NON_NAFTA
+419	(F 欄空)	Warnings for Low Fuel Inverter Shutdown - Visual Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $INVM_LIN_Module$ is set to "Absent"	PROXI INVM_LIN_Module = 0 (Absent)｜負向 TC 依 §4 取 Absent	ALIAS_UNRESOLVED;PATH_ABSENT
+420	(F 欄空)	Warnings for Low Fuel Inverter Shutdown - Visual Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $INVM_LIN_Module$ is set to "Present"	PROXI INVM_LIN_Module = 1 (Present)	ALIAS_UNRESOLVED;PATH_ABSENT
+421	(F 欄空)	Warnings for Low Fuel Inverter Shutdown - Visual Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+422	(F 欄空)	Warnings for Low Fuel Inverter Shutdown - Visual Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+423	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+424	(F 欄空)	Warnings for Low Fuel Inverter Shutdown - Audible Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $INVM_LIN_Module$ is set to "Absent"	PROXI INVM_LIN_Module = 0 (Absent)｜負向 TC 依 §4 取 Absent	ALIAS_UNRESOLVED;PATH_ABSENT
+425	(F 欄空)	Warnings for Low Fuel Inverter Shutdown - Audible Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $INVM_LIN_Module$ is set to "Present"	PROXI INVM_LIN_Module = 1 (Present)	ALIAS_UNRESOLVED;PATH_ABSENT
+426	(F 欄空)	Warnings for Low Fuel Inverter Shutdown - Audible Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+427	(F 欄空)	Warnings for Low Fuel Inverter Shutdown - Audible Warning	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+428	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+429	(F 欄空)	Enhanced Display Synchronization	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $SRT$ is set to "Absent"	PROXI SRT = 0 (Absent)｜負向 TC 依 §4 取 Absent	ALIAS_UNRESOLVED;PATH_ABSENT
+430	(F 欄空)	Enhanced Display Synchronization	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $SRT$ is set to "Present"	PROXI SRT = 1 (Present)	ALIAS_UNRESOLVED;PATH_ABSENT
+431	(F 欄空)	Enhanced Display Synchronization	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+432	(F 欄空)	Enhanced Display Synchronization	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+433	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+434	(F 欄空)		UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）					ALIAS_UNRESOLVED;PATH_ABSENT
+435	(F 欄空)	CHMSL CAMERA DYNAMIC CENTERLINE	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Digital_CHMSL_Camera_Prsnt$ is set to "Absent"	PROXI Digital_CHMSL_Camera_Prsnt = 0 (Absent)｜負向 TC 依 §4 取 Absent	ALIAS_UNRESOLVED;PATH_ABSENT
+436	(F 欄空)	CHMSL CAMERA DYNAMIC CENTERLINE	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Digital_CHMSL_Camera_Prsnt$ is set to "Present"	PROXI Digital_CHMSL_Camera_Prsnt = 1 (Present)	ALIAS_UNRESOLVED;PATH_ABSENT
+437	(F 欄空)	Max Power Level	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Hybrid_Type$ is set to "Range Electric Paradigm Breaker (REPB)"	PROXI Hybrid_Type = 6 (Range Electric Paradigm Breaker (REPB))	ALIAS_UNRESOLVED;PATH_ABSENT
+438	(F 欄空)	Max Power Level	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+439	(F 欄空)	Max Power Level	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+440	(F 欄空)		UNRESOLVED						ALIAS_UNRESOLVED
+441	(F 欄空)	Time and Date Settings	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+442	(F 欄空)	Time and Date Settings	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $NAV_Presence$ is set to "Absend"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+443	(F 欄空)	Time and Date Settings	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $NAV_Presence$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+444	(F 欄空)	Hour Mode	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+445	(F 欄空)	Auto Door Locks	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Auto Door Locks	On/Off Checkbox []	PROXI $Auto_Close_Menu$ is set to "Absent"	PROXI Auto_Close_Menu = ? (Absent)｜RAW_MISSING：Auto_Close_Menu 無 Absent 標籤；負向 TC 依 §4 取 Absent	PATH_ABSENT;RAW_MISSING
+446	(F 欄空)	Auto Door Locks	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Doors & Locks > Auto Door Locks	On/Off Checkbox []	PROXI $Auto_Close_Menu$ is set to "Present"	PROXI Auto_Close_Menu = ? (Enable)	PATH_ABSENT;RAW_MISSING
+447	(F 欄空)	Distance Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+448	(F 欄空)	Speed Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+449	(F 欄空)	Consumption Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）				PENDING: DR-49	PATH_ABSENT;PROXI_PENDING
+450	(F 欄空)	Unit Energy	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Hybrid_Type$ is set to "Fuel Cell Electric Vehicle"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+451	(F 欄空)	Temperature Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $External_Temperature_Sensor$ is set to "Absent"	PROXI External_Temperature_Sensor = 0 (Absent)｜負向 TC 依 §4 取 Absent	PATH_ABSENT
+452	(F 欄空)	Temperature Unit	exact	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $External_Temperature_Sensor$ is set to "Present"	PROXI External_Temperature_Sensor = 1 (Present)	PATH_ABSENT
+453	(F 欄空)	Surround View Camera Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Camera > Surround View Camera Delay	On/Off Checkbox []	PROXI $SVC_SK_PRSNT (Surround_View_Camera)$ is set to "Absent"	PENDING: DR-49	ALWAYS_FALSE;PATH_ABSENT;PROXI_PENDING
+454	(F 欄空)	Surround View Camera Delay	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Camera > Surround View Camera Delay	On/Off Checkbox []	PROXI $SVC_SK_PRSNT (Surround_View_Camera)$ is set to "Present"	PENDING: DR-49	ALWAYS_FALSE;PATH_ABSENT;PROXI_PENDING
+455	(F 欄空)	Surround View Camera Guidelines	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Camera > Surround View Camera Guidelines	On/Off Checkbox []	PROXI $SVC_SK_PRSNT (Surround_View_Camera)$ is set to "Absent"	PENDING: DR-49	ALWAYS_FALSE;PATH_ABSENT;PROXI_PENDING
+456	(F 欄空)	Surround View Camera Guidelines	exact	（無逐層路徑：Open the Vehicle Settings menu）	Settings > Camera > Surround View Camera Guidelines	On/Off Checkbox []	PROXI $SVC_SK_PRSNT (Surround_View_Camera)$ is set to "Present"	PENDING: DR-49	ALWAYS_FALSE;PATH_ABSENT;PROXI_PENDING
+457	(F 欄空)	Turn Signal Activated Blind Spot Camera View	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Turn_Signal_Camera_View$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+458	(F 欄空)	Turn Signal Activated Blind Spot Camera View	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Turn_Signal_Camera_View$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+459	(F 欄空)	Turn Signal Activated Blind Spot Camera View with Trailer Option	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Turn_Signal_Camera_View$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+460	(F 欄空)	Turn Signal Activated Blind Spot Camera View with Trailer Option	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Turn_Signal_Camera_View$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+461	(F 欄空)	ParkSense Based Camera Activation	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Parksense_Camera_View$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+462	(F 欄空)	ParkSense Based Camera Activation	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $Parksense_Camera_View$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+463	(F 欄空)	Park Sense	manual	（無逐層路徑：Open the Vehicle Settings menu）	Settings > KeySense > ParkSense	2 radio buttons [Sound Only / Sound + Display]	PROXI $CAN Node 24 (PAM/CVADAS)$ is set to "Absent"	PENDING: DR-49	ALIAS_MANUAL;PATH_ABSENT;PROXI_PENDING;VARIANT_UNRESOLVED
+464	(F 欄空)	Park Sense	manual	（無逐層路徑：Open the Vehicle Settings menu）	Settings > KeySense > ParkSense	2 radio buttons [Sound Only / Sound + Display]	PROXI $CAN Node 24 (PAM/CVADAS)$ is set to "Present"	PENDING: DR-49	ALIAS_MANUAL;PATH_ABSENT;PROXI_PENDING;VARIANT_UNRESOLVED
+465	(F 欄空)	Suspension Auto Entry or Exit	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN Node 27 (ASM or ASCM)$ is set to "Absent"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING
+466	(F 欄空)	Suspension Auto Entry or Exit	UNRESOLVED	（無逐層路徑：Open the Vehicle Settings menu）			PROXI $CAN Node 27 (ASM or ASCM)$ is set to "Present"	PENDING: DR-49	ALIAS_UNRESOLVED;PATH_ABSENT;PROXI_PENDING

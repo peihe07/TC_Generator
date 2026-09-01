@@ -1,0 +1,108 @@
+tc_name	hmi_name	fip_name	match_type	evidence
+6 Aux Switches			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 5 Power Mode			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 6 Power Mode			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 1 Type			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 5 Type			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 6 Type			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 5 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 6 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
+Rear Guidance Lighting with Approach			UNRESOLVED	母體無對應，開 DR-49
+Rear Guidance Light Status		Rear Guidance Light Status	exact	总控表 No.275
+E-Save			UNRESOLVED	母體無對應，開 DR-49
+Blind Spot Alert	Blind Spot Alert	Blind Spot Alert	exact	Settings r16,320；总控表 No.122
+Passive Entry	Passive Entry	Passive Entry	exact	Settings r521,522；总控表 No.123
+Remote Door Unlock		Remote Door Unlock	exact	总控表 No.124
+Auto Park Brake	Auto Park Brake	Auto Park Brake	exact	Settings r509；总控表 No.132
+Horn With Remote Start		Horn With Remote Start	exact	总控表 No.125
+Horn With Lock		Horn With Lock	exact	总控表 No.126
+Auto Unlock on Exit	Auto Unlock on Exit	Auto Unlock on Exit	exact	Settings r513；总控表 No.127
+Flash Light With Lock		Flash Light With Lock	exact	总控表 No.128
+Navigation Turn by Turn			UNRESOLVED	母體無對應，開 DR-49
+Language	Language		exact	Settings r23
+Phone Repetition			UNRESOLVED	母體無對應，開 DR-49
+Park Sense Rear Volume			UNRESOLVED	母體無對應，開 DR-49
+Park Sense Front Volume			UNRESOLVED	母體無對應，開 DR-49
+Auto High Beam		Auto High Beam	exact	总控表 No.129
+RKE Linked to Memory		RKE Linked to Memory	exact	总控表 No.144
+Auto On Driver Comfort - 3 Option			UNRESOLVED	母體無對應，開 DR-49
+Auto On Driver Comfort - 2 Option			UNRESOLVED	母體無對應，開 DR-49
+Rearview Camera Delay	Rear View Camera Delay		manual	Settings r467（空白不敏感）
+Rearview Camera Dynamic Guidelines			UNRESOLVED	母體無對應，開 DR-49
+Cornering Lights	Cornering Lights	Cornering Lights	exact	Settings r501；总控表 No.107
+Greeting Lights	Greeting Lights	Greeting Lights	exact	Settings r494,495；总控表 No.108
+Lane Sense Warning		Lane Sense Warning	exact	总控表 No.109
+Signature Lighting	Signature Lighting		exact	Settings r506
+Lane Sense Strength		Lane Sense Strength	exact	总控表 No.110
+Forward Collision Warning	Forward Collision Warning	Forward Collision Warning	exact	Settings r6,249,251,252；总控表 No.131
+Forward Collision Warning Sensitivity		Forward Collision Warning Sensitivity	exact	总控表 No.199
+Pedestrian Emergency Braking or Warning & Active Braking			UNRESOLVED	母體無對應，開 DR-49
+Rain Sensing Wipers			UNRESOLVED	母體無對應，開 DR-49
+Daytime Running Lights	Daytime Running Lights	Daytime Running Lights	exact	Settings r499；总控表 No.119
+Headlights Off Delay		Headlights Off Delay	exact	总控表 No.121
+Pressure Unit			UNRESOLVED	母體無對應，開 DR-49
+Power Unit		Power - Unit	exact	总控表 No.141
+Torque Unit		Torque - Unit	exact	总控表 No.142
+Illuminated Approach		Illuminated Approach	exact	总控表 No.154
+Paddle Shifter		Paddle Shifter	exact	总控表 No.156
+Power Liftgate/Tailgate Alert			UNRESOLVED	母體無對應，開 DR-49
+Power Tailgate	Power Tailgate	Power Tailgate	exact	Settings r529；总控表 No.266
+Traffic Sign Warning			UNRESOLVED	母體無對應，開 DR-49
+New Speed Zone Indication	New Speed Zone Indication		exact	Settings r281
+Charge Power Level			UNRESOLVED	母體無對應，開 DR-49
+Rear Seat Reminder			UNRESOLVED	母體無對應，開 DR-49
+Trailer Number			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 2 Type			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 3 Type			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 4 Type			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 1 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 2 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 3 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 4 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
+Suspension Flash Lights With Lower		Suspension Flash Lights With Lower	exact	总控表 No.269
+Suspension Sound Horn With Lower		Suspension Sound Horn With Lower	exact	总控表 No.270
+Rear Guidance Lights with Cargo Lights		Rear Guidance Lights with Cargo Lights	exact	总控表 No.272
+Suspension Default Ride Height			UNRESOLVED	母體無對應，開 DR-49
+AUX Switches			UNRESOLVED	母體無對應，開 DR-49
+4 AUX Switches			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 1 Power Mode			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 2 Power Mode			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 3 Power Mode			UNRESOLVED	母體無對應，開 DR-49
+SWITCH 4 Power Mode			UNRESOLVED	母體無對應，開 DR-49
+Suspension Service Mode			UNRESOLVED	母體無對應，開 DR-49
+Suspension Display Messages		Suspension Display Messages	exact	总控表 No.161
+Tilt Mirror in Reverse		Tilt Mirror in Reverse	exact	总控表 No.163
+Tire Fill Alert		Tire Fill Alert	exact	总控表 No.164
+Ready to Drive Pop-Up	Ready to Drive Pop-Up	Ready to Drive Pop-Up	exact	Settings r347；总控表 No.165
+Auto Fold Mirrors		Auto Fold Mirrors	exact	总控表 No.147
+Driver Easy Exit Seat		Driver Easy Exit Seat	exact	总控表 No.148
+Engine Off Power Delay		Engine Off Power Delay	exact	总控表 No.149
+Hill Start Assist	Hill Start Assist	Hill Start Assist	exact	Settings r342；总控表 No.152
+Headlights with Wipers	Headlights with Wipers	Headlights with Wipers	exact	Settings r486,492；总控表 No.153
+Trailer Name	Trailer Name	Trailer Name	exact	Settings r405,406,422,423,439,440,456,457；总控表 No.201
+Trailer Brake Type		Trailer Brake Type	exact	总控表 No.200
+Automatic Trailer Light Check		Automatic Trailer Light Check	exact	总控表 No.268
+Blind Spot with Trailer Detection		Blind Spot with Trailer Detection	exact	总控表 No.271
+Power Side Step	Power Side Step	Power Side Step	exact	Settings r341；总控表 No.206
+Traffic Sign Assist Offset - NAFTA Setting			UNRESOLVED	母體無對應，開 DR-49
+Traffic Sign Assist Offset - non-NAFTA Setting			UNRESOLVED	母體無對應，開 DR-49
+Warnings for Low Fuel Inverter Shutdown - Visual Warning			UNRESOLVED	母體無對應，開 DR-49
+Warnings for Low Fuel Inverter Shutdown - Audible Warning			UNRESOLVED	母體無對應，開 DR-49
+Enhanced Display Synchronization			UNRESOLVED	母體無對應，開 DR-49
+CHMSL CAMERA DYNAMIC CENTERLINE			UNRESOLVED	母體無對應，開 DR-49
+Max Power Level			UNRESOLVED	母體無對應，開 DR-49
+Time and Date Settings			UNRESOLVED	母體無對應，開 DR-49
+Hour Mode			UNRESOLVED	母體無對應，開 DR-49
+Auto Door Locks	Auto Door Locks	Auto Door Locks	exact	Settings r512；总控表 No.113
+Distance Unit		Distance - Unit	exact	总控表 No.115
+Speed Unit		Speed - Unit	exact	总控表 No.118
+Consumption Unit		Consumption - Unit	exact	总控表 No.114
+Unit Energy			UNRESOLVED	母體無對應，開 DR-49
+Temperature Unit		Temperature - Unit	exact	总控表 No.116
+Surround View Camera Delay	Surround View Camera Delay	Surround View Camera Delay	exact	Settings r465；总控表 No.186
+Surround View Camera Guidelines	Surround View Camera Guidelines	Surround View Camera Guidelines	exact	Settings r466；总控表 No.187
+Turn Signal Activated Blind Spot Camera View			UNRESOLVED	母體無對應，開 DR-49
+Turn Signal Activated Blind Spot Camera View with Trailer Option			UNRESOLVED	母體無對應，開 DR-49
+ParkSense Based Camera Activation			UNRESOLVED	母體無對應，開 DR-49
+Park Sense	ParkSense		manual	Settings r12,300,301,303,306（空白不敏感）
+Suspension Auto Entry or Exit			UNRESOLVED	母體無對應，開 DR-49

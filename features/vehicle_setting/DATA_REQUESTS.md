@@ -1807,3 +1807,49 @@ TELEMATIC_FD_1.AUX1_TYPE_Req is sent as 0 (Latching) when SWITCH 1 Type is Latch
 
 **其影響**：補入之數自 20 降為 **19**；交付本之需求數因而少 1。
 
+
+## DR-49（新，**Urgency High** —— VF230 之 54 個設定項顯示名於 HMI Settings List 與 FIP 总控表皆無逐字對應；VS-SL-01 §2 任務 2 開立）
+
+> **開號依據**：全庫最大已用 DR 號實測為 **DR-48**（掃 `features/*/DATA_REQUESTS.md` 之標題）。**登記，未送出。**
+
+### 標的
+
+VF230 工作簿（`Test Case Specification 測試用例規範` r10–r466，457 列）之
+`"X" customer setting` 母體共 **107** 個相異名。逐名比對兩份上游：
+
+- HMI Settings List `Settings` 分頁（攤平後 519 項）—— 精確命中 **20**
+- FIP 总控表 `FeatureSet(Gen4-5)` D 欄（278 列）—— 精確命中 **48**
+- 兩者皆中 **17**，聯集 **51**
+- 空白不敏感之候選（`manual`，待認可）**2**
+- **二者皆無對應者 54** —— 即本 DR 之標的
+
+**比對式**：去 `*`、去括號註、非英數字轉空白、小寫、壓空白後**逐字相等**。
+依 `R-VS88`／`R-13`，**不得以語意相近之名代入**，故此 54 名之 PROXI 前置
+一律填 `PENDING: DR-49`（涉 **207** 列）。
+
+### 54 名之分群
+
+| 群 | 名 | 觀察 |
+|---|---|---|
+| AUX／SWITCH 系列 | `6 Aux Switches`、`4 AUX Switches`、`AUX Switches`、`SWITCH 1–6 Type`／`Power Mode`／`Hold Last State` | 总控表無此粒度之列；疑上游以單一 `Aux Switches` 列涵蓋 |
+| 單位系列 | `Pressure Unit`、`Unit Energy`、`Hour Mode`、`Time and Date Settings` | Settings List 之對應名為 `Pressure`／`Power`／`Torque` 等（無 `Unit` 字樣） |
+| 相機系列 | `Rearview Camera Delay`／`Dynamic Guidelines`、`Turn Signal Activated Blind Spot Camera View`（±`with Trailer Option`）、`ParkSense Based Camera Activation`、`CHMSL CAMERA DYNAMIC CENTERLINE` | 命名與上游差異大 |
+| 懸吊系列 | `Suspension Default Ride Height`／`Service Mode`／`Auto Entry or Exit` | 同上 |
+| TSA 系列 | `Traffic Sign Assist Offset - NAFTA Setting`／`- non-NAFTA Setting`、`Traffic Sign Warning` | 名內嵌市場標記，上游以 Notes 欄表示（見 `R-VS84`(1)） |
+| 其餘 | `E-Save`、`Phone Repetition`、`Navigation Turn by Turn`、`Park Sense`／`Park Sense Front/Rear Volume`、`Rain Sensing Wipers`、`Rear Seat Reminder`、`Trailer Number`、`Charge Power Level`、`Max Power Level`、`Enhanced Display Synchronization`、`Auto On Driver Comfort - 2/3 Option`、`Pedestrian Emergency Braking or Warning & Active Braking`、`Power Liftgate/Tailgate Alert`、`Rear Guidance Lighting with Approach`、`Warnings for Low Fuel Inverter Shutdown - Visual/Audible Warning` | 逐名見 `data/settings_alias.tsv` |
+
+**逐名全表**：`features/vehicle_setting/data/settings_alias.tsv` 之
+`match_type = UNRESOLVED` 54 列，各附 `evidence`。
+
+### 所求
+
+1. 上述 54 名於 HMI Settings List／FIP 总控表之**正式對應名**（或確認其不存在）。
+2. `Vehicle Category feature` 之「具備與否」是否有 PROXI 表述
+   —— `Vehicle_Category` 為列舉值（M1／M2／N1／N2），非存在性參數（VC 16 列，見
+   `features/vehicle_category/reports/vc_settings_dryrun.md` §B）。
+3. `Camera App` 究指总控表 No.196 `Cam App`（`Always false`）或 `Backup Cam`
+   （`Rear_View_Camera` = 1 (Present)）（VC 2 列）。
+
+### 本層之處置
+
+`proxi_proposed` 一律 `PENDING: DR-49`，**不猜值**。dry-run 未寫回任何工作簿。

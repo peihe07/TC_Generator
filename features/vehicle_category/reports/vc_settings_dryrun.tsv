@@ -1,0 +1,127 @@
+row	tc_id	setting	alias_status	path_now	path_proposed	control_proposed	proxi_now	proxi_proposed	flags
+10	newR1L-VC-001	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+11	newR1L-VC-002	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+12	newR1L-VC-003	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+13	newR1L-VC-004	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with at least one Specialty feature	NO_MAPPING;PROSE_PRECOND
+14	newR1L-VC-005	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with My Car, Cameras and at least one other Specialty feature	NO_MAPPING;PROSE_PRECOND
+15	newR1L-VC-006	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+16	newR1L-VC-007	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+17	newR1L-VC-008	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with the Off Road, PHEV and SRT features	NO_MAPPING;PROSE_PRECOND
+18	newR1L-VC-009	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with the Specialty features listed in the mapping table	NO_MAPPING;PROSE_PRECOND
+19	newR1L-VC-010	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with the Specialty features listed in the mapping rows under test	NO_MAPPING;PROSE_PRECOND
+20	newR1L-VC-011	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with the Specialty features listed in the mapping rows under test	NO_MAPPING;PROSE_PRECOND
+21	newR1L-VC-012	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with the Specialty features listed in the mapping rows under test	NO_MAPPING;PROSE_PRECOND
+22	newR1L-VC-013	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with the Specialty features listed in the mapping rows under test	NO_MAPPING;PROSE_PRECOND
+23	newR1L-VC-014	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	ALWAYS_FALSE;PROSE_PRECOND｜來源 总控表 No.196 Cam App
+24	newR1L-VC-015	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	ALWAYS_FALSE;PROSE_PRECOND｜來源 总控表 No.196 Cam App
+25	newR1L-VC-016	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a subset of the Dashboard apps	NO_MAPPING;PROSE_PRECOND
+26	newR1L-VC-017	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with two or more Dashboard apps	NO_MAPPING;PROSE_PRECOND
+27	newR1L-VC-018	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a landscape display ; NO_MAPPING: The vehicle is equipped with exactly one Dashboard feature	NO_MAPPING;PROSE_PRECOND
+28	newR1L-VC-019	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a landscape display ; NO_MAPPING: The vehicle is equipped with exactly two Dashboard features	NO_MAPPING;PROSE_PRECOND
+29	newR1L-VC-020	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a landscape display ; NO_MAPPING: The vehicle is equipped with three or more Dashboard features	NO_MAPPING;PROSE_PRECOND
+30	newR1L-VC-021	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a portrait display ; NO_MAPPING: The vehicle is equipped with three Dashboard features	NO_MAPPING;PROSE_PRECOND
+31	newR1L-VC-022	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a portrait display ; NO_MAPPING: The vehicle is equipped with exactly four Dashboard features	NO_MAPPING;PROSE_PRECOND
+32	newR1L-VC-023	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a portrait display ; NO_MAPPING: The vehicle is equipped with five or more Dashboard features	NO_MAPPING;PROSE_PRECOND
+33	newR1L-VC-024	Category Structure	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a portrait display	NO_MAPPING;PROSE_PRECOND
+34	newR1L-VC-025	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with the Controls items under test	NO_MAPPING;PROSE_PRECOND
+35	newR1L-VC-026	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with two or more of Cargo Camera, Backup Camera and Surround View Camera	NO_MAPPING;PROSE_PRECOND
+36	newR1L-VC-027	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+37	newR1L-VC-028	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+38	newR1L-VC-029	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+39	newR1L-VC-030	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	ALWAYS_FALSE;PROSE_PRECOND｜來源 总控表 No.18 Headrest Fold
+40	newR1L-VC-031	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	ALWAYS_FALSE;PROSE_PRECOND｜來源 总控表 No.18 Headrest Fold
+41	newR1L-VC-032	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a hard control for Exhaust Sound	NO_MAPPING;PROSE_PRECOND
+42	newR1L-VC-033	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a Glove Box Lock Controls item	NO_MAPPING;PROSE_PRECOND
+43	newR1L-VC-034	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with a lower non-articulating screen	NO_MAPPING;PROSE_PRECOND
+44	newR1L-VC-035	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PROXI EC_Mirror = 1 (Present) ; PROXI EC_Mirror_Hard_Button_Present = 0 (Absent)	PROSE_PRECOND｜來源 总控表 No.24 Mirror Dimmer
+45	newR1L-VC-036	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PROXI EC_Mirror = 1 (Present) ; PROXI EC_Mirror_Hard_Button_Present = 0 (Absent)	PROSE_PRECOND｜來源 总控表 No.24 Mirror Dimmer
+46	newR1L-VC-037	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with the Controls features listed in the button table	NO_MAPPING;PROSE_PRECOND
+47	newR1L-VC-038	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with the Controls buttons under test	NO_MAPPING;PROSE_PRECOND
+48	newR1L-VC-039	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with the Controls buttons under test	NO_MAPPING;PROSE_PRECOND
+49	newR1L-VC-040	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with the Controls buttons under test	NO_MAPPING;PROSE_PRECOND
+50	newR1L-VC-041	Controls	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle is equipped with the Controls buttons under test	NO_MAPPING;PROSE_PRECOND
+51	newR1L-VC-042	Glove Box	n/a（不走 Settings List）	Glove Box	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+52	newR1L-VC-043	Glove Box	n/a（不走 Settings List）	Glove Box > Yes	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+53	newR1L-VC-044	Glove Box	n/a（不走 Settings List）	Glove Box	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+54	newR1L-VC-045	Glove Box	n/a（不走 Settings List）	Glove Box	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+55	newR1L-VC-046	Glove Box	n/a（不走 Settings List）	Glove Box	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+56	newR1L-VC-047	Glove Box	n/a（不走 Settings List）	Glove Box	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+57	newR1L-VC-048	Glove Box	n/a（不走 Settings List）	Glove Box	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+58	newR1L-VC-049	Glove Box	n/a（不走 Settings List）	Glove Box	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+59	newR1L-VC-050	Glove Box	n/a（不走 Settings List）	Glove Box	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+60	newR1L-VC-051	Glove Box	n/a（不走 Settings List）	Glove Box > OK	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+61	newR1L-VC-052	Glove Box	n/a（不走 Settings List）	Glove Box > Glove Box	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+62	newR1L-VC-053	Glove Box	n/a（不走 Settings List）	Glove Box	（本 feature 不套 path 段）		（無 PROXI）	PROXI Glove_Box_Soft_Button = 1 (Present)	PROSE_PRECOND｜來源 Glove_Box_Soft_Button
+63	newR1L-VC-054	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+64	newR1L-VC-055	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+65	newR1L-VC-056	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+66	newR1L-VC-057	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+67	newR1L-VC-058	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+68	newR1L-VC-059	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+69	newR1L-VC-060	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+70	newR1L-VC-061	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with Suspension settings that offer more than one suspension mode	NO_MAPPING;PROSE_PRECOND
+71	newR1L-VC-062	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with Suspension settings that offer more than one suspension mode	NO_MAPPING;PROSE_PRECOND
+72	newR1L-VC-063	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+73	newR1L-VC-064	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+74	newR1L-VC-065	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+75	newR1L-VC-066	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+76	newR1L-VC-067	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+77	newR1L-VC-068	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+78	newR1L-VC-069	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+79	newR1L-VC-070	Settings Behavior	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+80	newR1L-VC-071	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+81	newR1L-VC-072	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+82	newR1L-VC-073	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+83	newR1L-VC-074	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+84	newR1L-VC-075	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+85	newR1L-VC-076	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+86	newR1L-VC-077	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+87	newR1L-VC-078	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+88	newR1L-VC-079	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+89	newR1L-VC-080	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+90	newR1L-VC-081	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+91	newR1L-VC-082	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+92	newR1L-VC-083	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+93	newR1L-VC-084	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+94	newR1L-VC-085	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+95	newR1L-VC-086	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+96	newR1L-VC-087	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+97	newR1L-VC-088	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+98	newR1L-VC-089	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+99	newR1L-VC-090	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+100	newR1L-VC-091	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+101	newR1L-VC-092	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+102	newR1L-VC-093	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+103	newR1L-VC-094	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+104	newR1L-VC-095	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+105	newR1L-VC-096	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+106	newR1L-VC-097	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	PENDING: DR-49	NO_MAPPING;PROSE_PRECOND
+107	newR1L-VC-098	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+108	newR1L-VC-099	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+109	newR1L-VC-100	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+110	newR1L-VC-101	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+111	newR1L-VC-102	Settings List	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+112	newR1L-VC-103	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+113	newR1L-VC-104	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+114	newR1L-VC-105	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+115	newR1L-VC-106	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+116	newR1L-VC-107	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+117	newR1L-VC-108	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with the Phone screens	NO_MAPPING;PROSE_PRECOND
+118	newR1L-VC-109	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with the Phone screens	NO_MAPPING;PROSE_PRECOND
+119	newR1L-VC-110	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with the Media screens	NO_MAPPING;PROSE_PRECOND
+120	newR1L-VC-111	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with the Media screens	NO_MAPPING;PROSE_PRECOND
+121	newR1L-VC-112	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with Software Updates in its Settings list	NO_MAPPING;PROSE_PRECOND
+122	newR1L-VC-113	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with the Software Downloads Over Wi-Fi setting	NO_MAPPING;PROSE_PRECOND
+123	newR1L-VC-114	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+124	newR1L-VC-115	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+125	newR1L-VC-116	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+126	newR1L-VC-117	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+127	newR1L-VC-118	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+128	newR1L-VC-119	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+129	newR1L-VC-120	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+130	newR1L-VC-121	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+131	newR1L-VC-122	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+132	newR1L-VC-123	Ignition Availability	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+133	newR1L-VC-124	Brake Service	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with the EPB Service mode option	NO_MAPPING;PROSE_PRECOND
+134	newR1L-VC-125	Brake Service	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）		
+135	newR1L-VC-126	Cabrio Widget	n/a（不走 Settings List）		（本 feature 不套 path 段）		（無 PROXI）	NO_MAPPING: The vehicle under test is equipped with the Cabrio feature	NO_MAPPING;PROSE_PRECOND

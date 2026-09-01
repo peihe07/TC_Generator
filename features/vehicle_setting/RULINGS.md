@@ -7311,3 +7311,96 @@ R-VF-甲（補入之改寫範圍，分析層裁定 2026-08-25）
 **本層前輪（W-VF89）曾犯同一誤並已延伸，其後查得母元素而還原為 `H10:H132`**，
 且已於 `U69 §二`／`U70 §七` 具名。**本包 §1／§3 為該誤之第二次出現。**
 詳見上繳 `U71 §2`。
+
+---
+
+## 下放包 VS-SL-01 之五條（**Pei 裁定 2026-09-01**）
+
+> **編號回報（R-VF102 一）**：落檔時實測主線最大 **`R-VS83`**，
+> 依包內 `R-VS{live}` 取 **`R-VS84`–`R-VS88`**。
+> **惟 `R-VS63` 已將 VF230 線之 ruling 空間定為 `R-VS100` 起、其後改用 `R-VF` 前綴（實測最大 `R-VF142`），
+> 而本五條之適用範圍為 VF230／VF665，屬 VF230 線。若應改記為 `R-VF143`–`R-VF147`，待 Pei 裁；
+> 本層不自行搬號。** 見 `reports/vf230_settings_dryrun.md` §D 第 1 項。
+
+條文逐字轉錄自下放包 VS-SL-01 §0／§1，不摘要（FO §8.1）；
+包內之 `{live}` 依上述取號代入，其餘一字不動。
+
+### R-VS84 —— 市場變體一律 NAFTA（VS-SL-01 §0，**Pei 裁定 2026-09-01**）
+
+```text
+R-VS84  市場變體一律 NAFTA
+  Vehicle Settings 相關 feature（現行 vehicle_setting；後續 VF665 同）之
+  設定項路徑、控件型別、選項文字、PROXI 前置，一律以 NAFTA 變體為準。
+  (1) HMI Settings List `Settings` 分頁：同一設定多列時，取 Notes 含 NAFTA
+      或無市場標記之列；Notes 標 EMEA／MASAH／MASPN／LATAM 等者不取。
+  (2) 总控表 Atlantis 條件式含 Market_Area 分支者，取 NAFTA 分支之回傳值。
+  (3) 顯示名取 `Brand-Specific Names` 之 Jeep / Chrysler / Ram / Dodge 欄
+      （DT／HDCC27 = RAM）。
+  (4) 既有 TC 之非 NAFTA 列（實測 VF230：`Traffic Sign Assist Offset -
+      non-NAFTA Setting` 18 列）依本條應移除；**移除屬寫回動作**，
+      於 dry-run 報告列出，待 Pei 於報告審閱時確認後執行。
+```
+
+**執行層註**：(1)(2)(3) 已實作於 `scripts/settings_lookup.py`。
+**(4) 之數不符 —— 條文載 18 列，本輪實測為 19 列**（r400–r418，D 欄前綴一律
+`SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-`）。
+依 R-TM13（原文保留）條文不改，差額記為 `A-VS166`，移除待 Pei 確認後執行。
+
+### R-VS85 —— `Always false` 之設定項不出負向（VS-SL-01 §1，**Pei 裁定 2026-09-01**）
+
+```text
+R-VS85  `Always false` 之設定項不出負向
+  总控表 Atlantis 為 `Always false` 之設定項，不新增「不顯示」之負向 TC ——
+  需求本身未必存在該條，出負向即造需求（§8.4.2）。
+  既有正向列保留其需求追溯不刪；其 PROXI 前置依本包 §2 任務 1 之來源優先序
+  取自需求原文條件式，总控表對此類不提供任何條件。
+  執行層仍於報告 §C 列出受影響之設定項與列數（登記，非裁定用）。
+```
+
+**執行層註**：已實作。总控表 278 列中 `Always false` 共 **110** 項；
+與 VF230 對得上者 **3 名 8 列**（`Ready to Drive Pop-Up` r319–r322、
+`Surround View Camera Delay` r453–r454、`Surround View Camera Guidelines` r455–r456）。
+明細見 `reports/vf230_settings_dryrun.md` §C。
+
+### R-VS86 —— PROXI 一律 `PROXI <Param> = <raw> (<label>)`（VS-SL-01 §1）
+
+```text
+R-VS86  PROXI 一律 `PROXI <Param> = <raw> (<label>)`
+  無 `$`、無 `is set to`。與 canon §8.7.5 v3(c) 及 CFTS044 交付本（78 處）一致。
+  VF230 之 `PROXI $Param$ is set to "label"` 152 處全數改寫（寫回時執行）。
+```
+
+**執行層註**：形制已實作於 `settings_lookup.format_proxi()`。
+**152 處之數實測相符**（涉 152 列）。改寫屬寫回動作，本包不執行。
+
+### R-VS87 —— 架構只取 Atlantis，車型先以 DT 為主（VS-SL-01 §1）
+
+```text
+R-VS87  架構只取 Atlantis，車型先以 DT 為主
+  总控表只讀主表 `FeatureSet(Gen4-5)` E 欄（Atlantis／DT）。
+  `new HW (637)` 分頁與 PNet 各欄不展開。
+```
+
+**執行層註**：已實作（`load_atlantis()` 只讀第 5 欄）。
+**本條與 BedLowering 相衝**：总控表 No.36 之條件不含 `Type 7 (DT)`，
+致該 feature 在 DT 上永不顯示。記為 `A-VS167`，待 Pei 於
+`features/bed_lowering/reports/bl_settings_dryrun.md` §B 三選項中裁定。
+
+### R-VS88 —— 別名表（VS-SL-01 §1）
+
+```text
+R-VS88  別名表
+  執行層草擬 `data/settings_alias.tsv`，Pei 逐條認可後方綁入配方；
+  查無者開 DR，不得以語意相近之名代入（同 R-13）。
+```
+
+**執行層註**：`data/settings_alias.tsv` 已落檔，**107 列**（包內載 106，
+差額為 `AUX Switches`，記於 `A-VS166`）。
+`exact` 51／`manual` 2／`UNRESOLVED` 54。**`manual` 2 條待 Pei 逐條認可**；
+`UNRESOLVED` 54 名已開 `DR-49`。
+
+### R-VS{live+5} 之本輪範圍條（VS-SL-01 §1，**未取號**）
+
+包內第五條（本輪範圍）為作業範圍宣告而非判準，且其所令之 BL／VC 裁定
+應記於各該 feature 之 `R-BL`／`R-VC`。**本層未於本檔取號**，
+其效力見 `reports/` 三份 dry-run 報告之範圍宣告。若 Pei 認為仍須取號，本層補登。
