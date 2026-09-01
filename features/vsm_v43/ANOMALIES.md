@@ -264,10 +264,14 @@ disposition is Tier 2。
   可能把另一條真實訊號誤標為同一物之異寫。
 - **本包處置**：**依 R-VT9(b) 照辦**，兩列結果皆記「解得」，E17／E15′ 依裁決計。
   **不自行改判**（FO 之第 8.5 節第 1 條）。本條僅登記觀測與其理由。
-- **提請裁決**：R-VT9(b) 是否加但書 —— 「另一本 DBC 之訊息名若本身亦為本規格之
-  另一規格原名，則二者為不同訊號，不互為旁證」。
+- **裁決（R-VT12(a)，2026-09-01）**：但書成立 —— 規格同載兩名者為兩條弧線，各自解析，
+  **不得以一方為他方旁證**；R-VT9(b) 之「另一本記旁證」僅適用於規格只載一名之情形。
+  v3 已依此改記兩列備註為「兩弧，主旁待 W-7」。
+- **主旁之判定仍未決（維持 PENDING）**：R-VT12(b) 令 HU（LTM）所在匯流排自 SYSAD 實測後定。
+  **W-7 實測結果為「SYSAD 未載」**（見 A-VT19），故主旁未定，兩弧皆記「解得」不標主旁。
+  本條待 §K 之裁決或另一來源（SYS2／CAN Signal Mapping）到位後方能結。
 
-## A-VT17 — E16 之母體於 W-5′ 後改變，兩種比較基準並列（PENDING）
+## A-VT17 — E16 之母體於 W-5′ 後改變，兩種比較基準並列（RESOLVED）
 
 - **實測**：E16 判準為「段 1 擴充比對後『未解得(止於段1)』**< 102**」。
   - **同母體**（上繳 01 之 181 名 ∩ 本包）：**97** → **< 102，相符**（擴充比對有效，－5）
@@ -277,7 +281,72 @@ disposition is Tier 2。
   而 102 係自 181 名之母體算出。母體一擴，該閾值即非同基準。
 - **本包處置**：**兩者並列，不擇一、不調和**（FO 之第 8.2 節）。
   §五 之對照表兩列皆填。
-- **提請裁決**：E16 之基準改為同母體比較，或改以比率（97/181 = 53.6% vs 113/230 = 49.1%）表述。
+- **裁決（R-VT12(c)，2026-09-01）**：母體會變之指標一律以**同母體差或比率**表述，不沿用絕對閾值；
+  E16 依同母體 **97 < 102 判相符**，全母體 113 為觀測值。根因為分析層之誤（A-VT18）。**RESOLVED**。
+
+## A-VT18 —— 分析層之誤：E16 同包命擴充母體又沿用絕對閾值（RESOLVED）
+
+- **登記日**：2026-09-01；**分析層之誤**。
+- 02 下放包同時令「表格抽名，181 為下界」與「未解得(止於段1) < 102」，後者以 181 名母體算出，
+  前者必使母體變大；二者互衝（A-VT17 之根因）。與 A-VL4(a)（E17 跨線計數）同族：被數對象會動而用絕對數。
+- **處置**：R-VT12(c)（同母體差／比率）。A-VT16 依 R-VT12(a)(b) 處置（兩弧不合併；HU 匯流排依 SYSAD），於 SYSAD 實測後轉 RESOLVED。
+
+## A-VT19 — SYSAD（SYS3 v1.0）不含車輛網路拓撲，無從定 LTM 所在匯流排（PENDING，列 §K）
+
+- **實測**（2026-09-01，W-7，限定範圍搜尋，未通讀）：
+  `sources/raw/vf665_sysad_sys3/…SYSAD_v1.0.docx` → `word/document.xml`，
+  1332 個非空段落，R-VT11(d) 斷言 `</?w:` 出現數 **0**。
+- **目標詞之段落命中數**：
+  | 詞 | 命中 | | 詞 | 命中 |
+  |---|---|---|---|---|
+  | `BH-CAN`／`BHCAN`／`CAN-BH` | **0** | | `STATUS_CCAN3` | **0** |
+  | `FD-CAN`／`FDCAN` | **0** | | `BRAKE_FD_2` | **0** |
+  | `BCM` | **0** | | `VehicleSpeedVSOSig` | **0** |
+  | `gateway`／`Gateway` | **0** | | `node`／`Node` | **0** |
+  | `LTM` | 2（皆非架構節點：一為 SYSRA 檔名、一為功能清單句） | | `topology` | **0** |
+- **結論比「未載」更強：這是文件類別不符，不是遺漏。** SYSAD 為 **Android/AOSP 軟體架構**文件 ——
+  其架構鏈為 `Vehicle Settings App(1st Party Apps) → CarPropertyManager → CarPropertyService
+  → VHAL → VCPU → (CAN/LIN Bus)`（§5 Interface Description）。
+  它描述的是 HU **內部軟體層**，不是車輛網路拓撲；`LTM`／`BCM` 從未作為架構節點出現。
+- **佐證段落（≤ 3 段，各 ≤ 15 words 摘句，含節號）**：
+  1. §4.5 假設與相依性 — `Vehicle buses (CAN/LIN/Ethernet)`（僅列為外部相依，未指名匯流排）
+  2. §4.7 架構設計組件 — `CAN Bus Interface: Communication with the VHAL.`
+  3. §4.3 系統需求–概述 — `…CAN signals … are maintained in SYS2 requirements`
+     （§6 參考文檔亦重申 `CAN Signal Mapping … maintained in corresponding documents`）
+- **圖面亦已核對**：12 個嵌入媒體，圖說為 Figure 1–12，全為軟體架構圖與序列圖
+  （`System Architectural Interface Model`、各 `Sequence Diagram`），**無網路拓撲圖**。
+  抽樣開啟 `image2.png`（Figure 1／11 之 `System Architectural Interface Model`）核對：
+  內容為 `MCPU` 框內之 `1st Party Apps／CarPropertyManager／CarPropertyService／VHAL` 與框外 `VCPU`，
+  **無任何匯流排名稱或車輛 ECU 節點**。
+- **依 03 包 W-7 之指示**：SYSAD 未載 → **列 §K 交 Pei**，其餘續行。E23 = **0 段**（判準所定之路徑）。
+- **提請裁決**：LTM 所在匯流排改自何處取 —— SYS2 之 CAN Signal Mapping（SYSAD 自己兩處指向該處），
+  或逕以 LID `CAN` 欄之 `Atlantis High` 欄組為準？後者即 R-VT12(b) 所稱「LID 欄組適用性一題之重現」。
+
+## A-VT20 — 三名 PROXI 參數需第六條規則（重音 `ù` → `u`）方能命中（PENDING，回報不自創）
+
+- **實測**（W-5″ 第 4 項之「該命中卻不中」表）：下列三名以五規則正規化後不中，
+  而 forms/ 表內存在**僅差一個重音字元**之值：
+  | 規格原名 | 五規則後之鍵 | 表內最近值 | 檔／欄 | 差異 |
+  |---|---|---|---|---|
+  | `DRL_Menù_Enable` | `drl menù enable` | `DRL_Menu_Enable` | PROXI `Format`／Parameter Name | `ù` vs `u`（規則 5 之 `_Menu` 因此不生效） |
+  | `Greeting_Lights_Menù` | `greeting lights menù` | `Greeting_Lights_Menu`／HMI `Greeting Lights` | PROXI ／HMI Settings | 同上 |
+  | `Horn_Chirp_Menù` | `horn chirp menù` | `Horn_Chirp_Menu` | PROXI `Format` | 同上 |
+- **處置**：**不自創第六條規則**（03 包 §七：「需第六條規則方能命中（回報不自創）」即為升級條件）。
+  三列於 v3 維持 `未解得(止於段1)`，**不擅自判等同**。
+- **旁證**：規格自身即拼法不一 —— 同一參數在不同段落寫作 `Horn_Chirp_Menu` 與 `Horn_Chirp_Menù`
+  （上繳 02 §二-1 已列五組拼法不一）。此為 **DR-VT2** 之新增佐證。
+- **提請裁決**：是否增訂第六規則（Unicode NFKD 去重音記號），或改由 DR-VT2 向上游要求統一拼法。
+
+## A-VT21 — 抽名之六個偽陽性名（RESOLVED，執行層標記）
+
+- **實測**：上繳 02 之引號式 PROXI 抽名式收進六個非參數名 ——
+  `CAN Node 35 (TBM)`、`CAN node 24 (PAM )`、`CAN node 24 (PAM)`（句式為「…CAN node 24 (PAM) PROXI parameter」）、
+  `Component`、`Impact`、`Implementation`（表格標題列被誤收）。
+- **影響**：三者計入 PROXI 49 名之母體，使「仍止於段 1 之 PROXI = 9」中有 **6 名為偽陽性**；
+  **實質缺口僅 3 名**（即 A-VT20 之重音三名）。
+- **處置**：v3 之該六列保留並於備註標明為偽陽性（不刪，以免母體數字在包間跳動而無跡可循）。
+  **不重抽名**（03 包明令「在 v2 基礎上，不重抽名」）。
+- **提請下包**：抽名式加排除清單或最小長度／底線要求後重抽，屆時 PROXI 母體應由 49 降為 43。
 
 ---
 

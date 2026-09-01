@@ -1,0 +1,231 @@
+規格原名	類別	抽名來源	段1命中檔	段1逐字命中(前3)	段1擴充命中(前3)	段2	段3	結果	備註
+AHBM_Feature_Menu	PROXI	段落;表格	PROXI	PROXI/Format/r587c6(逐字:AHBM_Feature_Menu)	"PROXI/Format/r587c6/Parameter Name/規則1-5(鍵:ahbm feature)→""AHBM_Feature_Menu"""			PROXI路徑(R-P375b/c)	
+Ambient_Dimmer_Switch	PROXI	段落;表格	PROXI	PROXI/Revision Notes/r179c7(逐字:Ambient_Dimmer_Switch);PROXI/Revision Notes/r182c7(逐字:Ambient_Dimmer_Switch);PROXI/Revision Notes/r198c7(逐字:Ambient_Dimmer_Switch)	"PROXI/Format/r538c6/Parameter Name/規則1-5(鍵:ambient dimmer switch)→""Ambient_Dimmer_Switch"""			PROXI路徑(R-P375b/c)	
+Ambient_Lighting_Function	PROXI	段落;表格	PROXI	PROXI/Format/r595c6(逐字:Ambient_Lighting_Function)	"PROXI/Format/r595c6/Parameter Name/規則1-5(鍵:ambient lighting function)→""Ambient_Lighting_Function"""			PROXI路徑(R-P375b/c)	
+Ambient_Lighting_level_Setting.Req	內部	段落						未解得(止於段1)	
+AppPrivacyMode_Enable.Req	內部	段落						未解得(止於段1)	
+App_ClearPersonalData_Enable.Req	內部	段落						未解得(止於段1)	
+App_PrivacyMode_Enable.Req	內部	段落						未解得(止於段1)	
+App_RestoreApp_Enable.Req	內部	段落						未解得(止於段1)	
+App_RestoreDefaultSetting_Enable.Req	內部	段落						未解得(止於段1)	
+AudioRepetition.Info	內部	段落						未解得(止於段1)	
+Auto_Close_Menu	PROXI	段落;表格	PROXI	PROXI/Format/r480c6(逐字:Auto_Close_Menu)	"PROXI/Format/r480c6/Parameter Name/規則1-5(鍵:auto close)→""Auto_Close_Menu"""			PROXI路徑(R-P375b/c)	
+Auto_Door_Unlock_Menu	PROXI	段落;表格	PROXI	PROXI/Format/r586c6(逐字:Auto_Door_Unlock_Menu)	"PROXI/Format/r586c6/Parameter Name/規則1-5(鍵:auto door unlock)→""Auto_Door_Unlock_Menu"""			PROXI路徑(R-P375b/c)	
+Auto_High_Beam_Enable.Req	內部	段落						未解得(止於段1)	
+Auto_Park_Brake_Enable.Req	內部	段落;表格						未解得(止於段1)	
+Auto_Park_Brake_Menu	PROXI	段落;表格	PROXI	PROXI/Format/r578c6(逐字:Auto_Park_Brake_Menu)	"HMI_Settings/Settings/r509B/設定項名/規則1-5(鍵:auto park brake)→""Auto Park Brake"";PROXI/Format/r578c6/Parameter Name/規則1-5(鍵:auto park brake)→""Auto_Park_Brake_Menu"""			PROXI路徑(R-P375b/c)	"【R-P375(b) 雙路徑】UI：""Auto Park Brake""（HMI Settings r509B）／PROXI：`Auto_Park_Brake_Menu`（Format r578c6） —— Procedure 用 UI、Pre-Condition 用 PROXI"
+Auto_Unlock_Door_Exit_Enable.Req	內部	段落						未解得(止於段1)	
+BRAKE1.VehicleSpeedVSOSig	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r1736c3(逐字:VehicleSpeedVSOSig);LID/CAN Mapping/r2321c1(逐字:VehicleSpeedVSOSig)	LID/CAN Mapping/r1736c3/object text/規則1-4(鍵:vehiclespeedvsosig);LID/CAN Mapping/r2321c1/logical identifier/規則1-4(鍵:vehiclespeedvsosig)	BRAKE1.VehicleSpeedVSOSig	BHCAN2:STATUS_CCAN3;FDCAN8:BRAKE_FD_2	解得	R-VT12(a)：本規格同載兩名，為兩條弧線各自解析；兩弧，主旁待 W-7（SYSAD）
+BRAKE1.VehicleSpeedVSOSigFailSts	CAN	段落				BRAKE1.VehicleSpeedVSOSigFailSts		未解得(止於段1)	
+Brand_Configuration_2	PROXI	段落	PROXI	PROXI/Format/r566c6(逐字:Brand_Configuration_2)	"PROXI/Format/r566c6/Parameter Name/規則1-5(鍵:brand configuration 2)→""Brand_Configuration_2"""			PROXI路徑(R-P375b/c)	
+Brand_configuration_2	PROXI	表格			"PROXI/Format/r566c6/Parameter Name/規則1-5(鍵:brand configuration 2)→""Brand_Configuration_2"""	Brand_Configuration_2		PROXI路徑(R-P375b/c)	PROXI `Format` r566c6：`Brand_Configuration_2`
+CAN Node 35 (TBM)	PROXI	段落						未解得(止於段1)	【A-VT21 抽名偽陽性】非 PROXI 參數名，不列為實質缺口
+CAN node 24 (PAM )	PROXI	段落						未解得(止於段1)	【A-VT21 抽名偽陽性】非 PROXI 參數名，不列為實質缺口
+CAN node 24 (PAM)	PROXI	段落						未解得(止於段1)	【A-VT21 抽名偽陽性】非 PROXI 參數名，不列為實質缺口
+ClearPersonalData.Info	內部	段落					FDCAN8:TBM_SCHEDULE_FD_2	解得	
+ClearPersonalData_Enable.Req	內部	段落						未解得(止於段1)	
+Cluster_Display_Type	PROXI	段落;表格	LID;PROXI;LID(擴充)	LID/Proxi & Configuration/r39c1(逐字:Cluster_Display_Type);LID/Proxi & Configuration/r39c16(逐字:Cluster_Display_Type);PROXI/Revision Notes/r51c7(逐字:Cluster_Display_Type)	"LID/Proxi & Configuration/r39c1/logical identifier/規則1-4(鍵:cluster display type);LID/Proxi & Configuration/r39c2/function/規則1-4(鍵:cluster display type);PROXI/Format/r489c6/Parameter Name/規則1-5(鍵:cluster display type)→""Cluster_Display_Type"""			PROXI路徑(R-P375b/c)	
+Component	PROXI	表格						未解得(止於段1)	【A-VT21 抽名偽陽性】非 PROXI 參數名，不列為實質缺口
+Consumption_Unit_Setting.Req	內部	段落						未解得(止於段1)	
+Cornering_Enable.Req	內部	段落						未解得(止於段1)	
+Cornering_Light	PROXI	段落;表格	PROXI	PROXI/Format/r275c6(逐字:Cornering_Light)	"PROXI/Format/r275c6/Parameter Name/規則1-5(鍵:cornering light)→""Cornering_Light"""			PROXI路徑(R-P375b/c)	
+Cornering_Lights	PROXI	段落			"HMI_Settings/Settings/r501B/設定項名/規則1-5(鍵:cornering lights)→""Cornering Lights"""	Cornering Lights		UI路徑(R-P375b)	"HMI Settings List `Settings` r501B：""Cornering Lights""（Technical Reference: VF230/665）"
+Country_Code	PROXI	段落;表格	LID;PROXI;LID(擴充)	LID/Proxi & Configuration/r43c1(逐字:Country_Code);LID/Proxi & Configuration/r250c11(逐字:Country_Code);LID/Proxi & Configuration/r250c16(逐字:Country_Code)	"LID/CAN Mapping/r46c2/function/規則1-4(鍵:country code);LID/Proxi & Configuration/r43c1/logical identifier/規則1-4(鍵:country code);LID/Proxi & Configuration/r43c2/function/規則1-4(鍵:country code);PROXI/Format/r468c6/Parameter Name/規則1-5(鍵:country code)→""Country_Code"""			PROXI路徑(R-P375b/c)	
+DRL_Enable.Req	內部	段落						未解得(止於段1)	
+DRL_Menù_Enable	PROXI	段落						未解得(止於段1)	【A-VT20 該命中卻不中】僅差重音 `ù`／`u`，最近值 PROXI `Format` `DRL_Menu_Enable`；需第六規則，依 03 包 §七 回報不自創
+Day1_Setting.Info	內部	段落						未解得(止於段1)	
+Day1_Setting.Req	內部	段落						未解得(止於段1)	
+Day2_Setting.Info	內部	段落						未解得(止於段1)	
+Day2_Setting.Req	內部	段落						未解得(止於段1)	
+Distance_Unit_Setting.Req	內部	段落						未解得(止於段1)	
+EPB_Maintenance_Menu	PROXI	段落;表格	PROXI	PROXI/Format/r585c6(逐字:EPB_Maintenance_Menu)	"PROXI/Format/r585c6/Parameter Name/規則1-5(鍵:epb maintenance)→""EPB_Maintenance_Menu"""			PROXI路徑(R-P375b/c)	
+External_Light_Sensor_Level.Req	內部	段落						未解得(止於段1)	
+External_Light_Sensor_Level_Setting.Req	內部	段落						未解得(止於段1)	
+External_Temperature_Sensor	PROXI	段落;表格	PROXI	PROXI/Format/r482c6(逐字:External_Temperature_Sensor)	"PROXI/Format/r482c6/Parameter Name/規則1-5(鍵:external temperature sensor)→""External_Temperature_Sensor"""			PROXI路徑(R-P375b/c)	
+FOTA_State.Info	內部	段落						未解得(止於段1)	
+FSCWPlus_Activation_Mode_Setting.Req	內部	段落						未解得(止於段1)	
+FSCWPlus_Setting.Req	內部	段落						未解得(止於段1)	
+Flash_Light_With_Lock_Enable.Req	內部	段落						未解得(止於段1)	
+Flash_Light_With_Lock_Menu	PROXI	段落;表格	PROXI	PROXI/Format/r584c6(逐字:Flash_Light_With_Lock_Menu)	"PROXI/Format/r584c6/Parameter Name/規則1-5(鍵:flash light with lock)→""Flash_Light_With_Lock_Menu"""			PROXI路徑(R-P375b/c)	
+Forward_Collision_Mitigation	PROXI	段落;表格	LID;PROXI	LID/Proxi & Configuration/r285c11(逐字:Forward_Collision_Mitigation);LID/Proxi & Configuration/r285c16(逐字:Forward_Collision_Mitigation);PROXI/Revision Notes/r70c7(逐字:Forward_Collision_Mitigation)	"PROXI/Format/r403c6/Parameter Name/規則1-5(鍵:forward collision mitigation)→""Forward_Collision_Mitigation"""			PROXI路徑(R-P375b/c)	
+Fuel_Type	PROXI	段落;表格	LID;PROXI	LID/Proxi & Configuration/r89c11(逐字:Fuel_Type);LID/Proxi & Configuration/r89c16(逐字:Fuel_Type);PROXI/Revision Notes/r10c7(逐字:Fuel_Type)	"LID/Proxi & Configuration/r89c2/function/規則1-4(鍵:fuel type);PROXI/Format/r284c6/Parameter Name/規則1-5(鍵:fuel type)→""Fuel_Type"""			PROXI路徑(R-P375b/c)	
+GPS_Automatic_Time_Adj_Enable.Req	內部	段落						未解得(止於段1)	
+GPS_Automatic_Time_Adj_Setup.Info	內部	段落						未解得(止於段1)	
+Geolocation_Enable.Req	內部	段落						未解得(止於段1)	
+Geolocation_Menu	PROXI	段落;表格	LID;PROXI	LID/Proxi & Configuration/r91c11(逐字:Geolocation_Menu);LID/Proxi & Configuration/r91c16(逐字:Geolocation_Menu);PROXI/Format/r734c6(逐字:Geolocation_Menu)	"HMI_Settings/Settings/r647B/設定項名/規則1-5(鍵:geolocation)→""Geolocation"";HMI_Settings/Settings/r649B/設定項名/規則1-5(鍵:geolocation)→""Geolocation"";PROXI/Format/r734c6/Parameter Name/規則1-5(鍵:geolocation)→""Geolocation_Menu"""			PROXI路徑(R-P375b/c)	"【R-P375(b) 雙路徑】UI：""Geolocation""（HMI Settings r647B）／PROXI：`Geolocation_Menu`（Format r734c6） —— Procedure 用 UI、Pre-Condition 用 PROXI"
+GreetingLights_Enable.Req	內部	段落						未解得(止於段1)	
+Greeting_Lights_Menù	PROXI	段落						未解得(止於段1)	"【A-VT20 該命中卻不中】僅差重音 `ù`／`u`，最近值 PROXI `Format` `Greeting_Lights_Menu`／HMI Settings ""Greeting Lights""；需第六規則，依 03 包 §七 回報不自創"
+Half_HMI_Setting	PROXI	段落;表格	PROXI	PROXI/Format/r555c6(逐字:Half_HMI_Setting)	"PROXI/Format/r555c6/Parameter Name/規則1-5(鍵:half hmi)→""Half_HMI_Setting"""			PROXI路徑(R-P375b/c)	
+Half_Torque_Sensibility	PROXI	段落;表格	PROXI	PROXI/Format/r556c6(逐字:Half_Torque_Sensibility)	"PROXI/Format/r556c6/Parameter Name/規則1-5(鍵:half torque sensibility)→""Half_Torque_Sensibility"""			PROXI路徑(R-P375b/c)	
+Headlights_Off_Delay_Setting.Req	內部	段落						未解得(止於段1)	
+Horn_Chirp_Menu	PROXI	段落;表格	PROXI	PROXI/Format/r523c6(逐字:Horn_Chirp_Menu)	"PROXI/Format/r523c6/Parameter Name/規則1-5(鍵:horn chirp)→""Horn_Chirp_Menu"""			PROXI路徑(R-P375b/c)	
+Horn_Chirp_Menù	PROXI	段落						未解得(止於段1)	【A-VT20 該命中卻不中】僅差重音 `ù`／`u`，最近值 PROXI `Format` `Horn_Chirp_Menu`；需第六規則，依 03 包 §七 回報不自創
+Hour1_Setting.Info	內部	段落						未解得(止於段1)	
+Hour1_Setting.Req	內部	段落						未解得(止於段1)	
+Hour2_Setting.Info	內部	段落						未解得(止於段1)	
+Hour2_Setting.Req	內部	段落						未解得(止於段1)	
+Hour_Mode_Setting.Req	內部	段落						未解得(止於段1)	
+IPC_VEHICLE_SETUP.AmbientLightingLevel	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r71c16(逐字:IPC_VEHICLE_SETUP.AmbientLightingLevel);LID/CAN Mapping/r71c1(逐字:AmbientLightingLevel)	LID/CAN Mapping/r71c1/logical identifier/規則1-4(鍵:ambientlightinglevel);LID/CAN Mapping/r72c1/logical identifier/規則1-4(鍵:ambientlightinglevel)	IPC_VEHICLE_SETUP.AmbientLightingLevel	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.AutoHighBeamEnable	CAN	段落				IPC_VEHICLE_SETUP.AutoHighBeamEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.AutoParkBrake	CAN	段落;表格				IPC_VEHICLE_SETUP.AutoParkBrake	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.BSDEnable	CAN	段落;表格				IPC_VEHICLE_SETUP.BSDEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.ConsumptionUnit	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r387c11(逐字:IPC_VEHICLE_SETUP.ConsumptionUnit);LID/CAN Mapping/r387c16(逐字:IPC_VEHICLE_SETUP.ConsumptionUnit);LID/CAN Mapping/r387c26(逐字:IPC_VEHICLE_SETUP.ConsumptionUnit)	LID/CAN Mapping/r387c1/logical identifier/規則1-4(鍵:consumptionunit);LID/CAN Mapping/r388c1/logical identifier/規則1-4(鍵:consumptionunit)	IPC_VEHICLE_SETUP.ConsumptionUnit		未解得(止於段2)	
+IPC_VEHICLE_SETUP.CorneringEnable	CAN	段落				IPC_VEHICLE_SETUP.CorneringEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.CorneringLightsEnable	CAN	段落				IPC_VEHICLE_SETUP.CorneringLightsEnable		未解得(止於段1)	
+IPC_VEHICLE_SETUP.DRLEnable	CAN	段落				IPC_VEHICLE_SETUP.DRLEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.DistanceUnit	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r459c16(逐字:IPC_VEHICLE_SETUP.DistanceUnit);LID/CAN Mapping/r459c1(逐字:DistanceUnit)	LID/CAN Mapping/r459c1/logical identifier/規則1-4(鍵:distanceunit)	IPC_VEHICLE_SETUP.DistanceUnit		未解得(止於段2)	
+IPC_VEHICLE_SETUP.DynamicGrid	CAN	段落;表格				IPC_VEHICLE_SETUP.DynamicGrid	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.ExternalLightSensorLevel	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r751c16(逐字:IPC_VEHICLE_SETUP.ExternalLightSensorLevel);LID/CAN Mapping/r751c26(逐字:IPC_VEHICLE_SETUP.ExternalLightSensorLevel);LID/CAN Mapping/r751c1(逐字:ExternalLightSensorLevel)	LID/CAN Mapping/r751c1/logical identifier/規則1-4(鍵:externallightsensorlevel)	IPC_VEHICLE_SETUP.ExternalLightSensorLevel		未解得(止於段2)	
+IPC_VEHICLE_SETUP.GreetingLightsEnable	CAN	段落				IPC_VEHICLE_SETUP.GreetingLightsEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.HourMode	CAN	段落	LID	LID/CAN Mapping/r407c16(逐字:IPC_VEHICLE_SETUP.HourMode)		IPC_VEHICLE_SETUP.HourMode	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.LanguageSelection	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r1111c16(逐字:IPC_VEHICLE_SETUP.LanguageSelection);LID/CAN Mapping/r1111c26(逐字:IPC_VEHICLE_SETUP.LanguageSelection);LID/CAN Mapping/r1111c1(逐字:LanguageSelection)	LID/CAN Mapping/r1111c1/logical identifier/規則1-4(鍵:languageselection);LID/CAN Mapping/r1112c1/logical identifier/規則1-4(鍵:languageselection)	IPC_VEHICLE_SETUP.LanguageSelection	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.NavRepetition	CAN	段落				IPC_VEHICLE_SETUP.NavRepetition	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.PamAlertMode	CAN	段落	LID	LID/CAN Mapping/r1293c16(逐字:IPC_VEHICLE_SETUP.PamAlertMode);LID/CAN Mapping/r1293c26(逐字:IPC_VEHICLE_SETUP.PamAlertMode)		IPC_VEHICLE_SETUP.PamAlertMode		未解得(止於段2)	
+IPC_VEHICLE_SETUP.PamChimeVolumeFront	CAN	段落	LID	LID/CAN Mapping/r1301c16(逐字:IPC_VEHICLE_SETUP.PamChimeVolumeFront)		IPC_VEHICLE_SETUP.PamChimeVolumeFront	BHCAN2:IPC_VEHICLE_SETUP;FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.PamChimeVolumeRear	CAN	段落	LID	LID/CAN Mapping/r1302c16(逐字:IPC_VEHICLE_SETUP.PamChimeVolumeRear)		IPC_VEHICLE_SETUP.PamChimeVolumeRear	BHCAN2:IPC_VEHICLE_SETUP;FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.PassiveEntry	CAN	段落				IPC_VEHICLE_SETUP.PassiveEntry	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.PhoneRepetition	CAN	段落				IPC_VEHICLE_SETUP.PhoneRepetition	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.RainSensorLevel	CAN	段落;表格				IPC_VEHICLE_SETUP.RainSensorLevel	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.RemoteDoorUnlock	CAN	段落				IPC_VEHICLE_SETUP.RemoteDoorUnlock	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.Sdw	CAN	段落	LID	LID/CAN Mapping/r1660c16(逐字:IPC_VEHICLE_SETUP.Sdw);LID/CAN Mapping/r1660c26(逐字:IPC_VEHICLE_SETUP.Sdw)		IPC_VEHICLE_SETUP.Sdw		未解得(止於段2)	
+IPC_VEHICLE_SETUP.SdwChimeVolume	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r1669c16(逐字:IPC_VEHICLE_SETUP.SdwChimeVolume);LID/CAN Mapping/r1669c26(逐字:IPC_VEHICLE_SETUP.SdwChimeVolume)	LID/CAN Mapping/r1669c1/logical identifier/規則1-4(鍵:sdwchimevolume)	IPC_VEHICLE_SETUP.SdwChimeVolume		未解得(止於段2)	
+IPC_VEHICLE_SETUP.SpeedLockDoorEnable	CAN	段落				IPC_VEHICLE_SETUP.SpeedLockDoorEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.TelematicSetupACK	CAN	段落				IPC_VEHICLE_SETUP.TelematicSetupACK	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.TemperatureUnit	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r2070c16(逐字:IPC_VEHICLE_SETUP.TemperatureUnit);LID/CAN Mapping/r2070c1(逐字:TemperatureUnit)	LID/CAN Mapping/r2070c1/logical identifier/規則1-4(鍵:temperatureunit)	IPC_VEHICLE_SETUP.TemperatureUnit		未解得(止於段2)	
+IPC_VEHICLE_SETUP2.AutoUnlockDoorExit	CAN	段落				IPC_VEHICLE_SETUP2.AutoUnlockDoorExit	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `IPC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.Backup_Cam_Delay	CAN	段落;表格				IPC_VEHICLE_SETUP2.Backup_Cam_Delay	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `IPC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.EPB_MaintenanceMode	CAN	段落;表格				IPC_VEHICLE_SETUP2.EPB_MaintenanceMode	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `IPC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	CAN	段落;表格				IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk		未解得(止於段1)	
+IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode	CAN	段落				IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `IPC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.FSFCWPlusSetting	CAN	段落				IPC_VEHICLE_SETUP2.FSFCWPlusSetting	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `IPC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.FlashLightWLock	CAN	段落				IPC_VEHICLE_SETUP2.FlashLightWLock	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `IPC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.HeadlightsOffDelay	CAN	段落				IPC_VEHICLE_SETUP2.HeadlightsOffDelay	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `IPC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.LDW_Intensity	CAN	段落				IPC_VEHICLE_SETUP2.LDW_Intensity	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `IPC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.LDW_Sensibility	CAN	段落				IPC_VEHICLE_SETUP2.LDW_Sensibility	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `IPC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.RainSensorSensibility	CAN	段落;表格				IPC_VEHICLE_SETUP2.RainSensorSensibility		未解得(止於段1)	
+IPC_VEHICLE_SETUP2.TyrePressureUnit	CAN	段落				IPC_VEHICLE_SETUP2.TyrePressureUnit		未解得(止於段1)	
+IPC_VEHICLE_SETUP3.SoundHornLockUnlock	CAN	段落				IPC_VEHICLE_SETUP3.SoundHornLockUnlock		未解得(止於段1)	
+Impact	PROXI	表格						未解得(止於段1)	【A-VT21 抽名偽陽性】非 PROXI 參數名，不列為實質缺口
+Implementation	PROXI	表格						未解得(止於段1)	【A-VT21 抽名偽陽性】非 PROXI 參數名，不列為實質缺口
+InfoLTM_CmdIgnSts.Info	內部	表格						未解得(止於段1)	
+LDW_Intensity_Setting.Req	內部	段落						未解得(止於段1)	
+LDW_Sensibility_Setting.Req	內部	段落						未解得(止於段1)	
+LTM	PROXI	表格	PROXI;SR26_Default	PROXI/Revision Notes/r99c10(逐字:LTM);PROXI/Revision Notes/r128c10(逐字:LTM);PROXI/Revision Notes/r130c10(逐字:LTM)				PROXI路徑(R-P375b/c)	
+LTM_CmdIgnSts.Info	內部	段落						未解得(止於段1)	
+LTM_OperationalModeSts.Info	內部	段落						未解得(止於段1)	
+Language_Setting.Req	內部	段落						未解得(止於段1)	
+Maintenance_Mode_Enable.Req	內部	段落;表格						未解得(止於段1)	
+Minute1_Setting.Info	內部	段落						未解得(止於段1)	
+Minute1_Setting.Req	內部	段落						未解得(止於段1)	
+Minute2_Setting.Info	內部	段落						未解得(止於段1)	
+Minute2_Setting.Req	內部	段落						未解得(止於段1)	
+Model_Year	PROXI	段落;表格	PROXI	PROXI/Revision Notes/r91c7(逐字:Model_Year);PROXI/Revision Notes/r137c7(逐字:Model_Year);PROXI/Revision Notes/r340c7(逐字:Model_Year)	"PROXI/Format/r553c6/Parameter Name/規則1-5(鍵:model year)→""Model_Year"""			PROXI路徑(R-P375b/c)	
+Month1_Setting.Info	內部	段落						未解得(止於段1)	
+Month1_Setting.Req	內部	段落						未解得(止於段1)	
+Month2_Setting.Info	內部	段落						未解得(止於段1)	
+Month2_Setting.Req	內部	段落						未解得(止於段1)	
+NAV_Presence	PROXI	段落;表格	LID;PROXI;LID(擴充)	LID/Proxi & Configuration/r123c1(逐字:NAV_Presence);LID/Proxi & Configuration/r123c11(逐字:NAV_Presence);LID/Proxi & Configuration/r123c16(逐字:NAV_Presence)	"LID/Proxi & Configuration/r123c1/logical identifier/規則1-4(鍵:nav presence);PROXI/Format/r528c6/Parameter Name/規則1-5(鍵:nav presence)→""NAV_Presence"""			PROXI路徑(R-P375b/c)	
+NavigationRepetition.Info	內部	段落						未解得(止於段1)	
+Odo_Units Change	PROXI	段落			"PROXI/Format/r477c6/Parameter Name/規則1-5(鍵:odo units change)→""Odo_Units_Change"""	Odo_Units_Change		PROXI路徑(R-P375b/c)	PROXI `Format` r477c6：`Odo_Units_Change`
+Odo_Units_Change	PROXI	段落;表格	PROXI	PROXI/Revision Notes/r92c7(逐字:Odo_Units_Change);PROXI/Revision Notes/r341c7(逐字:Odo_Units_Change);PROXI/Format/r477c6(逐字:Odo_Units_Change)	"PROXI/Format/r477c6/Parameter Name/規則1-5(鍵:odo units change)→""Odo_Units_Change"""			PROXI路徑(R-P375b/c)	
+PAM_Configuration	PROXI	段落;表格	LID;PROXI	LID/Proxi & Configuration/r150c11(逐字:PAM_Configuration);LID/Proxi & Configuration/r150c16(逐字:PAM_Configuration);PROXI/Revision Notes/r95c7(逐字:PAM_Configuration)	"PROXI/Format/r516c6/Parameter Name/規則1-5(鍵:pam configuration)→""PAM_Configuration"""			PROXI路徑(R-P375b/c)	
+PROXI.First	CAN	表格				PROXI.First		未解得(止於段1)	
+Pam_AlertMode_Setting.Req	內部	段落						未解得(止於段1)	
+Pam_Chime_Volume_Front_Setting.Req	內部	段落						未解得(止於段1)	
+Pam_Chime_Volume_Rear_Setting.Req	內部	段落						未解得(止於段1)	
+Passive_Entry_Enable.Req	內部	段落						未解得(止於段1)	
+Passive_Entry_Menu	PROXI	段落;表格	PROXI	PROXI/Format/r575c6(逐字:Passive_Entry_Menu)	"PROXI/Format/r298c6/Parameter Name/規則1-5(鍵:passive entry)→""Passive_Entry"";PROXI/Format/r575c6/Parameter Name/規則1-5(鍵:passive entry)→""Passive_Entry_Menu"""			PROXI路徑(R-P375b/c)	
+PhoneRepetition.Info	內部	段落					FDCAN8:IPC_VEHICLE_SETUP	解得	
+PrivacyMode.Info	內部	段落					FDCAN8:TBM_SCHEDULE_FD_2	解得	
+RVC_Delay.Req	內部	段落;表格						未解得(止於段1)	
+RVC_Dynamic_Gridlines.Req	內部	段落;表格						未解得(止於段1)	
+Rain_Sensor	PROXI	段落;表格	PROXI	PROXI/Format/r276c6(逐字:Rain_Sensor)	"PROXI/Format/r276c6/Parameter Name/規則1-5(鍵:rain sensor)→""Rain_Sensor"""			PROXI路徑(R-P375b/c)	
+Rain_Sensor_Level_Setting.Req	內部	段落;表格						未解得(止於段1)	
+Rain_Sensor_Sensibility_Setting.Req	內部	段落;表格						未解得(止於段1)	
+Rear_View_Camera	PROXI	段落	PROXI	PROXI/Format/r401c6(逐字:Rear_View_Camera)	"PROXI/Format/r401c6/Parameter Name/規則1-5(鍵:rear view camera)→""Rear_View_Camera"""			PROXI路徑(R-P375b/c)	
+Remote_Door_Unlock _Menu	PROXI	段落			"PROXI/Format/r576c6/Parameter Name/規則1-5(鍵:remote door unlock)→""Remote_Door_Unlock_Menu"""	Remote_Door_Unlock_Menu		PROXI路徑(R-P375b/c)	PROXI `Format` r576c6：`Remote_Door_Unlock_Menu`
+Remote_Door_Unlock_Menu	PROXI	段落;表格	PROXI	PROXI/Format/r576c6(逐字:Remote_Door_Unlock_Menu)	"PROXI/Format/r576c6/Parameter Name/規則1-5(鍵:remote door unlock)→""Remote_Door_Unlock_Menu"""			PROXI路徑(R-P375b/c)	
+Remote_Door_Unlock_Setting.Req	內部	段落						未解得(止於段1)	
+Resolution	PROXI	表格	PROXI	PROXI/Format/r2c11(逐字:Resolution);PROXI/Help/r14c2(逐字:Resolution);PROXI/Help/r14c6(逐字:Resolution)				PROXI路徑(R-P375b/c)	
+RestoreApp.Info	內部	段落					FDCAN8:TBM_SCHEDULE_FD_2	解得	
+RestoreApp_Enable.Req	內部	段落						未解得(止於段1)	
+RestoreDefaultSetting.Info	內部	段落					FDCAN8:TBM_SCHEDULE_FD_2	解得	
+RestoreDefaultSetting_Enable.Req	內部	段落						未解得(止於段1)	
+SERVICE_SETUP.ClearPersonalData	CAN	段落	LID	LID/CAN Mapping/r381c6(逐字:SERVICE_SETUP.ClearPersonalData);LID/CAN Mapping/r381c16(逐字:SERVICE_SETUP.ClearPersonalData)		SERVICE_SETUP.ClearPersonalData	FDCAN8:TBM_SCHEDULE_FD_2	訊息名不符(R-13)	規格訊息 `SERVICE_SETUP`，段 3 之 SG_ 落於 TBM_SCHEDULE_FD_2
+SERVICE_SETUP.PrivacyMode	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r1398c6(逐字:SERVICE_SETUP.PrivacyMode);LID/CAN Mapping/r1398c11(逐字:SERVICE_SETUP.PrivacyMode);LID/CAN Mapping/r1398c16(逐字:SERVICE_SETUP.PrivacyMode)	LID/CAN Mapping/r1398c1/logical identifier/規則1-4(鍵:privacymode)	SERVICE_SETUP.PrivacyMode	FDCAN8:TBM_SCHEDULE_FD_2	訊息名不符(R-13)	規格訊息 `SERVICE_SETUP`，段 3 之 SG_ 落於 TBM_SCHEDULE_FD_2
+SERVICE_SETUP.RestoreApp	CAN	段落	LID	LID/CAN Mapping/r382c6(逐字:SERVICE_SETUP.RestoreApp);LID/CAN Mapping/r382c16(逐字:SERVICE_SETUP.RestoreApp)		SERVICE_SETUP.RestoreApp	FDCAN8:TBM_SCHEDULE_FD_2	訊息名不符(R-13)	規格訊息 `SERVICE_SETUP`，段 3 之 SG_ 落於 TBM_SCHEDULE_FD_2
+SERVICE_SETUP.RestoreDefaulSetting	CAN	段落				SERVICE_SETUP.RestoreDefaulSetting		未解得(止於段1)	
+SERVICE_SETUP.RestoreDefaultSetting	CAN	段落	LID	LID/CAN Mapping/r383c6(逐字:SERVICE_SETUP.RestoreDefaultSetting);LID/CAN Mapping/r383c16(逐字:SERVICE_SETUP.RestoreDefaultSetting)		SERVICE_SETUP.RestoreDefaultSetting	FDCAN8:TBM_SCHEDULE_FD_2	訊息名不符(R-13)	規格訊息 `SERVICE_SETUP`，段 3 之 SG_ 落於 TBM_SCHEDULE_FD_2
+SERVICE_SETUP.TelematicSetupACK	CAN	段落;表格				SERVICE_SETUP.TelematicSetupACK	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `SERVICE_SETUP`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+SERVICE_SETUP.TelematicSetupAck	CAN	段落				SERVICE_SETUP.TelematicSetupAck		未解得(止於段1)	
+STATUS_CCAN3.VehicleSpeedVSOSig	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r2329c16(逐字:STATUS_CCAN3.VehicleSpeedVSOSig);LID/CAN Mapping/r1736c3(逐字:VehicleSpeedVSOSig);LID/CAN Mapping/r2321c1(逐字:VehicleSpeedVSOSig)	LID/CAN Mapping/r1736c3/object text/規則1-4(鍵:vehiclespeedvsosig);LID/CAN Mapping/r2321c1/logical identifier/規則1-4(鍵:vehiclespeedvsosig)	STATUS_CCAN3.VehicleSpeedVSOSig	BHCAN2:STATUS_CCAN3;FDCAN8:BRAKE_FD_2	解得	R-VT12(a)：本規格同載兩名，為兩條弧線各自解析；兩弧，主旁待 W-7（SYSAD）
+STATUS_CCAN3.VehicleSpeedVSOSigFailSts	CAN	段落				STATUS_CCAN3.VehicleSpeedVSOSigFailSts		未解得(止於段1)	
+Sdw_Chime_Volume_Setting.Req	內部	段落						未解得(止於段1)	
+Sdw_Setting.Req	內部	段落						未解得(止於段1)	
+Server_App.GUI	內部	段落						未解得(止於段1)	
+Side_Distance_Warning	PROXI	段落;表格	LID;PROXI;LID(擴充)	LID/Proxi & Configuration/r173c11(逐字:Side_Distance_Warning);LID/Proxi & Configuration/r173c16(逐字:Side_Distance_Warning);LID/Proxi & Configuration/r176c1(逐字:Side_Distance_Warning)	"LID/Proxi & Configuration/r176c1/logical identifier/規則1-4(鍵:side distance warning);HMI_Settings/Settings/r315B/設定項名/規則1-5(鍵:side distance warning)→""Side Distance Warning"";PROXI/Format/r406c6/Parameter Name/規則1-5(鍵:side distance warning)→""Side_Distance_Warning"""			PROXI路徑(R-P375b/c)	"【R-P375(b) 雙路徑】UI：""Side Distance Warning""（HMI Settings r315B）／PROXI：`Side_Distance_Warning`（Format r406c6） —— Procedure 用 UI、Pre-Condition 用 PROXI"
+Sound_Horn_Lock_Unlock_Setting.Req	內部	段落						未解得(止於段1)	
+Sound_Horn_Remote_Start _Menu	PROXI	段落			"PROXI/Format/r577c6/Parameter Name/規則1-5(鍵:sound horn remote start)→""Sound_Horn_Remote_Start_Menu"""	Sound_Horn_Remote_Start_Menu		PROXI路徑(R-P375b/c)	PROXI `Format` r577c6：`Sound_Horn_Remote_Start_Menu`
+Sound_Horn_Remote_Start_Menu	PROXI	表格	PROXI	PROXI/Format/r577c6(逐字:Sound_Horn_Remote_Start_Menu)	"PROXI/Format/r577c6/Parameter Name/規則1-5(鍵:sound horn remote start)→""Sound_Horn_Remote_Start_Menu"""			PROXI路徑(R-P375b/c)	
+Speed_Lock_Door_Enable.Req	內部	段落						未解得(止於段1)	
+TBM	PROXI	表格	PROXI	PROXI/Revision Notes/r240c10(逐字:TBM);PROXI/Revision Notes/r357c10(逐字:TBM);PROXI/Revision Notes/r394c10(逐字:TBM)				PROXI路徑(R-P375b/c)	
+TBM_CmdIgnSts.Info	內部	段落						未解得(止於段1)	
+TBM_OperationalModeSts.Info	內部	段落						未解得(止於段1)	
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r342c16(逐字:TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq);LID/BSEGMENT Specific Signals/r4c4(逐字:TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq);LID/332BEV Specific Signals/r4c4(逐字:TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq)	LID/CAN Mapping/r342c1/logical identifier/規則1-4(鍵:clearpersonaldatareq)	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_SERVICE_SETUP`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_SERVICE_SETUP.PrivacyModeReq	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r1399c1(逐字:PrivacyModeReq)	LID/CAN Mapping/r1399c1/logical identifier/規則1-4(鍵:privacymodereq)	TELEMATIC_SERVICE_SETUP.PrivacyModeReq	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_SERVICE_SETUP`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_SERVICE_SETUP.RestoreAppReq	CAN	段落				TELEMATIC_SERVICE_SETUP.RestoreAppReq	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_SERVICE_SETUP`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_SERVICE_SETUP.RestoreDefaultSettimgReq	CAN	段落				TELEMATIC_SERVICE_SETUP.RestoreDefaultSettimgReq		未解得(止於段1)	
+TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r1583c16(逐字:TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq);LID/CAN Mapping/r1583c1(逐字:RestoreDefaultSettingReq)	LID/CAN Mapping/r1583c1/logical identifier/規則1-4(鍵:restoredefaultsettingreq)	TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_SERVICE_SETUP`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r72c1(逐字:AmbientLightingLevel_Req)	LID/CAN Mapping/r71c1/logical identifier/規則1-4(鍵:ambientlightinglevel);LID/CAN Mapping/r72c1/logical identifier/規則1-4(鍵:ambientlightinglevel)	TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req		未解得(止於段2)	
+TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req	CAN	段落;表格				TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.BSDEnable_Req	CAN	段落;表格				TELEMATIC_VEHICLE_SETUP.BSDEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req	CAN	段落	LID(擴充)		LID/CAN Mapping/r387c1/logical identifier/規則1-4(鍵:consumptionunit);LID/CAN Mapping/r388c1/logical identifier/規則1-4(鍵:consumptionunit)	TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req		未解得(止於段2)	
+TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.DRLEnable_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.DRLEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req	CAN	段落	LID(擴充)		LID/CAN Mapping/r459c1/logical identifier/規則1-4(鍵:distanceunit)	TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req		未解得(止於段2)	
+TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req	CAN	段落;表格				TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req	CAN	段落	LID(擴充)		LID/CAN Mapping/r751c1/logical identifier/規則1-4(鍵:externallightsensorlevel)	TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req		未解得(止於段2)	
+TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.HourMode_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.HourMode_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req	CAN	段落	LID;LID(擴充)	LID/CAN Mapping/r1112c16(逐字:TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req);LID/CAN Mapping/r1112c1(逐字:LanguageSelection_Req)	LID/CAN Mapping/r1111c1/logical identifier/規則1-4(鍵:languageselection);LID/CAN Mapping/r1112c1/logical identifier/規則1-4(鍵:languageselection)	TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req		未解得(止於段1)	
+TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req	CAN	段落;表格				TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock	CAN	段落				TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock	FDCAN8:IPC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_VEHICLE_SETUP`，段 3 之 SG_ 落於 IPC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req	CAN	段落	LID(擴充)		LID/CAN Mapping/r1669c1/logical identifier/規則1-4(鍵:sdwchimevolume)	TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req		未解得(止於段2)	
+TELEMATIC_VEHICLE_SETUP.Sdw_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.Sdw_Req		未解得(止於段1)	
+TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req	CAN	段落	LID(擴充)		LID/CAN Mapping/r2070c1/logical identifier/規則1-4(鍵:temperatureunit)	TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req		未解得(止於段2)	
+TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.Backup_Cam_Delay_Req	CAN	段落;表格				TELEMATIC_VEHICLE_SETUP2.Backup_Cam_Delay_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req	CAN	段落;表格				TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	訊息名不符(R-13)	規格訊息 `TELEMATIC_VEHICLE_SETUP2`，段 3 之 SG_ 落於 TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.RainSensorSensibility_Req	CAN	段落;表格				TELEMATIC_VEHICLE_SETUP2.RainSensorSensibility_Req		未解得(止於段1)	
+TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req		未解得(止於段1)	
+TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req	CAN	段落				TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req		未解得(止於段1)	
+TLM_Display.GUI	內部	段落						未解得(止於段1)	
+TLM_Vehicle_Setup_Menu.Info	內部	段落						未解得(止於段1)	
+Temperature_Unit_Setting.Req	內部	段落						未解得(止於段1)	
+Time_Date_Setting_Feedback.Info	內部	段落						未解得(止於段1)	
+Twilight_Sensor	PROXI	段落;表格	PROXI	PROXI/Format/r471c6(逐字:Twilight_Sensor)	"PROXI/Format/r471c6/Parameter Name/規則1-5(鍵:twilight sensor)→""Twilight_Sensor"""			PROXI路徑(R-P375b/c)	
+Tyre_Pressure_Unit_Menu	PROXI	段落;表格	PROXI	PROXI/Format/r583c6(逐字:Tyre_Pressure_Unit_Menu)	"PROXI/Format/r583c6/Parameter Name/規則1-5(鍵:tyre pressure unit)→""Tyre_Pressure_Unit_Menu"""			PROXI路徑(R-P375b/c)	
+Tyre_Pressure_Unit_Setting.Req	內部	段落						未解得(止於段1)	
+Unit	PROXI	表格	PROXI	PROXI/Format/r2c12(逐字:Unit);PROXI/Help/r15c2(逐字:Unit);PROXI/Help/r15c6(逐字:Unit)				PROXI路徑(R-P375b/c)	
+Units_Setting.Req	內部	段落;表格						未解得(止於段1)	
+Year1_Setting.Info	內部	段落						未解得(止於段1)	
+Year1_Setting.Req	內部	段落						未解得(止於段1)	
+Year2_Setting.Info	內部	段落						未解得(止於段1)	
+Year2_Setting.Req	內部	段落						未解得(止於段1)	
+Year3_Setting.Info	內部	段落						未解得(止於段1)	
+Year3_Setting.Req	內部	段落						未解得(止於段1)	
+Year4_Setting.Info	內部	段落						未解得(止於段1)	
+Year4_Setting.Req	內部	段落						未解得(止於段1)	
