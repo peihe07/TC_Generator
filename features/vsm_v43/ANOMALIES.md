@@ -251,7 +251,7 @@ disposition is Tier 2。
   是本執行層於 02 包重跑時**肉眼看見字面標記**才發現。
   **建議**：凡以正則讀 OOXML 者，抽完即斷言「輸出不含 `</?w:` 」，一行即可。
 
-## A-VT16 — `VehicleSpeedVSOSig` 之兩條規格弧線疑被 R-VT9(b) 合併為一（PENDING）
+## A-VT16 — `VehicleSpeedVSOSig` 之兩條規格弧線疑被 R-VT9(b) 合併為一（RESOLVED）
 
 - **實測**：`BRAKE1.VehicleSpeedVSOSig` 與 `STATUS_CCAN3.VehicleSpeedVSOSig`
   **兩者皆存在於 R4 規格之文字層**（`v43_spec` 第 398、339 行）與功能圖
@@ -267,9 +267,12 @@ disposition is Tier 2。
 - **裁決（R-VT12(a)，2026-09-01）**：但書成立 —— 規格同載兩名者為兩條弧線，各自解析，
   **不得以一方為他方旁證**；R-VT9(b) 之「另一本記旁證」僅適用於規格只載一名之情形。
   v3 已依此改記兩列備註為「兩弧，主旁待 W-7」。
-- **主旁之判定仍未決（維持 PENDING）**：R-VT12(b) 令 HU（LTM）所在匯流排自 SYSAD 實測後定。
-  **W-7 實測結果為「SYSAD 未載」**（見 A-VT19），故主旁未定，兩弧皆記「解得」不標主旁。
-  本條待 §K 之裁決或另一來源（SYS2／CAN Signal Mapping）到位後方能結。
+- **主旁已定（RESOLVED，R-VT13(c)）**：解在 LID `Atlantis` 欄組而非 SYSAD。
+  **04 包 W-5‴ 複驗**：`STATUS_CCAN3.VehicleSpeedVSOSig` 於 LID Atlantis 欄命中兩處
+  （`CAN Mapping` r1736、r2329）；**`BRAKE1.VehicleSpeedVSOSig` 於 Atlantis 欄命中 0 處** ——
+  `BRAKE_FD_2.VehicleSpeedVSOSig` 只見於 `Atlantis High` 欄（r2321，CAN=`FD`）。
+  即 ATL-Mi 之 LTM 觀察面確為 `STATUS_CCAN3.*`（LTM 觀察弧），`BRAKE1.*` 為上游弧。
+  v4 兩列備註已依 04 包 W-5‴ 第 8 項改記。**RESOLVED**。
 
 ## A-VT17 — E16 之母體於 W-5′ 後改變，兩種比較基準並列（RESOLVED）
 
@@ -291,7 +294,7 @@ disposition is Tier 2。
   前者必使母體變大；二者互衝（A-VT17 之根因）。與 A-VL4(a)（E17 跨線計數）同族：被數對象會動而用絕對數。
 - **處置**：R-VT12(c)（同母體差／比率）。A-VT16 依 R-VT12(a)(b) 處置（兩弧不合併；HU 匯流排依 SYSAD），於 SYSAD 實測後轉 RESOLVED。
 
-## A-VT19 — SYSAD（SYS3 v1.0）不含車輛網路拓撲，無從定 LTM 所在匯流排（PENDING，列 §K）
+## A-VT19 — SYSAD（SYS3 v1.0）不含車輛網路拓撲，無從定 LTM 所在匯流排（RESOLVED）
 
 - **實測**（2026-09-01，W-7，限定範圍搜尋，未通讀）：
   `sources/raw/vf665_sysad_sys3/…SYSAD_v1.0.docx` → `word/document.xml`，
@@ -319,10 +322,11 @@ disposition is Tier 2。
   內容為 `MCPU` 框內之 `1st Party Apps／CarPropertyManager／CarPropertyService／VHAL` 與框外 `VCPU`，
   **無任何匯流排名稱或車輛 ECU 節點**。
 - **依 03 包 W-7 之指示**：SYSAD 未載 → **列 §K 交 Pei**，其餘續行。E23 = **0 段**（判準所定之路徑）。
-- **提請裁決**：LTM 所在匯流排改自何處取 —— SYS2 之 CAN Signal Mapping（SYSAD 自己兩處指向該處），
-  或逕以 LID `CAN` 欄之 `Atlantis High` 欄組為準？後者即 R-VT12(b) 所稱「LID 欄組適用性一題之重現」。
+- **解除（R-VT13(c)，2026-09-01）**：K-1 結案。答案在 **LID `CAN Mapping` 之 `Atlantis`（P–T）欄組**，
+  不在 SYSAD。R-VT12(b) 之「依 SYSAD」**作廢**；HU 匯流排依 LID Atlantis 欄之 `CAN` 值。
+  本包對 SYSAD 之實測（非拓撲文件）**結論不變且已獲採**，只是問錯了文件（A-VT22 為分析層自誤）。**RESOLVED**。
 
-## A-VT20 — 三名 PROXI 參數需第六條規則（重音 `ù` → `u`）方能命中（PENDING，回報不自創）
+## A-VT20 — 三名 PROXI 參數需第六條規則（重音 `ù` → `u`）方能命中（RESOLVED）
 
 - **實測**（W-5″ 第 4 項之「該命中卻不中」表）：下列三名以五規則正規化後不中，
   而 forms/ 表內存在**僅差一個重音字元**之值：
@@ -335,7 +339,11 @@ disposition is Tier 2。
   三列於 v3 維持 `未解得(止於段1)`，**不擅自判等同**。
 - **旁證**：規格自身即拼法不一 —— 同一參數在不同段落寫作 `Horn_Chirp_Menu` 與 `Horn_Chirp_Menù`
   （上繳 02 §二-1 已列五組拼法不一）。此為 **DR-VT2** 之新增佐證。
-- **提請裁決**：是否增訂第六規則（Unicode NFKD 去重音記號），或改由 DR-VT2 向上游要求統一拼法。
+- **裁決（R-VT13(e)，2026-09-01）**：第六規則（Unicode NFKD 去重音）**準**，命中者備註必記
+  「重音正規化」並列 DR-VT2 佐證；**不推廣為其他字符**。
+- **04 包 W-5‴ 複驗**：三名全數命中 ——
+  `DRL_Menù_Enable` → PROXI路徑、`Horn_Chirp_Menù` → PROXI路徑、
+  `Greeting_Lights_Menù` → **UI+PROXI 雙路徑**。v4 三列備註皆記「重音正規化」。**RESOLVED**。
 
 ## A-VT21 — 抽名之六個偽陽性名（RESOLVED，執行層標記）
 
@@ -347,6 +355,62 @@ disposition is Tier 2。
 - **處置**：v3 之該六列保留並於備註標明為偽陽性（不刪，以免母體數字在包間跳動而無跡可循）。
   **不重抽名**（03 包明令「在 v2 基礎上，不重抽名」）。
 - **提請下包**：抽名式加排除清單或最小長度／底線要求後重抽，屆時 PROXI 母體應由 49 降為 43。
+- **04 包補充**：另發現四名同型偽陽性（`LTM`／`TBM`／`Unit`／`Resolution`），見 **A-VT23**；
+  併計後 PROXI 之抽名偽陽性為 **10 名**，母體應由 49 降為 **39**。
+
+## A-VT22 —— 分析層之誤：對 ATL-Mi 線承接 Atlantis High 之段 1 欄組與段 3 DBC；又將匯流排一題錯指 SYSAD（RESOLVED → R-VT13）
+
+- **登記日**：2026-09-01；**分析層之誤**（同 vsm_v42 A-VL10，實測見彼）。
+- **事實**：R-VT2(b) 承接 PM R-P368 之 Atlantis High 綁定；末段已寫下 EE = ATL-Mi 1280/1280 卻標「待 recon」。
+  其後 R-VT12(b) 更把匯流排一題指向 SYSAD（「解法在 SYSAD 而非 LID」），而答案就在 LID `CAN Mapping` r2 之 `Atlantis` 欄組。
+  執行層 W-7 依令讀 SYSAD，證其為 AOSP 軟體架構文件（A-VT19）—— 一次白跑。
+- **後果**：A-VT12／§K 29 列、DR-VT3 原文、K-1、A-VT16、A-VT19 皆源於此。DR-VT3 若已送出，上游會收到一個錯問。
+- **處置**：R-VT13（Atlantis 欄組；段 3 待 DR-VT5；K-1／A-VT16／A-VT19 結案；DR-VT3 重寫暫持）。
+
+## A-VT23 — 執行層之誤：v2／v3 之 `PROXI路徑` 判準含 catch-all，四名為偽陽性（RESOLVED）
+
+- **登記日**：2026-09-01（04 包 W-5‴ 執行中自報）；**執行層之誤**。
+- **實測**：上繳 02 之判定式（`w5p2.py`，PROXI 類）末支為
+  `elif tags: res = "PROXI路徑"` —— **只要該名在五個入口檔之任一檔逐字命中任一儲存格**，
+  即判為 PROXI 路徑，**不要求命中 PROXI `Format` 之 `Parameter Name` 欄**。
+  v3 沿用該結果未重判。
+- **後果**：四名因此被誤判為 PROXI路徑 —— `LTM`、`TBM`、`Unit`、`Resolution`。
+  四者皆非 PROXI 參數，是抽名把規格內文之普通字詞收進來（與 A-VT21 同型）。
+  故 **v2／v3 所報之 `PROXI路徑` 39 列中有 4 列不成立，實為 35**。
+- **修正（v4）**：判準收緊為「命中 PROXI `Format` 之 `Parameter Name` 欄，或 HMI Settings 之設定項名」。
+  四名於 v4 落回 `未解得(止於段1)`，並逐列標記本條。
+- **不擅自設排除旗標**：`排除(A-VT21)` 欄仍只標原六名（04 包 W-5‴ 第 1 項所指者）；
+  本四名之併入待裁。
+- **自評**：與 A-VT15 同類 —— 判準寫寬了，而**數字往好的方向偏，所以沒人會來抓**。
+  上繳 02／03 之 `PROXI路徑` 是被高報的。凡「命中即算」之末支，都該問一句「命中什麼」。
+
+## A-VT24 — E25 之掃描條件差異已定位：LID 儲存格內含多個訊號名（RESOLVED）
+
+- **背景**：04 包 §五 E25 判準「段 1 Atlantis 欄逐字命中（CAN 形）**≥ 21**（分析層實測下界；
+  < 21 即回報掃描條件差異）」。
+- **實測與歸因**（本包逐條重現分析層之四個數字）：
+
+  | 掃描條件 | CAN 形命中 | R-13 命中 |
+  |---|---|---|
+  | Atlantis，僅以**換行**切分儲存格、逐字 | **20** | 6 |
+  | Atlantis，**子串包含**（非逐字） | **21** | 6 |
+  | Atlantis，**欄內多值切分**（換行 ＋ 儲存格內之 `MESSAGE.Signal` 詞元）、逐字 | **21** | 6 |
+  | Atlantis High，僅 `CAN Mapping` Z 欄、多值切分 | **10** | **0** |
+  | Atlantis High，全分頁（含 `Proxi & Configuration` P 欄兼用）、多值切分 | 9→10 | 2 |
+
+- **根因**：`CAN Mapping` **r1736** 之 Atlantis Signal Name 儲存格為
+  `STATUS_CCAN3.VehicleSpeedVSOSig   'STATUS_CCAN3.VehicleSpeedVSOSigFailSts` ——
+  **一格兩名，以空白與一個單引號分隔，不是換行**。只切換行者會漏掉第二名。
+- **本包採用之掃描條件**：**欄內多值切分 ＋ 逐字**（換行切分後，另以
+  `\b[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\b` 抽出格內全部訊號名詞元）。
+  該條件下**四個數字全部重現**分析層之值：Atlantis 21／Atlantis High 10／R-13 Atlantis 6／
+  R-13 Atlantis High 0／段 2 待解 7。
+- **為何不採「子串包含」**：子串會把 `X.Foo` 誤配到 `X.FooBar`，是**前綴假陽性**之來源；
+  多值切分得到同樣的 21 而無此風險。**此一技術選擇改變了 E25 之結論（20 → 21），
+  依 FO 之第 0 節 Tier 0 末句即為 Tier 2**，故三種讀法全列於此，交裁。
+- **Atlantis High 之欄組界線**：`Proxi & Configuration` 分頁只有一個 `Atlantis & Atlantis High`
+  合併欄組（P），若把它同時計入兩欄組，R-13 之 Atlantis High 命中會由 0 變 2。
+  分析層之 0 對應「Atlantis High 僅取 `CAN Mapping` Z 欄」。本包從之，並記明此界線。
 
 ---
 

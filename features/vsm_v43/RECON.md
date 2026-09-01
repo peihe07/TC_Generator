@@ -93,16 +93,19 @@ Category 第 10 欄、Description 第 3 欄）Functional 318 條、去重 **308*
 `word/document.xml` 段落抽取得 **1781** 個非空段落。
 zip members **25**，其中媒體／內嵌物件 **1** 件：`word/media/image1.wmf`。
 
-## 7. 未決（2026-09-01 依下放包 02 更新）
+## 7. 未決（2026-09-01 依下放包 04 更新）
 
 | 項 | 現況 | 依據 |
 |---|---|---|
-| Layer 2 test set 母體 | 待 037 | R-VT4／DR-VT1 |
-| `spec_reference_template` | null，待 P3 | R-VT8(c) |
-| R-P368 段 1 之 LID 欄組適用性 | **消滅** —— 段 1 入口已依 R-VT6／R-P375(a) 擴為 forms/ 七檔，非欄組二擇一 | R-VT6(a) |
-| B-1 型衝突 | **0** —— 原 29 列依 R-VT9 重分類：訊息名不符(R-13) **28**（DR-VT3）＋ 型態三 1 列經 LID `CAN` 欄解得。§K 空 | R-VT9(a)(b) |
-| E9 基線 | **56**（Functional 507 列內正規化後非空相異值；`verified by in-vehicle testing` 47） | R-VT10(b) |
-| 「查無(R-G13)」標籤 | **撤除** —— 改記「未解得(止於段1)」；`查無` 僅於三要件皆滿足且登 `forms/LOOKUP_MISSES.md` 時用 | R-VT10(c) |
-| 訊號母體 | 181 → **230**（PROXI 2 → 49）；仍為**下界** | R-VT10(d) |
-| `word/media/image1.wmf` | **已轉圖並看過** → `data/spec_r4_image1.png`（794×1123）。內容為 R4 之**功能圖**：LTM 為中心，列出對 BCM／TBM／各 VF 節點之全部 CAN 弧線與內部訊號名 | R-VT10(e) |
-| docx 文字抽取 | 上繳 01 之抽取式有誤（誤配 `<w:tc>` 等），已修正；名數 181 → 179（三式）→ 230（含表格與引號式 PROXI） | A-VT15 |
+| **段 1 欄組綁定** | **已定**：本線 EE = ATL-Mi（1280/1280），段 1 一律取 LID `CAN Mapping` 之 **`Atlantis`（P–T）**欄組；`Atlantis High`（Z–AD）只作旁證 | R-VT13(a) |
+| **K-1（LTM 匯流排）** | **結案**：解在 LID Atlantis 欄，非 SYSAD。`STATUS_CCAN3.*` 為 LTM 觀察弧（Atlantis 欄命中 2 處）、`BRAKE1.*` 為上游弧（Atlantis 欄命中 **0** 處）。R-VT12(b)「依 SYSAD」作廢 | R-VT13(c)；A-VT16／A-VT19 RESOLVED |
+| **段 3（DBC）** | **待件**：forms/ 之 R1 DBC 為 Atlantis High 之件；本線需 **ATL-Mi CAN-B／CAN-C DBC** → **DR-VT5**。到件前 CAN 訊號一律 `段3待ATL-Mi DBC`，**不得記「解得」、不得寫 `$…$`** | R-VT13(b) |
+| DR-VT3（28 列訊息名不符） | **暫持**：Atlantis 欄命中 6 列已撤除 R-13（另 1 列亦撤），**餘 21 列**待 DR-VT5 到件後重驗 | R-VT13(d) |
+| 內部訊號 | **83 名止於段 1，四輪擴充零變動**（規則→欄→檔→欄組）。唯一出路為 **DR-VT4**（已升為與 DR-VT1 同級） | R-VT14(d) |
+| 第六規則（重音） | **已採**：Unicode NFKD 去重音，命中三名（`DRL_Menù_Enable`／`Greeting_Lights_Menù`／`Horn_Chirp_Menù`），備註記「重音正規化」；不推廣其他字符 | R-VT13(e) |
+| 結果值域 | 增 `UI+PROXI 雙路徑` 與 `段3待ATL-Mi DBC`，共九值 | R-VT14(a) |
+| HMI Settings 候選集 | `Technical Reference (CFTS/VF)` 含 `VF665` **字面僅 3 列**；含 `665`（`VF230/665` 等 7 種寫法）**247 列** —— 兩讀法並列待裁 | R-VT14(b)；上繳 04 §E29 |
+| 台帳重生 | 改由 **Pei 提交前一次**（R-VL13(a) 同法）；R-VT8(a)「由 vsm_v42 重生」作廢 | R-VT14(c) |
+| E9 基線／`查無(R-G13)` 標籤 | 56／仍不用（三要件未滿足，`LOOKUP_MISSES.md` 未寫） | R-VT10(b)(c) |
+| `word/media/image1.wmf` | 已轉圖並看過（`data/spec_r4_image1.png`），R4 功能圖 | R-VT10(e) |
+| Layer 2 母體／`spec_reference_template` | 待 037（DR-VT1）／待 P3 | R-VT4／R-VT8(c) |

@@ -1,0 +1,66 @@
+規格原名	類別	欄組	LID 分頁	列	Signal Name	CAN 欄值
+Cluster_Display_Type	PROXI	Atlantis	Proxi & Configuration	r39	Cluster_Display_Type	PROXI
+Country_Code	PROXI	Atlantis	Proxi & Configuration	r250	Country_Code	PROXI
+Forward_Collision_Mitigation	PROXI	Atlantis	Proxi & Configuration	r285	Forward_Collision_Mitigation	PROXI
+Fuel_Type	PROXI	Atlantis	Proxi & Configuration	r89	Fuel_Type	PROXI
+Geolocation_Menu	PROXI	Atlantis	Proxi & Configuration	r91	Geolocation_Menu	PROXI
+IPC_VEHICLE_SETUP.AmbientLightingLevel	CAN	Atlantis	CAN Mapping	r71	IPC_VEHICLE_SETUP.AmbientLightingLevel	(空)
+IPC_VEHICLE_SETUP.AmbientLightingLevel	CAN	Atlantis High	CAN Mapping	r71	IPC_VEHICLE_SETUP.AmbientLightingLevel	(空)
+IPC_VEHICLE_SETUP.ConsumptionUnit	CAN	Atlantis	CAN Mapping	r387	IPC_VEHICLE_SETUP.ConsumptionUnit	(空)
+IPC_VEHICLE_SETUP.ConsumptionUnit	CAN	Atlantis High	CAN Mapping	r387	IPC_VEHICLE_SETUP.ConsumptionUnit	CAN-B
+IPC_VEHICLE_SETUP.DistanceUnit	CAN	Atlantis	CAN Mapping	r459	IPC_VEHICLE_SETUP.DistanceUnit	(空)
+IPC_VEHICLE_SETUP.DistanceUnit	CAN	Atlantis	CAN Mapping	r1737	IPC_VEHICLE_SETUP.DistanceUnit	(空)
+IPC_VEHICLE_SETUP.DistanceUnit	CAN	Atlantis	CAN Mapping	r2206	IPC_VEHICLE_SETUP.DistanceUnit	(空)
+IPC_VEHICLE_SETUP.DistanceUnit	CAN	Atlantis High	CAN Mapping	r459	IPC_VEHICLE_SETUP.DistanceUnit (see Usage Comment)	FD
+IPC_VEHICLE_SETUP.ExternalLightSensorLevel	CAN	Atlantis	CAN Mapping	r751	IPC_VEHICLE_SETUP.ExternalLightSensorLevel	(空)
+IPC_VEHICLE_SETUP.ExternalLightSensorLevel	CAN	Atlantis High	CAN Mapping	r751	IPC_VEHICLE_SETUP.ExternalLightSensorLevel	(空)
+IPC_VEHICLE_SETUP.HourMode	CAN	Atlantis	CAN Mapping	r407	IPC_VEHICLE_SETUP.HourMode	(空)
+IPC_VEHICLE_SETUP.LanguageSelection	CAN	Atlantis	CAN Mapping	r1111	IPC_VEHICLE_SETUP.LanguageSelection	(空)
+IPC_VEHICLE_SETUP.LanguageSelection	CAN	Atlantis High	CAN Mapping	r1111	IPC_VEHICLE_SETUP.LanguageSelection	CAN-B
+IPC_VEHICLE_SETUP.PamAlertMode	CAN	Atlantis	CAN Mapping	r1293	IPC_VEHICLE_SETUP.PamAlertMode	(空)
+IPC_VEHICLE_SETUP.PamAlertMode	CAN	Atlantis High	CAN Mapping	r1293	IPC_VEHICLE_SETUP.PamAlertMode	CAN-B
+IPC_VEHICLE_SETUP.PamChimeVolumeFront	CAN	Atlantis	CAN Mapping	r1301	IPC_VEHICLE_SETUP.PamChimeVolumeFront	(空)
+IPC_VEHICLE_SETUP.PamChimeVolumeRear	CAN	Atlantis	CAN Mapping	r1302	IPC_VEHICLE_SETUP.PamChimeVolumeRear	(空)
+IPC_VEHICLE_SETUP.Sdw	CAN	Atlantis	CAN Mapping	r1660	IPC_VEHICLE_SETUP.Sdw	(空)
+IPC_VEHICLE_SETUP.Sdw	CAN	Atlantis High	CAN Mapping	r1660	IPC_VEHICLE_SETUP.Sdw	CAN-B
+IPC_VEHICLE_SETUP.SdwChimeVolume	CAN	Atlantis	CAN Mapping	r1669	IPC_VEHICLE_SETUP.SdwChimeVolume	(空)
+IPC_VEHICLE_SETUP.SdwChimeVolume	CAN	Atlantis High	CAN Mapping	r1669	IPC_VEHICLE_SETUP.SdwChimeVolume	CAN-B
+IPC_VEHICLE_SETUP.TemperatureUnit	CAN	Atlantis	CAN Mapping	r2070	IPC_VEHICLE_SETUP.TemperatureUnit	(空)
+NAV_Presence	PROXI	Atlantis	Proxi & Configuration	r123	NAV_Presence	PROXI
+PAM_Configuration	PROXI	Atlantis	Proxi & Configuration	r150	PAM_Configuration	PROXI
+Rear_View_Camera	PROXI	Atlantis	Proxi & Configuration	r170	Rear_View_Camera	"Atl
+
+Atl High
+PROXI"
+SERVICE_SETUP.ClearPersonalData	CAN	Atlantis	CAN Mapping	r381	SERVICE_SETUP.ClearPersonalData	(空)
+SERVICE_SETUP.PrivacyMode	CAN	Atlantis	CAN Mapping	r1398	SERVICE_SETUP.PrivacyMode	CAN-B
+SERVICE_SETUP.PrivacyMode	CAN	Atlantis	BSEGMENT Specific Signals	r5	SERVICE_SETUP.PrivacyMode	CAN-B
+SERVICE_SETUP.PrivacyMode	CAN	Atlantis	332BEV Specific Signals	r5	SERVICE_SETUP.PrivacyMode	CAN-B
+SERVICE_SETUP.PrivacyMode	CAN	Atlantis	250MCA Specific Signals	r5	SERVICE_SETUP.PrivacyMode	CAN-B
+SERVICE_SETUP.PrivacyMode	CAN	Atlantis	965 Specific Signals	r5	SERVICE_SETUP.PrivacyMode	CAN-B
+SERVICE_SETUP.PrivacyMode	CAN	Atlantis	ALFAMCA Specific Signals	r5	SERVICE_SETUP.PrivacyMode	CAN-B
+SERVICE_SETUP.PrivacyMode	CAN	Atlantis	637MCA Specific Signals	r5	SERVICE_SETUP.PrivacyMode	CAN-B
+SERVICE_SETUP.RestoreApp	CAN	Atlantis	CAN Mapping	r382	SERVICE_SETUP.RestoreApp	(空)
+SERVICE_SETUP.RestoreDefaultSetting	CAN	Atlantis	CAN Mapping	r383	SERVICE_SETUP.RestoreDefaultSetting	(空)
+STATUS_CCAN3.VehicleSpeedVSOSig	CAN	Atlantis	CAN Mapping	r1736	STATUS_CCAN3.VehicleSpeedVSOSig   'STATUS_CCAN3.VehicleSpeedVSOSigFailSts	(空)
+STATUS_CCAN3.VehicleSpeedVSOSig	CAN	Atlantis	CAN Mapping	r2329	STATUS_CCAN3.VehicleSpeedVSOSig	(空)
+STATUS_CCAN3.VehicleSpeedVSOSig	CAN	Atlantis High	CAN Mapping	r1736	STATUS_CCAN3.VehicleSpeedVSOSig   'STATUS_CCAN3.VehicleSpeedVSOSigFailSts	"CAN-B
+
+
+FD"
+STATUS_CCAN3.VehicleSpeedVSOSigFailSts	CAN	Atlantis	CAN Mapping	r1736	STATUS_CCAN3.VehicleSpeedVSOSig   'STATUS_CCAN3.VehicleSpeedVSOSigFailSts	(空)
+STATUS_CCAN3.VehicleSpeedVSOSigFailSts	CAN	Atlantis High	CAN Mapping	r1736	STATUS_CCAN3.VehicleSpeedVSOSig   'STATUS_CCAN3.VehicleSpeedVSOSigFailSts	"CAN-B
+
+
+FD"
+Side_Distance_Warning	PROXI	Atlantis	Proxi & Configuration	r173	Side_Distance_Warning	PROXI
+Side_Distance_Warning	PROXI	Atlantis	Proxi & Configuration	r176	Side_Distance_Warning	PROXI
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN	Atlantis	CAN Mapping	r342	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	(空)
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN	Atlantis	BSEGMENT Specific Signals	r4	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN-B
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN	Atlantis	332BEV Specific Signals	r4	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN-B
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN	Atlantis	250MCA Specific Signals	r4	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN-B
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN	Atlantis	965 Specific Signals	r4	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN-B
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN	Atlantis	ALFAMCA Specific Signals	r4	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN-B
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN	Atlantis	637MCA Specific Signals	r4	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN-B
+TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	CAN	Atlantis	CAN Mapping	r1583	TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	(空)
+TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req	CAN	Atlantis	CAN Mapping	r1112	TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req	(空)
