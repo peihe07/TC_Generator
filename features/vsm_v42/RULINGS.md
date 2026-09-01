@@ -68,6 +68,10 @@ SYSRA 之 EE Architecture 全為 ATL-Mi；LID v1_78 另有 `637MCA Specific Sign
 > 上段「待查」之欄組二擇一問題因之消滅，處置見 R-VL6(c)。
 > 分析層於落 R-VL2 時未讀至 R-P375 即引 R-P368，記 A-VL2。
 
+> **註記（R-TM13，2026-09-01，R-VL12）**：(b) 所承 R-P368 之段 1 `Atlantis High` 欄組與段 3 R1 DBC 為 **Atlantis High 之綁定**；
+> 本線為 ATL-Mi，段 1 改取 `Atlantis` 欄組（P–T）、段 3 待 ATL-Mi DBC（R-VL12(a)(b)）。書寫格式 (a) 與 R-P353／R-P355／R-P375 不變。
+> 上段「待 recon 查證」自此結案；分析層於落條時已識別 ATL-Mi 而未實測即承接 PM 綁定，記 A-VL10。
+
 ### R-VL3 —— Test Group／TC ID／交付檔名
 
 ```
@@ -108,6 +112,8 @@ inputs/ 副本）。兩線共用之 SYSAD 一份、LID／DBC／PROXI 取 forms/�
 Claude Project 內之三份 docx 為文字抽取本，非 OOXML；spec_mode D 之抽取須自原檔
 （R-P3′ magic bytes 判讀），故 Pei 須投遞原始 .docx。
 ```
+
+> **作廢部分（R-TM13，2026-09-01，R-VL13(b)）**：`_intake/Vehicle_Setup_VF665/` 投遞區廢止，實然為 `features/<slug>/inputs/`。
 
 ### R-VL6 —— R-VL2(b) 加註：段 1 入口依 R-P375 擴為 forms/ 全部參考檔；多命中之處置
 
@@ -162,6 +168,8 @@ R-VL9（分析層裁定 2026-09-01，上繳 00 §11 丁）
 前提：Pei 先將現行 working tree（該檔已處 M）入庫，避免與他線交疊。
 ```
 
+> **作廢（R-TM13，2026-09-01，R-VL13(a)）**：兩線並行時本條之 W-0 必被追平，重生改歸 Pei 提交前。
+
 ### R-VL10 —— 條文身分比 `body_sha8`；跨線計數改性質判準
 
 ```
@@ -186,6 +194,41 @@ R-VL11（分析層裁定 2026-09-01，上繳 01 第 10 節 4、第 7 節末註�
 (c) `spec_reference_template` 落 null，待 P3 裁（VF 類母件之 IN §10.7 型態未定）；執行層自填之構造式不得進 recon。
 ```
 
+### R-VL12 —— ATL-Mi 線之訊號解析綁定：段 1 取 LID `Atlantis` 欄組；段 3 待 ATL-Mi DBC；段 1 不適用之情形；抽名範圍
+
+```
+R-VL12（分析層裁定 2026-09-01，上繳 02 第 5.3 節／A-VL8，vsm_v43 上繳 03 §K K-1；訂正 R-VL2(b) 之分析層誤，A-VL10）
+(a) 實測（LID v1_78 `CAN Mapping` r2 欄組表頭）：Powernet F–J／CUSW K–O／**Atlantis P–T**／Compact U–Y／
+    **Atlantis High Z–AD**，為五個彼此獨立之欄組；兩欄組同列皆有值者 913，其中 589 列值不同。
+    本線 EE Architecture = ATL-Mi（SYSRA 實測；V42 206 列、V43 1280/1280），交付本車型欄 V = `VF(ProMaster)637 Atl-Mi`。
+    段 1 之 LID 欄組對本線一律取 **`Atlantis`（P–T）**；`Atlantis High`（Z–AD）只作旁證併記。
+    佐證（vsm_v43 v3 實測）：CAN 形 93 名中 Atlantis 欄逐字命中 21、Atlantis High 10（且 10 ⊂ 21）；
+    「訊息名不符(R-13)」28 列中 Atlantis 欄命中 6、Atlantis High 0（如 `TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq`）；
+    `TELEMATIC_VEHICLE_SETUP2.*`／`IPC_VEHICLE_SETUP3.*` 只見於 Atlantis 欄。
+(b) 段 3：forms/ 之 `PDT27_E2A_R1_BHCAN2.dbc`／`R1_FDCAN8.dbc` 為 Atlantis High 之 DBC（PM 線之 R-P368 綁定），
+    Atlantis 欄之 `CAN` 值為 CAN-B／CAN-C，非 FD／BH-CAN。本線段 3 須以 ATL-Mi 之 DBC（CAN-B／CAN-C）為之；
+    forms/ 現無此件 → DR-VL3。到件前，任何 CAN 訊號不得記「解得」、不得寫 `$…$`；結果記「段3待ATL-Mi DBC」，
+    並併記對 Atlantis High DBC 之實查結果為旁證。上繳 02 之「解得 35」與「訊息名不符 27」全數重判。
+(c) 規格原名已為 `MESSAGE.Signal` 形者，段 1 之目的（邏輯名→實名）已達，記「段 1 不適用」；
+    正確架構之 DBC 逐字查得（MESSAGE 與 Signal 皆合）即「解得」，得寫 `$…$`。此為對 R-P368(a)「三段皆過」之意旨讀法，
+    跨線觀察記 PM。
+(d) 抽名：CAN 形一律用通式 `[A-Z][A-Z0-9_]{3,}\.[A-Za-z]\w*`，不限 `_VEHICLE_SETUP` 家族（`STATUS_*`／`TBM_*`／`GLOB_LTM.*` 皆入）；
+    同時報抽名偽陽性率。
+(e) Functional Diagram 之流向不於 P3 文字化；P4 逐 TC 需驗因果方向時依圖判，圖為來源（R-G28 型），不臆測。
+```
+
+### R-VL13 —— 台帳重生歸 Pei 提交前一次；R-VL9 作廢；投遞區以 inputs/ 為實然
+
+```
+R-VL13（分析層裁定 2026-09-01，待 Pei 追認；上繳 02 第 9 節乙、第 11 節 3／4）
+(a) 兩線並行時任一包之 W-0 必被對方後續落檔追平（實測兩次：14→21、21→23）。
+    改：執行層不重生 `docs/fw036/RULINGS.sha.tsv`；Pei 於每次 commit 前跑一次 `python3 scripts/rulings_hash.py` 併入庫。
+    執行層 `gate_all` 之 rulings_hash 紅，若 diff 全為 R-VL*／R-VT* 新增列，於升級說明記「依 R-VL13 待 Pei 重生」即可上繳。
+    R-VL9 作廢（不刪，加註）。
+(b) 投遞區：實然為 `features/<slug>/inputs/`（gitignored），W-2 以 R-VL11(a) mv 至 `sources/raw/`。
+    `_intake/Vehicle_Setup_VF665/` 廢止，由 Pei 刪除空目錄；R-VL5 作廢該句（加註）。
+```
+
 ---
 
 ## 取號紀錄
@@ -195,3 +238,4 @@ R-VL11（分析層裁定 2026-09-01，上繳 01 第 10 節 4、第 7 節末註�
 | R-VL1–R-VL5 | 2026-09-01 | 本檔新建，全庫 `R-VL` 系列實測未佔（`RULINGS_LEDGER.md`／FO 內 grep 命中 0） |
 | R-VL6–R-VL9 | 2026-09-01 | 落檔當下讀本檔實測至 R-VL5；上繳 00 §9 之 sha 表亦止於 R-VL5 |
 | R-VL10–R-VL11 | 2026-09-01 | 上繳 01 第 9 節 sha 表止於 R-VL9；本檔錨點實測 9 |
+| R-VL12–R-VL13 | 2026-09-01 | 上繳 02 第 0 節 sha 表止於 R-VL11；本檔錨點實測 11 |

@@ -130,7 +130,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 - **通則**：預期數字逐項附量測條件（欄、判式、分母），不得只寫數；分析層自己的預期數字也適用 IN §8.4.1。
 
 
-## A-VL5 —— 037 之 1 列 `Categorization` 為空（PENDING）
+## A-VL5 —— 037 之 1 列 `Categorization` 為空（**併 DR-VL2(a)**，處置已落）
 
 - **登記日**：2026-09-01（下放包 02 之 W-6）
 - **實測**（掃描條件：`Analysis Report`，parksense 表頭列 7／sdw 表頭列 8，
@@ -148,7 +148,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 
 ---
 
-## A-VL6 —— SYSRA Functional 318 列中 112 列 `EE Architecture` 為空（PENDING）
+## A-VL6 —— SYSRA Functional 318 列中 112 列 `EE Architecture` 為空（**併 DR-VL2(b)**）
 
 - **登記日**：2026-09-01（下放包 02 之 W-6）
 - **實測**（`Analysis Report`，表頭列 5，`分類 Category == 'Functional Requirement'`
@@ -167,7 +167,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 
 ---
 
-## A-VL7 —— 037 一 Functional leaf 之 Source ID 於 SYSRA 為 `Heading`（PENDING）
+## A-VL7 —— 037 一 Functional leaf 之 Source ID 於 SYSRA 為 `Heading`（**併 DR-VL2(c)**，處置已落）
 
 - **登記日**：2026-09-01（下放包 02 之 W-4 跨源對帳，**下放包未預期之發現**）
 - **實測**：037 之 128 個 Functional leaf 其 `Source Requirement ID` 於 SYSRA
@@ -223,7 +223,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 
 ---
 
-## A-VL9 —— 母 spec 之 Functional Diagram 為 WMF 圖，其訊號名不在文字層（PENDING）
+## A-VL9 —— 母 spec 之 Functional Diagram 為 WMF 圖，其訊號名不在文字層（**RESOLVED** 2026-09-01，R-VL12(e)）
 
 - **登記日**：2026-09-01（下放包 02 之 W-2，R-G28 檢查）
 - **實測**：`vf665_v42_spec_r6` docx zip members **25**；
@@ -242,8 +242,34 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 - **「由圖找列」**：該圖為單一 Functional Diagram，其文字已全數轉為可檢索之 tsv，
   故不逐張出二欄表，改以 `signal_chain_v42.tsv` 之 `sources` 欄標 `diagram`
   作為「由圖找列」之對映（可篩）。
-- **待裁**：圖內尚有連線與方塊之**拓樸**（誰送給誰）未被文字化 ——
-  訊號名已得，流向未得。若 TC 需驗因果方向，須另讀圖。本包不臆測方向。
+- **裁決（R-VL12(e)，2026-09-01）**：Functional Diagram 之流向**不於 P3 文字化**；
+  P4 逐 TC 需驗因果方向時依圖判，圖為來源（R-G28 型），不臆測。**本條 RESOLVED。**
+- **下放包 03 執行時之補正（執行層自查）**：SVG 還原原以「同 y 即同行」接合，
+  致圖上**相鄰但不同元件**之標籤被黏成一名，產生 **10 個偽名**
+  （如 `IPC_VEHICLE_SETUP2.TyrePressureUnitClearPersonalData` ＝
+  `IPC_VEHICLE_SETUP2.TyrePressureUnit` ＋ `ClearPersonalData.Info` 兩標籤）。
+  已改為同 y 之內再依 x 間距（門檻 140 svg 單位）斷行，行數 240 → **786**，
+  偽名 10 個全數消滅（重掃 `_VEHICLE_SETUP*.*SERVICE_SETUP` 型 → 0）。
+  `image1_text.tsv` 已重產（該檔於上繳 02 已入庫，本包為修正）。
+
+> **處置（分析層 2026-09-01）**：A-VL5／6／7 併 DR-VL2；A-VL8 由 R-VL12 接手（根因見 A-VL10），待 ATL-Mi DBC 後重判；
+> A-VL9 依 R-VL12(e)（流向 P4 逐 TC 依圖判）RESOLVED。
+
+---
+
+## A-VL10 —— 分析層之誤：對 ATL-Mi 線承接 Atlantis High 之段 1 欄組與段 3 DBC（RESOLVED → R-VL12）
+
+- **登記日**：2026-09-01；**分析層之誤**。
+- **事實**：R-VL2(b) 逐字承接 PM 之 R-P368（段 1 LID `Atlantis High` 欄組，段 3 `PDT27_E2A_R1_*`）。分析層於同條末段
+  **已寫下** SYSRA EE = ATL-Mi 與 `Atlantis High` 欄組之不合，卻標「待 recon」後連續三包令執行層只對 `Atlantis High` 欄組與
+  `637MCA` 分頁分開計數 —— **從未令其看 LID `CAN Mapping` r2 之欄組表頭**。一次 `iter_rows(max_row=2)` 即可見
+  `Atlantis`（P–T）與 `Atlantis High`（Z–AD）為兩個欄組。
+- **後果**：V43 上繳 01–03 之「訊息名不符 28」、DR-VT3 之「DBC 版次對應」提問、K-1（LTM 匯流排）、A-VT16（兩弧主旁）、
+  本線 A-VL8（段 1 幾近全不命中），**同源於此**：都是拿 Atlantis High 之欄組與 DBC 去解 ATL-Mi 之規格。
+  實測（分析層自測，LID v1_78 × V43 v3 TSV）：Atlantis 欄逐字命中 21 vs Atlantis High 10；R-13 28 列中 Atlantis 命中 6 vs 0；
+  `VehicleSpeedVSOSig` 於 Atlantis 欄為 `STATUS_CCAN3.*`（無 `BRAKE_FD_2`）。
+- **同族**：A-VL2(b)（引用未讀到底）—— 這次是「實測已排入待辦卻把待辦當作已完成」；IN §8.4.1 之反面。
+- **處置**：R-VL12（段 1 Atlantis 欄組；段 3 待 ATL-Mi DBC，DR-VL3）；vsm_v43 同記 A-VT22／R-VT13。DR-VT3 送出前須重寫。
 
 
 ## Assumption markers

@@ -6,6 +6,8 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
 | DR | 項目 | 阻塞 | 影響 | 狀態 | 送出日 | 回覆日 |
 |---|---|---|---|---|---|---|
 | DR-VL1 | V42 SYSRA Functional 318 列中 **191** 列無 037 覆蓋（覆蓋揭露） | no | 母體外 191 列 | 已登記，未送出 | | |
+| DR-VL2 | 037／SYSRA 標註完整性三面：037 1 列 `Categorization` 空（A-VL5）；SYSRA Functional 112 列 EE／DocID 空（A-VL6）；037 leaf `-063` 之 Source ID 於 SYSRA 為 Heading（A-VL7） | no | 母體 1 列、分母 112 列 | 已登記，未送出 | | |
+| DR-VL3 | **ATL-Mi（P637 ProMaster／CAN-B／CAN-C）之 DBC** —— forms/ 僅有 Atlantis High 之 R1 BHCAN2／FDCAN8；R-VL12(b) 段 3 待此件 | **yes（P4 起：無此則任何 `$…$` 不得寫）** | 全線 CAN 訊號 | 已登記，**先問 Pei 手上有無** | | |
 
 ---
 
@@ -32,3 +34,23 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
   兩欄同時為空，無從判其是否適用本線（ATL-Mi／`VF665_V42_P637MCA`）；
   與本 DR 之交集未另計，不合併。
 - **請求動作**：Pei 決定是否送出；送出則向 SWE1 報告作者索取在途清單。
+
+## DR-VL2 —— 037／SYSRA 標註完整性（A-VL5／A-VL6／A-VL7 三面一問）
+
+- **來源**：上繳 02 第 7 節；分析層裁併為一 DR（同一上游、同一主題）。
+- **問題**：(a) 037 Park Sense 檔 `SWE1-VC-IntelligentSpeedLimiterwithConfirmation-051` 之 `Categorization` 空，請確認其為 Functional 或 Information；
+  (b) SYSRA Functional 318 列中 112 列 `EE Architecture` 與 `Document ID` 同時空，請確認是否適用 ATL-Mi／`VF665_V42_P637MCA`；
+  (c) 037 leaf `SWE1-VC-SurroundCameraGridlines-063` 之 Source ID `Sys-RA-VF665_V42_VSM-857` 於 SYSRA 為 `Heading`，請確認其正確 Source ID。
+- **阻塞**：否（(a) 一列先以 UNCATEGORIZED 保留於 leaves.tsv，不入母體也不排除；(c) 一列仍入母體，Remarks 註）。
+- **請求動作**：Pei 決定；建議與 DR-VL1 併送。
+
+## DR-VL3 —— ATL-Mi 之 DBC（阻塞 P4）
+
+- **來源**：R-VL12(b)／A-VL10。分析層實測 LID v1_78 `CAN Mapping` 有獨立之 `Atlantis`（P–T）與 `Atlantis High`（Z–AD）欄組，
+  本線（ATL-Mi）之規格訊號名對 Atlantis 欄命中率為 Atlantis High 之兩倍，且 Atlantis 欄之 `CAN` 值為 CAN-B／CAN-C。
+  forms/ 現有 DBC（`PDT27_E2A_R1_BHCAN2`／`R1_FDCAN8`）為 Atlantis High 之 FD／BH-CAN，非本線所需。
+- **問題**：須取得 ATL-Mi（P637 ProMaster；V43 之 P363 同）之 CAN-B／CAN-C DBC（與 LID Atlantis 欄同世代）。
+  **先問 Pei 手上有無**（`features/vehicle_setting/inputs/` 之 R4 BHCAN／R5 FDCAN8 仍為 PDT27 家族，預期非此件，待實測）；無則向上游索。
+- **阻塞**：是（P4 起）。到件前 CAN 訊號一律「段3待ATL-Mi DBC」，不得寫 `$…$`。
+- **本地處置**：段 1 先以 Atlantis 欄解至 `MESSAGE.Signal`（段 2），對 Atlantis High DBC 實查結果併記旁證。
+- **請求動作**：Pei 先答「有／無」；無則送出，與 vsm_v43 DR-VT5 同一件。
