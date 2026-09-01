@@ -1204,3 +1204,76 @@ R-17（需求為概略，訊號實體以 DBC 為主 —— 全案）
 > 理由：單項相符仍可能是巧合（二訊號共用同一組狀態定義）。
 > 不因此而禁其判定 —— 禁之則本類語料永無同一物可判；
 > 但不具名其單項性，就是把一個弱判定當強判定用。
+
+---
+
+## 交付規格表（R-G42，Pei 2026-08-30 裁「NR1L、全名」「不要再回歸，請寫下規則」，全域）
+
+來源：分析層 2026-08-30 實測九本交付候選簿（BLM／Display／ICS／Popup／PM／SU／SXM／VC／AMM）
+之交付面差異；Pei 就 TC ID 前綴與 Test Group 二格裁定，並裁既有簿不回歸。
+下放包 `docs/fw036/handoff/73_delivery_spec.md`。
+
+**立法緣由揭露（分析層自陳）**：列序一事已由 R-G40（08-27）全域明定，
+但 R-G40 之讀者為各 feature 自建之 WB-ORDER 閘，新 feature 未宣告 `row_order`
+即無閘；故 R-G40 生效後 bed_lowering（08-27）、ics_management（08-30 首交）、
+power（08-30 前）仍以批次序出簿，各自發現各自修。分析層於 08-29 回覆中
+斷言「沒有一條全域規則」，係未量 ledger 之斷言（IN §8.4.1 之違反），於此具名。
+本條之改動即把讀者改為全域 lint。
+
+```text
+R-G42（交付規格表 —— 全域）
+
+適用：本條生效後之每一次交付。既有已交付簿不回歸（Pei 裁定）。
+交付屬性須被決定，不得被剩下；本條為其唯一規格來源。
+
+一、列序（承 R-G40，改讀者）
+  (a) D 欄依 req_id 數值升冪（數字 token 逐段比較，非字串序）。
+  (b) 037 有列而無 TC 之需求：補一列，僅填 D 欄，其餘欄留空。
+  (c) 讀者改為全域：lint_docs036 對 delivered/ 內任一 xlsx 直接量 D 欄，
+      非遞減即紅；不再依賴各 feature 之 WB-ORDER 閘。
+      feature.yaml 之 row_order 宣告保留（R-G40 二），惟不再是閘之前提。
+
+二、TC ID
+  形制 NR1L-{ABBR}-{nnn}；前綴一律 NR1L，不得用 newR1L／TC／其他。
+  {ABBR} 取 037 req_id 之 feature 縮寫 token（如 BLM、VC、ICS、DM、SXM）；
+  req_id 無縮寫或有歧義者，由 Pei 裁一次後登 feature.yaml，不得自定。
+  {nnn} 三位零填充，依列序連號；PARTIAL 本保留既有 tc_id 者，
+  依 R-G40 四附 old→new 對照表。
+
+三、Test Group
+  = 037 report 之 feature 全名（如 Bed Lowering Mode、Power Management）；
+  不縮寫。
+
+四、固定欄
+  Test Case Author = PeiPYHsu；Test Case Priority 必填 P0–P3（IN §10.2）；
+  Estimated Test Time 留空 [DEFAULT，Pei 得改]；TestRail 欄依 R-G40 四。
+
+五、檔名與落點
+  delivered/ 只放客戶檔名之定稿：
+  `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification
+   & Result_SWQT_{FeatureName}_{YYYYMMDD}.xlsx`
+  {FeatureName} 為 Test Group 去空白；無其他尾綴（_working／_rev／批次名不得入）。
+  sandbox 名之檔不進 delivered/。每一檔須有 MANIFEST.tsv 一列（R-G25）。
+
+六、交付內容物（delivered/ 內，缺一即不得出貨）
+  xlsx ＋ MANIFEST.tsv ＋ DELIVERY_NOTE.md ＋ 未結 DR 清單（IN §8.4.3）
+  ＋（PARTIAL 本）tc_id 對照表。
+
+七、PENDING
+  delivered/ 內 PENDING 須為 0；例外須有 R- 號並記入 MANIFEST note
+  （先例：R-P399、R-ICS54(a)）。
+
+八、讀者
+  以上一至七由 lint_docs036 新閘 DELIVERY-SPEC 守之，登 GATES.tsv（R-G17）；
+  閘只掃 delivered/，不掃 output/、sandbox/。features/<f>/output/ 自本條起
+  廢用，新檔不得再落此處（R-G25 之 output/ 讀為含此處）。
+```
+
+| 條號 | 字元數 | SHA256（前 16 碼） | 逐字相符 |
+|---|---|---|---|
+| R-G42 | 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |
+
+**生效時九本實測（僅揭露，不回歸）**：TC ID 前綴 `NR1L-` 5 本／`newR1L-` 3 本／`TC-` 1 本；
+Test Group 縮寫 3 本（ICS、SXM、Popup）；Author 空 3 本（ICS、PM、VC）；
+Est. Time 僅 PM 填；PM `output/…20260830` Priority 全空；SU `delivered/` 有 xlsx 無 MANIFEST 列；
+15 個 feature 之 `delivered/` 僅有表頭。

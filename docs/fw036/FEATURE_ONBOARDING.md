@@ -1185,6 +1185,26 @@ fenced block；`body_kind == section` 者為缺陷，非一個類別。
 > 全部 26 條之框內文字與加框前之節文字逐字相同**（四檔合計 **+52 行、−0 行**，
 > 即每條 2 行框標記，**無一字被改**）。
 
+#### R-G42 — 交付規格表（全域）
+
+```
+R-G42（Pei 2026-08-30 裁「NR1L、全名」「不要再回歸，請寫下規則」）
+
+適用本條生效後之每一次交付；既有已交付簿不回歸。
+一、列序：D 欄依 req_id 數值升冪；037 有列而無 TC 之需求補一列僅填 D 欄；
+    讀者改為全域 lint（量 delivered/ 內 xlsx 之 D 欄），不再依賴 WB-ORDER。
+二、TC ID：NR1L-{ABBR}-{nnn}；ABBR 取 037 req_id 之縮寫 token，歧義由 Pei 裁一次登 feature.yaml。
+三、Test Group：037 report 之 feature 全名，不縮寫。
+四、固定欄：Author = PeiPYHsu；Priority 必填 P0–P3；Est. Time 留空 [DEFAULT]。
+五、檔名：delivered/ 只放客戶檔名定稿 `…_SWQT_{FeatureName}_{YYYYMMDD}.xlsx`，
+    無其他尾綴；sandbox 名之檔不進；每檔須有 MANIFEST 列（R-G25）。
+六、內容物：xlsx ＋ MANIFEST ＋ DELIVERY_NOTE ＋ 未結 DR 清單 ＋（PARTIAL）tc_id 對照表。
+七、PENDING：delivered/ 內須為 0；例外須有 R- 號記入 MANIFEST note。
+八、讀者：lint_docs036 新閘 DELIVERY-SPEC，登 GATES.tsv；只掃 delivered/。
+    features/<f>/output/ 自本條起廢用。
+全文以 docs/fw036/RULINGS_LEDGER.md 之 R-G42 節為準。
+```
+
 #### R-G4／R-G7 之原文與 R-G12 之來源
 
 `R-G4`／`R-G7` 之原文保留於 feature 側並標 `[SUPERSEDED by …]`，
