@@ -95,6 +95,26 @@ def feature_gate_rows(root: Path) -> list[dict]:
     return out
 
 
+# `lint_delivery_spec.py` 之閘（R-G42 DELIVERY-SPEC）—— 只掃 delivered/，非 TC 內容
+DELIVERY_CHECKS = {
+    "delivery_spec": "交付規格表（R-G42 一～七：列序、TC ID、Test Group、固定欄、檔名／MANIFEST、內容物、PENDING）",
+}
+
+
+def delivery_gate_rows() -> list[dict]:
+    """`lint_delivery_spec.py` 之閘。基線內之檔只計警示（Pei 2026-08-30：不回歸）。"""
+    return [{
+        "gate_id": k, "owner": "lint_delivery_spec", "criterion": v,
+        "source_ruling": "R-G42", "effective_date": "2026-08-30",
+        "granularity": "每檔每項",
+        "status": "未校準（基線 docs/fw036/DELIVERY_SPEC_BASELINE.tsv 內之檔只計警示；基線外判紅）",
+        "scope": "delivered", "selfcheck_items": "不適用（交付版面，非 TC）",
+        "hit_rounds": "0", "hits_total": "未知",
+        "hits_recent": "未知，自本輪起算",
+        "retire_candidate": "N", "retired": "N",
+    } for k, v in DELIVERY_CHECKS.items()]
+
+
 def docs_gate_rows() -> list[dict]:
     """`lint_docs036.py` 之檢查項。"""
     return [{
@@ -181,7 +201,8 @@ def main() -> int:
     root = Path(args.root).resolve()
     mod = load_lint036(root)
     reports = recent_reports(root, RECENT_N)
-    data = rows(mod, reports, selfcheck_index(root)) + docs_gate_rows() + feature_gate_rows(root)
+    data = (rows(mod, reports, selfcheck_index(root)) + docs_gate_rows()
+            + delivery_gate_rows() + feature_gate_rows(root))
 
     body = "\n".join(["\t".join(COLUMNS)]
                      + ["\t".join(r[c] for c in COLUMNS) for r in data]) + "\n"

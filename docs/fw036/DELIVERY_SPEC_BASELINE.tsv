@@ -1,0 +1,5 @@
+path	reason
+features/ics_management/delivered/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ICSManagement_20260830.xlsx	R-G42 生效前已在 delivered/，不回歸
+features/power/delivered/pm_29.xlsx	R-G42 生效前已在 delivered/，不回歸
+features/power/delivered/pm_73.xlsx	R-G42 生效前已在 delivered/，不回歸
+features/sw_update/delivered/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_SWUpdate_20260830.xlsx	R-G42 生效前已在 delivered/，不回歸

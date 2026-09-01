@@ -27,6 +27,7 @@ ledger_text	lint_docs036	台帳條文文字之刪除線與空白	未載明	未�
 ledger_location	lint_docs036	落檔位置欄不得以「同上」串接指涉（A-PM17）	A-PM17	未載明	每次命中	現為 PASS（26 包 §C 裁定 2 起接入 gate_all）	governance	不適用（治理文件，非 TC）	0	未知	未知，自本輪起算	N	N
 ledger_series	lint_docs036	台帳系列前綴之一致	未載明	未載明	每次命中	現為 PASS（26 包 §C 裁定 2 起接入 gate_all）	governance	不適用（治理文件，非 TC）	0	未知	未知，自本輪起算	N	N
 table_row	lint_docs036	markdown 表格列之欄數一致	未載明	未載明	每次命中	現為 PASS（26 包 §C 裁定 2 起接入 gate_all）	governance	不適用（治理文件，非 TC）	0	未知	未知，自本輪起算	N	N
+delivery_spec	lint_delivery_spec	交付規格表（R-G42 一～七：列序、TC ID、Test Group、固定欄、檔名／MANIFEST、內容物、PENDING）	R-G42	2026-08-30	每檔每項	未校準（基線 docs/fw036/DELIVERY_SPEC_BASELINE.tsv 內之檔只計警示；基線外判紅）	delivered	不適用（交付版面，非 TC）	0	未知	未知，自本輪起算	N	N
 features/amfm/scripts/lint_tcs.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/audio_mgmt/scripts/lint_tcs.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/bed_lowering/scripts/lint_tcs.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N

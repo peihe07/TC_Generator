@@ -11,6 +11,7 @@ FO §8.2 令上繳包附本工具之輸出。
 | `rulings_hash.py --check` | 條文指紋表與現行條文相符（R-G13）|
 | `gates_tsv.py --check` | 閘登錄簿與現行閘相符（R-G17）|
 | `lint_paths.py --gate` | 產出物落點與 delivered/ 之 sha 對照（R-G25，27 包接入）|
+| `lint_delivery_spec.py --gate` | 交付規格表（R-G42，73 包接入；基線內之檔只計警示）|
 
 **`expected_numbers.py --gate` 不在其列**（26 包 §C 裁定 2）：其現為紅，
 且成因為基準未落檔而非語料有誤。**先接一支已知會紅而被容忍之閘，
@@ -33,6 +34,7 @@ GATES = [
     ("rulings_hash", ["scripts/rulings_hash.py", "--check"]),
     ("gates_tsv", ["scripts/gates_tsv.py", "--check"]),
     ("lint_paths", ["scripts/lint_paths.py", "--gate"]),
+    ("lint_delivery_spec", ["scripts/lint_delivery_spec.py", "--gate"]),
 ]
 
 
