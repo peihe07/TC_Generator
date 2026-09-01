@@ -119,6 +119,39 @@ R-VT8（分析層裁定 2026-09-01，上繳 00 §八／§九-5）
 (c) `spec_reference_template` 落 null，待 P3 裁（VF 類母件之 IN §10.7 型態未定）。
 ```
 
+### R-VT9 —— B-1 之定義收斂；訊息名不符者依 R-13 保留規格原名；兩本 DBC 各解一處者先查 LID 匯流排
+
+```
+R-VT9（分析層裁定 2026-09-01，上繳 01 §七 7.4 §K 29 列、A-VT12）
+(a) B-1 型衝突僅限 R-VT6(c) 字面：同一規格原名多處命中而解至不同 MESSAGE.Signal。
+    「段 3 之 SG_ 所屬 BO_ 與規格訊息名不符」（上繳 01 型態一 22 列、型態二 6 列）**非 B-1**，
+    屬 IN §8.7.5(g)（R-13）之「規格訊號名與 DBC 不符」：結果欄記「訊息名不符(R-13)」，
+    保留規格原名（不得代以 DBC 之他訊息名），段 3 命中處記為旁證，候選非認定（R-P375(d)），
+    向上游查 DBC 版次與規格版次之對應（DR-VT3）。本線尚無 TC，不生 PENDING 佔位。
+(b) 型態三（兩本 DBC 各解一處，如 BRAKE1.VehicleSpeedVSOSig → BHCAN2:STATUS_CCAN3 ＋ FDCAN8:BRAKE_FD_2）：
+    先查 LID 段 1 命中列之 `CAN` 欄（匯流排）；LID 載明者取該匯流排之 DBC，另一本記旁證；
+    LID 未載或規格原名未入 LID 者才列 §K 交 Pei。可以查表解者不升級。
+(c) E15 依此重判：B-1 預期 0；「訊息名不符(R-13)」列數為觀測值。上繳 01 之停 2 依本條解除。
+```
+
+### R-VT10 —— 條文身分比 body_sha8；E2／E9 判準修正；W-5 之標籤與重做條件
+
+```
+R-VT10（分析層裁定 2026-09-01，上繳 01 §五 5.2、A-VT10／A-VT11／A-VT13、§十-1／-2）
+(a) 預期數字之「條文逐字相同」一律比 body_sha8；sha8 為觀測值（同 vsm_v42 R-VL10(a)）。
+    R-VT2 sha8 `671c5b72` 為 R-VT6(d) 加註後之現值，非漂移；停 1 解除。
+    台帳無 R-VT 列前，樹外 `--out` 量測為合法替代來源（A-VT13 裁可）。
+(b) E2：「Functional」指 `Functional Requirement` 逐字全等；計數 507 相符，A-VT10 RESOLVED。
+    E9：原預期「4」為分析層 `most_common(4)` 之誤讀（A-VT14）；以上繳 01 之實測為基線：
+    Functional 507 列內正規化後非空相異值 56（`verified by in-vehicle testing` 47）。A-VT11 RESOLVED。
+(c) `signal_chain_v43.tsv` 之「查無(R-G13)」102 列標籤改「未解得(止於段1)」；
+    「查無(R-G13)」僅於三要件皆滿足且已登 forms/LOOKUP_MISSES.md 時用。
+(d) W-5 重做條件（02 包 W-5′）：① PROXI 與 .Req 另自 docx 表格結構（<w:tbl>）抽；
+    ② 段 1 施作 R-P368(b) 擴充比對（LID Logical Identifier／Description 欄，容許前後綴／底線差異），
+      每一擴充命中另欄記比對依據；③ 重算結果分布，181 名視為下界。
+(e) #1 docx 之 `word/media/image1.wmf`：列 P3 待辦，於 framework 鎖定前轉圖一看；不施作 R-G28 二欄表。
+```
+
 ---
 
 ## 取號紀錄
@@ -127,3 +160,4 @@ R-VT8（分析層裁定 2026-09-01，上繳 00 §八／§九-5）
 |---|---|---|
 | R-VT1–R-VT5 | 2026-09-01 | 本檔新建，全庫 `R-VT` 系列實測未佔 |
 | R-VT6–R-VT8 | 2026-09-01 | 落檔當下讀本檔實測至 R-VT5；上繳 00 §七 sha 表亦止於 R-VT5 |
+| R-VT9–R-VT10 | 2026-09-01 | 上繳 01 §五 5.3 sha 表止於 R-VT8；本檔錨點實測 8 |

@@ -6,7 +6,8 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
 | DR | 項目 | 阻塞 | 影響 | 狀態 | 送出日 | 回覆日 |
 |---|---|---|---|---|---|---|
 | DR-VT1 | VF665 V43 之 037（SWE1 分析報告）缺件 | **yes** | 全線（母體 = 0） | 已登記，建議送出 | | |
-| DR-VT2 | V43 SYSRA DocID `VF655_V43_R3`（247 列）疑為 `VF665` 之誤植；SYSRA 記 R3 而規格為 R4 | no | 追溯欄 | 已登記，未送出 | | |
+| DR-VT2 | V43 SYSRA DocID `VF655_V43_R3`（247 列）疑為 `VF665` 之誤植；SYSRA 記 R3 而規格為 R4；`Melco ID` 於 Functional 507 列全空（A-VT9）；`Out of scope` 二拼法 55／44 | no | 追溯欄 | 已登記，未送出 | | |
+| DR-VT3 | V43 R4 規格之訊息名與 forms/ DBC（R1_FDCAN8／R1_BHCAN2）不符 28 列：`TELEMATIC_VEHICLE_SETUP2` 全無、`IPC_VEHICLE_SETUP2.*` 九名落在 `IPC_VEHICLE_SETUP`、`SERVICE_SETUP.*` 落在 `TBM_SCHEDULE_FD_2` | no（本線無母體）| 訊號實名 | 已登記，建議送出 | | |
 
 ---
 
@@ -34,3 +35,17 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
 - **阻塞**：否（本線現無母體）。
 - **本地處置**：recon 對該 247 列與 82 列分別標記，不併入任何計數之分母。
 - **請求動作**：Pei 決定是否與 DR-VT1 併送。
+- **佐證補充（2026-09-01，上繳 01）**：Functional 507 列內 `VF655` 171 列、DocID 空 41 列；`Melco ID` 0/507 非空（A-VT9 併本 DR）；
+  Category `Out of scope` 55／`Out of Scope` 44（上游一致性同一面）。
+
+## DR-VT3 —— 規格訊息名與 forms/ DBC 不符（R-13 型）
+
+- **來源**：上繳 01 §七 7.4（`data/signal_chain_v43.tsv`），R-VT9(a) 改判為「訊息名不符(R-13)」28 列。
+- **問題**：V43 R4 規格所載之
+  (a) `TELEMATIC_VEHICLE_SETUP2.*` 九名：兩本 DBC 皆無該訊息（存在者為 `TELEMATIC_VEHICLE_SETUP`／`_SETUP3`），訊號名落在 `TELEMATIC_VEHICLE_SETUP`；
+  (b) `IPC_VEHICLE_SETUP2.*` 九名：訊號存在但落在 `IPC_VEHICLE_SETUP`，而 `IPC_VEHICLE_SETUP2` 另有 34 個 AUX 類訊號；
+  (c) `TELEMATIC_SERVICE_SETUP.*` 四名落在 `TELEMATIC_VEHICLE_SETUP`；`SERVICE_SETUP.*` 四名落在 `TBM_SCHEDULE_FD_2`、一名落在 `IPC_VEHICLE_SETUP`；`TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock` 落在 `IPC_VEHICLE_SETUP`。
+  請確認 forms/ 之 `PDT27_E2A_R1_FDCAN8.dbc`／`R1_BHCAN2.dbc` 與 V43 R4 規格之版次對應，及該 28 名之正確訊息。
+- **阻塞**：否（本線無母體）；對 vsm_v42 同型訊號亦適用，vsm_v42 W-5 完成後合併列表。
+- **本地處置**：保留規格原名（R-13），段 3 命中記旁證，候選非認定。
+- **請求動作**：Pei 決定送出；建議與 DR-VT1／VT2 三項併送。
