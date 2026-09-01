@@ -367,3 +367,31 @@ PASS      exit 0   lint_delivery_spec PASS: 基線外判紅 0（掃 4 檔，基�
 5. vsm_v42 之 W-0 → 台帳重生（A-VT13）→ 本線 sha8 改自台帳讀；並使 `signal_chain_v42.tsv` 產出 → 補差集
 6. P3：framework Layer 1 鎖定、profile、`spec_reference_template` 定案
 7. 037 到齊 → 母體建檔 → Layer 2 → P4
+
+---
+
+## 十一、後記（本包 gate 跑完之後發生，2026-09-01）
+
+§七之 `rulings_hash` 歸因**已過時**，據實更新而不改原文：
+
+本包之 `gate_all.py` 於台帳重生**之前**執行，故 §七 記其紅因為「台帳缺 15 列」。
+其後他線提交 `b6668f4`（`docs(fw036): land R-G42, ledger narrative and sha.tsv refresh`）
+重生台帳，現況：
+
+| 項 | 值 |
+|---|---|
+| 台帳內 `R-VT`／`R-VL` 列數 | **21**（`R-VT1`–`R-VT10` 十列齊備） |
+| `gate_all.py` 之 `rulings_hash` | **PASS**（683 條） |
+| 總判 | FAIL，未過者由 4 支減為 **3 支**：`canon_refs`、`gates_tsv`、`lint_paths` —— **三支皆與本線無關**（歸因同 §七） |
+
+**替代量測之事後複驗（10/10 全同）**：上繳 00 §七、01 §五 5.3、本包 §三所報之
+`body_sha8`，與台帳現值逐字比對 ——
+`R-VT1 93666dae`／`R-VT2 a6acf352`／`R-VT3 d3823bca`／`R-VT4 9844b823`／`R-VT5 e8e8724b`／
+`R-VT6 8db4c81b`／`R-VT7 9b4427c5`／`R-VT8 2b3fcbe6`／`R-VT9 0f1a1f3f`／`R-VT10 fa2558ff`
+**十項全同**。
+
+即 R-VT10(a) 所裁「台帳無 R-VT 列前，樹外 `--out` 量測為合法替代來源」
+**事後獲得證實**：替代量測與台帳為同一值，三包所報之 sha8 無一需要修正。
+
+**A-VT13 轉 RESOLVED。** 下包起依 R-VT8(a) 自台帳讀取，不再用樹外量測。
+

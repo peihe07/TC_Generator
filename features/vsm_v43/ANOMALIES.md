@@ -204,7 +204,7 @@ disposition is Tier 2。
   02 包 W-5′ 實測 LID `CAN Mapping` r2321 載 `FD`，取 FDCAN8，記「解得」，**§K 空**。
   E15′ 複測 B-1 = **0**。**RESOLVED**。惟另見 A-VT16 之觀測。
 
-## A-VT13 — `docs/fw036/RULINGS.sha.tsv` 仍無 R-VT 列，E10 之前提不成立（PENDING）
+## A-VT13 — `docs/fw036/RULINGS.sha.tsv` 仍無 R-VT 列，E10 之前提不成立（RESOLVED）
 
 - **實測**：`grep -c "R-VT\|R-VL" docs/fw036/RULINGS.sha.tsv` → **0**。
   `features/vsm_v42/docs/upstream/01_sources_recon.md` 載該線**停於 W-0**，
@@ -214,7 +214,13 @@ disposition is Tier 2。
 - **處置**：**不代 vsm_v42 重生台帳**（R-VT8(a) 明令本線不重生）。
   改以 `rulings_hash.py --out <scratchpad>` 於樹外重生後讀取，**明示此為替代量測**，
   並與上繳 00 §七之值逐字比對（見上繳 01 §E10）。
-- **提請裁決**：R-VT8(a) 之依賴鏈已阻塞兩包；是否改由本線或由 Pei 直接重生台帳。
+- **解除（2026-09-01，上繳 02 之後）**：台帳已由他線重生並入庫（commit `b6668f4`
+  「docs(fw036): land R-G42, ledger narrative and sha.tsv refresh」），
+  現含 `R-VT`／`R-VL` 共 **21** 列，其中 `R-VT1`–`R-VT10` **10** 列齊備。
+  **複驗**：上繳 00 §七／01 §五／02 §三所報之十個 `body_sha8` 與台帳**逐字全同（10/10）**，
+  即樹外 `--out` 之替代量測與台帳為同一值 —— R-VT10(a) 之替代來源裁可事後獲證。
+  `gate_all.py` 之 `rulings_hash` 隨之轉 **PASS**（683 條）。**RESOLVED**。
+  下包起 sha8 依 R-VT8(a) 改自台帳讀取，不再用樹外量測。
 
 ## A-VT14 —— 分析層之誤（三項，00／01 下放包之預期數字）（RESOLVED）
 
