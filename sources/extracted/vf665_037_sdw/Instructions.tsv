@@ -1,0 +1,21 @@
+# source_sha256	c98909e2c15eb0a02e1ab99f25c4c7bd77226fbd5f29842088bbe06f9f0f2afd	 sheet	Instructions
+	FM-WI-FSM-037-A03
+項目Item	描述Description
+SWE-Requirement ID 	唯一性的ID，不與其他文件ID重複\n\nXXX 代表本文件中使用的功能縮寫，請與 team lead 討論並確認合適的縮寫。\nXXX represents the abbreviation used for requirement descriptions in this document. Please discuss and confirm an appropriate abbreviation with the team lead.\n\ne.g.\nSWE1-HMI-XXX-001
+Source Requirement ID	SYS2 的來源需求 ID。\nSource Requirement ID of SYS2.\n\ne.g.\nSYS-HMI-RA-XXX-001
+Requirement Title	能讓人快速瞭解此需求的精簡標題。\nA concise title that allows quick understanding of the requirement.
+Requirement Description	此需求的描述。\nThe description of this requirement.
+Release Version	預計 release 此需求的軟體版本。\nThe software version planned to release this requirement.
+Categorization	被看成具有特定共有特徵的需求類別或劃分。\nA class or division of requirements regarded as having particular shared characteristics.\n\n- 標題 Heading \n- 資訊 Information \n- 功能需求 Functional Requirement \n- 非功能需求 Non Functional Requirement\n- 範圍外Out of scope
+Sub Categorization	此需求規劃在實作時的所屬分類：具備畫面呈現者可標註為 HMI，未涉及畫面呈現者則可標註為 Service。\nThe planned implementation category of this requirement: requirements with a visual/UI presentation can be labeled as HMI, while those without any visual presentation can be labeled as Service.\n\n- HMI 人機介面\n- Service 服務
+Feasibility	應確認該需求是可以實現的。 \nThe requirement should be confirmed that it is achievable.\n\n- 是 Yes\n- 否 No\n- 不適用 N.A.
+Description/Action for Feasibility	描述可行性的原因。\nDescribe the reasons for feasibility.
+Impact	對於成本、時程、運行環境的影響需被分析及列出。\nThe impacts on cost, schedule, and operating environment shall be analyzed and documented.\n\n- 是 Yes\n- 否 No\n- 不適用 N.A.
+Description/Action for Impact	描述影響的原因。\nDescribe the reasons for impact.
+Risk Factor	需求的風險因素意味著無法在專案中按時交付預期功能的因素。\n\nRisk factors of requirements mean that factors that do not able to deliver expected functions on time in the project.\n\nHigh: \n這項需求從未開發過應設置為高風險。\nThe requirement never been developed should be set to High Risk. \n不合理的時程安排，應該具有高風險。\nUnrealistic schedule, it should have High risk.\n\nMedium: \n對於需求外包，至少應設置為中風險。\nFor requirements outsourced, it should be set to Medium risk. \n重用性高或低應設置為中風險。\nThe reusability is High or Low should be set to Medium risk.\n\nLow: \n重用性 100%應設置為低風險。\nThe reusability is 100% should be set to Low risk.
+Description/Action for Risk Factor	描述風險因素的原因。\nDescribe the reasons for rish factor.
+Reusable	重用項編碼與此需求可重覆使用的百分比。\nThe reuse item ID & percentage of reusable for this requirement.\n\n• 此欄位可選完全，高，低和無。 指南是 :\nThis field can been selected: Fully, High, Low and None. The Guidelines are:\n\n。 完全 (100%):該需求與先前的需求相同。\nFully (100%): The requirement is the same as previous requirement.\n\n。 高 (>= 50%): 該需求可以重複使用超過先前需求的50％，但不能完全重複使用。\nHigh (>= 50%): The requirement can reuse above 50% of previous requirement, but not fully reuseable.\n\n。 低 (< 50%): 該需求與先前的需求部分相似，並且再利用部分低於先前需求的50％。\nLow (< 50%): The requirement is partially like previous requirement and the reuse part is under 50% of previous requirement.\n\n。 無 (0%): 新需求。\nNone (0%): New requirement.\n
+Description/Action for Reusable	描述”可重用百分比”的原因\nTo describe the reason for the percentage of Reusable\n
+Priority	實施此需求的相對優先級。\nRelative priority for implement this requirement.\n\n- 高 High\n- 中 Medium\n- 低 Low
+Verification Criteria	此需求的驗證標準。\nVerification Criteria for this requirement.
+Verification Method 	此需求的驗證方法。\nVerification Method for this requirement.

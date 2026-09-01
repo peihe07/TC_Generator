@@ -8,42 +8,52 @@
 feature: "Vehicle Setup Management R1L TBM"
 test_group: "Vehicle Setup Management R1L TBM"   # R-VT3，工作簿 G 欄
 
-# R-VT3 — TC ID 方案。00 包 §五 W-1 明令鍵名為 `tc_id_prefix`。
-# ⚠ 本鍵目前**無任何腳本讀取**（實測：`scripts/recon.py:1103` 讀
-# `write_back.tc_id_format`；`tc_id_prefix` 全庫 grep 0 命中）。不自行改鍵名，
-# 依 00 包原文落檔，出入登 A-VT2 交上游。
-tc_id_prefix: "NR1L-VSM43-"
+# R-VT7 — TC ID 鍵名採全庫慣例，落於 `write_back.tc_id_format`（見下）。
+# 00 包 W-1 之 `tc_id_prefix` 依 R-VT7 **刪除，不保留**（R-VC9）；A-VT2 RESOLVED。
 
 # 素材落點依 R-VT5／R-G27：原檔入 `sources/raw/<doc_id>/`，本檔以 doc_id 引用。
 # **未實測者一律留 null／TBD，不猜**（沿 ics_management／bed_lowering 檔頭慣例）。
-# 2026-09-01 實測：`_intake/Vehicle_Setup_VF665/` 為空目錄，三件原檔皆未投遞，
-# 故 W-2 未執行，本節除 a03_report 外全留 TBD（A-VT1）。
+# 2026-09-01 W-2 實測：原檔未落 `_intake/`（仍為空），而落 `features/vsm_v43/inputs/`
+# （5 件）。已依 R-G27 落 `sources/raw/<doc_id>/` 並清空 `inputs/`（01 包前提）。
 paths:
-  workbook: null        # R-VT1 BLANK 起建；R-G1 母本副本尚未建（W-2 未執行）
+  # R-VT1 BLANK 起建；R-VT8(b)：自 forms/ R-G1 母本檔案複製，cmp 全等，
+  # 未經 openpyxl 存回（母本 R 欄 x14 DV 之保全，R-G1 註／A-UP09）。
+  workbook: "sandbox/base/FM-WI-FSM-036-A01*_SWQT_20260817_ext.xlsx"
   # ⚠ a03_report = null 之理由：VF665 V43 之 037（SWE1 分析報告）**不存在**。
   # 現有 037 兩份之 Source Requirement ID 152/152 皆為 V42；Pei 已確認無其他 037。
   # 依 R-VT4 本線無 TC 母體，作業止於 P0–P3，P4 以後停等。
   # 阻塞型資料請求：**DR-VT1**（`DATA_REQUESTS.md`），已登記、建議送出。
   # 不得以 SYSRA 或規格代 037 生成 leaf 母體或任何 TC（R-VT4）。
   a03_report: null      # DR-VT1
-  spec_docx: TBD        # doc_id `vf665_v43_spec_r4`（00 包 §三 #1），原檔未投遞
-  sysra_export: TBD     # doc_id `vf665_v43_sysra`（00 包 §三 #2），原檔未投遞
-  sysad: TBD            # doc_id `vf665_sysad_sys3`（00 包 §三 #3），與 vsm_v42 共引
+  spec_docx: "../../sources/raw/vf665_v43_spec_r4/*.docx"
+  sysra:     "../../sources/raw/vf665_v43_sysra/*.xlsx"
+  sysad:     "../../sources/raw/vf665_sysad_sys3/*.docx"
+  # ⚠ V42 之兩份 037（`vf665_037_parksense`／`vf665_037_sdw`）**刻意不列於本節**：
+  # 其為 vsm_v42 之母體，**非本線母體**（R-VT4）。列入 `paths` 會使任何遍歷
+  # `paths` 之工具將其當作本線輸入。二者已落 `sources/raw/`（W-2），
+  # MANIFEST `features` 欄加 `vsm_v43` 並註「非本線母體，供 E7 與 DR-VT1 佐證」。
   sys1_export: null     # 本 feature 無 SYS1 匯出
   spec_pdf: null
   popup_list: null
 
 spec_mode: "D"        # 00 包 §三 #1 —— 二進位文件（docx）抽取；scaffold 原值 "A" 為模板值
-spec_reference_template: "{spec_filename}_{section_id}"   # 待 P3 framework 定案
+# R-VT8(c) —— VF 類母件之 IN §10.7 型態未定，落 null，待 P3 裁。
+spec_reference_template: null
 
-# ⚠ 下列欄位映射**全為 scaffold 模板值，本包未實測**（工作簿尚未建）。
-# power A-PW37 先例：同一模板值自 priority 起全部錯位。W-2 建簿後須自 r9 表頭複驗。
+# R-VT8(b) —— 下列欄位映射**已自 `sandbox/base/` 副本 r9 表頭逐欄實測回填**
+# （2026-09-01，W-2）。scaffold 模板值不得沿用；逐欄實測 vs 先驗之對照見
+# `docs/upstream/01_sources_recon.md` §W-2。
 workbook:
-  sheet: "Test Case Specification&Result"
+  # ⚠ scaffold 模板值為 "Test Case Specification&Result" —— **本母本無此分頁**
+  # （實測分頁名見下）。模板值會在 recon.py:431 直接 sys.exit。登 A-VT6。
+  sheet: "Test Case Specification 測試用例規範"
   header_row: 9
-  # column letters, verified by recon header match — do not guess
+  # 逐欄自 sandbox/base 副本 r9 表頭實測（2026-09-01）。母本 r9 共 33 個非空表頭，
+  # 佔 B–AH；本節只列本線用得到者。母本無重複之 `Estimated Test Time` 欄
+  # （power 之工作簿有兩個，A-PW37）。
   columns:
-    req_id: "D"
+    req_id: "D"              # Requirement or Design ID 需求/設計 ID
+    tc_id: "F"               # Test Case ID 測試用例ID（scaffold 無此鍵）
     test_group: "G"
     test_set: "H"
     test_item: "I"
@@ -53,11 +63,13 @@ workbook:
     expected_result: "M"
     spec_reference: "N"
     tc_ref_id: "O"
-    priority: "P"
-    design_method: "Q"
-    functional_safety: "R"
-    author: "Z"
-    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+    priority: "P"            # Test Case Priority
+    estimated_test_time: "Q" # Estimated Test Time (mins)
+    design_method: "R"       # scaffold 模板值 Q —— **錯**
+    functional_safety: "S"   # scaffold 模板值 R —— **錯**
+    author: "AA"             # scaffold 模板值 Z —— **錯**
+    test_version: "AB"
+    remarks: "AH"
 
 # R-VT1 — 工作簿自 BLANK ＋ R-G1 模板起建，無 done region。
 done_region:
@@ -70,6 +82,7 @@ done_region:
 write_back:
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"
+  tc_id_format: "NR1L-VSM43-{n:03d}"   # R-VT7；R-VT3 之值不變
   fill_test_group_set: true      # BLANK 起建（R-VT1），FO §2
 
 lint:

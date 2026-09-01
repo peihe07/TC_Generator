@@ -1,0 +1,182 @@
+規格原名	類別	段1命中檔	段1命中處(前4)	段2	段3	結果	B-1備註
+Ambient_Lighting_level_Setting.Req	內部					查無(R-G13)	
+AppPrivacyMode_Enable.Req	內部					查無(R-G13)	
+App_ClearPersonalData_Enable.Req	內部					查無(R-G13)	
+App_PrivacyMode_Enable.Req	內部					查無(R-G13)	
+App_RestoreApp_Enable.Req	內部					查無(R-G13)	
+App_RestoreDefaultSetting_Enable.Req	內部					查無(R-G13)	
+AudioRepetition.Info	內部					查無(R-G13)	
+Auto_High_Beam_Enable.Req	內部					查無(R-G13)	
+Auto_Park_Brake_Enable.Req	內部					查無(R-G13)	
+Auto_Unlock_Door_Exit_Enable.Req	內部					查無(R-G13)	
+BRAKE1.VehicleSpeedVSOSig	CAN	LID	LID/CAN Mapping/r1736c3(VehicleSpeedVSOSig);LID/CAN Mapping/r2321c1(VehicleSpeedVSOSig)	BRAKE1.VehicleSpeedVSOSig	BHCAN2:STATUS_CCAN3;FDCAN8:BRAKE_FD_2	B-1 衝突	段3訊息名與規格原名之訊息不符
+BRAKE1.VehicleSpeedVSOSigFailSts	CAN			BRAKE1.VehicleSpeedVSOSigFailSts		查無(R-G13)	
+ClearPersonalData.Info	內部				FDCAN8:TBM_SCHEDULE_FD_2	解得	
+ClearPersonalData_Enable.Req	內部					查無(R-G13)	
+Consumption_Unit_Setting.Req	內部					查無(R-G13)	
+Cornering_Enable.Req	內部					查無(R-G13)	
+DRL_Enable.Req	內部					查無(R-G13)	
+Day1_Setting.Info	內部					查無(R-G13)	
+Day1_Setting.Req	內部					查無(R-G13)	
+Day2_Setting.Info	內部					查無(R-G13)	
+Day2_Setting.Req	內部					查無(R-G13)	
+Distance_Unit_Setting.Req	內部					查無(R-G13)	
+External_Light_Sensor_Level.Req	內部					查無(R-G13)	
+External_Light_Sensor_Level_Setting.Req	內部					查無(R-G13)	
+FOTA_State.Info	內部					查無(R-G13)	
+FSCWPlus_Activation_Mode_Setting.Req	內部					查無(R-G13)	
+FSCWPlus_Setting.Req	內部					查無(R-G13)	
+Flash_Light_With_Lock_Enable.Req	內部					查無(R-G13)	
+GPS_Automatic_Time_Adj_Enable.Req	內部					查無(R-G13)	
+GPS_Automatic_Time_Adj_Setup.Info	內部					查無(R-G13)	
+Geolocation_Enable.Req	內部					查無(R-G13)	
+GreetingLights_Enable.Req	內部					查無(R-G13)	
+Headlights_Off_Delay_Setting.Req	內部					查無(R-G13)	
+Hour1_Setting.Info	內部					查無(R-G13)	
+Hour1_Setting.Req	內部					查無(R-G13)	
+Hour2_Setting.Info	內部					查無(R-G13)	
+Hour2_Setting.Req	內部					查無(R-G13)	
+Hour_Mode_Setting.Req	內部					查無(R-G13)	
+IPC_VEHICLE_SETUP.AmbientLightingLevel	CAN	LID	LID/CAN Mapping/r71c1(AmbientLightingLevel);LID/CAN Mapping/r71c16(IPC_VEHICLE_SETUP.AmbientLightingLevel)	IPC_VEHICLE_SETUP.AmbientLightingLevel	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.AutoHighBeamEnable	CAN			IPC_VEHICLE_SETUP.AutoHighBeamEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.AutoParkBrake	CAN			IPC_VEHICLE_SETUP.AutoParkBrake	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.BSDEnable	CAN			IPC_VEHICLE_SETUP.BSDEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.ConsumptionUnit	CAN	LID	LID/CAN Mapping/r387c11(IPC_VEHICLE_SETUP.ConsumptionUnit);LID/CAN Mapping/r387c16(IPC_VEHICLE_SETUP.ConsumptionUnit);LID/CAN Mapping/r387c26(IPC_VEHICLE_SETUP.ConsumptionUnit);LID/CAN Mapping/r387c1(ConsumptionUnit)	IPC_VEHICLE_SETUP.ConsumptionUnit		未解得(止於段2)	
+IPC_VEHICLE_SETUP.CorneringEnable	CAN			IPC_VEHICLE_SETUP.CorneringEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.CorneringLightsEnable	CAN			IPC_VEHICLE_SETUP.CorneringLightsEnable		查無(R-G13)	
+IPC_VEHICLE_SETUP.DRLEnable	CAN			IPC_VEHICLE_SETUP.DRLEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.DistanceUnit	CAN	LID	LID/CAN Mapping/r459c16(IPC_VEHICLE_SETUP.DistanceUnit);LID/CAN Mapping/r459c1(DistanceUnit)	IPC_VEHICLE_SETUP.DistanceUnit		未解得(止於段2)	
+IPC_VEHICLE_SETUP.DynamicGrid	CAN			IPC_VEHICLE_SETUP.DynamicGrid	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.ExternalLightSensorLevel	CAN	LID	LID/CAN Mapping/r751c1(ExternalLightSensorLevel);LID/CAN Mapping/r751c16(IPC_VEHICLE_SETUP.ExternalLightSensorLevel);LID/CAN Mapping/r751c26(IPC_VEHICLE_SETUP.ExternalLightSensorLevel)	IPC_VEHICLE_SETUP.ExternalLightSensorLevel		未解得(止於段2)	
+IPC_VEHICLE_SETUP.GreetingLightsEnable	CAN			IPC_VEHICLE_SETUP.GreetingLightsEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.HourMode	CAN	LID	LID/CAN Mapping/r407c16(IPC_VEHICLE_SETUP.HourMode)	IPC_VEHICLE_SETUP.HourMode	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.LanguageSelection	CAN	LID	LID/CAN Mapping/r1111c16(IPC_VEHICLE_SETUP.LanguageSelection);LID/CAN Mapping/r1111c26(IPC_VEHICLE_SETUP.LanguageSelection);LID/CAN Mapping/r1111c1(LanguageSelection)	IPC_VEHICLE_SETUP.LanguageSelection	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.NavRepetition	CAN			IPC_VEHICLE_SETUP.NavRepetition	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.PamAlertMode	CAN	LID	LID/CAN Mapping/r1293c16(IPC_VEHICLE_SETUP.PamAlertMode);LID/CAN Mapping/r1293c26(IPC_VEHICLE_SETUP.PamAlertMode)	IPC_VEHICLE_SETUP.PamAlertMode		未解得(止於段2)	
+IPC_VEHICLE_SETUP.PamChimeVolumeFront	CAN	LID	LID/CAN Mapping/r1301c16(IPC_VEHICLE_SETUP.PamChimeVolumeFront)	IPC_VEHICLE_SETUP.PamChimeVolumeFront	BHCAN2:IPC_VEHICLE_SETUP;FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.PamChimeVolumeRear	CAN	LID	LID/CAN Mapping/r1302c16(IPC_VEHICLE_SETUP.PamChimeVolumeRear)	IPC_VEHICLE_SETUP.PamChimeVolumeRear	BHCAN2:IPC_VEHICLE_SETUP;FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.PassiveEntry	CAN			IPC_VEHICLE_SETUP.PassiveEntry	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.PhoneRepetition	CAN			IPC_VEHICLE_SETUP.PhoneRepetition	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.RainSensorLevel	CAN			IPC_VEHICLE_SETUP.RainSensorLevel	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.RemoteDoorUnlock	CAN			IPC_VEHICLE_SETUP.RemoteDoorUnlock	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.Sdw	CAN	LID	LID/CAN Mapping/r1660c16(IPC_VEHICLE_SETUP.Sdw);LID/CAN Mapping/r1660c26(IPC_VEHICLE_SETUP.Sdw)	IPC_VEHICLE_SETUP.Sdw		未解得(止於段2)	
+IPC_VEHICLE_SETUP.SdwChimeVolume	CAN	LID	LID/CAN Mapping/r1669c16(IPC_VEHICLE_SETUP.SdwChimeVolume);LID/CAN Mapping/r1669c26(IPC_VEHICLE_SETUP.SdwChimeVolume)	IPC_VEHICLE_SETUP.SdwChimeVolume		未解得(止於段2)	
+IPC_VEHICLE_SETUP.SpeedLockDoorEnable	CAN			IPC_VEHICLE_SETUP.SpeedLockDoorEnable	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.TelematicSetupACK	CAN			IPC_VEHICLE_SETUP.TelematicSetupACK	FDCAN8:IPC_VEHICLE_SETUP	解得	
+IPC_VEHICLE_SETUP.TemperatureUnit	CAN	LID	LID/CAN Mapping/r2070c16(IPC_VEHICLE_SETUP.TemperatureUnit);LID/CAN Mapping/r2070c1(TemperatureUnit)	IPC_VEHICLE_SETUP.TemperatureUnit		未解得(止於段2)	
+IPC_VEHICLE_SETUP2.AutoUnlockDoorExit	CAN			IPC_VEHICLE_SETUP2.AutoUnlockDoorExit	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+IPC_VEHICLE_SETUP2.Backup_Cam_Delay	CAN			IPC_VEHICLE_SETUP2.Backup_Cam_Delay	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+IPC_VEHICLE_SETUP2.EPB_MaintenanceMode	CAN			IPC_VEHICLE_SETUP2.EPB_MaintenanceMode	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	CAN			IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk		查無(R-G13)	
+IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode	CAN			IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+IPC_VEHICLE_SETUP2.FSFCWPlusSetting	CAN			IPC_VEHICLE_SETUP2.FSFCWPlusSetting	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+IPC_VEHICLE_SETUP2.FlashLightWLock	CAN			IPC_VEHICLE_SETUP2.FlashLightWLock	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+IPC_VEHICLE_SETUP2.HeadlightsOffDelay	CAN			IPC_VEHICLE_SETUP2.HeadlightsOffDelay	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+IPC_VEHICLE_SETUP2.LDW_Intensity	CAN			IPC_VEHICLE_SETUP2.LDW_Intensity	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+IPC_VEHICLE_SETUP2.LDW_Sensibility	CAN			IPC_VEHICLE_SETUP2.LDW_Sensibility	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+IPC_VEHICLE_SETUP2.RainSensorSensibility	CAN			IPC_VEHICLE_SETUP2.RainSensorSensibility		查無(R-G13)	
+IPC_VEHICLE_SETUP2.TyrePressureUnit	CAN			IPC_VEHICLE_SETUP2.TyrePressureUnit		查無(R-G13)	
+IPC_VEHICLE_SETUP3.SoundHornLockUnlock	CAN			IPC_VEHICLE_SETUP3.SoundHornLockUnlock		查無(R-G13)	
+LDW_Intensity_Setting.Req	內部					查無(R-G13)	
+LDW_Sensibility_Setting.Req	內部					查無(R-G13)	
+LTM_CmdIgnSts.Info	內部					查無(R-G13)	
+LTM_OperationalModeSts.Info	內部					查無(R-G13)	
+Language_Setting.Req	內部					查無(R-G13)	
+Maintenance_Mode_Enable.Req	內部					查無(R-G13)	
+Minute1_Setting.Info	內部					查無(R-G13)	
+Minute1_Setting.Req	內部					查無(R-G13)	
+Minute2_Setting.Info	內部					查無(R-G13)	
+Minute2_Setting.Req	內部					查無(R-G13)	
+Model_Year	PROXI	PROXI	PROXI/Revision Notes/r91c7(Model_Year);PROXI/Revision Notes/r137c7(Model_Year);PROXI/Revision Notes/r340c7(Model_Year);PROXI/Revision Notes/r447c7(Model_Year)			PROXI路徑	
+Month1_Setting.Info	內部					查無(R-G13)	
+Month1_Setting.Req	內部					查無(R-G13)	
+Month2_Setting.Info	內部					查無(R-G13)	
+Month2_Setting.Req	內部					查無(R-G13)	
+NavigationRepetition.Info	內部					查無(R-G13)	
+Pam_AlertMode_Setting.Req	內部					查無(R-G13)	
+Pam_Chime_Volume_Front_Setting.Req	內部					查無(R-G13)	
+Pam_Chime_Volume_Rear_Setting.Req	內部					查無(R-G13)	
+Passive_Entry_Enable.Req	內部					查無(R-G13)	
+PhoneRepetition.Info	內部				FDCAN8:IPC_VEHICLE_SETUP	解得	
+PrivacyMode.Info	內部				FDCAN8:TBM_SCHEDULE_FD_2	解得	
+RVC_Delay.Req	內部					查無(R-G13)	
+RVC_Dynamic_Gridlines.Req	內部					查無(R-G13)	
+Rain_Sensor_Level_Setting.Req	內部					查無(R-G13)	
+Rain_Sensor_Sensibility_Setting.Req	內部					查無(R-G13)	
+Rear_View_Camera	PROXI	PROXI	PROXI/Format/r401c6(Rear_View_Camera)			PROXI路徑	
+Remote_Door_Unlock_Setting.Req	內部					查無(R-G13)	
+RestoreApp.Info	內部				FDCAN8:TBM_SCHEDULE_FD_2	解得	
+RestoreApp_Enable.Req	內部					查無(R-G13)	
+RestoreDefaultSetting.Info	內部				FDCAN8:TBM_SCHEDULE_FD_2	解得	
+RestoreDefaultSetting_Enable.Req	內部					查無(R-G13)	
+SERVICE_SETUP.ClearPersonalData	CAN	LID	LID/CAN Mapping/r381c6(SERVICE_SETUP.ClearPersonalData);LID/CAN Mapping/r381c16(SERVICE_SETUP.ClearPersonalData)	SERVICE_SETUP.ClearPersonalData	FDCAN8:TBM_SCHEDULE_FD_2	B-1 衝突	段3訊息名與規格原名之訊息不符
+SERVICE_SETUP.PrivacyMode	CAN	LID	LID/CAN Mapping/r1398c1(PrivacyMode);LID/CAN Mapping/r1398c6(SERVICE_SETUP.PrivacyMode);LID/CAN Mapping/r1398c11(SERVICE_SETUP.PrivacyMode);LID/CAN Mapping/r1398c16(SERVICE_SETUP.PrivacyMode)	SERVICE_SETUP.PrivacyMode	FDCAN8:TBM_SCHEDULE_FD_2	B-1 衝突	段3訊息名與規格原名之訊息不符
+SERVICE_SETUP.RestoreApp	CAN	LID	LID/CAN Mapping/r382c6(SERVICE_SETUP.RestoreApp);LID/CAN Mapping/r382c16(SERVICE_SETUP.RestoreApp)	SERVICE_SETUP.RestoreApp	FDCAN8:TBM_SCHEDULE_FD_2	B-1 衝突	段3訊息名與規格原名之訊息不符
+SERVICE_SETUP.RestoreDefaulSetting	CAN			SERVICE_SETUP.RestoreDefaulSetting		查無(R-G13)	
+SERVICE_SETUP.RestoreDefaultSetting	CAN	LID	LID/CAN Mapping/r383c6(SERVICE_SETUP.RestoreDefaultSetting);LID/CAN Mapping/r383c16(SERVICE_SETUP.RestoreDefaultSetting)	SERVICE_SETUP.RestoreDefaultSetting	FDCAN8:TBM_SCHEDULE_FD_2	B-1 衝突	段3訊息名與規格原名之訊息不符
+SERVICE_SETUP.TelematicSetupACK	CAN			SERVICE_SETUP.TelematicSetupACK	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+SERVICE_SETUP.TelematicSetupAck	CAN			SERVICE_SETUP.TelematicSetupAck		查無(R-G13)	
+STATUS_CCAN3.VehicleSpeedVSOSig	CAN	LID	LID/CAN Mapping/r2329c16(STATUS_CCAN3.VehicleSpeedVSOSig);LID/CAN Mapping/r1736c3(VehicleSpeedVSOSig);LID/CAN Mapping/r2321c1(VehicleSpeedVSOSig)	STATUS_CCAN3.VehicleSpeedVSOSig	BHCAN2:STATUS_CCAN3;FDCAN8:BRAKE_FD_2	解得	
+STATUS_CCAN3.VehicleSpeedVSOSigFailSts	CAN			STATUS_CCAN3.VehicleSpeedVSOSigFailSts		查無(R-G13)	
+Sdw_Chime_Volume_Setting.Req	內部					查無(R-G13)	
+Sdw_Setting.Req	內部					查無(R-G13)	
+Server_App.GUI	內部					查無(R-G13)	
+Sound_Horn_Lock_Unlock_Setting.Req	內部					查無(R-G13)	
+Speed_Lock_Door_Enable.Req	內部					查無(R-G13)	
+TBM_CmdIgnSts.Info	內部					查無(R-G13)	
+TBM_OperationalModeSts.Info	內部					查無(R-G13)	
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN	LID	LID/CAN Mapping/r342c16(TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq);LID/BSEGMENT Specific Signals/r4c4(TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq);LID/332BEV Specific Signals/r4c4(TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq);LID/250MCA Specific Signals/r4c4(TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq)	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_SERVICE_SETUP.PrivacyModeReq	CAN	LID	LID/CAN Mapping/r1399c1(PrivacyModeReq)	TELEMATIC_SERVICE_SETUP.PrivacyModeReq	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_SERVICE_SETUP.RestoreAppReq	CAN			TELEMATIC_SERVICE_SETUP.RestoreAppReq	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_SERVICE_SETUP.RestoreDefaultSettimgReq	CAN			TELEMATIC_SERVICE_SETUP.RestoreDefaultSettimgReq		查無(R-G13)	
+TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	CAN	LID	LID/CAN Mapping/r1583c1(RestoreDefaultSettingReq);LID/CAN Mapping/r1583c16(TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq)	TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	CAN	LID	LID/CAN Mapping/r72c1(AmbientLightingLevel_Req)	TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req		未解得(止於段2)	
+TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req	CAN			TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req	CAN			TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.BSDEnable_Req	CAN			TELEMATIC_VEHICLE_SETUP.BSDEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req	CAN			TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req		查無(R-G13)	
+TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req	CAN			TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.DRLEnable_Req	CAN			TELEMATIC_VEHICLE_SETUP.DRLEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req	CAN			TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req		查無(R-G13)	
+TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req	CAN			TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req	CAN			TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req		查無(R-G13)	
+TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req	CAN			TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.HourMode_Req	CAN			TELEMATIC_VEHICLE_SETUP.HourMode_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req	CAN	LID	LID/CAN Mapping/r1112c1(LanguageSelection_Req);LID/CAN Mapping/r1112c16(TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req)	TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req	CAN			TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req		查無(R-G13)	
+TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req	CAN			TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req	CAN			TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req	CAN			TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req	CAN			TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock	CAN			TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock	FDCAN8:IPC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req	CAN			TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req	CAN			TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req		查無(R-G13)	
+TELEMATIC_VEHICLE_SETUP.Sdw_Req	CAN			TELEMATIC_VEHICLE_SETUP.Sdw_Req		查無(R-G13)	
+TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req	CAN			TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	解得	
+TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req	CAN			TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req		查無(R-G13)	
+TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req	CAN			TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP2.Backup_Cam_Delay_Req	CAN			TELEMATIC_VEHICLE_SETUP2.Backup_Cam_Delay_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req	CAN			TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req	CAN			TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	CAN			TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req	CAN			TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	CAN			TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	CAN			TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	CAN			TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	FDCAN8:TELEMATIC_VEHICLE_SETUP	B-1 衝突	段3訊息名與規格原名之訊息不符
+TELEMATIC_VEHICLE_SETUP2.RainSensorSensibility_Req	CAN			TELEMATIC_VEHICLE_SETUP2.RainSensorSensibility_Req		查無(R-G13)	
+TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req	CAN			TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req		查無(R-G13)	
+TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req	CAN			TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req		查無(R-G13)	
+TLM_Display.GUI	內部					查無(R-G13)	
+TLM_Vehicle_Setup_Menu.Info	內部					查無(R-G13)	
+Temperature_Unit_Setting.Req	內部					查無(R-G13)	
+Time_Date_Setting_Feedback.Info	內部					查無(R-G13)	
+Tyre_Pressure_Unit_Setting.Req	內部					查無(R-G13)	
+Units_Setting.Req	內部					查無(R-G13)	
+Year1_Setting.Info	內部					查無(R-G13)	
+Year1_Setting.Req	內部					查無(R-G13)	
+Year2_Setting.Info	內部					查無(R-G13)	
+Year2_Setting.Req	內部					查無(R-G13)	
+Year3_Setting.Info	內部					查無(R-G13)	
+Year3_Setting.Req	內部					查無(R-G13)	
+Year4_Setting.Info	內部					查無(R-G13)	
+Year4_Setting.Req	內部					查無(R-G13)	

@@ -1,6 +1,12 @@
 # Customer source files - never commit
 inputs/
 
+# 036 母本之工作副本（落點依 R-G25 為 sandbox/）。與 forms/*、
+# ics_management/power_moding/sw_update 之 sandbox/ 同一政策：公司表單本體不入版控。
+# 其身分由 docs/upstream/01_sources_recon.md 之 E11 與 RECON.md §1 之 sha256 釘住
+# （6372fb6b…825b2，cmp 與 forms/ 原件全等）—— 檔案在磁碟，身分在 git。
+sandbox/
+
 # Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
 # own data/*.json artefacts here as Step 1 starts emitting them.
 data/recon.json
