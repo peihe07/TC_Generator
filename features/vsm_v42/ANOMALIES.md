@@ -64,6 +64,45 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 
 ---
 
+## A-VL3 —— W-0 之前提不成立：`RULINGS.sha.tsv` 仍為 `M`，且重生 diff 非 14 列（PENDING）
+
+- **登記日**：2026-09-01（下放包 01 之 W-0 執行時）
+- **依據**：下放包 01 §三 W-0「先 `git status --short docs/fw036/RULINGS.sha.tsv`
+  確認為乾淨（Pei 已入庫）；若仍 `M`，停下回報，**不覆寫**」；
+  §六 升級條件第 1 條；R-VL9 之前提「Pei 先將現行 working tree 入庫」。
+- **實測 A（前提不成立）**：`git status --short docs/fw036/RULINGS.sha.tsv`
+  → ` M docs/fw036/RULINGS.sha.tsv`（**非乾淨**）。
+  `git diff --numstat` → `355  339`（+355／−339 行）。
+  working 版相對 HEAD 多出 **16 個條號**：`R-G29`、`R-G42`、
+  `R-ICS45`–`R-ICS58`（14 條）—— 皆為**他線**（canon §9.2 與 ics_management）之
+  未入庫變更。working 版含 `R-V[LT]` 列數 **0**。
+- **實測 B（E17 已知不可達）**：以 `--out <scratchpad>` 模擬重生（**未寫入該檔**），
+  對現行 working 版逐行 diff → **17 新增列、0 修改、0 刪除**：
+  `R-VL1`–`R-VL9`（9）＋ `R-VT1`–**`R-VT8`**（**8**）。
+  預期 E17 為 14（9 ＋ 5）—— 差在 `vsm_v43` 之 `RULINGS.md` 已自 R-VT5 增至
+  **R-VT8**（實測 `grep -n "^### R-VT" features/vsm_v43/RULINGS.md` 得 8 個錨點）。
+  下放包 01 §三之「R-VT1–R-VT5（5）」係依上繳 00 §11 丁當時之實測所寫，
+  期間姊妹線續有落檔，該預期數已陳舊。**不自行調和為 17**。
+- **實測 C（E18 一項不同，但條文本體未動）**：R-VL2 之節 sha8 由上繳 00 §9 所報之
+  `d6a189ed` 變為 `582d0c6d`；然其 `body_sha8` 為 `01c67a04`，**與上繳 00 §9 所報相同**。
+  差異源於 R-VL6(d)「R-VL2 原文不改，加註指向本條」—— 加註落在**節內、fenced block 外**，
+  而 `rulings_hash.py` 之 `sha8` 涵蓋整節（含加註），`body_sha8` 只涵蓋 fenced 本體
+  （量測條件見該工具 docstring）。R-VL1／R-VL3／R-VL4／R-VL5 之 sha8 逐字相同。
+  即：**條文未變，節變了**；E18 之量測面（`sha8`）與其所欲防之事（條文遭改）不同軸。
+- **阻塞**：**是**。W-0 為本包首步且順序不得調換，故 W-1′～W-6 全數未執行。
+- **本地處置**：未寫入 `docs/fw036/RULINGS.sha.tsv`（不覆寫他線未入庫之變更）；
+  未動 `features/vsm_v43/`；未執行 W-1′ 之後任一步。
+- **未開 DR 之理由**：同 A-VL1 —— 本項為專案內部流程（Pei 入庫）與下放包預期數陳舊，
+  非上游資料疑義；DR 送出權屬 Pei（禁區第 6 條）。
+- **解除條件**（三項，請分析層／Pei 裁）：
+  1. Pei 將 `docs/fw036/RULINGS.sha.tsv`（及其同批他線變更）入庫，使其為乾淨；
+  2. E17 之預期數自 14 更新為**重生當下實測之 R-VT 條數 ＋ 9**，或改為
+     「新增列全為 `R-VL*`／`R-VT*`，且修改 0、刪除 0」之**性質判準**
+     （數值判準隨姊妹線落檔而失效，此為其第一次失效）；
+  3. E18 之量測面裁定：改比 `body_sha8`（防條文遭改），或維持 `sha8`
+     並將 R-VL2 之新值 `582d0c6d` 認列為基線。
+
+
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning：`[ASSUMPTION A-VLnn]`。
