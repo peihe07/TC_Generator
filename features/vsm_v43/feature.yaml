@@ -1,0 +1,78 @@
+# feature.yaml — pipeline configuration for vsm_v43
+# 建檔：2026-09-01（下放包 00 §五 W-1，執行層，`scripts/new_feature.py
+# vsm_v43 --adopt-existing`）。條號系列 R-VT；姊妹線 vsm_v42 獨立，本檔不引其值。
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals. Regenerate nothing by editing code.
+
+# R-VT3 — Test Group（Layer 1）與 TC ID 之權威值。
+feature: "Vehicle Setup Management R1L TBM"
+test_group: "Vehicle Setup Management R1L TBM"   # R-VT3，工作簿 G 欄
+
+# R-VT3 — TC ID 方案。00 包 §五 W-1 明令鍵名為 `tc_id_prefix`。
+# ⚠ 本鍵目前**無任何腳本讀取**（實測：`scripts/recon.py:1103` 讀
+# `write_back.tc_id_format`；`tc_id_prefix` 全庫 grep 0 命中）。不自行改鍵名，
+# 依 00 包原文落檔，出入登 A-VT2 交上游。
+tc_id_prefix: "NR1L-VSM43-"
+
+# 素材落點依 R-VT5／R-G27：原檔入 `sources/raw/<doc_id>/`，本檔以 doc_id 引用。
+# **未實測者一律留 null／TBD，不猜**（沿 ics_management／bed_lowering 檔頭慣例）。
+# 2026-09-01 實測：`_intake/Vehicle_Setup_VF665/` 為空目錄，三件原檔皆未投遞，
+# 故 W-2 未執行，本節除 a03_report 外全留 TBD（A-VT1）。
+paths:
+  workbook: null        # R-VT1 BLANK 起建；R-G1 母本副本尚未建（W-2 未執行）
+  # ⚠ a03_report = null 之理由：VF665 V43 之 037（SWE1 分析報告）**不存在**。
+  # 現有 037 兩份之 Source Requirement ID 152/152 皆為 V42；Pei 已確認無其他 037。
+  # 依 R-VT4 本線無 TC 母體，作業止於 P0–P3，P4 以後停等。
+  # 阻塞型資料請求：**DR-VT1**（`DATA_REQUESTS.md`），已登記、建議送出。
+  # 不得以 SYSRA 或規格代 037 生成 leaf 母體或任何 TC（R-VT4）。
+  a03_report: null      # DR-VT1
+  spec_docx: TBD        # doc_id `vf665_v43_spec_r4`（00 包 §三 #1），原檔未投遞
+  sysra_export: TBD     # doc_id `vf665_v43_sysra`（00 包 §三 #2），原檔未投遞
+  sysad: TBD            # doc_id `vf665_sysad_sys3`（00 包 §三 #3），與 vsm_v42 共引
+  sys1_export: null     # 本 feature 無 SYS1 匯出
+  spec_pdf: null
+  popup_list: null
+
+spec_mode: "D"        # 00 包 §三 #1 —— 二進位文件（docx）抽取；scaffold 原值 "A" 為模板值
+spec_reference_template: "{spec_filename}_{section_id}"   # 待 P3 framework 定案
+
+# ⚠ 下列欄位映射**全為 scaffold 模板值，本包未實測**（工作簿尚未建）。
+# power A-PW37 先例：同一模板值自 priority 起全部錯位。W-2 建簿後須自 r9 表頭複驗。
+workbook:
+  sheet: "Test Case Specification&Result"
+  header_row: 9
+  # column letters, verified by recon header match — do not guess
+  columns:
+    req_id: "D"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    design_method: "Q"
+    functional_safety: "R"
+    author: "Z"
+    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+
+# R-VT1 — 工作簿自 BLANK ＋ R-G1 模板起建，無 done region。
+done_region:
+  # detection: "author" (author-cell match) or "rows" (explicit ranges)
+  detection: "author"
+  author_value: null     # BLANK 起建，無既有作者區（R-VT1）
+  # invariant: "content_hash" (interleaved-safe) or "positional"
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: true      # BLANK 起建（R-VT1），FO §2
+
+lint:
+  design_method_source: "dropdown_sheet"   # exact-string vocabulary
+  popup_ids: []                            # e.g. [PU0091, PU0942] — verbatim check
+  extra_rules: []                          # feature-specific lint hooks
