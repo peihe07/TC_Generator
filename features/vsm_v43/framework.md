@@ -11,7 +11,31 @@
 工作簿 G 欄逐字取此值；`feature.yaml` 之 `test_group` 已同步（R-VT3）。
 交付檔名之 feature 段為 `VehicleSetupManagementR1LTBM`（R-VT3，R-G42 五禁尾綴）。
 
-## Layer 2 — Test Set（**待 037，本節不得填入任何內容**）
+## Layer 2 — Test Set（**暫代鎖定，R-VT19，Pei 2026-09-02「准」**；正式版待 037 重錨時重議）
+
+| # | Test Set | leaf | Layer 3（chapter_for_vf，不入工作簿） |
+|---|---|---|---|
+| 1 | Exterior Lighting | 32 | 01.11.01.01.01／.02／.12／.13／.14／.25 |
+| 2 | Lane Departure Warning | 18 | .03／.04 |
+| 3 | Forward Collision Warning | 15 | .06 |
+| 4 | Side and Blind Spot Warnings | 16 | .05／.15 |
+| 5 | Park Sense | 15 | .24 |
+| 6 | Units | 26 | .10／.10.01／.10.02／.10.03／.10.04 |
+| 7 | Clock and Time | 24 | .08.01／.08.02／.08.03／.21 |
+| 8 | Language | 4 | .11 |
+| 9 | Door Lock and Access | 30 | .09／.16／.17／.18／.19／.20 |
+| 10 | Interior Ambient Lighting | 10 | .26 |
+| 11 | Wiper and Sensor | 5 | .07 |
+| 12 | Phone and Navigation Repetition | 4 | .22／.23 |
+| 13 | Privacy and Service Data Reset | 14 | .27／.28／.29／.30 |
+| 14 | Setup Acknowledge and Recovery | 13 | .31／.32／01.13.02.01.01〜03 |
+| 15 | Menu Access and Persistence | 2 | 01.11.01.01（根；真離群，IN §4.2） |
+| 16 | PROXI Configuration | 67 | 01.14.01（38）／01.14.02.01.01〜29（29） |
+
+合計 295（= 暫代母體）。命名與 vsm_v42 重疊處對齊（Park Sense／Units／Wiper and Sensor）。
+單一 chapter 入單一 Test Set，無跨組拆列；新列（DR-VT2 增補批）依 chapter 落入既有組，無處可放先修本表。
+
+### 舊狀態（保留對照，R-TM13）
 
 **現況：無母體。** 037（SWE1 分析報告）於本線為 **0**：
 現有兩份 037 之 `Source Requirement ID` 152/152 皆為 V42，`V43` 字串命中 0（上繳 01 E7 實測）。
@@ -53,7 +77,8 @@ DR-VT1 為其唯一解，Pei 現裁先不送 —— 故本節在 037 到齊前�
 
 ## Layer 3 — 規格章節號
 
-待 Layer 2 鎖定後回填（回填為量測非裁決，不解鎖 Layer 2）。
+暫代期 Layer 3 = `chapter_for_vf` 完整值（上表末欄）。chapter ↔ V43 R4 規格章節號之對應為假說，
+逐章實測後方得加列 spec 錨（R-VT19(b)，P4 包 W 項）。
 
 ## 訊號書寫
 

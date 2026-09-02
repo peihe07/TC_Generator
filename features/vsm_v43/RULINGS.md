@@ -280,6 +280,24 @@ R-VT18（Pei 裁定 2026-09-02：「送＋三」；條文內容分析層記）
     分析層出草案、Pei 裁後鎖；framework Layer 2 節之「留白為裁決結果」加註 R-VT18 改走暫代線。
 ```
 
+### R-VT19 —— Layer 2 暫代鎖定（16 組，Pei「准」）；暫代期 spec_reference 型態
+
+```
+R-VT19（Pei 裁定 2026-09-02：「准」；草案分析層，材料上繳 06）
+(a) Layer 2 暫代鎖定 16 組，合計 295（全表見 framework.md）：
+Exterior Lighting 32／Lane Departure Warning 18／Forward Collision Warning 15／
+Side and Blind Spot Warnings 16／Park Sense 15／Units 26／Clock and Time 24／Language 4／
+Door Lock and Access 30／Interior Ambient Lighting 10／Wiper and Sensor 5／
+Phone and Navigation Repetition 4／Privacy and Service Data Reset 14／
+Setup Acknowledge and Recovery 13／Menu Access and Persistence 2（真離群，IN §4.2）／
+PROXI Configuration 67（含 01.14.01 表 38＋01.14.02.01.* 用途 29，不拆）。
+Layer 3 = chapter_for_vf 完整值（不入工作簿）。037 到件重錨時 Layer 2 重議，本鎖定不預先拘束正式版。
+(b) 暫代期 spec_reference：主錨 `Sys-RA-VF665_V43_VSM-{nnn}`（一 ID 一行，同 R-VL19(b) 型）。
+    chapter_for_vf 與 V43 R4 規格章節號之對應（如 01.11.01.01.06 ↔ 1.11.1.1.6）為假說，
+    須逐章實測規格標題後方得加列 spec 錨（P4 包 W 項）；未驗證前只寫 Sys-RA 錨，不臆配。
+(c) P4 pilot 提案：Interior Ambient Lighting（10 leaf，單一 chapter，含解得 80%）；開跑前 Pei 可改指。
+```
+
 ---
 
 ## 取號紀錄
@@ -295,3 +313,4 @@ R-VT18（Pei 裁定 2026-09-02：「送＋三」；條文內容分析層記）
 | R-VT16 | 2026-09-02 | 上繳 04 §三 sha 表止於 R-VT15；本檔錨點實測 15 |
 | R-VT17 | 2026-09-02 | 上繳 05 §六 sha 表止於 R-VT16；本檔錨點實測 16 |
 | R-VT18 | 2026-09-02 | 本檔錨點實測 17 |
+| R-VT19 | 2026-09-02 | 上繳 06 §五 sha 表止於 R-VT18；本檔錨點實測 18 |
