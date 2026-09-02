@@ -1,108 +1,108 @@
-tc_name	hmi_name	fip_name	match_type	evidence
-6 Aux Switches			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 5 Power Mode			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 6 Power Mode			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 1 Type			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 5 Type			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 6 Type			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 5 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 6 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
-Rear Guidance Lighting with Approach			UNRESOLVED	母體無對應，開 DR-49
-Rear Guidance Light Status		Rear Guidance Light Status	exact	总控表 No.275
-E-Save			UNRESOLVED	母體無對應，開 DR-49
-Blind Spot Alert	Blind Spot Alert	Blind Spot Alert	exact	Settings r16,320；总控表 No.122
-Passive Entry	Passive Entry	Passive Entry	exact	Settings r521,522；总控表 No.123
-Remote Door Unlock		Remote Door Unlock	exact	总控表 No.124
-Auto Park Brake	Auto Park Brake	Auto Park Brake	exact	Settings r509；总控表 No.132
-Horn With Remote Start		Horn With Remote Start	exact	总控表 No.125
-Horn With Lock		Horn With Lock	exact	总控表 No.126
-Auto Unlock on Exit	Auto Unlock on Exit	Auto Unlock on Exit	exact	Settings r513；总控表 No.127
-Flash Light With Lock		Flash Light With Lock	exact	总控表 No.128
-Navigation Turn by Turn			UNRESOLVED	母體無對應，開 DR-49
-Language	Language		exact	Settings r23
-Phone Repetition			UNRESOLVED	母體無對應，開 DR-49
-Park Sense Rear Volume			UNRESOLVED	母體無對應，開 DR-49
-Park Sense Front Volume			UNRESOLVED	母體無對應，開 DR-49
-Auto High Beam		Auto High Beam	exact	总控表 No.129
-RKE Linked to Memory		RKE Linked to Memory	exact	总控表 No.144
-Auto On Driver Comfort - 3 Option			UNRESOLVED	母體無對應，開 DR-49
-Auto On Driver Comfort - 2 Option			UNRESOLVED	母體無對應，開 DR-49
-Rearview Camera Delay	Rear View Camera Delay		manual	Settings r467（空白不敏感）
-Rearview Camera Dynamic Guidelines			UNRESOLVED	母體無對應，開 DR-49
-Cornering Lights	Cornering Lights	Cornering Lights	exact	Settings r501；总控表 No.107
-Greeting Lights	Greeting Lights	Greeting Lights	exact	Settings r494,495；总控表 No.108
-Lane Sense Warning		Lane Sense Warning	exact	总控表 No.109
-Signature Lighting	Signature Lighting		exact	Settings r506
-Lane Sense Strength		Lane Sense Strength	exact	总控表 No.110
-Forward Collision Warning	Forward Collision Warning	Forward Collision Warning	exact	Settings r6,249,251,252；总控表 No.131
-Forward Collision Warning Sensitivity		Forward Collision Warning Sensitivity	exact	总控表 No.199
-Pedestrian Emergency Braking or Warning & Active Braking			UNRESOLVED	母體無對應，開 DR-49
-Rain Sensing Wipers			UNRESOLVED	母體無對應，開 DR-49
-Daytime Running Lights	Daytime Running Lights	Daytime Running Lights	exact	Settings r499；总控表 No.119
-Headlights Off Delay		Headlights Off Delay	exact	总控表 No.121
-Pressure Unit			UNRESOLVED	母體無對應，開 DR-49
-Power Unit		Power - Unit	exact	总控表 No.141
-Torque Unit		Torque - Unit	exact	总控表 No.142
-Illuminated Approach		Illuminated Approach	exact	总控表 No.154
-Paddle Shifter		Paddle Shifter	exact	总控表 No.156
-Power Liftgate/Tailgate Alert			UNRESOLVED	母體無對應，開 DR-49
-Power Tailgate	Power Tailgate	Power Tailgate	exact	Settings r529；总控表 No.266
-Traffic Sign Warning			UNRESOLVED	母體無對應，開 DR-49
-New Speed Zone Indication	New Speed Zone Indication		exact	Settings r281
-Charge Power Level			UNRESOLVED	母體無對應，開 DR-49
-Rear Seat Reminder			UNRESOLVED	母體無對應，開 DR-49
-Trailer Number			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 2 Type			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 3 Type			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 4 Type			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 1 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 2 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 3 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 4 Hold Last State			UNRESOLVED	母體無對應，開 DR-49
-Suspension Flash Lights With Lower		Suspension Flash Lights With Lower	exact	总控表 No.269
-Suspension Sound Horn With Lower		Suspension Sound Horn With Lower	exact	总控表 No.270
-Rear Guidance Lights with Cargo Lights		Rear Guidance Lights with Cargo Lights	exact	总控表 No.272
-Suspension Default Ride Height			UNRESOLVED	母體無對應，開 DR-49
-AUX Switches			UNRESOLVED	母體無對應，開 DR-49
-4 AUX Switches			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 1 Power Mode			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 2 Power Mode			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 3 Power Mode			UNRESOLVED	母體無對應，開 DR-49
-SWITCH 4 Power Mode			UNRESOLVED	母體無對應，開 DR-49
-Suspension Service Mode			UNRESOLVED	母體無對應，開 DR-49
-Suspension Display Messages		Suspension Display Messages	exact	总控表 No.161
-Tilt Mirror in Reverse		Tilt Mirror in Reverse	exact	总控表 No.163
-Tire Fill Alert		Tire Fill Alert	exact	总控表 No.164
-Ready to Drive Pop-Up	Ready to Drive Pop-Up	Ready to Drive Pop-Up	exact	Settings r347；总控表 No.165
-Auto Fold Mirrors		Auto Fold Mirrors	exact	总控表 No.147
-Driver Easy Exit Seat		Driver Easy Exit Seat	exact	总控表 No.148
-Engine Off Power Delay		Engine Off Power Delay	exact	总控表 No.149
-Hill Start Assist	Hill Start Assist	Hill Start Assist	exact	Settings r342；总控表 No.152
-Headlights with Wipers	Headlights with Wipers	Headlights with Wipers	exact	Settings r486,492；总控表 No.153
-Trailer Name	Trailer Name	Trailer Name	exact	Settings r405,406,422,423,439,440,456,457；总控表 No.201
-Trailer Brake Type		Trailer Brake Type	exact	总控表 No.200
-Automatic Trailer Light Check		Automatic Trailer Light Check	exact	总控表 No.268
-Blind Spot with Trailer Detection		Blind Spot with Trailer Detection	exact	总控表 No.271
-Power Side Step	Power Side Step	Power Side Step	exact	Settings r341；总控表 No.206
-Traffic Sign Assist Offset - NAFTA Setting			UNRESOLVED	母體無對應，開 DR-49
-Traffic Sign Assist Offset - non-NAFTA Setting			UNRESOLVED	母體無對應，開 DR-49
-Warnings for Low Fuel Inverter Shutdown - Visual Warning			UNRESOLVED	母體無對應，開 DR-49
-Warnings for Low Fuel Inverter Shutdown - Audible Warning			UNRESOLVED	母體無對應，開 DR-49
-Enhanced Display Synchronization			UNRESOLVED	母體無對應，開 DR-49
-CHMSL CAMERA DYNAMIC CENTERLINE			UNRESOLVED	母體無對應，開 DR-49
-Max Power Level			UNRESOLVED	母體無對應，開 DR-49
-Time and Date Settings			UNRESOLVED	母體無對應，開 DR-49
-Hour Mode			UNRESOLVED	母體無對應，開 DR-49
-Auto Door Locks	Auto Door Locks	Auto Door Locks	exact	Settings r512；总控表 No.113
-Distance Unit		Distance - Unit	exact	总控表 No.115
-Speed Unit		Speed - Unit	exact	总控表 No.118
-Consumption Unit		Consumption - Unit	exact	总控表 No.114
-Unit Energy			UNRESOLVED	母體無對應，開 DR-49
-Temperature Unit		Temperature - Unit	exact	总控表 No.116
-Surround View Camera Delay	Surround View Camera Delay	Surround View Camera Delay	exact	Settings r465；总控表 No.186
-Surround View Camera Guidelines	Surround View Camera Guidelines	Surround View Camera Guidelines	exact	Settings r466；总控表 No.187
-Turn Signal Activated Blind Spot Camera View			UNRESOLVED	母體無對應，開 DR-49
-Turn Signal Activated Blind Spot Camera View with Trailer Option			UNRESOLVED	母體無對應，開 DR-49
-ParkSense Based Camera Activation			UNRESOLVED	母體無對應，開 DR-49
-Park Sense	ParkSense		manual	Settings r12,300,301,303,306（空白不敏感）
-Suspension Auto Entry or Exit			UNRESOLVED	母體無對應，開 DR-49
+tc_name	hmi_name	fip_name	match_type	evidence	tier2_proposal	tier2_evidence
+6 Aux Switches			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r565–r588 [21. Aux Switches] Aux 1–Aux 6（親項）；FIP No.267 AUX SWITCH Type（Type2 → 6）
+SWITCH 5 Power Mode			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI [21. Aux Switches] > Aux 5 > Power Source (2 radio; Battery, Ignition)（r583）—— Power Mode≟Power Source 待認
+SWITCH 6 Power Mode			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI [21. Aux Switches] > Aux 6 > Power Source (2 radio; Battery, Ignition)（r587）—— Power Mode≟Power Source 待認
+SWITCH 1 Type			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r566/r570/… [21. Aux Switches] > Aux n > Type (2 radio; Latching, Momentary)
+SWITCH 5 Type			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r566/r570/… [21. Aux Switches] > Aux n > Type (2 radio; Latching, Momentary)
+SWITCH 6 Type			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r566/r570/… [21. Aux Switches] > Aux n > Type (2 radio; Latching, Momentary)
+SWITCH 5 Hold Last State			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r568/r572/… [21. Aux Switches] > Aux n > Recall Last State (On/Off)
+SWITCH 6 Hold Last State			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r568/r572/… [21. Aux Switches] > Aux n > Recall Last State (On/Off)
+Rear Guidance Lighting with Approach			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	DR	HMI 15. Lights 無同名；FIP No.272/275 為 Cargo Lights / Light Status，非此
+Rear Guidance Light Status		Rear Guidance Light Status	exact	总控表 No.275		
+E-Save			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	DR	兩表皆無候選
+Blind Spot Alert	Blind Spot Alert	Blind Spot Alert	exact	Settings r16,320；总控表 No.122		
+Passive Entry	Passive Entry	Passive Entry	exact	Settings r521,522；总控表 No.123		
+Remote Door Unlock		Remote Door Unlock	exact	总控表 No.124		
+Auto Park Brake	Auto Park Brake	Auto Park Brake	exact	Settings r509；总控表 No.132		
+Horn With Remote Start		Horn With Remote Start	exact	总控表 No.125		
+Horn With Lock		Horn With Lock	exact	总控表 No.126		
+Auto Unlock on Exit	Auto Unlock on Exit	Auto Unlock on Exit	exact	Settings r513；总控表 No.127		
+Flash Light With Lock		Flash Light With Lock	exact	总控表 No.128		
+Navigation Turn by Turn			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r179 [2. Display] Navigation Turn-by-Turn Displayed in Cluster
+Language	Language		exact	Settings r23		
+Phone Repetition			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r214 [2. Display] > Cluster Options > 17.9.6 Audio Repetition (On/Off) —— Phone≟Audio 待認
+Park Sense Rear Volume			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r311 [4.] Rear ParkSense Volume* (3 radio; Low, Med, High)
+Park Sense Front Volume			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r310 [4.] Front ParkSense Volume* (3 radio; Low, Med, High)
+Auto High Beam		Auto High Beam	exact	总控表 No.129		
+RKE Linked to Memory		RKE Linked to Memory	exact	总控表 No.144		
+Auto On Driver Comfort - 3 Option			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r96 Auto-On Comfort (Auto_On_Comfort_Remote)；FIP No.145 回傳 2（Remote_Start Present）
+Auto On Driver Comfort - 2 Option			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r97 Auto-On Comfort (Auto_On_Comfort_No_Remote)；FIP No.145 回傳 1（Remote_Start Absent）
+Rearview Camera Delay	Rear View Camera Delay		manual	Settings r467（空白不敏感）		
+Rearview Camera Dynamic Guidelines			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	FIP No.236 Backup Camera Dynamic Guidelines；HMI 13. Camera 無 "Dynamic Guidelines" 同名列，路徑段待認
+Cornering Lights	Cornering Lights	Cornering Lights	exact	Settings r501；总控表 No.107		
+Greeting Lights	Greeting Lights	Greeting Lights	exact	Settings r494,495；总控表 No.108		
+Lane Sense Warning		Lane Sense Warning	exact	总控表 No.109		
+Signature Lighting	Signature Lighting		exact	Settings r506		
+Lane Sense Strength		Lane Sense Strength	exact	总控表 No.110		
+Forward Collision Warning	Forward Collision Warning	Forward Collision Warning	exact	Settings r6,249,251,252；总控表 No.131		
+Forward Collision Warning Sensitivity		Forward Collision Warning Sensitivity	exact	总控表 No.199		
+Pedestrian Emergency Braking or Warning & Active Braking			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r256 [4.] > Automatic Emergency Braking* > Pedestrian Emergency Braking (2 radio; Off / Warning + Active Braking)；FIP No.143
+Rain Sensing Wipers			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r483 [14.] Rain Sensing Auto Wipers* (On/Off)；FIP No.112 Rain Sensor
+Daytime Running Lights	Daytime Running Lights	Daytime Running Lights	exact	Settings r499；总控表 No.119		
+Headlights Off Delay		Headlights Off Delay	exact	总控表 No.121		
+Pressure Unit			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r167 [2. Display] > Units > Pressure (3 radio; psi, kPa, bar)；FIP No.117 Tyre Pressure - Unit
+Power Unit		Power - Unit	exact	总控表 No.141		
+Torque Unit		Torque - Unit	exact	总控表 No.142		
+Illuminated Approach		Illuminated Approach	exact	总控表 No.154		
+Paddle Shifter		Paddle Shifter	exact	总控表 No.156		
+Power Liftgate/Tailgate Alert			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r528 [17.] Power Liftgate Alert (On/Off)；FIP No.157 Power Liftgate Alert（co-open: No.266 Power Tailgate，同 CAN node 82）
+Power Tailgate	Power Tailgate	Power Tailgate	exact	Settings r529；总控表 No.266		
+Traffic Sign Warning			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r267 [4.] Traffic Sign Assist Warning* (3 radio; Off / Visual / Visual + Chime)；FIP No.135
+New Speed Zone Indication	New Speed Zone Indication		exact	Settings r281		
+Charge Power Level			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	DR	兩表皆無候選
+Rear Seat Reminder			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r259 [4.] Rear Seat Alert (On/Off)；FIP No.240 Rear Seat Reminder Alert
+Trailer Number			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r392 起 [12. Trailer] Trailer 1/Trailer 2…；FIP No.201 Trailer Name / No.202 Trailer Selected —— 對應物待認
+SWITCH 2 Type			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r566/r570/… [21. Aux Switches] > Aux n > Type (2 radio; Latching, Momentary)
+SWITCH 3 Type			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r566/r570/… [21. Aux Switches] > Aux n > Type (2 radio; Latching, Momentary)
+SWITCH 4 Type			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r566/r570/… [21. Aux Switches] > Aux n > Type (2 radio; Latching, Momentary)
+SWITCH 1 Hold Last State			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r568/r572/… [21. Aux Switches] > Aux n > Recall Last State (On/Off)
+SWITCH 2 Hold Last State			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r568/r572/… [21. Aux Switches] > Aux n > Recall Last State (On/Off)
+SWITCH 3 Hold Last State			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r568/r572/… [21. Aux Switches] > Aux n > Recall Last State (On/Off)
+SWITCH 4 Hold Last State			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r568/r572/… [21. Aux Switches] > Aux n > Recall Last State (On/Off)
+Suspension Flash Lights With Lower		Suspension Flash Lights With Lower	exact	总控表 No.269		
+Suspension Sound Horn With Lower		Suspension Sound Horn With Lower	exact	总控表 No.270		
+Rear Guidance Lights with Cargo Lights		Rear Guidance Lights with Cargo Lights	exact	总控表 No.272		
+Suspension Default Ride Height			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r563 [20. Suspension] Default Ride Height (2 radio; Normal, Aero)；FIP No.274 "Suspension Default Ride Heigh"（FIP 原文缺字母）
+AUX Switches			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI 分類 21. Aux Switches；FIP No.267
+4 AUX Switches			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r565–r580 Aux 1–Aux 4；FIP No.267 AUX SWITCH Type（Type1 → 4）
+SWITCH 1 Power Mode			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI [21. Aux Switches] > Aux 1 > Power Source (2 radio; Battery, Ignition)（r567）—— Power Mode≟Power Source 待認
+SWITCH 2 Power Mode			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI [21. Aux Switches] > Aux 2 > Power Source (2 radio; Battery, Ignition)（r571）—— Power Mode≟Power Source 待認
+SWITCH 3 Power Mode			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI [21. Aux Switches] > Aux 3 > Power Source (2 radio; Battery, Ignition)（r575）—— Power Mode≟Power Source 待認
+SWITCH 4 Power Mode			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI [21. Aux Switches] > Aux 4 > Power Source (2 radio; Battery, Ignition)（r579）—— Power Mode≟Power Source 待認
+Suspension Service Mode			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r562 [20. Suspension] Service Mode (On/Off)；FIP 無同名（No.273 為 EPB Service Mode，非此）
+Suspension Display Messages		Suspension Display Messages	exact	总控表 No.161		
+Tilt Mirror in Reverse		Tilt Mirror in Reverse	exact	总控表 No.163		
+Tire Fill Alert		Tire Fill Alert	exact	总控表 No.164		
+Ready to Drive Pop-Up	Ready to Drive Pop-Up	Ready to Drive Pop-Up	exact	Settings r347；总控表 No.165		
+Auto Fold Mirrors		Auto Fold Mirrors	exact	总控表 No.147		
+Driver Easy Exit Seat		Driver Easy Exit Seat	exact	总控表 No.148		
+Engine Off Power Delay		Engine Off Power Delay	exact	总控表 No.149		
+Hill Start Assist	Hill Start Assist	Hill Start Assist	exact	Settings r342；总控表 No.152		
+Headlights with Wipers	Headlights with Wipers	Headlights with Wipers	exact	Settings r486,492；总控表 No.153		
+Trailer Name	Trailer Name	Trailer Name	exact	Settings r405,406,422,423,439,440,456,457；总控表 No.201		
+Trailer Brake Type		Trailer Brake Type	exact	总控表 No.200		
+Automatic Trailer Light Check		Automatic Trailer Light Check	exact	总控表 No.268		
+Blind Spot with Trailer Detection		Blind Spot with Trailer Detection	exact	总控表 No.271		
+Power Side Step	Power Side Step	Power Side Step	exact	Settings r341；总控表 No.206		
+Traffic Sign Assist Offset - NAFTA Setting			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r270 [4.] Traffic Sign Assist Offset（Notes NAFTA; 0-10 mph / 0-15 kph）；FIP No.241 回傳 1
+Traffic Sign Assist Offset - non-NAFTA Setting			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	drop	R-VS{live}(4)：非 NAFTA 列移除，不建別名
+Warnings for Low Fuel Inverter Shutdown - Visual Warning			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	DR	兩表皆無候選
+Warnings for Low Fuel Inverter Shutdown - Audible Warning			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	DR	兩表皆無候選
+Enhanced Display Synchronization			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	DR	兩表皆無候選
+CHMSL CAMERA DYNAMIC CENTERLINE			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r472 [13. Camera] Cargo Camera Dynamic Centerline (On/Off)；FIP No.194 CHMSL Camere = Always false —— CHMSL≟Cargo 待認
+Max Power Level			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	DR	兩表皆無候選
+Time and Date Settings			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	DR	HMI 7. Clock 為分類（r355–r375），無單一同名項；FIP 無 —— 疑為分類級引用，待認
+Hour Mode			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r359 [7. Clock] Time Format (2 radio; 12 hrs, 24 hrs) —— Hour Mode≟Time Format 待認
+Auto Door Locks	Auto Door Locks	Auto Door Locks	exact	Settings r512；总控表 No.113		
+Distance Unit		Distance - Unit	exact	总控表 No.115		
+Speed Unit		Speed - Unit	exact	总控表 No.118		
+Consumption Unit		Consumption - Unit	exact	总控表 No.114		
+Unit Energy			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	DR	兩表皆無候選（HMI Units 內未見 Energy）
+Temperature Unit		Temperature - Unit	exact	总控表 No.116		
+Surround View Camera Delay	Surround View Camera Delay	Surround View Camera Delay	exact	Settings r465；总控表 No.186		
+Surround View Camera Guidelines	Surround View Camera Guidelines	Surround View Camera Guidelines	exact	Settings r466；总控表 No.187		
+Turn Signal Activated Blind Spot Camera View			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r478 [13. Camera] Turn Signal Activated Blind Spot View (On/Off)；FIP No.122 Blind Spot Alert
+Turn Signal Activated Blind Spot Camera View with Trailer Option			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r479 同名 3 radio 變體；FIP No.271 Blind Spot with Trailer Detection
+ParkSense Based Camera Activation			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r312 [4.] ParkSense Front Camera Activation (On/Off)；FIP No.243 —— 名稱差「Front」，待認
+Park Sense	ParkSense		manual	Settings r12,300,301,303,306（空白不敏感）		
+Suspension Auto Entry or Exit			UNRESOLVED	母體無對應；Tier 2 候選見 tier2_proposal 欄	manual	HMI r556 [20. Suspension] Auto Entry/Exit Suspension；FIP No.159 Suspension Auto Entry/Exit

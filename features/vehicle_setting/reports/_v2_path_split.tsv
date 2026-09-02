@@ -1,0 +1,93 @@
+row	req_id	setting	needs_path	evidence
+14	SWE1-VC-SWITCH5PowerMode-023	SWITCH 5 Power Mode	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 5 Power Mode setting is displayed as IGNITION
+17	SWE1-VC-SWITCH6PowerMode-027	SWITCH 6 Power Mode	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 6 Power Mode setting is displayed as IGNITION
+21	SWE1-VC-SWITCH5Type-047	SWITCH 5 Type	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 5 Type setting is displayed as Latching
+24	SWE1-VC-SWITCH6Type-051	SWITCH 6 Type	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 6 Type setting is displayed as Latching
+27	SWE1-VC-SWITCH5HoldLastState-072	SWITCH 5 Hold Last State	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 5 Hold Last State setting is displayed as Disable
+30	SWE1-VC-SWITCH6HoldLastState-076	SWITCH 6 Hold Last State	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 6 Hold Last State setting is displayed as Disable
+35	SWE1-VC-RearGuidanceLightingwithApproach-082	Rear Guidance Lighting with Approach	需路徑	3. Read the Vehicle Settings menu and check that the Rear Guidance Lighting with Approach setting is displayed as Off_wi
+40	SWE1-VC-RearGuidanceLightStatus-088	Rear Guidance Light Status	需路徑	3. Read the Vehicle Settings menu and check that the Rear Guidance Light Status setting is displayed as OFF
+48	SWE1-VC-BlindSpotAlert-007	Blind Spot Alert	需路徑	3. Read the Vehicle Settings menu and check that the Blind Spot Alert setting is displayed as Not_Enable
+53	SWE1-VC-PassiveEntry-013	Passive Entry	需路徑	3. Read the Vehicle Settings menu and check that the Passive Entry setting is displayed as On
+58	SWE1-VC-RemoteDoorUnlock-019	Remote Door Unlock	需路徑	3. Read the Vehicle Settings menu and check that the Remote Door Unlock setting is displayed as Driver
+63	SWE1-VC-AutoParkBrake-025	Auto Park Brake	需路徑	3. Read the Vehicle Settings menu and check that the Auto Park Brake setting is displayed as On
+68	SWE1-VC-HornWithRemoteStart-031	Horn With Remote Start	需路徑	3. Read the Vehicle Settings menu and check that the Horn With Remote Start setting is displayed as On
+74	SWE1-VC-HornWithLock-038	Horn With Lock	需路徑	3. Read the Vehicle Settings menu and check that the Horn With Lock setting is displayed as Off
+79	SWE1-VC-AutoUnlockonExit-044	Auto Unlock on Exit	需路徑	3. Read the Vehicle Settings menu and check that the Auto Unlock on Exit setting is displayed as Not_Enable
+84	SWE1-VC-FlashLightWithLock-050	Flash Light With Lock	需路徑	3. Read the Vehicle Settings menu and check that the Flash Light With Lock setting is displayed as Off
+89	SWE1-VC-NavigationTurnbyTurn-057	Navigation Turn by Turn	需路徑	3. Read the Vehicle Settings menu and check that the Navigation Turn by Turn setting is displayed as Absent
+91	SWE1-VC-Language-062	Language	需路徑	3. Read the Vehicle Settings menu and check that the Language setting is displayed as Italian
+96	SWE1-VC-PhoneRepetition-068	Phone Repetition	需路徑	3. Read the Vehicle Settings menu and check that the Phone Repetition setting is displayed as Absent
+100	SWE1-VC-ParkSenseRearVolume-075	Park Sense Rear Volume	需路徑	3. Read the Vehicle Settings menu and check that the Park Sense Rear Volume setting is displayed as Low
+104	SWE1-VC-ParkSenseFrontVolume-082	Park Sense Front Volume	需路徑	3. Read the Vehicle Settings menu and check that the Park Sense Front Volume setting is displayed as Low
+109	SWE1-VC-AutoHighBeam-088	Auto High Beam	需路徑	3. Read the Vehicle Settings menu and check that the Auto High Beam setting is displayed as Not_Enable
+114	SWE1-VC-RKELinkedtoMemory-094	RKE Linked to Memory	需路徑	3. Read the Vehicle Settings menu and check that the RKE Linked to Memory setting is displayed as Off
+120	SWE1-VC-AutoOnDriverComfort-3Option-101	Auto On Driver Comfort - 3 Option	需路徑	3. Read the Vehicle Settings menu and check that the Auto On Driver Comfort - 3 Option setting is displayed as Off
+124	SWE1-VC-AutoOnDriverComfort-2Option-107	Auto On Driver Comfort - 2 Option	需路徑	3. Read the Vehicle Settings menu and check that the Auto On Driver Comfort - 2 Option setting is displayed as Off
+129	SWE1-VC-RearviewCameraDelay-113	Rearview Camera Delay	需路徑	3. Read the Vehicle Settings menu and check that the Rearview Camera Delay setting is displayed as Off
+134	SWE1-VC-RearviewCameraDynamicGuidelines-119	Rearview Camera Dynamic Guidelines	需路徑	3. Read the Vehicle Settings menu and check that the Rearview Camera Dynamic Guidelines setting is displayed as Dynamic 
+137	SWE1-VC-CorneringLights-006	Cornering Lights	需路徑	3. Read the Vehicle Settings menu and check that the Cornering Lights setting is displayed as True
+140	SWE1-VC-GreetingLights-012	Greeting Lights	需路徑	3. Read the Vehicle Settings menu and check that the Greeting Lights setting is displayed as True
+143	SWE1-VC-LaneSenseWarning-019	Lane Sense Warning	需路徑	3. Read the Vehicle Settings menu and check that the Lane Sense Warning setting is displayed as Early
+146	SWE1-VC-SignatureLighting-025	Signature Lighting	需路徑	3. Read the Vehicle Settings menu and check that the Signature Lighting setting is displayed as DISABLE
+149	SWE1-VC-LaneSenseStrength-032	Lane Sense Strength	需路徑	3. Read the Vehicle Settings menu and check that the Lane Sense Strength setting is displayed as Low
+152	SWE1-VC-ForwardCollisionWarning-039	Forward Collision Warning	需路徑	3. Read the Vehicle Settings menu and check that the Forward Collision Warning setting is displayed as Off
+155	SWE1-VC-ForwardCollisionWarningSensitivity-046	Forward Collision Warning Sensitivity	需路徑	3. Read the Vehicle Settings menu and check that the Forward Collision Warning Sensitivity setting is displayed as Near
+158	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-052	Pedestrian Emergency Braking or Warning & Active Braking	需路徑	3. Read the Vehicle Settings menu and check that the Pedestrian Emergency Braking or Warning & Active Braking setting is
+161	SWE1-VC-RainSensingWipers-058	Rain Sensing Wipers	需路徑	3. Read the Vehicle Settings menu and check that the Rain Sensing Wipers setting is displayed as Not_Enable
+165	SWE1-VC-DaytimeRunningLights-006	Daytime Running Lights	需路徑	3. Read the Vehicle Settings menu and check that the Daytime Running Lights setting is displayed as False
+166	SWE1-VC-DaytimeRunningLights-006	Daytime Running Lights	需路徑	3. Read the Vehicle Settings menu and check that the Daytime Running Lights setting is displayed as True
+173	SWE1-VC-HeadlightsOffDelay-014	Headlights Off Delay	需路徑	3. Read the Vehicle Settings menu and check that the Headlights Off Delay setting is displayed as 0sec
+174	SWE1-VC-HeadlightsOffDelay-014	Headlights Off Delay	需路徑	3. Read the Vehicle Settings menu and check that the Headlights Off Delay setting is displayed as 30sec
+175	SWE1-VC-HeadlightsOffDelay-014	Headlights Off Delay	需路徑	3. Read the Vehicle Settings menu and check that the Headlights Off Delay setting is displayed as 60sec
+181	SWE1-VC-PressureUnit-007	Pressure Unit	需路徑	3. Read the Vehicle Settings menu and check that the Pressure Unit setting is displayed as KPa
+187	SWE1-VC-PowerUnit-014	Power Unit	需路徑	3. Read the Vehicle Settings menu and check that the Power Unit setting is displayed as HP
+192	SWE1-VC-TorqueUnit-020	Torque Unit	需路徑	3. Read the Vehicle Settings menu and check that the Torque Unit setting is displayed as HP
+199	SWE1-VC-IlluminatedApproach-008	Illuminated Approach	需路徑	3. Read the Vehicle Settings menu and check that the Illuminated Approach setting is displayed as Zero
+204	SWE1-VC-PaddleShifter-014	Paddle Shifter	需路徑	3. Read the Vehicle Settings menu and check that the Paddle Shifter setting is displayed as Off
+209	SWE1-VC-PowerLiftgate/TailgateAlert-020	Power Liftgate/Tailgate Alert	需路徑	3. Read the Vehicle Settings menu and check that the Power Liftgate/Tailgate Alert setting is displayed as Off
+213	SWE1-VC-PowerTailgate-027	Power Tailgate	需路徑	3. Read the Vehicle Settings menu and check that the Power Tailgate setting is displayed as Disabled
+220	SWE1-VC-TrafficSignWarning-035	Traffic Sign Warning	需路徑	3. Read the Vehicle Settings menu and check that the Traffic Sign Warning setting is displayed as Off
+226	SWE1-VC-NewSpeedZoneIndication-042	New Speed Zone Indication	需路徑	3. Read the Vehicle Settings menu and check that the New Speed Zone Indication setting is displayed as Off
+232	SWE1-VC-ChargePowerLevel-051	Charge Power Level	需路徑	3. Read the Vehicle Settings menu and check that the Charge Power Level setting is displayed as Level1
+234	SWE1-VC-RearSeatReminder-056	Rear Seat Reminder	需路徑	3. Read the Vehicle Settings menu and check that the Rear Seat Reminder setting is displayed as Off
+242	SWE1-VC-TrailerNumber-066	Trailer Number	需路徑	3. Read the Vehicle Settings menu and check that the Trailer Number setting is displayed as One
+244	SWE1-VC-SWITCH1Type-004	SWITCH 1 Type	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 1 Type setting is displayed as Latching
+247	SWE1-VC-SWITCH2Type-008	SWITCH 2 Type	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 2 Type setting is displayed as Latching
+250	SWE1-VC-SWITCH3Type-012	SWITCH 3 Type	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 3 Type setting is displayed as Latching
+253	SWE1-VC-SWITCH4Type-016	SWITCH 4 Type	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 4 Type setting is displayed as Latching
+256	SWE1-VC-SWITCH1HoldLastState-020	SWITCH 1 Hold Last State	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 1 Hold Last State setting is displayed as Disable
+259	SWE1-VC-SWITCH2HoldLastState-024	SWITCH 2 Hold Last State	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 2 Hold Last State setting is displayed as Disable
+262	SWE1-VC-SWITCH3HoldLastState-028	SWITCH 3 Hold Last State	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 3 Hold Last State setting is displayed as Disable
+265	SWE1-VC-SWITCH4HoldLastState-032	SWITCH 4 Hold Last State	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 4 Hold Last State setting is displayed as Disable
+270	SWE1-VC-SuspensionFlashLightsWithLower-006	Suspension Flash Lights With Lower	需路徑	3. Read the Vehicle Settings menu and check that the Suspension Flash Lights With Lower setting is displayed as Off
+275	SWE1-VC-SuspensionSoundHornWithLower-012	Suspension Sound Horn With Lower	需路徑	3. Read the Vehicle Settings menu and check that the Suspension Sound Horn With Lower setting is displayed as Off
+280	SWE1-VC-RearGuidanceLightswith\nCargoLights-018	Rear Guidance Lights with Cargo Lights	需路徑	3. Read the Vehicle Settings menu and check that the Rear Guidance Lights with Cargo Lights setting is displayed as Disa
+285	SWE1-VC-SuspensionDefaultRideHeight-025	Suspension Default Ride Height	需路徑	3. Read the Vehicle Settings menu and check that the Suspension Default Ride Height setting is displayed as Normal
+289	SWE1-VC-SWITCH1PowerMode-032	SWITCH 1 Power Mode	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 1 Power Mode setting is displayed as Ignition
+292	SWE1-VC-SWITCH2PowerMode-036	SWITCH 2 Power Mode	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 2 Power Mode setting is displayed as Ignition
+295	SWE1-VC-SWITCH3PowerMode-040	SWITCH 3 Power Mode	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 3 Power Mode setting is displayed as Ignition
+298	SWE1-VC-SWITCH4PowerMode-044	SWITCH 4 Power Mode	需路徑	3. Read the Vehicle Settings menu and check that the SWITCH 4 Power Mode setting is displayed as Ignition
+303	SWE1-VC-SuspensionServiceMode-006	Suspension Service Mode	需路徑	3. Read the Vehicle Settings menu and check that the Suspension Service Mode setting is displayed as Off
+308	SWE1-VC-SuspensionDisplayMessages-012	Suspension Display Messages	需路徑	3. Read the Vehicle Settings menu and check that the Suspension Display Messages setting is displayed as All
+313	SWE1-VC-TiltMirrorinReverse-018	Tilt Mirror in Reverse	需路徑	3. Read the Vehicle Settings menu and check that the Tilt Mirror in Reverse setting is displayed as Off
+318	SWE1-VC-TireFillAlert-024	Tire Fill Alert	需路徑	3. Read the Vehicle Settings menu and check that the Tire Fill Alert setting is displayed as Off
+323	SWE1-VC-ReadytoDrivePopUp-030	Ready to Drive Pop-Up	需路徑	3. Read the Vehicle Settings menu and check that the Ready to Drive Pop-Up setting is displayed as Off
+328	SWE1-VC-AutoFoldMirrors-036	Auto Fold Mirrors	需路徑	3. Read the Vehicle Settings menu and check that the Auto Fold Mirrors setting is displayed as Off
+333	SWE1-VC-DriverEasyExitSeat-042	Driver Easy Exit Seat	需路徑	3. Read the Vehicle Settings menu and check that the Driver Easy Exit Seat setting is displayed as Off
+337	SWE1-VC-EngineOffPowerDelay-050	Engine Off Power Delay	需路徑	3. Read the Vehicle Settings menu and check that the Engine Off Power Delay setting is displayed as Zero
+342	SWE1-VC-HillStartAssist-056	Hill Start Assist	需路徑	3. Read the Vehicle Settings menu and check that the Hill Start Assist setting is displayed as Off
+347	SWE1-VC-HeadlightswithWipers-062	Headlights with Wipers	需路徑	3. Read the Vehicle Settings menu and check that the Headlights with Wipers setting is displayed as Off
+350	SWE1-VC-TrailerName-017	Trailer Name	需路徑	3. Read the Vehicle Settings menu and check that the Trailer Name setting is displayed as Trailer
+353	SWE1-VC-TrailerBrakeType031	Trailer Brake Type	需路徑	3. Read the Vehicle Settings menu and check that the Trailer Brake Type setting is displayed as Light_Electric
+358	SWE1-VC-AutomaticTrailerLight Check-043	Automatic Trailer Light Check	需路徑	3. Read the Vehicle Settings menu and check that the Automatic Trailer Light Check setting is displayed as Disable
+363	SWE1-VC-Blind Spot with Trailer Detection-049	Blind Spot with Trailer Detection	需路徑	3. Read the Vehicle Settings menu and check that the Blind Spot with Trailer Detection setting is displayed as Auto
+368	SWE1-VC-PowerSideStep-055	Power Side Step	需路徑	3. Read the Vehicle Settings menu and check that the Power Side Step setting is displayed as Auto
+382	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-071	Traffic Sign Assist Offset - NAFTA Setting	需路徑	3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 
+399	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-089	Traffic Sign Assist Offset - NAFTA Setting	需路徑	3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - NAFTA Setting setting is displayed as 
+408	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-100	Traffic Sign Assist Offset - non-NAFTA Setting	需路徑	3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - non-NAFTA Setting setting is displayed
+418	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-113	Traffic Sign Assist Offset - non-NAFTA Setting	需路徑	3. Read the Vehicle Settings menu and check that the Traffic Sign Assist Offset - non-NAFTA Setting setting is displayed
+423	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-119	Warnings for Low Fuel Inverter Shutdown - Visual Warning	需路徑	3. Read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Visual Warning setting is
+428	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125	Warnings for Low Fuel Inverter Shutdown - Audible Warning	需路徑	3. Read the Vehicle Settings menu and check that the Warnings for Low Fuel Inverter Shutdown - Audible Warning setting i
+433	SWE1-VC-EnhancedDisplaySynchronization-131	Enhanced Display Synchronization	需路徑	3. Read the Vehicle Settings menu and check that the Enhanced Display Synchronization setting is displayed as OFF
+440	SWE1-VC-MaxPowerLevel143	Max Power Level	需路徑	3. Read the Vehicle Settings menu and check that the Max Power Level setting is displayed as Level1

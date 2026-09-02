@@ -183,7 +183,7 @@ def build_alias(lk: Lookup, names) -> list[dict]:
                     ev.append(f"总控表 No.{','.join(x['no'] for x in cand_f)}（空白不敏感）")
             else:
                 match = "UNRESOLVED"
-                ev.append(f"母體無對應，開 {DR_NO}")
+                ev.append("母體無對應；Tier 2 候選見 tier2_proposal 欄")
         out.append({"tc_name": name, "hmi_name": hmi_name, "fip_name": fip_name,
                     "match_type": match, "evidence": "；".join(ev)})
     return out

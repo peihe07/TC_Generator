@@ -1,0 +1,31 @@
+row	req_id	setting
+38	SWE1-VC-RearGuidanceLightStatus-086	Rear Guidance Light Status
+39	SWE1-VC-RearGuidanceLightStatus-087	Rear Guidance Light Status
+40	SWE1-VC-RearGuidanceLightStatus-088	Rear Guidance Light Status
+90	SWE1-VC-Language-059	Language
+91	SWE1-VC-Language-062	Language
+146	SWE1-VC-SignatureLighting-025	Signature Lighting
+155	SWE1-VC-ForwardCollisionWarningSensitivity-046	Forward Collision Warning Sensitivity
+223	SWE1-VC-NewSpeedZoneIndication-039	New Speed Zone Indication
+224	SWE1-VC-NewSpeedZoneIndication-040	New Speed Zone Indication
+225	SWE1-VC-NewSpeedZoneIndication-041	New Speed Zone Indication
+226	SWE1-VC-NewSpeedZoneIndication-042	New Speed Zone Indication
+321	SWE1-VC-ReadytoDrivePopUp-028	Ready to Drive Pop-Up
+322	SWE1-VC-ReadytoDrivePopUp-029	Ready to Drive Pop-Up
+323	SWE1-VC-ReadytoDrivePopUp-030	Ready to Drive Pop-Up
+326	SWE1-VC-AutoFoldMirrors-034	Auto Fold Mirrors
+327	SWE1-VC-AutoFoldMirrors-035	Auto Fold Mirrors
+328	SWE1-VC-AutoFoldMirrors-036	Auto Fold Mirrors
+331	SWE1-VC-DriverEasyExitSeat-040	Driver Easy Exit Seat
+332	SWE1-VC-DriverEasyExitSeat-041	Driver Easy Exit Seat
+333	SWE1-VC-DriverEasyExitSeat-042	Driver Easy Exit Seat
+334	SWE1-VC-EngineOffPowerDelay-046	Engine Off Power Delay
+335	SWE1-VC-EngineOffPowerDelay-048	Engine Off Power Delay
+336	SWE1-VC-EngineOffPowerDelay-049	Engine Off Power Delay
+337	SWE1-VC-EngineOffPowerDelay-050	Engine Off Power Delay
+356	SWE1-VC-AutomaticTrailerLight Check-041	Automatic Trailer Light Check
+357	SWE1-VC-AutomaticTrailerLight Check-042	Automatic Trailer Light Check
+358	SWE1-VC-AutomaticTrailerLight Check-043	Automatic Trailer Light Check
+447	SWE1-VC-DistanceUnit-021	Distance Unit
+448	SWE1-VC-SpeedUnit-026	Speed Unit
+449	SWE1-VC-ConsumptionUnit-031	Consumption Unit
