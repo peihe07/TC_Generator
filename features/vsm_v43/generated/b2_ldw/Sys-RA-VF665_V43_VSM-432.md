@@ -1,0 +1,53 @@
+# Sys-RA-VF665_V43_VSM-432
+
+- **Test Group**：Vehicle Setup Management R1L TBM
+- **Test Set**：Lane Departure Warning
+- **spec_section**：`1.11.1.1.4`（來源 segment_map）
+- **Remarks**：Provisional: SYSRA-anchored (R-VT18); re-anchor upon 037 (DR-VT1); UI names taken verbatim from spec 1.11.1.1.4 paras 531 and 541, including the spec spellings "Lanse Sense Strenght" and the PROXI value "Leve 3"/"Leve 2" (R-6/R-13, filed to DR-VT2); HMI Settings List `Settings` r282B carries "Lane Departure Warning" (Technical Reference VF230/VF665, CFTS022)
+
+## test_item 上半（verbatim，SYSRA Description）
+
+> IF the user sets "LDW_Intensity_Setting.Req" internal signals to "High" THEN TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req" B-CAN signal equal to "High" and sends this signal to IPC
+
+## reasoning
+
+驗證目標為使用者選定該選項後，TLM 送出對應 B-CAN 訊號之值。關鍵情境條件為該 PROXI 等級成立且選單項可達；設定動作走 UI 路徑（R-P375(b)），因 LDW_Sensibility_Setting.Req／LDW_Intensity_Setting.Req 為內部訊號，其驅動面即規格具名之選單項（R-VL21(a)）。本列只述單一選項，一條足夠；同族其餘選項由各自之列涵蓋（§8.2.1）。ER 用 is received 式（DUT 送出，R-VL21(e)）；raw 與 label 逐字取 val_tables_v43.tsv。
+
+## TC 1 — Lanse Sense Strenght 1 request sent for high selection
+
+### test_item
+
+```
+IF the user sets "LDW_Intensity_Setting.Req" internal signals to "High" THEN TLM shall set "TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req" B-CAN signal equal to "High" and sends this signal to IPC
+
+(Lanse Sense Strenght 1 request sent for high selection)
+```
+
+### pre_conditions
+
+```
+PROXI Half_HMI_Setting = Leve 3
+The menu item "Lanse Sense Strenght 1" is displayed and reachable
+```
+
+### input_test_data
+
+`NA`
+
+### test_procedure
+
+```
+1. Select "Lanse Sense Strenght 1" = "High" on the TLM display
+2. Read the signal $TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req$ and check that it is 2 (High)
+```
+
+### expected_result
+
+```
+1. The menu item "Lanse Sense Strenght 1" shows "High"
+2. The signal value $TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req$ = 2 (High) is received
+```
+
+- specification_reference：`Vehicle_Setup_Management_by_VP-LTM_R1L_TBM_VF665_V43_R4_1.11.1.1.4
+Sys-RA-VF665_V43_VSM-432`
+- design_method：邊界值分析 (Boundary Value Analysis, BVA)｜priority：P1｜split_flag：False｜distinguishing_axis：Strenght 1 option = High

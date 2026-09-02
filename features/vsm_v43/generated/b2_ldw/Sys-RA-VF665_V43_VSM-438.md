@@ -1,0 +1,52 @@
+# Sys-RA-VF665_V43_VSM-438
+
+- **Test Group**：Vehicle Setup Management R1L TBM
+- **Test Set**：Lane Departure Warning
+- **spec_section**：`1.11.1.1.4`（來源 segment_map）
+- **Remarks**：Provisional: SYSRA-anchored (R-VT18); re-anchor upon 037 (DR-VT1); UI names taken verbatim from spec 1.11.1.1.4 paras 531 and 541, including the spec spellings "Lanse Sense Strenght" and the PROXI value "Leve 3"/"Leve 2" (R-6/R-13, filed to DR-VT2); HMI Settings List `Settings` r282B carries "Lane Departure Warning" (Technical Reference VF230/VF665, CFTS022)
+
+## test_item 上半（verbatim，SYSRA Description）
+
+> WHEN TLM receives "IPC_VEHICLE_SETUP2.LDW_Intensity" message THEN TLM updates the LDW Sensibility information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+
+## reasoning
+
+驗證目標為 TLM 收到對應之 IPC 訊號後，其顯示隨之更新。關鍵情境條件為選單項可見且起始值與注入值相異以使更新可觀察。本列與同族之另一收訊列（Leve 3 對 Leve 2 分支）不併：其選單項與可選值域不同（§8.2.1）；注入值取該分支值域內之 VAL_ 實值（R-VL21(d) 之測試設計自由度）。TLM_Vehicle_Setup_Menu.Info 為內部訊號不可讀，效果面即規格同句所載之顯示更新（R-P353 (ii)）；步驟 1 為測試員送出故 ER 用 bus-error 確認式（R-VL21(e)）。
+
+## TC 1 — Lanse Sense Strenght 2 display updated on reception of LDW_Intensity message
+
+### test_item
+
+```
+WHEN TLM receives "IPC_VEHICLE_SETUP2.LDW_Intensity" message THEN TLM updates the LDW Sensibility information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+
+(Lanse Sense Strenght 2 display updated on reception of LDW_Intensity message)
+```
+
+### pre_conditions
+
+```
+The menu item "Lanse Sense Strenght 2" is displayed and shows "Low"
+```
+
+### input_test_data
+
+`NA`
+
+### test_procedure
+
+```
+1. Send the signal $IPC_VEHICLE_SETUP2.LDW_Intensity$ = 1 (Med)
+2. Read the menu item "Lanse Sense Strenght 2" and check that it shows "Med"
+```
+
+### expected_result
+
+```
+1. The signal $IPC_VEHICLE_SETUP2.LDW_Intensity$ = 1 (Med) is registered without a bus error
+2. The menu item "Lanse Sense Strenght 2" shows "Med"
+```
+
+- specification_reference：`Vehicle_Setup_Management_by_VP-LTM_R1L_TBM_VF665_V43_R4_1.11.1.1.4
+Sys-RA-VF665_V43_VSM-438`
+- design_method：功能測試 (Functional based ; no specific technique)｜priority：P1｜split_flag：False｜distinguishing_axis：branch = Leve 2 (three options)
