@@ -383,6 +383,36 @@ R-VL23（分析層裁定 2026-09-02，上繳 07）
 (d) 凍結定義：E56 = 17／17 後執行層於 INDEX 記「b1 FROZEN (R-VL23)」；此後任何變更須新裁決。
 ```
 
+### R-VL24 —— 寫回工法定案；三欄依交付本實測；b1 內容 dry-run 准
+
+```
+R-VL24（分析層裁定 2026-09-02，上繳 09）
+(a) 工法定案：openpyxl 計算層＋`backend.xlsx_surgical.surgical_save` 出件（試驗 C 實證；
+    試驗 A 證 openpyxl 連不改值存檔都掉 x14，禁用）。出件後強制 zipfile 直讀複驗（x14 逐字、
+    member 集合、differing 僅目標分頁）＋回讀驗證；交付候選以 copy2＋sha256 相等產出（popup 式）。
+    單次約 120 秒記入工程預期，不入迴圈。
+(b) Q／V（車型欄）／AB 三未裁欄：依格式權威硬規則 —— 先實測 Pei 既交付工作簿（至少
+    vehicle_setting／popup／power 三本 delivered）之該三欄實際值分布，照慣例填；
+    無一致慣例則留空並報。不憑空設計。
+(c) b1 實內容 dry-run 准（執行層 §7-4 建議採）：建 `wb_trial/trial_D_b1.xlsx`（b1 實內容、
+    surgical 出件）並 lint 實跑 —— P／I-cross／W 現形，紅項逐項歸因交裁；此為寫回前提。
+(d) wb_trial 試驗檔保留至寫回執行包結案。
+(e) 正式寫回（sandbox/b1/）與交付候選：待 dry-run 全綠（或紅項裁畢）後由 Pei 再授權（R-VL20）。
+```
+
+### R-VL25 —— b2 批次序准；寫回預授權（條件式）
+
+```
+R-VL25（Pei 裁定 2026-09-02：「准 准 寫」之後二字；條文分析層記）
+(a) b2 批次序准：依 framework 表順 —— Park Sense 18 → Camera Gridlines 10 → Lighting 11 →
+    Speed Assist 21 → Driver Warning 13 → Wiper and Sensor 5 → Units 15 →（EPB 已完）→
+    Personal Data and Defaults 14 → Time and Navigation 4。三批乾淨（覆核零修訂）後綠色通道：
+    後續批自動連跑、上繳彙報式覆核。
+(b) 寫回預授權（「寫」）：dry-run E80 = 0 則寫回執行包直接開跑（寫至 sandbox/b1/＋lint 實跑
+    全綠＋交付候選 copy2＋sha256 產出），不再往返；E80 > 0 則紅項回分析層裁畢方寫。
+    交付（delivered/）仍待 Pei「出貨」。
+```
+
 ---
 
 ## 取號紀錄
@@ -400,3 +430,5 @@ R-VL23（分析層裁定 2026-09-02，上繳 07）
 | R-VL21 | 2026-09-02 | 本檔錨點實測 20 |
 | R-VL22 | 2026-09-02 | 上繳 06 第 8 節 sha 止於 R-VL21；本檔錨點實測 21 |
 | R-VL23 | 2026-09-02 | 上繳 07 第 8 節 sha 止於 R-VL22；本檔錨點實測 22 |
+| R-VL24 | 2026-09-02 | 上繳 09 第 8 節 sha 止於 R-VL23；本檔錨點實測 23 |
+| R-VL25 | 2026-09-02 | 本檔錨點實測 24 |

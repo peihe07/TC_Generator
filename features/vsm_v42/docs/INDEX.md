@@ -15,6 +15,7 @@ FO §8.7：一次往返共用同一 `NN`；下放包由分析層寫，上繳包�
 | 07 | `handoff/07_b1_freeze.md` | `upstream/07_b1_freeze.md` | 2026-09-02 | **b1 微修（R-VL22）**。-053 ER1 改 is received；-054 量測後判 **in-mode 型**（段 1092–1096 掃 entering/exiting/request 命中 0，對照 1066/1099 有詞）刪發起步；-046 design_method → 功能測試。**E53/E54/E55 過**（改 6 檔，其餘 diff = 0）；**E56 = 16/17** —— -059 之 test_item 上半為句內剪接（本執行層於 05 所造），修法備妥但該條不在範圍，未改。**b1 凍結聲明附條件保留**，待 -059 一列裁定。R-VL22 body_sha8 `1d91e1b5` |
 | 08 | `handoff/08_freeze.md` | `upstream/08_freeze.md` | 2026-09-02 | **-059 一列（R-VL23 A 路）→ `b1 FROZEN`**。test_item 上半改 037 完整原句 verbatim（42 token，逐字子字串 True）；括號下半／Procedure／ER／PENDING／remarks 一字未動。**E62/E63/E64 全過**（E63 = 17/17；改 2 檔，其餘 33 檔 diff = 0）。INDEX 落凍結表（34 檔 sha8）。R-VL23 body_sha8 `a9b6218d` |
 | 09 | `handoff/09_writeback_method.md` | `upstream/09_writeback_method.md` | 2026-09-02 | **寫回工法查證（未寫回）**。實測：openpyxl `save()` **即使不改一格也毀 x14 DV**（members 48→47、x14 1→0）；`surgical_save` 保住（members 48、x14 節點逐字含 GUID，只有目標分頁 XML 變動，B 欄公式未被覆蓋）。**lint 本線首跑**（假資料件，9 紅全為假資料產物）；揭出文字形自檢未涵蓋之 7+ 項，b1 對其唯讀預檢 12 項全 0。`writeback_map_b1.tsv` 落檔（列 10–26／NR1L-VSM42-001–017）。**E69–E72 全過**；`sandbox/base` 一位元不動 |
+| 10 | `handoff/10_dryrun.md` | `upstream/10_dryrun.md` | 2026-09-02 | **三欄實測 ＋ b1 dry-run lint 實跑**。五本交付簿 1,033 列之 Q／AB／車型七欄 **100% 全空** → 三欄定案留空。`trial_D_b1.xlsx`（17 列 286 格，surgical 117.4s）：x14 逐字存活、member 48、differing 僅 sheet6、**回讀 286 格不符 0**。**lint 實跑：C=1（b1 內容缺陷，-057 hedge `successfully`）／P=23（已裁之 VAL_ 缺值）／U=6／I-cross=17（窗未宣告）**。**E80 = 1 → 尚不可寫回**。另發現 D／C 欄與四本交付慣例相牴觸。E78/E79/E81 過 |
 
 ## 報告（`docs/reports/`）
 
