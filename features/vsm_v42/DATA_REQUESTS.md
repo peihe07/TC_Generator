@@ -5,9 +5,9 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
 
 | DR | 項目 | 阻塞 | 影響 | 狀態 | 送出日 | 回覆日 |
 |---|---|---|---|---|---|---|
-| DR-VL1 | V42 SYSRA Functional 318 列中 **191** 列無 037 覆蓋（覆蓋揭露） | no | 母體外 191 列 | 已登記，未送出 | | |
-| DR-VL2 | 037／SYSRA 標註完整性三面：037 1 列 `Categorization` 空（A-VL5）；SYSRA Functional 112 列 EE／DocID 空（A-VL6）；037 leaf `-063` 之 Source ID 於 SYSRA 為 Heading（A-VL7） | no | 母體 1 列、分母 112 列 | 已登記，未送出 | | |
-| DR-VL3 | **ATL-Mi（P637 ProMaster／CAN-B／CAN-C）之 DBC** —— forms/ 僅有 Atlantis High 之 R1 BHCAN2／FDCAN8；R-VL12(b) 段 3 待此件 | **yes（P4 起：無此則任何 `$…$` 不得寫）** | 全線 CAN 訊號 | 已登記，**先問 Pei 手上有無** | | |
+| DR-VL1 | V42 SYSRA Functional 318 列中 **191** 列無 037 覆蓋（覆蓋揭露） | no | 母體外 191 列 | 已登記，**Pei 裁先不送（2026-09-02）** | | |
+| DR-VL2 | 037／SYSRA 標註完整性三面（A-VL5／A-VL6／A-VL7） | no | 母體 1 列、分母 112 列 | 已登記，**Pei 裁先不送（2026-09-02）** | | |
+| DR-VL3 | ATL-Mi DBC | ~~yes~~ | 全線 CAN 訊號 | **結案（2026-09-02，Pei 放件 `Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc`，R-VL14）** | | 2026-09-02 |
 
 ---
 
@@ -54,3 +54,19 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
 - **阻塞**：是（P4 起）。到件前 CAN 訊號一律「段3待ATL-Mi DBC」，不得寫 `$…$`。
 - **本地處置**：段 1 先以 Atlantis 欄解至 `MESSAGE.Signal`（段 2），對 Atlantis High DBC 實查結果併記旁證。
 - **請求動作**：Pei 先答「有／無」；無則送出，與 vsm_v43 DR-VT5 同一件。
+
+### 執行層結案紀錄（2026-09-02，下放包 03 補遺之 W-5′）
+
+- **到件**：`forms/Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc`
+  sha256 `5cac2abcecdf37e2f07991e26dc4cf748fe24874fde93af77a85ea8936d3ed16`
+  （425,072 bytes；ISO-8859 text／CRLF —— 解析以 latin-1 讀，R-VL14(a)）。
+- **驗收**：`BO_ 139` **相符**、`VAL_ 619` **相符**、`SG_` 實測 **844**
+  （條文載 5568 —— **不符，見 A-VL11，不調和**；844 為 `^\s*SG_ ` 訊號定義行數，
+  去重 794 名）。R-VL14(b) 之六個爭議訊息（`TELEMATIC_VEHICLE_SETUP2`／
+  `IPC_VEHICLE_SETUP2`／`IPC_VEHICLE_SETUP3`／`SERVICE_SETUP`／
+  `TELEMATIC_SERVICE_SETUP`／`STATUS_CCAN3` 含 `VehicleSpeedVSOSig`）**逐一複驗全數在內**。
+- **重跑結果**（`data/signal_chain_v42_v3.tsv`）：**解得 98**（CAN 95）；
+  「訊息名不符(R-13)」由 v2 之 40 降為 **7**；「段3待ATL-Mi DBC」73 名歸零。
+- **R-VL14(c) 之 CAN-C 情形**：本線實測 **0 名** —— 9 個「未解得(止於段3)」之
+  `Atlantis CAN` 欄皆為空，非 CAN-C。**CAN-C DBC 於本線目前無實據需求，不預開 DR**（Pei 裁先不送）。
+

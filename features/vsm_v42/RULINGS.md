@@ -220,13 +220,28 @@ R-VL12（分析層裁定 2026-09-01，上繳 02 第 5.3 節／A-VL8，vsm_v43 �
 ### R-VL13 —— 台帳重生歸 Pei 提交前一次；R-VL9 作廢；投遞區以 inputs/ 為實然
 
 ```
-R-VL13（分析層裁定 2026-09-01，待 Pei 追認；上繳 02 第 9 節乙、第 11 節 3／4）
+R-VL13（分析層裁定 2026-09-01，**Pei 追認 2026-09-02（「2 追認」）**；上繳 02 第 9 節乙、第 11 節 3／4）
 (a) 兩線並行時任一包之 W-0 必被對方後續落檔追平（實測兩次：14→21、21→23）。
     改：執行層不重生 `docs/fw036/RULINGS.sha.tsv`；Pei 於每次 commit 前跑一次 `python3 scripts/rulings_hash.py` 併入庫。
     執行層 `gate_all` 之 rulings_hash 紅，若 diff 全為 R-VL*／R-VT* 新增列，於升級說明記「依 R-VL13 待 Pei 重生」即可上繳。
     R-VL9 作廢（不刪，加註）。
 (b) 投遞區：實然為 `features/<slug>/inputs/`（gitignored），W-2 以 R-VL11(a) mv 至 `sources/raw/`。
     `_intake/Vehicle_Setup_VF665/` 廢止，由 Pei 刪除空目錄；R-VL5 作廢該句（加註）。
+```
+
+### R-VL14 —— 段 3 DBC 綁定：`Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc`；DR-VL3 結案
+
+```
+R-VL14（分析層裁定 2026-09-02，Pei「1 放了」；分析層驗收後綁定）
+(a) 本線段 3 之 DBC = `forms/Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc`
+    （實測：BO_ 139／SG_ 5568／VAL_ 619；ISO-8859 編碼、CRLF —— 解析以 latin-1 讀）。
+    Atlantis High 之 R1 BHCAN2／FDCAN8 對本線降旁證（R-VL12(b) 之「待件」自此結案）。
+(b) 驗收（分析層實測）：爭議訊息全數在內 —— `TELEMATIC_VEHICLE_SETUP2`／`IPC_VEHICLE_SETUP2`／
+    `IPC_VEHICLE_SETUP3`／`SERVICE_SETUP`／`TELEMATIC_SERVICE_SETUP`／`STATUS_CCAN3`（含 VehicleSpeedVSOSig）。
+(c) 本件為 BH-CAN；LID Atlantis 欄 `CAN` 值為 CAN-C 者若段 3 查無，記「未解得（CAN-C DBC 未到件）」，
+    實測後再議，不預開 DR（Pei 裁：先不送）。
+(d) 「解得」自此合法：段 1 Atlantis 欄（或 R-VL12(c) 段 1 不適用）＋本 DBC 逐字 → 得寫 `$…$`，
+    `<label>` 逐字取本 DBC 之 VAL_。DR-VL3 結案（到件，非送出）。
 ```
 
 ---
@@ -239,3 +254,4 @@ R-VL13（分析層裁定 2026-09-01，待 Pei 追認；上繳 02 第 9 節乙、
 | R-VL6–R-VL9 | 2026-09-01 | 落檔當下讀本檔實測至 R-VL5；上繳 00 §9 之 sha 表亦止於 R-VL5 |
 | R-VL10–R-VL11 | 2026-09-01 | 上繳 01 第 9 節 sha 表止於 R-VL9；本檔錨點實測 9 |
 | R-VL12–R-VL13 | 2026-09-01 | 上繳 02 第 0 節 sha 表止於 R-VL11；本檔錨點實測 11 |
+| R-VL14 | 2026-09-02 | 本檔錨點實測 13 |

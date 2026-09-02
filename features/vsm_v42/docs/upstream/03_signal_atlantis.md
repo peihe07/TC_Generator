@@ -1,398 +1,376 @@
-# 上繳包 03 — vsm_v42：W-5′ Atlantis 重跑、W-7、P3 前置
+# 上繳包 03 — vsm_v42：W-5′（Atlantis 欄組 ＋ ATL-Mi DBC）、W-7、P3 前置
 
-日期：2026-09-01　執行層：Claude Code　對應下放包：`docs/handoff/03_signal_atlantis.md`
+日期：2026-09-02　執行層：Claude Code　對應下放包：`docs/handoff/03_signal_atlantis.md`
+**（含 2026-09-02 補遺，補遺優先）**
+
+> **本上繳取代 2026-09-01 之同名前版。** 前版係於 ATL-Mi DBC **未到件**時所跑（v2，
+> 結果欄一律「段3待ATL-Mi DBC」、`解得` 0）。補遺落 R-VL14 後段 3 有正件，
+> 本包重跑為 **v3**。前版之產物 `data/signal_chain_v42_v2.tsv` **保留不刪**，
+> 供對照；v1（`signal_chain_v42.tsv`）亦保留。三版並存。
 
 ## 結果分類（FO 之第 8.4 節）
 
 | 分類 | 內容 |
 |---|---|
-| 改對了 | W-5′ 七項；抽名通式（R-VL12(d)）；段 1 改以 `Atlantis`(P–T) 為主、`Atlantis High`(Z–AD) 併記；段 3 降為旁證；W-7 四項；P3 前置兩表 |
-| 核實無誤 | E18″ 11／11；E26 過（30 ≥ 26）；**E27 = 0**（無一名記「解得」）；E29 偽陽性 **0／20** |
-| 正確地不動 | 台帳**不重生**（R-VL13(a)）；`scripts/` 未改；v1 之 `signal_chain_v42.tsv` **不覆寫**；兩筆 B-1 之標的**不自選、不合併** |
+| 改對了 | W-5′ 七項以 v3 重跑；段 3 綁定 ATL-Mi DBC；**解得 98**；DR-VL3 執行層結案紀錄；A-VL8 阻塞面解除；新開 A-VL11／A-VL12 |
+| 核實無誤 | E18″ 11／11；E26 過（30 ≥ 26）；E29 0／20；DBC 之 `BO_`／`VAL_` 與 R-VL14(b) 六個爭議訊息逐一複驗 |
+| 正確地不動 | 台帳不重生（R-VL13）；`scripts/` 未改；v1／v2 之 tsv 不覆寫；**DR 一律不送**；B-1 之標的不自選；W-7／P3 前置沿用上輪成果（實測未變，未重做） |
 
-**總判：W-5′／W-7／P3 前置全數完成；E28 = 2 觸發升級 —— 該二名停下列 §K，其餘續行。**
+**總判：W-5′／W-7／P3 前置完成。E28 = 1（K-1），該名停下列 §K，其餘 250 名續行。**
 
 ---
 
-## 0. E18″ —— R-VL1–R-VL11 `body_sha8`
+## 0. 段 3 之件：驗收與一項不符
 
-工具 `rulings_hash.py --target features/vsm_v42/RULINGS.md --out <scratchpad>`
-（**未寫入 `docs/fw036/RULINGS.sha.tsv`**，R-VL13(a)）。
+`forms/Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc`
+sha256 **`5cac2abcecdf37e2f07991e26dc4cf748fe24874fde93af77a85ea8936d3ed16`**
+（425,072 bytes；`file` 判 `ISO-8859 text, with CRLF line terminators`；解析以 **latin-1** 讀）。
 
-| 條號 | 上繳 02 所報 `body_sha8` | 本包 | 判 | `sha8`（觀測值，本包） |
+| 項 | R-VL14(a) 所載 | 執行層實測 | 判 | 掃描條件 |
 |---|---|---|---|---|
-| R-VL1 | `5897969a` | `5897969a` | **同** | `2a3dd0b6` |
-| R-VL2 | `01c67a04` | `01c67a04` | **同** | `d88dae19`（上繳 02 為 `582d0c6d`） |
-| R-VL3 | `e306aa75` | `e306aa75` | **同** | `ec287e40` |
-| R-VL4 | `08cea35e` | `08cea35e` | **同** | `49be4fb8` |
-| R-VL5 | `1de01344` | `1de01344` | **同** | `0b1174ab`（上繳 02 為 `482a6990`） |
-| R-VL6 | `7321474a` | `7321474a` | **同** | `bba2d813` |
-| R-VL7 | `afb452ed` | `afb452ed` | **同** | `30ba05fa` |
-| R-VL8 | `3c02775c` | `3c02775c` | **同** | `762824c8` |
-| R-VL9 | `5a0230ee` | `5a0230ee` | **同** | `56fc8e0f`（上繳 02 為 `67a2d29b`） |
-| R-VL10 | `6ced1b1f` | `6ced1b1f` | **同** | `b78694ad` |
-| R-VL11 | `13a4dfcd` | `13a4dfcd` | **同** | `7689b41c` |
+| `BO_` | 139 | **139** | **相符** | `^BO_ ` |
+| `VAL_` | 619 | **619** | **相符** | `^VAL_ ` |
+| **`SG_`** | **5568** | **844** | **不符** | `^\s*SG_ `（訊號定義行）；去重 **794** 名 |
 
-**11／11 逐字相同，E18″ 過。**
-R-VL2／R-VL5／R-VL9 之 `sha8` 位移，成因為 R-VL12／R-VL13 依 R-TM13 於該三節加註
-（R-VL9 之作廢註、R-VL5 之投遞區作廢註、R-VL2 之 R-VL12 指向註），
-**三者 `body_sha8` 皆未動** —— 正是 R-VL10(a) 所預期之行為，第二次驗證其判準正確。
-
-### R-VL12／R-VL13 之 `body_sha8`
-
-| 條號 | **`body_sha8`** | `sha8`（觀測值） | body_kind | 行 | body_lines |
-|---|---|---|---|---|---|
-| R-VL12 | **`34577e46`** | `2d62ac95` | fenced | — | 20 |
-| R-VL13 | **`6d382ff3`** | `0232ddea` | fenced | — | 9 |
-
-十三條 R-VL 皆為 `fenced` 本體，無 `section` 型。
+**不調和，逐項歸因**（→ **A-VL11**）：其他計法之量測 ——
+「全檔出現 `SG_` 字串」**5572**、「含 `SG_` 之行數」**5571**；
+而 `^BA_ ` 屬性行 **5349** 行，多數形如 `BA_ "…" SG_ <msgid> <signal> …`。
+即 **5568 應為「`SG_` 字串出現數」而非訊號定義數**。
+**檔案本身確為正件**：`BO_`／`VAL_` 兩數逐字相符，且 R-VL14(b) 之六個爭議訊息
+（`TELEMATIC_VEHICLE_SETUP2`／`IPC_VEHICLE_SETUP2`／`IPC_VEHICLE_SETUP3`／
+`SERVICE_SETUP`／`TELEMATIC_SERVICE_SETUP`／`STATUS_CCAN3` 含 `VehicleSpeedVSOSig`）
+**逐一複驗全數在內**。段 3 之索引以 844 行為準，解析不受影響。
 
 ---
 
-## 1. W-5′-1 抽名（R-VL12(d) 通式）
+## 1. E18″ 與條文 sha
 
-CAN 形改用通式 `[A-Z][A-Z0-9_]{3,}\.[A-Za-z]\w*`（不限 `_VEHICLE_SETUP` 家族）。
-內部形（`.Req`／`.Info`／`.GUI`）優先於 CAN 形分類；PROXI 三式不變。
-
-| 類別 | v1（窄式） | **v2（通式）** | 增減 |
+| 條號 | 上繳 02 所報 `body_sha8` | 本包 | 判 |
 |---|---|---|---|
-| CAN | 107 | **112** | +5 |
-| `.Req` | 69 | **69** | 0 |
-| `.Info` | 37 | **32** | −5 |
-| `.GUI` | 2 | **2** | 0 |
-| PROXI | 36 | **36** | 0 |
-| **合計** | **251** | **251** | 0 |
+| R-VL1 | `5897969a` | `5897969a` | **同** |
+| R-VL2 | `01c67a04` | `01c67a04` | **同** |
+| R-VL3 | `e306aa75` | `e306aa75` | **同** |
+| R-VL4 | `08cea35e` | `08cea35e` | **同** |
+| R-VL5 | `1de01344` | `1de01344` | **同** |
+| R-VL6 | `7321474a` | `7321474a` | **同** |
+| R-VL7 | `afb452ed` | `afb452ed` | **同** |
+| R-VL8 | `3c02775c` | `3c02775c` | **同** |
+| R-VL9 | `5a0230ee` | `5a0230ee` | **同** |
+| R-VL10 | `6ced1b1f` | `6ced1b1f` | **同** |
+| R-VL11 | `13a4dfcd` | `13a4dfcd` | **同** |
 
-合計巧合相同，**組成不同**：v1 獨有 18 名、v2 獨有 18 名。
-通式新增之 CAN 名 **18** 個，全為非 `_VEHICLE_SETUP` 家族，逐一：
+**11／11，E18″ 過。**
 
-`BRAKE1.VehicleSpeedVSOSig`／`BRAKE1.VehicleSpeedVSOSigFailSts`／
-`STATUS_CCAN3.VehicleSpeedVSOSig`／`STATUS_CCAN3.VehicleSpeedVSOSigFailSts`／
-`IFSTATUS_TTM.TrailerConnectionSts`／`STATUS_TTM.TrailerConnectionSts`／
-`VF528STATUS_TTM.TrailerConnectionSts`／
-`SERVICE_SETUP.{ClearPersonalData, PrivacyMode, RestoreApp, RestoreDefaulSetting,
-RestoreDefaultSetting, TelematicSetupACK, TelematicSetupAck}`／
-`TELEMATIC_SERVICE_SETUP.{ClearPersonalDataReq, PrivacyModeReq, RestoreAppReq,
-RestoreDefaultSettimgReq, RestoreDefaultSettingReq}`
+| 條號 | **`body_sha8`** | `sha8`（觀測值） | body_lines |
+|---|---|---|---|
+| R-VL12 | `34577e46` | `2d62ac95` | 20 |
+| R-VL13 | **`782082cf`** | `c0264dff` | 9 |
+| R-VL14 | **`3cc6e581`** | `6f362276` | 12 |
 
-> **通式之收穫**：`SERVICE_SETUP.*`／`TELEMATIC_SERVICE_SETUP.*` 兩族（13 名）
-> 承載 Clear Personal Data／Restore Default Setting／Privacy 三個 Layer 2 家族之訊號，
-> **v1 之窄式全數漏掉**。R-VL12(d) 之改判在本線是實質的，不是形式的。
-> 另見**規格原文之拼字**：`RestoreDefaulSetting`（少 t）與 `RestoreDefaultSetting`、
-> `TelematicSetupACK` 與 `TelematicSetupAck`、`RestoreDefaultSettimgReq`（Settimg）
-> 與 `RestoreDefaultSettingReq` —— 依 R-P369(b) **二拼法皆入段 1 查**，未合併；
-> 三對於段 1 皆未命中，故無「解至同一標的」可判，維持各自一列。
+> **一項須指出**：R-VL13 之 `body_sha8` 為 `782082cf`，而本執行層於
+> **2026-09-01 之前版上繳所報為 `6d382ff3`** —— 即 **R-VL13 之條文本體在兩次執行之間
+> 被改寫**（非加註，`body_sha8` 動了）。R-VL13 不在 E18″ 之範圍（E18″ 只涵蓋 R-VL1–R-VL11），
+> 故未觸發停下條件；**據實記明，不追問、不調和**。
 
-### E29 偽陽性率（人工抽 20，seed 42）
-
-**0／20 = 0%**。二十名逐一判讀皆為真實之 CAN 訊號／內部訊號／PROXI 參數名
-（如 `IPC_VEHICLE_SETUP.SdwChimeVolume`、`TELEMATIC_SERVICE_SETUP.RestoreAppReq`、
-`Remote_Door_Unlock_Menu`、`LDW_Sensibility_Setting.Req`）。
-
-> **但此 0% 是修正後之值 —— 修正前為 5%，且成因在本執行層，據實登出。**
-> 見第 6 節「自我糾錯」與 A-VL9 之補正段。
+R-VL2／R-VL5／R-VL9 之 `sha8` 相對上繳 02 位移（`d88dae19`／`0b1174ab`／`56fc8e0f`），
+成因為 R-VL12／R-VL13 之 R-TM13 加註，**三者 `body_sha8` 皆未動** —— R-VL10(a) 之判準
+第三次驗證正確。十四條 R-VL 皆為 `fenced` 本體。
 
 ---
 
-## 2. W-5′-2／3 段 1 與段 2：Atlantis vs Atlantis High
+## 2. W-5′-1 抽名
 
-### 2.1 欄組實測（R-VL12(a) 之複驗）
+母體 **251 名**（CAN 112／`.Req` 69／`.Info` 32／`.GUI` 2／PROXI 36），
+與前版（v2）之抽名**逐名相同**（同一通式 R-VL12(d)、同四來源），故未重列。
+通式相對 v1 窄式新增之 18 個非 `_VEHICLE_SETUP` 家族 CAN 名亦不變
+（`SERVICE_SETUP.*`／`TELEMATIC_SERVICE_SETUP.*` 13 名為其主體）。
 
-LID `CAN Mapping` r2／r3 逐格讀取，五個欄組確認：
+**E29 偽陽性率：0／20**（seed 42，人工判讀；母體與前版相同，未重抽）。
 
-| 欄組（r2） | 欄範圍 | Signal Name | CAN |
-|---|---|---|---|
-| Powernet | F–J | F | G |
-| CUSW | K–O | K | L |
-| **Atlantis** | **P–T** | **P** | **Q** |
-| Compact | U–Y | U | V |
-| Atlantis High | Z–AD | Z | AA |
+---
 
-**與 R-VL12(a) 所載逐字相符。**
+## 3. W-5′-2／3 段 1 與段 2
 
-### 2.2 比對規則（五規則，命中逐一載明欄／列／規則）
+段 1 五規則（R1 逐字／R2 去 `MESSAGE.` 前綴／**R2′ 去 `.Req`_`.Info`_`.GUI` 後綴**／
+R3 去 `_Req`_`_Sts`_`_Info` 後綴／R4 底線↔空白大小寫／R5 去 `_Menu`_`_Setting`，
+R5 僅 HMI Settings／PROXI／SR26／SR24）。命中證據格式
+`檔/分頁/r{列}c{欄}/欄名/規則`，逐列存於 tsv。
 
-| 規則 | 內容 | 使用次數 |
-|---|---|---|
-| R1 | 逐字 | 114 |
-| R2 | 去 `MESSAGE.` 前綴 | 30 |
-| R2′ | 去 `.Req`／`.Info`／`.GUI` 後綴（內部訊號取點左基名） | （併入下列組合） |
-| R3 | 去 `_Req`／`_Sts`／`_Info` 後綴 | 12 |
-| R4 | 底線↔空白、大小寫（與 R1–R3 組合） | 59 |
-| R5 | 去 `_Menu`／`_Setting`（僅 HMI Settings／PROXI／SR26／SR24） | 35 |
-
-命中證據格式：`檔/分頁/r{列}c{欄}/欄名/規則`，逐列存於
-`data/signal_chain_v42_v2.tsv` 之 `seg1_atl`／`seg1_atlh`／`seg1_other` 三欄。
-
-> **R2′ 為本包發現之必要規則，非自創第六規則**：下放包列「去 `MESSAGE.` 前綴」，
-> 若對內部訊號 `Auto_High_Beam_Enable.Req` 施行，取到的是 `Req` 兩字母，無意義。
-> 內部訊號要取的是**點左**之基名。初版誤用前者，致 `.Req` 69／69、`.Info` 37／37
-> 全數落成「未解得(止於段1)」；修正後 `.Req` 有 7 名、`.Info` 有 4 名解出路徑。
-> 此為下放包規則表述之邊界情形，**不是新規則，是同一規則對內部訊號之正確施行方向**，
-> 故未依第 7 節「需第六規則即回報不自創」停下；一併在此陳明供裁。
-
-### 2.3 段 1 七檔命中（涉及訊號名數）
+### 段 1 七檔命中（涉及訊號名數）
 
 | 檔／分頁 | 名數 |
 |---|---|
-| `PROXI_HDCC27_R3` `Format`（F 欄 Parameter Name） | **57** |
+| `PROXI_HDCC27_R3` `Format`（F 欄） | **57** |
 | LID `CAN Mapping`（A/B/C ＋ P ＋ Z） | **33** |
 | LID `Proxi & Configuration` | **10** |
-| `HMI Settings List R1 SR25` `Settings`（**B／C 欄**） | **10** |
+| `HMI Settings List R1 SR25` `Settings`（B／C 欄） | **10** |
 | `SR26 Default Settings` `Default Parameters` | **1** |
-| `SR24 R1 Market Configuration Table` `Market Config - R1` | **0** |
 | LID `637MCA Specific Signals` | **2** |
+| `SR24 R1 Market Configuration Table` | **0** |
 
-（對照上繳 02 之 v1：PROXI 36／LID CAN Mapping 9／Proxi&Config 6／HMI Settings 2／
-SR26 0／SR24 0／637MCA **0** —— 五規則與 Atlantis 欄組使段 1 命中面全面擴大。）
-
-### 2.4 **E26** —— Atlantis vs Atlantis High
+### E26 —— Atlantis vs Atlantis High
 
 | 項 | Atlantis（P–T） | Atlantis High（Z–AD） |
 |---|---|---|
-| CAN 形之段 1 命中列數 | 30 | 30 |
-| **其中該欄組實際解出 `MESSAGE.Signal` 者** | **30** | **26** |
+| CAN 形段 1 命中列數 | 30 | 30 |
+| **該欄組實際解出 `MESSAGE.Signal`** | **30** | **26** |
 
-**E26 過**（30 ≥ 26）。兩者命中列數相等係因命中發生在共用之名稱欄（A/B/C），
-同一列兩欄組並存；**分野在該列各自欄內是否有值** —— Atlantis 欄 30 列皆有值，
-Atlantis High 欄僅 26 列有值。
+**E26 過**（30 ≥ 26）。命中列數相等係因命中發生在共用之名稱欄（A/B/C），
+分野在各欄內是否有值。逐名對照表落 `data/atlantis_vs_high_v42.tsv`
+（**124 列**，本包重產並加 `seg3_637` 欄）。
 
-`CAN` 欄之值進一步佐證 R-VL12(b)：
+`CAN` 欄值（本線命中列）：**Atlantis Q 欄** `PROXI`×10、`CAN-B`×3；
+**Atlantis High AA 欄** `FD`×13、`CAN-B`×8、`CAN-B/FD` 混×2、`CFTS102`×1
+—— 與 R-VL14(a) 之「本件為 BH-CAN、Atlantis High 之件為 FD／BH」一致。
 
-| 欄組 | `CAN` 欄值分布（本線命中列） |
-|---|---|
-| **Atlantis（Q 欄）** | `PROXI` ×10、**`CAN-B` ×3** |
-| Atlantis High（AA 欄） | **`FD` ×13**、`CAN-B` ×8、`CAN-B/FD` 混 ×2、`CFTS102` ×1 |
-
-即 Atlantis 側為 CAN-B／PROXI，Atlantis High 側大量為 **FD** ——
-與 forms/ 之 `FDCAN8.dbc`／`BHCAN2.dbc` 對應者是 **Atlantis High**，非本線。
-
-### 2.5 架構差異（非 B-1）
-
-同一名於 Atlantis 與 Atlantis High 解出**不同** `MESSAGE.Signal` 者 **18 名**，
-依下放包記「架構差異」，**不記 B-1**。逐名對照表落
-`data/atlantis_vs_high_v42.tsv`（124 列，欄：`name`／`kind`／`seg1_atl`／`seg1_atlh`／
-`seg2_atlantis`／`seg2_atlantis_high`／`can_atl`／`can_atlh`／`arch_diff`／`result`）。
+**架構差異（非 B-1）18 名**：同名於兩欄組解出不同 `MESSAGE.Signal`，逐列於對照表。
+**段 1 不適用（R-VL12(c)）83 名**：規格原名已為 `MESSAGE.Signal` 形而段 1 未命中，
+直入段 3。`637MCA Specific Signals` 分頁命中 **2** 名。
 
 ---
 
-## 3. W-5′-4／5／6 段 3 與結果
+## 4. W-5′-4／5／6 段 3 與結果
 
-段 3 對 `forms/PDT27_E2A_R1_BHCAN2.dbc`／`FDCAN8.dbc` 之實查**只作旁證**，
-存於 `seg3_side` 欄；**結果欄一律不記「解得」**（R-VL12(b)）。
-
-`data/signal_chain_v42_v2.tsv`，**251 列**、15 欄。v1 之 `signal_chain_v42.tsv` **未覆寫**。
+段 3 主件＝ATL-Mi DBC；Atlantis High 之 `PDT27_E2A_R1_BHCAN2`／`FDCAN8` 降旁證，
+存於 `seg3_side_high` 欄。輸出 `data/signal_chain_v42_v3.tsv`，**251 列 × 16 欄**。
 
 | 結果 | 總 | CAN(112) | Req(69) | Info(32) | GUI(2) | PROXI(36) |
 |---|---|---|---|---|---|---|
-| **段3待ATL-Mi DBC** | **73** | 72 | 1 | 0 | 0 | 0 |
-| 未解得(止於段1) | **94** | 0 | 62 | 28 | 2 | 2 |
-| 未解得(止於段2) | **0** | 0 | 0 | 0 | 0 | 0 |
-| 訊息名不符(R-13) | **40** | 39 | 0 | 1 | 0 | 0 |
-| **B-1 衝突** | **2** | 1 | 0 | 0 | 0 | 1 |
-| UI路徑(R-P375b) | **3** | 0 | 2 | 1 | 0 | 0 |
-| PROXI路徑(R-P375b/c) | **35** | 0 | 3 | 2 | 0 | 30 |
-| UI+PROXI 雙路徑 | **4** | 0 | 1 | 0 | 0 | 3 |
-| 查無(R-G13) | **0** | 0 | 0 | 0 | 0 | 0 |
-| **解得** | **0** | 0 | 0 | 0 | 0 | 0 |
+| **解得** | **98** | 95 | 1 | 1 | 0 | 1 |
+| 未解得(止於段1) | 94 | 0 | 62 | 28 | 2 | 2 |
+| 未解得(止於段3) | 9 | 9 | 0 | 0 | 0 | 0 |
+| 訊息名不符(R-13) | 7 | 7 | 0 | 0 | 0 | 0 |
+| **B-1 衝突** | **1** | 1 | 0 | 0 | 0 | 0 |
+| PROXI路徑(R-P375b/c) | 35 | 0 | 3 | 2 | 0 | 30 |
+| UI路徑(R-P375b) | 3 | 0 | 2 | 1 | 0 | 0 |
+| UI+PROXI 雙路徑 | 4 | 0 | 1 | 0 | 0 | 3 |
+| 未解得（CAN-C DBC 未到件） | **0** | 0 | 0 | 0 | 0 | 0 |
+| 查無(R-G13) | 0 | 0 | 0 | 0 | 0 | 0 |
 
-| 檢 | 預期 | 實測 | 判 |
-|---|---|---|---|
-| **E27** 結果 `解得` | 0 | **0** | **過**（R-VL12(b) 未違） |
-| **E28** B-1 衝突 | 0 | **2** | **不符 → 升級，見 §K** |
+`forms/LOOKUP_MISSES.md` **未新增任何列**。
 
-`forms/LOOKUP_MISSES.md` **未新增任何列**（「查無(R-G13)」為 0）。
+### E27′ —— 每一「解得」列之段 3 備註
 
-### E30 —— 同母體對 v1 之分布差
+**98／98 皆有備註**，格式 `BO_<msgid> <BO_名> / SG_ <SG_名> / VAL_ <有 n 項｜無>`。
+其中 **VAL_ 有者 97 名、無者 1 名**。
+（`<label>` 依 R-VL14(d)／IN §8.7.5(a) 逐字取本 DBC 之 `VAL_`；
+該 1 名無 `VAL_` 者於 P4 寫 `= <raw>` 而無 `(<label>)`，屆時須註明。）
 
-v1 251 ∩ v2 251 = **233 名**（各有 18 名獨有）。同母體 233 名之結果變動：
+### R-VL14(c) —— CAN-C 情形
 
-| 結果 | v1 | v2 | 差 |
-|---|---|---|---|
-| 解得 | 35 | **0** | **−35** |
-| 未解得(止於段2) | 35 | **0** | **−35** |
-| 段3待ATL-Mi DBC | 0 | **67** | **+67** |
-| 未解得(止於段1) | 100 | 94 | −6 |
-| 訊息名不符(R-13) | 27 | 28 | +1 |
-| PROXI路徑 | 35 | 35 | 0 |
-| UI路徑 | 1 | 3 | +2 |
-| UI+PROXI 雙路徑 | 0 | 4 | +4 |
-| B-1 衝突 | 0 | 2 | +2 |
+**本線實測 0 名。** 9 個「未解得(止於段3)」之 `Atlantis CAN` 欄**皆為空**，非 CAN-C。
+故 CAN-C DBC 於本線**無實據需求**，依 Pei 裁**不預開 DR**。
 
-**上繳 02 之「解得 35」已全數重判為 0**（R-VL12(b) 之要求）；
-「未解得(止於段2)」35 名因段 1 命中面擴大而全數上移。
+九名逐一（供分析層判）：
+
+| 名 | 段 2 解至 |
+|---|---|
+| `TELEMATIC_VEHICLE_SETUP3.SVC_Gridlines_Req` | 同名（段 1 不適用） |
+| `IPC_VEHICLE_SETUP.SdwChimeVolume` | 同名 |
+| `TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req` | `IPC_VEHICLE_SETUP.SdwChimeVolume` |
+| `IPC_VEHICLE_SETUP.AutomaticResetTripB` | 同名 |
+| `TELEMATIC_VEHICLE_SETUP.AutomaticResetTripB_Req` | 同名 |
+| `IPC_VEHICLE_SETUP.PassiveEntry` | **`RFHUB3.RFReq`**（LID Atlantis 欄所指，本 DBC 查無） |
+| `TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req` | **`RFHUB3.RFReq`**（同上） |
+| `SERVICE_SETUP.RestoreDefaulSetting` | 同名（**拼字，見 A-VL12**） |
+| `TELEMATIC_SERVICE_SETUP.RestoreDefaultSettimgReq` | 同名（**拼字，見 A-VL12**） |
+
+### 訊息名不符(R-13) 七名（`SG_` 查得而其 `BO_` 與規格訊息名不符）
+
+| 規格原名 | `SG_` 實際所屬 `BO_` |
+|---|---|
+| `BRAKE1.VehicleSpeedVSOSig` | `STATUS_CCAN3` |
+| `BRAKE1.VehicleSpeedVSOSigFailSts` | `STATUS_CCAN3` |
+| `IFSTATUS_TTM.TrailerConnectionSts` | `STATUS_TTM` |
+| `TELEMATIC_SERVICE_SETUP.PrivacyModeReq`（段 2 解至 `GLOB_LTM.PrivacyModeReq`） | `TELEMATIC_SERVICE_SETUP` |
+| `TELEMATIC_VEHICLE_SETUP4.HeadlampOnWithWiperEnable` | `IPC_VEHICLE_SETUP…` |
+| `TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock` | `IPC_VEHICLE_SETUP` |
+| `SERVICE_SETUP.TelematicSetupACK` | `IPC_VEHICLE_SETUP` |
+
+依 R-VT9／R-VL12 之同判：**記「訊息名不符(R-13)」，不記 B-1，保留規格原名**。
 
 ### W-5′-7 `VehicleSpeedVSOSig` 兩弧
 
-本線**有**該型：`BRAKE1.VehicleSpeedVSOSig` 與 `STATUS_CCAN3.VehicleSpeedVSOSig`
-（另各有 `…FailSts` 一對）。依 R-VT12(a) **各自解析，不互為旁證** ——
-四名各為獨立列，段 1 皆未命中 Atlantis 欄，`seg3_side` 各記各的 DBC 實查。
-**未合併、未以其一代其二。**
+本線有該型，四名（`BRAKE1.VehicleSpeedVSOSig{,FailSts}`／
+`STATUS_CCAN3.VehicleSpeedVSOSig{,FailSts}`）。依 R-VT12(a) **各自解析、不互為旁證**：
+`STATUS_CCAN3` 兩名**解得**，`BRAKE1` 兩名記**訊息名不符(R-13)**。
+**未以其一代其二、未合併。**
+
+### E30 —— 同母體分布差
+
+| 結果 | v1 | v3 | 差 |
+|---|---|---|---|
+| 解得 | 35 | **87** | **+52** |
+| 未解得(止於段1) | 100 | 94 | −6 |
+| 未解得(止於段2) | 35 | 0 | −35 |
+| 未解得(止於段3) | 0 | 7 | +7 |
+| 訊息名不符(R-13) | 27 | 2 | **−25** |
+| B-1 衝突 | 0 | 1 | +1 |
+| UI路徑 | 1 | 3 | +2 |
+| UI+PROXI 雙路徑 | 0 | 4 | +4 |
+
+（同母體 v1 ∩ v3 = 233 名。）
+
+對 **v2**（同母體 251 名，僅段 3 之件不同）：
+
+| 結果 | v2 | v3 | 差 |
+|---|---|---|---|
+| 段3待ATL-Mi DBC | 73 | **0** | −73 |
+| 解得 | 0 | **98** | **+98** |
+| 訊息名不符(R-13) | 40 | **7** | **−33** |
+| 未解得(止於段3) | 0 | 9 | +9 |
+| B-1 衝突 | 2 | **1** | −1 |
+
+> **此表即 R-VL12(b)／R-VL14 之驗證**：只換段 3 之件（Atlantis High → ATL-Mi），
+> 「訊息名不符」由 40 降為 7。**上繳 02 之「訊息名不符 27」與上繳 03 前版之 40，
+> 其多數並非規格與 DBC 之真實不符，而是比對了錯誤家族之 DBC。**
 
 ---
 
-## §K 衝突表（E28 = 2，該二名停下交 Pei）
+## §K 衝突表（E28 = 1）
 
-| # | 規格原名 | 類 | 命中處 A（檔/分頁/列/欄/規則） | 解得 A | 命中處 B | 解得 B | 交 Pei 之問 |
+| # | 規格原名 | 類 | 命中處 A | 解得 A（段 3） | 命中處 B | 解得 B（段 3） | 交 Pei 之問 |
 |---|---|---|---|---|---|---|---|
-| K-1 | `TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req` | CAN | `LID/CAN Mapping/r1112cP/Atlantis Signal Name/R1 逐字` | `TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req` | `LID/CAN Mapping/r1111cA/Logical Identifier/R3 去 _Req 後綴` | `IPC_VEHICLE_SETUP.LanguageSelection` | 兩列解至**不同 MESSAGE**（TELEMATIC vs IPC）。A 為**目標欄逐字**（最強證據），B 為名稱欄之弱規則命中。**規則強弱之優先序下放包未裁**，故不自選 |
-| K-2 | `Country_Code` | PROXI | `LID/Proxi & Configuration/r250cP/Atlantis Signal Name/R1 逐字` → `Car_Configuration_16.Country_Code` | `Car_Configuration_16.Country_Code` | `LID/CAN Mapping/r46cB/Function/R4 逐字+底線大小寫` → `META_DATA.ADAS_Meta_CountryCode` | `META_DATA.ADAS_Meta_CountryCode` | 同名於 config 與 ADAS meta 兩處，解至不同 MESSAGE。另 `PROXI/Format/r468cF` 逐字命中（PROXI 路徑）—— **三路並存** |
+| K-1 | `TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req` | CAN | `LID/CAN Mapping/r1112cP/Atlantis Signal Name/R1 逐字` | `TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req` → `BO_158 TELEMATIC_VEHICLE_SETUP / SG_ LanguageSelection_Req / VAL_ 有 22 項` | `LID/CAN Mapping/r1111cA/Logical Identifier/R3 去 _Req 後綴` | `IPC_VEHICLE_SETUP.LanguageSelection` → `BO_1468 IPC_VEHICLE_SETUP / SG_ LanguageSelection / VAL_ 有 23 項` | **兩者於 ATL-Mi DBC 皆完整解得且各有 VAL_ 表**，故非查無、非訊息名不符，為真 B-1。A 為**目標欄逐字**（最強證據），B 為名稱欄之弱規則命中。**規則強弱之優先序下放包未裁**，不自選 |
 
-**兩筆皆為 R-VL6(c)／R-VT6(c) 字面之 B-1（多命中解至不同標的），非「訊息名不符」。**
-二者於 tsv 中 `result = B-1 衝突`，**未擇一、未合併**；其餘 249 名續行不受影響。
+**K-2（前版之 `Country_Code`）已消解**：其兩標的中 `META_DATA.ADAS_Meta_CountryCode`
+於 ATL-Mi DBC 查無，僅 `Car_Configuration_16.Country_Code` 一路成立，結果改為
+PROXI 路徑。**B-1 由 2 降為 1。**
 
-**本包建議之待裁點（不自行施行）**：K-1 之型態可由一條**規則優先序**消解 ——
-「目標欄（Atlantis Signal Name P）之 R1 逐字命中，勝過名稱欄（A/B/C）之 R3／R4 命中」。
-若分析層採之，K-1 解為 `TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req`，B-1 歸零。
-K-2 不因此消解（兩處皆有 R1 逐字）。
+**建議（不自行施行）**：一條規則優先序即可消解 K-1 ——
+「目標欄（`Atlantis Signal Name` P）之 R1 逐字命中，勝過名稱欄（A/B/C）之 R3／R4 命中」。
+採之則 B-1 歸零，K-1 解為 `TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req`。
 
 ---
 
-## 4. W-7 —— A-VL5／6／7 處置落地
+## 5. W-7 與 P3 前置
 
-| 動作 | 實測 |
+**兩者於 2026-09-01 之前版已執行並入庫（commit `743455a`），本包實測其成果未變，未重做：**
+
+| 項 | 實測 |
 |---|---|
-| `leaves.tsv` 加 `remarks` 欄（14 欄，152 列） | 完成 |
-| `-051`（`SWE1-VC-IntelligentSpeedLimiterwithConfirmation-051`） | `tc_status = UNCATEGORIZED`（**不入母體、亦不排除**），remarks 註 A-VL5／DR-VL2(a) |
-| `-063`（`SWE1-VC-SurroundCameraGridlines-063`） | `tc_status = leaf`（**入母體**，037 為需求單位之權威 R-VL4），remarks 註 A-VL7／DR-VL2(c) |
-| A-VL5／A-VL6／A-VL7 | 標題狀態改為「**併 DR-VL2(a)／(b)／(c)**」 |
-| A-VL9 | **RESOLVED**（R-VL12(e)：流向不於 P3 文字化，P4 逐 TC 依圖判） |
+| `leaves.tsv` `remarks` 欄 | 在；`-051`／`-063` 兩列標記各 1 |
+| `-051` | `tc_status = UNCATEGORIZED`（不入母體、不排除），註 A-VL5／DR-VL2(a) |
+| `-063` | `tc_status = leaf`（入母體，R-VL4），註 A-VL7／DR-VL2(c) |
+| A-VL5／6／7 | 標題狀態為「併 DR-VL2(a)／(b)／(c)」 |
+| A-VL9 | RESOLVED（R-VL12(e)） |
+| P3 前置 | `data/p3_families_v42.md`，24 家族、leaf 合計 128 |
 
-母體維持 **128**（`-051` 未加入、`-063` 未剔除）。
+母體維持 **128**。
+
+**P3 之兩個對映維度（前版實測，本包不變）**：037 `Sub Categorization` 僅二值
+（等於「來自哪一份 037」，無判別力）；SYSRA `Chapter for VF` 前二階**全為 `01.11`**
+（零判別力）。Layer 2 之聚合只能靠 `Requirement Title` 語意，
+或展開 `Chapter for VF` 第三階以下（待 P3 指示）。
 
 ---
 
-## 5. P3 前置（不鎖 Layer 2）
+## 6. A／DR 狀態
 
-`data/p3_families_v42.md`：24 個 `Requirement Title` 家族，逐家族列
-leaf 數／Heading 數／未分類數／037 來源檔／`Sub Categorization` 計數／
-SYSRA `Chapter for VF` 前二階計數。
+### anomaly
 
-**24 家族 leaf 合計 128，與 00 包 §九 草案數逐項相符**（實測取代草案，結果無一項需改）。
-兩處標題在 00 包為縮寫，實測全名為：
-
-- `PARK SENSE w/o HC.1 and HC.2` → **`PARK SENSE w/o HC.1 and PARK SENSE w/o HC.2`**（5）
-- `Rear Park Sense Volume` → **`Rear Park Sense Volume/ ParkSense Volume`**（6）
-
-Layer 3 對映之兩個可用維度（實測）：
-
-| 維度 | 值域 | 對 Layer 2 之判別力 |
+| 編號 | 狀態 | 本包之變動 |
 |---|---|---|
-| 037 `Sub Categorization` | 僅二值：`Vehicle Setting Management (VSM)`（parksense 檔）／`Display (including HAL)`（sdw 檔） | **低** —— 其實質等於「來自哪一份 037」，非功能分群 |
-| SYSRA `Chapter for VF` 前二階 | **全為 `01.11`** | **零** —— 全母體同章 |
+| A-VL1／A-VL2／A-VL3／A-VL4／A-VL9／A-VL10 | RESOLVED | 無 |
+| A-VL5／A-VL6／A-VL7 | 併 DR-VL2(a)/(b)/(c) | 無 |
+| **A-VL8** | **阻塞面已解除**；段 1 命中率之問仍 PENDING | 更新：解得 98、訊息名不符 40→7、待件 73 歸零；**未解除者**＝ CAN 112 名中段 1 僅命中 30，其餘 82 依 R-VL12(c) 直入段 3，`637MCA` 分頁仍只 2 名 |
+| **A-VL11** | **新開**（PENDING） | DBC 之 `SG_` 驗收數 5568 vs 實測 844 |
+| **A-VL12** | **新開**（PENDING） | 規格三對拼字歧異，各對一方解得、另一方查無 |
 
-> **P3 之提醒**：兩個維度都切不開 24 家族。Layer 2 之聚合只能靠
-> `Requirement Title` 本身之語意（即 00 包 §九 之作法）。
-> 若需更細之對映，須用 `Chapter for VF` 之**第三階以下**（本包未展開，待 P3 指示）。
+**A-VL11／A-VL12 未成對開 DR** —— 補遺明令「DR 送出事項全數改為 Pei 裁先不送」，
+且 A-VL11 為條文數字之更正（內部），A-VL12 待分析層先裁筆誤認定。
+**刻意之不成對，非漏做。**
 
----
+### DR
 
-## 6. 獨立判斷：本包是否仍有該驗而未驗者
+| DR | 狀態 |
+|---|---|
+| DR-VL1 | 已登記，未送出（實數 191） |
+| DR-VL2 | 已登記，未送出（A-VL5／6／7 三面） |
+| **DR-VL3** | **結案**（到件，非送出）；執行層結案紀錄已落 `DATA_REQUESTS.md` |
 
-### 兩項自我糾錯（皆為本執行層之缺陷，已修並複驗）
-
-1. **圖形文字還原之「同 y 接合」**（承 A-VL9）：上繳 02 之 SVG 還原以「同 y 即同行」
-   接合 `<tspan>`，致圖上**相鄰但不同元件**之標籤被黏成一名，產生 **10 個偽名**，
-   例：`IPC_VEHICLE_SETUP2.TyrePressureUnitClearPersonalData`
-   ＝ `IPC_VEHICLE_SETUP2.TyrePressureUnit` ＋ `ClearPersonalData.Info`。
-   已改為同 y 之內再依 **x 間距（門檻 140 svg 單位）**斷行，
-   `image1_text.tsv` 行數 **240 → 786**，偽名 10 個全數消滅（重掃該型 → 0）。
-   **E29 偽陽性率因此由 5%（1／20）降為 0%（0／20）。**
-   該檔於上繳 02 已入庫，本包為修正 —— **上繳 02 之「圖單獨貢獻 158 名」係含偽名之數。**
-2. **內部訊號之段 1 候選取錯邊**（見第 2.2 節 R2′）：初版對 `X.Req` 取點右之
-   `Req` 而非點左之 `X`，致 `.Req`／`.Info` 共 101 名全數落成「未解得(止於段1)」。
-   已修；修後 `.Req` 7 名、`.Info` 4 名解出 UI／PROXI 路徑。
-
-### 一項該驗而**本包無法驗**
-
-**段 3 全線待件**。`DR-VL3`（ATL-Mi 之 CAN-B／CAN-C DBC）未到，
-故 112 個 CAN 名中 **73 名只能停在「段3待ATL-Mi DBC」**，40 名之「訊息名不符(R-13)」
-亦是**對錯誤家族 DBC** 的比對結果 —— **該 40 之判定在正確 DBC 到件後可能全變**。
-本包已於 tsv 之 `seg3_side` 保留 Atlantis High 之實查值作旁證，件到即可重跑。
-
-### 三項具名交裁（不自行施行）
-
-1. **規則優先序**（§K K-1）：目標欄 R1 逐字是否勝過名稱欄 R3／R4。
-2. **R2′ 之地位**（第 2.2 節）：視為下放包規則對內部訊號之正確施行方向（本包所採），
-   或視為第六規則而須先裁。
-3. **`Chapter for VF` 第三階以下**是否展開為 Layer 3 之對映維度（第 5 節）。
-
-### 一項已在上繳 02 提出、本包續為未決
-
-A-VL8 之 32 名「段 1 未命中而段 3 逐字查得」—— 於 v2 已因 R-VL12(b) 全數重判為
-「段3待ATL-Mi DBC」，**問題本身未消失，只是延後到正確 DBC 到件時再現**。
+**本包未送出任何 DR。**
 
 ---
 
-## 7. `python3 scripts/gate_all.py` 輸出與歸因
+## 7. 獨立判斷
+
+1. **一項須裁而本包不裁**：K-1 之規則優先序（第 §K 節）。
+2. **一項條文數字待更正**：R-VL14(a) 之 `SG_ 5568`（A-VL11）。
+3. **一項待分析層先裁方能施作**：A-VL12 之兩對拼字是否認定為規格筆誤 ——
+   R-13 要求保留規格原名，若認定為筆誤而採正確拼法，須明裁；不裁則
+   `RestoreDefaulSetting`／`RestoreDefaultSettimgReq` 兩名於 P4 只能保留原名不加 `$`。
+4. **一項本包發現而下放包未涵蓋**：`IPC_VEHICLE_SETUP.PassiveEntry` 與
+   `TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req` 之段 1（LID Atlantis 欄）解至
+   **`RFHUB3.RFReq`** —— 一個與規格原名完全不同族之訊息，且該名於 ATL-Mi DBC 查無。
+   此非拼字、非架構差異，而是 **LID 之對映指向他 ECU**。
+   本包記「未解得(止於段3)」並保留證據，**不臆測、不改判**，交分析層。
+5. **一項本包未做且指得出理由**：三版 tsv（v1／v2／v3）並存而未合併為單一檔 ——
+   下放包令「v1 不覆寫」，v2 為前版產物，合併需裁。
+6. **R-VL13 之 `body_sha8` 在兩次執行間變動**（第 1 節），已記明。
+
+---
+
+## 8. `gate_all.py` 輸出與歸因
 
 ```
 PASS      exit 0   lint_docs036     docs_structure：PASS
-**FAIL**  exit 1   canon_refs       FAIL: unresolved + ambiguous = 503
+**FAIL**  exit 1   canon_refs       FAIL: unresolved + ambiguous = 504
 **FAIL**  exit 1   rulings_hash     FAIL: docs/fw036/RULINGS.sha.tsv 與現行條文不符
 **FAIL**  exit 1   gates_tsv        FAIL: docs/runtime/GATES.tsv 與現行閘登錄不符
 **FAIL**  exit 1   lint_paths       FAIL: 基線外違規 + delivered 不符 = 4
 PASS      exit 0   lint_delivery_spec PASS: 基線外判紅 0
 ```
 
-**(甲) `rulings_hash` —— 依 R-VL13(a) 待 Pei 重生；惟其但書未被滿足，據實陳明。**
-
-R-VL13(a) 之免責條件為「diff **全為** `R-VL*`／`R-VT*` **新增列**」。
-本包以 id 為單位實測（`--out <scratchpad>`，**未寫入 repo**）：
+**(甲) `rulings_hash` —— 依 R-VL13 記「待 Pei 重生」。**
+以 id 為單位實測（`--out <scratchpad>`，**未寫入 repo**）：
 
 | 類 | 內容 |
 |---|---|
-| 新增 id（11） | `R-VL12`、`R-VL13`（本線）；`R-VT11`–`R-VT14`（vsm_v43）；**`R-VS84`–`R-VS88`（`vehicle_setting`，第三條線）** |
+| 新增 id（13） | `R-VL12`／`R-VL13`／**`R-VL14`**（本線）；`R-VT11`–`R-VT15`（vsm_v43）；`R-VS84`–`R-VS88`（vehicle_setting） |
 | 移除 id | **0** |
-| `sha8` 變動 id（3） | `R-VL2`、`R-VL5`、`R-VL9` —— 皆因 R-VL12／R-VL13 之 R-TM13 加註 |
+| `sha8` 變動（3） | `R-VL2`／`R-VL5`／`R-VL9`（R-TM13 加註） |
 | 其中 `body_sha8` 亦變者 | **0** |
 
-即 **(i) 有 `R-VS*` 之新增（第三條線，非 R-VL／R-VT）**、
-**(ii) 有 3 筆 `sha8` 修改列（非純新增）** —— 兩點皆超出 R-VL13(a) 之字面。
-**本包不自行放寬該但書**，據實回報：實質上仍屬良性（無移除、無 `body_sha8` 變動），
-但**條文之字面未被滿足**。建議 R-VL13(a) 補為
-「新增 id 全為 `R-*` 之新條、無移除、且無 `body_sha8` 變動」——
-`sha8` 因加註而動是 R-VL10(a) 已認定之常態。
+同上繳 03 前版所指：R-VL13(a) 之但書「**全為** `R-VL*`／`R-VT*` **新增列**」
+仍未被字面滿足（有 `R-VS*`、有 3 筆修改列）。**本包不自行放寬**。
 
-**(乙) `canon_refs` 503** —— 逐檔逐行歸因，含 `vsm_v42` 者 **3 列**，與上繳 02 **完全相同**：
-`ANOMALIES.md:62`（分析層 A-VL2 內之 `R-G40`）、`RUNBOOK.md:9`（`new_feature.py` skeleton 裸 `§3`）、
-`DECISIONS.md:3`（`recon.py` 模板裸 `§4`）。**本包新寫之四檔未新增任何一列。**
+**(乙) `canon_refs` 504**（前版 503，+1）—— 逐檔逐行歸因，含 `vsm_v42` 者 **3 列**，
+與前版**逐字相同**（`ANOMALIES.md:62` 之 `R-G40`、`RUNBOOK.md:9` 之裸 `§3`、
+`DECISIONS.md:3` 之裸 `§4`，後二者為共用腳本模板）。
+**本包新寫之檔未新增任何一列**；+1 落於本線之外（vsm_v43 同時在跑）。
 
-**(丙) `gates_tsv`／(丁) `lint_paths` = 4** —— 與本線無關，先在，與上繳 02 逐字相同。
+**(丙)(丁) `gates_tsv`／`lint_paths` = 4** —— 與本線無關，先在，與上繳 02／03 前版相同。
 
-**結論：無一支肇因於本包之寫入。**
+**無一支肇因於本包之寫入。**
 
 ---
 
-## 8. 本包之寫入清單
+## 9. 本包之寫入清單
 
 | 檔 | 動作 |
 |---|---|
-| `features/vsm_v42/data/signal_chain_v42_v2.tsv` | 新建（251 列 × 15 欄）；**v1 未覆寫** |
-| `features/vsm_v42/data/atlantis_vs_high_v42.tsv` | 新建（124 列，逐名對照） |
-| `features/vsm_v42/data/p3_families_v42.md` | 新建（24 家族） |
-| `features/vsm_v42/data/leaves.tsv` | 加 `remarks` 欄，`-051`／`-063` 標記 |
-| `sources/extracted/vf665_v42_spec_r6/media/image1_text.tsv` | **重產**（同 y 接合之修正，240 → 786 行） |
-| `features/vsm_v42/ANOMALIES.md` | A-VL5／6／7 併 DR-VL2；A-VL9 RESOLVED ＋ 補正記錄 |
-| `features/vsm_v42/docs/upstream/03_signal_atlantis.md`、`docs/INDEX.md` | 本上繳 ＋ 索引 |
+| `features/vsm_v42/data/signal_chain_v42_v3.tsv` | **新建**（251 列 × 16 欄）；v1／v2 未覆寫 |
+| `features/vsm_v42/data/atlantis_vs_high_v42.tsv` | 重產（124 列，加 `seg3_637` 欄） |
+| `features/vsm_v42/ANOMALIES.md` | A-VL8 更新；**A-VL11／A-VL12 新開** |
+| `features/vsm_v42/DATA_REQUESTS.md` | DR-VL3 之執行層結案紀錄 |
+| `features/vsm_v42/docs/upstream/03_signal_atlantis.md` | **改寫**（取代 2026-09-01 前版） |
+| `features/vsm_v42/docs/INDEX.md` | 03 列更新 |
 
-**未動**：`docs/fw036/RULINGS.sha.tsv`（**R-VL13(a)**）、`scripts/`、`forms/`（含
-`LOOKUP_MISSES.md`）、`docs/runtime/`、`features/vsm_v43/`、`features/vehicle_setting/`、
-`sources/raw/`、`features/vsm_v42/{RULINGS.md, DATA_REQUESTS.md, feature.yaml,
-data/signal_chain_v42.tsv, sandbox/}`、`docs/handoff/`。
+**未動**：`docs/fw036/RULINGS.sha.tsv`（R-VL13）、`scripts/`、`forms/`（含
+`LOOKUP_MISSES.md`、新到之 DBC **唯讀**）、`docs/runtime/`、`features/vsm_v43/`、
+`features/vehicle_setting/`、`sources/`、`features/vsm_v42/{RULINGS.md,
+feature.yaml, sandbox/, data/leaves.tsv, data/signal_chain_v42.tsv,
+data/signal_chain_v42_v2.tsv, data/p3_families_v42.md}`、`docs/handoff/`。
 **git**：本包未執行任何 git 寫入指令。
 
 ---
 
-## 9. 待 Pei／分析層之六項
+## 10. 待 Pei／分析層之五項
 
-1. **DR-VL3（阻塞 P4）**：手上有無 ATL-Mi（P637／CAN-B／CAN-C）DBC？
-   在件之前，**112 個 CAN 名無一可寫 `$…$`**，其中 40 名之「訊息名不符」判定亦待重驗。
-2. **§K 之規則優先序**（K-1）：目標欄 R1 逐字是否勝過名稱欄 R3／R4。採之則 B-1 由 2 降為 1。
-3. **R2′ 之地位**（第 2.2 節）：本包視為既有規則對內部訊號之正確施行，非第六規則；請追認。
-4. **R-VL13(a) 之但書**（第 7 節甲）：建議補為「新增 id 全為新條、無移除、無 `body_sha8` 變動」。
-5. **R-VL13(a) 之追認**（下放包 03 §四-2）＋ `_intake/Vehicle_Setup_VF665/` 空目錄刪除
-   ＋ 共用腳本一裁（六項）＋ DR-VL1／DR-VL2 送出。
-6. **P3 之 Layer 3 維度**（第 5 節）：`Sub Categorization` 與 `Chapter for VF` 前二階
-   對 24 家族**皆無判別力**（前者等於檔案來源，後者全為 `01.11`）；
-   是否展開 `Chapter for VF` 第三階以下。
+1. **§K K-1 之規則優先序** —— 目標欄 R1 逐字是否勝過名稱欄 R3／R4。採之則 B-1 歸零。
+2. **R-VL14(a) 之 `SG_ 5568` 更正為 844**（A-VL11）。
+3. **A-VL12 之兩對拼字**是否認定為規格筆誤（涉 R-13 保留原名之例外）。
+4. **`PassiveEntry` 二名之 LID 對映指向 `RFHUB3.RFReq`**（第 7 節第 4 項）如何處置。
+5. **R-VL13(a) 之但書**（第 8 節甲）＋ 台帳重生時機 ＋ 共用腳本一裁（六項）
+   ＋ `_intake/Vehicle_Setup_VF665/` 空目錄刪除。

@@ -190,7 +190,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 
 ---
 
-## A-VL8 —— 段 1（LID）對本線 CAN 訊號名幾近全不命中；`637MCA Specific Signals` 命中 0（PENDING）
+## A-VL8 —— 段 1（LID）對本線 CAN 訊號名幾近全不命中；`637MCA Specific Signals` 命中 0（**阻塞面已解除** 2026-09-02；段 1 命中率之問仍在）
 
 - **登記日**：2026-09-01（下放包 02 之 W-5，**下放包未預期之發現**）
 - **實測**（`data/signal_chain_v42.tsv`，251 名；段 1 入口為 forms 五個 xlsx 之
@@ -217,6 +217,15 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
   32 名於 tsv 中 `result=解得`、`result_detail=段1未命中…`，兩者分開可篩。
 - **待裁**：(a) 段 1 未命中而段 3 逐字查得者，可否寫 `$...$`；
   (b) 若否，該 32 名之處置（`PENDING: DR-VL{n}` 或保留原名不加 `$`，R-P368(f)）。
+- **2026-09-02 更新（下放包 03 補遺／R-VL14）**：本條之**阻塞面已解除**。
+  ATL-Mi DBC 到件後以 `Atlantis` 欄組 ＋ 該 DBC 重跑（v3）：
+  **解得 98 名**（CAN 95），「訊息名不符(R-13)」由 40 降為 **7**，
+  「段3待ATL-Mi DBC」73 名歸零。原問之 (a)(b) 兩點（可否寫 `$…$`、32 名之處置）
+  **由 R-VL14(d) 回答：解得者得寫**。
+- **未解除之部分（本條保留為 PENDING 之理由）**：段 1 之**命中率**問題仍在 ——
+  112 個 CAN 名中段 1（LID）命中僅 **30**，其餘 82 名係依 R-VL12(c)「段 1 不適用」
+  （規格原名已為 `MESSAGE.Signal` 形）直入段 3。`637MCA Specific Signals` 分頁
+  命中仍只有 **2** 名。即：LID 對本線之覆蓋本身偏低，只是不再阻塞交付。
 - **另記**：89 個訊號名有「前綴／後綴差異」之寬鬆候選而無嚴格命中，
   已存於 tsv 之 `loose_n`／`loose` 兩欄，**不驅動結果**（R-P375(d) 候選非認定；
   寬鬆比對曾試作為主判準，產生 68 筆假 B-1 衝突，屬 R-P368(b) 明禁之語意跳接，已撤）。
@@ -270,6 +279,51 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
   `VehicleSpeedVSOSig` 於 Atlantis 欄為 `STATUS_CCAN3.*`（無 `BRAKE_FD_2`）。
 - **同族**：A-VL2(b)（引用未讀到底）—— 這次是「實測已排入待辦卻把待辦當作已完成」；IN §8.4.1 之反面。
 - **處置**：R-VL12（段 1 Atlantis 欄組；段 3 待 ATL-Mi DBC，DR-VL3）；vsm_v43 同記 A-VT22／R-VT13。DR-VT3 送出前須重寫。
+
+
+## A-VL11 —— ATL-Mi DBC 之 `SG_` 驗收數與 R-VL14(a) 所載不符（PENDING）
+
+- **登記日**：2026-09-02（下放包 03 補遺之 W-5′ 段 3 驗收）
+- **條文所載**（R-VL14(a)／補遺）：`BO_ 139／SG_ 5568／VAL_ 619`
+- **執行層實測**（`forms/Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc`，
+  latin-1 讀，CRLF；sha256 `5cac2abcecdf37e2f07991e26dc4cf748fe24874fde93af77a85ea8936d3ed16`）：
+
+  | 項 | 條文 | 實測 | 判 | 掃描條件 |
+  |---|---|---|---|---|
+  | `BO_` | 139 | **139** | **相符** | `^BO_ ` 行首 |
+  | `VAL_` | 619 | **619** | **相符** | `^VAL_ ` 行首 |
+  | **`SG_`** | **5568** | **844** | **不符** | `^\s*SG_ ` 行首（訊號定義行）；去重後 **794** 個相異訊號名 |
+
+- **不符之成因（實測歸因，非推測）**：以其他計法量測 ——
+  「全檔出現 `SG_` 字串」**5572**、「含 `SG_` 之行數」**5571**；
+  而全檔 `^BA_ ` 屬性行有 **5349** 行，其多數形如 `BA_ "..." SG_ <msgid> <signal> ...`。
+  即 **5568 應為「`SG_` 字串出現數」而非「訊號定義數」**，差在 `BA_` 屬性行之引用。
+- **不調和之聲明**：本包**不改判**，兩數並列。**檔案本身確為正件** ——
+  `BO_` 與 `VAL_` 兩數逐字相符，且 R-VL14(b) 之六個爭議訊息
+  （`TELEMATIC_VEHICLE_SETUP2`／`IPC_VEHICLE_SETUP2`／`IPC_VEHICLE_SETUP3`／
+  `SERVICE_SETUP`／`TELEMATIC_SERVICE_SETUP`／`STATUS_CCAN3`，含 `VehicleSpeedVSOSig`）
+  **經執行層逐一複驗全數在內**。
+- **影響**：無。段 3 之解析以 `^\s*SG_ ` 之 844 行為索引，正確。
+- **待裁**：R-VL14(a) 之「SG_ 5568」是否更正為 844（或註明其為字串出現數）。
+
+## A-VL12 —— 規格原文三對拼字歧異，其一拼法段 3 查得、另一查無（PENDING）
+
+- **登記日**：2026-09-02（下放包 03 W-5′-1／R-P369(b)）
+- **實測**：規格原文有三對近似拼法，依 R-P369(b) **二名皆入段 1 查、未合併**；
+  以 ATL-Mi DBC 實查後，各對之**一方解得、另一方查無**：
+
+  | 對 | 拼法 A（段 3 結果） | 拼法 B（段 3 結果） |
+  |---|---|---|
+  | RestoreDefaultSetting | `SERVICE_SETUP.RestoreDefaultSetting`（**解得**） | `SERVICE_SETUP.RestoreDefaulSetting`（少一 `t`，**未解得(止於段3)**） |
+  | RestoreDefaultSettingReq | `TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq`（**解得**） | `TELEMATIC_SERVICE_SETUP.RestoreDefaultSettimgReq`（`Settimg`，**未解得(止於段3)**） |
+  | TelematicSetupAck | `SERVICE_SETUP.TelematicSetupAck`（**解得**） | `SERVICE_SETUP.TelematicSetupACK`（**訊息名不符(R-13)**：`SG_ TelematicSetupACK` 在 `BO_ IPC_VEHICLE_SETUP`） |
+
+- **判讀（執行層不裁，僅陳述）**：前二對之 B 拼法幾可確定為**規格之筆誤**
+  （少字母／`n`→`m`），第三對之 A／B 為大小寫差異而**分屬不同 BO_**，非筆誤。
+- **本地處置**：三對六名各自一列，**未合併、未以其一代其二**（R-P369(b)：
+  解至同一 `MESSAGE.Signal` 者方為同物；本案未解至同一標的）。
+- **待裁**：前二對是否認定為筆誤並於 TC 中採正確拼法（R-13 要求保留規格原名，
+  故須明裁）；第三對之 `TelematicSetupACK` 屬 R-13 之保留原名情形。
 
 
 ## Assumption markers
