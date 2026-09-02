@@ -170,3 +170,69 @@ S  Same as DT
 - 23 列（DT 專屬 7 ＋「DT 或 DJ/D2」16）**保留不刪**，其追溯之 `shall` 仍在（canon §8.1）
 - 151 列之 Pre 已加 `PROXI CAN node 27 (ASM/ASCM) = 1 (Present)`
 - `Body_Types` 行一律 `PENDING`，車型欄**不填**，待本 DR 回覆
+
+---
+
+## 四、11 個設定項之顯示條件於 FIP 总控表未載（VF230，涉 32 列）
+
+**本節為 2026-09-02 補入**（依 `down/20260902_VS-SL-03_review.md` §2 R3：
+VS-SL-03 之 DR 稿規格漏了「(3) 分支：設定之顯示條件兩來源皆未載」一問）。
+既有一～三節不動。
+
+與第一節之別：**第一節問的是「名字對不上」，本節問的是「名字對得上、但顯示條件沒人寫」。**
+本節 11 名**全部於 HMI Settings List 有逐字或已認可之對應項**，
+僅 FIP 总控表 `FeatureSet(Gen4-5)`（278 列）無其顯示條件。
+
+### 查證方法（三要件）
+
+| 要件 | 內容 |
+|---|---|
+| 何處查 | (1) HMI Settings List `Settings`（攤平 517 項）；(2) 总控表 `FeatureSet(Gen4-5)` D 欄 278 列；(3) TC 之需求原文（`Test Item` 欄） |
+| 如何查 | 先以設定名逐字比對；名不同者以 Pei 2026-09-02 認可之別名綁定所指之列為準；三者皆查畢方判 |
+| 結果 | 下列 11 名之 HMI 項確定，**FIP 无對應列或其條件無法取值**；需求原文亦無 `$var$ = [label]` 之 PROXI 條件式 |
+
+### (a) FIP 无對應列（8 名，22 列）
+
+| 設定項 | 列 | HMI 對應（本層已驗） | TC 引用原句（首列） |
+|---|---:|---|---|
+| `Park Sense Rear Volume` | 4 | Settings r311 `Safety & Driving Assistance > Rear ParkSense Volume` | `Set the "Park Sense Rear Volume" customer setting to Low and check that TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req = 0 (Low) is transmitted` |
+| `Park Sense Front Volume` | 4 | Settings r310 `… > Front ParkSense Volume` | `Set the "Park Sense Front Volume" customer setting to Low and check that TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req = 0 (Low) is transmitted` |
+| `New Speed Zone Indication` | 4 | Settings r281（逐字命中） | `Set the "New Speed Zone Indication" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.New_Spd_Zone_Ind_Req = 0 (Off) is transmitted` |
+| `Navigation Turn by Turn` | 3 | Settings r179 `Display > Navigation Turn-by-Turn Displayed in Cluster` | `Set the "Navigation Turn by Turn" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.NavigationRepetition_Req = 1 (Off) is transmitted` |
+| `Suspension Service Mode` | 3 | Settings r562 `Suspension > Service Mode` | `Set the "Suspension Service Mode" customer setting to Off and check that TELEMATIC_VEHICLE_SETUP.Susp_Tire_Jack_Req = 0 (Off) is transmitted` |
+| `Language` | 2 | Settings r23（逐字命中） | `Read the Vehicle Settings menu and check that the "Language" customer setting is displayed` |
+| `Signature Lighting` | 1 | Settings r506（逐字命中） | `Read the Vehicle Settings menu and check that the Signature Lighting setting is displayed as DISABLE`（原文未加引號，逐字照錄） |
+| `Hour Mode` | 1 | Settings r359 `Clock > Time Format`（Pei 2026-09-02 認可之近義綁定） | `Read the Vehicle Settings menu and check that the "Hour Mode" customer setting is displayed` |
+
+### (b) FIP 有列但其條件為否定式（2 名，7 列）
+
+| 設定項 | 列 | 总控表 | Atlantis 欄逐字 |
+|---|---:|---|---|
+| `Engine Off Power Delay` | 4 | No.149 | `If Country_Code is not [Australia], return value is true.` `Other return values are false.` |
+| `Automatic Trailer Light Check` | 3 | No.268 | `If Trailer_Light_Check is NOT [Absent]),` `return value is 1.` `Else return value is 0.` |
+
+**問題**：否定式指的是一個補集（`Country_Code` 之值表有 30 餘個國別；
+`Trailer_Light_Check` 之值表為 `{0: Absent, 1: Type 1 (Radio), 2: Type 2, 3: Type 3}`）。
+**Pre-Condition 須填單一具體值，補集無法直接落值**，本層依 R-13 不猜。
+
+**所求**：請示此二項於 NAFTA（R-VS84）之應取值 ——
+例如 `Country_Code` 是否取 `2 (United States of America)`、
+`Trailer_Light_Check` 是否取 `1 (Type 1 (Radio))`。
+
+### (c) FIP 有列但其參數名於 PROXI 值表查無（1 名，3 列）
+
+| 設定項 | 列 | 总控表 | Atlantis 欄逐字 |
+|---|---:|---|---|
+| `Driver Easy Exit Seat` | 3 | No.148 | `If Easy_Entry_Menù is [Present], return value is true.` `Other return values are false.` |
+
+**問題**：`PROXI_HDCC27_R3_20250424.xlsx` `Format` 之參數表**無 `Easy_Entry_Menù`**，
+但有 **`Easy_Entry_Menu`**（無重音，`{0: Absent, 1: Present}`）。
+二者僅差一個重音符號，疑為总控表之筆誤 —— **惟依 R-13 不得以語意相近之名代入，本層不自行對應。**
+
+**所求**：請確認总控表 No.148 之 `Easy_Entry_Menù` 是否即 PROXI 之 `Easy_Entry_Menu`。
+若是，建議上游修正总控表之字樣。
+
+### 本層之處置
+
+此 32 列之 `proxi_proposed` 一律 `PENDING`，沙盒稿之 Pre-Condition 亦寫 `PENDING`，不猜值。
+逐列見 `features/vehicle_setting/reports/_v4_branch3_resolution.tsv`（`resolution = R3`）。

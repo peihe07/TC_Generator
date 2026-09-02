@@ -1,0 +1,106 @@
+row	tc_id	setting	resolution	subcase	proxi_added	evidence
+12	(F 欄空)	SWITCH 5 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+13	(F 欄空)	SWITCH 5 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+14	(F 欄空)	SWITCH 5 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+15	(F 欄空)	SWITCH 6 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+16	(F 欄空)	SWITCH 6 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+17	(F 欄空)	SWITCH 6 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+18	(F 欄空)	SWITCH 1 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+19	(F 欄空)	SWITCH 5 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+20	(F 欄空)	SWITCH 5 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+21	(F 欄空)	SWITCH 5 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+22	(F 欄空)	SWITCH 6 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+23	(F 欄空)	SWITCH 6 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+24	(F 欄空)	SWITCH 6 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+25	(F 欄空)	SWITCH 5 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+26	(F 欄空)	SWITCH 5 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+27	(F 欄空)	SWITCH 5 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+28	(F 欄空)	SWITCH 6 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+29	(F 欄空)	SWITCH 6 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+30	(F 欄空)	SWITCH 6 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 2 (Type 2)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['2'] = 'Type 2'
+38	(F 欄空)	Rear Guidance Light Status	R2	FIP_ALWAYS_OFF		以設定名逐字查得 No.275；Atlantis 逐字 `Alwatys return value is 0`
+39	(F 欄空)	Rear Guidance Light Status	R2	FIP_ALWAYS_OFF		以設定名逐字查得 No.275；Atlantis 逐字 `Alwatys return value is 0`
+40	(F 欄空)	Rear Guidance Light Status	R2	FIP_ALWAYS_OFF		以設定名逐字查得 No.275；Atlantis 逐字 `Alwatys return value is 0`
+87	(F 欄空)	Navigation Turn by Turn	R3	NO_FIP_ROW		HMI 已綁 Settings r179（Display > Navigation Turn-by-Turn Displayed in Cluster）；总控表 278 列逐字比對零命中
+88	(F 欄空)	Navigation Turn by Turn	R3	NO_FIP_ROW		HMI 已綁 Settings r179（Display > Navigation Turn-by-Turn Displayed in Cluster）；总控表 278 列逐字比對零命中
+89	(F 欄空)	Navigation Turn by Turn	R3	NO_FIP_ROW		HMI 已綁 Settings r179（Display > Navigation Turn-by-Turn Displayed in Cluster）；总控表 278 列逐字比對零命中
+90	(F 欄空)	Language	R3	NO_FIP_ROW		HMI 逐字命中 'Language'（Settings r23）；总控表 278 列逐字比對零命中
+91	(F 欄空)	Language	R3	NO_FIP_ROW		HMI 逐字命中 'Language'（Settings r23）；总控表 278 列逐字比對零命中
+94	(F 欄空)	Phone Repetition	R2	FIP_ALWAYS_OFF		審閱 §2 R2 明指 No.215；Atlantis 逐字 `Always return value is 0`
+95	(F 欄空)	Phone Repetition	R2	FIP_ALWAYS_OFF		審閱 §2 R2 明指 No.215；Atlantis 逐字 `Always return value is 0`
+96	(F 欄空)	Phone Repetition	R2	FIP_ALWAYS_OFF		審閱 §2 R2 明指 No.215；Atlantis 逐字 `Always return value is 0`
+97	(F 欄空)	Park Sense Rear Volume	R3	NO_FIP_ROW		HMI 已綁 Settings r311（Safety & Driving Assistance > Rear ParkSense Volume）；总控表 278 列逐字比對零命中
+98	(F 欄空)	Park Sense Rear Volume	R3	NO_FIP_ROW		HMI 已綁 Settings r311（Safety & Driving Assistance > Rear ParkSense Volume）；总控表 278 列逐字比對零命中
+99	(F 欄空)	Park Sense Rear Volume	R3	NO_FIP_ROW		HMI 已綁 Settings r311（Safety & Driving Assistance > Rear ParkSense Volume）；总控表 278 列逐字比對零命中
+100	(F 欄空)	Park Sense Rear Volume	R3	NO_FIP_ROW		HMI 已綁 Settings r311（Safety & Driving Assistance > Rear ParkSense Volume）；总控表 278 列逐字比對零命中
+101	(F 欄空)	Park Sense Front Volume	R3	NO_FIP_ROW		HMI 已綁 Settings r310（Safety & Driving Assistance > Front ParkSense Volume）；总控表 278 列逐字比對零命中
+102	(F 欄空)	Park Sense Front Volume	R3	NO_FIP_ROW		HMI 已綁 Settings r310（Safety & Driving Assistance > Front ParkSense Volume）；总控表 278 列逐字比對零命中
+103	(F 欄空)	Park Sense Front Volume	R3	NO_FIP_ROW		HMI 已綁 Settings r310（Safety & Driving Assistance > Front ParkSense Volume）；总控表 278 列逐字比對零命中
+104	(F 欄空)	Park Sense Front Volume	R3	NO_FIP_ROW		HMI 已綁 Settings r310（Safety & Driving Assistance > Front ParkSense Volume）；总控表 278 列逐字比對零命中
+146	(F 欄空)	Signature Lighting	R3	NO_FIP_ROW		HMI 逐字命中 'Signature Lighting'（Settings r506）；总控表 278 列逐字比對零命中
+155	(F 欄空)	Forward Collision Warning Sensitivity	R2	FIP_ALWAYS_OFF		以設定名逐字查得 No.199；Atlantis 逐字 `Always return value is 0`
+223	(F 欄空)	New Speed Zone Indication	R3	NO_FIP_ROW		HMI 逐字命中 'New Speed Zone Indication'（Settings r281）；总控表 278 列逐字比對零命中
+224	(F 欄空)	New Speed Zone Indication	R3	NO_FIP_ROW		HMI 逐字命中 'New Speed Zone Indication'（Settings r281）；总控表 278 列逐字比對零命中
+225	(F 欄空)	New Speed Zone Indication	R3	NO_FIP_ROW		HMI 逐字命中 'New Speed Zone Indication'（Settings r281）；总控表 278 列逐字比對零命中
+226	(F 欄空)	New Speed Zone Indication	R3	NO_FIP_ROW		HMI 逐字命中 'New Speed Zone Indication'（Settings r281）；总控表 278 列逐字比對零命中
+243	(F 欄空)	SWITCH 1 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+244	(F 欄空)	SWITCH 1 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+245	(F 欄空)	SWITCH 2 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+246	(F 欄空)	SWITCH 2 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+247	(F 欄空)	SWITCH 2 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+248	(F 欄空)	SWITCH 3 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+249	(F 欄空)	SWITCH 3 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+250	(F 欄空)	SWITCH 3 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+251	(F 欄空)	SWITCH 4 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+252	(F 欄空)	SWITCH 4 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+253	(F 欄空)	SWITCH 4 Type	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+254	(F 欄空)	SWITCH 1 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+255	(F 欄空)	SWITCH 1 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+256	(F 欄空)	SWITCH 1 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+257	(F 欄空)	SWITCH 2 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+258	(F 欄空)	SWITCH 2 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+259	(F 欄空)	SWITCH 2 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+260	(F 欄空)	SWITCH 3 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+261	(F 欄空)	SWITCH 3 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+262	(F 欄空)	SWITCH 3 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+263	(F 欄空)	SWITCH 4 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+264	(F 欄空)	SWITCH 4 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+265	(F 欄空)	SWITCH 4 Hold Last State	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+283	(F 欄空)	Suspension Default Ride Height	R2	FIP_ALWAYS_OFF		別名 evidence 指 No.274；Atlantis 逐字 `Always return value is 0`
+284	(F 欄空)	Suspension Default Ride Height	R2	FIP_ALWAYS_OFF		別名 evidence 指 No.274；Atlantis 逐字 `Always return value is 0`
+285	(F 欄空)	Suspension Default Ride Height	R2	FIP_ALWAYS_OFF		別名 evidence 指 No.274；Atlantis 逐字 `Always return value is 0`
+287	(F 欄空)	SWITCH 1 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+288	(F 欄空)	SWITCH 1 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+289	(F 欄空)	SWITCH 1 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+290	(F 欄空)	SWITCH 2 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+291	(F 欄空)	SWITCH 2 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+292	(F 欄空)	SWITCH 2 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+293	(F 欄空)	SWITCH 3 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+294	(F 欄空)	SWITCH 3 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+295	(F 欄空)	SWITCH 3 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+296	(F 欄空)	SWITCH 4 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+297	(F 欄空)	SWITCH 4 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+298	(F 欄空)	SWITCH 4 Power Mode	R1	FAMILY_GATE	PROXI AUX_Switch_Types = 1 (Type 1)	总控表 No.267 AUX SWITCH Type（Type1→4／Type2→6）；proxi_values['AUX_Switch_Types']['1'] = 'Type 1'
+301	(F 欄空)	Suspension Service Mode	R3	NO_FIP_ROW		HMI 已綁 Settings r562（Suspension > Service Mode）；总控表 278 列逐字比對零命中
+302	(F 欄空)	Suspension Service Mode	R3	NO_FIP_ROW		HMI 已綁 Settings r562（Suspension > Service Mode）；总控表 278 列逐字比對零命中
+303	(F 欄空)	Suspension Service Mode	R3	NO_FIP_ROW		HMI 已綁 Settings r562（Suspension > Service Mode）；总控表 278 列逐字比對零命中
+321	(F 欄空)	Ready to Drive Pop-Up	R2	FIP_ALWAYS_OFF		以設定名逐字查得 No.165；Atlantis 逐字 `Always false`
+322	(F 欄空)	Ready to Drive Pop-Up	R2	FIP_ALWAYS_OFF		以設定名逐字查得 No.165；Atlantis 逐字 `Always false`
+323	(F 欄空)	Ready to Drive Pop-Up	R2	FIP_ALWAYS_OFF		以設定名逐字查得 No.165；Atlantis 逐字 `Always false`
+326	(F 欄空)	Auto Fold Mirrors	R1b	PARSER_GAP_FIXED	PROXI Auto_Power_Folding_Mirrors = 1 (Present)	"以設定名逐字查得 No.147；Atlantis 逐字 `If ""Auto_Power_Folding_Mirrors"" is ""Present"", return value is true. Other return`（引號式，v3 解析器漏抽）；proxi_values['Auto_Power_Folding_Mirrors']['1'] = 'Present'"
+327	(F 欄空)	Auto Fold Mirrors	R1b	PARSER_GAP_FIXED	PROXI Auto_Power_Folding_Mirrors = 1 (Present)	"以設定名逐字查得 No.147；Atlantis 逐字 `If ""Auto_Power_Folding_Mirrors"" is ""Present"", return value is true. Other return`（引號式，v3 解析器漏抽）；proxi_values['Auto_Power_Folding_Mirrors']['1'] = 'Present'"
+328	(F 欄空)	Auto Fold Mirrors	R1b	PARSER_GAP_FIXED	PROXI Auto_Power_Folding_Mirrors = 1 (Present)	"以設定名逐字查得 No.147；Atlantis 逐字 `If ""Auto_Power_Folding_Mirrors"" is ""Present"", return value is true. Other return`（引號式，v3 解析器漏抽）；proxi_values['Auto_Power_Folding_Mirrors']['1'] = 'Present'"
+331	(F 欄空)	Driver Easy Exit Seat	R3	FIP_PARAM_NOT_IN_VALUES		以設定名逐字查得 No.148；Atlantis 逐字 `If Easy_Entry_Menù is [Present], return value is true. Other return values are f`；`Easy_Entry_Menù` 於 proxi_values 查無（近似鍵存在與否見上繳 §5），依 R-13 不代入
+332	(F 欄空)	Driver Easy Exit Seat	R3	FIP_PARAM_NOT_IN_VALUES		以設定名逐字查得 No.148；Atlantis 逐字 `If Easy_Entry_Menù is [Present], return value is true. Other return values are f`；`Easy_Entry_Menù` 於 proxi_values 查無（近似鍵存在與否見上繳 §5），依 R-13 不代入
+333	(F 欄空)	Driver Easy Exit Seat	R3	FIP_PARAM_NOT_IN_VALUES		以設定名逐字查得 No.148；Atlantis 逐字 `If Easy_Entry_Menù is [Present], return value is true. Other return values are f`；`Easy_Entry_Menù` 於 proxi_values 查無（近似鍵存在與否見上繳 §5），依 R-13 不代入
+334	(F 欄空)	Engine Off Power Delay	R3	NEGATED_CONDITION		以設定名逐字查得 No.149；Atlantis 逐字 `If Country_Code is not [Australia], return value is true. Other return values are false.` —— 否定式，其補集之應取值本層無據，不猜
+335	(F 欄空)	Engine Off Power Delay	R3	NEGATED_CONDITION		以設定名逐字查得 No.149；Atlantis 逐字 `If Country_Code is not [Australia], return value is true. Other return values are false.` —— 否定式，其補集之應取值本層無據，不猜
+336	(F 欄空)	Engine Off Power Delay	R3	NEGATED_CONDITION		以設定名逐字查得 No.149；Atlantis 逐字 `If Country_Code is not [Australia], return value is true. Other return values are false.` —— 否定式，其補集之應取值本層無據，不猜
+337	(F 欄空)	Engine Off Power Delay	R3	NEGATED_CONDITION		以設定名逐字查得 No.149；Atlantis 逐字 `If Country_Code is not [Australia], return value is true. Other return values are false.` —— 否定式，其補集之應取值本層無據，不猜
+356	(F 欄空)	Automatic Trailer Light Check	R3	NEGATED_CONDITION		以設定名逐字查得 No.268；Atlantis 逐字 `If Trailer_Light_Check is NOT [Absent]), return value is 1. Else return value is 0.` —— 否定式，其補集之應取值本層無據，不猜
+357	(F 欄空)	Automatic Trailer Light Check	R3	NEGATED_CONDITION		以設定名逐字查得 No.268；Atlantis 逐字 `If Trailer_Light_Check is NOT [Absent]), return value is 1. Else return value is 0.` —— 否定式，其補集之應取值本層無據，不猜
+358	(F 欄空)	Automatic Trailer Light Check	R3	NEGATED_CONDITION		以設定名逐字查得 No.268；Atlantis 逐字 `If Trailer_Light_Check is NOT [Absent]), return value is 1. Else return value is 0.` —— 否定式，其補集之應取值本層無據，不猜
+444	(F 欄空)	Hour Mode	R3	NO_FIP_ROW		HMI 已綁 Settings r359（Clock > Time Format）；总控表 278 列逐字比對零命中
+447	(F 欄空)	Distance Unit	R2	FIP_ALWAYS_ON		以設定名逐字查得 No.115；Atlantis 逐字 `Always true`（恆顯示，無條件可加）
+448	(F 欄空)	Speed Unit	R2	FIP_ALWAYS_ON		以設定名逐字查得 No.118；Atlantis 逐字 `Always true`（恆顯示，無條件可加）
+449	(F 欄空)	Consumption Unit	R2	FIP_ALWAYS_ON		以設定名逐字查得 No.114；Atlantis 逐字 `Always true`（恆顯示，無條件可加）

@@ -33,6 +33,11 @@ docs/fw036/handoff/up/     執行層（Tier 1）寫上繳包
 
 MCP 寫檔後必 `get_file_info` 核 mtime 與大小；未核不得聲稱已下放。
 
+## 文面引用（2026-09-02 增，VS-SL-03 審閱）
+
+包文面引 canon 一律帶文件前綴（`FO §x`／`IN §x`），不寫裸 `§x`——
+裸節號會被 `gate_all.py` 之 `canon_refs` 判為歧義。
+
 ## 既有之 `docs/fw036/handoff/NN_*.md`
 
 保留，不搬。自本協定起新包一律入 `down/`／`up/`。
