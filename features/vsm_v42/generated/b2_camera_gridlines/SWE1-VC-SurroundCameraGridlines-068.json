@@ -1,0 +1,43 @@
+{
+  "req_id": "SWE1-VC-SurroundCameraGridlines-068",
+  "test_group": "Vehicle Setup Management R1 Low",
+  "test_set": "Camera Gridlines",
+  "reasoning": "驗證 TLM 收到 $IPC_VEHICLE_SETUP3.SVC_Guidelines$ 時，更新 Surround View Camera Gridlines 之顯示。關鍵情境為 IPC 回報後之畫面更新，本條驗兩個值（Off／On）之顯示，為同一機制之不同輸入，依 §8.2.2 不拆。該訊號 v3 解得（BO_1294／VAL_ 0 = Off、1 = On），label 逐字取 DBC。TLM_Vehicle_Setup_Menu.Info 為未解得(止於段1)，依 R-P355(c) 該步寫 PENDING，不得以 Set X.Info 假裝可執行。",
+  "tcs": [
+    {
+      "tc_title": "SVC Gridlines display follows the IPC reported value",
+      "pre_conditions": [
+        "PROXI Surround_View_Camera = 1 (Present)",
+        "The named UI element \"Surround View Camera (SVC) Gridlines\" setting screen is displayed"
+      ],
+      "input_test_data": "NA",
+      "test_procedure": [
+        "Send the signal $IPC_VEHICLE_SETUP3.SVC_Guidelines$ = 0 (Off)",
+        "Read the named UI element \"Surround View Camera (SVC) Gridlines\" control and check that it is \"Off\"",
+        "Send the signal $IPC_VEHICLE_SETUP3.SVC_Guidelines$ = 1 (On)",
+        "Read the named UI element \"Surround View Camera (SVC) Gridlines\" control and check that it is \"On\"",
+        "PENDING: DR-VL4 TLM_Vehicle_Setup_Menu.Info"
+      ],
+      "expected_result": [
+        "The signal $IPC_VEHICLE_SETUP3.SVC_Guidelines$ = 0 (Off) is registered without a bus error",
+        "The named UI element \"Surround View Camera (SVC) Gridlines\" control is \"Off\"",
+        "The signal $IPC_VEHICLE_SETUP3.SVC_Guidelines$ = 1 (On) is registered without a bus error",
+        "The named UI element \"Surround View Camera (SVC) Gridlines\" control is \"On\"",
+        "PENDING: DR-VL4 TLM_Vehicle_Setup_Menu.Info"
+      ],
+      "specification_reference": [
+        "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.38"
+      ],
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P2",
+      "split_flag": false,
+      "split_reason": "",
+      "test_item": "The HMI layer shall evaluate the received IPC_VEHICLE_SETUP3.SVC_Guidelines signal, update the TLM_Vehicle_Setup_Menu.Info` internal signal, and display the **Surround View Camera Gridlines** setting information accordingly within <TDisplay>\n(Reported SVC gridlines value drives the displayed control in both states)",
+      "distinguishing_axis": {
+        "axis": "trigger_state",
+        "delta": "由 IPC 回報之 SVC_Guidelines 驅動顯示，與 -066／-067 之 HMI 送出方向相反"
+      },
+      "remarks": "UI element names are taken from the setting wording named in the spec section and in the 037 description (R-VL21(a)); they are not anchored in HMI Settings List. TLM_Vehicle_Setup_Menu.Info is unresolved at stage 1 in signal_chain_v42_v3.tsv; observation method requested under DR-VL4"
+    }
+  ]
+}
