@@ -2,7 +2,7 @@
   "req_id": "SWE1-VC-EPBMaintenanceMode-059",
   "test_group": "Vehicle Setup Management R1 Low",
   "test_set": "EPB Maintenance Mode",
-  "reasoning": "驗證車速自 <= V_Car_Moving 上升至 > V_Car_Moving 時，TLM 經 ServiceMode_Popup_Trigger.Info 送出版面請求並顯示對應 popup。關鍵情境為車速跨越門檻之邊界。V_Car_Moving = 4 km/h、容差 0.5 km/h 取自規格常數表（段 1662），故取 4 與 4.0625 兩點（後者為 DBC 解析度 0.0625 km/h 之最小上跨）。規格另述 Ignition Off→On 之或分支，其 ignition 訊號規格未給實名，依 §8.4.1 不臆造，列 §K 並由本條之 Remarks 揭露未涵蓋。內部訊號 ServiceMode_Popup_Trigger.Info 段 1 未解，該步 PENDING。",
+  "reasoning": "驗證車速自 <= V_Car_Moving 上升至 > V_Car_Moving 時，TLM 經 ServiceMode_Popup_Trigger.Info 送出版面請求並顯示對應 popup。關鍵情境為車速跨越門檻之邊界；V_Car_Moving = 4 km/h、容差 0.5 km/h 取自規格常數表（段 1662），故取 raw 64 與 65 兩點（後者為 DBC 解析度 0.0625 km/h 之最小上跨）。test_item 上半為 037 Requirement Description 之完整原句 verbatim（R-VL23(a)），其所含之 ignition Off→On 或分支本 TC 未涵蓋 —— 037 寫 (Ignition_{S}tatus) 為佔位符殘留、規格段 1111 拼作 Inigtion，皆非合法訊號名，依 §8.4.1 不臆造，揭露見 remarks 與 §K K-3。內部訊號 ServiceMode_Popup_Trigger.Info 於 v3 為未解得(止於段1)，依 R-P355(c) 該步寫 PENDING，不得以 Set X.Info 假裝可執行。",
   "tcs": [
     {
       "tc_title": "Vehicle speed crosses V_Car_Moving upward",
@@ -33,7 +33,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "test_item": "When the TLM receives a value changing from <= [V_Car_Moving] to > [V_Car_Moving] via signals (STATUS_CCAN3.VehicleSpeedVSOSig), Then TLM shall send a layout request to the display manager through internal signal (ServiceMode_Popup_Trigger.Info)\n(Boundary crossing of V_Car_Moving raises the brake-pedal popup)",
+      "test_item": "When the TLM receives a value changing from <= [V_Car_Moving] to > [V_Car_Moving], or a transition from [Ignition Off] to [Ignition On] via signals (STATUS_CCAN3.VehicleSpeedVSOSig) | (Ignition_{S}tatus), Then TLM shall send a layout request to the display manager through internal signal (ServiceMode_Popup_Trigger.Info)\n(Boundary crossing of V_Car_Moving raises the brake-pedal popup)",
       "distinguishing_axis": {
         "axis": "boundary",
         "delta": "車速 raw 64 (= V_Car_Moving 4 km/h) 與 65 (> 門檻)，為門檻上跨之最小步進"
