@@ -97,3 +97,30 @@ Display 依 R-DM19 選定 BHCAN2；其 15 個 `$Signal$` 未受影響。
 > **LID 階段**成立（15/15 皆能在 LID 找到列），在 **DBC 階段**不成立
 > （`CCDMF_RQ_DISP_INTS` 之 CAN 名不在任一本 DBC 中）。R-DM17 之解析鏈
 > 為三段，「解得」須指明止於哪一段。
+
+### B-3　`Easy_Entry_Menù`（vehicle_setting，VS-SL-04／05）—— 值表拼寫差，登記為查無
+
+依 **R-G13** 三要件：
+
+1. **查了哪些檔**：`forms/PROXI_HDCC27_R3_20250424.xlsx`（`e7c2020f01c3d58d`）
+   分頁 `Format`，`Parameter Name`（F 欄）共 **1,058** 個具名參數。
+2. **用什麼名字查**：`Easy_Entry_Menù` —— 取自 FIP 总控表
+   `R1L FIP 总控表 V1.1.0.xlsx` 分頁 `FeatureSet(Gen4-5)` No.148 `Driver Easy Exit Seat`
+   之 Atlantis 欄逐字：`If Easy_Entry_Menù is [Present], return value is true.`
+3. **涵蓋範圍是否本應包含之**：**是** —— 該 `Format` 分頁確載同類之選單存在性參數
+   （如 `Glove_Box_Soft_Button`、`EC_Mirror`），且本 feature 之其餘 PROXI 皆解自該檔。
+
+**結果 —— 查無**：`Parameter Name` 欄無 `Easy_Entry_Menù`；
+表內有 **`Easy_Entry_Menu`**（無重音，`{0: Absent, 1: Present}`），
+**僅差一個重音符號，惟逐字不等，本輪不認定其為同一物**（同 M-3 之處置，R-13）。
+
+發現之 feature：`vehicle_setting`　DR：`dr_draft_vssl.md` 第四節 (b)（**未取號，Pei 送出時取**）　狀態：**OPEN**
+
+### B-4　FIP 总控表 No.275 之原文缺字（登記，非查無）
+
+`R1L FIP 总控表 V1.1.0.xlsx` `FeatureSet(Gen4-5)` No.275 `Rear Guidance Light Status`
+之 Atlantis 欄逐字為 **`Alwatys return value is 0`** —— `Always` 誤植為 `Alwatys`。
+
+**本項非「查無」**（無任何名稱查詢失敗），故不入台帳，記於備註區：
+執行層之常數判準以寬鬆式（`^alwa\w*\s+...`）匹配並**照錄原文**，未改上游字樣。
+建議上游修正。發現之 feature：`vehicle_setting`（VS-SL-04 §1 R2）。

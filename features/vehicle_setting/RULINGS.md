@@ -7404,3 +7404,88 @@ R-VS88  別名表
 包內第五條（本輪範圍）為作業範圍宣告而非判準，且其所令之 BL／VC 裁定
 應記於各該 feature 之 `R-BL`／`R-VC`。**本層未於本檔取號**，
 其效力見 `reports/` 三份 dry-run 報告之範圍宣告。若 Pei 認為仍須取號，本層補登。
+
+---
+
+## 下放包 VS-SL-06 §3 之五條（站⑤ 寫回時落檔）
+
+> **編號回報（R-VF102 一）**：落檔時實測主線最大 **`R-VS88`**，實得 **`R-VS89`–`R-VS93`**，與所令之 +1 相符。
+> 命名空間依 `down/20260902_VS-SL-03.md` §0 之收束（維持 `R-VS`，`R-VF` 之議作罷）。
+> 條文由本包附，號現場取；其**證據皆為 VS-SL-01～05 之實測**，逐條附出處。
+
+### R-VS89 —— 家族閘（VS-SL-04 §1 R1，**Pei 2026-09-02 追認**）
+
+```
+R-VS89  家族閘
+  設定名自身於 FIP 总控表無對應列，而其別名 evidence 所指之家族列為
+  **變體數閘**（依某參數之值回傳成員數）者，套該家族閘，
+  成員取「足以顯示該成員」之值。
+  label 一律依 `data/_vf230_proxi_values.json` 逐字，不取 FIP 文面之寫法。
+```
+
+**證據**：总控表 No.267 `AUX SWITCH Type` 逐字
+`If AUX_Switch_Types is [Type1]), return value is 4. Else if AUX_Switch_Types is [Type2]),
+return value is 6. Else return value is 0.`；
+`proxi_values['AUX_Switch_Types']` = `{0: Absent, 1: Type 1, 2: Type 2}`。
+故 `SWITCH 1–4` 取 `= 1 (Type 1)`、`SWITCH 5–6` 取 `= 2 (Type 2)`；
+label 為 `Type 1`（含空格），非 FIP 文面之 `Type1`。**實得 54 列**。
+
+### R-VS90 —— 引號式條件與非 ASCII 參數名（VS-SL-04 §1 R1b）
+
+```
+R-VS90  引號式條件與非 ASCII 參數名
+  (1) FIP 條件之形制實測有二：中括號式 `is [Present]` 與**引號式** `is "Present"`。
+      二者等價，皆須取值。
+  (2) 條件內之參數名含非 ASCII 字元而 PROXI 值表查無同名者，
+      **依 R-13 不得以近似鍵代入**，一律落 `PENDING` 並開 DR。
+```
+
+**證據**：(1) 总控表 No.147 `Auto Fold Mirrors` 逐字
+`If "Auto_Power_Folding_Mirrors" is "Present", return value is true.`
+—— `settings_lookup._parse_terms` 原只認中括號式，致 v3 誤判「兩來源皆空」（**3 列**）。
+(2) No.148 `Driver Easy Exit Seat` 逐字 `If Easy_Entry_Menù is [Present]`；
+PROXI 值表無 `Easy_Entry_Menù`，僅有 `Easy_Entry_Menu`（差一重音）。**3 列落 PENDING**。
+
+### R-VS91 —— FIP 常數者不 PENDING、不 DR（VS-SL-04 §1 R2，**Pei 2026-09-02 追認**）
+
+```
+R-VS91  FIP 常數者不 PENDING、不 DR
+  FIP 列存在而其 Atlantis 欄為常數者，掛登記旗，Pre 不加 PROXI 行，
+  **不 PENDING、不入 DR**：
+    `FIP_ALWAYS_OFF`  `Always false`／`Always return value is 0`
+    `FIP_ALWAYS_ON`   `Always true`（恆顯示，本無條件可加）
+  既有列保留其需求追溯不刪（同 R-VS85）。
+```
+
+**證據**：`FIP_ALWAYS_OFF` **13 列**（No.274／215／165／275／199）、
+`FIP_ALWAYS_ON` **3 列**（No.115／118／114）。
+No.275 之原文逐字為 `Alwatys return value is 0`（缺字母），以寬鬆式匹配並照錄原文。
+
+### R-VS92 —— 否定式條件取代表值（VS-SL-05 §2 R4，**Pei 2026-09-02 追認**）
+
+```
+R-VS92  否定式條件取代表值
+  FIP 條件為否定式（`is not [X]`／`is NOT [X]`）者，其補集取
+  **規格值表內之代表值**即滿足條件，屬 EP 代表值選取，非造值（FO §8.3）。
+  提議之註記須載代表值之由與兄弟值。
+  市場相關之參數依 R-VS84 取 NAFTA 之代表。
+```
+
+**證據**：No.149 `If Country_Code is not [Australia]` —— `Country_Code` 值表 15 個值
+**逐值掃描無 Australia**，補集即全表，取 `2 (United States of America)`（NAFTA 代表）；
+No.268 `If Trailer_Light_Check is NOT [Absent])` —— 值表
+`{0: Absent, 1: Type 1 (Radio), 2: Type 2, 3: Type 3}`，取 `1 (Type 1 (Radio))`，
+兄弟值 `2`／`3` 註於提議。**合計 7 列**。
+
+### R-VS93 —— 步驟可控狀態不得為 Pre（VS-SL-05 §1）
+
+```
+R-VS93  步驟可控狀態不得為 Pre
+  Pre-Condition 所斷言之狀態，若於本輪插入導覽段後改由步驟建立，
+  則該 Pre 行必刪並重編號 —— Pre 僅載狀態／環境，不載步驟可得之物（IN §4.4）。
+  **未插導覽之列不動**（其 Pre 行於無導覽段時自洽）。
+```
+
+**證據**：v4 沙盒稿實測 Pre 含 `The Vehicle Settings menu is open` 者 **90 列**，
+其中 Procedure 已插 `Press "Settings" on Menu Bar` 者 **52 列**（已修），未插者 **38 列**（未動）。
+修後「含該句且已插導覽」之列 **= 0**。

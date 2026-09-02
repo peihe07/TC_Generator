@@ -151,6 +151,45 @@ canon §8.7.5 v3 之修訂（2026-08-21）晚於 SWC 0708 交付（2026-07-08）
     `Read`／`Check that`，故該形態有依據，非自訂。
 ```
 
+
+## [ADD] Settings 查找配方（VS-SL-01～06；VF665 生成即用）
+
+輸入設定項顯示名，輸出四段。**三來源、三段對應固定**：
+
+| 段 | 來源 | 取法 |
+|---|---|---|
+| `path` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` 分頁 `Settings` | A/B/C 欄之三層；`Settings > <分類> > <parent?> > <項>`。第一層之 D 欄為 `>` **或為空**者皆為容器（R-VS89 之證據列 r565–r588 即空 D 欄之容器） |
+| `control` | 同上 D／E 欄 | 控件型別＋選項；分隔符 `/`／`,`／`+` 兩側各一空格，字詞逐字不動 |
+| `proxi` | `forms/R1L FIP 总控表 V1.1.0.xlsx` 分頁 `FeatureSet(Gen4-5)` **E 欄**（Atlantis／DT） | 條件式 → 參數＋label；raw 取 `data/_vf230_proxi_values.json`。`new HW (637)` 與 PNet 各欄不展開（R-VS87） |
+| `coopen` | 同上 | 同一 param／node 同時開啟之其他設定項 |
+
+**市場一律 NAFTA**（R-VS84）：Settings 同名多列時取 Notes 含 NAFTA 或無市場標記之列。
+
+**PROXI 之來源優先序**（`proxi_now` 非空者一律先走形制改寫）：
+
+```
+(1) 既有 PROXI 行 → 形制改寫 `PROXI <Param> = <raw> (<label>)`（R-VS86；無 `$`、無 `is set to`）
+(2) 总控表條件式 → 取值
+(3) 需求原文之 `$var$ = [label]`
+(4) 皆無 → PENDING: DR-{n}，不猜值（R-13）
+```
+
+**四條補救規則**（無之則大量列誤落 PENDING）：
+
+| 規則 | 條 | 判準 |
+|---|---|---|
+| 家族閘 | `R-VS89` | 名自身無 FIP 列而家族列為變體數閘者，套家族閘取足以顯示該成員之值；label 依值表逐字 |
+| 引號式條件 | `R-VS90`(1) | `is "Present"` 與 `is [Present]` 等價，皆須取值 |
+| FIP 常數 | `R-VS91` | `Always false`／`Always return value is 0` → `FIP_ALWAYS_OFF`；`Always true` → `FIP_ALWAYS_ON`。二者皆**不 PENDING、不 DR** |
+| 否定式 | `R-VS92` | 補集取值表內代表值（EP，FO §8.3），註兄弟值；市場相關者取 NAFTA 代表 |
+
+**Pre-Condition**：插入導覽段後，步驟可得之狀態行必刪（`R-VS93`，IN §4.4）。
+**別名**：`features/vehicle_setting/data/settings_alias.tsv`（`exact`／`manual`／`UNRESOLVED`），
+`manual` 須 Pei 逐條認可後方綁入；查無者開 DR，不得以語意相近之名代入（`R-VS88`／R-13）。
+
+**實作**：`features/vehicle_setting/scripts/settings_lookup.py`（查找器）、
+`vs_sl03_bind.py`（別名綁定）、`vs_sl04_resolve.py`（四規則）。
+
 ---
 
 ---

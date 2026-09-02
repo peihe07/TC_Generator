@@ -1,0 +1,458 @@
+row	req_id	old_E	old_F	new_F	status	note
+10	SWE1-VC-6AuxSwitches-002				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+11	SWE1-VC-6AuxSwitches-003				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+12	SWE1-VC-SWITCH5PowerMode-021				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+13	SWE1-VC-SWITCH5PowerMode-022				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+14	SWE1-VC-SWITCH5PowerMode-023				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+15	SWE1-VC-SWITCH6PowerMode-025				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+16	SWE1-VC-SWITCH6PowerMode-026				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+17	SWE1-VC-SWITCH6PowerMode-027				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+18	SWE1-VC-SWITCH1Type-029				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+19	SWE1-VC-SWITCH5Type-045				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+20	SWE1-VC-SWITCH5Type-046				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+21	SWE1-VC-SWITCH5Type-047				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+22	SWE1-VC-SWITCH6Type-049				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+23	SWE1-VC-SWITCH6Type-050				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+24	SWE1-VC-SWITCH6Type-051				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+25	SWE1-VC-SWITCH5HoldLastState-070				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+26	SWE1-VC-SWITCH5HoldLastState-071				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+27	SWE1-VC-SWITCH5HoldLastState-072				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+28	SWE1-VC-SWITCH6HoldLastState-074				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+29	SWE1-VC-SWITCH6HoldLastState-075				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+30	SWE1-VC-SWITCH6HoldLastState-076				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+31	SWE1-VC-RearGuidanceLightingwithApproach-078				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+32	SWE1-VC-RearGuidanceLightingwithApproach-079				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+33	SWE1-VC-RearGuidanceLightingwithApproach-080				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+34	SWE1-VC-RearGuidanceLightingwithApproach-081				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+35	SWE1-VC-RearGuidanceLightingwithApproach-082				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+36	SWE1-VC-RearGuidanceLightStatus-084				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+37	SWE1-VC-RearGuidanceLightStatus-085				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+38	SWE1-VC-RearGuidanceLightStatus-086				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+39	SWE1-VC-RearGuidanceLightStatus-087				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+40	SWE1-VC-RearGuidanceLightStatus-088				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+41	SWE1-VC-E-Save-090				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+42	SWE1-VC-E-Save-091				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+43	SWE1-VC-BlindSpotAlert-002				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+44	SWE1-VC-BlindSpotAlert-003				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+45	SWE1-VC-BlindSpotAlert-004				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+46	SWE1-VC-BlindSpotAlert-005				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+47	SWE1-VC-BlindSpotAlert-006				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+48	SWE1-VC-BlindSpotAlert-007				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+49	SWE1-VC-PassiveEntry-009				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+50	SWE1-VC-PassiveEntry-010				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+51	SWE1-VC-PassiveEntry-011				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+52	SWE1-VC-PassiveEntry-012				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+53	SWE1-VC-PassiveEntry-013				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+54	SWE1-VC-RemoteDoorUnlock-015				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+55	SWE1-VC-RemoteDoorUnlock-016				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+56	SWE1-VC-RemoteDoorUnlock-017				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+57	SWE1-VC-RemoteDoorUnlock-018				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+58	SWE1-VC-RemoteDoorUnlock-019				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+59	SWE1-VC-AutoParkBrake-021				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+60	SWE1-VC-AutoParkBrake-022				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+61	SWE1-VC-AutoParkBrake-023				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+62	SWE1-VC-AutoParkBrake-024				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+63	SWE1-VC-AutoParkBrake-025				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+64	SWE1-VC-HornWithRemoteStart-027				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+65	SWE1-VC-HornWithRemoteStart-028				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+66	SWE1-VC-HornWithRemoteStart-029				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+67	SWE1-VC-HornWithRemoteStart-030				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+68	SWE1-VC-HornWithRemoteStart-031				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+69	SWE1-VC-HornWithLock-033				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+70	SWE1-VC-HornWithLock-034				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+71	SWE1-VC-HornWithLock-035				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+72	SWE1-VC-HornWithLock-036				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+73	SWE1-VC-HornWithLock-037				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+74	SWE1-VC-HornWithLock-038				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+75	SWE1-VC-AutoUnlockonExit-040				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+76	SWE1-VC-AutoUnlockonExit-041				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+77	SWE1-VC-AutoUnlockonExit-042				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+78	SWE1-VC-AutoUnlockonExit-043				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+79	SWE1-VC-AutoUnlockonExit-044				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+80	SWE1-VC-FlashLightWithLock-046				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+81	SWE1-VC-FlashLightWithLock-047				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+82	SWE1-VC-FlashLightWithLock-048				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+83	SWE1-VC-FlashLightWithLock-049				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+84	SWE1-VC-FlashLightWithLock-050				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+85	SWE1-VC-NavigationTurnbyTurn-053				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+86	SWE1-VC-NavigationTurnbyTurn-054				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+87	SWE1-VC-NavigationTurnbyTurn-055				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+88	SWE1-VC-NavigationTurnbyTurn-056				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+89	SWE1-VC-NavigationTurnbyTurn-057				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+90	SWE1-VC-Language-059				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+91	SWE1-VC-Language-062				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+92	SWE1-VC-PhoneRepetition-064				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+93	SWE1-VC-PhoneRepetition-065				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+94	SWE1-VC-PhoneRepetition-066				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+95	SWE1-VC-PhoneRepetition-067				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+96	SWE1-VC-PhoneRepetition-068				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+97	SWE1-VC-ParkSenseRearVolume-072				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+98	SWE1-VC-ParkSenseRearVolume-073				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+99	SWE1-VC-ParkSenseRearVolume-074				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+100	SWE1-VC-ParkSenseRearVolume-075				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+101	SWE1-VC-ParkSenseFrontVolume-079				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+102	SWE1-VC-ParkSenseFrontVolume-080				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+103	SWE1-VC-ParkSenseFrontVolume-081				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+104	SWE1-VC-ParkSenseFrontVolume-082				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+105	SWE1-VC-AutoHighBeam-084				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+106	SWE1-VC-AutoHighBeam-085				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+107	SWE1-VC-AutoHighBeam-086				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+108	SWE1-VC-AutoHighBeam-087				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+109	SWE1-VC-AutoHighBeam-088				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+110	SWE1-VC-RKELinkedtoMemory-090				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+111	SWE1-VC-RKELinkedtoMemory-091				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+112	SWE1-VC-RKELinkedtoMemory-092				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+113	SWE1-VC-RKELinkedtoMemory-093				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+114	SWE1-VC-RKELinkedtoMemory-094				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+115	SWE1-VC-AutoOnDriverComfort-3Option-096				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+116	SWE1-VC-AutoOnDriverComfort-3Option-097				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+117	SWE1-VC-AutoOnDriverComfort-3Option-098				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+118	SWE1-VC-AutoOnDriverComfort-3Option-099				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+119	SWE1-VC-AutoOnDriverComfort-3Option-100				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+120	SWE1-VC-AutoOnDriverComfort-3Option-101				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+121	SWE1-VC-AutoOnDriverComfort-2Option-103				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+122	SWE1-VC-AutoOnDriverComfort-2Option-105				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+123	SWE1-VC-AutoOnDriverComfort-2Option-106				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+124	SWE1-VC-AutoOnDriverComfort-2Option-107				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+125	SWE1-VC-RearviewCameraDelay-109				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+126	SWE1-VC-RearviewCameraDelay-110				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+127	SWE1-VC-RearviewCameraDelay-111				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+128	SWE1-VC-RearviewCameraDelay-112				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+129	SWE1-VC-RearviewCameraDelay-113				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+130	SWE1-VC-RearviewCameraDynamicGuidelines-115				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+131	SWE1-VC-RearviewCameraDynamicGuidelines-116				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+132	SWE1-VC-RearviewCameraDynamicGuidelines-117				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+133	SWE1-VC-RearviewCameraDynamicGuidelines-118				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+134	SWE1-VC-RearviewCameraDynamicGuidelines-119				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+135	SWE1-VC-CorneringLights-002				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+136	SWE1-VC-CorneringLights-003				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+137	SWE1-VC-CorneringLights-006				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+138	SWE1-VC-GreetingLights-008				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+139	SWE1-VC-GreetingLights-009				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+140	SWE1-VC-GreetingLights-012				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+141	SWE1-VC-LaneSenseWarning-014				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+142	SWE1-VC-LaneSenseWarning-015				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+143	SWE1-VC-LaneSenseWarning-019				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+144	SWE1-VC-SignatureLighting-021				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+145	SWE1-VC-SignatureLighting-022				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+146	SWE1-VC-SignatureLighting-025				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+147	SWE1-VC-LaneSenseStrength-027				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+148	SWE1-VC-LaneSenseStrength-028				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+149	SWE1-VC-LaneSenseStrength-032				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+150	SWE1-VC-ForwardCollisionWarning-034				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+151	SWE1-VC-ForwardCollisionWarning-035				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+152	SWE1-VC-ForwardCollisionWarning-039				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+153	SWE1-VC-ForwardCollisionWarningSensitivity-041				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+154	SWE1-VC-ForwardCollisionWarningSensitivity-042				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+155	SWE1-VC-ForwardCollisionWarningSensitivity-046				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+156	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-048				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+157	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-049				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+158	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-052				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+159	SWE1-VC-RainSensingWipers-054				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+160	SWE1-VC-RainSensingWipers-055				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+161	SWE1-VC-RainSensingWipers-058				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+162	SWE1-VC-DaytimeRunningLights-002				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+163	SWE1-VC-DaytimeRunningLights-003				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+164	SWE1-VC-DaytimeRunningLights-004				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+165	SWE1-VC-DaytimeRunningLights-006				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+166	SWE1-VC-DaytimeRunningLights-006				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+167	SWE1-VC-HeadlightsOffDelay-008				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+168	SWE1-VC-HeadlightsOffDelay-009				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+169	SWE1-VC-HeadlightsOffDelay-010				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+170	SWE1-VC-HeadlightsOffDelay-011				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+171	SWE1-VC-HeadlightsOffDelay-012				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+172	SWE1-VC-HeadlightsOffDelay-013				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+173	SWE1-VC-HeadlightsOffDelay-014				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+174	SWE1-VC-HeadlightsOffDelay-014				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+175	SWE1-VC-HeadlightsOffDelay-014				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+176	SWE1-VC-PressureUnit-002				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+177	SWE1-VC-PressureUnit-003				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+178	SWE1-VC-PressureUnit-004				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+179	SWE1-VC-PressureUnit-005				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+180	SWE1-VC-PressureUnit-006				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+181	SWE1-VC-PressureUnit-007				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+182	SWE1-VC-PowerUnit-009				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+183	SWE1-VC-PowerUnit-010				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+184	SWE1-VC-PowerUnit-011				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+185	SWE1-VC-PowerUnit-012				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+186	SWE1-VC-PowerUnit-013				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+187	SWE1-VC-PowerUnit-014				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+188	SWE1-VC-TorqueUnit-016				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+189	SWE1-VC-TorqueUnit-017				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+190	SWE1-VC-TorqueUnit-018				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+191	SWE1-VC-TorqueUnit-019				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+192	SWE1-VC-TorqueUnit-020				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+193	SWE1-VC-IlluminatedApproach-002				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+194	SWE1-VC-IlluminatedApproach-003				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+195	SWE1-VC-IlluminatedApproach-004				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+196	SWE1-VC-IlluminatedApproach-005				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+197	SWE1-VC-IlluminatedApproach-006				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+198	SWE1-VC-IlluminatedApproach-007				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+199	SWE1-VC-IlluminatedApproach-008				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+200	SWE1-VC-PaddleShifter-010				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+201	SWE1-VC-PaddleShifter-011				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+202	SWE1-VC-PaddleShifter-012				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+203	SWE1-VC-PaddleShifter-013				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+204	SWE1-VC-PaddleShifter-014				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+205	SWE1-VC-PowerLiftgate/TailgateAlert-016				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+206	SWE1-VC-PowerLiftgate/TailgateAlert-017				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+207	SWE1-VC-PowerLiftgate/TailgateAlert-018				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+208	SWE1-VC-PowerLiftgate/TailgateAlert-019				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+209	SWE1-VC-PowerLiftgate/TailgateAlert-020				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+210	SWE1-VC-PowerLiftgate/TailgateAlert-021				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+211	SWE1-VC-PowerTailgate-023				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+212	SWE1-VC-PowerTailgate-024				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+213	SWE1-VC-PowerTailgate-027				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+214	SWE1-VC-PowerTailgate-028				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+215	SWE1-VC-TrafficSignWarning-030				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+216	SWE1-VC-TrafficSignWarning-031				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+217	SWE1-VC-TrafficSignWarning-032				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+218	SWE1-VC-TrafficSignWarning-033				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+219	SWE1-VC-TrafficSignWarning-034				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+220	SWE1-VC-TrafficSignWarning-035				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+221	SWE1-VC-NewSpeedZoneIndication-037				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+222	SWE1-VC-NewSpeedZoneIndication-038				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+223	SWE1-VC-NewSpeedZoneIndication-039				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+224	SWE1-VC-NewSpeedZoneIndication-040				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+225	SWE1-VC-NewSpeedZoneIndication-041				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+226	SWE1-VC-NewSpeedZoneIndication-042				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+227	SWE1-VC-ChargePowerLevel-046				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+228	SWE1-VC-ChargePowerLevel-047				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+229	SWE1-VC-ChargePowerLevel-048				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+230	SWE1-VC-ChargePowerLevel-049				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+231	SWE1-VC-ChargePowerLevel-050				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+232	SWE1-VC-ChargePowerLevel-051				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+233	SWE1-VC-RearSeatReminder-055				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+234	SWE1-VC-RearSeatReminder-056				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+235	SWE1-VC-RearSeatReminder-057				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+236	SWE1-VC-TrailerNumber-059				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+237	SWE1-VC-TrailerNumber-060				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+238	SWE1-VC-TrailerNumber-061				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+239	SWE1-VC-TrailerNumber-062				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+240	SWE1-VC-TrailerNumber-063				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+241	SWE1-VC-TrailerNumber-064				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+242	SWE1-VC-TrailerNumber-066				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+243	SWE1-VC-SWITCH1Type-003				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+244	SWE1-VC-SWITCH1Type-004				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+245	SWE1-VC-SWITCH2Type-006				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+246	SWE1-VC-SWITCH2Type-007				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+247	SWE1-VC-SWITCH2Type-008				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+248	SWE1-VC-SWITCH3Type-010				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+249	SWE1-VC-SWITCH3Type-011				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+250	SWE1-VC-SWITCH3Type-012				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+251	SWE1-VC-SWITCH4Type-014				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+252	SWE1-VC-SWITCH4Type-015				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+253	SWE1-VC-SWITCH4Type-016				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+254	SWE1-VC-SWITCH1HoldLastState-018				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+255	SWE1-VC-SWITCH1HoldLastState-019				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+256	SWE1-VC-SWITCH1HoldLastState-020				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+257	SWE1-VC-SWITCH2HoldLastState-022				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+258	SWE1-VC-SWITCH2HoldLastState-023				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+259	SWE1-VC-SWITCH2HoldLastState-024				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+260	SWE1-VC-SWITCH3HoldLastState-026				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+261	SWE1-VC-SWITCH3HoldLastState-027				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+262	SWE1-VC-SWITCH3HoldLastState-028				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+263	SWE1-VC-SWITCH4HoldLastState-030				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+264	SWE1-VC-SWITCH4HoldLastState-031				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+265	SWE1-VC-SWITCH4HoldLastState-032				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+266	SWE1-VC-SuspensionFlashLightsWithLower-002				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+267	SWE1-VC-SuspensionFlashLightsWithLower-003				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+268	SWE1-VC-SuspensionFlashLightsWithLower-004				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+269	SWE1-VC-SuspensionFlashLightsWithLower-005				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+270	SWE1-VC-SuspensionFlashLightsWithLower-006				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+271	SWE1-VC-SuspensionSoundHornWithLower-008				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+272	SWE1-VC-SuspensionSoundHornWithLower-009				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+273	SWE1-VC-SuspensionSoundHornWithLower-010				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+274	SWE1-VC-SuspensionSoundHornWithLower-011				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+275	SWE1-VC-SuspensionSoundHornWithLower-012				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+276	SWE1-VC-RearGuidanceLightswith\nCargoLights-014				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+277	SWE1-VC-RearGuidanceLightswith\nCargoLights-015				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+278	SWE1-VC-RearGuidanceLightswith\nCargoLights-016				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+279	SWE1-VC-RearGuidanceLightswith\nCargoLights-017				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+280	SWE1-VC-RearGuidanceLightswith\nCargoLights-018				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+281	SWE1-VC-SuspensionDefaultRideHeight-021				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+282	SWE1-VC-SuspensionDefaultRideHeight-022				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+283	SWE1-VC-SuspensionDefaultRideHeight-023				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+284	SWE1-VC-SuspensionDefaultRideHeight-024				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+285	SWE1-VC-SuspensionDefaultRideHeight-025				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+286	SWE1-VC-4AUXSwitches-028				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+287	SWE1-VC-SWITCH1PowerMode-030				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+288	SWE1-VC-SWITCH1PowerMode-031				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+289	SWE1-VC-SWITCH1PowerMode-032				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+290	SWE1-VC-SWITCH2PowerMode-034				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+291	SWE1-VC-SWITCH2PowerMode-035				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+292	SWE1-VC-SWITCH2PowerMode-036				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+293	SWE1-VC-SWITCH3PowerMode-038				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+294	SWE1-VC-SWITCH3PowerMode-039				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+295	SWE1-VC-SWITCH3PowerMode-040				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+296	SWE1-VC-SWITCH4PowerMode-042				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+297	SWE1-VC-SWITCH4PowerMode-043				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+298	SWE1-VC-SWITCH4PowerMode-044				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+299	SWE1-VC-SuspensionServiceMode-002				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+300	SWE1-VC-SuspensionServiceMode-003				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+301	SWE1-VC-SuspensionServiceMode-004				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+302	SWE1-VC-SuspensionServiceMode-005				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+303	SWE1-VC-SuspensionServiceMode-006				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+304	SWE1-VC-SuspensionDisplayMessages-008				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+305	SWE1-VC-SuspensionDisplayMessages-009				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+306	SWE1-VC-SuspensionDisplayMessages-010				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+307	SWE1-VC-SuspensionDisplayMessages-011				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+308	SWE1-VC-SuspensionDisplayMessages-012				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+309	SWE1-VC-TiltMirrorinReverse-014				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+310	SWE1-VC-TiltMirrorinReverse-015				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+311	SWE1-VC-TiltMirrorinReverse-016				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+312	SWE1-VC-TiltMirrorinReverse-017				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+313	SWE1-VC-TiltMirrorinReverse-018				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+314	SWE1-VC-TireFillAlert-020				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+315	SWE1-VC-TireFillAlert-021				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+316	SWE1-VC-TireFillAlert-022				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+317	SWE1-VC-TireFillAlert-023				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+318	SWE1-VC-TireFillAlert-024				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+319	SWE1-VC-ReadytoDrivePopUp-026				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+320	SWE1-VC-ReadytoDrivePopUp-027				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+321	SWE1-VC-ReadytoDrivePopUp-028				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+322	SWE1-VC-ReadytoDrivePopUp-029				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+323	SWE1-VC-ReadytoDrivePopUp-030				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+324	SWE1-VC-AutoFoldMirrors-032				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+325	SWE1-VC-AutoFoldMirrors-033				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+326	SWE1-VC-AutoFoldMirrors-034				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+327	SWE1-VC-AutoFoldMirrors-035				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+328	SWE1-VC-AutoFoldMirrors-036				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+329	SWE1-VC-DriverEasyExitSeat-038				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+330	SWE1-VC-DriverEasyExitSeat-039				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+331	SWE1-VC-DriverEasyExitSeat-040				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+332	SWE1-VC-DriverEasyExitSeat-041				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+333	SWE1-VC-DriverEasyExitSeat-042				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+334	SWE1-VC-EngineOffPowerDelay-046				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+335	SWE1-VC-EngineOffPowerDelay-048				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+336	SWE1-VC-EngineOffPowerDelay-049				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+337	SWE1-VC-EngineOffPowerDelay-050				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+338	SWE1-VC-HillStartAssist-052				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+339	SWE1-VC-HillStartAssist-053				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+340	SWE1-VC-HillStartAssist-054				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+341	SWE1-VC-HillStartAssist-055				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+342	SWE1-VC-HillStartAssist-056				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+343	SWE1-VC-HeadlightswithWipers-058				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+344	SWE1-VC-HeadlightswithWipers-059				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+345	SWE1-VC-HeadlightswithWipers-060				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+346	SWE1-VC-HeadlightswithWipers-061				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+347	SWE1-VC-HeadlightswithWipers-062				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+348	SWE1-VC-TrailerName-002				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+349	SWE1-VC-TrailerName-003				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+350	SWE1-VC-TrailerName-017				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+351	SWE1-VC-TrailerBrakeType025				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+352	SWE1-VC-TrailerBrakeType026				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+353	SWE1-VC-TrailerBrakeType031				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+354	SWE1-VC-AutomaticTrailerLight Check-039				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+355	SWE1-VC-AutomaticTrailerLight Check-040				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+356	SWE1-VC-AutomaticTrailerLight Check-041				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+357	SWE1-VC-AutomaticTrailerLight Check-042				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+358	SWE1-VC-AutomaticTrailerLight Check-043				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+359	SWE1-VC-Blind Spot with Trailer Detection-045				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+360	SWE1-VC-Blind Spot with Trailer Detection-046				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+361	SWE1-VC-Blind Spot with Trailer Detection-047				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+362	SWE1-VC-Blind Spot with Trailer Detection-048				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+363	SWE1-VC-Blind Spot with Trailer Detection-049				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+364	SWE1-VC-PowerSideStep-051				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+365	SWE1-VC-PowerSideStep-052				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+366	SWE1-VC-PowerSideStep-053				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+367	SWE1-VC-PowerSideStep-054				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+368	SWE1-VC-PowerSideStep-055				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+369	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-057				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+370	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-058				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+371	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-060				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+372	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-061				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+373	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-062				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+374	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-063				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+375	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-064				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+376	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-065				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+377	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-066				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+378	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-067				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+379	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-068				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+380	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-069				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+381	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-070				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+382	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-071				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+383	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-073				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+384	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-074				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+385	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-075				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+386	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-076				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+387	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-077				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+388	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-078				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+389	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-079				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+390	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-080				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+391	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-081				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+392	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-082				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+393	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-083				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+394	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-084				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+395	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-085				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+396	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-086				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+397	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-087				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+398	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-088				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+399	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-089				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+400	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+401	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-116				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+402	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+403	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-118				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+404	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-119				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+405	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-121				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+406	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-122				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+407	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-123				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+408	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+409	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+410	SWE1-VC-EnhancedDisplaySynchronization-127				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+411	SWE1-VC-EnhancedDisplaySynchronization-128				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+412	SWE1-VC-EnhancedDisplaySynchronization-129				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+413	SWE1-VC-EnhancedDisplaySynchronization-130				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+414	SWE1-VC-EnhancedDisplaySynchronization-131				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+415	SWE1-VC-EnhancedDisplaySynchronization-132				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+416	SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-134				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+417	SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-135				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+418	SWE1-VC-MaxPowerLevel140				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+419	SWE1-VC-MaxPowerLevel141				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+420	SWE1-VC-MaxPowerLevel142				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+421	SWE1-VC-MaxPowerLevel143				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+422	SWE1-VC-TimeandDateSettings-002				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+423	SWE1-VC-TimeandDateSettings-004				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+424	SWE1-VC-TimeandDateSettings-005				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+425	SWE1-VC-HourMode-010				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+426	SWE1-VC-AutoDoorLocks-015				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+427	SWE1-VC-AutoDoorLocks-016				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+428	SWE1-VC-DistanceUnit-021				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+429	SWE1-VC-SpeedUnit-026				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+430	SWE1-VC-ConsumptionUnit-031				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+431	SWE1-VC-UnitEnergy-039				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+432	SWE1-VC-TemperatureUnit-046				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+433	SWE1-VC-TemperatureUnit-047				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+434	SWE1-VC-SurroundViewCameraDelay-053				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+435	SWE1-VC-SurroundViewCameraDelay-054				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+436	SWE1-VC-SurroundViewCameraGuidelines-059				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+437	SWE1-VC-SurroundViewCameraGuidelines-060				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+438	SWE1-VC-TurnSignalActivatedBlindSpotCameraView-065				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+439	SWE1-VC-TurnSignalActivatedBlindSpotCameraView-066				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+440	SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-071				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+441	SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-072				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+442	SWE1-VC-ParkSenseBasedCameraActivation-078				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+443	SWE1-VC-ParkSenseBasedCameraActivation-079				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+444	SWE1-VC-ParkSense-084				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+445	SWE1-VC-ParkSense-085				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+446	SWE1-VC-SuspensionAutoEntryorExit-091				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+447	SWE1-VC-SuspensionAutoEntryorExit-092				BLOCKED	BLOCKED：feature.yaml 無 `delivery.tc_id_abbr`（全庫無任一 feature 宣告），R-G42 二之 ABBR 無據；本層不自訂
+400	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-091				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+401	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-092				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+402	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-094				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+403	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-095				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+404	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-096				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+405	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-097				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+406	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-098				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+407	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-099				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+408	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-100				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+409	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-102				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+410	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-103				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+411	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-104				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+412	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-105				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+413	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-106				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+414	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-107				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+415	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-108				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+416	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-109				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+417	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-111				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）
+418	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-113				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 §2 移除，未入轉正本）

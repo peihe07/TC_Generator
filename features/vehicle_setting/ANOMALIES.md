@@ -230,3 +230,15 @@
 | **A-VS166** | **下放包 VS-SL-01 所載之三個數與本輪實測不符** | 實測（`scripts/vs_sl01_dryrun.py`）：(a) 相異 `"X" customer setting` 名 **107**，包載 106，多出者為 `AUX Switches`（1 處，與 `4 AUX Switches`／`6 Aux Switches` 並存）；(b) `Traffic Sign Assist Offset - non-NAFTA Setting` **19 列**（r400–r418，D 欄前綴一致），包載 18；(c) `OR_VALUE` 現況 **5 列**（r42/148/151/154/157），包載 7 | **新開**。依 R-TM13 條文不改；`R-VS84`(4) 之移除標的以實測 19 列為準，待 Pei 確認 |
 | **A-VS167** | **`R-VS87`（車型以 DT 為主）與 BedLowering 相衝** | 总控表 `FeatureSet(Gen4-5)` No.36 `Bed Lowering Mode` 之 Atlantis 欄逐字為 `If "CAN node 27 (ASM/ASCM)" is [Present] and "Body_Types" is ([Type 1] or [Type 4]), return value is true.` —— **不含 `Type 7 (DT)`**（值表 `7 = Type 7 - DT`）。而 BedLowering 工作簿有 7 列明寫 `The vehicle is a DT configuration` | **新開**。三選項見 `features/bed_lowering/reports/bl_settings_dryrun.md` §B，**待 Pei 裁**。HMI Logic and Flow（SR24 1A）之車型適用範圍本層未查，不斷言 |
 | **A-VS168** | **VF230 之 457 列無一帶逐層導覽路徑** | 實測：365 列之 `Test procedure` 只有泛稱之 `Open the Vehicle Settings menu`，另 92 列連該句亦無；`Press "…"`／`Select "…"` 之逐層步驟 **0 列**。而 VS-SL-01 §4 之參考輸出要求 `Press "Settings" → Select "<Category>" → Select "<Parent>" → Check "<Item>"` | **新開**。本配方對 66 列可直接產出該路徑；其餘 391 列卡在別名（`DR-49`）或該項不在 Settings List。補入屬寫回動作，本包不執行 |
+
+---
+
+## 下放包 VS-SL-06 之登記（2026-09-02）
+
+> 主線最大實測 **`A-VS168`**，取 `A-VS169`–`A-VS170`。
+
+| id | 內容 | 證據 | 狀態 |
+|---|---|---|---|
+| **A-VS169** | **分析層之 canon 引用誤植 —— `FO §4.4`** | Pre-Condition 之規則在 `IN §4.4`；`docs/fw036/FEATURE_ONBOARDING.md` 之節號實測為 `4`／`8`／`8.1`–`8.9`，**無 `4.4`**，`4.4` 只存在於 `docs/runtime/ASPICE_SWE6_AI_Instruction.md`（其有 `4.1`–`4.6`）。`gate_all.py` 之 `canon_refs` 505→506 之 +1 即此一處 | **已結**。`down/20260902_VS-SL-04_review.md` §3 已於 2026-09-02 更正並加註記；執行層照抄之二處（v5 摘要、`vs_sl05_fix.py` docstring）同日改正。更正後 `canon_refs` 回 **505** |
+| **A-VS170** | **執行層違反 PROTOCOL「不動 `down/`」—— 同名覆蓋事件** | 量測 `canon_refs` 增量時將數檔暫移至同一扁平暫存目錄，`down/20260902_VS-SL-05.md` 與 `up/20260902_VS-SL-05.md` **同名**，後者覆蓋前者，復原時遂把上繳稿寫回 `down/` | **已結**。執行層自察並逐字復原（1,761 bytes，與落檔原文相同），上繳稿移回 `up/`；Tier 2 覆驗成立。`PROTOCOL.md` 已增「目錄唯讀」條（2026-09-02 第二增）：量測一律 copy 至工作區、以來源目錄分層、禁止扁平混名 |
+
