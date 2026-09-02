@@ -244,6 +244,53 @@ R-VL14（分析層裁定 2026-09-02，Pei「1 放了」；分析層驗收後綁�
     `<label>` 逐字取本 DBC 之 VAL_。DR-VL3 結案（到件，非送出）。
 ```
 
+> **更正（R-TM13，2026-09-02，A-VL11）**：(a) 之 `SG_ 5568` 為字串出現數（含 `BA_` 屬性行），
+> **訊號定義行實為 844（相異 794）** —— 分析層量測條件未揭露即入條文，與 A-VL4 同族（自誤）。
+> 索引以行首錨定，BO_／VAL_ 兩數相符，件之真偽不受影響。A-VL11 RESOLVED。
+> 另揭露：R-VL13 本體首行於 2026-09-02 由「待 Pei 追認」改「Pei 追認」（body_sha8 `6d382ff3`→`782082cf`），
+> 為裁決者欄之狀態更新非條文語義變更，上繳 03 第 1 節所指即此。
+
+### R-VL15 —— W-5 判準收尾：命中規則優先序；儲存格多值切分；R-VL13(a) 但書修訂；v3 為現行
+
+```
+R-VL15（分析層裁定 2026-09-02，上繳 03 §K、第 8 節甲、第 7 節 5；vsm_v43 上繳 04 A-VT24）
+(a) 段 1 命中規則優先序：目標欄（Atlantis `Signal Name`／Specific Signals `Signal Name`／
+    PROXI `Parameter Name`／HMI 設定名欄）之 R1 逐字命中，勝過名稱欄（LID A／B／C）之 R2–R6 命中；
+    同強度方為 B-1。依此 K-1 解為 `TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req`（目標欄逐字），
+    `IPC_VEHICLE_SETUP.LanguageSelection` 為其 Sts 孪生對偶記備註；B-1 歸零。
+(b) LID 儲存格內多值（換行、空白＋單引號）一律切分後逐字比，禁子串包含（vsm_v43 A-VT24 同裁，採 21）。
+(c) R-VL13(a) 但書修訂：rulings_hash 紅之可上繳判準改「無刪除列，且既有列之 body_sha8 無變動」；
+    新增列不限系列（他線合法落條如 R-VS* 亦屬之），sha8-only 變動（R-TM13 加註）亦屬合法。
+(d) `signal_chain_v42_v3.tsv` 為現行版；v1／v2 留檔不合併不刪。
+```
+
+### R-VL16 —— 值域增「規格拼字疑誤」；非 CAN 形之「解得」須有段 1 依據；PassiveEntry 處置
+
+```
+R-VL16（分析層裁定 2026-09-02，上繳 03 第 7 節 3／4；vsm_v43 上繳 04 §八-2／-3、A-VT26）
+(a) 結果值域增 `未解得（規格拼字疑誤）`：規格原名於正確拼法下於主 DBC 存在而原拼法查無者屬之。
+    規格原名不改（R-13／R-6），備註記正確拼法與佐證位置，佐證掛 DR-VT2（不送，留檔）；
+    P4 遭遇時該列寫保留原名不加 `$`。A-VL12 兩名改記此值，A-VL12 RESOLVED。
+(b) 內部形（X.Req／X.Info／X.GUI）之「解得」須有段 1 依據（LID／HMI／PROXI 對照命中）；
+    僅段 3 同名不算（R-P368 三段鏈之本旨：防同名跳接）。本線「解得 98」中非 CAN 形 3 列逐列審，
+    無段 1 依據者退回「未解得(止於段1)」；vsm_v43 之 A-VT26 五列同裁（彼線 R-VT16(e)）。
+(c) `IPC_VEHICLE_SETUP.PassiveEntry`／`TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req`：維持
+    「未解得(止於段3)」，備註 LID 對映指向 `RFHUB3.RFReq`（他 ECU，本 DBC 查無）；不臆測、
+    不代入；P4 遭遇時 PENDING（DR 不送，依 Pei 裁）。
+```
+
+### R-VL17 —— Layer 2 鎖定（十組，Pei「准」）
+
+```
+R-VL17（Pei 裁定 2026-09-02：「准」）
+Layer 2 依 00 包 §九十組草案鎖定，leaf 實測對測相符（data/p3_families_v42.md，24 家族合計 128）：
+Park Sense (18)／Camera Gridlines (10)／Lighting (11)／Speed Assist (21)／Driver Warning (13)／
+Wiper and Sensor (5)／Units (15)／EPB Maintenance Mode (17)／Personal Data and Defaults (14)／
+Time and Navigation (4)。全表見 framework.md（本包同時落檔）。
+偏小組（#6、#10）照案保留。Layer 3 之規格章節號由執行層實測回填，回填不解鎖 Layer 2。
+Pilot 提案 EPB Maintenance Mode（分析層，開跑前 Pei 可改指）。
+```
+
 ---
 
 ## 取號紀錄
@@ -255,3 +302,5 @@ R-VL14（分析層裁定 2026-09-02，Pei「1 放了」；分析層驗收後綁�
 | R-VL10–R-VL11 | 2026-09-01 | 上繳 01 第 9 節 sha 表止於 R-VL9；本檔錨點實測 9 |
 | R-VL12–R-VL13 | 2026-09-01 | 上繳 02 第 0 節 sha 表止於 R-VL11；本檔錨點實測 11 |
 | R-VL14 | 2026-09-02 | 本檔錨點實測 13 |
+| R-VL15–R-VL16 | 2026-09-02 | 上繳 03 第 1 節 sha 表止於 R-VL14；本檔錨點實測 14 |
+| R-VL17 | 2026-09-02 | 本檔錨點實測 16 |

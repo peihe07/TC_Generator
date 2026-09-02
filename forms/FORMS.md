@@ -552,7 +552,11 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 
 ### `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx`
 
-> **使用中之 feature（R-G15 反向記載）**：`power`（R-P375(a)(b) 之段 1 入口）。
+> **使用中之 feature（R-G15 反向記載）**：`power`（R-P375(a)(b) 之段 1 入口）；
+> **`vsm_v42`／`vsm_v43`**（2026-09-02，R-VL6(a)／R-P375(a) 之段 1 入口 —— 下放包 04 W-9）。
+> vsm_v42 之 W-5′ 實測：`Settings` 分頁 **B／C 欄**（設定名）命中 **10** 個訊號名，
+> 比對規則含第五規則（去 `_Menu`／`_Setting`）；結果為 `UI路徑(R-P375b)` 3 列與
+> `UI+PROXI 雙路徑` 4 列之依據（`features/vsm_v42/data/signal_chain_v42_v3.tsv`）。
 
 - **(a)** SHA256 `41daac0048d2afe15fe9aeee52a6197a28efdd2a71da44d2b836b4da3e9d4cf9`
   · 295,635 bytes · mtime 2026-08-25T09:15:30
@@ -569,7 +573,10 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 
 ### `SR26 Default Settings and PNet ECU Configuration v1_0.xlsx`
 
-> **使用中之 feature（R-G15 反向記載）**：`power`（R-P375(a)(c)）。
+> **使用中之 feature（R-G15 反向記載）**：`power`（R-P375(a)(c)）；
+> **`vsm_v42`／`vsm_v43`**（2026-09-02，下放包 04 W-9）。
+> vsm_v42 之 W-5′ 實測：`Default Parameters` 分頁命中 **1** 個名，
+> 屬 (d) 所述之靜態組態範圍，未用以代運行時狀態（R-P375(e)）。
 
 - **(a)** SHA256 `8f3ae50edd9e8355d1e300bc71980dd099c2ad8e2a1b3de04ec329ff7c34126c`
   · 69,667 bytes · mtime 2026-08-27T20:56:49
@@ -584,7 +591,10 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 
 ### `SR24 R1 Market Configuration Table v1.6.xlsx`
 
-> **使用中之 feature（R-G15 反向記載）**：`power`（R-P375(a) 之段 1 入口；本輪 0 命中）。
+> **使用中之 feature（R-G15 反向記載）**：`power`（R-P375(a) 之段 1 入口；本輪 0 命中）；
+> **`vsm_v42`／`vsm_v43`**（2026-09-02，下放包 04 W-9）。
+> vsm_v42 之 W-5′ 實測亦為 **0 命中** —— 與 power 同，屬 (d) 之預期範圍，**非缺漏**（R-G13）。
+> 本線 251 個訊號名對 `Market Config - R1` 分頁零交集，登記為**已查之檔**。
 
 - **(a)** SHA256 `7e865d557e42c8b00fbb92ed58ae4e94bb1d561c5fdf01c6af32a70821fe7dc9`
   · 274,486 bytes · mtime 2026-08-27T20:56:49
@@ -664,5 +674,41 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 | `SR24 R1 Market Configuration Table v1.6.xlsx` | 市場配置表 | 同上 |
 | `SR26 Default Settings and PNet ECU Configuration v1_0.xlsx` | 預設值／PNet ECU 配置 | 同上 |
 
+> **[已失效 —— 2026-09-02，vsm_v42 下放包 04 W-9 執行時實測]**
+> 上表三件**皆已於本檔登錄**，(a)–(f) 齊全，**首個採用 = `power`（2026-08-30，R-P375）**，
+> 條目見本檔 §`共用參考件 —— Pop Up` 之三小節。本表與該三小節同存於本檔而互相矛盾，
+> 成因為本節（範圍限制）落檔於補登之前而未隨補登更新。
+> **本表保留不刪（R-TM13），加註失效。**
+> 下放包 04 W-9 令 vsm_v42 補登該三件並將 (f) 首個採用填為 `vsm_v42,vsm_v43` ——
+> **未照辦**：其 (f) 已由 `power` 於更早日期佔用，覆寫即抹除他線之正確記載。
+> 執行層改補 **R-G15 反向記載**（在使用之 feature），為加法不為覆寫。
+
 **未代登** —— 六項 (a)–(f) 之 (b) 涵蓋範圍與 (f) 首個採用須由實際使用者
 實測填寫，由未使用它的 feature 代填會產出無人負責的登錄。
+
+---
+
+## ATL-Mi DBC 兩件（vsm_v42／vsm_v43，分析層登錄 2026-09-02，R-VL14／R-VT15）
+
+### `Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc`
+
+- **(a)** sha256 `5cac2abcecdf37e2f07991e26dc4cf748fe24874fde93af77a85ea8936d3ed16` · 425,072 bytes · Pei 放件 2026-09-02
+- **(b) 涵蓋**（分析層與執行層兩方實測一致）：`BO_` 139／`SG_` 定義行 844（相異 794）／`VAL_` 619。
+  ISO-8859＋CRLF，解析以 latin-1 讀、行首錨定（`BA_` 屬性行內含 `SG_` 字串，不得入索引，A-VL11）
+- **(c) 版次**：`R1 (29_01_2025) plusCR19670`（檔名所載）；637MCA = ProMaster（ATL-Mi）BH-CAN
+- **(d) 已知不涵蓋**：CAN-C 之訊號；`RFHUB3.RFReq`（LID Atlantis 欄所指，本件查無）
+- **(e) 取代關係**：對 vsm_v42 為段 3 主件；`PDT27_E2A_R1_BHCAN2`／`R1_FDCAN8`（Atlantis High）對該線降旁證，不取代其於 PM 等 Atlantis High 線之地位
+- **(f) 首個採用**：`vsm_v42`（R-VL14，上繳 03 v3）
+
+### `P363_BH-CAN [07338]_3A_R2.dbc`
+
+- **(a)** sha256 `a51079be6e98e6e5d907b7c44bc77663daadbed60e63418dd9dd9f2b07188abd` · 332,522 bytes · Pei 放件 2026-09-02
+- **(b) 涵蓋**：`BO_` 99／`SG_` 定義行 688（相異 655）／`VAL_` 503（有 VAL_ 之相異訊號 496）。
+  ISO-8859＋CRLF，latin-1、行首錨定（A-VT28）
+- **(c) 版次**：`3A_R2`，[07338]；P363（ATL-Mi）BH-CAN
+- **(d) 已知不涵蓋**：CAN-C 之訊號（上繳 04 實測 6 列真缺＋2 列規格拼字疑誤）；`BRAKE1` 訊息不在本件（上游弧，R-VT13(c)）
+- **(e) 取代關係**：對 vsm_v43 為段 3 主件；Atlantis High R1 DBC 對該線降旁證
+- **(f) 首個採用**：`vsm_v43`（R-VT15，上繳 04 v4）
+
+另：上表三件未登錄 xlsx（HMI Settings List／SR24／SR26）之首個採用實際已發生
+（vsm 兩線 W-5 段 1），其 (a)–(f) 登錄排入 vsm 線 P3 包，由執行層實測填寫。

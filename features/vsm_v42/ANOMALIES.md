@@ -281,7 +281,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 - **處置**：R-VL12（段 1 Atlantis 欄組；段 3 待 ATL-Mi DBC，DR-VL3）；vsm_v43 同記 A-VT22／R-VT13。DR-VT3 送出前須重寫。
 
 
-## A-VL11 —— ATL-Mi DBC 之 `SG_` 驗收數與 R-VL14(a) 所載不符（PENDING）
+## A-VL11 —— ATL-Mi DBC 之 `SG_` 驗收數與 R-VL14(a) 所載不符（**RESOLVED** 2026-09-02，R-VL14 加註）
 
 - **登記日**：2026-09-02（下放包 03 補遺之 W-5′ 段 3 驗收）
 - **條文所載**（R-VL14(a)／補遺）：`BO_ 139／SG_ 5568／VAL_ 619`
@@ -304,9 +304,9 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
   `SERVICE_SETUP`／`TELEMATIC_SERVICE_SETUP`／`STATUS_CCAN3`，含 `VehicleSpeedVSOSig`）
   **經執行層逐一複驗全數在內**。
 - **影響**：無。段 3 之解析以 `^\s*SG_ ` 之 844 行為索引，正確。
-- **待裁**：R-VL14(a) 之「SG_ 5568」是否更正為 844（或註明其為字串出現數）。
+- **裁決（2026-09-02，R-VL14 加註）**：條文之 `SG_ 5568` 為字串出現數，訊號定義數為 **844**（去重 794）。**RESOLVED。**
 
-## A-VL12 —— 規格原文三對拼字歧異，其一拼法段 3 查得、另一查無（PENDING）
+## A-VL12 —— 規格原文拼字歧異，其一拼法段 3 查得、另一查無（**RESOLVED** 2026-09-02，R-VL16(a)）
 
 - **登記日**：2026-09-02（下放包 03 W-5′-1／R-P369(b)）
 - **實測**：規格原文有三對近似拼法，依 R-P369(b) **二名皆入段 1 查、未合併**；
@@ -322,8 +322,25 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
   （少字母／`n`→`m`），第三對之 A／B 為大小寫差異而**分屬不同 BO_**，非筆誤。
 - **本地處置**：三對六名各自一列，**未合併、未以其一代其二**（R-P369(b)：
   解至同一 `MESSAGE.Signal` 者方為同物；本案未解至同一標的）。
-- **待裁**：前二對是否認定為筆誤並於 TC 中採正確拼法（R-13 要求保留規格原名，
-  故須明裁）；第三對之 `TelematicSetupACK` 屬 R-13 之保留原名情形。
+- **裁決（2026-09-02，R-VL16(a)）**：新增結果值域 `未解得（規格拼字疑誤）`。
+  **規格原名不改**（R-13／R-6），備註記正確拼法與佐證位置，佐證留檔不送；
+  P4 遭遇時該列保留原名**不加 `$`**。**RESOLVED。**
+- **本包全掃之增補（下放包只知兩例，實測為三例）**：依 R-VL16(a) 對
+  v3 全表之「未解得(止於段3)」逐列做編輯距離 ≤ 2 之 DBC 近似名比對，
+  除已知二例外另得**第三例**：
+
+  | 規格原名 | 主 DBC 之近似名 |
+  |---|---|
+  | `SERVICE_SETUP.RestoreDefaulSetting`（少 `t`） | `RestoreDefaultSetting` |
+  | `TELEMATIC_SERVICE_SETUP.RestoreDefaultSettimgReq`（`Settimg`） | `RestoreDefaultSettingReq` |
+  | **`TELEMATIC_VEHICLE_SETUP3.SVC_Gridlines_Req`** | **`SVC_Guidelines_Req`** |
+
+  **第三例之方向與前二例相反，須指出**：`Gridlines`（格線）為攝影機領域之正確用語，
+  而 DBC 寫 `Guidelines`（指引）—— **看起來是 DBC 拼錯，不是規格拼錯**。
+  R-VL16(a) 之條件（「規格原名於正確拼法下於主 DBC 存在」）字面仍成立，
+  故三列同記該值域；但其**成因方向不同**，據實記明，交分析層判是否分立值域。
+  `TelematicSetupACK`／`Ack` 一對為大小寫差異而**分屬不同 `BO_`**，非拼字疑誤，
+  維持「訊息名不符(R-13)」，不入本表。
 
 
 ## Assumption markers
