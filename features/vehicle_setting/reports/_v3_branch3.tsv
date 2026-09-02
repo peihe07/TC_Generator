@@ -1,0 +1,106 @@
+row	req_id	setting
+12	SWE1-VC-SWITCH5PowerMode-021	SWITCH 5 Power Mode
+13	SWE1-VC-SWITCH5PowerMode-022	SWITCH 5 Power Mode
+14	SWE1-VC-SWITCH5PowerMode-023	SWITCH 5 Power Mode
+15	SWE1-VC-SWITCH6PowerMode-025	SWITCH 6 Power Mode
+16	SWE1-VC-SWITCH6PowerMode-026	SWITCH 6 Power Mode
+17	SWE1-VC-SWITCH6PowerMode-027	SWITCH 6 Power Mode
+18	SWE1-VC-SWITCH1Type-029	SWITCH 1 Type
+19	SWE1-VC-SWITCH5Type-045	SWITCH 5 Type
+20	SWE1-VC-SWITCH5Type-046	SWITCH 5 Type
+21	SWE1-VC-SWITCH5Type-047	SWITCH 5 Type
+22	SWE1-VC-SWITCH6Type-049	SWITCH 6 Type
+23	SWE1-VC-SWITCH6Type-050	SWITCH 6 Type
+24	SWE1-VC-SWITCH6Type-051	SWITCH 6 Type
+25	SWE1-VC-SWITCH5HoldLastState-070	SWITCH 5 Hold Last State
+26	SWE1-VC-SWITCH5HoldLastState-071	SWITCH 5 Hold Last State
+27	SWE1-VC-SWITCH5HoldLastState-072	SWITCH 5 Hold Last State
+28	SWE1-VC-SWITCH6HoldLastState-074	SWITCH 6 Hold Last State
+29	SWE1-VC-SWITCH6HoldLastState-075	SWITCH 6 Hold Last State
+30	SWE1-VC-SWITCH6HoldLastState-076	SWITCH 6 Hold Last State
+38	SWE1-VC-RearGuidanceLightStatus-086	Rear Guidance Light Status
+39	SWE1-VC-RearGuidanceLightStatus-087	Rear Guidance Light Status
+40	SWE1-VC-RearGuidanceLightStatus-088	Rear Guidance Light Status
+87	SWE1-VC-NavigationTurnbyTurn-055	Navigation Turn by Turn
+88	SWE1-VC-NavigationTurnbyTurn-056	Navigation Turn by Turn
+89	SWE1-VC-NavigationTurnbyTurn-057	Navigation Turn by Turn
+90	SWE1-VC-Language-059	Language
+91	SWE1-VC-Language-062	Language
+94	SWE1-VC-PhoneRepetition-066	Phone Repetition
+95	SWE1-VC-PhoneRepetition-067	Phone Repetition
+96	SWE1-VC-PhoneRepetition-068	Phone Repetition
+97	SWE1-VC-ParkSenseRearVolume-072	Park Sense Rear Volume
+98	SWE1-VC-ParkSenseRearVolume-073	Park Sense Rear Volume
+99	SWE1-VC-ParkSenseRearVolume-074	Park Sense Rear Volume
+100	SWE1-VC-ParkSenseRearVolume-075	Park Sense Rear Volume
+101	SWE1-VC-ParkSenseFrontVolume-079	Park Sense Front Volume
+102	SWE1-VC-ParkSenseFrontVolume-080	Park Sense Front Volume
+103	SWE1-VC-ParkSenseFrontVolume-081	Park Sense Front Volume
+104	SWE1-VC-ParkSenseFrontVolume-082	Park Sense Front Volume
+146	SWE1-VC-SignatureLighting-025	Signature Lighting
+155	SWE1-VC-ForwardCollisionWarningSensitivity-046	Forward Collision Warning Sensitivity
+223	SWE1-VC-NewSpeedZoneIndication-039	New Speed Zone Indication
+224	SWE1-VC-NewSpeedZoneIndication-040	New Speed Zone Indication
+225	SWE1-VC-NewSpeedZoneIndication-041	New Speed Zone Indication
+226	SWE1-VC-NewSpeedZoneIndication-042	New Speed Zone Indication
+243	SWE1-VC-SWITCH1Type-003	SWITCH 1 Type
+244	SWE1-VC-SWITCH1Type-004	SWITCH 1 Type
+245	SWE1-VC-SWITCH2Type-006	SWITCH 2 Type
+246	SWE1-VC-SWITCH2Type-007	SWITCH 2 Type
+247	SWE1-VC-SWITCH2Type-008	SWITCH 2 Type
+248	SWE1-VC-SWITCH3Type-010	SWITCH 3 Type
+249	SWE1-VC-SWITCH3Type-011	SWITCH 3 Type
+250	SWE1-VC-SWITCH3Type-012	SWITCH 3 Type
+251	SWE1-VC-SWITCH4Type-014	SWITCH 4 Type
+252	SWE1-VC-SWITCH4Type-015	SWITCH 4 Type
+253	SWE1-VC-SWITCH4Type-016	SWITCH 4 Type
+254	SWE1-VC-SWITCH1HoldLastState-018	SWITCH 1 Hold Last State
+255	SWE1-VC-SWITCH1HoldLastState-019	SWITCH 1 Hold Last State
+256	SWE1-VC-SWITCH1HoldLastState-020	SWITCH 1 Hold Last State
+257	SWE1-VC-SWITCH2HoldLastState-022	SWITCH 2 Hold Last State
+258	SWE1-VC-SWITCH2HoldLastState-023	SWITCH 2 Hold Last State
+259	SWE1-VC-SWITCH2HoldLastState-024	SWITCH 2 Hold Last State
+260	SWE1-VC-SWITCH3HoldLastState-026	SWITCH 3 Hold Last State
+261	SWE1-VC-SWITCH3HoldLastState-027	SWITCH 3 Hold Last State
+262	SWE1-VC-SWITCH3HoldLastState-028	SWITCH 3 Hold Last State
+263	SWE1-VC-SWITCH4HoldLastState-030	SWITCH 4 Hold Last State
+264	SWE1-VC-SWITCH4HoldLastState-031	SWITCH 4 Hold Last State
+265	SWE1-VC-SWITCH4HoldLastState-032	SWITCH 4 Hold Last State
+283	SWE1-VC-SuspensionDefaultRideHeight-023	Suspension Default Ride Height
+284	SWE1-VC-SuspensionDefaultRideHeight-024	Suspension Default Ride Height
+285	SWE1-VC-SuspensionDefaultRideHeight-025	Suspension Default Ride Height
+287	SWE1-VC-SWITCH1PowerMode-030	SWITCH 1 Power Mode
+288	SWE1-VC-SWITCH1PowerMode-031	SWITCH 1 Power Mode
+289	SWE1-VC-SWITCH1PowerMode-032	SWITCH 1 Power Mode
+290	SWE1-VC-SWITCH2PowerMode-034	SWITCH 2 Power Mode
+291	SWE1-VC-SWITCH2PowerMode-035	SWITCH 2 Power Mode
+292	SWE1-VC-SWITCH2PowerMode-036	SWITCH 2 Power Mode
+293	SWE1-VC-SWITCH3PowerMode-038	SWITCH 3 Power Mode
+294	SWE1-VC-SWITCH3PowerMode-039	SWITCH 3 Power Mode
+295	SWE1-VC-SWITCH3PowerMode-040	SWITCH 3 Power Mode
+296	SWE1-VC-SWITCH4PowerMode-042	SWITCH 4 Power Mode
+297	SWE1-VC-SWITCH4PowerMode-043	SWITCH 4 Power Mode
+298	SWE1-VC-SWITCH4PowerMode-044	SWITCH 4 Power Mode
+301	SWE1-VC-SuspensionServiceMode-004	Suspension Service Mode
+302	SWE1-VC-SuspensionServiceMode-005	Suspension Service Mode
+303	SWE1-VC-SuspensionServiceMode-006	Suspension Service Mode
+321	SWE1-VC-ReadytoDrivePopUp-028	Ready to Drive Pop-Up
+322	SWE1-VC-ReadytoDrivePopUp-029	Ready to Drive Pop-Up
+323	SWE1-VC-ReadytoDrivePopUp-030	Ready to Drive Pop-Up
+326	SWE1-VC-AutoFoldMirrors-034	Auto Fold Mirrors
+327	SWE1-VC-AutoFoldMirrors-035	Auto Fold Mirrors
+328	SWE1-VC-AutoFoldMirrors-036	Auto Fold Mirrors
+331	SWE1-VC-DriverEasyExitSeat-040	Driver Easy Exit Seat
+332	SWE1-VC-DriverEasyExitSeat-041	Driver Easy Exit Seat
+333	SWE1-VC-DriverEasyExitSeat-042	Driver Easy Exit Seat
+334	SWE1-VC-EngineOffPowerDelay-046	Engine Off Power Delay
+335	SWE1-VC-EngineOffPowerDelay-048	Engine Off Power Delay
+336	SWE1-VC-EngineOffPowerDelay-049	Engine Off Power Delay
+337	SWE1-VC-EngineOffPowerDelay-050	Engine Off Power Delay
+356	SWE1-VC-AutomaticTrailerLight Check-041	Automatic Trailer Light Check
+357	SWE1-VC-AutomaticTrailerLight Check-042	Automatic Trailer Light Check
+358	SWE1-VC-AutomaticTrailerLight Check-043	Automatic Trailer Light Check
+444	SWE1-VC-HourMode-010	Hour Mode
+447	SWE1-VC-DistanceUnit-021	Distance Unit
+448	SWE1-VC-SpeedUnit-026	Speed Unit
+449	SWE1-VC-ConsumptionUnit-031	Consumption Unit

@@ -101,10 +101,12 @@ def load_settings(root: Path) -> list[dict]:
             continue
 
         if LEVEL1_RE.match(a) and b:
-            # 第一層項目；D 欄為 `>` 者為容器，其名成為後續 `N.M` 列之 parent
-            name, is_container = b, template == ">"
-            parent = name.replace("*", "").strip() if is_container else ""
-            if is_container:
+            # 第一層項目。D 欄為 `>` 者為純容器；**D 欄為空者亦可能是容器**
+            # （實測 `21. Aux Switches` 之 `Aux 1`–`Aux 6` r565–r588 即此形），
+            # 故兩者皆令其名成為後續 `N.M` 列之 parent；只有 `>` 者不自成一項。
+            name = b
+            parent = name.replace("*", "").strip() if template in (">", "") else ""
+            if template == ">":
                 continue
             items.append(_item(r, category, "", name, template, options, notes))
             continue
