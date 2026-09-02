@@ -1,0 +1,43 @@
+推算節號	標題	節內tok	命中_295	組_295	命中_171	組_171	命中_41	組_41	有效批數(命中≥3)
+1.11.1.1.1	Cornering Lights	5	5	1.11.1.1.1	1		0		1
+1.11.1.1.2	Greeting Lights	4	4	1.11.1.1.2	1		0		1
+1.11.1.1.3	Lane Sense Warning	5	5	1.11.1.1.3	1		0		1
+1.11.1.1.4	Lane Sense Strenght	5	5	1.11.1.1.4	1		0		1
+1.11.1.1.5	Side Distance Warning	8	8	1.11.1.1.5	1		0		1
+1.11.1.1.6	Forward Collision Warning	9	9	1.11.1.1.6	2		0		1
+1.11.1.1.7	Rain Sensor	5	2		4	1.11.1.1.7	0		1
+1.11.1.1.8	Time and Date	30	18	1.11.1.1.8.3	1		0		1
+1.11.1.1.8.1	Set Time	8	7	1.11.1.1.8.1	0		0		1
+1.11.1.1.8.2	Set Format	4	4	1.11.1.1.8.2	1		0		1
+1.11.1.1.8.3	Set Date	18	18	1.11.1.1.8.3	0		0		1
+1.11.1.1.9	Auto Door Locks	5	5	1.11.1.1.9	1		0		1
+1.11.1.1.10	Units	19	9	1.11.1.1.10.2	9	1.11.1.1.10.2	0		2
+1.11.1.1.10.1	Distances	5	5	1.11.1.1.10.1	5	1.11.1.1.10.1	0		2
+1.11.1.1.10.2	Fuel Consumption	9	9	1.11.1.1.10.2	9	1.11.1.1.10.2	0		2
+1.11.1.1.10.3	Temperature	6	6	1.11.1.1.10.3	6	1.11.1.1.10.3	0		2
+1.11.1.1.10.4	Tyre Pressure	6	6	1.11.1.1.10.4	6	1.11.1.1.10.4	0		2
+1.11.1.1.11	EPB Maintenance Mode	7	1		7	1.11.1.1.11	0		1
+1.11.1.1.12	Auto Park Brake	5	1		5	1.11.1.1.12	0		1
+1.11.1.1.13	Language	5	5	1.11.1.1.11	5	1.11.1.1.13	0		2
+1.11.1.1.14	Daytime Running Lights	4	4	1.11.1.1.12	4	1.11.1.1.14	0		2
+1.11.1.1.15	Headlight Sensitivity	6	6	1.11.1.1.13	6	1.11.1.1.15	0		2
+1.11.1.1.16	Headlights Off Delay	5	4	1.11.1.1.14	5	1.11.1.1.16	0		2
+1.11.1.1.17	Passive Entry	5	5	1.11.1.1.16	5	1.11.1.1.17	0		2
+1.11.1.1.18	Remote Door Unlock	5	5	1.11.1.1.17	5	1.11.1.1.18	0		2
+1.11.1.1.19	Sound Horn With Lock Unlock	5	5	1.11.1.1.18	5	1.11.1.1.19	0		2
+1.11.1.1.20	Auto Unlock on Exit	5	5	1.11.1.1.19	5	1.11.1.1.20	0		2
+1.11.1.1.21	Flash Light With Lock	5	5	1.11.1.1.20	5	1.11.1.1.21	0		2
+1.11.1.1.22	GPS Automatic Time Adjustment	3	3	1.11.1.1.21	3	1.11.1.1.22	0		2
+1.11.1.1.23	Phone Repetition	2	2		2		0		0
+1.11.1.1.24	Nav Turn by Turn	2	2		2		0		0
+1.11.1.1.25	PARK SENSE w/o HC.1 and PARK SENSE w/o H	11	10	1.11.1.1.24	11	1.11.1.1.25	0		2
+1.11.1.1.26	Auto High  Beam	5	5	1.11.1.1.25	5	1.11.1.1.26	0		2
+1.11.1.1.27	Interior Ambient Lights	6	6	1.11.1.1.26	6	1.11.1.1.27	0		2
+1.11.1.1.28	Rearview Camera Dynamic Gridlines	5	1		5	1.11.1.1.28	0		1
+1.11.1.1.29	Rearview Camera Delay	5	1		5	1.11.1.1.29	0		1
+1.11.1.1.30	Geolocation	5	5	1.11.1.1.27	5	1.11.1.1.30	0		2
+1.11.1.1.31	Clear Personal Data	3	3	1.11.1.1.28	3	1.11.1.1.31	0		2
+1.11.1.1.32	Restore Default Setting	3	3	1.11.1.1.29	3	1.11.1.1.32	0		2
+1.11.1.1.33	Restore App	3	3	1.11.1.1.30	3	1.11.1.1.33	0		2
+1.11.1.1.34	Vehicle setup management between IPC and	1	1		1		0		0
+1.11.1.1.35	Vehicle service management between TBM a	0	0		0		0		0

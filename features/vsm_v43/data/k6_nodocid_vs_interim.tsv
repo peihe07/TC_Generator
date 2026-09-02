@@ -1,0 +1,42 @@
+來源ID	來源chapter	分類	暫代母體對應ID	Jaccard	對應chapter	來源Description(正規化,截110)
+Sys-RA-VF665_V43_VSM-1198	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-827	1.0	01.14.01	17 Remote_Door_Unlock_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First
+Sys-RA-VF665_V43_VSM-1199	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-828	1.0	01.14.01	18 Sound_Horn_Remote_Start_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. 
+Sys-RA-VF665_V43_VSM-1200	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-829	1.0	01.14.01	19 Horn_Chirp_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial V
+Sys-RA-VF665_V43_VSM-1201	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-830	1.0	01.14.01	22 Flash_Light_With_Lock_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. Fi
+Sys-RA-VF665_V43_VSM-1202	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-831	1.0	01.14.01	23 Tyre_Pressure_Unit_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First
+Sys-RA-VF665_V43_VSM-1203	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-832	1.0	01.14.01	25 CAN node 24 (PAM) ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial
+Sys-RA-VF665_V43_VSM-1204	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-833	1.0	01.14.01	26 Side_Distance_Warning ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First T
+Sys-RA-VF665_V43_VSM-1205	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-834	1.0	01.14.01	27 PAM_Configuration ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial
+Sys-RA-VF665_V43_VSM-1206	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-835	1.0	01.14.01	28 Auto_Door_Unlock_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First T
+Sys-RA-VF665_V43_VSM-1207	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-836	1.0	01.14.01	32 Half_HMI_Setting ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial 
+Sys-RA-VF665_V43_VSM-1208	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-837	1.0	01.14.01	33 Half_Torque_Sensibility ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First
+Sys-RA-VF665_V43_VSM-1209	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-838	1.0	01.14.01	34 AHBM_Feature_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial
+Sys-RA-VF665_V43_VSM-1210	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-839	1.0	01.14.01	36 T_EPB_MM 35000 [0;50000] 200 ms LTM DEFINE No N.A. Waiting Time of feedback from IPC for EPB setting
+Sys-RA-VF665_V43_VSM-1212	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-841	1.0	01.14.01	40 NAV_Presence ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Valu
+Sys-RA-VF665_V43_VSM-1213	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-842	1.0	01.14.01	41 Ambient_Lighting_Function ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. Fir
+Sys-RA-VF665_V43_VSM-1214	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-843	1.0	01.14.01	42 Ambient_Dimmer_Switch ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First T
+Sys-RA-VF665_V43_VSM-1215	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-844	1.0	01.14.01	43 Model_Year ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value 
+Sys-RA-VF665_V43_VSM-1216	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-845	1.0	01.14.01	44 CAN Node 35 (TBM/FTM) ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First T
+Sys-RA-VF665_V43_VSM-1217	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-846	1.0	01.14.01	45 T_REC_TBM 2500 [0;10000] 500 ms LTM SUPPLIER EOL_2 No Diagnosis See ID Description
+Sys-RA-VF665_V43_VSM-1240	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-869	1.0	01.14.01	48 Geolocation_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial 
+Sys-RA-VF665_V43_VSM-1241	01.14.01	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-870	1.0	01.14.01	49 Forward_Collision_Mitigation ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. 
+Sys-RA-VF665_V43_VSM-1242	01.14.01	近似對（Jaccard ≥ 0.8）	Sys-RA-VF665_V43_VSM-812	0.857		50 EPB_Maintenance_Menu ** ** ** ** LTM PROXI No N.A Range value is indicated in the standard PROXI. First Tri
+Sys-RA-VF665_V43_VSM-1243	01.14.01	近似對（Jaccard ≥ 0.8）	Sys-RA-VF665_V43_VSM-812	0.857		51 Auto_Park_Brake_Menu ** ** ** ** LTM PROXI No N.A Range value is indicated in the standard PROXI. First Tri
+Sys-RA-VF665_V43_VSM-1244	01.14.01	近似對（Jaccard ≥ 0.8）	Sys-RA-VF665_V43_VSM-812	0.857		52 Brand_configuration_2 ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First T
+Sys-RA-VF665_V43_VSM-1246	01.14.02.01.12	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-901	1.0	01.14.02.01.14	"The ""Passive_Entry_Menu"" PROXI parameter is used to show or hide the ""Passive Entry"" menu item."
+Sys-RA-VF665_V43_VSM-1248	01.14.02.01.13	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-903	1.0	01.14.02.01.15	"The ""Remote_Door_Unlock _Menu"" PROXI parameter is used to show or hide the ""Remote Door Unlock"" menu item."
+Sys-RA-VF665_V43_VSM-1250	01.14.02.01.14	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-905	1.0	01.14.02.01.16	"The ""Sound_Horn_Remote_Start _Menu"" PROXI parameter is used to show or hide the ""Sound Horn Remote Start"" menu"
+Sys-RA-VF665_V43_VSM-1252	01.14.02.01.15	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-907	1.0	01.14.02.01.17	"The ""Horn_Chirp_Menù"" PROXI parameter is used to show or hide the ""Sound Horn With Lock"" menu item (if Model_Y"
+Sys-RA-VF665_V43_VSM-1254	01.14.02.01.16	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-909	1.0	01.14.02.01.18	"The ""Flash_Light_With_Lock_Menu"" PROXI parameter is used to show or hide the ""Flash Light with Lock"" menu item"
+Sys-RA-VF665_V43_VSM-1256	01.14.02.01.17	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-911	1.0	01.14.02.01.19	"The "" Tyre_Pressure_Unit_Menu ""PROXI parameter is used to show or hide the ""Tyre Pressure"" menu item."
+Sys-RA-VF665_V43_VSM-1258	01.14.02.01.18	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-913	1.0	01.14.02.01.20	"The ""CAN node 24 (PAM) "" PROXI parameter is used to detect the presence the ""Park Assist Module"""
+Sys-RA-VF665_V43_VSM-1260	01.14.02.01.19	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-915	1.0	01.14.02.01.21	"The "" Side_Distance_Warning ""PROXI parameter is used to show or hide the "" Side Distance Warning "" menu item."
+Sys-RA-VF665_V43_VSM-1262	01.14.02.01.20	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-917	1.0	01.14.02.01.22	"The ""PAM_Configuration"" PROXI parameter is used to show or hide the ""Park Assist Module"" menu item."
+Sys-RA-VF665_V43_VSM-1264	01.14.02.01.21	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-919	1.0	01.14.02.01.23	"The ""Auto_Door_Unlock_Menu"" PROXI parameter is used to show or hide the ""Auto Door Unlock On Exit"" menu item."
+Sys-RA-VF665_V43_VSM-1266	01.14.02.01.22	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-921	1.0	01.14.02.01.24	"The "" Half_HMI_Setting "" PROXI parameter is used to show or hide the "" LDW Intensity"" menu item."
+Sys-RA-VF665_V43_VSM-1268	01.14.02.01.23	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-923	1.0	01.14.02.01.25	"The "" Half_Torque_Sensibility "" PROXI parameter is used to show or hide the "" LDW Sensibility"" menu item."
+Sys-RA-VF665_V43_VSM-1270	01.14.02.01.24	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-925	1.0	01.14.02.01.26	"The "" AHBM_Feature_Menu "" PROXI parameter is used to show or hide the "" Auto High Beam Menu"" menu item."
+Sys-RA-VF665_V43_VSM-1272	01.14.02.01.25	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-927	1.0	01.14.02.01.27	"The ""NAV_Presence"" PROXI parameter identifies the presence of Navigation functionalities"
+Sys-RA-VF665_V43_VSM-1274	01.14.02.01.26	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-929	1.0	01.14.02.01.28	"The "" Ambient_Lighting_Function"" PROXI parameter is used to show or hide the ""Interior Ambient Light"" menu ite"
+Sys-RA-VF665_V43_VSM-1276	01.14.02.01.27	兩級皆等（逐字全等）	Sys-RA-VF665_V43_VSM-931	1.0	01.14.02.01.29	"The "" Ambient_Dimmer_Switch"" PROXI parameter is used to show or hide the "" Interior Ambient Light"" menu item."
+Sys-RA-VF665_V43_VSM-1278	01.14.02.01.28	無對應		0.571		"The ""Brand_Configuration_2"" PROXI parameter is used to show or hide the ""Headlights Off Delay"" menu item."
