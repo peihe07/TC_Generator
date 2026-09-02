@@ -1,0 +1,82 @@
+規格原名	BO_(訊息)	SG_(訊號)	VAL_ 值數	VAL_ 列舉（raw=label）
+IPC_VEHICLE_SETUP.AmbientLightingLevel	IPC_VEHICLE_SETUP	AmbientLightingLevel	16	0=Level_1 | 1=Level_2 | 2=Level_3 | 3=Level_4 | 4=Level_5 | 5=Level_6 | 6=Level_7 | 7=Level_8 | 8=Level_9 | 9=Level_10 | 10=Level_11 | 11=Level_12 | 12=Level_13 | 13=Level_14 | 14=Level_15 | 15=Level_16
+IPC_VEHICLE_SETUP.AutoHighBeamEnable	IPC_VEHICLE_SETUP	AutoHighBeamEnable	2	0=Not_Enable | 1=Enable
+IPC_VEHICLE_SETUP.AutoParkBrake	IPC_VEHICLE_SETUP	AutoParkBrake	2	0=On | 1=Off
+IPC_VEHICLE_SETUP.ConsumptionUnit	IPC_VEHICLE_SETUP	ConsumptionUnit	8	0=Km_Per_Litre | 1=Litres_Per_100Km | 2=Miles_Per_Gallon_UK | 3=Miles_Per_Gallon_US | 4=not_used | 5=not_used | 6=not_used | 7=not_used
+IPC_VEHICLE_SETUP.CorneringEnable	IPC_VEHICLE_SETUP	CorneringEnable	2	0=True | 1=False
+IPC_VEHICLE_SETUP.DRLEnable	IPC_VEHICLE_SETUP	DRLEnable	2	0=True | 1=False
+IPC_VEHICLE_SETUP.DistanceUnit	IPC_VEHICLE_SETUP	DistanceUnit	2	0=km | 1=miles
+IPC_VEHICLE_SETUP.DynamicGrid	IPC_VEHICLE_SETUP	DynamicGrid	2	0=Dynamic Gridlines OFF | 1=Dynamic Gridlines ON
+IPC_VEHICLE_SETUP.ExternalLightSensorLevel	IPC_VEHICLE_SETUP	ExternalLightSensorLevel	4	0=Level_3 | 1=Level_2 | 2=Level_1 | 3=Level_0
+IPC_VEHICLE_SETUP.GreetingLightsEnable	IPC_VEHICLE_SETUP	GreetingLightsEnable	2	0=True | 1=False
+IPC_VEHICLE_SETUP.HourMode	IPC_VEHICLE_SETUP	HourMode	2	0=0_24_h | 1=0_12_h
+IPC_VEHICLE_SETUP.LanguageSelection	IPC_VEHICLE_SETUP	LanguageSelection	22	0=Italian | 1=Deutsch | 2=English | 3=Espanol | 4=Francais | 5=Portugues | 6=Polish | 7=Dutch | 8=Brazilian | 9=Turkish | 10=Mexican | 11=English_US | 12=Canadian | 13=Russian | 14=Chinese | 15=Japanese | 16=Korean | 17=Arabic | 18=Czech | 19=Slovakian | 20=Hungarian | 21=Hindi
+IPC_VEHICLE_SETUP.NavRepetition	IPC_VEHICLE_SETUP	NavRepetition	2	0=Absent | 1=Present
+IPC_VEHICLE_SETUP.PamAlertMode	IPC_VEHICLE_SETUP	PamAlertMode	3	0=Off | 1=Sound | 2=Sound_Display
+IPC_VEHICLE_SETUP.PamChimeVolumeFront	IPC_VEHICLE_SETUP	PamChimeVolumeFront	3	0=Low | 1=Medium | 2=High
+IPC_VEHICLE_SETUP.PamChimeVolumeRear	IPC_VEHICLE_SETUP	PamChimeVolumeRear	3	0=Low | 1=Medium | 2=High
+IPC_VEHICLE_SETUP.PassiveEntry	IPC_VEHICLE_SETUP	PassiveEntry	2	0=On | 1=Off
+IPC_VEHICLE_SETUP.PhoneRepetition	IPC_VEHICLE_SETUP	PhoneRepetition	2	0=Absent | 1=Present
+IPC_VEHICLE_SETUP.RemoteDoorUnlock	IPC_VEHICLE_SETUP	RemoteDoorUnlock	2	0=Driver | 1=All
+IPC_VEHICLE_SETUP.Sdw	IPC_VEHICLE_SETUP	Sdw	3	0=Off | 1=Sound | 2=Sound_Display
+IPC_VEHICLE_SETUP.SdwChimeVolume	IPC_VEHICLE_SETUP	SdwChimeVolume	3	0=Low | 1=Medium | 2=High
+IPC_VEHICLE_SETUP.SpeedLockDoorEnable	IPC_VEHICLE_SETUP	SpeedLockDoorEnable	2	0=Not_Enable | 1=Enable
+IPC_VEHICLE_SETUP.TelematicSetupACK	IPC_VEHICLE_SETUP	TelematicSetupACK	3	0=No_ACK_Required | 1=ACK_KO | 3=ACK_OK
+IPC_VEHICLE_SETUP.TemperatureUnit	IPC_VEHICLE_SETUP	TemperatureUnit	2	0=°C | 1=°F
+IPC_VEHICLE_SETUP2.AutoUnlockDoorExit	IPC_VEHICLE_SETUP2	AutoUnlockDoorExit	2	0=Not_Enable | 1=Enable
+IPC_VEHICLE_SETUP2.Backup_Cam_Delay	IPC_VEHICLE_SETUP2	Backup_Cam_Delay	2	0=Off | 1=On
+IPC_VEHICLE_SETUP2.EPB_MaintenanceMode	IPC_VEHICLE_SETUP2	EPB_MaintenanceMode	2	0=Off | 1=On
+IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	IPC_VEHICLE_SETUP2	EPB_Maintenance_Fdbk	2	0=Initialization | 31=SNA
+IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode	IPC_VEHICLE_SETUP2	FSFCWPlusActivationMode	3	0=Near | 1=Med | 2=Far
+IPC_VEHICLE_SETUP2.FSFCWPlusSetting	IPC_VEHICLE_SETUP2	FSFCWPlusSetting	5	0=Off | 1=Audio | 2=Brake | 3=Audio_Brake | 4=Not_Request
+IPC_VEHICLE_SETUP2.FlashLightWLock	IPC_VEHICLE_SETUP2	FlashLightWLock	2	0=Off | 1=On
+IPC_VEHICLE_SETUP2.HeadlightsOffDelay	IPC_VEHICLE_SETUP2	HeadlightsOffDelay	4	0=0sec | 1=30sec | 2=60sec | 3=90ec
+IPC_VEHICLE_SETUP2.LDW_Intensity	IPC_VEHICLE_SETUP2	LDW_Intensity	3	0=Low | 1=Med | 2=High
+IPC_VEHICLE_SETUP2.LDW_Sensibility	IPC_VEHICLE_SETUP2	LDW_Sensibility	3	0=Early | 1=Med | 2=Late
+IPC_VEHICLE_SETUP2.RainSensorSensibility	IPC_VEHICLE_SETUP2	RainSensorSensibility	3	0=Manual | 1=Auto1 | 2=Auto2
+IPC_VEHICLE_SETUP2.TyrePressureUnit	IPC_VEHICLE_SETUP2	TyrePressureUnit	3	0=KPa | 1=psi | 2=bar
+IPC_VEHICLE_SETUP3.SoundHornLockUnlock	IPC_VEHICLE_SETUP3	SoundHornLockUnlock	2	0=Off | 1=On
+SERVICE_SETUP.ClearPersonalData	SERVICE_SETUP	ClearPersonalData	2	0=Not_Active | 1=Active
+SERVICE_SETUP.PrivacyMode	SERVICE_SETUP	PrivacyMode	2	0=Not_Active | 1=Active
+SERVICE_SETUP.RestoreApp	SERVICE_SETUP	RestoreApp	2	0=Not_Active | 1=Active
+SERVICE_SETUP.RestoreDefaultSetting	SERVICE_SETUP	RestoreDefaultSetting	2	0=Not_Active | 1=Active
+SERVICE_SETUP.TelematicSetupAck	SERVICE_SETUP	TelematicSetupAck	3	0=No_ACK_Required | 1=ACK_KO | 2=ACK_OK
+STATUS_CCAN3.VehicleSpeedVSOSig	STATUS_CCAN3	VehicleSpeedVSOSig	1	8191=SNA
+STATUS_CCAN3.VehicleSpeedVSOSigFailSts	STATUS_CCAN3	VehicleSpeedVSOSigFailSts	2	0=Fail_not_present | 1=Fail_present
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	TELEMATIC_SERVICE_SETUP	ClearPersonalDataReq	2	0=Not_Active | 1=Active
+TELEMATIC_SERVICE_SETUP.PrivacyModeReq	TELEMATIC_SERVICE_SETUP	PrivacyModeReq	2	0=Not_Active | 1=Active
+TELEMATIC_SERVICE_SETUP.RestoreAppReq	TELEMATIC_SERVICE_SETUP	RestoreAppReq	2	0=Not_Active | 1=Active
+TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	TELEMATIC_SERVICE_SETUP	RestoreDefaultSettingReq	2	0=Not_Active | 1=Active
+TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	TELEMATIC_VEHICLE_SETUP	AmbientLightingLevel_Req	16	0=Level_1 | 1=Level_2 | 2=Level_3 | 3=Level_4 | 4=Level_5 | 5=Level_6 | 6=Level_7 | 7=Level_8 | 8=Level_9 | 9=Level_10 | 10=Level_11 | 11=Level_12 | 12=Level_13 | 13=Level_14 | 14=Level_15 | 15=Level_16
+TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req	TELEMATIC_VEHICLE_SETUP	AutoHighBeamEnable_Req	2	0=Not_Enable | 1=Enable
+TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req	TELEMATIC_VEHICLE_SETUP	AutoParkBrake_Req	2	0=On | 1=Off
+TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req	TELEMATIC_VEHICLE_SETUP	ConsumptionUnit_Req	8	0=Km_Per_Litre | 1=Litres_Per_100Km | 2=Miles_Per_Gallon_UK | 3=Miles_Per_Gallon_US | 4=not_used | 5=not_used | 6=not_used | 7=not_used
+TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req	TELEMATIC_VEHICLE_SETUP	CorneringEnable_Req	2	0=True | 1=False
+TELEMATIC_VEHICLE_SETUP.DRLEnable_Req	TELEMATIC_VEHICLE_SETUP	DRLEnable_Req	2	0=True | 1=False
+TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req	TELEMATIC_VEHICLE_SETUP	DistanceUnit_Req	2	0=km | 1=miles
+TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req	TELEMATIC_VEHICLE_SETUP	DynamicGrid_Req	2	0=Dynamic Gridlines OFF | 1=Dynamic Gridlines ON
+TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req	TELEMATIC_VEHICLE_SETUP	ExternalLightSensorLevel_Req	4	0=Level_3 | 1=Level_2 | 2=Level_1 | 3=Level_0
+TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req	TELEMATIC_VEHICLE_SETUP	GreetingLightsEnable_Req	2	0=True | 1=False
+TELEMATIC_VEHICLE_SETUP.HourMode_Req	TELEMATIC_VEHICLE_SETUP	HourMode_Req	2	0=0_24_h | 1=0_12_h
+TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req	TELEMATIC_VEHICLE_SETUP	LanguageSelection_Req	22	0=Italian | 1=Deutsch | 2=English | 3=Espanol | 4=Francais | 5=Portugues | 6=Polish | 7=Dutch | 8=Brazilian | 9=Turkish | 10=Mexican | 11=English_US | 12=Canadian | 13=Russian | 14=Chinese | 15=Japanese | 16=Korean | 17=Arabic | 18=Czech | 19=Slovakian | 20=Hungarian | 21=Hindi
+TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req	TELEMATIC_VEHICLE_SETUP	PamAlertMode_Req	3	0=Off | 1=Sound | 2=Sound_Display
+TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req	TELEMATIC_VEHICLE_SETUP	PamChimeVolumeFront_Req	3	0=Low | 1=Medium | 2=High
+TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req	TELEMATIC_VEHICLE_SETUP	PamChimeVolumeRear_Req	3	0=Low | 1=Medium | 2=High
+TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req	TELEMATIC_VEHICLE_SETUP	PassiveEntry_Req	2	0=On | 1=Off
+TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req	TELEMATIC_VEHICLE_SETUP	RemoteDoorUnlock_Req	2	0=Driver | 1=All
+TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req	TELEMATIC_VEHICLE_SETUP	SdwChimeVolume_Req	3	0=Low | 1=Medium | 2=High
+TELEMATIC_VEHICLE_SETUP.Sdw_Req	TELEMATIC_VEHICLE_SETUP	Sdw_Req	3	0=Off | 1=Sound | 2=Sound_Display
+TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req	TELEMATIC_VEHICLE_SETUP	SpeedLockDoorEnable_Req	2	0=Not_Enable | 1=Enable
+TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req	TELEMATIC_VEHICLE_SETUP	TemperatureUnit_Req	2	0=°C | 1=°F
+TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req	TELEMATIC_VEHICLE_SETUP2	AutoUnlockDoorExit_Req	2	0=Not_Enable | 1=Enable
+TELEMATIC_VEHICLE_SETUP2.Backup_Cam_Delay_Req	TELEMATIC_VEHICLE_SETUP2	Backup_Cam_Delay_Req	2	0=Off | 1=On
+TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req	TELEMATIC_VEHICLE_SETUP2	EPB_MaintenanceMode_Req	2	0=Off | 1=On
+TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req	TELEMATIC_VEHICLE_SETUP2	FSFCWPlusActivationMode_Req	3	0=Near | 1=Med | 2=Far
+TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	TELEMATIC_VEHICLE_SETUP2	FSFCWPlusSetting_Req	5	0=Off | 1=Audio | 2=Brake | 3=Audio_Brake | 4=Not_Request
+TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req	TELEMATIC_VEHICLE_SETUP2	FlashLightWLock_Req	2	0=Off | 1=On
+TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	TELEMATIC_VEHICLE_SETUP2	HeadlightsOffDelay_Req	4	0=0sec | 1=30sec | 2=60sec | 3=90sec
+TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	TELEMATIC_VEHICLE_SETUP2	LDW_Intensity_Req	3	0=Low | 1=Med | 2=High
+TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	TELEMATIC_VEHICLE_SETUP2	LDW_Sensibility_Req	3	0=Early | 1=Med | 2=Late
+TELEMATIC_VEHICLE_SETUP2.RainSensorSensibility_Req	TELEMATIC_VEHICLE_SETUP2	RainSensorSensibility_Req	3	0=Manual | 1=Auto1 | 2=Auto2
+TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req	TELEMATIC_VEHICLE_SETUP2	TyrePressureUnit_Req	3	0=kPa | 1=psi | 2=bar
+TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req	TELEMATIC_VEHICLE_SETUP3	SoundHornLockUnlock_Req	2	0=Off | 1=On

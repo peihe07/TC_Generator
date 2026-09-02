@@ -78,3 +78,24 @@ An unsigned sheet blocks Phase 4+.
 - Reviewed by: ____________  Date: ____________
 - Overridden items (list numbers): ____________
 - Ruling notes:
+
+---
+
+# P3 收尾 — 四欄實值（下放包 05 W-10，**待 Pei 簽**）
+
+> 執行層填實測值與依據，**不代簽**。四項皆為既有裁決之落實，非新裁。
+
+| # | 項 | 實值 | 依據 | 狀態 |
+|---|---|---|---|---|
+| 1 | `spec_mode` | **D**（二進位文件抽取） | 母 spec 為 `.docx`（`vf665_v43_spec_r4`，magic bytes `50 4B 03 04`，上繳 01 E13）；scaffold 原值 `A` 為模板值 | `[PROPOSED]` 待簽 |
+| 2 | `workbook_state` | **BLANK** | `sandbox/base/` 副本第 10 列起、B 欄（序號公式）以外之非空儲存格 **0**（掃 max_row 1411，上繳 01 RECON §1）；R-VT1「自 BLANK ＋ R-G1 模板起建」 | `[PROPOSED]` 待簽 |
+| 3 | 母體（037 leaf 數） | **0，待 037** | R-VT4；現有兩份 037 之 `Source Requirement ID` 152/152 皆為 V42，`V43` 命中 0（上繳 01 E7）。DR-VT1 依 Pei 裁未送 | `[PEI]` 待簽 |
+| 4 | framework Layer 1 | **鎖定** = `Vehicle Setup Management R1L TBM` | R-VT3；`framework.md` §Layer 1；`feature.yaml.test_group` 已同步 | `[PROPOSED]` 待簽 |
+
+**Layer 2 不在本表** —— 待 037，且下放包 05 §五 明令不得預填。
+
+## Sign-off
+
+- Reviewed by：（待 Pei）
+- Date：（待填）
+- Amendments：（無）
