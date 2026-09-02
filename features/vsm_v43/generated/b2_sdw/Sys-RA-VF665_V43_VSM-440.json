@@ -1,0 +1,26 @@
+{
+  "req_id": "Sys-RA-VF665_V43_VSM-440",
+  "test_group": "Vehicle Setup Management R1L TBM",
+  "test_set": "Side Distance Warning",
+  "spec_section": "1.11.1.1.5",
+  "spec_section_source": "segment_map",
+  "test_item_verbatim": "IF \"Side_Distance_Warning\" PROXI parameters is equal to \"Absent\" THEN TLM shall not display the Side Distance Warning menu item and the user can not perform any setting.",
+  "remarks": "Provisional: SYSRA-anchored (R-VT18); re-anchor upon 037 (DR-VT1); UI names taken verbatim from spec 1.11.1.1.5 para 559, which names the Side Distance Warning \"Setting\" and \"Chime Volume\" menu items; HMI Settings List `Settings` r315B carries \"Side Distance Warning\" (Technical Reference VF230/665) and r316B \"Side Distance Warning Volume\" with options \"Low / Medium / High \" (Technical Reference CFTS019)",
+  "tcs": [
+    {
+      "tc_title": "Side Distance Warning menu hidden when parameter absent",
+      "pre_conditions": "PROXI Side_Distance_Warning = Absent\nThe TLM is powered on and the vehicle setup menu is reachable",
+      "input_test_data": "NA",
+      "test_procedure": "1. Open the vehicle setup menu on the TLM display\n2. Read the menu list and check that \"Side Distance Warning\" is absent",
+      "expected_result": "1. The vehicle setup menu is displayed\n2. The menu item \"Side Distance Warning\" is not displayed in the menu list",
+      "specification_reference": "Vehicle_Setup_Management_by_VP-LTM_R1L_TBM_VF665_V43_R4_1.11.1.1.5\nSys-RA-VF665_V43_VSM-440",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "priority": "P1",
+      "split_flag": false,
+      "split_reason": "",
+      "distinguishing_axis": "Side_Distance_Warning = Absent",
+      "test_item": "IF \"Side_Distance_Warning\" PROXI parameters is equal to \"Absent\" THEN TLM shall not display the Side Distance Warning menu item and the user can not perform any setting.\n\n(Side Distance Warning menu hidden when parameter absent)"
+    }
+  ],
+  "reasoning": "驗證目標為 Side_Distance_Warning 組態為 Absent 時，該選單項不顯示且無法設定。關鍵情境條件為該 PROXI 參數等於 Absent，入 Pre-Condition（R-P375(b)）；本列為 -441 之負向配對（§7）。本列只述一個條件與其單一結果，一條足夠；規格未列舉其他不成立情形（§8.4.2 不擴範圍）。選單項名逐字取規格 para 557，HMI Settings List r315B 為錨。"
+}

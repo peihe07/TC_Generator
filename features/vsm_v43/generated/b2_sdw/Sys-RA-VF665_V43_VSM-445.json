@@ -1,0 +1,26 @@
+{
+  "req_id": "Sys-RA-VF665_V43_VSM-445",
+  "test_group": "Vehicle Setup Management R1L TBM",
+  "test_set": "Side Distance Warning",
+  "spec_section": "1.11.1.1.5",
+  "spec_section_source": "segment_map",
+  "test_item_verbatim": "IF the user sets \"Sdw_Setting.Req\" internal signals to \"Sound+Display\" THEN TLM shall set \"TELEMATIC_VEHICLE_SETUP.Sdw_Req\" B-CAN signal equal to \"Sound+Display\" and sends this signal to IPC",
+  "remarks": "Provisional: SYSRA-anchored (R-VT18); re-anchor upon 037 (DR-VT1); spec value \"Sound+Display\" vs DBC VAL_ label \"Sound_Display\"; label taken verbatim from the DBC (R-7), test_item upper half keeps the spec spelling; UI names taken verbatim from spec 1.11.1.1.5 para 559, which names the Side Distance Warning \"Setting\" and \"Chime Volume\" menu items; HMI Settings List `Settings` r315B carries \"Side Distance Warning\" (Technical Reference VF230/665) and r316B \"Side Distance Warning Volume\" with options \"Low / Medium / High \" (Technical Reference CFTS019)",
+  "tcs": [
+    {
+      "tc_title": "Side distance warning request sent for sound plus display selection",
+      "pre_conditions": "PROXI Side_Distance_Warning = Present\nThe menu item \"Setting\" under \"Side Distance Warning\" is displayed and reachable",
+      "input_test_data": "NA",
+      "test_procedure": "1. Select \"Setting\" = \"Sound+Display\" on the TLM display\n2. Read the signal $TELEMATIC_VEHICLE_SETUP.Sdw_Req$ and check that it is 2 (Sound_Display)",
+      "expected_result": "1. The menu item \"Setting\" shows \"Sound+Display\"\n2. The signal value $TELEMATIC_VEHICLE_SETUP.Sdw_Req$ = 2 (Sound_Display) is received",
+      "specification_reference": "Vehicle_Setup_Management_by_VP-LTM_R1L_TBM_VF665_V43_R4_1.11.1.1.5\nSys-RA-VF665_V43_VSM-445",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "priority": "P1",
+      "split_flag": false,
+      "split_reason": "",
+      "distinguishing_axis": "Setting option = Sound+Display",
+      "test_item": "IF the user sets \"Sdw_Setting.Req\" internal signals to \"Sound+Display\" THEN TLM shall set \"TELEMATIC_VEHICLE_SETUP.Sdw_Req\" B-CAN signal equal to \"Sound+Display\" and sends this signal to IPC\n\n(Side distance warning request sent for sound plus display selection)"
+    }
+  ],
+  "reasoning": "驗證目標為使用者於 Setting 選定該選項後，TLM 送出 TELEMATIC_VEHICLE_SETUP.Sdw_Req 之對應值。關鍵情境條件為 PROXI Side_Distance_Warning = Present 且子選單項可達；設定動作走 UI 路徑（R-P375(b)），因 Sdw_Setting.Req 為內部訊號而其驅動面即規格 para 559 具名之 \"Setting\" 子項（R-VL21(a)）。本列只述單一選項，一條足夠；同族其餘選項由各自之列涵蓋（§8.2.1）。ER 用 is received 式（DUT 送出，R-VL21(e)）；raw 與 label 逐字取 val_tables_v43.tsv。"
+}
