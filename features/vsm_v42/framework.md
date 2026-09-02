@@ -13,13 +13,13 @@ Layer 3 之規格章節號欄由執行層自 V42 R6 docx 標題實測回填（P3
 
 | # | Test Set | leaf | Layer 3（037 家族；括號 = leaf） | 規格章節號（待 W-8 實測） |
 |---|---|---|---|---|
-| 1 | Park Sense | 18 | PARK SENSE w/o HC.1 and PARK SENSE w/o HC.2 (5)、Rear Park Sense Volume/ ParkSense Volume (6)、Front Park Sense Volume (7) | PARK SENSE w/o HC.1 and PARK SENSE w/o HC.2 = 1.11.1.1.29；Rear Park Sense Volume/ ParkSense Volume = **未對映**；Front Park Sense Volume = **未對映** |
+| 1 | Park Sense | 18 | PARK SENSE w/o HC.1 and PARK SENSE w/o HC.2 (5)、Rear Park Sense Volume/ ParkSense Volume (6)、Front Park Sense Volume (7) | PARK SENSE w/o HC.1 and PARK SENSE w/o HC.2 = 1.11.1.1.29；Rear／Front Park Sense Volume = **規格無章節標題（上繳 04 W-8），spec_reference 依 R-VL19(b) 以 Sys-RA ID 錨** |
 | 2 | Camera Gridlines | 10 | Dynamic Gridlines (4)、Surround Camera Gridlines (6) | Dynamic Gridlines = 1.11.1.1.31；Surround Camera Gridlines = 1.11.1.1.38 |
 | 3 | Lighting | 11 | Auto High Beam (5)、Headlight Sensitivity (6) | Auto High Beam = 1.11.1.1.30；Headlight Sensitivity = 1.11.1.1.13 |
 | 4 | Speed Assist | 21 | Traffic Sign Recognition (5)、Traffic Sign Assist Warning (6)、Intelligent Speed Limiter with Confirmation (4＋1 未分類)、New Speed Zone (6) | Traffic Sign Recognition = 1.11.1.1.32；Traffic Sign Assist Warning = 1.11.1.1.33；Intelligent Speed Limiter with Confirmation = 1.11.1.1.35；New Speed Zone = 1.11.1.1.36 |
 | 5 | Driver Warning | 13 | Side Distance Warning (10)、Audio Repetition (3) | Side Distance Warning = 1.11.1.1.5；Audio Repetition = 1.11.1.1.28 |
 | 6 | Wiper and Sensor | 5 | Rain Sensor (5) | Rain Sensor = 1.11.1.1.7 |
-| 7 | Units | 15 | Units (1)、Distance (5)、Fuel Consumption (9) | Units = 1.11.1.1.10；Distance = **未對映**；Fuel Consumption = 1.11.1.1.10.5.2 |
+| 7 | Units | 15 | Units (1)、Distance (5)、Fuel Consumption (9) | Units = 1.11.1.1.10；Distance = **1.11.1.1.10.5.1**（R-VL18(a)：規格題為 Distances，單複數對映認定）；Fuel Consumption = 1.11.1.1.10.5.2 |
 | 8 | EPB Maintenance Mode | 17 | EPB Maintenance Mode (17) | EPB Maintenance Mode = 1.11.1.1.19 |
 | 9 | Personal Data and Defaults | 14 | Personal Profile Management (3)、Clear Personal Data (3)、Restore Default Setting (3)、Geolocation (5) | Personal Profile Management = 1.11.1.1.37；Clear Personal Data = 1.11.1.1.40／1.11.2.1.2；Restore Default Setting = 1.11.1.1.41／1.11.2.1.3；Geolocation = 1.11.1.1.39／1.11.2.1.1 |
 | 10 | Time and Navigation | 4 | GPS Automatic Time Adjustment (2)、Nav Turn by Turn (2) | GPS Automatic Time Adjustment = 1.11.1.1.25；Nav Turn by Turn = 1.11.1.1.27 |

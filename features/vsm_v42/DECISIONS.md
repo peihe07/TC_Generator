@@ -34,7 +34,7 @@ sign-off = binding as proposed.
 - test group/set columns: [PROPOSED: FILL per framework Part N]
 - exemplar source: [PROPOSED: nearest sibling feature done region, cross-feature: style only]
 - author on new rows: [PROPOSED: PeiPYHsu]
-- spec_reference: [PROPOSED: None]
+- spec_reference: **[RULED] R-VL19** —— 主錨 `Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_{章節號}`（§10.7(b) 型，一號一行升冪）；無章節家族以 `Sys-RA-VF665_V42_VSM-{nnn}` 錨；spec 錨在前
 - tc_id scheme: [RULED] NR1L-VSM42-{n:03d} — frozen per this feature's RULINGS.md, not open at sign-off
 
 ## 5. Split & scope
@@ -46,7 +46,7 @@ sign-off = binding as proposed.
   Wiper and Sensor 5／Units 15／EPB Maintenance Mode 17／Personal Data and Defaults 14／
   Time and Navigation 4。全表見 `framework.md`；十組逐組對測相符（下放包 04 E34）。
   Layer 3 之規格章節號已由執行層實測回填（21／24 家族對映，3 家族未對映，見上繳 04）
-- profile [OVERRIDE] clauses: [PEI — draft with Claude, Tier 2]
+- profile [OVERRIDE] clauses: **[RULED，分析層填，R-VL18(d)] 無 OVERRIDE；[ADD §8.7.5] 八項見 `docs/runtime/profiles/FW036_R1L_VSM_V42_Profile.md`（2026-09-02 落檔）**
 
 ## 7. Execution
 - batch plan: [PROPOSED: 依 `framework.md` 之十個 Test Set 分批（母體 128，非 68）；
@@ -56,9 +56,9 @@ sign-off = binding as proposed.
 
 ## Sign-off
 
-- Reviewed by: ____  Date: ____　　**（狀態：待 Pei 簽 —— 執行層不代簽）**
-- Overridden items: ____
-- Ruling notes:
+- Reviewed by: **Pei（「皆授權」，分析層代記，R-VL20）**  Date: **2026-09-02**
+- Overridden items: 無（`[PROPOSED]` 全數照案成立）
+- Ruling notes: pilot = EPB Maintenance Mode（R-VL20）；spec_reference = R-VL19；進 P4
 
 ---
 

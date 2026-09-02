@@ -1,0 +1,44 @@
+{
+  "req_id": "SWE1-VC-EPBMaintenanceMode-059",
+  "test_group": "Vehicle Setup Management R1 Low",
+  "test_set": "EPB Maintenance Mode",
+  "reasoning": "驗證車速自 <= V_Car_Moving 上升至 > V_Car_Moving 時，TLM 經 ServiceMode_Popup_Trigger.Info 送出版面請求並顯示對應 popup。關鍵情境為車速跨越門檻之邊界。V_Car_Moving = 4 km/h、容差 0.5 km/h 取自規格常數表（段 1662），故取 4 與 4.0625 兩點（後者為 DBC 解析度 0.0625 km/h 之最小上跨）。規格另述 Ignition Off→On 之或分支，其 ignition 訊號規格未給實名，依 §8.4.1 不臆造，列 §K 並由本條之 Remarks 揭露未涵蓋。內部訊號 ServiceMode_Popup_Trigger.Info 段 1 未解，該步 PENDING。",
+  "tcs": [
+    {
+      "tc_title": "Vehicle speed crosses V_Car_Moving upward",
+      "pre_conditions": [
+        "PROXI EPB_Maintenance_Menu = 1 (Present)",
+        "The signal $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ is 1 (On)",
+        "The vehicle is stationary"
+      ],
+      "input_test_data": "NA",
+      "test_procedure": [
+        "Send the signal $STATUS_CCAN3.VehicleSpeedVSOSig$ = 64",
+        "Read the signal $STATUS_CCAN3.VehicleSpeedVSOSig$ and check that it is 64",
+        "Send the signal $STATUS_CCAN3.VehicleSpeedVSOSig$ = 65",
+        "Read the named UI element \"Step on the brake pedal\" pop-up and check that it is displayed",
+        "PENDING: DR-VL4 ServiceMode_Popup_Trigger.Info"
+      ],
+      "expected_result": [
+        "The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ = 64 is registered without a bus error",
+        "The signal value $STATUS_CCAN3.VehicleSpeedVSOSig$ = 64 is received",
+        "The signal $STATUS_CCAN3.VehicleSpeedVSOSig$ = 65 is registered without a bus error",
+        "The named UI element \"Step on the brake pedal\" pop-up is displayed",
+        "PENDING: DR-VL4 ServiceMode_Popup_Trigger.Info"
+      ],
+      "specification_reference": [
+        "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.19"
+      ],
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+      "priority": "P1",
+      "split_flag": false,
+      "split_reason": "",
+      "test_item": "When the TLM receives a value changing from <= [V_Car_Moving] to > [V_Car_Moving] via signals (STATUS_CCAN3.VehicleSpeedVSOSig), Then TLM shall send a layout request to the display manager through internal signal (ServiceMode_Popup_Trigger.Info)\n(Boundary crossing of V_Car_Moving raises the brake-pedal popup)",
+      "distinguishing_axis": {
+        "axis": "boundary",
+        "delta": "車速 raw 64 (= V_Car_Moving 4 km/h) 與 65 (> 門檻)，為門檻上跨之最小步進"
+      },
+      "remarks": "V_Car_Moving = 4 km/h per the spec constant table; raw 64 = 4 km/h and raw 65 = 4.0625 km/h at the DBC factor 0.0625 km/h. The ignition Off to On alternative branch is not covered: the spec names no signal for ignition status (see section K). ServiceMode_Popup_Trigger.Info is unresolved at stage 1; observation method requested under DR-VL4"
+    }
+  ]
+}

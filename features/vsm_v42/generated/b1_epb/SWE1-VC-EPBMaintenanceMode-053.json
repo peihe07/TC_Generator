@@ -1,0 +1,42 @@
+{
+  "req_id": "SWE1-VC-EPBMaintenanceMode-053",
+  "test_group": "Vehicle Setup Management R1 Low",
+  "test_set": "EPB Maintenance Mode",
+  "reasoning": "驗證送出 EPB Maintenance Mode 請求後 T_EPB_MM 逾時而未收到 IPC 有效回應時，TLM 判定 EPB 模組無回應並顯示 No response from EPB module popup。關鍵情境為逾時分支，屬模擬故障（不送回應）。本 Req 述單一逾時路徑，1 條即足；有回應之各分支由 -047／-048…-052 覆蓋。T_EPB_MM = 35000 ms、容差 200 ms 取自規格常數表，不臆造。",
+  "tcs": [
+    {
+      "tc_title": "No IPC response before T_EPB_MM expires",
+      "pre_conditions": [
+        "PROXI EPB_Maintenance_Menu = 1 (Present)",
+        "The EPB Maintenance Mode menu item is displayed",
+        "The EPB Maintenance Mode setting is Off"
+      ],
+      "input_test_data": "NA",
+      "test_procedure": [
+        "Select \"EPB Maintenance Mode\" = \"On\" to trigger $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ signal transmission",
+        "Suppress transmission of $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ and $IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ on the bus",
+        "Hold for 35000 ms",
+        "Read the named UI element \"No response from EPB module\" pop-up and check that it is displayed"
+      ],
+      "expected_result": [
+        "The signal $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is registered without a bus error",
+        "No value of $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ or $IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ is received",
+        "The signal is held for 35000 ms",
+        "The named UI element \"No response from EPB module\" pop-up is displayed"
+      ],
+      "specification_reference": [
+        "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.19"
+      ],
+      "design_method": "基礎故障注入 (Fault Injection Lite)",
+      "priority": "P1",
+      "split_flag": false,
+      "split_reason": "",
+      "test_item": "If no valid response is received before T_EPB_MM expires, the TLM shall determine that the EPB module is not responding and shall activate and display the \"No response from EPB module\" popup\n(T_EPB_MM timeout with no IPC response raises the no-response popup)",
+      "distinguishing_axis": {
+        "axis": "timing",
+        "delta": "T_EPB_MM 35000 ms 逾時且無任何 IPC 回應，與各 Fdbk 值分支之有回應不同"
+      },
+      "remarks": "T_EPB_MM = 35000 ms, tolerance 200 ms per the spec constant table"
+    }
+  ]
+}

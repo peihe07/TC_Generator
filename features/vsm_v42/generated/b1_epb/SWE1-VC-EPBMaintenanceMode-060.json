@@ -1,0 +1,43 @@
+{
+  "req_id": "SWE1-VC-EPBMaintenanceMode-060",
+  "test_group": "Vehicle Setup Management R1 Low",
+  "test_set": "EPB Maintenance Mode",
+  "reasoning": "驗證 TLM 收到 IPC_VEHICLE_SETUP2.EPB_MaintenanceMode 訊息時，經內部訊號 TLM_Vehicle_Setup_Menu.Info 更新 Vehicle Setup 選單畫面之文字與圖示狀態。關鍵情境為訊息接收後之選單畫面更新。本 Req 與 -058 之差別在下游對象（選單畫面 vs 顯示控制器），故各自一條，不合併。TLM_Vehicle_Setup_Menu.Info 段 1 未解，該步 PENDING；畫面更新以具名 UI 元件觀察（R-P353 白名單 (ii)）。",
+  "tcs": [
+    {
+      "tc_title": "Vehicle Setup menu updated on EPB_MaintenanceMode message reception",
+      "pre_conditions": [
+        "PROXI EPB_Maintenance_Menu = 1 (Present)",
+        "The EPB Maintenance Mode menu item is displayed"
+      ],
+      "input_test_data": "NA",
+      "test_procedure": [
+        "Send the signal $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ = 1 (On)",
+        "Read the named UI element \"EPB Maintenance Mode\" status text in the \"Vehicle Settings\" menu and check that it is \"On\"",
+        "Send the signal $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ = 0 (Off)",
+        "Read the named UI element \"EPB Maintenance Mode\" status text in the \"Vehicle Settings\" menu and check that it is \"Off\"",
+        "PENDING: DR-VL4 TLM_Vehicle_Setup_Menu.Info"
+      ],
+      "expected_result": [
+        "The signal $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ = 1 (On) is registered without a bus error",
+        "The named UI element \"EPB Maintenance Mode\" status text in the \"Vehicle Settings\" menu is \"On\"",
+        "The signal $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ = 0 (Off) is registered without a bus error",
+        "The named UI element \"EPB Maintenance Mode\" status text in the \"Vehicle Settings\" menu is \"Off\"",
+        "PENDING: DR-VL4 TLM_Vehicle_Setup_Menu.Info"
+      ],
+      "specification_reference": [
+        "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.19"
+      ],
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P2",
+      "split_flag": false,
+      "split_reason": "",
+      "test_item": "When the TLM receives the message via signal (IPC_VEHICLE_SETUP2.EPB_MaintenanceMode), Then TLM shall update and send the display information to the menu sub-system through the internal signal (TLM_Vehicle_Setup_Menu.Info)\n(Menu status text tracks the received EPB_MaintenanceMode value in both directions)",
+      "distinguishing_axis": {
+        "axis": "mode",
+        "delta": "下游對象為 Vehicle Setup 選單畫面，與 -058 之顯示控制器不同"
+      },
+      "remarks": "TLM_Vehicle_Setup_Menu.Info is unresolved at stage 1; observation method requested under DR-VL4"
+    }
+  ]
+}

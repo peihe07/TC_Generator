@@ -291,6 +291,43 @@ Time and Navigation (4)。全表見 framework.md（本包同時落檔）。
 Pilot 提案 EPB Maintenance Mode（分析層，開跑前 Pei 可改指）。
 ```
 
+### R-VL18 —— P3 收尾四裁：Distance 對映；拼字第三例方向；GenSigSendType 不得臆用；DECISIONS profile 欄歸分析層
+
+```
+R-VL18（分析層裁定 2026-09-02，上繳 04 第 11 節 1／2／4／5）
+(a) `Distance` ↔ 規格 `1.11.1.1.10.5.1 Distances` 認定對映：單複數形態差＋結構證據
+    （同層兄弟 10.5.2 Fuel Consumption 已逐字對映，父節 10 Units 與 Test Set 7 組成吻合）。
+    E35 → 22／24；framework 回填由分析層為之。本裁限此一對，不立去複數通則。
+(b) R-VL16(a) 第三例（`SVC_Gridlines_Req` vs DBC `SVC_Guidelines_Req`）：維持「規格拼字疑誤」值域，
+    備註加註「疑 DBC 側誤（Gridlines 為攝影機領域正確用語）」；不分立值域。P4 同保留原名不加 `$`。
+(c) `GenSigSendType`（1／3／7）列舉定義未查得前，不得據以決定 Procedure 之 Send／Hold 寫法；
+    P5 包 W 項令查兩本 ATL-Mi DBC 之 `BA_DEF_` 列舉，查無則 Procedure 只依規格行為書寫，表僅參考。
+(d) DECISIONS 之 `profile [OVERRIDE] clauses` 欄由分析層填（profiles/ 屬分析層）：本線無 OVERRIDE，
+    [ADD §8.7.5] 八項見 FW036_R1L_VSM_V42_Profile.md。
+```
+
+### R-VL19 —— spec_reference 型態（VF 類母件）；無章節家族之錨
+
+```
+R-VL19（分析層裁定 2026-09-02，依 Pei「皆授權」進 P4 之前置；pilot 覆核時 Pei 併驗）
+(a) 主錨依 IN §10.7(b) 型：`Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_{章節號}`
+    （檔名底線 token 化，括號去除；全案逐字一致），一章節號一行，前綴逐行重述，升冪。
+(b) 無規格章節可錨之家族（Rear／Front Park Sense Volume，13 leaf）以上游實名錨：
+    `Sys-RA-VF665_V42_VSM-{nnn}`（該 leaf 之 Source Requirement ID，逐列實取），一 ID 一行；
+    Remarks 註「規格無章節標題（上繳 04 W-8 實測）」。`-063`（Source 為 Heading）同法並註 DR-VL2(c)。
+(c) 同具兩型錨者 spec 錨在前、Sys-RA 錨在後（家族排序比照 IN §10.7 SWC 基準之精神）。
+Test Set 9 之雙章節家族（1.11.1.*＋1.11.2.*）兩章節皆列，各一行。
+```
+
+### R-VL20 —— DECISIONS 簽核代記；P4 開跑（pilot = EPB Maintenance Mode）
+
+```
+R-VL20（Pei 裁定 2026-09-02：「皆授權」）
+DECISIONS 四欄簽核，分析層代記「Pei 授權 2026-09-02」。P3 完成，進 P4。
+pilot = EPB Maintenance Mode（17 leaf，R-VL17 提案未改指即用）；
+pilot 產出先落 generated/（文字形，IN §10 十鍵），寫回工作簿待分析層覆核與 Pei 再授權（PM 站式）。
+```
+
 ---
 
 ## 取號紀錄
@@ -304,3 +341,4 @@ Pilot 提案 EPB Maintenance Mode（分析層，開跑前 Pei 可改指）。
 | R-VL14 | 2026-09-02 | 本檔錨點實測 13 |
 | R-VL15–R-VL16 | 2026-09-02 | 上繳 03 第 1 節 sha 表止於 R-VL14；本檔錨點實測 14 |
 | R-VL17 | 2026-09-02 | 本檔錨點實測 16 |
+| R-VL18–R-VL20 | 2026-09-02 | 上繳 04 第 6 節 sha 表止於 R-VL17；本檔錨點實測 17 |

@@ -1,0 +1,43 @@
+# SWE1-VC-EPBMaintenanceMode-046
+
+- Test Group: Vehicle Setup Management R1 Low
+- Test Set: EPB Maintenance Mode
+- TC 數: 1
+
+**reasoning**：驗證使用者於 TLM 啟用 EPB Maintenance Mode 時，TLM 送出 $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On)、顯示 Initializing popup、並啟動 T_EPB_MM 計時。關鍵情境為 UI 觸發之送出行為，該訊號 v3 判定解得（BO_162／VAL_ 2 項）。本 Req 之三個結果（送訊號、顯示 popup、起計時）為同一觸發之同時效果，依 §8.2.2 不拆為三條，以多階段 ER（§6.1）表達。T_EPB_MM 之值 35000 ms 取自規格常數表（段 1650 起），不臆造。
+
+## TC 1 — EPB Maintenance Mode enabled from HMI → request sent and Initializing popup shown
+
+### test_item
+```
+TLM receives the value as "On" via signal, $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ Then TLM shall: Update the EPB Maintenance Mode setting status to On. Activate and display the "Initializing" popup
+(HMI On request: outgoing signal, Initializing popup and T_EPB_MM start)
+```
+
+### pre_conditions
+1. PROXI EPB_Maintenance_Menu = 1 (Present)
+2. The EPB Maintenance Mode menu item is displayed
+3. The EPB Maintenance Mode setting is Off
+
+### input_test_data
+NA
+
+### test_procedure
+1. Select "EPB Maintenance Mode" = "On" to trigger $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ signal transmission
+2. Read the signal $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ and check that it is 1 (On)
+3. Read the named UI element "Initializing" pop-up and check that it is displayed
+4. Hold for 35000 ms
+
+### expected_result
+1. The signal $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is registered without a bus error
+2. The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received
+3. The named UI element "Initializing" pop-up is displayed
+4. The T_EPB_MM timer is held for 35000 ms
+
+### 其他
+- specification_reference: Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.19
+- design_method: 情境 / 用例 (Scenario / Use Case Testing)
+- priority: P1
+- split_flag: False
+- distinguishing_axis: trigger_state — HMI 觸發送出 EPB_MaintenanceMode_Req = 1 (On)，與 -047 之接收 IPC 回報不同向
+- remarks: T_EPB_MM = 35000 ms per the spec constant table (paragraph 1650 onwards)

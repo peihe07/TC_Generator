@@ -343,6 +343,15 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
   維持「訊息名不符(R-13)」，不入本表。
 
 
+## A-VL13 —— 分析層之誤：FORMS.md 未測即斷言「三件未登錄」（RESOLVED）
+
+- **登記日**：2026-09-02；**分析層之誤**。
+- **事實**：下放包 04 W-9 之前提、及分析層自寫於 FORMS.md 末之尾註，皆沿用該檔「範圍限制」舊段而未 grep 全檔 ——
+  三件 xlsx 實已於「共用參考件」節登錄（首採 power 2026-08-30）。執行層 W-9 實測後拒照字面辦並回報，正確。
+- **同族**：「未查台帳即斷言無條文」（記 A 一案）。FORMS.md 尾註已加註更正（不刪）。
+- **另記（執行層側，供彼線參照）**：vsm_v43 上繳 05 §九-5(b) 稱 FORMS.md「仍未登錄 P363 DBC」，
+  實測該條目已於 2026-09-02 由分析層登錄（ATL-Mi DBC 兩件專節）—— 彼包沿抄前包未重測，同型小誤，於彼線下包記。
+
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning：`[ASSUMPTION A-VLnn]`。
