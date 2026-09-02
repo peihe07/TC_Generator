@@ -328,6 +328,30 @@ pilot = EPB Maintenance Mode（17 leaf，R-VL17 提案未改指即用）；
 pilot 產出先落 generated/（文字形，IN §10 十鍵），寫回工作簿待分析層覆核與 Pei 再授權（PM 站式）。
 ```
 
+### R-VL21 —— pilot 覆核裁定：二裁題皆准；四項處置追認；兩類修訂（REV-1〜4）
+
+```
+R-VL21（分析層裁定 2026-09-02，pilot b1 逐 TC 覆核；實檔抽驗 -046／-048／-051 逐字）
+(a) 【裁題 1，准】UI 元件名得取自規格／037 具名之選單項／popup 文字（來源入 remarks）；
+    HMI Settings List 錨點優先，無錨不降 PENDING —— 規格具名即非臆造（§8.4.1）、可執行即非 PENDING（R-P355(c) 本旨）。
+(b) 【裁題 2，准】-046 一條不拆：IN §5.7 字面「一觸發多同時結果屬同一 TC」，多階段 ER 正確；不重做。
+(c) 追認：VAL_ 缺值寫 `= <raw>` 不附 label＋remarks 揭露（§8.4.1）；同文兩碼各一條＋括號區分（§8.2.2／R-S4）；
+    -059 ignition 分支揭露未涵蓋不臆造（037 佔位符 `{S}` 殘留入 DR-VL2 佐證，不送）；
+    test_item 上半得取 037 Requirement Description 為 verbatim 來源（RD 權威單位；規格拼字瑕疵時尤然），spec_reference 指回規格段。
+    GenSigSendType 列舉查得（OnWrite=1／OnChange=3／NoSigSendType=7），R-VL18(c) 臆用禁令解除，Procedure 仍只依規格行為。
+(d) 【REV-1，-046】步驟 4 `Hold for 35000 ms` 之 ER「The T_EPB_MM timer is held」不可觀察（timer 為內部態，違 §6）：
+    刪該步，reasoning 註「T_EPB_MM 之到期效果由 -053 驗（§8.2.1 委任）」；若規格明載等候期間 popup 持續，
+    得以「Initializing popup remains displayed」代之（逐字有據才寫）。
+(e) 【REV-2，-046】ER 未涵蓋 test_item 明載之「setting status → On」（§6 完整性）：補一 ER（UI 設定狀態顯示 On）；
+    ER1「registered without a bus error」為測試員送出之確認式，本條為 DUT 送出，刪 ER1 留「is received」式。
+    另 test_item 上半「TLM receives」與 TC 方向（TLM 送出）之表面矛盾，reasoning 補一句方向註記（依 DBC）。
+(f) 【REV-4，系統性，Fdbk 族 9 條】缺「已發起進入／退出請求」之 setup：popup 文義為「user selected Yes … but …」，
+    直接送 Fdbk 而未建立請求態屬 FF 風險（§7）；該態為步驟控制態不得入 Pre-Condition（§4.4）。
+    修：Procedure 前置發起步（Select "EPB Maintenance Mode" = "On"／退出側同理）再送 Fdbk；ER 1:1 同步。
+    另：測試員自送訊號後之「Read … check it is <raw>」回讀步削去（冗餘，非錯但不加值），保留者不判錯。
+修訂範圍：-046 一條（d／e）＋Fdbk 族 -048〜-052、-054〜-057 九條（f）；其餘七條不動。
+```
+
 ---
 
 ## 取號紀錄
@@ -342,3 +366,4 @@ pilot 產出先落 generated/（文字形，IN §10 十鍵），寫回工作簿�
 | R-VL15–R-VL16 | 2026-09-02 | 上繳 03 第 1 節 sha 表止於 R-VL14；本檔錨點實測 14 |
 | R-VL17 | 2026-09-02 | 本檔錨點實測 16 |
 | R-VL18–R-VL20 | 2026-09-02 | 上繳 04 第 6 節 sha 表止於 R-VL17；本檔錨點實測 17 |
+| R-VL21 | 2026-09-02 | 本檔錨點實測 20 |

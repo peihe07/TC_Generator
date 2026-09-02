@@ -2,7 +2,7 @@
   "req_id": "SWE1-VC-EPBMaintenanceMode-046",
   "test_group": "Vehicle Setup Management R1 Low",
   "test_set": "EPB Maintenance Mode",
-  "reasoning": "驗證使用者於 TLM 啟用 EPB Maintenance Mode 時，TLM 送出 $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On)、顯示 Initializing popup、並啟動 T_EPB_MM 計時。關鍵情境為 UI 觸發之送出行為，該訊號 v3 判定解得（BO_162／VAL_ 2 項）。本 Req 之三個結果（送訊號、顯示 popup、起計時）為同一觸發之同時效果，依 §8.2.2 不拆為三條，以多階段 ER（§6.1）表達。T_EPB_MM 之值 35000 ms 取自規格常數表（段 1650 起），不臆造。",
+  "reasoning": "驗證使用者於 TLM 啟用 EPB Maintenance Mode 時，TLM 送出 $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On)、設定狀態顯示 On、並顯示 Initializing popup。關鍵情境為 UI 觸發之送出行為，該訊號 v3 判定解得（BO_162／VAL_ 2 項）。本 Req 之同時效果依 IN §5.7 與 R-VL21(b) 收於一條，以多階段 ER 表達，不拆。T_EPB_MM 之到期效果不在本條驗（timer 為內部態、不可觀察，§6），由 -053 驗（§8.2.1 委任）。test_item 上半之 037 文字寫 TLM receives，係自 TLM 應用層視角描述收到使用者偏好；依 DBC 該訊號 BO_162 之發送方為 TLM、接收節點為 IPC，故本 TC 之方向為 TLM 送出，兩者不矛盾。",
   "tcs": [
     {
       "tc_title": "EPB Maintenance Mode enabled from HMI → request sent and Initializing popup shown",
@@ -14,15 +14,13 @@
       "input_test_data": "NA",
       "test_procedure": [
         "Select \"EPB Maintenance Mode\" = \"On\" to trigger $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ signal transmission",
-        "Read the signal $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ and check that it is 1 (On)",
-        "Read the named UI element \"Initializing\" pop-up and check that it is displayed",
-        "Hold for 35000 ms"
+        "Read the named UI element \"EPB Maintenance Mode\" setting control and check that it is \"On\"",
+        "Read the named UI element \"Initializing\" pop-up and check that it is displayed"
       ],
       "expected_result": [
-        "The signal $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is registered without a bus error",
         "The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received",
-        "The named UI element \"Initializing\" pop-up is displayed",
-        "The T_EPB_MM timer is held for 35000 ms"
+        "The named UI element \"EPB Maintenance Mode\" setting control is \"On\"",
+        "The named UI element \"Initializing\" pop-up is displayed"
       ],
       "specification_reference": [
         "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.19"
@@ -36,7 +34,7 @@
         "axis": "trigger_state",
         "delta": "HMI 觸發送出 EPB_MaintenanceMode_Req = 1 (On)，與 -047 之接收 IPC 回報不同向"
       },
-      "remarks": "T_EPB_MM = 35000 ms per the spec constant table (paragraph 1650 onwards)"
+      "remarks": "UI element names are taken from the menu item and popup wording named in the spec section and in the 037 description (R-VL21(a)); they are not anchored in HMI Settings List"
     }
   ]
 }
