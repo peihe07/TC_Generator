@@ -21,7 +21,7 @@
 > **v2 之表由分析層定、Pei 准後方鎖**；執行層只出列數，不定表、不命名。
 > Layer 3 於 v2 另帶 `spec_section` 欄（`direct` 42／`segment_map` 195／`none` 99，R-VT22(c)）。
 
-### Layer 2 **v2 表**（R-VT23(d)，**待 Pei 准後鎖**）
+### Layer 2 **v2 表**（R-VT23(d)，**鎖定 (R-VT24)**）
 
 母體：`data/leaves_interim_v2.tsv` 之 `status ∈ {active, stale_ref_r4}` = **325** 列
 （v2 336 − superseded 2 − deprecated_r4 9）。列數為執行層實測（上繳 11 §W-2）。

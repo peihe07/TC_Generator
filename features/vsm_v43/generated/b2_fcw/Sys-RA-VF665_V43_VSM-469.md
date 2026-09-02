@@ -1,0 +1,53 @@
+# Sys-RA-VF665_V43_VSM-469
+
+- **Test Group**：Vehicle Setup Management R1L TBM
+- **Test Set**：Forward Collision Warning
+- **spec_section**：`1.11.1.1.6`（來源 segment_map）
+- **Remarks**：Provisional: SYSRA-anchored (R-VT18); re-anchor upon 037 (DR-VT1); UI names taken verbatim from spec 1.11.1.1.6 (paras 580, 584, 601, 617); HMI Settings List `Settings` r9/r255 carries "Forward Collision Sensitivity*" with Technical Reference VF230/665 and options "Near , Med, Far", matching the spec values
+
+## test_item 上半（verbatim，SYSRA Description）
+
+> WHEN TLM receives "IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode " message THEN TLM updates the Forward Collision Warning information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+
+## reasoning
+
+驗證目標為 TLM 收到 IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode 後靈敏度顯示隨之更新。關鍵情境條件為選單項可見且起始 Near → 注入 2 (Far)，取值域兩端使更新最可觀察。本列只述一個接收→更新之因果，一條足夠。內部訊號之處置同 -459；本列與 -459／-464 之區別在訊號與選單項不同（Sensitivity vs Setting1/2）。
+
+## TC 1 — FCW sensitivity display updated on reception of activation mode message
+
+### test_item
+
+```
+WHEN TLM receives "IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode " message THEN TLM updates the Forward Collision Warning information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+
+(FCW sensitivity display updated on reception of activation mode message)
+```
+
+### pre_conditions
+
+```
+PROXI Forward_Collision_Mitigation = Full Speed Forward Collision Warning with Mitigation
+The menu item "Forward Collision Warning Sensitivity" is displayed and shows "Near"
+```
+
+### input_test_data
+
+`NA`
+
+### test_procedure
+
+```
+1. Send the signal $IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode$ = 2 (Far)
+2. Read the menu item "Forward Collision Warning Sensitivity" and check that it shows "Far"
+```
+
+### expected_result
+
+```
+1. The signal $IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode$ = 2 (Far) is registered without a bus error
+2. The menu item "Forward Collision Warning Sensitivity" shows "Far"
+```
+
+- specification_reference：`Vehicle_Setup_Management_by_VP-LTM_R1L_TBM_VF665_V43_R4_1.11.1.1.6
+Sys-RA-VF665_V43_VSM-469`
+- design_method：功能測試 (Functional based ; no specific technique)｜priority：P1｜split_flag：False
