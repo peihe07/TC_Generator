@@ -1,0 +1,54 @@
+# Sys-RA-VF665_V43_VSM-651
+
+- **Test Group**：Vehicle Setup Management R1L TBM
+- **Test Set**：Interior Ambient Lighting
+- **Remarks**：Provisional: SYSRA-anchored (R-VT18); re-anchor upon 037 (DR-VT1)
+
+## test_item 上半（verbatim，SYSRA Description）
+
+> IF "Ambient_Lighting_Function" PROXI parameter is equal to "Present" AND "Ambient_Dimmer_Switch"PROXI parameter is equal to "absent" THEN TLM shall display the Interior Ambient Lights Level menu item and the user can perform setting.
+
+## reasoning
+
+驗證目標為兩個 PROXI 條件同時成立時，Interior Ambient Lights Level 選單項顯示且可設定。關鍵情境條件為 Ambient_Lighting_Function = Present 與 Ambient_Dimmer_Switch = absent，二者皆為 PROXI 組態，入 Pre-Condition（R-P375(b)）。本列只述一個條件組合與其單一結果，依 §5.7 一觸發多同時結果屬同一 TC，故一條足夠；「可設定」以實際選一個值驗證其可操作性，值本身之訊號效果由 -652〜-658 各自涵蓋（§8.2.1 委任）。ELSE 分支之不顯示由 -661 涵蓋。
+
+## TC 1 — Ambient Lights Level menu shown when function present and dimmer absent
+
+### test_item
+
+```
+IF "Ambient_Lighting_Function" PROXI parameter is equal to "Present" AND "Ambient_Dimmer_Switch"PROXI parameter is equal to "absent" THEN TLM shall display the Interior Ambient Lights Level menu item and the user can perform setting.
+
+(Ambient Lights Level menu shown when function present and dimmer absent)
+```
+
+### pre_conditions
+
+```
+PROXI Ambient_Lighting_Function = Present
+PROXI Ambient_Dimmer_Switch = absent
+The TLM is powered on and the vehicle setup menu is reachable
+```
+
+### input_test_data
+
+`NA`
+
+### test_procedure
+
+```
+1. Open the vehicle setup menu on the TLM display
+2. Read the menu list and check that "Interior Ambient Lights Level" is present
+3. Select "Interior Ambient Lights Level" and set it to "Level_1"
+```
+
+### expected_result
+
+```
+1. The vehicle setup menu is displayed
+2. The menu item "Interior Ambient Lights Level" is displayed in the menu list
+3. The menu item "Interior Ambient Lights Level" accepts the selection and shows "Level_1"
+```
+
+- specification_reference：`Sys-RA-VF665_V43_VSM-651`
+- design_method：決策表 (Decision Table Testing)｜priority：P2｜split_flag：False

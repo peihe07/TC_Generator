@@ -1,0 +1,52 @@
+# Sys-RA-VF665_V43_VSM-659
+
+- **Test Group**：Vehicle Setup Management R1L TBM
+- **Test Set**：Interior Ambient Lighting
+- **Remarks**：Provisional: SYSRA-anchored (R-VT18); re-anchor upon 037 (DR-VT1); TLM_Vehicle_Setup_Menu.Info is internal and not observable; the spec names the display update in the same sentence, so the named menu item is the observable
+
+## test_item 上半（verbatim，SYSRA Description）
+
+> WHEN TLM receives "IPC_VEHICLE_SETUP.AmbientLightingLevel" message THEN TLM updates the Ambient light information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+
+## reasoning
+
+驗證目標為 TLM 收到 IPC_VEHICLE_SETUP.AmbientLightingLevel 後，其顯示之環艙燈等級資訊隨之更新。關鍵情境條件為兩個 PROXI 皆成立、選單項可見，且起始值與注入值相異（Level_1 → Level_3）以使更新可觀察。本列只述一個接收→更新之因果，一條即足；規格未列舉逐一等級之接收行為，不逐級展開（§8.4.2）。規格所載之 TLM_Vehicle_Setup_Menu.Info 為內部訊號，測試台不可讀，其效果面即規格同句具名之顯示更新，故 ER 觀察具名選單項（R-P353 白名單 (ii)）而不寫該內部訊號，亦不掛 PENDING。步驟 1 為測試員送出，ER 依 R-VL21(e) 用 bus-error 確認式。
+
+## TC 1 — Ambient light information updated on reception of level message
+
+### test_item
+
+```
+WHEN TLM receives "IPC_VEHICLE_SETUP.AmbientLightingLevel" message THEN TLM updates the Ambient light information on its display through "TLM_Vehicle_Setup_Menu.Info" internal signal
+
+(Ambient light information updated on reception of level message)
+```
+
+### pre_conditions
+
+```
+PROXI Ambient_Lighting_Function = Present
+PROXI Ambient_Dimmer_Switch = absent
+The menu item "Interior Ambient Lights Level" is displayed and shows "Level_1"
+```
+
+### input_test_data
+
+`NA`
+
+### test_procedure
+
+```
+1. Send the signal $IPC_VEHICLE_SETUP.AmbientLightingLevel$ = 2 (Level_3)
+2. Read the menu item "Interior Ambient Lights Level" and check that it shows "Level_3"
+```
+
+### expected_result
+
+```
+1. The signal $IPC_VEHICLE_SETUP.AmbientLightingLevel$ = 2 (Level_3) is registered without a bus error
+2. The menu item "Interior Ambient Lights Level" shows "Level_3"
+```
+
+- specification_reference：`Sys-RA-VF665_V43_VSM-659`
+- design_method：功能測試 (Functional based ; no specific technique)｜priority：P2｜split_flag：False
