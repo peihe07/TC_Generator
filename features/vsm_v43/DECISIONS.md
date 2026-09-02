@@ -93,6 +93,8 @@ An unsigned sheet blocks Phase 4+.
 | 4 | framework Layer 1 | **鎖定** = `Vehicle Setup Management R1L TBM` | R-VT3；`framework.md` §Layer 1；`feature.yaml.test_group` 已同步 | `[PROPOSED]` 待簽 |
 | **3′** | 母體（**暫代**） | **295（SYSRA）**，重錨條款生效 | **R-VT18**（Pei「送＋三」，2026-09-02）：DR-VT1 裁定送出，**同時不等回覆**以 SYSRA 暫代母體進 P4。295 ＝ Functional 507 − DocID `VF655_V43_R3` 171 − DocID 空 41（兩批隔離待 DR-VT2）。R-VT4「止於 P0–P3」與 R-VT17(b) 掛起**均解除**。TC 之 D 欄用 `Sys-RA-VF665_V43_VSM-…` 實名並逐列註 `Provisional: SYSRA-anchored (R-VT18); re-anchor upon 037 (DR-VT1)`；037 到件後逐 TC 重錨，**重錨完成前不得交付**（除非 Pei 另裁） | `[AUTO]` 落實 R-VT18 |
 
+| **3″** | 母體（**暫代 v2**） | **336（合成）** | **R-VT22(a)**（Pei「甲」，2026-09-02）：v2 ＝ 295 − 3（R4 已取代之舊列，`data/superseded_by_r4.tsv`）＋ 43（VF655 實質獨有：無對應 38 ＋ 近似 5）＋ 1（DocID 空獨有）＝ **336**，實測對帳相符。逐列帶 `batch_source`／`spec_section`／`spec_section_source`（`direct` 42／`segment_map` 195／`none` 99，R-VT22(c)）。落 `data/leaves_interim_v2.tsv`；**v1 不覆寫**。Layer 2 v2 為 **19 組**（三新組：EPB Maintenance Mode 19／Auto Park Brake 5／Rearview Camera 10），**表待分析層定、Pei 准** | `[AUTO]` 落實 R-VT22 |
+
 **Layer 2 不在本表** —— 暫代線之聚合材料見 `data/layer2_material_v43.md`（`chapter_for_vf` 72 組）；
 **草案歸分析層、鎖定歸 Pei**；執行層不聚類、不命名（06 包 §四）。
 

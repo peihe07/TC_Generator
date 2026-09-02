@@ -1,0 +1,45 @@
+修訂項段號	修訂說明逐字	掃描狀態	命中列ID	命中片段
+18	- Added RVC_Dynamic_Gridlines.Req and RVC_Delay.Req internal signals.	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+19	- Added TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req, TELEMATIC_VEHICLE_SETUP2.Backup_Cam_Delay_Req, IPC_VEHICLE_SETUP.DynamicGrid and IPC_VEHICLE_SETUP2.Backup_Cam_Delay CAN signals	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+20	- Replacement of IPC_VEHICLE_SETUP.RainSensorLevel by IPC_VEHICLE_SETUP2.RainSensorSensibility, TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req by TELEMATIC_VEHICLE_SETUP2.RainSensorSensibility_Req and Rain_Sensor_Level_Setting.Req by Rain_Sensor_Sensibility_Setting.Req	可機掃：`IPC_VEHICLE_SETUP.RainSensorLevel`	（無命中）	
+20	- Replacement of IPC_VEHICLE_SETUP.RainSensorLevel by IPC_VEHICLE_SETUP2.RainSensorSensibility, TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req by TELEMATIC_VEHICLE_SETUP2.RainSensorSensibility_Req and Rain_Sensor_Level_Setting.Req by Rain_Sensor_Sensibility_Setting.Req	可機掃：`TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req`	Sys-RA-VF665_V43_VSM-472	"…rnal signals to ""Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req"" B-CAN signal equal to ""Enable"" and sends th…"
+20	- Replacement of IPC_VEHICLE_SETUP.RainSensorLevel by IPC_VEHICLE_SETUP2.RainSensorSensibility, TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req by TELEMATIC_VEHICLE_SETUP2.RainSensorSensibility_Req and Rain_Sensor_Level_Setting.Req by Rain_Sensor_Sensibility_Setting.Req	可機掃：`TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req`	Sys-RA-VF665_V43_VSM-473	"… signals to ""Not_Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req"" B-CAN signal equal to ""Not_Enable"" and send…"
+21	- Deleted IPC_VEHICLE_SETUP.BSDEnable, TELEMATIC_VEHICLE_SETUP.BSDEnable_Req CAN signals	可機掃：`IPC_VEHICLE_SETUP.BSDEnable`	Sys-RA-VF665_V43_VSM-582	"…WHEN TLM receives ""IPC_VEHICLE_SETUP.BSDEnable"" message THEN TLM updates the Blind Spot inf…"
+21	- Deleted IPC_VEHICLE_SETUP.BSDEnable, TELEMATIC_VEHICLE_SETUP.BSDEnable_Req CAN signals	可機掃：`TELEMATIC_VEHICLE_SETUP.BSDEnable_Req`	Sys-RA-VF665_V43_VSM-579	"…l signal to ""Enable_LED"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.BSDEnable_Req"" B-CAN signal equal to ""Enable_LED"" and send…"
+21	- Deleted IPC_VEHICLE_SETUP.BSDEnable, TELEMATIC_VEHICLE_SETUP.BSDEnable_Req CAN signals	可機掃：`TELEMATIC_VEHICLE_SETUP.BSDEnable_Req`	Sys-RA-VF665_V43_VSM-580	"…l to ""Enable_ LED_Chime"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.BSDEnable_Req"" B-CAN signal equal to ""Enable_ LED_Chime"" a…"
+21	- Deleted IPC_VEHICLE_SETUP.BSDEnable, TELEMATIC_VEHICLE_SETUP.BSDEnable_Req CAN signals	可機掃：`TELEMATIC_VEHICLE_SETUP.BSDEnable_Req`	Sys-RA-VF665_V43_VSM-581	"…l signal to ""Not_Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.BSDEnable_Req"" B-CAN signal equal to ""Not_Enable"" and send…"
+23	- Added Rearview Camera Dynamic Gridlines and Rearview Camera Delay menus.	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+24	- Updated Sound Horn with Lock Unlock menu, deleted Model_Year condition.	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+25	"- Modification of rain sensor strategy from ""ON/OFF"" menu to ""Manual/Auto1/Auto2"" menu under ""Rain Sensor"" section"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+26	- Deleted BLIND SPOT ALERT menu	可機掃：`BLIND`	（無命中）	
+26	- Deleted BLIND SPOT ALERT menu	可機掃：`SPOT`	（無命中）	
+26	- Deleted BLIND SPOT ALERT menu	可機掃：`ALERT`	（無命中）	
+28	- Deleted Model_Year PROXI parameter	可機掃：`Model_Year`	Sys-RA-VF665_V43_VSM-844	…43 Model_Year ** ** ** ** LTM PROXI No N.A. Range value is…
+28	- Deleted Model_Year PROXI parameter	可機掃：`Model_Year`	Sys-RA-VF665_V43_VSM-907	"…ide the ""Sound Horn With Lock"" menu item (if Model_Year<20) OR ""Sound Horn with Lock Unlock"" menu it…"
+29	- Added Rear_View_Camera PROXI parameter	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+30	- Deleted ID14 (CAN node 51(LBSS))	可機掃：`ID14`	（無命中）	
+30	- Deleted ID14 (CAN node 51(LBSS))	可機掃：`LBSS`	Sys-RA-VF665_V43_VSM-577	"…IF ""CAN node 51 (LBSS)"" == ""Absent"" OR ""CAN node 52 (RBSS)"" == ""Ab…"
+30	- Deleted ID14 (CAN node 51(LBSS))	可機掃：`LBSS`	Sys-RA-VF665_V43_VSM-578	"…IF ""CAN node 51 (LBSS)"" == ""Present"" AND ""CAN node 52 (RBSS)"" == ""…"
+30	- Deleted ID14 (CAN node 51(LBSS))	可機掃：`LBSS`	Sys-RA-VF665_V43_VSM-824	…14 CAN node 51 (LBSS) ** ** ** ** LTM PROXI No N.A. Range value i…
+30	- Deleted ID14 (CAN node 51(LBSS))	可機掃：`LBSS`	Sys-RA-VF665_V43_VSM-897	"…The ""CAN node 51 (LBSS)"" PROXI parameter is used to show or hide th…"
+31	- Deleted ID15 (CAN node 52(RBSS))	可機掃：`ID15`	（無命中）	
+31	- Deleted ID15 (CAN node 52(RBSS))	可機掃：`RBSS`	Sys-RA-VF665_V43_VSM-577	"…node 51 (LBSS)"" == ""Absent"" OR ""CAN node 52 (RBSS)"" == ""Absent"" THEN TLM shall not display the…"
+31	- Deleted ID15 (CAN node 52(RBSS))	可機掃：`RBSS`	Sys-RA-VF665_V43_VSM-578	"…de 51 (LBSS)"" == ""Present"" AND ""CAN node 52 (RBSS)"" == ""Present"" THEN TLM shall display the Bl…"
+31	- Deleted ID15 (CAN node 52(RBSS))	可機掃：`RBSS`	Sys-RA-VF665_V43_VSM-825	…15 CAN node 52 (RBSS) ** ** ** ** LTM PROXI No N.A. Range value i…
+31	- Deleted ID15 (CAN node 52(RBSS))	可機掃：`RBSS`	Sys-RA-VF665_V43_VSM-899	"…The ""CAN node 52 (RBSS)"" PROXI parameter is used to show or hide th…"
+37	"- Deleted ""Units_Setting.Req"" internal signal"	可機掃：`Units_Setting.Req`	（無命中）	
+38	"- Added ""Maintenance_Mode_Enable.Req"" internal signal"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+39	"- Added ""TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req"" CAN signal"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+40	"- Added ""IPC_VEHICLE_SETUP2.EPB_MaintenanceMode"" CAN signal"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+41	"-  Added ""IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk"" CAN signal"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+42	"- Added ""Auto_Park_Brake_Enable.Req"" internal signal"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+43	"- Added ""TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req"" CAN signal"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+44	"- Added ""IPC_VEHICLE_SETUP.AutoParkBrake"" CAN signal"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+45	- Deleted Units_settings.req internal signal	可機掃：`Units_settings.req`	（無命中）	
+48	"- Updated ""Units"" menu to align with MCT4.0"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+49	"- Added ""Auto Park Brake"" and  ""EPB Maintanance Mode"" menus"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+51	"- Added ""EPB_Maintenance_Menu"" PROXI parameter"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+52	"- Added ""Auto_Park_Brake_Menu"" PROXI parameter"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+58	"- Added ""Brand_Configuration_2"" PROXI parameter as a condition to enable Headlights Off Delay menu"	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+60	"- Added ""Brand_Configuration_2"" PROXI parameter."	不可機掃（非 Replacement/Deleted 型或無具名 token）		
+67	- Removal of requirements related to message SERVICE_SETUP.TelematicSetupACK received from TBM. TLM current implementation does not provide any HMI based on TelematicsSetupACK signal and it was agreed with supplier the removal of these requiremrents. Current implementation is according to CFTS021 and CFTS022.	不可機掃（非 Replacement/Deleted 型或無具名 token）		

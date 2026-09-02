@@ -13,6 +13,14 @@
 
 ## Layer 2 — Test Set（**暫代鎖定，R-VT19，Pei 2026-09-02「准」**；正式版待 037 重錨時重議）
 
+> **加註（2026-09-02，R-VT22(b)）—— v2 重組中，鎖定待 Pei**
+> Pei 裁「甲」（R-VT22）後，暫代母體改為 **v2（`data/leaves_interim_v2.tsv`，實測 336 列）**。
+> **下表為 v1（295 列）之鎖定，依 R-TM13 不刪只標**；v2 之分組實測見
+> `docs/upstream/10_mother_v2.md` §W-2（**19 組** ＝ 十六舊組 ＋ 三新組
+> `EPB Maintenance Mode` 19／`Auto Park Brake` 5／`Rearview Camera` 10）。
+> **v2 之表由分析層定、Pei 准後方鎖**；執行層只出列數，不定表、不命名。
+> Layer 3 於 v2 另帶 `spec_section` 欄（`direct` 42／`segment_map` 195／`none` 99，R-VT22(c)）。
+
 | # | Test Set | leaf | Layer 3（chapter_for_vf，不入工作簿） |
 |---|---|---|---|
 | 1 | Exterior Lighting | 32 | 01.11.01.01.01／.02／.12／.13／.14／.25 |
