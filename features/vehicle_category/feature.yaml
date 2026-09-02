@@ -152,3 +152,9 @@ reference:
 # 已知的不一致。全域三種前綴並存之登記見 A-VC21（PENDING，全域排程）。
 # 鍵名沿多數 feature 之 `tc_id_format`（非 user_profiles 之 `tc_id_pattern`）。
 tc_id_format: "newR1L-VC-{n:03d}"
+
+# VS-SL-07 §1（R-VS94）：R-G42 二之 ABBR 宣告。
+# `lint_delivery_spec.py` 二令 F 欄為 `NR1L-{ABBR}-{nnn}` 且 ABBR = 本鍵；
+# 未宣告即判紅。本輪之前全庫無任一 feature 宣告本區塊。
+delivery:
+  tc_id_abbr: VC

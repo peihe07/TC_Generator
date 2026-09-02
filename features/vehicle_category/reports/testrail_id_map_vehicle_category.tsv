@@ -1,127 +1,127 @@
 row	req_id	old_E	old_F	new_F	status	note
-10	SWE1-HMI-VC-001-01		newR1L-VC-001	newR1L-VC-001	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-11	SWE1-HMI-VC-001-02		newR1L-VC-002	newR1L-VC-002	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-12	SWE1-HMI-VC-001-03		newR1L-VC-003	newR1L-VC-003	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-13	SWE1-HMI-VC-002		newR1L-VC-004	newR1L-VC-004	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-14	SWE1-HMI-VC-003		newR1L-VC-005	newR1L-VC-005	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-15	SWE1-HMI-VC-004		newR1L-VC-006	newR1L-VC-006	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-16	SWE1-HMI-VC-005		newR1L-VC-007	newR1L-VC-007	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-17	SWE1-HMI-VC-006		newR1L-VC-008	newR1L-VC-008	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-18	SWE1-HMI-VC-007-01		newR1L-VC-009	newR1L-VC-009	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-19	SWE1-HMI-VC-007-02		newR1L-VC-010	newR1L-VC-010	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-20	SWE1-HMI-VC-007-03		newR1L-VC-011	newR1L-VC-011	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-21	SWE1-HMI-VC-007-04		newR1L-VC-012	newR1L-VC-012	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-22	SWE1-HMI-VC-007-05		newR1L-VC-013	newR1L-VC-013	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-23	SWE1-HMI-VC-008		newR1L-VC-014	newR1L-VC-014	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-24	SWE1-HMI-VC-009		newR1L-VC-015	newR1L-VC-015	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-25	SWE1-HMI-VC-010		newR1L-VC-016	newR1L-VC-016	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-26	SWE1-HMI-VC-011		newR1L-VC-017	newR1L-VC-017	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-27	SWE1-HMI-VC-012-01		newR1L-VC-018	newR1L-VC-018	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-28	SWE1-HMI-VC-012-02		newR1L-VC-019	newR1L-VC-019	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-29	SWE1-HMI-VC-012-03		newR1L-VC-020	newR1L-VC-020	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-30	SWE1-HMI-VC-013-01		newR1L-VC-021	newR1L-VC-021	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-31	SWE1-HMI-VC-013-02		newR1L-VC-022	newR1L-VC-022	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-32	SWE1-HMI-VC-013-03		newR1L-VC-023	newR1L-VC-023	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-33	SWE1-HMI-VC-013-04		newR1L-VC-024	newR1L-VC-024	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-34	SWE1-HMI-VC-014		newR1L-VC-025	newR1L-VC-025	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-35	SWE1-HMI-VC-015		newR1L-VC-026	newR1L-VC-026	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-36	SWE1-HMI-VC-016		newR1L-VC-027	newR1L-VC-027	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-37	SWE1-HMI-VC-017		newR1L-VC-028	newR1L-VC-028	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-38	SWE1-HMI-VC-018		newR1L-VC-029	newR1L-VC-029	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-39	SWE1-HMI-VC-019-01		newR1L-VC-030	newR1L-VC-030	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-40	SWE1-HMI-VC-019-02		newR1L-VC-031	newR1L-VC-031	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-41	SWE1-HMI-VC-020		newR1L-VC-032	newR1L-VC-032	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-42	SWE1-HMI-VC-021		newR1L-VC-033	newR1L-VC-033	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-43	SWE1-HMI-VC-022		newR1L-VC-034	newR1L-VC-034	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-44	SWE1-HMI-VC-023		newR1L-VC-035	newR1L-VC-035	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-45	SWE1-HMI-VC-024		newR1L-VC-036	newR1L-VC-036	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-46	SWE1-HMI-VC-025-01		newR1L-VC-037	newR1L-VC-037	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-47	SWE1-HMI-VC-025-02		newR1L-VC-038	newR1L-VC-038	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-48	SWE1-HMI-VC-025-03		newR1L-VC-039	newR1L-VC-039	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-49	SWE1-HMI-VC-025-04		newR1L-VC-040	newR1L-VC-040	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-50	SWE1-HMI-VC-025-05		newR1L-VC-041	newR1L-VC-041	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-51	SWE1-HMI-VC-026-01		newR1L-VC-042	newR1L-VC-042	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-52	SWE1-HMI-VC-026-02		newR1L-VC-043	newR1L-VC-043	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-53	SWE1-HMI-VC-026-03		newR1L-VC-044	newR1L-VC-044	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-54	SWE1-HMI-VC-027		newR1L-VC-045	newR1L-VC-045	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-55	SWE1-HMI-VC-028-01		newR1L-VC-046	newR1L-VC-046	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-56	SWE1-HMI-VC-028-02		newR1L-VC-047	newR1L-VC-047	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-57	SWE1-HMI-VC-029		newR1L-VC-048	newR1L-VC-048	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-58	SWE1-HMI-VC-030		newR1L-VC-049	newR1L-VC-049	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-59	SWE1-HMI-VC-031		newR1L-VC-050	newR1L-VC-050	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-60	SWE1-HMI-VC-032		newR1L-VC-051	newR1L-VC-051	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-61	SWE1-HMI-VC-033-01		newR1L-VC-052	newR1L-VC-052	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-62	SWE1-HMI-VC-033-02		newR1L-VC-053	newR1L-VC-053	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-63	SWE1-HMI-VC-034-01		newR1L-VC-054	newR1L-VC-054	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-64	SWE1-HMI-VC-034-02		newR1L-VC-055	newR1L-VC-055	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-65	SWE1-HMI-VC-035-01		newR1L-VC-056	newR1L-VC-056	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-66	SWE1-HMI-VC-035-02		newR1L-VC-057	newR1L-VC-057	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-67	SWE1-HMI-VC-035-03		newR1L-VC-058	newR1L-VC-058	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-68	SWE1-HMI-VC-036-01		newR1L-VC-059	newR1L-VC-059	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-69	SWE1-HMI-VC-036-02		newR1L-VC-060	newR1L-VC-060	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-70	SWE1-HMI-VC-037-01		newR1L-VC-061	newR1L-VC-061	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-71	SWE1-HMI-VC-037-02		newR1L-VC-062	newR1L-VC-062	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-72	SWE1-HMI-VC-038-01		newR1L-VC-063	newR1L-VC-063	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-73	SWE1-HMI-VC-038-02		newR1L-VC-064	newR1L-VC-064	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-74	SWE1-HMI-VC-038-03		newR1L-VC-065	newR1L-VC-065	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-75	SWE1-HMI-VC-038-03		newR1L-VC-066	newR1L-VC-066	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-76	SWE1-HMI-VC-038-04		newR1L-VC-067	newR1L-VC-067	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-77	SWE1-HMI-VC-038-05		newR1L-VC-068	newR1L-VC-068	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-78	SWE1-HMI-VC-038-05		newR1L-VC-069	newR1L-VC-069	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-79	SWE1-HMI-VC-039		newR1L-VC-070	newR1L-VC-070	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-80	SWE1-HMI-VC-040		newR1L-VC-071	newR1L-VC-071	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-81	SWE1-HMI-VC-041		newR1L-VC-072	newR1L-VC-072	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-82	SWE1-HMI-VC-042-01		newR1L-VC-073	newR1L-VC-073	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-83	SWE1-HMI-VC-042-02		newR1L-VC-074	newR1L-VC-074	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-84	SWE1-HMI-VC-043		newR1L-VC-075	newR1L-VC-075	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-85	SWE1-HMI-VC-044		newR1L-VC-076	newR1L-VC-076	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-86	SWE1-HMI-VC-045		newR1L-VC-077	newR1L-VC-077	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-87	SWE1-HMI-VC-046-01		newR1L-VC-078	newR1L-VC-078	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-88	SWE1-HMI-VC-046-02		newR1L-VC-079	newR1L-VC-079	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-89	SWE1-HMI-VC-046-03		newR1L-VC-080	newR1L-VC-080	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-90	SWE1-HMI-VC-046-04		newR1L-VC-081	newR1L-VC-081	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-91	SWE1-HMI-VC-046-05		newR1L-VC-082	newR1L-VC-082	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-92	SWE1-HMI-VC-046-05		newR1L-VC-083	newR1L-VC-083	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-93	SWE1-HMI-VC-047-01		newR1L-VC-084	newR1L-VC-084	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-94	SWE1-HMI-VC-047-02		newR1L-VC-085	newR1L-VC-085	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-95	SWE1-HMI-VC-047-03		newR1L-VC-086	newR1L-VC-086	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-96	SWE1-HMI-VC-047-04		newR1L-VC-087	newR1L-VC-087	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-97	SWE1-HMI-VC-048-01		newR1L-VC-088	newR1L-VC-088	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-98	SWE1-HMI-VC-048-02		newR1L-VC-089	newR1L-VC-089	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-99	SWE1-HMI-VC-048-02		newR1L-VC-090	newR1L-VC-090	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-100	SWE1-HMI-VC-049		newR1L-VC-091	newR1L-VC-091	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-101	SWE1-HMI-VC-050		newR1L-VC-092	newR1L-VC-092	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-102	SWE1-HMI-VC-051-01		newR1L-VC-093	newR1L-VC-093	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-103	SWE1-HMI-VC-051-02		newR1L-VC-094	newR1L-VC-094	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-104	SWE1-HMI-VC-051-03		newR1L-VC-095	newR1L-VC-095	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-105	SWE1-HMI-VC-052-01		newR1L-VC-096	newR1L-VC-096	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-106	SWE1-HMI-VC-052-02		newR1L-VC-097	newR1L-VC-097	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-107	SWE1-HMI-VC-053		newR1L-VC-098	newR1L-VC-098	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-108	SWE1-HMI-VC-054		newR1L-VC-099	newR1L-VC-099	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-109	SWE1-HMI-VC-055		newR1L-VC-100	newR1L-VC-100	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-110	SWE1-HMI-VC-056-01		newR1L-VC-101	newR1L-VC-101	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-111	SWE1-HMI-VC-056-02		newR1L-VC-102	newR1L-VC-102	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-112	SWE1-HMI-VC-057		newR1L-VC-103	newR1L-VC-103	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-113	SWE1-HMI-VC-058-01		newR1L-VC-104	newR1L-VC-104	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-114	SWE1-HMI-VC-058-02		newR1L-VC-105	newR1L-VC-105	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-115	SWE1-HMI-VC-058-03		newR1L-VC-106	newR1L-VC-106	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-116	SWE1-HMI-VC-058-03		newR1L-VC-107	newR1L-VC-107	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-117	SWE1-HMI-VC-059-01		newR1L-VC-108	newR1L-VC-108	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-118	SWE1-HMI-VC-059-02		newR1L-VC-109	newR1L-VC-109	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-119	SWE1-HMI-VC-060-01		newR1L-VC-110	newR1L-VC-110	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-120	SWE1-HMI-VC-060-02		newR1L-VC-111	newR1L-VC-111	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-121	SWE1-HMI-VC-061		newR1L-VC-112	newR1L-VC-112	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-122	SWE1-HMI-VC-062-01		newR1L-VC-113	newR1L-VC-113	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-123	SWE1-HMI-VC-062-02		newR1L-VC-114	newR1L-VC-114	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-124	SWE1-HMI-VC-062-02		newR1L-VC-115	newR1L-VC-115	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-125	SWE1-HMI-VC-063-01		newR1L-VC-116	newR1L-VC-116	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-126	SWE1-HMI-VC-063-02		newR1L-VC-117	newR1L-VC-117	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-127	SWE1-HMI-VC-063-02		newR1L-VC-118	newR1L-VC-118	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-128	SWE1-HMI-VC-064-01		newR1L-VC-119	newR1L-VC-119	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-129	SWE1-HMI-VC-064-01		newR1L-VC-120	newR1L-VC-120	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-130	SWE1-HMI-VC-064-02		newR1L-VC-121	newR1L-VC-121	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-131	SWE1-HMI-VC-064-03		newR1L-VC-122	newR1L-VC-122	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-132	SWE1-HMI-VC-064-03		newR1L-VC-123	newR1L-VC-123	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-133	SWE1-HMI-VC-065-01		newR1L-VC-124	newR1L-VC-124	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-134	SWE1-HMI-VC-065-02		newR1L-VC-125	newR1L-VC-125	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
-135	SWE1-HMI-VC-066		newR1L-VC-126	newR1L-VC-126	kept	kept（包內令已有者不改號）；**前綴 `newR1L-` 不合 R-G42 二之 `NR1L-`**，現行 delivered/ 之形制為 `NR1L-{ABBR}-{nnn}`
+10	SWE1-HMI-VC-001-01		newR1L-VC-001	NR1L-VC-001	renamed	R-VS95：前綴正名，數字部不動
+11	SWE1-HMI-VC-001-02		newR1L-VC-002	NR1L-VC-002	renamed	R-VS95：前綴正名，數字部不動
+12	SWE1-HMI-VC-001-03		newR1L-VC-003	NR1L-VC-003	renamed	R-VS95：前綴正名，數字部不動
+13	SWE1-HMI-VC-002		newR1L-VC-004	NR1L-VC-004	renamed	R-VS95：前綴正名，數字部不動
+14	SWE1-HMI-VC-003		newR1L-VC-005	NR1L-VC-005	renamed	R-VS95：前綴正名，數字部不動
+15	SWE1-HMI-VC-004		newR1L-VC-006	NR1L-VC-006	renamed	R-VS95：前綴正名，數字部不動
+16	SWE1-HMI-VC-005		newR1L-VC-007	NR1L-VC-007	renamed	R-VS95：前綴正名，數字部不動
+17	SWE1-HMI-VC-006		newR1L-VC-008	NR1L-VC-008	renamed	R-VS95：前綴正名，數字部不動
+18	SWE1-HMI-VC-007-01		newR1L-VC-009	NR1L-VC-009	renamed	R-VS95：前綴正名，數字部不動
+19	SWE1-HMI-VC-007-02		newR1L-VC-010	NR1L-VC-010	renamed	R-VS95：前綴正名，數字部不動
+20	SWE1-HMI-VC-007-03		newR1L-VC-011	NR1L-VC-011	renamed	R-VS95：前綴正名，數字部不動
+21	SWE1-HMI-VC-007-04		newR1L-VC-012	NR1L-VC-012	renamed	R-VS95：前綴正名，數字部不動
+22	SWE1-HMI-VC-007-05		newR1L-VC-013	NR1L-VC-013	renamed	R-VS95：前綴正名，數字部不動
+23	SWE1-HMI-VC-008		newR1L-VC-014	NR1L-VC-014	renamed	R-VS95：前綴正名，數字部不動
+24	SWE1-HMI-VC-009		newR1L-VC-015	NR1L-VC-015	renamed	R-VS95：前綴正名，數字部不動
+25	SWE1-HMI-VC-010		newR1L-VC-016	NR1L-VC-016	renamed	R-VS95：前綴正名，數字部不動
+26	SWE1-HMI-VC-011		newR1L-VC-017	NR1L-VC-017	renamed	R-VS95：前綴正名，數字部不動
+27	SWE1-HMI-VC-012-01		newR1L-VC-018	NR1L-VC-018	renamed	R-VS95：前綴正名，數字部不動
+28	SWE1-HMI-VC-012-02		newR1L-VC-019	NR1L-VC-019	renamed	R-VS95：前綴正名，數字部不動
+29	SWE1-HMI-VC-012-03		newR1L-VC-020	NR1L-VC-020	renamed	R-VS95：前綴正名，數字部不動
+30	SWE1-HMI-VC-013-01		newR1L-VC-021	NR1L-VC-021	renamed	R-VS95：前綴正名，數字部不動
+31	SWE1-HMI-VC-013-02		newR1L-VC-022	NR1L-VC-022	renamed	R-VS95：前綴正名，數字部不動
+32	SWE1-HMI-VC-013-03		newR1L-VC-023	NR1L-VC-023	renamed	R-VS95：前綴正名，數字部不動
+33	SWE1-HMI-VC-013-04		newR1L-VC-024	NR1L-VC-024	renamed	R-VS95：前綴正名，數字部不動
+34	SWE1-HMI-VC-014		newR1L-VC-025	NR1L-VC-025	renamed	R-VS95：前綴正名，數字部不動
+35	SWE1-HMI-VC-015		newR1L-VC-026	NR1L-VC-026	renamed	R-VS95：前綴正名，數字部不動
+36	SWE1-HMI-VC-016		newR1L-VC-027	NR1L-VC-027	renamed	R-VS95：前綴正名，數字部不動
+37	SWE1-HMI-VC-017		newR1L-VC-028	NR1L-VC-028	renamed	R-VS95：前綴正名，數字部不動
+38	SWE1-HMI-VC-018		newR1L-VC-029	NR1L-VC-029	renamed	R-VS95：前綴正名，數字部不動
+39	SWE1-HMI-VC-019-01		newR1L-VC-030	NR1L-VC-030	renamed	R-VS95：前綴正名，數字部不動
+40	SWE1-HMI-VC-019-02		newR1L-VC-031	NR1L-VC-031	renamed	R-VS95：前綴正名，數字部不動
+41	SWE1-HMI-VC-020		newR1L-VC-032	NR1L-VC-032	renamed	R-VS95：前綴正名，數字部不動
+42	SWE1-HMI-VC-021		newR1L-VC-033	NR1L-VC-033	renamed	R-VS95：前綴正名，數字部不動
+43	SWE1-HMI-VC-022		newR1L-VC-034	NR1L-VC-034	renamed	R-VS95：前綴正名，數字部不動
+44	SWE1-HMI-VC-023		newR1L-VC-035	NR1L-VC-035	renamed	R-VS95：前綴正名，數字部不動
+45	SWE1-HMI-VC-024		newR1L-VC-036	NR1L-VC-036	renamed	R-VS95：前綴正名，數字部不動
+46	SWE1-HMI-VC-025-01		newR1L-VC-037	NR1L-VC-037	renamed	R-VS95：前綴正名，數字部不動
+47	SWE1-HMI-VC-025-02		newR1L-VC-038	NR1L-VC-038	renamed	R-VS95：前綴正名，數字部不動
+48	SWE1-HMI-VC-025-03		newR1L-VC-039	NR1L-VC-039	renamed	R-VS95：前綴正名，數字部不動
+49	SWE1-HMI-VC-025-04		newR1L-VC-040	NR1L-VC-040	renamed	R-VS95：前綴正名，數字部不動
+50	SWE1-HMI-VC-025-05		newR1L-VC-041	NR1L-VC-041	renamed	R-VS95：前綴正名，數字部不動
+51	SWE1-HMI-VC-026-01		newR1L-VC-042	NR1L-VC-042	renamed	R-VS95：前綴正名，數字部不動
+52	SWE1-HMI-VC-026-02		newR1L-VC-043	NR1L-VC-043	renamed	R-VS95：前綴正名，數字部不動
+53	SWE1-HMI-VC-026-03		newR1L-VC-044	NR1L-VC-044	renamed	R-VS95：前綴正名，數字部不動
+54	SWE1-HMI-VC-027		newR1L-VC-045	NR1L-VC-045	renamed	R-VS95：前綴正名，數字部不動
+55	SWE1-HMI-VC-028-01		newR1L-VC-046	NR1L-VC-046	renamed	R-VS95：前綴正名，數字部不動
+56	SWE1-HMI-VC-028-02		newR1L-VC-047	NR1L-VC-047	renamed	R-VS95：前綴正名，數字部不動
+57	SWE1-HMI-VC-029		newR1L-VC-048	NR1L-VC-048	renamed	R-VS95：前綴正名，數字部不動
+58	SWE1-HMI-VC-030		newR1L-VC-049	NR1L-VC-049	renamed	R-VS95：前綴正名，數字部不動
+59	SWE1-HMI-VC-031		newR1L-VC-050	NR1L-VC-050	renamed	R-VS95：前綴正名，數字部不動
+60	SWE1-HMI-VC-032		newR1L-VC-051	NR1L-VC-051	renamed	R-VS95：前綴正名，數字部不動
+61	SWE1-HMI-VC-033-01		newR1L-VC-052	NR1L-VC-052	renamed	R-VS95：前綴正名，數字部不動
+62	SWE1-HMI-VC-033-02		newR1L-VC-053	NR1L-VC-053	renamed	R-VS95：前綴正名，數字部不動
+63	SWE1-HMI-VC-034-01		newR1L-VC-054	NR1L-VC-054	renamed	R-VS95：前綴正名，數字部不動
+64	SWE1-HMI-VC-034-02		newR1L-VC-055	NR1L-VC-055	renamed	R-VS95：前綴正名，數字部不動
+65	SWE1-HMI-VC-035-01		newR1L-VC-056	NR1L-VC-056	renamed	R-VS95：前綴正名，數字部不動
+66	SWE1-HMI-VC-035-02		newR1L-VC-057	NR1L-VC-057	renamed	R-VS95：前綴正名，數字部不動
+67	SWE1-HMI-VC-035-03		newR1L-VC-058	NR1L-VC-058	renamed	R-VS95：前綴正名，數字部不動
+68	SWE1-HMI-VC-036-01		newR1L-VC-059	NR1L-VC-059	renamed	R-VS95：前綴正名，數字部不動
+69	SWE1-HMI-VC-036-02		newR1L-VC-060	NR1L-VC-060	renamed	R-VS95：前綴正名，數字部不動
+70	SWE1-HMI-VC-037-01		newR1L-VC-061	NR1L-VC-061	renamed	R-VS95：前綴正名，數字部不動
+71	SWE1-HMI-VC-037-02		newR1L-VC-062	NR1L-VC-062	renamed	R-VS95：前綴正名，數字部不動
+72	SWE1-HMI-VC-038-01		newR1L-VC-063	NR1L-VC-063	renamed	R-VS95：前綴正名，數字部不動
+73	SWE1-HMI-VC-038-02		newR1L-VC-064	NR1L-VC-064	renamed	R-VS95：前綴正名，數字部不動
+74	SWE1-HMI-VC-038-03		newR1L-VC-065	NR1L-VC-065	renamed	R-VS95：前綴正名，數字部不動
+75	SWE1-HMI-VC-038-03		newR1L-VC-066	NR1L-VC-066	renamed	R-VS95：前綴正名，數字部不動
+76	SWE1-HMI-VC-038-04		newR1L-VC-067	NR1L-VC-067	renamed	R-VS95：前綴正名，數字部不動
+77	SWE1-HMI-VC-038-05		newR1L-VC-068	NR1L-VC-068	renamed	R-VS95：前綴正名，數字部不動
+78	SWE1-HMI-VC-038-05		newR1L-VC-069	NR1L-VC-069	renamed	R-VS95：前綴正名，數字部不動
+79	SWE1-HMI-VC-039		newR1L-VC-070	NR1L-VC-070	renamed	R-VS95：前綴正名，數字部不動
+80	SWE1-HMI-VC-040		newR1L-VC-071	NR1L-VC-071	renamed	R-VS95：前綴正名，數字部不動
+81	SWE1-HMI-VC-041		newR1L-VC-072	NR1L-VC-072	renamed	R-VS95：前綴正名，數字部不動
+82	SWE1-HMI-VC-042-01		newR1L-VC-073	NR1L-VC-073	renamed	R-VS95：前綴正名，數字部不動
+83	SWE1-HMI-VC-042-02		newR1L-VC-074	NR1L-VC-074	renamed	R-VS95：前綴正名，數字部不動
+84	SWE1-HMI-VC-043		newR1L-VC-075	NR1L-VC-075	renamed	R-VS95：前綴正名，數字部不動
+85	SWE1-HMI-VC-044		newR1L-VC-076	NR1L-VC-076	renamed	R-VS95：前綴正名，數字部不動
+86	SWE1-HMI-VC-045		newR1L-VC-077	NR1L-VC-077	renamed	R-VS95：前綴正名，數字部不動
+87	SWE1-HMI-VC-046-01		newR1L-VC-078	NR1L-VC-078	renamed	R-VS95：前綴正名，數字部不動
+88	SWE1-HMI-VC-046-02		newR1L-VC-079	NR1L-VC-079	renamed	R-VS95：前綴正名，數字部不動
+89	SWE1-HMI-VC-046-03		newR1L-VC-080	NR1L-VC-080	renamed	R-VS95：前綴正名，數字部不動
+90	SWE1-HMI-VC-046-04		newR1L-VC-081	NR1L-VC-081	renamed	R-VS95：前綴正名，數字部不動
+91	SWE1-HMI-VC-046-05		newR1L-VC-082	NR1L-VC-082	renamed	R-VS95：前綴正名，數字部不動
+92	SWE1-HMI-VC-046-05		newR1L-VC-083	NR1L-VC-083	renamed	R-VS95：前綴正名，數字部不動
+93	SWE1-HMI-VC-047-01		newR1L-VC-084	NR1L-VC-084	renamed	R-VS95：前綴正名，數字部不動
+94	SWE1-HMI-VC-047-02		newR1L-VC-085	NR1L-VC-085	renamed	R-VS95：前綴正名，數字部不動
+95	SWE1-HMI-VC-047-03		newR1L-VC-086	NR1L-VC-086	renamed	R-VS95：前綴正名，數字部不動
+96	SWE1-HMI-VC-047-04		newR1L-VC-087	NR1L-VC-087	renamed	R-VS95：前綴正名，數字部不動
+97	SWE1-HMI-VC-048-01		newR1L-VC-088	NR1L-VC-088	renamed	R-VS95：前綴正名，數字部不動
+98	SWE1-HMI-VC-048-02		newR1L-VC-089	NR1L-VC-089	renamed	R-VS95：前綴正名，數字部不動
+99	SWE1-HMI-VC-048-02		newR1L-VC-090	NR1L-VC-090	renamed	R-VS95：前綴正名，數字部不動
+100	SWE1-HMI-VC-049		newR1L-VC-091	NR1L-VC-091	renamed	R-VS95：前綴正名，數字部不動
+101	SWE1-HMI-VC-050		newR1L-VC-092	NR1L-VC-092	renamed	R-VS95：前綴正名，數字部不動
+102	SWE1-HMI-VC-051-01		newR1L-VC-093	NR1L-VC-093	renamed	R-VS95：前綴正名，數字部不動
+103	SWE1-HMI-VC-051-02		newR1L-VC-094	NR1L-VC-094	renamed	R-VS95：前綴正名，數字部不動
+104	SWE1-HMI-VC-051-03		newR1L-VC-095	NR1L-VC-095	renamed	R-VS95：前綴正名，數字部不動
+105	SWE1-HMI-VC-052-01		newR1L-VC-096	NR1L-VC-096	renamed	R-VS95：前綴正名，數字部不動
+106	SWE1-HMI-VC-052-02		newR1L-VC-097	NR1L-VC-097	renamed	R-VS95：前綴正名，數字部不動
+107	SWE1-HMI-VC-053		newR1L-VC-098	NR1L-VC-098	renamed	R-VS95：前綴正名，數字部不動
+108	SWE1-HMI-VC-054		newR1L-VC-099	NR1L-VC-099	renamed	R-VS95：前綴正名，數字部不動
+109	SWE1-HMI-VC-055		newR1L-VC-100	NR1L-VC-100	renamed	R-VS95：前綴正名，數字部不動
+110	SWE1-HMI-VC-056-01		newR1L-VC-101	NR1L-VC-101	renamed	R-VS95：前綴正名，數字部不動
+111	SWE1-HMI-VC-056-02		newR1L-VC-102	NR1L-VC-102	renamed	R-VS95：前綴正名，數字部不動
+112	SWE1-HMI-VC-057		newR1L-VC-103	NR1L-VC-103	renamed	R-VS95：前綴正名，數字部不動
+113	SWE1-HMI-VC-058-01		newR1L-VC-104	NR1L-VC-104	renamed	R-VS95：前綴正名，數字部不動
+114	SWE1-HMI-VC-058-02		newR1L-VC-105	NR1L-VC-105	renamed	R-VS95：前綴正名，數字部不動
+115	SWE1-HMI-VC-058-03		newR1L-VC-106	NR1L-VC-106	renamed	R-VS95：前綴正名，數字部不動
+116	SWE1-HMI-VC-058-03		newR1L-VC-107	NR1L-VC-107	renamed	R-VS95：前綴正名，數字部不動
+117	SWE1-HMI-VC-059-01		newR1L-VC-108	NR1L-VC-108	renamed	R-VS95：前綴正名，數字部不動
+118	SWE1-HMI-VC-059-02		newR1L-VC-109	NR1L-VC-109	renamed	R-VS95：前綴正名，數字部不動
+119	SWE1-HMI-VC-060-01		newR1L-VC-110	NR1L-VC-110	renamed	R-VS95：前綴正名，數字部不動
+120	SWE1-HMI-VC-060-02		newR1L-VC-111	NR1L-VC-111	renamed	R-VS95：前綴正名，數字部不動
+121	SWE1-HMI-VC-061		newR1L-VC-112	NR1L-VC-112	renamed	R-VS95：前綴正名，數字部不動
+122	SWE1-HMI-VC-062-01		newR1L-VC-113	NR1L-VC-113	renamed	R-VS95：前綴正名，數字部不動
+123	SWE1-HMI-VC-062-02		newR1L-VC-114	NR1L-VC-114	renamed	R-VS95：前綴正名，數字部不動
+124	SWE1-HMI-VC-062-02		newR1L-VC-115	NR1L-VC-115	renamed	R-VS95：前綴正名，數字部不動
+125	SWE1-HMI-VC-063-01		newR1L-VC-116	NR1L-VC-116	renamed	R-VS95：前綴正名，數字部不動
+126	SWE1-HMI-VC-063-02		newR1L-VC-117	NR1L-VC-117	renamed	R-VS95：前綴正名，數字部不動
+127	SWE1-HMI-VC-063-02		newR1L-VC-118	NR1L-VC-118	renamed	R-VS95：前綴正名，數字部不動
+128	SWE1-HMI-VC-064-01		newR1L-VC-119	NR1L-VC-119	renamed	R-VS95：前綴正名，數字部不動
+129	SWE1-HMI-VC-064-01		newR1L-VC-120	NR1L-VC-120	renamed	R-VS95：前綴正名，數字部不動
+130	SWE1-HMI-VC-064-02		newR1L-VC-121	NR1L-VC-121	renamed	R-VS95：前綴正名，數字部不動
+131	SWE1-HMI-VC-064-03		newR1L-VC-122	NR1L-VC-122	renamed	R-VS95：前綴正名，數字部不動
+132	SWE1-HMI-VC-064-03		newR1L-VC-123	NR1L-VC-123	renamed	R-VS95：前綴正名，數字部不動
+133	SWE1-HMI-VC-065-01		newR1L-VC-124	NR1L-VC-124	renamed	R-VS95：前綴正名，數字部不動
+134	SWE1-HMI-VC-065-02		newR1L-VC-125	NR1L-VC-125	renamed	R-VS95：前綴正名，數字部不動
+135	SWE1-HMI-VC-066		newR1L-VC-126	NR1L-VC-126	renamed	R-VS95：前綴正名，數字部不動

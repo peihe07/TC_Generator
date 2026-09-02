@@ -222,3 +222,9 @@ fingerprint:
   # 亦未跨 feature 借用 —— 跨 feature exemplar 之採認屬 Tier 2）。
   # 空清單是實況，不是遺漏；下一批若引入 exemplar，指紋即變，應當變。
   exemplar_sources: []
+
+# VS-SL-07 §1（R-VS94）：R-G42 二之 ABBR 宣告。
+# `lint_delivery_spec.py` 二令 F 欄為 `NR1L-{ABBR}-{nnn}` 且 ABBR = 本鍵；
+# 未宣告即判紅。本輪之前全庫無任一 feature 宣告本區塊。
+delivery:
+  tc_id_abbr: BLM

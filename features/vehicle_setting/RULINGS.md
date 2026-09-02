@@ -7489,3 +7489,43 @@ R-VS93  步驟可控狀態不得為 Pre
 **證據**：v4 沙盒稿實測 Pre 含 `The Vehicle Settings menu is open` 者 **90 列**，
 其中 Procedure 已插 `Press "Settings" on Menu Bar` 者 **52 列**（已修），未插者 **38 列**（未動）。
 修後「含該句且已插導覽」之列 **= 0**。
+
+---
+
+## 下放包 VS-SL-07 §0 之二條（**Pei 2026-09-02 授裁**，採 Tier 2 建議）
+
+> **編號回報（R-VF102 一）**：落檔時實測主線最大 **`R-VS93`**，實得 **`R-VS94`／`R-VS95`**，與所令之 +1 相符。
+> 條文逐字轉錄自 `down/20260902_VS-SL-07.md` §0，`{live}` 依上述取號代入，其餘一字不動（FO §8.1）。
+
+### R-VS94 —— `delivery.tc_id_abbr = VS`（feature 級）
+
+```text
+R-VS94   delivery.tc_id_abbr = VS（feature 級）
+  vehicle_setting 之 TC ID 前綴為 NR1L-VS-；VF230 與 VF665 兩本共用同一序列，
+  VF665 自 VF230 之最大號 +1 起編。序依 R-G42（D 欄升冪）。
+```
+
+**執行層註**：`features/vehicle_setting/feature.yaml` 已增 `delivery.tc_id_abbr: VS`
+（`bed_lowering` 補 `BLM`、`vehicle_category` 補 `VC`，皆取自其 F 欄既有實況）。
+**本輪之前全庫無任一 feature 宣告 `delivery:` 區塊。**
+vf230 實得 **`NR1L-VS-001`–`NR1L-VS-438`**；VF665 依本條自 **439** 起編。
+
+**惟「序依 R-G42（D 欄升冪）」於本簿未能照辦，本層改依列序（文件序），待追認** ——
+實測 (1) 本簿 D 欄**非非遞減**；(2) R-G42 之官方比較器
+`scripts/lint_delivery_spec.py:req_key()` 對本簿 D 值**拋 TypeError**：
+`SWE1-VC-6AuxSwitches-002` → `('SWE',1,'VC',6,'AuxSwitches',2)`、
+`SWE1-VC-AutoDoorLocks-015` → `('SWE',1,'VC','AutoDoorLocks',15)`，第 4 位 int 與 str 不可比。
+**「D 欄升冪」在本批資料上未定義。** 詳見 `up/20260902_VS-SL-07.md` §5。
+
+### R-VS95 —— `newR1L-` 前綴正名為 `NR1L-`
+
+```text
+R-VS95   newR1L- 前綴正名為 NR1L-
+  BL／VC 之 F 欄 newR1L-{ABBR}-{nnn} 一律改 NR1L-{ABBR}-{nnn}，數字部不動。
+  時點依據：兩本 E 欄（TestRail）全空，改號無外部引用成本。
+  對照表 status = renamed，old_F → new_F 逐列留痕。
+```
+
+**執行層註**：BL **151 列**、VC **126 列**全數改畢，數字部未動
+（`newR1L-BLM-001` → `NR1L-BLM-001` 等）。E 欄全空之事實本層已複驗（151／126 列皆空）。
+對照表逐列帶 `old_F` → `new_F`，`status = renamed`。
