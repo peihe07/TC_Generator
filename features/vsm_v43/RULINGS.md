@@ -385,6 +385,44 @@ Layer 2 v2 依 R-VT23(d) 鎖定：19 組，組構與命名即裁；各組列數�
 新列（DR 回覆／037）依 spec_section 或 chapter 落入既有組，無處可放先修表。
 ```
 
+### R-VT25 —— 上繳 11 採認；K-14／K-15 裁；b2 批次序（含解得率排序）
+
+```
+R-VT25（分析層裁定 2026-09-02，上繳 11）
+(a) E82–E85 採認；framework v2 表之「待 Pei 准」標籤依 R-VT24 改「鎖定 (R-VT24)」（b2 包首項）。
+(b) K-15：交付說明占比兩數並列 —— 整體 47%（325 分母）與扣 PROXI Configuration 後 59%（260 分母），
+    並註 PROXI 組走 IN §8.7.5(c) `PROXI <Param> = <值>` 路徑、非 CAN 解得缺口（執行層建議採）。
+(c) K-14：准新法 —— 自 `1.14.1` 表列解析 ID↔參數名對照，再以參數名逐字對 `1.14.2.1.NN` 節內文比對
+    （純字面、可判，非硬配）；命中者補 `spec_section`，仍並列者維持 none。
+(d) b2 批次序（分析層依含解得率，執行層 §八-2 數據）：
+    FCW 15 → Side Distance Warning 10 → LDW 18 → EPB 19 → Park Sense 17 → Privacy 14 →
+    Exterior Lighting 32 → Rearview 10 → Wiper 5 → Auto Park Brake 5 → Units 27 →
+    Door Lock 30 → Language 4 → Setup Ack 13 → Menu Access 2 →
+    Clock and Time 25（16%，置後待 DR-VT4）→ PROXI Configuration 65（獨立型批，寫法另定）。
+    一 Test Set 一批；三批零修訂後綠色通道（同 R-VL25(a)）。
+(e) stale_ref_r4 三列生成條款：被刪條件子句逐字標出於 reasoning（引 R4 修訂項），TC 不含該子句。
+(f) 隔離十一列之 spec_section 保留原值採認（不生成故不致誤用；解隔離時複驗）。
+```
+
+### R-VT26 —— b2-1 覆核通過（綠色通道 1／3）；K-16 前綴定案；K-17 准
+
+```
+R-VT26（分析層裁定 2026-09-02，上繳 12；實檔抽驗 -456 逐字）
+(a) b2-1（FCW 15）覆核通過，零修訂；綠色通道計數 1／3。
+    §九-4 之非重複判斷（Setting1／Setting2 市場分支，Country_Code 前置不同）採認；
+    §九-5(b) Not_Request 不生成採認（§8.4.2）。
+(b) K-16 定案：spec 錨前綴以本批已用字串為 canonical ——
+    `Vehicle_Setup_Management_by_VP-LTM_R1L_TBM_VF665_V43_R4`。token 化規則明文：
+    空格→底線；括號去除；`_-_` 縮為 `-`；連接贅詞 `with` 去除 ——
+    與 vsm_v42 R-VL19(a) 之 `VP-LTM_R1_Low` 已凍風格一致（跨線一致性優先於嚴格逐字檔名）。
+    b1／b2-1 不改；往後各批逐字用此串。
+(c) K-17 准：去重音與空白正規化得用於 K-14 對照鍵比對（限比對鍵，不改任何 verbatim 內容）；
+    `.02`／`.10`／`.11`／`.15`／`.16`（及 `.17` 之重音面）補試，命中者補 spec_section。
+(d) HMI Settings List r251 選項標籤與規格不符（`Only Active Braking` 家族 vs `Audio` 家族）
+    入 DR-VT2 佐證；本案依 IN §8.6 取規格，不改。
+(e) b2-2 = Side Distance Warning 10 leaf 開跑（R-VT25(d) 序位二）。
+```
+
 ---
 
 ## 取號紀錄
@@ -406,3 +444,5 @@ Layer 2 v2 依 R-VT23(d) 鎖定：19 組，組構與命名即裁；各組列數�
 | R-VT22 | 2026-09-02 | 上繳 09 §九 sha 止於 R-VT21；本檔錨點實測 21 |
 | R-VT23 | 2026-09-02 | 上繳 10 §八 sha 止於 R-VT22；本檔錨點實測 22 |
 | R-VT24 | 2026-09-02 | 本檔錨點實測 23 |
+| R-VT25 | 2026-09-02 | 上繳 11 §七 sha 止於 R-VT23；本檔錨點實測 24 |
+| R-VT26 | 2026-09-02 | 上繳 12 §八 sha 止於 R-VT25；本檔錨點實測 25 |
