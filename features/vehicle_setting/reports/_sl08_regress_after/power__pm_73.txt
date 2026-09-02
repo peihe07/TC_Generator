@@ -1,0 +1,8 @@
+features/power/delivered/pm_73.xlsx  [基線（警示計數）]
+  警  二 feature.yaml 未宣告 delivery.tc_id_abbr
+  警  三 Test Group 實為 ['Power Management']，應為 `Power`（037 全名）
+  警  五 檔名不合客戶檔名形制（含尾綴或 sandbox 名）
+  警  六 delivered/ 無 DELIVERY_NOTE.md
+  註  一(b) 未比對母體（feature.yaml 無 delivery.leaf_ids）；簿上無 TC 之需求列 1
+  註  二 tc_id 非依列序遞增（PARTIAL 本保留舊 ID 時屬允許，須附對照表）
+  註  七 PENDING 267 格，MANIFEST note 載例外 R- 號

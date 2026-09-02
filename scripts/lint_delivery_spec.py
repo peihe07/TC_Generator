@@ -67,8 +67,15 @@ def sha256_of(path: Path) -> str:
 
 
 def req_key(s: str) -> tuple:
-    # Numeric tokens compare as int, alphabetic tokens as str: "-10" sorts after "-2".
-    return tuple(int(t) if t.isdigit() else t
+    """req_id 之排序鍵。各段為**型別可比之二元組**：數字段 `(0, int)`、字串段 `(1, str)`。
+
+    數字段仍按值比（`-10` 排在 `-2` 之後），字串段按字典序，
+    **同位一數一字時數字在前** —— 此前二者直接混列，遇同位不同型即
+    `TypeError: '<' not supported between instances of 'int' and 'str'`
+    （實例：`SWE1-VC-6AuxSwitches-002` 與 `SWE1-VC-AutoDoorLocks-015`，
+    第 4 段一為 `6`、一為 `AutoDoorLocks`）。**純同型資料之相對序不變。**
+    """
+    return tuple((0, int(t)) if t.isdigit() else (1, t)
                  for t in re.findall(r"\d+|[A-Za-z]+", s))
 
 

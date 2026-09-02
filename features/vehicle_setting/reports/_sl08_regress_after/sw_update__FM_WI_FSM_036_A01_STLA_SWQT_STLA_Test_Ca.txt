@@ -1,0 +1,10 @@
+features/sw_update/delivered/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_SWUpdate_20260830.xlsx  [基線（警示計數）]
+  警  二 TC ID 形制：319 列不合 NR1L-{ABBR}-{nnn}（首例 row 10 `newR1L-SU-001`）
+  警  二 feature.yaml 未宣告 delivery.tc_id_abbr
+  警  五 MANIFEST.tsv 無此檔之列
+  警  六 delivered/ 無 DELIVERY_NOTE.md
+  警  六 未結 DR 清單缺（同目錄無 DR／PENDING 檔，DELIVERY_NOTE 亦無 DR- 段）
+  警  七 PENDING 568 格且 MANIFEST note 無 R- 例外號
+  註  一(b) 未比對母體（feature.yaml 無 delivery.leaf_ids）；簿上無 TC 之需求列 0
+
+PASS: 基線外判紅 0（掃 4 檔，基線 4 列）

@@ -1,0 +1,10 @@
+features/ics_management/delivered/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ICSManagement_20260830.xlsx  [基線（警示計數）]
+  警  二 feature.yaml 未宣告 delivery.tc_id_abbr
+  警  三 Test Group 實為 ['ICS Integration']，應為 `ICS Management`（037 全名）
+  警  四 Author 非 PeiPYHsu：31 列
+  警  五 檔名 {FeatureName} `ICSManagement` ≠ Test Group 去空白 `ICSIntegration`
+  警  五 MANIFEST.tsv sha256 與檔不符
+  警  六 delivered/ 無 DELIVERY_NOTE.md
+  警  六 未結 DR 清單缺（同目錄無 DR／PENDING 檔，DELIVERY_NOTE 亦無 DR- 段）
+  註  一(b) 未比對母體（feature.yaml 無 delivery.leaf_ids）；簿上無 TC 之需求列 0
+  註  七 PENDING 6 格，MANIFEST note 載例外 R- 號
