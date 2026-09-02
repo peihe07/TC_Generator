@@ -23,6 +23,19 @@ DR-VT1 為其唯一解，Pei 現裁先不送 —— 故本節在 037 到齊前�
 > **本節留白是裁決結果，不是待辦遺漏。** 下放包 05 §五 明列
 > 「framework Layer 2 被填入任何內容（待 037，不得預填）」為升級條件。
 
+> **加註（2026-09-02，R-VT18(e)）—— 改走 SYSRA 暫代線**
+> Pei 裁「送＋三」：**DR-VT1 裁定送出**（發送屬 Pei），**同時本線不等回覆**，
+> 以 SYSRA 暫代母體進 P4。R-VT4 之「止於 P0–P3」與 R-VT17(b) 之掛起**均已解除**。
+> - **暫代母體 = 295 列**（Functional 507 扣 DocID `VF655_V43_R3` 171 ＋ DocID 空 41；
+>   兩批隔離待 DR-VT2，確認誤植者屆時以增補批併入，**不回溯改已生成之 TC**）。
+>   落 `data/leaves_interim.tsv`；隔離清單 `data/isolated_vf655.tsv`／`data/isolated_nodocid.tsv`。
+> - **Layer 2 之聚合材料**（`chapter_for_vf` 完整值 **72 組** ＋ 標題例 ＋ 詞頻 ＋ 訊號可執行度）
+>   落 `data/layer2_material_v43.md`（執行層出材料）；**草案歸分析層，鎖定歸 Pei**。
+> - **本節仍不填任何 Test Set** —— 06 包 §四明列「任何聚類命名出現於執行層產出」為升級條件。
+> - **重錨條款（R-VT18(c)）**：暫代期間 TC 之 D 欄用 `Sys-RA-VF665_V43_VSM-…` 實名，
+>   Remarks 逐列註 `Provisional: SYSRA-anchored (R-VT18); re-anchor upon 037 (DR-VT1)`；
+>   **重錨完成前不得交付**，除非 Pei 另裁。
+
 ## 附：SYSRA `chapter_for_vf` 分布（**對照用，非 Layer 2 依據**）
 
 自 `data/sysra_v43_functional.tsv` 之分母 295 列（Functional 507 列扣除

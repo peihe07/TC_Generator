@@ -1,0 +1,669 @@
+sheet_row	sys_ra_feature_id	title_source_description	chapter_for_vf	vf_suffix	document_id	signal_names_in_description	n_signals	n_solved_signals	tc_status
+404	Sys-RA-VF665_V43_VSM-403	In the following Ignition Working Conditions: Ignition On Ignition Pre Start Ignition Start Ignition Cranking Ignition On Engine On the user can mange the vehicle setup menu through TLM_Display.GUI.	01.11.01.01	VF_89	VF665_V43_R3	TLM_Display.GUI	1	0	interim_leaf
+405	Sys-RA-VF665_V43_VSM-404	"In case of transition FROM ""Ignition On"" or ""Ignition Pre Start"" or ""Ignition Start"" or ""Ignition Cranking"" or ""Ignition On Engine On"" TO ""Ignition Pre Off"" or ""Ignition Off"" Ignition Working Conditions: TLM shall store the last setup settings."	01.11.01.01	VF_845	VF665_V43_R3		0	0	interim_leaf
+408	Sys-RA-VF665_V43_VSM-407	"IF ""Cornering_Lights"" PROXI parameter is equal to ""absent"" THEN TLM shall not display the Cornering Light menu item and the user can not perform any setting."	01.11.01.01.01	VF_405	VF665_V43_R3	Cornering_Light | Cornering_Lights	2	0	interim_leaf
+409	Sys-RA-VF665_V43_VSM-408	"IF ""Cornering_Lights"" PROXI parameter is equal to ""present"" THEN TLM shall display the Cornering Light menu item and the user can perform setting."	01.11.01.01.01	VF_406	VF665_V43_R3	Cornering_Light | Cornering_Lights	2	0	interim_leaf
+410	Sys-RA-VF665_V43_VSM-409	"IF the user sets ""Cornering_Enable.Req"" internal signals to ""Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req"" B-CAN signal equal to ""True"" and sends this signal to IPC"	01.11.01.01.01	VF_401	VF665_V43_R3	Cornering_Enable.Req | TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req	2	1	interim_leaf
+411	Sys-RA-VF665_V43_VSM-410	"IF the user sets ""Cornering_Enable.Req"" internal signals as ""Not_Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req"" B-CAN signal equal to ""False"" and sends this signal to IPC"	01.11.01.01.01	VF_402	VF665_V43_R3	Cornering_Enable.Req | TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req	2	1	interim_leaf
+412	Sys-RA-VF665_V43_VSM-411	"WHEN TLM receives ""IPC_VEHICLE_SETUP.CorneringLightsEnable"" message THEN TLM updates the Cornering information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.01	VF_403	VF665_V43_R3	IPC_VEHICLE_SETUP.CorneringLightsEnable | TLM_Vehicle_Setup_Menu.Info	2	0	interim_leaf
+415	Sys-RA-VF665_V43_VSM-414	"IF ""Greeting_Lights_Menù"" PROXI parameter is equal to ""Absent"" THEN TLM shall not display the Greeting Light menu item and the user can not perform any setting."	01.11.01.01.02	VF_934	VF665_V43_R3	Greeting_Lights_Menù	1	0	interim_leaf
+416	Sys-RA-VF665_V43_VSM-415	"IF ""Greeting_Lights_Menù"" PROXI parameter is equal to ""Present"" THEN TLM shall display the Greeting Light menu item and the user can perform setting."	01.11.01.01.02	VF_935	VF665_V43_R3	Greeting_Lights_Menù	1	0	interim_leaf
+417	Sys-RA-VF665_V43_VSM-416	"IF the user sets ""GreetingLights_Enable.Req"" internal signals to ""Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req"" B-CAN signal equal to ""True"" and sends this signal to IPC"	01.11.01.01.02	VF_936	VF665_V43_R3	GreetingLights_Enable.Req | TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req	2	1	interim_leaf
+418	Sys-RA-VF665_V43_VSM-417	"IF the user sets ""GreetingLights_Enable.Req"" internal signals as ""Not_Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req"" B-CAN signal equal to ""False"" and sends this signal to IPC"	01.11.01.01.02	VF_937	VF665_V43_R3	GreetingLights_Enable.Req | TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req	2	1	interim_leaf
+419	Sys-RA-VF665_V43_VSM-418	"WHEN TLM receives ""IPC_VEHICLE_SETUP.GreetingLightsEnable"" message THEN TLM updates the Greeting Lights information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.02	VF_938	VF665_V43_R3	IPC_VEHICLE_SETUP.GreetingLightsEnable | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+421	Sys-RA-VF665_V43_VSM-420	"IF ""Half_Torque_Sensibility"" PROXI parameter is equal to ""Leve 3"" THEN TLM shall display the "" Lanse Sense Warning 1 "" menu item and the user can perform setting with the following options: Early, Late"	01.11.01.01.03	VF_2832	VF665_V43_R3	Half_Torque_Sensibility	1	0	interim_leaf
+422	Sys-RA-VF665_V43_VSM-421	"IF the user sets ""LDW_Sensibility_Setting.Req"" internal signals to ""Early"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req"" B-CAN signal equal to ""Early"" and sends this signal to IPC"	01.11.01.01.03	VF_2833	VF665_V43_R3	LDW_Sensibility_Setting.Req | TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	2	1	interim_leaf
+423	Sys-RA-VF665_V43_VSM-422	"IF the user sets ""LDW_Sensibility_Setting.Req"" internal signals to ""Late"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req"" B-CAN signal equal to ""Late"" and sends this signal to IPC"	01.11.01.01.03	VF_2834	VF665_V43_R3	LDW_Sensibility_Setting.Req | TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	2	1	interim_leaf
+424	Sys-RA-VF665_V43_VSM-423	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.LDW_Sensibility"" message THEN TLM updates the LDW Sensibility information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.03	VF_2835	VF665_V43_R3	IPC_VEHICLE_SETUP2.LDW_Sensibility | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+425	Sys-RA-VF665_V43_VSM-424	"IF ""Half_Torque_Sensibility"" PROXI parameter is equal to ""Leve 2"" THEN TLM shall display the "" Lanse Sense Warning 2"" menu item and the user can perform setting with the following options: Early, Med, Late"	01.11.01.01.03	VF_2480	VF665_V43_R3	Half_Torque_Sensibility	1	0	interim_leaf
+426	Sys-RA-VF665_V43_VSM-425	"IF the user sets ""LDW_Sensibility_Setting.Req"" internal signals to ""Early"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req"" B-CAN signal equal to ""Early"" and sends this signal to IPC"	01.11.01.01.03	VF_2481	VF665_V43_R3	LDW_Sensibility_Setting.Req | TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	2	1	interim_leaf
+427	Sys-RA-VF665_V43_VSM-426	"IF the user sets ""LDW_Sensibility_Setting.Req"" internal signals to ""Med"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req"" B-CAN signal equal to ""Med"" and sends this signal to IPC"	01.11.01.01.03	VF_2483	VF665_V43_R3	LDW_Sensibility_Setting.Req | TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	2	1	interim_leaf
+428	Sys-RA-VF665_V43_VSM-427	"IF the user sets ""LDW_Sensibility_Setting.Req"" internal signals to ""Late"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req"" B-CAN signal equal to ""Late"" and sends this signal to IPC"	01.11.01.01.03	VF_2482	VF665_V43_R3	LDW_Sensibility_Setting.Req | TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	2	1	interim_leaf
+429	Sys-RA-VF665_V43_VSM-428	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.LDW_Sensibility"" message THEN TLM updates the LDW Sensibility information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.03	VF_2487	VF665_V43_R3	IPC_VEHICLE_SETUP2.LDW_Sensibility | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+431	Sys-RA-VF665_V43_VSM-430	"IF ""Half_HMI_Setting"" PROXI parameter is equal to ""Leve 3"" THEN TLM shall display the "" Lanse Sense Strenght 1 "" menu item and the user can perform setting with the following options: Low, High"	01.11.01.01.04	VF_2847	VF665_V43_R3	Half_HMI_Setting	1	0	interim_leaf
+432	Sys-RA-VF665_V43_VSM-431	"IF the user sets ""LDW_Intensity_Setting.Req"" internal signals to ""Low"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req"" B-CAN signal equal to ""Low"" and sends this signal to IPC"	01.11.01.01.04	VF_2848	VF665_V43_R3	LDW_Intensity_Setting.Req | TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	2	1	interim_leaf
+433	Sys-RA-VF665_V43_VSM-432	"IF the user sets ""LDW_Intensity_Setting.Req"" internal signals to ""High"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req"" B-CAN signal equal to ""High"" and sends this signal to IPC"	01.11.01.01.04	VF_2849	VF665_V43_R3	LDW_Intensity_Setting.Req | TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	2	1	interim_leaf
+434	Sys-RA-VF665_V43_VSM-433	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.LDW_Intensity"" message THEN TLM updates the LDW Sensibility information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.04	VF_2850	VF665_V43_R3	IPC_VEHICLE_SETUP2.LDW_Intensity | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+435	Sys-RA-VF665_V43_VSM-434	"IF ""Half_HMI_Setting"" PROXI parameter is equal to ""Leve 2"" THEN TLM shall display the "" Lanse Sense Strenght 2"" menu item and the user can perform setting with the following options: Low, Med, High"	01.11.01.01.04	VF_2489	VF665_V43_R3	Half_HMI_Setting	1	0	interim_leaf
+436	Sys-RA-VF665_V43_VSM-435	"IF the user sets ""LDW_Intensity_Setting.Req"" internal signals to ""Low"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req"" B-CAN signal equal to ""Low"" and sends this signal to IPC"	01.11.01.01.04	VF_2490	VF665_V43_R3	LDW_Intensity_Setting.Req | TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	2	1	interim_leaf
+437	Sys-RA-VF665_V43_VSM-436	"IF the user sets ""LDW_Intensity_Setting.Req"" internal signals to ""Med"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req"" B-CAN signal equal to ""Med"" and sends this signal to IPC"	01.11.01.01.04	VF_2491	VF665_V43_R3	LDW_Intensity_Setting.Req | TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	2	1	interim_leaf
+438	Sys-RA-VF665_V43_VSM-437	"IF the user sets ""LDW_Intensity_Setting.Req"" internal signals to ""High"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req"" B-CAN signal equal to ""High"" and sends this signal to IPC"	01.11.01.01.04	VF_2492	VF665_V43_R3	LDW_Intensity_Setting.Req | TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	2	1	interim_leaf
+439	Sys-RA-VF665_V43_VSM-438	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.LDW_Intensity"" message THEN TLM updates the LDW Sensibility information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.04	VF_2493	VF665_V43_R3	IPC_VEHICLE_SETUP2.LDW_Intensity | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+441	Sys-RA-VF665_V43_VSM-440	"IF ""Side_Distance_Warning"" PROXI parameters is equal to ""Absent"" THEN TLM shall not display the Side Distance Warning menu item and the user can not perform any setting."	01.11.01.01.05	VF_1873	VF665_V43_R3	Side_Distance_Warning	1	0	interim_leaf
+442	Sys-RA-VF665_V43_VSM-441	"IF ""Side_Distance_Warning"" PROXI parameter is equal to ""Present"" THEN TLM shall display the Side Distance Warning ""Setting"" and ""Chime Volume"" menu items and the user can perform setting."	01.11.01.01.05	VF_1877	VF665_V43_R3	Side_Distance_Warning	1	0	interim_leaf
+444	Sys-RA-VF665_V43_VSM-443	"IF the user sets ""Sdw_Setting.Req"" internal signals to ""Off"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.Sdw_Req"" B-CAN signal equal to ""Off"" and sends this signal to IPC"	01.11.01.01.05	VF_1980	VF665_V43_R3	Sdw_Setting.Req | TELEMATIC_VEHICLE_SETUP.Sdw_Req	2	1	interim_leaf
+445	Sys-RA-VF665_V43_VSM-444	"IF the user sets ""Sdw_Setting.Req"" internal signals to ""Sound"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.Sdw_Req"" B-CAN signal equal to ""Sound"" and sends this signal to IPC"	01.11.01.01.05	VF_1977	VF665_V43_R3	Sdw_Setting.Req | TELEMATIC_VEHICLE_SETUP.Sdw_Req	2	1	interim_leaf
+446	Sys-RA-VF665_V43_VSM-445	"IF the user sets ""Sdw_Setting.Req"" internal signals to ""Sound+Display"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.Sdw_Req"" B-CAN signal equal to ""Sound+Display"" and sends this signal to IPC"	01.11.01.01.05	VF_1978	VF665_V43_R3	Sdw_Setting.Req | TELEMATIC_VEHICLE_SETUP.Sdw_Req	2	1	interim_leaf
+447	Sys-RA-VF665_V43_VSM-446	"WHEN TLM receives ""IPC_VEHICLE_SETUP.Sdw"" message THEN TLM updates the Side Distance Warning information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.05	VF_1981	VF665_V43_R3	IPC_VEHICLE_SETUP.Sdw | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+449	Sys-RA-VF665_V43_VSM-448	"IF the user sets ""Sdw_Chime_Volume_Setting.Req"" internal signals to ""Low"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req"" B-CAN signal equal to ""Low"" and sends this signal to IPC"	01.11.01.01.05	VF_1983	VF665_V43_R3	Sdw_Chime_Volume_Setting.Req | TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req	2	1	interim_leaf
+450	Sys-RA-VF665_V43_VSM-449	"IF the user sets ""Sdw_Chime_Volume_Setting.Req"" internal signals to ""Medium"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req"" B-CAN signal equal to ""Medium"" and sends this signal to IPC"	01.11.01.01.05	VF_1985	VF665_V43_R3	Sdw_Chime_Volume_Setting.Req | TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req	2	1	interim_leaf
+451	Sys-RA-VF665_V43_VSM-450	"IF the user sets ""Sdw_Chime_Volume_Setting.Req"" internal signals to ""High"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req"" B-CAN signal equal to ""High"" and sends this signal to IPC"	01.11.01.01.05	VF_1986	VF665_V43_R3	Sdw_Chime_Volume_Setting.Req | TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req	2	1	interim_leaf
+452	Sys-RA-VF665_V43_VSM-451	"WHEN TLM receives ""IPC_VEHICLE_SETUP.SdwChimeVolume"" message THEN TLM updates the Side Distance Warning information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.05	VF_1987	VF665_V43_R3	IPC_VEHICLE_SETUP.Sdw | IPC_VEHICLE_SETUP.SdwChimeVolume | TLM_Vehicle_Setup_Menu.Info	3	2	interim_leaf
+454	Sys-RA-VF665_V43_VSM-453	"IF ""Forward_Collision_Mitigation"" PROXI parameter is equal to ""Full Speed Forward Collision Warning with Mitigation"" THEN TLM shall display the ""Forward Collision Warinig Setting"" and ""Forward Collision Warning Sensitivity"" menu item and the user can perform setting."	01.11.01.01.06	VF_3319	VF665_V43_R3	Forward_Collision_Mitigation	1	0	interim_leaf
+456	Sys-RA-VF665_V43_VSM-455	"IF ""Country_Code"" PROXI parameter is equal to a country of NAFTA or LATAM market (according to Market Configuration Table) THEN TLM shall display the "" Forward Collision Warning Setting1"" menu item and the user can perform setting with the following options: Off, Audio, Audio_Brake"	01.11.01.01.06	VF_3321	VF665_V43_R3	Country_Code	1	0	interim_leaf
+457	Sys-RA-VF665_V43_VSM-456	"IF the user sets ""FSCWPlus_Setting.Req"" internal signals to ""Off "" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req"" B-CAN signal equal to ""Off "" and sends this signal to IPC"	01.11.01.01.06	VF_3322	VF665_V43_R3	FSCWPlus_Setting.Req | TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	2	1	interim_leaf
+458	Sys-RA-VF665_V43_VSM-457	"IF the user sets ""FSCWPlus_Setting.Req"" internal signals to ""Audio"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req"" B-CAN signal equal to ""Audio"" and sends this signal to IPC"	01.11.01.01.06	VF_3323	VF665_V43_R3	FSCWPlus_Setting.Req | TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	2	1	interim_leaf
+459	Sys-RA-VF665_V43_VSM-458	"IF the user sets ""FSCWPlus_Setting.Req"" internal signals to ""Audio_Brake"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req"" B-CAN signal equal to ""Audio_Brake"" and sends this signal to IPC"	01.11.01.01.06	VF_3324	VF665_V43_R3	FSCWPlus_Setting.Req | TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	2	1	interim_leaf
+460	Sys-RA-VF665_V43_VSM-459	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.FSFCWPlusSetting "" message THEN TLM updates the Forward Collision Warning information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.06	VF_3325	VF665_V43_R3	IPC_VEHICLE_SETUP2.FSFCWPlusSetting | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+461	Sys-RA-VF665_V43_VSM-460	"IF ""Country_Code""PROXI parameter is not equal to a country of NAFTA/LATAM market (according to Market Configuration Table) THEN TLM shall display the "" Forward Collision Warning Setting2"" menu item and the user can perform setting with the following options: Off, Brake, Audio_Brake"	01.11.01.01.06	VF_3326	VF665_V43_R3	Country_Code	1	0	interim_leaf
+462	Sys-RA-VF665_V43_VSM-461	"IF the user sets ""FSCWPlus_Setting.Req"" internal signals to ""Off "" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req"" B-CAN signal equal to ""Off "" and sends this signal to IPC"	01.11.01.01.06	VF_3327	VF665_V43_R3	FSCWPlus_Setting.Req | TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	2	1	interim_leaf
+463	Sys-RA-VF665_V43_VSM-462	"IF the user sets ""FSCWPlus_Setting.Req"" internal signals to ""Brake "" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req"" B-CAN signal equal to ""Brake "" and sends this signal to IPC"	01.11.01.01.06	VF_3328	VF665_V43_R3	FSCWPlus_Setting.Req | TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	2	1	interim_leaf
+464	Sys-RA-VF665_V43_VSM-463	"IF the user sets ""FSCWPlus_Setting.Req"" internal signals to ""Audio_Brake "" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req"" B-CAN signal equal to ""Audio_Brake "" and sends this signal to IPC"	01.11.01.01.06	VF_3329	VF665_V43_R3	FSCWPlus_Setting.Req | TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	2	1	interim_leaf
+465	Sys-RA-VF665_V43_VSM-464	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.FSFCWPlusSetting "" message THEN TLM updates the Forward Collision Warning information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.06	VF_3330	VF665_V43_R3	IPC_VEHICLE_SETUP2.FSFCWPlusSetting | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+467	Sys-RA-VF665_V43_VSM-466	"IF the user sets ""FSCWPlus_Activation_Mode_Setting.Req"" internal signals to ""Near"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req "" B-CAN signal equal to ""Near"" and sends this signal to IPC"	01.11.01.01.06	VF_3332	VF665_V43_R3	FSCWPlus_Activation_Mode_Setting.Req | TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req	2	1	interim_leaf
+468	Sys-RA-VF665_V43_VSM-467	"IF the user sets ""FSCWPlus_Activation_Mode_Setting.Req"" internal signals to ""Med"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req "" B-CAN signal equal to ""Med"" and sends this signal to IPC"	01.11.01.01.06	VF_3333	VF665_V43_R3	FSCWPlus_Activation_Mode_Setting.Req | TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req	2	1	interim_leaf
+469	Sys-RA-VF665_V43_VSM-468	"IF the user sets ""FSCWPlus_Activation_Mode_Setting.Req"" internal signals to ""Far"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req "" B-CAN signal equal to ""Far"" and sends this signal to IPC"	01.11.01.01.06	VF_3334	VF665_V43_R3	FSCWPlus_Activation_Mode_Setting.Req | TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req	2	1	interim_leaf
+470	Sys-RA-VF665_V43_VSM-469	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode "" message THEN TLM updates the Forward Collision Warning information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.06	VF_3335	VF665_V43_R3	IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+472	Sys-RA-VF665_V43_VSM-471	"IF ""Rain_Sensor"" PROXI parameter is equal to ""present"" THEN TLM shall display the Rain Sensor menu item and the user can perform setting."	01.11.01.01.07	VF_481	VF665_V43_R3	Rain_Sensor	1	0	interim_leaf
+473	Sys-RA-VF665_V43_VSM-472	"IF the user sets ""Rain_Sensor_Level_Setting.Req"" internal signals to ""Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req"" B-CAN signal equal to ""Enable"" and sends this signal to IPC"	01.11.01.01.07	VF_482	VF665_V43_R3	Rain_Sensor | Rain_Sensor_Level_Setting.Req | TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req	3	0	interim_leaf
+474	Sys-RA-VF665_V43_VSM-473	"IF the user sets ""Rain_Sensor_Level_Setting.Req"" internal signals to ""Not_Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req"" B-CAN signal equal to ""Not_Enable"" and sends this signal to IPC"	01.11.01.01.07	VF_483	VF665_V43_R3	Rain_Sensor | Rain_Sensor_Level_Setting.Req | TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req	3	0	interim_leaf
+475	Sys-RA-VF665_V43_VSM-474	"IF ""Rain_Sensor"" PROXI parameter is equal to ""absent"" THEN TLM shall not display the Rain Sensor menu item and the user can not perform any setting."	01.11.01.01.07	VF_480	VF665_V43_R3	Rain_Sensor	1	0	interim_leaf
+476	Sys-RA-VF665_V43_VSM-475	"WHEN TLM receives ""IPC_VEHICLE_SETUP.RainSensorLevel"" message THEN TLM updates the Rain Sensor information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.07	VF_486	VF665_V43_R3	IPC_VEHICLE_SETUP.RainSensorLevel | TLM_Vehicle_Setup_Menu.Info	2	0	interim_leaf
+479	Sys-RA-VF665_V43_VSM-478	TLM shall display the Clock Setting menu item and the user can perform setting.	01.11.01.01.08.01	VF_519	VF665_V43_R3		0	0	interim_leaf
+480	Sys-RA-VF665_V43_VSM-479	"IF the user sets ""Hour1_Setting.Req"" internal signals THEN TLM updates and sends the Hour information to VF456 through ""Hour1_Setting.Info"" internal signal"	01.11.01.01.08.01	VF_522	VF665_V43_R3	Hour1_Setting.Info | Hour1_Setting.Req	2	0	interim_leaf
+482	Sys-RA-VF665_V43_VSM-481	"IF the user sets ""Hour2_Setting.Req"" internal signals THEN TLM updates and sends the Hour information to VF456 through ""Hour2_Setting.Info"" internal signal"	01.11.01.01.08.01	VF_709	VF665_V43_R3	Hour2_Setting.Info | Hour2_Setting.Req	2	0	interim_leaf
+484	Sys-RA-VF665_V43_VSM-483	"IF the user sets ""Minute1_Setting.Req"" internal signals THEN TLM updates and sends the Minute information to VF456 through ""Minute1_Setting.Info"" internal signal"	01.11.01.01.08.01	VF_523	VF665_V43_R3	Minute1_Setting.Info | Minute1_Setting.Req	2	0	interim_leaf
+486	Sys-RA-VF665_V43_VSM-485	"IF the user sets ""Minute2_Setting.Req"" internal signals THEN TLM updates and sends the Minute information to VF456 through ""Minute1_Setting.Info"" internal signal"	01.11.01.01.08.01	VF_710	VF665_V43_R3	Minute1_Setting.Info | Minute2_Setting.Req	2	0	interim_leaf
+489	Sys-RA-VF665_V43_VSM-488	TLM shall display the Hour Mode menu item and the user can perform setting.	01.11.01.01.08.02	VF_514	VF665_V43_R3		0	0	interim_leaf
+490	Sys-RA-VF665_V43_VSM-489	"IF the user sets ""Hour_Mode_Setting.Req"" internal signals to ""0_24_h"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.HourMode_Req"" B-CAN signal equal to ""0_24_h"" and sends this signal to IPC"	01.11.01.01.08.02	VF_515	VF665_V43_R3	Hour_Mode_Setting.Req | TELEMATIC_VEHICLE_SETUP.HourMode_Req	2	1	interim_leaf
+491	Sys-RA-VF665_V43_VSM-490	"IF the user sets ""Hour_Mode_Setting.Req"" internal signals to ""0_12_h"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.HourMode_Req"" B-CAN signal equal to ""0_12_h"" and sends this signal to IPC"	01.11.01.01.08.02	VF_516	VF665_V43_R3	Hour_Mode_Setting.Req | TELEMATIC_VEHICLE_SETUP.HourMode_Req	2	1	interim_leaf
+492	Sys-RA-VF665_V43_VSM-491	"WHEN TLM receives ""IPC_VEHICLE_SETUP.HourMode"" message THEN TLM updates the Hour Mode information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.08.02	VF_517	VF665_V43_R3	IPC_VEHICLE_SETUP.HourMode | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+494	Sys-RA-VF665_V43_VSM-493	"IF ""Cluster_Display_Type"" proxi parameter is equal to ""Base Display"" THEN TLM shall not display the Set Data menu item and the user can not perform any setting."	01.11.01.01.08.03	VF_718	VF665_V43_R3	Cluster_Display_Type	1	0	interim_leaf
+495	Sys-RA-VF665_V43_VSM-494	ELSE THEN TLM shall display the Set Data menu item and the user can not perform any setting.	01.11.01.01.08.03	VF_726	VF665_V43_R3		0	0	interim_leaf
+496	Sys-RA-VF665_V43_VSM-495	"IF the user sets ""Day1_Setting.Req"" internal signals THEN TLM updates and sends the Day information to VF456 through ""Day1_Setting.Info"" internal signal"	01.11.01.01.08.03	VF_521	VF665_V43_R3	Day1_Setting.Info | Day1_Setting.Req	2	0	interim_leaf
+498	Sys-RA-VF665_V43_VSM-497	"IF the user sets ""Day2_Setting.Req"" internal signals THEN TLM updates and sends the Day information to VF456 through ""Day2_Setting.Info"" internal signal"	01.11.01.01.08.03	VF_711	VF665_V43_R3	Day2_Setting.Info | Day2_Setting.Req	2	0	interim_leaf
+500	Sys-RA-VF665_V43_VSM-499	"IF the user sets ""Month1_Setting.Req"" internal signals THEN TLM updates and sends the Month information to VF456 through ""Month1_Setting.Info"" internal signal"	01.11.01.01.08.03	VF_524	VF665_V43_R3	Month1_Setting.Info | Month1_Setting.Req	2	0	interim_leaf
+502	Sys-RA-VF665_V43_VSM-501	"IF the user sets ""Month2_Setting.Req"" internal signals THEN TLM updates and sends the Month information to VF456 through ""Month2_Setting.Info"" internal signal"	01.11.01.01.08.03	VF_712	VF665_V43_R3	Month2_Setting.Info | Month2_Setting.Req	2	0	interim_leaf
+504	Sys-RA-VF665_V43_VSM-503	"IF the user sets ""Year1_Setting.Req"" internal signals THEN TLM updates and sends the Year information to VF456 through ""Year1_Setting.Info"" internal signal"	01.11.01.01.08.03	VF_525	VF665_V43_R3	Year1_Setting.Info | Year1_Setting.Req	2	0	interim_leaf
+506	Sys-RA-VF665_V43_VSM-505	"IF the user sets ""Year2_Setting.Req"" internal signals THEN TLM updates and sends the Year information to VF456 through ""Year2_Setting.Info"" internal signal"	01.11.01.01.08.03	VF_713	VF665_V43_R3	Year2_Setting.Info | Year2_Setting.Req	2	0	interim_leaf
+508	Sys-RA-VF665_V43_VSM-507	"IF the user sets ""Year3_Setting.Req"" internal signals THEN TLM updates and sends the Year information to VF456 through ""Year3_Setting.Info"" internal signal"	01.11.01.01.08.03	VF_714	VF665_V43_R3	Year3_Setting.Info | Year3_Setting.Req	2	0	interim_leaf
+510	Sys-RA-VF665_V43_VSM-509	"IF the user sets ""Year4_Setting.Req"" internal signals THEN TLM updates and sends the Year information to VF456 through ""Year4_Setting.Info"" internal signal"	01.11.01.01.08.03	VF_715	VF665_V43_R3	Year4_Setting.Info | Year4_Setting.Req	2	0	interim_leaf
+512	Sys-RA-VF665_V43_VSM-511	"TLM receives ""Time_Date_Setting_Feedback.Info"" from VF456 to update time and date information in the setup menu."	01.11.01.01.08.03	VF_2829	VF665_V43_R3	Time_Date_Setting_Feedback.Info	1	0	interim_leaf
+514	Sys-RA-VF665_V43_VSM-513	"IF ""Auto_Close_Menu"" PROXI parameter is equal to ""Disabled"" THEN TLM shall not display the Speed Lock Door menu item and the user can not perform any settin"	01.11.01.01.09	VF_1390	VF665_V43_R3	Auto_Close_Menu	1	0	interim_leaf
+515	Sys-RA-VF665_V43_VSM-514	"IF ""Auto_Close_Menu"" PROXI parameter is equal to ""Enabled"" THEN TLM shall display the Speed Lock Door menu item and the user can perform setting."	01.11.01.01.09	VF_528	VF665_V43_R3	Auto_Close_Menu	1	0	interim_leaf
+516	Sys-RA-VF665_V43_VSM-515	"IF the user sets ""Speed_Lock_Door_Enable.Req"" internal signals to ""Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req"" B-CAN signal equal to ""Enable"" and sends this signal to IPC"	01.11.01.01.09	VF_553	VF665_V43_R3	Speed_Lock_Door_Enable.Req | TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req	2	1	interim_leaf
+517	Sys-RA-VF665_V43_VSM-516	"IF the user sets ""Speed_Lock_Door_Enable.Req"" internal signals to ""Not_Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req"" B-CAN signal equal to ""Not_Enable"" and sends this signal to IPC"	01.11.01.01.09	VF_554	VF665_V43_R3	Speed_Lock_Door_Enable.Req | TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req	2	1	interim_leaf
+518	Sys-RA-VF665_V43_VSM-517	"WHEN TLM receives ""IPC_VEHICLE_SETUP.SpeedLockDoorEnable"" message THEN TLM updates the Speed Lock Door information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.09	VF_555	VF665_V43_R3	IPC_VEHICLE_SETUP.SpeedLockDoorEnable | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+520	Sys-RA-VF665_V43_VSM-519	The LTM/ETM shall display the Unit Custom setting to allow the customer the ability to modify the measurement units setting.	01.11.01.01.10	VF_3566	VF665_V43_R3		0	0	interim_leaf
+522	Sys-RA-VF665_V43_VSM-521	"IF ""Odo_Units Change"" PROXI parameter is equal to ""absent"" THEN TLM shall not display the Distance Measurement Unit menu item and the user can not perform any setting."	01.11.01.01.10.01	VF_3568	VF665_V43_R3	Odo_Units Change	1	0	interim_leaf
+523	Sys-RA-VF665_V43_VSM-522	"IF ""Odo_Units Change"" PROXI parameter is equal to ""present"" THEN TLM shall display the Distance Measurement Unit menu item and the user can perform setting."	01.11.01.01.10.01	VF_3569	VF665_V43_R3	Odo_Units Change	1	0	interim_leaf
+524	Sys-RA-VF665_V43_VSM-523	"IF the user sets ""Distance_Unit_Setting.Req"" internal signals to ""Km"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req"" B-CAN signal equal to ""Km"" and sends this signal to IPC"	01.11.01.01.10.01	VF_3570	VF665_V43_R3	Distance_Unit_Setting.Req | TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req	2	1	interim_leaf
+525	Sys-RA-VF665_V43_VSM-524	"IF the user sets ""Distance_Unit_Setting.Req"" internal signals as ""Miles"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req"" B-CAN signal equal to ""Miles"" and sends this signal to IPC"	01.11.01.01.10.01	VF_3571	VF665_V43_R3	Distance_Unit_Setting.Req | TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req	2	1	interim_leaf
+526	Sys-RA-VF665_V43_VSM-525	"WHEN TLM receives ""IPC_VEHICLE_SETUP.DistanceUnit"" message THEN TLM updates the Distance Measurement Unit information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.10.01	VF_3572	VF665_V43_R3	IPC_VEHICLE_SETUP.DistanceUnit | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+528	Sys-RA-VF665_V43_VSM-527	"IF ""Fuel_Type"" PROXI parameter is different to ""CNG"" or ""GPL"" THEN TLM shall display the Consumption Measurement Unit menu item and the user can perform setting."	01.11.01.01.10.02	VF_3574	VF665_V43_R3	Fuel_Type	1	0	interim_leaf
+529	Sys-RA-VF665_V43_VSM-528	"IF ""Odo_Units_Change"" PROXI parameter is equal to ""present"" AND ""Distance_Unit_Setting.Req"" is equal to ""km"" THEN TLM shall display only the menu items ""Km_Per_Litre"" and ""Litres_Per_100Km"""	01.11.01.01.10.02	VF_3575	VF665_V43_R3	Distance_Unit_Setting.Req | Odo_Units_Change	2	0	interim_leaf
+530	Sys-RA-VF665_V43_VSM-529	"IF ""Consumption_Unit_Setting.Req"" is equal to ""Km_Per_Litre"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req"" to ""Km_Per_Litre"" value."	01.11.01.01.10.02	VF_3576	VF665_V43_R3	Consumption_Unit_Setting.Req | TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req	2	1	interim_leaf
+531	Sys-RA-VF665_V43_VSM-530	"IF ""Consumption_Unit_Setting.Req"" is equal to ""Litres_Per_100Km"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req"" to ""Litres_Per_100Km"" value."	01.11.01.01.10.02	VF_3577	VF665_V43_R3	Consumption_Unit_Setting.Req | TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req	2	1	interim_leaf
+532	Sys-RA-VF665_V43_VSM-531	"IF ""Odo_Units_Change"" PROXI parameter is equal to ""present"" AND ""Distance_Unit_Setting.Req"" is equal to ""miles"" THEN TLM shall display only the Consumption Unit menu item related to ""mpg"""	01.11.01.01.10.02	VF_3578	VF665_V43_R3	Distance_Unit_Setting.Req | Odo_Units_Change	2	0	interim_leaf
+534	Sys-RA-VF665_V43_VSM-533	"IF ""Country_Code"" PROXI parameter is equal to ""United States of America"" OR ""GRENADA"" OR ""BURMA"" OR ""MEXICO"" OR ""CANADA"" OR ""PUERTO RICO"" OR ""LIBERIA"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req"" to ""Miles_Per_Gallon_US"" value."	01.11.01.01.10.02	VF_3580	VF665_V43_R3	Country_Code | TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req	2	1	interim_leaf
+535	Sys-RA-VF665_V43_VSM-534	"ELSE THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req"" to ""Miles_Per_Gallon_UK"" value."	01.11.01.01.10.02	VF_3581	VF665_V43_R3	TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req	1	1	interim_leaf
+536	Sys-RA-VF665_V43_VSM-535	"WHEN TLM receives ""IPC_VEHICLE_SETUP.ConsumptionUnit"" message THEN TLM updates the Consumption Measurement Unit information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.10.02	VF_3582	VF665_V43_R3	IPC_VEHICLE_SETUP.ConsumptionUnit | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+537	Sys-RA-VF665_V43_VSM-536	ELSE THEN TLM shall not display the Consumption Measurement Unit menu item and the user can not perform setting.	01.11.01.01.10.02	VF_3583	VF665_V43_R3		0	0	interim_leaf
+539	Sys-RA-VF665_V43_VSM-538	"IF ""External_Temperature_Sensor"" PROXI parameter is equal to ""absent"" THEN TLM shall not display the External Temperature Measurement Unit menu item and the user can not perform any setting."	01.11.01.01.10.03	VF_3585	VF665_V43_R3	External_Temperature_Sensor	1	0	interim_leaf
+540	Sys-RA-VF665_V43_VSM-539	"IF ""External_Temperature_Sensor"" PROXI parameter is equal to ""present"" THEN TLM shall display the External Temperature Measurement Unit menu item and the user can perform setting."	01.11.01.01.10.03	VF_3586	VF665_V43_R3	External_Temperature_Sensor	1	0	interim_leaf
+541	Sys-RA-VF665_V43_VSM-540	"IF the user sets ""Temperature_Unit_Setting.Req"" internal signals to ""°C"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req"" B-CAN signal equal to ""°C"" and sends this signal to IPC"	01.11.01.01.10.03	VF_3587	VF665_V43_R3	TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req | Temperature_Unit_Setting.Req	2	1	interim_leaf
+542	Sys-RA-VF665_V43_VSM-541	"IF the user sets ""Temperature_Unit_Setting.Req"" internal signals to ""°F"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req"" B-CAN signal equal to ""°F"" and sends this signal to IPC"	01.11.01.01.10.03	VF_3588	VF665_V43_R3	TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req | Temperature_Unit_Setting.Req	2	1	interim_leaf
+543	Sys-RA-VF665_V43_VSM-542	"WHEN TLM receives ""IPC_VEHICLE_SETUP.TemperatureUnit"" message THEN TLM updates the External TemperatureMeasurement Unit information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.10.03	VF_3589	VF665_V43_R3	IPC_VEHICLE_SETUP.TemperatureUnit | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+545	Sys-RA-VF665_V43_VSM-544	"IF ""Tyre_Pressure_Unit_Menu"" PROXI parameter is equal to ""Absent"" THEN TLM shall not display the Tyre Pressure Unit menu item and the user can not perform any setting."	01.11.01.01.10.04	VF_3591	VF665_V43_R3	Tyre_Pressure_Unit_Menu	1	0	interim_leaf
+546	Sys-RA-VF665_V43_VSM-545	"IF ""Tyre_Pressure_Unit_Menu"" PROXI parameter is equal to ""Present"" THEN TLM shall display the Tyre Pressure Unit menu item and the user can perform setting."	01.11.01.01.10.04	VF_3592	VF665_V43_R3	Tyre_Pressure_Unit_Menu	1	0	interim_leaf
+547	Sys-RA-VF665_V43_VSM-546	"IF the user sets ""Tyre_Pressure_Unit_Setting.Req"" internal signals to "" kPa"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req"" B-CAN signal equal to ""kPa"" and sends this signal to IPC"	01.11.01.01.10.04	VF_3593	VF665_V43_R3	TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req | Tyre_Pressure_Unit_Setting.Req	2	1	interim_leaf
+548	Sys-RA-VF665_V43_VSM-547	"IF the user sets ""Tyre_Pressure_Unit_Setting.Req"" internal signals to "" psi"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req"" B-CAN signal equal to "" psi"" and sends this signal to IPC"	01.11.01.01.10.04	VF_3594	VF665_V43_R3	TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req | Tyre_Pressure_Unit_Setting.Req	2	1	interim_leaf
+549	Sys-RA-VF665_V43_VSM-548	"IF the user sets ""TyrePressureUnit_Req"" internal signals to "" bar"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req"" B-CAN signal equal to ""bar"" and sends this signal to IPC"	01.11.01.01.10.04	VF_3595	VF665_V43_R3	TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req	1	1	interim_leaf
+550	Sys-RA-VF665_V43_VSM-549	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.TyrePressureUnit"" message THEN TLM updates the Tyre Pressure Unit information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.10.04	VF_3596	VF665_V43_R3	IPC_VEHICLE_SETUP2.TyrePressureUnit | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+553	Sys-RA-VF665_V43_VSM-552	"display the ""Language"" menu item. display the language SETS described in ""Market Configuration Table"" document according to ""Country_Code"" PROXI parameter"	01.11.01.01.11	VF_3180	VF665_V43_R3	Country_Code	1	0	interim_leaf
+554	Sys-RA-VF665_V43_VSM-553	"IF the user sets a language througt ""Language_Setting.Req"" internal signal THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req"" to the corresponding selected value."	01.11.01.01.11	VF_1276	VF665_V43_R3	Language_Setting.Req | TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req	2	1	interim_leaf
+555	Sys-RA-VF665_V43_VSM-554	"WHEN TLM receives ""IPC_VEHICLE_SETUP.LanguageSelection"" message THEN TLM updates the Language information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.11	VF_1277	VF665_V43_R3	IPC_VEHICLE_SETUP.LanguageSelection | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+556	Sys-RA-VF665_V43_VSM-555	IF TLM receives a negative Ack from IPC THEN the TLM has to maintain the language previously selected.	01.11.01.01.11	VF_1278	VF665_V43_R3		0	0	interim_leaf
+558	Sys-RA-VF665_V43_VSM-557	"IF ""DRL_Menù_Enable"" PROXI parameter is equal to ""Disabled"" THEN TLM shall not display the DRL menu item and the user can not perform any setting."	01.11.01.01.12	VF_444	VF665_V43_R3	DRL_Menù_Enable	1	0	interim_leaf
+559	Sys-RA-VF665_V43_VSM-558	"IF ""DRL_Menù_Enable"" PROXI parameter is equal to ""Enabled"" THEN TLM shall display the DRL menu item and the user can perform setting."	01.11.01.01.12	VF_445	VF665_V43_R3	DRL_Menù_Enable	1	0	interim_leaf
+560	Sys-RA-VF665_V43_VSM-559	"IF the user sets ""DRL_Enable.Req"" internal signals to ""Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.DRLEnable_Req"" B-CAN signal equal to ""True"" and sends this signal to IPC"	01.11.01.01.12	VF_446	VF665_V43_R3	DRL_Enable.Req | TELEMATIC_VEHICLE_SETUP.DRLEnable_Req	2	1	interim_leaf
+561	Sys-RA-VF665_V43_VSM-560	"IF the user sets ""DRL_Enable.Req"" internal signals to ""Disable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.DRLEnable_Req"" B-CAN signal equal to ""False"" and sends this signal to IPC"	01.11.01.01.12	VF_447	VF665_V43_R3	DRL_Enable.Req | TELEMATIC_VEHICLE_SETUP.DRLEnable_Req	2	1	interim_leaf
+562	Sys-RA-VF665_V43_VSM-561	"WHEN TLM receives ""IPC_VEHICLE_SETUP.DRLEnable"" message THEN TLM updates the DRL information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.12	VF_448	VF665_V43_R3	IPC_VEHICLE_SETUP.DRLEnable | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+564	Sys-RA-VF665_V43_VSM-563	"IF ""Twilight_Sensor"" PROXI parameter is equal to ""absent"" THEN TLM shall not display the External Light Sensor menu item and the user can not perform any setting."	01.11.01.01.13	VF_488	VF665_V43_R3	Twilight_Sensor	1	0	interim_leaf
+565	Sys-RA-VF665_V43_VSM-564	"IF ""Twilight_Sensor"" PROXI parameter is equal to ""present"" THEN TLM shall display the External Light Sensor menu item and the user can perform setting."	01.11.01.01.13	VF_489	VF665_V43_R3	Twilight_Sensor	1	0	interim_leaf
+566	Sys-RA-VF665_V43_VSM-565	"IF the user sets ""External_Light_Sensor_Level.Req"" internal signal to ""Level_1"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req"" B-CAN signal equal to ""Level_1"" and sends this signal to IPC"	01.11.01.01.13	VF_503	VF665_V43_R3	External_Light_Sensor_Level.Req | TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req	2	1	interim_leaf
+567	Sys-RA-VF665_V43_VSM-566	"IF the user sets ""External_Light_Sensor_Level_Setting.Req"" internal signal to ""Level_2"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req"" B-CAN signal equal to ""Level_2"" and sends this signal to IPC"	01.11.01.01.13	VF_504	VF665_V43_R3	External_Light_Sensor_Level_Setting.Req | TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req	2	1	interim_leaf
+568	Sys-RA-VF665_V43_VSM-567	"IF the user sets ""External_Light_Sensor_Level_Setting.Req"" internal signal to ""Level_3"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req"" B-CAN signal equal to ""Level_3"" and sends this signal to IPC"	01.11.01.01.13	VF_505	VF665_V43_R3	External_Light_Sensor_Level_Setting.Req | TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req	2	1	interim_leaf
+569	Sys-RA-VF665_V43_VSM-568	"WHEN TLM receives ""IPC_VEHICLE_SETUP.ExternalLightSensorLevel"" message THEN TLM updates the External light Sensor information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.13	VF_506	VF665_V43_R3	IPC_VEHICLE_SETUP.ExternalLightSensorLevel | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+571	Sys-RA-VF665_V43_VSM-570	TLM shall display the Headlights Off Delay menu item and the user can perform setting.	01.11.01.01.14	VF_2122	VF665_V43_R3		0	0	interim_leaf
+572	Sys-RA-VF665_V43_VSM-571	"IF the user sets ""Headlights_Off_Delay_Setting.Req"" internal signal to "" 0 "" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req "" B-CAN signal equal to "" 0 "" and sends this signal to IPC"	01.11.01.01.14	VF_2123	VF665_V43_R3	Headlights_Off_Delay_Setting.Req | TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	2	1	interim_leaf
+573	Sys-RA-VF665_V43_VSM-572	"IF the user sets ""Headlights_Off_Delay_Setting.Req "" internal signal to "" 30 "" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req "" B-CAN signal equal to "" 30 "" and sends this signal to IPC"	01.11.01.01.14	VF_2124	VF665_V43_R3	Headlights_Off_Delay_Setting.Req | TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	2	1	interim_leaf
+574	Sys-RA-VF665_V43_VSM-573	"IF the user sets ""Headlights_Off_Delay_Setting.Req "" internal signal to "" 60 "" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req "" B-CAN signal equal to "" 60 "" and sends this signal to IPC"	01.11.01.01.14	VF_2125	VF665_V43_R3	Headlights_Off_Delay_Setting.Req | TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	2	1	interim_leaf
+575	Sys-RA-VF665_V43_VSM-574	"IF the user sets ""Headlights_Off_Delay_Setting.Req "" internal signal to "" 90 "" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req "" B-CAN signal equal to "" 90 "" and sends this signal to IPC"	01.11.01.01.14	VF_2126	VF665_V43_R3	Headlights_Off_Delay_Setting.Req | TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	2	1	interim_leaf
+576	Sys-RA-VF665_V43_VSM-575	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.HeadlightsOffDelay"" message THEN TLM updates the Headlights Off Delay information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.14	VF_2137	VF665_V43_R3	IPC_VEHICLE_SETUP2.HeadlightsOffDelay | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+578	Sys-RA-VF665_V43_VSM-577	"IF ""CAN node 51 (LBSS)"" == ""Absent"" OR ""CAN node 52 (RBSS)"" == ""Absent"" THEN TLM shall not display the Blind Spot Detection menu item and the user can not perform any setting."	01.11.01.01.15	VF_1158	VF665_V43_R3		0	0	interim_leaf
+579	Sys-RA-VF665_V43_VSM-578	"IF ""CAN node 51 (LBSS)"" == ""Present"" AND ""CAN node 52 (RBSS)"" == ""Present"" THEN TLM shall display the Blind Spot Detection menu item and the user can perform setting."	01.11.01.01.15	VF_1157	VF665_V43_R3		0	0	interim_leaf
+580	Sys-RA-VF665_V43_VSM-579	"IF the user sets ""Blind_Spot_Detection_Setting.Req"" internal signal to ""Enable_LED"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.BSDEnable_Req"" B-CAN signal equal to ""Enable_LED"" and sends this signal to IPC"	01.11.01.01.15	VF_1159	VF665_V43_R3	TELEMATIC_VEHICLE_SETUP.BSDEnable_Req	1	0	interim_leaf
+581	Sys-RA-VF665_V43_VSM-580	"IF the user sets ""Blind_Spot_Detection_Setting.Req"" internal signal to ""Enable_ LED_Chime"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.BSDEnable_Req"" B-CAN signal equal to ""Enable_ LED_Chime"" and sends this signal to IPC"	01.11.01.01.15	VF_1160	VF665_V43_R3	TELEMATIC_VEHICLE_SETUP.BSDEnable_Req	1	0	interim_leaf
+582	Sys-RA-VF665_V43_VSM-581	"IF the user sets ""Blind_Spot_Detection_Setting.Req"" internal signal to ""Not_Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.BSDEnable_Req"" B-CAN signal equal to ""Not_Enable"" and sends this signal to IPC"	01.11.01.01.15	VF_1161	VF665_V43_R3	TELEMATIC_VEHICLE_SETUP.BSDEnable_Req	1	0	interim_leaf
+583	Sys-RA-VF665_V43_VSM-582	"WHEN TLM receives ""IPC_VEHICLE_SETUP.BSDEnable"" message THEN TLM updates the Blind Spot information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.15	VF_1162	VF665_V43_R3	IPC_VEHICLE_SETUP.BSDEnable | TLM_Vehicle_Setup_Menu.Info	2	0	interim_leaf
+585	Sys-RA-VF665_V43_VSM-584	"IF ""Passive_Entry_Menu"" PROXI parameter is equal to ""Absent"" THEN TLM shall not display the Passive Entry menu item and the user can not perform any setting."	01.11.01.01.16	VF_1392	VF665_V43_R3	Passive_Entry_Menu	1	0	interim_leaf
+586	Sys-RA-VF665_V43_VSM-585	"IF ""Passive_Entry_Menu"" PROXI parameter is equal to ""Present"" THEN TLM shall display the Passive Entry menu item and the user can perform setting."	01.11.01.01.16	VF_1393	VF665_V43_R3	Passive_Entry_Menu	1	0	interim_leaf
+587	Sys-RA-VF665_V43_VSM-586	"IF the user sets ""Passive_Entry_Enable.Req"" internal signals to ""On"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req"" B-CAN signal equal to ""On"" and sends this signal to IPC"	01.11.01.01.16	VF_1418	VF665_V43_R3	Passive_Entry_Enable.Req | TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req	2	1	interim_leaf
+588	Sys-RA-VF665_V43_VSM-587	"IF the user sets ""Passive_Entry_Enable.Req"" internal signals to ""Off"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req"" B-CAN signal equal to ""Off"" and sends this signal to IPC"	01.11.01.01.16	VF_1419	VF665_V43_R3	Passive_Entry_Enable.Req | TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req	2	1	interim_leaf
+589	Sys-RA-VF665_V43_VSM-588	"WHEN TLM receives ""IPC_VEHICLE_SETUP.PassiveEntry"" message THEN TLM updates the Passive Entry information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.16	VF_1420	VF665_V43_R3	IPC_VEHICLE_SETUP.PassiveEntry | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+591	Sys-RA-VF665_V43_VSM-590	"IF ""Remote_Door_Unlock_Menu"" PROXI parameter is equal to ""Absent"" THEN TLM shall not display the Remote Door Unlock menu item and the user can not perform any setting."	01.11.01.01.17	VF_1422	VF665_V43_R3	Remote_Door_Unlock_Menu	1	0	interim_leaf
+592	Sys-RA-VF665_V43_VSM-591	"IF ""Remote_Door_Unlock_Menu"" PROXI parameter is equal to ""Present"" THEN TLM shall display the Remote Door Unlock menu item and the user can perform setting."	01.11.01.01.17	VF_1423	VF665_V43_R3	Remote_Door_Unlock_Menu	1	0	interim_leaf
+593	Sys-RA-VF665_V43_VSM-592	"IF the user sets ""Remote_Door_Unlock_Setting.Req"" internal signals to ""Driver"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock._Req"" B-CAN signal equal to ""Driver"" and sends this signal to IPC"	01.11.01.01.17	VF_1448	VF665_V43_R3	Remote_Door_Unlock_Setting.Req | TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock	2	0	interim_leaf
+594	Sys-RA-VF665_V43_VSM-593	"IF the user sets ""Remote_Door_Unlock_Setting.Req"" internal signals to ""All"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock._Req"" B-CAN signal equal to ""All"" and sends this signal to IPC"	01.11.01.01.17	VF_1449	VF665_V43_R3	Remote_Door_Unlock_Setting.Req | TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock	2	0	interim_leaf
+595	Sys-RA-VF665_V43_VSM-594	"WHEN TLM receives ""IPC_VEHICLE_SETUP.RemoteDoorUnlock"" message THEN TLM updates the Remote Door Unlock information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.17	VF_1450	VF665_V43_R3	IPC_VEHICLE_SETUP.RemoteDoorUnlock | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+597	Sys-RA-VF665_V43_VSM-596	"IF ""Horn_Chirp_Menu"" PROXI parameter is equal to ""Absent"" THEN TLM shall not display the Sound Horn with Lock Unlock menu item and the user can not perform any setting."	01.11.01.01.18	VF_3285	VF665_V43_R3	Horn_Chirp_Menu	1	0	interim_leaf
+598	Sys-RA-VF665_V43_VSM-597	"IF ""Horn_Chirp_Menu"" PROXI parameter is equal to ""Present"" AND Model_Year>= 20 THEN TLM shall display the Sound Horn with Lock Unlock menu item and the user can perform setting."	01.11.01.01.18	VF_3286	VF665_V43_R3	Horn_Chirp_Menu | Model_Year	2	0	interim_leaf
+599	Sys-RA-VF665_V43_VSM-598	"IF the user sets ""Sound_Horn_Lock_Unlock_Setting.Req"" internal signals to ""Off"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req"" B-CAN signal equal to ""Off"" and sends this signal to IPC"	01.11.01.01.18	VF_3287	VF665_V43_R3	Sound_Horn_Lock_Unlock_Setting.Req | TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req	2	1	interim_leaf
+600	Sys-RA-VF665_V43_VSM-599	"IF the user sets ""Sound_Horn_Lock_Unlock_Setting.Req"" internal signals to ""On"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req"" B-CAN signal equal to ""On"" and sends this signal to IPC"	01.11.01.01.18	VF_3288	VF665_V43_R3	Sound_Horn_Lock_Unlock_Setting.Req | TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req	2	1	interim_leaf
+601	Sys-RA-VF665_V43_VSM-600	"WHEN TLM receives ""IPC_VEHICLE_SETUP3.SoundHornLockUnlock"" message THEN TLM updates the Sound Horn with Lock Unlock information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.18	VF_3289	VF665_V43_R3	IPC_VEHICLE_SETUP3.SoundHornLockUnlock | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+603	Sys-RA-VF665_V43_VSM-602	"IF ""Auto_Door_Unlock_Menu"" PROXI parameter is equal to ""Absent"" THEN TLM shall not display the Auto Unlock Door Exit menu item and the user can not perform any setting."	01.11.01.01.19	VF_2114	VF665_V43_R3	Auto_Door_Unlock_Menu	1	0	interim_leaf
+604	Sys-RA-VF665_V43_VSM-603	"IF ""Auto_Door_Unlock_Menu"" PROXI parameter is equal to ""Present"" THEN TLM shall display the Auto Unlock Door Exit menu item and the user can perform setting."	01.11.01.01.19	VF_2115	VF665_V43_R3	Auto_Door_Unlock_Menu	1	0	interim_leaf
+605	Sys-RA-VF665_V43_VSM-604	"IF the user sets ""Auto_Unlock_Door_Exit_Enable.Req"" internal signals to "" Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req"" B-CAN signal equal to ""Enable"" and sends this signal to IPC"	01.11.01.01.19	VF_2118	VF665_V43_R3	Auto_Unlock_Door_Exit_Enable.Req | TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req	2	1	interim_leaf
+606	Sys-RA-VF665_V43_VSM-605	"IF the user sets ""Auto_Unlock_Door_Exit_Enable.Req"" internal signals to "" Not_Enable"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req"" B-CAN signal equal to ""Not_Enable"" and sends this signal to IPC"	01.11.01.01.19	VF_2119	VF665_V43_R3	Auto_Unlock_Door_Exit_Enable.Req | TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req	2	1	interim_leaf
+607	Sys-RA-VF665_V43_VSM-606	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.AutoUnlockDoorExit"" message THEN TLM updates the Auto Unlock Door Exit information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.19	VF_2135	VF665_V43_R3	IPC_VEHICLE_SETUP2.AutoUnlockDoorExit | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+609	Sys-RA-VF665_V43_VSM-608	"IF ""Flash_Light_With_Lock_Menu"" PROXI parameter is equal to ""Absent"" THEN TLM shall not display the Flash Light With Lock menu item and the user can not perform any setting."	01.11.01.01.20	VF_1807	VF665_V43_R3	Flash_Light_With_Lock_Menu	1	0	interim_leaf
+610	Sys-RA-VF665_V43_VSM-609	"IF ""Flash_Light_With_Lock_Menu"" PROXI parameter is equal to ""Present"" THEN TLM shall display the Flash Light With Lock menu item and the user can perform setting."	01.11.01.01.20	VF_1808	VF665_V43_R3	Flash_Light_With_Lock_Menu	1	0	interim_leaf
+611	Sys-RA-VF665_V43_VSM-610	"IF the user sets "" Flash_Light_With_Lock_Enable.Req "" internal signal to "" Off"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req"" B-CAN signal equal to ""Off"" and sends this signal to IPC"	01.11.01.01.20	VF_2107	VF665_V43_R3	Flash_Light_With_Lock_Enable.Req | TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req	2	1	interim_leaf
+612	Sys-RA-VF665_V43_VSM-611	"IF the user sets "" Flash_Light_With_Lock_Enable.Req "" internal signal to "" On"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req"" B-CAN signal equal to ""On"" and sends this signal to IPC"	01.11.01.01.20	VF_2108	VF665_V43_R3	Flash_Light_With_Lock_Enable.Req | TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req	2	1	interim_leaf
+613	Sys-RA-VF665_V43_VSM-612	"WHEN TLM receives ""IPC_VEHICLE_SETUP2.FlashLightWLock"" message THEN TLM updates the Flash Light With Lock information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.20	VF_2139	VF665_V43_R3	IPC_VEHICLE_SETUP2.FlashLightWLock | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+615	Sys-RA-VF665_V43_VSM-614	"IF ""NAV_Presence"" PROXI parameter is equal to ""Absent"" THEN TLM shall not display the GPS Automatic Time Adjustment menu item and the user can not perform any setting."	01.11.01.01.21	VF_508	VF665_V43_R3	NAV_Presence	1	0	interim_leaf
+616	Sys-RA-VF665_V43_VSM-615	"IF ""NAV_Presence"" PROXI parameter is equal to ""Present"" THEN TLM shall display the GPS Automatic Time Adjustment menu item and the user can perform setting."	01.11.01.01.21	VF_509	VF665_V43_R3	NAV_Presence	1	0	interim_leaf
+617	Sys-RA-VF665_V43_VSM-616	"IF the user sets ""GPS_Automatic_Time_Adj_Enable.Req"" internal signals to ""Not_Enable"" THEN TLM updates and sends the GPS Time Adjustment information to VF456 through ""GPS_Automatic_Time_Adj_Setup.Info"" internal signal"	01.11.01.01.21	VF_511	VF665_V43_R3	GPS_Automatic_Time_Adj_Enable.Req | GPS_Automatic_Time_Adj_Setup.Info	2	0	interim_leaf
+618	Sys-RA-VF665_V43_VSM-617	"IF the user sets ""GPS_Automatic_Time_Adj_Enable.Req"" internal signals to ""Enable"" THEN TLM updates and sends the GPS Time Adjustment information to VF456 through ""GPS_Automatic_Time_Adj_Setup.Info"" internal signal"	01.11.01.01.21	VF_512	VF665_V43_R3	GPS_Automatic_Time_Adj_Enable.Req | GPS_Automatic_Time_Adj_Setup.Info	2	0	interim_leaf
+620	Sys-RA-VF665_V43_VSM-619	"IF TLM receives ""IPC_VEHICLE_SETUP.PhoneRepetition""set to ""Present"" THEN TLM updates and sends the information for enabling the Phone repetition to VF464 through ""PhoneRepetition.Info"" internal signal"	01.11.01.01.22	VF_2500	VF665_V43_R3	IPC_VEHICLE_SETUP.PhoneRepetition | PhoneRepetition.Info	2	1	interim_leaf
+621	Sys-RA-VF665_V43_VSM-620	"IF TLM receives ""IPC_VEHICLE_SETUP.PhoneRepetition""set to ""Absent"" THEN TLM updates and sends the information for disabling the Phone repetition to VF464 through ""PhoneRepetition.Info"" internal signal"	01.11.01.01.22	VF_2022	VF665_V43_R3	IPC_VEHICLE_SETUP.PhoneRepetition | PhoneRepetition.Info	2	1	interim_leaf
+623	Sys-RA-VF665_V43_VSM-622	"IF TLM receives ""IPC_VEHICLE_SETUP.NavRepetition""set to ""Present"" THEN TLM updates and sends the information for enabling the Navigation repetition to VF176 through ""NavigationRepetition.Info"" internal signal"	01.11.01.01.23	VF_2017	VF665_V43_R3	IPC_VEHICLE_SETUP.NavRepetition | NavigationRepetition.Info	2	1	interim_leaf
+624	Sys-RA-VF665_V43_VSM-623	"IF TLM receives ""IPC_VEHICLE_SETUP.NavRepetition""set to ""Absent"" THEN TLM updates and sends the information for disabling the Navigation repetition to VF176 through ""NavigationRepetition.Info"" internal signal"	01.11.01.01.23	VF_2018	VF665_V43_R3	IPC_VEHICLE_SETUP.NavRepetition | NavigationRepetition.Info	2	1	interim_leaf
+626	Sys-RA-VF665_V43_VSM-625	"IF "" CAN node 24 (PAM ) "" PROXI parameter is equal to ""Present"" THEN TLM shall display the ""Park Sense Setting "" menu item and the user can perform setting."	01.11.01.01.24	VF_1922	VF665_V43_R3		0	0	interim_leaf
+627	Sys-RA-VF665_V43_VSM-626	"IF the user sets ""Pam_AlertMode_Setting.Req"" internal signals to ""Sound"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req"" B-CAN signal equal to ""Sound"" and sends this signal to IPC"	01.11.01.01.24	VF_1929	VF665_V43_R3	Pam_AlertMode_Setting.Req | TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req	2	1	interim_leaf
+628	Sys-RA-VF665_V43_VSM-627	"IF the user sets ""Pam_AlertMode_Setting.Req"" internal signals to ""Sound+Display"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req"" B-CAN signal equal to ""Sound+Display"" and sends this signal to IPC"	01.11.01.01.24	VF_1928	VF665_V43_R3	Pam_AlertMode_Setting.Req | TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req	2	1	interim_leaf
+629	Sys-RA-VF665_V43_VSM-628	"WHEN TLM receives ""IPC_VEHICLE_SETUP.PamAlertMode"" message THEN TLM updates the Park Sense Setting information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.24	VF_1932	VF665_V43_R3	IPC_VEHICLE_SETUP.PamAlertMode | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+632	Sys-RA-VF665_V43_VSM-631	"IF the user sets ""Pam_Chime_Volume_Rear_Setting.Req"" internal signals to ""Low"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req"" B-CAN signal equal to ""Low"" and sends this signal to IPC"	01.11.01.01.24	VF_2953	VF665_V43_R3	Pam_Chime_Volume_Rear_Setting.Req | TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req	2	1	interim_leaf
+633	Sys-RA-VF665_V43_VSM-632	"IF the user sets ""Pam_Chime_Volume_Rear_Setting.Req"" internal signals to ""Med"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req"" B-CAN signal equal to ""Med"" and sends this signal to IPC"	01.11.01.01.24	VF_2954	VF665_V43_R3	Pam_Chime_Volume_Rear_Setting.Req | TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req	2	1	interim_leaf
+634	Sys-RA-VF665_V43_VSM-633	"IF the user sets ""Pam_Chime_Volume_Rear_Setting.Req"" internal signals to ""High"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req"" B-CAN signal equal to ""High"" and sends this signal to IPC"	01.11.01.01.24	VF_2955	VF665_V43_R3	Pam_Chime_Volume_Rear_Setting.Req | TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req	2	1	interim_leaf
+635	Sys-RA-VF665_V43_VSM-634	"WHEN TLM receives ""IPC_VEHICLE_SETUP.PamChimeVolumeRear"" message THEN TLM updates the Rear Park Sense Volume information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.24	VF_2957	VF665_V43_R3	IPC_VEHICLE_SETUP.PamChimeVolumeRear | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+636	Sys-RA-VF665_V43_VSM-635	"ELSE THEN TLM shall not display the ""Rear Park Sense Volume"" menu item and the user can not perform any setting."	01.11.01.01.24	VF_2977	VF665_V43_R3		0	0	interim_leaf
+639	Sys-RA-VF665_V43_VSM-638	"IF the user sets ""Pam_Chime_Volume_Front_Setting.Req"" internal signals to ""Low"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req"" B-CAN signal equal to ""Low"" and sends this signal to IPC"	01.11.01.01.24	VF_2960	VF665_V43_R3	Pam_Chime_Volume_Front_Setting.Req | TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req	2	1	interim_leaf
+640	Sys-RA-VF665_V43_VSM-639	"IF the user sets ""Pam_Chime_Volume_Front_Setting.Req"" internal signals to ""Med"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req"" B-CAN signal equal to ""Med"" and sends this signal to IPC"	01.11.01.01.24	VF_2961	VF665_V43_R3	Pam_Chime_Volume_Front_Setting.Req | TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req	2	1	interim_leaf
+641	Sys-RA-VF665_V43_VSM-640	"IF the user sets ""Pam_Chime_Volume_Front_Setting.Req"" internal signals to ""High"" THEN TLM shall set ""TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req"" B-CAN signal equal to ""High"" and sends this signal to IPC"	01.11.01.01.24	VF_2962	VF665_V43_R3	Pam_Chime_Volume_Front_Setting.Req | TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req	2	1	interim_leaf
+642	Sys-RA-VF665_V43_VSM-641	"WHEN TLM receives ""IPC_VEHICLE_SETUP.PamChimeVolumeFront"" message THEN TLM updates the Front Park Sense Volume information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.24	VF_2982	VF665_V43_R3	IPC_VEHICLE_SETUP.PamChimeVolumeFront | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+643	Sys-RA-VF665_V43_VSM-642	"ELSE THEN TLM shall not display the ""Front Park Sense Volume"" menu item and the user can not perform any setting."	01.11.01.01.24	VF_2980	VF665_V43_R3		0	0	interim_leaf
+644	Sys-RA-VF665_V43_VSM-643	"ELSE THEN TLM shall not display the ""Park Sense Setting "", ""Rear Park Sense Volume"" and ""Front Park Sense Volume"" menu items and the user can not perform any setting."	01.11.01.01.24	VF_2981	VF665_V43_R3		0	0	interim_leaf
+646	Sys-RA-VF665_V43_VSM-645	"IF “AHBM_Feature_Menu ” PROXI parameter is equal to ""Absent"" THEN TLM shall display the Auto High Beam menu item and the user can not perform any setting."	01.11.01.01.25	VF_2559	VF665_V43_R3	AHBM_Feature_Menu	1	0	interim_leaf
+647	Sys-RA-VF665_V43_VSM-646	"IF “AHBM_Feature_Menu” PROXI parameter is equal to ""Present"" THEN TLM shall display the Auto High Beam menu item and the user can perform setting."	01.11.01.01.25	VF_2560	VF665_V43_R3	AHBM_Feature_Menu	1	0	interim_leaf
+648	Sys-RA-VF665_V43_VSM-647	"IF the user sets ""Auto_High_Beam_Enable.Req"" equal to ""Enable"" THEN TLM shall to set ""TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req"" B-CAN signal equal to ""Enable"" and sends this signal to IPC"	01.11.01.01.25	VF_2563	VF665_V43_R3	Auto_High_Beam_Enable.Req | TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req	2	1	interim_leaf
+649	Sys-RA-VF665_V43_VSM-648	"IF the user sets ""Auto_High_Beam_Enable.Req"" equal to ""Disable"" THEN TLM shall to set ""TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req"" B-CAN signal equal to ""Disable"" and sends this signal to IPC"	01.11.01.01.25	VF_2564	VF665_V43_R3	Auto_High_Beam_Enable.Req | TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req	2	1	interim_leaf
+650	Sys-RA-VF665_V43_VSM-649	"WHEN TLM receives ""IPC_VEHICLE_SETUP.AutoHighBeamEnable"" message THEN TLM updates the Auto High Beam information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.25	VF_2562	VF665_V43_R3	IPC_VEHICLE_SETUP.AutoHighBeamEnable | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+652	Sys-RA-VF665_V43_VSM-651	"IF ""Ambient_Lighting_Function"" PROXI parameter is equal to ""Present"" AND ""Ambient_Dimmer_Switch""PROXI parameter is equal to ""absent"" THEN TLM shall display the Interior Ambient Lights Level menu item and the user can perform setting."	01.11.01.01.26	VF_1954	VF665_V43_R3	Ambient_Dimmer_Switch | Ambient_Lighting_Function	2	0	interim_leaf
+653	Sys-RA-VF665_V43_VSM-652	"IF the user sets ""Ambient_Lighting_level_Setting.Req"" equal to ""Level_1 "" THEN TLM shal set ""TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req"" B-CAN signal equal to ""Level_ 1 "" and sends this signal to IPC"	01.11.01.01.26	VF_1955	VF665_V43_R3	Ambient_Lighting_level_Setting.Req | TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	2	1	interim_leaf
+654	Sys-RA-VF665_V43_VSM-653	"IF the user sets ""Ambient_Lighting_level_Setting.Req"" equal to ""Level_2 "" THEN TLM shal set ""TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req"" B-CAN signal equal to ""Level_2 "" and sends this signal to IPC"	01.11.01.01.26	VF_1956	VF665_V43_R3	Ambient_Lighting_level_Setting.Req | TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	2	1	interim_leaf
+655	Sys-RA-VF665_V43_VSM-654	"IF the user sets ""Ambient_Lighting_level_Setting.Req"" equal to ""Level_3 "" THEN TLM shal set ""TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req"" B-CAN signal equal to ""Level_ 3 "" and sends this signal to IPC"	01.11.01.01.26	VF_1957	VF665_V43_R3	Ambient_Lighting_level_Setting.Req | TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	2	1	interim_leaf
+656	Sys-RA-VF665_V43_VSM-655	"IF the user sets ""Ambient_Lighting_level_Setting.Req"" equal to ""Level_4 "" THEN TLM shal set ""TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req"" B-CAN signal equal to ""Level_4 "" and sends this signal to IPC"	01.11.01.01.26	VF_1958	VF665_V43_R3	Ambient_Lighting_level_Setting.Req | TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	2	1	interim_leaf
+657	Sys-RA-VF665_V43_VSM-656	"IF the user sets ""Ambient_Lighting_level_Setting.Req"" equal to ""Level_5 "" THEN TLM shal set ""TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req"" B-CAN signal equal to ""Level_5 "" and sends this signal to IPC"	01.11.01.01.26	VF_1959	VF665_V43_R3	Ambient_Lighting_level_Setting.Req | TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	2	1	interim_leaf
+658	Sys-RA-VF665_V43_VSM-657	"IF the user sets ""Ambient_Lighting_level_Setting.Req"" equal to ""Level_6 "" THEN TLM shal set ""TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req"" B-CAN signal equal to ""Level_6 "" and sends this signal to IPC"	01.11.01.01.26	VF_1960	VF665_V43_R3	Ambient_Lighting_level_Setting.Req | TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	2	1	interim_leaf
+659	Sys-RA-VF665_V43_VSM-658	"IF the user sets ""Ambient_Lighting_level_Setting.Req"" equal to ""Level_7 "" THEN TLM shal set ""TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req"" B-CAN signal equal to ""Level_7 "" and sends this signal to IPC"	01.11.01.01.26	VF_1961	VF665_V43_R3	Ambient_Lighting_level_Setting.Req | TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	2	1	interim_leaf
+660	Sys-RA-VF665_V43_VSM-659	"WHEN TLM receives ""IPC_VEHICLE_SETUP.AmbientLightingLevel"" message THEN TLM updates the Ambient light information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.26	VF_1962	VF665_V43_R3	IPC_VEHICLE_SETUP.AmbientLightingLevel | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+662	Sys-RA-VF665_V43_VSM-661	THEN TLM shall not display the Ambient Light Level menu item and the user can not perform any setting.	01.11.01.01.26	VF_1973	VF665_V43_R3		0	0	interim_leaf
+664	Sys-RA-VF665_V43_VSM-663	"IF “CAN Node 35 (TBM)” PROXI parameter is equal to ""Absent"" OR IF “Geolocation_Menu” PROXI parameter is equal to ""Absent"" THEN TLM shall not display the Geolocation menu item and the user can not perform any setting."	01.11.01.01.27	VF_3337	VF665_V43_R3	Geolocation_Menu	1	0	interim_leaf
+665	Sys-RA-VF665_V43_VSM-664	"IF “CAN Node 35 (TBM)” PROXI parameter is equal to ""Present"" AND IF “Geolocation_Menu” PROXI parameter is equal to ""Present"" THEN TLM shall display the Geolocation menu item and the user can perform setting with the following options: Off, On"	01.11.01.01.27	VF_3338	VF665_V43_R3	Geolocation_Menu	1	0	interim_leaf
+666	Sys-RA-VF665_V43_VSM-665	"IF the user sets ""Geolocation_Enable.Req"" equal to ""Off"" TLM shall set ""TELEMATIC_SERVICE_SETUP.PrivacyModeReq"" BH-CAN signal equal to ""Active"" and sends this signal to TBM"	01.11.01.01.27	VF_3339	VF665_V43_R3	Geolocation_Enable.Req | SERVICE_SETUP.PrivacyMode | TELEMATIC_SERVICE_SETUP.PrivacyModeReq	3	2	interim_leaf
+667	Sys-RA-VF665_V43_VSM-666	"IF the user sets ""Geolocation_Enable.Req"" equal to ""On"" TLM shall set ""TELEMATIC_SERVICE_SETUP.PrivacyModeReq"" BH-CAN signal equal to ""Not Active"" and sends this signal to TBM"	01.11.01.01.27	VF_3340	VF665_V43_R3	Geolocation_Enable.Req | SERVICE_SETUP.PrivacyMode | TELEMATIC_SERVICE_SETUP.PrivacyModeReq	3	2	interim_leaf
+668	Sys-RA-VF665_V43_VSM-667	"WHEN TLM receives ""SERVICE_SETUP.PrivacyMode"" message THEN TLM updates the Privacy Mode information on its display through ""TLM_Vehicle_Setup_Menu.Info"" internal signal"	01.11.01.01.27	VF_3341	VF665_V43_R3	SERVICE_SETUP.PrivacyMode | TLM_Vehicle_Setup_Menu.Info	2	1	interim_leaf
+670	Sys-RA-VF665_V43_VSM-669	"IF “CAN Node 35 (TBM)” PROXI parameter is equal to ""Absent"" THEN TLM shall not manage ""TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq"" and ""SERVICE_SETUP.ClearPersonalData"" BH-CAN signals."	01.11.01.01.28	VF_3343	VF665_V43_R3	SERVICE_SETUP.ClearPersonalData | TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	2	2	interim_leaf
+671	Sys-RA-VF665_V43_VSM-670	"IF “CAN Node 35 (TBM)” PROXI parameter is equal to ""Present"" THEN TLM shall manage the Clear Personal Data feature and the user can perform the service setup reset."	01.11.01.01.28	VF_3344	VF665_V43_R3		0	0	interim_leaf
+672	Sys-RA-VF665_V43_VSM-671	"IF the user performs ""ClearPersonalData_Enable.Req"" request TLM shall only send ""TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq"" BH-CAN signal equal to ""Active"" to TBM."	01.11.01.01.28	VF_3345	VF665_V43_R3	ClearPersonalData_Enable.Req | SERVICE_SETUP.ClearPersonalData | TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	3	2	interim_leaf
+674	Sys-RA-VF665_V43_VSM-673	"IF “CAN Node 35 (TBM)” PROXI parameter is equal to ""Absent"" THEN TLM shall not manage ""TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq"" and ""SERVICE_SETUP.RestoreDefaulSetting"" BH-CAN signals."	01.11.01.01.29	VF_3347	VF665_V43_R3	SERVICE_SETUP.RestoreDefaulSetting | SERVICE_SETUP.RestoreDefaultSetting | TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	3	2	interim_leaf
+675	Sys-RA-VF665_V43_VSM-674	"IF “CAN Node 35 (TBM)” PROXI parameter is equal to ""Present"" THEN TLM shall manage the Restore Default Setting feature and the user can perform the service setup reset."	01.11.01.01.29	VF_3348	VF665_V43_R3		0	0	interim_leaf
+676	Sys-RA-VF665_V43_VSM-675	"IF the user performs ""RestoreDefaultSetting_Enable.Req"" request TLM shall only send ""TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq"" BH-CAN signal equal to ""Active"" to TBM"	01.11.01.01.29	VF_3349	VF665_V43_R3	RestoreDefaultSetting_Enable.Req | SERVICE_SETUP.RestoreDefaultSetting | TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	3	2	interim_leaf
+678	Sys-RA-VF665_V43_VSM-677	"IF “CAN Node 35 (TBM)” PROXI parameter is equal to ""Absent"" THEN TLM shall not manage ""TELEMATIC_SERVICE_SETUP.RestoreAppReq"" and ""SERVICE_SETUP.RestoreApp"" BH-CAN signals."	01.11.01.01.30	VF_3351	VF665_V43_R3	SERVICE_SETUP.RestoreApp | TELEMATIC_SERVICE_SETUP.RestoreAppReq	2	2	interim_leaf
+679	Sys-RA-VF665_V43_VSM-678	"IF “CAN Node 35 (TBM)” PROXI parameter is equal to ""Present"" THEN TLM shall manage the Restore App feature and the user can perform the service setup reset."	01.11.01.01.30	VF_3352	VF665_V43_R3		0	0	interim_leaf
+680	Sys-RA-VF665_V43_VSM-679	"IF the user performs ""RestoreApp_Enable.Req"" request TLM shall only send ""TELEMATIC_SERVICE_SETUP.RestoreAppReq"" BH-CAN signal equal to ""Active"" to TBM"	01.11.01.01.30	VF_3353	VF665_V43_R3	RestoreApp_Enable.Req | SERVICE_SETUP.RestoreApp | TELEMATIC_SERVICE_SETUP.RestoreAppReq	3	2	interim_leaf
+682	Sys-RA-VF665_V43_VSM-681	"IF TLM sends a request of vehicle setup to IPC through ""TELEMATIC_VEHICLE_SETUP"" message THEN TLM has to wait for the ""Acnowledge"" through ""IPC_VEHICLE_SETUP.TelematicSetupACK"" from IPC to confirm the corrected reception and storage of the settings requested"	01.11.01.01.31	VF_593	VF665_V43_R3	IPC_VEHICLE_SETUP.TelematicSetupACK	1	1	interim_leaf
+683	Sys-RA-VF665_V43_VSM-682	"IF TLM receives ""IPC_VEHICLE_SETUP.TelematicSetupACK""equal to ""No_ACK_Required"" value. THEN TLM has to ignore this signal"	01.11.01.01.31	VF_590	VF665_V43_R3	IPC_VEHICLE_SETUP.TelematicSetupACK	1	1	interim_leaf
+684	Sys-RA-VF665_V43_VSM-683	"IF TLM receives ""IPC_VEHICLE_SETUP.TelematicSetupACK""equal to ""ACK_KO"" value. THEN TLM has to visualize a message related to the failure (see HMI document)."	01.11.01.01.31	VF_591	VF665_V43_R3	IPC_VEHICLE_SETUP.TelematicSetupACK	1	1	interim_leaf
+685	Sys-RA-VF665_V43_VSM-684	"IF TLM receives ""IPC_VEHICLE_SETUP.TelematicSetupACK""equal to ""ACK_OK"" value. THEN TLM has to visualize the new parameters transmitted by IPC (""IPC_VEHICLE_SETUP"" message)."	01.11.01.01.31	VF_592	VF665_V43_R3	IPC_VEHICLE_SETUP.TelematicSetupACK	1	1	interim_leaf
+687	Sys-RA-VF665_V43_VSM-686	"IF TLM sends a request of vehicle setup to TBM through ""TELEMATIC_SERVICE_SETUP"" message THEN TLM has to wait for the ""Acnowledge"" through ""SERVICE_SETUP.TelematicSetupACK"" from TBM to confirm the corrected reception and storage of the settings requested"	01.11.01.01.32	VF_3355	VF665_V43_R3	SERVICE_SETUP.TelematicSetupACK	1	0	interim_leaf
+688	Sys-RA-VF665_V43_VSM-687	"IF TLM receives ""SERVICE_SETUP.TelematicSetupACK""equal to ""No_ACK_Required"" value. THEN TLM has to ignore this signal"	01.11.01.01.32	VF_3356	VF665_V43_R3	SERVICE_SETUP.TelematicSetupACK	1	0	interim_leaf
+689	Sys-RA-VF665_V43_VSM-688	"IF TLM receives ""SERVICE_SETUP.TelematicSetupACK""equal to ""ACK_KO"" value. THEN TLM has to visualize a message related to the failure (see HMI document)."	01.11.01.01.32	VF_3357	VF665_V43_R3	SERVICE_SETUP.TelematicSetupACK	1	0	interim_leaf
+690	Sys-RA-VF665_V43_VSM-689	"IF TLM receives ""SERVICE_SETUP.TelematicSetupACK""equal to ""ACK_OK"" value. THEN TLM has to visualize the new parameters transmitted by TBM (""SERVICE_SETUP"" message)."	01.11.01.01.32	VF_3358	VF665_V43_R3	SERVICE_SETUP.TelematicSetupACK	1	0	interim_leaf
+790	Sys-RA-VF665_V43_VSM-789	"In case absence of IPC_VEHICLE_SETUP or IPC_VEHICLE_SETUP2 B-CAN message in Key On, TLM has to store an appropriate DTC in according to validation requirements defined in the CDD document. IF TLM doesn't receive these messages within ""TimeOut1"" THEN TLM has to resend the new vehicle setup request (This logic must be implemented for a max of three times after TLM has to visualize a message to the user about the failure of request )"	01.13.02.01.01	VF_120	VF665_V43_R3		0	0	interim_leaf
+793	Sys-RA-VF665_V43_VSM-792	"WHEN ""LTM_OperationalModeSts.Info"" == ""SNA"" THEN LTM shall: keep the last valid value that has been recognized."	01.13.02.01.02	"VF_3182
+VF_3183
+VF_3184"	VF665_V43_R3	LTM_OperationalModeSts.Info	1	0	interim_leaf
+795	Sys-RA-VF665_V43_VSM-794	"In the following Ignition Working Condition: ""Ignition Off"" ""Ignition On"" ""Ignition On Engine On"" IF TLM does not receive the SERVICE_SETUP message for a time equal to T_REC_TBM AND IF CAN Node 35 (TBM) PROXI Parameter is equals to ""Present"" AND FOTA_State.Info internal signal is equal to ""NO_FOTA_State"" THEN TLM shall set the DTC, according to ""TLM Diagnostic Requirement"" document."	01.13.02.01.03	"VF_3492
+VF_3493"	VF665_V43_R3	FOTA_State.Info	1	0	interim_leaf
+796	Sys-RA-VF665_V43_VSM-795	"IF TLM doesn't receive ""SERVICE_SETUP.TelematicSetupACK"" within ""TimeOut1"" THEN TLM has to resend the new vehicle setup request (This logic must be implemented for a max of three times after TLM has to visualize a message to the user about the failure of request )"	01.13.02.01.03	VF_3494	VF665_V43_R3	SERVICE_SETUP.TelematicSetupACK	1	0	interim_leaf
+797	Sys-RA-VF665_V43_VSM-796	"As soon as TLM receives again SERVICE_SETUP message, TLM shall: heal the DTC, according to the requirements specified in the ""TLM Diagnostic Requirement"" document."	01.13.02.01.03	VF_3495	VF665_V43_R3		0	0	interim_leaf
+813	Sys-RA-VF665_V43_VSM-812	1 Cornering_Light ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_143
+VF_144
+VF_145
+VF_146
+VF_331
+VF_147
+VF_148
+VF_149
+VF_150
+VF_189
+VF_151"	VF665_V43_R3	Cornering_Light	1	0	interim_leaf
+814	Sys-RA-VF665_V43_VSM-813	2 Odo_Units_Change ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_412
+VF_413
+VF_414
+VF_415
+VF_416
+VF_417
+VF_418
+VF_419
+VF_420
+VF_421
+VF_422"	VF665_V43_R3	Odo_Units_Change	1	0	interim_leaf
+815	Sys-RA-VF665_V43_VSM-814	3 Fuel_Type ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_429
+VF_430
+VF_431
+VF_432
+VF_433
+VF_434
+VF_435
+VF_436
+VF_437
+VF_438
+VF_439"	VF665_V43_R3	Fuel_Type	1	0	interim_leaf
+816	Sys-RA-VF665_V43_VSM-815	4 External_Temperature_Sensor ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_450
+VF_451
+VF_452
+VF_453
+VF_454
+VF_455
+VF_456
+VF_457
+VF_458
+VF_459
+VF_460"	VF665_V43_R3	External_Temperature_Sensor	1	0	interim_leaf
+817	Sys-RA-VF665_V43_VSM-816	5 Rain_Sensor ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_468
+VF_469
+VF_470
+VF_471
+VF_472
+VF_473
+VF_474
+VF_475
+VF_476
+VF_477
+VF_478"	VF665_V43_R3	Rain_Sensor	1	0	interim_leaf
+818	Sys-RA-VF665_V43_VSM-817	6 Twilight_Sensor ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_491
+VF_492
+VF_493
+VF_494
+VF_495
+VF_496
+VF_497
+VF_498
+VF_499
+VF_500
+VF_501"	VF665_V43_R3	Twilight_Sensor	1	0	interim_leaf
+819	Sys-RA-VF665_V43_VSM-818	8 Auto_Close_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_542
+VF_543
+VF_544
+VF_545
+VF_546
+VF_547
+VF_548
+VF_549
+VF_550
+VF_551
+VF_552"	VF665_V43_R3	Auto_Close_Menu	1	0	interim_leaf
+820	Sys-RA-VF665_V43_VSM-819	9 TimeOut1 5 [0;10] 0,1 sec LTM DEFINE No Diagnosis Waiting Time of ACK from IPC	01.14.01	"VF_595
+VF_596
+VF_597
+VF_598
+VF_599
+VF_600
+VF_601
+VF_602
+VF_603
+VF_604
+VF_605"	VF665_V43_R3		0	0	interim_leaf
+821	Sys-RA-VF665_V43_VSM-820	10 Cluster_Display_Type ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_615
+VF_616
+VF_617
+VF_618
+VF_619
+VF_620
+VF_621
+VF_622
+VF_623
+VF_624
+VF_625"	VF665_V43_R3	Cluster_Display_Type	1	0	interim_leaf
+822	Sys-RA-VF665_V43_VSM-821	11 Country_Code ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_850
+VF_851
+VF_852
+VF_853
+VF_854
+VF_855
+VF_856
+VF_857
+VF_858
+VF_859
+VF_860"	VF665_V43_R3	Country_Code	1	0	interim_leaf
+823	Sys-RA-VF665_V43_VSM-822	12 DRL_Menù_Enable ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_916
+VF_917
+VF_918
+VF_919
+VF_920
+VF_921
+VF_922
+VF_923
+VF_924
+VF_925
+VF_926"	VF665_V43_R3	DRL_Menù_Enable	1	0	interim_leaf
+824	Sys-RA-VF665_V43_VSM-823	13 Greeting_Lights_Menù ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_940
+VF_941
+VF_942
+VF_943
+VF_944
+VF_945
+VF_946
+VF_947
+VF_948
+VF_949
+VF_950"	VF665_V43_R3	Greeting_Lights_Menù	1	0	interim_leaf
+825	Sys-RA-VF665_V43_VSM-824	14 CAN node 51 (LBSS) ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_1164
+VF_1165
+VF_1166
+VF_1167
+VF_1168
+VF_1169
+VF_1170
+VF_1171
+VF_1172
+VF_1173
+VF_1174"	VF665_V43_R3		0	0	interim_leaf
+826	Sys-RA-VF665_V43_VSM-825	15 CAN node 52 (RBSS) ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_1188
+VF_1189
+VF_1190
+VF_1191
+VF_1192
+VF_1193
+VF_1194
+VF_1195
+VF_1196
+VF_1197
+VF_1198"	VF665_V43_R3		0	0	interim_leaf
+827	Sys-RA-VF665_V43_VSM-826	16 Passive_Entry_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_1425
+VF_1426
+VF_1427
+VF_1428
+VF_1429
+VF_1430
+VF_1431
+VF_1432
+VF_1433
+VF_1434
+VF_1435"	VF665_V43_R3	Passive_Entry_Menu	1	0	interim_leaf
+828	Sys-RA-VF665_V43_VSM-827	17 Remote_Door_Unlock_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_3186
+VF_3187
+VF_3188
+VF_3189
+VF_3190
+VF_3191
+VF_3192
+VF_3193
+VF_3194
+VF_3195
+VF_3196"	VF665_V43_R3	Remote_Door_Unlock_Menu	1	0	interim_leaf
+829	Sys-RA-VF665_V43_VSM-828	18 Sound_Horn_Remote_Start_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_1457
+VF_1458
+VF_1459
+VF_1460
+VF_1461
+VF_1462
+VF_1463
+VF_1464
+VF_1465
+VF_1466
+VF_1467"	VF665_V43_R3	Sound_Horn_Remote_Start_Menu	1	0	interim_leaf
+830	Sys-RA-VF665_V43_VSM-829	19 Horn_Chirp_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_1489
+VF_1490
+VF_1491
+VF_1492
+VF_1493
+VF_1494
+VF_1495
+VF_1496
+VF_1497
+VF_1498
+VF_1499"	VF665_V43_R3	Horn_Chirp_Menu	1	0	interim_leaf
+831	Sys-RA-VF665_V43_VSM-830	22 Flash_Light_With_Lock_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_1754
+VF_1755
+VF_1756
+VF_1757
+VF_1758
+VF_1759
+VF_1760
+VF_1761
+VF_1762
+VF_1763
+VF_1764"	VF665_V43_R3	Flash_Light_With_Lock_Menu	1	0	interim_leaf
+832	Sys-RA-VF665_V43_VSM-831	23 Tyre_Pressure_Unit_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_1779
+VF_1780
+VF_1781
+VF_1782
+VF_1783
+VF_1784
+VF_1785
+VF_1786
+VF_1787
+VF_1788
+VF_1789"	VF665_V43_R3	Tyre_Pressure_Unit_Menu	1	0	interim_leaf
+833	Sys-RA-VF665_V43_VSM-832	25 CAN node 24 (PAM) ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_2024
+VF_2025
+VF_2026
+VF_2027
+VF_2028
+VF_2029
+VF_2030
+VF_2031
+VF_2032
+VF_2033
+VF_2034"	VF665_V43_R3		0	0	interim_leaf
+834	Sys-RA-VF665_V43_VSM-833	26 Side_Distance_Warning ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_2048
+VF_2049
+VF_2050
+VF_2051
+VF_2052
+VF_2053
+VF_2054
+VF_2055
+VF_2056
+VF_2057
+VF_2058"	VF665_V43_R3	Side_Distance_Warning	1	0	interim_leaf
+835	Sys-RA-VF665_V43_VSM-834	27 PAM_Configuration ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_2072
+VF_2073
+VF_2074
+VF_2075
+VF_2076
+VF_2077
+VF_2078
+VF_2079
+VF_2080
+VF_2081
+VF_2082"	VF665_V43_R3	PAM_Configuration	1	0	interim_leaf
+836	Sys-RA-VF665_V43_VSM-835	28 Auto_Door_Unlock_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_2142
+VF_2143
+VF_2144
+VF_2145
+VF_2146
+VF_2147
+VF_2148
+VF_2149
+VF_2150
+VF_2151
+VF_2152"	VF665_V43_R3	Auto_Door_Unlock_Menu	1	0	interim_leaf
+837	Sys-RA-VF665_V43_VSM-836	32 Half_HMI_Setting ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_2380
+VF_2381
+VF_2382
+VF_2383
+VF_2384
+VF_2385
+VF_2386
+VF_2387
+VF_2388
+VF_2389
+VF_2390"	VF665_V43_R3	Half_HMI_Setting	1	0	interim_leaf
+838	Sys-RA-VF665_V43_VSM-837	33 Half_Torque_Sensibility ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_2404
+VF_2405
+VF_2406
+VF_2407
+VF_2408
+VF_2409
+VF_2410
+VF_2411
+VF_2412
+VF_2413
+VF_2414"	VF665_V43_R3	Half_Torque_Sensibility	1	0	interim_leaf
+839	Sys-RA-VF665_V43_VSM-838	34 AHBM_Feature_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_2611
+VF_2612
+VF_2613
+VF_2614
+VF_2615
+VF_2616
+VF_2617
+VF_2618
+VF_2619
+VF_2620
+VF_2621"	VF665_V43_R3	AHBM_Feature_Menu	1	0	interim_leaf
+840	Sys-RA-VF665_V43_VSM-839	36 T_EPB_MM 35000 [0;50000] 200 ms LTM DEFINE No N.A. Waiting Time of feedback from IPC for EPB setting	01.14.01	"VF_2920
+VF_2921
+VF_2922
+VF_2923
+VF_2924
+VF_2925
+VF_2926
+VF_2927
+VF_2928
+VF_2929
+VF_2930"	VF665_V43_R3		0	0	interim_leaf
+841	Sys-RA-VF665_V43_VSM-840	37 V_Car_Moving 4 [0;7] 0,5 km/h LTM DEFINE No N.A. Speed threshold for car moving	01.14.01	"VF_3057
+VF_3058
+VF_3059
+VF_3060
+VF_3061
+VF_3062
+VF_3063
+VF_3064
+VF_3065
+VF_3066
+VF_3067"	VF665_V43_R3		0	0	interim_leaf
+842	Sys-RA-VF665_V43_VSM-841	40 NAV_Presence ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_3210
+VF_3211
+VF_3212
+VF_3213
+VF_3214
+VF_3215
+VF_3216
+VF_3217
+VF_3218
+VF_3219
+VF_3220"	VF665_V43_R3	NAV_Presence	1	0	interim_leaf
+843	Sys-RA-VF665_V43_VSM-842	41 Ambient_Lighting_Function ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_3222
+VF_3223
+VF_3224
+VF_3225
+VF_3226
+VF_3227
+VF_3228
+VF_3229
+VF_3230
+VF_3231
+VF_3232"	VF665_V43_R3	Ambient_Lighting_Function	1	0	interim_leaf
+844	Sys-RA-VF665_V43_VSM-843	42 Ambient_Dimmer_Switch ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_3234
+VF_3235
+VF_3236
+VF_3237
+VF_3238
+VF_3239
+VF_3240
+VF_3241
+VF_3242
+VF_3243
+VF_3244"	VF665_V43_R3	Ambient_Dimmer_Switch	1	0	interim_leaf
+845	Sys-RA-VF665_V43_VSM-844	43 Model_Year ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_3307
+VF_3308
+VF_3309
+VF_3310
+VF_3311
+VF_3312
+VF_3313
+VF_3314
+VF_3315
+VF_3316
+VF_3317"	VF665_V43_R3	Model_Year	1	0	interim_leaf
+846	Sys-RA-VF665_V43_VSM-845	44 CAN Node 35 (TBM/FTM) ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_3421
+VF_3422
+VF_3423
+VF_3424
+VF_3425
+VF_3426
+VF_3427
+VF_3428
+VF_3429
+VF_3430
+VF_3431"	VF665_V43_R3		0	0	interim_leaf
+847	Sys-RA-VF665_V43_VSM-846	45 T_REC_TBM 2500 [0;10000] 500 ms LTM SUPPLIER EOL_2 No Diagnosis See ID Description	01.14.01	"VF_3433
+VF_3434
+VF_3435
+VF_3436
+VF_3437
+VF_3438
+VF_3439
+VF_3440
+VF_3441
+VF_3442
+VF_3443"	VF665_V43_R3		0	0	interim_leaf
+870	Sys-RA-VF665_V43_VSM-869	48 Geolocation_Menu ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_3533
+VF_3534
+VF_3535
+VF_3536
+VF_3537
+VF_3538
+VF_3539
+VF_3540
+VF_3541
+VF_3542
+VF_3543"	VF665_V43_R3	Geolocation_Menu	1	0	interim_leaf
+871	Sys-RA-VF665_V43_VSM-870	49 Forward_Collision_Mitigation ** ** ** ** LTM PROXI No N.A. Range value is indicated in the standard PROXI. First Trial Value depends on the project Configuration	01.14.01	"VF_3469
+VF_3470
+VF_3471
+VF_3472
+VF_3473
+VF_3474
+VF_3475
+VF_3476
+VF_3477
+VF_3478
+VF_3479"	VF665_V43_R3	Forward_Collision_Mitigation	1	0	interim_leaf
+876	Sys-RA-VF665_V43_VSM-875	"The ""Cornering_Light"" PROXI parameter is used to show or hide the ""Cornering Lights"" menu item."	01.14.02.01.01	VF_156	VF665_V43_R3	Cornering_Light	1	0	interim_leaf
+878	Sys-RA-VF665_V43_VSM-877	"The ""Odo_Units Change"" PROXI parameter is used to show or hide the ""Distance"" menu item (only for Japanese market if forseen)."	01.14.02.01.02	VF_864	VF665_V43_R3	Odo_Units Change	1	0	interim_leaf
+880	Sys-RA-VF665_V43_VSM-879	"The ""Fuel_Type"" PROXI parameter is used to show or hide the ""Consumption"" menu item for the alternative fuel versions (CNG or LPG)."	01.14.02.01.03	VF_866	VF665_V43_R3	Fuel_Type	1	0	interim_leaf
+882	Sys-RA-VF665_V43_VSM-881	"The ""External_Temperature_Sensor"" PROXI parameter is used to show or hide the ""Temperature"" menu item."	01.14.02.01.04	VF_877	VF665_V43_R3	External_Temperature_Sensor	1	0	interim_leaf
+884	Sys-RA-VF665_V43_VSM-883	"The ""Rain_Sensor"" PROXI parameter is used to show or hide the ""Rain sensor"" menu item."	01.14.02.01.05	VF_878	VF665_V43_R3	Rain_Sensor	1	0	interim_leaf
+886	Sys-RA-VF665_V43_VSM-885	"The ""Twilight_Sensor"" PROXI parameter is used to show or hide the ""Headlamp sensor"" menu item."	01.14.02.01.06	VF_879	VF665_V43_R3	Twilight_Sensor	1	0	interim_leaf
+888	Sys-RA-VF665_V43_VSM-887	"The ""Auto_Close_Menu"" PROXI parameter is used to show or hide the ""Autoclose"" menu item."	01.14.02.01.07	VF_881	VF665_V43_R3	Auto_Close_Menu	1	0	interim_leaf
+890	Sys-RA-VF665_V43_VSM-889	"The ""Cluster_Display_Type"" PROXI parameter is used to inform about the tipe of cluster"	01.14.02.01.08	VF_882	VF665_V43_R3	Cluster_Display_Type	1	0	interim_leaf
+892	Sys-RA-VF665_V43_VSM-891	"The ""Country_Code"" PROXI parameter is used to to manage consumption and temperature measure unit."	01.14.02.01.09	VF_883	VF665_V43_R3	Country_Code	1	0	interim_leaf
+894	Sys-RA-VF665_V43_VSM-893	"The ""DRL_Menù_Enable"" PROXI parameter is used to show or hide the ""Day lights"" menu item."	01.14.02.01.10	VF_928	VF665_V43_R3	DRL_Menù_Enable	1	0	interim_leaf
+896	Sys-RA-VF665_V43_VSM-895	"The ""Greeting_Lights_Menù"" PROXI parameter is used to show or hide the ""Greeting Lights"" menu item."	01.14.02.01.11	VF_1640	VF665_V43_R3	Greeting_Lights_Menù	1	0	interim_leaf
+898	Sys-RA-VF665_V43_VSM-897	"The ""CAN node 51 (LBSS)"" PROXI parameter is used to show or hide the ""Blind Spot Detection"" menu item."	01.14.02.01.12	VF_1641	VF665_V43_R3		0	0	interim_leaf
+900	Sys-RA-VF665_V43_VSM-899	"The ""CAN node 52 (RBSS)"" PROXI parameter is used to show or hide the ""Blind Spot Detection"" menu item."	01.14.02.01.13	VF_1642	VF665_V43_R3		0	0	interim_leaf
+902	Sys-RA-VF665_V43_VSM-901	"The ""Passive_Entry_Menu"" PROXI parameter is used to show or hide the ""Passive Entry"" menu item."	01.14.02.01.14	VF_1643	VF665_V43_R3	Passive_Entry_Menu	1	0	interim_leaf
+904	Sys-RA-VF665_V43_VSM-903	"The ""Remote_Door_Unlock _Menu"" PROXI parameter is used to show or hide the ""Remote Door Unlock"" menu item."	01.14.02.01.15	VF_1644	VF665_V43_R3	Remote_Door_Unlock _Menu	1	0	interim_leaf
+906	Sys-RA-VF665_V43_VSM-905	"The ""Sound_Horn_Remote_Start _Menu"" PROXI parameter is used to show or hide the ""Sound Horn Remote Start"" menu item."	01.14.02.01.16	VF_1645	VF665_V43_R3	Sound_Horn_Remote_Start _Menu	1	0	interim_leaf
+908	Sys-RA-VF665_V43_VSM-907	"The ""Horn_Chirp_Menù"" PROXI parameter is used to show or hide the ""Sound Horn With Lock"" menu item (if Model_Year<20) OR ""Sound Horn with Lock Unlock"" menu item (if Model_Year>=20)"	01.14.02.01.17	VF_1646	VF665_V43_R3	Horn_Chirp_Menù | Model_Year	2	0	interim_leaf
+910	Sys-RA-VF665_V43_VSM-909	"The ""Flash_Light_With_Lock_Menu"" PROXI parameter is used to show or hide the ""Flash Light with Lock"" menu item."	01.14.02.01.18	VF_2013	VF665_V43_R3	Flash_Light_With_Lock_Menu	1	0	interim_leaf
+912	Sys-RA-VF665_V43_VSM-911	"The "" Tyre_Pressure_Unit_Menu ""PROXI parameter is used to show or hide the ""Tyre Pressure"" menu item."	01.14.02.01.19	VF_2321	VF665_V43_R3	Tyre_Pressure_Unit_Menu	1	0	interim_leaf
+914	Sys-RA-VF665_V43_VSM-913	"The ""CAN node 24 (PAM) "" PROXI parameter is used to detect the presence the ""Park Assist Module"""	01.14.02.01.20	VF_2327	VF665_V43_R3		0	0	interim_leaf
+916	Sys-RA-VF665_V43_VSM-915	"The "" Side_Distance_Warning ""PROXI parameter is used to show or hide the "" Side Distance Warning "" menu item."	01.14.02.01.21	VF_2328	VF665_V43_R3	Side_Distance_Warning	1	0	interim_leaf
+918	Sys-RA-VF665_V43_VSM-917	"The ""PAM_Configuration"" PROXI parameter is used to show or hide the ""Park Assist Module"" menu item."	01.14.02.01.22	VF_2329	VF665_V43_R3	PAM_Configuration	1	0	interim_leaf
+920	Sys-RA-VF665_V43_VSM-919	"The ""Auto_Door_Unlock_Menu"" PROXI parameter is used to show or hide the ""Auto Door Unlock On Exit"" menu item."	01.14.02.01.23	VF_2096	VF665_V43_R3	Auto_Door_Unlock_Menu	1	0	interim_leaf
+922	Sys-RA-VF665_V43_VSM-921	"The "" Half_HMI_Setting "" PROXI parameter is used to show or hide the "" LDW Intensity"" menu item."	01.14.02.01.24	VF_2428	VF665_V43_R3	Half_HMI_Setting	1	0	interim_leaf
+924	Sys-RA-VF665_V43_VSM-923	"The "" Half_Torque_Sensibility "" PROXI parameter is used to show or hide the "" LDW Sensibility"" menu item."	01.14.02.01.25	VF_2430	VF665_V43_R3	Half_Torque_Sensibility	1	0	interim_leaf
+926	Sys-RA-VF665_V43_VSM-925	"The "" AHBM_Feature_Menu "" PROXI parameter is used to show or hide the "" Auto High Beam Menu"" menu item."	01.14.02.01.26	VF_2647	VF665_V43_R3	AHBM_Feature_Menu	1	0	interim_leaf
+928	Sys-RA-VF665_V43_VSM-927	"The ""NAV_Presence"" PROXI parameter identifies the presence of Navigation functionalities"	01.14.02.01.27	VF_3248	VF665_V43_R3	NAV_Presence	1	0	interim_leaf
+930	Sys-RA-VF665_V43_VSM-929	"The "" Ambient_Lighting_Function"" PROXI parameter is used to show or hide the ""Interior Ambient Light"" menu item."	01.14.02.01.28	VF_3249	VF665_V43_R3	Ambient_Lighting_Function	1	0	interim_leaf
+932	Sys-RA-VF665_V43_VSM-931	"The "" Ambient_Dimmer_Switch"" PROXI parameter is used to show or hide the "" Interior Ambient Light"" menu item."	01.14.02.01.29	VF_3250	VF665_V43_R3	Ambient_Dimmer_Switch	1	0	interim_leaf
+1212	Sys-RA-VF665_V43_VSM-1211	37 V_Car_Moving 4 [0;7] 0,5 km/h LTM DEFINE No N.A. Speed threshold for car moving	01.14.01	VF_3057	VF665_V43_R3		0	0	interim_leaf

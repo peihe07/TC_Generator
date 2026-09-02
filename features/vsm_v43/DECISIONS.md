@@ -91,11 +91,16 @@ An unsigned sheet blocks Phase 4+.
 | 2 | `workbook_state` | **BLANK** | `sandbox/base/` 副本第 10 列起、B 欄（序號公式）以外之非空儲存格 **0**（掃 max_row 1411，上繳 01 RECON §1）；R-VT1「自 BLANK ＋ R-G1 模板起建」 | `[PROPOSED]` 待簽 |
 | 3 | 母體（037 leaf 數） | **0，待 037** | R-VT4；現有兩份 037 之 `Source Requirement ID` 152/152 皆為 V42，`V43` 命中 0（上繳 01 E7）。DR-VT1 依 Pei 裁未送 | `[PEI]` 待簽 |
 | 4 | framework Layer 1 | **鎖定** = `Vehicle Setup Management R1L TBM` | R-VT3；`framework.md` §Layer 1；`feature.yaml.test_group` 已同步 | `[PROPOSED]` 待簽 |
+| **3′** | 母體（**暫代**） | **295（SYSRA）**，重錨條款生效 | **R-VT18**（Pei「送＋三」，2026-09-02）：DR-VT1 裁定送出，**同時不等回覆**以 SYSRA 暫代母體進 P4。295 ＝ Functional 507 − DocID `VF655_V43_R3` 171 − DocID 空 41（兩批隔離待 DR-VT2）。R-VT4「止於 P0–P3」與 R-VT17(b) 掛起**均解除**。TC 之 D 欄用 `Sys-RA-VF665_V43_VSM-…` 實名並逐列註 `Provisional: SYSRA-anchored (R-VT18); re-anchor upon 037 (DR-VT1)`；037 到件後逐 TC 重錨，**重錨完成前不得交付**（除非 Pei 另裁） | `[AUTO]` 落實 R-VT18 |
 
-**Layer 2 不在本表** —— 待 037，且下放包 05 §五 明令不得預填。
+**Layer 2 不在本表** —— 暫代線之聚合材料見 `data/layer2_material_v43.md`（`chapter_for_vf` 72 組）；
+**草案歸分析層、鎖定歸 Pei**；執行層不聚類、不命名（06 包 §四）。
+
+> **第 3 列不刪**（R-TM13）：037 到齊前之權威記錄仍為「0，待 037」；
+> 第 3′ 列為 R-VT18 之暫代構型，兩者並存，037 到件後以重錨對映表銜接。
 
 ## Sign-off
 
-- Reviewed by：（待 Pei）
-- Date：（待填）
-- Amendments：（無）
+- Reviewed by：**Pei（「皆授權」，分析層代記，R-VT17(a)）**
+- Date：**2026-09-02**
+- Amendments：無（四欄照案成立；本線依 R-VT17(b) 掛起，待 037）
