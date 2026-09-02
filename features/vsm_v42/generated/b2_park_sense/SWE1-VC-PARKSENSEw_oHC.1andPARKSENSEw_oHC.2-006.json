@@ -33,7 +33,7 @@
         "axis": "input_data",
         "delta": "同 -002 之 PROXI 條件；本條為同文對之第二列（§K K-7），括號下半以「第二個需求 id」區分"
       },
-      "remarks": "PROXI parameter name is written as the spec names it. The verbatim entry in PROXI_HDCC27_R3 Format r30 column F is \"CAN node 24 (PAM/CVADAS)\" with 0 = Absent and 1 = Present; the spec writes \"CAN node 24 (PAM )\". The spec name is kept per R-13 and the PROXI anchor is recorded here rather than substituted. UI element names are taken from the menu item wording named in the spec section and in the 037 description (R-VL21(a)); they are not anchored in HMI Settings List"
+      "remarks": "PROXI parameter name is written as the spec names it. The verbatim entry in PROXI_HDCC27_R3 Format r30 column F is \"CAN node 24 (PAM/CVADAS)\" with 0 = Absent and 1 = Present; the spec writes \"CAN node 24 (PAM )\". The spec name is kept per R-13 and the PROXI anchor is recorded here rather than substituted. UI element names are taken from the menu item wording named in the spec section and in the 037 description (R-VL21(a)); they are not anchored in HMI Settings List; upstream duplicate suspected (verbatim same as -002 and spec paras 1203-1204 / 1214-1215) — DR-VL2 evidence"
     }
   ]
 }

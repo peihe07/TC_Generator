@@ -30,6 +30,7 @@
       "split_flag": false,
       "split_reason": "",
       "specification_reference": [
+        "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29",
         "Sys-RA-VF665_V42_VSM-807"
       ],
       "test_item": "The HMI layer shall evaluate the received `IPC_VEHICLE_SETUP.PamChimeVolumeFront signal, update the TLM_Vehicle_Setup_Menu.Info internal signal, and display the **Front Park Sense Volume** setting information accordingly within <TDisplay>\n(Reported front volume drives the displayed control at both ends of the range)",

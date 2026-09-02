@@ -36,7 +36,7 @@ NA
 5. PENDING: DR-VL4 TLM_Vehicle_Setup_Menu.Info
 
 ### 其他
-- specification_reference: Sys-RA-VF665_V42_VSM-807
+- specification_reference: Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29; Sys-RA-VF665_V42_VSM-807
 - design_method: 狀態轉換 (State Transition Testing)
 - priority: P2
 - split_flag: False

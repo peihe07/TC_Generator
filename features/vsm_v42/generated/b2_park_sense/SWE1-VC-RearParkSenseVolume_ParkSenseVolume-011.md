@@ -30,7 +30,7 @@ NA
 2. The named UI element "Rear Park Sense Volume" control is "High"
 
 ### 其他
-- specification_reference: Sys-RA-VF665_V42_VSM-799
+- specification_reference: Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29; Sys-RA-VF665_V42_VSM-799
 - design_method: 等價劃分 (Equivalence Partitioning, EP)
 - priority: P2
 - split_flag: False

@@ -1,0 +1,12 @@
+assignment	signal	raw	basis
+$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ = 2	IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	2	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks
+$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ = 3	IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	3	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks
+$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ = 4	IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	4	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks
+$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ = 5	IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	5	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks
+$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ = 6	IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	6	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks
+$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ = 8	IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	8	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks
+$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ = 9	IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	9	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks
+$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ = 10	IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	10	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks
+$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ = 11	IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	11	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks
+$STATUS_CCAN3.VehicleSpeedVSOSig$ = 64	STATUS_CCAN3.VehicleSpeedVSOSig	64	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks
+$STATUS_CCAN3.VehicleSpeedVSOSig$ = 65	STATUS_CCAN3.VehicleSpeedVSOSig	65	R-VL21(c)/R-VL26(c): DBC has no VAL_ entry for this raw value; disclosed in remarks

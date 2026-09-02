@@ -28,6 +28,7 @@
       "split_flag": false,
       "split_reason": "",
       "specification_reference": [
+        "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29",
         "Sys-RA-VF665_V42_VSM-809"
       ],
       "test_item": "if the features are not supported, shall not display the **Park Sense Setting**, **Rear Park Sense Volume**, and **Front Park Sense Volume** menu items. The user shall not be able to access or modify these settings, and the HMI shall not issue any property request for these features\n(PAM node absent suppresses all three menu items and the request signal)",

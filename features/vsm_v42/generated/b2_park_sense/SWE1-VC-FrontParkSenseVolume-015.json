@@ -27,6 +27,7 @@
       "split_flag": false,
       "split_reason": "",
       "specification_reference": [
+        "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29",
         "Sys-RA-VF665_V42_VSM-803"
       ],
       "test_item": "If $CAN node 24 (PAM)$ = [Present], the TLM shall display the corresponding customer setting and the user can perform the setting\n(Front volume menu available only when the PAM configuration covers front and rear)",

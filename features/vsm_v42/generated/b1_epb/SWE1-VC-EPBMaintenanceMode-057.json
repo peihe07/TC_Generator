@@ -29,7 +29,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "test_item": "When the TLM receives the value 11 via signal, $IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$, the TLM shall activate and display the popup indicating that the Service Mode exit process has been completed successfully\n(Fdbk = 11: exit completed successfully)",
+      "test_item": "When the TLM receives the value 11 via signal, $IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$, the TLM shall activate and display the popup indicating that the Service Mode exit process has been completed successfully\n(Fdbk = 11: exit process reported as complete)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "Fdbk 值 11（退出流程完成），與同族其他 Fdbk 值為等價類之不同分割"

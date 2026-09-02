@@ -11,7 +11,7 @@
 ### test_item
 ```
 When the TLM receives the value 11 via signal, $IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$, the TLM shall activate and display the popup indicating that the Service Mode exit process has been completed successfully
-(Fdbk = 11: exit completed successfully)
+(Fdbk = 11: exit process reported as complete)
 ```
 
 ### pre_conditions

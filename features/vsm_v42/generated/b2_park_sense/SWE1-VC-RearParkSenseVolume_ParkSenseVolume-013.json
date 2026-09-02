@@ -25,6 +25,7 @@
       "split_flag": false,
       "split_reason": "",
       "specification_reference": [
+        "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29",
         "Sys-RA-VF665_V42_VSM-801"
       ],
       "test_item": "If the feature is not supported, the HMI layer shall not display the **Rear Park Sense Volume** menu item, and the user shall not be able to access or modify the setting\n(Unsupported rear volume keeps the menu item hidden and unreachable)",

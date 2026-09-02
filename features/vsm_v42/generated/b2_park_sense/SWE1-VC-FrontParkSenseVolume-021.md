@@ -34,7 +34,7 @@ NA
 4. No value of $TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req$ is received
 
 ### 其他
-- specification_reference: Sys-RA-VF665_V42_VSM-809
+- specification_reference: Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29; Sys-RA-VF665_V42_VSM-809
 - design_method: 負向測試 (Negative / Invalid)
 - priority: P2
 - split_flag: False

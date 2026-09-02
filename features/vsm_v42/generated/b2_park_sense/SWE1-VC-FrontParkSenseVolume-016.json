@@ -24,6 +24,7 @@
       "split_flag": false,
       "split_reason": "",
       "specification_reference": [
+        "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29",
         "Sys-RA-VF665_V42_VSM-804"
       ],
       "test_item": "The HMI layer shall capture the customer selection for the **PAM Chime Volume Front** setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req signal value set to **Low**\n(Front chime volume Low is transmitted to the IPC)",

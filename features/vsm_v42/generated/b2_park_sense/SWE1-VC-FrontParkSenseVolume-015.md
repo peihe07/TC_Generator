@@ -33,7 +33,7 @@ NA
 3. The named UI element "Front Park Sense Volume" control is enabled for the customer
 
 ### 其他
-- specification_reference: Sys-RA-VF665_V42_VSM-803
+- specification_reference: Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29; Sys-RA-VF665_V42_VSM-803
 - design_method: 決策表 (Decision Table Testing)
 - priority: P2
 - split_flag: False

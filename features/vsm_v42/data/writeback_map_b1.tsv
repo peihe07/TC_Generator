@@ -1,18 +1,18 @@
-row	tc_id	req_id_D	polarion_C	test_group_G	test_set_H	src_json	src_sha8
-10	NR1L-VSM42-001	Sys-RA-VF665_V42_VSM-723	SWE1-VC-EPBMaintenanceMode-044	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-044.json	02e1fb74
-11	NR1L-VSM42-002	Sys-RA-VF665_V42_VSM-724	SWE1-VC-EPBMaintenanceMode-045	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-045.json	843fb429
-12	NR1L-VSM42-003	Sys-RA-VF665_V42_VSM-725	SWE1-VC-EPBMaintenanceMode-046	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-046.json	82091592
-13	NR1L-VSM42-004	Sys-RA-VF665_V42_VSM-728	SWE1-VC-EPBMaintenanceMode-047	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-047.json	b112d9ba
-14	NR1L-VSM42-005	Sys-RA-VF665_V42_VSM-729	SWE1-VC-EPBMaintenanceMode-048	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-048.json	3b4303a1
-15	NR1L-VSM42-006	Sys-RA-VF665_V42_VSM-730	SWE1-VC-EPBMaintenanceMode-049	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-049.json	e46408e1
-16	NR1L-VSM42-007	Sys-RA-VF665_V42_VSM-731	SWE1-VC-EPBMaintenanceMode-050	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-050.json	17114b92
-17	NR1L-VSM42-008	Sys-RA-VF665_V42_VSM-732	SWE1-VC-EPBMaintenanceMode-051	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-051.json	94dd9fed
-18	NR1L-VSM42-009	Sys-RA-VF665_V42_VSM-733	SWE1-VC-EPBMaintenanceMode-052	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-052.json	0cb58c48
-19	NR1L-VSM42-010	Sys-RA-VF665_V42_VSM-734	SWE1-VC-EPBMaintenanceMode-053	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-053.json	e87ffd3b
-20	NR1L-VSM42-011	Sys-RA-VF665_V42_VSM-735	SWE1-VC-EPBMaintenanceMode-054	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-054.json	8d23aaea
-21	NR1L-VSM42-012	Sys-RA-VF665_V42_VSM-736	SWE1-VC-EPBMaintenanceMode-055	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-055.json	1c573252
-22	NR1L-VSM42-013	Sys-RA-VF665_V42_VSM-737	SWE1-VC-EPBMaintenanceMode-056	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-056.json	0fa76d57
-23	NR1L-VSM42-014	Sys-RA-VF665_V42_VSM-738	SWE1-VC-EPBMaintenanceMode-057	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-057.json	b0606d69
-24	NR1L-VSM42-015	Sys-RA-VF665_V42_VSM-739	SWE1-VC-EPBMaintenanceMode-058	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-058.json	a1e0ff42
-25	NR1L-VSM42-016	Sys-RA-VF665_V42_VSM-740	SWE1-VC-EPBMaintenanceMode-059	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-059.json	7abc9589
-26	NR1L-VSM42-017	Sys-RA-VF665_V42_VSM-741	SWE1-VC-EPBMaintenanceMode-060	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-060.json	ca9ec0a0
+row	tc_id	swe_id_D	empty_C	functional_safety_S	test_group_G	test_set_H	src_json	src_sha8
+10	NR1L-VSM42-001	SWE1-VC-EPBMaintenanceMode-044		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-044.json	02e1fb74
+11	NR1L-VSM42-002	SWE1-VC-EPBMaintenanceMode-045		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-045.json	843fb429
+12	NR1L-VSM42-003	SWE1-VC-EPBMaintenanceMode-046		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-046.json	82091592
+13	NR1L-VSM42-004	SWE1-VC-EPBMaintenanceMode-047		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-047.json	b112d9ba
+14	NR1L-VSM42-005	SWE1-VC-EPBMaintenanceMode-048		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-048.json	3b4303a1
+15	NR1L-VSM42-006	SWE1-VC-EPBMaintenanceMode-049		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-049.json	e46408e1
+16	NR1L-VSM42-007	SWE1-VC-EPBMaintenanceMode-050		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-050.json	17114b92
+17	NR1L-VSM42-008	SWE1-VC-EPBMaintenanceMode-051		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-051.json	94dd9fed
+18	NR1L-VSM42-009	SWE1-VC-EPBMaintenanceMode-052		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-052.json	0cb58c48
+19	NR1L-VSM42-010	SWE1-VC-EPBMaintenanceMode-053		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-053.json	e87ffd3b
+20	NR1L-VSM42-011	SWE1-VC-EPBMaintenanceMode-054		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-054.json	8d23aaea
+21	NR1L-VSM42-012	SWE1-VC-EPBMaintenanceMode-055		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-055.json	1c573252
+22	NR1L-VSM42-013	SWE1-VC-EPBMaintenanceMode-056		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-056.json	0fa76d57
+23	NR1L-VSM42-014	SWE1-VC-EPBMaintenanceMode-057		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-057.json	b0606d69
+24	NR1L-VSM42-015	SWE1-VC-EPBMaintenanceMode-058		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-058.json	a1e0ff42
+25	NR1L-VSM42-016	SWE1-VC-EPBMaintenanceMode-059		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-059.json	7abc9589
+26	NR1L-VSM42-017	SWE1-VC-EPBMaintenanceMode-060		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	SWE1-VC-EPBMaintenanceMode-060.json	ca9ec0a0
