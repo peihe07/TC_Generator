@@ -34,7 +34,7 @@ NA
 
 ### 其他
 - specification_reference: Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.19
-- design_method: 情境 / 用例 (Scenario / Use Case Testing)
+- design_method: 功能測試 (Functional based ; no specific technique)
 - priority: P1
 - split_flag: False
 - distinguishing_axis: trigger_state — HMI 觸發送出 EPB_MaintenanceMode_Req = 1 (On)，與 -047 之接收 IPC 回報不同向

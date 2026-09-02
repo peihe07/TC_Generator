@@ -19,7 +19,7 @@
         "Read the named UI element \"No response from EPB module\" pop-up and check that it is displayed"
       ],
       "expected_result": [
-        "The signal $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is registered without a bus error",
+        "The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received",
         "No value of $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ or $IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ is received",
         "The signal is held for 35000 ms",
         "The named UI element \"No response from EPB module\" pop-up is displayed"

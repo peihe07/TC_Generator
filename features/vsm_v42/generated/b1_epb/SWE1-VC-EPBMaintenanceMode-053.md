@@ -29,7 +29,7 @@ NA
 4. Read the named UI element "No response from EPB module" pop-up and check that it is displayed
 
 ### expected_result
-1. The signal $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is registered without a bus error
+1. The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received
 2. No value of $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ or $IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$ is received
 3. The signal is held for 35000 ms
 4. The named UI element "No response from EPB module" pop-up is displayed

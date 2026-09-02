@@ -12,6 +12,7 @@ FO §8.7：一次往返共用同一 `NN`；下放包由分析層寫，上繳包�
 | 04 | `handoff/04_p3_framework.md` | `upstream/04_p3_framework.md` | 2026-09-02 | **P3：W-8～W-12**。R-VL15/16 落地（v3 就地更新 9 列）→ **E32 B-1 = 0、解得 99**；framework Layer 3 回填 **21/24**（3 家族未對映）；**E34 十組全相符（128）**；E36 六條；leaves 加 `test_set`；新建 val_tables（98 訊號/300 值）與 ba_sendtype（99 列）；DECISIONS 待簽。**W-9 未照字面辦**（三件 xlsx 早由 power 登錄，改補 R-G15 反向記載）。E33/E37 各一項不符公式，已歸因 |
 | 05 | `handoff/05_pilot_epb.md` | `upstream/05_pilot_epb.md` | 2026-09-02 | **P4/P5 pilot：EPB Maintenance Mode 17 leaf**。W-0 GenSigSendType 列舉查得（1=OnWrite/3=OnChange/7=NoSigSendType）；W-1 規格節 1047–1117 切出、17/17 對映；**W-2 產出 17 TC**（generated/b1_epb，35 檔）；**E38–E45 全過**、§9 機讀 14 項全 PASS。PENDING 6（3 內部訊號，DR-VL4）。§K 四項待裁。**未寫工作簿、未寫 delivered/**（R-VL20） |
 | 06 | `handoff/06_pilot_rev.md` | `upstream/06_pilot_rev.md` | 2026-09-02 | **pilot b1 修訂輪（R-VL21 REV-1/2/4）**。-046 刪不可觀察之 timer 步與 bus-error ER、補 status On ER；Fdbk 族 9 條補前置發起步、削回讀步（族內一致）。**E46/E47/E48/E49 過**（改 20 檔、不動 14 檔 diff = 0）；**E50 = 1** —— 與 E46 在 -053 上衝突，依明文範圍不動並回報。新增 §K K-5（退出側請求路徑規格未載）／K-6（-054 歸屬）。R-VL21 body_sha8 `fde2fc91` |
+| 07 | `handoff/07_b1_freeze.md` | `upstream/07_b1_freeze.md` | 2026-09-02 | **b1 微修（R-VL22）**。-053 ER1 改 is received；-054 量測後判 **in-mode 型**（段 1092–1096 掃 entering/exiting/request 命中 0，對照 1066/1099 有詞）刪發起步；-046 design_method → 功能測試。**E53/E54/E55 過**（改 6 檔，其餘 diff = 0）；**E56 = 16/17** —— -059 之 test_item 上半為句內剪接（本執行層於 05 所造），修法備妥但該條不在範圍，未改。**b1 凍結聲明附條件保留**，待 -059 一列裁定。R-VL22 body_sha8 `1d91e1b5` |
 
 ## 報告（`docs/reports/`）
 
