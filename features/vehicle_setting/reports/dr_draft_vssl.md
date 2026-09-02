@@ -173,14 +173,16 @@ S  Same as DT
 
 ---
 
-## 四、11 個設定項之顯示條件於 FIP 总控表未載（VF230，涉 32 列）
 
-**本節為 2026-09-02 補入**（依 `down/20260902_VS-SL-03_review.md` §2 R3：
-VS-SL-03 之 DR 稿規格漏了「(3) 分支：設定之顯示條件兩來源皆未載」一問）。
+## 四、9 個設定項之顯示條件於 FIP 总控表未載（VF230，涉 25 列）
+
+**本節於 2026-09-02 補入，同日依 `down/20260902_VS-SL-04_review.md` §2 縮節。**
+原列 11 名 32 列；其中 `Engine Off Power Delay`（4 列）與 `Automatic Trailer Light Check`（3 列）
+之否定式條件已由**規格值表內之 EP 代表值**解決（FO §8.3），**自本節移除，不再問上游**。
 既有一～三節不動。
 
 與第一節之別：**第一節問的是「名字對不上」，本節問的是「名字對得上、但顯示條件沒人寫」。**
-本節 11 名**全部於 HMI Settings List 有逐字或已認可之對應項**，
+本節 9 名**全部於 HMI Settings List 有逐字或已認可之對應項**，
 僅 FIP 总控表 `FeatureSet(Gen4-5)`（278 列）無其顯示條件。
 
 ### 查證方法（三要件）
@@ -189,7 +191,7 @@ VS-SL-03 之 DR 稿規格漏了「(3) 分支：設定之顯示條件兩來源皆
 |---|---|
 | 何處查 | (1) HMI Settings List `Settings`（攤平 517 項）；(2) 总控表 `FeatureSet(Gen4-5)` D 欄 278 列；(3) TC 之需求原文（`Test Item` 欄） |
 | 如何查 | 先以設定名逐字比對；名不同者以 Pei 2026-09-02 認可之別名綁定所指之列為準；三者皆查畢方判 |
-| 結果 | 下列 11 名之 HMI 項確定，**FIP 无對應列或其條件無法取值**；需求原文亦無 `$var$ = [label]` 之 PROXI 條件式 |
+| 結果 | 下列 9 名之 HMI 項確定，**FIP 无對應列或其參數於值表查無**；需求原文亦無 `$var$ = [label]` 之 PROXI 條件式 |
 
 ### (a) FIP 无對應列（8 名，22 列）
 
@@ -204,22 +206,7 @@ VS-SL-03 之 DR 稿規格漏了「(3) 分支：設定之顯示條件兩來源皆
 | `Signature Lighting` | 1 | Settings r506（逐字命中） | `Read the Vehicle Settings menu and check that the Signature Lighting setting is displayed as DISABLE`（原文未加引號，逐字照錄） |
 | `Hour Mode` | 1 | Settings r359 `Clock > Time Format`（Pei 2026-09-02 認可之近義綁定） | `Read the Vehicle Settings menu and check that the "Hour Mode" customer setting is displayed` |
 
-### (b) FIP 有列但其條件為否定式（2 名，7 列）
-
-| 設定項 | 列 | 总控表 | Atlantis 欄逐字 |
-|---|---:|---|---|
-| `Engine Off Power Delay` | 4 | No.149 | `If Country_Code is not [Australia], return value is true.` `Other return values are false.` |
-| `Automatic Trailer Light Check` | 3 | No.268 | `If Trailer_Light_Check is NOT [Absent]),` `return value is 1.` `Else return value is 0.` |
-
-**問題**：否定式指的是一個補集（`Country_Code` 之值表有 30 餘個國別；
-`Trailer_Light_Check` 之值表為 `{0: Absent, 1: Type 1 (Radio), 2: Type 2, 3: Type 3}`）。
-**Pre-Condition 須填單一具體值，補集無法直接落值**，本層依 R-13 不猜。
-
-**所求**：請示此二項於 NAFTA（R-VS84）之應取值 ——
-例如 `Country_Code` 是否取 `2 (United States of America)`、
-`Trailer_Light_Check` 是否取 `1 (Type 1 (Radio))`。
-
-### (c) FIP 有列但其參數名於 PROXI 值表查無（1 名，3 列）
+### (b) FIP 有列但其參數名於 PROXI 值表查無（1 名，3 列）
 
 | 設定項 | 列 | 总控表 | Atlantis 欄逐字 |
 |---|---:|---|---|
@@ -234,5 +221,5 @@ VS-SL-03 之 DR 稿規格漏了「(3) 分支：設定之顯示條件兩來源皆
 
 ### 本層之處置
 
-此 32 列之 `proxi_proposed` 一律 `PENDING`，沙盒稿之 Pre-Condition 亦寫 `PENDING`，不猜值。
+此 25 列之 `proxi_proposed` 一律 `PENDING`，沙盒稿之 Pre-Condition 亦寫 `PENDING`，不猜值。
 逐列見 `features/vehicle_setting/reports/_v4_branch3_resolution.tsv`（`resolution = R3`）。
