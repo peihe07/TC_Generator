@@ -93,19 +93,21 @@ Category 第 10 欄、Description 第 3 欄）Functional 318 條、去重 **308*
 `word/document.xml` 段落抽取得 **1781** 個非空段落。
 zip members **25**，其中媒體／內嵌物件 **1** 件：`word/media/image1.wmf`。
 
-## 7. 未決（2026-09-01 依下放包 04 更新）
+## 7. 未決（2026-09-02 依下放包 04 補遺更新）
 
 | 項 | 現況 | 依據 |
 |---|---|---|
-| **段 1 欄組綁定** | **已定**：本線 EE = ATL-Mi（1280/1280），段 1 一律取 LID `CAN Mapping` 之 **`Atlantis`（P–T）**欄組；`Atlantis High`（Z–AD）只作旁證 | R-VT13(a) |
-| **K-1（LTM 匯流排）** | **結案**：解在 LID Atlantis 欄，非 SYSAD。`STATUS_CCAN3.*` 為 LTM 觀察弧（Atlantis 欄命中 2 處）、`BRAKE1.*` 為上游弧（Atlantis 欄命中 **0** 處）。R-VT12(b)「依 SYSAD」作廢 | R-VT13(c)；A-VT16／A-VT19 RESOLVED |
-| **段 3（DBC）** | **待件**：forms/ 之 R1 DBC 為 Atlantis High 之件；本線需 **ATL-Mi CAN-B／CAN-C DBC** → **DR-VT5**。到件前 CAN 訊號一律 `段3待ATL-Mi DBC`，**不得記「解得」、不得寫 `$…$`** | R-VT13(b) |
-| DR-VT3（28 列訊息名不符） | **暫持**：Atlantis 欄命中 6 列已撤除 R-13（另 1 列亦撤），**餘 21 列**待 DR-VT5 到件後重驗 | R-VT13(d) |
-| 內部訊號 | **83 名止於段 1，四輪擴充零變動**（規則→欄→檔→欄組）。唯一出路為 **DR-VT4**（已升為與 DR-VT1 同級） | R-VT14(d) |
-| 第六規則（重音） | **已採**：Unicode NFKD 去重音，命中三名（`DRL_Menù_Enable`／`Greeting_Lights_Menù`／`Horn_Chirp_Menù`），備註記「重音正規化」；不推廣其他字符 | R-VT13(e) |
-| 結果值域 | 增 `UI+PROXI 雙路徑` 與 `段3待ATL-Mi DBC`，共九值 | R-VT14(a) |
-| HMI Settings 候選集 | `Technical Reference (CFTS/VF)` 含 `VF665` **字面僅 3 列**；含 `665`（`VF230/665` 等 7 種寫法）**247 列** —— 兩讀法並列待裁 | R-VT14(b)；上繳 04 §E29 |
-| 台帳重生 | 改由 **Pei 提交前一次**（R-VL13(a) 同法）；R-VT8(a)「由 vsm_v42 重生」作廢 | R-VT14(c) |
-| E9 基線／`查無(R-G13)` 標籤 | 56／仍不用（三要件未滿足，`LOOKUP_MISSES.md` 未寫） | R-VT10(b)(c) |
-| `word/media/image1.wmf` | 已轉圖並看過（`data/spec_r4_image1.png`），R4 功能圖 | R-VT10(e) |
-| Layer 2 母體／`spec_reference_template` | 待 037（DR-VT1）／待 P3 | R-VT4／R-VT8(c) |
+| **段 1 欄組綁定** | **已定**：本線 EE = ATL-Mi（1280/1280），段 1 取 LID `CAN Mapping` 之 **`Atlantis`（P–T）**欄組；`Atlantis High`（Z–AD）降旁證 | R-VT13(a) |
+| **段 3 DBC** | **已到件、已綁定**：`forms/P363_BH-CAN [07338]_3A_R2.dbc`（latin-1／CRLF；實測 BO_ **99**、SG_ 定義 **688**／相異 **655**、VAL_ **503**、有 VAL_ 之訊號 **496**）。**「解得」自此合法**；R1 DBC 降旁證。**DR-VT5 結案** | R-VT15(a)(d)；A-VT28 |
+| **K-1（LTM 匯流排）** | **結案並二度印證**：P363 之 `SG_ VehicleSpeedVSOSig` 落於 `BO_ STATUS_CCAN3`，無 `BRAKE1` → `STATUS_CCAN3.*` 為 LTM 觀察弧、`BRAKE1.*` 為上游弧 | R-VT13(c)；A-VT27 |
+| **DR-VT3（原 28 列）** | **26 列轉解得，餘 2 列**（`SERVICE_SETUP.TelematicSetupACK`／`TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock`，`SG_` 皆落 `IPC_VEHICLE_SETUP`）。DR-VT3 之實際名單為此 2 名；**暫持不送** | R-VT15(b)；E31 = 2 |
+| **CAN-C DBC** | **未到件**：**8 列**記「未解得（CAN-C DBC 未到件）」 | R-VT15(c) |
+| 內部訊號 | **83 名止於段 1，第五輪擴充零變動**（規則→欄→檔→欄組→**DBC**）。DBC 到件對其毫無作用 —— 缺的是對照表不是 DBC。唯一出路 **DR-VT4**（Pei 裁先不送） | A-VT25 |
+| 內部訊號之 5 名「解得」 | **判準待裁**：係跳過段 1／2 之 DBC 直查（LID 不收 `X.Info` 形），R-P368(a) 三段鏈僅段 3 過 | A-VT26 |
+| 結果值域 | `解得 \| 訊息名不符(R-13) \| 未解得（CAN-C DBC 未到件） \| 未解得(止於段1) \| 未解得(止於段2) \| B-1 衝突 \| UI路徑(R-P375b) \| PROXI路徑(R-P375b/c) \| UI+PROXI 雙路徑 \| 查無(R-G13)`；`段3待ATL-Mi DBC` 隨到件作廢 | R-VT14(a)／R-VT15(d) |
+| HMI Settings 候選集 | `Technical Reference` 含 `VF665` **字面 3 列**／含 `665` **247 列**（`VF230/665` 佔 235）—— 兩讀法並列待裁 | R-VT14(b) |
+| 第六規則（重音） | 已採，命中三名，備註記「重音正規化」 | R-VT13(e) |
+| 抽名偽陽性 | A-VT21 六名（已標排除）＋ A-VT23 四名（標記，排除旗標待裁）＝ **10**；PROXI 母體應由 49 降為 39 | A-VT21／A-VT23 |
+| 台帳重生 | 由 **Pei 提交前一次**（R-VL13(a) 已獲追認）；本線不重生 | R-VT14(c) |
+| Layer 2 母體 | **待 037（DR-VT1，Pei 裁先不送）** —— 本線續止於 P0–P3 | R-VT4 |
+| `spec_reference_template` | null，待 P3 | R-VT8(c) |

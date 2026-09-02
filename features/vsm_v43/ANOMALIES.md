@@ -412,6 +412,74 @@ disposition is Tier 2。
   合併欄組（P），若把它同時計入兩欄組，R-13 之 Atlantis High 命中會由 0 變 2。
   分析層之 0 對應「Atlantis High 僅取 `CAN Mapping` Z 欄」。本包從之，並記明此界線。
 
+## A-VT25 — 段 3 DBC 到件後之解析躍升；內部訊號 83 名仍不動（PENDING —— 唯一未解之結構缺口）
+
+- **實測**（2026-09-02，W-5‴ 補遺版，`forms/P363_BH-CAN [07338]_3A_R2.dbc`）：
+  | 結果 | v3 | **v4（補遺版）** |
+  |---|---|---|
+  | 解得 | 41（以 Atlantis High DBC 判，已作廢） | **86** |
+  | 訊息名不符(R-13) | 28 | **4** |
+  | 未解得（CAN-C DBC 未到件） | — | **8** |
+  | 未解得(止於段1) | 108 | **93** |
+- **原 R-13 28 列**：**26 列轉「解得」**，仍未解 **2** 列 —— `SERVICE_SETUP.TelematicSetupACK`、
+  `TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock`（二者之 `SG_` 皆落於 `IPC_VEHICLE_SETUP`）。
+  **與 R-VT15(b) 之預測逐名相同（E31 = 2 ≤ 2）。**
+- **內部訊號**：88 名中僅 **5 名**之基名於本 DBC 逐字命中 `SG_`
+  （`ClearPersonalData.Info`／`PhoneRepetition.Info`／`PrivacyMode.Info`／`RestoreApp.Info`／
+  `RestoreDefaultSetting.Info`），**其餘 83 名仍止於段 1**。
+- **判斷**：**第五輪擴充（規則→欄→檔→欄組→DBC）仍是 83。**
+  DBC 到件解了 CAN 側，對內部訊號**毫無作用** —— 這正是 DR-VT4 所指之缺口：
+  forms/ 無「內部訊號 ↔ 可觀察面」對照表，而 DBC 不是那張表。
+- **本地處置**：83 名保留原名不加 `$`（IN §8.7.5(d)／R-P355(c)），本線無 TC 故不生 PENDING 佔位。
+- **提請**：DR-VT4 為本線唯一剩下的結構性缺口（DR-VT5 已結案）。Pei 現裁「先不送」，記明其代價：
+  P4 起 83 名只能寫 `PENDING: DR-VT4 <名>`。
+
+## A-VT26 — 五名內部訊號之「解得」係跳過段 1／2 之 DBC 直查（PENDING，判準待裁）
+
+- **實測**：`ClearPersonalData.Info` 等五名，LID 三欄**不收 `X.Info` 形**，故段 1／段 2 無從解析；
+  其**基名**（去 `.Info`）卻於 P363 DBC 逐字命中 `SG_`，得
+  `SERVICE_SETUP.ClearPersonalData`／`IPC_VEHICLE_SETUP.PhoneRepetition` 等，五名 VAL_ 皆有。
+- **問題**：R-P368(a) 之三段鏈要求**三段皆過**方得寫 `$MESSAGE.Signal$`；
+  本五列**只有段 3 過**。A-PW355 之教訓（PM 線）正是「跳過段 1–2 只做段 3」——
+  該案批評的是據此報「查無」，本案是據此報「解得」，方向相反但同屬**鏈未走完**。
+- **本包處置**：仍記「解得」（承 v2／v3 之既有判定，避免無裁決之結果跳動），
+  但**逐列於備註標明**「⚠ 本列未經段 1／段 2 之 LID 解析，係以 DBC 實名直查；
+  R-P368(a) 之三段鏈僅段 3 過，判準待裁」。
+- **提請裁決**：內部訊號之基名直查 DBC 得同名 `SG_` 者，是否算「解得」？
+  若否，五列應改記何值（`未解得(止於段2)`？新值？）。
+
+## A-VT27 — `BRAKE1.*` 之 R-13 為架構性，非上游錯誤（RESOLVED，執行層標記）
+
+- **實測**：P363 ATL-Mi DBC 中 `SG_ VehicleSpeedVSOSig` 與 `VehicleSpeedVSOSigFailSts`
+  **皆落於 `BO_ STATUS_CCAN3`**，無 `BRAKE1` 訊息。
+- **判斷**：這**不是**規格與 DBC 不符，而是 **R-VT13(c) 之直接印證** ——
+  `BRAKE1.*` 為上游弧（VF408→BCM，不在 HU 之 BH-CAN 上），其 BH-CAN 側對應即
+  `STATUS_CCAN3.*`（LTM 觀察弧，本包判「解得」）。
+- **處置**：`BRAKE1.VehicleSpeedVSOSig` 與 `BRAKE1.VehicleSpeedVSOSigFailSts` 兩列記
+  `訊息名不符(R-13)`（形式上正確：規格訊息名與 DBC 不符，依 R-13 保留原文），
+  但備註標明**架構性、不入 DR-VT3**。故 **DR-VT3 之實際名單為 2 名**（A-VT25），非 4 名。
+
+## A-VT28 — R-VT15(a) 之 `SG_ 4576` 係含 `BA_` 屬性行之計數；訊號定義實為 688（RESOLVED，計數條件差異）
+
+- **實測**（`forms/P363_BH-CAN [07338]_3A_R2.dbc`，latin-1、CRLF 6363 行）：
+
+  | 計數條件 | 值 |
+  |---|---|
+  | `BO_` 訊息定義（行首錨定） | **99** ✅ 與 R-VT15(a) 同 |
+  | **`SG_` 訊號定義（行首錨定）** | **688**（相異訊號名 **655**） |
+  | `SG_` 全文出現（`\bSG_\s+識別字`） | **4570** |
+  | 含字串 `SG_` 之行數 | **4578** |
+  | `VAL_` 列舉（行首錨定 `VAL_ <id> <sig>`） | **503** ✅ 與 R-VT15(a) 同 |
+  | 有 `VAL_` 之相異訊號名 | **496** |
+
+- **歸因**：DBC 之 `BA_ "GenSigStartValue" SG_ <id> <sig> 0;` 等**屬性指派行**內含 `SG_`，
+  逐訊號各一至數行。R-VT15(a) 之 4576 落在 4570–4578 之區間，即**含屬性行之計數**；
+  **真正之訊號定義為 688**。`BO_ 99` 與 `VAL_ 503` 兩數與本包完全一致，
+  故差異僅在 `SG_` 一項之計數條件。
+- **影響**：**無**。索引一律以**行首錨定**建立（`BO_` 後之 `SG_` 歸屬該訊息），
+  屬性行不入索引；26/28、86 解得等結果不受影響。
+- **提請**：R-VT15(a) 之驗收數字若要重述，`SG_` 宜記 **688（訊號定義）／655（相異名）**。
+
 ---
 
 ## Assumption markers

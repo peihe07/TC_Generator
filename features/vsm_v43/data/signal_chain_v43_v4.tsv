@@ -1,4 +1,4 @@
-規格原名	類別	排除(A-VT21)	抽名來源	段2主值(Atlantis)	Atlantis CAN	旁證(Atlantis High)	段1命中處	結果	備註
+規格原名	類別	排除(A-VT21)	抽名來源	段2主值(Atlantis)	Atlantis CAN	段1命中處	段3(P363)	結果	備註
 AHBM_Feature_Menu	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r587：`AHBM_Feature_Menu`
 Ambient_Dimmer_Switch	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r538：`Ambient_Dimmer_Switch`
 Ambient_Lighting_Function	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r595：`Ambient_Lighting_Function`
@@ -15,22 +15,22 @@ Auto_High_Beam_Enable.Req	內部		段落					未解得(止於段1)
 Auto_Park_Brake_Enable.Req	內部		段落;表格					未解得(止於段1)	
 Auto_Park_Brake_Menu	PROXI		段落;表格					UI+PROXI 雙路徑	"UI：""Auto Park Brake""（HMI Settings r509B，Technical Reference=VF230/665）／PROXI：`Auto_Park_Brake_Menu`（Format r578）；Procedure 用 UI、Pre-Condition 用 PROXI（R-P375(b)）"
 Auto_Unlock_Door_Exit_Enable.Req	內部		段落					未解得(止於段1)	
-BRAKE1.VehicleSpeedVSOSig	CAN		段落				LID/CAN Mapping/r1736	段3待ATL-Mi DBC	上游弧（R-VT13(c)）；段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`STATUS_CCAN3.VehicleSpeedVSOSig   'STATUS_CCAN3.VehicleSpeedVSOSigFailSts`（LID/CAN Mapping/r1736，CAN=未載）；Atlantis High DBC 實查（旁證，非本線判準）：BHCAN2:STATUS_CCAN3;FDCAN8:BRAKE_FD_2；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件；【R-VT12(a) 更正】原指派之段 2 主值來自 LID 三欄之正規化命中（`VehicleSpeedVSOSig` 一類之裸識別字），其 Atlantis 欄所載為**他名**；依 R-VT12(a)「兩規格原名各自解析、不得互為旁證」，本列不指派段 2 主值。Atlantis 欄實測**無**本訊息名。
-BRAKE1.VehicleSpeedVSOSigFailSts	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
+BRAKE1.VehicleSpeedVSOSig	CAN		段落				P363:STATUS_CCAN3	訊息名不符(R-13)	上游弧（R-VT13(c)）；段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：SG_ `VehicleSpeedVSOSig` 存在，但其 BO_ 為 STATUS_CCAN3，與規格訊息 `BRAKE1` 不符；**架構性，非上游錯誤** —— 依 R-VT13(c) 本名為上游弧（VF408→BCM），其 BH-CAN 側對應即 `STATUS_CCAN3.*`（LTM 觀察弧），故不入 DR-VT3；R1 DBC（Atlantis High）旁證：BHCAN2:STATUS_CCAN3;FDCAN8:BRAKE_FD_2
+BRAKE1.VehicleSpeedVSOSigFailSts	CAN		段落				P363:STATUS_CCAN3	訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：SG_ `VehicleSpeedVSOSigFailSts` 存在，但其 BO_ 為 STATUS_CCAN3，與規格訊息 `BRAKE1` 不符；**架構性，非上游錯誤** —— 依 R-VT13(c) 本名為上游弧（VF408→BCM），其 BH-CAN 側對應即 `STATUS_CCAN3.*`（LTM 觀察弧），故不入 DR-VT3
 Brand_Configuration_2	PROXI		段落					PROXI路徑(R-P375b/c)	PROXI `Format` r566：`Brand_Configuration_2`
 Brand_configuration_2	PROXI		表格					PROXI路徑(R-P375b/c)	PROXI `Format` r566：`Brand_Configuration_2`
 CAN Node 35 (TBM)	PROXI	y	段落					未解得(止於段1)	【A-VT21 抽名偽陽性】不列為實質缺口
 CAN node 24 (PAM )	PROXI	y	段落					未解得(止於段1)	【A-VT21 抽名偽陽性】不列為實質缺口
 CAN node 24 (PAM)	PROXI	y	段落					未解得(止於段1)	【A-VT21 抽名偽陽性】不列為實質缺口
-ClearPersonalData.Info	內部		段落					段3待ATL-Mi DBC	R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
+ClearPersonalData.Info	內部		段落	SERVICE_SETUP.ClearPersonalData			P363:SERVICE_SETUP	解得	段 3（P363）直查同名 SG_ `ClearPersonalData` → BO_ SERVICE_SETUP；VAL_ 有。⚠ 本列**未經段 1／段 2 之 LID 解析**（LID 不收 `X.Info` 形），係以 DBC 實名直查；R-P368(a) 之三段鏈僅段 3 過，判準待裁
 ClearPersonalData_Enable.Req	內部		段落					未解得(止於段1)	
-Cluster_Display_Type	PROXI		段落;表格	Cluster_Display_Type	PROXI		LID/Proxi & Configuration/r39	PROXI路徑(R-P375b/c)	PROXI `Format` r489：`Cluster_Display_Type`
+Cluster_Display_Type	PROXI		段落;表格		PROXI	LID/Proxi & Configuration/r39		PROXI路徑(R-P375b/c)	PROXI `Format` r489：`Cluster_Display_Type`
 Component	PROXI	y	表格					未解得(止於段1)	【A-VT21 抽名偽陽性】不列為實質缺口
 Consumption_Unit_Setting.Req	內部		段落					未解得(止於段1)	
 Cornering_Enable.Req	內部		段落					未解得(止於段1)	
 Cornering_Light	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r275：`Cornering_Light`
 Cornering_Lights	PROXI		段落					UI路徑(R-P375b)	"UI：""Cornering Lights""（HMI Settings r501B，Technical Reference=VF230/665）"
-Country_Code	PROXI		段落;表格	Country_Code	PROXI	TELEMATIC_FD_11.CountryCode	LID/Proxi & Configuration/r250	PROXI路徑(R-P375b/c)	PROXI `Format` r468：`Country_Code`
+Country_Code	PROXI		段落;表格		PROXI	LID/Proxi & Configuration/r250		PROXI路徑(R-P375b/c)	PROXI `Format` r468：`Country_Code`
 DRL_Enable.Req	內部		段落					未解得(止於段1)	
 DRL_Menù_Enable	PROXI		段落					PROXI路徑(R-P375b/c)	重音正規化；PROXI `Format` r479：`DRL_Menu_Enable`
 Day1_Setting.Info	內部		段落					未解得(止於段1)	
@@ -47,12 +47,12 @@ FSCWPlus_Activation_Mode_Setting.Req	內部		段落					未解得(止於段1)
 FSCWPlus_Setting.Req	內部		段落					未解得(止於段1)	
 Flash_Light_With_Lock_Enable.Req	內部		段落					未解得(止於段1)	
 Flash_Light_With_Lock_Menu	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r584：`Flash_Light_With_Lock_Menu`
-Forward_Collision_Mitigation	PROXI		段落;表格	Forward_Collision_Mitigation	PROXI		LID/Proxi & Configuration/r285	PROXI路徑(R-P375b/c)	PROXI `Format` r403：`Forward_Collision_Mitigation`
-Fuel_Type	PROXI		段落;表格	Fuel_Type	PROXI		LID/Proxi & Configuration/r89	PROXI路徑(R-P375b/c)	PROXI `Format` r284：`Fuel_Type`
+Forward_Collision_Mitigation	PROXI		段落;表格		PROXI	LID/Proxi & Configuration/r285		PROXI路徑(R-P375b/c)	PROXI `Format` r403：`Forward_Collision_Mitigation`
+Fuel_Type	PROXI		段落;表格		PROXI	LID/Proxi & Configuration/r89		PROXI路徑(R-P375b/c)	PROXI `Format` r284：`Fuel_Type`
 GPS_Automatic_Time_Adj_Enable.Req	內部		段落					未解得(止於段1)	
 GPS_Automatic_Time_Adj_Setup.Info	內部		段落					未解得(止於段1)	
 Geolocation_Enable.Req	內部		段落					未解得(止於段1)	
-Geolocation_Menu	PROXI		段落;表格	Geolocation_Menu	PROXI		LID/Proxi & Configuration/r91	UI+PROXI 雙路徑	"UI：""Geolocation""（HMI Settings r647B，Technical Reference=CFTS022, CFTS041）／PROXI：`Geolocation_Menu`（Format r734）；Procedure 用 UI、Pre-Condition 用 PROXI（R-P375(b)）"
+Geolocation_Menu	PROXI		段落;表格		PROXI	LID/Proxi & Configuration/r91		UI+PROXI 雙路徑	"UI：""Geolocation""（HMI Settings r647B，Technical Reference=CFTS022, CFTS041）／PROXI：`Geolocation_Menu`（Format r734）；Procedure 用 UI、Pre-Condition 用 PROXI（R-P375(b)）"
 GreetingLights_Enable.Req	內部		段落					未解得(止於段1)	
 Greeting_Lights_Menù	PROXI		段落					UI+PROXI 雙路徑	"重音正規化；UI：""Greeting Lights""（HMI Settings r494B，Technical Reference=VF230/665）／PROXI：`Greeting_Lights_Menu`（Format r475）；Procedure 用 UI、Pre-Condition 用 PROXI（R-P375(b)）"
 Half_HMI_Setting	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r555：`Half_HMI_Setting`
@@ -65,52 +65,52 @@ Hour1_Setting.Req	內部		段落					未解得(止於段1)
 Hour2_Setting.Info	內部		段落					未解得(止於段1)	
 Hour2_Setting.Req	內部		段落					未解得(止於段1)	
 Hour_Mode_Setting.Req	內部		段落					未解得(止於段1)	
-IPC_VEHICLE_SETUP.AmbientLightingLevel	CAN		段落	IPC_VEHICLE_SETUP.AmbientLightingLevel		IPC_VEHICLE_SETUP.AmbientLightingLevel	LID/CAN Mapping/r71	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.AmbientLightingLevel`（LID/CAN Mapping/r71，CAN=未載）；架構差異：Atlantis High 欄為 `IPC_VEHICLE_SETUP.AmbientLightingLevel `（旁證，非 B-1／非 R-13）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.AutoHighBeamEnable	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.AutoParkBrake	CAN		段落;表格					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.BSDEnable	CAN		段落;表格					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.ConsumptionUnit	CAN		段落	IPC_VEHICLE_SETUP.ConsumptionUnit		IPC_VEHICLE_SETUP.ConsumptionUnit	LID/CAN Mapping/r387	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.ConsumptionUnit`（LID/CAN Mapping/r387，CAN=未載）
-IPC_VEHICLE_SETUP.CorneringEnable	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.CorneringLightsEnable	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-IPC_VEHICLE_SETUP.DRLEnable	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.DistanceUnit	CAN		段落	IPC_VEHICLE_SETUP.DistanceUnit		IPC_VEHICLE_SETUP.DistanceUnit (see Usage Comment)	LID/CAN Mapping/r459	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.DistanceUnit`（LID/CAN Mapping/r459，CAN=未載）；架構差異：Atlantis High 欄為 `IPC_VEHICLE_SETUP.DistanceUnit (see Usage Comment)`（旁證，非 B-1／非 R-13）
-IPC_VEHICLE_SETUP.DynamicGrid	CAN		段落;表格					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.ExternalLightSensorLevel	CAN		段落	IPC_VEHICLE_SETUP.ExternalLightSensorLevel		IPC_VEHICLE_SETUP.ExternalLightSensorLevel	LID/CAN Mapping/r751	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.ExternalLightSensorLevel`（LID/CAN Mapping/r751，CAN=未載）
-IPC_VEHICLE_SETUP.GreetingLightsEnable	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.HourMode	CAN		段落	IPC_VEHICLE_SETUP.HourMode			LID/CAN Mapping/r407	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.HourMode`（LID/CAN Mapping/r407，CAN=未載）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.LanguageSelection	CAN		段落	IPC_VEHICLE_SETUP.LanguageSelection		IPC_VEHICLE_SETUP.LanguageSelection	LID/CAN Mapping/r1111	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.LanguageSelection`（LID/CAN Mapping/r1111，CAN=未載）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.NavRepetition	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.PamAlertMode	CAN		段落	IPC_VEHICLE_SETUP.PamAlertMode		IPC_VEHICLE_SETUP.PamAlertMode	LID/CAN Mapping/r1293	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.PamAlertMode`（LID/CAN Mapping/r1293，CAN=未載）
-IPC_VEHICLE_SETUP.PamChimeVolumeFront	CAN		段落	IPC_VEHICLE_SETUP.PamChimeVolumeFront			LID/CAN Mapping/r1301	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.PamChimeVolumeFront`（LID/CAN Mapping/r1301，CAN=未載）；Atlantis High DBC 實查（旁證，非本線判準）：BHCAN2:IPC_VEHICLE_SETUP;FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.PamChimeVolumeRear	CAN		段落	IPC_VEHICLE_SETUP.PamChimeVolumeRear			LID/CAN Mapping/r1302	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.PamChimeVolumeRear`（LID/CAN Mapping/r1302，CAN=未載）；Atlantis High DBC 實查（旁證，非本線判準）：BHCAN2:IPC_VEHICLE_SETUP;FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.PassiveEntry	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.PhoneRepetition	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.RainSensorLevel	CAN		段落;表格					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.RemoteDoorUnlock	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.Sdw	CAN		段落	IPC_VEHICLE_SETUP.Sdw		IPC_VEHICLE_SETUP.Sdw	LID/CAN Mapping/r1660	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.Sdw`（LID/CAN Mapping/r1660，CAN=未載）
-IPC_VEHICLE_SETUP.SdwChimeVolume	CAN		段落	IPC_VEHICLE_SETUP.SdwChimeVolume		IPC_VEHICLE_SETUP.SdwChimeVolume	LID/CAN Mapping/r1669	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.SdwChimeVolume`（LID/CAN Mapping/r1669，CAN=未載）
-IPC_VEHICLE_SETUP.SpeedLockDoorEnable	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.TelematicSetupACK	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-IPC_VEHICLE_SETUP.TemperatureUnit	CAN		段落	IPC_VEHICLE_SETUP.TemperatureUnit		IPC_VEHICLE_SETUP.Temp_Unit	LID/CAN Mapping/r2070	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.TemperatureUnit`（LID/CAN Mapping/r2070，CAN=未載）；架構差異：Atlantis High 欄為 `IPC_VEHICLE_SETUP.Temp_Unit`（旁證，非 B-1／非 R-13）
-IPC_VEHICLE_SETUP2.AutoUnlockDoorExit	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-IPC_VEHICLE_SETUP2.Backup_Cam_Delay	CAN		段落;表格					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-IPC_VEHICLE_SETUP2.EPB_MaintenanceMode	CAN		段落;表格					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	CAN		段落;表格					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-IPC_VEHICLE_SETUP2.FSFCWPlusSetting	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-IPC_VEHICLE_SETUP2.FlashLightWLock	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-IPC_VEHICLE_SETUP2.HeadlightsOffDelay	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-IPC_VEHICLE_SETUP2.LDW_Intensity	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-IPC_VEHICLE_SETUP2.LDW_Sensibility	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-IPC_VEHICLE_SETUP2.RainSensorSensibility	CAN		段落;表格					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-IPC_VEHICLE_SETUP2.TyrePressureUnit	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-IPC_VEHICLE_SETUP3.SoundHornLockUnlock	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
+IPC_VEHICLE_SETUP.AmbientLightingLevel	CAN		段落	IPC_VEHICLE_SETUP.AmbientLightingLevel		LID/CAN Mapping/r71	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.AmbientLightingLevel`（LID/CAN Mapping/r71，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `AmbientLightingLevel`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.AutoHighBeamEnable	CAN		段落				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `AutoHighBeamEnable`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.AutoParkBrake	CAN		段落;表格				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `AutoParkBrake`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.BSDEnable	CAN		段落;表格					未解得（CAN-C DBC 未到件）	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：P363 BH-CAN 查無 SG_ `BSDEnable`；依 R-VT15(c) 記待 CAN-C DBC；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.ConsumptionUnit	CAN		段落	IPC_VEHICLE_SETUP.ConsumptionUnit		LID/CAN Mapping/r387	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.ConsumptionUnit`（LID/CAN Mapping/r387，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `ConsumptionUnit`；VAL_ 有
+IPC_VEHICLE_SETUP.CorneringEnable	CAN		段落				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `CorneringEnable`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.CorneringLightsEnable	CAN		段落					未解得（CAN-C DBC 未到件）	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：P363 BH-CAN 查無 SG_ `CorneringLightsEnable`；依 R-VT15(c) 記待 CAN-C DBC
+IPC_VEHICLE_SETUP.DRLEnable	CAN		段落				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `DRLEnable`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.DistanceUnit	CAN		段落	IPC_VEHICLE_SETUP.DistanceUnit		LID/CAN Mapping/r459	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.DistanceUnit`（LID/CAN Mapping/r459，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `DistanceUnit`；VAL_ 有
+IPC_VEHICLE_SETUP.DynamicGrid	CAN		段落;表格				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `DynamicGrid`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.ExternalLightSensorLevel	CAN		段落	IPC_VEHICLE_SETUP.ExternalLightSensorLevel		LID/CAN Mapping/r751	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.ExternalLightSensorLevel`（LID/CAN Mapping/r751，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `ExternalLightSensorLevel`；VAL_ 有
+IPC_VEHICLE_SETUP.GreetingLightsEnable	CAN		段落				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `GreetingLightsEnable`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.HourMode	CAN		段落	IPC_VEHICLE_SETUP.HourMode		LID/CAN Mapping/r407	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.HourMode`（LID/CAN Mapping/r407，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `HourMode`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.LanguageSelection	CAN		段落	IPC_VEHICLE_SETUP.LanguageSelection		LID/CAN Mapping/r1111	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.LanguageSelection`（LID/CAN Mapping/r1111，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `LanguageSelection`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.NavRepetition	CAN		段落				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `NavRepetition`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.PamAlertMode	CAN		段落	IPC_VEHICLE_SETUP.PamAlertMode		LID/CAN Mapping/r1293	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.PamAlertMode`（LID/CAN Mapping/r1293，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `PamAlertMode`；VAL_ 有
+IPC_VEHICLE_SETUP.PamChimeVolumeFront	CAN		段落	IPC_VEHICLE_SETUP.PamChimeVolumeFront		LID/CAN Mapping/r1301	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.PamChimeVolumeFront`（LID/CAN Mapping/r1301，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `PamChimeVolumeFront`；VAL_ 有；R1 DBC（Atlantis High）旁證：BHCAN2:IPC_VEHICLE_SETUP;FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.PamChimeVolumeRear	CAN		段落	IPC_VEHICLE_SETUP.PamChimeVolumeRear		LID/CAN Mapping/r1302	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.PamChimeVolumeRear`（LID/CAN Mapping/r1302，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `PamChimeVolumeRear`；VAL_ 有；R1 DBC（Atlantis High）旁證：BHCAN2:IPC_VEHICLE_SETUP;FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.PassiveEntry	CAN		段落				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `PassiveEntry`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.PhoneRepetition	CAN		段落				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `PhoneRepetition`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.RainSensorLevel	CAN		段落;表格					未解得（CAN-C DBC 未到件）	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：P363 BH-CAN 查無 SG_ `RainSensorLevel`；依 R-VT15(c) 記待 CAN-C DBC；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.RemoteDoorUnlock	CAN		段落				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `RemoteDoorUnlock`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.Sdw	CAN		段落	IPC_VEHICLE_SETUP.Sdw		LID/CAN Mapping/r1660	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.Sdw`（LID/CAN Mapping/r1660，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `Sdw`；VAL_ 有
+IPC_VEHICLE_SETUP.SdwChimeVolume	CAN		段落	IPC_VEHICLE_SETUP.SdwChimeVolume		LID/CAN Mapping/r1669	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.SdwChimeVolume`（LID/CAN Mapping/r1669，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `SdwChimeVolume`；VAL_ 有
+IPC_VEHICLE_SETUP.SpeedLockDoorEnable	CAN		段落				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `SpeedLockDoorEnable`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.TelematicSetupACK	CAN		段落				P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `TelematicSetupACK`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP.TemperatureUnit	CAN		段落	IPC_VEHICLE_SETUP.TemperatureUnit		LID/CAN Mapping/r2070	P363:IPC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.TemperatureUnit`（LID/CAN Mapping/r2070，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP` / SG_ `TemperatureUnit`；VAL_ 有
+IPC_VEHICLE_SETUP2.AutoUnlockDoorExit	CAN		段落				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `AutoUnlockDoorExit`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.Backup_Cam_Delay	CAN		段落;表格				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `Backup_Cam_Delay`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.EPB_MaintenanceMode	CAN		段落;表格				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `EPB_MaintenanceMode`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk	CAN		段落;表格				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `EPB_Maintenance_Fdbk`；VAL_ 有
+IPC_VEHICLE_SETUP2.FSFCWPlusActivationMode	CAN		段落				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `FSFCWPlusActivationMode`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.FSFCWPlusSetting	CAN		段落				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `FSFCWPlusSetting`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.FlashLightWLock	CAN		段落				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `FlashLightWLock`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.HeadlightsOffDelay	CAN		段落				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `HeadlightsOffDelay`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.LDW_Intensity	CAN		段落				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `LDW_Intensity`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.LDW_Sensibility	CAN		段落				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `LDW_Sensibility`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+IPC_VEHICLE_SETUP2.RainSensorSensibility	CAN		段落;表格				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `RainSensorSensibility`；VAL_ 有
+IPC_VEHICLE_SETUP2.TyrePressureUnit	CAN		段落				P363:IPC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP2` / SG_ `TyrePressureUnit`；VAL_ 有
+IPC_VEHICLE_SETUP3.SoundHornLockUnlock	CAN		段落				P363:IPC_VEHICLE_SETUP3	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `IPC_VEHICLE_SETUP3` / SG_ `SoundHornLockUnlock`；VAL_ 有
 Impact	PROXI	y	表格					未解得(止於段1)	【A-VT21 抽名偽陽性】不列為實質缺口
 Implementation	PROXI	y	表格					未解得(止於段1)	【A-VT21 抽名偽陽性】不列為實質缺口
 InfoLTM_CmdIgnSts.Info	內部		表格					未解得(止於段1)	
 LDW_Intensity_Setting.Req	內部		段落					未解得(止於段1)	
 LDW_Sensibility_Setting.Req	內部		段落					未解得(止於段1)	
-LTM	PROXI		表格					未解得(止於段1)	【A-VT23】v2／v3 判為 PROXI路徑係 catch-all 之誤（任一入口檔逐字命中即算）；v4 收緊為「命中 PROXI `Format` Parameter Name 或 HMI 設定項名」後不命中。本名非 PROXI 參數，為抽名偽陽性，建議併入 A-VT21 排除清單（待裁，本包不擅自設排除旗標）
+LTM	PROXI		表格					未解得(止於段1)	【A-VT23】抽名偽陽性（v2／v3 catch-all 之誤），排除旗標待裁
 LTM_CmdIgnSts.Info	內部		段落					未解得(止於段1)	
 LTM_OperationalModeSts.Info	內部		段落					未解得(止於段1)	
 Language_Setting.Req	內部		段落					未解得(止於段1)	
@@ -124,97 +124,94 @@ Month1_Setting.Info	內部		段落					未解得(止於段1)
 Month1_Setting.Req	內部		段落					未解得(止於段1)	
 Month2_Setting.Info	內部		段落					未解得(止於段1)	
 Month2_Setting.Req	內部		段落					未解得(止於段1)	
-NAV_Presence	PROXI		段落;表格	NAV_Presence	PROXI		LID/Proxi & Configuration/r123	PROXI路徑(R-P375b/c)	PROXI `Format` r528：`NAV_Presence`
+NAV_Presence	PROXI		段落;表格		PROXI	LID/Proxi & Configuration/r123		PROXI路徑(R-P375b/c)	PROXI `Format` r528：`NAV_Presence`
 NavigationRepetition.Info	內部		段落					未解得(止於段1)	
 Odo_Units Change	PROXI		段落					PROXI路徑(R-P375b/c)	PROXI `Format` r477：`Odo_Units_Change`
 Odo_Units_Change	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r477：`Odo_Units_Change`
-PAM_Configuration	PROXI		段落;表格	PAM_Configuration	PROXI		LID/Proxi & Configuration/r150	PROXI路徑(R-P375b/c)	PROXI `Format` r516：`PAM_Configuration`
-PROXI.First	CAN		表格					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
+PAM_Configuration	PROXI		段落;表格		PROXI	LID/Proxi & Configuration/r150		PROXI路徑(R-P375b/c)	PROXI `Format` r516：`PAM_Configuration`
+PROXI.First	CAN		表格					未解得（CAN-C DBC 未到件）	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：P363 BH-CAN 查無 SG_ `First`；依 R-VT15(c) 記待 CAN-C DBC
 Pam_AlertMode_Setting.Req	內部		段落					未解得(止於段1)	
 Pam_Chime_Volume_Front_Setting.Req	內部		段落					未解得(止於段1)	
 Pam_Chime_Volume_Rear_Setting.Req	內部		段落					未解得(止於段1)	
 Passive_Entry_Enable.Req	內部		段落					未解得(止於段1)	
 Passive_Entry_Menu	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r298：`Passive_Entry`
-PhoneRepetition.Info	內部		段落					段3待ATL-Mi DBC	R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-PrivacyMode.Info	內部		段落					段3待ATL-Mi DBC	R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
+PhoneRepetition.Info	內部		段落	IPC_VEHICLE_SETUP.PhoneRepetition			P363:IPC_VEHICLE_SETUP	解得	段 3（P363）直查同名 SG_ `PhoneRepetition` → BO_ IPC_VEHICLE_SETUP；VAL_ 有。⚠ 本列**未經段 1／段 2 之 LID 解析**（LID 不收 `X.Info` 形），係以 DBC 實名直查；R-P368(a) 之三段鏈僅段 3 過，判準待裁
+PrivacyMode.Info	內部		段落	SERVICE_SETUP.PrivacyMode			P363:SERVICE_SETUP	解得	段 3（P363）直查同名 SG_ `PrivacyMode` → BO_ SERVICE_SETUP；VAL_ 有。⚠ 本列**未經段 1／段 2 之 LID 解析**（LID 不收 `X.Info` 形），係以 DBC 實名直查；R-P368(a) 之三段鏈僅段 3 過，判準待裁
 RVC_Delay.Req	內部		段落;表格					未解得(止於段1)	
 RVC_Dynamic_Gridlines.Req	內部		段落;表格					未解得(止於段1)	
 Rain_Sensor	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r276：`Rain_Sensor`
 Rain_Sensor_Level_Setting.Req	內部		段落;表格					未解得(止於段1)	
 Rain_Sensor_Sensibility_Setting.Req	內部		段落;表格					未解得(止於段1)	
-Rear_View_Camera	PROXI		段落	Rear_View_Camera	"Atl
-
-Atl High
-PROXI"		LID/Proxi & Configuration/r170	PROXI路徑(R-P375b/c)	PROXI `Format` r401：`Rear_View_Camera`
+Rear_View_Camera	PROXI		段落		Atl  Atl High PROXI	LID/Proxi & Configuration/r170		PROXI路徑(R-P375b/c)	PROXI `Format` r401：`Rear_View_Camera`
 Remote_Door_Unlock _Menu	PROXI		段落					PROXI路徑(R-P375b/c)	PROXI `Format` r576：`Remote_Door_Unlock_Menu`
 Remote_Door_Unlock_Menu	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r576：`Remote_Door_Unlock_Menu`
 Remote_Door_Unlock_Setting.Req	內部		段落					未解得(止於段1)	
-Resolution	PROXI		表格					未解得(止於段1)	【A-VT23】v2／v3 判為 PROXI路徑係 catch-all 之誤（任一入口檔逐字命中即算）；v4 收緊為「命中 PROXI `Format` Parameter Name 或 HMI 設定項名」後不命中。本名非 PROXI 參數，為抽名偽陽性，建議併入 A-VT21 排除清單（待裁，本包不擅自設排除旗標）
-RestoreApp.Info	內部		段落					段3待ATL-Mi DBC	R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
+Resolution	PROXI		表格					未解得(止於段1)	【A-VT23】抽名偽陽性（v2／v3 catch-all 之誤），排除旗標待裁
+RestoreApp.Info	內部		段落	SERVICE_SETUP.RestoreApp			P363:SERVICE_SETUP	解得	段 3（P363）直查同名 SG_ `RestoreApp` → BO_ SERVICE_SETUP；VAL_ 有。⚠ 本列**未經段 1／段 2 之 LID 解析**（LID 不收 `X.Info` 形），係以 DBC 實名直查；R-P368(a) 之三段鏈僅段 3 過，判準待裁
 RestoreApp_Enable.Req	內部		段落					未解得(止於段1)	
-RestoreDefaultSetting.Info	內部		段落					段3待ATL-Mi DBC	R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
+RestoreDefaultSetting.Info	內部		段落	SERVICE_SETUP.RestoreDefaultSetting			P363:SERVICE_SETUP	解得	段 3（P363）直查同名 SG_ `RestoreDefaultSetting` → BO_ SERVICE_SETUP；VAL_ 有。⚠ 本列**未經段 1／段 2 之 LID 解析**（LID 不收 `X.Info` 形），係以 DBC 實名直查；R-P368(a) 之三段鏈僅段 3 過，判準待裁
 RestoreDefaultSetting_Enable.Req	內部		段落					未解得(止於段1)	
-SERVICE_SETUP.ClearPersonalData	CAN		段落	SERVICE_SETUP.ClearPersonalData			LID/CAN Mapping/r381	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`SERVICE_SETUP.ClearPersonalData`（LID/CAN Mapping/r381，CAN=未載）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TBM_SCHEDULE_FD_2；R-VT13(d)：Atlantis 欄命中，原 R-13 撤除
-SERVICE_SETUP.PrivacyMode	CAN		段落	SERVICE_SETUP.PrivacyMode	CAN-B	TBM_SCHEDULE_FD_2.PrivacyMode	LID/CAN Mapping/r1398	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`SERVICE_SETUP.PrivacyMode`（LID/CAN Mapping/r1398，CAN=CAN-B）；架構差異：Atlantis High 欄為 `TBM_SCHEDULE_FD_2.PrivacyMode`（旁證，非 B-1／非 R-13）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TBM_SCHEDULE_FD_2；R-VT13(d)：Atlantis 欄命中，原 R-13 撤除
-SERVICE_SETUP.RestoreApp	CAN		段落	SERVICE_SETUP.RestoreApp			LID/CAN Mapping/r382	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`SERVICE_SETUP.RestoreApp`（LID/CAN Mapping/r382，CAN=未載）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TBM_SCHEDULE_FD_2；R-VT13(d)：Atlantis 欄命中，原 R-13 撤除
-SERVICE_SETUP.RestoreDefaulSetting	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-SERVICE_SETUP.RestoreDefaultSetting	CAN		段落	SERVICE_SETUP.RestoreDefaultSetting			LID/CAN Mapping/r383	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`SERVICE_SETUP.RestoreDefaultSetting`（LID/CAN Mapping/r383，CAN=未載）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TBM_SCHEDULE_FD_2；R-VT13(d)：Atlantis 欄命中，原 R-13 撤除
-SERVICE_SETUP.TelematicSetupACK	CAN		段落;表格					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-SERVICE_SETUP.TelematicSetupAck	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-STATUS_CCAN3.VehicleSpeedVSOSig	CAN		段落	STATUS_CCAN3.VehicleSpeedVSOSig		STATUS_CCAN3.VehicleSpeedVSOSig   'STATUS_CCAN3.VehicleSpeedVSOSigFailSts	LID/CAN Mapping/r1736	段3待ATL-Mi DBC	LTM 觀察弧（R-VT13(c)）；段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`STATUS_CCAN3.VehicleSpeedVSOSig   'STATUS_CCAN3.VehicleSpeedVSOSigFailSts`（LID/CAN Mapping/r1736，CAN=未載）；Atlantis High DBC 實查（旁證，非本線判準）：BHCAN2:STATUS_CCAN3;FDCAN8:BRAKE_FD_2；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-STATUS_CCAN3.VehicleSpeedVSOSigFailSts	CAN		段落	STATUS_CCAN3.VehicleSpeedVSOSigFailSts		STATUS_CCAN3.VehicleSpeedVSOSig   'STATUS_CCAN3.VehicleSpeedVSOSigFailSts	LID/CAN Mapping/r1736	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`STATUS_CCAN3.VehicleSpeedVSOSig   'STATUS_CCAN3.VehicleSpeedVSOSigFailSts`（LID/CAN Mapping/r1736，CAN=未載）
+SERVICE_SETUP.ClearPersonalData	CAN		段落	SERVICE_SETUP.ClearPersonalData		LID/CAN Mapping/r381	P363:SERVICE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`SERVICE_SETUP.ClearPersonalData`（LID/CAN Mapping/r381，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `SERVICE_SETUP` / SG_ `ClearPersonalData`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TBM_SCHEDULE_FD_2
+SERVICE_SETUP.PrivacyMode	CAN		段落	SERVICE_SETUP.PrivacyMode	CAN-B	LID/CAN Mapping/r1398	P363:SERVICE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`SERVICE_SETUP.PrivacyMode`（LID/CAN Mapping/r1398，CAN=CAN-B）；段 3（P363 ATL-Mi DBC）BO_ `SERVICE_SETUP` / SG_ `PrivacyMode`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TBM_SCHEDULE_FD_2
+SERVICE_SETUP.RestoreApp	CAN		段落	SERVICE_SETUP.RestoreApp		LID/CAN Mapping/r382	P363:SERVICE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`SERVICE_SETUP.RestoreApp`（LID/CAN Mapping/r382，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `SERVICE_SETUP` / SG_ `RestoreApp`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TBM_SCHEDULE_FD_2
+SERVICE_SETUP.RestoreDefaulSetting	CAN		段落					未解得（CAN-C DBC 未到件）	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：P363 BH-CAN 查無 SG_ `RestoreDefaulSetting`；依 R-VT15(c) 記待 CAN-C DBC
+SERVICE_SETUP.RestoreDefaultSetting	CAN		段落	SERVICE_SETUP.RestoreDefaultSetting		LID/CAN Mapping/r383	P363:SERVICE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`SERVICE_SETUP.RestoreDefaultSetting`（LID/CAN Mapping/r383，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `SERVICE_SETUP` / SG_ `RestoreDefaultSetting`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TBM_SCHEDULE_FD_2
+SERVICE_SETUP.TelematicSetupACK	CAN		段落;表格				P363:IPC_VEHICLE_SETUP	訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：SG_ `TelematicSetupACK` 存在，但其 BO_ 為 IPC_VEHICLE_SETUP，與規格訊息 `SERVICE_SETUP` 不符；R-13 保留規格原名，入重寫後之 DR-VT3（暫持不送）；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+SERVICE_SETUP.TelematicSetupAck	CAN		段落				P363:SERVICE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `SERVICE_SETUP` / SG_ `TelematicSetupAck`；VAL_ 有
+STATUS_CCAN3.VehicleSpeedVSOSig	CAN		段落	STATUS_CCAN3.VehicleSpeedVSOSig		LID/CAN Mapping/r1736	P363:STATUS_CCAN3	解得	LTM 觀察弧（R-VT13(c)）；段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`STATUS_CCAN3.VehicleSpeedVSOSig`（LID/CAN Mapping/r1736，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `STATUS_CCAN3` / SG_ `VehicleSpeedVSOSig`；VAL_ 有；R1 DBC（Atlantis High）旁證：BHCAN2:STATUS_CCAN3;FDCAN8:BRAKE_FD_2
+STATUS_CCAN3.VehicleSpeedVSOSigFailSts	CAN		段落	STATUS_CCAN3.VehicleSpeedVSOSigFailSts		LID/CAN Mapping/r1736	P363:STATUS_CCAN3	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`STATUS_CCAN3.VehicleSpeedVSOSigFailSts`（LID/CAN Mapping/r1736，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `STATUS_CCAN3` / SG_ `VehicleSpeedVSOSigFailSts`；VAL_ 有
 Sdw_Chime_Volume_Setting.Req	內部		段落					未解得(止於段1)	
 Sdw_Setting.Req	內部		段落					未解得(止於段1)	
 Server_App.GUI	內部		段落					未解得(止於段1)	
-Side_Distance_Warning	PROXI		段落;表格	Side_Distance_Warning	PROXI		LID/Proxi & Configuration/r173	UI+PROXI 雙路徑	"UI：""Side Distance Warning""（HMI Settings r315B，Technical Reference=VF230/665）／PROXI：`Side_Distance_Warning`（Format r406）；Procedure 用 UI、Pre-Condition 用 PROXI（R-P375(b)）"
+Side_Distance_Warning	PROXI		段落;表格		PROXI	LID/Proxi & Configuration/r173		UI+PROXI 雙路徑	"UI：""Side Distance Warning""（HMI Settings r315B，Technical Reference=VF230/665）／PROXI：`Side_Distance_Warning`（Format r406）；Procedure 用 UI、Pre-Condition 用 PROXI（R-P375(b)）"
 Sound_Horn_Lock_Unlock_Setting.Req	內部		段落					未解得(止於段1)	
 Sound_Horn_Remote_Start _Menu	PROXI		段落					PROXI路徑(R-P375b/c)	PROXI `Format` r577：`Sound_Horn_Remote_Start_Menu`
 Sound_Horn_Remote_Start_Menu	PROXI		表格					PROXI路徑(R-P375b/c)	PROXI `Format` r577：`Sound_Horn_Remote_Start_Menu`
 Speed_Lock_Door_Enable.Req	內部		段落					未解得(止於段1)	
-TBM	PROXI		表格					未解得(止於段1)	【A-VT23】v2／v3 判為 PROXI路徑係 catch-all 之誤（任一入口檔逐字命中即算）；v4 收緊為「命中 PROXI `Format` Parameter Name 或 HMI 設定項名」後不命中。本名非 PROXI 參數，為抽名偽陽性，建議併入 A-VT21 排除清單（待裁，本包不擅自設排除旗標）
+TBM	PROXI		表格					未解得(止於段1)	【A-VT23】抽名偽陽性（v2／v3 catch-all 之誤），排除旗標待裁
 TBM_CmdIgnSts.Info	內部		段落					未解得(止於段1)	
 TBM_OperationalModeSts.Info	內部		段落					未解得(止於段1)	
-TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN		段落	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq		TELEMATIC_VEHICLE_SETUP.ClearPersonalDataReq	LID/CAN Mapping/r342	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq`（LID/CAN Mapping/r342，CAN=未載）；架構差異：Atlantis High 欄為 `TELEMATIC_VEHICLE_SETUP.ClearPersonalDataReq`（旁證，非 B-1／非 R-13）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄命中，原 R-13 撤除
-TELEMATIC_SERVICE_SETUP.PrivacyModeReq	CAN		段落				LID/CAN Mapping/r1399	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`GLOB_LTM.PrivacyModeReq`（LID/CAN Mapping/r1399，CAN=CAN-B）；架構差異：Atlantis High 欄為 `TELEMATIC_VEHICLE_SETUP.PrivacyModeReq`（旁證，非 B-1／非 R-13）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄命中，原 R-13 撤除；【R-VT12(a) 更正】原段 2 主值係經 LID 三欄正規化命中他名而得，已撤除；Atlantis 欄實測無本訊息名。
-TELEMATIC_SERVICE_SETUP.RestoreAppReq	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_SERVICE_SETUP.RestoreDefaultSettimgReq	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	CAN		段落	TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq		TELEMATIC_VEHICLE_SETUP.RestoreDefaultSettingReq	LID/CAN Mapping/r1583	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq`（LID/CAN Mapping/r1583，CAN=未載）；架構差異：Atlantis High 欄為 `TELEMATIC_VEHICLE_SETUP.RestoreDefaultSettingReq`（旁證，非 B-1／非 R-13）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄命中，原 R-13 撤除
-TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	CAN		段落				LID/CAN Mapping/r71	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.AmbientLightingLevel`（LID/CAN Mapping/r71，CAN=未載）；架構差異：Atlantis High 欄為 `IPC_VEHICLE_SETUP.AmbientLightingLevel `（旁證，非 B-1／非 R-13）；【R-VT12(a) 更正】原段 2 主值係經 LID 三欄正規化命中他名而得，已撤除；Atlantis 欄實測無本訊息名。
-TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req	CAN		段落;表格					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.BSDEnable_Req	CAN		段落;表格					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req	CAN		段落				LID/CAN Mapping/r387	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.ConsumptionUnit`（LID/CAN Mapping/r387，CAN=未載）；【R-VT12(a) 更正】原段 2 主值係經 LID 三欄正規化命中他名而得，已撤除；Atlantis 欄實測無本訊息名。
-TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.DRLEnable_Req	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req	CAN		段落				LID/CAN Mapping/r459	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.DistanceUnit`（LID/CAN Mapping/r459，CAN=未載）；架構差異：Atlantis High 欄為 `IPC_VEHICLE_SETUP.DistanceUnit (see Usage Comment)`（旁證，非 B-1／非 R-13）；【R-VT12(a) 更正】原段 2 主值係經 LID 三欄正規化命中他名而得，已撤除；Atlantis 欄實測無本訊息名。
-TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req	CAN		段落;表格					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req	CAN		段落				LID/CAN Mapping/r751	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.ExternalLightSensorLevel`（LID/CAN Mapping/r751，CAN=未載）；【R-VT12(a) 更正】原段 2 主值係經 LID 三欄正規化命中他名而得，已撤除；Atlantis 欄實測無本訊息名。
-TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.HourMode_Req	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req	CAN		段落	TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req		IPC_VEHICLE_SETUP.LanguageSelection	LID/CAN Mapping/r1112	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req`（LID/CAN Mapping/r1112，CAN=未載）；架構差異：Atlantis High 欄為 `IPC_VEHICLE_SETUP.LanguageSelection`（旁證，非 B-1／非 R-13）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req	CAN		段落;表格					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:IPC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req	CAN		段落				LID/CAN Mapping/r1669	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.SdwChimeVolume`（LID/CAN Mapping/r1669，CAN=未載）；【R-VT12(a) 更正】原段 2 主值係經 LID 三欄正規化命中他名而得，已撤除；Atlantis 欄實測無本訊息名。
-TELEMATIC_VEHICLE_SETUP.Sdw_Req	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req	CAN		段落					段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(b)：v3 之「解得」係以 Atlantis High DBC 判，重判為待件
-TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req	CAN		段落				LID/CAN Mapping/r2070	段3待ATL-Mi DBC	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`IPC_VEHICLE_SETUP.TemperatureUnit`（LID/CAN Mapping/r2070，CAN=未載）；架構差異：Atlantis High 欄為 `IPC_VEHICLE_SETUP.Temp_Unit`（旁證，非 B-1／非 R-13）；【R-VT12(a) 更正】原段 2 主值係經 LID 三欄正規化命中他名而得，已撤除；Atlantis 欄實測無本訊息名。
-TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_VEHICLE_SETUP2.Backup_Cam_Delay_Req	CAN		段落;表格					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req	CAN		段落;表格					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	CAN		段落					訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；Atlantis High DBC 實查（旁證，非本線判準）：FDCAN8:TELEMATIC_VEHICLE_SETUP；R-VT13(d)：Atlantis 欄未命中，維持 R-13，待 DR-VT5 重驗
-TELEMATIC_VEHICLE_SETUP2.RainSensorSensibility_Req	CAN		段落;表格					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
-TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req	CAN		段落					未解得(止於段1)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）
+TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq	CAN		段落	TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq		LID/CAN Mapping/r342	P363:TELEMATIC_SERVICE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`TELEMATIC_SERVICE_SETUP.ClearPersonalDataReq`（LID/CAN Mapping/r342，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_SERVICE_SETUP` / SG_ `ClearPersonalDataReq`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_SERVICE_SETUP.PrivacyModeReq	CAN		段落				P363:TELEMATIC_SERVICE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_SERVICE_SETUP` / SG_ `PrivacyModeReq`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_SERVICE_SETUP.RestoreAppReq	CAN		段落				P363:TELEMATIC_SERVICE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_SERVICE_SETUP` / SG_ `RestoreAppReq`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_SERVICE_SETUP.RestoreDefaultSettimgReq	CAN		段落					未解得（CAN-C DBC 未到件）	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：P363 BH-CAN 查無 SG_ `RestoreDefaultSettimgReq`；依 R-VT15(c) 記待 CAN-C DBC
+TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq	CAN		段落	TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq		LID/CAN Mapping/r1583	P363:TELEMATIC_SERVICE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`TELEMATIC_SERVICE_SETUP.RestoreDefaultSettingReq`（LID/CAN Mapping/r1583，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_SERVICE_SETUP` / SG_ `RestoreDefaultSettingReq`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.AmbientLightingLevel_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `AmbientLightingLevel_Req`；VAL_ 有
+TELEMATIC_VEHICLE_SETUP.AutoHighBeamEnable_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `AutoHighBeamEnable_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.AutoParkBrake_Req	CAN		段落;表格				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `AutoParkBrake_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.BSDEnable_Req	CAN		段落;表格					未解得（CAN-C DBC 未到件）	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：P363 BH-CAN 查無 SG_ `BSDEnable_Req`；依 R-VT15(c) 記待 CAN-C DBC；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.ConsumptionUnit_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `ConsumptionUnit_Req`；VAL_ 有
+TELEMATIC_VEHICLE_SETUP.CorneringEnable_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `CorneringEnable_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.DRLEnable_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `DRLEnable_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.DistanceUnit_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `DistanceUnit_Req`；VAL_ 有
+TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req	CAN		段落;表格				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `DynamicGrid_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.ExternalLightSensorLevel_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `ExternalLightSensorLevel_Req`；VAL_ 有
+TELEMATIC_VEHICLE_SETUP.GreetingLightsEnable_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `GreetingLightsEnable_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.HourMode_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `HourMode_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req	CAN		段落	TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req		LID/CAN Mapping/r1112	P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 2 主值（Atlantis 欄）`TELEMATIC_VEHICLE_SETUP.LanguageSelection_Req`（LID/CAN Mapping/r1112，CAN=未載）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `LanguageSelection_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `PamAlertMode_Req`；VAL_ 有
+TELEMATIC_VEHICLE_SETUP.PamChimeVolumeFront_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `PamChimeVolumeFront_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.PamChimeVolumeRear_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `PamChimeVolumeRear_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.PassiveEntry_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `PassiveEntry_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.RainSensorLevel_Req	CAN		段落;表格					未解得（CAN-C DBC 未到件）	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：P363 BH-CAN 查無 SG_ `RainSensorLevel_Req`；依 R-VT15(c) 記待 CAN-C DBC；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock	CAN		段落				P363:IPC_VEHICLE_SETUP	訊息名不符(R-13)	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3：SG_ `RemoteDoorUnlock` 存在，但其 BO_ 為 IPC_VEHICLE_SETUP，與規格訊息 `TELEMATIC_VEHICLE_SETUP` 不符；R-13 保留規格原名，入重寫後之 DR-VT3（暫持不送）；R1 DBC（Atlantis High）旁證：FDCAN8:IPC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.RemoteDoorUnlock_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `RemoteDoorUnlock_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.SdwChimeVolume_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `SdwChimeVolume_Req`；VAL_ 有
+TELEMATIC_VEHICLE_SETUP.Sdw_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `Sdw_Req`；VAL_ 有
+TELEMATIC_VEHICLE_SETUP.SpeedLockDoorEnable_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `SpeedLockDoorEnable_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP.TemperatureUnit_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP` / SG_ `TemperatureUnit_Req`；VAL_ 有
+TELEMATIC_VEHICLE_SETUP2.AutoUnlockDoorExit_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `AutoUnlockDoorExit_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.Backup_Cam_Delay_Req	CAN		段落;表格				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `Backup_Cam_Delay_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req	CAN		段落;表格				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `EPB_MaintenanceMode_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.FSFCWPlusActivationMode_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `FSFCWPlusActivationMode_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.FSFCWPlusSetting_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `FSFCWPlusSetting_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.FlashLightWLock_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `FlashLightWLock_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.HeadlightsOffDelay_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `HeadlightsOffDelay_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.LDW_Intensity_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `LDW_Intensity_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.LDW_Sensibility_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `LDW_Sensibility_Req`；VAL_ 有；R1 DBC（Atlantis High）旁證：FDCAN8:TELEMATIC_VEHICLE_SETUP
+TELEMATIC_VEHICLE_SETUP2.RainSensorSensibility_Req	CAN		段落;表格				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `RainSensorSensibility_Req`；VAL_ 有
+TELEMATIC_VEHICLE_SETUP2.TyrePressureUnit_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP2	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP2` / SG_ `TyrePressureUnit_Req`；VAL_ 有
+TELEMATIC_VEHICLE_SETUP3.SoundHornLockUnlock_Req	CAN		段落				P363:TELEMATIC_VEHICLE_SETUP3	解得	段 1 不適用（規格原名已為 MESSAGE.Signal 形）；段 3（P363 ATL-Mi DBC）BO_ `TELEMATIC_VEHICLE_SETUP3` / SG_ `SoundHornLockUnlock_Req`；VAL_ 有
 TLM_Display.GUI	內部		段落					未解得(止於段1)	
 TLM_Vehicle_Setup_Menu.Info	內部		段落					未解得(止於段1)	
 Temperature_Unit_Setting.Req	內部		段落					未解得(止於段1)	
@@ -222,7 +219,7 @@ Time_Date_Setting_Feedback.Info	內部		段落					未解得(止於段1)
 Twilight_Sensor	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r471：`Twilight_Sensor`
 Tyre_Pressure_Unit_Menu	PROXI		段落;表格					PROXI路徑(R-P375b/c)	PROXI `Format` r583：`Tyre_Pressure_Unit_Menu`
 Tyre_Pressure_Unit_Setting.Req	內部		段落					未解得(止於段1)	
-Unit	PROXI		表格					未解得(止於段1)	【A-VT23】v2／v3 判為 PROXI路徑係 catch-all 之誤（任一入口檔逐字命中即算）；v4 收緊為「命中 PROXI `Format` Parameter Name 或 HMI 設定項名」後不命中。本名非 PROXI 參數，為抽名偽陽性，建議併入 A-VT21 排除清單（待裁，本包不擅自設排除旗標）
+Unit	PROXI		表格					未解得(止於段1)	【A-VT23】抽名偽陽性（v2／v3 catch-all 之誤），排除旗標待裁
 Units_Setting.Req	內部		段落;表格					未解得(止於段1)	
 Year1_Setting.Info	內部		段落					未解得(止於段1)	
 Year1_Setting.Req	內部		段落					未解得(止於段1)	
