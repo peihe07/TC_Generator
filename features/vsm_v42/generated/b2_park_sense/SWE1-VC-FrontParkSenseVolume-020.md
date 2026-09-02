@@ -10,7 +10,7 @@
 
 ### test_item
 ```
-if the **Front Park Sense Volume** feature is not supported, shall not display the **Front Park Sense Volume** menu item. The user shall not be able to access or modify the setting, and the HMI shall not issue any property request for this feature
+If the **Front Park Sense Volume** feature is not supported, shall not display the **Front Park Sense Volume** menu item. The user shall not be able to access or modify the setting, and the HMI shall not issue any property request for this feature
 (Unsupported front volume hides the item and suppresses the request signal)
 ```
 

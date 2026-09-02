@@ -10,7 +10,7 @@
 
 ### test_item
 ```
-if the features are not supported, shall not display the **Park Sense Setting**, **Rear Park Sense Volume**, and **Front Park Sense Volume** menu items. The user shall not be able to access or modify these settings, and the HMI shall not issue any property request for these features
+If the features are not supported, shall not display the **Park Sense Setting**, **Rear Park Sense Volume**, and **Front Park Sense Volume** menu items. The user shall not be able to access or modify these settings, and the HMI shall not issue any property request for these features
 (PAM node absent suppresses all three menu items and the request signal)
 ```
 

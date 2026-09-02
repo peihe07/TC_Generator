@@ -1,0 +1,36 @@
+row	tc_id	swe_id_D	empty_C	functional_safety_S	test_group_G	test_set_H	batch	src_json	src_sha8
+10	NR1L-VSM42-001	SWE1-VC-PARKSENSEw/oHC.1andPARKSENSEw/oHC.2-002		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-PARKSENSEw_oHC.1andPARKSENSEw_oHC.2-002.json	54dbd214
+11	NR1L-VSM42-002	SWE1-VC-PARKSENSEw/oHC.1andPARKSENSEw/oHC.2-003		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-PARKSENSEw_oHC.1andPARKSENSEw_oHC.2-003.json	a2b96b2f
+12	NR1L-VSM42-003	SWE1-VC-PARKSENSEw/oHC.1andPARKSENSEw/oHC.2-004		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-PARKSENSEw_oHC.1andPARKSENSEw_oHC.2-004.json	ca215e58
+13	NR1L-VSM42-004	SWE1-VC-PARKSENSEw/oHC.1andPARKSENSEw/oHC.2-005		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-PARKSENSEw_oHC.1andPARKSENSEw_oHC.2-005.json	3f934ec5
+14	NR1L-VSM42-005	SWE1-VC-PARKSENSEw/oHC.1andPARKSENSEw/oHC.2-006		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-PARKSENSEw_oHC.1andPARKSENSEw_oHC.2-006.json	dcf4f504
+15	NR1L-VSM42-006	SWE1-VC-RearParkSenseVolume/ParkSenseVolume-008		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-RearParkSenseVolume_ParkSenseVolume-008.json	0697849d
+16	NR1L-VSM42-007	SWE1-VC-RearParkSenseVolume/ParkSenseVolume-009		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-RearParkSenseVolume_ParkSenseVolume-009.json	0ba3b6eb
+17	NR1L-VSM42-008	SWE1-VC-RearParkSenseVolume/ParkSenseVolume-010		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-RearParkSenseVolume_ParkSenseVolume-010.json	35afc508
+18	NR1L-VSM42-009	SWE1-VC-RearParkSenseVolume/ParkSenseVolume-011		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-RearParkSenseVolume_ParkSenseVolume-011.json	444767a4
+19	NR1L-VSM42-010	SWE1-VC-RearParkSenseVolume/ParkSenseVolume-012		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-RearParkSenseVolume_ParkSenseVolume-012.json	dc82b752
+20	NR1L-VSM42-011	SWE1-VC-RearParkSenseVolume/ParkSenseVolume-013		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-RearParkSenseVolume_ParkSenseVolume-013.json	0379ddde
+21	NR1L-VSM42-012	SWE1-VC-FrontParkSenseVolume-015		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-FrontParkSenseVolume-015.json	2c519ff8
+22	NR1L-VSM42-013	SWE1-VC-FrontParkSenseVolume-016		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-FrontParkSenseVolume-016.json	ca2d8948
+23	NR1L-VSM42-014	SWE1-VC-FrontParkSenseVolume-017		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-FrontParkSenseVolume-017.json	e37cd925
+24	NR1L-VSM42-015	SWE1-VC-FrontParkSenseVolume-018		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-FrontParkSenseVolume-018.json	dbd2f7c4
+25	NR1L-VSM42-016	SWE1-VC-FrontParkSenseVolume-019		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-FrontParkSenseVolume-019.json	5fd52e05
+26	NR1L-VSM42-017	SWE1-VC-FrontParkSenseVolume-020		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-FrontParkSenseVolume-020.json	74bf0506
+27	NR1L-VSM42-018	SWE1-VC-FrontParkSenseVolume-021		NA	Vehicle Setup Management R1 Low	Park Sense	b2	SWE1-VC-FrontParkSenseVolume-021.json	682c028b
+28	NR1L-VSM42-019	SWE1-VC-EPBMaintenanceMode-044		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-044.json	02e1fb74
+29	NR1L-VSM42-020	SWE1-VC-EPBMaintenanceMode-045		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-045.json	843fb429
+30	NR1L-VSM42-021	SWE1-VC-EPBMaintenanceMode-046		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-046.json	82091592
+31	NR1L-VSM42-022	SWE1-VC-EPBMaintenanceMode-047		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-047.json	b112d9ba
+32	NR1L-VSM42-023	SWE1-VC-EPBMaintenanceMode-048		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-048.json	3b4303a1
+33	NR1L-VSM42-024	SWE1-VC-EPBMaintenanceMode-049		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-049.json	e46408e1
+34	NR1L-VSM42-025	SWE1-VC-EPBMaintenanceMode-050		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-050.json	17114b92
+35	NR1L-VSM42-026	SWE1-VC-EPBMaintenanceMode-051		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-051.json	94dd9fed
+36	NR1L-VSM42-027	SWE1-VC-EPBMaintenanceMode-052		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-052.json	0cb58c48
+37	NR1L-VSM42-028	SWE1-VC-EPBMaintenanceMode-053		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-053.json	e87ffd3b
+38	NR1L-VSM42-029	SWE1-VC-EPBMaintenanceMode-054		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-054.json	8d23aaea
+39	NR1L-VSM42-030	SWE1-VC-EPBMaintenanceMode-055		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-055.json	1c573252
+40	NR1L-VSM42-031	SWE1-VC-EPBMaintenanceMode-056		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-056.json	0fa76d57
+41	NR1L-VSM42-032	SWE1-VC-EPBMaintenanceMode-057		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-057.json	72c5b02a
+42	NR1L-VSM42-033	SWE1-VC-EPBMaintenanceMode-058		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-058.json	a1e0ff42
+43	NR1L-VSM42-034	SWE1-VC-EPBMaintenanceMode-059		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-059.json	7abc9589
+44	NR1L-VSM42-035	SWE1-VC-EPBMaintenanceMode-060		NA	Vehicle Setup Management R1 Low	EPB Maintenance Mode	b1	SWE1-VC-EPBMaintenanceMode-060.json	ca9ec0a0

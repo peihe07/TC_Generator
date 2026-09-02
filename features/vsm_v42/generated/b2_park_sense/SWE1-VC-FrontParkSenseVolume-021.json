@@ -31,7 +31,7 @@
         "Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29",
         "Sys-RA-VF665_V42_VSM-809"
       ],
-      "test_item": "if the features are not supported, shall not display the **Park Sense Setting**, **Rear Park Sense Volume**, and **Front Park Sense Volume** menu items. The user shall not be able to access or modify these settings, and the HMI shall not issue any property request for these features\n(PAM node absent suppresses all three menu items and the request signal)",
+      "test_item": "If the features are not supported, shall not display the **Park Sense Setting**, **Rear Park Sense Volume**, and **Front Park Sense Volume** menu items. The user shall not be able to access or modify these settings, and the HMI shall not issue any property request for these features\n(PAM node absent suppresses all three menu items and the request signal)",
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "CAN node 24 (PAM) = 0 (Absent) 之總 ELSE，涵蓋三個選單項，與 -013／-020 之單一功能不支援不同範圍"

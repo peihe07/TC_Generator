@@ -2,13 +2,12 @@
   "req_id": "SWE1-VC-RearParkSenseVolume/ParkSenseVolume-013",
   "test_group": "Vehicle Setup Management R1 Low",
   "test_set": "Park Sense",
-  "reasoning": "驗證 Rear Park Sense Volume 之功能不支援時，TLM 不顯示該選單項且使用者無法存取或修改。關鍵情境為功能不可用之負向分支（規格段 1227–1228 之 ELSE）。本 Req 只述不支援之結果，1 條即足；可用分支由 -008 覆蓋（§8.2.1 委任）。不可用之條件以 PROXI PAM_Configuration 表達（規格段 1217 之 AND 條件不成立）。",
+  "reasoning": "驗證 Rear Park Sense Volume 之功能不支援時，TLM 不顯示該選單項且使用者無法存取或修改。關鍵情境為功能不可用之負向分支（規格段 1227–1228 之 ELSE）。本 Req 只述不支援之結果，1 條即足；可用分支由 -008 覆蓋（§8.2.1 委任）。不可用之條件以「功能不受車輛組態支援」之狀態表達 —— 037 只述 based on the corresponding vehicle configuration or feature availability，未指名 PROXI 值；規格段 1217 之 AND 條件無法僅由 PAM_Configuration 否定（其值域恰為 Rear 與 Front And Rear 兩值），該邏輯缺口列 §K，不臆測。",
   "tcs": [
     {
       "tc_title": "Rear Park Sense Volume menu hidden when unsupported",
       "pre_conditions": [
-        "PROXI CAN node 24 (PAM) = 1 (Present)",
-        "PROXI PAM_Configuration = 1 (Front And Rear) is not set and the rear configuration is absent",
+        "The Rear Park Sense Volume feature is not supported by the vehicle configuration",
         "The TLM is in the Vehicle Settings menu"
       ],
       "input_test_data": "NA",
@@ -33,7 +32,7 @@
         "axis": "input_data",
         "delta": "Rear 不支援之負向分支，與 -008 之可用分支對偶"
       },
-      "remarks": "UI element names are taken from the menu item wording named in the spec section and in the 037 description (R-VL21(a)); they are not anchored in HMI Settings List. specification_reference uses the upstream Sys-RA id per R-VL19(b): the spec has no chapter heading for this family (upstream package 04 W-8 measured zero headings containing \"Volume\")"
+      "remarks": "UI element names are taken from the menu item wording named in the spec section and in the 037 description (R-VL21(a)); they are not anchored in HMI Settings List. specification_reference uses the upstream Sys-RA id per R-VL19(b): the spec has no chapter heading for this family (upstream package 04 W-8 measured zero headings containing \"Volume\"). The unsupported state is stated as a feature-availability condition because the 037 description says only \"based on the corresponding vehicle configuration or feature availability\" without naming PROXI values. The spec's own condition for this branch (paragraph 1217: node 24 Present AND PAM_Configuration Rear OR Front And Rear) cannot be falsified through PAM_Configuration alone, whose domain is exactly those two values — see section K"
     }
   ]
 }
