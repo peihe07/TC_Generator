@@ -21,6 +21,43 @@
 > **v2 之表由分析層定、Pei 准後方鎖**；執行層只出列數，不定表、不命名。
 > Layer 3 於 v2 另帶 `spec_section` 欄（`direct` 42／`segment_map` 195／`none` 99，R-VT22(c)）。
 
+### Layer 2 **v2 表**（R-VT23(d)，**待 Pei 准後鎖**）
+
+母體：`data/leaves_interim_v2.tsv` 之 `status ∈ {active, stale_ref_r4}` = **325** 列
+（v2 336 − superseded 2 − deprecated_r4 9）。列數為執行層實測（上繳 11 §W-2）。
+
+| # | Test Set | leaf | 對 v1 之變動 |
+|---|---|---|---|
+| 1 | PROXI Configuration | **65** | 67 → 65（R-VT23(c) 去 `-824`／`-825`／`-844` 三列，＋`-1278`） |
+| 2 | Exterior Lighting | **32** | 不變 |
+| 3 | Door Lock and Access | **30** | 不變 |
+| 4 | Units | **27** | +1 |
+| 5 | Clock and Time | **25** | +1 |
+| 6 | **EPB Maintenance Mode** | **19** | **新組**（R-VT22(b)） |
+| 7 | Lane Departure Warning | **18** | 不變 |
+| 8 | Park Sense | **17** | +2 |
+| 9 | Forward Collision Warning | **15** | 不變 |
+| 10 | Privacy and Service Data Reset | **14** | 不變 |
+| 11 | Setup Acknowledge and Recovery | **13** | 不變 |
+| 12 | **Side Distance Warning** | **10** | 原 `Side and Blind Spot Warnings` 16；去 BSD 6 列後**改名**（R-VT23(b)(d)） |
+| 13 | Interior Ambient Lighting | **10** | 不變（**已凍 b1 之組，10 列全 `active`**） |
+| 14 | **Rearview Camera** | **10** | **新組**（R-VT22(b)） |
+| 15 | Wiper and Sensor | **5** | 7 → 5（`-472`／`-473` 依 R-VT23(a) 轉 `superseded`） |
+| 16 | **Auto Park Brake** | **5** | **新組**（R-VT22(b)） |
+| 17 | Language | **4** | 不變 |
+| 18 | Phone and Navigation Repetition | **4** | 不變 |
+| 19 | Menu Access and Persistence | **2** | 不變 |
+| | **合計** | **325** | |
+
+**隔離列不入本表**（不刪只標，037 重錨終裁）：
+`superseded` **2**（`-472`／`-473`）、`deprecated_r4` **9**（Blind Spot `-577`〜`-582` 六列；
+組態表列 `-824`／`-825`／`-844` 三列）。
+`stale_ref_r4` **3**（`-897`／`-899`／`-907`）**計入本表**，但生成時**被刪條件子句不入 TC**（R-VT23(c)）。
+
+---
+
+### v1 表（295 列，R-VT19；**依 R-TM13 不刪只標**）
+
 | # | Test Set | leaf | Layer 3（chapter_for_vf，不入工作簿） |
 |---|---|---|---|
 | 1 | Exterior Lighting | 32 | 01.11.01.01.01／.02／.12／.13／.14／.25 |
