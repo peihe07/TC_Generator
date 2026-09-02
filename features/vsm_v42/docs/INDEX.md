@@ -18,6 +18,7 @@ FO §8.7：一次往返共用同一 `NN`；下放包由分析層寫，上繳包�
 | 10 | `handoff/10_dryrun.md` | `upstream/10_dryrun.md` | 2026-09-02 | **三欄實測 ＋ b1 dry-run lint 實跑**。五本交付簿 1,033 列之 Q／AB／車型七欄 **100% 全空** → 三欄定案留空。`trial_D_b1.xlsx`（17 列 286 格，surgical 117.4s）：x14 逐字存活、member 48、differing 僅 sheet6、**回讀 286 格不符 0**。**lint 實跑：C=1（b1 內容缺陷，-057 hedge `successfully`）／P=23（已裁之 VAL_ 缺值）／U=6／I-cross=17（窗未宣告）**。**E80 = 1 → 尚不可寫回**。另發現 D／C 欄與四本交付慣例相牴觸。E78/E79/E81 過 |
 | 11 | `handoff/11_b2_park_sense.md` | `upstream/11_b2_park_sense.md` | 2026-09-02 | **b2 生成：Park Sense 18 leaf**（綠色通道第 1 批）。18/18 覆蓋、**E56 18/18**、E86 過；六訊號皆解得且 VAL_ 完整（無 b1 之 K-1 情形）。**b1 之 hedge 與句內剪接教訓已入自檢，C=0**；E56 於生成當輪攔下三條原文排版噪音並自修。回報三項與下放包所述不符：規格節 1.11.1.1.29 **內含 Volume 二家族段落**（「無節」不成立）／兩對 037 同文（K-7）／PROXI 名不一致（K-8）。b1 凍結件 34 檔複驗不符 0 |
 | 12 | `handoff/12_write_b1.md` | `upstream/12_write_b1.md` | 2026-09-02 | **修訂落地 → b1 寫回 → 交付候選**。-057 hedge 修一列並重新凍結（新 sha8 `72c5b02a`）；b2 Volume 13 條改雙錨；map D/C 對調依交付慣例；`lint_p_waivers_b1.tsv` 新建（11 賦值）。**b1 已寫回 `sandbox/b1/vsm42_b1.xlsx`**（269 格、回讀不符 0、x14 逐字存活、member 48）；**lint 淨紅 0**（C=0、P 對銷 23/23、I-cross 17 全屬窗未宣告基線型）；候選 sha256 相等。**E89–E93 全過**。回報：`R-VF83`（他線）之 body_sha8 變動使 R-VL15(c) 判準首次不滿足 |
+| 13 | （無下放包 —— Pei 明示「出貨」） | `upstream/13_ship_b1.md` | 2026-09-02 | **b1 出貨**。`delivered/` 建立；交付本 sha256 `abc7f8ae…`（與候選逐位元相等）；MANIFEST 1 列；DELIVERY_NOTE 六節（範圍 17/128、未結 DR、PENDING 6 格、11 賦值無 VAL_、K-1〜K-6 逐項揭露）。**`lint_delivery_spec` 由 PASS 轉 FAIL（本包所致）** —— 4 項判紅補正 3（delivery 宣告／NOTE／DR 清單），餘 1 項為 **R-VL3 之 `VSM42` 與 lint `TC_ID_RE` 只收字母之直接衝突**，兩造皆不擅動，交裁 |
 
 ## 報告（`docs/reports/`）
 

@@ -123,6 +123,14 @@ write_back:
   tc_ref_id_value: "NEW"
   fill_test_group_set: true      # BLANK 之故（FO §2）
 
+# 交付宣告（`scripts/lint_delivery_spec.py` 讀取）
+delivery:
+  test_group: "Vehicle Setup Management R1 Low"      # R-VL3
+  tc_id_abbr: "VSM42"                                # R-VL3 之 {ABBR}
+  # `leaf_ids` 未宣告 —— 其比對式為「037 有列而簿上無列即判紅」，
+  # 而本交付件只含 b1（EPB Maintenance Mode 17 條），母體 128 之其餘 111 leaf
+  # 尚未生成／交付。待全批交付後再宣告，屆時該比對方為有意義之覆蓋檢查。
+
 lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary
   popup_ids: []
