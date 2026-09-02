@@ -1,458 +1,458 @@
 row	req_id	old_E	old_F	new_F	status	note
-10	SWE1-VC-6AuxSwitches-002			NR1L-VS-001	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-11	SWE1-VC-6AuxSwitches-003			NR1L-VS-002	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-12	SWE1-VC-SWITCH5PowerMode-021			NR1L-VS-003	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-13	SWE1-VC-SWITCH5PowerMode-022			NR1L-VS-004	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-14	SWE1-VC-SWITCH5PowerMode-023			NR1L-VS-005	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-15	SWE1-VC-SWITCH6PowerMode-025			NR1L-VS-006	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-16	SWE1-VC-SWITCH6PowerMode-026			NR1L-VS-007	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-17	SWE1-VC-SWITCH6PowerMode-027			NR1L-VS-008	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-18	SWE1-VC-SWITCH1Type-029			NR1L-VS-009	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-19	SWE1-VC-SWITCH5Type-045			NR1L-VS-010	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-20	SWE1-VC-SWITCH5Type-046			NR1L-VS-011	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-21	SWE1-VC-SWITCH5Type-047			NR1L-VS-012	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-22	SWE1-VC-SWITCH6Type-049			NR1L-VS-013	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-23	SWE1-VC-SWITCH6Type-050			NR1L-VS-014	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-24	SWE1-VC-SWITCH6Type-051			NR1L-VS-015	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-25	SWE1-VC-SWITCH5HoldLastState-070			NR1L-VS-016	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-26	SWE1-VC-SWITCH5HoldLastState-071			NR1L-VS-017	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-27	SWE1-VC-SWITCH5HoldLastState-072			NR1L-VS-018	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-28	SWE1-VC-SWITCH6HoldLastState-074			NR1L-VS-019	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-29	SWE1-VC-SWITCH6HoldLastState-075			NR1L-VS-020	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-30	SWE1-VC-SWITCH6HoldLastState-076			NR1L-VS-021	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-31	SWE1-VC-RearGuidanceLightingwithApproach-078			NR1L-VS-022	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-32	SWE1-VC-RearGuidanceLightingwithApproach-079			NR1L-VS-023	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-33	SWE1-VC-RearGuidanceLightingwithApproach-080			NR1L-VS-024	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-34	SWE1-VC-RearGuidanceLightingwithApproach-081			NR1L-VS-025	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-35	SWE1-VC-RearGuidanceLightingwithApproach-082			NR1L-VS-026	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-36	SWE1-VC-RearGuidanceLightStatus-084			NR1L-VS-027	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-37	SWE1-VC-RearGuidanceLightStatus-085			NR1L-VS-028	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-38	SWE1-VC-RearGuidanceLightStatus-086			NR1L-VS-029	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-39	SWE1-VC-RearGuidanceLightStatus-087			NR1L-VS-030	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-40	SWE1-VC-RearGuidanceLightStatus-088			NR1L-VS-031	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-41	SWE1-VC-E-Save-090			NR1L-VS-032	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-42	SWE1-VC-E-Save-091			NR1L-VS-033	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-43	SWE1-VC-BlindSpotAlert-002			NR1L-VS-034	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-44	SWE1-VC-BlindSpotAlert-003			NR1L-VS-035	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-45	SWE1-VC-BlindSpotAlert-004			NR1L-VS-036	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-46	SWE1-VC-BlindSpotAlert-005			NR1L-VS-037	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-47	SWE1-VC-BlindSpotAlert-006			NR1L-VS-038	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-48	SWE1-VC-BlindSpotAlert-007			NR1L-VS-039	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-49	SWE1-VC-PassiveEntry-009			NR1L-VS-040	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-50	SWE1-VC-PassiveEntry-010			NR1L-VS-041	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-51	SWE1-VC-PassiveEntry-011			NR1L-VS-042	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-52	SWE1-VC-PassiveEntry-012			NR1L-VS-043	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-53	SWE1-VC-PassiveEntry-013			NR1L-VS-044	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-54	SWE1-VC-RemoteDoorUnlock-015			NR1L-VS-045	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-55	SWE1-VC-RemoteDoorUnlock-016			NR1L-VS-046	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-56	SWE1-VC-RemoteDoorUnlock-017			NR1L-VS-047	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-57	SWE1-VC-RemoteDoorUnlock-018			NR1L-VS-048	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-58	SWE1-VC-RemoteDoorUnlock-019			NR1L-VS-049	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-59	SWE1-VC-AutoParkBrake-021			NR1L-VS-050	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-60	SWE1-VC-AutoParkBrake-022			NR1L-VS-051	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-61	SWE1-VC-AutoParkBrake-023			NR1L-VS-052	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-62	SWE1-VC-AutoParkBrake-024			NR1L-VS-053	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-63	SWE1-VC-AutoParkBrake-025			NR1L-VS-054	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-64	SWE1-VC-HornWithRemoteStart-027			NR1L-VS-055	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-65	SWE1-VC-HornWithRemoteStart-028			NR1L-VS-056	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-66	SWE1-VC-HornWithRemoteStart-029			NR1L-VS-057	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-67	SWE1-VC-HornWithRemoteStart-030			NR1L-VS-058	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-68	SWE1-VC-HornWithRemoteStart-031			NR1L-VS-059	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-69	SWE1-VC-HornWithLock-033			NR1L-VS-060	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-70	SWE1-VC-HornWithLock-034			NR1L-VS-061	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-71	SWE1-VC-HornWithLock-035			NR1L-VS-062	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-72	SWE1-VC-HornWithLock-036			NR1L-VS-063	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-73	SWE1-VC-HornWithLock-037			NR1L-VS-064	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-74	SWE1-VC-HornWithLock-038			NR1L-VS-065	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-75	SWE1-VC-AutoUnlockonExit-040			NR1L-VS-066	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-76	SWE1-VC-AutoUnlockonExit-041			NR1L-VS-067	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-77	SWE1-VC-AutoUnlockonExit-042			NR1L-VS-068	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-78	SWE1-VC-AutoUnlockonExit-043			NR1L-VS-069	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-79	SWE1-VC-AutoUnlockonExit-044			NR1L-VS-070	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-80	SWE1-VC-FlashLightWithLock-046			NR1L-VS-071	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-81	SWE1-VC-FlashLightWithLock-047			NR1L-VS-072	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-82	SWE1-VC-FlashLightWithLock-048			NR1L-VS-073	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-83	SWE1-VC-FlashLightWithLock-049			NR1L-VS-074	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-84	SWE1-VC-FlashLightWithLock-050			NR1L-VS-075	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-85	SWE1-VC-NavigationTurnbyTurn-053			NR1L-VS-076	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-86	SWE1-VC-NavigationTurnbyTurn-054			NR1L-VS-077	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-87	SWE1-VC-NavigationTurnbyTurn-055			NR1L-VS-078	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-88	SWE1-VC-NavigationTurnbyTurn-056			NR1L-VS-079	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-89	SWE1-VC-NavigationTurnbyTurn-057			NR1L-VS-080	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-90	SWE1-VC-Language-059			NR1L-VS-081	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-91	SWE1-VC-Language-062			NR1L-VS-082	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-92	SWE1-VC-PhoneRepetition-064			NR1L-VS-083	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-93	SWE1-VC-PhoneRepetition-065			NR1L-VS-084	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-94	SWE1-VC-PhoneRepetition-066			NR1L-VS-085	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-95	SWE1-VC-PhoneRepetition-067			NR1L-VS-086	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-96	SWE1-VC-PhoneRepetition-068			NR1L-VS-087	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-97	SWE1-VC-ParkSenseRearVolume-072			NR1L-VS-088	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-98	SWE1-VC-ParkSenseRearVolume-073			NR1L-VS-089	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-99	SWE1-VC-ParkSenseRearVolume-074			NR1L-VS-090	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-100	SWE1-VC-ParkSenseRearVolume-075			NR1L-VS-091	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-101	SWE1-VC-ParkSenseFrontVolume-079			NR1L-VS-092	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-102	SWE1-VC-ParkSenseFrontVolume-080			NR1L-VS-093	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-103	SWE1-VC-ParkSenseFrontVolume-081			NR1L-VS-094	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-104	SWE1-VC-ParkSenseFrontVolume-082			NR1L-VS-095	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-105	SWE1-VC-AutoHighBeam-084			NR1L-VS-096	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-106	SWE1-VC-AutoHighBeam-085			NR1L-VS-097	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-107	SWE1-VC-AutoHighBeam-086			NR1L-VS-098	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-108	SWE1-VC-AutoHighBeam-087			NR1L-VS-099	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-109	SWE1-VC-AutoHighBeam-088			NR1L-VS-100	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-110	SWE1-VC-RKELinkedtoMemory-090			NR1L-VS-101	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-111	SWE1-VC-RKELinkedtoMemory-091			NR1L-VS-102	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-112	SWE1-VC-RKELinkedtoMemory-092			NR1L-VS-103	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-113	SWE1-VC-RKELinkedtoMemory-093			NR1L-VS-104	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-114	SWE1-VC-RKELinkedtoMemory-094			NR1L-VS-105	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-115	SWE1-VC-AutoOnDriverComfort-3Option-096			NR1L-VS-106	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-116	SWE1-VC-AutoOnDriverComfort-3Option-097			NR1L-VS-107	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-117	SWE1-VC-AutoOnDriverComfort-3Option-098			NR1L-VS-108	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-118	SWE1-VC-AutoOnDriverComfort-3Option-099			NR1L-VS-109	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-119	SWE1-VC-AutoOnDriverComfort-3Option-100			NR1L-VS-110	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-120	SWE1-VC-AutoOnDriverComfort-3Option-101			NR1L-VS-111	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-121	SWE1-VC-AutoOnDriverComfort-2Option-103			NR1L-VS-112	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-122	SWE1-VC-AutoOnDriverComfort-2Option-105			NR1L-VS-113	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-123	SWE1-VC-AutoOnDriverComfort-2Option-106			NR1L-VS-114	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-124	SWE1-VC-AutoOnDriverComfort-2Option-107			NR1L-VS-115	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-125	SWE1-VC-RearviewCameraDelay-109			NR1L-VS-116	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-126	SWE1-VC-RearviewCameraDelay-110			NR1L-VS-117	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-127	SWE1-VC-RearviewCameraDelay-111			NR1L-VS-118	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-128	SWE1-VC-RearviewCameraDelay-112			NR1L-VS-119	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-129	SWE1-VC-RearviewCameraDelay-113			NR1L-VS-120	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-130	SWE1-VC-RearviewCameraDynamicGuidelines-115			NR1L-VS-121	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-131	SWE1-VC-RearviewCameraDynamicGuidelines-116			NR1L-VS-122	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-132	SWE1-VC-RearviewCameraDynamicGuidelines-117			NR1L-VS-123	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-133	SWE1-VC-RearviewCameraDynamicGuidelines-118			NR1L-VS-124	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-134	SWE1-VC-RearviewCameraDynamicGuidelines-119			NR1L-VS-125	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-135	SWE1-VC-CorneringLights-002			NR1L-VS-126	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-136	SWE1-VC-CorneringLights-003			NR1L-VS-127	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-137	SWE1-VC-CorneringLights-006			NR1L-VS-128	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-138	SWE1-VC-GreetingLights-008			NR1L-VS-129	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-139	SWE1-VC-GreetingLights-009			NR1L-VS-130	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-140	SWE1-VC-GreetingLights-012			NR1L-VS-131	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-141	SWE1-VC-LaneSenseWarning-014			NR1L-VS-132	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-142	SWE1-VC-LaneSenseWarning-015			NR1L-VS-133	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-143	SWE1-VC-LaneSenseWarning-019			NR1L-VS-134	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-144	SWE1-VC-SignatureLighting-021			NR1L-VS-135	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-145	SWE1-VC-SignatureLighting-022			NR1L-VS-136	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-146	SWE1-VC-SignatureLighting-025			NR1L-VS-137	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-147	SWE1-VC-LaneSenseStrength-027			NR1L-VS-138	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-148	SWE1-VC-LaneSenseStrength-028			NR1L-VS-139	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-149	SWE1-VC-LaneSenseStrength-032			NR1L-VS-140	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-150	SWE1-VC-ForwardCollisionWarning-034			NR1L-VS-141	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-151	SWE1-VC-ForwardCollisionWarning-035			NR1L-VS-142	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-152	SWE1-VC-ForwardCollisionWarning-039			NR1L-VS-143	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-153	SWE1-VC-ForwardCollisionWarningSensitivity-041			NR1L-VS-144	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-154	SWE1-VC-ForwardCollisionWarningSensitivity-042			NR1L-VS-145	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-155	SWE1-VC-ForwardCollisionWarningSensitivity-046			NR1L-VS-146	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-156	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-048			NR1L-VS-147	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-157	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-049			NR1L-VS-148	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-158	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-052			NR1L-VS-149	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-159	SWE1-VC-RainSensingWipers-054			NR1L-VS-150	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-160	SWE1-VC-RainSensingWipers-055			NR1L-VS-151	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-161	SWE1-VC-RainSensingWipers-058			NR1L-VS-152	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-162	SWE1-VC-DaytimeRunningLights-002			NR1L-VS-153	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-163	SWE1-VC-DaytimeRunningLights-003			NR1L-VS-154	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-164	SWE1-VC-DaytimeRunningLights-004			NR1L-VS-155	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-165	SWE1-VC-DaytimeRunningLights-006			NR1L-VS-156	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-166	SWE1-VC-DaytimeRunningLights-006			NR1L-VS-157	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-167	SWE1-VC-HeadlightsOffDelay-008			NR1L-VS-158	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-168	SWE1-VC-HeadlightsOffDelay-009			NR1L-VS-159	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-169	SWE1-VC-HeadlightsOffDelay-010			NR1L-VS-160	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-170	SWE1-VC-HeadlightsOffDelay-011			NR1L-VS-161	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-171	SWE1-VC-HeadlightsOffDelay-012			NR1L-VS-162	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-172	SWE1-VC-HeadlightsOffDelay-013			NR1L-VS-163	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-173	SWE1-VC-HeadlightsOffDelay-014			NR1L-VS-164	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-174	SWE1-VC-HeadlightsOffDelay-014			NR1L-VS-165	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-175	SWE1-VC-HeadlightsOffDelay-014			NR1L-VS-166	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-176	SWE1-VC-PressureUnit-002			NR1L-VS-167	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-177	SWE1-VC-PressureUnit-003			NR1L-VS-168	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-178	SWE1-VC-PressureUnit-004			NR1L-VS-169	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-179	SWE1-VC-PressureUnit-005			NR1L-VS-170	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-180	SWE1-VC-PressureUnit-006			NR1L-VS-171	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-181	SWE1-VC-PressureUnit-007			NR1L-VS-172	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-182	SWE1-VC-PowerUnit-009			NR1L-VS-173	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-183	SWE1-VC-PowerUnit-010			NR1L-VS-174	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-184	SWE1-VC-PowerUnit-011			NR1L-VS-175	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-185	SWE1-VC-PowerUnit-012			NR1L-VS-176	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-186	SWE1-VC-PowerUnit-013			NR1L-VS-177	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-187	SWE1-VC-PowerUnit-014			NR1L-VS-178	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-188	SWE1-VC-TorqueUnit-016			NR1L-VS-179	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-189	SWE1-VC-TorqueUnit-017			NR1L-VS-180	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-190	SWE1-VC-TorqueUnit-018			NR1L-VS-181	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-191	SWE1-VC-TorqueUnit-019			NR1L-VS-182	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-192	SWE1-VC-TorqueUnit-020			NR1L-VS-183	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-193	SWE1-VC-IlluminatedApproach-002			NR1L-VS-184	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-194	SWE1-VC-IlluminatedApproach-003			NR1L-VS-185	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-195	SWE1-VC-IlluminatedApproach-004			NR1L-VS-186	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-196	SWE1-VC-IlluminatedApproach-005			NR1L-VS-187	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-197	SWE1-VC-IlluminatedApproach-006			NR1L-VS-188	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-198	SWE1-VC-IlluminatedApproach-007			NR1L-VS-189	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-199	SWE1-VC-IlluminatedApproach-008			NR1L-VS-190	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-200	SWE1-VC-PaddleShifter-010			NR1L-VS-191	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-201	SWE1-VC-PaddleShifter-011			NR1L-VS-192	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-202	SWE1-VC-PaddleShifter-012			NR1L-VS-193	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-203	SWE1-VC-PaddleShifter-013			NR1L-VS-194	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-204	SWE1-VC-PaddleShifter-014			NR1L-VS-195	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-205	SWE1-VC-PowerLiftgate/TailgateAlert-016			NR1L-VS-196	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-206	SWE1-VC-PowerLiftgate/TailgateAlert-017			NR1L-VS-197	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-207	SWE1-VC-PowerLiftgate/TailgateAlert-018			NR1L-VS-198	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-208	SWE1-VC-PowerLiftgate/TailgateAlert-019			NR1L-VS-199	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-209	SWE1-VC-PowerLiftgate/TailgateAlert-020			NR1L-VS-200	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-210	SWE1-VC-PowerLiftgate/TailgateAlert-021			NR1L-VS-201	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-211	SWE1-VC-PowerTailgate-023			NR1L-VS-202	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-212	SWE1-VC-PowerTailgate-024			NR1L-VS-203	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-213	SWE1-VC-PowerTailgate-027			NR1L-VS-204	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-214	SWE1-VC-PowerTailgate-028			NR1L-VS-205	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-215	SWE1-VC-TrafficSignWarning-030			NR1L-VS-206	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-216	SWE1-VC-TrafficSignWarning-031			NR1L-VS-207	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-217	SWE1-VC-TrafficSignWarning-032			NR1L-VS-208	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-218	SWE1-VC-TrafficSignWarning-033			NR1L-VS-209	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-219	SWE1-VC-TrafficSignWarning-034			NR1L-VS-210	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-220	SWE1-VC-TrafficSignWarning-035			NR1L-VS-211	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-221	SWE1-VC-NewSpeedZoneIndication-037			NR1L-VS-212	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-222	SWE1-VC-NewSpeedZoneIndication-038			NR1L-VS-213	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-223	SWE1-VC-NewSpeedZoneIndication-039			NR1L-VS-214	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-224	SWE1-VC-NewSpeedZoneIndication-040			NR1L-VS-215	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-225	SWE1-VC-NewSpeedZoneIndication-041			NR1L-VS-216	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-226	SWE1-VC-NewSpeedZoneIndication-042			NR1L-VS-217	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-227	SWE1-VC-ChargePowerLevel-046			NR1L-VS-218	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-228	SWE1-VC-ChargePowerLevel-047			NR1L-VS-219	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-229	SWE1-VC-ChargePowerLevel-048			NR1L-VS-220	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-230	SWE1-VC-ChargePowerLevel-049			NR1L-VS-221	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-231	SWE1-VC-ChargePowerLevel-050			NR1L-VS-222	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-232	SWE1-VC-ChargePowerLevel-051			NR1L-VS-223	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-233	SWE1-VC-RearSeatReminder-055			NR1L-VS-224	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-234	SWE1-VC-RearSeatReminder-056			NR1L-VS-225	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-235	SWE1-VC-RearSeatReminder-057			NR1L-VS-226	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-236	SWE1-VC-TrailerNumber-059			NR1L-VS-227	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-237	SWE1-VC-TrailerNumber-060			NR1L-VS-228	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-238	SWE1-VC-TrailerNumber-061			NR1L-VS-229	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-239	SWE1-VC-TrailerNumber-062			NR1L-VS-230	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-240	SWE1-VC-TrailerNumber-063			NR1L-VS-231	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-241	SWE1-VC-TrailerNumber-064			NR1L-VS-232	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-242	SWE1-VC-TrailerNumber-066			NR1L-VS-233	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-243	SWE1-VC-SWITCH1Type-003			NR1L-VS-234	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-244	SWE1-VC-SWITCH1Type-004			NR1L-VS-235	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-245	SWE1-VC-SWITCH2Type-006			NR1L-VS-236	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-246	SWE1-VC-SWITCH2Type-007			NR1L-VS-237	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-247	SWE1-VC-SWITCH2Type-008			NR1L-VS-238	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-248	SWE1-VC-SWITCH3Type-010			NR1L-VS-239	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-249	SWE1-VC-SWITCH3Type-011			NR1L-VS-240	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-250	SWE1-VC-SWITCH3Type-012			NR1L-VS-241	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-251	SWE1-VC-SWITCH4Type-014			NR1L-VS-242	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-252	SWE1-VC-SWITCH4Type-015			NR1L-VS-243	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-253	SWE1-VC-SWITCH4Type-016			NR1L-VS-244	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-254	SWE1-VC-SWITCH1HoldLastState-018			NR1L-VS-245	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-255	SWE1-VC-SWITCH1HoldLastState-019			NR1L-VS-246	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-256	SWE1-VC-SWITCH1HoldLastState-020			NR1L-VS-247	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-257	SWE1-VC-SWITCH2HoldLastState-022			NR1L-VS-248	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-258	SWE1-VC-SWITCH2HoldLastState-023			NR1L-VS-249	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-259	SWE1-VC-SWITCH2HoldLastState-024			NR1L-VS-250	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-260	SWE1-VC-SWITCH3HoldLastState-026			NR1L-VS-251	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-261	SWE1-VC-SWITCH3HoldLastState-027			NR1L-VS-252	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-262	SWE1-VC-SWITCH3HoldLastState-028			NR1L-VS-253	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-263	SWE1-VC-SWITCH4HoldLastState-030			NR1L-VS-254	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-264	SWE1-VC-SWITCH4HoldLastState-031			NR1L-VS-255	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-265	SWE1-VC-SWITCH4HoldLastState-032			NR1L-VS-256	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-266	SWE1-VC-SuspensionFlashLightsWithLower-002			NR1L-VS-257	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-267	SWE1-VC-SuspensionFlashLightsWithLower-003			NR1L-VS-258	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-268	SWE1-VC-SuspensionFlashLightsWithLower-004			NR1L-VS-259	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-269	SWE1-VC-SuspensionFlashLightsWithLower-005			NR1L-VS-260	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-270	SWE1-VC-SuspensionFlashLightsWithLower-006			NR1L-VS-261	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-271	SWE1-VC-SuspensionSoundHornWithLower-008			NR1L-VS-262	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-272	SWE1-VC-SuspensionSoundHornWithLower-009			NR1L-VS-263	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-273	SWE1-VC-SuspensionSoundHornWithLower-010			NR1L-VS-264	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-274	SWE1-VC-SuspensionSoundHornWithLower-011			NR1L-VS-265	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-275	SWE1-VC-SuspensionSoundHornWithLower-012			NR1L-VS-266	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-276	SWE1-VC-RearGuidanceLightswith\nCargoLights-014			NR1L-VS-267	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-277	SWE1-VC-RearGuidanceLightswith\nCargoLights-015			NR1L-VS-268	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-278	SWE1-VC-RearGuidanceLightswith\nCargoLights-016			NR1L-VS-269	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-279	SWE1-VC-RearGuidanceLightswith\nCargoLights-017			NR1L-VS-270	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-280	SWE1-VC-RearGuidanceLightswith\nCargoLights-018			NR1L-VS-271	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-281	SWE1-VC-SuspensionDefaultRideHeight-021			NR1L-VS-272	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-282	SWE1-VC-SuspensionDefaultRideHeight-022			NR1L-VS-273	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-283	SWE1-VC-SuspensionDefaultRideHeight-023			NR1L-VS-274	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-284	SWE1-VC-SuspensionDefaultRideHeight-024			NR1L-VS-275	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-285	SWE1-VC-SuspensionDefaultRideHeight-025			NR1L-VS-276	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-286	SWE1-VC-4AUXSwitches-028			NR1L-VS-277	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-287	SWE1-VC-SWITCH1PowerMode-030			NR1L-VS-278	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-288	SWE1-VC-SWITCH1PowerMode-031			NR1L-VS-279	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-289	SWE1-VC-SWITCH1PowerMode-032			NR1L-VS-280	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-290	SWE1-VC-SWITCH2PowerMode-034			NR1L-VS-281	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-291	SWE1-VC-SWITCH2PowerMode-035			NR1L-VS-282	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-292	SWE1-VC-SWITCH2PowerMode-036			NR1L-VS-283	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-293	SWE1-VC-SWITCH3PowerMode-038			NR1L-VS-284	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-294	SWE1-VC-SWITCH3PowerMode-039			NR1L-VS-285	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-295	SWE1-VC-SWITCH3PowerMode-040			NR1L-VS-286	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-296	SWE1-VC-SWITCH4PowerMode-042			NR1L-VS-287	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-297	SWE1-VC-SWITCH4PowerMode-043			NR1L-VS-288	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-298	SWE1-VC-SWITCH4PowerMode-044			NR1L-VS-289	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-299	SWE1-VC-SuspensionServiceMode-002			NR1L-VS-290	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-300	SWE1-VC-SuspensionServiceMode-003			NR1L-VS-291	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-301	SWE1-VC-SuspensionServiceMode-004			NR1L-VS-292	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-302	SWE1-VC-SuspensionServiceMode-005			NR1L-VS-293	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-303	SWE1-VC-SuspensionServiceMode-006			NR1L-VS-294	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-304	SWE1-VC-SuspensionDisplayMessages-008			NR1L-VS-295	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-305	SWE1-VC-SuspensionDisplayMessages-009			NR1L-VS-296	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-306	SWE1-VC-SuspensionDisplayMessages-010			NR1L-VS-297	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-307	SWE1-VC-SuspensionDisplayMessages-011			NR1L-VS-298	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-308	SWE1-VC-SuspensionDisplayMessages-012			NR1L-VS-299	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-309	SWE1-VC-TiltMirrorinReverse-014			NR1L-VS-300	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-310	SWE1-VC-TiltMirrorinReverse-015			NR1L-VS-301	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-311	SWE1-VC-TiltMirrorinReverse-016			NR1L-VS-302	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-312	SWE1-VC-TiltMirrorinReverse-017			NR1L-VS-303	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-313	SWE1-VC-TiltMirrorinReverse-018			NR1L-VS-304	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-314	SWE1-VC-TireFillAlert-020			NR1L-VS-305	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-315	SWE1-VC-TireFillAlert-021			NR1L-VS-306	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-316	SWE1-VC-TireFillAlert-022			NR1L-VS-307	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-317	SWE1-VC-TireFillAlert-023			NR1L-VS-308	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-318	SWE1-VC-TireFillAlert-024			NR1L-VS-309	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-319	SWE1-VC-ReadytoDrivePopUp-026			NR1L-VS-310	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-320	SWE1-VC-ReadytoDrivePopUp-027			NR1L-VS-311	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-321	SWE1-VC-ReadytoDrivePopUp-028			NR1L-VS-312	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-322	SWE1-VC-ReadytoDrivePopUp-029			NR1L-VS-313	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-323	SWE1-VC-ReadytoDrivePopUp-030			NR1L-VS-314	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-324	SWE1-VC-AutoFoldMirrors-032			NR1L-VS-315	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-325	SWE1-VC-AutoFoldMirrors-033			NR1L-VS-316	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-326	SWE1-VC-AutoFoldMirrors-034			NR1L-VS-317	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-327	SWE1-VC-AutoFoldMirrors-035			NR1L-VS-318	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-328	SWE1-VC-AutoFoldMirrors-036			NR1L-VS-319	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-329	SWE1-VC-DriverEasyExitSeat-038			NR1L-VS-320	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-330	SWE1-VC-DriverEasyExitSeat-039			NR1L-VS-321	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-331	SWE1-VC-DriverEasyExitSeat-040			NR1L-VS-322	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-332	SWE1-VC-DriverEasyExitSeat-041			NR1L-VS-323	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-333	SWE1-VC-DriverEasyExitSeat-042			NR1L-VS-324	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-334	SWE1-VC-EngineOffPowerDelay-046			NR1L-VS-325	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-335	SWE1-VC-EngineOffPowerDelay-048			NR1L-VS-326	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-336	SWE1-VC-EngineOffPowerDelay-049			NR1L-VS-327	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-337	SWE1-VC-EngineOffPowerDelay-050			NR1L-VS-328	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-338	SWE1-VC-HillStartAssist-052			NR1L-VS-329	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-339	SWE1-VC-HillStartAssist-053			NR1L-VS-330	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-340	SWE1-VC-HillStartAssist-054			NR1L-VS-331	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-341	SWE1-VC-HillStartAssist-055			NR1L-VS-332	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-342	SWE1-VC-HillStartAssist-056			NR1L-VS-333	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-343	SWE1-VC-HeadlightswithWipers-058			NR1L-VS-334	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-344	SWE1-VC-HeadlightswithWipers-059			NR1L-VS-335	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-345	SWE1-VC-HeadlightswithWipers-060			NR1L-VS-336	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-346	SWE1-VC-HeadlightswithWipers-061			NR1L-VS-337	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-347	SWE1-VC-HeadlightswithWipers-062			NR1L-VS-338	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-348	SWE1-VC-TrailerName-002			NR1L-VS-339	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-349	SWE1-VC-TrailerName-003			NR1L-VS-340	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-350	SWE1-VC-TrailerName-017			NR1L-VS-341	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-351	SWE1-VC-TrailerBrakeType025			NR1L-VS-342	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-352	SWE1-VC-TrailerBrakeType026			NR1L-VS-343	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-353	SWE1-VC-TrailerBrakeType031			NR1L-VS-344	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-354	SWE1-VC-AutomaticTrailerLight Check-039			NR1L-VS-345	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-355	SWE1-VC-AutomaticTrailerLight Check-040			NR1L-VS-346	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-356	SWE1-VC-AutomaticTrailerLight Check-041			NR1L-VS-347	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-357	SWE1-VC-AutomaticTrailerLight Check-042			NR1L-VS-348	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-358	SWE1-VC-AutomaticTrailerLight Check-043			NR1L-VS-349	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-359	SWE1-VC-Blind Spot with Trailer Detection-045			NR1L-VS-350	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-360	SWE1-VC-Blind Spot with Trailer Detection-046			NR1L-VS-351	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-361	SWE1-VC-Blind Spot with Trailer Detection-047			NR1L-VS-352	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-362	SWE1-VC-Blind Spot with Trailer Detection-048			NR1L-VS-353	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-363	SWE1-VC-Blind Spot with Trailer Detection-049			NR1L-VS-354	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-364	SWE1-VC-PowerSideStep-051			NR1L-VS-355	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-365	SWE1-VC-PowerSideStep-052			NR1L-VS-356	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-366	SWE1-VC-PowerSideStep-053			NR1L-VS-357	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-367	SWE1-VC-PowerSideStep-054			NR1L-VS-358	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-368	SWE1-VC-PowerSideStep-055			NR1L-VS-359	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-369	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-057			NR1L-VS-360	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-370	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-058			NR1L-VS-361	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-371	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-060			NR1L-VS-362	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-372	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-061			NR1L-VS-363	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-373	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-062			NR1L-VS-364	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-374	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-063			NR1L-VS-365	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-375	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-064			NR1L-VS-366	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-376	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-065			NR1L-VS-367	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-377	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-066			NR1L-VS-368	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-378	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-067			NR1L-VS-369	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-379	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-068			NR1L-VS-370	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-380	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-069			NR1L-VS-371	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-381	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-070			NR1L-VS-372	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-382	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-071			NR1L-VS-373	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-383	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-073			NR1L-VS-374	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-384	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-074			NR1L-VS-375	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-385	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-075			NR1L-VS-376	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-386	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-076			NR1L-VS-377	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-387	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-077			NR1L-VS-378	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-388	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-078			NR1L-VS-379	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-389	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-079			NR1L-VS-380	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-390	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-080			NR1L-VS-381	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-391	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-081			NR1L-VS-382	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-392	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-082			NR1L-VS-383	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-393	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-083			NR1L-VS-384	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-394	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-084			NR1L-VS-385	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-395	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-085			NR1L-VS-386	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-396	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-086			NR1L-VS-387	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-397	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-087			NR1L-VS-388	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-398	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-088			NR1L-VS-389	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-399	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-089			NR1L-VS-390	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-400	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115			NR1L-VS-391	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-401	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-116			NR1L-VS-392	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-402	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117			NR1L-VS-393	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-403	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-118			NR1L-VS-394	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-404	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-119			NR1L-VS-395	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-405	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-121			NR1L-VS-396	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-406	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-122			NR1L-VS-397	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-407	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-123			NR1L-VS-398	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-408	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124			NR1L-VS-399	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-409	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125			NR1L-VS-400	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-410	SWE1-VC-EnhancedDisplaySynchronization-127			NR1L-VS-401	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-411	SWE1-VC-EnhancedDisplaySynchronization-128			NR1L-VS-402	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-412	SWE1-VC-EnhancedDisplaySynchronization-129			NR1L-VS-403	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-413	SWE1-VC-EnhancedDisplaySynchronization-130			NR1L-VS-404	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-414	SWE1-VC-EnhancedDisplaySynchronization-131			NR1L-VS-405	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-415	SWE1-VC-EnhancedDisplaySynchronization-132			NR1L-VS-406	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-416	SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-134			NR1L-VS-407	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-417	SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-135			NR1L-VS-408	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-418	SWE1-VC-MaxPowerLevel140			NR1L-VS-409	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-419	SWE1-VC-MaxPowerLevel141			NR1L-VS-410	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-420	SWE1-VC-MaxPowerLevel142			NR1L-VS-411	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-421	SWE1-VC-MaxPowerLevel143			NR1L-VS-412	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-422	SWE1-VC-TimeandDateSettings-002			NR1L-VS-413	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-423	SWE1-VC-TimeandDateSettings-004			NR1L-VS-414	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-424	SWE1-VC-TimeandDateSettings-005			NR1L-VS-415	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-425	SWE1-VC-HourMode-010			NR1L-VS-416	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-426	SWE1-VC-AutoDoorLocks-015			NR1L-VS-417	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-427	SWE1-VC-AutoDoorLocks-016			NR1L-VS-418	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-428	SWE1-VC-DistanceUnit-021			NR1L-VS-419	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-429	SWE1-VC-SpeedUnit-026			NR1L-VS-420	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-430	SWE1-VC-ConsumptionUnit-031			NR1L-VS-421	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-431	SWE1-VC-UnitEnergy-039			NR1L-VS-422	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-432	SWE1-VC-TemperatureUnit-046			NR1L-VS-423	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-433	SWE1-VC-TemperatureUnit-047			NR1L-VS-424	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-434	SWE1-VC-SurroundViewCameraDelay-053			NR1L-VS-425	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-435	SWE1-VC-SurroundViewCameraDelay-054			NR1L-VS-426	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-436	SWE1-VC-SurroundViewCameraGuidelines-059			NR1L-VS-427	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-437	SWE1-VC-SurroundViewCameraGuidelines-060			NR1L-VS-428	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-438	SWE1-VC-TurnSignalActivatedBlindSpotCameraView-065			NR1L-VS-429	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-439	SWE1-VC-TurnSignalActivatedBlindSpotCameraView-066			NR1L-VS-430	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-440	SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-071			NR1L-VS-431	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-441	SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-072			NR1L-VS-432	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-442	SWE1-VC-ParkSenseBasedCameraActivation-078			NR1L-VS-433	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-443	SWE1-VC-ParkSenseBasedCameraActivation-079			NR1L-VS-434	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-444	SWE1-VC-ParkSense-084			NR1L-VS-435	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-445	SWE1-VC-ParkSense-085			NR1L-VS-436	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-446	SWE1-VC-SuspensionAutoEntryorExit-091			NR1L-VS-437	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-447	SWE1-VC-SuspensionAutoEntryorExit-092			NR1L-VS-438	assigned	依列序（文件序）連號；見上繳 §5 之排序說明
-400	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-091				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-401	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-092				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-402	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-094				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-403	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-095				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-404	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-096				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-405	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-097				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-406	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-098				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-407	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-099				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-408	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-100				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-409	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-102				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-410	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-103				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-411	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-104				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-412	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-105				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-413	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-106				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-414	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-107				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-415	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-108				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-416	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-109				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-417	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-111				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
-418	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-113				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本，不賦號）
+10	SWE1-VC-4AUXSwitches-028			NR1L-VS-001	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+11	SWE1-VC-6AuxSwitches-002			NR1L-VS-002	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+12	SWE1-VC-6AuxSwitches-003			NR1L-VS-003	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+13	SWE1-VC-AutoDoorLocks-015			NR1L-VS-004	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+14	SWE1-VC-AutoDoorLocks-016			NR1L-VS-005	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+15	SWE1-VC-AutoFoldMirrors-032			NR1L-VS-006	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+16	SWE1-VC-AutoFoldMirrors-033			NR1L-VS-007	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+17	SWE1-VC-AutoFoldMirrors-034			NR1L-VS-008	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+18	SWE1-VC-AutoFoldMirrors-035			NR1L-VS-009	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+19	SWE1-VC-AutoFoldMirrors-036			NR1L-VS-010	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+20	SWE1-VC-AutoHighBeam-084			NR1L-VS-011	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+21	SWE1-VC-AutoHighBeam-085			NR1L-VS-012	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+22	SWE1-VC-AutoHighBeam-086			NR1L-VS-013	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+23	SWE1-VC-AutoHighBeam-087			NR1L-VS-014	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+24	SWE1-VC-AutoHighBeam-088			NR1L-VS-015	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+25	SWE1-VC-AutoOnDriverComfort-2Option-103			NR1L-VS-016	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+26	SWE1-VC-AutoOnDriverComfort-2Option-105			NR1L-VS-017	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+27	SWE1-VC-AutoOnDriverComfort-2Option-106			NR1L-VS-018	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+28	SWE1-VC-AutoOnDriverComfort-2Option-107			NR1L-VS-019	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+29	SWE1-VC-AutoOnDriverComfort-3Option-096			NR1L-VS-020	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+30	SWE1-VC-AutoOnDriverComfort-3Option-097			NR1L-VS-021	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+31	SWE1-VC-AutoOnDriverComfort-3Option-098			NR1L-VS-022	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+32	SWE1-VC-AutoOnDriverComfort-3Option-099			NR1L-VS-023	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+33	SWE1-VC-AutoOnDriverComfort-3Option-100			NR1L-VS-024	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+34	SWE1-VC-AutoOnDriverComfort-3Option-101			NR1L-VS-025	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+35	SWE1-VC-AutoParkBrake-021			NR1L-VS-026	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+36	SWE1-VC-AutoParkBrake-022			NR1L-VS-027	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+37	SWE1-VC-AutoParkBrake-023			NR1L-VS-028	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+38	SWE1-VC-AutoParkBrake-024			NR1L-VS-029	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+39	SWE1-VC-AutoParkBrake-025			NR1L-VS-030	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+40	SWE1-VC-AutoUnlockonExit-040			NR1L-VS-031	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+41	SWE1-VC-AutoUnlockonExit-041			NR1L-VS-032	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+42	SWE1-VC-AutoUnlockonExit-042			NR1L-VS-033	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+43	SWE1-VC-AutoUnlockonExit-043			NR1L-VS-034	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+44	SWE1-VC-AutoUnlockonExit-044			NR1L-VS-035	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+45	SWE1-VC-AutomaticTrailerLight Check-039			NR1L-VS-036	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+46	SWE1-VC-AutomaticTrailerLight Check-040			NR1L-VS-037	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+47	SWE1-VC-AutomaticTrailerLight Check-041			NR1L-VS-038	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+48	SWE1-VC-AutomaticTrailerLight Check-042			NR1L-VS-039	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+49	SWE1-VC-AutomaticTrailerLight Check-043			NR1L-VS-040	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+50	SWE1-VC-Blind Spot with Trailer Detection-045			NR1L-VS-041	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+51	SWE1-VC-Blind Spot with Trailer Detection-046			NR1L-VS-042	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+52	SWE1-VC-Blind Spot with Trailer Detection-047			NR1L-VS-043	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+53	SWE1-VC-Blind Spot with Trailer Detection-048			NR1L-VS-044	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+54	SWE1-VC-Blind Spot with Trailer Detection-049			NR1L-VS-045	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+55	SWE1-VC-BlindSpotAlert-002			NR1L-VS-046	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+56	SWE1-VC-BlindSpotAlert-003			NR1L-VS-047	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+57	SWE1-VC-BlindSpotAlert-004			NR1L-VS-048	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+58	SWE1-VC-BlindSpotAlert-005			NR1L-VS-049	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+59	SWE1-VC-BlindSpotAlert-006			NR1L-VS-050	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+60	SWE1-VC-BlindSpotAlert-007			NR1L-VS-051	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+61	SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-134			NR1L-VS-052	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+62	SWE1-VC-CHMSL CAMERA DYNAMIC CENTERLINE-135			NR1L-VS-053	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+63	SWE1-VC-ChargePowerLevel-046			NR1L-VS-054	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+64	SWE1-VC-ChargePowerLevel-047			NR1L-VS-055	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+65	SWE1-VC-ChargePowerLevel-048			NR1L-VS-056	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+66	SWE1-VC-ChargePowerLevel-049			NR1L-VS-057	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+67	SWE1-VC-ChargePowerLevel-050			NR1L-VS-058	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+68	SWE1-VC-ChargePowerLevel-051			NR1L-VS-059	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+69	SWE1-VC-ConsumptionUnit-031			NR1L-VS-060	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+70	SWE1-VC-CorneringLights-002			NR1L-VS-061	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+71	SWE1-VC-CorneringLights-003			NR1L-VS-062	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+72	SWE1-VC-CorneringLights-006			NR1L-VS-063	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+73	SWE1-VC-DaytimeRunningLights-002			NR1L-VS-064	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+74	SWE1-VC-DaytimeRunningLights-003			NR1L-VS-065	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+75	SWE1-VC-DaytimeRunningLights-004			NR1L-VS-066	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+76	SWE1-VC-DaytimeRunningLights-006			NR1L-VS-067	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+77	SWE1-VC-DaytimeRunningLights-006			NR1L-VS-068	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+78	SWE1-VC-DistanceUnit-021			NR1L-VS-069	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+79	SWE1-VC-DriverEasyExitSeat-038			NR1L-VS-070	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+80	SWE1-VC-DriverEasyExitSeat-039			NR1L-VS-071	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+81	SWE1-VC-DriverEasyExitSeat-040			NR1L-VS-072	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+82	SWE1-VC-DriverEasyExitSeat-041			NR1L-VS-073	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+83	SWE1-VC-DriverEasyExitSeat-042			NR1L-VS-074	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+84	SWE1-VC-E-Save-090			NR1L-VS-075	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+85	SWE1-VC-E-Save-091			NR1L-VS-076	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+86	SWE1-VC-EngineOffPowerDelay-046			NR1L-VS-077	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+87	SWE1-VC-EngineOffPowerDelay-048			NR1L-VS-078	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+88	SWE1-VC-EngineOffPowerDelay-049			NR1L-VS-079	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+89	SWE1-VC-EngineOffPowerDelay-050			NR1L-VS-080	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+90	SWE1-VC-EnhancedDisplaySynchronization-127			NR1L-VS-081	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+91	SWE1-VC-EnhancedDisplaySynchronization-128			NR1L-VS-082	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+92	SWE1-VC-EnhancedDisplaySynchronization-129			NR1L-VS-083	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+93	SWE1-VC-EnhancedDisplaySynchronization-130			NR1L-VS-084	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+94	SWE1-VC-EnhancedDisplaySynchronization-131			NR1L-VS-085	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+95	SWE1-VC-EnhancedDisplaySynchronization-132			NR1L-VS-086	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+96	SWE1-VC-FlashLightWithLock-046			NR1L-VS-087	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+97	SWE1-VC-FlashLightWithLock-047			NR1L-VS-088	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+98	SWE1-VC-FlashLightWithLock-048			NR1L-VS-089	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+99	SWE1-VC-FlashLightWithLock-049			NR1L-VS-090	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+100	SWE1-VC-FlashLightWithLock-050			NR1L-VS-091	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+101	SWE1-VC-ForwardCollisionWarning-034			NR1L-VS-092	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+102	SWE1-VC-ForwardCollisionWarning-035			NR1L-VS-093	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+103	SWE1-VC-ForwardCollisionWarning-039			NR1L-VS-094	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+104	SWE1-VC-ForwardCollisionWarningSensitivity-041			NR1L-VS-095	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+105	SWE1-VC-ForwardCollisionWarningSensitivity-042			NR1L-VS-096	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+106	SWE1-VC-ForwardCollisionWarningSensitivity-046			NR1L-VS-097	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+107	SWE1-VC-GreetingLights-008			NR1L-VS-098	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+108	SWE1-VC-GreetingLights-009			NR1L-VS-099	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+109	SWE1-VC-GreetingLights-012			NR1L-VS-100	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+110	SWE1-VC-HeadlightsOffDelay-008			NR1L-VS-101	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+111	SWE1-VC-HeadlightsOffDelay-009			NR1L-VS-102	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+112	SWE1-VC-HeadlightsOffDelay-010			NR1L-VS-103	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+113	SWE1-VC-HeadlightsOffDelay-011			NR1L-VS-104	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+114	SWE1-VC-HeadlightsOffDelay-012			NR1L-VS-105	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+115	SWE1-VC-HeadlightsOffDelay-013			NR1L-VS-106	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+116	SWE1-VC-HeadlightsOffDelay-014			NR1L-VS-107	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+117	SWE1-VC-HeadlightsOffDelay-014			NR1L-VS-108	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+118	SWE1-VC-HeadlightsOffDelay-014			NR1L-VS-109	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+119	SWE1-VC-HeadlightswithWipers-058			NR1L-VS-110	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+120	SWE1-VC-HeadlightswithWipers-059			NR1L-VS-111	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+121	SWE1-VC-HeadlightswithWipers-060			NR1L-VS-112	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+122	SWE1-VC-HeadlightswithWipers-061			NR1L-VS-113	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+123	SWE1-VC-HeadlightswithWipers-062			NR1L-VS-114	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+124	SWE1-VC-HillStartAssist-052			NR1L-VS-115	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+125	SWE1-VC-HillStartAssist-053			NR1L-VS-116	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+126	SWE1-VC-HillStartAssist-054			NR1L-VS-117	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+127	SWE1-VC-HillStartAssist-055			NR1L-VS-118	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+128	SWE1-VC-HillStartAssist-056			NR1L-VS-119	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+129	SWE1-VC-HornWithLock-033			NR1L-VS-120	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+130	SWE1-VC-HornWithLock-034			NR1L-VS-121	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+131	SWE1-VC-HornWithLock-035			NR1L-VS-122	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+132	SWE1-VC-HornWithLock-036			NR1L-VS-123	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+133	SWE1-VC-HornWithLock-037			NR1L-VS-124	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+134	SWE1-VC-HornWithLock-038			NR1L-VS-125	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+135	SWE1-VC-HornWithRemoteStart-027			NR1L-VS-126	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+136	SWE1-VC-HornWithRemoteStart-028			NR1L-VS-127	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+137	SWE1-VC-HornWithRemoteStart-029			NR1L-VS-128	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+138	SWE1-VC-HornWithRemoteStart-030			NR1L-VS-129	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+139	SWE1-VC-HornWithRemoteStart-031			NR1L-VS-130	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+140	SWE1-VC-HourMode-010			NR1L-VS-131	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+141	SWE1-VC-IlluminatedApproach-002			NR1L-VS-132	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+142	SWE1-VC-IlluminatedApproach-003			NR1L-VS-133	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+143	SWE1-VC-IlluminatedApproach-004			NR1L-VS-134	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+144	SWE1-VC-IlluminatedApproach-005			NR1L-VS-135	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+145	SWE1-VC-IlluminatedApproach-006			NR1L-VS-136	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+146	SWE1-VC-IlluminatedApproach-007			NR1L-VS-137	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+147	SWE1-VC-IlluminatedApproach-008			NR1L-VS-138	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+148	SWE1-VC-LaneSenseStrength-027			NR1L-VS-139	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+149	SWE1-VC-LaneSenseStrength-028			NR1L-VS-140	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+150	SWE1-VC-LaneSenseStrength-032			NR1L-VS-141	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+151	SWE1-VC-LaneSenseWarning-014			NR1L-VS-142	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+152	SWE1-VC-LaneSenseWarning-015			NR1L-VS-143	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+153	SWE1-VC-LaneSenseWarning-019			NR1L-VS-144	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+154	SWE1-VC-Language-059			NR1L-VS-145	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+155	SWE1-VC-Language-062			NR1L-VS-146	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+156	SWE1-VC-MaxPowerLevel140			NR1L-VS-147	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+157	SWE1-VC-MaxPowerLevel141			NR1L-VS-148	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+158	SWE1-VC-MaxPowerLevel142			NR1L-VS-149	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+159	SWE1-VC-MaxPowerLevel143			NR1L-VS-150	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+160	SWE1-VC-NavigationTurnbyTurn-053			NR1L-VS-151	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+161	SWE1-VC-NavigationTurnbyTurn-054			NR1L-VS-152	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+162	SWE1-VC-NavigationTurnbyTurn-055			NR1L-VS-153	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+163	SWE1-VC-NavigationTurnbyTurn-056			NR1L-VS-154	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+164	SWE1-VC-NavigationTurnbyTurn-057			NR1L-VS-155	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+165	SWE1-VC-NewSpeedZoneIndication-037			NR1L-VS-156	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+166	SWE1-VC-NewSpeedZoneIndication-038			NR1L-VS-157	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+167	SWE1-VC-NewSpeedZoneIndication-039			NR1L-VS-158	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+168	SWE1-VC-NewSpeedZoneIndication-040			NR1L-VS-159	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+169	SWE1-VC-NewSpeedZoneIndication-041			NR1L-VS-160	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+170	SWE1-VC-NewSpeedZoneIndication-042			NR1L-VS-161	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+171	SWE1-VC-PaddleShifter-010			NR1L-VS-162	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+172	SWE1-VC-PaddleShifter-011			NR1L-VS-163	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+173	SWE1-VC-PaddleShifter-012			NR1L-VS-164	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+174	SWE1-VC-PaddleShifter-013			NR1L-VS-165	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+175	SWE1-VC-PaddleShifter-014			NR1L-VS-166	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+176	SWE1-VC-ParkSense-084			NR1L-VS-167	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+177	SWE1-VC-ParkSense-085			NR1L-VS-168	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+178	SWE1-VC-ParkSenseBasedCameraActivation-078			NR1L-VS-169	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+179	SWE1-VC-ParkSenseBasedCameraActivation-079			NR1L-VS-170	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+180	SWE1-VC-ParkSenseFrontVolume-079			NR1L-VS-171	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+181	SWE1-VC-ParkSenseFrontVolume-080			NR1L-VS-172	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+182	SWE1-VC-ParkSenseFrontVolume-081			NR1L-VS-173	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+183	SWE1-VC-ParkSenseFrontVolume-082			NR1L-VS-174	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+184	SWE1-VC-ParkSenseRearVolume-072			NR1L-VS-175	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+185	SWE1-VC-ParkSenseRearVolume-073			NR1L-VS-176	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+186	SWE1-VC-ParkSenseRearVolume-074			NR1L-VS-177	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+187	SWE1-VC-ParkSenseRearVolume-075			NR1L-VS-178	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+188	SWE1-VC-PassiveEntry-009			NR1L-VS-179	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+189	SWE1-VC-PassiveEntry-010			NR1L-VS-180	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+190	SWE1-VC-PassiveEntry-011			NR1L-VS-181	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+191	SWE1-VC-PassiveEntry-012			NR1L-VS-182	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+192	SWE1-VC-PassiveEntry-013			NR1L-VS-183	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+193	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-048			NR1L-VS-184	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+194	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-049			NR1L-VS-185	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+195	SWE1-VC-PedestrianEmergencyBrakingorWarning&ActiveBraking-052			NR1L-VS-186	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+196	SWE1-VC-PhoneRepetition-064			NR1L-VS-187	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+197	SWE1-VC-PhoneRepetition-065			NR1L-VS-188	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+198	SWE1-VC-PhoneRepetition-066			NR1L-VS-189	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+199	SWE1-VC-PhoneRepetition-067			NR1L-VS-190	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+200	SWE1-VC-PhoneRepetition-068			NR1L-VS-191	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+201	SWE1-VC-PowerLiftgate/TailgateAlert-016			NR1L-VS-192	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+202	SWE1-VC-PowerLiftgate/TailgateAlert-017			NR1L-VS-193	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+203	SWE1-VC-PowerLiftgate/TailgateAlert-018			NR1L-VS-194	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+204	SWE1-VC-PowerLiftgate/TailgateAlert-019			NR1L-VS-195	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+205	SWE1-VC-PowerLiftgate/TailgateAlert-020			NR1L-VS-196	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+206	SWE1-VC-PowerLiftgate/TailgateAlert-021			NR1L-VS-197	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+207	SWE1-VC-PowerSideStep-051			NR1L-VS-198	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+208	SWE1-VC-PowerSideStep-052			NR1L-VS-199	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+209	SWE1-VC-PowerSideStep-053			NR1L-VS-200	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+210	SWE1-VC-PowerSideStep-054			NR1L-VS-201	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+211	SWE1-VC-PowerSideStep-055			NR1L-VS-202	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+212	SWE1-VC-PowerTailgate-023			NR1L-VS-203	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+213	SWE1-VC-PowerTailgate-024			NR1L-VS-204	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+214	SWE1-VC-PowerTailgate-027			NR1L-VS-205	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+215	SWE1-VC-PowerTailgate-028			NR1L-VS-206	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+216	SWE1-VC-PowerUnit-009			NR1L-VS-207	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+217	SWE1-VC-PowerUnit-010			NR1L-VS-208	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+218	SWE1-VC-PowerUnit-011			NR1L-VS-209	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+219	SWE1-VC-PowerUnit-012			NR1L-VS-210	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+220	SWE1-VC-PowerUnit-013			NR1L-VS-211	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+221	SWE1-VC-PowerUnit-014			NR1L-VS-212	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+222	SWE1-VC-PressureUnit-002			NR1L-VS-213	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+223	SWE1-VC-PressureUnit-003			NR1L-VS-214	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+224	SWE1-VC-PressureUnit-004			NR1L-VS-215	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+225	SWE1-VC-PressureUnit-005			NR1L-VS-216	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+226	SWE1-VC-PressureUnit-006			NR1L-VS-217	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+227	SWE1-VC-PressureUnit-007			NR1L-VS-218	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+228	SWE1-VC-RKELinkedtoMemory-090			NR1L-VS-219	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+229	SWE1-VC-RKELinkedtoMemory-091			NR1L-VS-220	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+230	SWE1-VC-RKELinkedtoMemory-092			NR1L-VS-221	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+231	SWE1-VC-RKELinkedtoMemory-093			NR1L-VS-222	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+232	SWE1-VC-RKELinkedtoMemory-094			NR1L-VS-223	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+233	SWE1-VC-RainSensingWipers-054			NR1L-VS-224	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+234	SWE1-VC-RainSensingWipers-055			NR1L-VS-225	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+235	SWE1-VC-RainSensingWipers-058			NR1L-VS-226	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+236	SWE1-VC-ReadytoDrivePopUp-026			NR1L-VS-227	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+237	SWE1-VC-ReadytoDrivePopUp-027			NR1L-VS-228	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+238	SWE1-VC-ReadytoDrivePopUp-028			NR1L-VS-229	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+239	SWE1-VC-ReadytoDrivePopUp-029			NR1L-VS-230	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+240	SWE1-VC-ReadytoDrivePopUp-030			NR1L-VS-231	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+241	SWE1-VC-RearGuidanceLightStatus-084			NR1L-VS-232	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+242	SWE1-VC-RearGuidanceLightStatus-085			NR1L-VS-233	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+243	SWE1-VC-RearGuidanceLightStatus-086			NR1L-VS-234	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+244	SWE1-VC-RearGuidanceLightStatus-087			NR1L-VS-235	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+245	SWE1-VC-RearGuidanceLightStatus-088			NR1L-VS-236	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+246	SWE1-VC-RearGuidanceLightingwithApproach-078			NR1L-VS-237	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+247	SWE1-VC-RearGuidanceLightingwithApproach-079			NR1L-VS-238	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+248	SWE1-VC-RearGuidanceLightingwithApproach-080			NR1L-VS-239	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+249	SWE1-VC-RearGuidanceLightingwithApproach-081			NR1L-VS-240	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+250	SWE1-VC-RearGuidanceLightingwithApproach-082			NR1L-VS-241	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+251	SWE1-VC-RearGuidanceLightswith\nCargoLights-014			NR1L-VS-242	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+252	SWE1-VC-RearGuidanceLightswith\nCargoLights-015			NR1L-VS-243	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+253	SWE1-VC-RearGuidanceLightswith\nCargoLights-016			NR1L-VS-244	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+254	SWE1-VC-RearGuidanceLightswith\nCargoLights-017			NR1L-VS-245	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+255	SWE1-VC-RearGuidanceLightswith\nCargoLights-018			NR1L-VS-246	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+256	SWE1-VC-RearSeatReminder-055			NR1L-VS-247	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+257	SWE1-VC-RearSeatReminder-056			NR1L-VS-248	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+258	SWE1-VC-RearSeatReminder-057			NR1L-VS-249	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+259	SWE1-VC-RearviewCameraDelay-109			NR1L-VS-250	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+260	SWE1-VC-RearviewCameraDelay-110			NR1L-VS-251	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+261	SWE1-VC-RearviewCameraDelay-111			NR1L-VS-252	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+262	SWE1-VC-RearviewCameraDelay-112			NR1L-VS-253	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+263	SWE1-VC-RearviewCameraDelay-113			NR1L-VS-254	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+264	SWE1-VC-RearviewCameraDynamicGuidelines-115			NR1L-VS-255	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+265	SWE1-VC-RearviewCameraDynamicGuidelines-116			NR1L-VS-256	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+266	SWE1-VC-RearviewCameraDynamicGuidelines-117			NR1L-VS-257	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+267	SWE1-VC-RearviewCameraDynamicGuidelines-118			NR1L-VS-258	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+268	SWE1-VC-RearviewCameraDynamicGuidelines-119			NR1L-VS-259	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+269	SWE1-VC-RemoteDoorUnlock-015			NR1L-VS-260	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+270	SWE1-VC-RemoteDoorUnlock-016			NR1L-VS-261	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+271	SWE1-VC-RemoteDoorUnlock-017			NR1L-VS-262	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+272	SWE1-VC-RemoteDoorUnlock-018			NR1L-VS-263	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+273	SWE1-VC-RemoteDoorUnlock-019			NR1L-VS-264	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+274	SWE1-VC-SWITCH1HoldLastState-018			NR1L-VS-265	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+275	SWE1-VC-SWITCH1HoldLastState-019			NR1L-VS-266	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+276	SWE1-VC-SWITCH1HoldLastState-020			NR1L-VS-267	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+277	SWE1-VC-SWITCH1PowerMode-030			NR1L-VS-268	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+278	SWE1-VC-SWITCH1PowerMode-031			NR1L-VS-269	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+279	SWE1-VC-SWITCH1PowerMode-032			NR1L-VS-270	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+280	SWE1-VC-SWITCH1Type-003			NR1L-VS-271	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+281	SWE1-VC-SWITCH1Type-004			NR1L-VS-272	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+282	SWE1-VC-SWITCH1Type-029			NR1L-VS-273	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+283	SWE1-VC-SWITCH2HoldLastState-022			NR1L-VS-274	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+284	SWE1-VC-SWITCH2HoldLastState-023			NR1L-VS-275	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+285	SWE1-VC-SWITCH2HoldLastState-024			NR1L-VS-276	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+286	SWE1-VC-SWITCH2PowerMode-034			NR1L-VS-277	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+287	SWE1-VC-SWITCH2PowerMode-035			NR1L-VS-278	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+288	SWE1-VC-SWITCH2PowerMode-036			NR1L-VS-279	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+289	SWE1-VC-SWITCH2Type-006			NR1L-VS-280	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+290	SWE1-VC-SWITCH2Type-007			NR1L-VS-281	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+291	SWE1-VC-SWITCH2Type-008			NR1L-VS-282	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+292	SWE1-VC-SWITCH3HoldLastState-026			NR1L-VS-283	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+293	SWE1-VC-SWITCH3HoldLastState-027			NR1L-VS-284	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+294	SWE1-VC-SWITCH3HoldLastState-028			NR1L-VS-285	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+295	SWE1-VC-SWITCH3PowerMode-038			NR1L-VS-286	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+296	SWE1-VC-SWITCH3PowerMode-039			NR1L-VS-287	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+297	SWE1-VC-SWITCH3PowerMode-040			NR1L-VS-288	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+298	SWE1-VC-SWITCH3Type-010			NR1L-VS-289	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+299	SWE1-VC-SWITCH3Type-011			NR1L-VS-290	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+300	SWE1-VC-SWITCH3Type-012			NR1L-VS-291	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+301	SWE1-VC-SWITCH4HoldLastState-030			NR1L-VS-292	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+302	SWE1-VC-SWITCH4HoldLastState-031			NR1L-VS-293	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+303	SWE1-VC-SWITCH4HoldLastState-032			NR1L-VS-294	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+304	SWE1-VC-SWITCH4PowerMode-042			NR1L-VS-295	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+305	SWE1-VC-SWITCH4PowerMode-043			NR1L-VS-296	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+306	SWE1-VC-SWITCH4PowerMode-044			NR1L-VS-297	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+307	SWE1-VC-SWITCH4Type-014			NR1L-VS-298	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+308	SWE1-VC-SWITCH4Type-015			NR1L-VS-299	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+309	SWE1-VC-SWITCH4Type-016			NR1L-VS-300	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+310	SWE1-VC-SWITCH5HoldLastState-070			NR1L-VS-301	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+311	SWE1-VC-SWITCH5HoldLastState-071			NR1L-VS-302	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+312	SWE1-VC-SWITCH5HoldLastState-072			NR1L-VS-303	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+313	SWE1-VC-SWITCH5PowerMode-021			NR1L-VS-304	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+314	SWE1-VC-SWITCH5PowerMode-022			NR1L-VS-305	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+315	SWE1-VC-SWITCH5PowerMode-023			NR1L-VS-306	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+316	SWE1-VC-SWITCH5Type-045			NR1L-VS-307	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+317	SWE1-VC-SWITCH5Type-046			NR1L-VS-308	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+318	SWE1-VC-SWITCH5Type-047			NR1L-VS-309	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+319	SWE1-VC-SWITCH6HoldLastState-074			NR1L-VS-310	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+320	SWE1-VC-SWITCH6HoldLastState-075			NR1L-VS-311	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+321	SWE1-VC-SWITCH6HoldLastState-076			NR1L-VS-312	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+322	SWE1-VC-SWITCH6PowerMode-025			NR1L-VS-313	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+323	SWE1-VC-SWITCH6PowerMode-026			NR1L-VS-314	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+324	SWE1-VC-SWITCH6PowerMode-027			NR1L-VS-315	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+325	SWE1-VC-SWITCH6Type-049			NR1L-VS-316	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+326	SWE1-VC-SWITCH6Type-050			NR1L-VS-317	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+327	SWE1-VC-SWITCH6Type-051			NR1L-VS-318	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+328	SWE1-VC-SignatureLighting-021			NR1L-VS-319	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+329	SWE1-VC-SignatureLighting-022			NR1L-VS-320	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+330	SWE1-VC-SignatureLighting-025			NR1L-VS-321	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+331	SWE1-VC-SpeedUnit-026			NR1L-VS-322	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+332	SWE1-VC-SurroundViewCameraDelay-053			NR1L-VS-323	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+333	SWE1-VC-SurroundViewCameraDelay-054			NR1L-VS-324	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+334	SWE1-VC-SurroundViewCameraGuidelines-059			NR1L-VS-325	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+335	SWE1-VC-SurroundViewCameraGuidelines-060			NR1L-VS-326	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+336	SWE1-VC-SuspensionAutoEntryorExit-091			NR1L-VS-327	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+337	SWE1-VC-SuspensionAutoEntryorExit-092			NR1L-VS-328	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+338	SWE1-VC-SuspensionDefaultRideHeight-021			NR1L-VS-329	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+339	SWE1-VC-SuspensionDefaultRideHeight-022			NR1L-VS-330	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+340	SWE1-VC-SuspensionDefaultRideHeight-023			NR1L-VS-331	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+341	SWE1-VC-SuspensionDefaultRideHeight-024			NR1L-VS-332	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+342	SWE1-VC-SuspensionDefaultRideHeight-025			NR1L-VS-333	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+343	SWE1-VC-SuspensionDisplayMessages-008			NR1L-VS-334	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+344	SWE1-VC-SuspensionDisplayMessages-009			NR1L-VS-335	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+345	SWE1-VC-SuspensionDisplayMessages-010			NR1L-VS-336	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+346	SWE1-VC-SuspensionDisplayMessages-011			NR1L-VS-337	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+347	SWE1-VC-SuspensionDisplayMessages-012			NR1L-VS-338	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+348	SWE1-VC-SuspensionFlashLightsWithLower-002			NR1L-VS-339	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+349	SWE1-VC-SuspensionFlashLightsWithLower-003			NR1L-VS-340	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+350	SWE1-VC-SuspensionFlashLightsWithLower-004			NR1L-VS-341	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+351	SWE1-VC-SuspensionFlashLightsWithLower-005			NR1L-VS-342	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+352	SWE1-VC-SuspensionFlashLightsWithLower-006			NR1L-VS-343	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+353	SWE1-VC-SuspensionServiceMode-002			NR1L-VS-344	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+354	SWE1-VC-SuspensionServiceMode-003			NR1L-VS-345	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+355	SWE1-VC-SuspensionServiceMode-004			NR1L-VS-346	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+356	SWE1-VC-SuspensionServiceMode-005			NR1L-VS-347	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+357	SWE1-VC-SuspensionServiceMode-006			NR1L-VS-348	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+358	SWE1-VC-SuspensionSoundHornWithLower-008			NR1L-VS-349	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+359	SWE1-VC-SuspensionSoundHornWithLower-009			NR1L-VS-350	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+360	SWE1-VC-SuspensionSoundHornWithLower-010			NR1L-VS-351	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+361	SWE1-VC-SuspensionSoundHornWithLower-011			NR1L-VS-352	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+362	SWE1-VC-SuspensionSoundHornWithLower-012			NR1L-VS-353	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+363	SWE1-VC-TemperatureUnit-046			NR1L-VS-354	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+364	SWE1-VC-TemperatureUnit-047			NR1L-VS-355	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+365	SWE1-VC-TiltMirrorinReverse-014			NR1L-VS-356	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+366	SWE1-VC-TiltMirrorinReverse-015			NR1L-VS-357	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+367	SWE1-VC-TiltMirrorinReverse-016			NR1L-VS-358	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+368	SWE1-VC-TiltMirrorinReverse-017			NR1L-VS-359	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+369	SWE1-VC-TiltMirrorinReverse-018			NR1L-VS-360	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+370	SWE1-VC-TimeandDateSettings-002			NR1L-VS-361	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+371	SWE1-VC-TimeandDateSettings-004			NR1L-VS-362	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+372	SWE1-VC-TimeandDateSettings-005			NR1L-VS-363	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+373	SWE1-VC-TireFillAlert-020			NR1L-VS-364	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+374	SWE1-VC-TireFillAlert-021			NR1L-VS-365	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+375	SWE1-VC-TireFillAlert-022			NR1L-VS-366	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+376	SWE1-VC-TireFillAlert-023			NR1L-VS-367	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+377	SWE1-VC-TireFillAlert-024			NR1L-VS-368	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+378	SWE1-VC-TorqueUnit-016			NR1L-VS-369	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+379	SWE1-VC-TorqueUnit-017			NR1L-VS-370	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+380	SWE1-VC-TorqueUnit-018			NR1L-VS-371	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+381	SWE1-VC-TorqueUnit-019			NR1L-VS-372	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+382	SWE1-VC-TorqueUnit-020			NR1L-VS-373	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+383	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-057			NR1L-VS-374	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+384	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-058			NR1L-VS-375	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+385	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-060			NR1L-VS-376	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+386	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-061			NR1L-VS-377	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+387	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-062			NR1L-VS-378	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+388	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-063			NR1L-VS-379	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+389	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-064			NR1L-VS-380	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+390	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-065			NR1L-VS-381	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+391	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-066			NR1L-VS-382	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+392	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-067			NR1L-VS-383	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+393	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-068			NR1L-VS-384	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+394	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-069			NR1L-VS-385	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+395	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-070			NR1L-VS-386	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+396	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-071			NR1L-VS-387	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+397	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-073			NR1L-VS-388	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+398	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-074			NR1L-VS-389	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+399	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-075			NR1L-VS-390	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+400	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-076			NR1L-VS-391	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+401	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-077			NR1L-VS-392	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+402	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-078			NR1L-VS-393	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+403	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-079			NR1L-VS-394	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+404	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-080			NR1L-VS-395	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+405	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-081			NR1L-VS-396	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+406	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-082			NR1L-VS-397	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+407	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-083			NR1L-VS-398	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+408	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-084			NR1L-VS-399	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+409	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-085			NR1L-VS-400	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+410	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-086			NR1L-VS-401	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+411	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-087			NR1L-VS-402	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+412	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-088			NR1L-VS-403	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+413	SWE1-VC-TrafficSignAssistOffset - NAFTASetting-089			NR1L-VS-404	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+414	SWE1-VC-TrafficSignWarning-030			NR1L-VS-405	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+415	SWE1-VC-TrafficSignWarning-031			NR1L-VS-406	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+416	SWE1-VC-TrafficSignWarning-032			NR1L-VS-407	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+417	SWE1-VC-TrafficSignWarning-033			NR1L-VS-408	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+418	SWE1-VC-TrafficSignWarning-034			NR1L-VS-409	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+419	SWE1-VC-TrafficSignWarning-035			NR1L-VS-410	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+420	SWE1-VC-TrailerBrakeType025			NR1L-VS-411	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+421	SWE1-VC-TrailerBrakeType026			NR1L-VS-412	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+422	SWE1-VC-TrailerBrakeType031			NR1L-VS-413	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+423	SWE1-VC-TrailerName-002			NR1L-VS-414	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+424	SWE1-VC-TrailerName-003			NR1L-VS-415	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+425	SWE1-VC-TrailerName-017			NR1L-VS-416	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+426	SWE1-VC-TrailerNumber-059			NR1L-VS-417	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+427	SWE1-VC-TrailerNumber-060			NR1L-VS-418	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+428	SWE1-VC-TrailerNumber-061			NR1L-VS-419	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+429	SWE1-VC-TrailerNumber-062			NR1L-VS-420	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+430	SWE1-VC-TrailerNumber-063			NR1L-VS-421	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+431	SWE1-VC-TrailerNumber-064			NR1L-VS-422	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+432	SWE1-VC-TrailerNumber-066			NR1L-VS-423	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+433	SWE1-VC-TurnSignalActivatedBlindSpotCameraView-065			NR1L-VS-424	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+434	SWE1-VC-TurnSignalActivatedBlindSpotCameraView-066			NR1L-VS-425	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+435	SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-071			NR1L-VS-426	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+436	SWE1-VC-TurnSignalActivatedBlindSpotCameraViewwithTrailerOption-072			NR1L-VS-427	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+437	SWE1-VC-UnitEnergy-039			NR1L-VS-428	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+438	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-115			NR1L-VS-429	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+439	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-116			NR1L-VS-430	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+440	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-117			NR1L-VS-431	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+441	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-118			NR1L-VS-432	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+442	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-119			NR1L-VS-433	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+443	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-121			NR1L-VS-434	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+444	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-122			NR1L-VS-435	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+445	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-123			NR1L-VS-436	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+446	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-124			NR1L-VS-437	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+447	SWE1-VC-WarningsforLowFuelInverterShutdown - VisualWarning-125			NR1L-VS-438	assigned	VS-SL-09 重排後依新列序重賦（R-G42 一(a)）
+400	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-091				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+401	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-092				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+402	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-094				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+403	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-095				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+404	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-096				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+405	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-097				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+406	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-098				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+407	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-099				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+408	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-100				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+409	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-102				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+410	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-103				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+411	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-104				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+412	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-105				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+413	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-106				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+414	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-107				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+415	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-108				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+416	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-109				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+417	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-111				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）
+418	SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-113				RETIRED	R-VS84(4) 非 NAFTA（VS-SL-03 移除，未入轉正本）

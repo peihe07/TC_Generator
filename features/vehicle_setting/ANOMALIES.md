@@ -262,3 +262,72 @@
 **本層未動該二檔**（`down/` 依協定唯讀；`PROTOCOL.md` 為協定本文，屬 Tier 2）。
 建議：更正註記與協定內指稱他檔節號時，**避免逐字重現該引用形制**
 （分寫前綴與節號，或改以「該檔第 N 行」指稱）。
+
+---
+
+## 下放包 VS-SL-10 §1 之具名缺號登記（2026-09-02）
+
+> 主線最大實測 **`A-VS171`**，取 `A-VS172`。
+> 依 **`R-VF83` 但書一**（Pei 2026-08-24：缺號具名、不補寫、不重編；`A-VS02` 先例）
+> 與 **但書二**（Pei 2026-09-02：值域無洞之判準只及於序號集合）。
+
+| id | 內容 | 證據 | 狀態 |
+|---|---|---|---|
+| **A-VS172** | **VF230 B 欄 19 個具名缺號 —— `634`–`652`** | 19 列於 VS-SL-03 §2 依 `R-VS84(4)`（非 NAFTA）自簿上移除，其所佔之 B 值遂懸空。**B 值取自移除前之原稿** `features/vehicle_setting/inputs/…_SWQT_VF230_20260819.xlsx`（457 列），其 D 值與 `vf230_removed_non_nafta.tsv` **逐列相符 19／19** | **RESOLVED —— 具名缺號**（不補寫、不重編） |
+
+**逐號**（19 號連續，`634`–`652`）：
+
+| B（缺號）| 原 D 值 | 移除依據 | 輪次 | 處置 |
+|---|---|---|---|---|
+| `634` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-091` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `635` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-092` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `636` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-094` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `637` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-095` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `638` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-096` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `639` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-097` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `640` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-098` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `641` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-099` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `642` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-100` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `643` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-102` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `644` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-103` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `645` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-104` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `646` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-105` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `647` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-106` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `648` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-107` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `649` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-108` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `650` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-109` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `651` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-111` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+| `652` | `SWE1-VC-TrafficSignAssistOffset - non-NAFTASetting-113` | R-VS84(4) 非 NAFTA | VS-SL-03 §2 | 具名缺號，不補寫、不重編 |
+
+### 值域完整性複驗（但書二之判準）
+
+| 項 | 值 |
+|---|---:|
+| 值域 `244`–`700` | **457** 號 |
+| 現簿 B 值 | **438** |
+| 本節具名缺號 | **19** |
+| 438 ＋ 19 | **457** |
+| **除具名缺號外仍懸空之號** | **0** |
+
+三項 assert 皆 PASS：19 號**互異**、**皆在 244–700 內**、**與現簿 B 值集合不相交**。
+
+> **B 值之來源與包內字面不同（自報）**：包內 §1-1 令自 `.bak` 鏈（`.presl07.bak` 或 sandbox v3 稿）取 B 值。
+> **該二稿皆為移除後之 438 列**，其第 400–418 列裝的是位移後之他列內容 ——
+> 實測其 D 值與移除清單**逐列不符（0／19）**，自其取值將取到錯號。
+> 故改自移除前之 `inputs/` 原稿取（D 值 19／19 相符）。
+
+### 238–243 六號之查證（§2，只查不猜）
+
+**結論：238–243 不是缺號，無須登記。** 其為 **Part 1（CFTS044）交付路徑本**所佔用。
+
+依 **`R-VF114`**（分析層裁定 2026-08-24）「取 repo 內與交付路徑**二本** CFTS044 之 B 欄末號，
+取其最大 +1」，本層逐本實測：
+
+| 本 | 列 | B 範圍 | 缺口 | sha256 前 16 |
+|---|---:|---|---|---|
+| repo 內 `features/vehicle_setting/inputs/…CFTS044…20260819.xlsx` | 237 | `1`–`237` | 無 | `ebe5a65f30a0d4bc` |
+| **交付路徑** `…/ASW-R2/Vehicle Settings/CFTS044/…20260819.xlsx` | **243** | `1`–`243` | 無 | `f39c03bd9cb0f1b3` |
+
+`max(237, 243) + 1 = 244`，即現行起點。`A-VF33` 所載「CFTS044 交付本末號 243 + 1」
+**指的是交付路徑本**（repo 內那本為 237），本層複驗成立。
+
