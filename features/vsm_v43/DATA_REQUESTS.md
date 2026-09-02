@@ -5,11 +5,11 @@ DR 送出權屬 Pei（Tier 3）；分析層草擬、登記。每包上繳附未�
 
 | DR | 項目 | 阻塞 | 影響 | 狀態 | 送出日 | 回覆日 |
 |---|---|---|---|---|---|---|
-| DR-VT1 | VF665 V43 之 037（SWE1 分析報告）缺件 | **yes** | 全線（母體 = 0） | 已登記，建議送出 | | |
-| DR-VT2 | V43 SYSRA DocID `VF655_V43_R3`（247 列）疑為 `VF665` 之誤植；SYSRA 記 R3 而規格為 R4；`Melco ID` 於 Functional 507 列全空（A-VT9）；`Out of scope` 二拼法 55／44 | no | 追溯欄 | 已登記，未送出 | | |
-| DR-VT3 | ~~V43 R4 規格之訊息名與 forms/ DBC 不符 28 列~~ → **重寫（R-VT13(d)）**：原問為誤問（拿 Atlantis High DBC 解 ATL-Mi 規格）；待 DR-VT5 到件重驗後若仍不符再問 | no | 訊號實名 | **暫持，不送** | | |
-| DR-VT4 | V43 內部訊號（`X.Req`／`X.Info`／`X.GUI`，88 名，83 名止於段 1）之驅動與觀察方法對照總表（形制照 DR-PW23） | **yes（與 DR-VT1 同級，R-VT14(d)）** | 內部訊號實名 | 已登記，建議送出 | | |
-| DR-VT5 | **ATL-Mi（P363／P637；CAN-B／CAN-C）之 DBC** —— forms/ 僅有 Atlantis High R1 DBC；R-VT13(b) 段 3 待此件；與 vsm_v42 DR-VL3 同件 | **yes（P4 起）** | 全線 CAN 訊號 | 已登記，**先問 Pei 手上有無** | | |
+| DR-VT1 | VF665 V43 之 037（SWE1 分析報告）缺件 | **yes** | 全線（母體 = 0） | 已登記，**Pei 裁先不送（2026-09-02）→ 本線繼續停於 P0–P3** | | |
+| DR-VT2 | V43 SYSRA DocID `VF655_V43_R3`（247 列）疑誤植；R3 vs R4；`Melco ID` 全空（A-VT9）；`Out of scope` 二拼法；重音三名（A-VT20） | no | 追溯欄 | 已登記，**Pei 裁先不送（2026-09-02）** | | |
+| DR-VT3 | （重寫，R-VT13(d)）待重驗；R-VT15(b) 實測後候選僅餘 2 名 | no | 訊號實名 | 暫持，不送 | | |
+| DR-VT4 | V43 內部訊號對照總表（83 名，形制照 DR-PW23） | **yes（P4 起）** | 內部訊號實名 | 已登記，**Pei 裁先不送（2026-09-02）→ P4 時 83 名只能 PENDING（R-P355）** | | |
+| DR-VT5 | ATL-Mi DBC | ~~yes~~ | 全線 CAN 訊號 | **結案（2026-09-02，Pei 放件 `P363_BH-CAN [07338]_3A_R2.dbc`，R-VT15）** | | 2026-09-02 |
 
 ---
 
