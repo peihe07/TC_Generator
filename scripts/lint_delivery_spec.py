@@ -37,7 +37,12 @@ MANIFEST_NAME = "MANIFEST.tsv"
 SHEET_KEY = "Test Case Specification"
 AUTHOR = "PeiPYHsu"
 PRIORITIES = {"P0", "P1", "P2", "P3"}
-TC_ID_RE = re.compile(r"^NR1L-([A-Za-z]+)-(\d{3})$")
+# ABBR 允字母起首之字母數字（Pei 裁 2026-09-02，K-20）。原式 `[A-Za-z]+` 只允字母，
+# 與同檔 FILENAME_RE 之 `[A-Za-z0-9]+` 不一致，且使 vsm_v42／v43 之已裁 TC ID
+# （`NR1L-VSM42-`／`NR1L-VSM43-`，R-VL3／R-VT3）必然判紅。
+# 放寬前後實測（features/*/delivered/*.xlsx）：ics_management 31→31、power 389→389 與 287→287
+# 皆不變；sw_update 0→0（其 `newR1L-` 前綴為另一問題，不受本改影響）；vsm_v42 0→17。
+TC_ID_RE = re.compile(r"^NR1L-([A-Za-z][A-Za-z0-9]*)-(\d{3})$")
 FILENAME_RE = re.compile(
     r"^FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification"
     r" & Result_SWQT_(?P<name>[A-Za-z0-9]+)_(?P<date>\d{8})\.xlsx$"
