@@ -1,0 +1,38 @@
+# SWE1-VC-PARKSENSEw/oHC.1andPARKSENSEw/oHC.2-004
+
+- Test Group: Vehicle Setup Management R1 Low
+- Test Set: Park Sense
+- TC 數: 1
+
+**reasoning**：驗證使用者將 PAM Alert Mode 設為 Sound+Display 時，TLM 送出 $TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req$ = 2 (Sound_Display) 至 IPC，並更新顯示之設定值。關鍵情境為單一設定值之等價分割（規格段 1208–1209）。本 Req 只述一個值，依 §8.2.2 一 Req 一條，不與另一值合併。規格觸發為內部訊號 Pam_AlertMode_Setting.Req，依 R-P355 不得直接 Set，改以 UI 選擇觸發並驗其下游 CAN 訊號；label 逐字取 DBC VAL_（2 = Sound_Display），規格原文寫 Sound+Display 保留於 verbatim 上半（R-6）。
+
+## TC 1 — PAM Alert Mode set to Sound+Display
+
+### test_item
+```
+The HMI layer shall capture the customer selection for the PAM Alert Mode setting and send the request using CarPropertyManager.setProperty() with the TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req signal value set to **Sound+Display**
+(Alert mode set to Sound and Display is transmitted to the IPC)
+```
+
+### pre_conditions
+1. PROXI CAN node 24 (PAM) = 1 (Present)
+2. The named UI element "Park Sense Setting" screen is displayed
+
+### input_test_data
+NA
+
+### test_procedure
+1. Select "PAM Alert Mode" = "Sound+Display" to trigger $TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req$ signal transmission
+2. Read the named UI element "PAM Alert Mode" control and check that it is "Sound+Display"
+
+### expected_result
+1. The signal value $TELEMATIC_VEHICLE_SETUP.PamAlertMode_Req$ = 2 (Sound_Display) is received
+2. The named UI element "PAM Alert Mode" control is "Sound+Display"
+
+### 其他
+- specification_reference: Vehicle_Setup_Management_by_VP-LTM_R1_Low_VF665_V42_R6_1.11.1.1.29
+- design_method: 等價劃分 (Equivalence Partitioning, EP)
+- priority: P2
+- split_flag: False
+- distinguishing_axis: input_data — PamAlertMode_Req = 2 (Sound_Display)，與同族另一值為等價類之不同分割
+- remarks: UI element names are taken from the menu item wording named in the spec section and in the 037 description (R-VL21(a)); they are not anchored in HMI Settings List

@@ -16,6 +16,7 @@ FO §8.7：一次往返共用同一 `NN`；下放包由分析層寫，上繳包�
 | 08 | `handoff/08_freeze.md` | `upstream/08_freeze.md` | 2026-09-02 | **-059 一列（R-VL23 A 路）→ `b1 FROZEN`**。test_item 上半改 037 完整原句 verbatim（42 token，逐字子字串 True）；括號下半／Procedure／ER／PENDING／remarks 一字未動。**E62/E63/E64 全過**（E63 = 17/17；改 2 檔，其餘 33 檔 diff = 0）。INDEX 落凍結表（34 檔 sha8）。R-VL23 body_sha8 `a9b6218d` |
 | 09 | `handoff/09_writeback_method.md` | `upstream/09_writeback_method.md` | 2026-09-02 | **寫回工法查證（未寫回）**。實測：openpyxl `save()` **即使不改一格也毀 x14 DV**（members 48→47、x14 1→0）；`surgical_save` 保住（members 48、x14 節點逐字含 GUID，只有目標分頁 XML 變動，B 欄公式未被覆蓋）。**lint 本線首跑**（假資料件，9 紅全為假資料產物）；揭出文字形自檢未涵蓋之 7+ 項，b1 對其唯讀預檢 12 項全 0。`writeback_map_b1.tsv` 落檔（列 10–26／NR1L-VSM42-001–017）。**E69–E72 全過**；`sandbox/base` 一位元不動 |
 | 10 | `handoff/10_dryrun.md` | `upstream/10_dryrun.md` | 2026-09-02 | **三欄實測 ＋ b1 dry-run lint 實跑**。五本交付簿 1,033 列之 Q／AB／車型七欄 **100% 全空** → 三欄定案留空。`trial_D_b1.xlsx`（17 列 286 格，surgical 117.4s）：x14 逐字存活、member 48、differing 僅 sheet6、**回讀 286 格不符 0**。**lint 實跑：C=1（b1 內容缺陷，-057 hedge `successfully`）／P=23（已裁之 VAL_ 缺值）／U=6／I-cross=17（窗未宣告）**。**E80 = 1 → 尚不可寫回**。另發現 D／C 欄與四本交付慣例相牴觸。E78/E79/E81 過 |
+| 11 | `handoff/11_b2_park_sense.md` | `upstream/11_b2_park_sense.md` | 2026-09-02 | **b2 生成：Park Sense 18 leaf**（綠色通道第 1 批）。18/18 覆蓋、**E56 18/18**、E86 過；六訊號皆解得且 VAL_ 完整（無 b1 之 K-1 情形）。**b1 之 hedge 與句內剪接教訓已入自檢，C=0**；E56 於生成當輪攔下三條原文排版噪音並自修。回報三項與下放包所述不符：規格節 1.11.1.1.29 **內含 Volume 二家族段落**（「無節」不成立）／兩對 037 同文（K-7）／PROXI 名不一致（K-8）。b1 凍結件 34 檔複驗不符 0 |
 
 ## 報告（`docs/reports/`）
 

@@ -352,6 +352,18 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 - **另記（執行層側，供彼線參照）**：vsm_v43 上繳 05 §九-5(b) 稱 FORMS.md「仍未登錄 P363 DBC」，
   實測該條目已於 2026-09-02 由分析層登錄（ATL-Mi DBC 兩件專節）—— 彼包沿抄前包未重測，同型小誤，於彼線下包記。
 
+## A-VL15 —— 分析層之誤（二項）：D／C 映射未先實測交付本；「無標題」誤寫為「無節」（RESOLVED）
+
+- **登記日**：2026-09-02；**分析層之誤**；裁定 R-VL26(b)(g)。
+- **(1)** 下放包 05 定「D 欄＝Source Requirement ID（Sys-RA）、C 欄＝SWE ID」時**未先實測任何交付本**，
+  違 R-1 格式權威硬規則（提格式前須窮盡實測既交付工作簿）。上繳 10 實測四本 1,033 列：
+  D 一律 SWE ID、C 一律空 —— 與指令相反。已依 R-VL26(b) 對調。
+- **(2)** R-VL19(b) 把 W-8 實測之「無章節**標題**」擴寫為「無**節**可錨」—— 上繳 11 實測 Volume
+  二家族逐字段落實在 1.11.1.1.29 內（非 heading 樣式）。已改雙錨（R-VL26(g)）。
+- **同族**：未量即斷（IN §8.4.1 型）—— 與 A-VL13（FORMS 尾註）、R-VL22(a)（範圍未掃型）同根：
+  斷言前未以現成可測之物（交付本／規格段落）先測。防再犯：凡定交付欄位映射／錨型態，
+  條文內須附實測來源句（無實測句不得發包）。
+
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning：`[ASSUMPTION A-VLnn]`。

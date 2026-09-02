@@ -315,6 +315,10 @@ R-VL19（分析層裁定 2026-09-02，依 Pei「皆授權」進 P4 之前置；p
 (b) 無規格章節可錨之家族（Rear／Front Park Sense Volume，13 leaf）以上游實名錨：
     `Sys-RA-VF665_V42_VSM-{nnn}`（該 leaf 之 Source Requirement ID，逐列實取），一 ID 一行；
     Remarks 註「規格無章節標題（上繳 04 W-8 實測）」。`-063`（Source 為 Heading）同法並註 DR-VL2(c)。
+    ~~前提「無節可錨」~~ **加註（R-VL26(g)，2026-09-02）**：上繳 11 實測該二家族逐字段落
+    實在節 1.11.1.1.29 內（段 1216–1241，非 heading 樣式故不入 outline）——「無標題」成立、
+    「無節」不成立（分析層之誤，A-VL15(2)）。改雙錨：`…_1.11.1.1.29` 加列在前、
+    Sys-RA 實名保留在後（三家族共節，Sys-RA 保逐需求追溯）。
 (c) 同具兩型錨者 spec 錨在前、Sys-RA 錨在後（家族排序比照 IN §10.7 SWC 基準之精神）。
 Test Set 9 之雙章節家族（1.11.1.*＋1.11.2.*）兩章節皆列，各一行。
 ```
@@ -413,6 +417,36 @@ R-VL25（Pei 裁定 2026-09-02：「准 准 寫」之後二字；條文分析層
     交付（delivered/）仍待 Pei「出貨」。
 ```
 
+### R-VL26 —— dry-run 與 b2 合裁：-057 解凍一列；D／C 欄依交付慣例對調；lint P 豁免／I-cross 基線；Volume 雙錨；K-7／K-8
+
+```
+R-VL26（分析層裁定 2026-09-02，上繳 10＋11）
+(a) -057 hedge `successfully`：解凍修一列（括號下半改 `(Fdbk = 11: exit process reported as
+    complete)`）後重凍；hedge（C 型）掃描入兩線固定自檢（b2 已納，實測 0）。
+(b) D／C 欄依交付慣例對調：**D = SWE-Requirement ID（`SWE1-VC-…-{nnn}`），C 空**（四本交付簿
+    1,033 列實測一致）。下放包 05 之反向指令為分析層未先實測交付本即定映射之誤（A-VL15(1)，
+    違 R-1 格式權威硬規則）。writeback_map_b1.tsv 對調；Sys-RA 實名不入 D，其出現處為
+    spec_reference（R-VL19(b) 雙錨）與 leaves.tsv。vsm_v43 不受影響（無 037，Sys-RA 即需求 ID；
+    037 到件重錨時自然轉 SWE ID 合慣例）。
+(c) lint 檢查 P 豁免：DBC 無該值 VAL_ 者認列已裁例外（R-VL21(c)，以 remarks 揭露為要件）；
+    豁免清單落 `data/lint_p_waivers_b1.tsv`（11 賦值＋依據），寫回後 lint 之 P 紅以清單對銷；
+    lint P 判準補丁（「DBC 無 VAL_ 者免附」）入共用腳本一裁清單（Pei）。
+(d) I-cross：本線 ER 為即時觀察式不採觀測窗書寫，「窗未宣告」×N 視為預期基線非紅
+    （該檢查自載警示器非判準）；入 profile [ADD]（分析層後補）。
+(e) Q／AB／車型七欄留空、S = NA、E 留空採認（1,033 列實測）；樣本代換採認。
+(f) dry-run 工法全數採認（E79 四斷言＋286 格回讀 0 不符；成本與改動格數無關得證）。
+(g) b2 Park Sense 覆核：Volume 13 條 spec_reference 改雙錨（R-VL19(b) 加註，A-VL15(2)）；
+    K-7：-002／-006 維持兩條（§8.2.2 逆向禁止），-006 remarks 註疑上游贅列入 DR-VL2 佐證；
+    -008／-015 之規格條件實質不同採認；K-8：認定 `CAN node 24 (PAM )` 與 PROXI
+    `CAN node 24 (PAM/CVADAS)` 為同一參數（值域相符＋表內唯一 node 24），R-13 保留規格原名、
+    實名於 remarks 採認；檔名 `/`→`_`、Med／Medium 處置（步驟 DBC、上半 verbatim）採認。
+    本批修訂僅錨層（13 條 spec_ref＋-006 remarks）且肇因分析層，**仍計綠色通道 1／3**，
+    惟修訂輪須零它項。
+(h) 寫回執行：(a)(b)(c) 落地後 b1 依 Pei「寫」預授權（R-VL25(b)）直接寫至 sandbox/b1/＋
+    lint 實跑（預期 C=0、P 對銷後 0、U=6 計數、I-cross 基線）＋交付候選 copy2＋sha256 產出，
+    停於待「出貨」。b2 寫回待其修訂輪完成後併批。
+```
+
 ---
 
 ## 取號紀錄
@@ -432,3 +466,4 @@ R-VL25（Pei 裁定 2026-09-02：「准 准 寫」之後二字；條文分析層
 | R-VL23 | 2026-09-02 | 上繳 07 第 8 節 sha 止於 R-VL22；本檔錨點實測 22 |
 | R-VL24 | 2026-09-02 | 上繳 09 第 8 節 sha 止於 R-VL23；本檔錨點實測 23 |
 | R-VL25 | 2026-09-02 | 本檔錨點實測 24 |
+| R-VL26 | 2026-09-02 | 上繳 11 第 7 節 sha 止於 R-VL25；本檔錨點實測 25 |

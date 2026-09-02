@@ -199,7 +199,7 @@ trial_C_surgical.xlsx
 |---|---|
 | 可行性 | 本包試驗 C **實測通過**（members 48 保住、x14 節點逐字保住、只有目標分頁 XML 變動、寫入可回讀、B 欄公式未被值取代） |
 | 既有先例 | `features/privacy/scripts/write_back.py`（R20-5，BLANK 簿，與本線同型）、`features/bed_lowering/scripts/write_back.py` |
-| 內建防線 | `verify_structure` 對「zip member 集合改變／DV 計數改變／非目標 member 有差異」**raise 而非 warn**（模組 docstring 明載，且屬 canon §0 第 3 項之 invariant breach） |
+| 內建防線 | `verify_structure` 對「zip member 集合改變／DV 計數改變／非目標 member 有差異」**raise 而非 warn**（模組 docstring 明載，且屬 FO 第 0 節第 3 項之 invariant breach） |
 | 與 canon 之相容 | 滿足 **R-G3**（不以 openpyxl `save()` 出件）與 `:1074`（xlsx 只在 `sandbox/<tag>/` 改） |
 
 **實作要點（提案，非本包執行）**：
