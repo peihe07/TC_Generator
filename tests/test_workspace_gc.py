@@ -40,7 +40,7 @@ def test_dead_marker_in_name_is_a_candidate(tmp_path) -> None:
 
 
 def test_output_dir_is_out_of_scope(tmp_path) -> None:
-    """`output/` 不入版控 —— 移除無歸檔，故不由本條授權（FO R-G26 註）。"""
+    """`output/` 不入版控 —— 移除無歸檔，故不由本條授權（FO R-G65 註）。"""
     seed(tmp_path, "features/power/output/SUPERSEDED_old.json")
     assert gc.candidates_of(tmp_path, "power") == []
 

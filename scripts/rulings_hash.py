@@ -62,7 +62,9 @@ class Ruling:
     kind: str            # ruling | report（report 為條號被重用作回報標題者）
     sha256: str          # === section_sha（該錨點至下一錨點之全部內容，含成因段）
     body_sha256: str     # 條文本體（首個 fenced block）；無 fence 者退回整節
-    body_kind: str       # fenced | section —— `section` 者其二值相同（R-G61′ 之殘餘）
+    body_kind: str       # fenced | section —— `section` 者其二值相同（R-G61 之殘餘）
+    # GC-03 之機器改號把原 `R-G22′` 帶成 `R-G61′`；FO 內查無 `R-G22′`／`R-G61′` 錨點
+    # （judged.tsv row 112 之前提檢核），故 ′ 一律降為 `R-G61`（GC-05 §一-4）。
     source: str
     line: int
     body_lines: int
@@ -102,7 +104,7 @@ def body_sha(lines: list[str]) -> tuple[str, int]:
     不剝除者，同一條文之 sha 會因**其後是否追加新章節**而改變 ——
     W-P3 實測：R-VS82 在其後追加 `## 主線 —— 26 包` 後 sha 由 `12177e4f`
     變為另一值，**而其本體一字未改**。那種假性不符若累積，
-    R-G13 之 sha 比對就會被當成噪音忽略，而**那正是 R-G13 之效力所繫**。
+    R-G52 之 sha 比對就會被當成噪音忽略，而**那正是 R-G52 之效力所繫**。
     """
     trimmed = [ln.rstrip() for ln in lines]
     while trimmed and not trimmed[0]:
@@ -123,11 +125,11 @@ def fenced_body(lines: list[str], key: str = "") -> tuple[list[str], str]:
     """取條文本體（R-G22′，下放包 57 §二 #1）。
 
     **本體 = 該節之全部 fenced block 之內容串接**（不含 ``` 兩行，依出現序，無分隔符）。
-    **取全部而非首個**（下放包 58 §三 #2）：條文分成二框者（如 `R-G23` 與其
+    **取全部而非首個**（下放包 58 §三 #2）：條文分成二框者（如 `R-G62` 與其
     `[DEFAULT]` 段），**第二框亦為規範內容，取首個即漏掉一半規範**。
     其偏差方向安全 —— **多算使 sha 多變（可容忍），漏算使規範不受保護（不可容忍）**。
     節內無 fenced block 者**退回整節**，其 `body_kind` 記為 `section` ——
-    **該類條之 `body_sha` 與 `section_sha` 相同，R-G13 之假性不符對其未解**
+    **該類條之 `body_sha` 與 `section_sha` 相同，R-G52 之假性不符對其未解**
     （上繳包 57 §6 之自評；實測 74 條）。
     首個之後的 fenced block 視為實例或引文，不入本體（實測 19 條有二個以上）。
     """
@@ -263,7 +265,7 @@ def default_targets(root: Path, w_p1_only: bool = False) -> list[str]:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="裁決條文指紋表（R-G13）")
+    ap = argparse.ArgumentParser(description="裁決條文指紋表（R-G52）")
     ap.add_argument("--root", default=".", help="repo 根目錄")
     ap.add_argument("--out", default=OUT_DEFAULT, help="輸出 tsv")
     ap.add_argument("--target", action="append", default=None, help="指定來源檔（可重複）")

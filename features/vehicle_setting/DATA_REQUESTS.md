@@ -1848,3 +1848,38 @@ TELEMATIC_FD_1.AUX1_TYPE_Req is sent as 0 (Latching) when SWITCH 1 Type is Latch
 
 不屬本 DR。`manual` 44 名待 Pei 逐條認可（認可後解鎖 **176 列**）；
 `drop` 1 名為 `Traffic Sign Assist Offset - non-NAFTA Setting`，依 R-VS84(4) 移除，不建別名。
+
+---
+
+## DR 草稿 —— `IPC_VEHICLE_SETUP2.Power_Tailgate_Enable` 於 forms R1 BHCAN2 查無
+
+**未取號**（依 `down/20260901_VS-SL-01_review.md` §2.2：未送出前不佔號；號依 Pei 送出時之台帳取）。
+下放包 `down/20260905_GC-05.md` §一-5 寫作 `DR-VS{n}`，`{n}` 於此保持未填。
+依據：`down/20260905_GC-04_review.md` §二（分析層 [DEFAULT]，Pei 2026-09-05 追認）與 R-VS101。
+
+**問題**　`IPC_VEHICLE_SETUP2.Power_Tailgate_Enable` 在本線現行綁定之
+`forms/PDT27_E2A_R1_BHCAN2.dbc`（sha8 `46cb73f3`）**查無**，
+而在 `features/vehicle_setting/inputs/PDT27_E2A_R4_BHCAN.dbc`（sha8 `9ef1ec98`）**有**。
+依 R-13(g) 保留原文名，**不以近似訊號代換**；亦**不得以 R4 之存在視為 R1 之存在**。
+
+**請上游確認**　R1L 之 BHCAN2 是否含該訊號；若已改名，請給新名與生效版本；
+若確不存在，請指明本功能之訊號落點。
+
+**量測依據（R-G50）**
+
+```text
+母體：features/vehicle_setting/output/…_VF230_20260902.xlsx（sha8 aed08b4d）全分頁全列
+查詢：去重之 $MESSAGE.Signal$ token 48 個，逐一對兩份 DBC 之 (BO_, SG_) 查存否
+結果（四象限）：R4_BHCAN vs R1_BHCAN2 —— 兩邊皆有 0／只在 R1 0／只在 R4 1／兩邊皆無 47
+        R5_FDCAN8 vs R1_FDCAN8 —— 兩邊皆有 48／其餘皆 0
+出處：docs/reports/binding_hits_20260905.tsv（GC-04 §一-3）
+```
+
+**受影響之 TC 列（本包只登記列號，不寫回工作簿）**
+
+| 分頁 | 列 | D 欄 req_id | F 欄 tc_id |
+|---|---:|---|---|
+| `Test Case Specification 測試用例規範` | 214 | `SWE1-VC-PowerTailgate-027` | `NR1L-VS-205` |
+| 同上 | 215 | `SWE1-VC-PowerTailgate-028` | `NR1L-VS-206` |
+
+DR 未結前該二列須標 `PENDING: DR-{n}`（IN §8.4.3）；**寫回動作不在本包**。

@@ -23,7 +23,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 **處分（下放包 02 §一，2026-08-27）**：A-SU1 成立，成因採認。四項處分
 （R-SU6 全條撤銷改 v2；R-SU4(a) 揭露段更正並增 (a2)；下放包 01 §三 3.1
 之「已裁認事實」標記撤回；不發 DR）之全文見
-`docs/handoff/02_asu1_rulings.md` §一 —— 依 R-G13 citation-by-reference，
+`docs/handoff/02_asu1_rulings.md` §一 —— 依 R-G52 citation-by-reference，
 不重抄。v2 條文已逐字入 `RULINGS.md`。
 
 **執行層回報（量測條件差異，R-G8）**：本項 §一 所記「83,286 字元」為

@@ -25,7 +25,7 @@ disposition is Tier 2。
   | 1 | `vf665_v43_spec_r4` | `Vehicle Setup Management by VP - LTM (R1L) with TBM [VF665_V43_R4].docx` | **未投遞** |
   | 2 | `vf665_v43_sysra` | `FMWIFSM035A02_VF665_V43_STLA_SYSRA…_VF665_V43_Release.xlsx` | **未投遞** |
   | 3 | `vf665_sysad_sys3` | SYSAD SYS3 v1.0 docx（與 `vsm_v42` 共引） | **未投遞**（`sources/raw/` 亦無 `vsm_v42` 之落檔） |
-- **影響**：W-2（sources 落檔／sha／R-G28）、W-3（recon）、W-4（SYSRA 分層預查）、
+- **影響**：W-2（sources 落檔／sha／R-G67）、W-3（recon）、W-4（SYSRA 分層預查）、
   W-5（訊號鏈預查）全部不可執行。00 包 §六 E1–E9 之九項預期數字**本包一項亦無法實測**。
 - **處置**：依本包指示**停於 W-1**，僅完成 scaffold 與 `feature.yaml`，回報缺件。
   不以 Project 內之文字抽取本代原檔（R-VT5 明令 spec_mode D 之抽取須自原檔）。

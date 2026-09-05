@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""產出物落點檢查（R-G25）。
+"""產出物落點檢查（R-G64）。
 
-R-G25 之政策**自生效日管新檔；既有檔案不搬移**——故本工具以一份
+R-G64 之政策**自生效日管新檔；既有檔案不搬移**——故本工具以一份
 基線（`docs/fw036/PATH_POLICY_BASELINE.tsv`）記下生效日當時之全部
 不符落點，其後只對**基線外**之路徑判紅。基線**只減不增**：
 既有檔案被搬到合規落點後自基線消失，新違規則無處可躲。
@@ -24,7 +24,7 @@ BASELINE_COLUMNS = ("path", "suffix", "reason")
 MANIFEST_NAME = "MANIFEST.tsv"
 
 # R-G64 之表：各副檔名於 `features/<f>/` 下之合法第一層目錄。
-# `inputs/` 為來源投遞之最終落點（R-G24 附記），非產出物，一併視為合法。
+# `inputs/` 為來源投遞之最終落點（R-G63 附記），非產出物，一併視為合法。
 # `docs/`／`scripts/`／`forms/` 非產出物目錄，其下之檔不入本檢查。
 # `sandbox/` 為作業區，三種副檔名皆容——R-G64 之表對其只限定 xlsx 之
 # **可改處**，未限定其內容型別。不予放行者，基線會吞下 698 個正常之
@@ -105,7 +105,7 @@ def check_delivered(root: Path) -> list[str]:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="產出物落點檢查（R-G25）")
+    ap = argparse.ArgumentParser(description="產出物落點檢查（R-G64）")
     ap.add_argument("--root", default=".")
     ap.add_argument("--baseline", default=BASELINE_DEFAULT)
     ap.add_argument("--emit-baseline", action="store_true",

@@ -11,7 +11,7 @@
 3. **既有懸空之具名回報** —— 治理面指名而檔已不存在者（27 包 §F-5：
    既有懸空，非本包所致，具名回報不修）
 
-刪除由 Pei 依清單以**專門 commit** 為之（R-G26）。
+刪除由 Pei 依清單以**專門 commit** 為之（R-G65）。
 """
 
 from __future__ import annotations
@@ -142,7 +142,7 @@ def main() -> int:
             continue
         found = candidates_of(root, feature)
         if not found:
-            rows.append((feature, "—", "無候選", "已掃，無符合 R-G26 之候選"))
+            rows.append((feature, "—", "無候選", "已掃，無符合 R-G65 之候選"))
             continue
         for path, reason in found:
             rel = str(path.relative_to(root))

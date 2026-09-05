@@ -130,7 +130,7 @@ def docs_gate_rows() -> list[dict]:
 
 
 def selfcheck_index(root: Path) -> dict:
-    """自 `selfcheck_map.py` 取 gate_id → 自查項之反向索引（R-G21）。"""
+    """自 `selfcheck_map.py` 取 gate_id → 自查項之反向索引（R-G60）。"""
     import importlib.util
     spec = importlib.util.spec_from_file_location(
         "tc_selfcheck_map", root / "scripts" / "selfcheck_map.py")

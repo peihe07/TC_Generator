@@ -39,7 +39,7 @@ def test_parses_seventeen_items():
 
 
 def test_every_item_is_classified():
-    """R-G21：17 項全數分類，0 項懸置。"""
+    """R-G60：17 項全數分類，0 項懸置。"""
     rows = sm.rows(ROOT)
     assert len(rows) == 17
     assert all(r["coverage"] in {"full", "partial", "manual"} for r in rows)

@@ -168,7 +168,7 @@ Remarks = reason + anomaly id.
 
 - 起建自 R-G1 母本（`forms/…_SWQT_20260817_ext.xlsx`，
   sha256 `6372fb6be02f48dc…`），落
-  `sandbox/base/`（R-G25：xlsx 只准在此改）。**位元組相同之複製**，
+  `sandbox/base/`（R-G64：xlsx 只准在此改）。**位元組相同之複製**，
   未以 openpyxl 開啟寫入（R-G3）
 - 版面為 **Revision C**（Q = Estimated Test Time）——
   design_method/functional_safety/author 較 Revision A/B 右移一欄

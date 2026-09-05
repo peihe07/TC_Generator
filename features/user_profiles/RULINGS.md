@@ -1000,7 +1000,7 @@ R-U55 052f67d —— 採案 1（留著），不動歷史
       前例併記：本為第二次（前有 645e55f → cc04aa1）。
 ```
 
-### 全域條文（R-G12，於本包首次落檔）
+### 全域條文（R-G51，於本包首次落檔）
 
 ```text
 R-G12 git commit 一律帶 pathspec（全域，Pei 2026-08-18 裁定升格）
@@ -1019,7 +1019,7 @@ R-G12 git commit 一律帶 pathspec（全域，Pei 2026-08-18 裁定升格）
 
 - **R-U55**：不動歷史。`ANOMALIES.md` 之對應項改記為 **ACCEPTED（非 RESOLVED）**
   —— 狀態未改變，是被接受；「第二次發生」之事實已照錄。
-- **R-G12**：已寫入 `docs/fw036/FEATURE_ONBOARDING.md` 之**全域條文段**，
+- **R-G51**：已寫入 `docs/fw036/FEATURE_ONBOARDING.md` 之**全域條文段**，
   使其他 session 讀得到；**未寫入他 feature 之 `RULINGS.md`**
   （R-U24／R-U30／R-U44 之界線不變）。
   待執行之 git 指令清單已依本條全部重寫帶 pathspec，見上繳 14 §9。

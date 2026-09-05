@@ -93,7 +93,8 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 A-SU1 重裁之 R-SU4 v2／R-SU6 v2）。抄錄依下放包 02 §三 之指示：
 R-SU1／R-SU2／R-SU3／R-SU5 取 01 原文，R-SU4／R-SU6 取 02 之 v2 全文
 （含沿革行）；v1 不入本檔正本，其履歷由 v2 之沿革行 citation-by-reference
-承載（R-G13）。抄錄逐字，不改寫、不合併、不為欄寬而縮寫（R-G23）。
+承載（R-G52）。抄錄逐字，不改寫、不合併、不為欄寬而縮寫（R-G23）。
+<!-- R-G43：兩側皆可讀／撞號紀錄，未改號；見 docs/reports/rg43_manual_20260905_judged.tsv row 65 -->
 逐條字面一致核對結果見 `docs/upstream/01_intake_recon.md`。
 
 ---

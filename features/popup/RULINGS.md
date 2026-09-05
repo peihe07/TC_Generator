@@ -8,7 +8,7 @@
 
 ```
 Popup 立為獨立 feature，slug = `popup`。目錄 `features/popup/`，
-投遞區 `_intake/Popup/`（TitleCase，R-G24 已建妥並實測）。
+投遞區 `_intake/Popup/`（TitleCase，R-G63 已建妥並實測）。
 Feature 接手名稱「Pop-Up Queue and Priority Management」為工單稱謂；
 目錄與 slug 不帶 queue/priority 字樣（現有 037 內容見 R-POP2）。
 ```

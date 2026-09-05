@@ -6,6 +6,7 @@ Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-
 
 來源：`docs/handoff/01_intake_recon.md` §二（下放包 01，Pei 2026-08-25 裁定
 Q1 甲／Q2 准／Q3 甲／Q4 准）。抄錄逐字，不改寫、不合併、不為欄寬而縮寫（R-G23）。
+<!-- R-G43：兩側皆可讀／撞號紀錄，未改號；見 docs/reports/rg43_manual_20260905_judged.tsv row 75 -->
 逐條字面一致核對結果見 `docs/upstream/01_intake_recon.md` §2。
 
 ---

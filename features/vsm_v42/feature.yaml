@@ -26,7 +26,7 @@ sources:
 
 paths:
   # 工作簿自 R-G1 母本（forms/…_SWQT_20260817_ext.xlsx）起建，落 sandbox/
-  # （R-G25：xlsx 只准在此改）；R-VL1「BLANK 起建」。W-2 後產生。
+  # （R-G64：xlsx 只准在此改）；R-VL1「BLANK 起建」。W-2 後產生。
   workbook: "sandbox/base/FM-WI-FSM-036-A01*_SWQT_20260817_ext.xlsx"
 
   # `a03_report` 為 recon 之代表檔（下放包 00 §五 W-3：取 #3 Park Sense）。

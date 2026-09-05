@@ -93,7 +93,7 @@ sign-off = binding as proposed.
 |---|---|---|---|---|
 | `HMI Settings List R1 SR24 Post 2A (June 15 2023).xlsx` | `a2533bf3` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | ~~**PENDING 分析層判**~~ → **影響待證，出貨前必重跑** —— 本份為 2023 版（`SR24 Post 2A (June 15 2023)`），與 forms 版差 95 只在 inputs／105 只在 forms／32 值異。GC-04 以 116 個變動設定名 grep 本線最新工作簿，命中 **0/116**；**惟該簿引用之設定名總數僅 9/316，分母極小，證據力弱**（R-G11）。出貨前須改綁 forms 版重產並重跑本判。 |
 | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `41daac00` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | ~~**PENDING 分析層判**~~ → **不影響（key 級）** —— key 逐列相同。盲區（R-G11）：非 key 分頁（Notes、Brand-Specific Names、Options 文字）之差未查；若本線 TC 引用此類欄位，本判須重開。 |
-| `Logical Identifiers and CAN Mapping v1_76.xlsx` | `9a751a72` | `Logical Identifiers and CAN Mapping v1_78.xlsx` | `a01e1679` | ~~**PENDING 分析層判**~~ → **待證（維持）** —— 4 個值異 signal grep 命中 **0/4**；**該簿引用之 LID signal 總數為 1/2548，本判準對它幾近全盲**（R-G11）。 |
+| `Logical Identifiers and CAN Mapping v1_76.xlsx` | `9a751a72` | `Logical Identifiers and CAN Mapping v1_78.xlsx` | `a01e1679` | ~~**PENDING 分析層判**~~ → ~~**待證（維持）**~~ → **不影響，結案（GC-05）** —— 4 個值異 signal grep 命中 **0/4**；**該簿引用之 LID signal 總數為 1/2548，本判準對它幾近全盲**（R-G11）。**GC-05 §一-6 正式落檔該 1 個 signal 與變動 4 個之交集**：引用者為 `DateTmFormat`，變動者為 `CallAction`／`EngineRPM`／`Profile_Delete`／`Profile_Request`，**交集為空集** → 依 GC-04 審閱 §三「不在即結案」之條件，**判不影響**。查詢式見 `docs/reports/binding_hits2_20260905.tsv`。 |
 | `SR24 R1 Market Configuration Table v1.6.xlsx` | `ae4cf0b9` | `SR24 R1 Market Configuration Table v1.6.xlsx` | `7e865d55` | ~~**PENDING 分析層判**~~ → **不影響（key 級）** —— key 逐列相同。盲區（R-G11）：非 key 分頁（Notes、Brand-Specific Names、Options 文字）之差未查；若本線 TC 引用此類欄位，本判須重開。 |
 
 

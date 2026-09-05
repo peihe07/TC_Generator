@@ -102,7 +102,7 @@ An unsigned sheet blocks Phase 4+.
   > 另 `SG ID`／`FSR ID` 兩欄之非空列數皆為 **0**。
   > 即安全目標與功能安全需求**未掛於這些條上**。
   > **結論不變，依據由「查不到」改為「查到了，答案是沒有」** ——
-  > 依 R-G19，一個正確的結論配一個錯誤的理由，會使下一個人依那個
+  > 依 R-G69，一個正確的結論配一個錯誤的理由，會使下一個人依那個
   > 理由去推論別的事。
 - Covered by done region: `[AUTO]` → 0（無 done region）
 - Regen targets: `[AUTO]` → 8 leaf 全數
@@ -264,6 +264,7 @@ An unsigned sheet blocks Phase 4+.
 | 3 | `profile [OVERRIDE] clauses` | **無 override，全採 canon 預設** | canon §1 之 `[OVERRIDE-R5]` 限 BT／Projection；§8.7.5 之 override 限 `vehicle_setting`。Display 為新 feature，不得援引他 feature 之既存制度性格式（canon §1 末句） |
 
 > **轉錄之限定（R-DM32／R-G24）**：三項之內容皆係分析層提出，
+<!-- R-G43：兩側皆可讀／撞號紀錄，未改號；見 docs/reports/rg43_manual_20260905_judged.tsv row 35 -->
 > Pei 之「簽核」係對該提案之核可，非其自撰。三項已於同日對話中
 > 逐項向 Pei 陳明。**若任一項與 Pei 本意不符，以 Pei 之更正為準，
 > 本轉錄作廢重寫。**

@@ -35,7 +35,7 @@ R-VT2（Pei 裁定 2026-09-01，00 包待裁題 2：「2 准」）
       內部訊號（X.Req／X.Info／X.GUI）優先依對照表轉為可觀察 CAN 訊號，
       DBC 查無者保留來源名不加 `$`（(d)），規格訊號名與 DBC 不符者保留原文（(g)，R-13）；
       Hold 獨立成步（(e)）；baseline 採 <Name>_initial／<Name>_after（(f)）。
-(b) 併採 PM 之三條（引用制 R-G13，執行層自 features/power/RULINGS.md 讀原文）：
+(b) 併採 PM 之三條（引用制 R-G52，執行層自 features/power/RULINGS.md 讀原文）：
       R-P353  Procedure／ER 之觀察對象限四類白名單
       R-P355  內部訊號不得直接 Set；尚無 DBC 對照者 `PENDING: DR-{n} <訊號名>`
       R-P368  訊號實名依 forms/ 三段鏈（LID v1_78 → MESSAGE.Signal →
@@ -80,7 +80,7 @@ P4 以後待 037 到齊。DR-VT1 登記並建議送出（阻塞型）。
 
 ```
 R-VT5（Pei 裁定 2026-09-01，00 包待裁題 5：「5 准」）
-投遞區 _intake/Vehicle_Setup_VF665/（與 vsm_v42 共用投遞區，落點分開；R-G24 已建妥實測）。
+投遞區 _intake/Vehicle_Setup_VF665/（與 vsm_v42 共用投遞區，落點分開；R-G63 已建妥實測）。
 原檔落點 sources/raw/<doc_id>/，feature.yaml 以 doc_id 引用（R-G27）。
 SYSAD 一份兩線共引；LID／DBC／PROXI 取 forms/。
 Project 內 docx 為文字抽取本；spec_mode D 之抽取須自原檔，Pei 須投遞原始 .docx。
@@ -149,7 +149,7 @@ R-VT10（分析層裁定 2026-09-01，上繳 01 §五 5.2、A-VT10／A-VT11／A-
 (d) W-5 重做條件（02 包 W-5′）：① PROXI 與 .Req 另自 docx 表格結構（<w:tbl>）抽；
     ② 段 1 施作 R-P368(b) 擴充比對（LID Logical Identifier／Description 欄，容許前後綴／底線差異），
       每一擴充命中另欄記比對依據；③ 重算結果分布，181 名視為下界。
-(e) #1 docx 之 `word/media/image1.wmf`：列 P3 待辦，於 framework 鎖定前轉圖一看；不施作 R-G28 二欄表。
+(e) #1 docx 之 `word/media/image1.wmf`：列 P3 待辦，於 framework 鎖定前轉圖一看；不施作 R-G67 二欄表。
 ```
 
 ### R-VT11 —— 段 1 擴充比對之對象欄與對象檔；OOXML 抽取自驗

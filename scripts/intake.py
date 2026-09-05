@@ -554,7 +554,7 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
         shared = sources_ref(root, f["file"])
         if shared:
             # R-G66：原檔全 repo 一份 —— 不再搬入 inputs/，改以 sources/ 引用。
-            # _intake/ 之副本留原地，其為重複檔，由 Pei 依 R-G26 之清單處置。
+            # _intake/ 之副本留原地，其為重複檔，由 Pei 依 R-G65 之清單處置。
             duplicates.append(f'{f["file"]} —— 已在 {shared}，未搬入 inputs/')
             rel_path = shared
         else:
@@ -595,7 +595,7 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
     for c in conflicts:
         print(f"CONFLICT (A-TM10): {c}")
     for d in duplicates:
-        print(f"SOURCES (R-G27): {d}")
+        print(f"SOURCES (R-G66): {d}")
 
 
 def main() -> None:

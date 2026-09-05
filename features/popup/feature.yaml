@@ -18,7 +18,7 @@ sources:
   spec_pdf: "core_hmi_lf_pdf"
 
 paths:
-  # 工作簿自 R-G1 母本起建，落 sandbox/（R-G25：xlsx 只准在此改）
+  # 工作簿自 R-G1 母本起建，落 sandbox/（R-G64：xlsx 只准在此改）
   workbook: "sandbox/base/FM-WI-FSM-036-A01*_SWQT_20260817_ext.xlsx"
   a03_report: "../../sources/raw/popup_037_v0_2/*.xlsx"
   sys1_export: "../../sources/raw/core_hmi_lf_sys1/*.xlsx"

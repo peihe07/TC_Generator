@@ -179,7 +179,7 @@ sign-off = binding as proposed.
 |---|---|---|---|---|
 | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `c706071f` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | ~~**PENDING 分析層判**~~ → **不影響（key 級）** —— key 逐列相同。盲區（R-G11）：非 key 分頁（Notes、Brand-Specific Names、Options 文字）之差未查；若本線 TC 引用此類欄位，本判須重開。 |
 | `SR24 R1 Market Configuration Table v1.6.xlsx` | `ae4cf0b9` | `SR24 R1 Market Configuration Table v1.6.xlsx` | `7e865d55` | ~~**PENDING 分析層判**~~ → **不影響（key 級）** —— key 逐列相同。盲區（R-G11）：非 key 分頁（Notes、Brand-Specific Names、Options 文字）之差未查；若本線 TC 引用此類欄位，本判須重開。 |
-| `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx` | `b0827f02` | `Pop Up List HMI R1 (26PI).xlsx`<br>`Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf` | `ff47b7be`<br>`dc078763` | ~~**PENDING 分析層判**~~ → **待證（維持）** —— GC-04 對本線最新工作簿 grep 變動之 2 個 PU id，命中 **0/2**；**惟對照向顯示該簿引用之 PU id 總數為 0/1340（forms 版全體），本判準對它是盲的**（R-G11），0 命中不得讀為無影響。見 `docs/reports/binding_hits_20260905.tsv`。 |
+| `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx` | `b0827f02` | `Pop Up List HMI R1 (26PI).xlsx`<br>`Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf` | `ff47b7be`<br>`dc078763` | ~~**PENDING 分析層判**~~ → ~~**待證（維持）**~~ → **不影響，結案（GC-05）** —— GC-04 對本線最新工作簿 grep 變動之 2 個 PU id，命中 **0/2**；**惟對照向顯示該簿引用之 PU id 總數為 0/1340（forms 版全體），本判準對它是盲的**（R-G11），0 命中不得讀為無影響。**GC-05 §一-6 依 GC-04 審閱 §三之條件改以彈窗文字重測**：`PU1578`／`PU1579` 之 `Description` 與 `String/Popup Message` 四欄（皆非空）對該簿全分頁全列子字串比對，**命中 0/4** → 依「仍 0 則結案」之條件，**判不影響**。見 `docs/reports/binding_hits_20260905.tsv` 與 `binding_hits2_20260905.tsv`。 |
 
 
 **「是否影響已交付 TC」之判（分析層，`down/20260905_GC-03_review.md` §四；GC-04 §一-4 抄回）**。前提：本 feature 之 `delivered/` 為空，故以「現存最新工作簿」為對象。原 `PENDING 分析層判` 依 R-TM13 以刪除線保留。

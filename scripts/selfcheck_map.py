@@ -97,7 +97,7 @@ def rows(root: Path) -> list[dict]:
     items = parse_items(root)
     missing = sorted(set(items) ^ set(MAPPING))
     if missing:
-        raise SystemExit(f"對映表與 IN §9 之項目不一致：{missing}（R-G21 令 17 項全數分類）")
+        raise SystemExit(f"對映表與 IN §9 之項目不一致：{missing}（R-G60 令 17 項全數分類）")
     out = []
     for n in sorted(items):
         coverage, gates, residual = MAPPING[n]

@@ -40,7 +40,7 @@ R-VL2（Pei 裁定 2026-09-01，00 包待裁題 2：「2 准」）
       內部訊號（X.Req／X.Info／X.GUI）優先依對照表轉為可觀察 CAN 訊號，
       DBC 查無者保留來源名不加 `$`（(d)），規格訊號名與 DBC 不符者保留原文（(g)，R-13）；
       Hold 獨立成步（(e)）；baseline 採 <Name>_initial／<Name>_after（(f)）。
-(b) 併採 PM 之三條（引用制 R-G13，執行層自 features/power/RULINGS.md 讀原文）：
+(b) 併採 PM 之三條（引用制 R-G52，執行層自 features/power/RULINGS.md 讀原文）：
       R-P353  Procedure／ER 之觀察對象限四類白名單
               （$MESSAGE.Signal$／具名 UI 元件 "..."／可量測音訊／log 具名行）；
               functionality／behavior／state 等抽象名詞不得作 <X>
@@ -106,7 +106,7 @@ V42 SYSRA 之 Functional 318 列中未被 037 覆蓋之 190 列**不入本線範
 
 ```
 R-VL5（Pei 裁定 2026-09-01，00 包待裁題 5：「5 准」）
-投遞區 _intake/Vehicle_Setup_VF665/（TitleCase；R-G24，已建妥並 list_directory 實測）。
+投遞區 _intake/Vehicle_Setup_VF665/（TitleCase；R-G63，已建妥並 list_directory 實測）。
 原檔落點 sources/raw/<doc_id>/，feature.yaml 以 doc_id 引用（R-G27；新 feature 不存
 inputs/ 副本）。兩線共用之 SYSAD 一份、LID／DBC／PROXI 取 forms/，不重複存。
 Claude Project 內之三份 docx 為文字抽取本，非 OOXML；spec_mode D 之抽取須自原檔
@@ -214,7 +214,7 @@ R-VL12（分析層裁定 2026-09-01，上繳 02 第 5.3 節／A-VL8，vsm_v43 �
     跨線觀察記 PM。
 (d) 抽名：CAN 形一律用通式 `[A-Z][A-Z0-9_]{3,}\.[A-Za-z]\w*`，不限 `_VEHICLE_SETUP` 家族（`STATUS_*`／`TBM_*`／`GLOB_LTM.*` 皆入）；
     同時報抽名偽陽性率。
-(e) Functional Diagram 之流向不於 P3 文字化；P4 逐 TC 需驗因果方向時依圖判，圖為來源（R-G28 型），不臆測。
+(e) Functional Diagram 之流向不於 P3 文字化；P4 逐 TC 需驗因果方向時依圖判，圖為來源（R-G67 型），不臆測。
 ```
 
 ### R-VL13 —— 台帳重生歸 Pei 提交前一次；R-VL9 作廢；投遞區以 inputs/ 為實然

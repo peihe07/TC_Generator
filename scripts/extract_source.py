@@ -153,7 +153,7 @@ def manifest_rows(root: Path) -> list[list[str]]:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="來源文件抽取（R-G27）")
+    ap = argparse.ArgumentParser(description="來源文件抽取（R-G66）")
     ap.add_argument("--root", default=".")
     ap.add_argument("--doc-id", default=None, help="只跑該 doc_id；預設全跑")
     ap.add_argument("--refresh-manifest", action="store_true",

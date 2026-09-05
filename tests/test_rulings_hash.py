@@ -1,4 +1,4 @@
-"""Tests for scripts/rulings_hash.py（R-G13 之指紋表）。
+"""Tests for scripts/rulings_hash.py（R-G52 之指紋表）。
 
 依 G-N，缺陷之原文以**字面**釘入，不取當前語料為案例：三個成因各有一組
 以真實碰撞之措辭寫成之最小案例，另加一組「修正後不得再命中」之回歸。
@@ -61,7 +61,7 @@ def test_heading_text_not_in_hash(tmp_path):
 
 
 def test_body_change_changes_hash(tmp_path):
-    """R-G13 之整個效力靠這一條：本體一改，sha 即不符。"""
+    """R-G52 之整個效力靠這一條：本體一改，sha 即不符。"""
     write(tmp_path, "a.md", "### R-VS7 — 委派界線\n\n委派不免除產出 TC 之義務。\n")
     write(tmp_path, "b.md", "### R-VS7 — 委派界線\n\n委派免除產出 TC 之義務。\n")
     a = rh.extract(tmp_path / "a.md", tmp_path)[0]
@@ -73,7 +73,7 @@ def test_trailing_hrule_not_absorbed_into_body(tmp_path):
     """章節分隔線不屬任何條文 —— 其後追加新章節不得改變前一條之 sha。
 
     W-P3 實測之字面案例：`R-VS82` 於其後追加 `## 主線 —— 26 包` 後 sha 變，
-    **而其本體一字未改**。假性不符若累積，R-G13 之比對會被當成噪音忽略。
+    **而其本體一字未改**。假性不符若累積，R-G52 之比對會被當成噪音忽略。
     """
     body = "### R-X1 —— 甲\n\n條文本體，一字未改。\n"
     write(tmp_path, "a.md", body)

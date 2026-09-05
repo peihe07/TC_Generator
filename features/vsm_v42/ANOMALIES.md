@@ -15,7 +15,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
   下放包 00 §八末條「Pei 未投遞而執行層欲以 Project 抽取本代原檔 —— 不得代用，停下」
 - **實測**（掃描條件：`ls -la _intake/Vehicle_Setup_VF665/` 與
   `find _intake -type f`，2026-09-01）：
-  投遞區存在（`drwxr-xr-x`，R-G24 路徑實在），**內含 0 files**。
+  投遞區存在（`drwxr-xr-x`，R-G63 路徑實在），**內含 0 files**。
   同層其他投遞區（`_intake/SW_Update/`、`_intake/Display/` 等）皆有檔，
   故非 `find` 之掃描面問題。
 - **缺件清單**（下放包 00 §三 #1–#5，全缺）：
@@ -78,7 +78,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 - **實測 A（前提不成立）**：`git status --short docs/fw036/RULINGS.sha.tsv`
   → ` M docs/fw036/RULINGS.sha.tsv`（**非乾淨**）。
   `git diff --numstat` → `355  339`（+355／−339 行）。
-  working 版相對 HEAD 多出 **16 個條號**：`R-G29`、`R-G42`、
+  working 版相對 HEAD 多出 **16 個條號**：`R-G68`、`R-G42`、
   `R-ICS45`–`R-ICS58`（14 條）—— 皆為**他線**（canon §9.2 與 ics_management）之
   未入庫變更。working 版含 `R-V[LT]` 列數 **0**。
 - **實測 B（E17 已知不可達）**：以 `--out <scratchpad>` 模擬重生（**未寫入該檔**），
@@ -241,7 +241,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
   `Functional Diagram`，再上一段（58）為 `This function describes the management of
   vehicle setup menu on the LTM`。
 - **問題**：`Functional Diagram` 一節之內容**全在圖內**，docx 文字層於該處為空 ——
-  正是 R-G28 所指「圖中載有未見於 docx 之數值與流程」之型態。
+  正是 R-G67 所指「圖中載有未見於 docx 之數值與流程」之型態。
 - **處置（已做）**：`soffice --convert-to svg` 將 WMF 轉為 SVG（向量，文字仍為文字），
   自 `<tspan>` 依 y／x 座標還原為 **240 行**，落
   `sources/extracted/vf665_v42_spec_r6/media/image1_text.tsv`；
@@ -252,7 +252,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
   故不逐張出二欄表，改以 `signal_chain_v42.tsv` 之 `sources` 欄標 `diagram`
   作為「由圖找列」之對映（可篩）。
 - **裁決（R-VL12(e)，2026-09-01）**：Functional Diagram 之流向**不於 P3 文字化**；
-  P4 逐 TC 需驗因果方向時依圖判，圖為來源（R-G28 型），不臆測。**本條 RESOLVED。**
+  P4 逐 TC 需驗因果方向時依圖判，圖為來源（R-G67 型），不臆測。**本條 RESOLVED。**
 - **下放包 03 執行時之補正（執行層自查）**：SVG 還原原以「同 y 即同行」接合，
   致圖上**相鄰但不同元件**之標籤被黏成一名，產生 **10 個偽名**
   （如 `IPC_VEHICLE_SETUP2.TyrePressureUnitClearPersonalData` ＝

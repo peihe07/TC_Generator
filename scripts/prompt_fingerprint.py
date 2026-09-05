@@ -162,7 +162,7 @@ def main() -> int:
             print(f"  {k}: {v['verdict']}"
                   + (f"  變動源 {v['changed_sources']}" if v["changed_sources"] else ""))
         if any(v["verdict"] == "**不符**" for v in result.values()):
-            print("\nR-G19：與前批不符而下放包未宣告變更者，該批退回。", file=sys.stderr)
+            print("\nR-G58：與前批不符而下放包未宣告變更者，該批退回。", file=sys.stderr)
             return 1
 
     if args.manifest:

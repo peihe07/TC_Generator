@@ -65,7 +65,7 @@ sign-off = binding as proposed.
 | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `0a37121f` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | ~~**PENDING 分析層判**~~ → **不影響（key 級）** —— key 逐列相同。盲區（R-G11）：非 key 分頁（Notes、Brand-Specific Names、Options 文字）之差未查；若本線 TC 引用此類欄位，本判須重開。 |
 | `Logical Identifiers and CAN Mapping v1_76.xlsx` | `ffceac36` | `Logical Identifiers and CAN Mapping v1_78.xlsx` | `a01e1679` | ~~**PENDING 分析層判**~~ → **待證 → 傾向不影響** —— 4 個值異 signal 命中 **0/4**；對照向：該簿引用 LID signal 18/2548，**變動之 4 個不在該 18 之內**。 |
 
-**配對（R-G45 補充，GC-02 審閱 §二-1）**：DBC／LID 一類以**網段 token** 為配對鍵，
+**配對（R-G45(b)，GC-02 審閱 §二-1；原記為「R-G45 補充」，2026-09-05 改號）**：DBC／LID 一類以**網段 token** 為配對鍵，
 版本 token（`R1`／`R4`／`R5`）不入配對 ——
 `PDT27_E2A_R4_BHCAN.dbc` ↔ `forms/PDT27_E2A_R1_BHCAN2.dbc`（`46cb73f3`）；
 `PDT27_E2A_R5_FDCAN8.dbc` ↔ `forms/PDT27_E2A_R1_FDCAN8.dbc`（`2a86c4bf`）。
@@ -73,6 +73,12 @@ sign-off = binding as proposed.
 
 
 **「是否影響已交付 TC」之判（分析層，`down/20260905_GC-03_review.md` §四；GC-04 §一-4 抄回）**。前提：本 feature 之 `delivered/` 為空，故以「現存最新工作簿」為對象。原 `PENDING 分析層判` 依 R-TM13 以刪除線保留。
+
+**`inputs/` 之 DBC 二份為非現行（R-VS101，2026-09-05）**：
+`PDT27_E2A_R4_BHCAN.dbc`（`9ef1ec98`）與 `PDT27_E2A_R5_FDCAN8.dbc`（`51c8fd60`）
+依 R-G45 綁定 `forms/` R1 之裁定後**非現行，保留供追溯**。
+`IPC_VEHICLE_SETUP2.Power_Tailgate_Enable` 只在 R4 有、forms R1 BHCAN2 查無，
+已開 DR（未取號，見 `DATA_REQUESTS.md` 末節），受影響 TC 列為 214／215。
 
 **本 feature 待記 4 檔次**（全域 5 個 feature／13 檔次）。
 「是否影響已交付 TC」執行層不判（GC-02 §一-3 明文）；分析層已於 2026-09-05 逐列判訖，見上表右欄。

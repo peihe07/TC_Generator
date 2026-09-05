@@ -5304,7 +5304,7 @@ R-VF94（編號對照表之執行確認，分析層裁定 2026-08-24）
 > （25 上繳 §四-3）。
 >
 > **條文本體不動一字**（逐字轉錄，FO §8.1）—— 判定以本註記錄，
-> 同 R-G13／R-G21 之處置。`canon_refs` 之該筆 ambiguous **暫留不抑制**：
+> 同 R-G52／R-G21 之處置。`canon_refs` 之該筆 ambiguous **暫留不抑制**：
 > 其消解須把 `verbatim-ruling-text` 判準擴至 feature `RULINGS.md` 之條文圍籬，
 > 而該判準在共用腳本內（V33 §A 令不碰），列入 26 後之全域收尾包。
 
@@ -7134,19 +7134,19 @@ Pei 裁定 2026-08-24。取號實測：`RULINGS.sha.tsv` 現行最大 `R-VS81`�
 
 ```
 R-VS82（Pei 2026-08-24）
-R-G14 綠色通道於 vehicle_setting 量產線生效，自本裁定後之**下一量產批**
+R-G53 綠色通道於 vehicle_setting 量產線生效，自本裁定後之**下一量產批**
 起算連續綠批（lint 全綠、預期數字全符、全簿基線重現、獨立判斷無新發現），
 滿 3 批進入通道。
 
 四條件、彙總節奏（每 5 批一份上繳）、抽樣覆核方式與退出規則
-一律照 FO §9.2 之 R-G14 原文，本條不另訂。
+一律照 FO §9.2 之 R-G53 原文，本條不另訂。
 
 其他 feature 之生效起點於各自 pilot 通過後另裁。
 ```
 
-> **本條為 feature-scoped，不改 R-G14 之條文本體** —— 故 R-G14 之
+> **本條為 feature-scoped，不改 R-G53 之條文本體** —— 故 R-G53 之
 > sha8 `fb508d10` **不變**。此與 23b 補充包 §C-7 之寫法分歧
-> （其擬將生效起點作為 R-G14 錨點段內之小節，R-G14 之 sha 因而會變）；
+> （其擬將生效起點作為 R-G53 錨點段內之小節，R-G53 之 sha 因而會變）；
 > **25 包 §C 裁定 D 明文「feature-scoped，落 vehicle_setting」，以 25 為準**
 > （25 包廢止 23b 之上繳編號）。分歧與其後果見上繳 25 §五-1。
 
@@ -7569,3 +7569,27 @@ R-VS95   newR1L- 前綴正名為 NR1L-
 **執行層註**：BL **151 列**、VC **126 列**全數改畢，數字部未動
 （`newR1L-BLM-001` → `NR1L-BLM-001` 等）。E 欄全空之事實本層已複驗（151／126 列皆空）。
 對照表逐列帶 `old_F` → `new_F`，`status = renamed`。
+
+### R-VS101 —— DBC 綁 `forms/` R1；`Power_Tailgate_Enable` 保名開 DR
+
+來源：`docs/fw036/handoff/down/20260905_GC-04_review.md:32`（GC-04 審閱 §二，分析層 [DEFAULT]，Pei 2026-09-05 追認）。
+取號依 R-G62（單一來源擴至每條線；取號一律 live）：本檔實測最大號為 `R-VS100`，故本條取 `R-VS101`。
+
+```text
+[DEFAULT]：**vehicle_setting 綁 forms R1**（R-17 既定權威；就本簿使用面 FDCAN8 無差）。
+`Power_Tailgate_Enable` 依 R-13(g) 保留原名、開 DR 向上游查 R1 BHCAN2 是否有對應；DR 未結前該列標 `PENDING: DR-{n}`，不得以 R4 之存在視為 R1 之存在。
+```
+
+**執行層註（本包只登記，不寫回工作簿）**：
+
+1. 依據之四象限為 `up/20260905_GC-04.md` 4-2 節：本線最新工作簿之 48 個相異
+   `$MESSAGE.Signal$` token，對 `forms/PDT27_E2A_R1_FDCAN8.dbc` 與 `inputs/PDT27_E2A_R5_FDCAN8.dbc`
+   **兩邊皆有 48**；對兩份 BHCAN 則兩邊皆無 47、只在 `R4_BHCAN` **1**
+   （`IPC_VEHICLE_SETUP2.Power_Tailgate_Enable`）。
+   即：**就本簿使用面，FDCAN8 之 R1 與 R5 無差異**；分歧只在 BHCAN 之該 1 個 token。
+2. `R-13(g)`（保留原文名、不代換近似訊號）之定義落在 audio_mgmt 線
+   （`features/audio_mgmt/docs/handoff/12_B3_final_anchors.md:179` 之引用）。
+   **本條對它之援用出自分析層之裁決，非執行層之認定**；其跨線適用性若有疑，回審閱。
+3. DR **未取號** —— 依 `down/20260901_VS-SL-01_review.md` §2.2「未送出前不佔號」，
+   本包只登記草稿於 `DATA_REQUESTS.md`，號待 Pei 送出時自台帳取。
+   下放包所寫之 `DR-VS{n}` 因而保持 `{n}` 未填。
