@@ -22,7 +22,9 @@ spec_reference_template: "<Spec Filename>_{outline}"
 
 workbook:
   # R-G48：以下為母本第 9 列實測。2026-09-05 前之模板值有四處為誤 ——
-  # sheet `Test Case Specification&Result`（該名不存在）、design_method `Q`
+  # sheet `Test Case Specification&Result`（該名不在 R-G1 母本內；惟為另一真實變體，
+  # 全 repo 145 本 FW036 工作簿實測 24 本帶該名，含 features/power 之在效輸入 ——
+  # docs/reports/tc_sheetname_census_20260905.tsv，A-GC10；接手 feature 必實測其副本之 sheetnames）、design_method `Q`
   # （實為 R；Q 為 Estimated Test Time）、functional_safety `R`（實為 S）、
   # author `Z`（實為 AA；Z 為車型欄 Fastack (376)）。
   sheet: "Test Case Specification 測試用例規範"
