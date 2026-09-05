@@ -1,0 +1,9 @@
+book	source	rows	P_基線	P_改前	P_改後	Y_改後	profile	P_profile	Y_profile	X_profile
+AMFM_20260821	FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT ST	298	無此欄	0	0	不適用（非 profile 向，Y 為 profile 專屬）	amfm	16	0	1099
+BT_20260821	**不存在**	—	無此欄	—	—	—	—	—	—	—
+CFTS012_DealerMode_20260821	FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT ST	125	無此欄	0	0	不適用（非 profile 向，Y 為 profile 專屬）	—	—	—	—
+CFTS026_HandsFreePhone_20260821	FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT ST	159	無此欄	0	0	不適用（非 profile 向，Y 為 profile 專屬）	—	—	—	—
+Home_20260821	FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT ST	216	無此欄	0	0	不適用（非 profile 向，Y 為 profile 專屬）	home	0	0	16
+MediaHMI_20260821	**不存在**	—	無此欄	—	—	—	—	—	—	—
+PowerManagement_20260821	FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT ST	283	41	35	35	不適用（非 profile 向，Y 為 profile 專屬）	power	45	0	87
+Projection_20260821	**不存在**	—	無此欄	—	—	—	—	—	—	—
