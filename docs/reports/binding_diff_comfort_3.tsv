@@ -1,0 +1,19 @@
+section	key	value	note
+meta	feature	comfort	
+meta	family	Pop Up List	
+meta	inputs_path	features/comfort/inputs/Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx	b0827f02
+meta	forms_path	forms/Pop Up List HMI R1 (26PI).xlsx	ff47b7be
+sheet_rows	Drop Down Fields	inputs=73 forms=73	
+sheet_rows	Main	inputs=1343 forms=1344	
+sheet_rows	Templates	inputs=34 forms=34	
+key_count	inputs 相異 key	1339	
+key_count	forms 相異 key	1340	
+key_count	只在 inputs	0	
+key_count	只在 forms	1	
+key_count	兩邊皆有而列值相異	1	
+key_only_in_forms	PU1579	[1344]	
+key_changed	PU1578	inputs rows=[1343] forms rows=[1343]	
+delivered	查詢式	glob features/comfort/delivered/*.xlsx；對每本逐格搜 key（ID Number（PU id））	
+delivered	母體（該 feature 之 delivered xlsx 本數）	0	全域 delivered xlsx 共 5 本，落於 ics_management,power,sw_update,vsm_v42
+delivered	變動 key 數（分子之上限）	2	
+delivered	命中列號	N/A —— 分母為 0	該 feature 之 delivered/ 無 xlsx，命中率不可計；不得以 0 命中表述為「無影響」

@@ -1,7 +1,7 @@
 # RULINGS — ICS Management (FW036)
 
 Pei 之裁決與分析層自裁條文之逐字登記。前綴 `R-ICS` / `A-ICS` / `DR-ICS`，
-不與既有 feature 共用序號。取號依 R-G23：落檔當下 grep 本檔與
+不與既有 feature 共用序號。取號依 R-G62：落檔當下 grep 本檔與
 `docs/handoff/` 全目錄，不得自記憶推定。
 
 來源：2026-08-29 chat 偵察報告＋分析層判斷四項，Pei 同日「准」
@@ -2352,4 +2352,4 @@ R-ICS55（19a 之採認；TC ID 之裁定路徑；19b 授權）
     此前提由 `all-leaves-present` 現場複驗，不以本條為據。
 ```
 （Pei 直接裁定，2026-08-30；comfort 96 §1、§6；power delivered 實測；
- R-ICS56(a)(b)、R-ICS57、R-G7 反向驗證、R-G3、R-G25）
+ R-ICS56(a)(b)、R-ICS57、R-G7 反向驗證、R-G3、R-G64）

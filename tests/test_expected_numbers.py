@@ -1,4 +1,4 @@
-"""Tests for scripts/expected_numbers.py（R-G16 之預期數字推導）。
+"""Tests for scripts/expected_numbers.py（R-G55 之預期數字推導）。
 
 本工具存在之理由是**第二層檢驗**（FO §8.3）：閘全綠而數字不對時攔下它。
 故其自身之測試須證明它會在已知缺陷上轉紅（G-K），且不在正常語料上

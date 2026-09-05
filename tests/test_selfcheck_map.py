@@ -1,6 +1,6 @@
-"""Tests for scripts/selfcheck_map.py（R-G21 之自查表機檢對映）。
+"""Tests for scripts/selfcheck_map.py（R-G60 之自查表機檢對映）。
 
-R-G21 之目的是**使「機器保證」與「人力承擔」在紙上分得開**（G-D、G-E）。
+R-G60 之目的是**使「機器保證」與「人力承擔」在紙上分得開**（G-D、G-E）。
 故本檔之測試不只驗「17 項都有分類」，更驗**分類不得虛報**：
 
 - `partial` 必須寫出殘餘人力為何 —— 只標 partial 而不說殘餘是什麼，

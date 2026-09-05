@@ -1,0 +1,17 @@
+section	key	value	note
+meta	feature	time_management	
+meta	family	HMI Settings List	
+meta	inputs_path	features/time_management/inputs/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx	41daac00
+meta	forms_path	forms/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx	8d04e51a
+sheet_rows	Brand-Specific Names	inputs=1001 forms=1001	
+sheet_rows	Settings	inputs=1015 forms=1015	
+sheet_rows	Title	inputs=1000 forms=1000	
+key_count	inputs 相異 key	601	
+key_count	forms 相異 key	601	
+key_count	只在 inputs	0	
+key_count	只在 forms	0	
+key_count	兩邊皆有而列值相異	0	
+delivered	查詢式	glob features/time_management/delivered/*.xlsx；對每本逐格搜 key（List Item ＋ 設定名（A|B|C 串接））	
+delivered	母體（該 feature 之 delivered xlsx 本數）	0	全域 delivered xlsx 共 5 本，落於 ics_management,power,sw_update,vsm_v42
+delivered	變動 key 數（分子之上限）	0	
+delivered	命中列號	N/A —— 分母為 0	該 feature 之 delivered/ 無 xlsx，命中率不可計；不得以 0 命中表述為「無影響」

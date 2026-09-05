@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""下放包之預期數字表（R-G16）。
+"""下放包之預期數字表（R-G55）。
 
-R-G16 令下放包之預期數字由本工具自 `feature.yaml` + 批次清單 + `lint_defs`
+R-G55 令下放包之預期數字由本工具自 `feature.yaml` + 批次清單 + `lint_defs`
 推導產生，分析層覆核後簽入包內；手算僅限工具未覆蓋之新指標，逐項標
 `[MANUAL]`。工具產出與上繳實測不符時，**工具與語料兩側皆查**（FO §5a-16），
 不得預設任一側為準。
@@ -148,7 +148,7 @@ def build(c: Corpus) -> tuple[list[Metric], dict]:
 
 def render(c: Corpus, metrics: list[Metric], extra: dict) -> str:
     sr, hand_src = extra["seq"], extra["hand_src"]
-    L = [f"# 預期數字表 —— {c.feature} / {c.profile}（`expected_numbers.py` 產出，R-G16）",
+    L = [f"# 預期數字表 —— {c.feature} / {c.profile}（`expected_numbers.py` 產出，R-G55）",
          "",
          "**量測條件**：`feature.yaml` 之 `profiles.%s`；`generated/%s_*.json` 之 `tcs`；"
          "`data/%s_isolated.tsv` 逐列（不含表頭）。" % (c.profile, c.profile, c.profile),
@@ -175,7 +175,7 @@ def render(c: Corpus, metrics: list[Metric], extra: dict) -> str:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="預期數字表（R-G16）")
+    ap = argparse.ArgumentParser(description="預期數字表（R-G55）")
     ap.add_argument("--root", default=".")
     ap.add_argument("--feature", required=True)
     ap.add_argument("--profile", required=True)

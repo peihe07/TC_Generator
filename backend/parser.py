@@ -74,9 +74,41 @@ HEADER_ROW = 9
 DATA_START_ROW = 10
 # 真實檔案中 sheet 名稱可能帶中文副標（如 "Product Document 記錄封面頁"），
 # 因此用 prefix 比對。
-TC_SHEET_NAME = "Test Case Specification&Result"
+#
+# TC 分頁名有**兩個真實變體**（R-G48(b)）：母本一系帶中文副標，power／audio_mgmt
+# 一系為 "&Result"。全 repo 145 本 FW036 工作簿實測 121 : 24
+# （docs/reports/tc_sheetname_census_20260905.tsv）。兩者皆非誤植，不得擇一硬編。
+# **本處為 backend 之唯一定義**，其餘模組一律自此 import（GC-03 §二-5-2）。
+TC_SHEET_NAME = "Test Case Specification&Result"   # 僅用於「建立新分頁」時之預設名
+TC_SHEET_NAME_CANDIDATES = (
+    "Test Case Specification 測試用例規範",
+    "Test Case Specification&Result",
+    "Test Case Specification & Result",
+)
 TC_SHEET_PREFIX = "Test Case Specification"
 PRODUCT_SHEET_PREFIX = "Product Document"
+
+
+def resolve_tc_sheet(wb, preferred: str | None = None) -> str:
+    """解出工作簿之 TC 分頁名。
+
+    優先序（R-G48(b)）：feature.yaml 之 ``workbook.sheet``（由呼叫端傳入）→
+    兩變體之候選集 → prefix 比對。皆不中則拋錯並列出實際 sheetnames ——
+    **不得靜默回退到某個預設名**，否則會讀錯或寫錯分頁而看似成功。
+    """
+    names = list(wb.sheetnames)
+    if preferred and preferred in names:
+        return preferred
+    for candidate in TC_SHEET_NAME_CANDIDATES:
+        if candidate in names:
+            return candidate
+    hit = _find_sheet(wb, TC_SHEET_PREFIX)
+    if hit:
+        return hit
+    raise KeyError(
+        f"TC sheet not found (tried {preferred!r}, {TC_SHEET_NAME_CANDIDATES}, "
+        f"prefix {TC_SHEET_PREFIX!r}); workbook sheets are: {names}"
+    )
 
 
 def _find_sheet(wb, prefix: str) -> str | None:
@@ -131,7 +163,10 @@ def parse_tc_xlsx(filepath: str) -> dict:
     rows = []
     column_fill_status = {}
 
-    tc_sheet = TC_SHEET_NAME if TC_SHEET_NAME in wb.sheetnames else _find_sheet(wb, TC_SHEET_PREFIX)
+    try:
+        tc_sheet = resolve_tc_sheet(wb)
+    except KeyError:
+        tc_sheet = None          # 無 TC 分頁之簿仍可解出封面資訊，維持原有公開形狀
     if tc_sheet:
         ws_tc = wb[tc_sheet]
 

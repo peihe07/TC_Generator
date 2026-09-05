@@ -64,7 +64,7 @@ def test_baseline_grandfathers_only_what_it_lists(tmp_path) -> None:
     assert fresh == ["features/bed_lowering/batches/b02.json"], "新檔須照紅"
 
 
-# --- delivered/ 之 sha 對照（R-G25 末句）--------------------------------------
+# --- delivered/ 之 sha 對照（R-G64 末句）--------------------------------------
 
 def write_manifest(root: Path, feature: str, rows: list[str]) -> None:
     path = root / "features" / feature / "delivered" / lp.MANIFEST_NAME

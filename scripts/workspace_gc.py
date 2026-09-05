@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""工作區清理候選（R-G26，27 包 §D-6）。
+"""工作區清理候選（R-G65，27 包 §D-6）。
 
 **本工具不刪任何檔。** 其只做三件事：
 
@@ -120,7 +120,7 @@ def dangling(root: Path, index: dict[str, list[str]]) -> list[tuple[str, str]]:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="工作區清理候選（R-G26）；本工具不刪檔")
+    ap = argparse.ArgumentParser(description="工作區清理候選（R-G65）；本工具不刪檔")
     ap.add_argument("--root", default=".")
     ap.add_argument("--feature", action="append", default=None,
                     help="指定 feature（可重複）；預設為已結案六線")

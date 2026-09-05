@@ -17,7 +17,7 @@ paths:
   # （cmp 全等，sha256 6372fb6b…825b2），故非「另存」而是複製。
   # 母本 R 欄 design_method 之下拉為 x14 擴充，openpyxl 存回即摧毀
   # （R-G1 註／A-UP09）；本副本自始未經 openpyxl 存回。
-  # ⚠ 落點為 `sandbox/` 而非下放包 §一-1 所令之 `workbook/`：R-G25 之落點政策
+  # ⚠ 落點為 `sandbox/` 而非下放包 §一-1 所令之 `workbook/`：R-G64 之落點政策
   # 令 .xlsx 之合法落點為 delivered／inputs／sandbox，`workbook/` 不在其列，
   # 實跑 `scripts/lint_paths.py` 即紅（上繳包 §五-2）。bed_lowering 之
   # `workbook/` 在 PATH_POLICY_BASELINE.tsv 內為既存凍結，非新件之許可。
@@ -178,7 +178,7 @@ reference:
   # PROXI **仍未綁**：本 feature 至今無任何 PROXI 參數入 TC，
   # 綁一個沒有消費者的庫只會多一個沒人讀的宣告（R-VC9）。
 
-# R-G19 批次指紋之來源宣告。b01 之 TC 由 Claude Code session 依 canon
+# R-G58 批次指紋之來源宣告。b01 之 TC 由 Claude Code session 依 canon
 # 直接撰寫，未經 `backend/prompt_builder.py`、未呼叫 `backend/generator.py`，
 # 故不列入慣例預設之該二檔 —— 把未參與生成之檔列入指紋，
 # 會讓它的變動看起來影響產出、而它的不變看起來是保證，兩者都不實。

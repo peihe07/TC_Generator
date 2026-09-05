@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""來源文件之文字形抽取（R-G27，27 包 §D-7）。
+"""來源文件之文字形抽取（R-G66，27 包 §D-7）。
 
 `sources/raw/<doc_id>/` 之原檔 → `sources/extracted/<doc_id>/`：
 

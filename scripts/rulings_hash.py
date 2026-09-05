@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""裁決條文之指紋表（R-G13）。
+"""裁決條文之指紋表（R-G52）。
 
-R-G13 以 `R-XX@<sha8>` 為下放包之引用格式，執行層自 repo 讀原文並回報
+R-G52 以 `R-XX@<sha8>` 為下放包之引用格式，執行層自 repo 讀原文並回報
 所讀 sha8。本工具產生該對照表 `docs/fw036/RULINGS.sha.tsv`。
 
 **條文本體之定義**（量測條件，須與上繳包所載一致）：
@@ -41,7 +41,7 @@ RE_SUPERSEDED = re.compile(r"作廢|SUPERSEDED|已撤回")
 RE_SELF_SUPERSEDED = re.compile(r"經\s*R-[A-Z]*\d+[′’']?\s*取代|已由\s*R-[A-Z]*\d+.{0,8}取代|【.{0,20}取代")
 # 群組標題（`## R-C1 ~ R-C5 —— 下放包 01`）：其非單條之錨點，不得佔用首條之 id。
 # 判別特徵為 slug **以分隔符或連接詞起首**再接另一條號；
-# 不得只憑「slug 以條號起首」—— `### R-VS82 —— R-G14 綠色通道之生效起點`
+# 不得只憑「slug 以條號起首」—— `### R-VS82 —— R-G53 綠色通道之生效起點`
 # 之 slug 即以條號起首而其為單條錨點（W-P2 實測之假陽）。
 RE_GROUP = re.compile(r"^\s*(?:[~～、／/,]|及|與|至)\s*R-[A-Z]{0,3}\d")
 
@@ -50,7 +50,7 @@ COLUMNS = ["ruling_id", "kind", "sha8", "sha256", "body_sha8", "body_sha256", "b
            "source", "line", "body_lines", "ancestor", "slug"]
 # W-P1 §4：本輪結構化範圍為 canon §9 與 vehicle_setting；其餘 feature 延後
 # R-POP11（Pei 2026-08-27）：預設範圍納入**全部** `features/*/RULINGS.md`。
-# 理由 —— R-G13 明定條文落各 feature 之 RULINGS.md，tsv 不涵蓋則引用制半殘：
+# 理由 —— R-G52 明定條文落各 feature 之 RULINGS.md，tsv 不涵蓋則引用制半殘：
 # 下放包引 `R-XX@<sha8>`，而執行層無從自 tracked 表查證該 sha8。
 # 原 W-P1 之兩檔窄範圍保留於 `SCOPE_W_P1`，供追溯與比對用，非預設。
 SCOPE_W_P1 = ["docs/fw036/FEATURE_ONBOARDING.md", "features/vehicle_setting/RULINGS.md"]
@@ -62,7 +62,7 @@ class Ruling:
     kind: str            # ruling | report（report 為條號被重用作回報標題者）
     sha256: str          # === section_sha（該錨點至下一錨點之全部內容，含成因段）
     body_sha256: str     # 條文本體（首個 fenced block）；無 fence 者退回整節
-    body_kind: str       # fenced | section —— `section` 者其二值相同（R-G22′ 之殘餘）
+    body_kind: str       # fenced | section —— `section` 者其二值相同（R-G61′ 之殘餘）
     source: str
     line: int
     body_lines: int

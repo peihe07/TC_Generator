@@ -6,7 +6,7 @@ R-G25 之政策**自生效日管新檔；既有檔案不搬移**——故本工�
 不符落點，其後只對**基線外**之路徑判紅。基線**只減不增**：
 既有檔案被搬到合規落點後自基線消失，新違規則無處可躲。
 
-另檢 `delivered/` 之 sha 對照（R-G25 末句）：
+另檢 `delivered/` 之 sha 對照（R-G64 末句）：
 每個 `delivered/*.xlsx` 須於同目錄 `MANIFEST.tsv` 有列且 sha256 相符。
 
 唯讀；`--emit-baseline` 時只寫基線 tsv。
@@ -23,10 +23,10 @@ BASELINE_DEFAULT = "docs/fw036/PATH_POLICY_BASELINE.tsv"
 BASELINE_COLUMNS = ("path", "suffix", "reason")
 MANIFEST_NAME = "MANIFEST.tsv"
 
-# R-G25 之表：各副檔名於 `features/<f>/` 下之合法第一層目錄。
+# R-G64 之表：各副檔名於 `features/<f>/` 下之合法第一層目錄。
 # `inputs/` 為來源投遞之最終落點（R-G24 附記），非產出物，一併視為合法。
 # `docs/`／`scripts/`／`forms/` 非產出物目錄，其下之檔不入本檢查。
-# `sandbox/` 為作業區，三種副檔名皆容——R-G25 之表對其只限定 xlsx 之
+# `sandbox/` 為作業區，三種副檔名皆容——R-G64 之表對其只限定 xlsx 之
 # **可改處**，未限定其內容型別。不予放行者，基線會吞下 698 個正常之
 # sandbox 工作檔，而基線一大就沒有人看得出新違規（G-D 之同一形態）。
 ALLOWED = {
@@ -78,7 +78,7 @@ def load_baseline(path: Path) -> set[str]:
 
 
 def check_delivered(root: Path) -> list[str]:
-    """`delivered/` 之 sha 對照（R-G25 末句）。"""
+    """`delivered/` 之 sha 對照（R-G64 末句）。"""
     problems: list[str] = []
     for manifest in sorted(root.glob("features/*/delivered/" + MANIFEST_NAME)):
         folder = manifest.parent

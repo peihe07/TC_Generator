@@ -7,10 +7,10 @@ FO §8.2 令上繳包附本工具之輸出。
 | 閘 | 管什麼 |
 |---|---|
 | `lint_docs036.py --gate` | 治理三簿（裁決台帳／DATA_REQUESTS／ANOMALIES）之結構 |
-| `canon_refs.py --waiver --gate` | canon 引用之唯一可解析（R-G18）|
+| `canon_refs.py --waiver --gate` | canon 引用之唯一可解析（R-G57）|
 | `rulings_hash.py --check` | 條文指紋表與現行條文相符（R-G13）|
-| `gates_tsv.py --check` | 閘登錄簿與現行閘相符（R-G17）|
-| `lint_paths.py --gate` | 產出物落點與 delivered/ 之 sha 對照（R-G25，27 包接入）|
+| `gates_tsv.py --check` | 閘登錄簿與現行閘相符（R-G56）|
+| `lint_paths.py --gate` | 產出物落點與 delivered/ 之 sha 對照（R-G64，27 包接入）|
 | `lint_delivery_spec.py --gate` | 交付規格表（R-G42，73 包接入；基線內之檔只計警示）|
 
 **`expected_numbers.py --gate` 不在其列**（26 包 §C 裁定 2）：其現為紅，

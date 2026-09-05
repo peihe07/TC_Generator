@@ -1326,6 +1326,23 @@ def review_workbook(
                             llm_stats, output_dir)
 
 
+def _resolve_report_sheet(workbook_path) -> str | None:
+    """回報 batch_meta 用：實際被讀的 TC 分頁名，解不出則 None（不猜）。"""
+    from openpyxl import load_workbook
+    from openpyxl.utils.exceptions import InvalidFileException
+    from parser import resolve_tc_sheet
+    try:
+        wb = load_workbook(workbook_path, read_only=True)
+    except (OSError, InvalidFileException, ValueError):
+        return None
+    try:
+        return resolve_tc_sheet(wb)
+    except KeyError:
+        return None
+    finally:
+        wb.close()
+
+
 def _finalize_report(workbook_path, tcs, groups, per_req, per_tc,
                      llm_stats, output_dir):
     """Assemble the report dict from merged findings and optionally write it.
@@ -1335,7 +1352,9 @@ def _finalize_report(workbook_path, tcs, groups, per_req, per_tc,
     report = {
         "batch_meta": {
             "source_file": Path(workbook_path).name,
-            "sheet": "Test Case Specification&Result",
+            # 原為硬編字面值 —— 對帶中文副標之 121/145 本會回報一個它沒讀的分頁名
+            # （R-G48(b)，GC-03 §二-5-1）。改為實際解得者。
+            "sheet": _resolve_report_sheet(workbook_path),
             "total_tcs": len(tcs),
             "total_req_groups": len(groups),
             "reviewed_at": datetime.now(timezone.utc).isoformat(),

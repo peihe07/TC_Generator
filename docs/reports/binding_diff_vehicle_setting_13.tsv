@@ -1,0 +1,32 @@
+section	key	value	note
+meta	feature	vehicle_setting	
+meta	family	LID	
+meta	inputs_path	features/vehicle_setting/inputs/Logical Identifiers and CAN Mapping v1_76.xlsx	ffceac36
+meta	forms_path	forms/Logical Identifiers and CAN Mapping v1_78.xlsx	a01e1679
+sheet_rows	250MCA Specific Signals	inputs=18 forms=18	
+sheet_rows	332BEV Specific Signals	inputs=33 forms=33	
+sheet_rows	356MCA Specific Signals	inputs=6 forms=6	
+sheet_rows	637MCA Specific Signals	inputs=23 forms=23	
+sheet_rows	965 Specific Signals	inputs=32 forms=32	
+sheet_rows	ALFAMCA Specific Signals	inputs=33 forms=33	
+sheet_rows	Atlantis Low Specific Signals	inputs=15 forms=15	
+sheet_rows	BSEGMENT Specific Signals	inputs=25 forms=25	
+sheet_rows	CAN Mapping	inputs=2629 forms=2627	
+sheet_rows	M182BEV Specific Signals	inputs=3 forms=3	
+sheet_rows	M240 Specific Signals	inputs=35 forms=35	
+sheet_rows	Notes	inputs=13 forms=13	
+sheet_rows	Proxi & Configuration	inputs=449 forms=449	
+sheet_rows	Rev History	inputs=107 forms=109	
+key_count	inputs 相異 key	2548	
+key_count	forms 相異 key	2548	
+key_count	只在 inputs	0	
+key_count	只在 forms	0	
+key_count	兩邊皆有而列值相異	4	
+key_changed	CallAction	inputs rows=[207] forms rows=[207]	
+key_changed	EngineRPM	inputs rows=[658, 659, 660] forms rows=[658]	
+key_changed	Profile_Delete	inputs rows=[1404] forms rows=[1402]	
+key_changed	Profile_Request	inputs rows=[1405] forms rows=[1403]	
+delivered	查詢式	glob features/vehicle_setting/delivered/*.xlsx；對每本逐格搜 key（Logical Identifier（signal））	
+delivered	母體（該 feature 之 delivered xlsx 本數）	0	全域 delivered xlsx 共 5 本，落於 ics_management,power,sw_update,vsm_v42
+delivered	變動 key 數（分子之上限）	4	
+delivered	命中列號	N/A —— 分母為 0	該 feature 之 delivered/ 無 xlsx，命中率不可計；不得以 0 命中表述為「無影響」

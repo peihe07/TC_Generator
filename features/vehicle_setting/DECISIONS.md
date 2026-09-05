@@ -65,6 +65,12 @@ sign-off = binding as proposed.
 | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `0a37121f` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | **PENDING 分析層判** |
 | `Logical Identifiers and CAN Mapping v1_76.xlsx` | `ffceac36` | `Logical Identifiers and CAN Mapping v1_78.xlsx` | `a01e1679` | **PENDING 分析層判** |
 
+**配對（R-G45 補充，GC-02 審閱 §二-1）**：DBC／LID 一類以**網段 token** 為配對鍵，
+版本 token（`R1`／`R4`／`R5`）不入配對 ——
+`PDT27_E2A_R4_BHCAN.dbc` ↔ `forms/PDT27_E2A_R1_BHCAN2.dbc`（`46cb73f3`）；
+`PDT27_E2A_R5_FDCAN8.dbc` ↔ `forms/PDT27_E2A_R1_FDCAN8.dbc`（`2a86c4bf`）。
+上表之四份並列**保留**（GC-02 審閱裁），本註為其配對鍵。
+
 **本 feature 待記 4 檔次**（全域 5 個 feature／13 檔次）。
 「是否影響已交付 TC」**執行層不判**（GC-02 §一-3 明文），逐列留 `PENDING 分析層判`。
 

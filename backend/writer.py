@@ -7,8 +7,10 @@ from openpyxl import load_workbook
 from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
 from openpyxl.styles import Alignment
 
-TC_SHEET_NAME = "Test Case Specification&Result"
-TC_SHEET_PREFIX = "Test Case Specification"
+# TC 分頁名之唯一定義在 parser（R-G48(b)，GC-03 §二-5-2）；此處只轉出，不另立。
+# `TC_SHEET_NAME` 為 api_server 之既有 import 面，保留。
+from parser import TC_SHEET_NAME, resolve_tc_sheet
+
 FRAMEWORK_SHEET_NAME = "Test Case Framework"
 
 # Column mapping: field name -> 1-based column index
@@ -59,17 +61,13 @@ def _strip_trailing_periods_per_line(text):
 _REWRITE_TAIL_RE = re.compile(r"\n\n\(.*\)\s*$", re.DOTALL)
 
 
-def find_tc_sheet_name(wb) -> str:
-    """Resolve the TC sheet, accepting bilingual template sheet names."""
-    if TC_SHEET_NAME in wb.sheetnames:
-        return TC_SHEET_NAME
+def find_tc_sheet_name(wb, preferred: str | None = None) -> str:
+    """Resolve the TC sheet, accepting both real sheet-name variants.
 
-    prefix = TC_SHEET_PREFIX.lower()
-    for name in wb.sheetnames:
-        if name.strip().lower().startswith(prefix):
-            return name
-
-    raise KeyError(f"Worksheet {TC_SHEET_NAME} does not exist.")
+    `preferred` 為 feature.yaml 之 ``workbook.sheet``（有則優先）。
+    解析本身在 parser.resolve_tc_sheet —— 讀與寫必須走同一支，否則會讀 A 寫 B。
+    """
+    return resolve_tc_sheet(wb, preferred)
 
 
 def _wrap_rewrite(rewrite: str) -> str:

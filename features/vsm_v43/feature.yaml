@@ -11,10 +11,10 @@ test_group: "Vehicle Setup Management R1L TBM"   # R-VT3，工作簿 G 欄
 # R-VT7 — TC ID 鍵名採全庫慣例，落於 `write_back.tc_id_format`（見下）。
 # 00 包 W-1 之 `tc_id_prefix` 依 R-VT7 **刪除，不保留**（R-VC9）；A-VT2 RESOLVED。
 
-# 素材落點依 R-VT5／R-G27：原檔入 `sources/raw/<doc_id>/`，本檔以 doc_id 引用。
+# 素材落點依 R-VT5／R-G66：原檔入 `sources/raw/<doc_id>/`，本檔以 doc_id 引用。
 # **未實測者一律留 null／TBD，不猜**（沿 ics_management／bed_lowering 檔頭慣例）。
 # 2026-09-01 W-2 實測：原檔未落 `_intake/`（仍為空），而落 `features/vsm_v43/inputs/`
-# （5 件）。已依 R-G27 落 `sources/raw/<doc_id>/` 並清空 `inputs/`（01 包前提）。
+# （5 件）。已依 R-G66 落 `sources/raw/<doc_id>/` 並清空 `inputs/`（01 包前提）。
 paths:
   # R-VT1 BLANK 起建；R-VT8(b)：自 forms/ R-G1 母本檔案複製，cmp 全等，
   # 未經 openpyxl 存回（母本 R 欄 x14 DV 之保全，R-G1 註／A-UP09）。

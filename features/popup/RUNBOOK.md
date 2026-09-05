@@ -5,7 +5,7 @@ decision tiers, workbook_state strategies). This runbook records only what
 is specific to Popup.
 
 ## Phase 0 — Intake（完，上繳包 01）
-- [x] Source files —— **不落 `inputs/`**：R-G27 之 `sources/raw/<doc_id>/`
+- [x] Source files —— **不落 `inputs/`**：R-G66 之 `sources/raw/<doc_id>/`
       為原檔落點，本 feature `inputs/` 恆空。doc_id 三個：
       `popup_037_v0_2`／`core_hmi_lf_sys1`／`core_hmi_lf_pdf`
 - [x] spec_mode classified: **A+C** —— SYS1 export 為文字權威（A）；

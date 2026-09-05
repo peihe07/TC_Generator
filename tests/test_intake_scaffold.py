@@ -122,7 +122,7 @@ def test_unclassified_files_are_left_in_the_drop_folder(tmp_path):
     assert not (feat / "inputs" / "RULINGS.md").exists()
 
 
-# --- sources/ 讀取路徑（R-G27，27 包 §D-7）-----------------------------------
+# --- sources/ 讀取路徑（R-G66，27 包 §D-7）-----------------------------------
 
 def _sources_root(tmp_path, doc_id: str, name: str, payload: bytes):
     import hashlib

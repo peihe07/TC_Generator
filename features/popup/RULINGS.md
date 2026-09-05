@@ -1,6 +1,6 @@
 # RULINGS — Popup（Pop-Up Queue and Priority Management 接手案）
 
-取號依 R-G23′：落檔當下 live 取號（本檔建立時無既存 `### R-POP`，自 1 起）。
+取號依 R-G62′：落檔當下 live 取號（本檔建立時無既存 `### R-POP`，自 1 起）。
 
 ---
 

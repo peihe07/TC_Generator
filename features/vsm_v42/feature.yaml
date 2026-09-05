@@ -2,7 +2,7 @@
 # All feature-specific constants live HERE; shared scripts read this file
 # and contain no per-feature literals. Regenerate nothing by editing code.
 #
-# 下放包 00 §五 W-1。來源以 `sources/` 之 doc_id 引用（R-G27）——
+# 下放包 00 §五 W-1。來源以 `sources/` 之 doc_id 引用（R-G66）——
 # 本 feature 不存原檔副本，`inputs/` 恆空；`paths.*` 為指向
 # `sources/raw/<doc_id>/` 之相對 glob。
 #
@@ -15,7 +15,7 @@ feature: "Vehicle Setup Management R1 Low"      # R-VL3
 test_group: "Vehicle Setup Management R1 Low"   # R-VL3，同值
 
 sources:
-  # R-G27 之 doc_id ↔ `sources/MANIFEST.tsv`（W-2 落列）。
+  # R-G66 之 doc_id ↔ `sources/MANIFEST.tsv`（W-2 落列）。
   # 目前無腳本以 doc_id 解析路徑，故 `paths.*` 另以相對 glob 具名；
   # 兩者所指須為同一檔，W-2 落檔後實測。
   spec_docx: "vf665_v42_spec_r6"          # 下放包 00 §三 #1，母 spec

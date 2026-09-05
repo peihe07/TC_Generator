@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""IN §9 自查表之機檢對映（R-G21@`1230e795`）。
+"""IN §9 自查表之機檢對映（R-G60@`1230e795`）。
 
-R-G21 令 §9 自查表**逐項標註其保證來源**：有對應 lint 閘者記閘 id
+R-G60 令 §9 自查表**逐項標註其保證來源**：有對應 lint 閘者記閘 id
 （入 `GATES.tsv`），無者標「人工項」。其目的是
 **使「機器保證」與「人力承擔」在紙上分得開**（G-D、G-E 之精神）。
 
@@ -123,7 +123,7 @@ def reverse_index(root: Path) -> dict[str, list[str]]:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="自查表機檢對映（R-G21）")
+    ap = argparse.ArgumentParser(description="自查表機檢對映（R-G60）")
     ap.add_argument("--root", default=".")
     ap.add_argument("--out", default=OUT_DEFAULT)
     ap.add_argument("--check", action="store_true")

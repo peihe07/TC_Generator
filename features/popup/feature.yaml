@@ -2,7 +2,7 @@
 # All feature-specific constants live HERE; shared scripts read this file
 # and contain no per-feature literals.
 #
-# 下放包 01 §六-4：來源以 `sources/` 之 doc_id 引用（R-G27），
+# 下放包 01 §六-4：來源以 `sources/` 之 doc_id 引用（R-G66），
 # **本 feature 不存原檔副本** —— `paths.*` 為指向 `sources/raw/<doc_id>/`
 # 之相對 glob，`inputs/` 於本 feature 恆空。
 # 每一鍵於本包逐鍵實測；sha256 自實體檔重算，不抄他 feature 之宣告值。
@@ -11,7 +11,7 @@ feature: "Popup"
 test_group: "Popup"          # R-POP4（Pei 2026-08-27 裁）
 
 sources:
-  # R-G27 之 doc_id ↔ `sources/MANIFEST.tsv`。目前無腳本以 doc_id 解析路徑，
+  # R-G66 之 doc_id ↔ `sources/MANIFEST.tsv`。目前無腳本以 doc_id 解析路徑，
   # 故 `paths.*` 另以相對 glob 具名；兩者所指須為同一檔（本包實測相符）。
   a03_report: "popup_037_v0_2"
   sys1_export: "core_hmi_lf_sys1"

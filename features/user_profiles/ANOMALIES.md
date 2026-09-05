@@ -480,7 +480,7 @@ remarks 具名兩份文件之 id 分歧 —— 但那會使 ER 失去 id 級之�
 該 commit **已推送**、其後已有 **5 個提交**；案 2／3 之收益為一句 message
 之歸屬，成本為 rebase 5 個提交 ＋ force push 一條已推送分支。
 
-**再犯之防線**：**R-G12**（git commit 一律帶 pathspec），已升全域並寫入
+**再犯之防線**：**R-G51**（git commit 一律帶 pathspec），已升全域並寫入
 `docs/fw036/FEATURE_ONBOARDING.md`。**本項不因該防線改記 RESOLVED** ——
 防線防的是下一次，不是這一次。
 

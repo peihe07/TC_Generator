@@ -1,4 +1,4 @@
-"""Tests for scripts/canon_refs.py（R-G18 之引用解析器）。
+"""Tests for scripts/canon_refs.py（R-G57 之引用解析器）。
 
 依 G-K，每一判準皆附「對已知案例會轉紅」之實測；依 R-G9，每一判準皆附
 範圍向（對不該轉紅之近似案例證明其不轉紅）。案例以**字面**釘入（G-N）：
@@ -41,7 +41,7 @@ FO_TEXT = """## 5a. 數字紀律
 | 條 | 一句話 |
 |---|---|
 | R-G5 | 全部 git 操作屬 Pei |
-| R-G12 | git commit 一律帶 pathspec |
+| R-G51 | git commit 一律帶 pathspec |
 """
 
 IN_TEXT = """## 8. Requirement Alignment
@@ -173,15 +173,15 @@ def test_ruling_resolves_without_canon_prefix(repo):
 
 
 def test_unknown_ruling_is_unresolved(repo):
-    """R-G13 尚未併入 canon → 須 unresolved。整併後本測試之預期須反轉。"""
-    assert one(repo, "依 R-G13 之引用制。", kind="ruling").verdict == "unresolved"
+    """R-G52 尚未併入 canon → 須 unresolved。整併後本測試之預期須反轉。"""
+    assert one(repo, "依 R-G52 之引用制。", kind="ruling").verdict == "unresolved"
 
 
 @pytest.mark.parametrize("line", ["R-G4-1 之衍生檔紀律", "R-G7-1 之對照向"])
 def test_ruling_with_revision_suffix(repo, line):
     """`R-G4-1` 之尾碼為修訂版次，其基號仍為 4／7。"""
     monkey = one(repo, line + "（見 FO §9.2）", kind="ruling")
-    assert monkey.verdict == "unresolved"  # 範例 canon 只載 R-G5／R-G12
+    assert monkey.verdict == "unresolved"  # 範例 canon 只載 R-G5／R-G51
 
 
 def test_ruling_word_boundary_not_matched_inside_longer_token(repo):
@@ -234,7 +234,7 @@ def test_gate_green_on_clean_repo(repo):
     """範圍向：全部引用皆可解析時，--gate 不得轉紅。"""
     p = repo / "features/f/docs/handoff/01_x.md"
     p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text("依 canon §5a 第 1 條與 canon §10.4，並見 R-G12。\n", encoding="utf-8")
+    p.write_text("依 canon §5a 第 1 條與 canon §10.4，並見 R-G51。\n", encoding="utf-8")
     r = run(repo, "--gate")
     assert r.returncode == 0, r.stdout
     assert "PASS" in r.stdout
@@ -248,7 +248,7 @@ def test_gate_red_on_ambiguous_ref(repo):
     assert r.returncode == 1 and "FAIL" in r.stdout
 
 
-# --- waiver（R-G18 修訂版，24 包 §C 裁定 2）-------------------------------
+# --- waiver（R-G57 修訂版，24 包 §C 裁定 2）-------------------------------
 #
 # 三向皆須實測（G-K ／ R-G9）：
 #   waiver 內同一引用不轉紅、waiver 外之**同型**引用仍轉紅、
@@ -296,8 +296,8 @@ def test_fenced_ruling_text_is_mention_not_waived(repo):
     mention 判準生效後該特例被吸收 —— **一個不必豁免的東西不該出現在豁免清單裡。**
     """
     fo = repo / "docs/fw036/FEATURE_ONBOARDING.md"
-    fo.write_text(FO_TEXT + "\n#### R-G13 — 引用制\n\n```\n"
-                  "R-G13：裁決條文集中於各 feature 之 RULINGS.md 與 canon §8.4。\n```\n",
+    fo.write_text(FO_TEXT + "\n#### R-G52 — 引用制\n\n```\n"
+                  "R-G52：裁決條文集中於各 feature 之 RULINGS.md 與 canon §8.4。\n```\n",
                   encoding="utf-8")
     r = run(repo, "--emit-waiver", "w.tsv")
     rows = (repo / "w.tsv").read_text(encoding="utf-8").strip().splitlines()[1:]
@@ -359,7 +359,7 @@ def test_missing_waiver_file_is_empty_not_error(repo):
     ('初稿寫「`FO §8.1／§8.2／§8.8`」—— 前綴只涵蓋第一個', "mention", "圍籬（「」＋反引號）"),
     # 例 2：引述一句本身含規範性動詞之原文（V33 §C-2 加註）
     ('本條二款括號內「依 canon §8.7」所指為 FO §8.7', "mention", "圍籬優先於其內之動詞"),
-    # 例 3：條文圍籬內（FO §9.2 之 R-G13 條文）—— 見 in_fence 之測試
+    # 例 3：條文圍籬內（FO §9.2 之 R-G52 條文）—— 見 in_fence 之測試
     ('條文本體提及 canon 之 §9 → 已豁免', "mention", "詞彙標記「提及」"),
     # 例 4：更正文字又引述原句（26 §五-2 之第四次）
     ('上表原以「條文本體提及 canon §9」書之，該句自身遂成為命中', "mention", "圍籬"),
@@ -374,7 +374,7 @@ def test_usage_four_misfires_and_range_vector(line, expect, case):
 
 
 def test_fence_and_superseded_regions_are_mention():
-    line = "R-G13：裁決條文集中於各 feature 之 RULINGS.md 與 canon §9"
+    line = "R-G52：裁決條文集中於各 feature 之 RULINGS.md 與 canon §9"
     assert cr.usage_of(line, line.index("§"), True, False) == "mention"
     assert cr.usage_of(line, line.index("§"), False, True) == "mention"
     assert cr.usage_of(line, line.index("§"), False, False) == "use"

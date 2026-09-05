@@ -111,7 +111,7 @@ disposition is Tier 2。
   `raise ValueError(...不支援之型別...)`；跑 `--doc-id vf665_v43_spec_r4` 與
   `--doc-id vf665_sysad_sys3` 皆輸出「跳過 …：不支援之型別 .docx」。
 - **影響**：#1（母 spec，spec_mode D）與 #3（SYSAD）**無 `sources/extracted/`**。
-  R-G27 之「raw 為權威、extracted 為衍生物」仍成立，故不阻塞：W-5 直讀 `raw/` 之
+  R-G66 之「raw 為權威、extracted 為衍生物」仍成立，故不阻塞：W-5 直讀 `raw/` 之
   docx（`zipfile` + `word/document.xml` 段落抽取，1781 段），量測條件已於 RECON §6 揭露。
 - **處置**：**不改共用腳本**（同 A-VT3 之界線）。登記並交上游。
 - **提請裁決**：`.docx` 之抽取是否納入 `extract_source.py`（spec_mode D 之 feature

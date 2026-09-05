@@ -17,11 +17,10 @@ from .registry import SafetyLevel, ToolSpec, register_tool
 from .schemas import INSPECT_WORKBOOK_SCHEMA
 
 
-_TC_SHEET_NAMES = {
-    "Test Case Specification&Result",
-    "Test Case Specification & Result",
-    "Test Case Specification",
-}
+# 原為一組精確字串，**不含**帶中文副標之變體，故對 145 本中的 121 本回報
+# tc_sheet_name=None（GC-03 §二-5-1 實測：母本即命中此缺陷）。改走 parser 之
+# 唯一定義與同一支解析（R-G48(b)）。
+from parser import resolve_tc_sheet
 _FILENAME_GROUP_RE = re.compile(r"_SWQT_(?P<group>[^_]+)_\d{8}", re.IGNORECASE)
 
 
@@ -56,7 +55,10 @@ def inspect_workbook_tool(*, path: str) -> dict:
         raise ToolError(f"failed to open workbook: {exc}", code="unprocessable") from exc
 
     sheets = list(wb.sheetnames)
-    tc_sheet_name = next((s for s in sheets if s in _TC_SHEET_NAMES), None)
+    try:
+        tc_sheet_name = resolve_tc_sheet(wb)
+    except KeyError:
+        tc_sheet_name = None      # 這本沒有 TC 分頁；其餘結構資訊仍照常回報
 
     rows_estimate = 0
     if tc_sheet_name:

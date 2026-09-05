@@ -393,7 +393,12 @@ Pei 指示原文：「這裡的寫回規定要套用到全專案」）：
 
 ---
 
-## 理由與數字、報告與量測（R-G19／R-G20，2026-08-25，全域）
+## 理由與數字、報告與量測（R-G69／R-G20，2026-08-25，全域）
+
+> **原編號 R-G19，2026-09-05 改號，見 R-G43**。台帳內 `R-G19` 同號異文二條，
+> Pei 親裁：L358「寫回作業規定全專案化」**保號 R-G19**，本條（理由與數字須分別驗證）改 **R-G69**。
+> 依 R-G43 §一「條文一字不改」，下框本體之首行仍書 `R-G19（理由與數字須分別驗證 —— 全域）`；
+> `rulings_hash.py` 重生後，其指紋所對應者以本註為準。對照表：`docs/fw036/SHA_MIGRATION_rg43.tsv`。
 
 來源：`features/display/docs/handoff/09_recon_crosscheck.md` §四。
 抄錄方式：機器抽取原樣寫入，未經人工轉錄。
@@ -1424,3 +1429,99 @@ R-G13(LEDGER) 管外部素材之查無；本條管對自家產出之全稱斷言
 | R-G48 | 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |
 | R-G49 | 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |
 | R-G50 | 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |
+
+---
+
+## 下放包 GC-02／GC-03 之全域條文（Pei 2026-09-05「都準都裁定」）
+
+依 `docs/fw036/handoff/down/20260905_GC-03.md` §二-1 落檔。條文本體由腳本自 down 檔抽取（R-G36），逐條附來源檔與行號。
+`rulings_hash.py` **未跑**（屬 Pei）。
+
+### R-G48(b) —— TC 分頁名為工作簿層屬性，兩變體並存
+
+來源：`docs/fw036/handoff/down/20260905_GC-02_review.md:21`（GC-02 審閱 §一）
+
+```text
+R-G48(b)：TC 分頁名為工作簿層屬性，兩個真實變體並存
+（`Test Case Specification 測試用例規範` 121/145、`Test Case Specification&Result` 24/145，
+2026-09-05 census）。任何讀寫工作簿之路徑須以 feature.yaml `workbook.sheet` 為準，
+code 內常數只得作「feature.yaml 未載時之後備」。測試夾具須**兩變體各一**，
+並加守衛測試：模板 `workbook.sheet` ∈ R-G1 母本之 sheetnames。
+```
+
+> 本條之事實基礎為執行層 GC-02 6-2 節之母體查詢：全 repo 145 本 FW036 工作簿，
+> `Test Case Specification 測試用例規範` **121 本**、`Test Case Specification&Result` **24 本**
+> （`docs/reports/tc_sheetname_census_20260905.tsv`）。
+> 本條**撤回** GC-01 審閱 §三「R-G48 之補充」之夾具改名裁決（A-GC10）。
+
+### R-G45 補充 —— DBC／LID 一類以網段 token 配對
+
+來源：`docs/fw036/handoff/down/20260905_GC-02_review.md:35`（GC-02 審閱 §二-1）
+
+（`BHCAN`／`FDCAN8`）為配對鍵，版本 token（`R1`／`R4`／`R5`）不入配對；
+`vehicle_setting` 之 `R4_BHCAN` ↔ `forms/…R1_BHCAN2`、`R5_FDCAN8` ↔ `forms/…R1_FDCAN8`。
+DECISIONS 之四份並列**保留**，加一行配對註。[DEFAULT]
+
+### R-G50(b) —— 對照向須回報被移出／還原之檔數
+
+來源：`docs/fw036/handoff/down/20260905_GC-02_review.md:49`（GC-02 審閱 §三）
+
+```text
+R-G50(b)：對照向（反事實量測）須同時回報「被移出／還原之檔數」；
+該數為 0 而仍宣稱已建立對照向者，即未量測之斷言。
+```
+
+### R-G43 落實 —— **(A) 台帳保號**（Pei 2026-09-05 授權分析層裁）
+
+來源：`docs/fw036/handoff/down/20260905_GC-03.md:11`（GC-03 §一）
+
+理由：`RULINGS_LEDGER.md` 為 `rulings_hash.py` 之指紋源，且其條文附日期、來源與逐字本體；
+FO §9.2 之條文為 runtime 摘要。改摘要之號，不改指紋源之號。
+
+改號表（原號升冪，新號自 R-G51 起連號；**條文一字不改**，僅首行加「原編號 R-Gnn，2026-09-05 改號，見 R-G43」）：
+
+| 原號（FO §9.2）| 新號 | | 原號 | 新號 |
+|---|---|---|---|---|
+| R-G12 | **R-G51** | | R-G21 | **R-G60** |
+| R-G13 | **R-G52** | | R-G22 | **R-G61** |
+| R-G14 | **R-G53** | | R-G23 | **R-G62** |
+| R-G15 | **R-G54** | | R-G24 | **R-G63** |
+| R-G16 | **R-G55** | | R-G25 | **R-G64** |
+| R-G17 | **R-G56** | | R-G26 | **R-G65** |
+| R-G18 | **R-G57** | | R-G27 | **R-G66** |
+| R-G19 | **R-G58** | | R-G28 | **R-G67** |
+| R-G20 | **R-G59** | | R-G29 | **R-G68** |
+
+（以上 18 號以 `rg_collision_20260905.tsv` 之 `DIFFERENT` 列為準；若 FO 側於 12–29 間有缺號，執行層依實測收縮，**新號仍連號**，並於上繳回報實際對照。）
+
+**R-G19 台帳內二擇一**：L358「寫回作業規定全專案化（Pei, 2026-08-25）」**保號 R-G19**（Pei 親裁）；
+L402「理由與數字須分別驗證」改 **R-G69**。
+
+R-G1～R-G11（FO 單邊）、R-G30～R-G42（台帳單邊）不動。
+
+> **執行層之落實與偏差，逐項具名**（`up/20260905_GC-03.md` 2 節）：
+> (1) 改號表 18 號逐號實測皆在 FO §9.2，無缺號，新號連號 R-G51～R-G68；
+> (2) FO §9.2 尚有第 19 個錨點 `R-G23′`，改號表未列 —— 執行層判其須隨母條改為
+>     `R-G62′`（不隨改則 `R-G23′` 將指向台帳側之 R-G23，即本條所欲消除之歧義），
+>     **此推論為執行層所為，請覆核**；
+> (3) 「條文一字不改」之落實：圍籬內之條文本體**一律不動**（含其首行之原號），
+>     原編號註一律加在錨點之下、圍籬之外；
+> (4) 引用遷移之範圍經 **Pei 於 2026-09-05 裁定為「只改在效檔」**（193 處），
+>     歷史檔與其他散檔不動，理由同 §二-4(b) 與 §二-5 對歷史檔之處置；
+> (5) **本條所載之理由與實測不符，具名**：本條書「`RULINGS_LEDGER.md` 為
+>     `rulings_hash.py` 之指紋源」。實測 —— `rulings_hash.py` 之掃描面為
+>     `docs/fw036/FEATURE_ONBOARDING.md` ＋ `features/*/RULINGS.md`
+>     （`scripts/rulings_hash.py:255-258`），**本台帳不在其中**：
+>     `RULINGS.sha.tsv` 698 列中，來源為本台帳者 **0 列**，
+>     R-G12～R-G29 之指紋列全部來自 FO（如 `R-G19` 之列指 `FEATURE_ONBOARDING.md:926`）。
+>     故保號側（台帳）實為**無指紋之一側**，改號側（FO）才是指紋所在。
+>     一個可測之後果：`R-G19` 在重生後**不再有任何指紋列**——
+>     Pei 裁 L358 保號 R-G19，而該處不被掃描。**裁定本身已執行，本註只更正其理由。**
+
+### `_intake/SXM/` 二檔 —— 投錯匣，登記不清
+
+來源：`docs/fw036/handoff/down/20260905_GC-03.md:37`（GC-03 §一）
+
+二檔為 CFTS_020 ICS and DCSD（`.doc`＋`.reqifz`），repo 內無同 sha 落點，而 `features/ics_management/` 存在。
+裁：以 `ics_management` 為所屬 feature 登記入 `sources/raw/` 與 `MANIFEST.tsv`（doc_id 依 GC-02 導出規則），
+之後 `_intake/SXM/` 之二檔由 Pei 清空（同其他四匣）。**不刪原檔。**

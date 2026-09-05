@@ -491,7 +491,7 @@ KIND_TO_YAML = {
 }
 
 
-# --- sources/ 讀取路徑（R-G27，27 包 §D-7）-----------------------------------
+# --- sources/ 讀取路徑（R-G66，27 包 §D-7）-----------------------------------
 
 SOURCES_MANIFEST = "sources/MANIFEST.tsv"
 
@@ -499,7 +499,7 @@ SOURCES_MANIFEST = "sources/MANIFEST.tsv"
 def sources_ref(root: Path, filename: str) -> str | None:
     """該檔已在 `sources/` 者，回傳其 repo 相對路徑；否則 None。
 
-    **既有 feature 之舊路徑一律 fallback**（R-G27：舊副本不搬）——
+    **既有 feature 之舊路徑一律 fallback**（R-G66：舊副本不搬）——
     本函式回 None 時，呼叫端之行為與本輪之前完全相同。
     比對以 sha256 為之，同名而內容不同者不算命中。
     """
@@ -553,7 +553,7 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
             continue
         shared = sources_ref(root, f["file"])
         if shared:
-            # R-G27：原檔全 repo 一份 —— 不再搬入 inputs/，改以 sources/ 引用。
+            # R-G66：原檔全 repo 一份 —— 不再搬入 inputs/，改以 sources/ 引用。
             # _intake/ 之副本留原地，其為重複檔，由 Pei 依 R-G26 之清單處置。
             duplicates.append(f'{f["file"]} —— 已在 {shared}，未搬入 inputs/')
             rel_path = shared

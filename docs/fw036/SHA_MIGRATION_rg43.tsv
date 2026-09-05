@@ -1,0 +1,21 @@
+old_id	new_id	side	file	line	title
+R-G12	R-G51	FO	docs/fw036/FEATURE_ONBOARDING.md	829	`git commit` 一律帶 pathspec
+R-G13	R-G52	FO	docs/fw036/FEATURE_ONBOARDING.md	840	裁決引用制（取代 FO §8.1「裁決逐字照錄」）
+R-G14	R-G53	FO	docs/fw036/FEATURE_ONBOARDING.md	865	綠色通道（FO §8.8 之例外）
+R-G15	R-G54	FO	docs/fw036/FEATURE_ONBOARDING.md	878	Pilot 退出準則
+R-G16	R-G55	FO	docs/fw036/FEATURE_ONBOARDING.md	895	預期數字自動生成
+R-G17	R-G56	FO	docs/fw036/FEATURE_ONBOARDING.md	906	閘登錄簿與除役
+R-G18	R-G57	FO	docs/fw036/FEATURE_ONBOARDING.md	919	canon 引用唯一可解析
+R-G19	R-G58	FO	docs/fw036/FEATURE_ONBOARDING.md	945	prompt 指紋（TC 規則抗漂移之一）
+R-G20	R-G59	FO	docs/fw036/FEATURE_ONBOARDING.md	955	規則副本同步指紋（TC 規則抗漂移之二）
+R-G21	R-G60	FO	docs/fw036/FEATURE_ONBOARDING.md	966	自查表機檢對映（TC 規則抗漂移之三）
+R-G22	R-G61	FO	docs/fw036/FEATURE_ONBOARDING.md	980	條文之任何字元變動皆變更其 sha
+R-G23	R-G62	FO	docs/fw036/FEATURE_ONBOARDING.md	999	同一工單同時只得有一份有效下放包
+R-G24	R-G63	FO	docs/fw036/FEATURE_ONBOARDING.md	1048	下放指示之路徑實在性
+R-G25	R-G64	FO	docs/fw036/FEATURE_ONBOARDING.md	1090	產出物目錄政策
+R-G26	R-G65	FO	docs/fw036/FEATURE_ONBOARDING.md	1114	工作區清理制
+R-G27	R-G66	FO	docs/fw036/FEATURE_ONBOARDING.md	1131	來源集中制（`sources/`）
+R-G28	R-G67	FO	docs/fw036/FEATURE_ONBOARDING.md	1149	CFTS 嵌入物件之逐 feature 檢查
+R-G29	R-G68	FO	docs/fw036/FEATURE_ONBOARDING.md	1200	條文須加框（`body_kind` 之不變式）
+R-G23′	R-G62′	FO	docs/fw036/FEATURE_ONBOARDING.md	1025	單一來源擴至每條線；取號一律 live
+R-G19	R-G69	LEDGER	docs/fw036/RULINGS_LEDGER.md	396	理由與數字須分別驗證

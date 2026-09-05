@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""canon 引用之唯一可解析性（R-G18）。
+"""canon 引用之唯一可解析性（R-G57）。
 
 掃全 repo 之 canon 引用，驗每一引用**唯一命中一份 canon 之一個落點**。
 `unresolved` 或 `ambiguous` > 0 即 FAIL。每 feature close-out 必跑。
@@ -36,7 +36,7 @@
 > **本工具之盲區仍在**：未加前綴而實指 canon 者驗不到（其形態見
 > `ANOMALIES.md` 之 `§8.7.5 §0 之衝突條款` —— 該 `§0` 實指 FO §0 而無前綴）。
 
-**waiver（R-G18 之修訂版，24 包 §C 裁定 2）**：歷史 handoff / upstream 檔
+**waiver（R-G57 之修訂版，24 包 §C 裁定 2）**：歷史 handoff / upstream 檔
 不追改，其既有 unresolved / ambiguous 逐檔逐行列於
 `docs/fw036/CANON_REFS_WAIVER.tsv`（欄：`source line kind target reason`）。
 閘判準：**waiver 清單外**之 unresolved 或 ambiguous > 0 即 FAIL；
@@ -417,7 +417,7 @@ def collect(root: Path) -> tuple[Resolver, list[Ref], int]:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="canon 引用解析器（R-G18）")
+    ap = argparse.ArgumentParser(description="canon 引用解析器（R-G57）")
     ap.add_argument("--root", default=".")
     ap.add_argument("--report", action="store_true", help="逐筆列出 unresolved／ambiguous")
     ap.add_argument("--top", type=int, default=40, help="--report 時列出之 target 數上限")

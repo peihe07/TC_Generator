@@ -1,0 +1,22 @@
+section	key	value	note
+meta	feature	comfort	
+meta	family	Market Config	
+meta	inputs_path	features/comfort/inputs/SR24 R1 Market Configuration Table v1.6.xlsx	ae4cf0b9
+meta	forms_path	forms/SR24 R1 Market Configuration Table v1.6.xlsx	7e865d55
+sheet_rows	Language Sets	inputs=1023 forms=1023	
+sheet_rows	Market Config - R1	inputs=1001 forms=1001	
+sheet_rows	Measurement Units	inputs=1024 forms=1024	
+sheet_rows	R1 Navi MAP Sets	inputs=42 forms=42	
+sheet_rows	R1 Tuner Layout	inputs=10 forms=10	
+sheet_rows	Radio Tuner Configuration	inputs=208 forms=208	
+sheet_rows	ReadMe(Instruction)	inputs=19 forms=19	
+sheet_rows	Revision Log	inputs=43 forms=43	
+key_count	inputs 相異 key	243	
+key_count	forms 相異 key	243	
+key_count	只在 inputs	0	
+key_count	只在 forms	0	
+key_count	兩邊皆有而列值相異	0	
+delivered	查詢式	glob features/comfort/delivered/*.xlsx；對每本逐格搜 key（Destination Country）	
+delivered	母體（該 feature 之 delivered xlsx 本數）	0	全域 delivered xlsx 共 5 本，落於 ics_management,power,sw_update,vsm_v42
+delivered	變動 key 數（分子之上限）	0	
+delivered	命中列號	N/A —— 分母為 0	該 feature 之 delivered/ 無 xlsx，命中率不可計；不得以 0 命中表述為「無影響」

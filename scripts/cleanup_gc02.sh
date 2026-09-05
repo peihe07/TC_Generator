@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Pei 專門 commit 用（R-G26(FO)：改動連同其母體一併引用；R-G47：lint 報告歸位）。
-# 由 GC-02 §一-4 產生，執行層**未執行**。每行一 pathspec（R-G12(FO)）。
+# Pei 專門 commit 用（R-G65：改動連同其母體一併引用；R-G47：lint 報告歸位）。
+# 由 GC-02 §一-4 產生、GC-03 §二-4 加註，執行層**未執行**。每行一 pathspec（R-G51）。
 # 依據：docs/reports/lint_reports_refs_20260905.tsv（106 列，GC-01 §二-3）
 #   removable=Y 81 檔 → git rm；removable=N 25 檔留，
 #   其中 sw_update 相關且非 0821 基線者 2 檔 → git mv 至 features/sw_update/reports/。
@@ -92,11 +92,13 @@ git rm -- "docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_ff976761_20
 git rm -- "docs/fw036/lint_reports/time_management_20260825_717d48d8_20260829.md"
 
 # --- 二、sw_update 之報告歸位（2 檔，R-G47：feature 級落 features/<f>/reports/）---
+#     每筆之上一行 `# was: <old> ; referenced by: <file>` 即路徑遷移對照
+#     （GC-02 審閱 §二-3：歷史檔不追改，對照就地入腳本，不另出檔）。
 test -d features/sw_update/reports || mkdir -p features/sw_update/reports
+# was: docs/fw036/lint_reports/SWUpdate__sw_update_7f019b37_20260830.md ; referenced by: docs/fw036/upstream/72_delivery.md
 git mv -- "docs/fw036/lint_reports/SWUpdate__sw_update_7f019b37_20260830.md" "features/sw_update/reports/SWUpdate__sw_update_7f019b37_20260830.md"
-#   ^ 被指名於：docs/fw036/upstream/72_delivery.md
+# was: docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_a3633876_20260828.md ; referenced by: features/sw_update/docs/upstream/25_batch1_review.md
 git mv -- "docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_a3633876_20260828.md" "features/sw_update/reports/sw_update_20260817_ext__sw_update_a3633876_20260828.md"
-#   ^ 被指名於：features/sw_update/docs/upstream/25_batch1_review.md
 
 # --- 三、留於 lint_reports/ 者（23 檔，不動）---
 #   AMFM_20260821.json  [FROZEN_BASELINE(R-G47)]

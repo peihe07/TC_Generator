@@ -197,7 +197,7 @@ reference:
     file: "features/vehicle_setting/inputs/PROXI_HDCC27_R3_20250424.xlsx"
     sha256: "e7c2020f01c3d58db431babe7f8a41acbe528c451bd37ef6bb84f1b312be6ff2"
 
-# R-G19（FO 讀法）批次指紋之來源宣告。未宣告則 prompt_fingerprint.py 取
+# R-G58（FO 讀法）批次指紋之來源宣告。未宣告則 prompt_fingerprint.py 取
 # 慣例預設（IN + backend/prompt_builder.py）。本 feature 明文宣告，因為
 # **預設之一在本批未被使用**：pilot 批之 TC 由 Claude Code session 依 canon
 # 直接撰寫，未經 `backend/prompt_builder.py` 組 prompt、未呼叫

@@ -34,7 +34,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 - **不代用之聲明**：Claude Project 內之文字抽取本與 SYSRA 附件抽取本
   **未被取用**，`sources/raw/` 未建立任何檔（R-VL5、下放包 00 §八末條）。
   `features/vehicle_setting/inputs/` 內之同名 SYSAD（#5）**亦未取用為代品**
-  —— 其得作為 sha 比對之對照方，不得作為本線之原檔（R-G27「新 feature
+  —— 其得作為 sha 比對之對照方，不得作為本線之原檔（R-G66「新 feature
   一律走 sources/」）。
 - **本地處置**：停於 W-1。W-1 之可為部分（scaffold ＋ `feature.yaml`）已完成，
   不涉原檔。
@@ -63,7 +63,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 - **(c) 共引項只記關係不記現況**：00 包 §三 #5 SYSAD 記「與 vsm_v43 共引一份」，未記其目標路徑
   `sources/raw/vf665_sysad_sys3/` 當時**不存在**，vsm_v43 上繳 §九-1 指出其會多耗一輪。
   以後共引項一律記「目標路徑 ＋ 已落／未落」。
-- **附註**：上繳 00 §8「A-VL2 起之號保留給該三項」**不承認** —— R-G23 為落檔當下 live 取號，
+- **附註**：上繳 00 §8「A-VL2 起之號保留給該三項」**不承認** —— R-G62 為落檔當下 live 取號，
   預配號正是撞號之源（R-BLM4 一案）。該三項候選 anomaly 於實測後自當時末號取。
 - **處置**：R-VL6／R-VL7 已落；00 包原文不改（下放包為歷史文件），以 01 包取代。
 
@@ -234,7 +234,7 @@ Registration is Tier 1（record + propose）；disposition is Tier 2。
 
 ## A-VL9 —— 母 spec 之 Functional Diagram 為 WMF 圖，其訊號名不在文字層（**RESOLVED** 2026-09-01，R-VL12(e)）
 
-- **登記日**：2026-09-01（下放包 02 之 W-2，R-G28 檢查）
+- **登記日**：2026-09-01（下放包 02 之 W-2，R-G67 檢查）
 - **實測**：`vf665_v42_spec_r6` docx zip members **25**；
   `word/embeddings/` **0 項**；`word/media/` **1 項** = `image1.wmf`（498,222 bytes）。
   該圖以 `r:embed="rId5"` 嵌於**段落 60**，其上一段（59）為標題

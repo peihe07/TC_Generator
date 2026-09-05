@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""閘登錄簿 `docs/runtime/GATES.tsv`（R-G17）。
+"""閘登錄簿 `docs/runtime/GATES.tsv`（R-G56）。
 
-R-G17 令每支 lint 閘登錄 id、判準一句話、來源裁決、生效日、近 10 輪命中數，
+R-G56 令每支 lint 閘登錄 id、判準一句話、來源裁決、生效日、近 10 輪命中數，
 並以「連續 10 輪命中 0」為除役候選之判準。本工具自 `scripts/lint036.py`
 之閘登錄（`CHECK_TITLES`／`CHECK_STATUS`／`CHECK_GRANULARITY`／
 `CHECK_ORDER`／`PROFILE_CHECKS`）生成該簿，命中數自
@@ -192,7 +192,7 @@ def rows(mod, reports: list[Path], sc_index: dict | None = None) -> list[dict]:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="閘登錄簿（R-G17）")
+    ap = argparse.ArgumentParser(description="閘登錄簿（R-G56）")
     ap.add_argument("--root", default=".")
     ap.add_argument("--out", default=OUT_DEFAULT)
     ap.add_argument("--check", action="store_true", help="只比對既有檔，不寫入")

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""批次 manifest 之 prompt／exemplar 指紋（R-G19）。
+"""批次 manifest 之 prompt／exemplar 指紋（R-G58）。
 
-R-G19 令每批之 manifest 記錄本批**實際使用**之 prompt 模板 sha256 與
+R-G58 令每批之 manifest 記錄本批**實際使用**之 prompt 模板 sha256 與
 exemplar 集 sha256；與前批不符而下放包未宣告變更者，該批退回。
 
 **「模板」在本專案不是單一檔案。** TC 之生成受四類輸入拘束：
@@ -143,7 +143,7 @@ def compare(prev: dict | None, cur: dict) -> dict:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="prompt／exemplar 指紋（R-G19）")
+    ap = argparse.ArgumentParser(description="prompt／exemplar 指紋（R-G58）")
     ap.add_argument("--root", default=".")
     ap.add_argument("--feature-dir", required=True, help="例：features/vehicle_setting")
     ap.add_argument("--manifest", default=None, help="寫入該 manifest（新增鍵，不改既有鍵）")
