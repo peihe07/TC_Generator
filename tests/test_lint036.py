@@ -831,3 +831,53 @@ def test_v3_residue_in_verbatim_upper_half_is_not_flagged() -> None:
     assert "P" not in run_profile(
         test_item="TLM shall set $TELEMATIC_VEHICLE_SETUP.DRLEnable_Req$ to 1\n"
                   "(the request is sent)")
+
+
+# R-G70(i) —— PROXI fallback 只在賦值形態時報（GC-13 審閱 一 之 1）
+#
+# fallback 為 FAIL 類（P），會擋出貨閘。對散文提及報 P 使
+# 「P_after 全為 bare 類」對任何含 PROXI 散文之本恆不成立（pm_73 19 處誤報）。
+
+PROXI_PROSE_SAMPLES = [
+    ("hold",    "3. Hold for the PROXI Switch_Off_Time value"),
+    ("reads",   '2. The Rear_View_Camera PROXI parameter reads "Present"'),
+    ("elapses", "5. The PROXI Switch_Off_Time value elapses"),
+    # 行內 `=` 屬 CAN 斷言而非 PROXI —— 判準若寫成「同行有 `=`」，此行會誤報
+    # （pm_73 之殘餘 5 處，GC-14 實測）。
+    ("can_assert_with_proxi_prose",
+     "3. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the "
+     "PROXI Switch_Off_Time value has elapsed"),
+    ("quoted_param", '2. The PROXI parameter "Switch_Off_Time" is at 20 minutes'),
+    ("two_proxi_prose",
+     "1. Apply the configuration: PROXI Car_Shape_Configuration and PROXI "
+     "Number_of_Doors"),
+]
+
+
+@pytest.mark.parametrize("name,line", PROXI_PROSE_SAMPLES,
+                         ids=[n for n, _ in PROXI_PROSE_SAMPLES])
+def test_proxi_prose_mention_is_not_flagged(name, line) -> None:
+    assert not [v for v in lint036.check_proxi_line(line, "proc", 10, "T")
+                if v.check == "P"]
+
+
+def test_proxi_assignment_shape_off_both_forms_is_flagged() -> None:
+    """賦值形態（同行有 `=`／`is set to`）而 SWC 式與 VF230 式皆不中者仍須報。"""
+    assert [v for v in lint036.check_proxi_line('2. PROXI Foo == "x"', "proc", 10, "T")
+            if v.check == "P"]
+
+
+def test_proxi_double_equals_is_not_the_standard_form() -> None:
+    """`==` 非標準式 —— 原式會把首個 `=` 讀成賦值而誤判合規（GC-14 實測）。"""
+    assert not lint036.RE_P_PROXI.search('PROXI Foo == "x"')
+    assert lint036.RE_P_PROXI.search("PROXI Vehicle_Line_Configuration = 124 (DT)")
+
+
+def test_proxi_standard_and_legacy_forms_keep_their_verdicts() -> None:
+    """對照：標準式無違規；舊式記 Y（WARN）不記 P。"""
+    std = lint036.check_proxi_line("2. PROXI Vehicle_Line_Configuration = 124 (DT)",
+                                   "proc", 10, "T")
+    old = lint036.check_proxi_line('2. PROXI $Rear_View_Camera$ is set to "Present"',
+                                   "proc", 10, "T")
+    assert std == []
+    assert [v.check for v in old] == ["Y"]

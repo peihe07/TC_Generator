@@ -124,9 +124,23 @@ RE_P_V3_DOLLAR = re.compile(
 # PROXI 行（R-G70 v4.1，Pei 裁定 2026-09-05：**SWC 式為標準**）
 # 標準：`PROXI <Param> = <值>`（不加 `$`）。舊式：`PROXI $<Param>$ is set to "<值>"`（VF230）。
 # 舊式**不 FAIL**，記於 Y（WARN 只報不改）；兩式皆不中之 PROXI 行記 P。
-RE_P_PROXI = re.compile(r"\bPROXI\s+([A-Za-z][A-Za-z0-9_]*)\s*=")
+# `(?!=)`：`==` 非標準式 —— 原式會把 `PROXI Foo == "x"` 之首個 `=` 讀成賦值
+# 而判為合規（GC-14 實測；GC-13 審閱所指定之正控樣本正踩此鬆脫）。
+RE_P_PROXI = re.compile(r"\bPROXI\s+([A-Za-z][A-Za-z0-9_]*)\s*=(?!=)")
 RE_P_PROXI_LEGACY = re.compile(r"\bPROXI\s+\$[^$]+\$\s+is\s+set\s+to\b")
 RE_P_PROXI_ANY = re.compile(r"\bPROXI\b")
+# R-G70(i)（GC-13 審閱 一 之 1）：fallback 只在該行為**賦值形態**時報。
+# 純散文提及（`Hold for the PROXI Switch_Off_Time value`／
+# `The Rear_View_Camera PROXI parameter reads "Present"`）不是 PROXI 行，
+# 對其報 P（FAIL 類）會擋出貨閘 —— pm_73 之 19 處誤報即此（GC-13 上繳 3 節）。
+#
+# ⚠ 判準為「**緊接 `PROXI` 之參數後**有 `=`／`==`／`is set to`」，
+# **不是「同行有」** —— 審閱原文之「同行」過寬：
+# `STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI
+#  Switch_Off_Time value has elapsed` 之 `=` 屬 CAN 斷言而非 PROXI，
+# 以「同行」為準會留下 5 處誤報（GC-14 實測；見上繳 1-3 節）。
+RE_P_PROXI_ASSIGN_SHAPE = re.compile(
+    r"\bPROXI\s+\$?[A-Za-z][A-Za-z0-9_]*\$?\s*(?:==|=|is\s+set\s+to\b)")
 # --- profile 專屬（未指定 --profile 時全部不啟用）-----------------------------
 # R-1 v3 之判準（`RE_P3_DOLLAR_ASSIGN`／`RE_P3_BARE_ASSIGN`／`RE_P3_SEND_CAN`／
 # `RE_P3_PROXI_DOLLAR`）**已隨 v3 撤銷而移除**（R-G70，GC-08）。
@@ -687,7 +701,9 @@ def check_proxi_line(line: str, field: str, row_no: int, tc_id: str
 
     標準式 `PROXI <Param> = <值>`（SWC）→ 無違規。
     舊式 `PROXI $<Param>$ is set to "<值>"`（VF230 152 列）→ 記 **Y（WARN，不 FAIL）**。
-    兩式皆不中而含 `PROXI` 者 → 記 **P**（形態不明，須人看）。
+    兩式皆不中而含 `PROXI` **且該行為賦值形態**者 → 記 **P**（形態不明，須人看）。
+    **純散文提及不報**（R-G70(i)，GC-13 審閱）—— 賦值形態之判準為同行有
+    `=` 或 `is set to`。
 
     v4.0 之方向相反（VF230 為標準），已由 Pei 裁定更正；成因見
     `up/20260905_GC-09_notice.md` 與台帳 R-G70 之 v4.1 註。
@@ -702,6 +718,9 @@ def check_proxi_line(line: str, field: str, row_no: int, tc_id: str
             "Y", row_no, tc_id, field,
             "PROXI 舊式 `$Param$ is set to`（R-G70 v4.1：新產出採 `PROXI <Param> = <值>`）",
             line.strip()[:80]))
+        return out
+    # R-G70(i)：非賦值形態者為散文提及，不報。
+    if not RE_P_PROXI_ASSIGN_SHAPE.search(line):
         return out
     out.append(Violation(
         "P", row_no, tc_id, field,

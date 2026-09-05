@@ -27,7 +27,7 @@
 | L | test_item 上半過長 (>50 tokens) | 72 | 72 | 每列 | 已校準（閾值待 R-3） |
 | M | 空欄三態 | 0 | 0 | 每列每欄 | 已校準 |
 | N | 行尾多餘句號 | 0 | 0 | 每行 | 已校準 |
-| P | 訊號寫法不合 R-1 v2 | 254 | 142 | 每次命中 | 已校準（SWC 0708：195 —— proc 11／er 184，見上繳 09） |
+| P | 訊號寫法不合 R-1 v2 | 235 | 135 | 每次命中 | 已校準（SWC 0708：195 —— proc 11／er 184，見上繳 09） |
 | Q | 不可見字元（NBSP／全形空格／行尾空白） | 186 | 175 | 每行每欄 | 未校準（R-10(a)，21 包新增） |
 | R | Pre-Condition 版面（未編號行／多條件並列） | 30 | 28 | 每行 | 未校準（R-9(a)，21 包新增） |
 | T | PENDING 說明非英文 | 111 | 68 | 每次命中 | 未校準（R-14，21 包新增） |
@@ -38,7 +38,7 @@
 | X | 導航路徑無固定入口（§5.8／R-G71） | 103 | 84 | 每行 | 未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改** |
 | Y | PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式） | 0 | 0 | 每行 | 未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72 |
 
-**總計：行計 1689**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 1670**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
@@ -418,7 +418,7 @@
 | 286 | NR1L-PowerManagement-215 | test_item | 上半 53 tokens > 50 | The disclaimer and splash screen can be temporarily skipped for incoming/outgoin |
 | 295 | NR1L-PowerManagement-224 | test_item | 上半 59 tokens > 50 | For all screen sizes except 7 inch If $VC_VEH_BRAND$ <> [Maserati] AND $TBM_Pres |
 
-### P — 訊號寫法不合 R-1 v2（行計 254／列計 142）
+### P — 訊號寫法不合 R-1 v2（行計 235／列計 135）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
@@ -544,19 +544,11 @@
 | 89 | NR1L-PowerManagement-099 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
 | 90 | NR1L-PowerManagement-100 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 2. Apply ENTER_TIMED and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ a |
 | 90 | NR1L-PowerManagement-100 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1  |
-| 90 | NR1L-PowerManagement-100 | proc | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 3. Hold for the PROXI Switch_Off_Time value |
-| 90 | NR1L-PowerManagement-100 | er | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 3. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI Swi |
-| 90 | NR1L-PowerManagement-100 | er | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 4. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI Swi |
 | 91 | NR1L-PowerManagement-101 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 2. Apply ENTER_TIMED and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ a |
 | 91 | NR1L-PowerManagement-101 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1  |
-| 91 | NR1L-PowerManagement-101 | proc | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 3. Hold for the PROXI Switch_Off_Time value |
-| 91 | NR1L-PowerManagement-101 | er | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 3. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI Swi |
-| 91 | NR1L-PowerManagement-101 | er | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 4. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI Swi |
 | 92 | NR1L-PowerManagement-102 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
 | 93 | NR1L-PowerManagement-103 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 2. Apply ENTER_TIMED and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ a |
 | 93 | NR1L-PowerManagement-103 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Hold for the PROXI Switch_Off_Time value, then read the signal $STATUS_TELEMA |
-| 93 | NR1L-PowerManagement-103 | proc | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 3. Hold for the PROXI Switch_Off_Time value, then read the signal $STATUS_TELEMA |
-| 93 | NR1L-PowerManagement-103 | er | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 3. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI Swi |
 | 94 | NR1L-PowerManagement-104 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 2. Apply ENTER_TIMED and read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ a |
 | 94 | NR1L-PowerManagement-104 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$BCM_FD_27.Comfort_Enable_Time$' | 3. Hold for the $BCM_FD_27.Comfort_Enable_Time$ (DR-PW26) value, then read the s |
 | 94 | NR1L-PowerManagement-104 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Hold for the $BCM_FD_27.Comfort_Enable_Time$ (DR-PW26) value, then read the s |
@@ -584,18 +576,12 @@
 | 119 | NR1L-PowerManagement-118 | er | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 5. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ after the SNA value is |
 | 120 | NR1L-PowerManagement-119 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2  |
 | 120 | NR1L-PowerManagement-119 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 6. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1  |
-| 120 | NR1L-PowerManagement-119 | proc | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 5. Hold for the PROXI Switch_Off_Time value |
-| 120 | NR1L-PowerManagement-119 | er | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 5. The PROXI Switch_Off_Time value elapses |
 | 121 | NR1L-PowerManagement-120 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2  |
 | 121 | NR1L-PowerManagement-120 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 6. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1  |
-| 121 | NR1L-PowerManagement-120 | proc | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 5. Hold for the PROXI Switch_Off_Time value |
-| 121 | NR1L-PowerManagement-120 | er | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 5. The PROXI Switch_Off_Time value elapses |
 | 124 | NR1L-PowerManagement-123 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1  |
 | 126 | NR1L-PowerManagement-125 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 2. PENDING: DR-PW26 Sleep 態之觀察方法（CAN 睡眠後無法以 CAN 讀 $STATUS_TELEMATIC.PowerSts_Tel |
 | 134 | NR1L-PowerManagement-133 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
 | 135 | NR1L-PowerManagement-134 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
-| 136 | NR1L-PowerManagement-135 | pre | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 2. The Rear_View_Camera PROXI parameter reads "Present" |
-| 137 | NR1L-PowerManagement-136 | pre | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 2. The Rear_View_Camera PROXI parameter reads "Present" |
 | 138 | NR1L-PowerManagement-137 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
 | 139 | NR1L-PowerManagement-138 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
 | 140 | NR1L-PowerManagement-139 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
@@ -606,9 +592,6 @@
 | 146 | NR1L-PowerManagement-145 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
 | 147 | NR1L-PowerManagement-146 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
 | 148 | NR1L-PowerManagement-147 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
-| 157 | NR1L-PowerManagement-017 | pre | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 2. The PROXI parameter "Switch_Off_Time" is at 20 minutes |
-| 158 | NR1L-PowerManagement-018 | pre | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 2. The PROXI parameter "Switch_Off_Time" is at 60 minutes |
-| 159 | NR1L-PowerManagement-019 | pre | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 2. The PROXI parameter "Switch_Off_Time" is at 180 minutes |
 | 161 | NR1L-PowerManagement-157 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
 | 170 | NR1L-PowerManagement-027 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 7. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 2  |
 | 173 | NR1L-PowerManagement-030 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th |
@@ -657,8 +640,6 @@
 | 205 | NR1L-PowerManagement-285 | er | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$BCM_FD_27.Comfort_Enable_Act$' | 4. The signal value $BCM_FD_27.Comfort_Enable_Act$ = 0 is received |
 | 212 | NR1L-PowerManagement-231 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$RADIO_B4.Radio_Theme$' | 2. Read the signal $RADIO_B4.Radio_Theme$ and check its value |
 | 213 | NR1L-PowerManagement-232 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$RADIO_B4.Radio_Theme$' | 2. Read the signal $RADIO_B4.Radio_Theme$ and check its value |
-| 223 | NR1L-PowerManagement-242 | proc | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 1. Apply the configuration: PROXI Car_Shape_Configuration and PROXI Number_of_Do |
-| 225 | NR1L-PowerManagement-244 | proc | PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式 | 1. Send the configuration VC_VEH_LINE with the $Car_Shape_Configuration$ and $Nu |
 | 227 | NR1L-PowerManagement-246 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$RADIO_B4.Radio_Theme$' | 2. Read the signal $RADIO_B4.Radio_Theme$ and check its value |
 | 228 | NR1L-PowerManagement-247 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$RADIO_B4.Radio_Theme$' | 2. Read the signal $RADIO_B4.Radio_Theme$ and check its value |
 | 243 | NR1L-PowerManagement-179 | proc | v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$' | 3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 4  |

@@ -670,6 +670,14 @@ explicitly states.
     （括號下半亦為作者生成內容）。`test_item` **上半** verbatim 之
     `$MESSAGE.Signal$` 為**來源側**記法，依 (b) 保留，不受本項規制。
 
+(i) **PROXI 之 lint fallback 只在賦值形態時報（GC-13 審閱 一 之 1，Pei 2026-09-05）**：
+    含 `PROXI` 而 (e) 之標準式與 VF230 舊式皆不中者，
+    **僅在該行為賦值形態時**記 P；純散文提及不報。
+    ⚠ 賦值形態之判準為「**緊接 `PROXI` 之參數後**有 `=`／`==`／`is set to`」——
+    **不是「同行有」**：`… = 1 (Standby) is sent after the PROXI Switch_Off_Time
+    value has elapsed` 之 `=` 屬 CAN 斷言而非 PROXI（GC-14 實測，5 處）。
+    `Y`（舊式 WARN）不受本項影響。
+
 訊號名以 DBC 為準（R-17）；來源文件與 DBC 大小寫不一致時，步驟採 DBC 寫法，
 verbatim 上半仍保留來源原文（R-6）。**(g) 為此之例外** —— DBC 全無該名時，
 無「以 DBC 為準」可言，取原文。

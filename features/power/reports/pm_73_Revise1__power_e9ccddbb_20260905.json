@@ -17,7 +17,7 @@
     "L": 72,
     "M": 0,
     "N": 0,
-    "P": 254,
+    "P": 235,
     "Q": 186,
     "R": 30,
     "T": 111,
@@ -44,7 +44,7 @@
     "L": 72,
     "M": 0,
     "N": 0,
-    "P": 142,
+    "P": 135,
     "Q": 175,
     "R": 28,
     "T": 68,
@@ -3781,30 +3781,6 @@
         },
         {
           "check": "P",
-          "row": 90,
-          "tc_id": "NR1L-PowerManagement-100",
-          "field": "proc",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "3. Hold for the PROXI Switch_Off_Time value"
-        },
-        {
-          "check": "P",
-          "row": 90,
-          "tc_id": "NR1L-PowerManagement-100",
-          "field": "er",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "3. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI Swi"
-        },
-        {
-          "check": "P",
-          "row": 90,
-          "tc_id": "NR1L-PowerManagement-100",
-          "field": "er",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "4. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI Swi"
-        },
-        {
-          "check": "P",
           "row": 91,
           "tc_id": "NR1L-PowerManagement-101",
           "field": "proc",
@@ -3818,30 +3794,6 @@
           "field": "proc",
           "detail": "v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$'",
           "snippet": "4. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 "
-        },
-        {
-          "check": "P",
-          "row": 91,
-          "tc_id": "NR1L-PowerManagement-101",
-          "field": "proc",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "3. Hold for the PROXI Switch_Off_Time value"
-        },
-        {
-          "check": "P",
-          "row": 91,
-          "tc_id": "NR1L-PowerManagement-101",
-          "field": "er",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "3. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI Swi"
-        },
-        {
-          "check": "P",
-          "row": 91,
-          "tc_id": "NR1L-PowerManagement-101",
-          "field": "er",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "4. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI Swi"
         },
         {
           "check": "P",
@@ -3866,22 +3818,6 @@
           "field": "proc",
           "detail": "v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$'",
           "snippet": "3. Hold for the PROXI Switch_Off_Time value, then read the signal $STATUS_TELEMA"
-        },
-        {
-          "check": "P",
-          "row": 93,
-          "tc_id": "NR1L-PowerManagement-103",
-          "field": "proc",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "3. Hold for the PROXI Switch_Off_Time value, then read the signal $STATUS_TELEMA"
-        },
-        {
-          "check": "P",
-          "row": 93,
-          "tc_id": "NR1L-PowerManagement-103",
-          "field": "er",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "3. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent after the PROXI Swi"
         },
         {
           "check": "P",
@@ -4101,22 +4037,6 @@
         },
         {
           "check": "P",
-          "row": 120,
-          "tc_id": "NR1L-PowerManagement-119",
-          "field": "proc",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "5. Hold for the PROXI Switch_Off_Time value"
-        },
-        {
-          "check": "P",
-          "row": 120,
-          "tc_id": "NR1L-PowerManagement-119",
-          "field": "er",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "5. The PROXI Switch_Off_Time value elapses"
-        },
-        {
-          "check": "P",
           "row": 121,
           "tc_id": "NR1L-PowerManagement-120",
           "field": "proc",
@@ -4130,22 +4050,6 @@
           "field": "proc",
           "detail": "v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$'",
           "snippet": "6. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is 1 "
-        },
-        {
-          "check": "P",
-          "row": 121,
-          "tc_id": "NR1L-PowerManagement-120",
-          "field": "proc",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "5. Hold for the PROXI Switch_Off_Time value"
-        },
-        {
-          "check": "P",
-          "row": 121,
-          "tc_id": "NR1L-PowerManagement-120",
-          "field": "er",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "5. The PROXI Switch_Off_Time value elapses"
         },
         {
           "check": "P",
@@ -4178,22 +4082,6 @@
           "field": "proc",
           "detail": "v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$'",
           "snippet": "3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th"
-        },
-        {
-          "check": "P",
-          "row": 136,
-          "tc_id": "NR1L-PowerManagement-135",
-          "field": "pre",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "2. The Rear_View_Camera PROXI parameter reads \"Present\""
-        },
-        {
-          "check": "P",
-          "row": 137,
-          "tc_id": "NR1L-PowerManagement-136",
-          "field": "pre",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "2. The Rear_View_Camera PROXI parameter reads \"Present\""
         },
         {
           "check": "P",
@@ -4274,30 +4162,6 @@
           "field": "proc",
           "detail": "v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$STATUS_TELEMATIC.PowerSts_Telematic$'",
           "snippet": "3. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and check that it is th"
-        },
-        {
-          "check": "P",
-          "row": 157,
-          "tc_id": "NR1L-PowerManagement-017",
-          "field": "pre",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "2. The PROXI parameter \"Switch_Off_Time\" is at 20 minutes"
-        },
-        {
-          "check": "P",
-          "row": 158,
-          "tc_id": "NR1L-PowerManagement-018",
-          "field": "pre",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "2. The PROXI parameter \"Switch_Off_Time\" is at 60 minutes"
-        },
-        {
-          "check": "P",
-          "row": 159,
-          "tc_id": "NR1L-PowerManagement-019",
-          "field": "pre",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "2. The PROXI parameter \"Switch_Off_Time\" is at 180 minutes"
         },
         {
           "check": "P",
@@ -4682,22 +4546,6 @@
           "field": "proc",
           "detail": "v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）'$RADIO_B4.Radio_Theme$'",
           "snippet": "2. Read the signal $RADIO_B4.Radio_Theme$ and check its value"
-        },
-        {
-          "check": "P",
-          "row": 223,
-          "tc_id": "NR1L-PowerManagement-242",
-          "field": "proc",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "1. Apply the configuration: PROXI Car_Shape_Configuration and PROXI Number_of_Do"
-        },
-        {
-          "check": "P",
-          "row": 225,
-          "tc_id": "NR1L-PowerManagement-244",
-          "field": "proc",
-          "detail": "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
-          "snippet": "1. Send the configuration VC_VEH_LINE with the $Car_Shape_Configuration$ and $Nu"
         },
         {
           "check": "P",

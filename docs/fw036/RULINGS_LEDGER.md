@@ -1822,6 +1822,11 @@ R-G36 補充 [DEFAULT]：機器抽取入台帳後，執行層須逐條回讀所�
     Revise-C 必須清零，WARN 類無法作為出貨閘。
     範圍同 R-6 之 P 範圍：作者側四欄 ＋ test_item 括號下半；
     test_item 上半 verbatim 之同式為來源側記法，依 (b) 保留。
+(i) **PROXI fallback 只在賦值形態時報（GC-13 審閱 一 之 1 增，Pei 2026-09-05）**：
+    lint P 之 PROXI fallback 只在該行為賦值形態時報 —— 含 `PROXI` 且
+    緊接其參數後有 `=`／`==`／`is set to` 而 SWC 式／VF230 式皆不中者。
+    純散文提及（`Hold for the PROXI … value`、`PROXI parameter reads …`）不報。
+    Y 不受影響。
 沿革：R-1 v3 撤銷（R-TM13 加註保留）。撤銷理由：v3 依庫外 CR30580/30581 參考本立，
   該本查無不可複驗；三本 Pei 交付本作者側欄位 v3 式 0 次、v2 式 236 次；
   VF230 test_item 欄 81 處 v3 式證明 v3 為來源側記法，12 包誤讀為作者側。
@@ -1882,6 +1887,11 @@ vehicle_setting profile 之 `[OVERRIDE §8.7.5]`（R-VS52／R-VS67）：內容�
     Revise-C（內容批）：X-nav 與 bare-$MSG.Sig$ 之解，逐 TC 查 HMI／CFTS／DBC 後出；
       查無者 PENDING 登 DR。sw_update 之回修全在此批。
     兩批各附 idmap；Revise-C 之 idmap 以 Revise-M 之 new_tc_id 為 old。
+(h) **Revise-M 出貨條件（GC-13 審閱 一 之 2 增，Pei 2026-09-05；修 GC-12 審閱 一 末句）**：
+    `P_after` 之每一命中皆可歸入 {bare-$（待 Revise-C）, 已登錄之 Revise-C 殘項}
+    二類之一，**且無誤報**。「全為 bare 類」過嚴 —— Revise-M 本就不解 Revise-C 項。
+    殘項清單落 `features/<f>/reports/rg72_residual_<slug>_<date>.tsv`
+    （row / col / text / class / 去向），隨 Revise1 一併入 MANIFEST note。
 
 > **「R-TM14」之名作廢（GC-10 §二-3，Pei 2026-09-05）**：GC-07 審閱 A 版曾以
 > `R-TM14` 稱本回修形態條。`R-TM` 為 `time_management` 線之條號系列前綴，
