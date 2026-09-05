@@ -263,7 +263,6 @@ features/time_management/docs/upstream/01_recon.md	section	§0	57d18ea3	248	hist
 features/time_management/docs/upstream/04Z-A5_corrections.md	section	§3.2	0f786cc3	75	historical-record
 features/time_management/docs/upstream/05Z_corrections.md	section	§2.3	f8dc8398	201	historical-record
 features/time_management/feature.yaml	section	§3	40e5a546	15	active-backlog
-features/time_management/feature.yaml	section	§2	75d0e174	51	active-backlog
 features/time_management/scripts/write_back.py	section	§2	e49aabe9	31	active-backlog
 features/time_management/scripts/write_back.py	section	§2	d3a876f0	255	active-backlog
 features/user_profiles/ANOMALIES.md	section	§0	32650936	83	active-backlog
