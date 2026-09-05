@@ -47,6 +47,29 @@ DOCS_CHECKS = {
     "ledger_location": "落檔位置欄不得以「同上」串接指涉（A-PM17）",
     "ledger_series": "台帳系列前綴之一致",
     "table_row": "markdown 表格列之欄數一致",
+    # R-G68（原 R-G29）之閘。本列原為**人手寫入** `GATES.tsv`，產生器不知其存在，
+    # 於是任何一次重生都會把它除名 —— GC-06 §三-1 量到，GC-06 審閱 §一-1 裁「補此處再重生」。
+    # 補入後其欄值以原人手列為準（見 DOCS_GATE_OVERRIDES），使重生之列與人手列逐欄相同。
+    "body_kind": "ruling 之節內須有至少一個 fenced block（`body_kind == section` 即缺陷）",
+}
+
+# `docs_gate_rows()` 對七鍵給的是同一組通用欄值；`body_kind` 之人手列不是通用值
+# （它有來源裁決、生效日、未校準狀態與命中數），故以本表逐欄覆寫。
+# **欄值逐字取自 `GATES.tsv` 之原人手列**（GC-08 §一-1 實測），不另行改寫 ——
+# 其中 `source_ruling` 仍書舊號 `R-G29`：R-G43 改號只及於「在效檔」，
+# `docs/runtime/GATES.tsv` 不在該範圍內，故此處保留原字並具名（GC-08 上繳 §2-3）。
+DOCS_GATE_OVERRIDES = {
+    "body_kind": {
+        "source_ruling": "R-G29 [DEFAULT]",
+        "effective_date": "2026-08-30",
+        "granularity": "每條",
+        "status": "**未校準（存量清完前只計數不判紅）**",
+        "scope": "always",
+        "selfcheck_items": "0",
+        "hit_rounds": "0",
+        "hits_total": "48",
+        "hits_recent": "48",
+    },
 }
 # 來源裁決：`CHECK_STATUS` 之括號內載其判準來源（`R-6b`／`A-PM16`／`M15` …）
 # 尾端用負向前瞻而非 `\b`：`R-10(a)` 之末字元為 `)`，其後接全形逗號時
@@ -117,16 +140,21 @@ def delivery_gate_rows() -> list[dict]:
 
 def docs_gate_rows() -> list[dict]:
     """`lint_docs036.py` 之檢查項。"""
-    return [{
-        "gate_id": k, "owner": "lint_docs036", "criterion": v,
-        "source_ruling": "A-PM17" if k == "ledger_location" else "未載明",
-        "effective_date": "未載明", "granularity": "每次命中",
-        "status": "現為 PASS（26 包 §C 裁定 2 起接入 gate_all）",
-        "scope": "governance", "selfcheck_items": "不適用（治理文件，非 TC）",
-        "hit_rounds": "0", "hits_total": "未知",
-        "hits_recent": "未知，自本輪起算",
-        "retire_candidate": "N", "retired": "N",
-    } for k, v in DOCS_CHECKS.items()]
+    out = []
+    for k, v in DOCS_CHECKS.items():
+        row = {
+            "gate_id": k, "owner": "lint_docs036", "criterion": v,
+            "source_ruling": "A-PM17" if k == "ledger_location" else "未載明",
+            "effective_date": "未載明", "granularity": "每次命中",
+            "status": "現為 PASS（26 包 §C 裁定 2 起接入 gate_all）",
+            "scope": "governance", "selfcheck_items": "不適用（治理文件，非 TC）",
+            "hit_rounds": "0", "hits_total": "未知",
+            "hits_recent": "未知，自本輪起算",
+            "retire_candidate": "N", "retired": "N",
+        }
+        row.update(DOCS_GATE_OVERRIDES.get(k, {}))
+        out.append(row)
+    return out
 
 
 def selfcheck_index(root: Path) -> dict:

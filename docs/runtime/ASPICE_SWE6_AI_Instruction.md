@@ -591,49 +591,67 @@ A visual state (greyed-out, dimmed) does NOT imply non-operability; the ER must
 not assert operability that contradicts the spec. Follow the behavior the spec
 explicitly states.
 
-#### 8.7.5 訊號與參數寫法（R-1 v3）
+#### 8.7.5 訊號與參數寫法（R-1 v4 —— 來源層級與作者側記法，R-G70）
 > **來源分線**：本節只管**訊號與參數**之寫法。**畫面之入口、層級、選項標籤**
 > 之唯一來源為 HMI Logic and Flow／HMI Settings List，條文見 **§5.8（R-G71）**；
 > DBC／PROXI 不得作為畫面標籤來源，本節亦不得作為導航路徑之依據。
-> ⚠ 訊號側之**來源層級**條文（CFTS／VF＋PROXI／DBC 之分工）擬立於 R-G70，
-> 依 `docs/fw036/handoff/down/20260905_GC-07.md` §二 **待 Pei 裁**，本節本體未動。
-**適用範圍**：全域預設；feature profile 之 cited `[OVERRIDE §8.7.5]` 勝出（FO §0）—— 現有 override：`vehicle_setting`（R-VS52／R-VS67，依 SWC 0708 交付本風格，不適用本節）。
-基準：CR30580/30581 參考本（TestResult 分頁）＋ SWC 0708 交付本。
-條文全文落檔於本節，台帳見 `docs/fw036/RULINGS_LEDGER.md`。
-**v1 之三件組 `<Signal> in <MESSAGE> on <segment>` 與 v2 之
-`Send CAN:` 前綴式皆已撤銷**，撤銷理由見本節末之沿革。
 
-(a) 訊號一律以 `$<MESSAGE>.<Signal>$` 全名書寫，`$` 包覆全名；
-    值採 `= <raw> (<label>)`，`<label>` 逐字取自 DBC `VAL_` 列舉（R-7）。
+**適用範圍**：全域預設。`vehicle_setting` 之 `[OVERRIDE §8.7.5]`（R-VS52／R-VS67）
+**已作廢** —— 其內容即作者側記法，v4 回歸後併入本體，不再需要 override（R-G70）。
+**基準**：Pei 交付語料 —— SWC 0628（`7dd8f1737c20`，145 列）／VF230 0819
+（`adee5dc462ae`，457 列）／Home 0809（`1895fb2a2b44`，216 列），作者側四欄。
+條文全文落檔於本節，台帳見 `docs/fw036/RULINGS_LEDGER.md` 之 `R-G70`。
+**v1 之三件組 `<Signal> in <MESSAGE> on <segment>` 與 v3 之
+`$MESSAGE.Signal$`／`Send the signal` 式皆已撤銷**，撤銷理由見本節末之沿革。
 
-        Procedure 送出：
-          `Send the signal $MESSAGE.Signal$ = <raw> (<label>)`
-          例：`1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)`
-        Procedure 由 HMI 觸發：
-          `Select <項目> = <值> to trigger $Signal$ signal transmission`
-        Expected Result 觀察：
-          `The signal value $MESSAGE.Signal$ = <raw> (<label>) is received`
-        Expected Result 送出之確認：
-          `The signal $MESSAGE.Signal$ = <raw> (<label>) is registered without a bus error`
+(a) **來源層級**：需求主體 = **CFTS**；訊號名／raw 值／`VAL_` label =
+    **VF 文件（SWRA）** ＋ `forms/` 之 PROXI 表與 **DBC**（R-17、R-13 不變）；
+    畫面之入口／層級／選項標籤 = **HMI Logic and Flow ＋ HMI Settings List**（R-G71）。
+    三者不得代位：CFTS 原句不得當訊號值來源，DBC 不得當畫面標籤來源。
 
-(b) Procedure 之觀察步驟須寫出應觀察之值（R-11(b)）：
-    `Read the signal $MESSAGE.Signal$ and check that it is <raw> (<label>)`
+(b) **兩側記法各安其位** —— 這不是取捨，是分工：
 
-(c) PROXI 參數：`PROXI <Param> = <值>`，前綴 `PROXI` 必寫，**不加 `$`**。
+    | 側 | 欄位 | 記法 |
+    |---|---|---|
+    | 來源側 | `test_item` 上半 verbatim、`reasoning` 引文 | **保留來源原文**，含 `$MESSAGE.Signal$` |
+    | 作者側 | `pre_conditions` / `input_test_data` / `test_procedure` / `expected_result` | 一律 (c)–(f) |
+
+    實測依據：VF230 之 `$MESSAGE.Signal$` 81 處**全數落在 `test_item` 欄**
+    （作者側四欄 0 處）；三本交付本作者側之 v2 式 236 次。
+
+(c) **CAN 送出**：`Send CAN: <MESSAGE>.<Signal> = <raw> (<label>)`，**不加 `$`**；
+    `<label>` 逐字取自 DBC `VAL_` 列舉（R-7）。
+    例：`1. Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)`
+
+(d) **CAN 觀察**：
+    Expected Result：`<MESSAGE>.<Signal> = <raw> (<label>) is sent <時機>`
+    （收尾語不設限 —— SWC 語料有 `is sent`／`is set`／`during …`／`then …` 等多式）。
+    Procedure 讀取須寫出應觀察之值（R-11(b)）：
+    `Read <MESSAGE>.<Signal> and check that it is <raw> (<label>)`
+
+(e) **PROXI 參數**（**v4.1，Pei 裁定 2026-09-05**）：`PROXI <Param> = <值>`。
     例：`2. PROXI Vehicle_Line_Configuration = 124 (DT)`
-    `$` 是訊號之標記，不是 PROXI 之標記。
+    VF230 交付本之 `PROXI $<Param>$ is set to "<值>"`（加 `$`）為**同義舊式，新產出不用**；
+    既有本不回修（R-TM13），回修依 R-G72 發 Revise 本。
+    lint P 對舊式報 **WARN**（不 FAIL）。
 
-(d) 內部訊號（`X.Info` / `X.Req` / `X.GUI`）：**優先**依對照表轉為可觀察之
-    CAN 訊號並套 (a)；**DBC 查無對應者保留來源名稱，不加 `$`**，
-    並依 (b) 於 Procedure 寫出應設定或應觀察之值。
+    > **v4.0 → v4.1 之更正**：本項原以 VF230 式為標準，與 Pei 之裁定相反 ——
+    > 原文依 R-TM13 保留於下方沿革節之 v4.0 段；成因見台帳 R-G70 之 v4.1 註
+    > 與 `up/20260905_GC-09_notice.md`。
+
+(f) **設定／VHAL／內部參數**：以 `$<Name>$` 書寫，`$` 為參數標記
+    （SWC 交付本實測 215 次，全數為設定／參數包覆，無一為 `$MESSAGE.Signal$` 式）。
+    內部訊號（`X.Info` / `X.Req` / `X.GUI`）**優先**依對照表轉為可觀察之
+    CAN 訊號並套 (c)(d)；**DBC 查無對應者保留來源名稱，不加 `$`**，
+    並依 (d) 於 Procedure 寫出應設定或應觀察之值。
     例：`1. Drive Front_Panel_OnOff.Req from Not_Pressed to Pressed`
     理由：強令改寫為「HMI 現象」將失去對規格之逐條追溯性，
     且該現象本身常無來源明載，反致造值（§8.4.1）。
 
-(e) 保持／等待步驟：`Hold for <n> ms` 獨立成一步驟，
+    保持／等待步驟：`Hold for <n> ms` 獨立成一步驟，
     ER 對應 `The signal is held for <n> ms`。
 
-(f) baseline 記錄：`Read <對象> and record as <Name>_initial` →
+    baseline 記錄：`Read <對象> and record as <Name>_initial` →
     `Read <對象> … and record as <Name>_after` →
     `Check that <Name>_after <關係> <Name>_initial`。
     ER 對應 `<Name>_initial is recorded`。
@@ -643,11 +661,30 @@ explicitly states.
     DBC 對應缺漏登記 DR 向上游查詢。
     理由：以他訊號代入將改變 TC 之驗證對象與因果結構。
 
-訊號名以 DBC 為準；來源文件與 DBC 大小寫不一致時，步驟採 DBC 寫法，
+訊號名以 DBC 為準（R-17）；來源文件與 DBC 大小寫不一致時，步驟採 DBC 寫法，
 verbatim 上半仍保留來源原文（R-6）。**(g) 為此之例外** —— DBC 全無該名時，
 無「以 DBC 為準」可言，取原文。
 
 ##### 沿革（R-TM13：不刪除，加註保留）
+
+~~**v3(a)** 訊號一律以 `$<MESSAGE>.<Signal>$` 全名書寫，`$` 包覆全名，
+Procedure 送出採 `Send the signal $MESSAGE.Signal$ = <raw> (<label>)`；
+**v3(b)** Procedure 觀察採 `Read the signal $MESSAGE.Signal$ and check that it is …`；
+**v3(c)** PROXI 採 `PROXI <Param> = <值>`，不加 `$`；
+**v3(d)** 內部訊號優先轉 CAN 訊號，DBC 查無者保留來源名不加 `$`。~~
+
+> **撤銷（2026-09-05，GC-07 §二 ＋ GC-07 審閱 §三，Pei 擇甲）**：三項理由 ——
+>
+> 1. v3 之依據 **CR30580/30581 參考本**於全庫 `**/*CR3058*` 搜尋 **查無**
+>    （R-G13：查無不等於不存在，但**不可複驗**）。
+> 2. 三本 Pei 交付本之**作者側四欄**（`pre_conditions`／`input_test_data`／
+>    `test_procedure`／`expected_result`）v3 式出現 **0 次**、v2 式 **236 次**
+>    （SWC 145 列 ＋ VF230 457 列 ＋ Home 216 列，共 818 資料列）。
+> 3. VF230 之 `$MESSAGE.Signal$` **81 處全數落在 `test_item` 欄**（需求原句
+>    verbatim 上半）—— 即 **v3 是來源側記法**，下放包 12 誤讀為作者側記法。
+>
+> 二者不是同層之兩個候選，故 v4(b) 以「兩側記法各安其位」取代取捨。
+> **v3(d) 之內容不變**，即現行 (f) 之內部訊號段。
 
 ~~**v2(a)** CAN 訊號 Procedure 採 `Send CAN: <MESSAGE>.<Signal> = <raw> (<label>)`，
 不加 `$`；**v2(b)** ER 採 `<MESSAGE>.<Signal> = <raw> (<label>) is sent <時機>`；
@@ -665,13 +702,17 @@ verbatim 上半仍保留來源原文（R-6）。**(g) 為此之例外** —— D
 > 改寫為「HMI 現象」反失追溯性且易致造值。
 > **原「不得留來源名」之表述作廢**，改為現行 (d)。
 >
+> **v2 之部分回歸（2026-09-05，R-G70）**：v4(c)(d) 即 v2(a)(b)，v4(e) 之
+> `PROXI $<Param>$ is set to "<值>"` 亦與 v2(c) 之加 `$` 指派同向。
+> **v2 之刪除線依 R-TM13 不撤** —— 撤銷紀錄本身是沿革之一部分；
+> 現行條文以 v4 本體為準，此處只記「v3 之撤銷使 v2 之判斷復位」。
+
 > **(g) 之增立（2026-08-21，下放包 19）**：`PowerModeSts_Telematic` 一案 ——
 > 分析層僅查 DBC 未查 CFTS 原文，即斷該名為兩個 DBC 訊號之混合並代入其一，
 > 致觸發訊號被觀察訊號取代、因果驗證塌縮。R-13 為其防再犯之條文。
 
-> ⚠ **lint 之檢查 P 目前仍以 v2 判準實作**（`Send CAN:` 前綴）。
-> 其改寫以 `--profile <feature>` 為之（下放包 17 §四），
-> 未指定 profile 時維持現行行為，以保既有八本之報告基線不變。
+> **lint 檢查 P**：判準即 v4 之 `Send CAN:` 式，**全域預設**。
+> 下放包 17 §四所加之 `--profile` v3 分支已隨 v3 撤銷而移除（R-G70）。
 
 ## 9. Self-Check (before emitting each TC)
 1. Test Set: noun phrase, capability-level, matches `framework.md`, no Test Group prefix, consistent spelling, no `Unclassified` / `Misc` (§4.1, §4.2)

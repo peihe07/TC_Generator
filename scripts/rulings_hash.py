@@ -21,17 +21,14 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+# 本檔於測試中以檔案路徑載入，`scripts/` 未必在 sys.path，故先補上再 import。
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from ruling_anchor import RE_ANCHOR
+
 # 錨點：`### R-XX <slug>`；階數 2~4 皆收，以 `#` 數記其級。
-# 子條之三種書寫（`R-VS57 之 (4)`／`R-VS57(4)`／`R-VS7(a)′`）一律收進 id，
-# 否則子條會與母條同 id 而假性碰撞。
-RE_ANCHOR = re.compile(
-    r"^(?P<hashes>#{2,4})\s*"
-    r"(?P<base>R-[A-Z]{0,3}\d+[A-Za-z]?)"
-    r"(?P<sub>(?:\s*之)?\s*\([0-9a-z]+\))?"
-    r"(?P<prime>[′″‴]*)"
-    r"(?P<qual>\s*(?:之補充|之修訂|之解釋|之更正|但書))?"
-    r"\s*(?P<rest>.*)$"
-)
+# 其正則之**唯一定義**在 `scripts/ruling_anchor.py`（R-G43(d)：解析面與指紋面同源）；
+# `canon_refs.py` import 同一個常數，不得各寫一份。
 RE_HEADING = re.compile(r"^(#{1,6})\s")
 # 非條文段落：條號於此僅為標題重用（執行層回報、落實紀錄），其本體非條文
 RE_NON_RULING = re.compile(r"執行層回報|落實紀錄|實測紀錄|回報摘要")

@@ -20,6 +20,10 @@ R	lint036	Pre-Condition 版面（未編號行／多條件並列）	R-9(a)	未載
 T	lint036	PENDING 說明非英文	R-14	未載明	每次命中	未校準（R-14，21 包新增）	profile-only	無對映	1	0	未知,未知,未知,未知,未知,未知,未知,未知,0	N	N
 U	lint036	PENDING 佔位（四欄全掃，含 ER 側）	A-PM16	未載明	每次命中	計數用（A-PM16：ER 側原不受任何檢查覆蓋）	profile-only	12	1	32	未知,未知,未知,未知,未知,未知,未知,未知,32	N	N
 V	lint036	行首空白（IN §11）	未載明	未載明	每行每欄	未校準（IN §11，27 包新增）	profile-only	無對映	0	未知	未知，自本輪起算	N	N
+I-cross	lint036	跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）	未載明	未載明	每列每配對（一組命中記二列）	警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL	profile-only	無對映	0	未知	未知，自本輪起算	N	N
+W	lint036	ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6）	未載明	未載明	每次命中	**待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述	profile-only	無對映	0	未知	未知，自本輪起算	N	N
+X	lint036	導航路徑無固定入口（§5.8／R-G71）	未載明	未載明	每行	未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改**	profile-only	18	0	未知	未知，自本輪起算	N	N
+Y	lint036	PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式）	未載明	未載明	每行	未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72	profile-only	無對映	0	未知	未知，自本輪起算	N	N
 docs_structure	lint_docs036	治理三簿之結構（章節、表格、必要欄）	未載明	未載明	每次命中	現為 PASS（26 包 §C 裁定 2 起接入 gate_all）	governance	不適用（治理文件，非 TC）	0	未知	未知，自本輪起算	N	N
 ledger_id	lint_docs036	裁決台帳之 id 形態與序列連續性	未載明	未載明	每次命中	現為 PASS（26 包 §C 裁定 2 起接入 gate_all）	governance	不適用（治理文件，非 TC）	0	未知	未知，自本輪起算	N	N
 ledger_status	lint_docs036	台帳狀態值須為 ACTIVE／[DEFAULT]／SUPERSEDED／WITHDRAWN	未載明	未載明	每次命中	現為 PASS（26 包 §C 裁定 2 起接入 gate_all）	governance	不適用（治理文件，非 TC）	0	未知	未知，自本輪起算	N	N
@@ -27,6 +31,7 @@ ledger_text	lint_docs036	台帳條文文字之刪除線與空白	未載明	未�
 ledger_location	lint_docs036	落檔位置欄不得以「同上」串接指涉（A-PM17）	A-PM17	未載明	每次命中	現為 PASS（26 包 §C 裁定 2 起接入 gate_all）	governance	不適用（治理文件，非 TC）	0	未知	未知，自本輪起算	N	N
 ledger_series	lint_docs036	台帳系列前綴之一致	未載明	未載明	每次命中	現為 PASS（26 包 §C 裁定 2 起接入 gate_all）	governance	不適用（治理文件，非 TC）	0	未知	未知，自本輪起算	N	N
 table_row	lint_docs036	markdown 表格列之欄數一致	未載明	未載明	每次命中	現為 PASS（26 包 §C 裁定 2 起接入 gate_all）	governance	不適用（治理文件，非 TC）	0	未知	未知，自本輪起算	N	N
+body_kind	lint_docs036	ruling 之節內須有至少一個 fenced block（`body_kind == section` 即缺陷）	R-G29 [DEFAULT]	2026-08-30	每條	**未校準（存量清完前只計數不判紅）**	always	0	0	48	48	N	N
 delivery_spec	lint_delivery_spec	交付規格表（R-G42 一～七：列序、TC ID、Test Group、固定欄、檔名／MANIFEST、內容物、PENDING）	R-G42	2026-08-30	每檔每項	未校準（基線 docs/fw036/DELIVERY_SPEC_BASELINE.tsv 內之檔只計警示；基線外判紅）	delivered	不適用（交付版面，非 TC）	0	未知	未知，自本輪起算	N	N
 features/amfm/scripts/lint_tcs.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/audio_mgmt/scripts/lint_tcs.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
@@ -41,8 +46,13 @@ features/time_management/scripts/lint_tcs.py	feature	**未拆之閘集合** —�
 features/user_profiles/scripts/lint_tcs.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/audio_mgmt/scripts/selfcheck_b1.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/bed_lowering/scripts/selfcheck_pilot.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
+features/driver_distraction/scripts/selfcheck_pilot_group3.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
+features/driver_distraction/scripts/selfcheck_tcs.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
+features/ics_management/scripts/selfcheck_b01.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/vehicle_setting/scripts/selfcheck_anchored.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/vehicle_setting/scripts/selfcheck_w53.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/vehicle_setting/scripts/vf230_selfcheck_wvf62.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
 features/vehicle_setting/scripts/vf230_wvf68_selfcheck.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
-body_kind	lint_docs036	ruling 之節內須有至少一個 fenced block（`body_kind == section` 即缺陷）	R-G29 [DEFAULT]	2026-08-30	每條	**未校準（存量清完前只計數不判紅）**	always	0	0	48	48	N	N
+features/vehicle_setting/scripts/vs_sl01_selfcheck.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
+features/vehicle_setting/scripts/vs_sl02_selfcheck.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N
+features/vehicle_setting/scripts/vs_sl03_selfcheck.py	feature	**未拆之閘集合** —— 該腳本內各支檢查之 id 尚未逐支盤點	未載明	未載明	未載明	未入簿之前為未登錄	feature	未對映	0	未知	未知，自本輪起算	N	N

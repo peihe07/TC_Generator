@@ -1,0 +1,585 @@
+row	col	old_text	new_text	rule
+10	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+10	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+11	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+11	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+12	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+12	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+13	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+13	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+14	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 5 (Ignition_Pre_Start)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 5 (Ignition_Pre_Start)	send
+14	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+14	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+14	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+15	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 6 (Ignition_Start)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 6 (Ignition_Start)	send
+15	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+15	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+15	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+16	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 7 (Ignition_Cranking)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 7 (Ignition_Cranking)	send
+16	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+16	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+16	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+17	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 8 (Ignition_On_EngOn)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 8 (Ignition_On_EngOn)	send
+17	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+17	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+17	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+21	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+21	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+22	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+22	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+23	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+25	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+25	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+25	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+25	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+26	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+26	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+26	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+26	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+27	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+27	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+27	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+27	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+31	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+31	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+32	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+32	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+33	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+33	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+34	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+34	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+34	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+35	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+35	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+39	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+39	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+40	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+40	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+41	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+41	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+42	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+42	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+43	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+43	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+44	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+44	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+45	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+45	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+46	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+46	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+47	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+47	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+48	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+48	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+49	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+49	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+50	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+50	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+51	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+51	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+52	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+52	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+53	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+53	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received	STATUS_TELEMATIC.PowerSts_Telematic = 6 (Bench) is sent	recv
+54	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+54	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received	STATUS_TELEMATIC.PowerSts_Telematic = 6 (Bench) is sent	recv
+55	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+55	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received	STATUS_TELEMATIC.PowerSts_Telematic = 6 (Bench) is sent	recv
+61	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+61	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+61	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+62	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+62	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+63	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+63	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+64	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+64	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+65	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+65	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+70	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+70	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+71	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+71	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+72	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+72	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+73	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+73	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+74	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+74	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+75	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+75	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+76	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+76	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+81	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+81	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+82	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+82	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+82	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+82	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+83	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+83	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+83	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+83	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+84	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+84	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+84	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+84	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+85	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+85	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+85	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+85	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+86	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+86	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+87	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+87	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+88	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+88	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+89	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+89	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+90	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+90	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+91	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+91	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+93	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+93	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 0 (Remote Start Not Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 0 (Remote Start Not Active)	send
+93	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+95	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+95	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+95	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+95	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+96	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+96	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+96	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+96	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+96	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+97	12	Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open)	Send CAN: STATUS_BH_BCM1.DriverDoorSts = 1 (Open)	send
+97	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+97	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+97	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+98	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+98	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+98	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+98	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+99	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+99	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+99	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+99	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+100	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+100	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+100	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+100	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+101	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+101	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 0 (Remote Start Not Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 0 (Remote Start Not Active)	send
+101	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+102	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+102	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+102	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+103	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	send
+103	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	send
+103	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+103	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+103	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+103	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+104	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+104	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+104	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+105	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	send
+105	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	send
+105	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+105	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+105	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+105	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+106	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+106	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+108	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+108	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+108	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+108	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+109	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+109	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+109	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+109	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+110	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+110	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+111	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+111	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+111	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+112	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	send
+112	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	send
+112	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+112	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+112	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+113	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	send
+113	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	send
+113	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+113	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+113	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+113	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+114	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+114	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+114	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+115	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+115	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+116	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+116	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+117	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+117	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+118	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+118	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 5 (Logistic_On) is received	STATUS_TELEMATIC.PowerSts_Telematic = 5 (Logistic_On) is sent	recv
+118	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+119	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+119	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+119	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+119	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+119	13	$STATUS_BH_BCM1.OperationalModeSts$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+120	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+120	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+120	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+120	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+120	13	$STATUS_BH_BCM1.OperationalModeSts$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+122	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+122	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+123	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+123	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+124	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+124	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+125	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	send
+125	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	send
+125	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+126	10	$CLIMATIC_PANEL.Radio_btn0$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+126	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+126	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+127	10	$CLIMATIC_PANEL.Radio_btn0$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+127	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+127	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+128	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	send
+128	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	send
+128	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+128	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+128	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+129	12	Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open)	Send CAN: STATUS_BH_BCM1.DriverDoorSts = 1 (Open)	send
+129	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+129	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+129	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+130	12	Send the signal $STATUS_BH_BCM1.PsngrDoorSts$ = 1 (Open)	Send CAN: STATUS_BH_BCM1.PsngrDoorSts = 1 (Open)	send
+130	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+130	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+130	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+131	12	Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open)	Send CAN: STATUS_BH_BCM1.DriverDoorSts = 1 (Open)	send
+131	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+131	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+131	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+132	12	Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open)	Send CAN: STATUS_BH_BCM1.DriverDoorSts = 1 (Open)	send
+132	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+132	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+132	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+135	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+135	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+138	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+138	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+145	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+145	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+146	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 0 (Remote Start Not Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 0 (Remote Start Not Active)	send
+146	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+146	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+146	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+146	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+147	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+147	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+147	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+147	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+148	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+148	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+148	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+148	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+152	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+153	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+153	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+154	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+154	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+154	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+155	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+155	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+156	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+156	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+157	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 0 (Remote Start Not Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 0 (Remote Start Not Active)	send
+157	12	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	send
+157	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+157	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+157	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+157	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+158	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+158	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+159	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+159	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+160	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+160	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+160	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+160	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+161	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+161	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+162	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+162	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+163	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+163	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+164	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+164	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+165	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+165	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+166	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+166	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+166	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+166	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+167	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+167	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+168	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+168	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+169	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+169	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+169	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+169	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+170	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 15 (SNA)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 15 (SNA)	send
+170	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+170	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+170	13	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+175	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+175	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+175	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+175	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+176	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+176	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+176	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+176	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+177	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+177	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+177	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+177	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+178	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+178	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+178	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+178	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+179	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+179	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+179	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+179	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+180	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+180	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+180	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+180	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+181	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+181	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+181	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+181	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+182	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+182	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+182	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+182	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+183	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+183	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+183	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+183	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+184	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+184	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+184	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+184	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+185	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+185	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+185	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+185	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+186	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+186	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+186	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+186	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+187	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+187	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+187	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+187	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+188	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+188	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+188	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+188	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+189	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+189	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+189	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+189	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+190	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+190	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+190	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+190	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+191	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+191	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+191	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+191	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+192	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	send
+192	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+192	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+192	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+193	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+193	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+193	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+193	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+194	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+194	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+194	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+194	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+195	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+195	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+195	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+195	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+196	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+196	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+196	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+196	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+197	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+197	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+197	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+197	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+198	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+198	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+198	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+198	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+203	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	send
+203	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	send
+203	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+204	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	send
+204	12	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	send
+204	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+205	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+205	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+206	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+206	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+209	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+209	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+210	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+210	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+211	10	$STATUS_BH_BCM1.OperationalModeSts$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+211	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+211	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+212	10	$STATUS_BH_BCM1.OperationalModeSts$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+212	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+212	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+213	10	$STATUS_BH_BCM1.OperationalModeSts$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+213	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+213	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+214	10	$STATUS_BH_BCM1.OperationalModeSts$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+214	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+214	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+215	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+216	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+216	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+217	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+217	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+217	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+218	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	send
+218	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+218	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+219	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+219	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	recv
+238	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+238	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+239	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+239	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+240	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+240	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+240	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+240	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	recv
+241	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+241	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+251	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+251	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+252	12	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	send
+252	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+254	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+254	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+255	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+255	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+264	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+264	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+266	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+266	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	recv
+267	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+267	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received	STATUS_TELEMATIC.PowerSts_Telematic = 6 (Bench) is sent	recv
+270	12	Send the signal $STATUS_LIN.PN14_LS_Actv$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Actv = 1 (Active)	send
+270	12	Send the signal $STATUS_LIN.PN14_LS_Lvl7$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Lvl7 = 1 (Active)	send
+270	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+270	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+271	12	$STATUS_LIN.PN14_LS_Actv$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+271	12	$STATUS_LIN.PN14_LS_Lvl7$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+272	12	$STATUS_LIN.PN14_LS_Actv$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+272	12	$STATUS_LIN.PN14_LS_Lvl7$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+273	12	$STATUS_LIN.PN14_LS_Actv$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+273	12	$STATUS_LIN.PN14_LS_Lvl7$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+274	12	$STATUS_LIN.PN14_LS_Actv$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+274	12	$STATUS_LIN.PN14_LS_Lvl7$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+276	12	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)	Send CAN: STATUS_LIN.Batt_ST_Crit = 1 (True)	send
+276	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+281	12	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False)	Send CAN: STATUS_LIN.Batt_ST_Crit = 0 (False)	send
+281	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+282	12	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False)	Send CAN: STATUS_LIN.Batt_ST_Crit = 0 (False)	send
+282	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+283	12	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False)	Send CAN: STATUS_LIN.Batt_ST_Crit = 0 (False)	send
+283	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+284	12	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False)	Send CAN: STATUS_LIN.Batt_ST_Crit = 0 (False)	send
+284	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+285	12	Send the signal $STATUS_LIN.PN14_LS_Actv$ = 0 (Not_Active)	Send CAN: STATUS_LIN.PN14_LS_Actv = 0 (Not_Active)	send
+285	12	Send the signal $STATUS_LIN.PN14_LS_Lvl7$ = 0 (Not_Active)	Send CAN: STATUS_LIN.PN14_LS_Lvl7 = 0 (Not_Active)	send
+285	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+285	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+286	12	Send the signal $STATUS_LIN.PN14_LS_Actv$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Actv = 1 (Active)	send
+286	12	Send the signal $STATUS_LIN.PN14_LS_Lvl7$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Lvl7 = 1 (Active)	send
+286	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+286	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+287	12	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)	Send CAN: STATUS_LIN.Batt_ST_Crit = 1 (True)	send
+287	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+289	12	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)	Send CAN: STATUS_LIN.Batt_ST_Crit = 1 (True)	send
+289	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+295	12	Send the signal $STATUS_LIN.PN14_LS_Actv$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Actv = 1 (Active)	send
+295	12	Send the signal $STATUS_LIN.PN14_LS_Lvl7$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Lvl7 = 1 (Active)	send
+295	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+295	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+297	12	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)	Send CAN: STATUS_LIN.Batt_ST_Crit = 1 (True)	send
+297	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+349	12	$STATUS_BH_BCM1.OperationalModeSts$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+349	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+349	12	$STATUS_BH_BCM1.OperationalModeSts$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+349	13	is registered without a bus error	（保留；非 v3 記法，R-G70 未廢）	buserror
+349	13	$STATUS_BH_BCM1.OperationalModeSts$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+349	13	$STATUS_BH_BCM1.OperationalModeSts$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+369	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+369	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+370	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+370	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+371	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+371	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+372	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+372	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+373	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+373	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv
+374	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+374	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+375	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+375	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+376	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+376	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+377	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+377	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+378	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+378	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+379	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+379	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+380	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+380	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+381	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+381	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+382	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+382	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+383	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+383	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+384	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+384	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+385	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+385	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	recv
+386	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+386	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	recv
+399	12	$STATUS_TELEMATIC.PowerSts_Telematic$	（缺 raw(label)，不可機械轉，須查 DBC）	bare-$MSG.Sig$
+399	13	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	recv

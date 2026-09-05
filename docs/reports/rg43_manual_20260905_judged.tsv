@@ -5,16 +5,16 @@ row	path	line	old_id	basis	judged_side	new_id	confidence	reason
 4	docs/fw036/RULINGS_LEDGER.md	396	R-G19	SELF_LEDGER_19	KEEP	R-G19	H	台帳自指；L358 條保號 R-G19（4、5 已於 GC-03 改為 R-G69）
 5	docs/fw036/RULINGS_LEDGER.md	402	R-G19	SELF_LEDGER_19	KEEP	R-G19	H	台帳自指；L358 條保號 R-G19（4、5 已於 GC-03 改為 R-G69）
 6	features/audio_mgmt/RULINGS.md	365	R-G23	NO_KW	KEEP_ANNOTATE	R-G23	L	「不免除…義務」兩側皆可讀；不改，加註「R-G23 兩側皆有義務，未改號」
-7	features/bed_lowering/ANOMALIES.md	12	R-G12	NO_KW	FO	R-G51	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告
-8	features/bed_lowering/ANOMALIES.md	12	R-G20	BOTH_KW	FO	R-G59	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告
-9	features/bed_lowering/ANOMALIES.md	12	R-G15	BOTH_KW	FO	R-G54	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告
-10	features/bed_lowering/ANOMALIES.md	12	R-G16	BOTH_KW	FO	R-G55	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告
-11	features/bed_lowering/ANOMALIES.md	12	R-G19	BOTH_KW	FO	R-G58	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告
-12	features/bed_lowering/ANOMALIES.md	12	R-G20	BOTH_KW	FO	R-G59	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告
-13	features/bed_lowering/ANOMALIES.md	12	R-G15	BOTH_KW	FO	R-G54	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告
-14	features/bed_lowering/ANOMALIES.md	12	R-G19	BOTH_KW	FO	R-G58	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告
-15	features/bed_lowering/ANOMALIES.md	12	R-G20	BOTH_KW	FO	R-G59	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告
-16	features/bed_lowering/ANOMALIES.md	12	R-G16	BOTH_KW	FO	R-G55	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告
+7	features/bed_lowering/ANOMALIES.md	12	R-G12	NO_KW	~~FO~~ KEEP_ANNOTATE	R-G51	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告｜GC-05 審閱重判：該行即撞號紀錄本身（A-BLM8「R-G12 ~ R-G20 全段撞號」），改號即毀證，同 row 17–19
+8	features/bed_lowering/ANOMALIES.md	12	R-G20	BOTH_KW	~~FO~~ KEEP_ANNOTATE	R-G59	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告｜GC-05 審閱重判：該行即撞號紀錄本身（A-BLM8「R-G12 ~ R-G20 全段撞號」），改號即毀證，同 row 17–19
+9	features/bed_lowering/ANOMALIES.md	12	R-G15	BOTH_KW	~~FO~~ KEEP_ANNOTATE	R-G54	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告｜GC-05 審閱重判：該行即撞號紀錄本身（A-BLM8「R-G12 ~ R-G20 全段撞號」），改號即毀證，同 row 17–19
+10	features/bed_lowering/ANOMALIES.md	12	R-G16	BOTH_KW	~~FO~~ KEEP_ANNOTATE	R-G55	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告｜GC-05 審閱重判：該行即撞號紀錄本身（A-BLM8「R-G12 ~ R-G20 全段撞號」），改號即毀證，同 row 17–19
+11	features/bed_lowering/ANOMALIES.md	12	R-G19	BOTH_KW	~~FO~~ KEEP_ANNOTATE	R-G58	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告｜GC-05 審閱重判：該行即撞號紀錄本身（A-BLM8「R-G12 ~ R-G20 全段撞號」），改號即毀證，同 row 17–19
+12	features/bed_lowering/ANOMALIES.md	12	R-G20	BOTH_KW	~~FO~~ KEEP_ANNOTATE	R-G59	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告｜GC-05 審閱重判：該行即撞號紀錄本身（A-BLM8「R-G12 ~ R-G20 全段撞號」），改號即毀證，同 row 17–19
+13	features/bed_lowering/ANOMALIES.md	12	R-G15	BOTH_KW	~~FO~~ KEEP_ANNOTATE	R-G54	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告｜GC-05 審閱重判：該行即撞號紀錄本身（A-BLM8「R-G12 ~ R-G20 全段撞號」），改號即毀證，同 row 17–19
+14	features/bed_lowering/ANOMALIES.md	12	R-G19	BOTH_KW	~~FO~~ KEEP_ANNOTATE	R-G58	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告｜GC-05 審閱重判：該行即撞號紀錄本身（A-BLM8「R-G12 ~ R-G20 全段撞號」），改號即毀證，同 row 17–19
+15	features/bed_lowering/ANOMALIES.md	12	R-G20	BOTH_KW	~~FO~~ KEEP_ANNOTATE	R-G59	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告｜GC-05 審閱重判：該行即撞號紀錄本身（A-BLM8「R-G12 ~ R-G20 全段撞號」），改號即毀證，同 row 17–19
+16	features/bed_lowering/ANOMALIES.md	12	R-G16	BOTH_KW	~~FO~~ KEEP_ANNOTATE	R-G55	M	bed_lowering RULINGS.md:205 自定「該段號一律取 FO 讀法」；依該 feature 之宣告｜GC-05 審閱重判：該行即撞號紀錄本身（A-BLM8「R-G12 ~ R-G20 全段撞號」），改號即毀證，同 row 17–19
 17	features/bed_lowering/ANOMALIES.md	13	R-G15	BOTH_KW	KEEP_ANNOTATE	R-G15	H	A-BLM8／A-BLM9 為撞號之紀錄本身（並明寫「ledger 版」），改號即毀證；加註「FO 側現號見 SHA_MIGRATION_rg43」
 18	features/bed_lowering/ANOMALIES.md	14	R-G15	BOTH_KW	KEEP_ANNOTATE	R-G15	H	A-BLM8／A-BLM9 為撞號之紀錄本身（並明寫「ledger 版」），改號即毀證；加註「FO 側現號見 SHA_MIGRATION_rg43」
 19	features/bed_lowering/ANOMALIES.md	14	R-G15	BOTH_KW	KEEP_ANNOTATE	R-G15	H	A-BLM8／A-BLM9 為撞號之紀錄本身（並明寫「ledger 版」），改號即毀證；加註「FO 側現號見 SHA_MIGRATION_rg43」

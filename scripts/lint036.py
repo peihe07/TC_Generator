@@ -114,19 +114,18 @@ RE_P_ASSIGNMENT = re.compile(
 # 括號標籤即 R-7 之 DBC `VAL_` 語意標籤。收尾語不設限（見 check_signal_line）。
 RE_P_VALUE_FORM = re.compile(
     r"[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\s*=\s*[^\s(]+\s*\([^)]+\)")
-# PROXI 行（R-1 v2(c)）
-RE_P_PROXI = re.compile(r"\bPROXI\s+(\$[^$]+\$|[A-Za-z][A-Za-z0-9_]*)\s*=")
+# PROXI 行（R-G70 v4.1，Pei 裁定 2026-09-05：**SWC 式為標準**）
+# 標準：`PROXI <Param> = <值>`（不加 `$`）。舊式：`PROXI $<Param>$ is set to "<值>"`（VF230）。
+# 舊式**不 FAIL**，記於 Y（WARN 只報不改）；兩式皆不中之 PROXI 行記 P。
+RE_P_PROXI = re.compile(r"\bPROXI\s+([A-Za-z][A-Za-z0-9_]*)\s*=")
+RE_P_PROXI_LEGACY = re.compile(r"\bPROXI\s+\$[^$]+\$\s+is\s+set\s+to\b")
+RE_P_PROXI_ANY = re.compile(r"\bPROXI\b")
 # --- profile 專屬（未指定 --profile 時全部不啟用）-----------------------------
-# P v3（R-1 v3）：訊號一律 `$<MSG>.<Sig>$`；賦值須帶 `(<VAL_ label>)`
-RE_P3_DOLLAR_ASSIGN = re.compile(
-    r"\$[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\$\s*=\s*(?P<val>[^\s(]+)\s*(?P<lab>\([^)]+\))?")
-# `$` 未包覆之 CAN token 賦值（v3(a) 要求包覆）
-RE_P3_BARE_ASSIGN = re.compile(
-    r"(?<!\$)\b[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\s*=")
-RE_P3_SEND_CAN = re.compile(r"\bSend CAN:")
-RE_P3_PROXI_DOLLAR = re.compile(r"\bPROXI\s+\$")
+# R-1 v3 之判準（`RE_P3_DOLLAR_ASSIGN`／`RE_P3_BARE_ASSIGN`／`RE_P3_SEND_CAN`／
+# `RE_P3_PROXI_DOLLAR`）**已隨 v3 撤銷而移除**（R-G70，GC-08）。
+# 以下二式**不屬 v3 記法**，故不隨之移除 —— 見其自身之註解。
 # 下放包 43 §二 #1：無點之車輛屬性記法 `$<Name>$ = [值]`（037 逐字）。
-# **P v3 之二式皆要求訊號名含一個點，故本形態原本不被任何式命中** ——
+# **P 之各式皆要求訊號名含一個點，故本形態原本不被任何式命中** ——
 # `P=0` 是沉默不是核可（上繳包 37 §2.2）。本式使其**被檢查**：
 # `$` 包覆之名、`=`、方括號包覆之值，三者齊備即通過；缺一即報。
 RE_P3_PROP_OK = re.compile(r"\$[A-Za-z][A-Za-z0-9_]*\$\s*=\s*\[[^\]]{1,60}\]")
@@ -182,9 +181,11 @@ CHECK_TITLES = {
     "I-cross": "跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）",
     "W": "ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6）",
     "X": "導航路徑無固定入口（§5.8／R-G71）",
+    "Y": "PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式）",
 }
 # `--profile` 啟用時 P 改以 R-1 v3 判準，標題隨之替換
-CHECK_TITLE_PROFILE = {"P": "訊號寫法不合 R-1 v3"}
+# R-G70：P 於 profile 與非 profile 下判準相同，故無標題覆寫。
+CHECK_TITLE_PROFILE: dict[str, str] = {}
 
 # 校準狀態（00c 最終版）：M、J 經全語料分佈補校，改標已校準
 CHECK_STATUS = {
@@ -203,13 +204,14 @@ CHECK_STATUS = {
     "I-cross": "警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL",
     "W": "**待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述",
     "X": "未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改**",
+    "Y": "未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72",
 }
-CHECK_STATUS_PROFILE = {"P": "未校準（R-1 v3，21 包改寫；profile 專屬）"}
+CHECK_STATUS_PROFILE: dict[str, str] = {}
 CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
                "J", "K", "L", "M", "N", "P"]
 # profile 專屬檢查：僅於 `--profile <feature>` 指定時啟用。
 # 未指定時 CHECK_ORDER 不變 —— 既有八本之報告基線因而完全不動。
-PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X"]
+PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X", "Y"]
 
 
 def check_order(profile: str | None) -> list[str]:
@@ -240,6 +242,7 @@ CHECK_GRANULARITY = {
     "I-cross": "每列每配對（一組命中記二列）",
     "W": "每次命中",
     "X": "每行",
+    "Y": "每行",
 }
 
 
@@ -424,8 +427,8 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
               length_limit: int, profile: str | None = None) -> list[Violation]:
     """對單列跑 A–N（除 I-sibling 外）之檢查。
 
-    `profile` 為 None 時行為與 21 包之前完全一致；指定時另跑 Q／R／T，
-    且 P 改以 R-1 v3 判準（見 `check_signal_line_v3`）。
+    `profile` 為 None 時行為與 21 包之前完全一致；指定時另跑 Q／R／T／U／V／W／X
+    與車輛屬性方括號式。**P 之判準兩者相同**（R-G70：v4 為全域預設）。
     """
     out: list[Violation] = []
     proc = fields["proc"]
@@ -545,7 +548,8 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
                 add("N", key, "行尾多餘句號", line.strip()[:80])
 
     # P 訊號寫法（範圍依 R-6：作者生成內容，不含 test_item 上半）
-    signal_check = check_signal_line_v3 if profile else check_signal_line
+    # R-G70（v4）：判準即 `Send CAN:` 式，**全域預設**；v3 分支已移除。
+    signal_check = check_signal_line
     for key in P_FIELDS:
         for line in split_lines(fields[key]):
             out.extend(signal_check(line, key, row_no, tc_id))
@@ -604,6 +608,17 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
             add("U", key, f"PENDING 佔位（{m.group('dr') or '未標 DR'}）",
                 line.strip()[:80])
 
+    # 車輛屬性方括號式（下放包 43 §二 #1）—— 原實作於 v3 分支內，
+    # v3 撤銷後獨立保留（R-G70 未廢此裁定）。
+    for key in P_FIELDS:
+        for line in split_lines(fields[key]):
+            out.extend(check_vehicle_property_line(line, key, row_no, tc_id))
+
+    # PROXI 形態（R-G70 v4.1）—— 標準 SWC 式合規、VF230 舊式記 Y（WARN）、其餘記 P。
+    for key in P_FIELDS:
+        for line in split_lines(fields[key]):
+            out.extend(check_proxi_line(line, key, row_no, tc_id))
+
     # X 導航路徑之固定入口（§5.8／R-G71）—— WARN 只報不改。
     # 入口以**整列** proc＋pre 為範圍（§5.8(a) 之「同 TC 內」）：入口常寫在
     # Pre-Condition 或前一步驟，逐行判會把正確的多步路徑全報成違規。
@@ -654,45 +669,58 @@ def check_signal_line(line: str, field: str, row_no: int, tc_id: str
     return out
 
 
-def check_signal_line_v3(line: str, field: str, row_no: int, tc_id: str
-                         ) -> list[Violation]:
-    """R-1 v3 之單行判定（`--profile` 專屬；取代 v2 之 `check_signal_line`）。
+def check_proxi_line(line: str, field: str, row_no: int, tc_id: str
+                     ) -> list[Violation]:
+    """PROXI 行之形態（R-G70 v4.1，Pei 裁定 2026-09-05）。
 
-    四項：(1) v1 三件組殘留；(2) v2 之 `Send CAN:` 前綴殘留；
-    (3) 訊號賦值未以 `$` 包覆全名；(4) `$MSG.Sig$` 之賦值缺 `(<VAL_ label>)`。
-    另 (5) `PROXI $X$` —— v3(c) 明定 PROXI 不加 `$`。
+    標準式 `PROXI <Param> = <值>`（SWC）→ 無違規。
+    舊式 `PROXI $<Param>$ is set to "<值>"`（VF230 152 列）→ 記 **Y（WARN，不 FAIL）**。
+    兩式皆不中而含 `PROXI` 者 → 記 **P**（形態不明，須人看）。
+
+    v4.0 之方向相反（VF230 為標準），已由 Pei 裁定更正；成因見
+    `up/20260905_GC-09_notice.md` 與台帳 R-G70 之 v4.1 註。
     """
     out: list[Violation] = []
+    if not RE_P_PROXI_ANY.search(line):
+        return out
+    if RE_P_PROXI.search(line):
+        return out
+    if RE_P_PROXI_LEGACY.search(line):
+        out.append(Violation(
+            "Y", row_no, tc_id, field,
+            "PROXI 舊式 `$Param$ is set to`（R-G70 v4.1：新產出採 `PROXI <Param> = <值>`）",
+            line.strip()[:80]))
+        return out
+    out.append(Violation(
+        "P", row_no, tc_id, field,
+        "PROXI 行形態不合 R-G70 v4.1 之標準式亦非既知舊式",
+        line.strip()[:80]))
+    return out
 
-    def add(detail: str) -> None:
-        out.append(Violation("P", row_no, tc_id, field, detail, line.strip()[:80]))
 
-    for m in RE_P_TRIPLET.finditer(line):
-        add(f"三件組已撤銷（R-1 v1）{m.group(0)!r}")
-    for m in RE_P3_SEND_CAN.finditer(line):
-        add("`Send CAN:` 為 R-1 v2 舊式，v3 改 `Send the signal $MSG.Sig$ = …`")
-    for m in RE_P3_BARE_ASSIGN.finditer(line):
-        add(f"訊號賦值未以 `$` 包覆全名（R-1 v3(a)）：{m.group(0).strip()!r}")
-    for m in RE_P3_DOLLAR_ASSIGN.finditer(line):
-        if m.group("lab"):
-            continue
-        if m.group("val").startswith("PENDING"):     # R-14 佔位，另由 T 檢查
-            continue
-        add(f"賦值缺 DBC `VAL_` 標籤 `(<label>)`（R-1 v3(a)／R-7）："
-            f"{m.group(0).strip()!r}")
-    for m in RE_P3_PROXI_DOLLAR.finditer(line):
-        add("PROXI 不加 `$`（R-1 v3(c)）")
-    # (6) 無點之車輛屬性 `$<Name>$ = [值]`（下放包 43 §二 #1）——
-    #     使其**被檢查而非被忽略**：值須以方括號包覆。
+def check_vehicle_property_line(line: str, field: str, row_no: int, tc_id: str
+                                ) -> list[Violation]:
+    """無點之車輛屬性 `$<Name>$ = [值]`（下放包 43 §二 #1，037 逐字記法）。
+
+    **本檢查不屬 R-1 v3**，故 v3 撤銷（R-G70）時不隨之移除 —— 它原本只是
+    實作在 `check_signal_line_v3` 之內。P 之各式皆要求訊號名含一個點，
+    本形態因而不被任何式命中，`P=0` 是沉默不是核可（上繳包 37 §2.2）。
+
+    profile 專屬（與其原本之啟用條件相同），違規記於 P。
+    """
+    out: list[Violation] = []
     ok = {m.start() for m in RE_P3_PROP_OK.finditer(line)}
     for m in RE_P3_PROP_ANY.finditer(line):
-        if "." in m.group(1):          # 含點者由 RE_P3_DOLLAR_ASSIGN 管
+        if "." in m.group(1):          # 含點者為訊號名，由 check_signal_line 管
             continue
         if m.start() in ok:
             continue
-        if m.group("val").startswith("PENDING"):
+        if m.group("val").startswith("PENDING"):   # R-14 佔位，另由 T 檢查
             continue
-        add(f"車輛屬性之值須以 `[…]` 包覆（037 逐字記法）：{m.group(0).strip()!r}")
+        out.append(Violation(
+            "P", row_no, tc_id, field,
+            f"車輛屬性之值須以 `[…]` 包覆（037 逐字記法）：{m.group(0).strip()!r}",
+            line.strip()[:80]))
     return out
 
 

@@ -29,8 +29,13 @@ MANIFEST_NAME = "MANIFEST.tsv"
 # `sandbox/` 為作業區，三種副檔名皆容——R-G64 之表對其只限定 xlsx 之
 # **可改處**，未限定其內容型別。不予放行者，基線會吞下 698 個正常之
 # sandbox 工作檔，而基線一大就沒有人看得出新違規（G-D 之同一形態）。
+# （2026-09-05，GC-08 審閱 §一-1 [DEFAULT]，Pei 准）`reports/` 補入 `.json`：
+# lint036 之報告為 `.md` ＋ `.json` **成對**產出，而 R-G47 令 feature 級報告一律落
+# `features/<f>/reports/` —— 政策表漏列 `reports/` 於 `.json`，於是「照 R-G47 放對地方」
+# 與「通過本閘」不可兼得，每產一對報告就固定多一個紅（GC-08 上繳 4-2 節實測 4 處）。
+# `.md` 不在本表內（本表只管三種副檔名），故原本就不受限。
 ALLOWED = {
-    ".json": {"generated", "data", "inputs", "sandbox"},
+    ".json": {"generated", "data", "inputs", "reports", "sandbox"},
     ".xlsx": {"sandbox", "delivered", "inputs"},
     ".tsv": {"data", "delivered", "reports", "sandbox"},
 }

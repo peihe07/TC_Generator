@@ -1,1 +1,2 @@
 filename	sha256	source_path	delivered_round	note
+FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_SWUpdate_20260830.xlsx	4f6caa35f2a71ca6fa514bf3c6acfaaba98b01b6607c63f6ba0128085203727b	未載明	未載明	補登（GC-06 §二-3-c，補遺 §3 第三款）：本檔於 commit `ef3ade0`（2026-09-01）與 ICSManagement 同批入 `delivered/`，而 MANIFEST 僅有表頭、0 列。sha 為 2026-09-05 之實測值；**本線 RULINGS／DECISIONS 內查無另一組可對之 sha**（grep 命中 0），故無從判其是否曾變更。見 A-SU7。

@@ -1,0 +1,61 @@
+sheet	row	col	tc_id	rule	old_text	new_text	mechanical
+Test Case Specification 測試用例規範	12	12	NR1L-VSM42-003	P-v3→v4:bare	$TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$		N
+Test Case Specification 測試用例規範	12	13	NR1L-VSM42-003	P-v3→v4:recv	The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received	TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req = 1 (On) is sent	Y
+Test Case Specification 測試用例規範	13	10	NR1L-VSM42-004	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$		N
+Test Case Specification 測試用例規範	13	12	NR1L-VSM42-004	P-v3→v4:send	Send the signal $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ = 1 (On)	Send CAN: IPC_VEHICLE_SETUP2.EPB_MaintenanceMode = 1 (On)	Y
+Test Case Specification 測試用例規範	13	13	NR1L-VSM42-004	P-v3→v4:recv	The signal value $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ = 1 (On) is received	IPC_VEHICLE_SETUP2.EPB_MaintenanceMode = 1 (On) is sent	Y
+Test Case Specification 測試用例規範	14	12	NR1L-VSM42-005	P-v3→v4:bare	$TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$		N
+Test Case Specification 測試用例規範	14	12	NR1L-VSM42-005	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	14	13	NR1L-VSM42-005	P-v3→v4:recv	The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received	TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req = 1 (On) is sent	Y
+Test Case Specification 測試用例規範	14	13	NR1L-VSM42-005	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	15	12	NR1L-VSM42-006	P-v3→v4:bare	$TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$		N
+Test Case Specification 測試用例規範	15	12	NR1L-VSM42-006	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	15	13	NR1L-VSM42-006	P-v3→v4:recv	The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received	TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req = 1 (On) is sent	Y
+Test Case Specification 測試用例規範	15	13	NR1L-VSM42-006	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	16	12	NR1L-VSM42-007	P-v3→v4:bare	$TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$		N
+Test Case Specification 測試用例規範	16	12	NR1L-VSM42-007	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	16	13	NR1L-VSM42-007	P-v3→v4:recv	The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received	TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req = 1 (On) is sent	Y
+Test Case Specification 測試用例規範	16	13	NR1L-VSM42-007	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	17	12	NR1L-VSM42-008	P-v3→v4:bare	$TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$		N
+Test Case Specification 測試用例規範	17	12	NR1L-VSM42-008	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	17	13	NR1L-VSM42-008	P-v3→v4:recv	The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received	TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req = 1 (On) is sent	Y
+Test Case Specification 測試用例規範	17	13	NR1L-VSM42-008	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	18	12	NR1L-VSM42-009	P-v3→v4:bare	$TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$		N
+Test Case Specification 測試用例規範	18	12	NR1L-VSM42-009	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	18	13	NR1L-VSM42-009	P-v3→v4:recv	The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received	TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req = 1 (On) is sent	Y
+Test Case Specification 測試用例規範	18	13	NR1L-VSM42-009	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	19	12	NR1L-VSM42-010	P-v3→v4:bare	$TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$		N
+Test Case Specification 測試用例規範	19	12	NR1L-VSM42-010	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$		N
+Test Case Specification 測試用例規範	19	12	NR1L-VSM42-010	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	19	13	NR1L-VSM42-010	P-v3→v4:recv	The signal value $TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req$ = 1 (On) is received	TELEMATIC_VEHICLE_SETUP2.EPB_MaintenanceMode_Req = 1 (On) is sent	Y
+Test Case Specification 測試用例規範	19	13	NR1L-VSM42-010	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$		N
+Test Case Specification 測試用例規範	19	13	NR1L-VSM42-010	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	20	10	NR1L-VSM42-011	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$		N
+Test Case Specification 測試用例規範	20	12	NR1L-VSM42-011	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	20	13	NR1L-VSM42-011	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	21	10	NR1L-VSM42-012	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$		N
+Test Case Specification 測試用例規範	21	12	NR1L-VSM42-012	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	21	13	NR1L-VSM42-012	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	22	10	NR1L-VSM42-013	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$		N
+Test Case Specification 測試用例規範	22	12	NR1L-VSM42-013	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	22	13	NR1L-VSM42-013	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	23	10	NR1L-VSM42-014	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$		N
+Test Case Specification 測試用例規範	23	12	NR1L-VSM42-014	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	23	13	NR1L-VSM42-014	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_Maintenance_Fdbk$		N
+Test Case Specification 測試用例規範	24	12	NR1L-VSM42-015	P-v3→v4:send	Send the signal $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ = 1 (On)	Send CAN: IPC_VEHICLE_SETUP2.EPB_MaintenanceMode = 1 (On)	Y
+Test Case Specification 測試用例規範	24	13	NR1L-VSM42-015	P-v3→v4:recv	The signal value $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ = 1 (On) is received	IPC_VEHICLE_SETUP2.EPB_MaintenanceMode = 1 (On) is sent	Y
+Test Case Specification 測試用例規範	25	10	NR1L-VSM42-016	P-v3→v4:bare	$IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$		N
+Test Case Specification 測試用例規範	25	12	NR1L-VSM42-016	P-v3→v4:bare	$STATUS_CCAN3.VehicleSpeedVSOSig$		N
+Test Case Specification 測試用例規範	25	12	NR1L-VSM42-016	P-v3→v4:bare	$STATUS_CCAN3.VehicleSpeedVSOSig$		N
+Test Case Specification 測試用例規範	25	12	NR1L-VSM42-016	P-v3→v4:bare	$STATUS_CCAN3.VehicleSpeedVSOSig$		N
+Test Case Specification 測試用例規範	25	13	NR1L-VSM42-016	P-v3→v4:bare	$STATUS_CCAN3.VehicleSpeedVSOSig$		N
+Test Case Specification 測試用例規範	25	13	NR1L-VSM42-016	P-v3→v4:bare	$STATUS_CCAN3.VehicleSpeedVSOSig$		N
+Test Case Specification 測試用例規範	25	13	NR1L-VSM42-016	P-v3→v4:bare	$STATUS_CCAN3.VehicleSpeedVSOSig$		N
+Test Case Specification 測試用例規範	26	12	NR1L-VSM42-017	P-v3→v4:send	Send the signal $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ = 1 (On)	Send CAN: IPC_VEHICLE_SETUP2.EPB_MaintenanceMode = 1 (On)	Y
+Test Case Specification 測試用例規範	26	12	NR1L-VSM42-017	P-v3→v4:send	Send the signal $IPC_VEHICLE_SETUP2.EPB_MaintenanceMode$ = 0 (Off)	Send CAN: IPC_VEHICLE_SETUP2.EPB_MaintenanceMode = 0 (Off)	Y
+Test Case Specification 測試用例規範	10		NR1L-VSM42-001	X-nav	"1. Read the named UI element ""Vehicle Settings"" menu list and check that it does"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	10		NR1L-VSM42-001	X-nav	"2. Attempt to select ""EPB Maintenance Mode"" in the ""Vehicle Settings"" menu list"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	11		NR1L-VSM42-002	X-nav	"1. Read the named UI element ""Vehicle Settings"" menu list and check that it cont"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	11		NR1L-VSM42-002	X-nav	"2. Select ""EPB Maintenance Mode"" in the ""Vehicle Settings"" menu list"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	26		NR1L-VSM42-017	X-nav	"2. Read the named UI element ""EPB Maintenance Mode"" status text in the ""Vehicle "	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	26		NR1L-VSM42-017	X-nav	"4. Read the named UI element ""EPB Maintenance Mode"" status text in the ""Vehicle "	（須查 HMI 來源，R-G71(d)：不造 hop）	N

@@ -83,6 +83,7 @@ HISTORICAL_PARTS = {"handoff", "upstream"}
 # 故先把本檔所在目錄補上再 import —— 不補則測試在收集階段即 ImportError。
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from measure_common import is_measurement_output
+from ruling_anchor import anchor_ruling_numbers
 
 SCAN_SUFFIXES = {".md", ".py", ".yaml", ".yml"}
 SKIP_PARTS = {
@@ -171,9 +172,27 @@ class CanonIndex:
         return idx
 
 
+# ruling 型之解析面（R-G43(d)，Pei 2026-09-05「裁」）：除兩份 canon 外，
+# 台帳亦為條文之落點 —— 不索引台帳則「有指紋而解析不到」（A-GC15 實測 963 處）。
+# 錨點判準與 `rulings_hash` 共用 `ruling_anchor.RE_ANCHOR`，不各寫一份。
+RULING_SOURCES = dict(CANONS, LEDGER="docs/fw036/RULINGS_LEDGER.md")
+
+
 class Resolver:
     def __init__(self, root: Path):
         self.canons = {c: CanonIndex.build(c, root / p) for c, p in CANONS.items()}
+        # 兩份 canon 之 ruling 索引維持既有取法（行內提及亦算，見 CanonIndex.build）——
+        # 本輪只**增**台帳這個來源，不改 canon 側之判準（改之則 FO 之索引由 50 號縮為錨點數，
+        # 實測反使 unresolved 由 963 升為 1682）。台帳側以錨點為準（R-G43(c)）。
+        self.ruling_anchors = {c: set(idx.rulings) for c, idx in self.canons.items()}
+        for c, rel in RULING_SOURCES.items():
+            if c in self.ruling_anchors:
+                continue
+            f = root / rel
+            # 檔不在即視為無錨點（測試之最小 repo 無台帳；缺檔不得使解析器整支炸掉）
+            self.ruling_anchors[c] = (
+                anchor_ruling_numbers(f.read_text(encoding="utf-8")) if f.exists() else set()
+            )
 
     def section_hits(self, sec: str, doc: str | None) -> list[tuple[str, int]]:
         """回傳 [(canon代號, 該節於該 canon 之出現次數)]，只含次數 ≥1 者。"""
@@ -200,11 +219,16 @@ class Resolver:
         return "unresolved", (f"{code}§{sec} 條號上限 {cap}，引用 {n}",)
 
     def resolve_ruling(self, n: str) -> tuple[str, tuple]:
-        hits = [c for c, idx in self.canons.items() if n in idx.rulings]
+        """條號唯一即已可解析（Pei 2026-09-05「裁」，GC-06 補遺 §1）。
+
+        同號在兩側皆有錨者（`R-G42`／`R-G4`／`R-G7`）判 **resolved**，不判 ambiguous：
+        引用寫的是條號，條號指得到落點就解析得了；兩側本體之差異由
+        `rulings_hash` 之撞號表管，不是引用解析器的事。
+        """
+        hits = [c for c, ns in self.ruling_anchors.items() if n in ns]
         if not hits:
             return "unresolved", ()
-        return ("resolved" if len(hits) == 1 else "ambiguous",
-                tuple(f"{c}:R-G{n}" for c in hits))
+        return "resolved", tuple(f"{c}:R-G{n}" for c in hits)
 
 
 def enclosing_spans(line: str) -> list:
@@ -444,7 +468,7 @@ def main() -> int:
         dup = sorted(s for s, n in idx.sections.items() if n > 1)
         print(f"{code}  {path}")
         print(f"    節號 {len(idx.sections)}，重複 {len(dup)}" + (f" → {dup}" if dup else ""))
-        print(f"    具條號索引之節 {len(idx.items)}，R-G 編號 {len(idx.rulings)}")
+        print(f"    具條號索引之節 {len(idx.items)}，R-G 編號（行內提及）{len(idx.rulings)}")
     dup_cross = sorted(set(rs.canons["FO"].sections) & set(rs.canons["IN"].sections))
     print(f"\n兩 canon 共用之節號（裸引用即歧義）{len(dup_cross)} 個：{dup_cross}")
 

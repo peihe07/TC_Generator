@@ -670,48 +670,65 @@ def test_t_english_pending_description_passes() -> None:
              "(which of the two is shown)")
 
 
-# P —— R-1 v3 判準（profile 專屬，取代 v2）
+# P —— R-1 v4 判準（R-G70：`Send CAN:` 作者側記法，profile 與非 profile 相同）
 
-def test_p_v3_rejects_send_can_prefix() -> None:
-    assert "P" in run_profile(
+def test_p_v4_accepts_send_can_prefix() -> None:
+    """v3 曾判此為違規；v4 回歸後這是正解。"""
+    assert "P" not in run_profile(
         proc="1. Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)")
 
 
-def test_p_v3_rejects_bare_can_token_assignment() -> None:
+def test_p_v4_rejects_procedure_assignment_without_send_can() -> None:
     assert "P" in run_profile(
         proc="1. Set STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)")
 
 
-def test_p_v3_rejects_assignment_without_val_label() -> None:
+def test_p_v4_rejects_assignment_without_val_label() -> None:
     assert "P" in run_profile(
-        proc="1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2")
+        proc="1. Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2")
 
 
-def test_p_v3_rejects_proxi_with_dollar() -> None:
-    assert "P" in run_profile(pre='1. PROXI $Rear_View_Camera$ = "Present"')
+def test_p_v4_accepts_proxi_with_dollar() -> None:
+    """R-G70(e)：PROXI 採 VF230 式 `PROXI $<Param>$ is set to "<值>"`。"""
+    assert "P" not in run_profile(pre='1. PROXI $Rear_View_Camera$ is set to "Present"')
 
 
-def test_p_v3_accepts_canonical_form() -> None:
+def test_p_v4_accepts_canonical_form() -> None:
     assert "P" not in run_profile(
-        pre="1. PROXI Rear_View_Camera = Present",
-        proc="1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 "
-             "(Ignition_Off)\n"
-             "2. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and "
-             "check that it is 1 (Standby)",
-        er="1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = "
-           "1 (Standby) is received")
+        pre='1. PROXI $Rear_View_Camera$ is set to "Present"',
+        proc="1. Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)\n"
+             "2. Read STATUS_TELEMATIC.PowerSts_Telematic and check that it is "
+             "1 (Standby)",
+        er="1. STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent "
+           "within 500 ms")
 
 
-def test_p_v3_allows_pending_placeholder_as_value() -> None:
-    """R-14 佔位不視為缺 VAL_ 標籤 —— 其缺件由 M／T 承接。"""
-    assert "P" not in run_profile(
-        proc="1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = "
-             "PENDING: DR-PW20")
+def test_p_v4_judgement_is_identical_with_and_without_profile() -> None:
+    """R-G70：v3 分支移除後，P 於兩種模式下判準相同。"""
+    bad = dict(proc="1. Set STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)")
+    plain = [v.check for v in lint036.check_row(
+        make_fields(**bad), 10, "TC-001", lint036.DEFAULT_LENGTH_LIMIT)]
+    assert plain.count("P") == run_profile(**bad).count("P")
 
 
-def test_p_v3_still_rejects_v1_triplet() -> None:
+def test_p_v4_still_rejects_v1_triplet() -> None:
     assert "P" in run_profile(
         proc="1. Drive Radio_btn0 in CLIMATIC_PANEL on BH-CAN to Pressed")
+
+
+# 車輛屬性方括號式（下放包 43 §二 #1）—— 不隨 v3 撤銷而消失
+
+def test_vehicle_property_bracket_check_survives_v3_removal() -> None:
+    assert "P" in run_profile(proc="1. $Vehicle_Line$ = DT")
+
+
+def test_vehicle_property_bracket_form_passes() -> None:
+    assert "P" not in run_profile(proc="1. $Vehicle_Line$ = [DT]")
+
+
+def test_vehicle_property_pending_is_not_a_bracket_violation() -> None:
+    """R-14 佔位由 T／U 承接，不記為 P。"""
+    assert "P" not in run_profile(proc="1. $Vehicle_Line$ = PENDING: DR-PW20")
 
 
 # U —— PENDING 佔位之可見性（A-PM16：ER 側原不受任何檢查覆蓋）

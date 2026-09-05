@@ -1,0 +1,18 @@
+old_tc_id	new_tc_id	changed_cols	reason
+NR1L-VSM42-001		nav	X-nav
+NR1L-VSM42-002		nav	X-nav
+NR1L-VSM42-003		12,13	P-v3→v4:bare；P-v3→v4:recv
+NR1L-VSM42-004		10,12,13	P-v3→v4:bare；P-v3→v4:recv；P-v3→v4:send
+NR1L-VSM42-005		12,13	P-v3→v4:bare；P-v3→v4:recv
+NR1L-VSM42-006		12,13	P-v3→v4:bare；P-v3→v4:recv
+NR1L-VSM42-007		12,13	P-v3→v4:bare；P-v3→v4:recv
+NR1L-VSM42-008		12,13	P-v3→v4:bare；P-v3→v4:recv
+NR1L-VSM42-009		12,13	P-v3→v4:bare；P-v3→v4:recv
+NR1L-VSM42-010		12,13	P-v3→v4:bare；P-v3→v4:recv
+NR1L-VSM42-011		10,12,13	P-v3→v4:bare
+NR1L-VSM42-012		10,12,13	P-v3→v4:bare
+NR1L-VSM42-013		10,12,13	P-v3→v4:bare
+NR1L-VSM42-014		10,12,13	P-v3→v4:bare
+NR1L-VSM42-015		12,13	P-v3→v4:recv；P-v3→v4:send
+NR1L-VSM42-016		10,12,13	P-v3→v4:bare
+NR1L-VSM42-017		12,nav	P-v3→v4:send；X-nav

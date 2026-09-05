@@ -261,6 +261,17 @@ behaviour, not defects — verify strikethrough before filing.
 - A `[PROPOSED]` left untouched at sign-off becomes binding as proposed —
   this is the mechanism that reduces questions without removing control.
 
+**[ADD] 新 feature 接手時之二項（R-G71，GC-09 §一-5；2026-09-05）**
+
+- **profile 一律啟用 lint `X` 與 `P`(v4)**：`X` 為導航路徑之固定入口檢查
+  （§5.8／R-G71，WARN 只報不改）；`P` 為訊號與參數寫法（R-G70 v4.1，
+  PROXI 採 SWC 式 `PROXI <Param> = <值>`，VF230 舊式記 `Y`）。
+  兩者皆為 profile 專屬，未於該 feature 之 profile 啟用即等同未檢查 ——
+  **`P=0`／`X=0` 在未啟用時是沉默，不是核可**（上繳包 37 §2.2 之同一形態）。
+- **`§5.3` 三常數之 `PENDING` 二條由該 feature 之 DR 承接**：
+  不得把 `PENDING` 直接複製到新 feature 而不登 DR。
+  承接時於該 feature `DATA_REQUESTS.md` 開節並依下方狀態欄格式標 `status:`。
+
 ---
 
 ## 5. Standing gates (all features, all states)

@@ -2162,3 +2162,26 @@ R-SU43（判定核心不得斷言一個規格允許其為他值之結果）
     其值仍為證據而不作判定；**判定核心另尋**。
     無可另尋者依 R-SU42 v2(e) 掛 `PENDING`。
 ```
+
+---
+
+## 交付紀錄（2026-09-05 補登）
+
+依 `down/20260905_GC-06_review.md` §一-3 之裁（Pei 2026-09-05 准），
+由 GC-08 §一-2 抄錄。**本節為紀錄，非新裁決，故不取條號**（R-G62 之取號只用於立條）。
+
+| 項 | 值 |
+|---|---|
+| 交付檔名 | `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_SWUpdate_20260830.xlsx` |
+| 落點 | `features/sw_update/delivered/` |
+| 入版控 commit | `ef3ade0` |
+| 日期 | 2026-09-01（`chore(delivered): update ICSManagement and add SWUpdate 20260830 workbook`）|
+| 現行 sha256 | `4f6caa35f2a71ca6fa514bf3c6acfaaba98b01b6607c63f6ba0128085203727b` |
+
+**無登記前 sha 可對，曾否變更不可證（A-SU7）。**
+
+該檔入 `delivered/` 時 `delivered/MANIFEST.tsv` 只有表頭、0 資料列；
+本線 `RULINGS.md`／`DECISIONS.md` 內 grep 交付 sha 命中 **0**。
+故上表之 sha 為 **2026-09-05 之實測值**，不是登記時之值 —— 登記時無值可登。
+**不得據此書「未變更」**：本線對該檔之變更史沒有可對照之基準點，
+「未變更」與「變更過而無人記錄」在現有證據下不可區分（R-G11 盲區）。

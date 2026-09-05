@@ -497,3 +497,7 @@ None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-SUnn]`.
 > 而那是一個「記得就對、忘了就錯」之作法 —— **它不是防線，是習慣。**
 > 真正的防線應為：**commit 前比對「本次 stage 之檔案」與「本輪任務所應觸及之檔案」**，
 > 二者不符即停。本輪若有此步，`39`／`40` 會被當場擋下。
+
+---
+
+| A-SU7 | **`delivered/` 有交付本而 MANIFEST 未登記** | `lint_paths` 判紅：`delivered/…_SWUpdate_20260830.xlsx` 在，而 `delivered/MANIFEST.tsv` 僅有表頭、0 資料列。該檔入版控之 commit 為 `ef3ade0`（2026-09-01），與 ICSManagement 同批。本線 `RULINGS.md`／`DECISIONS.md` 內 grep 交付 sha **命中 0** | 交付未登記 | **GC-06 依補遺 §3 第三款處置**：補登現行 sha `4f6caa35…`；因無另一組可對之 sha，**不能判其曾否變更**（R-G11 盲區）|

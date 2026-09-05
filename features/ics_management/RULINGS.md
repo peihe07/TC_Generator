@@ -2353,3 +2353,12 @@ R-ICS55（19a 之採認；TC ID 之裁定路徑；19b 授權）
 ```
 （Pei 直接裁定，2026-08-30；comfort 96 §1、§6；power delivered 實測；
  R-ICS56(a)(b)、R-ICS57、R-G7 反向驗證、R-G3、R-G64）
+
+### 交付本之登記後變更（GC-06 §二-3-b，補遺 §3 第一款抄錄）
+
+`delivered/…_ICSManagement_20260830.xlsx` **於 MANIFEST 登記後被變更**：
+變更 commit `ef3ade0`（2026-09-01，`chore(delivered): update ICSManagement and add SWUpdate 20260830 workbook`）；
+sha `e2ce5868…` → `cb5697db…`。
+內容差異：`Test Case Specification 測試用例規範` 分頁 **32 列相異**（含第 2 列之表頭區），其餘 8 個分頁逐列相同。
+
+依補遺 §3 第一款：**交付物不可回溯修改（R-TM13），檔不還原**；對照表改指現行 sha 以反映實物；本則為裁決之抄錄，非本線新裁。自報見 A-ICS138。

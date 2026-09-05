@@ -1,0 +1,6 @@
+feature	file	sha8	rows	X	P	P_warn	candidate
+ics_management	FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ICSManagement_20260830.xlsx	cb5697db	31	29	0	0	Y
+power	pm_29.xlsx	35305835	389	237	40	0	Y
+power	pm_73.xlsx	cedb6b84	287	103	45	0	Y
+sw_update	FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_SWUpdate_20260830.xlsx	4f6caa35	319	159	0	0	Y
+vsm_v42	FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_VehicleSetupManagementR1Low_20260902.xlsx	abc7f8ae	17	6	0	0	Y

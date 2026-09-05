@@ -1,0 +1,163 @@
+sheet	row	col	tc_id	rule	old_text	new_text	mechanical
+Test Case Specification 測試用例規範	189	10	newR1L-SU-180	P-v3→v4:bare	$FOTA_MASTER.FOTA_Status$		N
+Test Case Specification 測試用例規範	189	12	newR1L-SU-180	P-v3→v4:bare	$FOTA_MASTER.FOTA_Status$		N
+Test Case Specification 測試用例規範	189	13	newR1L-SU-180	P-v3→v4:bare	$FOTA_MASTER.FOTA_Status$		N
+Test Case Specification 測試用例規範	14		newR1L-SU-005	X-nav	3. Record the head unit screen content as continuous video capture until the hea	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	17		newR1L-SU-008	X-nav	1. Select the Wi-Fi software download entry in the Settings menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	17		newR1L-SU-008	X-nav	2. Check that the head unit displays the software download via Wi-Fi screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	19		newR1L-SU-010	X-nav	1. Record the head unit screen content as continuous video capture from the mome	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	19		newR1L-SU-010	X-nav	3. Check that no Wi-Fi network configuration pop-up appears in the recorded scre	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	22		newR1L-SU-013	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	23		newR1L-SU-014	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	25		newR1L-SU-016	X-nav	1. Record the head unit screen content as continuous video capture until the dep	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	27		newR1L-SU-018	X-nav	1. Record the head unit screen content as continuous video capture from the avai	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	27		newR1L-SU-018	X-nav	4. Check that no download confirmation screen appears in the recorded screen con	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	28		newR1L-SU-019	X-nav	2. Check that the head unit displays the deployment confirmation screen for this	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	30		newR1L-SU-021	X-nav	2. Record the head unit screen content as continuous video capture from the avai	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	30		newR1L-SU-021	X-nav	4. Check that the recorded screen content shows the critical update being instal	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	31		newR1L-SU-022	X-nav	1. Record the head unit screen content as continuous video capture from the avai	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	31		newR1L-SU-022	X-nav	3. Check that the recorded screen content shows the SW Update opt-in screen for 	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	32		newR1L-SU-023	X-nav	1. Record the head unit screen content as continuous video capture from the upda	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	32		newR1L-SU-023	X-nav	3. Check that the recorded screen content contains no update notification, no pr	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	33		newR1L-SU-024	X-nav	1. Check that the SW Update opt-in screen offers no reject control for this crit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	33		newR1L-SU-024	X-nav	2. Check that the SW Update opt-in screen offers a postpone control	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	34		newR1L-SU-025	X-nav	1. Open the software download via Wi-Fi page on the head unit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	34		newR1L-SU-025	X-nav	2. Check that the page shows an option to enable software download via Wi-Fi	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	35		newR1L-SU-026	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	36		newR1L-SU-027	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	37		newR1L-SU-028	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	37		newR1L-SU-028	X-nav	4. Check that the head unit shows the software download via Wi-Fi page	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	38		newR1L-SU-029	X-nav	1. Record the head unit screen content as continuous video capture until the ava	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	39		newR1L-SU-030	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	40		newR1L-SU-031	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	41		newR1L-SU-032	X-nav	2. Exit the software download via Wi-Fi page and open it again	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	41		newR1L-SU-032	X-nav	3. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	42		newR1L-SU-033	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	43		newR1L-SU-034	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	43		newR1L-SU-034	X-nav	3. Check that the head unit offers an option to navigate back to the software do	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	43		newR1L-SU-034	X-nav	4. Select the option to navigate back and check that the head unit shows the sof	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	44		newR1L-SU-035	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	45		newR1L-SU-036	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	46		newR1L-SU-037	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	47		newR1L-SU-038	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	48		newR1L-SU-039	X-nav	1. Record the head unit screen content and the companion device hotspot list as 	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	48		newR1L-SU-039	X-nav	2. Exit the software download via Wi-Fi page on the head unit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	49		newR1L-SU-040	X-nav	1. Record the head unit screen content as continuous video capture until the ign	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	51		newR1L-SU-042	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	52		newR1L-SU-043	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	53		newR1L-SU-044	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	54		newR1L-SU-045	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	56		newR1L-SU-047	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	57		newR1L-SU-048	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	58		newR1L-SU-049	X-nav	1. Record the head unit screen content as continuous video capture until the ign	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	60		newR1L-SU-051	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	61		newR1L-SU-052	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	62		newR1L-SU-053	X-nav	1. Record the head unit screen content as continuous video capture until the hea	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	65		newR1L-SU-056	X-nav	1. Record the head unit screen content as continuous video capture from the avai	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	65		newR1L-SU-056	X-nav	3. Check that the recorded screen content shows the update being deployed from t	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	71		newR1L-SU-062	X-nav	2. Record the head unit screen content as continuous video capture until the ins	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	71		newR1L-SU-062	X-nav	3. Check that the recorded screen content shows the installation progress screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	76		newR1L-SU-067	X-nav	1. Record the head unit screen content as continuous video capture from the mome	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	76		newR1L-SU-067	X-nav	4. Check that the recorded screen content shows the pop-up dismissed when the he	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	77		newR1L-SU-068	X-nav	2. Record the head unit screen content as continuous video capture until the ins	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	78		newR1L-SU-069	X-nav	1. Record the head unit screen content as continuous video capture from the mome	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	79		newR1L-SU-070	X-nav	1. Record the head unit screen content as continuous video capture from the mome	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	80		newR1L-SU-071	X-nav	2. Check that the pop-up closes and the head unit returns to the screen shown be	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	82		newR1L-SU-073	X-nav	2. Check that the head unit displays the Schedule Update screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	86		newR1L-SU-077	X-nav	2. Read the remaining time shown on the schedule screen and record it as Time_re	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	86		newR1L-SU-077	X-nav	3. Check that Time_remaining equals the difference between Time_scheduled and Ti	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	88		newR1L-SU-079	X-nav	1. Record the head unit screen content as continuous video capture from the mome	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	88		newR1L-SU-079	X-nav	3. Check that the recorded screen content shows the pop-up replaced by another S	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	90		newR1L-SU-081	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	91		newR1L-SU-082	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	92		newR1L-SU-083	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	93		newR1L-SU-084	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	94		newR1L-SU-085	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	95		newR1L-SU-086	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	96		newR1L-SU-087	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	97		newR1L-SU-088	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	97		newR1L-SU-088	X-nav	3. Check that the head unit displays the telematics box module update screen aft	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	99		newR1L-SU-090	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	101		newR1L-SU-092	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	101		newR1L-SU-092	X-nav	3. Check that the head unit displays the telematics box module update end screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	103		newR1L-SU-094	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	107		newR1L-SU-098	X-nav	2. Open the SW Update screen on the head unit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	107		newR1L-SU-098	X-nav	3. Check that the update-related text and messages on the SW Update screen are s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	108		newR1L-SU-099	X-nav	2. Open the SW Update screen on the head unit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	108		newR1L-SU-099	X-nav	3. Check that the update-related text and messages on the SW Update screen are s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	109		newR1L-SU-100	X-nav	2. Open the SW Update screen on the head unit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	109		newR1L-SU-100	X-nav	3. Check that the update-related text and messages on the SW Update screen are s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	110		newR1L-SU-101	X-nav	5. Check that the recorded screen content of the first run contains the opt-in s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	111		newR1L-SU-102	X-nav	4. Check that the SW Update screen shows guidance on how to accept the terms and	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	112		newR1L-SU-103	X-nav	2. Open the opt-in screen on the head unit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	112		newR1L-SU-103	X-nav	3. Open the download screen on the head unit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	112		newR1L-SU-103	X-nav	4. Check that both the opt-in screen and the download screen show the release no	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	113		newR1L-SU-104	X-nav	2. Open the opt-in screen on the head unit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	114		newR1L-SU-105	X-nav	2. Accept the update on the opt-in screen and wait until the download completes	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	115		newR1L-SU-106	X-nav	2. Open the SW Update opt-in screen on the head unit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	115		newR1L-SU-106	X-nav	3. Check that the opt-in screen offers the user an option to reject the deployme	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	116		newR1L-SU-107	X-nav	2. Open the SW Update opt-in screen on the head unit	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	116		newR1L-SU-107	X-nav	3. Check that the opt-in screen offers the user no option to reject the deployme	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	119		newR1L-SU-110	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	120		newR1L-SU-111	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	121		newR1L-SU-112	X-nav	1. Record the head unit screen content as continuous video capture from the upda	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	121		newR1L-SU-112	X-nav	3. Check that the recorded screen content contains no customer-facing progress o	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	124		newR1L-SU-115	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	125		newR1L-SU-116	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	126		newR1L-SU-117	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	127		newR1L-SU-118	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	128		newR1L-SU-119	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	129		newR1L-SU-120	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	130		newR1L-SU-121	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	131		newR1L-SU-122	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	132		newR1L-SU-123	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	134		newR1L-SU-125	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	138		newR1L-SU-129	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	148		newR1L-SU-139	X-nav	3. Record the head unit screen content as continuous video capture until the upd	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	148		newR1L-SU-139	X-nav	5. Check that Version_after differs from Version_initial and that no SW Update p	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	149		newR1L-SU-140	X-nav	3. Record the head unit screen content as continuous video capture until the sof	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	149		newR1L-SU-140	X-nav	4. Check that the recorded screen content contains no update progress notificati	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	150		newR1L-SU-141	X-nav	2. Record the head unit screen content as continuous video capture from the avai	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	151		newR1L-SU-142	X-nav	2. Record the head unit screen content as continuous video capture until the upd	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	151		newR1L-SU-142	X-nav	3. Check that no opt-out control and no defer control appear in the recorded scr	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	153		newR1L-SU-144	X-nav	3. Record the head unit screen content as continuous video capture from the avai	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	153		newR1L-SU-144	X-nav	4. Check that no download confirmation screen appears in the recorded screen con	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	154		newR1L-SU-145	X-nav	3. Record the head unit screen content as continuous video capture, and any user	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	155		newR1L-SU-146	X-nav	3. Record the head unit screen content as continuous video capture from the avai	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	155		newR1L-SU-146	X-nav	4. Check that no deployment confirmation screen appears in the recorded screen c	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	157		newR1L-SU-148	X-nav	5. Check that Version_after differs from Version_initial and that the recorded s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	159		newR1L-SU-150	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	160		newR1L-SU-151	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	166		newR1L-SU-157	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	175		newR1L-SU-166	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	179		newR1L-SU-170	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	180		newR1L-SU-171	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	181		newR1L-SU-172	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	184		newR1L-SU-175	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	185		newR1L-SU-176	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	185		newR1L-SU-176	X-nav	4. Check that the head unit shows no update pop-up and no update progress screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	186		newR1L-SU-177	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	187		newR1L-SU-178	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	188		newR1L-SU-179	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	191		newR1L-SU-182	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	192		newR1L-SU-183	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	197		newR1L-SU-188	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	200		newR1L-SU-191	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	203		newR1L-SU-194	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	204		newR1L-SU-195	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	207		newR1L-SU-198	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	265		newR1L-SU-256	X-nav	3. Switch off the Wi-Fi connection in the head unit settings while the update se	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	267		newR1L-SU-258	X-nav	4. Reconnect the battery supply and wait until the head unit screen responds to 	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	268		newR1L-SU-259	X-nav	4. Reconnect the host system connector and wait until the head unit screen respo	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	270		newR1L-SU-261	X-nav	1. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	276		newR1L-SU-267	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	283		newR1L-SU-274	X-nav	1. Disable OTA updates in the vehicle settings	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	283		newR1L-SU-274	X-nav	2. Record the head unit screen content as continuous video capture until the hea	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	283		newR1L-SU-274	X-nav	3. Check that no software update notification appears in the recorded screen con	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	284		newR1L-SU-275	X-nav	2. Record the head unit screen content as continuous video capture from the mome	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	291		newR1L-SU-282	X-nav	1. Record the head unit screen content as continuous video capture from the mome	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	291		newR1L-SU-282	X-nav	4. Check that the recorded screen content shows the download progress stopping w	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	300		newR1L-SU-291	X-nav	1. Record the head unit screen content as continuous video capture until the dow	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	305		newR1L-SU-296	X-nav	2. Record the head unit screen content as continuous video capture until the che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	307		newR1L-SU-298	X-nav	2. While the server-started update flow is running, tune the radio to a differen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	307		newR1L-SU-298	X-nav	3. Check that the radio changes station and that the settings menu opens while t	（須查 HMI 來源，R-G71(d)：不造 hop）	N

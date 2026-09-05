@@ -1,0 +1,736 @@
+sheet	row	col	tc_id	rule	old_text	new_text	mechanical
+Test Case Specification&Result	10	12	NR1L-PowerManagement-001	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	10	13	NR1L-PowerManagement-001	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	11	12	NR1L-PowerManagement-002	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	11	13	NR1L-PowerManagement-002	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	12	12	NR1L-PowerManagement-003	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	12	13	NR1L-PowerManagement-003	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	13	12	NR1L-PowerManagement-004	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	13	13	NR1L-PowerManagement-004	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	14	12	NR1L-PowerManagement-005	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 5 (Ignition_Pre_Start)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 5 (Ignition_Pre_Start)	Y
+Test Case Specification&Result	14	12	NR1L-PowerManagement-005	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	14	13	NR1L-PowerManagement-005	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	15	12	NR1L-PowerManagement-006	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 6 (Ignition_Start)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 6 (Ignition_Start)	Y
+Test Case Specification&Result	15	12	NR1L-PowerManagement-006	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	15	13	NR1L-PowerManagement-006	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	16	12	NR1L-PowerManagement-007	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 7 (Ignition_Cranking)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 7 (Ignition_Cranking)	Y
+Test Case Specification&Result	16	12	NR1L-PowerManagement-007	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	16	13	NR1L-PowerManagement-007	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	17	12	NR1L-PowerManagement-008	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 8 (Ignition_On_EngOn)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 8 (Ignition_On_EngOn)	Y
+Test Case Specification&Result	17	12	NR1L-PowerManagement-008	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	17	13	NR1L-PowerManagement-008	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	21	12	NR1L-PowerManagement-012	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	21	13	NR1L-PowerManagement-012	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	22	12	NR1L-PowerManagement-013	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	22	13	NR1L-PowerManagement-013	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	25	12	NR1L-PowerManagement-016	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	25	12	NR1L-PowerManagement-016	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	25	13	NR1L-PowerManagement-016	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	26	12	NR1L-PowerManagement-017	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	26	12	NR1L-PowerManagement-017	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	26	13	NR1L-PowerManagement-017	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	27	12	NR1L-PowerManagement-018	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	27	12	NR1L-PowerManagement-018	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	27	13	NR1L-PowerManagement-018	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	31	12	NR1L-PowerManagement-022	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	31	13	NR1L-PowerManagement-022	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	32	12	NR1L-PowerManagement-023	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	32	13	NR1L-PowerManagement-023	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	33	12	NR1L-PowerManagement-024	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	33	13	NR1L-PowerManagement-024	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	34	12	NR1L-PowerManagement-025	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	34	12	NR1L-PowerManagement-025	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	34	13	NR1L-PowerManagement-025	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	35	12	NR1L-PowerManagement-026	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	35	13	NR1L-PowerManagement-026	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	39	12	NR1L-PowerManagement-030	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	39	13	NR1L-PowerManagement-030	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	40	12	NR1L-PowerManagement-031	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	40	13	NR1L-PowerManagement-031	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	41	12	NR1L-PowerManagement-032	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	41	13	NR1L-PowerManagement-032	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	42	12	NR1L-PowerManagement-033	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	42	13	NR1L-PowerManagement-033	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	43	12	NR1L-PowerManagement-034	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	43	13	NR1L-PowerManagement-034	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	44	12	NR1L-PowerManagement-035	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	44	13	NR1L-PowerManagement-035	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	45	12	NR1L-PowerManagement-036	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	45	13	NR1L-PowerManagement-036	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	46	12	NR1L-PowerManagement-037	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	46	13	NR1L-PowerManagement-037	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	47	12	NR1L-PowerManagement-038	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	47	13	NR1L-PowerManagement-038	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	48	12	NR1L-PowerManagement-039	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	48	13	NR1L-PowerManagement-039	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	49	12	NR1L-PowerManagement-040	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	49	13	NR1L-PowerManagement-040	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	50	12	NR1L-PowerManagement-041	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	50	13	NR1L-PowerManagement-041	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	51	12	NR1L-PowerManagement-042	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	51	13	NR1L-PowerManagement-042	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	52	12	NR1L-PowerManagement-043	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	52	13	NR1L-PowerManagement-043	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	53	12	NR1L-PowerManagement-044	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	53	13	NR1L-PowerManagement-044	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received	STATUS_TELEMATIC.PowerSts_Telematic = 6 (Bench) is sent	Y
+Test Case Specification&Result	54	12	NR1L-PowerManagement-045	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	54	13	NR1L-PowerManagement-045	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received	STATUS_TELEMATIC.PowerSts_Telematic = 6 (Bench) is sent	Y
+Test Case Specification&Result	55	12	NR1L-PowerManagement-046	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	55	13	NR1L-PowerManagement-046	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received	STATUS_TELEMATIC.PowerSts_Telematic = 6 (Bench) is sent	Y
+Test Case Specification&Result	61	12	NR1L-PowerManagement-052	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	61	12	NR1L-PowerManagement-052	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	61	13	NR1L-PowerManagement-052	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	62	12	NR1L-PowerManagement-053	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	62	13	NR1L-PowerManagement-053	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	63	12	NR1L-PowerManagement-054	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	63	13	NR1L-PowerManagement-054	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	64	12	NR1L-PowerManagement-055	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	64	13	NR1L-PowerManagement-055	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	65	12	NR1L-PowerManagement-056	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	65	13	NR1L-PowerManagement-056	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	70	12	NR1L-PowerManagement-061	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	70	13	NR1L-PowerManagement-061	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	71	12	NR1L-PowerManagement-062	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	71	13	NR1L-PowerManagement-062	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	72	12	NR1L-PowerManagement-063	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	72	13	NR1L-PowerManagement-063	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	73	12	NR1L-PowerManagement-064	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	73	13	NR1L-PowerManagement-064	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	74	12	NR1L-PowerManagement-065	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	74	13	NR1L-PowerManagement-065	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	75	12	NR1L-PowerManagement-066	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	75	13	NR1L-PowerManagement-066	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	76	12	NR1L-PowerManagement-067	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	76	13	NR1L-PowerManagement-067	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	81	12	NR1L-PowerManagement-072	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	81	13	NR1L-PowerManagement-072	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	82	12	NR1L-PowerManagement-073	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	82	12	NR1L-PowerManagement-073	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	82	13	NR1L-PowerManagement-073	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	83	12	NR1L-PowerManagement-074	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	83	12	NR1L-PowerManagement-074	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	83	13	NR1L-PowerManagement-074	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	84	12	NR1L-PowerManagement-075	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	84	12	NR1L-PowerManagement-075	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	84	13	NR1L-PowerManagement-075	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	85	12	NR1L-PowerManagement-076	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	85	12	NR1L-PowerManagement-076	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	85	13	NR1L-PowerManagement-076	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	86	12	NR1L-PowerManagement-077	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	86	13	NR1L-PowerManagement-077	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	87	12	NR1L-PowerManagement-078	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	87	13	NR1L-PowerManagement-078	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	88	12	NR1L-PowerManagement-079	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	88	13	NR1L-PowerManagement-079	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	89	12	NR1L-PowerManagement-080	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	89	13	NR1L-PowerManagement-080	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	90	12	NR1L-PowerManagement-081	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	90	13	NR1L-PowerManagement-081	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	91	12	NR1L-PowerManagement-082	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	91	13	NR1L-PowerManagement-082	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	93	12	NR1L-PowerManagement-084	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	93	12	NR1L-PowerManagement-084	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 0 (Remote Start Not Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 0 (Remote Start Not Active)	Y
+Test Case Specification&Result	95	12	NR1L-PowerManagement-086	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	95	12	NR1L-PowerManagement-086	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	95	13	NR1L-PowerManagement-086	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	96	12	NR1L-PowerManagement-087	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	96	12	NR1L-PowerManagement-087	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	96	12	NR1L-PowerManagement-087	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	96	13	NR1L-PowerManagement-087	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	97	12	NR1L-PowerManagement-088	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open)	Send CAN: STATUS_BH_BCM1.DriverDoorSts = 1 (Open)	Y
+Test Case Specification&Result	97	12	NR1L-PowerManagement-088	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	97	13	NR1L-PowerManagement-088	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	98	12	NR1L-PowerManagement-089	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	98	12	NR1L-PowerManagement-089	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	98	13	NR1L-PowerManagement-089	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	99	12	NR1L-PowerManagement-090	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	99	12	NR1L-PowerManagement-090	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	99	13	NR1L-PowerManagement-090	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	100	12	NR1L-PowerManagement-091	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	100	12	NR1L-PowerManagement-091	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	100	13	NR1L-PowerManagement-091	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	101	12	NR1L-PowerManagement-092	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	101	12	NR1L-PowerManagement-092	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 0 (Remote Start Not Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 0 (Remote Start Not Active)	Y
+Test Case Specification&Result	102	12	NR1L-PowerManagement-093	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	102	12	NR1L-PowerManagement-093	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	102	13	NR1L-PowerManagement-093	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	103	12	NR1L-PowerManagement-094	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	Y
+Test Case Specification&Result	103	12	NR1L-PowerManagement-094	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	Y
+Test Case Specification&Result	103	12	NR1L-PowerManagement-094	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	103	12	NR1L-PowerManagement-094	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	103	13	NR1L-PowerManagement-094	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	104	12	NR1L-PowerManagement-095	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	104	12	NR1L-PowerManagement-095	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	104	13	NR1L-PowerManagement-095	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	105	12	NR1L-PowerManagement-096	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	Y
+Test Case Specification&Result	105	12	NR1L-PowerManagement-096	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	Y
+Test Case Specification&Result	105	12	NR1L-PowerManagement-096	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	105	12	NR1L-PowerManagement-096	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	105	13	NR1L-PowerManagement-096	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	106	12	NR1L-PowerManagement-097	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	106	13	NR1L-PowerManagement-097	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	108	12	NR1L-PowerManagement-099	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	108	12	NR1L-PowerManagement-099	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	108	13	NR1L-PowerManagement-099	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	109	12	NR1L-PowerManagement-100	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	109	12	NR1L-PowerManagement-100	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	109	13	NR1L-PowerManagement-100	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	110	12	NR1L-PowerManagement-101	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	110	13	NR1L-PowerManagement-101	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	111	12	NR1L-PowerManagement-102	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	111	12	NR1L-PowerManagement-102	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	111	13	NR1L-PowerManagement-102	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	112	12	NR1L-PowerManagement-103	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	Y
+Test Case Specification&Result	112	12	NR1L-PowerManagement-103	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	Y
+Test Case Specification&Result	112	12	NR1L-PowerManagement-103	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	112	13	NR1L-PowerManagement-103	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	113	12	NR1L-PowerManagement-104	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	Y
+Test Case Specification&Result	113	12	NR1L-PowerManagement-104	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	Y
+Test Case Specification&Result	113	12	NR1L-PowerManagement-104	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	113	12	NR1L-PowerManagement-104	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	113	13	NR1L-PowerManagement-104	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	114	12	NR1L-PowerManagement-105	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	114	12	NR1L-PowerManagement-105	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	114	13	NR1L-PowerManagement-105	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	115	12	NR1L-PowerManagement-106	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	115	13	NR1L-PowerManagement-106	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	116	12	NR1L-PowerManagement-107	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	116	13	NR1L-PowerManagement-107	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	117	12	NR1L-PowerManagement-108	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	117	13	NR1L-PowerManagement-108	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	118	12	NR1L-PowerManagement-109	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	118	13	NR1L-PowerManagement-109	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 5 (Logistic_On) is received	STATUS_TELEMATIC.PowerSts_Telematic = 5 (Logistic_On) is sent	Y
+Test Case Specification&Result	119	12	NR1L-PowerManagement-110	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	119	12	NR1L-PowerManagement-110	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	119	13	NR1L-PowerManagement-110	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	119	13	NR1L-PowerManagement-110	P-v3→v4:bare	$STATUS_BH_BCM1.OperationalModeSts$		N
+Test Case Specification&Result	120	12	NR1L-PowerManagement-111	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	120	12	NR1L-PowerManagement-111	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	120	13	NR1L-PowerManagement-111	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	120	13	NR1L-PowerManagement-111	P-v3→v4:bare	$STATUS_BH_BCM1.OperationalModeSts$		N
+Test Case Specification&Result	122	12	NR1L-PowerManagement-113	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	122	13	NR1L-PowerManagement-113	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	123	12	NR1L-PowerManagement-114	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	123	13	NR1L-PowerManagement-114	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	124	12	NR1L-PowerManagement-115	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	124	13	NR1L-PowerManagement-115	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	125	12	NR1L-PowerManagement-116	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	Y
+Test Case Specification&Result	125	12	NR1L-PowerManagement-116	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	Y
+Test Case Specification&Result	126	10	NR1L-PowerManagement-117	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn0$		N
+Test Case Specification&Result	126	12	NR1L-PowerManagement-117	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	126	13	NR1L-PowerManagement-117	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	127	10	NR1L-PowerManagement-118	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn0$		N
+Test Case Specification&Result	127	12	NR1L-PowerManagement-118	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	127	13	NR1L-PowerManagement-118	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	128	12	NR1L-PowerManagement-119	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	Y
+Test Case Specification&Result	128	12	NR1L-PowerManagement-119	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	Y
+Test Case Specification&Result	128	12	NR1L-PowerManagement-119	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	128	13	NR1L-PowerManagement-119	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	129	12	NR1L-PowerManagement-120	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open)	Send CAN: STATUS_BH_BCM1.DriverDoorSts = 1 (Open)	Y
+Test Case Specification&Result	129	12	NR1L-PowerManagement-120	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	129	13	NR1L-PowerManagement-120	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	130	12	NR1L-PowerManagement-121	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.PsngrDoorSts$ = 1 (Open)	Send CAN: STATUS_BH_BCM1.PsngrDoorSts = 1 (Open)	Y
+Test Case Specification&Result	130	12	NR1L-PowerManagement-121	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	130	13	NR1L-PowerManagement-121	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	131	12	NR1L-PowerManagement-122	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open)	Send CAN: STATUS_BH_BCM1.DriverDoorSts = 1 (Open)	Y
+Test Case Specification&Result	131	12	NR1L-PowerManagement-122	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	131	13	NR1L-PowerManagement-122	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	132	12	NR1L-PowerManagement-123	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.DriverDoorSts$ = 1 (Open)	Send CAN: STATUS_BH_BCM1.DriverDoorSts = 1 (Open)	Y
+Test Case Specification&Result	132	12	NR1L-PowerManagement-123	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	132	13	NR1L-PowerManagement-123	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	135	12	NR1L-PowerManagement-126	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	135	13	NR1L-PowerManagement-126	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	138	12	NR1L-PowerManagement-129	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	138	13	NR1L-PowerManagement-129	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	145	12	NR1L-PowerManagement-136	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	145	13	NR1L-PowerManagement-136	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	146	12	NR1L-PowerManagement-137	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 0 (Remote Start Not Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 0 (Remote Start Not Active)	Y
+Test Case Specification&Result	146	12	NR1L-PowerManagement-137	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	146	12	NR1L-PowerManagement-137	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	146	13	NR1L-PowerManagement-137	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	147	12	NR1L-PowerManagement-138	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	147	12	NR1L-PowerManagement-138	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	147	13	NR1L-PowerManagement-138	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	148	12	NR1L-PowerManagement-139	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	148	12	NR1L-PowerManagement-139	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	148	13	NR1L-PowerManagement-139	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	152	12	NR1L-PowerManagement-143	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	153	12	NR1L-PowerManagement-144	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	153	13	NR1L-PowerManagement-144	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	154	12	NR1L-PowerManagement-145	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	154	12	NR1L-PowerManagement-145	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	154	13	NR1L-PowerManagement-145	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	155	12	NR1L-PowerManagement-146	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	155	13	NR1L-PowerManagement-146	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	156	12	NR1L-PowerManagement-147	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	156	13	NR1L-PowerManagement-147	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	157	12	NR1L-PowerManagement-148	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 0 (Remote Start Not Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 0 (Remote Start Not Active)	Y
+Test Case Specification&Result	157	12	NR1L-PowerManagement-148	P-v3→v4:send	Send the signal $STATUS_BH_BCM2.RemStActvSts$ = 1 (Remote Start Active)	Send CAN: STATUS_BH_BCM2.RemStActvSts = 1 (Remote Start Active)	Y
+Test Case Specification&Result	157	12	NR1L-PowerManagement-148	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	157	12	NR1L-PowerManagement-148	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	157	13	NR1L-PowerManagement-148	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	158	12	NR1L-PowerManagement-149	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	158	13	NR1L-PowerManagement-149	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	159	12	NR1L-PowerManagement-150	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	159	13	NR1L-PowerManagement-150	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	160	12	NR1L-PowerManagement-151	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	160	12	NR1L-PowerManagement-151	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	160	13	NR1L-PowerManagement-151	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	160	13	NR1L-PowerManagement-151	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	161	12	NR1L-PowerManagement-152	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	161	13	NR1L-PowerManagement-152	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	162	12	NR1L-PowerManagement-153	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	162	13	NR1L-PowerManagement-153	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	163	12	NR1L-PowerManagement-154	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	163	13	NR1L-PowerManagement-154	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	164	12	NR1L-PowerManagement-155	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	164	13	NR1L-PowerManagement-155	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	165	12	NR1L-PowerManagement-156	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	165	13	NR1L-PowerManagement-156	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	166	12	NR1L-PowerManagement-157	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	166	12	NR1L-PowerManagement-157	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	166	13	NR1L-PowerManagement-157	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	167	12	NR1L-PowerManagement-158	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	167	13	NR1L-PowerManagement-158	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	168	12	NR1L-PowerManagement-159	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	168	13	NR1L-PowerManagement-159	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	169	12	NR1L-PowerManagement-160	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	169	12	NR1L-PowerManagement-160	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	169	13	NR1L-PowerManagement-160	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	170	12	NR1L-PowerManagement-161	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 15 (SNA)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 15 (SNA)	Y
+Test Case Specification&Result	170	12	NR1L-PowerManagement-161	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	170	13	NR1L-PowerManagement-161	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	175	12	NR1L-PowerManagement-166	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	175	12	NR1L-PowerManagement-166	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	175	13	NR1L-PowerManagement-166	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	176	12	NR1L-PowerManagement-167	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	176	12	NR1L-PowerManagement-167	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	176	13	NR1L-PowerManagement-167	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	177	12	NR1L-PowerManagement-168	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	177	12	NR1L-PowerManagement-168	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	177	13	NR1L-PowerManagement-168	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	178	12	NR1L-PowerManagement-169	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	178	12	NR1L-PowerManagement-169	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	178	13	NR1L-PowerManagement-169	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	179	12	NR1L-PowerManagement-170	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	179	12	NR1L-PowerManagement-170	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	179	13	NR1L-PowerManagement-170	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	180	12	NR1L-PowerManagement-171	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	180	12	NR1L-PowerManagement-171	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	180	13	NR1L-PowerManagement-171	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	181	12	NR1L-PowerManagement-172	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	181	12	NR1L-PowerManagement-172	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	181	13	NR1L-PowerManagement-172	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	182	12	NR1L-PowerManagement-173	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	182	12	NR1L-PowerManagement-173	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	182	13	NR1L-PowerManagement-173	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	183	12	NR1L-PowerManagement-174	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	183	12	NR1L-PowerManagement-174	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	183	13	NR1L-PowerManagement-174	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	184	12	NR1L-PowerManagement-175	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	184	12	NR1L-PowerManagement-175	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	184	13	NR1L-PowerManagement-175	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	185	12	NR1L-PowerManagement-176	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	185	12	NR1L-PowerManagement-176	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	185	13	NR1L-PowerManagement-176	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	186	12	NR1L-PowerManagement-177	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	186	12	NR1L-PowerManagement-177	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	186	13	NR1L-PowerManagement-177	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	187	12	NR1L-PowerManagement-178	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	187	12	NR1L-PowerManagement-178	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	187	13	NR1L-PowerManagement-178	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	188	12	NR1L-PowerManagement-179	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	188	12	NR1L-PowerManagement-179	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	188	13	NR1L-PowerManagement-179	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	189	12	NR1L-PowerManagement-180	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	189	12	NR1L-PowerManagement-180	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	189	13	NR1L-PowerManagement-180	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	190	12	NR1L-PowerManagement-181	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	190	12	NR1L-PowerManagement-181	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	190	13	NR1L-PowerManagement-181	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	191	12	NR1L-PowerManagement-182	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	191	12	NR1L-PowerManagement-182	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	191	13	NR1L-PowerManagement-182	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	192	12	NR1L-PowerManagement-183	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 (Ignition_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)	Y
+Test Case Specification&Result	192	12	NR1L-PowerManagement-183	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	192	13	NR1L-PowerManagement-183	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	193	12	NR1L-PowerManagement-184	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	193	12	NR1L-PowerManagement-184	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	193	13	NR1L-PowerManagement-184	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	194	12	NR1L-PowerManagement-185	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	194	12	NR1L-PowerManagement-185	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	194	13	NR1L-PowerManagement-185	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	195	12	NR1L-PowerManagement-186	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	195	12	NR1L-PowerManagement-186	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	195	13	NR1L-PowerManagement-186	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	196	12	NR1L-PowerManagement-187	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	196	12	NR1L-PowerManagement-187	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	196	13	NR1L-PowerManagement-187	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	197	12	NR1L-PowerManagement-188	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	197	12	NR1L-PowerManagement-188	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	197	13	NR1L-PowerManagement-188	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	198	12	NR1L-PowerManagement-189	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	198	12	NR1L-PowerManagement-189	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	198	13	NR1L-PowerManagement-189	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	203	12	NR1L-PowerManagement-194	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	Y
+Test Case Specification&Result	203	12	NR1L-PowerManagement-194	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	Y
+Test Case Specification&Result	204	12	NR1L-PowerManagement-195	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 0 (Not_Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 0 (Not_Pressed)	Y
+Test Case Specification&Result	204	12	NR1L-PowerManagement-195	P-v3→v4:send	Send the signal $CLIMATIC_PANEL.Radio_btn0$ = 1 (Pressed)	Send CAN: CLIMATIC_PANEL.Radio_btn0 = 1 (Pressed)	Y
+Test Case Specification&Result	205	12	NR1L-PowerManagement-196	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	205	13	NR1L-PowerManagement-196	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	206	12	NR1L-PowerManagement-197	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	206	13	NR1L-PowerManagement-197	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	209	12	NR1L-PowerManagement-200	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	209	13	NR1L-PowerManagement-200	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	210	12	NR1L-PowerManagement-201	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	210	13	NR1L-PowerManagement-201	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	211	10	NR1L-PowerManagement-202	P-v3→v4:bare	$STATUS_BH_BCM1.OperationalModeSts$		N
+Test Case Specification&Result	211	12	NR1L-PowerManagement-202	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	211	13	NR1L-PowerManagement-202	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	212	10	NR1L-PowerManagement-203	P-v3→v4:bare	$STATUS_BH_BCM1.OperationalModeSts$		N
+Test Case Specification&Result	212	12	NR1L-PowerManagement-203	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	212	13	NR1L-PowerManagement-203	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	213	10	NR1L-PowerManagement-204	P-v3→v4:bare	$STATUS_BH_BCM1.OperationalModeSts$		N
+Test Case Specification&Result	213	12	NR1L-PowerManagement-204	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	213	13	NR1L-PowerManagement-204	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	214	10	NR1L-PowerManagement-205	P-v3→v4:bare	$STATUS_BH_BCM1.OperationalModeSts$		N
+Test Case Specification&Result	214	12	NR1L-PowerManagement-205	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	214	13	NR1L-PowerManagement-205	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	215	12	NR1L-PowerManagement-206	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	216	12	NR1L-PowerManagement-207	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	216	13	NR1L-PowerManagement-207	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	217	12	NR1L-PowerManagement-208	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	217	12	NR1L-PowerManagement-208	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	217	13	NR1L-PowerManagement-208	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	218	12	NR1L-PowerManagement-209	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 4 (Ignition_On)	Y
+Test Case Specification&Result	218	12	NR1L-PowerManagement-209	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	218	13	NR1L-PowerManagement-209	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	219	12	NR1L-PowerManagement-210	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	219	13	NR1L-PowerManagement-210	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 7 (Partial_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 7 (Partial_Operation) is sent	Y
+Test Case Specification&Result	238	12	NR1L-PowerManagement-229	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	238	13	NR1L-PowerManagement-229	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	239	12	NR1L-PowerManagement-230	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	239	13	NR1L-PowerManagement-230	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	240	12	NR1L-PowerManagement-231	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	240	12	NR1L-PowerManagement-231	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	240	13	NR1L-PowerManagement-231	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	240	13	NR1L-PowerManagement-231	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 0 (Sleep) is received	STATUS_TELEMATIC.PowerSts_Telematic = 0 (Sleep) is sent	Y
+Test Case Specification&Result	241	12	NR1L-PowerManagement-232	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	241	13	NR1L-PowerManagement-232	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	251	12	NR1L-PowerManagement-242	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	251	13	NR1L-PowerManagement-242	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	252	12	NR1L-PowerManagement-243	P-v3→v4:send	Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 10 (Ignition_Pre_Off)	Send CAN: STATUS_BH_BCM1.OperationalModeSts = 10 (Ignition_Pre_Off)	Y
+Test Case Specification&Result	254	12	NR1L-PowerManagement-245	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	254	13	NR1L-PowerManagement-245	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	255	12	NR1L-PowerManagement-246	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	255	13	NR1L-PowerManagement-246	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	264	12	NR1L-PowerManagement-255	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	264	13	NR1L-PowerManagement-255	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	266	12	NR1L-PowerManagement-257	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	266	13	NR1L-PowerManagement-257	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 1 (Standby) is received	STATUS_TELEMATIC.PowerSts_Telematic = 1 (Standby) is sent	Y
+Test Case Specification&Result	267	12	NR1L-PowerManagement-258	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	267	13	NR1L-PowerManagement-258	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 6 (Bench) is received	STATUS_TELEMATIC.PowerSts_Telematic = 6 (Bench) is sent	Y
+Test Case Specification&Result	270	12	NR1L-PowerManagement-261	P-v3→v4:send	Send the signal $STATUS_LIN.PN14_LS_Actv$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Actv = 1 (Active)	Y
+Test Case Specification&Result	270	12	NR1L-PowerManagement-261	P-v3→v4:send	Send the signal $STATUS_LIN.PN14_LS_Lvl7$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Lvl7 = 1 (Active)	Y
+Test Case Specification&Result	271	12	NR1L-PowerManagement-262	P-v3→v4:bare	$STATUS_LIN.PN14_LS_Actv$		N
+Test Case Specification&Result	271	12	NR1L-PowerManagement-262	P-v3→v4:bare	$STATUS_LIN.PN14_LS_Lvl7$		N
+Test Case Specification&Result	272	12	NR1L-PowerManagement-263	P-v3→v4:bare	$STATUS_LIN.PN14_LS_Actv$		N
+Test Case Specification&Result	272	12	NR1L-PowerManagement-263	P-v3→v4:bare	$STATUS_LIN.PN14_LS_Lvl7$		N
+Test Case Specification&Result	273	12	NR1L-PowerManagement-264	P-v3→v4:bare	$STATUS_LIN.PN14_LS_Actv$		N
+Test Case Specification&Result	273	12	NR1L-PowerManagement-264	P-v3→v4:bare	$STATUS_LIN.PN14_LS_Lvl7$		N
+Test Case Specification&Result	274	12	NR1L-PowerManagement-265	P-v3→v4:bare	$STATUS_LIN.PN14_LS_Actv$		N
+Test Case Specification&Result	274	12	NR1L-PowerManagement-265	P-v3→v4:bare	$STATUS_LIN.PN14_LS_Lvl7$		N
+Test Case Specification&Result	276	12	NR1L-PowerManagement-267	P-v3→v4:send	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)	Send CAN: STATUS_LIN.Batt_ST_Crit = 1 (True)	Y
+Test Case Specification&Result	281	12	NR1L-PowerManagement-272	P-v3→v4:send	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False)	Send CAN: STATUS_LIN.Batt_ST_Crit = 0 (False)	Y
+Test Case Specification&Result	282	12	NR1L-PowerManagement-273	P-v3→v4:send	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False)	Send CAN: STATUS_LIN.Batt_ST_Crit = 0 (False)	Y
+Test Case Specification&Result	283	12	NR1L-PowerManagement-274	P-v3→v4:send	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False)	Send CAN: STATUS_LIN.Batt_ST_Crit = 0 (False)	Y
+Test Case Specification&Result	284	12	NR1L-PowerManagement-275	P-v3→v4:send	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 0 (False)	Send CAN: STATUS_LIN.Batt_ST_Crit = 0 (False)	Y
+Test Case Specification&Result	285	12	NR1L-PowerManagement-276	P-v3→v4:send	Send the signal $STATUS_LIN.PN14_LS_Actv$ = 0 (Not_Active)	Send CAN: STATUS_LIN.PN14_LS_Actv = 0 (Not_Active)	Y
+Test Case Specification&Result	285	12	NR1L-PowerManagement-276	P-v3→v4:send	Send the signal $STATUS_LIN.PN14_LS_Lvl7$ = 0 (Not_Active)	Send CAN: STATUS_LIN.PN14_LS_Lvl7 = 0 (Not_Active)	Y
+Test Case Specification&Result	286	12	NR1L-PowerManagement-277	P-v3→v4:send	Send the signal $STATUS_LIN.PN14_LS_Actv$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Actv = 1 (Active)	Y
+Test Case Specification&Result	286	12	NR1L-PowerManagement-277	P-v3→v4:send	Send the signal $STATUS_LIN.PN14_LS_Lvl7$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Lvl7 = 1 (Active)	Y
+Test Case Specification&Result	287	12	NR1L-PowerManagement-278	P-v3→v4:send	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)	Send CAN: STATUS_LIN.Batt_ST_Crit = 1 (True)	Y
+Test Case Specification&Result	289	12	NR1L-PowerManagement-280	P-v3→v4:send	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)	Send CAN: STATUS_LIN.Batt_ST_Crit = 1 (True)	Y
+Test Case Specification&Result	295	12	NR1L-PowerManagement-286	P-v3→v4:send	Send the signal $STATUS_LIN.PN14_LS_Actv$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Actv = 1 (Active)	Y
+Test Case Specification&Result	295	12	NR1L-PowerManagement-286	P-v3→v4:send	Send the signal $STATUS_LIN.PN14_LS_Lvl7$ = 1 (Active)	Send CAN: STATUS_LIN.PN14_LS_Lvl7 = 1 (Active)	Y
+Test Case Specification&Result	297	12	NR1L-PowerManagement-288	P-v3→v4:send	Send the signal $STATUS_LIN.Batt_ST_Crit$ = 1 (True)	Send CAN: STATUS_LIN.Batt_ST_Crit = 1 (True)	Y
+Test Case Specification&Result	349	12	NR1L-PowerManagement-339	P-v3→v4:bare	$STATUS_BH_BCM1.OperationalModeSts$		N
+Test Case Specification&Result	349	12	NR1L-PowerManagement-339	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	349	12	NR1L-PowerManagement-339	P-v3→v4:bare	$STATUS_BH_BCM1.OperationalModeSts$		N
+Test Case Specification&Result	349	13	NR1L-PowerManagement-339	P-v3→v4:bare	$STATUS_BH_BCM1.OperationalModeSts$		N
+Test Case Specification&Result	349	13	NR1L-PowerManagement-339	P-v3→v4:bare	$STATUS_BH_BCM1.OperationalModeSts$		N
+Test Case Specification&Result	369	12	NR1L-PowerManagement-359	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	369	13	NR1L-PowerManagement-359	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	370	12	NR1L-PowerManagement-360	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	370	13	NR1L-PowerManagement-360	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	371	12	NR1L-PowerManagement-361	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	371	13	NR1L-PowerManagement-361	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	372	12	NR1L-PowerManagement-362	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	372	13	NR1L-PowerManagement-362	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	373	12	NR1L-PowerManagement-363	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	373	13	NR1L-PowerManagement-363	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	374	12	NR1L-PowerManagement-364	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	374	13	NR1L-PowerManagement-364	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	375	12	NR1L-PowerManagement-365	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	375	13	NR1L-PowerManagement-365	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	376	12	NR1L-PowerManagement-366	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	376	13	NR1L-PowerManagement-366	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	377	12	NR1L-PowerManagement-367	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	377	13	NR1L-PowerManagement-367	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	378	12	NR1L-PowerManagement-368	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	378	13	NR1L-PowerManagement-368	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	379	12	NR1L-PowerManagement-369	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	379	13	NR1L-PowerManagement-369	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	380	12	NR1L-PowerManagement-370	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	380	13	NR1L-PowerManagement-370	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	381	12	NR1L-PowerManagement-371	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	381	13	NR1L-PowerManagement-371	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	382	12	NR1L-PowerManagement-372	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	382	13	NR1L-PowerManagement-372	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	383	12	NR1L-PowerManagement-373	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	383	13	NR1L-PowerManagement-373	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	384	12	NR1L-PowerManagement-374	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	384	13	NR1L-PowerManagement-374	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	385	12	NR1L-PowerManagement-375	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	385	13	NR1L-PowerManagement-375	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 2 (Timed) is received	STATUS_TELEMATIC.PowerSts_Telematic = 2 (Timed) is sent	Y
+Test Case Specification&Result	386	12	NR1L-PowerManagement-376	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	386	13	NR1L-PowerManagement-376	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 4 (Full_Operation) is received	STATUS_TELEMATIC.PowerSts_Telematic = 4 (Full_Operation) is sent	Y
+Test Case Specification&Result	399	12	NR1L-PowerManagement-389	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification&Result	399	13	NR1L-PowerManagement-389	P-v3→v4:recv	The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = 3 (Idle) is received	STATUS_TELEMATIC.PowerSts_Telematic = 3 (Idle) is sent	Y
+Test Case Specification&Result	21		NR1L-PowerManagement-012	X-nav	3. Read the HU display and check that only the Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	35		NR1L-PowerManagement-026	X-nav	2. Attempt to open a Customer setting screen and check that it is rejected	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	45		NR1L-PowerManagement-036	X-nav	3. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	52		NR1L-PowerManagement-043	X-nav	3. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	61		NR1L-PowerManagement-052	X-nav	3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) and che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	62		NR1L-PowerManagement-053	X-nav	3. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	63		NR1L-PowerManagement-054	X-nav	3. Open the auto switch-on setting entry in the HU menu and read the auto switch	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	64		NR1L-PowerManagement-055	X-nav	3. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	69		NR1L-PowerManagement-060	X-nav	2. Open the auto switch-on setting entry in the HU menu and read the auto switch	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	72		NR1L-PowerManagement-063	X-nav	5. Read the screen state and check that it is on	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	73		NR1L-PowerManagement-064	X-nav	4. Read the screen state and check that the Screen OFF function is activated	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	74		NR1L-PowerManagement-065	X-nav	4. Read the screen state and check that the Screen On function is activated	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	80		NR1L-PowerManagement-071	X-nav	2. Open the auto switch-on setting entry in the HU menu and read the auto switch	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	94		NR1L-PowerManagement-085	X-nav	2. End the call and check that the call screen is dismissed	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	106		NR1L-PowerManagement-097	X-nav	3. Read the HU screen and check that the rear view camera images are shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	106		NR1L-PowerManagement-097	X-nav	4. Read the HU screen and check that the rear view camera image is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	107		NR1L-PowerManagement-098	X-nav	2. Read the HU screen and check that the rear view camera images are no longer s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	110		NR1L-PowerManagement-101	X-nav	3. Read the HU screen and check that no Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	111		NR1L-PowerManagement-102	X-nav	2. Read the HU screen and check that a Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	111		NR1L-PowerManagement-102	X-nav	3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) and che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	112		NR1L-PowerManagement-103	X-nav	4. Read the HU screen and check that no Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	113		NR1L-PowerManagement-104	X-nav	3. Read the HU screen and check that a Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	113		NR1L-PowerManagement-104	X-nav	4. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) and che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	114		NR1L-PowerManagement-105	X-nav	2. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) and che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	117		NR1L-PowerManagement-108	X-nav	3. Read the HU screen and check that the rear view camera video is shown alone	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	119		NR1L-PowerManagement-110	X-nav	2. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) and che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	120		NR1L-PowerManagement-111	X-nav	2. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) and che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	121		NR1L-PowerManagement-112	X-nav	2. Read the HU screen and check that a popup asking whether to transfer the call	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	125		NR1L-PowerManagement-116	X-nav	3. Read the HU screen and check that a popup asking whether to transfer the call	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	133		NR1L-PowerManagement-124	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	133		NR1L-PowerManagement-124	X-nav	3. Read the HU screen and check that the Antitheft screens are shown for a time 	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	134		NR1L-PowerManagement-125	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	134		NR1L-PowerManagement-125	X-nav	4. Read the HU screen and check that the Antitheft screens are shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	135		NR1L-PowerManagement-126	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	136		NR1L-PowerManagement-127	X-nav	2. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	136		NR1L-PowerManagement-127	X-nav	4. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	137		NR1L-PowerManagement-128	X-nav	2. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	137		NR1L-PowerManagement-128	X-nav	4. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	138		NR1L-PowerManagement-129	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	139		NR1L-PowerManagement-130	X-nav	2. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	139		NR1L-PowerManagement-130	X-nav	4. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	140		NR1L-PowerManagement-131	X-nav	2. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	140		NR1L-PowerManagement-131	X-nav	4. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	141		NR1L-PowerManagement-132	X-nav	2. Read the HU screen and check that a proper Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	141		NR1L-PowerManagement-132	X-nav	3. Read the Splash Screen duration and check that it is Response_Wait_Time	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	142		NR1L-PowerManagement-133	X-nav	2. Read the HU screen and check that a proper Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	142		NR1L-PowerManagement-133	X-nav	3. Read the Splash Screen duration and check that it is Response_Wait_Time	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	143		NR1L-PowerManagement-134	X-nav	2. Read the HU screen and check that no rear view camera images are shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	144		NR1L-PowerManagement-135	X-nav	3. Read the HU screen and check that the rear view camera images are shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	149		NR1L-PowerManagement-140	X-nav	2. Press the HU power button and check that the Antitheft HMI screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	149		NR1L-PowerManagement-140	X-nav	3. Read the HU screen and check that a proper Splash Screen is shown for Respons	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	150		NR1L-PowerManagement-141	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	151		NR1L-PowerManagement-142	X-nav	2. Read the HU screen and check that a proper Splash Screen is shown for Respons	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	152		NR1L-PowerManagement-143	X-nav	2. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) and che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	154		NR1L-PowerManagement-145	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	155		NR1L-PowerManagement-146	X-nav	2. Read the HU screen and check that a proper Splash Screen is shown for Respons	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	156		NR1L-PowerManagement-147	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	157		NR1L-PowerManagement-148	X-nav	4. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) and che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	171		NR1L-PowerManagement-162	X-nav	2. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	172		NR1L-PowerManagement-163	X-nav	2. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	173		NR1L-PowerManagement-164	X-nav	1. Browse the menu items offered by the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	173		NR1L-PowerManagement-164	X-nav	2. Read the offered menu items and check that the HU menu items not related to v	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	173		NR1L-PowerManagement-164	X-nav	3. Read the offered menu items and check that no vehicle setup menu item is guar	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	199		NR1L-PowerManagement-190	X-nav	1. Leave the HU in Standby mode without requesting an HMI screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	200		NR1L-PowerManagement-191	X-nav	1. Request an HMI screen to be displayed while the HU is in Standby mode	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	200		NR1L-PowerManagement-191	X-nav	2. Read the HU screen and check that the HMI screen is displayed	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	201		NR1L-PowerManagement-192	X-nav	2. Press the HU power button and check that the Antitheft HMI screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	201		NR1L-PowerManagement-192	X-nav	3. Read the HU screen and check that a proper Splash Screen is shown for Respons	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	202		NR1L-PowerManagement-193	X-nav	2. Press the HU power button and check that the Antitheft HMI screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	202		NR1L-PowerManagement-193	X-nav	3. Read the HU screen and check that a proper Splash Screen is shown for Respons	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	203		NR1L-PowerManagement-194	X-nav	3. Press the HU power button and check that the Antitheft HMI screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	203		NR1L-PowerManagement-194	X-nav	4. Read the HU screen and check that a proper Splash Screen is shown for Respons	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	204		NR1L-PowerManagement-195	X-nav	3. Press the HU power button and check that the Antitheft HMI screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	204		NR1L-PowerManagement-195	X-nav	4. Read the HU screen and check that a proper Splash Screen is shown for Respons	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	205		NR1L-PowerManagement-196	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	205		NR1L-PowerManagement-196	X-nav	4. Read the HU screen and check that the proper HMI Antitheft screens are shown 	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	206		NR1L-PowerManagement-197	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	206		NR1L-PowerManagement-197	X-nav	4. Read the HU screen and check that the proper HMI Antitheft screens are shown 	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	207		NR1L-PowerManagement-198	X-nav	2. Read the HU screen and check that the rear view camera video is provided as s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	208		NR1L-PowerManagement-199	X-nav	2. Read the HU screen and check that the rear view camera video is provided whil	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	209		NR1L-PowerManagement-200	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	209		NR1L-PowerManagement-200	X-nav	4. Read the HU screen and check that the proper HMI Antitheft screens are shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	210		NR1L-PowerManagement-201	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	210		NR1L-PowerManagement-201	X-nav	4. Read the HU screen and check that the proper HMI Antitheft screens are shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	211		NR1L-PowerManagement-202	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	212		NR1L-PowerManagement-203	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	215		NR1L-PowerManagement-206	X-nav	1. Open the auto switch-on setting entry in the HU menu on the ex-factory unit a	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	215		NR1L-PowerManagement-206	X-nav	2. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) on the 	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	216		NR1L-PowerManagement-207	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	216		NR1L-PowerManagement-207	X-nav	4. Read the HU screen and check that the proper HMI Antitheft screens are shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	218		NR1L-PowerManagement-209	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	218		NR1L-PowerManagement-209	X-nav	3. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 4 (Ignition_On) and che	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	219		NR1L-PowerManagement-210	X-nav	2. Press the HU power button and check that the HU powers up without the Antithe	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	219		NR1L-PowerManagement-210	X-nav	4. Read the HU screen and check that the proper HMI Antitheft screens are shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	220		NR1L-PowerManagement-211	X-nav	1. Power up the HU and let the brand logo screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	220		NR1L-PowerManagement-211	X-nav	2. Read the HU screen and check that the brand logo screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	221		NR1L-PowerManagement-212	X-nav	1. Power up the HU and let the brand logo screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	221		NR1L-PowerManagement-212	X-nav	2. Read the HU screen and check that the brand logo screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	222		NR1L-PowerManagement-213	X-nav	1. Power up the HU and let the brand logo screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	222		NR1L-PowerManagement-213	X-nav	2. Read the HU screen and check that the brand logo screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	223		NR1L-PowerManagement-214	X-nav	1. Power up the HU and let the brand logo screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	223		NR1L-PowerManagement-214	X-nav	2. Read the HU screen and check that the brand logo screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	224		NR1L-PowerManagement-215	X-nav	1. Power up the HU and let the brand logo screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	224		NR1L-PowerManagement-215	X-nav	2. Read the HU screen and check that the brand logo screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	225		NR1L-PowerManagement-216	X-nav	1. Power up the ETM and let the Splash Screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	225		NR1L-PowerManagement-216	X-nav	2. Read the shown Splash Screen and check that it is the Klipsch Splash Screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	226		NR1L-PowerManagement-217	X-nav	1. Power up the ETM and let the Splash Screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	226		NR1L-PowerManagement-217	X-nav	2. Read the shown Splash Screen and check that it is the Klipsch Splash Screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	228		NR1L-PowerManagement-219	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	229		NR1L-PowerManagement-220	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	229		NR1L-PowerManagement-220	X-nav	3. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	230		NR1L-PowerManagement-221	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	230		NR1L-PowerManagement-221	X-nav	3. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	231		NR1L-PowerManagement-222	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	232		NR1L-PowerManagement-223	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	232		NR1L-PowerManagement-223	X-nav	3. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	233		NR1L-PowerManagement-224	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	233		NR1L-PowerManagement-224	X-nav	3. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	234		NR1L-PowerManagement-225	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	235		NR1L-PowerManagement-226	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	235		NR1L-PowerManagement-226	X-nav	3. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	236		NR1L-PowerManagement-227	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	236		NR1L-PowerManagement-227	X-nav	3. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	237		NR1L-PowerManagement-228	X-nav	1. Open the timeout setting entry in the HU menu on the ex-factory unit and read	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	237		NR1L-PowerManagement-228	X-nav	2. Open the auto switch-on setting entry in the HU menu on the ex-factory unit a	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	237		NR1L-PowerManagement-228	X-nav	3. Open the timeout setting entry in the HU menu on the ex-factory unit and read	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	242		NR1L-PowerManagement-233	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	243		NR1L-PowerManagement-234	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	244		NR1L-PowerManagement-235	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	245		NR1L-PowerManagement-236	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	246		NR1L-PowerManagement-237	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	246		NR1L-PowerManagement-237	X-nav	3. Open the auto switch-on setting entry in the HU menu and read the auto switch	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	246		NR1L-PowerManagement-237	X-nav	4. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	247		NR1L-PowerManagement-238	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	247		NR1L-PowerManagement-238	X-nav	3. Open the auto switch-on setting entry in the HU menu and read the auto switch	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	247		NR1L-PowerManagement-238	X-nav	4. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	248		NR1L-PowerManagement-239	X-nav	1. Open the timeout setting entry in the HU menu	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	248		NR1L-PowerManagement-239	X-nav	3. Open the auto switch-on setting entry in the HU menu and read the auto switch	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	248		NR1L-PowerManagement-239	X-nav	4. Open the timeout setting entry in the HU menu and read the timeout setting va	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	256		NR1L-PowerManagement-247	X-nav	2. Place a phone call from the paired device and check that the call screen is s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	257		NR1L-PowerManagement-248	X-nav	2. Place a phone call from the paired device and check that the call screen is s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	258		NR1L-PowerManagement-249	X-nav	2. Place a phone call from the paired device and check that the call screen is s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	259		NR1L-PowerManagement-250	X-nav	3. Read the HU screen and check that the disclaimer screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	264		NR1L-PowerManagement-255	X-nav	2. Read the HU screen and check that the disclaimer is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	264		NR1L-PowerManagement-255	X-nav	6. Read the HU screen and check that the disclaimer is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	265		NR1L-PowerManagement-256	X-nav	2. Read the HU display before SplashScreen_Time has elapsed and check that no sp	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	265		NR1L-PowerManagement-256	X-nav	3. Read the HU display after SplashScreen_Time has elapsed and check that the sp	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	266		NR1L-PowerManagement-257	X-nav	2. Read the HU display through SplashScreen_Time and check that no splash screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	267		NR1L-PowerManagement-258	X-nav	2. Read the HU display through SplashScreen_Time and check that no splash screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	268		NR1L-PowerManagement-259	X-nav	2. Read the HU screen before StandardScreen_Time has elapsed and check that the 	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	268		NR1L-PowerManagement-259	X-nav	3. Read the HU screen after StandardScreen_Time has elapsed and check that the s	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	299		NR1L-PowerManagement-290	X-nav	3. Read the HU screen and check that the FOTA update available pop-up is display	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	300		NR1L-PowerManagement-291	X-nav	3. Read the HU screen and check that the FOTA update available pop-up is display	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	301		NR1L-PowerManagement-292	X-nav	3. Read the HU screen and check that the FOTA update available pop-up is display	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	302		NR1L-PowerManagement-293	X-nav	2. Read the HU screen and check that the pop-up stays on the screen while no int	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	303		NR1L-PowerManagement-294	X-nav	1. Dismiss the FOTA pop-up on the HU screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	303		NR1L-PowerManagement-294	X-nav	2. Read the HU screen and check that the FOTA pop-up is dismissed	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	322		NR1L-PowerManagement-313	X-nav	1. Open the profile screen on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	322		NR1L-PowerManagement-313	X-nav	2. Read the avatar list in the profile screen and check that the Jeep avatars ar	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	323		NR1L-PowerManagement-314	X-nav	1. Open the profile screen on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	323		NR1L-PowerManagement-314	X-nav	2. Read the avatar list in the profile screen and check that the Fiat avatars ma	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	324		NR1L-PowerManagement-315	X-nav	1. Open the profile screen on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	324		NR1L-PowerManagement-315	X-nav	2. Read the avatar list in the profile screen and check that the Fiat avatars ar	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	325		NR1L-PowerManagement-316	X-nav	1. Open the climate screen showing the recirc icon	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	326		NR1L-PowerManagement-317	X-nav	1. Open the climate screen showing the recirc icon	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	327		NR1L-PowerManagement-318	X-nav	1. Open the seat settings screen on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	328		NR1L-PowerManagement-319	X-nav	1. Open the seat settings screen on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	331		NR1L-PowerManagement-322	X-nav	1. Open the seat settings screen on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	332		NR1L-PowerManagement-323	X-nav	1. Open the seat settings screen on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	333		NR1L-PowerManagement-324	X-nav	1. Open the performance gauges screen on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	337		NR1L-PowerManagement-327	X-nav	1. Open the screen on which the theme is applied	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	338		NR1L-PowerManagement-328	X-nav	1. Open the screen on which the theme is applied	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	339		NR1L-PowerManagement-329	X-nav	2. Read the HU screen and check that a start-up animation is played	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	340		NR1L-PowerManagement-330	X-nav	2. Read the HU screen and check that a start-up animation is played	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	341		NR1L-PowerManagement-331	X-nav	2. Read the HU screen and check that a start-up animation is played	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	342		NR1L-PowerManagement-332	X-nav	2. Read the HU screen and check that no start-up animation is played	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	343		NR1L-PowerManagement-333	X-nav	2. Read the HU screen and check that the current start-up animation is cancelled	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	344		NR1L-PowerManagement-334	X-nav	2. Read the HU screen and check that the current start-up animation is cancelled	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	345		NR1L-PowerManagement-335	X-nav	2. Read the HU screen and check that the current start-up animation is cancelled	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	346		NR1L-PowerManagement-336	X-nav	3. Read the HU screen and check that no start-up animation is played	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	347		NR1L-PowerManagement-337	X-nav	2. Read the HU screen and check that no further start-up animation is played	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	347		NR1L-PowerManagement-337	X-nav	4. Read the HU screen and check that a start-up animation is played again	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	348		NR1L-PowerManagement-338	X-nav	2. Read the HU screen and check that the startup animation is displayed	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	348		NR1L-PowerManagement-338	X-nav	3. Read the screen sequence and check that the startup animation is displayed se	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	349		NR1L-PowerManagement-339	X-nav	3. Read the HU screen and check that no splash screen is visualized	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	357		NR1L-PowerManagement-347	X-nav	2. Read the HU screen and check that the startup animation is played	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	358		NR1L-PowerManagement-348	X-nav	2. Read the HU screen and check that the startup animation is played	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	362		NR1L-PowerManagement-352	X-nav	2. Read the HU screen and check that the startup animation is played	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	363		NR1L-PowerManagement-353	X-nav	1. Power up the HU and let the brand logo screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	363		NR1L-PowerManagement-353	X-nav	2. Read the HU screen and check that the brand logo screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	364		NR1L-PowerManagement-354	X-nav	1. Power up the HU and let the brand logo screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	364		NR1L-PowerManagement-354	X-nav	2. Read the HU screen and check that the brand logo screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	365		NR1L-PowerManagement-355	X-nav	1. Power up the HU and let the brand logo screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	365		NR1L-PowerManagement-355	X-nav	2. Read the HU screen and check that the brand logo screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	366		NR1L-PowerManagement-356	X-nav	1. Power up the HU and let the brand logo screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	366		NR1L-PowerManagement-356	X-nav	2. Read the HU screen and check that the brand logo screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	367		NR1L-PowerManagement-357	X-nav	1. Power up the ETM and let the Splash Screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	367		NR1L-PowerManagement-357	X-nav	2. Read the shown Splash Screen and check that it is the Klipsch Splash Screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	368		NR1L-PowerManagement-358	X-nav	1. Power up the ETM and let the Splash Screen be presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	368		NR1L-PowerManagement-358	X-nav	2. Read the shown Splash Screen and check that it is the Klipsch Splash Screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	369		NR1L-PowerManagement-359	X-nav	3. Read the HU display and check that only the Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	370		NR1L-PowerManagement-360	X-nav	3. Read the HU display and check that only the Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	371		NR1L-PowerManagement-361	X-nav	3. Read the HU display and check that only the Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	372		NR1L-PowerManagement-362	X-nav	3. Read the HU display and check that only the Splash Screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	374		NR1L-PowerManagement-364	X-nav	3. Read the HU screen and check that the splash screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	374		NR1L-PowerManagement-364	X-nav	4. Read the HU screen and check that the disclaimer screen is shown after the sp	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	375		NR1L-PowerManagement-365	X-nav	3. Read the HU screen and check that the splash screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	375		NR1L-PowerManagement-365	X-nav	4. Read the HU screen and check that the disclaimer screen is shown after the sp	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	376		NR1L-PowerManagement-366	X-nav	3. Read the HU screen and check that the disclaimer screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	377		NR1L-PowerManagement-367	X-nav	3. Read the HU screen and check that the disclaimer screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	378		NR1L-PowerManagement-368	X-nav	3. Read the HU screen and check that the disclaimer screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	379		NR1L-PowerManagement-369	X-nav	3. Read the HU screen and check that the splash screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	379		NR1L-PowerManagement-369	X-nav	4. Read the HU screen and check that the disclaimer screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	380		NR1L-PowerManagement-370	X-nav	3. Read the HU screen and check that the splash screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	380		NR1L-PowerManagement-370	X-nav	4. Read the HU screen and check that the disclaimer screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	381		NR1L-PowerManagement-371	X-nav	3. Read the HU screen and check that the splash screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	381		NR1L-PowerManagement-371	X-nav	4. Read the HU screen and check that the disclaimer screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	382		NR1L-PowerManagement-372	X-nav	3. Read the HU screen and check that the splash screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	382		NR1L-PowerManagement-372	X-nav	4. Read the HU screen and check that the disclaimer screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	383		NR1L-PowerManagement-373	X-nav	3. Read the HU screen and check that the splash screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	383		NR1L-PowerManagement-373	X-nav	4. Read the HU screen and check that the disclaimer screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	384		NR1L-PowerManagement-374	X-nav	3. Read the HU screen and check that the splash screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	384		NR1L-PowerManagement-374	X-nav	4. Read the HU screen and check that the disclaimer screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	385		NR1L-PowerManagement-375	X-nav	3. Read the HU screen and check that the splash screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	385		NR1L-PowerManagement-375	X-nav	4. Read the HU screen and check that the disclaimer screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	386		NR1L-PowerManagement-376	X-nav	3. Read the HU screen and check that the splash screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	386		NR1L-PowerManagement-376	X-nav	4. Read the HU screen and check that the disclaimer screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	387		NR1L-PowerManagement-377	X-nav	1. Bring the HU through the startup until the disclaimer screen is presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	388		NR1L-PowerManagement-378	X-nav	1. Bring the HU through the startup until the disclaimer screen is presented	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	389		NR1L-PowerManagement-379	X-nav	2. Read the HU screen and check that the core disclaimer screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	390		NR1L-PowerManagement-380	X-nav	3. Read the HU screen on each of those cycles and check that the core disclaimer	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	391		NR1L-PowerManagement-381	X-nav	3. Read the HU screen and check that the core disclaimer screen is shown again	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	395		NR1L-PowerManagement-385	X-nav	2. Read the HU screen and check that the disclaimer screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	396		NR1L-PowerManagement-386	X-nav	2. Read the HU screen and check that the disclaimer screen is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	398		NR1L-PowerManagement-388	X-nav	3. Read the HU screen and check that the disclaimer screen is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	399		NR1L-PowerManagement-389	X-nav	2. Read the HU screen and check that the disclaimer is not shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification&Result	399		NR1L-PowerManagement-389	X-nav	6. Read the HU screen and check that the disclaimer is shown	（須查 HMI 來源，R-G71(d)：不造 hop）	N

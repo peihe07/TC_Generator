@@ -1,0 +1,114 @@
+sheet	row	col	tc_id	rule	old_text	new_text	mechanical
+Test Case Specification 測試用例規範	12	12	NR1L-ICS-003	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob1_DIR$		N
+Test Case Specification 測試用例規範	12	12	NR1L-ICS-003	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob1_DIR$		N
+Test Case Specification 測試用例規範	12	12	NR1L-ICS-003	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob1_VAL$		N
+Test Case Specification 測試用例規範	12	13	NR1L-ICS-003	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob1_VAL$		N
+Test Case Specification 測試用例規範	14	12	NR1L-ICS-005	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	14	12	NR1L-ICS-005	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	14	12	NR1L-ICS-005	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	14	12	NR1L-ICS-005	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	14	13	NR1L-ICS-005	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 1 (Knob_increment) is sent	Y
+Test Case Specification 測試用例規範	14	13	NR1L-ICS-005	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 0 (Knob_no_change) is sent	Y
+Test Case Specification 測試用例規範	14	13	NR1L-ICS-005	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	14	13	NR1L-ICS-005	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	15	12	NR1L-ICS-006	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	15	12	NR1L-ICS-006	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	15	12	NR1L-ICS-006	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	15	12	NR1L-ICS-006	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	15	13	NR1L-ICS-006	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 2 (Knob_decrement) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 2 (Knob_decrement) is sent	Y
+Test Case Specification 測試用例規範	15	13	NR1L-ICS-006	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 0 (Knob_no_change) is sent	Y
+Test Case Specification 測試用例規範	15	13	NR1L-ICS-006	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	15	13	NR1L-ICS-006	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	16	12	NR1L-ICS-007	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	16	12	NR1L-ICS-007	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	16	13	NR1L-ICS-007	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 0 (Knob_no_change) is sent	Y
+Test Case Specification 測試用例規範	16	13	NR1L-ICS-007	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 0 (Knob_no_change) is sent	Y
+Test Case Specification 測試用例規範	17	12	NR1L-ICS-008	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	17	12	NR1L-ICS-008	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	17	12	NR1L-ICS-008	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	17	13	NR1L-ICS-008	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 0 (Knob_no_change) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 0 (Knob_no_change) is sent	Y
+Test Case Specification 測試用例規範	17	13	NR1L-ICS-008	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 1 (Knob_increment) is sent	Y
+Test Case Specification 測試用例規範	17	13	NR1L-ICS-008	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	18	12	NR1L-ICS-009	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	18	12	NR1L-ICS-009	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	18	12	NR1L-ICS-009	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	18	13	NR1L-ICS-009	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 1 (Knob_increment) is sent	Y
+Test Case Specification 測試用例規範	18	13	NR1L-ICS-009	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	18	13	NR1L-ICS-009	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_VAL$		N
+Test Case Specification 測試用例規範	19	12	NR1L-ICS-010	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	19	13	NR1L-ICS-010	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 1 (Knob_increment) is sent	Y
+Test Case Specification 測試用例規範	20	12	NR1L-ICS-011	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	20	13	NR1L-ICS-011	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 1 (Knob_increment) is sent	Y
+Test Case Specification 測試用例規範	21	12	NR1L-ICS-012	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_Knob2_DIR$		N
+Test Case Specification 測試用例規範	21	13	NR1L-ICS-012	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_Knob2_DIR$ = 1 (Knob_increment) is received	CLIMATIC_PANEL.Radio_Knob2_DIR = 1 (Knob_increment) is sent	Y
+Test Case Specification 測試用例規範	22	12	NR1L-ICS-013	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn4$		N
+Test Case Specification 測試用例規範	23	12	NR1L-ICS-014	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn4$		N
+Test Case Specification 測試用例規範	24	12	NR1L-ICS-015	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	24	12	NR1L-ICS-015	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn0$		N
+Test Case Specification 測試用例規範	24	12	NR1L-ICS-015	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	24	12	NR1L-ICS-015	P-v3→v4:bare	$RADIO_B3.RQ_DISP_INTS$		N
+Test Case Specification 測試用例規範	25	10	NR1L-ICS-016	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification 測試用例規範	25	12	NR1L-ICS-016	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	25	12	NR1L-ICS-016	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn0$		N
+Test Case Specification 測試用例規範	25	12	NR1L-ICS-016	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	25	12	NR1L-ICS-016	P-v3→v4:bare	$RADIO_B3.RQ_DISP_INTS$		N
+Test Case Specification 測試用例規範	26	12	NR1L-ICS-017	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	26	12	NR1L-ICS-017	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn0$		N
+Test Case Specification 測試用例規範	26	12	NR1L-ICS-017	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	27	10	NR1L-ICS-018	P-v3→v4:bare	$STATUS_TELEMATIC.PowerSts_Telematic$		N
+Test Case Specification 測試用例規範	27	12	NR1L-ICS-018	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn0$		N
+Test Case Specification 測試用例規範	27	12	NR1L-ICS-018	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	28	12	NR1L-ICS-019	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn0$		N
+Test Case Specification 測試用例規範	28	12	NR1L-ICS-019	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn2$		N
+Test Case Specification 測試用例規範	28	12	NR1L-ICS-019	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn0$		N
+Test Case Specification 測試用例規範	28	12	NR1L-ICS-019	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn2$		N
+Test Case Specification 測試用例規範	29	12	NR1L-ICS-020	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn2$		N
+Test Case Specification 測試用例規範	29	12	NR1L-ICS-020	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	29	12	NR1L-ICS-020	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	30	12	NR1L-ICS-021	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	31	12	NR1L-ICS-022	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	31	12	NR1L-ICS-022	P-v3→v4:bare	$RADIO_B3.RQ_DISP_INTS$		N
+Test Case Specification 測試用例規範	32	12	NR1L-ICS-023	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn2$		N
+Test Case Specification 測試用例規範	32	12	NR1L-ICS-023	P-v3→v4:bare	$TELEMATIC_DISPLAY2.TGW_DISP_STATSts$		N
+Test Case Specification 測試用例規範	34	12	NR1L-ICS-025	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn1$		N
+Test Case Specification 測試用例規範	34	13	NR1L-ICS-025	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_btn1$ = 1 (Pressed) is received	CLIMATIC_PANEL.Radio_btn1 = 1 (Pressed) is sent	Y
+Test Case Specification 測試用例規範	35	12	NR1L-ICS-026	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn3$		N
+Test Case Specification 測試用例規範	36	12	NR1L-ICS-027	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn4$		N
+Test Case Specification 測試用例規範	36	13	NR1L-ICS-027	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_btn4$ = 0 (Not_Pressed) is received	CLIMATIC_PANEL.Radio_btn4 = 0 (Not_Pressed) is sent	Y
+Test Case Specification 測試用例規範	37	12	NR1L-ICS-028	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn4$		N
+Test Case Specification 測試用例規範	37	13	NR1L-ICS-028	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_btn4$ = 0 (Not_Pressed) is received	CLIMATIC_PANEL.Radio_btn4 = 0 (Not_Pressed) is sent	Y
+Test Case Specification 測試用例規範	38	12	NR1L-ICS-029	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn4$		N
+Test Case Specification 測試用例規範	38	13	NR1L-ICS-029	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_btn4$ = 1 (Pressed) is received	CLIMATIC_PANEL.Radio_btn4 = 1 (Pressed) is sent	Y
+Test Case Specification 測試用例規範	39	12	NR1L-ICS-030	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn4$		N
+Test Case Specification 測試用例規範	39	13	NR1L-ICS-030	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_btn4$ = 1 (Pressed) is received	CLIMATIC_PANEL.Radio_btn4 = 1 (Pressed) is sent	Y
+Test Case Specification 測試用例規範	40	12	NR1L-ICS-031	P-v3→v4:bare	$CLIMATIC_PANEL.Radio_btn4$		N
+Test Case Specification 測試用例規範	40	13	NR1L-ICS-031	P-v3→v4:recv	The signal value $CLIMATIC_PANEL.Radio_btn4$ = 0 (Not_Pressed) is received	CLIMATIC_PANEL.Radio_btn4 = 0 (Not_Pressed) is sent	Y
+Test Case Specification 測試用例規範	16		NR1L-ICS-007	X-nav	4. Check that the HU screen content is unchanged during the 5 seconds	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	19		NR1L-ICS-010	X-nav	1. Record the screen currently shown on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	20		NR1L-ICS-011	X-nav	1. Record the screen content currently shown on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	20		NR1L-ICS-011	X-nav	4. Check that the screen content has changed from the content recorded in step 1	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	24		NR1L-ICS-015	X-nav	6. Check that the HU screen is dark and shows no content	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	25		NR1L-ICS-016	X-nav	6. Check that the HU screen is dark and shows no content	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	26		NR1L-ICS-017	X-nav	"2. Record the screen that was shown before the HU entered the ""HU Screen OFF"" st"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	26		NR1L-ICS-017	X-nav	6. Check that the screen shown is the same as the screen recorded in step 2	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	27		NR1L-ICS-018	X-nav	"1. Record the screen that was shown before the HU entered the ""HU Screen OFF"" st"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	27		NR1L-ICS-018	X-nav	5. Check that the screen shown is the same as the screen recorded in step 1	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	28		NR1L-ICS-019	X-nav	"3. Press the ICS ""Screen Off"" button while the ""Power"" button is still held"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	29		NR1L-ICS-020	X-nav	"1. Press the ICS ""Screen Off"" button"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	29		NR1L-ICS-020	X-nav	"5. Check that the ""TOUCH SCREEN TO TURN ON"" graphic is still shown 2 seconds aft"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	30		NR1L-ICS-021	X-nav	1. Record the screen currently shown on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	30		NR1L-ICS-021	X-nav	"2. Press the ICS ""Screen Off"" button"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	30		NR1L-ICS-021	X-nav	"3. Press the ICS ""Screen Off"" button again 1 second after the first press"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	30		NR1L-ICS-021	X-nav	5. Check that the screen shown is the same as the screen recorded in step 1	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	31		NR1L-ICS-022	X-nav	"1. Press the ICS ""Screen Off"" button"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	31		NR1L-ICS-022	X-nav	2. Wait for the 3 second period to complete without touching the screen	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	31		NR1L-ICS-022	X-nav	5. Check that the HU screen is dark and shows no content	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	32		NR1L-ICS-023	X-nav	"1. Record the screen that was shown before the HU entered the ""HU Screen OFF"" st"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	32		NR1L-ICS-023	X-nav	"2. Press the ICS ""Screen Off"" button"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	32		NR1L-ICS-023	X-nav	5. Check that the screen shown is the same as the screen recorded in step 1	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	33		NR1L-ICS-024	X-nav	"1. Press the ICS ""Screen Off"" button and record the time of the press"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	33		NR1L-ICS-024	X-nav	"4. Release the ICS ""Screen Off"" button and record the time of the release"	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	34		NR1L-ICS-025	X-nav	1. Record the screen currently shown on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	34		NR1L-ICS-025	X-nav	4. Check that the screen shown has changed from the screen recorded in step 1	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	35		NR1L-ICS-026	X-nav	1. Record the screen currently shown on the HU	（須查 HMI 來源，R-G71(d)：不造 hop）	N
+Test Case Specification 測試用例規範	35		NR1L-ICS-026	X-nav	4. Check that the screen shown has changed from the screen recorded in step 1	（須查 HMI 來源，R-G71(d)：不造 hop）	N

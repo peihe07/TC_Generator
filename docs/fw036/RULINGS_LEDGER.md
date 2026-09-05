@@ -57,7 +57,7 @@
 |---|---|
 | ~~R-1 v1~~ | 已撤銷，見下方撤銷紀錄 |
 | ~~R-1 v2~~ | 已撤銷，見上方 R-1 v2 撤銷加註（原 `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5） |
-| R-1 v3 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5（沿革含 12 包原文與 17 包 §三之 (d) 修訂） |
+| ~~R-1 v3~~ | 已撤銷（GC-07 審閱 §三／R-G70），沿革加註保留於 `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5 |
 | R-6 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5 末段＋`scripts/lint036.py` 檢查 P 之範圍 |
 | R-6b | `scripts/lint036.py` 檢查 C 之範圍 |
 | R-7 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5(a) |
@@ -72,6 +72,8 @@
 | R-12 | `docs/fw036/handoff/15_r12_precondition_specref.md` §一 |
 | R-13 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5(g) |
 | R-G71 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §5.8（＋§5.3 三常數、§9 第 18 條、§8.7.5 首段之來源分線） |
+| R-G70（R-1 v4）| `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5（沿革含 v1／v2／v3 三次撤銷紀錄） |
+| R-G72 | `docs/fw036/RULINGS_LEDGER.md` 之 `### R-G72` 錨（無 canon 對應節 —— 其管交付流程非 TC 內容） |
 | R-14 | `docs/fw036/handoff/20_pm_closeout.md` §一 |
 | R-15 | `docs/fw036/handoff/21_ledger_fix.md` §一 |
 | R-16 | `docs/fw036/handoff/30_pm_final_review.md` §一（就地裁決第 1 項） |
@@ -1772,3 +1774,107 @@ R-G36 補充 [DEFAULT]：機器抽取入台帳後，執行層須逐條回讀所�
 > **lint 檢查代號之訂正**：下放包 §四.3 指定新檢查代號 **Q**，惟 `scripts/lint036.py`
 > 之 `CHECK_TITLES["Q"]` 已為「不可見字元（NBSP／全形空格／行尾空白）」（R-10(a)，21 包）。
 > 執行層改用次一未佔用之代號 **X**，判準與粒度照下放包。
+
+---
+
+## 下放包 GC-07 審閱之全域條文（Pei 2026-09-05「之後都要這樣去做，已繳的有需要再進行修改」）
+
+依 `docs/fw036/handoff/down/20260905_GC-07_review.md` §三落檔。
+
+> **執行層落檔前之現查（R-G23）**：掃描面取 `rulings_hash.default_targets()` 之 **20 檔**
+> （FO ＋ 本台帳 ＋ `features/*/RULINGS.md`），與指紋面同源（R-G43(d)）。
+> R-G 最高號 **71**，**70／72 皆未佔用**。
+> ⚠ 若改以全庫 `*.md` 掃描，70／72 會被審閱檔自身之 `### R-G70`／`### R-G72` 標題判為已佔用 ——
+> **handoff 不在指紋面內，不構成佔號**。GC-07 之現查曾用過寬之全庫掃描（當時審閱檔尚未存在，
+> 結論恰巧正確），此處改正掃描面之定義。
+
+### R-G70 —— 訊號與參數寫法 v4：來源層級與作者側記法（全域，Pei 2026-09-05 擇甲）
+
+來源：`docs/fw036/handoff/down/20260905_GC-07_review.md:§三`
+
+```text
+(a) 來源層級：需求主體 = CFTS；訊號名／raw 值／VAL_ label = VF 文件（SWRA）
+    ＋ forms/ 之 PROXI 表與 DBC（R-17、R-13 不變）；畫面之入口／層級／選項標籤
+    = HMI Logic and Flow ＋ HMI Settings List（R-G71）。三者不得代位。
+(b) 兩側記法各安其位：
+    來源側（test_item 上半 verbatim、reasoning 引文）：保留來源原文，含
+      `$MESSAGE.Signal$`（VF230 test_item 欄 81 處實測）。
+    作者側（pre_conditions / test_procedure / expected_result / input_test_data）：
+      一律 SWC／VF230 作者側記法，即 (c)–(f)。
+(c) CAN 送出：`Send CAN: <MESSAGE>.<Signal> = <raw> (<label>)`，label 逐字取 DBC VAL_（R-7）。
+(d) CAN 觀察 ER：`<MESSAGE>.<Signal> = <raw> (<label>) is sent <時機>`；
+    Procedure 讀取：`Read <MESSAGE>.<Signal> and check that it is <raw> (<label>)`（R-11(b)）。
+~~(e) PROXI：`PROXI $<Param>$ is set to "<值>"`（VF230 152 列式）；SWC 之~~
+~~    `PROXI <Param> = <值>`（41 列）為同義舊式，新產出不用。~~
+(e) **v4.1（Pei 裁定 2026-09-05，取代上二行）** PROXI：
+    `PROXI <Param> = <值>`（**SWC 式**）為新產出之標準；
+    VF230 之 `PROXI $<Param>$ is set to "<值>"`（152 列）為**同義舊式**，
+    既有本不回修（R-TM13），回修依 R-G72 發 Revise 本。
+    lint P：SWC 式合規、`is set to` 式報 **WARN**（舊式，不 FAIL）。
+    **WARN 之落點為 lint `Y`**（profile 專屬，比照 `X` 之「只報不改」；GC-10 4-3 節，
+    GC-10 審閱 §一-1 收受）：`P` 為 FAIL 類，WARN 混入即無法只報不改。
+(f) 設定／VHAL／內部參數：`$<Name>$`，`$` 為參數標記（SWC 215 次）；DBC 查無對應者
+    保留來源名並寫應觀察之值（原 v3(d) 內容不變）。Hold／baseline 同原 v3(e)(f)。
+(g) R-13、R-17 不變。
+沿革：R-1 v3 撤銷（R-TM13 加註保留）。撤銷理由：v3 依庫外 CR30580/30581 參考本立，
+  該本查無不可複驗；三本 Pei 交付本作者側欄位 v3 式 0 次、v2 式 236 次；
+  VF230 test_item 欄 81 處 v3 式證明 v3 為來源側記法，12 包誤讀為作者側。
+lint P：判準回 `Send CAN:` 全域預設，`--profile` 之 v3 分支移除。
+vehicle_setting profile 之 `[OVERRIDE §8.7.5]`（R-VS52／R-VS67）：內容併入本體後作廢，
+  台帳加註「升為全域，由 R-G70 承接」。
+```
+
+**條文全文落檔**：`docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5（v4）。
+
+> **(e) 之方向更正 → v4.1（GC-10 §二-2，Pei 裁定 2026-09-05）**：本條 (e) 之原文
+> 以 VF230 式為標準，**與 Pei 之裁定相反**。成因：本條係取自
+> `down/20260905_GC-07_review.md`（B 版，21:22:48 覆寫），而 `down/20260905_GC-09.md`
+> 之 §一-1-1／§一-2-2／§一-3 四處皆書 SWC 式，其所引之「審閱 §一 之 (d) 修訂」
+> 在該審閱內**不存在**（§一 為「Pei 裁示之解讀」，無 (d)）。
+> 差異之全貌與後果見 `up/20260905_GC-09_notice.md`。
+> **指紋已生**（`RULINGS.sha.tsv` 已含 R-G70），故依 R-TM13 **原句加刪除線保留**、
+> 另書 v4.1，不就地改寫；重生後 (e) 之指紋隨本體變動，屬預期。
+> (a)(b)(c)(d)(f)(g) 與沿革段**未動**。
+>
+> > **(e) 之語料標籤更正（執行層實測，R-G69）**：條文所書「SWC 之 `PROXI <Param> = <值>`（41 列）」
+> 之 **41 是「PROXI」一詞之出現次數，不是列數**。SWC 作者側四欄實測：
+> **出現 41 次／行 26／相異行 3／相異參數名 1**（全部為 `RRM_VPx_Steering_Wheel_Command_Type`；
+> 其中 15 行寫作 `PROXI <Param> = <value> (PROXI-independent)`，該詞於同一行出現兩次，
+> 15×2＋11 ＝ 41）。VF230 對照：**出現 152 次／行 152／相異行 119／相異參數名 57**。
+> 此更正**不改變 (e) 之結論** —— 反而加強之：VF230 式之語料廣度為 SWC 式之 57 倍（參數名計）。
+> 「41 列」之誤自下放包 GC-07 §一起，經上繳 §1 與審閱 §三三度沿用，於此更正。
+
+> **(b) 之實測依據**（量測條件同 GC-07 上繳 §1）：作者側四欄 ＝ `lint036.P_FIELDS`。
+> SWC 145 列／VF230 457 列／Home 216 列，共 818 資料列；
+> 作者側 `$MESSAGE.Signal$` 命中 **0**，`Send CAN:` 命中 **236**（SWC 52 ＋ VF230 184）；
+> VF230 全欄之 81 處 v3 式**全在 `test_item`**（首見該分頁列 164
+> `$TELEMATIC_VEHICLE_SETUP.DRLEnable_Req$`）。
+
+### R-G72 —— 已交付本之回修形態（全域，Pei 2026-09-05「已繳的有需要再進行修改」）
+
+來源：`docs/fw036/handoff/down/20260905_GC-07_review.md:§三`
+
+```text
+(a) 已交付本不就地改（R-TM13 之「檔不動」保留）；回修以 Revise 本 發出：
+    同目錄、檔名加 `_Revise{n}`、新日期、新 sha，舊本原封留檔並於該線 RULINGS 記
+    「被 <新檔> 取代，取代理由 <R-G 號>」。
+(b) 每本 Revise 須附 TestRail 舊 ID→新 ID 對照表（同 PM 站 ⑤ 之形態），
+    TC 內容有變者對照表加 `changed` 欄標明變動之欄。
+(c) 回修範圍限 canon 條文所定之機械轉換（R-G70 訊號記法、R-G71 導航路徑）
+    與 Pei 逐本裁准之內容修正；不得順手改其他欄。
+(d) 何本回修、次序：依 GC-08 盤點表由 Pei 逐本裁；未裁者不動。
+(e) 回修產出之 Revise 本重新過全部閘（含 X）後方可出貨。
+(f) **候選判準（GC-10 §二-3 增，Pei 2026-09-05）**：lint 之交付向 `X` 或 `P` 紅數 > 0 之
+    交付本為**候選**，逐本由 Pei 圈選；未圈選者不回修。`Y`（PROXI 舊式）為 WARN，
+    **不單獨構成候選**，惟已因 X／P 入選者，其 Y 併入該本之轉換範圍。
+    候選表由執行層出，落 `docs/reports/rg72_candidates_<YYYYMMDD>.tsv`。
+
+> **「R-TM14」之名作廢（GC-10 §二-3，Pei 2026-09-05）**：GC-07 審閱 A 版曾以
+> `R-TM14` 稱本回修形態條。`R-TM` 為 `time_management` 線之條號系列前綴，
+> 全域條以該前綴取號會與該線撞名。**本條之號為 `R-G72`**；
+> 凡引「R-TM14」者一律改指 R-G72，`R-TM14` 不另立、不佔號。
+> 候選表之檔名同步由 `rtm14_candidates_*` 改為 `rg72_candidates_*`。
+```
+
+> **R-TM13 與本條之關係**：R-TM13 所護者為**歷史檔之位元不變**，非「交付內容不得演進」。
+> 二者並存 —— 舊檔原封，演進以新檔承載。

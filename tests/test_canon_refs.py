@@ -184,6 +184,42 @@ def test_ruling_with_revision_suffix(repo, line):
     assert monkey.verdict == "unresolved"  # 範例 canon 只載 R-G5／R-G51
 
 
+def test_ledger_anchor_resolves_when_the_canons_lack_the_number(repo):
+    """台帳之 `### R-Gnn` 錨點須可解析（R-G43(d)，GC-06 補遺 §1）。
+
+    R-G43(b) 只把台帳補進**指紋**面；解析面沒補，於是「有指紋而解析不到」——
+    GC-06 實測 963 處 ruling unresolved 全部是這一類（A-GC15）。
+    """
+    led = repo / "docs/fw036/RULINGS_LEDGER.md"
+    led.parent.mkdir(parents=True, exist_ok=True)
+    led.write_text("### R-G44 — 來源身分唯一表\n\n```\nR-G44：…\n```\n", encoding="utf-8")
+    assert "44" not in cr.Resolver(repo).canons["FO"].rulings      # FO 無該號
+    r = one(repo, "依 R-G44 登記來源身分。", kind="ruling")
+    assert r.verdict == "resolved" and r.hits == ("LEDGER:R-G44",)
+
+
+def test_number_in_a_narrative_ledger_heading_is_not_an_anchor(repo):
+    """範圍向（R-G9）：條號在括號內之敘述式標題不算錨點，否則會造假錨。"""
+    led = repo / "docs/fw036/RULINGS_LEDGER.md"
+    led.parent.mkdir(parents=True, exist_ok=True)
+    led.write_text("## 合併包 19 之全域條文（R-G31，2026-08-25）\n\n依 R-G31 之規定。\n",
+                   encoding="utf-8")
+    assert one(repo, "依 R-G31 之規定。", kind="ruling").verdict == "unresolved"
+
+
+def test_same_number_on_both_sides_resolves_not_ambiguous(repo):
+    """同號兩側皆有錨者判 resolved（Pei 2026-09-05 裁）——
+
+    條號指得到落點就解析得了；本體差異由 `rulings_hash` 之撞號表管。
+    """
+    led = repo / "docs/fw036/RULINGS_LEDGER.md"
+    led.parent.mkdir(parents=True, exist_ok=True)
+    led.write_text("### R-G5 — 全部 git 操作屬 Pei（台帳側全文）\n", encoding="utf-8")
+    r = one(repo, "全部 git 操作屬 Pei（R-G5）。", kind="ruling")
+    assert r.verdict == "resolved"
+    assert set(r.hits) == {"FO:R-G5", "LEDGER:R-G5"}
+
+
 def test_ruling_word_boundary_not_matched_inside_longer_token(repo):
     """範圍向：`R-G50`／`XR-G5` 不得被讀成 R-G5。"""
     assert [r.target for r in cite(repo, "見 R-G50 與 XR-G5。") if r.kind == "ruling"] == ["R-G50"]
