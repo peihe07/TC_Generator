@@ -14,7 +14,7 @@ paths:
   # ⚠ **本副本自始不得經 openpyxl 存回**（T8a 明文，A-UP09 同族）——
   # 實測其 `R10:R1411` 之設計方法下拉為 **x14 擴充**（清單來源 `下拉選單!$A$1:$A$9`），
   # openpyxl 讀不到且 save 時會將其刪除。
-  workbook: "workbook/driver_distraction_00.xlsx"
+  workbook: "sandbox/driver_distraction_00.xlsx"
   a03_report: "inputs/DD_SWE1_0807_EN.xlsx"
   sys1_export: "inputs/SYS1_HMI_Driver_Lockout_HMI_Logic_and_Flow_R1_SR24_1A_(May_3_2021).xlsx"
   spec_pdf: "inputs/Driver Lockout HMI Logic and Flow R1 SR24 1A (May 3 2021).pdf"
