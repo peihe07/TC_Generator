@@ -1892,6 +1892,10 @@ vehicle_setting profile 之 `[OVERRIDE §8.7.5]`（R-VS52／R-VS67）：內容�
     二類之一，**且無誤報**。「全為 bare 類」過嚴 —— Revise-M 本就不解 Revise-C 項。
     殘項清單落 `features/<f>/reports/rg72_residual_<slug>_<date>.tsv`
     （row / col / text / class / 去向），隨 Revise1 一併入 MANIFEST note。
+    **加註（GC-14 審閱 二，Pei 2026-09-05）**：新增任何 lint 檢查代號時，
+    `scripts/rg72_residual.py` 之分類表**同包擴充**，並加一測試
+    「未知 detail → `unclassified`」。分類表為白名單式 ——
+    `unclassified` 之值在於使新檢查不被靜默歸入「其餘」而通過出貨條件。
 
 > **「R-TM14」之名作廢（GC-10 §二-3，Pei 2026-09-05）**：GC-07 審閱 A 版曾以
 > `R-TM14` 稱本回修形態條。`R-TM` 為 `time_management` 線之條號系列前綴，
