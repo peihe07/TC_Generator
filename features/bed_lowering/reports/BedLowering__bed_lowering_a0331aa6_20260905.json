@@ -1,0 +1,5253 @@
+{
+  "source": "features/bed_lowering/output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_BedLowering_20260902.xlsx",
+  "profile": "bed_lowering",
+  "counts": {
+    "A": 0,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 0,
+    "F": 0,
+    "G": 0,
+    "H": 7,
+    "I": 0,
+    "I-sibling": 0,
+    "J": 0,
+    "K": 151,
+    "L": 0,
+    "M": 0,
+    "N": 0,
+    "P": 0,
+    "Q": 0,
+    "R": 153,
+    "T": 0,
+    "U": 0,
+    "V": 0,
+    "I-cross": 151,
+    "W": 11,
+    "X": 169
+  },
+  "row_counts": {
+    "A": 0,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 0,
+    "F": 0,
+    "G": 0,
+    "H": 7,
+    "I": 0,
+    "I-sibling": 0,
+    "J": 0,
+    "K": 151,
+    "L": 0,
+    "M": 0,
+    "N": 0,
+    "P": 0,
+    "Q": 0,
+    "R": 150,
+    "T": 0,
+    "U": 0,
+    "V": 0,
+    "I-cross": 151,
+    "W": 10,
+    "X": 124
+  },
+  "granularity": {
+    "A": "每次命中",
+    "B": "每次命中",
+    "C": "每次命中",
+    "D": "每次命中／每編號行",
+    "E": "每列",
+    "F": "每次命中",
+    "G": "每列",
+    "H": "每次命中",
+    "I": "每列",
+    "I-sibling": "每列",
+    "J": "每行",
+    "K": "每列每欄",
+    "L": "每列",
+    "M": "每列每欄",
+    "N": "每行",
+    "P": "每次命中",
+    "Q": "每行每欄",
+    "R": "每行",
+    "T": "每次命中",
+    "U": "每次命中",
+    "V": "每行每欄",
+    "I-cross": "每列每配對（一組命中記二列）",
+    "W": "每次命中",
+    "X": "每行"
+  },
+  "status": {
+    "A": "已校準",
+    "B": "已校準",
+    "C": "已校準（R-6b 範圍：Media 錨值 1→0）",
+    "D": "已校準",
+    "E": "已校準",
+    "F": "已校準",
+    "G": "已校準（詞彙表外值待接入）",
+    "H": "已校準",
+    "I": "已校準",
+    "I-sibling": "未校準（M15）",
+    "J": "已校準（行計口徑）",
+    "K": "已校準（分級待 R-5）",
+    "L": "已校準（閾值待 R-3）",
+    "M": "已校準",
+    "N": "已校準",
+    "P": "未校準（R-1 v3，21 包改寫；profile 專屬）",
+    "Q": "未校準（R-10(a)，21 包新增）",
+    "R": "未校準（R-9(a)，21 包新增）",
+    "T": "未校準（R-14，21 包新增）",
+    "U": "計數用（A-PM16：ER 側原不受任何檢查覆蓋）",
+    "V": "未校準（IN §11，27 包新增）",
+    "I-cross": "警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL",
+    "W": "**待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述",
+    "X": "未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改**"
+  },
+  "sheets": [
+    {
+      "sheet": "Test Case Specification 測試用例規範",
+      "header_row": 9,
+      "data_rows": 151,
+      "violations": [
+        {
+          "check": "H",
+          "row": 19,
+          "tc_id": "NR1L-BLM-010",
+          "field": "er",
+          "detail": "關係模糊語 'matches'",
+          "snippet": "ing vehicle posture matches the DJ/D2 HMI reference figure"
+        },
+        {
+          "check": "H",
+          "row": 107,
+          "tc_id": "NR1L-BLM-098",
+          "field": "er",
+          "detail": "關係模糊語 'matches'",
+          "snippet": "he Apps menu screen matches the defined Apps menu screen layout"
+        },
+        {
+          "check": "H",
+          "row": 122,
+          "tc_id": "NR1L-BLM-113",
+          "field": "er",
+          "detail": "關係模糊語 'matches'",
+          "snippet": "The status-bar icon matches the Bed Lowering status indication defined in the re"
+        },
+        {
+          "check": "H",
+          "row": 124,
+          "tc_id": "NR1L-BLM-115",
+          "field": "er",
+          "detail": "關係模糊語 'matches'",
+          "snippet": "The cluster screen matches the Bed Lowering active-state reference figure"
+        },
+        {
+          "check": "H",
+          "row": 127,
+          "tc_id": "NR1L-BLM-118",
+          "field": "er",
+          "detail": "關係模糊語 'matches'",
+          "snippet": "The cluster screen matches the Bed Lowering completion-state reference figure"
+        },
+        {
+          "check": "H",
+          "row": 134,
+          "tc_id": "NR1L-BLM-125",
+          "field": "er",
+          "detail": "關係模糊語 'corresponds to'",
+          "snippet": "The highlight state corresponds to the reported execution status, serving as its"
+        },
+        {
+          "check": "H",
+          "row": 144,
+          "tc_id": "NR1L-BLM-135",
+          "field": "er",
+          "detail": "關係模糊語 'matches'",
+          "snippet": "VIC message wording matches the SYS1 normalised text of NRL-193702 ⏎ 4. The EVIC m"
+        },
+        {
+          "check": "K",
+          "row": 10,
+          "tc_id": "NR1L-BLM-001",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 11,
+          "tc_id": "NR1L-BLM-002",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 12,
+          "tc_id": "NR1L-BLM-003",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 13,
+          "tc_id": "NR1L-BLM-004",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 14,
+          "tc_id": "NR1L-BLM-005",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 15,
+          "tc_id": "NR1L-BLM-006",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 16,
+          "tc_id": "NR1L-BLM-007",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 17,
+          "tc_id": "NR1L-BLM-008",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 18,
+          "tc_id": "NR1L-BLM-009",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 19,
+          "tc_id": "NR1L-BLM-010",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 20,
+          "tc_id": "NR1L-BLM-011",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 21,
+          "tc_id": "NR1L-BLM-012",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 22,
+          "tc_id": "NR1L-BLM-013",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 23,
+          "tc_id": "NR1L-BLM-014",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 24,
+          "tc_id": "NR1L-BLM-015",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 25,
+          "tc_id": "NR1L-BLM-016",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 26,
+          "tc_id": "NR1L-BLM-017",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 27,
+          "tc_id": "NR1L-BLM-018",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 28,
+          "tc_id": "NR1L-BLM-019",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 29,
+          "tc_id": "NR1L-BLM-020",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 30,
+          "tc_id": "NR1L-BLM-021",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 31,
+          "tc_id": "NR1L-BLM-022",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 32,
+          "tc_id": "NR1L-BLM-023",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 33,
+          "tc_id": "NR1L-BLM-024",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 34,
+          "tc_id": "NR1L-BLM-025",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 35,
+          "tc_id": "NR1L-BLM-026",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 36,
+          "tc_id": "NR1L-BLM-027",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 37,
+          "tc_id": "NR1L-BLM-028",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 38,
+          "tc_id": "NR1L-BLM-029",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 39,
+          "tc_id": "NR1L-BLM-030",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 40,
+          "tc_id": "NR1L-BLM-031",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 41,
+          "tc_id": "NR1L-BLM-032",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 42,
+          "tc_id": "NR1L-BLM-033",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 43,
+          "tc_id": "NR1L-BLM-034",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 44,
+          "tc_id": "NR1L-BLM-035",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 45,
+          "tc_id": "NR1L-BLM-036",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 46,
+          "tc_id": "NR1L-BLM-037",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 47,
+          "tc_id": "NR1L-BLM-038",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 48,
+          "tc_id": "NR1L-BLM-039",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 49,
+          "tc_id": "NR1L-BLM-040",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 50,
+          "tc_id": "NR1L-BLM-041",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 51,
+          "tc_id": "NR1L-BLM-042",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 52,
+          "tc_id": "NR1L-BLM-043",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 53,
+          "tc_id": "NR1L-BLM-044",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 54,
+          "tc_id": "NR1L-BLM-045",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 55,
+          "tc_id": "NR1L-BLM-046",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 56,
+          "tc_id": "NR1L-BLM-047",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 57,
+          "tc_id": "NR1L-BLM-048",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 58,
+          "tc_id": "NR1L-BLM-049",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 59,
+          "tc_id": "NR1L-BLM-050",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 60,
+          "tc_id": "NR1L-BLM-051",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 61,
+          "tc_id": "NR1L-BLM-052",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 62,
+          "tc_id": "NR1L-BLM-053",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 63,
+          "tc_id": "NR1L-BLM-054",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 64,
+          "tc_id": "NR1L-BLM-055",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 65,
+          "tc_id": "NR1L-BLM-056",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 66,
+          "tc_id": "NR1L-BLM-057",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 67,
+          "tc_id": "NR1L-BLM-058",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 68,
+          "tc_id": "NR1L-BLM-059",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 69,
+          "tc_id": "NR1L-BLM-060",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 70,
+          "tc_id": "NR1L-BLM-061",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 71,
+          "tc_id": "NR1L-BLM-062",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 72,
+          "tc_id": "NR1L-BLM-063",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 73,
+          "tc_id": "NR1L-BLM-064",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 74,
+          "tc_id": "NR1L-BLM-065",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 75,
+          "tc_id": "NR1L-BLM-066",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 76,
+          "tc_id": "NR1L-BLM-067",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 77,
+          "tc_id": "NR1L-BLM-068",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 78,
+          "tc_id": "NR1L-BLM-069",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 79,
+          "tc_id": "NR1L-BLM-070",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 80,
+          "tc_id": "NR1L-BLM-071",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 81,
+          "tc_id": "NR1L-BLM-072",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 82,
+          "tc_id": "NR1L-BLM-073",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 83,
+          "tc_id": "NR1L-BLM-074",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 84,
+          "tc_id": "NR1L-BLM-075",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 85,
+          "tc_id": "NR1L-BLM-076",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 86,
+          "tc_id": "NR1L-BLM-077",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 87,
+          "tc_id": "NR1L-BLM-078",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 88,
+          "tc_id": "NR1L-BLM-079",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 89,
+          "tc_id": "NR1L-BLM-080",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 90,
+          "tc_id": "NR1L-BLM-081",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 91,
+          "tc_id": "NR1L-BLM-082",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 92,
+          "tc_id": "NR1L-BLM-083",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 93,
+          "tc_id": "NR1L-BLM-084",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 94,
+          "tc_id": "NR1L-BLM-085",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 95,
+          "tc_id": "NR1L-BLM-086",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 96,
+          "tc_id": "NR1L-BLM-087",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 97,
+          "tc_id": "NR1L-BLM-088",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 98,
+          "tc_id": "NR1L-BLM-089",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 99,
+          "tc_id": "NR1L-BLM-090",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 100,
+          "tc_id": "NR1L-BLM-091",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 101,
+          "tc_id": "NR1L-BLM-092",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 102,
+          "tc_id": "NR1L-BLM-093",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 103,
+          "tc_id": "NR1L-BLM-094",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 104,
+          "tc_id": "NR1L-BLM-095",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 105,
+          "tc_id": "NR1L-BLM-096",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 106,
+          "tc_id": "NR1L-BLM-097",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 107,
+          "tc_id": "NR1L-BLM-098",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 108,
+          "tc_id": "NR1L-BLM-099",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 109,
+          "tc_id": "NR1L-BLM-100",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 110,
+          "tc_id": "NR1L-BLM-101",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 111,
+          "tc_id": "NR1L-BLM-102",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 112,
+          "tc_id": "NR1L-BLM-103",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 113,
+          "tc_id": "NR1L-BLM-104",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 114,
+          "tc_id": "NR1L-BLM-105",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 115,
+          "tc_id": "NR1L-BLM-106",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 116,
+          "tc_id": "NR1L-BLM-107",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 117,
+          "tc_id": "NR1L-BLM-108",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 118,
+          "tc_id": "NR1L-BLM-109",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 119,
+          "tc_id": "NR1L-BLM-110",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 120,
+          "tc_id": "NR1L-BLM-111",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 121,
+          "tc_id": "NR1L-BLM-112",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 122,
+          "tc_id": "NR1L-BLM-113",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 123,
+          "tc_id": "NR1L-BLM-114",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 124,
+          "tc_id": "NR1L-BLM-115",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 125,
+          "tc_id": "NR1L-BLM-116",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 126,
+          "tc_id": "NR1L-BLM-117",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 127,
+          "tc_id": "NR1L-BLM-118",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 128,
+          "tc_id": "NR1L-BLM-119",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 129,
+          "tc_id": "NR1L-BLM-120",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 130,
+          "tc_id": "NR1L-BLM-121",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 131,
+          "tc_id": "NR1L-BLM-122",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 132,
+          "tc_id": "NR1L-BLM-123",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 133,
+          "tc_id": "NR1L-BLM-124",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 134,
+          "tc_id": "NR1L-BLM-125",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 135,
+          "tc_id": "NR1L-BLM-126",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 136,
+          "tc_id": "NR1L-BLM-127",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 137,
+          "tc_id": "NR1L-BLM-128",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 138,
+          "tc_id": "NR1L-BLM-129",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 139,
+          "tc_id": "NR1L-BLM-130",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 140,
+          "tc_id": "NR1L-BLM-131",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 141,
+          "tc_id": "NR1L-BLM-132",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 142,
+          "tc_id": "NR1L-BLM-133",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 143,
+          "tc_id": "NR1L-BLM-134",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 144,
+          "tc_id": "NR1L-BLM-135",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 145,
+          "tc_id": "NR1L-BLM-136",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 146,
+          "tc_id": "NR1L-BLM-137",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 147,
+          "tc_id": "NR1L-BLM-138",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 148,
+          "tc_id": "NR1L-BLM-139",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 149,
+          "tc_id": "NR1L-BLM-140",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 150,
+          "tc_id": "NR1L-BLM-141",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 151,
+          "tc_id": "NR1L-BLM-142",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 152,
+          "tc_id": "NR1L-BLM-143",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 153,
+          "tc_id": "NR1L-BLM-144",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 154,
+          "tc_id": "NR1L-BLM-145",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 155,
+          "tc_id": "NR1L-BLM-146",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 156,
+          "tc_id": "NR1L-BLM-147",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 157,
+          "tc_id": "NR1L-BLM-148",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 158,
+          "tc_id": "NR1L-BLM-149",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 159,
+          "tc_id": "NR1L-BLM-150",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "K",
+          "row": 160,
+          "tc_id": "NR1L-BLM-151",
+          "field": "pre",
+          "detail": "含 CJK 字元",
+          "snippet": "ody_Types = PENDING（待 VS-SL-02 §1 之裁定）"
+        },
+        {
+          "check": "R",
+          "row": 10,
+          "tc_id": "NR1L-BLM-001",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 11,
+          "tc_id": "NR1L-BLM-002",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 12,
+          "tc_id": "NR1L-BLM-003",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 13,
+          "tc_id": "NR1L-BLM-004",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 14,
+          "tc_id": "NR1L-BLM-005",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 15,
+          "tc_id": "NR1L-BLM-006",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 16,
+          "tc_id": "NR1L-BLM-007",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 17,
+          "tc_id": "NR1L-BLM-008",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 18,
+          "tc_id": "NR1L-BLM-009",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 19,
+          "tc_id": "NR1L-BLM-010",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 20,
+          "tc_id": "NR1L-BLM-011",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 21,
+          "tc_id": "NR1L-BLM-012",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 22,
+          "tc_id": "NR1L-BLM-013",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 23,
+          "tc_id": "NR1L-BLM-014",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 24,
+          "tc_id": "NR1L-BLM-015",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 25,
+          "tc_id": "NR1L-BLM-016",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 26,
+          "tc_id": "NR1L-BLM-017",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 27,
+          "tc_id": "NR1L-BLM-018",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 28,
+          "tc_id": "NR1L-BLM-019",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 29,
+          "tc_id": "NR1L-BLM-020",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 30,
+          "tc_id": "NR1L-BLM-021",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 31,
+          "tc_id": "NR1L-BLM-022",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 32,
+          "tc_id": "NR1L-BLM-023",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 33,
+          "tc_id": "NR1L-BLM-024",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 34,
+          "tc_id": "NR1L-BLM-025",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 35,
+          "tc_id": "NR1L-BLM-026",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 36,
+          "tc_id": "NR1L-BLM-027",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 37,
+          "tc_id": "NR1L-BLM-028",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 38,
+          "tc_id": "NR1L-BLM-029",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 39,
+          "tc_id": "NR1L-BLM-030",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 40,
+          "tc_id": "NR1L-BLM-031",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 41,
+          "tc_id": "NR1L-BLM-032",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 42,
+          "tc_id": "NR1L-BLM-033",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 43,
+          "tc_id": "NR1L-BLM-034",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 44,
+          "tc_id": "NR1L-BLM-035",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 45,
+          "tc_id": "NR1L-BLM-036",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 46,
+          "tc_id": "NR1L-BLM-037",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 47,
+          "tc_id": "NR1L-BLM-038",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 48,
+          "tc_id": "NR1L-BLM-039",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 49,
+          "tc_id": "NR1L-BLM-040",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 50,
+          "tc_id": "NR1L-BLM-041",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 51,
+          "tc_id": "NR1L-BLM-042",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 52,
+          "tc_id": "NR1L-BLM-043",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 53,
+          "tc_id": "NR1L-BLM-044",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 54,
+          "tc_id": "NR1L-BLM-045",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 55,
+          "tc_id": "NR1L-BLM-046",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 56,
+          "tc_id": "NR1L-BLM-047",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 57,
+          "tc_id": "NR1L-BLM-048",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 58,
+          "tc_id": "NR1L-BLM-049",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 59,
+          "tc_id": "NR1L-BLM-050",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 59,
+          "tc_id": "NR1L-BLM-050",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "4. The cabin is under nighttime ambient lighting and the display is in night mod"
+        },
+        {
+          "check": "R",
+          "row": 60,
+          "tc_id": "NR1L-BLM-051",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 60,
+          "tc_id": "NR1L-BLM-051",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "4. The cabin is under nighttime ambient lighting and the display is in night mod"
+        },
+        {
+          "check": "R",
+          "row": 61,
+          "tc_id": "NR1L-BLM-052",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 61,
+          "tc_id": "NR1L-BLM-052",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "4. The cabin is under nighttime ambient lighting and the display is in night mod"
+        },
+        {
+          "check": "R",
+          "row": 62,
+          "tc_id": "NR1L-BLM-053",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 63,
+          "tc_id": "NR1L-BLM-054",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 64,
+          "tc_id": "NR1L-BLM-055",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 65,
+          "tc_id": "NR1L-BLM-056",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 66,
+          "tc_id": "NR1L-BLM-057",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 67,
+          "tc_id": "NR1L-BLM-058",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 68,
+          "tc_id": "NR1L-BLM-059",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 69,
+          "tc_id": "NR1L-BLM-060",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 70,
+          "tc_id": "NR1L-BLM-061",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 71,
+          "tc_id": "NR1L-BLM-062",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 72,
+          "tc_id": "NR1L-BLM-063",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 73,
+          "tc_id": "NR1L-BLM-064",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 74,
+          "tc_id": "NR1L-BLM-065",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 75,
+          "tc_id": "NR1L-BLM-066",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 76,
+          "tc_id": "NR1L-BLM-067",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 77,
+          "tc_id": "NR1L-BLM-068",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 78,
+          "tc_id": "NR1L-BLM-069",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 79,
+          "tc_id": "NR1L-BLM-070",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 80,
+          "tc_id": "NR1L-BLM-071",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 81,
+          "tc_id": "NR1L-BLM-072",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 82,
+          "tc_id": "NR1L-BLM-073",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 83,
+          "tc_id": "NR1L-BLM-074",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 84,
+          "tc_id": "NR1L-BLM-075",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 85,
+          "tc_id": "NR1L-BLM-076",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 86,
+          "tc_id": "NR1L-BLM-077",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 87,
+          "tc_id": "NR1L-BLM-078",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 88,
+          "tc_id": "NR1L-BLM-079",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 89,
+          "tc_id": "NR1L-BLM-080",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 90,
+          "tc_id": "NR1L-BLM-081",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 91,
+          "tc_id": "NR1L-BLM-082",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 92,
+          "tc_id": "NR1L-BLM-083",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 93,
+          "tc_id": "NR1L-BLM-084",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 94,
+          "tc_id": "NR1L-BLM-085",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 95,
+          "tc_id": "NR1L-BLM-086",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 96,
+          "tc_id": "NR1L-BLM-087",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 97,
+          "tc_id": "NR1L-BLM-088",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 98,
+          "tc_id": "NR1L-BLM-089",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 99,
+          "tc_id": "NR1L-BLM-090",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 100,
+          "tc_id": "NR1L-BLM-091",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 101,
+          "tc_id": "NR1L-BLM-092",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 102,
+          "tc_id": "NR1L-BLM-093",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 103,
+          "tc_id": "NR1L-BLM-094",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 104,
+          "tc_id": "NR1L-BLM-095",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 105,
+          "tc_id": "NR1L-BLM-096",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 107,
+          "tc_id": "NR1L-BLM-098",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 108,
+          "tc_id": "NR1L-BLM-099",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 109,
+          "tc_id": "NR1L-BLM-100",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 110,
+          "tc_id": "NR1L-BLM-101",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 111,
+          "tc_id": "NR1L-BLM-102",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 112,
+          "tc_id": "NR1L-BLM-103",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 113,
+          "tc_id": "NR1L-BLM-104",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 114,
+          "tc_id": "NR1L-BLM-105",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 115,
+          "tc_id": "NR1L-BLM-106",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 116,
+          "tc_id": "NR1L-BLM-107",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 117,
+          "tc_id": "NR1L-BLM-108",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 118,
+          "tc_id": "NR1L-BLM-109",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 119,
+          "tc_id": "NR1L-BLM-110",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 120,
+          "tc_id": "NR1L-BLM-111",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 121,
+          "tc_id": "NR1L-BLM-112",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 122,
+          "tc_id": "NR1L-BLM-113",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 123,
+          "tc_id": "NR1L-BLM-114",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 124,
+          "tc_id": "NR1L-BLM-115",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 125,
+          "tc_id": "NR1L-BLM-116",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 126,
+          "tc_id": "NR1L-BLM-117",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 127,
+          "tc_id": "NR1L-BLM-118",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 128,
+          "tc_id": "NR1L-BLM-119",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 129,
+          "tc_id": "NR1L-BLM-120",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 130,
+          "tc_id": "NR1L-BLM-121",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 131,
+          "tc_id": "NR1L-BLM-122",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 132,
+          "tc_id": "NR1L-BLM-123",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 133,
+          "tc_id": "NR1L-BLM-124",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 134,
+          "tc_id": "NR1L-BLM-125",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 135,
+          "tc_id": "NR1L-BLM-126",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 136,
+          "tc_id": "NR1L-BLM-127",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 137,
+          "tc_id": "NR1L-BLM-128",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 138,
+          "tc_id": "NR1L-BLM-129",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 139,
+          "tc_id": "NR1L-BLM-130",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 140,
+          "tc_id": "NR1L-BLM-131",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 141,
+          "tc_id": "NR1L-BLM-132",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 142,
+          "tc_id": "NR1L-BLM-133",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 143,
+          "tc_id": "NR1L-BLM-134",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 144,
+          "tc_id": "NR1L-BLM-135",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 145,
+          "tc_id": "NR1L-BLM-136",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 146,
+          "tc_id": "NR1L-BLM-137",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 147,
+          "tc_id": "NR1L-BLM-138",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "2. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 148,
+          "tc_id": "NR1L-BLM-139",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 149,
+          "tc_id": "NR1L-BLM-140",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 150,
+          "tc_id": "NR1L-BLM-141",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 151,
+          "tc_id": "NR1L-BLM-142",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 152,
+          "tc_id": "NR1L-BLM-143",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 153,
+          "tc_id": "NR1L-BLM-144",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 154,
+          "tc_id": "NR1L-BLM-145",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 155,
+          "tc_id": "NR1L-BLM-146",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 156,
+          "tc_id": "NR1L-BLM-147",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 157,
+          "tc_id": "NR1L-BLM-148",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The vehicle is stationary and the engine is running"
+        },
+        {
+          "check": "R",
+          "row": 158,
+          "tc_id": "NR1L-BLM-149",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 159,
+          "tc_id": "NR1L-BLM-150",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "R",
+          "row": 160,
+          "tc_id": "NR1L-BLM-151",
+          "field": "pre",
+          "detail": "多條件並列於同一行",
+          "snippet": "3. The HU is out of reset and the Controls tab is reachable"
+        },
+        {
+          "check": "I-cross",
+          "row": 10,
+          "tc_id": "NR1L-BLM-001",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 11,
+          "tc_id": "NR1L-BLM-002",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 12,
+          "tc_id": "NR1L-BLM-003",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 13,
+          "tc_id": "NR1L-BLM-004",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 14,
+          "tc_id": "NR1L-BLM-005",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 15,
+          "tc_id": "NR1L-BLM-006",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 16,
+          "tc_id": "NR1L-BLM-007",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 17,
+          "tc_id": "NR1L-BLM-008",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 18,
+          "tc_id": "NR1L-BLM-009",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 19,
+          "tc_id": "NR1L-BLM-010",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 20,
+          "tc_id": "NR1L-BLM-011",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 21,
+          "tc_id": "NR1L-BLM-012",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 22,
+          "tc_id": "NR1L-BLM-013",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 23,
+          "tc_id": "NR1L-BLM-014",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 24,
+          "tc_id": "NR1L-BLM-015",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 25,
+          "tc_id": "NR1L-BLM-016",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 26,
+          "tc_id": "NR1L-BLM-017",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 27,
+          "tc_id": "NR1L-BLM-018",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 28,
+          "tc_id": "NR1L-BLM-019",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 29,
+          "tc_id": "NR1L-BLM-020",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 30,
+          "tc_id": "NR1L-BLM-021",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 31,
+          "tc_id": "NR1L-BLM-022",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 32,
+          "tc_id": "NR1L-BLM-023",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 33,
+          "tc_id": "NR1L-BLM-024",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 34,
+          "tc_id": "NR1L-BLM-025",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 35,
+          "tc_id": "NR1L-BLM-026",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 36,
+          "tc_id": "NR1L-BLM-027",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 37,
+          "tc_id": "NR1L-BLM-028",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 38,
+          "tc_id": "NR1L-BLM-029",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 39,
+          "tc_id": "NR1L-BLM-030",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 40,
+          "tc_id": "NR1L-BLM-031",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 41,
+          "tc_id": "NR1L-BLM-032",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 42,
+          "tc_id": "NR1L-BLM-033",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 43,
+          "tc_id": "NR1L-BLM-034",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 44,
+          "tc_id": "NR1L-BLM-035",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 45,
+          "tc_id": "NR1L-BLM-036",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 46,
+          "tc_id": "NR1L-BLM-037",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 47,
+          "tc_id": "NR1L-BLM-038",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 48,
+          "tc_id": "NR1L-BLM-039",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 49,
+          "tc_id": "NR1L-BLM-040",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 50,
+          "tc_id": "NR1L-BLM-041",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 51,
+          "tc_id": "NR1L-BLM-042",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 52,
+          "tc_id": "NR1L-BLM-043",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 53,
+          "tc_id": "NR1L-BLM-044",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 54,
+          "tc_id": "NR1L-BLM-045",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 55,
+          "tc_id": "NR1L-BLM-046",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 56,
+          "tc_id": "NR1L-BLM-047",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 57,
+          "tc_id": "NR1L-BLM-048",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 58,
+          "tc_id": "NR1L-BLM-049",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 59,
+          "tc_id": "NR1L-BLM-050",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 60,
+          "tc_id": "NR1L-BLM-051",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 61,
+          "tc_id": "NR1L-BLM-052",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 62,
+          "tc_id": "NR1L-BLM-053",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 63,
+          "tc_id": "NR1L-BLM-054",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 64,
+          "tc_id": "NR1L-BLM-055",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 65,
+          "tc_id": "NR1L-BLM-056",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 66,
+          "tc_id": "NR1L-BLM-057",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 67,
+          "tc_id": "NR1L-BLM-058",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 68,
+          "tc_id": "NR1L-BLM-059",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 69,
+          "tc_id": "NR1L-BLM-060",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 70,
+          "tc_id": "NR1L-BLM-061",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 71,
+          "tc_id": "NR1L-BLM-062",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 72,
+          "tc_id": "NR1L-BLM-063",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 73,
+          "tc_id": "NR1L-BLM-064",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 74,
+          "tc_id": "NR1L-BLM-065",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 75,
+          "tc_id": "NR1L-BLM-066",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 76,
+          "tc_id": "NR1L-BLM-067",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 77,
+          "tc_id": "NR1L-BLM-068",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 78,
+          "tc_id": "NR1L-BLM-069",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 79,
+          "tc_id": "NR1L-BLM-070",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 80,
+          "tc_id": "NR1L-BLM-071",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 81,
+          "tc_id": "NR1L-BLM-072",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 82,
+          "tc_id": "NR1L-BLM-073",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 83,
+          "tc_id": "NR1L-BLM-074",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 84,
+          "tc_id": "NR1L-BLM-075",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 85,
+          "tc_id": "NR1L-BLM-076",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 86,
+          "tc_id": "NR1L-BLM-077",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 87,
+          "tc_id": "NR1L-BLM-078",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 88,
+          "tc_id": "NR1L-BLM-079",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 89,
+          "tc_id": "NR1L-BLM-080",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 90,
+          "tc_id": "NR1L-BLM-081",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 91,
+          "tc_id": "NR1L-BLM-082",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 92,
+          "tc_id": "NR1L-BLM-083",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 93,
+          "tc_id": "NR1L-BLM-084",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 94,
+          "tc_id": "NR1L-BLM-085",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 95,
+          "tc_id": "NR1L-BLM-086",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 96,
+          "tc_id": "NR1L-BLM-087",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 97,
+          "tc_id": "NR1L-BLM-088",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 98,
+          "tc_id": "NR1L-BLM-089",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 99,
+          "tc_id": "NR1L-BLM-090",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 100,
+          "tc_id": "NR1L-BLM-091",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 101,
+          "tc_id": "NR1L-BLM-092",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 102,
+          "tc_id": "NR1L-BLM-093",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 103,
+          "tc_id": "NR1L-BLM-094",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 104,
+          "tc_id": "NR1L-BLM-095",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 105,
+          "tc_id": "NR1L-BLM-096",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 106,
+          "tc_id": "NR1L-BLM-097",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 107,
+          "tc_id": "NR1L-BLM-098",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 108,
+          "tc_id": "NR1L-BLM-099",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 109,
+          "tc_id": "NR1L-BLM-100",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 110,
+          "tc_id": "NR1L-BLM-101",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 111,
+          "tc_id": "NR1L-BLM-102",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 112,
+          "tc_id": "NR1L-BLM-103",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 113,
+          "tc_id": "NR1L-BLM-104",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 114,
+          "tc_id": "NR1L-BLM-105",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 115,
+          "tc_id": "NR1L-BLM-106",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 116,
+          "tc_id": "NR1L-BLM-107",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 117,
+          "tc_id": "NR1L-BLM-108",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 118,
+          "tc_id": "NR1L-BLM-109",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 119,
+          "tc_id": "NR1L-BLM-110",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 120,
+          "tc_id": "NR1L-BLM-111",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 121,
+          "tc_id": "NR1L-BLM-112",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 122,
+          "tc_id": "NR1L-BLM-113",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 123,
+          "tc_id": "NR1L-BLM-114",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 124,
+          "tc_id": "NR1L-BLM-115",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 125,
+          "tc_id": "NR1L-BLM-116",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 126,
+          "tc_id": "NR1L-BLM-117",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 127,
+          "tc_id": "NR1L-BLM-118",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 128,
+          "tc_id": "NR1L-BLM-119",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 129,
+          "tc_id": "NR1L-BLM-120",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 130,
+          "tc_id": "NR1L-BLM-121",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 131,
+          "tc_id": "NR1L-BLM-122",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 132,
+          "tc_id": "NR1L-BLM-123",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 133,
+          "tc_id": "NR1L-BLM-124",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 134,
+          "tc_id": "NR1L-BLM-125",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 135,
+          "tc_id": "NR1L-BLM-126",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 136,
+          "tc_id": "NR1L-BLM-127",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 137,
+          "tc_id": "NR1L-BLM-128",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 138,
+          "tc_id": "NR1L-BLM-129",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 139,
+          "tc_id": "NR1L-BLM-130",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 140,
+          "tc_id": "NR1L-BLM-131",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 141,
+          "tc_id": "NR1L-BLM-132",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 142,
+          "tc_id": "NR1L-BLM-133",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 143,
+          "tc_id": "NR1L-BLM-134",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 144,
+          "tc_id": "NR1L-BLM-135",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 145,
+          "tc_id": "NR1L-BLM-136",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 146,
+          "tc_id": "NR1L-BLM-137",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 147,
+          "tc_id": "NR1L-BLM-138",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 148,
+          "tc_id": "NR1L-BLM-139",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 149,
+          "tc_id": "NR1L-BLM-140",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 150,
+          "tc_id": "NR1L-BLM-141",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 151,
+          "tc_id": "NR1L-BLM-142",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 152,
+          "tc_id": "NR1L-BLM-143",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 153,
+          "tc_id": "NR1L-BLM-144",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 154,
+          "tc_id": "NR1L-BLM-145",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 155,
+          "tc_id": "NR1L-BLM-146",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 156,
+          "tc_id": "NR1L-BLM-147",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 157,
+          "tc_id": "NR1L-BLM-148",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 158,
+          "tc_id": "NR1L-BLM-149",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 159,
+          "tc_id": "NR1L-BLM-150",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "I-cross",
+          "row": 160,
+          "tc_id": "NR1L-BLM-151",
+          "field": "expected_result",
+          "detail": "**窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖）",
+          "snippet": "起 availability-check → 訖 **未載**"
+        },
+        {
+          "check": "W",
+          "row": 22,
+          "tc_id": "NR1L-BLM-013",
+          "field": "er",
+          "detail": "比較關係 'differ from'，而 test_item 上半無數值",
+          "snippet": ". The corner levels differ from the values recorded in step 1, showing the exist"
+        },
+        {
+          "check": "W",
+          "row": 28,
+          "tc_id": "NR1L-BLM-019",
+          "field": "er",
+          "detail": "比較關係 'same as'，而 test_item 上半無數值",
+          "snippet": "Controls tab is the same as recorded in step 1 ⏎ 3. The screen opened from the Hom"
+        },
+        {
+          "check": "W",
+          "row": 28,
+          "tc_id": "NR1L-BLM-019",
+          "field": "er",
+          "detail": "比較關係 'same as'，而 test_item 上半無數值",
+          "snippet": "een shortcut is the same as recorded in step 1, showing all three entry points u"
+        },
+        {
+          "check": "W",
+          "row": 51,
+          "tc_id": "NR1L-BLM-042",
+          "field": "er",
+          "detail": "比較關係 'same as'，而 test_item 上半無數值",
+          "snippet": "r levels remain the same as recorded in step 1 ⏎ 6. A Bed Lowering unsuccessful in"
+        },
+        {
+          "check": "W",
+          "row": 107,
+          "tc_id": "NR1L-BLM-098",
+          "field": "er",
+          "detail": "比較關係 'matches'，而 test_item 上半無數值",
+          "snippet": "he Apps menu screen matches the defined Apps menu screen layout"
+        },
+        {
+          "check": "W",
+          "row": 122,
+          "tc_id": "NR1L-BLM-113",
+          "field": "er",
+          "detail": "比較關係 'matches'，而 test_item 上半無數值",
+          "snippet": "The status-bar icon matches the Bed Lowering status indication defined in the re"
+        },
+        {
+          "check": "W",
+          "row": 124,
+          "tc_id": "NR1L-BLM-115",
+          "field": "er",
+          "detail": "比較關係 'matches'，而 test_item 上半無數值",
+          "snippet": "The cluster screen matches the Bed Lowering active-state reference figure"
+        },
+        {
+          "check": "W",
+          "row": 127,
+          "tc_id": "NR1L-BLM-118",
+          "field": "er",
+          "detail": "比較關係 'matches'，而 test_item 上半無數值",
+          "snippet": "The cluster screen matches the Bed Lowering completion-state reference figure"
+        },
+        {
+          "check": "W",
+          "row": 134,
+          "tc_id": "NR1L-BLM-125",
+          "field": "er",
+          "detail": "比較關係 'corresponds to'，而 test_item 上半無數值",
+          "snippet": "The highlight state corresponds to the reported execution status, serving as its"
+        },
+        {
+          "check": "W",
+          "row": 138,
+          "tc_id": "NR1L-BLM-129",
+          "field": "er",
+          "detail": "比較關係 'differs from'，而 test_item 上半無數值",
+          "snippet": "t is turned off and differs from the state recorded in step 1"
+        },
+        {
+          "check": "W",
+          "row": 144,
+          "tc_id": "NR1L-BLM-135",
+          "field": "er",
+          "detail": "比較關係 'matches'，而 test_item 上半無數值",
+          "snippet": "VIC message wording matches the SYS1 normalised text of NRL-193702 ⏎ 4. The EVIC m"
+        },
+        {
+          "check": "X",
+          "row": 10,
+          "tc_id": "NR1L-BLM-001",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Check that \"Bed Lowering\" is present on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 10,
+          "tc_id": "NR1L-BLM-001",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 11,
+          "tc_id": "NR1L-BLM-002",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 12,
+          "tc_id": "NR1L-BLM-003",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 13,
+          "tc_id": "NR1L-BLM-004",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 14,
+          "tc_id": "NR1L-BLM-005",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Check that \"Bed Lowering\" is present on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 14,
+          "tc_id": "NR1L-BLM-005",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 15,
+          "tc_id": "NR1L-BLM-006",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 16,
+          "tc_id": "NR1L-BLM-007",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 17,
+          "tc_id": "NR1L-BLM-008",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 18,
+          "tc_id": "NR1L-BLM-009",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 19,
+          "tc_id": "NR1L-BLM-010",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 21,
+          "tc_id": "NR1L-BLM-012",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 22,
+          "tc_id": "NR1L-BLM-013",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 23,
+          "tc_id": "NR1L-BLM-014",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 24,
+          "tc_id": "NR1L-BLM-015",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Open the Controls tab on the HU"
+        },
+        {
+          "check": "X",
+          "row": 24,
+          "tc_id": "NR1L-BLM-015",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "2. Check that the Bed Lowering control is rendered as an on-screen soft button"
+        },
+        {
+          "check": "X",
+          "row": 25,
+          "tc_id": "NR1L-BLM-016",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the APPS menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 25,
+          "tc_id": "NR1L-BLM-016",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Check that the \"Bed Lowering\" soft button is available in the APPS menu"
+        },
+        {
+          "check": "X",
+          "row": 26,
+          "tc_id": "NR1L-BLM-017",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Open the Controls tab on the HU"
+        },
+        {
+          "check": "X",
+          "row": 26,
+          "tc_id": "NR1L-BLM-017",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Check that the \"Bed Lowering\" soft button is available in the Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 29,
+          "tc_id": "NR1L-BLM-020",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the APPS menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 30,
+          "tc_id": "NR1L-BLM-021",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Check that \"Bed Lowering\" is offered on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 31,
+          "tc_id": "NR1L-BLM-022",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "4. Check that \"Bed Lowering\" is offered on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 32,
+          "tc_id": "NR1L-BLM-023",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Check that \"Bed Lowering\" is not offered for activation on the HU Controls ta"
+        },
+        {
+          "check": "X",
+          "row": 33,
+          "tc_id": "NR1L-BLM-024",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "4. Check that \"Bed Lowering\" is not offered for activation on the HU Controls ta"
+        },
+        {
+          "check": "X",
+          "row": 34,
+          "tc_id": "NR1L-BLM-025",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "4. Press \"Bed Lowering\" on the HU Controls tab and read $ASCM_FD_2.BDL_Enbl$"
+        },
+        {
+          "check": "X",
+          "row": 34,
+          "tc_id": "NR1L-BLM-025",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "6. Press \"Bed Lowering\" on the HU Controls tab and check that $ASCM_FD_2.BDL_Enb"
+        },
+        {
+          "check": "X",
+          "row": 35,
+          "tc_id": "NR1L-BLM-026",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab and check that $ASCM_FD_2.BDL_Enb"
+        },
+        {
+          "check": "X",
+          "row": 35,
+          "tc_id": "NR1L-BLM-026",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "5. Press \"Bed Lowering\" on the HU Controls tab and check that $ASCM_FD_2.BDL_Enb"
+        },
+        {
+          "check": "X",
+          "row": 36,
+          "tc_id": "NR1L-BLM-027",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab and check that $ASCM_FD_2.BDL_Enb"
+        },
+        {
+          "check": "X",
+          "row": 36,
+          "tc_id": "NR1L-BLM-027",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "5. Press \"Bed Lowering\" on the HU Controls tab and check that $ASCM_FD_2.BDL_Enb"
+        },
+        {
+          "check": "X",
+          "row": 37,
+          "tc_id": "NR1L-BLM-028",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 38,
+          "tc_id": "NR1L-BLM-029",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 39,
+          "tc_id": "NR1L-BLM-030",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab to enter Bed Lowering Mode"
+        },
+        {
+          "check": "X",
+          "row": 40,
+          "tc_id": "NR1L-BLM-031",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab to enter Bed Lowering Mode"
+        },
+        {
+          "check": "X",
+          "row": 41,
+          "tc_id": "NR1L-BLM-032",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Record the appearance of the HU Controls tab before any press"
+        },
+        {
+          "check": "X",
+          "row": 41,
+          "tc_id": "NR1L-BLM-032",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 41,
+          "tc_id": "NR1L-BLM-032",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "4. Check that the HU Controls tab differs visually from the appearance recorded "
+        },
+        {
+          "check": "X",
+          "row": 42,
+          "tc_id": "NR1L-BLM-033",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 43,
+          "tc_id": "NR1L-BLM-034",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 44,
+          "tc_id": "NR1L-BLM-035",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 45,
+          "tc_id": "NR1L-BLM-036",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 47,
+          "tc_id": "NR1L-BLM-038",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "4. Check that no equivalent in-progress status message is displayed on the HU sc"
+        },
+        {
+          "check": "X",
+          "row": 56,
+          "tc_id": "NR1L-BLM-047",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 57,
+          "tc_id": "NR1L-BLM-048",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 58,
+          "tc_id": "NR1L-BLM-049",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 59,
+          "tc_id": "NR1L-BLM-050",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 60,
+          "tc_id": "NR1L-BLM-051",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 61,
+          "tc_id": "NR1L-BLM-052",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 62,
+          "tc_id": "NR1L-BLM-053",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 63,
+          "tc_id": "NR1L-BLM-054",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 64,
+          "tc_id": "NR1L-BLM-055",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 65,
+          "tc_id": "NR1L-BLM-056",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 66,
+          "tc_id": "NR1L-BLM-057",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "1. Open the Bed Lowering feature screen on the HU"
+        },
+        {
+          "check": "X",
+          "row": 69,
+          "tc_id": "NR1L-BLM-060",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Open the Controls tab on the HU"
+        },
+        {
+          "check": "X",
+          "row": 69,
+          "tc_id": "NR1L-BLM-060",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Check that a \"Bed Lowering\" enabling control is present in the Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 71,
+          "tc_id": "NR1L-BLM-062",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Open the Controls tab on the HU"
+        },
+        {
+          "check": "X",
+          "row": 71,
+          "tc_id": "NR1L-BLM-062",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Select the \"Bed Lowering\" enabling control in the Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 72,
+          "tc_id": "NR1L-BLM-063",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 72,
+          "tc_id": "NR1L-BLM-063",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Check that \"Bed Lowering\" is listed within the Apps menu"
+        },
+        {
+          "check": "X",
+          "row": 73,
+          "tc_id": "NR1L-BLM-064",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 76,
+          "tc_id": "NR1L-BLM-067",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "4. Press \"Bed Lowering\" on the HU Controls tab and read $ASCM_FD_2.BDL_Enbl$"
+        },
+        {
+          "check": "X",
+          "row": 76,
+          "tc_id": "NR1L-BLM-067",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "6. Press \"Bed Lowering\" on the HU Controls tab and check that $ASCM_FD_2.BDL_Enb"
+        },
+        {
+          "check": "X",
+          "row": 77,
+          "tc_id": "NR1L-BLM-068",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab and check that $ASCM_FD_2.BDL_Enb"
+        },
+        {
+          "check": "X",
+          "row": 77,
+          "tc_id": "NR1L-BLM-068",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "5. Press \"Bed Lowering\" on the HU Controls tab and check that $ASCM_FD_2.BDL_Enb"
+        },
+        {
+          "check": "X",
+          "row": 78,
+          "tc_id": "NR1L-BLM-069",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab and check that $ASCM_FD_2.BDL_Enb"
+        },
+        {
+          "check": "X",
+          "row": 78,
+          "tc_id": "NR1L-BLM-069",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "5. Press \"Bed Lowering\" on the HU Controls tab and check that $ASCM_FD_2.BDL_Enb"
+        },
+        {
+          "check": "X",
+          "row": 79,
+          "tc_id": "NR1L-BLM-070",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 80,
+          "tc_id": "NR1L-BLM-071",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 81,
+          "tc_id": "NR1L-BLM-072",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 82,
+          "tc_id": "NR1L-BLM-073",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 83,
+          "tc_id": "NR1L-BLM-074",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 84,
+          "tc_id": "NR1L-BLM-075",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to enter Bed Lowering Mode"
+        },
+        {
+          "check": "X",
+          "row": 85,
+          "tc_id": "NR1L-BLM-076",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "3. Check that \"Bed Lowering\" is present in the Apps menu"
+        },
+        {
+          "check": "X",
+          "row": 86,
+          "tc_id": "NR1L-BLM-077",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Check that \"Bed Lowering\" is present in the Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 88,
+          "tc_id": "NR1L-BLM-079",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Check that \"Bed Lowering\" is not available on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 88,
+          "tc_id": "NR1L-BLM-079",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "5. Check that \"Bed Lowering\" is available on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 89,
+          "tc_id": "NR1L-BLM-080",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "3. Check that \"Bed Lowering\" is not available for selection in the Apps menu"
+        },
+        {
+          "check": "X",
+          "row": 90,
+          "tc_id": "NR1L-BLM-081",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Check that \"Bed Lowering\" is not available for selection in the Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 92,
+          "tc_id": "NR1L-BLM-083",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the applicable head unit menu"
+        },
+        {
+          "check": "X",
+          "row": 92,
+          "tc_id": "NR1L-BLM-083",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Check that a dedicated Bed Lowering icon is present in that menu"
+        },
+        {
+          "check": "X",
+          "row": 93,
+          "tc_id": "NR1L-BLM-084",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the applicable head unit menu"
+        },
+        {
+          "check": "X",
+          "row": 93,
+          "tc_id": "NR1L-BLM-084",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "3. Check that the Bed Lowering feature screen is displayed"
+        },
+        {
+          "check": "X",
+          "row": 94,
+          "tc_id": "NR1L-BLM-085",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the applicable head unit menu"
+        },
+        {
+          "check": "X",
+          "row": 94,
+          "tc_id": "NR1L-BLM-085",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Compare the position of the Bed Lowering icon against the defined menu locati"
+        },
+        {
+          "check": "X",
+          "row": 95,
+          "tc_id": "NR1L-BLM-086",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the applicable head unit menu"
+        },
+        {
+          "check": "X",
+          "row": 95,
+          "tc_id": "NR1L-BLM-086",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Compare the Bed Lowering icon against the other feature icons in the same men"
+        },
+        {
+          "check": "X",
+          "row": 96,
+          "tc_id": "NR1L-BLM-087",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab once"
+        },
+        {
+          "check": "X",
+          "row": 97,
+          "tc_id": "NR1L-BLM-088",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab once"
+        },
+        {
+          "check": "X",
+          "row": 98,
+          "tc_id": "NR1L-BLM-089",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 99,
+          "tc_id": "NR1L-BLM-090",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 100,
+          "tc_id": "NR1L-BLM-091",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 101,
+          "tc_id": "NR1L-BLM-092",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 101,
+          "tc_id": "NR1L-BLM-092",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "4. Check that the selected state of the app icon is the on-screen indication tha"
+        },
+        {
+          "check": "X",
+          "row": 102,
+          "tc_id": "NR1L-BLM-093",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab and read the signal $ASCM_FD_2.BD"
+        },
+        {
+          "check": "X",
+          "row": 102,
+          "tc_id": "NR1L-BLM-093",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab a second time"
+        },
+        {
+          "check": "X",
+          "row": 103,
+          "tc_id": "NR1L-BLM-094",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab to enter Bed Lowering Mode"
+        },
+        {
+          "check": "X",
+          "row": 103,
+          "tc_id": "NR1L-BLM-094",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab a second time"
+        },
+        {
+          "check": "X",
+          "row": 104,
+          "tc_id": "NR1L-BLM-095",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab to enter Bed Lowering Mode"
+        },
+        {
+          "check": "X",
+          "row": 104,
+          "tc_id": "NR1L-BLM-095",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "4. Press \"Bed Lowering\" on the HU Controls tab a second time"
+        },
+        {
+          "check": "X",
+          "row": 105,
+          "tc_id": "NR1L-BLM-096",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab to enter Bed Lowering Mode"
+        },
+        {
+          "check": "X",
+          "row": 105,
+          "tc_id": "NR1L-BLM-096",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab a second time"
+        },
+        {
+          "check": "X",
+          "row": 106,
+          "tc_id": "NR1L-BLM-097",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to enter Bed Lowering Mode"
+        },
+        {
+          "check": "X",
+          "row": 106,
+          "tc_id": "NR1L-BLM-097",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "5. Press \"Bed Lowering\" on the HU Controls tab a second time"
+        },
+        {
+          "check": "X",
+          "row": 107,
+          "tc_id": "NR1L-BLM-098",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 107,
+          "tc_id": "NR1L-BLM-098",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Compare the Apps menu screen against the defined layout"
+        },
+        {
+          "check": "X",
+          "row": 108,
+          "tc_id": "NR1L-BLM-099",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 108,
+          "tc_id": "NR1L-BLM-099",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Check that the Bed Lowering feature is presented in the Apps menu according t"
+        },
+        {
+          "check": "X",
+          "row": 109,
+          "tc_id": "NR1L-BLM-100",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 109,
+          "tc_id": "NR1L-BLM-100",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Check that \"Bed Lowering\" can be selected from the displayed Apps menu screen"
+        },
+        {
+          "check": "X",
+          "row": 110,
+          "tc_id": "NR1L-BLM-101",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 110,
+          "tc_id": "NR1L-BLM-101",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Check that \"Bed Lowering\" appears as one of the selectable options in the App"
+        },
+        {
+          "check": "X",
+          "row": 111,
+          "tc_id": "NR1L-BLM-102",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 112,
+          "tc_id": "NR1L-BLM-103",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 112,
+          "tc_id": "NR1L-BLM-103",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "3. Check that the HMI flow continues to the Bed Lowering feature screen"
+        },
+        {
+          "check": "X",
+          "row": 113,
+          "tc_id": "NR1L-BLM-104",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 114,
+          "tc_id": "NR1L-BLM-105",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 114,
+          "tc_id": "NR1L-BLM-105",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Select \"Bed Lowering\" from the Apps menu"
+        },
+        {
+          "check": "X",
+          "row": 114,
+          "tc_id": "NR1L-BLM-105",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "3. Check that the head unit navigated to the Bed Lowering feature screen"
+        },
+        {
+          "check": "X",
+          "row": 115,
+          "tc_id": "NR1L-BLM-106",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu on the HU"
+        },
+        {
+          "check": "X",
+          "row": 115,
+          "tc_id": "NR1L-BLM-106",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Select \"Bed Lowering\" from the Apps menu"
+        },
+        {
+          "check": "X",
+          "row": 115,
+          "tc_id": "NR1L-BLM-106",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "3. Check that the Bed Lowering feature screen is the next screen shown, with no "
+        },
+        {
+          "check": "X",
+          "row": 116,
+          "tc_id": "NR1L-BLM-107",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the Apps menu and select \"Bed Lowering\""
+        },
+        {
+          "check": "X",
+          "row": 116,
+          "tc_id": "NR1L-BLM-107",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "2. Compare the Bed Lowering feature screen against the defined controls and stat"
+        },
+        {
+          "check": "X",
+          "row": 117,
+          "tc_id": "NR1L-BLM-108",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 118,
+          "tc_id": "NR1L-BLM-109",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 119,
+          "tc_id": "NR1L-BLM-110",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 119,
+          "tc_id": "NR1L-BLM-110",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "3. Open the Bed Lowering screen and check that the selected visual state of the "
+        },
+        {
+          "check": "X",
+          "row": 120,
+          "tc_id": "NR1L-BLM-111",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 121,
+          "tc_id": "NR1L-BLM-112",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 122,
+          "tc_id": "NR1L-BLM-113",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 124,
+          "tc_id": "NR1L-BLM-115",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "3. Compare the cluster screen against the Bed Lowering active-state reference fi"
+        },
+        {
+          "check": "X",
+          "row": 127,
+          "tc_id": "NR1L-BLM-118",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "3. Compare the cluster screen against the Bed Lowering completion-state referenc"
+        },
+        {
+          "check": "X",
+          "row": 133,
+          "tc_id": "NR1L-BLM-124",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 134,
+          "tc_id": "NR1L-BLM-125",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 135,
+          "tc_id": "NR1L-BLM-126",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 136,
+          "tc_id": "NR1L-BLM-127",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press \"Bed Lowering\" on the HU Controls tab to issue the Bed Lowering command"
+        },
+        {
+          "check": "X",
+          "row": 137,
+          "tc_id": "NR1L-BLM-128",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab and check that the button highlig"
+        },
+        {
+          "check": "X",
+          "row": 138,
+          "tc_id": "NR1L-BLM-129",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab, check that the button highlight "
+        },
+        {
+          "check": "X",
+          "row": 139,
+          "tc_id": "NR1L-BLM-130",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab and check that the button highlig"
+        },
+        {
+          "check": "X",
+          "row": 140,
+          "tc_id": "NR1L-BLM-131",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab and check that the button highlig"
+        },
+        {
+          "check": "X",
+          "row": 140,
+          "tc_id": "NR1L-BLM-131",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "4. Check that no other visual state on the HU Controls tab has changed"
+        },
+        {
+          "check": "X",
+          "row": 141,
+          "tc_id": "NR1L-BLM-132",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to enter the Bed Lowering flow"
+        },
+        {
+          "check": "X",
+          "row": 142,
+          "tc_id": "NR1L-BLM-133",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab to enter the Bed Lowering flow"
+        },
+        {
+          "check": "X",
+          "row": 142,
+          "tc_id": "NR1L-BLM-133",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "4. Check that no equivalent message is displayed on the HU screen"
+        },
+        {
+          "check": "X",
+          "row": 143,
+          "tc_id": "NR1L-BLM-134",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab to enter the Bed Lowering flow"
+        },
+        {
+          "check": "X",
+          "row": 144,
+          "tc_id": "NR1L-BLM-135",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab to enter the Bed Lowering flow"
+        },
+        {
+          "check": "X",
+          "row": 145,
+          "tc_id": "NR1L-BLM-136",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Open the head unit menu configuration"
+        },
+        {
+          "check": "X",
+          "row": 145,
+          "tc_id": "NR1L-BLM-136",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Change the menu placement of the Bed Lowering feature entry"
+        },
+        {
+          "check": "X",
+          "row": 145,
+          "tc_id": "NR1L-BLM-136",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "3. Check that the new placement is applied to the menu structure"
+        },
+        {
+          "check": "X",
+          "row": 146,
+          "tc_id": "NR1L-BLM-137",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Record the current menu location of the Bed Lowering feature entry"
+        },
+        {
+          "check": "X",
+          "row": 146,
+          "tc_id": "NR1L-BLM-137",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Change the head unit menu configuration so that the entry moves"
+        },
+        {
+          "check": "X",
+          "row": 147,
+          "tc_id": "NR1L-BLM-138",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "1. Change the head unit menu configuration so that the Bed Lowering entry moves"
+        },
+        {
+          "check": "X",
+          "row": 147,
+          "tc_id": "NR1L-BLM-138",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "2. Locate and select the Bed Lowering entry in its new menu location"
+        },
+        {
+          "check": "X",
+          "row": 147,
+          "tc_id": "NR1L-BLM-138",
+          "field": "proc",
+          "detail": "導航標的 'screen' 而同 TC 無固定入口",
+          "snippet": "3. Check that the Bed Lowering feature screen is displayed"
+        },
+        {
+          "check": "X",
+          "row": 148,
+          "tc_id": "NR1L-BLM-139",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 149,
+          "tc_id": "NR1L-BLM-140",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "1. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 150,
+          "tc_id": "NR1L-BLM-141",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 151,
+          "tc_id": "NR1L-BLM-142",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 152,
+          "tc_id": "NR1L-BLM-143",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 153,
+          "tc_id": "NR1L-BLM-144",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 154,
+          "tc_id": "NR1L-BLM-145",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 155,
+          "tc_id": "NR1L-BLM-146",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 156,
+          "tc_id": "NR1L-BLM-147",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 157,
+          "tc_id": "NR1L-BLM-148",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "2. Press \"Bed Lowering\" on the HU Controls tab to request the Bed Lowering funct"
+        },
+        {
+          "check": "X",
+          "row": 158,
+          "tc_id": "NR1L-BLM-149",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Check that \"Bed Lowering\" is not present on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 159,
+          "tc_id": "NR1L-BLM-150",
+          "field": "proc",
+          "detail": "導航標的 'tab' 而同 TC 無固定入口",
+          "snippet": "3. Press the \"Bed Lowering\" position on the HU Controls tab"
+        },
+        {
+          "check": "X",
+          "row": 160,
+          "tc_id": "NR1L-BLM-151",
+          "field": "proc",
+          "detail": "導航標的 'menu' 而同 TC 無固定入口",
+          "snippet": "3. Check that \"Bed Lowering\" is not listed as an available feature in the Apps m"
+        }
+      ]
+    }
+  ]
+}

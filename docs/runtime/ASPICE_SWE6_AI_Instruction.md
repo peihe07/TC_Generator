@@ -246,6 +246,24 @@ Examples (project-specific constants must be maintained together with tooling):
 - `ENTER_ENG_MODE`: `Press and Hold the top left and bottom right corners of the screen for 5 seconds to enter Eng Mode`
 - `SCREEN_OFF`: `Press H/K "Screen Off" button to turn off the HU screen`
 - `ENTER_APP_DRAWER`: `Press "Apps" on Menu Bar to open App Drawer`
+- `ENTER_SETTINGS_APP` (2 hops, §5.8): `Press "Apps" on Menu Bar to open App Drawer`
+  → `Select "Settings" in the App Drawer`
+  Source: `spec-index/cache/SYS1_HMI_Menu_Bar_and_App_Drawer_HMI_Logic_and_Flow_R1_SR24_3A_(September_11_2023).xlsx`,
+  sheet `Basic Report`, row 22 (NRL-127734, §4.1 naming table — `Settings | Settings | Settings | Core Feature | Vehicle`)
+  and row 23 (NRL-127735, ADC1: all configured apps are shown within the App Drawer).
+- `ENTER_VEHICLE_SETTINGS` (2 hops, §5.8): **first hop PENDING** —
+  `PENDING: DR-{n} HMI entry path Vehicle Category on Menu Bar`
+  → `Select "Settings" tab`
+  Source of the second hop: `spec-index/cache/SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023).xlsx`,
+  sheet `Basic Report`, row 13 (NRL-171043, VC1.: the Vehicle Category contains the Controls and Settings tabs)
+  and row 17 (NRL-171047, VC2.0.3: the tab name for the Vehicle Settings is Settings).
+  ⚠ The Menu Bar hop label is **not** sourced: `Vehicle` appears in the §4.1 naming
+  table only in the `App Category` column, never as a Feature Name / Drawer Name.
+  Per §5.8(d) the hop is not to be guessed; see the DR draft in
+  `features/vehicle_setting/DATA_REQUESTS.md`.
+- `ENTER_HOME_SCREEN`: **PENDING** — `PENDING: DR-{n} HMI entry path Home Screen`
+  No hop label found in `SYS1_HMI_Home_Screen_HMI_Logic_and_Flow_R1_SR24_Post_2A_(March_17_2023)`
+  nor in the Menu Bar §4.1 naming table (no `Home` row). Per §5.8(d), not to be guessed.
 
 Tooling (prompt builder / linter / export normalizer) should enforce the same
 canonical strings. When adding a constant, update both this instruction and the
@@ -299,6 +317,65 @@ Steps = Setup / Transition / Verification (final only). Earlier failure = setup 
 - ✗ Splitting `Disconnect CarPlay → Phone icon restored` and `Disconnect CarPlay → BT paging starts` into two TCs (same trigger, both consequences of the same disconnect)
 - ✓ One TC `User disconnects CarPlay → native restored and BT paging started` with both ER lines
 - Split criterion remains: different **triggers**, different **inputs**, different **scopes** — not different outcomes of the same trigger.
+
+### 5.8 UI Navigation Path (R-G71)
+(a) Any step that reaches a screen, app, tab, page, or setting MUST state the
+    full path from a fixed entry point, one hop per step or one hop per
+    `" > "` segment inside a single step, every hop label in `"..."`:
+
+```text
+1. Press "Apps" on Menu Bar to open App Drawer
+2. Select "Settings" in the App Drawer
+3. Select "Aux Switches"
+```
+
+    Single-step form (when the hops are pure navigation with no ER of their own):
+
+```text
+1. Navigate to "Apps" > "Settings" > "Aux Switches"
+```
+
+    Every hop in the example above is HMI-sourced: `"Apps"` / `"Settings"` from
+    the Menu Bar §4.1 naming table (§5.3 `ENTER_SETTINGS_APP`), `"Aux Switches"`
+    from `forms/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx`,
+    sheet `Settings`, row 564. A step MUST NOT model a hop that (c) cannot source.
+
+    Fixed entry points (closed list; extend via §5.3 constants only):
+    `Menu Bar` / `App Drawer` / `Home Screen` / `Status Bar` /
+    `H/K "<button>"` / `Dealer Mode` / `Eng Mode`
+
+(b) Forbidden: `Open the Vehicle Settings menu`, `Go to settings`,
+    `Navigate to the page` — any step whose target cannot be located
+    on-screen from the step text alone.
+
+(c) Source of path = the feature's HMI Logic and Flow document
+    (`spec-index/cache/SYS1_HMI_*_HMI_Logic_and_Flow_*.xlsx`) or the HMI
+    Settings List (`forms/HMI Settings List R1 SR25 …`). CFTS / VF / DBC are
+    NOT path sources. Path hops are quoted verbatim from the HMI source
+    (label text as written; the R-6 case rule applies).
+
+(d) Path not found in any HMI source → `PENDING: DR-{n} HMI entry path
+    <target>`; never guess a hop. DR type "HMI entry path" is registered in
+    the feature's `DATA_REQUESTS.md` (precedent: DR-PW25).
+
+(e) Setting-value hops use the HMI Settings List option label:
+
+```text
+3. Set "Type" = "Latching"
+```
+
+    (not `to Latching` unquoted; the value is a UI label per §11).
+
+    ⚠ The HMI Settings List label and the VF / CFTS parameter name are often
+    NOT the same string — e.g. `forms/HMI Settings List R1 SR25 Post R1L-R
+    (Feb 13 2026).xlsx`, sheet `Settings`, rows 564–588 give
+    `21. Aux Switches` → `Aux 3` → `Type` / `Power Source` /
+    `Recall Last State`, whereas VF230 writes `SWITCH 3 Hold Last State`.
+    Under (c) the on-screen hop takes the HMI label; the VF name stays in the
+    verbatim upper half of `test_item` and in the signal / PROXI line (§8.7.5).
+
+(f) ER for a navigation hop = the reached screen is displayed, named by its
+    HMI title: `The "Aux Switches" screen is displayed`.
 
 ## 6. Expected Results
 1:1 aligned with steps; observable, judgeable; no `normal` / `as expected`. Setup / transition may have ER to prove condition established. Final ER covers the **complete** Test Item outcome (partial = incomplete).
@@ -515,6 +592,11 @@ not assert operability that contradicts the spec. Follow the behavior the spec
 explicitly states.
 
 #### 8.7.5 訊號與參數寫法（R-1 v3）
+> **來源分線**：本節只管**訊號與參數**之寫法。**畫面之入口、層級、選項標籤**
+> 之唯一來源為 HMI Logic and Flow／HMI Settings List，條文見 **§5.8（R-G71）**；
+> DBC／PROXI 不得作為畫面標籤來源，本節亦不得作為導航路徑之依據。
+> ⚠ 訊號側之**來源層級**條文（CFTS／VF＋PROXI／DBC 之分工）擬立於 R-G70，
+> 依 `docs/fw036/handoff/down/20260905_GC-07.md` §二 **待 Pei 裁**，本節本體未動。
 **適用範圍**：全域預設；feature profile 之 cited `[OVERRIDE §8.7.5]` 勝出（FO §0）—— 現有 override：`vehicle_setting`（R-VS52／R-VS67，依 SWC 0708 交付本風格，不適用本節）。
 基準：CR30580/30581 參考本（TestResult 分頁）＋ SWC 0708 交付本。
 條文全文落檔於本節，台帳見 `docs/fw036/RULINGS_LEDGER.md`。
@@ -609,6 +691,7 @@ verbatim 上半仍保留來源原文（R-6）。**(g) 為此之例外** —— D
 15. UI element labels use `"..."` double quotes, never `[...]` square brackets (§11)
 16. `specification_reference` lists every spec section the TC directly verifies (§10.7)
 17. Source spec wins over index export (§8.6); thresholds are spec-sourced concrete values, similar operations disambiguated in ER, variant labels applied consistently, styled elements not assumed inoperable (§8.7)
+18. Navigation path complete from fixed entry point, hops quoted from HMI source, no PENDING left unregistered (§5.8)
 
 ## 10. Tool-Specific Output Contract (workbook export, not ASPICE rules)
 

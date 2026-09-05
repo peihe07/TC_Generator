@@ -181,6 +181,7 @@ CHECK_TITLES = {
     "V": "行首空白（IN §11）",
     "I-cross": "跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）",
     "W": "ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6）",
+    "X": "導航路徑無固定入口（§5.8／R-G71）",
 }
 # `--profile` 啟用時 P 改以 R-1 v3 判準，標題隨之替換
 CHECK_TITLE_PROFILE = {"P": "訊號寫法不合 R-1 v3"}
@@ -201,13 +202,14 @@ CHECK_STATUS = {
     "V": "未校準（IN §11，27 包新增）",
     "I-cross": "警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL",
     "W": "**待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述",
+    "X": "未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改**",
 }
 CHECK_STATUS_PROFILE = {"P": "未校準（R-1 v3，21 包改寫；profile 專屬）"}
 CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
                "J", "K", "L", "M", "N", "P"]
 # profile 專屬檢查：僅於 `--profile <feature>` 指定時啟用。
 # 未指定時 CHECK_ORDER 不變 —— 既有八本之報告基線因而完全不動。
-PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W"]
+PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X"]
 
 
 def check_order(profile: str | None) -> list[str]:
@@ -237,6 +239,7 @@ CHECK_GRANULARITY = {
     "V": "每行每欄",
     "I-cross": "每列每配對（一組命中記二列）",
     "W": "每次命中",
+    "X": "每行",
 }
 
 
@@ -601,6 +604,19 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
             add("U", key, f"PENDING 佔位（{m.group('dr') or '未標 DR'}）",
                 line.strip()[:80])
 
+    # X 導航路徑之固定入口（§5.8／R-G71）—— WARN 只報不改。
+    # 入口以**整列** proc＋pre 為範圍（§5.8(a) 之「同 TC 內」）：入口常寫在
+    # Pre-Condition 或前一步驟，逐行判會把正確的多步路徑全報成違規。
+    nav_scope = pre + "\n" + proc
+    if not RE_X_ENTRY.search(nav_scope):
+        for line in split_lines(proc):
+            if RE_X_PENDING.search(line):
+                continue
+            m = RE_X_TARGET.search(line)
+            if m:
+                add("X", "proc", f"導航標的 {m.group(0)!r} 而同 TC 無固定入口",
+                    line.strip()[:80])
+
     return out
 
 
@@ -709,6 +725,15 @@ RE_W_COMPARE = re.compile(
     r"\b(corresponds? to|equals?|differs? from|matches?|greater than|less than|"
     r"same as|identical to)\b", re.I)
 RE_W_NUMERAL = re.compile(r"\d")
+
+# --- X 導航路徑（§5.8／R-G71）------------------------------------------------
+# 觸發詞：步驟指向某個畫面／層級而未必寫出入口。
+RE_X_TARGET = re.compile(r"\b(menu|page|screen|settings|tab)\b", re.I)
+# 固定入口之閉合清單（§5.8(a)）。`H/K "<button>"` 之標籤自由，故只認前綴。
+RE_X_ENTRY = re.compile(
+    r'Menu Bar|App Drawer|Home Screen|Status Bar|H/K\s*"|Dealer Mode|Eng Mode')
+# 已依 §5.8(d) 登記者不重複報 —— PENDING 行本身由 U 承擔。
+RE_X_PENDING = re.compile(r"PENDING:\s*DR-")
 
 
 # --- I-cross（R-SU34 v3）------------------------------------------------------

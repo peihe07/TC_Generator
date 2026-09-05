@@ -73,6 +73,9 @@ MAPPING: dict[int, tuple[str, list[str], str]] = {
     17: ("manual", [],
          "來源 spec 優先於索引匯出、門檻取自 spec 之具體值、相似操作於 ER 消歧、"
          "變體標籤一致、styled 元素不臆測為不可操作 —— 五項皆人讀"),
+    18: ("partial", ["X"],
+         "X 只驗「同 TC 內有無固定入口」；hop 標籤是否逐字取自 HMI 來源、"
+         "路徑是否完整、PENDING 是否已登記 DR —— 三項皆人讀（§5.8(c)(d)）"),
 }
 
 
@@ -97,7 +100,7 @@ def rows(root: Path) -> list[dict]:
     items = parse_items(root)
     missing = sorted(set(items) ^ set(MAPPING))
     if missing:
-        raise SystemExit(f"對映表與 IN §9 之項目不一致：{missing}（R-G60 令 17 項全數分類）")
+        raise SystemExit(f"對映表與 IN §9 之項目不一致：{missing}（R-G60 令 §9 各項全數分類）")
     out = []
     for n in sorted(items):
         coverage, gates, residual = MAPPING[n]

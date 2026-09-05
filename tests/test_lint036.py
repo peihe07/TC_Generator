@@ -583,7 +583,8 @@ def test_profile_off_by_default() -> None:
 def test_check_order_extends_only_with_profile() -> None:
     assert lint036.check_order(None) == lint036.CHECK_ORDER
     assert lint036.check_order("power") == \
-        lint036.CHECK_ORDER + ["Q", "R", "T", "U", "V"]
+        lint036.CHECK_ORDER + lint036.PROFILE_CHECKS
+    assert "X" in lint036.PROFILE_CHECKS, "X（§5.8 導航路徑）為 profile 專屬"
 
 
 # Q —— 不可見字元（R-10(a)），全欄位含 verbatim 上半
@@ -728,3 +729,39 @@ def test_u_counts_pending_in_procedure_too() -> None:
 
 def test_u_silent_when_no_placeholder() -> None:
     assert "U" not in run_profile()
+
+
+# X —— 導航路徑之固定入口（§5.8／R-G71，GC-07）
+
+def test_x_flags_step_without_fixed_entry() -> None:
+    """VF230 之 365 列形態：寫了標的而未寫入口。"""
+    assert "X" in run_profile(
+        proc="1. Open the Vehicle Settings menu and wait until it is fully rendered")
+
+
+def test_x_silent_when_entry_point_present() -> None:
+    """入口寫在同一步驟即通過。"""
+    assert "X" not in run_profile(
+        proc='1. Press "Apps" on Menu Bar to open App Drawer\n'
+             '2. Select "Settings" in the App Drawer')
+
+
+def test_x_entry_point_may_live_in_pre_condition() -> None:
+    """入口常寫在 Pre-Condition —— 逐行判會把正確的多步路徑全報成違規。"""
+    assert "X" not in run_profile(
+        pre='1. The "Aux Switches" screen is reached from Menu Bar',
+        proc='1. Select "Type" tab')
+
+
+def test_x_skips_registered_pending() -> None:
+    """已依 §5.8(d) 登記 DR 者不重複報 —— PENDING 行由 U 承擔。"""
+    assert "X" not in run_profile(
+        proc="1. PENDING: DR-12 HMI entry path Home Screen")
+
+
+def test_x_is_profile_only() -> None:
+    """未指定 profile 時不跑 X —— 既有八本之報告基線不動。"""
+    checks = [v.check for v in lint036.check_row(
+        make_fields(proc="1. Open the Vehicle Settings menu"),
+        10, "TC-001", lint036.DEFAULT_LENGTH_LIMIT)]
+    assert "X" not in checks

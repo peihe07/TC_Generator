@@ -16,3 +16,4 @@ item	coverage	gate_ids	in_sections	residual_manual	summary
 15	full	F	§11		UI element labels use `"..."` double quotes, never `[...]` square brackets
 16	manual	人工項	§10.7	specification_reference 是否列出**每一個**直接驗證之 spec 節 —— G17／G18 型之雙向閘在 feature 級存在，lint036 無	`specification_reference` lists every spec section the TC directly verifies
 17	manual	人工項	§8.6／§8.7	來源 spec 優先於索引匯出、門檻取自 spec 之具體值、相似操作於 ER 消歧、變體標籤一致、styled 元素不臆測為不可操作 —— 五項皆人讀	Source spec wins over index export; thresholds are spec-sourced concrete values, similar operations disambiguated in ER, variant labels appl
+18	partial	X	§5.8	X 只驗「同 TC 內有無固定入口」；hop 標籤是否逐字取自 HMI 來源、路徑是否完整、PENDING 是否已登記 DR —— 三項皆人讀（§5.8(c)(d)）	Navigation path complete from fixed entry point, hops quoted from HMI source, no PENDING left unregistered

@@ -1883,3 +1883,40 @@ TELEMATIC_FD_1.AUX1_TYPE_Req is sent as 0 (Latching) when SWITCH 1 Type is Latch
 | 同上 | 215 | `SWE1-VC-PowerTailgate-028` | `NR1L-VS-206` |
 
 DR 未結前該二列須標 `PENDING: DR-{n}`（IN §8.4.3）；**寫回動作不在本包**。
+
+---
+
+## DR 草稿 —— HMI entry path（新型別，**未取號**；GC-07 §三 R-G71(d) 開立）
+
+依 `down/20260901_VS-SL-01_review.md` §2.2：未送出前不佔號；DR 號依 Pei 送出時之台帳取。
+本型別之登記格式即 R-G71(d) 所定，前例為 `features/power/DATA_REQUESTS.md` 之 DR-PW25。
+
+### 標的（2 個固定入口之 hop 標籤）
+
+| 常數 | 缺的 hop | 查詢式與命中數（R-G50） |
+|---|---|---|
+| `ENTER_VEHICLE_SETTINGS` | Menu Bar 上進入 Vehicle Category 之按鈕標籤 | 母體＝`spec-index/cache/*.json` 全 `entries[].embed_text` ＋ Menu Bar §4.1 命名表。`Vehicle` 於命名表**只出現在 `App Category` 欄**，`Feature Name`／`Drawer Name`／`Shortened Name` 三欄命中 **0** |
+| `ENTER_HOME_SCREEN` | 回到 Home Screen 之入口標籤 | 母體同上。`SYS1_HMI_Home_Screen_HMI_Logic_and_Flow_R1_SR24_Post_2A_(March_17_2023)` 104 entries 逐一掃 `home button`／`Home icon`／`return to the home`／`access the home` —— 命中 **0**；Menu Bar §4.1 命名表無 `Home` 列（命中 **0**） |
+
+### 已查得而不足以構成完整路徑者（G-D 留痕）
+
+- `spec-index/cache/SYS1_HMI_Vehicle_Category_HMI_Logic_and_Flow_R1_SR24_Post_2A_(December_27_2023).xlsx`
+  分頁 `Basic Report` 列 13（NRL-171043，VC1.）：Vehicle Category 含 Controls 與 Settings 兩 tab；
+  列 15（NRL-171045，VC2.0.1）：tab 優先序 My Car / Cameras / Specialty / Controls / Settings；
+  列 17（NRL-171047，VC2.0.3）：Vehicle Settings 之 tab 名為 `Settings`。
+  → **第二個 hop 有來源，第一個（Menu Bar → Vehicle Category）沒有。**
+
+### 所求
+
+1. Menu Bar 上 Vehicle Category 之**按鈕標籤逐字**（及其於 §4.1 命名表之列，若該表應有而未列）。
+2. 回到 Home Screen 之**入口逐字**（Menu Bar 按鈕？H/K 實體鍵？手勢？）。
+3. 確認 `21. Aux Switches` → `Aux 3` → `Recall Last State`（HMI Settings List 分頁 `Settings` 列 573、576）
+   與 VF230 交付本之 `SWITCH 3 Hold Last State` 是否同一設定項；
+   若是，依 R-G71(c) 畫面 hop 應採哪一字串。
+
+### 本層之處置
+
+**不阻斷撰寫** —— 二常數於 `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §5.3 以
+`PENDING: DR-{n} HMI entry path <target>` 佔位（R-G71(d)），**不臆造 hop**（§8.4.1）。
+現有交付本不回修（R-TM13）；VF230 之 365 列 `Open the Vehicle Settings menu`
+由 lint 檢查 X 報 WARN，本包**只報不改**。

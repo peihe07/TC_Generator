@@ -33,15 +33,15 @@ lint036 = _load("tc_lint036_sc", "scripts/lint036.py")
 
 # --- 解析 IN §9 -----------------------------------------------------------
 
-def test_parses_seventeen_items():
+def test_parses_all_items():
     items = sm.parse_items(ROOT)
-    assert sorted(items) == list(range(1, 18)), "IN §9 自查表為 17 項"
+    assert sorted(items) == list(range(1, 19)), "IN §9 自查表為 18 項（GC-07 增第 18 條）"
 
 
 def test_every_item_is_classified():
-    """R-G60：17 項全數分類，0 項懸置。"""
+    """R-G60：§9 各項全數分類，0 項懸置。"""
     rows = sm.rows(ROOT)
-    assert len(rows) == 17
+    assert len(rows) == len(sm.MAPPING)
     assert all(r["coverage"] in {"full", "partial", "manual"} for r in rows)
     assert all(r["gate_ids"] for r in rows), "gate_ids 不得為空字串"
 

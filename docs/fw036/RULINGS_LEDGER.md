@@ -71,6 +71,7 @@
 | R-11 | `docs/fw036/handoff/14_r11_samples.md` §R-11 條文 |
 | R-12 | `docs/fw036/handoff/15_r12_precondition_specref.md` §一 |
 | R-13 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §8.7.5(g) |
+| R-G71 | `docs/runtime/ASPICE_SWE6_AI_Instruction.md` §5.8（＋§5.3 三常數、§9 第 18 條、§8.7.5 首段之來源分線） |
 | R-14 | `docs/fw036/handoff/20_pm_closeout.md` §一 |
 | R-15 | `docs/fw036/handoff/21_ledger_fix.md` §一 |
 | R-16 | `docs/fw036/handoff/30_pm_final_review.md` §一（就地裁決第 1 項） |
@@ -1683,3 +1684,91 @@ R-G43(c)：指紋之充分條件為「檔在掃描面」且「條號領頭於錨
 > 落實：GC-05 §一-1 於台帳 14 條（`R-G30`～`R-G41`、`R-G33(d)`、台帳側 `R-G42`）
 > 各加一行 `### R-Gnn — 標題` 子錨點，原 `##` 敘述式標題與圍籬本體**一字未動**。
 > 逐號乾跑結果見 `up/20260905_GC-05.md`。
+
+---
+
+## 下放包 GC-05／GC-06 之全域條文（Pei 2026-09-05「裁」）
+
+依 `docs/fw036/handoff/down/20260905_GC-06.md` §二-4 與同日補遺末段落檔（R-G36 機器抽取）。
+
+### R-G36(b) — 機器抽取後須回讀本體首末行
+
+來源：`docs/fw036/handoff/down/20260905_GC-05_review.md:24`（GC-05 審閱 §三，[DEFAULT]）
+
+```text
+R-G36 補充 [DEFAULT]：機器抽取入台帳後，執行層須逐條回讀所抽本體之**首行與末行**並於上繳列出（首行＝標題即內容者為已知盲區）。GC-06 入台帳。
+```
+
+> 成因：`up/20260905_GC-05.md` 7-2 節 —— GC-03 之抽取器以「標題之次行」為本體起點，
+> 而 `R-G45(b)` 之標題**即其本體首行**，首行遂被切掉，台帳所載自「（`BHCAN`／`FDCAN8`）為配對鍵」起。
+> 「標題即內容」為本條明載之已知盲區。
+
+### R-G43(d) — 解析面與指紋面同源
+
+來源：`docs/fw036/handoff/down/20260905_GC-06_addendum.md:22`（Pei 2026-09-05「裁」）
+
+```text
+本補遺之裁決入台帳：**不立新 R-G**，以 R-G43(d) 記「解析面與指紋面同源（`canon_refs` 與 `rulings_hash` 共用錨點常數）」，餘為個案處置不入台帳。
+```
+
+> 落實（GC-06 §二-1-4，補遺 §1 由提案改為施作）：錨點正則移入
+> `scripts/ruling_anchor.py`，`rulings_hash.py` 與 `canon_refs.py` 皆自該處 import；
+> `canon_refs` 之 ruling 索引面增台帳（錨點法），同號兩側皆有錨者判 **resolved**。
+> 實測 `ruling` unresolved **963 → 0**。
+
+---
+
+## 下放包 GC-07 之全域條文
+
+依 `docs/fw036/handoff/down/20260905_GC-07.md` §三落檔。
+**本包只落 R-G71（畫面線）**；同包 §二所擬之 **R-G70（訊號來源層級／v4）待 Pei 裁，未立號**
+（號已現查為未佔用，保留）。
+
+### R-G71 —— UI 導航路徑明確化（全域）
+
+來源：`docs/fw036/handoff/down/20260905_GC-07.md:§三`（Pei 2026-09-05 兩則指示之畫面線）
+
+```text
+§5.8 UI Navigation Path (R-G71)
+(a) 凡步驟抵達某畫面／app／tab／page／設定，須自固定入口寫出完整路徑，
+    一步一 hop 或單步內以 " > " 分段，每個 hop 標籤加 "..."。
+    固定入口為閉合清單，僅得經 §5.3 常數擴充：
+    Menu Bar / App Drawer / Home Screen / Status Bar / H/K "<button>" /
+    Dealer Mode / Eng Mode。
+(b) 禁止：`Open the Vehicle Settings menu`、`Go to settings`、
+    `Navigate to the page` —— 凡僅憑步驟文字無法在畫面上定位其標的者。
+(c) 路徑之來源為該 feature 之 HMI Logic and Flow
+    （spec-index/cache/SYS1_HMI_*_HMI_Logic_and_Flow_*.xlsx）或
+    HMI Settings List（forms/HMI Settings List R1 SR25 …）。
+    CFTS／VF／DBC 不得作為路徑來源。hop 標籤逐字取自 HMI 來源（R-6 大小寫規則適用）。
+(d) 任一 HMI 來源皆查無該路徑 → `PENDING: DR-{n} HMI entry path <target>`，
+    不得臆造 hop。DR 型別「HMI entry path」登記於該 feature 之
+    DATA_REQUESTS.md（前例：DR-PW25）。
+(e) 設定值之 hop 採 HMI Settings List 之選項標籤，值加引號（§11）。
+(f) 導航 hop 之 ER = 抵達之畫面已顯示，以其 HMI 標題命名。
+```
+
+**條文全文落檔**：`docs/runtime/ASPICE_SWE6_AI_Instruction.md` §5.8。
+§9 自檢增第 18 條；§5.3 增三常數；§8.7.5 首段增「來源分線」指回本條。
+
+> **執行層落檔前之現查（R-G23）**：`ruling_anchor.anchor_ruling_numbers` 掃全庫 `*.md`，
+> R-G 錨點最高號 **69**，**70／71 皆未佔用**，無需順延。
+
+> **(e) 之實測補充（執行層量測，非下放包所載）**：HMI Settings List 之標籤與
+> VF／CFTS 之參數名**經常不同字串**。`forms/HMI Settings List R1 SR25 Post R1L-R
+> (Feb 13 2026).xlsx` 分頁 `Settings` 列 564–588 為
+> `21. Aux Switches` → `Aux 1`…`Aux 6` → `Type`／`Power Source`／`Recall Last State`，
+> 而 VF230 交付本寫 `SWITCH 3 Hold Last State`。下放包 §三(e) 之例
+> `Set "SWITCH 3 Hold Last State" = "Disable"` **不是 HMI 來源字串**，
+> 依 (c) 不得作為 hop 標籤之範例；canon §5.8(e) 已改用實測之 `Set "Type" = "Latching"`
+> 並加註二者之分工（畫面 hop 取 HMI 標籤，VF 名留在 test_item verbatim 上半與訊號行）。
+
+> **(a) 例示之訂正**：下放包 §三(a) 之 `Press "Vehicle" on Menu Bar` **未經來源證實** ——
+> `spec-index/cache/SYS1_HMI_Menu_Bar_and_App_Drawer_HMI_Logic_and_Flow_R1_SR24_3A_(September_11_2023).xlsx`
+> 分頁 `Basic Report` 列 22（NRL-127734）之 §4.1 命名表中，`Vehicle` 只出現於
+> `App Category` 欄，從未作為 `Feature Name`／`Drawer Name`。條文自身之 (d) 禁止臆造 hop，
+> 故例示已改為全數有來源之 `"Apps"` → `"Settings"` → `"Aux Switches"`。
+
+> **lint 檢查代號之訂正**：下放包 §四.3 指定新檢查代號 **Q**，惟 `scripts/lint036.py`
+> 之 `CHECK_TITLES["Q"]` 已為「不可見字元（NBSP／全形空格／行尾空白）」（R-10(a)，21 包）。
+> 執行層改用次一未佔用之代號 **X**，判準與粒度照下放包。
