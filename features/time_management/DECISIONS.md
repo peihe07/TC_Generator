@@ -91,13 +91,16 @@ sign-off = binding as proposed.
 
 | `inputs/` 檔名 | sha8 | `forms/` 同類現行版 | sha8 | 是否影響已交付 TC |
 |---|---|---|---|---|
-| `HMI Settings List R1 SR24 Post 2A (June 15 2023).xlsx` | `a2533bf3` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | **PENDING 分析層判** |
-| `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `41daac00` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | **PENDING 分析層判** |
-| `Logical Identifiers and CAN Mapping v1_76.xlsx` | `9a751a72` | `Logical Identifiers and CAN Mapping v1_78.xlsx` | `a01e1679` | **PENDING 分析層判** |
-| `SR24 R1 Market Configuration Table v1.6.xlsx` | `ae4cf0b9` | `SR24 R1 Market Configuration Table v1.6.xlsx` | `7e865d55` | **PENDING 分析層判** |
+| `HMI Settings List R1 SR24 Post 2A (June 15 2023).xlsx` | `a2533bf3` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | ~~**PENDING 分析層判**~~ → **影響待證，出貨前必重跑** —— 本份為 2023 版（`SR24 Post 2A (June 15 2023)`），與 forms 版差 95 只在 inputs／105 只在 forms／32 值異。GC-04 以 116 個變動設定名 grep 本線最新工作簿，命中 **0/116**；**惟該簿引用之設定名總數僅 9/316，分母極小，證據力弱**（R-G11）。出貨前須改綁 forms 版重產並重跑本判。 |
+| `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `41daac00` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | ~~**PENDING 分析層判**~~ → **不影響（key 級）** —— key 逐列相同。盲區（R-G11）：非 key 分頁（Notes、Brand-Specific Names、Options 文字）之差未查；若本線 TC 引用此類欄位，本判須重開。 |
+| `Logical Identifiers and CAN Mapping v1_76.xlsx` | `9a751a72` | `Logical Identifiers and CAN Mapping v1_78.xlsx` | `a01e1679` | ~~**PENDING 分析層判**~~ → **待證（維持）** —— 4 個值異 signal grep 命中 **0/4**；**該簿引用之 LID signal 總數為 1/2548，本判準對它幾近全盲**（R-G11）。 |
+| `SR24 R1 Market Configuration Table v1.6.xlsx` | `ae4cf0b9` | `SR24 R1 Market Configuration Table v1.6.xlsx` | `7e865d55` | ~~**PENDING 分析層判**~~ → **不影響（key 級）** —— key 逐列相同。盲區（R-G11）：非 key 分頁（Notes、Brand-Specific Names、Options 文字）之差未查；若本線 TC 引用此類欄位，本判須重開。 |
+
+
+**「是否影響已交付 TC」之判（分析層，`down/20260905_GC-03_review.md` §四；GC-04 §一-4 抄回）**。前提：本 feature 之 `delivered/` 為空，故以「現存最新工作簿」為對象。原 `PENDING 分析層判` 依 R-TM13 以刪除線保留。
 
 **本 feature 待記 4 檔次**（全域 5 個 feature／13 檔次）。
-「是否影響已交付 TC」**執行層不判**（GC-02 §一-3 明文），逐列留 `PENDING 分析層判`。
+「是否影響已交付 TC」執行層不判（GC-02 §一-3 明文）；分析層已於 2026-09-05 逐列判訖，見上表右欄。
 
 **查詢式與命中數（R-G50）**——
 

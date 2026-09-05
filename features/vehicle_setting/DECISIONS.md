@@ -60,10 +60,10 @@ sign-off = binding as proposed.
 
 | `inputs/` 檔名 | sha8 | `forms/` 同類現行版 | sha8 | 是否影響已交付 TC |
 |---|---|---|---|---|
-| `PDT27_E2A_R4_BHCAN.dbc` | `9ef1ec98` | `P363_BH-CAN [07338]_3A_R2.dbc`<br>`PDT27_E2A_R1_BHCAN2.dbc`<br>`PDT27_E2A_R1_FDCAN8.dbc`<br>`Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc` | `a51079be`<br>`46cb73f3`<br>`2a86c4bf`<br>`5cac2abc` | **PENDING 分析層判** |
-| `PDT27_E2A_R5_FDCAN8.dbc` | `51c8fd60` | `P363_BH-CAN [07338]_3A_R2.dbc`<br>`PDT27_E2A_R1_BHCAN2.dbc`<br>`PDT27_E2A_R1_FDCAN8.dbc`<br>`Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc` | `a51079be`<br>`46cb73f3`<br>`2a86c4bf`<br>`5cac2abc` | **PENDING 分析層判** |
-| `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `0a37121f` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | **PENDING 分析層判** |
-| `Logical Identifiers and CAN Mapping v1_76.xlsx` | `ffceac36` | `Logical Identifiers and CAN Mapping v1_78.xlsx` | `a01e1679` | **PENDING 分析層判** |
+| `PDT27_E2A_R4_BHCAN.dbc` | `9ef1ec98` | `P363_BH-CAN [07338]_3A_R2.dbc`<br>`PDT27_E2A_R1_BHCAN2.dbc`<br>`PDT27_E2A_R1_FDCAN8.dbc`<br>`Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc` | `a51079be`<br>`46cb73f3`<br>`2a86c4bf`<br>`5cac2abc` | ~~**PENDING 分析層判**~~ → **高風險，版本由 Pei 裁** —— GC-04 只量不判。本線最新工作簿之 48 個相異 `$MESSAGE.Signal$` token 對 `forms/PDT27_E2A_R1_BHCAN2.dbc` 與本份 `R4_BHCAN` 之四象限：兩邊皆有 **0**、只在 forms R1 **0**、只在 inputs R4 **1**（`IPC_VEHICLE_SETUP2.Power_Tailgate_Enable`）、兩邊皆無 **47**。即本簿所用之訊號幾乎不在任一 BHCAN 檔內（其落點見下一列之 FDCAN8）。 |
+| `PDT27_E2A_R5_FDCAN8.dbc` | `51c8fd60` | `P363_BH-CAN [07338]_3A_R2.dbc`<br>`PDT27_E2A_R1_BHCAN2.dbc`<br>`PDT27_E2A_R1_FDCAN8.dbc`<br>`Project__637MCA_BH-CAN_R1_(29_01_2025)_plusCR19670.dbc` | `a51079be`<br>`46cb73f3`<br>`2a86c4bf`<br>`5cac2abc` | ~~**PENDING 分析層判**~~ → **高風險，版本由 Pei 裁** —— 同上 48 token 對 `forms/PDT27_E2A_R1_FDCAN8.dbc` 與本份 `R5_FDCAN8` 之四象限：**兩邊皆有 48**、其餘三象限皆 **0**。**就本簿實際使用之訊號而言，R1 與 R5 無差異**；R5 多出之 122 個 `SG_` 未被本簿使用。 |
+| `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `0a37121f` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | ~~**PENDING 分析層判**~~ → **不影響（key 級）** —— key 逐列相同。盲區（R-G11）：非 key 分頁（Notes、Brand-Specific Names、Options 文字）之差未查；若本線 TC 引用此類欄位，本判須重開。 |
+| `Logical Identifiers and CAN Mapping v1_76.xlsx` | `ffceac36` | `Logical Identifiers and CAN Mapping v1_78.xlsx` | `a01e1679` | ~~**PENDING 分析層判**~~ → **待證 → 傾向不影響** —— 4 個值異 signal 命中 **0/4**；對照向：該簿引用 LID signal 18/2548，**變動之 4 個不在該 18 之內**。 |
 
 **配對（R-G45 補充，GC-02 審閱 §二-1）**：DBC／LID 一類以**網段 token** 為配對鍵，
 版本 token（`R1`／`R4`／`R5`）不入配對 ——
@@ -71,8 +71,11 @@ sign-off = binding as proposed.
 `PDT27_E2A_R5_FDCAN8.dbc` ↔ `forms/PDT27_E2A_R1_FDCAN8.dbc`（`2a86c4bf`）。
 上表之四份並列**保留**（GC-02 審閱裁），本註為其配對鍵。
 
+
+**「是否影響已交付 TC」之判（分析層，`down/20260905_GC-03_review.md` §四；GC-04 §一-4 抄回）**。前提：本 feature 之 `delivered/` 為空，故以「現存最新工作簿」為對象。原 `PENDING 分析層判` 依 R-TM13 以刪除線保留。
+
 **本 feature 待記 4 檔次**（全域 5 個 feature／13 檔次）。
-「是否影響已交付 TC」**執行層不判**（GC-02 §一-3 明文），逐列留 `PENDING 分析層判`。
+「是否影響已交付 TC」執行層不判（GC-02 §一-3 明文）；分析層已於 2026-09-05 逐列判訖，見上表右欄。
 
 **查詢式與命中數（R-G50）**——
 

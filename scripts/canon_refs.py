@@ -78,6 +78,12 @@ WAIVER_COLUMNS = ["source", "kind", "target", "line_sha8", "line", "reason"]
 # 判準為**路徑成分**，非子串 —— `docs/fw036/upstream/` 不含 `docs/upstream/`，
 # 以子串比對會把 `docs/fw036/` 下之歷史包誤分為活躍（本判準之首個實測缺陷）。
 HISTORICAL_PARTS = {"handoff", "upstream"}
+# R-G16 補充：排除集集中於 `scripts/measure_common.py`，不逐檔各記。
+# 本檔於測試中以檔案路徑載入（`spec_from_file_location`），`scripts/` 未必在 sys.path，
+# 故先把本檔所在目錄補上再 import —— 不補則測試在收集階段即 ImportError。
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from measure_common import is_measurement_output
+
 SCAN_SUFFIXES = {".md", ".py", ".yaml", ".yml"}
 SKIP_PARTS = {
     ".git", "__pycache__", "node_modules", ".venv", "spec-index",
@@ -374,6 +380,8 @@ def waiver_hit(waived: dict, r: "Ref") -> str | None:
 
 def in_scan_surface(rel: Path) -> bool:
     parts = rel.parts
+    if is_measurement_output(rel):        # R-G16 補充：量測產出不入母體
+        return False
     if any(p in SKIP_PARTS for p in parts):
         return False
     if rel.suffix.lower() not in SCAN_SUFFIXES:

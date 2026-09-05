@@ -252,7 +252,10 @@ def default_targets(root: Path, w_p1_only: bool = False) -> list[str]:
     """
     if w_p1_only:
         return list(SCOPE_W_P1)
-    targets = ["docs/fw036/FEATURE_ONBOARDING.md"]
+    # R-G43(b)（Pei 2026-09-05 追認）：台帳納入掃描面。此前掃描面只有 FO 與各 feature
+    # 之 RULINGS.md，故台帳側之 R-G12～R-G42 與 R-G44 起之新條**永無指紋**
+    # ——「R-G30～R-G41 缺列」即此，非漏跑（A-GC12）。
+    targets = ["docs/fw036/FEATURE_ONBOARDING.md", "docs/fw036/RULINGS_LEDGER.md"]
     targets += sorted(
         str(p.relative_to(root)) for p in (root / "features").glob("*/RULINGS.md")
     )

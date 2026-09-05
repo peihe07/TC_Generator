@@ -576,10 +576,13 @@ Title 則從無一條如此 —— 兩者不是同一種東西。
 
 | `inputs/` 檔名 | sha8 | `forms/` 同類現行版 | sha8 | 是否影響已交付 TC |
 |---|---|---|---|---|
-| `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx` | `b0827f02` | `Pop Up List HMI R1 (26PI).xlsx`<br>`Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf` | `ff47b7be`<br>`dc078763` | **PENDING 分析層判** |
+| `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx` | `b0827f02` | `Pop Up List HMI R1 (26PI).xlsx`<br>`Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf` | `ff47b7be`<br>`dc078763` | ~~**PENDING 分析層判**~~ → **待證 → 傾向不影響** —— 變動之 2 個 PU id grep 命中 **0/2**；對照向：該簿引用 PU id 17/1340，**變動之 2 id 不在該 17 之內**。分母非 0，故本次 0 命中有證據力；仍留待證，因非 key 分頁未查（R-G11）。 |
+
+
+**「是否影響已交付 TC」之判（分析層，`down/20260905_GC-03_review.md` §四；GC-04 §一-4 抄回）**。前提：本 feature 之 `delivered/` 為空，故以「現存最新工作簿」為對象。原 `PENDING 分析層判` 依 R-TM13 以刪除線保留。
 
 **本 feature 待記 1 檔次**（全域 5 個 feature／13 檔次）。
-「是否影響已交付 TC」**執行層不判**（GC-02 §一-3 明文），逐列留 `PENDING 分析層判`。
+「是否影響已交付 TC」執行層不判（GC-02 §一-3 明文）；分析層已於 2026-09-05 逐列判訖，見上表右欄。
 
 **查詢式與命中數（R-G50）**——
 

@@ -1475,8 +1475,18 @@ R-G50(b)：對照向（反事實量測）須同時回報「被移出／還原之
 
 來源：`docs/fw036/handoff/down/20260905_GC-03.md:11`（GC-03 §一）
 
-理由：`RULINGS_LEDGER.md` 為 `rulings_hash.py` 之指紋源，且其條文附日期、來源與逐字本體；
-FO §9.2 之條文為 runtime 摘要。改摘要之號，不改指紋源之號。
+~~理由：`RULINGS_LEDGER.md` 為 `rulings_hash.py` 之指紋源，且其條文附日期、來源與逐字本體；~~
+~~FO §9.2 之條文為 runtime 摘要。改摘要之號，不改指紋源之號。~~
+
+> **理由更正（2026-09-05，GC-03 審閱 §一，A-GC12）**：上句之第一腳為偽。
+> 實測 `scripts/rulings_hash.py` 之掃描面為 `docs/fw036/FEATURE_ONBOARDING.md`
+> ＋ `features/*/RULINGS.md`；`docs/fw036/RULINGS.sha.tsv` 698 列中，
+> 來源為本台帳者 **0 列**。**台帳不是指紋源，FO 才是。**
+> 同一事實亦解釋 R-G30～R-G41 之「缺列」——該十二條只在台帳，本就不在掃描面，
+> **非 Pei 漏跑**。
+> **裁定 (A) 維持**，其餘一腳理由仍立：台帳條文附日期、來源與逐字本體，FO §9.2 為摘要；
+> 且改號已落 193 處、對照表已出，回退即再動 193 處而所得只是換一側之歧義。
+> 掃描面之缺口另由 **R-G43(b)** 補（本檔末節）。
 
 改號表（原號升冪，新號自 R-G51 起連號；**條文一字不改**，僅首行加「原編號 R-Gnn，2026-09-05 改號，見 R-G43」）：
 
@@ -1525,3 +1535,43 @@ R-G1～R-G11（FO 單邊）、R-G30～R-G42（台帳單邊）不動。
 二檔為 CFTS_020 ICS and DCSD（`.doc`＋`.reqifz`），repo 內無同 sha 落點，而 `features/ics_management/` 存在。
 裁：以 `ics_management` 為所屬 feature 登記入 `sources/raw/` 與 `MANIFEST.tsv`（doc_id 依 GC-02 導出規則），
 之後 `_intake/SXM/` 之二檔由 Pei 清空（同其他四匣）。**不刪原檔。**
+
+---
+
+## 下放包 GC-03 審閱之全域條文（Pei 2026-09-05「追認」「准」）
+
+依 `docs/fw036/handoff/down/20260905_GC-04.md` §一-1 落檔。本體由腳本自審閱檔抽取（R-G36），附來源行號。
+`rulings_hash.py` **未重生**（Pei，GC-04 §三-1）。
+
+### R-G43(b) —— 台帳納入 `rulings_hash.py` 之掃描面
+
+來源：`docs/fw036/handoff/down/20260905_GC-03_review.md:26`（GC-03 審閱 §二-3，[DEFAULT]，Pei 2026-09-05 追認）
+
+```text
+R-G43(b)：`scripts/rulings_hash.py` 之 default_targets 增 `docs/fw036/RULINGS_LEDGER.md`。
+台帳為全域條文之本體所在，不入掃描面則 R-G12～R-G42 之台帳側、R-G44 起之新條皆永無指紋。
+先以 `--out <工作區>` 乾跑，回報：新增列數、與現行之 ID 撞號（台帳內部同號者，如 R-G13／R-G13 補充、
+R-G33／R-G33(d)）、本體 sha 與 FO 側同號條是否相等。撞號處置另裁，不得在乾跑中自行合併。
+```
+
+> 執行層落實見 `up/20260905_GC-04.md` 3 節：`default_targets` 已增台帳，
+> **乾跑以 `--out <工作區>`，repo 內之 `RULINGS.sha.tsv` 未寫**（R-G50(c)）。
+> 撞號逐號列表，**未在乾跑中合併或擇一**，交分析層裁。
+
+### R-G50(c) —— 列為「不跑」之工具只准唯讀旗標
+
+來源：`docs/fw036/handoff/down/20260905_GC-03_review.md:36`（GC-03 審閱 §三）
+
+- 9-2（跑了會寫檔之工具）→ **R-G50(c)**：包內列為「不跑」之工具，執行層只得 `--check` 或 `--out <工作區路徑>`；上繳附該工具寫入 repo 之路徑清單（空亦寫）。
+
+> 成因：`up/20260905_GC-03.md` 9-2 節 —— 執行層無參數執行 `rulings_hash.py`，
+> 該工具預設行為為**寫**，`RULINGS.sha.tsv` 遭覆寫 37 增 35 刪，已即時還原。
+
+### R-G16 補充 —— 量測產出表常設排除於母體
+
+來源：`docs/fw036/handoff/down/20260905_GC-03_review.md:37`（GC-03 審閱 §三）
+
+- 9-4（產出表入母體，二犯）→ **R-G16 補充**（量測與聚合分離）：`docs/reports/*_YYYYMMDD.tsv` 為量測產出，**常設排除**於一切母體；排除集寫入 `scripts/` 之單一常數，不得逐包各記。
+
+> 成因：`up/20260905_GC-02.md` 9-3 節與 `up/20260905_GC-03.md` 9-4 節，同一形態二犯。
+> 落實：`scripts/measure_common.py::MEASUREMENT_OUTPUT_GLOBS`（GC-04 §一-5）。

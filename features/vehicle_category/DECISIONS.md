@@ -150,10 +150,13 @@ Markers per FEATURE_ONBOARDING §4；未簽之表阻斷 Phase 4+。
 
 | `inputs/` 檔名 | sha8 | `forms/` 同類現行版 | sha8 | 是否影響已交付 TC |
 |---|---|---|---|---|
-| `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `41daac00` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | **PENDING 分析層判** |
+| `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `41daac00` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | ~~**PENDING 分析層判**~~ → **不影響（key 級）** —— key 逐列相同。盲區（R-G11）：非 key 分頁（Notes、Brand-Specific Names、Options 文字）之差未查；若本線 TC 引用此類欄位，本判須重開。 |
+
+
+**「是否影響已交付 TC」之判（分析層，`down/20260905_GC-03_review.md` §四；GC-04 §一-4 抄回）**。前提：本 feature 之 `delivered/` 為空，故以「現存最新工作簿」為對象。原 `PENDING 分析層判` 依 R-TM13 以刪除線保留。
 
 **本 feature 待記 1 檔次**（全域 5 個 feature／13 檔次）。
-「是否影響已交付 TC」**執行層不判**（GC-02 §一-3 明文），逐列留 `PENDING 分析層判`。
+「是否影響已交付 TC」執行層不判（GC-02 §一-3 明文）；分析層已於 2026-09-05 逐列判訖，見上表右欄。
 
 **查詢式與命中數（R-G50）**——
 
