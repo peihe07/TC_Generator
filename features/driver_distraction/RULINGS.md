@@ -837,3 +837,28 @@ R-DD27（注入須含期待為綠之組；臨時驗法之結論須附驗法）
 （分析層裁，下放包 22 §三）
 ```
 ---
+
+## 積欠結案紀錄 —— R-G64 產出物目錄政策（2026-09-05，GC-15）
+
+**非條文** —— 本節為積欠項之結案紀錄，不立條號、不改任何條文本體。
+（原擬記於 `docs/fw036/FEATURE_ONBOARDING.md` 之 R-G64 節內，
+惟該節 body 屬 `rulings_hash` 之雜湊範圍，寫入會使 **R-G64 之指紋改變而其條文一字未改**
+—— 實測 `34b81800`／21 行 → `e6d073ca`／29 行，故改落此處。）
+
+GC-06 審閱 四 之 3 所列之 `git mv` 積欠項**已結案**。現查：
+
+```text
+git ls-files features/driver_distraction | grep -E "xlsx|feature.yaml"
+  features/driver_distraction/feature.yaml
+  features/driver_distraction/sandbox/driver_distraction_00.xlsx
+  features/driver_distraction/sandbox/driver_distraction_00_bak.xlsx
+grep -n "workbook:" features/driver_distraction/feature.yaml
+  17:  workbook: "sandbox/driver_distraction_00.xlsx"
+python3 scripts/lint_paths.py
+  delivered/ sha 對照：OK
+  PASS: 基線外違規 + delivered 不符 = 0
+```
+
+二個 xlsx 皆在 `sandbox/`、`feature.yaml` 指向 `sandbox/`、`lint_paths` PASS ——
+三項皆符 R-G64。完成於 commit `a93ff89`
+（`chore(driver_distraction): move workbooks to sandbox/ per R-G64`）。

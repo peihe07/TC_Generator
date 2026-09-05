@@ -2373,5 +2373,10 @@ sha `e2ce5868…` → `cb5697db…`。
   其餘欄一格未動；**結果欄 Y–AH 逐格斷言等於母本（PASS）**。
 - **TC ID 不變**（Revise-M 不改號）；idmap 見該線 `reports/rg72_idmap_*_filled.tsv`。
 - 閘重過（R-G72(e)）：P 119→101（全數為 v3 殘留）；Y=0。
+- **已出貨（2026-09-05，Pei）** —— 抽驗 **9/9 OK**（seed `20260905`，三本各 3 列對 dry-run 表）。
+  commit `c36635f`（含 `RULINGS.sha.tsv` 重生 768，`--check` OK）。
+  R-G72(h) 出貨條件成立：殘項 **101（全為 bare-$）**、`unclassified` **0**，
+  清單 `features/ics_management/reports/rg72_residual_ics_20260830_20260905.tsv`。
+  `delivered/MANIFEST.tsv` 之 `status`：本檔 `shipped`、母本 `superseded_by=<本檔>`。
 - **X-nav 與 bare-`$MSG.Sig$` 之解不在本批** —— 屬 Revise-C（R-G72(g)），
   其值須逐 TC 回查 CFTS 原句，查無者登 DR。
