@@ -1,0 +1,107 @@
+filename	size	ref_count	ref_files	removable_Y_N	basis
+AMFM_20260821.json	788314	1	tests/test_lint036.py	N	FROZEN_BASELINE(R-G47)
+AMFM_20260821.md	336417	2	docs/fw036/upstream/00_lint_bootstrap.md | tests/test_lint036.py	N	FROZEN_BASELINE(R-G47)
+BT_20260821.json	571900	0		N	FROZEN_BASELINE(R-G47)
+BT_20260821.md	316875	1	docs/fw036/upstream/00_lint_bootstrap.md	N	FROZEN_BASELINE(R-G47)
+BedLowering_efa1da4c_20260829.md	2032	0		Y	NO_REF
+CFTS012_DealerMode_20260821.json	403408	0		N	FROZEN_BASELINE(R-G47)
+CFTS012_DealerMode_20260821.md	184895	2	docs/fw036/upstream/00_lint_bootstrap.md | tests/test_lint036.py	N	FROZEN_BASELINE(R-G47)
+CFTS026_HandsFreePhone_20260821.json	582215	0		N	FROZEN_BASELINE(R-G47)
+CFTS026_HandsFreePhone_20260821.md	248768	1	docs/fw036/upstream/00_lint_bootstrap.md	N	FROZEN_BASELINE(R-G47)
+Comfort_235f2ca7_20260829.md	6792	0		Y	NO_REF
+Comfort_6d53056e_20260829.md	2043	0		Y	NO_REF
+Comfort_b68117a2_20260829.md	2035	0		Y	NO_REF
+Display_06972455_20260829.md	2018	0		Y	NO_REF
+Display__display_06972455_20260827.md	2539	0		Y	NO_REF
+Home_20260821.json	151665	0		N	FROZEN_BASELINE(R-G47)
+Home_20260821.md	64243	2	docs/fw036/upstream/00_lint_bootstrap.md | tests/test_lint036.py	N	FROZEN_BASELINE(R-G47)
+MediaHMI_20260821.json	5156	0		N	FROZEN_BASELINE(R-G47)
+MediaHMI_20260821.md	4388	1	docs/fw036/upstream/00_lint_bootstrap.md	N	FROZEN_BASELINE(R-G47)
+Popup_a13559d5_20260829.md	2011	0		Y	NO_REF
+PowerManagement_20260821.json	75196	1	tests/test_lint036.py	N	FROZEN_BASELINE(R-G47)
+PowerManagement_20260821.md	41671	1	docs/fw036/upstream/00_lint_bootstrap.md	N	FROZEN_BASELINE(R-G47)
+PowerModing_01e917b8_20260829.md	10812	0		Y	NO_REF
+PowerModing_070ef73c_20260829.md	10802	0		Y	NO_REF
+PowerModing_8f471ddf_20260829.md	2061	0		Y	NO_REF
+Privacy_ad595ed0_20260829.md	4444	0		Y	NO_REF
+Privacy_ed741d8d_20260829.md	2035	0		Y	NO_REF
+Projection_20260821.json	282306	0		N	FROZEN_BASELINE(R-G47)
+Projection_20260821.md	160469	2	docs/fw036/upstream/00_lint_bootstrap.md | tests/test_lint036.py	N	FROZEN_BASELINE(R-G47)
+SWUpdate_EMPTY_3d439541_20260829.md	2033	0		Y	NO_REF
+SWUpdate__sw_update_4f6caa35_20260830.md	154536	0		Y	NO_REF
+SWUpdate__sw_update_7f019b37_20260830.md	154468	1	docs/fw036/upstream/72_delivery.md	N	REFERENCED:docs/fw036/upstream/72_delivery.md
+SXM_0b9cb4f6_20260829.md	6875	0		Y	NO_REF
+UserProfiles_0e40ff5b_20260829.md	4267	0		Y	NO_REF
+UserProfiles_570eb7cd_20260829.md	4285	0		Y	NO_REF
+UserProfiles_cbd04af6_20260829.md	4283	0		Y	NO_REF
+VehicleCategory_c470defd_20260829.md	2950	0		Y	NO_REF
+driver_distraction_00__driver_distraction_f5a16c7b_20260829.md	9401	0		Y	NO_REF
+pm_25__power_20260824.md	6313	2	docs/fw036/upstream/25_split.md | tests/test_lint036.py	N	REFERENCED:docs/fw036/upstream/25_split.md,tests/test_lint036.py
+pm_26__power_20260824.md	6313	2	docs/fw036/upstream/26_split_fix.md	N	REFERENCED:docs/fw036/upstream/26_split_fix.md
+pm_27__power_20260824.md	6313	2	docs/fw036/upstream/27_paren_fix.md	N	REFERENCED:docs/fw036/upstream/27_paren_fix.md
+pm_28__power_20260824.md	6313	2	docs/fw036/upstream/28_paren_convergence.md	N	REFERENCED:docs/fw036/upstream/28_paren_convergence.md
+pm_29_35305835_20260829.md	4112	0		N	FROZEN_BASELINE(R-G47)
+pm_29__power_35305835_20260824.json	14521	0		N	FROZEN_BASELINE(R-G47)
+pm_29__power_35305835_20260824.md	9147	2	docs/fw036/upstream/29_content.md	N	FROZEN_BASELINE(R-G47)
+prepared_step1_cleared_b68117a2_20260829.md	1831	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_032c2cd3_20260829.md	4347	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_05e330dd_20260830.md	14349	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_086e471c_20260830.md	5491	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_0a66e037_20260830.md	16481	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_1324e85f_20260830.md	9916	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_201bfeb0_20260829.md	9841	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_20902564_20260830.md	13063	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_26341ffe_20260829.md	7658	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_26407fb9_20260830.md	11912	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_2a956804_20260829.md	7466	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_2ea0cf03_20260830.md	3095	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_32391150_20260830.md	10762	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_34253730_20260829.md	5249	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_36593403_20260830.md	4256	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_3bf20ab4_20260830.md	15923	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_40ecacdb_20260829.md	4710	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_45da648e_20260829.md	7079	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_4b398976_20260829.md	11940	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_4c6ca79c_20260830.md	5947	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_528f56ed_20260830.md	13781	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_52ae3b17_20260829.md	5892	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_57f80b7c_20260829.md	5732	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_5a881012_20260828.md	3215	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_5b1e785c_20260830.md	12636	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_5caa4794_20260829.md	5964	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_663d8b02_20260830.md	5773	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_6af353ee_20260829.md	12168	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_6d907b29_20260829.md	5134	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_711a5854_20260828.md	3495	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_7bab8660_20260830.md	12295	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_7c5e94c3_20260830.md	10985	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_7efbc509_20260829.md	5443	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_81afdf7f_20260828.md	3645	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_8a78b9e6_20260829.md	7169	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_8d4aa2ca_20260829.md	5964	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_8ee0c46a_20260830.md	13641	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_904998e5_20260830.md	7754	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_93320f41_20260830.md	12272	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_a3633876_20260828.md	3222	1	features/sw_update/docs/upstream/25_batch1_review.md	N	REFERENCED:features/sw_update/docs/upstream/25_batch1_review.md
+sw_update_20260817_ext__sw_update_aadfb087_20260829.md	3215	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_ab27fcce_20260829.md	8015	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_ab9415bb_20260830.md	10587	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_abbe7b95_20260829.md	6139	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_ad131475_20260829.md	6018	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_b164dc6a_20260830.md	3959	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_bc66d5b5_20260830.md	10720	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_bff1d63b_20260829.md	4474	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_c349aefd_20260829.md	4382	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_c94963b8_20260830.md	6504	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_cc5ac549_20260828.md	3215	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_ce2aa160_20260830.md	5635	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_d3dde30c_20260830.md	13329	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_da955241_20260829.md	4970	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_e06d54b8_20260830.md	13329	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_e0daffc0_20260830.md	11934	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_f00f2a75_20260829.md	4111	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_f41e1abb_20260830.md	15533	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_f8eaca24_20260828.md	4296	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_faaeeea9_20260830.md	7636	0		Y	NO_REF
+sw_update_20260817_ext__sw_update_ff976761_20260829.md	5964	0		Y	NO_REF
+time_management_20260825_717d48d8_20260829.md	6910	0		Y	NO_REF

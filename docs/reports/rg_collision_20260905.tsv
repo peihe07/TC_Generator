@@ -1,0 +1,43 @@
+rg_id	ledger_title	ledger_loc	fo_title	fo_loc	verdict	intra_dup
+R-G1			036 母本之固定與其身分	docs/fw036/FEATURE_ONBOARDING.md:748	FO_ONLY	
+R-G2			`forms/` 舊檔以 `mv` 歸檔	docs/fw036/FEATURE_ONBOARDING.md:755	FO_ONLY	
+R-G3			`framework.md` 範例禁用 `openpyxl` + `wb.save()`	docs/fw036/FEATURE_ONBOARDING.md:761	FO_ONLY	
+R-G4			衍生檔之檔名歸屬與其讀者	docs/fw036/FEATURE_ONBOARDING.md:768	FO_ONLY	
+R-G5			全部 git 操作屬 Pei	docs/fw036/FEATURE_ONBOARDING.md:776	FO_ONLY	
+R-G6			上繳包之記載一致性	docs/fw036/FEATURE_ONBOARDING.md:783	FO_ONLY	
+R-G7			反向驗證之對照向	docs/fw036/FEATURE_ONBOARDING.md:790	FO_ONLY	
+R-G8			比率須載明其分子與分母	docs/fw036/FEATURE_ONBOARDING.md:797	FO_ONLY	
+R-G9			lint 規則之驗證須含範圍向	docs/fw036/FEATURE_ONBOARDING.md:803	FO_ONLY	
+R-G10			清單式分類須以餘數驗證	docs/fw036/FEATURE_ONBOARDING.md:810	FO_ONLY	
+R-G11			可測判準須同時聲明其盲區	docs/fw036/FEATURE_ONBOARDING.md:817	FO_ONLY	
+R-G12	參考素材庫之位置與 manifest	docs/fw036/RULINGS_LEDGER.md:122	`git commit` 一律帶 pathspec	docs/fw036/FEATURE_ONBOARDING.md:824	DIFFERENT	
+R-G13	查無之成立要件	docs/fw036/RULINGS_LEDGER.md:144	裁決引用制（取代 FO §8.1「裁決逐字照錄」）	docs/fw036/FEATURE_ONBOARDING.md:833	DIFFERENT	
+R-G14	查無台帳	docs/fw036/RULINGS_LEDGER.md:160	綠色通道（FO §8.8 之例外）	docs/fw036/FEATURE_ONBOARDING.md:856	DIFFERENT	
+R-G15	參考資料庫之版本綁定	docs/fw036/RULINGS_LEDGER.md:193	Pilot 退出準則	docs/fw036/FEATURE_ONBOARDING.md:867	DIFFERENT	
+R-G16	量測與聚合分離	docs/fw036/RULINGS_LEDGER.md:227	預期數字自動生成	docs/fw036/FEATURE_ONBOARDING.md:882	DIFFERENT	
+R-G17	匯出檔之自帶字典須逐欄校驗	docs/fw036/RULINGS_LEDGER.md:293	閘登錄簿與除役	docs/fw036/FEATURE_ONBOARDING.md:891	DIFFERENT	
+R-G18	`--scaffold` 之搬移使 intake 不可重現	docs/fw036/RULINGS_LEDGER.md:324	canon 引用唯一可解析	docs/fw036/FEATURE_ONBOARDING.md:902	DIFFERENT	
+R-G19	Pei, 2026-08-25 ｜ 理由與數字須分別驗證	docs/fw036/RULINGS_LEDGER.md:358 ｜ docs/fw036/RULINGS_LEDGER.md:402	prompt 指紋（TC 規則抗漂移之一）	docs/fw036/FEATURE_ONBOARDING.md:926	DIFFERENT	INTRA_LEDGER_DUP
+R-G20	報告中之摘要數字須為機器輸出	docs/fw036/RULINGS_LEDGER.md:417	規則副本同步指紋（TC 規則抗漂移之二）	docs/fw036/FEATURE_ONBOARDING.md:934	DIFFERENT	
+R-G21	共用腳本之授權以行為界定，不以處數界定	docs/fw036/RULINGS_LEDGER.md:441	自查表機檢對映（TC 規則抗漂移之三）	docs/fw036/FEATURE_ONBOARDING.md:943	DIFFERENT	
+R-G22	斷言式表述須由腳本產出	docs/fw036/RULINGS_LEDGER.md:470	條文之任何字元變動皆變更其 sha	docs/fw036/FEATURE_ONBOARDING.md:955	DIFFERENT	
+R-G23	綁定須被檢查，宣告不等於保護	docs/fw036/RULINGS_LEDGER.md:492	同一工單同時只得有一份有效下放包	docs/fw036/FEATURE_ONBOARDING.md:972	DIFFERENT	
+R-G24	marker 衝突以較嚴者為準	docs/fw036/RULINGS_LEDGER.md:516	下放指示之路徑實在性	docs/fw036/FEATURE_ONBOARDING.md:1017	DIFFERENT	
+R-G25	「宣稱不做 X」之測試須連跑兩次	docs/fw036/RULINGS_LEDGER.md:546	產出物目錄政策	docs/fw036/FEATURE_ONBOARDING.md:1057	DIFFERENT	
+R-G26	綠燈須連同其母體一併引用	docs/fw036/RULINGS_LEDGER.md:581	工作區清理制	docs/fw036/FEATURE_ONBOARDING.md:1079	DIFFERENT	
+R-G27	概念映射須以確切詞組或欄位鍵為據	docs/fw036/RULINGS_LEDGER.md:598	來源集中制（`sources/`）	docs/fw036/FEATURE_ONBOARDING.md:1094	DIFFERENT	
+R-G28	裁決選單須先驗證其能解題	docs/fw036/RULINGS_LEDGER.md:624	CFTS 嵌入物件之逐 feature 檢查	docs/fw036/FEATURE_ONBOARDING.md:1110	DIFFERENT	
+R-G29	未驗項分流：交付正確性 vs 鷹架品質	docs/fw036/RULINGS_LEDGER.md:637	條文須加框（`body_kind` 之不變式）	docs/fw036/FEATURE_ONBOARDING.md:1159	DIFFERENT	
+R-G30	流程檔位與 feature 規模成比例	docs/fw036/RULINGS_LEDGER.md:652			LEDGER_ONLY	
+R-G31	推進聲明與斷路器	docs/fw036/RULINGS_LEDGER.md:667			LEDGER_ONLY	
+R-G32	交付列序 = Requirement ID 升冪	docs/fw036/RULINGS_LEDGER.md:681			LEDGER_ONLY	
+R-G33	test_item 上半之未涵蓋面向須於括號下半明寫	docs/fw036/RULINGS_LEDGER.md:724			LEDGER_ONLY	
+R-G34	抄錄之置放以順序驗證通過為準	docs/fw036/RULINGS_LEDGER.md:773			LEDGER_ONLY	
+R-G35	素材之可及性須於下放包內聲明	docs/fw036/RULINGS_LEDGER.md:832			LEDGER_ONLY	
+R-G36	規格內容一律機器抽取，不得自下放包轉抄	docs/fw036/RULINGS_LEDGER.md:858			LEDGER_ONLY	
+R-G37	適用性判準須自該檔之值域導出	docs/fw036/RULINGS_LEDGER.md:892			LEDGER_ONLY	
+R-G38	自陳未驗項若於本輪可驗，須當場驗	docs/fw036/RULINGS_LEDGER.md:930			LEDGER_ONLY	
+R-G39	關鍵詞產出候選，行為軸產出 TC	docs/fw036/RULINGS_LEDGER.md:971			LEDGER_ONLY	
+R-G40	列序為交付屬性；宣告與讀者須成對	docs/fw036/RULINGS_LEDGER.md:1008			LEDGER_ONLY	
+R-G41	掃描起點須先被盤點	docs/fw036/RULINGS_LEDGER.md:1069			LEDGER_ONLY	
+R-G42	交付規格表	docs/fw036/RULINGS_LEDGER.md:1224	交付規格表（全域）	docs/fw036/FEATURE_ONBOARDING.md:1188	SAME_TITLE	

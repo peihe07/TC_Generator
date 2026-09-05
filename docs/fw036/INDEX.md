@@ -68,5 +68,37 @@
 | 56 | `56_rg28_close.md` | `56_rg28_close.md` |
 | 57 | `57_sha_split.md` | `57_sha_split.md` |
 | 58 | `58_body_kind.md` | — |
+| 59 | `59_frame_invariant.md` | `59_frame_invariant.md` |
+| 60 | `60_frame_batch1.md` | `60_frame_batch1.md` |
+| 61 | `61_frame_f1.md` | `61_frame_f1.md` |
+| 62 | `62_reverse_probe.md` | `62_reverse_probe.md` |
+| 63 | `63_dup_scan.md` | `63_dup_scan.md` |
+| 64 | `64_frame_a.md` | `64_frame_a.md` |
+| 65 | `65_frame_b.md` | `65_frame_b.md` |
+| 66 | `66_frame_c.md` | `66_frame_c.md` |
+| 67 | `67_frame_d.md` | `67_frame_d.md` |
+| 68 | `68_blind_frame.md` | `68_blind_frame.md` |
+| 69 | `69_name_audit.md` | — |
+| 70 | `70_wrapup1.md` | `70_wrapup1.md` |
+| 71 | `71_wrapup2.md` | `71_wrapup2.md` |
+| 72 | `72_delivery.md` | `72_delivery.md` |
+| 73 | `73_delivery_spec.md` | — |
 
-**下放 62 檔｜上繳 28 檔**（生成於 2026-08-30）。
+**下放 77 檔｜上繳 42 檔**（母數為 `handoff/`／`upstream/` 內以數字起首之 `.md`，
+不含 `PROTOCOL.md`、`down/`、`up/`；重量於 2026-09-05，R-G8）。
+2026-08-30 之前值為「下放 62｜上繳 28」。
+
+---
+
+## 3. 自 `VS-SL-02` 起改走 `down/`／`up/`（R-G49，2026-09-05）
+
+`NN_*.md` 之編號序**止於 73**。自 `VS-SL-02` 起，新包改依
+`docs/fw036/handoff/PROTOCOL.md` 落 `docs/fw036/handoff/down/`
+（下放）與 `docs/fw036/handoff/up/`（上繳），檔名為
+`<YYYYMMDD>_<PKG-ID>.md`；上繳包與其下放包同名。
+既有 `NN_*.md` 保留、不搬（PROTOCOL.md 末節）。
+
+本節之落點清單為 2026-09-05 實測：`down/` 22 檔（含 11 份 `_review.md`）、
+`up/` 10 檔。**`VS-SL-01` 為孤兒**——`down/20260901_VS-SL-01_review.md` 在，
+而 `down/…VS-SL-01.md` 與 `up/…VS-SL-01.md` 皆不存在；
+其補檔清單見 `docs/fw036/handoff/up/20260905_GC-01.md` §5。
