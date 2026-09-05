@@ -114,6 +114,13 @@ RE_P_ASSIGNMENT = re.compile(
 # 括號標籤即 R-7 之 DBC `VAL_` 語意標籤。收尾語不設限（見 check_signal_line）。
 RE_P_VALUE_FORM = re.compile(
     r"[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\s*=\s*[^\s(]+\s*\([^)]+\)")
+# R-G70(h)（GC-12 審閱 §一）：v3 記法殘留 —— `$<MSG>.<Sig>$` 之 `$` 包覆式，
+# **不論其後有無 `= raw (label)`**，一律 FAIL。
+# 其必須獨立於 `RE_P_ASSIGNMENT`：後者要求訊號名與 `=` 相鄰，而 `$` 隔在中間，
+# 故 v3 殘留行在 v3 分支移除後**不被任何式命中**，`check_signal_line` 於
+# `if not assignments: return out` 提早返回，P 恆 0（GC-12 上繳 1 節之正控）。
+RE_P_V3_DOLLAR = re.compile(
+    r"\$[A-Z][A-Z0-9_]{2,}\.[A-Za-z][A-Za-z0-9_]*\$")
 # PROXI 行（R-G70 v4.1，Pei 裁定 2026-09-05：**SWC 式為標準**）
 # 標準：`PROXI <Param> = <值>`（不加 `$`）。舊式：`PROXI $<Param>$ is set to "<值>"`（VF230）。
 # 舊式**不 FAIL**，記於 Y（WARN 只報不改）；兩式皆不中之 PROXI 行記 P。
@@ -639,9 +646,9 @@ def check_signal_line(line: str, field: str, row_no: int, tc_id: str
                       ) -> list[Violation]:
     """R-1 v2 之單行判定（逐賦值出現，非逐行）。
 
-    三項：(1) 撤銷之三件組殘留；(2) CAN 賦值未寫成
-    `<MSG>.<Sig> = <raw> (<label>)`；(3) Procedure 之賦值行缺
-    `Send CAN:` 前綴。
+    四項：(1) 撤銷之三件組殘留（v1）；(2) **v3 記法殘留**（`$<MSG>.<Sig>$`
+    包覆式，R-G70(h)）；(3) CAN 賦值未寫成 `<MSG>.<Sig> = <raw> (<label>)`；
+    (4) Procedure 之賦值行缺 `Send CAN:` 前綴。
 
     逐「出現」而非逐「行」判定，是因 SWC 語料一行可載多個賦值
     （`… = 1 (Pressed) and BCM_FD_14.Command_09Sts = 0 (Not_Pressed)`），
@@ -655,6 +662,11 @@ def check_signal_line(line: str, field: str, row_no: int, tc_id: str
 
     for m in RE_P_TRIPLET.finditer(line):
         add(f"三件組已撤銷（R-1 v1）{m.group(0)!r}")
+
+    # R-G70(h)：v3 記法殘留 —— 須在下方之提早返回**之前**判，
+    # 否則 `$` 包覆式因不含相鄰之 `=` 而永不被計（GC-12 正控之成因）。
+    for m in RE_P_V3_DOLLAR.finditer(line):
+        add(f"v3 記法殘留（R-G70(h)：`$` 包覆式已撤銷）{m.group(0)!r}")
 
     assignments = list(RE_P_ASSIGNMENT.finditer(line))
     if not assignments:

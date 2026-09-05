@@ -13348,3 +13348,16 @@ R-P392(c) 之理由亦複核：`DIS_CENTERSTACK.DCSD_DISP_STAT` 發送節點為 
   Power State 之 10 個阻斷 leaf；`SWE-PM-112`。合計 **27 leaf ＋ 留空 1**。
 - **DR-PW1**（High）、**DR-PW5**（High）、**DR-PW8**（High）、**DR-PW9**（High）、**DR-PW11**（High）、
   DR-PW3 / DR-PW6 / DR-PW10 / DR-PW12（Medium）、DR-PW7（Low）。
+
+## 交付本之取代紀錄 —— R-G72(g) Revise-M（2026-09-05，GC-13）
+
+`pm_73.xlsx` **被 `pm_73_Revise1.xlsx`（sha12 `e9ccddbbd673`）取代**，取代理由 **R-G72(g)**（Revise-M 機械批）。
+
+- **母本原封**（R-G72(a)／R-TM13）—— 未就地改，新檔以
+  `backend.xlsx_surgical.surgical_save` 寫出，`verify_structure` 通過。
+- 內容差異＝**63 處（33 列／41 格）** 之機械轉換：R-1 v3 記法 → v4（R-G70(c)(d)）。
+  其餘欄一格未動；**結果欄 Y–AH 逐格斷言等於母本（PASS）**。
+- **TC ID 不變**（Revise-M 不改號）；idmap 見該線 `reports/rg72_idmap_*_filled.tsv`。
+- 閘重過（R-G72(e)）：P 317→254（v3 殘留 272→209）；Y=0。
+- **X-nav 與 bare-`$MSG.Sig$` 之解不在本批** —— 屬 Revise-C（R-G72(g)），
+  其值須逐 TC 回查 CFTS 原句，查無者登 DR。

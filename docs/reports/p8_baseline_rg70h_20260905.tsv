@@ -1,0 +1,9 @@
+book	source_exists	rows	P_before	P_after	P_bare	差	profile	P_prof_before	P_prof_after	P_prof_bare
+AMFM_20260821	Y	298	0	0	0	0	amfm	16	16	0
+BT_20260821	N	—	—	—	—	—	—	—	—	—
+CFTS012_DealerMode_20260821	Y	125	0	0	0	0	—	—	—	—
+CFTS026_HandsFreePhone_20260821	Y	159	0	0	0	0	—	—	—	—
+Home_20260821	Y	216	0	0	0	0	home	0	0	0
+MediaHMI_20260821	N	—	—	—	—	—	—	—	—	—
+PowerManagement_20260821	Y	283	35	35	0	0	power	45	45	0
+Projection_20260821	N	—	—	—	—	—	—	—	—	—

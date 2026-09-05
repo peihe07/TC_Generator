@@ -2362,3 +2362,16 @@ sha `e2ce5868…` → `cb5697db…`。
 內容差異：`Test Case Specification 測試用例規範` 分頁 **32 列相異**（含第 2 列之表頭區），其餘 8 個分頁逐列相同。
 
 依補遺 §3 第一款：**交付物不可回溯修改（R-TM13），檔不還原**；對照表改指現行 sha 以反映實物；本則為裁決之抄錄，非本線新裁。自報見 A-ICS138。
+
+## 交付本之取代紀錄 —— R-G72(g) Revise-M（2026-09-05，GC-13）
+
+`FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ICSManagement_20260830.xlsx` **被 `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ICSManagement_20260830_Revise1.xlsx`（sha12 `3554a2b28642`）取代**，取代理由 **R-G72(g)**（Revise-M 機械批）。
+
+- **母本原封**（R-G72(a)／R-TM13）—— 未就地改，新檔以
+  `backend.xlsx_surgical.surgical_save` 寫出，`verify_structure` 通過。
+- 內容差異＝**18 處（14 列／14 格）** 之機械轉換：R-1 v3 記法 → v4（R-G70(c)(d)）。
+  其餘欄一格未動；**結果欄 Y–AH 逐格斷言等於母本（PASS）**。
+- **TC ID 不變**（Revise-M 不改號）；idmap 見該線 `reports/rg72_idmap_*_filled.tsv`。
+- 閘重過（R-G72(e)）：P 119→101（全數為 v3 殘留）；Y=0。
+- **X-nav 與 bare-`$MSG.Sig$` 之解不在本批** —— 屬 Revise-C（R-G72(g)），
+  其值須逐 TC 回查 CFTS 原句，查無者登 DR。

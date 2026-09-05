@@ -782,3 +782,52 @@ def test_x_is_profile_only() -> None:
         make_fields(proc="1. Open the Vehicle Settings menu"),
         10, "TC-001", lint036.DEFAULT_LENGTH_LIMIT)]
     assert "X" not in checks
+
+
+# R-G70(h) —— v3 記法殘留為 P 之 FAIL（GC-12 審閱 §一）
+#
+# **五個樣本一起釘**（審閱明文：缺一不算過）。三個 v3 殘留樣本各須 P>=1、
+# 兩個 v4 正解樣本須 P==0；缺任一即 Revise-M 之驗收條件重回空條件
+# （GC-12 上繳 1 節之正控失效即此）。
+
+V3_RESIDUE_SAMPLES = [
+    ("send", {"proc": "1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 "
+                      "(Ignition_Off)"}),
+    ("read", {"proc": "1. Read the signal $STATUS_TELEMATIC.PowerSts_Telematic$ and "
+                      "check that it is 4 (Full_Operation)"}),
+    ("er",   {"er": "1. The signal value $STATUS_TELEMATIC.PowerSts_Telematic$ = "
+                    "4 (Full_Operation) is received"}),
+]
+V4_CORRECT_SAMPLES = [
+    ("send", {"proc": "1. Send CAN: STATUS_BH_BCM1.OperationalModeSts = 2 (Ignition_Off)"}),
+    ("read", {"proc": "1. Read STATUS_TELEMATIC.PowerSts_Telematic and check that it is "
+                      "4 (Full_Operation)"}),
+]
+
+
+@pytest.mark.parametrize("name,fields", V3_RESIDUE_SAMPLES,
+                         ids=[n for n, _ in V3_RESIDUE_SAMPLES])
+def test_p_flags_v3_residue(name, fields) -> None:
+    assert run_profile(**fields).count("P") >= 1
+
+
+@pytest.mark.parametrize("name,fields", V4_CORRECT_SAMPLES,
+                         ids=[n for n, _ in V4_CORRECT_SAMPLES])
+def test_p_silent_on_v4_correct_form(name, fields) -> None:
+    assert run_profile(**fields).count("P") == 0
+
+
+def test_v3_residue_is_flagged_without_profile_too() -> None:
+    """R-G70(h) 為全域判準 —— profile 與否皆同（v3 分支已隨 v3 撤銷而移除）。"""
+    f = make_fields(proc="1. Send the signal $STATUS_BH_BCM1.OperationalModeSts$ = 2 "
+                         "(Ignition_Off)")
+    checks = [v.check for v in lint036.check_row(
+        f, 10, "TC-001", lint036.DEFAULT_LENGTH_LIMIT)]
+    assert checks.count("P") >= 1
+
+
+def test_v3_residue_in_verbatim_upper_half_is_not_flagged() -> None:
+    """R-G70(b)：test_item 上半為來源側記法，(h) 不及於它。"""
+    assert "P" not in run_profile(
+        test_item="TLM shall set $TELEMATIC_VEHICLE_SETUP.DRLEnable_Req$ to 1\n"
+                  "(the request is sent)")

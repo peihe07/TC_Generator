@@ -11,7 +11,10 @@ pattern is stated and marked (pattern).
 > `status: open|sent|closed（YYYY-MM-DD）`。**本包只加本段說明，不回填既有節**
 > （GC-09 §一-6／GC-12 §二-4）。未取號之草稿節不寫 `status:` ——
 > 未送出不佔號（`down/20260901_VS-SL-01_review.md` §2.2）。
-> 本檔現況：`## DR-` 節 0 個，具 `status:` 者 0 個。
+> **本檔為表格式**（`## DR-` 節 **0** 個，DR 號 **30** 個）——
+> 依 GC-12 審閱 二 之 4，本線**不改為節式**，改於其表加一欄 `status`
+> （值域與日期格式同範本；見範本之「表格式 DR 以 `status` 欄承接」段）。
+> **本包只加本段說明，欄與回填皆未做。**
 
 **Standing rule（沿用 AMFM／Privacy）**：任何新發現之外部引用，登記 anomaly
 的同時必須新增一列於此表；且每次 session opener 與 batch gate 都要按
