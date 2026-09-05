@@ -167,3 +167,32 @@ sign-off = binding as proposed.
 > 不改寫既有條目」。本次兩案於 §6 條目下**新增子項**而未改寫既有文字 ——
 > 既有之 `[SIGNED 2026-08-14]` 行逐字保留，修正案以子項附加。
 > 就地增記與本區索引並存，是為了讓讀 §6 者不必先讀到文末才知道它已被修正。
+
+---
+
+## 版本綁定（R-G45，2026-09-05）
+
+依 `down/20260905_GC-02.md` §一-3 落檔。本節所列為本 feature 之 `inputs/` 內、
+屬 R-G45 六類共用參考檔而其 sha256 **不在** `forms/` 同類現行版之 sha 集合者。
+
+| `inputs/` 檔名 | sha8 | `forms/` 同類現行版 | sha8 | 是否影響已交付 TC |
+|---|---|---|---|---|
+| `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `c706071f` | `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` | `8d04e51a` | **PENDING 分析層判** |
+| `SR24 R1 Market Configuration Table v1.6.xlsx` | `ae4cf0b9` | `SR24 R1 Market Configuration Table v1.6.xlsx` | `7e865d55` | **PENDING 分析層判** |
+| `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx` | `b0827f02` | `Pop Up List HMI R1 (26PI).xlsx`<br>`Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf` | `ff47b7be`<br>`dc078763` | **PENDING 分析層判** |
+
+**本 feature 待記 3 檔次**（全域 5 個 feature／13 檔次）。
+「是否影響已交付 TC」**執行層不判**（GC-02 §一-3 明文），逐列留 `PENDING 分析層判`。
+
+**查詢式與命中數（R-G50）**——
+
+```text
+母體：docs/reports/source_identity_20260905.tsv（220 列，GC-01 §二-1）
+篩選：path 符合 ^features/<feat>/inputs/
+      且 filename 屬 R-G45 六類之一（DBC=*.dbc；LID=前綴 'Logical Identifiers and CAN Mapping'；
+      PROXI=前綴 'PROXI_'；HMI Settings List／Pop Up List=同名前綴；
+      Market Config=含 'Market Configuration Table'）
+      且 sha256 不在 forms/ 同類之 sha 集合內
+命中：3 列（本 feature）／13 列（全域，跨 5 個 feature）
+腳本：GC-02 執行層量測腳本，與 up/20260905_GC-01.md 11-3 節同一判準
+```

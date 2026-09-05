@@ -1277,3 +1277,150 @@ R-G42（交付規格表 —— 全域）
 Test Group 縮寫 3 本（ICS、SXM、Popup）；Author 空 3 本（ICS、PM、VC）；
 Est. Time 僅 PM 填；PM `output/…20260830` Priority 全空；SU `delivered/` 有 xlsx 無 MANIFEST 列；
 15 個 feature 之 `delivered/` 僅有表頭。
+
+---
+
+## 下放包 GC-01 之全域條文（R-G44–R-G50，Pei 2026-09-05「裁 準」）
+
+依 `docs/fw036/handoff/down/20260905_GC-02.md` §一-1 落檔。條文本體由腳本自
+down 檔抽取（R-G36：機器抽取，不自下放包轉抄），逐條附來源檔與行號。
+`rulings_hash.py` **未跑**（屬 Pei，GC-02 §二）；下方指紋表待重生。
+
+### R-G44 —— 來源身分唯一表（**修訂版在效**）
+
+來源（修訂）：`docs/fw036/handoff/down/20260905_GC-01_review.md:46`（審閱 §三「R-G44 修訂 [DEFAULT]」）
+來源（原文）：`docs/fw036/handoff/down/20260905_GC-01.md:50`
+
+修訂版（**在效**）——
+
+判準改為：**同一性以 sha256 為唯一判準；檔名、大小、mtime 皆不得作為同一或相異之證。**
+大小相異得作為「須跑 sha」之觸發，不得作為結論。（R-G11(LEDGER) 盲區：sha 相同而語意不同之情形——如兩份不同用途之空白母本——本條不管，由 MANIFEST `note` 管。）
+
+原文依 R-TM13 保留不刪，以刪除線標其已被修訂：
+
+```text
+~~R-G44：凡 forms/、features/<f>/inputs/、_intake/、sources/raw/ 內之~~
+~~原檔，一律以 sha256 登記於 sources/MANIFEST.tsv（一 sha 一 doc_id）。~~
+~~同檔名而 sha 不同者為「同名異體」，各得獨立 doc_id，note 欄互相指名。~~
+~~feature.yaml 之 paths.* 須可解析至某 doc_id；解析不到者 lint 判紅。~~
+~~R-G27(FO)「既有 feature 之舊副本不搬」維持，改為「不搬但須登記」。~~
+```
+
+> 修訂之成因：`up/20260905_GC-01.md` 2-1 節實測 —— HMI Settings List 三份大小
+> 同為 295,635 而 sha 分二體，即「大小相異足證內容相異」之**逆不成立**（A-GC7）。
+
+### R-G45 —— 共用參考檔之現行版
+
+來源：`docs/fw036/handoff/down/20260905_GC-01.md:64`
+
+```text
+R-G45：DBC、LID、PROXI、HMI Settings List、Pop Up List、Market Config
+之「現行版」以 forms/ 所存者為準（承 R-1 v2／R-17 之既有指向）。
+feature 之 inputs/ 持他版者，於該 feature DECISIONS.md 記「版本綁定」
+（R-G15(LEDGER) 之既有機制），並記其與 forms/ 版之差異是否影響已交付 TC；
+未記者視為綁定 forms/ 版。
+```
+
+> 實測之待記清單以 `up/20260905_GC-01.md` 11-3 節之機器重算為準：
+> **5 個 feature／13 檔次**（comfort 3、time_management 4、user_profiles 1、
+> vehicle_category 1、vehicle_setting 4）。條文所附之樣本值已登 A-GC9。
+
+### R-G46 —— `_intake/` 投遞後必清
+
+來源：`docs/fw036/handoff/down/20260905_GC-01.md:77`
+
+```text
+R-G46：_intake/<Feature>/ 為投遞區；intake 完成並經 MANIFEST 登記後，
+其原檔須清空，只留 INTAKE.md／intake.json／INTAKE.sha256。清空為 Pei
+動作（未入版控，R-G26(FO) 附註不授權執行層）。清空前執行層須出
+「_intake ↔ 落點」sha 對照，證每檔已落 sources/raw/ 或 inputs/。
+```
+
+> 「_intake ↔ 落點」sha 對照已出：`up/20260905_GC-01.md` 2-2 節。
+> Display 4／Popup 3／SW_Update 8／Vehicle_Category 3 皆已證落點；
+> SXM 2 檔無同 sha 落點，待 Pei 裁（誤投／登記）。
+
+### R-G47 —— lint 報告歸位
+
+來源（本體）：`docs/fw036/handoff/down/20260905_GC-01.md:89`
+來源（補充）：`docs/fw036/handoff/down/20260905_GC-01_review.md:56`（審閱 §三「R-G47 之補充」）
+
+```text
+R-G47：R-G25(FO) 生效（2026-08-24）後產生之 feature 級 lint 報告，
+一律落 features/<f>/reports/。docs/fw036/lint_reports/ 凍結為
+0821 全域基線（八本 .md/.json 對）＋ pm_29 三檔；其餘依 R-G26(FO)
+專門 commit 移除，移除前必跑引用懸空檢查（ANOMALIES／waiver／
+DECISIONS／RULINGS 指名者留）。
+```
+
+補充（審閱 §三，與本體同效）——
+
+- `ANOMALIES／waiver／DECISIONS／RULINGS` 指名者為 0 檔——保護條款空集，**條文保留**（防未來），但移除清單以上繳包 §5 之 81 檔為準，25 檔留。
+- `tests/test_lint036.py::test_existing_report_files_are_never_renamed` 以 `if report.exists()` 包住斷言 → **靜默空跑即懸空**。裁：`pm_25__power_20260824.md` 留（N）；該測試改為 `assert report.exists()`（或 `pytest.skip` 附理由），列入 GC-02。
+
+### R-G48 —— 模板即實測值
+
+來源（本體）：`docs/fw036/handoff/down/20260905_GC-01.md:102`
+來源（補充）：`docs/fw036/handoff/down/20260905_GC-01_review.md:60`（審閱 §三「R-G48 之補充」）
+
+```text
+R-G48：docs/fw036/templates/feature.yaml 之 workbook.* 以 R-G1 母本
+（forms/…_SWQT_20260817_ext.xlsx）第 9 列實測值為準，並於檔首註明
+「本表為母本實測，接手 feature 仍須對其副本重測」。
+```
+
+補充（審閱 §三）——
+
+測試夾具 `Test Case Specification&Result`（`test_parser.py`／`test_writer.py`／`test_tool_parse.py`）為不存在之表名擴散——裁：夾具改為母本實測表名 `Test Case Specification 測試用例規範`，並加一支「夾具表名 = 母本表名」之守衛測試，列入 GC-02。**測試改動屬 code，下放前須 Pei 准**（本審閱只裁方向）。
+
+> **執行層具名（GC-02 §一-5-1 實測，2026-09-05）**：本條之立論「母本第 9 列實測」
+> 成立且已落實（`docs/fw036/templates/feature.yaml` 四值回修）。**惟本條周邊之
+> 註語「`Test Case Specification&Result` 該名不存在」為偽** —— 全 repo 145 本
+> FW036 工作簿實測：帶 `Test Case Specification 測試用例規範` 者 121 本、
+> 帶 `Test Case Specification&Result` 者 **24 本**（`docs/reports/tc_sheetname_census_20260905.tsv`）。
+> 該名在 R-G1 母本內不存在，在 `features/power`／`features/audio_mgmt` 之工作簿內
+> **存在**。上開補充所命之夾具改名因而前提有誤，本包依 GC-02 §一-5-1 之分岔
+> **不執行**，詳見 `up/20260905_GC-02.md`。
+
+### R-G49 —— handoff 鏈之補檔
+
+來源（本體）：`docs/fw036/handoff/down/20260905_GC-01.md:114`
+來源（補充）：`docs/fw036/handoff/down/20260905_GC-01_review.md:63`（審閱 §三「R-G49 之補充」）
+
+```text
+R-G49：down/ 與 up/ 之鏈不得有孤兒審閱檔。協定生效前以聊天交換之包，
+須補落同名檔，檔首標「事後補檔，原交換於聊天，補檔日 YYYY-MM-DD」，
+不得表述為當時已落檔（同 R-G28(FO) 追溯拘束）。INDEX.md 補列 59–73
+並宣告「自 VS-SL-02 起改走 down/up/」。
+```
+
+補充（審閱 §三）——
+
+收受上繳包 7-2 之來源清單。裁：
+- `down/20260901_VS-SL-01.md` 由**分析層**補寫：§0／§1 自 `features/vehicle_setting/RULINGS.md` L7357–7442（R-VS84–88 逐字）回填；§2／§3 留白標「原交換於聊天，無留存，不得重建（IN §8.4.1）」；§4 自 `A-VS166`／`A-VS168` 回填三個數。檔首標「事後補檔，補檔日 2026-09-xx」。
+- `up/20260901_VS-SL-01.md` 由**執行層**補寫：只列上繳包 7-2 #6–#11 之六件產物與其 sha8，不寫當時之自檢（無留存）。
+- `features/vehicle_setting/ANOMALIES.md:230` 路徑 `scripts/vs_sl01_dryrun.py` → `features/vehicle_setting/scripts/vs_sl01_dryrun.py`，列入 GC-02。
+
+### R-G50 —— 全稱斷言須附查詢式與命中數
+
+來源：`docs/fw036/handoff/down/20260905_GC-01_review2.md:28`（審閱補遺 §三）
+
+```text
+R-G50：上繳包、審閱、下放包內凡對自家產出之表或目錄作全稱否定
+（「未出現」「無」「0」「皆」「全部」），須附查詢式（grep／SQL／腳本
+與其母體）與命中數，二者缺一即為未量測之斷言（R-G22(LEDGER) 之延伸）。
+R-G13(LEDGER) 管外部素材之查無；本條管對自家產出之全稱斷言。
+```
+
+> 成因母體：`docs/fw036/ANOMALIES.md` 之 A-GC1～A-GC9 九筆，
+> 加執行層 GC-01 本輪三犯（9-3 節、10-2 節、2-1 節）。自本條起分析層之審閱同受拘束。
+
+| 條號 | 字元數 | SHA256（前 16 碼） | 逐字相符 |
+|---|---|---|---|
+| R-G44（修訂）| 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |
+| R-G45 | 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |
+| R-G46 | 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |
+| R-G47 | 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |
+| R-G48 | 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |
+| R-G49 | 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |
+| R-G50 | 待 `rulings_hash.py` 重生 | 待重生 | 待驗 |

@@ -1,0 +1,1071 @@
+needle	path	line	category	text
+FICTITIOUS	backend/parser.py	77	code other	"TC_SHEET_NAME = ""Test Case Specification&Result"""
+FICTITIOUS	backend/api_server.py	2325	code other	"- Sheet ""Test Case Specification&Result"" 存在"
+FICTITIOUS	backend/writer.py	10	code other	"TC_SHEET_NAME = ""Test Case Specification&Result"""
+FICTITIOUS	backend/review_engine.py	1338	code other	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	backend/tools/inspect.py	21	code other	"""Test Case Specification&Result"","
+MASTER	scripts/translate_xlsx.py	6	code other	"[--sheet ""Test Case Specification 測試用例規範""] [--start-row 10] \"
+MASTER	scripts/translate_xlsx.py	50	code other	"DEFAULT_SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	scripts/test_translate_xlsx.py	79	code other	"def _build_workbook(self, sheet_name: str = ""Test Case Specification 測試用例規範""):"
+MASTER	scripts/test_translate_xlsx.py	119	code read/write	"ws.title = ""Test Case Specification 測試用例規範"""
+MASTER	scripts/test_translate_xlsx.py	142	code read/write	"ws.title = ""Test Case Specification 測試用例規範"""
+MASTER	scripts/test_translate_xlsx.py	176	code read/write	"ws.title = ""Test Case Specification 測試用例規範"""
+FICTITIOUS	tests/test_parser.py	20	test other	# Test Case Specification&Result sheet
+FICTITIOUS	tests/test_parser.py	21	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_parser.py	74	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+MASTER	tests/test_parser.py	135	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification 測試用例規範"")"
+FICTITIOUS	tests/test_parser.py	181	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_parser.py	206	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_tool_parse.py	24	test fixture	"tc_sheet = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_xlsx_surgical_insert.py	38	test other	"SHEET = ""Test Case Specification&Result"""
+MASTER	tests/test_writer.py	51	test fixture	"ws = wb.create_sheet(""Test Case Specification 測試用例規範"")"
+FICTITIOUS	tests/test_writer.py	89	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_writer.py	213	test fixture	"ws = wb[""Test Case Specification&Result""]"
+MASTER	tests/test_writer.py	221	test fixture	"ws = wb.create_sheet(""Test Case Specification 測試用例規範"")"
+MASTER	tests/test_writer.py	233	test other	"ws_out = saved[""Test Case Specification 測試用例規範""]"
+FICTITIOUS	tests/test_writer.py	243	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	251	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	278	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	307	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	316	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	321	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	330	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	341	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	352	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	369	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	396	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	408	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	419	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	430	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	440	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	450	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	457	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	464	test other	"ws_out = wb_out[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	477	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	504	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	566	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	600	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	620	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	629	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_writer.py	665	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_api_server.py	19	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_api_server.py	41	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_api_server.py	506	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_api_server.py	867	test fixture	"ws = workbook[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_api_server.py	920	test fixture	"ws = workbook[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_api_server.py	969	test fixture	"ws = workbook[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_api_server.py	1024	test fixture	"ws = workbook[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_api_server.py	2037	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+MASTER	tests/test_lint036.py	52	test other	"ws.title = ""Test Case Specification 測試用例規範"""
+FICTITIOUS	tests/test_tool_inspect_jobs.py	30	test fixture	"tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_tool_inspect_jobs.py	50	test other	"assert ""Test Case Specification&Result"" in out[""sheets""]"
+FICTITIOUS	tests/test_parser_for_review.py	26	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+MASTER	tests/test_lint_docs036.py	332	test other	`Test Case Specification 測試用例規範` 分頁第 10–11 列帶範本示例殘留：
+MASTER	tests/test_xlsx_surgical_invariant.py	42	test other	"SHEET = ""Test Case Specification 測試用例規範"""
+FICTITIOUS	tests/test_main.py	24	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_main.py	135	test fixture	"ws = loaded[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_main.py	263	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_review_engine.py	55	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_tool_write.py	19	test fixture	"ws_tc = wb.create_sheet(""Test Case Specification&Result"")"
+FICTITIOUS	tests/test_tool_write.py	61	test fixture	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	tests/test_tool_write.py	122	test fixture	"ws = wb[""Test Case Specification&Result""]"
+MASTER	tests/test_lint_delivery_spec.py	47	test other	"ws.title = ""Test Case Specification 測試用例規範"""
+MASTER	docs/runtime/ASPICE_SWE6_AI_Review.md	2	doc	Audit existing TCs against SWE.6 (deterministic, reproducible, auditable, traceable, no FP/FF). Input = a batch of TCs from an Excel workbook (`Test Case Specif
+MASTER	docs/runtime/ASPICE_SWE6_AI_Review.md	52	doc	1. **Parse workbook** — locate `Test Case Specification 測試用例規範` sheet; identify header row (typically row 9); extract data rows where `Test Case ID` is present.
+MASTER	docs/runtime/ASPICE_SWE6_AI_Review.md	202	doc	"""sheet"": ""Test Case Specification 測試用例規範"","
+FICTITIOUS	docs/runtime/profiles/FW036_R1L_Power_Profile.md	24	doc	- **範本版本與 Comfort / Privacy 不同**（A-PW47）：分頁名 `Test Case Specification&Result`
+MASTER	docs/runtime/profiles/FW036_R1L_Power_Profile.md	25	doc	（另二者為 `Test Case Specification 測試用例規範`）、**35 欄**（另二者 34 欄）
+MASTER	docs/runtime/profiles/FW036_R1L_Comfort_Profile.md	35	doc	資料工作表 `Test Case Specification 測試用例規範`
+MASTER	docs/runtime/profiles/FW036_R1L_Privacy_Profile.md	38	doc	`Product Document 記錄封面頁`, `Test Case Specification 測試用例規範`,
+MASTER	docs/runtime/profiles/FW036_R1L_PowerModing_Profile.md	25	doc	- 分頁 `Test Case Specification 測試用例規範`，**34 欄（rev C）**，
+MASTER	docs/fw036/handoff/up/20260905_GC-01.md	234	doc	**`Test Case Specification 測試用例規範`**／`Reference`／`QS Suggestion`／`下拉選單`。
+FICTITIOUS	docs/fw036/handoff/up/20260905_GC-01.md	235	doc	`Test Case Specification&Result` **不在其中**。目標表維度 `A1:AH1411`。
+FICTITIOUS	docs/fw036/handoff/up/20260905_GC-01.md	241	doc	| `sheet` | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | **誤** | —（該名不存在）|
+MASTER	docs/fw036/handoff/up/20260905_GC-01.md	241	doc	| `sheet` | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | **誤** | —（該名不存在）|
+FICTITIOUS	docs/fw036/handoff/up/20260905_GC-01.md	262	doc	"以 `wb.create_sheet(""Test Case Specification&Result"")` 自建 fixture，"
+FICTITIOUS	docs/fw036/handoff/up/20260905_GC-01.md	412	doc	| 測試夾具之 `Test Case Specification&Result` | 見 §6 末 |
+FICTITIOUS	docs/fw036/handoff/down/20260905_GC-01_review.md	60	doc	測試夾具 `Test Case Specification&Result`（`test_parser.py`／`test_writer.py`／`test_tool_parse.py`）為不存在之表名擴散——裁：夾具改為母本實測表名 `Test Case Specification 測試用例規範`，並加一支「夾具表名 
+MASTER	docs/fw036/handoff/down/20260905_GC-01_review.md	60	doc	測試夾具 `Test Case Specification&Result`（`test_parser.py`／`test_writer.py`／`test_tool_parse.py`）為不存在之表名擴散——裁：夾具改為母本實測表名 `Test Case Specification 測試用例規範`，並加一支「夾具表名 
+FICTITIOUS	docs/fw036/handoff/down/20260905_GC-02.md	41	doc	`Test Case Specification&Result` 與 `Test Case Specification 測試用例規範`，逐處列檔／行／類別（code 讀取／code 寫入／test fixture／doc／feature.yaml）。
+MASTER	docs/fw036/handoff/down/20260905_GC-02.md	41	doc	`Test Case Specification&Result` 與 `Test Case Specification 測試用例規範`，逐處列檔／行／類別（code 讀取／code 寫入／test fixture／doc／feature.yaml）。
+FICTITIOUS	docs/fw036/handoff/down/20260905_GC-01.md	108	doc	sheet 名（模板 `Test Case Specification&Result`，實為 `Test Case Specification 測試用例規範`）、
+MASTER	docs/fw036/handoff/down/20260905_GC-01.md	108	doc	sheet 名（模板 `Test Case Specification&Result`，實為 `Test Case Specification 測試用例規範`）、
+FICTITIOUS	docs/fw036/templates/feature.yaml	25	feature.yaml	# sheet `Test Case Specification&Result`（該名不存在）、design_method `Q`
+MASTER	docs/fw036/templates/feature.yaml	28	feature.yaml	"sheet: ""Test Case Specification 測試用例規範"""
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_26341ffe_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_da955241_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/UserProfiles_0e40ff5b_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_086e471c_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Privacy_ad595ed0_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_ff976761_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/SWUpdate__sw_update_7f019b37_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_32391150_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_6af353ee_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_ad131475_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_ab9415bb_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Display__display_06972455_20260827.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_f00f2a75_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/BedLowering_efa1da4c_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_93320f41_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_ab27fcce_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+FICTITIOUS	docs/fw036/lint_reports/pm_29__power_35305835_20260824.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_0a66e037_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/UserProfiles_cbd04af6_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_81afdf7f_20260828.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_2a956804_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_1324e85f_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_7efbc509_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_904998e5_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/BT_20260821.json	73	doc	"""sheet"": ""Test Case Specification 測試用例規範"","
+FICTITIOUS	docs/fw036/lint_reports/pm_27__power_20260824.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Comfort_b68117a2_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/BT_20260821.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_7c5e94c3_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+FICTITIOUS	docs/fw036/lint_reports/pm_29_35305835_20260829.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Comfort_235f2ca7_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/CFTS026_HandsFreePhone_20260821.json	73	doc	"""sheet"": ""Test Case Specification 測試用例規範"","
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_aadfb087_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_8a78b9e6_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_cc5ac549_20260828.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Comfort_6d53056e_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_8ee0c46a_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Privacy_ed741d8d_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_52ae3b17_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Projection_20260821.json	73	doc	"""sheet"": ""Test Case Specification 測試用例規範"","
+MASTER	docs/fw036/lint_reports/SWUpdate_EMPTY_3d439541_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/AMFM_20260821.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Home_20260821.json	73	doc	"""sheet"": ""Test Case Specification 測試用例規範"","
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_bc66d5b5_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_d3dde30c_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_05e330dd_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_e0daffc0_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_abbe7b95_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/MediaHMI_20260821.json	73	doc	"""sheet"": ""Test Case Specification 測試用例規範"","
+MASTER	docs/fw036/lint_reports/prepared_step1_cleared_b68117a2_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Home_20260821.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_bff1d63b_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_c349aefd_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/PowerModing_8f471ddf_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_528f56ed_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/PowerModing_070ef73c_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+FICTITIOUS	docs/fw036/lint_reports/CFTS012_DealerMode_20260821.json	73	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	docs/fw036/lint_reports/CFTS012_DealerMode_20260821.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+FICTITIOUS	docs/fw036/lint_reports/pm_28__power_20260824.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_5caa4794_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+FICTITIOUS	docs/fw036/lint_reports/pm_25__power_20260824.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_36593403_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+FICTITIOUS	docs/fw036/lint_reports/PowerManagement_20260821.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_201bfeb0_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_e06d54b8_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_40ecacdb_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_8d4aa2ca_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+FICTITIOUS	docs/fw036/lint_reports/pm_29__power_35305835_20260824.json	94	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	docs/fw036/lint_reports/pm_26__power_20260824.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_34253730_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_711a5854_20260828.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/SXM_0b9cb4f6_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_26407fb9_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_20902564_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_4c6ca79c_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/AMFM_20260821.json	73	doc	"""sheet"": ""Test Case Specification 測試用例規範"","
+MASTER	docs/fw036/lint_reports/SWUpdate__sw_update_4f6caa35_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_faaeeea9_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/PowerModing_01e917b8_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_b164dc6a_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/VehicleCategory_c470defd_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/UserProfiles_570eb7cd_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_5a881012_20260828.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Projection_20260821.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_7bab8660_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/CFTS026_HandsFreePhone_20260821.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_c94963b8_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Display_06972455_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_45da648e_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_4b398976_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+FICTITIOUS	docs/fw036/lint_reports/PowerManagement_20260821.json	77	doc	"""sheet"": ""Test Case Specification&Result"","
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_032c2cd3_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_ce2aa160_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_2ea0cf03_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_f8eaca24_20260828.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/driver_distraction_00__driver_distraction_f5a16c7b_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/time_management_20260825_717d48d8_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_6d907b29_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_f41e1abb_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/MediaHMI_20260821.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_a3633876_20260828.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_57f80b7c_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_5b1e785c_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_663d8b02_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/sw_update_20260817_ext__sw_update_3bf20ab4_20260830.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	docs/fw036/lint_reports/Popup_a13559d5_20260829.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+FICTITIOUS	docs/fw036/upstream/00_lint_bootstrap.md	53	doc	`Test Case Specification 測試用例規範` 與 `Test Case Specification&Result`。
+MASTER	docs/fw036/upstream/00_lint_bootstrap.md	53	doc	`Test Case Specification 測試用例規範` 與 `Test Case Specification&Result`。
+FICTITIOUS	docs/fw036/upstream/02_pm_remediation.md	78	doc	變動格數 188｜涉及 sheet {'Test Case Specification&Result'}｜涉及欄 ['I','J','K','L']
+FICTITIOUS	docs/fw036/upstream/02_pm_remediation.md	90	doc	patched sheets: {'Test Case Specification&Result': 188}
+FICTITIOUS	docs/fw036/upstream/16_pm_full_rewrite.md	319	doc	Test Case Specification&Result: 3 個 DV
+FICTITIOUS	docs/fw036/upstream/18_pm_trackC.md	124	doc	`Test Case Specification&Result` 3 個 DV；`surgical_save` 回報
+MASTER	docs/dev/PIPELINE_DESIGN.md	342	doc	| `parser.py` | 127 | 解析 TC spec workbook;預期 sheet `Product Document 記錄封面頁` + `Test Case Specification 測試用例規範`;檔名規則 `*_SWQT_{TestGroup}_YYYYMMDD.xlsx` 取 Test Gr
+FICTITIOUS	docs/dev/API_CONTRACT.md	311	doc	| `workbook` | file | yes | `.xlsx` / `.xlsm`. Same shape the Generate path expects (`Test Case Specification&Result` sheet, header row 9). |
+FICTITIOUS	docs/dev/API_CONTRACT.md	321	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	features/power/feature.yaml	29	feature.yaml	"sheet: ""Test Case Specification&Result"""
+FICTITIOUS	features/power/RULINGS.md	1213	doc	附帶查得**分頁名亦不同**：Power `Test Case Specification&Result`，
+MASTER	features/power/RULINGS.md	1214	doc	另二者 `Test Case Specification 測試用例規範` —— 為不同範本版本。
+MASTER	features/power/RULINGS.md	11564	doc	分頁 `Test Case Specification 測試用例規範`，表頭 r9、資料 r10–r475）：
+FICTITIOUS	features/power/ANOMALIES.md	82	doc	| A-PW47 | **Power 之工作簿分頁名與另二 feature 不同** | Power：`Test Case Specification&Result`；Comfort / Privacy：`Test Case Specification 測試用例規範`。Power 35 欄、另二者 34 欄 | **新
+MASTER	features/power/ANOMALIES.md	82	doc	| A-PW47 | **Power 之工作簿分頁名與另二 feature 不同** | Power：`Test Case Specification&Result`；Comfort / Privacy：`Test Case Specification 測試用例規範`。Power 35 欄、另二者 34 欄 | **新
+MASTER	features/power/docs/handoff/51_anchor_repair.md	160	doc	分頁 `Test Case Specification 測試用例規範`，表頭 r9、資料 r10–r475）：
+FICTITIOUS	features/power/docs/handoff/55_review_findings.md	3	doc	- 對象：`FM-WI-FSM-036-A01_…_PowerManagement_20260824.xlsx`，`Test Case Specification&Result` 分頁，390 資料列
+FICTITIOUS	features/power/docs/handoff/02_rebaseline.md	121	doc	FW036「Test Case Specification&Result」：表頭 r9，資料 r10–r221
+FICTITIOUS	features/power/docs/handoff/01_intake.md	108	doc	- FW036 `Test Case Specification&Result`：表頭 r9，資料 r10–r221
+FICTITIOUS	features/power/docs/upstream/11_template_verify.md	56	doc	| **分頁** | 10 個，`Test Case Specification&Result` | 9 個，`…測試用例規範` | 同 Comfort | **Power 獨有**（多 `Test Case Framework`） |
+FICTITIOUS	features/power/docs/upstream/03_framework_inputs.md	134	doc	| FW036 `Test Case Specification&Result` | 表頭 r9；r10–r221 | 212 列，非空 0；sheet max_row=221 | 相符 |
+FICTITIOUS	features/power/docs/upstream/02_rebaseline.md	185	doc	| FW036 `Test Case Specification&Result` | 表頭 r9；資料 r10–r221 | 表頭 r9（c2–c35 共 34 欄具標頭，c1 無標頭無資料）；max_row = 221 | 相符 |
+FICTITIOUS	features/power/docs/upstream/10_column_verify.md	35	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/docs/upstream/10_column_verify.md	36	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | 已交付、已驗收 |
+MASTER	features/power/docs/upstream/10_column_verify.md	37	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | 已交付、已驗收 |
+FICTITIOUS	features/power/docs/upstream/10_column_verify.md	39	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/docs/upstream/10_column_verify.md	40	doc	> 另二者為 `Test Case Specification 測試用例規範`。二者為不同範本版本。→ A-PW47
+FICTITIOUS	features/power/docs/upstream/09_phase4_batch1.md	114	doc	"| `workbook.sheet` / `header_row` | `""Test Case Specification&Result""` / `9` | **相符**（03 包 G12） |"
+FICTITIOUS	features/power/docs/upstream/12_pilot_fixes.md	49	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/docs/upstream/12_pilot_fixes.md	49	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/b10/pm_10a_20260821.json	77	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	features/power/sandbox/b10/pm_10a_20260821.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+FICTITIOUS	features/power/sandbox/b02/pm_remediated_20260821.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+FICTITIOUS	features/power/sandbox/b02/pm_batch2_20260821.json	77	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	features/power/sandbox/b02/pm_batch2_20260821.md	5	doc	- sheet：`Test Case Specification&Result`（header 第 9 列）
+FICTITIOUS	features/power/sandbox/b02/pm_remediated_20260821.json	77	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260819T004053Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260819T004053Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260819T004053Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T004053Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T004053Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260819T004053Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T004053Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T004053Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260819T004053Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260819T004053Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260819T004053Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260819T004053Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T092155Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T092155Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T092155Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T092155Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T092155Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T092155Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T092155Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T092155Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T092155Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T092155Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T092155Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T092155Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T092556Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T092556Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T092556Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T092556Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T092556Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T092556Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T092556Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T092556Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T092556Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T092556Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T092556Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T092556Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260819T013311Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260819T013311Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260819T013311Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T013311Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T013311Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260819T013311Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T013311Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T013311Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260819T013311Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260819T013311Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260819T013311Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260819T013311Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T113858Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T113858Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T113858Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T113858Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T113858Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T113858Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T113858Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T113858Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T113858Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T113858Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T113858Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T113858Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T093836Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T093836Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T093836Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T093836Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T093836Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T093836Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T093836Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T093836Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T093836Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T093836Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T093836Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T093836Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T092338Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T092338Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T092338Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T092338Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T092338Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T092338Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T092338Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T092338Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T092338Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T092338Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T092338Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T092338Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T090813Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T090813Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T090813Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T090813Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T090813Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T090813Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T090813Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T090813Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T090813Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T090813Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260820T021505Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260820T021505Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/scripts/verify_gates_03.py	54	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/scripts/verify_gates_03.py	193	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260820T021505Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260820T021505Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260820T021505Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260820T021505Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260820T021505Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260820T021505Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260820T021505Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260820T021505Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260820T021505Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260820T021505Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260820T011645Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260820T011645Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/scripts/verify_gates_03.py	54	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/scripts/verify_gates_03.py	193	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260820T011645Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260820T011645Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260820T011645Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260820T011645Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260820T011645Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260820T011645Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260820T011645Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260820T011645Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260820T011645Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260820T011645Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260820T023816Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260820T023816Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/scripts/verify_gates_03.py	54	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/scripts/verify_gates_03.py	193	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/scripts/lint_tcs.py	1088	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260820T023816Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260820T023816Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260820T023816Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260820T023816Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260820T023816Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260820T023816Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260820T023816Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260820T023816Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260820T023816Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260820T023816Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260819T022421Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260819T022421Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/scripts/verify_gates_03.py	54	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/scripts/verify_gates_03.py	193	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260819T022421Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T022421Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T022421Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260819T022421Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T022421Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T022421Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260819T022421Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260819T022421Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260819T022421Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260819T022421Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260819T012114Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260819T012114Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260819T012114Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T012114Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T012114Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260819T012114Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T012114Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T012114Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260819T012114Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260819T012114Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260819T012114Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260819T012114Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T111427Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T111427Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T111427Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T111427Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T111427Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T111427Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T111427Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T111427Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T111427Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T111427Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T111427Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T111427Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T105309Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T105309Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T105309Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T105309Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T105309Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T105309Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T105309Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T105309Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T105309Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T105309Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T105309Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T105309Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T090440Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T090440Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T090440Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T090440Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T090440Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T090440Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T090440Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T090440Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T090440Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T090440Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T143305Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T143305Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T143305Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T143305Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T143305Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T143305Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T143305Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T143305Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T143305Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T143305Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T143305Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T143305Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T144850Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T144850Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T144850Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T144850Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T144850Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T144850Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T144850Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T144850Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T144850Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T144850Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T144850Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T144850Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T135200Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T135200Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T135200Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T135200Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T135200Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T135200Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T135200Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T135200Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T135200Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T135200Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T135200Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T135200Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T091001Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T091001Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T091001Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T091001Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T091001Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T091001Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T091001Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T091001Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T091001Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T091001Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260819T005433Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260819T005433Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260819T005433Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T005433Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T005433Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260819T005433Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T005433Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T005433Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260819T005433Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260819T005433Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260819T005433Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260819T005433Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260820T014209Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260820T014209Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/scripts/verify_gates_03.py	54	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/scripts/verify_gates_03.py	193	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260820T014209Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260820T014209Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260820T014209Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260820T014209Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260820T014209Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260820T014209Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260820T014209Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260820T014209Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260820T014209Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260820T014209Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260819T015835Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260819T015835Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260819T015835Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T015835Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T015835Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260819T015835Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T015835Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T015835Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260819T015835Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260819T015835Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260819T015835Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260819T015835Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T101503Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T101503Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T101503Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T101503Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T101503Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T101503Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T101503Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T101503Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T101503Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T101503Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T101503Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T101503Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260819T013425Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260819T013425Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260819T013425Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T013425Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T013425Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260819T013425Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T013425Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T013425Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260819T013425Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260819T013425Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260819T013425Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260819T013425Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260819T010341Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260819T010341Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260819T010341Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T010341Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T010341Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260819T010341Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T010341Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T010341Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260819T010341Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260819T010341Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260819T010341Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260819T010341Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260818T141334Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260818T141334Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260818T141334Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T141334Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260818T141334Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260818T141334Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T141334Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260818T141334Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260818T141334Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260818T141334Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260818T141334Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260818T141334Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/sandbox/backup/20260819T014341Z/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/sandbox/backup/20260819T014341Z/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/scripts/verify_gates_03.py	52	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/scripts/verify_gates_03.py	191	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/scripts/lint_tcs.py	1076	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/sandbox/backup/20260819T014341Z/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T014341Z/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/sandbox/backup/20260819T014341Z/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/sandbox/backup/20260819T014341Z/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T014341Z/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/sandbox/backup/20260819T014341Z/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/sandbox/backup/20260819T014341Z/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/sandbox/backup/20260819T014341Z/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/sandbox/backup/20260819T014341Z/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/sandbox/backup/20260819T014341Z/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/power/scripts/build_arif_final_step.py	38	code other	"SHEET = ""Test Case Specification&Result"""
+FICTITIOUS	features/power/scripts/remeasure_55.py	27	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/power/scripts/build_er_restatement.py	51	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 601),"
+MASTER	features/power/scripts/build_er_restatement.py	56	code other	"""Test Case Specification 測試用例規範"", 10, 12, 13, 20),"
+FICTITIOUS	features/power/scripts/verify_gates_03.py	54	code other	"""FW036 TC Spec&Result"": (""Test Case Specification&Result"", 9, 10, 221),"
+FICTITIOUS	features/power/scripts/verify_gates_03.py	193	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/scripts/build_b4_b5.py	63	code read/write	"header = wb[""Test Case Specification&Result""][9]"
+FICTITIOUS	features/power/scripts/lint_tcs.py	1088	code read/write	"ws = wb[""Test Case Specification&Result""]"
+FICTITIOUS	features/power/scripts/build_template_diff.py	33	code other	"""Test Case Specification&Result""),"
+MASTER	features/power/scripts/build_template_diff.py	37	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/scripts/build_template_diff.py	41	code other	"""Test Case Specification 測試用例規範""),"
+MASTER	features/power/scripts/build_precond_verbs.py	36	code other	"""Test Case Specification 測試用例規範"", 12, 10, 601),"
+MASTER	features/power/scripts/build_precond_verbs.py	41	code other	"""Test Case Specification 測試用例規範"", 12, 10, 20),"
+FICTITIOUS	features/power/scripts/b26/build.py	40	code other	"SHEET = ""Test Case Specification&Result"""
+FICTITIOUS	features/power/scripts/b26/plan.json	3	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	features/power/scripts/b28/build.py	47	code other	"SHEET = ""Test Case Specification&Result"""
+FICTITIOUS	features/power/scripts/b28/plan.json	3	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	features/power/scripts/b29/build.py	26	code other	"SHEET = ""Test Case Specification&Result"""
+FICTITIOUS	features/power/scripts/b29/plan.json	2	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	features/power/scripts/b27/build.py	40	code other	"SHEET = ""Test Case Specification&Result"""
+FICTITIOUS	features/power/scripts/b27/plan.json	3	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	features/power/scripts/b25/build.py	34	code other	"SHEET = ""Test Case Specification&Result"""
+FICTITIOUS	features/power/scripts/b25/plan.json	3	doc	"""sheet"": ""Test Case Specification&Result"","
+FICTITIOUS	features/power/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/data/b1_tc_framework_sheet.md	39	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/data/b3_dryrun.json	8	doc	"""Test Case Specification&Result"": 170"
+FICTITIOUS	features/power/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+MASTER	features/power/data/b1_template_diff.md	45	doc	| 6 | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | `Test Case Specification 測試用例規範` |
+FICTITIOUS	features/power/data/b1_column_crosscheck.md	10	doc	| **Power** | `Test Case Specification&Result` | **35** | 0（BLANK，G10） | 待產出 |
+MASTER	features/power/data/b1_column_crosscheck.md	11	doc	| Comfort | `Test Case Specification 測試用例規範` | 34 | 466 | **已交付、已驗收** |
+MASTER	features/power/data/b1_column_crosscheck.md	12	doc	| Privacy | `Test Case Specification 測試用例規範` | 34 | 11 | **已交付、已驗收** |
+FICTITIOUS	features/power/data/b1_column_crosscheck.md	14	doc	> **第一項發現：分頁名不同。** Power 為 `Test Case Specification&Result`，
+MASTER	features/power/data/b1_column_crosscheck.md	15	doc	> Comfort / Privacy 為 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/home/feature.yaml	21	feature.yaml	"sheet: ""Test Case Specification&Result"""
+FICTITIOUS	features/home/RUNBOOK.md	14	doc	`Test Case Specification&Result`, header row 9, data from row 10.
+FICTITIOUS	features/home/RUNBOOK.md	54	doc	the sheet is `Test Case Specification&Result` (no space before `&`).
+MASTER	features/audio_mgmt/feature.yaml	65	feature.yaml	"sheet: ""Test Case Specification 測試用例規範""   # 實測；見 forms/FORMS.md"
+MASTER	features/audio_mgmt/DELIVERY_NOTE.md	30	doc	| 工作簿寫入列 | `Test Case Specification 測試用例規範` 分頁 r10 起 369 列 |
+MASTER	features/popup/feature.yaml	49	feature.yaml	"sheet: ""Test Case Specification 測試用例規範"""
+MASTER	features/popup/docs/upstream/04_f7_ledger_close.md	301	doc	- `patched: {'Test Case Specification 測試用例規範': 75}`、
+MASTER	features/popup/docs/upstream/03_pilot_fixes.md	44	doc	| `newR1L` | **1** | `Test Case Specification 測試用例規範!D2` | **母本自帶**，非本包寫入 |
+MASTER	features/popup/reports/Popup__popup_dc0963d7_20260828.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	features/popup/reports/popup_20260817_ext__popup_2abbde60_20260827.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	features/popup/reports/popup_20260817_ext__popup_dc0963d7_20260828.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	features/popup/reports/popup_20260817_ext__popup_3df1e1d1_20260828.md	5	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	features/vehicle_setting/feature.yaml	55	feature.yaml	"sheet: ""Test Case Specification 測試用例規範""   # 實測分頁名，非模板值"
+MASTER	features/vehicle_setting/RULINGS.md	2518	doc	分頁 `Test Case Specification 測試用例規範`，列 10–246）：
+MASTER	features/vehicle_setting/docs/handoff/02_coverage_baseline_correction.md	13	doc	`Test Case Specification 測試用例規範` 資料列 10–246、D 欄。
+MASTER	features/vehicle_setting/docs/handoff/67_round42.md	73	doc	分頁 `Test Case Specification 測試用例規範`；表頭列 9；資料列 10 起。
+MASTER	features/vehicle_setting/docs/handoff/V02_vf230_recon_review.md	73	doc	分頁 `Test Case Specification 測試用例規範`，列 10–628；
+MASTER	features/vehicle_setting/docs/handoff/00_intake_and_rulings.md	203	doc	- 036：`Test Case Specification 測試用例規範`；表頭列 9；資料列 10–246；
+MASTER	features/vehicle_setting/docs/handoff/66_writeback_procedure.md	17	doc	**目標分頁**：`Test Case Specification 測試用例規範`
+FICTITIOUS	features/vehicle_setting/docs/handoff/V47_pm_style_split.md	13	doc	## 1. PM 交付本之實測（分頁 `Test Case Specification&Result`，列 10 起）
+MASTER	features/vehicle_setting/docs/handoff/V08_review_v07.md	148	doc	分頁 `Test Case Specification 測試用例規範`，列 10–246：
+MASTER	features/vehicle_setting/docs/handoff/V43_writeback_unfreeze.md	61	doc	分頁 `Test Case Specification 測試用例規範`，列 10 起，逐欄非空計數。
+MASTER	features/vehicle_setting/docs/handoff/V06_scope_close.md	113	doc	`Test Case Specification 測試用例規範`，列 10–246）：
+MASTER	features/vehicle_setting/docs/handoff/V01_vf230_intake.md	41	doc	分頁 `Test Case Specification 測試用例規範`，表頭列 9，掃描列 10–246（237 列），
+MASTER	features/vehicle_setting/docs/handoff/75_writeback_go.md	124	doc	分頁 `Test Case Specification 測試用例規範`；表頭列 9；資料列 10 起。
+MASTER	features/vehicle_setting/docs/handoff/V10_four_rulings.md	46	doc	分頁 `Test Case Specification 測試用例規範`，列 10–246）：
+MASTER	features/vehicle_setting/docs/handoff/V09_feature_identity.md	88	doc	（分頁 `Test Case Specification 測試用例規範`，列 10–246）：
+FICTITIOUS	features/vehicle_setting/docs/upstream/00_intake_and_rulings.md	213	doc	| **改對了** | feature.yaml 之分頁名與欄位對映（scaffold 模板為 `Test Case Specification&Result`、design_method=`Q`、functional_safety=`R`、author=`Z`；**實測分別為 `Test Case Specifica
+MASTER	features/vehicle_setting/docs/upstream/00_intake_and_rulings.md	213	doc	| **改對了** | feature.yaml 之分頁名與欄位對映（scaffold 模板為 `Test Case Specification&Result`、design_method=`Q`、functional_safety=`R`、author=`Z`；**實測分別為 `Test Case Specifica
+MASTER	features/vehicle_setting/docs/upstream/00_intake_and_rulings.md	224	doc	| 036 | 分頁 `Test Case Specification 測試用例規範`；表頭列 9；資料列 **10–246**（實體列號）；**逐列**；空 = `None` 或 strip 後空字串 |
+MASTER	features/vehicle_setting/docs/upstream/41_writeback.md	140	doc	| 分頁 | `Test Case Specification 測試用例規範` |
+MASTER	features/vehicle_setting/docs/upstream/V06_scope_close.md	31	doc	分頁 `Test Case Specification 測試用例規範`，列 10–246 逐欄計非空；
+MASTER	features/vehicle_setting/docs/upstream/31_record_and_batch13.md	174	doc	| 交付本 | `…SWQT_SWC_20260708.xlsx` 之 `Test Case Specification 測試用例規範` 分頁，**自第 10 列起、B 欄非空**者為資料列，得 **286** 列；欄位取 H(8)／I(9)／O(15)／Q(17) |
+MASTER	features/vehicle_setting/docs/upstream/V44_wvf76_77.md	153	doc	分頁 Test Case Specification 測試用例規範｜max_row=246｜max_column=34
+MASTER	features/vehicle_setting/docs/upstream/01_leaf_universe.md	114	doc	| 036 | `Test Case Specification 測試用例規範`；資料列 10–246（實體列號）；D 欄；**逐列** |
+MASTER	features/vehicle_setting/docs/reports/x14_fix_prep.md	8	doc	分頁：`Test Case Specification 測試用例規範`（`xl/worksheets/sheet6.xml`）
+MASTER	features/vehicle_setting/docs/reports/x14_fix_prep.md	29	doc	1. 開啟母本，切至 `Test Case Specification 測試用例規範`
+MASTER	features/vehicle_setting/docs/reports/036_baseline.md	8	doc	- 分頁 `Test Case Specification 測試用例規範`；表頭**列 9**；資料**列 10–246**（實體列號）
+MASTER	features/vehicle_setting/docs/reports/writeback_dryrun.md	4	doc	分頁：`Test Case Specification 測試用例規範`；表頭列 9；資料列 10 起
+MASTER	features/vehicle_setting/scripts/style_compare_w97.py	33	code other	"""Test Case Specification 測試用例規範""]"
+MASTER	features/vehicle_setting/scripts/vf230_wvf77_dryrun.py	30	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/vehicle_setting/scripts/vs_sl01_dryrun.py	29	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/vehicle_setting/scripts/writeback_036.py	4	code other	分頁 `Test Case Specification 測試用例規範`；**表頭列 9；資料列 10 起**。
+MASTER	features/vehicle_setting/scripts/writeback_036.py	24	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/vehicle_setting/reports/vf230_settings_dryrun.md	16	doc	| 工作簿資料列 | **457** | `Test Case Specification 測試用例規範` r10–r466；表頭 r9 |
+MASTER	features/privacy/feature.yaml	26	feature.yaml	"sheet: ""Test Case Specification 測試用例規範"""
+MASTER	features/privacy/ANOMALIES.md	186	doc	`Test Case Specification 測試用例規範` 分頁第 10–11 列帶範本示例殘留：
+FICTITIOUS	features/privacy/ANOMALIES.md	444	doc	"`""Test Case Specification&Result""` 與實際分頁名"
+MASTER	features/privacy/ANOMALIES.md	445	doc	"`""Test Case Specification 測試用例規範""` 不符，會讓 `recon.py` 直接 `sys.exit`。"
+MASTER	features/privacy/ANOMALIES.md	460	doc	量測依據：範本 `Test Case Specification 測試用例規範` 第 9 列表頭逐格實測 ——
+MASTER	features/privacy/ANOMALIES.md	626	doc	**量測**（`Test Case Specification 測試用例規範`，第 8–9 列；T8:Z8 為合併儲存格
+FICTITIOUS	features/privacy/docs/upstream/17_predelivery.md	115	doc	"`""Test Case Specification&Result""` 與實際分頁名"
+MASTER	features/privacy/docs/upstream/17_predelivery.md	116	doc	"`""Test Case Specification 測試用例規範""` 不符，會讓 `recon.py` 直接 `sys.exit`。"
+MASTER	features/privacy/docs/upstream/17_predelivery.md	131	doc	量測依據：範本 `Test Case Specification 測試用例規範` 第 9 列表頭逐格實測 ——
+MASTER	features/privacy/docs/upstream/07_profile_approval.md	183	doc	`Test Case Specification 測試用例規範` 分頁，第 8–9 列：
+MASTER	features/privacy/docs/upstream/04_framework.md	154	doc	`Product Document 記錄封面頁`, `Test Case Specification 測試用例規範`,
+MASTER	features/ics_management/feature.yaml	56	feature.yaml	# `Test Case Specification 測試用例規範` 分頁第 10–1411 列（1402 列），
+MASTER	features/ics_management/feature.yaml	62	feature.yaml	"sheet: ""Test Case Specification 測試用例規範""   # 本包實測自副本"
+MASTER	features/ics_management/docs/handoff/19_writeback.md	59	doc	實測母本之資料區起始列（memory：工作表 `Test Case Specification 測試用例規範`，資料列自第 10 列）——**須現場複驗，不得沿用記憶**。
+MASTER	features/ics_management/docs/upstream/01_onboarding_first_batch.md	20	doc	| 工作簿掃描 | `Test Case Specification 測試用例規範` 分頁第 10–1411 列（1402 列），I 欄（Test Item）與 F 欄（Test Case ID）判 filled，AA 欄（Author）判 done |
+MASTER	features/ics_management/docs/upstream/19a_writeback_dryrun.md	36	doc	| 工作表 | **9 個**；目標表 `Test Case Specification 測試用例規範`，`max_row=1411`、`max_col=34` |
+MASTER	features/ics_management/docs/reports/19_writeback_dryrun.md	20	doc	`Product Document 記錄封面頁`／**`Test Case Specification 測試用例規範`**／`Reference`／
+MASTER	features/ics_management/docs/reports/19_writeback_dryrun.md	22	doc	- 目標工作表：`Test Case Specification 測試用例規範`，`max_row=1411`、`max_col=34`
+MASTER	features/ics_management/scripts/write_back.py	52	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/user_profiles/feature.yaml	41	feature.yaml	"sheet: ""Test Case Specification 測試用例規範""   # 實測；非 rev A/B 之 ""…&Result"""
+MASTER	features/user_profiles/docs/upstream/43_yaml_and_writeback_dryrun.md	112	doc	掃 `Test Case Specification 測試用例規範` 之 row 10–500，
+MASTER	features/user_profiles/docs/upstream/41_batch06_and_writeback_design.md	221	doc	母本 `Test Case Specification 測試用例規範`，header row 9、first data row 10、
+MASTER	features/user_profiles/docs/upstream/01_intake.md	29	doc	| 036 掃描欄位 | `Test Case Specification 測試用例規範` 之 **A–AH 全 34 欄** |
+MASTER	features/user_profiles/docs/upstream/01_intake.md	101	doc	| sheet 名 | **9 個**：`Cover_old`／`ChangeHistory_old`／`Cover 封面`／`ChangeHistory 修訂履歷`／`Product Document 記錄封面頁`／**`Test Case Specification 測試用例規範`**／`Reference`／`Q
+MASTER	features/user_profiles/docs/upstream/01_intake.md	534	doc	| 6 | 母本 sheet 名 | （待探）| `Test Case Specification 測試用例規範`，9 分頁 | ✅ 已探 |
+MASTER	features/user_profiles/scripts/verify_dv_integrity.py	149	code other	"member = sheet_members(src)[""Test Case Specification 測試用例規範""]"
+MASTER	features/user_profiles/scripts/write_back.py	59	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/sw_update/SOURCE_COLUMNS.md	208	doc	### 036 母本（`Test Case Specification 測試用例規範`，表頭列 9，34 欄）
+MASTER	features/sw_update/feature.yaml	46	feature.yaml	"sheet: ""Test Case Specification 測試用例規範"""
+MASTER	features/sw_update/docs/upstream/01_intake_recon.md	140	doc	- 分頁：`Test Case Specification 測試用例規範`（母本九分頁，實測選定）
+MASTER	features/sw_update/docs/upstream/18_pilot_review.md	56	doc	工作表：`Test Case Specification 測試用例規範`｜表頭列 9｜TC ID 欄為 **F**（`F9` = `Test Case ID 測試用例ID`）
+MASTER	features/sw_update/docs/upstream/18_pilot_review.md	76	doc	| **036 母本**（`Test Case Specification 測試用例規範`） | `D2` | `專案名稱 Project  Name：` | **`newR1L`** |
+MASTER	features/sw_update/docs/upstream/20_verification_criteria.md	188	doc	### 036 母本（`Test Case Specification 測試用例規範`，表頭列 9，34 欄）
+MASTER	features/sw_update/scripts/write_back_036.py	26	code other	"SHEET_NAME = ""Test Case Specification 測試用例規範"""
+MASTER	features/sw_update/scripts/ce_columns.py	54	code read/write	"ws = openpyxl.load_workbook(book, read_only=True, data_only=True)[""Test Case Specification 測試用例規範""]"
+MASTER	features/comfort/feature.yaml	34	feature.yaml	"sheet: ""Test Case Specification 測試用例規範"""
+MASTER	features/comfort/ANOMALIES.md	1217	doc	| 資料工作表 | `Test Case Specification 測試用例規範`，`dimension A1:AH59` |
+MASTER	features/comfort/ANOMALIES.md	1354	doc	分頁：`Test Case Specification 測試用例規範`，r10 起 `D` 欄非空之列
+FICTITIOUS	features/comfort/docs/handoff/17_g1_baseline_exhaustiveness.md	12	doc	sheet `Test Case Specification&Result`，I 欄，母體 `Z == ArifChen` 共 144 列
+MASTER	features/comfort/docs/handoff/15_profile_draft.md	25	doc	資料工作表 `Test Case Specification 測試用例規範`
+FICTITIOUS	features/comfort/docs/upstream/09_partN_amendment_and_profile.md	66	doc	| 工作表 | `Test Case Specification&Result` |
+MASTER	features/comfort/docs/upstream/14_pilot_rev4_and_dryrun.md	128	doc	- 工作表：`Test Case Specification 測試用例規範` · header row 9
+MASTER	features/comfort/scripts/prepare_workbook.py	46	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+FICTITIOUS	features/comfort/scripts/gate_g1_test_item.py	41	code other	"SHEET = ""Test Case Specification&Result"""
+MASTER	features/comfort/scripts/write_back.py	71	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/bed_lowering/feature.yaml	63	feature.yaml	"sheet: ""Test Case Specification 測試用例規範""   # 本包實測自副本"
+MASTER	features/bed_lowering/docs/upstream/07_writeback_debt_batches.md	53	doc	sheets_patched  {'Test Case Specification 測試用例規範': 208}
+MASTER	features/bed_lowering/docs/upstream/16_delivery_note_final.md	41	doc	sheets_patched {'Test Case Specification 測試用例規範': 4}
+MASTER	features/bed_lowering/reports/bl_dt_applicability.md	292	doc	**(b)** 分頁 `Test Case Specification 測試用例規範`，資料列 r10–r160（151 列），表頭 r9。
+FICTITIOUS	features/vsm_v43/feature.yaml	47	feature.yaml	"# ⚠ scaffold 模板值為 ""Test Case Specification&Result"" —— **本母本無此分頁**"
+MASTER	features/vsm_v43/feature.yaml	49	feature.yaml	"sheet: ""Test Case Specification 測試用例規範"""
+MASTER	features/vsm_v43/RECON.md	15	doc	"| workbook_state | **BLANK** | `sandbox/base/` 副本，分頁 `Test Case Specification 測試用例規範`，第 10 列起、**B 欄除外**（B 為 `=IF(ISBLANK($D10),"""",ROW()-9)` 序號公式）之非空儲存格列數 = **0*"
+MASTER	features/vsm_v43/ANOMALIES.md	98	doc	'Product Document 記錄封面頁','Test Case Specification 測試用例規範','Reference',
+FICTITIOUS	features/vsm_v43/ANOMALIES.md	99	doc	'QS Suggestion','下拉選單']` —— **無** `Test Case Specification&Result`。
+MASTER	features/vsm_v43/ANOMALIES.md	101	doc	- **處置**：`feature.yaml` 改為實測值 `Test Case Specification 測試用例規範`。
+FICTITIOUS	features/vsm_v43/docs/upstream/01_sources_recon.md	125	doc	**`workbook.sheet` 之 scaffold 值 `Test Case Specification&Result` 於本母本不存在**
+MASTER	features/vsm_v43/docs/upstream/01_sources_recon.md	127	doc	`Test Case Specification 測試用例規範`。
+MASTER	features/vsm_v43/docs/upstream/01_sources_recon.md	166	doc	"| workbook_state | **BLANK** | `sandbox/base/` 副本，分頁 `Test Case Specification 測試用例規範`，第 10 列起、**B 欄除外**（B 為 `=IF(ISBLANK($D10),"""",ROW()-9)` 序號公式）之非空儲存格列數 = **0*"
+MASTER	features/display/feature.yaml	113	feature.yaml	"sheet: ""Test Case Specification 測試用例規範""   # 實測自母本；模板之 rev A/B 名在本母本不存在"
+MASTER	features/display/RULINGS.md	297	doc	036 母本 `Test Case Specification 測試用例規範` 分頁之 B 欄
+MASTER	features/display/ANOMALIES.md	133	doc	`Test Case Specification 測試用例規範` 分頁 r9 之表頭，其分隔符為**換行**
+FICTITIOUS	features/display/ANOMALIES.md	155	doc	"`scripts/new_feature.py` 之模板宣告 `sheet: ""Test Case Specification&Result""`"
+MASTER	features/display/ANOMALIES.md	158	doc	`Test Case Specification 測試用例規範`，且欄位為 `design_method: R` /
+MASTER	features/display/ANOMALIES.md	507	doc	036 母本 `Test Case Specification 測試用例規範` 分頁之 B 欄（`No.#\n序號`）
+MASTER	features/display/DECISIONS.md	75	doc	`Test Case Specification 測試用例規範`（模板宣告之分頁名不存在，A-DM7）
+MASTER	features/display/docs/handoff/03_coverage_redo.md	258	doc	036 母本 `Test Case Specification 測試用例規範` 分頁之 B 欄
+MASTER	features/display/docs/upstream/23_pilot01_closeout.md	308	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	features/display/docs/upstream/10_decisions_merge.md	84	doc	`Test Case Specification 測試用例規範`（模板宣告之分頁名不存在，A-DM7）
+MASTER	features/display/docs/upstream/21_pilot01_rev2.md	426	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+FICTITIOUS	features/display/docs/upstream/03_coverage_redo.md	110	doc	template 之分頁名 'Test Case Specification&Result' 於本母本 不存在
+FICTITIOUS	features/display/docs/upstream/03_coverage_redo.md	136	doc	`Test Case Specification&Result` 於本母本不存在）；`effective-declared`
+MASTER	features/display/docs/upstream/03_coverage_redo.md	564	doc	036 母本 `Test Case Specification 測試用例規範` 分頁之 B 欄（`No.#\n序號`）
+MASTER	features/display/docs/upstream/02_intake_recon.md	393	doc	sheets: ['Cover_old', 'ChangeHistory_old', 'Cover 封面', 'ChangeHistory 修訂履歷', 'Product Document 記錄封面頁', 'Test Case Specification 測試用例規範', 'Reference', 'QS Sugges
+MASTER	features/display/docs/upstream/02_intake_recon.md	394	doc	feature.yaml DECLARES sheet='Test Case Specification 測試用例規範' header_row=9
+MASTER	features/display/docs/upstream/02_intake_recon.md	395	doc	EFFECTIVE (derived from the master): sheet='Test Case Specification 測試用例規範' header_row=9
+MASTER	features/display/docs/upstream/02_intake_recon.md	515	doc	`Test Case Specification 測試用例規範`，表頭 r9，掃描 r10–r1411（1402 列）：
+MASTER	features/display/docs/upstream/02_intake_recon.md	756	doc	"sheet: ""Test Case Specification 測試用例規範""   # 實測自母本；模板之 rev A/B 名在本母本不存在"
+FICTITIOUS	features/display/docs/upstream/02_intake_recon.md	798	doc	| `workbook.sheet` | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | 母本無模板之分頁名（A-DM7） |
+MASTER	features/display/docs/upstream/02_intake_recon.md	798	doc	| `workbook.sheet` | `Test Case Specification&Result` | `Test Case Specification 測試用例規範` | 母本無模板之分頁名（A-DM7） |
+MASTER	features/display/docs/upstream/34_closeout.md	79	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	features/display/docs/upstream/22_pilot01_rev3.md	277	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	features/display/docs/upstream/20_pilot01_tc.md	227	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	features/display/docs/upstream/04_reference_store.md	715	doc	036 母本 `Test Case Specification 測試用例規範` 分頁之 B 欄（`No.#\n序號`）
+MASTER	features/display/docs/upstream/28_cfts013_full_and_rvc.md	601	doc	- sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
+MASTER	features/display/scripts/write_back_036.py	34	code other	"SHEET_NAME = ""Test Case Specification 測試用例規範"""
+FICTITIOUS	features/amfm/feature.yaml	140	feature.yaml	"sheet: ""Test Case Specification&Result"""
+FICTITIOUS	features/amfm/docs/upstream/02_integrity.md	69	doc	sheet    : 'Test Case Specification&Result' -> xl/worksheets/sheet6.xml
+MASTER	features/amfm/docs/upstream/02_integrity.md	96	doc	sheet    : 'Test Case Specification 測試用例規範' -> xl/worksheets/sheet6.xml
+FICTITIOUS	features/amfm/docs/upstream/02_integrity.md	176	doc	| `Test Case Specification&Result` | **0** |
+FICTITIOUS	features/amfm/docs/upstream/02_integrity.md	199	doc	sheet     : 'Test Case Specification&Result' -> xl/worksheets/sheet6.xml
+MASTER	features/amfm/docs/upstream/02_integrity.md	233	doc	sheet     : 'Test Case Specification 測試用例規範' -> xl/worksheets/sheet6.xml
+MASTER	features/amfm/docs/upstream/07_baseline_audit.md	170	doc	| `Test Case Specification 測試用例規範` | 755 → 755 | **5,682** |
+MASTER	features/driver_distraction/feature.yaml	87	feature.yaml	"sheet: ""Test Case Specification 測試用例規範"""
+MASTER	features/driver_distraction/docs/upstream/02_workbook_binding.md	162	doc	"+  sheet: ""Test Case Specification 測試用例規範"""
+FICTITIOUS	features/vsm_v42/feature.yaml	71	feature.yaml	# 本包對副本重測再證）：sheet `Test Case Specification&Result`（該名不存在）、
+MASTER	features/vsm_v42/feature.yaml	73	feature.yaml	"sheet: ""Test Case Specification 測試用例規範"""
+FICTITIOUS	features/vsm_v42/RULINGS.md	154	doc	scaffold 模板值（`Test Case Specification&Result`、design_method Q、author Z）
+MASTER	features/vsm_v42/RULINGS.md	156	doc	`Test Case Specification 測試用例規範`、priority P、estimated_test_time Q、
+MASTER	features/vsm_v42/docs/upstream/01_sources_recon.md	175	doc	對 `forms/…_SWQT_20260817_ext.xlsx` 分頁 `Test Case Specification 測試用例規範` 第 9 列
+MASTER	features/vsm_v42/docs/upstream/01_sources_recon.md	180	doc	| sheet `Test Case Specification 測試用例規範` | 分頁清單第 6 個，逐字相同 | **相符** |
+FICTITIOUS	features/vsm_v42/docs/upstream/01_sources_recon.md	199	doc	"> 且模板之 `sheet: ""Test Case Specification&Result""` 於本母本**不存在**"
+MASTER	features/vsm_v42/docs/upstream/01_sources_recon.md	200	doc	> （實為 `Test Case Specification 測試用例規範`）。上繳 00 之 feature.yaml
+MASTER	features/vsm_v42/docs/upstream/12_write_b1.md	120	doc	`{'sheets_patched': {'Test Case Specification 測試用例規範': 269}, 'members_patched': ['xl/worksheets/sheet6.xml'], 'members': 48, 'differing': ['xl/worksheets/sheet6
+MASTER	features/vsm_v42/docs/upstream/10_dryrun.md	77	doc	`{'sheets_patched': {'Test Case Specification 測試用例規範': 286}, 'members_patched': ['xl/worksheets/sheet6.xml'], 'members': 48, 'differing': ['xl/worksheets/sheet6
+MASTER	features/vsm_v42/docs/upstream/09_writeback_method.md	105	doc	`{'sheets_patched': {'Test Case Specification 測試用例規範': 3}, 'members_patched': ['xl/worksheets/sheet6.xml'], 'members': 48, 'differing': ['xl/worksheets/sheet6.x
+MASTER	features/vsm_v42/docs/upstream/09_writeback_method.md	140	doc	報告頭：`資料列數 1`／`sheet: Test Case Specification 測試用例規範`（header 第 9 列）／
+MASTER	features/vsm_v42/docs/upstream/02_sources_recon.md	102	doc	自副本分頁 `Test Case Specification 測試用例規範` 第 9 列逐格讀取（openpyxl
+MASTER	features/vsm_v42/docs/upstream/02_sources_recon.md	107	doc	| sheet `Test Case Specification 測試用例規範` | 分頁清單第 6 個，逐字相同 | **相符** |
+FICTITIOUS	features/vsm_v42/docs/upstream/02_sources_recon.md	127	doc	**scaffold 模板三處錯值已全數不採**：`sheet` `Test Case Specification&Result`（該名不存在）、
+MASTER	features/vehicle_category/feature.yaml	44	feature.yaml	"sheet: ""Test Case Specification 測試用例規範""   # 實測自母本（T3）"
+MASTER	features/vehicle_category/docs/PHASE6_writeback_survey.md	21	doc	| **6** | **`Test Case Specification 測試用例規範`** | **TC 本體** | **A1:AH1411** | **4** | **3 ＋ x14 1** |
+MASTER	features/vehicle_category/docs/upstream/01_intake_recon.md	163	doc	- 分頁：`Test Case Specification 測試用例規範`（母本 9 分頁中實測所得）
+MASTER	features/vehicle_category/docs/upstream/01_intake_recon.md	304	doc	| `workbook.sheet` | `Test Case Specification 測試用例規範` | T3 實測自母本 |
+MASTER	features/vehicle_category/scripts/probe_writeback_c2.py	30	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/vehicle_category/scripts/probe_writeback_c.py	34	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/vehicle_category/scripts/build_reasoning_sidecar.py	125	code read/write	"ws = wb[""Test Case Specification 測試用例規範""]"
+MASTER	features/vehicle_category/scripts/write_back.py	35	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/time_management/feature.yaml	19	feature.yaml	"sheet: ""Test Case Specification 測試用例規範""   # rev C 版面，見 FORMS.md"
+FICTITIOUS	features/time_management/ANOMALIES.md	976	doc	（SHA `1895fb2a…`），分頁 `Test Case Specification&Result`（rev A/B 版面）。
+MASTER	features/time_management/docs/handoff/04Z-A3_positive_verification.md	241	doc	- 母本之 `Test Case Specification 測試用例規範` 分頁實際解析到哪一個
+FICTITIOUS	features/time_management/docs/handoff/01_recon.md	60	doc	"| `workbook.sheet` | `""Test Case Specification&Result""` | `""Test Case Specification 測試用例規範""` |"
+MASTER	features/time_management/docs/handoff/01_recon.md	60	doc	"| `workbook.sheet` | `""Test Case Specification&Result""` | `""Test Case Specification 測試用例規範""` |"
+MASTER	features/time_management/docs/upstream/24_writeback.md	143	doc	其分頁名為 `Test Case Specification 測試用例規範`
+FICTITIOUS	features/time_management/docs/upstream/01Z_corrections.md	96	doc	'Test Case Specification&Result' row5 col3: '範圍 Scope：'
+FICTITIOUS	features/time_management/docs/upstream/01Z_corrections.md	97	doc	'Test Case Specification&Result' row5 col4: 'FM-WI-FSM-037-A03-N1L-SWE1-AppDrawer-Projection-SWE1HMI-V0.1 STLA 報告'
+FICTITIOUS	features/time_management/docs/upstream/01Z_corrections.md	98	doc	'Test Case Specification&Result' row5 col9: '日期 Date：2026'
+FICTITIOUS	features/time_management/docs/upstream/01Z_corrections.md	99	doc	'Test Case Specification&Result' row5 col33: 'FM-WI-FSM-036-A01'
+FICTITIOUS	features/time_management/docs/upstream/01Z_corrections.md	105	doc	**注意該檔之分頁名為 `Test Case Specification&Result`（rev A/B 版面），
+MASTER	features/time_management/docs/upstream/01Z_corrections.md	106	doc	與本 feature 母本之 `Test Case Specification 測試用例規範`（rev C）不同。**
+MASTER	features/time_management/docs/upstream/04Z-A3_corrections.md	91	doc	Test Case Specification 測試用例規範    -> xl/worksheets/sheet6.xml   ← 目標分頁
+MASTER	features/time_management/docs/upstream/04Z-A3_corrections.md	101	doc	| `feature.yaml` `workbook.sheet` | `Test Case Specification 測試用例規範` |
+MASTER	features/time_management/docs/upstream/04Z-A2_corrections.md	85	doc	sheet6.xml 即 `Test Case Specification 測試用例規範` 分頁。
+FICTITIOUS	features/time_management/docs/upstream/01_recon.md	37	doc	"| `workbook.sheet` | `""Test Case Specification&Result""` | `""Test Case Specification 測試用例規範""` | 命中 |"
+MASTER	features/time_management/docs/upstream/01_recon.md	37	doc	"| `workbook.sheet` | `""Test Case Specification&Result""` | `""Test Case Specification 測試用例規範""` | 命中 |"
+MASTER	features/time_management/docs/upstream/09_constants.md	37	doc	sheet         : 'Test Case Specification 測試用例規範', header row 9
+MASTER	features/time_management/docs/upstream/20_final.md	296	doc	sheet         : 'Test Case Specification 測試用例規範', header row 9
+MASTER	features/sxm/feature.yaml	98	feature.yaml	"sheet: ""Test Case Specification 測試用例規範"""
+MASTER	features/sxm/ANOMALIES.md	230	doc	`Test Case Specification 測試用例規範`, without the `&Result` suffix every
+MASTER	features/power_moding/feature.yaml	95	feature.yaml	"sheet: ""Test Case Specification 測試用例規範"""
+MASTER	features/power_moding/RULINGS.md	193	doc	工作簿 `Test Case Specification 測試用例規範` 分頁之
+MASTER	features/power_moding/DELIVERY_NOTE.md	30	doc	**45 + 3 = 48。** 工作簿之 `Test Case Specification 測試用例規範` 分頁自 r10 起 51 列，
+MASTER	features/power_moding/ANOMALIES.md	317	doc	`…_SWQT_Comfort_20260817.xlsx`，分頁 `Test Case Specification 測試用例規範`，
+MASTER	features/power_moding/ANOMALIES.md	552	doc	"| `Test Case Specification 測試用例規範` | legacy | `P10:Q1411` | `""P0,P1,P2,P3""` |"
+MASTER	features/power_moding/ANOMALIES.md	553	doc	"| `Test Case Specification 測試用例規範` | legacy | `T10:Z1411` | `""0,1""` |"
+MASTER	features/power_moding/ANOMALIES.md	554	doc	"| `Test Case Specification 測試用例規範` | legacy | `AF10:AF1411` | `""Pass, Fail, Pending,Block,NA""` |"
+MASTER	features/power_moding/ANOMALIES.md	555	doc	| `Test Case Specification 測試用例規範` | x14 | `R10:R1411` | `下拉選單!$A$1:$A$9` |
+FICTITIOUS	features/power_moding/ANOMALIES.md	648	doc	`Test Case Specification&Result`，**唯讀開啟，未修改 `features/power` 之任何檔案**。
+MASTER	features/power_moding/docs/handoff/03_testgroup_and_dv.md	181	doc	`Test Case Specification 測試用例規範` 分頁，列出**全部** DV
+MASTER	features/power_moding/docs/handoff/02_baseline_switch.md	104	doc	工作簿 `Test Case Specification 測試用例規範` 分頁之
+MASTER	features/power_moding/docs/handoff/10_profile_draft.md	134	doc	- 分頁 `Test Case Specification 測試用例規範`，**34 欄（rev C）**，
+FICTITIOUS	features/power_moding/docs/handoff/01_intake.md	165	doc	| 分頁名 | `Test Case Specification 測試用例規範`（**與 `features/power` 之 `Test Case Specification&Result` 不同**） |
+MASTER	features/power_moding/docs/handoff/01_intake.md	165	doc	| 分頁名 | `Test Case Specification 測試用例規範`（**與 `features/power` 之 `Test Case Specification&Result` 不同**） |
+MASTER	features/power_moding/docs/handoff/01_intake.md	166	doc	| 分頁清單 | `Cover_old` / `ChangeHistory_old` / `Cover 封面` / `ChangeHistory 修訂履歷` / `Product Document 記錄封面頁` / `Test Case Specification 測試用例規範` / `Reference` / `Te
+MASTER	features/power_moding/docs/upstream/04_corpus_and_assertions.md	238	doc	"| `Test Case Specification 測試用例規範` | legacy | `P10:Q1411` | list | 1 | `""P0,P1,P2,P3""` |"
+MASTER	features/power_moding/docs/upstream/04_corpus_and_assertions.md	239	doc	"| `Test Case Specification 測試用例規範` | legacy | `T10:Z1411` | list | 1 | `""0,1""` |"
+MASTER	features/power_moding/docs/upstream/04_corpus_and_assertions.md	240	doc	"| `Test Case Specification 測試用例規範` | legacy | `AF10:AF1411` | list | 1 | `""Pass, Fail, Pending,Block,NA""` |"
+MASTER	features/power_moding/docs/upstream/04_corpus_and_assertions.md	241	doc	| `Test Case Specification 測試用例規範` | x14 | `R10:R1411` | list | 1 | `下拉選單!$A$1:$A$9` |
+MASTER	features/power_moding/docs/upstream/04_corpus_and_assertions.md	250	doc	"| `Test Case Specification 測試用例規範` | legacy | **`Q10:Q221 R10:R11 P10:P11`** | `""P0,P1,P2,P3""` |"
+MASTER	features/power_moding/docs/upstream/04_corpus_and_assertions.md	251	doc	"| `Test Case Specification 測試用例規範` | legacy | `U10:AA221` | `""0,1""` |"
+MASTER	features/power_moding/docs/upstream/04_corpus_and_assertions.md	252	doc	"| `Test Case Specification 測試用例規範` | legacy | **`AG10:AG13`** | `""Pass, Fail, Pending,Block,NA""` |"
+MASTER	features/power_moding/docs/upstream/04_corpus_and_assertions.md	253	doc	| `Test Case Specification 測試用例規範` | x14 | `S10:S221` | **`Reference!$C$4:$C$12`** |
+MASTER	features/power_moding/docs/upstream/04_corpus_and_assertions.md	300	doc	> **母本之 `Test Case Specification 測試用例規範` 分頁**之 DV 為 **4 組**
+MASTER	features/power_moding/docs/upstream/03_testgroup_and_dv.md	50	doc	`Test Case Specification 測試用例規範`。**未以 `openpyxl` 存回**（停止條件 9）。
+FICTITIOUS	features/power_moding/docs/upstream/06_framework_proposal.md	168	doc	（R-PMH24 母體之該夾交付件），分頁 `Test Case Specification&Result`。
+MASTER	features/power_moding/docs/upstream/06_framework_proposal.md	269	doc	**只列不改。** 現行 `write_back` 只描述 `Test Case Specification 測試用例規範`
+MASTER	features/power_moding/docs/upstream/02_baseline_switch.md	138	doc	| 4 | **分頁清單（9 個）** | `Cover_old`／`ChangeHistory_old`／`Cover 封面`／`ChangeHistory 修訂履歷`／`Product Document 記錄封面頁`／`Test Case Specification 測試用例規範`／`Reference`／`QS 
+MASTER	features/power_moding/docs/upstream/02_baseline_switch.md	162	doc	| 目標分頁名 | `Test Case Specification 測試用例規範` | 同 |
+FICTITIOUS	features/power_moding/docs/upstream/02_baseline_switch.md	264	doc	⚠ Power Management 20260821 之分頁名為 **`Test Case Specification&Result`**
+MASTER	features/power_moding/docs/upstream/02_baseline_switch.md	265	doc	（rev A/B 名），與其餘四者之 `Test Case Specification 測試用例規範` 不同；
+MASTER	features/power_moding/docs/upstream/01_intake.md	117	doc	`data_only=True`，分頁 `Test Case Specification 測試用例規範`。
+MASTER	features/power_moding/docs/upstream/01_intake.md	169	doc	**分頁名不同**（本 feature `Test Case Specification 測試用例規範`；
+FICTITIOUS	features/power_moding/docs/upstream/01_intake.md	170	doc	`features/power` 為 `Test Case Specification&Result`），非同一份版面。
+MASTER	features/power_moding/docs/upstream/01_intake.md	427	doc	036 之 10 個分頁中，本輪只讀了 `Test Case Specification 測試用例規範`。
+MASTER	features/power_moding/scripts/write_back.py	37	code other	"SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/media/scripts/build_remaining.py	20	code other	"TC_SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/media/scripts/extract_exemplars.py	22	code other	"TC_SHEET = ""Test Case Specification 測試用例規範"""
+MASTER	features/media/scripts/write_back.py	59	code other	"SHEET = ""Test Case Specification 測試用例規範"""

@@ -551,8 +551,14 @@ def test_existing_report_files_are_never_renamed(existing):
     for forbidden in (".rename(", ".replace(Path", "shutil.move", ".unlink(", "os.remove"):
         assert forbidden not in src, f"lint036 不得改動既存檔案：發現 {forbidden}"
     report = root / "docs" / "fw036" / "lint_reports" / existing
-    if report.exists():
-        assert report.name == existing        # 檔名逐字不變
+    # GC-02 §一-5-3（R-G47 補充）：原為 `if report.exists():`，檔案消失時整支斷言
+    # 靜默空跑 —— 空跑即懸空，看起來綠而其實沒驗。改為硬斷言：
+    # 檔案不在就是真紅，該由 EXISTING_REPORTS 之維護或移除清單去解，不由測試吞掉。
+    assert report.exists(), (
+        f"既有報告 {existing} 不在 docs/fw036/lint_reports/ —— "
+        "若係依 R-G47 之移除清單移除，須同步自 EXISTING_REPORTS 移除該列"
+    )
+    assert report.name == existing            # 檔名逐字不變
 
 
 # --- profile 專屬檢查（21 包：`--profile <feature>`）-------------------------

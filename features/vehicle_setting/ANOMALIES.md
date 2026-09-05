@@ -227,7 +227,7 @@
 
 | id | 內容 | 證據 | 狀態 |
 |---|---|---|---|
-| **A-VS166** | **下放包 VS-SL-01 所載之三個數與本輪實測不符** | 實測（`scripts/vs_sl01_dryrun.py`）：(a) 相異 `"X" customer setting` 名 **107**，包載 106，多出者為 `AUX Switches`（1 處，與 `4 AUX Switches`／`6 Aux Switches` 並存）；(b) `Traffic Sign Assist Offset - non-NAFTA Setting` **19 列**（r400–r418，D 欄前綴一致），包載 18；(c) `OR_VALUE` 現況 **5 列**（r42/148/151/154/157），包載 7 | **新開**。依 R-TM13 條文不改；`R-VS84`(4) 之移除標的以實測 19 列為準，待 Pei 確認 |
+| **A-VS166** | **下放包 VS-SL-01 所載之三個數與本輪實測不符** | 實測（~~`scripts/vs_sl01_dryrun.py`~~ **→ `features/vehicle_setting/scripts/vs_sl01_dryrun.py`**，路徑更正 2026-09-05，GC-02 §一-6；原路徑不存在，R-G24(FO) 路徑實在性）：(a) 相異 `"X" customer setting` 名 **107**，包載 106，多出者為 `AUX Switches`（1 處，與 `4 AUX Switches`／`6 Aux Switches` 並存）；(b) `Traffic Sign Assist Offset - non-NAFTA Setting` **19 列**（r400–r418，D 欄前綴一致），包載 18；(c) `OR_VALUE` 現況 **5 列**（r42/148/151/154/157），包載 7 | **新開**。依 R-TM13 條文不改；`R-VS84`(4) 之移除標的以實測 19 列為準，待 Pei 確認 |
 | **A-VS167** | **`R-VS87`（車型以 DT 為主）與 BedLowering 相衝** | 总控表 `FeatureSet(Gen4-5)` No.36 `Bed Lowering Mode` 之 Atlantis 欄逐字為 `If "CAN node 27 (ASM/ASCM)" is [Present] and "Body_Types" is ([Type 1] or [Type 4]), return value is true.` —— **不含 `Type 7 (DT)`**（值表 `7 = Type 7 - DT`）。而 BedLowering 工作簿有 7 列明寫 `The vehicle is a DT configuration` | **新開**。三選項見 `features/bed_lowering/reports/bl_settings_dryrun.md` §B，**待 Pei 裁**。HMI Logic and Flow（SR24 1A）之車型適用範圍本層未查，不斷言 |
 | **A-VS168** | **VF230 之 457 列無一帶逐層導覽路徑** | 實測：365 列之 `Test procedure` 只有泛稱之 `Open the Vehicle Settings menu`，另 92 列連該句亦無；`Press "…"`／`Select "…"` 之逐層步驟 **0 列**。而 VS-SL-01 §4 之參考輸出要求 `Press "Settings" → Select "<Category>" → Select "<Parent>" → Check "<Item>"` | **新開**。本配方對 66 列可直接產出該路徑；其餘 391 列卡在別名（`DR-49`）或該項不在 Settings List。補入屬寫回動作，本包不執行 |
 
