@@ -4,6 +4,13 @@
 DR 之登記屬 Tier 1（執行層可自行 register）；草擬與送出決定屬 Pei。
 每包上繳附本表未結列。
 
+> **機讀狀態欄（格式已定，本檔尚未回填）** —— 格式見
+> `docs/fw036/templates/DATA_REQUESTS.md`：每一個 `## DR-<n>` 節之首行寫
+> `status: open|sent|closed（YYYY-MM-DD）`。**本包只加本段說明，不回填既有節**
+> （GC-09 §一-6／GC-12 §二-4）。未取號之草稿節不寫 `status:` ——
+> 未送出不佔號（`down/20260901_VS-SL-01_review.md` §2.2）。
+> 本檔現況：`## DR-` 節 5 個，具 `status:` 者 0 個。
+
 | DR | 項目 | 影響範圍 | 來源依據 | 狀態 | 送出日 | 結案日 |
 |---|---|---|---|---|---|---|
 | DR-1 | BLM operating speed threshold value（spec placeholder `*XX MPH`；owner: chassis engineering）| 7 條 PENDING 未寫回：B1 之 022-02/03/04、B2 之 007-03/04、B3 之 021-04/05。另各批 `provisional_inputs` 暫定車速待結案複驗 | SYS1 Outline 3.2.3 / 4.7.2 / 4.7.2.2 / 10.1.5（"Speed threshold to be defined by chassis engineering"）| **送出核准**（R-BLM15(4)）；**Pei 已送出 2026-08-27** | 2026-08-27 | |

@@ -4,6 +4,13 @@
 `inputs/` 之權威雜湊見 `inputs/INPUTS.sha256`（**32 檔**：CFTS044 16 ＋ VF230 13 ＋ VF230 補入 2 ＋ Part 1 遺漏補列 1，
 `shasum -a 256 -c` 全數 OK；61 包 W-102）。
 
+> **機讀狀態欄（格式已定，本檔尚未回填）** —— 格式見
+> `docs/fw036/templates/DATA_REQUESTS.md`：每一個 `## DR-<n>` 節之首行寫
+> `status: open|sent|closed（YYYY-MM-DD）`。**本包只加本段說明，不回填既有節**
+> （GC-09 §一-6／GC-12 §二-4）。未取號之草稿節不寫 `status:` ——
+> 未送出不佔號（`down/20260901_VS-SL-01_review.md` §2.2）。
+> 本檔現況：`## DR-` 節 39 個，具 `status:` 者 0 個。
+
 ## 已關閉
 
 | # | 項目 | 路徑 | SHA256 | 關閉依據 |

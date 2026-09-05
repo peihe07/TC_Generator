@@ -4,6 +4,13 @@ Files and answers Pei can supply that unblock or upgrade generation. Drop into
 `features/power_moding/inputs/`; each landing closes or advances the linked
 anomaly. Ordered by when a batch actually needs it.
 
+> **機讀狀態欄（格式已定，本檔尚未回填）** —— 格式見
+> `docs/fw036/templates/DATA_REQUESTS.md`：每一個 `## DR-<n>` 節之首行寫
+> `status: open|sent|closed（YYYY-MM-DD）`。**本包只加本段說明，不回填既有節**
+> （GC-09 §一-6／GC-12 §二-4）。未取號之草稿節不寫 `status:` ——
+> 未送出不佔號（`down/20260901_VS-SL-01_review.md` §2.2）。
+> 本檔現況：`## DR-` 節 8 個，具 `status:` 者 0 個。
+
 **Standing rule（沿用 AMFM／Privacy）**：任何新發現之外部引用，登記 anomaly
 的同時必須新增一列於此表；且每次 session opener 與 batch gate 都要按
 Urgency 回報。

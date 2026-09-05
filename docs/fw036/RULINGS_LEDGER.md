@@ -1868,6 +1868,14 @@ vehicle_setting profile 之 `[OVERRIDE §8.7.5]`（R-VS52／R-VS67）：內容�
     交付本為**候選**，逐本由 Pei 圈選；未圈選者不回修。`Y`（PROXI 舊式）為 WARN，
     **不單獨構成候選**，惟已因 X／P 入選者，其 Y 併入該本之轉換範圍。
     候選表由執行層出，落 `docs/reports/rg72_candidates_<YYYYMMDD>.tsv`。
+(g) **Revise 本分兩批（GC-11 審閱 §二-2 增，Pei 2026-09-05）**：
+    Revise-M（機械批）：只含 mechanical=Y 之轉換（send／recv／buserror／PROXI-old）。
+      Y=0 之本不出 Revise-M。本輪：pm_73 33 列、ics_management 14 列、vsm_v42 10 列
+      出 Revise-M；sw_update 不出；pm_29 不出 Revise-M —— 其 201 列併入 PM 站 ⑤
+      寫回（Revise2），不另發。
+    Revise-C（內容批）：X-nav 與 bare-$MSG.Sig$ 之解，逐 TC 查 HMI／CFTS／DBC 後出；
+      查無者 PENDING 登 DR。sw_update 之回修全在此批。
+    兩批各附 idmap；Revise-C 之 idmap 以 Revise-M 之 new_tc_id 為 old。
 
 > **「R-TM14」之名作廢（GC-10 §二-3，Pei 2026-09-05）**：GC-07 審閱 A 版曾以
 > `R-TM14` 稱本回修形態條。`R-TM` 為 `time_management` 線之條號系列前綴，

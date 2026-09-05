@@ -4,6 +4,13 @@ Files Pei can supply that unblock or upgrade generation. Drop into
 `features/vehicle_category/inputs/`; each landing closes or advances the linked
 DR。**DR 由 Pei 發出（Tier 3）；本檔僅登記，執行層不發送。**
 
+> **機讀狀態欄（格式已定，本檔尚未回填）** —— 格式見
+> `docs/fw036/templates/DATA_REQUESTS.md`：每一個 `## DR-<n>` 節之首行寫
+> `status: open|sent|closed（YYYY-MM-DD）`。**本包只加本段說明，不回填既有節**
+> （GC-09 §一-6／GC-12 §二-4）。未取號之草稿節不寫 `status:` ——
+> 未送出不佔號（`down/20260901_VS-SL-01_review.md` §2.2）。
+> 本檔現況：`## DR-` 節 10 個，具 `status:` 者 0 個。
+
 來源：下放包 01 §六（`docs/handoff/01_intake_recon.md`）。序號於 01 包編定。
 下放包 02 §四之裁定已併入：A-VC2 附於 DR-VC2，不單獨發。
 

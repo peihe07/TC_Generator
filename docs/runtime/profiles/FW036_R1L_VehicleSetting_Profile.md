@@ -183,7 +183,8 @@ canon §8.7.5 v3 之修訂（2026-08-21）晚於 SWC 0708 交付（2026-07-08）
 
 ```
 (1) 既有 PROXI 行 → 形制改寫 `PROXI <Param> = <raw> (<label>)`（R-VS86；無 `$`、無 `is set to`）
-    ⚠ **與 R-G70(e) 相衝，待 Pei 裁（GC-08）** —— 未裁前本式不改，見 RULINGS.md 之 R-VS86 旗標
+    ✅ **已解（2026-09-05，R-G70 v4.1）** —— v4.1 定 SWC 式為標準，與本式同向；
+    R-VS86 之理由書數字更正見 `features/vehicle_setting/RULINGS.md` 之 R-VS86 條下註
 (2) 总控表條件式 → 取值
 (3) 需求原文之 `$var$ = [label]`
 (4) 皆無 → PENDING: DR-{n}，不猜值（R-13）
