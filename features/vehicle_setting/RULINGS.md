@@ -1216,6 +1216,12 @@ R-VS51（架構對應之欄組，分析層裁定 2026-08-22；本輪唯一新條
 
 ### R-VS52 — 訊號書寫依 SWC 0708 交付本（54 包 §1，Pei 裁定 2026-08-22）
 
+> **【升為全域，由 R-G70 承接；本條之 override 資格作廢，2026-09-05】**
+> canon §8.7.5 已回歸 **v4**（`Send CAN:` 作者側記法），即本條所定之形式。
+> `FW036_R1L_VehicleSetting_Profile.md` 之 `[OVERRIDE §8.7.5]` 段隨之作廢併入本體
+> （R-G70／GC-08）。**原文保留不刪（R-TM13）**；現行判準讀 canon §8.7.5 v4。
+> R-VS67 之訊號取名（LID `Atlantis High` 欄組）**不受影響** —— 其管取名，非記法。
+
 ```
 R-VS52（Pei 2026-08-22）
 本 feature 之訊號書寫形式，**依 SWC 0708 交付本**
@@ -7403,6 +7409,28 @@ R-VS85  `Always false` 之設定項不出負向
 明細見 `reports/vf230_settings_dryrun.md` §C。
 
 ### R-VS86 —— PROXI 一律 `PROXI <Param> = <raw> (<label>)`（VS-SL-01 §1）
+
+> ⚠ **【與 R-G70(e) 正面相衝，待裁 —— 執行層未自行取捨，2026-09-05／GC-08】**
+> R-G70(e)（GC-07 審閱 §三）定 PROXI 為 **`PROXI $<Param>$ is set to "<值>"`**，
+> 並明指 SWC 之無 `$` 式為「同義舊式，新產出不用」——
+> **與本條方向相反**，且本條所欲改寫之標的正是 R-G70(e) 所定之式。
+>
+> **執行層實測（三項，供裁決用）**：
+>
+> 1. **本條已執行**：`features/vehicle_setting/output/…VF230_20260902.xlsx` 全分頁全欄
+>    實測 `PROXI <Param> …` **445 行**、`PROXI $…$` **0 行**、含 `is set to` **0 行**。
+>    採 R-G70(e) 者，須將該 445 行反轉回 `$…$ is set to` 式。
+> 2. **本條所引之語料標籤有誤**：「CFTS044 交付本（78 處）」實為
+>    036 交付本 **15**（`ebe5a65f30a0`，全分頁全欄；作者側四欄僅 **2** 行且皆為散文
+>    `Confirm if Heated_Steering_Wheel == "Present" in PROXI`／`Correct PROXI must be flashed`，
+>    **無一為賦值**）＋ **原始 docx 63**（`R1LR_Atl-H_25PI3.5_…CFTS_044_…docx`），15＋63＝78。
+> 3. **且其 63 處為來源側記法**：docx 之形態為
+>    `PROXI parameter Rear_Sun_Shade = [1h:Present]` —— 規格原文，非作者所書之步驟。
+>    **以來源側語料立作者側格式，即 R-G70(b) 所欲防止之形態**（v3 之成因同型）。
+>
+> **本條與 R-G70(e) 之取捨、以及 445 行是否反轉，屬 Pei。**
+> 未裁前：`settings_lookup.format_proxi()` **不改**、445 行**不動**、
+> R-G70(e) 對本 feature **不施行**；新 feature 依 R-G70(e)。
 
 ```text
 R-VS86  PROXI 一律 `PROXI <Param> = <raw> (<label>)`

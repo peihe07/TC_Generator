@@ -43,9 +43,14 @@ Screen OFF、Third Row Headrest Dump、PHEV Features、Features Enable Criteria
 
 **來源**：35 包 §2；關閉 A-VS61。
 
-## [ADD] 訊號書寫依 canon §8.7.5 v3
+## ~~[ADD] 訊號書寫依 canon §8.7.5 v3~~ —— **v3 已撤銷，改依 v4**
 
-`$<MESSAGE>.<Signal>$`，值採 `= <raw> (<label>)`；
+> ⚠ **2026-09-05／R-G70**：canon §8.7.5 v3 已撤銷，改 **v4**（`Send CAN:` 作者側記法，
+> 訊號名**不加 `$`**）。本段首句之 `$<MESSAGE>.<Signal>$` 形式**作廢**；
+> 其下之取名規則（DBC 拼寫、LID message／網段對映、`$var$` 不入四欄）**不變**。
+> 原文依 R-TM13 保留不刪。
+
+~~`$<MESSAGE>.<Signal>$`~~，值採 `= <raw> (<label>)`；
 `<raw>` 取 DBC 數值、`<label>` 取 DBC `VAL_` 逐字。
 
 signal 之**拼寫**取 DBC（R-VS9(1)′）；
@@ -95,12 +100,21 @@ signal 之**拼寫**取 DBC（R-VS9(1)′）；
 
 **來源**：R-VS5（承 canon §4.5 之 SWC 基準）。
 
-## [OVERRIDE §8.7.5] 訊號書寫依 SWC 0708 交付本（R-VS52）
+## ~~[OVERRIDE §8.7.5]~~ 訊號書寫依 SWC 0708 交付本（R-VS52）—— **已作廢，併入本體**
 
-> **cite**：R-VS52（Pei 2026-08-22，54 包 §1）。
+> ⚠ **作廢（2026-09-05，R-G70／GC-08）**：canon §8.7.5 已回歸 v4，其 (c)(d) 即本段之
+> (1)，**升為全域預設**。本段不再取得 override 資格 —— **沒有可 override 的差異了**。
+> 本段依 R-TM13 保留不刪，作為沿革；**現行判準一律讀 canon §8.7.5 v4**。
+>
+> **一處差異須知**：本段 (1) 之 PROXI 未著墨，而 **R-G70(e) 定 PROXI 為
+> `PROXI $<Param>$ is set to "<值>"`（VF230 152 列式）**，即本 feature 交付本之現行寫法。
+> 本 feature 之新產出依 v4，與本段無衝突。
+
+> **cite（原）**：R-VS52（Pei 2026-08-22，54 包 §1）。
 > 依 canon §0「a feature profile's cited override wins over the generic rule here」，
-> 本段取得 R-VS41(4)（canon 優先）之例外資格。
-> **取代 canon §8.7.5 v3 之 `$<MESSAGE>.<Signal>$ = <raw> (<label>)` 形式。**
+> 本段原取得 R-VS41(4)（canon 優先）之例外資格。
+> 原**取代 canon §8.7.5 v3 之 `$<MESSAGE>.<Signal>$ = <raw> (<label>)` 形式**；
+> v3 已於 R-G70 撤銷。
 
 ```
 (1) 送出型步驟
@@ -169,6 +183,7 @@ canon §8.7.5 v3 之修訂（2026-08-21）晚於 SWC 0708 交付（2026-07-08）
 
 ```
 (1) 既有 PROXI 行 → 形制改寫 `PROXI <Param> = <raw> (<label>)`（R-VS86；無 `$`、無 `is set to`）
+    ⚠ **與 R-G70(e) 相衝，待 Pei 裁（GC-08）** —— 未裁前本式不改，見 RULINGS.md 之 R-VS86 旗標
 (2) 总控表條件式 → 取值
 (3) 需求原文之 `$var$ = [label]`
 (4) 皆無 → PENDING: DR-{n}，不猜值（R-13）
