@@ -1,0 +1,269 @@
+========================================================================
+ROW 10  NR1L-VehicleSetting-001
+  [AH]
+    - ∅
+    + 'dr_dependent = DR-19（R-VS102(3)）：$EngRun_Stat$ 以 EngineSts 對照，覆後複檢'
+========================================================================
+ROW 11  NR1L-VehicleSetting-002
+  [AH]
+    - ∅
+    + 'dr_dependent = DR-19（R-VS102(3)）：$EngRun_Stat$ 以 EngineSts 對照，覆後複檢'
+========================================================================
+ROW 12  NR1L-VehicleSetting-003
+  [AH]
+    - ∅
+    + 'dr_dependent = DR-19（R-VS102(3)）：$EngRun_Stat$ 以 EngineSts 對照，覆後複檢'
+========================================================================
+ROW 13  NR1L-VehicleSetting-004
+  [AH]
+    - ∅
+    + 'dr_dependent = DR-19（R-VS102(3)）：$EngRun_Stat$ 以 EngineSts 對照，覆後複檢'
+========================================================================
+ROW 14  NR1L-VehicleSetting-005
+  [L]
+    - '1. Send CAN: STATUS_CCAN3.ESS_ENG_ST = 3 (ENS Running)\n2. Activate all heat and vent switches on the Climate screen\n3. PENDING: DR-19 EngRun_Stat 之規格值 IDLE_STBL / UNLIMITED / LIMITED / RUN 於 LID 與 DBC 皆無對應，無法決定滿足不等條件之匯流排值\n4. Send CAN: STATUS_CCAN3.ESS_ENG_ST = 1 (ENS Stopped) and check that all heat and vent switches remain active and selectable'
+    + '1. Send CAN: STATUS_CCAN3.ESS_ENG_ST = 3 (ENS Running)\n2. Activate all heat and vent switches on the Climate screen\n3. Send CAN: STATUS_CCAN3.EngineSts = 0 (Engine_Off)\n4. Send CAN: STATUS_CCAN3.ESS_ENG_ST = 1 (ENS Stopped) and check that all heat and vent switches remain active and selectable'
+  [M]
+    - '1. STATUS_CCAN3.ESS_ENG_ST = 3 (ENS Running) is sent\n2. All heat and vent switches are lit\n3. PENDING: DR-19\n4. All heat and vent switches remain lit and respond to selection'
+    + '1. STATUS_CCAN3.ESS_ENG_ST = 3 (ENS Running) is sent\n2. All heat and vent switches are lit\n3. STATUS_CCAN3.EngineSts = 0 (Engine_Off) is sent\n4. All heat and vent switches remain lit and respond to selection'
+  [AH]
+    - ∅
+    + 'dr_dependent = DR-19（R-VS102(3)）：$EngRun_Stat$ 非運轉態以 EngineSts = 0 對照，覆後複檢'
+========================================================================
+ROW 15  NR1L-VehicleSetting-006
+  [L]
+    - '1. Send CAN: STATUS_CCAN3.ESS_ENG_ST = 3 (ENS Running)\n2. PENDING: DR-19 EngRun_Stat 之規格值 IDLE_STBL / UNLIMITED / LIMITED / RUN 於 LID 與 DBC 皆無對應，無法決定滿足不等條件之匯流排值\n3. Send CAN: STATUS_CCAN3.ESS_ENG_ST = 7 (ENS disabled) and check that all heat and vent switches are greyed out'
+    + '1. Send CAN: STATUS_CCAN3.ESS_ENG_ST = 3 (ENS Running)\n2. Send CAN: STATUS_CCAN3.EngineSts = 0 (Engine_Off)\n3. Send CAN: STATUS_CCAN3.ESS_ENG_ST = 7 (ENS disabled) and check that all heat and vent switches are greyed out'
+  [M]
+    - '1. STATUS_CCAN3.ESS_ENG_ST = 3 (ENS Running) is sent\n2. PENDING: DR-19\n3. All heat and vent switches are greyed out'
+    + '1. STATUS_CCAN3.ESS_ENG_ST = 3 (ENS Running) is sent\n2. STATUS_CCAN3.EngineSts = 0 (Engine_Off) is sent\n3. All heat and vent switches are greyed out'
+  [AH]
+    - ∅
+    + 'dr_dependent = DR-19（R-VS102(3)）：$EngRun_Stat$ 非運轉態以 EngineSts = 0 對照，覆後複檢'
+========================================================================
+ROW 16  NR1L-VehicleSetting-007
+  [AH]
+    - 'BLOCKED: DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19'
+    + 'dr_dependent = DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19'
+========================================================================
+ROW 25  NR1L-VehicleSetting-016
+  [M]
+    - '1. PROXI VC_HdRstPrsnt = 0 (Absent) is accepted；Button_absent is recorded\n2. PENDING: DR-22\n3. The "Third Row Headrest Dump" button is displayed'
+    + '1. PROXI VC_HdRstPrsnt = 0 (Absent) is accepted;Button_absent is recorded\n2. PROXI VC_HdRstPrsnt = 1 (Present) is accepted\n3. The "Third Row Headrest Dump" button is displayed'
+  [AH]
+    - 'BLOCKED: DR-22 —— `VC_HdRstPrsnt` 之值域待覆'
+    + 'alias（R-13／R-VS102(5)）：VC_HdRstPrsnt ≡ Headrest_Dump_Present（PROXI_HDCC27_R3 Format 列 780，0 Absent／1 Present；HDCC27 標 Not Used）'
+========================================================================
+ROW 26  NR1L-VehicleSetting-017
+  [M]
+    - '1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. PENDING: DR-21\n3. The "Headrest Dump" softkey button is greyed out'
+    + '1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. STATUS_BH_BCM2.CmdIgnSts = 5 (START) is sent\n3. The "Headrest Dump" softkey button is greyed out'
+  [AH]
+    - 'BLOCKED: DR-21 —— `$PowerMode$` 之 `IGN_START`／`IGN_OFF_ACC` 待覆'
+    + 'dr_dependent = DR-21（R-VS102(4)）：IGN_START 對照 5 (START)，覆後複檢'
+========================================================================
+ROW 28  NR1L-VehicleSetting-019
+  [L]
+    - '1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK)\n3. Read the "Headrest Dump" softkey button and check that it is selectable'
+    + '1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. PENDING: DR-21 IGN_OFF_ACC bus value\n3. Read the "Headrest Dump" softkey button and check that it is selectable'
+  [AH]
+    - 'BLOCKED: DR-21 —— `$PowerMode$` 之 `IGN_START`／`IGN_OFF_ACC` 待覆'
+    + 'BLOCKED: DR-21 —— IGN_OFF_ACC 於 DBC 無對應；DR-21 逐實例條文尚未送出（台帳）'
+========================================================================
+ROW 44  NR1L-VehicleSetting-035
+  [M]
+    - '1. PROXI DSP_SK_PRSNT = 0 (Absent) is accepted；Button_absent is recorded\n2. PENDING: DR-22\n3. The "Screen Off" button is activated for user selection'
+    + '1. PROXI DSP_SK_PRSNT = 0 (Absent) is accepted;Button_absent is recorded\n2. PROXI DSP_SK_PRSNT = 1 (Present) is accepted\n3. The "Screen Off" button is activated for user selection'
+  [AH]
+    - 'BLOCKED: DR-22 —— `DSP_SK_PRSNT` 之值域待覆'
+    + 'alias（R-13／R-VS102(5)）：DSP_SK_PRSNT ≡ Display_OFF_SoftKey（Format 列 692，0 Absent／1 Present；HDCC27 為 Set to 0）'
+========================================================================
+ROW 62  NR1L-VehicleSetting-053
+  [J]
+    - '1. The vehicle is equipped with the heated seat\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator'
+    + '1. The vehicle is equipped with the heated seat\n2. The Heated / Vented Seats screen is displayed'
+  [L]
+    - '1. Send CAN: STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off) and record the displayed state as Display_valid\n2. PENDING: DR-18\n3. Read the displayed state of the heated seat and check that it is unchanged from Display_valid'
+    + '1. PROXI Heated_Seat_Levels = 2 (3 Levels)\n2. Power cycle the HU and record the number of heated seat levels shown as Levels_valid\n3. PROXI Heated_Seat_Levels = 3\n4. Power cycle the HU and check that the number of heated seat levels shown is unchanged from Levels_valid'
+  [M]
+    - '1. STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off) is sent；Display_valid is recorded\n2. PENDING: DR-18\n3. The heated seat display is unchanged from Display_valid'
+    + '1. PROXI Heated_Seat_Levels = 2 (3 Levels) is accepted\n2. Levels_valid is recorded\n3. PROXI Heated_Seat_Levels = 3 is accepted\n4. The number of heated seat levels shown is unchanged from Levels_valid'
+  [AH]
+    - 'BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆'
+    + 'R-VS102(1)：PROXI Heated_Seat_Levels raw 3 未定義（Format 列 760）；ER 依 invalid-ignored 範式；上游若覆無效 PROXI 之行為另有規定則複檢'
+========================================================================
+ROW 63  NR1L-VehicleSetting-054
+  [L]
+    - '1. Send CAN: STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off) and record the displayed state as Display_valid\n2. PENDING: DR-18\n3. Read the displayed state of the heated seat and check that it is unchanged from Display_valid'
+    + '1. Send CAN: STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off) and record the displayed state as Display_valid\n2. Send CAN: STATUS_CSWM.FL_HS_STATSts = 2 (Heated_seat_medium)\n3. Read the displayed state of the heated seat and check that it is unchanged from Display_valid'
+  [M]
+    - '1. STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off) is sent；Display_valid is recorded\n2. PENDING: DR-18\n3. The heated seat display is unchanged from Display_valid'
+    + '1. STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off) is sent;Display_valid is recorded\n2. STATUS_CSWM.FL_HS_STATSts = 2 (Heated_seat_medium) is sent\n3. The heated seat display is unchanged from Display_valid'
+  [AH]
+    - 'BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆'
+    + 'R-VS102(1): two-state vehicle (Off/Low/High); raw 2 lies outside the declared valid set'
+========================================================================
+ROW 64  NR1L-VehicleSetting-055
+  [I]
+    - 'For vehicles with three states (i.e. LO, MEDIUM, and HI), the HU shall implement the following requirements:Valid values for the $HeatedSeatFL$ are shown below. All other states shall be considered invalid by the HU. $HeatedSeatFL$ = [Heated Seat Off / HS_OFF] $HeatedSeatFL$ = [Heated Seat Low / HS_LO] $HeatedSeatFL$ = [Heated Seat Medium / HS_MED] $HeatedSeatFL$ = [Heated Seat High / HS_HI]\n\n(Value outside the declared valid set)'
+    + ∅
+  [J]
+    - '1. The vehicle is equipped with the heated seat\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator'
+    + ∅
+  [K]
+    - 'NA'
+    + ∅
+  [L]
+    - '1. Send CAN: STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off) and record the displayed state as Display_valid\n2. PENDING: DR-18\n3. Read the displayed state of the heated seat and check that it is unchanged from Display_valid'
+    + ∅
+  [M]
+    - '1. STATUS_CSWM.FL_HS_STATSts = 0 (Heated_seat_off) is sent；Display_valid is recorded\n2. PENDING: DR-18\n3. The heated seat display is unchanged from Display_valid'
+    + ∅
+  [P]
+    - 'P1'
+    + ∅
+  [R]
+    - '負向測試 (Negative / Invalid)'
+    + ∅
+  [AH]
+    - 'BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆'
+    + 'NOT GENERATED: B7-no-invalid-raw —— STATUS_CSWM.FL_HS_STATSts 為 2 bit，raw 全數已定義且皆在宣告有效集內，匯流排上無可送之無效值；R-VS102(2)；DR 草稿見 DATA_REQUESTS.md（未取號）'
+========================================================================
+ROW 68  NR1L-VehicleSetting-059
+  [AH]
+    - 'BLOCKED: DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19'
+    + 'dr_dependent = DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19'
+========================================================================
+ROW 79  NR1L-VehicleSetting-070
+  [L]
+    - '1. Send CAN: STATUS_CSWM.FR_HS_STATSts = 0 (Heated_seat_off) and record the displayed state as Display_valid\n2. PENDING: DR-18\n3. Read the displayed state of the heated seat and check that it is unchanged from Display_valid'
+    + '1. Send CAN: STATUS_CSWM.FR_HS_STATSts = 0 (Heated_seat_off) and record the displayed state as Display_valid\n2. Send CAN: STATUS_CSWM.FR_HS_STATSts = 2 (Heated_seat_medium)\n3. Read the displayed state of the heated seat and check that it is unchanged from Display_valid'
+  [M]
+    - '1. STATUS_CSWM.FR_HS_STATSts = 0 (Heated_seat_off) is sent；Display_valid is recorded\n2. PENDING: DR-18\n3. The heated seat display is unchanged from Display_valid'
+    + '1. STATUS_CSWM.FR_HS_STATSts = 0 (Heated_seat_off) is sent;Display_valid is recorded\n2. STATUS_CSWM.FR_HS_STATSts = 2 (Heated_seat_medium) is sent\n3. The heated seat display is unchanged from Display_valid'
+  [AH]
+    - 'BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆'
+    + 'R-VS102(1): two-state vehicle (Off/Low/High); raw 2 lies outside the declared valid set'
+========================================================================
+ROW 80  NR1L-VehicleSetting-071
+  [I]
+    - 'For vehicles with three states (i.e. LO, MEDIUM, and HI), the HU shall implement the following requirements:Valid values for the $HeatedSeatFR$ are shown below. All other states shall be considered invalid by the HU. $HeatedSeatFR$ = [Heated Seat Off / HS_OFF] $HeatedSeatFR$ = [Heated Seat Low / HS_LO] $HeatedSeatFR$ = [Heated Seat Medium / HS_MED] $HeatedSeatFR$ = [Heated Seat High / HS_HI]\n\n(Value outside the declared valid set)'
+    + ∅
+  [J]
+    - '1. The vehicle is equipped with the heated seat\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator'
+    + ∅
+  [K]
+    - 'NA'
+    + ∅
+  [L]
+    - '1. Send CAN: STATUS_CSWM.FR_HS_STATSts = 0 (Heated_seat_off) and record the displayed state as Display_valid\n2. PENDING: DR-18\n3. Read the displayed state of the heated seat and check that it is unchanged from Display_valid'
+    + ∅
+  [M]
+    - '1. STATUS_CSWM.FR_HS_STATSts = 0 (Heated_seat_off) is sent；Display_valid is recorded\n2. PENDING: DR-18\n3. The heated seat display is unchanged from Display_valid'
+    + ∅
+  [P]
+    - 'P1'
+    + ∅
+  [R]
+    - '負向測試 (Negative / Invalid)'
+    + ∅
+  [AH]
+    - 'BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆'
+    + 'NOT GENERATED: B7-no-invalid-raw —— STATUS_CSWM.FR_HS_STATSts 為 2 bit，raw 全數已定義且皆在宣告有效集內，匯流排上無可送之無效值；R-VS102(2)；DR 草稿見 DATA_REQUESTS.md（未取號）'
+========================================================================
+ROW 84  NR1L-VehicleSetting-075
+  [AH]
+    - 'BLOCKED: DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19'
+    + 'dr_dependent = DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19'
+========================================================================
+ROW 151  NR1L-VehicleSetting-142
+  [I]
+    - 'For vehicles with three states for vehicles with two states (i.e. LO, MED, and HI), the HU shall implement the following requirements:Valid values for the $VentedSeatFL$ are shown below. All other states shall be considered invalid by the HU. $VentedSeatFL$ = [Vented Seat Off / VS_OFF] $VentedSeatFL$ = [Vented Seat Low / VS_LO] $VentedSeatFL$ = [Vented Seat Medium / VS_MED] $VentedSeatFL$ = [Vented Seat High / VS_HI]\n\n(Value outside the declared valid set)'
+    + ∅
+  [J]
+    - '1. The vehicle is equipped with the vented seat\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator'
+    + ∅
+  [K]
+    - 'NA'
+    + ∅
+  [L]
+    - '1. Send CAN: STATUS_CSWM.FL_VS_STATSts = 0 (Vented_seat_off) and record the displayed state as Display_valid\n2. PENDING: DR-18\n3. Read the displayed state of the vented seat and check that it is unchanged from Display_valid'
+    + ∅
+  [M]
+    - '1. STATUS_CSWM.FL_VS_STATSts = 0 (Vented_seat_off) is sent；Display_valid is recorded\n2. PENDING: DR-18\n3. The vented seat display is unchanged from Display_valid'
+    + ∅
+  [P]
+    - 'P1'
+    + ∅
+  [R]
+    - '負向測試 (Negative / Invalid)'
+    + ∅
+  [AH]
+    - 'BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆'
+    + 'NOT GENERATED: B7-no-invalid-raw —— STATUS_CSWM.FL_VS_STATSts 為 2 bit，raw 全數已定義且皆在宣告有效集內，匯流排上無可送之無效值；R-VS102(2)；DR 草稿見 DATA_REQUESTS.md（未取號）'
+========================================================================
+ROW 155  NR1L-VehicleSetting-146
+  [AH]
+    - 'BLOCKED: DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19'
+    + 'dr_dependent = DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19'
+========================================================================
+ROW 166  NR1L-VehicleSetting-157
+  [I]
+    - 'For vehicles with three states (i.e. LO, MEDIUM, and HI), the HU shall implement the following requirements:Valid values for the $VentedSeatFR$ are shown below. All other states shall be considered invalid by the HU. $VentedSeatFR$ = [Vented Seat Off / VS_OFF] $VentedSeatFR$ = [Vented Seat Low / VS_Lo] $VentedSeatFR$ = [Vented Seat Medium / VS_MED] $VentedSeatFR$ = [Vented Seat High / VS_HI]\n\n(Value outside the declared valid set)'
+    + ∅
+  [J]
+    - '1. The vehicle is equipped with the vented seat\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator'
+    + ∅
+  [K]
+    - 'NA'
+    + ∅
+  [L]
+    - '1. Send CAN: STATUS_CSWM.FR_VS_STATSts = 0 (Vented_seat_off) and record the displayed state as Display_valid\n2. PENDING: DR-18\n3. Read the displayed state of the vented seat and check that it is unchanged from Display_valid'
+    + ∅
+  [M]
+    - '1. STATUS_CSWM.FR_VS_STATSts = 0 (Vented_seat_off) is sent；Display_valid is recorded\n2. PENDING: DR-18\n3. The vented seat display is unchanged from Display_valid'
+    + ∅
+  [P]
+    - 'P1'
+    + ∅
+  [R]
+    - '負向測試 (Negative / Invalid)'
+    + ∅
+  [AH]
+    - 'BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆'
+    + 'NOT GENERATED: B7-no-invalid-raw —— STATUS_CSWM.FR_VS_STATSts 為 2 bit，raw 全數已定義且皆在宣告有效集內，匯流排上無可送之無效值；R-VS102(2)；DR 草稿見 DATA_REQUESTS.md（未取號）'
+========================================================================
+ROW 170  NR1L-VehicleSetting-161
+  [AH]
+    - 'BLOCKED: DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19'
+    + 'dr_dependent = DR-19 —— 條文之條件為 `$EngRun_Stat$` 之四值（`IDLE_STBL`／`UNLIMITED`／`LIMITED`／`RUN`），其與所送 `STATUS_CCAN3.EngineSts` 之對應待 DR-19'
+========================================================================
+ROW 225  NR1L-VehicleSetting-216
+  [I]
+    - 'For vehicles with dual states (i.e. OFF and HI) when $Heated_Steering_Levels$ = [1_Level], the HU shall implement the following requirements:Valid values for the $HSW_Stat$ are shown below. All other states shall be considered invalid by the HU. $HSW_StatS = [Heated steering wheel off / OFF] $HSW_StatS = [Heated steering wheel on / ON]\n\n(Value outside the declared valid set)'
+    + ∅
+  [J]
+    - '1. The vehicle is equipped with the heated steering wheel\n2. The Heated / Vented Seats screen is displayed\n3. CAN-B is connected to the bus simulator'
+    + ∅
+  [K]
+    - 'NA'
+    + ∅
+  [L]
+    - '1. Send CAN: STATUS_CSWM.HSW_STATSts = 0 (OFF) and record the displayed state as Display_valid\n2. PENDING: DR-18\n3. Read the displayed state of the heated steering wheel and check that it is unchanged from Display_valid'
+    + ∅
+  [M]
+    - '1. STATUS_CSWM.HSW_STATSts = 0 (OFF) is sent；Display_valid is recorded\n2. PENDING: DR-18\n3. The heated steering wheel display is unchanged from Display_valid'
+    + ∅
+  [P]
+    - 'P1'
+    + ∅
+  [R]
+    - '負向測試 (Negative / Invalid)'
+    + ∅
+  [AH]
+    - 'BLOCKED: DR-18 —— 該訊號 0–3 皆已定義，無效碼之定義待覆'
+    + 'NOT GENERATED: B7-no-invalid-raw —— STATUS_CSWM.HSW_StatSts 為 1 bit，raw 全數已定義且皆在宣告有效集內，匯流排上無可送之無效值；R-VS102(2)；DR 草稿見 DATA_REQUESTS.md（未取號）'
+========================================================================
+改動儲存格總數：73
+母本列數 252／Revise1 列數 252（須相等）
+gate：L／M 步數相等、PENDING = 12 —— 全過

@@ -48,6 +48,7 @@ $Stop_And_Start_cfg$	Atlantis(&High)	Car_Configuration_1	Stop_And_Start	CAN-B			
 $TGW_DISP_STAT$	Atlantis High	TELEMATIC_DISPLAY2	TGW_DISP_STATSts	CAN-B CAN-FD	PDT27_E2A_R4_BHCAN.dbc	TELEMATIC_DISPLAY2	1500	0	4	1	0	VAL_DIFF	值表差異：僅LID ['diplay closed']｜僅DBC ['display closed']
 $TGW_DISP_STAT$	Atlantis High	TELEMATIC_FD_4	TGW_DISP_STATSts	CAN-B CAN-FD	PDT27_E2A_R5_FDCAN8.dbc	TELEMATIC_FD_4	1427	79	4	1	0	VAL_DIFF	值表差異：僅LID ['diplay closed']｜僅DBC ['display closed']
 $TGW_DISP_STAT$	Atlantis(&High)	TELEMATIC_DISPLAY2	TGW_DISP_STATSts		PDT27_E2A_R4_BHCAN.dbc	TELEMATIC_DISPLAY2	1500	0	4	1	0	VAL_DIFF	值表差異：僅LID ['diplay closed']｜僅DBC ['display closed']
+VC_HdRstPrsnt	Atlantis(&High)		Headrest_Dump_Present	PROXI								NOT_IN_DBC	R-VS102(5)／R-13 別名認定（VS-CF-01，2026-09-07）：PROXI_HDCC27_R3_20250424.xlsx 分頁 Format 列 780，0 = Absent／1 = Present，該表 Coding 標 Not Used；LID 側同見 data/lid_pairs.tsv:2684。token 逐字如條文（無 $ 界定符）
 $VC_VEH_LINE$	Atlantis(&High)	Car_Configuration_15	Vehicle_Line_Configuration	None: Proxi								NOT_IN_DBC	LID 之 signal 名於兩份 DBC 皆不存在
 $VentedSeatFL$	Atlantis High	STATUS_CSWM	FL_VS_STATFailSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	9	1	1	0	VAL_DIFF	值表差異：僅LID ['fail present statsts', 'vented seat high', 'vented seat low']｜僅DBC ['fail present']
 $VentedSeatFL$	Atlantis High	STATUS_CSWM	FL_VS_STATSts	CAN-B	PDT27_E2A_R4_BHCAN.dbc	STATUS_CSWM	1169	4	2	1	0	VAL_DIFF	值表差異：僅LID ['fail not present', 'fail present statsts']｜僅DBC []

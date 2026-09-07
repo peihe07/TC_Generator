@@ -7646,3 +7646,43 @@ R-VS95   newR1L- 前綴正名為 NR1L-
 3. DR **未取號** —— 依 `down/20260901_VS-SL-01_review.md` §2.2「未送出前不佔號」，
    本包只登記草稿於 `DATA_REQUESTS.md`，號待 Pei 送出時自台帳取。
    下放包所寫之 `DR-VS{n}` 因而保持 `{n}` 未填。
+
+### R-VS102 —— CFTS044「宣告有效集之外」型 TC 之處置
+
+來源：`docs/fw036/handoff/down/20260907_VS-CF-01.md` §一（分析層擬，Pei「是準」2026-09-07）。
+取號依 R-G62（取號一律 live）：落檔前重查本檔實測最大號為 `R-VS101`，故本條取 `R-VS102`。
+
+```text
+R-VS102   CFTS044 「宣告有效集之外」型 TC 之處置（Pei 准，2026-09-07）
+(1) 訊號之 DBC 值域含宣告有效集之外之已定義 raw 者，以該 raw 為無效值，
+    ER 依既有「invalid value is ignored」範式（顯示不變）。
+    兩態座椅（Off/Low/High）對 2 bit *_HS_STATSts：無效 raw = 2 (Heated_seat_medium)。
+(2) 訊號之 DBC 值域全數落在宣告有效集之內者（2 bit 全定義、1 bit 全定義），
+    匯流排上不存在可送之無效 raw —— 不生成並具名 `NOT GENERATED: B7-no-invalid-raw`，
+    向上游開型 A 確認型 DR（草稿見 DATA_REQUESTS.md 末，未取號）。上游覆文不能變出第五值，故不掛 PENDING。
+(3) `$EngRun_Stat$` 非運轉態（<> [IDLE_STBL//UNLIMITED//LIMITED//RUN]）
+    以 `STATUS_CCAN3.EngineSts = 0 (Engine_Off)` 對照，運轉態以 `= 2 (Engine_On)`，
+    與 row 10–13 既有寫法一致；全部標 `dr_dependent = DR-19`，覆後複檢。
+(4) `$PowerMode$ = [IGN_START]` 對照 `STATUS_BH_BCM2.CmdIgnSts = 5 (START)`
+    （同 `[Ignition run] → 4 (RUN)` 之既有前例）；標 `dr_dependent = DR-21`。
+    `[IGN_OFF_ACC]` 無 DBC 對應，維持 PENDING，不得以 `1 (IGN_LK)` 代位。
+(5) 別名認定（R-13）：`VC_HdRstPrsnt` ≡ PROXI `Headrest_Dump_Present`（Format 列 780）；
+    `DSP_SK_PRSNT` ≡ PROXI `Display_OFF_SoftKey`（Format 列 692）。二者值域 0 = Absent／1 = Present。
+    ⚠ 二者於 HDCC27 該表標 Not Used／Set to 0；R1L 之適用性於 Remarks 具名，不阻塞。
+(6) 工作簿掛 `BLOCKED: DR-18 —— 無效碼之定義待覆` 之 8 列為錯號：台帳 DR-18 之內容為前綴筆誤／
+    大小寫確認，全庫無任何 DR 在問無效碼。該 8 列依 (1)(2) 改標，不再引 DR-18。
+```
+
+**執行層註（VS-CF-01，2026-09-07）**：
+
+1. 施作對象為 `sandbox/cfts044/cfts044_20260819_Revise1.xlsx`（母本不改，R-G72）；
+   母本 sha16 `f39c03bd9cb0f1b3`。改動 **73 個儲存格、23 列**，列數 252 不變。
+2. (1) 之「兩態」判準取自條文本身（row 63／79 之 Test Item 逐字為
+   *For vehicles with two states*），非取自訊號寬度 —— 同一訊號在三態條文（row 64／80）
+   下即落入 (2)。
+3. (5) 之別名於本線資料表**早已有據**：`$DSP_SK_PRSNT$` → `Display_OFF_SoftKey`
+   見 `data/can_signal_map.tsv` 第 3 列；`VC_HdRstPrsnt` → `Headrest_Dump_Present`
+   見 `data/lid_pairs.tsv` 第 2684 列（LID 側）。本包只將後者補入 `can_signal_map.tsv`，
+   **不新建表**。
+4. (6) 之 8 列已逐一複驗：全庫掛 `BLOCKED: DR-18` 者共 20 列，其中 12 列為
+   `_mid` 對映未解（row 131/132/135/136/141/145/203/204/207/208/213/217），**與本條無涉、不動**。

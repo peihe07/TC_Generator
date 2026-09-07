@@ -334,6 +334,14 @@ CFTS044 之座椅相關值域中，發現四類書寫問題，請確認其為筆
 
 **狀態：未送出** —— 37 包送件文第 6 項，**Pei 本次僅送 1–5**，本項維持待送。配對 anomaly：A-VS49／A-VS51／A-VS52／A-VS53。
 
+> **錯號更正（2026-09-07，VS-CF-01）**：CFTS044 工作簿 8 列（row 62／63／64／79／80／151／166／225）
+> 以 `BLOCKED: DR-18 —— 無效碼之定義待覆` 掛本 DR，惟本 DR 從未詢問無效碼。
+> 該 8 列已依 R-VS102(1)(2) 改標，不再引本 DR。本 DR 之內容與狀態不變。
+>
+> 執行層註：全庫掛 `BLOCKED: DR-18` 者共 20 列，餘 12 列
+> （row 131／132／135／136／141／145／203／204／207／208／213／217）為
+> `_mid` 對映未解，屬本 DR 之正當引用，**不動**。
+
 ## DR-19（**併入 DR-21**，R-VS42；原編號保留 —— R-TM13。已於 2026-08-22 送出，待覆）
 
 > **40 輪 D-3（依 R-VS61，63 包 §3）**：**性質由阻塞轉確認，不阻塞。**
@@ -1927,3 +1935,31 @@ DR 未結前該二列須標 `PENDING: DR-{n}`（IN §8.4.3）；**寫回動作�
 `PENDING: DR-{n} HMI entry path <target>` 佔位（R-G71(d)），**不臆造 hop**（§8.4.1）。
 現有交付本不回修（R-TM13）；VF230 之 365 列 `Open the Vehicle Settings menu`
 由 lint 檢查 X 報 WARN，本包**只報不改**。
+
+## DR 草稿 —— 「All other states shall be considered invalid」於全定義訊號上無可送之無效值
+
+**未取號**（未送出前不佔號）。型 A — 規格缺陷（確認型，不阻塞）。成對：R-VS102(2)。
+來源：`docs/fw036/handoff/down/20260907_VS-CF-01.md` §四。
+
+CFTS044 之下列條文以「Valid values … All other states shall be considered invalid by the HU」
+定義有效集，惟其對應訊號於基線 DBC（`forms/PDT27_E2A_R1_BHCAN2.dbc`，sha16 `46cb73f3db62ac9f`；
+與 `inputs/PDT27_E2A_R4_BHCAN.dbc` 之 bit 寬與 `VAL_` 逐字相同）之 raw 全數已定義且皆在有效集內：
+
+| ObjectID | 條文（leaf） | 訊號 | bit | VAL_ |
+|---|---|---|---|---|
+| CFTS044-4858308 | SWE1-VC-LeftFrontHeatedSeat-006（三態） | `STATUS_CSWM.FL_HS_STATSts` | 2 | 0–3 = Heated_seat_off／low／medium／high |
+| CFTS044-4858338 | SWE1-VC-RightFrontHeatedSeat-024（三態） | `STATUS_CSWM.FR_HS_STATSts` | 2 | 同上 |
+| CFTS044-4858368 | SWE1-VC-LeftFrontVentedSeat-005（三態） | `STATUS_CSWM.FL_VS_STATSts` | 2 | 0–3 = Vented_seat_off／low／medium／high |
+| CFTS044-4858399 | SWE1-VC-RightFrontVentedSeat-022（三態） | `STATUS_CSWM.FR_VS_STATSts` | 2 | 0–3 |
+| CFTS044-4858516 | SWE1-VC-HeatedSteeringWheel-004（兩態） | `STATUS_CSWM.HSW_StatSts` | 1 | 0 = OFF／1 = ON |
+
+請確認：(a) 該等「其他狀態」條款於 R1L 不適用（無需驗證）；或 (b)「無效」另指訊號逾時／缺席，
+若是請給其判定條件與時限。
+
+我方之處置：該 5 leaf 不生成並具名 `B7-no-invalid-raw`；(b) 成立時再依覆文生成。
+
+**執行層註（2026-09-07）**：下放包 §四之表首列 ObjectID 原記 `4858317`，惟該 ID 於
+`data/leaf_to_reqid.tsv:56` 屬 `SWE1-VC-LeftFrontHeatedSeat-011`（工作簿 row 69），
+非本表所指之 `-006`。五筆 ObjectID 一律改自工作簿 N 欄取，並與 `leaf_to_reqid.tsv` 對過。
+
+**狀態：未送出** —— 待 Pei 取號送出。
