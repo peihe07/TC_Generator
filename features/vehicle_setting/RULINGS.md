@@ -7676,7 +7676,11 @@ R-VS102   CFTS044 「宣告有效集之外」型 TC 之處置（Pei 准，2026-0
 **執行層註（VS-CF-01，2026-09-07）**：
 
 1. 施作對象為 `sandbox/cfts044/cfts044_20260819_Revise1.xlsx`（母本不改，R-G72）；
-   母本 sha16 `f39c03bd9cb0f1b3`。改動 **73 個儲存格、23 列**，列數 252 不變。
+   母本 sha16 `f39c03bd9cb0f1b3`、**Revise1 sha16 `f444028d1cd93396`**
+   （全 `f444028d1cd93396738b4225ef6ce5de0ad3d41675d66f16acb0d099c8ef44a1`）。
+   改動 **73 個儲存格、23 列**，列數 252 不變。
+   ⚠ `output/MANIFEST.tsv` 在本 feature 之 `.gitignore` 內，Revise1 之 sha 於該表不受版控，
+   故於此處落一份受版控之副本（審閱 VS-CF-01 丙-1）。
 2. (1) 之「兩態」判準取自條文本身（row 63／79 之 Test Item 逐字為
    *For vehicles with two states*），非取自訊號寬度 —— 同一訊號在三態條文（row 64／80）
    下即落入 (2)。
@@ -7686,3 +7690,7 @@ R-VS102   CFTS044 「宣告有效集之外」型 TC 之處置（Pei 准，2026-0
    **不新建表**。
 4. (6) 之 8 列已逐一複驗：全庫掛 `BLOCKED: DR-18` 者共 20 列，其中 12 列為
    `_mid` 對映未解（row 131/132/135/136/141/145/203/204/207/208/213/217），**與本條無涉、不動**。
+5. **(2) 之 `B7-no-invalid-raw` 為新設之 blocker 分類碼**（本線原母體為 B1–B6）。
+   依 `R-G72(h)`「新增代號時分類表同包擴充」，已登記於
+   `scripts/vf230_wvf44_writability.py` 之 docstring 分類碼段（審閱 VS-CF-01 甲-1）；
+   該 5 列不在 VF230 母體內，**writability 產生器未重跑**。
