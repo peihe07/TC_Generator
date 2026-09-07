@@ -1,0 +1,58 @@
+# source_sha256	405eb303c848f0e0746e62b421e9f17a6e6445bb9b92bb7ec3d6ce73caea06d0	 sheet	26PI
+R1 Change Log (See Graphics release for all graphics changes)											
+#	Version	Date	Containing\nDocument	Section	Items	Scope of Change		Description of Changes	Rationale	Source	Status
+						Graphics 	Logic				
+Title of Section											
+1	Release Revision Lvl	Date of Change/Document Released	Document You Can Find the Change In	Section within the Containing Document Supplier can Find the Chang in.	Note Number that was Changed	X' placed here if graphics are affected by this change	X' placed here if HMI logic is affected by this change	Used to Describe the Change that was made	Used to Describe why the change was made	Group(s) that drove the change	Status of Approval
+											
+Change Log ( See Graphics release for all graphics changes)											
+											
+1	26PI	05/20/2026	Phone HMI Logic&Flow	Assumptions	MPA11 and MPA12 created.		X	Added assumptions to clarify device managing and multiphone aspects for R1L-R	Establishing availability of functionality		Under Review
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											

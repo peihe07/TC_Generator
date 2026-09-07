@@ -1,0 +1,89 @@
+# feature.yaml — pipeline configuration for Phone
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals.
+#
+# 來源以 `sources/` 之 doc_id 引用（R-G66@1951347c），**本 feature 不存原檔副本**
+# —— `paths.*` 為指向 `sources/raw/<doc_id>/` 之相對 glob，`inputs/` 於本 feature 恆空。
+# 每一鍵於下放包 PH-01 逐鍵實測；sha256 自實體檔重算，不抄他 feature 之宣告值。
+#
+# 本表之 `workbook.*` 為 R-G1 母本
+# （forms/…_SWQT_20260817_ext.xlsx，sha256 6372fb6b…）第 9 列之實測值。
+# 本 feature 之副本 `sandbox/base/` 與母本 sha256 **全等**（PH-01 §任務 1 實測），
+# 欄序逐欄比對相符（B～AH，見 RECON.md §2）。
+
+feature: "Phone"
+test_group: "Phone"          # R-PH1（下放包 PH-01 §2，Pei 2026-09-07 裁）
+
+sources:
+  # R-G66 之 doc_id ↔ `sources/MANIFEST.tsv`。目前無腳本以 doc_id 解析路徑，
+  # 故 `paths.*` 另以相對 glob 具名；兩者所指須為同一檔（本包實測相符）。
+  a03_report: "phone_037_v0_1"
+  spec_pdf: "phone_hmi_lf_pdf_2022"
+  spec_pdf_26pi: "phone_hmi_lf_pdf_26pi"
+  change_log: "phone_changelog_26pi"
+  # sys1_export: **未登錄，待 Pei 裁**（PH-01 §7 升級條件第 2 項已觸發；DRAFT-PH-a）。
+  # `_intake/Phone/` 之 SYS1 與 `spec-index/cache/` 之同名檔 sha256 不等，
+  # 且二者非同一份匯出（章節號自 5.17 起錯位一格；見 ANOMALIES.md A-PH01、DATA_REQUESTS.md DRAFT-PH-a）。
+  # 裁定前不得登錄任何一份為 `sources/raw/`，亦不得以其建 spec_reference。
+
+paths:
+  # 工作簿自 R-G1 母本起建，落 sandbox/（R-G64@34b81800：xlsx 只准在此改）
+  workbook: "sandbox/base/FM-WI-FSM-036-A01*_SWQT_20260817_ext.xlsx"
+  a03_report: "../../sources/raw/phone_037_v0_1/*.xlsx"
+  sys1_export: null          # 見上；DRAFT-PH-a 未結前為 null
+  spec_pdf: "../../sources/raw/phone_hmi_lf_pdf_2022/*.pdf"
+  popup_list: null           # 037 未引用 Pop Up List；如 Phase 3 需用再開 DR
+
+spec_mode: "A"        # FO §3：文字走 SYS1 匯出（A）。**待 DRAFT-PH-a 裁定後方能落實**；
+                      # 二份 PDF 皆有文字層（B 亦可用），圖面另議。
+spec_reference_template: "Phone HMI Logic and Flow R1 SR24 Post 2A (June 21 2022)_{outline}"
+# 上式之 `{檔名}` 取自 037 `HMI Source ID` 欄之實測前綴（IN §10.7(b)），
+# **非** SYS1 檔名 —— 037 該欄本身即載 `{檔名}_{章節號}`（PH-01 §4 任務 3-2
+# 所稱「037 無章節號」與實測不符，見 RECON.md §4 與上繳包 §3）。
+
+workbook:
+  sheet: "Test Case Specification 測試用例規範"
+  header_row: 9
+  # column letters, verified by recon header match against sandbox/base/ — do not guess
+  columns:
+    req_id: "D"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    design_method: "R"
+    functional_safety: "S"
+    author: "AA"
+    remarks: "AH"
+
+done_region:
+  # 母本副本為空簿：無 done region。BLANK 之 fallback chain 見 FO §2.1。
+  detection: "author"
+  author_value: "Arif"
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"        # R-G42@f111d3dc 四
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: true       # BLANK 之故（FO §2）
+
+row_order:
+  # R-G42 一(a)：D 欄依 req_id 數值升冪（數字 token 逐段比較）
+  by: "req_id_numeric_asc"
+
+tc_id:
+  # R-G42 二：`NR1L-{ABBR}-{nnn}`。{ABBR} 為 [PROPOSED]，待 DECISIONS.md 簽署。
+  template: "NR1L-{ABBR}-{nnn}"
+  abbr: null                      # [PROPOSED: PH] — 見 DECISIONS.md §1
+
+lint:
+  design_method_source: "dropdown_sheet"   # exact-string vocabulary
+  popup_ids: []                            # 037 未引用；Phase 3 再填
+  extra_rules: []
+  profile_checks: ["P", "X"]               # FO §4 [ADD]（R-G70@c964dfb8／R-G71@72328d57）
