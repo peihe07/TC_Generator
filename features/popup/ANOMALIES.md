@@ -506,3 +506,33 @@ A-POP6 §甲 之標題寫「**4 個 feature，5 筆**」，而其表列為 3 個
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-POPnn]`.
+
+---
+
+## A-POP12 — Popup 20260908 交付本之封面四欄不合 Pei 之現行慣例（不修，具名在案）
+
+**登記日**：2026-09-08　**狀態**：**具名不修**（Pei 裁 2026-09-08）
+**標的**：`features/popup/delivered/FM-WI-FSM-036-A01 …_Popup_20260908.xlsx`
+（sha256 `ab05bb7bc65f49ab86168bdb0d1b2474c548b5bdc32295d8d68a215bf774c4df`，
+已 commit `670567b`、已 push；**未 tag**）
+
+**發現經過**：VC-RECON（2026-09-08）量測 Pei 於 2026-09-07 親填之
+`…_VehicleCategory_20260907.xlsx`，其封面為現行慣例之直接證據。
+詳表與 `features/vehicle_setting/ANOMALIES.md` 之 **A-VS173** 同，四項為：
+
+1. `Cover!D9`／`ProductDoc!C13` 作者：慣例 `許珮瑜 PeiPYHsu`，本簿寫 `PeiPYHsu`
+2. `Cover!G9`／`ProductDoc!B8`／`D13` 日期：慣例為真 `datetime`，本簿為**字串**
+3. `ProductDoc!B3`：慣例 `NR1L`，本簿 `new R1L`
+4. `ProductDoc!B5`：慣例 `Initial Release`，本簿 `V1.0`
+
+**本 feature 特有之成因**：第 3、4 項源於下放包 PU-02 §2.3 之
+「值取自 CFTS044 交付本之同欄，逐字比照」—— 而 CFTS044 那兩格是其
+20260819 母本**上游預填之舊值**，跨簿套用把舊慣例複製過來。
+`B4` 未受影響：PU-02 §2.3 之表另行指定為本簿交付檔名，執行層依表寫全稱
+（見 PU-02 上繳 §6-1 之具名偏差）。
+
+**Pei 之裁（2026-09-08）**：**不修，具名在案**。
+
+**跨包教訓**：「逐字沿用他簿同欄」之指令，其來源簿本身可能帶著更舊的慣例。
+跨簿套用前應先確認該簿該欄**是誰、何時填的** —— CFTS044 那兩格並非
+VS-CF-04 所寫，而是母本既有。

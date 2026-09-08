@@ -331,3 +331,36 @@
 `max(237, 243) + 1 = 244`，即現行起點。`A-VF33` 所載「CFTS044 交付本末號 243 + 1」
 **指的是交付路徑本**（repo 內那本為 237），本層複驗成立。
 
+
+---
+
+## A-VS173 — CFTS044 20260908 交付本之封面四欄不合 Pei 之現行慣例（不修，具名在案）
+
+**登記日**：2026-09-08　**狀態**：**具名不修**（Pei 裁 2026-09-08）
+**標的**：`features/vehicle_setting/delivered/FM-WI-FSM-036-A01 …_CFTS044_Vehicle Controls_20260908.xlsx`
+（sha256 `c42d7ef6e77b5d1a6e154428dbcce0fb20cc0e1997b919b0dee532604639a9d0`，
+已 commit `feb4c41`、已 tag `fw036-vehiclesetting-cfts044-v1`、已 push）
+
+**發現經過**：VC-RECON（2026-09-08）量測 Pei 於 2026-09-07 親填之
+`…_VehicleCategory_20260907.xlsx`，其封面為現行慣例之直接證據。
+
+| 欄 | Pei 之慣例（VehicleCategory 20260907） | 本交付本 | 成因 |
+|---|---|---|---|
+| `Cover!D9`／`ProductDoc!C13` 作者 | `許珮瑜 PeiPYHsu` | `PeiPYHsu` | 下放包 VS-CF-04 §四.1 字面為 `PeiPYHsu`，執行層照字面寫，**未比對同簿 `D7`／`D8` 之 `劉安哲 AllenACLiu`／`張愷霏 ErinKFChang` 寫法** |
+| `Cover!G9`／`ProductDoc!B8`／`D13` 日期 | 真 `datetime` | **字串** `2026-09-08` | `backend/xlsx_surgical._cell_xml()` 無 `datetime` 分支（VS-CF-04 上繳 §5-2 已具名）|
+| `ProductDoc!B3` 專案代號 | `NR1L` | `new R1L` | 該格為 20260819 母本上游預填之舊值，本包未改 |
+| `ProductDoc!B5` 版本 | `Initial Release` | `V1.0` | 同上 |
+
+**確認為正確者**：`Cover!G9` 為修訂日期之值欄 —— VS-CF-04 上繳 §2 之推得
+（`G6:H6` 為欄頭、`G7:H7`／`G8:H8`／`G9:H9` 為值欄）**與 Pei 之親填一致**，該 open item 結案。
+
+**Pei 之裁（2026-09-08）**：**不修，具名在案**。二本照收，下次改版時一併對齊。
+
+**若日後要修**：`D9`／`C13` 改 `許珮瑜 PeiPYHsu`；日期三格須先為
+`xlsx_surgical._cell_xml()` 補 `datetime` → Excel 序號之分支；
+`B3`／`B5` 改 `NR1L`／`Initial Release`。TC 內容不動，但 sha 會變，
+`fw036-vehiclesetting-cfts044-v1` 須重打。
+
+⚠ **另註**：VehicleCategory 之 `AA` 欄（Test Case Author）Pei 用 **`PeiPYHsu`**（無中文名），
+與 `D9`／`C13` 之 `許珮瑜 PeiPYHsu` **不同**。兩欄慣例不一致為實測，非誤記；
+對齊時勿把兩者統一。
