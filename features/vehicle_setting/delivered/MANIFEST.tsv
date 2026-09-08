@@ -1,1 +1,3 @@
 filename	sha256	source_path	delivered_round	note
+FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_CFTS044_Vehicle Controls_20260908.xlsx	c42d7ef6e77b5d1a6e154428dbcce0fb20cc0e1997b919b0dee532604639a9d0	features/vehicle_setting/sandbox/cfts044/cfts044_20260819_Revise2.xlsx	VS-CF-04	CFTS044 Vehicle Controls v1；甲-1 採甲案（9 組 19 列並存）；DR-5-B 39 列為 dr_dependent
+cfts044_tcid_remap_20260908.tsv	5ba320fd333a229eff341ec2d0036d4a221d35cfacdaa73b95c11bb4befd14a5	features/vehicle_setting/reports/cfts044_tcid_remap.tsv	VS-CF-04	TestRail 匯入用；刪 2 重複列後之舊→新 tc_id 對照（243 列）
