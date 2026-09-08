@@ -1,0 +1,42 @@
+row	tc_id	words_before	words_after	action	note
+10	NR1L-SWUpdate-001	26	13	shortened	
+11	NR1L-SWUpdate-002	21	18	shortened	
+13	NR1L-SWUpdate-004	19	14	shortened	
+14	NR1L-SWUpdate-005	21	15	shortened	
+22	NR1L-SWUpdate-013	24	24	skipped	被移除之 `and the engine auto-stop state is not active` 不在 ER —— ER 末行只寫 `while the ignition is in accessory`，該條件無他處承載
+25	NR1L-SWUpdate-016	20	12	shortened	
+30	NR1L-SWUpdate-021	26	12	shortened	
+35	NR1L-SWUpdate-026	19	13	shortened	
+43	NR1L-SWUpdate-034	19	19	skipped	全句即『動作 ＋ check that ＋ 主要可觀察結果』，無可移除之細節；19 詞降至 18 以下只能改寫語序，屬改寫非截斷
+53	NR1L-SWUpdate-044	26	14	shortened	ER 以不同措辭承載：shows no connection to the access point that is switched off
+56	NR1L-SWUpdate-047	20	20	skipped	全句即單一斷言（首個連上之 AP ＝ 訊號格最多者）；任何截斷都會丟失驗證標的 `the one shown with the most signal bars`
+58	NR1L-SWUpdate-049	24	13	shortened	
+60	NR1L-SWUpdate-051	19	8	shortened	
+61	NR1L-SWUpdate-052	30	11	shortened	ER 以不同措辭承載：the software download over Wi-Fi starting
+65	NR1L-SWUpdate-056	22	15	shortened	
+69	NR1L-SWUpdate-060	22	10	shortened	
+78	NR1L-SWUpdate-069	19	15	shortened	
+85	NR1L-SWUpdate-076	20	11	shortened	
+86	NR1L-SWUpdate-077	19	10	shortened	
+95	NR1L-SWUpdate-086	20	12	shortened	
+96	NR1L-SWUpdate-087	21	12	shortened	
+97	NR1L-SWUpdate-088	21	12	shortened	
+103	NR1L-SWUpdate-094	21	17	shortened	
+110	NR1L-SWUpdate-101	25	14	shortened	ER 以不同措辭承載：the second run shows no opt-in screen
+111	NR1L-SWUpdate-102	21	16	shortened	
+112	NR1L-SWUpdate-103	23	15	shortened	
+114	NR1L-SWUpdate-105	20	15	shortened	
+138	NR1L-SWUpdate-129	22	9	shortened	
+145	NR1L-SWUpdate-136	19	5	shortened	
+148	NR1L-SWUpdate-139	27	6	shortened	ER 以不同措辭承載：contains no SW Update prompt and no progress notification
+157	NR1L-SWUpdate-148	22	6	shortened	ER 以不同措辭承載：no progress notification and no confirmation screen
+160	NR1L-SWUpdate-151	23	17	shortened	
+175	NR1L-SWUpdate-166	21	21	skipped	被移除之 `while the package downloads` 不在 ER —— ER 末行只寫 `shows the download progress as a percentage or as a status indication`
+185	NR1L-SWUpdate-176	21	14	shortened	
+270	NR1L-SWUpdate-261	24	14	shortened	
+276	NR1L-SWUpdate-267	22	16	shortened	
+291	NR1L-SWUpdate-282	21	11	shortened	
+292	NR1L-SWUpdate-283	19	5	shortened	
+297	NR1L-SWUpdate-288	19	19	skipped	ER 末行為 `PENDING: DR-SU2` 佔位；proc 末步是該列唯一之非 PENDING 斷言，縮短即丟失比較對象（head-unit-started session）
+307	NR1L-SWUpdate-298	19	12	shortened	
+325	NR1L-SWUpdate-316	22	12	shortened	
