@@ -462,3 +462,64 @@ R-POP23／24／25 之新增同理。交付物未受影響。
 
 **本例不追究**，交付物照收；程序之裁自下一包起適用於雙方。
 ```
+
+---
+
+### R-POP27 — Pop Up List 生成基線改採 SR24 Post 2A (Dec 15, 2023)（Pei 裁，2026-09-08）
+
+來源：`docs/fw036/handoff/down/20260908_PU-02.md` §1.4。
+取號依 R-G62（取號一律 live）：落檔前重查本檔實測最大號為 `R-POP26`，故本條取 `R-POP27`。
+
+```text
+R-POP27   Pop Up List 生成基線改採 SR24 Post 2A (Dec 15, 2023)（Pei 裁，2026-09-08）
+
+生成基線由 `forms/Pop Up List HMI R1 (26PI).xlsx` 改為
+`forms/Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx`。
+理由：後者為 SR24 Post 2A 之乾淨對應，與規格基線 `SYS1_HMI_Core_HMI_
+Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)` 同代；26PI 版多出之
+`PU1579`（Geolocation）狀態為 `Under Review`，未核准條目不入基線。
+26PI 版與 Change Log 續存 `forms/` 作 delta 對照，PU1579 轉核准後再議。
+
+`feature.yaml` 之 `paths.popup_list` 改指新基線。
+現有 5 條 TC 所引之 PU0942／PU0215／PU0580／PU0949 於兩版逐欄逐字相同，
+**本次改版不改動任何 TC 內容**（比對輸出見上繳包 PU-02）。
+
+R-POP6 之殘留 (a)「CR25802 vs CR22510 之版位關係」結案 ——
+兩版 `Main!A1` 皆逐字為 `SR24 Post 2A CR25802`，與規格基線同代。
+R-POP6 之殘留 (b)（`(26PI)` 標記）依 Change Log 判為程式增量標記
+（單一變更 PU1579，2026-05-20），非車型別；一併結案。
+R-POP7（Priority Matrix 不納入）不變 —— Pei 本次新增之 3 件不含該表，
+DR-POP2 維持開啟。
+```
+
+**執行層註（PU-02，2026-09-08）**：
+
+1. **三件新檔已複製入 `forms/` 並登 `FORMS.md`**（R-POP25 第 3 點）：
+
+   ```
+   Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx
+     de33bcb81e113c8d2e05c261d2f80aed5035066cbb52b64b8f6b1eaf88dfa770  2,947,141 bytes
+   Pop Up List HMI R1 Change Log(26PI).xlsx
+     9d0a95aaffb0a51d3ef3ef6179325d4ac353d371a3400fda80c8e6d36bcc5f2d     28,070 bytes
+   Pop Up List HMI R1 (26PI).xlsx（以來源記錄本覆蓋）
+     2e95222b4183ec1c9e4d9e487b510bbf289a834fdff733fd4304e57d467912c7  2,951,887 bytes
+   ```
+
+   `Core HMI Logic and Flow …(February 2 2023).pdf` **未納入**（下放包 §1.1 之裁定）。
+
+2. **§1.1 之未測項已測，結果為「相異」**：`10_Reviewing/` 之 26PI 本
+   （`2e95222b…`，2,951,887 bytes）與改版前 `forms/` 現存本
+   （`ff47b7be…`，2,951,835 bytes）**非逐位元相同**。
+   zip 層拆解：77 個 member 集合相同，**相異僅
+   `customXml/item1.xml`／`item3.xml`／`itemProps1.xml` 三件**
+   （SharePoint 文件庫之 contentType schema，來源本多一個「備註」欄）；
+   `xl/`／`docProps/`／`_rels/`／`[Content_Types]` 共 63 個 member **無一相異**。
+   即**試算表酬載逐位元相同**，§1.2 之 delta 與 §1.3 之「零影響」不受影響。
+   Pei 於停手回報後裁「續作，`forms/` 用 `10_Reviewing` 本覆蓋」（2026-09-08）。
+
+3. **§1.2 delta 與 §1.3 零影響皆經執行層獨立複驗，逐項與下放包相符**：
+   `Main` 資料列 1,341 vs 1,342；兩版 `A1` 皆 `SR24 Post 2A CR25802`；
+   26PI 獨有 `PU1579`、Dec 版獨有 0 筆；內容相異 `PU1578`／`PU1229`；
+   `Templates` 分頁 34 列完全相同。
+   四筆所引 PU（`PU0942`／`PU0215`／`PU0580`／`PU0949`）**全 17 欄逐字相同**，
+   值與下放包 §1.3 之表逐字吻合。**故本包未改動任何 TC 儲存格。**

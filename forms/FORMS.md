@@ -611,8 +611,16 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
 
 > **使用中之 feature（R-G15 反向記載）**：`popup`（**R-POP6** 裁定納入為素材，**引用原位不搬**；`features/popup/feature.yaml` 之 `paths.popup_list` 以相對 glob 指向本檔）。
 
-- **(a)** SHA256 `ff47b7be63e5824cafe35deda9f9ddd0a63f6ea458169ef73689a1c559ea13ea`
-  · 2,951,835 bytes · mtime 2026-08-25T13:51:21
+- **(a)** ~~SHA256 `ff47b7be63e5824cafe35deda9f9ddd0a63f6ea458169ef73689a1c559ea13ea`
+  · 2,951,835 bytes · mtime 2026-08-25T13:51:21~~
+  **改版（PU-02，2026-09-08）**：本檔以 `10_Reviewing/00_TestCase/ASW-R2/
+  Pop-Up Queue and Priority Management/` 之同名檔覆蓋，使 `forms/` 與來源記錄本一致。
+  現值 SHA256 `2e95222b4183ec1c9e4d9e487b510bbf289a834fdff733fd4304e57d467912c7`
+  · 2,951,887 bytes · mtime 2026-08-28T01:26:00。
+  **兩本之試算表酬載逐位元相同** —— 77 個 zip member 之集合相同，相異僅
+  `customXml/item1.xml`／`item3.xml`／`itemProps1.xml` 三件（SharePoint 文件庫之
+  contentType schema，來源本多一個「備註」欄）；`xl/`／`docProps/`／`_rels/`／
+  `[Content_Types]` 共 63 個 member **無一相異**。故 (b)–(d) 之實測結論不受覆蓋影響。
 - **(b) 涵蓋範圍**（執行層 2026-08-28 實測，`openpyxl` read_only／data_only）：
   3 個分頁。主分頁 `Main` 1,344 列 × 17 欄 —— **r1 = 基線字串
   `SR24 Post 2A CR25802`**、r2 為欄名、**資料自 r3 起，`^PU\d` 之 ID 列
@@ -640,7 +648,68 @@ DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 �
   且**非同代**（該件為 SR24 1A，早於本檔之 SR24 Post 2A 兩代）。
   兩者不互相取代。本檔亦非 `forms/` 之 036 母本，與 R-G1／R-G2 無涉
 - **(f) 首個採用**：`popup`，2026-08-27（R-POP6；DR-POP1 據此結案）。
-  殘留兩點隨 RD-1 確認：CR 版位（`CR25802` vs `CR22510`）與 `(26PI)` 之適用性
+  ~~殘留兩點隨 RD-1 確認：CR 版位（`CR25802` vs `CR22510`）與 `(26PI)` 之適用性~~
+  **殘留兩點皆已結案（R-POP27，2026-09-08）**：(a) 兩版 `Main!A1` 皆逐字為
+  `SR24 Post 2A CR25802`，與規格基線同代；(b) `(26PI)` 依 Change Log 判為
+  **程式增量標記**（全表僅一筆變更：PU1579，2026-05-20），非車型別。
+- **(g) 生成基線之地位（R-POP27，2026-09-08）**：**已卸任** ——
+  `popup` 之生成基線改採同目錄之
+  `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx`。
+  本檔續存於 `forms/` 作 delta 對照，**不再是 `paths.popup_list` 之標的**。
+  其獨有之 `PU1579` 狀態為 `Under Review`，轉核准後再議。
+
+### `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx`
+
+> **使用中之 feature（R-G15 反向記載）**：`popup`（**R-POP27** 裁定為**生成基線**，
+> 2026-09-08 取代 `Pop Up List HMI R1 (26PI).xlsx`；
+> `features/popup/feature.yaml` 之 `paths.popup_list` 指向本檔）。
+
+- **(a)** SHA256 `de33bcb81e113c8d2e05c261d2f80aed5035066cbb52b64b8f6b1eaf88dfa770`
+  · 2,947,141 bytes · mtime 2026-08-28T01:26:00
+  （sha16 `de33bcb81e113c8d`，與下放包 PU-02 §1.1 所載相符）
+- **(b) 涵蓋範圍**（執行層 2026-09-08 實測，`openpyxl` read_only／data_only）：
+  3 個分頁，與 26PI 版同名同序。主分頁 `Main` 1,343 列 × 17 欄 ——
+  **r1 = 基線字串 `SR24 Post 2A CR25802`**（與 26PI 版逐字相同）、r2 為欄名、
+  **資料自 r3 起共 1,341 列**，其中 `^PU\d` 之 ID 列 **1,339 筆**。
+  r2 之 12 個具名欄與 26PI 版**逐字相同**。
+  另 `Templates` 34 列 × 5 欄（**與 26PI 版全表逐字相同**）、
+  `Drop Down Fields` 73 列 × 8 欄
+- **(c) 版次**：`Main!A1` 逐字 `SR24 Post 2A CR25802`；檔名另載
+  `HMI R1 SR24 Post 2A (Dec 15, 2023)` —— 與 `popup` 之規格基線
+  `SYS1_HMI_Core_HMI_Logic_and_Flow_R1_SR24_Post_2A_(February_2_2023)` **同代**
+- **(d) 已知不涵蓋**：同 26PI 條目之 (d) 三點（只取規格明文委派之欄位、
+  `search keyboard` 無對應列、hard-button 分支無實例）—— 該三點之實測基於 26PI 版，
+  而兩版於 `Main` 僅差 3 筆（`PU1579` 獨有、`PU1578`／`PU1229` 內容相異），
+  **皆不在 popup 之 5 條 TC 所引之列內**，結論沿用
+- **(e) 取代關係**：**取代 `Pop Up List HMI R1 (26PI).xlsx` 為生成基線**（R-POP27）。
+  兩版之 delta（執行層實測）：
+  `Main` 資料列 1,341 vs 1,342；26PI 獨有 `PU1579`（Geolocation）；Dec 版獨有 **無**；
+  內容相異 `PU1578`／`PU1229` 二筆；`Templates` 分頁**完全相同**。
+  取本版之理由：26PI 多出之 `PU1579` 於 Change Log 狀態為 `Under Review`，
+  未核准之條目不入生成基線
+- **(f) 首個採用**：`popup`，2026-09-08（R-POP27）
+
+### `Pop Up List HMI R1 Change Log(26PI).xlsx`
+
+> **使用中之 feature（R-G15 反向記載）**：`popup`（**R-POP27** 之 delta 佐證；
+> **非生成素材** —— 不供 TC 取值，只用以判定兩版之差異性質）。
+
+- **(a)** SHA256 `9d0a95aaffb0a51d3ef3ef6179325d4ac353d371a3400fda80c8e6d36bcc5f2d`
+  · 28,070 bytes · mtime 2026-08-28T01:26:00
+- **(b) 涵蓋範圍**（執行層 2026-09-08 實測）：單一分頁 `26PI`，57 列 × 12 欄。
+  r1–r7 為表頭與說明（`R1 Change Log`、欄義說明列）；
+  **實質變更列僅 r9 一筆**，逐字為：
+  `1 | 26PI | 05/20/2026 | Pop Up List HMI R1 | Geolocation | New PopUp PU1579 |
+  X | X | Added new PopUp to include enabling and disabling privacy options from
+  Status Bar | Establishing a new functionality | Under Review`
+- **(c) 版次**：`26PI`（檔名與分頁名所載）
+- **(d) 已知不涵蓋**：**不含 PU 條目之內容** —— 本檔只記「哪一筆改了」，
+  不記改成什麼。PU 之值一律回 `Pop Up List HMI R1 …` 主表取，
+  **本檔不得作為取值來源**
+- **(e) 取代關係**：無前版於本 repo。與兩本 `Pop Up List HMI R1 …` 主表為
+  **佐證關係**而非取代關係
+- **(f) 首個採用**：`popup`，2026-09-08（R-POP27 之判定依據：
+  `(26PI)` 為程式增量標記而非車型別）
 
 ### `Pop Up List Priority Matrix HMI R1 SR24 1A (May 3 2021).pdf`
 
