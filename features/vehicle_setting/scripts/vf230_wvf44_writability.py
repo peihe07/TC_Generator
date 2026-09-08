@@ -8,13 +8,23 @@
   blocker 分類碼      B4-preamble ／ B5-signal-absent ／ B6-value-absent
                      （Part 1 之 B1／B2／B3 為委派與畫面層之碼，
                       VF230 尚無委派判定，本輪不用，亦不新設）
-                     B7-no-invalid-raw —— **本輪之外新設**（VS-CF-01，2026-09-07）：
+                     ~~B7-no-invalid-raw —— **本輪之外新設**（VS-CF-01，2026-09-07）：
                       訊號之 DBC 值域全數落在條文宣告之有效集內，匯流排上不存在
                       可送之無效 raw，故「無效值」型 TC 不生成。裁決見
                       `RULINGS.md` 之 `R-VS102(2)`；用例見 CFTS044 Revise1
                       row 64／80／151／166／225（**不在 VF230 母體內，本檔不重跑**）。
                       本行依 `R-G72(h)`「新增代號時分類表同包擴充」而登記 ——
-                      **上段之「不新設」係 VF230 該輪之範圍聲明，未被推翻。**
+                      **上段之「不新設」係 VF230 該輪之範圍聲明，未被推翻。**~~
+
+                      ⚠ **撤銷（2026-09-08，下放包 VS-CF-03 §七.6）**：B7 之依據
+                      `R-VS102(2)` 已撤。該 5 leaf 之訊號（$HeatedSeatFL$／
+                      $HeatedSeatFR$／$VentedSeatFL$／$VentedSeatFR$／$HSW_Stat$）
+                      於 037 D 欄逐字為 **API／CarProperty 層**訊號
+                      （`via the VHAL interface`），非匯流排 raw；
+                      「raw 全數已定義」因而不成立為不生成之依據。
+                      **B7 不再是有效之 blocker 分類碼**，依 R-TM13 加刪除線保留，
+                      不刪行。五列已於 Revise2 全數生成
+                      （Revise2 row 62／78／149／164／223）。
 
 **值域來源鏈（V16 §5 第 2 項，依 R-VF13）—— 取用順序明列**：
 

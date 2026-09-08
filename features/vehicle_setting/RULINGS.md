@@ -7694,3 +7694,32 @@ R-VS102   CFTS044 「宣告有效集之外」型 TC 之處置（Pei 准，2026-0
    依 `R-G72(h)`「新增代號時分類表同包擴充」，已登記於
    `scripts/vf230_wvf44_writability.py` 之 docstring 分類碼段（審閱 VS-CF-01 甲-1）；
    該 5 列不在 VF230 母體內，**writability 產生器未重跑**。
+
+---
+
+### R-VS102 之部分撤銷（VS-CF-03，2026-09-08）
+
+來源：`docs/fw036/handoff/down/20260908_VS-CF-03.md` §七.6（Pei 裁定 2026-09-08）。
+依 R-TM13：上段條文**不刪不改**，於此具名撤銷並記理由。
+
+```text
+撤銷      R-VS102(2)   —— `B7-no-invalid-raw` 不生成之依據
+撤銷理由  該 5 leaf 之訊號（$HeatedSeatFL$／$HeatedSeatFR$／$VentedSeatFL$／
+          $VentedSeatFR$／$HSW_Stat$）於 037 SWRA `Analysis Report` D 欄
+          逐字為 API／CarProperty 層訊號（`via the VHAL interface`／
+          `CarPropertyManager will expose that value to HMI layer via API
+          interface as get/set methods`），**不是匯流排上之 raw**。
+          「2 bit／1 bit raw 全數已定義」量的是 DBC，答的卻是 API 層之值域 ——
+          量錯來源。API 層可帶有效集之外之值，故「無可送之無效值」不成立。
+          B7 之新碼一併作廢（登記行已於
+          `scripts/vf230_wvf44_writability.py` docstring 加刪除線保留）。
+效力      (1)(3)(4)(5)(6) 不受本次撤銷影響，惟 (3)(4) 之
+          `dr_dependent = DR-19／DR-21` 前綴依下放包 §三 已自工作簿撤除，
+          其對照關係改以 037 D 欄之敘述具名。
+施作      五列已於 Revise2 全數生成，見 Revise2 row 62／78／149／164／223
+          （tc_id NR1L-VehicleSetting-053／069／140／155／214）。
+```
+
+**成因（分析層自報，見上繳包 §八 A-1）**：連續四包（VS-CF-01／02／02a 及本包之
+前身判斷）以 DBC／CFTS 原句為唯一來源，**未讀 037 D 欄**。B7 新碼、5 個 DR、
+23 列不生成全部源於此一遺漏，本包一次撤回。

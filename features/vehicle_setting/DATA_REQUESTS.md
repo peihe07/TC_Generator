@@ -1963,3 +1963,34 @@ CFTS044 之下列條文以「Valid values … All other states shall be consider
 非本表所指之 `-006`。五筆 ObjectID 一律改自工作簿 N 欄取，並與 `leaf_to_reqid.tsv` 對過。
 
 **狀態：未送出** —— 待 Pei 取號送出。
+
+---
+
+# 撤回批次 —— VS-CF-03（2026-09-08）
+
+來源：`docs/fw036/handoff/down/20260908_VS-CF-03.md` §七.7（Pei 裁定 2026-09-08）。
+依 R-TM13：上列各條**不刪不改**，於此具名撤回並記理由。撤回者不佔號、不再阻塞，
+工作簿內之對應引用已於 `cfts044_20260819_Revise2.xlsx` 全數清除。
+
+共同撤回理由：**問錯了來源**。上列五問皆以 DBC／PROXI／LID 為值域之唯一來源而發，
+惟 037 SWRA `Analysis Report` **D 欄**（需求分析全文）已逐 leaf 給出訊號名與值標籤，
+且該系列（`$*_RQ$`／`$*_Cmd_Tlm$`／`$*_Stat$`／`$PowerMode$`／`$HdRstRelRq$`）
+於 D 欄逐字為 **API／CarProperty 層**訊號（`via the VHAL interface`），
+不是匯流排上之編碼。以 D 欄之標籤書寫即可執行，無待上游覆文。
+
+| DR | 原問 | 撤回理由 | Revise2 之處置 |
+|---|---|---|---|
+| **DR-15** | 請求訊號之編碼／真值表之逐狀態送出值 | 送出值以 037 D 欄之標籤書寫（`[HS_PSD]`／`[HS_MED]` 等），不需匯流排編碼 | row 69／71／84／86／155／157／170／172／230／231／233 全數生成，真值表逐條展開 |
+| **DR-21** | `IGN_OFF_ACC` 於 DBC 無對應 | `$PowerMode$` 為 API 層訊號，值標籤保留 D 欄原表示法，本就不需 DBC raw | row 27 生成；row 25 之 `dr_dependent` 前綴撤除 |
+| **DR-24′** | `<Tsend>`／`<Tdisplay>` 之上限值 | 來源無上限值即不驗時限，非缺件；ER 只寫可觀察終態，本就不阻塞 | 49 列之 `BLOCKED:` 前綴撤除，改為「時限之上限值於來源無明載，本列不驗時限」 |
+| **DR-25** | HSW 命令型之值域無來源 | 037 Heated_Steering_Wheel D 欄已給完整條件→命令邏輯，值域齊備 | row 243／244／247／248 全數生成 |
+| **DR-26** | 比較步驟之期望關係 | 條文 `selectable only when [IGN_RUN]` 自帶否定側，ER 收斂為可選性 | row 34 生成 |
+| **B7 草稿**（未取號） | 「宣告有效集之外」5 leaf 之無效值定義 | 訊號為 API 層，非匯流排 raw；「raw 全數已定義」不成立 | row 62／78／149／164／223 全數生成；`R-VS102(2)` 同步撤銷 |
+
+**一併降為非阻塞（不撤回，DR 仍開）**
+
+| DR | 處置 |
+|---|---|
+| **DR-18** | 12 列之 `BLOCKED:` 前綴撤除；`_mid` 之值取 037 D 欄之原標籤。DR 本身（前綴筆誤／大小寫確認）仍開 |
+| **DR-22** | 值域即 037 Common Features D 欄之 `$HdRstRelRq$ = [Pressed]`，2 列之 `BLOCKED:` 撤除；DR 本身仍開 |
+| **DR-5-B** | **不在本次撤回清單內**（§〇 之枚舉未含）。39 列改標 `dr_dependent = DR-5-B：…`，非阻塞、TC 可執行，待 TLM HMI Document／HMI requirements 到件後複檢畫面層之具體樣式 |
