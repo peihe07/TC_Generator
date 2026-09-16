@@ -1,0 +1,157 @@
+asset	value(verbatim)	source	source_loc	used_by_swe1	channel	observe
+cmd_adb	"adb shell ""od -t x1 /mnt/vendor/oemkeys/ecu/state/ecucertstatus"""	PDF	ECU Cert Test Steps p4		ADB	FILE
+cmd_adb	"adb shell ""printf '\x01' > /mnt/vendor/oemkeys/ecu/state/ecucertstatus"""	PDF	ECU Cert Test Steps p4		ADB	FILE
+cmd_adb	adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#ecuCertTestSelfSignedChain com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner	CS98	Cert Val CS.98!R4		ADB	RC
+cmd_adb	adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#samCertTestNormalFlow com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner	APK、CS98	Cert Val CS.98!R10；Cert Val CS.98!R11；Cert Val CS.98!R13；Cert Val CS.98!R3…		ADB	RC
+cmd_adb	adb shell am instrument -w com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner	APK	Test_Items.txt		ADB	RC
+cmd_adb	adb shell getsslog or inserting USB with special	VC	swe1_037_liblogencrypt!Analysis Report!R14	SWE1-LOGENC-006	ADB	LOG
+cmd_adb	adb shell ls -la /vendor/odm/etc/cert_store/)Check configuration files and certificate sub-folders	CS98	Cert Val CS.98!R2		ADB	FILE
+cmd_adb	adb shell ls -la /vendor/odm/etc/cert_store/cfgs/	CS98	Cert Val CS.98!R13；Cert Val CS.98!R2		ADB	FILE
+cmd_adb	adb shell ls -la /vendor/odm/etc/cert_store/ecu_chain/	CS98	Cert Val CS.98!R2		ADB	FILE
+cmd_adb	adb shell ls -la /vendor/odm/etc/cert_store/oem_cert_tree/	CS98	Cert Val CS.98!R13；Cert Val CS.98!R2		ADB	FILE
+cmd_adb	adb shell pm list instrumentation | grep melcocertprovider	CS98	Cert Val CS.98!R13；Cert Val CS.98!R4；Cert Val CS.98!R9		ADB	-
+cmd_adb	adb shell pm list instrumentation | grep melcocertprovider)  WHEN. QA injects DCL revoking the L0 Root CA and verifies verification rejection	CS98	Cert Val CS.98!R11		ADB	-
+cmd_adb	adb shell pm list instrumentation | grep melcocertprovider)  WHEN. QA injects DCL revoking the L1 intermediate CA and verifies verification rejection	CS98	Cert Val CS.98!R10		ADB	-
+cmd_adb	adb shell pm list instrumentation | grep melcocertprovider; if missing, run adb install -r -t CertProviderServiceManagerTest.apk	CS98	Cert Val CS.98!R3；Cert Val CS.98!R6		ADB	-
+cmd_od	"od -t x1 /mnt/vendor/oemkeys/ecu/state/ecucertstatus"""	PDF	ECU Cert Test Steps p4		ADB	FILE
+cmd_openssl	openssl req -in ecu.crt -noout -verify	CS165	ECU ID CS.165!R13		HOST	HOST
+cmd_openssl	openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem -untrusted CRL.r0 SAMcert	VC	swe1_037_certprovider_v1_0!Analysis Report!R12	SWE1-CertProvider-004	HOST	HOST
+cmd_openssl	openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11；swe1_037_certprovider_v1_0!Analysis Report!R9	SWE1-CertProvider-001；SWE1-CertProvider-002；SWE1-CertProvider-003	HOST	HOST
+cmd_openssl	openssl x509 -in leaf.crt -text. Compare with the name in the config: SecurityAssets/oem-certs/cert-provider/{TYPE}/cfgs/	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11	SWE1-CertProvider-002；SWE1-CertProvider-003	HOST	HOST
+cmd_shell	getsslog or inserting USB with special	VC	swe1_037_liblogencrypt!Analysis Report!R14	SWE1-LOGENC-006	ADB	LOG
+cmd_shell	logcat -c	CS98	Cert Val CS.98!R10；Cert Val CS.98!R11；Cert Val CS.98!R13；Cert Val CS.98!R3…		ADB	LOG
+cmd_shell	"logcat -d | grep -i ""CertProvider"""	CS98	Cert Val CS.98!R10；Cert Val CS.98!R11；Cert Val CS.98!R13；Cert Val CS.98!R3…		ADB	LOG
+cmd_shell	logdecrypt_Ver2.sh HUssss_YYYYMMDD_HHMMSS_XXXX.enc HUssss_YYYYMMDD_HHMMSS_XXXX_enckey.enc	VC	swe1_037_liblogencrypt!Analysis Report!R14	SWE1-LOGENC-006	ADB	HOST
+filename	CertProviderServiceManagerTest.apk	CS98	Cert Val CS.98!R13；Cert Val CS.98!R3；Cert Val CS.98!R4；Cert Val CS.98!R6		-	-
+filename	HUssss_YYYYMMDD_HHMMSS_XXXX.enc	VC	swe1_037_liblogencrypt!Analysis Report!R14	SWE1-LOGENC-006	-	-
+filename	HUssss_YYYYMMDD_HHMMSS_XXXX_enckey.enc	VC	swe1_037_liblogencrypt!Analysis Report!R14	SWE1-LOGENC-006	-	-
+filename	L1.pem	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11；swe1_037_certprovider_v1_0!Analysis Report!R12；swe1_037_certprovider_v1_0!Analysis Report!R9	SWE1-CertProvider-001；SWE1-CertProvider-002；SWE1-CertProvider-003；SWE1-CertProvider-004	-	-
+filename	L2.pem	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11；swe1_037_certprovider_v1_0!Analysis Report!R12；swe1_037_certprovider_v1_0!Analysis Report!R9	SWE1-CertProvider-001；SWE1-CertProvider-002；SWE1-CertProvider-003；SWE1-CertProvider-004	-	-
+filename	L3.pem	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11；swe1_037_certprovider_v1_0!Analysis Report!R12；swe1_037_certprovider_v1_0!Analysis Report!R9	SWE1-CertProvider-001；SWE1-CertProvider-002；SWE1-CertProvider-003；SWE1-CertProvider-004	-	-
+filename	RootCert.pem	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11；swe1_037_certprovider_v1_0!Analysis Report!R12；swe1_037_certprovider_v1_0!Analysis Report!R9	SWE1-CertProvider-001；SWE1-CertProvider-002；SWE1-CertProvider-003；SWE1-CertProvider-004	-	-
+filename	SAMcert.pem	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11；swe1_037_certprovider_v1_0!Analysis Report!R9	SWE1-CertProvider-001；SWE1-CertProvider-002；SWE1-CertProvider-003	-	-
+filename	ecu.crt	CS165、PDF	ECU Cert Test Steps p1；ECU Cert Test Steps p2；ECU Cert Test Steps p3；ECU Cert Test Steps p5…		-	-
+filename	leaf.crt	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11	SWE1-CertProvider-002；SWE1-CertProvider-003	-	-
+filename	logdecrypt_Ver2.sh	VC	swe1_037_liblogencrypt!Analysis Report!R14	SWE1-LOGENC-006	-	HOST
+hex_blob	0900 0000 0000 0000	VC	swe1_037_keyinstall_v1_0!Analysis Report!R11	SWE1-KeyInsyall-003	-	-
+junit_method	downloadCertificate	SYSAD	ecucert_a01!T35		ADB	-
+junit_method	downloadECUCert	SYSAD	ecucert_a01!T35		ADB	-
+junit_method	ecuCertTestBrokenChainCert	APK	Test_Items.txt		ADB	-
+junit_method	ecuCertTestNormalFlow	APK	Test_Items.txt		ADB	-
+junit_method	ecuCertTestSelfSignedChain	APK、CS98	Cert Val CS.98!R4；Test_Items.txt		ADB	-
+junit_method	fotaMcpuCertStressTest	APK	Test_Items.txt		ADB	-
+junit_method	fotaMcpuCertTestBrokenCert	APK	Test_Items.txt		ADB	-
+junit_method	fotaMcpuCertTestNormalFlow	APK	Test_Items.txt		ADB	-
+junit_method	fotaMcpuCertVerifyStressTest	APK	Test_Items.txt		ADB	-
+junit_method	fotaMcpuVcpuCertStressTest	APK	Test_Items.txt		ADB	-
+junit_method	fotaMcpuVcpuVerifyCertStressTest	APK	Test_Items.txt		ADB	-
+junit_method	fotaVcpuCertTestNormalFlow	APK	Test_Items.txt		ADB	-
+junit_method	libCertProvider	VC	swe1_037_certprovider_v1_0!Analysis Report!R16	SWE1-CertProvider-008	ADB	-
+junit_method	samCertTestNormalFlow	APK、CS98	Cert Val CS.98!R10；Cert Val CS.98!R11；Cert Val CS.98!R13；Cert Val CS.98!R3…		ADB	-
+junit_method	secondPartyLevelThreeCertATestNormalFlow	APK	Test_Items.txt		ADB	-
+junit_method	secondPartyLevelThreeCertBTestNormalFlow	APK	Test_Items.txt		ADB	-
+junit_method	secondPartyLevelThreeCertCTestNormalFlow	APK	Test_Items.txt		ADB	-
+junit_method	secondPartyLevelTwoCertTestNormalFlow	APK	Test_Items.txt		ADB	-
+path	/cfgs	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11	SWE1-CertProvider-002；SWE1-CertProvider-003	-	-
+path	/data/misc/ecuidentity	CS165、PDF	ECU Cert Test Steps p4；ECU Cert Test Steps p5；ECU ID CS.165!R3		-	FILE
+path	/data/misc/ecuidentity/ecu.blob	PDF	ECU Cert Test Steps p1		-	FILE
+path	/data/misc/ecuidentity/ecu.cacert	PDF	ECU Cert Test Steps p1		-	FILE
+path	/data/misc/ecuidentity/ecu.crt	CS165、PDF	ECU Cert Test Steps p1；ECU Cert Test Steps p3；ECU ID CS.165!R13		-	FILE
+path	/data/vendor/dauth	VC	swe1_037_sam_v1_1!Analysis Report!R17；swe1_037_sam_v1_1!Analysis Report!R19；swe1_037_sam_v1_1!Analysis Report!R26	SWE1-SAM-0009；SWE1-SAM-0011；SWE1-SAM-0018	-	FILE
+path	/data/vendor/dauth/seqId	VC	swe1_037_sam_v1_1!Analysis Report!R25	SWE1-SAM-0017	-	FILE
+path	/mnt/vendor/ecuidentity/data	PDF	ECU Cert Test Steps p4		-	FILE
+path	/mnt/vendor/ecuidentity/data/ecu.blob	PDF	ECU Cert Test Steps p1		-	FILE
+path	/mnt/vendor/ecuidentity/data/ecu.cacert	PDF	ECU Cert Test Steps p1		-	FILE
+path	/mnt/vendor/ecuidentity/data/ecu.crt	PDF	ECU Cert Test Steps p1		-	FILE
+path	/mnt/vendor/ecuidentity/state/ecucertstatus	PDF	ECU Cert Test Steps p1		-	FILE
+path	/mnt/vendor/oemkeys	VC	swe1_037_keyinstall_v1_0!Analysis Report!R21	SWE1-KeyInsyall-013	-	FILE
+path	/mnt/vendor/oemkeys/ecu/state/ecucertstatus	PDF	ECU Cert Test Steps p4		-	FILE
+path	/odm	VC	swe1_037_certprovider_v1_0!Analysis Report!R18	SWE1-CertProvider-010	-	-
+path	/odm/etc/cert_store	VC	swe1_037_certprovider_v1_0!Analysis Report!R15；swe1_037_certprovider_v1_0!Analysis Report!R17	SWE1-CertProvider-007；SWE1-CertProvider-009	-	FILE
+path	/r/sites/newR1LAllMDmembers/_layouts/15/Doc.aspx	PDF	ECU Cert Test Steps p6		-	-
+path	/vendor/odm/etc/cert_store	CS98	Cert Val CS.98!R13；Cert Val CS.98!R2；Cert Val CS.98!R5；Cert Val CS.98!R6		-	FILE
+path	/vendor/odm/etc/cert_store/	CS98	Cert Val CS.98!R10；Cert Val CS.98!R11；Cert Val CS.98!R3；Cert Val CS.98!R4…		-	FILE
+path	/vendor/odm/etc/cert_store/cfgs	CS98	Cert Val CS.98!R13；Cert Val CS.98!R2		-	FILE
+path	/vendor/odm/etc/cert_store/dcl.json	CS98	Cert Val CS.98!R10；Cert Val CS.98!R11；Cert Val CS.98!R3；Cert Val CS.98!R6…		-	FILE
+path	/vendor/odm/etc/cert_store/ecu_chain	CS98	Cert Val CS.98!R2		-	FILE
+path	/vendor/odm/etc/cert_store/oem_cert_tree	CS98	Cert Val CS.98!R13；Cert Val CS.98!R2		-	FILE
+path	/write	VC	swe1_037_liblogencrypt!Analysis Report!R17	SWE1-LOGENC-009	-	-
+placeholder	<ERR_CERT_REVOKED>	CS98	Cert Val CS.98!R3；Cert Val CS.98!R6；Cert Val CS.98!R9		-	-
+placeholder	<OK>	CS98	Cert Val CS.98!R3；Cert Val CS.98!R6；Cert Val CS.98!R9		-	-
+placeholder	<SAMType>	VC	swe1_037_sam_v1_1!Analysis Report!R16	SWE1-SAM-0008	-	-
+placeholder	<SSN>	VC	swe1_037_sam_v1_1!Analysis Report!R16	SWE1-SAM-0008	-	-
+placeholder	HUssss_YYYYMMDD_HHMMSS_XXXX	VC	swe1_037_liblogencrypt!Analysis Report!R14	SWE1-LOGENC-006	-	-
+placeholder	{TYPE}	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11	SWE1-CertProvider-002；SWE1-CertProvider-003	-	-
+state_value	ecucertstatus // installation status	PDF	ECU Cert Test Steps p1		-	-
+state_value	ecucertstatus always be 1. It means the cert manually installed successfu	PDF	ECU Cert Test Steps p4		-	-
+state_value	"ecucertstatus"""	PDF	ECU Cert Test Steps p4		-	-
+state_value	installstate file contains VERIFICATION_REQUIRED (1	VC	swe1_037_keyinstall_v1_0!Analysis Report!R15	SWE1-KeyInsyall-007	-	-
+state_value	installstate file is present on the device under test in the predefined	VC	swe1_037_keyinstall_v1_0!Analysis Report!R14	SWE1-KeyInsyall-006	-	-
+state_value	installstate value should be ERROR(3), and the status value should be 09	VC	swe1_037_keyinstall_v1_0!Analysis Report!R11	SWE1-KeyInsyall-003	-	-
+state_value	seqId	VC	swe1_037_sam_v1_1!Analysis Report!R23；swe1_037_sam_v1_1!Analysis Report!R25	SWE1-SAM-0015；SWE1-SAM-0017	-	-
+state_value	status	SYSAD、VC	certprovider_vf!T21；keyinstall_vd!T21；swe1_037_keyinstall_v1_0!Analysis Report!R19	SWE1-KeyInsyall-011	-	-
+state_value	status (Not Imported/Imported/Installed	SYSAD	keyinstall_vd!T21		-	-
+state_value	status (OK/FAIL) that corresponds to the file's changes	VC	swe1_037_ecucert!Analysis Report!R10；swe1_037_ecucert!Analysis Report!R9	SYSAD_SEC_ECUCERT_ECUCERT_API；SYSAD_SEC_ECUCERT_ECUCERT_SERVICE	-	-
+state_value	status (ON or OFF) to the target function	VC	swe1_037_sam_v1_1!Analysis Report!R24	SWE1-SAM-0016	-	-
+state_value	status (e.g., expected:<OK> but was:<ERR_CERT_REVOKED> or INTERNAL	CS98	Cert Val CS.98!R6		-	-
+state_value	status = ERROR	VC	swe1_037_keyinstall_v1_0!Analysis Report!R19	SWE1-KeyInsyall-011	-	-
+state_value	status = INSTALLED	VC	swe1_037_keyinstall_v1_0!Analysis Report!R19	SWE1-KeyInsyall-011	-	-
+state_value	status check	SYSAD	certprovider_vf!T21		-	-
+state_value	status code 0x00 (Success) or 0x01 (Generic Failure	SYSAD	keyinstall_vd!T22		-	-
+state_value	status has changed	PDF	ECU Cert Test Steps p4		-	-
+state_value	status on the DUT using the following commands	PDF	ECU Cert Test Steps p4		-	-
+state_value	status shall be change to state: INSTALLED (2	VC	swe1_037_keyinstall_v1_0!Analysis Report!R15	SWE1-KeyInsyall-007	-	-
+state_value	status to any target function (ON or OFF	VC	swe1_037_sam_v1_1!Analysis Report!R23	SWE1-SAM-0015	-	-
+state_value	status, e.g., ERR_DEPTH_ZERO_SELF_SIGNED_CERT or ERR_UNABLE_TO_GET	CS98	Cert Val CS.98!R4		-	-
+state_value	status, return the appropriate error, and clear the RAM buffer	VC	swe1_037_certprovider_v1_0!Analysis Report!R13	SWE1-CertProvider-005	-	-
+state_value	status.ordinal(	CS165	ECU ID CS.165!R3；ECU ID CS.165!R4；ECU ID CS.165!R5；ECU ID CS.165!R6…		-	-
+channel_line	$ adb root	R1L-SWQT	Diag基本機能 00053		ADB	-
+channel_line	$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#<method> com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner	APK	Test_Items.txt		ADB	RC
+channel_line	$ adb pull /data/misc/ecuidentity/ecu.crt	PDF	ECU Cert Test Steps		ADB	FILE
+channel_line	$ adb push ecu.cacert /data/misc/ecuidentity/	PDF	ECU Cert Test Steps		ADB	FILE
+channel_line	"$ adb shell ""printf '\x01' > /mnt/vendor/oemkeys/ecu/state/ecucertstatus"""	PDF	ECU Cert Test Steps		ADB	FILE
+channel_line	"$ adb shell ""od -t x1 /mnt/vendor/oemkeys/ecu/state/ecucertstatus"""	PDF	ECU Cert Test Steps		ADB	FILE
+channel_line	$ adb shell getsslog	VC	SWE1-LOGENC-006		ADB	LOG
+channel_line	$ ./logdecrypt_Ver2.sh HUssss_YYYYMMDD_HHMMSS_XXXX.enc HUssss_YYYYMMDD_HHMMSS_XXXX_enckey.enc	VC	SWE1-LOGENC-006		HOST	HOST
+channel_line	$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem	VC	SWE1-CertProvider-001/004		HOST	HOST
+channel_line	$ openssl x509 -in leaf.crt -text	VC	SWE1-CertProvider-002/003		HOST	HOST
+channel_line	$ adb logcat -c	CS98	Cert Val CS.98		ADB	LOG
+channel_line	$ adb shell pm list instrumentation | grep melcocertprovider	CS98	Cert Val CS.98		ADB	RC
+channel_line	$ 22 FF 02	R1L-SWQT	22345/22346		UDS	UDS
+channel_line	$ 22 29 65	R1L-SWQT	22403/22404		UDS	UDS
+channel_line	$ 10 60	R1L-SWQT	session 切換（ENTER_SUPPLIER_SESSION）		UDS	UDS
+channel_line	$ 22 F1 B6	CS00102	5.2.1.44		UDS	UDS
+channel_line	$ 22 20 31	CS00102	5.2.2.43		UDS	UDS
+channel_line	$ 22 29 55	CS00102	5.2.2.62		UDS	UDS
+channel_line	$ 22 29 5D	CS00102	5.2.2.70		UDS	UDS
+channel_line	$ 22 29 5E	CS00102	5.2.2.71		UDS	UDS
+channel_line	$ 31 01 F0 00	CS00102	5.2.7.19		UDS	UDS
+channel_line	$ 31 01 FF 01	CS00102	5.2.7.23		UDS	UDS
+channel_line	$ 2E 28 50 05	VHAL-R5	§2.4（Atl-Hi；03 = Atl-Mid）		UDS	UDS
+channel_line	Insert USB drive containing <資產名> into HU USB port	VC	SWE1-KeyInsyall-002/003/007		PHYS	-
+channel_line	Insert SAM dongle	VC	SWE1-LOGENC-006／SAM 群		PHYS	-
+channel_line	Power cycle HU (IGN OFF → IGN ON)	VC	SWE1-SAM-0017		PHYS	-
+channel_line	Send CAN: BCM_FD_10.CmdIgnSts = <raw> (<label>)	VHAL-R5	§2.4 IGNITION_STATE		CAN	CAN
+channel_line	"$ adb shell ""ps -A | grep keyinstall"""	R1L-SWQT	Diag基本機能 00053		ADB	RC
+cert_field	BETA_ROW_VHL_ROOT_G1	CertProfile	CertProfile:r11		HOST	HOST
+cert_field	BETA_ROW_CS_SUBCA_G1	CertProfile	CertProfile:r11,r18		HOST	HOST
+cert_field	CS_{SupplierID}_{Node}_{OPT - chipset}_ {ECUSWmodule}	CertProfile	CertProfile:r18		HOST	HOST
+cert_field	Stellantis N.V.	CertProfile	CertProfile:r9,r16		HOST	HOST
+cert_field	99991231235959Z	CertProfile	CertProfile:r12		HOST	HOST
+cert_field	2 (X.509v3)	CertProfile	CertProfile:r3		HOST	HOST
+cert_field	ecdsa-with-SHA384	CertProfile	CertProfile:r5,r44（L1）		HOST	HOST
+cert_field	ecdsa-with-SHA256	CertProfile	CertProfile:r5,r44（leaf）		HOST	HOST
+cert_field	ECParameters (namedCurve secp256r1)	CertProfile	CertProfile:r22		HOST	HOST
+cert_field	key size 256	CertProfile	CertProfile:r20		HOST	HOST
+cert_field	keyCertSign / cRLSign（L1，critical）	CertProfile	CertProfile:r25,r31,r32		HOST	HOST
+cert_field	digitalSignature（leaf，critical）	CertProfile	CertProfile:r25,r26		HOST	HOST
+cert_field	BasicConstraints CA:TRUE, pathlen:0（critical，L1）	CertProfile	CertProfile:r37,r39		HOST	HOST
+cert_field	CertificatePolicies（critical）OID 1.3.6.1.4.1.57872.<…>	CertProfile	CertProfile:r36		HOST	HOST
+cert_field	http://vpki.preprod.stellantis.com/crls/STLAroot	CertProfile	CertProfile:r40（L1）		HOST	HOST
+cert_field	http://vpki.preprod.stellantis.com/crls/L1CS	CertProfile	CertProfile:r40（leaf）		HOST	HOST
+cert_field	http://vpki.preprod.stellantis.com/aia/L1CS	CertProfile	CertProfile:r43		HOST	HOST
+channel_line	$ openssl x509 -in <L1> -text	CertProfile	_F §2 ER 觀察手段		HOST	HOST
+channel_line	$ 19 02 FF	DTCMatrix	_F §4（讀 DTC；ER 以 3-byte HEX 對照 J2012）		UDS	UDS
+dtc_precond	EC1: DTC Setting Enabled	DTCMatrix	DTCs for R1H		-	-
+dtc_precond	EC2: $PowerMode$ = [IGN_RUN]	DTCMatrix	DTCs for R1H		-	-
+dtc_precond	EC4: [10.0] <= $BatteryVoltage$ <= [16.0]	DTCMatrix	DTCs for R1H		-	-

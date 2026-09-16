@@ -1,0 +1,47 @@
+kind	id	name	support_status	roles	used_by	definition_source	note
+DID	F18C	ECU Serial Number	Functional Requirement;Information		ECUCert 全部（Test Steps PDF Step 1）；SAM-0006（SSN 比對 ECUId）	CS00102:SYS-RA-CS00102-144,SYS-RA-CS00102-145,SYS-RA-CS00102-146	5.2.1.25；讀有前例，寫（2E F1 8C）無前例
+DID	F111	Public Certificates – Regional Support	Functional Requirement;Information		CertProvider-009	CS00102:SYS-RA-CS00102-046,SYS-RA-CS00102-047,SYS-RA-CS00102-048	5.2.1.2；只可讀，經 Authenticated FW update 寫入；區域由 Certificate Store UUID（SD.00045）決定
+DID	F1B6	ECU Identity L0 Root certificate	Functional Requirement		ECUCert R19 匯出憑證	CS00102:SYS-RA-CS00102-209,SYS-RA-CS00102-210	5.2.1.44
+DID	F1BD	ECU Signature Type	Functional Requirement		CertProvider-011（OID，CS.00098/02）	CS00102:SYS-RA-CS00102-216	5.2.1.47
+DID	F1C2	HSM/HTA version	OutofScope		Auth-Boot 第 3；KeyInstall-013	CS00102:SYS-RA-CS00102-223	5.2.1.50；**OutofScope** → KeyInstall-013 不以 DID 驗
+DID	0108	ADA Active Roles	Functional Requirement;Information		讀 2965 等 ADA+ DID 之前提	CS00102:SYS-RA-CS00102-241,SYS-RA-CS00102-242	5.2.2.3
+DID	2010	Programming Status	Functional Requirement;Information		Auth-Prog	CS00102:SYS-RA-CS00102-311,SYS-RA-CS00102-312	5.2.2.29；header 列為 Information
+DID	201F	Boot Failure Reason	Functional Requirement;Information		Auth-Boot 第 5/6/11 之 ER	CS00102:SYS-RA-CS00102-332,SYS-RA-CS00102-333,SYS-RA-CS00102-334	5.2.2.37
+DID	2031	Disavowed Certificate List (DCL)	Functional Requirement;Information		Cert Val 第 1/2/5~8；CertProvider-004	CS00102:SYS-RA-CS00102-343,SYS-RA-CS00102-344	5.2.2.43；回最後 42 筆；DCL 依 SD.00015/03；與 DR-SEC-j 相關
+DID	2954	Policy Type	Functional Requirement;Information		—	CS00102:SYS-RA-CS00102-388,SYS-RA-CS00102-389	5.2.2.61
+DID	2955	Certificate Store Header Info	Functional Requirement;Information		Cert Val 第 1 項；CertProvider-007/009	CS00102:SYS-RA-CS00102-390,SYS-RA-CS00102-391	5.2.2.62；供應商擇 2955+295D+295E 或 295F，未用者停用或回 0x20
+DID	295D	DCL Header Info	Functional Requirement;Information		Cert Val 第 1/2/5~8	CS00102:SYS-RA-CS00102-406,SYS-RA-CS00102-407	5.2.2.70
+DID	295E	DCL UUID	Functional Requirement;Information		同上	CS00102:SYS-RA-CS00102-408,SYS-RA-CS00102-409	5.2.2.71
+DID	295F	DCL + Certstore Header	OutofScope		—	CS00102:SYS-RA-CS00102-410,SYS-RA-CS00102-411	5.2.2.72；**OutofScope** → NR1L 走三分式
+DID	2965	CSR Read (1000 bytes)	Functional Requirement;Information		ECUCert R18；Test Steps PDF Step 2	CS00102:SYS-RA-CS00102-415,SYS-RA-CS00102-416,SYS-RA-CS00102-417,SYS-RA-CS00102-418	5.2.2.75；**ADA+ 保護**；與 R1L SWQT 之 ≤2048 bytes 不同（A-SEC-3）
+DID	2966	ECU Identity Cert Error Enable (1 byte)	Functional Requirement		ECUCert R11 online；CS.165 DTC 條件	CS00102:SYS-RA-CS00102-419	5.2.2.76
+DID	2967	CSR Count	OutofScope		ECUCert R21 下載重試（totalRetrialMax 300）	CS00102:SYS-RA-CS00102-420	5.2.2.77；**OutofScope** → 不經 DID 讀
+DID	2969	ECU Identity L1 cert 讀寫	OutofScope		ECUCert R20 匯入憑證	CS00102:SYS-RA-CS00102-423,SYS-RA-CS00102-424,SYS-RA-CS00102-425	5.2.2.78；**OutofScope** → 不走 DID，與 PDF 之 adb push 一致
+DID	2991	ECU Identity L2 cert 讀寫	OutofScope		ECUCert R20	CS00102:SYS-RA-CS00102-536,SYS-RA-CS00102-537,SYS-RA-CS00102-538,SYS-RA-CS00102-539	5.2.2.116；**OutofScope**
+DID	2992	ECU Identity L3 cert 讀寫	OutofScope		ECUCert R20	CS00102:SYS-RA-CS00102-540,SYS-RA-CS00102-541,SYS-RA-CS00102-542,SYS-RA-CS00102-543	5.2.2.117；**OutofScope**
+DID	2032	Secure log	OutofScope		CS.212 全部	CS00102:SYS-RA-CS00102-456,SYS-RA-CS00102-457	5.2.2.93；**OutofScope** → CS.212 證據只能靠 logcat，無 DID 面
+RID	D00A	CSR Trigger	OutofScope		ECUCert R18	CS00102:SYS-RA-CS00102-678,SYS-RA-CS00102-679	5.2.7.18；**OutofScope** → CSR 開機自動產生（PDF Step 2）
+RID	F000	Check Program（31 01 F0 00）	Functional Requirement;Information		Auth-Prog 第 2/4/5/6/7；SWDL-003/004	CS00102:SYS-RA-CS00102-683,SYS-RA-CS00102-684,SYS-RA-CS00102-685	5.2.7.19；Authenticated Reprogramming 不帶資料，簽章嵌於下載資料（SD.00015）
+RID	FF01	Check Programming Dependencies – Validate Application	Functional Requirement;Information		Auth-Prog	CS00102:SYS-RA-CS00102-695,SYS-RA-CS00102-696,SYS-RA-CS00102-697,SYS-RA-CS00102-698	5.2.7.23；**FF01 在 NR1L 是 RID，不是 SSN DID**
+DID	2975	HU ID (SSN)	-		SAM-0006（SSN vs ECUId）；KeyInstall-003	CFTS004:SYS-RA-DIAG-008	NA 內部工程用；_C §3 之 FF01 列作廢，以 2975 為準（DR-SEC-o）
+DID	F180	Boot Software version	Functional Requirement		Auth-Prog 第 6/7 rollback	CS00102:SYS-RA-CS00102-084	SYS2_Mapped `DID CS.102`；CS.00102 現查見下表
+DID	F181	Application Software version	Functional Requirement		Auth-Prog 第 6/7 rollback	CS00102:SYS-RA-CS00102-091	5.2.1.12-6
+RID	9001	金鑰佈建 transport key 握手（CAN）	-		KeyInstall-007/011；SYSAD_IF_KI_DIAG；CS.212 第 10/12 項	PENDING:DR-SEC-k	**CS.00102 查無、R1L SWQT 查無** → PENDING: DR-SEC-k
+RID	9003	金鑰佈建 payload 注入（CAN）	-		同上（injectKeysFromJson）	PENDING:DR-SEC-k	同上 → PENDING: DR-SEC-k
+RID	1902FF	Read DTC by status mask	-		Auth-Boot 第 6/11	UDS-STD:ISO14229 $19 02	UDS 標準服務，無需專屬定義本
+DTC	U3033-00	Control Module Security Certificate Missing/Invalid	-		CertProvider-004/005 之撤銷失敗	CS00098:§5.4.10（碼已定，規格本未投遞）	CS.00098/01 §5.4.10；碼已定
+DTC	U160B-45	ECU Boot Software 1 Missing/Invalid	-		Auth-Boot 第 11/12	CS00093:§5.2.8（碼已定，規格本未投遞）	CS.00093 §5.2.8；碼已定
+DTC	C221C-00	Boot failure 系列	-		Auth-Boot 第 11/12	CS00093:§5.2.8（碼已定，規格本未投遞）	CS.00093 §5.2.8
+DTC	B2250	Boot failure 系列	-		Auth-Boot 第 11/12	CS00093:§5.2.8（碼已定，規格本未投遞）	CS.00093 §5.2.8
+DTC	P0602-00	ECU Not Programmed / Flash Required	-		Auth-Boot 第 12	DTCMatrix:r110（CS.00101 RQMT-37~41；CFTS084-2178/2180）	CS.00093 §5.2.8
+DTC	A2500 00F	bootloader DTC（原文 `0xA2 50 00 0F`）	-		SWDL（Auth-Prog 第 2/4/5 evidence 欄）	PENDING:DR-SEC-l	格式非標準 DTC，逐字回報
+DTC	(空)	Certificate validation failure from Stellantis service	-		ECUCert R11；CS.165 DTC 條件	PENDING:DR-SEC-m	CS.00165 §5.6；**sheet 未給碼** → PENDING: DR-SEC-m
+DTC	(空)	Identity certificate not installed due to verification failure	-		ECUCert R20	PENDING:DR-SEC-m	SD.00125 §5.1；**未給碼** → PENDING: DR-SEC-m
+DTC	B22A9-00	ECU Internal Failure	-		內部失效類	DTCMatrix:r（`DTC's in CFTS's`）	_F §4；Security 直接可用之第二碼
+DID	FF02	SecurityKeyInstallStatus	-		KeyInstall-011	R1L-SWQT:22345/22346	`62 FF 02 01`=未裝、`00`=已裝；**兩態 vs 037 四態** → DR-SEC-o；CS.00102 查無
+DID	FF01(R1L)	SSN（R1L 舊號，NR1L 已改）	-		SAM-0006；KeyInstall-003	R1L-SWQT:22341~22344	**作廢**：NR1L 之 FF01 為 RID；SSN 改用 2975（DR-SEC-o）
+DID	2951	Software Inventory（R1L 前例本）	-		CertProvider-007/009；Cert Val 第 1 項	R1L-SWQT:22031/22032/22081/22157	**CS.00102 查無 2951** → DR-SEC-p 結案：改用 2955/295D/295E；CCVR sheet 之「2951 Certificate Store UUID」登 A-SEC-1
+SVC	$27	SecurityAccess	-		Auth-Prog 第 8/10 session 鎖；SYSAD_IF_KI_DIAG	R1L-SWQT:27001~	`27 05` seed／`27 06` key；default session NRC `7F 27 7F`
+SVC	$2850	Arch type 設定	-		Vehicle Model 前提	VHAL-R5:§2.4	`2E 28 50 03`=Atl-Mid／`05`=Atl-Hi；診斷 CAN ID Hi 0x7BF/0x53F、Mid 0x18DA87F1/0x18DAF187
+OPS	KeyInstallDiagService 重連	服務可用性（Fault Injection 型）	-		KeyInstall-011	R1L-SWQT:Diag基本機能 00053	`ps -A | grep keyinstall` → kill → `10 60` → `22 FF 02` 得 PR
+OPS	ECUCertDiagManager connected	DiagService 啟動 log 關鍵字	-		ECUCert R12	R1L-SWQT:Diag基本機能 00056	ER 之 log 關鍵字

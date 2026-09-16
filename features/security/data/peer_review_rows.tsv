@@ -1,0 +1,32 @@
+swe1_id	component	verification_method	ccvr_batch	blackbox_possible	observation_means	basis
+SWE1-KeyInsyall-012	KeyInstall	Document Review / Static Analysis / Log Observation	1	Y(部分)	logcat 觀察 `avc: denied` 是否出現（enforcing mode）	VC 1.1 為 log 斷言，可黑箱；2.1 Android.bp／3.1 編譯選項為建置面，不可黑箱
+SWE1-SAM-0001	SAM	Peer Review	1	N	—	VC 受詞為 DebugAuth source code 與 build environment，無可觀察外部行為
+SWE1-SAM-0008	SAM	Peer Review	2	Y	餵入各 SAMType 之 AuthData（含 manifest 名／簽章／計數器欄位異常變體），觀察 DebugAuth 接受／拒絕	VC 條列 AuthData 格式；以格式違反之負向樣本可自外部判斷。依賴 DR-SEC-g
+SWE1-SAM-0017	SAM	(空)	2	Y	冷開機後讀 `/data/vendor/dauth/seqId`	VC 已給明確檔案路徑與值（0）；**Verification Method 欄空白**，見自報錯誤
+SWE1-SAM-0019	SAM	Peer Review	1	N	—	VC 受詞為 source code 之外部元件引用，屬靜態相依性
+SYSAD_SEC_ECUCERT_ECUCERT_API	ECUCert	Peer Review	1	Y	`ECU ID CS.165` Test steps 之 corrupt／recover 序列 ＋ PDF 六步之 `od -t x1 …/ecucertstatus`	step_sources 含 CS165:2~14 與 PDF:1-6；狀態值可自檔案觀察
+SYSAD_SEC_ECUCERT_ECUCERT_SERVICE	ECUCert	Peer Review : interact protocol	1	Y	同上，觀察 service 回傳之 OK/FAIL 對應 `ecucertstatus`	同上
+SYSAD_SEC_ECUCERT_ECUONLINE	ECUCert	Peer Review	1	N	—	VC 為 input parameter range test，屬單元層；端到端受 DR-SEC-d 阻斷（CS.165 workshop：尚無 ECU certificate）
+SYSAD_SEC_ECUCERT_DIAG	ECUCert	Peer Review	1	Y(部分)	DIAG tester 觸發驗證，觀察回應與 log	VC 之 verify success/failed 可自診斷介面觀察；parameter range 部分不可
+SYSAD_SEC_ECUCERT_DEALER	ECUCert	Peer Review	1	Y(部分)	Dealer App 更新 key 後觀察回傳值	同上
+SYSAD_SEC_ECUCERT_ECUCERT_SERVICE_BINDER	ECUCert	Peer Review	1	N	—	Binder 通訊為程序內介面，§5 已列（IPC／JNI／IO）白箱群
+SYSAD_SEC_ECUCERT_ECUONLINE_BINDER	ECUCert	Peer Review	1	N	—	同上
+SYSAD_SEC_ECUCERT_ECUCERT_STORAGE_IO	ECUCert	Peer Review	1	N	—	VC 受詞為 jbyteArray／jstring 型別轉換與記憶體洩漏，屬白箱
+SYSAD_SEC_ECUCERT_ECUCERT_JNI	ECUCert	Peer Review	1	N	—	同上
+SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF	ECUCert	Peer Review	1	Y	依 PDF 六步匯出 CSR，`adb shell ls`／`od -t x1` 驗檔案存在與內容	VC「Export CSR to a file successfully」之結果即檔案，可觀察
+SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCERT_INTF	ECUCert	Peer Review	1	Y	同上，驗 `/data/misc/ecuidentity/ecu.crt`	同上
+SYSAD_SEC_ECUCERT_ECUCERT_SRV_IMPORTCERT_INTF	ECUCert	Peer Review	1	Y	匯入後驗 `/mnt/vendor/ecuidentity/data/ecu.crt` 與 `ecucertstatus`	同上
+SYSAD_SEC_ECUCERT_ECUONLINE_DOWNLOADCERT_INTF	ECUCert	Peer Review	1	N	—	VC 為連線 STLA 下載；CS.165 workshop 明訂端到端（STLA backend／下載／恢復）不可測，DR-SEC-d
+SWE1-SRA-SECURITY-SWDL-001	SwdlSecureLib	Peer Review : config parameters	1	N	—	VC 為 config 保存與 KEY／certificate 介面控制，屬程式庫組態面
+SWE1-SRA-SECURITY-SWDL-002	SwdlSecureLib	Peer Review : interact protocol	1	N	—	VC 為與 KEY／certificate provider 之互動協定，程序內
+SWE1-SRA-SECURITY-SWDL-003	SwdlSecureLib	Peer Review	1	Y(間接)	以加密 package 走 SWDL 安裝路徑，觀察解密成功／失敗之結果	VC 之 decrypt pass/failed 可由 package 安裝結果間接觀察；直接介面測試不可黑箱
+SWE1-SRA-SECURITY-SWDL-004	SwdlSecureLib	Peer Review	1	Y(間接)	以簽章損毀之 package 走 SWDL 安裝路徑，觀察拒絕	同上
+SWE1-SRA-SECURITY-SWDL-005	SwdlSecureLib	Peer Review	1	N	—	VC 為取金鑰之回傳值與換鑰解密，程序內
+SWE1-LOGENC-001	libLogEncrypt	Peer Review	2	N	—	VC 受詞為 source code 與 build environment
+SWE1-LOGENC-002	libLogEncrypt	Peer Review	2	N	—	VC 受詞為 project build／link error
+SWE1-LOGENC-003	libLogEncrypt	Peer Review	2	N	—	VC 為 API 簽名存在性，屬靜態
+SWE1-LOGENC-004	libLogEncrypt	Peer Review	2	N	—	VC 受詞為 source code 之演算法選用（AES-256）
+SWE1-LOGENC-005	libLogEncrypt	Peer Review	2	N	—	VC 受詞為 source code 之演算法選用（RSA）
+SWE1-LOGENC-007	libLogEncrypt	Peer Review	2	N	—	VC 明寫 In source code
+SWE1-LOGENC-008	libLogEncrypt	Peer Review	2	N	—	VC 明寫 In source code
+SWE1-LOGENC-009	libLogEncrypt	Peer Review	2	N	—	VC 明寫 In source code

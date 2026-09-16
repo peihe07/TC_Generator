@@ -1,0 +1,54 @@
+sys_ra_sec	nrl	harman_status	md_status	鏈屬元件	sys2_description_first60
+SYS-RA-SEC-335	NRL-134520	Rejected	Accepted	SwdlSecureLib	The ECU shall not update the software by any means that are 
+SYS-RA-SEC-336	NRL-134521	Rejected	Accepted	SwdlSecureLib	The ECU shall not allow unauthorized reflash of itself or an
+SYS-RA-SEC-337	NRL-134522	Rejected	Accepted	SwdlSecureLib	The ECU shall not allow unauthorized reflash of any of the E
+SYS-RA-SEC-338	NRL-134523	Rejected	Accepted	SwdlSecureLib	The ECU shall not allow unauthorized reflash of its main mic
+SYS-RA-SEC-339	NRL-134524	Rejected	Accepted	SwdlSecureLib	The ECU shall not allow reflash of itself or any of its comp
+SYS-RA-SEC-340	NRL-134525	Rejected	Accepted	SwdlSecureLib	It is not allowed to have any proprietary method (such as a 
+SYS-RA-SEC-341	NRL-134526	Rejected	Accepted	SwdlSecureLib	The ECU shall not update the software if the digital signatu
+SYS-RA-SEC-344	NRL-134529	Rejected	Accepted	SwdlSecureLib	Downgrading of the system shall not be permitted. If the upg
+SYS-RA-SEC-346	NRL-134531	Rejected	Accepted	SwdlSecureLib	All SW components in the ECU shall be updated via the main S
+SYS-RA-SEC-347	NRL-134532	Rejected	Accepted	SwdlSecureLib	The FW update image include all SW components to be updated 
+SYS-RA-SEC-348	NRL-134533	Rejected	Accepted	SwdlSecureLib	The SoC shall decrypt the FW update image and store the decr
+SYS-RA-SEC-349	NRL-134534	Rejected	Accepted	SwdlSecureLib	The SOC shall verify the digital signature on the whole rece
+SYS-RA-SEC-350	NRL-134535	Rejected	Accepted	SwdlSecureLib	The SoC shall use the SoC-HTA to verify the authenticity and
+SYS-RA-SEC-351	NRL-134536	Rejected	Accepted	SwdlSecureLib	After the SoC verifies the signature on the whole update ima
+SYS-RA-SEC-352	NRL-134537	Rejected	Accepted	SwdlSecureLib	The supplier shall develop a method to prevent the installat
+SYS-RA-SEC-353	NRL-134538	Rejected	Accepted	SwdlSecureLib	The ECU shall deploy a rollback protection mechanism to prev
+SYS-RA-SEC-356	NRL-134541	Rejected	Accepted	SwdlSecureLib	The CAN micro software image shall be digitally signed by a 
+SYS-RA-SEC-382	NRL-134567	Rejected	Accepted	SwdlSecureLib	After receiving the update package, the ECU shall extract th
+SYS-RA-SEC-386	NRL-134571	Rejected	Accepted	SwdlSecureLib	The ECU shall use the public key in the FCA root CA certific
+SYS-RA-SEC-392	NRL-134577	Rejected	Accepted	SwdlSecureLib	The ECU shall update the software over the air in a secure m
+SYS-RA-SEC-393	NRL-134578	Rejected	Accepted	SwdlSecureLib	The ECU shall use TLS 1.2 to secure all the TCP/IP communica
+SYS-RA-SEC-394	NRL-134579	Rejected	Accepted	SwdlSecureLib	The ECU shall implement TLS version 1.2 to secure the TCP/IP
+SYS-RA-SEC-395	NRL-134580	Rejected	Accepted	SwdlSecureLib	The software package downloaded for FOTA update shall be an 
+SYS-RA-SEC-397	NRL-134582	Rejected	Accepted	SwdlSecureLib	The supplier shall implement the requirements as defined in 
+SYS-RA-SEC-399	NRL-134584	Rejected	Accepted	SwdlSecureLib	Update over WiFi shall be restricted to a controlled environ
+SYS-RA-SEC-401	NRL-134586	Rejected	Accepted	SwdlSecureLib	If supporting ECU updates over WiFi, the ECU shall meet all 
+SYS-RA-SEC-403	NRL-134588	Rejected	Accepted	SwdlSecureLib	If the ECU is required to wakeup and enable the WiFi client 
+SYS-RA-SEC-404	NRL-134589	Rejected	Accepted	SwdlSecureLib	Authenticating a remote wakeup message shall not be based on
+SYS-RA-SEC-405	NRL-134590	Rejected	Accepted	SwdlSecureLib	Remote wakeup message shall include provisions to prevent re
+SYS-RA-SEC-406	NRL-134591	Rejected	Accepted	SwdlSecureLib	Only after the ECU authenticate the remote wakeup message it
+SYS-RA-SEC-407	NRL-134592	Rejected	Accepted	SwdlSecureLib	After the ECU establishes a secure WiFi connection the AP, i
+SYS-RA-SEC-408	NRL-134593	Rejected	Accepted	SwdlSecureLib	All requirements in section CFTS084-1791 shall apply.
+SYS-RA-SEC-410	NRL-134595	Rejected	Accepted	SwdlSecureLib	The ECU shall update the software using a USB stick in a sec
+SYS-RA-SEC-411	NRL-134596	Rejected	Accepted	SwdlSecureLib	The software package in USB shall be an encrypted image.
+SYS-RA-SEC-412	NRL-134597	Rejected	Accepted	SwdlSecureLib	To protect against TOU vs TOC attack, the ECU shall not perf
+SYS-RA-SEC-423	NRL-134608	Rejected	Accepted	SwdlSecureLib	If an ECU is reflashed through the telematics ECU, the telem
+SYS-RA-SEC-427	NRL-134612	Rejected	Accepted	SwdlSecureLib	The ECU shall not update the maps if the digital signature o
+SYS-RA-SEC-428	NRL-134613	Rejected	Accepted	SwdlSecureLib	The ECU shall stop the update process if the digital signatu
+SYS-RA-SEC-555	NRL-134740	Rejected	Accepted	ECUCert	The DTC defined in section 5.6 of CS.00165 shall meet the fo
+SYS-RA-SEC-562	NRL-134747	Rejected	Accepted	ECUCert	The ECU shall generate a Certificate Signing Request (CSR) a
+SYS-RA-SEC-563	NRL-134748	Rejected	Accepted	ECUCert	The CSR shall contains a unique ECU identity subject name as
+SYS-RA-SEC-566	NRL-134751	Rejected	Accepted	ECUCert	An external CA will issue an ECU certificate based on the co
+SYS-RA-SEC-619	NRL-134804	Rejected	Accepted	SwdlSecureLib	FOTA Security Requirements Specification
+SYS-RA-SEC-638	NRL-134823	Rejected	Accepted	SwdlSecureLib	CS.00130 : FCA Global Vehicle Cybersecurity Strategy : Firmw
+SYS-RA-SEC-639	NRL-134824	Rejected	Accepted	SwdlSecureLib	CS.00130 : FCA Global Vehicle Cybersecurity Strategy : Firmw
+SYS-RA-SEC-640	NRL-134825	Rejected	Accepted	SwdlSecureLib	CS.00178 : Application Over The Air Updates Cybersecurity Re
+SYS-RA-SEC-642	NRL-134827	Rejected	Accepted	SwdlSecureLib	SD.00080 : Radio Firmware Update over Wi-Fi Security Require
+SYS-RA-SEC-643	NRL-134828	Rejected	Accepted	SwdlSecureLib	SD.00080 : Radio Firmware Update over Wi-Fi Security Require
+SYS-RA-SEC-656	NRL-134841	Rejected	Accepted	SwdlSecureLib	SD.00015/05: FOTA Deployment Package Signature
+SYS-RA-SEC-659	NRL-134844	Rejected	Accepted	ECUCert	CS.00165 : ECU Identity Security Requirements
+SYS-RA-SEC-660	NRL-134845	Rejected	Accepted	ECUCert	CS.00165 : ECU Identity Security Requirements
+SYS-RA-SEC-662	NRL-134847	Rejected	Accepted	ECUCert	SD.00125: ECU Identity Retry Strategy
+SYS-RA-SEC-664	NRL-134849	Rejected	Accepted	SwdlSecureLib	SD.00149: FOTA Manifest Files and Signature
