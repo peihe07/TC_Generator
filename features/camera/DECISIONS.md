@@ -165,9 +165,14 @@ ER: The "Camera" settings screen is displayed
 （sha16 `8d04e51a56d6391d`），`Settings` 分頁 **row 464** 逐字 `13. Camera`
 （序號非 label）。**DR-CAM-d 結案；FO §4 [ADD] 之 §5.3 承接完成。**
 
-### 6-8. 品牌 ↔ 車型對照（R-CAM5(c)）
+### 6-8. 品牌 ↔ 車型對照（R-CAM5(c) → **R-CAM5(c)′**）
 
-`[PROPOSED]` —— **R-CAM5(c) 所指定之來源查無此欄，本包改提替代來源，請 Pei 核可。**
+`[DECIDED — R-CAM5(c)′，Pei 2026-09-16]` —— 來源改為 PROXI `Brand_Configuration_2`；
+原 R-CAM5(c) 依 R-TM13 加刪除線保留。**DR-CAM-e 結案（確認型）。**
+品牌軸實為兩分支：RAM 系 {HDCC27, DT27, 637} vs 基礎 {2261, 376}，與車型軸對齊
+（CAM-02 審閱 §二-1：故不會產生車型 × 品牌之交叉列）。
+
+判定所據之實測：
 
 **(i) 指定來源之實測結果 —— 無該欄**
 `forms/SR24 R1 Market Configuration Table v1.6.xlsx`（8 分頁）全表掃描：
@@ -211,10 +216,36 @@ Destination Country、Radio Variant），非車型。
 （RAM 系 vs 其餘），非逐品牌。`Commander (598)`／`Regengade (5210)` 依
 R-CAM2(b) 恆 `0`，不參與。
 
-**(iv) 未決**：Abarth 不在 `Brand-Specific Names` 四欄之內，
-「無欄即回落基礎 label」為執行層之讀法，**未經裁定**；
-且 Fastback 之 `5 = Abarth` 與該平台檔名（`R1L_PROXI_363_376_3A_CR2783_20220802`）
-所示之 363/376 車系是否確為 Abarth 版，本包未另尋佐證。
+**(iv) 原未決已解**：「無欄或欄空即回落基礎 label」經 R-CAM5(c)′ 明文採納，
+A-CA19 隨之 RESOLVED。惟 Fastback 之 `5 = Abarth` 與該平台檔名
+（`R1L_PROXI_363_376_3A_CR2783_20220802`）所示之 363/376 車系是否確為 Abarth 版，
+仍無第二來源佐證 —— 對 hop label 無影響（Abarth 與 Fiat 同樣回落基礎 label），故不另開 DR。
+
+### 6-9. `SWE-CAM-025` 之畫面文字（A-CA20）
+
+`[DECIDED — CAM-03 §1(d)，Pei 2026-09-16]`
+A、B 兩本**各依自身來源寫 ER**，reasoning 互註衝突；
+最終畫面文字**以 `forms/Pop Up List HMI R1 (26PI).xlsx` 為準**
+（HMI L&F 慣例「refer to R1 HMI popup list for final text」）。
+
+> **⚠ 執行層實測：該表查無此文字，裁定無法落地。**
+> `Main` 分頁 `String/Popup Message`(G) 欄全欄掃描：
+> `Camera Not in position` **0 命中**、`Camera Out of Position` **0 命中**；
+> 全表任何欄同時含 `osition` 與 `amera` 者亦 **0 列**。
+> 表中僅有 `Camera System Unavailable`（6 列）與 `Check Entire Surroundings`（5 列）。
+> 逐字全表見 `features/camera/data/popup_texts.tsv`。
+>
+> → **A-CA20 維持 PENDING**，另開 **DR-CAM-h**（Pop Up List 之 camera out-of-position 條目）。
+> pilot 批不觸及 `-025`，故不阻塞本包。
+
+`Rearview Camera` 模組之現有 PU 號（供 Phase 3 引用）：
+
+| PU | Module | Timeout | Category | String/Popup Message（逐字）|
+|---|---|---|---|---|
+| `PU0169` | Rearview Camera | N/A | RVC-X | `Camera System Unavailable` |
+| `PU0170` | Rearview Camera | N/A | RVC | `Camera System Unavailable <X>` |
+| `PU0419` | Rearview Camera | NA | RVC | `Guideline Information Unavailable <X>` |
+| `PU0447` | Rearview Camera with all features | 10 | RVC | `Check Entire Surroundings <X> Zoom Icon` |
 
 ## 7. Execution
 

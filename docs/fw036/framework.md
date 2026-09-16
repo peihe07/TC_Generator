@@ -1465,7 +1465,16 @@ design_method 下拉為 x14 擴充，openpyxl 存回即摧毀且損壞為選擇�
 
 ## Part VIII — Camera (two books: SWRA Service + RVC-HMI)
 
-**狀態：草案，待 Pei 簽核（R-CAM4～R-CAM9 已落）。** 未簽核前 Phase 4+ 仍 blocked。
+**狀態：已簽核並鎖定。** Pei 於 2026-09-16 簽核（CAM-02 審閱 §三-5，Tier 2）。
+
+```
+Layer 1  `Rear View Camera`（R-CAM4(a)）
+Layer 2  A 本 9 組 25／B 本 8 組 230；未歸屬 0、歧義 0
+Layer 3  A 本 = VF 章節號（V4 依 R-CAM7）＋ CFTS092 §1.3.x；B 本 = SYS1 Outline Number（RVC+PAM 依 R-CAM6）
+```
+
+簽核**不涵蓋**：TC 內容（pilot review）、`-023` 交集承接之實測結果、未結 DR。
+重開條件同 `vehicle_setting` 之例；重開屬 Tier 2（Pei）。
 
 Ruled by Pei 2026-09-16：feature 名 `Camera`、目錄 slug `camera`（CAM-01 §4 任務 1）；
 workbook Test Group 值 **`Rear View Camera`**，A、B 兩本同值（**R-CAM4(a)**）。

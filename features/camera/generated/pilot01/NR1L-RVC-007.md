@@ -1,0 +1,52 @@
+# NR1L-RVC-007 — SWE-CAM-018
+
+- **Test Group**：Rear View Camera
+- **Test Set**：Display Arbitration
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P1｜**design_method**：狀態轉換 (State Transition Testing)
+- **specification_reference**：`SYS-RA-CAM-078`
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> Rear Camera display image shall remain displayed until display timer is greater than 10s AND vehicle speed is above 8 mph.
+
+## reasoning
+
+驗證目標為 Camera Delay 開啟時，退出 R 檔後影像維持至 10 s 再退出，即 CFTS092 SYS-RA-CAM-078（ObjectID 4781643）之 "remain displayed until display timer is greater than 10s"；VF 側對應 SYS-RA-VF551_V2-497 之 Ttimer1。關鍵情境條件為 Delay 設定為 On 且車速全程低於 8 mph（SYS-RA-CAM-079 明定低於 8 mph 時影像持續）。Delay 不走 CAN —— IPC_VEHICLE_SETUP.Backup_Cam_Delay 於 CameraEventHal 表為 Supported by Harman = N 且 MD fake CEH status = Not yet（Atl-H 與 Atl-M 兩列皆是，A-CA16 同族），故以 §5.3 常數 ENTER_CAMERA_SETTINGS（R-CAM8）之三 hop 進入設定後以 HMI label 設定。本列為品牌軸之 Ram 分支（R-CAM5(b)）：hop label "ParkView Backup Camera Delay" 取自 HMI Settings List 之 Brand-Specific Names 分頁，`*` 依 R-CAM5(a) 不入 hop。品牌由 PROXI Brand_Configuration_2 實測判定（R-CAM5(c)′），與車型軸對齊，故不產生車型 × 品牌之交叉列。速度門檻之邊界由 NR1L-RVC-009 承接（§8.2.1）。
+
+## pre_conditions
+
+```
+1. PROXI Rear_View_Camera = 1 (Present)
+2. The Head Unit is in the RUN power state
+3. The vehicle brand is Ram (HDCC27, DT27, 637)
+4. The vehicle speed is held below 8 mph for the whole test
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Press "Apps" on Menu Bar to open App Drawer
+2. Select "Settings" in the App Drawer
+3. Select "Camera"
+4. Set "ParkView Backup Camera Delay" = "On"
+5. Shift the vehicle into reverse and check that the rear view camera image is shown
+6. Shift the vehicle out of reverse into drive and check that the rear view camera image is still shown
+7. Wait for 10 s after leaving reverse and check that the rear view camera image is no longer shown
+```
+
+## expected_result
+
+```
+1. The App Drawer is displayed
+2. The "Settings" screen is displayed
+3. The "Camera" settings screen is displayed
+4. The "ParkView Backup Camera Delay" setting is set to "On"
+5. The rear view camera image is shown
+6. The rear view camera image is still shown after the gear leaves reverse
+7. The rear view camera image is no longer shown and the previous content is restored
+```

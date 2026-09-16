@@ -1,0 +1,14 @@
+query	found	pu_id	module	timeout_sec	category	string_popup_message_verbatim	source_cell
+Camera Not in position	N						Main!G（全欄掃描，零命中）
+Camera Out of Position	N						Main!G（全欄掃描，零命中）
+Camera System Unavailable	Y	PU0169	Rearview Camera	N/A	RVC-X	Camera System Unavailable	Main!A172:G172
+Camera System Unavailable	Y	PU0170	Rearview Camera	N/A	RVC	Camera System Unavailable <X>	Main!A173:G173
+Camera System Unavailable	Y	PU0844	Interior Camera	"""Indefinite while under 10mph, 10 seconds while above 10mph"""	RVC	Camera System Unavailable Service Required	Main!A844:G844
+Camera System Unavailable	Y	PU1103	Turn Signal Activated Blind Spot View	N/A	RVC-X	Camera System Unavailable <X>	Main!A990:G990
+Camera System Unavailable	Y	PU1240	Trailer Surround View Camera	N/A	Custom	<Camera System Unavailable> <X> <Connect trailer equipped with Trailer Surround View System>	Main!A1050:G1050
+Camera System Unavailable	Y	PU1270	Trailer Surround View Camera	N/A	Custom	<Camera System Unavailable> <X> <Connect trailer equipped with Trailer Surround View System>	Main!A1062:G1062
+Check Entire Surroundings	Y	PU0362	Surround View Camera	10	RVC-X	Check Entire Surroundings Top View Rear View(Front View) <X>	Main!A365:G365
+Check Entire Surroundings	Y	PU0446	Trailer Reverse Guidance	N/A	RVC	Check Entire Surroundings <X> Left Right	Main!A449:G449
+Check Entire Surroundings	Y	PU0447	Rearview Camera with all features	10	RVC	Check Entire Surroundings <X> Zoom Icon	Main!A450:G450
+Check Entire Surroundings	Y	PU0467	Surround View Camera	10	RVC	Check Entire Surroundings Top View Rear View(Front View) <More Cams>	Main!A470:G470
+Check Entire Surroundings	Y	PU1102	Turn Signal Activated Blind Spot View	5	RVC-X	Check Entire Surroundings <X>	Main!A989:G989

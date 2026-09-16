@@ -60,6 +60,26 @@ R-CAM5  品牌軸：label 隨品牌而異者拆列，品牌寫入 Pre-Conditions
   (d) 本條與 R-CAM3 併讀：車型軸與品牌軸皆為拆分判準，二者同時成立時以車型軸為外層。
 ```
 
+**(c) 經 R-CAM5(c)′ 取代**（見下一條）。原句依 R-TM13 加刪除線保留：
+
+> ~~(c) 品牌 ↔ 車型之對照由執行層自 `forms/SR24 R1 Market Configuration Table v1.6.xlsx` 提候選，
+> 列 DECISIONS [PROPOSED]，不得自 anchor 前綴或車名推定。~~
+>
+> **作廢理由**：該表之軸為市場／國別，全表無五車型之品牌欄（CAM-02 上繳 §5.1 實測：
+> `HDCC27`／`DT27`／`637`／`2261`／`376` 五個代號零命中）。分析層未先查表即指名來源。
+
+### R-CAM5(c)′（修訂，2026-09-16，Pei 裁：CAM-02 審閱 §三-1「准」）
+
+```text
+R-CAM5(c)′  品牌 ↔ 車型之對照以 PROXI `Brand_Configuration_2`（byte 130 bit 0–4，Format row 566）
+  之各平台實測值為據：HDCC27／DT27／637 = 11 (RAM)、Toro(2261) = 1 (Fiat)、Fastback(376) = 5 (Abarth)。
+  `Brand-Specific Names` 分頁無該品牌欄或欄空者，回落基礎 label。
+  Camera 設定項之品牌軸實為兩分支：RAM 系 {HDCC27, DT27, 637} vs 基礎 {2261, 376}，與車型軸對齊。
+```
+
+取代 R-CAM5(c)。DR-CAM-e 結案（確認型 —— PROXI 值即證據）。
+逐格實測見 `features/camera/data/brand_proxi.tsv` 與 `brand_labels.tsv`。
+
 ### R-CAM6 — B 本追溯母體 ＝ spec-index/cache 之 RVC+PAM 本（Pei 裁，2026-09-16）
 
 ```text
@@ -97,6 +117,16 @@ R-CAM9  Out of Scope 來源之處置
   `-010`／`-017`／`-023` 之 Pre-Condition 措辭來源，reasoning 註明出處。上游分類不重判。
 ```
 
+
+### R-CAM10 — 多列共引同一來源時，SWE ID 較小者為承接列（Pei 裁，2026-09-16）
+
+```text
+R-CAM10  多列共引同一來源時，SWE ID 較小者為承接列
+  A 本兩列以上共引同一 SYS-RA 來源時，該來源之驗證由 SWE ID 較小者承接；
+  較大者不得再以該來源作 spec_reference 錨，reasoning 註明「委派 SWE-CAM-nnn」（§8.2.1）。
+  `SWE-CAM-023` 與六列之交集依此全數委派，`-023` 只承接無他列覆蓋之來源。
+  pilot 批實測後若有不合理之委派，重開歸 Pei。
+```
 
 ---
 

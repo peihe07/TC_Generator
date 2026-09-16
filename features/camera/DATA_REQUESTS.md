@@ -16,7 +16,10 @@ Urgency 回報。
 | ~~DR-CAM-b~~ | `SYS2_VF551_V4 …_V01.xlsx` 之 `VF章節`(I) 欄補齊版 | **CLOSED**（2026-09-16）| — | — | A-CA02 | — —— **R-CAM7** 裁定改以 `D` 欄前導號向下繼承（321/321、60 章），不需補件 |
 | ~~DR-CAM-c~~ | `SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)` 之版本確認 | **CLOSED**（2026-09-16）| — | — | A-CA14 | — —— **R-CAM6** 裁定以 `spec-index/cache/` 本為追溯母體，不需補件 |
 | ~~DR-CAM-d~~ | Camera Settings 之導航 hop label 出處 | **CLOSED**（2026-09-16）| — | — | DECISIONS §6-7 | — —— **R-CAM8** 裁定 HMI Settings List `Settings` row 464 為足夠權威（canon §5.8(c)），不需補件 |
-| DR-CAM-e | **車型 ↔ 品牌之權威對照表**（R-CAM5(c) 所指定之 `SR24 R1 Market Configuration Table v1.6.xlsx` 無此欄）| OPEN（需裁定或補件）| 凡帶 `*` 設定之 hop（R-CAM5(b) 之品牌分支）| 品牌分支之切法無權威來源；本包以 PROXI `Brand_Configuration_2` 實測替代，待核可 | A-CA19、DECISIONS §6-8 | **中** —— 已提替代來源與逐格實測，Pei 核可即解 |
+| ~~DR-CAM-e~~ | 車型 ↔ 品牌之權威對照表 | **CLOSED**（2026-09-16，確認型）| — | — | A-CA19 | — —— **R-CAM5(c)′** 以 PROXI `Brand_Configuration_2` 之實測值為據，不需補件 |
+| DR-CAM-f | **Atl-Mi 之 `TRANSM2` DBC**（含 `ShiftLeverPosition` 之 `VAL_` 列舉）—— 檔名待上游給，`forms/` 現有四本皆無 `TRANSM*` message 於 Atl-Mi 側 | MISSING | A 本 `-015`／`-018` 之 Atl-Mi 分支（pilot `NR1L-RVC-004`）；全量後凡引 `SYS-RA-VF551_V42-302` 者 | Atl-Mi 之 gear 訊號 raw 值與 label 須標 `PENDING`；候選替代為 `STATUS_CCAN5.ShiftLeverPosition`（`BO_ 998`，`2 "R"`，P363／637MCA 皆有）待上游確認是否同一訊號 | A-CA23 | **高** —— 車型軸之 Atl-Mi 半邊全受影響 |
+| DR-CAM-g | **「Controls page」之 HMI entry path** —— SYS1 匯出中給出進入 Controls 頁之逐字 hop label 者 | MISSING | A 本 `-016`（手動入口之 controls page 分支）；B 本 `Activation and Exit` 中凡走 controls page 者 | pilot `NR1L-RVC-005`／`-006` 改走 App Drawer 路徑而不受阻；controls page 分支之 TC 須待此件 | A-CA24 | **中** |
+| DR-CAM-h | **Pop Up List 之 camera out-of-position 條目** —— `Camera Not in position`／`Camera Out of Position` 於 `forms/Pop Up List HMI R1 (26PI).xlsx` 兩串皆 0 命中 | MISSING | A 本 `-025`、B 本 `SWE1-RVC-039`（`Warning Banners`）| 最終畫面文字無權威；A-CA20 無法依 DECISIONS 6-9 之裁定結案 | A-CA20 | **中** —— pilot 不觸及 `-025`，不阻塞本包 |
 
 ## §5.3 常數之 PENDING 承接（R-G71）
 
