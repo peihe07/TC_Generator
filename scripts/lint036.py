@@ -1114,7 +1114,8 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
 # 兩者只在 `--profile security` 下啟用（FEATURE_CHECKS），不隨任意 profile 生效。
 
 # (a) 執行通道：編號步驟其後須有 `$` 指令行，或步驟句以實體操作動詞起首。
-SEC_CMD_LINE = re.compile(r"^\s*\$\s+\S")
+# R-SEC7(a) 之 CAN 類其指令行為 `Send CAN: …`（IN §8.7.5(c)），非 `$` 起首。
+SEC_CMD_LINE = re.compile(r"^\s*(?:\$\s+\S|Send CAN:\s*\S)")
 SEC_PHYS_STEP = re.compile(r'^\s*(?:Insert|Press|Power cycle|Disconnect|Select\s+")')
 SEC_STEP_NO = re.compile(r"^\s*(\d+)[.)]\s*(.+)$")
 # (c) ER 觀察手段之七類標記（LOG／FILE／UDS／RC／HOST／CAN／UI）
@@ -1128,6 +1129,9 @@ SEC_OBSERVE = re.compile(
     # SEC-04 §2 明訂之兩個 ER 措辭（審閱指定）：`adb pull` 之傳輸回報與 log buffer 清空。
     # 二者不在 R-SEC7(c) 之七類字面內，惟其為分析層指定之修法，故收入。
     r"|adb pull\b|The log buffer is cleared"
+    # R-SEC7(c) amend（SEC-05）增列：037 SWE1-LOGENC-006 之 verbatim 工具 ——
+    # `adb shell getsslog`（觸發取樣）與 `logdecrypt_Ver2.sh`（解密驗證），出處為該列 VC。
+    r"|adb shell getsslog\b|logdecrypt_Ver2\.sh"
     r"|Positive response is received|Negative response is received"   # UDS
     r"|OK \(\d+ tests?\)|FAILURES!!!"                 # RC
     r"|\bopenssl\b|: OK\b|error \d+ at \d+ depth"    # HOST
