@@ -1,0 +1,73 @@
+swe1_id	sibling_no	lower_half(English)	axis	trigger_channel	pending_expected	priority	rule
+SWE1-CertProvider-001	1	valid leaf certificate; chain verification passes	verification outcome	HOST/ADB	N	P0	1,3
+SWE1-CertProvider-001	2	broken certificate chain; verification is rejected	verification outcome	HOST/ADB	N	P0	1,3
+SWE1-CertProvider-002	1	subject name identical to the configuration; certificate is accepted	subject match	HOST/ADB	N	P1	1,3
+SWE1-CertProvider-002	2	subject name not identical to the configuration; certificate is rejected	subject match	HOST/PENDING	Y	P1	1,3
+SWE1-CertProvider-003	1	issuer name identical to the configuration; certificate is accepted	issuer match	HOST/ADB	N	P1	1,3
+SWE1-CertProvider-003	2	issuer name not identical to the configuration; certificate is rejected	issuer match	HOST/PENDING	Y	P1	1,3
+SWE1-CertProvider-004	1	certificate listed in the local revocation list; certificate is rejected	revocation outcome	ADB/PENDING	Y	P0	1,3
+SWE1-CertProvider-004	2	OpenSSL verification with the local revocation list on the host	verification path	HOST	N	P0	1
+SWE1-CertProvider-005	1	certificate revoked at the distribution point; certificate is rejected	revocation outcome	PENDING	Y	P0	1,3
+SWE1-CertProvider-005	2	no revocation list file is written to the storage partitions	storage side effect	ADB	N	P0	1
+SWE1-CertProvider-006	1	build files use Android.bp instead of legacy Makefiles	build system	PENDING	Y	P2	1
+SWE1-CertProvider-006	2	logs follow the Logdog error-level policy	logging policy	PENDING	Y	P2	1
+SWE1-CertProvider-006	3	onStartCommand returns START_STICKY	service lifecycle	PENDING	Y	P2	1
+SWE1-CertProvider-006	4	security scan reports no CWE/SANS Top 25 or OWASP Top 10 finding	security scan	PENDING	Y	P2	1
+SWE1-CertProvider-007	1	trusted certificate chain is present at the deployed store path	store presence	ADB	N	P1	1
+SWE1-CertProvider-007	2	trusted certificate chain survives a factory reset and still verifies a leaf	persistence after factory reset	PHYS/ADB	N	P1	4,5
+SWE1-CertProvider-008	1	Java client invokes the Binder interface for certificate validation	client type	ADB	N	P1	1,4
+SWE1-CertProvider-008	2	Native client uses the libCertProvider C++ API for leaf verification	client type	ADB	N	P1	1,4
+SWE1-CertProvider-009	1	Development configuration; the matching certificate chain is deployed	configuration version	ADB	N	P1	1,2
+SWE1-CertProvider-009	2	Product configuration; the matching certificate chain is deployed	configuration version	ADB	N	P1	1,2
+SWE1-CertProvider-010	1	resource usage stays within the estimated limits during repeated verification	resource consumption	ADB	N	P2	1,4
+SWE1-CertProvider-011	1	extension value is the project identifier; certificate is accepted	extension value	HOST/PENDING	Y	P1	1,3
+SWE1-CertProvider-011	2	extension value is incorrect or missing; certificate is rejected	extension value	HOST/PENDING	Y	P1	1,3
+SWE1-KeyInsyall-001	1	keys are not installed; a temporary key is provided	key source	ADB	N	P1	1
+SWE1-KeyInsyall-001	2	keys are installed; the installed key is provided	key source	PHYS/ADB	N	P1	1
+SWE1-KeyInsyall-002	1	not valid private keys; verification fails and stored keys are removed	verification outcome	PHYS/ADB	N	P0	1,4
+SWE1-KeyInsyall-003	1	non-platform raw keys; installstate is ERROR (3)	key platform scope	PHYS/ADB	N	P0	1,4
+SWE1-KeyInsyall-003	2	R1LRefresh keys are used for the installation attempt	key platform scope	PHYS/ADB	N	P0	1
+SWE1-KeyInsyall-004	1	installation is re-triggered after a failed attempt	re-attempt	PHYS/ADB	N	P0	1
+SWE1-KeyInsyall-005	1	keys already installed; a new installation is not started	overwrite prevention	PHYS/ADB	N	P1	1
+SWE1-KeyInsyall-006	1	installstate file contains NOT_INSTALLED (0)	installstate value	ADB	N	P1	2
+SWE1-KeyInsyall-006	2	installstate file contains VERIFICATION_REQUIRED (1)	installstate value	ADB	N	P1	2
+SWE1-KeyInsyall-006	3	installstate file contains INSTALLED (2)	installstate value	ADB	N	P1	2
+SWE1-KeyInsyall-006	4	installstate file contains ERROR (3)	installstate value	ADB	N	P1	2
+SWE1-KeyInsyall-007	1	keys imported from USB; secrets stored and installstate is VERIFICATION_REQUIRED (1)	import stage	PHYS/ADB	N	P0	1,4
+SWE1-KeyInsyall-007	2	after reboot the installation status changes to INSTALLED (2)	persistence after reboot	PHYS/ADB	N	P0	5
+SWE1-KeyInsyall-008	1	key blob remains accessible after a factory reset	persistence trigger	PHYS/ADB	N	P1	5
+SWE1-KeyInsyall-008	2	key blob is still usable after an OTA or HAL version upgrade	persistence trigger	PENDING	Y	P1	5
+SWE1-KeyInsyall-009	1	keys in VERIFICATION_REQUIRED state; the crypto service refuses the operation	key state	PENDING	Y	P1	1,3
+SWE1-KeyInsyall-009	2	keys in INSTALLED state; sign, verify, encrypt and decrypt succeed	key state	PENDING	Y	P1	1,3
+SWE1-KeyInsyall-010	1	authorized application; access is granted and the operation completes	client authorization	PENDING	Y	P1	1,3
+SWE1-KeyInsyall-010	2	unauthorized application; the request is refused and a security violation is logged	client authorization	PENDING	Y	P1	1,3,4
+SWE1-KeyInsyall-011	1	installation completed; the status is INSTALLED (2)	queried status	ADB/PENDING	Y	P1	1
+SWE1-KeyInsyall-011	2	unsuccessful installation; the status is ERROR (3)	queried status	ADB/PENDING	Y	P1	1,3
+SWE1-KeyInsyall-012	1	no SELinux denial is recorded while KeyInstall runs in enforcing mode	compliance check	ADB	N	P2	1
+SWE1-KeyInsyall-012	2	an Android.bp build file is present and functional	compliance check	PENDING	Y	P2	1
+SWE1-KeyInsyall-012	3	static analysis passes CERT and CWE compliance	compliance check	PENDING	Y	P2	1
+SWE1-KeyInsyall-013	1	RAM usage and the oemkeys partition size stay within the stated targets	resource target	ADB	N	P2	1,4
+SYSAD_SEC_ECUCERT_ECUCERT_API	1	verification function returns OK for an unchanged certificate file	verification status	ADB	N	P1	1,3
+SYSAD_SEC_ECUCERT_ECUCERT_API	2	verification function returns FAIL for a changed certificate file	verification status	ADB	N	P1	1,3
+SYSAD_SEC_ECUCERT_ECUCERT_SERVICE	1	service returns OK for an unchanged certificate file	verification status	ADB	N	P1	1,3
+SYSAD_SEC_ECUCERT_ECUCERT_SERVICE	2	service returns FAIL for a changed certificate file	verification status	ADB	N	P1	1,3
+SYSAD_SEC_ECUCERT_DIAG	1	diagnostic interface handles an input parameter at the range boundary	input range	UDS	N	P1	1
+SYSAD_SEC_ECUCERT_DIAG	2	diagnostic interface reports a successful verification	verification status	UDS	N	P1	1,3
+SYSAD_SEC_ECUCERT_DIAG	3	diagnostic interface reports a failed verification	verification status	UDS/PENDING	Y	P1	1,3
+SYSAD_SEC_ECUCERT_DEALER	1	dealer service updates the current key and returns the status	key update	UI/PENDING	Y	P1	1
+SYSAD_SEC_ECUCERT_DEALER	2	decryption with a different key is rejected	key mismatch	UI/PENDING	Y	P1	1,3
+SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF	1	CSR is read over DID 2965 and exported to a file	export target	UDS/ADB/HOST	N	P1	1
+SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCERT_INTF	1	ECU certificate is exported to a file	export target	ADB/HOST	N	P1	1
+SYSAD_SEC_ECUCERT_ECUCERT_SRV_IMPORTCERT_INTF	1	ECU certificate is imported to the device	import target	ADB	N	P1	1
+SWE1-SRA-SECURITY-SWDL-003	1	decryption interface handles an input parameter at the range boundary	input range	PENDING	Y	P2	1
+SWE1-SRA-SECURITY-SWDL-003	2	decryption of a valid package succeeds	decryption outcome	PENDING	Y	P2	1,3
+SWE1-SRA-SECURITY-SWDL-003	3	decryption of an invalid package fails	decryption outcome	PENDING	Y	P2	1,3
+SWE1-SRA-SECURITY-SWDL-004	1	verification interface handles an input parameter at the range boundary	input range	PENDING	Y	P0	1
+SWE1-SRA-SECURITY-SWDL-004	2	verification of a correctly signed package succeeds	verification outcome	PENDING	Y	P0	1,3
+SWE1-SRA-SECURITY-SWDL-004	3	verification of a tampered package fails	verification outcome	PENDING	Y	P0	1,3
+SWE1-SAM-0002	1	DebugAuth runs as a native daemon after the head unit boots	process form	PHYS/ADB	N	P2	1
+SWE1-SAM-0004	1	AuthData verification fails; the error is logged and the installed AuthData is retained	verification outcome	ADB/PHYS	N	P0	1,4
+SWE1-SAM-0007	1	SAM certificate is x509 PEM, anchors to the OEM issued root, and carries the SAM subject	certificate validity	HOST/ADB	N	P0	1,4
+SWE1-SAM-0007	2	SAM certificate does not anchor to the OEM issued root; verification fails	certificate validity	HOST/PENDING	Y	P0	3
+SWE1-SAM-0015	1	sequence ID is included, logged and incremented when a status message is sent	message content	ADB	N	P1	1,4
+SWE1-SAM-0018	1	AuthData files are stored in the data partition and labeled by SELinux	storage location	ADB	N	P2	1,4

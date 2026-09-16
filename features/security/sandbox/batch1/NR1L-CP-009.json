@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-CertProvider-005",
+  "tc_id": "NR1L-CP-009",
+  "test_group": "Cert Provider",
+  "test_set": "Revocation",
+  "test_item": "For ECU verification scenarios, the system shall dynamically retrieve the CRL from the Distribution Point (CDP) URL(s) defined within the target certificate.\n(certificate revoked at the distribution point; certificate is rejected)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. The DUT has network access\n3. An ECU certificate carrying a valid revocation distribution point is available",
+  "input": "NA",
+  "proc": "1. PENDING: X-e revoked certificate at the distribution point + trigger",
+  "er": "1. PENDING: X-h log keyword",
+  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-005",
+  "tc_ref": "NEW",
+  "priority": "P0",
+  "design": "負向測試 (Negative / Invalid)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-CertProvider-005 Requirement Description and Verification Criteria\nPolarion: NRL-349388\nsibling axis: revocation outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

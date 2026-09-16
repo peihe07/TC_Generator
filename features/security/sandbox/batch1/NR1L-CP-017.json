@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-CertProvider-008",
+  "tc_id": "NR1L-CP-017",
+  "test_group": "Cert Provider",
+  "test_set": "Client Interface",
+  "test_item": "The Cert Provider feature shall provide standardized client interfaces to support both Java and Native clients.\n(Java client invokes the Binder interface for certificate validation)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
+  "input": "NA",
+  "proc": "1. PENDING: X-i Cert Provider source and build environment\n2. Confirm the Logdog log after the previous step\n$ adb logcat -s Logdog",
+  "er": "1. PENDING: X-i Cert Provider source and build environment\n2. PENDING: X-h log keyword",
+  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-008",
+  "tc_ref": "NEW",
+  "priority": "P1",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-CertProvider-008 Requirement Description and Verification Criteria\nPolarion: NRL-349391\nsibling axis: client type; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

@@ -478,3 +478,34 @@ R-SEC15  pilot01 所揭違規類型之明文（適用 Security 全 70 列）
   pm_29 三者皆 **0**。**兩本皆無反引號／單引號**，(d) 與既有交付本一致。
 - (j) 已於 `lint036.py` 之 `check_order()` 落實（Security profile 略去 `I-cross`）。
 - (a)~(i) 之自檢結果見上繳包 §7（逐條「0 處」與其檢查方法）。
+
+---
+
+### R-SEC16 — Security 之 Priority 指派（Pei 裁，2026-09-16；SEC-04 §1）
+
+```text
+R-SEC16  Security 之 Priority 指派
+  P0  密碼學驗證之「接受／拒絕」決定本身：憑證鏈驗證（CP-001）、撤銷檢查（CP-004/005）、簽章驗證（SWDL-004、SAM-0005/0007）、
+      金鑰安裝之驗證與狀態（KI-002/003/004/007）、AuthData 驗證失敗之處置（SAM-0004）—— 失敗即安全機制失效，等同 IN §10.2 之 data-loss risk。
+  P1  欄位比對與介面：Subject/Issuer/OID（CP-002/003/011）、狀態查詢（KI-011）、CSR 匯出（ECUCert R18）、
+      SAM 通知與 seqId（SAM-0013~0017）、trust store 位置／dev-prod（CP-007/009）、金鑰服務（KI-009/010）、暫時金鑰（KI-001）、
+      覆寫保護（KI-005）、安裝狀態四態（KI-006）、持久化（KI-008）、ECUCert 之 lifecycle／verification／diag 各介面。
+  P2  非功能與 logging 政策：CP-006/010、KI-012/013、LOGENC 全部、SAM-0001/0002/0008/0018/0019、SWDL-001/002/003/005。
+  P3  無。
+  同一 SWE1 之 sibling 同 Priority；負向 sibling 不降級。
+```
+
+**執行層回報（SEC-04）**：條文之三個層級對 batch 1 之 38 列**完全覆蓋，無列落在條文之外**
+（逐列比對見 `sibling_plan.tsv` 之 `priority` 欄與上繳包 §4）。`P3` 依條文為空，實測 **0 列**。
+
+---
+
+### R-SEC15(f) amend — Description 為中英並列者取英文句（Pei 裁，2026-09-16；SEC-04 §1）
+
+```text
+R-SEC15(f) amend  Description 為中英並列者取英文句；仍須為原文逐字子字串（ECUC-001 先例）。
+```
+
+**執行層回報（SEC-04）**：ECUCert 之七列 Description 全數為中英並列，
+依本 amend 一律取其英文句；逐列之英文句皆為原文之**逐字子字串**（未改寫、未合併）。
+其必要性為 lint `K`（CJK 字元）—— `test_item` 在 `K_FIELDS` 內，逐字全取必觸發。

@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-SAM-0004",
+  "tc_id": "NR1L-SAM-002",
+  "test_group": "SAM",
+  "test_set": "Error Handling",
+  "test_item": "DebugAuth just logs an error, if verification or ID check failed.\n(AuthData verification fails; the error is logged and the installed AuthData is retained)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. AuthData is already installed on the DUT\n3. SAM dongle is inserted into the DUT\n4. A USB drive containing an AuthData package with a mismatching signature is available",
+  "input": "NA",
+  "proc": "1. Record the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth\n2. Clear the log buffer before the verification attempt\n$ adb logcat -c\n3. Insert USB drive containing the invalid AuthData package into HU USB port\n4. Confirm the logdog log after the previous step\n$ adb logcat -s logdog\n5. Record the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth",
+  "er": "1. The adb shell ls -l /data/vendor/dauth output lists the installed AuthData\n2. The log buffer is cleared\n3. PENDING: X-h log keyword\n4. PENDING: X-h log keyword\n5. The adb shell ls -l /data/vendor/dauth output lists the same installed AuthData as in step 1",
+  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0004",
+  "tc_ref": "NEW",
+  "priority": "P0",
+  "design": "負向測試 (Negative / Invalid)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-SAM-0004 Requirement Description and Verification Criteria\nsibling axis: verification outcome; rule 1,4 of SEC-04 4.2\nchannel_feasible: N/N",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

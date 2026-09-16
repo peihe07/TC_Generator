@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-SRA-SECURITY-SWDL-003",
+  "tc_id": "NR1L-SWDL-002",
+  "test_group": "SWDL Secure Lib",
+  "test_set": "Package Decryption",
+  "test_item": ".\n(decryption of a valid package succeeds)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. An encrypted software package is available",
+  "input": "NA",
+  "proc": "1. PENDING: X-l SWDL decryption test entry point",
+  "er": "1. PENDING: X-l SWDL decryption test entry point",
+  "spec": "SWE1_SwdlSecureLib_FM-WI-FSM-037-A03_SWE1-SRA-SECURITY-SWDL-003",
+  "tc_ref": "NEW",
+  "priority": "P2",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-SRA-SECURITY-SWDL-003 Requirement Description and Verification Criteria\nsibling axis: decryption outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

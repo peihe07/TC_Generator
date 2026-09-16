@@ -36,7 +36,36 @@ RE_ER_APPEARANCE = re.compile(
     r"adb logcat|Positive response|Negative response|instrumentation runner|FAILURES!!!")
 RE_ER_STATE_READ = re.compile(r"adb shell (?:ls|cat)\b|\bod -t x1\b")
 # DUT 側觸發之步驟
-RE_DUT_TRIGGER = re.compile(r"am instrument|adb push|adb reboot|^\s*\$\s+(?:10|22|2E|31) |Insert |Power cycle |Send CAN:")
+RE_DUT_TRIGGER = re.compile(
+    r"am instrument|adb push|adb reboot|^\s*\$\s+(?:10|22|2E|31) |Insert |Power cycle |Send CAN:"
+    # R-SEC15(b)：無可用觸發手段者，該觸發步驟整行寫 `PENDING: X-<n> … + trigger`。
+    # 該 PENDING 步驟即觸發位之佔位，結構上滿足「須有觸發步驟」。
+    r"|PENDING:.*\+ trigger")
+
+
+def swe1_descriptions() -> dict[str, str]:
+    """037 `Requirement Description`（D 欄）逐列原文，供 (f) 之逐字比對。"""
+    import importlib.util
+    import openpyxl
+    spec = importlib.util.spec_from_file_location(
+        "btm", Path(__file__).parent / "build_trace_matrix.py")
+    btm = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(btm)
+    out: dict[str, str] = {}
+    for doc_id, _comp in btm.SWE1_BOOKS:
+        wb = openpyxl.load_workbook(btm.only(doc_id, "*.xlsx"), read_only=True, data_only=True)
+        for r in list(wb["Analysis Report"].iter_rows(values_only=True))[8:]:
+            a = "" if r[0] is None else str(r[0]).strip()
+            b = "" if r[1] is None else str(r[1]).strip()
+            if not a and not b:
+                continue
+            key = a or btm.split_source_ids(b)[0].replace(" ", "")
+            out[key] = str(r[3] or "")
+        wb.close()
+    return out
+
+
+DESC: dict[str, str] = {}
 
 
 def load():
@@ -45,6 +74,7 @@ def load():
 
 
 def main() -> int:
+    DESC.update(swe1_descriptions())
     tcs = load()
     pairs: dict[str, set[str]] = {}
     for line in APK_PAIRING.read_text(encoding="utf-8").splitlines()[1:]:
@@ -99,8 +129,11 @@ def main() -> int:
         top = tc["test_item"].splitlines()[0]
         if len(top.split()) > 50:
             findings["f"].append(f"{tid}: 上半 {len(top.split())} tokens > 50")
-        if not top.rstrip().endswith("."):
-            findings["f"].append(f"{tid}: 上半非完整句（未以句號結尾）")
+        # R-SEC15(f) 之實質要求為「Description 首句 **verbatim**」——
+        # 故判準為「是該 037 Description 之逐字子字串」，非「以句號結尾」。
+        src = DESC.get(req, "")
+        if src and " ".join(top.split()) not in " ".join(src.split()):
+            findings["f"].append(f"{tid}: 上半非 Description 之逐字子字串")
 
         # (g) apk 方法只用於 apk_pairing 有列之 SWE1
         for m in RE_METHOD.finditer(tc["proc"] + " "):

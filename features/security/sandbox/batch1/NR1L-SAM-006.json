@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-SAM-0018",
+  "tc_id": "NR1L-SAM-006",
+  "test_group": "SAM",
+  "test_set": "Installation",
+  "test_item": "AuthData files, as well as additional files (ValidityCounter, Timestamp,SequenceId) should be stored at \"data\" partition and labeled by SELinux\n(AuthData files are stored in the data partition and labeled by SELinux)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. AuthData has been successfully installed on the DUT",
+  "input": "NA",
+  "proc": "1. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth\n2. Read the SELinux label of the AuthData directory on the DUT\n$ adb shell ls -Z /data/vendor/dauth",
+  "er": "1. The adb shell ls -l /data/vendor/dauth output lists the installed AuthData files\n2. The adb shell ls -Z /data/vendor/dauth output shows the SELinux label on the AuthData files",
+  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0018",
+  "tc_ref": "NEW",
+  "priority": "P2",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-SAM-0018 Requirement Description and Verification Criteria\nsibling axis: storage location; rule 1,4 of SEC-04 4.2\nchannel_feasible: 部分/部分",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

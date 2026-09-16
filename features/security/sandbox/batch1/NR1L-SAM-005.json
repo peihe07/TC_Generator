@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-SAM-0015",
+  "tc_id": "NR1L-SAM-005",
+  "test_group": "SAM",
+  "test_set": "Target Notification",
+  "test_item": "In order to know the notifications sequence received by the target functions, DebugAuth includes the sequence ID into the notification message.\n(sequence ID is included, logged and incremented when a status message is sent)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. DebugAuth is running on the DUT",
+  "input": "NA",
+  "proc": "1. Clear the log buffer before the status message is sent\n$ adb logcat -c\n2. Read the stored sequence ID before the status message is sent\n$ adb shell cat /data/vendor/dauth/seqId\n3. PENDING: X-g SAM AuthData status change + trigger\n4. Confirm the dauth log after the previous step\n$ adb logcat -s dauth\n5. Read the stored sequence ID after the status message is sent\n$ adb shell cat /data/vendor/dauth/seqId",
+  "er": "1. The log buffer is cleared\n2. The adb shell cat /data/vendor/dauth/seqId output shows the current sequence ID\n3. PENDING: X-g SAM AuthData status change + trigger\n4. The adb logcat -s dauth output contains the sent message with the sequence ID\n5. The adb shell cat /data/vendor/dauth/seqId output shows the incremented sequence ID",
+  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0015",
+  "tc_ref": "NEW",
+  "priority": "P1",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-SAM-0015 Requirement Description and Verification Criteria\nsibling axis: message content; rule 1,4 of SEC-04 4.2\nchannel_feasible: 部分/部分",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

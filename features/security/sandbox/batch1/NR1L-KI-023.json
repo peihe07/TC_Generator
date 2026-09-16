@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-KeyInsyall-012",
+  "tc_id": "NR1L-KI-023",
+  "test_group": "Key Install",
+  "test_set": "(非功能)",
+  "test_item": "The KeyInstall feature shall adhere to Android 14 development and security standards, including:\n(an Android.bp build file is present and functional)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. The DUT runs in SELinux enforcing mode",
+  "input": "NA",
+  "proc": "1. PENDING: X-i KeyInstall source and build environment",
+  "er": "1. PENDING: X-i KeyInstall source and build environment",
+  "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-012",
+  "tc_ref": "NEW",
+  "priority": "P2",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-KeyInsyall-012 Requirement Description and Verification Criteria\nsibling axis: compliance check; rule 1 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

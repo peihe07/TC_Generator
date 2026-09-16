@@ -19,7 +19,12 @@ TC 內之寫法：資產以 **Pre-Condition 一行**點名（R-SEC7(d) 之連線
 | **X-f** | KeyInstall 三組 USB 金鑰（valid／non-valid／non-platform R1LRefresh）| `A USB drive containing <組別> keys is available` | `SWE1-KeyInsyall-002`／`-003`／`-007` | KeyInstall 負責人 | 前批 | 未到 |
 | **X-f-2**（SEC-03 §3 增）| **KeyInstall status test runner** —— Binder `getStatus()` 之可執行入口。**候選檔（只列檔名，未拆 zip）**：`KeyInstall_IntegrationTests.zip`，76,461 B，sha16 `de46aba5dc9b6e9b`，外部路徑 `2_Architecture/CCVR/To Validation team/Secure Log CS.212/StevenJSHsu/`。**是否含該 runner 未知**（未拆） | `PENDING: X-f KeyInstall status test runner` | `SWE1-KeyInsyall-011` 兩分支 | Steven／KeyInstall 負責人 | 前批 | 未到；檔已定位 |
 | **X-g** | SAM 四 SAMType AuthData（`{SSN}_SAM_{SAMType}.json` ＋ `.sig` ＋ cert）；ValidityCounter `0`／`1`／`65535`；TimeStamp 舊於已裝者一組；SAM dongle | 各列點名 | SAM 19 列 | SAM 負責人 | 後批（batch 2 為主）| 未到 |
+| **X-g-2**（SEC-04 增）| **SAM 狀態變更之觸發手段**（使 DebugAuth 送出 status 訊息，供 seqId 驗證）—— 037 SAM-0015 之 WHEN | `PENDING: X-g SAM AuthData status change + trigger` | `SWE1-SAM-0015` | SAM 負責人 | 後批 | 未到 |
 | **X-h** | CS.212 正式 package（Cybersecurity team review 後）| — | R-SEC5 直連之 11 列 | Steven／Shawn | Revise 時 | 未到；**惟 R-SEC8(k) 已准以 CS.212 draft 之 tag／期望字串逐字落地，故不阻本輪** |
+| **X-i**（SEC-04 增）| **Cert Provider／KeyInstall 之原始碼與建置環境**（Android.bp、靜態分析報告、安全掃描報告）—— 037 CP-006／KI-012 之受詞為 source code，黑箱無入口 | `PENDING: X-i <元件> source and build environment` | `SWE1-CertProvider-006`（4 sibling）、`SWE1-KeyInsyall-012`（2 sibling）| RD | 後批 | 未到 |
+| **X-j**（SEC-04 增）| **OTA／HAL 版本升級之映像檔與升級手段** —— 037 KI-008 之第二 sibling | `PENDING: X-j OTA or HAL upgrade image + trigger` | `SWE1-KeyInsyall-008` sibling 2 | SW 整合 | 後批 | 未到 |
+| **X-k**（SEC-04 增）| **Dealer App 對 DUT 之存取**（ECUCert Dealer Service 之 `UI` 通道入口）—— Test Steps PDF 載有 CSR 匯出入口，惟未載金鑰更新操作 | `PENDING: X-k Dealer App access to the DUT` | `SYSAD_SEC_ECUCERT_DEALER`（2 sibling）| Samuel | 後批 | 未到 |
+| **X-l**（SEC-04 增）| **SwdlSecureLib 之解密／驗證測試入口**（程式庫介面之可執行 harness）—— 037 SWDL-003/004 為程式庫內部介面，無 apk 對應 | `PENDING: X-l SWDL <decryption|verification> test entry point` | `SWE1-SRA-SECURITY-SWDL-003`／`-004`（各 3 sibling）| SWDL 負責人 | 後批 | 未到 |
 
 ---
 
