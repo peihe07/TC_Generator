@@ -1,0 +1,27 @@
+{
+  "req_id": "SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF",
+  "tc_id": "NR1L-ECUC-001",
+  "test_group": "ECU Cert",
+  "test_set": "Certificate Lifecycle",
+  "test_item": "ECUCert CSR export interface\n(CSR is read over DID $2965 and exported to a file)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Diagnostic session is SystemSupplierSpecific (60)\n3. ADA Active Roles permit ADA+ protected data identifiers",
+  "input": "DUT whose ECU serial number has been written; CSR is generated automatically at boot",
+  "proc": "1. Send UDS request DiagnosticSessionControl for SystemSupplierSpecific session\n$ 10 60\n2. Send UDS request ReadDataByIdentifier for DID $2965 (CSR Read)\n$ 22 29 65\n3. Confirm the exported CSR file is present on the DUT\n$ adb shell ls -l /data/misc/ecuidentity",
+  "er": "1. Positive response is received: 50 60\n2. Positive response is received: 62 29 65 <CSR bytes>, up to 1000 bytes (CS.00102 5.2.2.75, SYS-RA-CS00102-415)\n3. `$ adb shell ls -l /data/misc/ecuidentity` lists the exported CSR file",
+  "spec": "SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF",
+  "tc_ref": "NEW",
+  "priority": "High",
+  "design": "Functional Based",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: R-SEC6(a) UDS step form; CS.00102 5.2.2.75 (SYS-RA-CS00102-415~418); ECU Cert Test Steps PDF Step 2\nSWE ID pending; SYSAD used per R-SEC8(a). DID value per CS.00102; R1L Diag SWQT 22403/22404 returns up to 2048 bytes (A-SEC-3)",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-CertProvider-002",
+  "tc_id": "NR1L-CP-004",
+  "test_group": "Cert Provider",
+  "test_set": "Field Matching",
+  "test_item": "Verification of Certificate Subject Field\n(subject name differs from the configuration; certificate is rejected)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. SAM Dongle is inserted into the DUT\n4. Configuration files are present under SecurityAssets/oem-certs/cert-provider/{TYPE}/cfgs/",
+  "input": "Leaf certificate leaf.crt whose Subject CN differs from the configured name (wrong-subject variant of X-e)",
+  "proc": "1. Read the Subject field of the wrong-subject leaf certificate on the host\n$ openssl x509 -in leaf.crt -text\n2. Run the OpenSSL chain verification of the wrong-subject leaf certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n3. Confirm the Cert Provider rejects the certificate\n$ adb logcat -s MelcoCertProviderTest",
+  "er": "1. The openssl output shows a `Subject:` line whose CN differs from the configured name\n2. The openssl command prints `SAMcert.pem: OK` on stdout, so only the Subject field differs\n3. `$ adb logcat -s MelcoCertProviderTest` contains an `ERR_` entry for the subject mismatch; the exact keyword is `PENDING: DR-SEC-h log keyword`",
+  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-002",
+  "tc_ref": "NEW",
+  "priority": "High",
+  "design": "Negative / Invalid",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-CertProvider-002 Verification Criteria (correct/wrong subject branch); CertProfile r18\nPolarion: NRL-349385\nER 3 keyword pending DR-SEC-h (CS.212 package not released)",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

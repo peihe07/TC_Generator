@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-CertProvider-011",
+  "tc_id": "NR1L-CP-007",
+  "test_group": "Cert Provider",
+  "test_set": "Field Matching",
+  "test_item": "The Cert Provider feature shall support the validation of project-specific critical extensions within the leaf certificate.\n(extension value is incorrect or the critical extension is missing; certificate is rejected)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. A leaf certificate without the project-specific critical extension is available",
+  "input": "NA",
+  "proc": "1. Read the certificate extensions of the wrong-OID certificate on the host\n$ openssl x509 -in leaf.crt -text\n2. PENDING: X-e OID certificate + trigger",
+  "er": "1. The openssl x509 output shows no \"X509v3 Certificate Policies: critical\" line, or a \"Policy:\" line whose OID is not 1.3.6.1.4.1.57872.<…>\n2. PENDING: X-h log keyword",
+  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-011",
+  "tc_ref": "NEW",
+  "priority": "P1",
+  "design": "負向測試 (Negative / Invalid)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-CertProvider-011 Verification Criteria (second WHEN/THEN pair); CertProfile r36\nPolarion: NRL-349394\nStep 2 is PENDING: no DUT-side trigger and no paired apk method (R-SEC15(b)(g))\nchannel_feasible neg branch = N (trace_summary 4b)",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

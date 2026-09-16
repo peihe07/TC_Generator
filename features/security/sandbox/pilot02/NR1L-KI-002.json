@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-KeyInsyall-011",
+  "tc_id": "NR1L-KI-002",
+  "test_group": "Key Install",
+  "test_set": "Install State",
+  "test_item": "The software shall provide a Binder-based interface via the Android Java Service to allow external components (specifically the DIAG service) to query the current key installation status.\n(unsuccessful installation; the status is ERROR (3))",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. An unsuccessful installation has been made on the DUT",
+  "input": "NA",
+  "proc": "1. Read the installation state file in the secure partition\n$ adb shell od -t x1 /mnt/vendor/oemkeys/<installstate file>\n2. PENDING: X-f KeyInstall status test runner",
+  "er": "1. The adb shell od -t x1 output shows the installstate value 3\n2. PENDING: X-f KeyInstall status test runner",
+  "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-011",
+  "tc_ref": "NEW",
+  "priority": "P1",
+  "design": "負向測試 (Negative / Invalid)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-KeyInsyall-011 Verification Criteria 4.1 and 6.1 verbatim\nRD ID spelling as delivered\nSame placeholder and DID notes as the INSTALLED sibling",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

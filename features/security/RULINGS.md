@@ -302,3 +302,179 @@ R-SEC{live+7}  DR 從寬處置
 `DATA_REQUESTS.md` 之 DR-j 列以 `CLOSED (R-SEC8(f))` 記，改題文字保留備查、不刪（R-TM13）。
 `trace_matrix.tsv` 之 `TERM:CRL|DCL` 標記**保留** —— 其用途由「待裁」轉為
 「提示該列須依 R-SEC8(f) 寫 CRL 並於 Remarks 互註 DCL」。
+
+---
+
+### R-SEC9 — SWE1 之 Polarion NRL 對照（Pei 裁，2026-09-16；SEC-02 §1）
+
+```text
+R-SEC9  SWE1 之 Polarion NRL 對照
+  (a) `trace_matrix.tsv` 加欄 `nrl_swe1`；CertProvider 11 列填 `NRL-349384`～`349394`（逐列自 `Basic Report` A 欄），其餘 59 列填 `-`。
+  (b) `specification_reference` **不用 NRL**（六本只有一本有匯出，且 037 xlsx 仍為母體）；NRL 入 Remarks 第二行 `Polarion: NRL-nnnnnn`（有者填）。
+  (c) 其餘五本之 Polarion 匯出登 DR-SEC-s（低優先，不阻）。
+```
+
+**執行層回報**：投遞檔 `SWE1-CertProvider.xlsx` sha16 `beff84c77c6810f1`、26,778 B，**與下放包相符**。
+`Basic Report` 13 列（表頭 ＋ 11 資料列 ＋ 1 空列），`NRL-349384`～`NRL-349394` 對
+`SWE1-CertProvider-001`～`-011` **逐列順序對應，無缺無跳**。
+**下放包之「11/11 逐字相同」宣稱已複驗成立**：`Description` 11/11、`SWE1 Verification Criteria` 11/11
+（空白正規化後逐字相等）。
+註：該匯出之欄名為 `SEW1 SWE-Requirement ID`（原檔拼字 `SEW1`），解析逐字照用、不更正（R-6）。
+
+---
+
+### R-SEC10 — framework 與工作簿形制（Pei 裁，2026-09-16；SEC-02 §2）
+
+```text
+R-SEC10  framework 與工作簿形制
+  (a) Layer 1 = 案 A：一本 workbook，六個 Test Group `Cert Provider`／`Key Install`／`SAM`／`ECU Cert`／`SWDL Secure Lib`／`Log Encrypt`。
+  (b) TC ID：`NR1L-CP-nnn`／`NR1L-KI-nnn`／`NR1L-SAM-nnn`／`NR1L-ECUC-nnn`／`NR1L-SWDL-nnn`／`NR1L-LOGENC-nnn`，各組獨立自 001 升冪；
+      batch 1 先占號，batch 2 接續（同組內不得交錯）。
+  (c) `specification_reference` = `{037 token}_{SWE1-ID}`，一行一筆。token 定義：檔名去副檔名、去前綴 `FM-WI-FSM-037-A03-N1L-`、
+      去尾綴 ` STLA 報告_SWRA STLA Report_SWRA`、空白→底線。六個 token 實值（執行層複驗後逐字寫入 profile）：
+        `SWE1-CertProvider-SWE1R1-V1.0`／`SWE1-KeyInstall-SWE1R1-V1.0`／`SWE1-SAM-SWE1R1-V1.1`／
+        `SWE1_ECUCert_FM-WI-FSM-037-A03`／`SWE1_SwdlSecureLib_FM-WI-FSM-037-A03`／`SWE1_libLogEncrypt_FM-WI-FSM-037-A03`
+      ECUCert 之 `{SWE1-ID}` 依 R-SEC3(b) 以 SYSAD 首值代入，例 `SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_ECUCERT_API`。
+  (d) `spec_mode` 新型別 **`F`**（037-SWRA 母體）：錨 = (c)；lint 之 spec_ref 檢查對 `F` 只驗「token ∈ 六值 ＋ `_` ＋ SWE1-ID ∈ 70 列（或 ECUCert 13 個 SYSAD）」。
+  (e) Layer 3 = SYSAD ID（SWE1 `Source Requirement ID` 首值），不入工作簿。
+  (f) Vehicle Model 七欄：70 列一律五有效車型 `1`、`598`／`5210` `0`（上繳包 7-1 grep 證實無車型條件）。
+```
+
+**執行層回報**：(c) 之六個 token 已逐檔依推導規則複驗，**六值全部吻合**（見上繳包）。
+(b) 之六個 ABBR 全 repo 現查未被佔用。
+
+---
+
+### R-SEC11 — Peer Review 列之轉換（修正版；Pei 裁，2026-09-16；SEC-02_A §1 取代 SEC-02 §2 之 (b)(c)）
+
+```text
+R-SEC11  Peer Review 列之轉換（R-SEC2 之續）—— 修正版
+  (a) `peer_review_rows.tsv` 之 `Y` 7 ＋ `Y(部分)` 3 ＋ `Y(間接)` 2 = 12 列轉為 Testing 群（`SWE1-SAM-0017` 在 `Y` 7 之內，不另加）。
+  (b) `N` 19 列不產 TC：LOGENC 001/002/003/004/005/007/008/009（8）＋ ECUCert `…SERVICE_BINDER`／`…ECUONLINE_BINDER`／
+      `…ECUCERT_JNI`／`…STORAGE_IO`／`…ECUONLINE`／`…ECUONLINE_DOWNLOADCERT_INTF`（6）＋ SWDL 001/002/005（3）＋ SAM 0001/0019（2）。
+      `RULINGS.md` 記 `DEFERRED (R-SEC11(b))`，`batch_order.tsv` 加欄 `disposition = D`，`ccvr_batch` 仍照機械判準保留（供日後解凍時排序）；不標 NA。
+  (c) 產出群 = 39（原生 Testing）＋ 12（CONVERT）= **51**；D 群 **19**；合計 70。
+```
+
+**執行層回報**：(b) 之 19 列逐列與 `peer_review_rows.tsv` 之 `blackbox_possible = N` 集合**完全一致**
+（`batch_order.tsv` 之 `disposition = D` 與之互驗，兩集合相等）。(c) 之 51／19 實測相符。
+
+**DEFERRED 19 列（`DEFERRED (R-SEC11(b))`）**：
+`SWE1-SAM-0001`、`SWE1-SAM-0019`、
+`SYSAD_SEC_ECUCERT_ECUONLINE`、`SYSAD_SEC_ECUCERT_ECUCERT_SERVICE_BINDER`、
+`SYSAD_SEC_ECUCERT_ECUONLINE_BINDER`、`SYSAD_SEC_ECUCERT_ECUCERT_STORAGE_IO`、
+`SYSAD_SEC_ECUCERT_ECUCERT_JNI`、`SYSAD_SEC_ECUCERT_ECUONLINE_DOWNLOADCERT_INTF`、
+`SWE1-SRA-SECURITY-SWDL-001`／`-002`／`-005`、
+`SWE1-LOGENC-001`／`-002`／`-003`／`-004`／`-005`／`-007`／`-008`／`-009`。
+
+交叉表（實測）：
+
+| 群 | batch 1 | batch 2 | 計 |
+|---|---:|---:|---:|
+| Testing（原生）| 28 | 11 | 39 |
+| CONVERT | 10 | 2 | 12 |
+| DEFERRED | 11 | 8 | 19 |
+| **合計** | **49** | **21** | **70** |
+
+---
+
+### R-SEC12 — batch 人工覆寫（Pei 裁，2026-09-16；SEC-02 §2）
+
+```text
+R-SEC12  batch 人工覆寫
+  (a) `SWE1-SAM-0007` 覆寫 `ccvr_batch = 1`，`reason = manual override: apk samCertTestNormalFlow (Test_Items #04; CS.98 STEPS)`。
+  (b) 覆寫只此一列；其餘依機械判準。
+```
+
+**執行層回報**：以 `MANUAL_BATCH1` 集合實作，`batch_order.tsv` 之 `reason` 逐字記明其為覆寫；
+(b) 之「只此一列」以該集合之基數（1）保證。
+
+---
+
+### R-SEC13 — lint 於 Security 之範圍與代號（Pei 裁，2026-09-16；SEC-02 §2）
+
+```text
+R-SEC13  lint 於 Security 之範圍與代號
+  (a) `C`（channel／observe）與 `source:` 標記兩項**只入 `FEATURE_CHECKS["security"]`**，不入 `PROFILE_CHECKS`。
+  (b) 代號：若 `lint036.py` 之檢查項代號支援多字元，取 **`SC`**（channel）與 **`SS`**（source:）；若只支援單字元，執行層回報現行占用表，Pei 另指派，本包先以 `SC`／`SS` 落 profile。
+  (c) Pilot 門檻：`P`(v4)＋`X`＋`SC`＋`SS` 全綠；`Y`／`Z` 連動照既有。
+```
+
+---
+
+### R-SEC14 — 雜項（Pei 裁，2026-09-16；SEC-02 §2）
+
+```text
+R-SEC14  雜項
+  (a) `DR-SEC-j2` 改號 `DR-SEC-r`（SAM-0017 Verification Method 補值）；新增 `DR-SEC-s`（其餘五本 Polarion 匯出）。
+  (b) `step_assets.tsv` 剔除 4 列雜訊（`/cfgs`、`/odm`、`/write`、SharePoint 片段）。
+  (c) 佔位 `<…>`（§8.4.1）不計 PENDING；`PENDING: DR-…` 才計。lint `SS` 對 `<…>` 不報。
+  (d) Harman `Rejected` 解為責任歸屬（MD 承接），ledger 記為推論（53/53 `MD Accepted`），不據此排除任何列。
+  (e) R-6 附註：SYSAD docx 之 ID 可帶 U+3000 前綴；正規化去除**所有** Unicode 空白（`\s` 含 U+3000）。
+  (f) R-G44′ 實例：`R1L_Diag_SWQT` Desktop 本 vs OneDrive 本 sha 互異，以 `_C §1` 之 sha 為準。
+```
+
+**執行層回報**：(b) 之剔除已落，`step_assets.tsv` 由 156 列降為 **152** 列；
+`/odm/etc/cert_store`（真路徑）未受影響，只剔除裸 `/odm`。
+
+---
+
+### R-SEC5(a) amend（SEC-02_A §2；[A-SE12] 結案，命中 7 列改 5 列）
+
+```text
+R-SEC5(a) amend（CS.212 直連判準補述）
+  只計 THEN／`3.x`／`THEN.` 子句內之 `log`／`Logdog`／`logdog`／`avc`／`logcat`，且該 THEN 須宣稱
+  **某一資安事件**（驗證失敗、未授權存取、狀態變更、提權、輸入驗證失敗等 CS.212 類別）**被寫入 log**，
+  並可以 logcat／Logdog 觀察到；logging 政策、log 檔案處理、非事件性之 I/O 觀察不計。大小寫敏感。
+  命中 = CertProvider-008、KeyInstall-010、KeyInstall-012、SAM-0004、SAM-0015，共 5 列。
+```
+
+**執行層回報**：實測命中 **5 列**，與條文指名者逐列相符。逐列命中子句：
+
+| SWE1 ID | THEN 子句（逐字）|
+|---|---|
+| `SWE1-CertProvider-008` | `THEN. Confirm successful end-to-end verification through system logs (Logdog) for both client types.` |
+| `SWE1-KeyInsyall-010` | `6.1. THEN the system must REFUSE the request and log a security violation.` |
+| `SWE1-KeyInsyall-012` | `- THEN no SELinux denial logs (avc: denied) related to KeyInstall should be present.` |
+| `SWE1-SAM-0004` | `3.1. THEN DebugAuth logs an error via logdog, which corresponds to fail reason` |
+| `SWE1-SAM-0015` | `3.2. AND DebugAuth prints the log about sending message with sequence ID mentioned` |
+
+剔除之二列依 SEC-02_A §2：`CertProvider-005`（`Monitor system logs` 在 WHEN，THEN 為檔案 I/O 之否定觀察）、
+`CertProvider-006`（`logs must align with Logdog requirements` 為 logging **政策**）。
+二者之 `ccvr_batch` **不受影響**（經 SYS2 落 `Cert Val CS.98`，機械判準已為 1），
+`ccvr_items` 已移除 `Secure Log CS.212`。**batch 1 仍 49。**
+
+**`[A-SE12]` 結案** —— 分析層已於 SEC-02_A §2 明示規則本意為 THEN-only，並據此剔除 CP-005／006。
+
+---
+
+### R-SEC15 — pilot01 所揭違規類型之明文（適用 Security 全 70 列）（Pei 裁，2026-09-16；SEC-03 §2）
+
+```text
+R-SEC15  pilot01 所揭違規類型之明文（適用 Security 全 70 列）
+  (a) 跨場景字串移植 = 造值。任一 log 字串、指令、方法名、路徑，只能用於其來源所載之同一場景
+      （同一 apk 方法／同一元件／同一憑證樹）；移用到他場景視同 §8.4.1 造值。
+      例：CS.212 row 1 之 `ECU certificate verification broken chain = ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY`
+      只可用於 `ecuCertTestBrokenChainCert`，不得用於 `fotaMcpuCertTestBrokenCert`。
+  (b) 觀察不得代替觸發。ER 期待 DUT 側之結果（log／檔案／狀態）者，Procedure 須有一步在 DUT 側觸發該行為
+      （apk 方法、USB 插入、UDS 請求、CAN 送出、reboot）；host 端 openssl 不構成 DUT 觸發。
+      無可用觸發手段者，該觸發步驟整行寫 `PENDING: X-<n> <variant> + trigger`，ER 對應行同為 PENDING。
+  (c) 內部台帳代號（`X-[a-z]`、`DR-SEC-[a-z]`、`R-SEC\d+`、`A-SE`）不得出現於 Pre-Condition／Input Test Data／Procedure／ER；
+      只可入 Remarks。PENDING token 例外：`PENDING: X-<n> <缺件名>` 與 `PENDING: DR-SEC-<n> <缺件名>` 皆合法（R-SEC7(e) amend）。
+  (d) 字面值一律 `"…"`（IN §11）；反引號、單引號、`<>` 禁用（`<…>` 佔位除外）。
+  (e) `Input Test Data` 一律 `NA`（R-1 v2 基準；§1 量測若證實則落 profile）；資料內聯 Pre-Condition 或 Procedure。
+  (f) `test_item` 上半 = 037 `Requirement Description` 之首句 verbatim（≤50 token；長句自句首截至第一個句號），非 Title。
+  (g) apk 方法只用於 `apk_pairing.tsv` 有列之 SWE1；無列者不得硬配，觸發步驟依 (b) PENDING。
+  (h) R-SEC8(e) 重申：DID 值不入 ER；KI-011 之 Binder 呼叫無素材者，Proc 該步 `PENDING: X-f KeyInstall status test runner`。
+  (i) `PENDING` 為整行 token，不與散文混寫；一 ER 行只能是「可觀察斷言」或「PENDING token」二者之一。
+  (j) Security profile 豁免 lint `I-cross`。
+```
+
+**執行層回報（SEC-03）**：
+
+- (e) 之「§1 量測若證實」—— **已證實**：`Input Test Data = NA` 於 SWC 0708 為 **285／286**、
+  pm_29 為 **389／389**。落 profile 3 節「欄位形制」。
+- (d) 之引號 —— 量測佐證：SWC 0708 之 ER 內 `"…"` **50 次**，`'…'` **0**、反引號 **0**；
+  pm_29 三者皆 **0**。**兩本皆無反引號／單引號**，(d) 與既有交付本一致。
+- (j) 已於 `lint036.py` 之 `check_order()` 落實（Security profile 略去 `I-cross`）。
+- (a)~(i) 之自檢結果見上繳包 §7（逐條「0 處」與其檢查方法）。

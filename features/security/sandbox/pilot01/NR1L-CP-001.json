@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-CertProvider-001",
+  "tc_id": "NR1L-CP-001",
+  "test_group": "Cert Provider",
+  "test_set": "Chain Verification",
+  "test_item": "Verification of X.509 Leaf Certificate against Trusted Chain\n(valid leaf certificate; OpenSSL chain verification passes)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. Certificate assets of group X-e are present under SecurityAssets/oem-certs/cert-provider/",
+  "input": "Valid leaf certificate SAMcert.pem and chain RootCert.pem / L1.pem / L2.pem / L3.pem under SecurityAssets/oem-certs/cert-provider/",
+  "proc": "1. Run the OpenSSL chain verification of the leaf certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n2. Run the Cert Provider instrumentation test for the FOTA MCPU certificate normal flow\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#fotaMcpuCertTestNormalFlow com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner\n3. Confirm the Cert Provider log carries no error entry for the leaf certificate\n$ adb logcat -s MelcoCertProviderTest",
+  "er": "1. The openssl command prints `SAMcert.pem: OK` on stdout\n2. The instrumentation runner reports `OK (1 test)` for fotaMcpuCertTestNormalFlow\n3. `$ adb logcat -s MelcoCertProviderTest` shows no `ERR_` entry for the leaf certificate",
+  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-001",
+  "tc_ref": "NEW",
+  "priority": "High",
+  "design": "Functional Based",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-CertProvider-001 Verification Criteria (WHEN/THEN, openssl command verbatim); Test_Items.txt #01; CertProfile r11/r18\nPolarion: NRL-349384\napk pairing: high (apk_pairing.tsv #01)",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

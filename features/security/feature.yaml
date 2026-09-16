@@ -8,17 +8,65 @@
 # 母本實測不代表副本；副本之欄序得因 ext 而異。
 
 feature: "Security"
-test_group: "Security"          # framework-internal; workbook write per profile
 
+# R-SEC10(a)：Layer 1 案 A —— 一本 workbook、六個 Test Group（＝元件名）。
+# 舊模板之單值 `test_group: "Security"` 作廢。
+workbook_count: one
+test_group:
+  CertProvider:   "Cert Provider"
+  KeyInstall:     "Key Install"
+  SAM:            "SAM"
+  ECUCert:        "ECU Cert"
+  SwdlSecureLib:  "SWDL Secure Lib"
+  libLogEncrypt:  "Log Encrypt"
+
+# R-SEC10(b)：TC ID `NR1L-{ABBR}-{nnn}`，六組各自 001 升冪；batch 1 先占號，batch 2 接續。
+abbr:
+  CertProvider:   "CP"
+  KeyInstall:     "KI"
+  SAM:            "SAM"
+  ECUCert:        "ECUC"
+  SwdlSecureLib:  "SWDL"
+  libLogEncrypt:  "LOGENC"
+
+# R-SEC10(c)：`specification_reference` = `{037 token}_{SWE1-ID}`。
+# token = 檔名去副檔名、去前綴 `FM-WI-FSM-037-A03-N1L-`、去尾綴 ` STLA 報告_SWRA STLA Report_SWRA`、空白→底線。
+# 六值已由執行層逐檔複驗（SEC-02 上繳包）。
+spec_ref_tokens:
+  CertProvider:   "SWE1-CertProvider-SWE1R1-V1.0"
+  KeyInstall:     "SWE1-KeyInstall-SWE1R1-V1.0"
+  SAM:            "SWE1-SAM-SWE1R1-V1.1"
+  ECUCert:        "SWE1_ECUCert_FM-WI-FSM-037-A03"
+  SwdlSecureLib:  "SWE1_SwdlSecureLib_FM-WI-FSM-037-A03"
+  libLogEncrypt:  "SWE1_libLogEncrypt_FM-WI-FSM-037-A03"
+
+# R-G66 來源集中制：原檔在 `sources/raw/<doc_id>/`，本 feature 不存副本（`inputs/` 空）。
+# 下列為 doc_id，非路徑；sha256 見 `sources/MANIFEST.tsv`（features 欄含 `security`）。
 paths:
-  workbook: "inputs/<FW036 xlsx>"
-  a03_report: "inputs/<037 xlsx>"
-  sys1_export: "inputs/<SYS1 xlsx>"        # null if spec_mode has no export
-  spec_pdf: "inputs/<spec pdf>"            # null if spec_mode E
-  popup_list: "inputs/<Pop Up List xlsx>"  # null if not referenced
+  workbook: "forms/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"  # R-G1 母本
+  a03_reports:                       # 六本 037，母體（R-SEC1(a)）
+    - swe1_037_certprovider_v1_0
+    - swe1_037_keyinstall_v1_0
+    - swe1_037_sam_v1_1
+    - swe1_037_ecucert
+    - swe1_037_swdlsecurelib
+    - swe1_037_liblogencrypt
+  sys1_export: null                  # 本 feature 無 SYS1 HMI 匯出
+  spec_pdf: null
+  popup_list: null                   # 無 HMI 入口，無 popup
+  sysad:                             # SYS3，追溯素材
+    - sys3_sysad_certprovider_vf
+    - sys3_sysad_keyinstall_vd
+    - sys3_sysad_sam_a02
+    - sys3_sysad_ecucert_a01
+    - sys3_sysad_swdl_a01
+    - sys3_sysad_liblogencrypt_a01
+  sys2: sys2_cfts084_sysra_newreq_0331
+  polarion_export: swe1_certprovider_polarion   # 僅 CertProvider 一本（R-SEC9；其餘 DR-SEC-s）
 
-spec_mode: "A"        # A/B/C/D/E per FO §3
-spec_reference_template: "<Spec Filename>_{outline}"
+# R-SEC10(d)：新型別 `F` —— 037-SWRA 母體，錨走 spec_ref_tokens ＋ SWE1-ID。
+spec_mode: "F"
+spec_reference_template: "{token}_{swe1_id}"
 
 workbook:
   # R-G48：以下為母本第 9 列實測。2026-09-05 前之模板值有四處為誤 ——

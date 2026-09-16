@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-KeyInsyall-011",
+  "tc_id": "NR1L-KI-001",
+  "test_group": "Key Install",
+  "test_set": "Install State",
+  "test_item": "Key Installation Status Query Interface\n(installation completed; the interface returns INSTALLED (2))",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Key installation has completed successfully on the DUT\n3. Diagnostic session is SystemSupplierSpecific (60)",
+  "input": "USB drive containing valid platform keys of group X-f, already installed",
+  "proc": "1. Read the installation state file in the secure partition\n$ adb shell od -t x1 /mnt/vendor/oemkeys\n2. Query the installation status through the Binder interface\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.keyinstall.test.KeyInstallStatusTest#getStatus com.mitsubishielectric.ahu.efw.keyinstall.test/androidx.test.runner.AndroidJUnitRunner\n3. Send UDS request ReadDataByIdentifier for DID $FF02 (SecurityKeyInstallStatus)\n$ 22 FF 02",
+  "er": "1. `$ adb shell od -t x1 /mnt/vendor/oemkeys` shows the installstate value 2\n2. The instrumentation runner reports `OK (1 test)` and getStatus() returns `INSTALLED (2)`\n3. Positive response is received: 62 FF 02 00",
+  "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-011",
+  "tc_ref": "NEW",
+  "priority": "High",
+  "design": "State Transition",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-KeyInsyall-011 Verification Criteria 1.1/2.1/3.1 (Binder getStatus verbatim); R1L Diag SWQT 22345/22346 for DID FF02\nRD ID spelling as delivered. DID 22 FF 02 is supplementary observation only, not a pass/fail criterion (R-SEC8(e))",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

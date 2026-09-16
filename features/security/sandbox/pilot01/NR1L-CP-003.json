@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-CertProvider-002",
+  "tc_id": "NR1L-CP-003",
+  "test_group": "Cert Provider",
+  "test_set": "Field Matching",
+  "test_item": "Verification of Certificate Subject Field\n(subject name identical to the configuration; certificate is accepted)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. SAM Dongle is inserted into the DUT\n4. Configuration files are present under SecurityAssets/oem-certs/cert-provider/{TYPE}/cfgs/",
+  "input": "Leaf certificate leaf.crt whose Subject CN is identical to the configured name",
+  "proc": "1. Read the Subject field of the leaf certificate on the host\n$ openssl x509 -in leaf.crt -text\n2. Run the OpenSSL chain verification of the leaf certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n3. Confirm the Cert Provider accepts the certificate\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#samCertTestNormalFlow com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner",
+  "er": "1. The openssl output shows `Subject: O = Stellantis N.V., CN = CS_{SupplierID}_{Node}_{OPT - chipset}_ {ECUSWmodule}`\n2. The openssl command prints `SAMcert.pem: OK` on stdout\n3. The instrumentation runner reports `OK (1 test)` for samCertTestNormalFlow",
+  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-002",
+  "tc_ref": "NEW",
+  "priority": "High",
+  "design": "Functional Based",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-CertProvider-002 Verification Criteria (openssl x509 / cfgs path verbatim); CertProfile r13-r19; Test_Items.txt #04\nPolarion: NRL-349385\napk pairing: high (apk_pairing.tsv #04)",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

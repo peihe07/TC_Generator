@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-CertProvider-001",
+  "tc_id": "NR1L-CP-002",
+  "test_group": "Cert Provider",
+  "test_set": "Chain Verification",
+  "test_item": "Verification of X.509 Leaf Certificate against Trusted Chain\n(broken certificate chain; verification is rejected)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. Certificate assets of group X-e (broken variant) are present under SecurityAssets/oem-certs/cert-provider/",
+  "input": "Broken leaf certificate SAMcert.pem whose issuer is absent from the chain, under SecurityAssets/oem-certs/cert-provider/",
+  "proc": "1. Run the OpenSSL chain verification of the broken leaf certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n2. Run the Cert Provider instrumentation test for the broken certificate flow\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#fotaMcpuCertTestBrokenCert com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner\n3. Confirm the rejection entry in the Cert Provider log\n$ adb logcat -s MelcoCertProviderTest",
+  "er": "1. The openssl command prints `error 2 at 0 depth lookup: unable to get issuer certificate` on stdout\n2. The instrumentation runner reports `OK (1 test)` for fotaMcpuCertTestBrokenCert\n3. `$ adb logcat -s MelcoCertProviderTest` contains `MelcoCertProviderTest: ECU certificate verification broken chain = ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY`",
+  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-001",
+  "tc_ref": "NEW",
+  "priority": "High",
+  "design": "Negative / Invalid",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-CertProvider-001 Verification Criteria; Test_Items.txt #02; CCVR Secure Log CS.212 row 1 (log string verbatim, per CS.212 draft 20260826)\nPolarion: NRL-349384\napk pairing: high (apk_pairing.tsv #02)",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

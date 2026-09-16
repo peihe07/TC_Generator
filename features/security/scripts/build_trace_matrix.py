@@ -66,27 +66,28 @@ RE_APK = re.compile(r"(?<![A-Za-z])[a-z][A-Za-z]+Test[A-Za-z]*")
 # R-SEC5(a)：CS.212 第二判準。條文所列五詞（`log`／`Logdog`／`logdog`／`avc`／`logcat`），
 # 大小寫敏感、不加詞界。
 #
-# **SEC-01 審閱 三-1 之補述**：只計 **WHEN／THEN 子句**內之命中，且該子句須宣稱
-# log 之**產生或觀察**；主詞為 `Log Encryption`／`LogDog` 之元件名、識別字
-# （`encryptLogFile` 等）、或以 log 為**加密受詞**（`log files`）者不計。
-#
-# 審閱原文寫「只計 THEN 子句」，惟其所列之 7 列含 `SWE1-CertProvider-005` ——
-# 該列之命中在 **WHEN**（`Monitor system logs during verification`），THEN 無命中。
-# 逐字照「THEN only」會得 6 列而非審閱所列之 7。故此處取 **WHEN∪THEN**，
-# 方能重現審閱指名之集合；差異已於上繳包具名（`[A-SE12]`）。
+# **SEC-02_A §2 之修正版判準（[A-SE12] 結案）**：
+#   (1) 只計 **THEN／`3.x`／`THEN.` 子句**內之命中（WHEN 不計）；
+#   (2) 該 THEN 須宣稱**某一資安事件**（驗證失敗、未授權存取、狀態變更、提權、
+#       輸入驗證失敗等 CS.212 類別）**被寫入 log**，並可以 logcat／Logdog 觀察到；
+#       logging 政策、log 檔案處理、非事件性之 I/O 觀察**不計**。
+# 命中 = CertProvider-008、KeyInstall-010／012、SAM-0004／0015，共 **5 列**。
+# （SEC-01 初版 11 列 → 審閱三-1 之 7 列 → 本版 5 列；CP-005／006 之剔除理由見 SEC-02_A §2。）
 RE_LOG_ASSERT = re.compile(r"log|Logdog|logdog|avc|logcat")
-# 子句範圍（審閱 三-1 原文：「只計 THEN／`3.x`／`THEN.` 子句內之命中」，
-# 另依 CP-005 之實測納入 WHEN）：
-#   (1) 含 `WHEN`／`THEN` 字樣之行；或
-#   (2) 以 `3.x` 編號起首之行 —— 037 之 GIVEN/WHEN/THEN 以 1.x／2.x／3.x 編號，
-#       `3.x` 之 `AND` 續行仍屬 THEN 區塊（`SWE1-SAM-0015` 3.2 即此形）。
-RE_WHEN_THEN = re.compile(r"(?:^|\s)(?:WHEN|THEN)\b|^\s*3\.\d")
+# 子句範圍：含 `THEN` 字樣之行，或以 `3.x` 編號起首之行 —— 037 之 GIVEN/WHEN/THEN
+# 以 1.x／2.x／3.x 編號，`3.x` 之 `AND` 續行仍屬 THEN 區塊（`SWE1-SAM-0015` 3.2 即此形）。
+# **WHEN 不計**（SEC-02_A §2）。
+RE_THEN_ONLY = re.compile(r"(?:^|\s)THEN\b|^\s*3\.\d")
 # 否定濾網：命中落在下列形態內者不算 log 斷言（審閱 三-1 所指之四列誤判之成因）
 RE_LOG_NOT_ASSERT = re.compile(
     r"Log\s*Encrypt\w*"          # 元件名 `Log Encryption`／`LogEncrypt`
     r"|encryptLogFile|plainLogFilename|protectedLogFilename"   # API 識別字
     r"|log\s+files?\b"           # 加密之受詞（`encryption of log files`）
     r"|logdog\s+could\s+link"    # 連結／建置斷言，非 log 斷言
+    # SEC-02_A §2：logging **政策**（等級規範）非事件記錄斷言 ——
+    # `CertProvider-006` 之 `logs must align with Logdog requirements (Error-level only…)`
+    # 整句為規範要求，故連其受詞 `Logdog requirements` 一併遮蔽。
+    r"|logs?\s+must\s+align\s+with(?:\s+Logdog\s+requirements)?"
 )
 
 
@@ -95,7 +96,7 @@ def cs212_log_assertion(vc: str) -> list[str]:
     hits = []
     for line in vc.splitlines():
         clause = line.strip()
-        if not clause or not RE_WHEN_THEN.search(clause):
+        if not clause or not RE_THEN_ONLY.search(clause):
             continue
         masked = RE_LOG_NOT_ASSERT.sub("", clause)
         if RE_LOG_ASSERT.search(masked):
@@ -105,6 +106,23 @@ def cs212_log_assertion(vc: str) -> list[str]:
 TERM_CRL_DCL_ROWS = {"SWE1-CertProvider-004", "SWE1-CertProvider-005"}
 # 審閱 三-2：人工覆寫入 batch 1 之列（`reason` 欄逐列記明其為覆寫，非機械判準所得）。
 MANUAL_BATCH1 = {"SWE1-SAM-0007"}
+# SEC-03 §3：`channel_feasible` 改為每 SWE1 兩值 `pos/neg`。
+# CP-002／CP-011 之**負向分支**改判 `N` —— 其 wrong-subject／wrong-OID 憑證在 DUT 側
+# 無觸發手段（apk_pairing 無對應方法），host 端 openssl 不構成觸發（R-SEC15(b)）。
+NEG_BRANCH_N = {"SWE1-CertProvider-002", "SWE1-CertProvider-011"}
+# R-SEC9(a)：CertProvider 之 Polarion work item。其餘五本無匯出（DR-SEC-s），填 `-`。
+NRL_DOC = "swe1_certprovider_polarion"
+# R-SEC11(b)（SEC-02_A §1 修正版）：19 列不產 TC，`disposition = D`；
+# `ccvr_batch` 仍照機械判準保留（供日後解凍時排序），不標 NA（R-SEC2(c)）。
+DEFERRED_ROWS = {
+    "SWE1-LOGENC-001", "SWE1-LOGENC-002", "SWE1-LOGENC-003", "SWE1-LOGENC-004",
+    "SWE1-LOGENC-005", "SWE1-LOGENC-007", "SWE1-LOGENC-008", "SWE1-LOGENC-009",
+    "SYSAD_SEC_ECUCERT_ECUCERT_SERVICE_BINDER", "SYSAD_SEC_ECUCERT_ECUONLINE_BINDER",
+    "SYSAD_SEC_ECUCERT_ECUCERT_JNI", "SYSAD_SEC_ECUCERT_ECUCERT_STORAGE_IO",
+    "SYSAD_SEC_ECUCERT_ECUONLINE", "SYSAD_SEC_ECUCERT_ECUONLINE_DOWNLOADCERT_INTF",
+    "SWE1-SRA-SECURITY-SWDL-001", "SWE1-SRA-SECURITY-SWDL-002", "SWE1-SRA-SECURITY-SWDL-005",
+    "SWE1-SAM-0001", "SWE1-SAM-0019",
+}
 # _F §2：CertProfile（Code Signing 樹）可逐字落地之欄位斷言 → SWE1 列（R-SEC4(a) 第 8 類）。
 CERTPROFILE_ROWS = {
     "SWE1-CertProvider-001": "chain/BasicConstraints/KeyUsage（r11,r18,r25-r39）",
@@ -248,6 +266,21 @@ def read_sysad() -> tuple[dict, dict, dict, dict]:
 
 # ------------------------------------------------------------ SYS2 索引
 
+def read_nrl_swe1() -> dict[str, str]:
+    """R-SEC9(a)：SWE1-ID → Polarion NRL（僅 CertProvider 一本有匯出）。"""
+    path = only(NRL_DOC, "*.xlsx")
+    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    grid = list(wb["Basic Report"].iter_rows(values_only=True))
+    hdr = [str(c or "").strip() for c in grid[0]]
+    i_id = hdr.index("SEW1 SWE-Requirement ID")   # 原檔拼字 `SEW1`，逐字不改（R-6）
+    out = {}
+    for r in grid[1:]:
+        if r[0] and r[i_id]:
+            out[str(r[i_id]).strip()] = str(r[0]).strip()
+    wb.close()
+    return out
+
+
 def read_sys2() -> dict[str, dict]:
     path = only("ccvr_v27_sys2_mapped", "*.xlsx")
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
@@ -365,6 +398,7 @@ def main() -> int:
     cs98 = read_cs98_steps()
     cs165 = read_cs165_steps()
     apk_items = read_test_items()
+    nrl_swe1 = read_nrl_swe1()
 
     # PDF 六步（reference-only）之適用面：ECUCert 環境建置
     pdf_available = (RAW / "ccvr_ecu_cert_test_steps_20260826").exists()
@@ -374,7 +408,7 @@ def main() -> int:
         "swe1_title", "source_ids_raw", "sysad_normalized", "match_kind",
         "other_sysra", "sys_ra_sec", "nrl", "sys2_category", "harman_status",
         "md_status", "existing_test_rel", "ccvr_sheet_rows", "new_test_ids",
-        "apk_method", "verification_method", "ccvr_batch", "ccvr_items",
+        "apk_method", "verification_method", "nrl_swe1", "ccvr_batch", "ccvr_items",
         "cs212_direct", "cs212_clause", "manual_override",
         "step_sources", "channel_feasible", "channel_feasible_why",
     ]
@@ -476,6 +510,10 @@ def main() -> int:
             srcs.append("TERM:CRL|DCL")  # _B §1：注入檔型態未定，TC 寫 PENDING: DR-SEC-j
 
         feas, feas_why = channel_feasibility(row, srcs)
+        neg = "N" if row["swe1_id"] in NEG_BRANCH_N else feas
+        if neg != feas:
+            feas_why += "；負向分支 N —— DUT 側無觸發手段（R-SEC15(b)，SEC-03 §3）"
+        feas = f"{feas}/{neg}"
         out_rows.append({
             "channel_feasible": feas,
             "channel_feasible_why": feas_why,
@@ -501,6 +539,7 @@ def main() -> int:
             "verification_method": row["verification_method"],
             "ccvr_batch": batch,
             "ccvr_items": "、".join(batch1_items),
+            "nrl_swe1": nrl_swe1.get(row["swe1_id"], "-"),
             "cs212_direct": "Y" if cs212_direct else "N",
             "cs212_clause": " ⏎ ".join(cs212_clauses),
             "manual_override": "Y" if manual_override else "N",
@@ -515,7 +554,7 @@ def main() -> int:
     # batch_order.tsv（R-SEC1(c)）
     with (OUT / "batch_order.tsv").open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh, delimiter="\t")
-        w.writerow(["swe1_id", "ccvr_batch", "ccvr_items", "reason"])
+        w.writerow(["swe1_id", "ccvr_batch", "disposition", "ccvr_items", "reason"])
         for r in out_rows:
             items = sorted({k.split(" / ")[0] for k in
                             (x.split(" [")[0] for x in r["ccvr_sheet_rows"].split(";") if x)})
@@ -533,7 +572,8 @@ def main() -> int:
             else:
                 reason = "未落 CCVR 五 test item" + (
                     "；其他落點：" + "、".join(items) if items else "；Mapping detail 無對應")
-            w.writerow([r["swe1_id"], r["ccvr_batch"], "、".join(b1) or "-", reason])
+            disp = "D" if r["swe1_id"] in DEFERRED_ROWS else "-"
+            w.writerow([r["swe1_id"], r["ccvr_batch"], disp, "、".join(b1) or "-", reason])
 
     # 無落地來源清單（R-SEC4(b)）
     nosrc = [r for r in out_rows if not r["step_sources"]]
@@ -601,16 +641,19 @@ def main() -> int:
         lines += [f"| `{r['swe1_id']}` | {r['component']} | {r['verification_method']} | {r['ccvr_batch']} |"
                   for r in nosrc]
 
-    feas = Counter(r["channel_feasible"] for r in out_rows)
+    feas = Counter(r["channel_feasible"].split("/")[0] for r in out_rows)
+    feas_pair = Counter(r["channel_feasible"] for r in out_rows)
     lines += ["", "## 4b　每步可配通道之預判（R-SEC7／_E §3）", "",
               "判準：`Y` = 有 APK／PDF／CS98／CS165 任一外部可執行素材；",
               "`N` = VC 受詞為 source code／build environment 且無具體指令；`部分` = 其餘。", "",
               f"- `Y`：**{feas['Y']}** 列",
               f"- `部分`：**{feas['部分']}** 列",
               f"- `N`：**{feas['N']}** 列 —— 即 batch 內之 `PENDING` 候選（R-SEC4(b)）", "",
+              "**`pos/neg` 兩值分佈（SEC-03 §3）**："
+              + "／".join(f"`{k}` {v}" for k, v in sorted(feas_pair.items())), "",
               "| SWE1 ID | 元件 | batch | 預判 | 依據 |", "|---|---|---|---|---|"]
     lines += [f"| `{r['swe1_id']}` | {r['component']} | {r['ccvr_batch']} | **{r['channel_feasible']}** | {r['channel_feasible_why']} |"
-              for r in out_rows if r["channel_feasible"] != "Y"]
+              for r in out_rows if r["channel_feasible"] != "Y/Y"]
 
     cp_rows = [r for r in out_rows if r["component"] == "CertProvider"]
     cp_named = [r for r in cp_rows if r["swe1_id"] in CERTPROFILE_ROWS]
@@ -640,7 +683,8 @@ def main() -> int:
     (OUT / "trace_summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     print(f"trace_matrix.tsv  {len(out_rows)} 列")
-    print(f"batch_order.tsv   batch1={b['1']} batch2={b['2']}")
+    nd = sum(1 for r in out_rows if r["swe1_id"] in DEFERRED_ROWS)
+    print(f"batch_order.tsv   batch1={b['1']} batch2={b['2']}；D 群 {nd}，產出群 {len(out_rows) - nd}")
     print(f"no_step_source    {len(nosrc)} 列")
     print(f"SEC 併集 {len(all_secs)}，SYS2 缺 {len(miss)}")
     print("match_kind:", dict(tot))

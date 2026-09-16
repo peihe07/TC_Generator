@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-CertProvider-011",
+  "tc_id": "NR1L-CP-006",
+  "test_group": "Cert Provider",
+  "test_set": "Field Matching",
+  "test_item": "Verification of Project-Specific Critical Extension\n(extension value is incorrect or the critical extension is missing; certificate is rejected)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. A leaf certificate without the NR1L project-specific critical extension is available (wrong-OID variant of X-e)",
+  "input": "Leaf certificate whose CertificatePolicies OID differs from the project identifier, or which omits the critical extension",
+  "proc": "1. Read the certificate extensions of the wrong-OID certificate on the host\n$ openssl x509 -in leaf.crt -text\n2. Confirm the Cert Provider rejects the certificate and returns the error code\n$ adb logcat -s MelcoCertProviderTest",
+  "er": "1. The openssl output shows no `X509v3 Certificate Policies: critical` line, or a `Policy:` line whose OID differs from 1.3.6.1.4.1.57872.<…>\n2. `$ adb logcat -s MelcoCertProviderTest` contains an `ERR_` entry with the error code; the exact keyword is `PENDING: DR-SEC-h log keyword`",
+  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-011",
+  "tc_ref": "NEW",
+  "priority": "High",
+  "design": "Negative / Invalid",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: CertProfile r36; 037 SWE1-CertProvider-011 Verification Criteria (second WHEN/THEN pair)\nPolarion: NRL-349394\nER 2 keyword pending DR-SEC-h",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

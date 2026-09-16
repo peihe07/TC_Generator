@@ -52,7 +52,6 @@ junit_method	secondPartyLevelThreeCertATestNormalFlow	APK	Test_Items.txt		ADB	-
 junit_method	secondPartyLevelThreeCertBTestNormalFlow	APK	Test_Items.txt		ADB	-
 junit_method	secondPartyLevelThreeCertCTestNormalFlow	APK	Test_Items.txt		ADB	-
 junit_method	secondPartyLevelTwoCertTestNormalFlow	APK	Test_Items.txt		ADB	-
-path	/cfgs	VC	swe1_037_certprovider_v1_0!Analysis Report!R10；swe1_037_certprovider_v1_0!Analysis Report!R11	SWE1-CertProvider-002；SWE1-CertProvider-003	-	-
 path	/data/misc/ecuidentity	CS165、PDF	ECU Cert Test Steps p4；ECU Cert Test Steps p5；ECU ID CS.165!R3		-	FILE
 path	/data/misc/ecuidentity/ecu.blob	PDF	ECU Cert Test Steps p1		-	FILE
 path	/data/misc/ecuidentity/ecu.cacert	PDF	ECU Cert Test Steps p1		-	FILE
@@ -66,16 +65,13 @@ path	/mnt/vendor/ecuidentity/data/ecu.crt	PDF	ECU Cert Test Steps p1		-	FILE
 path	/mnt/vendor/ecuidentity/state/ecucertstatus	PDF	ECU Cert Test Steps p1		-	FILE
 path	/mnt/vendor/oemkeys	VC	swe1_037_keyinstall_v1_0!Analysis Report!R21	SWE1-KeyInsyall-013	-	FILE
 path	/mnt/vendor/oemkeys/ecu/state/ecucertstatus	PDF	ECU Cert Test Steps p4		-	FILE
-path	/odm	VC	swe1_037_certprovider_v1_0!Analysis Report!R18	SWE1-CertProvider-010	-	-
 path	/odm/etc/cert_store	VC	swe1_037_certprovider_v1_0!Analysis Report!R15；swe1_037_certprovider_v1_0!Analysis Report!R17	SWE1-CertProvider-007；SWE1-CertProvider-009	-	FILE
-path	/r/sites/newR1LAllMDmembers/_layouts/15/Doc.aspx	PDF	ECU Cert Test Steps p6		-	-
 path	/vendor/odm/etc/cert_store	CS98	Cert Val CS.98!R13；Cert Val CS.98!R2；Cert Val CS.98!R5；Cert Val CS.98!R6		-	FILE
 path	/vendor/odm/etc/cert_store/	CS98	Cert Val CS.98!R10；Cert Val CS.98!R11；Cert Val CS.98!R3；Cert Val CS.98!R4…		-	FILE
 path	/vendor/odm/etc/cert_store/cfgs	CS98	Cert Val CS.98!R13；Cert Val CS.98!R2		-	FILE
 path	/vendor/odm/etc/cert_store/dcl.json	CS98	Cert Val CS.98!R10；Cert Val CS.98!R11；Cert Val CS.98!R3；Cert Val CS.98!R6…		-	FILE
 path	/vendor/odm/etc/cert_store/ecu_chain	CS98	Cert Val CS.98!R2		-	FILE
 path	/vendor/odm/etc/cert_store/oem_cert_tree	CS98	Cert Val CS.98!R13；Cert Val CS.98!R2		-	FILE
-path	/write	VC	swe1_037_liblogencrypt!Analysis Report!R17	SWE1-LOGENC-009	-	-
 placeholder	<ERR_CERT_REVOKED>	CS98	Cert Val CS.98!R3；Cert Val CS.98!R6；Cert Val CS.98!R9		-	-
 placeholder	<OK>	CS98	Cert Val CS.98!R3；Cert Val CS.98!R6；Cert Val CS.98!R9		-	-
 placeholder	<SAMType>	VC	swe1_037_sam_v1_1!Analysis Report!R16	SWE1-SAM-0008	-	-

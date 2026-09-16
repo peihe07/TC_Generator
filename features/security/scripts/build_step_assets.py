@@ -42,6 +42,12 @@ PATTERNS = [
 ]
 
 NOISE = re.compile(r"^/(?:\d+|[A-Za-z]{1,2})$")
+# R-SEC14(b)：Pei 裁定剔除之 4 列雜訊（SEC-01 上繳包 4-7 自報）。
+# 前三者為長路徑之斷片，末者為 PDF 內之 SharePoint 連結片段，皆非受測路徑。
+NOISE_EXACT = {
+    "/cfgs", "/odm", "/write",
+    "/r/sites/newR1LAllMDmembers/_layouts/15/Doc.aspx",
+}
 
 # R-SEC7(a)(c)（_E §1）：執行通道與觀察手段之閉合清單。每筆資產標其所屬。
 CHANNEL_OF = {
@@ -112,7 +118,7 @@ def scan(text: str, source: str, loc: str, swe1: str, sink: dict) -> None:
     for kind, rx in PATTERNS:
         for hit in rx.findall(text or ""):
             val = hit.strip().rstrip(".,;:）)")
-            if not val or NOISE.match(val) or len(val) < 3:
+            if not val or NOISE.match(val) or val in NOISE_EXACT or len(val) < 3:
                 continue
             key = (kind, val)
             sink[key]["source"].add(source)

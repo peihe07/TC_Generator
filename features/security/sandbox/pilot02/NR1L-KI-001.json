@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-KeyInsyall-011",
+  "tc_id": "NR1L-KI-001",
+  "test_group": "Key Install",
+  "test_set": "Install State",
+  "test_item": "The software shall provide a Binder-based interface via the Android Java Service to allow external components (specifically the DIAG service) to query the current key installation status.\n(installation completed; the status is INSTALLED (2))",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Key installation has completed successfully on the DUT",
+  "input": "NA",
+  "proc": "1. Read the installation state file in the secure partition\n$ adb shell od -t x1 /mnt/vendor/oemkeys/<installstate file>\n2. PENDING: X-f KeyInstall status test runner",
+  "er": "1. The adb shell od -t x1 output shows the installstate value 2\n2. PENDING: X-f KeyInstall status test runner",
+  "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-011",
+  "tc_ref": "NEW",
+  "priority": "P1",
+  "design": "狀態轉換 (State Transition Testing)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-KeyInsyall-011 Requirement Description and Verification Criteria 1.1 and 3.1 (Binder getStatus verbatim)\nRD ID spelling as delivered\nThe installstate file name is a placeholder: 037 states the secure partition but not the file name. DID 22 FF 02 is a supplementary observation only and is not a pass/fail criterion; the two-state versus four-state question is open",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

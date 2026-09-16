@@ -11,7 +11,8 @@ pattern is stated and marked (pattern).
 Urgency 回報。
 
 > **本表已依 R-SEC8（下放包 `_G` §2）重分類**，取代 `_D` §5 之 DR 總表：
-> - **2.1 文件 DR**（送 037／SYS3 作者，**不阻交付**）：`a`／`b`／`i` —— 皆已從寬結，仍送上游要正式件。
+> - **2.1 文件 DR**（送 037／SYS3 作者，**不阻交付**）：`a`／`b`／`i`／`r`／`s` —— `a`／`b`／`i` 已從寬結，仍送上游要正式件。
+> - **R-SEC14(a)**：`DR-SEC-j2` 改號 **`DR-SEC-r`**；新增 **`DR-SEC-s`**。舊號 `j2` 不再使用（保留於 SEC-01 上繳包備查）。
 > - **2.2 執行資產**（**移出本表**，見 `features/security/EXEC_ASSETS.md`）：`c`／`d`／`e`／`f`／`g`／`h` → `X-c`~`X-h`。
 > - **2.3 已結／降級**：`j`／`k`／`l`／`m`／`n`／`o`／`q`／`h` 記 `CLOSED (R-SEC8(x))`，**不刪**（R-TM13）。
 > - **2.4 A 系列**（回饋，不阻）：見 `ANOMALIES.md`。
@@ -23,7 +24,8 @@ Urgency 回報。
 | DR-SEC-a | ECUCert 037 之 `SWE-Requirement ID` 補號 | **CLOSED (R-SEC8(a))**，仍送上游 | ECUCert 13 列 | 不阻。ID 用 `Source Requirement ID` 首值，Remarks `SWE ID pending; SYSAD used per R-SEC8(a)`；補號後依 R-G72 發 Revise | `[A-SE01]` |
 | DR-SEC-b | `SWE1-KeyInsyall` 拼字更正 | **CLOSED (R-SEC8(b))**，順帶通知 | KeyInstall 13 列 | 不阻。原字入 ID 欄，Remarks `RD ID spelling as delivered` | `[A-SE02]` |
 | DR-SEC-i | SYS3 SAM 之 `SYSAD_SAM_PACKAGE_INTF` 補 `Mapped SYSRA-ID`（**元件表存在而該列未填**，非 Table 11 漏列）| **CLOSED (R-SEC8(c))**，順帶通知 | `SWE1-SAM-0005~0008` | 不阻。去尾綴回退基底名為合法對應。**本 feature 實測 70/70 `exact`，`base` 未被觸發** | — |
-| DR-SEC-j2 | `SWE1-SAM-0017` 之 `Verification Method` 補值（六本 70 列中唯一空白）| OPEN | `SWE1-SAM-0017` | 1 列之分類；暫比照同群，不自行填值 | `[A-SE03]` |
+| **DR-SEC-r** | `SWE1-SAM-0017` 之 `Verification Method` 補值（六本 70 列中唯一空白）| OPEN | `SWE1-SAM-0017` | 該列已依 review 三-3／R-SEC11(a) 入 Testing 群（CONVERT），**不阻產出**；只待上游補欄值 | `[A-SE03]` |
+| **DR-SEC-s** | 其餘五本 037 之 Polarion 匯出（KeyInstall／SAM／ECUCert／SwdlSecureLib／libLogEncrypt）| OPEN（低優先，不阻）| 59 列 | 該 59 列之 `nrl_swe1` 填 `-`，Remarks 無 `Polarion:` 行；CertProvider 11 列已有（R-SEC9）| — |
 
 ## 2.3　已結／降級（R-SEC8；不刪，備查）
 

@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-CertProvider-004",
+  "tc_id": "NR1L-CP-005",
+  "test_group": "Cert Provider",
+  "test_set": "Revocation",
+  "test_item": "For non-ECU verification scenarios (e.g., SAM, FOTA, Second Party APKs), the system shall perform revocation checks using Certificate Revocation Lists (CRL) preinstalled in the secure storage of the /odm partition.\n(certificate listed in the local revocation list; certificate is rejected)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. A revocation list \"CRL.r0\" is preinstalled in the /odm partition\n4. A revoked leaf certificate is available under SecurityAssets/oem-certs/cert-provider/",
+  "input": "NA",
+  "proc": "1. List the local revocation list in the /odm partition\n$ adb shell ls -l /odm/etc/cert_store\n2. PENDING: X-e revoked certificate + trigger",
+  "er": "1. The adb shell ls -l /odm/etc/cert_store output lists \"CRL.r0\"\n2. PENDING: X-h log keyword",
+  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-004",
+  "tc_ref": "NEW",
+  "priority": "P1",
+  "design": "負向測試 (Negative / Invalid)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-CertProvider-004 Requirement Description and Verification Criteria (CRL and /odm partition verbatim)\nPolarion: NRL-349387\nDCL (SD.00015/03, DID 2031) is a separate mechanism; see CCVR Cert Val CS.98\nStep 2 is PENDING: apk pairing #12 secondPartyLevelTwoCertTestNormalFlow is a positive flow and does not trigger the revocation branch (R-SEC15(g))",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}
