@@ -1121,6 +1121,13 @@ SEC_STEP_NO = re.compile(r"^\s*(\d+)[.)]\s*(.+)$")
 SEC_OBSERVE = re.compile(
     r"adb logcat\b"                                   # LOG
     r"|\bod -t x1\b|adb shell (?:cat|ls)\b"           # FILE
+    # SEC-04 執行層延伸（待 Pei 確認）：R-SEC7(c) 之 FILE 類只列 od／cat／ls，
+    # 而 037 KI-013／CP-010 之 verbatim 取樣指令為 `procrank`／`df`，SAM-0002 為 `ps -A`。
+    # 其輸出同為 shell stdout，歸 FILE 類。
+    r"|adb shell (?:procrank|df|ps)\b"
+    # SEC-04 §2 明訂之兩個 ER 措辭（審閱指定）：`adb pull` 之傳輸回報與 log buffer 清空。
+    # 二者不在 R-SEC7(c) 之七類字面內，惟其為分析層指定之修法，故收入。
+    r"|adb pull\b|The log buffer is cleared"
     r"|Positive response is received|Negative response is received"   # UDS
     r"|OK \(\d+ tests?\)|FAILURES!!!"                 # RC
     r"|\bopenssl\b|: OK\b|error \d+ at \d+ depth"    # HOST
@@ -1140,8 +1147,17 @@ SEC_LEDGER_ID = re.compile(r"\bX-[a-z]\b|\bDR-SEC-[a-z]\b|\bR-SEC\d|\bA-SE")
 # (3) PENDING 須整行起首（R-SEC15(i)）
 SEC_PENDING = re.compile(r"PENDING:")
 SEC_PENDING_HEAD = re.compile(r"^\s*(?:\d+[.)]\s*)?PENDING:")
-# (4) ER 行所引之指令須出現於同編號之 Procedure 步驟
-SEC_CMD_IN_TEXT = re.compile(r"\$ [^\s\"]+(?: [^\s\"]+)*")
+# (4) ER 行所引之指令須出現於同編號之 Procedure 步驟。
+# SEC-04 §3：原式只認 `$ …` 形，抓不到散文形（`The adb shell ls -l … output`）。
+# 改為自 ER 抽「指令片語」：動詞 token ＋ 其後之參數，止於第一個散文停用詞。
+SEC_CMD_VERB = re.compile(
+    r"\b(adb(?:\s+(?:shell\s+(?:ls|cat|od|am)|pull|push|logcat|reboot|root))?"
+    r"|openssl|od|pytest)\b")
+# 散文停用詞：其後之 token 不屬指令片語
+SEC_PROSE_STOP = {"command", "output", "transfer", "result", "results", "stdout",
+                  "run", "returns", "reports", "prints", "shows", "lists",
+                  "contains", "is", "and", "on", "the", "for", "with"}
+SEC_CMD_TOKEN = re.compile(r"[-A-Za-z0-9_./#@{}<>*]+")
 SEC_LINE_NO = re.compile(r"^\s*(\d+)[.)]")
 SEC_FOUR_FIELDS = ("pre", "input", "proc", "er")
 
@@ -1151,6 +1167,27 @@ def security_remarks_idx(header_values: list) -> int | None:
         if value is not None and str(value).strip().startswith(SEC_REMARKS_HEADER):
             return idx
     return None
+
+
+
+def sec_command_phrases(line: str) -> list[str]:
+    """自 ER 行抽出「指令片語」（SEC-04 §3）。
+
+    片語 = 指令動詞 token ＋ 其後之參數，止於第一個散文停用詞或引號。
+    例：`The adb logcat -s logdog output is empty` → `adb logcat -s logdog`；
+        `The openssl command prints "…"` → `openssl`（次 token 為停用詞）。
+    """
+    out: list[str] = []
+    for m in SEC_CMD_VERB.finditer(line):
+        verb = " ".join(m.group(0).split())
+        rest = line[m.end():]
+        parts = [verb]
+        for tok in SEC_CMD_TOKEN.findall(rest):
+            if tok.lower() in SEC_PROSE_STOP or tok.startswith('"'):
+                break
+            parts.append(tok)
+        out.append(" ".join(parts))
+    return out
 
 
 def check_security_channel(fields: dict[str, str], row_no: int,
@@ -1221,14 +1258,13 @@ def check_security_channel(fields: dict[str, str], row_no: int,
         m = SEC_LINE_NO.match(line)
         if not m:
             continue
-        step = proc_by_no.get(m.group(1), "")
-        for cmd in SEC_CMD_IN_TEXT.findall(line):
-            token = cmd.strip().rstrip("`\u0022 ")
-            if token and token not in step:
+        step = " ".join(proc_by_no.get(m.group(1), "").split())
+        for phrase in sec_command_phrases(line):
+            if phrase not in step:
                 out.append(Violation(
                     "SC", row_no, tc_id, "er",
-                    "SEC-03 §4(4)：ER 所引之指令未出現於同編號之 Procedure 步驟",
-                    token[:60]))
+                    "SEC-04 §3：ER 所引之指令未出現於同編號之 Procedure 步驟",
+                    phrase[:60]))
     return out
 
 
