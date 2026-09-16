@@ -64,6 +64,14 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CA23 | **`TRANSM2` 不存在於 `forms/` 之四本 DBC** | `SYS-RA-VF551_V42-302` 逐字引 `TRANSM2.ShiftLeverPosition`；`CameraEventHal status.xlsx` 亦列 `TRANSM2.ShiftLeverPosition ｜ Atl-M ｜ Y ｜ Could emulate`。四本 DBC 全文搜尋：`FDCAN8` 有 `TRANSM_FD_1`／`_FD_2`／`_FD_4`，`BHCAN2`／`P363`／`637MCA` **無任何 `TRANSM*` message**。Atl-Mi 側實際帶 `ShiftLeverPosition` 者為 `STATUS_CCAN5`（`BO_ 998`，`VAL_ … 2 "R" …` 具備）| Atl-Mi 之 raw 值與 `VAL_` label 無法自現有 DBC 取得 | PENDING —— **DR-CAM-f**；依 R-13 保留來源名 `TRANSM2.ShiftLeverPosition`，raw/label 標 PENDING |
 | A-CA24 | **「controls page」之 hop label 無 HMI 來源** | SYS1 HeadUnitCameraSystems §6.5.1（`NRL-187347`）逐字只給入口清單「The Rear View Camera can be manually activated via the controls page, apps drawer, or camera app」，**無可逐字引用之 label**；§5.3 之 `ENTER_VEHICLE_SETTINGS` 第一 hop 本即 PENDING | 依 §5.8(d) 不得臆造。pilot #5／#6 改走 **App Drawer** 路徑（`ENTER_APP_DRAWER` ＋ Menu Bar §4.1 naming table 之 `Rear View Camera`），亦為 §6.5.1 所列之入口 | PENDING —— **DR-CAM-g** |
 
+## E3. pilot v2 生成中發現（CAM-04）
+
+| # | 事由 | 實測 | 狀態 |
+|---|---|---|---|
+| A-CA25 | **`LTM_OperationalModeSts.Info` 之 `Ignition_Pre_Off` 對 `CmdIgnSts` 之值無對應來源** | 於 SYS2 `VF551_V33`／`VF551_V42`／`VF551_V2` 三本全文搜尋同時含 `OperationalModeSts` 與 `CmdIgnSts`／`IGN_LK`／`BCM_FD` 之列，**零命中**。`NR1L-RVC-002` 暫用 `1 (IGN_LK)` 並標 `PENDING: DR-CAM-i` | PENDING —— **DR-CAM-i** |
+| A-CA26 | **`SWE-CAM-015` 之 Atl-Mi 自動模式進入原句逾 lint L 上限** | V3 §1.10.2.2 之 `SYS-RA-VF551_V3-260` 為 **55** RE_TOKEN（> 50）；V42 之等價句 `-225` = 61、`-302` = 51。`NR1L-RVC-004` 因而取 V3 §1.10.2.3 之 `-266`（30 token），並將 `NR1L-RVC-003` 之錨同步改為其雙生句 `V2-488`（40 token），使兩列情境對齊 | PENDING（Pei 裁：放寬 L、接受現案、或另指定來源）|
+| A-CA27 | **交付語料無 §5.4 兩行式指令之例** | 全語料（三本基準 ＋ 10 本 delivered）掃 `$ ` 起首之指令行，**零命中**。`NR1L-RVC-001`／`-002` 之 adb 步驟為全案首見 | PENDING（見上繳包 §2.4 之「新句型」清單）|
+
 ## E. 同名異體
 
 | # | 事由 | 實測 | 狀態 |

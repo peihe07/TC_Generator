@@ -38,6 +38,18 @@ R-CAM3  車型軸之拆分判準
   test_item 括號下半以車型／EE 作區分 token；全部相同 → 一列，勾全部適用車型。
 ```
 
+**增補 (e) 段見下一條 R-CAM3(e)**；(a)–(d) 逐字不動（fenced sha 不變可證）。
+
+### R-CAM3(e)（增補，2026-09-16，Pei 裁：CAM-03 審閱 §三-1「准」）
+
+```text
+R-CAM3(e)  訊息名因 EE 而異，而 PROXI 前提值與 ER 皆相同者，不拆列。
+  Pre-Condition 專用一行、固定句式：
+    `CAN source: <Atl-Hi signal> (HDCC27, DT27) / <Atl-Mi signal> (637, 2261, 376)`
+  Procedure 一律以 Atl-Hi 訊號寫 §8.7.5(c) 之 `Send CAN:` 式；Atl-Mi 依該行代換。
+  PROXI 值或 ER 任一相異者仍依 (a)–(d) 拆列。
+```
+
 ### R-CAM4 — Test Group 與 TC ID（Pei 裁，2026-09-16；取代審閱 §三-1 之「共用 CAM」）
 
 ```text
@@ -78,6 +90,16 @@ R-CAM5(c)′  品牌 ↔ 車型之對照以 PROXI `Brand_Configuration_2`（byte
 ```
 
 取代 R-CAM5(c)。DR-CAM-e 結案（確認型 —— PROXI 值即證據）。
+
+### R-CAM5(e)（增補，2026-09-16，Pei 裁：CAM-03 審閱 §三-2）
+
+```text
+R-CAM5(e)  品牌分支之 Pre-Condition 固定句式：
+    `The vehicle brand is Ram (HDCC27, DT27, 637)`
+    `The vehicle brand is not Ram (2261 Fiat, 376 Abarth)`
+  「not Ram」為回落基礎 label 之分支，不逐品牌列名（2261 為 Fiat、376 為 Abarth，
+  二者於 `Brand-Specific Names` 皆無 Camera 專屬 label）。
+```
 逐格實測見 `features/camera/data/brand_proxi.tsv` 與 `brand_labels.tsv`。
 
 ### R-CAM6 — B 本追溯母體 ＝ spec-index/cache 之 RVC+PAM 本（Pei 裁，2026-09-16）
@@ -127,6 +149,22 @@ R-CAM10  多列共引同一來源時，SWE ID 較小者為承接列
   `SWE-CAM-023` 與六列之交集依此全數委派，`-023` 只承接無他列覆蓋之來源。
   pilot 批實測後若有不合理之委派，重開歸 Pei。
 ```
+
+### R-CAM11 — VF 家族之 specification_reference 格式（Pei 裁，2026-09-16）
+
+```text
+R-CAM11  VF551 家族之 spec_reference 寫法沿用 `features/vehicle_setting/delivered/` VF230 交付本
+  （`FM-WI-FSM-036-A01 … SWQT_VF230_20260902.xlsx`）之實際格式，逐字同型；
+  執行層先抄該本 M 欄 5 個樣本入上繳包，再據以改寫 Camera 之 VF 型錨。
+  CFTS092 型維持 §10.7(a) `CFTS092-{ObjectID}`；HMI L&F 型維持 §10.7(b)。
+```
+
+**執行層落實（CAM-04 §2）**：VF230 本之實際格式為 **SYS2 `F` 欄之 VF anchor**
+（`VF230_V1_PDT27_VF_6222`／`VF230_V1_PHDCC27_VF_8670`；457 列只有此兩種形態），
+**非 SYS-RA ID**。Camera 之 VF 型錨因而改寫為各本之 F 欄逐字值：
+`VF551_V2_PHDCC27_VF_nnn`／`VF551_V3_P363_VF_nnn`／`VF551_V33_P226MCA_VF_nnn`／
+`VF551_V4_PHDCC27_VF_nnn`／`VF551_V42_P637MCA_VF_nnn`。
+CFTS092 之 F 欄即 ObjectID，依 §10.7(a) 寫 `CFTS092-{ObjectID}`。
 
 ---
 

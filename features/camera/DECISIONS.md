@@ -254,6 +254,29 @@ A、B 兩本**各依自身來源寫 ER**，reasoning 互註衝突；
   Sonnet for templated with strong exemplars]`
 - BLOCKED batches at start: `[AUTO — from §1 missing specs]`
 
+### 6-10. 車速門檻之邊界值換算（A-CA22）
+
+`[DECIDED — CAM-04 §1(f)，Pei 2026-09-16；CAM-03 審閱 §三-6「准」]`
+
+`BRAKE_FD_2.VehicleSpeedVSOSig`（`PDT27_E2A_R1_FDCAN8.dbc` `BO_ 258`）之
+`SG_` 為 `(0.0625,0) [0|511.875] "Km/h"`，`VAL_` 僅 `8191 "SNA"`（無列舉 label）。
+CFTS092 `4781643` 之門檻以 mph 表示，8 mph = 12.874752 km/h，非 0.0625 之整數倍：
+
+| 點 | raw | km/h | mph | 判 |
+|---|---:|---|---|---|
+| off-point | **205** | 12.8125 | 7.9614 | 未達門檻 |
+| on-point | **206** | 12.875 | 8.000154 | 首個 ≥ 8 mph 之 raw |
+
+pilot02 `NR1L-RVC-009`（on）／`NR1L-RVC-010`（off）依此書寫。
+**全量時每個 VF 分支各自換算並具名其 DBC `SG_` 因子**（`STATUS_CCAN3.VehicleSpeedVSOSig`
+與 `BRAKE1.VehicleSpeedVSOSig` 之因子須各自量測後再訂 raw）。
+
+### 6-11. framework 落點
+
+`[DECIDED — CAM-04 §1(e)，Pei 2026-09-16]`
+Part VIII 整段搬至 **`features/camera/framework.md`**（沿其他 15 本 feature 之前例）；
+`docs/fw036/framework.md` 原處留一行指標。搬移前後 sha 見上繳包 §1.5。
+
 ---
 
 ## Sign-off

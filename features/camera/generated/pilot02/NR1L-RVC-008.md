@@ -1,0 +1,54 @@
+# NR1L-RVC-008 — SWE-CAM-018
+
+- **Test Group**：Rear View Camera｜**Test Set**：Display Arbitration
+- **Vehicle Model**：HDCC27=0｜DT27=0｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
+- **priority**：P1｜**design_method**：狀態轉換 (State Transition Testing)
+- **specification_reference**：`CFTS092-4781643`（來源列 `SYS-RA-CAM-078`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> Rear Camera display image shall remain displayed until display timer is greater than 10s AND vehicle speed is above 8 mph.
+
+## reasoning
+
+驗證目標為 Camera Delay 開啟時，退出 R 檔後影像維持至 10 s 再退出，即 CFTS092 SYS-RA-CAM-078（ObjectID 4781643）之 "remain displayed until display timer is greater than 10s"；VF 側對應 SYS-RA-VF551_V2-497 之 Ttimer1。關鍵情境條件為 Delay 設定為 On 且車速全程低於 8 mph（SYS-RA-CAM-079 明定低於 8 mph 時影像持續）。Delay 不走 CAN —— IPC_VEHICLE_SETUP.Backup_Cam_Delay 於 CameraEventHal 表為 Supported by Harman = N 且 MD fake CEH status = Not yet（Atl-H 與 Atl-M 兩列皆是），故以 §5.3 常數 ENTER_CAMERA_SETTINGS（R-CAM8）之三 hop 進入設定後以 HMI label 設定。本列為品牌軸之 not Ram 分支（R-CAM5(b)(e)）：hop label "Rear View Camera Delay" 取自 HMI Settings List 之 Brand-Specific Names 分頁，`*` 依 R-CAM5(a) 不入 hop；品牌由 PROXI Brand_Configuration_2 實測判定（R-CAM5(c)′），與車型軸對齊故不生交叉列。步驟 5–7 為 setup／transition，依 §5.2 A 與 §5.5 只有 Final Step 帶驗證意圖，觀察一律由 ER 承載（CAM-03 審閱 §二-4）。排檔訊息名因 EE 而異，依 R-CAM3(e) 分寫於 CAN source 行。速度門檻之邊界由 NR1L-RVC-009（on-point）與 NR1L-RVC-010（off-point）承接（§8.2.1）。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)
+4. The vehicle brand is not Ram (2261 Fiat, 376 Abarth)
+5. The vehicle speed is below 8 mph
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Press "Apps" on Menu Bar to open App Drawer
+2. Select "Settings" in the App Drawer
+3. Select "Camera"
+4. Set "Rear View Camera Delay" = "On"
+5. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)
+6. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 4 (D)
+7. Wait for 10 s
+8. Read the HU display and check that the rear view camera image is no longer displayed
+```
+
+## expected_result
+
+```
+1. The App Drawer is displayed
+2. The Settings screen is displayed
+3. The "Camera" settings screen is displayed
+4. The "Rear View Camera Delay" setting is set to "On"
+5. The rear view camera image is displayed in Automatic Display Mode
+6. The rear view camera image stays displayed after the gear leaves reverse
+7. The rear view camera image stays displayed for the whole 10 s period
+8. The rear view camera image is no longer displayed and the previous screen is shown again
+```

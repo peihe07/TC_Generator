@@ -1,0 +1,41 @@
+# NR1L-RVC-004 — SWE-CAM-015
+
+- **Test Group**：Rear View Camera｜**Test Set**：Display Arbitration
+- **Vehicle Model**：HDCC27=0｜DT27=0｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
+- **priority**：P0｜**design_method**：狀態轉換 (State Transition Testing)
+- **specification_reference**：`VF551_V3_P363_VF_484`（來源列 `SYS-RA-VF551_V3-266`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> · When STATUS_BH_BCM2.CmdIgnSts = [RUN], RVC image active, Shift Lever chagne to Reverse Gear_Stat.info = [REVERSE] > Reverse_Deb, the Head Unit shall continue to display RVC image and switch to the Automatic Display mode.
+
+## reasoning
+
+驗證目標與 NR1L-RVC-003 同 —— RVC 影像已顯示時排檔進入 R，畫面續顯並切入 Automatic Display Mode ——惟為 Atl-Mi 半邊；verbatim 取 SYS-RA-VF551_V3-266（VF551_V3 §1.10.2.3），其與 V2-488 為逐句對應之雙生條文，故兩列情境完全對齊（CAM-03 審閱 §二-3 之要求）。**未取 V3 §1.10.2.2 之自動模式進入原句** —— 該節之 SYS-RA-VF551_V3-260 為 55 RE_TOKEN，逾 lint L 之 50 上限；V42 側之等價句 -225（61）／-302（51）亦逾限，詳見上繳包 §5 之候選表（升級條件 §5-3 之具體情形）。排檔觸發：來源之 Gear_Stat.info 為內部訊號，依 §8.7.5(f) 轉為 Atl-Mi 側可觀察之 STATUS_CCAN4.ReverseGearSts（P363 與 637MCA 兩本 DBC 皆有，BO_ 996，VAL_ 1 "Inserted"），與 VF551_V33 之寫法一致；VF551_V42（637）以 TRANSM2.ShiftLeverPosition 書寫同一觸發，該 message 不存在於 forms/ 四本 DBC（A-CA23／DR-CAM-f），補件後須複核本列對 637 是否仍成立。Atl-Mi 三本 XLSM 無 Rear_View_Camera_Type 參數，故 Pre-Condition 不列該項。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. The rear view camera image is displayed in Manual Display Mode
+4. The shift lever is in P
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)
+2. Read the HU display and check that the rear view camera image is displayed in Automatic Display Mode
+```
+
+## expected_result
+
+```
+1. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent
+2. The rear view camera image is displayed in Automatic Display Mode after the Reverse_Deb debounce
+```

@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-002",
+  "req_id": "SWE-CAM-001",
+  "test_group": "Rear View Camera",
+  "test_set": "Startup and Shutdown",
+  "test_item_verbatim": "When LTM_OperationalModeSts.Info pass into \"Ignition_Pre_Off: LTM stops to read the Rear_Camera.Data it stops to copy the Rear_Camera.Data into Rear_Camera_Repetition.Data Rear_Camera_Enable.Info=\"False\". LTM sets RVC_ACTIVE=True internal variable.",
+  "source_object_id": "SYS-RA-VF551_V33-220",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "all vehicles,    $ adb shell dumpsys media.camera",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)\n4. PENDING: DR-CAM-i the CmdIgnSts value that corresponds to Ignition_Pre_Off is not sourced",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: BCM_FD_10.CmdIgnSts = 1 (IGN_LK)\n2. Read the NormalCameraDaemon log\n   $ adb logcat -d -s NormalCameraDaemon\n3. Read the camera service status and check that no Rear_Camera data path is open\n   $ adb shell dumpsys media.camera",
+      "expected_result": "1. BCM_FD_10.CmdIgnSts = 1 (IGN_LK) is sent and the HU leaves the RUN power state\n2. The NormalCameraDaemon teardown entry is present in the log\n3. No Rear_Camera data path is open and no camera data is copied",
+      "specification_reference": "VF551_V33_P226MCA_VF_1141",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "all vehicles",
+      "test_item": "When LTM_OperationalModeSts.Info pass into \"Ignition_Pre_Off: LTM stops to read the Rear_Camera.Data it stops to copy the Rear_Camera.Data into Rear_Camera_Repetition.Data Rear_Camera_Enable.Info=\"False\". LTM sets RVC_ACTIVE=True internal variable.\n\n(all vehicles,    $ adb shell dumpsys media.camera)"
+    }
+  ],
+  "reasoning": "驗證目標為點火離開 RUN 後 NormalCameraDaemon 停止讀取 Rear_Camera.Data 並關閉資料路徑，即 SYS-RA-VF551_V33-220 之 \"Ignition_Pre_Off\" 轉態。關鍵情境條件為已完成初始化之 RUN 態，再將 CmdIgnSts 降為 1 (IGN_LK)（VAL_ 逐字取自 PDT27_E2A_R1_FDCAN8.dbc BO_ 1153）。**`Ignition_Pre_Off` 對 `CmdIgnSts` 之值對應查無來源** —— 於 VF551_V33／V42／V2 三本 SYS2 全文搜尋同時含 `OperationalModeSts` 與 `CmdIgnSts`／`IGN_LK` 之列，零命中；依 CAM-03 審閱 §二-9 標 PENDING: DR-CAM-i，`1 (IGN_LK)` 為待證之暫用值。verbatim 仍取 V33 —— SWE-CAM-001 之來源中無任何 V2 或 CFTS092 條文描述關機序列（見 -001 之互參說明）。本列與 NR1L-RVC-001 同 req_id，依 §8.3 mode 軸拆為開機／關機兩 sibling。"
+}
