@@ -36,10 +36,10 @@
 | W | ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6） | 2 | 2 | 每次命中 | **待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述 |
 | X | 導航路徑無固定入口（§5.8／R-G71） | 0 | 0 | 每行 | 未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改** |
 | Y | PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式） | 0 | 0 | 每行 | 未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72 |
-| SC | 步驟無執行通道／ER 無觀察手段（R-SEC7，Security profile 專屬） | 0 | 0 | 每編號步驟／每 ER 行 | 未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），**故絕不可入 PROFILE_CHECKS**；對 Security 自身之假陽性率待 Pilot |
+| SC | 步驟無執行通道／ER 無觀察手段（R-SEC7，Security profile 專屬） | 2 | 2 | 每編號步驟／每 ER 行 | 未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），**故絕不可入 PROFILE_CHECKS**；對 Security 自身之假陽性率待 Pilot |
 | SS | 最終驗證步驟之 Remarks 無 `source:` 標記（R-SEC4(a)，Security profile 專屬） | 0 | 0 | 每列 | 未校準（R-SEC4(a)，SEC-02 新增）—— **feature 專屬**。判準面之偏差：R-SEC4(a) 原文為「於 reasoning 註明來源」，而 reasoning 在生成側 JSON、不在工作簿；本檢查改以 **Remarks 欄**之 `source:` 標記為判準，待 Pei 覆核（SEC-02 上繳包自報）。R-SEC14(c)：`<…>` 佔位不報 |
 
-**總計：行計 16**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 18**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
@@ -68,4 +68,11 @@
 | ---: | --- | --- | --- | --- |
 | 12 | NR1L-CP-003 | er | 比較關係 'identical to'，而 test_item 上半無數值 | s a "Subject:" line identical to the subject name in SecurityAssets/oem-certs/ce |
 | 13 | NR1L-CP-004 | er | 比較關係 'identical to'，而 test_item 上半無數值 | :" line that is not identical to the subject name in SecurityAssets/oem-certs/ce |
+
+### SC — 步驟無執行通道／ER 無觀察手段（R-SEC7，Security profile 專屬）（行計 2／列計 2）
+
+| 列 | TC ID | 欄位 | 說明 | 片段 |
+| ---: | --- | --- | --- | --- |
+| 17 | NR1L-ECUC-001 | er | SEC-04 §3：ER 所引之指令未出現於同編號之 Procedure 步驟 | adb shell ls -l /data/misc/ecuidentity |
+| 20 | NR1L-SAM-001 | er | SEC-04 §3：ER 所引之指令未出現於同編號之 Procedure 步驟 | adb logcat -s logdog |
 
