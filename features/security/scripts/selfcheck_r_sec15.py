@@ -23,7 +23,7 @@ RE_LEDGER = re.compile(r"\bX-[a-z]\b|\bDR-SEC-[a-z]\b|\bR-SEC\d|\bA-SE")
 RE_BADQUOTE = re.compile(r"`|(?<![A-Za-z])'[^'\n]{1,120}'(?![A-Za-z])")
 RE_ANGLE = re.compile(r"<([^>]*)>")
 RE_STEP = re.compile(r"^\s*(\d+)[.)]\s*(.+)$")
-RE_CMD = re.compile(r"^\s*\$\s+\S")
+RE_CMD = re.compile(r"^\s*(?:\$\s+\S|Send CAN:\s*\S)")
 RE_PHYS = re.compile(r'^\s*(?:Insert|Press|Power cycle|Disconnect|Select\s+")')
 # (a) 場景綁定之字串：CS.212 row 1 之 ECU 字串
 RE_ECU_LOGSTR = re.compile(r"ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY")

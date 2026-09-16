@@ -26,30 +26,30 @@ ASSIGN = {
     ("Cert Provider", "Revocation"): ["004", "005"],
     ("Cert Provider", "Trust Store"): ["007", "009"],
     ("Cert Provider", "Client Interface"): ["008"],
-    ("Cert Provider", "(非功能)"): ["006", "010"],
+    ("Cert Provider", "Service Robustness"): ["006", "010"],
     ("Key Install", "Temporary Key"): ["001"],
     ("Key Install", "Installation"): ["002", "003", "004", "007"],
     ("Key Install", "Overwrite Protection"): ["005"],
     ("Key Install", "Install State"): ["006", "011"],
     ("Key Install", "Persistence"): ["008"],
     ("Key Install", "Crypto Service"): ["009", "010"],
-    ("Key Install", "(非功能)"): ["012", "013"],
+    ("Key Install", "Platform Compliance"): ["012", "013"],
     ("SAM", "AuthData Reception"): ["0003"],
     ("SAM", "AuthData Verification"): ["0005", "0006", "0007", "0010", "0012"],
     ("SAM", "Installation"): ["0009", "0011", "0018"],
     ("SAM", "Target Notification"): ["0013", "0014", "0015", "0016", "0017"],
     ("SAM", "Error Handling"): ["0004"],
-    ("SAM", "(環境)"): ["0001", "0002", "0008", "0019"],
+    ("SAM", "Service Environment"): ["0001", "0002", "0008", "0019"],
     ("ECU Cert", "Certificate Lifecycle"): ["R18", "R19", "R20", "R21"],
     ("ECU Cert", "Verification"): ["R9", "R10", "R11"],
     ("ECU Cert", "Diagnostic Access"): ["R12", "R13"],
-    ("ECU Cert", "(IPC／JNI／IO)"): ["R14", "R15", "R16", "R17"],
+    ("ECU Cert", "Internal Interfaces"): ["R14", "R15", "R16", "R17"],
     ("SWDL Secure Lib", "Package Decryption"): ["003"],
     ("SWDL Secure Lib", "Signature Verification"): ["004"],
     ("SWDL Secure Lib", "Key Retrieval"): ["002", "005"],
-    ("SWDL Secure Lib", "(總則)"): ["001"],
+    ("SWDL Secure Lib", "Library Scope"): ["001"],
     ("Log Encrypt", "Encryption Procedure"): ["006"],
-    ("Log Encrypt", "(其餘)"): ["001", "002", "003", "004", "005", "007", "008", "009"],
+    ("Log Encrypt", "Encryption Services"): ["001", "002", "003", "004", "005", "007", "008", "009"],
 }
 
 GROUP_OF_COMPONENT = {
@@ -101,7 +101,7 @@ def main() -> int:
         for k, e, a in bad:
             print(f"  ✗ {k}: §5 表 {e} 列，實測 {a} 列")
     else:
-        print("  ✓ 30 組 Test Set 之 leaf 數與 §5 表逐組相符")
+        print(f"  ✓ {len(ASSIGN)} 組 Test Set 之 leaf 數與 §5 表逐組相符")
 
     batch = defaultdict(Counter)
     for g, s, _sid, b, _vm, _n in out:

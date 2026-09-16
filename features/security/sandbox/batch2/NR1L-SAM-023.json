@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-SAM-0013",
+  "tc_id": "NR1L-SAM-023",
+  "test_group": "SAM",
+  "test_set": "Target Notification",
+  "test_item": "OFF message has to be sent to all connected clients on boot or resume from suspend\n(head unit boots up on Atl-Hi; disabling is notified to all target functions)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. SAM dongle is inserted into the DUT",
+  "input": "NA",
+  "proc": "1. Send the ignition signal on the Atl-Hi bus\nSend CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)\n2. Confirm the dauth log after the previous step\n$ adb logcat -s dauth",
+  "er": "1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent\n2. The adb logcat -s dauth output contains the OFF notification to the target functions",
+  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0013",
+  "tc_ref": "NEW",
+  "priority": "P1",
+  "design": "狀態轉換 (State Transition Testing)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-SAM-0013 Requirement Description and Verification Criteria\nsibling axis: EE architecture\nchannel_feasible: N/N\nCAN signal per VHAL User Guide R5 section 2.4; BCM_FD_10 is 0x481; raw and label verbatim from PDT27_E2A_R1_FDCAN8.dbc",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  }
+}

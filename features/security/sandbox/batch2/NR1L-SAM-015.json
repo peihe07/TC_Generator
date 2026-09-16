@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-SAM-0009",
+  "tc_id": "NR1L-SAM-015",
+  "test_group": "SAM",
+  "test_set": "Installation",
+  "test_item": "When \"Install\" option is true in\n(Install is true and SAMType is not Logging; AuthData is copied to the secure storage)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. SAM dongle is inserted into the DUT",
+  "input": "NA",
+  "proc": "1. PENDING: X-g SAM AuthData package with Install true and a non-Logging SAMType + trigger\n2. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth",
+  "er": "1. PENDING: X-g SAM AuthData package with Install true and a non-Logging SAMType + trigger\n2. The adb shell ls -l /data/vendor/dauth output lists the copied AuthData",
+  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0009",
+  "tc_ref": "NEW",
+  "priority": "P1",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-SAM-0009 Requirement Description and Verification Criteria\nsibling axis: install option\nchannel_feasible: 部分/部分\npriority assigned by analogy; R-SEC16 does not list this SWE1 row",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

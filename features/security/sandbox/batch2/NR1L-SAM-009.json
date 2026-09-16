@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-SAM-0005",
+  "tc_id": "NR1L-SAM-009",
+  "test_group": "SAM",
+  "test_set": "AuthData Verification",
+  "test_item": "DebugAuth shall verify received files and rejects them if verification fails.\n(manifest, SAM certificate and manifest signature are all valid)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. SAM dongle is inserted into the DUT",
+  "input": "NA",
+  "proc": "1. Read the SAM certificate on the host\n$ openssl x509 -in SAMcert.pem -text\n2. Run the OpenSSL chain verification of the certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n3. PENDING: X-g SAM AuthData package that passes verification + trigger\n4. Confirm the dauth log after the previous step\n$ adb logcat -s dauth",
+  "er": "1. The openssl x509 output shows the certificate in x509 PEM format\n2. The openssl command prints \"SAMcert.pem: OK\" on stdout\n3. PENDING: X-g SAM AuthData package that passes verification + trigger\n4. The adb logcat -s dauth output contains the successful verification entry",
+  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0005",
+  "tc_ref": "NEW",
+  "priority": "P0",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-SAM-0005 Requirement Description and Verification Criteria\nsibling axis: verification outcome\nchannel_feasible: N/N",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

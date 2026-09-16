@@ -1,0 +1,29 @@
+swe1_id	sibling_no	lower_half(English)	axis	trigger_channel	pending_expected	priority	ee
+SWE1-SAM-0003	1	AuthData at the root of the USB external memory is received	media layout	PHYS/ADB	Y	P1	-
+SWE1-SAM-0003	2	AuthData not at the root of the USB external memory is not received	media layout	PENDING/ADB	Y	P1	-
+SWE1-SAM-0005	1	manifest, SAM certificate and manifest signature are all valid	verification outcome	HOST/PENDING/ADB	Y	P0	-
+SWE1-SAM-0005	2	manifest signature is invalid; verification fails	verification outcome	PENDING/ADB	Y	P0	-
+SWE1-SAM-0006	1	head unit serial number is the same as the ECUId parameter	serial match	ADB/PENDING	Y	P0	-
+SWE1-SAM-0006	2	head unit serial number differs from the ECUId parameter	serial match	PENDING/ADB	Y	P0	-
+SWE1-SAM-0008	1	manifest, signature and certificate files follow the SAM package naming and format	package format	ADB/HOST	N	P2	-
+SWE1-SAM-0008	2	manifest file format is invalid; the package is not accepted	package format	PENDING/ADB	Y	P2	-
+SWE1-SAM-0009	1	Install is true and SAMType is not Logging; AuthData is copied to the secure storage	install option	PENDING/ADB	Y	P1	-
+SWE1-SAM-0009	2	SAMType is Logging; AuthData is not copied to the secure storage	install option	PENDING/ADB	Y	P1	-
+SWE1-SAM-0010	1	TimeStamp is greater than or equal to the stored value; AuthData is accepted	timestamp order	ADB/PENDING	Y	P0	-
+SWE1-SAM-0010	2	TimeStamp is older than the stored value; AuthData is rejected	timestamp order	ADB/PENDING	Y	P0	-
+SWE1-SAM-0011	1	verification of the stored AuthData fails; the stored AuthData is deleted	failure handling	ADB/PENDING	Y	P0	-
+SWE1-SAM-0012	1	number of ignition cycles is 0 and does not exceed ValidityCounter	ValidityCounter boundary	ADB/PENDING	Y	P0	-
+SWE1-SAM-0012	2	number of ignition cycles is 1 and does not exceed ValidityCounter	ValidityCounter boundary	ADB/PENDING	Y	P0	-
+SWE1-SAM-0012	3	number of ignition cycles reaches 65535 and exceeds ValidityCounter	ValidityCounter boundary	ADB	Y	P0	-
+SWE1-SAM-0013	1	head unit boots up on Atl-Hi; disabling is notified to all target functions	EE architecture	CAN/ADB	N	P1	hi
+SWE1-SAM-0013	2	head unit boots up on Atl-Mi; disabling is notified to all target functions	EE architecture	CAN/ADB	N	P1	mi
+SWE1-SAM-0013	3	head unit resumes from suspend on Atl-Hi; disabling is notified	EE architecture	CAN/ADB	N	P1	hi
+SWE1-SAM-0013	4	head unit resumes from suspend on Atl-Mi; disabling is notified	EE architecture	CAN/ADB	N	P1	mi
+SWE1-SAM-0014	1	verification succeeds; the target functions are notified according to SAMType	notification trigger	PENDING/ADB	Y	P1	-
+SWE1-SAM-0016	1	target function connects while the status is ON; the current status is notified	current status	PENDING/ADB	Y	P1	-
+SWE1-SAM-0016	2	target function connects while the status is OFF; the current status is notified	current status	PENDING/ADB	Y	P1	-
+SWE1-SAM-0017	1	cold boot on Atl-Hi; the sequence ID is set to 0	EE architecture	CAN/ADB	N	P1	hi
+SWE1-SAM-0017	2	cold boot on Atl-Mi; the sequence ID is set to 0	EE architecture	CAN/ADB	N	P1	mi
+SWE1-LOGENC-006	1	encryption triggered by the getsslog command produces the encrypted pair	trigger path	ADB	N	P2	-
+SWE1-LOGENC-006	2	encryption triggered by the special files on the USB drive produces the encrypted pair	trigger path	ADB	N	P2	-
+SWE1-LOGENC-006	3	symmetric key differs between two encryption iterations	key uniqueness	HOST/PENDING	Y	P2	-

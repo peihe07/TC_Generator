@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-LOGENC-006",
+  "tc_id": "NR1L-LOGENC-003",
+  "test_group": "Log Encrypt",
+  "test_set": "Encryption Procedure",
+  "test_item": "Encryption procedure should be:\n(symmetric key differs between two encryption iterations)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Logdog is enabled on the DUT\n3. Private keys are installed on the DUT\n4. A USB drive containing __diagSpecialFile and __getSnapshot is inserted into the HU USB port",
+  "input": "NA",
+  "proc": "1. Decrypt the first encrypted pair on the host\n$ ./logdecrypt_Ver2.sh HUssss_YYYYMMDD_HHMMSS_XXXX.enc HUssss_YYYYMMDD_HHMMSS_XXXX_enckey.enc\n2. Decrypt the second encrypted pair on the host\n$ ./logdecrypt_Ver2.sh HUssss_YYYYMMDD_HHMMSS_XXXX.enc HUssss_YYYYMMDD_HHMMSS_XXXX_enckey.enc\n3. PENDING: X-m two log snapshots taken in separate iterations + comparison",
+  "er": "1. The logdecrypt_Ver2.sh tool creates the folder HUssss_YYYYMMDD_HHMMSS_XXXX on the host\n2. The logdecrypt_Ver2.sh tool creates the folder HUssss_YYYYMMDD_HHMMSS_XXXX on the host\n3. PENDING: X-m two log snapshots taken in separate iterations + comparison",
+  "spec": "SWE1_libLogEncrypt_FM-WI-FSM-037-A03_SWE1-LOGENC-006",
+  "tc_ref": "NEW",
+  "priority": "P2",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-LOGENC-006 Requirement Description and Verification Criteria\nsibling axis: key uniqueness\nchannel_feasible: 部分/部分",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

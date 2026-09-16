@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-SAM-0008",
+  "tc_id": "NR1L-SAM-013",
+  "test_group": "SAM",
+  "test_set": "Service Environment",
+  "test_item": "AuthData contains Manifest file, manifest signature and SAM certificate file.\n(manifest, signature and certificate files follow the SAM package naming and format)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. SAM dongle is inserted into the DUT",
+  "input": "NA",
+  "proc": "1. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth\n2. Read the SAM certificate format on the host\n$ openssl x509 -in SAMcert.pem -text",
+  "er": "1. The adb shell ls -l /data/vendor/dauth output lists the manifest, the signature and the certificate files\n2. The openssl x509 output shows the certificate in x509 PEM format",
+  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0008",
+  "tc_ref": "NEW",
+  "priority": "P2",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-SAM-0008 Requirement Description and Verification Criteria\nsibling axis: package format\nchannel_feasible: N/N",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

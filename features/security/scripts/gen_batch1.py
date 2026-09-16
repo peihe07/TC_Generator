@@ -32,7 +32,7 @@ TEMPLATE = ROOT / "forms" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果
 SHEET = "Test Case Specification 測試用例規範"
 DATA = ROOT / "features" / "security" / "data"
 OUT_DIR = ROOT / "features" / "security" / "sandbox" / "batch1"
-OUT_XLSX = OUT_DIR / "security_batch1_v01.xlsx"
+OUT_XLSX = OUT_DIR / "security_batch1_v02.xlsx"
 FIRST_ROW = 10
 
 COLS = {"req_id": "D", "tc_id": "F", "test_group": "G", "test_set": "H",

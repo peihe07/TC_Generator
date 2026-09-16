@@ -2,7 +2,7 @@
   "req_id": "SWE1-CertProvider-006",
   "tc_id": "NR1L-CP-011",
   "test_group": "Cert Provider",
-  "test_set": "(非功能)",
+  "test_set": "Service Robustness",
   "test_item": "The Cert Provider feature shall adhere to the Android Application Development Guidelines and Common Platform System Design.\n(build files use Android.bp instead of legacy Makefiles)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. The Cert Provider source code and build environment are available",
   "input": "NA",

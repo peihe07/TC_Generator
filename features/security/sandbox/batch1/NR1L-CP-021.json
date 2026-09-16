@@ -2,7 +2,7 @@
   "req_id": "SWE1-CertProvider-010",
   "tc_id": "NR1L-CP-021",
   "test_group": "Cert Provider",
-  "test_set": "(非功能)",
+  "test_set": "Service Robustness",
   "test_item": "The Cert Provider feature shall operate within the following resource and performance constraints:\n(resource usage stays within the estimated limits during repeated verification)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
   "input": "NA",

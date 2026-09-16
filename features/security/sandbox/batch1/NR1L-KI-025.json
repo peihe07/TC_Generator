@@ -2,7 +2,7 @@
   "req_id": "SWE1-KeyInsyall-013",
   "tc_id": "NR1L-KI-025",
   "test_group": "Key Install",
-  "test_set": "(非功能)",
+  "test_set": "Platform Compliance",
   "test_item": "The KeyInstall feature shall operate on the Android 14 (AAOS) platform utilizing Qualcomm hardware, adhering to the following constraints:\n(RAM usage and the oemkeys partition size stay within the stated targets)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)",
   "input": "NA",

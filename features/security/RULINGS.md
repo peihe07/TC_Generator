@@ -509,3 +509,66 @@ R-SEC15(f) amend  Description 為中英並列者取英文句；仍須為原文�
 **執行層回報（SEC-04）**：ECUCert 之七列 Description 全數為中英並列，
 依本 amend 一律取其英文句；逐列之英文句皆為原文之**逐字子字串**（未改寫、未合併）。
 其必要性為 lint `K`（CJK 字元）—— `test_item` 在 `K_FIELDS` 內，逐字全取必觸發。
+
+---
+
+### R-SEC17 — Test Set 英文定名（Pei 裁，2026-09-16；SEC-05 §1；A-12 更正）
+
+```text
+R-SEC17  Test Set 英文定名（取代 framework v01 之五個中文佔位；A-12 更正）
+  Cert Provider   `(非功能)`        → `Service Robustness`     （CP-006、CP-010）
+  Key Install     `(非功能)`        → `Platform Compliance`    （KI-012、KI-013）
+  SAM             `(環境)`          → `Service Environment`    （SAM-0001／0002／0008／0019；執行層以 037 原文複核四列是否皆屬「執行環境與部署前提」，不合者回報，不自行移組）
+  ECU Cert        `(IPC／JNI／IO)`  → `Internal Interfaces`    （R14~R17）
+  SWDL Secure Lib `(總則)`          → `Library Scope`          （SWDL-001）
+  Log Encrypt     `(其餘)`          → `Encryption Services`    （LOGENC-001~005／007~009）
+  名稱為能力層（IN §4.2），非分類；不得再以括號註記作 Test Set。
+```
+
+**執行層回報（SEC-05）**：六項已改入 `framework.md` v02，Layer 2 名稱之 CJK 計數 **5 → 0**。
+
+**SAM `Service Environment` 四列之複核（條文指定）—— 三列相符，一列不合**：
+
+| SWE1 | 037 Requirement Title | 判 |
+|---|---|---|
+| `SWE1-SAM-0001` | DebugAuth is under Android 14 environment | ✅ 執行環境 |
+| `SWE1-SAM-0002` | DebugAuth should be a native layer daemon service | ✅ 部署形態 |
+| `SWE1-SAM-0019` | DebugAuth has following external interfaces: LogDog, Certprovider, BoringSSL, Json library, vehicle... | ✅ 部署前提（外部相依）|
+| **`SWE1-SAM-0008`** | **Format of AuthData should follow SAM package definition in System design** | **✗ 不合** —— 其為**資料格式**需求（manifest 檔名、簽章、計數器欄位），非執行環境或部署前提 |
+
+→ **`SWE1-SAM-0008` 不屬 `Service Environment` 之能力面。執行層依條文回報，不自行移組。**
+該列在 batch 2 產出群內（`CONVERT`），本包仍依現行歸屬產 TC；
+若 Pei 裁定移組（例移入 `AuthData Verification`），須再走一次 R-G72 Revise。
+
+---
+
+### R-SEC7(c) amend — 七類為觀察面之類別（Pei 裁，2026-09-16；SEC-05 §1）
+
+```text
+R-SEC7(c) amend  七類為觀察面之類別；各類具體句式由 profile §3 常數表列舉並可增列，增列須附素材出處。
+  本次增列：RC 類 `The adb pull command reports "1 file pulled" …`、`The log buffer is cleared`；
+            FILE 類 `adb shell procrank|df|ps` 之 stdout（037 KI-013／CP-010／SAM-0002 verbatim）。
+```
+
+**執行層回報（SEC-05）**：三式已於 SEC-04 落於 `lint036.py` 之 `SEC_OBSERVE`，本包**不再改**（§0）。
+素材出處：前二式為 SEC-03 審閱 §二 指定之修法；後者為 037 之 verbatim 取樣指令。
+
+---
+
+### R-SEC18 — batch 2 之 CAN 通道寫法（SAM-0013／0017 首例）（Pei 裁，2026-09-16；SEC-05 §1）
+
+```text
+R-SEC18  batch 2 之 CAN 通道寫法（SAM-0013／0017 首例）
+  (a) 觸發以 VHAL Guide R5 之 VHAL→CAN 對照為橋（`forms/VHAL_User_Guide_R5.pdf`）：
+      `IGNITION_STATE` ↔ `CmdIgnSts`（Atl-Hi `BCM_FD_10` 0x481 / Atl-Mi `STATUS_BH_BCM2` 0x46C）；
+      `POWER_MODE_STS` ↔ `PowerModeSts`（`BCM_FD_9` 0x42A）。
+  (b) 步驟依 IN §8.7.5(c)：`Send CAN: <MESSAGE>.<Signal> = <raw> (<label>)`；raw／label 逐字取 `forms/` 之 DBC `VAL_`（R-7、R-17）；
+      DBC 查無該訊號或 label 者，raw／label 以 `<…>` 佔位並 Remarks 註 `DBC lookup pending`——不得造值。
+  (c) Atl-Hi／Atl-Mi 訊息不同 → 拆 sibling，Vehicle Model 各勾（Hi：HDCC27／DT27 = 1，其餘 0；Mi：VF637／Toro／Fastack = 1，其餘 0）。
+  (d) ER：`<MESSAGE>.<Signal> = <raw> (<label>) is sent` 只用於 HU 送出之訊號；SAM 之結果面（`/data/vehicle/dauth/seqId` 歸 0、目標功能 OFF）以 FILE／LOG 類觀察。
+```
+
+**執行層回報（SEC-05）**：DBC 查得／佔位之計數與 CAN 首例全文見上繳包 §5。
+註：(d) 之路徑寫作 `/data/vehicle/dauth/seqId`，037 SAM-0015／0017 原文為
+**`/data/vendor/dauth/seqId`**（`vendor`，非 `vehicle`）—— 本包依 **037 原文**寫，
+條文之筆誤逐字回報，不沿用（R-SEC4(c) 逐字取自來源）。

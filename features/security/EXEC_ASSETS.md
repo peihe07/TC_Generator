@@ -25,6 +25,7 @@ TC 內之寫法：資產以 **Pre-Condition 一行**點名（R-SEC7(d) 之連線
 | **X-j**（SEC-04 增）| **OTA／HAL 版本升級之映像檔與升級手段** —— 037 KI-008 之第二 sibling | `PENDING: X-j OTA or HAL upgrade image + trigger` | `SWE1-KeyInsyall-008` sibling 2 | SW 整合 | 後批 | 未到 |
 | **X-k**（SEC-04 增）| **Dealer App 對 DUT 之存取**（ECUCert Dealer Service 之 `UI` 通道入口）—— Test Steps PDF 載有 CSR 匯出入口，惟未載金鑰更新操作 | `PENDING: X-k Dealer App access to the DUT` | `SYSAD_SEC_ECUCERT_DEALER`（2 sibling）| Samuel | 後批 | 未到 |
 | **X-l**（SEC-04 增）| **SwdlSecureLib 之解密／驗證測試入口**（程式庫介面之可執行 harness）—— 037 SWDL-003/004 為程式庫內部介面，無 apk 對應 | `PENDING: X-l SWDL <decryption|verification> test entry point` | `SWE1-SRA-SECURITY-SWDL-003`／`-004`（各 3 sibling）| SWDL 負責人 | 後批 | 未到 |
+| **X-m**（SEC-05 增）| **兩次獨立取樣之 log snapshot ＋ 對稱金鑰比對手段** —— 037 LOGENC-006 4.1.3「compare the symmetric key in different iteration」 | `PENDING: X-m two log snapshots taken in separate iterations + comparison` | `SWE1-LOGENC-006` sibling 3 | LogEncrypt 負責人 | 後批 | 未到 |
 
 ---
 

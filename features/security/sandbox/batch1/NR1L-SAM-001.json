@@ -2,7 +2,7 @@
   "req_id": "SWE1-SAM-0002",
   "tc_id": "NR1L-SAM-001",
   "test_group": "SAM",
-  "test_set": "(環境)",
+  "test_set": "Service Environment",
   "test_item": "DebugAuth should be a native layer daemon.\n(DebugAuth runs as a native daemon after the head unit boots)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. The head unit has completed a boot cycle",
   "input": "NA",

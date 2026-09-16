@@ -2,7 +2,7 @@
   "req_id": "SWE1-KeyInsyall-012",
   "tc_id": "NR1L-KI-023",
   "test_group": "Key Install",
-  "test_set": "(非功能)",
+  "test_set": "Platform Compliance",
   "test_item": "The KeyInstall feature shall adhere to Android 14 development and security standards, including:\n(an Android.bp build file is present and functional)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. The DUT runs in SELinux enforcing mode",
   "input": "NA",

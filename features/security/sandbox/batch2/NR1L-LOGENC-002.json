@@ -1,0 +1,27 @@
+{
+  "req_id": "SWE1-LOGENC-006",
+  "tc_id": "NR1L-LOGENC-002",
+  "test_group": "Log Encrypt",
+  "test_set": "Encryption Procedure",
+  "test_item": "Encryption procedure should be:\n(encryption triggered by the special files on the USB drive produces the encrypted pair)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Logdog is enabled on the DUT\n3. Private keys are installed on the DUT\n4. A USB drive containing __diagSpecialFile and __getSnapshot is inserted into the HU USB port",
+  "input": "NA",
+  "proc": "1. Confirm the content of /data/vendor/logdog on the DUT\n$ adb shell ls -l /data/vendor/logdog",
+  "er": "1. The adb shell ls -l /data/vendor/logdog output lists the encrypted log and the encrypted key",
+  "spec": "SWE1_libLogEncrypt_FM-WI-FSM-037-A03_SWE1-LOGENC-006",
+  "tc_ref": "NEW",
+  "priority": "P2",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-LOGENC-006 Requirement Description and Verification Criteria\nsibling axis: trigger path\nchannel_feasible: 部分/部分",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  }
+}

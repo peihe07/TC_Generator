@@ -4,11 +4,11 @@ Cert Provider	Field Matching	SWE1-CertProvider-002	1	Test / Log Observation
 Cert Provider	Field Matching	SWE1-CertProvider-003	1	Test / Log Observation	
 Cert Provider	Revocation	SWE1-CertProvider-004	1	Test / Log Observation	
 Cert Provider	Revocation	SWE1-CertProvider-005	1	Test / Log Observation	
-Cert Provider	(非功能)	SWE1-CertProvider-006	1	Test / Log Observation	
+Cert Provider	Service Robustness	SWE1-CertProvider-006	1	Test / Log Observation	
 Cert Provider	Trust Store	SWE1-CertProvider-007	1	Test / Log Observation	
 Cert Provider	Client Interface	SWE1-CertProvider-008	1	Test / Log Observation	
 Cert Provider	Trust Store	SWE1-CertProvider-009	1	Test / Log Observation	
-Cert Provider	(非功能)	SWE1-CertProvider-010	1	Test / Log Observation	
+Cert Provider	Service Robustness	SWE1-CertProvider-010	1	Test / Log Observation	
 Cert Provider	Field Matching	SWE1-CertProvider-011	1	Test / Log Observation	
 Key Install	Temporary Key	SWE1-KeyInsyall-001	1	Test / Log Observation	
 Key Install	Installation	SWE1-KeyInsyall-002	1	Test / Log Observation	
@@ -21,16 +21,16 @@ Key Install	Persistence	SWE1-KeyInsyall-008	1	Test / Log Observation
 Key Install	Crypto Service	SWE1-KeyInsyall-009	1	Test / Log Observation	
 Key Install	Crypto Service	SWE1-KeyInsyall-010	1	Test / Log Observation	
 Key Install	Install State	SWE1-KeyInsyall-011	1	Test / Log Observation	
-Key Install	(非功能)	SWE1-KeyInsyall-012	1	Document Review / Static Analysis / Log Observation	
-Key Install	(非功能)	SWE1-KeyInsyall-013	1	Test / Inspection	
-SAM	(環境)	SWE1-SAM-0001	1	Peer Review	
-SAM	(環境)	SWE1-SAM-0002	1	Testing	
+Key Install	Platform Compliance	SWE1-KeyInsyall-012	1	Document Review / Static Analysis / Log Observation	
+Key Install	Platform Compliance	SWE1-KeyInsyall-013	1	Test / Inspection	
+SAM	Service Environment	SWE1-SAM-0001	1	Peer Review	
+SAM	Service Environment	SWE1-SAM-0002	1	Testing	
 SAM	AuthData Reception	SWE1-SAM-0003	2	Testing	
 SAM	Error Handling	SWE1-SAM-0004	1	Testing	
 SAM	AuthData Verification	SWE1-SAM-0005	2	Testing	
 SAM	AuthData Verification	SWE1-SAM-0006	2	Testing	
 SAM	AuthData Verification	SWE1-SAM-0007	1	Testing	
-SAM	(環境)	SWE1-SAM-0008	2	Peer Review	
+SAM	Service Environment	SWE1-SAM-0008	2	Peer Review	
 SAM	Installation	SWE1-SAM-0009	2	Testing	
 SAM	AuthData Verification	SWE1-SAM-0010	2	Testing	
 SAM	Installation	SWE1-SAM-0011	2	Testing	
@@ -41,31 +41,31 @@ SAM	Target Notification	SWE1-SAM-0015	1	Testing
 SAM	Target Notification	SWE1-SAM-0016	2	Testing	
 SAM	Target Notification	SWE1-SAM-0017	2		
 SAM	Installation	SWE1-SAM-0018	1	Testing	
-SAM	(環境)	SWE1-SAM-0019	1	Peer Review	
+SAM	Service Environment	SWE1-SAM-0019	1	Peer Review	
 ECU Cert	Verification	SYSAD_SEC_ECUCERT_ECUCERT_API	1	Peer Review	
 ECU Cert	Verification	SYSAD_SEC_ECUCERT_ECUCERT_SERVICE	1	Peer Review : interact protocol	
 ECU Cert	Verification	SYSAD_SEC_ECUCERT_ECUONLINE	1	Peer Review	
 ECU Cert	Diagnostic Access	SYSAD_SEC_ECUCERT_DIAG	1	Peer Review	
 ECU Cert	Diagnostic Access	SYSAD_SEC_ECUCERT_DEALER	1	Peer Review	
-ECU Cert	(IPC／JNI／IO)	SYSAD_SEC_ECUCERT_ECUCERT_SERVICE_BINDER	1	Peer Review	
-ECU Cert	(IPC／JNI／IO)	SYSAD_SEC_ECUCERT_ECUONLINE_BINDER	1	Peer Review	
-ECU Cert	(IPC／JNI／IO)	SYSAD_SEC_ECUCERT_ECUCERT_STORAGE_IO	1	Peer Review	
-ECU Cert	(IPC／JNI／IO)	SYSAD_SEC_ECUCERT_ECUCERT_JNI	1	Peer Review	
+ECU Cert	Internal Interfaces	SYSAD_SEC_ECUCERT_ECUCERT_SERVICE_BINDER	1	Peer Review	
+ECU Cert	Internal Interfaces	SYSAD_SEC_ECUCERT_ECUONLINE_BINDER	1	Peer Review	
+ECU Cert	Internal Interfaces	SYSAD_SEC_ECUCERT_ECUCERT_STORAGE_IO	1	Peer Review	
+ECU Cert	Internal Interfaces	SYSAD_SEC_ECUCERT_ECUCERT_JNI	1	Peer Review	
 ECU Cert	Certificate Lifecycle	SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF	1	Peer Review	
 ECU Cert	Certificate Lifecycle	SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCERT_INTF	1	Peer Review	
 ECU Cert	Certificate Lifecycle	SYSAD_SEC_ECUCERT_ECUCERT_SRV_IMPORTCERT_INTF	1	Peer Review	
 ECU Cert	Certificate Lifecycle	SYSAD_SEC_ECUCERT_ECUONLINE_DOWNLOADCERT_INTF	1	Peer Review	
-SWDL Secure Lib	(總則)	SWE1-SRA-SECURITY-SWDL-001	1	Peer Review : config parameters	
+SWDL Secure Lib	Library Scope	SWE1-SRA-SECURITY-SWDL-001	1	Peer Review : config parameters	
 SWDL Secure Lib	Key Retrieval	SWE1-SRA-SECURITY-SWDL-002	1	Peer Review : interact protocol	
 SWDL Secure Lib	Package Decryption	SWE1-SRA-SECURITY-SWDL-003	1	Peer Review	
 SWDL Secure Lib	Signature Verification	SWE1-SRA-SECURITY-SWDL-004	1	Peer Review	
 SWDL Secure Lib	Key Retrieval	SWE1-SRA-SECURITY-SWDL-005	1	Peer Review	
-Log Encrypt	(其餘)	SWE1-LOGENC-001	2	Peer Review	
-Log Encrypt	(其餘)	SWE1-LOGENC-002	2	Peer Review	
-Log Encrypt	(其餘)	SWE1-LOGENC-003	2	Peer Review	
-Log Encrypt	(其餘)	SWE1-LOGENC-004	2	Peer Review	
-Log Encrypt	(其餘)	SWE1-LOGENC-005	2	Peer Review	
+Log Encrypt	Encryption Services	SWE1-LOGENC-001	2	Peer Review	
+Log Encrypt	Encryption Services	SWE1-LOGENC-002	2	Peer Review	
+Log Encrypt	Encryption Services	SWE1-LOGENC-003	2	Peer Review	
+Log Encrypt	Encryption Services	SWE1-LOGENC-004	2	Peer Review	
+Log Encrypt	Encryption Services	SWE1-LOGENC-005	2	Peer Review	
 Log Encrypt	Encryption Procedure	SWE1-LOGENC-006	2	Testing	
-Log Encrypt	(其餘)	SWE1-LOGENC-007	2	Peer Review	
-Log Encrypt	(其餘)	SWE1-LOGENC-008	2	Peer Review	
-Log Encrypt	(其餘)	SWE1-LOGENC-009	2	Peer Review	
+Log Encrypt	Encryption Services	SWE1-LOGENC-007	2	Peer Review	
+Log Encrypt	Encryption Services	SWE1-LOGENC-008	2	Peer Review	
+Log Encrypt	Encryption Services	SWE1-LOGENC-009	2	Peer Review	
