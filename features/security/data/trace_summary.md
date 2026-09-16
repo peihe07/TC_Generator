@@ -43,18 +43,18 @@
 
 ## 3　ccvr_batch 計數（R-SEC1(b)）
 
-- batch 1（落 CCVR 五 test item）：**52** 列
-- batch 2（未落）：**18** 列
+- batch 1（落 CCVR 五 test item）：**49** 列
+- batch 2（未落）：**21** 列
 - 合計：70 列
 
 | 元件 | batch 1 | batch 2 |
 |---|---|---|
 | CertProvider | 11 | 0 |
 | KeyInstall | 13 | 0 |
-| SAM | 6 | 13 |
+| SAM | 7 | 12 |
 | ECUCert | 13 | 0 |
 | SwdlSecureLib | 5 | 0 |
-| libLogEncrypt | 4 | 5 |
+| libLogEncrypt | 0 | 9 |
 
 ## 4　無落地來源清單（R-SEC4(b)：PENDING 候選）
 
@@ -78,7 +78,7 @@
 | `SWE1-SAM-0004` | SAM | 1 | **N** | VC 無具體指令／路徑／值，且無外部素材 |
 | `SWE1-SAM-0005` | SAM | 2 | **N** | VC 無具體指令／路徑／值，且無外部素材 |
 | `SWE1-SAM-0006` | SAM | 2 | **N** | VC 無具體指令／路徑／值，且無外部素材 |
-| `SWE1-SAM-0007` | SAM | 2 | **N** | VC 無具體指令／路徑／值，且無外部素材 |
+| `SWE1-SAM-0007` | SAM | 1 | **N** | VC 無具體指令／路徑／值，且無外部素材 |
 | `SWE1-SAM-0008` | SAM | 2 | **N** | VC 受詞為 source code／build environment，無外部入口 |
 | `SWE1-SAM-0009` | SAM | 2 | **部分** | VC 含具體指令／路徑／值，惟無外部素材補齊全部步驟 |
 | `SWE1-SAM-0010` | SAM | 2 | **部分** | VC 含具體指令／路徑／值，惟無外部素材補齊全部步驟 |
@@ -92,11 +92,11 @@
 | `SWE1-SAM-0018` | SAM | 1 | **部分** | VC 含具體指令／路徑／值，惟無外部素材補齊全部步驟 |
 | `SWE1-SAM-0019` | SAM | 1 | **N** | VC 受詞為 source code／build environment，無外部入口 |
 | `SWE1-LOGENC-001` | libLogEncrypt | 2 | **N** | VC 受詞為 source code／build environment，無外部入口 |
-| `SWE1-LOGENC-002` | libLogEncrypt | 1 | **N** | VC 受詞為 source code／build environment，無外部入口 |
-| `SWE1-LOGENC-003` | libLogEncrypt | 1 | **N** | VC 無具體指令／路徑／值，且無外部素材 |
-| `SWE1-LOGENC-004` | libLogEncrypt | 1 | **N** | VC 受詞為 source code／build environment，無外部入口 |
+| `SWE1-LOGENC-002` | libLogEncrypt | 2 | **N** | VC 受詞為 source code／build environment，無外部入口 |
+| `SWE1-LOGENC-003` | libLogEncrypt | 2 | **N** | VC 無具體指令／路徑／值，且無外部素材 |
+| `SWE1-LOGENC-004` | libLogEncrypt | 2 | **N** | VC 受詞為 source code／build environment，無外部入口 |
 | `SWE1-LOGENC-005` | libLogEncrypt | 2 | **N** | VC 受詞為 source code／build environment，無外部入口 |
-| `SWE1-LOGENC-006` | libLogEncrypt | 1 | **部分** | VC 含具體指令／路徑／值，惟無外部素材補齊全部步驟 |
+| `SWE1-LOGENC-006` | libLogEncrypt | 2 | **部分** | VC 含具體指令／路徑／值，惟無外部素材補齊全部步驟 |
 | `SWE1-LOGENC-007` | libLogEncrypt | 2 | **N** | VC 受詞為 source code／build environment，無外部入口 |
 | `SWE1-LOGENC-008` | libLogEncrypt | 2 | **N** | VC 受詞為 source code／build environment，無外部入口 |
 | `SWE1-LOGENC-009` | libLogEncrypt | 2 | **N** | VC 受詞為 source code／build environment，無外部入口 |

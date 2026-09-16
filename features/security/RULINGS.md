@@ -138,11 +138,27 @@ R-SEC{live+4}  CS.212 之 CCVR 落點以 037 之 log 斷言直接判定，不經
       對應到 (b) 之列時可引用；其 package 未 release 前（DR-SEC-h），logcat tag／關鍵字保留佔位。
 ```
 
-**執行層回報（SEC-01）**：(b) 之 grep 實數 **11 列**，涵蓋分析層預判之 5 列並多出 6 列
-（`CertProvider-008`、`SAM-0015`、`LOGENC-002`／`-003`／`-004`／`-006`）。
-判準以條文所列**五詞逐字、大小寫敏感**實作；若改為不分大小寫會多 6 列，
-其多出者為 `Log Encryption`／`LogDog` 之**元件名**而非 log 斷言，故不放寬（見上繳包 §5）。
-本條使 `ccvr_batch=1` 由 46 列增為 **52** 列、batch 2 為 **18** 列。
+**執行層回報（SEC-01）**：初次實作以「全 VC 逐字含五詞」判，得 **11 列**。
+
+**SEC-01 審閱 三-1 改判 → 7 列**（`down/20260916_SEC-01_review.md`）：
+`LOGENC-002`／`-003`／`-004`／`-006` 四列為誤判 —— 其 `log` 為受詞或元件名
+（`log file encryption`／`encrypt log files`／`logdog could link`／`encryptLogFile` API 識別字），
+**不是 log 斷言**；CS.212 為 secure *event* log，與 log *encryption* 無涉。
+
+判準補述（已實作於 `build_trace_matrix.py` 之 `cs212_log_assertion()`）：
+只計 **WHEN／THEN 子句**（含 `3.x` 編號之 THEN 續行）內之命中，且該子句須宣稱 log 之產生或觀察；
+主詞為 `Log Encryption`／`LogDog` 之元件名、API 識別字、或以 log 為加密受詞者不計。大小寫維持敏感。
+
+現行命中 **7 列**：`CertProvider-005`／`-006`／`-008`、`KeyInsyall-010`／`-012`、`SAM-0004`／`-0015`
+（逐列之命中子句記於 `trace_matrix.tsv` 之 `cs212_clause` 欄）。
+本條使 `ccvr_batch=1` 由 46 增為 **48** 列；再加審閱 三-2 之 SAM-0007 人工覆寫 → **49** 列、batch 2 **21** 列。
+
+> **執行層對審閱 三-1 之一處回報（`[A-SE12]`）**：審閱之規則文字為「只計 **THEN**／`3.x`／`THEN.` 子句」，
+> 惟其所列 7 列含 `SWE1-CertProvider-005` —— 該列之命中在 **WHEN**
+> （`WHEN. Monitor system logs during verification.`），其 THEN（`No CRL file I/O operations … shall be observed`）**無命中**。
+> 逐字照「THEN only」會得 **6 列**。本包取 **WHEN ∪ THEN** 方能重現審閱指名之 7 列集合。
+> 若分析層本意確為 THEN only，則 `CertProvider-005` 應退出，batch 1 為 48（＋SAM-0007 = 49 不變，因 005 本就有 CS.98 落點）。
+> **兩解皆不改 batch 總數**，只改 `cs212_direct` 欄之值，故不阻本包；請於 SEC-02 明示。
 
 ---
 

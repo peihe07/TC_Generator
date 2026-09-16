@@ -23,6 +23,8 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 
 | `[A-SE11]` | PENDING | CCVR `Auth-Prog CS.93` 之 r7 與 r8 **同稱「Flashing lower rollback id」而回值不同** —— r7 回 `0x71 01 F0 00 01`（已遞增版本後回刷舊版），r8 回 `0x71 01 F0 00 02`（未遞增版本後回刷舊版）| R-SEC8(i) 之「`02`（lower rollback id）」若不帶列號，同一敘述會對到兩個值 | 引用時一律連 `per CCVR Auth-Prog CS.93 evidence, row <n>` 標明（R-SEC8(i) 本已要求標 row，本項只是說明其必要性）|
 
+| `[A-SE12]` | PENDING | SEC-01 審閱 三-1 之規則文字為「只計 **THEN**／`3.x`／`THEN.` 子句內之命中」，惟其所列 7 列含 `SWE1-CertProvider-005` —— 該列命中在 **WHEN**（`Monitor system logs during verification`），THEN 無命中 | 逐字照規則得 6 列，照所列集合得 7 列 | 取 **WHEN ∪ THEN** 以重現審閱指名之集合；**兩解不改 batch 總數**（005 本有 CS.98 落點）。請分析層於 SEC-02 明示 |
+
 ## 回饋 RD 之 ANOMALIES（`_D` §1.3，非裁定）
 
 | 標記 | 事實（執行層複驗） | 影響 |
@@ -39,6 +41,8 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | `[A-SE10]` | PENDING | `R1L_Diag_Software_Qualification_Test_Design.xlsx` **同名異體**：`Desktop/` 本 954,818 B sha `96a06f0d50d33c1b`（＝_C §1 所載）；`01_Project_R1L/.../M-CPU(Diag)/SW_test_design/` 本 1,012,479 B sha `29e12844bb52d2a6` | 取錯本即取到不同之 DID 值 | 以 `_C` §1 所載 sha 之 `Desktop/` 本為準，已登錄 |
 
 | `[A-SE11]` | PENDING | CCVR `Auth-Prog CS.93` 之 r7 與 r8 **同稱「Flashing lower rollback id」而回值不同** —— r7 回 `0x71 01 F0 00 01`（已遞增版本後回刷舊版），r8 回 `0x71 01 F0 00 02`（未遞增版本後回刷舊版）| R-SEC8(i) 之「`02`（lower rollback id）」若不帶列號，同一敘述會對到兩個值 | 引用時一律連 `per CCVR Auth-Prog CS.93 evidence, row <n>` 標明（R-SEC8(i) 本已要求標 row，本項只是說明其必要性）|
+
+| `[A-SE12]` | PENDING | SEC-01 審閱 三-1 之規則文字為「只計 **THEN**／`3.x`／`THEN.` 子句內之命中」，惟其所列 7 列含 `SWE1-CertProvider-005` —— 該列命中在 **WHEN**（`Monitor system logs during verification`），THEN 無命中 | 逐字照規則得 6 列，照所列集合得 7 列 | 取 **WHEN ∪ THEN** 以重現審閱指名之集合；**兩解不改 batch 總數**（005 本有 CS.98 落點）。請分析層於 SEC-02 明示 |
 
 ## 回饋 RD 之 ANOMALIES（`_D` §1.3，非裁定）
 

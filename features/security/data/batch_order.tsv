@@ -29,7 +29,7 @@ SWE1-SAM-0003	2	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-SAM-0004	1	Secure Log CS.212	SWE1-direct（037 log 斷言，R-SEC5(a)）
 SWE1-SAM-0005	2	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-SAM-0006	2	-	未落 CCVR 五 test item；Mapping detail 無對應
-SWE1-SAM-0007	2	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-SAM-0007	1	Cert Val CS.98	manual override: apk samCertTestNormalFlow（審閱 三-2）
 SWE1-SAM-0008	2	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-SAM-0009	2	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-SAM-0010	2	-	未落 CCVR 五 test item；Mapping detail 無對應
@@ -61,11 +61,11 @@ SWE1-SRA-SECURITY-SWDL-003	1	Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98	
 SWE1-SRA-SECURITY-SWDL-004	1	Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98	Mapping detail 落點：Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98
 SWE1-SRA-SECURITY-SWDL-005	1	Auth-Prog CS.93、Cert Val CS.98	Mapping detail 落點：Auth-Prog CS.93、Cert Val CS.98
 SWE1-LOGENC-001	2	-	未落 CCVR 五 test item；Mapping detail 無對應
-SWE1-LOGENC-002	1	Secure Log CS.212	SWE1-direct（037 log 斷言，R-SEC5(a)）
-SWE1-LOGENC-003	1	Secure Log CS.212	SWE1-direct（037 log 斷言，R-SEC5(a)）
-SWE1-LOGENC-004	1	Secure Log CS.212	SWE1-direct（037 log 斷言，R-SEC5(a)）
+SWE1-LOGENC-002	2	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-LOGENC-003	2	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-LOGENC-004	2	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-LOGENC-005	2	-	未落 CCVR 五 test item；Mapping detail 無對應
-SWE1-LOGENC-006	1	Secure Log CS.212	SWE1-direct（037 log 斷言，R-SEC5(a)）
+SWE1-LOGENC-006	2	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-LOGENC-007	2	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-LOGENC-008	2	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-LOGENC-009	2	-	未落 CCVR 五 test item；Mapping detail 無對應

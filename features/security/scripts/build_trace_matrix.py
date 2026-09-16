@@ -63,13 +63,48 @@ RE_SYSAD = re.compile(r"SYSAD_[A-Za-z0-9_ ]+")
 # 下放包規則 7 之 `[a-z][A-Za-z]+Test[A-Za-z]*` 無左邊界，會自 `CertProviderServiceManagerTest`
 # 內部之 `e` 起切出 `ertProviderServiceManagerTest`。補左邊界，其餘逐字不動。
 RE_APK = re.compile(r"(?<![A-Za-z])[a-z][A-Za-z]+Test[A-Za-z]*")
-# R-SEC5(a)：CS.212 第二判準之斷言詞，**逐字取條文所列五詞**（`log`／`Logdog`／`logdog`／
-# `avc`／`logcat`），大小寫敏感、不加詞界。此式與任務 3-6 之 grep 同集（11 列，見上繳包）。
-# 若改為不分大小寫，`Log Encryption`／`LogDog` 之**元件名**會被誤判為 log 斷言（+6 列，
-# 上繳包已具名）—— 元件名不是斷言，故不放寬。
+# R-SEC5(a)：CS.212 第二判準。條文所列五詞（`log`／`Logdog`／`logdog`／`avc`／`logcat`），
+# 大小寫敏感、不加詞界。
+#
+# **SEC-01 審閱 三-1 之補述**：只計 **WHEN／THEN 子句**內之命中，且該子句須宣稱
+# log 之**產生或觀察**；主詞為 `Log Encryption`／`LogDog` 之元件名、識別字
+# （`encryptLogFile` 等）、或以 log 為**加密受詞**（`log files`）者不計。
+#
+# 審閱原文寫「只計 THEN 子句」，惟其所列之 7 列含 `SWE1-CertProvider-005` ——
+# 該列之命中在 **WHEN**（`Monitor system logs during verification`），THEN 無命中。
+# 逐字照「THEN only」會得 6 列而非審閱所列之 7。故此處取 **WHEN∪THEN**，
+# 方能重現審閱指名之集合；差異已於上繳包具名（`[A-SE12]`）。
 RE_LOG_ASSERT = re.compile(r"log|Logdog|logdog|avc|logcat")
+# 子句範圍（審閱 三-1 原文：「只計 THEN／`3.x`／`THEN.` 子句內之命中」，
+# 另依 CP-005 之實測納入 WHEN）：
+#   (1) 含 `WHEN`／`THEN` 字樣之行；或
+#   (2) 以 `3.x` 編號起首之行 —— 037 之 GIVEN/WHEN/THEN 以 1.x／2.x／3.x 編號，
+#       `3.x` 之 `AND` 續行仍屬 THEN 區塊（`SWE1-SAM-0015` 3.2 即此形）。
+RE_WHEN_THEN = re.compile(r"(?:^|\s)(?:WHEN|THEN)\b|^\s*3\.\d")
+# 否定濾網：命中落在下列形態內者不算 log 斷言（審閱 三-1 所指之四列誤判之成因）
+RE_LOG_NOT_ASSERT = re.compile(
+    r"Log\s*Encrypt\w*"          # 元件名 `Log Encryption`／`LogEncrypt`
+    r"|encryptLogFile|plainLogFilename|protectedLogFilename"   # API 識別字
+    r"|log\s+files?\b"           # 加密之受詞（`encryption of log files`）
+    r"|logdog\s+could\s+link"    # 連結／建置斷言，非 log 斷言
+)
+
+
+def cs212_log_assertion(vc: str) -> list[str]:
+    """回傳構成 log 斷言之 WHEN／THEN 子句（空 list 表示不命中）。"""
+    hits = []
+    for line in vc.splitlines():
+        clause = line.strip()
+        if not clause or not RE_WHEN_THEN.search(clause):
+            continue
+        masked = RE_LOG_NOT_ASSERT.sub("", clause)
+        if RE_LOG_ASSERT.search(masked):
+            hits.append(clause)
+    return hits
 # R-SEC{live+4} 之術語落差（_B §1）：CertProvider-004/005 之撤銷清單型態未定。
 TERM_CRL_DCL_ROWS = {"SWE1-CertProvider-004", "SWE1-CertProvider-005"}
+# 審閱 三-2：人工覆寫入 batch 1 之列（`reason` 欄逐列記明其為覆寫，非機械判準所得）。
+MANUAL_BATCH1 = {"SWE1-SAM-0007"}
 # _F §2：CertProfile（Code Signing 樹）可逐字落地之欄位斷言 → SWE1 列（R-SEC4(a) 第 8 類）。
 CERTPROFILE_ROWS = {
     "SWE1-CertProvider-001": "chain/BasicConstraints/KeyUsage（r11,r18,r25-r39）",
@@ -340,7 +375,8 @@ def main() -> int:
         "other_sysra", "sys_ra_sec", "nrl", "sys2_category", "harman_status",
         "md_status", "existing_test_rel", "ccvr_sheet_rows", "new_test_ids",
         "apk_method", "verification_method", "ccvr_batch", "ccvr_items",
-        "cs212_direct", "step_sources", "channel_feasible", "channel_feasible_why",
+        "cs212_direct", "cs212_clause", "manual_override",
+        "step_sources", "channel_feasible", "channel_feasible_why",
     ]
     out_rows = []
     stats = Counter()
@@ -400,10 +436,17 @@ def main() -> int:
 
         # R-SEC5(a)：CS.212 之落點改用第二判準 —— 037 之 log 斷言直連，不經 SYS2。
         # 其成因見 up 包 4-6：CS.212 在 `Mapping detail` 只對 SYS-RA-SEC-671，而六本 037 之鏈不經 671。
-        cs212_direct = bool(RE_LOG_ASSERT.search(row["verification_criteria"]))
+        cs212_clauses = cs212_log_assertion(row["verification_criteria"])
+        cs212_direct = bool(cs212_clauses)
         batch1_items = sorted({k.split(" / ")[0] for k in plain_keys} & set(BATCH1_SHEETS))
         if cs212_direct and "Secure Log CS.212" not in batch1_items:
             batch1_items.append("Secure Log CS.212")
+        # 審閱 三-2：SAM-0007 之 apk `samCertTestNormalFlow`（Test_Items.txt 第 04 條）可執行，
+        # 機械判準因 `Mapping detail` 無落點而判 batch 2，屬對應者疏漏。人工覆寫為 batch 1。
+        # **此為分析層建議，DECISIONS 6-6 之 contested 項，Pei 未定前以旗標保留可還原。**
+        manual_override = row["swe1_id"] in MANUAL_BATCH1
+        if manual_override and "Cert Val CS.98" not in batch1_items:
+            batch1_items.append("Cert Val CS.98")
         batch = "1" if batch1_items else "2"
 
         # step_sources（addendum §3 ＋ R-SEC4(a)）
@@ -459,6 +502,8 @@ def main() -> int:
             "ccvr_batch": batch,
             "ccvr_items": "、".join(batch1_items),
             "cs212_direct": "Y" if cs212_direct else "N",
+            "cs212_clause": " ⏎ ".join(cs212_clauses),
+            "manual_override": "Y" if manual_override else "N",
             "step_sources": ";".join(srcs),
         })
 
@@ -482,6 +527,8 @@ def main() -> int:
                     bits.append("Mapping detail 落點：" + "、".join(mapped))
                 if r["cs212_direct"] == "Y":
                     bits.append("SWE1-direct（037 log 斷言，R-SEC5(a)）")
+                if r["manual_override"] == "Y":
+                    bits.append("manual override: apk samCertTestNormalFlow（審閱 三-2）")
                 reason = "；".join(bits)
             else:
                 reason = "未落 CCVR 五 test item" + (
