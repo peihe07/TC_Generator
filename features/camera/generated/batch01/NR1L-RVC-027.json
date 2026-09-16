@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-027",
+  "req_id": "SWE-CAM-016",
+  "test_group": "Rear View Camera",
+  "test_set": "Display Arbitration",
+  "test_item_verbatim": "· The Head Unit shall overlay Zoom soft button on Rear View Camera Image, Refer to Head Unit Zoom mode requirements.",
+  "source_object_id": "SYS-RA-VF551_V2-532",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "zoom soft button, read the rear view camera image and check that the Zoom soft button is overlaid on it",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The shift lever is in P\n4. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Rear View Camera\" in the App Drawer\n3. Read the rear view camera image and check that the Zoom soft button is overlaid on it",
+      "expected_result": "1. The App Drawer is displayed\n2. The rear view camera image is displayed in Manual Display Mode\n3. The Zoom soft button is overlaid on the rear view camera image",
+      "specification_reference": "VF551_V2_PHDCC27_VF_534",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P3",
+      "split_flag": true,
+      "split_reason": "zoom soft button",
+      "test_item": "· The Head Unit shall overlay Zoom soft button on Rear View Camera Image, Refer to Head Unit Zoom mode requirements.\n\n(zoom soft button, read the rear view camera image and check that the Zoom soft button is overlaid on it)"
+    }
+  ],
+  "reasoning": "驗證目標為 SYS-RA-VF551_V2-532 之「Head Unit 於 RVC 影像上疊加 Zoom 軟鍵」。Zoom 模式本身之行為該條逐字指向 Head Unit Zoom mode requirements（他文件），不在本 Test Set，本列只驗疊加之存在。V3-250／V4 之同義列依 R-CAM3(e) 不另拆。"
+}

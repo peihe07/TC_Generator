@@ -121,7 +121,40 @@ ER: The "Camera" settings screen is displayed
 故建議：`*` **不入 hop**；帶星號之設定其 hop label 依受測車型之品牌
 自 `Brand-Specific Names` 分頁取值。**[PROPOSED]** —— 裁定見 DECISIONS §6。
 
-## 4. Layer 1–3（未鎖定）
+## 4. Pre-Condition 之定序（CAM-04 審閱 §一-3，實測 VF230-0819 457 列）
+
+| 序位 | 內容 | 基準 |
+|---:|---|---|
+| 1 | **電源狀態** —— 已上電情境用 `The HU is in the Full-Operation state`（VF230-0819 457/457）；**開機類 TC 用 `The HU is in Standby state`**（`features/power/delivered/pm_29.xlsx`，19 列）| VF230／power |
+| 2 | **PROXI 行** `PROXI <Param> = <raw> (<label>)`（v4.1 標準式，非 VF230-0819 之 `$…$ is set to` 舊式）| VF230-0902／VSM-0902 |
+| 3 | **CAN source 行**（R-CAM3(e) 固定句式）| R-CAM3(e) |
+| 4 | **品牌行**（R-CAM5(e) 固定句式）—— **只在操作品牌 label 之列出現** | R-CAM5(e) |
+| 5 | **畫面／檔位／設定狀態行** | VF230-0819 |
+
+`Full-Operation` 與 `ignition is off` 互斥，不得並列（§4.4；CAM-04 審閱 §二-2）。
+每行一個條件（lint `R`）；不得以 `Insert`／`Press`／`Select`／`Set` 等動詞起首（lint `D`）。
+
+## 5. `test_item` 上半逾 50 token 之摘句（§4.3.1）
+
+**逾限不是改驗證點之理由**（CAM-04 審閱 §二-3）。摘句以「與括號下半之測試目的
+直接相關之句」為限，須**同時保留條件子句與結果子句**，全文以
+`specification_reference` 指回。摘後須為原句 token 之**保序子序列**
+（不得改寫用字；句首字母轉大寫屬排版正規化，R-4）。
+
+案例（`SYS-RA-VF551_V3-260`，V3 §1.10.2.2，51 → 33 token）：刪行首列點符號 `· `
+與末尾逐字重複之 `a)` 子句，保留 `when STATUS_BH_BCM2.CmdIgnSts = [RUN] AND
+Gear_Stat.info = [REVERSE] > Reverse_Deb` 與 `the Head Unit shall display the RVC
+image … Automatic mode`。全量另五例見 `up/20260916_CAM-05.md` §2.3。
+
+## 6. CFTS092 疊層同句之取錨（R-CAM12）
+
+CFTS092 之 Camera 節界：`SYS-RA-CAM-060`(4781625) Cargo/CHMSL、
+**`-070`(4781635) Rear Camera**、`-083`(4781648) Surround View、
+`-094`(4781659) Forward Facing、`-100`(4781665) Clearpath。
+Test Group = `Rear View Camera` 之 TC 一律取 **Rear Camera 節**（`-070`～`-082`）之
+ObjectID 為錨；其他節之逐字同句不得作錨（實測全本只有 `-062` ↔ `-075` 一組逐字同句）。
+
+## 7. Layer 1–3（未鎖定）
 
 Layer 1／Layer 2 之名稱歸 Pei（CAM-01 §4 任務 4 明文「不自行改 Layer 2 名稱」）。
 本包只回填 leaf 數與逐列歸屬，見 `features/camera/data/layer2_assign.tsv`
@@ -135,7 +168,7 @@ Layer 3（**不入工作簿**，IN §4.1.5）：
 - **B 本** —— 以 SYS1 `Outline Number` 逐字為 Layer 3；B 本 `HMI Source ID`
   已內建該號，對映率 **100%**（母體：**cache 本** RVC+PAM，**R-CAM6**）。
 
-### 4.1 VF551_V4 之 Layer 3 替代判法（DR-CAM-b）
+### 7.1 VF551_V4 之 Layer 3 替代判法（DR-CAM-b）
 
 V4 之 `VF章節`(I) 欄 **321/321 全空**。本包實測其 `Description`(D) 欄
 **自帶前導章節號**（`1.1.1\tVehicle Function Area` 形態，60 列為 heading），
@@ -148,14 +181,14 @@ V4 之 `VF章節`(I) 欄 **321/321 全空**。本包實測其 `Description`(D) �
 **163 筆一致（89%）**，不一致者係兩份 VF 文件章節編號本不相同所致。
 **[PROPOSED]** —— 採此法或仍回查 docx，見 DECISIONS §6。
 
-## 5. 車型軸（R-CAM3）與品牌軸（R-CAM5）
+## 8. 車型軸（R-CAM3）與品牌軸（R-CAM5）
 
 拆分判準逐字見 `features/camera/RULINGS.md` R-CAM3、R-CAM5。
 平台 ↔ VF ↔ PROXI 對照表同檔；品牌對照見本檔 §3.2。
 二軸同時成立時**以車型軸為外層**（R-CAM5(d)）。
 `forms/proxi/` 六平台十檔**不得改名、不得移動**（CAM-01 §0）。
 
-### 5.1 Ignition 前提之訊號（CAM-01 審閱 §二-1 更正，CAM-02 §2 任務 6）
+### 8.1 Ignition 前提之訊號（CAM-01 審閱 §二-1 更正，CAM-02 §2 任務 6）
 
 `SWE-CAM-002` 之 Ignition 前提**不得用 `BCM_FD_9.PowerModeSts`**
 （CameraEventHal 表：Atl-H、`Supported by Harman = N`、`MD fake CEH status
@@ -172,7 +205,7 @@ Atl-H | Y | verified`。該未結項關閉。
 
 ---
 
-## 6. 未決（本檔不得自行補齊）
+## 9. 未決（本檔不得自行補齊）
 
 CAM-01 之七項未決**全數已裁**（R-CAM4～R-CAM8、DECISIONS §6-6）。
 CAM-02 新生之未決：

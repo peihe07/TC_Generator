@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-029",
+  "req_id": "SWE-CAM-018",
+  "test_group": "Rear View Camera",
+  "test_set": "Display Arbitration",
+  "test_item_verbatim": "· If the Timer has not timed out, then the Ttimer2 shall reset to zero when BRAKE_FD_2.VehicleSpeedVSOSig < c_VEHSPD_MAX.",
+  "source_object_id": "SYS-RA-VF551_V2-489",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "Ttimer2 reset, read the HU display and check that the rear view camera image is still displayed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BRAKE_FD_2.VehicleSpeedVSOSig (HDCC27, DT27) / STATUS_CCAN3.VehicleSpeedVSOSig (637, 2261, 376)\n4. The rear view camera image is displayed in Manual Display Mode\n5. The shift lever is in D",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: BRAKE_FD_2.VehicleSpeedVSOSig = 206 (12.875 km/h)\n2. Send CAN: BRAKE_FD_2.VehicleSpeedVSOSig = 205 (12.8125 km/h)\n3. Read the HU display and check that the rear view camera image is still displayed",
+      "expected_result": "1. BRAKE_FD_2.VehicleSpeedVSOSig = 206 (12.875 km/h) is sent and Ttimer2 starts\n2. BRAKE_FD_2.VehicleSpeedVSOSig = 205 (12.8125 km/h) is sent\n3. The rear view camera image stays displayed and Ttimer2 is reset to zero",
+      "specification_reference": "VF551_V2_PHDCC27_VF_1765",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "Ttimer2 reset",
+      "test_item": "· If the Timer has not timed out, then the Ttimer2 shall reset to zero when BRAKE_FD_2.VehicleSpeedVSOSig < c_VEHSPD_MAX.\n\n(Ttimer2 reset, read the HU display and check that the rear view camera image is still displayed)"
+    }
+  ],
+  "reasoning": "驗證目標為 SYS-RA-VF551_V2-489 之「Ttimer2 未到期前，速度低於 c_VEHSPD_MAX 即歸零」。步 1 使 Ttimer2 起算（V2-490，NR1L-RVC-009 之錨），步 2 於到期前降速。raw 值換算見 DECISIONS 6-10。訊息名依 R-CAM3(e) 分寫於 CAN source 行。"
+}

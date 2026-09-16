@@ -17,7 +17,7 @@
   "tcs": [
     {
       "tc_title": "on-point 206, read the HU display within 10 s of leaving reverse and check that the rear view camera image is no longer displayed",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Rear_View_Camera_Type = 1 (Digital)\n4. The \"Rear View Camera Delay\" setting is set to \"On\"\n5. The rear view camera image is displayed in Automatic Display Mode\n6. The calibration c_VEHSPD_MAX corresponds to 8 mph per CFTS092 4781643",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Rear_View_Camera_Type = 1 (Digital)\n4. The camera delay setting is set to \"On\"\n5. The rear view camera image is displayed in Automatic Display Mode\n6. The calibration c_VEHSPD_MAX corresponds to 8 mph per CFTS092 4781643",
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 4 (D)\n2. Send CAN: BRAKE_FD_2.VehicleSpeedVSOSig = 206 (12.875 km/h)\n3. Read the HU display within 10 s of leaving reverse and check that the rear view camera image is no longer displayed",
       "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 4 (D) is sent and the rear view camera image stays displayed\n2. BRAKE_FD_2.VehicleSpeedVSOSig = 206 (12.875 km/h) is sent\n3. The rear view camera image is no longer displayed within 10 s of leaving reverse",

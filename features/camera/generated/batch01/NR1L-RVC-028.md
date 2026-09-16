@@ -1,0 +1,41 @@
+# NR1L-RVC-028 — SWE-CAM-018
+
+- **Test Group**：Rear View Camera｜**Test Set**：Display Arbitration
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
+- **priority**：P1｜**design_method**：狀態轉換 (State Transition Testing)
+- **specification_reference**：`CFTS092-4781642`（來源列 `SYS-RA-CAM-077`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> Rear Camera display image shall remain displayed until driver presses the softkey to disable it.
+
+## reasoning
+
+驗證目標為 CFTS092 SYS-RA-CAM-077（ObjectID 4781642）之「影像持續顯示直至駕駛按軟鍵關閉」。錨取 Rear Camera 節（R-CAM12）；Cargo/CHMSL 節之逐字近似句 SYS-RA-CAM-064 不作錨。車速低於 8 mph 為 SYS-RA-CAM-079 所定之持續前提，使本列只驗軟鍵關閉一支。與 NR1L-RVC-006 之差別：後者錨於 VF551_V2-549（RVC_ImageDefeat.Req），本列錨於 CFTS092 之持續顯示條文。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. The rear view camera image is displayed in Manual Display Mode
+4. The vehicle speed is below 8 mph
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Press "X" on the rear view camera image
+2. Read the HU display and check that the rear view camera image is no longer displayed
+```
+
+## expected_result
+
+```
+1. The rear view camera image is closed
+2. No camera image is displayed and the previous screen is shown again
+```

@@ -1,0 +1,35 @@
+swe_id	source_id	anchor	vf_chapter	verification_point	axis	tc_count	note
+SWE-CAM-015	SYS-RA-VF551_V2-498	VF551_V2_PHDCC27_VF_1378	1.13.2.1.3	auto activation on reverse gear (no image -> R -> displayed)	車型 Atl-Hi	0	covered_by: NR1L-RVC-003
+SWE-CAM-015	SYS-RA-VF551_V3-260	VF551_V3_P363_VF_92	1.10.2.2	auto activation on reverse gear (no image -> R -> displayed)	車型 Atl-Mi	0	covered_by: NR1L-RVC-004；摘句 51→33
+SWE-CAM-015	SYS-RA-VF551_V2-488	VF551_V2_PHDCC27_VF_484	1.13.2	manual -> automatic switch on reverse gear	車型 Atl-Hi	1	NR1L-RVC-011
+SWE-CAM-015	SYS-RA-VF551_V3-266	VF551_V3_P363_VF_484	1.10.2.3	manual -> automatic switch on reverse gear	車型 Atl-Mi	1	NR1L-RVC-012
+SWE-CAM-015	SYS-RA-VF551_V2-495	VF551_V2_PHDCC27_VF_1065	1.13.2.1.2	leave reverse with delay OFF -> immediate non-camera display	車型 Atl-Hi	1	NR1L-RVC-013
+SWE-CAM-015	SYS-RA-VF551_V3-262	VF551_V3_P363_VF_1098	1.10.2.2	leave reverse with delay OFF -> immediate non-camera display	車型 Atl-Mi	1	NR1L-RVC-014
+SWE-CAM-015	SYS-RA-VF551_V2-497	VF551_V2_PHDCC27_VF_479	1.13.2.1.3	leave reverse with delay ON -> Ttimer1 keeps image	車型 Atl-Hi	1	NR1L-RVC-015；摘句 52→43
+SWE-CAM-015	SYS-RA-VF551_V3-261	VF551_V3_P363_VF_1099	1.10.2.2	leave reverse with delay ON -> Ttimer1 keeps image	車型 Atl-Mi	1	NR1L-RVC-016；摘句 87→43
+SWE-CAM-015	SYS-RA-VF551_V2-496	VF551_V2_PHDCC27_VF_1576	1.13.2.1.3	exit any-of: ignition leaves RUN	none (R-CAM3(e) fold)	1	NR1L-RVC-017
+SWE-CAM-015	SYS-RA-VF551_V2-496	VF551_V2_PHDCC27_VF_1576	1.13.2.1.3	exit any-of: shift lever to P	none (R-CAM3(e) fold)	1	NR1L-RVC-018
+SWE-CAM-015	SYS-RA-VF551_V2-498	VF551_V2_PHDCC27_VF_1378	1.13.2.1.3	Reverse_Deb debounce boundary (>Deb / <=Deb)	boundary	2	NR1L-RVC-019 / -020；Atl-Hi
+SWE-CAM-015	SYS-RA-VF551_V2-533	VF551_V2_PHDCC27_VF_1442	1.13.2.2.5	X exit button overlaid when gear is not R	none (R-CAM3(e) fold)	1	NR1L-RVC-021；摘句 33→17
+SWE-CAM-015	SYS-RA-VF551_V2-533	VF551_V2_PHDCC27_VF_1442	1.13.2.2.5	in R gear button presses do not interrupt the image	none (R-CAM3(e) fold)	1	NR1L-RVC-022；摘句 33→15（a 子句）
+SWE-CAM-015	（其餘 17 列）	—	—	已由上列驗證點涵蓋或屬他 SWE 之行為	—	0	V33/V42/V4 之同義列、Ignition_Pre_Off 儲值、DTC 等
+SWE-CAM-016	SYS-RA-VF551_V2-545	VF551_V2_PHDCC27_VF_532	1.14.1	manual activation via App Drawer	mode	0	covered_by: NR1L-RVC-005
+SWE-CAM-016	SYS-RA-VF551_V2-549	VF551_V2_PHDCC27_VF_548	1.14.1	manual close via X exit button	mode	0	covered_by: NR1L-RVC-006
+SWE-CAM-016	SYS-RA-VF551_V2-534	VF551_V2_PHDCC27_VF_509	1.13.2.2.5	soft key available only when ignition is RUN	none (R-CAM3(e) fold)	1	NR1L-RVC-023
+SWE-CAM-016	SYS-RA-CAM-074	CFTS092-4781639	(Rear Camera 節)	soft button state follows HMI L&F when PowerMode is not IGN_RUN	none	1	NR1L-RVC-024
+SWE-CAM-016	SYS-RA-CAM-072	CFTS092-4781637	(Rear Camera 節)	RVC_SK_PRSNT = Present activates the virtual RVC button	none	1	NR1L-RVC-025
+SWE-CAM-016	SYS-RA-VF551_V3-265	VF551_V3_P363_VF_1100	1.10.2.3	manual mode keeps the image above the speed threshold until Ttimer2 maxes out	none (R-CAM3(e) fold)	1	NR1L-RVC-026；摘句 93→48
+SWE-CAM-016	SYS-RA-VF551_V2-532	VF551_V2_PHDCC27_VF_534	1.13.2.2.4	Zoom soft button overlaid on the RVC image	none	1	NR1L-RVC-027
+SWE-CAM-016	SYS-RA-CAM-076	CFTS092-4781641	(Rear Camera 節)	Rear Camera softkey accessible from the Controls screen	none	0	**不生成** —— controls page hop 無 HMI 來源（A-CA24／DR-CAM-g）
+SWE-CAM-016	CFTS092 12 列	—	(Cargo/SVC/FFC 節)	其他相機之軟鍵行為	—	0	**不生成** —— Test Group 為 Rear View Camera，該 12 列屬 Cargo/CHMSL、Surround View、Forward Facing 三節（§8.4.2 scope），登 A-CA28
+SWE-CAM-016	（其餘 21 列）	—	—	已涵蓋或屬 Zoom／Audio Mode 之他 Test Set	—	0	V2-502/-508 Audio Mode、V2-541/-543 Zoom 座標、V3/V4 同義列
+SWE-CAM-018	SYS-RA-CAM-078	CFTS092-4781643	(Rear Camera 節)	delay ON keeps the image for 10 s after leaving reverse	品牌	0	covered_by: NR1L-RVC-007 / -008
+SWE-CAM-018	SYS-RA-VF551_V2-490	VF551_V2_PHDCC27_VF_1577	1.13.2.1.1	speed threshold on-point / off-point (Atl-Hi)	boundary	0	covered_by: NR1L-RVC-009 / -010
+SWE-CAM-018	SYS-RA-CAM-077	CFTS092-4781642	(Rear Camera 節)	image remains until the driver presses the softkey to disable it	none	1	NR1L-RVC-028
+SWE-CAM-018	SYS-RA-VF551_V2-489	VF551_V2_PHDCC27_VF_1765	1.13.2.1	Ttimer2 resets when the speed drops below the threshold	none (R-CAM3(e) fold)	1	NR1L-RVC-029
+SWE-CAM-018	SYS-RA-VF551_V33-247	VF551_V33_P226MCA_VF_532	1.11.1.2.2	speed threshold on-point / off-point with strict > (2261)	boundary ＋ 車型	2	NR1L-RVC-030 / -031；A-CA21 之相反分支
+SWE-CAM-018	SYS-RA-VF551_V42-264	VF551_V42_P637MCA_VF_2368	1.11.1.2.0.3.2	speed threshold branch for 637	車型	0	**不生成** —— 條件含 TRANSM2.ShiftLeverPosition，DBC 查無（A-CA23／DR-CAM-f）
+SWE-CAM-018	SYS-RA-VF551_V2-552	VF551_V2_PHDCC27_VF_2033	1.14.1	ShiftLeverPosition source selection by Hybrid_Type	none	0	**不生成** —— hybrid 分支之 PT_SYSTEM_FD_1.ShiftLeverPosition_PT 不可注入（A-CA15）
+SWE-CAM-018	（其餘 5 列）	—	—	Cargo/CHMSL 節之同義句與 V42 reset 語意	—	0	CAM-064/-065/-066 屬 Cargo 節（R-CAM12 之他節）；V42-225/-265
+SWE-CAM-020	SYS-RA-VF551_V33-227	VF551_V33_P226MCA_VF_1603	1.11.1.2	BedExtenderSts = Active suppresses the RVC image	車型 2261	1	NR1L-RVC-032；PENDING: DR-CAM-f（BED_EXTENDER 不在四本 DBC）
+SWE-CAM-020	SYS-RA-VF551_V33-227	VF551_V33_P226MCA_VF_1603	1.11.1.2	IncompleteBedExtenderSts = True suppresses the RVC image	車型 2261	1	NR1L-RVC-033；同上

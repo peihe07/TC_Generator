@@ -3,11 +3,11 @@
 - **Test Group**：Rear View Camera｜**Test Set**：Display Arbitration
 - **Vehicle Model**：HDCC27=0｜DT27=0｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
 - **priority**：P0｜**design_method**：狀態轉換 (State Transition Testing)
-- **specification_reference**：`VF551_V3_P363_VF_484`（來源列 `SYS-RA-VF551_V3-266`）
+- **specification_reference**：`VF551_V3_P363_VF_92`（來源列 `SYS-RA-VF551_V3-260`）
 
 ## test_item 上半（verbatim，SYS2 逐字）
 
-> · When STATUS_BH_BCM2.CmdIgnSts = [RUN], RVC image active, Shift Lever chagne to Reverse Gear_Stat.info = [REVERSE] > Reverse_Deb, the Head Unit shall continue to display RVC image and switch to the Automatic Display mode.
+> The Head Unit shall be in Automatic Display Mode when STATUS_BH_BCM2.CmdIgnSts = [RUN] AND Gear_Stat.info = [REVERSE] > Reverse_Deb, the Head Unit shall display the RVC image and shall be considered as operating in Automatic mode.
 
 ## reasoning
 
@@ -18,7 +18,7 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. The rear view camera image is displayed in Manual Display Mode
+3. No camera image is displayed
 4. The shift lever is in P
 ```
 

@@ -166,6 +166,25 @@ R-CAM11  VF551 家族之 spec_reference 寫法沿用 `features/vehicle_setting/d
 `VF551_V4_PHDCC27_VF_nnn`／`VF551_V42_P637MCA_VF_nnn`。
 CFTS092 之 F 欄即 ObjectID，依 §10.7(a) 寫 `CFTS092-{ObjectID}`。
 
+### R-CAM12 — CFTS092 疊層同句之取錨（Pei 裁，2026-09-16）
+
+```text
+R-CAM12  CFTS092 疊層同句之取錨
+  CFTS092 於 Cargo/CHMSL（§1.3.5）、Rear Camera（§1.3.6）、Surround View（§1.3.7）、
+  Forward Facing（§1.3.8）各節重複出現之逐字同句，Test Group = Rear View Camera 之 TC
+  一律取 Rear Camera 節（`SYS-RA-CAM-070`～`-082`，ObjectID 4781635～4781647）之 ObjectID 為錨；
+  其他節之同句不得作錨，reasoning 得互參。
+```
+
+**執行層落實（CAM-05 §1）**：CFTS092 之節界實測 ——
+`SYS-RA-CAM-060`（4781625）`Cargo/CHMSL Camera`、
+**`-070`（4781635）`Rear Camera`**、`-083`（4781648）`Surround View Camera`、
+`-094`（4781659）`Forward Facing Camera`、`-100`（4781665）`Clearpath Camera`，
+五者之 `Category` 皆為 `Heading`。
+全本 `Functional Requirement` 列之逐字同句比對：Camera 節界範圍內**只有一組**
+—— `SYS-RA-CAM-062`（4781627，Cargo 節）↔ **`SYS-RA-CAM-075`（4781640，Rear 節）**，
+即本條所規範者。`NR1L-RVC-001` 之錨依此由 `CFTS092-4781627` 改為 **`CFTS092-4781640`**。
+
 ---
 
 ## 平台 ↔ VF ↔ PROXI 對照（下放包 §2 附表，分析層實測 `forms/proxi/` 六本）

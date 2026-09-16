@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-025",
+  "req_id": "SWE-CAM-016",
+  "test_group": "Rear View Camera",
+  "test_set": "Display Arbitration",
+  "test_item_verbatim": "When the HU receives the $RVC_SK_PRSNT$ = [Present] the HU shall activate the virtual Rear View Camera button for user select-ability.",
+  "source_object_id": "SYS-RA-CAM-072",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "RVC_SK_PRSNT present, read the App Drawer and check that \"Rear View Camera\" is present and selectable",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The shift lever is in P\n4. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Read the App Drawer and check that \"Rear View Camera\" is present and selectable",
+      "expected_result": "1. The App Drawer is displayed\n2. The \"Rear View Camera\" entry is present in the App Drawer and can be selected",
+      "specification_reference": "CFTS092-4781637",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "RVC_SK_PRSNT present",
+      "test_item": "When the HU receives the $RVC_SK_PRSNT$ = [Present] the HU shall activate the virtual Rear View Camera button for user select-ability.\n\n(RVC_SK_PRSNT present, read the App Drawer and check that \"Rear View Camera\" is present and selectable)"
+    }
+  ],
+  "reasoning": "驗證目標為 CFTS092 SYS-RA-CAM-072（ObjectID 4781637）之「$RVC_SK_PRSNT$ = [Present] 時啟用虛擬 Rear View Camera 鍵」。錨取 Rear Camera 節（R-CAM12）。$RVC_SK_PRSNT$ 為設定／參數標記，其車輛組態對應為 PROXI Rear_View_Camera = 1 (Present)（五平台 byte 86 bit 0 實測），故以該 PROXI 行表達前提。缺件側（Absent）不在本 Test Set 之範圍，屬 Configuration（SWE-CAM-002／-005）。"
+}

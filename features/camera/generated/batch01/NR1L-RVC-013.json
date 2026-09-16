@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-013",
+  "req_id": "SWE-CAM-015",
+  "test_group": "Rear View Camera",
+  "test_set": "Display Arbitration",
+  "test_item_verbatim": "· When Head Unit is in Automatic Display Mode AND all of the following conditions hold true: - Gear shifted out of Reverse: ShiftLeverPosition != R - Camera Delay Disabled: IPC_VEHICLE_SETUP.Backup_Cam_Delay = OFF. the Head Unit shall switch back to non-camera display",
+  "source_object_id": "SYS-RA-VF551_V2-495",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "Atl-Hi, read the HU display and check that the rear view camera image is no longer displayed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Rear_View_Camera_Type = 1 (Digital)\n4. The camera delay setting is set to \"Off\"\n5. The rear view camera image is displayed in Automatic Display Mode",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 4 (D)\n2. Read the HU display and check that the rear view camera image is no longer displayed",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 4 (D) is sent\n2. The rear view camera image is no longer displayed and the previous screen is shown again",
+      "specification_reference": "VF551_V2_PHDCC27_VF_1065",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "Atl-Hi",
+      "test_item": "· When Head Unit is in Automatic Display Mode AND all of the following conditions hold true: - Gear shifted out of Reverse: ShiftLeverPosition != R - Camera Delay Disabled: IPC_VEHICLE_SETUP.Backup_Cam_Delay = OFF. the Head Unit shall switch back to non-camera display\n\n(Atl-Hi, read the HU display and check that the rear view camera image is no longer displayed)"
+    }
+  ],
+  "reasoning": "驗證目標為自動模式下退出 R 檔且 Camera Delay 為 Off 時立即回到非相機畫面，即 SYS-RA-VF551_V2-495 之逐字條件（IPC_VEHICLE_SETUP.Backup_Cam_Delay = OFF）。Delay 不走 CAN（CameraEventHal 表該訊號 Harman = N／Not yet），以 HMI 設定表達其狀態，設定本身之操作由 NR1L-RVC-007／-008 承接（§8.2.1）。Delay 為 On 之對應行為由 NR1L-RVC-015 承接。Atl-Mi 半邊見 NR1L-RVC-014。"
+}

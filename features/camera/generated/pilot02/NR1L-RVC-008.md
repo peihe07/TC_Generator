@@ -44,7 +44,7 @@
 
 ```
 1. The App Drawer is displayed
-2. The Settings screen is displayed
+2. The "Settings" screen is displayed
 3. The "Camera" settings screen is displayed
 4. The "Rear View Camera Delay" setting is set to "On"
 5. The rear view camera image is displayed in Automatic Display Mode

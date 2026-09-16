@@ -1,0 +1,41 @@
+# NR1L-RVC-021 — SWE-CAM-015
+
+- **Test Group**：Rear View Camera｜**Test Set**：Display Arbitration
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
+- **priority**：P2｜**design_method**：功能測試 (Functional based ; no specific technique)
+- **specification_reference**：`VF551_V2_PHDCC27_VF_1442`（來源列 `SYS-RA-VF551_V2-533`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> · The Head Unit overlays Image Defeat [X] soft button on Rear View Camera Image when ShiftLeverPosition != R.
+
+## reasoning
+
+驗證目標為 SYS-RA-VF551_V2-533 之「ShiftLeverPosition != R 時疊加 Image Defeat [X] 軟鍵」。上半為摘句（§4.3.1）：原句 33 RE_TOKEN 含 a) 子句（R 檔不中斷），本列只取主句 17 RE_TOKEN，a) 子句由 NR1L-RVC-022 承接。前提須 Delay 為 On 之外的任一使影像於 D 檔續顯之情境，本列沿用自動模式退檔後之短暫續顯窗。V3-249／V4-115／V42-299 為三本同義列，依 R-CAM3(e) 不另拆，訊息名分寫於 CAN source 行。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)
+4. The rear view camera image is displayed in Automatic Display Mode
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 4 (D)
+2. Read the rear view camera image and check that the "X" exit button is overlaid on it
+```
+
+## expected_result
+
+```
+1. TRANSM_FD_4.ShiftLeverPosition = 4 (D) is sent
+2. The "X" exit button is overlaid on the rear view camera image
+```

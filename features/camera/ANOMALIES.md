@@ -69,8 +69,16 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | # | 事由 | 實測 | 狀態 |
 |---|---|---|---|
 | A-CA25 | **`LTM_OperationalModeSts.Info` 之 `Ignition_Pre_Off` 對 `CmdIgnSts` 之值無對應來源** | 於 SYS2 `VF551_V33`／`VF551_V42`／`VF551_V2` 三本全文搜尋同時含 `OperationalModeSts` 與 `CmdIgnSts`／`IGN_LK`／`BCM_FD` 之列，**零命中**。`NR1L-RVC-002` 暫用 `1 (IGN_LK)` 並標 `PENDING: DR-CAM-i` | PENDING —— **DR-CAM-i** |
-| A-CA26 | **`SWE-CAM-015` 之 Atl-Mi 自動模式進入原句逾 lint L 上限** | V3 §1.10.2.2 之 `SYS-RA-VF551_V3-260` 為 **55** RE_TOKEN（> 50）；V42 之等價句 `-225` = 61、`-302` = 51。`NR1L-RVC-004` 因而取 V3 §1.10.2.3 之 `-266`（30 token），並將 `NR1L-RVC-003` 之錨同步改為其雙生句 `V2-488`（40 token），使兩列情境對齊 | PENDING（Pei 裁：放寬 L、接受現案、或另指定來源）|
+| A-CA26 | ~~`SWE-CAM-015` 之 Atl-Mi 自動模式進入原句逾 lint L 上限~~ | — | **RESOLVED**（CAM-04 審閱 §二-3）—— **前提不成立**：canon §4.3.1 明文「超限須摘句，全文以 specification_reference 指回」，逾限不是改驗證點之理由。`NR1L-RVC-004` 已回取 `SYS-RA-VF551_V3-260`（51 → 33 token 摘句），`-003` 回取 `SYS-RA-VF551_V2-498`（29 token，無須摘句）|
 | A-CA27 | **交付語料無 §5.4 兩行式指令之例** | 全語料（三本基準 ＋ 10 本 delivered）掃 `$ ` 起首之指令行，**零命中**。`NR1L-RVC-001`／`-002` 之 adb 步驟為全案首見 | PENDING（見上繳包 §2.4 之「新句型」清單）|
+
+## E4. batch01 生成中發現（CAM-05）
+
+| # | 事由 | 實測 | 狀態 |
+|---|---|---|---|
+| A-CA28 | **`SWE-CAM-016` 引用 12 列非 Rear Camera 節之 CFTS092 條文** | `-016` 之 18 個 in-scope CFTS092 來源中，只有 `-072`／`-073`／`-074`／`-076`／`-080`／`-081` 六列屬 Rear Camera 節（`-070`～`-082`）；其餘 12 列屬 Cargo/CHMSL（`-063`／`-067`／`-068`）、Surround View（`-084`～`-093`）、Forward Facing（`-095`／`-096`）三節 | batch01 **不生成**該 12 列（§8.4.2 scope：Test Group 為 Rear View Camera）。該三節之行為屬他 feature／他 Test Group，全量前須確認其歸屬 | PENDING |
+| A-CA29 | **`BED_EXTENDER` 三訊號實作可能未接線** | CameraEventHal 表：`BedExtenderSts`／`BedExtenderFailSts`／`IncompleteBedExtenderSts` 三者皆 Atl-M、`Supported by Harman = N`、`MD fake CEH status = Not yet`；且**該 message 不存在於 forms/ 之四本 DBC**（全文字面掃描：FDCAN8 僅 `Bed Lowering Mode` 與拖車名 `Flatbed`，其餘三本零命中）| `NR1L-RVC-032`／`-033` 依下放包 §3 仍依規格生成（CAN bench 可送），raw 值與 VAL label 標 `PENDING: DR-CAM-f` | PENDING —— DR-CAM-f |
+| A-CA30 | **`>` 與 `>=` 之分歧在 CAN 匯流排上不可觀察**（A-CA21 之補充實測） | 速度訊號之 `SG_` 因子為 `(0.0625,0) "Km/h"`；8 mph = 12.874752 km/h 非 0.0625 之整數倍 —— raw 205 = 7.9614 mph 必低於門檻、raw 206 = 8.000154 mph 必高於門檻，**「恰等於 8 mph」之 raw 不存在**。故 V33 之 `>(greater)` 與 V2／V4 之 `>=` 在測試層同值（`NR1L-RVC-030` 與 `-009` 之 ER 相同）| A-CA21 之相斥**在本專案之量測解析度下不可判**；若上游確認 `c_VEHSPD_MAX` 以 km/h 標定且恰為某 raw 值，該分歧才成為可測 | PENDING（待 `c_VEHSPD_MAX` 標定值，A-CA22）|
 
 ## E. 同名異體
 

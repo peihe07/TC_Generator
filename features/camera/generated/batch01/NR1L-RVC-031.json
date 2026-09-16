@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-031",
+  "req_id": "SWE-CAM-018",
+  "test_group": "Rear View Camera",
+  "test_set": "Display Arbitration",
+  "test_item_verbatim": "IF ( (STATUS_CCAN3.VehicleSpeedVSOSig>(greater) MAX_SPEED AND LTM_OperationalModeSts.Info =\"Ignition_On_EngOn\" ) OR (after T_DISPLAY time STATUS_CCAN4.ReverseGearSts==(equal) \"Not_Inserted\" ) THEN",
+  "source_object_id": "SYS-RA-VF551_V33-247",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "2261 off-point, read the HU display within the delay period and check that the rear view camera image is still displayed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The camera delay setting is set to \"On\"\n4. The rear view camera image is displayed in Automatic Display Mode\n5. The calibration MAX_SPEED corresponds to 8 mph per CFTS092 4781643",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted)\n2. Send CAN: STATUS_CCAN3.VehicleSpeedVSOSig = 205 (12.8125 km/h)\n3. Read the HU display within the delay period and check that the rear view camera image is still displayed",
+      "expected_result": "1. STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted) is sent and the rear view camera image stays displayed\n2. STATUS_CCAN3.VehicleSpeedVSOSig = 205 (12.8125 km/h) is sent\n3. The rear view camera image is still displayed within the delay period",
+      "specification_reference": "VF551_V33_P226MCA_VF_532",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "2261 off-point",
+      "test_item": "IF ( (STATUS_CCAN3.VehicleSpeedVSOSig>(greater) MAX_SPEED AND LTM_OperationalModeSts.Info =\"Ignition_On_EngOn\" ) OR (after T_DISPLAY time STATUS_CCAN4.ReverseGearSts==(equal) \"Not_Inserted\" ) THEN\n\n(2261 off-point, read the HU display within the delay period and check that the rear view camera image is still displayed)"
+    }
+  ],
+  "reasoning": "驗證目標為 VF551_V33（Toro 2261）之速度門檻未達側：raw 205 = 12.8125 km/h = 7.9614 mph，低於 MAX_SPEED，影像於延遲期內續顯。與 NR1L-RVC-030 成 on／off 一對（§8.3 每點一 TC）。V33 之另一支退出條件（after T_DISPLAY time ReverseGearSts = Not_Inserted）即 Delay 到期，由 NR1L-RVC-007／-008 承接（§8.2.1）。"
+}

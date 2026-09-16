@@ -3,7 +3,7 @@
 - **Test Group**：Rear View Camera｜**Test Set**：Startup and Shutdown
 - **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
 - **priority**：P0｜**design_method**：狀態轉換 (State Transition Testing)
-- **specification_reference**：`CFTS092-4781627`（來源列 `SYS-RA-CAM-062`）
+- **specification_reference**：`CFTS092-4781640`（來源列 `SYS-RA-CAM-075`）
 
 ## test_item 上半（verbatim，SYS2 逐字）
 
@@ -11,15 +11,14 @@
 
 ## reasoning
 
-驗證目標為點火進入 RUN、NormalCameraDaemon 完成初始化後，相機影像依預設為關閉，即 CFTS092 SYS-RA-CAM-062（ObjectID 4781627）之 "By default the camera shall be off"。關鍵情境條件為 PROXI Rear_View_Camera = 1 (Present)（五平台 PROXI 實測皆 byte 86 bit 0 = 1）與點火由 off 轉 RUN。verbatim 改取 CFTS092 而非 VF551_V33（CAM-03 審閱 §二-10：全五列之錨優先取 V2 主線或 CFTS092）——SWE-CAM-001 之 28 個來源中，V2 側僅 -528／-531 兩列為 Camera Not in Position 疊層，與開機無涉；描述開機序列者只有 V33 與 V42，故取平台中立之 CFTS092，V33-213（LTM starts to read the Rear_Camera.Data）留此互參。訊息名依 R-CAM3(e) 分寫於 Pre-Condition 之 CAN source 行，Procedure 以 Atl-Hi 訊號書寫；raw 與 label 逐字取自 PDT27_E2A_R1_FDCAN8.dbc BO_ 1153 之 VAL_ 4 "RUN"。關機側由 NR1L-RVC-002 承接；PowerShutDownNotifcation 之送出委派 SWE-CAM-012（§8.2.1）。
+驗證目標為點火進入 RUN、NormalCameraDaemon 完成初始化後，相機影像依預設為關閉，即 CFTS092 SYS-RA-CAM-075（ObjectID 4781640）之 "By default the camera shall be off"。錨取 Rear Camera 節（heading SYS-RA-CAM-070 / 4781635）之 -075，不取 Cargo/CHMSL 節之逐字同句 -062（4781627，heading -060 / 4781625）—— R-CAM12；兩句逐字相同，本列之 Test Group 為 Rear View Camera。關鍵情境條件為 PROXI Rear_View_Camera = 1 (Present)（五平台 PROXI 實測皆 byte 86 bit 0 = 1）與點火由 Standby 轉 RUN；開機類 TC 之 Pre 首行不套 Full-Operation（§4.4 互斥），改用 power/pm_29 交付本之 `The HU is in Standby state`。verbatim 改取 CFTS092 而非 VF551_V33（CAM-03 審閱 §二-10：全五列之錨優先取 V2 主線或 CFTS092）——SWE-CAM-001 之 28 個來源中，V2 側僅 -528／-531 兩列為 Camera Not in Position 疊層，與開機無涉；描述開機序列者只有 V33 與 V42，故取平台中立之 CFTS092，V33-213（LTM starts to read the Rear_Camera.Data）留此互參。訊息名依 R-CAM3(e) 分寫於 Pre-Condition 之 CAN source 行，Procedure 以 Atl-Hi 訊號書寫；raw 與 label 逐字取自 PDT27_E2A_R1_FDCAN8.dbc BO_ 1153 之 VAL_ 4 "RUN"。關機側由 NR1L-RVC-002 承接；PowerShutDownNotifcation 之送出委派 SWE-CAM-012（§8.2.1）。
 
 ## pre_conditions
 
 ```
-1. The HU is in the Full-Operation state
+1. The HU is in Standby state
 2. PROXI Rear_View_Camera = 1 (Present)
 3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
-4. The ignition is off
 ```
 
 ## input_test_data

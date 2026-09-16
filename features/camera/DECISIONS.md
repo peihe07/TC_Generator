@@ -277,6 +277,21 @@ pilot02 `NR1L-RVC-009`（on）／`NR1L-RVC-010`（off）依此書寫。
 Part VIII 整段搬至 **`features/camera/framework.md`**（沿其他 15 本 feature 之前例）；
 `docs/fw036/framework.md` 原處留一行指標。搬移前後 sha 見上繳包 §1.5。
 
+### 6-12. pilot 判過
+
+`[DECIDED — CAM-05 §1，Pei 2026-09-16；CAM-04 審閱 §三-1「准」]`
+**pilot02 經 CAM-04 審閱 §二之五項修正後判過；全量不跑 v3，直接進批次生成。**
+
+全量批次切法（CAM-04 審閱 §三-2）：
+①`Display Arbitration`（`-015`／`-016`／`-018`／`-020`）→ **batch01，本包已生成**
+②`Startup and Shutdown` ＋ `Configuration` ＋ `State Handling`
+③`LVDS Messaging` ＋ `Diagnostics` ＋ `Video Pipeline`
+④`HMI Overlays`；`-024`（DR-CAM-a）與 `-025`（DR-CAM-h）blocked，留尾批。
+每批 ≤ 40 TC，R-G14 三批乾淨後自動放行。
+
+> **編號衝突須回報**：下放包 §1 令「DECISIONS **6-11** `[DECIDED]` pilot 判過」，
+> 惟 6-11 已於 CAM-04 §1(e) 用於 framework 落點。本項因而落為 **6-12**，6-11 不動。
+
 ---
 
 ## Sign-off

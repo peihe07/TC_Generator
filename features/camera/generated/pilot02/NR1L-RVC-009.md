@@ -19,7 +19,7 @@
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
 3. PROXI Rear_View_Camera_Type = 1 (Digital)
-4. The "Rear View Camera Delay" setting is set to "On"
+4. The camera delay setting is set to "On"
 5. The rear view camera image is displayed in Automatic Display Mode
 6. The calibration c_VEHSPD_MAX corresponds to 8 mph per CFTS092 4781643
 ```

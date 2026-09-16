@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-020",
+  "req_id": "SWE-CAM-015",
+  "test_group": "Rear View Camera",
+  "test_set": "Display Arbitration",
+  "test_item_verbatim": "· When all of the following conditions hold true: - BCM_FD_10.CmdIgnSts = RUN, - ShiftLeverPosition = R > Reverse_Deb. the Head Unit shall display the RVC image as operating in Automatic Display Mode.",
+  "source_object_id": "SYS-RA-VF551_V2-498",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "Reverse_Deb not met, read the HU display and check that no camera image is displayed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Rear_View_Camera_Type = 1 (Digital)\n4. No camera image is displayed\n5. The shift lever is in P",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n2. Hold for less than Reverse_Deb\n3. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 1 (P)\n4. Read the HU display and check that no camera image is displayed",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent\n2. The signal is held for less than Reverse_Deb\n3. TRANSM_FD_4.ShiftLeverPosition = 1 (P) is sent\n4. No camera image is displayed and the previous screen stays unchanged",
+      "specification_reference": "VF551_V2_PHDCC27_VF_1378",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "Reverse_Deb not met",
+      "test_item": "· When all of the following conditions hold true: - BCM_FD_10.CmdIgnSts = RUN, - ShiftLeverPosition = R > Reverse_Deb. the Head Unit shall display the RVC image as operating in Automatic Display Mode.\n\n(Reverse_Deb not met, read the HU display and check that no camera image is displayed)"
+    }
+  ],
+  "reasoning": "驗證目標為 SYS-RA-VF551_V2-498 之去彈跳門檻之未達側（off-point）：R 檔停留短於 Reverse_Deb 即回 P，影像不應出現。與 NR1L-RVC-019 成 on／off 一對（§8.3 每點一 TC）。`Reverse_Deb` 依 §8.4.1 以符號保留。"
+}

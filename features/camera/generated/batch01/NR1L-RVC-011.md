@@ -1,0 +1,42 @@
+# NR1L-RVC-011 — SWE-CAM-015
+
+- **Test Group**：Rear View Camera｜**Test Set**：Display Arbitration
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P1｜**design_method**：狀態轉換 (State Transition Testing)
+- **specification_reference**：`VF551_V2_PHDCC27_VF_484`（來源列 `SYS-RA-VF551_V2-488`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> · When all of the following conditions hold True: - BCM_FD_10.CmdIgnSts = RUN - RVC image active - Shift Lever changes to Reverse ShiftLeverPosition = R > Reverse_Deb the Head Unit shall continue to display RVC image and switch to the Automatic Display mode.
+
+## reasoning
+
+驗證目標為手動模式下已顯示 RVC 影像時排檔進入 R 逾 Reverse_Deb，影像續顯並切入 Automatic Display Mode，即 SYS-RA-VF551_V2-488 之逐字條件。與 NR1L-RVC-003（無影像 → R → 顯示）為不同起始態之兩個驗證點（§8.2.1）。觸發訊號取 PDT27_E2A_R1_FDCAN8.dbc BO_ 1450 之 VAL_ 2 "R"；CmdIgnSts = RUN 由 Pre 之 Full-Operation 涵蓋。Atl-Mi 半邊由 NR1L-RVC-012 承接（R-CAM3 車型軸：gear 訊號語意不同，位置碼 vs 布林）。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. PROXI Rear_View_Camera_Type = 1 (Digital)
+4. The rear view camera image is displayed in Manual Display Mode
+5. The shift lever is in P
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)
+2. Read the HU display and check that the rear view camera image is displayed in Automatic Display Mode
+```
+
+## expected_result
+
+```
+1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent
+2. The rear view camera image stays displayed and the mode changes to Automatic Display Mode
+```

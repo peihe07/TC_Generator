@@ -5,10 +5,10 @@ Test Group：`Rear View Camera`（R-CAM4(a)）｜TC ID `NR1L-RVC-001`～`-010`�
 
 | TC ID | req | Test Set | tc_title | 軸 | Vehicle Model = 1 | spec_reference | P |
 |---|---|---|---|---|---|---|---|
-| `NR1L-RVC-001` | `SWE-CAM-001` | Startup and Shutdown | all vehicles | — | HDCC27, DT27, VF(ProMaster)637, Toro(2261), Fastack (376) | `CFTS092-4781627` | P0 |
+| `NR1L-RVC-001` | `SWE-CAM-001` | Startup and Shutdown | all vehicles | — | HDCC27, DT27, VF(ProMaster)637, Toro(2261), Fastack (376) | `CFTS092-4781640` | P0 |
 | `NR1L-RVC-002` | `SWE-CAM-001` | Startup and Shutdown | all vehicles | mode | HDCC27, DT27, VF(ProMaster)637, Toro(2261), Fastack (376) | `VF551_V33_P226MCA_VF_1141` | P1 |
-| `NR1L-RVC-003` | `SWE-CAM-015` | Display Arbitration | Atl-Hi | 車型 Atl-Hi | HDCC27, DT27 | `VF551_V2_PHDCC27_VF_484` | P0 |
-| `NR1L-RVC-004` | `SWE-CAM-015` | Display Arbitration | Atl-Mi | 車型 Atl-Mi | VF(ProMaster)637, Toro(2261), Fastack (376) | `VF551_V3_P363_VF_484` | P0 |
+| `NR1L-RVC-003` | `SWE-CAM-015` | Display Arbitration | Atl-Hi | 車型 Atl-Hi | HDCC27, DT27 | `VF551_V2_PHDCC27_VF_1378` | P0 |
+| `NR1L-RVC-004` | `SWE-CAM-015` | Display Arbitration | Atl-Mi | 車型 Atl-Mi | VF(ProMaster)637, Toro(2261), Fastack (376) | `VF551_V3_P363_VF_92` | P0 |
 | `NR1L-RVC-005` | `SWE-CAM-016` | Display Arbitration | App Drawer entry | mode 開啟 | HDCC27, DT27, VF(ProMaster)637, Toro(2261), Fastack (376) | `VF551_V2_PHDCC27_VF_532` | P1 |
 | `NR1L-RVC-006` | `SWE-CAM-016` | Display Arbitration | X exit button | mode 關閉 | HDCC27, DT27, VF(ProMaster)637, Toro(2261), Fastack (376) | `VF551_V2_PHDCC27_VF_548` | P1 |
 | `NR1L-RVC-007` | `SWE-CAM-018` | Display Arbitration | Ram | 品牌 Ram | HDCC27, DT27, VF(ProMaster)637 | `CFTS092-4781643` | P1 |
