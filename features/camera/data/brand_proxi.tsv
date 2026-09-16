@@ -1,0 +1,7 @@
+proxi_platform	vehicle_model_column	brand_config_2_verbatim	decoded_brand	source_cell
+HDCC28_ATL_HI	HDCC27 Atl-Hi	11=RAM	RAM	Sheet1!I565
+DT28_ATL_HI	DT27 Atl-Hi	11=RAM	RAM	Sheet1!I565
+HDCC27_initial	HDCC27 Atl-Hi（initial 範本）	0=Unbranded	Unbranded	Sheet1!I565
+Promaster_ATL_MI	VF(ProMaster)637 Atl-Mi	11	RAM	PROXI Write_Read!Y570
+Toro_ATL_MI	Toro(2261) Atl-Mi	1	Fiat	PROXI Write!Y570
+Fastback_ATL_MI	Fastack (376) Atl-Mi	5	Abarth	PROXI Write_Read!Y570

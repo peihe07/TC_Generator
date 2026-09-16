@@ -38,6 +38,66 @@ R-CAM3  車型軸之拆分判準
   test_item 括號下半以車型／EE 作區分 token；全部相同 → 一列，勾全部適用車型。
 ```
 
+### R-CAM4 — Test Group 與 TC ID（Pei 裁，2026-09-16；取代審閱 §三-1 之「共用 CAM」）
+
+```text
+R-CAM4  Test Group 與 TC ID（取代審閱 §三-1 之「共用 CAM」）
+  (a) A、B 兩本之工作簿 Test Group 欄一律為 `Rear View Camera`。
+  (b) TC ID 分兩組序號：A 本 `NR1L-RVC-{nnn}`、B 本 `NR1L-RVCHMI-{nnn}`，各自自 001 起連號。
+      R-G42 第二項之 ABBR 於本 feature 即為 `RVC`（A）／`RVCHMI`（B）；審閱 §三-1「共用 CAM」作廢。
+  (c) 交叉參考索引以 SWE ID 互指，不以 TC ID 互指（兩組序號獨立）。
+```
+
+### R-CAM5 — 品牌軸：label 隨品牌而異者拆列，品牌寫入 Pre-Conditions（Pei 裁，2026-09-16）
+
+```text
+R-CAM5  品牌軸：label 隨品牌而異者拆列，品牌寫入 Pre-Conditions
+  (a) HMI Settings List 標 `*` 之設定項，`*` 不入 hop；hop label 依 `Brand-Specific Names` 分頁取值。
+  (b) 同一驗證點若 hop label 因品牌而異 → 拆 sibling（§8.3 mode 軸之品牌分支），
+      Pre-Conditions 首行寫明品牌（例：`Vehicle brand is Ram`），Vehicle Model 七欄依該品牌之車型勾 1。
+  (c) 品牌 ↔ 車型之對照由執行層自 `forms/SR24 R1 Market Configuration Table v1.6.xlsx` 提候選，
+      列 DECISIONS [PROPOSED]，不得自 anchor 前綴或車名推定。
+  (d) 本條與 R-CAM3 併讀：車型軸與品牌軸皆為拆分判準，二者同時成立時以車型軸為外層。
+```
+
+### R-CAM6 — B 本追溯母體 ＝ spec-index/cache 之 RVC+PAM 本（Pei 裁，2026-09-16）
+
+```text
+R-CAM6  B 本追溯母體 = spec-index/cache 之 RVC+PAM 本
+  `SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021).xlsx` 以 `spec-index/cache/` 本
+  （sha16 `1a0bef53c6de975c`，64 列）為 B 本 spec_reference 之母體；REF 本（`5a1c0ab24991dcb1`）
+  於 MANIFEST note 記「同名異體，cache 本之真子集，不作追溯母體」。DR-CAM-c 結案。
+```
+
+### R-CAM7 — V4 Layer 3 以 Description 前導章節號向下繼承（Pei 裁，2026-09-16）
+
+```text
+R-CAM7  V4 Layer 3 以 Description 前導章節號向下繼承
+  SYS2 VF551_V4 之 Layer 3 章節取 `D` 欄前導號（heading 列）向下繼承（321/321、60 章），
+  不回查 docx。DR-CAM-b 結案。
+```
+
+### R-CAM8 — ENTER_CAMERA_SETTINGS 常數（Pei 裁，2026-09-16）
+
+```text
+R-CAM8  ENTER_CAMERA_SETTINGS 常數
+  `ENTER_CAMERA_SETTINGS`（3 hops，§5.3）：
+    `Press "Apps" on Menu Bar to open App Drawer` → `Select "Settings" in the App Drawer` → `Select "Camera"`
+  第 3 hop 之來源：`forms/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx`，`Settings` 分頁 row 464
+  `13. Camera`（序號非 label；canon §5.8(c) 明列 HMI Settings List 為路徑來源）。
+  ER：`The "Camera" settings screen is displayed`。DR-CAM-d 結案；FO §4 [ADD] 之 §5.3 承接完成。
+```
+
+### R-CAM9 — Out of Scope 來源之處置（Pei 裁，2026-09-16）
+
+```text
+R-CAM9  Out of Scope 來源之處置
+  SYS2 Category 為 `Out of Scope`（含 `Out of scope`）之 32 個來源一律不作 spec_reference 錨；
+  其中 `SYS-RA-VF551_V2-578`／`-580`（Radio 端「RVC display active」條件）得作
+  `-010`／`-017`／`-023` 之 Pre-Condition 措辭來源，reasoning 註明出處。上游分類不重判。
+```
+
+
 ---
 
 ## 平台 ↔ VF ↔ PROXI 對照（下放包 §2 附表，分析層實測 `forms/proxi/` 六本）
@@ -50,6 +110,17 @@ R-CAM3  車型軸之拆分判準
 | 2261 Atl-Mi | `Toro_ATL_MI` | V33 | Atl-Mi |
 | 376 Atl-Mi | `Fastback_ATL_MI` | V3 | Atl-Mi |
 | 598／5210 | 無 | 無 | 一律 0 |
+
+## 執行層回報（CAM-02，2026-09-16）
+
+- R-G23 取號現查：本檔現有 `### R-CAM1`～`R-CAM3`，全 repo 無 `R-CAM4` 以上；
+  `docs/fw036/RULINGS.sha.tsv` 無 `R-CAM` 列（該表未重生）。`{live}` = 4 成立。
+  下放包 CAM-02 §1 之五條實際號為 **R-CAM4／R-CAM5／R-CAM6／R-CAM7／R-CAM8**；
+  同 §1 末之「Out of Scope 來源之處置」條下放包未給 `{live+n}` 佔位，
+  執行層依落檔順序取 **R-CAM9**（下放包 §1 五個 code block 之後、
+  「裁定 6／9／10 為 DECISIONS 項」之前，故列為第六條）。
+- **R-CAM4(a) 取代 CAM-01 之 Layer 1 提案**：Test Group 由 `Camera` 改為
+  `Rear View Camera`，兩本同值。CAM-01 DECISIONS §6-1／§6-2 之提案作廢。
 
 ## 執行層回報（CAM-01，2026-09-16）
 

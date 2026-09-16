@@ -45,6 +45,18 @@ FIELD_HEADERS: dict[str, str] = {
 REQ_ID_HEADER = "Requirement or Design ID"
 TC_ID_FIRSTLINE = "Test Case ID"
 
+# `Vehicle Model 車型` 七子欄（母本第 9 列 T–Z 實測，R-G48）。
+# 比對取標頭之**首行**去空白後之字串 —— 母本各欄為 `HDCC27\nAtl-Hi\n` 之形，
+# 第二行之 EE（Atl-Hi／Atl-Mi）不入比對鍵，避免 ext 變體換行位置不同即失配。
+VEHICLE_MODEL_HEADERS: tuple[str, ...] = (
+    "HDCC27", "DT27", "VF(ProMaster)637", "Commander (598)",
+    "Regengade (5210)", "Toro(2261)", "Fastack (376)",
+)
+# R-CAM2(b)：兩車型已不支援，Camera 兩本一律 `0`
+VEHICLE_MODEL_ZERO: frozenset[str] = frozenset(
+    {"Commander (598)", "Regengade (5210)"})
+VEHICLE_MODEL_ALLOWED: frozenset[str] = frozenset({"0", "1"})
+
 HEADER_ANCHOR = "Specification Reference"
 HEADER_SCAN_ROWS = 15
 TC_SHEET_PREFIX = "Test Case Specification"
@@ -203,6 +215,7 @@ CHECK_TITLES = {
     "W": "ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6）",
     "X": "導航路徑無固定入口（§5.8／R-G71）",
     "Y": "PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式）",
+    "Z": "Vehicle Model 七欄 1／0（R-CAM2，Camera profile 專屬）",
 }
 # `--profile` 啟用時 P 改以 R-1 v3 判準，標題隨之替換
 # R-G70：P 於 profile 與非 profile 下判準相同，故無標題覆寫。
@@ -226,6 +239,8 @@ CHECK_STATUS = {
     "W": "**待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述",
     "X": "未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改**",
     "Y": "未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72",
+    "Z": "未校準（R-CAM2，CAM-02 新增）—— **feature 專屬**，僅 `--profile camera` 啟用；"
+         "既有八本無此七欄，未啟用即不檢查（`Z=0` 在未啟用時是沉默，不是核可）",
 }
 CHECK_STATUS_PROFILE: dict[str, str] = {}
 CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
@@ -233,11 +248,18 @@ CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
 # profile 專屬檢查：僅於 `--profile <feature>` 指定時啟用。
 # 未指定時 CHECK_ORDER 不變 —— 既有八本之報告基線因而完全不動。
 PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X", "Y"]
+# **feature 專屬**檢查：只在指名之 profile 下啟用，不隨任意 `--profile` 值生效。
+# 立此結構之由（CAM-02 §2 任務 3）：`Z` 檢查之七欄為 Camera 兩本所獨有，
+# 既有八本之工作簿無此七欄；若併入 PROFILE_CHECKS，任何 feature 之 profile 執行
+# 都會整本 FAIL。判準與粒度照 R-CAM2，啟用面縮到 feature。
+FEATURE_CHECKS: dict[str, list[str]] = {"camera": ["Z"]}
 
 
 def check_order(profile: str | None) -> list[str]:
     """本次執行所啟用之檢查序列。"""
-    return CHECK_ORDER + PROFILE_CHECKS if profile else list(CHECK_ORDER)
+    if not profile:
+        return list(CHECK_ORDER)
+    return CHECK_ORDER + PROFILE_CHECKS + FEATURE_CHECKS.get(profile, [])
 
 
 def check_title(key: str, profile: str | None) -> str:
@@ -264,6 +286,7 @@ CHECK_GRANULARITY = {
     "W": "每次命中",
     "X": "每行",
     "Y": "每行",
+    "Z": "每列每欄；七欄全缺時每 sheet 記一筆",
 }
 
 
@@ -351,6 +374,61 @@ def build_column_map(header_values: list) -> dict[str, int]:
         if "tc_id" not in columns and first_line == TC_ID_FIRSTLINE:
             columns["tc_id"] = idx
     return columns
+
+
+def build_vehicle_model_columns(header_values: list) -> dict[str, int]:
+    """`Vehicle Model 車型` 七子欄 -> 0-based 欄索引。
+
+    比對取標頭之首行去空白；母本為 `HDCC27\nAtl-Hi\n` 之形，第二行之 EE 不入鍵。
+    找不到者不入 dict —— 呼叫端以「缺幾欄」判別工作簿是否具備此七欄。
+    """
+    columns: dict[str, int] = {}
+    for idx, value in enumerate(header_values):
+        if value is None:
+            continue
+        first_line = str(value).split("\n", 1)[0].strip()
+        for name in VEHICLE_MODEL_HEADERS:
+            if name not in columns and first_line == name:
+                columns[name] = idx
+    return columns
+
+
+def check_vehicle_model(raw: tuple, vm_columns: dict[str, int],
+                        row_no: int, tc_id: str) -> list[Violation]:
+    """Z —— Vehicle Model 七欄之 1／0 檢查（R-CAM2）。
+
+    (a) 七欄每欄須為 `1` 或 `0`，不留空、不用其他符號。
+    (b) `Commander (598)`／`Regengade (5210)` 恆為 `0`。
+    (c) 其餘五欄至少一個 `1`。
+    """
+    out: list[Violation] = []
+    values: dict[str, str] = {}
+    for name in VEHICLE_MODEL_HEADERS:
+        idx = vm_columns[name]
+        text = cell_text(raw[idx]) if idx < len(raw) else ""
+        values[name] = text.replace("\xa0", " ").strip()
+
+    for name in VEHICLE_MODEL_HEADERS:
+        value = values[name]
+        if value not in VEHICLE_MODEL_ALLOWED:
+            out.append(Violation(
+                "Z", row_no, tc_id, f"vehicle_model[{name}]",
+                "R-CAM2(a)：七欄每列須填 `1` 或 `0`，不留空、不用其他符號",
+                "(空)" if not value else value[:40]))
+        elif name in VEHICLE_MODEL_ZERO and value != "0":
+            out.append(Violation(
+                "Z", row_no, tc_id, f"vehicle_model[{name}]",
+                f"R-CAM2(b)：`{name}` 已不支援，Camera 兩本一律 `0`", value))
+
+    active = [n for n in VEHICLE_MODEL_HEADERS
+              if n not in VEHICLE_MODEL_ZERO]
+    if all(values[n] in VEHICLE_MODEL_ALLOWED for n in active) \
+            and not any(values[n] == "1" for n in active):
+        out.append(Violation(
+            "Z", row_no, tc_id, "vehicle_model",
+            "R-CAM2(c)：五個有效車型欄每列至少一個 `1`",
+            "／".join(f"{n}={values[n]}" for n in active)))
+    return out
 
 
 def quoted_spans(text: str) -> list[tuple[int, int]]:
@@ -959,6 +1037,20 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
     sibling_input: list[tuple[int, str, str, str]] = []
     cross_input: list[tuple[int, str, str, str, str, str]] = []
 
+    # Z 為 feature 專屬（FEATURE_CHECKS）。七欄不齊時整 sheet 記一筆，
+    # 不逐列複述 —— 缺欄是工作簿之事實，不是每一列各自的違規。
+    vm_columns: dict[str, int] = {}
+    if "Z" in check_order(profile):
+        vm_columns = build_vehicle_model_columns(list(rows[header_row - 1]))
+        if len(vm_columns) != len(VEHICLE_MODEL_HEADERS):
+            missing_vm = [n for n in VEHICLE_MODEL_HEADERS
+                          if n not in vm_columns]
+            result.violations.append(Violation(
+                "Z", header_row, "", "vehicle_model",
+                "R-CAM2：本 sheet 無完整之 `Vehicle Model 車型` 七子欄，Z 無法施檢",
+                "缺 " + "／".join(missing_vm)))
+            vm_columns = {}
+
     for offset, raw in enumerate(rows[header_row:], start=header_row + 1):
         fields = {key: cell_text(raw[idx]) if idx < len(raw) else ""
                   for key, idx in columns.items() if key in FIELD_HEADERS}
@@ -969,6 +1061,9 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
         result.data_rows += 1
         result.violations.extend(
             check_row(fields, offset, tc_id, length_limit, profile))
+        if vm_columns:
+            result.violations.extend(
+                check_vehicle_model(raw, vm_columns, offset, tc_id))
         sibling_input.append((offset, tc_id, req_id, fields["test_item"]))
         test_set = (cell_text(raw[columns["test_set"]])
                     if "test_set" in columns else "")

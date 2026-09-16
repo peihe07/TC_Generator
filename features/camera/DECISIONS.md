@@ -77,35 +77,47 @@ An unsigned sheet blocks Phase 4+.
 
 ### 6-1. ABBR（TC ID `NR1L-{ABBR}-{nnn}`，R-G42）
 
-`[PROPOSED: A、B 兩本共用一組 ABBR = `CAM`，序號連號]`
-理由：R-CAM1 已定兩本互為步驟來源、Layer 1 同值（`Camera`）；
-共用序號使交叉參考索引之 TC ID 可直接互指，毋須跨簿換算。
-替代案：B 本另取 `CAMH`（若 §6-2 裁 Test Group = `Camera HMI`，
-宜與之一致）。**兩案擇一歸 Pei。**
+`[DECIDED — R-CAM4(b)，Pei 2026-09-16]`
+**兩組序號，不共用**：A 本 `NR1L-RVC-{nnn}`、B 本 `NR1L-RVCHMI-{nnn}`，
+各自自 001 起連號。R-G42 第二項之 ABBR 於本 feature 即為 `RVC`（A）／
+`RVCHMI`（B）。交叉參考索引以 **SWE ID** 互指，不以 TC ID 互指（R-CAM4(c)）。
 
-### 6-2. B 本 Test Group 名
+~~CAM-01 之提案「共用 `CAM`、序號連號」作廢~~（審閱 §三-1 之建議亦一併作廢）。
 
-`[PEI]` 甲：`Camera`（與 A 本同值，R-VF9 前例）。
-乙：`Camera HMI`。
-本包佐證：B 本 230 列之來源章節涵蓋 RVC+PAM、AUX 有線／無線相機、
-Camera App、相機設定，`RVC` 不足以概括（PH-01 R-PH 前例只定
-「HMI 為文件類別尾綴」，未定該尾綴須入 Test Group）。
+### 6-2. Test Group 名（兩本）
+
+`[DECIDED — R-CAM4(a)，Pei 2026-09-16]`
+**A、B 兩本之工作簿 Test Group 欄一律為 `Rear View Camera`。**
+
+~~CAM-01 之 Layer 1 提案 `Camera`、以及替代案 `Camera HMI`，兩者皆作廢~~。
+審閱 §三-2 建議之 `Camera` 亦經 Pei 改為 `Rear View Camera`。
+`framework.md` Part VIII 之 Layer 1 依此落檔。
 
 ### 6-3. `*` 是否入 hop
 
-`[PROPOSED: 不入]` —— `HMI Settings List` 分頁 `Settings` 列 2 逐字
-「Refer to Brand-Specific Names tab for highlighted/starred settings.」，
-`*` 為「label 隨品牌而異」之標記，非 label 之字元；帶星號之設定其
-hop label 應依受測車型之品牌自 `Brand-Specific Names` 分頁取值
-（Camera 兩列：Jeep/Chrysler/Ram/Dodge = `ParkView Backup Camera Delay`／
-`ParkView Backup Camera Active Guidelines`；Fiat = `Rear View Camera Delay
-[CR14730]`／`Rear View Camera Active Guidelines [CR14730]`）。
-詳見 `docs/runtime/profiles/FW036_R1L_Camera_Profile.md` §3.1。
+`[DECIDED — R-CAM5(a)，Pei 2026-09-16]` **不入**。
+`*` 為「label 隨品牌而異」之標記（`HMI Settings List` 分頁 `Settings` 列 2
+逐字「Refer to Brand-Specific Names tab for highlighted/starred settings.」），
+非 label 之字元；hop label 依 `Brand-Specific Names` 分頁取值。
+同一驗證點之 label 因品牌而異者依 R-CAM5(b) 拆 sibling，
+Pre-Conditions 首行寫明品牌。
 
-### 6-4. RVC+PAM 同名異體用哪本  —— **本包新增之待裁項**
+> **⚠ CAM-01 之品牌歸屬有誤，本包更正（A-CA18）**：CAM-01 上繳 §6、
+> profile §3.1、本檔原 6-3 與審閱 §三-3 皆載「Fiat = `Rear View Camera Delay
+> [CR14730]`」—— **實為 Maserati**。逐格實測（`Brand-Specific Names`）：
+> `B48` = `ParkView Backup Camera Delay`（Jeep / Chrysler / Ram / Dodge）、
+> **`C48`（Fiat / Fiat Commercial）＝ 空**、`D48`（Maserati）＝
+> `Rear View Camera Delay [CR14730]`、**`E48`（Alfa）＝ 空**；
+> 第 49 列同形。無合併儲存格。逐字全表見 `data/brand_labels.tsv`。
 
-`[PROPOSED: 用 `spec-index/cache/` 本]`
-下放包 §4(b) 令「未裁前 B 本追溯以 REF 本為準」，但實測該前提**不成立**：
+### 6-4. RVC+PAM 同名異體用哪本
+
+`[DECIDED — R-CAM6，Pei 2026-09-16]` **用 `spec-index/cache/` 本**
+（sha16 `1a0bef53c6de975c`，64 列）為 B 本 spec_reference 之母體；
+REF 本（`5a1c0ab24991dcb1`）於 MANIFEST note 記「同名異體，cache 本之真子集，
+不作追溯母體」。**DR-CAM-c 結案。**
+
+判定所據之實測：
 
 | | REF 本 `5a1c0ab24991dcb1` | cache 本 `1a0bef53c6de975c` |
 |---|---|---|
@@ -121,7 +133,8 @@ cache 本無 REF 本所無之列。B 本 037 之 `SWE1-RVC-016`／`-017`／`-018
 
 ### 6-5. VF551_V4 之 Layer 3 判法（DR-CAM-b）
 
-`[PROPOSED: 以 `Description` 欄前導章節號向下繼承]` ——
+`[DECIDED — R-CAM7，Pei 2026-09-16]` **以 `Description` 欄前導章節號向下繼承**，
+不回查 docx。**DR-CAM-b 結案。** ——
 毋須回查 docx，321/321 覆蓋、60 個相異章節；A 本實際引用之 44 列全落
 5 個章節。交叉驗證與 V3 同文字列 163/183（89%）一致。
 詳見 profile §4.1。替代案：照下放包原擬，以 anchor
@@ -129,16 +142,79 @@ cache 本無 REF 本所無之列。B 本 037 之 `SWE1-RVC-016`／`-017`／`-018
 
 ### 6-6. Vehicle Model 檢查之 lint 代號
 
-`[PROPOSED: `Z`]` —— 2026-09-16 現查 `lint036.CHECK_TITLES` 已佔用
-`A`–`N`、`P`–`R`、`T`–`Y` 與 `I-sibling`／`I-cross`，**無 `Z`**。
-指派前須依 A-GC16 之教訓再查一次現況。
+`[DECIDED — 審閱 §三-6 同意，Pei 2026-09-16]` **`Z`**。
+落檔前再查一次現況（A-GC16 之教訓）：`lint036.CHECK_TITLES` 於本包實作前
+已佔用 `A`–`N`、`P`–`R`、`T`–`Y` 與 `I-sibling`／`I-cross`，無 `Z`、無 `O`、無 `S`。
+實作見 `scripts/lint036.py`；`Z` 為 **feature 專屬**（`FEATURE_CHECKS`），
+只在 `--profile camera` 下入序列。
 
 ### 6-7. `ENTER_CAMERA_SETTINGS` 第 3 hop 之權威
 
-`[PEI]` —— SYS1 HeadUnitCameraSystems §6.2（NRL-187338）只給設定項內容，
-**不給導航 hop**；現有唯一之 label 來源為 `HMI Settings List` 分頁
-`Settings` 列 464 之類別名 `13. Camera`。依 §5.8(d) 不得臆造。
-以該類別列為權威是否足夠，歸 Pei。
+`[DECIDED — R-CAM8，Pei 2026-09-16]` **足夠**。canon §5.8(c) 明列
+HMI Settings List 為路徑來源。常數定為：
+
+```
+ENTER_CAMERA_SETTINGS (3 hops, §5.3)
+  Press "Apps" on Menu Bar to open App Drawer
+  → Select "Settings" in the App Drawer
+  → Select "Camera"
+ER: The "Camera" settings screen is displayed
+```
+
+第 3 hop 之來源：`forms/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx`
+（sha16 `8d04e51a56d6391d`），`Settings` 分頁 **row 464** 逐字 `13. Camera`
+（序號非 label）。**DR-CAM-d 結案；FO §4 [ADD] 之 §5.3 承接完成。**
+
+### 6-8. 品牌 ↔ 車型對照（R-CAM5(c)）
+
+`[PROPOSED]` —— **R-CAM5(c) 所指定之來源查無此欄，本包改提替代來源，請 Pei 核可。**
+
+**(i) 指定來源之實測結果 —— 無該欄**
+`forms/SR24 R1 Market Configuration Table v1.6.xlsx`（8 分頁）全表掃描：
+`HDCC27`／`DT27`／`637`／`2261`／`376` 五個車型代號 **零命中**；
+品牌字樣僅三處，皆為散文而非對照欄 ——
+`Revision Log!D25` 「Feedback from RAM teams (GIM 21023031)」、
+`Revision Log!D26` 「Feedback from Alfa」、
+`Market Config - R1!E6` 「Only for EMEA/Maserati Variants with HU Internal
+Antenna Homologation needs」。該表之軸為**市場／國別**（Geographical Region、
+Destination Country、Radio Variant），非車型。
+→ 觸發下放包 §5 升級條件「Market Configuration Table 無五車型之品牌欄」。
+
+**(ii) 替代來源候選 —— PROXI `Brand_Configuration_2`（實測，非推定）**
+參數定義：`forms/PROXI_HDCC27_R3_20250424.xlsx` 分頁 `Format` **row 566** ——
+`Infotainment_Configuration_13`，byte 130，bit 0–4，Table：
+`0 = Unbranded / 1 = Fiat / 2 = Lancia / 3 = Alfa Romeo / 4 = Fiat Professional /
+5 = Abarth / 6 = Maserati / 7 = Ferrari / 8 = Chrysler / 9 = Dodge / 10 = Jeep /
+11 = RAM / 12 = SRT / 13 = PSA (Citroen) / 14 = PSA (Peugeot) / 15 = Ford`。
+
+各平台之實測值（逐格，全表見 `data/brand_proxi.tsv`）：
+
+| Vehicle Model 欄 | forms/proxi 平台 | `Brand_Configuration_2` | 品牌 | 來源格 |
+|---|---|---|---|---|
+| HDCC27 Atl-Hi | `HDCC28_ATL_HI` | `11=RAM` | **RAM** | `Sheet1!I565` |
+| DT27 Atl-Hi | `DT28_ATL_HI` | `11=RAM` | **RAM** | `Sheet1!I565` |
+| VF(ProMaster)637 Atl-Mi | `Promaster_ATL_MI` | `11` | **RAM** | `PROXI Write_Read!Y570` |
+| Toro(2261) Atl-Mi | `Toro_ATL_MI` | `1` | **Fiat** | `PROXI Write!Y570` |
+| Fastack (376) Atl-Mi | `Fastback_ATL_MI` | `5` | **Abarth** | `PROXI Write_Read!Y570` |
+| （範本，非車型）| `HDCC27_initial` | `0=Unbranded` | Unbranded | `Sheet1!I565` |
+
+**(iii) 由 (i)(ii) 推得之 hop 影響 —— 請 Pei 一併裁**
+把 (ii) 之品牌套回 `Brand-Specific Names` 之欄別（見 6-3 之更正）：
+
+| 車型 | 品牌 | 命中之 Brand-Specific 欄 | Camera 兩項之 hop label |
+|---|---|---|---|
+| HDCC27／DT27／637 | RAM | `B`（Jeep / Chrysler / Ram / Dodge）| `ParkView Backup Camera Delay`／`ParkView Backup Camera Active Guidelines` |
+| Toro(2261) | Fiat | `C`（Fiat / Fiat Commercial）—— **該欄為空** | 回落 `Settings` 分頁基礎 label（去 `*`）|
+| Fastack (376) | Abarth | **無對應欄**（B/C/D/E 皆非 Abarth）| 同上，回落基礎 label |
+
+→ 於 Camera 之範圍內，R-CAM5(b) 之品牌軸實際**只有兩個分支**
+（RAM 系 vs 其餘），非逐品牌。`Commander (598)`／`Regengade (5210)` 依
+R-CAM2(b) 恆 `0`，不參與。
+
+**(iv) 未決**：Abarth 不在 `Brand-Specific Names` 四欄之內，
+「無欄即回落基礎 label」為執行層之讀法，**未經裁定**；
+且 Fastback 之 `5 = Abarth` 與該平台檔名（`R1L_PROXI_363_376_3A_CR2783_20220802`）
+所示之 363/376 車系是否確為 Abarth 版，本包未另尋佐證。
 
 ## 7. Execution
 

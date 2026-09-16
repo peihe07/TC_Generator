@@ -1,6 +1,7 @@
 # FW036 R1L Camera — Profile（骨架）
 
-- 設立依據：下放包 **CAM-01 §4 任務 5**（`docs/fw036/handoff/down/20260916_CAM-01.md`）。
+- 設立依據：下放包 **CAM-01 §4 任務 5**（`docs/fw036/handoff/down/20260916_CAM-01.md`）；
+  **CAM-02 依 R-CAM4～R-CAM9 更新**（`down/20260916_CAM-02.md`）。
 - 命名依既有慣例（CamelCase 無分隔，同 `VehicleCategory`／`PowerModing`）。
 - 本檔為 **Phase 0–1 之骨架**：只寫已有實測依據者，未鎖定之項一律標
   `[PROPOSED]` 或 `[PEI]`，不預先設計未來條款。
@@ -20,7 +21,7 @@
 | `test_group`（工作簿 G 欄）| A 本 `Camera`；B 本 `Camera` 或 `Camera HMI` | **[PEI]** R-CAM 未裁，見 DECISIONS §6 |
 | Layer 2 Test Set（H 欄）| A 本 9 組／B 本 8 組（草案，實測後有出入）| **[PEI]** 見 §4 |
 | ABBR（TC ID `NR1L-{ABBR}-{nnn}`，R-G42）| A、B 共用 `CAM`，或 B 本另取 `CAMH` | **[PEI]** 見 DECISIONS §6 |
-| `spec_reference`（N 欄）| A 本引 CFTS092／VF551；B 本引 SYS1 HMI L&F 章節 | **R-CAM1(c)** |
+| `spec_reference`（N 欄）| A 本引 CFTS092／VF551；B 本引 SYS1 HMI L&F 章節（RVC+PAM 取 **cache 本**）| **R-CAM1(c)**、**R-CAM6** |
 | 生成順序 | A → B | **R-CAM1(b)** |
 | 驗證母體 | A 本 25 leaf；B 本 203 leaf | 本包實測 |
 | spec_mode | `A`（SYS1 spec export 齊備）| `intake.py` 判定 |
@@ -43,7 +44,7 @@
 （VehicleCategory profile §2 已實測並記錄同一事實）。故本檔 §2 之新檢查項
 **必須另行實作於 `lint036.py`** 才會生效，不會因寫在本檔而自動啟用。
 
-## 2. `[ADD]` Vehicle Model 七欄檢查（R-CAM2(c)）
+## 2. `[ADD]` Vehicle Model 七欄檢查（R-CAM2）—— **已實作**
 
 判準逐字取 R-CAM2：
 
@@ -54,10 +55,28 @@
 - (b) `Commander (598)` 與 `Regengade (5210)` 兩欄 **一律 `0`**（Camera 兩本）。
 - (c) 其餘五個有效車型欄，**每列至少一個 `1`**。
 
-違例等級：**ERROR**（(a)(b) 為硬條件）／**ERROR**（(c) 空列無意義）。
-代號指派：`lint036.CHECK_TITLES` 現已佔用至 `Y`；本項候選代號
-**`Z`**（2026-09-16 現查 `CHECK_TITLES` 無 `Z`）—— 指派前須依 A-GC16 之教訓
-再查一次現況，不得沿用本檔之記載。**[PROPOSED]**
+代號 **`Z`**（DECISIONS §6-6 已裁）。實作位置
+`scripts/lint036.py` —— 常數 `VEHICLE_MODEL_HEADERS`／`VEHICLE_MODEL_ZERO`／
+`VEHICLE_MODEL_ALLOWED`、欄位對照 `build_vehicle_model_columns()`、
+檢查 `check_vehicle_model()`，於 `lint_sheet()` 逐列施檢。
+測試 `tests/test_lint036_z.py`（27 項）。
+
+**啟用面 —— feature 專屬**：`Z` 不入 `PROFILE_CHECKS`（該表隨**任意**
+`--profile` 值生效），而入新增之 `FEATURE_CHECKS = {"camera": ["Z"]}`，
+`check_order(profile)` 僅於 `profile == "camera"` 時附加。
+立此結構之由：既有交付本雖具七欄但**全空**，若併入 `PROFILE_CHECKS`，
+他 feature 之 profile 執行即整本 FAIL（實測 10 本交付簿共 11,368 筆）。
+
+| 施檢面 | 記錄粒度 | 違例文字 |
+|---|---|---|
+| (a) 值非 `1`／`0`（含空）| 每列每欄 | `R-CAM2(a)：七欄每列須填 1 或 0，不留空、不用其他符號` |
+| (b) `Commander (598)`／`Regengade (5210)` 非 `0` | 每列每欄 | `R-CAM2(b)：… 已不支援，Camera 兩本一律 0` |
+| (c) 五個有效欄無任何 `1` | 每列一筆 | `R-CAM2(c)：五個有效車型欄每列至少一個 1` |
+| 七欄不齊 | **每 sheet 一筆**（不逐列複述）| `R-CAM2：本 sheet 無完整之 Vehicle Model 七子欄，Z 無法施檢` |
+
+(a) 已命中之欄不再判 (b)；(a) 有任一命中時不判 (c) —— 值不合法即無從判
+「至少一個 `1`」。欄位比對取標頭**首行**去空白（母本第 9 列 T–Z 為
+`HDCC27\nAtl-Hi\n` 之形，第二行之 EE 不入比對鍵）。
 
 ## 3. `[ADD]` §5.3 常數候選 `ENTER_CAMERA_SETTINGS`
 
@@ -74,7 +93,20 @@
   （6.2.2.1～6.2.2.3），**不給導航 hop**。依 §5.8(d) 不得臆造 ——
   以 HMI Settings List 之類別列為權威是否足夠，**[PEI]**。
 
-### 3.1 hop label 之星號 `*` —— 本包已查明，建議不入 hop
+### 3.0 常數之定稿（R-CAM8）
+
+```
+ENTER_CAMERA_SETTINGS (3 hops, §5.3)
+  Press "Apps" on Menu Bar to open App Drawer
+  → Select "Settings" in the App Drawer
+  → Select "Camera"
+ER: The "Camera" settings screen is displayed
+```
+
+第 3 hop 之權威：canon **§5.8(c)** 明列 HMI Settings List 為路徑來源；
+`Settings` 分頁 **row 464** 逐字 `13. Camera`（序號非 label）。DR-CAM-d 結案。
+
+### 3.1 hop label 之星號 `*` —— 不入 hop（R-CAM5(a)）
 
 `HMI Settings List` 分頁 `Settings` **列 2** 逐字：
 「Refer to Brand-Specific Names tab for highlighted/starred settings.」
@@ -101,7 +133,7 @@ Layer 3（**不入工作簿**，IN §4.1.5）：
   CFTS092 來源（33 列）該欄全空，依 §5 草案改以 §1.3.x 章名為 Layer 3。
   **VF551_V4 之補判見 §4.1。**
 - **B 本** —— 以 SYS1 `Outline Number` 逐字為 Layer 3；B 本 `HMI Source ID`
-  已內建該號，對映率 100%（母體：**cache 本** RVC+PAM，見上繳包 §3）。
+  已內建該號，對映率 **100%**（母體：**cache 本** RVC+PAM，**R-CAM6**）。
 
 ### 4.1 VF551_V4 之 Layer 3 替代判法（DR-CAM-b）
 
@@ -116,22 +148,39 @@ V4 之 `VF章節`(I) 欄 **321/321 全空**。本包實測其 `Description`(D) �
 **163 筆一致（89%）**，不一致者係兩份 VF 文件章節編號本不相同所致。
 **[PROPOSED]** —— 採此法或仍回查 docx，見 DECISIONS §6。
 
-## 5. 車型軸（R-CAM3）
+## 5. 車型軸（R-CAM3）與品牌軸（R-CAM5）
 
-拆分判準逐字見 `features/camera/RULINGS.md` R-CAM3。
-平台 ↔ VF ↔ PROXI 對照表同檔。
+拆分判準逐字見 `features/camera/RULINGS.md` R-CAM3、R-CAM5。
+平台 ↔ VF ↔ PROXI 對照表同檔；品牌對照見本檔 §3.2。
+二軸同時成立時**以車型軸為外層**（R-CAM5(d)）。
 `forms/proxi/` 六平台十檔**不得改名、不得移動**（CAM-01 §0）。
+
+### 5.1 Ignition 前提之訊號（CAM-01 審閱 §二-1 更正，CAM-02 §2 任務 6）
+
+`SWE-CAM-002` 之 Ignition 前提**不得用 `BCM_FD_9.PowerModeSts`**
+（CameraEventHal 表：Atl-H、`Supported by Harman = N`、`MD fake CEH status
+= Not yet`，不可注入）。依 EE 分列：
+
+| EE | 訊號 | CEH 表之狀態 |
+|---|---|---|
+| Atl-Hi | `BCM_FD_10.CmdIgnSts` | `Y`／`verified` |
+| Atl-Mi | `STATUS_BH_BCM2.CmdIgnSts` | `N`／`Could emulate` |
+
+CAM-01 上繳 §3.9 曾記「Atl-Hi 側無對應之 `CmdIgnSts` 列」—— **不成立**，
+`CameraEventHal status.xlsx` 第 7 資料列即 `BCM_FD_10.CmdIgnSts | input |
+Atl-H | Y | verified`。該未結項關閉。
 
 ---
 
 ## 6. 未決（本檔不得自行補齊）
 
+CAM-01 之七項未決**全數已裁**（R-CAM4～R-CAM8、DECISIONS §6-6）。
+CAM-02 新生之未決：
+
 | # | 項 | 標記 |
 |---|---|---|
-| 1 | ABBR：A／B 共用 `CAM` 或 B 本另取 | `[PEI]` |
-| 2 | B 本 Test Group = `Camera` 或 `Camera HMI` | `[PEI]` |
-| 3 | `*` 入 hop 與否（§3.1 已備證據與建議）| `[PEI]` |
-| 4 | RVC+PAM 同名異體用 REF 本或 cache 本（§4 依 cache 本量得 100%）| `[PEI]` |
-| 5 | V4 Layer 3 用 D 欄推導或 docx 回查（§4.1）| `[PEI]` |
-| 6 | `ENTER_CAMERA_SETTINGS` 第 3 hop 之權威（§3）| `[PEI]` |
-| 7 | Vehicle Model 檢查之 lint 代號（§2 候選 `Z`）| `[PROPOSED]` |
+| 1 | 車型 ↔ 品牌之權威來源（R-CAM5(c) 指定之 Market Config Table 無此欄；本檔 §3.2 以 PROXI 實測替代）| `[PROPOSED]` DR-CAM-e |
+| 2 | Abarth（Fastack 376）無 Brand-Specific 欄，回落基礎 label 之讀法 | `[PEI]` A-CA19 |
+| 3 | `SWE-CAM-025` 之畫面文字：037 作 `Camera Not in position`，SYS1 §9.2.3 作 `Camera Out of Position` | `[PEI]` A-CA20 |
+| 4 | `SWE-CAM-023` 與 6 列之交集承接順位 | `[PEI]` —— 審閱 §三-10：待 framework 鎖定時定 |
+| 5 | `VF617_V5` 缺件 | DR-CAM-a（**高**）|

@@ -403,14 +403,34 @@ def test_row_counts_distinguish_line_and_row_basis():
 
 
 def test_every_check_has_status_and_granularity():
-    """報告表頭所需之三張對照表須涵蓋全部檢查（含 profile 專屬者）。"""
-    full = set(lint036.check_order("power"))
+    """報告表頭所需之三張對照表須涵蓋全部檢查。
+
+    CAM-02 起另有 `FEATURE_CHECKS`（只在指名 profile 下啟用之 feature 專屬檢查，
+    如 Camera 之 `Z`）。三張對照表須涵蓋「通用 ＋ profile ＋ 全部 feature 專屬」，
+    否則該檢查一命中就會在報告表頭 KeyError。
+    """
+    generic = set(lint036.check_order("power"))
+    feature_only = {k for keys in lint036.FEATURE_CHECKS.values() for k in keys}
+    full = generic | feature_only
     assert set(lint036.CHECK_STATUS) == full
     assert set(lint036.CHECK_GRANULARITY) == full
     assert set(lint036.CHECK_TITLES) == full
     # profile 覆寫表不得引入 CHECK_ORDER 以外之代號
     assert set(lint036.CHECK_TITLE_PROFILE) <= full
     assert set(lint036.CHECK_STATUS_PROFILE) <= full
+    # feature 專屬者不得混入通用序列 —— 混入即所有 feature 之 profile 執行皆受檢
+    assert feature_only.isdisjoint(generic)
+
+
+def test_feature_checks_only_fire_for_their_own_profile():
+    """`FEATURE_CHECKS` 之代號只在其 feature 之 profile 下入序列。"""
+    for feature, keys in lint036.FEATURE_CHECKS.items():
+        order = lint036.check_order(feature)
+        assert set(keys) <= set(order)
+        for other in ("power", "popup", None):
+            if other == feature:
+                continue
+            assert set(keys).isdisjoint(lint036.check_order(other))
 
 
 # --- 報告命名 ----------------------------------------------------------------

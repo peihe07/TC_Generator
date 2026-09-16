@@ -8,7 +8,7 @@
 # 母本實測不代表副本；副本之欄序得因 ext 而異。
 
 feature: "Camera"
-test_group: "Camera"          # A 本；B 本待裁（DECISIONS §6-2）
+test_group: "Rear View Camera"   # R-CAM4(a)：A、B 兩本同值
 
 # R-CAM1(a)：本 feature 出**兩本**工作簿（A 本 25 列、B 本 230 列），
 # 生成順序 A → B。下列 paths 為 A 本；B 本之對應項見 books.b。
@@ -23,6 +23,8 @@ paths:
 
 books:
   a:                                # Service 層，先寫
+    abbr: "RVC"                     # R-CAM4(b)：TC ID = NR1L-RVC-{nnn}，自 001 連號
+    test_group: "Rear View Camera"  # R-CAM4(a)
     a03_doc_id: "camera_037_swra_v02"
     rows: 25
     leaves: 25
@@ -34,13 +36,15 @@ books:
       - "sys2_vf551_v4_sysra_v01"
       - "sys2_vf551_v42_sysra_v01"
   b:                                # HMI 層，後寫
+    abbr: "RVCHMI"                  # R-CAM4(b)：TC ID = NR1L-RVCHMI-{nnn}，自 001 連號
+    test_group: "Rear View Camera"  # R-CAM4(a)
     a03_doc_id: "camera_037_rvc_hmi_v0_1"
     rows: 230
     leaves: 203                     # 另 27 umbrella
     sys1_doc_ids:
+      # R-CAM6：RVC+PAM 以 spec-index/cache 本為追溯母體（對映率 100%）；
+      # REF 本 sys1_hmi_rvc_pam_r1_low_sr24_1a_ref 為其真子集，不作母體。
       - "sys1_hmi_headunitcamerasystems_v7"
-      # RVC+PAM 同名異體，用哪本待裁（DECISIONS §6-4）；
-      # 對映率 100% 者為 cache 本，REF 本為 98.70%。
       - "sys1_hmi_rvc_pam_r1_low_sr24_1a_cache"
 
 spec_mode: "A"        # intake.py 判定：SYS1 spec export present (no PDF)
@@ -91,6 +95,7 @@ lint:
   # R-G71：新 feature 一律啟用 X 與 P(v4)。呼叫 `lint036.py --profile camera`。
   profile: "camera"
   extra_rules:
-    # R-CAM2(c)：Vehicle Model 七欄 1/0 檢查。代號候選 Z（DECISIONS §6-6），
-    # **尚未實作於 lint036.py** —— 寫在此處不會自動生效。
-    - "vehicle_model_1_0"        # [PROPOSED] 未實作
+    # R-CAM2：Vehicle Model 七欄 1/0 檢查 = lint036 之 `Z`（DECISIONS §6-6）。
+    # 已實作（scripts/lint036.py `check_vehicle_model`）；`Z` 屬 FEATURE_CHECKS，
+    # 只在 `--profile camera` 下入序列，不隨任意 profile 生效。
+    - "Z"

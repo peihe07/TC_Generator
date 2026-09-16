@@ -16,7 +16,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | # | 事由 | 實測 | 影響 | 狀態 |
 |---|---|---|---|---|
 | A-CA01 | **`VF617_V5` 缺件**（SYS2 xlsx ＋ VF docx 皆無）| A 本 541 個來源引用中 **119 個**不可解析，prefix 全為 `SYS-RA-VF617_V5`（117）＋ `SYS-RA-VF617V5`（2）| `SWE-CAM-024`（AUX Camera）12/12 全數不可追，整條 PENDING；`-003`／`-015`／`-018` 部分來源不可追 | PENDING（DR-CAM-a）|
-| A-CA02 | **SYS2 `VF551_V4` 之 `VF章節`(I) 欄全空** | 321/321 空。對照 V2 752/752、V3 747/747、V33 662/662、V42 801/801 皆有值 | A 本引用之 44 列 V4 無法直接取 Layer 3 | PENDING（DR-CAM-b；已提替代判法，見 DECISIONS §6-5）|
+| A-CA02 | **SYS2 `VF551_V4` 之 `VF章節`(I) 欄全空** | 321/321 空。對照 V2 752/752、V3 747/747、V33 662/662、V42 801/801 皆有值 | A 本引用之 44 列 V4 無法直接取 Layer 3 | **RESOLVED** —— R-CAM7 裁定以 `D` 欄前導號向下繼承（321/321、60 章），不回查 docx。DR-CAM-b 結案 |
 
 ## B. A 本 RD 品質（037 `SWRA_V02`，母體 25 列）
 
@@ -29,7 +29,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CA07 | **下放包未列之重疊列**（本包全量掃出，交集 ≥3）| `-002 ∩ -010` = 9；`-009 ∩ -023` = 7；`-003 ∩ -022` = 5；`-001 ∩ -023`／`-003 ∩ -016`／`-008 ∩ -023`／`-010 ∩ -023`／`-016 ∩ -023`／`-017 ∩ -023` 各 4；`-001 ∩ -003`／`-002 ∩ -003`／`-004 ∩ -023`／`-010 ∩ -017` 各 3 | 與 A-CA06 同案處置；`SWE-CAM-023` 與 6 列有交集，宜優先釐清 | PENDING |
 | A-CA08 | **`Sub Categorization` 與 `Description` 相斥** | `SWE-CAM-014` 之 Sub Cat 為 `NormalCameraDaemon`，其 Description 逐字以「**NCD HAL** shall manage the power shutdown notifications…」起首 | Layer 2 歸屬以何者為準，待裁 | PENDING |
 | A-CA09 | **`Sub Categorization` 之混合值** | `SWE-CAM-019` 逐字 `NormalCameraApp, NormalCameraDaemon`（25 列中唯一之混合值；另注意此處寫 `NormalCameraApp` 無空格，他列為 `NormalCamera App`）| 拆 sibling 或擇一，待裁 | PENDING |
-| A-CA10 | **037 標題之拼寫** | `SWE-CAM-012` Title 逐字 `Message: PowerShutDownNotifcation`（`Notifcation` 缺 `i`），`-014` Description 同拼法 | 若為 LVDS 訊息名之原文即照抄，否則更正；須對 VF551_V2-550 原文核對 | PENDING |
+| A-CA10 | **037 標題之拼寫** | `SWE-CAM-012` Title 逐字 `Message: PowerShutDownNotifcation`（`Notifcation` 缺 `i`），`-014` Description 同拼法 | 照抄，不更正 | **RESOLVED**（CAM-01 審閱 §二-2）—— **來源原文，非 037 筆誤**。`Video_Parking_Assistance_-_LTM_VF551_V2_R1.docx` Head Unit Requirements 節逐字：「Transmit PowerShutDownNotifcation.Power_Down = True over LVDS to the RVCM」。LVDS 訊息名以來源為準（R-13）；verbatim 上半與訊號行皆保留此拼法 |
 
 ## C. SYS2 匯出之資料品質
 
@@ -41,14 +41,30 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 
 | # | 事由 | 實測 | 狀態 |
 |---|---|---|---|
-| A-CA12 | **§5 B 本 Layer 2 之章節前提與 037 實際引用不符** | B 本 230 列實際只引 HeadUnitCameraSystems 章 `6, 27, 28, 29, 30, 31, 33, 34` 與 RVC+PAM 章 `6, 7, 8, 9, 11`。草案所據之 HU 章 `1`／`3`／`4`／`18`–`22`／`26`／`32` **一列未引**，故 Test Set `Camera App`（HU 18–22）實測 **0 列** | PENDING（歸 Pei，本包不改名稱）|
-| A-CA13 | **10 列未落入任何草案 Test Set** | HU `6.10`（`Non Surround View Vehicles access to Cameras:`）1 列；RVC+PAM `8.1`（`RVC1)` X 退出鍵）6 列、`8.6`／`8.7`／`8.8` 各 1 列 | PENDING |
+| A-CA12 | **§5 B 本 Layer 2 之章節前提與 037 實際引用不符** | B 本 230 列實際只引 HeadUnitCameraSystems 章 `6, 27, 28, 29, 30, 31, 33, 34` 與 RVC+PAM 章 `6, 7, 8, 9, 11`。草案所據之 HU 章 `1`／`3`／`4`／`18`–`22`／`26`／`32` **一列未引**，故 Test Set `Camera App`（HU 18–22）實測 **0 列** | **RESOLVED** —— CAM-01 審閱 §四 重切八組：`Camera App` 撤組、HU 3／4／26／32 刪、新設 `Camera View Switching`（HU 28）。本包重跑實測 10／50／5／13／62／31／6／53 ＝ 230，與修訂案全合 |
+| A-CA13 | **10 列未落入任何草案 Test Set** | HU `6.10`（`Non Surround View Vehicles access to Cameras:`）1 列；RVC+PAM `8.1`（`RVC1)` X 退出鍵）6 列、`8.6`／`8.7`／`8.8` 各 1 列 | **RESOLVED** —— 修訂案將 `6.10`／`8.1`／`8.6`／`8.7` 併入 `Activation and Exit`、`8.8` 併入 `PAM Integration`；重跑後未歸屬 0 |
+
+## E1. CameraEventHal 不可注入訊號之處置（CAM-01 審閱 §二-3，本包落）
+
+| # | 事由 | 實測／依據 | 處置 | 狀態 |
+|---|---|---|---|---|
+| A-CA15 | **`PT_SYSTEM_FD_1.ShiftLeverPosition_PT` 不可注入，惟僅 hybrid 分支取用** | CEH 表：Atl-H、`Supported by Harman = N`、`MD fake CEH status = Not yet`。依 `SYS-RA-VF551_V2-551`／`-552`，僅 `Hybrid_Type = REP／FCEV` 時取此訊號，其餘取 `TRANSM_FD_4.ShiftLeverPosition`（CEH 表 Atl-H、`Y`／`verified`）| `SWE-CAM-015` 之主路徑改取 `TRANSM_FD_4.ShiftLeverPosition`，**不受影響**；hybrid 分支之可測性登記於此。**不開 DR** | PENDING（僅 hybrid 分支）|
+| A-CA16 | **`STATUS_LIN.DynamicGridSts`／`.DynamicGridFailSts` 不可注入** | CEH 表：Atl-M、`N`／`Not yet` 兩者皆是。屬 V33／V42 Dynamic Grid Line Overlay 線；A 本 `SWE-CAM-023` 引 `V42-230`／`-231`／`-232` | ER 若須以 `DynamicGridSts` 觀察，改以 **HMI 現象**（guideline 顯示與否）為觀察面；來源名保留（§8.7.5(f)）。**不開 DR** | PENDING |
+| A-CA17 | **`IPC_VEHICLE_SETUP.LanguageSelection` 不可注入** | CEH 表：Atl-H、`N`／`Not yet`。命中 `SWE-CAM-021` 之 localized overlay | 該 TC 以 **HMI 語言設定**為觸發（§5.8(e)），不走 CAN | PENDING |
+
+## E2. 品牌 label 之來源誤讀（本包自報）
+
+| # | 事由 | 實測（逐格） | 影響 | 狀態 |
+|---|---|---|---|---|
+| A-CA18 | **CAM-01 把 `Rear View Camera Delay [CR14730]` 誤歸 Fiat，實為 Maserati** | `forms/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` 分頁 `Brand-Specific Names`：表頭 `B1`=`Jeep / Chrysler / Ram / Dodge`、`C1`=`Fiat / Fiat Commercial`、`D1`=`Maserati`、`E1`=`Alfa`。`B48`=`ParkView Backup Camera Delay`、**`C48`=空**、`D48`=`Rear View Camera Delay [CR14730]`、**`E48`=空**；49 列同形。無合併儲存格 | CAM-01 上繳 §6、profile §3.1、DECISIONS 6-3、CAM-01 審閱 §三-3 四處皆誤。R-CAM5(b) 之品牌軸於 Camera 範圍內實為**兩分支**（RAM 系 vs 其餘），非逐品牌 | **RESOLVED** —— 本包已於 DECISIONS 6-3／6-8 與 profile §3.1 更正，逐字表落 `data/brand_labels.tsv` |
+| A-CA19 | **`Fastack (376)` 之品牌為 `5 = Abarth`，不在 `Brand-Specific Names` 四欄之內** | `forms/proxi/Fastback_ATL_MI/R1L_PROXI_363_376_3A_CR2783_20220802.XLSM` 分頁 `PROXI Write_Read` `Y570` = `5`；PROXI Format 表 `5 = Abarth` | 該車型之帶星號設定無品牌專屬 label 可取；「無欄即回落 `Settings` 分頁基礎 label」為執行層讀法，**未經裁定** | PENDING（DECISIONS 6-8(iv)）|
+| A-CA20 | **`SWE-CAM-025` 之訊息文字與 SYS1 不一致** | A 本 `-025` Description 逐字「display a "Camera Not in position" warning overlay」；SYS1 RVC+PAM §9.2.3（`SWE1-RVC-039`）逐字「Display "Camera Out of Position" message」 | verbatim 上半引哪一側待定；本包 crossref 以 §9.2.3 為 `-025` 之 `[VERIFIED]` 配對，即以 SYS1 之 `Camera Out of Position` 為畫面文字 | PENDING |
 
 ## E. 同名異體
 
 | # | 事由 | 實測 | 狀態 |
 |---|---|---|---|
-| A-CA14 | **SYS1 RVC+PAM 同名兩本** | REF 本 sha16 `5a1c0ab24991dcb1`（55 列）vs `spec-index/cache/` 本 `1a0bef53c6de975c`（64 列）。cache 本獨有 `7.2.1`–`7.2.6`、`7.3.1`–`7.3.3` 九列；其餘 11 列差異僅為換行編碼；Polarion ID 全同。B 本 `SWE1-RVC-016/-017/-018` 引 `7.3.1`–`7.3.3`，**只有 cache 本解得開**（對映率 100% vs REF 本 98.70%）| PENDING（DECISIONS §6-4，已提議用 cache 本）|
+| A-CA14 | **SYS1 RVC+PAM 同名兩本** | REF 本 sha16 `5a1c0ab24991dcb1`（55 列）vs `spec-index/cache/` 本 `1a0bef53c6de975c`（64 列）。cache 本獨有 `7.2.1`–`7.2.6`、`7.3.1`–`7.3.3` 九列；其餘 11 列差異僅為換行編碼；Polarion ID 全同。B 本 `SWE1-RVC-016/-017/-018` 引 `7.3.1`–`7.3.3`，**只有 cache 本解得開**（對映率 100% vs REF 本 98.70%）| **RESOLVED** —— R-CAM6 裁定以 `spec-index/cache/` 本為 B 本追溯母體；REF 本於 MANIFEST note 記「同名異體，cache 本之真子集，不作追溯母體」。DR-CAM-c 結案 |
 
 ## Assumption markers
 

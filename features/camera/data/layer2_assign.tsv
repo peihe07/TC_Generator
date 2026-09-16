@@ -1,4 +1,4 @@
-book	swe_id	kind	source_book	section_or_vf	test_set_draft	title
+book	swe_id	kind	source_book	section_or_vf	test_set	title
 A	SWE-CAM-001	leaf	CFTS092, VF551_V2, VF551_V3, VF551_V33, VF551_V4, VF551_V42		Startup and Shutdown	Camera System Startup and Shutdown Logic
 A	SWE-CAM-002	leaf	VF551_V2, VF551_V3, VF551_V4, VF551_V42, VF617_V5		Configuration	PROXI based Camera Configuration and State
 A	SWE-CAM-003	leaf	CFTS092, VF551_V2, VF551_V33, VF551_V4, VF551_V42, VF617V5, VF617_V5		State Handling	General Camera State Handling
@@ -58,24 +58,24 @@ B	SWE1-RVC-023	umbrella	RVC+PAM	7.5.3	Activation and Exit	Camera Display Behavio
 B	SWE1-RVC-023-01	leaf	RVC+PAM	7.5.3	Activation and Exit	10-second delay timer after exiting REVERSE
 B	SWE1-RVC-023-02	leaf	RVC+PAM	7.5.3	Activation and Exit	Auto-dismiss at 8 mph speed threshold
 B	SWE1-RVC-023-03	leaf	RVC+PAM	7.5.3	Activation and Exit	"Manual dismiss via ""X"" soft control (PU0361)"
-B	SWE1-RVC-024	umbrella	RVC+PAM	8.1	(unassigned)	X Exit Button Placement and Behavior in Non-Reverse Gear
-B	SWE1-RVC-024-01	leaf	RVC+PAM	8.1	(unassigned)	X exit button placement in non-REVERSE
-B	SWE1-RVC-024-02	leaf	RVC+PAM	8.1	(unassigned)	X exit button reverts to last known screen
-B	SWE1-RVC-025	umbrella	RVC+PAM	8.1.1	(unassigned)	"RVC Feed Persistence and ""X"" Unavailability in Reverse"
-B	SWE1-RVC-025-01	leaf	RVC+PAM	8.1.1	(unassigned)	RVC feed remains on while vehicle is in REVERSE
-B	SWE1-RVC-025-02	leaf	RVC+PAM	8.1.1	(unassigned)	X button unavailable while vehicle is in REVERSE
-B	SWE1-RVC-026	leaf	RVC+PAM	8.2	Warning Banners	Check Entire Surroundings Banner Display Duration
+B	SWE1-RVC-024	umbrella	RVC+PAM	8.1	Activation and Exit	"""X"" Exit Button Placement and Behavior in Non-Reverse Gear"
+B	SWE1-RVC-024-01	leaf	RVC+PAM	8.1	Activation and Exit	"""X"" exit button placement in non-REVERSE"
+B	SWE1-RVC-024-02	leaf	RVC+PAM	8.1	Activation and Exit	"""X"" exit button reverts to last known screen"
+B	SWE1-RVC-025	umbrella	RVC+PAM	8.1.1	Activation and Exit	"RVC Feed Persistence and ""X"" Unavailability in Reverse"
+B	SWE1-RVC-025-01	leaf	RVC+PAM	8.1.1	Activation and Exit	RVC feed remains on while vehicle is in REVERSE
+B	SWE1-RVC-025-02	leaf	RVC+PAM	8.1.1	Activation and Exit	"""X"" button unavailable while vehicle is in REVERSE"
+B	SWE1-RVC-026	leaf	RVC+PAM	8.2	Warning Banners	"""Check Entire Surroundings"" Banner Display Duration"
 B	SWE1-RVC-027	leaf	RVC+PAM	8.3	Warning Banners	Banner Edge-Fade to Avoid Covering Buttons
 B	SWE1-RVC-028	leaf	RVC+PAM	8.3.1	Warning Banners	Banner Fade Behavior Applied to All Camera Messages
 B	SWE1-RVC-029	leaf	RVC+PAM	8.3.2	Warning Banners	Return to Last Known HU State on RVC Turn-Off
 B	SWE1-RVC-030	leaf	RVC+PAM	8.3.3	Warning Banners	"No Camera Delay When ""X"" Cannot Be Shown in Drive"
 B	SWE1-RVC-031	umbrella	RVC+PAM	8.4	Warning Banners	Camera-Overlay Visual Specification (Color and Transparency)
-B	SWE1-RVC-031-01	leaf	RVC+PAM	8.4	Warning Banners	X button and banner color/contrast
+B	SWE1-RVC-031-01	leaf	RVC+PAM	8.4	Warning Banners	"""X"" button and banner color/contrast"
 B	SWE1-RVC-031-02	leaf	RVC+PAM	8.4	Warning Banners	Overlay transparency at 60% (+/-5%)
 B	SWE1-RVC-032	leaf	RVC+PAM	8.4.1	Warning Banners	Overlay Execution Only When No Other Layout Fits
-B	SWE1-RVC-033	leaf	RVC+PAM	8.6	(unassigned)	RVC Display While Radio is Off
-B	SWE1-RVC-034	leaf	RVC+PAM	8.7	(unassigned)	No Camera Display in Accessory Ignition Mode
-B	SWE1-RVC-035	leaf	RVC+PAM	8.8	(unassigned)	PAM Graphic Sourced from PDO Graphical Releases
+B	SWE1-RVC-033	leaf	RVC+PAM	8.6	Activation and Exit	RVC Display While Radio is Off
+B	SWE1-RVC-034	leaf	RVC+PAM	8.7	Activation and Exit	No Camera Display in Accessory Ignition Mode
+B	SWE1-RVC-035	leaf	RVC+PAM	8.8	PAM Integration	PAM Graphic Sourced from PDO Graphical Releases
 B	SWE1-RVC-036	leaf	RVC+PAM	9.2	Warning Banners	Error-Banner Sequence for Camera Diagnostic Events
 B	SWE1-RVC-037	leaf	RVC+PAM	9.2.1	Warning Banners	"Display ""Camera System Unavailable"" for Camera Feed Faults"
 B	SWE1-RVC-038	leaf	RVC+PAM	9.2.2	Warning Banners	"Display ""Camera System Unavailable"" for Blue-Screen Conditions"
@@ -101,7 +101,7 @@ B	SWE1-RVC-051-01	leaf	HeadUnitCameraSystems	6.7.1	Activation and Exit	Access re
 B	SWE1-RVC-051-02	leaf	HeadUnitCameraSystems	6.7.1	Activation and Exit	Access rear view via Apps Drawer
 B	SWE1-RVC-051-03	leaf	HeadUnitCameraSystems	6.7.1	Activation and Exit	Display SVC bar in rear view
 B	SWE1-RVC-051-04	leaf	HeadUnitCameraSystems	6.7.1	Activation and Exit	Limit X exit control to P/N/D
-B	SWE1-RVC-052	leaf	HeadUnitCameraSystems	6.10.1	(unassigned)	Camera View Soft Controls for Equipped Camera Features
+B	SWE1-RVC-052	leaf	HeadUnitCameraSystems	6.10.1	Activation and Exit	Camera View Soft Controls for Equipped Camera Features
 B	SWE1-RVC-053	leaf	HeadUnitCameraSystems	27.1.1	AUX Camera Access	Wired/Wireless AUX Cameras are Non-Persistent with Enhanced Camera App
 B	SWE1-RVC-054	leaf	HeadUnitCameraSystems	27.1.2	AUX Camera Access	AUX Camera Features Follow General Activation/Deactivation Strategy
 B	SWE1-RVC-055	leaf	HeadUnitCameraSystems	27.1.3	AUX Camera Access	Selected View Soft Control is Highlighted
@@ -109,7 +109,7 @@ B	SWE1-RVC-056	leaf	HeadUnitCameraSystems	27.1.4	AUX Camera Access	Camera Featur
 B	SWE1-RVC-057	leaf	HeadUnitCameraSystems	27.1.5	AUX Camera Access	Wireless AUX Limited to Four MOPAR Cameras via WiFi
 B	SWE1-RVC-058	leaf	HeadUnitCameraSystems	27.1.5.1	AUX Camera Access	Wireless AUX Authentication via QR-Code Token
 B	SWE1-RVC-059	leaf	HeadUnitCameraSystems	27.2.1.1	AUX Camera Access	Second-Surface AUX Cam Controls within Back-Up and CHMSL Views
-B	SWE1-RVC-060	leaf	HeadUnitCameraSystems	27.2.2.1	AUX Camera Access	AUX Cameras Icons Present in Camera Views
+B	SWE1-RVC-060	leaf	HeadUnitCameraSystems	27.2.2.1	AUX Camera Access	"""AUX Cameras"" Icons Present in Camera Views"
 B	SWE1-RVC-061	leaf	HeadUnitCameraSystems	27.2.3.1	AUX Camera Access	Wired AUX Camera is Always a Selectable Option
 B	SWE1-RVC-062	leaf	HeadUnitCameraSystems	27.2.3.2	AUX Camera Access	"Wireless AUX ""AUX Cameras"" Button Greyed When Unavailable"
 B	SWE1-RVC-063	leaf	HeadUnitCameraSystems	27.2.4.1	AUX Camera Access	"Camera Personalization Settings Grouped under ""Cameras"" Line"
@@ -127,53 +127,53 @@ B	SWE1-RVC-074	leaf	HeadUnitCameraSystems	27.4.2	AUX Camera Access	Wireless Came
 B	SWE1-RVC-075	leaf	HeadUnitCameraSystems	27.4.2.1	AUX Camera Access	Wireless Toggle YES Disconnects Projection and Enables Wireless
 B	SWE1-RVC-076	leaf	HeadUnitCameraSystems	27.4.2.2	AUX Camera Access	Wireless Toggle NO Maintains Projection and Keeps Wireless Disabled
 B	SWE1-RVC-077	leaf	HeadUnitCameraSystems	27.4.3	AUX Camera Access	Wireless Toggle Activates Silently When No Projection Active
-B	SWE1-RVC-078	leaf	HeadUnitCameraSystems	27.4.4	AUX Camera Access	Enable Wireless Cameras Setting Updates Dynamically
+B	SWE1-RVC-078	leaf	HeadUnitCameraSystems	27.4.4	AUX Camera Access	"""Enable Wireless Cameras"" Setting Updates Dynamically"
 B	SWE1-RVC-079	leaf	HeadUnitCameraSystems	27.4.5	AUX Camera Access	Projection Plug-In Popup Disables Wireless Cameras
-B	SWE1-RVC-080	leaf	HeadUnitCameraSystems	27.5.1	AUX Camera Access	Connecting Message When Wireless AUX Cam Wakes from Sleep
+B	SWE1-RVC-080	leaf	HeadUnitCameraSystems	27.5.1	AUX Camera Access	"""Connecting"" Message When Wireless AUX Cam Wakes from Sleep"
 B	SWE1-RVC-081	leaf	HeadUnitCameraSystems	27.5.2	AUX Camera Access	Wireless Setting Auto-Enables on AUX Selection (No Projection)
 B	SWE1-RVC-082	umbrella	HeadUnitCameraSystems	27.6.1	AUX Camera Access	Wireless AUX Selection Popup with Projection Active (Setting OFF)
 B	SWE1-RVC-082-01	leaf	HeadUnitCameraSystems	27.6.1	AUX Camera Access	Display confirmation popup on selection
 B	SWE1-RVC-082-02	leaf	HeadUnitCameraSystems	27.6.1	AUX Camera Access	YES auto-enables the setting
-B	SWE1-RVC-083	leaf	HeadUnitCameraSystems	27.6.2	AUX Camera Access	Connecting Message for Sleeping Wireless AUX Camera
+B	SWE1-RVC-083	leaf	HeadUnitCameraSystems	27.6.2	AUX Camera Access	"""Connecting"" Message for Sleeping Wireless AUX Camera"
 B	SWE1-RVC-084	leaf	HeadUnitCameraSystems	27.7.1	AUX Camera Access	Wired and Wireless AUX Access via Controls Page and Apps Drawer
 B	SWE1-RVC-085	leaf	HeadUnitCameraSystems	27.7.2	AUX Camera Access	AUX Soft Controls Not on Controls Page When Camera App Present
 B	SWE1-RVC-086	leaf	HeadUnitCameraSystems	27.7.3	AUX Camera Access	Cross-Reference: Wireless Cameras Connection Pages
-B	SWE1-RVC-087	leaf	HeadUnitCameraSystems	27.8.1	AUX Camera Access	More Aux Button Opens Popup of Available AUX Cameras
+B	SWE1-RVC-087	leaf	HeadUnitCameraSystems	27.8.1	AUX Camera Access	"""More Aux"" Button Opens Popup of Available AUX Cameras"
 B	SWE1-RVC-088	leaf	HeadUnitCameraSystems	27.8.2	AUX Camera Access	Selecting New View in Popup Switches to That View
 B	SWE1-RVC-089	leaf	HeadUnitCameraSystems	27.8.3	AUX Camera Access	"Pressing ""More AUX"" Again Closes the Popup"
 B	SWE1-RVC-090	leaf	HeadUnitCameraSystems	27.8.4	AUX Camera Access	Signal Strength and Battery Shown Below More AUX Button
 B	SWE1-RVC-091	leaf	HeadUnitCameraSystems	27.8.5	AUX Camera Access	Cross-Reference: Wireless Cameras Connection Pages
-B	SWE1-RVC-092	leaf	HeadUnitCameraSystems	28.1	AUX Camera Access	More Cams Button Provides Access to Camera App Popup
-B	SWE1-RVC-093	leaf	HeadUnitCameraSystems	28.2.1	AUX Camera Access	Check Entire Surroundings Shown 5s on AUX Cam Access
-B	SWE1-RVC-094	leaf	HeadUnitCameraSystems	28.2.2	AUX Camera Access	"AUX Access Does Not Reset ""Check Entire Surroundings"" Timer"
-B	SWE1-RVC-095	leaf	HeadUnitCameraSystems	28.2.3	AUX Camera Access	WiFi Signal and Battery Shown After 5s for Wireless AUX
-B	SWE1-RVC-096	leaf	HeadUnitCameraSystems	28.2.4	AUX Camera Access	X Returns to Previous Screen from AUX Camera
-B	SWE1-RVC-097	leaf	HeadUnitCameraSystems	28.3.1	AUX Camera Access	Camera System Unavailable Screen When AUX Not Connected
-B	SWE1-RVC-098	umbrella	HeadUnitCameraSystems	28.3.2	AUX Camera Access	Behavior When Wired AUX 1 Missing but Other Wired AUX Present
-B	SWE1-RVC-098-01	leaf	HeadUnitCameraSystems	28.3.2	AUX Camera Access	"Display ""Camera system unavailable"" blue screen"
-B	SWE1-RVC-098-02	leaf	HeadUnitCameraSystems	28.3.2	AUX Camera Access	Provide More AUX selection on the unavailable screen
-B	SWE1-RVC-099	leaf	HeadUnitCameraSystems	28.4.1	AUX Camera Access	Greyed-Out Soft Controls When Wireless AUX Unavailable
-B	SWE1-RVC-100	leaf	HeadUnitCameraSystems	28.4.2	AUX Camera Access	Popup When Activating Greyed-Out Wireless AUX Control
-B	SWE1-RVC-101	leaf	HeadUnitCameraSystems	28.6.1.1	AUX Camera Access	More Cams Behavior in Reverse vs Drive/Neutral
-B	SWE1-RVC-102	leaf	HeadUnitCameraSystems	28.6.1.2	AUX Camera Access	Cross-Reference: Wireless Cameras Connection Pages
-B	SWE1-RVC-103	umbrella	HeadUnitCameraSystems	28.7.1.1	AUX Camera Access	Image Manipulation Gestures (Pan / Zoom)
-B	SWE1-RVC-103-01	leaf	HeadUnitCameraSystems	28.7.1.1	AUX Camera Access	Pan via drag/swipe gesture
-B	SWE1-RVC-103-02	leaf	HeadUnitCameraSystems	28.7.1.1	AUX Camera Access	Zoom via pinch gesture
-B	SWE1-RVC-104	umbrella	HeadUnitCameraSystems	28.7.1.2	AUX Camera Access	Image Reset and Latching of Manipulated Settings
-B	SWE1-RVC-104-01	leaf	HeadUnitCameraSystems	28.7.1.2	AUX Camera Access	Reset image to default state
-B	SWE1-RVC-104-02	leaf	HeadUnitCameraSystems	28.7.1.2	AUX Camera Access	Manipulated settings latch across sessions
-B	SWE1-RVC-105	umbrella	HeadUnitCameraSystems	28.7.2	AUX Camera Access	Edit Image Soft Controls (Rotate 90 / Mirror / Reset)
-B	SWE1-RVC-105-01	leaf	HeadUnitCameraSystems	28.7.2	AUX Camera Access	"Access ""Rotate 90"" via Edit image"
-B	SWE1-RVC-105-02	leaf	HeadUnitCameraSystems	28.7.2	AUX Camera Access	"Access ""Mirror Image"" via Edit image"
-B	SWE1-RVC-105-03	leaf	HeadUnitCameraSystems	28.7.2	AUX Camera Access	"Access ""Reset"" via Edit image"
-B	SWE1-RVC-106	umbrella	HeadUnitCameraSystems	28.7.3	AUX Camera Access	AUX View Extension Controls (Umbrella)
-B	SWE1-RVC-106-01	leaf	HeadUnitCameraSystems	28.7.3	AUX Camera Access	Extend view by 10s via AUX soft control
-B	SWE1-RVC-106-02	leaf	HeadUnitCameraSystems	28.7.3	AUX Camera Access	Extend view by 10s via Extend-View soft control
-B	SWE1-RVC-107	leaf	HeadUnitCameraSystems	28.7.4	AUX Camera Access	Signal Strength and Battery on Wireless AUX Views
-B	SWE1-RVC-108	umbrella	HeadUnitCameraSystems	28.8.1	AUX Camera Access	Wireless AUX View Editing and Cross-View Access (Umbrella)
-B	SWE1-RVC-108-01	leaf	HeadUnitCameraSystems	28.8.1	AUX Camera Access	Access Edit image from AUX video feed
-B	SWE1-RVC-108-02	leaf	HeadUnitCameraSystems	28.8.1	AUX Camera Access	Access other AUX views below camera feed
-B	SWE1-RVC-108-03	leaf	HeadUnitCameraSystems	28.8.1	AUX Camera Access	Access other AUX views via More AUX button
+B	SWE1-RVC-092	leaf	HeadUnitCameraSystems	28.1	Camera View Switching	"""More Cams"" Button Provides Access to Camera App Popup"
+B	SWE1-RVC-093	leaf	HeadUnitCameraSystems	28.2.1	Camera View Switching	"""Check Entire Surroundings"" Shown 5s on AUX Cam Access"
+B	SWE1-RVC-094	leaf	HeadUnitCameraSystems	28.2.2	Camera View Switching	"AUX Access Does Not Reset ""Check Entire Surroundings"" Timer"
+B	SWE1-RVC-095	leaf	HeadUnitCameraSystems	28.2.3	Camera View Switching	WiFi Signal and Battery Shown After 5s for Wireless AUX
+B	SWE1-RVC-096	leaf	HeadUnitCameraSystems	28.2.4	Camera View Switching	"""X"" Returns to Previous Screen from AUX Camera"
+B	SWE1-RVC-097	leaf	HeadUnitCameraSystems	28.3.1	Camera View Switching	"""Camera System Unavailable"" Screen When AUX Not Connected"
+B	SWE1-RVC-098	umbrella	HeadUnitCameraSystems	28.3.2	Camera View Switching	Behavior When Wired AUX 1 Missing but Other Wired AUX Present
+B	SWE1-RVC-098-01	leaf	HeadUnitCameraSystems	28.3.2	Camera View Switching	"Display ""Camera system unavailable"" blue screen"
+B	SWE1-RVC-098-02	leaf	HeadUnitCameraSystems	28.3.2	Camera View Switching	Provide More AUX selection on the unavailable screen
+B	SWE1-RVC-099	leaf	HeadUnitCameraSystems	28.4.1	Camera View Switching	Greyed-Out Soft Controls When Wireless AUX Unavailable
+B	SWE1-RVC-100	leaf	HeadUnitCameraSystems	28.4.2	Camera View Switching	Popup When Activating Greyed-Out Wireless AUX Control
+B	SWE1-RVC-101	leaf	HeadUnitCameraSystems	28.6.1.1	Camera View Switching	"""More Cams"" Behavior in Reverse vs Drive/Neutral"
+B	SWE1-RVC-102	leaf	HeadUnitCameraSystems	28.6.1.2	Camera View Switching	Cross-Reference: Wireless Cameras Connection Pages
+B	SWE1-RVC-103	umbrella	HeadUnitCameraSystems	28.7.1.1	Camera View Switching	Image Manipulation Gestures (Pan / Zoom)
+B	SWE1-RVC-103-01	leaf	HeadUnitCameraSystems	28.7.1.1	Camera View Switching	Pan via drag/swipe gesture
+B	SWE1-RVC-103-02	leaf	HeadUnitCameraSystems	28.7.1.1	Camera View Switching	Zoom via pinch gesture
+B	SWE1-RVC-104	umbrella	HeadUnitCameraSystems	28.7.1.2	Camera View Switching	Image Reset and Latching of Manipulated Settings
+B	SWE1-RVC-104-01	leaf	HeadUnitCameraSystems	28.7.1.2	Camera View Switching	Reset image to default state
+B	SWE1-RVC-104-02	leaf	HeadUnitCameraSystems	28.7.1.2	Camera View Switching	Manipulated settings latch across sessions
+B	SWE1-RVC-105	umbrella	HeadUnitCameraSystems	28.7.2	Camera View Switching	Edit Image Soft Controls (Rotate 90 / Mirror / Reset)
+B	SWE1-RVC-105-01	leaf	HeadUnitCameraSystems	28.7.2	Camera View Switching	"Access ""Rotate 90"" via Edit image"
+B	SWE1-RVC-105-02	leaf	HeadUnitCameraSystems	28.7.2	Camera View Switching	"Access ""Mirror Image"" via Edit image"
+B	SWE1-RVC-105-03	leaf	HeadUnitCameraSystems	28.7.2	Camera View Switching	"Access ""Reset"" via Edit image"
+B	SWE1-RVC-106	umbrella	HeadUnitCameraSystems	28.7.3	Camera View Switching	AUX View Extension Controls (Umbrella)
+B	SWE1-RVC-106-01	leaf	HeadUnitCameraSystems	28.7.3	Camera View Switching	Extend view by 10s via AUX soft control
+B	SWE1-RVC-106-02	leaf	HeadUnitCameraSystems	28.7.3	Camera View Switching	Extend view by 10s via Extend-View soft control
+B	SWE1-RVC-107	leaf	HeadUnitCameraSystems	28.7.4	Camera View Switching	Signal Strength and Battery on Wireless AUX Views
+B	SWE1-RVC-108	umbrella	HeadUnitCameraSystems	28.8.1	Camera View Switching	Wireless AUX View Editing and Cross-View Access (Umbrella)
+B	SWE1-RVC-108-01	leaf	HeadUnitCameraSystems	28.8.1	Camera View Switching	Access Edit image from AUX video feed
+B	SWE1-RVC-108-02	leaf	HeadUnitCameraSystems	28.8.1	Camera View Switching	Access other AUX views below camera feed
+B	SWE1-RVC-108-03	leaf	HeadUnitCameraSystems	28.8.1	Camera View Switching	Access other AUX views via More AUX button
 B	SWE1-RVC-109	leaf	HeadUnitCameraSystems	29.1.1	AUX Camera Settings	Individual AUX Cam Settings Popup via Settings Line Tap
 B	SWE1-RVC-110	umbrella	HeadUnitCameraSystems	29.1.2	AUX Camera Settings	Wireless AUX Cam Settings Popup Actions (Umbrella)
 B	SWE1-RVC-110-01	leaf	HeadUnitCameraSystems	29.1.2	AUX Camera Settings	Edit camera name from settings pop-up
@@ -192,7 +192,7 @@ B	SWE1-RVC-114-01	leaf	HeadUnitCameraSystems	30.1.1	AUX Camera Settings	Mark fav
 B	SWE1-RVC-114-02	leaf	HeadUnitCameraSystems	30.1.1	AUX Camera Settings	Mark favorite via star icon on camera app page
 B	SWE1-RVC-115	leaf	HeadUnitCameraSystems	30.1.2	AUX Camera Settings	"Make-Favorite Flow: Press ""Make Favorite"" in Settings Menu"
 B	SWE1-RVC-116	leaf	HeadUnitCameraSystems	30.1.3	AUX Camera Settings	Make-Favorite Confirmation Popup with 5s Auto-Dismiss
-B	SWE1-RVC-117	leaf	HeadUnitCameraSystems	30.1.4	AUX Camera Settings	Remove as Favorite Button Toggle After Favorite Set
+B	SWE1-RVC-117	leaf	HeadUnitCameraSystems	30.1.4	AUX Camera Settings	"""Remove as Favorite"" Button Toggle After Favorite Set"
 B	SWE1-RVC-118	leaf	HeadUnitCameraSystems	30.1.5	AUX Camera Settings	Favorite Star Shown on Camera Line in Settings Menu
 B	SWE1-RVC-119	umbrella	HeadUnitCameraSystems	30.1.6	AUX Camera Settings	Favorite Camera Homepage Indicators and Ordering (Umbrella)
 B	SWE1-RVC-119-01	leaf	HeadUnitCameraSystems	30.1.6	AUX Camera Settings	Show favorite star inside camera icon
@@ -210,31 +210,31 @@ B	SWE1-RVC-125	umbrella	HeadUnitCameraSystems	31.1.6	AUX Camera Settings	AUX Cam
 B	SWE1-RVC-125-01	leaf	HeadUnitCameraSystems	31.1.6	AUX Camera Settings	Name character limit (2 lines x 7 chars = 14 total)
 B	SWE1-RVC-125-02	leaf	HeadUnitCameraSystems	31.1.6	AUX Camera Settings	Truncate at character limit per Core Truncation rules
 B	SWE1-RVC-125-03	leaf	HeadUnitCameraSystems	31.1.6	AUX Camera Settings	Do not truncate when full word fits
-B	SWE1-RVC-126	leaf	HeadUnitCameraSystems	33.1.1	Wireless Camera Setup	"Auto-Enable and Start Pairing on ""Add Camera"" (No Projection)"
-B	SWE1-RVC-127	umbrella	HeadUnitCameraSystems	33.1.2	Wireless Camera Setup	Add-Camera Flow with Projection Active (Umbrella)
-B	SWE1-RVC-127-01	leaf	HeadUnitCameraSystems	33.1.2	Wireless Camera Setup	Display confirmation popup on Add camera
-B	SWE1-RVC-127-02	leaf	HeadUnitCameraSystems	33.1.2	Wireless Camera Setup	YES: disconnect projection, enable, start pairing
-B	SWE1-RVC-127-03	leaf	HeadUnitCameraSystems	33.1.2	Wireless Camera Setup	NO: maintain projection, stop pairing
-B	SWE1-RVC-128	leaf	HeadUnitCameraSystems	33.2.1	Wireless Camera Setup	Add Camera Function Locked Out While Vehicle in Drive
+B	SWE1-RVC-126	leaf	HeadUnitCameraSystems	33.1.1	Wireless Camera Pairing	"Auto-Enable and Start Pairing on ""Add Camera"" (No Projection)"
+B	SWE1-RVC-127	umbrella	HeadUnitCameraSystems	33.1.2	Wireless Camera Pairing	Add-Camera Flow with Projection Active (Umbrella)
+B	SWE1-RVC-127-01	leaf	HeadUnitCameraSystems	33.1.2	Wireless Camera Pairing	Display confirmation popup on Add camera
+B	SWE1-RVC-127-02	leaf	HeadUnitCameraSystems	33.1.2	Wireless Camera Pairing	YES: disconnect projection, enable, start pairing
+B	SWE1-RVC-127-03	leaf	HeadUnitCameraSystems	33.1.2	Wireless Camera Pairing	NO: maintain projection, stop pairing
+B	SWE1-RVC-128	leaf	HeadUnitCameraSystems	33.2.1	Wireless Camera Pairing	"""Add Camera"" Function Locked Out While Vehicle in Drive"
 B	SWE1-RVC-129	leaf	HeadUnitCameraSystems	34.1.1.1	AUX Camera Access	Second-Surface AUX Cam Controls in Back-Up / CHMSL (Variant 2)
-B	SWE1-RVC-130	leaf	HeadUnitCameraSystems	34.1.2.1	AUX Camera Access	AUX Cameras Icons in Camera Views (Variant 2)
+B	SWE1-RVC-130	leaf	HeadUnitCameraSystems	34.1.2.1	AUX Camera Access	"""AUX Cameras"" Icons in Camera Views (Variant 2)"
 B	SWE1-RVC-131	leaf	HeadUnitCameraSystems	34.1.3.1	AUX Camera Access	AUX Cam is Always a Selectable Option (Variant)
 B	SWE1-RVC-132	leaf	HeadUnitCameraSystems	34.1.4.1	AUX Camera Access	"Personalization Settings Grouped under ""Cameras"" (Variant)"
 B	SWE1-RVC-133	leaf	HeadUnitCameraSystems	34.1.5.1	AUX Camera Access	RearView Camera / Cargo Camera / Apps Page Set
-B	SWE1-RVC-134	leaf	HeadUnitCameraSystems	34.3.2	AUX Camera Access	X Absent When Camera Screen Accessed via Reverse Shift
+B	SWE1-RVC-134	leaf	HeadUnitCameraSystems	34.3.2	AUX Camera Access	"""X"" Absent When Camera Screen Accessed via Reverse Shift"
 B	SWE1-RVC-135	leaf	HeadUnitCameraSystems	34.4.1	AUX Camera Access	CHMSL-Only Camera Configuration Does Not Exist
-B	SWE1-RVC-136	leaf	HeadUnitCameraSystems	34.4.2	AUX Camera Access	X Absent When Camera Screen Accessed via Reverse Shift (Variant)
+B	SWE1-RVC-136	leaf	HeadUnitCameraSystems	34.4.2	AUX Camera Access	"""X"" Absent When Camera Screen Accessed via Reverse Shift (Variant)"
 B	SWE1-RVC-137	leaf	HeadUnitCameraSystems	34.4.3	AUX Camera Access	AUX Cam Button Always Lands on AUX 1 Screen
 B	SWE1-RVC-138	leaf	HeadUnitCameraSystems	34.6	AUX Camera Access	AUX Camera Access from Back-Up and Cargo Cam
 B	SWE1-RVC-139	leaf	HeadUnitCameraSystems	34.6.1	AUX Camera Access	CHMSL-Only Camera Configuration Does Not Exist (Variant)
-B	SWE1-RVC-140	leaf	HeadUnitCameraSystems	34.6.2	AUX Camera Access	X Absent When Accessed via Reverse Shift (Cargo Variant)
+B	SWE1-RVC-140	leaf	HeadUnitCameraSystems	34.6.2	AUX Camera Access	"""X"" Absent When Accessed via Reverse Shift (Cargo Variant)"
 B	SWE1-RVC-141	leaf	HeadUnitCameraSystems	34.6.3	AUX Camera Access	Same AUX Behavior When Accessing from Cargo Cam
 B	SWE1-RVC-142	leaf	HeadUnitCameraSystems	34.7.1	AUX Camera Access	DT/HDCC + SVC + Camera App: No AUX via Left-Corner Views
-B	SWE1-RVC-143	umbrella	HeadUnitCameraSystems	34.7.2	AUX Camera Access	X Availability in Reverse and Camera Persistence (Umbrella)
-B	SWE1-RVC-143-01	leaf	HeadUnitCameraSystems	34.7.2	AUX Camera Access	X not available in REVERSE except as back button
+B	SWE1-RVC-143	umbrella	HeadUnitCameraSystems	34.7.2	AUX Camera Access	"""X"" Availability in Reverse and Camera Persistence (Umbrella)"
+B	SWE1-RVC-143-01	leaf	HeadUnitCameraSystems	34.7.2	AUX Camera Access	"""X"" not available in REVERSE except as back button"
 B	SWE1-RVC-143-02	leaf	HeadUnitCameraSystems	34.7.2	AUX Camera Access	Camera image always up while in REVERSE
 B	SWE1-RVC-144	leaf	HeadUnitCameraSystems	34.8.1	AUX Camera Access	AUX Button Always Lands on AUX 1 Screen (Variant)
-B	SWE1-RVC-145	leaf	HeadUnitCameraSystems	34.8.2	AUX Camera Access	Camera System Unavailable Screen When AUX Not Connected (Variant)
+B	SWE1-RVC-145	leaf	HeadUnitCameraSystems	34.8.2	AUX Camera Access	"""Camera System Unavailable"" Screen When AUX Not Connected (Variant)"
 B	SWE1-RVC-146	leaf	HeadUnitCameraSystems	34.8.3	AUX Camera Access	AUX 2 Selectable When AUX 1 Missing but AUX 2 Connected
 B	SWE1-RVC-147	leaf	HeadUnitCameraSystems	34.8.4	AUX Camera Access	Same AUX Behavior When Accessing from Cargo Cam (Variant)
 B	SWE1-RVC-148	leaf	HeadUnitCameraSystems	34.9.1	AUX Camera Settings	Individual AUX Cam Settings Popup via Settings Line Tap (Variant 3)
