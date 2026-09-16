@@ -1,0 +1,231 @@
+swe_id	kind	book	section	hmi_source_id	title
+SWE1-RVC-001	leaf	RVC+PAM	6.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_6.2	PAM Feature Configuration Driven by Vehicle Proxy
+SWE1-RVC-002	umbrella	RVC+PAM	6.2.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_6.2.1	Non-Exclusive PAM Features with Additive Visualization Logic
+SWE1-RVC-002-01	leaf	RVC+PAM	6.2.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_6.2.1	PAM features are not mutually exclusive
+SWE1-RVC-002-02	leaf	RVC+PAM	6.2.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_6.2.1	Adding a new PAM feature adds its visualization logic
+SWE1-RVC-003	leaf	RVC+PAM	6.2.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_6.2.2	Supported PAM Feature Set (Rear ParkSense / Front+Rear ParkSense / SDW)
+SWE1-RVC-004	leaf	RVC+PAM	6.3	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_6.3	PAM Flashing Lines Frequency Aligned to IPC
+SWE1-RVC-005	leaf	RVC+PAM	6.4	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_6.4	ParkSense Indication Consistency between HU and Cluster
+SWE1-RVC-006	leaf	RVC+PAM	6.5	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_6.5	PAM Audible Indications Provided via CAN per ParkSense Logic
+SWE1-RVC-007	umbrella	RVC+PAM	7.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.1	Camera Display Priority and Thermal Wake-Up Behavior
+SWE1-RVC-007-01	leaf	RVC+PAM	7.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.1	Camera display has higher priority than any other screen
+SWE1-RVC-007-02	leaf	RVC+PAM	7.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.1	Wake head unit from thermal-protection sleep to show camera
+SWE1-RVC-008	leaf	RVC+PAM	7.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2	RVC+PAM Layout Activation Trigger Conditions
+SWE1-RVC-008-01	leaf	RVC+PAM	7.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2	Activate RVC+PAM layout when reverse is engaged
+SWE1-RVC-008-02	leaf	RVC+PAM	7.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2	Keep RVC+PAM layout active during reverse-to-drive delay condition
+SWE1-RVC-008-03	leaf	RVC+PAM	7.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2	Display camera feed immediately after shift into reverse
+SWE1-RVC-008-04	leaf	RVC+PAM	7.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2	Keep camera feed displayed until reverse is exited
+SWE1-RVC-008-05	leaf	RVC+PAM	7.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2	Allow RVC+PAM layout launch from Controls screen button
+SWE1-RVC-008-06	leaf	RVC+PAM	7.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2	Allow RVC+PAM layout launch from camera shortcut icon
+SWE1-RVC-015	leaf	RVC+PAM	7.3	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.3	RVC-Only Layout Activation Trigger Conditions
+SWE1-RVC-016	leaf	RVC+PAM	7.3.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.3.1	Fallback to RVC-Only Layout when PAM Capability Absent
+SWE1-RVC-017	leaf	RVC+PAM	7.3.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.3.2	"Fallback to RVC-Only Layout on 7"" and 8.4"" Head Units"
+SWE1-RVC-018	leaf	RVC+PAM	7.3.3	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.3.3	Vehicle Controls in RVC-Only Layout for 10.1 Portrait HU
+SWE1-RVC-019	umbrella	RVC+PAM	7.4	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.4	Camera Activation Behavior and View Control (Umbrella)
+SWE1-RVC-019-01	leaf	RVC+PAM	7.4	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.4	Initial default view on activation
+SWE1-RVC-019-02	leaf	RVC+PAM	7.4	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.4	Image display while under speed threshold
+SWE1-RVC-019-03	leaf	RVC+PAM	7.4	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.4	Soft button greyed when over speed threshold
+SWE1-RVC-019-04	leaf	RVC+PAM	7.4	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.4	Manual button press shows RVC + sensors
+SWE1-RVC-020	leaf	RVC+PAM	7.5	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.5	RVC+PAM Layout Dismissal Trigger Conditions
+SWE1-RVC-021	leaf	RVC+PAM	7.5.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.5.1	Dismissal When Speed Threshold or RVC Timeout Reached (Drive)
+SWE1-RVC-022	leaf	RVC+PAM	7.5.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.5.2	Dismissal When Gear Leaves Reverse and RVC Timeout Expires
+SWE1-RVC-023	umbrella	RVC+PAM	7.5.3	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.5.3	Camera Display Behavior After Shifting Out of Reverse (Umbrella)
+SWE1-RVC-023-01	leaf	RVC+PAM	7.5.3	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.5.3	10-second delay timer after exiting REVERSE
+SWE1-RVC-023-02	leaf	RVC+PAM	7.5.3	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.5.3	Auto-dismiss at 8 mph speed threshold
+SWE1-RVC-023-03	leaf	RVC+PAM	7.5.3	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.5.3	"Manual dismiss via ""X"" soft control (PU0361)"
+SWE1-RVC-024	umbrella	RVC+PAM	8.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.1	X Exit Button Placement and Behavior in Non-Reverse Gear
+SWE1-RVC-024-01	leaf	RVC+PAM	8.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.1	X exit button placement in non-REVERSE
+SWE1-RVC-024-02	leaf	RVC+PAM	8.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.1	X exit button reverts to last known screen
+SWE1-RVC-025	umbrella	RVC+PAM	8.1.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.1.1	"RVC Feed Persistence and ""X"" Unavailability in Reverse"
+SWE1-RVC-025-01	leaf	RVC+PAM	8.1.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.1.1	RVC feed remains on while vehicle is in REVERSE
+SWE1-RVC-025-02	leaf	RVC+PAM	8.1.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.1.1	X button unavailable while vehicle is in REVERSE
+SWE1-RVC-026	leaf	RVC+PAM	8.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.2	Check Entire Surroundings Banner Display Duration
+SWE1-RVC-027	leaf	RVC+PAM	8.3	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.3	Banner Edge-Fade to Avoid Covering Buttons
+SWE1-RVC-028	leaf	RVC+PAM	8.3.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.3.1	Banner Fade Behavior Applied to All Camera Messages
+SWE1-RVC-029	leaf	RVC+PAM	8.3.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.3.2	Return to Last Known HU State on RVC Turn-Off
+SWE1-RVC-030	leaf	RVC+PAM	8.3.3	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.3.3	"No Camera Delay When ""X"" Cannot Be Shown in Drive"
+SWE1-RVC-031	umbrella	RVC+PAM	8.4	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.4	Camera-Overlay Visual Specification (Color and Transparency)
+SWE1-RVC-031-01	leaf	RVC+PAM	8.4	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.4	X button and banner color/contrast
+SWE1-RVC-031-02	leaf	RVC+PAM	8.4	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.4	Overlay transparency at 60% (+/-5%)
+SWE1-RVC-032	leaf	RVC+PAM	8.4.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.4.1	Overlay Execution Only When No Other Layout Fits
+SWE1-RVC-033	leaf	RVC+PAM	8.6	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.6	RVC Display While Radio is Off
+SWE1-RVC-034	leaf	RVC+PAM	8.7	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.7	No Camera Display in Accessory Ignition Mode
+SWE1-RVC-035	leaf	RVC+PAM	8.8	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.8	PAM Graphic Sourced from PDO Graphical Releases
+SWE1-RVC-036	leaf	RVC+PAM	9.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_9.2	Error-Banner Sequence for Camera Diagnostic Events
+SWE1-RVC-037	leaf	RVC+PAM	9.2.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_9.2.1	"Display ""Camera System Unavailable"" for Camera Feed Faults"
+SWE1-RVC-038	leaf	RVC+PAM	9.2.2	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_9.2.2	"Display ""Camera System Unavailable"" for Blue-Screen Conditions"
+SWE1-RVC-039	leaf	RVC+PAM	9.2.3	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_9.2.3	"Display ""Camera Out of Position"" for Camera Misalignment Events"
+SWE1-RVC-040	leaf	RVC+PAM	11.1	SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_11.1	PAM Visualization Adapts to Vehicle Proxy Configuration
+SWE1-RVC-041	leaf	HeadUnitCameraSystems	6.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.1.2	"Camera Delay Option Disabled When ""X"" Cannot Be Shown"
+SWE1-RVC-042	leaf	HeadUnitCameraSystems	6.1.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.1.3	Camera Feed Unavailable in OFF and ACC Ignition States
+SWE1-RVC-043	leaf	HeadUnitCameraSystems	6.1.5	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.1.5	RVC is Non-Persistent When Enhanced Camera App is Equipped
+SWE1-RVC-044	leaf	HeadUnitCameraSystems	6.1.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.1.6	RVC Follows General Camera Activation/Deactivation Strategy
+SWE1-RVC-045	leaf	HeadUnitCameraSystems	6.2.2.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.2.2.1	Rear View Camera Delay Setting (Default OFF)
+SWE1-RVC-046	leaf	HeadUnitCameraSystems	6.2.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.2.2.2	Rear View Camera Active Guidelines Setting (Default ON)
+SWE1-RVC-047	umbrella	HeadUnitCameraSystems	6.2.2.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.2.2.3	Rear View Camera Fixed Guidelines Setting and Mutual Exclusivity
+SWE1-RVC-047-01	leaf	HeadUnitCameraSystems	6.2.2.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.2.2.3	Fixed Guidelines on/off toggle with default OFF
+SWE1-RVC-047-02	leaf	HeadUnitCameraSystems	6.2.2.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.2.2.3	Mutual exclusivity with Active Guidelines
+SWE1-RVC-048	umbrella	HeadUnitCameraSystems	6.5.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.5.1	Manual RVC Activation Entry Points (Controls / Apps Drawer / Camera App)
+SWE1-RVC-048-01	leaf	HeadUnitCameraSystems	6.5.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.5.1	Activate RVC from controls page
+SWE1-RVC-048-02	leaf	HeadUnitCameraSystems	6.5.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.5.1	Activate RVC from apps drawer
+SWE1-RVC-048-03	leaf	HeadUnitCameraSystems	6.5.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.5.1	Activate RVC from camera app
+SWE1-RVC-049	leaf	HeadUnitCameraSystems	6.5.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.5.2	RVC Soft Control in View Corner for TRG / CHMSL / FFCTL Configurations
+SWE1-RVC-050	leaf	HeadUnitCameraSystems	6.5.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.5.3	RVC Not Accessible on Controls Page When Camera App is Present
+SWE1-RVC-051	umbrella	HeadUnitCameraSystems	6.7.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.7.1	Enhanced Camera App Rear View Access and Controls (Umbrella)
+SWE1-RVC-051-01	leaf	HeadUnitCameraSystems	6.7.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.7.1	Access rear view via Controls page
+SWE1-RVC-051-02	leaf	HeadUnitCameraSystems	6.7.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.7.1	Access rear view via Apps Drawer
+SWE1-RVC-051-03	leaf	HeadUnitCameraSystems	6.7.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.7.1	Display SVC bar in rear view
+SWE1-RVC-051-04	leaf	HeadUnitCameraSystems	6.7.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.7.1	Limit X exit control to P/N/D
+SWE1-RVC-052	leaf	HeadUnitCameraSystems	6.10.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_6.10.1	Camera View Soft Controls for Equipped Camera Features
+SWE1-RVC-053	leaf	HeadUnitCameraSystems	27.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.1.1	Wired/Wireless AUX Cameras are Non-Persistent with Enhanced Camera App
+SWE1-RVC-054	leaf	HeadUnitCameraSystems	27.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.1.2	AUX Camera Features Follow General Activation/Deactivation Strategy
+SWE1-RVC-055	leaf	HeadUnitCameraSystems	27.1.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.1.3	Selected View Soft Control is Highlighted
+SWE1-RVC-056	leaf	HeadUnitCameraSystems	27.1.4	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.1.4	Camera Feature Follows Core HU Lockout Conditions
+SWE1-RVC-057	leaf	HeadUnitCameraSystems	27.1.5	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.1.5	Wireless AUX Limited to Four MOPAR Cameras via WiFi
+SWE1-RVC-058	leaf	HeadUnitCameraSystems	27.1.5.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.1.5.1	Wireless AUX Authentication via QR-Code Token
+SWE1-RVC-059	leaf	HeadUnitCameraSystems	27.2.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.2.1.1	Second-Surface AUX Cam Controls within Back-Up and CHMSL Views
+SWE1-RVC-060	leaf	HeadUnitCameraSystems	27.2.2.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.2.2.1	AUX Cameras Icons Present in Camera Views
+SWE1-RVC-061	leaf	HeadUnitCameraSystems	27.2.3.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.2.3.1	Wired AUX Camera is Always a Selectable Option
+SWE1-RVC-062	leaf	HeadUnitCameraSystems	27.2.3.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.2.3.2	"Wireless AUX ""AUX Cameras"" Button Greyed When Unavailable"
+SWE1-RVC-063	leaf	HeadUnitCameraSystems	27.2.4.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.2.4.1	"Camera Personalization Settings Grouped under ""Cameras"" Line"
+SWE1-RVC-064	leaf	HeadUnitCameraSystems	27.2.5.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.2.5.1	HMI Behavior Pattern V-3 for Push Button Control
+SWE1-RVC-065	leaf	HeadUnitCameraSystems	27.2.6.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.2.6.1	Equipped Camera Feature Set (RVC / CHMSL / TRG / FFCTL / SVC)
+SWE1-RVC-066	leaf	HeadUnitCameraSystems	27.2.6.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.2.6.2	Camera Access via Apps Drawer
+SWE1-RVC-067	leaf	HeadUnitCameraSystems	27.2.6.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.2.6.3	Camera Access via Camera App Home Page
+SWE1-RVC-068	leaf	HeadUnitCameraSystems	27.2.6.4	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.2.6.4	Selected View Soft Control Highlight (Second Surface)
+SWE1-RVC-069	leaf	HeadUnitCameraSystems	27.3.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.3.2	First Surface Has No Additional Requirements
+SWE1-RVC-070	leaf	HeadUnitCameraSystems	27.3.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.3.3	Camera Pop-Up Messages per R1 HMI Pop-Up List
+SWE1-RVC-071	leaf	HeadUnitCameraSystems	27.3.4.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.3.4.1	Camera Connection Process Lockout when Vehicle in Motion
+SWE1-RVC-072	leaf	HeadUnitCameraSystems	27.3.5.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.3.5.1	Wireless Camera Authentication via QR-Code WiFi Credentials
+SWE1-RVC-073	leaf	HeadUnitCameraSystems	27.4.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.4.1	Wireless Cameras Setting Toggle to Enable
+SWE1-RVC-074	leaf	HeadUnitCameraSystems	27.4.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.4.2	Wireless Cameras Toggle Popup When Projection Session Active
+SWE1-RVC-075	leaf	HeadUnitCameraSystems	27.4.2.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.4.2.1	Wireless Toggle YES Disconnects Projection and Enables Wireless
+SWE1-RVC-076	leaf	HeadUnitCameraSystems	27.4.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.4.2.2	Wireless Toggle NO Maintains Projection and Keeps Wireless Disabled
+SWE1-RVC-077	leaf	HeadUnitCameraSystems	27.4.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.4.3	Wireless Toggle Activates Silently When No Projection Active
+SWE1-RVC-078	leaf	HeadUnitCameraSystems	27.4.4	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.4.4	Enable Wireless Cameras Setting Updates Dynamically
+SWE1-RVC-079	leaf	HeadUnitCameraSystems	27.4.5	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.4.5	Projection Plug-In Popup Disables Wireless Cameras
+SWE1-RVC-080	leaf	HeadUnitCameraSystems	27.5.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.5.1	Connecting Message When Wireless AUX Cam Wakes from Sleep
+SWE1-RVC-081	leaf	HeadUnitCameraSystems	27.5.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.5.2	Wireless Setting Auto-Enables on AUX Selection (No Projection)
+SWE1-RVC-082	umbrella	HeadUnitCameraSystems	27.6.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.6.1	Wireless AUX Selection Popup with Projection Active (Setting OFF)
+SWE1-RVC-082-01	leaf	HeadUnitCameraSystems	27.6.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.6.1	Display confirmation popup on selection
+SWE1-RVC-082-02	leaf	HeadUnitCameraSystems	27.6.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.6.1	YES auto-enables the setting
+SWE1-RVC-083	leaf	HeadUnitCameraSystems	27.6.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.6.2	Connecting Message for Sleeping Wireless AUX Camera
+SWE1-RVC-084	leaf	HeadUnitCameraSystems	27.7.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.7.1	Wired and Wireless AUX Access via Controls Page and Apps Drawer
+SWE1-RVC-085	leaf	HeadUnitCameraSystems	27.7.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.7.2	AUX Soft Controls Not on Controls Page When Camera App Present
+SWE1-RVC-086	leaf	HeadUnitCameraSystems	27.7.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.7.3	Cross-Reference: Wireless Cameras Connection Pages
+SWE1-RVC-087	leaf	HeadUnitCameraSystems	27.8.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.8.1	More Aux Button Opens Popup of Available AUX Cameras
+SWE1-RVC-088	leaf	HeadUnitCameraSystems	27.8.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.8.2	Selecting New View in Popup Switches to That View
+SWE1-RVC-089	leaf	HeadUnitCameraSystems	27.8.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.8.3	"Pressing ""More AUX"" Again Closes the Popup"
+SWE1-RVC-090	leaf	HeadUnitCameraSystems	27.8.4	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.8.4	Signal Strength and Battery Shown Below More AUX Button
+SWE1-RVC-091	leaf	HeadUnitCameraSystems	27.8.5	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_27.8.5	Cross-Reference: Wireless Cameras Connection Pages
+SWE1-RVC-092	leaf	HeadUnitCameraSystems	28.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.1	More Cams Button Provides Access to Camera App Popup
+SWE1-RVC-093	leaf	HeadUnitCameraSystems	28.2.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.2.1	Check Entire Surroundings Shown 5s on AUX Cam Access
+SWE1-RVC-094	leaf	HeadUnitCameraSystems	28.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.2.2	"AUX Access Does Not Reset ""Check Entire Surroundings"" Timer"
+SWE1-RVC-095	leaf	HeadUnitCameraSystems	28.2.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.2.3	WiFi Signal and Battery Shown After 5s for Wireless AUX
+SWE1-RVC-096	leaf	HeadUnitCameraSystems	28.2.4	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.2.4	X Returns to Previous Screen from AUX Camera
+SWE1-RVC-097	leaf	HeadUnitCameraSystems	28.3.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.3.1	Camera System Unavailable Screen When AUX Not Connected
+SWE1-RVC-098	umbrella	HeadUnitCameraSystems	28.3.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.3.2	Behavior When Wired AUX 1 Missing but Other Wired AUX Present
+SWE1-RVC-098-01	leaf	HeadUnitCameraSystems	28.3.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.3.2	"Display ""Camera system unavailable"" blue screen"
+SWE1-RVC-098-02	leaf	HeadUnitCameraSystems	28.3.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.3.2	Provide More AUX selection on the unavailable screen
+SWE1-RVC-099	leaf	HeadUnitCameraSystems	28.4.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.4.1	Greyed-Out Soft Controls When Wireless AUX Unavailable
+SWE1-RVC-100	leaf	HeadUnitCameraSystems	28.4.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.4.2	Popup When Activating Greyed-Out Wireless AUX Control
+SWE1-RVC-101	leaf	HeadUnitCameraSystems	28.6.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.6.1.1	More Cams Behavior in Reverse vs Drive/Neutral
+SWE1-RVC-102	leaf	HeadUnitCameraSystems	28.6.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.6.1.2	Cross-Reference: Wireless Cameras Connection Pages
+SWE1-RVC-103	umbrella	HeadUnitCameraSystems	28.7.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.1.1	Image Manipulation Gestures (Pan / Zoom)
+SWE1-RVC-103-01	leaf	HeadUnitCameraSystems	28.7.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.1.1	Pan via drag/swipe gesture
+SWE1-RVC-103-02	leaf	HeadUnitCameraSystems	28.7.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.1.1	Zoom via pinch gesture
+SWE1-RVC-104	umbrella	HeadUnitCameraSystems	28.7.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.1.2	Image Reset and Latching of Manipulated Settings
+SWE1-RVC-104-01	leaf	HeadUnitCameraSystems	28.7.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.1.2	Reset image to default state
+SWE1-RVC-104-02	leaf	HeadUnitCameraSystems	28.7.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.1.2	Manipulated settings latch across sessions
+SWE1-RVC-105	umbrella	HeadUnitCameraSystems	28.7.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.2	Edit Image Soft Controls (Rotate 90 / Mirror / Reset)
+SWE1-RVC-105-01	leaf	HeadUnitCameraSystems	28.7.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.2	"Access ""Rotate 90"" via Edit image"
+SWE1-RVC-105-02	leaf	HeadUnitCameraSystems	28.7.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.2	"Access ""Mirror Image"" via Edit image"
+SWE1-RVC-105-03	leaf	HeadUnitCameraSystems	28.7.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.2	"Access ""Reset"" via Edit image"
+SWE1-RVC-106	umbrella	HeadUnitCameraSystems	28.7.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.3	AUX View Extension Controls (Umbrella)
+SWE1-RVC-106-01	leaf	HeadUnitCameraSystems	28.7.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.3	Extend view by 10s via AUX soft control
+SWE1-RVC-106-02	leaf	HeadUnitCameraSystems	28.7.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.3	Extend view by 10s via Extend-View soft control
+SWE1-RVC-107	leaf	HeadUnitCameraSystems	28.7.4	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.7.4	Signal Strength and Battery on Wireless AUX Views
+SWE1-RVC-108	umbrella	HeadUnitCameraSystems	28.8.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.8.1	Wireless AUX View Editing and Cross-View Access (Umbrella)
+SWE1-RVC-108-01	leaf	HeadUnitCameraSystems	28.8.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.8.1	Access Edit image from AUX video feed
+SWE1-RVC-108-02	leaf	HeadUnitCameraSystems	28.8.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.8.1	Access other AUX views below camera feed
+SWE1-RVC-108-03	leaf	HeadUnitCameraSystems	28.8.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_28.8.1	Access other AUX views via More AUX button
+SWE1-RVC-109	leaf	HeadUnitCameraSystems	29.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.1.1	Individual AUX Cam Settings Popup via Settings Line Tap
+SWE1-RVC-110	umbrella	HeadUnitCameraSystems	29.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.1.2	Wireless AUX Cam Settings Popup Actions (Umbrella)
+SWE1-RVC-110-01	leaf	HeadUnitCameraSystems	29.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.1.2	Edit camera name from settings pop-up
+SWE1-RVC-110-02	leaf	HeadUnitCameraSystems	29.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.1.2	Add/Remove as favorite from settings pop-up
+SWE1-RVC-110-03	leaf	HeadUnitCameraSystems	29.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.1.2	Reset selected camera from settings pop-up
+SWE1-RVC-110-04	leaf	HeadUnitCameraSystems	29.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.1.2	Access AUX settings via pencil-icon shortcut
+SWE1-RVC-111	leaf	HeadUnitCameraSystems	29.2.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.2.1	Individual AUX Cam Settings Popup via Settings Line Tap (Variant)
+SWE1-RVC-112	umbrella	HeadUnitCameraSystems	29.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.2.2	AUX Cam Settings Popup Actions with Wireless Toggle (Umbrella)
+SWE1-RVC-112-01	leaf	HeadUnitCameraSystems	29.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.2.2	Enable wireless cameras toggle in pop-up
+SWE1-RVC-112-02	leaf	HeadUnitCameraSystems	29.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.2.2	Edit camera name in pop-up
+SWE1-RVC-112-03	leaf	HeadUnitCameraSystems	29.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.2.2	Add/Remove as favorite in pop-up
+SWE1-RVC-112-04	leaf	HeadUnitCameraSystems	29.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.2.2	Delete camera from system in pop-up
+SWE1-RVC-113	leaf	HeadUnitCameraSystems	29.2.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_29.2.3	Pencil-Icon Shortcut to AUX Settings on Camera App Page
+SWE1-RVC-114	umbrella	HeadUnitCameraSystems	30.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.1	Two Entry Paths to Mark AUX Cam as Favorite
+SWE1-RVC-114-01	leaf	HeadUnitCameraSystems	30.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.1	Mark favorite from AUX Cam settings menu
+SWE1-RVC-114-02	leaf	HeadUnitCameraSystems	30.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.1	Mark favorite via star icon on camera app page
+SWE1-RVC-115	leaf	HeadUnitCameraSystems	30.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.2	"Make-Favorite Flow: Press ""Make Favorite"" in Settings Menu"
+SWE1-RVC-116	leaf	HeadUnitCameraSystems	30.1.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.3	Make-Favorite Confirmation Popup with 5s Auto-Dismiss
+SWE1-RVC-117	leaf	HeadUnitCameraSystems	30.1.4	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.4	Remove as Favorite Button Toggle After Favorite Set
+SWE1-RVC-118	leaf	HeadUnitCameraSystems	30.1.5	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.5	Favorite Star Shown on Camera Line in Settings Menu
+SWE1-RVC-119	umbrella	HeadUnitCameraSystems	30.1.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.6	Favorite Camera Homepage Indicators and Ordering (Umbrella)
+SWE1-RVC-119-01	leaf	HeadUnitCameraSystems	30.1.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.6	Show favorite star inside camera icon
+SWE1-RVC-119-02	leaf	HeadUnitCameraSystems	30.1.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.6	Move favorite camera to favorite filter
+SWE1-RVC-119-03	leaf	HeadUnitCameraSystems	30.1.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_30.1.6	Label remaining cameras sequentially
+SWE1-RVC-120	leaf	HeadUnitCameraSystems	31.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.1	"Edit-Name Flow: Press ""Edit Name"" in Settings Menu"
+SWE1-RVC-121	umbrella	HeadUnitCameraSystems	31.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.2	Camera Name Editing Keyboard Flow (Umbrella)
+SWE1-RVC-121-01	leaf	HeadUnitCameraSystems	31.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.2	Display full QWERTY keyboard popup
+SWE1-RVC-121-02	leaf	HeadUnitCameraSystems	31.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.2	Typing or backspace overwrites default name
+SWE1-RVC-121-03	leaf	HeadUnitCameraSystems	31.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.2	OK confirms camera name change
+SWE1-RVC-122	leaf	HeadUnitCameraSystems	31.1.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.3	Settings Menu Title Updates After Name Change
+SWE1-RVC-123	leaf	HeadUnitCameraSystems	31.1.4	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.4	New Camera Name Reflected in Settings Line Item
+SWE1-RVC-124	leaf	HeadUnitCameraSystems	31.1.5	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.5	New Camera Name Reflected on Camera App Homepage Soft Button
+SWE1-RVC-125	umbrella	HeadUnitCameraSystems	31.1.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.6	AUX Camera Name Character Limit and Truncation Rules
+SWE1-RVC-125-01	leaf	HeadUnitCameraSystems	31.1.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.6	Name character limit (2 lines x 7 chars = 14 total)
+SWE1-RVC-125-02	leaf	HeadUnitCameraSystems	31.1.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.6	Truncate at character limit per Core Truncation rules
+SWE1-RVC-125-03	leaf	HeadUnitCameraSystems	31.1.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_31.1.6	Do not truncate when full word fits
+SWE1-RVC-126	leaf	HeadUnitCameraSystems	33.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_33.1.1	"Auto-Enable and Start Pairing on ""Add Camera"" (No Projection)"
+SWE1-RVC-127	umbrella	HeadUnitCameraSystems	33.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_33.1.2	Add-Camera Flow with Projection Active (Umbrella)
+SWE1-RVC-127-01	leaf	HeadUnitCameraSystems	33.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_33.1.2	Display confirmation popup on Add camera
+SWE1-RVC-127-02	leaf	HeadUnitCameraSystems	33.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_33.1.2	YES: disconnect projection, enable, start pairing
+SWE1-RVC-127-03	leaf	HeadUnitCameraSystems	33.1.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_33.1.2	NO: maintain projection, stop pairing
+SWE1-RVC-128	leaf	HeadUnitCameraSystems	33.2.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_33.2.1	Add Camera Function Locked Out While Vehicle in Drive
+SWE1-RVC-129	leaf	HeadUnitCameraSystems	34.1.1.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.1.1.1	Second-Surface AUX Cam Controls in Back-Up / CHMSL (Variant 2)
+SWE1-RVC-130	leaf	HeadUnitCameraSystems	34.1.2.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.1.2.1	AUX Cameras Icons in Camera Views (Variant 2)
+SWE1-RVC-131	leaf	HeadUnitCameraSystems	34.1.3.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.1.3.1	AUX Cam is Always a Selectable Option (Variant)
+SWE1-RVC-132	leaf	HeadUnitCameraSystems	34.1.4.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.1.4.1	"Personalization Settings Grouped under ""Cameras"" (Variant)"
+SWE1-RVC-133	leaf	HeadUnitCameraSystems	34.1.5.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.1.5.1	RearView Camera / Cargo Camera / Apps Page Set
+SWE1-RVC-134	leaf	HeadUnitCameraSystems	34.3.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.3.2	X Absent When Camera Screen Accessed via Reverse Shift
+SWE1-RVC-135	leaf	HeadUnitCameraSystems	34.4.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.4.1	CHMSL-Only Camera Configuration Does Not Exist
+SWE1-RVC-136	leaf	HeadUnitCameraSystems	34.4.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.4.2	X Absent When Camera Screen Accessed via Reverse Shift (Variant)
+SWE1-RVC-137	leaf	HeadUnitCameraSystems	34.4.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.4.3	AUX Cam Button Always Lands on AUX 1 Screen
+SWE1-RVC-138	leaf	HeadUnitCameraSystems	34.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.6	AUX Camera Access from Back-Up and Cargo Cam
+SWE1-RVC-139	leaf	HeadUnitCameraSystems	34.6.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.6.1	CHMSL-Only Camera Configuration Does Not Exist (Variant)
+SWE1-RVC-140	leaf	HeadUnitCameraSystems	34.6.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.6.2	X Absent When Accessed via Reverse Shift (Cargo Variant)
+SWE1-RVC-141	leaf	HeadUnitCameraSystems	34.6.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.6.3	Same AUX Behavior When Accessing from Cargo Cam
+SWE1-RVC-142	leaf	HeadUnitCameraSystems	34.7.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.7.1	DT/HDCC + SVC + Camera App: No AUX via Left-Corner Views
+SWE1-RVC-143	umbrella	HeadUnitCameraSystems	34.7.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.7.2	X Availability in Reverse and Camera Persistence (Umbrella)
+SWE1-RVC-143-01	leaf	HeadUnitCameraSystems	34.7.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.7.2	X not available in REVERSE except as back button
+SWE1-RVC-143-02	leaf	HeadUnitCameraSystems	34.7.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.7.2	Camera image always up while in REVERSE
+SWE1-RVC-144	leaf	HeadUnitCameraSystems	34.8.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.8.1	AUX Button Always Lands on AUX 1 Screen (Variant)
+SWE1-RVC-145	leaf	HeadUnitCameraSystems	34.8.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.8.2	Camera System Unavailable Screen When AUX Not Connected (Variant)
+SWE1-RVC-146	leaf	HeadUnitCameraSystems	34.8.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.8.3	AUX 2 Selectable When AUX 1 Missing but AUX 2 Connected
+SWE1-RVC-147	leaf	HeadUnitCameraSystems	34.8.4	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.8.4	Same AUX Behavior When Accessing from Cargo Cam (Variant)
+SWE1-RVC-148	leaf	HeadUnitCameraSystems	34.9.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.1	Individual AUX Cam Settings Popup via Settings Line Tap (Variant 3)
+SWE1-RVC-149	leaf	HeadUnitCameraSystems	34.9.2.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.2.1	Edit Name of Selected AUX Camera
+SWE1-RVC-150	umbrella	HeadUnitCameraSystems	34.9.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.2.2	Reset Camera Default-Name Restoration (Umbrella)
+SWE1-RVC-150-01	leaf	HeadUnitCameraSystems	34.9.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.2.2	Reset Camera restores default camera name
+SWE1-RVC-150-02	leaf	HeadUnitCameraSystems	34.9.2.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.2.2	Reset Camera restores default soft-control label
+SWE1-RVC-151	leaf	HeadUnitCameraSystems	34.9.4	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.4	"Edit-Favorite Flow: Press ""Edit Favorite"" in Settings Menu"
+SWE1-RVC-152	umbrella	HeadUnitCameraSystems	34.9.5	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.5	AUX Camera Name Character Limit and Truncation (Settings Flow)
+SWE1-RVC-152-01	leaf	HeadUnitCameraSystems	34.9.5	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.5	Name character limit (7 chars/line, 2 lines)
+SWE1-RVC-152-02	leaf	HeadUnitCameraSystems	34.9.5	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.5	Truncate at character limit per Core Truncation rules
+SWE1-RVC-152-03	leaf	HeadUnitCameraSystems	34.9.5	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.5	Do not truncate when full word fits
+SWE1-RVC-153	leaf	HeadUnitCameraSystems	34.9.6	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.6	QWERTY Keyboard for Editing Camera Name with OK Confirmation
+SWE1-RVC-154	leaf	HeadUnitCameraSystems	34.9.7	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.7	Settings Menu Title Updates After Name Change (Variant)
+SWE1-RVC-155	leaf	HeadUnitCameraSystems	34.9.8	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.8	New Camera Name Reflected in Settings Line Item (Variant)
+SWE1-RVC-156	leaf	HeadUnitCameraSystems	34.9.9	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.9.9	New Camera Name Reflected on Camera App Soft Button (Variant)
+SWE1-RVC-157	leaf	HeadUnitCameraSystems	34.10.1	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.10.1	User Can Access Connected AUX Cameras
+SWE1-RVC-158	leaf	HeadUnitCameraSystems	34.10.2	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.10.2	Tap AUX Soft Control to Display Camera View Full-Screen
+SWE1-RVC-159	leaf	HeadUnitCameraSystems	34.10.3	SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th, 2023)_34.10.3	DT/HDCC + SVC + Camera App: No Left-Corner AUX Access (Variant)

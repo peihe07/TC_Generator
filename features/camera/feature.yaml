@@ -1,0 +1,96 @@
+# feature.yaml — pipeline configuration for Camera
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals. Regenerate nothing by editing code.
+#
+# 本表之 `workbook.*` 為 R-G1 母本
+# （forms/FM-WI-FSM-036-A01 …_SWQT_20260817_ext.xlsx）第 9 列之實測值
+# （R-G48，2026-09-05 量測）。**接手 feature 仍須對其副本重測** ——
+# 母本實測不代表副本；副本之欄序得因 ext 而異。
+
+feature: "Camera"
+test_group: "Camera"          # A 本；B 本待裁（DECISIONS §6-2）
+
+# R-CAM1(a)：本 feature 出**兩本**工作簿（A 本 25 列、B 本 230 列），
+# 生成順序 A → B。下列 paths 為 A 本；B 本之對應項見 books.b。
+# 來源一律以 doc_id 引 sources/raw/（R-G66），feature 端不存副本。
+
+paths:
+  workbook: "inputs/<FW036 xlsx>"   # 未投遞 —— CAM-01 止於 Phase 0–1
+  a03_report: null                  # 見 books.a.a03_doc_id
+  sys1_export: null                 # 見 books.*.sys1_doc_ids
+  spec_pdf: null
+  popup_list: null
+
+books:
+  a:                                # Service 層，先寫
+    a03_doc_id: "camera_037_swra_v02"
+    rows: 25
+    leaves: 25
+    sys2_doc_ids:
+      - "sys2_cfts092_sysra_v01"
+      - "sys2_vf551_v2_sysra_v01"
+      - "sys2_vf551_v3_sysra_v01"
+      - "sys2_vf551_v33_sysra_v01"
+      - "sys2_vf551_v4_sysra_v01"
+      - "sys2_vf551_v42_sysra_v01"
+  b:                                # HMI 層，後寫
+    a03_doc_id: "camera_037_rvc_hmi_v0_1"
+    rows: 230
+    leaves: 203                     # 另 27 umbrella
+    sys1_doc_ids:
+      - "sys1_hmi_headunitcamerasystems_v7"
+      # RVC+PAM 同名異體，用哪本待裁（DECISIONS §6-4）；
+      # 對映率 100% 者為 cache 本，REF 本為 98.70%。
+      - "sys1_hmi_rvc_pam_r1_low_sr24_1a_cache"
+
+spec_mode: "A"        # intake.py 判定：SYS1 spec export present (no PDF)
+spec_reference_template: "<Spec Filename>_{outline}"
+
+workbook:
+  # R-G48：以下為母本第 9 列實測。2026-09-05 前之模板值有四處為誤 ——
+  # sheet `Test Case Specification&Result`（該名不在 R-G1 母本內；惟為另一真實變體，
+  # 全 repo 145 本 FW036 工作簿實測 24 本帶該名，含 features/power 之在效輸入 ——
+  # docs/reports/tc_sheetname_census_20260905.tsv，A-GC10；接手 feature 必實測其副本之 sheetnames）、design_method `Q`
+  # （實為 R；Q 為 Estimated Test Time）、functional_safety `R`（實為 S）、
+  # author `Z`（實為 AA；Z 為車型欄 Fastack (376)）。
+  sheet: "Test Case Specification 測試用例規範"
+  header_row: 9
+  # column letters, verified by recon header match — do not guess
+  columns:
+    req_id: "D"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    design_method: "R"
+    functional_safety: "S"
+    author: "AA"
+    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+
+done_region:
+  # detection: "author" (author-cell match) or "rows" (explicit ranges)
+  detection: "author"
+  author_value: "Arif"
+  # invariant: "content_hash" (interleaved-safe) or "positional"
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: false     # true only under BLANK per FO §2
+
+lint:
+  design_method_source: "dropdown_sheet"   # exact-string vocabulary
+  popup_ids: []                            # e.g. [PU0091, PU0942] — verbatim check
+  # R-G71：新 feature 一律啟用 X 與 P(v4)。呼叫 `lint036.py --profile camera`。
+  profile: "camera"
+  extra_rules:
+    # R-CAM2(c)：Vehicle Model 七欄 1/0 檢查。代號候選 Z（DECISIONS §6-6），
+    # **尚未實作於 lint036.py** —— 寫在此處不會自動生效。
+    - "vehicle_model_1_0"        # [PROPOSED] 未實作

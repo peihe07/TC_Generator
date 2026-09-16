@@ -1,0 +1,69 @@
+a_swe_id	a_title	b_swe_id	b_exists	b_kind	b_source_book	b_section	b_title	pairing_basis	status
+SWE-CAM-015	Camera Auto Mode Arbitration Logic	SWE1-RVC-008	Y	leaf	RVC+PAM	7.2	RVC+PAM Layout Activation Trigger Conditions	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-015	Camera Auto Mode Arbitration Logic	SWE1-RVC-019	Y	umbrella	RVC+PAM	7.4	Camera Activation Behavior and View Control (Umbrella)	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-015	Camera Auto Mode Arbitration Logic	SWE1-RVC-020	Y	leaf	RVC+PAM	7.5	RVC+PAM Layout Dismissal Trigger Conditions	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-015	Camera Auto Mode Arbitration Logic	SWE1-RVC-021	Y	leaf	RVC+PAM	7.5.1	Dismissal When Speed Threshold or RVC Timeout Reached (Drive)	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-015	Camera Auto Mode Arbitration Logic	SWE1-RVC-022	Y	leaf	RVC+PAM	7.5.2	Dismissal When Gear Leaves Reverse and RVC Timeout Expires	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-015	Camera Auto Mode Arbitration Logic	SWE1-RVC-023	Y	umbrella	RVC+PAM	7.5.3	Camera Display Behavior After Shifting Out of Reverse (Umbrella)	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-015	Camera Auto Mode Arbitration Logic	SWE1-RVC-045	Y	leaf	HeadUnitCameraSystems	6.2.2.1	Rear View Camera Delay Setting (Default OFF)	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-018	Display Exit Conditions and Speed Thresholds	SWE1-RVC-008	Y	leaf	RVC+PAM	7.2	RVC+PAM Layout Activation Trigger Conditions	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-018	Display Exit Conditions and Speed Thresholds	SWE1-RVC-019	Y	umbrella	RVC+PAM	7.4	Camera Activation Behavior and View Control (Umbrella)	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-018	Display Exit Conditions and Speed Thresholds	SWE1-RVC-020	Y	leaf	RVC+PAM	7.5	RVC+PAM Layout Dismissal Trigger Conditions	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-018	Display Exit Conditions and Speed Thresholds	SWE1-RVC-021	Y	leaf	RVC+PAM	7.5.1	Dismissal When Speed Threshold or RVC Timeout Reached (Drive)	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-018	Display Exit Conditions and Speed Thresholds	SWE1-RVC-022	Y	leaf	RVC+PAM	7.5.2	Dismissal When Gear Leaves Reverse and RVC Timeout Expires	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-018	Display Exit Conditions and Speed Thresholds	SWE1-RVC-023	Y	umbrella	RVC+PAM	7.5.3	Camera Display Behavior After Shifting Out of Reverse (Umbrella)	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-018	Display Exit Conditions and Speed Thresholds	SWE1-RVC-045	Y	leaf	HeadUnitCameraSystems	6.2.2.1	Rear View Camera Delay Setting (Default OFF)	reverse 進出與 Delay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-016	Camera Manual Mode Arbitration Logic	SWE1-RVC-048	Y	umbrella	HeadUnitCameraSystems	6.5.1	Manual RVC Activation Entry Points (Controls / Apps Drawer / Camera Ap	手動入口	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-016	Camera Manual Mode Arbitration Logic	SWE1-RVC-050	Y	leaf	HeadUnitCameraSystems	6.5.3	RVC Not Accessible on Controls Page When Camera App is Present	手動入口	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-016	Camera Manual Mode Arbitration Logic	SWE1-RVC-051	Y	umbrella	HeadUnitCameraSystems	6.7.1	Enhanced Camera App Rear View Access and Controls (Umbrella)	手動入口	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-021	Camera HMI Display and Interrupt Logic	SWE1-RVC-026	Y	leaf	RVC+PAM	8.2	"""Check Entire Surroundings"" Banner Display Duration"	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-021	Camera HMI Display and Interrupt Logic	SWE1-RVC-027	Y	leaf	RVC+PAM	8.3	Banner Edge-Fade to Avoid Covering Buttons	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-021	Camera HMI Display and Interrupt Logic	SWE1-RVC-028	Y	leaf	RVC+PAM	8.3.1	Banner Fade Behavior Applied to All Camera Messages	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-021	Camera HMI Display and Interrupt Logic	SWE1-RVC-029	Y	leaf	RVC+PAM	8.3.2	Return to Last Known HU State on RVC Turn-Off	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-021	Camera HMI Display and Interrupt Logic	SWE1-RVC-030	Y	leaf	RVC+PAM	8.3.3	"No Camera Delay When ""X"" Cannot Be Shown in Drive"	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-021	Camera HMI Display and Interrupt Logic	SWE1-RVC-031	Y	umbrella	RVC+PAM	8.4	Camera-Overlay Visual Specification (Color and Transparency)	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-023	Camera HMI and Overlays	SWE1-RVC-026	Y	leaf	RVC+PAM	8.2	"""Check Entire Surroundings"" Banner Display Duration"	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-023	Camera HMI and Overlays	SWE1-RVC-027	Y	leaf	RVC+PAM	8.3	Banner Edge-Fade to Avoid Covering Buttons	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-023	Camera HMI and Overlays	SWE1-RVC-028	Y	leaf	RVC+PAM	8.3.1	Banner Fade Behavior Applied to All Camera Messages	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-023	Camera HMI and Overlays	SWE1-RVC-029	Y	leaf	RVC+PAM	8.3.2	Return to Last Known HU State on RVC Turn-Off	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-023	Camera HMI and Overlays	SWE1-RVC-030	Y	leaf	RVC+PAM	8.3.3	"No Camera Delay When ""X"" Cannot Be Shown in Drive"	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-023	Camera HMI and Overlays	SWE1-RVC-031	Y	umbrella	RVC+PAM	8.4	Camera-Overlay Visual Specification (Color and Transparency)	banner／overlay	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-053	Y	leaf	HeadUnitCameraSystems	27.1.1	Wired/Wireless AUX Cameras are Non-Persistent with Enhanced Camera App	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-054	Y	leaf	HeadUnitCameraSystems	27.1.2	AUX Camera Features Follow General Activation/Deactivation Strategy	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-055	Y	leaf	HeadUnitCameraSystems	27.1.3	Selected View Soft Control is Highlighted	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-056	Y	leaf	HeadUnitCameraSystems	27.1.4	Camera Feature Follows Core HU Lockout Conditions	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-057	Y	leaf	HeadUnitCameraSystems	27.1.5	Wireless AUX Limited to Four MOPAR Cameras via WiFi	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-058	Y	leaf	HeadUnitCameraSystems	27.1.5.1	Wireless AUX Authentication via QR-Code Token	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-059	Y	leaf	HeadUnitCameraSystems	27.2.1.1	Second-Surface AUX Cam Controls within Back-Up and CHMSL Views	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-060	Y	leaf	HeadUnitCameraSystems	27.2.2.1	"""AUX Cameras"" Icons Present in Camera Views"	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-061	Y	leaf	HeadUnitCameraSystems	27.2.3.1	Wired AUX Camera is Always a Selectable Option	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-062	Y	leaf	HeadUnitCameraSystems	27.2.3.2	"Wireless AUX ""AUX Cameras"" Button Greyed When Unavailable"	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-084	Y	leaf	HeadUnitCameraSystems	27.7.1	Wired and Wireless AUX Access via Controls Page and Apps Drawer	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-085	Y	leaf	HeadUnitCameraSystems	27.7.2	AUX Soft Controls Not on Controls Page When Camera App Present	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-086	Y	leaf	HeadUnitCameraSystems	27.7.3	Cross-Reference: Wireless Cameras Connection Pages	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-087	Y	leaf	HeadUnitCameraSystems	27.8.1	"""More Aux"" Button Opens Popup of Available AUX Cameras"	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-088	Y	leaf	HeadUnitCameraSystems	27.8.2	Selecting New View in Popup Switches to That View	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-089	Y	leaf	HeadUnitCameraSystems	27.8.3	"Pressing ""More AUX"" Again Closes the Popup"	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-090	Y	leaf	HeadUnitCameraSystems	27.8.4	Signal Strength and Battery Shown Below More AUX Button	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-091	Y	leaf	HeadUnitCameraSystems	27.8.5	Cross-Reference: Wireless Cameras Connection Pages	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-092	Y	leaf	HeadUnitCameraSystems	28.1	"""More Cams"" Button Provides Access to Camera App Popup"	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-093	Y	leaf	HeadUnitCameraSystems	28.2.1	"""Check Entire Surroundings"" Shown 5s on AUX Cam Access"	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-094	Y	leaf	HeadUnitCameraSystems	28.2.2	"AUX Access Does Not Reset ""Check Entire Surroundings"" Timer"	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-095	Y	leaf	HeadUnitCameraSystems	28.2.3	WiFi Signal and Battery Shown After 5s for Wireless AUX	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-096	Y	leaf	HeadUnitCameraSystems	28.2.4	"""X"" Returns to Previous Screen from AUX Camera"	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-097	Y	leaf	HeadUnitCameraSystems	28.3.1	"""Camera System Unavailable"" Screen When AUX Not Connected"	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-098	Y	umbrella	HeadUnitCameraSystems	28.3.2	Behavior When Wired AUX 1 Missing but Other Wired AUX Present	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-099	Y	leaf	HeadUnitCameraSystems	28.4.1	Greyed-Out Soft Controls When Wireless AUX Unavailable	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-100	Y	leaf	HeadUnitCameraSystems	28.4.2	Popup When Activating Greyed-Out Wireless AUX Control	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-101	Y	leaf	HeadUnitCameraSystems	28.6.1.1	"""More Cams"" Behavior in Reverse vs Drive/Neutral"	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-102	Y	leaf	HeadUnitCameraSystems	28.6.1.2	Cross-Reference: Wireless Cameras Connection Pages	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-103	Y	umbrella	HeadUnitCameraSystems	28.7.1.1	Image Manipulation Gestures (Pan / Zoom)	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-104	Y	umbrella	HeadUnitCameraSystems	28.7.1.2	Image Reset and Latching of Manipulated Settings	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-105	Y	umbrella	HeadUnitCameraSystems	28.7.2	Edit Image Soft Controls (Rotate 90 / Mirror / Reset)	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-106	Y	umbrella	HeadUnitCameraSystems	28.7.3	AUX View Extension Controls (Umbrella)	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-107	Y	leaf	HeadUnitCameraSystems	28.7.4	Signal Strength and Battery on Wireless AUX Views	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-024	AUX Camera HMI Switching and Timers	SWE1-RVC-108	Y	umbrella	HeadUnitCameraSystems	28.8.1	Wireless AUX View Editing and Cross-View Access (Umbrella)	AUX	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-025	Bed Extender Interlock - Warning Overlay	SWE1-RVC-036	Y	leaf	RVC+PAM	9.2	Error-Banner Sequence for Camera Diagnostic Events	fault banner	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-025	Bed Extender Interlock - Warning Overlay	SWE1-RVC-037	Y	leaf	RVC+PAM	9.2.1	"Display ""Camera System Unavailable"" for Camera Feed Faults"	fault banner	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-025	Bed Extender Interlock - Warning Overlay	SWE1-RVC-038	Y	leaf	RVC+PAM	9.2.2	"Display ""Camera System Unavailable"" for Blue-Screen Conditions"	fault banner	[PROPOSED] 分析層預判，未經逐列語意核對
+SWE-CAM-025	Bed Extender Interlock - Warning Overlay	SWE1-RVC-039	Y	leaf	RVC+PAM	9.2.3	"Display ""Camera Out of Position"" for Camera Misalignment Events"	fault banner	[PROPOSED] 分析層預判，未經逐列語意核對

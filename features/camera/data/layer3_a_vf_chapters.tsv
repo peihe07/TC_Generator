@@ -1,0 +1,542 @@
+swe_id	source_requirement_id	book	vf_chapter	chapter_source	ee	category	source_description
+SWE-CAM-001	SYS-RA-CAM-062	CFTS092		—	All	Functional Requirement	By default the camera shall be off until it is activated by the softkey or the conditions defined in the VF.
+SWE-CAM-001	SYS-RA-CAM-075	CFTS092		—	All	Functional Requirement	By default the camera shall be off until it is activated by the softkey or the conditions defined in the VF.
+SWE-CAM-001	SYS-RA-CAM-082	CFTS092		—	All	Functional Requirement	When the user presses the X on the top right corner of the HU screen, the HU shall receive the internal signal RVC IMAGE
+SWE-CAM-001	SYS-RA-CAM-088	CFTS092		—	All	Functional Requirement	The default setting for the Surround View camera shall be OFF.
+SWE-CAM-001	SYS-RA-VF551_V2-528	VF551_V2	1.13.2.2.3	I欄	ATL-Hi	Functional Requirement	"· The Head Unit shall implement the warning text overlay that displays the text, ""Camera Not in Position"" for five secon"
+SWE-CAM-001	SYS-RA-VF551_V2-531	VF551_V2	1.13.2.2.4	I欄	ATL-Hi	Functional Requirement	· When Head Unit transitions from non camera display to camera display, the Head Unit shall implement the warning text o
+SWE-CAM-001	SYS-RA-VF551_V3-251	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	"· The Head Unit shall implement a warning text overlay that displays the text, ""Check Entire Surroundings"" for five seco"
+SWE-CAM-001	SYS-RA-VF551_V3-252	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	"· The Head Unit shall implement a warning text overlay that displays the text, ""Camera Not in Position"" for five seconds"
+SWE-CAM-001	SYS-RA-VF551_V33-213	VF551_V33	1.11.1.2	I欄		Functional requirement	"When LTM_OperationalModeSts.Info ==(equal)""Ignition_On"" AND the PROXI parameter Rear_View_Camera==(equal)""Present"", LTM"
+SWE-CAM-001	SYS-RA-VF551_V33-214	VF551_V33	1.11.1.2	I欄		Functional requirement	"Consider Rear_Camera_Enable.Info=""FALSE"" as the init default value."
+SWE-CAM-001	SYS-RA-VF551_V33-215	VF551_V33	1.11.1.2	I欄		Functional requirement	Consider RVC_ACTIVE=False as an init deafult value (this variable must be consider internal at this functionality).
+SWE-CAM-001	SYS-RA-VF551_V33-216	VF551_V33	1.11.1.2	I欄		Functional requirement	"When LTM_OperationalModeSts.Info ==(equal)""Ignition_On"", LTM starts to read the Rear_Camera_DelayOff.Req , Rear_Camera_G"
+SWE-CAM-001	SYS-RA-VF551_V33-217	VF551_V33	1.11.1.2	I欄		Functional requirement	"The LTM considers Rear_Camera_DelayOff.Req =(equal)""Off"", Rear_Camera_Grid_Lines_Off.Req=(equal)""On"" as a init default"
+SWE-CAM-001	SYS-RA-VF551_V33-219	VF551_V33	1.11.1.2	I欄		Functional requirement	"At next ""Ignition_On"" the LTM must keep the previously stored values for Rear_Camera_DelayOff.Req, Rear_Camera_Grid_Line"
+SWE-CAM-001	SYS-RA-VF551_V33-220	VF551_V33	1.11.1.2	I欄		Functional requirement	"When LTM_OperationalModeSts.Info pass into ""Ignition_Pre_Off: LTM stops to read the Rear_Camera.Data it stops to copy"
+SWE-CAM-001	SYS-RA-VF551_V33-221	VF551_V33	1.11.1.2	I欄		Functional requirement	"IF (LTM_OperationalModeSts.Info ==(equal)""Ignition_On"" OR LTM_OperationalModeSts.Info ==(equal)""Ignition_Engine_On"") AND"
+SWE-CAM-001	SYS-RA-VF551_V33-223	VF551_V33	1.11.1.2	I欄		Functional requirement	"IF (LTM_OperationalModeSts.Info ==(equal)""Ignition_On"" OR LTM_OperationalModeSts.Info ==(equal)""Ignition_Engine_On"") AND"
+SWE-CAM-001	SYS-RA-VF551_V33-226	VF551_V33	1.11.1.2	I欄		Functional requirement	"when the value of the STATUS_BH_BCM.RHatchSts =(equal)""Open"", LTM overlaps the related message on the RVC images (""Came"
+SWE-CAM-001	SYS-RA-VF551_V33-228	VF551_V33	1.11.1.2	I欄		Functional requirement	"when the value of the BED_EXTENDER.BedExtenderSts =(equal) ""Not_Active"" AND BED_EXTENDER.IncompleteBedExtenderSts =(equ"
+SWE-CAM-001	SYS-RA-VF551_V33-233	VF551_V33	1.11.1.2.1	I欄		Functional requirement	"LTM overlaps the related message on the RVC images ( ""Check surroundings for safety"" see LTM HMI specification document)"
+SWE-CAM-001	SYS-RA-VF551_V33-420	VF551_V33	1.13.2.1.1	I欄		Functional requirement	"During the transition LTM_OperationalModeSts.Info==""Ignition_Pre_Off"", LTM stores DTC and Rear_Camera_Enable.Req Rear_Ca"
+SWE-CAM-001	SYS-RA-VF551_V33-426	VF551_V33	1.13.2.1.3	I欄		Functional requirement	"If the Rear_Camera_Enable.Info=""TRUE"" then LTM displays the Rear_Camera.Data on Rear_Camera_Repetition.Data for T_INI"
+SWE-CAM-001	SYS-RA-VF551_V4-116	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	· When Head Unit transitions from non camera display to camera display, the Head Unit shall implement the warning text o
+SWE-CAM-001	SYS-RA-VF551_V42-217	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"When the signal LTM_OperationalModeSts.Info switches from ""Ignition_Off"" or ""Initialization"" to ""Ignition ON"" or ""Igniti"
+SWE-CAM-001	SYS-RA-VF551_V42-221	VF551_V42	1.11.1.2.0.1	I欄	ATL-Mi	Functional Requirement	"The user can select Rear_Camera_DelayOff.Req value equal to ""ON"" or ""OFF""."
+SWE-CAM-001	SYS-RA-VF551_V42-223	VF551_V42	1.11.1.2.0.1	I欄	ATL-Mi	Functional Requirement	"The user can select RVC_Swing_Doors_Check.Req value equal to ""ON"" or ""OFF""."
+SWE-CAM-001	SYS-RA-VF551_V42-230	VF551_V42	1.11.1.2.0.2.1	I欄	ATL-Mi	Functional Requirement	"implement a warning text overlay that displays the text ""Check Entire Surroundings"" for a time equal to T_INITDISPLAY si"
+SWE-CAM-001	SYS-RA-VF551_V42-258	VF551_V42	1.11.1.2.0.3.1	I欄	ATL-Mi	Functional Requirement	"implement a warning text overlay that displays the text ""Check Entire Surroundings"" for a time equal to T_INITDISPLAY si"
+SWE-CAM-002	SYS-RA-VF551_V2-446	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate and send vehicleUpdate_1.VC_VehLineRVCM = VEH_DJ when PROXI Vehicle_Line_Configuration = HD
+SWE-CAM-002	SYS-RA-VF551_V2-447	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate and send vehicleUpdate_1.VC_VehLineRVCM = VEH_D2 when PROXI Vehicle_Line_Configuration = H
+SWE-CAM-002	SYS-RA-VF551_V2-484	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall send vehicleUpdate_2.ZoomViewReq = Default when RVC display not active on the Radio: vehicleUpdate
+SWE-CAM-002	SYS-RA-VF551_V2-519	VF551_V2	1.13.2.1.10	I欄	ATL-Hi	Functional Requirement	When none of the camera views are displayed on the Radio, then the head unit shall transmit following signals: - TELEMAT
+SWE-CAM-002	SYS-RA-VF551_V2-520	VF551_V2	1.13.2.2	I欄	ATL-Hi	Functional Requirement	When Digital RVC configuration is True and display is active, the head unit shall transmit following signals: - TELEMAT
+SWE-CAM-002	SYS-RA-VF551_V2-536	VF551_V2	1.13.2.2.6	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall enable Digital Rear View Camera behavior when PROXI Rear_View_Camera = Present.
+SWE-CAM-002	SYS-RA-VF551_V2-538	VF551_V2	1.13.2.2.6	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall transmit the following signals on LVDS: - vehicleUpdate_2.VehicleSpeedVSOSig - vehicleUpdate_2.Lw
+SWE-CAM-002	SYS-RA-VF551_V2-555	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall enable Rear View Camera behavior when PROXI Rear_View_Camera = Present and Rear_View_Camera_Type =
+SWE-CAM-002	SYS-RA-VF551_V2-751	VF551_V2	1.10.3.2	I欄		Functional Requirement	· The Head Unit shall gate and send vehicleUpdate_1.VC_VehLineRVCM = VEH_DT when PROXI Vehicle_Line_Configuration = DT.
+SWE-CAM-002	SYS-RA-VF551_V3-212	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	· The Head Unit shall enable Digital Rear View Camera behavior when PROXI Rear_View_Camera = [Present].
+SWE-CAM-002	SYS-RA-VF551_V3-257	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	· The Head Unit shall transmit current display status using RADIO_B2.TGW_CAMERA_DISP_STAT. a) The head unit shall trans
+SWE-CAM-002	SYS-RA-VF551_V3-258	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	· The Head Unit shall transmit current display status using internal signal Rear_Camera_Enable.Info equal to FALSE when
+SWE-CAM-002	SYS-RA-VF551_V3-270	VF551_V3	1.10.2.4	I欄	ATL-Mi	Functional requirement	· The Head Unit shall send vehicleUpdate_2.ZoomViewReq = [Default] when RVC display not active on the Radio: vehicleUpda
+SWE-CAM-002	SYS-RA-VF551_V3-287	VF551_V3	1.10.3.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall gate PROXI Vehicle_Line_Configuration to LVDS vehicleUpdate_1.VC_VehLineRVCM. a) The Head Unit sh
+SWE-CAM-002	SYS-RA-VF551_V4-112	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	· The Head Unit shall enable Analog Rear View Camera behavior when PROXI Rear_View_Camera = Present and Rear_View_Camera
+SWE-CAM-002	SYS-RA-VF551_V4-125	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	When Analog RVC configuration is True and display is active, the head unit shall transmit following signals: - TELEMAT
+SWE-CAM-002	SYS-RA-VF551_V4-126	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	When none of the camera views are displayed on the Radio, then the head unit shall transmit following signals: - TELEMA
+SWE-CAM-002	SYS-RA-VF551_V42-209	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"All the following requirements shall be implemented only if the PROXI parameter Rear_View_Camera is set to ""Present""."
+SWE-CAM-002	SYS-RA-VF551_V42-322	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	Gear_Box_Type to vehicleUpdate_1.VC_Trans_Equipped
+SWE-CAM-002	SYS-RA-VF551_V42-327	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	The LTM shall gate and send the signal vehicleUpdate_1.VC_VehLineRVCM equal to [VEH_637MCA] when PROXI Vehicle_Line_Con
+SWE-CAM-002	SYS-RA-VF617_V5-170	(查無)					
+SWE-CAM-002	SYS-RA-VF617_V5-171	(查無)					
+SWE-CAM-002	SYS-RA-VF617_V5-245	(查無)					
+SWE-CAM-002	SYS-RA-VF617_V5-246	(查無)					
+SWE-CAM-002	SYS-RA-VF617_V5-247	(查無)					
+SWE-CAM-002	SYS-RA-VF617_V5-248	(查無)					
+SWE-CAM-002	SYS-RA-VF617_V5-269	(查無)					
+SWE-CAM-003	SYS-RA-CAM-069	CFTS092		—	All	Functional Requirement	When the user presses the X on the top right corner of the HU screen, the HU shall receive the internal signal CHMC IMAG
+SWE-CAM-003	SYS-RA-CAM-086	CFTS092		—	All	Functional Requirement	The HU shall follow this signal with an on-change $SVC_SoftBtn_Rq$ = [Not Pressed] signal within a time period of <Tsend
+SWE-CAM-003	SYS-RA-CAM-087	CFTS092		—	All	Functional Requirement	The HU shall continue to send the on-change $SVC_SoftBtn_Rq$ = [Not Pressed] signal until next keypress.
+SWE-CAM-003	SYS-RA-VF551_V2-491	VF551_V2	1.13.2.1.1	I欄	ATL-Hi	Functional Requirement	· When any of the preceding conditions occur, the Head Unit shall switch back to non-camera display operation.
+SWE-CAM-003	SYS-RA-VF551_V2-501	VF551_V2	1.13.2.1.4	I欄	ATL-Hi	Functional Requirement	a. The head unit shall display the rear camera image.
+SWE-CAM-003	SYS-RA-VF551_V2-507	VF551_V2	1.13.2.1.6	I欄	ATL-Hi	Functional Requirement	a. The head unit shall display the rear camera image display.
+SWE-CAM-003	SYS-RA-VF551_V2-509	VF551_V2	1.13.2.1.7	I欄	ATL-Hi	Functional Requirement	c. After exiting rear camera mode, the Head Unit display shall reflect the changes and show current information.
+SWE-CAM-003	SYS-RA-VF551_V2-513	VF551_V2	1.13.2.1.8	I欄	ATL-Hi	Non Functional Requirement	The Head unit shall implement Transition_time as performance variable with value less than 1000 ms.
+SWE-CAM-003	SYS-RA-VF551_V2-514	VF551_V2	1.13.2.1.9	I欄	ATL-Hi	Functional Requirement	If BCM_FD_10.CmdIgnSts = RUN AND the soft key button control for the rear view camera is activated, then the Head Unit
+SWE-CAM-003	SYS-RA-VF551_V2-523	VF551_V2	1.13.2.2.1	I欄	ATL-Hi	Functional Requirement	· HU display shall not flicker in each of the following scenarios: 1. Head Unit displays the RVC image 2. Head Unit disp
+SWE-CAM-003	SYS-RA-VF551_V2-524	VF551_V2	1.13.2.2.2	I欄	ATL-Hi	Functional Requirement	· HU display shall not go blank in each of the following scenarios: 1. Head Unit displays the RVC image 2. Head Unit dis
+SWE-CAM-003	SYS-RA-VF551_V2-534	VF551_V2	1.13.2.2.5	I欄	ATL-Hi	Functional Requirement	· The soft key button control for the RVC shall be in the available state only when BCM_FD_10.CmdIgnSts = RUN.
+SWE-CAM-003	SYS-RA-VF551_V2-535	VF551_V2	1.13.2.2.5	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall implement the soft key button controls for RVC activation, refer to VF664 and HMI logic and flow.
+SWE-CAM-003	SYS-RA-VF551_V2-536	VF551_V2	1.13.2.2.6	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall enable Digital Rear View Camera behavior when PROXI Rear_View_Camera = Present.
+SWE-CAM-003	SYS-RA-VF551_V2-555	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall enable Rear View Camera behavior when PROXI Rear_View_Camera = Present and Rear_View_Camera_Type =
+SWE-CAM-003	SYS-RA-VF551_V33-222	VF551_V33	1.11.1.2	I欄		Functional requirement	"LTM sets TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req=""Dynamic Gridlines ON"""
+SWE-CAM-003	SYS-RA-VF551_V33-224	VF551_V33	1.11.1.2	I欄		Functional requirement	"LTM sets TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req=""Dynamic Gridlines OFF"""
+SWE-CAM-003	SYS-RA-VF551_V33-241	VF551_V33	1.11.1.2.2	I欄		Functional requirement	"OR (LTM_OperationalModeSts.Info ==(equal)""Ignition_OFF"")"
+SWE-CAM-003	SYS-RA-VF551_V33-432	VF551_V33	1.13.2.1.5	I欄		Functional requirement	"If LTM_OperationalModeSts.Info==""SNA"" THEN LTM considers the last value of these signals for TIME_W_RVC2 time after TM"
+SWE-CAM-003	SYS-RA-VF551_V33-440	VF551_V33	1.13.2.1.8	I欄		Functional requirement	"If the LTM_OperationalModeSts.Info==""Ignition_On"" OR LTM_OperationalModeSts.Info==""Ignition_On_EngOn"", and LTM receive B"
+SWE-CAM-003	SYS-RA-VF551_V33-443	VF551_V33	1.13.2.1.9	I欄		Functional requirement	"If the LTM_OperationalModeSts.Info==""Ignition_On"" OR LTM_OperationalModeSts.Info==""Ignition_On_EngOn"", LTM does not rece"
+SWE-CAM-003	SYS-RA-VF551_V4-095	VF551_V4	1.10	D欄推導		Functional Requirement	"In this VF ShiftLeverPosition shall be set to TRANSM_FD_4.ShiftLeverPosition when Hybrid_Type != ""Range Electric Paradig"
+SWE-CAM-003	SYS-RA-VF551_V4-096	VF551_V4	1.10	D欄推導		Functional Requirement	"In this VF ShiftLeverPosition shall be set to PT_SYSTEM_FD_1.ShiftLeverPosition_PT when Hybrid_Type = ""Range Electric Pa"
+SWE-CAM-003	SYS-RA-VF551_V4-105	VF551_V4	1.10.2	D欄推導		Functional Requirement	"The HU shall set ShiftLeverPosition to TRANSM_FD_4.ShiftLeverPosition when Hybrid_Type != ""Range Electric Paradigm Break"
+SWE-CAM-003	SYS-RA-VF551_V4-106	VF551_V4	1.10.2	D欄推導		Functional Requirement	"In this VF ShiftLeverPosition shall be set to PT_SYSTEM_FD_1.ShiftLeverPosition_PT when Hybrid_Type = ""Range Electric Pa"
+SWE-CAM-003	SYS-RA-VF551_V4-117	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	- The warning text shall follow ISO font 15008 and have size greater than 18 arc minutes.
+SWE-CAM-003	SYS-RA-VF551_V4-119	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	· The warning text shall be available in each language used by the Head Unit and correspond to the Language signal, IPC_
+SWE-CAM-003	SYS-RA-VF551_V4-130	VF551_V4	1.10.2.1	D欄推導		Non Functional Requirement	The Head unit shall implement Transition_time as performance variable with value less than 2 seconds.
+SWE-CAM-003	SYS-RA-VF551_V4-131	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	If the Head Unit Audio Mode is ON, the entertainment and non-entertainment features shall be functional as per Head Unit
+SWE-CAM-003	SYS-RA-VF551_V4-138	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	If the Head Unit Audio Mode is OFF, then the non-entertainment features shall be functional as per the Head Unit Audio M
+SWE-CAM-003	SYS-RA-VF551_V42-209	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"All the following requirements shall be implemented only if the PROXI parameter Rear_View_Camera is set to ""Present""."
+SWE-CAM-003	SYS-RA-VF551_V42-215	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition ON"" or ""Ignition_Start"" or ""Ignition_On_Prplsn_On"" THEN"
+SWE-CAM-003	SYS-RA-VF551_V42-217	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"When the signal LTM_OperationalModeSts.Info switches from ""Ignition_Off"" or ""Initialization"" to ""Ignition ON"" or ""Igniti"
+SWE-CAM-003	SYS-RA-VF551_V42-218	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_Off"" THEN LTM shall:"
+SWE-CAM-003	SYS-RA-VF551_V42-221	VF551_V42	1.11.1.2.0.1	I欄	ATL-Mi	Functional Requirement	"The user can select Rear_Camera_DelayOff.Req value equal to ""ON"" or ""OFF""."
+SWE-CAM-003	SYS-RA-VF551_V42-223	VF551_V42	1.11.1.2.0.1	I欄	ATL-Mi	Functional Requirement	"The user can select RVC_Swing_Doors_Check.Req value equal to ""ON"" or ""OFF""."
+SWE-CAM-003	SYS-RA-VF551_V42-255	VF551_V42	1.11.1.2.0.3	I欄	ATL-Mi	Functional Requirement	"IF the LTM receives: the signal LTM_OperationalModeSts.Info equal to ""Ignition ON"" or ""Ignition_Start"" or ""Ignition_On"
+SWE-CAM-003	SYS-RA-VF617V5-406	(查無)					
+SWE-CAM-003	SYS-RA-VF617V5-407	(查無)					
+SWE-CAM-003	SYS-RA-VF617_V5-087	(查無)					
+SWE-CAM-003	SYS-RA-VF617_V5-090	(查無)					
+SWE-CAM-003	SYS-RA-VF617_V5-169	(查無)					
+SWE-CAM-003	SYS-RA-VF617_V5-189	(查無)					
+SWE-CAM-003	SYS-RA-VF617_V5-233	(查無)					
+SWE-CAM-003	SYS-RA-VF617_V5-261	(查無)					
+SWE-CAM-003	SYS-RA-VF617_V5-300	(查無)					
+SWE-CAM-003	SYS-RA-VF617_V5-301	(查無)					
+SWE-CAM-004	SYS-RA-VF551_V2-205	VF551_V2	1.10.2	I欄	ATL-Hi	Functional Requirement	"When Ignition is On AND the gear status is no longer ""SNA"" the Head Unit shall: o heal the DTC. o RVCM and Head Unit fun"
+SWE-CAM-004	SYS-RA-VF551_V2-208	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	"When Ignition is On AND the gear status is no longer ""SNA"" the Head Unit shall: o heal the DTC. o RVCM and Head Unit fun"
+SWE-CAM-004	SYS-RA-VF551_V2-214	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· Once the systemStatus.Communications_Timeout signal is set to False, the Head Unit shall: o Clear the DTC
+SWE-CAM-004	SYS-RA-VF551_V2-215	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· When Ignition is On AND the Head Unit receives the systemStatus.Communications_Timeout signal equal to True, the Head
+SWE-CAM-004	SYS-RA-VF551_V2-217	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· Once the systemStatus.ExternalErrorStatus signal is set to False, the Head Unit shall: o Clear the DTC
+SWE-CAM-004	SYS-RA-VF551_V2-218	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· When Ignition is On AND the Head Unit receives the systemStatus.ExternalErrorStatus signal equal to True, the Head Uni
+SWE-CAM-004	SYS-RA-VF551_V2-220	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· Once the systemStatus.InternalErrorStatus signal is set to False, the Head Unit shall: o Clear the DTC
+SWE-CAM-004	SYS-RA-VF551_V2-221	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· When Ignition is On AND the Head Unit receives the systemStatus.InternalErrorStatus signal equal to True, the Head Uni
+SWE-CAM-004	SYS-RA-VF551_V2-569	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	c. When Zoom function is inactive due to internal or external errors, RVCM shall transmit systemStatus.ZoomViewRes = SN
+SWE-CAM-004	SYS-RA-VF551_V2-583	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· The RVCM shall transmit the following signals on LVDS: - ADAS_LVDS_RRCamera_Cable - systemStatus.ExternalErrorStatus
+SWE-CAM-004	SYS-RA-VF551_V3-196	VF551_V3	1.10.1.5	I欄	ATL-Mi	Out of scope	c) The RVCM shall transmit systemStatus.ZoomViewRes = [SNA] to the Radio via LVDS when Zoom function is disabled in the
+SWE-CAM-004	SYS-RA-VF551_V3-527	VF551_V3	1.13.2.2.1	I欄	ATL-Mi	Functional requirement	· If Head Unit receives the systemStatus.InternalErrorStatus signal equal to True the Head Unit shall: o Set a DTC On
+SWE-CAM-004	SYS-RA-VF551_V3-529	VF551_V3	1.13.2.2.2	I欄	ATL-Mi	Functional requirement	· If Head Unit receives the systemStatus.ExternalErrorStatus signal equal to True the Head Unit shall: o Set a DTC On
+SWE-CAM-004	SYS-RA-VF551_V3-531	VF551_V3	1.13.2.2.3	I欄	ATL-Mi	Functional requirement	· If Head Unit receives the systemStatus.Communications_Timeout signal equal to True the Head Unit shall: o Set a DTC
+SWE-CAM-004	SYS-RA-VF551_V33-429	VF551_V33	1.13.2.1.4	I欄		Functional requirement	"If the LTM_OperationalModeSts.Info==""Ignition On"" or LTM_OperationalModeSts.Info==""Ignition_On_EngOn"", LTM receives th"
+SWE-CAM-004	SYS-RA-VF551_V42-583	VF551_V42	1.13.2.1.2.0.1	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM receives the signal syst"
+SWE-CAM-004	SYS-RA-VF551_V42-584	VF551_V42	1.13.2.1.2.0.1	I欄	ATL-Mi	Functional Requirement	"Once the systemStatus.InternalErrorStatus signal is set to ""False"", LTM shall: set the DTC to not present according to"
+SWE-CAM-004	SYS-RA-VF551_V42-586	VF551_V42	1.13.2.1.2.0.2	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM receives the signal sy"
+SWE-CAM-004	SYS-RA-VF551_V42-587	VF551_V42	1.13.2.1.2.0.2	I欄	ATL-Mi	Functional Requirement	"Once the systemStatus.ExternalErrorStatus signal is set to ""False"", LTM shall: set the DTC to not present according to"
+SWE-CAM-004	SYS-RA-VF551_V42-589	VF551_V42	1.13.2.1.2.0.3	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM receives the signal s"
+SWE-CAM-004	SYS-RA-VF551_V42-590	VF551_V42	1.13.2.1.2.0.3	I欄	ATL-Mi	Functional Requirement	"Once the systemStatus.InternalErrorStatus signal is set to ""False"", LTM shall: set the DTC to not present according to"
+SWE-CAM-004	SYS-RA-VF551_V42-595	VF551_V42	1.13.2.1.2.0.5	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM does not receive the STA"
+SWE-CAM-004	SYS-RA-VF551_V42-600	VF551_V42	1.13.2.1.2.0.7	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM receives the signal sy"
+SWE-CAM-004	SYS-RA-VF551_V42-601	VF551_V42	1.13.2.1.2.0.7	I欄	ATL-Mi	Functional Requirement	"Once the systemStatus.ExternalErrorStatus signal is set to ""False"", LTM shall: set the DTC to not present according to"
+SWE-CAM-005	SYS-RA-VF551_V3-254	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	· The RVCM image resolution is 1280 x 800 pixels and refer to HMI and PDO for the aspect ratio.
+SWE-CAM-005	SYS-RA-VF617_V5-183	(查無)					
+SWE-CAM-006	SYS-RA-VF551_V2-211	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	When Ignition is On AND the head unit receives LVDS Video Signal, the ETM shall: o heal the DTC. o RVCM and Head Unit fu
+SWE-CAM-006	SYS-RA-VF551_V2-212	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	When Ignition is On AND the head unit does not receive LVDS Video Signal and ADAS_LVDS_RRCamera_Cable signal, the Head U
+SWE-CAM-006	SYS-RA-VF551_V2-539	VF551_V2	1.14	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall receive the following signals on LVDS: - ADAS_LVDS_RRCamera_Cable - systemStatus.ExternalErrorSta
+SWE-CAM-006	SYS-RA-VF551_V3-533	VF551_V3	1.13.2.2.4	I欄	ATL-Mi	Functional requirement	If Head Unit does not receive the LVDS Video Signal, ADAS_LVDS_RRCamera_Cable the Head Unit shall: o Set the DTC to Tru
+SWE-CAM-006	SYS-RA-VF551_V42-210	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	LTM shall scale the image received by RVCM over LVDS, according to the PROXI parameter Radio_Display_Type. Refer to HMI
+SWE-CAM-006	SYS-RA-VF551_V42-216	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"LTM shall send PowerShutDownNotification.Power _Down equal to ""False"" to the RVCM over LVDS and provide power to the RVC"
+SWE-CAM-006	SYS-RA-VF551_V42-219	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"send PowerShutDownNotification.Power _Down equal to ""True"" to the RVCM over LVDS. and it shall provide power to RVCM ove"
+SWE-CAM-006	SYS-RA-VF551_V42-226	VF551_V42	1.11.1.2.0.2	I欄	ATL-Mi	Functional Requirement	copy the ADAS_LVDS_RRCamera_Cable output video into Rear_Camera_Repetition.Data. -The rearview image shall be displayed
+SWE-CAM-006	SYS-RA-VF551_V42-237	VF551_V42	1.11.1.2.0.2.2	I欄	ATL-Mi	Functional Requirement	LTM shall stop to copy the ADAS_LVDS_RRCamera_Cable into Rear_Camera_Repetition.Data if one of the following conditions
+SWE-CAM-006	SYS-RA-VF551_V42-253	VF551_V42	1.11.1.2.0.3	I欄	ATL-Mi	Functional Requirement	copy the ADAS_LVDS_RRCamera_Cable output video into Rear_Camera_Repetition.Data and display the rearview image.
+SWE-CAM-006	SYS-RA-VF551_V42-262	VF551_V42	1.11.1.2.0.3.2	I欄	ATL-Mi	Functional Requirement	"IF the signal LTM_OperationalModeSts.Info is equal to ""Ignition_Off"" or ""Initialization"" THEN LTM shall stop to copy t"
+SWE-CAM-006	SYS-RA-VF551_V42-263	VF551_V42	1.11.1.2.0.3.2	I欄	ATL-Mi	Functional Requirement	"IF the signal LTM_OperationalModeSts.Info is equal to ""Ignition ON"" or ""Ignition_Start"" or ""Ignition_On_Prplsn_On"" AND"
+SWE-CAM-006	SYS-RA-VF551_V42-266	VF551_V42	1.11.1.2.0.3.2	I欄	ATL-Mi	Functional Requirement	LTM shall continue to: copy the ADAS_LVDS_RRCamera_Cable output video into Rear_Camera_Repetition.Data and display the
+SWE-CAM-006	SYS-RA-VF551_V42-268	VF551_V42	1.11.1.2.0.3.2	I欄	ATL-Mi	Functional Requirement	"stop to copy the ADAS_LVDS_RRCamera_Cable into Rear_Camera_Repetition.Data set Rear_Camera_Enable.Info equal to ""False"""
+SWE-CAM-006	SYS-RA-VF551_V42-271	VF551_V42	1.11.1.2.0.4	I欄	ATL-Mi	Functional Requirement	copy the ADAS_LVDS_RRCamera_Cable output video into Rear_Camera_Repetition.Data and display the rearview image.
+SWE-CAM-006	SYS-RA-VF551_V42-274	VF551_V42	1.11.1.2.0.4	I欄	ATL-Mi	Functional Requirement	not copy the ADAS_LVDS_RRCamera_Cable output video into Rear_Camera_Repetition.Data and not display the rearview image.
+SWE-CAM-006	SYS-RA-VF551_V42-277	VF551_V42	1.11.1.2.0.4.1	I欄	ATL-Mi	Functional Requirement	LTM shall stop to copy the ADAS_LVDS_RRCamera_Cable into Rear_Camera_Repetition.Data if one of the following conditions
+SWE-CAM-006	SYS-RA-VF551_V42-285	VF551_V42	1.11.1.2.0.4.1	I欄	ATL-Mi	Functional Requirement	LTM shall stop to copy the ADAS_LVDS_RRCamera_Cable into Rear_Camera_Repetition.Data if one of the following conditions
+SWE-CAM-006	SYS-RA-VF551_V42-301	VF551_V42	1.11.1.2.0.5	I欄	ATL-Mi	Functional Requirement	stop to copy the ADAS_LVDS_RRCamera_Cable output video into Rear_Camera_Repetition.Data set the internal signal RVC_Ima
+SWE-CAM-006	SYS-RA-VF551_V42-592	VF551_V42	1.13.2.1.2.0.4	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM does not receive the AD"
+SWE-CAM-006	SYS-RA-VF551_V42-593	VF551_V42	1.13.2.1.2.0.4	I欄	ATL-Mi	Functional Requirement	"Once the LTM receives the LVDS Video Signal, LTM shall: set the DTC to not present according to the ""TLM Diagnostic Req"
+SWE-CAM-006	SYS-RA-VF617_V5-195	(查無)					
+SWE-CAM-007	SYS-RA-VF551_V42-210	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	LTM shall scale the image received by RVCM over LVDS, according to the PROXI parameter Radio_Display_Type. Refer to HMI
+SWE-CAM-008	SYS-RA-VF551_V2-449	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	b. Head Unit shall not send LVDS gridZoomRequest.DynamicGridRQSts = SNA to RVCM.
+SWE-CAM-008	SYS-RA-VF551_V2-450	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	a. When IPC_VEHICLE_SETUP.DynamicGrid is missing OR until received during wake up, the HU shall set LVDS gridZoomReques
+SWE-CAM-008	SYS-RA-VF551_V2-451	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate the value of the FD-CAN8 IPC_VEHICLE_SETUP.DynamicGrid to LVDS gridZoomRequest.DynamicGridRQS
+SWE-CAM-008	SYS-RA-VF551_V2-477	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The HU shall never send gridZoomRequest.DynamicGridRQSts = [SNA] to RVCM.
+SWE-CAM-008	SYS-RA-VF551_V2-478	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· When there is no user change to Dynamic Gridlines, the HU shall send the default value gridZoomRequest.DynamicGridRQSt
+SWE-CAM-008	SYS-RA-VF551_V2-479	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· When the customer selects to disable the Rear view Camera Dynamic Gridlines, the HU shall send gridZoomRequest.Dynamic
+SWE-CAM-008	SYS-RA-VF551_V2-480	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· When the customer selects to enable the Rear view Camera Dynamic Gridlines, the HU shall send gridZoomRequest.DynamicG
+SWE-CAM-008	SYS-RA-VF551_V2-538	VF551_V2	1.13.2.2.6	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall transmit the following signals on LVDS: - vehicleUpdate_2.VehicleSpeedVSOSig - vehicleUpdate_2.Lw
+SWE-CAM-008	SYS-RA-VF551_V2-582	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· The RVCM shall acquire the following signals on LVDS: - vehicleUpdate_2.VehicleSpeedVSOSig - vehicleUpdate_2.LwsAngle
+SWE-CAM-008	SYS-RA-VF551_V3-284	VF551_V3	1.10.3.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall gate BH-CAN IPC_VEHICLE_SETUP.DynamicGrid to LVDS gridZoomRequest.DynamicGridRQSts a) The Head Un
+SWE-CAM-008	SYS-RA-VF551_V42-319	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	"IF the internal signal DynamicGrid.Req is equal to ""ON"" THEN LTM shall send LVDS gridZoomRequest.DynamicGridRQSts e"
+SWE-CAM-008	SYS-RA-VF551_V42-320	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	"IF the internal signal DynamicGrid.Req is equal to ""OFF"" THEN LTM shall send LVDS gridZoomRequest.DynamicGridRQSts"
+SWE-CAM-009	SYS-RA-VF551_V2-214	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· Once the systemStatus.Communications_Timeout signal is set to False, the Head Unit shall: o Clear the DTC
+SWE-CAM-009	SYS-RA-VF551_V2-215	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· When Ignition is On AND the Head Unit receives the systemStatus.Communications_Timeout signal equal to True, the Head
+SWE-CAM-009	SYS-RA-VF551_V2-217	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· Once the systemStatus.ExternalErrorStatus signal is set to False, the Head Unit shall: o Clear the DTC
+SWE-CAM-009	SYS-RA-VF551_V2-218	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· When Ignition is On AND the Head Unit receives the systemStatus.ExternalErrorStatus signal equal to True, the Head Uni
+SWE-CAM-009	SYS-RA-VF551_V2-220	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· Once the systemStatus.InternalErrorStatus signal is set to False, the Head Unit shall: o Clear the DTC
+SWE-CAM-009	SYS-RA-VF551_V2-221	VF551_V2	1.10.2.1	I欄	ATL-Hi	Functional Requirement	· When Ignition is On AND the Head Unit receives the systemStatus.InternalErrorStatus signal equal to True, the Head Uni
+SWE-CAM-009	SYS-RA-VF551_V2-485	VF551_V2	1.13.2	I欄	ATL-Hi	Functional Requirement	· When all of the following conditions hold true: - RVC display active on the Radio vehicleUpdate_1.TGW_CAMERA_DISP_STAT
+SWE-CAM-009	SYS-RA-VF551_V2-486	VF551_V2	1.13.2	I欄	ATL-Hi	Functional Requirement	· When all of the below conditions hold true: - RVC active on the Radio: vehicleUpdate_1.TGW_CAMERA_DISP_STAT = DISP_DIG
+SWE-CAM-009	SYS-RA-VF551_V2-539	VF551_V2	1.14	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall receive the following signals on LVDS: - ADAS_LVDS_RRCamera_Cable - systemStatus.ExternalErrorSta
+SWE-CAM-009	SYS-RA-VF551_V2-569	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	c. When Zoom function is inactive due to internal or external errors, RVCM shall transmit systemStatus.ZoomViewRes = SN
+SWE-CAM-009	SYS-RA-VF551_V2-570	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	b. When current view is Backup Zoomed View, RVCM shall transmit systemStatus.ZoomViewRes = 4X to the Radio via LVDS .
+SWE-CAM-009	SYS-RA-VF551_V2-571	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	a. When current view is Backup Camera View, RVCM shall transmit systemStatus.ZoomViewRes = 1X to the Radio via LVDS.
+SWE-CAM-009	SYS-RA-VF551_V2-583	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· The RVCM shall transmit the following signals on LVDS: - ADAS_LVDS_RRCamera_Cable - systemStatus.ExternalErrorStatus
+SWE-CAM-009	SYS-RA-VF551_V3-194	VF551_V3	1.10.1.5	I欄	ATL-Mi	Out of scope	a) The RVCM shall transmit systemStatus.ZoomViewRes = [1X] to the Radio via LVDS when current view is Backup Camera View
+SWE-CAM-009	SYS-RA-VF551_V3-195	VF551_V3	1.10.1.5	I欄	ATL-Mi	Out of scope	b) The RVCM shall transmit systemStatus.ZoomViewRes = [4X] to the Radio via LVDS when current view is Backup Zoomed View
+SWE-CAM-009	SYS-RA-VF551_V3-196	VF551_V3	1.10.1.5	I欄	ATL-Mi	Out of scope	c) The RVCM shall transmit systemStatus.ZoomViewRes = [SNA] to the Radio via LVDS when Zoom function is disabled in the
+SWE-CAM-009	SYS-RA-VF551_V3-527	VF551_V3	1.13.2.2.1	I欄	ATL-Mi	Functional requirement	· If Head Unit receives the systemStatus.InternalErrorStatus signal equal to True the Head Unit shall: o Set a DTC On
+SWE-CAM-009	SYS-RA-VF551_V3-529	VF551_V3	1.13.2.2.2	I欄	ATL-Mi	Functional requirement	· If Head Unit receives the systemStatus.ExternalErrorStatus signal equal to True the Head Unit shall: o Set a DTC On
+SWE-CAM-009	SYS-RA-VF551_V3-531	VF551_V3	1.13.2.2.3	I欄	ATL-Mi	Functional requirement	· If Head Unit receives the systemStatus.Communications_Timeout signal equal to True the Head Unit shall: o Set a DTC
+SWE-CAM-009	SYS-RA-VF551_V42-583	VF551_V42	1.13.2.1.2.0.1	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM receives the signal syst"
+SWE-CAM-009	SYS-RA-VF551_V42-584	VF551_V42	1.13.2.1.2.0.1	I欄	ATL-Mi	Functional Requirement	"Once the systemStatus.InternalErrorStatus signal is set to ""False"", LTM shall: set the DTC to not present according to"
+SWE-CAM-009	SYS-RA-VF551_V42-586	VF551_V42	1.13.2.1.2.0.2	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM receives the signal sy"
+SWE-CAM-009	SYS-RA-VF551_V42-587	VF551_V42	1.13.2.1.2.0.2	I欄	ATL-Mi	Functional Requirement	"Once the systemStatus.ExternalErrorStatus signal is set to ""False"", LTM shall: set the DTC to not present according to"
+SWE-CAM-009	SYS-RA-VF551_V42-589	VF551_V42	1.13.2.1.2.0.3	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM receives the signal s"
+SWE-CAM-009	SYS-RA-VF551_V42-590	VF551_V42	1.13.2.1.2.0.3	I欄	ATL-Mi	Functional Requirement	"Once the systemStatus.InternalErrorStatus signal is set to ""False"", LTM shall: set the DTC to not present according to"
+SWE-CAM-009	SYS-RA-VF551_V42-600	VF551_V42	1.13.2.1.2.0.7	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM receives the signal sy"
+SWE-CAM-009	SYS-RA-VF551_V42-601	VF551_V42	1.13.2.1.2.0.7	I欄	ATL-Mi	Functional Requirement	"Once the systemStatus.ExternalErrorStatus signal is set to ""False"", LTM shall: set the DTC to not present according to"
+SWE-CAM-010	SYS-RA-VF551_V2-443	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate PROXI Dual_Rear_Wheels_Present value to the LVDS signal: vehicleUpdate_1.VC_RR_DuallyPrsnt
+SWE-CAM-010	SYS-RA-VF551_V2-444	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate PROXI Wheelbase to LVDS vehicleUpdate_1.VC_WHL_BASE_LENGTH
+SWE-CAM-010	SYS-RA-VF551_V2-445	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate PROXI CAN node 27 (ASM/ASCM) value to LVDS vehicleUpdate_1.NetCfg_ASCM
+SWE-CAM-010	SYS-RA-VF551_V2-446	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate and send vehicleUpdate_1.VC_VehLineRVCM = VEH_DJ when PROXI Vehicle_Line_Configuration = HD
+SWE-CAM-010	SYS-RA-VF551_V2-447	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate and send vehicleUpdate_1.VC_VehLineRVCM = VEH_D2 when PROXI Vehicle_Line_Configuration = H
+SWE-CAM-010	SYS-RA-VF551_V2-484	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall send vehicleUpdate_2.ZoomViewReq = Default when RVC display not active on the Radio: vehicleUpdate
+SWE-CAM-010	SYS-RA-VF551_V2-519	VF551_V2	1.13.2.1.10	I欄	ATL-Hi	Functional Requirement	When none of the camera views are displayed on the Radio, then the head unit shall transmit following signals: - TELEMAT
+SWE-CAM-010	SYS-RA-VF551_V2-520	VF551_V2	1.13.2.2	I欄	ATL-Hi	Functional Requirement	When Digital RVC configuration is True and display is active, the head unit shall transmit following signals: - TELEMAT
+SWE-CAM-010	SYS-RA-VF551_V2-578	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· When all of the following conditions hold true: - RVC display active on the Radio: LVDS message vehicleUpdate_1.TGW_CA
+SWE-CAM-010	SYS-RA-VF551_V2-580	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· When all of the following conditions hold true: - RVC display active on the Radio: LVDS message vehicleUpdate_1.TGW_CA
+SWE-CAM-010	SYS-RA-VF551_V2-582	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· The RVCM shall acquire the following signals on LVDS: - vehicleUpdate_2.VehicleSpeedVSOSig - vehicleUpdate_2.LwsAngle
+SWE-CAM-010	SYS-RA-VF551_V2-751	VF551_V2	1.10.3.2	I欄		Functional Requirement	· The Head Unit shall gate and send vehicleUpdate_1.VC_VehLineRVCM = VEH_DT when PROXI Vehicle_Line_Configuration = DT.
+SWE-CAM-010	SYS-RA-VF551_V3-185	VF551_V3	1.10.1.1	I欄	ATL-Mi	Out of scope	· The RVCM shall follow below functions when RVC display active on the Radio: LVDS message vehicleUpdate_1.TGW_CAMERA_DI
+SWE-CAM-010	SYS-RA-VF551_V3-286	VF551_V3	1.10.3.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall gate PROXI Wheelbase to LVDS vehicleUpdate_1.VC_WHL_BASE_LENGTH a) The Head Unit shall send LVDS
+SWE-CAM-010	SYS-RA-VF551_V3-287	VF551_V3	1.10.3.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall gate PROXI Vehicle_Line_Configuration to LVDS vehicleUpdate_1.VC_VehLineRVCM. a) The Head Unit sh
+SWE-CAM-010	SYS-RA-VF551_V3-288	VF551_V3	1.10.3.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall gate PROXI Gear_Box_Type to vehicleUpdate_1.VC_Trans_Equipped. a) The Head Unit shall send LVDS v
+SWE-CAM-010	SYS-RA-VF551_V42-323	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	"LTM shall send: - vehicleUpdate_1.VC_Trans_Equipped equal to ""Automatic"" IF the PROXI parameter Gear_Box_Type is differ"
+SWE-CAM-010	SYS-RA-VF551_V42-326	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	"LTM shall send: - vehicleUpdate_1.VC_WHL_BASE_LENGTH equal to ""Not_Used"" IF the PROXI parameter Wheelbase is equal to """
+SWE-CAM-010	SYS-RA-VF551_V42-322	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	Gear_Box_Type to vehicleUpdate_1.VC_Trans_Equipped
+SWE-CAM-010	SYS-RA-VF551_V42-327	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	The LTM shall gate and send the signal vehicleUpdate_1.VC_VehLineRVCM equal to [VEH_637MCA] when PROXI Vehicle_Line_Con
+SWE-CAM-011	SYS-RA-VF551_V2-746	VF551_V2	1.10.3.2	I欄		Functional Requirement	a. The Head Unit sends LVDS vehicleUpdate_2.LwsAngle = SNA when FD-CAN8 EPS_FD_1.LwsAngle is missing.
+SWE-CAM-011	SYS-RA-VF551_V3-282	VF551_V3	1.10.3.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall gate BH-CAN STATUS_CCAN5.ShiftLeverPosition to LVDS vehicleUpdate_2.ShiftLeverPosition a) The Hea
+SWE-CAM-011	SYS-RA-VF551_V3-283	VF551_V3	1.10.3.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall gate BH-CAN STATUS_CCAN4.ReverseGearSts to LVDS vehicleUpdate_2.ReverseGearSts a) The Head Unit s
+SWE-CAM-011	SYS-RA-VF551_V2-453	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate FD-CAN8 ASCM_FD_2.ASCM_Stat to LVDS vehicleUpdate_2.ASCM_Stat
+SWE-CAM-011	SYS-RA-VF551_V2-456	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	a. The Head Unit sends LVDS vehicleUpdate_2.ShiftLeverPosition = SNA when FD-CAN8 TRANSM_FD_4.ShiftLeverPosition is miss
+SWE-CAM-011	SYS-RA-VF551_V3-280	VF551_V3	1.10.3.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall gate BH-CAN STATUS_CCAN3.VehicleSpeedVSOSig to LVDS vehicleUpdate_2.VehicleSpeedVSOSig a) The Hea
+SWE-CAM-011	SYS-RA-VF551_V2-747	VF551_V2	1.10.3.2	I欄		Functional Requirement	The Head Unit shall gate FD-CAN8 TRANSM_FD_4.ShiftLeverPosition to LVDS vehicleUpdate_2.ShiftLeverPosition when Hybrid_T
+SWE-CAM-011	SYS-RA-VF551_V42-314	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	"- IF the LTM does not receive the signal GE.LwsAngle, LTM shall send LVDS vehicleUpdate_2.LwsAngle equal to ""SNA""."
+SWE-CAM-011	SYS-RA-VF551_V2-748	VF551_V2	1.10.3.2	I欄		Functional Requirement	a. The Head Unit sends LVDS vehicleUpdate_2.ShiftLeverPosition = SNA when FD-CAN8 TRANSM_FD_4.ShiftLeverPosition is miss
+SWE-CAM-011	SYS-RA-VF551_V2-750	VF551_V2	1.10.3.2	I欄		Functional Requirement	a. The Head Unit sends LVDS vehicleUpdate_2.ShiftLeverPosition = SNA when FD-CAN8 PT_SYSTEM_FD_1.ShiftLeverPosition_PT
+SWE-CAM-011	SYS-RA-VF551_V2-458	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	a. The Head Unit sends LVDS vehicleUpdate_2.LwsAngle = SNA when FD-CAN8 STEERING1.LwsAngle_SCCM is missing.
+SWE-CAM-011	SYS-RA-VF551_V2-460	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	a. The Head Unit sends LVDS vehicleUpdate_2.VehicleSpeedVSOSig = SNA when FD-CAN8 BRAKE_FD_2.VehicleSpeedVSOSig is missi
+SWE-CAM-011	SYS-RA-VF551_V42-312	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	- IF the LTM does not receive the signal STATUS_CCAN3.VehicleSpeedVSOSig, LTM shall send LVDS vehicleUpdate_2.VehicleSpe
+SWE-CAM-011	SYS-RA-VF551_V2-749	VF551_V2	1.10.3.2	I欄		Functional Requirement	The Head Unit shall gate FD-CAN8 PT_SYSTEM_FD_1.ShiftLeverPosition_PT to LVDS vehicleUpdate_2.ShiftLeverPosition when Hy
+SWE-CAM-011	SYS-RA-VF551_V2-455	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	The Head Unit shall gate FD-CAN8 PT_SYSTEM_FD_1.ShiftLeverPosition_PT to LVDS vehicleUpdate_2.ShiftLeverPosition when Hy
+SWE-CAM-011	SYS-RA-VF551_V2-442	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate PROXI PAM_Tuning_Set value to the LVDS signal: vehicleUpdate_2.PAM_Tuning_Set
+SWE-CAM-011	SYS-RA-VF551_V2-448	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate PROXI Steering_Ratio_Rack_Pinion_Type to LVDS vehicleUpdate_2.VC_Steering_Cfactor
+SWE-CAM-011	SYS-RA-VF551_V42-317	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	- IF the LTM does not receive the signal STATUS_CCAN3.VehicleSpeedVSOSig, LTM shall send LVDS vehicleUpdate_2.VehicleSpe
+SWE-CAM-011	SYS-RA-VF551_V2-745	VF551_V2	1.10.2	I欄		Functional Requirement	The Head Unit shall gate FD-CAN8 EPS_FD_1.LwsAngle to LVDS vehicleUpdate_2.LwsAngle
+SWE-CAM-011	SYS-RA-VF551_V42-310	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	- IF the LTM does not receive the signal ENGINE1.ReverseGearSts, THEN LTM shall send LVDS vehicleUpdate_2.ReverseGearSts
+SWE-CAM-011	SYS-RA-VF551_V2-483	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall never send vehicleUpdate_2.ZoomViewReq = SNA to RVCM.
+SWE-CAM-011	SYS-RA-VF551_V2-454	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	a. The Head Unit sends LVDS vehicleUpdate_2.ShiftLeverPosition = SNA when FD-CAN8 PT_SYSTEM_FD_1.ShiftLeverPosition_PT
+SWE-CAM-011	SYS-RA-VF551_V3-281	VF551_V3	1.10.3.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall gate BH-CAN STATUS_CCAN5.LWSAngle to LVDS STATUS_CCAN5.LWSAngle a) The Head Unit shall send LVDS
+SWE-CAM-011	SYS-RA-VF551_V2-461	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate FD-CAN8 BRAKE_FD_2.VehicleSpeedVSOSig to LVDS vehicleUpdate_2.VehicleSpeedVSOSig
+SWE-CAM-011	SYS-RA-VF551_V2-452	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	a. The Head Unit sends LVDS vehicleUpdate_2.ASCM_Stat= SNA when FD-CAN8 ASCM_FD_2.ASCM_Stat is missing.
+SWE-CAM-011	SYS-RA-VF551_V3-285	VF551_V3	1.10.3.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall gate PROXI Steering_Ratio_Rack_Pinion_Type to LVDS vehicleUpdate_2.VC_Steering_Cfactor a) The Hea
+SWE-CAM-011	SYS-RA-VF551_V2-459	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate FD-CAN8 STEERING1.LwsAngle_SCCM to LVDS vehicleUpdate_2.LwsAngle
+SWE-CAM-011	SYS-RA-VF551_V3-271	VF551_V3	1.10.2.4	I欄	ATL-Mi	Functional requirement	· The Head Unit shall never send vehicleUpdate_2.ZoomViewReq = [SNA] to RVCM.
+SWE-CAM-011	SYS-RA-VF551_V2-457	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall gate FD-CAN8 TRANSM_FD_4.ShiftLeverPosition to LVDS vehicleUpdate_2.ShiftLeverPosition when Hybrid
+SWE-CAM-011	SYS-RA-VF551_V42-308	VF551_V42	1.11.2.1	I欄	ATL-Mi	Functional Requirement	- IF the LTM does not receive the signal TRANSM2.ShiftLeverPosition, LTM shall send LVDS vehicleUpdate_2.ShiftLeverPosit
+SWE-CAM-012	SYS-RA-VF551_V2-550	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· When BCM_FD_10.CmdIgnSts = IGN_LK is received, then the Head Unit shall do the following: 1. Transmit PowerShutDownNo
+SWE-CAM-012	SYS-RA-VF551_V2-553	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	a. The Head Unit shall transmit PowerShutDownNotifcation.Power_Down = False.
+SWE-CAM-012	SYS-RA-VF551_V2-582	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· The RVCM shall acquire the following signals on LVDS: - vehicleUpdate_2.VehicleSpeedVSOSig - vehicleUpdate_2.LwsAngle
+SWE-CAM-012	SYS-RA-VF551_V3-205	VF551_V3	1.10.2	I欄	ATL-Mi	Non Functional requirement	· The Head Unit shall provide power to the RVCM within 500ms when STATUS_BH_BCM2.CmdIgnSts = [RUN OR IGN_START] is recei
+SWE-CAM-012	SYS-RA-VF551_V42-216	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"LTM shall send PowerShutDownNotification.Power _Down equal to ""False"" to the RVCM over LVDS and provide power to the RVC"
+SWE-CAM-012	SYS-RA-VF551_V42-219	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"send PowerShutDownNotification.Power _Down equal to ""True"" to the RVCM over LVDS. and it shall provide power to RVCM ove"
+SWE-CAM-013	SYS-RA-VF551_V42-592	VF551_V42	1.13.2.1.2.0.4	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM does not receive the AD"
+SWE-CAM-013	SYS-RA-VF551_V42-593	VF551_V42	1.13.2.1.2.0.4	I欄	ATL-Mi	Functional Requirement	"Once the LTM receives the LVDS Video Signal, LTM shall: set the DTC to not present according to the ""TLM Diagnostic Req"
+SWE-CAM-013	SYS-RA-VF551_V42-595	VF551_V42	1.13.2.1.2.0.5	I欄	ATL-Mi	Functional Requirement	"IF LTM_OperationalModeSts.Info is equal to ""Ignition_On"" or ""Ignition_On_Prplsn_On"" AND the LTM does not receive the STA"
+SWE-CAM-014	SYS-RA-VF551_V2-550	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· When BCM_FD_10.CmdIgnSts = IGN_LK is received, then the Head Unit shall do the following: 1. Transmit PowerShutDownNo
+SWE-CAM-014	SYS-RA-VF551_V2-553	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	a. The Head Unit shall transmit PowerShutDownNotifcation.Power_Down = False.
+SWE-CAM-014	SYS-RA-VF551_V2-582	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· The RVCM shall acquire the following signals on LVDS: - vehicleUpdate_2.VehicleSpeedVSOSig - vehicleUpdate_2.LwsAngle
+SWE-CAM-014	SYS-RA-VF551_V3-205	VF551_V3	1.10.2	I欄	ATL-Mi	Non Functional requirement	· The Head Unit shall provide power to the RVCM within 500ms when STATUS_BH_BCM2.CmdIgnSts = [RUN OR IGN_START] is recei
+SWE-CAM-014	SYS-RA-VF551_V3-206	VF551_V3	1.10.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall send PowerShutDownNotifcation.Power_Down = [True] over LVDS to the RVCM and the radio shall provid
+SWE-CAM-014	SYS-RA-VF551_V42-216	VF551_V42	1.11.1.2	I欄	ATL-Mi	Functional Requirement	"LTM shall send PowerShutDownNotification.Power _Down equal to ""False"" to the RVCM over LVDS and provide power to the RVC"
+SWE-CAM-015	SYS-RA-VF551_V2-488	VF551_V2	1.13.2	I欄	ATL-Hi	Functional Requirement	· When all of the following conditions hold True: - BCM_FD_10.CmdIgnSts = RUN - RVC image active - Shift Lever changes t
+SWE-CAM-015	SYS-RA-VF551_V2-492	VF551_V2	1.13.2.1.1	I欄	ATL-Hi	Functional Requirement	· When Head Unit is in Manual Display mode AND RVC image is active, the Head Unit shall continue to display RVC image un
+SWE-CAM-015	SYS-RA-VF551_V2-493	VF551_V2	1.13.2.1.2	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall stay in Manual Display Mode and display the RVC image as operating in Manual mode, when all of the
+SWE-CAM-015	SYS-RA-VF551_V2-495	VF551_V2	1.13.2.1.2	I欄	ATL-Hi	Functional Requirement	· When Head Unit is in Automatic Display Mode AND all of the following conditions hold true: - Gear shifted out of Rever
+SWE-CAM-015	SYS-RA-VF551_V2-496	VF551_V2	1.13.2.1.3	I欄	ATL-Hi	Functional Requirement	· When any of the following conditions hold true: - BCM_FD_10.CmdIgnSts != RUN, - BRAKE_FD_2.VehicleSpeedVSOSig >= c_VE
+SWE-CAM-015	SYS-RA-VF551_V2-497	VF551_V2	1.13.2.1.3	I欄	ATL-Hi	Functional Requirement	· When Head Unit is in Automatic Display Mode AND all of the following condition hold true: - Gear shifted out of Revers
+SWE-CAM-015	SYS-RA-VF551_V2-498	VF551_V2	1.13.2.1.3	I欄	ATL-Hi	Functional Requirement	· When all of the following conditions hold true: - BCM_FD_10.CmdIgnSts = RUN, - ShiftLeverPosition = R > Reverse_Deb.
+SWE-CAM-015	SYS-RA-VF551_V2-533	VF551_V2	1.13.2.2.5	I欄	ATL-Hi	Functional Requirement	· The Head Unit overlays Image Defeat [X] soft button on Rear View Camera Image when ShiftLeverPosition != R. a) When Sh
+SWE-CAM-015	SYS-RA-VF551_V3-249	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	· The Head Unit shall overly Image Defat [X] soft button on Rear View Camera Image when Gear_Stat.info != [REVERSE]. a)
+SWE-CAM-015	SYS-RA-VF551_V3-260	VF551_V3	1.10.2.2	I欄	ATL-Mi	Functional requirement	· The Head Unit shall be in Automatic Display Mode when STATUS_BH_BCM2.CmdIgnSts = [RUN] AND Gear_Stat.info = [REVERSE]
+SWE-CAM-015	SYS-RA-VF551_V3-261	VF551_V3	1.10.2.2	I欄	ATL-Mi	Functional requirement	· When Head Unit in Automatic Display Mode, gear shifted out of Reverse to Gear_Stat.Info != [PARK OR REVERSE] AND Camer
+SWE-CAM-015	SYS-RA-VF551_V3-262	VF551_V3	1.10.2.2	I欄	ATL-Mi	Functional requirement	· When Head Unit in Automatic Display Mode, gear shifted out of Reverse: Gear_Stat.info != [REVERSE] AND Camera Delay Di
+SWE-CAM-015	SYS-RA-VF551_V3-264	VF551_V3	1.10.2.3	I欄	ATL-Mi	Functional requirement	· The Head Unit shall be in Manul Display Mode when when STATUS_BH_BCM2.CmdIgnSts = [RUN] AND Gear_Stat.info != [REVERSE
+SWE-CAM-015	SYS-RA-VF551_V3-266	VF551_V3	1.10.2.3	I欄	ATL-Mi	Functional requirement	· When STATUS_BH_BCM2.CmdIgnSts = [RUN], RVC image active, Shift Lever chagne to Reverse Gear_Stat.info = [REVERSE] > Re
+SWE-CAM-015	SYS-RA-VF551_V33-218	VF551_V33	1.11.1.2	I欄		Functional requirement	"When LTM_OperationalModeSts.Info pass into ""Ignition_Pre_Off"" , LTM stores the current value of following signals: STA"
+SWE-CAM-015	SYS-RA-VF551_V33-232	VF551_V33	1.11.1.2.1	I欄		Functional requirement	The Rear_Camera.Data are copied into Rear_Camera_Repetition.Data with adjustments about the format resolution by LTM(16:
+SWE-CAM-015	SYS-RA-VF551_V33-240	VF551_V33	1.11.1.2.2	I欄		Functional requirement	"IF ( (Camera_DelayOff.Req==""OFF"" AND STATUS_CCAN4.ReverseGearSts==(equal) ""Not_Inserted"") OR ((PROXI parameter Gear_Bo"
+SWE-CAM-015	SYS-RA-VF551_V33-246	VF551_V33	1.11.1.2.2	I欄		Functional requirement	"ELSEIF (Camera_DelayOff.Req ==(equal)""ON""AND STATUS_CCAN4.ReverseGearSts==(equal) ""Not_Inserted"" AND (PROXI parameter Ge"
+SWE-CAM-015	SYS-RA-VF551_V33-419	VF551_V33	1.13.2.1.1	I欄		Functional requirement	"IF PROXI pararmeter Rear_View_Camera is equal to ""Present"" AND LTM_OperationalModeSts.Info is equal to (""Ignition_On"" O"
+SWE-CAM-015	SYS-RA-VF551_V33-425	VF551_V33	1.13.2.1.3	I欄		Functional requirement	"If the LTM_OperationalModeSts.Info==""Ignition On"" OR LTM_OperationalModeSts.Info==""Ignition_On_EngOn"", LTM receives ST"
+SWE-CAM-015	SYS-RA-VF551_V4-097	VF551_V4	1.10	D欄推導		Functional Requirement	"· The Rear View Camera system image shall be displayed under the following conditions: BCM_FD_10.CmdIgnSts = ""RUN"" AND"
+SWE-CAM-015	SYS-RA-VF551_V4-115	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	· The Head Unit overlays Image Defeat [X] soft button on Rear View Camera Image when ShiftLeverPosition != R. a) When S
+SWE-CAM-015	SYS-RA-VF551_V4-145	VF551_V4	1.10.2.2	D欄推導		Functional Requirement	· When all of the following conditions hold true: - BCM_FD_10.CmdIgnSts = RUN, - ShiftLeverPosition = R > Reverse_Deb.
+SWE-CAM-015	SYS-RA-VF551_V4-146	VF551_V4	1.10.2.2	D欄推導		Functional Requirement	· When Head Unit is in Automatic Display Mode AND all of the following condition hold true: - Gear shifted out of Rever
+SWE-CAM-015	SYS-RA-VF551_V4-147	VF551_V4	1.10.2.2	D欄推導		Functional Requirement	· When any of the following conditions hold true: - BCM_FD_10.CmdIgnSts != RUN, - BRAKE_FD_2.VehicleSpeedVSOSig >= c_
+SWE-CAM-015	SYS-RA-VF551_V4-148	VF551_V4	1.10.2.2	D欄推導		Functional Requirement	· When Head Unit is in Automatic Display Mode AND all of the following conditions hold true: - Gear shifted out of Reve
+SWE-CAM-015	SYS-RA-VF551_V4-150	VF551_V4	1.10.2.3	D欄推導		Functional Requirement	· The Head Unit shall stay in Manual Display Mode and display the RVC image as operating in Manual mode, when all of the
+SWE-CAM-015	SYS-RA-VF551_V4-151	VF551_V4	1.10.2.3	D欄推導		Functional Requirement	· When Head Unit is in Manual Display mode AND RVC image is active, the Head Unit shall continue to display RVC image un
+SWE-CAM-015	SYS-RA-VF551_V4-155	VF551_V4	1.10.2.3	D欄推導		Functional Requirement	· When all of the following conditions hold True: - BCM_FD_10.CmdIgnSts = RUN - RVC image active - Shift Lever change
+SWE-CAM-015	SYS-RA-VF551_V42-236	VF551_V42	1.11.1.2.0.2.2	I欄	ATL-Mi	Functional Requirement	"IF ((LTM_OperationalModeSts.Info is equal to ""Ignition ON"" or ""Ignition_Start"" or ""Ignition_On_Prplsn_On"" AND the signal"
+SWE-CAM-015	SYS-RA-VF551_V42-302	VF551_V42	1.11.1.2.0.5	I欄	ATL-Mi	Functional Requirement	"As soon as LTM receives: the signal TRANSM2.ShiftLeverPosition equal to ""R"" IF the PROXI parameter Gear_Box_Type is dif"
+SWE-CAM-015	SYS-RA-VF617_V5-186	(查無)					
+SWE-CAM-015	SYS-RA-VF617_V5-209	(查無)					
+SWE-CAM-015	SYS-RA-VF617_V5-210	(查無)					
+SWE-CAM-015	SYS-RA-VF617_V5-211	(查無)					
+SWE-CAM-015	SYS-RA-VF617_V5-224	(查無)					
+SWE-CAM-015	SYS-RA-VF617_V5-225	(查無)					
+SWE-CAM-015	SYS-RA-VF617_V5-226	(查無)					
+SWE-CAM-015	SYS-RA-VF617_V5-227	(查無)					
+SWE-CAM-015	SYS-RA-VF617_V5-235	(查無)					
+SWE-CAM-015	SYS-RA-VF617_V5-236	(查無)					
+SWE-CAM-015	SYS-RA-VF617_V5-237	(查無)					
+SWE-CAM-016	SYS-RA-CAM-063	CFTS092		—	All	Functional Requirement	The Cargo/CHMSL Camera Softkey button shall be accessible from the Controls screen.
+SWE-CAM-016	SYS-RA-CAM-067	CFTS092		—	All	Functional Requirement	The Cargo/CHMSL Camera Softkey button shall enable displaying the Cargo/CHMSL camera image. The softkey button shall per
+SWE-CAM-016	SYS-RA-CAM-068	CFTS092		—	All	Functional Requirement	When the user presses the Cargo/CHMSL Camera Softkey button, the HU shall receive the internal signal CHMC IMAGE ON and
+SWE-CAM-016	SYS-RA-CAM-072	CFTS092		—	All	Functional Requirement	When the HU receives the $RVC_SK_PRSNT$ = [Present] the HU shall activate the virtual Rear View Camera button for user s
+SWE-CAM-016	SYS-RA-CAM-073	CFTS092		—	All	Functional Requirement	The Rear View Camera soft button shall be selectable only when the signal $PowerMode$ = [IGN_RUN].
+SWE-CAM-016	SYS-RA-CAM-074	CFTS092		—	All	Functional Requirement	When the signal $PowerMode$ <> [IGN_RUN], the HU shall follow the HMI Logic & Flow to update the state of the Rear View
+SWE-CAM-016	SYS-RA-CAM-076	CFTS092		—	All	Functional Requirement	The Rear Camera Softkey button shall be accessible from the Controls screen.
+SWE-CAM-016	SYS-RA-CAM-080	CFTS092		—	All	Functional Requirement	The Rear Camera Softkey button shall enable displaying the Rear camera image. The softkey button shall perform similar t
+SWE-CAM-016	SYS-RA-CAM-081	CFTS092		—	All	Functional Requirement	When the user presses the Rear Camera Softkey button, the HU shall receive the internal signal RVC IMAGE ON and shall di
+SWE-CAM-016	SYS-RA-CAM-084	CFTS092		—	All	Functional Requirement	When the HU receives the $SVC_SK_PRSNT$ = [1] the HU shall activate the virtual Surround View Camera button for user sel
+SWE-CAM-016	SYS-RA-CAM-085	CFTS092		—	All	Functional Requirement	When the Surround View Camera soft button pressed, the HU shall send an on-change $SVC_SoftBtn_Rq$ = [Pressed] within <T
+SWE-CAM-016	SYS-RA-CAM-089	CFTS092		—	All	Functional Requirement	The Surround View Camera Softkey button shall be accessible from the Controls screen.
+SWE-CAM-016	SYS-RA-CAM-090	CFTS092		—	All	Functional Requirement	When the Surround View Camera soft button is pressed (HU receives the internal signal SVC IMAGE ON) and the vehicle spee
+SWE-CAM-016	SYS-RA-CAM-091	CFTS092		—	All	Functional Requirement	When the user presses the Surround View Camera Softkey button, the HU shall send the $TGW_DISP_STAT$ signal. See {CFTS02
+SWE-CAM-016	SYS-RA-CAM-092	CFTS092		—	All	Functional Requirement	If the $Speedometer$ >= [8 MPH], the HU shall grey-out the Surround View Camera soft button, as specified by HMI, within
+SWE-CAM-016	SYS-RA-CAM-093	CFTS092		—	All	Functional Requirement	If the $Speedometer$ = [SNA], the HU shall retain the current setting of the Surround View Camera soft button, as specif
+SWE-CAM-016	SYS-RA-CAM-095	CFTS092		—	All	Functional Requirement	When the HU receives the $OFFroad_Camera$ = [Present] the HU shall activate the virtual Forward Facing Camera button for
+SWE-CAM-016	SYS-RA-CAM-096	CFTS092		—	All	Functional Requirement	When the Forward Facing Camera soft button pressed, the HU shall send an on-change $CameraDisplaySts$ = [View 3] to the
+SWE-CAM-016	SYS-RA-VF551_V2-485	VF551_V2	1.13.2	I欄	ATL-Hi	Functional Requirement	· When all of the following conditions hold true: - RVC display active on the Radio vehicleUpdate_1.TGW_CAMERA_DISP_STAT
+SWE-CAM-016	SYS-RA-VF551_V2-486	VF551_V2	1.13.2	I欄	ATL-Hi	Functional Requirement	· When all of the below conditions hold true: - RVC active on the Radio: vehicleUpdate_1.TGW_CAMERA_DISP_STAT = DISP_DIG
+SWE-CAM-016	SYS-RA-VF551_V2-502	VF551_V2	1.13.2.1.5	I欄	ATL-Hi	Functional Requirement	The Head Unit shall transition to Head Unit Audio Mode ON if each of the following conditions is met: 1. Audio System Po
+SWE-CAM-016	SYS-RA-VF551_V2-508	VF551_V2	1.13.2.1.7	I欄	ATL-Hi	Functional Requirement	The Head Unit shall transition to Head Unit Audio Mode Off mode if each of the conditions is met: 1. Audio System Power
+SWE-CAM-016	SYS-RA-VF551_V2-514	VF551_V2	1.13.2.1.9	I欄	ATL-Hi	Functional Requirement	If BCM_FD_10.CmdIgnSts = RUN AND the soft key button control for the rear view camera is activated, then the Head Unit
+SWE-CAM-016	SYS-RA-VF551_V2-532	VF551_V2	1.13.2.2.4	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall overlay Zoom soft button on Rear View Camera Image, Refer to Head Unit Zoom mode requirements.
+SWE-CAM-016	SYS-RA-VF551_V2-534	VF551_V2	1.13.2.2.5	I欄	ATL-Hi	Functional Requirement	· The soft key button control for the RVC shall be in the available state only when BCM_FD_10.CmdIgnSts = RUN.
+SWE-CAM-016	SYS-RA-VF551_V2-535	VF551_V2	1.13.2.2.5	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall implement the soft key button controls for RVC activation, refer to VF664 and HMI logic and flow.
+SWE-CAM-016	SYS-RA-VF551_V2-541	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· HU shall acquire the HU touch screen coordinates pressed by the driver to Zoom Out via RVC Image soft button and set i
+SWE-CAM-016	SYS-RA-VF551_V2-543	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· HU shall acquire the HU touch screen coordinates pressed by the driver to Zoom In via RVC Image soft button and set in
+SWE-CAM-016	SYS-RA-VF551_V2-544	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	a. HU shall set APP_Menu_BACKUP.Req = Not Pressed when Backup Camera soft button is not pressed via the APP drawer.
+SWE-CAM-016	SYS-RA-VF551_V2-545	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· HU shall acquire the HU touch screen coordinates pressed by the driver to enable Rear View Camera View via app drawer
+SWE-CAM-016	SYS-RA-VF551_V2-546	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	a. HU shall set Controls_BACKUP.Req = Not Pressed when Backup View Camera soft button is not pressed.
+SWE-CAM-016	SYS-RA-VF551_V2-547	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· HU shall acquire the HU touch screen coordinates pressed by the driver to enable Rear View Camera View via Radio Contr
+SWE-CAM-016	SYS-RA-VF551_V2-548	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	a. HU shall set RVC_ImageDefeat.Req = Not Pressed when Image defeat soft button is not pressed.
+SWE-CAM-016	SYS-RA-VF551_V2-549	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· HU shall acquire the HU touch screen coordinates pressed by the driver to defeat Rear View Camera View via RVC Image s
+SWE-CAM-016	SYS-RA-VF551_V3-207	VF551_V3	1.10.2	I欄	ATL-Mi	Functional requirement	· Acquisition of the HU touch screen coordinates pressed by the driver to defeat Rear View Camera View via RVC Image (so
+SWE-CAM-016	SYS-RA-VF551_V3-208	VF551_V3	1.10.2	I欄	ATL-Mi	Functional requirement	· Acquisition of the HU touch screen coordinates pressed by the driver to enable Rear View Camera View via Radio Control
+SWE-CAM-016	SYS-RA-VF551_V3-209	VF551_V3	1.10.2	I欄	ATL-Mi	Functional requirement	· Acquisition of the HU touch screen coordinates pressed by the driver to enable Rear View Camera View via app drawer (s
+SWE-CAM-016	SYS-RA-VF551_V3-210	VF551_V3	1.10.2	I欄	ATL-Mi	Functional requirement	· Acquisition of the HU touch screen coordinates pressed by the driver to Zoom In/Out via RVC Image (soft button), HU sh
+SWE-CAM-016	SYS-RA-VF551_V3-213	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	· The Head Unit shall implement a soft keys button controls for RVC activation, refer to VF664 and HMI logic and flow.
+SWE-CAM-016	SYS-RA-VF551_V3-214	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	· The soft key button control for the RVC shall be in the available state only when STATUS_BH_BCM2.CmdIgnSts = [RUN].
+SWE-CAM-016	SYS-RA-VF551_V3-250	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	· The Head Unit shall overlay Zoom soft button on Rear View Camera Image, Refer to Head Unit Zoom mode requirements.
+SWE-CAM-016	SYS-RA-VF551_V3-265	VF551_V3	1.10.2.3	I欄	ATL-Mi	Functional requirement	· When Head Unit in Manual Display mode AND RVC image active, the Head Unit shall continue to display RVC image unless o
+SWE-CAM-016	SYS-RA-VF551_V3-268	VF551_V3	1.10.2.4	I欄	ATL-Mi	Functional requirement	· The Head Unit functions when RVC active on the Radio: vehicleUpdate_1.TGW_CAMERA_DISP_STAT = [DISP_DIGITAL_RVC_CAMERA]
+SWE-CAM-016	SYS-RA-VF551_V3-269	VF551_V3	1.10.2.4	I欄	ATL-Mi	Functional requirement	· The Head Unit shall grayout Zoom Soft Button when RVC display active on the Radio: vehicleUpdate_1.TGW_CAMERA_DISP_STA
+SWE-CAM-016	SYS-RA-VF551_V4-107	VF551_V4	1.10.2	D欄推導		Functional Requirement	· HU shall acquire the HU touch screen coordinates pressed by the driver to defeat Rear View Camera View via RVC Image s
+SWE-CAM-016	SYS-RA-VF551_V4-108	VF551_V4	1.10.2	D欄推導		Functional Requirement	a. HU shall set RVC_ImageDefeat.Req = Not Pressed when Image defeat soft button is not pressed.
+SWE-CAM-016	SYS-RA-VF551_V4-109	VF551_V4	1.10.2	D欄推導		Functional Requirement	· HU shall acquire the HU touch screen coordinates pressed by the driver to enable Rear View Camera View via Radio Contr
+SWE-CAM-016	SYS-RA-VF551_V4-110	VF551_V4	1.10.2	D欄推導		Functional Requirement	a. HU shall set Controls_BACKUP.Req = Not Pressed when Backup View Camera soft button is not pressed.
+SWE-CAM-016	SYS-RA-VF551_V4-113	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	· The Head Unit shall implement the soft key button controls for RVC activation, refer to VF664 and HMI logic and flow.
+SWE-CAM-016	SYS-RA-VF551_V4-114	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	· The soft key button control for the RVC shall be in the available state only when BCM_FD_10.CmdIgnSts = RUN.
+SWE-CAM-016	SYS-RA-VF551_V4-129	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	If BCM_FD_10.CmdIgnSts = RUN AND the soft key button control for the rear view camera is activated, then the Head Unit
+SWE-CAM-016	SYS-RA-VF551_V4-135	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	The Head Unit shall transition to Head Unit Audio Mode Off mode if each of the conditions is met: 1. Audio System Power
+SWE-CAM-016	SYS-RA-VF551_V4-141	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	The Head Unit shall transition to Head Unit Audio Mode ON if each of the following conditions is met: 1. Audio System P
+SWE-CAM-016	SYS-RA-VF551_V42-251	VF551_V42	1.11.1.2.0.3	I欄	ATL-Mi	Functional Requirement	"The Rear View Camera soft button shall be selectable only when the signal LTM_OperationalModeSts.Info equal to ""Ignitio"
+SWE-CAM-016	SYS-RA-VF551_V42-255	VF551_V42	1.11.1.2.0.3	I欄	ATL-Mi	Functional Requirement	"IF the LTM receives: the signal LTM_OperationalModeSts.Info equal to ""Ignition ON"" or ""Ignition_Start"" or ""Ignition_On"
+SWE-CAM-016	SYS-RA-VF551_V42-299	VF551_V42	1.11.1.2.0.5	I欄	ATL-Mi	Functional Requirement	"overlay an Image Defeat ""X"" soft button on Rear View Camera Image."
+SWE-CAM-016	SYS-RA-VF617_V5-199	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-207	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-208	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-222	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-234	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-253	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-266	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-273	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-276	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-279	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-282	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-285	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-288	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-291	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-294	(查無)					
+SWE-CAM-016	SYS-RA-VF617_V5-297	(查無)					
+SWE-CAM-017	SYS-RA-CAM-097	CFTS092		—	All	Functional Requirement	The HU shall follow this signal with an on-change $CameraDisplaySts$ = [Default] signal within a time period of <Tsend>.
+SWE-CAM-017	SYS-RA-CAM-098	CFTS092		—	All	Functional Requirement	The HU shall continue to send $CameraDisplaySts$ = [Default] signal until next keypress.
+SWE-CAM-017	SYS-RA-VF551_V2-569	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	c. When Zoom function is inactive due to internal or external errors, RVCM shall transmit systemStatus.ZoomViewRes = SN
+SWE-CAM-017	SYS-RA-VF551_V2-578	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· When all of the following conditions hold true: - RVC display active on the Radio: LVDS message vehicleUpdate_1.TGW_CA
+SWE-CAM-017	SYS-RA-VF551_V2-580	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· When all of the following conditions hold true: - RVC display active on the Radio: LVDS message vehicleUpdate_1.TGW_CA
+SWE-CAM-017	SYS-RA-VF551_V3-185	VF551_V3	1.10.1.1	I欄	ATL-Mi	Out of scope	· The RVCM shall follow below functions when RVC display active on the Radio: LVDS message vehicleUpdate_1.TGW_CAMERA_DI
+SWE-CAM-018	SYS-RA-CAM-064	CFTS092		—	All	Functional Requirement	Cargo/CHMSL Camera display image shall remain displayed until driver presses the softkey to disable it.
+SWE-CAM-018	SYS-RA-CAM-065	CFTS092		—	All	Functional Requirement	Cargo/CHMSL Camera display image shall remain displayed until display timer is greater than 10s AND vehicle speed is abo
+SWE-CAM-018	SYS-RA-CAM-066	CFTS092		—	All	Functional Requirement	*Note* if vehicle speed is below 8mph Cargo/CHMSL display remains until the softkey to disable it is pressed
+SWE-CAM-018	SYS-RA-CAM-077	CFTS092		—	All	Functional Requirement	Rear Camera display image shall remain displayed until driver presses the softkey to disable it.
+SWE-CAM-018	SYS-RA-CAM-078	CFTS092		—	All	Functional Requirement	Rear Camera display image shall remain displayed until display timer is greater than 10s AND vehicle speed is above 8 mp
+SWE-CAM-018	SYS-RA-CAM-079	CFTS092		—	All	Functional Requirement	*Note* if vehicle speed is below 8mph Rear display remains until the softkey to disable it is pressed
+SWE-CAM-018	SYS-RA-VF551_V2-488	VF551_V2	1.13.2	I欄	ATL-Hi	Functional Requirement	· When all of the following conditions hold True: - BCM_FD_10.CmdIgnSts = RUN - RVC image active - Shift Lever changes t
+SWE-CAM-018	SYS-RA-VF551_V2-489	VF551_V2	1.13.2.1	I欄	ATL-Hi	Functional Requirement	· If the Timer has not timed out, then the Ttimer2 shall reset to zero when BRAKE_FD_2.VehicleSpeedVSOSig < c_VEHSPD_MAX
+SWE-CAM-018	SYS-RA-VF551_V2-490	VF551_V2	1.13.2.1.1	I欄	ATL-Hi	Functional Requirement	· The Ttimer2 shall start when BRAKE_FD_2.VehicleSpeedVSOSig >= c_VEHSPD_MAX.
+SWE-CAM-018	SYS-RA-VF551_V2-492	VF551_V2	1.13.2.1.1	I欄	ATL-Hi	Functional Requirement	· When Head Unit is in Manual Display mode AND RVC image is active, the Head Unit shall continue to display RVC image un
+SWE-CAM-018	SYS-RA-VF551_V2-493	VF551_V2	1.13.2.1.2	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall stay in Manual Display Mode and display the RVC image as operating in Manual mode, when all of the
+SWE-CAM-018	SYS-RA-VF551_V2-495	VF551_V2	1.13.2.1.2	I欄	ATL-Hi	Functional Requirement	· When Head Unit is in Automatic Display Mode AND all of the following conditions hold true: - Gear shifted out of Rever
+SWE-CAM-018	SYS-RA-VF551_V2-496	VF551_V2	1.13.2.1.3	I欄	ATL-Hi	Functional Requirement	· When any of the following conditions hold true: - BCM_FD_10.CmdIgnSts != RUN, - BRAKE_FD_2.VehicleSpeedVSOSig >= c_VE
+SWE-CAM-018	SYS-RA-VF551_V2-497	VF551_V2	1.13.2.1.3	I欄	ATL-Hi	Functional Requirement	· When Head Unit is in Automatic Display Mode AND all of the following condition hold true: - Gear shifted out of Revers
+SWE-CAM-018	SYS-RA-VF551_V2-498	VF551_V2	1.13.2.1.3	I欄	ATL-Hi	Functional Requirement	· When all of the following conditions hold true: - BCM_FD_10.CmdIgnSts = RUN, - ShiftLeverPosition = R > Reverse_Deb.
+SWE-CAM-018	SYS-RA-VF551_V2-551	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	"The HU shall set ShiftLeverPosition to PT_SYSTEM_FD_1.ShiftLeverPosition_PT when Hybrid_Type = ""Range Electric Paradigm"
+SWE-CAM-018	SYS-RA-VF551_V2-552	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	"The HU shall set ShiftLeverPosition to TRANSM_FD_4.ShiftLeverPosition when Hybrid_Type != ""Range Electric Paradigm Break"
+SWE-CAM-018	SYS-RA-VF551_V2-743	VF551_V2	1.10.2	I欄		Functional Requirement	"The HU shall set ShiftLeverPosition to TRANSM_FD_4.ShiftLeverPosition when Hybrid_Type != ""Range Electric Paradigm Break"
+SWE-CAM-018	SYS-RA-VF551_V2-744	VF551_V2	1.10.2	I欄		Functional Requirement	"The HU shall set ShiftLeverPosition to PT_SYSTEM_FD_1.ShiftLeverPosition_PT when Hybrid_Type = ""Range Electric Paradigm"
+SWE-CAM-018	SYS-RA-VF551_V33-247	VF551_V33	1.11.1.2.2	I欄		Functional requirement	"IF ( (STATUS_CCAN3.VehicleSpeedVSOSig>(greater) MAX_SPEED AND LTM_OperationalModeSts.Info =""Ignition_On_EngOn"" ) OR (aft"
+SWE-CAM-018	SYS-RA-VF551_V42-225	VF551_V42	1.11.1.2.0.2	I欄	ATL-Mi	Functional Requirement	"IF the LTM receives: the signal LTM_OperationalModeSts.Info equal to ""Ignition ON"" or ""Ignition_Start"" or ""Ignition_On"
+SWE-CAM-018	SYS-RA-VF551_V42-236	VF551_V42	1.11.1.2.0.2.2	I欄	ATL-Mi	Functional Requirement	"IF ((LTM_OperationalModeSts.Info is equal to ""Ignition ON"" or ""Ignition_Start"" or ""Ignition_On_Prplsn_On"" AND the signal"
+SWE-CAM-018	SYS-RA-VF551_V42-264	VF551_V42	1.11.1.2.0.3.2	I欄	ATL-Mi	Functional Requirement	"IF: the signal LTM_OperationalModeSts.Info is equal to ""Ignition ON"" or ""Ignition_Start"" or ""Ignition_On_Prplsn_On"" AND"
+SWE-CAM-018	SYS-RA-VF551_V42-265	VF551_V42	1.11.1.2.0.3.2	I欄	ATL-Mi	Functional Requirement	IF the signal STATUS_CCAN3.VehicleSpeedVSOSig becomes lower than MAX_SPEED before that the T_Timer expires THEN LTM sh
+SWE-CAM-018	SYS-RA-VF551_V42-302	VF551_V42	1.11.1.2.0.5	I欄	ATL-Mi	Functional Requirement	"As soon as LTM receives: the signal TRANSM2.ShiftLeverPosition equal to ""R"" IF the PROXI parameter Gear_Box_Type is dif"
+SWE-CAM-018	SYS-RA-VF617_V5-201	(查無)					
+SWE-CAM-018	SYS-RA-VF617_V5-202	(查無)					
+SWE-CAM-018	SYS-RA-VF617_V5-203	(查無)					
+SWE-CAM-018	SYS-RA-VF617_V5-204	(查無)					
+SWE-CAM-018	SYS-RA-VF617_V5-205	(查無)					
+SWE-CAM-018	SYS-RA-VF617_V5-228	(查無)					
+SWE-CAM-018	SYS-RA-VF617_V5-229	(查無)					
+SWE-CAM-018	SYS-RA-VF617_V5-230	(查無)					
+SWE-CAM-018	SYS-RA-VF617_V5-231	(查無)					
+SWE-CAM-018	SYS-RA-VF617_V5-232	(查無)					
+SWE-CAM-019	SYS-RA-VF551_V33-243	VF551_V33	1.11.1.2.2	I欄		Functional requirement	the LTM stops to copy the Rear_Camera.Data into Rear_Camera_Repetition.Data (The rearview image shall not be displayed
+SWE-CAM-019	SYS-RA-VF551_V33-248	VF551_V33	1.11.1.2.2	I欄		Functional requirement	the LTM stops to copy the Rear_Camera.Data into Rear_Camera_Repetition.Data (The rearview image shall not be displayed
+SWE-CAM-019	SYS-RA-VF551_V33-234	VF551_V33	1.11.1.2.1	I欄		Functional requirement	When the rear images are displayed on TLM_Display.GUI the setted brightness must be over 50%, in order to visualize bett
+SWE-CAM-020	SYS-RA-VF551_V33-227	VF551_V33	1.11.1.2	I欄		Functional requirement	"IF TTM module is present (CAN Node 63 (TTM) = Present): when the value of the BED_EXTENDER.BedExtenderSts =(equal) ""Act"
+SWE-CAM-021	SYS-RA-VF551_V2-500	VF551_V2	1.13.2.1.4	I欄	ATL-Hi	Functional Requirement	b. The head unit shall not interrupt the rear camera image.
+SWE-CAM-021	SYS-RA-VF551_V2-503	VF551_V2	1.13.2.1.5	I欄	ATL-Hi	Functional Requirement	b. Once the head unit exits the rear camera mode, the Head Unit shall process display updates to show current informati
+SWE-CAM-021	SYS-RA-VF551_V2-504	VF551_V2	1.13.2.1.5	I欄	ATL-Hi	Functional Requirement	a. The Head Unit shall not interrupt the rear camera image display.
+SWE-CAM-021	SYS-RA-VF551_V2-505	VF551_V2	1.13.2.1.6	I欄	ATL-Hi	Functional Requirement	If the Head Unit Audio Mode is OFF, then the non-entertainment features shall be functional as per the Head Unit Audio M
+SWE-CAM-021	SYS-RA-VF551_V2-506	VF551_V2	1.13.2.1.6	I欄	ATL-Hi	Functional Requirement	b. The head unit shall not interrupt the rear camera image.
+SWE-CAM-021	SYS-RA-VF551_V2-510	VF551_V2	1.13.2.1.7	I欄	ATL-Hi	Functional Requirement	b. The Head Unit shall process display updates after the head unit exits rear camera mode.
+SWE-CAM-021	SYS-RA-VF551_V2-511	VF551_V2	1.13.2.1.8	I欄	ATL-Hi	Functional Requirement	a. When the head unit executes entertainment and non-entertainment features, the Head Unit shall not interrupt the rear
+SWE-CAM-021	SYS-RA-VF551_V2-512	VF551_V2	1.13.2.1.8	I欄	ATL-Hi	Functional Requirement	If the Head Unit Audio Mode is ON, the entertainment and non-entertainment features shall be functional as per Head Unit
+SWE-CAM-021	SYS-RA-VF551_V2-523	VF551_V2	1.13.2.2.1	I欄	ATL-Hi	Functional Requirement	· HU display shall not flicker in each of the following scenarios: 1. Head Unit displays the RVC image 2. Head Unit disp
+SWE-CAM-021	SYS-RA-VF551_V2-529	VF551_V2	1.13.2.2.3	I欄	ATL-Hi	Functional Requirement	- When duration of the Rear Camera display is less than 5 seconds and Head Unit transitions to non camera display, the h
+SWE-CAM-021	SYS-RA-VF551_V3-255	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	· No display blanking or flicker shall occur while Head Unit is displaying RVC image and during the display transitions
+SWE-CAM-021	SYS-RA-VF551_V4-118	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	- When duration of the Rear Camera display is less than 5 seconds and Head Unit transitions to non camera display, the h
+SWE-CAM-021	SYS-RA-VF551_V4-122	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	· HU display shall not flicker in each of the following scenarios: 1. Head Unit displays the RVC image 2. Head Unit di
+SWE-CAM-021	SYS-RA-VF551_V4-132	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	a. When the head unit executes entertainment and non-entertainment features, the Head Unit shall not interrupt the rear
+SWE-CAM-021	SYS-RA-VF551_V4-137	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	b. The head unit shall not interrupt the rear camera image.
+SWE-CAM-021	SYS-RA-VF551_V4-139	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	a. The Head Unit shall not interrupt the rear camera image display.
+SWE-CAM-021	SYS-RA-VF551_V4-143	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	b. The head unit shall not interrupt the rear camera image.
+SWE-CAM-021	SYS-RA-VF617_V5-185	(查無)					
+SWE-CAM-021	SYS-RA-VF617_V5-190	(查無)					
+SWE-CAM-021	SYS-RA-VF617_V5-191	(查無)					
+SWE-CAM-021	SYS-RA-VF617_V5-263	(查無)					
+SWE-CAM-022	SYS-RA-VF551_V2-491	VF551_V2	1.13.2.1.1	I欄	ATL-Hi	Functional Requirement	· When any of the preceding conditions occur, the Head Unit shall switch back to non-camera display operation.
+SWE-CAM-022	SYS-RA-VF551_V2-501	VF551_V2	1.13.2.1.4	I欄	ATL-Hi	Functional Requirement	a. The head unit shall display the rear camera image.
+SWE-CAM-022	SYS-RA-VF551_V2-503	VF551_V2	1.13.2.1.5	I欄	ATL-Hi	Functional Requirement	b. Once the head unit exits the rear camera mode, the Head Unit shall process display updates to show current informati
+SWE-CAM-022	SYS-RA-VF551_V2-507	VF551_V2	1.13.2.1.6	I欄	ATL-Hi	Functional Requirement	a. The head unit shall display the rear camera image display.
+SWE-CAM-022	SYS-RA-VF551_V2-509	VF551_V2	1.13.2.1.7	I欄	ATL-Hi	Functional Requirement	c. After exiting rear camera mode, the Head Unit display shall reflect the changes and show current information.
+SWE-CAM-022	SYS-RA-VF551_V2-510	VF551_V2	1.13.2.1.7	I欄	ATL-Hi	Functional Requirement	b. The Head Unit shall process display updates after the head unit exits rear camera mode.
+SWE-CAM-022	SYS-RA-VF551_V2-524	VF551_V2	1.13.2.2.2	I欄	ATL-Hi	Functional Requirement	· HU display shall not go blank in each of the following scenarios: 1. Head Unit displays the RVC image 2. Head Unit dis
+SWE-CAM-022	SYS-RA-VF551_V4-121	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	· HU display shall not go blank in each of the following scenarios: 1. Head Unit displays the RVC image 2. Head Unit d
+SWE-CAM-022	SYS-RA-VF551_V4-133	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	b. The Head Unit shall process display updates after the head unit exits rear camera mode.
+SWE-CAM-022	SYS-RA-VF551_V4-134	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	c. After exiting rear camera mode, the Head Unit display shall reflect the changes and show current information.
+SWE-CAM-022	SYS-RA-VF551_V4-136	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	a. The head unit shall display the rear camera image display.
+SWE-CAM-022	SYS-RA-VF551_V4-140	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	b. Once the head unit exits the rear camera mode, the Head Unit shall process display updates to show current informati
+SWE-CAM-022	SYS-RA-VF551_V4-142	VF551_V4	1.10.2.1	D欄推導		Functional Requirement	a. The head unit shall display the rear camera image.
+SWE-CAM-022	SYS-RA-VF551_V4-152	VF551_V4	1.10.2.3	D欄推導		Functional Requirement	· When any of the preceding conditions occur, the Head Unit shall switch back to non-camera display operation.
+SWE-CAM-023	SYS-RA-VF551_V2-478	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· When there is no user change to Dynamic Gridlines, the HU shall send the default value gridZoomRequest.DynamicGridRQSt
+SWE-CAM-023	SYS-RA-VF551_V2-479	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· When the customer selects to disable the Rear view Camera Dynamic Gridlines, the HU shall send gridZoomRequest.Dynamic
+SWE-CAM-023	SYS-RA-VF551_V2-480	VF551_V2	1.13.1	I欄	ATL-Hi	Functional Requirement	· When the customer selects to enable the Rear view Camera Dynamic Gridlines, the HU shall send gridZoomRequest.DynamicG
+SWE-CAM-023	SYS-RA-VF551_V2-526	VF551_V2	1.13.2.2.2	I欄	ATL-Hi	Functional Requirement	· The warning text shall be available in each language used by the Head Unit and correspond to the Language signal, IPC_
+SWE-CAM-023	SYS-RA-VF551_V2-527	VF551_V2	1.13.2.2.3	I欄	ATL-Hi	Functional Requirement	a. The warning text shall be in accordance with ISO font 15008 and sized greater than 18 arc minutes.
+SWE-CAM-023	SYS-RA-VF551_V2-528	VF551_V2	1.13.2.2.3	I欄	ATL-Hi	Functional Requirement	"· The Head Unit shall implement the warning text overlay that displays the text, ""Camera Not in Position"" for five secon"
+SWE-CAM-023	SYS-RA-VF551_V2-529	VF551_V2	1.13.2.2.3	I欄	ATL-Hi	Functional Requirement	- When duration of the Rear Camera display is less than 5 seconds and Head Unit transitions to non camera display, the h
+SWE-CAM-023	SYS-RA-VF551_V2-530	VF551_V2	1.13.2.2.4	I欄	ATL-Hi	Functional Requirement	- The warning text shall follow ISO font 15008 and have size greater than 18 arc minutes.
+SWE-CAM-023	SYS-RA-VF551_V2-531	VF551_V2	1.13.2.2.4	I欄	ATL-Hi	Functional Requirement	· When Head Unit transitions from non camera display to camera display, the Head Unit shall implement the warning text o
+SWE-CAM-023	SYS-RA-VF551_V2-532	VF551_V2	1.13.2.2.4	I欄	ATL-Hi	Functional Requirement	· The Head Unit shall overlay Zoom soft button on Rear View Camera Image, Refer to Head Unit Zoom mode requirements.
+SWE-CAM-023	SYS-RA-VF551_V2-533	VF551_V2	1.13.2.2.5	I欄	ATL-Hi	Functional Requirement	· The Head Unit overlays Image Defeat [X] soft button on Rear View Camera Image when ShiftLeverPosition != R. a) When Sh
+SWE-CAM-023	SYS-RA-VF551_V2-540	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	a. HU shall set HU_ZOOM.req = Not Pressed when Zoom Out soft button is not pressed.
+SWE-CAM-023	SYS-RA-VF551_V2-541	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· HU shall acquire the HU touch screen coordinates pressed by the driver to Zoom Out via RVC Image soft button and set i
+SWE-CAM-023	SYS-RA-VF551_V2-542	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	a. HU shall set HU_ZOOM.req = Not Pressed when Zoom In soft button is not pressed.
+SWE-CAM-023	SYS-RA-VF551_V2-543	VF551_V2	1.14.1	I欄	ATL-Hi	Functional Requirement	· HU shall acquire the HU touch screen coordinates pressed by the driver to Zoom In via RVC Image soft button and set in
+SWE-CAM-023	SYS-RA-VF551_V2-569	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	c. When Zoom function is inactive due to internal or external errors, RVCM shall transmit systemStatus.ZoomViewRes = SN
+SWE-CAM-023	SYS-RA-VF551_V2-570	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	b. When current view is Backup Zoomed View, RVCM shall transmit systemStatus.ZoomViewRes = 4X to the Radio via LVDS .
+SWE-CAM-023	SYS-RA-VF551_V2-571	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	a. When current view is Backup Camera View, RVCM shall transmit systemStatus.ZoomViewRes = 1X to the Radio via LVDS.
+SWE-CAM-023	SYS-RA-VF551_V2-578	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· When all of the following conditions hold true: - RVC display active on the Radio: LVDS message vehicleUpdate_1.TGW_CA
+SWE-CAM-023	SYS-RA-VF551_V2-580	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· When all of the following conditions hold true: - RVC display active on the Radio: LVDS message vehicleUpdate_1.TGW_CA
+SWE-CAM-023	SYS-RA-VF551_V2-582	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· The RVCM shall acquire the following signals on LVDS: - vehicleUpdate_2.VehicleSpeedVSOSig - vehicleUpdate_2.LwsAngle
+SWE-CAM-023	SYS-RA-VF551_V2-583	VF551_V2	1.14.1	I欄	ATL-Hi	Out of Scope	· The RVCM shall transmit the following signals on LVDS: - ADAS_LVDS_RRCamera_Cable - systemStatus.ExternalErrorStatus
+SWE-CAM-023	SYS-RA-VF551_V3-185	VF551_V3	1.10.1.1	I欄	ATL-Mi	Out of scope	· The RVCM shall follow below functions when RVC display active on the Radio: LVDS message vehicleUpdate_1.TGW_CAMERA_DI
+SWE-CAM-023	SYS-RA-VF551_V3-194	VF551_V3	1.10.1.5	I欄	ATL-Mi	Out of scope	a) The RVCM shall transmit systemStatus.ZoomViewRes = [1X] to the Radio via LVDS when current view is Backup Camera View
+SWE-CAM-023	SYS-RA-VF551_V3-195	VF551_V3	1.10.1.5	I欄	ATL-Mi	Out of scope	b) The RVCM shall transmit systemStatus.ZoomViewRes = [4X] to the Radio via LVDS when current view is Backup Zoomed View
+SWE-CAM-023	SYS-RA-VF551_V3-196	VF551_V3	1.10.1.5	I欄	ATL-Mi	Out of scope	c) The RVCM shall transmit systemStatus.ZoomViewRes = [SNA] to the Radio via LVDS when Zoom function is disabled in the
+SWE-CAM-023	SYS-RA-VF551_V3-253	VF551_V3	1.10.2.1	I欄	ATL-Mi	Functional requirement	· The warning text shall be available in all languages supported by the Head Unit and text display shall correspond to t
+SWE-CAM-023	SYS-RA-VF551_V42-230	VF551_V42	1.11.1.2.0.2.1	I欄	ATL-Mi	Functional Requirement	"implement a warning text overlay that displays the text ""Check Entire Surroundings"" for a time equal to T_INITDISPLAY si"
+SWE-CAM-023	SYS-RA-VF551_V42-231	VF551_V42	1.11.1.2.0.2.1	I欄	ATL-Mi	Functional Requirement	"- IF the PROXI parameter Gear_Box_Type is different from ""MTX"" AND the signal TRANSM2.ShiftLeverPosition becomes differe"
+SWE-CAM-023	SYS-RA-VF551_V42-232	VF551_V42	1.11.1.2.0.2.1	I欄	ATL-Mi	Functional Requirement	"- IF the PROXI parameter Gear_Box_Type is equal to ""MTX"" AND the signal ENGINE1.ReverseGearSts becomes different from ""I"
+SWE-CAM-023	SYS-RA-VF551_V42-258	VF551_V42	1.11.1.2.0.3.1	I欄	ATL-Mi	Functional Requirement	"implement a warning text overlay that displays the text ""Check Entire Surroundings"" for a time equal to T_INITDISPLAY si"
+SWE-CAM-023	SYS-RA-VF551_V42-299	VF551_V42	1.11.1.2.0.5	I欄	ATL-Mi	Functional Requirement	"overlay an Image Defeat ""X"" soft button on Rear View Camera Image."
+SWE-CAM-023	SYS-RA-VF617_V5-088	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-091	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-188	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-196	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-212	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-213	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-214	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-215	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-216	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-217	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-223	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-238	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-239	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-240	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-241	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-242	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-243	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-249	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-250	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-251	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-252	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-254	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-255	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-256	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-257	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-258	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-259	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-260	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-265	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-271	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-272	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-274	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-275	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-277	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-278	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-280	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-281	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-283	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-284	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-286	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-287	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-289	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-290	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-292	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-293	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-295	(查無)					
+SWE-CAM-023	SYS-RA-VF617_V5-296	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-182	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-197	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-198	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-200	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-206	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-219	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-220	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-221	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-262	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-264	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-267	(查無)					
+SWE-CAM-024	SYS-RA-VF617_V5-270	(查無)					
+SWE-CAM-025	SYS-RA-VF551_V33-227	VF551_V33	1.11.1.2	I欄		Functional requirement	"IF TTM module is present (CAN Node 63 (TTM) = Present): when the value of the BED_EXTENDER.BedExtenderSts =(equal) ""Act"
