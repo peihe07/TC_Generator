@@ -216,6 +216,8 @@ CHECK_TITLES = {
     "X": "導航路徑無固定入口（§5.8／R-G71）",
     "Y": "PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式）",
     "Z": "Vehicle Model 七欄 1／0（R-CAM2，Camera profile 專屬）",
+    "SC": "步驟無執行通道／ER 無觀察手段（R-SEC7，Security profile 專屬）",
+    "SS": "最終驗證步驟之 Remarks 無 `source:` 標記（R-SEC4(a)，Security profile 專屬）",
 }
 # `--profile` 啟用時 P 改以 R-1 v3 判準，標題隨之替換
 # R-G70：P 於 profile 與非 profile 下判準相同，故無標題覆寫。
@@ -241,6 +243,13 @@ CHECK_STATUS = {
     "Y": "未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72",
     "Z": "未校準（R-CAM2，CAM-02 新增）—— **feature 專屬**，僅 `--profile camera` 啟用；"
          "既有八本無此七欄，未啟用即不檢查（`Z=0` 在未啟用時是沉默，不是核可）",
+    "SC": "未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。"
+          "對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），"
+          "**故絕不可入 PROFILE_CHECKS**；對 Security 自身之假陽性率待 Pilot",
+    "SS": "未校準（R-SEC4(a)，SEC-02 新增）—— **feature 專屬**。"
+          "判準面之偏差：R-SEC4(a) 原文為「於 reasoning 註明來源」，而 reasoning 在生成側 JSON、不在工作簿；"
+          "本檢查改以 **Remarks 欄**之 `source:` 標記為判準，待 Pei 覆核（SEC-02 上繳包自報）。"
+          "R-SEC14(c)：`<…>` 佔位不報",
 }
 CHECK_STATUS_PROFILE: dict[str, str] = {}
 CHECK_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "I-sibling",
@@ -252,14 +261,23 @@ PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X", "Y"]
 # 立此結構之由（CAM-02 §2 任務 3）：`Z` 檢查之七欄為 Camera 兩本所獨有，
 # 既有八本之工作簿無此七欄；若併入 PROFILE_CHECKS，任何 feature 之 profile 執行
 # 都會整本 FAIL。判準與粒度照 R-CAM2，啟用面縮到 feature。
-FEATURE_CHECKS: dict[str, list[str]] = {"camera": ["Z"]}
+# R-SEC13(a)：`SC`／`SS` 只入 `FEATURE_CHECKS["security"]`，不入 `PROFILE_CHECKS`。
+# R-SEC13(b)：單字母 `C` 已為既有檢查（hedge）所佔，故取多字元代號 `SC`／`SS`
+# （多字元代號有既有先例 `I-cross`／`I-sibling`）。
+FEATURE_CHECKS: dict[str, list[str]] = {"camera": ["Z"], "security": ["SC", "SS"]}
+# **feature 專屬之豁免**：某 profile 下不適用之 `PROFILE_CHECKS` 項。
+# R-SEC15(j)：Security 之 ER 為指令輸出斷言，無 R-SU33/34 之「觀測窗」概念，
+# `I-cross` 對其 10 列全報「窗未完整宣告」而非跨列衝突，故豁免。
+FEATURE_EXEMPT: dict[str, list[str]] = {"security": ["I-cross"]}
 
 
 def check_order(profile: str | None) -> list[str]:
     """本次執行所啟用之檢查序列。"""
     if not profile:
         return list(CHECK_ORDER)
-    return CHECK_ORDER + PROFILE_CHECKS + FEATURE_CHECKS.get(profile, [])
+    exempt = set(FEATURE_EXEMPT.get(profile, []))
+    return ([k for k in CHECK_ORDER + PROFILE_CHECKS if k not in exempt]
+            + FEATURE_CHECKS.get(profile, []))
 
 
 def check_title(key: str, profile: str | None) -> str:
@@ -280,6 +298,7 @@ CHECK_GRANULARITY = {
     "G": "每列", "H": "每次命中", "I": "每列", "I-sibling": "每列",
     "J": "每行", "K": "每列每欄", "L": "每列", "M": "每列每欄", "N": "每行",
     "P": "每次命中",
+    "SC": "每編號步驟／每 ER 行", "SS": "每列",
     "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
     "V": "每行每欄",
     "I-cross": "每列每配對（一組命中記二列）",
@@ -1039,8 +1058,11 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
 
     # Z 為 feature 專屬（FEATURE_CHECKS）。七欄不齊時整 sheet 記一筆，
     # 不逐列複述 —— 缺欄是工作簿之事實，不是每一列各自的違規。
+    enabled = check_order(profile)
+    remarks_idx = (security_remarks_idx(list(rows[header_row - 1]))
+                   if "SS" in enabled else None)
     vm_columns: dict[str, int] = {}
-    if "Z" in check_order(profile):
+    if "Z" in enabled:
         vm_columns = build_vehicle_model_columns(list(rows[header_row - 1]))
         if len(vm_columns) != len(VEHICLE_MODEL_HEADERS):
             missing_vm = [n for n in VEHICLE_MODEL_HEADERS
@@ -1064,6 +1086,15 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
         if vm_columns:
             result.violations.extend(
                 check_vehicle_model(raw, vm_columns, offset, tc_id))
+        # SC／SS 為 feature 專屬（FEATURE_CHECKS["security"]）
+        if "SC" in enabled:
+            result.violations.extend(
+                check_security_channel(fields, offset, tc_id))
+        if "SS" in enabled:
+            remarks_text = (cell_text(raw[remarks_idx])
+                            if remarks_idx is not None and remarks_idx < len(raw) else "")
+            result.violations.extend(
+                check_security_source(fields, remarks_text, offset, tc_id))
         sibling_input.append((offset, tc_id, req_id, fields["test_item"]))
         test_set = (cell_text(raw[columns["test_set"]])
                     if "test_set" in columns else "")
@@ -1072,11 +1103,153 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
 
     result.violations.extend(check_sibling_parens(sibling_input))
     result.cross_rows = cross_input
-    if profile:                       # I-cross 為 profile 專屬（PROFILE_CHECKS）
+    if "I-cross" in enabled:          # I-cross 為 profile 專屬（PROFILE_CHECKS），可被 FEATURE_EXEMPT 豁免
         result.violations.extend(check_cross(cross_input))
-    order = check_order(profile)
-    result.violations.sort(key=lambda v: (order.index(v.check), v.row))
+    result.violations.sort(key=lambda v: (enabled.index(v.check), v.row))
     return result
+
+
+# ---------------------------------------------------------------- Security
+# R-SEC7（下放包 SEC-01_E §1）之 `SC`，與 R-SEC4(a) 之 `SS`。
+# 兩者只在 `--profile security` 下啟用（FEATURE_CHECKS），不隨任意 profile 生效。
+
+# (a) 執行通道：編號步驟其後須有 `$` 指令行，或步驟句以實體操作動詞起首。
+SEC_CMD_LINE = re.compile(r"^\s*\$\s+\S")
+SEC_PHYS_STEP = re.compile(r'^\s*(?:Insert|Press|Power cycle|Disconnect|Select\s+")')
+SEC_STEP_NO = re.compile(r"^\s*(\d+)[.)]\s*(.+)$")
+# (c) ER 觀察手段之七類標記（LOG／FILE／UDS／RC／HOST／CAN／UI）
+SEC_OBSERVE = re.compile(
+    r"adb logcat\b"                                   # LOG
+    r"|\bod -t x1\b|adb shell (?:cat|ls)\b"           # FILE
+    r"|Positive response is received|Negative response is received"   # UDS
+    r"|OK \(\d+ tests?\)|FAILURES!!!"                 # RC
+    r"|\bopenssl\b|: OK\b|error \d+ at \d+ depth"    # HOST
+    r"|is sent\b"                                     # CAN
+    r"|screen is displayed\b")                        # UI
+# R-SEC4(a)：最終驗證步驟之觸發詞
+SEC_VERIFY_VERB = re.compile(r"\b(?:Verify|Check|Confirm)\b")
+SEC_SOURCE_MARK = re.compile(r"\bsource:", re.I)
+# `remarks` 不在 `FIELD_HEADERS` 內（其為 A~N 主欄之對照表），故 `SS` 自行解析其欄位，
+# 不動 `FIELD_HEADERS` —— 動之會改變所有既有檢查之 `fields` 內容。
+SEC_REMARKS_HEADER = "Remarks"
+# SEC-03 §4：`SC` 之四個補強判項。
+# (1) 反引號／單引號包字串（R-SEC15(d)：字面值一律 `"…"`）
+SEC_BAD_QUOTE = re.compile(r"`[^`\n]{1,120}`|(?<![A-Za-z])'[^'\n]{1,120}'(?![A-Za-z])")
+# (2) 內部台帳代號（R-SEC15(c)）
+SEC_LEDGER_ID = re.compile(r"\bX-[a-z]\b|\bDR-SEC-[a-z]\b|\bR-SEC\d|\bA-SE")
+# (3) PENDING 須整行起首（R-SEC15(i)）
+SEC_PENDING = re.compile(r"PENDING:")
+SEC_PENDING_HEAD = re.compile(r"^\s*(?:\d+[.)]\s*)?PENDING:")
+# (4) ER 行所引之指令須出現於同編號之 Procedure 步驟
+SEC_CMD_IN_TEXT = re.compile(r"\$ [^\s\"]+(?: [^\s\"]+)*")
+SEC_LINE_NO = re.compile(r"^\s*(\d+)[.)]")
+SEC_FOUR_FIELDS = ("pre", "input", "proc", "er")
+
+
+def security_remarks_idx(header_values: list) -> int | None:
+    for idx, value in enumerate(header_values):
+        if value is not None and str(value).strip().startswith(SEC_REMARKS_HEADER):
+            return idx
+    return None
+
+
+def check_security_channel(fields: dict[str, str], row_no: int,
+                           tc_id: str) -> list[Violation]:
+    """SC —— R-SEC7(a)(c)：每步須有執行通道，每 ER 行須有觀察手段。"""
+    out: list[Violation] = []
+    proc_lines = [ln for ln in fields.get("proc", "").splitlines() if ln.strip()]
+    for i, line in enumerate(proc_lines):
+        m = SEC_STEP_NO.match(line)
+        if not m:
+            continue
+        nxt = proc_lines[i + 1] if i + 1 < len(proc_lines) else ""
+        # R-SEC15(b)：無可用觸發手段者，該步驟整行寫 PENDING token —— 免通道。
+        if SEC_PENDING_HEAD.match(line):
+            continue
+        if SEC_CMD_LINE.match(nxt) or SEC_PHYS_STEP.match(m.group(2)):
+            continue
+        out.append(Violation(
+            "SC", row_no, tc_id, "proc",
+            "R-SEC7(a)：編號步驟其後須有 `$` 指令行，或步驟句須為 "
+            "`Insert`／`Press`／`Power cycle`／`Disconnect`／`Select \u0022…\u0022` 之實體操作",
+            line.strip()[:60]))
+    er_lines = [ln for ln in fields.get("er", "").splitlines() if ln.strip()]
+    for line in er_lines:
+        if SEC_PENDING_HEAD.match(line):     # R-SEC15(i)：整行 PENDING 免觀察手段
+            continue
+        if SEC_OBSERVE.search(line):
+            continue
+        out.append(Violation(
+            "SC", row_no, tc_id, "er",
+            "R-SEC7(c)：ER 每行須含七類觀察手段之一（LOG／FILE／UDS／RC／HOST／CAN／UI）",
+            line.strip()[:60]))
+
+    # --- SEC-03 §4 之四個補強判項 ---
+    for key in SEC_FOUR_FIELDS:
+        text = fields.get(key, "")
+        for line in (ln for ln in text.splitlines() if ln.strip()):
+            m = SEC_BAD_QUOTE.search(line)
+            if m:                                                        # (1)
+                out.append(Violation(
+                    "SC", row_no, tc_id, key,
+                    "R-SEC15(d)：字面值一律 \u0022…\u0022，反引號／單引號禁用",
+                    m.group(0)[:60]))
+            m = SEC_LEDGER_ID.search(line)
+            if m and not SEC_PENDING_HEAD.match(line):                   # (2)
+                out.append(Violation(
+                    "SC", row_no, tc_id, key,
+                    "R-SEC15(c)：內部台帳代號只可入 Remarks；PENDING token 起首者例外",
+                    line.strip()[:60]))
+            if key == "er" and SEC_PENDING.search(line) \
+                    and not SEC_PENDING_HEAD.match(line):                # (3)
+                out.append(Violation(
+                    "SC", row_no, tc_id, "er",
+                    "R-SEC15(i)：PENDING 為整行 token，不與散文混寫",
+                    line.strip()[:60]))
+
+    # (4) ER 某行引用之指令須出現於同編號之 Procedure 步驟
+    proc_by_no: dict[str, str] = {}
+    cur = ""
+    for line in proc_lines:
+        m = SEC_LINE_NO.match(line)
+        if m:
+            cur = m.group(1)
+            proc_by_no[cur] = proc_by_no.get(cur, "") + line
+        elif cur:
+            proc_by_no[cur] += "\n" + line
+    for line in er_lines:
+        m = SEC_LINE_NO.match(line)
+        if not m:
+            continue
+        step = proc_by_no.get(m.group(1), "")
+        for cmd in SEC_CMD_IN_TEXT.findall(line):
+            token = cmd.strip().rstrip("`\u0022 ")
+            if token and token not in step:
+                out.append(Violation(
+                    "SC", row_no, tc_id, "er",
+                    "SEC-03 §4(4)：ER 所引之指令未出現於同編號之 Procedure 步驟",
+                    token[:60]))
+    return out
+
+
+def check_security_source(fields: dict[str, str], remarks: str, row_no: int,
+                          tc_id: str) -> list[Violation]:
+    """SS —— R-SEC4(a)：最終驗證步驟須有 `source:` 標記。
+
+    判準面之偏差（SEC-02 上繳包自報）：R-SEC4(a) 原文為「於 reasoning 註明來源」，
+    reasoning 在生成側 JSON、不在工作簿；本檢查改以 **Remarks 欄**為判準面。
+    """
+    proc_lines = [ln for ln in fields.get("proc", "").splitlines() if ln.strip()]
+    numbered = [ln for ln in proc_lines if SEC_STEP_NO.match(ln)]
+    if not numbered or not SEC_VERIFY_VERB.search(numbered[-1]):
+        return []
+    if SEC_SOURCE_MARK.search(remarks):
+        return []
+    return [Violation(
+        "SS", row_no, tc_id, "remarks",
+        "R-SEC4(a)：最終步驟含 `Verify`／`Check`／`Confirm`，"
+        "Remarks 須有 `source:` 標記其落地來源",
+        numbered[-1].strip()[:60])]
 
 
 def count_by_check(results: list[SheetResult],
