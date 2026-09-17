@@ -29,6 +29,7 @@ RE_OBTAIN = re.compile(r"<obtain (.+?) per RD>")
 RE_TAG = re.compile(r"adb logcat -s (\S+)")
 RE_PATH = re.compile(r"(/(?:data|vendor|mnt|system|odm|sys)[A-Za-z0-9_./{}<>-]*)")
 RE_INSTR = re.compile(r"-e class (\S+)")
+RE_PLACEHOLDER_ANY = re.compile(r"<[^<>]+provided by [^<>]+\(X-[a-z0-9-]+\)>")
 RE_PLACEHOLDER_CMD = re.compile(r"^\$ <command provided by ([^()]+) \((X-[a-z0-9-]+)\)>$")
 
 # 觀察面之分類（R-SEC7(c) 七類 ＋ R-SEC7(amend2) 之 DOC）
@@ -173,6 +174,10 @@ def crosscheck(cmd_tcs: dict, instr_tcs: dict) -> dict[str, str]:
 def main() -> int:
     tcs = load_tcs()
     imap = id_map()
+    # SEC-17 review §一 #1：塗色列＝四欄任一含佔位之 TC（50），與 §5 之「含佔位指令行」（41）不同口徑。
+    shaded = sum(1 for t in tcs
+                 if RE_PLACEHOLDER_ANY.search("\n".join(
+                     t[k] for k in ("pre", "input", "proc", "er"))))
     for t in tcs:                      # 指南之 TC 稱謂一律用新式
         t["tc_id"] = imap.get(t["tc_id"], t["tc_id"])
     cmd_tcs: dict[str, list[str]] = defaultdict(list)
@@ -335,8 +340,8 @@ def main() -> int:
     L += ["", "## 4. Assets still to be provided", "",
           "From `placeholder_by_token.tsv`; the placeholders inside the workbook carry the same "
           "code. See `asset_request.md` for who to ask and the urgency order. "
-          "Rows containing placeholders are shaded light orange (FCE4D6) in the delivery "
-          "workbooks.", "",
+          f"The {shaded} rows containing placeholders are shaded light orange (FCE4D6) in the "
+          "delivery workbooks (`placeholder_rows.tsv` lists them).", "",
           "| Token | Placeholder lines | TC | Fields |", "| --- | ---: | ---: | --- |"]
     tok_file = (DATA / "placeholder_by_token_v09.tsv"
                 if (DATA / "placeholder_by_token_v09.tsv").exists()
@@ -353,7 +358,8 @@ def main() -> int:
     L += ["",
           f"> Not a channel: {len(chan_tcs['PENDING-ASSET'])} test cases carry a placeholder "
           "command line (`<command provided by …>`, written as a `$` step) and cannot be "
-          "automated until the asset arrives; see section 4."]
+          f"automated until the asset arrives; {shaded} test cases carry a placeholder in any "
+          "field and are the shaded rows — see section 4."]
     L += ["", "Manual (PHYS) steps, verbatim:", "",
           bullet([f"`{p}` — {', '.join(sorted(set(v)))}" for p, v in sorted(phys_tcs.items())]),
           ""]

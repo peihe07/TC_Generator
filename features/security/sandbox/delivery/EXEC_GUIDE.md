@@ -293,7 +293,7 @@ Device paths read or written:
 
 ## 4. Assets still to be provided
 
-From `placeholder_by_token.tsv`; the placeholders inside the workbook carry the same code. See `asset_request.md` for who to ask and the urgency order. Rows containing placeholders are shaded light orange (FCE4D6) in the delivery workbooks.
+From `placeholder_by_token.tsv`; the placeholders inside the workbook carry the same code. See `asset_request.md` for who to ask and the urgency order. The 50 rows containing placeholders are shaded light orange (FCE4D6) in the delivery workbooks (`placeholder_rows.tsv` lists them).
 
 | Token | Placeholder lines | TC | Fields |
 | --- | ---: | ---: | --- |
@@ -321,7 +321,7 @@ From `placeholder_by_token.tsv`; the placeholders inside the workbook carry the 
 | PHYS | `pause(prompt)` | 2 | manual step — the runner stops and prompts |
 | DOC | `doc_review()  # not generated` | 32 | document review — no execution generated |
 
-> Not a channel: 41 test cases carry a placeholder command line (`<command provided by …>`, written as a `$` step) and cannot be automated until the asset arrives; see section 4.
+> Not a channel: 41 test cases carry a placeholder command line (`<command provided by …>`, written as a `$` step) and cannot be automated until the asset arrives; 50 test cases carry a placeholder in any field and are the shaded rows — see section 4.
 
 Manual (PHYS) steps, verbatim:
 
