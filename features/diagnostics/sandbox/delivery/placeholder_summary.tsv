@@ -313,235 +313,239 @@ NR1L-DIAG-328	SWE1-Diagnostics-223	test_procedure	<Package Indication value>	DR-
 NR1L-DIAG-330	SWE1-Diagnostics-224	test_procedure	<out-of-range Package Indication value>	DR-DIAG-8	CFTS004-4940464
 NR1L-DIAG-331	SWE1-Diagnostics-225	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940466
 NR1L-DIAG-331	SWE1-Diagnostics-225	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940466
-NR1L-DIAG-332	SWE1-Diagnostics-226	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940465
-NR1L-DIAG-332	SWE1-Diagnostics-226	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940465
+NR1L-DIAG-332	SWE1-Diagnostics-225	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940466
+NR1L-DIAG-332	SWE1-Diagnostics-225	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940466
 NR1L-DIAG-333	SWE1-Diagnostics-226	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940465
 NR1L-DIAG-333	SWE1-Diagnostics-226	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940465
 NR1L-DIAG-334	SWE1-Diagnostics-226	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940465
 NR1L-DIAG-334	SWE1-Diagnostics-226	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940465
-NR1L-DIAG-335	SWE1-Diagnostics-227	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940452
-NR1L-DIAG-335	SWE1-Diagnostics-227	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940452
-NR1L-DIAG-336	SWE1-Diagnostics-228	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940451
-NR1L-DIAG-336	SWE1-Diagnostics-228	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940451
-NR1L-DIAG-337	SWE1-Diagnostics-229	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940453
-NR1L-DIAG-337	SWE1-Diagnostics-229	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940453
-NR1L-DIAG-338	SWE1-Diagnostics-230	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940455
-NR1L-DIAG-338	SWE1-Diagnostics-230	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940455
-NR1L-DIAG-339	SWE1-Diagnostics-231	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940454
-NR1L-DIAG-339	SWE1-Diagnostics-231	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940454
-NR1L-DIAG-340	SWE1-Diagnostics-231	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940454
-NR1L-DIAG-340	SWE1-Diagnostics-231	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940454
+NR1L-DIAG-335	SWE1-Diagnostics-226	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940465
+NR1L-DIAG-335	SWE1-Diagnostics-226	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940465
+NR1L-DIAG-336	SWE1-Diagnostics-227	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940452
+NR1L-DIAG-336	SWE1-Diagnostics-227	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940452
+NR1L-DIAG-337	SWE1-Diagnostics-228	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940451
+NR1L-DIAG-337	SWE1-Diagnostics-228	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940451
+NR1L-DIAG-338	SWE1-Diagnostics-229	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940453
+NR1L-DIAG-338	SWE1-Diagnostics-229	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940453
+NR1L-DIAG-339	SWE1-Diagnostics-230	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940455
+NR1L-DIAG-339	SWE1-Diagnostics-230	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940455
+NR1L-DIAG-340	SWE1-Diagnostics-230	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940455
+NR1L-DIAG-340	SWE1-Diagnostics-230	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940455
 NR1L-DIAG-341	SWE1-Diagnostics-231	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940454
 NR1L-DIAG-341	SWE1-Diagnostics-231	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940454
-NR1L-DIAG-342	SWE1-Diagnostics-232	expected_result	<CA Pellet status record>	DR-DIAG-5	CFTS004-4939896
-NR1L-DIAG-344	SWE1-Diagnostics-233	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939896
-NR1L-DIAG-345	SWE1-Diagnostics-234	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939896
-NR1L-DIAG-345	SWE1-Diagnostics-234	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939896
-NR1L-DIAG-346	SWE1-Diagnostics-235	test_procedure	<Sirius XM package ID>	DR-DIAG-4	CFTS004-4939890
-NR1L-DIAG-347	SWE1-Diagnostics-236	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939890
-NR1L-DIAG-347	SWE1-Diagnostics-236	test_procedure	<Sirius XM package ID>	DR-DIAG-4	CFTS004-4939890
-NR1L-DIAG-347	SWE1-Diagnostics-236	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939890
-NR1L-DIAG-348	SWE1-Diagnostics-237	test_procedure	<Sirius XM package ID>	DR-DIAG-4	CFTS004-4939892
-NR1L-DIAG-349	SWE1-Diagnostics-238	test_procedure	<Sirius XM package ID>	DR-DIAG-4	CFTS004-4939891
-NR1L-DIAG-350	SWE1-Diagnostics-239	expected_result	<CA Pellet validation status record>	DR-DIAG-5	CFTS004-4939885
-NR1L-DIAG-352	SWE1-Diagnostics-240	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939885
-NR1L-DIAG-353	SWE1-Diagnostics-241	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939885
-NR1L-DIAG-353	SWE1-Diagnostics-241	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939885
-NR1L-DIAG-354	SWE1-Diagnostics-242	expected_result	<Event data record>	DR-DIAG-5	CFTS004-4939881
-NR1L-DIAG-356	SWE1-Diagnostics-243	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939881
-NR1L-DIAG-357	SWE1-Diagnostics-244	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939881
-NR1L-DIAG-357	SWE1-Diagnostics-244	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939881
-NR1L-DIAG-358	SWE1-Diagnostics-245	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939873
-NR1L-DIAG-360	SWE1-Diagnostics-246	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939873
-NR1L-DIAG-361	SWE1-Diagnostics-247	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939873
-NR1L-DIAG-361	SWE1-Diagnostics-247	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939873
-NR1L-DIAG-362	SWE1-Diagnostics-248	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939872
-NR1L-DIAG-364	SWE1-Diagnostics-249	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939872
-NR1L-DIAG-365	SWE1-Diagnostics-250	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939872
-NR1L-DIAG-365	SWE1-Diagnostics-250	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939872
-NR1L-DIAG-366	SWE1-Diagnostics-251	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939871
-NR1L-DIAG-368	SWE1-Diagnostics-252	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939871
-NR1L-DIAG-369	SWE1-Diagnostics-253	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939871
-NR1L-DIAG-369	SWE1-Diagnostics-253	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939871
-NR1L-DIAG-370	SWE1-Diagnostics-254	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939874
-NR1L-DIAG-372	SWE1-Diagnostics-255	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939874
-NR1L-DIAG-373	SWE1-Diagnostics-256	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939874
-NR1L-DIAG-373	SWE1-Diagnostics-256	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939874
-NR1L-DIAG-374	SWE1-Diagnostics-257	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939870
-NR1L-DIAG-376	SWE1-Diagnostics-258	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939870
-NR1L-DIAG-377	SWE1-Diagnostics-259	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939870
-NR1L-DIAG-377	SWE1-Diagnostics-259	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939870
-NR1L-DIAG-378	SWE1-Diagnostics-260	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939868
-NR1L-DIAG-380	SWE1-Diagnostics-261	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939868
-NR1L-DIAG-381	SWE1-Diagnostics-262	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939868
-NR1L-DIAG-381	SWE1-Diagnostics-262	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939868
-NR1L-DIAG-382	SWE1-Diagnostics-263	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939875
-NR1L-DIAG-384	SWE1-Diagnostics-264	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939875
-NR1L-DIAG-385	SWE1-Diagnostics-265	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939875
-NR1L-DIAG-385	SWE1-Diagnostics-265	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939875
-NR1L-DIAG-386	SWE1-Diagnostics-266	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939869
-NR1L-DIAG-387	SWE1-Diagnostics-266	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939869
+NR1L-DIAG-342	SWE1-Diagnostics-231	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940454
+NR1L-DIAG-342	SWE1-Diagnostics-231	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940454
+NR1L-DIAG-343	SWE1-Diagnostics-231	expected_result	<package validation routine results>	DR-DIAG-5	CFTS004-4940454
+NR1L-DIAG-343	SWE1-Diagnostics-231	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940454
+NR1L-DIAG-344	SWE1-Diagnostics-232	expected_result	<CA Pellet status record>	DR-DIAG-5	CFTS004-4939896
+NR1L-DIAG-346	SWE1-Diagnostics-233	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939896
+NR1L-DIAG-347	SWE1-Diagnostics-234	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939896
+NR1L-DIAG-347	SWE1-Diagnostics-234	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939896
+NR1L-DIAG-348	SWE1-Diagnostics-235	test_procedure	<Sirius XM package ID>	DR-DIAG-4	CFTS004-4939890
+NR1L-DIAG-349	SWE1-Diagnostics-236	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939890
+NR1L-DIAG-349	SWE1-Diagnostics-236	test_procedure	<Sirius XM package ID>	DR-DIAG-4	CFTS004-4939890
+NR1L-DIAG-349	SWE1-Diagnostics-236	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939890
+NR1L-DIAG-350	SWE1-Diagnostics-237	test_procedure	<Sirius XM package ID>	DR-DIAG-4	CFTS004-4939892
+NR1L-DIAG-351	SWE1-Diagnostics-238	test_procedure	<Sirius XM package ID>	DR-DIAG-4	CFTS004-4939891
+NR1L-DIAG-352	SWE1-Diagnostics-239	expected_result	<CA Pellet validation status record>	DR-DIAG-5	CFTS004-4939885
+NR1L-DIAG-354	SWE1-Diagnostics-240	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939885
+NR1L-DIAG-355	SWE1-Diagnostics-241	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939885
+NR1L-DIAG-355	SWE1-Diagnostics-241	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939885
+NR1L-DIAG-356	SWE1-Diagnostics-242	expected_result	<Event data record>	DR-DIAG-5	CFTS004-4939881
+NR1L-DIAG-358	SWE1-Diagnostics-243	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939881
+NR1L-DIAG-359	SWE1-Diagnostics-244	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939881
+NR1L-DIAG-359	SWE1-Diagnostics-244	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939881
+NR1L-DIAG-360	SWE1-Diagnostics-245	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939873
+NR1L-DIAG-362	SWE1-Diagnostics-246	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939873
+NR1L-DIAG-363	SWE1-Diagnostics-247	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939873
+NR1L-DIAG-363	SWE1-Diagnostics-247	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939873
+NR1L-DIAG-364	SWE1-Diagnostics-248	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939872
+NR1L-DIAG-366	SWE1-Diagnostics-249	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939872
+NR1L-DIAG-367	SWE1-Diagnostics-250	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939872
+NR1L-DIAG-367	SWE1-Diagnostics-250	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939872
+NR1L-DIAG-368	SWE1-Diagnostics-251	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939871
+NR1L-DIAG-370	SWE1-Diagnostics-252	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939871
+NR1L-DIAG-371	SWE1-Diagnostics-253	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939871
+NR1L-DIAG-371	SWE1-Diagnostics-253	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939871
+NR1L-DIAG-372	SWE1-Diagnostics-254	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939874
+NR1L-DIAG-374	SWE1-Diagnostics-255	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939874
+NR1L-DIAG-375	SWE1-Diagnostics-256	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939874
+NR1L-DIAG-375	SWE1-Diagnostics-256	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939874
+NR1L-DIAG-376	SWE1-Diagnostics-257	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939870
+NR1L-DIAG-378	SWE1-Diagnostics-258	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939870
+NR1L-DIAG-379	SWE1-Diagnostics-259	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939870
+NR1L-DIAG-379	SWE1-Diagnostics-259	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939870
+NR1L-DIAG-380	SWE1-Diagnostics-260	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939868
+NR1L-DIAG-382	SWE1-Diagnostics-261	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939868
+NR1L-DIAG-383	SWE1-Diagnostics-262	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939868
+NR1L-DIAG-383	SWE1-Diagnostics-262	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939868
+NR1L-DIAG-384	SWE1-Diagnostics-263	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939875
+NR1L-DIAG-386	SWE1-Diagnostics-264	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939875
+NR1L-DIAG-387	SWE1-Diagnostics-265	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939875
+NR1L-DIAG-387	SWE1-Diagnostics-265	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939875
 NR1L-DIAG-388	SWE1-Diagnostics-266	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939869
 NR1L-DIAG-389	SWE1-Diagnostics-266	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939869
-NR1L-DIAG-391	SWE1-Diagnostics-267	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939869
-NR1L-DIAG-392	SWE1-Diagnostics-268	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939869
-NR1L-DIAG-392	SWE1-Diagnostics-268	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939869
-NR1L-DIAG-393	SWE1-Diagnostics-269	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939853
-NR1L-DIAG-395	SWE1-Diagnostics-270	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939853
-NR1L-DIAG-396	SWE1-Diagnostics-271	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939853
-NR1L-DIAG-396	SWE1-Diagnostics-271	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939853
-NR1L-DIAG-397	SWE1-Diagnostics-272	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939852
-NR1L-DIAG-399	SWE1-Diagnostics-273	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939852
-NR1L-DIAG-400	SWE1-Diagnostics-274	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939852
-NR1L-DIAG-400	SWE1-Diagnostics-274	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939852
-NR1L-DIAG-401	SWE1-Diagnostics-275	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939854
-NR1L-DIAG-403	SWE1-Diagnostics-276	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939854
-NR1L-DIAG-404	SWE1-Diagnostics-277	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939854
-NR1L-DIAG-404	SWE1-Diagnostics-277	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939854
-NR1L-DIAG-405	SWE1-Diagnostics-278	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939862
-NR1L-DIAG-407	SWE1-Diagnostics-279	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939862
-NR1L-DIAG-408	SWE1-Diagnostics-280	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939862
-NR1L-DIAG-408	SWE1-Diagnostics-280	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939862
-NR1L-DIAG-409	SWE1-Diagnostics-281	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939861
-NR1L-DIAG-411	SWE1-Diagnostics-282	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939861
-NR1L-DIAG-412	SWE1-Diagnostics-283	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939861
-NR1L-DIAG-412	SWE1-Diagnostics-283	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939861
-NR1L-DIAG-413	SWE1-Diagnostics-284	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939863
-NR1L-DIAG-415	SWE1-Diagnostics-285	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939863
-NR1L-DIAG-416	SWE1-Diagnostics-286	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939863
-NR1L-DIAG-416	SWE1-Diagnostics-286	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939863
-NR1L-DIAG-417	SWE1-Diagnostics-287	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939845
-NR1L-DIAG-419	SWE1-Diagnostics-288	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939845
-NR1L-DIAG-420	SWE1-Diagnostics-289	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939845
-NR1L-DIAG-420	SWE1-Diagnostics-289	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939845
-NR1L-DIAG-421	SWE1-Diagnostics-290	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939844
-NR1L-DIAG-423	SWE1-Diagnostics-291	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939844
-NR1L-DIAG-424	SWE1-Diagnostics-292	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939844
-NR1L-DIAG-424	SWE1-Diagnostics-292	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939844
-NR1L-DIAG-425	SWE1-Diagnostics-293	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939843
-NR1L-DIAG-427	SWE1-Diagnostics-294	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939843
-NR1L-DIAG-428	SWE1-Diagnostics-295	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939843
-NR1L-DIAG-428	SWE1-Diagnostics-295	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939843
-NR1L-DIAG-429	SWE1-Diagnostics-296	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939848
-NR1L-DIAG-431	SWE1-Diagnostics-297	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939848
-NR1L-DIAG-432	SWE1-Diagnostics-298	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939848
-NR1L-DIAG-432	SWE1-Diagnostics-298	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939848
-NR1L-DIAG-433	SWE1-Diagnostics-299	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939847
-NR1L-DIAG-435	SWE1-Diagnostics-300	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939847
-NR1L-DIAG-436	SWE1-Diagnostics-301	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939847
-NR1L-DIAG-436	SWE1-Diagnostics-301	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939847
-NR1L-DIAG-437	SWE1-Diagnostics-302	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939846
-NR1L-DIAG-439	SWE1-Diagnostics-303	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939846
-NR1L-DIAG-440	SWE1-Diagnostics-304	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939846
-NR1L-DIAG-440	SWE1-Diagnostics-304	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939846
-NR1L-DIAG-441	SWE1-Diagnostics-305	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939850
-NR1L-DIAG-443	SWE1-Diagnostics-306	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939850
-NR1L-DIAG-444	SWE1-Diagnostics-307	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939850
-NR1L-DIAG-444	SWE1-Diagnostics-307	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939850
-NR1L-DIAG-445	SWE1-Diagnostics-308	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939849
-NR1L-DIAG-447	SWE1-Diagnostics-309	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939849
-NR1L-DIAG-448	SWE1-Diagnostics-310	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939849
-NR1L-DIAG-448	SWE1-Diagnostics-310	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939849
-NR1L-DIAG-449	SWE1-Diagnostics-311	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939851
-NR1L-DIAG-451	SWE1-Diagnostics-312	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939851
-NR1L-DIAG-452	SWE1-Diagnostics-313	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939851
-NR1L-DIAG-452	SWE1-Diagnostics-313	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939851
-NR1L-DIAG-453	SWE1-Diagnostics-314	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939859
-NR1L-DIAG-455	SWE1-Diagnostics-315	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939859
-NR1L-DIAG-456	SWE1-Diagnostics-316	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939859
-NR1L-DIAG-456	SWE1-Diagnostics-316	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939859
-NR1L-DIAG-457	SWE1-Diagnostics-317	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939858
-NR1L-DIAG-459	SWE1-Diagnostics-318	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939858
-NR1L-DIAG-460	SWE1-Diagnostics-319	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939858
-NR1L-DIAG-460	SWE1-Diagnostics-319	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939858
-NR1L-DIAG-461	SWE1-Diagnostics-320	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939860
-NR1L-DIAG-463	SWE1-Diagnostics-321	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939860
-NR1L-DIAG-464	SWE1-Diagnostics-322	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939860
-NR1L-DIAG-464	SWE1-Diagnostics-322	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939860
-NR1L-DIAG-465	SWE1-Diagnostics-323	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939864
-NR1L-DIAG-467	SWE1-Diagnostics-324	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939864
-NR1L-DIAG-468	SWE1-Diagnostics-325	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939864
-NR1L-DIAG-468	SWE1-Diagnostics-325	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939864
-NR1L-DIAG-469	SWE1-Diagnostics-326	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939839
-NR1L-DIAG-471	SWE1-Diagnostics-327	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939839
-NR1L-DIAG-472	SWE1-Diagnostics-328	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939839
-NR1L-DIAG-472	SWE1-Diagnostics-328	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939839
-NR1L-DIAG-473	SWE1-Diagnostics-329	expected_result	<USB device count byte>	DR-DIAG-5	CFTS004-4939921
-NR1L-DIAG-475	SWE1-Diagnostics-330	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939921
-NR1L-DIAG-476	SWE1-Diagnostics-331	expected_result	<USB Hub count byte>	DR-DIAG-5	CFTS004-4939919
-NR1L-DIAG-478	SWE1-Diagnostics-332	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939919
-NR1L-DIAG-480	SWE1-Diagnostics-334	expected_result	<Front Seat Video Playback state byte>	DR-DIAG-5	CFTS004-4939688
-NR1L-DIAG-481	SWE1-Diagnostics-334	expected_result	<Front Seat Video Playback state byte>	DR-DIAG-5	CFTS004-4939688
-NR1L-DIAG-481	SWE1-Diagnostics-334	test_procedure	<Front Seat Video Playback state byte>	DR-DIAG-5	CFTS004-4939688
-NR1L-DIAG-484	SWE1-Diagnostics-336	test_procedure	<video input selection>	DR-DIAG-4	CFTS004-4940358
-NR1L-DIAG-485	SWE1-Diagnostics-337	test_procedure	<normal operation>	DR-DIAG-4	CFTS004-4940358
-NR1L-DIAG-488	SWE1-Diagnostics-339	expected_result	<video input byte>	DR-DIAG-5	CFTS004-4940355
-NR1L-DIAG-488	SWE1-Diagnostics-339	test_procedure	<video input selection>	DR-DIAG-4	CFTS004-4940355
-NR1L-DIAG-489	SWE1-Diagnostics-340-001	test_procedure	<incompatible video input>	DR-DIAG-4	CFTS004-4940355
-NR1L-DIAG-490	SWE1-Diagnostics-340-002	expected_result	<Clock Defeat setting byte>	DR-DIAG-5	CFTS004-4939684
-NR1L-DIAG-491	SWE1-Diagnostics-340-002	expected_result	<Clock Defeat setting byte>	DR-DIAG-5	CFTS004-4939684
-NR1L-DIAG-491	SWE1-Diagnostics-340-002	test_procedure	<Clock Defeat setting byte>	DR-DIAG-5	CFTS004-4939684
-NR1L-DIAG-494	SWE1-Diagnostics-342	expected_result	<12/24 Time Selection setting byte>	DR-DIAG-5	CFTS004-4939687
-NR1L-DIAG-495	SWE1-Diagnostics-342	expected_result	<12/24 Time Selection setting byte>	DR-DIAG-5	CFTS004-4939687
-NR1L-DIAG-495	SWE1-Diagnostics-342	test_procedure	<12/24 Time Selection setting byte>	DR-DIAG-5	CFTS004-4939687
-NR1L-DIAG-498	SWE1-Diagnostics-344	expected_result	<steering wheel button status record>	DR-DIAG-5	CFTS004-4939651
-NR1L-DIAG-498	SWE1-Diagnostics-344	expected_result	<steering wheel button status record>	DR-DIAG-5	CFTS004-4939651
-NR1L-DIAG-500	SWE1-Diagnostics-345	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939651
-NR1L-DIAG-501	SWE1-Diagnostics-346	expected_result	<routine results>	DR-DIAG-5	CFTS004-4940469
-NR1L-DIAG-502	SWE1-Diagnostics-347	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940463
-NR1L-DIAG-502	SWE1-Diagnostics-347	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940463
-NR1L-DIAG-503	SWE1-Diagnostics-348	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4940463
-NR1L-DIAG-503	SWE1-Diagnostics-348	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4940463
-NR1L-DIAG-504	SWE1-Diagnostics-349	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939727
-NR1L-DIAG-506	SWE1-Diagnostics-350	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939727
-NR1L-DIAG-507	SWE1-Diagnostics-351	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939727
-NR1L-DIAG-507	SWE1-Diagnostics-351	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939727
-NR1L-DIAG-508	SWE1-Diagnostics-352	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939720
-NR1L-DIAG-510	SWE1-Diagnostics-353	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939720
-NR1L-DIAG-511	SWE1-Diagnostics-354	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939720
-NR1L-DIAG-511	SWE1-Diagnostics-354	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939720
-NR1L-DIAG-512	SWE1-Diagnostics-355	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939719
-NR1L-DIAG-514	SWE1-Diagnostics-356	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939719
-NR1L-DIAG-515	SWE1-Diagnostics-357	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939719
-NR1L-DIAG-515	SWE1-Diagnostics-357	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939719
-NR1L-DIAG-516	SWE1-Diagnostics-358	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939718
-NR1L-DIAG-518	SWE1-Diagnostics-359	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939718
-NR1L-DIAG-519	SWE1-Diagnostics-360	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939718
-NR1L-DIAG-519	SWE1-Diagnostics-360	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939718
-NR1L-DIAG-520	SWE1-Diagnostics-361	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939724
-NR1L-DIAG-522	SWE1-Diagnostics-362	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939724
-NR1L-DIAG-523	SWE1-Diagnostics-363	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939724
-NR1L-DIAG-523	SWE1-Diagnostics-363	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939724
-NR1L-DIAG-524	SWE1-Diagnostics-364	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939728
-NR1L-DIAG-526	SWE1-Diagnostics-365	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939728
-NR1L-DIAG-527	SWE1-Diagnostics-366	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939728
-NR1L-DIAG-527	SWE1-Diagnostics-366	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939728
-NR1L-DIAG-528	SWE1-Diagnostics-367	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939722
-NR1L-DIAG-530	SWE1-Diagnostics-368	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939722
-NR1L-DIAG-531	SWE1-Diagnostics-369	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939722
-NR1L-DIAG-531	SWE1-Diagnostics-369	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939722
-NR1L-DIAG-532	SWE1-Diagnostics-370	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939721
-NR1L-DIAG-534	SWE1-Diagnostics-371	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939721
-NR1L-DIAG-535	SWE1-Diagnostics-372	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939721
-NR1L-DIAG-535	SWE1-Diagnostics-372	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939721
-NR1L-DIAG-536	SWE1-Diagnostics-373	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939725
-NR1L-DIAG-538	SWE1-Diagnostics-374	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939725
-NR1L-DIAG-539	SWE1-Diagnostics-375	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939725
-NR1L-DIAG-539	SWE1-Diagnostics-375	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939725
-NR1L-DIAG-540	SWE1-Diagnostics-376	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939723
-NR1L-DIAG-542	SWE1-Diagnostics-377	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939723
-NR1L-DIAG-543	SWE1-Diagnostics-378	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939723
-NR1L-DIAG-543	SWE1-Diagnostics-378	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939723
-NR1L-DIAG-544	SWE1-Diagnostics-379	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939726
-NR1L-DIAG-546	SWE1-Diagnostics-380	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939726
-NR1L-DIAG-547	SWE1-Diagnostics-381	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939726
-NR1L-DIAG-547	SWE1-Diagnostics-381	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939726
-NR1L-DIAG-548	SWE1-Diagnostics-382	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939715
-NR1L-DIAG-549	SWE1-Diagnostics-383	expected_result	<test pattern byte>	DR-DIAG-5	CFTS004-4939625
-NR1L-DIAG-549	SWE1-Diagnostics-383	test_procedure	<test pattern byte>	DR-DIAG-5	CFTS004-4939625
-NR1L-DIAG-552	SWE1-Diagnostics-385	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939626
-NR1L-DIAG-552	SWE1-Diagnostics-385	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939626
-NR1L-DIAG-553	SWE1-Diagnostics-386	expected_result	<steering wheel button status record>	DR-DIAG-5	CFTS004-4939650
-NR1L-DIAG-555	SWE1-Diagnostics-387	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939650
-NR1L-DIAG-556	SWE1-Diagnostics-388	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939650
-NR1L-DIAG-556	SWE1-Diagnostics-388	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939650
+NR1L-DIAG-390	SWE1-Diagnostics-266	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939869
+NR1L-DIAG-391	SWE1-Diagnostics-266	expected_result	<Sirius XM subscription data record>	DR-DIAG-5	CFTS004-4939869
+NR1L-DIAG-393	SWE1-Diagnostics-267	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939869
+NR1L-DIAG-394	SWE1-Diagnostics-268	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939869
+NR1L-DIAG-394	SWE1-Diagnostics-268	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939869
+NR1L-DIAG-395	SWE1-Diagnostics-269	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939853
+NR1L-DIAG-397	SWE1-Diagnostics-270	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939853
+NR1L-DIAG-398	SWE1-Diagnostics-271	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939853
+NR1L-DIAG-398	SWE1-Diagnostics-271	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939853
+NR1L-DIAG-399	SWE1-Diagnostics-272	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939852
+NR1L-DIAG-401	SWE1-Diagnostics-273	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939852
+NR1L-DIAG-402	SWE1-Diagnostics-274	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939852
+NR1L-DIAG-402	SWE1-Diagnostics-274	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939852
+NR1L-DIAG-403	SWE1-Diagnostics-275	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939854
+NR1L-DIAG-405	SWE1-Diagnostics-276	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939854
+NR1L-DIAG-406	SWE1-Diagnostics-277	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939854
+NR1L-DIAG-406	SWE1-Diagnostics-277	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939854
+NR1L-DIAG-407	SWE1-Diagnostics-278	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939862
+NR1L-DIAG-409	SWE1-Diagnostics-279	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939862
+NR1L-DIAG-410	SWE1-Diagnostics-280	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939862
+NR1L-DIAG-410	SWE1-Diagnostics-280	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939862
+NR1L-DIAG-411	SWE1-Diagnostics-281	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939861
+NR1L-DIAG-413	SWE1-Diagnostics-282	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939861
+NR1L-DIAG-414	SWE1-Diagnostics-283	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939861
+NR1L-DIAG-414	SWE1-Diagnostics-283	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939861
+NR1L-DIAG-415	SWE1-Diagnostics-284	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939863
+NR1L-DIAG-417	SWE1-Diagnostics-285	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939863
+NR1L-DIAG-418	SWE1-Diagnostics-286	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939863
+NR1L-DIAG-418	SWE1-Diagnostics-286	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939863
+NR1L-DIAG-419	SWE1-Diagnostics-287	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939845
+NR1L-DIAG-421	SWE1-Diagnostics-288	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939845
+NR1L-DIAG-422	SWE1-Diagnostics-289	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939845
+NR1L-DIAG-422	SWE1-Diagnostics-289	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939845
+NR1L-DIAG-423	SWE1-Diagnostics-290	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939844
+NR1L-DIAG-425	SWE1-Diagnostics-291	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939844
+NR1L-DIAG-426	SWE1-Diagnostics-292	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939844
+NR1L-DIAG-426	SWE1-Diagnostics-292	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939844
+NR1L-DIAG-427	SWE1-Diagnostics-293	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939843
+NR1L-DIAG-429	SWE1-Diagnostics-294	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939843
+NR1L-DIAG-430	SWE1-Diagnostics-295	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939843
+NR1L-DIAG-430	SWE1-Diagnostics-295	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939843
+NR1L-DIAG-431	SWE1-Diagnostics-296	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939848
+NR1L-DIAG-433	SWE1-Diagnostics-297	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939848
+NR1L-DIAG-434	SWE1-Diagnostics-298	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939848
+NR1L-DIAG-434	SWE1-Diagnostics-298	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939848
+NR1L-DIAG-435	SWE1-Diagnostics-299	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939847
+NR1L-DIAG-437	SWE1-Diagnostics-300	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939847
+NR1L-DIAG-438	SWE1-Diagnostics-301	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939847
+NR1L-DIAG-438	SWE1-Diagnostics-301	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939847
+NR1L-DIAG-439	SWE1-Diagnostics-302	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939846
+NR1L-DIAG-441	SWE1-Diagnostics-303	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939846
+NR1L-DIAG-442	SWE1-Diagnostics-304	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939846
+NR1L-DIAG-442	SWE1-Diagnostics-304	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939846
+NR1L-DIAG-443	SWE1-Diagnostics-305	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939850
+NR1L-DIAG-445	SWE1-Diagnostics-306	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939850
+NR1L-DIAG-446	SWE1-Diagnostics-307	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939850
+NR1L-DIAG-446	SWE1-Diagnostics-307	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939850
+NR1L-DIAG-447	SWE1-Diagnostics-308	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939849
+NR1L-DIAG-449	SWE1-Diagnostics-309	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939849
+NR1L-DIAG-450	SWE1-Diagnostics-310	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939849
+NR1L-DIAG-450	SWE1-Diagnostics-310	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939849
+NR1L-DIAG-451	SWE1-Diagnostics-311	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939851
+NR1L-DIAG-453	SWE1-Diagnostics-312	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939851
+NR1L-DIAG-454	SWE1-Diagnostics-313	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939851
+NR1L-DIAG-454	SWE1-Diagnostics-313	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939851
+NR1L-DIAG-455	SWE1-Diagnostics-314	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939859
+NR1L-DIAG-457	SWE1-Diagnostics-315	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939859
+NR1L-DIAG-458	SWE1-Diagnostics-316	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939859
+NR1L-DIAG-458	SWE1-Diagnostics-316	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939859
+NR1L-DIAG-459	SWE1-Diagnostics-317	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939858
+NR1L-DIAG-461	SWE1-Diagnostics-318	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939858
+NR1L-DIAG-462	SWE1-Diagnostics-319	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939858
+NR1L-DIAG-462	SWE1-Diagnostics-319	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939858
+NR1L-DIAG-463	SWE1-Diagnostics-320	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939860
+NR1L-DIAG-465	SWE1-Diagnostics-321	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939860
+NR1L-DIAG-466	SWE1-Diagnostics-322	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939860
+NR1L-DIAG-466	SWE1-Diagnostics-322	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939860
+NR1L-DIAG-467	SWE1-Diagnostics-323	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939864
+NR1L-DIAG-469	SWE1-Diagnostics-324	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939864
+NR1L-DIAG-470	SWE1-Diagnostics-325	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939864
+NR1L-DIAG-470	SWE1-Diagnostics-325	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939864
+NR1L-DIAG-471	SWE1-Diagnostics-326	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939839
+NR1L-DIAG-473	SWE1-Diagnostics-327	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939839
+NR1L-DIAG-474	SWE1-Diagnostics-328	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939839
+NR1L-DIAG-474	SWE1-Diagnostics-328	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939839
+NR1L-DIAG-475	SWE1-Diagnostics-329	expected_result	<USB device count byte>	DR-DIAG-5	CFTS004-4939921
+NR1L-DIAG-477	SWE1-Diagnostics-330	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939921
+NR1L-DIAG-478	SWE1-Diagnostics-331	expected_result	<USB Hub count byte>	DR-DIAG-5	CFTS004-4939919
+NR1L-DIAG-480	SWE1-Diagnostics-332	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939919
+NR1L-DIAG-482	SWE1-Diagnostics-334	expected_result	<Front Seat Video Playback state byte>	DR-DIAG-5	CFTS004-4939688
+NR1L-DIAG-483	SWE1-Diagnostics-334	expected_result	<Front Seat Video Playback state byte>	DR-DIAG-5	CFTS004-4939688
+NR1L-DIAG-483	SWE1-Diagnostics-334	test_procedure	<Front Seat Video Playback state byte>	DR-DIAG-5	CFTS004-4939688
+NR1L-DIAG-486	SWE1-Diagnostics-336	test_procedure	<video input selection>	DR-DIAG-4	CFTS004-4940358
+NR1L-DIAG-487	SWE1-Diagnostics-337	test_procedure	<normal operation>	DR-DIAG-4	CFTS004-4940358
+NR1L-DIAG-490	SWE1-Diagnostics-339	expected_result	<video input byte>	DR-DIAG-5	CFTS004-4940355
+NR1L-DIAG-490	SWE1-Diagnostics-339	test_procedure	<video input selection>	DR-DIAG-4	CFTS004-4940355
+NR1L-DIAG-491	SWE1-Diagnostics-340-001	test_procedure	<incompatible video input>	DR-DIAG-4	CFTS004-4940355
+NR1L-DIAG-492	SWE1-Diagnostics-340-002	expected_result	<Clock Defeat setting byte>	DR-DIAG-5	CFTS004-4939684
+NR1L-DIAG-493	SWE1-Diagnostics-340-002	expected_result	<Clock Defeat setting byte>	DR-DIAG-5	CFTS004-4939684
+NR1L-DIAG-493	SWE1-Diagnostics-340-002	test_procedure	<Clock Defeat setting byte>	DR-DIAG-5	CFTS004-4939684
+NR1L-DIAG-496	SWE1-Diagnostics-342	expected_result	<12/24 Time Selection setting byte>	DR-DIAG-5	CFTS004-4939687
+NR1L-DIAG-497	SWE1-Diagnostics-342	expected_result	<12/24 Time Selection setting byte>	DR-DIAG-5	CFTS004-4939687
+NR1L-DIAG-497	SWE1-Diagnostics-342	test_procedure	<12/24 Time Selection setting byte>	DR-DIAG-5	CFTS004-4939687
+NR1L-DIAG-500	SWE1-Diagnostics-344	expected_result	<steering wheel button status record>	DR-DIAG-5	CFTS004-4939651
+NR1L-DIAG-500	SWE1-Diagnostics-344	expected_result	<steering wheel button status record>	DR-DIAG-5	CFTS004-4939651
+NR1L-DIAG-502	SWE1-Diagnostics-345	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939651
+NR1L-DIAG-503	SWE1-Diagnostics-346	expected_result	<routine results>	DR-DIAG-5	CFTS004-4940469
+NR1L-DIAG-504	SWE1-Diagnostics-347	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940463
+NR1L-DIAG-504	SWE1-Diagnostics-347	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940463
+NR1L-DIAG-505	SWE1-Diagnostics-348	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4940463
+NR1L-DIAG-505	SWE1-Diagnostics-348	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4940463
+NR1L-DIAG-506	SWE1-Diagnostics-349	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939727
+NR1L-DIAG-508	SWE1-Diagnostics-350	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939727
+NR1L-DIAG-509	SWE1-Diagnostics-351	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939727
+NR1L-DIAG-509	SWE1-Diagnostics-351	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939727
+NR1L-DIAG-510	SWE1-Diagnostics-352	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939720
+NR1L-DIAG-512	SWE1-Diagnostics-353	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939720
+NR1L-DIAG-513	SWE1-Diagnostics-354	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939720
+NR1L-DIAG-513	SWE1-Diagnostics-354	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939720
+NR1L-DIAG-514	SWE1-Diagnostics-355	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939719
+NR1L-DIAG-516	SWE1-Diagnostics-356	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939719
+NR1L-DIAG-517	SWE1-Diagnostics-357	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939719
+NR1L-DIAG-517	SWE1-Diagnostics-357	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939719
+NR1L-DIAG-518	SWE1-Diagnostics-358	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939718
+NR1L-DIAG-520	SWE1-Diagnostics-359	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939718
+NR1L-DIAG-521	SWE1-Diagnostics-360	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939718
+NR1L-DIAG-521	SWE1-Diagnostics-360	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939718
+NR1L-DIAG-522	SWE1-Diagnostics-361	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939724
+NR1L-DIAG-524	SWE1-Diagnostics-362	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939724
+NR1L-DIAG-525	SWE1-Diagnostics-363	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939724
+NR1L-DIAG-525	SWE1-Diagnostics-363	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939724
+NR1L-DIAG-526	SWE1-Diagnostics-364	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939728
+NR1L-DIAG-528	SWE1-Diagnostics-365	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939728
+NR1L-DIAG-529	SWE1-Diagnostics-366	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939728
+NR1L-DIAG-529	SWE1-Diagnostics-366	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939728
+NR1L-DIAG-530	SWE1-Diagnostics-367	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939722
+NR1L-DIAG-532	SWE1-Diagnostics-368	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939722
+NR1L-DIAG-533	SWE1-Diagnostics-369	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939722
+NR1L-DIAG-533	SWE1-Diagnostics-369	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939722
+NR1L-DIAG-534	SWE1-Diagnostics-370	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939721
+NR1L-DIAG-536	SWE1-Diagnostics-371	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939721
+NR1L-DIAG-537	SWE1-Diagnostics-372	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939721
+NR1L-DIAG-537	SWE1-Diagnostics-372	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939721
+NR1L-DIAG-538	SWE1-Diagnostics-373	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939725
+NR1L-DIAG-540	SWE1-Diagnostics-374	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939725
+NR1L-DIAG-541	SWE1-Diagnostics-375	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939725
+NR1L-DIAG-541	SWE1-Diagnostics-375	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939725
+NR1L-DIAG-542	SWE1-Diagnostics-376	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939723
+NR1L-DIAG-544	SWE1-Diagnostics-377	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939723
+NR1L-DIAG-545	SWE1-Diagnostics-378	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939723
+NR1L-DIAG-545	SWE1-Diagnostics-378	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939723
+NR1L-DIAG-546	SWE1-Diagnostics-379	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939726
+NR1L-DIAG-548	SWE1-Diagnostics-380	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939726
+NR1L-DIAG-549	SWE1-Diagnostics-381	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939726
+NR1L-DIAG-549	SWE1-Diagnostics-381	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939726
+NR1L-DIAG-550	SWE1-Diagnostics-382	expected_result	<GPS signal data record>	DR-DIAG-5	CFTS004-4939715
+NR1L-DIAG-551	SWE1-Diagnostics-383	expected_result	<test pattern byte>	DR-DIAG-5	CFTS004-4939625
+NR1L-DIAG-551	SWE1-Diagnostics-383	test_procedure	<test pattern byte>	DR-DIAG-5	CFTS004-4939625
+NR1L-DIAG-554	SWE1-Diagnostics-385	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939626
+NR1L-DIAG-554	SWE1-Diagnostics-385	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939626
+NR1L-DIAG-555	SWE1-Diagnostics-386	expected_result	<steering wheel button status record>	DR-DIAG-5	CFTS004-4939650
+NR1L-DIAG-557	SWE1-Diagnostics-387	test_procedure	<unsupported DID>	DR-DIAG-6	CFTS004-4939650
+NR1L-DIAG-558	SWE1-Diagnostics-388	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939650
+NR1L-DIAG-558	SWE1-Diagnostics-388	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939650

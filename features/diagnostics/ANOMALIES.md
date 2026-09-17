@@ -68,6 +68,9 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | `[A-DIAG57]` | execution | **交付本首版漏寫處置欄（col 32）**：Out of Scope 列之 `Out of Scope` 處置欄（R-DIAG3(amend) 所命）未寫入 —— 交付寫入器沿用 `write_all` 之欄位 map 時漏了鍵 `32`。逐格對帳抓到 1 格差 | CDD-11 T2(f) | 寫入器欄位遺漏 | **已處置** — 補鍵後重建，複驗 0 格差。教訓：逐格對帳正是為了抓「新寫入器少一個欄位」這種錯，只比對可見的九欄就會漏掉 |
 | `[A-DIAG58]` | execution | **`EXEC_GUIDE.md` 初稿把三項環境宣告為「全 556 條共用」**：SYSAD §4.5 只對 Write DID／Routine execution／DTC clearing 要求 security access，純讀取（`0x22`）之 TC 其 Pre-Condition 本就不含該行 | CDD-11 T2(e) 自查 | 指引範圍過寬 | **已處置** — 改為分項說明。教訓：寫執行指引時，「共用」二字要對著實際的 Pre-Condition 分佈講，不是對著前三行的形狀講 |
 | `[A-DIAG59]` | execution | **R-DIAG26 之前提與原始文件實測不符**：條文書「索引匯出不含列舉列表…以原始文件為錨補產」，實測引言句其後為各自獨立、各有 ObjectID 之 FR 段落，**全數已在索引匯出內**；且原始文件 `controlOptionRecord`／`controlEnableMask`／byte 版面／`0xXX` 命中**全為 0** | CDD-11 T1(c) | 條文前提不成立 | **已回報，條文未改（§0 禁區）** — 補產 0 條；`DR-DIAG-4`／`-5` 證實不可能由 CFTS004 解決，須另求 DID 資料字典；請分析層裁是否以 `R-DIAG26(amend)` 記明 |
+| `[A-DIAG60]` | execution | **`MPFA Select Process` 流程圖之 NOTE 與同圖本體矛盾**：NOTE 首行書 `Transaction ID = 0x02, Option = 0x02`，而同圖節點 4／5 為 `TransactionID = 0x01, Option = 0x01` —— NOTE 顯係自 `MPFA Validate Process` 分頁逐字複製而未改 | CDD-12 T1 逐節點轉錄 | 來源文件內部不一致 | **已處置（不改寫）** — 下放包 §0 明訂只轉錄；retry 五結局之語意兩圖相同，不影響 TC。逐字轉錄並於 `cip_mpfa_flowcharts.md` §二標註；登 **FB-DIAG-t**（對 CIP Radio Tables 維護者）|
+| `[A-DIAG61]` | execution | **`RM-DIAG` 白名單擋下 R-DIAG28(b) 所命之 Remarks 引用**：該條命「錨記法…於 Remarks 引用」，而 `RM-DIAG` 只許 R-DIAG 所定之**五**種定型句，`Flowchart: CIP_Radio_Tables_v6.7:…` 會被判違規 | CDD-12 T2 落地前 | 條文與 lint 白名單衝突 | **已處置** — 於 `RE_DIAG_REMARKS_OK` 加第六式 `^Flowchart: CIP_Radio_Tables_v6\.7:MPFA (Validate|Select) Process`，3 項自測（2 正 1 反）通過。此為實作面之落地，**條文本體未改**；R-DIAG6 之「五種定型句」實已為六種，請分析層裁是否以 `R-DIAG6(amend)` 記明 |
+| `[A-DIAG62]` | execution | **下放包 §1 之嵌入物件數與實測差 2**：§3 命回報「png 28、emf 3、vsd 1」，實測 `xl/media/` 共 **29** 件 —— **png 26**、emf 3，另 `xl/embeddings/` vsd 1 | CDD-12 T0 複驗 | 分析層計數 | **已處置** — FORMS.md 以實測數登錄（26/3/1）|
 
 ## Assumption markers
 

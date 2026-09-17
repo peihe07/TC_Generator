@@ -1254,23 +1254,23 @@
       "tc_id": "NR1L-DIAG-345",
       "req_id": "SWE1-Diagnostics-225",
       "test_set": "SXM Package Routines",
-      "tc_title": "The retries are the result of differing Indication Codes or as a result of timeout or for another reason, then the HU shall provide the code $FF in the routine results. ($0309, retry due to differing Indication Codes or timeout yields $FF)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The retries performed during the package select process are the result of differing Indication Codes or of a timeout",
+      "tc_title": "The retries are the result of differing Indication Codes or as a result of timeout or for another reason, then the HU shall provide the code $FF in the routine results. ($0309, three 600 ms timeouts yield $FF)",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Sirius XM chipset does not return a PkgInd message within 600 ms to any of the three package select commands",
       "input_test_data": "NA",
       "test_procedure": "1. Start the package select routine with the Package Indication value\n   $ 31 01 03 09 <Package Indication value>\n2. Request the results of the package select routine\n   $ 31 03 03 09",
       "expected_result": "1. The positive response 71 01 03 09 is received\n2. The positive response 71 03 03 09 <package select routine results> is received, and the reported Indication Code is $FF",
       "specification_reference": "CFTS004-4940466",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",
-      "split_flag": false,
-      "split_reason": "",
-      "remarks": "",
+      "split_flag": true,
+      "split_reason": "R-DIAG28(c)：NOTE 五結局各一條。本條為 timeout 軸 —— 三次 600 ms 無回應 → `$FF`。CFTS004-4940466／-4940455 之「timeout」與「differing Indication Codes」原為單條，依流程圖 NOTE 拆為二；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
         "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: CFTS004-4940466（If retries are performed as shown on the flowchart, and the retries are the result of differing Indication Codes or as a result of timeout or for another reason…）"
+        "PC-4: CIP_Radio_Tables_v6.7:MPFA Select Process NOTE 第 1 行（`-3 retries with: 600 ms Timeout … (Return $FF)`）；圖節點 5 之 600 ms 窗與節點 6 之 `Retry Flag < 3?`"
       ],
       "row037": 232
     },
@@ -1279,7 +1279,7 @@
       "req_id": "SWE1-Diagnostics-226",
       "test_set": "SXM Package Routines",
       "tc_title": "The retries are the result of three identical instances of Indication Codes $03, $0D, or $0F, then the HU shall provide the respective code $03, $0D, or $0F in the routine results. ($0309, three identical instances of Indication Code $03 yield $03)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The retries performed during the package select process are the result of three identical instances of Indication Code $03",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Sirius XM chipset returns Indication Code $03 to each of the three package select commands",
       "input_test_data": "NA",
       "test_procedure": "1. Start the package select routine with the Package Indication value\n   $ 31 01 03 09 <Package Indication value>\n2. Request the results of the package select routine\n   $ 31 03 03 09",
       "expected_result": "1. The positive response 71 01 03 09 is received\n2. The positive response 71 03 03 09 <package select routine results> is received, and the reported Indication Code is $03",
@@ -1287,14 +1287,14 @@
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",
       "split_flag": true,
-      "split_reason": "CFTS004-4940465 逐字明載三個碼值（$03／$0D／$0F），各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $03",
-      "remarks": "",
+      "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $03。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
         "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: CFTS004-4940465（If retries are performed as shown on the flowchart, and the retries are the result of three identical instances of Indication Codes $03, $0D, or $0F…）"
+        "PC-4: CIP_Radio_Tables_v6.7:MPFA Select Process NOTE（`-3 retries with: IndCode = 0x03 (Return IndCode)`）；圖節點 6 之 `Retry Flag < 3?`"
       ],
       "row037": 233
     },
@@ -1303,7 +1303,7 @@
       "req_id": "SWE1-Diagnostics-226",
       "test_set": "SXM Package Routines",
       "tc_title": "The retries are the result of three identical instances of Indication Codes $03, $0D, or $0F, then the HU shall provide the respective code $03, $0D, or $0F in the routine results. ($0309, three identical instances of Indication Code $0D yield $0D)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The retries performed during the package select process are the result of three identical instances of Indication Code $0D",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Sirius XM chipset returns Indication Code $0D to each of the three package select commands",
       "input_test_data": "NA",
       "test_procedure": "1. Start the package select routine with the Package Indication value\n   $ 31 01 03 09 <Package Indication value>\n2. Request the results of the package select routine\n   $ 31 03 03 09",
       "expected_result": "1. The positive response 71 01 03 09 is received\n2. The positive response 71 03 03 09 <package select routine results> is received, and the reported Indication Code is $0D",
@@ -1311,14 +1311,14 @@
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",
       "split_flag": true,
-      "split_reason": "CFTS004-4940465 逐字明載三個碼值（$03／$0D／$0F），各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0D",
-      "remarks": "",
+      "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0D。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
         "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: CFTS004-4940465（If retries are performed as shown on the flowchart, and the retries are the result of three identical instances of Indication Codes $03, $0D, or $0F…）"
+        "PC-4: CIP_Radio_Tables_v6.7:MPFA Select Process NOTE（`-3 retries with: IndCode = 0x0D (Return IndCode)`）；圖節點 6 之 `Retry Flag < 3?`"
       ],
       "row037": 233
     },
@@ -1327,7 +1327,7 @@
       "req_id": "SWE1-Diagnostics-226",
       "test_set": "SXM Package Routines",
       "tc_title": "The retries are the result of three identical instances of Indication Codes $03, $0D, or $0F, then the HU shall provide the respective code $03, $0D, or $0F in the routine results. ($0309, three identical instances of Indication Code $0F yield $0F)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The retries performed during the package select process are the result of three identical instances of Indication Code $0F",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Sirius XM chipset returns Indication Code $0F to each of the three package select commands",
       "input_test_data": "NA",
       "test_procedure": "1. Start the package select routine with the Package Indication value\n   $ 31 01 03 09 <Package Indication value>\n2. Request the results of the package select routine\n   $ 31 03 03 09",
       "expected_result": "1. The positive response 71 01 03 09 is received\n2. The positive response 71 03 03 09 <package select routine results> is received, and the reported Indication Code is $0F",
@@ -1335,14 +1335,14 @@
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",
       "split_flag": true,
-      "split_reason": "CFTS004-4940465 逐字明載三個碼值（$03／$0D／$0F），各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0F",
-      "remarks": "",
+      "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0F。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
         "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: CFTS004-4940465（If retries are performed as shown on the flowchart, and the retries are the result of three identical instances of Indication Codes $03, $0D, or $0F…）"
+        "PC-4: CIP_Radio_Tables_v6.7:MPFA Select Process NOTE（`-3 retries with: IndCode = 0x0F (Return IndCode)`）；圖節點 6 之 `Retry Flag < 3?`"
       ],
       "row037": 233
     },
@@ -1464,23 +1464,23 @@
       "tc_id": "NR1L-DIAG-354",
       "req_id": "SWE1-Diagnostics-230",
       "test_set": "SXM Package Routines",
-      "tc_title": "The retries are the result of differing Indication Codes or as a result of timeout or for another reason, then the HU shall provide the code $FF in the routine results. ($0307, retry due to differing Indication Codes or timeout yields $FF)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The retries performed during the package validation process are the result of differing Indication Codes or of a timeout",
+      "tc_title": "The retries are the result of differing Indication Codes or as a result of timeout or for another reason, then the HU shall provide the code $FF in the routine results. ($0307, three 600 ms timeouts yield $FF)",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Sirius XM chipset does not return a PkgInd message within 600 ms to any of the three package validation commands",
       "input_test_data": "NA",
       "test_procedure": "1. Start the package validation routine with the Package Indication value\n   $ 31 01 03 07 <Package Indication value>\n2. Request the results of the package validation routine\n   $ 31 03 03 07",
       "expected_result": "1. The positive response 71 01 03 07 is received\n2. The positive response 71 03 03 07 <package validation routine results> is received, and the reported Indication Code is $FF",
       "specification_reference": "CFTS004-4940455",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",
-      "split_flag": false,
-      "split_reason": "",
-      "remarks": "",
+      "split_flag": true,
+      "split_reason": "R-DIAG28(c)：NOTE 五結局各一條。本條為 timeout 軸 —— 三次 600 ms 無回應 → `$FF`。CFTS004-4940466／-4940455 之「timeout」與「differing Indication Codes」原為單條，依流程圖 NOTE 拆為二；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
         "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: CFTS004-4940455（If retries are performed as shown on the flowchart, and the retries are the result of differing Indication Codes or as a result of timeout or for another reason…）"
+        "PC-4: CIP_Radio_Tables_v6.7:MPFA Validate Process NOTE 第 1 行（`-3 retries with: 600 ms Timeout … (Return $FF)`）；圖節點 5 之 600 ms 窗與節點 6 之 `Retry Flag < 3?`"
       ],
       "row037": 237
     },
@@ -1489,7 +1489,7 @@
       "req_id": "SWE1-Diagnostics-231",
       "test_set": "SXM Package Routines",
       "tc_title": "The retries are the result of three identical instances of Indication Codes $03, $0D, or $0F, then the HU shall provide the respective code ($03, $0D, or $0F) in the routine results. ($0307, three identical instances of Indication Code $03 yield $03)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The retries performed during the package validation process are the result of three identical instances of Indication Code $03",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Sirius XM chipset returns Indication Code $03 to each of the three package validation commands",
       "input_test_data": "NA",
       "test_procedure": "1. Start the package validation routine with the Package Indication value\n   $ 31 01 03 07 <Package Indication value>\n2. Request the results of the package validation routine\n   $ 31 03 03 07",
       "expected_result": "1. The positive response 71 01 03 07 is received\n2. The positive response 71 03 03 07 <package validation routine results> is received, and the reported Indication Code is $03",
@@ -1497,14 +1497,14 @@
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",
       "split_flag": true,
-      "split_reason": "CFTS004-4940454 逐字明載三個碼值（$03／$0D／$0F），各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $03",
-      "remarks": "",
+      "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $03。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
         "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: CFTS004-4940454（If retries are performed as shown on the flowchart, and the retries are the result of three identical instances of Indication Codes $03, $0D, or $0F…）"
+        "PC-4: CIP_Radio_Tables_v6.7:MPFA Validate Process NOTE（`-3 retries with: IndCode = 0x03 (Return IndCode)`）；圖節點 6 之 `Retry Flag < 3?`"
       ],
       "row037": 238
     },
@@ -1513,7 +1513,7 @@
       "req_id": "SWE1-Diagnostics-231",
       "test_set": "SXM Package Routines",
       "tc_title": "The retries are the result of three identical instances of Indication Codes $03, $0D, or $0F, then the HU shall provide the respective code ($03, $0D, or $0F) in the routine results. ($0307, three identical instances of Indication Code $0D yield $0D)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The retries performed during the package validation process are the result of three identical instances of Indication Code $0D",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Sirius XM chipset returns Indication Code $0D to each of the three package validation commands",
       "input_test_data": "NA",
       "test_procedure": "1. Start the package validation routine with the Package Indication value\n   $ 31 01 03 07 <Package Indication value>\n2. Request the results of the package validation routine\n   $ 31 03 03 07",
       "expected_result": "1. The positive response 71 01 03 07 is received\n2. The positive response 71 03 03 07 <package validation routine results> is received, and the reported Indication Code is $0D",
@@ -1521,14 +1521,14 @@
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",
       "split_flag": true,
-      "split_reason": "CFTS004-4940454 逐字明載三個碼值（$03／$0D／$0F），各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0D",
-      "remarks": "",
+      "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0D。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
         "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: CFTS004-4940454（If retries are performed as shown on the flowchart, and the retries are the result of three identical instances of Indication Codes $03, $0D, or $0F…）"
+        "PC-4: CIP_Radio_Tables_v6.7:MPFA Validate Process NOTE（`-3 retries with: IndCode = 0x0D (Return IndCode)`）；圖節點 6 之 `Retry Flag < 3?`"
       ],
       "row037": 238
     },
@@ -1537,7 +1537,7 @@
       "req_id": "SWE1-Diagnostics-231",
       "test_set": "SXM Package Routines",
       "tc_title": "The retries are the result of three identical instances of Indication Codes $03, $0D, or $0F, then the HU shall provide the respective code ($03, $0D, or $0F) in the routine results. ($0307, three identical instances of Indication Code $0F yield $0F)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The retries performed during the package validation process are the result of three identical instances of Indication Code $0F",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Sirius XM chipset returns Indication Code $0F to each of the three package validation commands",
       "input_test_data": "NA",
       "test_procedure": "1. Start the package validation routine with the Package Indication value\n   $ 31 01 03 07 <Package Indication value>\n2. Request the results of the package validation routine\n   $ 31 03 03 07",
       "expected_result": "1. The positive response 71 01 03 07 is received\n2. The positive response 71 03 03 07 <package validation routine results> is received, and the reported Indication Code is $0F",
@@ -1545,16 +1545,64 @@
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",
       "split_flag": true,
-      "split_reason": "CFTS004-4940454 逐字明載三個碼值（$03／$0D／$0F），各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0F",
-      "remarks": "",
+      "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0F。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
         "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: CFTS004-4940454（If retries are performed as shown on the flowchart, and the retries are the result of three identical instances of Indication Codes $03, $0D, or $0F…）"
+        "PC-4: CIP_Radio_Tables_v6.7:MPFA Validate Process NOTE（`-3 retries with: IndCode = 0x0F (Return IndCode)`）；圖節點 6 之 `Retry Flag < 3?`"
       ],
       "row037": 238
+    },
+    {
+      "tc_id": "NR1L-DIAG-557",
+      "req_id": "SWE1-Diagnostics-225",
+      "test_set": "SXM Package Routines",
+      "tc_title": "The retries are the result of differing Indication Codes or as a result of timeout or for another reason, then the HU shall provide the code $FF in the routine results. ($0309, three differing Indication Codes yield $FF)",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Sirius XM chipset returns a different Indication Code to each of the three package select commands",
+      "input_test_data": "NA",
+      "test_procedure": "1. Start the package select routine with the Package Indication value\n   $ 31 01 03 09 <Package Indication value>\n2. Request the results of the package select routine\n   $ 31 03 03 09",
+      "expected_result": "1. The positive response 71 01 03 09 is received\n2. The positive response 71 03 03 09 <package select routine results> is received, and the reported Indication Code is $FF",
+      "specification_reference": "CFTS004-4940466",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "R-DIAG28(c)：本條為混合軸 —— 三次重試得到相異 Indication Code → `$FF`。錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "vehicle_model": "NAFTA",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
+        "PC-4: CIP_Radio_Tables_v6.7:MPFA Select Process NOTE 第 5 行（`-3 retries with multiple combinations of the above (Return $FF)`）"
+      ],
+      "row037": 232
+    },
+    {
+      "tc_id": "NR1L-DIAG-558",
+      "req_id": "SWE1-Diagnostics-230",
+      "test_set": "SXM Package Routines",
+      "tc_title": "The retries are the result of differing Indication Codes or as a result of timeout or for another reason, then the HU shall provide the code $FF in the routine results. ($0307, three differing Indication Codes yield $FF)",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Sirius XM chipset returns a different Indication Code to each of the three package validation commands",
+      "input_test_data": "NA",
+      "test_procedure": "1. Start the package validation routine with the Package Indication value\n   $ 31 01 03 07 <Package Indication value>\n2. Request the results of the package validation routine\n   $ 31 03 03 07",
+      "expected_result": "1. The positive response 71 01 03 07 is received\n2. The positive response 71 03 03 07 <package validation routine results> is received, and the reported Indication Code is $FF",
+      "specification_reference": "CFTS004-4940455",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "R-DIAG28(c)：本條為混合軸 —— 三次重試得到相異 Indication Code → `$FF`。錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "vehicle_model": "NAFTA",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
+        "PC-4: CIP_Radio_Tables_v6.7:MPFA Validate Process NOTE 第 5 行（`-3 retries with multiple combinations of the above (Return $FF)`）"
+      ],
+      "row037": 237
     }
   ]
 }

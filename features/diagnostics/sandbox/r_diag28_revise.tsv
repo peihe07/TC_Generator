@@ -1,0 +1,11 @@
+tc_id	req_id	動作	內容
+NR1L-DIAG-345	SWE1-Diagnostics-225	Revise	$0309 timeout×3 → $FF
+NR1L-DIAG-557	SWE1-Diagnostics-225	新增	$0309 混合 → $FF
+NR1L-DIAG-346	SWE1-Diagnostics-226	Revise	$0309 $03×3 → $03
+NR1L-DIAG-347	SWE1-Diagnostics-226	Revise	$0309 $0D×3 → $0D
+NR1L-DIAG-348	SWE1-Diagnostics-226	Revise	$0309 $0F×3 → $0F
+NR1L-DIAG-354	SWE1-Diagnostics-230	Revise	$0307 timeout×3 → $FF
+NR1L-DIAG-558	SWE1-Diagnostics-230	新增	$0307 混合 → $FF
+NR1L-DIAG-355	SWE1-Diagnostics-231	Revise	$0307 $03×3 → $03
+NR1L-DIAG-356	SWE1-Diagnostics-231	Revise	$0307 $0D×3 → $0D
+NR1L-DIAG-357	SWE1-Diagnostics-231	Revise	$0307 $0F×3 → $0F

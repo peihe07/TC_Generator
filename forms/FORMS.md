@@ -784,3 +784,28 @@ vsm 兩線之使用以 R-G15 反向記載追加於各條目（vsm_v42 上繳 04 
 
 ~~另：上表三件未登錄 xlsx（HMI Settings List／SR24／SR26）之首個採用實際已發生
 （vsm 兩線 W-5 段 1），其 (a)–(f) 登錄排入 vsm 線 P3 包，由執行層實測填寫。~~
+
+---
+
+### `CIP_Radio_Tables_v6.7.xlsx`
+
+> **使用中之 feature（R-G15 反向記載）**：`diagnostics`（R-DIAG28 —— `$0307` MPFA Validate／`$0309` MPFA Select 兩常式之流程來源）。
+> 該 feature 之 `feature.yaml` `reference:` 節載其 SHA256。
+
+- **(a)** SHA256 `71f5ea4043992475d838727c7f1c4286171a6189be173b9eee3cad4f1749ff0b`（5,009,350 bytes，mtime 2026-09-16 09:24）
+- **(b) 涵蓋**：12 分頁 —— `History`／`SEEK Cancel_Stop Transitions`／`TA-PTY31 station list cancel e `／`PI Seek Ordering`／
+  `Default ROW Market Presets`／`Preset Defaults- R1`／`Preset Defaults- VP3&4`／` Predefined Presets -X65 chip  `／
+  **`MPFA Validate Process(X65, X40)`**／**`MPFA Select Process(X65, X40)`**／`Travel Link- Weather Icons`／`Sheet1`。
+  兩 MPFA 分頁各只有一格文字（`Note: This applies to HU equipped with Sirius XM X 65/40 chipset only`）＋一張 Visio 流程圖：
+  `xl/media/image3.emf`（Validate，sha16 `d3cccfdac8be2cbd`，91,844 bytes）／`xl/media/image4.emf`（Select，sha16 `8f8f13572a6d86d0`，109,904 bytes）。
+  兩圖標題 `MPFA VALIDATE PROCESS`／`MPFA SELECT PROCESS`，皆 `Version 1.2 – Edited by Jim Witek`。
+  逐節點轉錄見 `features/diagnostics/data/cip_mpfa_flowcharts.md`。
+- **(c) 版次**：`History` 末列 `v6.7`，2023-03-03，Marcio Luz，`DCR22822 / 22823 : SRXX-16230`，適用 `SR24 , SR25`
+- **(d) 已知不涵蓋**：DID 位元組版面／`controlOptionRecord`／`controlEnableMask`／不支援之 SID 與 DID 清單／
+  vehicle sales code → PkgIndex 對照表／`SX-9830-0095` 本文。**故 `DR-DIAG-4`／`-5`／`-6` 不由本件解決**；
+  `DR-DIAG-8` 由本件解其流程圖部分（改 PARTIAL），餘 `SX-9830-0095` 與 PkgIndex 對照
+- **(e) 取代關係**：無（首次登錄）。為 CFTS004-4940461／-4940450 明引之「CIP Radio Tables」文件
+- **(f) 首個採用**：`diagnostics`，2026-09-17（CDD-12）
+
+**R-G67 嵌入物件檢查**：`xl/media/` 共 29 件 —— png **26**、emf **3**（其中 `image3`／`image4` 為兩張 MPFA 流程圖）；
+`xl/embeddings/Microsoft_Visio_2003-2010_Drawing.vsd` **1**（`MPFA Select Process` 分頁之 Visio 原始檔）。

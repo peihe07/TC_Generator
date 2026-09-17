@@ -83,23 +83,29 @@ ISO 14229-1 之 `31 requestOutOfRange` 亦即「DID 不受支援」之碼。
 
 ---
 
-## 五　`DR-DIAG-8` —— `SX-9830-0095` ＋ `CIP Radio Tables` 流程圖（**14 行 ＋ 文件缺件**）
+## 五　`DR-DIAG-8` —— `SX-9830-0095` 本文 ＋ PkgIndex 對照（**PARTIAL**：流程圖已到）
 
-`CFTS004-4940451`／`-4940461`／`-4940450`／`-4940462` 明引下列兩件為 `$0307`／`$0309`
-兩常式之處理步驟與重試路徑之定義來源，兩件皆不在來源集：
+`CFTS004-4940451`／`-4940461`／`-4940450`／`-4940462` 明引兩件為 `$0307`／`$0309` 兩常式之處理步驟與重試路徑之來源。
 
-| 件 | 引用處原文（節錄）|
+**`CIP Radio Tables` 已於 2026-09-16 置於 `forms/`，CDD-12 登錄為 `cip_radio_tables_v6_7`**（v6.7，2023-03-03）——
+兩張 MPFA 流程圖已逐節點轉錄（`features/diagnostics/data/cip_mpfa_flowcharts.md`），retry 之五種結局據以產出。
+**本項改 PARTIAL，餘下列兩件：**
+
+| 仍缺之件 | 為何需要 |
 |---|---|
-| `SX-9830-0095` "Sirius XM Multi-Package Factory Activation OEM Requirements" | `…as defined in the Sirius XM specification SX-9830-0095, using the Package Indication value provided in the diagnostic command.` |
-| `CIP Radio Tables`，`MPFA Select Process`／`MPFA Validate Process` 流程圖 | `Refer to "CIP Radio Tables" document, "MPFA Select Process" flowchart for details.` |
+| `SX-9830-0095` "Sirius XM Multi-Package Factory Activation OEM Requirements" 本文 | `Package Indication value` 之編碼定義於此；流程圖只書「依 vehicle sales codes 決定 PkgIndex」，未給值 |
+| vehicle sales code → PkgIndex 對照表 | 同上；`CIP_Radio_Tables_v6.7` 之 12 分頁均無此表 |
 
-**佔位**：`<Package Indication value>`（**18 行**；CDD-08 之 R-DIAG20 Revise 為 `$0309` 四條 negative TC 之 start 步驟補上 option record，故由 14 增為 18）—— 該值之編碼即定義於 `SX-9830-0095`。
+**佔位**：`<Package Indication value>` —— 該值之編碼定義於 `SX-9830-0095`，流程圖不含，故佔位維持。
 
 **已可寫者**：Indication Code **不缺** —— `CFTS004-4940456` 逐字列出全表八碼
 （`$00`／`$03`／`$0C`／`$0D`／`$0E`／`$0F`／`$10`／`$FF`），`$0309` 另明載 `$10` 無效。
 故 results 型 TC 之 ER 直接列舉，未用佔位。
 
-**影響**：13 個 037 列（**19 條 TC**）之 ER 只斷言常式回應與 Indication Code，不斷言流程內部步驟（R-DIAG19 同法）。
+**已解之部分**：retry 路徑之五種結局（600 ms timeout ×3 → `$FF`／`$03`／`$0D`／`$0F` 各 ×3 → 該碼／混合 → `$FF`）
+已依流程圖 NOTE 逐字產出，`$0307`／`$0309` 各 5 條（CDD-12）。
+
+**仍受限者**：`Package Indication value` 之實值；流程圖之 `Store the OpCode`／`CA Pellet Creation` 後續不在本 feature 範圍（§8.2.1）。
 
 ---
 

@@ -363,3 +363,26 @@ batch 4 產出 `-160`（row 167）時確認：**`-154` 之 Title 與 `-160` 之 
 
 **建議**：`-154` 之 Title 改為與其 Description 及 `SYS-RA-DIAG-367` 一致
 （即三訊號之偵測結果回報），與 FB-DIAG-g 併處。
+
+---
+
+## FB-DIAG-t —— `CIP Radio Tables v6.7`：`MPFA Select Process` 之 NOTE 與同圖本體矛盾
+
+**對象**：CIP Radio Tables 維護者（v6.7，2023-03-03，Marcio Luz）
+
+`MPFA Select Process(X65, X40)` 分頁之流程圖，其 NOTE 首行為：
+
+```text
+-3 retries with:  600 ms Timeout, Transaction ID = 0x02, Option = 0x02 (Return $FF)
+```
+
+而同一張圖之節點 4／5 為 `TransactionID = 0x01, Option = 0x01`（Select 之值）。
+`MPFA Validate Process` 分頁之 NOTE 與其本體則一致（皆 `0x02`）。
+
+**判斷**：Select 圖之 NOTE 係自 Validate 分頁複製而未改 `TransactionID`／`Option`。
+**影響**：retry 五結局之語意兩圖相同，測試用例不受影響；但文件讀者會誤以為 Select 的重試判斷用 `0x02`。
+**建議**：Select 圖 NOTE 首行改為 `Transaction ID = 0x01, Option = 0x01`。
+
+> **FB-DIAG-r 改述**：原書「`SX-9830-0095` 與 `CIP Radio Tables` 流程圖兩件皆不在來源集」——
+> `CIP Radio Tables` **實已於 2026-09-16 置於 `forms/`**，CDD-12 已登錄並轉錄兩張流程圖。
+> 本項改為只求 **`SX-9830-0095` 本文**與 **vehicle sales code → PkgIndex 對照表**（`DR-DIAG-8` 現為 PARTIAL）。

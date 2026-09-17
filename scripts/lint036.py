@@ -106,6 +106,9 @@ RE_DIAG_REMARKS_OK = (
     re.compile(r"^CFTS004 Category: Out of Scope"),
     re.compile(r"^NRC per ISO 14229-1 \(037 unspecified\)"),
     re.compile(r"^SID per 037 SWE1-Diagnostics-\d{3}(?:-00[12])?"),
+    # R-DIAG28(b)（Pei 裁，2026-09-17）：MPFA 兩流程圖之錨須於 Remarks 引用。
+    # 本式為第六種定型句 —— 不加白名單，R-DIAG28(b) 所命之引用就會被 RM-DIAG 攔下。
+    re.compile(r"^Flowchart: CIP_Radio_Tables_v6\.7:MPFA (?:Validate|Select) Process"),
 )
 DIAG_AUTHOR_FIELDS = ("test_item", "pre", "proc", "er")
 # R-DIAG18（IN §4.4 之本 feature 實作）：Pre-Condition 只述狀態。

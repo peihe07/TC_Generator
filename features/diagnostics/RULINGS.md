@@ -371,6 +371,21 @@ R-DIAG27  交付形式（沿 R-SEC25 前例）
   specification_reference 維持 §10.7(a) `CFTS004-{ObjectID}`（7 位 Polarion 物件號，同 SWC 0708 之 `CFTS042-4813401` 式）。
 ```
 
+### R-DIAG28 — CIP Radio Tables v6.7 為 `$0307`／`$0309` 之流程來源（Pei 裁，2026-09-17）
+
+```text
+R-DIAG28  CIP Radio Tables v6.7 為 $0307／$0309 之流程來源
+  (a) `forms/CIP_Radio_Tables_v6.7.xlsx` 登 FORMS.md（六欄）與 MANIFEST（doc_id `cip_radio_tables_v6_7`，features `diagnostics`）。
+  (b) MPFA Validate／Select 兩流程圖轉錄為 `features/diagnostics/data/cip_mpfa_flowcharts.md`（逐節點文字＋NOTE 逐字），
+      錨記法 `CIP_Radio_Tables_v6.7:MPFA Validate Process`／`…:MPFA Select Process`，於 Remarks 引用；
+      specification_reference 維持 CFTS004 ObjectID（CFTS004-4940451/4940462 等已明引該流程）。
+  (c) retry 軸之 sibling 依流程圖 NOTE 五種結局各一條：600 ms timeout ×3 → $FF；0x03 ×3 → 0x03；0x0D ×3 → 0x0D；
+      0x0F ×3 → 0x0F；混合 → $FF。PC 寫 X65 之回應態（如 `The Sirius XM chipset returns Indication Code 0x03 to each package validate command`），
+      不寫建立步驟（§8.5 例外）。
+  (d) `<Package Indication value>` 佔位維持（sales code → PkgIndex 對照不在本檔）；DR-DIAG-8 改 PARTIAL：流程圖已到，
+      餘 `SX-9830-0095` 本文與 PkgIndex 對照表。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。

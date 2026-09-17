@@ -1,22 +1,22 @@
 # Diagnostics 交付本 —— 執行指引（EXEC_GUIDE）
 
-對象：`FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Diagnostics_20260917.xlsx`（**556 條 TC**）。
+對象：`…_SWQT_Diagnostics_20260917_v02.xlsx`（**558 條 TC**）。v01（556 條）由本版取代，依 R-G72 不就地改。
 
 ---
 
 ## ⚠ 一　佔位填入前不得執行
 
-交付本 **386 條 TC（整列以 `FCE4D6` 著色）**之 `Test Procedure`／`Expected Result` 含 `<…>` 佔位。
+交付本 **388 條 TC（整列以 `FCE4D6` 著色）**之 `Test Procedure`／`Expected Result` 含 `<…>` 佔位。
 測試者知道要送哪個服務、讀哪個 DID，**但不知道要送哪些位元組**。
 
 | token | 行數 | 缺件 |
 |---|--:|---|
 | `DR-DIAG-6` | 269 | 不支援之 **SID 與 DID** 清單 |
-| `DR-DIAG-5` | 197 | 資料位元組之值域與 record 版面 |
+| `DR-DIAG-5` | 199 | 資料位元組之值域與 record 版面 |
 | `DR-DIAG-4` | 64 | I/O Control 之 controlOptionRecord／controlEnableMask 全表 |
-| `DR-DIAG-8` | 16 | `SX-9830-0095` 之 Package Indication 編碼 |
+| `DR-DIAG-8` | 18 | `SX-9830-0095` 之 Package Indication 編碼（**PARTIAL** —— 流程圖已到，餘本文與 PkgIndex 對照）|
 
-逐行清單見 `placeholder_summary.tsv`（546 行）與 `placeholder_by_token.tsv`（依 token 彙整）。
+逐行清單見 `placeholder_summary.tsv`（550 行）與 `placeholder_by_token.tsv`（依 token 彙整）。
 **著色列在上述四件到齊前只可用於評審，不可派工。** 未著色之 **170 條**可直接執行。
 
 另有 **2 條 TC／3 行**為 `PENDING: DR-DIAG-1`（NRC 值無來源），非佔位而是**無法書寫之步驟**，同樣不可執行。
@@ -66,4 +66,6 @@
 
 - 母體為 `SWE1_Diagnostics_V1 (3).xlsx` 之 **389 列**，**389/389 全數對映**（`coverage.tsv`）。
 - 其中 **1 列**（`SWE1-Diagnostics-057`）之 CFTS004 Category 為 `Out of Scope`，依裁定保留原內容並於處置欄註記，**不執行**。
+- `$0307` MPFA Validate／`$0309` MPFA Select 兩常式之重試路徑，依 `CIP_Radio_Tables_v6.7` 之兩張流程圖 NOTE 產出五種結局各一條
+  （600 ms timeout ×3 → `$FF`；`$03`／`$0D`／`$0F` 各 ×3 → 該碼；混合 → `$FF`）。逐節點轉錄見 `features/diagnostics/data/cip_mpfa_flowcharts.md`。
 - **環境／持久軸（重開機／電源循環／設定保存）未延伸** —— CFTS004 全文搜尋 `reboot`／`power cycle`／`persist`／`retain`／`ignition` **五詞全為 0**，037 之 VC／VM 亦零命中，無來源可據。若該行為存在，須由 CFTS004 補件後另行延伸。
