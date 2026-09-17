@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Read the installation state file in the secure partition\n$ adb shell od -t x1 /mnt/vendor/oemkeys/installstate\n2. Query the installed keys status through the DIAG service interface\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.testkeyinstalldiagservicemanager.KeyInstallDiagServiceManagerTests#getInstalledKeysStatus com.mitsubishielectric.ahu.efw.lib.testkeyinstalldiagservicemanager/androidx.test.runner.AndroidJUnitRunner",
   "er": "1. The adb shell od -t x1 /mnt/vendor/oemkeys/installstate output shows the installstate value 2\n2. The instrumentation runner reports \"OK (1 test)\" for getInstalledKeysStatus",
-  "spec": "CFTS084-134528\nCFTS084-134691\nCFTS084-134692\nCFTS084-134693\nCFTS084-134694\nCFTS084-134695\nCFTS084-134696\nCFTS084-134697\nCFTS084-134698\nCFTS084-134699\nCFTS084-134729\nCFTS084-134773\nCFTS084-134868",
+  "spec": "CFTS084-4949528\nCFTS084-4949736\nCFTS084-4949737\nCFTS084-4949738\nCFTS084-4949739\nCFTS084-4949740\nCFTS084-4949741\nCFTS084-4949742\nCFTS084-4949743\nCFTS084-4949744\nCFTS084-4949776\nCFTS084-4949821\nCFTS084-4949931",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",

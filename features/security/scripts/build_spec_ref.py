@@ -34,6 +34,13 @@ _t.loader.exec_module(btm)
 DROP_CATEGORIES_HISTORICAL = {"information", "heading", "reference"}
 
 
+def objectid_map() -> dict[str, str]:
+    """R-SEC10(c) amend3（SEC-19）：`sys_ra_sec` → Polarion ObjectID（7 位）。"""
+    f = DATA / "sys2_objectid_map.tsv"
+    return {r["sys_ra_sec"]: r["object_id"]
+            for r in csv.DictReader(f.open(encoding="utf-8"), delimiter="\t")}
+
+
 def sys2_table() -> dict[str, tuple[str, str, str]]:
     """SYS-RA-SEC id → (NRL, description, category)。"""
     ws = openpyxl.load_workbook(CCVR, read_only=True, data_only=True)["SYS2 traceability"]
@@ -77,6 +84,7 @@ def tokens(text: str) -> set[str]:
 def main() -> int:
     tm = list(csv.DictReader((DATA / "trace_matrix.tsv").open(encoding="utf-8"), delimiter="\t"))
     sys2 = sys2_table()
+    oid = objectid_map()                      # amend3：取號改 ObjectID
     vcs = vc_map()
     missing_nrl: list[str] = []
     rows = []
@@ -91,10 +99,11 @@ def main() -> int:
                 missing_nrl.append(f"{swe1}:{i}")
                 continue
             nrl, desc, cat = meta
-            if not nrl:
-                missing_nrl.append(f"{swe1}:{i}(no NRL)")
+            obj = oid.get(i, "")
+            if not obj or obj == "MISSING":
+                missing_nrl.append(f"{swe1}:{i}(no ObjectID)")
                 continue
-            kept.append((i, nrl, desc, cat))
+            kept.append((i, obj, desc, cat))
         status = "OK" if kept else "FALLBACK"
         lines = [f"CFTS084-{re.sub(r'[^0-9]', '', n)}" for _, n, _, _ in
                  sorted(kept, key=lambda k: int(re.sub(r"[^0-9]", "", k[1])))] or [swe1]
@@ -130,7 +139,7 @@ def main() -> int:
         print(f"  OK 列之行數 min/median/max = {ln[0]}／{ln[len(ln)//2]}／{ln[-1]}")
     mx = max(rows, key=lambda r: r["lines"])
     print(f"  最大列：{mx['swe1_id']} {mx['lines']} 行")
-    print("  NRL 不在 SYS2 traceability 者：", missing_nrl or "無")
+    print("  ObjectID 缺號者（sys2_objectid_map 之 MISSING）：", missing_nrl or "無")
     import collections
     grp = collections.defaultdict(list)
     for r in rows:

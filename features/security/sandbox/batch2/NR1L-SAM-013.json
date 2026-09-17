@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth\n2. Read the SAM certificate format on the host\n$ openssl x509 -in SAMcert.pem -text",
   "er": "1. The adb shell ls -l /data/vendor/dauth output lists the manifest, the signature and the certificate files\n2. The openssl x509 output shows the certificate in x509 PEM format",
-  "spec": "CFTS084-134366\nCFTS084-134369\nCFTS084-134370\nCFTS084-134371",
+  "spec": "CFTS084-4949331\nCFTS084-4949334\nCFTS084-4949336\nCFTS084-4949337",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

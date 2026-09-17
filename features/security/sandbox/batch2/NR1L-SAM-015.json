@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <DUT-side trigger for SAM AuthData package with Install true and a non-Logging SAMType provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n2. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth",
   "er": "1. <observable outcome provided by RD (X-g)>\n2. The adb shell ls -l /data/vendor/dauth output lists the copied AuthData",
-  "spec": "CFTS084-134372\nCFTS084-134373\nCFTS084-134374",
+  "spec": "CFTS084-4949338\nCFTS084-4949339\nCFTS084-4949340",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",

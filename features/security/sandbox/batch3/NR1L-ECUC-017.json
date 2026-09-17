@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the Cert Store file path access implementation per RD>\n2. Review the Cert Store file path access implementation against \"jbyteArray and jstring are correctly converted to uint8_t* and std::string without memory leaks\"",
   "er": "1. The Cert Store file path access implementation is available for review\n2. The Cert Store file path access implementation satisfies \"jbyteArray and jstring are correctly converted to uint8_t* and std::string without memory leaks\"",
-  "spec": "CFTS084-134739\nCFTS084-134744\nCFTS084-134751\nCFTS084-134752\nCFTS084-134754\nCFTS084-134844\nCFTS084-134845",
+  "spec": "CFTS084-4949787\nCFTS084-4949792\nCFTS084-4949799\nCFTS084-4949800\nCFTS084-4949802\nCFTS084-4949900\nCFTS084-4949901",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

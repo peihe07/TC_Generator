@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Send UDS request DiagnosticSessionControl for the SystemSupplierSpecific session\n$ 10 60\n2. <DUT-side trigger for ECU certificate chain for the DUT serial number provided by STLA (X-d)>\n$ <command provided by STLA (X-d)>",
   "er": "1. Positive response is received: 50 60\n2. <observable outcome provided by STLA (X-d)>",
-  "spec": "CFTS084-134739\nCFTS084-134740\nCFTS084-134744\nCFTS084-134750\nCFTS084-134752\nCFTS084-134844\nCFTS084-134845",
+  "spec": "CFTS084-4949787\nCFTS084-4949788\nCFTS084-4949792\nCFTS084-4949798\nCFTS084-4949800\nCFTS084-4949900\nCFTS084-4949901",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "邊界值分析 (Boundary Value Analysis, BVA)",

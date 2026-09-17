@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Decrypt the first encrypted pair on the host\n$ ./logdecrypt_Ver2.sh HUssss_YYYYMMDD_HHMMSS_XXXX.enc HUssss_YYYYMMDD_HHMMSS_XXXX_enckey.enc\n2. Decrypt the second encrypted pair on the host\n$ ./logdecrypt_Ver2.sh HUssss_YYYYMMDD_HHMMSS_XXXX.enc HUssss_YYYYMMDD_HHMMSS_XXXX_enckey.enc\n3. <two log snapshots taken in separate iterations + comparison provided by RD (X-m)> is executed\n$ <command provided by RD (X-m)>",
   "er": "1. The logdecrypt_Ver2.sh tool creates the folder HUssss_YYYYMMDD_HHMMSS_XXXX on the host\n2. The logdecrypt_Ver2.sh tool creates the folder HUssss_YYYYMMDD_HHMMSS_XXXX on the host\n3. <two log snapshots taken in separate iterations + comparison provided by RD (X-m)>",
-  "spec": "CFTS084-134686",
+  "spec": "CFTS084-4949731",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

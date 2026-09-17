@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the project build environment per RD>\n2. Review the project build environment against \"logdog could link to Log Encryption without link error\"",
   "er": "1. The project build environment is available for review\n2. The project build environment satisfies \"logdog could link to Log Encryption without link error\"",
-  "spec": "CFTS084-134686",
+  "spec": "CFTS084-4949731",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

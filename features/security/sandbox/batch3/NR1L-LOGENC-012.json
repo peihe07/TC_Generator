@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the Log Encryption source code per RD>\n2. Review the Log Encryption source code against \"there exists a interface for file operation\"",
   "er": "1. The Log Encryption source code is available for review\n2. The Log Encryption source code satisfies \"there exists a interface for file operation\"",
-  "spec": "CFTS084-134686",
+  "spec": "CFTS084-4949731",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

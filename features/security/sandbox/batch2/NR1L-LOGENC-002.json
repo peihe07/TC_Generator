@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Confirm the content of /data/vendor/logdog on the DUT\n$ adb shell ls -l /data/vendor/logdog",
   "er": "1. The adb shell ls -l /data/vendor/logdog output lists the encrypted log and the encrypted key",
-  "spec": "CFTS084-134686",
+  "spec": "CFTS084-4949731",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

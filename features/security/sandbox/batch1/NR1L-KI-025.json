@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Read the process resource usage on the DUT\n$ adb shell procrank\n2. Read the size of the oemkeys partition on the DUT\n$ adb shell df /mnt/vendor/oemkeys",
   "er": "1. The adb shell procrank output shows the KeyInstall RAM usage within the stated limit\n2. The adb shell df /mnt/vendor/oemkeys output shows the partition size within the stated target",
-  "spec": "CFTS084-134528\nCFTS084-134691\nCFTS084-134692\nCFTS084-134693\nCFTS084-134694\nCFTS084-134695\nCFTS084-134696\nCFTS084-134697\nCFTS084-134698\nCFTS084-134699\nCFTS084-134729\nCFTS084-134773\nCFTS084-134868",
+  "spec": "CFTS084-4949528\nCFTS084-4949736\nCFTS084-4949737\nCFTS084-4949738\nCFTS084-4949739\nCFTS084-4949740\nCFTS084-4949741\nCFTS084-4949742\nCFTS084-4949743\nCFTS084-4949744\nCFTS084-4949776\nCFTS084-4949821\nCFTS084-4949931",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "基礎故障注入 (Fault Injection Lite)",

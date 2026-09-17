@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Read /data/vendor/dauth/vc on the DUT\n$ adb shell cat /data/vendor/dauth/vc\n2. <DUT-side trigger for SAM AuthData ignition cycle within the ValidityCounter provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n3. Confirm the dauth log after the previous step\n$ adb logcat -s dauth",
   "er": "1. The adb shell cat /data/vendor/dauth/vc output shows the ValidityCounter value 0\n2. <observable outcome provided by RD (X-g)>\n3. The adb logcat -s dauth output contains the AuthData in-use entry",
-  "spec": "CFTS084-134386",
+  "spec": "CFTS084-4949354",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "邊界值分析 (Boundary Value Analysis, BVA)",

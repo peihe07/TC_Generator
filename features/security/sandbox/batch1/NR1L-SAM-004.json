@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Read the SAM certificate format and subject on the host\n$ openssl x509 -in SAMcert.pem -text\n2. Run the OpenSSL chain verification of the certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n3. <DUT-side trigger for SAM AuthData with a non-anchoring certificate provided by RD (X-g)>\n$ <command provided by RD (X-g)>",
   "er": "1. The openssl x509 output shows an \"Issuer:\" line that does not anchor to the OEM issued root certificate\n2. The openssl command prints \"unable to get issuer certificate\" on stdout\n3. <log keyword provided by RD (X-h)>",
-  "spec": "CFTS084-134366\nCFTS084-134369\nCFTS084-134370\nCFTS084-134371",
+  "spec": "CFTS084-4949331\nCFTS084-4949334\nCFTS084-4949336\nCFTS084-4949337",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "負向測試 (Negative / Invalid)",

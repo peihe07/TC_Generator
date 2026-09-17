@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Read the running native processes on the DUT\n$ adb shell ps -A",
   "er": "1. The adb shell ps -A output lists the DebugAuth native daemon",
-  "spec": "CFTS084-134367\nCFTS084-134383\nCFTS084-134384",
+  "spec": "CFTS084-4949332\nCFTS084-4949351\nCFTS084-4949352",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

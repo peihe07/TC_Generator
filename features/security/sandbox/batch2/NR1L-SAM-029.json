@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <DUT-side trigger for SAM AuthData target function connection provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n2. Confirm the dauth log after the previous step\n$ adb logcat -s dauth",
   "er": "1. <observable outcome provided by RD (X-g)>\n2. The adb logcat -s dauth output contains the current status notification",
-  "spec": "CFTS084-134385",
+  "spec": "CFTS084-4949353",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",

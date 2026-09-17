@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Read /data/vendor/dauth/ts on the DUT\n$ adb shell cat /data/vendor/dauth/ts\n2. <DUT-side trigger for SAM AuthData package with an older TimeStamp provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n3. Read /data/vendor/dauth/ts on the DUT\n$ adb shell cat /data/vendor/dauth/ts",
   "er": "1. The adb shell cat /data/vendor/dauth/ts output shows the stored timestamp\n2. <observable outcome provided by RD (X-g)>\n3. The adb shell cat /data/vendor/dauth/ts output shows the unchanged timestamp",
-  "spec": "CFTS084-134372\nCFTS084-134373\nCFTS084-134374",
+  "spec": "CFTS084-4949338\nCFTS084-4949339\nCFTS084-4949340",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "負向測試 (Negative / Invalid)",

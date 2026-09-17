@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the client-side key update interface per RD>\n2. Review the client-side key update interface against \"update current key and check the return value\"",
   "er": "1. The client-side key update interface is available for review\n2. The client-side key update interface satisfies \"update current key and check the return value\"",
-  "spec": "CFTS084-134565\nCFTS084-134566\nCFTS084-134567\nCFTS084-134571\nCFTS084-134577\nCFTS084-134578\nCFTS084-134579\nCFTS084-134580\nCFTS084-134581\nCFTS084-134582",
+  "spec": "CFTS084-4949587\nCFTS084-4949588\nCFTS084-4949593\nCFTS084-4949599\nCFTS084-4949606\nCFTS084-4949607\nCFTS084-4949608\nCFTS084-4949609\nCFTS084-4949610\nCFTS084-4949611",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

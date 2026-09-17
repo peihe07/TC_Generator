@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth\n2. Read the SELinux label of the AuthData directory on the DUT\n$ adb shell ls -Z /data/vendor/dauth",
   "er": "1. The adb shell ls -l /data/vendor/dauth output lists the installed AuthData files\n2. The adb shell ls -Z /data/vendor/dauth output shows the SELinux label on the AuthData files",
-  "spec": "CFTS084-134367\nCFTS084-134383\nCFTS084-134384",
+  "spec": "CFTS084-4949332\nCFTS084-4949351\nCFTS084-4949352",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

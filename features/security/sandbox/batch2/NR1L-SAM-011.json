@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Read /sys/devices/soc0/serial_number on the DUT\n$ adb shell cat /sys/devices/soc0/serial_number\n2. <DUT-side trigger for SAM AuthData package issued for this serial number provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n3. Confirm the dauth log after the previous step\n$ adb logcat -s dauth",
   "er": "1. The adb shell cat /sys/devices/soc0/serial_number output shows the head unit serial number\n2. <observable outcome provided by RD (X-g)>\n3. The adb logcat -s dauth output contains the serial number match entry",
-  "spec": "CFTS084-134366\nCFTS084-134369\nCFTS084-134370\nCFTS084-134371",
+  "spec": "CFTS084-4949331\nCFTS084-4949334\nCFTS084-4949336\nCFTS084-4949337",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "功能測試 (Functional based ; no specific technique)",

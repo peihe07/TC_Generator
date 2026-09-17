@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the LogEncrypt library per RD>\n2. Review the LogEncrypt library against \"LogEncrypt library should provide API for LogDog: encryptLogFile(const std::string& plainLogFilename, const std::string& protectedLogFilename, const std::string& protectedKeyFilename) to encrypt log files\"",
   "er": "1. The LogEncrypt library is available for review\n2. The LogEncrypt library satisfies \"LogEncrypt library should provide API for LogDog: encryptLogFile(const std::string& plainLogFilename, const std::string& protectedLogFilename, const std::string& protectedKeyFilename) to encrypt log files\"",
-  "spec": "CFTS084-134686",
+  "spec": "CFTS084-4949731",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

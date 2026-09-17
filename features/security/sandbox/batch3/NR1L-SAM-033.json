@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the DebugAuth source code about AuthData checking per RD>\n2. Review the DebugAuth source code about AuthData checking against \"DebugAuth is using assigned SW components\"",
   "er": "1. The DebugAuth source code about AuthData checking is available for review\n2. The DebugAuth source code about AuthData checking satisfies \"DebugAuth is using assigned SW components\"",
-  "spec": "CFTS084-134367\nCFTS084-134383\nCFTS084-134384",
+  "spec": "CFTS084-4949332\nCFTS084-4949351\nCFTS084-4949352",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

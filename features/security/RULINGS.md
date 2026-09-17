@@ -812,7 +812,7 @@ R-SEC25  Security 交付形制（取代 R-SEC10(a)；(b)~(f) 不變）
 
 ---
 
-### R-SEC10(c)(amend2) — specification_reference 改 CFTS084-{NRL}（Pei 裁，2026-09-17；SEC-18 §1 ＋ SEC-18_A §1）
+### R-SEC10(amend2) — specification_reference 改 CFTS084-{NRL}（條文為 R-SEC10(c) amend2）（Pei 裁，2026-09-17；SEC-18 §1 ＋ SEC-18_A §1）
 
 ```text
 R-SEC10(c) amend2  specification_reference（Security）
@@ -829,3 +829,20 @@ R-SEC10(c) amend2  specification_reference（Security）
 `rulings_hash.py --out <tmp>` 乾跑取得，見 `up/20260917_SEC-18.md` §4。
 原 SEC-18 §1(c) 之「category 排除 ＋ 關鍵字篩選 ＋ >10 標 REVIEW」經 SEC-18_A 取消，
 `spec_ref_plan.tsv` 保留 `category_excluded_if_filtered` 欄，記「若照原式篩會排掉幾號」，供回溯。
+
+---
+
+### R-SEC10(amend3) — spec_reference 之號＝Polarion ObjectID（條文為 R-SEC10(c) amend3）（Pei 裁，2026-09-17；SEC-19 §2）
+
+```text
+R-SEC10(c) amend3  spec_reference 之號 = CFTS084 SYS2 本之 Polarion ObjectID（7 位），格式 `CFTS084-{ObjectID}`；
+                   NRL 號作廢（A-45）。一號一行、升冪（依 ObjectID 數值）、cell 內 `\n`、wrap on。
+                   對不上 SYS2 者仍寫 SWE1 ID／SYSAD 首值。
+                   (d) 格式正則改 `^CFTS084-\d{7}$`。
+```
+
+**執行層回報（SEC-19）**：ObjectID 欄以 SWC 先例定案 —— SWC 0708 交付本之
+`CFTS042-4813401`／`-4813400`／`-4813399`／`-4813398`／`-4813397` 五號，逐一落在 CFTS042 SYS2 本
+（`CFTS_042 … _DeltaAnalysis_Released.xlsx`）`Basic Report` 之 **`SYS2 來源需求項目ID  Source Requirement items`** 欄；
+CFTS084 同名欄（index 7）即取號面。對照表 `data/sys2_objectid_map.tsv`：161 個 `sys_ra_sec` 全數對到 7 位號，`MISSING` 0。
+本條未寫入 `RULINGS.sha.tsv`（GC-16 前禁令），body sha8 乾跑取得。

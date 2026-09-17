@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <suspend/resume trigger method provided by RD (X-n)> is executed\n$ <command provided by RD (X-n)>\n2. Confirm the dauth log after the previous step\n$ adb logcat -s dauth",
   "er": "1. <suspend/resume trigger method provided by RD (X-n)>\n2. The adb logcat -s dauth output contains the OFF notification to the target functions",
-  "spec": "CFTS084-134385",
+  "spec": "CFTS084-4949353",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "狀態轉換 (State Transition Testing)",

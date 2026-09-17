@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Send the ignition signal on the Atl-Mi bus\nSend CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read /data/vendor/dauth/seqId on the DUT\n$ adb shell cat /data/vendor/dauth/seqId",
   "er": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. The adb shell cat /data/vendor/dauth/seqId output shows the sequence ID 0",
-  "spec": "CFTS084-134385",
+  "spec": "CFTS084-4949353",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "狀態轉換 (State Transition Testing)",

@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Record the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth\n2. <DUT-side trigger for SAM AuthData stored package that fails verification provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n3. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth",
   "er": "1. The adb shell ls -l /data/vendor/dauth output lists the stored AuthData\n2. <observable outcome provided by RD (X-g)>\n3. The adb shell ls -l /data/vendor/dauth output lists no stored AuthData",
-  "spec": "CFTS084-134368",
+  "spec": "CFTS084-4949333",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "負向測試 (Negative / Invalid)",

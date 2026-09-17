@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Clear the log buffer before the status message is sent\n$ adb logcat -c\n2. Read the stored sequence ID before the status message is sent\n$ adb shell cat /data/vendor/dauth/seqId\n3. <DUT-side trigger for SAM AuthData status change provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n4. Confirm the dauth log after the previous step\n$ adb logcat -s dauth\n5. Read the stored sequence ID after the status message is sent\n$ adb shell cat /data/vendor/dauth/seqId",
   "er": "1. The log buffer is cleared\n2. The adb shell cat /data/vendor/dauth/seqId output shows the current sequence ID\n3. <observable outcome provided by RD (X-g)>\n4. The adb logcat -s dauth output contains the sent message with the sequence ID\n5. The adb shell cat /data/vendor/dauth/seqId output shows the incremented sequence ID",
-  "spec": "CFTS084-134385",
+  "spec": "CFTS084-4949353",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",
