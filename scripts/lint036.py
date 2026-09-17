@@ -126,6 +126,11 @@ DIAG_IO_ROWS = _diag_ids(((7, 12), (31, 43), (58, 147), (336, 340)))
 DIAG_KEY_ROWS = _diag_ids(((54, 55), (344, 345), (386, 388)))
 # R-DIAG2 之三段式號：`-340-001` 屬 I/O（`$500D`）、`-340-002` 屬 R/W（`$280C`）
 DIAG_IO_SUFFIXED = frozenset({"SWE1-Diagnostics-340-001"})
+# R-DIAG13(amend)（Pei 2026-09-17）：unsupported 型送的是**不支援之 SID**，不發 0x2F，
+# 不在 SEC-DIAG 母體。33 個 I/O ∩ unsupported 之 037 列（號段不連續，逐一列出）。
+DIAG_IO_UNSUPPORTED: frozenset[str] = frozenset({
+    "SWE1-Diagnostics-009", "SWE1-Diagnostics-033", "SWE1-Diagnostics-037", "SWE1-Diagnostics-040", "SWE1-Diagnostics-043", "SWE1-Diagnostics-060", "SWE1-Diagnostics-063", "SWE1-Diagnostics-072", "SWE1-Diagnostics-075", "SWE1-Diagnostics-078", "SWE1-Diagnostics-081", "SWE1-Diagnostics-084", "SWE1-Diagnostics-087", "SWE1-Diagnostics-090", "SWE1-Diagnostics-093", "SWE1-Diagnostics-096", "SWE1-Diagnostics-099", "SWE1-Diagnostics-102", "SWE1-Diagnostics-105", "SWE1-Diagnostics-108", "SWE1-Diagnostics-111", "SWE1-Diagnostics-114", "SWE1-Diagnostics-117", "SWE1-Diagnostics-120", "SWE1-Diagnostics-123", "SWE1-Diagnostics-126", "SWE1-Diagnostics-129", "SWE1-Diagnostics-132", "SWE1-Diagnostics-135", "SWE1-Diagnostics-138", "SWE1-Diagnostics-141", "SWE1-Diagnostics-144", "SWE1-Diagnostics-147",
+})
 DIAG_SEC_PC = "Security access 0x27 has been granted"
 RE_DIAG_FORBIDDEN_KEY = re.compile(r'"(Power|Dark)"')
 
@@ -134,6 +139,8 @@ def check_diag_security(req_id: str, fields: dict, row_no: int, tc_id: str) -> l
     """SEC-DIAG —— I/O Control（0x2F）之 TC 須含 security Pre-Condition（R-DIAG13）。"""
     rid = req_id.replace("\xa0", " ").strip()
     if rid not in DIAG_IO_ROWS and rid not in DIAG_IO_SUFFIXED:
+        return []
+    if rid in DIAG_IO_UNSUPPORTED:       # R-DIAG13(amend)
         return []
     if DIAG_SEC_PC in fields.get("pre", ""):
         return []
@@ -355,7 +362,7 @@ CHECK_STATUS = {
     "U-DIAG": "未校準（R-DIAG5(b)，CDD-01_A 新增）—— **feature 專屬**。",
     "R1-DIAG": "未校準（R-DIAG1(a)，CDD-01_A 新增）—— **feature 專屬**。",
     "RM-DIAG": "未校準（R-DIAG3(amend)／R-DIAG6／R-DIAG7(a)，CDD-01_A 新增）—— **feature 專屬**。",
-    "SEC-DIAG": "未校準（R-DIAG13，CDD-04 新增）—— **feature 專屬**；母體依母節反查（追補 A §一）。",
+    "SEC-DIAG": "未校準（R-DIAG13，CDD-04 新增；R-DIAG13(amend) 排除 unsupported 型）—— **feature 專屬**；母體依母節反查（追補 A §一）。",
     "KEY-DIAG": "未校準（R-DIAG14，CDD-04 新增）—— **feature 專屬**。",
     "SC": "未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。"
           "對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），"

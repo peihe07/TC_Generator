@@ -292,3 +292,32 @@ SYSAD §4.5 只述「ECU starts in Default Session」而無對應碼。
 **建議**：037 或 CFTS004 補明該情形之 NRC。
 
 （另：本列 Description 之 `rerturn` 為 `return` 之誤，一併回報。）
+
+---
+
+## FB-DIAG-n　`$5006`／`$5005`（fade／balance）無 negative 與 unsupported 需求列
+
+| DID | CFTS004 節 | 037 列 | 型態 |
+|---|---|---|---|
+| `$5006 - Fade Settings` | r294–r297 | `SWE1-Diagnostics-064`（row 71）／`-065`（row 72）| **全為 positive** |
+| `$5005 - Balance Settings` | r298–r301 | `SWE1-Diagnostics-066`（row 73）／`-067`（row 74）| **全為 positive** |
+
+對照同組其他 DID：
+
+| DID | positive | negative | unsupported |
+|---|---:|---:|---:|
+| `$5004` Treble | 3 | 1 | 1 |
+| `$5003` Bass | 3 | 3 | 3 |
+| `$5002` Volume | 3 | 3 | 3 |
+| **`$5006` Fade** | **2** | **0** | **0** |
+| **`$5005` Balance** | **2** | **0** | **0** |
+
+CFTS004-4940326 明載 `Valid values for fade control step shall be from 9 front to 9 rear`，
+CFTS004-4940322 明載 `from 9 left to 9 right` —— **值域存在，但 037 未收「超出值域」與
+「不支援之服務請求」兩種行為**，而同組其餘三個 DID 都收了。
+
+**測試側處置**：因該二 DID 無 negative 列可掛，越界行為改以**邊界值分析**掛在其值域列
+（`-064`／`-066`）之下，取 `=min`／`=max`／`min−1`／`max+1` 四點；
+`$5004`／`$5003`／`$5002` 因已有 negative 列，只取有效邊界二點，避免重複。
+
+**建議**：037 下一版為 `$5006`／`$5005` 補 negative 與 unsupported 列，與同組其餘 DID 一致。

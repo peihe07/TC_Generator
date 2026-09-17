@@ -146,11 +146,19 @@ CASES["SEC-DIAG"] = dict(
         ("SWE1-Diagnostics-004", "1. x\n2. y"),                   # R/W 讀，非母體
         ("SWE1-Diagnostics-340-002", "1. x"),                      # 三段式但屬 R/W，非母體
         ("SWE1-Diagnostics-272", "1. x")],                         # R/W 讀，非母體
-    ng=[("SWE1-Diagnostics-112", "1. x\n2. y"),                   # I/O 缺 PC
+    ng=[("SWE1-Diagnostics-112", "1. x\n2. y"),                   # I/O positive 缺 PC
         ("SWE1-Diagnostics-340-001", "1. x"),                      # 三段式 I/O 缺 PC
         ("SWE1-Diagnostics-091", "1. x\n2. y"),                   # $5001 I/O 缺 PC
         ("SWE1-Diagnostics-145", ""),                              # $5000 I/O 缺 PC
         ("SWE1-Diagnostics-058", "1. Security access granted")],   # 措辭不合定型句
+)
+# R-DIAG13(amend)：unsupported 型不在母體 —— 缺 PC 亦不得命中。
+CASES["SEC-DIAG (amend 排除)"] = dict(
+    fn=lambda c: L.check_diag_security(c, {"pre": "1. x\n2. y"}, 1, "NR1L-DIAG-XXX"),
+    ok=["SWE1-Diagnostics-111", "SWE1-Diagnostics-114", "SWE1-Diagnostics-093",
+        "SWE1-Diagnostics-147", "SWE1-Diagnostics-009"],       # 五個 I/O ∩ unsupported，缺 PC 仍不報
+    ng=["SWE1-Diagnostics-112", "SWE1-Diagnostics-109", "SWE1-Diagnostics-091",
+        "SWE1-Diagnostics-145", "SWE1-Diagnostics-340-001"],   # I/O positive／negative，缺 PC 須報
 )
 
 # --- KEY-DIAG：$1820／$1821 之觸發鍵（R-DIAG14）------------------------------

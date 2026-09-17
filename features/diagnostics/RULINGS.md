@@ -221,6 +221,33 @@ R-DIAG14  觸發鍵之選擇
   優先選導航類鍵（Up／Down／Select）。
 ```
 
+### R-DIAG13(amend) — `SEC-DIAG` 母體排除 unsupported 型（Pei 裁，2026-09-17）
+
+```text
+R-DIAG13(amend)  SEC-DIAG 母體排除 unsupported 型
+  R-DIAG13 之「SID 0x2F 之 TC」指實際送出 0x2F 者：positive 與 negative 型；
+  unsupported 型送不支援之 SID，不在母體。lint SEC-DIAG 母體加條件 row_kind ≠ unsupported。
+  已產之 unsupported 型 TC 不補 PC-3。
+```
+
+### R-DIAG15 — 佔位之追蹤（比照 R-SEC21）（Pei 裁，2026-09-17）
+
+```text
+R-DIAG15  佔位之追蹤（比照 R-SEC21）
+  作者側四欄之 `<…>` 佔位一律登 `features/diagnostics/sandbox/placeholder_summary.tsv`
+  （欄：TC ID／SWE1 ID／欄位／佔位文字／缺件 token DR-DIAG-n／來源節）。
+  交付本可含佔位（U=0）但 `asset_request.md` 須載明「佔位填入前不得執行」；
+  DR 回覆到件後依 R-G72 以 Revise 本填值。
+```
+
+### R-DIAG16 — 觀察不成步（IN §5.1 之本 feature 適用）（Pei 裁，2026-09-17）
+
+```text
+R-DIAG16  觀察不成步（IN §5.1 之本 feature 適用）
+  Procedure 步驟只寫動作（送出／按壓／保持／讀取）；聽、看、觀察只入 ER。
+  保持步驟固定句 `Hold for <n> s`，ER 寫該期間之可觀察結果。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。

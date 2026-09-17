@@ -53,8 +53,8 @@
 | `R1-DIAG` | Requirement ID 單值 `SWE1-Diagnostics-nnn(-001/-002)`；`-340` 裸號違規 | R-DIAG1(a)／R-DIAG2 | CDD-01_A | **已校準** |
 | **`Z`** | Vehicle Model 七欄 1／0；598／5210 = 0；五有效欄至少一 `1` | R-CAM2／**R-G74** | 承接 Camera | 已校準 |
 | `RM-DIAG` | Remarks 五種定型句（多句以 `; ` 接合）| R-DIAG3(amend)／6／7(a)／5(amend) | CDD-01_A | **已校準** |
-| `SEC-DIAG` | I/O Control（`0x2F`）之 TC 須含 PC `Security access 0x27 has been granted` | R-DIAG13 | CDD-04 | 未校準 |
-| `KEY-DIAG` | `$1820`／`$1821` 之觸發鍵不得為 Power／Dark | R-DIAG14 | CDD-04 | 未校準 |
+| `SEC-DIAG` | I/O Control（`0x2F`）之 TC 須含 PC `Security access 0x27 has been granted`；**unsupported 型不在母體**（R-DIAG13(amend)）| R-DIAG13／(amend) | CDD-04 | **已校準** |
+| `KEY-DIAG` | `$1820`／`$1821` 之觸發鍵不得為 Power／Dark | R-DIAG14 | CDD-04 | **已校準** |
 
 **`VM-DIAG` ≡ `Z`**：下放包書 `VM-DIAG`，其判準逐字即 R-CAM2(a)(b)(c)，
 與既有 `Z` 完全相同，且 R-G74 已將 598／5210 升為全域 —— 另立代號即為同一判準之第二份實作。
@@ -76,9 +76,32 @@ pilot `-006` 之觸發步驟曾整行為 `PENDING`，無 `2F` 串而仍屬 `0x2F
 
 ### 1.4 寫入型 TC 不立 baseline
 
-`[A-DIAG30]`／`[A-DIAG35]`（同一缺陷已兩犯）：驗證對象為「寫入值 ↔ 讀回值」時，
-初值不入 ER，於 Pre-Condition 宣告 `*_initial` 即為 §8.5 之多餘前提。
-**canon §9-9 自檢可攔，lint 無此判準。**
+`[A-DIAG30]`／`[A-DIAG35]`／`[A-DIAG37]`（同一缺陷已**三犯**）：驗證對象為
+「寫入值 ↔ 讀回值」時，初值不入 ER，於 Pre-Condition 宣告 `*_initial`
+即為 §8.5 之多餘前提。**canon §9-9 自檢可攔，lint 無此判準。**
+
+**CDD-05 起以產生器守門**：`gen_batch{1,2,3}.py` 於產出前自檢
+「`*_initial` 出現於 PC 或 Procedure 而未出現於 ER」，命中即 `SystemExit`，不出檔。
+三犯之後不再靠事後自檢。
+
+### 1.5 R-4 —— verbatim 上半之句首大寫
+
+canon §4.3.1 末句：verbatim 自原句中段起抄時，句首字母轉大寫屬**排版正規化**。
+037 `-048` 之 Description 原文為 `1)when tester command…`，去編號後以小寫起首；
+`test_item` 上半依 R-4 轉大寫，**lint `J` 不豁免**。產生器於組 `tc_title` 時結構性套用。
+
+### 1.6 R-DIAG16 —— 觀察不成步
+
+Procedure 只寫動作（送出／按壓／保持／讀取）；聽、看、觀察只入 ER。
+保持步驟固定句 `Hold for <n> s`，ER 寫該期間之可觀察結果。
+CDD-05 依此改 **16 行／13 條**（`Listen to …` 全數移入 ER）。
+
+### 1.7 `X`（導航路徑無固定入口）於本 feature 為結構性誤報
+
+`X` 為 WARN（只報不改）。本 feature **不寫導航 hop** —— HMI 入口不在其範圍，
+其命中皆為 DID 名與 CFTS004 用詞之字面（`Radio Audio Output **Settings**`、
+`in-motion **menu** options`）。batch 3 實測 **12 行**，真違規 0。
+建議比照 `I-cross` 列入 `FEATURE_EXEMPT`；本包未自改（`[A-DIAG38]`）。
 
 ---
 
@@ -209,7 +232,7 @@ CDD-01_A 後之未決項：
 |---|---|---|
 | 1 | Layer 2 之 20 組名稱 | **[PEI]**，framework.md Part IV |
 | 2 | `PENDING_DR1` 3 列之 NRC（`-156`／`-157`／`-237`）| DR-DIAG-1 |
-| 3 | 七項 lint —— 五項已校準（CDD-02 14 列／CDD-03 47 列／CDD-04 81 列實跑，真違規 0）；`SEC-DIAG`／`KEY-DIAG` 立於 CDD-04，未校準 | 見 §1.1 |
-| 6 | `J` 與 R-DIAG4(a) verbatim 衝突（`[A-DIAG31]`）；`SEC-DIAG` 母體含 unsupported 型（`[A-DIAG32]`）| **判準待調**，CDD-04 §5.2 |
+| 3 | 七項 lint **全數已校準**（CDD-02 14 列／CDD-03 47 列／CDD-04 81 列／CDD-05 99 列實跑，真違規 0）| 見 §1.1 |
+| 6 | ~~`J` 與 verbatim 衝突~~ **已解**（R-4，§1.5）；~~`SEC-DIAG` 含 unsupported~~ **已解**（R-DIAG13(amend)）；`X` 之結構性誤報（`[A-DIAG38]`）| §1.7，待 Pei |
 | 4 | `docs/fw036/RULINGS.sha.tsv` 僅含 security 32 列而自稱全域檔（`--check` 動工前即 FAIL）| **全域待辦**，`[A-DIAG15]` |
 | 5 | `new_feature.py` 之 `feature[:2]` ABBR 缺陷 | **全域待辦**（審閱 §五-6，不阻斷）|
