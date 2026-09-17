@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <KeyInstall status test runner provided by RD (X-f-2)> is executed\n$ <command provided by RD (X-f-2)>\n2. Confirm the KeyInstall log after the previous step\n$ adb logcat -s KeyInstall",
   "er": "1. <KeyInstall status test runner provided by RD (X-f-2)>\n2. <log keyword provided by RD (X-h)>",
-  "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-010",
+  "spec": "CFTS084-134528\nCFTS084-134691\nCFTS084-134692\nCFTS084-134693\nCFTS084-134694\nCFTS084-134695\nCFTS084-134696\nCFTS084-134697\nCFTS084-134698\nCFTS084-134699\nCFTS084-134729\nCFTS084-134773\nCFTS084-134868",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "負向測試 (Negative / Invalid)",

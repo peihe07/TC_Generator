@@ -145,8 +145,14 @@ SWC 0708 之實際用值與上表**逐字相符**（7 值皆在其中），可�
 ECUCert 依 **R-SEC3(b)** 以 SYSAD 首值代入，例
 `SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_ECUCERT_API`。
 
-**`spec_mode` `F` 之 lint 判準（R-SEC10(d)）**：只驗「token ∈ 上表六值 ＋ `_` ＋
-SWE1-ID ∈ 70 列（ECUCert 為其 13 個 SYSAD）」，不查章節錨。
+**`spec_mode` `F` 之 lint 判準（R-SEC10(d)；SEC-18 起依 R-SEC10(c) amend2 (d) 改）**：
+每行須匹配 `^CFTS084-\d{6,7}$`／`^SWE1-[A-Za-z-]+-\d{3,4}$`／`^SYSAD_SEC_ECUCERT_[A-Z_]+$`；
+`CFTS084-` 之號升冪；cell 內以換行分隔、**無串接符**；不查章節錨。
+舊式（`{037 token}_{SWE1-ID}`，上表六值 ＋ `_` ＋ SWE1-ID）**作廢**，v11 及以前之本依 R-TM13 保留。
+
+> 實作面：`scripts/lint036.py` **目前未實作 `spec_mode` 之檢查**（全庫 grep 無 `spec_mode`），
+> 故本判準現為 profile 層之規範；SEC-18 以腳本自驗（124 格／1,332 行：格式不符 0、非升冪 0、串接符 0）。
+> 入 lint 之工作歸 GC-16 之 `S-ORD` 一併處理。
 
 ### 3.3 `[ADD §5.3]` 常數候選
 

@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <DUT-side trigger for SAM AuthData package with a Logging SAMType provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n2. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth",
   "er": "1. <observable outcome provided by RD (X-g)>\n2. The adb shell ls -l /data/vendor/dauth output lists no copied AuthData",
-  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0009",
+  "spec": "CFTS084-134372\nCFTS084-134373\nCFTS084-134374",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "負向測試 (Negative / Invalid)",

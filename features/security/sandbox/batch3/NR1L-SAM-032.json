@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the DebugAuth source code per RD>\n2. Review the DebugAuth source code against \"the code is integrated with Android 14\"",
   "er": "1. The DebugAuth source code is available for review\n2. The DebugAuth source code satisfies \"the code is integrated with Android 14\"",
-  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0001",
+  "spec": "CFTS084-134367\nCFTS084-134383\nCFTS084-134384",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

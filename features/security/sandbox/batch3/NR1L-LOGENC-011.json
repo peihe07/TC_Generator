@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the Log Encryption source code per RD>\n2. Review the Log Encryption source code against \"AES key is get from KeyInstall\"",
   "er": "1. The Log Encryption source code is available for review\n2. The Log Encryption source code satisfies \"AES key is get from KeyInstall\"",
-  "spec": "SWE1_libLogEncrypt_FM-WI-FSM-037-A03_SWE1-LOGENC-008",
+  "spec": "CFTS084-134686",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

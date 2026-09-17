@@ -809,3 +809,23 @@ R-SEC25  Security 交付形制（取代 R-SEC10(a)；(b)~(f) 不變）
   (f) 另產一本 `merged/security_v09_all.xlsx`（六本串接，同序）供 lint 與內部審閱，不交付。
   (g) 舊 R-SEC10(a) 之單本產物（v01~v08）依 R-TM13 保留。
 ```
+
+---
+
+### R-SEC10(c)(amend2) — specification_reference 改 CFTS084-{NRL}（Pei 裁，2026-09-17；SEC-18 §1 ＋ SEC-18_A §1）
+
+```text
+R-SEC10(c) amend2  specification_reference（Security）
+  (a) 對得上 SYS2 CFTS084 之 SWE1 列：每一對應之 `SYS-RA-SEC-nnn` 寫一行 `CFTS084-{NRL 數字}`（NRL 取 `SYS2 traceability` B 欄，去 `NRL-` 前綴），
+      升冪，一號一行，cell 內以換行分隔（`\n`），不串接；同一 SWE1 之所有 sibling 相同。
+  (b) 對不上者（`trace_matrix.sys_ra_sec` 為空）：寫該列之 SWE1 ID 一行（例 `SWE1-LOGENC-002`）；ECUCert 無 SWE1 ID 者寫 SYSAD 首值。
+  (c) 選號規則（SEC-18_A 取代原式）：該 SWE1 列經 `trace_matrix.tsv` 對到之**全部** `SYS-RA-SEC-nnn`（`match_kind` = exact 與 base 皆計，
+      不依 SYS2 category 排除），全數寫入，升冪，一號一行。無上限、無 REVIEW 狀態。
+  (d) lint：`spec_mode F` 之檢查改為「每行匹配 `^CFTS084-\d{6,7}$` 或 `^SWE1-[A-Za-z-]+-\d{3,4}$` 或 `^SYSAD_SEC_ECUCERT_[A-Z_]+$`；升冪；無串接符」。
+  (e) 舊 `{037 token}_{SWE1-ID}` 式作廢；v11 依 R-TM13 保留。
+```
+
+**執行層回報（SEC-18）**：本條未寫入 `RULINGS.sha.tsv`（GC-16 前禁令）；body sha8 以
+`rulings_hash.py --out <tmp>` 乾跑取得，見 `up/20260917_SEC-18.md` §4。
+原 SEC-18 §1(c) 之「category 排除 ＋ 關鍵字篩選 ＋ >10 標 REVIEW」經 SEC-18_A 取消，
+`spec_ref_plan.tsv` 保留 `category_excluded_if_filtered` 欄，記「若照原式篩會排掉幾號」，供回溯。

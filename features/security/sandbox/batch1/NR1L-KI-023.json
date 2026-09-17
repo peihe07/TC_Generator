@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the KeyInstall source code per RD>\n2. Review the KeyInstall source code against \"an Android.bp file must be present and functional\"",
   "er": "1. The KeyInstall source code is available for review\n2. The KeyInstall source code satisfies \"an Android.bp file must be present and functional\"",
-  "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-012",
+  "spec": "CFTS084-134528\nCFTS084-134691\nCFTS084-134692\nCFTS084-134693\nCFTS084-134694\nCFTS084-134695\nCFTS084-134696\nCFTS084-134697\nCFTS084-134698\nCFTS084-134699\nCFTS084-134729\nCFTS084-134773\nCFTS084-134868",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import csv
 import importlib.util
+import os
 import re
 import shutil
 import sys
@@ -142,6 +143,8 @@ def _paint_rows(xml: str, rows: set[int], last_col: int,
 
 
 def mark(src: Path, out: Path) -> dict:
+    if src.resolve() == out.resolve():          # 同路徑會在寫入時截斷來源（實測，SEC-18 §5）
+        raise StructureError(f"來源與輸出同檔：{src} —— 拒絕就地覆寫")
     rows, ids, last_col = target_rows(src)
     members = sheet_members(src)
     member = members[g1.SHEET]
@@ -188,7 +191,8 @@ def main() -> int:
         rep = mark(book, tmp)
         if rep["text_diff"]:
             raise StructureError(f"{comp}: 文字 diff {rep['text_diff']} ≠ 0")
-        shutil.move(str(book), str(sup / f"{book.stem}_v10{book.suffix}"))
+        prev = os.environ.get("PREV_VER", "v11")     # 被取代之版本（移入 superseded/ 之尾綴）
+        shutil.move(str(book), str(sup / f"{book.stem}_{prev}{book.suffix}"))
         shutil.move(str(tmp), str(book))
         total += len(rep["rows"])
         for r in rep["rows"]:
@@ -197,8 +201,9 @@ def main() -> int:
         print(f"  {comp:14s} 塗色列 {len(rep['rows']):2d}／格 {rep['painted_cells']:4d}"
               f"（A~{rep['last_col']}）｜文字 diff {rep['text_diff']}"
               f"｜members {rep['members']}｜dv {rep['dv_counts'][sheet_members(book)[g1.SHEET]]}")
-    all_src = SB / "merged" / "security_v10_all.xlsx"
-    all_out = SB / "merged" / "security_v11_all.xlsx"
+    ver = os.environ.get("SEC_VER", "v11")
+    all_src = SB / "merged" / f'security_{os.environ.get("BASE_VER", "v10")}_all.xlsx'
+    all_out = SB / "merged" / f"security_{ver}_all.xlsx"
     rep = mark(all_src, all_out)
     print(f"  {'_all':14s} 塗色列 {len(rep['rows']):2d}／格 {rep['painted_cells']:4d}"
           f"｜文字 diff {rep['text_diff']}")

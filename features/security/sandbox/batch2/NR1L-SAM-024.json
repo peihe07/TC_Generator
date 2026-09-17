@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Send the ignition signal on the Atl-Mi bus\nSend CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Confirm the dauth log after the previous step\n$ adb logcat -s dauth",
   "er": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. The adb logcat -s dauth output contains the OFF notification to the target functions",
-  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0013",
+  "spec": "CFTS084-134385",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "狀態轉換 (State Transition Testing)",

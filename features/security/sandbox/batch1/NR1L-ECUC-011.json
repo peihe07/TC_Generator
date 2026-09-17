@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Export the ECU certificate file from the DUT to the host\n$ adb pull /data/misc/ecuidentity/ecu.crt\n2. Check the exported certificate on the host\n$ openssl x509 -in ecu.crt -noout -text",
   "er": "1. The adb pull command reports \"1 file pulled\" and ecu.crt is present on the host\n2. The openssl output shows an \"Issuer:\" line and a \"Subject:\" line for the ECU certificate",
-  "spec": "SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCERT_INTF",
+  "spec": "CFTS084-134739\nCFTS084-134744\nCFTS084-134752\nCFTS084-134844\nCFTS084-134845",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",

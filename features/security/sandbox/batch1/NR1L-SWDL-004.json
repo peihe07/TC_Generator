@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <SWDL verification test entry point provided by RD (X-l)> is executed\n$ <command provided by RD (X-l)>",
   "er": "1. <SWDL verification test entry point provided by RD (X-l)>",
-  "spec": "SWE1_SwdlSecureLib_FM-WI-FSM-037-A03_SWE1-SRA-SECURITY-SWDL-004",
+  "spec": "CFTS084-134531\nCFTS084-134534\nCFTS084-134535\nCFTS084-134566\nCFTS084-134567\nCFTS084-134571\nCFTS084-134577\nCFTS084-134580\nCFTS084-134581\nCFTS084-134582\nCFTS084-134609\nCFTS084-134612\nCFTS084-134613",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "功能測試 (Functional based ; no specific technique)",

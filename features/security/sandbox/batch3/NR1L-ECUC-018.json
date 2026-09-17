@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the ECU Cert JNI layer per RD>\n2. Review the ECU Cert JNI layer against \"jbyteArray and jstring are correctly converted to uint8_t* and std::string without memory leaks\"",
   "er": "1. The ECU Cert JNI layer is available for review\n2. The ECU Cert JNI layer satisfies \"jbyteArray and jstring are correctly converted to uint8_t* and std::string without memory leaks\"",
-  "spec": "SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_ECUCERT_JNI",
+  "spec": "CFTS084-134739\nCFTS084-134744\nCFTS084-134751\nCFTS084-134752\nCFTS084-134754\nCFTS084-134844\nCFTS084-134845",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

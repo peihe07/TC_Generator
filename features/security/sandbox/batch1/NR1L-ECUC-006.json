@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Send UDS request DiagnosticSessionControl for the SystemSupplierSpecific session\n$ 10 60\n2. Send UDS request ReadDataByIdentifier for DID F1B6 (ECU Identity L0 Root certificate)\n$ 22 F1 B6",
   "er": "1. Positive response is received: 50 60\n2. Positive response is received: 62 F1 B6 <certificate bytes>",
-  "spec": "SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_DIAG",
+  "spec": "CFTS084-134739\nCFTS084-134740\nCFTS084-134744\nCFTS084-134750\nCFTS084-134752\nCFTS084-134844\nCFTS084-134845",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "邊界值分析 (Boundary Value Analysis, BVA)",

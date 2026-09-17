@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Send UDS request RoutineControl to start the Check Program routine\n$ 31 01 F0 00",
   "er": "1. Positive response is received: 71 01 F0 00 01",
-  "spec": "SWE1_SwdlSecureLib_FM-WI-FSM-037-A03_SWE1-SRA-SECURITY-SWDL-004",
+  "spec": "CFTS084-134531\nCFTS084-134534\nCFTS084-134535\nCFTS084-134566\nCFTS084-134567\nCFTS084-134571\nCFTS084-134577\nCFTS084-134580\nCFTS084-134581\nCFTS084-134582\nCFTS084-134609\nCFTS084-134612\nCFTS084-134613",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "負向測試 (Negative / Invalid)",

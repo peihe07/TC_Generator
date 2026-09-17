@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the ECUOnlineService AIDL interface per RD>\n2. Review the ECUOnlineService AIDL interface against \"Client can communicate to service through binder\"",
   "er": "1. The ECUOnlineService AIDL interface is available for review\n2. The ECUOnlineService AIDL interface satisfies \"Client can communicate to service through binder\"",
-  "spec": "SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_ECUONLINE_BINDER",
+  "spec": "CFTS084-134739\nCFTS084-134744\nCFTS084-134751\nCFTS084-134752\nCFTS084-134844\nCFTS084-134845",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

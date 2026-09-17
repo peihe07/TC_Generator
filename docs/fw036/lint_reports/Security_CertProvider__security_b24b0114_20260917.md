@@ -1,6 +1,6 @@
 # lint036 報告：FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Security_CertProvider_20260917.xlsx
 
-- 來源：`features/security/sandbox/delivery/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Security_CertProvider_20260917.xlsx`（唯讀）
+- 來源：`features/security/delivered/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Security_CertProvider_20260917.xlsx`（唯讀）
 - 資料列數：23
 - sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
 - L 閾值：50 tokens

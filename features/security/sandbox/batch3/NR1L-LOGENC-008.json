@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the Log Encryption source code per RD>\n2. Review the Log Encryption source code against \"LogEncrypt feature uses OpenSSL library primitives for generating unique AES-256 symmetric keys to encrypt log files\"",
   "er": "1. The Log Encryption source code is available for review\n2. The Log Encryption source code satisfies \"LogEncrypt feature uses OpenSSL library primitives for generating unique AES-256 symmetric keys to encrypt log files\"",
-  "spec": "SWE1_libLogEncrypt_FM-WI-FSM-037-A03_SWE1-LOGENC-004",
+  "spec": "CFTS084-134686",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

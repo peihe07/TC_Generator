@@ -496,6 +496,13 @@ DESIGN_OVERRIDE = {"SWE1-KeyInsyall-006": STATE, "SWE1-KeyInsyall-007": STATE,
                    "SWE1-KeyInsyall-013": FAULT, "SYSAD_SEC_ECUCERT_DIAG": BVA}
 
 
+def spec_ref_values() -> dict[str, str]:
+    """R-SEC10(c) amend2（SEC-18）：`specification_reference` 逐 SWE1 之值（多行以 `\n`）。"""
+    f = DATA / "spec_ref_values.tsv"
+    return {r["swe1_id"]: r["value"].replace("⏎", "\n")
+            for r in csv.DictReader(f.open(encoding="utf-8"), delimiter="\t")}
+
+
 def first_sentence(desc: str) -> str:
     """R-SEC15(f)＋amend：Description 首句；中英並列者取英文句。"""
     text = desc.replace("\r", "")
@@ -637,6 +644,7 @@ def main() -> int:
         desc[row["swe1_id"]] = row
     # Description 首句自 037 D 欄取
     import openpyxl as ox
+    SPEC_REF = spec_ref_values()
     d_first = {}
     for doc_id, comp in btm.SWE1_BOOKS:
         wb2 = ox.load_workbook(btm.only(doc_id, "*.xlsx"), read_only=True, data_only=True)
@@ -733,7 +741,7 @@ def main() -> int:
                  if doc_rev
                  else PRE[swe1], 1)),
              "input": "NA", "proc": "\n".join(proc), "er": "\n".join(er),
-             "spec": f'{TOKEN[group]}_{swe1}', "tc_ref": "NEW",
+             "spec": SPEC_REF[swe1], "tc_ref": "NEW",
              "priority": s["priority"], "design": design, "fs": "No",
              "author": "PeiPYHsu", "remarks": "\n".join(remarks)}
         row = FIRST_ROW + n

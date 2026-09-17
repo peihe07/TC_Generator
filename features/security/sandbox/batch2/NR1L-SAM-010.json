@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <DUT-side trigger for SAM AuthData package with an invalid manifest signature provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n2. Confirm the dauth log after the previous step\n$ adb logcat -s dauth",
   "er": "1. <observable outcome provided by RD (X-g)>\n2. <log keyword provided by RD (X-h)>",
-  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0005",
+  "spec": "CFTS084-134366\nCFTS084-134369\nCFTS084-134370\nCFTS084-134371",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "負向測試 (Negative / Invalid)",

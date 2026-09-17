@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Run the OpenSSL chain verification with the local revocation list on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem -untrusted CRL.pem SAMcert.pem",
   "er": "1. The openssl command prints \"certificate revoked\" on stdout",
-  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-004",
+  "spec": "CFTS084-134565\nCFTS084-134566\nCFTS084-134568\nCFTS084-134569\nCFTS084-134570\nCFTS084-134644\nCFTS084-134645\nCFTS084-134646\nCFTS084-134714\nCFTS084-134715\nCFTS084-134716\nCFTS084-134717",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "功能測試 (Functional based ; no specific technique)",

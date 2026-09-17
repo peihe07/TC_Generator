@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the key agent implementation per RD>\n2. Review the key agent implementation against \"interact to KEY and certificate provider\"",
   "er": "1. The key agent implementation is available for review\n2. The key agent implementation satisfies \"interact to KEY and certificate provider\"",
-  "spec": "SWE1_SwdlSecureLib_FM-WI-FSM-037-A03_SWE1-SRA-SECURITY-SWDL-002",
+  "spec": "CFTS084-134565\nCFTS084-134566\nCFTS084-134567\nCFTS084-134571\nCFTS084-134577\nCFTS084-134578\nCFTS084-134579\nCFTS084-134580\nCFTS084-134581\nCFTS084-134582",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

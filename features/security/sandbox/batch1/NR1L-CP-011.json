@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the Cert Provider build files per RD>\n2. Review the Cert Provider build files against \"Android.bp must be used instead of legacy Makefiles\"",
   "er": "1. The Cert Provider build files are available for review\n2. The Cert Provider build files satisfy \"Android.bp must be used instead of legacy Makefiles\"",
-  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-006",
+  "spec": "CFTS084-134565\nCFTS084-134566\nCFTS084-134568\nCFTS084-134569\nCFTS084-134570\nCFTS084-134644\nCFTS084-134645\nCFTS084-134646\nCFTS084-134714\nCFTS084-134715\nCFTS084-134716\nCFTS084-134717",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

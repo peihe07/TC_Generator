@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the Log Encrypt source code per RD>\n2. Review the Log Encrypt source code against \"the code is integrated with Android 14\"",
   "er": "1. The Log Encrypt source code is available for review\n2. The Log Encrypt source code satisfies \"the code is integrated with Android 14\"",
-  "spec": "SWE1_libLogEncrypt_FM-WI-FSM-037-A03_SWE1-LOGENC-001",
+  "spec": "CFTS084-134686",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

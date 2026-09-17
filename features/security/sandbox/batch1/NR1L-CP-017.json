@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the source code and dependency graph of the Java clients per RD>\n2. Review the source code and dependency graph of the Java clients against \"Verify they link against and invoke the CertProvider Binder interface for certificate validation\"\n3. Confirm the Logdog log after the previous step\n$ adb logcat -s Logdog",
   "er": "1. The source code and dependency graph of the Java clients are available for review\n2. The source code and dependency graph of the Java clients satisfy \"Verify they link against and invoke the CertProvider Binder interface for certificate validation\"\n3. <log keyword provided by RD (X-h)>",
-  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-008",
+  "spec": "CFTS084-134565\nCFTS084-134566\nCFTS084-134568\nCFTS084-134644\nCFTS084-134645\nCFTS084-134646",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",

@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <obtain the ECU Online module per RD>\n2. Review the ECU Online module against \"test interface can handle decrypt data pass and failed\"",
   "er": "1. The ECU Online module is available for review\n2. The ECU Online module satisfies \"test interface can handle decrypt data pass and failed\"",
-  "spec": "SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_ECUONLINE",
+  "spec": "CFTS084-134738\nCFTS084-134739\nCFTS084-134740\nCFTS084-134744\nCFTS084-134751\nCFTS084-134752\nCFTS084-134753\nCFTS084-134755\nCFTS084-134756\nCFTS084-134757\nCFTS084-134758\nCFTS084-134759\nCFTS084-134760\nCFTS084-134761\nCFTS084-134762\nCFTS084-134844\nCFTS084-134845\nCFTS084-134847",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

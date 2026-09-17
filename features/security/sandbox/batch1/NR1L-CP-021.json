@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Run the Cert Provider instrumentation test for fotaMcpuCertVerifyStressTest\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#fotaMcpuCertVerifyStressTest com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner\n2. Read the process resource usage on the DUT\n$ adb shell procrank",
   "er": "1. The instrumentation runner reports \"OK (1 test)\" for fotaMcpuCertVerifyStressTest\n2. The adb shell procrank output shows the Cert Provider RAM usage within the stated limit",
-  "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-010",
+  "spec": "CFTS084-134565\nCFTS084-134566\nCFTS084-134568\nCFTS084-134569\nCFTS084-134570\nCFTS084-134644\nCFTS084-134645\nCFTS084-134646\nCFTS084-134714\nCFTS084-134715\nCFTS084-134716\nCFTS084-134717",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "基礎故障注入 (Fault Injection Lite)",

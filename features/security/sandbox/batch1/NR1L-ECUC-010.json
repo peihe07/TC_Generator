@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Send UDS request DiagnosticSessionControl for the SystemSupplierSpecific session\n$ 10 60\n2. Send UDS request ReadDataByIdentifier for DID 2965 (CSR Read)\n$ 22 29 65\n3. Export the CSR file from the DUT to the host\n$ adb pull /data/misc/ecuidentity/ecu.crt\n4. Check the exported CSR on the host\n$ openssl req -in ecu.crt -noout -verify",
   "er": "1. Positive response is received: 50 60\n2. Positive response is received: 62 29 65 <CSR bytes>, up to 1000 bytes\n3. The adb pull command reports \"1 file pulled\" and ecu.crt is present on the host\n4. The openssl command prints \"verify OK\" on stdout",
-  "spec": "SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF",
+  "spec": "CFTS084-134739\nCFTS084-134741\nCFTS084-134742\nCFTS084-134743\nCFTS084-134744\nCFTS084-134745\nCFTS084-134746\nCFTS084-134747\nCFTS084-134748\nCFTS084-134749\nCFTS084-134750\nCFTS084-134752\nCFTS084-134844\nCFTS084-134845",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",

@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Trigger the log snapshot on the DUT\n$ adb shell getsslog\n2. Confirm the content of /data/vendor/logdog on the DUT\n$ adb shell ls -l /data/vendor/logdog",
   "er": "1. The adb shell getsslog command completes and returns to the prompt\n2. The adb shell ls -l /data/vendor/logdog output lists the encrypted log and the encrypted key",
-  "spec": "SWE1_libLogEncrypt_FM-WI-FSM-037-A03_SWE1-LOGENC-006",
+  "spec": "CFTS084-134686",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",

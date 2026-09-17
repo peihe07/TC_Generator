@@ -228,6 +228,7 @@ def main() -> int:
             d_first[key] = g1.first_sentence(str(r[3] or ""))
         wb2.close()
 
+    spec_ref = g1.spec_ref_values()
     wb = openpyxl.load_workbook(g1.TEMPLATE)
     ws = wb[g1.SHEET]
     counter = Counter({"SAM": 6})          # batch 1 之 SAM 末號為 006，自 007 接續
@@ -263,7 +264,7 @@ def main() -> int:
                      "A USB drive containing __diagSpecialFile and __getSnapshot is inserted into the HU USB port"]
                     if group == "Log Encrypt" else []), 1)),
              "input": "NA", "proc": "\n".join(proc), "er": "\n".join(er),
-             "spec": f'{g1.TOKEN.get(group, "SWE1_libLogEncrypt_FM-WI-FSM-037-A03")}_{swe1}',
+             "spec": spec_ref[swe1],
              "tc_ref": "NEW", "priority": pr, "design": design, "fs": "No",
              "author": "PeiPYHsu", "remarks": "\n".join(remarks)}
         vmv = VM_HI if vm == "hi" else VM_MI if vm == "mi" else g1.VM_VALUES

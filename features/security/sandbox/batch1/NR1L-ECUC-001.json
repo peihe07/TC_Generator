@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Confirm the content of /data/misc/ecuidentity on the DUT\n$ adb shell ls -l /data/misc/ecuidentity\n2. <DUT-side trigger for ECU certificate chain for the DUT serial number provided by STLA (X-d)>\n$ <command provided by STLA (X-d)>\n3. Confirm the ECU_CERT_SERVICE_FUNCTION_ID log after the previous step\n$ adb logcat -s ECU_CERT_SERVICE_FUNCTION_ID",
   "er": "1. The adb shell ls -l /data/misc/ecuidentity output lists \"ecu.cacert\"\n2. <observable outcome provided by STLA (X-d)>\n3. The adb logcat -s ECU_CERT_SERVICE_FUNCTION_ID output contains \"ECU_INSTALLATION_STATUS value : 2 -> 1\"",
-  "spec": "SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_ECUCERT_API",
+  "spec": "CFTS084-134739\nCFTS084-134741\nCFTS084-134742\nCFTS084-134743\nCFTS084-134744\nCFTS084-134745\nCFTS084-134746\nCFTS084-134751\nCFTS084-134752\nCFTS084-134753\nCFTS084-134754\nCFTS084-134755\nCFTS084-134756\nCFTS084-134757\nCFTS084-134758\nCFTS084-134759\nCFTS084-134761\nCFTS084-134762\nCFTS084-134844\nCFTS084-134845",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",

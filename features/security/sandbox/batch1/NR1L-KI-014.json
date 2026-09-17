@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Confirm the content of /mnt/vendor/oemkeys on the DUT\n$ adb shell ls -l /mnt/vendor/oemkeys",
   "er": "1. The adb shell ls -l /mnt/vendor/oemkeys output lists the stored key blob",
-  "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-008",
+  "spec": "CFTS084-134477\nCFTS084-134528\nCFTS084-134691\nCFTS084-134692\nCFTS084-134693\nCFTS084-134694\nCFTS084-134695\nCFTS084-134696\nCFTS084-134697\nCFTS084-134698\nCFTS084-134699\nCFTS084-134729\nCFTS084-134773\nCFTS084-134868",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",

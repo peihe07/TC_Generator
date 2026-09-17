@@ -146,6 +146,7 @@ def main() -> int:
     l2 = {r["swe1_id"]: r for r in csv.DictReader(
         (DATA / "layer2_assign.tsv").open(encoding="utf-8"), delimiter="\t")}
     d_first = d_first_map()
+    spec_ref = g1.spec_ref_values()
 
     # `sibling_plan_deferred.tsv`（欄同 SEC-04 4.2 ＋ `artifact`／`requirement`）
     with (DATA / "sibling_plan_deferred.tsv").open("w", newline="", encoding="utf-8") as fh:
@@ -194,7 +195,7 @@ def main() -> int:
              "test_item": f"{d_first[swe1]}\n({lower} (document review))",
              "pre": f"1. Access to the RD build environment for {COMPONENT[comp]} is granted",
              "input": "NA", "proc": "\n".join(proc), "er": "\n".join(er),
-             "spec": f'{g1.TOKEN.get(group, "SWE1_libLogEncrypt_FM-WI-FSM-037-A03")}_{swe1}',
+             "spec": spec_ref[swe1],
              "tc_ref": "NEW", "priority": "P2", "design": g1.FUNC, "fs": "No",
              "author": "PeiPYHsu", "remarks": "\n".join(remarks)}
         row = g1.FIRST_ROW + n

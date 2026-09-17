@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Corrupt CERT 0 in ecu.cacert on the host and push it to the DUT\n$ adb push ecu.cacert /data/misc/ecuidentity/\n2. Read the ECU certificate status file on the DUT\n$ adb shell od -t x1 /mnt/vendor/oemkeys/ecu/state/ecucertstatus",
   "er": "1. <observable outcome provided by STLA (X-d)>\n2. The adb shell od -t x1 /mnt/vendor/oemkeys/ecu/state/ecucertstatus output shows the status value",
-  "spec": "SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_ECUCERT_SERVICE",
+  "spec": "CFTS084-134738\nCFTS084-134739\nCFTS084-134740\nCFTS084-134744\nCFTS084-134747\nCFTS084-134748\nCFTS084-134749\nCFTS084-134750\nCFTS084-134751\nCFTS084-134752\nCFTS084-134753\nCFTS084-134754\nCFTS084-134755\nCFTS084-134756\nCFTS084-134757\nCFTS084-134758\nCFTS084-134759\nCFTS084-134761\nCFTS084-134762\nCFTS084-134844\nCFTS084-134845",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",

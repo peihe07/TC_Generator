@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. Read the SAM certificate format and subject on the host\n$ openssl x509 -in SAMcert.pem -text\n2. Run the OpenSSL chain verification of the certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n3. Run the Cert Provider instrumentation test for samCertTestNormalFlow\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#samCertTestNormalFlow com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner",
   "er": "1. The openssl x509 output shows the certificate in x509 PEM format and a \"Subject:\" line intended for SAM and specific market\n2. The openssl command prints \"SAMcert.pem: OK\" on stdout\n3. The instrumentation runner reports \"OK (1 test)\" for samCertTestNormalFlow",
-  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0007",
+  "spec": "CFTS084-134366\nCFTS084-134369\nCFTS084-134370\nCFTS084-134371",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "功能測試 (Functional based ; no specific technique)",

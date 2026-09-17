@@ -8,7 +8,7 @@
   "input": "NA",
   "proc": "1. <DUT-side trigger for SAM AuthData package outside the USB root provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n2. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth",
   "er": "1. <observable outcome provided by RD (X-g)>\n2. The adb shell ls -l /data/vendor/dauth output lists no newly received AuthData",
-  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0003",
+  "spec": "CFTS084-134366\nCFTS084-134369\nCFTS084-134370\nCFTS084-134371",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "負向測試 (Negative / Invalid)",
