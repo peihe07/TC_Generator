@@ -217,7 +217,8 @@ CHECK_TITLES = {
     "Y": "PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式）",
     "Z": "Vehicle Model 七欄 1／0（R-CAM2，Camera profile 專屬）",
     "SC": "步驟無執行通道／ER 無觀察手段（R-SEC7，Security profile 專屬）",
-    "SS": "最終驗證步驟之 Remarks 無 `source:` 標記（R-SEC4(a)，Security profile 專屬）",
+    "SS": "Remarks 無 `source:` 標記／資產佔位之 `X-` 代號未載於 Remarks"
+          "（R-SEC4(a)／R-SEC21(e)，Security profile 專屬）",
 }
 # `--profile` 啟用時 P 改以 R-1 v3 判準，標題隨之替換
 # R-G70：P 於 profile 與非 profile 下判準相同，故無標題覆寫。
@@ -246,7 +247,7 @@ CHECK_STATUS = {
     "SC": "未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。"
           "對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），"
           "**故絕不可入 PROFILE_CHECKS**；對 Security 自身之假陽性率待 Pilot",
-    "SS": "未校準（R-SEC4(a)，SEC-02 新增）—— **feature 專屬**。"
+    "SS": "未校準（R-SEC4(a)，SEC-02 新增；R-SEC21(e) 判項 SEC-08 增列）—— **feature 專屬**。"
           "判準面之偏差：R-SEC4(a) 原文為「於 reasoning 註明來源」，而 reasoning 在生成側 JSON、不在工作簿；"
           "本檢查改以 **Remarks 欄**之 `source:` 標記為判準，待 Pei 覆核（SEC-02 上繳包自報）。"
           "R-SEC14(c)：`<…>` 佔位不報",
@@ -1136,7 +1137,12 @@ SEC_OBSERVE = re.compile(
     r"|OK \(\d+ tests?\)|FAILURES!!!"                 # RC
     r"|\bopenssl\b|: OK\b|error \d+ at \d+ depth"    # HOST
     r"|is sent\b"                                     # CAN
-    r"|screen is displayed\b")                        # UI
+    r"|screen is displayed\b"                         # UI
+    # R-SEC20（SEC-08）：X-i 裁降為文件審查後，其 ER 之觀察面為「審查」本身。
+    # 出處：037 CP-006／CP-008 VC 之 `Inspect the build files`／`Inspect the source code`、
+    # KI-012 之 Verification Method `Document Review / Static Analysis / Log Observation`。
+    r"|(?:is|are) available for review\b"
+    r"|\b(?:satisfies|satisfy|contains|contain|declares|declare) \u0022")   # DOC
 # R-SEC4(a)：最終驗證步驟之觸發詞
 SEC_VERIFY_VERB = re.compile(r"\b(?:Verify|Check|Confirm)\b")
 SEC_SOURCE_MARK = re.compile(r"\bsource:", re.I)
@@ -1151,6 +1157,17 @@ SEC_LEDGER_ID = re.compile(r"\bX-[a-z]\b|\bDR-SEC-[a-z]\b|\bR-SEC\d|\bA-SE")
 # (3) PENDING 須整行起首（R-SEC15(i)）
 SEC_PENDING = re.compile(r"PENDING:")
 SEC_PENDING_HEAD = re.compile(r"^\s*(?:\d+[.)]\s*)?PENDING:")
+# R-SEC21(a)（SEC-08）：PENDING 之描述性佔位 —— `<性質 provided by <供給方> (X-<n>)>`。
+# 該式為 R-SEC15(c)「內部代號只入 Remarks」之例外擴充（R-SEC21(a) 明文），
+# 故 (2) 判項於比對前先剝除佔位片段；ER 之整行佔位比同整行 PENDING 免觀察手段。
+# R-SEC20(b)（SEC-08）：文件審查之兩式步驟 —— 取得步驟整步為佔位、審查步驟為 `Review … against "…"`。
+# 037 未載其檢查指令、執行層不得自擬（R-SEC20(b)），故此二式為 R-SEC7(a) 執行通道之例外（DOC 面）。
+SEC_DOC_STEP = re.compile(
+    r'^\s*(?:\d+[.)]\s*)?(?:<obtain [^<>]+ per RD>|Review .+ against ")')
+SEC_PLACEHOLDER = re.compile(r"<[^<>]*\bprovided by\b[^<>]*\((X-[a-z0-9-]+)\)>")
+SEC_PLACEHOLDER_LINE = re.compile(
+    r"^\s*(?:\d+[.)]\s*)?<[^<>]*\bprovided by\b[^<>]*\(X-[a-z0-9-]+\)>"
+    r"(?:\s+is\s+(?:executed|available|observed))?\s*$")
 # (4) ER 行所引之指令須出現於同編號之 Procedure 步驟。
 # SEC-04 §3：原式只認 `$ …` 形，抓不到散文形（`The adb shell ls -l … output`）。
 # 改為自 ER 抽「指令片語」：動詞 token ＋ 其後之參數，止於第一個散文停用詞。
@@ -1209,6 +1226,8 @@ def check_security_channel(fields: dict[str, str], row_no: int,
             continue
         if SEC_CMD_LINE.match(nxt) or SEC_PHYS_STEP.match(m.group(2)):
             continue
+        if SEC_DOC_STEP.match(line):      # R-SEC20(b)：文件審查步驟免執行通道
+            continue
         out.append(Violation(
             "SC", row_no, tc_id, "proc",
             "R-SEC7(a)：編號步驟其後須有 `$` 指令行，或步驟句須為 "
@@ -1217,6 +1236,8 @@ def check_security_channel(fields: dict[str, str], row_no: int,
     er_lines = [ln for ln in fields.get("er", "").splitlines() if ln.strip()]
     for line in er_lines:
         if SEC_PENDING_HEAD.match(line):     # R-SEC15(i)：整行 PENDING 免觀察手段
+            continue
+        if SEC_PLACEHOLDER_LINE.match(line):  # R-SEC21(b)：整行佔位同免（值尚未到手）
             continue
         if SEC_OBSERVE.search(line):
             continue
@@ -1235,7 +1256,8 @@ def check_security_channel(fields: dict[str, str], row_no: int,
                     "SC", row_no, tc_id, key,
                     "R-SEC15(d)：字面值一律 \u0022…\u0022，反引號／單引號禁用",
                     m.group(0)[:60]))
-            m = SEC_LEDGER_ID.search(line)
+            probe = SEC_PLACEHOLDER.sub("", line)     # R-SEC21(a)：佔位內之 X- 為例外
+            m = SEC_LEDGER_ID.search(probe)
             if m and not SEC_PENDING_HEAD.match(line):                   # (2)
                 out.append(Violation(
                     "SC", row_no, tc_id, key,
@@ -1279,13 +1301,24 @@ def check_security_source(fields: dict[str, str], remarks: str, row_no: int,
     判準面之偏差（SEC-02 上繳包自報）：R-SEC4(a) 原文為「於 reasoning 註明來源」，
     reasoning 在生成側 JSON、不在工作簿；本檢查改以 **Remarks 欄**為判準面。
     """
+    out: list[Violation] = []
+    # R-SEC21(e)（SEC-08）：交付欄含 `<… provided by … (X-…)>` 者，
+    # Remarks 須含同一 `X-` 代號（`asset: X-<n> — …`），否則追溯斷裂。
+    for key in SEC_FOUR_FIELDS:
+        for token in dict.fromkeys(SEC_PLACEHOLDER.findall(fields.get(key, ""))):
+            if re.search(rf"{re.escape(token)}(?![0-9a-z-])", remarks):
+                continue
+            out.append(Violation(
+                "SS", row_no, tc_id, key,
+                "R-SEC21(e)：交付欄之資產佔位，Remarks 須含同一 `X-` 代號",
+                token))
     proc_lines = [ln for ln in fields.get("proc", "").splitlines() if ln.strip()]
     numbered = [ln for ln in proc_lines if SEC_STEP_NO.match(ln)]
     if not numbered or not SEC_VERIFY_VERB.search(numbered[-1]):
-        return []
+        return out
     if SEC_SOURCE_MARK.search(remarks):
-        return []
-    return [Violation(
+        return out
+    return out + [Violation(
         "SS", row_no, tc_id, "remarks",
         "R-SEC4(a)：最終步驟含 `Verify`／`Check`／`Confirm`，"
         "Remarks 須有 `source:` 標記其落地來源",
