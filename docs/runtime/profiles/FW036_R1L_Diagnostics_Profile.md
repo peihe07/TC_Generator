@@ -91,6 +91,26 @@ canon §4.3.1 末句：verbatim 自原句中段起抄時，句首字母轉大寫
 037 `-048` 之 Description 原文為 `1)when tester command…`，去編號後以小寫起首；
 `test_item` 上半依 R-4 轉大寫，**lint `J` 不豁免**。產生器於組 `tc_title` 時結構性套用。
 
+### 1.5a R-DIAG21 —— 上半摘句（`L` 之閾值為 canon 明文，非「待定」）
+
+**canon §4.3.1 之 R-3 = 50 tokens，是明文上限，不是待校準之暫定值。**
+`lint036.py` `CHECK_STATUS["L"]` 原書「閾值待 R-3」，已據 CDD-07 審閱 §三-2 更正為
+「已校準（R-3 = 50，canon §4.3.1；超限依 R-DIAG21 摘句）」。
+
+上半 > 50 tokens 者**不得**以「來源逐字、不可改」為由留置 —— R-DIAG4(a) 之 verbatim
+要求的是「所抄之字不改寫」，不是「必須抄完整句」。處置為**摘句**：
+取與括號下半測試目的直接相關之句或子句，逐字照抄不改寫，其餘以
+`specification_reference` 指回原錨。自原句中段起抄者，句首依 R-4 轉大寫。
+
+實例（CDD-08 T1(c)，8 條）——
+原：`If retries are performed as shown on the flowchart, and the retries are the result of
+three identical instances of Indication Codes $03, $0D, or $0F, then the HU shall provide
+the respective code $03, $0D, or $0F in the routine results.`（52 tokens）
+摘：`The retries are the result of three identical instances of …`（≤ 50）——
+刪去之「as shown on the flowchart」為流程圖指引（DR-DIAG-8 缺件），與本條測試目的無關。
+
+產生器守門第四條：上半 > 50 tokens 即 `SystemExit`，token 口徑與 `lint036.RE_TOKEN` 同。
+
 ### 1.6 R-DIAG16 —— 觀察不成步
 
 Procedure 只寫動作（送出／按壓／保持／讀取）；聽、看、觀察只入 ER。

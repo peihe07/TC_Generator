@@ -271,6 +271,22 @@ R-DIAG19  KeySense HMI Logic and Flow 為缺件
   登 DR-DIAG-7（文件請求，對 Nik）。`-290` 之 ER 在到件前只斷言常式正回應與完成；到件後 Revise。
 ```
 
+### R-DIAG20 — 常式（RoutineControl）之位元組式（Pei 裁，2026-09-17）
+
+```text
+R-DIAG20  常式（RoutineControl）之位元組式
+  start `31 01 <RID>` [＋ routineControlOptionRecord]、stop `31 02 <RID>`、results `31 03 <RID>`；
+  正回應 `71 <sub> <RID> …`。RID 不得以 0x22 讀。lint RT-DIAG 於 Routine 母節 TC 施檢。
+```
+
+### R-DIAG21 — 上半摘句（canon §4.3.1 R-3 之本 feature 適用）（Pei 裁，2026-09-17）
+
+```text
+R-DIAG21  上半摘句（canon §4.3.1 R-3 之本 feature 適用）
+  test_item 上半 > 50 tokens 者，摘與下半測試目的直接相關之句或子句（逐字，不改寫），
+  其餘以 specification_reference 指回；lint L 不豁免。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。

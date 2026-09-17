@@ -159,8 +159,48 @@ DIAG_IO_SUFFIXED = frozenset({"SWE1-Diagnostics-340-001"})
 DIAG_IO_UNSUPPORTED: frozenset[str] = frozenset({
     "SWE1-Diagnostics-009", "SWE1-Diagnostics-033", "SWE1-Diagnostics-037", "SWE1-Diagnostics-040", "SWE1-Diagnostics-043", "SWE1-Diagnostics-060", "SWE1-Diagnostics-063", "SWE1-Diagnostics-072", "SWE1-Diagnostics-075", "SWE1-Diagnostics-078", "SWE1-Diagnostics-081", "SWE1-Diagnostics-084", "SWE1-Diagnostics-087", "SWE1-Diagnostics-090", "SWE1-Diagnostics-093", "SWE1-Diagnostics-096", "SWE1-Diagnostics-099", "SWE1-Diagnostics-102", "SWE1-Diagnostics-105", "SWE1-Diagnostics-108", "SWE1-Diagnostics-111", "SWE1-Diagnostics-114", "SWE1-Diagnostics-117", "SWE1-Diagnostics-120", "SWE1-Diagnostics-123", "SWE1-Diagnostics-126", "SWE1-Diagnostics-129", "SWE1-Diagnostics-132", "SWE1-Diagnostics-135", "SWE1-Diagnostics-138", "SWE1-Diagnostics-141", "SWE1-Diagnostics-144", "SWE1-Diagnostics-147",
 })
+# 母節 = Routine IDs（`$0312`／`$031B`／`$030A`／`$0307`／`$0309`）之 037 列（27 列）
+DIAG_RT_ROWS = _diag_ids(((148, 160), (221, 231), (346, 348)))
+# R-DIAG20：RID 為 2 bytes，故 start／stop／results 之位元組串恆為 `31 0<sub> <hi> <lo>` 四段
+# （其後可再接 routineControlOptionRecord）。以下三式為機械判準：
+#   (a) `$ 22 <RID>` —— RID 以 0x22 讀（RID 非 DID），一律 FAIL；
+#   (b) `$ 31 0<sub>` 後不足兩個 RID byte —— 缺 sub-function 或缺 RID byte；
+#   (c) sub-function 不在 01／02／03。
+RE_DIAG_RT_LINE = re.compile(r"^\s*\$ (?P<body>.+?)\s*$", re.M)
+RE_DIAG_RT_BAD22 = re.compile(r"^22\s+(?:0[0-9A-F]|1[0-9A-F])\s+[0-9A-F]{2}\b")
+RE_DIAG_RT_OK31 = re.compile(r"^31\s+0(?P<sub>[123])\s+[0-9A-F]{2}\s+[0-9A-F]{2}(?:\s|$)")
+RE_DIAG_RT_ANY31 = re.compile(r"^31\b")
+
 DIAG_SEC_PC = "Security access 0x27 has been granted"
 RE_DIAG_FORBIDDEN_KEY = re.compile(r'"(Power|Dark)"')
+
+
+def check_diag_routine(req_id: str, fields: dict, row_no: int, tc_id: str) -> list[Violation]:
+    """RT-DIAG —— 常式（RoutineControl）之位元組式（R-DIAG20）。
+
+    母體依母節反查（比照 R-DIAG13 之作法），不依位元組串 —— 依串會漏掉
+    「整行 PENDING」與「以 0x22 誤讀」兩型，而後者正是本檢查要攔的。
+    `<unsupported SID>` 起首之行不在母體：其服務位元組本就不是 0x31。
+    """
+    rid = req_id.replace("\xa0", " ").strip()
+    if rid not in DIAG_RT_ROWS:
+        return []
+    out: list[Violation] = []
+    for field in ("proc", "er"):
+        for m in RE_DIAG_RT_LINE.finditer(fields.get(field, "")):
+            body = m.group("body")
+            if body.startswith("<"):          # `<unsupported SID> …`，非 0x31 請求
+                continue
+            if RE_DIAG_RT_BAD22.match(body):
+                out.append(Violation(
+                    "RT-DIAG", row_no, tc_id, field,
+                    "R-DIAG20：RID 不得以 0x22 讀 —— 常式結果須 `31 03 <RID>`", body[:40]))
+            elif RE_DIAG_RT_ANY31.match(body) and not RE_DIAG_RT_OK31.match(body):
+                out.append(Violation(
+                    "RT-DIAG", row_no, tc_id, field,
+                    "R-DIAG20：常式請求須為 `31 0<1|2|3> <RID hi> <RID lo>`"
+                    "（sub-function ＋ 2 bytes RID）", body[:40]))
+    return out
 
 
 def check_diag_security(req_id: str, fields: dict, row_no: int, tc_id: str) -> list[Violation]:
@@ -360,6 +400,7 @@ CHECK_TITLES = {
     "SEC-DIAG": "I/O Control（0x2F）之 TC 缺 security Pre-Condition（R-DIAG13，Diagnostics profile 專屬）",
     "KEY-DIAG": "按鍵狀態 DID 之觸發鍵為 Power／Dark（R-DIAG14，Diagnostics profile 專屬）",
     "PC-DIAG": "Pre-Condition 含動作詞（R-DIAG18，Diagnostics profile 專屬）",
+    "RT-DIAG": "常式之位元組式不合 `31 0<sub> <RID>`（R-DIAG20，Diagnostics profile 專屬）",
     "SS": "Remarks 無 `source:` 標記／資產佔位之 `X-` 代號未載於 Remarks"
           "（R-SEC4(a)／R-SEC21(e)，Security profile 專屬）",
 }
@@ -374,7 +415,7 @@ CHECK_STATUS = {
     "E": "已校準", "F": "已校準", "G": "已校準（詞彙表外值待接入）",
     "H": "已校準", "I": "已校準", "I-sibling": "未校準（M15）",
     "J": "已校準（行計口徑）", "K": "已校準（分級待 R-5）",
-    "L": "已校準（閾值待 R-3）", "M": "已校準", "N": "已校準",
+    "L": "已校準（R-3 = 50，canon §4.3.1 明文；超限依 R-DIAG21 摘句，不豁免）", "M": "已校準", "N": "已校準",
     "P": "已校準（SWC 0708：195 —— proc 11／er 184，見上繳 09）",
     "Q": "未校準（R-10(a)，21 包新增）",
     "R": "未校準（R-9(a)，21 包新增）",
@@ -394,6 +435,7 @@ CHECK_STATUS = {
     "SEC-DIAG": "未校準（R-DIAG13，CDD-04 新增；R-DIAG13(amend) 排除 unsupported 型）—— **feature 專屬**；母體依母節反查（追補 A §一）。",
     "KEY-DIAG": "未校準（R-DIAG14，CDD-04 新增）—— **feature 專屬**。",
     "PC-DIAG": "未校準（R-DIAG18，CDD-06 新增）—— **feature 專屬**；IN §4.4 之機械守門。",
+    "RT-DIAG": "未校準（R-DIAG20，CDD-08 新增）—— **feature 專屬**；母體依 Routine 母節反查（27 列）。",
     "SC": "未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。"
           "對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），"
           "**故絕不可入 PROFILE_CHECKS**；對 Security 自身之假陽性率待 Pilot",
@@ -421,7 +463,7 @@ PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X", "Y"]
 FEATURE_CHECKS: dict[str, list[str]] = {
     "camera": ["Z"], "security": ["SC", "SS"],
     "diagnostics": ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG", "SEC-DIAG", "KEY-DIAG",
-                    "PC-DIAG"],
+                    "PC-DIAG", "RT-DIAG"],
 }
 # **feature 專屬之豁免**：某 profile 下不適用之 `PROFILE_CHECKS` 項。
 # R-SEC15(j)：Security 之 ER 為指令輸出斷言，無 R-SU33/34 之「觀測窗」概念，
@@ -510,6 +552,7 @@ CHECK_GRANULARITY = {
     "P-DIAG": "每列每欄每 token", "U-DIAG": "每列每位元組串",
     "R1-DIAG": "每列", "RM-DIAG": "每列每段",
     "SEC-DIAG": "每列", "KEY-DIAG": "每列每次命中", "PC-DIAG": "每列每行",
+    "RT-DIAG": "每列每行",
     "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
     "V": "每行每欄",
     "I-cross": "每列每配對（一組命中記二列）",
@@ -1330,6 +1373,8 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
             result.violations.extend(check_diag_key(req_id, fields, offset, tc_id))
         if "PC-DIAG" in enabled:
             result.violations.extend(check_diag_pc(fields, offset, tc_id))
+        if "RT-DIAG" in enabled:
+            result.violations.extend(check_diag_routine(req_id, fields, offset, tc_id))
         if "RM-DIAG" in enabled:
             diag_remarks = (cell_text(raw[remarks_idx])
                             if remarks_idx is not None and remarks_idx < len(raw) else "")

@@ -1,7 +1,7 @@
 # Diagnostics —— 佔位填值請求（asset request）
 
-依 **R-DIAG15**（比照 R-SEC21）。對應 `sandbox/placeholder_summary.tsv`（**334 行／204 條 TC**）。
-母體：`diagnostics_v05.xlsx` 合併本 **357 列**（Layer 2 18 組全產／262 個 037 列）。
+依 **R-DIAG15**（比照 R-SEC21）。對應 `sandbox/placeholder_summary.tsv`（**394 行／245 條 TC**）。
+母體：`diagnostics_v06.xlsx` 合併本 **432 列**（Layer 2 19 組全產／318 個 037 列，81.7%）。
 
 ---
 
@@ -11,7 +11,7 @@
 `<…>` 佔位者，測試者知道**要送什麼服務、選什麼項目、讀哪個 DID**，
 但**不知道要送哪些位元組**。在下列**五**項到件前，這些用例只可用於評審，不可派工。
 
-lint `U`（PENDING 佔位）於合併本 `v05` 為 **3**（`-281` 二行、`-297` 一行，皆 `DR-DIAG-1`）——
+lint `U`（PENDING 佔位）於合併本 `v06` 為 **3**（`-281` 二行、`-297` 一行，皆 `DR-DIAG-1`）——
 佔位不是 PENDING；PENDING 是**無法書寫**之步驟，佔位是**已定形但缺值**之欄位。
 
 ---
@@ -36,7 +36,7 @@ lint `U`（PENDING 佔位）於合併本 `v05` 為 **3**（`-281` 二行、`-297
 
 ---
 
-## 二　`DR-DIAG-5` —— 資料位元組之值域與 record 版面（**121 行**）
+## 二　`DR-DIAG-5` —— 資料位元組之值域與 record 版面（**139 行**）
 
 **缺件**：
 
@@ -44,7 +44,7 @@ lint `U`（PENDING 佔位）於合併本 `v05` 為 **3**（`-281` 二行、`-297
 |---|---|---|
 | `<brightness byte>` | `$283F` | 亮度值域（CFTS004 `$283F` 四列皆未載）|
 | `<AV Channel Number>` | `$0312` | 通道號之列舉（CFTS004-4940474 只述其「portion 指示哪一個輸入」）|
-| `<module version record>` | `$2843` | 20 個子欄位之 record 版面與位移 |
+| `<module version record>` | `$2843` | **19** 個子欄位之 record 版面與位移（SXI／RF／Mod SW／HDEC Rev 各 Major/Minor/Inc、Module Type ID A–C、Module HW Type B/C ＋ HW Rev A、Capability）。CFTS004-4939842 只書「the following items」而未給版面 |
 | `<signal quality record>` | `$2841` | 16 個子欄位之 record 版面與位移 |
 | `<push button status record>` | `$1820` | 12 個按鍵之位元對應 |
 | `<steering wheel button status record>` | `$1821` | 同上 |
@@ -56,7 +56,7 @@ lint `U`（PENDING 佔位）於合併本 `v05` 為 **3**（`-281` 二行、`-297
 
 ---
 
-## 三　`DR-DIAG-6` —— 不支援之 SID（**138 行**）
+## 三　`DR-DIAG-6` —— 不支援之 SID（**176 行**）
 
 **缺件**：本 ECU **不支援之 UDS 服務識別碼**至少一個。
 
@@ -64,7 +64,7 @@ unsupported 型之 037 列（93 列）要求「送出不支援之服務請求並
 但**哪一個 SID 不被支援**是 ECU 實作事實，CFTS004、037、SYSAD 三處皆未載。
 SYSAD §4.5 只正面列出**支援**之三項（`0x22`／`0x2E`／`0x31`），未給不支援清單。
 
-**佔位**：`<unsupported SID>`（Procedure 與 ER 各一，故 138 行 ≈ 69 條 TC）。
+**佔位**：`<unsupported SID>`（Procedure 與 ER 各一，故 176 行 ≈ 88 條 TC）。
 
 **問**：請提供本 ECU 之 UDS 服務支援矩陣，或指定一個確定不支援之 SID 供測試使用。
 
@@ -89,7 +89,7 @@ SYSAD §4.5 只正面列出**支援**之三項（`0x22`／`0x2E`／`0x31`），�
 | `SX-9830-0095` "Sirius XM Multi-Package Factory Activation OEM Requirements" | `…as defined in the Sirius XM specification SX-9830-0095, using the Package Indication value provided in the diagnostic command.` |
 | `CIP Radio Tables`，`MPFA Select Process`／`MPFA Validate Process` 流程圖 | `Refer to "CIP Radio Tables" document, "MPFA Select Process" flowchart for details.` |
 
-**佔位**：`<Package Indication value>`（14 行）—— 該值之編碼即定義於 `SX-9830-0095`。
+**佔位**：`<Package Indication value>`（**18 行**；CDD-08 之 R-DIAG20 Revise 為 `$0309` 四條 negative TC 之 start 步驟補上 option record，故由 14 增為 18）—— 該值之編碼即定義於 `SX-9830-0095`。
 
 **已可寫者**：Indication Code **不缺** —— `CFTS004-4940456` 逐字列出全表八碼
 （`$00`／`$03`／`$0C`／`$0D`／`$0E`／`$0F`／`$10`／`$FF`），`$0309` 另明載 `$10` 無效。
