@@ -344,6 +344,33 @@ R-DIAG25  詳細度
   (c) 單一 SWE1 列拆分上限 8；超過者回報不產，Pei 裁。
 ```
 
+### R-DIAG25(amend) — 離散值之拆法（Pei 裁，2026-09-17）
+
+```text
+R-DIAG25(amend)  離散值之拆法
+  錨列舉之離散值 ≤ 8 → 逐值各一條（design_method 功能測試）；> 8 之連續值域 → BVA 兩式（CDD-05 追認）。
+```
+
+### R-DIAG26 — CFTS004 原始文件為來源（IN §8.6）（Pei 裁，2026-09-17）
+
+```text
+R-DIAG26  CFTS004 原始文件為來源（IN §8.6）
+  CFTS004 之 Polarion 索引匯出（sys2_cfts004_general_diag）不含列舉列表；交付前須取 CFTS004 原始文件
+  （docx／pdf）登錄 MANIFEST，引言句之列表以原始文件為錨（`CFTS004-{ObjectID}` 不變，Remarks 不另註），
+  依 R-DIAG23(c) 補產。未取得 → DR-DIAG-10，交付本 coverage 說明明記。
+```
+
+### R-DIAG27 — 交付形式（沿 R-SEC25 前例）（Pei 裁，2026-09-17）
+
+```text
+R-DIAG27  交付形式（沿 R-SEC25 前例）
+  單一工作簿；列序依 037 列序（SWE1 ID 升冪，`-340-001`/`-002` 依 037 row）；TC ID 依交付列序重編為 NR1L-DIAG-001 起連號，
+  附 `id_map_v08_to_delivery.tsv`；Test Set 欄保留不作排序鍵；佔位列整列著色 FCE4D6（沿 R-SEC 前例，文字不動）；
+  檔名 `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Diagnostics_<YYYYMMDD>.xlsx`；
+  Cover 版本／日期／作者、Product Document 依 SWC 0708／Home 0809 實測填；核准／審查／中文作者三格留給 Pei。
+  specification_reference 維持 §10.7(a) `CFTS004-{ObjectID}`（7 位 Polarion 物件號，同 SWC 0708 之 `CFTS042-4813401` 式）。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。
