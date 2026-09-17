@@ -270,6 +270,14 @@ FEATURE_CHECKS: dict[str, list[str]] = {"camera": ["Z"], "security": ["SC", "SS"
 # R-SEC15(j)：Security 之 ER 為指令輸出斷言，無 R-SU33/34 之「觀測窗」概念，
 # `I-cross` 對其 10 列全報「窗未完整宣告」而非跨列衝突，故豁免。
 FEATURE_EXEMPT: dict[str, list[str]] = {"security": ["I-cross"]}
+# R-SEC20(amend)(c)（SEC-10）：**部分**豁免 —— 只吞「命中位置落於 `"…"` 內」者。
+# `FEATURE_EXEMPT` 之語意為整項移出 `check_order()`，無從表達位置條件
+# （整項豁免會連引號外之命中一起吞，違 SEC-10 §5 第二條），故另立本表。
+# 出處：R-SEC20(c) 要求 ER 引 037 逐字要件，037 CP-006 VC 之
+# `logs must align with Logdog requirements (Error-level only for defects)` 自帶關係模糊語，
+# 改寫即造值 —— 故豁免限於引文內。
+# 施檢面之判定沿用檢查 B 之同一機制（`quoted_spans()` ＋ `inside_spans()`）。
+FEATURE_EXEMPT_QUOTED: dict[str, list[str]] = {"security": ["H"]}
 
 
 def check_order(profile: str | None) -> list[str]:
@@ -611,11 +619,16 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
     if not fields["test_set"].strip():
         add("G", "test_set", "Test Set 為空", "")
 
-    # H ER 模糊
+    # H ER 模糊（R-SEC20(amend)(c)：引文內之命中依 `FEATURE_EXEMPT_QUOTED` 豁免）
+    h_quoted = profile is not None and "H" in FEATURE_EXEMPT_QUOTED.get(profile, [])
     for m in RE_H.finditer(er):
+        if h_quoted and inside_spans((m.start(), m.end()), spans):
+            continue
         add("H", "er", f"模糊語 {m.group(0)!r}", snippet_of(er, m.start()))
     if profile:
         for m in RE_H_RELATION.finditer(er):
+            if h_quoted and inside_spans((m.start(), m.end()), spans):
+                continue
             add("H", "er", f"關係模糊語 {m.group(0)!r}", snippet_of(er, m.start()))
 
     # I 括號下半（缺括號）
