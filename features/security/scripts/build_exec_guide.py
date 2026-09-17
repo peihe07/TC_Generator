@@ -334,7 +334,9 @@ def main() -> int:
         L.append(f"| {i} | `{c}` | {shown} |")
     L += ["", "## 4. Assets still to be provided", "",
           "From `placeholder_by_token.tsv`; the placeholders inside the workbook carry the same "
-          "code. See `asset_request.md` for who to ask and the urgency order.", "",
+          "code. See `asset_request.md` for who to ask and the urgency order. "
+          "Rows containing placeholders are shaded light orange (FCE4D6) in the delivery "
+          "workbooks.", "",
           "| Token | Placeholder lines | TC | Fields |", "| --- | ---: | ---: | --- |"]
     tok_file = (DATA / "placeholder_by_token_v09.tsv"
                 if (DATA / "placeholder_by_token_v09.tsv").exists()
