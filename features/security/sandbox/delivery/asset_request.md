@@ -8,17 +8,17 @@
 
 | # | 代號 | 缺什麼 | 行數 | 佔位位置 | 涉及 TC | 找誰 |
 |---:|---|---|---:|---|---|---|
-| 1 | **X-g** | SAM 四 SAMType AuthData（`{SSN}_SAM_{SAMType}.json` ＋ `.sig` ＋ cert）；ValidityCounter `0`／`1`／`65535`；TimeStamp 舊於已裝者一組；SAM dongle | 36 | er=18 proc=18（觸發型 18／結果型 17／值型 1）；例 NR1L-SAM-007 er L1；NR1L-SAM-008 proc L1 | NR1L-SAM-004、NR1L-SAM-005、NR1L-SAM-007、NR1L-SAM-008…（共 19） | SAM 負責人 |
-| 2 | **X-h** | CS.212 正式 package（Cybersecurity team review 後）之逐字 log 關鍵字 | 19 | er=19（值型 19）；例 NR1L-CP-002 er L3；NR1L-CP-004 er L3 | NR1L-CP-002、NR1L-CP-004、NR1L-CP-006、NR1L-CP-007…（共 18） | Steven／Shawn |
-| 3 | **X-l** | **SwdlSecureLib 之解密／驗證測試入口**（程式庫介面之可執行 harness） | 8 | er=4 proc=4（步驟型 4／值型 4）；例 NR1L-SWDL-001 proc L1；NR1L-SWDL-001 er L1 | NR1L-SWDL-001、NR1L-SWDL-002、NR1L-SWDL-003、NR1L-SWDL-004 | JY／Rivers |
-| 4 | **X-d** | 本機 SSN 之 ECU certificate chain（`ecu.cacert`） | 7 | er=5 proc=2（結果型 5／觸發型 2）；例 NR1L-ECUC-001 proc L3；NR1L-ECUC-001 er L2 | NR1L-ECUC-001、NR1L-ECUC-002、NR1L-ECUC-004、NR1L-ECUC-007…（共 5） | STLA 經 Samuel |
-| 5 | **X-e** | CertProvider 六組憑證（valid／broken／revoked／wrong-subject／wrong-issuer／wrong-OID）＋ RD 預產 `dcl_baseline.json`、`dcl_revoked_l0~l3.json` | 7 | proc=7（觸發型 7）；例 NR1L-CP-004 proc L5；NR1L-CP-006 proc L5 | NR1L-CP-004、NR1L-CP-006、NR1L-CP-007、NR1L-CP-009…（共 7） | Steven |
-| 6 | **X-f-2** | **KeyInstall status test runner** —— Binder `getStatus()` 之可執行入口（SEC-07 內查後僅餘 6 行） | 6 | er=3 proc=3（步驟型 2／值型 2／觸發型 1／結果型 1）；例 NR1L-KI-018 proc L1；NR1L-KI-018 er L1 | NR1L-KI-018、NR1L-KI-019、NR1L-KI-022 | Steven／KeyInstall 負責人 |
-| 7 | **X-k** | **Dealer App 對 DUT 之存取**（ECUCert Dealer Service 之 `UI` 通道入口） | 4 | er=2 proc=2（步驟型 2／值型 2）；例 NR1L-ECUC-008 proc L1；NR1L-ECUC-008 er L1 | NR1L-ECUC-008、NR1L-ECUC-009 | Samuel |
-| 8 | **X-n** | **suspend／resume 之觸發手段** —— 037 SAM-0013 未載觸發方式 | 4 | er=2 proc=2（步驟型 2／值型 2）；例 NR1L-SAM-025 proc L1；NR1L-SAM-025 er L1 | NR1L-SAM-025、NR1L-SAM-026 | SAM 負責人 |
-| 9 | **X-j** | **OTA／HAL 版本升級之映像檔與升級手段** —— 037 KI-008 之第二 sibling | 2 | er=1 proc=1（觸發型 1／結果型 1）；例 NR1L-KI-015 proc L1；NR1L-KI-015 er L1 | NR1L-KI-015 | JY／Rivers |
-| 10 | **X-m** | **兩次獨立取樣之 log snapshot ＋ 對稱金鑰比對手段** —— 037 LOGENC-006 4.1.3 | 2 | er=1 proc=1（步驟型 1／值型 1）；例 NR1L-LOGENC-003 proc L5；NR1L-LOGENC-003 er L3 | NR1L-LOGENC-003 | LogEncrypt 負責人 |
-| 11 | **X-c** | NR1L 正確 OID 之 Code Signing 憑證（leaf ＋ L1 PEM） | 1 | proc=1（觸發型 1）；例 NR1L-CP-020 proc L3 | NR1L-CP-020 | STLA 經 Steven |
+| 1 | **X-g** | SAM 四 SAMType AuthData（`{SSN}_SAM_{SAMType}.json` ＋ `.sig` ＋ cert）；ValidityCounter `0`／`1`／`65535`；TimeStamp 舊於已裝者一組；SAM dongle | 36 | er=18 proc=18（觸發型 18／結果型 17／值型 1）；例 SAM/NR1L-SAM-003 er L1；SAM/NR1L-SAM-004 proc L1 | SAM/NR1L-SAM-003、SAM/NR1L-SAM-004、SAM/NR1L-SAM-006、SAM/NR1L-SAM-007…（共 19） | SAM 負責人 |
+| 2 | **X-h** | CS.212 正式 package（Cybersecurity team review 後）之逐字 log 關鍵字 | 19 | er=19（值型 19）；例 CertProvider/NR1L-CP-002 er L3；CertProvider/NR1L-CP-004 er L3 | CertProvider/NR1L-CP-002、CertProvider/NR1L-CP-004、CertProvider/NR1L-CP-006、CertProvider/NR1L-CP-007…（共 18） | Steven／Shawn |
+| 3 | **X-l** | **SwdlSecureLib 之解密／驗證測試入口**（程式庫介面之可執行 harness） | 8 | er=4 proc=4（步驟型 4／值型 4）；例 SwdlSecureLib/NR1L-SWDL-004 proc L1；SwdlSecureLib/NR1L-SWDL-004 er L1 | SwdlSecureLib/NR1L-SWDL-004、SwdlSecureLib/NR1L-SWDL-005、SwdlSecureLib/NR1L-SWDL-006、SwdlSecureLib/NR1L-SWDL-007 | JY／Rivers |
+| 4 | **X-d** | 本機 SSN 之 ECU certificate chain（`ecu.cacert`） | 7 | er=5 proc=2（結果型 5／觸發型 2）；例 ECUCert/NR1L-ECUC-001 proc L3；ECUCert/NR1L-ECUC-001 er L2 | ECUCert/NR1L-ECUC-001、ECUCert/NR1L-ECUC-002、ECUCert/NR1L-ECUC-004、ECUCert/NR1L-ECUC-009…（共 5） | STLA 經 Samuel |
+| 5 | **X-e** | CertProvider 六組憑證（valid／broken／revoked／wrong-subject／wrong-issuer／wrong-OID）＋ RD 預產 `dcl_baseline.json`、`dcl_revoked_l0~l3.json` | 7 | proc=7（觸發型 7）；例 CertProvider/NR1L-CP-004 proc L5；CertProvider/NR1L-CP-006 proc L5 | CertProvider/NR1L-CP-004、CertProvider/NR1L-CP-006、CertProvider/NR1L-CP-007、CertProvider/NR1L-CP-009…（共 7） | Steven |
+| 6 | **X-f-2** | **KeyInstall status test runner** —— Binder `getStatus()` 之可執行入口（SEC-07 內查後僅餘 6 行）。Steven to confirm CertProvider apk file name (A-SEC-15) | 6 | er=3 proc=3（步驟型 2／值型 2／觸發型 1／結果型 1）；例 KeyInstall/NR1L-KI-018 proc L1；KeyInstall/NR1L-KI-018 er L1 | KeyInstall/NR1L-KI-018、KeyInstall/NR1L-KI-019、KeyInstall/NR1L-KI-022 | Steven／KeyInstall 負責人 |
+| 7 | **X-k** | **Dealer App 對 DUT 之存取**（ECUCert Dealer Service 之 `UI` 通道入口） | 4 | er=2 proc=2（步驟型 2／值型 2）；例 ECUCert/NR1L-ECUC-010 proc L1；ECUCert/NR1L-ECUC-010 er L1 | ECUCert/NR1L-ECUC-010、ECUCert/NR1L-ECUC-011 | Samuel |
+| 8 | **X-n** | **suspend／resume 之觸發手段** —— 037 SAM-0013 未載觸發方式 | 4 | er=2 proc=2（步驟型 2／值型 2）；例 SAM/NR1L-SAM-024 proc L1；SAM/NR1L-SAM-024 er L1 | SAM/NR1L-SAM-024、SAM/NR1L-SAM-025 | SAM 負責人 |
+| 9 | **X-j** | **OTA／HAL 版本升級之映像檔與升級手段** —— 037 KI-008 之第二 sibling | 2 | er=1 proc=1（觸發型 1／結果型 1）；例 KeyInstall/NR1L-KI-015 proc L1；KeyInstall/NR1L-KI-015 er L1 | KeyInstall/NR1L-KI-015 | JY／Rivers |
+| 10 | **X-m** | **兩次獨立取樣之 log snapshot ＋ 對稱金鑰比對手段** —— 037 LOGENC-006 4.1.3 | 2 | er=1 proc=1（步驟型 1／值型 1）；例 libLogEncrypt/NR1L-LOGENC-009 proc L5；libLogEncrypt/NR1L-LOGENC-009 er L3 | libLogEncrypt/NR1L-LOGENC-009 | LogEncrypt 負責人 |
+| 11 | **X-c** | NR1L 正確 OID 之 Code Signing 憑證（leaf ＋ L1 PEM） | 1 | proc=1（觸發型 1）；例 CertProvider/NR1L-CP-020 proc L3 | CertProvider/NR1L-CP-020 | STLA 經 Steven |
 
 ## `X-i` 已裁降（不在本表）
 
